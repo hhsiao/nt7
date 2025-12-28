@@ -9,8 +9,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一张完整的野鹿皮，摸上去柔软光滑。\n");
-                set("unit", "张");
+                set("long", "一張完整的野鹿皮，摸上去柔軟光滑。\n");
+                set("unit", "張");
                 set("value", 200);
         }
 }

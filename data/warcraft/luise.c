@@ -7,7 +7,7 @@ void setup()
         set_name("代步而已[2;37;0m[2;37;0m", ({"daibu"}));        
         set("gender", "女性");                
         set("long", "代步而已[2;37;0m
-它是洪八的魔幻兽。
+它是洪八的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

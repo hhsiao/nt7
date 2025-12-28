@@ -5,7 +5,7 @@ inherit F_FOOD;
 
 void create()
 {
-        set_name(HIW"白切鸡"NOR, ({"chicken"}));
+        set_name(HIW"白切雞"NOR, ({"chicken"}));
         set_weight(200);
         /*if (clonep())
                 set_default_object(__FILE__);

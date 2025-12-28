@@ -1,4 +1,4 @@
-// lingjiu-xinfa.c 灵鹫心法
+// lingjiu-xinfa.c 靈鷲心法
 
 inherit FORCE;
 
@@ -13,7 +13,7 @@ int valid_learn(object me)
 
 int practice_skill(object me)
 {
-        return notify_fail("灵鹫心法只能用学(learn)的来增加熟练度。\n");
+        return notify_fail("靈鷲心法只能用學(learn)的來增加熟練度。\n");
 }
 
 string exert_function_file(string func)

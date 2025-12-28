@@ -19,7 +19,7 @@ int main(object me, string arg)
                 return 0;
 
         if (! arg || arg == "")
-                return notify_fail("请你指明一个玩家。\n");
+                return notify_fail("請你指明一個玩家。\n");
 
         seteuid(getuid());
         if (arg == "?")
@@ -37,11 +37,11 @@ int main(object me, string arg)
 
                                 if (! flag)
                                 {
-                                        msg +=HIW "\n目前记录的情况如下：\n"
+                                        msg +=HIW "\n目前記錄的情況如下：\n"
                                               HIY "------------------------------------------------\n" NOR;
                                         flag = 1;
                                 }
-                                msg += sprintf("%s%-14s  目前被  %-14s 记录日志。\n" NOR,
+                                msg += sprintf("%s%-14s  目前被  %-14s 記錄日誌。\n" NOR,
                                         (wizhood(me) == "(player)") ? CYN : HIY,
                                         ks[i], log[ks[i]]);
                         }
@@ -56,7 +56,7 @@ int main(object me, string arg)
 
                         if (! flag)
                         {
-                                msg += HIW "\n目前正在记录的使用者情况如下：\n"
+                                msg += HIW "\n目前正在記錄的使用者情況如下：\n"
                                        HIY "------------------------------------------------\n" NOR;
                                 flag = 1;
                         }
@@ -65,11 +65,11 @@ int main(object me, string arg)
                         msg += sprintf("%s%-20s  " HIC "%-10s  %s\n" NOR,
                                        wizardp(obs[i]) ? HIY : CYN,
                                        nid,
-                                       environment(obs[i]) ? environment(obs[i])->short() : "未知地点",
-                                       interactive(obs[i]) ? HIG + query_ip_name(obs[i]) : HIR "断线");
+                                       environment(obs[i]) ? environment(obs[i])->short() : "未知地點",
+                                       interactive(obs[i]) ? HIG + query_ip_name(obs[i]) : HIR "斷線");
                 }
                 if (! flag)
-                        msg += "目前没有在线玩家被记录日志。\n";
+                        msg += "目前沒有在線玩家被記錄日誌。\n";
                 else
                         msg += "\n";
                 write(msg);
@@ -77,17 +77,17 @@ int main(object me, string arg)
         }
 
         if (file_size(DATA_DIR + "login/" + arg[0..0] + "/" + arg + __SAVE_EXTENSION__) < 0)
-                return notify_fail("咦... 没有这个玩家啊！\n");
+                return notify_fail("咦... 沒有這個玩家啊！\n");
 
         if (wiz_level(me) < wiz_level(arg))
-                return notify_fail("你不能为自己权限高的人纪录日志。\n");
+                return notify_fail("你不能為自己權限高的人紀錄日誌。\n");
 
         if (wizhood(arg) == "(admin)" && ! me->is_admin())
-                return notify_fail("你不能记录天神的日志。\n");
+                return notify_fail("你不能記錄天神的日誌。\n");
 
         if( EXAMINE_D->start_log_player(arg,query("id", me)) )
         {
-                write("开始记录(" + arg + ")的日志。\n");
+                write("開始記錄(" + arg + ")的日誌。\n");
                 return 1;
         }
 
@@ -99,11 +99,11 @@ int help (object me)
         write(@HELP
 指令格式: log <player> | ?
 
-记录 <player> 的日志，日志文件生成在 /log/user/player 下面。
-如果没有声明停止记录该玩家的日志，系统将一直记录下去，即使
-退出后重新连线进入也不会停止。
+記錄 <player> 的日誌，日誌文件生成在 /log/user/player 下面。
+如果沒有聲明停止記錄該玩家的日誌，系統將一直記錄下去，即使
+退出後重新連線進入也不會停止。
 
-如果输入 ? 作为参数，列出当前记录的情况。
+如果輸入 ? 作為參數，列出當前記錄的情況。
 
 HELP );
         return 1;

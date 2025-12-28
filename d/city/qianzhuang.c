@@ -5,25 +5,25 @@ inherit ROOM;
 
 void create()
 {
-	set("short", "钱庄");
+	set("short", "錢莊");
         set("long", @LONG
-钱家开的钱庄，在中原可算是最老字号和信誉最好的钱庄了，已
-有几百年的历史，在全国各地都有分号。它发行的银票信誉极好，通
-行大江南北。钱庄中央有一半人多高的红木柜台，柜台上面挂着一块
-牌子 (paizi)。戴着小眼镜的钱老板正坐在柜台后面看他的帐本，似
-乎并没有注意到你进来。
+錢家開的錢莊，在中原可算是最老字號和信譽最好的錢莊了，已
+有幾百年的歷史，在全國各地都有分號。它發行的銀票信譽極好，通
+行大江南北。錢莊中央有一半人多高的紅木櫃臺，櫃檯上面掛著一塊
+牌子 (paizi)。戴著小眼鏡的錢老闆正坐在櫃檯後面看他的帳本，似
+乎並沒有注意到你進來。
 LONG );
 	set("exits", ([
 		"east" : "/d/city/beidajie1",
 	]));
 	set("item_desc", ([
 		"paizi" : @TEXT
-     本钱庄提供以下服务：
-      存钱        deposit或者cun
-      取钱        withdraw或者qu
-      钱币兑换    convert或者duihuan
-      查帐        check或者chazhang
-      转帐        transfer或者zhuanzhang
+     本錢莊提供以下服務：
+      存錢        deposit或者cun
+      取錢        withdraw或者qu
+      錢幣兌換    convert或者duihuan
+      查帳        check或者chazhang
+      轉帳        transfer或者zhuanzhang
 TEXT
 	]) );
 

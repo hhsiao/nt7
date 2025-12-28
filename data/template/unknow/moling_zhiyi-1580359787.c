@@ -7,9 +7,9 @@ inherit SURCOAT;
 
 void create()
 {
-	set_name("[1;32m魔灵之翼[2;37;0m", ({ "moling zhiyi" }));
+	set_name("[1;32m魔靈之翼[2;37;0m", ({ "moling zhiyi" }));
         set_weight(2000);
-	set("long", "[1;32m这是一件形似传说中怪鸟羽翼般的披风，看起来盛气逼人。
+	set("long", "[1;32m這是一件形似傳說中怪鳥羽翼般的披風，看起來盛氣逼人。
 [2;37;0m");
         /*if (clonep())
                 set_default_object(__FILE__);
@@ -28,7 +28,7 @@ void create()
 
 
 	set("special", ([ /* sizeof() == 1 */
-  "desc" : "[1;31m提升有效轻功20级。",
+  "desc" : "[1;31m提升有效輕功20級。",
 ]));
 	set("limit", ([ /* sizeof() == 2 */
   "scborn" : 1,
@@ -56,7 +56,7 @@ int receive_summon(object me)
         return ITEM_D->receive_summon(me, this_object());
 }
 
-// 隐藏物品
+// 隱藏物品
 int hide_anywhere(object me)
 {
         return ITEM_D->hide_anywhere(me, this_object());

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;37m薛[1;33m定[31m谔[1;32m的[34m猫[2;37;0m[2;37;0m", ({"zhuxian"}));        
+        set_name("[1;37m薛[1;33m定[31m諤[1;32m的[34m貓[2;37;0m[2;37;0m", ({"zhuxian"}));        
         set("gender", "男性");                
-        set("long", "麻烦[2;37;0m
-它是八九玄功的魔幻兽。
+        set("long", "麻煩[2;37;0m
+它是八九玄功的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

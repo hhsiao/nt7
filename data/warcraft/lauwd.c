@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m百足之虫[2;37;0m[2;37;0m", ({"lauwdbb"}));        
+        set_name("[1;31m百足之蟲[2;37;0m[2;37;0m", ({"lauwdbb"}));        
         set("gender", "女性");                
-        set("long", "我的百足虫，哇哈哈！[2;37;0m
-它是不毒老人的魔幻兽。
+        set("long", "我的百足蟲，哇哈哈！[2;37;0m
+它是不毒老人的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

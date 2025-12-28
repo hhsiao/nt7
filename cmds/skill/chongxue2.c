@@ -1,5 +1,5 @@
 // jiexue.c
-// 冲开封闭的穴道
+// 衝開封閉的穴道
 
 #include <ansi.h>
 
@@ -11,24 +11,24 @@ int main(object me, string arg)
          object ob;
 
          if (me->is_busy() || me->is_fighting())
-                 return notify_fail("等你忙完再说吧！\n");
+                 return notify_fail("等你忙完再說吧！\n");
 
          force = me->query_skill("force");
 
          if (1)
          {
                 if (! me->query_temp("fengxue"))
-                      return notify_fail("你穴道并没有封闭啊。\n");
+                      return notify_fail("你穴道並沒有封閉啊。\n");
           
                 if (force < 300)
-                      return notify_fail("你内功修为不足，无法将封闭的穴道冲开。\n");
+                      return notify_fail("你內功修為不足，無法將封閉的穴道衝開。\n");
 
                 if (me->query("max_neili") < 2000)
-                      return notify_fail("你内力修为不足，无法将封闭的穴道冲开。\n");
+                      return notify_fail("你內力修為不足，無法將封閉的穴道衝開。\n");
 
-                message_vision(HIW "$N" HIW "暗运内功，一股真气流至全身各处。\n" NOR, me);
+                message_vision(HIW "$N" HIW "暗運內功，一股真氣流至全身各處。\n" NOR, me);
 
-                write(HIG "你周身被封闭的穴道已被冲开。\n" NOR);
+                write(HIG "你周身被封閉的穴道已被衝開。\n" NOR);
 
                 me->delete_temp("fengxue");
                 me->set_temp("last_fengxue", time());
@@ -43,7 +43,7 @@ int help(object me)
   write(@HELP
 指令格式 : chongxue
 
-该指令可以将被封闭的穴道冲开。
+該指令可以將被封閉的穴道衝開。
 HELP
 );
     return 1;

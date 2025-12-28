@@ -4,14 +4,14 @@ inherit NPC;
 
 void create()
 {
-        set_name("秦广王", ({ "qin guangwang", "qin", "guangwang" }));
+        set_name("秦廣王", ({ "qin guangwang", "qin", "guangwang" }));
         set("title", HIR "冥府地藏王殿前" NOR);
         set("nickname", WHT "魂王" NOR);
         set("shen_type", 1);
 
         set("gender", "男性");
         set("age", 475);
-        set("long", "秦广王乃是阴间十王之一。\n");
+        set("long", "秦廣王乃是陰間十王之一。\n");
 
         set("str", 50);
         set("int", 50);
@@ -71,7 +71,7 @@ void create()
                 (: exert_function, "shield" :),
         }) );
         
-        create_family("阴司", 0, "总管");
+        create_family("陰司", 0, "總管");
 
         setup();
         carry_object(__DIR__"obj/cloth4")->wear();

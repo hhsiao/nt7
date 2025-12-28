@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "虎头岩");
+        set("short", "虎頭巖");
         set("long", @LONG
-一块巨大的岩石看上去好象一个虎头正张大了血盆大口咆哮，虎
-身隐藏在草木丛中。
+一塊巨大的岩石看上去好象一個虎頭正張大了血盆大口咆哮，虎
+身隱藏在草木叢中。
 LONG );
         set("objects", ([
                 "/clone/quarry/laohu" : 1,

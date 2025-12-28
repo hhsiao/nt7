@@ -4,8 +4,8 @@ inherit "/inherit/char/punisher";
 
 void create()
 {
-        set_name("于万亭", ({ "yu wanting", "yu", "wanting" }));
-        set("long",  "这是早已归隐的红花会上代总舵主于万亭。\n");
+        set_name("於萬亭", ({ "yu wanting", "yu", "wanting" }));
+        set("long",  "這是早已歸隱的紅花會上代總舵主於萬亭。\n");
         set("gender", "男性");
         set("age", 67);
         set("attitude", "peaceful");
@@ -47,7 +47,7 @@ void create()
 
         prepare_skill("strike", "benlei-zhang");
 
-        create_family("红花会", 0, "总舵主");
+        create_family("紅花會", 0, "總舵主");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({

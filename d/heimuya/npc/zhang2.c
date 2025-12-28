@@ -4,14 +4,14 @@ inherit NPC;
 
 void create()
 {
-    set_name("张乘云", ({"zhang chengyun", "zhang", "chengyun"}));
+    set_name("張乘雲", ({"zhang chengyun", "zhang", "chengyun"}));
     set("nickname", HIW "白猿神魔" NOR );
-    set("title", "日月神教长老");
+    set("title", "日月神教長老");
     set("gender", "男性");
     set("age", 42);
     set("shen_type", -1);
     set("long",
-        "他是日月神教长老。\n");
+        "他是日月神教長老。\n");
     set("attitude", "peaceful");
 
     set("per", 21);
@@ -47,7 +47,7 @@ void create()
     map_skill("unarmed", "changquan");
     map_skill("dodge", "lingxu-bu");
 
-    create_family("日月神教", 2, "长老");
+    create_family("日月神教", 2, "長老");
 
     setup();
     carry_object("/d/heimuya/npc/obj/shutonggun")->wield();

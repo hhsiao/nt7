@@ -9,9 +9,9 @@ void create()
         object ob;
         set_name("史松", ({ "shi song", "shi", "song" }));
         set("gender", "男性");
-        set("long", "这是一个精壮汉子，军官模样，腰间围一条长鞭。\n");
-        set("nickname", WHT "黑龙鞭" NOR);
-        set("title", "巡捕首领");
+        set("long", "這是一個精壯漢子，軍官模樣，腰間圍一條長鞭。\n");
+        set("nickname", WHT "黑龍鞭" NOR);
+        set("title", "巡捕首領");
         set("age", 35);
         set("str", 25);
         set("dex", 20);
@@ -58,14 +58,14 @@ void create()
         }));
 
         set("inquiry", ([
-                "茅十八" : "谁帮我干掉这恶贼，我一定保他前程似锦。",
-                "缠字诀" : "我总得留两手吧？",
+                "茅十八" : "誰幫我幹掉這惡賊，我一定保他前程似錦。",
+                "纏字訣" : "我總得留兩手吧？",
         ]));
 
         set("chat_chance", 1);
         set("chat_msg", ({
-                CYN "史松说道：在下黑龙鞭史松，奉鳌少保将令，擒拿天地会反贼。\n" NOR,
-                CYN "史松说道：鳌少保天生神勇，曾在北京街上一拳打死一头疯牛。\n" NOR,
+                CYN "史松說道：在下黑龍鞭史松，奉鰲少保將令，擒拿天地會反賊。\n" NOR,
+                CYN "史松說道：鰲少保天生神勇，曾在北京街上一拳打死一頭瘋牛。\n" NOR,
         }));
 
         setup();
@@ -100,7 +100,7 @@ void init()
 
         if( query("id", ob) == "mao shiba" )
         {
-                command("say 茅十八你这个反贼，今天终于逮到你了！");
+                command("say 茅十八你這個反賊，今天終於逮到你了！");
                 me->set_leader(ob);
                 remove_call_out("kill_ob");
                 call_out("kill_ob", 1, ob); 
@@ -109,9 +109,9 @@ void init()
         if (interactive(ob)
 	 && !query("no_fight", environment(ob) )
             && (query("combat_exp", ob)>150000 )
-            && (query("family/family_name", ob) == "天地会") )
+            && (query("family/family_name", ob) == "天地會") )
         {
-                command("say 你这个天地会反贼，纳命来吧！");
+                command("say 你這個天地會反賊，納命來吧！");
                 me->set_leader(ob);
                 remove_call_out("kill_ob");
                 call_out("kill_ob", 1, ob); 
@@ -128,7 +128,7 @@ int accept_object(object me, object ob)
 
         if (base_name(ob) != LING)
         {
-                command("say 你给我这种东西干什么？");
+                command("say 你給我這種東西幹什麼？");
                 return 0;
         }
 
@@ -139,20 +139,20 @@ int accept_object(object me, object ob)
                         addn("combat_exp", exp, me);
                         addn("potential", pot, me);
                         addn("score", sc, me);
-                        tell_object(me, HIW "\n\n你成功的帮助史松弄到了通缉令！\n" NOR +
-                                        HIC "通过这次的历练，你获得了" + chinese_number(exp) +
-                                        "点经验、" + chinese_number(pot) + "点潜能以及" +
-                                        chinese_number(sc) + "点江湖阅历。\n\n" NOR);
+                        tell_object(me, HIW "\n\n你成功的幫助史松弄到了通緝令！\n" NOR +
+                                        HIC "通過這次的歷練，你獲得了" + chinese_number(exp) +
+                                        "點經驗、" + chinese_number(pot) + "點潛能以及" +
+                                        chinese_number(sc) + "點江湖閱歷。\n\n" NOR);
                         set("skybook/luding/shi", 1, me);
                         set("can_learn/yunlong-bian/shi", 1, me);
                 }
                 command("haha");
-                command("say 你把那姓茅的大盗干掉了？这可真是谢谢你了。");
-                command("say 我这有一套云龙鞭法，如果你愿意，我倒是可以传你两手。\n");
+                command("say 你把那姓茅的大盜幹掉了？這可真是謝謝你了。");
+                command("say 我這有一套雲龍鞭法，如果你願意，我倒是可以傳你兩手。\n");
         } else
         {
                 command("nod"+query("id", me));
-                command("say 不错，不错。可惜你江湖经验太浅，要不还可教你点东西。");
+                command("say 不錯，不錯。可惜你江湖經驗太淺，要不還可教你點東西。");
         }
         destruct(ob);
         return 1;
@@ -162,13 +162,13 @@ int recognize_apprentice(object me, string skill)
 {
         if( !query("can_learn/yunlong-bian/shi", me) )
         {
-                command("say 奶奶的，你找死么？");
+                command("say 奶奶的，你找死麼？");
                 return -1;
         }
 
         if (skill != "yunlong-bian")
         {
-                command("say 我拿手的就只有这套鞭法，你不学就算了。");
+                command("say 我拿手的就只有這套鞭法，你不學就算了。");
                 return -1;
         }
         return 1;
@@ -176,13 +176,13 @@ int recognize_apprentice(object me, string skill)
 
 int accept_fight(object me)
 {
-        command("say 没兴趣。");
+        command("say 沒興趣。");
         return 0;
 }
 
 int accept_hit(object me)
 {
-        command("say 他奶奶的，连我你都敢惹？");
+        command("say 他奶奶的，連我你都敢惹？");
         kill_ob(me);
         return 1;
 }

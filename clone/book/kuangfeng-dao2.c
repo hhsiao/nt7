@@ -5,7 +5,7 @@ inherit F_UNIQUE;
  
 void create()
 {
-        set_name("「狂风快刀」下册", ({ "kuangfeng book2", "book2", }));
+        set_name("「狂風快刀」下冊", ({ "kuangfeng book2", "book2", }));
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
@@ -13,8 +13,8 @@ void create()
         {
                 set("unit", "本");
                 set("long",
-        "这是一本发旧的秘籍。上书：“狂风快刀(下)”。\n"
-        "书皮泛黄，看来已经保存很久了。\n", );
+        "這是一本發舊的秘籍。上書：“狂風快刀(下)”。\n"
+        "書皮泛黃，看來已經保存很久了。\n", );
                 set("value", 0);
                 set("material", "paper");
                 set("skill", ([

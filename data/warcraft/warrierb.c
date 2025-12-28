@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m凤凰[2;37;0m[2;37;0m", ({"fenghuang"}));        
+        set_name("[1;31m鳳凰[2;37;0m[2;37;0m", ({"fenghuang"}));        
         set("gender", "女性");                
-        set("long", "四圣兽之一的朱雀[2;37;0m
-它是食神的魔幻兽。
+        set("long", "四聖獸之一的朱雀[2;37;0m
+它是食神的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

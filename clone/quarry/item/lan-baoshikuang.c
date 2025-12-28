@@ -4,12 +4,12 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIC "蓝宝石矿" NOR, ({ "lan baoshikuang", "lan" }));
+        set_name(HIC "藍寶石礦" NOR, ({ "lan baoshikuang", "lan" }));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("base_unit", "块");
-                set("unit", "块");
+                set("base_unit", "塊");
+                set("unit", "塊");
                 set("base_value", 10000);
                 set("base_weight", 600);
         }

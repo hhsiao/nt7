@@ -6,8 +6,8 @@ void setup()
 {
         set_name("性感女神[2;37;0m[2;37;0m", ({"xinggannvshen"}));        
         set("gender", "女性");                
-        set("long", "她身材高挑，曲线毕露，浑身散发着一股成熟的气息。[2;37;0m
-它是莫得感情的魔幻兽。
+        set("long", "她身材高挑，曲線畢露，渾身散發著一股成熟的氣息。[2;37;0m
+它是莫得感情的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

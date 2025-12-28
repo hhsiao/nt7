@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define LUO "「" HIR "星罗棋布" NOR "」"
+#define LUO "「" HIR "星羅棋佈" NOR "」"
 
 inherit F_SSERVER;
 
@@ -19,32 +19,32 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if( userp(me) && !query("can_perform/heixue-shenzhen/luo", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(LUO "只能在战斗中对对手使用。\n");
+                return notify_fail(LUO "只能在戰鬥中對對手使用。\n");
 
         if( !objectp(weapon=query_temp("handing", me)) || 
             query("skill_type", weapon) != "throwing" )
-                return notify_fail("你现在手中并没有拿着暗器。\n");
+                return notify_fail("你現在手中並沒有拿著暗器。\n");
 
         if (weapon->query_amount() < 20)
                 return notify_fail("至少要有二十枚暗器才能施展" LUO "。\n");
 
         if ((skill = me->query_skill("heixue-shenzhen", 1)) < 140)
-                return notify_fail("你的黑血神针不够娴熟，难以施展" LUO "。\n");
+                return notify_fail("你的黑血神針不夠嫻熟，難以施展" LUO "。\n");
 
         if ((int)me->query_skill("force") < 200)
-                return notify_fail("你的内功火候不够，难以施展" LUO "。\n");
+                return notify_fail("你的內功火候不夠，難以施展" LUO "。\n");
 
         if( query("neili", me)<150 )
-                return notify_fail("你现在真气不足，难以施展" LUO "。\n");
+                return notify_fail("你現在真氣不足，難以施展" LUO "。\n");
 
         if (! living(target))
-               return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+               return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg= HIR "$N" HIR "纵身跃起，陡然间十指猛张，竟将手中所有的"
-             + weapon->name() + HIR "打出，笼罩$n" HIR "四方！\n" NOR;
+        msg= HIR "$N" HIR "縱身躍起，陡然間十指猛張，竟將手中所有的"
+             + weapon->name() + HIR "打出，籠罩$n" HIR "四方！\n" NOR;
 
         my_exp=query("combat_exp", me)+skill*skill/10*skill;
         ob_exp=query("combat_exp", target);
@@ -57,8 +57,8 @@ int perform(object me, object target)
                 if (random(my_exp / 4) > ob_exp) n += 4 + random(8);
                 if (weapon->query_amount() < n) n = weapon->query_amount();
 
-                msg += HIR "结果$n" HIR "躲闪不及，全身上下被$P" HIR "射出"
-                       HIR + chinese_number(n) + HIR "个血肉淋漓的窟窿，惨"
+                msg += HIR "結果$n" HIR "躲閃不及，全身上下被$P" HIR "射出"
+                       HIR + chinese_number(n) + HIR "個血肉淋漓的窟窿，慘"
                        "不忍睹。\n" NOR;
                 target->receive_damage("qi", skill + random(skill), me);
                 target->receive_wound("qi", skill / 2 + random(skill / 2), me);
@@ -75,8 +75,8 @@ int perform(object me, object target)
                 message_combatd(msg, me, target);
         } else
         {
-                msg += CYN "$p" CYN "见得$P" CYN "招数奇特，不敢大意，当"
-                       "即飞身躲开了所有暗器。\n" NOR;
+                msg += CYN "$p" CYN "見得$P" CYN "招數奇特，不敢大意，當"
+                       "即飛身躲開了所有暗器。\n" NOR;
                 message_combatd(msg, me, target);
         }
 

@@ -4,12 +4,12 @@
 
 void setup()
 {
-        set_name("欧欧[2;37;0m[2;37;0m", ({"ouou"}));        
+        set_name("歐歐[2;37;0m[2;37;0m", ({"ouou"}));        
         set("gender", "男性");                
-        set("long", "欧欧[2;37;0m
-它是吖壹的魔幻兽。
+        set("long", "歐歐[2;37;0m
+它是吖壹的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "gggq");
         set("owner_name", "吖壹");

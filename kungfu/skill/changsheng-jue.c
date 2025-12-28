@@ -22,24 +22,24 @@ int valid_learn(object me)
 {
         int lvl = (int)me->query_skill("changsheng-jue", 1);
 
-        if( query("character", me) != "狡黠多变" )
-                return notify_fail("你心中暗想：这不过是道家练气的口诀罢了，哪里是什么神功？\n");
+        if( query("character", me) != "狡黠多變" )
+                return notify_fail("你心中暗想：這不過是道家練氣的口訣罷了，哪裡是什麼神功？\n");
 
         if( query("int", me)<35 )
-                return notify_fail("你觉得长生决过于艰深，难以理解。\n");
+                return notify_fail("你覺得長生決過於艱深，難以理解。\n");
 
         if( query("con", me)<31 )
-                return notify_fail("依照你的根骨无法修炼长生决。\n");
+                return notify_fail("依照你的根骨無法修煉長生決。\n");
 
         if ((int)me->query_skill("martial-cognize", 1) < 300)
-                return notify_fail("你的武学修养没有办法理解其中的精神奥义。\n");
+                return notify_fail("你的武學修養沒有辦法理解其中的精神奧義。\n");
 
         return ::valid_learn(me);
 }
 
 int practice_skill(object me)
 {
-        return notify_fail("长生决只能用学(learn)的来增加熟练度。\n");
+        return notify_fail("長生決只能用學(learn)的來增加熟練度。\n");
 }
 
 string exert_function_file(string func)

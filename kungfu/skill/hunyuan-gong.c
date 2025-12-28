@@ -20,14 +20,14 @@ int query_neili_improve(object me)
 int valid_learn(object me)
 {
         if (me->query_skill("force", 1) < 30)
-                return notify_fail("你的基本内功火候不够，无法学习混元功。\n");
+                return notify_fail("你的基本內功火候不夠，無法學習混元功。\n");
 
             return 1;
 }
 
 int practice_skill(object me)
 {
-            return notify_fail("混元功只能用学(learn)的来增加熟练度。\n");
+            return notify_fail("混元功只能用學(learn)的來增加熟練度。\n");
 }
 
 string exert_function_file(string func)

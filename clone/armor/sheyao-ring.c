@@ -5,14 +5,14 @@ inherit RINGS;
 
 void create()
 {
-        set_name(HIG "蛇妖指环" NOR, ({ "sheyao ring", "sheyao", "ring" }));
+        set_name(HIG "蛇妖指環" NOR, ({ "sheyao ring", "sheyao", "ring" }));
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-                set("unit", "个");
-                set("long", HIG "蛇妖指环是传说中蛇精佩带的指环，拥有神秘的力量！\n" NOR);
+                set("unit", "個");
+                set("long", HIG "蛇妖指環是傳說中蛇精佩帶的指環，擁有神秘的力量！\n" NOR);
                 set("value", 200000);
                 set("material", "gold");
                 set("armor_prop/dex", 6);

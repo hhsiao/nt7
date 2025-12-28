@@ -5,7 +5,7 @@ inherit HAIRPIN;
 
 void create()
 {
-        set_name(HIG "碧玉钗" NOR, ({ "biyu chai", "biyu", "chai" }));
+        set_name(HIG "碧玉釵" NOR, ({ "biyu chai", "biyu", "chai" }));
         set_weight(100);
         /*if (clonep())
                 set_default_object(__FILE__);
@@ -17,7 +17,7 @@ void create()
                 set("armor_prop/armor", 1);
                 set("armor_prop/int", 2);
                 set("limit", ([
-                        "sex" : 1, // 1 为女性
+                        "sex" : 1, // 1 為女性
                 ]));
         }
         setup();

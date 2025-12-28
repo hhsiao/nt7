@@ -3,9 +3,9 @@
 inherit ROOM;
 void create()
 {
-        set("short","练功室");
+        set("short","練功室");
         set("long", @LONG
-这里是白驼山弟子的练功室。有几个制作精致的木人陪你练功。
+這裡是白駝山弟子的練功室。有幾個製作精緻的木人陪你練功。
 LONG );
         set("exits",([
                 "out" : __DIR__"fang",

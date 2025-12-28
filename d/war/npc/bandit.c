@@ -36,10 +36,10 @@ void setup()
 
 void create()
 {
-        string *names = ({RED"僵尸"NOR}); 
+        string *names = ({RED"殭屍"NOR}); 
         set_name( names[random(sizeof(names))], ({ "spirit"}));
         set("vendetta_mark","skeleton");
-        set("long", "这是一只"+query("name")+"。\n");
+        set("long", "這是一隻"+query("name")+"。\n");
 	set("can_follow",1);
         set("far_distance",50);
         set("attitude", "aggressive");
@@ -78,8 +78,8 @@ void die()
 					
 	    	killer->add("diablo_pot",2*bonus);
 	        killer->add("potential",2*bonus);
-	    	tell_object(killer,HIB"你奖励了装备熟练度"+bonus+"。\n");
-	        tell_object(killer,HIB"你奖励了潜能"+2*bonus+"。\n");
+	    	tell_object(killer,HIB"你獎勵了裝備熟練度"+bonus+"。\n");
+	        tell_object(killer,HIB"你獎勵了潛能"+2*bonus+"。\n");
 	        employ=query("employ",killer);
 	        if( !mapp(employ) ) employ=([]);
 	        if( member_array(remove_ansi(query("name")),keys(environment()->hero()))!=-1 )
@@ -90,14 +90,14 @@ void die()
 	    	                        employ[remove_ansi(query("name"))]=1;
 	    	                else employ[remove_ansi(query("name"))]+=1;
 	    		        set("employ",employ,killer);
-	                        tell_object(killer,HIB"你的队伍增加了1个"+remove_ansi(query("name"))+"。\n");
+	                        tell_object(killer,HIB"你的隊伍增加了1個"+remove_ansi(query("name"))+"。\n");
 	                }
-	                else tell_object(killer,HIB"你的队伍满了，无法增加"+remove_ansi(query("name"))+"。\n");
+	                else tell_object(killer,HIB"你的隊伍滿了，無法增加"+remove_ansi(query("name"))+"。\n");
 	        }
 	        if(strsrch(query("name"),"洞穴怪")!=-1) 
 	        {
 	                num=sizeof(filter_array(children("/d/war/npc/bandit"),(:$1->name()==name():)));
-	    	        tell_object(killer,HIB"还有"+(num-1)+"个洞穴怪。\n");
+	    	        tell_object(killer,HIB"還有"+(num-1)+"個洞穴怪。\n");
 	        }
 	        if(num<=1)
 	        {	
@@ -117,12 +117,12 @@ void die()
            	{
            		bonus=query("hero_num")*environment()->hero()[replace_string(remove_ansi(query("name")),"群","")]["hp"]*20;
            		killer->add("potential",bonus);
-           		tell_object(killer,HIB"你的队伍杀死"+this_object()->query("name")+",获得潜能"+bonus+"。\n");
+           		tell_object(killer,HIB"你的隊伍殺死"+this_object()->query("name")+",獲得潛能"+bonus+"。\n");
                 }
         }
 
 	       
-        message_vision(HIR"\n$N一声惨嚎，倒在血泊里挣扎几下死了。\n"NOR,ob);
+        message_vision(HIR"\n$N一聲慘嚎，倒在血泊裡掙扎幾下死了。\n"NOR,ob);
         BUFF_D->debuff(ob,"all");
         destruct(ob);
 }

@@ -7,7 +7,7 @@ inherit "/inherit/char/punisher";
 void create()
 {
         set_name("星宿小仙", ({ "xingxiu xiaoxian", "xiaoxian" }));
-        set("long",  "她是一个小女孩，看上去年纪不大。\n");
+        set("long",  "她是一個小女孩，看上去年紀不大。\n");
         set("gender", "女性");
         set("age", 24);
         set("attitude", "peaceful");

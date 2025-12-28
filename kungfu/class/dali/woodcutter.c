@@ -9,7 +9,7 @@ int ask_me();
 void create()
 {
         set_name("樵夫", ({ "qiao fu", "qiao", "woodcutter" }));
-        set("long", "一个中年樵夫，看起来普普通通，但眼中隐隐闪动着一股霸气。\n");
+        set("long", "一箇中年樵夫，看起來普普通通，但眼中隱隱閃動著一股霸氣。\n");
         set("gender", "男性");
         set("age", 35);
         set("attitude", "peaceful");
@@ -40,7 +40,7 @@ void create()
         prepare_skill("finger", "sun-finger");
 
         set("inquiry", ([
-                "上山" : "要想上山，先过了我这关再说。\n",
+                "上山" : "要想上山，先過了我這關再說。\n",
         ]));
 
         setup();
@@ -78,7 +78,7 @@ int chat()
         if (me->is_fighting(ob)) {
                 if( objectp(weapon=query_temp("weapon", me))){
                         command("unwield axe");
-                        message_vision("樵夫大喝一声，向$N连点了三指。\n", ob);
+                        message_vision("樵夫大喝一聲，向$N連點了三指。\n", ob);
                         call_out("fast_hit", 1, me, ob, 0);
                         call_out("fast_hit", 2, me, ob, 0);
                         call_out("fast_hit", 3, me, ob, 1);
@@ -96,13 +96,13 @@ int chat()
                 axx=new("/d/heizhao/obj/axe1.c");
                 axx->move(me);
                 command("give "+getuid(ob)+" axe");
-                message_vision("樵夫转身大步下山而去，一会儿就不见了\n",ob);
+                message_vision("樵夫轉身大步下山而去，一會兒就不見了\n",ob);
                 destruct(me);
                 return ::chat();
         }
         else {
                 if( query("qi", ob)*2 <= query("max_qi", ob)){
-                        message_vision("樵夫不屑地对$N撇了撇嘴：“就这点功夫，还想上山见我师傅？滚你的吧！”\n",ob);
+                        message_vision("樵夫不屑地對$N撇了撇嘴：“就這點功夫，還想上山見我師傅？滾你的吧！”\n",ob);
                         ob->move("/d/heizhao/shanlu9");
                         set("combat_exp",10);
                         if (!present("axe", me)) {

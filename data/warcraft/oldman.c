@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[33m镇域神兽[2;37;0m[2;37;0m", ({"old"}));        
+        set_name("[33m鎮域神獸[2;37;0m[2;37;0m", ({"old"}));        
         set("gender", "男性");                
-        set("long", "上天入地、擒妖斩魔[2;37;0m
-它是老鬼的魔幻兽。
+        set("long", "上天入地、擒妖斬魔[2;37;0m
+它是老鬼的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

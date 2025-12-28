@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m火袭[2;37;0m[2;37;0m", ({"qilin"}));        
+        set_name("[1;31m火襲[2;37;0m[2;37;0m", ({"qilin"}));        
         set("gender", "男性");                
         set("long", "嘿嘿[2;37;0m
-它是楚米一的魔幻兽。
+它是楚米一的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

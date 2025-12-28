@@ -9,7 +9,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "柄");
-                set("long", "一柄锋利的大刀。\n");
+                set("long", "一柄鋒利的大刀。\n");
                 set("value", 1000);
                 set("material", "gold");
         }

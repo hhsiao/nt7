@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;33m金翅大鹏[2;37;0m[2;37;0m", ({"keka"}));        
+        set_name("[1;33m金翅大鵬[2;37;0m[2;37;0m", ({"keka"}));        
         set("gender", "女性");                
         set("long", "xxx[2;37;0m
-它是莫愁的魔幻兽。
+它是莫愁的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

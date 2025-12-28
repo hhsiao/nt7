@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("买一送一[2;37;0m[2;37;0m", ({"allone"}));        
+        set_name("買一送一[2;37;0m[2;37;0m", ({"allone"}));        
         set("gender", "男性");                
-        set("long", "来星巴克有不定期买一送一唷^^[2;37;0m
-它是星巴克的魔幻兽。
+        set("long", "來星巴克有不定期買一送一唷^^[2;37;0m
+它是星巴克的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

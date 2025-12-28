@@ -4,14 +4,14 @@ inherit ITEM;
 
 void create()
 {
-        set_name("家书", ({"xin", "letter"}));
+        set_name("家書", ({"xin", "letter"}));
         set_weight(100);
           /*if (clonep())
                   set_default_object(__FILE__);
           else*/ 
         {
                   set("unit", "封");
-                  set("long", "一封滴满泪痕的信．\n");
+                  set("long", "一封滴滿淚痕的信．\n");
         }
 
           set("is_monitored",1);
@@ -20,7 +20,7 @@ void create()
 
 void destruct_me(object where, object me)
 {
-          message_vision("$n一落，慢慢地随风飘去……\n",where,me);
+          message_vision("$n一落，慢慢地隨風飄去……\n",where,me);
           destruct (me);
 }
 

@@ -1,5 +1,5 @@
 // Written by Lonely@nitan.org
-// invent.c 自创武功
+// invent.c 自創武功
 
 #include <ansi.h>;
 
@@ -43,7 +43,7 @@ int create_skill(string skill)
         }
 }
 
-// 检查自创武功的属性
+// 檢查自創武功的屬性
 int check_skill()
 {
         if (! pointerp(query("usages")) || sizeof(query("usages")) < 1)
@@ -75,7 +75,7 @@ int valid_learn(object me)
 int practice_skill(object me)
 {
         if( query("qi", me)<30 )
-                return notify_fail("你的状态太差了，不能练" + query("chinese_name") + "。\n");
+                return notify_fail("你的狀態太差了，不能練" + query("chinese_name") + "。\n");
         me->receive_damage("qi", 30);
         return 1;
 }

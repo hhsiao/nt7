@@ -1,16 +1,16 @@
 // This program is a part of NT MudLIB
-// 加入金蛇quest相关
+// 加入金蛇quest相關
 
 inherit NPC;
 #include <ansi.h>
 string ask_quest(); 
 void create()
 {
-        set_name("温方达", ({ "wen fangda", "wen", "fangda" }));
-        set("title", "温家五老");
+        set_name("溫方達", ({ "wen fangda", "wen", "fangda" }));
+        set("title", "溫家五老");
         set("long", 
-                "他就是温家五老的老大温方达。\n"
-                "一个精瘦的老者，一双眼睛露出狡猾的目光。\n");
+                "他就是溫家五老的老大溫方達。\n"
+                "一個精瘦的老者，一雙眼睛露出狡猾的目光。\n");
         set("gender", "男性");
         set("age", 66);
         set("attitude", "friendly");
@@ -67,18 +67,18 @@ string ask_quest()
         if( query("skybook/bixue/pass", me) )
         { 
                 call_out("outwuguan",1,me);
-                return "你是怎么知道这个奸贼的？";
+                return "你是怎麼知道這個奸賊的？";
         }
         if( !query_temp("skybook/bixue/start", me) )
         {
                 command("heng");
-                return "那是我温家堡的仇人！";
+                return "那是我溫家堡的仇人！";
         }
-        message_vision(HIG"$N脸上露出异样的神色。\n"NOR, ob);
+        message_vision(HIG"$N臉上露出異樣的神色。\n"NOR, ob);
         command("look "+query("id", me));
         command("sigh");
-        command("say 这么说你就是金蛇奸贼的传人了，来报仇了？");
-        message_vision(HIC"$N一摆手：“跟我来吧。”带着$n向练武场走去。\n"NOR, ob, me);
+        command("say 這麼說你就是金蛇奸賊的傳人了，來報仇了？");
+        message_vision(HIC"$N一擺手：“跟我來吧。”帶著$n向練武場走去。\n"NOR, ob, me);
         
         set_temp("skybook/bixue/start_kill", 1, me);
         delete_temp("skybook/bixue/start", me);
@@ -95,8 +95,8 @@ void outwuguan(object me)
         
         if(!me) return;
         command("ah");
-        command("say 你是金蛇郎君那个奸贼的传人！来人啊！给我杀了这厮！");
-        message_vision(HIR"只见一群家丁挥舞兵器向$N冲杀而来，$N落荒而逃。\n"NOR, me);
+        command("say 你是金蛇郎君那個奸賊的傳人！來人啊！給我殺了這廝！");
+        message_vision(HIR"只見一群家丁揮舞兵器向$N衝殺而來，$N落荒而逃。\n"NOR, me);
         inv = filter_array(deep_inventory(me), (: userp :));
         if( sizeof(inv) )
                 inv->move(environment(ob));

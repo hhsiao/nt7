@@ -36,7 +36,7 @@ int regenerate_map()
                 j = random(sizeof(room_list));
                 dyna_room += ({room_list[j]});
                 room_list -= ({room_list[j]});
-        }//随机分配位置完毕                                             
+        }//隨機分配位置完畢                                             
 
         size = sizeof(dyna_room);
 
@@ -45,17 +45,17 @@ int regenerate_map()
         {
         if( !(cur_room = find_object(dyna_room[i])) )
                 cur_room = load_object(dyna_room[i]);
-                tell_room(cur_room,HIY"从山庄中心传来机关发动的隆隆声...\n顿时一阵天旋地转...\n");
+                tell_room(cur_room,HIY"從山莊中心傳來機關發動的隆隆聲...\n頓時一陣天旋地轉...\n");
                 delete("exits", cur_room);
                 delete("blocks", cur_room);
                 set("no_clean_up", 1, cur_room);
                 room_object += ({cur_room});
         }
 
-        //开始生成路径
+        //開始生成路徑
         for(i=0;i<size;i++)
         {
-                //生成四个不同的方向对
+                //生成四個不同的方向對
                 dirs =  ({      "north","northeast","northwest","south",
                                 "southwest","southeast","east","west",    
                                 "up","down","enter","out",
@@ -94,7 +94,7 @@ int regenerate_map()
                 set("exits/"+rev_dir2, dyna_room[i], (room_object[int_dir]));
                 }
                 int_dir = random(size);
-        tell_room(room_object[i],HIW"待声音停歇下来，你发现一切都已经变了...\n"NOR);
+        tell_room(room_object[i],HIW"待聲音停歇下來，你發現一切都已經變了...\n"NOR);
         }                                                   
         set("exits/south", DOOM_PATH+"/yongdao3", (room_object[size-1]));
         set("exits/north", DOOM_PATH+"/hall", (room_object[0]));

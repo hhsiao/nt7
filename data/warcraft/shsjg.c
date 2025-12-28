@@ -7,7 +7,7 @@ void setup()
         set_name("虎虎虎[2;37;0m[2;37;0m", ({"xiaobaihu"}));        
         set("gender", "男性");                
         set("long", "虎虎虎[2;37;0m
-它是日落的魔幻兽。
+它是日落的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

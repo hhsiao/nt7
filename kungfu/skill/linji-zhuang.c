@@ -1,4 +1,4 @@
-// linji-zhuang.c 临济十二庄
+// linji-zhuang.c 臨濟十二莊
 
 #include <ansi.h>
 inherit FORCE;
@@ -23,26 +23,26 @@ int query_neili_improve(object me)
 }
 
 string *skill_name = ({
-        "天字庄",
-        "地字庄",
-        "之字庄",
-        "心字庄",
-        "游龙庄",
-        "鹤翔庄",
-        "旋风庄",
-        "飘云庄",
-        "大字庄",
-        "小字庄",
-        "幽字庄",
-        "冥字庄",
-        "临济十二庄",
+        "天字莊",
+        "地字莊",
+        "之字莊",
+        "心字莊",
+        "游龍莊",
+        "鶴翔莊",
+        "旋風莊",
+        "飄雲莊",
+        "大字莊",
+        "小字莊",
+        "幽字莊",
+        "冥字莊",
+        "臨濟十二莊",
 });
 
 string *combo_name = ({
         "天地",
         "之心",
-        "龙鹤",
-        "风云",
+        "龍鶴",
+        "風雲",
         "大小",
         "幽冥",
 });
@@ -56,20 +56,20 @@ int valid_learn(object me)
         np = (int)me->query_skill("mahayana", 1);
 
         if( query("gender", me) != "女性" )
-                return notify_fail("你非女子，不能练习临济十二庄。\n");
+                return notify_fail("你非女子，不能練習臨濟十二莊。\n");
 
         if (np <= nh && np < 200)
-                return notify_fail("你的大乘涅磐功修为不够，无法领会更高深的临济十二庄。\n");
+                return notify_fail("你的大乘涅磐功修為不夠，無法領會更高深的臨濟十二莊。\n");
 
         if (nf < 40)
-                return notify_fail("你的基本内功火候还不够，无法领会临济十二庄。\n");
+                return notify_fail("你的基本內功火候還不夠，無法領會臨濟十二莊。\n");
 
         return 1;
 }
 
 int practice_skill(object me)
 {
-        return notify_fail("临济十二庄只能用学(learn)的来增加熟练度。\n");
+        return notify_fail("臨濟十二莊只能用學(learn)的來增加熟練度。\n");
 }
 
 void skill_improved(object me)
@@ -81,9 +81,9 @@ void skill_improved(object me)
         if ( level > 180 ) return;
 
         if ( level/15*15 == level ) {
-                tell_object(me, HIG "你对「" + skill_name[level/15-1] + "」已豁然贯通。\n"NOR);
+                tell_object(me, HIG "你對「" + skill_name[level/15-1] + "」已豁然貫通。\n"NOR);
                 if (o_lvl < level) {
-                        tell_object(me, HIG"顿时你对基本内功的领悟也大大提高。\n"NOR);
+                        tell_object(me, HIG"頓時你對基本內功的領悟也大大提高。\n"NOR);
                         for (i=0; i< level; i++)
                         me->improve_skill("force", level);
                 }
@@ -91,8 +91,8 @@ void skill_improved(object me)
 
         if ( level/30*30 == level )
         if (o_lvl < level) {
-                tell_object(me, HIY"此时你" + combo_name[level/30-1] +
-                        "二庄融会贯通，一股柔和的真气周游全身，内力修为更精深了一层。\n"NOR);
+                tell_object(me, HIY"此時你" + combo_name[level/30-1] +
+                        "二莊融會貫通，一股柔和的真氣周遊全身，內力修為更精深了一層。\n"NOR);
                 addn("max_neili", level, me);
         }
 
@@ -106,22 +106,22 @@ void skill_improved(object me)
         switch (me->query_skill("linji-zhuang",1))
         {
                 case 30:
-                        tell_object(me, HIG "你天地庄练成了! \n" NOR );
+                        tell_object(me, HIG "你天地莊練成了! \n" NOR );
                         break;
                 case 60:
-                        tell_object(me, HIG "你之心庄练成了! \n" NOR );
+                        tell_object(me, HIG "你之心莊練成了! \n" NOR );
                         break;
                 case 90:
-                        tell_object(me, HIG "你龙鹤庄练成了! \n" NOR );
+                        tell_object(me, HIG "你龍鶴莊練成了! \n" NOR );
                         break;
                 case 120:
-                        tell_object(me, HIG "你风云庄练成了! \n" NOR );
+                        tell_object(me, HIG "你風雲莊練成了! \n" NOR );
                         break;
                 case 150:
-                        tell_object(me, HIG "你大小庄练成了! \n" NOR );
+                        tell_object(me, HIG "你大小莊練成了! \n" NOR );
                         break;
                 case 180:
-                        tell_object(me, HIG "你幽冥庄练成了! \n" NOR );
+                        tell_object(me, HIG "你幽冥莊練成了! \n" NOR );
                         break;
         }
         return;
@@ -134,26 +134,26 @@ string exert_function_file(string func)
 
 int help(object me)
 {
-        write(HIC"\n临济十二庄："NOR"\n");
+        write(HIC"\n臨濟十二莊："NOR"\n");
         write(@HELP
 
-    临济十二庄，讲动静功修练，其排列顺序是：天地之心、龙鹤
-风云、大小幽冥。练功的入手途径，始于道家而归于佛家的四智如
-来境界。十二庄分别以十二个字标名，又可分别称为天字庄、地字
-庄、之字庄、心字庄、游龙庄、鹤翔庄、旋风庄、飘云庄、大字庄、
-小字庄、幽字庄、冥字庄。每练成一庄都有对自身有莫大好处，特
-别是当将十二庄互为反正融会贯通时，（指天地、之心、大小、龙
-鹤、风云、幽冥），对内力修为会有助益，并可增加可以使用的内
-功特异功能。若能贯通幽冥二庄（１８０级）更可到达武林人士梦
-寐以求的龙虎交会、水火既济的境界、并熟通采制灵丹之妙法。
-    临济十二庄可用于为他人疗伤，有效程度比其他内功高，但不
-可用于自疗。
+    臨濟十二莊，講動靜功修練，其排列順序是：天地之心、龍鶴
+風雲、大小幽冥。練功的入手途徑，始於道家而歸於佛家的四智如
+來境界。十二莊分別以十二個字標名，又可分別稱為天字莊、地字
+莊、之字莊、心字莊、游龍莊、鶴翔莊、旋風莊、飄雲莊、大字莊、
+小字莊、幽字莊、冥字莊。每練成一莊都有對自身有莫大好處，特
+別是當將十二莊互為反正融會貫通時，（指天地、之心、大小、龍
+鶴、風雲、幽冥），對內力修為會有助益，並可增加可以使用的內
+功特異功能。若能貫通幽冥二莊（１８０級）更可到達武林人士夢
+寐以求的龍虎交會、水火既濟的境界、並熟通採製靈丹之妙法。
+    臨濟十二莊可用於為他人療傷，有效程度比其他內功高，但不
+可用於自療。
 
-        学习要求：
-                处女纯阴之体
-                出家人才能修习30级以上的临济十二庄
-                相应级别的大乘涅磐功
-                基本内功10级
+        學習要求：
+                處女純陰之體
+                出家人才能修習30級以上的臨濟十二莊
+                相應級別的大乘涅磐功
+                基本內功10級
                 不犯戒
 HELP
         );

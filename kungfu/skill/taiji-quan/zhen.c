@@ -1,9 +1,9 @@
-// zhen.c 太极拳「震」字诀
+// zhen.c 太極拳「震」字訣
 
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return "震字诀"; }
+string name() { return "震字訣"; }
 
 inherit F_SSERVER;
 
@@ -17,23 +17,23 @@ int perform(object me, object target)
         if(! target) target = offensive_target(me);
 
         if(! target || ! target->is_character() || ! me->is_fighting())
-                return notify_fail("「" + name() + "」只能对战斗中的对手使用。\n");
+                return notify_fail("「" + name() + "」只能對戰鬥中的對手使用。\n");
 
         if( objectp(query_temp("weapon", me)) )
-                return notify_fail("你必须空手才能使用「" + name() + "」。\n");
+                return notify_fail("你必須空手才能使用「" + name() + "」。\n");
 
         if((int)me->query_skill("taiji-quan", 1) < 180)
-                return notify_fail("你的太极拳不够娴熟，不会使用「" + name() + "」。\n");
+                return notify_fail("你的太極拳不夠嫻熟，不會使用「" + name() + "」。\n");
 
         if((int)me->query_skill("force", 1) < 200)
-                return notify_fail("你的内功不够高，不能用来反震伤敌。\n");
+                return notify_fail("你的內功不夠高，不能用來反震傷敵。\n");
 
         if( query("neili", me)<1000 )
-                return notify_fail("你现在内力太弱，震也震不伤敌人。\n");
+                return notify_fail("你現在內力太弱，震也震不傷敵人。\n");
 
-        msg = HIY "$N" HIY "默运神功，真气流转，双手左右连画，一个圆圈已将$n"
-              HIY "套住，\n太极拳中的「" HIW + name() + HIY "」信手使出，一道"
-              HIY "浑厚的内力向$n" HIY "推去！\n" NOR;
+        msg = HIY "$N" HIY "默運神功，真氣流轉，雙手左右連畫，一個圓圈已將$n"
+              HIY "套住，\n太極拳中的「" HIW + name() + HIY "」信手使出，一道"
+              HIY "渾厚的內力向$n" HIY "推去！\n" NOR;
 
         ap = attack_power(me, "cuff") + me->query_skill("force");
         dp = defense_power(target, "parry") + target->query_skill("force");
@@ -46,8 +46,8 @@ int perform(object me, object target)
                         damage+= query("jiali", me);
 
                         msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 60,
-                                                   HIC "\n眼见$P" HIC "就要将$p震倒，突然，$n"
-                                                   HIC "运起全身内力，强忍疼痛硬接了$P一招。\n" NOR);
+                                                   HIC "\n眼見$P" HIC "就要將$p震倒，突然，$n"
+                                                   HIC "運起全身內力，強忍疼痛硬接了$P一招。\n" NOR);
                         if (! target->is_busy())
                                 target->start_busy(3);
                         me->start_busy(3);
@@ -60,8 +60,8 @@ int perform(object me, object target)
                         damage+= query("jiali", me);
 
                         msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 200,
-                                                   HIC "\n眼见$n" HIC "被$P的内力压得透不过起来，只听得$N"
-                                                   HIC "“砰”的一声击中$n" HIC "，$p全身骨骼便似散了"
+                                                   HIC "\n眼見$n" HIC "被$P的內力壓得透不過起來，只聽得$N"
+                                                   HIC "“砰”的一聲擊中$n" HIC "，$p全身骨骼便似散了"
                                                    HIC "架一般倒了下去。\n" NOR);
                         me->start_busy(2);
                         if( !target->is_busy() )
@@ -71,7 +71,7 @@ int perform(object me, object target)
         }
         else
         {
-                msg += HIG "\n可$p竟随手便把$P汇聚全身功力的招数架开，吓得$P手足无措！\n" NOR;
+                msg += HIG "\n可$p竟隨手便把$P匯聚全身功力的招數架開，嚇得$P手足無措！\n" NOR;
                 addn("neili", -100, me);
                 me->start_busy(3);
         }

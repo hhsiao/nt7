@@ -1,4 +1,4 @@
-// snake.c 蛇类
+// snake.c 蛇類
 
 #ifndef __SNAKE__
 #define __SNAKE__
@@ -11,14 +11,14 @@ inherit F_DBASE;
 
 mapping *combat_action = ({
 ([
-        "action":                "$N爬上来张嘴往$n的$l狠狠地一咬",
+        "action":                "$N爬上來張嘴往$n的$l狠狠地一咬",
         "damage":                30,
-        "damage_type":        "咬伤",
+        "damage_type":        "咬傷",
 ]),
 ([
-        "action":                "$N支起身猛地往$n的$l卷了上来",
+        "action":                "$N支起身猛地往$n的$l捲了上來",
         "damage":                30,
-        "damage_type":        "瘀伤",
+        "damage_type":        "瘀傷",
 ]),
 });
 
@@ -27,16 +27,16 @@ void create()
         seteuid(getuid());
         set("attitude", "agressive");
         set("limbs", ({
-                "头部", "身体", "七寸", "尾巴"
+                "頭部", "身體", "七寸", "尾巴"
         }) );
 
-        set("dead_message",       "\n$N痛苦地扭动了几下，全身软软地散了开来。\n\n"  );
-        set("unconcious_message", "\n$N痛苦地扭了几下，不动了。\n\n"                );
-        set("revive_message",     "\n$N身躯一弹一滚，又在地上到处游走开来。\n\n"    );
-        set("leave_msg",          "嗖地一声钻了出去"                      );
-        set("arrive_msg",         "蜿蜒地游了过来"                              );
-        set("fleeout_message",    "嗖地一声钻了出去"                      );
-        set("fleein_message",     "缓缓地游了过来，软耷耷地在地上趴着"          );
+        set("dead_message",       "\n$N痛苦地扭動了幾下，全身軟軟地散了開來。\n\n"  );
+        set("unconcious_message", "\n$N痛苦地扭了幾下，不動了。\n\n"                );
+        set("revive_message",     "\n$N身軀一彈一滾，又在地上到處遊走開來。\n\n"    );
+        set("leave_msg",          "嗖地一聲鑽了出去"                      );
+        set("arrive_msg",         "蜿蜒地遊了過來"                              );
+        set("fleeout_message",    "嗖地一聲鑽了出去"                      );
+        set("fleein_message",     "緩緩地遊了過來，軟耷耷地在地上趴著"          );
 }
 
 void setup_snake(object ob)

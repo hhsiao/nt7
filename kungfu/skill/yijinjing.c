@@ -1,4 +1,4 @@
-// yijinjing.c 少林 易筋经神功
+// yijinjing.c 少林 易筋經神功
 
 #include <ansi.h>
 inherit FORCE;
@@ -20,21 +20,21 @@ int valid_enable(string usage) { return usage == "force"; }
 int valid_learn(object me)
 {
         if( query("con", me)<20 )
-                return notify_fail("你研究了一会儿，只觉得眼前金星乱冒，太阳穴突突的跳。\n");
+                return notify_fail("你研究了一會兒，只覺得眼前金星亂冒，太陽穴突突的跳。\n");
 
         if (me->query_skill("force", 1) < 100)
-                return notify_fail("你的基本内功火候不够，无法学习易筋经神功！\n");
+                return notify_fail("你的基本內功火候不夠，無法學習易筋經神功！\n");
 
         /*
         if (me->query_skill("freezing-force", 1))
-                return notify_fail("你已经将易筋经神功和冰蚕寒毒合炼成了一门新内功了。\n");
+                return notify_fail("你已經將易筋經神功和冰蠶寒毒合煉成了一門新內功了。\n");
         */
 
         if (me->query_skill("force", 1) < me->query_skill("yijinjing", 1))
-                return notify_fail("你的基本内功水平不够，难以领悟更高深的易筋经神功！\n");
+                return notify_fail("你的基本內功水平不夠，難以領悟更高深的易筋經神功！\n");
 
         if( query("gender", me) != "男性" )
-                return notify_fail("你不是男性，无法练习易筋经神功。\n");
+                return notify_fail("你不是男性，無法練習易筋經神功。\n");
 
         return ::valid_learn(me);
 }
@@ -42,7 +42,7 @@ int valid_learn(object me)
 
 int practice_skill(object me)
 {
-        return notify_fail("易筋经神功只能用学(learn)的来增加熟练度。\n");
+        return notify_fail("易筋經神功只能用學(learn)的來增加熟練度。\n");
 }
 
 string exert_function_file(string func)
@@ -59,7 +59,7 @@ void skill_improved(object me)
 
         if( skill == 200 && !query("sl/yijinjing", me) )
         {
-                tell_object(me, HIW "\n忽然，你感道体内内息奔走，越转越快，瞬时间已经在全身上下运行了一周天，复汇聚于丹田之中！\n" NOR);
+                tell_object(me, HIW "\n忽然，你感道體內內息奔走，越轉越快，瞬時間已經在全身上下運行了一周天，復匯聚于丹田之中！\n" NOR);
                 addn("max_neili", random(lit+skill), me);
 
                 if( query("max_neili", me)>me->query_neili_limit() )
@@ -69,22 +69,22 @@ void skill_improved(object me)
         }
         if (skill == 400)
         {
-                tell_object(me, HIW "\n忽然，你感道体内内息奔走，越转越快，瞬时间已经在全身上下运行了十周天，复汇聚于丹田之中！\n" NOR);
-                tell_object(me, HIW "你修炼成百毒不侵神功了。\n" NOR);
+                tell_object(me, HIW "\n忽然，你感道體內內息奔走，越轉越快，瞬時間已經在全身上下運行了十週天，復匯聚于丹田之中！\n" NOR);
+                tell_object(me, HIW "你修煉成百毒不侵神功了。\n" NOR);
                 set_temp("nopoison", 1, me);
         }
 }
 */
 
 string *fanzhen_msg = ({
-        "只震得$N胸内腹中，有如五脏一齐翻转！\n",
-        "抢先反震，将$N震得脸如白纸，全无血色！\n",
-        "震得$N心肺欲裂，腾腾腾连退数步！\n",
-        "功力已布满全身，将$N的力量反震回去！\n",
-        "震得$N天旋地转，腾腾腾连退七八步！\n",
-        "和$N一撞，只震的$p胸口气血翻涌！\n",
-        "$N便如撞在一堵棉花作面，钢铁为里的厚墙上一般，震退数步！\n",
-        "$N刚碰到$p，突然身子一震，登时飞了出去！\n",
+        "只震得$N胸內腹中，有如五臟一齊翻轉！\n",
+        "搶先反震，將$N震得臉如白紙，全無血色！\n",
+        "震得$N心肺欲裂，騰騰騰連退數步！\n",
+        "功力已佈滿全身，將$N的力量反震回去！\n",
+        "震得$N天旋地轉，騰騰騰連退七八步！\n",
+        "和$N一撞，只震的$p胸口氣血翻湧！\n",
+        "$N便如撞在一堵棉花作面，鋼鐵為裡的厚牆上一般，震退數步！\n",
+        "$N剛碰到$p，突然身子一震，登時飛了出去！\n",
 });
 /*
 mixed valid_damage(object me,object victim,int damage_bonus,int factor)
@@ -92,23 +92,23 @@ mixed valid_damage(object me,object victim,int damage_bonus,int factor)
 //factor= 加力 damage_bonus=臂力 .
 {
         int ap,dp;
-//内功相差太多(至少2倍以上),内力伤害全部抵消,基本上不出现
+//內功相差太多(至少2倍以上),內力傷害全部抵消,基本上不出現
         ap=me->query_skill("force");
         dp=victim->query_skill("force");
         if( random(ap/2)>dp && query("neili", me)>2000 )
         {
 
-                if (random(10)==1) tell_object(victim, "你只觉得如同击在金属上，头脑里闪过一个念头：金属罩！\n");
-                else tell_object(victim,HIY"你只觉得劲力如同击在金属罩，根本无法伤他分毫！\n"NOR);
-                tell_object(me, HIY"你只觉得劲力袭体，急忙运起金钟罩神功，一股真气弥漫全身！\n"NOR);
+                if (random(10)==1) tell_object(victim, "你只覺得如同擊在金屬上，頭腦裡閃過一個念頭：金屬罩！\n");
+                else tell_object(victim,HIY"你只覺得勁力如同擊在金屬罩，根本無法傷他分毫！\n"NOR);
+                tell_object(me, HIY"你只覺得勁力襲體，急忙運起金鐘罩神功，一股真氣瀰漫全身！\n"NOR);
                 addn("neili", -2*damage_bonus, me);
                 return -damage_bonus;
         }
         else if( (random(ap*2)>dp) && query("neili", me)>1500 )
         {
-                if (random(10)==1) tell_object(victim,HIY"你只觉得如同击在金属上，头脑里闪过一个念头：“金属罩”！\n"NOR);
-                else tell_object(victim,HIY"你只觉得劲力如同击在金属上，虎口隐隐作痛！\n"NOR);
-                tell_object(me, HIY"你只觉得劲力袭体，勉力运起金钟罩，一股真气弥漫全身！\n"NOR);
+                if (random(10)==1) tell_object(victim,HIY"你只覺得如同擊在金屬上，頭腦裡閃過一個念頭：“金屬罩”！\n"NOR);
+                else tell_object(victim,HIY"你只覺得勁力如同擊在金屬上，虎口隱隱作痛！\n"NOR);
+                tell_object(me, HIY"你只覺得勁力襲體，勉力運起金鐘罩，一股真氣瀰漫全身！\n"NOR);
                 addn("neili", -damage_bonus, me);
                 return -random(damage_bonus);
         }
@@ -143,7 +143,7 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
                 {
                         result = ([ "damage" : -damage ]);
 
-                        msg = random(2) ? HIR "$n身上生出一股反震之力，" : HIR "$n身上金刚不坏体神功随心而起，";
+                        msg = random(2) ? HIR "$n身上生出一股反震之力，" : HIR "$n身上金剛不壞體神功隨心而起，";
 
                         msg += fanzhen_msg[random(sizeof(fanzhen_msg))] + NOR;
 
@@ -163,13 +163,13 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
                         case 1:
                         case 2:
                         case 3:
-                                result += ([ "msg" : HIR "好似有一堵无形的墙在$n面前阻挡着，结果"
-                                                     "$N" HIR "一下子被反弹，震得$N"
-                                                     HIR "手臂发麻！\n" NOR ]);
+                                result += ([ "msg" : HIR "好似有一堵無形的牆在$n面前阻擋著，結果"
+                                                     "$N" HIR "一下子被反彈，震得$N"
+                                                     HIR "手臂發麻！\n" NOR ]);
                                 break;
                         default:
-                                result += ([ "msg" : HIR "结果$n身上生出一股反震之力，$N只觉虎口一热，" +
-                                                     weapon1->name() + HIR "顿时脱手而出，飞出丈外！\n" NOR]);
+                                result += ([ "msg" : HIR "結果$n身上生出一股反震之力，$N只覺虎口一熱，" +
+                                                     weapon1->name() + HIR "頓時脫手而出，飛出丈外！\n" NOR]);
                                 weapon1->unequip();
                                 weapon1->move(environment(ob));
                                 ob->reset_action();
@@ -206,7 +206,7 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
 
         j = me->query_skill("yijinjing", 1) / 2;
         i += j;
-        message_combatd(HIR"$N"+HIR+"高喧一声佛号，将体内九阳真气聚于双臂，狭雷霆之势攻向$n！\n" NOR, me,victim);
+        message_combatd(HIR"$N"+HIR+"高喧一聲佛號，將體內九陽真氣聚於雙臂，狹雷霆之勢攻向$n！\n" NOR, me,victim);
 
         return i;
 }
@@ -219,29 +219,29 @@ int power_point(object me) { return 1; }
 string query_description()
 {
         return
-        "易筋经乃少林寺头等绝技，由内及外，为无上伏魔神功。此内功是少林镇寺"
-        "之宝，毅力一般者无法学成，其三阶段分别为：0-200，200-400，>400。初"
-        "级易筋经可强身健体，提高修为；中级可降妖伏魔，成金刚之体；高级可砍"
-        "妖除魔于无形，御力修身，百毒不侵。";
+        "易筋經乃少林寺頭等絕技，由內及外，為無上伏魔神功。此內功是少林鎮寺"
+        "之寶，毅力一般者無法學成，其三階段分別為：0-200，200-400，>400。初"
+        "級易筋經可強身健體，提高修為；中級可降妖伏魔，成金剛之體；高級可砍"
+        "妖除魔於無形，御力修身，百毒不侵。";
 }
 
 int help(object me)
 {
-        write(HIC"\n易筋经神功："NOR"\n");
+        write(HIC"\n易筋經神功："NOR"\n");
         write(@HELP
 
-    《易筋》，《洗髓》二经向为少林镇寺之宝，相传为达摩祖师
-所创，载有不少天竺高僧的瑜伽秘术，但由于其习练艰难，须得勘
-破“我相，人相”，心中不存修习武功之念，故历代弟子罕有练成
+    《易筋》，《洗髓》二經向為少林鎮寺之寶，相傳為達摩祖師
+所創，載有不少天竺高僧的瑜伽秘術，但由於其習練艱難，須得勘
+破“我相，人相”，心中不存修習武功之念，故歷代弟子罕有練成
 者。
-    《洗髓》记载天下所有武功的精要，《易筋》则是一门极其高
-深的内功心法书籍。
+    《洗髓》記載天下所有武功的精要，《易筋》則是一門極其高
+深的內功心法書籍。
 
-        学习要求：
+        學習要求：
                 未破色戒的童男之身
                 未犯戒
-                混元一气功100级
-                相应级别的禅宗心法
+                混元一氣功100級
+                相應級別的禪宗心法
 HELP
         );
         return 1;

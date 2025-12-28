@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;35m青见[2;37;0m[2;37;0m", ({"zzzz"}));        
+        set_name("[1;35m青見[2;37;0m[2;37;0m", ({"zzzz"}));        
         set("gender", "女性");                
-        set("long", "长得再靓也是我醜的坐骑[2;37;0m
-它是酉鬼的魔幻兽。
+        set("long", "長得再靚也是我醜的坐騎[2;37;0m
+它是酉鬼的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

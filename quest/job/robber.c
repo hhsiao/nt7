@@ -6,14 +6,14 @@ void init();
 void create()
 {
         set_name(HIR "劫匪" NOR, ({ "biao robber", "robber" }) );
-        set("long","这些强盗啸聚山林，专以打劫镖银为生。\n");
+        set("long","這些強盜嘯聚山林，專以打劫鏢銀為生。\n");
 
         set("attitude", "heroism");
 
         set("chat_chance_combat", 15);
         set("chat_msg_combat", ({
-                "劫镖强盗喝道：快快跑吧，不然死了都不知道怎么回事！\n",
-                "劫镖强盗喝道：老子看你是要钱还是要命！\n"
+                "劫鏢強盜喝道：快快跑吧，不然死了都不知道怎麼回事！\n",
+                "劫鏢強盜喝道：老子看你是要錢還是要命！\n"
         }) );
 
         setup();
@@ -24,14 +24,14 @@ void create()
 
 int accept_hit(object ob)
 {
-        command("say 既然你要下黄泉那我就成全你吧！");
+        command("say 既然你要下黃泉那我就成全你吧！");
         command("yun powerup");
         kill_ob(ob);
         return 1;
 }
 int accept_kill(object ob)
 {
-        command("say 既然你要下黄泉那我就成全你吧！");
+        command("say 既然你要下黃泉那我就成全你吧！");
         command("yun powerup");
         return 1;
 }
@@ -55,13 +55,13 @@ void checking()
  
 void die()
 {
-        message_vision("$N突然惨叫一声，夺路而逃，转眼就消失了。\n", this_object() );
+        message_vision("$N突然慘叫一聲，奪路而逃，轉眼就消失了。\n", this_object() );
         destruct(this_object());
 }
 int leave()
 {
         if(!is_fighting() ) {
-                message_vision(HIB + "劫匪急急忙忙地走开了。\n" NOR, this_object() );
+                message_vision(HIB + "劫匪急急忙忙地走開了。\n" NOR, this_object() );
                 destruct(this_object());
         }
         else call_out("leave",30);

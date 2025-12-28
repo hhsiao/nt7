@@ -2,10 +2,10 @@
 inherit NPC;
 void create()
 {
-        set_name("元广波", ({ "yuan guangbo", "yuan", "guangbo" }) );
-        set("long", "这是海沙派总舵主元广波，目光如电，身材彪捍。\n");
+        set_name("元廣波", ({ "yuan guangbo", "yuan", "guangbo" }) );
+        set("long", "這是海沙派總舵主元廣波，目光如電，身材彪捍。\n");
         set("attitude", "heroism");
-        set("title", HIY "海沙派总舵主" NOR);
+        set("title", HIY "海沙派總舵主" NOR);
         set("age", 15);
 
         set("max_neili", 1000+random(500));
@@ -26,25 +26,25 @@ void create()
 
 int accept_fight(object who)
 {
-        command("say 我不和你蛮打，只和你比(bi)一些我海沙帮的绝技。");
+        command("say 我不和你蠻打，只和你比(bi)一些我海沙幫的絕技。");
         return 0;
 }
 
 int accept_hit(object who)
 {
-        command("say 我不和你蛮打，只和你比(bi)一些我海沙帮的绝技。");
+        command("say 我不和你蠻打，只和你比(bi)一些我海沙幫的絕技。");
         return 0;
 }
 
 int accept_kill(object who)
 {
-        command("say 怎么，想得屠龙刀就非得要行凶不成？");
+        command("say 怎麼，想得屠龍刀就非得要行兇不成？");
         return 1;
 }
 
 int accept_ansuan(object who)
 {
-        return notify_fail("你刚想暗算，可是只见会场里黑压压的挤满了人，根本看不清楚。\n");
+        return notify_fail("你剛想暗算，可是隻見會場裡黑壓壓的擠滿了人，根本看不清楚。\n");
 }
 
 int begin()
@@ -54,9 +54,9 @@ int begin()
         return 0;
 
         command("grin");        
-        command("say 我海沙帮的绝技，乃是使用毒盐害人，如今你我各吃一碗，如何？");
+        command("say 我海沙幫的絕技，乃是使用毒鹽害人，如今你我各吃一碗，如何？");
 
-        message_vision(HIW "$N叫手下装了两大碗毒盐，$N和$n各吃一碗。\n" NOR,
+        message_vision(HIW "$N叫手下裝了兩大碗毒鹽，$N和$n各吃一碗。\n" NOR,
                            this_object(),me);
 
         set_temp("bi", 1, me);
@@ -71,7 +71,7 @@ void die()
         if (objectp(query("anti")))
         {
                 command("say 佩服，佩服......");
-                message_vision(HIR "\n$N嘶哑着嗓子干嚎了两声，双眼翻白，跌倒在地，口中吐出一些白沫，就再也没动了。\n" NOR,
+                message_vision(HIR "\n$N嘶啞著嗓子乾嚎了兩聲，雙眼翻白，跌倒在地，口中吐出一些白沫，就再也沒動了。\n" NOR,
                                    this_object());
                 set_temp("win_yuan", 1, query("anti"));
                 delete_temp("bi", query("anti"));
@@ -84,7 +84,7 @@ void unconcious()
         if (objectp(query("anti")))
         {
                 command("say 佩服，佩服......");
-                message_vision(HIR "\n$N嘶哑着嗓子干嚎了两声，双眼翻白，跌倒在地，口中吐出一些白沫，就再也没动了。\n" NOR,
+                message_vision(HIR "\n$N嘶啞著嗓子乾嚎了兩聲，雙眼翻白，跌倒在地，口中吐出一些白沫，就再也沒動了。\n" NOR,
                                    this_object());
                 set_temp("win_yuan", 1, query("anti"));
                 delete_temp("bi", query("anti"));
@@ -109,10 +109,10 @@ int do_get(string arg)
 
         if(where == "ding")
         {
-                message_vision(CYN "$N喝道：无耻小贼，给我住手！你凭什么得此宝刀？\n" NOR,
+                message_vision(CYN "$N喝道：無恥小賊，給我住手！你憑什麼得此寶刀？\n" NOR,
                                    obj,this_player());
 
-                message_vision(CYN "$N冷冷地说道：要得此刀，先比(bi)赢了我再说！\n" NOR,
+                message_vision(CYN "$N冷冷地說道：要得此刀，先比(bi)贏了我再說！\n" NOR,
                                    obj,this_player());
 
                 delete_temp("bi", this_player());

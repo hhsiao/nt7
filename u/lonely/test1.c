@@ -5,7 +5,7 @@ int room_num()
 	string *a=({});
 	
 	if( query("maze") || query("virtual_room") ) 
-		return -1; // 迷宫类为-1
+		return -1; // 迷宮類為-1
 	
 	str = base_name(this_object());
 	

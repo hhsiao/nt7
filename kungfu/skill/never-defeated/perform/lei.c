@@ -15,22 +15,22 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("天打雷劈只能在战斗中对对手使用。\n");
+                return notify_fail("天打雷劈只能在戰鬥中對對手使用。\n");
 
         if (me->query_skill("never-defeated", 1) < 150)
-                return notify_fail("你的不败神功还不够娴熟，不能使用天打雷劈！\n");
+                return notify_fail("你的不敗神功還不夠嫻熟，不能使用天打雷劈！\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) )
-                return notify_fail("你必须手持兵刃才能施展天打雷劈！\n");
+                return notify_fail("你必須手持兵刃才能施展天打雷劈！\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你的真气不够！\n");
+                return notify_fail("你的真氣不夠！\n");
 
        if (! living(target))
-              return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+              return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIC "$N" HIC "大喝一声，手中的" + weapon->name() +
-              HIC "长劈而下，看似简单，竟然封住了$n"
+        msg = HIC "$N" HIC "大喝一聲，手中的" + weapon->name() +
+              HIC "長劈而下，看似簡單，竟然封住了$n"
               HIC "所有的退路！\n" NOR;
 
         ap = attack_power(me, "sword");
@@ -49,8 +49,8 @@ int perform(object me, object target)
                         damage = damage_power(me, "sword");
 
                         msg += COMBAT_D->do_damage(me, target, REMOTE_ATTACK, damage, 90,
-                                        HIR "$n" HIR "只觉此招，阴柔无比，诡异莫测，"
-                                        "心中一惊，却猛然间觉得一股阴风透骨而过。\n" NOR);
+                                        HIR "$n" HIR "只覺此招，陰柔無比，詭異莫測，"
+                                        "心中一驚，卻猛然間覺得一股陰風透骨而過。\n" NOR);
                         addn("neili", -140, me);
 
                         message_combatd(msg, me, target);
@@ -58,16 +58,16 @@ int perform(object me, object target)
                         return 1;
                 } else
                 {
-                        msg += HIR "$n" HIR "平生何曾见过这样的招数，全然无法化解，"
-                                HIR "顿时被击中数处要害，颓然倒地！\n" NOR;
+                        msg += HIR "$n" HIR "平生何曾見過這樣的招數，全然無法化解，"
+                                HIR "頓時被擊中數處要害，頹然倒地！\n" NOR;
                         message_combatd(msg, me, target);
                         target->die(me);
                         return 1;
                 }
         } else
         {
-                msg += HIM "$n" HIM "大吃一惊，连忙胡乱抵挡，居"
-                                "然没有一点伤害，侥幸得脱！\n" NOR;
+                msg += HIM "$n" HIM "大吃一驚，連忙胡亂抵擋，居"
+                                "然沒有一點傷害，僥倖得脫！\n" NOR;
 
                 me->start_busy(1 + random(3));
         }

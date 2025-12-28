@@ -2,10 +2,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("红花弟子", ({ "honghua dizi", "hong", "honghua", "dizi" }) );
+        set_name("紅花弟子", ({ "honghua dizi", "hong", "honghua", "dizi" }) );
         set("gender", "男性");
         set("age", 25);
-        set("long", "这是位青年弟子，胸前配带一朵大红花。\n");
+        set("long", "這是位青年弟子，胸前配帶一朵大紅花。\n");
         set("combat_exp", 20000);
         set("shen_type", 1);
         set("attitude", "heroism");

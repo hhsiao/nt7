@@ -5,12 +5,12 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("流云使", ({ "liuyun shi", "liuyun", "shi" }));
-        set("long", "一个四十多岁的中年男子，装束奇异，不像\n"
-                    "普通的中土人士。这便是波斯明教总教教主\n"
-                    "座下排名三百七十四的流云使。\n");
-        set("title", HIB "波斯总教教主座下" NOR);
-        set("nickname", HIY "云风月三使" NOR);
+        set_name("流雲使", ({ "liuyun shi", "liuyun", "shi" }));
+        set("long", "一個四十多歲的中年男子，裝束奇異，不像\n"
+                    "普通的中土人士。這便是波斯明教總教教主\n"
+                    "座下排名三百七十四的流雲使。\n");
+        set("title", HIB "波斯總教教主座下" NOR);
+        set("nickname", HIY "雲風月三使" NOR);
         set("gender", "男性");
         set("age", 47);
         set("attitude", "friendly");
@@ -63,7 +63,7 @@ void create()
         prepare_skill("strike", "yinfeng-dao");
         prepare_skill("finger", "tougu-zhen");
 
-        create_family("波斯明教总舵", 32, "弟子");
+        create_family("波斯明教總舵", 32, "弟子");
 
         setup();
         carry_object("/d/tulong/yitian/npc/obj/jiaofu")->wear();
@@ -80,21 +80,21 @@ void init()
 
         if (living(this_object()) && present("yitian sword", me))
         {
-                command("say 咦？倚天剑怎么会在你手里，看来这次中原之行没白跑了！");
+                command("say 咦？倚天劍怎麼會在你手裡，看來這次中原之行沒白跑了！");
                 kill_ob(me);
                 return;
         }
 
         if (living(this_object()) && present("tulong blade", me))
         {
-                command("say 哼，把屠龙刀交出来，我们已经守侯多时了！");
+                command("say 哼，把屠龍刀交出來，我們已經守侯多時了！");
                 kill_ob(me);
                 return;
         }
 
         if (living(this_object()) && present("shenghuo ling", me))
         {
-                command("say 咦？你怎么会拿着我教的圣火令？死吧！");
+                command("say 咦？你怎麼會拿著我教的聖火令？死吧！");
                 kill_ob(me);
                 return;
         }

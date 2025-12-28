@@ -4,7 +4,7 @@
 #include <ansi.h>
 inherit NPC;
 
-#define COPYNPC "/d/kaifeng/linggt/npc/boss"    //复制来源于
+#define COPYNPC "/d/kaifeng/linggt/npc/boss"    //複製來源於
 #define BONUS_EXP 10000
 
 void sp_attack();
@@ -33,8 +33,8 @@ int do_copyskill();
 
 void create()
 {
-        set_name(YEL "傀儡将" NOR, ({ "kuilei jiang", "kui lei", "kuilei", "jiang" }));
-        set("long", NOR "这货生前像是个武林高手，不知道被谁制作成了傀儡僵尸。\n" NOR);
+        set_name(YEL "傀儡將" NOR, ({ "kuilei jiang", "kui lei", "kuilei", "jiang" }));
+        set("long", NOR "這貨生前像是個武林高手，不知道被誰製作成了傀儡殭屍。\n" NOR);
         set("attitude", "aggressive");
         set("str", 1);
         set("con", 1);
@@ -67,7 +67,7 @@ void create()
 
                 set("auto_perform", 1);
 
-        set("death_msg", NOR "\n$N" + (random(2)? "咔嚓" : "噗通") + (random(2)? "一声" : "一头") + "栽倒，" + (random(2)? "散成碎片" : "摔得粉碎") + (random(2)? "。。" : "。。。") + "\n" NOR);
+        set("death_msg", NOR "\n$N" + (random(2)? "咔嚓" : "噗通") + (random(2)? "一聲" : "一頭") + "栽倒，" + (random(2)? "散成碎片" : "摔得粉碎") + (random(2)? "。。" : "。。。") + "\n" NOR);
         //set_heart_beat(3);
         setup();
 }
@@ -88,7 +88,7 @@ int check_weapon(int chance)
         {
                 weapon = new(wname);
                 weapon->move(me); 
-                str = sprintf("%s" HIY "虚空一抓，突然%s" HIY "出现在他的手中。\n" NOR,
+                str = sprintf("%s" HIY "虛空一抓，突然%s" HIY "出現在他的手中。\n" NOR,
                                        query("name", me),
                                        query("name", weapon));
                         tell_room(environment(me), str, me);
@@ -112,10 +112,10 @@ int do_copyskill()
         
         if (query("copied")) return 1;
         
-        tlv += 70 + random(11);//灵感塔50层以下水准的大米休想参与争夺洞天
-        ob = new(COPYNPC);//复制灵感塔囚徒
+        tlv += 70 + random(11);//靈感塔50層以下水準的大米休想參與爭奪洞天
+        ob = new(COPYNPC);//複製靈感塔囚徒
         ob->setlv(tlv, -1, -1);
-        set("title", CYN + chinese_number(tlv - 39) + "级" + NOR);
+        set("title", CYN + chinese_number(tlv - 39) + "級" + NOR);
         me = this_object();
         if (mapp(skill_status = me->query_skills()))
         {
@@ -282,10 +282,10 @@ void init()
         
         there = base_name(environment());
         if (strsrch(there, "/d/pk/") != -1) {
-                if (playerp(ob)) return;//屠人场时不主动kill玩家
+                if (playerp(ob)) return;//屠人場時不主動kill玩家
                 if (!me->is_fighting()) {
                         me->set_leader(ob);
-                        message_vision(append_color(NOR + CYN + "$N对$n怒喝道：气运之争不是儿戏，乖乖领死吧。\n" + NOR, CYN), me, ob);
+                        message_vision(append_color(NOR + CYN + "$N對$n怒喝道：氣運之爭不是兒戲，乖乖領死吧。\n" + NOR, CYN), me, ob);
                 }
         } else {
                 if (strsrch(basename, "data/warcraft/") != -1) return;
@@ -294,7 +294,7 @@ void init()
 //              if (basename=="/kungfu/class/misc/shendiao") return;
                 if (!me->is_fighting()) {
                         me->set_leader(ob);
-                        message_vision(append_color(NOR + CYN + "$N对$n怒喝道：大胆，竟敢擅闯" + query("dtname") + "，乖乖领死吧。\n" + NOR, CYN), me, ob);
+                        message_vision(append_color(NOR + CYN + "$N對$n怒喝道：大膽，竟敢擅闖" + query("dtname") + "，乖乖領死吧。\n" + NOR, CYN), me, ob);
                 }
         }
         if (playerp(ob)) set("enemy_player", ob);
@@ -318,7 +318,7 @@ void sp_attack()
                            query("is_shadow", $1)
                            :));
                         if (sizeof(obs)<12) {
-                msg = NOR + HIK + "\n$N" + NOR + HIK + (random(2)? "大声" : "一阵") + (random(2)? "尖啸" : "疾呼") + "，" + (random(2)? "身后" : "旁边") + "跑来个傀儡扑向$n" + NOR + HIK + "。\n\n" NOR;
+                msg = NOR + HIK + "\n$N" + NOR + HIK + (random(2)? "大聲" : "一陣") + (random(2)? "尖嘯" : "疾呼") + "，" + (random(2)? "身後" : "旁邊") + "跑來個傀儡撲向$n" + NOR + HIK + "。\n\n" NOR;
                 message_vision(append_color(msg, HIK),this_object(),enemy);
                                 ob = new(__DIR__"guarder");
                                 set("shadow_own", this_object(), ob);
@@ -367,10 +367,10 @@ varargs void die()
                 if (strsrch(base_name(environment()), "/d/pk/") != -1) perc = 350;
                 message_vision(append_color(query("death_msg"),CYN), this_object());
                                 if (killer && objectp(killer) && environment(killer)==environment(this_object())) GIFT_D->delay_bonus(killer, 
-                                        ([ "exp" : BONUS_EXP * perc, "pot" : BONUS_EXP * perc /3, "mar" : BONUS_EXP * perc /6, "prompt" : "你在击退" + name() + "之后"]));
+                                        ([ "exp" : BONUS_EXP * perc, "pot" : BONUS_EXP * perc /3, "mar" : BONUS_EXP * perc /6, "prompt" : "你在擊退" + name() + "之後"]));
                                         
                                 if (environment() && strsrch(base_name(environment()), "/d/pk/") != -1 && query("croom")){
-                                        CHANNEL_D->channel_broadcast("dt", NOR + WHT + query("name") + NOR + WHT + "携带( " + (string)(query("croom")->query_dt_qy()) + " )点气运黯然离场。\n" + NOR);
+                                        CHANNEL_D->channel_broadcast("dt", NOR + WHT + query("name") + NOR + WHT + "攜帶( " + (string)(query("croom")->query_dt_qy()) + " )點氣運黯然離場。\n" + NOR);
                                 }
                 destruct(this_object());
                 return;

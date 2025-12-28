@@ -1,10 +1,10 @@
-// dizi6.c 天字门教众
+// dizi6.c 天字門教眾
 #include <ansi.h>
 inherit NPC;
 void create()
 {
-        set_name("天字门教众", ({"jiao zhong","zhong"}));
-        set("long","这是一位杨逍属下天字门的教众。\n");
+        set_name("天字門教眾", ({"jiao zhong","zhong"}));
+        set("long","這是一位楊逍屬下天字門的教眾。\n");
         set("gender", "男性");
         set("attitude", "peaceful");
         set("age", 15+random(20));
@@ -31,7 +31,7 @@ void create()
         map_skill("parry", "lieyan-dao");
         map_skill("blade", "lieyan-dao");
         setup();
-        create_family("明教",39,"教众");
+        create_family("明教",39,"教眾");
         carry_object("/clone/weapon/blade")->wield();
         carry_object("/d/mingjiao/obj/black-cloth")->wear();
 }

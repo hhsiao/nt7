@@ -1,50 +1,50 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action" : "$N一式「破茧出笼」，双掌间升起一团淡淡的白雾，缓缓推向$n的$l",
+([      "action" : "$N一式「破繭出籠」，雙掌間升起一團淡淡的白霧，緩緩推向$n的$l",
         "force" : 30,
         "dodge" : 15,
         "parry" : 20,
         "damage": 1,
         "lvl" : 0,
-        "skill_name" : "破茧出笼",
-        "damage_type" : "瘀伤"
+        "skill_name" : "破繭出籠",
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N使一式「锦绸抽丝」，左掌凝重，右掌轻盈，同时向$n的$l击去",
+([      "action" : "$N使一式「錦綢抽絲」，左掌凝重，右掌輕盈，同時向$n的$l擊去",
         "force" : 55,
         "dodge" : 28,
         "parry" : 25,
         "damage": 3,
         "lvl" : 20,
-        "skill_name" : "锦绸抽丝",
-        "damage_type" : "瘀伤"
+        "skill_name" : "錦綢抽絲",
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N突地一招「蚕丝绵绵」，双掌挟着一阵风雷之势，猛地劈往$n的$l",
+([      "action" : "$N突地一招「蠶絲綿綿」，雙掌挾著一陣風雷之勢，猛地劈往$n的$l",
         "force" : 70,
         "dodge" : 42,
         "parry" : 38,
         "damage": 9,
         "lvl" : 40,
-        "skill_name" : "蚕丝绵绵",
-        "damage_type" : "瘀伤"
+        "skill_name" : "蠶絲綿綿",
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N一式「千丝万缕」，双掌缦妙地一阵挥舞，不觉已击到$n的$l上",
+([      "action" : "$N一式「千絲萬縷」，雙掌縵妙地一陣揮舞，不覺已擊到$n的$l上",
         "force" : 91,
         "dodge" : 53,
         "parry" : 49,
         "damage": 12,
         "lvl" : 80,
-        "skill_name" : "千丝万缕",
-        "damage_type" : "瘀伤"
+        "skill_name" : "千絲萬縷",
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N一式「碧蚕春生」，身形凝立不动，双掌一高一低，看似简单，却令$n无法躲闪",
+([      "action" : "$N一式「碧蠶春生」，身形凝立不動，雙掌一高一低，看似簡單，卻令$n無法躲閃",
         "force" : 102,
         "dodge" : 61,
         "parry" : 57,
         "damage": 18,
         "lvl" : 120,
-        "skill_name" : "碧蚕春生",
-        "damage_type" : "瘀伤"
+        "skill_name" : "碧蠶春生",
+        "damage_type" : "瘀傷"
 ])
 });
 
@@ -55,19 +55,19 @@ int valid_combine(string combo) { return combo == "hujia-quan"; }
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练春蚕掌法必须空手。\n");
+                return notify_fail("練春蠶掌法必須空手。\n");
 
         if ((int)me->query_skill("force") < 40)
-                return notify_fail("你的内功火候不够，无法学春蚕掌法。\n");
+                return notify_fail("你的內功火候不夠，無法學春蠶掌法。\n");
 
         if( query("max_neili", me)<300 )
-                return notify_fail("你的内力太弱，无法练春蚕掌法。\n");
+                return notify_fail("你的內力太弱，無法練春蠶掌法。\n");
 
         if ((int)me->query_skill("strike", 1) < 20)
-                return notify_fail("你的基本掌法火候太浅。\n");
+                return notify_fail("你的基本掌法火候太淺。\n");
 
         if ((int)me->query_skill("strike", 1) < (int)me->query_skill("chuncan-zhang", 1))
-                return notify_fail("你的基本掌法水平有限，无法领会更高深的春蚕掌法。\n");
+                return notify_fail("你的基本掌法水平有限，無法領會更高深的春蠶掌法。\n");
 
         return 1;
 }
@@ -92,10 +92,10 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me)
 {
         if( query("qi", me)<60 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
 
         if( query("neili", me)<50 )
-                return notify_fail("你的内力不够练春蚕掌法。\n");
+                return notify_fail("你的內力不夠練春蠶掌法。\n");
 
         me->receive_damage("qi", 45);
         addn("neili", -25, me);

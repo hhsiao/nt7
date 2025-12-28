@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("钱大款[2;37;0m[2;37;0m", ({"golds"}));        
+        set_name("錢大款[2;37;0m[2;37;0m", ({"golds"}));        
         set("gender", "男性");                
-        set("long", "钱大款[2;37;0m
-它是采花六的魔幻兽。
+        set("long", "錢大款[2;37;0m
+它是採花六的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "lue");
-        set("owner_name", "采花六");
+        set("owner_name", "採花六");
         set_temp("owner", "lue");
-        set_temp("owner_name", "采花六");
+        set_temp("owner_name", "採花六");
         ::setup();
 }

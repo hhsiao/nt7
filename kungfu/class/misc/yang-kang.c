@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// yangkang.c 杨康
+// yangkang.c 楊康
 
 #include <ansi.h>
 #include <command.h>
@@ -11,14 +11,14 @@ void death_msg();
 
 void create()
 {
-        set_name("杨康", ({"yang kang", "yang"}));
+        set_name("楊康", ({"yang kang", "yang"}));
         set("gender", "男性");
-        set("title", HIY "小王爷" NOR);
+        set("title", HIY "小王爺" NOR);
         set("age", 26);
         set("class", "taoist");
         set("long",
-                "他就是大辽的小王爷杨康，实乃杨家将后人杨铁心之子。\n"
-                "他相貌端正，但眉宇间似乎隐藏着一丝狡猾的神色。\n");
+                "他就是大遼的小王爺楊康，實乃楊家將後人楊鐵心之子。\n"
+                "他相貌端正，但眉宇間似乎隱藏著一絲狡猾的神色。\n");
         set("attitude", "friendly");
         set("shen", 0);
         set("str", 25);
@@ -92,8 +92,8 @@ void create()
                 "gold"  : 50,
         ]));
         set("drops", ([
-                "RA&RANDOM30"    :       100,   // 低级普通装备
-                "RA&RANDOM40"    :       40,    // 低级普通装备
+                "RA&RANDOM30"    :       100,   // 低級普通裝備
+                "RA&RANDOM40"    :       40,    // 低級普通裝備
                 "FI&/clone/goods/enchant-scroll" :   20,
                 "FI&/clone/goods/sun"   :   20,
                 "FI&/clone/goods/moon"  :   20,
@@ -110,15 +110,15 @@ void create()
 
 int accept_fight(object ob)
 {
-        command("say 我可没兴趣陪你玩，快给我滚开。");
+        command("say 我可沒興趣陪你玩，快給我滾開。");
         return 0;
 }
 
 int accept_hit(object ob)
 {
-        message_vision(HIW "$N" HIW "脸色一变，闪过一道杀气。怒"
-                       "喝道：好一个" + RANK_D->query_rude(ob) +
-                       "，来吧！\n" NOR, this_object());
+        message_vision(HIW "$N" HIW "臉色一變，閃過一道殺氣。怒"
+                       "喝道：好一個" + RANK_D->query_rude(ob) +
+                       "，來吧！\n" NOR, this_object());
         kill_ob(ob);
         return 1;
 }
@@ -133,19 +133,19 @@ int accept_kill(object ob)
 
 int accept_ansuan(object ob)
 {
-        return notify_fail("那人警惕性好高，你难以下手。\n");
+        return notify_fail("那人警惕性好高，你難以下手。\n");
 }
 
 int accept_touxi(object ob)
 {
-        return notify_fail("那人警惕性好高，你难以下手。\n");
+        return notify_fail("那人警惕性好高，你難以下手。\n");
 }
 
 mixed hit_ob(object me, object ob, int damage_bouns)
 {
 	ob->start_busy(3 + random(6));
 	me->receive_wound("qi", 100 + random(100), ob);
-        return HIY "$N" HIY "大喝一声，拼命反抗，竟逼得$n" HIY "手忙脚乱。\n" NOR;
+        return HIY "$N" HIY "大喝一聲，拼命反抗，竟逼得$n" HIY "手忙腳亂。\n" NOR;
 }
 
 void heart_beat()
@@ -165,8 +165,8 @@ void random_move()
                 env = environment(this_object());
                 message_vision("$N急急忙忙的走了。\n", this_object());
 
-                CHANNEL_D->channel_broadcast("news", HIG "听说" + HIW +
-                        env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一带出现的" +
+                CHANNEL_D->channel_broadcast("news", HIG "聽說" + HIW +
+                        env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一帶出現的" +
                         HIR + this_object()->short() + HIR "消失了。\n" NOR);
 
                 destruct(this_object());
@@ -177,6 +177,6 @@ void random_move()
 
 void death_msg()
 {
-        //command("chat 我乃是金国小王爷，想杀我，我要灭你九族 ...");
-        CHANNEL_D->channel_broadcast("mess", "听说杨康被江湖人士追杀，最后被金兵给救走了。" NOR); 
+        //command("chat 我乃是金國小王爺，想殺我，我要滅你九族 ...");
+        CHANNEL_D->channel_broadcast("mess", "聽說楊康被江湖人士追殺，最後被金兵給救走了。" NOR); 
 }

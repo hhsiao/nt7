@@ -18,7 +18,7 @@ int accept_fight(object ob)
             || query("jing") < query("eff_jing") * 2 / 3
             || query("neili") < query("max_neili") * 2 / 3)
         {
-                // command("say 我现在有点疲倦，待我歇会儿再说。");
+                // command("say 我現在有點疲倦，待我歇會兒再說。");
                 return 0;
         }
 
@@ -30,13 +30,13 @@ int accept_fight(object ob)
         ob6 = present("tao shixian", environment(me));
 
         msg1 = "桃根仙突然逼近$N，一把向$N的左手捉去。\n";
-        msg2 = "桃干仙突然逼近$N，一把向$N的右手捉去。\n";
-        msg3 = "桃枝仙突然逼近$N，一把向$N的左脚捉去。\n";
-        msg4 = "桃叶仙突然逼近$N，一把向$N的右脚捉去。\n";
+        msg2 = "桃幹仙突然逼近$N，一把向$N的右手捉去。\n";
+        msg3 = "桃枝仙突然逼近$N，一把向$N的左腳捉去。\n";
+        msg4 = "桃葉仙突然逼近$N，一把向$N的右腳捉去。\n";
         msg5 = "桃花仙突然逼近$N，一把向$N的左手捉去。\n";
-        msg6 = "桃实仙突然逼近$N，一把向$N的右脚捉去。\n";
+        msg6 = "桃實仙突然逼近$N，一把向$N的右腳捉去。\n";
 
-        command( "say 大夥儿准备。" );
+        command( "say 大夥兒準備。" );
         competition_with(ob);
 
         if (objectp(ob1) && ob1 != me) call_out("tear_and_kill", random(5), ob1, ob, msg1);
@@ -51,7 +51,7 @@ int accept_fight(object ob)
 
 string ask_me()
 {
-        return "你打得过咱们六兄弟，我自然会带你去见他。";
+        return "你打得過咱們六兄弟，我自然會帶你去見他。";
 }
 
 int accept_kill(object ob)
@@ -60,7 +60,7 @@ int accept_kill(object ob)
         object ob1, ob2, ob3, ob4, ob5, ob6;
 
         delete_temp("win", ob);
-        command( "say 你想谋材害命不成，是不是妒忌咱们六兄弟名满江湖？\n");
+        command( "say 你想謀材害命不成，是不是妒忌咱們六兄弟名滿江湖？\n");
 
         if (objectp(ob1 = present("tao genxian", environment(me)))) ob1->kill_ob(ob);
         if (objectp(ob2 = present("tao ganxian", environment(me)))) ob2->kill_ob(ob);
@@ -74,7 +74,7 @@ int accept_kill(object ob)
 
 int tear_and_kill(object me, object ob, string msg)
 {
-    // 这个函数是延时呼叫的，所以执行前先要判断两个物件都否都还在
+    // 這個函數是延時呼叫的，所以執行前先要判斷兩個物件都否都還在
     if (! objectp(ob) || !objectp(me))
         return 1;
 
@@ -89,21 +89,21 @@ int tear_and_kill(object me, object ob, string msg)
         if( random(query("combat_exp", me))>query("combat_exp", ob)/2 )
         {
                 addn_temp("caught", 1, ob);
-                message_combatd("结果$N被" + me->name() + "捉个正着！\n", ob);
+                message_combatd("結果$N被" + me->name() + "捉個正著！\n", ob);
                 if( query_temp("caught", ob) == 4 )
                 {
-                        message_combatd("\n桃谷六仙捉着$N四肢猛然一扯，$N只觉得一阵剧痛，便失去知觉了。\n", ob);
+                        message_combatd("\n桃谷六仙捉著$N四肢猛然一扯，$N只覺得一陣劇痛，便失去知覺了。\n", ob);
                         delete_temp("caught", ob);
                         ob->unconcious();
-                        set_temp("die_reason", "被桃谷六仙撕成四块了", ob);
+                        set_temp("die_reason", "被桃谷六仙撕成四塊了", ob);
                         ob->remove_all_enemy(0);
                         me->remove_all_enemy(0);
                         ob->die();
-                        CHANNEL_D->do_channel(me,"chat",sprintf("%s被桃谷六仙撕成四块了！",ob->name()));
+                        CHANNEL_D->do_channel(me,"chat",sprintf("%s被桃谷六仙撕成四塊了！",ob->name()));
                 }
         } else
         {
-                message_combatd("$N成功地闪开了。\n", ob);
+                message_combatd("$N成功地閃開了。\n", ob);
         }
 
         return 1;
@@ -115,14 +115,14 @@ void lost()
 
         ob = this_object();
         me = query_competitor();
-        command( "say " + RANK_D->query_respect(ob) + "果然有几手，我还是让你歇会儿吧，可不是我打不过你喔。");
+        command( "say " + RANK_D->query_respect(ob) + "果然有幾手，我還是讓你歇會兒吧，可不是我打不過你喔。");
 
         if( ob->name() == "桃根仙")set_temp("win/tao1", 1, me);
-        if( ob->name() == "桃干仙")set_temp("win/tao2", 1, me);
+        if( ob->name() == "桃幹仙")set_temp("win/tao2", 1, me);
         if( ob->name() == "桃枝仙")set_temp("win/tao3", 1, me);
-        if( ob->name() == "桃叶仙")set_temp("win/tao4", 1, me);
+        if( ob->name() == "桃葉仙")set_temp("win/tao4", 1, me);
         if( ob->name() == "桃花仙")set_temp("win/tao5", 1, me);
-        if( ob->name() == "桃实仙")set_temp("win/tao6", 1, me);
+        if( ob->name() == "桃實仙")set_temp("win/tao6", 1, me);
         delete_temp("caught", me);
         ::lost();
 }
@@ -137,6 +137,6 @@ void win()
                 return;
         }
         delete_temp("caught", me);
-        command("say 就你这点水平也想过我的关？下去练练再来吧。");
+        command("say 就你這點水平也想過我的關？下去練練再來吧。");
         ::win();
 }

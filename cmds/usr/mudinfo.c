@@ -4,7 +4,7 @@ inherit F_CLEAN_UP;
 #include <ansi.h>
 #include <command.h>
 #define SCALE   (1.0/10.0)
-#define STATUS  "系统函数库改写中，游戏正完善中"
+#define STATUS  "系統函數庫改寫中，遊戲正完善中"
 
 string memory_expression(int m);
 string dotime();
@@ -17,7 +17,7 @@ void create() { seteuid(getuid(this_object())); }
 string query_rusage_message()
 {
         mapping networkstats = network_stats();
-        return sprintf("已接收 %d 封包(%.2f/sec)，已传送 %d 封包(%.2f/sec)",
+        return sprintf("已接收 %d 封包(%.2f/sec)，已傳送 %d 封包(%.2f/sec)",
                 networkstats["incoming packets total"],
                 to_float(networkstats["incoming packets total"])/uptime(),
                 networkstats["outgoing packets total"],
@@ -33,31 +33,31 @@ int main(object me)
 
         if( time()-query_temp("scan_time", me)<10
            && ! wizardp(me))
-                return notify_fail("等等，系统喘气中……\n");
+                return notify_fail("等等，系統喘氣中……\n");
 
         r = rusage();
         value = SCALE * (r["utime"] + r["stime"]) / uptime();
         cpu = CPU_D->get_current_cpu_cost();
 
-        write(NOR + WHT "\n\t\t         .__________ 系 统 资 讯 __________.\n");
+        write(NOR + WHT "\n\t\t         .__________ 系 統 資 訊 __________.\n");
         write(NOR + WHT "\t\t --------------------------------------------------\n");
-        write(NOR + WHT "\t\t 游戏的识别名称：  " + MUD_NAME + "\n");
-        write(NOR + WHT "\t\t 界面系统的版本：  " + __VERSION__ + "\n");
-        write(NOR + WHT "\t\t 系统函数库版本：  " + MUDLIB_VERSION_NUMBER + "\n");
-        printf(NOR + WHT "\t\t CPU 使用百分比：  实时：%d %%，平均：%2.2f %%\n", cpu, value );
-        printf(NOR + WHT "\t\t 共使用的记忆体：  %s bytes\n", memory_expression(memory_info()) );
-        write(NOR + WHT "\t\t 线上使用者总数：  " + sizeof( users() ) + "  个人在线上\n");
-        write(NOR + WHT "\t\t 注册使用者总数：  " + DATABASE_D->db_count_user() + "  个人在本游戏注册\n");
-        write(NOR + WHT "\t\t 载入的物件总数：  " + sizeof( objects() ) + " 个物件\n");
-        write(NOR + WHT "\t\t 心跳总数的资讯：  " + sizeof(heart_beats()) + " 个\n");
-        write(NOR + WHT "\t\t 当前的心跳时间：  " + get_config(__RC_HEARTBEAT_INTERVAL_MSEC__)/1000 + " 秒\n"NOR);
-        write(NOR + WHT "\t\t 当前的TICK时间：  " + get_config(__RC_GAMETICK_MSEC__) + " 毫秒\n"NOR);
-        write(NOR + WHT "\t\t 延迟呼叫数资讯：  " + sizeof(call_out_info()) + " 个\n");
-        write(NOR + WHT "\t\t 系统负载的资讯：  " + query_load_average() + "\n");
+        write(NOR + WHT "\t\t 遊戲的識別名稱：  " + MUD_NAME + "\n");
+        write(NOR + WHT "\t\t 界面系統的版本：  " + __VERSION__ + "\n");
+        write(NOR + WHT "\t\t 系統函數庫版本：  " + MUDLIB_VERSION_NUMBER + "\n");
+        printf(NOR + WHT "\t\t CPU 使用百分比：  即時：%d %%，平均：%2.2f %%\n", cpu, value );
+        printf(NOR + WHT "\t\t 共使用的記憶體：  %s bytes\n", memory_expression(memory_info()) );
+        write(NOR + WHT "\t\t 線上使用者總數：  " + sizeof( users() ) + "  個人在線上\n");
+        write(NOR + WHT "\t\t 註冊使用者總數：  " + DATABASE_D->db_count_user() + "  個人在本遊戲註冊\n");
+        write(NOR + WHT "\t\t 載入的物件總數：  " + sizeof( objects() ) + " 個物件\n");
+        write(NOR + WHT "\t\t 心跳總數的資訊：  " + sizeof(heart_beats()) + " 個\n");
+        write(NOR + WHT "\t\t 當前的心跳時間：  " + get_config(__RC_HEARTBEAT_INTERVAL_MSEC__)/1000 + " 秒\n"NOR);
+        write(NOR + WHT "\t\t 當前的TICK時間：  " + get_config(__RC_GAMETICK_MSEC__) + " 毫秒\n"NOR);
+        write(NOR + WHT "\t\t 延遲呼叫數資訊：  " + sizeof(call_out_info()) + " 個\n");
+        write(NOR + WHT "\t\t 系統負載的資訊：  " + query_load_average() + "\n");
 #ifdef LONELY_IMPROVED
-        write(NOR + WHT "\t\t 讯息传输的资讯：  " + query_rusage_message() + "\n");
+        write(NOR + WHT "\t\t 訊息傳輸的資訊：  " + query_rusage_message() + "\n");
 #endif
-        write(NOR + WHT "\t\t 连续执行的时间：  " + dotime() + "\n");
+        write(NOR + WHT "\t\t 連續執行的時間：  " + dotime() + "\n");
 
         set_temp("scan_time", time(), me);
 
@@ -106,7 +106,7 @@ string dotime()
         if (d) time = chinese_number(d) + "天";
         else time = "";
 
-        if (h) time += chinese_number(h) + "小时";
+        if (h) time += chinese_number(h) + "小時";
         if (m) time += chinese_number(m) + "分";
         time += chinese_number(s) + "秒\n";
 
@@ -118,7 +118,7 @@ int help() {
    write(@HELP
 指令格式：mudinfo
 
-这个指令将会显示有关这个 Mud 的一些系统资讯。
+這個指令將會顯示有關這個 Mud 的一些系統資訊。
 
 HELP
         );

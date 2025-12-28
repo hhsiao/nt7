@@ -1,11 +1,11 @@
 // This program is a part of NITAN MudLIB
-// sanjue.c  达摩剑 达摩三绝剑
+// sanjue.c  達摩劍 達摩三絕劍
 
 #include <ansi.h>
 #include <combat.h>
 
 inherit F_SSERVER;
-string name() { return "达摩三绝剑"; }
+string name() { return "達摩三絕劍"; }
 
 int perform(object me, object target)
 {
@@ -16,31 +16,31 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("「达摩三绝剑」只能在战斗中对对手使用。\n");
+                return notify_fail("「達摩三絕劍」只能在戰鬥中對對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
               query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if (me->query_dex() < 30)
-                return notify_fail("你的身法不够，目前还不能使用这项绝技！\n");
+                return notify_fail("你的身法不夠，目前還不能使用這項絕技！\n");
 
         if (me->query_skill("force") < 200)
-                return notify_fail("你的内功的修为不够，不能使用这一绝技！\n");
+                return notify_fail("你的內功的修為不夠，不能使用這一絕技！\n");
 
         if (me->query_skill("dodge") < 200)
-                return notify_fail("你的轻功修为不够，不能使用达摩三绝剑！\n");
+                return notify_fail("你的輕功修為不夠，不能使用達摩三絕劍！\n");
 
         if (me->query_skill("sword") < 200)
-                return notify_fail("你的剑法修为不够，目前不能使用达摩三绝剑！\n");
+                return notify_fail("你的劍法修為不夠，目前不能使用達摩三絕劍！\n");
 
         if( query("neili", me)<150 )
-                return notify_fail("你的真气不够，不能使用达摩三绝剑！\n");
+                return notify_fail("你的真氣不夠，不能使用達摩三絕劍！\n");
 
         if (me->query_skill_mapped("sword") != "damo-jian")
-                return notify_fail("你没有激发达摩剑，不能使用达摩三绝剑！\n");
+                return notify_fail("你沒有激發達摩劍，不能使用達摩三絕劍！\n");
 
-        msg = HIC "$N" HIC "使出达摩剑的绝技「达摩三绝剑」，身法陡然加快！\n" NOR;
+        msg = HIC "$N" HIC "使出達摩劍的絕技「達摩三絕劍」，身法陡然加快！\n" NOR;
         message_combatd(msg, me);
 
         addn("neili", -75, me);

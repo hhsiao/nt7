@@ -2,7 +2,7 @@ inherit KNOWER;
 
 void create()
 {
-        set_name("扫地僧", ({ "saodi seng", "saodi", "seng" }));
+        set_name("掃地僧", ({ "saodi seng", "saodi", "seng" }));
         set("gender", "男性" );
         set("class", "bonze");
         set("age", 100);

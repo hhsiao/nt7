@@ -1,13 +1,13 @@
 #include <ansi.h>
 inherit ROOM;
-#define QUESTDIR2 "quest/雪山飞狐/复仇篇/"
+#define QUESTDIR2 "quest/雪山飛狐/復仇篇/"
 
 void create()
 {
         set("short","山路");
         set("long", @LONG
-一条被捕蛇人踏出的小道，弯弯曲曲的向西北方向的山幽伸展。道旁的杂
-草(grass) 高达五尺，遮住了天光。山幽中的一切都显的阴森幽暗。几乎使你
+一條被捕蛇人踏出的小道，彎彎曲曲的向西北方向的山幽伸展。道旁的雜
+草(grass) 高達五尺，遮住了天光。山幽中的一切都顯的陰森幽暗。幾乎使你
 分不清前方的道路。
 LONG
         );
@@ -16,8 +16,8 @@ LONG
                 "southeast" : __DIR__"slu1",
         ]));
         set("item_desc", ([
-                "grass": "这里杂草(grass)很密，但你似乎可以拨开(push)它们。\n",
-                "杂草": "这里的杂草(grass)很密，但你似乎可以拨开(push)它们。\n"
+                "grass": "這裡雜草(grass)很密，但你似乎可以撥開(push)它們。\n",
+                "雜草": "這裡的雜草(grass)很密，但你似乎可以撥開(push)它們。\n"
         ]));
         setup();
 }
@@ -30,7 +30,7 @@ int do_push(string arg)
 	  object me=this_player();
         if( arg == "grass" || arg == "茅草" || arg == "草")
         {
-        message_vision("$N拨开路边的杂草，发现了一条向西北的路。\n", this_player());
+        message_vision("$N撥開路邊的雜草，發現了一條向西北的路。\n", this_player());
         if(me->query(QUESTDIR2+"start")&& me->query_temp(QUESTDIR2+"zhenxiang") && !random(3))
         {
            set("exits/northwest", __DIR__"houshan_copy");
@@ -50,7 +50,7 @@ void close_path()
 {
         if( !query("exits/northwest") ) return;
         message("vision",
-"一阵风吹过，杂草晃了晃，又淹没了向西北的路。\n",
+"一陣風吹過，雜草晃了晃，又淹沒了向西北的路。\n",
                 this_object() );
                 delete("exits/northwest");
 }

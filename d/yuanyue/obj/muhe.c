@@ -12,8 +12,8 @@ void create()
                 set_default_object(__FILE__);        
         else*/ 
         {
-                set("unit", "个");
-                set("long", "这小木盒子满是灰尘，粘满了煤屑柴草，你似乎可以把它打开（ｏｐｅｎ）。\n");
+                set("unit", "個");
+                set("long", "這小木盒子滿是灰塵，粘滿了煤屑柴草，你似乎可以把它打開（ｏｐｅｎ）。\n");
                 set("value", 100);
                 set("closed", 1);
         }
@@ -32,12 +32,12 @@ int do_open(string arg)
 {
         object  me, ob;
         if( !arg || arg != "woodbox" )
-                return notify_fail("你要打开什么？\n");
+                return notify_fail("你要打開什麼？\n");
         me = this_player();
         ob = this_object();
         if( !query("closed", ob) )
-                return notify_fail("木盒子已经打开了！\n");
-        message_vision("$N小心翼翼打开$n。\n", me, ob);
+                return notify_fail("木盒子已經打開了！\n");
+        message_vision("$N小心翼翼打開$n。\n", me, ob);
         set("closed", 0, ob);
         return 1;
 } 

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;32m狄仁杰[2;37;0m[2;37;0m", ({"jie"}));        
+        set_name("[1;32m狄仁傑[2;37;0m[2;37;0m", ({"jie"}));        
         set("gender", "男性");                
-        set("long", "狄仁杰[2;37;0m
-它是元芳的魔幻兽。
+        set("long", "狄仁傑[2;37;0m
+它是元芳的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

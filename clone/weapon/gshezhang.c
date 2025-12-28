@@ -26,8 +26,8 @@ void create()
 //***** ADDED BY SCATTER *****
                                 set("wposition", "/clone/weapon/gshezhang.c");
 //***** END OF ADDING *****
-                set("wield_msg", HIW"$N抽出一根$n"+HIW"握在手中，杖端的蛇头呲呲做响，让人不寒而栗。\n"NOR);
-                set("unwield_msg", "$N将手中的$n放了下来。\n");
+                set("wield_msg", HIW"$N抽出一根$n"+HIW"握在手中，杖端的蛇頭呲呲做響，讓人不寒而慄。\n"NOR);
+                set("unwield_msg", "$N將手中的$n放了下來。\n");
                 init_staff(35);
                 setup();
 }
@@ -36,10 +36,10 @@ string long_desc()
                   string desc ;
                   object staff = this_object();
 
-                  desc = HIB"一根弯弯曲曲的黑色粗杖，似是钢铁所制，杖头铸着个裂口而笑的人头，人头口中露出尖利雪白的牙齿，\n模样甚是狰狞诡异，\n"NOR;
+                  desc = HIB"一根彎彎曲曲的黑色粗杖，似是鋼鐵所制，杖頭鑄著個裂口而笑的人頭，人頭口中露出尖利雪白的牙齒，\n模樣甚是猙獰詭異，\n"NOR;
 
-                  if( query("snake", staff) == 1)desc+=HIW"杖上盘着一条银鳞闪闪的小蛇，不住的蜿蜒上下。\n"NOR;
-                  else if( query("snake", staff) == 2)desc+=HIW"杖上盘着两条银鳞闪闪的小蛇，不住的蜿蜒上下。\n"NOR;
+                  if( query("snake", staff) == 1)desc+=HIW"杖上盤著一條銀鱗閃閃的小蛇，不住的蜿蜒上下。\n"NOR;
+                  else if( query("snake", staff) == 2)desc+=HIW"杖上盤著兩條銀鱗閃閃的小蛇，不住的蜿蜒上下。\n"NOR;
                   
                   return desc;
 }
@@ -55,24 +55,24 @@ int convert(string arg)
                   object ob;
 
                   if (arg!="shezhang" && arg!="staff" && arg!="zhang") return 0;
-                  if( query("family/family_name", me) != "白驼山" )
-                                         return notify_fail("你不能化杖为蛇。\n");
+                  if( query("family/family_name", me) != "白駝山" )
+                                         return notify_fail("你不能化杖為蛇。\n");
                   if( query("jing", me)<100 )
-                                         return notify_fail("你的精力不够。\n");
+                                         return notify_fail("你的精力不夠。\n");
 
         if (!present("guai shezhang", me))
-                return notify_fail("你身上没有怪蛇杖。\n");
+                return notify_fail("你身上沒有怪蛇杖。\n");
 
                   if (random(me->query_skill("training",1)) <20) {
-                          message_vision("$N手握蛇杖手舞足蹈，好像发疯一般。\n"
+                          message_vision("$N手握蛇杖手舞足蹈，好像發瘋一般。\n"
                                          ,me);
                           me->receive_damage("jing", 95);
                           return 1;
                   }
 
-                 if(query("snake") <1)return notify_fail("蛇杖上没有蛇。\n");
+                 if(query("snake") <1)return notify_fail("蛇杖上沒有蛇。\n");
 
-                  message_vision("$N手握蛇杖手舞足蹈，猛地一摔，蛇杖上的毒蛇似箭一般飞了出来。\n",
+                  message_vision("$N手握蛇杖手舞足蹈，猛地一摔，蛇杖上的毒蛇似箭一般飛了出來。\n",
                                          me,);
 
                   //seteuid(ROOT_UID);

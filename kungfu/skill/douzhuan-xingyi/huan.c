@@ -2,7 +2,7 @@
 
 #include <ansi.h>
 
-string name() { return MAG "移星换月" NOR; }
+string name() { return MAG "移星換月" NOR; }
 
 void remove_effect(object me);
 
@@ -12,21 +12,21 @@ int perform(object me, object target)
         int level;
 
         if( (level = me->query_skill("douzhuan-xingyi", 1)) < 1000 )
-                return notify_fail("你的斗转星移还不够熟练，难以施展" + name() + "。\n" NOR);
+                return notify_fail("你的斗轉星移還不夠熟練，難以施展" + name() + "。\n" NOR);
 
         if( (int)query("jingli", me) < 2000 )
-                return notify_fail("你现在真气不足，难以施展" + name() + "。\n" NOR);
+                return notify_fail("你現在真氣不足，難以施展" + name() + "。\n" NOR);
 
         if( (int)query("neili", me) < 5000 )
-                return notify_fail("你现在内力不够，难以施展" + name() + "。\n" NOR);
+                return notify_fail("你現在內力不夠，難以施展" + name() + "。\n" NOR);
 
         if (query_temp("yixinghuanyue", me))
-                return notify_fail("你已经运起" + name() + "。\n" NOR);
+                return notify_fail("你已經運起" + name() + "。\n" NOR);
 
         addn("neili", -1000, me);
         me->receive_damage("qi", 0);
         set_temp("yixinghuanyue", 1, me);
-        msg = MAG "\n$N" MAG "提起真气，默念" + name() + "心法，心中以彼之道还彼之身的法门已达发乎自然之境。\n" NOR;
+        msg = MAG "\n$N" MAG "提起真氣，默唸" + name() + "心法，心中以彼之道還彼之身的法門已達發乎自然之境。\n" NOR;
 
         message_combatd(msg, me);
 
@@ -42,7 +42,7 @@ void remove_effect(object me)
         if ((int)query_temp("yixinghuanyue", me))
         {
                 delete_temp("yixinghuanyue", me);
-                tell_object(me, "你的"+name()+"运功完毕，将内力收回丹田。\n");
+                tell_object(me, "你的"+name()+"運功完畢，將內力收回丹田。\n");
         }
 }
 

@@ -5,8 +5,8 @@ inherit NPC;
 int ask_jiaobiao();
 void create()
 {
-        set_name("易镖头", ({ "yi biaotou", "yi" }));
-        set("title", HIR"福"HIC"威"YEL"镖局"HIY"大镖头"NOR);
+        set_name("易鏢頭", ({ "yi biaotou", "yi" }));
+        set("title", HIR"福"HIC"威"YEL"鏢局"HIY"大鏢頭"NOR);
         set("gender", "男性");
         set("age", 45);
 
@@ -18,7 +18,7 @@ void create()
         set_skill("parry", 50);
         set_skill("dodge", 50);
         set("inquiry", ([
-                "交镖"   : (: ask_jiaobiao :),
+                "交鏢"   : (: ask_jiaobiao :),
                 "finish" : (: ask_jiaobiao :),
         ]));
         set_temp("apply/attack", 25);
@@ -45,7 +45,7 @@ void greeting(object ob)
 {
         if( query_temp("fuwei_ready", ob) )
         {
-                say(query("name", this_object())+"笑咪咪地对"+query("name", ob)+"说道：这位"+RANK_D->query_respect(ob)+"，是来交镖的吧。你的镖队和镖车都齐全吧？\n");
+                say(query("name", this_object())+"笑咪咪地對"+query("name", ob)+"說道：這位"+RANK_D->query_respect(ob)+"，是來交鏢的吧。你的鏢隊和鏢車都齊全吧？\n");
         }
 }
 

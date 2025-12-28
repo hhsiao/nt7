@@ -1,4 +1,4 @@
-// 神话世界·西游记·版本（世纪）
+// 神話世界·西遊記·版本（世紀）
 /* <SecCrypt CPL V3R05> */
 
 //by night 
@@ -8,11 +8,11 @@ string test_name(string);
 inherit ITEM;
 
 string *names = ({
-  "法铃",
-  "木鱼",
-  "经纶",
-  "罗衣",
-  "禅杖",
+  "法鈴",
+  "木魚",
+  "經綸",
+  "羅衣",
+  "禪杖",
   "念珠",
   "袈裟",
 });
@@ -28,9 +28,9 @@ string *ids = ({
 });
 
 string *units = ({
-  "个",
-  "个",
-  "盘",
+  "個",
+  "個",
+  "盤",
   "件",
   "根",
   "串",
@@ -45,9 +45,9 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {      
-                set("no_drop","这是佛家法器，不可随便丢弃。\n");
+                set("no_drop","這是佛家法器，不可隨便丟棄。\n");
                 set("no_put",1);
-                set("long", "这是佛家法器，你可以用它来布道（budao）。\n");
+                set("long", "這是佛家法器，你可以用它來佈道（budao）。\n");
                 set("value", 0);
              }
         setup();
@@ -85,65 +85,65 @@ int do_budao(string arg)
 
         if( query_temp("obj/done", me) >= 1 )
         {
-          tell_object(me,"你已经完成布道了，回去报告吧。\n");
+          tell_object(me,"你已經完成佈道了，回去報告吧。\n");
           return 1;
         }
         else
         if( query_temp("obj/budao", me)<1 )
         {
-          tell_object(me,"现在好像没有轮到你去布道？\n");
+          tell_object(me,"現在好像沒有輪到你去佈道？\n");
           return 1;
         }
         else
         if( query_temp("obj/where", me) != test_name(base_name(environment(me))) )
         {
-          tell_object(me,"你布道的地方不是这里吧？\n");
+          tell_object(me,"你佈道的地方不是這裡吧？\n");
           return 1;
         }
         else
         if( query_temp("budao", environment(me)) >= 1 )
         {
-          tell_object(me,"这儿不久前有人来布过道，现在恐怕来得不是时候。\n");
+          tell_object(me,"這兒不久前有人來布過道，現在恐怕來得不是時候。\n");
           return 1;
         }
         else          
         if( (query("sen", me)<20) )
         {  
-          tell_object(me,"你的精力不能集中，不可以布道！\n");
+          tell_object(me,"你的精力不能集中，不可以佈道！\n");
           return 1;
         }
         else
         if( (query("kee", me)<30) )
         {
-          tell_object(me,"你的身体状态太差，不能传经布道！\n");
+          tell_object(me,"你的身體狀態太差，不能傳經佈道！\n");
           return 1;
         }
         else          
         if (j == 0 || !me)
         {
-          tell_object(me,"这儿人都没有，布什么道？\n");
+          tell_object(me,"這兒人都沒有，布什麼道？\n");
           return 1;
         }
         else
         if (me->is_busy())
         {
-          tell_object(me,"你现在正忙着呢，没法布道。\n");
+          tell_object(me,"你現在正忙著呢，沒法佈道。\n");
           return 1;
         }
         else
         if (!arg || arg == "" )
         { 
-          tell_object(me,"你要用什么道具进行布道？\n");
+          tell_object(me,"你要用什麼道具進行佈道？\n");
           return 1;
         }
         else
         if ( arg == "fa ling" || arg == "mu yu")
         {
-          if(!present(arg,me)) return notify_fail("你身上没有这样东西。\n");        
+          if(!present(arg,me)) return notify_fail("你身上沒有這樣東西。\n");        
           if( nforce<30 || (query("force", me)<nforce) )
-            return notify_fail("唱梵曲需要内息悠长，你的内力不足，力不能及。\n");
+            return notify_fail("唱梵曲需要內息悠長，你的內力不足，力不能及。\n");
           
-          message_vision(HIW"$N清了清噪子，法像庄严，吟出一曲梵唱。\n"NOR,me);          
+          message_vision(HIW"$N清了清噪子，法像莊嚴，吟出一曲梵唱。\n"NOR,me);          
           me->start_busy(skl);
           addn("force", -nforce, me);
         remove_call_out ("reacting");
@@ -155,11 +155,11 @@ int do_budao(string arg)
         else
         if ( arg == "luo yi" || arg == "jia sha")
         {
-          if(!present(arg,me)) return notify_fail("你身上没有这样东西。\n");
+          if(!present(arg,me)) return notify_fail("你身上沒有這樣東西。\n");
           if( nmana<30 || (query("mana", me)<nmana) )
-            return notify_fail("讲经必须法力充盈，你法力不足，神思难以集中。\n");
+            return notify_fail("講經必須法力充盈，你法力不足，神思難以集中。\n");
             
-          message_vision(HIW"$N垂目低首，合什于胸，讲起了《法华经》。\n"NOR,me);          
+          message_vision(HIW"$N垂目低首，合什於胸，講起了《法華經》。\n"NOR,me);          
           me->start_busy(skl);
           addn("mana", -nmana, me);
         remove_call_out ("reacting");
@@ -171,11 +171,11 @@ int do_budao(string arg)
         else
         if ( arg == "chan zhang" || arg == "jing lun" || arg == "nian zhu")
         {
-          if(!present(arg,me)) return notify_fail("你身上没有这样东西。\n");        
+          if(!present(arg,me)) return notify_fail("你身上沒有這樣東西。\n");        
           if( (nmana<30 || nforce<30) || (query("mana", me)<nmana) || (query("force", me)<nforce) )
-            return notify_fail("开设祭坛必须内力法力融而为一，天地交汇，你的状态还不允许。\n");
+            return notify_fail("開設祭壇必須內力法力融而為一，天地交匯，你的狀態還不允許。\n");
 
-          message_vision(HIW"$N开设祭坛，祈天默祷，为百姓降福。\n"NOR,me);          
+          message_vision(HIW"$N開設祭壇，祈天默禱，為百姓降福。\n"NOR,me);          
           me->start_busy(skl); 
           addn("mana", -nmana, me);
           addn("force", -nforce, me);
@@ -189,7 +189,7 @@ int do_budao(string arg)
 
 int fanchang(object me)
 {
-        message_vision(HIY"$N声音渐微，曲意不散，围观的群众似乎有所领悟。\n"NOR,me);
+        message_vision(HIY"$N聲音漸微，曲意不散，圍觀的群眾似乎有所領悟。\n"NOR,me);
         set_temp("obj/done", 1, me);
         set_temp("budao", 1, environment(me));
         return 1;
@@ -197,7 +197,7 @@ int fanchang(object me)
 
 int jiangjing(object me)
 {
-        message_vision(HIY"$N舌绽莲花，天花乱坠。周围的群众听得啧啧不已。\n"NOR,me);
+        message_vision(HIY"$N舌綻蓮花，天花亂墜。周圍的群眾聽得嘖嘖不已。\n"NOR,me);
         set_temp("obj/done", 1, me);
         set_temp("budao", 1, environment(me));
         return 1;
@@ -205,7 +205,7 @@ int jiangjing(object me)
 
 int kaitan(object me)
 {
-        message_vision(HIY"$N慈悲普渡，宝像庄严。周围的群众都看得目瞪口呆。\n"NOR,me);
+        message_vision(HIY"$N慈悲普渡，寶像莊嚴。周圍的群眾都看得目瞪口呆。\n"NOR,me);
         set_temp("obj/done", 1, me);
         set_temp("budao", 1, environment(me));
         return 1;
@@ -227,13 +227,13 @@ int do_check(string arg)
         if(!arg) return 0;
         if( (arg == "faqi" || arg == "faqi") && query_temp("obj/budao", me)){
                 write(
-                        "这是一件法器，你布道的目的地是："
+                        "這是一件法器，你佈道的目的地是："
                         HIG"「"+query_temp("obj/budaowhere", me)+"」"NOR"。\n"NOR);
         }
         else
         {
         if( (arg == "faqi" || arg == "faqi") && !query_temp("obj/budao", me) )
-        write("这是一件法器，隐蕴无上法力。\n");
+        write("這是一件法器，隱蘊無上法力。\n");
          }
         return 1;
 }
@@ -244,7 +244,7 @@ void reacting (object me, string people, int j)
     return;
 
   if (j == 1)
-    message_vision (people+"看见有人在此布道，不禁停了下来，看个究竟。\n",me);
+    message_vision (people+"看見有人在此佈道，不禁停了下來，看個究竟。\n",me);
   else
-    message_vision (people+"等人见有人在此布道，都围了过去，看个究竟。\n",me);
+    message_vision (people+"等人見有人在此佈道，都圍了過去，看個究竟。\n",me);
 }

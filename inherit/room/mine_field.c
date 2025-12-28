@@ -1,21 +1,21 @@
 /************************************************
  * mine_field.c                                 *
  *                                              *
- * 矿场                                         *
+ * 礦場                                         *
  ************************************************/
 
 /*
 1。是否有出口
-2。单边长
-3。含矿种类
-4。总蕴藏量
-5。开采几率
-6。矿石中有效矿物的含量比例
+2。單邊長
+3。含礦種類
+4。總蘊藏量
+5。開採幾率
+6。礦石中有效礦物的含量比例
 7。再生期
-8，矿石物件
-9。矿眼房间
-10。非矿眼房间
-以后可以允许帮派竞买矿长的开采权
+8，礦石物件
+9。礦眼房間
+10。非礦眼房間
+以後可以允許幫派競買礦長的開採權
 */
 
 // #pragma optimize
@@ -39,7 +39,7 @@ inherit F_NATURE;
 
 class coordinate{ int x; int y; }
 
-protected nosave class coordinate *newpath = ({});        // 待处理队列
+protected nosave class coordinate *newpath = ({});        // 待處理隊列
 
 protected nosave string *valid_dirs = ({ "south","north","west","east" });
 protected nosave mapping reverse_dir = ([
@@ -49,41 +49,41 @@ protected nosave mapping reverse_dir = ([
 "east"  : "west",
 ]);
 
-// 一些可储存的变量
-protected int maze_built = 0;        // 建立标记
-protected mixed *all;                // 全迷宫出口阵列.
-protected class coordinate enter;        // 入口坐标
-protected class coordinate leave;        // 出口坐标
-protected class coordinate *mine_room_positions;        // 矿眼分布
-protected int out_mine;                // 已开采的量
-protected int built_time;        // 最后一次的更新时间
+// 一些可儲存的變量
+protected int maze_built = 0;        // 建立標記
+protected mixed *all;                // 全迷宮出口陣列.
+protected class coordinate enter;        // 入口座標
+protected class coordinate leave;        // 出口座標
+protected class coordinate *mine_room_positions;        // 礦眼分佈
+protected int out_mine;                // 已開採的量
+protected int built_time;        // 最後一次的更新時間
 
-/***************** 矿场的一些预设特性：*****************/
-protected nosave int l;                                // 单边长
+/***************** 礦場的一些預設特性：*****************/
+protected nosave int l;                                // 單邊長
 protected nosave string entry_dir;                // 入口方向
-protected nosave string link_entry_dir;                // 入口与区域的连接方向
-protected nosave string link_entry_room;        // 入口所连接区域档案的文件名
-protected nosave string link_exit_dir;                // 出口与区域的连接方向
-protected nosave string link_exit_room;                // 出口所连接区域档案的文件名
-protected nosave string mine_room;                // 有矿房间
-protected nosave string no_mine_room;                // 无矿房间
-protected nosave string mine_class;                // 矿藏种类
-protected nosave int contain_persent;                // 矿石中有效矿物的含量比例
-protected nosave int contain_quantity;                // 初始总蕴藏量
-protected nosave int reset_time_sect;                // 矿场再生期（单位：Game年）
+protected nosave string link_entry_dir;                // 入口與區域的連接方向
+protected nosave string link_entry_room;        // 入口所連接區域檔案的文件名
+protected nosave string link_exit_dir;                // 出口與區域的連接方向
+protected nosave string link_exit_room;                // 出口所連接區域檔案的文件名
+protected nosave string mine_room;                // 有礦房間
+protected nosave string no_mine_room;                // 無礦房間
+protected nosave string mine_class;                // 礦藏種類
+protected nosave int contain_persent;                // 礦石中有效礦物的含量比例
+protected nosave int contain_quantity;                // 初始總蘊藏量
+protected nosave int reset_time_sect;                // 礦場再生期（單位：Game年）
 protected nosave int is_outdoors = 0;
 /******************* ---- END ---- *********************/
 
-// 重置全域变量.
+// 重置全域變量.
 protected void refresh_vars();
 
-// 建立矿场地图
+// 建立礦場地圖
 protected void create_maze();
 
-// 选择随机出口.
+// 選擇隨機出口.
 protected int random_out(int x,int y,int n);
 
-// 处理连接.
+// 處理連接.
 protected void link_to_north(int x,int y);
 protected void link_to_south(int x,int y);
 protected void link_to_west(int x,int y);
@@ -94,14 +94,14 @@ protected string mroom_fname(int x,int y)
 
 string query_save_file() { return base_name(this_object()); }
 
-protected void refresh_vars() // 重置全域变量.
+protected void refresh_vars() // 重置全域變量.
 {
         newpath = ({});
         all = 0;
         maze_built = 0;
 }
 
-// 对一些必设参数的合法性检查
+// 對一些必設參數的合法性檢查
 protected int check_vars()
 {
         if( (l < 10) || (l > MAX_LONG) )
@@ -137,7 +137,7 @@ protected int check_vars()
         return 1;
 }
 
-protected int random_out(int x,int y,int n) // 选择随机出口函数.
+protected int random_out(int x,int y,int n) // 選擇隨機出口函數.
 {
         int *outs = ({}), retn = 0;
         class coordinate temp;
@@ -187,7 +187,7 @@ protected int random_out(int x,int y,int n) // 选择随机出口函数.
         }
 
 #ifdef TWO_VALID_LEAVES
-        // 如果有三个出口,随机关闭一个.
+        // 如果有三個出口,隨機關閉一個.
         if(sizeof(outs) >= 3)
                 outs -= ({ outs[random(sizeof(outs))] });
 #endif
@@ -199,12 +199,12 @@ protected int random_out(int x,int y,int n) // 选择随机出口函数.
 }
 
 
-// 矿眼分布密度监测
+// 礦眼分佈密度監測
 protected int valid_mine_position(int x, int y)
 {
         int n;
 
-        if(!all[x][y])        // 没出口
+        if(!all[x][y])        // 沒出口
                 return 0;
 
         if(!n = sizeof(mine_room_positions))
@@ -220,7 +220,7 @@ protected int valid_mine_position(int x, int y)
         return 1;
 }
 
-// 创建矿眼分布阵列
+// 創建礦眼分佈陣列
 protected void create_mine_room()
 {
         int num, x, y;
@@ -253,7 +253,7 @@ protected void create_mine_room()
 
 void start_heart_beat()
 {
-        // 每天(MUD单位)心跳一次
+        // 每天(MUD單位)心跳一次
         set_heart_beat(120);
 }
 
@@ -262,22 +262,22 @@ protected void create_maze()
         int i;
         class coordinate *valid_leaves=({}),temp;
 
-        refresh_vars(); // 重置全域变量.
-        if( !check_vars() )   // 对一些预设变量进行检查。
+        refresh_vars(); // 重置全域變量.
+        if( !check_vars() )   // 對一些預設變量進行檢查。
                 return;
 
-        // 单边长.
+        // 單邊長.
         all = allocate(l);
         for(i=0;i<l;i++)
-                all[i] = allocate(l);        // 建立数组.
+                all[i] = allocate(l);        // 建立數組.
 
         enter = new(class coordinate);
 
         switch (entry_dir)
         {
                 case "south":
-                        // enter 入口坐标.
-                        enter->x = to_int(l/2); // 取中迷宫比较平衡。
+                        // enter 入口座標.
+                        enter->x = to_int(l/2); // 取中迷宮比較平衡。
                         enter->y = 0;
                         all[enter->x][enter->y] |= S;
                         break;
@@ -298,15 +298,15 @@ protected void create_maze()
                         break;
         }
 
-        // 存入待处理队列.
+        // 存入待處理隊列.
         newpath += ({ enter });
 
-        // 进入主循环.
+        // 進入主循環.
         do
         {
                 int x,y,out,numb;
 
-                // 进行一些监测与初始化.
+                // 進行一些監測與初始化.
                 if( !(numb=sizeof(newpath)) )
                         continue;
                 numb = random(numb);
@@ -314,23 +314,23 @@ protected void create_maze()
                 x = newpath[numb]->x;
                 y = newpath[numb]->y;
 
-                // 如果有三个可能的出口随机关闭一个出口:
+                // 如果有三個可能的出口隨機關閉一個出口:
                 out = ALL^(all[x][y]);
                 out = random_out(x,y,out);
 
-                if(!out) // 没有可能的出口了.
+                if(!out) // 沒有可能的出口了.
                 {
                         newpath -= ({ newpath[numb] });
                         continue;
                 }
 
-                // 处理连接.
+                // 處理連接.
                 if(out&W) link_to_west(x,y);
                 if(out&E) link_to_east(x,y);
                 if(out&N) link_to_north(x,y);
                 if(out&S) link_to_south(x,y);
 
-                // 当前房间处理完毕.
+                // 當前房間處理完畢.
                 newpath -= ({ newpath[numb] });
         }
         while (sizeof(newpath));
@@ -379,7 +379,7 @@ protected void create_maze()
                         break;
         }
 
-        if( !(i=sizeof(valid_leaves)) ) // 未到达对方边界
+        if( !(i=sizeof(valid_leaves)) ) // 未到達對方邊界
         {
                 call_other(this_object(),"create_maze");
                 return;
@@ -393,7 +393,7 @@ protected void create_maze()
                 if(i == 1)
                         leave = valid_leaves[0];
                 else
-                        leave = valid_leaves[random(i)]; // 随机选一个.
+                        leave = valid_leaves[random(i)]; // 隨機選一個.
 
                 switch (entry_dir)
                 {
@@ -424,7 +424,7 @@ protected void create_maze()
 protected void link_to_west(int x,int y)        // The west room is (x-1,y)
 {
         class coordinate temp;
-        // can't link. 当前房间已经是最西面的房间了.
+        // can't link. 當前房間已經是最西面的房間了.
         if( (x-1) < 0 )
                 return;
 
@@ -432,7 +432,7 @@ protected void link_to_west(int x,int y)        // The west room is (x-1,y)
         temp->x = x-1;
         temp->y = y;
 
-        // 西面的房间已经于 path 中,或者 已在待处理列表 newpath 中.
+        // 西面的房間已經於 path 中,或者 已在待處理列表 newpath 中.
         if(all[temp->x][temp->y] /*|| member_array(temp,newpath)*/)
                 return;
 
@@ -444,7 +444,7 @@ protected void link_to_west(int x,int y)        // The west room is (x-1,y)
 protected void link_to_east(int x,int y)        // The east room is (x+1,y)
 {
         class coordinate temp;
-        // can't link. 当前房间已经是最东面的房间了.
+        // can't link. 當前房間已經是最東面的房間了.
         if( (x+1) >= l )
                 return;
 
@@ -452,7 +452,7 @@ protected void link_to_east(int x,int y)        // The east room is (x+1,y)
         temp->x = x+1;
         temp->y = y;
 
-        // 东面的房间已经于 path 中,或者 已在待处理列表 newpath 中.
+        // 東面的房間已經於 path 中,或者 已在待處理列表 newpath 中.
         if(all[temp->x][temp->y] /*|| member_array(temp,newpath)*/)
                 return;
 
@@ -464,7 +464,7 @@ protected void link_to_east(int x,int y)        // The east room is (x+1,y)
 protected void link_to_south(int x,int y)        // The south room is (x,y-1)
 {
         class coordinate temp;
-        // can't link. 当前房间已经是最南端的房间了.
+        // can't link. 當前房間已經是最南端的房間了.
         if( (y-1) <0 )
                 return;
 
@@ -472,7 +472,7 @@ protected void link_to_south(int x,int y)        // The south room is (x,y-1)
         temp->x = x;
         temp->y = y-1;
 
-        // 南端的房间已经于 path 中,或者 已在待处理列表 newpath 中.
+        // 南端的房間已經於 path 中,或者 已在待處理列表 newpath 中.
         if(all[temp->x][temp->y] /*|| member_array(temp,newpath)*/)
                 return;
 
@@ -484,7 +484,7 @@ protected void link_to_south(int x,int y)        // The south room is (x,y-1)
 protected void link_to_north(int x,int y)        // The north room is (x,y+1)
 {
         class coordinate temp;
-        // can't link. 当前房间已经是最北端的房间了.
+        // can't link. 當前房間已經是最北端的房間了.
         if( (y+1) >= l )
                 return;
 
@@ -492,7 +492,7 @@ protected void link_to_north(int x,int y)        // The north room is (x,y+1)
         temp->x = x;
         temp->y = y+1;
 
-        // 北端的房间已经于 path 中,或者 已在待处理列表 newpath 中.
+        // 北端的房間已經於 path 中,或者 已在待處理列表 newpath 中.
         if(all[temp->x][temp->y] /*|| member_array(temp,newpath)*/)
                 return;
 
@@ -517,81 +517,81 @@ void remove(string euid)
                 destruct(m_room);
 }
 
-/**** 以下是预设参数的接口函数 ****/
-// 单边长
+/**** 以下是預設參數的接口函數 ****/
+// 單邊長
 void set_maze_long(int mlong)
 {
         if(!intp(mlong))
                 return;
 
-        // 最小为 10
+        // 最小為 10
         if( (mlong < 10) || (mlong > MAX_LONG) )
                 return;
 
         l = mlong;
 }
 
-// 矿眼房间文件名
+// 礦眼房間文件名
 void set_mine_room(string room_files)
 {
         object ob;
 
         if(!stringp(room_files) || !sizeof(room_files))
-                error("set_mine_room: 参数必须为 string 类型\n");
+                error("set_mine_room: 參數必須為 string 類型\n");
 
         if(file_size(sprintf("%s.c",room_files)) <= 0)
-                error("set_mine_room: 参数指定的房间文件不存在，或者无权读取\n");
+                error("set_mine_room: 參數指定的房間文件不存在，或者無權讀取\n");
 
         if( !objectp(ob = find_object(room_files)) )
                 ob = load_object(room_files);
         if(!objectp(ob))
-                error("set_mine_room: 参数指定的房间无法载入\n");
+                error("set_mine_room: 參數指定的房間無法載入\n");
         mine_room = room_files;
 }
 
-// 非矿眼房间文件名
+// 非礦眼房間文件名
 void set_no_mine_room(string room_files)
 {
         object ob;
 
         if(!stringp(room_files) || !sizeof(room_files))
-                error("set_no_mine_room: 参数必须为 string 类型\n");
+                error("set_no_mine_room: 參數必須為 string 類型\n");
 
-                // 档案是否存在
+                // 檔案是否存在
         if(file_size(sprintf("%s.c",room_files)) <= 0)
-                error("set_no_mine_room: 参数指定的房间文件不存在，或者无权读取\n");
+                error("set_no_mine_room: 參數指定的房間文件不存在，或者無權讀取\n");
 
         if( !objectp(ob = find_object(room_files)) )
                 ob = load_object(room_files);
         if(!objectp(ob))
-                error("set_no_mine_room: 参数指定的房间无法载入\n");
+                error("set_no_mine_room: 參數指定的房間無法載入\n");
         no_mine_room = room_files;
 }
 
-// 设定初始总蕴藏量
+// 設定初始總蘊藏量
 void set_contain_quantity(int num)
 {
         if(!intp(num) || (num <= 0))
-                error("set_contain_quantity: 设定参数错误\n");
+                error("set_contain_quantity: 設定參數錯誤\n");
         contain_quantity = num;
 }
 
-// 设定蕴藏比例
+// 設定蘊藏比例
 void set_contain_persent(int num)
 {
         if(!intp(num)
         || (num < MIN_CONTAIN_PERSENT)
         || (num > MAX_CONTAIN_PERSENT) )
-                error("set_contain_persent: 参数设定错误\n");
+                error("set_contain_persent: 參數設定錯誤\n");
 
         contain_persent = num;
 }
 
-// 设定矿产再生期
+// 設定礦產再生期
 void set_reset_time_sect(int num)
 {
         if(!intp(num) || (num <= 0))
-                error("set_reset_time_sect: 参数设定错误\n");
+                error("set_reset_time_sect: 參數設定錯誤\n");
 
         reset_time_sect = num;
 }
@@ -599,24 +599,24 @@ void set_reset_time_sect(int num)
 void set_mine_class(string mclass)
 {
         if(!stringp(mclass) || !sizeof(mclass))
-                error("set_mine_class: 参数设定错误\n");
+                error("set_mine_class: 參數設定錯誤\n");
         mine_class = mclass;
 }
 
-// 入口方向(出口在对面)
+// 入口方向(出口在對面)
 void set_entry_dir(string dir)
 {
         if(!stringp(dir))
                 return;
 
-        // 入口方向的合法性检查.
+        // 入口方向的合法性檢查.
         if(member_array(dir,valid_dirs) == -1)
                 return;
 
         entry_dir = dir;
 }
 
-//入口与区域的连接方向
+//入口與區域的連接方向
 void set_link_entry_dir(string dir)
 {
         if(!stringp(dir) || dir == "")
@@ -625,26 +625,26 @@ void set_link_entry_dir(string dir)
         link_entry_dir = dir;
 }
 
-// 入口所连接区域档案的文件名
+// 入口所連接區域檔案的文件名
 void set_link_entry_room(string room_files)
 {
         object ob;
 
         if(!stringp(room_files) || !sizeof(room_files))
-                error("set_link_entry_room: 参数必须为 string 类型\n");
+                error("set_link_entry_room: 參數必須為 string 類型\n");
 
-                // 档案是否存在
+                // 檔案是否存在
         if(file_size(sprintf("%s.c",room_files)) <= 0)
-                error("set_link_entry_room: 参数指定的房间文件不存在，或者无权读取\n");
+                error("set_link_entry_room: 參數指定的房間文件不存在，或者無權讀取\n");
 
         if( !objectp(ob = find_object(room_files)) )
                 ob = load_object(room_files);
         if(!objectp(ob))
-                error("set_link_entry_room: 参数指定的房间无法载入\n");
+                error("set_link_entry_room: 參數指定的房間無法載入\n");
         link_entry_room = room_files;
 }
 
-//出口与区域的连接方向
+//出口與區域的連接方向
 void set_link_exit_dir(string dir)
 {
         if(!stringp(dir) || dir == "")
@@ -653,22 +653,22 @@ void set_link_exit_dir(string dir)
         link_exit_dir = dir;
 }
 
-// 迷宫出口所连接区域档案的文件名
+// 迷宮出口所連接區域檔案的文件名
 void set_link_exit_room(string room_files)
 {
         object ob;
 
         if(!stringp(room_files) || !sizeof(room_files))
-                error("set_link_exit_room: 参数必须为 string 类型\n");
+                error("set_link_exit_room: 參數必須為 string 類型\n");
 
-                // 档案是否存在
+                // 檔案是否存在
         if(file_size(sprintf("%s.c",room_files)) <= 0)
-                error("set_link_exit_room: 参数指定的房间文件不存在，或者无权读取\n");
+                error("set_link_exit_room: 參數指定的房間文件不存在，或者無權讀取\n");
 
         if( !objectp(ob = find_object(room_files)) )
                 ob = load_object(room_files);
         if(!objectp(ob))
-                error("set_link_exit_room: 参数指定的房间无法载入\n");
+                error("set_link_exit_room: 參數指定的房間無法載入\n");
 
         link_exit_room = room_files;
 }
@@ -682,9 +682,9 @@ void set_outdoors(int outd)
                 is_outdoors = 1;
 }
 
-/**** 以上是预设参数的接口函数 ****/
+/**** 以上是預設參數的接口函數 ****/
 
-// 由 VIRTUAL_D 调用创造房间。
+// 由 VIRTUAL_D 調用創造房間。
 nomask object query_maze_room(string str)
 {
         int idx,x,y,exits, n;
@@ -706,7 +706,7 @@ nomask object query_maze_room(string str)
         if(!maze_built)
                 return 0;
 
-        if(str == "entry")        // 入口为非矿眼房间
+        if(str == "entry")        // 入口為非礦眼房間
         {
                 ob = new(no_mine_room);
                 if(!ob)
@@ -721,7 +721,7 @@ nomask object query_maze_room(string str)
                 return ob;
         }
 
-        if(str == "exit")        // 出口为非矿眼房间
+        if(str == "exit")        // 出口為非礦眼房間
         {
                 if(!leave || !link_exit_room || !sizeof(link_exit_room))
                         return 0;
@@ -809,7 +809,7 @@ void setup_stone(object stone)
         if(w < 1)
                 w = 1;
 
-        out_mine += w;        // 记录已开采量
+        out_mine += w;        // 記錄已開採量
 
         stone->set_eff_weight(w);
 }

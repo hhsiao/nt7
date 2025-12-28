@@ -4,13 +4,13 @@ inherit NPC;
 
 void create()
 {
-        set_name("诸葛亮", ({ "zhuge liang", "zhuge", "liang"}));
-        set("long", "    此人便是传说中有通天彻底的三国时代蜀国\n"
-                    "军师诸葛亮，据说他上知天文，下通地理，无一\n"
-                    "不精，无一不晓，真乃神人也。\n");
+        set_name("諸葛亮", ({ "zhuge liang", "zhuge", "liang"}));
+        set("long", "    此人便是傳說中有通天徹底的三國時代蜀國\n"
+                    "軍師諸葛亮，據說他上知天文，下通地理，無一\n"
+                    "不精，無一不曉，真乃神人也。\n");
 
         set("nickname", HIG "智囊" NOR);
-        set("title", HIY "蜀国军师" NOR);
+        set("title", HIY "蜀國軍師" NOR);
         set("gender", "男性");
         set("age", 30);
         set("attitude", "friendly");
@@ -64,7 +64,7 @@ void die()
                          if (arrayp(ob->query_team()))
                          {
                                  command("heng");
-                                 command("say 胜之不武！");
+                                 command("say 勝之不武！");
                                  set("qi", 500000);
                                  set("jing", 500000);
                                  set("neili", 35000);
@@ -82,7 +82,7 @@ void die()
              if (ob->query("sky12/floor") == 9)
              {
                       ob->set("sky12/floor", 10);
-                 command("say 阁下请便吧！");
+                 command("say 閣下請便吧！");
              }
         }
 
@@ -98,7 +98,7 @@ void die()
         return;
 }
 
-// 气血小于1000则死亡，避免他人协助帮忙转世
+// 氣血小於1000則死亡，避免他人協助幫忙轉世
 void heart_beat()
 {
         if (this_object()->query("qi") < 1000 || this_object()->query("eff_qi") < 1000)

@@ -4,7 +4,7 @@ inherit NPC;
 
 void create()
 {
-        set_name("王语嫣", ({ "wang yuyan", "wang" }));
+        set_name("王語嫣", ({ "wang yuyan", "wang" }));
         set("gender", "女性");
         set("age", 20);
         set("attitude", "peaceful");
@@ -32,32 +32,32 @@ void create()
 string long()
 {
         if (! this_player())
-                return "这是一个貌若天仙的女子，美丽的让你无法想象。\n";
+                return "這是一個貌若天仙的女子，美麗的讓你無法想象。\n";
 
         switch(query("gender", this_player()) )
         {
         case "男性":
-                return "眼前是如此一位美貌女子，无法用言辞形容。便是天"
-                       "上仙女，只怕也不过如此。\n";
+                return "眼前是如此一位美貌女子，無法用言辭形容。便是天"
+                       "上仙女，只怕也不過如此。\n";
         case "女性":
-                return "你心前如遭痛击，眼前女子如此美貌，大概自己再长"
+                return "你心前如遭痛擊，眼前女子如此美貌，大概自己再長"
                        "一百年也比不上了。\n";
         default:
-                return "一位仙女般的女子里在面前，不带一丝人间烟火气，"
-                       "你真后悔当初一刀爽快了。\n";
+                return "一位仙女般的女子裡在面前，不帶一絲人間煙火氣，"
+                       "你真後悔當初一刀爽快了。\n";
         }
 }
 
 int accept_hit(object me)
 {
-        tell_object(me, "这么美丽的女子你也下得了手？\n");
+        tell_object(me, "這麼美麗的女子你也下得了手？\n");
         return 0;
 }
 
 int accept_fight(object me)
 {
-        command("say 小女子不会武功，这位" + RANK_D->query_respect(me) +
-                "放过我吧！");
+        command("say 小女子不會武功，這位" + RANK_D->query_respect(me) +
+                "放過我吧！");
         return 0;
 }
 
@@ -70,8 +70,8 @@ int accept_kill(object me)
 
         if (living(this_object()))
         {
-                command("chat 不好啦！这位" +  RANK_D->query_respect(me) +
-                        "要行凶杀人啊！");
+                command("chat 不好啦！這位" +  RANK_D->query_respect(me) +
+                        "要行兇殺人啊！");
         }
 
         if (duan = present("duan yu", environment(me)))

@@ -17,32 +17,32 @@ int perform(object me, object target)
            !arrayp(can_perform) || 
            !sizeof(can_perform) || 
            member_array("light",can_perform) == -1)
-                return notify_fail("你还没有学会使用［天龙之光］！\n");
+                return notify_fail("你還沒有學會使用［天龍之光］！\n");
 
         if (me->is_busy())
-                return notify_fail("你上一个动作还没有完成，无法使用天龙之光。\n");
+                return notify_fail("你上一個動作還沒有完成，無法使用天龍之光。\n");
 
         lvl = (int)me->query_skill("martial-cognize",1);
 
         if (lvl < 250)
-                return notify_fail("你的武学修养修为不够。\n");
+                return notify_fail("你的武學修養修為不夠。\n");
 
         if( query("jingli", me)<500 )
-                return notify_fail("你的精力不够！\n");
+                return notify_fail("你的精力不夠！\n");
 
         if( query("max_jingli", me)<1000 )
-                return notify_fail("你的精力还没有达到足够的层次！\n");
+                return notify_fail("你的精力還沒有達到足夠的層次！\n");
 
         if( query("jing", me) <= 300 )
-                return notify_fail("你的精神状况不好！\n");
+                return notify_fail("你的精神狀況不好！\n");
 
         if( environment(me) && query("no_fight", environment(me)) )
-                return notify_fail("这里不能使用［天龙之光］!\n");
+                return notify_fail("這裡不能使用［天龍之光］!\n");
 
         addn("jingli", -400, me);
         me->receive_damage("jing", 250);
 
-        message_vision(HIY "$N猛然爆发出一声惊天动地的怒吼，天地隐隐回响着清澈的龙吟．．．\n" NOR, me);
+        message_vision(HIY "$N猛然爆發出一聲驚天動地的怒吼，天地隱隱迴響著清澈的龍吟．．．\n" NOR, me);
 
         if ( lvl <= random(500) )
         {
@@ -64,9 +64,9 @@ int perform(object me, object target)
                                 inv[i]->fight_ob(me);
                 }
                 me->start_busy(5);
-                return notify_fail("你因为武学修养修炼不够而失败了！\n");
+                return notify_fail("你因為武學修養修煉不夠而失敗了！\n");
         }
-        message_vision(HIR "．．．$N幻化成一条模糊的龙影，全身射出千万道炽热的血红光芒！！！\n" NOR, me);
+        message_vision(HIR "．．．$N幻化成一條模糊的龍影，全身射出千萬道熾熱的血紅光芒！！！\n" NOR, me);
         env = environment(me);
         inv = all_inventory(env);
         for(i=0; i<sizeof(inv); i++) {
@@ -84,11 +84,11 @@ int bbqthem(object me, object obj)
         int magic;
         string msg;
         magic = (int) me->query_skill("martial-cognize",1)*5;  
-        message_vision(HIR "\n炽热的红光象利剑般射向$N，\n" NOR, obj);
+        message_vision(HIR "\n熾熱的紅光象利劍般射向$N，\n" NOR, obj);
         obj->receive_wound("jing", magic*2/3, me);
         if(obj->is_ghost()) 
         {
-                message_vision(YEL "$N惨叫了一声，化为了灰烬！\n" NOR, obj);
+                message_vision(YEL "$N慘叫了一聲，化為了灰燼！\n" NOR, obj);
                 obj->die();
                 return 1;
         }

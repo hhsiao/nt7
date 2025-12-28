@@ -11,22 +11,22 @@ int exert(object me, object target)
         int skill;
 
         if (target != me)
-                return notify_fail("你只能用怒涛潮涌提升自己的战斗力。\n");
+                return notify_fail("你只能用怒濤潮湧提升自己的戰鬥力。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if( BUFF_D->check_buff(me, "powerup") || query_temp("surge_powerup",me)) 
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
 
         addn("neili", -200, me);
         me->receive_damage("qi", 0);
 
-        msg = HIC "$N" HIC"一声长啸，激起一阵狂风，气"
-                        "浪翻翻滚滚，向两旁散开。\n霎时之间，便"
-                        "似长风动起，气云聚合，天地渺然，有如海"
+        msg = HIC "$N" HIC"一聲長嘯，激起一陣狂風，氣"
+                        "浪翻翻滾滾，向兩旁散開。\n霎時之間，便"
+                        "似長風動起，氣雲聚合，天地渺然，有如海"
                         "浪滔滔。\n" NOR;
         
         if (query("can_perform/surge-force/new", me))skill *= 3;
@@ -46,11 +46,11 @@ int exert(object me, object target)
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "怒海狂涛·战神",
+                "name"  : "怒海狂濤·戰神",
                 "time"  : skill,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : "你的怒涛潮涌运行完毕，将内力收回丹田。\n",
+                "disa_msg" : "你的怒濤潮湧運行完畢，將內力收回丹田。\n",
                         
         ]);
         BUFF_D->buffup(buff);

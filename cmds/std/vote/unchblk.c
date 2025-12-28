@@ -23,10 +23,10 @@ int vote(object me, object victim)
 
         if (victim->query_condition("vote_clear") &&
             (reason=query("vote/reason", victim)) && reason != "unchblk" )
-                  return notify_fail("要把当前的表决完成以后才可以提新的动议。\n");
+                  return notify_fail("要把當前的表決完成以後才可以提新的動議。\n");
 
         if( !query("chblk_on", victim) )
-                  return notify_fail(victim->name(1) + "的频道已经是打开的了。\n");
+                  return notify_fail(victim->name(1) + "的頻道已經是打開的了。\n");
  
         if (! victim->query_condition("vote_clear"))
         {
@@ -51,7 +51,7 @@ int vote(object me, object victim)
                 jip = ({ });
 
         if (member_array(my_ip, jip) != -1)
-                return notify_fail("你所在的IP地址已经有人投过票了。\n");
+                return notify_fail("你所在的IP地址已經有人投過票了。\n");
         else
         if (member_array(my_id, juser) == -1) 
         {
@@ -60,7 +60,7 @@ int vote(object me, object victim)
         } else
         {
                 addn("vote/abuse", 1, me);
-                  return notify_fail("一人一票！滥用表决权是要受惩罚的！\n");
+                  return notify_fail("一人一票！濫用表決權是要受懲罰的！\n");
         }
 
         vv = (int) ("/cmds/std/vote")->valid_voters(me) / 2;
@@ -76,7 +76,7 @@ int vote(object me, object victim)
 
         if (df >= 1)
         {
-                message("vision", HIG "【人民公决】" + my_name + "投票打开"  + v_name + "的频道，还差" +
+                message("vision", HIG "【人民公決】" + my_name + "投票打開"  + v_name + "的頻道，還差" +
                                   sprintf("%d", df) + "票。\n" NOR, all_interactive());    
 
                 victim->apply_condition("vote_clear", 10);
@@ -84,11 +84,11 @@ int vote(object me, object victim)
         } else 
         {
                   if (me != victim)
-                        message("vision", HIG "【人民公决】" + my_name + "投票打开" + v_name + "的频道。" +
-                                          v_name + "的频道被打开了！\n" NOR, all_interactive());
+                        message("vision", HIG "【人民公決】" + my_name + "投票打開" + v_name + "的頻道。" +
+                                          v_name + "的頻道被打開了！\n" NOR, all_interactive());
                 else
-                        message("vision", HIG "【人民公决】" + my_name + "投票打开自己的频道。" +
-                                          my_name + "的频道被打开了！\n" NOR, all_interactive());
+                        message("vision", HIG "【人民公決】" + my_name + "投票打開自己的頻道。" +
+                                          my_name + "的頻道被打開了！\n" NOR, all_interactive());
         }
 
         victim->clear_condition("vote_clear");

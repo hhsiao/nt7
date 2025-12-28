@@ -78,7 +78,7 @@ string *obj_list = ({
 
 void create()
 {
-    set_name(HIY "宝箱" NOR, ({ "bao xiang", "xiang" }) );
+    set_name(HIY "寶箱" NOR, ({ "bao xiang", "xiang" }) );
     set_weight(150000);
     set_max_encumbrance(800000);
     set("no_get", 1);
@@ -87,7 +87,7 @@ void create()
     else*/ 
     {
         set("unit", "口");
-        set("long", HIY "这是一只金色的宝箱，装饰的珠光宝气，你或许可以打开（open）它。\n" NOR);
+        set("long", HIY "這是一隻金色的寶箱，裝飾的珠光寶氣，你或許可以打開（open）它。\n" NOR);
         set("value", 1);
     }
 }
@@ -114,7 +114,7 @@ int do_open(string arg)
     if (!arg || 
         (arg != "bao xiang" 
          && arg != "xiang"
-         && arg != "宝箱"
+         && arg != "寶箱"
          && arg != "箱") )
     {
         return 0;
@@ -125,12 +125,12 @@ int do_open(string arg)
     
     if (is_opened)
     {
-        return notify_fail("宝箱已经是开着的，您就不用费劲折腾啦！\n");
+        return notify_fail("寶箱已經是開著的，您就不用費勁折騰啦！\n");
     }
         
-    message_vision("$N把宝箱打开了。\n", me);
-    ob->set_name(HIY "打开的宝箱" NOR, ({ "bao xiang", "xiang" }) );
-    set("long", HIY"这是一只被打开的金色宝箱，装饰的珠光宝气，一看就不是寻常地摊货。\n"NOR, ob);
+    message_vision("$N把寶箱打開了。\n", me);
+    ob->set_name(HIY "打開的寶箱" NOR, ({ "bao xiang", "xiang" }) );
+    set("long", HIY"這是一隻被打開的金色寶箱，裝飾的珠光寶氣，一看就不是尋常地攤貨。\n"NOR, ob);
     is_opened = 1;
 
         rate = random(5);
@@ -170,7 +170,7 @@ int do_open(string arg)
     {
         case SPECIAL_MAP:
             environment(query("mazeobj", ob))->set_display_map(2);
-            message_vision("只见$N中冲出一道白光，迅速投入房间中央的白色石板中，白色石板越发的亮堂起来。\n", ob);
+            message_vision("只見$N中衝出一道白光，迅速投入房間中央的白色石板中，白色石板越發的亮堂起來。\n", ob);
             break;
         case SPECIAL_DAN:
             bonus = new(dan_list[random(sizeof(dan_list))]);
@@ -205,7 +205,7 @@ int do_open(string arg)
         case NPC_SKILL:
             //FUBEN_D->query_maze_mainobj()->set_npcs_weakly();
             environment(query("mazeobj", ob))->set_boss_weakly();
-            set("long", HIY "宝箱底部隐约刻着一行字：据说迷宫主人现在状态很虚弱。\n" NOR);
+            set("long", HIY "寶箱底部隱約刻著一行字：據說迷宮主人現在狀態很虛弱。\n" NOR);
             break;
         default:
             break;        

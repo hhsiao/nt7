@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// mei.c 梅超风
+// mei.c 梅超風
 
 #include <ansi.h>;
 inherit NPC;
@@ -12,14 +12,14 @@ mixed ask_skill1();
 void create()
 {
         object ob;
-        set_name("梅超风", ({ "mei chaofeng", "mei", "chaofeng" }));
-        set("title", "黑风双煞");
-        set("nickname", WHT "铁尸" NOR);
+        set_name("梅超風", ({ "mei chaofeng", "mei", "chaofeng" }));
+        set("title", "黑風雙煞");
+        set("nickname", WHT "鐵屍" NOR);
         set("gender", "女性");
         set("age", 32);
-        set("long", "梅超风是黄药师唯一的女弟子，本来极受黄药师疼爱，可\n"
-                    "惜她与师兄陈玄风暗生情愫，他们偷了「九阴真经」私奔。\n"
-                    "她面色大概因为久居海岛显得黝黑，模样却颇为俏丽。她\n"
+        set("long", "梅超風是黃藥師唯一的女弟子，本來極受黃藥師疼愛，可\n"
+                    "惜她與師兄陳玄風暗生情愫，他們偷了「九陰真經」私奔。\n"
+                    "她面色大概因為久居海島顯得黝黑，模樣卻頗為俏麗。她\n"
                     "在桃花弟子中尤精通鞭法。\n");
         set("attitude", "aggressive");
         set("str", 29);
@@ -65,21 +65,21 @@ void create()
                 (: exert_function, "recover" :),
         }));
 
-        create_family("桃花岛", 2, "被逐弟子");
+        create_family("桃花島", 2, "被逐弟子");
         set("inquiry", ([
-                "铜尸" : "江湖上的人都这么叫我的，你怕不怕？哈哈哈哈。",
-                "东邪" : "那是我师父的绰号。",
-                "西毒" : "那是与家师齐名的高手之一，是个老毒物，住在白驼山。",
-                "南帝" : "段王爷已出家当和尚去了，法名叫一灯。",
-                "北丐" : "北丐统领中原的丐帮，势力颇为强大。",
-                "黄蓉" : "她是我师父的独女，最是刁蛮任性。",
-                "洪七公" : "洪七公武功高强，而且教会郭靖那小儿降龙十八掌，可恨！",
-                "梅超风" : "不就是我么？你是白痴啊？",
-                "陈玄风" : "他是我的师哥，也是我的夫君，可惜被郭靖那小儿暗算了。",
-                "黄药师" : "他是我师父。",
-                "九阴真经" : "那是我师父的秘籍！你可别打注意！",
-                 "九阴神爪" : (: ask_skill :),
-                 "夺命连环爪" : (: ask_skill1 :),
+                "銅屍" : "江湖上的人都這麼叫我的，你怕不怕？哈哈哈哈。",
+                "東邪" : "那是我師父的綽號。",
+                "西毒" : "那是與家師齊名的高手之一，是個老毒物，住在白駝山。",
+                "南帝" : "段王爺已出家當和尚去了，法名叫一燈。",
+                "北丐" : "北丐統領中原的丐幫，勢力頗為強大。",
+                "黃蓉" : "她是我師父的獨女，最是刁蠻任性。",
+                "洪七公" : "洪七公武功高強，而且教會郭靖那小兒降龍十八掌，可恨！",
+                "梅超風" : "不就是我麼？你是白痴啊？",
+                "陳玄風" : "他是我的師哥，也是我的夫君，可惜被郭靖那小兒暗算了。",
+                "黃藥師" : "他是我師父。",
+                "九陰真經" : "那是我師父的秘籍！你可別打注意！",
+                 "九陰神爪" : (: ask_skill :),
+                 "奪命連環爪" : (: ask_skill1 :),
         ]));
         set_temp("apply/damage", 100);
         set_temp("apply/unarmed_damage", 100);
@@ -110,12 +110,12 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        command("滚开！");
+        command("滾開！");
 }
 
 int accept_fight(object me)
 {
-        command("say 给我滚开！");
+        command("say 給我滾開！");
         return 0;
 }
 
@@ -137,8 +137,8 @@ void kill_ob (object ob)
 
         if (guard && ! guard->is_fighting())
         {
-                message_vision(HIW "\n$N" HIW "大怒道：居然欺负到我们黑风双煞"
-                               "头上来了，死吧！\n\n" NOR, guard);
+                message_vision(HIW "\n$N" HIW "大怒道：居然欺負到我們黑風雙煞"
+                               "頭上來了，死吧！\n\n" NOR, guard);
                 guard->kill_ob(ob);
         }
 }
@@ -148,30 +148,30 @@ mixed ask_skill1()
         object me = this_player();
 
         if( query("can_perform/jiuyin-baiguzhao/duo", me) )
-                return "你不是已经会了吗？";
+                return "你不是已經會了嗎？";
 
         if (me->query_skill("jiuyin-baiguzhao", 1) < 150)
         {
                command("shake");
-               return "你九阴白骨爪火候不够，我还不能传你这招！";
+               return "你九陰白骨爪火候不夠，我還不能傳你這招！";
         }
 
         if (me->query_skill("claw", 1) < 150)
-               return "你基本爪法不够娴熟，我不能传你这招！";
+               return "你基本爪法不夠嫻熟，我不能傳你這招！";
 
         if (me->query_skill("force", 1) < 150)
-               return "你内功修为不够，我不能传你这招！";
+               return "你內功修為不夠，我不能傳你這招！";
 
         if (me->query_skill("martial-cognize", 1) < 200)
-               return "你武学修养不够，我不能传你绝招！";
+               return "你武學修養不夠，我不能傳你絕招！";
 
         if( query("max_neili", me)<2000 )
-               return "你内力修为不足，我还不能传你绝招！";
+               return "你內力修為不足，我還不能傳你絕招！";
 
         command("heihei");
         command("say 看清楚了！");
-        message_sort(HIR "梅超风桀桀怪笑，手指微微弯曲，倏的冲$N" HIR "头顶抓下，$N" HIR
-                     "急忙闪头，然而梅超风这招来得好快，正插中$N" HIR "肩头！\n" NOR, me);
+        message_sort(HIR "梅超風桀桀怪笑，手指微微彎曲，倏的衝$N" HIR "頭頂抓下，$N" HIR
+                     "急忙閃頭，然而梅超風這招來得好快，正插中$N" HIR "肩頭！\n" NOR, me);
         command("haha");
 
         command("say 可有看清楚？");
@@ -182,7 +182,7 @@ mixed ask_skill1()
         if (me->can_improve_skill("martial-cognize"))
                 me->improve_skill("martial-cognize", 500000);
         set("can_perform/jiuyin-baiguzhao/duo", 1, me);
-        tell_object(me, HIG "你学会了「夺命连环爪」！\n" NOR);
+        tell_object(me, HIG "你學會了「奪命連環爪」！\n" NOR);
 
         return 1;
 }
@@ -192,11 +192,11 @@ mixed ask_skill()
         object me = this_player();
 
         if( query("can_perform/jiuyin-baiguzhao/zhua", me) )
-                return "你不是已经会了吗？";
+                return "你不是已經會了嗎？";
 
         if( !query("can_learn/jiuyin-baiguzhao/zhua", me) )
         {
-               tell_object(me, HIG "你去将「九阴真经下册」找来给我，我便传你这招！\n" NOR);
+               tell_object(me, HIG "你去將「九陰真經下冊」找來給我，我便傳你這招！\n" NOR);
                command("heihei");
                return 1;
         }
@@ -204,31 +204,31 @@ mixed ask_skill()
         if (me->query_skill("jiuyin-baiguzhao", 1) < 240)
         {
                command("shake");
-               return "你九阴白骨爪火候不够，我还不能传你这招！";
+               return "你九陰白骨爪火候不夠，我還不能傳你這招！";
         }
 
         if (me->query_skill("claw", 1) < 240)
-               return "你基本爪法不够娴熟，我不能传你这招！";
+               return "你基本爪法不夠嫻熟，我不能傳你這招！";
 
         if (me->query_skill("force", 1) < 260)
-               return "你内功修为不够，我不能传你这招！";
+               return "你內功修為不夠，我不能傳你這招！";
 
         if (me->query_skill("martial-cognize", 1) < 240)
-               return "你武学修养不够，我不能传你绝招！";
+               return "你武學修養不夠，我不能傳你絕招！";
 
         if( query("max_neili", me)<5500 )
-               return "你内力修为不足，我还不能传你绝招！";
+               return "你內力修為不足，我還不能傳你絕招！";
 
         command("heihei");
         command("say 小心~~！");
-        message_sort(HIM "梅超风左手成爪，尖啸一声，猛然间抓向$N" HIM "的肩膀，$N" HIM
-                     "微微一笑，随手招架，只见梅超风左手忽然收回，右手却猛地抓出，速度之"
-                     "快，方位之准，直袭$N" HIM "檀中大穴。$N" HIM "只觉得一股阴风袭过，"
-                     "早已无力招架，梅超风却突然收招，右手却停留在你檀中穴上，只需要稍稍"
-                     "一用力，$N" HIM "便会登时毙命！\n" NOR, me);
+        message_sort(HIM "梅超風左手成爪，尖嘯一聲，猛然間抓向$N" HIM "的肩膀，$N" HIM
+                     "微微一笑，隨手招架，只見梅超風左手忽然收回，右手卻猛地抓出，速度之"
+                     "快，方位之準，直襲$N" HIM "檀中大穴。$N" HIM "只覺得一股陰風襲過，"
+                     "早已無力招架，梅超風卻突然收招，右手卻停留在你檀中穴上，只需要稍稍"
+                     "一用力，$N" HIM "便會登時斃命！\n" NOR, me);
         command("haha");
 
-        command("say 明白了吗？");
+        command("say 明白了嗎？");
         if (me->can_improve_skill("claw"))
                 me->improve_skill("claw", 1500000);
         if (me->can_improve_skill("jiuyin-baiguzhao"))
@@ -237,7 +237,7 @@ mixed ask_skill()
                 me->improve_skill("martial-cognize", 1500000);
 
         set("can_perform/jiuyin-baiguzhao/zhua", 1, me);
-        tell_object(me, HIG "你学会了「九阴神爪」！\n" NOR);
+        tell_object(me, HIG "你學會了「九陰神爪」！\n" NOR);
 
         return 1;
 }
@@ -247,13 +247,13 @@ int accept_object(object me, object ob)
         if (base_name(ob) != "/clone/book/jiuyin2")
 
         {
-               command("say 你给我这种东西干什么？");
+               command("say 你給我這種東西幹什麼？");
                return 0;
         }
 
         command("heihei");
-        command("say 好吧，既然这样，我就传你绝招，你可以随时来问我！");
-        tell_object(me, HIG "梅超风决定传你「九阴神抓」！\n" NOR);
+        command("say 好吧，既然這樣，我就傳你絕招，你可以隨時來問我！");
+        tell_object(me, HIG "梅超風決定傳你「九陰神抓」！\n" NOR);
         destruct(ob);
         set("can_learn/jiuyin-baiguzhao/zhua", 1, me);
 
@@ -280,9 +280,9 @@ void die()
         }
 
         if (flag)
-                message_vision(HIR "梅超风惨叫一声，道：贼汉子，我陪你来了！！！\n" NOR, this_object());
+                message_vision(HIR "梅超風慘叫一聲，道：賊漢子，我陪你來了！！！\n" NOR, this_object());
         else
-                message_vision(HIR "梅超风惨叫一声，道：贼汉子，给我报仇！！！\n" NOR, this_object());
+                message_vision(HIR "梅超風慘叫一聲，道：賊漢子，給我報仇！！！\n" NOR, this_object());
 
         ::die();
 }

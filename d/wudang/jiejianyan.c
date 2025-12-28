@@ -3,10 +3,10 @@ inherit ROOM;
 
 void create()
 {
-              set("short", "解剑岩");
+              set("short", "解劍巖");
         set("long", @LONG
-这是武林中极负盛名的武当解剑岩，岩下解剑池水明澈照人。武
-林人士经此都自觉解剑，以示对武当派的尊敬。千百年来，概无例外。
+這是武林中極負盛名的武當解劍巖，巖下解劍池水明澈照人。武
+林人士經此都自覺解劍，以示對武當派的尊敬。千百年來，概無例外。
 LONG );
               set("objects", ([
                    CLASS_D("wudang") + "/shan": 1,
@@ -32,9 +32,9 @@ int valid_leave(object me, string dir)
            && dir == "westup"
            && objectp(present("zhang cuishan", environment(me))))
         {
-            message_vision(CYN "\n张翠山喝道：各色人等，到解剑岩都需解剑，千百"
-                               "年来概无例外！\n" NOR, me);
-            return notify_fail(HIC "你慑于武当山规，不敢硬争，只得退了一步。\n"
+            message_vision(CYN "\n張翠山喝道：各色人等，到解劍巖都需解劍，千百"
+                               "年來概無例外！\n" NOR, me);
+            return notify_fail(HIC "你懾於武當山規，不敢硬爭，只得退了一步。\n"
                                NOR);
         }
         return ::valid_leave(me, dir);

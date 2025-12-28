@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "南岭山口");
+        set("short", "南嶺山口");
         set("long", @LONG
-这里是南岭的一个山口。南面是岭南的大镇佛山，北面是湖南的
-地界。岭南广东富庶繁盛，颇有豪侠之士。
+這裡是南嶺的一個山口。南面是嶺南的大鎮佛山，北面是湖南的
+地界。嶺南廣東富庶繁盛，頗有豪俠之士。
 LONG );
         set("outdoors", "hengyang");
 

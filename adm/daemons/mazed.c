@@ -1,17 +1,17 @@
 // This program is a part of NITAN MudLIB
-// mazed.c 迷宫的守护进程
+// mazed.c 迷宮的守護進程
 
 /***********************************************************************
- * 每个迷宫的数据包括：                                                *
- * boss:            迷宫中放置的NPC                                    *
- * roomlist:        迷宫的房间点阵                                     *
- * entry:           迷宫的入口                                         *
- * target:          迷宫的出口                                         *
- * direction:       迷宫的方向                                         *
- * deep_map:        迷宫带路线的地图                                   *
- * comm_map:        迷宫不带路线的地图                                 *
- * born_time:       迷宫创建的时间                                     *
- * map_status:      迷宫的地图状态                                     *
+ * 每個迷宮的數據包括：                                                *
+ * boss:            迷宮中放置的NPC                                    *
+ * roomlist:        迷宮的房間點陣                                     *
+ * entry:           迷宮的入口                                         *
+ * target:          迷宮的出口                                         *
+ * direction:       迷宮的方向                                         *
+ * deep_map:        迷宮帶路線的地圖                                   *
+ * comm_map:        迷宮不帶路線的地圖                                 *
+ * born_time:       迷宮創建的時間                                     *
+ * map_status:      迷宮的地圖狀態                                     *
  ***********************************************************************/
 
 #include <ansi.h>
@@ -26,44 +26,44 @@ int clean_up() { return 1; }
 
 /***********************************************************************/
 
-nosave mapping mazelist;                                  // 所有迷宫列表
-nosave int mazeindex = 0;                                 // 所有迷宫索引
-nosave int show_local_room = 1;                           // 是否显示玩家所在的位置
-nosave mixed dead_room_list;                              // 在创建迷宫时记录死胡同
-nosave object *all_dead_room;                             // 记录所有在死胡同中的房间
+nosave mapping mazelist;                                  // 所有迷宮列表
+nosave int mazeindex = 0;                                 // 所有迷宮索引
+nosave int show_local_room = 1;                           // 是否顯示玩家所在的位置
+nosave mixed dead_room_list;                              // 在創建迷宮時記錄死衚衕
+nosave object *all_dead_room;                             // 記錄所有在死衚衕中的房間
 
-// 定义提供给外部调用的接口函数
-public void check_maze(string mazename);                  // 检查迷宫的状态
-public void remove_maze(string mazename);                 // 拆除指定的迷宫
-public object create_maze(object npc);                    // 创建新的迷宫
-public void init_maze(string mazename);                   // 初始化迷宫地图
-public string get_comm_map(string mazename, object room); // 获取迷宫普通地图
-public string get_deep_map(string mazename, object room); // 获取迷宫详细地图
-public object trip_maze(string mazename, object room);    // 摔跤到随机房间
-public void lostmap_maze(string mazename);                // 迷宫地图失效
-public void remove_xianjing(string mazename, object room);// 拆除指定房间的陷阱
-public void openmap_maze(string mazename);                // 开放迷宫详细地图
+// 定義提供給外部調用的接口函數
+public void check_maze(string mazename);                  // 檢查迷宮的狀態
+public void remove_maze(string mazename);                 // 拆除指定的迷宮
+public object create_maze(object npc);                    // 創建新的迷宮
+public void init_maze(string mazename);                   // 初始化迷宮地圖
+public string get_comm_map(string mazename, object room); // 獲取迷宮普通地圖
+public string get_deep_map(string mazename, object room); // 獲取迷宮詳細地圖
+public object trip_maze(string mazename, object room);    // 摔跤到隨機房間
+public void lostmap_maze(string mazename);                // 迷宮地圖失效
+public void remove_xianjing(string mazename, object room);// 拆除指定房間的陷阱
+public void openmap_maze(string mazename);                // 開放迷宮詳細地圖
 public void del_npc_skill(string mazename);               // 降低NPC的武功
 
-// 专供管理调用的接口函数
-public string* query_all_maze();                          // 返回迷宫名称列表
-public mapping query_maze(string mazename);               // 返回指定迷宫的详细信息
-public void set_locate_show(string mazename);             // 设置指定迷宫是否显示玩家所在的位置
+// 專供管理調用的接口函數
+public string* query_all_maze();                          // 返回迷宮名稱列表
+public mapping query_maze(string mazename);               // 返回指定迷宮的詳細信息
+public void set_locate_show(string mazename);             // 設置指定迷宮是否顯示玩家所在的位置
 
 void create()
 {
         seteuid(getuid());
-        set("channel_id", "迷宫精灵");
-        CHANNEL_D->do_channel(this_object(), "sys", "迷宫系统已经启动。");
+        set("channel_id", "迷宮精靈");
+        CHANNEL_D->do_channel(this_object(), "sys", "迷宮系統已經啟動。");
         mazelist = ([ ]);
         collect_all_maze_information();
         set_heart_beat(HEART_TIME);
 }
 
-// 迷宫系统重新启动的时候收集所有迷宫房间的消息
+// 迷宮系統重新啟動的時候收集所有迷宮房間的消息
 void collect_all_maze_information()
 {
-        // 将所有的迷宫房间全部清除
+        // 將所有的迷宮房間全部清除
         int i, room_num;
         object *obs;
 
@@ -83,7 +83,7 @@ private void heart_beat()
         int i, maze_num;
         string *maze_key;
 
-        // 清理超时的迷宫，清理NPC已经消失的迷宫
+        // 清理超時的迷宮，清理NPC已經消失的迷宮
         if ( !mapp(mazelist) ) return;
 
         maze_key = keys(mazelist);
@@ -162,35 +162,35 @@ public object create_maze(object npc)
 {
         int i, j;
         string entry_name = "";
-        string mazename;        /* 迷宫名字         */
-        mapping tempmaze;       /* 迷宫实体         */
-        mixed mazeroom;         /* 迷宫房间点阵     */
-        int *entry;             /* 迷宫入口 */
-        int *target;            /* 迷宫出口 */
+        string mazename;        /* 迷宮名字         */
+        mapping tempmaze;       /* 迷宮實體         */
+        mixed mazeroom;         /* 迷宮房間點陣     */
+        int *entry;             /* 迷宮入口 */
+        int *target;            /* 迷宮出口 */
         object temp_room;
 
         if ( !objectp(npc) || !npc->is_character() || !stringp(npc->name()) )
                 return 0;
 
-        // 生成迷宫的名字（唯一值）
+        // 生成迷宮的名字（唯一值）
         mazename = sprintf("%s-%d", npc->name(), mazeindex);
         mazeindex ++;
 
         tempmaze = ([ ]);
 
-        // 设置迷宫的创建时间
+        // 設置迷宮的創建時間
         tempmaze["born_time"] = time();
 
-        // 迷宫地图初始化为普通模式
+        // 迷宮地圖初始化為普通模式
         tempmaze["map_status"] = MAP_COMM;
 
-        // 设置迷宫中放置的NPC
+        // 設置迷宮中放置的NPC
         tempmaze["boss"] = npc;
 
-        // 设置迷宫的方向
-        tempmaze["direction"] = random(4);  //随机生成迷宫的方向
+        // 設置迷宮的方向
+        tempmaze["direction"] = random(4);  //隨機生成迷宮的方向
 
-        // 设置迷宫的入口和出口
+        // 設置迷宮的入口和出口
         entry = ({0,0});
         target = ({0,0});
 
@@ -225,7 +225,7 @@ public object create_maze(object npc)
         tempmaze["entry"] = entry;
         tempmaze["target"] = target;
 
-        // 设置迷宫的房间点阵
+        // 設置迷宮的房間點陣
         mazeroom = allocate(HEIGHT);
         for ( i = 0; i < sizeof(mazeroom); i++ )
         {
@@ -243,16 +243,16 @@ public object create_maze(object npc)
                         set("maze/east", NOT_DEFINED, temp_room);
                         set("maze/mazename", mazename, temp_room);
 
-                        // 给迷宫的入口房间打上标记
+                        // 給迷宮的入口房間打上標記
                         if ( i == entry[0] && j == entry[1] )
                         {
-                                set("short", "迷宫入口", temp_room);
+                                set("short", "迷宮入口", temp_room);
                                 set("maze/entry", 1, temp_room);
                         }
-                        // 给迷宫的出口房间打上标记
+                        // 給迷宮的出口房間打上標記
                         else if ( i == target[0] && j == target[1] )
                         {
-                                set("short", "迷宫出口", temp_room);
+                                set("short", "迷宮出口", temp_room);
                                 set("maze/target", 1, temp_room);
                         }
 
@@ -262,23 +262,23 @@ public object create_maze(object npc)
 
         tempmaze["roomlist"] = mazeroom;
 
-        // 给迷宫分布宝箱和陷阱
+        // 給迷宮分佈寶箱和陷阱
         init_special_room(tempmaze);
 
-        // 将迷宫交给守护进程管理
+        // 將迷宮交給守護進程管理
         mazelist[mazename] = tempmaze;
 
-        // 创建迷宫布局
+        // 創建迷宮佈局
         init_maze(mazename);
 
-        // 返回迷宫的出口房间
+        // 返回迷宮的出口房間
         return tempmaze["roomlist"][target[0]][target[1]];
 }
 
 void init_line(mapping maze)
 {
-        mixed line;        /* 带路线的迷宫地图     */
-        mixed line2;       /* 不带路线的迷宫地图   */
+        mixed line;        /* 帶路線的迷宮地圖     */
+        mixed line2;       /* 不帶路線的迷宮地圖   */
         int i, j;
         mixed roomlist;
         object room;
@@ -362,16 +362,16 @@ void init_line(mapping maze)
 
 public string get_comm_map(string mazename, object room)
 {
-        string map = "\n迷宫地图：\n" WHT "白色方块" NOR "表示迷宫入口；"
-                                      RED "红色方块" NOR "表示迷宫出口；"
-                                      HIB "蓝色五角星" NOR "表示你当前的位置。\n";
+        string map = "\n迷宮地圖：\n" WHT "白色方塊" NOR "表示迷宮入口；"
+                                      RED "紅色方塊" NOR "表示迷宮出口；"
+                                      HIB "藍色五角星" NOR "表示你當前的位置。\n";
         mapping maze;
         mixed line;
         int i,j;
         int w, l;
 
         if ( undefinedp(mazelist[mazename]) )
-                return "迷宫实体不存在。\n";
+                return "迷宮實體不存在。\n";
 
         maze = mazelist[mazename];
 
@@ -382,7 +382,7 @@ public string get_comm_map(string mazename, object room)
                 return get_deep_map(mazename, room);
 
         if ( undefinedp(maze["comm_map"]) )
-                return "迷宫地图不存在。\n";
+                return "迷宮地圖不存在。\n";
 
         if ( objectp(room) )
         {
@@ -414,23 +414,23 @@ public string get_comm_map(string mazename, object room)
 
 public string get_deep_map(string mazename, object room)
 {
-        string map = "\n迷宫地图：\n" WHT "白色方块" NOR "表示迷宫入口；"
-                                      RED "红色方块" NOR "表示迷宫出口；"
-                                      HIB "蓝色五角星" NOR "表示你当前的位置。\n"
-                                      YEL "黄色方块" NOR "表示有宝箱；"
-                                      MAG "紫色方块" NOR "表示有陷阱。\n";
+        string map = "\n迷宮地圖：\n" WHT "白色方塊" NOR "表示迷宮入口；"
+                                      RED "紅色方塊" NOR "表示迷宮出口；"
+                                      HIB "藍色五角星" NOR "表示你當前的位置。\n"
+                                      YEL "黃色方塊" NOR "表示有寶箱；"
+                                      MAG "紫色方塊" NOR "表示有陷阱。\n";
         mapping maze;
         mixed line;
         int i, j;
         int w, l;
 
         if ( undefinedp(mazelist[mazename]) )
-                return "迷宫实体不存在。\n";
+                return "迷宮實體不存在。\n";
 
         maze = mazelist[mazename];
 
         if ( undefinedp(maze["deep_map"]) )
-                return "迷宫地图不存在。\n";
+                return "迷宮地圖不存在。\n";
 
         if ( objectp(room) )
         {
@@ -479,7 +479,7 @@ public void init_maze(string mazename)
 
         mazeroom = maze["roomlist"];
 
-        // 初始化迷宫地图
+        // 初始化迷宮地圖
         init_line(maze);
 
         for ( i = 0; i < sizeof(mazeroom); i++ )
@@ -497,10 +497,10 @@ public void init_maze(string mazename)
                 }
         }
 
-        // 初始化迷宫路线
+        // 初始化迷宮路線
         init_road(mazeroom[maze["entry"][0]][maze["entry"][1]], maze);
 
-        // 给路线上的房间制造岔路
+        // 給路線上的房間製造岔路
         roomlist = ({ });
         for ( i = 0; i < sizeof(mazeroom); i++ )
         {
@@ -514,7 +514,7 @@ public void init_maze(string mazename)
         for ( i = 0; i < sizeof(roomlist); i++ )
                 init_wall(roomlist[i], maze);
 
-        // 将呆死的房间全部打通
+        // 將呆死的房間全部打通
         dead_room_list = ({ });
         all_dead_room = ({ });
         for ( i = 0; i < sizeof(mazeroom); i++ )
@@ -535,7 +535,7 @@ public void init_maze(string mazename)
                 for ( i = 0; i < sizeof(dead_room_list); i++ )
                 {
                         room_ok = 0;
-                        // 遍历迷宫的每个房间，看是否可以和其它地方连通起来
+                        // 遍歷迷宮的每個房間，看是否可以和其它地方連通起來
                         for ( j = 0; j < sizeof(dead_room_list[i]); j++ )
                         {
                                 temp_room = dead_room_list[i][j];
@@ -578,9 +578,9 @@ public void init_maze(string mazename)
                                         room_ok = 1;
                                 }
 
-                                if ( room_ok )    // 迷宫已经打通
+                                if ( room_ok )    // 迷宮已經打通
                                 {
-                                        // 将本迷宫中的所有房间从all_dead_room中去掉
+                                        // 將本迷宮中的所有房間從all_dead_room中去掉
                                         for ( room_ok = 0; room_ok < sizeof(dead_room_list[i]); room_ok++ )
                                         {
                                                 delete("maze/dead_room", dead_room_list[i][room_ok]);
@@ -593,12 +593,12 @@ public void init_maze(string mazename)
         }
 
         if ( sizeof(all_dead_room) )
-                log_file("static/maze", sprintf("有%d个呆死的房间。\n", sizeof(all_dead_room)) );
+                log_file("static/maze", sprintf("有%d個呆死的房間。\n", sizeof(all_dead_room)) );
 
         dead_room_list = 0;
         all_dead_room = 0;
 
-        // 将房间的出口刷新
+        // 將房間的出口刷新
         init_room_exits(maze);
 
         return;
@@ -623,7 +623,7 @@ void init_road(object room, mapping maze)
         w=query("maze/x", room);
         l=query("maze/y", room);
 
-        // 已经到达了迷宫出口
+        // 已經到達了迷宮出口
         if ( w == maze["target"][0] && l == maze["target"][1] )
         {
                 line[w*2+1][l*2+1] =  HBRED "　" NOR;
@@ -631,14 +631,14 @@ void init_road(object room, mapping maze)
                 return;
         }
 
-        if ( w == maze["entry"][0] && l == maze["entry"][1] ) // 这是迷宫入口
+        if ( w == maze["entry"][0] && l == maze["entry"][1] ) // 這是迷宮入口
         {
                 line[w*2+1][l*2+1] =  HBWHT "　" NOR;
                 line2[w*2+1][l*2+1] = HBWHT "　" NOR;
         }
         else
         {
-                // 如果已经有颜色了，表示有宝箱或者陷阱，不再更改地图
+                // 如果已經有顏色了，表示有寶箱或者陷阱，不再更改地圖
                 if ( line[w*2+1][l*2+1] == "　" )
                         line[w*2+1][l*2+1] = BGRN "　" NOR;
 
@@ -724,7 +724,7 @@ void init_wall(object room, mapping maze)
         w=query("maze/x", room);
         l=query("maze/y", room);
 
-        // 向NORTH方向制造岔路
+        // 向NORTH方向製造岔路
         if( w>0 && query("maze/north", room) == NOT_DEFINED )
         {
                 next_w = w - 1;
@@ -732,7 +732,7 @@ void init_wall(object room, mapping maze)
                 next_room = maze["roomlist"][next_w][next_l];
                 if( query("maze/roomtype", next_room) == NOT_DEFINED )
                 {
-                        // 路和墙各有一半的概率
+                        // 路和牆各有一半的概率
                         if ( random(2) == 1 )
                         {
                                 set("maze/north", CAN_WALK, room);
@@ -750,7 +750,7 @@ void init_wall(object room, mapping maze)
                 }
         }
 
-        // 向SOUTH方向制造岔路
+        // 向SOUTH方向製造岔路
         if( w<HEIGHT-1 && query("maze/south", room) == NOT_DEFINED )
         {
                 next_w = w + 1;
@@ -758,7 +758,7 @@ void init_wall(object room, mapping maze)
                 next_room = maze["roomlist"][next_w][next_l];
                 if( query("maze/roomtype", next_room) == NOT_DEFINED )
                 {
-                        // 路和墙各有一半的概率
+                        // 路和牆各有一半的概率
                         if ( random(2) == 1 )
                         {
                                 set("maze/south", CAN_WALK, room);
@@ -776,7 +776,7 @@ void init_wall(object room, mapping maze)
                 }
         }
 
-        // 向EAST方向制造岔路
+        // 向EAST方向製造岔路
         if( l<LENGTH-1 && query("maze/east", room) == NOT_DEFINED )
         {
                 next_w = w;
@@ -784,7 +784,7 @@ void init_wall(object room, mapping maze)
                 next_room = maze["roomlist"][next_w][next_l];
                 if( query("maze/roomtype", next_room) == NOT_DEFINED )
                 {
-                        // 路和墙各有一半的概率
+                        // 路和牆各有一半的概率
                         if ( random(2) == 1 )
                         {
                                 set("maze/east", CAN_WALK, room);
@@ -802,7 +802,7 @@ void init_wall(object room, mapping maze)
                 }
         }
 
-        // 向WEST方向制造岔路
+        // 向WEST方向製造岔路
         if( l>0 && query("maze/west", room) == NOT_DEFINED )
         {
                 next_w = w;
@@ -810,7 +810,7 @@ void init_wall(object room, mapping maze)
                 next_room = maze["roomlist"][next_w][next_l];
                 if( query("maze/roomtype", next_room) == NOT_DEFINED )
                 {
-                        // 路和墙各有一半的概率
+                        // 路和牆各有一半的概率
                         if ( random(2) == 1 )
                         {
                                 set("maze/west", CAN_WALK, room);
@@ -844,7 +844,7 @@ object *finish_room(object room, mapping maze)
         w=query("maze/x", room);
         l=query("maze/y", room);
 
-        // 给房间加上一个临时标记，保证在递归过程中不会被重复调用
+        // 給房間加上一個臨時標記，保證在遞歸過程中不會被重複調用
         set("maze/finish_room", 1, room);
 
         dirs = ({ });
@@ -970,9 +970,9 @@ void init_special_room(mapping maze)
                 }
         }
 
-        // 分布宝箱
+        // 分佈寶箱
         box_num = 0;
-        // 首先放置地图，这是必须有的
+        // 首先放置地圖，這是必須有的
         room = allroom[random(sizeof(allroom))];
         set("maze/box", SPECIAL_MAP, room);
         baoxiang = new(BAOXIANG_OB);
@@ -1040,7 +1040,7 @@ void init_special_room(mapping maze)
                 box_num ++;
         }
 
-        // 分布陷阱
+        // 分佈陷阱
         xianjing_num = 0;
 
         while ( xianjing_num < XIANJING_NUM )
@@ -1051,7 +1051,7 @@ void init_special_room(mapping maze)
                 room = allroom[random(sizeof(allroom))];
                 xianjing_type = random(100);
                 if ( xianjing_type > 99 )
-                        set("maze/xianjing", LOSTMAP, room);//暂时关闭
+                        set("maze/xianjing", LOSTMAP, room);//暫時關閉
                 else if ( xianjing_type < 20 )
                         set("maze/xianjing", TRIP, room);//百分之二十
                 else if ( xianjing_type < 40 )
@@ -1103,7 +1103,7 @@ void init_room_exits(mapping maze)
                         else
                                 set("exits/east", sprintf("/%O",room), room);
 
-                        // 给迷宫的出口房间增加出口
+                        // 給迷宮的出口房間增加出口
                         if( query("maze/target", room) )
                                 set("exits/out", ROOM_EXIT_FILE, room);
                 }
@@ -1140,10 +1140,10 @@ public object trip_maze(string mazename, object room)
 
                 next_room = roomlist[w][l];
                 if ( !objectp(next_room) ) break;
-                if( query("maze/target", next_room))continue;//不能是迷宫出口
-                if( query("maze/xianjing", next_room))continue;//不能是另一个陷阱
+                if( query("maze/target", next_room))continue;//不能是迷宮出口
+                if( query("maze/xianjing", next_room))continue;//不能是另一個陷阱
                 if( w == query("maze/x", room) &&
-                     l == query("maze/y", room))continue;//不能是该房间本身
+                     l == query("maze/y", room))continue;//不能是該房間本身
 
                 break;
         }

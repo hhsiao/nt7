@@ -2,9 +2,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "储藏室");
+        set("short", "儲藏室");
         set("long", @LONG
-这里是绝情谷的储藏室，里面堆放着一些杂物。
+這裡是絕情谷的儲藏室，裡面堆放著一些雜物。
 LONG);
         set("exits", ([
                "west"   : __DIR__"houtang",

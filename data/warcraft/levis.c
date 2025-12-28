@@ -7,7 +7,7 @@ void setup()
         set_name("[1;31m朱雀[2;37;0m[2;37;0m", ({"zque"}));        
         set("gender", "女性");                
         set("long", "朱雀[2;37;0m
-它是有一天的魔幻兽。
+它是有一天的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

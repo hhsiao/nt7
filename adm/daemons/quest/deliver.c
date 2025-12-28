@@ -1,4 +1,4 @@
-// 玩家任务守护进程：deliver.c
+// 玩家任務守護進程：deliver.c
 
 #include <ansi.h>
 
@@ -16,7 +16,7 @@ string *ob_list = ({
 
 void startup();
 
-// 任务对象创建
+// 任務對象創建
 void create()
 {
         seteuid(getuid());
@@ -25,12 +25,12 @@ void create()
 
 void start_quest()
 {
-        object qob;     // 任务物件
-        string name;    // 要送的货物
-        int amount;     // 送货的数量
+        object qob;     // 任務物件
+        string name;    // 要送的貨物
+        int amount;     // 送貨的數量
 
         if (sizeof(children("/clone/quest/deliver")) > 10)
-                // 系统中最?8个送货的任务
+                // 系統中最?8個送貨的任務
                 return;
 
         name = ob_list[random(sizeof(ob_list))];
@@ -41,9 +41,9 @@ void start_quest()
 
 /*
         CHANNEL_D->do_channel(find_object(QUEST_D),
-                              "debug", "进程(DELIVER)利用" +
+                              "debug", "進程(DELIVER)利用" +
                               get_object(name)->name() +
-                              NOR HIW "创建了一个任务。");
+                              NOR HIW "創建了一個任務。");
 */
 }
 
@@ -52,26 +52,26 @@ private void heart_beat()
         if (! find_object(QUEST_D))
                 return;
 
-        // 如果可以，每次心跳产生一个QUEST
+        // 如果可以，每次心跳產生一個QUEST
         start_quest();
 }
 
-// 任务守护进程唤醒这个进程
+// 任務守護進程喚醒這個進程
 void startup()
 {
-        // 启动
+        // 啟動
         if (! find_object(QUEST_D))
                 return;
 
         if (! query_heart_beat())
                 CHANNEL_D->do_channel(find_object(QUEST_D),
-                                      "sys", "进程(DELIVER)启动了。");
+                                      "sys", "進程(DELIVER)啟動了。");
 
-        // 平均每四分钟产生一个任务
+        // 平均每四分鐘產生一個任務
         set_heart_beat(3 + random(3));
 }
 
-// 停止这个任务进程
+// 停止這個任務進程
 void stop()
 {
         set_heart_beat(0);

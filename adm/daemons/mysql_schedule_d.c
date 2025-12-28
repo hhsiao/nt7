@@ -91,7 +91,7 @@ void refresh_mudlist()
 			lasttime = "";
 			
 		sql += "('"+
-			(data["MUD_CHINESE_NAME"]||"--未知名称--")+"','"+
+			(data["MUD_CHINESE_NAME"]||"--未知名稱--")+"','"+
 			(data["MUD_ENGLISH_NAME"]||"--Unknown--")+"','"+
 			ip+"',"+
 			port+","+
@@ -142,5 +142,5 @@ void create()
 }
 string query_name()
 {
-	return "MYSQL 排程系统(MYSQL_SCHEDULE_D)";
+	return "MYSQL 排程系統(MYSQL_SCHEDULE_D)";
 }

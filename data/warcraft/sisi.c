@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("小吗[2;37;0m[2;37;0m", ({"benz"}));        
+        set_name("小嗎[2;37;0m[2;37;0m", ({"benz"}));        
         set("gender", "男性");                
         set("long", "              [2;37;0m
-它是死洗的魔幻兽。
+它是死洗的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

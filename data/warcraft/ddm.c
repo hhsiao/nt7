@@ -7,13 +7,13 @@ void setup()
         set_name("麒麟[2;37;0m[2;37;0m", ({"ddmm"}));        
         set("gender", "男性");                
         set("long", "麒麟[2;37;0m
-它是堂买的魔幻兽。
+它是堂買的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");
         set("owner", "ddm");
-        set("owner_name", "堂买");
+        set("owner_name", "堂買");
         set_temp("owner", "ddm");
-        set_temp("owner_name", "堂买");
+        set_temp("owner_name", "堂買");
         ::setup();
 }

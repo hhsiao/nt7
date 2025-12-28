@@ -1,29 +1,29 @@
 // This program is a part of NT MudLIB
 
 /*
-名称：
+名稱：
         valid_override - 控制 efun:: 的用途。
-语法：
+語法：
         int valid_override( string file, string efun_name, string mainfile );
 
-        整数 valid_override( 字串 档案, 字串 外部函式名, 字串 主档案 );
+        整數 valid_override( 字串 檔案, 字串 外部函式名, 字串 主檔案 );
 用法：
-        file 是该呼叫实际上所处的档案；mainfile 是欲编译的档案〈因为
-        #include 的关系，两者可能会不同〉。
+        file 是該呼叫實際上所處的檔案；mainfile 是欲編譯的檔案〈因為
+        #include 的關係，兩者可能會不同〉。
 
-        在主宰物件 (master.c) 中加上 valid_override() 可以控制 efun:: 这种
-        前置语法 (prefix) 的用途。每次当驱动程式尝试编译前面加上 efun:: 的
-        函式时，会呼叫主宰物件中的 valid_override()。如果 valid_override()
-        传回 0，则编译失败。所以一些禁止由 efun:: 前置语法规避原作用的外部
-        函式，valid_override() 可以提供一个方法修改它们的作用。
+        在主宰物件 (master.c) 中加上 valid_override() 可以控制 efun:: 這種
+        前置語法 (prefix) 的用途。每次當驅動程式嘗試編譯前面加上 efun:: 的
+        函式時，會呼叫主宰物件中的 valid_override()。如果 valid_override()
+        傳回 0，則編譯失敗。所以一些禁止由 efun:: 前置語法規避原作用的外部
+        函式，valid_override() 可以提供一個方法修改它們的作用。
 
-        如果您希望使用原来 3.1.2  版 efun:: 的作用，只需要在主宰物件
-        master.c 中加上下面这行：
+        如果您希望使用原來 3.1.2  版 efun:: 的作用，只需要在主宰物件
+        master.c 中加上下面這行：
 
         int valid_override(string file, string efun) { return 1; }
 
-        底下是一个限制较多的 valid_override() 范例：
-        〈译按：本范例与 21 版并无不同，但是目前已多了 mainfile 参数〉
+        底下是一個限制較多的 valid_override() 範例：
+        〈譯按：本範例與 21 版並無不同，但是目前已多了 mainfile 參數〉
 
         int valid_override( string file, string name )
         {
@@ -42,11 +42,11 @@
 
                 return 1;
         }
-参考：
+參考：
         valid_object, function_exists
 作者：
         Tim Hollebeek  Beek@ZorkMUD, Lima Bean, IdeaExchange, and elsewhere
-翻译：
+翻譯：
         spock@muds.net          2000.May.21.    v22 版
 
 */

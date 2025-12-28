@@ -4,11 +4,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "南练武场");
+        set("short", "南練武場");
         set("long", @LONG
-这里是华山派的练武场，场上立这几个木人，西南通向广场，北
-面是另一个练武场，东边也是一个练武场，可是不知怎么的，似乎很
-少有人过去。附近到处是华山的弟子人来人往，热闹非凡。
+這裡是華山派的練武場，場上立這幾個木人，西南通向廣場，北
+面是另一個練武場，東邊也是一個練武場，可是不知怎麼的，似乎很
+少有人過去。附近到處是華山的弟子人來人往，熱鬧非凡。
 LONG );
         set("exits", ([ /* sizeof() == 2 */
             "southwest" : __DIR__"square",
@@ -16,7 +16,7 @@ LONG );
             "east"      : __DIR__"wuchang3",
         ]));
         set("outdoors", "huashan" );
-        set("for_family", "华山派");
+        set("for_family", "華山派");
 
         setup();
         replace_program(ROOM);

@@ -9,7 +9,7 @@ int do_decide(string arg);
 void create()
 {
         set_name("水笙", ({ "shui sheng","shuisheng"}));
-        set("long", "她轻妆淡抹，眉目之中深深的透露哀思。\n");
+        set("long", "她輕妝淡抹，眉目之中深深的透露哀思。\n");
         set("gender", "女性");
         set("age", 22);
         set("attitude", "peaceful");
@@ -43,33 +43,33 @@ void greeting(object me)
 
         if( !query("registered", me) )
         {
-                command("tell"+query("id", me)+"你还没有注册，快注册(register)吧。");
-                command("tell"+query("id", me)+"你务必注册你个你能够收取信件的地址"
-                        "，\n以备口令丢失的时候能够收取更新的口令。");
+                command("tell"+query("id", me)+"你還沒有註冊，快註冊(register)吧。");
+                command("tell"+query("id", me)+"你務必註冊你個你能夠收取信件的地址"
+                        "，\n以備口令丟失的時候能夠收取更新的口令。");
                 return;
         }
 
         if( !stringp(query("character", me)) )
         {
-                command("tell"+query("id", me)+"你还没有选择品质，快去附近选选吧。");
+                command("tell"+query("id", me)+"你還沒有選擇品質，快去附近選選吧。");
                 return;
         }
 
         if (! wizardp(me))
         {
-                command("tell"+query("id", me)+"咦，你怎么跑到这里来了？");
+                command("tell"+query("id", me)+"咦，你怎麼跑到這裡來了？");
                 if( !stringp(query("born", me)) )
                 {
                         message_vision("$N被昏昏沉沉的扔了出去。\n", me);
                         delete("born", me);
                         me->move("/d/register/yanluodian");
-                        message_vision("啪的一声，$N被扔到了地上。\n", me);
+                        message_vision("啪的一聲，$N被扔到了地上。\n", me);
                         return;
                 }
 
                 message_vision("$N被昏昏沉沉的扔了出去。\b", me);
                 me->move(VOID_OB);
-                message_vision("啪的一声，$N被扔到了地上。\n", me);
+                message_vision("啪的一聲，$N被扔到了地上。\n", me);
                 return;
         }
 
@@ -86,34 +86,34 @@ int do_register(string arg)
 
         if( query("registered", me) )
         {
-                command("say 你不是已经注册过了吗？不用再注册了。");
+                command("say 你不是已經註冊過了嗎？不用再註冊了。");
                 return 1;
         }
 
         if (! arg || ! stringp(arg))
         {
                 command("shake"+query("id", me));
-                command("say 注册的email地址你得给我啊。请输入register 你的email地址");
+                command("say 註冊的email地址你得給我啊。請輸入register 你的email地址");
                 return 1;
         }
 
         if (strlen(arg) > 64 || sscanf(arg, "%s@%s", id, address) != 2)
         {
-                command("say 我怎么没有见过这么怪的email地址？你看看清楚好吗？");
+                command("say 我怎麼沒有見過這麼怪的email地址？你看看清楚好嗎？");
                 return 1;
         }
 
         set_temp("email", arg, me);
         command("nod"+query("id", me));
         command("tell"+query("id", me)+"好，你的email地址是："+arg+
-                "，如果没有\n错误，你就决定(decide)吧。");
-        command("tell"+query("id", me)+"请注意，由于本站不采用mail确认，所以
-你即使注册一个你无法收信的地址，系统也不能识别。当你决定采用
-这个信箱地址以后，它将成为确认你身份的唯一途径，这个注册的信
-箱地址是永远不能改变的。当你丢失了你的密码以后系统的管理人员
-可以将修改后的口令发送到你注册的信箱中，如果你出于某种目的不
-愿意注册你的信箱，那么管理人员将不为你的密码负任何责任，这意
-味着你必须自己保管好你的密码。");
+                "，如果沒有\n錯誤，你就決定(decide)吧。");
+        command("tell"+query("id", me)+"請注意，由於本站不採用mail確認，所以
+你即使註冊一個你無法收信的地址，系統也不能識別。當你決定採用
+這個信箱地址以後，它將成為確認你身份的唯一途徑，這個註冊的信
+箱地址是永遠不能改變的。當你丟失了你的密碼以後系統的管理人員
+可以將修改後的口令發送到你註冊的信箱中，如果你出於某種目的不
+願意註冊你的信箱，那麼管理人員將不為你的密碼負任何責任，這意
+味著你必須自己保管好你的密碼。");
         return 1;
 }
 
@@ -127,18 +127,18 @@ int do_decide(string arg)
 
         if( query("registered", me) )
         {
-                command("say 行了行了，我已经知道你的地址了，不用再说啦！\n");
+                command("say 行了行了，我已經知道你的地址了，不用再說啦！\n");
                 return 1;
         }
 
         if( !stringp(query_temp("email", me)) )
         {
-                command("say 你要决定什么？是决定注册吗？要是那"
-                        "样请你先注册你的email地址。");
+                command("say 你要決定什麼？是決定註冊嗎？要是那"
+                        "樣請你先註冊你的email地址。");
                 return 1;
         }
 
-        command("say 好了！你的email地址已经注册了！现在快去附近选你的品质吧。");
+        command("say 好了！你的email地址已經註冊了！現在快去附近選你的品質吧。");
         set("email",query_temp("email",  me), me);
         set("registered", 1, me);
         me->save();

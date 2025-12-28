@@ -8,11 +8,11 @@ inherit NPC;
 void create()
 {
 	if (random(2))
-        	set_name(HIC "扁鹊" NOR, ({ "bian que", "bian", "que" }));
+        	set_name(HIC "扁鵲" NOR, ({ "bian que", "bian", "que" }));
 	else
 		set_name(HIC "秦越人" NOR, ({ "qin yueren", "qin", "yueren" }));        	
         	
-        set("long", HIC "生活在春秋战国时期的扁鹊，据说后来得仙人指引，修成正果。\n" NOR);
+        set("long", HIC "生活在春秋戰國時期的扁鵲，據說後來得仙人指引，修成正果。\n" NOR);
 
         set("gender", "男性");
         set("age", 9999);
@@ -45,7 +45,7 @@ void create()
         map_skill("unarmed", "yinyang-shiertian");
         
         set("inquiry", ([
-		"蓬莱仙岛"               :   "这不是你该来的地方，我看你还是快走吧。\n",
+		"蓬萊仙島"               :   "這不是你該來的地方，我看你還是快走吧。\n",
         ]));
         
         set("chat_chance_combat", 120);

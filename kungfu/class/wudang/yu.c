@@ -1,5 +1,5 @@
 // This program is a part of NITAN MudLIB
-// yu.c 俞莲舟
+// yu.c 俞蓮舟
 
 #include <ansi.h>
 #include "wudang.h"
@@ -12,12 +12,12 @@ mixed ask_me();
 
 void create()
 {
-        set_name("俞莲舟", ({ "yu lianzhou", "yu" }));
-        set("nickname", "武当二侠");
+        set_name("俞蓮舟", ({ "yu lianzhou", "yu" }));
+        set("nickname", "武當二俠");
         set("long",
-                "他就是张三丰的二弟子俞莲舟。\n"
-                "他今年五十岁，身材魁梧，气度凝重。\n"
-                "虽在武当七侠中排名第二，功夫却是最精。\n");
+                "他就是張三丰的二弟子俞蓮舟。\n"
+                "他今年五十歲，身材魁梧，氣度凝重。\n"
+                "雖在武當七俠中排名第二，功夫卻是最精。\n");
         set("gender", "男性");
         set("age", 50);
         set("attitude", "peaceful");
@@ -58,9 +58,9 @@ void create()
         set_skill("liandan-shu", 160);
 
         set("no_teach", ([
-                "taiji-shengong" : "要想学习太极神功请向张真人请教。",
-                "taiji-jian"     : "太极剑必须张真人亲传。",
-                "taiji-quan"     : "太极拳必须张真人亲传。",
+                "taiji-shengong" : "要想學習太極神功請向張真人請教。",
+                "taiji-jian"     : "太極劍必須張真人親傳。",
+                "taiji-quan"     : "太極拳必須張真人親傳。",
         ]));
 
         map_skill("force", "taiji-shengong");
@@ -75,12 +75,12 @@ void create()
         prepare_skill("unarmed", "taiji-quan");
         prepare_skill("strike", "wudang-zhang");
 
-        create_family("武当派", 2, "弟子");
+        create_family("武當派", 2, "弟子");
 
         set("inquiry", ([
-                "虎爪绝户手": (: ask_me :),
-                "绝户": (: ask_me :),
-                "绝招"  : (: ask_me :),
+                "虎爪絕戶手": (: ask_me :),
+                "絕戶": (: ask_me :),
+                "絕招"  : (: ask_me :),
         ]));
 
         set("chat_chance_combat", 40);
@@ -104,29 +104,29 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)<15000 )
         {
-                command("say 我武当乃是堂堂名门正派，对弟子要求极严。");
+                command("say 我武當乃是堂堂名門正派，對弟子要求極嚴。");
                 command("say 在德行方面，" + RANK_D->query_respect(ob) +
-                        "是否还做得不够？");
+                        "是否還做得不夠？");
                 return;
         }
 
         if ((int)ob->query_skill("yinyun-ziqi",1) < 80)
         {
-                command("say 我武当派最注重内功心法" + RANK_D->query_respect(ob)+
-                        "是否应该在武当心法上多下点功夫啊?");
+                command("say 我武當派最注重內功心法" + RANK_D->query_respect(ob)+
+                        "是否應該在武當心法上多下點功夫啊?");
                 return;
         }
 
         if ((int)ob->query_skill("taoism", 1) < 80)
         {
-                command("say 习武是为了强身健体，一味的练武是不可取的。");
-                command("say 我看你还需要在修身养性方面多锻炼锻炼，以提高"
+                command("say 習武是為了強身健體，一味的練武是不可取的。");
+                command("say 我看你還需要在修身養性方面多鍛鍊鍛鍊，以提高"
                         "你的道德心法。");
                 return;
         }
 
         command("say 好吧，我就收下你了。");
-        command("say 希望你能好好用功，发扬我武当精神！");
+        command("say 希望你能好好用功，發揚我武當精神！");
         command("recruit "+query("id", ob));
         if( query("class", ob) != "taoist" )
                 set("class", "taoist", ob);
@@ -138,33 +138,33 @@ mixed ask_me()
 
         me = this_player();
         if( query("can_perform/huzhua-shou/juehu", me) )
-                return "这一招你不是已经会了吗？";
+                return "這一招你不是已經會了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return RANK_D->query_respect(me) + "不是我们武当派的人，何出此言？";
+                return RANK_D->query_respect(me) + "不是我們武當派的人，何出此言？";
 
         if (me->query_skill("huzhua-shou", 1) < 1)
-                return "你连虎爪绝户手都没学，还谈什么绝招可言？";
+                return "你連虎爪絕戶手都沒學，還談什麼絕招可言？";
 
         if( query("family/gongji", me)<400 )
-                return "你为我武当派效力还不够，这招我先不忙传你。";
+                return "你為我武當派效力還不夠，這招我先不忙傳你。";
 
         if( query("shen", me)<100000 )
-                return "这一招太过阴恨，如果被你用去我恐怕不放心！";
+                return "這一招太過陰恨，如果被你用去我恐怕不放心！";
 
         if (me->query_skill("force") < 180)
-                return "你的内功的修为不够，练高了再来吧。";
+                return "你的內功的修為不夠，練高了再來吧。";
 
         if (me->query_skill("huzhua-shou", 1) < 120)
-                return "你的虎爪绝户手还不到家，还是自己先下去多多练习吧。";
+                return "你的虎爪絕戶手還不到家，還是自己先下去多多練習吧。";
 
-        message_vision(HIY "$n" HIY "叹了口气，在$N" HIY "耳边轻"
-                       "声说了几句虎爪绝户手\n的精要，隔了良久，"
-                       "又叹了一口气。\n" NOR, me, this_object());
+        message_vision(HIY "$n" HIY "嘆了口氣，在$N" HIY "耳邊輕"
+                       "聲說了幾句虎爪絕戶手\n的精要，隔了良久，"
+                       "又嘆了一口氣。\n" NOR, me, this_object());
         command("sigh");
-        command("say 这便是绝户手的精要所在，你懂了多少？");
-        command("say 绝户手太易使人重残，因而使用前一定要慎重考虑。");
-        tell_object(me, HIC "你学会了「绝户神抓」。\n" NOR);
+        command("say 這便是絕戶手的精要所在，你懂了多少？");
+        command("say 絕戶手太易使人重殘，因而使用前一定要慎重考慮。");
+        tell_object(me, HIC "你學會了「絕戶神抓」。\n" NOR);
         if (me->can_improve_skill("claw"))
                 me->improve_skill("claw", 1500000);
         if (me->can_improve_skill("huzhua-shou"))

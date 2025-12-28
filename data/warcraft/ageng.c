@@ -7,7 +7,7 @@ void setup()
         set_name("更更[2;37;0m[2;37;0m", ({"genggeng"}));        
         set("gender", "男性");                
         set("long", "更更[2;37;0m
-它是阿更的魔幻兽。
+它是阿更的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

@@ -3,10 +3,10 @@ inherit NPC;
 inherit F_MASTER;
 void create()
 {
-        set_name("齐元凯", ({ "qi yuankai", "qi" }));
-        set("long", "此人身材瘦长，却是气宇暄昂, 似乎身怀惊人艺业。\n");
+        set_name("齊元凱", ({ "qi yuankai", "qi" }));
+        set("long", "此人身材瘦長，卻是氣宇暄昂, 似乎身懷驚人藝業。\n");
         set("gender", "男性");
-        set("title", "康亲王府侍卫头领" );
+        set("title", "康親王府侍衛頭領" );
         set("attitude", "friendly");
         set("age", 47);
         set("shen_type", -1);

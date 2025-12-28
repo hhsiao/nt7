@@ -1,24 +1,24 @@
-// houyuan.c 彩虹居后院
+// houyuan.c 彩虹居後院
 
 //** inherit PRIVATE_ROOM;
 inherit ROOM;                                   /* EXAMPLE */
 
 void create()
 {
-        set("short", "后院");             /* EXAMPLE */
-//**    set("short", "ROOM_NAME后院");
+        set("short", "後院");             /* EXAMPLE */
+//**    set("short", "ROOM_NAME後院");
         set("long", @LONG
-这是彩虹居的后院，种着一些花草，大部分是都不知名的野生花草。
-不过花儿开起来也看上去也非常漂亮。主人如果读书练武疲倦了，就可
-以到这里稍作休息，院角放着一张藤椅。
+這是彩虹居的後院，種著一些花草，大部分是都不知名的野生花草。
+不過花兒開起來也看上去也非常漂亮。主人如果讀書練武疲倦了，就可
+以到這裡稍作休息，院角放著一張藤椅。
 LONG );
 
-        set("default_long", "这是ROOM_NAME的后院，种着一些花草，大"  /* EXAMPLE */
-                            "部分是都不知名的野生花草。不过花儿开起" /* EXAMPLE */
-                            "来也看上去也非常漂亮。有时ROOM_OWNER读" /* EXAMPLE */
-                            "书练武疲倦了，就到这里稍作片刻以休息，" /* EXAMPLE */
-                            "也有时友人来到这里，大家在这里切磋一下" /* EXAMPLE */
-                            "武艺。");                               /* EXAMPLE */
+        set("default_long", "這是ROOM_NAME的後院，種著一些花草，大"  /* EXAMPLE */
+                            "部分是都不知名的野生花草。不過花兒開起" /* EXAMPLE */
+                            "來也看上去也非常漂亮。有時ROOM_OWNER讀" /* EXAMPLE */
+                            "書練武疲倦了，就到這裡稍作片刻以休息，" /* EXAMPLE */
+                            "也有時友人來到這裡，大家在這裡切磋一下" /* EXAMPLE */
+                            "武藝。");                               /* EXAMPLE */
                                                                      /* EXAMPLE */
         setup();
 
@@ -49,11 +49,11 @@ int do_sit(string arg)
         me = this_player();
         if( query_temp("has_sit", me) )
         {
-                message_vision("$N坐在那里摇啊摇，好不惬意。\n", me);
+                message_vision("$N坐在那裡搖啊搖，好不愜意。\n", me);
                 return 1;
         }
 
-        message_vision("$N找了的地方作了下来，看上去轻松多了。\n", me);
+        message_vision("$N找了的地方作了下來，看上去輕鬆多了。\n", me);
         set_temp("has_sit", 1, me);
         return 1;
 }
@@ -62,7 +62,7 @@ int valid_leave(object me, string dir)
 {
         if( query_temp("has_sit", me) )
         {
-                message_vision("$N掸掸尘土，站了起来。\n", me);
+                message_vision("$N撣撣塵土，站了起來。\n", me);
                 delete_temp("has_sit", me);
         }
 

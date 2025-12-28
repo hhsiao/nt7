@@ -4,20 +4,20 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIR "干将精元" NOR, ({ "ganjiang jingyuan" }) );
+        set_name(HIR "干將精元" NOR, ({ "ganjiang jingyuan" }) );
         set_weight(1);
 
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIR "这是一颗晶莹无瑕的宝石，据说拥有着奇幻的力量。\n"
-                                "输入指令 use <你的九级兵器ID> 可将九级兵器提升到待镶嵌状态。\n"
-                                "只要进行最后一步镶嵌即可将你的九级兵器提升为十级神器。        十级神\n"
-                                "器拥有着超凡的力量。\n"
-                                "有关最后一步镶嵌及十级神器介绍请参见帮助文件 help weapon | help enchase\n" NOR);
+                set("long", HIR "這是一顆晶瑩無瑕的寶石，據說擁有著奇幻的力量。\n"
+                                "輸入指令 use <你的九級兵器ID> 可將九級兵器提升到待鑲嵌狀態。\n"
+                                "只要進行最後一步鑲嵌即可將你的九級兵器提升為十級神器。        十級神\n"
+                                "器擁有著超凡的力量。\n"
+                                "有關最後一步鑲嵌及十級神器介紹請參見幫助文件 help weapon | help enchase\n" NOR);
                 set("value", 1);
                 set("no_sell", 1);
-                set("unit", "块");
+                set("unit", "塊");
         }
 
         setup();
@@ -40,24 +40,24 @@ int do_use(string arg)
 
                 me = this_player();
 
-                if (! arg)return notify_fail("指令格式: use <你九级兵器的ID>\n");
+                if (! arg)return notify_fail("指令格式: use <你九級兵器的ID>\n");
 
                 if (! objectp(weapon = present(arg, me)))
-                        return notify_fail("你身上没有这样道具。\n");
+                        return notify_fail("你身上沒有這樣道具。\n");
 
             if (! weapon->is_item_make())
-                        return notify_fail("无法在此道具上完成。\n");
+                        return notify_fail("無法在此道具上完成。\n");
 
             if (weapon->weapon_level() < 12000)
-                        return notify_fail("只能九级兵器才能进行该项操作。\n");
+                        return notify_fail("只能九級兵器才能進行該項操作。\n");
 
                 weapon->set("magic/imbue_ok", 1);
                 weapon->set("owner/" + weapon->item_owner(), 5000000);
                 
                 weapon->save();
             
-        tell_object(me, HIC "你感受" + weapon->name() + HIC "发生了"
-                    "不可言喻的变化。\n" NOR);
+        tell_object(me, HIC "你感受" + weapon->name() + HIC "發生了"
+                    "不可言喻的變化。\n" NOR);
 
 
                 destruct(this_object());

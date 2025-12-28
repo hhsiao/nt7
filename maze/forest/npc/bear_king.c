@@ -8,10 +8,10 @@ void create()
         string *names = ({"棕熊王","黑熊王","白熊王"});
         set_name( names[random(sizeof(names))], ({ "bear king","bear"}));
         set("vendetta_mark","bear");
-        set("race", "野兽");
+        set("race", "野獸");
         set("gender", "雄性");
         set("age", 20);
-        set("long", "这是一只凶猛的熊王。\n");
+        set("long", "這是一隻兇猛的熊王。\n");
 
         set("str", 200);
         set("dex", 80);
@@ -28,7 +28,7 @@ void create()
                 (: do_attack() :),
         }) );
 
-        set("limbs", ({ "头部", "身体", "前脚", "後脚", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體", "前腳", "後腳", "尾巴" }) );
         set("verbs", ({ "bite", "claw" }) );
         set("combat_exp", 500000);
 
@@ -49,7 +49,7 @@ void do_stun()
         if (!enemies || sizeof(enemies)==0)
                 return;
         enemy = enemies[random(sizeof(enemies))];
-        msg = HIC"\n$N突然站立起来，抡起熊掌朝$n拍来！\n"NOR;
+        msg = HIC"\n$N突然站立起來，掄起熊掌朝$n拍來！\n"NOR;
         message_combatd(msg, this_object(), enemy);
         COMBAT_D->do_attack(this_object(),enemy, 0, 0);
         start_busy(2);
@@ -65,7 +65,7 @@ void do_attack()
         if (!enemies || sizeof(enemies)==0)
                 return;
         enemy = enemies[random(sizeof(enemies))];
-        msg = HIB"\n$N突然狂性大发，抡起熊掌朝$n拍来！\n"NOR;
+        msg = HIB"\n$N突然狂性大發，掄起熊掌朝$n拍來！\n"NOR;
         message_combatd(msg,this_object(),enemy);
         i = 2+random(3);
         while (i--)

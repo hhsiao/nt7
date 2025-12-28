@@ -4,7 +4,7 @@ inherit ITEM;
 
 void create()
 {
-        set_name("黄药师手谕", ({"shou yu", "yu", "letter"}));
+        set_name("黃藥師手諭", ({"shou yu", "yu", "letter"}));
         set_weight(100);
         /*if( clonep() )
                 set_default_object(__FILE__);
@@ -14,17 +14,17 @@ void create()
 =================================
 |                                |
 |                字                |
-|                谕                |
-|                灵                |
-|                风                |
+|                諭                |
+|                靈                |
+|                風                |
 |                吾                |
 |                徒                |
 |                                |
 |                        桃        |
 |                        花        |
-|                        黄        |
+|                        黃        |
 |                                |
-|                        缄        |
+|                        緘        |
 |                                |
 =================================\n");
                 set("material", "paper");

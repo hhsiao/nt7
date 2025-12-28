@@ -2,12 +2,12 @@
 
 void create()
 {
-         set_name(NOR + BLU "七叶一枝花" NOR, ({ "qiye yizhihua","hua","herb" }));
+         set_name(NOR + BLU "七葉一枝花" NOR, ({ "qiye yizhihua","hua","herb" }));
         if (clonep())
                 set_default_object(__FILE__);
         else {
-                set("long", NOR + HIY "七叶一枝花(Paris polyphylla)的干燥根茎。因其叶多为7—10片轮生于茎项，而花单生于轮生叶片之上，故得此名。又因花的外轮花被片形大.似叶状；内轮花被片退化呈长线状 ......\n" NOR);
-                set("base_unit", "颗");
+                set("long", NOR + HIY "七葉一枝花(Paris polyphylla)的乾燥根莖。因其葉多為7—10片輪生於莖項，而花單生於輪生葉片之上，故得此名。又因花的外輪花被片形大.似葉狀；內輪花被片退化呈長線狀 ......\n" NOR);
+                set("base_unit", "顆");
                 set("base_value", 300000);
                 set("base_weight", 20);
         }

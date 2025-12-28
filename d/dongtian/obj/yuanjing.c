@@ -25,7 +25,7 @@ void create()
 
 string long()
 {
-        return "这是一枚洞天里结出的晶石，可以使用指令(fuse xxx)熔炼成洞天令，熔炼失败照样会消失。\n  (xxx表示地域代号，目前支持emei,songshan,huangshan,huanghe,guanwai,yueyang)\n";
+        return "這是一枚洞天裡結出的晶石，可以使用指令(fuse xxx)熔鍊成洞天令，熔鍊失敗照樣會消失。\n  (xxx表示地域代號，目前支持emei,songshan,huangshan,huanghe,guanwai,yueyang)\n";
 }
 
 int do_open(string arg)
@@ -48,14 +48,14 @@ int do_open(string arg)
                 return 1;
         }               
         if (!random(100)) me->start_busy(2);
-        message_vision(NOR + CYN + "$N" + NOR + CYN + "拿出一枚晶石，用力一捏欲图熔炼它。\n" + NOR, me);
+        message_vision(NOR + CYN + "$N" + NOR + CYN + "拿出一枚晶石，用力一捏欲圖熔鍊它。\n" + NOR, me);
         write(NOR + "/d/dongtian/create_d.c"->convert_ling(arg, random(25), me) + NOR);
         lh = query("level", me) + 95000;
         lh = random(lh / 4) + lh * 3 / 4;
                 addn("magic_points", lh, me); 
                 addn("dongtian/yuanjing/num", 1, me);//log
                 addn("dongtian/yuanjing/count", lh, me);
-                write(NOR + HIY + "你在熔炼"+name()+NOR+HIY + "的过程中增加了" + HIW + chinese_number(lh) + HIY + "点灵慧！\n\n" + NOR);        
+                write(NOR + HIY + "你在熔鍊"+name()+NOR+HIY + "的過程中增加了" + HIW + chinese_number(lh) + HIY + "點靈慧！\n\n" + NOR);        
         add_amount(-1); 
         if (query_amount() < 1) 
                 destruct(this_object()); 

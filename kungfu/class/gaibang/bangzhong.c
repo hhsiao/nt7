@@ -4,14 +4,14 @@
 inherit NPC;
 #include "fight.h"
 
-string *duo = ({ "仁", "义", "礼", "智", "信", "勇" });
+string *duo = ({ "仁", "義", "禮", "智", "信", "勇" });
 void create()
 {
         int level;
         level = random(7)+1;
         NPC_D->generate_cn_name(this_object());
-        set("long", "这是位衣着破烂的丐帮弟子，眉目间透出股英气。\n");
-        set("title", "丐帮"+chinese_number(level)+"袋弟子");
+        set("long", "這是位衣著破爛的丐幫弟子，眉目間透出股英氣。\n");
+        set("title", "丐幫"+chinese_number(level)+"袋弟子");
         set("gender", "男性");
         set("age", 15+level*5);
         set("attitude", "peaceful");
@@ -50,10 +50,10 @@ void create()
         map_skill("dodge", "xiaoyaoyou");
         prepare_skill("hand", "suohou-hand");
 
-        //set("party/party_name", HIC"丐帮"NOR);
+        //set("party/party_name", HIC"丐幫"NOR);
         //set("party/rank", GRN+"大"+duo[random(6)]+"分舵"HIY+chinese_number(level)+"袋弟子"NOR);
         //set("party/level", level);
-        create_family("丐帮", 20, "弟子");
+        create_family("丐幫", 20, "弟子");
 
         setup();
         carry_object(__DIR__"obj/cloth")->wear();

@@ -1,4 +1,4 @@
-// liyu.c 鲤鱼
+// liyu.c 鯉魚
 
 inherit ITEM;
 
@@ -7,13 +7,13 @@ inherit ITEM;
 
 void create()
 {
-        set_name("鲤鱼", ({ "liyu", "li yu" }) );
+        set_name("鯉魚", ({ "liyu", "li yu" }) );
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", "一条活蹦乱跳的大鲤鱼。\n");
-                set("unit", "条");
+                set("long", "一條活蹦亂跳的大鯉魚。\n");
+                set("unit", "條");
         }
 
         setup();

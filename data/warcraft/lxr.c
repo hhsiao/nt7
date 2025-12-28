@@ -4,12 +4,12 @@
 
 void setup()
 {
-        set_name("七色白云[2;37;0m[2;37;0m", ({"cyun"}));        
+        set_name("七色白雲[2;37;0m[2;37;0m", ({"cyun"}));        
         set("gender", "男性");                
-        set("long", "七仙女的白云。[2;37;0m
-它是七仙女的魔幻兽。
+        set("long", "七仙女的白雲。[2;37;0m
+它是七仙女的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "lxr");
         set("owner_name", "七仙女");

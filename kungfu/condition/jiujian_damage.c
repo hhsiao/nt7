@@ -1,4 +1,4 @@
-// jiujian_qi_damage.c 独孤九剑破气式伤势
+// jiujian_qi_damage.c 獨孤九劍破氣式傷勢
 
 
 #include <ansi.h>
@@ -17,7 +17,7 @@ int update_condition(object me, int duration)
                 skill = me->query_skill_mapped("force");
 
                 if ( skill != 0 ) {
-                        message_vision("$N突然觉得一阵血气翻涌，丝毫用不上勉强提聚的"+to_chinese(skill)+"！\n", me);
+                        message_vision("$N突然覺得一陣血氣翻湧，絲毫用不上勉強提聚的"+to_chinese(skill)+"！\n", me);
                         me->map_skill("force");
                 }
         }

@@ -4,15 +4,15 @@ inherit ROOM;
 
 void create()
 {
-   set("short", "雪山温泉");
+   set("short", "雪山溫泉");
    set("long", @LONG
-这是两个山道盆地之间的一处温泉(quan)，一股喷泉正在嘶
-嘶喷水，灼热的水花被风吹散，在月光下形成一团团白色的花环。
-在这雪山之上，居然还有此等令人惬意之处，亦不由让人感叹造
-物之神奇。碧波绿水中，飘荡着朵朵雪莲花瓣，片片雪花飘然而
-下，离水面有数寸，便即纷纷化为白雾而散。在这生命绝迹的大
-雪山之上，惟有这里，才有绿树、红花、青草。一个少女在温泉
-畔凝望落花，似有无限心事。
+這是兩個山道盆地之間的一處溫泉(quan)，一股噴泉正在嘶
+嘶噴水，灼熱的水花被風吹散，在月光下形成一團團白色的花環。
+在這雪山之上，居然還有此等令人愜意之處，亦不由讓人感嘆造
+物之神奇。碧波綠水中，飄蕩著朵朵雪蓮花瓣，片片雪花飄然而
+下，離水面有數寸，便即紛紛化為白霧而散。在這生命絕跡的大
+雪山之上，惟有這裡，才有綠樹、紅花、青草。一個少女在溫泉
+畔凝望落花，似有無限心事。
 LONG);
         set("outdoors", "lingxiao"); 
             set("resource/water", 1);
@@ -23,8 +23,8 @@ LONG);
                      "east" :__DIR__"sroad6",
         ]));
         set("item_desc", ([
-                "quan" : HIC "这是山道间的一处温泉，深不见底，似乎可以"
-                         "潜(dive)下去。\n" NOR,
+                "quan" : HIC "這是山道間的一處溫泉，深不見底，似乎可以"
+                         "潛(dive)下去。\n" NOR,
         ]) );
         setup(); 
 }
@@ -39,21 +39,21 @@ int do_dive(string arg)
         object me = this_player();
 
         if ((arg != "quan" || ! arg))
-                return notify_fail("你要潜什么？\n");
+                return notify_fail("你要潛什麼？\n");
 
-                   message_vision(HIY "只见$N" HIY "憋足了一口气，“扑通”一"
-                               "声，纵身跳下了温泉。\n" NOR, me);
+                   message_vision(HIY "只見$N" HIY "憋足了一口氣，“撲通”一"
+                               "聲，縱身跳下了溫泉。\n" NOR, me);
 
         if ((int)me->query_skill("force") < 100)
         { 
-                   message_vision(HIR "$N" HIY "刚下水不久，发现愈往下潜，水"
-                               "压愈大，再也忍受不住，猛地窜了上来。\n"
+                   message_vision(HIR "$N" HIY "剛下水不久，發現愈往下潛，水"
+                               "壓愈大，再也忍受不住，猛地竄了上來。\n"
                                NOR, me);
         } else 
         {
-                message_vision(HIY "$N" HIY "只觉压力越来越大，立即强运内"
-                               "力，奋力支持，继续向下潜去……\n\n" NOR +
-                               HIC "只听水中哗啦一声，就平静下来了。\n" NOR,
+                message_vision(HIY "$N" HIY "只覺壓力越來越大，立即強運內"
+                               "力，奮力支持，繼續向下潛去……\n\n" NOR +
+                               HIC "只聽水中嘩啦一聲，就平靜下來了。\n" NOR,
                                this_player()); 
                 me->move(__DIR__"wave1"); 
         } 

@@ -4,10 +4,10 @@ inherit ROOM;
 
 void create()
 {
-	set("short", "厨房");
+	set("short", "廚房");
 	set("long", @LONG
-这是神龙岛的厨房，中央摆着大圆桌，周围则放着几张竹椅。神
-龙岛的弟子都在这里用餐。
+這是神龍島的廚房，中央擺著大圓桌，周圍則放著幾張竹椅。神
+龍島的弟子都在這裡用餐。
 LONG );
 	set("exits",([
 	    "west" :__DIR__"zoulang",

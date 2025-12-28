@@ -101,21 +101,21 @@ void event_midnight()
         switch (m * 100 + d)
         {
         case  321:
-                msg = HIG "春天终于到了，经过了漫长的冬季，万物开始复苏。\n" NOR;
+                msg = HIG "春天終於到了，經過了漫長的冬季，萬物開始復甦。\n" NOR;
                 break;
         case  622:
-                msg = HIR "夏天来临了，天气越来越热，所有的生物都异常活跃。\n" NOR;
+                msg = HIR "夏天來臨了，天氣越來越熱，所有的生物都異常活躍。\n" NOR;
                 break;
         case  923:
-                msg = HIY "已然是秋天了，大地一片金黄，正是收获的时期。\n" NOR;
+                msg = HIY "已然是秋天了，大地一片金黃，正是收穫的時期。\n" NOR;
                 break;
         case 1222:
-                msg = HIW "来自北方的寒流扫过大地，万物又开始了寂静的休眠。\n" NOR;
+                msg = HIW "來自北方的寒流掃過大地，萬物又開始了寂靜的休眠。\n" NOR;
                 break;
         }
 
         if (msg)
-                message("vision", HIC "【季节天时】" + msg,
+                message("vision", HIC "【季節天時】" + msg,
                         msg, all_interactive());
 
         switch(m)
@@ -203,22 +203,22 @@ void event_noon()
         {
         case 3: case 4: case 5:
                 ill = "ill_kesou";
-                msg = HIG + "忽然喉头一阵痕痒，你感觉似乎要咳嗽了。\n" + NOR;
+                msg = HIG + "忽然喉頭一陣痕癢，你感覺似乎要咳嗽了。\n" + NOR;
                 ic  = 5;
                 break;
         case 6: case 7: case 8:
                 ill = "ill_zhongshu";
-                msg = HIG+"突然你胸臆之间一阵翻腾，你中暑了。\n" + NOR;
+                msg = HIG+"突然你胸臆之間一陣翻騰，你中暑了。\n" + NOR;
                 ic  = 5;
                 break;
         case 9: case 10: case 11:
                 ill = "ill_shanghan";
-                msg = HIG+"陡的你打了个冷战，头昏沉沉的，你得伤寒病了。\n"+NOR;
+                msg = HIG+"陡的你打了個冷戰，頭昏沉沉的，你得傷寒病了。\n"+NOR;
                 ic  = 5;
                 break;
         case 12: case 1: case 2:
                 ill = "ill_dongshang";
-                msg = HIG+"你肢体末端一阵僵直，看来你被冻伤了。\n"+NOR;
+                msg = HIG+"你肢體末端一陣僵直，看來你被凍傷了。\n"+NOR;
                 ic  = 0;
                 break;
         }
@@ -226,7 +226,7 @@ void event_noon()
         if (random(4) == 0)
         {
                 ill = "ill_fashao";
-                msg = HIG+"你偶感风寒，竟而发起烧来。\n"+NOR;
+                msg = HIG+"你偶感風寒，竟而發起燒來。\n"+NOR;
         }
 
         ob = users();
@@ -273,7 +273,7 @@ string game_time()
 
         lt = query_localtime(time());
 
-        return sprintf("%s年%s%s月%s日%s时",
+        return sprintf("%s年%s%s月%s日%s時",
                        chinese_number(lt[LT_YEAR]),
                        ms[((lt[LT_MON] + 1) % 12) / 3],
                        chinese_number(lt[LT_MON] + 1),

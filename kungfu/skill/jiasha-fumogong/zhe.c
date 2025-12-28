@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define JIU "「" HIR "避云遮日" NOR "」"
+#define JIU "「" HIR "避雲遮日" NOR "」"
 
 inherit F_SSERVER;
  
@@ -19,34 +19,34 @@ int perform(object me, object target)
         }
 
         if( userp(me) && !query("can_perform/jiasha-fumogong/zhe", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(JIU "只能对战斗中的对手使用。\n");
+                return notify_fail(JIU "只能對戰鬥中的對手使用。\n");
  
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(JIU "只能空手施展。\n");
                 
         if( query("max_neili", me)<2000 )
-                return notify_fail("你的内力的修为不够，现在无法使用" JIU "。\n");
+                return notify_fail("你的內力的修為不夠，現在無法使用" JIU "。\n");
 
         if (me->query_skill("jiasha-fumogong", 1) < 140)
-                return notify_fail("你的袈裟伏魔功还不够娴熟，难以施展" JIU "。\n");
+                return notify_fail("你的袈裟伏魔功還不夠嫻熟，難以施展" JIU "。\n");
 
         if (me->query_skill_mapped("unarmed") != "jiasha-fumogong")
-                return notify_fail("你现在没有激发袈裟伏魔功为拳脚，难以施展" JIU "。\n");
+                return notify_fail("你現在沒有激發袈裟伏魔功為拳腳，難以施展" JIU "。\n");
 
         if (me->query_skill_prepared("unarmed") != "jiasha-fumogong")
-                return notify_fail("你现在没有准备使用袈裟伏魔功，难以施展" JIU "。\n");
+                return notify_fail("你現在沒有準備使用袈裟伏魔功，難以施展" JIU "。\n");
 
         if( query("neili", me)<400 )
-                return notify_fail("你的真气不够，无法运用" JIU "。\n");
+                return notify_fail("你的真氣不夠，無法運用" JIU "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIG "$N" HIG "大喝一声，施出绝招「" HIR "避云遮日" HIG "」，顿时真题迸发，衣衫鼓动，双拳"
-              "猛然如闪电般地拍向$n" HIG "。\n" NOR;
+        msg = HIG "$N" HIG "大喝一聲，施出絕招「" HIR "避雲遮日" HIG "」，頓時真題迸發，衣衫鼓動，雙拳"
+              "猛然如閃電般地拍向$n" HIG "。\n" NOR;
 
         ap=me->query_skill("unarmed")+query("con", me)*20;
         dp=target->query_skill("parry")+query("con", target)*20;

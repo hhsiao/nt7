@@ -9,8 +9,8 @@ void create()
 {
        set("short","密道");
        set("long", @LONG
-这是水井里的一个密道。周围都是些机关，只有出口很明显在哪里。湿漉
-漉的墙壁上有挂着四块石板，分别刻着１、２、３、４。水井旁边还有一块铁
+這是水井裡的一個密道。周圍都是些機關，只有出口很明顯在哪裡。溼漉
+漉的牆壁上有掛著四塊石板，分別刻著１、２、３、４。水井旁邊還有一塊鐵
 板(tieban)扔在地上。
 LONG
      );
@@ -19,7 +19,7 @@ LONG
         ]));
         set("item_desc", ([
                 "tieban" :
-        		"铁板歪歪斜斜地写着：方人智到此一游，空手悻悻而归。\n"
+        		"鐵板歪歪斜斜地寫著：方人智到此一遊，空手悻悻而歸。\n"
         ]) );
    	setup();
 }
@@ -36,14 +36,14 @@ int do_press(string arg)
 
 	p=sprintf("%d",this_player()->query("quest/pixie/pxj_passwd"));
 	if( !arg || arg=="" ) {
-		write("别瞎按！\n");
+		write("別瞎按！\n");
 		return 1;
 	}
 	if( strlen(p)==4 && arg==p) {
-		message_vision("只听得一阵隆隆的响声由远及近。\n", this_player());
-		message_vision("石板缓缓移了开来，露出一个洞。\n", this_player());
+		message_vision("只聽得一陣隆隆的響聲由遠及近。\n", this_player());
+		message_vision("石板緩緩移了開來，露出一個洞。\n", this_player());
 		set("exits/enter", __DIR__"mishi");
-		write("\n\n一个声音提醒你：记住你的密码，以后你就靠它来进出这里了！\n\n");
+		write("\n\n一個聲音提醒你：記住你的密碼，以後你就靠它來進出這裡了！\n\n");
 
 		remove_call_out("close");
 		call_out("close", 5, this_object());
@@ -51,13 +51,13 @@ int do_press(string arg)
 		return 1;
 	}
 	else {
-		write("你心想：老天保佑这次能蒙着！\n");
+		write("你心想：老天保佑這次能蒙著！\n");
 		if (random(10)!=8) {
-			message_vision("$N一阵乱按，什么反应也没有。\n", this_player());
+			message_vision("$N一陣亂按，什麼反應也沒有。\n", this_player());
 			return 1;
 		}
 		else {
-			message_vision("$N一阵乱按，突然石板的缝隙间射出一支毒箭！\n", this_player());
+			message_vision("$N一陣亂按，突然石板的縫隙間射出一支毒箭！\n", this_player());
 			this_player()->set_temp("last_damage_from", "被毒箭射");
 			this_player()->die();
 			return 1;
@@ -67,6 +67,6 @@ int do_press(string arg)
 
 void close(object room)
 {
-	message("vision","轰隆隆的响声响过之后，石板又合上了。\n", room);
+	message("vision","轟隆隆的響聲響過之後，石板又合上了。\n", room);
 	room->delete("exits/enter");
 }

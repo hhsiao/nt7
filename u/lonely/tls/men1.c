@@ -1,13 +1,13 @@
 inherit ROOM;
 void create()
 {
-        set("short", "瑞鹤门");
+        set("short", "瑞鶴門");
         set("long",@LONG
-由光佛殿出此门，可向东行过无相宝塔、幌天门、清都瑶台、无
-无境、雨花院而至般若台。这一路房屋都是寺中僧人清修养之地，你
-悄声行走，不敢发出丝毫声响。北面通向无净阁。
+由光佛殿出此門，可向東行過無相寶塔、幌天門、清都瑤臺、無
+無境、雨花院而至般若臺。這一路房屋都是寺中僧人清修養之地，你
+悄聲行走，不敢發出絲毫聲響。北面通向無淨閣。
 LONG);
-	set("outdoors","天龙寺");
+	set("outdoors","天龍寺");
         set("exits", ([
              "north" : __DIR__"wujingge",
 	       "west": __DIR__"gfd",
@@ -21,6 +21,6 @@ LONG);
 int valid_leave(object me, string dir)
 {
         if (me->query("gender") != "女性" && dir =="north")
-           return notify_fail("无净阁乃是王侯夫人小姐们进香还愿时的休息之处，你要进去恐怕不太好吧？\n");
+           return notify_fail("無淨閣乃是王侯夫人小姐們進香還願時的休息之處，你要進去恐怕不太好吧？\n");
         return ::valid_leave(me, dir);
 }

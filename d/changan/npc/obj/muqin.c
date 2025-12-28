@@ -14,8 +14,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "台");
-                set("long", "一个平凡的木琴，没有什么特殊之处。\n");
+                set("unit", "臺");
+                set("long", "一個平凡的木琴，沒有什麼特殊之處。\n");
                 set("value", 50);
                 set("material", "wood");
         }

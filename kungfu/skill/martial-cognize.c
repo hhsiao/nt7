@@ -1,15 +1,15 @@
-// 武学修养
+// 武學修養
 
 inherit SKILL;
 
 int valid_learn(object me)
 {
-        return notify_fail("武学修养是你武学方面的领悟，无法"
-                           "通过简单学习获得提升。\n");
+        return notify_fail("武學修養是你武學方面的領悟，無法"
+                           "通過簡單學習獲得提升。\n");
 }
 
 int valid_research(object me)
 {
-        return notify_fail("武学修养来自你对实战体会的汲取吸"
-                           "收，无法通过研究提升。\n");
+        return notify_fail("武學修養來自你對實戰體會的汲取吸"
+                           "收，無法通過研究提升。\n");
 }

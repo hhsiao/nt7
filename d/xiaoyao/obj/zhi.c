@@ -3,9 +3,9 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIG"七宝指环"NOR, ({"zhihuan"}));
-        set("unit", "个");
-        set("long", "逍遥派掌门信物。\n");
+        set_name(HIG"七寶指環"NOR, ({"zhihuan"}));
+        set("unit", "個");
+        set("long", "逍遙派掌門信物。\n");
         set("value", 0);
         setup();
 }

@@ -1,4 +1,4 @@
-// tong-ren.c 铜人
+// tong-ren.c 銅人
 
 #include <ansi.h>
 
@@ -6,12 +6,12 @@ inherit FIGHTER;
 
 void create()
 {
-        set_name("铜人", ({ "tong ren", "ren" }) );
+        set_name("銅人", ({ "tong ren", "ren" }) );
         set("gender", "男性" );
         set("age", 30);
-        set("long", "一个练功用的比武铜人，是仿制木人制作的，由于\n"
-                    "是用青铜制作的，所以具有更持久的耐力，但是却\n"
-                    "不会对练功者造成太大的伤害。\n");
+        set("long", "一個練功用的比武銅人，是仿製木人制作的，由於\n"
+                    "是用青銅製作的，所以具有更持久的耐力，但是卻\n"
+                    "不會對練功者造成太大的傷害。\n");
         set("scale", 150);
         set("min_exp", 25000);
 

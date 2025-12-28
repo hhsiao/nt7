@@ -3,20 +3,20 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "内室");
+        set("short", "內室");
         set("long", @LONG
-这是欧阳克的内室，内部摆设很有情趣。屋角摆着一盆名贵兰花，
-正骄傲地吐露芳蕊。花盆(pen)下撒落一些浮土，可能是被人搬出去晒
-太阳时撒下的。
+這是歐陽克的內室，內部擺設很有情趣。屋角擺著一盆名貴蘭花，
+正驕傲地吐露芳蕊。花盆(pen)下撒落一些浮土，可能是被人搬出去曬
+太陽時撒下的。
 LONG );
         set("exits", ([
                 "east" : __DIR__"huayuan",
         ]));
  
         set("item_desc", ([
-                "pen" : WHT "\n这是一个大花盆，看上去非常坚固结"
-                        "实，作工也很考究，仔细\n观察下，不难发"
-                        "现地上有些浮土，似乎有人移动(move)过花"
+                "pen" : WHT "\n這是一個大花盆，看上去非常堅固結"
+                        "實，作工也很考究，仔細\n觀察下，不難發"
+                        "現地上有些浮土，似乎有人移動(move)過花"
                         "盆。\n" NOR,
         ]));
         set("coor/x", -49990);
@@ -35,21 +35,21 @@ int do_move(string arg)
         object me = this_player();
 
         if (arg != "pen")
-                return notify_fail("你要搬什么？\n");
+                return notify_fail("你要搬什麼？\n");
 
-        if( query("born_family", me) != "欧阳世家" )
-                return notify_fail("你移动了一下花盆，却没发现什么特别的东西。\n");
+        if( query("born_family", me) != "歐陽世家" )
+                return notify_fail("你移動了一下花盆，卻沒發現什麼特別的東西。\n");
 
         if (! query("exits/down"))
         {
                 set("exits/down", __DIR__"midao");
-                message_vision(HIY "\n$N" HIY "移动花盆，只见花盆下面"
-                               "露出一个黑幽幽的洞口。\n\n" NOR, me);
+                message_vision(HIY "\n$N" HIY "移動花盆，只見花盆下面"
+                               "露出一個黑幽幽的洞口。\n\n" NOR, me);
         } else
         {
                 delete("exits/down");
-                message_vision(HIY "\n$N" HIY "把花盆搬回原位，洞口顿"
-                               "时被封住了。\n\n" NOR, me);
+                message_vision(HIY "\n$N" HIY "把花盆搬回原位，洞口頓"
+                               "時被封住了。\n\n" NOR, me);
         }
         return 1;
 }

@@ -1,5 +1,5 @@
 // underlt.c
-// 擂台下面
+// 擂臺下面
 
 inherit ROOM;
 
@@ -28,7 +28,7 @@ int valid_leave(object me, string dir)
                 return ::valid_leave(me, dir);
 
         if (ob->refuse(me))
-                return notify_fail("你凑什么热闹，现在不是你上去的时候。\n");
+                return notify_fail("你湊什麼熱鬧，現在不是你上去的時候。\n");
 
         return ::valid_leave(me, dir);
 }
@@ -41,23 +41,23 @@ int do_pass(string arg)
 
         me = this_player();
         if (! wizardp(me))
-                return notify_fail("你不是巫师，没有资格让人家上去。\n");
+                return notify_fail("你不是巫師，沒有資格讓人家上去。\n");
 
         if (! arg ||
             ! objectp(ob = present(arg, this_object())))
-                return notify_fail("你想让谁上去？\n");
+                return notify_fail("你想讓誰上去？\n");
 
         if (ob == me)
-                return notify_fail("你就不会自己走上去？\n");
+                return notify_fail("你就不會自己走上去？\n");
 
         if (wizardp(ob))
-                return notify_fail("人家自己想上去自己会上去，不劳你费心。\n");
+                return notify_fail("人家自己想上去自己會上去，不勞你費心。\n");
 
         if (! ob->is_character())
-                return notify_fail("你是不是大脑进了水？\n");
+                return notify_fail("你是不是大腦進了水？\n");
 
         if (! userp(ob))
-                return notify_fail("你捅了捅了" + ob->name() + "，不过人家没动。\n");
+                return notify_fail("你捅了捅了" + ob->name() + "，不過人家沒動。\n");
 
         if (! living(ob))
                 return notify_fail("好歹你得弄醒人家吧？\n");
@@ -66,12 +66,12 @@ int do_pass(string arg)
         if (! objectp(ob_leitai))
                 ob_leitai = load_object(LEITAI);
         if (! objectp(ob_leitai))
-                return notify_fail("擂台在哪里？\n");
+                return notify_fail("擂臺在哪裡？\n");
 
-        message_vision("$N点点头，对$n道：“你上去吧。”\n"
-                       "只见$n摩拳擦掌，踊跃奔上台去。\n",
+        message_vision("$N點點頭，對$n道：“你上去吧。”\n"
+                       "只見$n摩拳擦掌，踴躍奔上臺去。\n",
                        me, ob);
-        message("vision", "只见" + ob->name() + "跃上台来，矫健之极。\n",
+        message("vision", "只見" + ob->name() + "躍上臺來，矯健之極。\n",
                 ob_leitai);
         ob->move(ob_leitai);
         return 1;

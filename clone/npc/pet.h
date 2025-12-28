@@ -1,4 +1,4 @@
-// pet.c 宠物
+// pet.c 寵物
 
 #include <ansi.h>
 #include <command.h>
@@ -17,11 +17,11 @@ int is_stay_in_room() { return 1; }
 
 void create()
 {
-        set_name("宠物", ({ "pet" }) );
-        set("race", "野兽");
+        set_name("寵物", ({ "pet" }) );
+        set("race", "野獸");
         set("gender", "雄性");
         set("age", 2 + random(3));
-        set("long", "玩家可以骑上它去指定的地方(rideto)。\n");        
+        set("long", "玩家可以騎上它去指定的地方(rideto)。\n");        
         set("ridable", 1);
         set("no_sell", 1);
         set("no_put", 1);
@@ -34,7 +34,7 @@ void create()
         set("shen_type", 0);
         set("combat_exp",50000);
         set("attitude", "peaceful");        
-        set("limbs", ({ "头部", "腹部", "尾巴","后腿","前腿" }) );
+        set("limbs", ({ "頭部", "腹部", "尾巴","後腿","前腿" }) );
         set("verbs", ({ "bite", "hoof" }) );
 
         set_temp("apply/attack", 100);
@@ -57,7 +57,7 @@ int receive_whistle(object me)
 
         if ((env = environment()) && env == me)
         {
-                write(name() + "你不是正骑着吗？你召唤个什么劲？\n");
+                write(name() + "你不是正騎著嗎？你召喚個什麼勁？\n");
                 return 1;
         }
 
@@ -71,18 +71,18 @@ int receive_whistle(object me)
                                         env = environment(env);
 
                         message("vision", HIG "突然" + name() + HIG "狂奔"
-                                HIG "而去，瞬间消失了！\n\n" NOR, env);
+                                HIG "而去，瞬間消失了！\n\n" NOR, env);
 
                         if (interactive(env = environment()))
                         {
                                 delete_temp("is_riding", env);
                                 this_object()->delele_temp("is_rided_by");
                                 tell_object(env, HIM + name() +
-                                                 HIM "忽然离你而去了！\n" NOR);
+                                                 HIM "忽然離你而去了！\n" NOR);
                         }
                 }
 
-                message_vision(HIG "$n" HIG "不知从哪里窜到$N" HIG "面前！\n\n" NOR,
+                message_vision(HIG "$n" HIG "不知從哪裡竄到$N" HIG "面前！\n\n" NOR,
                                me, this_object());
         }
 
@@ -98,7 +98,7 @@ int receive_whistle(object me)
         return 1;
 }
 
-// 接受存盘数据的接口函数
+// 接受存盤數據的接口函數
 int receive_dbase_data(mixed data)
 {
         if (! mapp(data))
@@ -110,7 +110,7 @@ int receive_dbase_data(mixed data)
         return 1;
 }
 
-// 进行保存数据的接口函数
+// 進行保存數據的接口函數
 mixed save_dbase_data()
 {
         mapping data;

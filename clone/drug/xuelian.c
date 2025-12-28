@@ -1,4 +1,4 @@
-// xuelian.c 雪莲
+// xuelian.c 雪蓮
 // Modified by Dumbness, 2003-5-21 20:39
 
 #include <ansi.h>;
@@ -10,13 +10,13 @@ void init();
 
 void create()
 {
-        set_name(HIM"雪莲"NOR, ({"xuelian", "lian", "lotus"}));
+        set_name(HIM"雪蓮"NOR, ({"xuelian", "lian", "lotus"}));
         set_weight(90);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "朵");
-                set("long", HIW"这是一朵晶莹的雪莲，她傲然于银白色的雪山之巅绽放，清澈灵动，如清风\n般抚慰你的心田。\n"NOR);
+                set("long", HIW"這是一朵晶瑩的雪蓮，她傲然於銀白色的雪山之巔綻放，清澈靈動，如清風\n般撫慰你的心田。\n"NOR);
                 set("value", 20000);
                 set("no_sell", 1);
                 set("no_put",1);
@@ -25,10 +25,10 @@ void create()
                 set("armor_prop/per", 5);
                 set("armor_prop/per", 2); 
                 set("wear_msg",         
-                        HIM"$N轻轻的戴上那朵传说中的雪莲花，自己仿佛也变成了一朵傲然绽放于雪山\n"
-                        "之颠的雪莲——不食人间烟火般的清澈，晶莹剔透的眼波流转，如一缕轻风\n"
-                        "般的身影夜夜徘徊在情人的梦乡……\n"NOR);
-                set("remove_msg", WHT"$N轻轻地把$n"WHT"从头上摘了下来，顿时黯然失色，不复婉转灵动。\n"NOR); 
+                        HIM"$N輕輕的戴上那朵傳說中的雪蓮花，自己彷彿也變成了一朵傲然綻放於雪山\n"
+                        "之顛的雪蓮——不食人間煙火般的清澈，晶瑩剔透的眼波流轉，如一縷輕風\n"
+                        "般的身影夜夜徘徊在情人的夢鄉……\n"NOR);
+                set("remove_msg", WHT"$N輕輕地把$n"WHT"從頭上摘了下來，頓時黯然失色，不復婉轉靈動。\n"NOR); 
         }
         setup();
 }
@@ -39,11 +39,11 @@ int do_effect(object me)
         {
                 addn("max_jingli", -5, me);
                 addn("eff_jing", -5, me);
-                message_vision(HIR "$N吃下一枚雪莲，只觉得头重脚轻，摇摇欲倒，原来服食太急太多，药效适得其反！\n" NOR, me);
+                message_vision(HIR "$N吃下一枚雪蓮，只覺得頭重腳輕，搖搖欲倒，原來服食太急太多，藥效適得其反！\n" NOR, me);
                 destruct(this_object());
                 return 1;
         }
-        message_vision(HIM"$N吃下一支雪莲，一股秋菊似的幽香沁入心肺，顿觉神清气爽。\n"NOR, me);
+        message_vision(HIM"$N吃下一支雪蓮，一股秋菊似的幽香沁入心肺，頓覺神清氣爽。\n"NOR, me);
         set("eff_jing",query("max_jing",  me), me);
         set("jing",query("max_jing",  me), me);
         set("jingli",query("max_jingli",  me), me);

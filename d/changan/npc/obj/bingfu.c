@@ -12,7 +12,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ 
         {
-                set("long", "一件兵服，前后有铜镜护心，中间绣了一个兵字．\n");
+                set("long", "一件兵服，前後有銅鏡護心，中間繡了一個兵字．\n");
                 set("material", "cloth");
                 set("value", 300);
                 set("unit", "件");

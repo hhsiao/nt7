@@ -2,17 +2,17 @@
 inherit ROOM;
 void create()
 {
-  set("short","厨房");
+  set("short","廚房");
         set("long", @LONG
-你走在一条阴暗的林间小道上，两旁是阴森森的树林。一阵这是
-风雷堂的厨房，一位美丽侍女满脸堆笑。整个房间菜香胭脂香迷漫。
-墙上贴着一张醒目的启事(note)。
+你走在一條陰暗的林間小道上，兩旁是陰森森的樹林。一陣這是
+風雷堂的廚房，一位美麗侍女滿臉堆笑。整個房間菜香胭脂香迷漫。
+牆上貼著一張醒目的啟事(note)。
 LONG );
   set("exits",([
       "east" : __DIR__"grass2",
   ]));
   set("item_desc",([
-      "note" : "人是铁，饭是钢，一顿不吃饿得慌。\n",
+      "note" : "人是鐵，飯是鋼，一頓不吃餓得慌。\n",
   ]));
 
   set("objects",([
@@ -28,6 +28,6 @@ int valid_leave(object me, string dir)
         if (( present("tea", me)||present("she rou", me))
         &&objectp(present("shi nu", environment(me))) )
         return notify_fail
-        ("侍女美目一挑，你还是在这儿吃完吧。\n");
+        ("侍女美目一挑，你還是在這兒吃完吧。\n");
         return ::valid_leave(me, dir);
 }

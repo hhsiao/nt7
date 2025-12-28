@@ -8,12 +8,12 @@ inherit ROOM;
 
 void create()
 {
-        set("short", HIR "阎罗殿" NOR);
+        set("short", HIR "閻羅殿" NOR);
         set("long", HIB @LONG
-这里阴深恐怖，让人感觉到一阵阵的寒意，两旁列着牛头马面，冥
-府狱卒，各个威严肃穆。十殿阎罗，尽皆在此，地藏王正坐在大堂之上，
-不怒自威，你的腿脚不禁都有些软了。
-    大殿角落有一个石头砌成的池子，其中水清澈却不见底，不知道它
+這裡陰深恐怖，讓人感覺到一陣陣的寒意，兩旁列著牛頭馬面，冥
+府獄卒，各個威嚴肅穆。十殿閻羅，盡皆在此，地藏王正坐在大堂之上，
+不怒自威，你的腿腳不禁都有些軟了。
+    大殿角落有一個石頭砌成的池子，其中水清澈卻不見底，不知道它
 究竟有多深。
 LONG NOR
 );
@@ -42,9 +42,9 @@ int valid_leave(object me, string dir)
         if (dir != "south")
         {
                 if (objectp(present("dizang", environment(me))) 
-                 && !query("hell_quest/锁阳丹", me) )
-                        return notify_fail(CYN "地藏王看了你一眼，喝道：你还不滚"
-                                           "回去还阳，来这里凑什么热闹！\n" NOR);
+                 && !query("hell_quest/鎖陽丹", me) )
+                        return notify_fail(CYN "地藏王看了你一眼，喝道：你還不滾"
+                                           "回去還陽，來這裡湊什麼熱鬧！\n" NOR);
         }
         return ::valid_leave(me, dir);
 }

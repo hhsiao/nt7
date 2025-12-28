@@ -1,11 +1,11 @@
-// 铁掌掌法 -- 阴阳合一
+// 鐵掌掌法 -- 陰陽合一
 // Modified by snowman@SJ 19/12/2000
 
 #include <ansi.h>
 #include <combat.h>
 
 inherit F_SSERVER;
-string perform_name(){ return HBBLU"阴阳合一"NOR; }
+string perform_name(){ return HBBLU"陰陽合一"NOR; }
 int perform(object me, object target)
 {
         int j;
@@ -16,39 +16,39 @@ int perform(object me, object target)
           || !me->is_fighting(target)
           || !living(target)
           || environment(target)!= environment(me))
-                return notify_fail("「阴阳合一」只能在战斗中对对手使用。\n");
+                return notify_fail("「陰陽合一」只能在戰鬥中對對手使用。\n");
 
         if( me->query_temp("weapon") )
-                return notify_fail("你必须空手才能使用「阴阳合一」！\n");
+                return notify_fail("你必須空手才能使用「陰陽合一」！\n");
 
         if( (int)me->query_skill("super-strike", 1) < 200 )
-                return notify_fail("你的铁掌掌法还不够娴熟，使不出「阴阳合一」绝技。\n");
+                return notify_fail("你的鐵掌掌法還不夠嫻熟，使不出「陰陽合一」絕技。\n");
 
         if( (int)me->query_skill("force", 1) < 200 )
-                return notify_fail("你的归元吐纳法等级不够，使不出「阴阳合一」绝技。\n");
+                return notify_fail("你的歸元吐納法等級不夠，使不出「陰陽合一」絕技。\n");
 
         if( (int)me->query_skill("force") < 230 )
-                return notify_fail("你的内功等级不够，不能使用「阴阳合一」。\n");
+                return notify_fail("你的內功等級不夠，不能使用「陰陽合一」。\n");
 
         if( (int)me->query_str() < 33 )
-                return notify_fail("你的膂力还不够强劲，使不出「阴阳合一」来。\n");
+                return notify_fail("你的膂力還不夠強勁，使不出「陰陽合一」來。\n");
 
         if (me->query_skill_prepared("strike") != "super-strike"
          || me->query_skill_mapped("strike") != "super-strike"
          || me->query_skill_mapped("parry") != "super-strike")
-                return notify_fail("你现在无法使用「阴阳合一」！\n");    
+                return notify_fail("你現在無法使用「陰陽合一」！\n");    
         
         if( (int)me->query("max_neili") < 1500)
-                return notify_fail("你现在内力太弱，使不出「阴阳合一」。\n");      
+                return notify_fail("你現在內力太弱，使不出「陰陽合一」。\n");      
 
         if( (int)me->query("neili") < 1000 )
-                return notify_fail("你现在真气太弱，使不出「阴阳合一」。\n");
+                return notify_fail("你現在真氣太弱，使不出「陰陽合一」。\n");
 
         if((int)me->query_temp("tzzf") && userp(me)) 
                 return notify_fail("你正在使用掌刀。\n");
 
 	j = me->query_skill("super-strike", 1)/3;
-        message_vision(HIW"\n$N退了两步，突然身子微侧，紧跟着身形猛进直击$n！\n"NOR, me, target);
+        message_vision(HIW"\n$N退了兩步，突然身子微側，緊跟著身形猛進直擊$n！\n"NOR, me, target);
 
         me->add_temp("apply/strike", j);
         me->add_temp("apply/damage", j/2);
@@ -67,29 +67,29 @@ int perform(object me, object target)
         me->add_temp("apply/damage", -j/2);
         me->add_temp("apply/attack", -j);
         if( j * 4 > 250 && random(2) ){
-        	tell_object(me, HIY"\n紧接着你掌势一变，开始凝聚秘传的“天雷气”……\n"NOR);
+        	tell_object(me, HIY"\n緊接著你掌勢一變，開始凝聚秘傳的“天雷氣”……\n"NOR);
         	me->start_call_out( (: call_other, __DIR__"tianlei", "tianlei_hit", me, 2 :), 1 );
         }
         me->add("neili", -500);
         me->add("jingli", -100);
-        me->start_perform(5,"「阴阳合一」");
+        me->start_perform(5,"「陰陽合一」");
         return 1;
 }
 
 int help(object me)
 {
-        write(WHT"\n铁掌掌法「阴阳合一」："NOR"\n");
+        write(WHT"\n鐵掌掌法「陰陽合一」："NOR"\n");
         write(@HELP
-        这是裘千仞铁掌功的十三绝招之一，叫作「阴阳合一」，最是猛恶无比。
-        而且据帮中护法说，还看过帮主在此招之后出过一式杀招！
+        這是裘千仞鐵掌功的十三絕招之一，叫作「陰陽合一」，最是猛惡無比。
+        而且據幫中護法說，還看過幫主在此招之後出過一式殺招！
         
-        要求：  内力 1000 以上；      
-                最大内力 1500 以上；
+        要求：  內力 1000 以上；      
+                最大內力 1500 以上；
                 精力 100 以上；  
-                后天膂力 33 以上；
-                铁掌掌法等级 140 以上；
-                归元吐纳法等级 140 以上；    
-                且手无兵器。
+                後天膂力 33 以上；
+                鐵掌掌法等級 140 以上；
+                歸元吐納法等級 140 以上；    
+                且手無兵器。
 HELP
         );
         return 1;

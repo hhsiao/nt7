@@ -11,10 +11,10 @@ inherit F_QUESTER;
 void create()
 {
         set_name("高老者", ({ "gao laozhe", "gao" }));
-        set("title", HIR"华山第十二代长老"NOR);
+        set("title", HIR"華山第十二代長老"NOR);
         set("long",
-"他就是华山的长老高老者。一副浑不在乎的模样，开朗乐天，万事不萦怀，\n"
-"但事事追随他的师兄矮老者。\n");
+"他就是華山的長老高老者。一副渾不在乎的模樣，開朗樂天，萬事不縈懷，\n"
+"但事事追隨他的師兄矮老者。\n");
         set("gender", "男性");
         set("age", 65);
         set("attitude", "peaceful");
@@ -66,11 +66,11 @@ void create()
         prepare_skill("cuff", "poyu-quan");
         prepare_skill("strike", "hunyuan-zhang");
 
-        create_family("华山派", 12, "弟子");
+        create_family("華山派", 12, "弟子");
 
         set("inquiry", ([
-                "紫霞神功" : "那是本门无上的内功心法。据说紫霞有个大秘密，可惜已失传多年了。\n",
-                "密室"     : "你胡说八道些甚麽？\n",
+                "紫霞神功" : "那是本門無上的內功心法。據說紫霞有個大秘密，可惜已失傳多年了。\n",
+                "密室"     : "你胡說八道些甚麼？\n",
         ]));
 
         set("chat_chance_combat", 60);
@@ -93,41 +93,41 @@ void attempt_apprentice(object ob)
         if (! permit_recruit(ob))
                 return;
 
-        if (ob_fam == "华山派" && ob->query_skill("zixia-shengong", 1) < 100)
+        if (ob_fam == "華山派" && ob->query_skill("zixia-shengong", 1) < 100)
         {
-                command("say 我看你的紫霞神功还没学到家吧，本派有本的"
-                        "紫霞秘籍，你可曾研读？");
+                command("say 我看你的紫霞神功還沒學到家吧，本派有本的"
+                        "紫霞秘籍，你可曾研讀？");
                 return;
         }
 
         if ((int)ob->query_skill("sword", 1) < 100)
         {
-                command("say 你的剑法还没学到家，快回去练好基本剑法。");
+                command("say 你的劍法還沒學到家，快回去練好基本劍法。");
                 return;
         }
 
-        if (ob_fam == "华山派" && (int)ob->query_skill("huashan-sword", 1) < 100 ||
-            ob_fam == "华山剑宗" && (int)ob->query_skill("kuangfeng-jian", 1) < 100)
+        if (ob_fam == "華山派" && (int)ob->query_skill("huashan-sword", 1) < 100 ||
+            ob_fam == "華山劍宗" && (int)ob->query_skill("kuangfeng-jian", 1) < 100)
         {
-                command("say 华山剑法和狂风剑法是本派弟子必须精通的武技，多练练"
-                        "本门剑术。");
+                command("say 華山劍法和狂風劍法是本派弟子必須精通的武技，多練練"
+                        "本門劍術。");
                 return;
         }
 
         if( query("shen", ob)<10000 )
         {
-                command("say 我华山派乃是堂堂名门正派，对弟子要求极"
-                        "严，你还得多作些行侠仗义的事！");
+                command("say 我華山派乃是堂堂名門正派，對弟子要求極"
+                        "嚴，你還得多作些行俠仗義的事！");
                 return;
         }
 
-        if (ob_fam == "华山剑宗")
+        if (ob_fam == "華山劍宗")
         {
-                command("say 你啊你... 唉！也算是剑气之争的受害者，罢了，不提也罢。");
+                command("say 你啊你... 唉！也算是劍氣之爭的受害者，罷了，不提也罷。");
                 delete("family", ob);
         }
 
-        command("say 好吧，我就收下你了，光大我们华山派还要靠你们这些后生啊。");
+        command("say 好吧，我就收下你了，光大我們華山派還要靠你們這些後生啊。");
         command("recruit "+query("id", ob));
         if( query("class", ob) != "fighter" )
                 set("class", "fighter", ob);

@@ -2,13 +2,13 @@
 inherit ITEM;
 void create()
 {
-        set_name(HIY"罗盘"NOR, ({ "luo pan", "luo", "pan", "compass" }));
+        set_name(HIY"羅盤"NOR, ({ "luo pan", "luo", "pan", "compass" }));
         set("weight", 1000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "只");
-                set("long", "一只精工制造的罗盘，可以定位(dingwei)，是航海者的必备物品。\n" NOR);
+                set("long", "一隻精工製造的羅盤，可以定位(dingwei)，是航海者的必備物品。\n" NOR);
                 set("value", 5000);
         }
         setup();
@@ -27,19 +27,19 @@ int do_dingwei()
     me = this_player();
     where = environment(me);
     if( query("outdoors", where) != "大海" )
-        return notify_fail("你又没出海，用罗盘干嘛？\n");
+        return notify_fail("你又沒出海，用羅盤幹嘛？\n");
     if( query("exits/out", where) || query("boat_of", where) )
-           return notify_fail("船还没开呢。\n");     
-    message_vision("$N将$n托在掌心，仔细地察看着现在的方位。\n",me,this_object());
-    msg = "\n罗盘显示你现在的位于黄道带";
+           return notify_fail("船還沒開呢。\n");     
+    message_vision("$N將$n託在掌心，仔細地察看著現在的方位。\n",me,this_object());
+    msg = "\n羅盤顯示你現在的位於黃道帶";
     stepe=query_temp("stepe", where);
     stepw=query_temp("stepw", where);
     steps=query_temp("steps", where);
     stepn=query_temp("stepn", where);
-    if(stepe) msg += "以东"+chinese_number(stepe)+"个距离";
-    if(stepw) msg += "以西"+chinese_number(stepw)+"个距离";
-    if(steps) msg += "、以南"+chinese_number(steps)+"个距离";
-    if(stepn) msg += "、以北"+chinese_number(stepn)+"个距离";
+    if(stepe) msg += "以東"+chinese_number(stepe)+"個距離";
+    if(stepw) msg += "以西"+chinese_number(stepw)+"個距離";
+    if(steps) msg += "、以南"+chinese_number(steps)+"個距離";
+    if(stepn) msg += "、以北"+chinese_number(stepn)+"個距離";
     if(!stepe && !stepw && !steps && !stepn) msg += "正中";
     msg += "的地方。\n"; 
     write(msg);

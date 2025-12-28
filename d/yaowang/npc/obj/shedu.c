@@ -7,7 +7,7 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一滴浊白色的蛇毒。\n");
+                set("long", "一滴濁白色的蛇毒。\n");
                 set("unit", "滴");
                 set("yaowang", 1);
                 set("value", 1000);

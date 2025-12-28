@@ -8,16 +8,16 @@ mixed ask_back();
 
 void create()
 {
-        set_name("何员外", ({ "he yuanwai", "he" }));
+        set_name("何員外", ({ "he yuanwai", "he" }));
         set("shen_type", -1);
 
         set("gender", "男性" );
         set("age", 53);
-        set("long", "何员外是扬州城里的首富，和当地的官绅都有很深的交情。据说他还和桃花岛有些关系。\n");
+        set("long", "何員外是揚州城裡的首富，和當地的官紳都有很深的交情。據說他還和桃花島有些關係。\n");
         set("combat_exp", 400);
         set("attitude", "friendly");
         set("inquiry", ([
-                "桃花盛开" : (: ask_back :),
+                "桃花盛開" : (: ask_back :),
         ]));
         setup();
 
@@ -43,7 +43,7 @@ void init()
 void greeting(object ob)
 {
         if( !ob || environment(ob) != environment() ) return;
-        say("何员外奇怪地对你说道：“你这人怎么随随便便地就跑到我的园子里来？”\n");
+        say("何員外奇怪地對你說道：“你這人怎麼隨隨便便地就跑到我的園子裡來？”\n");
 }
 
 mixed ask_back()
@@ -51,21 +51,21 @@ mixed ask_back()
         object me;
 
         me = this_player();
-        if( query("family/family_name", me) != "桃花岛" )
+        if( query("family/family_name", me) != "桃花島" )
         {
-                message_vision("$N自顾自的干活，好象没有听见$n在说什么。\n",
+                message_vision("$N自顧自的幹活，好象沒有聽見$n在說什麼。\n",
                                this_object(), me);
                 return -1;
         }
 
-        message_sort("$N猛然抬起头来，上上下下打量了一会"
-                     "儿$n，眼角微微一动，立刻放下手中的"
-                     "活计，从内室领出一只白雕，说道：你"
-                     "乘坐这只白雕回桃花岛吧。\n",
+        message_sort("$N猛然抬起頭來，上上下下打量了一會"
+                     "兒$n，眼角微微一動，立刻放下手中的"
+                     "活計，從內室領出一隻白雕，說道：你"
+                     "乘坐這隻白雕回桃花島吧。\n",
                      this_object(), me);
 
-        tell_object(me, HIW "你坐上白雕飞了很久，越过大海，忽然眼前一亮，"
-                    "你已经来到了桃花岛。\n" NOR);
+        tell_object(me, HIW "你坐上白雕飛了很久，越過大海，忽然眼前一亮，"
+                    "你已經來到了桃花島。\n" NOR);
         me->move("/d/taohua/jingshe");
         return -1;
 }

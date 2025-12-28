@@ -11,46 +11,46 @@ int perform(object me,object target)
         if( !target ) target = offensive_target(me);
 
         if( !target || !me->is_fighting(target) )
-                return notify_fail("拳刀合一只能对战斗中的对手使用。\n");                
+                return notify_fail("拳刀合一隻能對戰鬥中的對手使用。\n");                
 
         if( (int)me->query_skill("yijin-jing", 1) < 100 )
-                return notify_fail("你的内功还未练成，不能使用拳刀合一！\n");    
+                return notify_fail("你的內功還未練成，不能使用拳刀合一！\n");    
 
         if( (int)me->query_skill("wenjia-daofa", 1) < 100 )
-                return notify_fail("你的刀法还未练成，不能使用拳刀合一！\n");        
+                return notify_fail("你的刀法還未練成，不能使用拳刀合一！\n");        
 
         if (!weapon
          || weapon->query("skill_type") != "blade"
          || me->query_skill_mapped("blade") != "wenjia-daofa")
-                return notify_fail("你手里没有刀，无法使用拳刀合一！\n");
+                return notify_fail("你手裡沒有刀，無法使用拳刀合一！\n");
 
         if((int)me->query_skill("wenjia-quan", 1) < 100 )
-                return notify_fail("你的拳法还未练成，不能使用拳刀合一！\n");  
+                return notify_fail("你的拳法還未練成，不能使用拳刀合一！\n");  
 
         if(me->query_skill_mapped("force") != "yijin-jing")
-                return notify_fail("你的内功不对，无法使用拳刀合一！\n");      
+                return notify_fail("你的內功不對，無法使用拳刀合一！\n");      
 
         if(me->query_skill_mapped("cuff") != "wenjia-quan" 
          || me->query_skill_prepared("cuff") != "wenjia-quan")
-                return notify_fail("你没有用掌，无法使用拳刀合一！\n");
+                return notify_fail("你沒有用掌，無法使用拳刀合一！\n");
 
         if(me->query_skill_mapped("parry") != "wenjia-quan")
          if(me->query_skill_mapped("parry") != "wenjia-daofa")
-                return notify_fail("你的招架功夫不对，无法使用拳刀合一！\n");
+                return notify_fail("你的招架功夫不對，無法使用拳刀合一！\n");
 
         if((int)me->query("max_neili") < 1200 )
-                return notify_fail("你现在内力修为不够，不能使用拳刀合一！\n");      
+                return notify_fail("你現在內力修為不夠，不能使用拳刀合一！\n");      
 
         if((int)me->query("neili") < 600 )
-                return notify_fail("你现在内力不足，不能使用拳刀合一！\n");      
+                return notify_fail("你現在內力不足，不能使用拳刀合一！\n");      
 
         if((int)me->query_skill("blade", 1) < 100 )
-                return notify_fail("你的基本刀法不够娴熟，不能在刀招中夹杂使用拳刀合一。\n");
+                return notify_fail("你的基本刀法不夠嫻熟，不能在刀招中夾雜使用拳刀合一。\n");
 
         if((int)me->query_skill("cuff", 1) < 100 )
-                return notify_fail("你的基本掌法不够娴熟，不能在刀招中夹杂使用拳刀合一。\n");     
+                return notify_fail("你的基本掌法不夠嫻熟，不能在刀招中夾雜使用拳刀合一。\n");     
 
-        message_vision(HIC"\n$N大吼一声使出温家绝技「拳刀合一」，只见$P刀中带圈,狂风暴雨般攻向$n！\n"NOR, me,target);
+        message_vision(HIC"\n$N大吼一聲使出溫家絕技「拳刀合一」，只見$P刀中帶圈,狂風暴雨般攻向$n！\n"NOR, me,target);
         me->add("neili", -200); 
         me->add("jingli", -50);
         me->start_perform(4,"拳刀合一");  

@@ -5,7 +5,7 @@ void create()
         set_name("白衣少女", ({ "shao nv", "shao", "nv" }));
         set("gender", "女性" );
         set("age", 18);
-        set("long", "这是一个聪明伶俐的白衣少女。\n");
+        set("long", "這是一個聰明伶俐的白衣少女。\n");
         set("shen_type", -1);
         set("combat_exp", 1000);
         set("str", 20);

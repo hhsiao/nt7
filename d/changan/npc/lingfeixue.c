@@ -6,12 +6,12 @@ inherit BUNCHER;
 
 void create()
 {
-        set_name("凌飞雪", ({ "ling feixue", "feixue", "ling" }) );
+        set_name("凌飛雪", ({ "ling feixue", "feixue", "ling" }) );
         set("gender", "女性" );
         set("title",HIY "千金一笑" NOR);
         set("age", 23);
         set("long", 
-        "凌飞雪原是一个青楼名妓，后来被当朝一位大官看中，据说这个\n群玉楼也是那位官员给她开的。");
+        "凌飛雪原是一個青樓名妓，後來被當朝一位大官看中，據說這個\n群玉樓也是那位官員給她開的。");
         set("str", 40);
         set("dex", 40);
         set("con", 40);
@@ -30,16 +30,16 @@ void create()
         set("max_neili", 500);
         set("attitude", "friendly");
         set("inquiry", ([
-        "name" : "我就是曾经“一笑博千金”的长安第一美女凌飞雪。",
-        "here" : "这儿就是长安城里最最有名的群玉楼。",
+        "name" : "我就是曾經“一笑博千金”的長安第一美女凌飛雪。",
+        "here" : "這兒就是長安城裡最最有名的群玉樓。",
         ]) );
 
         setup();
         set("chat_chance", 15);
         set("chat_msg", ({
-                "凌飞雪得意地说道：当初我妩媚一笑，也不知有多少人曾经拜倒在我裙下。\n",
-                "凌飞雪若有所思的道：也不知到湘湘今天肯不肯出来接客。\n",
-                "凌飞雪对你说道：这位客官，你来我们群玉楼就算对了，您想要什么样的姑娘都有。\n",
+                "凌飛雪得意地說道：當初我嫵媚一笑，也不知有多少人曾經拜倒在我裙下。\n",
+                "凌飛雪若有所思的道：也不知到湘湘今天肯不肯出來接客。\n",
+                "凌飛雪對你說道：這位客官，你來我們群玉樓就算對了，您想要什麼樣的姑娘都有。\n",
         }) );
 
         carry_object("/d/changan/npc/obj/skirt")->wear();
@@ -67,17 +67,17 @@ void greeting(object me)
         if( query("class", me) == "bonze" )
         {
                 command("say 呵！" + RANK_D->query_respect(me) +
-                        "也来光顾我们群玉楼啊。");
-                command("say 快请上楼吧！");
+                        "也來光顧我們群玉樓啊。");
+                command("say 快請上樓吧！");
         }
 
         if( query("gender", me) == "女性" )
         {
-                command("say 哎呀，这位" + RANK_D->query_respect(me) +
-                        "也来逛窑子，成何体同。");
+                command("say 哎呀，這位" + RANK_D->query_respect(me) +
+                        "也來逛窯子，成何體同。");
                 command("sigh");
         }
-        command("say 楼上的姑娘们，有客人来了！");
+        command("say 樓上的姑娘們，有客人來了！");
         return ;
 }
 
@@ -86,7 +86,7 @@ void accept_kill(object me)
         object ob;
         if (is_fighting()) return;
         if (query("called")) return;
-        command("say 要杀人了，快来人救命啊！");
+        command("say 要殺人了，快來人救命啊！");
         ob = present("bao biao");
         if (! ob)
         {
@@ -94,9 +94,9 @@ void accept_kill(object me)
                 ob=new("/d/changan/npc/baobiao");
                 ob->move(environment());
         }
-        message_vision(HIC "\n忽然从门外冲进来几个保镖，对$N"
-                       HIC "大喊一声“干什么？在这儿闹事，想"
-                       "找死吗？\n\n"NOR, me);
+        message_vision(HIC "\n忽然從門外衝進來幾個保鏢，對$N"
+                       HIC "大喊一聲“幹什麼？在這兒鬧事，想"
+                       "找死嗎？\n\n"NOR, me);
         ob->kill_ob(me);
         ob->set_leader(me);
         me->kill_ob(ob);

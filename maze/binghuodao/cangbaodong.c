@@ -2,10 +2,10 @@ inherit __DIR__"binghuodao";
 
 void create()
 {
-        set("short", "藏宝洞");
+        set("short", "藏寶洞");
         set("long",
-"这里是一处幽深的洞穴，四处是断裂白骨，似乎曾经有人来过。\n"
-"不知从何处传来阵阵低沉的吼声，令人毛骨悚然。\n"
+"這裡是一處幽深的洞穴，四處是斷裂白骨，似乎曾經有人來過。\n"
+"不知從何處傳來陣陣低沉的吼聲，令人毛骨悚然。\n"
 );
         set("exits", ([ 
                 "west"   : __DIR__"shenmishandong",

@@ -1,4 +1,4 @@
-// yingke.c 盘龙居迎客厅
+// yingke.c 盤龍居迎客廳
 
 #include <room.h>
 
@@ -7,18 +7,18 @@ inherit ROOM;                                   /* EXAMPLE */
 
 void create()
 {
-        set("short", "迎客厅");             /* EXAMPLE */
-//**    set("short", "ROOM_NAME迎客厅");
+        set("short", "迎客廳");             /* EXAMPLE */
+//**    set("short", "ROOM_NAME迎客廳");
         set("long", @LONG
-这里是盘龙居的主人迎接八方来客的地方。大凡客人来拜见主人，少
-不得在这里寒暄叙话，了尽仰慕之情。东面通往一个茶室，是主人陪同客
-人品尝天下名茶之处。
+這裡是盤龍居的主人迎接八方來客的地方。大凡客人來拜見主人，少
+不得在這裡寒暄敘話，了盡仰慕之情。東面通往一個茶室，是主人陪同客
+人品嚐天下名茶之處。
 LONG );
 
-        set("default_long", "这里是ROOM_NAME的主人ROOM_OWNER迎接八方来" /* EXAMPLE */
-                            "客的地方。大凡客人来拜见ROOM_OWNER，少不"  /* EXAMPLE */
-                            "得在这里寒暄叙话，了尽仰慕之情。东面通往"  /* EXAMPLE */
-                            "一个茶室，是主人陪同客人品尝天下名茶之处"  /* EXAMPLE */
+        set("default_long", "這裡是ROOM_NAME的主人ROOM_OWNER迎接八方來" /* EXAMPLE */
+                            "客的地方。大凡客人來拜見ROOM_OWNER，少不"  /* EXAMPLE */
+                            "得在這裡寒暄敘話，了盡仰慕之情。東面通往"  /* EXAMPLE */
+                            "一個茶室，是主人陪同客人品嚐天下名茶之處"  /* EXAMPLE */
                             "。" );                                     /* EXAMPLE */
                                                                         /* EXAMPLE */
 
@@ -28,7 +28,7 @@ LONG );
                 "east"   : __DIR__"chashi",
         ]));
 
-        create_door("east", "木门", "west", DOOR_CLOSED);
+        create_door("east", "木門", "west", DOOR_CLOSED);
 
 //**    set("objects", ([
 //**            "/d/room/roomnpc/yahuan" : 2,

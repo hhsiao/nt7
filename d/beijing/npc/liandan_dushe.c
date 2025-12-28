@@ -4,7 +4,7 @@ inherit SNAKE;
 void create()
 {
         set_name(HIG "毒蛇" NOR, ({ "du she", "du", "she" }));
-        set("long", HIG "一支昂首吐信的毒蛇正虎视眈眈地盯著你。\n" NOR);
+        set("long", HIG "一支昂首吐信的毒蛇正虎視眈眈地盯著你。\n" NOR);
 
         set("age", 1);
         set("str", 15);
@@ -38,13 +38,13 @@ int convert(string arg)
         object ob;
 
         if (arg!="snake" && arg!="du she") return 0;
-        if( query("family/family_name", me) != "欧阳世家" )
-                return notify_fail("你不能化蛇为杖。\n");
+        if( query("family/family_name", me) != "歐陽世家" )
+                return notify_fail("你不能化蛇為杖。\n");
         if (random(me->query_skill("training",1)) <20) {
                 kill_ob(me);
                 return 1;
         }
-        message_vision("$N左手按住毒蛇的头，右手轻抚其七寸，口中念念有词，片刻间将蛇化为一根蛇杖。\n",
+        message_vision("$N左手按住毒蛇的頭，右手輕撫其七寸，口中唸唸有詞，片刻間將蛇化為一根蛇杖。\n",
                 me,);
                 ob = new("/d/baituo/obj/shezhang");
         ob->move(environment(this_object()));

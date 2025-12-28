@@ -6,8 +6,8 @@ void setup()
 {
         set_name("[1;36m白虎[2;37;0m[2;37;0m", ({"laohu"}));        
         set("gender", "男性");                
-        set("long", "上古神兽[2;37;0m
-它是伏西牛逼的魔幻兽。
+        set("long", "上古神獸[2;37;0m
+它是伏西牛逼的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

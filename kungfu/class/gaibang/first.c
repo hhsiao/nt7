@@ -13,7 +13,7 @@ string zm_apply()
 {
         object ob = this_player();
         if ( !query("family/beggarlvl", ob) )
-                return "非丐帮有袋弟子，不能胜任掌门弟子一职。";
+                return "非丐幫有袋弟子，不能勝任掌門弟子一職。";
         return ::zm_apply();
 }
 

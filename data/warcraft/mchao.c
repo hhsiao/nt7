@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("[1;37m踏雪[1;34m乌骓[2;37;0m[2;37;0m", ({"baima"}));        
+        set_name("[1;37m踏雪[1;34m烏騅[2;37;0m[2;37;0m", ({"baima"}));        
         set("gender", "男性");                
-        set("long", "这匹马全身乌黑宛如锦缎，唯有四蹄白色，追风逐电，龙吟虎相。[2;37;0m
-它是马超的魔幻兽。
+        set("long", "這匹馬全身烏黑宛如錦緞，唯有四蹄白色，追風逐電，龍吟虎相。[2;37;0m
+它是馬超的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");
         set("owner", "mchao");
-        set("owner_name", "马超");
+        set("owner_name", "馬超");
         set_temp("owner", "mchao");
-        set_temp("owner_name", "马超");
+        set_temp("owner_name", "馬超");
         ::setup();
 }

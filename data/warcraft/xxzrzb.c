@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("老马[2;37;0m[2;37;0m", ({"laoma"}));        
+        set_name("老馬[2;37;0m[2;37;0m", ({"laoma"}));        
         set("gender", "男性");                
-        set("long", "老马[2;37;0m
-它是凌凌妖的魔幻兽。
+        set("long", "老馬[2;37;0m
+它是凌凌妖的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

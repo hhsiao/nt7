@@ -15,19 +15,19 @@ int perform(object me, object target)
         if( !target ) target = offensive_target(me);
 
         if( !target || !target->is_character() || !me->is_fighting(target) )
-                return notify_fail("「追命」只能对战斗中的对手使用。\n");
+                return notify_fail("「追命」只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me) )
          || query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
                 
         if( (int)me->query_skill("jinshe-jian", 1) < 150 )
-                return notify_fail("你的金蛇剑法不够娴熟，不会使用。\n");
+                return notify_fail("你的金蛇劍法不夠嫻熟，不會使用。\n");
                                 
         if( query("neili", me)<800 )
-                return notify_fail("你现在内力太弱，不能使用「追命」。\n");
+                return notify_fail("你現在內力太弱，不能使用「追命」。\n");
                         
-        msg = HIY "$N微微一笑，剑意若有若无，$n却感到莫大的压力。\n"NOR;
+        msg = HIY "$N微微一笑，劍意若有若無，$n卻感到莫大的壓力。\n"NOR;
 
         me->want_kill(target);
         if( !target->is_killing(me) ) 
@@ -46,13 +46,13 @@ int perform(object me, object target)
                 damage = (int)me->query_skill("jinshe-jian", 1) / 2;
                 
                 addn("neili", -400, me);
-                pmsg = HIR "只见$N剑走了个怪异的弧线，从不可思议的角度向$n杀去,\n$n只觉得背心一阵冰凉，呆呆地看着前胸的剑尖！\n" NOR;
+                pmsg = HIR "只見$N劍走了個怪異的弧線，從不可思議的角度向$n殺去,\n$n只覺得背心一陣冰涼，呆呆地看著前胸的劍尖！\n" NOR;
                 
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 40, pmsg);
                 me->start_busy(2);
         } else 
         {
-                msg += CYN"可是$p猛地向前一跃,跳出了$P的攻击范围。\n"NOR;
+                msg += CYN"可是$p猛地向前一躍,跳出了$P的攻擊範圍。\n"NOR;
                 addn("neili", -200, me);
                 me->start_busy(4);
         }

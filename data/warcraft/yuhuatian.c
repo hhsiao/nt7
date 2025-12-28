@@ -4,12 +4,12 @@
 
 void setup()
 {
-        set_name("[1;36m雨师[2;37;0m[2;37;0m", ({"yushi"}));        
+        set_name("[1;36m雨師[2;37;0m[2;37;0m", ({"yushi"}));        
         set("gender", "男性");                
-        set("long", "没什么特别的[2;37;0m
-它是雨化田的魔幻兽。
+        set("long", "沒什麼特別的[2;37;0m
+它是雨化田的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "yuhuatian");
         set("owner_name", "雨化田");

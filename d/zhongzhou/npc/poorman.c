@@ -2,10 +2,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("穷汉", ({ "qong han","han"}) );
+        set_name("窮漢", ({ "qong han","han"}) );
         set("gender", "男性" );
         set("age", 33);
-        set("long", "一个穷困潦倒的汉子。\n");
+        set("long", "一個窮困潦倒的漢子。\n");
         set("attitude", "friendly");
         set("combat_exp", 5000);
         set("shen_type", 1);

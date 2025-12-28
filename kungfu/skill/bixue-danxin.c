@@ -3,13 +3,13 @@ inherit SKILL;
 string type() { return "knowledge"; } 
 
 int is_fmsk() { return 1; }
-string family_name() { return "丐帮"; }
+string family_name() { return "丐幫"; }
 
 int valid_learn(object me)
 {        
 
         if( query("family/family_name", me) != family_name() )
-                return notify_fail("碧血丹心只能丐帮弟子方可研习。\n");
+                return notify_fail("碧血丹心只能丐幫弟子方可研習。\n");
 
         return 1;
 }

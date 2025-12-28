@@ -3,10 +3,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short",  "书房" );
+        set("short",  "書房" );
         set("long", @LONG
-这是一间整洁明亮的书房，四壁都是书架，上面摆满了各
-种书籍，中间一张桌子，放着笔墨纸印。
+這是一間整潔明亮的書房，四壁都是書架，上面擺滿了各
+種書籍，中間一張桌子，放著筆墨紙印。
 LONG);
         set("exits", ([
                 "east"   :__DIR__"xizoulang1"

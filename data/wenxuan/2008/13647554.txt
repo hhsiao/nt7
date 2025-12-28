@@ -6,8 +6,8 @@ board : 薇大呆的留言板
 file : /data/analecta/2008/13647554.txt
 add_time : 1211022901
 content :
-{带上fire,华山舍身崖jump down,yun recover,
-有路就走，然后jump down,走到移花宫卧室;
+{帶上fire,華山捨身崖jump down,yun recover,
+有路就走，然後jump down,走到移花宮臥室;
 {#8 push bed left,#5 push bed right,down};
 use fire,zou,pick book,is ok}
 [2;37;0m

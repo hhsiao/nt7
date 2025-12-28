@@ -8,7 +8,7 @@ void create()
 {
         set("short", "草地");
         set("long", @LONG
-这是荆州城外的草地。
+這是荊州城外的草地。
 LONG );
         set("outdoors", "xiangyang");
 

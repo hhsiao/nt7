@@ -5,10 +5,10 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("本参", ({ "ben can","can"}) );
+        set_name("本參", ({ "ben can","can"}) );
         set("gender", "男性" );
-        set("long", "他身材魁伟，为本因方丈的师兄。\n" );
-        set("title", "天龙寺第十七代僧人");
+        set("long", "他身材魁偉，為本因方丈的師兄。\n" );
+        set("title", "天龍寺第十七代僧人");
         set("class", "bonze");
         set("age", 49);
         set("shen_type", 1);
@@ -41,8 +41,8 @@ void create()
         set_skill("martial-cognize", 200); 
 
         set("inquiry" ,([
-                "六脉神剑谱" : "哼！\n",
-                "六脉神剑" :  "哼！\n",
+                "六脈神劍譜" : "哼！\n",
+                "六脈神劍" :  "哼！\n",
         ]));
 
         map_skill("force", "kurong-changong");

@@ -7,7 +7,7 @@ void setup()
         set_name("麒麟[2;37;0m[2;37;0m", ({"srfdaa"}));        
         set("gender", "男性");                
         set("long", "BBBB[2;37;0m
-它是冷刀的魔幻兽。
+它是冷刀的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

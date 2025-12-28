@@ -4,7 +4,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return HIW "五轮连转" NOR; }
+string name() { return HIW "五輪連轉" NOR; }
 
 inherit F_SSERVER;
 
@@ -19,35 +19,35 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me) )
             || query("skill_type", weapon) != "hammer" )
-                return notify_fail("你所使用的武器不对，难以施展" + name() + "。\n");
+                return notify_fail("你所使用的武器不對，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("hammer") != "riyue-lun")
-                return notify_fail("你没有激发日月轮法，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發日月輪法，難以施展" + name() + "。\n");
 
         if ((int)me->query_skill("riyue-lun", 1) < 150)
-                return notify_fail("你日月轮法火候不足，难以施展" + name() + "。\n");
+                return notify_fail("你日月輪法火候不足，難以施展" + name() + "。\n");
 
         if ((int)me->query_skill("force") < 250)
-                return notify_fail("你的内功火候不足，难以施展" + name() + "。\n");
+                return notify_fail("你的內功火候不足，難以施展" + name() + "。\n");
 
         if( query("max_neili", me)<3000 )
-                return notify_fail("你的内力修为不足，难以施展" + name() + "。\n");
+                return notify_fail("你的內力修為不足，難以施展" + name() + "。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你现在的真气不足，难以施展" + name() + "。\n");
+                return notify_fail("你現在的真氣不足，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         wp = weapon->name();
 
-        msg = HIY "$N" HIY "嗔目大喝，施展出日月轮法「" HIW "五轮连转"
-              HIY "」神技，蓦地将手中" + wp + HIY "飞掷\n而出，幻作数"
-              "道光芒，相互盘旋着压向$n" HIY "，招术煞为精奇！\n" NOR;
+        msg = HIY "$N" HIY "嗔目大喝，施展出日月輪法「" HIW "五輪連轉"
+              HIY "」神技，驀地將手中" + wp + HIY "飛擲\n而出，幻作數"
+              "道光芒，相互盤旋著壓向$n" HIY "，招術煞為精奇！\n" NOR;
         message_combatd(msg, me, target);
 
         if ((int)me->query_skill("longxiang-gong", 1) < 90)
@@ -55,7 +55,7 @@ int perform(object me, object target)
         else
                 count = me->query_skill("longxiang-gong", 1) / 2;
         
-        delta = ABILITY_D->check_ability(me, "power-ryl-lian"); // 门派ab
+        delta = ABILITY_D->check_ability(me, "power-ryl-lian"); // 門派ab
         if( delta ) count += count*delta/100;
         
         addn_temp("apply/attack", count, me);
@@ -72,28 +72,28 @@ int perform(object me, object target)
                         switch (i)
                         {
                         case 0:
-                                msg = WHT "突然间锡轮从日月金轮中分离"
-                                      "开来，化作一道灰芒朝$n" WHT "砸"
+                                msg = WHT "突然間錫輪從日月金輪中分離"
+                                      "開來，化作一道灰芒朝$n" WHT "砸"
                                       "去。\n" NOR;
                                 break;
                         case 1:
-                                msg = HIR "突然间铁轮从日月金轮中分离"
-                                      "开来，化作一道红芒朝$n" HIR "砸"
+                                msg = HIR "突然間鐵輪從日月金輪中分離"
+                                      "開來，化作一道紅芒朝$n" HIR "砸"
                                       "去。\n" NOR;
                                 break;
                         case 2:
-                                msg = YEL "突然间铜轮从日月金轮中分离"
-                                      "开来，化作一道黄芒朝$n" YEL "砸"
+                                msg = YEL "突然間銅輪從日月金輪中分離"
+                                      "開來，化作一道黃芒朝$n" YEL "砸"
                                       "去。\n" NOR;
                                 break;
                         case 3:
-                                msg = HIW "突然间银轮从日月金轮中分离"
-                                      "开来，化作一道银芒朝$n" HIW "砸"
+                                msg = HIW "突然間銀輪從日月金輪中分離"
+                                      "開來，化作一道銀芒朝$n" HIW "砸"
                                       "去。\n" NOR;
                                 break;
                         default:
-                                msg = HIY "突然间金轮从日月金轮中分离"
-                                      "开来，化作一道金芒朝$n" HIY "砸"
+                                msg = HIY "突然間金輪從日月金輪中分離"
+                                      "開來，化作一道金芒朝$n" HIY "砸"
                                       "去。\n" NOR;
                                 break;
                         }

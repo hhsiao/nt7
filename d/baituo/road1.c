@@ -4,9 +4,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "小径");
+        set("short", "小徑");
         set("long", @LONG
-一条幽深的小径，北面传出「嘶嘶」的声响。
+一條幽深的小徑，北面傳出「嘶嘶」的聲響。
 LONG );
         set("exits", ([ 
                 "north" : __DIR__"barn",

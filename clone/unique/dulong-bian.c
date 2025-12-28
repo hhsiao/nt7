@@ -1,4 +1,4 @@
-// dulong-bian.c 毒龙鞭 
+// dulong-bian.c 毒龍鞭 
 
 #include <weapon.h>
 #include <ansi.h>
@@ -7,7 +7,7 @@ inherit WHIP;
 
 void create()
 {
-        set_name("毒龙鞭",({ "dulong bian", "bian", "whip", "dulong" }) );
+        set_name("毒龍鞭",({ "dulong bian", "bian", "whip", "dulong" }) );
         set_weight(700);
         /*if( clonep() )
                 set_default_object(__FILE__);
@@ -19,9 +19,9 @@ void create()
                 set("poison_applied", 300);
                 set("material", "leather");
                 set("long", 
-                "这是一条烂银也似的银色软鞭，长达四丈有余，鞭头装着十多只明晃晃的尖利倒钩。\n");
-                set("wield_msg", "$N「唰」的一声从腰后抽出一柄$n握在手中。\n");
-                set("unwield_msg", "$N将手中的$n别回腰后。\n");
+                "這是一條爛銀也似的銀色軟鞭，長達四丈有餘，鞭頭裝著十多隻明晃晃的尖利倒鉤。\n");
+                set("wield_msg", "$N「唰」的一聲從腰後抽出一柄$n握在手中。\n");
+                set("unwield_msg", "$N將手中的$n別回腰後。\n");
         }
         init_whip(50);
         setup();

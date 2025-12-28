@@ -4,7 +4,7 @@ void create()
 {
         set("short", "小溪");
         set("long",@LONG
-这是神龙岛东南的一处小溪。
+這是神龍島東南的一處小溪。
 LONG);
 
 	set("exits", ([

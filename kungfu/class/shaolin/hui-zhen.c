@@ -14,8 +14,8 @@ void create()
                 "zunzhe",
         }));
         set("long",
-                "他是一位两鬓斑白的老僧，身穿一袭青布镶边袈裟。他身材略高，\n"
-                "太阳穴微凸，双目炯炯有神。\n"
+                "他是一位兩鬢斑白的老僧，身穿一襲青布鑲邊袈裟。他身材略高，\n"
+                "太陽穴微凸，雙目炯炯有神。\n"
         );
 
         set("gender", "男性");
@@ -92,7 +92,7 @@ void init()
             mine["family_name"] != "少林派" ||
             ! present("shou yu", me))
         {
-                  command("say 大胆狂徒，竟敢闯入藏经阁，看招!\n");
+                  command("say 大膽狂徒，竟敢闖入藏經閣，看招!\n");
                   kill_ob(me);
         }
 }

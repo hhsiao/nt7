@@ -13,13 +13,13 @@ int do_not();
 
 void create()
 {
-        set("short", "巫师会议室");
+        set("short", "巫師會議室");
         set("long", @LONG
-这里就是泥潭巫师的会议室所在。刚粉刷过的四周墙壁上挂着泥
-潭㈠ 巫师画像，分别有：高处不胜寒(lonely)、择明(ken)、安全中
-心(sinb)；泥潭㈡巫师画像：高处不胜寒(lonely)、一人两角(yezh)；
-泥潭㈢ 巫师画像：高处不胜寒(lonely)、风飞(wind)。 屋子的正中
-央放着一张楠木桌椅，是泥潭巫师组用来开会用的。
+這裡就是泥潭巫師的會議室所在。剛粉刷過的四周牆壁上掛著泥
+潭㈠ 巫師畫像，分別有：高處不勝寒(lonely)、擇明(ken)、安全中
+心(sinb)；泥潭㈡巫師畫像：高處不勝寒(lonely)、一人兩角(yezh)；
+泥潭㈢ 巫師畫像：高處不勝寒(lonely)、風飛(wind)。 屋子的正中
+央放著一張楠木桌椅，是泥潭巫師組用來開會用的。
 LONG );
 
         set("exits", ([ 
@@ -66,10 +66,10 @@ int do_start(string arg)
         me = this_player();
 
         if (wiz_level(me) < wiz_level("(arch)"))
-                return notify_fail("对不起，您无权召开巫师会议。\n");
+                return notify_fail("對不起，您無權召開巫師會議。\n");
 
         if ((int)query("meeting_trigger") != 0)
-                return notify_fail("会议正在进行中。\n");
+                return notify_fail("會議正在進行中。\n");
 
         set("meeting_trigger", 1);
 
@@ -81,17 +81,17 @@ int do_start(string arg)
                 if (player == me)
                         continue;
 
-                tell_object(player, sprintf(GRN "%s(%s)告诉你：巫师会议现在召开，请到巫师会议室开会。\n" NOR, 
+                tell_object(player, sprintf(GRN "%s(%s)告訴你：巫師會議現在召開，請到巫師會議室開會。\n" NOR, 
                                             query("name", me),query("id", me)));
                                             
                 player->move("/d/wizard/meeting_room.c");
-                message_vision("$N准时到达了会场。\n", player);       
-                set_temp("disable_type", HIW"<会议中>"NOR, player);
+                message_vision("$N準時到達了會場。\n", player);       
+                set_temp("disable_type", HIW"<會議中>"NOR, player);
         }
 
         set_temp("keeper", 1, me);
         
-        message_vision(HIW "\n$N大声宣布：“会议现在开始。”\n" NOR, me);
+        message_vision(HIW "\n$N大聲宣佈：“會議現在開始。”\n" NOR, me);
 
         log_file("meeting.log", sprintf("%s(%s) start the meeting on %s.\n", 
                                         me->name(1), geteuid(me),
@@ -106,7 +106,7 @@ int do_say(string msg)
         SAY_CMD->main(this_player(), msg);
         
         if ((int)query("meeting_trigger") == 1)        
-                log_file("meeting.log", sprintf(CYN "%s(%s)说道：" + msg + "\n" NOR,
+                log_file("meeting.log", sprintf(CYN "%s(%s)說道：" + msg + "\n" NOR,
                                                 this_player()->name(1), 
                                                 query("id", this_player())));
         return 1;
@@ -120,10 +120,10 @@ int do_over()
         me = this_player();
         
         if (! wizardp(me) || wiz_level(me) < wiz_level("(arch)"))
-                return notify_fail("你没有权力终止会议。\n");
+                return notify_fail("你沒有權力終止會議。\n");
                 
         if ((int)query("meeting_trigger") == 0)
-                return notify_fail("现在没有进行任何会议。\n");
+                return notify_fail("現在沒有進行任何會議。\n");
         
         delete("meeting_trigger");
  
@@ -132,11 +132,11 @@ int do_over()
                 if (! wizardp(player))
                         continue;
                         
-                if( query_temp("disable_type", player) == HIW"<会议中>"NOR )
+                if( query_temp("disable_type", player) == HIW"<會議中>"NOR )
                         delete_temp("disable_type", player);
         }
         
-        message_vision(HIW "\n$N大声宣布：“会议现在结束。”\n" NOR, me);
+        message_vision(HIW "\n$N大聲宣佈：“會議現在結束。”\n" NOR, me);
         log_file("meeting.log", sprintf("%s(%s) over the meeting on %s.\n", 
                                         me->name(1), geteuid(me), 
                                         ctime(time())));
@@ -147,7 +147,7 @@ int do_not()
 {
        if (query("meeting_trigger"))
        {
-               write("请专心开会！\n");
+               write("請專心開會！\n");
                return 1;
        }
        return 0;
@@ -156,7 +156,7 @@ int do_not()
 int valid_leave(object me, string dir)
 {
         if (query("meeting_trigger"))
-                return notify_fail("现在正在开会呢，你最好哪里也不要去。\n");
+                return notify_fail("現在正在開會呢，你最好哪裡也不要去。\n");
                 
         return ::valid_leave(me, dir);
 }

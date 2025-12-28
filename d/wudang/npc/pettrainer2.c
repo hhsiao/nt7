@@ -8,9 +8,9 @@ void create()
 {
         set_name("高人", ({ "gaoren" }) );
         set("gender", "男性" );
-        set("title","半仙兽");
+        set("title","半仙獸");
         set("age", 32);
-        set("long","一个得半道的老道士，对改善动物的体质别有妙技。\n");
+        set("long","一個得半道的老道士，對改善動物的體質別有妙技。\n");
         set("combat_exp", 5000);
         set("attitude", "friendly");
         set("chat_chance", 15);
@@ -37,11 +37,11 @@ void greeting(object ob)
         if( !ob || environment(ob) != environment() ) return;
         switch( random(5) ) {
                 case 0:
-                        say( "高人说道：这位" + RANK_D->query_respect(ob)
-                                + "，来陪我聊一聊？\n");
+                        say( "高人說道：這位" + RANK_D->query_respect(ob)
+                                + "，來陪我聊一聊？\n");
                         break;
                 case 1:
-                        say( "高人笑道：这不，生意来了！\n");
+                        say( "高人笑道：這不，生意來了！\n");
                         break;
         }
 }
@@ -53,10 +53,10 @@ int do_train(string arg)
         string which;
         me = this_player();
         if(me->is_busy())
-        return notify_fail("你上一个动作还没有完成。\n");
-        if(!arg) return notify_fail("高人道：＂你要什么呀？＂\n");
+        return notify_fail("你上一個動作還沒有完成。\n");
+        if(!arg) return notify_fail("高人道：＂你要什麼呀？＂\n");
         pet = present(arg,environment());
-        if(!objectp(pet)) return notify_fail("高人道：＂你要什么呀？＂\n");
+        if(!objectp(pet)) return notify_fail("高人道：＂你要什麼呀？＂\n");
         if( query("possessed", pet) != me )
         return notify_fail("高人道：＂那好象不是你的吧？＂\n");
         switch (random(2)){
@@ -68,15 +68,15 @@ int do_train(string arg)
         cost *= cost;
         if (cost > 200) cost = 200;
         gold = present("gold_money", me);
-        if(!gold) return notify_fail("你身上没有金子。\n");
+        if(!gold) return notify_fail("你身上沒有金子。\n");
         if((int) gold->query_amount() < cost)
-        return notify_fail("你身上没有"+chinese_number(cost)+"两金子。\n");
+        return notify_fail("你身上沒有"+chinese_number(cost)+"兩金子。\n");
         if( query("score", me)<cost )
-        return notify_fail("你的评价不够"+chinese_number(cost)+"点。\n");
+        return notify_fail("你的評價不夠"+chinese_number(cost)+"點。\n");
         addn(which, 20, pet);
         pet->save();
         gold->add_amount(-cost);
         addn("score", -cost, me);
-        command("say 这就得了！\n");
+        command("say 這就得了！\n");
         return 1;
 }

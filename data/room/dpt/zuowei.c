@@ -7,9 +7,9 @@ void create()
 {
         object ob;
 
-        set("short", "游戏基地左卫舍");
+        set("short", "遊戲基地左衛舍");
 	set ("long", @LONG
-这里是左卫舍，是看护游戏基地大门的家丁放哨的地方。 
+這裡是左衛舍，是看護遊戲基地大門的家丁放哨的地方。 
 LONG );
 
         set("exits", ([
@@ -48,8 +48,8 @@ LONG );
         }));
 
         set("room_owner", "多炮塔");
-        set("room_name", "游戏基地");
+        set("room_name", "遊戲基地");
         set("room_id", "gamebase");
         set("room_owner_id", "dpt");
-        set("room_position", "南海之滨");
+        set("room_position", "南海之濱");
 }

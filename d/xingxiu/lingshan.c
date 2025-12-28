@@ -10,14 +10,14 @@ void create()
         mixed *local;
         local = localtime(time());
 
-        set("short", "灵山");
+        set("short", "靈山");
         set("long", @LONG
-从天池起步，攀上高插云霄、四时积雪的灵山。一到雪线附近，
-一股秋菊似的幽香突然袭来，原来朵朵鲜花挺立在这寒风中，给冰雪
-世界增添了春色，这就是被叫作 "高山玫瑰" 的雪莲。雪莲单单生长
-在这气候严寒、土质贫瘠的冰山雪岭上，每年盛夏开花，一直开到深
-秋，不畏冰雪，即使在雪花纷飞中，依然吐苞放瓣，敢於同雪花争艳，
-最终与茎同枯而不落。
+從天池起步，攀上高插雲霄、四時積雪的靈山。一到雪線附近，
+一股秋菊似的幽香突然襲來，原來朵朵鮮花挺立在這寒風中，給冰雪
+世界增添了春色，這就是被叫作 "高山玫瑰" 的雪蓮。雪蓮單單生長
+在這氣候嚴寒、土質貧瘠的冰山雪嶺上，每年盛夏開花，一直開到深
+秋，不畏冰雪，即使在雪花紛飛中，依然吐苞放瓣，敢於同雪花爭豔，
+最終與莖同枯而不落。
 LONG );
         set("exits", ([
                 "down" : "/d/xingxiu/tianchi",
@@ -51,10 +51,10 @@ int valid_leave(object me, string dir)
         {
                 me->receive_damage("qi", 100);
                 me->receive_wound("qi",  100);
-                message_vision(HIR"$N一不小心脚下一滑，... 啊...！\n"NOR, me);
+                message_vision(HIR"$N一不小心腳下一滑，... 啊...！\n"NOR, me);
                 me->move("/d/xingxiu/tianchi");
-                tell_object(me, HIR"你从峰顶梭地一下滑了下来，只觉得浑身无处不疼，还受了几处伤。\n"NOR);
-                message("vision",HIR"只见"+query("name", me)+"梭地一下从峰顶上直滑下来，差点儿掉进天池。\n"NOR,environment(me),me);
+                tell_object(me, HIR"你從峰頂梭地一下滑了下來，只覺得渾身無處不疼，還受了幾處傷。\n"NOR);
+                message("vision",HIR"只見"+query("name", me)+"梭地一下從峰頂上直滑下來，差點兒掉進天池。\n"NOR,environment(me),me);
                 if ( j > 0 )
                         for (i=0; i < sizeof(inv); i++) 
                         {
@@ -67,7 +67,7 @@ int valid_leave(object me, string dir)
                                         flag += 1;
                                 }
                         }
-                if ( flag ) tell_object(me, "你身上的东西都扑通扑通掉进了天池。\n");
+                if ( flag ) tell_object(me, "你身上的東西都撲通撲通掉進了天池。\n");
         }
         return ::valid_leave(me, dir);
 }

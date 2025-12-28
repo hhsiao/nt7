@@ -5,26 +5,26 @@
 inherit NPC;
 
 string *quest_msg = ({
-        HIW "北丑长长的出了一口气，然后掏出一张英雄贴来递到你面前……\n" NOR,
-        HIW "北丑说道：聚贤庄这个名字，你应该不会陌生吧。\n" NOR,
-        HIW "前些时候，游氏兄弟和薛神医在江湖上广发英雄帖，召集天下英雄豪杰共赴聚贤庄，参加武林大会。\n" NOR,
-        HIW "这张帖子是给你的，但是你向来四海为家，居无定所，聚贤庄发派帖子的下人就把你的英雄贴送到我这里来了，希望我可以找到你。\n" NOR,
-        HIW "至于这次武林大会究竟是为何事，老朽我也不是很清楚，只听说和丐帮有莫大的关系，江湖上的风言耳语，传来传去的，可以相信的已经不多了。\n" NOR,
-        HIW "你现在去洛阳找丐帮的徐长老，他会告诉你具体情况的。\n" NOR,
+        HIW "北醜長長的出了一口氣，然後掏出一張英雄貼來遞到你面前……\n" NOR,
+        HIW "北醜說道：聚賢莊這個名字，你應該不會陌生吧。\n" NOR,
+        HIW "前些時候，遊氏兄弟和薛神醫在江湖上廣發英雄帖，召集天下英雄豪傑共赴聚賢莊，參加武林大會。\n" NOR,
+        HIW "這張帖子是給你的，但是你向來四海為家，居無定所，聚賢莊發派帖子的下人就把你的英雄貼送到我這裡來了，希望我可以找到你。\n" NOR,
+        HIW "至於這次武林大會究竟是為何事，老朽我也不是很清楚，只聽說和丐幫有莫大的關係，江湖上的風言耳語，傳來傳去的，可以相信的已經不多了。\n" NOR,
+        HIW "你現在去洛陽找丐幫的徐長老，他會告訴你具體情況的。\n" NOR,
 });
 
 int ask_juxianzhuang();
 
 void create()
 {
-        set_name("北丑", ({ "bei chou", "bei", "chou", "xizi" }));
+        set_name("北醜", ({ "bei chou", "bei", "chou", "xizi" }));
         set("long", @LONG
-这是一个身着戏子打扮的瘦小老头，长得尖嘴
-猴腮，天生一副奸相。谁人能知这便是当今武
-林中号称「南贤北丑」戏子北丑。虽其排名在
-南贤之下，但却也是南贤生平最畏惧之人。
+這是一個身著戲子打扮的瘦小老頭，長得尖嘴
+猴腮，天生一副奸相。誰人能知這便是當今武
+林中號稱「南賢北醜」戲子北醜。雖其排名在
+南賢之下，但卻也是南賢生平最畏懼之人。
 LONG);
-        set("nickname", HIW "北戏子" NOR);
+        set("nickname", HIW "北戲子" NOR);
         set("title", HIC "武林泰斗" NOR);
         set("gender", "男性" );
         set("age", 68);
@@ -118,14 +118,14 @@ LONG);
         }));
 
         set("inquiry", ([
-                "帮派"  :"要创建帮派请先组队，人数不能少于五个，然后 team bunch <帮派名> 就可以了。\n",
-                "英雄贴": (: ask_juxianzhuang :),
-                "挑战BOSS" : "想挑战BOSS？输入 ask bei chou about <BOSS名称> 即可进入挑战空间", 
+                "幫派"  :"要創建幫派請先組隊，人數不能少於五個，然後 team bunch <幫派名> 就可以了。\n",
+                "英雄貼": (: ask_juxianzhuang :),
+                "挑戰BOSS" : "想挑戰BOSS？輸入 ask bei chou about <BOSS名稱> 即可進入挑戰空間", 
         ]) );
 
         set("chat_chance", 1);
         set("chat_msg",({
-                CYN "北丑贼眯眯的说：天算地算不如人算，可是再怎么算戏子我都知道。\n" NOR,
+                CYN "北醜賊眯眯的說：天算地算不如人算，可是再怎麼算戲子我都知道。\n" NOR,
         }));
 
         setup();
@@ -135,7 +135,7 @@ LONG);
         if (! clonep(this_object()))
         {
                 move("/d/xiakedao/haibin");
-                message_vision(CYN "\n$N" CYN "笑嘻嘻道：来了来了，戏子我来了。\n"
+                message_vision(CYN "\n$N" CYN "笑嘻嘻道：來了來了，戲子我來了。\n"
                                NOR, this_object());
                 set("startroom", "/d/xiakedao/haibin");
         }
@@ -176,9 +176,9 @@ mixed accept_ask(object me, string arg)
         if( !arg || arg == "" || arg == "all" )
                 return 0;
         
-        if( arg == "挑战BOSS" || arg == "挑战boss" || arg == "BOSS" || arg == "boss" )
+        if( arg == "挑戰BOSS" || arg == "挑戰boss" || arg == "BOSS" || arg == "boss" )
         {
-                write(HIW"想要挑战BOSS？输入 ask bei chou about <BOSS名称> 即可进入挑战空间。\n"NOR);
+                write(HIW"想要挑戰BOSS？輸入 ask bei chou about <BOSS名稱> 即可進入挑戰空間。\n"NOR);
                 return 1;
         }
         
@@ -187,23 +187,23 @@ mixed accept_ask(object me, string arg)
                 FUBEN_D->enter_fuben(me, arg);
         else {
                 if( valid == 0 )
-                        write("您实战经验不足，进挑战BOSS恐有不测，还是先历练一下再来吧。\n");
+                        write("您實戰經驗不足，進挑戰BOSS恐有不測，還是先歷練一下再來吧。\n");
                 else if( valid == -1 )
-                        write("您经验太高了，就不要进去欺负那些可怜的小怪物了吧。\n");
+                        write("您經驗太高了，就不要進去欺負那些可憐的小怪物了吧。\n");
                 else if( valid == -2 )
-                        write("游戏中目前并没有开放该BOSS，请您核对后再试。\n");
+                        write("遊戲中目前並沒有開放該BOSS，請您核對後再試。\n");
                 else if( valid == -3 )
-                        write("挑战BOSS限制IP多重进入，您已经超过最高上限。\n");
+                        write("挑戰BOSS限制IP多重進入，您已經超過最高上限。\n");
                 else if( valid == -4 )
-                        write("该BOSS被巫师关闭，您暂时无法进入。\n");
+                        write("該BOSS被巫師關閉，您暫時無法進入。\n");
                 else if( valid == -5 )
-                        write("你离上次挑战该BOSS的时间太短，请休息会再来。\n");
+                        write("你離上次挑戰該BOSS的時間太短，請休息會再來。\n");
                 else if( valid == -6 )
-                        write("该BOSS必须组队才能进入。\n");
+                        write("該BOSS必須組隊才能進入。\n");
                 else if( valid == -7 )
-                        write("你的队伍人数超过该BOSS规定的上限。\n");
+                        write("你的隊伍人數超過該BOSS規定的上限。\n");
                 else if( valid == -8 )
-                        write("该BOSS要求单人挑战，您必须解散队伍方可进入。\n");
+                        write("該BOSS要求單人挑戰，您必須解散隊伍方可進入。\n");
         }        
         return 1;
 }
@@ -221,13 +221,13 @@ void fight_ob(object ob)
 
 int accept_fight(object who)
 {
-        command("say 没兴趣。");
+        command("say 沒興趣。");
         return 0;
 }
 
 int accept_ansuan(object who)
 {
-        return notify_fail("你刚想暗算，可是眼前一花，看不太清楚。\n");
+        return notify_fail("你剛想暗算，可是眼前一花，看不太清楚。\n");
 }
 
 varargs void die(object killer)

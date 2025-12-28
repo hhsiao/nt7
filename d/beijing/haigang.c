@@ -4,20 +4,20 @@ inherit BUILD_ROOM;
 
 void create()
 {
-        set("short", "东海之滨");
+        set("short", "東海之濱");
         set("long", @LONG
-这里是大海之滨，浪花拍打着礁石，发出阵阵响声，海面上一群
-群海鸥『欧欧。。』地叫着，不时有鱼儿跃出海面，溅起层层的浪花。
-边上有艘大船(chuan)， 船上坐着几个渔夫打扮的人，乘船可渡过大
-海到达海的另一端。西面一直走就是燕京了，东面是一望无际的大海。
-极目眺望不禁让人心胸开扩，神舒意畅，的确是一个好居处。
+這裡是大海之濱，浪花拍打著礁石，發出陣陣響聲，海面上一群
+群海鷗『歐歐。。』地叫著，不時有魚兒躍出海面，濺起層層的浪花。
+邊上有艘大船(chuan)， 船上坐著幾個漁夫打扮的人，乘船可渡過大
+海到達海的另一端。西面一直走就是燕京了，東面是一望無際的大海。
+極目眺望不禁讓人心胸開擴，神舒意暢，的確是一個好居處。
 LONG );
         set("exits", ([
                 "west" : "/d/beijing/road10",
                 "north" : "/d/tulong/tulong/haian",
         ]));
         set("item_desc", ([
-                "chuan" : "一艘大帆船，造得很结实，看来可以出远海的。\n",
+                "chuan" : "一艘大帆船，造得很結實，看來可以出遠海的。\n",
         ]));
         set("objects", ([
                 "/d/beijing/npc/flowerg":1,
@@ -35,7 +35,7 @@ LONG );
 }
 
 /*
-// 路径改在杭州钱塘江畔
+// 路徑改在杭州錢塘江畔
 void init()
 {
         object dao, room, ren, ding;
@@ -56,10 +56,10 @@ void init()
         {
                 room = get_object("/d/tulong/tulong/daobian");
                 ren = present("bai guishou",room);
-                tell_object(me, HIC "你看见沙滩上停泊满了海船，所有的海船全部标记着天鹰教的标记。\n"NOR);
-                tell_object(me, CYN "白龟寿对你说道：我天鹰教得到屠龙宝刀，这位武林同道可愿意参加扬刀立威大会？\n"NOR);
-                message("vision", HIR"\n【倚天屠龙】" NOR+WHT "白龟寿仰天一声长笑。\n" NOR, all_interactive());
-                message("vision", HIR"\n【倚天屠龙】" NOR+WHT "白龟寿：我天鹰教得到屠龙宝刀，今在王盘山岛举行扬刀立威大会。\n" NOR, all_interactive());
+                tell_object(me, HIC "你看見沙灘上停泊滿了海船，所有的海船全部標記著天鷹教的標記。\n"NOR);
+                tell_object(me, CYN "白龜壽對你說道：我天鷹教得到屠龍寶刀，這位武林同道可願意參加揚刀立威大會？\n"NOR);
+                message("vision", HIR"\n【倚天屠龍】" NOR+WHT "白龜壽仰天一聲長笑。\n" NOR, all_interactive());
+                message("vision", HIR"\n【倚天屠龍】" NOR+WHT "白龜壽：我天鷹教得到屠龍寶刀，今在王盤山島舉行揚刀立威大會。\n" NOR, all_interactive());
                 remove_call_out("mes");
                 call_out("mes",1,this_player());
                 set_temp("to_wang", 1, this_player());
@@ -71,7 +71,7 @@ void init()
 void mes(object me)
 {
       if (!me) return;
-        message_vision(HIR "你愿意参加(accept/jieshou)王盘山岛扬刀立威大会吗？\n"NOR, me);
+        message_vision(HIR "你願意參加(accept/jieshou)王盤山島揚刀立威大會嗎？\n"NOR, me);
 }
 
 int do_accept()
@@ -79,7 +79,7 @@ int do_accept()
         object me = this_player();
         if( query_temp("to_wang", me) )
         {
-                tell_object(me, HIR "你决定去参加扬刀立威大会。\n" NOR);
+                tell_object(me, HIR "你決定去參加揚刀立威大會。\n" NOR);
                 remove_call_out("moveto");
                 call_out("moveto",10,me);
         }
@@ -89,7 +89,7 @@ int do_accept()
 int moveto(object me)
 {
         me->move("/d/tulong/tulong/boat");
-        message_vision(HIC "\n$N坐上了天鹰教的大船，听到舵子手喊道：“开船了！”，大船慢慢的向大海驶进。\n"NOR, me);
+        message_vision(HIC "\n$N坐上了天鷹教的大船，聽到舵子手喊道：“開船了！”，大船慢慢的向大海駛進。\n"NOR, me);
         remove_call_out("arrive1");
         call_out("arrive1",10,me);
         return 1;
@@ -97,7 +97,7 @@ int moveto(object me)
 
 int arrive1(object me)
 {
-        message_vision(HIB "\n天鹰教的大船在大海上慢慢的漂着......$N不禁感到睡意朦胧。\n"NOR, me);
+        message_vision(HIB "\n天鷹教的大船在大海上慢慢的漂著......$N不禁感到睡意朦朧。\n"NOR, me);
         remove_call_out("arrive2");
         call_out("arrive2",10,me);
         return 1;
@@ -105,9 +105,9 @@ int arrive1(object me)
 
 int arrive2(object me)
 {
-        message_vision(HIY "\n$N突然听到一声惊喝：“到了，下船吧”！$N顿时提起精神，跟着天鹰教教众下了船。\n"NOR, me);
+        message_vision(HIY "\n$N突然聽到一聲驚喝：“到了，下船吧”！$N頓時提起精神，跟著天鷹教教眾下了船。\n"NOR, me);
         me->move("/d/tulong/tulong/daobian");
-        tell_object(me, HIR "\n你突然想到：最好先砸了其他人的船(break boat)，让他们无路可逃。\n" NOR);
+        tell_object(me, HIR "\n你突然想到：最好先砸了其他人的船(break boat)，讓他們無路可逃。\n" NOR);
         return 1;
 }
 
@@ -118,12 +118,12 @@ int do_enter ( string arg )
         string dir;
         if (! arg || arg != "chuan")
         {
-                tell_object(this_player() , "你要 enter 哪儿？\n" ) ;
+                tell_object(this_player() , "你要 enter 哪兒？\n" ) ;
                 return 1 ;
         }
         ob = this_player () ;
-        message_vision("船夫一见有人上船，忙叫了一声：开船喽！\n", ob);
-        message_vision("船夫升起帆，船就向东方航行。\n", ob);
+        message_vision("船伕一見有人上船，忙叫了一聲：開船嘍！\n", ob);
+        message_vision("船伕升起帆，船就向東方航行。\n", ob);
         ob->move("/d/mingjiao/lsd/dahai") ;
         tell_object(ob, BLU "你在海上航行了三天三夜.......\n" NOR ) ;
         call_out("home", 10 , ob );
@@ -131,7 +131,7 @@ int do_enter ( string arg )
 }
 void home( object ob )
 {
-        tell_object(ob , "大船终于抵达了南海岸边。你走下船来。\n" ) ;
+        tell_object(ob , "大船終於抵達了南海岸邊。你走下船來。\n" ) ;
         ob->move("/d/mingjiao/lsd/anbian") ;
 }
 
@@ -148,7 +148,7 @@ int do_enter(string arg)
         me = this_player();
 
         if (! arg || arg != "haigang")
-                return notify_fail("你要到海港么，请输入 enter haigang。\n");
+                return notify_fail("你要到海港麼，請輸入 enter haigang。\n");
 
         me->move("/d/shenlong/japangames/japan0");
 

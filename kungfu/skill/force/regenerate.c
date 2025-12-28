@@ -9,11 +9,11 @@ int exert(object me, object target)
         int heal;
 
         if (target != me)
-                return notify_fail("你只能用内功恢复自己的精力。\n");
+                return notify_fail("你只能用內功恢復自己的精力。\n");
         
         heal=query("eff_jing", me)-query("jing", me);
         if (heal < 10)
-                return notify_fail("你现在精气旺盛。\n");
+                return notify_fail("你現在精氣旺盛。\n");
 
         lvl = me->query_skill("force");
         if (lvl <= 0) lvl = 1;
@@ -29,12 +29,12 @@ int exert(object me, object target)
         if (neili_cost < 20) neili_cost = 20;
 
         if( query("neili", me)<neili_cost )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         addn("neili", -neili_cost, me);
         me->receive_heal("jing", heal);
         
-        message_vision("$N深深吸了几口气，精神看起来好多了。\n", me);
+        message_vision("$N深深吸了幾口氣，精神看起來好多了。\n", me);
 
         if (me->is_fighting()) me->start_busy(1);
         

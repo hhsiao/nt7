@@ -123,7 +123,7 @@ nomask int main(object me,string arg)
                 }
 
                 else if(wiz_level(me) < wiz_level("(arch)"))
-                        return notify_fail("只有(arch)以上的巫师才能执行此功能\n");
+                        return notify_fail("只有(arch)以上的巫師才能執行此功能\n");
 
                 write("Building database... This will takes a while.\n");
                 log_file("updatedb",sprintf("findfile database been updated by %s at %s\n",
@@ -135,11 +135,11 @@ nomask int main(object me,string arg)
         else
         {
                 if(file_size(DATA_FILE) <= 0)
-                        return notify_fail("请先使用 'findfile -u' 命令建立索引库。\n");
+                        return notify_fail("請先使用 'findfile -u' 命令建立索引庫。\n");
                 if(strsrch(arg,"*") >= 0)
                 {
                         if(strsrch(arg,"*") != strsrch(arg,"*",-1))
-                                return notify_fail("只能使用一个通配符 '*'。\n");
+                                return notify_fail("只能使用一個通配符 '*'。\n");
                         if(strsrch(arg,"*") == 0)
                         {
                                 sscanf(arg,"*%s",find);
@@ -188,7 +188,7 @@ nomask int main(object me,string arg)
                 }
 
                 if(!sizeof(outstr))
-                        return notify_fail("没有发现与 "+arg+" 匹配的文件名.\n");
+                        return notify_fail("沒有發現與 "+arg+" 匹配的文件名.\n");
 
                 else
                         me->start_more(implode(outstr,"\n")+"\n");

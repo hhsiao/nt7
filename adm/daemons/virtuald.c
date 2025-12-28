@@ -63,6 +63,6 @@ nomask varargs object compile_object(string file, int cloning)
 /*
 string query_name()
 {
-        return "虚拟物件系统(VIRTUAL_D)";
+        return "虛擬物件系統(VIRTUAL_D)";
 }
 */

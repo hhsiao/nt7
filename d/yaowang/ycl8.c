@@ -2,11 +2,11 @@ inherit ROOM;
 string p = "";
 void create()
 {
-        set("short", "羊肠小路");
+        set("short", "羊腸小路");
         set("long", @LONG
-这是一条蜿蜒曲折的小路，右面是一小片低矮的树林，左面
-是陡峭的山壁。地上满是乱石子，有的还很尖利，看样子这里很
-少有人来。正前方是一堆粗大的原木挡住了去路。
+這是一條蜿蜒曲折的小路，右面是一小片低矮的樹林，左面
+是陡峭的山壁。地上滿是亂石子，有的還很尖利，看樣子這裡很
+少有人來。正前方是一堆粗大的原木擋住了去路。
 LONG
         );
         set("exits", ([ /* sizeof() == 1 */
@@ -27,7 +27,7 @@ int do_push(string arg)
 
         if( query("exits/west") )
         {
-                tell_object(me, "原木已经移开了。\n");
+                tell_object(me, "原木已經移開了。\n");
                 return 1;
         }
 
@@ -38,26 +38,26 @@ int do_push(string arg)
         {
                 case "left":
                         p = "l";
-                        tell_object(me, "你向左面使劲推了一下原木。\n");
+                        tell_object(me, "你向左面使勁推了一下原木。\n");
                         return 1;
                 case "right":
                         p += "r";
-                        tell_object(me, "你向右面使劲推了一下原木。\n");
-                        if( (sizeof(p)>5) && (p[<6..] == "lrrrrr") && (query_temp("murong_ask", me) || query("family/master_name",me) == "石万嗔") )
+                        tell_object(me, "你向右面使勁推了一下原木。\n");
+                        if( (sizeof(p)>5) && (p[<6..] == "lrrrrr") && (query_temp("murong_ask", me) || query("family/master_name",me) == "石萬嗔") )
                         {
                                 p = "";
                                 if(!query("exits/north"))
                                 {
                                         set("exits/north", __DIR__"ycl9");
                                         call_out("remove_north", 5);
-                                        tell_room(__FILE__, "原木向左面一动，露出了一个缝隙。\n");
+                                        tell_room(__FILE__, "原木向左面一動，露出了一個縫隙。\n");
                                         return 1;
                                 }
                                 return 1;
                         }
                         return 1;
                 default:
-                        tell_object(me, "你要往哪个方向推？\n");
+                        tell_object(me, "你要往哪個方向推？\n");
                         return 1;
         }
 }

@@ -8,10 +8,10 @@ void create()
 {
         set("short","突石上");
         set("long", @LONG
-站在这里向下望才发现自己已经离地面有十来丈高了，寻望洞内
-发现四周虽都有突石，但是唯有脚下这块能容人站在上面观望。仔细
-观察突石周围发现身后的石壁(bi)中竟有一丝细小的裂缝，方才在下
-面看到的光亮就是从这裂缝中投射出来的。
+站在這裡向下望才發現自己已經離地面有十來丈高了，尋望洞內
+發現四周雖都有突石，但是唯有腳下這塊能容人站在上面觀望。仔細
+觀察突石周圍發現身後的石壁(bi)中竟有一絲細小的裂縫，方才在下
+面看到的光亮就是從這裂縫中投射出來的。
 LONG );
         set("exits",([
                "down":__DIR__"outzigai",                
@@ -39,13 +39,13 @@ string look_bi(object me,string msg)
         
 
         if( query_temp("marks/破", here) )
-                return "石壁已经被打破了。\n";
+                return "石壁已經被打破了。\n";
         
         if( query_temp("marks/推", here) )
-                return HIC"\n石门已经被推开了，却露出一个山洞来。\n"NOR;
+                return HIC"\n石門已經被推開了，卻露出一個山洞來。\n"NOR;
 
-        msg="这块石壁看起来很坚实，也许是由于长年被水流冲蚀，上面已\n经出现了"
-            "一条细小的裂缝。一丝阳光从缝中投射进来，看来外\n面应该有出路了。\n";
+        msg="這塊石壁看起來很堅實，也許是由於長年被水流沖蝕，上面已\n經出現了"
+            "一條細小的裂縫。一絲陽光從縫中投射進來，看來外\n面應該有出路了。\n";
 
         return msg;
                           
@@ -63,13 +63,13 @@ void init()
          
         if( query_temp("marks/推", here) )
         {
-       tell_object(me,HIY"阳光照射在你脸上，你感到舒服极了。\n"NOR);
+       tell_object(me,HIY"陽光照射在你臉上，你感到舒服極了。\n"NOR);
 
        delete("long");
        set("long",HIY @LONG
-你环视四周，发现这里距地面竟有十来丈高了，阳光从身
-后的洞中洒了出来，石壁上水珠反射出耀眼的光环，突石上的
-青苔也显"得绿油油的，你觉得浑身说不出的畅快。
+你環視四周，發現這裡距地面竟有十來丈高了，陽光從身
+後的洞中灑了出來，石壁上水珠反射出耀眼的光環，突石上的
+青苔也顯"得綠油油的，你覺得渾身說不出的暢快。
 LONG);
         }
           
@@ -85,20 +85,20 @@ int do_tiao(string arg)
               ob = load_object(__DIR__"outzigai");
         
         if( !arg || arg != "down")
-                return notify_fail("你要往哪儿跳？\n");
+                return notify_fail("你要往哪兒跳？\n");
 
         if (me->query_skill("dodge",1) < 120)
         {
-        message_vision("\n$N鼓起勇气纵身往下一跳...\n",me);
+        message_vision("\n$N鼓起勇氣縱身往下一跳...\n",me);
         me->unconcious();        
         me->move(__DIR__"outzigai");
-        tell_room(ob,""+me->name()+"从上面摔了下来，昏倒了。\n");
+        tell_room(ob,""+me->name()+"從上面摔了下來，昏倒了。\n");
         return 1;
         }
         
-        message_vision("\n$N你纵身一跳，稳稳地落在了地上。\n\n",me);
+        message_vision("\n$N你縱身一跳，穩穩地落在了地上。\n\n",me);
         me->move(__DIR__"outzigai");
-        message("vision",""+me->name()+"从上面跳了下来。\n",ob,me);
+        message("vision",""+me->name()+"從上面跳了下來。\n",ob,me);
         return 1;
         
 }
@@ -116,29 +116,29 @@ int do_push(string arg)
 
         if ( !arg || arg != "bi")
         {
-        write("你要推什么？\n");
+        write("你要推什麼？\n");
         return 1;
         }
 
         if( query_temp("marks/推", obhere) )
         {
-        write("石门已经被推开了。\n");
+        write("石門已經被推開了。\n");
         return 1;
         }
         
         if( query("neili", me)<1500 || me->query_skill("unarmed",1)<80 )
         {                
-        write("你使出浑身解数用力推石壁，可以石壁却纹丝不动。\n");
+        write("你使出渾身解數用力推石壁，可以石壁卻紋絲不動。\n");
         return 1;
         }
 
-        msg = HIC"\n$N用力将石壁往旁边一推，轰！地一声，石壁已被推开，露出"NOR;
-        msg += HIC"一个山洞来。这竟是一扇石门。\n\n"NOR;
+        msg = HIC"\n$N用力將石壁往旁邊一推，轟！地一聲，石壁已被推開，露出"NOR;
+        msg += HIC"一個山洞來。這竟是一扇石門。\n\n"NOR;
 
         message_vision(msg,me);
 
-        tell_room(obhere,HIY"阳光照射了进来，耀眼夺目。\n\n"NOR);
-        tell_room(obj,HIC"洞外轰！地一声，像是有人将石门推开了。\n"NOR);
+        tell_room(obhere,HIY"陽光照射了進來，耀眼奪目。\n\n"NOR);
+        tell_room(obj,HIC"洞外轟！地一聲，像是有人將石門推開了。\n"NOR);
 
         set("exits/enter",__DIR__"zigaihole");
 
@@ -151,9 +151,9 @@ int do_push(string arg)
 
          delete("long");
        set("long",HIY @LONG
-你环视四周，发现这里距地面竟有十来丈高了，阳光从身
-后的洞中洒了出来，石壁上水珠反射出耀眼的光环，突石上的
-青苔也显"得绿油油的，你觉得浑身说不出的畅快。
+你環視四周，發現這裡距地面竟有十來丈高了，陽光從身
+後的洞中灑了出來，石壁上水珠反射出耀眼的光環，突石上的
+青苔也顯"得綠油油的，你覺得渾身說不出的暢快。
 LONG);
         }
 
@@ -172,9 +172,9 @@ void auto_close()
         if ( !obout = find_object(__DIR__"outzigai1"))
               obout = load_object(__DIR__"outzigai1");
 
-        tell_room(obin,HIW"\n轰！轰！轰！不知道谁将石门关上了。\n"NOR);
-        tell_room(obout,HIW"\n轰！轰！轰！不知道谁将石门关上了，顿时山"
-                        "洞里变得阴暗起来。\n"NOR);
+        tell_room(obin,HIW"\n轟！轟！轟！不知道誰將石門關上了。\n"NOR);
+        tell_room(obout,HIW"\n轟！轟！轟！不知道誰將石門關上了，頓時山"
+                        "洞裡變得陰暗起來。\n"NOR);
 
         delete("exits/enter");
         delete("exits/out", obin);
@@ -183,10 +183,10 @@ void auto_close()
 
         delete("long");
         set("long",@LONG
-站在这里向下望才发现自己已经离地面有十来丈高了，寻
-望洞内发现四周虽都有突石，但是唯有脚下这块能容人站在上
-面观望。仔细观察突石周围发现身后的石壁(bi)中竟有一丝细
-小的裂缝，方才在下面看到的光亮就是从这裂缝中投射出来的。
+站在這裡向下望才發現自己已經離地面有十來丈高了，尋
+望洞內發現四周雖都有突石，但是唯有腳下這塊能容人站在上
+面觀望。仔細觀察突石周圍發現身後的石壁(bi)中竟有一絲細
+小的裂縫，方才在下面看到的光亮就是從這裂縫中投射出來的。
 LONG);
 
         return ;
@@ -201,7 +201,7 @@ int valid_leave(object me,string dir)
         me=this_player();
         
         if(dir=="down")
-                return notify_fail ("这里又没有路，看来只有跳下去了。\n");
+                return notify_fail ("這裡又沒有路，看來只有跳下去了。\n");
                  
         return 1;
 

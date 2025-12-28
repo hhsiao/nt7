@@ -19,19 +19,19 @@ int exert(object me, object target)
         }
 
         if (! me->is_fighting(target))
-                return notify_fail("你只能用寒气攻击战斗中的对手。\n");
+                return notify_fail("你只能用寒氣攻擊戰鬥中的對手。\n");
 
         if (me->query_skill("bingxin-jue", 1) < 150)
-                return notify_fail("你的冰心决火候不够，无法运用寒气。\n");
+                return notify_fail("你的冰心決火候不夠，無法運用寒氣。\n");
 
         if( query("neili", me)<1000 )
-                return notify_fail("你的内力不够!");
+                return notify_fail("你的內力不夠!");
 
         if (! living(target))
-              return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+              return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N" HIW "默运冰心决，一股寒气迎面扑向$n"
-              HIW "，四周登时雪花飘飘。\n" NOR;
+        msg = HIW "$N" HIW "默運冰心決，一股寒氣迎面撲向$n"
+              HIW "，四周登時雪花飄飄。\n" NOR;
 
         ap = attack_power(me, "force");
         dp = defense_power(target, "force");
@@ -56,12 +56,12 @@ int exert(object me, object target)
                         set("neili", 0, target);
 
 */
-                msg += HIR "$n" HIR "忽然觉得一阵透骨寒意，霎时间"
-                       "浑身的血液几乎都要凝固了。\n" NOR;
+                msg += HIR "$n" HIR "忽然覺得一陣透骨寒意，霎時間"
+                       "渾身的血液幾乎都要凝固了。\n" NOR;
                 target->start_busy(1);
         } else
-                msg += HIY "$n" HIY "感到一阵寒意自心底泛起，连忙"
-                       "运动抵抗，堪勘无事。\n" NOR;
+                msg += HIY "$n" HIY "感到一陣寒意自心底泛起，連忙"
+                       "運動抵抗，堪勘無事。\n" NOR;
 
         message_combatd(msg, me, target);
 

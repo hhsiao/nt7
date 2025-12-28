@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m圣火[2;37;0m[2;37;0m", ({"holy"}));        
+        set_name("[1;31m聖火[2;37;0m[2;37;0m", ({"holy"}));        
         set("gender", "男性");                
         set("long", "好看的很[2;37;0m
-它是泥巴的魔幻兽。
+它是泥巴的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

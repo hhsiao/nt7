@@ -10,26 +10,26 @@ int perform(object me, object target)
     object *enemy;
 
     if ( me->query("class")!= "bandit")
-		    return notify_fail("神教弟子才能领悟快刀。\n");
+		    return notify_fail("神教弟子才能領悟快刀。\n");
     if(userp(me) && (int)me->query_skill("tianya-blade",1) < 400)
-	return notify_fail("你的天涯明月刀还不够精纯！\n");
+	return notify_fail("你的天涯明月刀還不夠精純！\n");
 /* if( !target ) target = offensive_target(me);
 
         if( !target
         ||      !target->is_character()
         ||      !me->is_fighting(target) )
-                return notify_fail("［快刀］只能对战斗中的对手使用。\n");*/
+                return notify_fail("［快刀］只能對戰鬥中的對手使用。\n");*/
     enemy = me->query_enemy();
     if (me->query("class")!= "bandit"&&me->query_skill_mapped("force") != "yueying"&&me->query("force")<me->query("force_factor")*2)
-     return notify_fail("非月影神功催动［快刀］ 需要"+me->query("force_factor")*2+"点内力。\n");
+     return notify_fail("非月影神功催動［快刀］ 需要"+me->query("force_factor")*2+"點內力。\n");
 
-    if (!me->is_fighting()) return notify_fail("［快刀］只能对战斗中的对手使用。\n");
+    if (!me->is_fighting()) return notify_fail("［快刀］只能對戰鬥中的對手使用。\n");
 
     if(target)
-	return notify_fail("快刀不需要指定使用对象！！\n");
+	return notify_fail("快刀不需要指定使用對象！！\n");
     weapon=me->query_temp("weapon");
 
-    msg = HIR "\n$N"+HIR"将刀横于胸前，左手中指在刀背上一弹，右手借力挥刀。。。\n"NOR;
+    msg = HIR "\n$N"+HIR"將刀橫於胸前，左手中指在刀背上一彈，右手借力揮刀。。。\n"NOR;
     combat_message_vision(msg,me);
     num = sizeof(enemy);
     if (me->query("class")!= "bandit") {
@@ -58,9 +58,9 @@ int perform(object me, object target)
     {
 	target = enemy[i];
 	if (target) {
-	 COMBAT_D->do_magic_attack(me,target,weapon,TYPE_REGULAR,extra+extra/2,HIW"只见一道亮光从$n"+HIW"身前划过！！"NOR);
+	 COMBAT_D->do_magic_attack(me,target,weapon,TYPE_REGULAR,extra+extra/2,HIW"只見一道亮光從$n"+HIW"身前劃過！！"NOR);
 
-} else 	return notify_fail("［快刀］只能对战斗中的对手使用。\n");
+} else 	return notify_fail("［快刀］只能對戰鬥中的對手使用。\n");
     }
    if (me->query("class")!= "bandit"&&me->query_skill_mapped("force") != "yueying")
    	me->add("force",-me->query("force_factor")*2);

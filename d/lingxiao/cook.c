@@ -4,13 +4,13 @@ inherit ROOM;
 
 void create()
 {
-        set("short","厨房");
+        set("short","廚房");
         set("long",@LONG
-这里是凌霄城的厨房。一阵饭菜的香味充盈其间。一个凌霄
-弟子满头大汗，正在做饭。他做饭方法倒也特别，人绑在一根倒
-吊的绳子上，用一个奇大的铲子来搅动一口极大的锅。听说是白
-自在去少林寺考察回来后，要求每一个轮值做饭的弟子都要这样
-干，利于练功云云……你可以用(serve)，来获得饭菜。
+這裡是凌霄城的廚房。一陣飯菜的香味充盈其間。一個凌霄
+弟子滿頭大汗，正在做飯。他做飯方法倒也特別，人綁在一根倒
+吊的繩子上，用一個奇大的鏟子來攪動一口極大的鍋。聽說是白
+自在去少林寺考察回來後，要求每一個輪值做飯的弟子都要這樣
+幹，利於練功云云……你可以用(serve)，來獲得飯菜。
 LONG);
         set("exits",([
                 "west" : __DIR__"zoulang2",
@@ -35,17 +35,17 @@ int do_serve()
         me = this_player();
 
         if( query("family/family_name", me) != "凌霄城" )
-                return notify_fail(CYN "凌霄弟子道：你又不是凌霄城的，走开。\n" NOR);
+                return notify_fail(CYN "凌霄弟子道：你又不是凌霄城的，走開。\n" NOR);
 
         if (present("rice", this_player())) 
-                return notify_fail(CYN "凌霄弟子道：吃完了再拿，别浪费食物。\n" NOR);
+                return notify_fail(CYN "凌霄弟子道：吃完了再拿，別浪費食物。\n" NOR);
 
         if (present("soup", this_object())) 
-                return notify_fail(CYN "凌霄弟子道：吃完了再拿，别浪费食物。\n" NOR);
+                return notify_fail(CYN "凌霄弟子道：吃完了再拿，別浪費食物。\n" NOR);
 
         if (query("ricewater") > 0)
         {
-                message_vision(CYN "凌霄弟子将热气腾腾的饭菜递到你手中，笑"
+                message_vision(CYN "凌霄弟子將熱氣騰騰的飯菜遞到你手中，笑"
                                "道：你慢用。\n" NOR, me);
                 food = new(__DIR__"obj/rice");
                 water = new(__DIR__"obj/soup");
@@ -54,7 +54,7 @@ int do_serve()
                 addn("ricewater", -1);
         }
         else 
-                message_vision(CYN "凌霄弟子对$N" CYN "歉声道：嗨，吃的喝的都"
-                               "没了。\n" NOR,me);
+                message_vision(CYN "凌霄弟子對$N" CYN "歉聲道：嗨，吃的喝的都"
+                               "沒了。\n" NOR,me);
         return 1; 
 }

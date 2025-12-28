@@ -16,41 +16,41 @@ int perform(object me, object target)
         object weapon;
 
         if( userp(me) && !query("can_perform/hanxing-throwing/hanxing", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(HANXING "只能在战斗中对对手使用。\n");
+                return notify_fail(HANXING "只能在戰鬥中對對手使用。\n");
 
         if( !objectp(weapon=query_temp("handing", me)) || 
             query("skill_type", weapon) != "throwing" )
-                return notify_fail("你现在手中没有拿着暗器，难以施展" HANXING "。\n");
+                return notify_fail("你現在手中沒有拿著暗器，難以施展" HANXING "。\n");
 
         if (weapon->query_amount() < 8)
                 return notify_fail("至少要有三枚暗器才能施展" HANXING "。\n");
 
         if ((skill = me->query_skill("hanxing-bada", 1)) < 100)
-                return notify_fail("你的寒星八打不够娴熟，难以施展" HANXING "。\n");
+                return notify_fail("你的寒星八打不夠嫻熟，難以施展" HANXING "。\n");
 
         if( query("neili", me)<100 )
-                return notify_fail("你现在真气不足，难以施展" HANXING "。\n");
+                return notify_fail("你現在真氣不足，難以施展" HANXING "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         addn("neili", -80, me);
         weapon->add_amount(-3);
 
-        msg= HIY "$N" HIY "突然纵身向后一个翻滚，就在快落地的一瞬"
-             "间，$n" HIY "陡然发现几点寒光闪烁不定地袭向自己！\n" NOR;
+        msg= HIY "$N" HIY "突然縱身向後一個翻滾，就在快落地的一瞬"
+             "間，$n" HIY "陡然發現幾點寒光閃爍不定地襲向自己！\n" NOR;
 
         me->start_busy(2);
         my_exp=query("combat_exp", me)+skill*skill/10*skill;
         ob_exp=query("combat_exp", target);
         if (random(my_exp) > ob_exp)
         {
-                msg += HIR "结果$p" HIR "反应不及，中了$P" + HIR "一" +
+                msg += HIR "結果$p" HIR "反應不及，中了$P" + HIR "一" +
                        query("base_unit", weapon)+weapon->name()+
                        HIR "！\n" NOR;
                 target->receive_wound("qi", skill / 3 + random(skill / 3), me);
@@ -65,7 +65,7 @@ int perform(object me, object target)
                 message_combatd(msg, me, target);
         } else
         {
-                msg += HIG "可是$p" HIG "从容不迫，轻巧的闪过了$P" HIG "发出的" +
+                msg += HIG "可是$p" HIG "從容不迫，輕巧的閃過了$P" HIG "發出的" +
                        weapon->name() + HIG "。\n" NOR;
                 message_combatd(msg, me, target);
         }

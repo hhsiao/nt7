@@ -4,7 +4,7 @@ void create()
 {
         set("short", "蛇王洞");
         set("long",@LONG
-这是蛇洞内的蛇王洞，此处是毒蛇王出没的地方。
+這是蛇洞內的蛇王洞，此處是毒蛇王出沒的地方。
 LONG);
 
 	set("exits", ([

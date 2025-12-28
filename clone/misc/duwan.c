@@ -10,9 +10,9 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", RED "这是一粒由毒虫毒液精制而成的毒药，毒性猛烈之极。\n" NOR);
-                set("base_unit", "颗");
-                set("unit", "颗");
+                set("long", RED "這是一粒由毒蟲毒液精製而成的毒藥，毒性猛烈之極。\n" NOR);
+                set("base_unit", "顆");
+                set("unit", "顆");
                 set("base_value", 100);
                 set("base_weight", 10);
                 set("poison_type", "poison");
@@ -33,8 +33,8 @@ void create()
 
 int do_effect(object me)
 {
-        message_vision("$N一仰脖，把毒药全部倒入了嘴中。\n", me);
-        set_temp("die_reason", "吃了毒药去见黑白无常了", me);
+        message_vision("$N一仰脖，把毒藥全部倒入了嘴中。\n", me);
+        set_temp("die_reason", "吃了毒藥去見黑白無常了", me);
         me->die();
 
         destruct(this_object());

@@ -7,7 +7,7 @@ void setup()
         set_name("喂喂喂[2;37;0m[2;37;0m", ({"goldwww"}));        
         set("gender", "男性");                
         set("long", "喂喂喂[2;37;0m
-它是金娃的魔幻兽。
+它是金娃的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

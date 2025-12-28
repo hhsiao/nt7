@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("乌龟蛋[2;37;0m[2;37;0m", ({"wgwgwg"}));        
+        set_name("烏龜蛋[2;37;0m[2;37;0m", ({"wgwgwg"}));        
         set("gender", "男性");                
         set("long", "慢慢爬啊~爬 [2;37;0m
-它是冰煅的魔幻兽。
+它是冰煅的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

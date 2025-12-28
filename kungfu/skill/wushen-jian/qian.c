@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define QIAN "「" HIW "千剑纵横势" NOR "」"
+#define QIAN "「" HIW "千劍縱橫勢" NOR "」"
 
 inherit F_SSERVER;
 
@@ -16,26 +16,26 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(QIAN "只能对战斗中的对手使用。\n");
+                return notify_fail(QIAN "只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对，难以施展" QIAN "。\n");
+                return notify_fail("你使用的武器不對，難以施展" QIAN "。\n");
 
         if ((int)me->query_skill("wushen-jian", 1) < 200)
-                return notify_fail("你的衡山五神剑不够娴熟，难以施展" QIAN "。\n");
+                return notify_fail("你的衡山五神劍不夠嫻熟，難以施展" QIAN "。\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你的真气不够，难以施展" QIAN "。\n");
+                return notify_fail("你的真氣不夠，難以施展" QIAN "。\n");
 
         if (me->query_skill_mapped("sword") != "wushen-jian")
-                return notify_fail("你没有激发衡山五神剑，难以施展" QIAN "。\n");
+                return notify_fail("你沒有激發衡山五神劍，難以施展" QIAN "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "\n$N" HIW "运转衡山五神剑，手中" + weapon->name() +
-              HIW "迸出无数剑光，宛若飞虹擎天，席卷$n" HIW "而去。" NOR;
+        msg = HIW "\n$N" HIW "運轉衡山五神劍，手中" + weapon->name() +
+              HIW "迸出無數劍光，宛若飛虹擎天，席捲$n" HIW "而去。" NOR;
 
         message_sort(msg, me, target);
 
@@ -45,14 +45,14 @@ int perform(object me, object target)
 
         if (ap / 2 + random(ap) > dp)
         {
-                msg = HIR "结果$n" HIR "被$N" HIR "攻了个措手不及，$n"
+                msg = HIR "結果$n" HIR "被$N" HIR "攻了個措手不及，$n"
                       HIR "慌忙招架，心中叫苦。\n" NOR;
 
                 count = ap / 10;
                 attack_time += random(ap / 45);
         } else
         {
-                msg = HIC "$n" HIC "见$N" HIC "这几剑招式凌厉，凶猛异"
+                msg = HIC "$n" HIC "見$N" HIC "這幾劍招式凌厲，兇猛異"
                       "常，只得苦苦招架。\n" NOR;
                 count = 0;
         }

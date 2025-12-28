@@ -22,8 +22,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "块");
-                set("long", "这是一块百花蝮蛇膏，看上去黑乎乎的，还透着红光，用来对付敌人最好了。\n");
+                set("unit", "塊");
+                set("long", "這是一塊百花蝮蛇膏，看上去黑乎乎的，還透著紅光，用來對付敵人最好了。\n");
                 set("value", 10000);
                 set("no_sell", 1);
                 set("medicine", 1);
@@ -41,12 +41,12 @@ int do_use(string arg)
         skill = me->query_skill("force");
 
 //      if (!id(arg))
-//              return notify_fail("你要用什么？\n");
+//              return notify_fail("你要用什麼？\n");
 
         if (!me->is_fighting())
-                return notify_fail("百花蝮蛇膏只能在战斗中使用!\n");
+                return notify_fail("百花蝮蛇膏只能在戰鬥中使用!\n");
 
-        message_vision(HIG "$N扬手洒开一些不知什么，愕 ？  啊...！ \n" NOR, me);
+        message_vision(HIG "$N揚手灑開一些不知什麼，愕 ？  啊...！ \n" NOR, me);
 
         enemy = this_player()->query_enemy();
         exp1=query("combat_exp", this_player());
@@ -127,12 +127,12 @@ int do_use(string arg)
                                 }
 
                          }
-//                        tell_object(enemy[i], "你觉得眼前一阵模糊，全身一下子象散了架！\n");
+//                        tell_object(enemy[i], "你覺得眼前一陣模糊，全身一下子象散了架！\n");
 //                        enemy[i]->unconcious();
 //                        }
 //                        else {
-//                        tell_object(enemy[i], "你觉得眼前一阵模糊，全身一下子象散了架！\n");
-//                        tell_object(this_player(), "你觉得眼前一阵模糊，全身一下子象散了架！\n");
+//                        tell_object(enemy[i], "你覺得眼前一陣模糊，全身一下子象散了架！\n");
+//                        tell_object(this_player(), "你覺得眼前一陣模糊，全身一下子象散了架！\n");
 
 //                        enemy[i]->unconcious();
 //                        this_player()->unconcious();
@@ -153,12 +153,12 @@ int do_use(string arg)
 //              damage = skill - ((int)ob[i]->query("max_neili") / 10);
 //              if( damage > 0 )
 //                      {
-                        tell_object(ob[i], "你觉得眼前一阵模糊，全身一下子象散了架！\n");
+                        tell_object(ob[i], "你覺得眼前一陣模糊，全身一下子象散了架！\n");
                         ob[i]->unconcious();
 //                      ob[i]->receive_damage("qi", damage);
 //                      if( (int)ob[i]->query("neili") < skill * 2 )
 //                              ob[i]->receive_wound("qi", damage);
-//                      tell_object(ob[i], "你觉得眼前一阵模糊，全身一下子象散了架！\n");
+//                      tell_object(ob[i], "你覺得眼前一陣模糊，全身一下子象散了架！\n");
 //                      }
 //              else
 //                     {
@@ -168,7 +168,7 @@ int do_use(string arg)
 //              if( userp(ob[i]) ) ob[i]->fight_ob(me);
 //              else if( !ob[i]->is_killing(me) ) ob[i]->kill_ob(me);
 
-//              command("chat 这下你们可着了我的道道了，哈哈 ！");
+//              command("chat 這下你們可著了我的道道了，哈哈 ！");
 
 */
                 destruct(this_object());
@@ -181,9 +181,9 @@ int do_eat(string arg)
         object me = this_player();
 
         if (!id(arg))
-                return notify_fail("你要吃什么？\n");
+                return notify_fail("你要吃什麼？\n");
 
-        return notify_fail("这东西不能这么吃。\n");
+        return notify_fail("這東西不能這麼吃。\n");
 
 //      destruct(this_object());
         return 1;

@@ -7,8 +7,8 @@ inherit F_GUARDER;
 
 void create()
 {
-        set_name("西华子", ({"xi huazi", "xi", "huazi"}));
-        set("long", "他是昆仑派第五代弟子，满腮虬髯，性子十分暴躁。\n");
+        set_name("西華子", ({"xi huazi", "xi", "huazi"}));
+        set("long", "他是崑崙派第五代弟子，滿腮虯髯，性子十分暴躁。\n");
         set("gender", "男性");
         set("age", 38);
         set("attitude", "heroism");
@@ -42,8 +42,8 @@ void create()
         set_skill("martial-cognize", 100);
 
         set("no_teach", ([
-                "liangyi-shengong"  : "两仪神功需得掌门人亲自传授。",
-                "zhengliangyi-jian"  : "正两仪剑法乃本门神功，需要掌门人亲自传授。",
+                "liangyi-shengong"  : "兩儀神功需得掌門人親自傳授。",
+                "zhengliangyi-jian"  : "正兩儀劍法乃本門神功，需要掌門人親自傳授。",
         ]));
 
         map_skill("force", "liangyi-shengong");
@@ -63,14 +63,14 @@ void create()
         }));
 
         set("guarder", ([
-                "refuse_other": CYN "$N" CYN "对$n" CYN "怒喝道："
-                                "他奶奶的，你是什么人？昆仑派岂是"
-                                "让你随便走动地方？" NOR,
-                "refuse_carry": CYN "$N" CYN "对$n" CYN "喝道：你"
-                                "背上背的是什么人？给我放下来！" NOR,
+                "refuse_other": CYN "$N" CYN "對$n" CYN "怒喝道："
+                                "他奶奶的，你是什麼人？崑崙派豈是"
+                                "讓你隨便走動地方？" NOR,
+                "refuse_carry": CYN "$N" CYN "對$n" CYN "喝道：你"
+                                "背上背的是什麼人？給我放下來！" NOR,
         ]));
 
-        create_family("昆仑派", 5, "弟子");
+        create_family("崑崙派", 5, "弟子");
 
         set("chat_chance_combat", 100);
         set("chat_msg_combat", ({
@@ -94,22 +94,22 @@ void attempt_apprentice(object me)
 
         if( query("gender", me) == "女性" )
         {
-                command("say 师傅不准我收女弟子，你去找我几个师妹吧。");
+                command("say 師傅不准我收女弟子，你去找我幾個師妹吧。");
                 return;
         }
 
         if( query("combat_exp", me)<10000 )
         {
-                command("say 你的江湖经验实在太浅，还是锻炼锻炼再说吧。");
+                command("say 你的江湖經驗實在太淺，還是鍛鍊鍛鍊再說吧。");
                 return;
         }
 
         if ((int)me->query_skill("kunlun-xinfa", 1) < 30)
         {
-                command("say 你对本门的内功心法所知尚浅，练习高了再来找我吧。");
+                command("say 你對本門的內功心法所知尚淺，練習高了再來找我吧。");
                 return;
         }
 
-        command("say 既然" + RANK_D->query_respect(me) + "这么努力，我就收下你吧。");
+        command("say 既然" + RANK_D->query_respect(me) + "這麼努力，我就收下你吧。");
         command("recruit "+query("id", me));
 }

@@ -10,8 +10,8 @@ void create()
 {
         set("short", "桃林");
         set("long", @LONG
-这是一片灿若云霞的桃林，繁花似锦，五色缤纷，比起岛上其它地方
-的桃林要茂盛许多，地下的泥土也十分新鲜，像有人刚刚整理过。
+這是一片燦若雲霞的桃林，繁花似錦，五色繽紛，比起島上其它地方
+的桃林要茂盛許多，地下的泥土也十分新鮮，像有人剛剛整理過。
 LONG );
         
         set("exits", ([
@@ -37,7 +37,7 @@ void init()
 {
         object ob = this_player();
         if( query_temp("th_tomb_thief", ob)){
-                tell_object(ob,CYN"你似乎觉得桃林中有点异样，但又说不上来。\n"NOR);
+                tell_object(ob,CYN"你似乎覺得桃林中有點異樣，但又說不上來。\n"NOR);
                 delete("exits/east");
                 set("exits/east", __DIR__"hyjuchu");
                     remove_call_out("close_door");

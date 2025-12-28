@@ -7,9 +7,9 @@ void setup()
         set_name("小[2;37;0m[2;37;0m", ({"long"}));        
         set("gender", "男性");                
         set("long", "小[2;37;0m
-它是星火的魔幻兽。
+它是星火的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "star");
         set("owner_name", "星火");

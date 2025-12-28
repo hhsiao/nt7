@@ -4,13 +4,13 @@ inherit  ROOM;
 
 void create()
 {
-        set("short",  "游府大门");
+        set("short",  "遊府大門");
         set("long",  @LONG
-游氏双雄身为一方豪富，却不失武林中人的本色，宅邸之中的演
-武场修葺得尤为广阔，场中旌旗蔽空，樯帆林立，场边的兵器架上摆
-放着刀、枪、剑、戟、锤等十八般兵器，被家丁们擦拭得寒光闪闪。
-游氏双雄嗜武成痴，时常邀请武林中的前辈耆宿、后起之秀来庄中比
-试切磋。
+遊氏雙雄身為一方豪富，卻不失武林中人的本色，宅邸之中的演
+武場修葺得尤為廣闊，場中旌旗蔽空，檣帆林立，場邊的兵器架上擺
+放著刀、槍、劍、戟、錘等十八般兵器，被家丁們擦拭得寒光閃閃。
+遊氏雙雄嗜武成痴，時常邀請武林中的前輩耆宿、後起之秀來莊中比
+試切磋。
 LONG);
         set("outdoors", "luoyang");
         set("region", "luoyang");
@@ -34,7 +34,7 @@ int valid_leave(object me, string dir)
         if( me->query_temp("juxianzhuang_step") != 6 &&
             me->query_temp("juxianzhuang_step") != 13 )
                 if( objectp(present("xu zhanglao", environment(me))) && dir == "west" )
-                        return notify_fail("徐长老拦住你说：你来洛阳聚贤庄撒野？快走开！\n");
+                        return notify_fail("徐長老攔住你說：你來洛陽聚賢莊撒野？快走開！\n");
 
         if( me->query_temp("juxianzhuang_step") == 13 && dir == "west" )
         {
@@ -52,7 +52,7 @@ int valid_leave(object me, string dir)
                         return -1;
                 }
                 else
-                        return notify_fail("你无法进入聚贤庄副本。\n");
+                        return notify_fail("你無法進入聚賢莊副本。\n");
         }
 
         return ::valid_leave(me, dir);

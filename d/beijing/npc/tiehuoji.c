@@ -2,11 +2,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("铁匠铺伙计", ({ "huoji" }) );
+        set_name("鐵匠鋪夥計", ({ "huoji" }) );
         set("gender", "男性" );
         set("age", 18);
         set("long",
-              "一个十多岁的青年，在铁匠铺当学徒。\n");
+              "一個十多歲的青年，在鐵匠鋪當學徒。\n");
         set("shen_type", 1);
         set("combat_exp", 10000);
         set("str", 17);

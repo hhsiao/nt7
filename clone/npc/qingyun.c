@@ -21,9 +21,9 @@ string filter_color(string arg);
 void create()
 {
         seteuid(ROOT_UID);
-        set_name("青云", ({ "qing yun", "shizhe" }));
+        set_name("青雲", ({ "qing yun", "shizhe" }));
         set("long",
-                "他是掌门人的得意门生，一个十分厉害的神秘人物。\n");
+                "他是掌門人的得意門生，一個十分厲害的神秘人物。\n");
         set("gender", "男性");
         set("age", 20);
         set("attitude", "peaceful");
@@ -45,7 +45,7 @@ void create()
         set("score", 50000);
 
         set("inquiry",([
-        "奖励" :  (: give_prize :),
+        "獎勵" :  (: give_prize :),
         "cancel": (: cancel_job :),
         ]));
 
@@ -64,9 +64,9 @@ void create()
         map_skill("force", "beiming-shengong");
         map_skill("blade", "ruyi-dao");
 
-        create_family("逍遥派", 2, "弟子");
-        set("title","逍遥派护法使者");
-        set("nickname","天使之侣");
+        create_family("逍遙派", 2, "弟子");
+        set("title","逍遙派護法使者");
+        set("nickname","天使之侶");
         setup();
         carry_object(CLOTH_DIR"cloth")->wear();
         carry_object(WEAPON_DIR"blade")->wield();
@@ -85,21 +85,21 @@ int do_changename(string arg)
         if (!arg) return 0;
         link=query_temp("link_ob", me);
         if (!objectp(link)) return 0;
-        if( query("name", link) == "出错" )
+        if( query("name", link) == "出錯" )
         {
                 set("name", arg)+"\n", write(link);
                 set("name", arg)+"\n", write(me);
                 if (link->save() && me->save())
-                write("成功修改名字为"+arg+"\n");
+                write("成功修改名字為"+arg+"\n");
                 return 1;
         }
-        return notify_fail("你不能在这里修改名字。\n");
+        return notify_fail("你不能在這裡修改名字。\n");
 }
 int give_prize()
 {
         mixed s = give_prize1(this_player());
         if (stringp(s)) return s;
-        command("say 请回答(answer)吧。");
+        command("say 請回答(answer)吧。");
         return 1;
 }
 mixed give_prize1(object who)
@@ -109,23 +109,23 @@ mixed give_prize1(object who)
         if( !query_temp("debug", who) )
         {
                 if( !query_temp("can_give_prize", who) || !query_temp("prize_exp", who) )
-                         return "为啥要给你奖励哩？给我个理由先！";
+                         return "為啥要給你獎勵哩？給我個理由先！";
                 if( query_temp("prize_answer", who) )
-                        return "你还没回答我的上一个问题呢。";
+                        return "你還沒回答我的上一個問題呢。";
         }
         delete_temp("can_give_prize", who);
-        message_vision("$N对$n说道：可是我的奖励只给活人哩，你如果能回答我的问题，我就给你奖励。\n",me,who);
+        message_vision("$N對$n說道：可是我的獎勵只給活人哩，你如果能回答我的問題，我就給你獎勵。\n",me,who);
         give_quest(who);
         set_temp("pend_answer", 1, who);
         return 1;
 }
 void give_quest(object ob)
 {
-//        give_chinese_number(ob);//中文数字转换
-//        give_number(ob);//数字
+//        give_chinese_number(ob);//中文數字轉換
+//        give_number(ob);//數字
         give_place(ob);//地名
 //        give_npc(ob);// age,per,物品
-//        give_self(ob);//玩家个人信息
+//        give_self(ob);//玩家個人信息
 }
 /*
 int is_keeper(object ob,int type)
@@ -156,12 +156,12 @@ void give_chinese_number(object ob)
         write("num="+num+"\n");
         if (random(5)==1)
         {
-                tell_object(ob,this_object()->name()+"问道："+num+" 应该怎么念？\n");
+                tell_object(ob,this_object()->name()+"問道："+num+" 應該怎麼念？\n");
                 set_temp("prize_answer", chinese_number(num), ob);
         }
         else
         {
-                tell_object(ob,this_object()->name()+"问道："+chinese_number(num)+" 转成数字是多少？\n");
+                tell_object(ob,this_object()->name()+"問道："+chinese_number(num)+" 轉成數字是多少？\n");
                 set_temp("prize_answer", sprintf("%d",num), ob);
         }
 }
@@ -203,7 +203,7 @@ object check_place(string file,string dir)
         err = catch(room = load_object(fname));
         if (stringp(err))
         {
-                message("channel:wiz",HIR"【调试】系统精灵：NPC_D 新建房间对象失败返回错误"+err+NOR,users());
+                message("channel:wiz",HIR"【調試】系統精靈：NPC_D 新建房間對象失敗返回錯誤"+err+NOR,users());
                 return 0;
         }
         if (room->query_max_encumbrance() < 10000000 ) return 0;
@@ -230,7 +230,7 @@ void give_place(object ob)
         dirs = get_dir("/d/");
         dirs -= ({  "npc","xiakedao","binghuo","working","death1",
                 "wizard",        "death","gaochang","gumu","taohua",
-                "heizhao" });//这些是没法做的
+                "heizhao" });//這些是沒法做的
         i = random(sizeof(dirs));
         dir = dirs[i];
         files = get_dir("/d/"+dirs[i]+"/");
@@ -248,9 +248,9 @@ void give_place(object ob)
                 shorts = rshorts(room);
                 n1 = shorts[0];
                 shorts -= ({ n1 });
-                tell_object(ob,this_object()->name()+"说道：从"HIW+to_chinese(dir)+NOR"的"HIW+query("short", room)+NOR+
+                tell_object(ob,this_object()->name()+"說道：從"HIW+to_chinese(dir)+NOR"的"HIW+query("short", room)+NOR+
                 "可能走到"+HIW+implode(shorts,NOR"、"HIW)+NOR"和"HIW+n1+NOR+"。\n");
-                tell_object(ob,this_object()->name()+"说道：其中"HIW+keys(exits)[k]+NOR"方向是走到哪里？\n");
+                tell_object(ob,this_object()->name()+"說道：其中"HIW+keys(exits)[k]+NOR"方向是走到哪裡？\n");
                 room=query("exits", room)[keys(exits)[k]];
                 set_temp("prize_answer", filter_color(query("short", room)), ob);
                 return;
@@ -275,10 +275,10 @@ int do_answer(string arg)
         pot=query_temp("prize_pot", who);
         reason=query_temp("prize_reason", who);
         if (exp > 1000) exp = 1000;
-        if (pot == 0 || pot > exp*3/10 || reason=="奸细")        pot = exp*3/10;
+        if (pot == 0 || pot > exp*3/10 || reason=="奸細")        pot = exp*3/10;
         if( arg != query_temp("prize_answer", who) )
         {
-                message_vision("$N瞟了$n一眼，摇了摇头，叹了口气。\n",this_object(),who);
+                message_vision("$N瞟了$n一眼，搖了搖頭，嘆了口氣。\n",this_object(),who);
                 if( !query_temp("pend_re_answer", who) )
                 {
                         set_temp("pend_re_answer", 1, who);
@@ -286,7 +286,7 @@ int do_answer(string arg)
                         addn("combat_exp", -1*exp, who);
                         addn("gift/qpot", -1*pot, who);
                         addn("gift/qexp", -1*exp, who);
-                        message_vision("$N说道：没关系，你还有一次机会。\n",this_object());
+                        message_vision("$N說道：沒關係，你還有一次機會。\n",this_object());
                         set_temp("can_give_prize", 1, who);
                         s=give_prize1(who);
                         if (stringp(s))
@@ -310,7 +310,7 @@ int do_answer(string arg)
                         return 1;
                 }
         }
-        message_vision("$N朝着$n微笑着点了点头，伸手往$n一指，一道淡淡的金光笼住了$n。\n",this_object(),who);
+        message_vision("$N朝著$n微笑著點了點頭，伸手往$n一指，一道淡淡的金光籠住了$n。\n",this_object(),who);
         if( query_temp("pend_re_answer", who) )
         {
                 exp *= 2;
@@ -322,8 +322,8 @@ int do_answer(string arg)
         addn("gift/qpot", pot, who);
         addn("gift/qingyun", 1, who);
           log_file("qingyun",sprintf("[%s]%8s%8sexp:%5dpot:%5d\n",ctime(time()),query("id", who),query_temp("prize_reason", who),exp,pot));
-        tell_object(who,HIW"你被奖励了"+to_chinese(exp)+"点经验和"+
-        to_chinese(pot)+"点潜能。\n"NOR);
+        tell_object(who,HIW"你被獎勵了"+to_chinese(exp)+"點經驗和"+
+        to_chinese(pot)+"點潛能。\n"NOR);
         delete_temp("prize_exp", who);
         delete_temp("prize_pot", who);
         delete_temp("prize_reason", who);
@@ -335,7 +335,7 @@ string ins(int num)
         int i;
         string str="";
         for (i=0;i<num;i++)
-                str += " "; //几个数字之间用什么东西填充 这里用空格 以后考虑百分号和[
+                str += " "; //幾個數字之間用什麼東西填充 這裡用空格 以後考慮百分號和[
   return str;
 }
 
@@ -356,7 +356,7 @@ void give_number(object who)
         int *j=({});
         int now,last;
 
-        tell_object(who,this_object()->name()+"轻轻地一挥手，你眼前顿时闪起七彩的莹光。\n");
+        tell_object(who,this_object()->name()+"輕輕地一揮手，你眼前頓時閃起七彩的瑩光。\n");
         a = all[random(sizeof(all))];
         b = all[random(sizeof(all))];
         c = all[random(sizeof(all))];
@@ -419,19 +419,19 @@ void give_number(object who)
           c = ins(random(2));
           d = ins(random(2));
           e = ins(random(2));
-          f = random(4); //  有几个数字放在第二行
+          f = random(4); //  有幾個數字放在第二行
         len =  0;
         if (arrayp(str1))
         {
                 len = strlen(a);
                   len += strlen(str1[0]);
                   len += strlen(b);
-                  if (f<3)//如果三个以下在第二行 就是至少两个在第一行
+                  if (f<3)//如果三個以下在第二行 就是至少兩個在第一行
                   {
                           len += strlen(str2[0]);
                           len += strlen(c);
                   }
-                  if (f<2)//至少三个在第一行
+                  if (f<2)//至少三個在第一行
                   {
                           len += strlen(str3[0]);
                           len += strlen(d);
@@ -485,7 +485,7 @@ void give_number(object who)
 //        str =  ins(len) + "\n" + str;
         sts = ({" "})+sts;
         for(i=0;i<g;i++)
-//        str += ins(len) + "\n";  //第一行和最后一行补上随机行标识
+//        str += ins(len) + "\n";  //第一行和最後一行補上隨機行標識
         sts += ({" "});
         str = "";
         for(i=0;i<sizeof(sts);i++)
@@ -493,7 +493,7 @@ void give_number(object who)
                 str += "\n";
                 j+= ({i});
         }
-        str +=        HIC+this_object()->name()+"说道：上面是四个数字或字母，请问它们是什么。\n"+NOR+SAVEC;
+        str +=        HIC+this_object()->name()+"說道：上面是四個數字或字母，請問它們是什麼。\n"+NOR+SAVEC;
 /*        for (i=0;i<sizeof(sts);i++)
         {
                 tell_object(find_player("qingyun"),"sts["+i+"]="+sts[i]+"\n");
@@ -501,7 +501,7 @@ void give_number(object who)
 */        last = sizeof(j)+1;
         while(sizeof(j)>0)
         {
-//                tell_object(who,"从起点"+sprintf("%2d",last));
+//                tell_object(who,"從起點"+sprintf("%2d",last));
                 now = j[random(sizeof(j))];
                 if (last > now)
                         str += UP(sprintf("%d",last-now));
@@ -515,7 +515,7 @@ void give_number(object who)
 //                tell_object(who,"到"+now+"上移了"+(last-now)+"行。\t");
                 last = now+1;
                 str += sts[now];
-//                tell_object(who,"写下了sts["+now+"]\""+sts[now]+"\"\n");
+//                tell_object(who,"寫下了sts["+now+"]\""+sts[now]+"\"\n");
                 str += "\n";
                 j -= ({now});
         }
@@ -529,11 +529,11 @@ string cancel_job()
         object me = this_object();
         object who = this_player();
 
-        if( !query("quest/kill", who))return "你没有领任务，有什么好取消的";
+        if( !query("quest/kill", who))return "你沒有領任務，有什麼好取消的";
         if( time()<query("quest/kill/time", who) )
-        return "你的任务时间还没到，快去做吧。";
+        return "你的任務時間還沒到，快去做吧。";
         delete("quest/kill", who);
-        return "好吧，测试时期免费帮你清除任务记录。";
+        return "好吧，測試時期免費幫你清除任務記錄。";
 }
 mixed display(string num)
 {

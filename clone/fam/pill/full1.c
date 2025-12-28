@@ -3,11 +3,11 @@
 
 void create()
 {
-        set_name(NOR + YEL "活骨灵药" NOR, ({ "huogu lingyao", "huogu", "lingyao", "yao" }));
+        set_name(NOR + YEL "活骨靈藥" NOR, ({ "huogu lingyao", "huogu", "lingyao", "yao" }));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", YEL "这是一粒灿金色的药丸，在武林中被喻为是疗伤圣药。\n" NOR);
+                set("long", YEL "這是一粒燦金色的藥丸，在武林中被喻為是療傷聖藥。\n" NOR);
                 set("base_unit", "粒");
                 set("base_value", 10000);
                 set("base_weight", 55);
@@ -55,7 +55,7 @@ int do_effect(object me)
 
         if( time() - query_temp("last_eat/dan_full1", me) < time )
         {
-                write("你刚服用过药，需药性发挥完效用以后才能继续服用。\n");
+                write("你剛服用過藥，需藥性發揮完效用以後才能繼續服用。\n");
                 return 1;
         }
 
@@ -63,8 +63,8 @@ int do_effect(object me)
 
         set_temp("last_eat/dan_full1", time(), me);
 
-        message_vision(HIY "$N" HIY "吞下一" + un + na + HIY "，再也感觉"
-                       "不到任何疲惫。\n" NOR, me);
+        message_vision(HIY "$N" HIY "吞下一" + un + na + HIY "，再也感覺"
+                       "不到任何疲憊。\n" NOR, me);
 
         my["jing"]   = my["max_jing"];
         my["qi"]     = my["max_qi"];

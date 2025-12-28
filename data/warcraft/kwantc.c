@@ -6,8 +6,8 @@ void setup()
 {
         set_name("[1;35m小紫[2;37;0m[2;37;0m", ({"xiaozi"}));        
         set("gender", "女性");                
-        set("long", "一只紫色的朱雀[2;37;0m
-它是小璇的魔幻兽。
+        set("long", "一隻紫色的朱雀[2;37;0m
+它是小璇的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

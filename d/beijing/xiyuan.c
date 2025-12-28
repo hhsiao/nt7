@@ -2,11 +2,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "长安戏院");
+        set("short", "長安戲院");
         set("long", @LONG
-这里就是京城里著名的长安戏院，是京城百姓休息和娱乐的佳所。
-戏台上面几个戏子正在唱戏。台下黑压压的一片都是人。唱到妙处，
-台下的观众们禁不住大声喝采。北边一条小道通往戏院的后台。
+這裡就是京城裡著名的長安戲院，是京城百姓休息和娛樂的佳所。
+戲臺上面幾個戲子正在唱戲。臺下黑壓壓的一片都是人。唱到妙處，
+臺下的觀眾們禁不住大聲喝采。北邊一條小道通往戲院的後臺。
 LONG );
         set("exits", ([
                 "north" : __DIR__"xiyuanup",
@@ -30,8 +30,8 @@ int valid_leave(object me, string dir)
         if (dir == "north" && userp(me))
         {               
                 message_vision(  
-                        "只听哗啦啦一片掌声，观众们一起鼓掌。有人大声说道："
-                        "净一净，请看这位" + RANK_D->query_respect(me)+ "表演。\n",
+                        "只聽嘩啦啦一片掌聲，觀眾們一起鼓掌。有人大聲說道："
+                        "淨一淨，請看這位" + RANK_D->query_respect(me)+ "表演。\n",
                         this_player());
                 return ::valid_leave(me, dir);
         }

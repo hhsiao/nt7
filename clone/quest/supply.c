@@ -3,49 +3,49 @@
 
 inherit QUEST_OB;
 
-#define NPC_OB          my["npc"]       // 接收物品的NPC对象
+#define NPC_OB          my["npc"]       // 接收物品的NPC對象
 #define NPC_NAME        my["npc_name"]  // 接收物品的NPC的名字
 #define NPC_ID          my["npc_id"]    // 接收物品的NPC的ID
-#define PLACE           my["place"]     // 接收物品的NPC的地点
+#define PLACE           my["place"]     // 接收物品的NPC的地點
 #define SOB_FILE        my["sob_file"]  // 接收物品的文件名字
 #define SOB_NAME        my["sob_name"]  // 接收物品的名字
-#define COUNT           my["count"]     // 需要物品的数量
-#define ZONE            my["zone"]      // 接收对象所处的区域
+#define COUNT           my["count"]     // 需要物品的數量
+#define ZONE            my["zone"]      // 接收對象所處的區域
 
 int  npc_accept_object(object me, object who, object ob);
 void npc_destructed();
 
-// 任务对象创建
+// 任務對象創建
 void create()
 {
         seteuid(getuid());
         setup();
 }
 
-// 启动一个任务
-// 输入一个物品进行寻找，自动生成两个人物和两个地点，其中杀
-// 了第一个人即可获得该物品，然后交给第二个人领取奖励。
+// 啟動一個任務
+// 輸入一個物品進行尋找，自動生成兩個人物和兩個地點，其中殺
+// 了第一個人即可獲得該物品，然後交給第二個人領取獎勵。
 void init_quest(object npc_ob, string sob_file)
 {
         mapping my;
 
         my = query_entire_dbase();
 
-        // 生成任务的名字
+        // 生成任務的名字
         set_name(npc_ob->name() + "的事");
 
         if( query_temp("quest_ob", npc_ob) )
         {
-                // 这个NPC已经用于其他任务，中止任务
+                // 這個NPC已經用於其他任務，中止任務
                 destruct(this_object());
                 return;
         }
         set_temp("quest_ob", this_object(), npc_ob);
 
-        // 随即生成需要的物品数量
+        // 隨即生成需要的物品數量
         COUNT = 3 + random(6);
 
-        // 记录任务的数据信息
+        // 記錄任務的數據信息
         NPC_OB = npc_ob;
         NPC_NAME = npc_ob->name();
         NPC_ID=query("id", npc_ob);
@@ -57,30 +57,30 @@ void init_quest(object npc_ob, string sob_file)
         else
             ZONE = "/";
 
-        // 设置NPC的对话信息
-        set("inquiry/"+NPC_NAME, "正是区区在下！", npc_ob);
-        set("inquiry/"+NPC_ID, "是我啊，你找对人了！", npc_ob);
-        set("inquiry/"+SOB_NAME, "我现在正需要这些东西，你可带来了？", npc_ob);
+        // 設置NPC的對話信息
+        set("inquiry/"+NPC_NAME, "正是區區在下！", npc_ob);
+        set("inquiry/"+NPC_ID, "是我啊，你找對人了！", npc_ob);
+        set("inquiry/"+SOB_NAME, "我現在正需要這些東西，你可帶來了？", npc_ob);
 
-        // 设置接收物品的信息：由于NPC存在的时候该任务对象必
-        // 定会存在（因为任务析构的时候会清除NPC），所以可以
-        // 让NPC引用本地的"npc_accept_object"函数。
+        // 設置接收物品的信息：由於NPC存在的時候該任務對象必
+        // 定會存在（因為任務析構的時候會清除NPC），所以可以
+        // 讓NPC引用本地的"npc_accept_object"函數。
         set_temp("override/accept_object", (:npc_accept_object:), npc_ob);
 
-        // 设置析构信息：NPC人物析构以后将自动解除任务
+        // 設置析構信息：NPC人物析構以後將自動解除任務
         set_temp("override/destruct", (:npc_destructed:), npc_ob);
 
-        // 切换到正常状态
+        // 切換到正常狀態
         change_status(QUEST_READY);
 
-        // 设置任务最长存活时间：15分钟
+        // 設置任務最長存活時間：15分鐘
         set("live_time", 600);
 
-        // 登记谣言消息
+        // 登記謠言消息
         register_information();
 }
 
-// 恢复NPC：任务结束的时候必须恢复正常的NPC
+// 恢復NPC：任務結束的時候必須恢復正常的NPC
 void restore_npc()
 {
         mapping my = query_entire_dbase();
@@ -97,44 +97,44 @@ void restore_npc()
         NPC_OB = 0;
 }
 
-// 结束任务
+// 結束任務
 void cancel_quest()
 {
-        // 恢复NPC，然后结束任务
+        // 恢復NPC，然後結束任務
         restore_npc();
 
         ::cancel_quest();
 }
 
-// 任务NPC消亡
+// 任務NPC消亡
 void npc_destructed()
 {
         remove_call_out("cancel_quest");
         call_out("cancel_quest", 0);
 }
 
-// 询问NPC - 需要提供物品的人
+// 詢問NPC - 需要提供物品的人
 string ask_npc(object knower, object me)
 {
         mapping my = query_entire_dbase();
 
         if (! objectp(NPC_OB))
-                return CYN "哦，据说" HIY + NPC_NAME + NOR CYN
-                       "不知道躲到哪儿去了，好多人正骂娘呢。" NOR;
+                return CYN "哦，據說" HIY + NPC_NAME + NOR CYN
+                       "不知道躲到哪兒去了，好多人正罵娘呢。" NOR;
 
-        return "不清楚，不清楚，我又不认识人家！";
+        return "不清楚，不清楚，我又不認識人家！";
 }
 
-// 询问SOB - 提供的物品的信息
+// 詢問SOB - 提供的物品的信息
 string ask_sob(object knower, object me)
 {
         mapping my = query_entire_dbase();
 
-        return CYN "这" HIY + SOB_NAME + NOR CYN
-               "可不是咱们百姓应该沾的东西呀，你说是不是？" NOR;
+        return CYN "這" HIY + SOB_NAME + NOR CYN
+               "可不是咱們百姓應該沾的東西呀，你說是不是？" NOR;
 }
 
-// 任务介绍
+// 任務介紹
 string query_introduce(object knower)
 {
         mapping my = query_entire_dbase();
@@ -145,23 +145,23 @@ string query_introduce(object knower)
                 call_out("do_say", 1);
         }
 
-        return CYN "据说" + PLACE + "的" + HIY + NPC_NAME + NOR CYN "急需一批" +
-               HIY + SOB_NAME + NOR CYN "。嘿！你说他想干什么？" NOR;
+        return CYN "據說" + PLACE + "的" + HIY + NPC_NAME + NOR CYN "急需一批" +
+               HIY + SOB_NAME + NOR CYN "。嘿！你說他想幹什麼？" NOR;
 }
 
-// 任务提示
+// 任務提示
 string query_prompt()
 {
         switch (random(3))
         {
         case 0:
-                return CYN "倒是最近听有些客人说起『" HIY + name() +
-                       NOR CYN "』来。";
+                return CYN "倒是最近聽有些客人說起『" HIY + name() +
+                       NOR CYN "』來。";
         case 1:
-                return "也没什么大事，只是听说过『" HIY + name() +
-                       NOR CYN "』罢了。";
+                return "也沒什麼大事，只是聽說過『" HIY + name() +
+                       NOR CYN "』罷了。";
         default:
-                return "前两天还听人家说过『" HIY + name() +
+                return "前兩天還聽人家說過『" HIY + name() +
                        NOR CYN "』呢。";
         }
 }
@@ -171,8 +171,8 @@ void do_say(object knower)
         if (! objectp(knower) || ! living(knower))
                 return 0;
 
-        message_vision(CYN "$N" CYN "嘟囔道：我跟你都说了，要这些东西没好"
-                       "事，这不？出事了吧？\n" NOR, knower);
+        message_vision(CYN "$N" CYN "嘟囔道：我跟你都說了，要這些東西沒好"
+                       "事，這不？出事了吧？\n" NOR, knower);
 }
 
 int npc_accept_object(object me, object who, object ob)
@@ -196,17 +196,17 @@ int npc_accept_object(object me, object who, object ob)
 
         if( base_name(environment(me)) != query("startroom", me) )
         {
-                message_vision(CYN "$N" CYN "一脸茫然的望着$n" CYN "。\n" NOR,
+                message_vision(CYN "$N" CYN "一臉茫然的望著$n" CYN "。\n" NOR,
                                me, who);
                 return -1;
         }
 
-        message_vision(HIY "$N" HIY "大喜，接过" + ob->name() + "看了看，对$n"
-                       HIY "道：这位" + RANK_D->query_respect(who) + "，很好，"
+        message_vision(HIY "$N" HIY "大喜，接過" + ob->name() + "看了看，對$n"
+                       HIY "道：這位" + RANK_D->query_respect(who) + "，很好，"
                        "很好！\n" NOR, me, who);
         COUNT--;
 
-        message_vision(HIC "$N" HIC "交给了$n" HIC "一些钱作为报酬。\n" NOR,
+        message_vision(HIC "$N" HIC "交給了$n" HIC "一些錢作為報酬。\n" NOR,
                        me, who);
 
         MONEY_D->pay_player(this_player(),query("value", SOB_FILE)*3/2);
@@ -214,17 +214,17 @@ int npc_accept_object(object me, object who, object ob)
         remove_call_out("do_notice");
         if (COUNT < 1)
         {
-                // 所有的物品全部接收完了，准备结束任务
-                message_vision(HIY "$N" HIY "抹了抹头上的汗，道：总算全备齐了"
-                               "，这事可真够罗嗦的。\n" NOR, me);
+                // 所有的物品全部接收完了，準備結束任務
+                message_vision(HIY "$N" HIY "抹了抹頭上的汗，道：總算全備齊了"
+                               "，這事可真夠羅嗦的。\n" NOR, me);
 
 /*
                 CHANNEL_D->do_channel(this_object(), "rumor",
-                                      "听说" + who->name(1) +
+                                      "聽說" + who->name(1) +
                                       "("+query("id", who)+")替"+
-                                      me->name() + HIM + "备齐了" + SOB_NAME + "。");
+                                      me->name() + HIM + "備齊了" + SOB_NAME + "。");
 */
-                // 被列为门派中断的自由任务
+                // 被列為門派中斷的自由任務
                 if( query("quest/freequest", who)>0 )
                         GIFT_D->delay_freequest_bonus(who);
 
@@ -234,21 +234,21 @@ int npc_accept_object(object me, object who, object ob)
         } else
                 call_out("do_notice", 1 + random(3), me, who);
 
-        // 奖励
+        // 獎勵
         exp = 50 + random(50);
         pot = 20 + random(20);
         score = 8 + random(8);
 
         if( query("combat_exp", who)>400000 )
         {
-                // 经验太高，削弱奖励
+                // 經驗太高，削弱獎勵
                 exp = exp / 2 + 1;
                 pot = pot / 2 + 1;
                 score = score / 2 + 1;
 
                 if( query("combat_exp", who)>500000 )
                 {
-                        // 再次削弱奖励
+                        // 再次削弱獎勵
                         exp = exp / 2 + 1;
                         pot = pot / 2 + 1;
                         score = score / 2 + 1;
@@ -257,7 +257,7 @@ int npc_accept_object(object me, object who, object ob)
 
         if( mapp(b=query("bonus/"+query("id", who))) )
         {
-                // 正在奖励该人中
+                // 正在獎勵該人中
                 b["exp"] += exp;
                 b["pot"] += pot;
                 b["score"] += score;
@@ -266,8 +266,8 @@ int npc_accept_object(object me, object who, object ob)
                 b = ([ "exp" : exp,
                        "pot" : pot,
                        "score" : score,
-                       "prompt": "经过这次帮助" + me->name() +
-                                  "准备" + ob->name() + "的事情" ]);
+                       "prompt": "經過這次幫助" + me->name() +
+                                  "準備" + ob->name() + "的事情" ]);
                 set("bonus/"+query("id", who),b);
                 call_out("do_bonus",2+random(2),query("id", who),who);
         }
@@ -283,12 +283,12 @@ protected void do_notice(object me, object who)
         if (! can_talk_with(me, who))
                 return;
 
-        message_vision(CYN "$N" CYN "点了点货，又对$n" CYN "道：我还需"
+        message_vision(CYN "$N" CYN "點了點貨，又對$n" CYN "道：我還需"
                        "要"+chinese_number(COUNT)+query("unit", SOB_FILE)+
-                       SOB_NAME + NOR + CYN  "才够。\n" NOR, me, who);
+                       SOB_NAME + NOR + CYN  "才夠。\n" NOR, me, who);
 }
 
-// 准备完成任务
+// 準備完成任務
 protected void do_finish()
 {
         if (sizeof(query("bonus")) > 0)
@@ -297,11 +297,11 @@ protected void do_finish()
                 return;
         }
 
-        // 该任务已经完成
+        // 該任務已經完成
         cancel_quest();
 }
 
-// 给某人奖励
+// 給某人獎勵
 protected void do_bonus(string who_id, object who)
 {
         mapping b;
@@ -315,13 +315,13 @@ protected void do_bonus(string who_id, object who)
         GIFT_D->bonus(who, b);
 }
 
-// 登记该任务的消息
+// 登記該任務的消息
 void register_information()
 {
         mapping my = query_entire_dbase();
 
         if (! clonep() || ! mapp(my))
-                // 不是任务，所以不登记
+                // 不是任務，所以不登記
                 return;
 
         set_information(NPC_NAME, (: ask_npc :));
@@ -329,7 +329,7 @@ void register_information()
         set_information(SOB_NAME, (: ask_sob :));
 }
 
-// 这个任务可以被某人知晓吗？
+// 這個任務可以被某人知曉嗎？
 int can_know_by(object knower)
 {
         mapping my = query_entire_dbase();
@@ -338,7 +338,7 @@ int can_know_by(object knower)
         fname = file_name(environment(knower));
         if (! stringp(ZONE) || strlen(ZONE) < 1 ||
             ZONE == fname[0..strlen(ZONE) - 1])
-                // 和小二在同一个区域
+                // 和小二在同一個區域
                 return 1;
 
         return 0;

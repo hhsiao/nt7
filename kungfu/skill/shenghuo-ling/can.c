@@ -5,7 +5,7 @@
 
 inherit F_SSERVER;
 
-string name() { return HIR "残血令" NOR; }
+string name() { return HIR "殘血令" NOR; }
 
 int perform(object me, object target)
 {
@@ -28,56 +28,56 @@ int perform(object me, object target)
         skill = me->query_skill("shenghuo-ling", 1);
 
         if (! (me->is_fighting()))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if (! objectp(weapon = query_temp("weapon", me)) ||
             (string)query("skill_type", weapon) != "sword")
-                return notify_fail("你使用的兵器不对，不能使用圣火令法之" +
+                return notify_fail("你使用的兵器不對，不能使用聖火令法之" +
                                    name() + "。\n");
 
         if (skill < 220)
-                return notify_fail("你的圣火令法等级不够, 不能使用圣火令"
+                return notify_fail("你的聖火令法等級不夠, 不能使用聖火令"
                                    "法之" + name() + "。\n");
 
         if (me->query_skill("force") < 350)
-                return notify_fail("你的内功火候不够，不能使用圣火令法之" +
+                return notify_fail("你的內功火候不夠，不能使用聖火令法之" +
                                    name() + "。\n");
 
         if (query("max_neili", me) < 5000)
-                return notify_fail("你的内力修为不足，不能使用圣火令法之" +
+                return notify_fail("你的內力修為不足，不能使用聖火令法之" +
                                    name() + "。\n");
 
         if (query("neili", me) < 400)
-                return notify_fail("你的内力不够，不能使用圣火令法之" + name() + "。\n");
+                return notify_fail("你的內力不夠，不能使用聖火令法之" + name() + "。\n");
 
         if (me->query_skill_mapped("sword") != "shenghuo-ling")
-                return notify_fail("你没有激发圣火令法，无法使用" + name() + "。\n");
+                return notify_fail("你沒有激發聖火令法，無法使用" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIR "$N" HIR "一声长啸，手中" + weapon->name() +
-              HIR "一转，招数顿时变得诡异无比，从意想不到的方"
+        msg = HIR "$N" HIR "一聲長嘯，手中" + weapon->name() +
+              HIR "一轉，招數頓時變得詭異無比，從意想不到的方"
               "位攻向$n" HIR "！\n" NOR;
 
-        // 配合圣火令法本身具备的 max_hit带来额外的伤害。
-        // 原著中该令法乃很难看透的招数，所以出现增加攻
-        // 击的效率非常大。
+        // 配合聖火令法本身具備的 max_hit帶來額外的傷害。
+        // 原著中該令法乃很難看透的招數，所以出現增加攻
+        // 擊的效率非常大。
         ap = attack_power(me, "sword");
         dp = defense_power(target, "parry");
         
-        delta = ABILITY_D->check_ability(me, "ap_power-shl-can"); // 门派ab
+        delta = ABILITY_D->check_ability(me, "ap_power-shl-can"); // 門派ab
         if( delta ) ap += ap*delta/100;
         
         if (ap / 2 + random(ap) > dp)
         {
-                msg += HIR "$n" HIR "完全无法看透$N" HIR "招中虚实，不由得心"
-                       "生惧意，招式一滞，登时破绽百出。\n" NOR;
+                msg += HIR "$n" HIR "完全無法看透$N" HIR "招中虛實，不由得心"
+                       "生懼意，招式一滯，登時破綻百出。\n" NOR;
                 count = ap / 6;
                 addn_temp("shenghuo-ling/max_hit", 1, me);
         } else
         {
-                msg += HIY "$n" HIY "见$N" HIY "来势汹涌，心底一惊，打起精"
+                msg += HIY "$n" HIY "見$N" HIY "來勢洶湧，心底一驚，打起精"
                        "神小心接招。\n" NOR;
                 count = 0;
         }

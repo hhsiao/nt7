@@ -4,10 +4,10 @@ inherit "/inherit/room/house_room";
 
 void create()
 {
-    set("short", "花园");
+    set("short", "花園");
     set("long", @LONG
-这里是位于中庭的花园，种植着许多产自五湖四海，名山大川的奇花
-异草，美丽非常。
+這裡是位於中庭的花園，種植著許多產自五湖四海，名山大川的奇花
+異草，美麗非常。
 LONG);
 
     set("exits",

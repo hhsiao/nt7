@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("[1;33m高处不胜寒[2;37;0m[2;37;0m", ({"lcnely"}));        
+        set_name("[1;33m高處不勝寒[2;37;0m[2;37;0m", ({"lcnely"}));        
         set("gender", "男性");                
-        set("long", "这是一个猪头[2;37;0m
-它是樱叶的魔幻兽。
+        set("long", "這是一個豬頭[2;37;0m
+它是櫻葉的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "leaf");
-        set("owner_name", "樱叶");
+        set("owner_name", "櫻葉");
         set_temp("owner", "leaf");
-        set_temp("owner_name", "樱叶");
+        set_temp("owner_name", "櫻葉");
         ::setup();
 }

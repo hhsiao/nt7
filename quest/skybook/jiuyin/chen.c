@@ -7,21 +7,21 @@ void init()
 {
         object me = this_player();
         if (me->query_temp("thd/onquest")==2) { 
-           message_vision(HIY"$N见到黑风双煞来势猛恶，顿时想起靴旁的匕首(bishou)。\n"NOR,me);
+           message_vision(HIY"$N見到黑風雙煞來勢猛惡，頓時想起靴旁的匕首(bishou)。\n"NOR,me);
            add_action("do_chou","chou");
         }
 }
 
 void create()
 {
-        set_name( "陈玄风" ,({ "chen xuanfeng", "chen" }));
-        set("title", "黑风双煞");
-        set("nickname", HIY"铜尸"NOR);
+        set_name( "陳玄風" ,({ "chen xuanfeng", "chen" }));
+        set("title", "黑風雙煞");
+        set("nickname", HIY"銅屍"NOR);
         set("gender", "男性");
         set("age", 35);
         set("long",
-            "此人是黄药师的二弟子，他浓眉大眼，背厚膀宽，躯体甚是壮健，只是\n"
-            "面色微微泛黄。\n");
+            "此人是黃藥師的二弟子，他濃眉大眼，背厚膀寬，軀體甚是壯健，只是\n"
+            "面色微微泛黃。\n");
         set("attitude", "aggressive");
         set("str", 37);
         set("int", 32);
@@ -56,18 +56,18 @@ void create()
         map_skill("leg", "xuanfeng-tui");
         prepare_skill("claw", "jiuyin-baiguzhua");
 
-        create_family("桃花岛", 2, "被逐弟子");
+        create_family("桃花島", 2, "被逐弟子");
         set("inquiry", ([
-           "铜尸":     "江湖上的人都这么叫我的，你怕不怕？哈哈哈哈。",
-           "东邪":     "那是我师父的绰号。",
-           "西毒":     "那是与家师齐名的高手之一，是个老毒物，住在白驼山。",
-           "南帝":     "段王爷已出家当和尚去了，法名叫一灯。",
-           "北丐":     "北丐统领中原的丐帮，势力颇为强大。",
-           "洪七公":   "洪七公武功高强，而且教会郭靖那小儿降龙十八掌，可恨！",
-           "黄蓉":     "她是我师父的独女，最是刁蛮任性。",
-           "梅超风":   "她是我的师妹，也是我的内室。",
-           "陈玄风":   "不就是我么？你是白痴啊？",
-           "黄药师":   "他是我师父。"]) );
+           "銅屍":     "江湖上的人都這麼叫我的，你怕不怕？哈哈哈哈。",
+           "東邪":     "那是我師父的綽號。",
+           "西毒":     "那是與家師齊名的高手之一，是個老毒物，住在白駝山。",
+           "南帝":     "段王爺已出家當和尚去了，法名叫一燈。",
+           "北丐":     "北丐統領中原的丐幫，勢力頗為強大。",
+           "洪七公":   "洪七公武功高強，而且教會郭靖那小兒降龍十八掌，可恨！",
+           "黃蓉":     "她是我師父的獨女，最是刁蠻任性。",
+           "梅超風":   "她是我的師妹，也是我的內室。",
+           "陳玄風":   "不就是我麼？你是白痴啊？",
+           "黃藥師":   "他是我師父。"]) );
         setup();
         carry_object(ARMOR_D("cloth"))->wear();
 }
@@ -75,8 +75,8 @@ void create()
 void kill_ob(object me)
 {
         object ob=this_object();
-        command("say 想抢我的九阴真经？没那么容易！");
-        message_vision(HIY"陈玄风向$N急攻数招，夺路向外跑去。\n\n"NOR,me);
+        command("say 想搶我的九陰真經？沒那麼容易！");
+        message_vision(HIY"陳玄風向$N急攻數招，奪路向外跑去。\n\n"NOR,me);
         COMBAT_D->do_attack(ob, me, ob->query_temp("weapon"), 3);
         COMBAT_D->do_attack(ob, me, ob->query_temp("weapon"), 3);
         COMBAT_D->do_attack(ob, me, ob->query_temp("weapon"), 3);
@@ -96,16 +96,16 @@ int do_chou(string arg)
         object obj;
         string msg;
         if (!arg||arg!="bishou")
-                return notify_fail("什么？\n");
+                return notify_fail("什麼？\n");
         if (me->query_temp("thd/onquest")!=2)
-                return notify_fail("什么？\n");         
+                return notify_fail("什麼？\n");         
         if(arg=="bishou"&&me->query_temp("thd/onquest")==2)
         {
-                msg = HIR"$N见到黑风双刹袭来，心中一惊，抽出匕首胡乱挥舞起来。\n";
-                msg+= HIR"陈玄风冷笑一声，在$N肩头青门穴一弹，$N手一沉，竟然正好插在\n";
-                msg+= HIR"他的肚脐上！\n\n"NOR;
-                msg+= HIY"陈玄风瞪著$N，身子慢慢的软倒。\n\n"NOR;
-                msg+= HIC"梅超风惨叫一声，不故性命的向你攻来！\n"NOR;
+                msg = HIR"$N見到黑風雙剎襲來，心中一驚，抽出匕首胡亂揮舞起來。\n";
+                msg+= HIR"陳玄風冷笑一聲，在$N肩頭青門穴一彈，$N手一沉，竟然正好插在\n";
+                msg+= HIR"他的肚臍上！\n\n"NOR;
+                msg+= HIY"陳玄風瞪著$N，身子慢慢的軟倒。\n\n"NOR;
+                msg+= HIC"梅超風慘叫一聲，不故性命的向你攻來！\n"NOR;
                         if (!objectp(obj = present("mei chaofeng",environment(me)))) {
                                 call_out("do_dest",1,ob);
                                 return 1;
@@ -151,11 +151,11 @@ void die()
 			::die();
 			return;
 		}
-		message_vision(HIY"\n$N看到陈玄风身上有一片皮革，顺手拿了起来。\n"NOR,me);
+		message_vision(HIY"\n$N看到陳玄風身上有一片皮革，順手拿了起來。\n"NOR,me);
 		skin->set("owner", me->query("id"));
 		skin->move(me);
 		if(! me->query("quest/jiuyin2/pass"))
-			log_file("quest/jiuyin",sprintf("%-18s失败%s次后，从陈玄风处得到九阴真经下卷，福：%d。\n",
+			log_file("quest/jiuyin",sprintf("%-18s失敗%s次後，從陳玄風處得到九陰真經下卷，福：%d。\n",
               			me->name(1)+"("+capitalize(getuid(me))+")",chinese_number(me->query("quest/jiuyin2/fail")),
               			me->query("kar")), me);
 		me->set("quest/jiuyin2/pass", 1);
@@ -166,7 +166,7 @@ void die()
         me->set("quest/jiuyin2/time", time());
         me->set("quest/jiuyin2/combat_exp", me->query("combat_exp"));
 	log_file("quest/jiuyin",
-		sprintf("%-18s想从陈玄风处得到九阴真经下卷，失败%s次。\n",
+		sprintf("%-18s想從陳玄風處得到九陰真經下卷，失敗%s次。\n",
 			me->name(1)+"("+capitalize(getuid(me))+")",
                         chinese_number(me->query("quest/jiuyin2/fail"))
 		), me

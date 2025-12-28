@@ -1,4 +1,4 @@
-// /kungfu/class/xueshan/guoshi.c  贡唐仓国师
+// /kungfu/class/xueshan/guoshi.c  貢唐倉國師
 // by secret
 
 inherit NPC;
@@ -11,14 +11,14 @@ string ask_for_join();
 
 void create()
 {
-        set_name("贡唐仓国师", ({ "gongtangcang guoshi", "guoshi" }));
+        set_name("貢唐倉國師", ({ "gongtangcang guoshi", "guoshi" }));
         set("long",@LONG
-贡唐仓国师是雪山寺中地位较高的喇嘛。
-身穿一件青色袈裟，头带僧帽。
+貢唐倉國師是雪山寺中地位較高的喇嘛。
+身穿一件青色袈裟，頭帶僧帽。
 LONG
         );
         set("title", HIY "大喇嘛" NOR);
-        set("nickname", HIG "国师" NOR);
+        set("nickname", HIG "國師" NOR);
         set("gender", "男性");
         set("age", 40);
         set("attitude", "peaceful");
@@ -88,36 +88,36 @@ void attempt_apprentice(object ob)
 
         if( query("gender", ob) != "男性" )
         {
-                command("say 修习密宗内功需要纯阳之体。");
-                command("say 这位" + RANK_D->query_respect(ob) +
-                        "还是请回吧！");
+                command("say 修習密宗內功需要純陽之體。");
+                command("say 這位" + RANK_D->query_respect(ob) +
+                        "還是請回吧！");
                 return;
         }
 
         if( query("class", ob) != "bonze" )
         {
-                command("say 我佛门的清规戒律甚多。");
+                command("say 我佛門的清規戒律甚多。");
                 set_temp("pending/join_bonze", 1, ob);
-                command("say 施主若真心皈依我佛，请跪下(kneel)受戒。\n");
+                command("say 施主若真心皈依我佛，請跪下(kneel)受戒。\n");
                 return;
         }
 
         if( query("family/family_name", ob) != "密宗" )
         {
-                command("say 这位" + RANK_D->query_respect(ob) +
-                        "既非本寺弟子，还是请回吧！");
+                command("say 這位" + RANK_D->query_respect(ob) +
+                        "既非本寺弟子，還是請回吧！");
                 return;
         }
 
         if ((int)ob->query_skill("lamaism", 1) < 40)
         {
-                command("say 入我雪山寺，修习密宗心法是首要的。");
-                command("say 这位" + RANK_D->query_respect(ob) +
-                        "是否还应该多多钻研本门的心法？");
+                command("say 入我雪山寺，修習密宗心法是首要的。");
+                command("say 這位" + RANK_D->query_respect(ob) +
+                        "是否還應該多多鑽研本門的心法？");
                 return;
         }
 
-        command("say 好，就传你一些武功吧！");
+        command("say 好，就傳你一些武功吧！");
         command("recruit "+query("id", ob));
 
         set("title", HIY"喇嘛"NOR, ob);
@@ -136,15 +136,15 @@ string ask_for_join()
         me = this_player();
 
         if( query("class", me) == "bonze" )
-                return "阿弥陀佛！ 你已经是出家人了，何故跟贫僧开这等玩笑？\n";
+                return "阿彌陀佛！ 你已經是出家人了，何故跟貧僧開這等玩笑？\n";
 
         if( query("gender", me) != "男性" )
-                return "施主若真心向佛，真是可喜可贺，可惜本寺只收男徒。\n";
+                return "施主若真心向佛，真是可喜可賀，可惜本寺只收男徒。\n";
 
         set_temp("pending/join_bonze", 1, me);
 
-        return "阿弥陀佛！善哉！善哉！施主若真心皈依"
-               "我佛，请跪下(kneel)受戒。\n";
+        return "阿彌陀佛！善哉！善哉！施主若真心皈依"
+               "我佛，請跪下(kneel)受戒。\n";
 }
 
 int do_kneel()
@@ -154,15 +154,15 @@ int do_kneel()
         if( !query_temp("pending/join_bonze", me) )
                 return 0;
 
-        message_vision("$N双手合十，恭恭敬敬地跪了下来。\n\n"
-                       "$n伸出手掌，在$N头顶轻轻地摩挲了几下，将"
-                       "$N的头发尽数剃去。\n\n", me, this_object());
+        message_vision("$N雙手合十，恭恭敬敬地跪了下來。\n\n"
+                       "$n伸出手掌，在$N頭頂輕輕地摩挲了幾下，將"
+                       "$N的頭髮盡數剃去。\n\n", me, this_object());
 
         set("class", "bonze", me);
         set("title", HIY"喇嘛"NOR, me);
 
         command("smile");
-        command("say 好，就传你一些武功吧！");
+        command("say 好，就傳你一些武功吧！");
         command("recruit "+query("id", me));
 
         return 1;
@@ -175,7 +175,7 @@ int do_say(string arg)
 
         if (! arg || arg == "") return 0;
 
-        if (arg == "法轮常转")
+        if (arg == "法輪常轉")
         {
                 me->move("/d/xueshan/guangchang");
                 return 1;

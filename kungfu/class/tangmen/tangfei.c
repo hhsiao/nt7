@@ -10,7 +10,7 @@ void create()
 {
         set_name("唐肥", ({ "tang fei","tang"}));
         set("nickname", HIC "我也不知道" NOR);
-        set("long", "唐门三绝之一，名列唐门一流高手之中，其使有的暗器“唐花”是唐门绝门暗器之一。\n");
+        set("long", "唐門三絕之一，名列唐門一流高手之中，其使有的暗器“唐花”是唐門絕門暗器之一。\n");
         set("gender", "女性");
         set("age", 28);
         set("class", "tangmen");
@@ -73,7 +73,7 @@ void create()
                 "tanghua" : ( : ask_tanghua : ),
         ]) );           
         
-        create_family("唐门世家", 3, "弟子");
+        create_family("唐門世家", 3, "弟子");
         
         set_temp("apply/damage", 100);  
         set_temp("apply/unarmed_damage", 100);  
@@ -100,22 +100,22 @@ string ask_tanghua()
         { 
                 command("laugh"+query("id", me));
                 addn_temp("thua2", 1, me);
-                return HIC "你以为我有啊！我还要找人要呢！\n" NOR;      
+                return HIC "你以為我有啊！我還要找人要呢！\n" NOR;      
         }
         
-        if( query("family/family_name", me) != "唐门世家" )
+        if( query("family/family_name", me) != "唐門世家" )
         {
                 command("hmm"+query("id", me));
                 her->kill_ob(me);
-                return HIR"又是一个不要命的,哈哈......\n"NOR;
+                return HIR"又是一個不要命的,哈哈......\n"NOR;
         }
         
         command("addoil"+query("id", me));
         command("pat "+ query("id", me) );
-        command("say “好吧，这就是唐花，给你了。” \n");
+        command("say “好吧，這就是唐花，給你了。” \n");
         ob = new("/kungfu/class/tangmen/obj/hua.c");
         ob->move(me);
-//           message("channel:rumor", HIM "【谣言四起】" HIM " 哇..." + me->query("name") + HIM "找到了唐门暗器" ;118                                  HIG "唐花" HIM "了！\n" NOR, users());
+//           message("channel:rumor", HIM "【謠言四起】" HIM " 哇..." + me->query("name") + HIM "找到了唐門暗器" ;118                                  HIG "唐花" HIM "了！\n" NOR, users());
         return "好吧！\n";
 }        
                
@@ -124,28 +124,28 @@ void attempt_apprentice(object ob)
         if (! permit_recruit(ob))  
                 return;
 
-        if( query("family/family_name", ob) != "唐门世家" )
+        if( query("family/family_name", ob) != "唐門世家" )
         {
-                command("say “我四川唐门乃是武林世家，你已是武林中人，我不能收你为徒！”\n");
+                command("say “我四川唐門乃是武林世家，你已是武林中人，我不能收你為徒！”\n");
                 return;
         }
                                         
         if ((int)ob->query_skill("biyun-xinfa", 1) < 100) {
-                command("say 唐门虽然以暗器为主，但还是要辅以内力。"); 
+                command("say 唐門雖然以暗器為主，但還是要輔以內力。"); 
                 command("say " + RANK_D->query_respect(ob) + 
-                        "是否还应该在碧云心法上多下点功夫？");
+                        "是否還應該在碧雲心法上多下點功夫？");
                 return;
         }
 
         if ( ob->query_skill("biyun-xinfa", 1) < 80 && ob->query_skill("tangmen-throwing", 1) < 80 )
         {
-                command("say “你的心法和暗器不太熟练，要加油啊！”\n");
+                command("say “你的心法和暗器不太熟練，要加油啊！”\n");
                 return;
         }                                   
         if( query("int", ob)<28){
-                command("say 唐门历来注重弟子的文学修为。");
-                command("say 本派功夫要能熟练运用，必须能体会其中所含深远意境，悟性差了是不行的。");
-                command("say " + RANK_D->query_respect(ob) + "的悟性还大有潜力可挖，还是请回吧。");
+                command("say 唐門歷來注重弟子的文學修為。");
+                command("say 本派功夫要能熟練運用，必須能體會其中所含深遠意境，悟性差了是不行的。");
+                command("say " + RANK_D->query_respect(ob) + "的悟性還大有潛力可挖，還是請回吧。");
                 return;
         }
         command("say 好吧，我就收下你吧...");

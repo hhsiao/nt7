@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "头天门");
+        set("short", "頭天門");
         set("long", @LONG
-只见有石梯无数通往山巅，一座石坊上写着头天门三个大字，这
-是攀登武当绝顶天柱峰的起点。
+只見有石梯無數通往山巔，一座石坊上寫著頭天門三個大字，這
+是攀登武當絕頂天柱峰的起點。
 LONG );
         set("exits", ([
                 "north" : __DIR__"huixianqiao",

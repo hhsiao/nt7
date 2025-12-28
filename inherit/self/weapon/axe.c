@@ -1,6 +1,6 @@
 // axe.c
 // 自造物品 (by Find.)
-// 没有安全问题但太麻烦
+// 沒有安全問題但太麻煩
 
 #include <mine_def.h>
 #include <weapon.h>
@@ -112,12 +112,12 @@ protected void create(class weapon_args arg)
 
         else
         {
-                set_name("铁斧", ({ "axe" }) );
+                set_name("鐵斧", ({ "axe" }) );
                 set_weight(8000);
-                set("long", "这是一把沈重的铁斧。\n");
+                set("long", "這是一把沈重的鐵斧。\n");
                 set("value", 500);
                 set("material","iron");
-                set("wield_msg", "$N拿出一把$n，握在手中当作武器。\n");
+                set("wield_msg", "$N拿出一把$n，握在手中當作武器。\n");
                 set("unwield_msg", "$N放下手中的$n。\n");
                 init_axe(25);
         }

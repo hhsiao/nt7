@@ -1,13 +1,13 @@
 
 #include <ansi.h>
 inherit FIGHTER;
-#define QUESTDIR "skybook/shediao/风雪惊变/"
+#define QUESTDIR "skybook/shediao/風雪驚變/"
 
 void create()
 {
         set_name("金兵", ({ "jin bing", "bing" }));
         set("gender", "男性");
-        set("long", "这人就是完颜洪烈的护卫金兵。\n");
+        set("long", "這人就是完顏洪烈的護衛金兵。\n");
         set("str", 25);
         set("dex", 25);
         set("con", 25);
@@ -81,7 +81,7 @@ void kill_ob(object me)
         return ::kill_ob(me);
 }
 
-//检查，quest过程不允许死亡
+//檢查，quest過程不允許死亡
 int checking(object me, object ob)
 {
         remove_call_out("checking");
@@ -89,21 +89,21 @@ int checking(object me, object ob)
         
         if( !living(me) && living(ob) && query("jing", ob)>0 && query("qi", ob) > 0 ) {
                 remove_call_out("checking");
-                tell_room(environment(me), HIB"\n"+me->name()+"眼看就是不敌，突然一股劲风袭来，金兵不由手上一松，"+me->name()+"顺势闯出杨家。\n"NOR);
+                tell_room(environment(me), HIB"\n"+me->name()+"眼看就是不敵，突然一股勁風襲來，金兵不由手上一鬆，"+me->name()+"順勢闖出楊家。\n"NOR);
                 me->move("/d/jiaxing/njroad3");
-                tell_room(environment(me), HIB"\n一个身影突然飞来，待你仔细看来，原来是"+me->name()+"，只见"+me->name()+"突然一顿，竟然昏倒在地。\n"NOR);
+                tell_room(environment(me), HIB"\n一個身影突然飛來，待你仔細看來，原來是"+me->name()+"，只見"+me->name()+"突然一頓，竟然昏倒在地。\n"NOR);
                 delete(QUESTDIR+"start", me);
                 delete_temp(QUESTDIR+"kill", me);
                 delete_temp(QUESTDIR+"kill_jinbing", me);
                 delete_temp(QUESTDIR+"have_kill", me);
                 set("qi",100,me);   
                 set("jing",100,me);                                                                                                                                                   //防止玩家意外死亡
-                                                                        //dls没有毒的
+                                                                        //dls沒有毒的
                 set("skybook/shediao/time",time(), me);
                 set("skybook/shediao/combat_exp",query("combat_exp",me),me);
 
-                //log_file("quest/SheDiao", sprintf("%s纪录：%s(%s)射雕英雄传之风雪惊变失败。经验%d。\n", ob->name(1),me->name(1),me->query("id"), me->query("combat_exp")) );
-                tell_room(environment(ob), ob->name()+"哼了一声：“什么人也敢管本大爷的事！将包惜弱带走！”\n");
+                //log_file("quest/SheDiao", sprintf("%s紀錄：%s(%s)射鵰英雄傳之風雪驚變失敗。經驗%d。\n", ob->name(1),me->name(1),me->query("id"), me->query("combat_exp")) );
+                tell_room(environment(ob), ob->name()+"哼了一聲：“什麼人也敢管本大爺的事！將包惜弱帶走！”\n");
                 destruct(ob);
                 return 1;
         }
@@ -129,16 +129,16 @@ void do_lost()
                 delete_temp(QUESTDIR+"kill_jinbing", me);
                 set("skybook/shediao/time",time(), me);
                 set("skybook/shediao/combat_exp",query("combat_exp",me), me);
-                //log_file("quest/SheDiao", sprintf("%s纪录：%s(%s)雪山飞狐复仇失败。经验%d。\n", ob->name(1),me->name(1),me->query("id"), me->query("combat_exp")) );
+                //log_file("quest/SheDiao", sprintf("%s紀錄：%s(%s)雪山飛狐復仇失敗。經驗%d。\n", ob->name(1),me->name(1),me->query("id"), me->query("combat_exp")) );
         }
-        tell_room(environment(ob), ob->name()+"哼了一声：“这点本事也敢管本大爷的事！”\n");
+        tell_room(environment(ob), ob->name()+"哼了一聲：“這點本事也敢管本大爺的事！”\n");
         destruct(ob);
 }
 
 void dest(object ob)
 {
         if( !ob ) return;
-        tell_room(environment(ob), HIR+"\n"+ob->name()+"哼了一声，点子厉害，我们撤~~~~~~~\n"NOR);
+        tell_room(environment(ob), HIR+"\n"+ob->name()+"哼了一聲，點子厲害，我們撤~~~~~~~\n"NOR);
         destruct(ob);
 }
 varargs void die(object killer)

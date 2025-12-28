@@ -2,65 +2,65 @@
 inherit SKILL;
 
 mapping *action = ({
-([        "action" : "$N划身错步，一式「追风逐电」，双掌内拢外托，同时攻向$n的左肩",
+([        "action" : "$N劃身錯步，一式「追風逐電」，雙掌內攏外託，同時攻向$n的左肩",
         "force"  : 170,
         "attack" : 85,
         "dodge"  :-38,
         "parry"  :-38,
         "damage" : 36,
         "lvl"    : 0,
-        "skill_name" : "追风逐电",
-        "damage_type" : "内伤"
+        "skill_name" : "追風逐電",
+        "damage_type" : "內傷"
 ]),
-([        "action" : "$N一式「云飘四海」，双掌虚虚实实，以迅雷不及掩耳之势劈向$n",
+([        "action" : "$N一式「雲飄四海」，雙掌虛虛實實，以迅雷不及掩耳之勢劈向$n",
         "force"  : 210,
         "attack" : 98,
         "dodge"  :-43,
         "parry"  :-43,
         "damage" : 44,
         "lvl"    : 40,
-        "skill_name" : "云飘四海",
-        "damage_type" : "内伤"
+        "skill_name" : "雲飄四海",
+        "damage_type" : "內傷"
 ]),
-([        "action" : "$N使一式「八方云涌」，劲气弥漫，双掌如轮，一环环向$n的后背斫去",
+([        "action" : "$N使一式「八方雲湧」，勁氣瀰漫，雙掌如輪，一環環向$n的後背斫去",
         "force"  : 280,
         "attack" : 103,
         "dodge"  :-51,
         "parry"  :-51,
         "damage" : 58,
         "lvl"    : 80,
-        "skill_name" : "八方云涌",
-        "damage_type" : "内伤"
+        "skill_name" : "八方雲湧",
+        "damage_type" : "內傷"
 ]),
-([        "action" : "$N一式「龙卷暴伸」，双掌似让非让，似顶非顶，气浪如急流般使$n陷身其中",
+([        "action" : "$N一式「龍捲暴伸」，雙掌似讓非讓，似頂非頂，氣浪如急流般使$n陷身其中",
         "force"  : 340,
         "attack" : 125,
         "dodge"  :-65,
         "parry"  :-65,
         "damage" : 67,
         "lvl"    : 120,
-        "skill_name" : "龙卷暴伸",
-        "damage_type" : "内伤"
+        "skill_name" : "龍捲暴伸",
+        "damage_type" : "內傷"
 ]),
-([        "action" : "$N一式「冰封万里」，掌影层层叠叠，飘飘渺渺，凌厉的掌风直涌$n而去",
+([        "action" : "$N一式「冰封萬里」，掌影層層疊疊，飄飄渺渺，凌厲的掌風直湧$n而去",
         "force"  : 370,
         "attack" : 131,
         "dodge"  :-68,
         "parry"  :-68,
         "damage" : 71,
         "lvl"    : 160,
-        "skill_name" : "冰封万里",
-        "damage_type" : "内伤"
+        "skill_name" : "冰封萬里",
+        "damage_type" : "內傷"
 ]),
-([        "action" : "$N双手变幻，五指轻弹，一招「穹寰飞仙」，力分五路，招划十方笼罩$n",
+([        "action" : "$N雙手變幻，五指輕彈，一招「穹寰飛仙」，力分五路，招劃十方籠罩$n",
         "force"  : 410,
         "attack" : 145,
         "dodge"  :-73,
         "parry"  :-73,
         "damage" : 82,
         "lvl"    : 200,
-        "skill_name" : "穹寰飞仙",
-        "damage_type" : "内伤"
+        "skill_name" : "穹寰飛仙",
+        "damage_type" : "內傷"
 ]),
 });
 
@@ -69,25 +69,25 @@ int valid_enable(string usage) { return usage == "strike" ||  usage == "parry"; 
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练飘雪穿云掌必须空手。\n");
+                return notify_fail("練飄雪穿雲掌必須空手。\n");
 
         if( query("con", me)<28 )
-                return notify_fail("你的先天根骨欠佳，不能练飘雪穿云掌。\n");
+                return notify_fail("你的先天根骨欠佳，不能練飄雪穿雲掌。\n");
 
         if( query("str", me)<32 )
-                return notify_fail("你的先天臂力孱弱，不能练飘雪穿云掌。\n");
+                return notify_fail("你的先天臂力孱弱，不能練飄雪穿雲掌。\n");
 
         if (me->query_skill("force") < 200)
-                return notify_fail("你的内功火候不够，不能练飘雪穿云掌。\n");
+                return notify_fail("你的內功火候不夠，不能練飄雪穿雲掌。\n");
 
         if (me->query_skill("strike", 1) < 200)
-                return notify_fail("你的掌法根基不够，不能练飘雪穿云掌。\n");
+                return notify_fail("你的掌法根基不夠，不能練飄雪穿雲掌。\n");
 
         if( query("max_neili", me)<5800 )
-                return notify_fail("你的内力修为太浅，无法练飘雪穿云掌。\n");
+                return notify_fail("你的內力修為太淺，無法練飄雪穿雲掌。\n");
 
         if (me->query_skill("strike", 1) < me->query_skill("piaoxue-zhang", 1))
-                return notify_fail("你的基本掌法太差，无法领会更高深的飘雪穿云掌。\n");
+                return notify_fail("你的基本掌法太差，無法領會更高深的飄雪穿雲掌。\n");
 
         return 1;
 }
@@ -111,12 +111,12 @@ mapping query_action(object me, object weapon)
 
 int practice_skill(object me)
 {
-        return notify_fail("飘雪穿云掌无法简单的通过练习进步。\n");
+        return notify_fail("飄雪穿雲掌無法簡單的通過練習進步。\n");
 /*        if( query("qi", me)<100 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
 
         if( query("neili", me)<120 )
-                return notify_fail("你的内力不够练习飘雪穿云掌。\n");
+                return notify_fail("你的內力不夠練習飄雪穿雲掌。\n");
 
         if (me->query_skill("sixiang-zhang", 1) < 100)
         {
@@ -148,7 +148,7 @@ mixed hit_ob(object me, object victim, int damage_bonus)
                 if (i > 2) i = 2;
                 addn("neili", -250, me);
                         set_temp("piaoxue-zhang/lian", time() + 2 + random(2), me);
-                        message_combatd(NOR CYN "\n$N" NOR CYN + (random(2) ? "脚踏": "急踩") + "诸天步法，飘飘渺渺间向$n" NOR CYN "斫出数掌。\n" NOR,
+                        message_combatd(NOR CYN "\n$N" NOR CYN + (random(2) ? "腳踏": "急踩") + "諸天步法，飄飄渺渺間向$n" NOR CYN "斫出數掌。\n" NOR,
                         me, victim);
                 while (i--) {
                                         if (! me->is_fighting(victim)) break;
@@ -166,10 +166,10 @@ mixed hit_ob(object me, object victim, int damage_bonus)
                 {
                         if (query("neili", me) < query("max_neili", me))  addn("neili", lv2, me); 
                     victim->receive_wound("qi", damage_bonus * 2, me);
-                        return NOR HIR "$N" HIR "的" HIW "峨眉九阳" HIR "劲力透掌心，只听$n" HIR "前胸“喀嚓”爆响，竟似折断了数根肋骨。\n" NOR;
+                        return NOR HIR "$N" HIR "的" HIW "峨眉九陽" HIR "勁力透掌心，只聽$n" HIR "前胸“喀嚓”爆響，竟似折斷了數根肋骨。\n" NOR;
                 } else {
                         victim->receive_wound("qi", damage_bonus / 3, me);
-                    return HIR "只听$n" HIR "前胸“喀嚓”一声闷响，竟似折断了一根肋骨。\n" NOR;
+                    return HIR "只聽$n" HIR "前胸“喀嚓”一聲悶響，竟似折斷了一根肋骨。\n" NOR;
                                 }
         }
         return 0;
@@ -189,8 +189,8 @@ mixed valid_damage(object ob, object me, int damage, object weapon)//by redl
                 string msg = NOR;
                 int flagd = 0;
                 
-                delta = ABILITY_D->check_ability(me, "parryup-piaoxue-zhang"); // 门派ab 飘雪掌招架几率+25%
-                //DEBUG_CHANNEL(query("id", me) + " 飘雪掌 delta:" + (string)delta + "\n");
+                delta = ABILITY_D->check_ability(me, "parryup-piaoxue-zhang"); // 門派ab 飄雪掌招架幾率+25%
+                //DEBUG_CHANNEL(query("id", me) + " 飄雪掌 delta:" + (string)delta + "\n");
                 if( random(100) > 65 + delta ) return;
         
         if ((int)me->query_skill("emei-jiuyang", 1) < 120 ||
@@ -218,19 +218,19 @@ mixed valid_damage(object ob, object me, int damage, object weapon)//by redl
                         if( ((int)me->query_skill("emei-jiuyang", 1) >= 2000) && 
                                 random(5) && 
                                 query_temp("block_msg/all", me) ) {
-                                        msg += NOR HIW "$n" HIW "运转九阳真气直冲瞳子，双眼恢复晴明。\n" NOR;
+                                        msg += NOR HIW "$n" HIW "運轉九陽真氣直衝瞳子，雙眼恢復晴明。\n" NOR;
                         delete_temp("block_msg/all", me);
                         }
                 switch (random(3))
                 {
                 case 0:
-                        msg += HIW "$n" HIW "变掌为爪，五指狠扣将$N" HIW "的攻势牢牢按住。\n" NOR;
+                        msg += HIW "$n" HIW "變掌為爪，五指狠扣將$N" HIW "的攻勢牢牢按住。\n" NOR;
                         if (query("neili", me) < query("max_neili", me))  addn("neili", dp, me); 
                         addn("neili", - dp, ob); 
                         if (query("neili", ob) < 0) set("neili", 0, ob); 
                         break;
                 case 1:
-                        msg += HIW "$n" HIW "肩膀微侧，体内峨眉九阳劲一震，抖开$N" HIW "的进攻。\n" NOR;
+                        msg += HIW "$n" HIW "肩膀微側，體內峨眉九陽勁一震，抖開$N" HIW "的進攻。\n" NOR;
                                         if (!random(3))
                                         delete_temp("no_exert", me);
                                         if (!random(3))
@@ -250,11 +250,11 @@ mixed valid_damage(object ob, object me, int damage, object weapon)//by redl
                                                         flagd = 1;
                                                 }
                                                 if (flagd) {
-                                                        msg += HIW "$n" HIW "竖掌往前一抓，九阴爪劲力射出指尖，$N" HIW "手里的" + query("name", weapon) + "被击落。\n" NOR;
+                                                        msg += HIW "$n" HIW "豎掌往前一抓，九陰爪勁力射出指尖，$N" HIW "手裡的" + query("name", weapon) + "被擊落。\n" NOR;
                                                         weapon->move(environment(ob));
                                                 }
                                 } else
-                                msg += HIW "$n" HIW "竖掌往前一抓，九阴爪劲力射出指尖，$N" HIW "不得已被迫退。\n" NOR;
+                                msg += HIW "$n" HIW "豎掌往前一抓，九陰爪勁力射出指尖，$N" HIW "不得已被迫退。\n" NOR;
                         //COMBAT_D->do_attack(me, ob, 0, 3);
                         break;
                 }
@@ -266,22 +266,22 @@ mixed valid_damage(object ob, object me, int damage, object weapon)//by redl
                 switch (random(3))
                 {
                 case 0:
-                        result =  HIW "$n" HIW "摊开手掌，五根铁指狠扣向$N" HIW "的攻势按去。\n" NOR;
+                        result =  HIW "$n" HIW "攤開手掌，五根鐵指狠扣向$N" HIW "的攻勢按去。\n" NOR;
                         break;
                 case 1:
-                        result =  HIW "$n" HIW "肩膀微侧，体内峨眉九阳劲一震，抖开$N" HIW "的进攻。\n" NOR;
+                        result =  HIW "$n" HIW "肩膀微側，體內峨眉九陽勁一震，抖開$N" HIW "的進攻。\n" NOR;
                         break;
                 default:
-                        result =  HIW "$n" HIW "竖掌往前一抓，九阴爪劲力射出指尖，欲将$N" HIW "迫退。\n" NOR;
+                        result =  HIW "$n" HIW "豎掌往前一抓，九陰爪勁力射出指尖，欲將$N" HIW "迫退。\n" NOR;
                         break;
                 }
                 switch (random(2))
                 {
                 case 0:
-                        result += HIY "然而$N" HIY "理也不理，随手挥招直入，进袭$n" HIY "！\n" NOR;
+                        result += HIY "然而$N" HIY "理也不理，隨手揮招直入，進襲$n" HIY "！\n" NOR;
                         break;
                 default:
-                        result += HIY "可是$N" HIY "攻势却是变化无方，不遵循常理。\n" NOR;
+                        result += HIY "可是$N" HIY "攻勢卻是變化無方，不遵循常理。\n" NOR;
                         break;
                 }
                 COMBAT_D->set_bhinfo(result);

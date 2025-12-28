@@ -7,9 +7,9 @@ int join_battle();
 
 void create()
 {
-        set_name(HIM "谢晓诗" NOR, ({ "xiexiao shi", "xiexiao", "shi" }));
+        set_name(HIM "謝曉詩" NOR, ({ "xiexiao shi", "xiexiao", "shi" }));
         set("title", HIW "冰" HIR "火" HIC "使者");
-        set("long", "她是负责护送玩家到冰火岛的秘密使者。\n");
+        set("long", "她是負責護送玩家到冰火島的秘密使者。\n");
         set("gender", "女性");
         set("age", 20);
         set("max_qi", 99999);
@@ -28,8 +28,8 @@ void create()
         set("str", 88);
 
         set("inquiry", ([
-                "冰火岛" : (: move_bhd :),
-                "帮派争夺战" : (: join_battle :),
+                "冰火島" : (: move_bhd :),
+                "幫派爭奪戰" : (: join_battle :),
         ]));
         set("combat_exp", 10000000);
         set("shen_type", 1);
@@ -41,15 +41,15 @@ int move_bhd()
 {
         object me = this_player();
         
-        // 身上钱不足
+        // 身上錢不足
         if( query("balance", me)<100 )
         {
-                command("say 你的银库中似乎缺钱吧，我护送你到冰火岛至少得一百两黄金！");
+                command("say 你的銀庫中似乎缺錢吧，我護送你到冰火島至少得一百兩黃金！");
                 return 1;
         }
         addn("balance", -100, me);
         
-        command("say 既然如此，我就护送你到冰火岛吧！");
+        command("say 既然如此，我就護送你到冰火島吧！");
 
         me->move("/maze/binghuodao/haitan"); 
         return 1;

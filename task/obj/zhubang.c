@@ -9,7 +9,7 @@ void create()
         else { 
                 set("unit", "根"); 
                 set("material", "bamboo"); 
-                set("long", "一根看上去很不起眼的竹棒，上面痕迹斑斑，摸上去却光滑至极。\n"); 
+                set("long", "一根看上去很不起眼的竹棒，上面痕跡斑斑，摸上去卻光滑至極。\n"); 
         } 
         set("owner", "越女"); 
         setup(); 

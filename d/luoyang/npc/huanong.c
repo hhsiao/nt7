@@ -5,12 +5,12 @@ inherit F_DEALER;
 
 void create()
 {
-        set_name("花农", ({ "hua nong", "hua", "nong" }));
-        set("title", HIY "洛阳苗铺" NOR); 
+        set_name("花農", ({ "hua nong", "hua", "nong" }));
+        set("title", HIY "洛陽苗鋪" NOR); 
         set("gender", "男性");
-        set("long", "一个衣着朴素的老农，他在洛阳苗铺栽花\n"
-                    "种草数十年，如果你也想在此种花，可以\n"
-                    "向他买一些种子。\n");
+        set("long", "一個衣著樸素的老農，他在洛陽苗鋪栽花\n"
+                    "種草數十年，如果你也想在此種花，可以\n"
+                    "向他買一些種子。\n");
         set("str", 100);
         set_skill("unarmed", 50);
         set_skill("dodge", 50);

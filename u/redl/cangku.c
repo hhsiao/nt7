@@ -8,11 +8,11 @@ void create()
 {
                 int i = random(4) + 3;
                 object ob;
-        set("short", "仓库");
+        set("short", "倉庫");
         set("long", 
-"这里是化乐天里的仓库，各种奇珍异宝车载斗量堆满了整间屋子，灿\n"
-"烂耀眼的珠宝和移山倒海的装备法宝扔了一地，不过都还没有放进来。角\n"
-"落里有个猫舍，你忍不住想用手去掏一掏(" + CYN + "tao" + NOR + ")。\n"
+"這裡是化樂天裡的倉庫，各種奇珍異寶車載斗量堆滿了整間屋子，燦\n"
+"爛耀眼的珠寶和移山倒海的裝備法寶扔了一地，不過都還沒有放進來。角\n"
+"落裡有個貓舍，你忍不住想用手去掏一掏(" + CYN + "tao" + NOR + ")。\n"
 );
 //         set("outdoors", "chengdu");
         set("exits",([ /* sizeof() == 1 */
@@ -54,7 +54,7 @@ void init()
 
 int do_noget()
 {
-        tell_object(this_player(), NOR"你看看就行了啊，可别动歪脑筋！\n"NOR);
+        tell_object(this_player(), NOR"你看看就行了啊，可別動歪腦筋！\n"NOR);
         return 1;
 }
 
@@ -63,19 +63,19 @@ int do_tao()
 
         object ob, me = this_player();
         if ( me->is_busy() ) {
-                        tell_object(me, "你还是忙完手头上的事情再说吧。\n");
+                        tell_object(me, "你還是忙完手頭上的事情再說吧。\n");
                         return 1;
                 }
-        message_vision(YEL "$N将手伸进去猫舍里去掏了掏...\n" NOR, me);
+        message_vision(YEL "$N將手伸進去貓舍裡去掏了掏...\n" NOR, me);
         if ( query("id", me) != "redl" && query("couple/couple_id", me) != "redl" ) 
                 {
-                        message_vision(YEL "只听见喵呜，$N" NOR YEL "惨叫一声把手缩回来，可怜已是被" HIK "小懒猫" NOR YEL "抓得面目全非了。\n" NOR, me, ob);
+                        message_vision(YEL "只聽見喵嗚，$N" NOR YEL "慘叫一聲把手縮回來，可憐已是被" HIK "小懶貓" NOR YEL "抓得面目全非了。\n" NOR, me, ob);
                         me->start_busy(5);
                         }
         else 
                 {
                                                 ob = new(__DIR__"npc/lcat");
-                        message_vision(YEL "只听见喵呜一声，$N" NOR YEL "从猫舍里轻轻拎出来一只可爱的$n" NOR YEL "。\n" NOR, me, ob);
+                        message_vision(YEL "只聽見喵嗚一聲，$N" NOR YEL "從貓舍裡輕輕拎出來一隻可愛的$n" NOR YEL "。\n" NOR, me, ob);
                                                 ob->move(this_object());
                         ob->command("cat " + query("id", me));
                 }
@@ -87,20 +87,20 @@ void do_start_hslj(string arg)
 {
 //      int type;
         object cat;
-        DEBUG_CHANNEL("TIME_D调用比武 " +(arg?arg:0)+ "成功。\n");
+        DEBUG_CHANNEL("TIME_D調用比武 " +(arg?arg:0)+ "成功。\n");
         if (!arg) {
                 switch(random(4)) {
                         case 0:
-                                message_system(NOR + HIW + "每月６、２１日，晚２０点华山绝顶开放[１号比武场]，限制２０级到１００级之间，奖品有勋章和泥潭币，参与即有好礼。\n"NOR);
+                                message_system(NOR + HIW + "每月６、２１日，晚２０點華山絕頂開放[１號比武場]，限制２０級到１００級之間，獎品有勳章和泥潭幣，參與即有好禮。\n"NOR);
                                 break;
                         case 1:
-                                message_system(NOR + HIW + "每月６、２１日，晚２２点华山绝顶开放[２号比武场]，限制１０１级到２００级之间，奖品有勋章和泥潭币，参与即有好礼。\n"NOR);
+                                message_system(NOR + HIW + "每月６、２１日，晚２２點華山絕頂開放[２號比武場]，限制１０１級到２００級之間，獎品有勳章和泥潭幣，參與即有好禮。\n"NOR);
                                 break;
                         case 2:
-                                message_system(NOR + HIW + "每月７日，晚２０点华山绝顶开放[３号比武场]，限制２０１级之上，奖品有勋章和泥潭币，参与即有好礼。\n"NOR);
+                                message_system(NOR + HIW + "每月７日，晚２０點華山絕頂開放[３號比武場]，限制２０１級之上，獎品有勳章和泥潭幣，參與即有好禮。\n"NOR);
                                 break;
                         case 3:
-                                message_system(NOR + HIW + "每月７日，晚２２点华山绝顶开放[华山论剑比武场]，不限武器装备，奖品有勋章和泥潭币，参与即有好礼。\n"NOR);
+                                message_system(NOR + HIW + "每月７日，晚２２點華山絕頂開放[華山論劍比武場]，不限武器裝備，獎品有勳章和泥潭幣，參與即有好禮。\n"NOR);
                                 break;
                 }
                 return;

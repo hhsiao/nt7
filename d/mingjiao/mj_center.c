@@ -13,11 +13,11 @@ string show_data();
 
 void create()
 {
-        set("short", HIR"明教指挥中心"NOR);
+        set("short", HIR"明教指揮中心"NOR);
         set("long", @LONG
-这里是明教指挥中心。四周摆满了各种各样的仪器。墙上面还有
-一行小字(word)。正面一个一百零八寸的大屏幕(screen)上显示着一
-些数据。？
+這裡是明教指揮中心。四周擺滿了各種各樣的儀器。牆上面還有
+一行小字(word)。正面一個一百零八寸的大屏幕(screen)上顯示著一
+些數據。？
 LONG );
         set("exits", ([
                 "out": "/d/city/wumiao",
@@ -53,7 +53,7 @@ void init()
 
 int do_check()
 {
-        write("现有"+query("jingtie")+"块精铁\n");
+        write("現有"+query("jingtie")+"塊精鐵\n");
         return 1;
 }
 
@@ -93,19 +93,19 @@ int f_set_didao(string arg)
 string word_string()
 {
         return HIC
-                "查精铁储藏量:                check_jingtie\n"+
-                "设置精铁储藏:                set_jingtie <num>\n"+
-                "设置厚土地道:                set_didao <dir> <num>\n"
+                "查精鐵儲藏量:                check_jingtie\n"+
+                "設置精鐵儲藏:                set_jingtie <num>\n"+
+                "設置厚土地道:                set_didao <dir> <num>\n"
                 NOR
-                HIR"\n\n正在建设中。\n"NOR;
+                HIR"\n\n正在建設中。\n"NOR;
 }
 
 string show_data()
 {        return HIY
 "\n    *-------------------------------------------*"+
-        "\n\t精铁储藏量                "+query("jingtie")+
+        "\n\t精鐵儲藏量                "+query("jingtie")+
         "\n\t厚土地道："+
-        "\n\t                东：        "+query("didao/east")+
+        "\n\t                東：        "+query("didao/east")+
         "\n\t                西：        "+query("didao/west")+
         "\n\t                北：        "+query("didao/north")+
         "\n\t                南：        "+query("didao/south")+

@@ -6,8 +6,8 @@ void setup()
 {
         set_name("翠花[2;37;0m[2;37;0m", ({"cuihua"}));        
         set("gender", "男性");                
-        set("long", "该上酸菜了...[2;37;0m
-它是阿虎的魔幻兽。
+        set("long", "該上酸菜了...[2;37;0m
+它是阿虎的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

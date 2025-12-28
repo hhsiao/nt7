@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("奇鳞[2;37;0m[2;37;0m", ({"qilin"}));        
+        set_name("奇鱗[2;37;0m[2;37;0m", ({"qilin"}));        
         set("gender", "男性");                
         set("long", "麒麟[2;37;0m
-它是再世孔明的魔幻兽。
+它是再世孔明的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

@@ -11,12 +11,12 @@ int main(object me, string arg)
         string str;
 
         if (! arg)
-                return notify_fail("你要拿出什么东西？\n");
+                return notify_fail("你要拿出什麼東西？\n");
 
         if (arg == "none" || arg == "nothing")
         {
                 if( !objectp(ob=query_temp("handing", me)) )
-                        return notify_fail("你本来就什么都没有拿啊？\n");
+                        return notify_fail("你本來就什麼都沒有拿啊？\n");
 
                 if( !stringp(str=query("unhand_msg", ob)) )
                         str = "$N把$n收回包囊。\n";
@@ -26,15 +26,15 @@ int main(object me, string arg)
         }
 
         if (! objectp(ob = present(arg, me)))
-                return notify_fail("你身上没有这样东西。\n");
+                return notify_fail("你身上沒有這樣東西。\n");
                 
         if( ob->is_pet() || ob->is_warcraft() || query("ridable", ob) )
-                return notify_fail("宠物或者坐骑不可以拿在手上。\n");
+                return notify_fail("寵物或者坐騎不可以拿在手上。\n");
                 
         if( objectp(old=query_temp("handing", me)) )
         {
                 if (old == ob)
-                        return notify_fail("你不是正拿着它吗？\n");
+                        return notify_fail("你不是正拿著它嗎？\n");
 
                 if( !stringp(str=query("unhand_msg", old)) )
                         str = "$N收回手中的$n。\n";
@@ -43,7 +43,7 @@ int main(object me, string arg)
         }
 
         if( (ob->query_amount()?query("base_weight", ob):ob->query_weight())>20000 )
-                return notify_fail(ob->name() + "太重了，你单手拿不住。\n");
+                return notify_fail(ob->name() + "太重了，你單手拿不住。\n");
 
 /*
         weapon=query_temp("weapon", me);
@@ -54,20 +54,20 @@ int main(object me, string arg)
              query_temp("armor/finger", me)) )
         {
                 // none of two hand is free
-                return notify_fail("你双手都拿着武器，没有办法"
-                                   "再拿着" + ob->name() + "了。\n");
+                return notify_fail("你雙手都拿著武器，沒有辦法"
+                                   "再拿著" + ob->name() + "了。\n");
         }
 
         if( query_temp("armor/hands", me) && 
             query_temp("armor/finger", me) )
         {
                 // none of two hand is free
-                return notify_fail("你双手都戴着武器，没有办法"
-                                   "再拿着" + ob->name() + "了。\n");
+                return notify_fail("你雙手都戴著武器，沒有辦法"
+                                   "再拿著" + ob->name() + "了。\n");
         }
 */
         if( query("equipped", ob) )
-                return notify_fail("你正装备着它呢！\n");
+                return notify_fail("你正裝備著它呢！\n");
 
         set_temp("handing", ob, me);
         if( !stringp(str=query("hand_msg", ob)) )
@@ -83,9 +83,9 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式 : hand <物品名称> | nothing
+指令格式 : hand <物品名稱> | nothing
  
-这个指令可以让你拿出一样你所携带的物品，随时准备使用。
+這個指令可以讓你拿出一樣你所攜帶的物品，隨時準備使用。
  
 HELP );
     return 1;

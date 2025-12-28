@@ -7,7 +7,7 @@ void setup()
         set_name("名流座[2;37;0m[2;37;0m", ({"mingliu"}));        
         set("gender", "男性");                
         set("long", "九皇座[2;37;0m
-它是段章甫的魔幻兽。
+它是段章甫的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

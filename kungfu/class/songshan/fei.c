@@ -8,8 +8,8 @@ inherit F_COAGENT;
 
 void create()
 {
-        set_name("费彬", ({ "fei bing", "bing", "fei" }) );
-        set("nickname", HIW "大嵩阳手" NOR);
+        set_name("費彬", ({ "fei bing", "bing", "fei" }) );
+        set("nickname", HIW "大嵩陽手" NOR);
         set("gender", "男性");
         set("class", "swordsman");
         set("age", 45);
@@ -53,7 +53,7 @@ void create()
 
         prepare_skill("strike", "songyang-zhang");
 
-        create_family("嵩山派", 13, "护法");
+        create_family("嵩山派", 13, "護法");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -84,34 +84,34 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)<30000 )
         {
-                command("say 我嵩山剑派乃是堂堂名门正派，对弟子要求严格。");
-                command("say 你在这侠义与德行方面是否还做得不够？");
+                command("say 我嵩山劍派乃是堂堂名門正派，對弟子要求嚴格。");
+                command("say 你在這俠義與德行方面是否還做得不夠？");
                 return;
         }
 
         if( query("combat_exp", ob)<200000 )
         {
-                command("say 你现在经验尚浅，还是多在江湖上走走吧。");
+                command("say 你現在經驗尚淺，還是多在江湖上走走吧。");
                 return;
         }
 
         if ((int)ob->query_skill("songshan-jian", 1) < 120)
         {
-                command("say 我嵩山剑派乃五岳剑派之一，最为重视剑法。");
-                command("say 你的嵩山剑法还不够熟练，下去练练再来吧。");
+                command("say 我嵩山劍派乃五嶽劍派之一，最為重視劍法。");
+                command("say 你的嵩山劍法還不夠熟練，下去練練再來吧。");
                 return;
         }
 
         if ((int)ob->query_skill("songshan-xinfa", 1) < 100)
         {
-                command("say 我嵩山剑派虽善用剑，但内功却是御剑之本。");
-                command("say 你是否还应该在嵩山心法上多下点功夫？");
+                command("say 我嵩山劍派雖善用劍，但內功卻是御劍之本。");
+                command("say 你是否還應該在嵩山心法上多下點功夫？");
                 return;
          }
 
         command("haha");
         command("say 孺子可教，孺子可教。今日我就收下你吧。");
-        command("say 你以后定要勤练武，多行善，扬我嵩山派派雄风。");
+        command("say 你以後定要勤練武，多行善，揚我嵩山派派雄風。");
         command("recruit "+query("id", ob));
 }
 
@@ -119,10 +119,10 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "无影掌" :
+        case "無影掌" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/songyang-zhang/ying",
-                           "name"    : "无影掌",
+                           "name"    : "無影掌",
                            "sk1"     : "songyang-zhang",
                            "lv1"     : 80,
                            "force"   : 80,
@@ -131,10 +131,10 @@ int accept_ask(object me, string topic)
                            "shen"    : 32000, ]));
                 break;
 
-        case "剑气冲霄" :
+        case "劍氣沖霄" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/lingyun-jian/xiao",
-                           "name"    : "剑气冲霄",
+                           "name"    : "劍氣沖霄",
                            "sk1"     : "lingyun-jian",
                            "lv1"     : 100,
                            "force"   : 120,

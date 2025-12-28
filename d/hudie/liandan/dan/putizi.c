@@ -8,7 +8,7 @@ void create()
             	set_default_object(__FILE__);
       	else 
 	{       
-         	set("unit", "颗"); 
+         	set("unit", "顆"); 
             	set("no_get",1);
              	set("no_give",1);
      	}
@@ -27,11 +27,11 @@ int do_eat(string arg)
     	maxneili=query("max_neili", me);
     
   	if(!id(arg)) return 0;
-  	if(me->is_busy()) return notify_fail("你上一个动作还没有完成。\n");
+  	if(me->is_busy()) return notify_fail("你上一個動作還沒有完成。\n");
         if( time()-query("eat_drug/putizi", me)<1800 )
-                return notify_fail("你觉得现在内息未定，经脉隐隐还能感到真气冲荡，不敢贸然服食。\n");
+                return notify_fail("你覺得現在內息未定，經脈隱隱還能感到真氣衝蕩，不敢貿然服食。\n");
 
-        addn("max_neili", 10+random(15), me);message_vision(HIG"$N拿起菩提子吃了下去,感觉丹田传来一阵阵热意,内力修为好象有所增加!!!!!\n"NOR,me);
+        addn("max_neili", 10+random(15), me);message_vision(HIG"$N拿起菩提子吃了下去,感覺丹田傳來一陣陣熱意,內力修為好象有所增加!!!!!\n"NOR,me);
       set("eat_drug/putizi", time(), me);
       	destruct(this_object());
       	return 1;

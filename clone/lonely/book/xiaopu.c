@@ -4,15 +4,15 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIG "「箫谱」" NOR, ({ "xiao pu", "xiao", "pu", "shu", "book" }));
+        set_name(HIG "「簫譜」" NOR, ({ "xiao pu", "xiao", "pu", "shu", "book" }));
         set_weight(500);
         if (clonep())
                 destruct(this_object());
         else {
                 set("unit", "本");
-                set("long", HIG "这是一本薄薄的箫谱，记载了一些吹箫的方法。\n" NOR);
+                set("long", HIG "這是一本薄薄的簫譜，記載了一些吹簫的方法。\n" NOR);
                 set("value", 1);
-                set("no_sell", "这本破书你自己留着吧。");
+                set("no_sell", "這本破書你自己留著吧。");
                 set("material", "paper");
                 set("skill", ([
                         "name"       : "chuixiao-jifa",

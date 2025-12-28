@@ -26,7 +26,7 @@ void create()
         NPC_D->init_npc_skill(this_object(), 7 + random(2));
         set("gender", "男性" );
         set("age", 30 + random(30));
-        set("long", "这是看护庄园的守卫，看上去似乎身怀绝技。\n");
+        set("long", "這是看護莊園的守衛，看上去似乎身懷絕技。\n");
         set("attitude", "friendly");
 
         set("max_qi", 4800);
@@ -62,7 +62,7 @@ int accept_object(object who, object ob)
 
         if (is_owner(who))
         {
-                message_vision(name() + "对$N施了一礼。\n", who);
+                message_vision(name() + "對$N施了一禮。\n", who);
                 destruct(ob);
                 return 1;
         }
@@ -73,8 +73,8 @@ int accept_hit(object ob)
 {
         if (is_owner(ob))
         {
-                message_vision("$N连忙摆摆手，对$n道：“可不要和我开这"
-                               "种玩笑！”\n", this_object(), ob);
+                message_vision("$N連忙擺擺手，對$n道：“可不要和我開這"
+                               "種玩笑！”\n", this_object(), ob);
                 return 0;
         }
 
@@ -85,7 +85,7 @@ int accept_fight(object ob)
 {
         if (is_owner(ob))
         {
-                message_vision("$N吓了一跳，慌忙对$n道：“小的不敢，小"
+                message_vision("$N嚇了一跳，慌忙對$n道：“小的不敢，小"
                                "的不敢！”\n", this_object(), ob);
                 return 0;
         }
@@ -97,9 +97,9 @@ int accept_kill(object ob)
 {
         if (is_owner(ob))
         {
-                message_vision("$N一声长叹，道：“既然主人不留我了，罢"
-                               "罢罢！合则留，不合则去！我走了。”\n"
-                               "说罢，$N一扬手，切下一角衣抉，飘然而去。\n",
+                message_vision("$N一聲長嘆，道：“既然主人不留我了，罷"
+                               "罷罷！合則留，不合則去！我走了。”\n"
+                               "說罷，$N一揚手，切下一角衣抉，飄然而去。\n",
                                this_object(), ob);
                 destruct(this_object());
                 return 0;

@@ -2,11 +2,11 @@ inherit ROOM;
 
 void create()
 { 
-        set("short", "无极帮门前");
+        set("short", "無極幫門前");
         set("long", @LONG
-这里是无极帮北京分部的大门前面，无极帮的这个大厅只是发布
-任务的所在，即使如此，这座建筑也造的风格迥然，让人一眼看上去，
-就觉得气势不凡。
+這裡是無極幫北京分部的大門前面，無極幫的這個大廳只是發佈
+任務的所在，即使如此，這座建築也造的風格迥然，讓人一眼看上去，
+就覺得氣勢不凡。
 LONG );
         set("outdoors", "beijing");
         set("exits", ([
@@ -27,8 +27,8 @@ int valid_leave(object me, string dir)
 { 
         if (objectp(present("shou wei", environment(me))) && dir == "east") 
         {
-           if( !query_temp("good_wjb2", me) && query("bunch/bunch_name", me) != "无极帮" )
-               return notify_fail("守卫一把拦住你，朗声喝道：我无极帮怎由闲杂人等随便进出。\n"); 
+           if( !query_temp("good_wjb2", me) && query("bunch/bunch_name", me) != "無極幫" )
+               return notify_fail("守衛一把攔住你，朗聲喝道：我無極幫怎由閒雜人等隨便進出。\n"); 
            else
            {
               delete_temp("good_wjb2", me);

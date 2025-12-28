@@ -5,12 +5,12 @@ inherit ITEM;
 int throw_ob(object me, object victim);
 void create()
 {
-   set_name(RED"炼心弹"NOR, ({"lianxin dan", "dan", "lianxin"}));
+   set_name(RED"煉心彈"NOR, ({"lianxin dan", "dan", "lianxin"}));
    /*if (clonep())
       set_default_object(__FILE__);
    else*/ {
-      set("unit", "颗");
-      set("long", RED"一颗硫磺硝磷所制的火弹，内夹毒药。\n" NOR);
+      set("unit", "顆");
+      set("long", RED"一顆硫磺硝磷所制的火彈，內夾毒藥。\n" NOR);
       set("skill", "feixing-shu");
       set("value", 0);
    }
@@ -21,7 +21,7 @@ int throw_ob(object me, object victim)
 {
         int ap, dp;
 
-   message_vision(BLU"$N一扬手，衣袖中飞出一点蓝印印的火花，如一只飞萤，向$n扑过去。\n" NOR, me, victim);
+   message_vision(BLU"$N一揚手，衣袖中飛出一點藍印印的火花，如一隻飛螢，向$n撲過去。\n" NOR, me, victim);
    ap = me->query_skill("feixing-shu", 1);
    dp = (int)victim->query_skill("dodge");
    ap*=query("combat_exp", me)/1000;
@@ -30,7 +30,7 @@ int throw_ob(object me, object victim)
    ap = random(ap);
         
         if (ap > dp/2){
-   message_vision(RED"只听见一阵嗤嗤声响，那飞萤已落在$n的肩头，把$n的肩部烧得焦烂。\n" NOR, me, victim);
+   message_vision(RED"只聽見一陣嗤嗤聲響，那飛螢已落在$n的肩頭，把$n的肩部燒得焦爛。\n" NOR, me, victim);
    me->improve_skill("feixing-shu", 1);
    victim->apply_condition("insect_poison", 12);
    set("poisoner", me, victim);
@@ -47,7 +47,7 @@ int throw_ob(object me, object victim)
    }
    else
         {
-        message_vision("$n发现不妙，赶紧向後跃开数丈，躲了开去。\n" NOR, me, victim);
+        message_vision("$n發現不妙，趕緊向後躍開數丈，躲了開去。\n" NOR, me, victim);
         if( !victim->is_killing(me) ) victim->kill_ob(me);
         me->start_busy(1+random(3));
         destruct(this_object());

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("大胖马[2;37;0m[2;37;0m", ({"www"}));        
+        set_name("大胖馬[2;37;0m[2;37;0m", ({"www"}));        
         set("gender", "男性");                
-        set("long", "大胖马[2;37;0m
-它是阿多一的魔幻兽。
+        set("long", "大胖馬[2;37;0m
+它是阿多一的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

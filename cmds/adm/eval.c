@@ -15,7 +15,7 @@ int main(object me, string arg)
                 return 0;  
 
         if( !me->is_admin() )
-                return notify_fail("你不能使用该命令。\n"); 
+                return notify_fail("你不能使用該命令。\n"); 
 
         if (!arg) return notify_fail("指令格式：eval <LPC Script>\n");
 
@@ -62,10 +62,10 @@ FILE + arg + @FILE
         stime = to_float(einfo["stime"] - sinfo["stime"])/1000000;
         etime = to_float(time_exp + EXPT_TRIM)/1000000;
 
-        msg  = sprintf("\n效率评估: %d\n", cost + COST_TRIM);
-        msg += sprintf("系统时间: %.6f s\n", stime);
-        msg += sprintf("使用时间: %.6f s\n", utime);
-        msg += sprintf("运算时间: %.6f s\n", etime);
+        msg  = sprintf("\n效率評估: %d\n", cost + COST_TRIM);
+        msg += sprintf("系統時間: %.6f s\n", stime);
+        msg += sprintf("使用時間: %.6f s\n", utime);
+        msg += sprintf("運算時間: %.6f s\n", etime);
         
         tell_object(me, msg);
 }
@@ -75,7 +75,7 @@ FILE;
         path = "/u/"+id;
         file = sprintf("%s/%s", path, EVAL_FILE);
         if( file_size(path) != -2 )
-                return tell_object(me, "没有 "+path+" 这个目录。\n评估前请先建立此目录。\n");
+                return tell_object(me, "沒有 "+path+" 這個目錄。\n評估前請先建立此目錄。\n");
 
         if( eval_ob = find_object(file) ) 
                 destruct(eval_ob);
@@ -84,14 +84,14 @@ FILE;
 
         if( !(err = catch(load_object(file))) )
         {
-                tell_object(me, "编译成功。\n");
+                tell_object(me, "編譯成功。\n");
                 rm(file);
 
                 if( eval_ob = find_object(file) ) 
                         destruct(eval_ob);
         } 
         else
-                tell_object(me, "编译失败。\n");
+                tell_object(me, "編譯失敗。\n");
 
         return 1;         
 }
@@ -124,17 +124,17 @@ int parse_script(string arg)
                 }
         }
         if( d_quote%2 )
-                printf("Prasing error: 双引号不正常结束。\n");
+                printf("Prasing error: 雙引號不正常結束。\n");
         if( s_quote%2 )
-                printf("Prasing error: 单引号不正常结束。\n");
+                printf("Prasing error: 單引號不正常結束。\n");
         if( s_symbol )
-                printf("Prasing error: () 括号必须成对 [%s了 %d 个右括号]。\n",
+                printf("Prasing error: () 括號必須成對 [%s了 %d 個右括號]。\n",
                     (s_symbol > 0 ? "少":"多"), to_int(abs(s_symbol)));
         if( m_symbol )
-                printf("Prasing error: [] 括号必须成对 [%s了 %d 个右括号]。\n",
+                printf("Prasing error: [] 括號必須成對 [%s了 %d 個右括號]。\n",
 
                     (m_symbol > 0 ? "少":"多"), to_int(abs(m_symbol)));
         if( b_symbol )
-                printf("Prasing error: {} 括号必须成对 [%s了 %d 个右括号]。\n",
+                printf("Prasing error: {} 括號必須成對 [%s了 %d 個右括號]。\n",
                     (b_symbol > 0 ? "少":"多"), to_int(abs(b_symbol)));
 }

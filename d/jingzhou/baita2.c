@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "白塔三楼");
+        set("short", "白塔三樓");
         set("long", @LONG
-这里是报恩塔三楼，由于这里地势高，一阵微风吹来，说不出的
-凉爽，荆州城的风光也尽收眼底。
+這裡是報恩塔三樓，由於這裡地勢高，一陣微風吹來，說不出的
+涼爽，荊州城的風光也盡收眼底。
 LONG );
         set("exits", ([  
                   "down" : __DIR__"baita1",

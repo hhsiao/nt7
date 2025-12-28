@@ -14,8 +14,8 @@ void create()
         set("nickname", CYN "神算子" NOR ) ;
         set("age", 48);
         set("long",
-                "她头发花白，身批麻衫，凝视着地上无数的一根根竹片，"
-                "显然正在潜心思索，虽然听得有人进来，却不抬头。\n");
+                "她頭髮花白，身批麻衫，凝視著地上無數的一根根竹片，"
+                "顯然正在潛心思索，雖然聽得有人進來，卻不抬頭。\n");
 
         set("str", 25);
         set("dex", 35);
@@ -34,10 +34,10 @@ void create()
 
         set("attitude", "peaceful");
         set("inquiry", ([
-                "段皇爷"  : "你提他作什么，哼，求他医伤麽，死了这条心吧。",
-                "周伯通"  : "他、他、、他在哪里！",
-                "段智兴"  : "这个老和尚，枉称慈悲！\n",
-                "算术"    :  (: ask_me :),
+                "段皇爺"  : "你提他作什麼，哼，求他醫傷麼，死了這條心吧。",
+                "周伯通"  : "他、他、、他在哪裡！",
+                "段智興"  : "這個老和尚，枉稱慈悲！\n",
+                "算術"    :  (: ask_me :),
         ]) );
 
         set("book_count", 1);
@@ -59,29 +59,29 @@ string ask_me()
 {
         object who=this_player();
         if( query_temp("marks/瑛", who)){
-                        write("瑛姑冷冷的说：上一道你还没答出来呢，急什么？\n");
-                        return "一道一道的来。\n";
+                        write("瑛姑冷冷的說：上一道你還沒答出來呢，急什麼？\n");
+                        return "一道一道的來。\n";
         }
         else {
-                write("瑛姑抬头看了你一眼：这位"+RANK_D->query_respect(who)+"懂算术吗？\n");
+                write("瑛姑抬頭看了你一眼：這位"+RANK_D->query_respect(who)+"懂算術嗎？\n");
                 switch(random(2))
                 {
                 case 0:
-                        write("五万五千二百二十五的平方根为其何\n");
+                        write("五萬五千二百二十五的平方根為其何\n");
                         set_temp("marks/瑛", 1, who);
                         break;
                 case 1:
-                        write("百数方阵，纵横斜正各五百零五数，\n");
-                        write("四二，四一，七六各据一角，余角何数? \n");
+                        write("百數方陣，縱橫斜正各五百零五數，\n");
+                        write("四二，四一，七六各據一角，餘角何數? \n");
                         set_temp("marks/瑛", 2, who);
                         break;
                 case 2:
-                        write("丈许长杆，日取其半，几日可终? \n");
+                        write("丈許長杆，日取其半，幾日可終? \n");
                         set_temp("marks/瑛", 3, who);
                         break;
                 }
-                message_vision("瑛姑冷冷地对$N说：解否? \n", who);
-                return "你解出来就回答(answer)我。\n";
+                message_vision("瑛姑冷冷地對$N說：解否? \n", who);
+                return "你解出來就回答(answer)我。\n";
         }
 }
 
@@ -93,29 +93,29 @@ int do_answer(string arg)
         riddle=query_temp("marks/瑛", this_player());
 
         if (!riddle) {
-                write("我又不是你师傅，你用不着回答我。\n");
+                write("我又不是你師傅，你用不著回答我。\n");
                 return 1;
         }
 
         if( !arg || arg=="" ) {
-                write("想好谜底再回答。\n");
+                write("想好謎底再回答。\n");
                 return 1;
         }
-        message("vision", me->name() + "朗声回答。\n", environment(me), ({me}));
+        message("vision", me->name() + "朗聲回答。\n", environment(me), ({me}));
 
         switch (arg)
         {
         case "二百三十五": soln=1; break;
         case "六十" : soln=2; break;
-        case "万载不终" : soln=3; break;
+        case "萬載不終" : soln=3; break;
         default :
-                say("瑛姑冷笑道：“班门弄斧。”然后就把"+ me->name() +"赶了出去。\n");
+                say("瑛姑冷笑道：“班門弄斧。”然後就把"+ me->name() +"趕了出去。\n");
                 me->move("/d/heizhao/maze1");
         return 1;
         }
 
         if (riddle==soln) {
-                say ("瑛姑抬头冷冷的瞥了"+me->name()+"一眼，段智兴在东北方向的桃源。\n");
+                say ("瑛姑抬頭冷冷的瞥了"+me->name()+"一眼，段智興在東北方向的桃源。\n");
                 set_temp("marks/瑛", 0, this_player());
                 ob = new("/d/heizhao/npc/obj/whiteobj");
                 ob->move(me);
@@ -123,13 +123,13 @@ int do_answer(string arg)
                 ob->move(me);
                 ob = new("/d/heizhao/npc/obj/redobj");
                 ob->move(me);
-                say ("你想见他？好吧，这三个囊儿给你，有缘你就去找他吧。\n");
-                say ("瑛姑低头开始研究算术不再理"+me->name()+"。\n");
+                say ("你想見他？好吧，這三個囊兒給你，有緣你就去找他吧。\n");
+                say ("瑛姑低頭開始研究算術不再理"+me->name()+"。\n");
                 return 1;
         }
         else {
                 command("slapsb "+getuid(me));
-                say("瑛姑怒道：“你到底懂不懂算术？！”把"+ me->name() +"赶了出去。\n");
+                say("瑛姑怒道：“你到底懂不懂算術？！”把"+ me->name() +"趕了出去。\n");
                 me->move("/d/heizhao/maze1");
         return 1;
         }

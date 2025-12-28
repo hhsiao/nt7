@@ -25,7 +25,7 @@ public string *sort_mapping(mapping mp, int flag)
                 
         if (! sizeof(mp)) return temp_s1;
 
-        // 先将mp中的序列与值进行 值:序列 方式组合，然后对 值:序列 由大到小排序
+        // 先將mp中的序列與值進行 值:序列 方式組合，然後對 值:序列 由大到小排序
         result_mp = keys(mp);
 
         for (i = 0; i < sizeof(result_mp); i ++)

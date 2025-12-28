@@ -1,16 +1,16 @@
-// sanhuang.c  三黄宝腊丹   by sinb
+// sanhuang.c  三黃寶臘丹   by sinb
 
 #include <ansi.h>
 #include "medicine.h"
 
 void create()
 {
-        set_name(HIY "三黄" HIR"宝腊丹" NOR, ({"baola dan", "dan"}));
+        set_name(HIY "三黃" HIR"寶臘丹" NOR, ({"baola dan", "dan"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "这是一颗黄黄的药丸，是武当派的疗伤圣药，珍贵无比。\n");
-                set("base_unit", "颗");
+                set("long", "這是一顆黃黃的藥丸，是武當派的療傷聖藥，珍貴無比。\n");
+                set("base_unit", "顆");
                 set("base_value", 50000);
                 set("base_weight", 80);
                 set("only_do_effect", 1);
@@ -73,15 +73,15 @@ int do_effect(object me)
 
         if( time()-query_temp("last_eat/sanhuang", me) < time )
         {
-                write("你刚服用过药，需药性发挥完效用以后才能继续服用。\n");
+                write("你剛服用過藥，需藥性發揮完效用以後才能繼續服用。\n");
                 return 1;
         }
 
         set_temp("last_eat/sanhuang", time(), me);
 
         message_vision(YEL "$N" YEL "吃下一粒" + name() +
-                       YEL "，头上"MAG"紫气"YEL"氤氲升起。\n", me);
-        tell_object(me, YEL "不一会儿你只觉得精神饱满，神气完足，内力充沛之极。\n" NOR);
+                       YEL "，頭上"MAG"紫氣"YEL"氤氳升起。\n", me);
+        tell_object(me, YEL "不一會兒你只覺得精神飽滿，神氣完足，內力充沛之極。\n" NOR);
 
         my = me->query_entire_dbase();
         my["eff_jing"] = my["max_jing"];

@@ -4,12 +4,12 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "广场");
+        set("short", "廣場");
         set("long", @LONG
-山路行到这里，忽然变得开阔，你眼前出现了一片很大的广场。一些铁
-掌帮的弟子来回穿梭于其间，显得很忙碌。在广场的周围有很多岩石建的房
-子。正面的这间尤其显得高大雄伟。左面的房子中不时的涌出阵阵热气，其
-间还加杂着鼓风的声音。
+山路行到這裡，忽然變得開闊，你眼前出現了一片很大的廣場。一些鐵
+掌幫的弟子來回穿梭於其間，顯得很忙碌。在廣場的周圍有很多岩石建的房
+子。正面的這間尤其顯得高大雄偉。左面的房子中不時的湧出陣陣熱氣，其
+間還加雜著鼓風的聲音。
 LONG    );
         set("exits", ([
                 "south" : __DIR__"shanlu-2",
@@ -40,12 +40,12 @@ int valid_leave(object me, string dir)
         me = this_player();
         if(dir == "northup")
         {
-                if( query("family/family_name", me) != "铁掌帮"
+                if( query("family/family_name", me) != "鐵掌幫"
                    & objectp(present("feng yong", environment(me)))
-                   &!query("move_party/绝情谷—铁掌帮", me) )
-                        return notify_fail(CYN "冯勇身形一晃，忽然挡住你，厉声说道：这位" +
-                                           RANK_D->query_respect(me) + CYN "不是本帮弟子，"
-                                           "休得在本帮乱闯。\n" NOR);
+                   &!query("move_party/絕情谷—鐵掌幫", me) )
+                        return notify_fail(CYN "馮勇身形一晃，忽然擋住你，厲聲說道：這位" +
+                                           RANK_D->query_respect(me) + CYN "不是本幫弟子，"
+                                           "休得在本幫亂闖。\n" NOR);
         }
         return ::valid_leave(me, dir);
 }

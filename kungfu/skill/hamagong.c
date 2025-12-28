@@ -22,127 +22,127 @@ int power_point(object me) { return 1; }
 
 /*
 mapping *action = ({
-([      "action" : "$N忽而倒竖，一手撑地，身子横挺，只以一掌向$n的$l拍出",
+([      "action" : "$N忽而倒豎，一手撐地，身子橫挺，只以一掌向$n的$l拍出",
         "lvl" : 0,
         "skill_name" : "蛤蟆功"
 ]),
-([      "action" : "$N双手在地上一撑，身子忽地拔起，一跃三尺，落在$n的面前，单掌向$p直劈而下",
+([      "action" : "$N雙手在地上一撐，身子忽地拔起，一躍三尺，落在$n的面前，單掌向$p直劈而下",
         "lvl" : 10,
         "skill_name" : "蛤蟆功"
 ]),
-([      "action" : "$N突然伸手在自己脸上猛抓一把，又反足在自己肾上狠踢一脚，一掌击出，中途方向必变，实不知将打何处",
+([      "action" : "$N突然伸手在自己臉上猛抓一把，又反足在自己腎上狠踢一腳，一掌擊出，中途方向必變，實不知將打何處",
         "lvl" : 20,
         "skill_name" : "蛤蟆功"
 ]),
-([      "action" : "突然之间，$N俯身疾攻，上盘全然不守，微微侧头，一口唾沫往$n$l吐去",
+([      "action" : "突然之間，$N俯身疾攻，上盤全然不守，微微側頭，一口唾沫往$n$l吐去",
         "lvl" : 30,
         "skill_name" : "蛤蟆功"
 ]),
-([      "action" : "$N丝毫不动声色，双腿微曲，右掌平伸，左掌缓缓运起蛤蟆功的劲力，呼的一声推向$n",
+([      "action" : "$N絲毫不動聲色，雙腿微曲，右掌平伸，左掌緩緩運起蛤蟆功的勁力，呼的一聲推向$n",
         "lvl" : 80,
         "skill_name" : "蛤蟆功"
 ]),
-([      "action" : "$N默念口诀运气经脉，只觉愈转愈是顺遂，当下一个翻身跃起，咕的一声叫喊，双掌对着$n拍出",
+([      "action" : "$N默唸口訣運氣經脈，只覺愈轉愈是順遂，當下一個翻身躍起，咕的一聲叫喊，雙掌對著$n拍出",
         "lvl" : 110,
         "skill_name" : "蛤蟆功"
 ]),
-([      "action" : "但见$N双腿微曲，双掌会收，然后向$n一上一下，一放一收，斗然击出",
+([      "action" : "但見$N雙腿微曲，雙掌會收，然後向$n一上一下，一放一收，斗然擊出",
         "lvl" : 140,
         "skill_name" : "蛤蟆功"
 ]),
-([      "action" : "$N闭眼逼住呼吸，过了片刻，猛跃而起，眼睛也不及睁开，双掌便向$n的方向推了出去",
+([      "action" : "$N閉眼逼住呼吸，過了片刻，猛躍而起，眼睛也不及睜開，雙掌便向$n的方向推了出去",
         "lvl" : 170,
         "skill_name" : "蛤蟆功"
 ]),
-([      "action" : "$N脚步摇摇幌幌的看上去马上就会跌倒，忽然双腿一弯、一登，口中阁的一声叫喝，手掌向$n猛然推出",
+([      "action" : "$N腳步搖搖幌幌的看上去馬上就會跌倒，忽然雙腿一彎、一登，口中閣的一聲叫喝，手掌向$n猛然推出",
         "lvl" : 199,
         "skill_name" : "蛤蟆功"
 ]),
 });
 */
 mapping *action = ({
-([      "action": "$N轻身一跃，使出一招" + HIY"「沙漠孤舟」"NOR + "，左掌横，右掌带，将$n逼开。",
+([      "action": "$N輕身一躍，使出一招" + HIY"「沙漠孤舟」"NOR + "，左掌橫，右掌帶，將$n逼開。",
         "force" : 200,
         "lvl"   : 0,
         "dodge" : -20,
         "damage": 240,
         "skill_name": "沙漠孤舟",
-        "damage_type": "瘀伤"
+        "damage_type": "瘀傷"
 ]),
-([      "action":"只见$N倏地向前跨出一步，一招" + WHT"「万里独归」"NOR + "，双掌一错，顺势攻向$n",
+([      "action":"只見$N倏地向前跨出一步，一招" + WHT"「萬里獨歸」"NOR + "，雙掌一錯，順勢攻向$n",
         "force" : 220,
         "lvl"   : 20,
         "dodge" : -20,
         "damage": 250,
-        "skill_name": "万里独归",
-        "damage_type": "瘀伤"
+        "skill_name": "萬里獨歸",
+        "damage_type": "瘀傷"
 ]),
-([      "action":"$N一招" + HIW"「鸣沙寒烟」"NOR + "，来势曼妙无方，掌力微吐，罩向$n周身。",
+([      "action":"$N一招" + HIW"「鳴沙寒煙」"NOR + "，來勢曼妙無方，掌力微吐，罩向$n周身。",
         "force" : 400,
         "lvl"   : 40,
         "dodge" : -30,
         "damage": 250,
-        "skill_name": "鸣沙寒烟",
-        "damage_type": "瘀伤"
+        "skill_name": "鳴沙寒煙",
+        "damage_type": "瘀傷"
 ]),
-([      "action":"$N低眉曲身，掌势若有若无，恰恰将$n来招一一封住，并暗含反击之意，正是一招" + HIR"「霓裳弄雪」"NOR + "。",
+([      "action":"$N低眉曲身，掌勢若有若無，恰恰將$n來招一一封住，並暗含反擊之意，正是一招" + HIR"「霓裳弄雪」"NOR + "。",
         "force" : 225,
         "dodge" : -30,
         "lvl"   : 70,
         "damage": 270,
         "skill_name": "霓裳弄雪",
-        "damage_type": "瘀伤"
+        "damage_type": "瘀傷"
 ]),
-([      "action":"$N一招" + HIB"「秋恨客途」"NOR + "，抽身提步，不退反进，双掌平推，来如电闪，径直拍向$n。",
+([      "action":"$N一招" + HIB"「秋恨客途」"NOR + "，抽身提步，不退反進，雙掌平推，來如電閃，徑直拍向$n。",
         "force" : 530,
         "dodge" :-20,
         "lvl"   : 100,
         "damage": 300,
         "skill_name": "秋恨客途",
-        "damage_type": "瘀伤"
+        "damage_type": "瘀傷"
 ]),
 });
 
 mapping *reverse_action = ({
-([      "action": "忽听$N大叫三声，三个筋斗翻将出来，大吼一声，恶狠狠的朝$n扑将上来",
+([      "action": "忽聽$N大叫三聲，三個筋斗翻將出來，大吼一聲，惡狠狠的朝$n撲將上來",
         "dodge": -15,
         "parry": -20,
         "force": 300,
         "damage": 60,
-        "damage_type": "跌伤"
+        "damage_type": "跌傷"
 ]),
-([      "action":"但见$N疯势更加厉害，口吐白沫，举头朝$n猛撞",
+([      "action":"但見$N瘋勢更加厲害，口吐白沫，舉頭朝$n猛撞",
         "parry": -15,
         "force": 360,
         "damage": 70,
-        "damage_type": "瘀伤"
+        "damage_type": "瘀傷"
 ]),
-([      "action":"$N蓦地张口，白牙一闪，已向$n$l咬落，又快又准",
+([      "action":"$N驀地張口，白牙一閃，已向$n$l咬落，又快又準",
         "dodge": -5,
         "force": 420,
         "damage": 80,
-        "weapon": "牙齿",
-        "damage_type": "咬伤"
+        "weapon": "牙齒",
+        "damage_type": "咬傷"
 ]),
-([      "action":"$N一口唾沫急吐，势挟劲风，竟将痰涎唾沫也当作了攻敌利器",
+([      "action":"$N一口唾沫急吐，勢挾勁風，竟將痰涎唾沫也當作了攻敵利器",
         "dodge": -45,
         "force": 480,
         "damage": 90,
         "weapon":"唾沫",
-        "damage_type": "刺伤"
+        "damage_type": "刺傷"
 ]),
-([      "action":"$N忽然张嘴，一口唾沫往$n脸上吐去，发掌击向$n趋避的方位，同时又是一口浓痰吐将过来",
+([      "action":"$N忽然張嘴，一口唾沫往$n臉上吐去，發掌擊向$n趨避的方位，同時又是一口濃痰吐將過來",
         "dodge": -30,
         "force": 540,
         "damage": 100,
-        "weapon" : "浓痰",
-        "damage_type": "刺伤"
+        "weapon" : "濃痰",
+        "damage_type": "刺傷"
 ]),
-([      "action":"此时$N所使的招数更是希奇古怪，诡异绝伦，身子时而倒竖，时而直立，忽然一手撑地，身子横挺，一手出掌打向$n$l",
+([      "action":"此時$N所使的招數更是希奇古怪，詭異絕倫，身子時而倒豎，時而直立，忽然一手撐地，身子橫挺，一手出掌打向$n$l",
         "dodge": -10,
         "force": 600,
         "damage": 110,
-        "damage_type": "瘀伤"
+        "damage_type": "瘀傷"
 ]),
 });
 
@@ -154,8 +154,8 @@ int valid_enable(string usage)
         if (usage == "strike") {
                 if (this_player()->query_skill("hamagong",1) < 200) {
                         /*
-                        message_vision("$N蹲下身来，口中咕咕咕的叫了几声，要将蛤蟆功口诀用在拳脚之上，但无论如何使用不上。\n", this_player() );
-                        write("你的蛤蟆功火候不足，无法运用它到掌法中。\n");
+                        message_vision("$N蹲下身來，口中咕咕咕的叫了幾聲，要將蛤蟆功口訣用在拳腳之上，但無論如何使用不上。\n", this_player() );
+                        write("你的蛤蟆功火候不足，無法運用它到掌法中。\n");
                         */
                         return 0;
                 }
@@ -170,31 +170,31 @@ int valid_learn(object me)
         int v, i, k=0;
 
         if( query("character", me) == "光明磊落"
-            || query("character", me) == "狡黠多变" )
-                return notify_fail("你心中暗道：这蛤蟆功阴毒异常，估计会伤及自"
-                                   "身，还是别练为妙。\n");
+            || query("character", me) == "狡黠多變" )
+                return notify_fail("你心中暗道：這蛤蟆功陰毒異常，估計會傷及自"
+                                   "身，還是別練為妙。\n");
 
         /*
         if( query("con", me)<32 )
-                return notify_fail("你先天根骨孱弱，无法修炼蛤蟆功。\n");
+                return notify_fail("你先天根骨孱弱，無法修煉蛤蟆功。\n");
 
         if( query("dex", me)<32 )
-                return notify_fail("你先天身法太差，无法修炼蛤蟆功。\n");
+                return notify_fail("你先天身法太差，無法修煉蛤蟆功。\n");
         */
 
-        if( query("gender", me) == "无性" && query("hamagong", me)>49 )
-                return notify_fail("你无根无性，阴阳不调，难以领会高深的蛤蟆功。\n");
+        if( query("gender", me) == "無性" && query("hamagong", me)>49 )
+                return notify_fail("你無根無性，陰陽不調，難以領會高深的蛤蟆功。\n");
 
         /*
         if ((int)me->query_skill("poison", 1) < 50)
-                return notify_fail("你的基本毒技火候不足，难以领会蛤蟆功。\n");
+                return notify_fail("你的基本毒技火候不足，難以領會蛤蟆功。\n");
         */
 
         i = (int)me->query_skill("hamagong", 1);
 
         if ((int)me->query_skill("force", 1) < 30
          || (int)me->query_skill("force", 1)/2 < i/3 )
-                return notify_fail("你的基本内功火候不足，不能学蛤蟆功。\n");
+                return notify_fail("你的基本內功火候不足，不能學蛤蟆功。\n");
 
         if( query("tianmo_jieti/times", this_player()) )
                 return ::valid_learn(me);
@@ -209,22 +209,22 @@ int valid_learn(object me)
                         k++;
                 }
                 if ( k >=3 )
-                return notify_fail("你体内不同内力互相冲撞，难以领会更高深的内功。\n");
+                return notify_fail("你體內不同內力互相沖撞，難以領會更高深的內功。\n");
         }
 
         if( query("class", me) == "bonze" && !query("reborn/times", me))
         {
                 if( query("gender", me) == "女性" )
-                        return notify_fail("小尼姑练蛤蟆功，不怕别人叫你秃头蛤蟆吗？\n");
+                        return notify_fail("小尼姑練蛤蟆功，不怕別人叫你禿頭蛤蟆嗎？\n");
                 if( query("gender", me) == "男性" )
-                        return notify_fail("大师傅练蛤蟆功，不怕别人叫你秃头蛤蟆吗？\n");
+                        return notify_fail("大師傅練蛤蟆功，不怕別人叫你禿頭蛤蟆嗎？\n");
         }
 
-        if( query("family/family_name", me) == "丐帮" && !query("reborn/times", me) )
-                return notify_fail("老叫化的徒弟学不了蛤蟆功。\n");
+        if( query("family/family_name", me) == "丐幫" && !query("reborn/times", me) )
+                return notify_fail("老叫化的徒弟學不了蛤蟆功。\n");
 
-        if( query("family/family_name", me) == "武当派"  && !query("reborn/times", me))
-                return notify_fail("老道练蛤蟆功，不怕别人叫你牛鼻子蛤蟆吗？\n");
+        if( query("family/family_name", me) == "武當派"  && !query("reborn/times", me))
+                return notify_fail("老道練蛤蟆功，不怕別人叫你牛鼻子蛤蟆嗎？\n");
 
         return ::valid_learn(me);
 }
@@ -232,16 +232,16 @@ int practice_skill(object me)
 {
         if( query("family/master_id", me) != "ouyang feng"
         && me->query_skill("hamagong", 1) > 99)
-                 return notify_fail("蛤蟆功需高人指点才能继续提高。\n");
+                 return notify_fail("蛤蟆功需高人指點才能繼續提高。\n");
 
         if( query_temp("weapon", me) )
-                 return notify_fail("蛤蟆从不手持兵刃，所以练蛤蟆功也必须空手。\n");
+                 return notify_fail("蛤蟆從不手持兵刃，所以練蛤蟆功也必須空手。\n");
 
         if( query("jing", me)<50 )
-                return notify_fail("你的精气不够练蛤蟆功。\n");
+                return notify_fail("你的精氣不夠練蛤蟆功。\n");
 
         if( query("neili", me)<100 )
-                return notify_fail("你的内力不够练蛤蟆功。\n");
+                return notify_fail("你的內力不夠練蛤蟆功。\n");
         addn("neili", -30, me);
         me->receive_damage("jing", 10);
         if (me->query_skill("hamagong", 1) > 100){
@@ -278,17 +278,17 @@ mapping query_action(object me, object weapon)
 
         string *power_msg =
         ({
-                HIR"$N蹲下身来，运起蛤蟆功，双手平推，吐气扬眉，阁阁阁三声叫喊。这三推之力带有风疾雷迅的猛劲，实是非同小可"NOR,
-                WHT"$N阁阁两声怒吼，蹲下身来，呼的双掌齐出，掌力未到，掌风已将地下尘土激起，一股劲风直扑$n面门，势道雄强无比"NOR,
-                HIR"$N脸色阴沉，脸颊上两块肌肉微微牵动，两臂弯曲，阁的一声大叫，双手挺出，一股巨力横冲直撞的朝$n推将过来"NOR,
-                WHT"$N蹲低身子，口中咕咕咕的叫了三声，双手推出，以蛤蟆功向$n猛攻。$n身周在$P掌力笼罩之下，只激得灰泥弥漫，尘土飞扬"NOR,
+                HIR"$N蹲下身來，運起蛤蟆功，雙手平推，吐氣揚眉，閣閣閣三聲叫喊。這三推之力帶有風疾雷迅的猛勁，實是非同小可"NOR,
+                WHT"$N閣閣兩聲怒吼，蹲下身來，呼的雙掌齊出，掌力未到，掌風已將地下塵土激起，一股勁風直撲$n面門，勢道雄強無比"NOR,
+                HIR"$N臉色陰沉，臉頰上兩塊肌肉微微牽動，兩臂彎曲，閣的一聲大叫，雙手挺出，一股巨力橫衝直撞的朝$n推將過來"NOR,
+                WHT"$N蹲低身子，口中咕咕咕的叫了三聲，雙手推出，以蛤蟆功向$n猛攻。$n身周在$P掌力籠罩之下，只激得灰泥瀰漫，塵土飛揚"NOR,
         });
         string *reverse_msg =
         ({
-                HIM"但见$N招术奇特，怪异无伦，忽尔伸手在自己脸上猛抓一把，忽尔反足在自己臀上狠踢一脚，每一掌打将出来，中途方向必变，实不知打将何处"NOR,
-                HIM"$N忽然反手拍拍拍连打自己三个耳光，大喊一声，双手据地，爬向$n，忽地翻身一滚，骤然间飞身跃起，双足向$n连环猛踢"NOR,
-                HIM"突然之间，$N俯身疾攻，上盘全然不守，出招怪异无比，将蛤蟆功逆转运用，上者下之，左者右之，招数难以捉摸"NOR,
-                HIM"$N全身经脉忽顺忽逆，手上招数虽然走了错道，但是错有错着，出手怪诞，竟教$n差愕难解"NOR,
+                HIM"但見$N招術奇特，怪異無倫，忽爾伸手在自己臉上猛抓一把，忽爾反足在自己臀上狠踢一腳，每一掌打將出來，中途方向必變，實不知打將何處"NOR,
+                HIM"$N忽然反手拍拍拍連打自己三個耳光，大喊一聲，雙手據地，爬向$n，忽地翻身一滾，驟然間飛身躍起，雙足向$n連環猛踢"NOR,
+                HIM"突然之間，$N俯身疾攻，上盤全然不守，出招怪異無比，將蛤蟆功逆轉運用，上者下之，左者右之，招數難以捉摸"NOR,
+                HIM"$N全身經脈忽順忽逆，手上招數雖然走了錯道，但是錯有錯著，出手怪誕，竟教$n差愕難解"NOR,
         });
 
         lvl = (int) me->query_skill("hamagong", 1);
@@ -300,7 +300,7 @@ mapping query_action(object me, object weapon)
                         "parry": -120,
                         "force": 650+random(100),
                         "damage": 120,
-                        "damage_type": random(2)?"内伤":"瘀伤"
+                        "damage_type": random(2)?"內傷":"瘀傷"
                         ]);
                 else if( query_temp("reverse", me) && random(me->query_skill("force",1))>400 && random(me->query_skill("strike",1))>300 && query("neili", me)>1000 )
                         return ([
@@ -309,31 +309,31 @@ mapping query_action(object me, object weapon)
                         "parry": -200,
                         "force": 630+random(100),
                         "damage": 300+random(20),
-                        "damage_type": "瘀伤",
+                        "damage_type": "瘀傷",
                         ]);
         }
 
         for(i = ttl; i > 0; i--)
                 if(lvl > action[i-1]["lvl"])
                 {
-                        seq = i; /* 获得招数序号上限 */
+                        seq = i; /* 獲得招數序號上限 */
                         break;
                 }
-        seq = random(seq);       /* 选择出手招数序号 */
+        seq = random(seq);       /* 選擇出手招數序號 */
         if( query_temp("hmg_dzjm", me) )
                 return ([
                         "action"      : reverse_action[random(6)]["action"],
                         "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
                         "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
                         "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
-                        "damage_type" : random(2) ? "内伤" : "瘀伤",
+                        "damage_type" : random(2) ? "內傷" : "瘀傷",
                 ]);
         return ([
                 "action"      : action[seq]["action"],
                 "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
                 "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
                 "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
-                "damage_type" : random(2) ? "内伤" : "瘀伤",
+                "damage_type" : random(2) ? "內傷" : "瘀傷",
         ]);
 }
 mixed hit_ob(object me, object victim, int damage_bonus)
@@ -355,8 +355,8 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         {
                 addn("neili", -30, me);
                 victim->receive_wound("qi", damage_bonus/2, me);
-                return WHT "$n" WHT "硬承下$N" WHT "一掌，霎时全"
-                       "身一颤，经脉受震，喷出一口鲜血！\n" NOR;
+                return WHT "$n" WHT "硬承下$N" WHT "一掌，霎時全"
+                       "身一顫，經脈受震，噴出一口鮮血！\n" NOR;
         }
 }
 
@@ -375,15 +375,15 @@ int help(object me)
         write(HIC"\n蛤蟆功："NOR"\n");
         write(@HELP
 
-    欧阳锋创立此功，为白驼山派本门内功。此功也可作为掌法使
-用，并能与蛇形刁手互备。
-    这蛤蟆功纯系以静制动，他全身涵劲蓄势，蕴力不吐，只要敌
-人一施攻击，立时便有猛烈无比的劲道反击出来，刚猛无匹。
+    歐陽鋒創立此功，為白駝山派本門內功。此功也可作為掌法使
+用，並能與蛇形刁手互備。
+    這蛤蟆功純系以靜制動，他全身涵勁蓄勢，蘊力不吐，只要敵
+人一施攻擊，立時便有猛烈無比的勁道反擊出來，剛猛無匹。
 
-        学习要求：
-                基本内功10级
-                太监无法领悟50级以上的蛤蟆功
-                相应的戾气
+        學習要求：
+                基本內功10級
+                太監無法領悟50級以上的蛤蟆功
+                相應的戾氣
 HELP
         );
         return 1;

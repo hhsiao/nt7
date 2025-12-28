@@ -1,11 +1,11 @@
 
-// yiyang.c 一阳指力注入武器
+// yiyang.c 一陽指力注入武器
 
 #include <ansi.h>
 
 inherit F_SSERVER;
 
-string name() { return "一阳剑气"; }
+string name() { return "一陽劍氣"; }
 
 private int remove_effect(object me, object weapon);
 
@@ -16,35 +16,35 @@ int perform(object me, object target)
         
         if (me->query_skill_mapped("force") != "kurong-changong" &&
             me->query_skill_mapped("force") != "duanshi-xinfa")
-                return notify_fail("你所用得内功心法不对，无法运用一阳指。\n");
+                return notify_fail("你所用得內功心法不對，無法運用一陽指。\n");
 
         if( query_temp("yiyang", me) )
-                return notify_fail("你已运一阳指指力于武器上了！\n");
+                return notify_fail("你已運一陽指指力於武器上了！\n");
 
         if (me->query_skill("force",1)<100
                 || (me->query_skill("kurong-changong",1)<100 &&
                     me->query_skill("duanshi-xinfa",1)<100)
                 || me->query_skill("duanjia-jian",1)<100
                 || me->query_skill("sun-finger",1)<120)
-                return notify_fail("你的功力不够，无法运用一阳指指力于武器上！\n");
+                return notify_fail("你的功力不夠，無法運用一陽指指力於武器上！\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) || query("skill_type", weapon) != "sword" )
-                return notify_fail("你没有使用正确的武器，无法运一阳指力于其上。\n");
+                return notify_fail("你沒有使用正確的武器，無法運一陽指力於其上。\n");
 
         if( query_temp("yiyang", weapon) )
-                return notify_fail("该武器已经注满了一阳指指力！\n");
+                return notify_fail("該武器已經注滿了一陽指指力！\n");
 
         if( query("neili", me) <= 300 )
-                return notify_fail("你的内力不够运一阳指力！\n");
+                return notify_fail("你的內力不夠運一陽指力！\n");
 
         if( query("jingli", me) <= 100 )
-                return notify_fail("你的精力不够运一阳指力！\n");
+                return notify_fail("你的精力不夠運一陽指力！\n");
 
         if( query("weapon_prop/damage", weapon) >= 5000 )
-                return notify_fail("你发现这件武器打造的精致无比，巧夺天功，无法灌注内力于其上！\n");
+                return notify_fail("你發現這件武器打造的精緻無比，巧奪天功，無法灌注內力於其上！\n");
 
-        message("vision",HIY"\n"+query("name", me)+"紧握"+query("name", weapon)+"凝神运气片刻。\n\n"NOR,environment(me),me);
-        tell_object(me,HIY"\n你凝神运气，把一阳指指力灌注到"+query("name", weapon)+"上。\n\n"NOR);
+        message("vision",HIY"\n"+query("name", me)+"緊握"+query("name", weapon)+"凝神運氣片刻。\n\n"NOR,environment(me),me);
+        tell_object(me,HIY"\n你凝神運氣，把一陽指指力灌注到"+query("name", weapon)+"上。\n\n"NOR);
 
         skill = me->query_skill("force");
 
@@ -84,23 +84,23 @@ void checking(object me, object weapon)
            if (!weapon)
            {
                        remove_effect(me, weapon);
-                tell_object(me, HIY "\n你把一阳指指力收了回来。\n\n" NOR);
+                tell_object(me, HIY "\n你把一陽指指力收了回來。\n\n" NOR);
                 return;
            }
            else if( environment(weapon) != me || weapon != query_temp("weapon", me)){
                        remove_effect(me, weapon);
-                tell_object(me, HIY "\n你把一阳指指力从"+weapon->name()+"上收了回来。\n\n" NOR);
+                tell_object(me, HIY "\n你把一陽指指力從"+weapon->name()+"上收了回來。\n\n" NOR);
                 return;
            }
            else if( query("weapon_prop", weapon) == 0){
                 remove_effect(me, weapon);
-                tell_object(me, HIY "\n你的"+weapon->name()+"已毁，不得不收回灌注于其上的一阳指指力。\n\n" NOR);
+                tell_object(me, HIY "\n你的"+weapon->name()+"已毀，不得不收回灌注於其上的一陽指指力。\n\n" NOR);
                 return;
            }
            else if (me->query_skill_mapped("force") != "kurong-changong" &&
                     me->query_skill_mapped("force") != "duanshi-xinfa") {
                 remove_effect(me, weapon);
-                tell_object(me, HIY "\n你感到内息不畅，无法保持灌注在"+weapon->name()+"上的一阳指指力。\n\n" NOR);
+                tell_object(me, HIY "\n你感到內息不暢，無法保持灌注在"+weapon->name()+"上的一陽指指力。\n\n" NOR);
                 return;
            }
 
@@ -109,7 +109,7 @@ void checking(object me, object weapon)
         }
         else {
            remove_effect(me, weapon);
-        tell_object(me, HIY "\n你感到内息混浊，不得不换气运功，从"+weapon->name()+"上收回灌注的一阳指指力。\n\n" NOR);
+        tell_object(me, HIY "\n你感到內息混濁，不得不換氣運功，從"+weapon->name()+"上收回灌注的一陽指指力。\n\n" NOR);
         }
 }
 

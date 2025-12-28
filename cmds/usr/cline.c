@@ -1,4 +1,4 @@
-// cline.c 清除末尾几行
+// cline.c 清除末尾幾行
 
 #include <ansi.h>
 #include <command.h>
@@ -15,7 +15,7 @@ int main(object me, string arg)
 
         if (n < 1 || n > 500)
         {
-                write("参数错误。\n");
+                write("參數錯誤。\n");
                 return 1;
         }
 
@@ -30,9 +30,9 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式 : cline [<行数>]
+指令格式 : cline [<行數>]
 
-此指令可让你清除最后几行文字，做什么用？自己想吧。
+此指令可讓你清除最後幾行文字，做什麼用？自己想吧。
 HELP );
         return 1;
 }

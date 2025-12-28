@@ -3,16 +3,16 @@ inherit ROOM;
 
 void create()
 {
-        set("short","悬崖边");
+        set("short","懸崖邊");
         set("long", @LONG
-这里是紫盖仙洞外的悬崖绝壁(xuanya)，站在此处向下望去，云
-深锁雾，寒风吹来，你不由地打了个寒战。
+這裡是紫蓋仙洞外的懸崖絕壁(xuanya)，站在此處向下望去，雲
+深鎖霧，寒風吹來，你不由地打了個寒戰。
 LONG );
         set("item_desc", ([
-               "xuanya"  : HIG "\n只见从绝壁上垂下一些树藤(teng)， 似乎可以顺着"
-                           "爬(climb)\n上去。而下面却是万丈深渊，深不见底。\n" NOR,
+               "xuanya"  : HIG "\n只見從絕壁上垂下一些樹藤(teng)， 似乎可以順著"
+                           "爬(climb)\n上去。而下面卻是萬丈深淵，深不見底。\n" NOR,
 
-               "teng"    : YEL"\n这些树藤看起来很结实。\n" NOR,
+               "teng"    : YEL"\n這些樹藤看起來很結實。\n" NOR,
         ]));
 
         set("exits",([
@@ -40,22 +40,22 @@ int do_tiao(string arg)
                       room1 = load_object(__DIR__"xuanya");
 
          if (! arg || (arg != "ya" && arg != "xuanya" && 
-                      arg != "悬崖"))
+                      arg != "懸崖"))
                 return 0;
         
         if (me->is_fighting() || me->is_busy())
         {
-                write("你现在正忙着呢。\n");
+                write("你現在正忙著呢。\n");
                 return 1;
         }        
 
         if (! room2 = find_object(__DIR__"xuanyadi"))
                       room2 = load_object(__DIR__"xuanyadi");
 
-        msg = HIC"\n你鼓起勇气往悬崖下一跳，耳边的风“呼呼”作响，你感"
-              "觉越\n落越快，一颗心都要掉了出来，猛然间你看见下面有一棵大树，"
-              HIC"\n你伸手抓住树枝，但是树枝却“啪”的一声断了，你重重地摔\n"
-              HIC"在地上，顿时昏了过去。\n\n" NOR;
+        msg = HIC"\n你鼓起勇氣往懸崖下一跳，耳邊的風“呼呼”作響，你感"
+              "覺越\n落越快，一顆心都要掉了出來，猛然間你看見下面有一棵大樹，"
+              HIC"\n你伸手抓住樹枝，但是樹枝卻“啪”的一聲斷了，你重重地摔\n"
+              HIC"在地上，頓時昏了過去。\n\n" NOR;
 
         write(msg);
         me->move(room2);
@@ -65,7 +65,7 @@ int do_tiao(string arg)
 
         if (random(99)<62)
                 CHANNEL_D->do_channel(this_object(), "rumor", 
-                              me->name() + "不幸坠下衡山悬崖，生死不明！");
+                              me->name() + "不幸墜下衡山懸崖，生死不明！");
         
         return 1;
 }
@@ -81,16 +81,16 @@ int do_climb(string arg)
                 room=load_object(__DIR__"zigai");
         
         if (! arg || arg != "teng")
-                return notify_fail("\n你要往哪儿爬。\n\n");
+                return notify_fail("\n你要往哪兒爬。\n\n");
 
         if (me->is_fighting() || me->is_busy())
-                return notify_fail("\n你正忙着呢。\n\n");
+                return notify_fail("\n你正忙著呢。\n\n");
 
-        msg = HIG "\n$N拉着树藤往峭壁上爬去。\n\n" NOR;
+        msg = HIG "\n$N拉著樹藤往峭壁上爬去。\n\n" NOR;
 
         message_vision(msg, me);
-        write(HIW "\n你终于爬了上来。\n\n" NOR);
-        message("vision", HIG "\n" + me->name() + HIG "从峭壁下面爬了上来。\n\n" NOR,
+        write(HIW "\n你終於爬了上來。\n\n" NOR);
+        message("vision", HIG "\n" + me->name() + HIG "從峭壁下面爬了上來。\n\n" NOR,
                           room, me);
 
         me->move(room);

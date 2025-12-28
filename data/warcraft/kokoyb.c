@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("拖拉机[2;37;0m[2;37;0m", ({"daibu"}));        
+        set_name("拖拉機[2;37;0m[2;37;0m", ({"daibu"}));        
         set("gender", "男性");                
-        set("long", "行路难[2;37;0m
-它是天山姥姥的魔幻兽。
+        set("long", "行路難[2;37;0m
+它是天山姥姥的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

@@ -12,16 +12,16 @@ int event_three(object me);
 
 void create()
 {
-        set("short", "花丛中");
+        set("short", "花叢中");
         set("long", @LONG
-这里是终南山后山的花丛中，这丛红花排开来长达数丈，密密层
-层，奇香扑鼻。但见花丛有如一面大屏风，红瓣绿枝，煞是好看，四
-下里树荫垂盖，便似天然结成的一座花房树屋。这些红花(flowers)似
-乎可以推开。
+這裡是終南山後山的花叢中，這叢紅花排開來長達數丈，密密層
+層，奇香撲鼻。但見花叢有如一面大屏風，紅瓣綠枝，煞是好看，四
+下里樹蔭垂蓋，便似天然結成的一座花房樹屋。這些紅花(flowers)似
+乎可以推開。
 LONG );
 
         set("item_desc", ([
-                "flowers" : "这花丛既深且密，到是一个很好的藏身之处。\n",
+                "flowers" : "這花叢既深且密，到是一個很好的藏身之處。\n",
         ]));
 
         set("no_clean_up", 0);
@@ -46,15 +46,15 @@ int do_hide(){
 
         object me=this_player();
         if (me->is_busy())
-                return notify_fail("你现在正忙着哪！\n");
+                return notify_fail("你現在正忙著哪！\n");
 
         if( query_temp("hiding", me) )
-                return notify_fail("你已经藏好了。\n");
+                return notify_fail("你已經藏好了。\n");
         
         if( query_temp("found_lianhuan_book", me) )
-                return notify_fail("你还藏什么？\n");
+                return notify_fail("你還藏什麼？\n");
         
-        tell_object(me, "你小心翼翼地藏到了花丛中。\n");
+        tell_object(me, "你小心翼翼地藏到了花叢中。\n");
         
         set_temp("hiding", 1, me);
         
@@ -70,9 +70,9 @@ int do_push(){
         object me=this_player();
         
         if (me->is_busy())
-                return notify_fail("你现在正忙着哪！\n");
+                return notify_fail("你現在正忙著哪！\n");
 
-        tell_object(me, "你轻轻地推开花木，向外走了出去。\n");
+        tell_object(me, "你輕輕地推開花木，向外走了出去。\n");
         
         set_temp("hiding", 1, me);
         delete_temp("hiding", me);
@@ -91,7 +91,7 @@ int event_one(object me){
         
         if( query_temp("hiding", me)){
         
-                tell_object(me, HIG"突然间山后传来脚步声响，两个人一面说话，一面走近。原来竟是尹志平和赵志敬。两个人越说越大声，竟似在互相争辩。\n"NOR);
+                tell_object(me, HIG"突然間山後傳來腳步聲響，兩個人一面說話，一面走近。原來竟是尹志平和趙志敬。兩個人越說越大聲，竟似在互相爭辯。\n"NOR);
                 
                 remove_call_out("event_one");
                 call_out("event_two", 5, me);
@@ -104,9 +104,9 @@ int event_two(object me){
         
         if( query_temp("hiding", me)){
         
-                tell_object(me, HIG"只听见赵志净冷笑到：“你不守清规，犯了我教的大戒，怎能再做首座弟子？”你心下纳闷，不知赵志敬什么意思。\n"NOR);
-                tell_object(me, HIG"你心中嘀咕中，尹赵两人已越吵越凶。突然间，赵志敬喊道：“你还敢抵赖？咱们招丘师伯评理去！\n"NOR);
-                tell_object(me, HIG"尹志平再也忍耐不住，唰地一声，长剑出鞘，分心便刺，赵志敬侧身避开，抽剑出匣，两人打到一起。\n"NOR);
+                tell_object(me, HIG"只聽見趙志淨冷笑到：“你不守清規，犯了我教的大戒，怎能再做首座弟子？”你心下納悶，不知趙志敬什麼意思。\n"NOR);
+                tell_object(me, HIG"你心中嘀咕中，尹趙兩人已越吵越兇。突然間，趙志敬喊道：“你還敢抵賴？咱們招丘師伯評理去！\n"NOR);
+                tell_object(me, HIG"尹志平再也忍耐不住，唰地一聲，長劍出鞘，分心便刺，趙志敬側身避開，抽劍出匣，兩人打到一起。\n"NOR);
                 
                 remove_call_out("event_one");
                 call_out("event_three", 15, me);
@@ -120,8 +120,8 @@ int event_three(object me){
         
         if( query_temp("hiding", me)){
         
-                tell_object(me, HIG"只见尹赵而人出招凌厉变幻，已非你所知，你不禁手心中全是冷汗。\n"NOR);
-                tell_object(me, HIR"\n\n再拆数招，尹志平左剑平刺，右掌正击，同时左腿横扫而出，正是全真派中的“三连环”绝招。\n"NOR);
+                tell_object(me, HIG"只見尹趙而人出招凌厲變幻，已非你所知，你不禁手心中全是冷汗。\n"NOR);
+                tell_object(me, HIR"\n\n再拆數招，尹志平左劍平刺，右掌正擊，同時左腿橫掃而出，正是全真派中的“三連環”絕招。\n"NOR);
                                 
                 remove_call_out("event_two");
                 call_out("event_four", 15, me);
@@ -136,11 +136,11 @@ int event_four(object me){
         
         if( query_temp("hiding", me)){
         
-                tell_object(me, HIG"只见尹志平大声怒喝，连走险招，竟然不再挡驾对方来招，一味猛攻。\n"NOR);
-                tell_object(me, HIG"\n\n再拆数招，赵志敬在对方拼命下渐渐招架不住，撒腿向别处逃去。\n"NOR);
+                tell_object(me, HIG"只見尹志平大聲怒喝，連走險招，竟然不再擋駕對方來招，一味猛攻。\n"NOR);
+                tell_object(me, HIG"\n\n再拆數招，趙志敬在對方拼命下漸漸招架不住，撒腿向別處逃去。\n"NOR);
                 
-                tell_object(me, HIY"\n\n尹志平一愣，随后追去，你只听见嗒地一声，一本小册子从尹志平身上掉了下来。\n"NOR);
-                tell_object(me, "\n\n待尹志平走后，你忙起身将那小册子拣了起来。\n"NOR);
+                tell_object(me, HIY"\n\n尹志平一愣，隨後追去，你只聽見嗒地一聲，一本小冊子從尹志平身上掉了下來。\n"NOR);
+                tell_object(me, "\n\n待尹志平走後，你忙起身將那小冊子揀了起來。\n"NOR);
                 
                 set_temp("found_lianhuan_book", 1, me);
                 delete_temp("hiding", me);

@@ -1,7 +1,7 @@
 
 #include <ansi.h>
 
-#define HUA "「" MAG "虚空之痕" NOR "」"
+#define HUA "「" MAG "虛空之痕" NOR "」"
 
 inherit F_SSERVER;
 
@@ -17,40 +17,40 @@ int perform(object me, object target)
         
         if (! objectp(me))return 1;
         
-        // 只有剑灵可以用
+        // 只有劍靈可以用
         if (base_name(me) != "/kungfu/class/misc/jianling")
-                return notify_fail("你所使用的外功中没有这个功能。\n");
+                return notify_fail("你所使用的外功中沒有這個功能。\n");
 
-        // 蓝蝶仙子还存在时候不能用
+        // 藍蝶仙子還存在時候不能用
         landie=query("mylandie", me);
         if (objectp(landie))return 1;
         
-        // 距离上次蓝蝶消失不足3分钟无法施展
-        if( query("first_landie", me))//已经召唤过蓝蝶才受此限制
+        // 距離上次藍蝶消失不足3分鐘無法施展
+        if( query("first_landie", me))//已經召喚過藍蝶才受此限制
         {
                 if( time()-query("last_summon_landie", me)<180 )
                         return 1; 
         }
 
-        msg = HIC "$N" HIC "深吸一口气，手中蓝蝶宝剑顿时光芒暴现，在天空划出一道美丽的弧线 ……"
-              "顿时，天空之中撕开一条裂缝，犹如女娲补天时的虚空之痕！一道蓝光从裂缝中蔓出，万千"
-              "光芒笼罩，一位美丽的仙子从天而降，守护着剑灵！\n" NOR;
+        msg = HIC "$N" HIC "深吸一口氣，手中藍蝶寶劍頓時光芒暴現，在天空劃出一道美麗的弧線 ……"
+              "頓時，天空之中撕開一條裂縫，猶如女媧補天時的虛空之痕！一道藍光從裂縫中蔓出，萬千"
+              "光芒籠罩，一位美麗的仙子從天而降，守護著劍靈！\n" NOR;
 
-        // 记录本次是否是第一次召唤蓝蝶
+        // 記錄本次是否是第一次召喚藍蝶
         if( !query("first_landie", me) )
                 set("first_landie", 1, me);
 
         env = environment(me);
-        // 初始化蓝蝶仙子
+        // 初始化藍蝶仙子
         landie = new("/kungfu/class/misc/landie-xianzi");
-        // 随机选择当前房间一名玩家
+        // 隨機選擇當前房間一名玩家
         obs = all_inventory(env);
         obs = filter_array(obs, (: userp($1) :));
         
         if (! sizeof(obs))
         {
                 destruct(landie);
-                write("没有找到玩家！\n");
+                write("沒有找到玩家！\n");
                 return 1;
         }
 
@@ -65,7 +65,7 @@ int perform(object me, object target)
         
         set("mylandie", landie, me);
 
-        msg += HIY "\n$n" HIY "凝神观望，似乎看破了蓝蝶仙子的破绽。\n" NOR;
+        msg += HIY "\n$n" HIY "凝神觀望，似乎看破了藍蝶仙子的破綻。\n" NOR;
         
         message_vision(sort_msg(msg), me, wanjia);
         

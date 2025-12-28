@@ -9,11 +9,11 @@ inherit "/u/redl/teleport/normal.c";
 int clean_up() { return 1;}
 void create()
 {
-        set("short","十八牛人阵");
+        set("short","十八牛人陣");
         set("long", @LONG
-这里是个山洞，乌漆抹黑的伸手不见五指。你一脚踩进中间的一
-个大坑里，坑里散发着阵阵恶臭，直欲叫人掩鼻逃离这里。坑边隐约
-蹲着几十条人影，对着你嘿嘿奸笑。
+這裡是個山洞，烏漆抹黑的伸手不見五指。你一腳踩進中間的一
+個大坑裡，坑裡散發著陣陣惡臭，直欲叫人掩鼻逃離這裡。坑邊隱約
+蹲著幾十條人影，對著你嘿嘿奸笑。
 LONG );
         set("outdoors", "yangzhou");
         set("exits",([ /* sizeof() == 1 */
@@ -98,7 +98,7 @@ void start_18zhen()
                 if (ob->do_copy(obs[18-i])){
                         set("in_zhen", 1, ob);
                         ob->move(this_object());
-                        message_vision(append_color("$N哼地一声，跳进坑里把你团团围住。\n", CYN), ob);
+                        message_vision(append_color("$N哼地一聲，跳進坑裡把你團團圍住。\n", CYN), ob);
                         if (!random(10)) {
                                 niu = new (__DIR__"npc/qingniu");
                                 niu->move(environment(ob));
@@ -143,7 +143,7 @@ void start_hgg()
                         }
                 }
         }
-        CHANNEL_D->channel_broadcast("rumor", "听说" + implode(list, "、") + "等人追随老子西出函谷关。");
+        CHANNEL_D->channel_broadcast("rumor", "聽說" + implode(list, "、") + "等人追隨老子西出函谷關。");
         niu->start_move();
 }
 
@@ -169,7 +169,7 @@ void start_pkd()
                         niu->set_leader(ob); 
                         set("title", NOR + ob->name(1) + "的" + NOR, niu);
                 }
-                CHANNEL_D->channel_broadcast("rumor", "比赛精灵：牛人" + ob->name(1) + "进入屠人场。" );
+                CHANNEL_D->channel_broadcast("rumor", "比賽精靈：牛人" + ob->name(1) + "進入屠人場。" );
         } else {
                 destruct(ob);
         }
@@ -188,7 +188,7 @@ void start_zhen()
                         set("18zhen/time", time() + 3600 * 6 + random(3600 * 4));
                         set("18zhen/start", 1);
                 }       
-    CHANNEL_D->channel_broadcast("rumor", "听说有小撮不良中年人纠结在一起，布下了" + this_object()->short() + "(测试版)寻衅滋事。" );            
+    CHANNEL_D->channel_broadcast("rumor", "聽說有小撮不良中年人糾結在一起，佈下了" + this_object()->short() + "(測試版)尋釁滋事。" );            
 }
 
 void clear_here()
@@ -196,7 +196,7 @@ void clear_here()
         object ob, *obs;
         obs = filter_array(all_inventory(this_object()),  (: !userp($1) :));
         if (!obs || !sizeof(obs)) return;
-        tell_room(this_object(), NOR "一阵阴风袭过，地上的狼藉化为了飞灰。\n" NOR);
+        tell_room(this_object(), NOR "一陣陰風襲過，地上的狼藉化為了飛灰。\n" NOR);
         foreach (ob in obs) {
                 destruct(ob);
         }
@@ -216,8 +216,8 @@ void heart_beat()
                                                 if (!obs || sizeof(obs)<1) {
                                         addn("18zhen/nump", 3);
                                         start_18zhen();
-                                        //todo:金牛，金牛免疫call die，变态hp。 
-                                        //只要金牛不死，牛逼就闪闪发光, damage几率减半*n次，间或恢复，call die大大豁免。 
+                                        //todo:金牛，金牛免疫call die，變態hp。 
+                                        //只要金牛不死，牛逼就閃閃發光, damage幾率減半*n次，間或恢復，call die大大豁免。 
                                         //金牛一死，牛人很容易被call die
                                 }
                         } else {
@@ -225,7 +225,7 @@ void heart_beat()
                                 if (!obs || sizeof(obs)<1) {
                                         delete("18zhen/nump");
                                         delete("18zhen/start");
-                                        //todo:公告天下破阵成功
+                                        //todo:公告天下破陣成功
                                         call_out("clear_here", 120);
                                 }
                         }

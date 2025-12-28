@@ -1,4 +1,4 @@
-// yuer.c 鱼饵
+// yuer.c 魚餌
 
 #include <ansi.h>
 
@@ -6,15 +6,15 @@ inherit COMBINED_ITEM;
 
 void create()
 {
-        set_name("鱼饵", ({ "yu er", "er" }) );
+        set_name("魚餌", ({ "yu er", "er" }) );
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "这是钓鱼者常用的鱼食。\n");
-                set("base_unit", "块");
+                set("long", "這是釣魚者常用的魚食。\n");
+                set("base_unit", "塊");
                 set("base_weight", 30);
                 set("base_value", 7);
-                set("no_sell", "这鱼吃的东西你也给我？");
+                set("no_sell", "這魚吃的東西你也給我？");
                 set("unit", "些");
         }
 

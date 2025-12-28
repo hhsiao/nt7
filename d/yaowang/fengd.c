@@ -1,8 +1,8 @@
 inherit ROOM;
 
 protected int nut = 3;
-protected string ll = "这里是一片低矮的灌木丛，空气中有一种淡淡的幽香，身临
-空谷，闻着淡淡的芬芳之气，让人心旷神怡。";
+protected string ll = "這裡是一片低矮的灌木叢，空氣中有一種淡淡的幽香，身臨
+空谷，聞著淡淡的芬芳之氣，讓人心曠神怡。";
 
 string query_long();
 string query_item_desc();
@@ -11,14 +11,14 @@ string query_long()
 {
         if(nut <= 0)
                 return ll+"\n";
-        return ll+"丛中还结着几颗棕\n色的[小果子]。\n";
+        return ll+"叢中還結著幾顆棕\n色的[小果子]。\n";
 }
 
 string query_item_desc()
 {
         if(nut > 0)
-                return "这是一颗小指甲盖大的棕色果子，可爱
-的样子只想让人摘(pick)下来看看。\n";
+                return "這是一顆小指甲蓋大的棕色果子，可愛
+的樣子只想讓人摘(pick)下來看看。\n";
 
         return 0;
 }
@@ -41,16 +41,16 @@ int do_pick(string arg)
         mapping q;
 
         if(arg != "果子" && arg != "小果子")
-                return notify_fail("你要摘什么？\n");
+                return notify_fail("你要摘什麼？\n");
 
         if(nut <= 0)
-                return notify_fail(sprintf("这里没有%s。\n", arg));
+                return notify_fail(sprintf("這裡沒有%s。\n", arg));
 
         if( !mapp(q=query("quest/yaowang_quest", me)) || (q["name"] != "海松子") || q["get_nut"] )
-                return notify_fail("你没小心被灌木上的小刺扎了一下，疼得赶紧缩回了手。\n");
+                return notify_fail("你沒小心被灌木上的小刺紮了一下，疼得趕緊縮回了手。\n");
 
         nut--;
-        message_vision("$N小心翼翼的摘下了一颗小果子。\n", me);
+        message_vision("$N小心翼翼的摘下了一顆小果子。\n", me);
 
         ob = new(__DIR__"obj/nut");
 

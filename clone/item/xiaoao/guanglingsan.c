@@ -3,18 +3,18 @@ inherit ITEM;
 
 void create()
 {
-        set_name(NOR + YEL "「广陵散曲谱」" NOR, ({ "guangling san",
+        set_name(NOR + YEL "「廣陵散曲譜」" NOR, ({ "guangling san",
                  "guangling", "san" }));
         set_weight(300);
         if (clonep())
                 destruct(this_object());
         else {
                 set("unit", "本");
-                set("no_sell", "广陵散？你当我不识货啊？\n");
+                set("no_sell", "廣陵散？你當我不識貨啊？\n");
                 set("long", NOR + YEL @LONG
-这是一本颇为残旧的曲谱，谱上用古隶写着「广陵
-散」三字。传说此套琴谱在西晋时便已然消失，但
-却不知为何今日在这里出现。
+這是一本頗為殘舊的曲譜，譜上用古隸寫著「廣陵
+散」三字。傳說此套琴譜在西晉時便已然消失，但
+卻不知為何今日在這裡出現。
 LONG NOR);
                 set("value", 1);
                 set("material", "paper");

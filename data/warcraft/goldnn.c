@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("难难难[2;37;0m[2;37;0m", ({"goldnnn"}));        
+        set_name("難難難[2;37;0m[2;37;0m", ({"goldnnn"}));        
         set("gender", "男性");                
-        set("long", "难难难[2;37;0m
-它是金男的魔幻兽。
+        set("long", "難難難[2;37;0m
+它是金男的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

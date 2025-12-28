@@ -8,9 +8,9 @@ int is_snake(){return 1;}
 void create()
 {
         set_name("黑冠巨蟒", ({ "snake", "she" }) );
-        //set("race", "蛇类");
+        //set("race", "蛇類");
         set("age", 20);
-        set("long", "一只庞然大物，它眼中喷火,好象要一口把你吞下。\n");
+        set("long", "一隻龐然大物，它眼中噴火,好象要一口把你吞下。\n");
         set("attitude", "aggressive");
         set("qi", 4000);
         set("max_qi", 4000);
@@ -18,7 +18,7 @@ void create()
         set("max_jing", 500);
         set("str", 86);
         set("con", 80);
-        set("limbs", ({ "头部", "身体", "七寸", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體", "七寸", "尾巴" }) );
         set("verbs", ({ "bite" }) );
                 set("max_neili", 25000);
                 set("neili", 25000);
@@ -58,10 +58,10 @@ int convert(string arg)
         object ob;
 
         if (arg!="snake" && arg!="she") return 0;
-        if( query("family/family_name", me) != "欧阳世家" )
-                return notify_fail("你不能化蛇为杖。\n");
+        if( query("family/family_name", me) != "歐陽世家" )
+                return notify_fail("你不能化蛇為杖。\n");
 
-        return notify_fail("黑冠巨蟒身子太过粗大，无法化为蛇杖。\n");
+        return notify_fail("黑冠巨蟒身子太過粗大，無法化為蛇杖。\n");
 }
 
 mixed hit_ob(object me, object ob, int damage)
@@ -94,24 +94,24 @@ mixed hit_ob(object me, object ob, int damage)
         {
                 if( query("qi", ob)<150 )
                 {
-                        msg = HIR "你觉得伤口有些发麻，连忙运功化解，但"
-                              "是一时体力不支，难以施为。\n" NOR;
+                        msg = HIR "你覺得傷口有些發麻，連忙運功化解，但"
+                              "是一時體力不支，難以施為。\n" NOR;
                 } else
                 if( query("jing", ob)<60 )
                 {
-                        msg = HIR "你觉得伤口有些发麻，连忙运功化解，但"
-                              "是一时精神不济，难以施为。\n" NOR;
+                        msg = HIR "你覺得傷口有些發麻，連忙運功化解，但"
+                              "是一時精神不濟，難以施為。\n" NOR;
                 } else
                 if( query("neili", ob)<damage/5+50 )
                 {
-                        msg = HIR "你觉得伤口有些发麻，连忙运功化解，但"
-                              "是一时内力不足，难以施为。\n" NOR;
+                        msg = HIR "你覺得傷口有些發麻，連忙運功化解，但"
+                              "是一時內力不足，難以施為。\n" NOR;
                 } else
                 {
                         addn("neili", -damage/5, ob);
                         ob->receive_damage("qi", 20);
                         ob->receive_damage("jing", 10);
-                        return HIM "你觉得被咬中的地方有些发麻，连忙运功"
+                        return HIM "你覺得被咬中的地方有些發麻，連忙運功"
                                "化解毒性。\n" NOR;
                 }
         }
@@ -121,7 +121,7 @@ mixed hit_ob(object me, object ob, int damage)
                                        "id"    : "nature poison",
                                        "duration" : dur / 2, ])))
         {
-                msg += HIR "$n" HIR "脸色一变，只觉被咬中的地方一阵麻木。\n" NOR;
+                msg += HIR "$n" HIR "臉色一變，只覺被咬中的地方一陣麻木。\n" NOR;
         }
         return msg;
 }

@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define DIAN "「" HIY "电光四射" NOR "」"
+#define DIAN "「" HIY "電光四射" NOR "」"
 
 inherit F_SSERVER;
 
@@ -15,29 +15,29 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if( userp(me) && !query("can_perform/jidian-jian/dian", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(DIAN "只能在战斗中对对手使用。\n");
+                return notify_fail(DIAN "只能在戰鬥中對對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
               query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器无法施展" DIAN "。\n");
+                return notify_fail("你使用的武器無法施展" DIAN "。\n");
 
         if (me->query_skill("force") < 150)
-                return notify_fail("你的内功的修为不够，无法施展" DIAN "。\n");
+                return notify_fail("你的內功的修為不夠，無法施展" DIAN "。\n");
 
         if (me->query_skill("jidian-jian", 1) < 100)
-                return notify_fail("你的疾电剑法修为不够，无法施展" DIAN "。\n");
+                return notify_fail("你的疾電劍法修為不夠，無法施展" DIAN "。\n");
 
         if( query("neili", me)<250 )
-                return notify_fail("你的真气不够，无法施展" DIAN "。\n");
+                return notify_fail("你的真氣不夠，無法施展" DIAN "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIY "$N" HIY "冷哼一声，手中" + weapon->name() + NOR + HIY
-              "一抖，运剑如飞，霎时之间，四处都是电光，耀人眼目。\n" NOR;
+        msg = HIY "$N" HIY "冷哼一聲，手中" + weapon->name() + NOR + HIY
+              "一抖，運劍如飛，霎時之間，四處都是電光，耀人眼目。\n" NOR;
 
         ap = me->query_skill("sword");
         dp = target->query_skill("parry");
@@ -48,15 +48,15 @@ int perform(object me, object target)
                 addn("neili", -180, me);
                 me->start_busy(2);
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 40,
-                                           HIR "只听“唰唰唰”几声，$n" HIR "无法"
-                                           "看透招中虚实，连续被削中数剑，一声惨"
-                                           "叫，血如泉涌！\n" NOR );
+                                           HIR "只聽“唰唰唰”幾聲，$n" HIR "無法"
+                                           "看透招中虛實，連續被削中數劍，一聲慘"
+                                           "叫，血如泉湧！\n" NOR );
         } else
         {
                 addn("neili", -60, me);
                 me->start_busy(3);
-                msg += CYN "可是$p" CYN "奋力格挡，$P" CYN "只"
-                       "觉得对手防守严密，手中剑光渐缓。 \n" NOR;
+                msg += CYN "可是$p" CYN "奮力格擋，$P" CYN "只"
+                       "覺得對手防守嚴密，手中劍光漸緩。 \n" NOR;
         }
         message_combatd(msg, me, target);
 

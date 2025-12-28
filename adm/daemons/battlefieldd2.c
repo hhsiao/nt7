@@ -14,8 +14,8 @@
 #define BATTLE_ROOM             "/maze/battle/"
 #define ENTRY_ROOM              "/d/city/wumiao"
 
-//string battle_name = HIY"荣耀"NOR YEL"之战"HIR;
-string battle_name = HIY"门派"NOR YEL"荣耀"HIR;
+//string battle_name = HIY"榮耀"NOR YEL"之戰"HIR;
+string battle_name = HIY"門派"NOR YEL"榮耀"HIR;
 object *battle_npc = allocate(0);
 mapping battle_player = allocate_mapping(0);
 object *total = allocate(0);
@@ -107,7 +107,7 @@ void init_player(object me)
         set_temp("backup/want", me->query_want(), me);
         set_temp("in_pkd", 1, me);
 
-        tell_object(me, HIR "你被传送到战场中...。\n");
+        tell_object(me, HIR "你被傳送到戰場中...。\n");
         set("backup/condition", me->query_condition(), me);
         me->clear_condition();
 
@@ -120,7 +120,7 @@ void init_player(object me)
         move_to_random_site(me);
 }
 
-// 参与战争
+// 參與戰爭
 void join_battle(object me)
 {
         mapping cnd;
@@ -130,56 +130,56 @@ void join_battle(object me)
                 return tell_object(me, BUSY_MESSAGE);
 
         if( me->is_fighting() )
-                return tell_object(me, "你目前正在战斗中，还是先处理目前的对手再说吧。\n");
+                return tell_object(me, "你目前正在戰鬥中，還是先處理目前的對手再說吧。\n");
 
         if (me->is_in_prison()) 
-                return tell_object(me, "你正在做牢呢，你想干什么？！\n"); 
+                return tell_object(me, "你正在做牢呢，你想幹什麼？！\n"); 
 
         if (me->is_ghost()) 
-                return tell_object(me, "你还是等还阳后再说吧！\n"); 
+                return tell_object(me, "你還是等還陽後再說吧！\n"); 
 
         if( sscanf(base_name(environment(me)), "/d/newbie/%s") )
-                return tell_object(me, "你还没有正式闯到江湖呢，不能参加报名！\n");
+                return tell_object(me, "你還沒有正式闖到江湖呢，不能參加報名！\n");
 
         if( !battle_open_flag )
-                return tell_object(me, battle_name+"目前无法报名。\n");
+                return tell_object(me, battle_name+"目前無法報名。\n");
 
         if( query("combat_exp", me) < 1000000 )
-                return tell_object(me, "你这点本事就别进去啦。\n");
+                return tell_object(me, "你這點本事就別進去啦。\n");
 
         if( max_level && query("level", me) > max_level )
-                return tell_object(me, "你就别进去欺负那些新鸟吧。\n");
+                return tell_object(me, "你就別進去欺負那些新鳥吧。\n");
 
         if( mapp(cnd = me->query_condition()) && sizeof(cnd))
         {
                if( !undefinedp(cnd["hunger"]) )
-                        return tell_object(me, "你还是先找点吃的东西再说吧。\n");
+                        return tell_object(me, "你還是先找點吃的東西再說吧。\n");
 
                if( !undefinedp(cnd["killer"]) )
-                        return tell_object(me, "官府正在通缉你，你还敢在这儿抛头露面？\n");
+                        return tell_object(me, "官府正在通緝你，你還敢在這兒拋頭露面？\n");
 
                if( !undefinedp(cnd["bandage"]) )
-                        return tell_object(me, "你还是等包扎的伤口止住了血再说吧！\n");
+                        return tell_object(me, "你還是等包紮的傷口止住了血再說吧！\n");
 
                if( !undefinedp(cnd["putizi_drug"]) )
-                        return tell_object(me, "你刚服完菩提子不久，好好运功夫吸纳吧！\n");
+                        return tell_object(me, "你剛服完菩提子不久，好好運功夫吸納吧！\n");
 
                if( !undefinedp(cnd["vote_clear"]) )
-                        return tell_object(me, "现在玩家正在对你进行表决，你别到处乱走。\n");
+                        return tell_object(me, "現在玩家正在對你進行表決，你別到處亂走。\n");
 
-                return tell_object(me, "你现在状态不佳，还是别进去了。\n");
+                return tell_object(me, "你現在狀態不佳，還是別進去了。\n");
         }
 
         if( !undefinedp(battle_player[id]) )
         {
                 if( !battle_start_flag )
-                        return tell_object(me, "你已经报名参与这次的战争，请耐心等候出征。\n");
+                        return tell_object(me, "你已經報名參與這次的戰爭，請耐心等候出征。\n");
 
                 if( inside_battlefield(me) )
-                        return tell_object(me, "你已经在战场中，快点杀敌吧。\n");
+                        return tell_object(me, "你已經在戰場中，快點殺敵吧。\n");
 
                 if( !query_temp("battle_rejoin", me) )
-                        return tell_object(me, "你必须使用战争勋章方可重新进入战场。\n");
+                        return tell_object(me, "你必須使用戰爭勳章方可重新進入戰場。\n");
 
                 delete_temp("battle_rejoin", me);
                 init_player(me);
@@ -190,7 +190,7 @@ void join_battle(object me)
         battle_player[id]["jointime"] = time();
 
         CHANNEL_D->channel_broadcast("war", "目前共有 "+sizeof(battle_player)+
-                                            " 位玩家报名参与「"+battle_name+"」");
+                                            " 位玩家報名參與「"+battle_name+"」");
 
         if( battle_start_flag )
         {
@@ -198,16 +198,16 @@ void join_battle(object me)
         }
 }
 
-// 取消参与战争
+// 取消參與戰爭
 void cancel_battle(object me)
 {
         string id = me->query_id(1);
 
         if( undefinedp(battle_player[id]) )
-                return tell_object(me, "你原本就没有报名参与这次的战争。\n");
+                return tell_object(me, "你原本就沒有報名參與這次的戰爭。\n");
 
         if( battle_start_flag )
-                return tell_object(me, "这次的战争已经开始，你无法取消，可用quit指令逃离战场。\n");
+                return tell_object(me, "這次的戰爭已經開始，你無法取消，可用quit指令逃離戰場。\n");
 
         map_delete(battle_player, id);
 
@@ -216,12 +216,12 @@ void cancel_battle(object me)
                 set("honors", 0, me);
 
         CHANNEL_D->channel_broadcast("war", "目前共有 "+sizeof(battle_player)+
-                                            " 位玩家报名参与「"+battle_name+"」");
+                                            " 位玩家報名參與「"+battle_name+"」");
 }
 
 int check_quit(object me)
 {
-        CHANNEL_D->channel_broadcast("war", "玩家" + me->name(1) +"在「"+battle_name+"」中临阵脱逃，溜走了。"NOR);
+        CHANNEL_D->channel_broadcast("war", "玩家" + me->name(1) +"在「"+battle_name+"」中臨陣脫逃，溜走了。"NOR);
         restore_status(me);
 
         addn("honors", -500, me);
@@ -231,11 +231,11 @@ int check_quit(object me)
         if( arrayp(total) )
                 total -= ({ me });
 
-        tell_object(me, HIC "你一口气逃出了战场，来到扬州中央广场。\n" NOR);
+        tell_object(me, HIC "你一口氣逃出了戰場，來到揚州中央廣場。\n" NOR);
 
         // continue run quit function
         me->move("/d/city/guangchang");
-        message("vision", "只见" + me->name() + "慌里慌张的跑了过来。\n",
+        message("vision", "只見" + me->name() + "慌里慌張的跑了過來。\n",
                 environment(me), ({ me }));
 
         return 1;
@@ -275,7 +275,7 @@ private void auto_check()
                 {
                         // not in pk room
                         restore_status(total[i]);
-                        total[i] = 0; // 保留报名参加战场的记录
+                        total[i] = 0; // 保留報名參加戰場的記錄
                         continue;
                 }
                 if( query("qi", total[i])<1 || query("jing", total[i])<1 )
@@ -310,10 +310,10 @@ int check_out(object me)
         my["qi"] = 1;
         my["jing"] = 1;
 
-        tell_object(me, HIR "\n你觉得眼前一阵模糊...这下完了！\n" NOR);
+        tell_object(me, HIR "\n你覺得眼前一陣模糊...這下完了！\n" NOR);
         if( ob = me->query_last_damage_from() )
         {
-                msg = me->name(1) + "惨遭" + ob->name(1) + "的毒手，被无情ＰＫ。\n";
+                msg = me->name(1) + "慘遭" + ob->name(1) + "的毒手，被無情ＰＫ。\n";
                 if( userp(ob) )
                 {
                         if( userp(me) )
@@ -329,7 +329,7 @@ int check_out(object me)
                         }
                 }
         } else
-                 msg = me->name(1) + "运气不佳，本领有限、已经惨遭ＰＫ。\n";
+                 msg = me->name(1) + "運氣不佳，本領有限、已經慘遭ＰＫ。\n";
 
         message("vision", msg, environment(me), ({ me }));
 
@@ -341,10 +341,10 @@ int check_out(object me)
                 return 1;
         }
         me->move(ENTRY_ROOM);
-        message("vision", "一个黑影倏的窜了出来，随即就是“啪”的"
-                "一声，就见" + me->name() +"摔倒了地上，一副半死不"
-                "活的样子。\n", environment(me), ({ me }));
-        tell_object(me, "半昏半迷中，你觉得被人拎了起来，又"
+        message("vision", "一個黑影倏的竄了出來，隨即就是“啪”的"
+                "一聲，就見" + me->name() +"摔倒了地上，一副半死不"
+                "活的樣子。\n", environment(me), ({ me }));
+        tell_object(me, "半昏半迷中，你覺得被人拎了起來，又"
                 "重重的摔倒了地上。\n");
 
         if( !living(me) )
@@ -363,10 +363,10 @@ void add_npc(string file)
         set_temp("battle_npc", 1, npc);
         battle_npc += ({ npc });
         npc->move(site);
-        tell_room(site, HIY+npc->query_idname()+HIY"突然从角落窜了出来！\n"NOR);
+        tell_room(site, HIY+npc->query_idname()+HIY"突然從角落竄了出來！\n"NOR);
 }
 
-// 启动战争
+// 啟動戰爭
 void start_battle()
 {
         object player;
@@ -379,7 +379,7 @@ void start_battle()
                 battle_player = allocate_mapping(0);
                 battle_open_flag = 0;
                 battle_start_time = 0;
-                CHANNEL_D->channel_broadcast("war", "报名参与「"+battle_name+"」战役的玩家不足 5 人，取消本次战役。");
+                CHANNEL_D->channel_broadcast("war", "報名參與「"+battle_name+"」戰役的玩家不足 5 人，取消本次戰役。");
                 return;
         }
 
@@ -390,8 +390,8 @@ void start_battle()
                         add_npc(file);
         }
 
-        CHANNEL_D->channel_broadcast("war", "「"+battle_name+"」开始出征！共计 "+sizeof(battle_player)+
-                                            " 位玩家参与「"+battle_name+"」，计时 "+(BATTLE_TIME/60)+" 分钟结束");
+        CHANNEL_D->channel_broadcast("war", "「"+battle_name+"」開始出征！共計 "+sizeof(battle_player)+
+                                            " 位玩家參與「"+battle_name+"」，計時 "+(BATTLE_TIME/60)+" 分鐘結束");
 
 
         foreach(string id, mapping data in battle_player)
@@ -403,13 +403,13 @@ void start_battle()
 
                 if( query_temp("running", player)  )
                 {
-                        tell(player, pnoun(2, player)+"正在飞行中，无法加入战场。\n");
+                        tell(player, pnoun(2, player)+"正在飛行中，無法加入戰場。\n");
                         unavailable_players |= ({ player });
                         continue;
                 }
 
                 init_player(player);
-                //tell_object(player, "\a「"+battle_name+"」开始，你被传送到战场中...\n");
+                //tell_object(player, "\a「"+battle_name+"」開始，你被傳送到戰場中...\n");
         }
 
         foreach(player in unavailable_players)
@@ -419,11 +419,11 @@ void start_battle()
         battle_time_countdown = BATTLE_TIME;
 }
 
-// 开始接受报名 TIME_D 调用
+// 開始接受報名 TIME_D 調用
 varargs void start_join(string level)
 {
-        CHANNEL_D->channel_broadcast("war", HIY"荣耀"NOR YEL"之战"HIR"发出战争集结，即将在 "+(BATTLE_JOIN_TIME/60)+
-                                            " 分钟后发动「"+battle_name+"」("+level+"级)，请使用 fbattle 指令加入战役。");
+        CHANNEL_D->channel_broadcast("war", HIY"榮耀"NOR YEL"之戰"HIR"發出戰爭集結，即將在 "+(BATTLE_JOIN_TIME/60)+
+                                            " 分鐘後發動「"+battle_name+"」("+level+"級)，請使用 fbattle 指令加入戰役。");
 
         total = allocate(0);
         battle_npc = allocate(0);
@@ -550,8 +550,8 @@ void stop_battle()
         call_out((: calculate_score :), 5);
 
         CHANNEL_D->channel_broadcast("war", WHT"————————————————————————————————"NOR);
-        CHANNEL_D->channel_broadcast("war", "「"+battle_name+HIR"」终于渐渐平息..."NOR);
-        CHANNEL_D->channel_broadcast("war", "「"+battle_name+HIR"」正在统计战绩..."NOR);
+        CHANNEL_D->channel_broadcast("war", "「"+battle_name+HIR"」終於漸漸平息..."NOR);
+        CHANNEL_D->channel_broadcast("war", "「"+battle_name+HIR"」正在統計戰績..."NOR);
         CHANNEL_D->channel_broadcast("war", WHT"————————————————————————————————"NOR);
 }
 
@@ -591,7 +591,7 @@ void calculate_score()
                 family = player->query_family();
                 score = get_player_score(id);
 
-                CHANNEL_D->channel_broadcast("war", (++rank)+"."+(family||"普通百姓")+"的"+player->query_idname()+HIR"共击杀 "+battle_player[id]["killplayer"]+" 位玩家、"+battle_player[id]["killnpc"]+" 个NPC，总计造成敌人 "+NUMBER_D->number_symbol(battle_player[id]["damage"])+" 点伤害，战绩结算为 "+NUMBER_D->number_symbol(score)+(battle_player[id]["bonus"]>=0 ? "("NOR CYN"+"HIC+battle_player[id]["bonus"]+HIR")":"("NOR RED"-"HIR+(-battle_player[id]["bonus"])+HIR")")+" 分");
+                CHANNEL_D->channel_broadcast("war", (++rank)+"."+(family||"普通百姓")+"的"+player->query_idname()+HIR"共擊殺 "+battle_player[id]["killplayer"]+" 位玩家、"+battle_player[id]["killnpc"]+" 個NPC，總計造成敵人 "+NUMBER_D->number_symbol(battle_player[id]["damage"])+" 點傷害，戰績結算為 "+NUMBER_D->number_symbol(score)+(battle_player[id]["bonus"]>=0 ? "("NOR CYN"+"HIC+battle_player[id]["bonus"]+HIR")":"("NOR RED"-"HIR+(-battle_player[id]["bonus"])+HIR")")+" 分");
 
                 if( undefinedp(famscore[family]) )
                         famscore[family] = allocate_mapping(0);
@@ -636,7 +636,7 @@ void calculate_score()
                 {
                         insigne = new("/clone/battle/battle_insigne");
                         insigne->set_amount(insigne_count);
-                        tell_object(player, "你获得 "+insigne_count+" 枚"+insigne->name(1)+"。\n");
+                        tell_object(player, "你獲得 "+insigne_count+" 枚"+insigne->name(1)+"。\n");
                         insigne->move(player, 1);
                 }
         }
@@ -645,7 +645,7 @@ void calculate_score()
         rank = 0;
         foreach(family in sort_array(keys(famscore), (: $(famscore)[$2]["score"] - $(famscore)[$1]["score"] :)))
         {
-                CHANNEL_D->channel_broadcast("war", (family||"普通百姓")+"的战绩计算结果为 "+NUMBER_D->number_symbol(famscore[family]["score"])+"，获得门派排名第 "+(++rank)+" 名。\n");    
+                CHANNEL_D->channel_broadcast("war", (family||"普通百姓")+"的戰績計算結果為 "+NUMBER_D->number_symbol(famscore[family]["score"])+"，獲得門派排名第 "+(++rank)+" 名。\n");    
                 
                 switch(rank)
                 {
@@ -653,46 +653,46 @@ void calculate_score()
                                 switch(random(3))
                                 {
                                         case 0:
-                                                CHANNEL_D->channel_broadcast("news", family+"所有弟子在接下来四小时内所有主流任务经验奖励增加一倍！\n");
+                                                CHANNEL_D->channel_broadcast("news", family+"所有弟子在接下來四小時內所有主流任務經驗獎勵增加一倍！\n");
                                                 FAMILY_D->set_family_efficient(family, "exp", 14400);
                                                 break;
                                         case 1:
-                                                CHANNEL_D->channel_broadcast("news", family+"所有弟子在接下来四小时内所有主流任务潜能奖励增加一倍！\n");
+                                                CHANNEL_D->channel_broadcast("news", family+"所有弟子在接下來四小時內所有主流任務潛能獎勵增加一倍！\n");
                                                 FAMILY_D->set_family_efficient(family, "pot", 14400);
                                                 break;
                                         case 2:
-                                                CHANNEL_D->channel_broadcast("news", family+"所有弟子在接下来四小时内掉宝率提高两成！\n");
+                                                CHANNEL_D->channel_broadcast("news", family+"所有弟子在接下來四小時內掉寶率提高兩成！\n");
                                                 FAMILY_D->set_family_efficient(family, "mf", 14400);
                                                 break;
                                         case 3:
-                                                CHANNEL_D->channel_broadcast("news", family+"所有弟子在接下来四小时内研究效果增加一倍！\n");
+                                                CHANNEL_D->channel_broadcast("news", family+"所有弟子在接下來四小時內研究效果增加一倍！\n");
                                                 FAMILY_D->set_family_efficient(family, "yanjiu", 14400);
                                                 break;
                                 }                               
-                                CHANNEL_D->channel_broadcast("news", family+"门派威望提高八百点。！\n");
+                                CHANNEL_D->channel_broadcast("news", family+"門派威望提高八百點。！\n");
                                 FAMILY_D->add_family_fame(family, 800);
                                 break;
                         case 2:
                                 switch(random(3))
                                 {
                                         case 0:
-                                                CHANNEL_D->channel_broadcast("news", family+"所有弟子在接下来二小时内所有主流任务经验奖励增加一倍！\n");
+                                                CHANNEL_D->channel_broadcast("news", family+"所有弟子在接下來二小時內所有主流任務經驗獎勵增加一倍！\n");
                                                 FAMILY_D->set_family_efficient(family, "exp", 7200);
                                                 break;
                                         case 1:
-                                                CHANNEL_D->channel_broadcast("news", family+"所有弟子在接下来二小时内所有主流任务潜能奖励增加一倍！\n");
+                                                CHANNEL_D->channel_broadcast("news", family+"所有弟子在接下來二小時內所有主流任務潛能獎勵增加一倍！\n");
                                                 FAMILY_D->set_family_efficient(family, "pot", 7200);
                                                 break;
                                         case 2:
-                                                CHANNEL_D->channel_broadcast("news", family+"所有弟子在接下来二小时内掉宝率提高两成！\n");
+                                                CHANNEL_D->channel_broadcast("news", family+"所有弟子在接下來二小時內掉寶率提高兩成！\n");
                                                 FAMILY_D->set_family_efficient(family, "mf", 7200);
                                                 break;
                                         case 3:
-                                                CHANNEL_D->channel_broadcast("news", family+"所有弟子在接下来二小时内研究效果增加一倍！\n");
+                                                CHANNEL_D->channel_broadcast("news", family+"所有弟子在接下來二小時內研究效果增加一倍！\n");
                                                 FAMILY_D->set_family_efficient(family, "yanjiu", 7200);
                                                 break;
                                 }                               
-                                CHANNEL_D->channel_broadcast("news", family+"门派威望提高五百点。！\n");
+                                CHANNEL_D->channel_broadcast("news", family+"門派威望提高五百點。！\n");
                                 FAMILY_D->add_family_fame(family, 500);
                                 break;
                         default:
@@ -712,7 +712,7 @@ void calculate_score()
                 restore_status(player);
                 player->move(ENTRY_ROOM);
 
-                tell_object(player, "「"+battle_name+"」结束，你被传离战场...\n");
+                tell_object(player, "「"+battle_name+"」結束，你被傳離戰場...\n");
 
         }
 
@@ -742,7 +742,7 @@ int remove()
         {
                 object player;
 
-                CHANNEL_D->channel_broadcast("war", "系统更新，重置「"+battle_name+HIR"」"NOR);
+                CHANNEL_D->channel_broadcast("war", "系統更新，重置「"+battle_name+HIR"」"NOR);
 
                 foreach(string id in keys(battle_player))
                 {
@@ -788,8 +788,8 @@ void heart_beat()
                         case 600:
                         case 900:
                         case 1200:
-                                CHANNEL_D->channel_broadcast("war", HIY"荣耀"NOR YEL"之战"HIR"发出战争集结，即将在 "+(battle_start_time/60)+
-                                                                    " 分钟后发动「"+battle_name+"」，请使用 fbattle 指令加入战役。");
+                                CHANNEL_D->channel_broadcast("war", HIY"榮耀"NOR YEL"之戰"HIR"發出戰爭集結，即將在 "+(battle_start_time/60)+
+                                                                    " 分鐘後發動「"+battle_name+"」，請使用 fbattle 指令加入戰役。");
                                 break;
                 }
 
@@ -817,7 +817,7 @@ void heart_beat()
         }
 
         if( battle_time_countdown == 60 || battle_time_countdown == 180 )
-                CHANNEL_D->channel_broadcast("war", "「"+battle_name+"」即将在 "+(battle_time_countdown/60)+" 分钟后结束...");
+                CHANNEL_D->channel_broadcast("war", "「"+battle_name+"」即將在 "+(battle_time_countdown/60)+" 分鐘後結束...");
 
         if( !(battle_time_countdown%90) )
         {
@@ -832,8 +832,8 @@ void heart_beat()
 
                 statue->move(where);
 
-                CHANNEL_D->channel_broadcast("war", "具有强大神秘力量的石碑出现在"+where->short()+"附近...");
-                //【战斗】21:07 战争：一笑置之(Eugene)获得「战争荣耀」加持，持续 2 分钟，目标座标为<maze 1 49,36>，击败此人可获得大量战绩
+                CHANNEL_D->channel_broadcast("war", "具有強大神秘力量的石碑出現在"+where->short()+"附近...");
+                //【戰鬥】21:07 戰爭：一笑置之(Eugene)獲得「戰爭榮耀」加持，持續 2 分鐘，目標座標為<maze 1 49,36>，擊敗此人可獲得大量戰績
         }
 
 /*
@@ -848,7 +848,7 @@ void heart_beat()
                         if( objectp(player = find_player(sorted_players[i])) )
                         {
                                 if( !inside_battlefield(player) ) continue;
-                                tell_object(player, "你目前的战绩落后，获得额外能力加持。\n");
+                                tell_object(player, "你目前的戰績落後，獲得額外能力加持。\n");
 
                                 //player->apply_condition(BATTLEFIELD_EXPERIENCE);
 
@@ -920,5 +920,5 @@ void create()
 
 string query_name()
 {
-        return "战场系统(BATTLEFIELD_D)";
+        return "戰場系統(BATTLEFIELD_D)";
 }

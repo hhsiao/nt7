@@ -7,11 +7,11 @@ string ask_me();
 
 void create()
 {
-        set_name("小贩", ({ "xiao fan", "xiao", "fan" }));
+        set_name("小販", ({ "xiao fan", "xiao", "fan" }));
         set("gender", "男性" );
         set("age", 32);
-        set("long", "这是个小贩，别看他长的老老实实，可你别\n"
-                    "想从他那儿掏便宜。\n");
+        set("long", "這是個小販，別看他長的老老實實，可你別\n"
+                    "想從他那兒掏便宜。\n");
         set("combat_exp", 300);
         set("str", 17);
         set("dex", 20);
@@ -25,9 +25,9 @@ void create()
                 "/d/xingxiu/obj/fire",
         }));
         set("inquiry", ([
-                "药材"   : (: ask_me :),
-                "首乌"   : (: ask_me :),
-                "何首乌" : (: ask_me :),
+                "藥材"   : (: ask_me :),
+                "首烏"   : (: ask_me :),
+                "何首烏" : (: ask_me :),
         ]));
 
         set("count", 3);
@@ -50,15 +50,15 @@ string ask_me()
 
         if (query("count") < 1)
         {
-                return "实在对不住，现在我手里也没货了。\n";
+                return "實在對不住，現在我手裡也沒貨了。\n";
         } else
-        if( query_temp("tmark/药", me) )
+        if( query_temp("tmark/藥", me) )
         {
-                return "我走南闯北，没见过你这么罗嗦的人。\n";
+                return "我走南闖北，沒見過你這麼羅嗦的人。\n";
         } else
         {
-                set_temp("tmark/药", 1, me);
-                return "我到极北森林中采药，还真遇到了一些好药材，要买得先交钱。\n";
+                set_temp("tmark/藥", 1, me);
+                return "我到極北森林中採藥，還真遇到了一些好藥材，要買得先交錢。\n";
         }
 }
 
@@ -68,25 +68,25 @@ int accept_object(object who, object ob)
 
         if( !query("money_id", ob) )
         {
-                write(CYN "小贩诧异地说道：你给我这个干什么？\n" NOR);
+                write(CYN "小販詫異地說道：你給我這個幹什麼？\n" NOR);
                 return 0;
         }
 
         if (query("count") < 1)
         {
-                write(CYN "小贩抱歉地说道：实在对不住，现在我手里也没货了？\n" NOR);
+                write(CYN "小販抱歉地說道：實在對不住，現在我手裡也沒貨了？\n" NOR);
                 return 0;
         }
 
-        if( !query_temp("tmark/药", who) )
+        if( !query_temp("tmark/藥", who) )
         {
-                write(CYN "小贩疑惑地说道：我又不是乞丐，你没事给我钱干嘛？\n" NOR);
+                write(CYN "小販疑惑地說道：我又不是乞丐，你沒事給我錢幹嘛？\n" NOR);
                 return 0;
         }
 
         if (ob->value() < 10000)
         {
-                write(CYN "小贩阴笑着说道：嘿嘿，给我这么多钱哪。\n" NOR);
+                write(CYN "小販陰笑著說道：嘿嘿，給我這麼多錢哪。\n" NOR);
                 return 0;
         }
 
@@ -95,6 +95,6 @@ int accept_object(object who, object ob)
 
         addn("count", -1);
         command("giveheshouwuto"+query("id", who));
-        write(CYN "小贩说道：既然您出得起价钱，这味药可就归您了。\n" NOR);
+        write(CYN "小販說道：既然您出得起價錢，這味藥可就歸您了。\n" NOR);
         return 1;
 }

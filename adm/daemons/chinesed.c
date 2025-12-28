@@ -16,16 +16,16 @@
 inherit F_SAVE;
 
 // some constatns
-nosave string *c_digit = ({ "零","十","百","千","万","亿","兆" });
+nosave string *c_digit = ({ "零","十","百","千","萬","億","兆" });
 nosave string *c_num = ({ "零","一","二","三","四","五","六","七","八","九","十" });
-nosave string *c_num2 = ({ "零","壹","贰","叁","肆","伍","陆","柒","捌","玖","拾" });
+nosave string *c_num2 = ({ "零","壹","貳","叄","肆","伍","陸","柒","捌","玖","拾" });
 nosave string *sym_tian = ({ "甲","乙","丙","丁","戊","己","庚","辛","壬","癸" });
-nosave string *sym_di = ({ "子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥" });
-// 最大数值单位可自由增减
-// string *unit = ({ "万","亿","兆","京","垓","杼","穣","沟","涧","正","载","极","恒河沙","阿僧祇","那由它","不可思议","无量","大数" });
-nosave string *unit = ({ "万","亿","兆" });
+nosave string *sym_di = ({ "子","醜","寅","卯","辰","巳","午","未","申","酉","戌","亥" });
+// 最大數值單位可自由增減
+// string *unit = ({ "萬","億","兆","京","垓","杼","穣","溝","澗","正","載","極","恆河沙","阿僧祇","那由它","不可思議","無量","大數" });
+nosave string *unit = ({ "萬","億","兆" });
 
-nosave mapping wei = (["十":10,"百":100,"千":1000,"万":10000,"亿":100000000]);
+nosave mapping wei = (["十":10,"百":100,"千":1000,"萬":10000,"億":100000000]);
 nosave mapping shu = (["一":1,"二":2,"三":3,"四":4,"五":5,"六":6,"七":7,"八":8,"九":9]);
 nosave string zero = "零";
 nosave string ten  = "十";
@@ -48,21 +48,21 @@ int is_shu(string a)
 nosave mapping cache;
 mapping dict =
 ([
-        "north"         :"北边",
-        "south"         :"南边",
-        "east"          :"东边",
-        "west"          :"西边",
-        "northwest"     :"西北边",
-        "northeast"     :"东北边",
-        "southwest"     :"西南边",
-        "southeast"     :"东南边",
-        "down"          :"楼下",
-        "up"            :"楼上",
-        "changan"       :"长安",
-        "city"          :"扬州",
-        "kaifeng"       :"开封",
+        "north"         :"北邊",
+        "south"         :"南邊",
+        "east"          :"東邊",
+        "west"          :"西邊",
+        "northwest"     :"西北邊",
+        "northeast"     :"東北邊",
+        "southwest"     :"西南邊",
+        "southeast"     :"東南邊",
+        "down"          :"樓下",
+        "up"            :"樓上",
+        "changan"       :"長安",
+        "city"          :"揚州",
+        "kaifeng"       :"開封",
         "hangzhou"      :"杭州",
-        "suzhou"        :"苏州",
+        "suzhou"        :"蘇州",
         "dali"          :"大理",
         "beijing"       :"北京",
 ]);
@@ -84,7 +84,7 @@ void create()
         restore();
         cache = allocate_mapping(0);
 
-        /* 建立数值快取 */
+        /* 建立數值快取 */
         for(int i=0;i<=1000;i++)
                 cache[i] = initialize(i);
 }
@@ -96,11 +96,11 @@ void remove()
 
 string chinese_number(mixed i)
 {
-        // 若输入参数为 integer (会 overflow)
+        // 若輸入參數為 integer (會 overflow)
         if( intp(i) )
         {
                 if (i < 0)
-                        return "负" + chinese_number(-i);
+                        return "負" + chinese_number(-i);
                 if (i < 11)
                         return c_num[i];
                 if (i < 20)
@@ -169,16 +169,16 @@ string chinese_number(mixed i)
                         return chinese_number(i / 1000000000000) + c_digit[6] +
                         chinese_number(i % 1000000000000);
             }
-            // 若输入参数为 string (无限位数处理)
+            // 若輸入參數為 string (無限位數處理)
         else if( stringp(i) && i != "")
         {
                    int j, k, *n=({}), usize = sizeof(unit);
                 string *u=({""});
                 string msg;
 
-                if( i[0] == '-' ) return "负" + chinese_number(i[1..]);
+                if( i[0] == '-' ) return "負" + chinese_number(i[1..]);
 
-                // 将数字依四位数拆解
+                // 將數字依四位數拆解
                 while( (msg = i[<(j+=4)..<(j-3)])!="" )
                 {
                         n += ({ to_int(msg) });
@@ -193,7 +193,7 @@ string chinese_number(mixed i)
 
                 return msg;
         }
-        else return "错误数值";
+        else return "錯誤數值";
 }
 
 nomask string chinese_period(int t)
@@ -209,9 +209,9 @@ nomask string chinese_period(int t)
         y = t /60/60/24/30/13;
 
         if(y) time = cache[y] + "年又";
-        if(n) time += cache[n] + "个月"                + (y?"":"又");
+        if(n) time += cache[n] + "個月"                + (y?"":"又");
         if(d) time += cache[d] + "天"                + (n||y?"":"又");
-        if(h) time += cache[h] + "小时"                + (d||n||y?"":"又");
+        if(h) time += cache[h] + "小時"                + (d||n||y?"":"又");
         if(m) time += cache[m] + "分"                + (h||d||n||y?"":"又");
 
         return time+cache[s]+"秒";
@@ -256,7 +256,7 @@ int chinese_to_number(mixed chinese)
                 num = num*100;
         else if( chinese[len-2..] == "千" )
                 num = num*1000;
-        else if( chinese[len-2..] == "万" )
+        else if( chinese[len-2..] == "萬" )
                 num = num*10000;
         return num;
         */
@@ -418,7 +418,7 @@ string cctime(int date)
         wday = lt[LT_WDAY];
         mon = lt[LT_MON] + 1;
         year = lt[LT_YEAR];
-        return sprintf("%d年%d月%d日 %d时%d分%d秒", year, mon, mday, hour, min, sec);
+        return sprintf("%d年%d月%d日 %d時%d分%d秒", year, mon, mday, hour, min, sec);
 }
 
 string chinese_date(int date)
@@ -428,7 +428,7 @@ string chinese_date(int date)
         if (date <=0) date=1;
         local = localtime(date);
 
-        return sprintf("%s%s年%s月%s日%s时%s刻",
+        return sprintf("%s%s年%s月%s日%s時%s刻",
                 sym_tian[local[LT_YEAR] % 10], sym_di[local[LT_YEAR] % 12],
                 chinese_number(local[LT_MON] + 1),
                 chinese_number(local[LT_MDAY] + (local[LT_HOUR] > 23 ? 1 : 0)),
@@ -521,8 +521,8 @@ string itoa(int i)
 
 string chinese_time(int type,string get_time)
 {
-/* 不要使用localtime来传递get_time，使用ctime(time())就是正确的了！
-在求当前时间时用localtime是无所谓，但是要转换一个时间还是ctime好点！*/
+/* 不要使用localtime來傳遞get_time，使用ctime(time())就是正確的了！
+在求當前時間時用localtime是無所謂，但是要轉換一個時間還是ctime好點！*/
 
         string e_time, week, month, year;
         string c_week, c_year, c_month, c_time;
@@ -555,7 +555,7 @@ string chinese_time(int type,string get_time)
         c_week = " 星期"+c_week;
 
         c_time = chinese_number(day) + "日";
-        c_time += chinese_number(hour) + "点";
+        c_time += chinese_number(hour) + "點";
         c_time += chinese_number(minute) + "分";
         // maybe not need srcond to show
         // c_time += chinese_number(second) + "秒";
@@ -567,9 +567,9 @@ string chinese_time(int type,string get_time)
                         case 3: return c_month+c_time+c_week;
                         case 4: return c_month+c_time;
                         case 5: return year+"年"+(member_array(month, month_name) + 1)+
-                                "月"+day+"日"+hour+"点"+minute+"分";
+                                "月"+day+"日"+hour+"點"+minute+"分";
                         case 6: return (member_array(month, month_name) + 1)+
-                                "月"+day+"日"+hour+"点"+minute+"分";
+                                "月"+day+"日"+hour+"點"+minute+"分";
                         case 7: {
                                 return sprintf("%s/%s/%s",year,
                                 strlen(itoa(member_array(month, month_name) + 1))<=1?

@@ -15,11 +15,11 @@ int auto_perform_duwu()
 
         if( query("jingli", me)<poison)return 0;
         
-        message_vision(HIR"祗见$N血红的舌头一伸一缩，形状可怖，忽然张口，口中喷出一阵红雾。\n\n"NOR,me);
+        message_vision(HIR"祗見$N血紅的舌頭一伸一縮，形狀可怖，忽然張口，口中噴出一陣紅霧。\n\n"NOR,me);
 
         for(i=0; i<sizeof(target); i++) {
 
-                if( !living(target[i]) || target[i] == me || query("race", target[i]) == "蛇类")continue;
+                if( !living(target[i]) || target[i] == me || query("race", target[i]) == "蛇類")continue;
 
                 if( random(poison) > target[i]->query_skill("force") || !living(target[i]) )
         {
@@ -35,8 +35,8 @@ int auto_perform_duwu()
                         target[i]->receive_damage("qi", damage,  me);
                         target[i]->receive_wound("qi", random(damage), me);
                         target[i]->start_busy(1+random(2));
-                        message("vision", target[i]->name() + "的身子微微一晃，有点立足不定。\n", environment(me), target[i]);
-                        tell_object(target[i], RED"你突然感到一阵头晕，原来"+me->name()+"喷出来的红雾是剧毒之物，在空中弥散开来，以致中了蛇毒！\n"NOR);
+                        message("vision", target[i]->name() + "的身子微微一晃，有點立足不定。\n", environment(me), target[i]);
+                        tell_object(target[i], RED"你突然感到一陣頭暈，原來"+me->name()+"噴出來的紅霧是劇毒之物，在空中彌散開來，以致中了蛇毒！\n"NOR);
                 }
                 else {
                         tell_object(target[i], WHT"你立刻屏住呼吸，以免吸入蛇毒。\n"NOR);
@@ -58,7 +58,7 @@ int auto_perform_chan()
 
         if( query("jingli", me)<500)return 0;
 
-        if( query("race", target) == "昆虫")return 0;
+        if( query("race", target) == "昆蟲")return 0;
         if( me->is_busy() || query_temp("snake_chan", target))return 0;
 
         set_temp("try_chan", 1, me);
@@ -91,8 +91,8 @@ mapping query_action()
 {
        object me = this_object();
         string msg1, msg2;
-        msg1 = HIR"祗听簌簌声响，$N蜿蜒窜前，"+(random(2)?"右":"左")+"边的蛇头嘶嘶吐信，猛然咬向$n的$l"NOR;
-        msg2 = RED"一口才刚咬过，却见$N另一个头也转过了来，紧跟着咬向$n$l"NOR;
+        msg1 = HIR"祗聽簌簌聲響，$N蜿蜒竄前，"+(random(2)?"右":"左")+"邊的蛇頭嘶嘶吐信，猛然咬向$n的$l"NOR;
+        msg2 = RED"一口才剛咬過，卻見$N另一個頭也轉過了來，緊跟著咬向$n$l"NOR;
 
         if( query_temp("double_hit", me) )
         return ([
@@ -102,14 +102,14 @@ mapping query_action()
         "parry" : 10,
         "damage" : 400,
         "weapon" :"毒牙",
-        "damage_type":"咬伤"]);
+        "damage_type":"咬傷"]);
 
         else return ([
-        "action": HIR"祗见$N两丈多长的身子一扑，猛然朝$n身上卷到！"NOR,
+        "action": HIR"祗見$N兩丈多長的身子一撲，猛然朝$n身上捲到！"NOR,
         "force" : 400,
         "dodge" : 0,
         "parry" : 0,
         "damage" : 400,
         "weapon" :"蛇身",
-        "damage_type":"内伤"]);
+        "damage_type":"內傷"]);
 }

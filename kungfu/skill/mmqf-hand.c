@@ -1,5 +1,5 @@
 // This is player's own skill (Write by Lonely@nt2)
-// Create by 降头师(Wudu) at Tue Jun 23 00:26:49 2015
+// Create by 降頭師(Wudu) at Tue Jun 23 00:26:49 2015
 // 面目全非手(mmqf-hand.c)
 
 #include <ansi.h>
@@ -16,41 +16,41 @@ mapping *action = ({
 	"dodge" : 260,
 	"parry" : 260,
 	"lvl" : 100,
-	"damage_type" : "瘀伤",
+	"damage_type" : "瘀傷",
 	"skill_name" : "作死作活"
  ]),
 // ZHAOSHI : 1
-([      "action" : "$N大喝：信不信我一脚夹爆$N的头？双脚直夹$n的头",
+([      "action" : "$N大喝：信不信我一腳夾爆$N的頭？雙腳直夾$n的頭",
 	"attack" : 260,
 	"damage" : 260,
 	"force" : 260,
 	"dodge" : 260,
 	"parry" : 260,
 	"lvl" : 110,
-	"damage_type" : "瘀伤",
-	"skill_name" : "夺命铰剪"
+	"damage_type" : "瘀傷",
+	"skill_name" : "奪命鉸剪"
  ]),
 // ZHAOSHI : 2
-([      "action" : "娇花嫰草",
+([      "action" : "嬌花嫰草",
 	"attack" : 260,
 	"damage" : 260,
 	"force" : 260,
 	"dodge" : 260,
 	"parry" : 260,
 	"lvl" : 120,
-	"damage_type" : "瘀伤",
-	"skill_name" : "娇花嫩草"
+	"damage_type" : "瘀傷",
+	"skill_name" : "嬌花嫩草"
  ]),
 // ZHAOSHI : 3
-([      "action" : "狂汉催花",
+([      "action" : "狂漢催花",
 	"attack" : 260,
 	"damage" : 260,
 	"force" : 260,
 	"dodge" : 260,
 	"parry" : 260,
 	"lvl" : 130,
-	"damage_type" : "瘀伤",
-	"skill_name" : "娇花嫩草"
+	"damage_type" : "瘀傷",
+	"skill_name" : "嬌花嫩草"
  ]),
 // ZHAOSHI : 4
 });
@@ -58,7 +58,7 @@ mapping *action = ({
 int valid_learn(object me)
 {
         if( query("max_neili", me)<50 )
-                return notify_fail("你的内力太弱，无法练"+"面目全非手"+"。\n");
+                return notify_fail("你的內力太弱，無法練"+"面目全非手"+"。\n");
         return 1;
 }
 
@@ -104,9 +104,9 @@ int query_effect_parry(object attacker, object me)
 int practice_skill(object me)
 {
         if( query("qi", me)<25 )
-                return notify_fail("你的体力不够了，休息一下再练吧。\n");
+                return notify_fail("你的體力不夠了，休息一下再練吧。\n");
         if( query("neili", me)<3 )
-                return notify_fail("你的内力不够了，休息一下再练吧。\n");
+                return notify_fail("你的內力不夠了，休息一下再練吧。\n");
         me->receive_damage("qi", 25);
         addn("neili", -3, me);
         return 1;
@@ -120,7 +120,7 @@ mixed hit_ob(object me, object victim, int damage)
         if (random(damage) > victim->query_str()) 
         {
                 result = ([ "damage" : damage ]);
-                result += ([ "msg" : HIW "你听到「喀嚓」一声轻响，已被$N的兵器所发杀气挫伤，$n顿时血冒三丈！！！\n" NOR ]);
+                result += ([ "msg" : HIW "你聽到「喀嚓」一聲輕響，已被$N的兵器所發殺氣挫傷，$n頓時血冒三丈！！！\n" NOR ]);
 
                 return result;
         }

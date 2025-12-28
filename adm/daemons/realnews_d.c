@@ -7,7 +7,7 @@
 
 
 #define ADDR_SYNTAX		"http://%s/%s"
-#define UPDATE_TIME		30*60	// 每 30 分钟更新
+#define UPDATE_TIME		30*60	// 每 30 分鐘更新
 #define PROCESS_TIMEOUT		30
 #define RESOLVE_TIMEOUT		10
 #undef DEBUG
@@ -54,7 +54,7 @@ nosave mapping name_alias = ([
     "yam"		: "蕃薯藤",
     "bahamut"	:	"Bahamut",
   */
-  "udn"      : "联合新闻网",
+  "udn"      : "聯合新聞網",
 ]);
 
 void create()
@@ -70,10 +70,10 @@ void create()
     // Tom's Hardware Guide
     //SCHEDULE_D->set_event(60*60*12, 1, this_object(), "get_news", "http://www.thg.com.tw/STInforNews/STContList.asp?nsp=Q", "thg", -1, "big5");
 
-    //udn 联合新闻网 by Msr
+    //udn 聯合新聞網 by Msr
     SCHEDULE_D->set_event(UPDATE_TIME, 1, this_object(), "get_news", "http://udn.com/NEWS/BREAKINGNEWS/", "udn", -1);
 
-    // 定时播报新闻
+    // 定時播報新聞
     SCHEDULE_D->set_event(60*60, 1, this_object(), "channel_news");
 }
 void channel_news()
@@ -97,18 +97,18 @@ void socket_send(int fd, mixed msg)
     int res;
 
 #ifdef DEBUG
-    monitor("送出讯息: " + msg);
+    monitor("送出訊息: " + msg);
 #endif
 
     if( !msg || msg == "" ) return; 
-    // 尚未收到 socket write callback 前，将欲传送的讯息存入 buffer
+    // 尚未收到 socket write callback 前，將欲傳送的訊息存入 buffer
     if( !skt_inf->write_fd )
     {
         if( !skt_inf->write_buffer ) skt_inf->write_buffer = "";
         skt_inf->write_buffer += msg;
         return;
     }
-    // 如果 buffer 中有讯息尚未送出，则与本次讯息同时送出
+    // 如果 buffer 中有訊息尚未送出，則與本次訊息同時送出
     if( skt_inf->write_buffer )
     {
         skt_inf->write_buffer += msg;
@@ -122,13 +122,13 @@ void socket_send(int fd, mixed msg)
     case EECALLBACK:	/* 等待完成 */
         skt_inf->write_buffer = 0;
         break;
-    case EEALREADY:		/* 程序已进行 */
-    case EEWOULDBLOCK:	/* 程序停滞 */
-    case EESEND:		/* 传送资料错误 */
+    case EEALREADY:		/* 程序已進行 */
+    case EEWOULDBLOCK:	/* 程序停滯 */
+    case EESEND:		/* 傳送資料錯誤 */
         if( !skt_inf->write_buffer ) skt_inf->write_buffer = msg;
         call_out((: socket_send :), 1, fd, "");
         break;
-    default:		/* 其他错误 */
+    default:		/* 其他錯誤 */
         monitor("socket_send: " + socket_error(res));
         // try again
         socket_shutdown(fd);
@@ -149,8 +149,8 @@ void write_data(int fd)
 {
     skt_inf->write_fd = fd;
     remove_call_out(connect_handle);
-    // 如果收到 socket write callback 时
-    // buffer 内有讯息未传送则立即传送，并清除 buffer
+    // 如果收到 socket write callback 時
+    // buffer 內有訊息未傳送則立即傳送，並清除 buffer
     if( skt_inf->write_buffer )
     {
         socket_write(fd, skt_inf->write_buffer);
@@ -276,7 +276,7 @@ void do_next()
 {
     if( !sizeof(process_queue) )
     {
-        monitor("已取得所有新闻");
+        monitor("已取得所有新聞");
         return;
     }
     current_process = process_queue[0];
@@ -299,7 +299,7 @@ void get_url(string url)
     skt_inf->get_path = path;
 
     // realnews_d 的 resolve 好像怪怪的
-    // 先直接给 ip 好了 by Msr
+    // 先直接給 ip 好了 by Msr
     if( host == "udn.com" )
         host = "210.244.31.154";
 
@@ -311,7 +311,7 @@ void get_url(string url)
 
     if( sscanf(host, "%*d.%*d.%*d.%*d") != 4 )
     {
-        monitor(sprintf("解析主机位置: %O", host));
+        monitor(sprintf("解析主機位置: %O", host));
         skt_inf->resolved = resolve(host, (: resolve_callback :));
         resolve_handle = call_out((: resolve_timeout :), RESOLVE_TIMEOUT);
         return;
@@ -332,15 +332,15 @@ void process_news(string msg)
 
     if( !msg )
     {
-        monitor("错误: 未取得任何讯息");
+        monitor("錯誤: 未取得任何訊息");
         return;
     }
 
     if( flag < 0 )
-        monitor("取得 " + current_process->type + " 即时新闻清单中 ...");
+        monitor("取得 " + current_process->type + " 即時新聞清單中 ...");
 #ifdef DEBUG
     else
-        monitor("已下载 " + current_process->type + " 新闻文章，尚有 " + sizeof(process_queue) + " 个执行序");
+        monitor("已下載 " + current_process->type + " 新聞文章，尚有 " + sizeof(process_queue) + " 個執行序");
 #endif
 
 
@@ -546,18 +546,18 @@ string *query_news(int n)
 }
 string *query_news_titles(string type)
 {
-    if( undefinedp(news[type]) ) return ({ "尚未取得新闻资讯" });
+    if( undefinedp(news[type]) ) return ({ "尚未取得新聞資訊" });
     return news[type][0];
 }
 string *query_news_articles(string type)
 {
-    if( undefinedp(news[type]) ) return ({ "尚未取得新闻资讯" });
+    if( undefinedp(news[type]) ) return ({ "尚未取得新聞資訊" });
     return news[type][1];
 }
 string query_news_article(string type, int i)
 {
-    if( undefinedp(news[type]) ) return "没有这个类别的新闻";
-    if( i < 0 || i >= sizeof(news[type][1]) ) return "没有这个新闻文章";
+    if( undefinedp(news[type]) ) return "沒有這個類別的新聞";
+    if( i < 0 || i >= sizeof(news[type][1]) ) return "沒有這個新聞文章";
     return news[type][1][i];
 }
 mixed *query_process_queue()
@@ -566,5 +566,5 @@ mixed *query_process_queue()
 }
 string query_name()
 {
-    return "真实新闻系统(REALNEWS_D)";
+    return "真實新聞系統(REALNEWS_D)";
 }

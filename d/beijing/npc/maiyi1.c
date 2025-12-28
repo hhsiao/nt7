@@ -6,7 +6,7 @@ void create()
         set("gender", "男性" );
         set("age", 25);
         set("long",
-              "一个沿街耍猴的人。\n");
+              "一個沿街耍猴的人。\n");
         set("shen_type", 1);
         set("combat_exp", 10000);
         set("str", 20);
@@ -18,7 +18,7 @@ void create()
         set_skill("unarmed",20);
         set("chat_chance", 1);
         set("chat_msg", ({
-                 "耍猴人大声叫道：各位父老，快来瞧瞧。\n",
+                 "耍猴人大聲叫道：各位父老，快來瞧瞧。\n",
         }) );       
 
         setup();

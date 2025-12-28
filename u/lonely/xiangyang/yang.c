@@ -1,4 +1,4 @@
-// yang.c 杨过
+// yang.c 楊過
 
 inherit NPC;
 
@@ -6,12 +6,12 @@ void random_move();
 
 void create()
 {
-        set_name("杨过", ({"yang guo", "yang"}));
+        set_name("楊過", ({"yang guo", "yang"}));
         set("gender", "男性");
         set("age", 26);
         set("long", @LONG
-他看上去眉目之间有一股清秀之气，然而隐隐约约却让人感到一阵哀伤之情，
-左袖空荡荡的，显然已是残疾。
+他看上去眉目之間有一股清秀之氣，然而隱隱約約卻讓人感到一陣哀傷之情，
+左袖空蕩蕩的，顯然已是殘疾。
 LONG );
         set("attitude", "friendly");
 
@@ -31,7 +31,7 @@ LONG );
         set("combat_exp", 575000000);
 
         set("couple/id", "xiao longnv");
-        set("couple/name", "小龙女");
+        set("couple/name", "小龍女");
 
         set_skill("force", 600);
         set_skill("yunv-xinfa", 600);
@@ -69,10 +69,10 @@ LONG );
         create_family("古墓派", 3, "弟子");
 
         set("inquiry", ([
-                "王重阳" : "嘿...嘿！",
-                "郭靖"   : "他可真是真正的大侠。",
-                "黄蓉"   : "黄师叔么...真不好说啊。",
-                "小龙女" : "你打听我妻子干什么？",
+                "王重陽" : "嘿...嘿！",
+                "郭靖"   : "他可真是真正的大俠。",
+                "黃蓉"   : "黃師叔麼...真不好說啊。",
+                "小龍女" : "你打聽我妻子幹什麼？",
         ]));
         set("chat_msg", ({ (: random_move :) }));
         set("chat_chance_combat", 120);
@@ -102,45 +102,45 @@ mixed teach_sad()
 
         if (ob->query_skill("sad-strike", 1) >= 1)
         {
-                command("say 你不是已经会了吗？");
+                command("say 你不是已經會了嗎？");
                 return 1;
         }
 
         if (ob->query("gender") != "男性")
         {
-                command("say 我这门武功只适合男性修炼，你还是算了吧！");
+                command("say 我這門武功只適合男性修煉，你還是算了吧！");
                 return 1;
         }
 
         if (ob->query("static/sadly") < 3)
         {
-                command("say 你体会不到那种思念妻子的情怀，"
-                        "无法领会我的黯然销魂掌！");
+                command("say 你體會不到那種思念妻子的情懷，"
+                        "無法領會我的黯然銷魂掌！");
                 return 1;
         }
 
-        if (ob->query("character") == "阴险奸诈" || 
+        if (ob->query("character") == "陰險奸詐" || 
             ob->query("character") == "心狠手辣")
         {
-                command("say 你一心想着去害人，无法领悟黯然销魂的境界！");
+                command("say 你一心想著去害人，無法領悟黯然銷魂的境界！");
                 return 1;
         }
 
         if (ob->query("int") < 34)
         {
-                command("say 你先天悟性不足，无法领悟黯然销魂掌。");
+                command("say 你先天悟性不足，無法領悟黯然銷魂掌。");
                 return 1;
         }
 
         if (ob->query("str") < 34)
         {
-                command("say 你先天臂力不足，无法修炼黯然销魂掌。");
+                command("say 你先天臂力不足，無法修煉黯然銷魂掌。");
                 return 1;
         }
 
         if ((int)ob->query("max_neili") < 3000)
         {
-                command("say 你的内力修为不足，无法练黯然销魂掌。");
+                command("say 你的內力修為不足，無法練黯然銷魂掌。");
                 return 1;
         }
 }
@@ -157,7 +157,7 @@ void unconcious()
 
 void die_msg()
 {
-        command("chat 龙儿 ……");
+        command("chat 龍兒 ……");
         destruct(this_object());
 }
 

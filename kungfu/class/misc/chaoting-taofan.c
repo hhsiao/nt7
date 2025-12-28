@@ -15,7 +15,7 @@ void create()
         set("gender", "男性");
         set("age", 38);
         set("long", @LONG
-此人乃朝廷通缉的死囚，据说，越狱潜逃，亡命天涯，十分凶悍。
+此人乃朝廷通緝的死囚，據說，越獄潛逃，亡命天涯，十分兇悍。
 LONG );
         set("combat_exp", 1000000);
         set("shen_type", 0);
@@ -33,7 +33,7 @@ LONG );
 
         set("no_clean_up", 1);
 
-        //set("no_nuoyi", 1); // 不被挪移影响
+        //set("no_nuoyi", 1); // 不被挪移影響
 
         set("str", 27);
         set("int", 25);
@@ -84,8 +84,8 @@ LONG );
         ]));
 
         set("drops", ([
-                "RA&RANDOM10"    :       100,   // 低级普通装备
-                "RA&RANDOM20"    :       40,    // 低级普通装备
+                "RA&RANDOM10"    :       100,   // 低級普通裝備
+                "RA&RANDOM20"    :       40,    // 低級普通裝備
                 "FI&/clone/goods/enchant-scroll" :   20,
                 "FI&/clone/goods/sun"    :   20,
                 "FI&/clone/goods/moon"   :   20,
@@ -127,7 +127,7 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->start_busy(4 + random(8));
         me->receive_wound("qi", 100 + random(100), ob);
-        return HIY "$N" HIY "大喝一声，拼命反抗，竟逼得$n" HIY "手忙脚乱。\n" NOR;
+        return HIY "$N" HIY "大喝一聲，拼命反抗，竟逼得$n" HIY "手忙腳亂。\n" NOR;
 }
 
 void heart_beat()
@@ -149,10 +149,10 @@ void random_move()
 
 /*
                 message("vision", HIG"【" HIR"江湖" HIG"】" HIW +
-                        env->short() + HIW "(" + LOOK_CMD->locate(base_name(env)) + ")一带出现的" +
+                        env->short() + HIW "(" + LOOK_CMD->locate(base_name(env)) + ")一帶出現的" +
                         HIR + this_object()->short() + HIR "消失了。\n" NOR, users());
 */
-                CHANNEL_D->channel_broadcast("news", HIG "听说" + HIW + env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一带出现的" +
+                CHANNEL_D->channel_broadcast("news", HIG "聽說" + HIW + env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一帶出現的" +
                         HIR + this_object()->short() + HIG "消失了。\n" NOR);
 
                 destruct(this_object());
@@ -166,18 +166,18 @@ void death_msg()
         object dob;
         int money;
 
-        command("mess 哼，老子十八年后又是一条好汉 ...");
-        CHANNEL_D->channel_broadcast("mess", "听说" + name() + HIM "被江湖人士所杀。" NOR);
+        command("mess 哼，老子十八年後又是一條好漢 ...");
+        CHANNEL_D->channel_broadcast("mess", "聽說" + name() + HIM "被江湖人士所殺。" NOR);
 
         dob = query_last_damage_from();
-        // 得到朝廷奖赏
+        // 得到朝廷獎賞
         if (objectp(dob) && environment(dob) == environment(this_object()))
         {
                 money = 500 + random(300);
                 addn("balance", money);
                 set_name(HIY "朝廷皇榜" NOR, ({"chaoting huangbang"}));
-                CHANNEL_D->do_channel(this_object(), "chat", dob->name() + HIC "缉拿逃犯有功，赏赐黄金 " +
-                                      sprintf("%d", money) + " 两。\n" NOR);
+                CHANNEL_D->do_channel(this_object(), "chat", dob->name() + HIC "緝拿逃犯有功，賞賜黃金 " +
+                                      sprintf("%d", money) + " 兩。\n" NOR);
                 set_name(HIR "朝廷逃犯" NOR, ({ "chaoting taofan", "chaoting", "taofan" }) );
         }
 }

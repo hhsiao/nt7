@@ -2,7 +2,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return HIM "小楼一夜听春雨" NOR; }
+string name() { return HIM "小樓一夜聽春雨" NOR; }
 
 #include "/kungfu/skill/eff_msg.h"
 inherit F_SSERVER;
@@ -27,32 +27,32 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "blade" )
-                return notify_fail("你使用的武器不对，难以施展" + name() + "。\n");
+                return notify_fail("你使用的武器不對，難以施展" + name() + "。\n");
 
         if ((int)me->query_skill("force") < 160)
-                return notify_fail("你的内功火候不够，难以施展" + name() + "。\n");
+                return notify_fail("你的內功火候不夠，難以施展" + name() + "。\n");
 
         if ((int)me->query_skill("moon-blade", 1) < 200)
-                return notify_fail("你的圆月弯刀还不到家，难以施展" + name() + "。\n");
+                return notify_fail("你的圓月彎刀還不到家，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("blade") != "moon-blade")
-                return notify_fail("你没有激发圆月弯刀，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發圓月彎刀，難以施展" + name() + "。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你的真氣不夠，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HBRED "小楼一夜听春雨：圆月落，刀光起。纵横大地十万里。刀光寒如雪，何处听春雨？\n" NOR
-              HIY "只听唰的一声，" + weapon->name() + HIY "出手了！一切只能以一个快字去形容，发生在肉眼难看清楚的高速下，\n"
-              "$N" HIY "这一刀劈出时，好像也是直直的，但是这笔直劈出来的一刀，竟忽然闪起了一道弯弯的刀光。\n"
-              "弯弯的刀，弯弯的刀光，开始时宛如一弯新月，忽然间就变成了一道飞虹。这一道弯弯的刀光闪起时，\n"
-              + weapon->name() + HIY "上的妖异之气，使人为之震眩迷惑。\n" NOR;
+        msg = HBRED "小樓一夜聽春雨：圓月落，刀光起。縱橫大地十萬裡。刀光寒如雪，何處聽春雨？\n" NOR
+              HIY "只聽唰的一聲，" + weapon->name() + HIY "出手了！一切只能以一個快字去形容，發生在肉眼難看清楚的高速下，\n"
+              "$N" HIY "這一刀劈出時，好像也是直直的，但是這筆直劈出來的一刀，竟忽然閃起了一道彎彎的刀光。\n"
+              "彎彎的刀，彎彎的刀光，開始時宛如一彎新月，忽然間就變成了一道飛虹。這一道彎彎的刀光閃起時，\n"
+              + weapon->name() + HIY "上的妖異之氣，使人為之震眩迷惑。\n" NOR;
 
         ap = attack_power(me, "blade");
         ap += ap * (fmsk/100)* 5 / 100;
@@ -61,7 +61,7 @@ int perform(object me, object target)
         md = me->query_skill("moon-blade", 1);
         ly = target->query_skill("lonely-sword", 1);
         
-        delta = ABILITY_D->check_ability(me, "ap_power-yywd-ting"); // 门派ab
+        delta = ABILITY_D->check_ability(me, "ap_power-yywd-ting"); // 門派ab
         if( delta ) ap += ap*delta/100;
         
         if (ap * 2 / 3 + random(ap) > dp )
@@ -71,11 +71,11 @@ int perform(object me, object target)
                     query("reborn/times", me) >= query("reborn/times", target) && random(md)>ly )
                 {
                         addn("neili", -100, me);
-                        msg += HIR "当$n" HIR "感到$N" HIR "出手时，" + weapon->name() + HIR "早已挥出，化作满月时的月光，划过两丈的虚空劈向$n。\n"
-                               "$n" HIR "只感到周遭所有的气流和生气都似被$N" HIR "这惊天动地的一招吸个一丝不剩，一派生机尽绝，\n"
-                               "死亡和肃杀的骇人味儿。只听得轻轻的一声响，那道弯弯的刀光却还在，又弯弯地一转。然后美如月光的刀气消失了，\n"
-                               "所有的声音都沉寂，所有的动作都停顿。$N" HIR "还是像一瞬前那么样静静地站在那里，好像根本没有动过。可是$N"
-                               HIR "手里的" + weapon->name() + HIR "已经在滴着血。\n" NOR;
+                        msg += HIR "當$n" HIR "感到$N" HIR "出手時，" + weapon->name() + HIR "早已揮出，化作滿月時的月光，劃過兩丈的虛空劈向$n。\n"
+                               "$n" HIR "只感到周遭所有的氣流和生氣都似被$N" HIR "這驚天動地的一招吸個一絲不剩，一派生機盡絕，\n"
+                               "死亡和肅殺的駭人味兒。只聽得輕輕的一聲響，那道彎彎的刀光卻還在，又彎彎地一轉。然後美如月光的刀氣消失了，\n"
+                               "所有的聲音都沉寂，所有的動作都停頓。$N" HIR "還是像一瞬前那麼樣靜靜地站在那裡，好像根本沒有動過。可是$N"
+                               HIR "手裡的" + weapon->name() + HIR "已經在滴著血。\n" NOR;
                         damage = -1;
                 } else
                 {
@@ -87,19 +87,19 @@ int perform(object me, object target)
                         damage+= damage * (fmsk/100)* 5 / 100;
                         damage+= damage/5;
                         
-                        delta2 = ABILITY_D->check_ability(me, "da_power-yywd-ting"); // 门派ab
+                        delta2 = ABILITY_D->check_ability(me, "da_power-yywd-ting"); // 門派ab
                         if( delta2 ) damage += damage*delta2/100;
         
                         msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 300,
-                                                   HIR "结果$p" HIR "闪避不及，只觉得"
-                                                   "一股冰寒的刀气掠过全身，$n全身顿时鲜血淋漓！\n" NOR);
+                                                   HIR "結果$p" HIR "閃避不及，只覺得"
+                                                   "一股冰寒的刀氣掠過全身，$n全身頓時鮮血淋漓！\n" NOR);
                 }
         } else
         {
                 
                 addn("neili", -300, me);
-                msg += CYN "可是$p" CYN "识破了$P"
-                       CYN "这一招，斜斜一跃避开。\n" NOR;
+                msg += CYN "可是$p" CYN "識破了$P"
+                       CYN "這一招，斜斜一躍避開。\n" NOR;
         }
         message_combatd(msg, me, target);
         me->start_busy(4);
@@ -116,8 +116,8 @@ int perform(object me, object target)
         if( fmsk >= 1000 && query("neili", me)>1000 && sizeof(obs = me->query_enemy()) )
         {
                 msg = HIC "\n====================" HIY" 魔" HIR "  吞" HIG "  天" HIW "  下" HIC " ====================" NOR;
-                msg += HIC "\n猛然间，$N" HIC "手中" + weapon->name() + HIC +
-                           "发出震天般的长啸，伴随着九幽魔气涌至天际，但见天云突变，\n转眼间，幻化出魔头张开大嘴，吞噬一切。\n" NOR;
+                msg += HIC "\n猛然間，$N" HIC "手中" + weapon->name() + HIC +
+                           "發出震天般的長嘯，伴隨著九幽魔氣湧至天際，但見天雲突變，\n轉眼間，幻化出魔頭張開大嘴，吞噬一切。\n" NOR;
                 
                 
                 message_combatd(msg, me, 0, obs);
@@ -141,8 +141,8 @@ int perform(object me, object target)
                                 obs[i]->receive_wound("qi", damage, me);
                                 obs[i]->receive_damage("jing", damage*6, me);
                                 obs[i]->receive_wound("jing", damage*3, me);                                                        
-                                tell_object(obs[i], HIR "你刹那间目瞪口呆，全然无法相信"
-                                           "眼前之景象，顿时被一招命中，射出无数柱鲜"
+                                tell_object(obs[i], HIR "你剎那間目瞪口呆，全然無法相信"
+                                           "眼前之景象，頓時被一招命中，射出無數柱鮮"
                                            "血。\n" NOR);
                                 addn("neili", -500, me);
                                 flag = 1;
@@ -150,22 +150,22 @@ int perform(object me, object target)
                                 switch (random(3))
                                 {
                                 case 0:
-                                msg = HIR "只见" + obs[i]->name() +
+                                msg = HIR "只見" + obs[i]->name() +
                                       HIR "手舞足蹈，忘乎所以，忽"
-                                      "然大叫一声，吐血不止！\n" NOR;
+                                      "然大叫一聲，吐血不止！\n" NOR;
                                 msg += "( " + obs[i]->name() + eff_status_msg(p) + " )\n\n";
                                 
                                 break;
                                 case 1:
-                                msg = HIR "却见" + obs[i]->name() +
-                                      HIR "容貌哀戚，似乎想起了什"
-                                      "么伤心之事，身子一晃，呕出数口鲜血！\n" NOR;
+                                msg = HIR "卻見" + obs[i]->name() +
+                                      HIR "容貌哀慼，似乎想起了什"
+                                      "麼傷心之事，身子一晃，嘔出數口鮮血！\n" NOR;
                                 msg += "( " + obs[i]->name() + eff_status_msg(p) + " )\n\n";
                                 break;
                                 default:
                                 msg = HIR + obs[i]->name() +
-                                      HIR "呆立当场，一动不动，有如中"
-                                      "邪，七窍都迸出鲜血来。\n" NOR;
+                                      HIR "呆立當場，一動不動，有如中"
+                                      "邪，七竅都迸出鮮血來。\n" NOR;
                                 msg += "( " + obs[i]->name() + eff_status_msg(p) + " )\n\n";
                                 break;
                                 }
@@ -174,8 +174,8 @@ int perform(object me, object target)
                                         obs[i]->start_busy(3 + random(3));
                         } else
                         {
-                                tell_object(obs[i], HIC "你发现眼前的景物似幻似真，连忙"
-                                            "默运内功，不受困扰。\n" NOR);
+                                tell_object(obs[i], HIC "你發現眼前的景物似幻似真，連忙"
+                                            "默運內功，不受困擾。\n" NOR);
                                 addn("neili", -200, obs[i]);
                         }
                         if( query("neili", obs[i])<0 )
@@ -183,12 +183,12 @@ int perform(object me, object target)
                 }
                 
                 if( !flag )
-                        message_combatd(HIM "然而没有任何人受了$N"
-                               HIM "的影响。\n\n" NOR, me, 0, obs);
+                        message_combatd(HIM "然而沒有任何人受了$N"
+                               HIM "的影響。\n\n" NOR, me, 0, obs);
         }
         time  = 40;
-        time -= ABILITY_D->check_ability(me, "cd-yywd-ting"); // ab门派减cd 
-        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent减cd
+        time -= ABILITY_D->check_ability(me, "cd-yywd-ting"); // ab門派減cd 
+        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd
         if( wiz_level(me) > 2) time = 2;
            buff =
            ([ 
@@ -197,9 +197,9 @@ int perform(object me, object target)
                    "type"   : "cooldown",
                    "type2"  : "yywd_ting", 
                    "attr"   : "curse",
-                   "name"   : "圆月弯刀·听春雨",
+                   "name"   : "圓月彎刀·聽春雨",
                    "time"   : time,
-                   "buff_msg" : "小楼一夜听春雨消耗心神太甚，还需等待"+time+"秒方可再次施展。\n", 
+                   "buff_msg" : "小樓一夜聽春雨消耗心神太甚，還需等待"+time+"秒方可再次施展。\n", 
                    "disa_msg" : "", 
                    "disa_type": 0,
            ]);

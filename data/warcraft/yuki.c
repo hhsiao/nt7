@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("飞毛腿[2;37;0m[2;37;0m", ({"oko"}));        
+        set_name("飛毛腿[2;37;0m[2;37;0m", ({"oko"}));        
         set("gender", "男性");                
-        set("long", "导弹一号[2;37;0m
-它是疯小小的魔幻兽。
+        set("long", "導彈一號[2;37;0m
+它是瘋小小的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "yuki");
-        set("owner_name", "疯小小");
+        set("owner_name", "瘋小小");
         set_temp("owner", "yuki");
-        set_temp("owner_name", "疯小小");
+        set_temp("owner_name", "瘋小小");
         ::setup();
 }

@@ -13,64 +13,64 @@ int main(object me)
         str=sort_array(EMOTE_D->query_all_emote(), 1);
         for (i=0;i<sizeof(str);i++){
         emote = EMOTE_D->query_emote(str[i]);
-//不指定对象使用这个 emote 时，你自己看到的讯息：
+//不指定對象使用這個 emote 時，你自己看到的訊息：
         if( stringp(arg = emote["myself"]) ) {
                 arg = replace_string(arg, "$N", "$P");
                 arg = replace_string(arg, "$p", "$P");
                 arg = replace_string(arg, "你", "$P");
                 arg = replace_string(arg, "在下", "$S");
-                arg = replace_string(arg, "大爷我", "$s");
+                arg = replace_string(arg, "大爺我", "$s");
                 emote["myself"]=arg;
         }
-//不指定对象使用这个 emote 时，其他人看到的讯息：
+//不指定對象使用這個 emote 時，其他人看到的訊息：
         if( stringp(arg = emote["others"]) ) {
                 arg = replace_string(arg, "$P", "$N");
                 arg = replace_string(arg, "$p", "$N");
                 arg = replace_string(arg, "在下", "$S");
-                arg = replace_string(arg, "大爷我", "$s");
+                arg = replace_string(arg, "大爺我", "$s");
                 emote["others"]=arg;
         }
-//对自己使用这个 emote 时，自己看到的讯息：
+//對自己使用這個 emote 時，自己看到的訊息：
         if( stringp(arg = emote["myself_self"]) ) {
                 arg = replace_string(arg, "$N", "$P");
                 arg = replace_string(arg, "$p", "$P");
                 arg = replace_string(arg, "你", "$P");
                 arg = replace_string(arg, "在下", "$S");
-                arg = replace_string(arg, "大爷我", "$s");
+                arg = replace_string(arg, "大爺我", "$s");
                 emote["myself_self"]=arg;
         }
-//对自己使用这个 emote 时，其他人看到的讯息：
+//對自己使用這個 emote 時，其他人看到的訊息：
         if( stringp(arg = emote["others_self"]) ) {
                 arg = replace_string(arg, "$P", "$N");
                 arg = replace_string(arg, "在下", "$S");
-                arg = replace_string(arg, "大爷我", "$s");
+                arg = replace_string(arg, "大爺我", "$s");
                 emote["others_self"]=arg;
         }
-//对别人使用这个 emote 时，自己看到的讯息：
+//對別人使用這個 emote 時，自己看到的訊息：
         if( stringp(arg = emote["myself_target"]) ) {
                 arg = replace_string(arg, "$N", "$P");
                 arg = replace_string(arg, "$p", "$P");
                 arg = replace_string(arg, "你", "$P");
                 arg = replace_string(arg, "他", "$n");
                 arg = replace_string(arg, "在下", "$S");
-                arg = replace_string(arg, "大爷我", "$s");
+                arg = replace_string(arg, "大爺我", "$s");
                 emote["myself_target"]=arg;
         }
-//对别人使用这个 emote 时，使用对象看到的讯息：
+//對別人使用這個 emote 時，使用對象看到的訊息：
         if( stringp(arg = emote["target"]) ) {
                 arg = replace_string(arg, "$n", "$p");
                 arg = replace_string(arg, "$P", "$N");
                 arg = replace_string(arg, "你", "$p");
                 arg = replace_string(arg, "在下", "$S");
-                arg = replace_string(arg, "大爷我", "$s");
+                arg = replace_string(arg, "大爺我", "$s");
                 emote["target"]=arg;
         }
-//对别人使用这个 emote 时，除你自己和使用对象外，其他人看到的讯息：
+//對別人使用這個 emote 時，除你自己和使用對象外，其他人看到的訊息：
         if( stringp(arg = emote["others_target"]) ) {
                 arg = replace_string(arg, "$P", "$N");
                 arg = replace_string(arg, "$p", "$n");
                 arg = replace_string(arg, "在下", "$S");
-                arg = replace_string(arg, "大爷我", "$s");
+                arg = replace_string(arg, "大爺我", "$s");
                 emote["others_target"]=arg;
         }
         EMOTE_D->set_emote(str[i], emote);
@@ -82,7 +82,7 @@ int help(object me)
 write(@HELP
 指令格式 : upemote
  
-这个指令可以自动修正 emote 中的一些错误。
+這個指令可以自動修正 emote 中的一些錯誤。
 HELP
     );
     return 1;

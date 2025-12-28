@@ -6,10 +6,10 @@ string look_bian();
 
 void create()
 {
-        set("short", "书房大门");
+        set("short", "書房大門");
         set("long", @LONG
-这是书房门口，只见大门旁贴着副对联 (duilian)，抬头上望。
-门楣上一块大匾(bian)上写着几个大字。
+這是書房門口，只見大門旁貼著副對聯 (duilian)，抬頭上望。
+門楣上一塊大匾(bian)上寫著幾個大字。
 LONG );
         set("outdoors", "lingjiu");
         set("exits", ([
@@ -37,11 +37,11 @@ string look_duilian()
         "             ※※　 　 ※※            ※※      ※※\n"
         "             ※※" NOR + HIW "  到  " NOR + HIR "※※            ※※" NOR + HIW "  看  " NOR + HIR "※※\n"
         "             ※※      ※※            ※※      ※※\n"
-        "             ※※" NOR + HIW "  水  " NOR + HIR "※※            ※※" NOR + HIW "  云  " NOR + HIR "※※\n"
+        "             ※※" NOR + HIW "  水  " NOR + HIR "※※            ※※" NOR + HIW "  雲  " NOR + HIR "※※\n"
         "             ※※      ※※            ※※      ※※\n"
-        "             ※※" NOR + HIW "  穷  " NOR + HIR "※※            ※※" NOR + HIW "  起  " NOR + HIR "※※\n"
+        "             ※※" NOR + HIW "  窮  " NOR + HIR "※※            ※※" NOR + HIW "  起  " NOR + HIR "※※\n"
         "             ※※      ※※            ※※      ※※\n"
-        "             ※※" NOR + HIW "  处  " NOR + HIR "※※            ※※" NOR + HIW "  时  " NOR + HIR "※※\n"
+        "             ※※" NOR + HIW "  處  " NOR + HIR "※※            ※※" NOR + HIW "  時  " NOR + HIR "※※\n"
         "             ※※    　※※            ※※      ※※\n"
         "             ※※※※※※※            ※※※※※※※\n"
         "             ※※※※※※※            ※※※※※※※\n\n" NOR;
@@ -53,7 +53,7 @@ string look_bian()
     "\n"
               HIY "               ####################################\n"
                   "               ####                            ####\n"
-                  "               ####    任    我    逍    遥    ####\n"  
+                  "               ####    任    我    逍    遙    ####\n"  
                   "               ####                            ####\n"
                   "               ####################################\n\n\n\n\n\n\n" NOR;
     "\n";

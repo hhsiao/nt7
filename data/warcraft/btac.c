@@ -6,8 +6,8 @@ void setup()
 {
         set_name("土豪[2;37;0m[2;37;0m", ({"btaclong"}));        
         set("gender", "男性");                
-        set("long", "使用手册[2;37;0m
-它是泥潭捌的魔幻兽。
+        set("long", "使用手冊[2;37;0m
+它是泥潭捌的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

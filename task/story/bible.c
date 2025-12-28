@@ -6,16 +6,16 @@ inherit TASK;
 #include <ansi.h>
 void create()
 {
-	set_name(YEL"圣经"NOR, ({ "bible"}));
+	set_name(YEL"聖經"NOR, ({ "bible"}));
 	set_weight(600);
 	set("task",1);
-        set("owner","西洋传教士");
+        set("owner","西洋傳教士");
 	if( clonep() )
 		set_default_object(__FILE__);
 	else {
 		set("unit", "本");
 		set("long",
-			"这是一本圣经，上面写了一些教义。\n"
+			"這是一本聖經，上面寫了一些教義。\n"
 			);
 		set("value", 1000);
 		set("material", "paper");

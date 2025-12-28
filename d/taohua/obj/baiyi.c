@@ -4,7 +4,7 @@ inherit EQUIP;
 
 void create()
 {
-    set_name("白丝衣", ({ "bai siyi","siyi", }) );
+    set_name("白絲衣", ({ "bai siyi","siyi", }) );
         set_weight(1000);
         /*if( clonep() )
                 set_default_object(__FILE__);

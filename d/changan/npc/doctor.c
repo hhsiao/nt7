@@ -5,12 +5,12 @@ inherit F_DEALER;
 
 void create()
 {
-        set_name("时九公", ({ "shi jiugong", "shi", "jiugong"}));
+        set_name("時九公", ({ "shi jiugong", "shi", "jiugong"}));
         set("str", 20);
         set("gender", "男性");
-        set("title", "药铺掌柜");
+        set("title", "藥鋪掌櫃");
         set("age", 66);
-        set("long", "据说时九公原是江湖中的名医。\n");
+        set("long", "據說時九公原是江湖中的名醫。\n");
         set("combat_exp", 250);
         set("attitude", "friendly");
         set("vendor_goods", ({

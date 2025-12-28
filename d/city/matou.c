@@ -13,7 +13,7 @@ mapping *sign=({
                 "value": 100,
                 "time" : 10
         ]),
-        ([      "name" : "苏州",
+        ([      "name" : "蘇州",
                 "id"   : "sz",
                 "file" : "/d/suzhou/szyunhe",
                 "value": 100,
@@ -28,13 +28,13 @@ mapping *sign=({
 });
 void create()
 {
-        set("short","码头");
+        set("short","碼頭");
         set("long",@LONG
-这里是大运河上最大的码头，南方的粮食，两淮的盐铁在此卸下由
-漕运署的官员抽查，或转运或暂时储存。这里人员繁杂，有小贩在叫卖，
-有工人在搬运粮袋，有官员手持长鞭在监工，有几个泼皮在转来转去，
-不知打些什么主意。
-    岸边停靠着一条客船。客船醒目处，挂着一个牌子(sign)。
+這裡是大運河上最大的碼頭，南方的糧食，兩淮的鹽鐵在此卸下由
+漕運署的官員抽查，或轉運或暫時儲存。這裡人員繁雜，有小販在叫賣，
+有工人在搬運糧袋，有官員手持長鞭在監工，有幾個潑皮在轉來轉去，
+不知打些什麼主意。
+    岸邊停靠著一條客船。客船醒目處，掛著一個牌子(sign)。
 LONG );
         set("region", "yangzhou_zone");
         set("outdoors", "yangzhou");
@@ -63,36 +63,36 @@ int do_work()
 {
         object me = this_player();
 //      if ( query("worktimes") < 0)
-//              return notify_fail("码头上现在不需要人干活，下次吧！\n");
+//              return notify_fail("碼頭上現在不需要人幹活，下次吧！\n");
         if( query_temp("working", me) )
-                return notify_fail("你已经在干活了！！\n");
+                return notify_fail("你已經在幹活了！！\n");
         if ( !objectp( present ("jian gong", environment(me) ) ) )
-                return notify_fail("码头上现在不需要人干活，下次吧！\n");
+                return notify_fail("碼頭上現在不需要人幹活，下次吧！\n");
         if( query("combat_exp", me)<MIN_EXP )
         {
-             tell_object(me,"这里都是重活，你现在还干不了,需要攒够5万经验再来吧。\n");
+             tell_object(me,"這裡都是重活，你現在還幹不了,需要攢夠5萬經驗再來吧。\n");
                 return 1;
         }
 
         if( query("combat_exp", me) >= MAX_EXP )
         {
-                tell_object(me,"这种小事不敢劳您大驾。\n");
+                tell_object(me,"這種小事不敢勞您大駕。\n");
                 return 1;
         }
         if (me->is_busy() || me->is_fighting())
-                return notify_fail("你正忙着呢！\n");
+                return notify_fail("你正忙著呢！\n");
         if( query("jing", me)<10 || query("qi", me)<10 )
         {
                 message_vision(
-                        "监工冲着$N就是一鞭子，$N身上顿时起了一道血痕，$N踉踉跄跄躲到一\n"
-                        "边去了。“妈的，你小子这副萎靡不振的样子还想干活？！！”监工骂\n"
-                        "到：“滚！！”\n", me);
+                        "監工衝著$N就是一鞭子，$N身上頓時起了一道血痕，$N踉踉蹌蹌躲到一\n"
+                        "邊去了。“媽的，你小子這副萎靡不振的樣子還想幹活？！！”監工罵\n"
+                        "到：“滾！！”\n", me);
                 me->receive_damage("qi", 11);
                 me->receive_wound("qi", 11);
                 return 1;
         }
-        write("监工拿鞭子指了指，说道：“去那里搬麻袋吧。”\n");
-        write("你搬起一个麻袋，开始干活。\n");
+        write("監工拿鞭子指了指，說道：“去那裡搬麻袋吧。”\n");
+        write("你搬起一個麻袋，開始幹活。\n");
         addn("worktimes", -1);
         me->start_busy(3);
         set_temp("working", 1, me);
@@ -108,8 +108,8 @@ int work_end(object me)
 
         if( !objectp(me) ) return 1;
 
-        write("终于做完苦工了，搬了一天的麻袋，累个半死。\n"
-              "监工过来拍了拍你的肩膀，说道：“小子，好样的，这是你的工钱。”\n");
+        write("終於做完苦工了，搬了一天的麻袋，累個半死。\n"
+              "監工過來拍了拍你的肩膀，說道：“小子，好樣的，這是你的工錢。”\n");
         me->receive_damage("jing",10);
         me->receive_damage("qi",10);
                 add_exp=600+random(500);
@@ -125,7 +125,7 @@ int work_end(object me)
 
 string look_sign()
 {
-        string str="由此去(qu)到下列码头：\n";
+        string str="由此去(qu)到下列碼頭：\n";
         int i=sizeof(sign);
 
         while (i--)
@@ -143,9 +143,9 @@ void do_move(object ob, int i)
 //      ob->enable_player();
         delete_temp("noliving", ob);
         //ob->delete_temp("block_msg/all");
-        tell_object(ob, "终点站到了。\n");
+        tell_object(ob, "終點站到了。\n");
         ob->move(sign[i]["file"]);
-        tell_room(environment(ob), ob->name() + "从船上走了下来。\n", ({ob}));
+        tell_room(environment(ob), ob->name() + "從船上走了下來。\n", ({ob}));
 }
 
 int do_go(string arg)
@@ -155,7 +155,7 @@ int do_go(string arg)
 
         if (!arg) return 0;
         if (ob->is_busy() || ob->is_fighting())
-                return notify_fail("你正忙着呢！\n");
+                return notify_fail("你正忙著呢！\n");
         while(i--)
         {
                 if (arg == sign[i]["id"])
@@ -163,9 +163,9 @@ int do_go(string arg)
                         switch (MONEY_D->player_pay(ob, sign[i]["value"]))
                         {
                                 case 0:
-                                        return notify_fail("穷光蛋，一边呆着去！\n");
+                                        return notify_fail("窮光蛋，一邊待著去！\n");
                                 case 2:
-                                        return notify_fail("有零钱吗？\n");
+                                        return notify_fail("有零錢嗎？\n");
                         }
                         message_vision("$N登上了去" + sign[i]["name"] + "的船。\n", ob);
 //                      ob->disable_player("<旅途中>");
@@ -176,5 +176,5 @@ int do_go(string arg)
                         return 1;
                 }
         }
-        return notify_fail("你要去哪里？\n");
+        return notify_fail("你要去哪裡？\n");
 }

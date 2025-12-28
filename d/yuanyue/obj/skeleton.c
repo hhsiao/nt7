@@ -10,7 +10,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "具");
-                set("long", "一具不知是小动物还是人的森森白骨。\n");
+                set("long", "一具不知是小動物還是人的森森白骨。\n");
                 set("value", 1);
         }
         setup();

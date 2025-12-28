@@ -28,42 +28,42 @@ int main(object me, string arg)
                 }
         }
 
-        if( query("family/family_name", me) != "丐帮" )
-                return notify_fail("只有乞丐才能打探别人的技能！\n");
+        if( query("family/family_name", me) != "丐幫" )
+                return notify_fail("只有乞丐才能打探別人的技能！\n");
 
         if (! objectp(man))
-                return notify_fail("周围没人能帮你去了解别人的技能！\n");
+                return notify_fail("周圍沒人能幫你去了解別人的技能！\n");
 
         if ((sklvl = me->query_skill("checking", 1)) < 10)
-                return notify_fail("你的打探本领尚未纯熟，无法"
-                                   "了解别人的技能！\n");
+                return notify_fail("你的打探本領尚未純熟，無法"
+                                   "瞭解別人的技能！\n");
 
         if (! arg)
-                return notify_fail("你要打听谁的技能？\n");
+                return notify_fail("你要打聽誰的技能？\n");
 
         if (present(arg, environment(me)))
-                return notify_fail("你要打听的人就在边上，在这里"
-                                   "问不大妥当吧？\n");
+                return notify_fail("你要打聽的人就在邊上，在這裡"
+                                   "問不大妥當吧？\n");
 
         ob = find_player(arg);
         if (! ob) ob = find_living(arg);
-        if (! ob || ! me->visible(ob)) return notify_fail("你要打听谁的技能？\n");
+        if (! ob || ! me->visible(ob)) return notify_fail("你要打聽誰的技能？\n");
 
         if (ob == me)
-                return notify_fail("你没这麽笨吧，要别人"
-                                   "告诉你自己的技能？\n");
+                return notify_fail("你沒這麼笨吧，要別人"
+                                   "告訴你自己的技能？\n");
 
         cost=query("max_jing", me)/(sklvl/10)-10;
         if (cost < 40) cost = 30 + random(10);
 
         if( query("jing", me) <= cost )
-                return notify_fail("现在你太累了，无法去打听别人的技能。\n");
+                return notify_fail("現在你太累了，無法去打聽別人的技能。\n");
         me->receive_damage("jing", cost);
 
         tell_object(me, "你走上前去，小心翼翼地向" + man->name() +
-                        "打听关于" + ob->name() + "的情况 ...\n");
-        message("vision", "只见" + me->name() + "陪着笑脸跟" +
-                          man->name() + "说着话，好象在打听些什么。\n", 
+                        "打聽關於" + ob->name() + "的情況 ...\n");
+        message("vision", "只見" + me->name() + "陪著笑臉跟" +
+                          man->name() + "說著話，好象在打聽些什麼。\n", 
                 environment(me), ({ me, man }) );
 
         sp = me->query_skill("checking") * 10 + 
@@ -71,19 +71,19 @@ int main(object me, string arg)
         dp=query("jing", ob)*2;
         
         if (random(sp) < random(dp))
-                return notify_fail(man->name() + "摇了摇头，说道：这事"
+                return notify_fail(man->name() + "搖了搖頭，說道：這事"
                                    "我可不清楚，" + RANK_D->query_respect(me) +
-                                   "还是去向别人打听一下吧！\n");
+                                   "還是去向別人打聽一下吧！\n");
 
         skl = ob->query_skills();
         if (! sizeof(skl))
         {
-                write(man->name() + "告诉你： " + ob->name() +
-                      "目前并没有学会任何技能。\n");
+                write(man->name() + "告訴你： " + ob->name() +
+                      "目前並沒有學會任何技能。\n");
                 return 1;
         }
-        write(man->name() + "告诉你： " + ob->name() +
-              "目前所学过的技能：\n\n");
+        write(man->name() + "告訴你： " + ob->name() +
+              "目前所學過的技能：\n\n");
         sname  = sort_array(keys(skl), (: strcmp :));
         
         map = ob->query_skill_map();
@@ -95,7 +95,7 @@ int main(object me, string arg)
         
         i = random(sizeof(skl));
 
-        // 这个是打听到的技能的精确度
+        // 這個是打聽到的技能的精確度
         precise = 6000 / sklvl;
         if( precise < 1 ) precise = 1;
 
@@ -115,12 +115,12 @@ int help(object me)
         write(@HELP
 指令格式 : check|dating [<某人>]
 
-这个指令可以让你打听别人所学过的技能。
+這個指令可以讓你打聽別人所學過的技能。
 
-你也可以指定一个和你有师徒关系的对象，用 skills|cha 可以查知对方的技能状况。
+你也可以指定一個和你有師徒關係的對象，用 skills|cha 可以查知對方的技能狀況。
 
-此命令为丐帮弟子专用，并需学习相应的技能。如果技能不高，那么
-打听出来的可能会有一些出入。
+此命令為丐幫弟子專用，並需學習相應的技能。如果技能不高，那麼
+打聽出來的可能會有一些出入。
 
 HELP );
     return 1;

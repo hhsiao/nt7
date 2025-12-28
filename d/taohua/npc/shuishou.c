@@ -4,11 +4,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("哑巴水手", ({ "shui shou","shou" }) );
+        set_name("啞巴水手", ({ "shui shou","shou" }) );
         set("gender", "男性");
         set("age", 35);
         set("long",
-                "他又聋又哑，但身子骨甚为结实，脸上被海风吹的又红又黑。。\n");
+                "他又聾又啞，但身子骨甚為結實，臉上被海風吹的又紅又黑。。\n");
         set("combat_exp", 10000);
         set("shen_type", 0);
         set("attitude", "friendly");

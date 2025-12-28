@@ -55,7 +55,7 @@ void create()
         create_family("全真教", 3, "弟子");
 
         set("inquiry", ([
-                "全真教" :  "我全真教是天下道家玄门正宗。\n",
+                "全真教" :  "我全真教是天下道家玄門正宗。\n",
         ]) );
 
         setup();
@@ -70,6 +70,6 @@ void attempt_apprentice(object ob)
         if (! permit_recruit(ob))
                 return;
 
-        command("say 好吧，我就收下你这个徒弟了。");
+        command("say 好吧，我就收下你這個徒弟了。");
         command("recruit "+query("id", ob));
 }

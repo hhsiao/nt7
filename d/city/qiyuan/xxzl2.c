@@ -1,4 +1,4 @@
-//休闲走廊
+//休閒走廊
 // redl 2013/2
 
 #include <ansi.h>
@@ -8,9 +8,9 @@ string look_string();
 
 void  create  ()
 {
-    set  ("short",  "休闲走廊");
+    set  ("short",  "休閒走廊");
         set("long", @LONG
-这里是一条走廊，通向各个休闲娱乐活动的房间。
+這裡是一條走廊，通向各個休閒娛樂活動的房間。
 LONG );
 
         set("no_dazuo",1);

@@ -3,10 +3,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "正厅");
+        set("short", "正廳");
         set("long", @LONG
-这里是回春堂的正厅，宽敞的房间内放着几张桌椅，每天都有药王谷
-的医师在这里坐堂，为人看病疗伤。
+這裡是回春堂的正廳，寬敞的房間內放著幾張桌椅，每天都有藥王谷
+的醫師在這裡坐堂，為人看病療傷。
 LONG );
         set("no_fight", 1);
         set("exits", ([
@@ -21,7 +21,7 @@ LONG );
 
 void init()
 {
-        add_action("do_zhiliao", "zhiliao"); //疗伤
+        add_action("do_zhiliao", "zhiliao"); //療傷
 }
 
 int do_zhiliao(string arg)
@@ -31,30 +31,30 @@ int do_zhiliao(string arg)
         me=this_player();
         i=( 100 - (int)me->query_skill("medical",1) );
 
-        if( query("family/family_name", me) != "药王谷" )
+        if( query("family/family_name", me) != "藥王谷" )
         {               
-                return notify_fail("你不能在这里给人疗伤！\n");
+                return notify_fail("你不能在這裡給人療傷！\n");
         }
 
         if( !arg )
                 return notify_fail("指令格式：zhiliao <ID> \n");
 
         if(!objectp(ob = present(arg, environment(me))))
-                return notify_fail("这里没有这个人！\n");
+                return notify_fail("這裡沒有這個人！\n");
 
         if( me->is_fighting() || me->is_busy() )
-                return notify_fail("你正忙着呢！\n");
+                return notify_fail("你正忙著呢！\n");
 
         if( ob->is_fighting() || ob->is_busy() )
-                return notify_fail("他正忙着呢！\n");
+                return notify_fail("他正忙著呢！\n");
 
         if( me==ob )
-                return notify_fail("你不需要在这里给自己疗伤！\n");
+                return notify_fail("你不需要在這裡給自己療傷！\n");
 
         obj=(query("max_qi", ob)-query("eff_qi", ob));
 
         if( !query_temp("heal", ob)){
-        message_vision ("$N得先交诊金"+MONEY_D->price_str(obj*10)+"给唐讹化。\n", ob);
+        message_vision ("$N得先交診金"+MONEY_D->price_str(obj*10)+"給唐訛化。\n", ob);
                 return 1;
         }
 
@@ -63,8 +63,8 @@ int do_zhiliao(string arg)
         if( query("jingli", me) <= i )
                 return notify_fail("你太累了，先休息一下吧！\n");
 
-        message_vision ("$N为$n把了把脉，拿出一根银针在$n穴位上扎了几下。\n", me, ob);
-        message_vision(WHT"$N吐出一口淤血，脸色看起来好多了。\n"NOR, ob);
+        message_vision ("$N為$n把了把脈，拿出一根銀針在$n穴位上紮了幾下。\n", me, ob);
+        message_vision(WHT"$N吐出一口淤血，臉色看起來好多了。\n"NOR, ob);
 
         delete_temp("heal", ob);
         set("eff_qi",query("max_qi",  ob), ob);

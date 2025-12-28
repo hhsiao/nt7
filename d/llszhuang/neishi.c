@@ -3,12 +3,12 @@ inherit ROOM;
 string look_book();
 void create()
 {
-        set("short","栖霞馆");
+        set("short","棲霞館");
         set("long",
-"这里是日常起居的地方，收拾得一尘不染，而且颇为雅致，据说这里\n"
-"的庄主颇爱习武，看看墙上挂着的毒药囊和刀枪就可以知道。靠窗的地方\n"
-"是一个梳妆台，镜子前面是一本翻开的书(Book)。还有一个奇形怪状的轮\n"
-"盘放在旁边，也许是什么古怪机关。\n"
+"這裡是日常起居的地方，收拾得一塵不染，而且頗為雅緻，據說這裡\n"
+"的莊主頗愛習武，看看牆上掛著的毒藥囊和刀槍就可以知道。靠窗的地方\n"
+"是一個梳妝檯，鏡子前面是一本翻開的書(Book)。還有一個奇形怪狀的輪\n"
+"盤放在旁邊，也許是什麼古怪機關。\n"
 );
         set("no_magic", "1");
 
@@ -39,18 +39,18 @@ string look_book()
         int puzzle;
 
         me = this_player();
-        result = "\n这本书上没有什么值得注意的东西。\n";
+        result = "\n這本書上沒有什麼值得注意的東西。\n";
         if( puzzle=query_temp("marks/xanadu_hall2", me) )
         {
                 set_temp("marks/xanadu_hall3", 1, me);
-              result += "就在你失望地要放下书的时候，里面掉出来一张字条，上面写到: \n"
-                          "拨动轮盘就有一道门可以进去。\n";
-                result += "对了，还有，轮盘的数字嘛，要考考你...\n";
-                result += "这个数，它除"+query("seed1")+"余"+puzzle%query("seed1")+"，";
-                result += "它除"+query("seed2")+"余"+puzzle%query("seed2")+"，";
-                result += "它除"+query("seed3")+"余"+puzzle%query("seed3")+"，";
-                result += "它除"+query("seed4")+"余"+puzzle%query("seed4")+"\n";
-                result += "然后试一下(turn)你猜到的数字，看看有什么发现。\n";
+              result += "就在你失望地要放下書的時候，裡面掉出來一張字條，上面寫到: \n"
+                          "撥動輪盤就有一道門可以進去。\n";
+                result += "對了，還有，輪盤的數字嘛，要考考你...\n";
+                result += "這個數，它除"+query("seed1")+"餘"+puzzle%query("seed1")+"，";
+                result += "它除"+query("seed2")+"餘"+puzzle%query("seed2")+"，";
+                result += "它除"+query("seed3")+"餘"+puzzle%query("seed3")+"，";
+                result += "它除"+query("seed4")+"餘"+puzzle%query("seed4")+"\n";
+                result += "然後試一下(turn)你猜到的數字，看看有什麼發現。\n";
         }
         return result;
 }
@@ -62,24 +62,24 @@ int do_turn(string arg)
 
         me = this_player();
         if(!arg)
-                return notify_fail("你要把轮盘转到哪一个数字上？\n");
+                return notify_fail("你要把輪盤轉到哪一個數字上？\n");
         if( query("neili", me)<500 )
-                return notify_fail("你的内力不够，拨不动轮盘。\n");
+                return notify_fail("你的內力不夠，撥不動輪盤。\n");
             if( !(answer = (int)arg) || !(query_temp("marks/xanadu_hall3", me)) ) 
-              return notify_fail("你瞎转什么？\n");
+              return notify_fail("你瞎轉什麼？\n");
         addn("force", -150, me);
-        message_vision("$N把轮盘拨到了"+arg+"的位置\n",me);
+        message_vision("$N把輪盤撥到了"+arg+"的位置\n",me);
         puzzle=query_temp("marks/xanadu_hall2", me);
         if( ("X"+puzzle+"X") == ("X"+answer+"X") )
         {
-                write("一阵机关之声响过之后，你来到了一个新的地方。\n");
+                write("一陣機關之聲響過之後，你來到了一個新的地方。\n");
                 delete_temp("marks/xanadu_hall2", me);
                 delete_temp("marks/xanadu_hall3", me);
                 me->move(__DIR__"lou0");
-                tell_room(this_object(),"墙上突然开了一道门，"+query("name", me )
-+"毫不犹豫地走了进去。\n");
+                tell_room(this_object(),"牆上突然開了一道門，"+query("name", me )
++"毫不猶豫地走了進去。\n");
         }
         else
-                message_vision("可是什么都没有发生。\n",me);
+                message_vision("可是什麼都沒有發生。\n",me);
         return 1;
 }

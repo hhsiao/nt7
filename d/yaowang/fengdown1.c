@@ -4,13 +4,13 @@ void create()
 {
         set("short", "山崖下");
         set("long", @LONG
-这里是山谷的谷底，静悄悄地没有一点声响。西面是陡峭的
-山壁高耸入云，山壁下面有一根胳膊粗的[绳子]从上面垂下来。
+這裡是山谷的谷底，靜悄悄地沒有一點聲響。西面是陡峭的
+山壁高聳入雲，山壁下面有一根胳膊粗的[繩子]從上面垂下來。
 LONG
         );
 
         set("item_desc", ([
-        "绳子" : "这是一根胳膊粗绳子，看样子是攀(climb)着上下山峰用的。\n",
+        "繩子" : "這是一根胳膊粗繩子，看樣子是攀(climb)著上下山峰用的。\n",
 ]));
 
         set("exits", ([
@@ -30,14 +30,14 @@ int do_push(string arg)
 {
         object me = this_player();
 
-        if(arg != "绳子")
+        if(arg != "繩子")
                 return 0;
 
         if(find_call_out("arrive_up") != -1)
-                return notify_fail("有人正在攀着绳子向上爬呢，等一会儿。\n");
+                return notify_fail("有人正在攀著繩子向上爬呢，等一會兒。\n");
 
         me->start_busy(3);
-        message_vision("$N攀着绳子缓缓的向上爬去。\n", me);
+        message_vision("$N攀著繩子緩緩的向上爬去。\n", me);
         call_out("arrive_up", 2, me);
 
         return 1;

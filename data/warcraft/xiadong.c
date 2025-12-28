@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;37m冰蚕[2;37;0m[2;37;0m", ({"bingchan"}));        
+        set_name("[1;37m冰蠶[2;37;0m[2;37;0m", ({"bingchan"}));        
         set("gender", "女性");                
-        set("long", "天空中飞翔的冰蚕。[2;37;0m
-它是丁夏冬的魔幻兽。
+        set("long", "天空中飛翔的冰蠶。[2;37;0m
+它是丁夏冬的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

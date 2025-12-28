@@ -23,7 +23,7 @@ int main(object me, string arg)
         i = sizeof(file);
         if (! i)
         {
-                write("目前没有任何留言版。\n");
+                write("目前沒有任何留言版。\n");
                 return 1;
         }
 
@@ -32,12 +32,12 @@ int main(object me, string arg)
                 sscanf(arg, "%d", j);
                 j--;
                 if (j < 0 || j >= i)
-                        return notify_fail("没有这个留言板。\n");
+                        return notify_fail("沒有這個留言板。\n");
 
                 return me->force_me("goto " + query("location", get_object(file[j])));
         }
 
-        msg = "目前" + LOCAL_MUD_NAME() + "的留言版有以下这些：\n";
+        msg = "目前" + LOCAL_MUD_NAME() + "的留言版有以下這些：\n";
         for (j = 0; j < i; j++)
                 msg += sprintf(HIY "%2d" NOR ". %s\n", j + 1, file[j]->short());
 

@@ -1,7 +1,7 @@
 inherit NPC;
 void create()
 {
-        set_name("达官贵人", ({ "gui ren", "gui", "ren" }));
+        set_name("達官貴人", ({ "gui ren", "gui", "ren" }));
         set("gender", "男性");
         set("age", 20+random(40));
         set_skill("unarmed", 20);

@@ -7,9 +7,9 @@ void create()
 {
         set("short", "大殿");
         set("long", @LONG
-这里是万安寺的大殿，非常的宽敞明亮，这里本是万安寺众僧早晚课之处，
-佛像前摆着一个供桌，桌上的香炉中插着几柱香。地上摆着一些蒲团。几个和尚
-盘膝做在上面。左右两旁是两个偏殿。
+這裡是萬安寺的大殿，非常的寬敞明亮，這裡本是萬安寺眾僧早晚課之處，
+佛像前擺著一個供桌，桌上的香爐中插著幾柱香。地上擺著一些蒲團。幾個和尚
+盤膝做在上面。左右兩旁是兩個偏殿。
 LONG );
         set("exits", ([
                 "north" : "/d/tulong/yitian/was_zoulang3",
@@ -27,16 +27,16 @@ LONG );
 int valid_leave(object me, string dir)
 {
         if (dir == "north" && objectp(present("bo seng", environment(me))))
-           return notify_fail(CYN "钹僧齐声喝道：哪里走？滚下来！\n" NOR);
+           return notify_fail(CYN "鈸僧齊聲喝道：哪裡走？滾下來！\n" NOR);
 
         if (dir == "south" && objectp(present("bo seng", environment(me))))
-           return notify_fail(CYN "钹僧齐声喝道：哪里逃？纳命来！\n" NOR);
+           return notify_fail(CYN "鈸僧齊聲喝道：哪裡逃？納命來！\n" NOR);
 
         if (dir == "west" && objectp(present("bo seng", environment(me))))
-           return notify_fail(CYN "钹僧齐声喝道：哪里逃？纳命来！\n" NOR);
+           return notify_fail(CYN "鈸僧齊聲喝道：哪裡逃？納命來！\n" NOR);
 
         if (dir == "east" && objectp(present("bo seng", environment(me))))
-           return notify_fail(CYN "钹僧齐声喝道：哪里逃？纳命来！\n" NOR);
+           return notify_fail(CYN "鈸僧齊聲喝道：哪裡逃？納命來！\n" NOR);
 
         return ::valid_leave(me, dir);
 }

@@ -10,13 +10,13 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "海滩");
+        set("short", "海灘");
         set("long", @LONG
-这里就是名震江湖的桃花岛了。你放眼望去，除了海天交际处几点海
-鸥的影子若隐若现，四周见不到一个人影，不由得心里一阵发慌。北面是
-一片灿若云霞的桃林，繁花似锦，五色缤纷，但静悄悄的，似乎透着古怪。
-桃林前立了一块石碑(shibei)，上面似乎有些字迹，旁边有一块大石(sto
-ne)，海边泊着一艘大船(chuan)。
+這裡就是名震江湖的桃花島了。你放眼望去，除了海天交際處幾點海
+鷗的影子若隱若現，四周見不到一個人影，不由得心裡一陣發慌。北面是
+一片燦若雲霞的桃林，繁花似錦，五色繽紛，但靜悄悄的，似乎透著古怪。
+桃林前立了一塊石碑(shibei)，上面似乎有些字跡，旁邊有一塊大石(sto
+ne)，海邊泊著一艘大船(chuan)。
 LONG );
 
         set("exits", ([
@@ -25,18 +25,18 @@ LONG );
 
         set("item_desc",([
                 "shibei" : "
-先天......伏羲......占其地利......
-......后天......文王......得其天时......\n",
+先天......伏羲......佔其地利......
+......後天......文王......得其天時......\n",
 
-                "stone" : "大石上方有一块凹痕，象是一个扭曲的八卦形状。\n",
-                "chuan" : "这是桃花岛对外联系的大船。岛上的客人或弟子只要\n"
+                "stone" : "大石上方有一塊凹痕，象是一個扭曲的八卦形狀。\n",
+                "chuan" : "這是桃花島對外聯繫的大船。島上的客人或弟子只要\n"
                           "上船(enter)就可以回中原。\n",
         ]));
 
         set("outdoors", "taohua");
 
-        set("island", "桃花岛");
-        set("shape", "有一股夹着扑鼻花香的海风吹来。");
+        set("island", "桃花島");
+        set("shape", "有一股夾著撲鼻花香的海風吹來。");
         set("navigate/locx", 30);
         set("navigate/locy", -180);
 
@@ -53,7 +53,7 @@ void init()
         add_action("do_put", "put");
         add_action("do_pozhen", "pozhen");
         add_action("do_enter", "enter");
-        add_action("do_pozhen","破阵");
+        add_action("do_pozhen","破陣");
 }
 
 int do_put(string arg)
@@ -64,20 +64,20 @@ int do_put(string arg)
         me = this_player();
 
         if (! arg || sscanf(arg, "%s in %s", item, target) != 2)
-                return notify_fail("什麽？\n");
+                return notify_fail("什麼？\n");
 
         if (! present("tie bagua", me))
-                return notify_fail("什麽？\n");
+                return notify_fail("什麼？\n");
 
         if (item != "tie bagua")
-                return notify_fail("什麽？\n");
+                return notify_fail("什麼？\n");
 
         if (target != "stone")
-                return notify_fail("什麽？\n");
+                return notify_fail("什麼？\n");
 
-        message_vision("$N把铁八卦放入大石凹痕里\n", me);
-        message_vision(HIW "只听得轧轧数声响，桃林向左右两边分开，一条小路出现在$N面前\n"
-                       "$N连忙收起铁八卦，走入桃林。桃林在$N身后又恢复了原状。\n\n" NOR, me);
+        message_vision("$N把鐵八卦放入大石凹痕裡\n", me);
+        message_vision(HIW "只聽得軋軋數聲響，桃林向左右兩邊分開，一條小路出現在$N面前\n"
+                       "$N連忙收起鐵八卦，走入桃林。桃林在$N身後又恢復了原狀。\n\n" NOR, me);
 
         me->move("/d/taohua/xiaojing");
 
@@ -95,14 +95,14 @@ int do_pozhen()
         {
                 me->receive_damage("jing", 50);
                 me->receive_damage("qi", 50);
-                message_vision("$N冥思苦想半晌不得其解，神困力疲，如同着了魔一样，居然一步步走向桃林\n", me);
+                message_vision("$N冥思苦想半晌不得其解，神困力疲，如同著了魔一樣，居然一步步走向桃林\n", me);
                 me->move("/d/taohua/thzhen1");
     
         } else 
         {
 
-                message_vision(HIW "$N凝思片刻，桃林的种种生克变化已全盘了然于胸，\n"
-                               "仰天一声长笑，袍袖一拂，掠入桃林，左一弯，右一转，已影踪不见\n" NOR, me);
+                message_vision(HIW "$N凝思片刻，桃林的種種生克變化已全盤瞭然於胸，\n"
+                               "仰天一聲長笑，袍袖一拂，掠入桃林，左一彎，右一轉，已影蹤不見\n" NOR, me);
 
         me->move("/d/taohua/xiaojing");
         }
@@ -115,12 +115,12 @@ int do_enter ( string arg )
         string dir;
         if( !arg || arg !="chuan" ) 
         {
-                tell_object(this_player() , "你要 enter 哪儿？\n" ) ;
+                tell_object(this_player() , "你要 enter 哪兒？\n" ) ;
                 return 1 ;
         }
         ob = this_player () ;
-        message_vision("船夫一见有人上船，忙叫了一声：开船喽！\n", ob);
-        message_vision("船夫升起帆，船就向西方航行。\n", ob);
+        message_vision("船伕一見有人上船，忙叫了一聲：開船嘍！\n", ob);
+        message_vision("船伕升起帆，船就向西方航行。\n", ob);
         ob ->move("/d/taohua/dahai") ;
         tell_object(ob, BLU "你在海上航行了很久很久.......\n" NOR ) ;
         call_out("rtaohua", 10 , ob );
@@ -131,6 +131,6 @@ void rtaohua( object ob )
         if (base_name(environment(ob)) != "/d/taohua/dahai")
                 return;
 
-        tell_object(ob , "大船终于抵达了中原的一个繁华城市。你走下船来。\n" ) ;
+        tell_object(ob , "大船終於抵達了中原的一個繁華城市。你走下船來。\n" ) ;
         ob->move ("/d/jiaxing/jiaxinggang") ;
 }

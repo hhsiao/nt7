@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// chen.c 陈志益
+// chen.c 陳志益
 
 inherit NPC;
 inherit F_MASTER;
@@ -8,7 +8,7 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("陈志益", ({"chen zhiyi", "chen"}));
+        set_name("陳志益", ({"chen zhiyi", "chen"}));
         set("gender", "男性");
         set("class", "taoist");
         set("age", 24);
@@ -66,7 +66,7 @@ void create()
         create_family("全真教", 3, "弟子");
 
         set("inquiry", ([
-                "全真教" :  "我全真教是天下道家玄门正宗。\n",
+                "全真教" :  "我全真教是天下道家玄門正宗。\n",
         ]) );
 
         set("master_ob",2);
@@ -82,6 +82,6 @@ void attempt_apprentice(object ob)
         if (! permit_recruit(ob))
                 return;
 
-        command("say 好吧，我就收下你这个徒弟了。");
+        command("say 好吧，我就收下你這個徒弟了。");
         command("recruit "+query("id", ob));
 }

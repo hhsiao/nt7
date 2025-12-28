@@ -11,12 +11,12 @@ nosave string *reborn_skill = ({
         "recover", "astral",
 });
 nosave string *words = ({
-        "班", "若", "菠", "萝", "密", "啊", "吗", "咪", "哄",
-        "度", "众", "生", "者", "应", "明", "以", "何", "得",
-        "有", "空", "净", "相", "我", "虚", "妄", "情", "少",
-        "福", "如", "來", "法", "金", "思", "悟", "灭", "失",
+        "班", "若", "菠", "蘿", "密", "啊", "嗎", "咪", "哄",
+        "度", "眾", "生", "者", "應", "明", "以", "何", "得",
+        "有", "空", "淨", "相", "我", "虛", "妄", "情", "少",
+        "福", "如", "來", "法", "金", "思", "悟", "滅", "失",
 });
-// 存盘文档
+// 存盤文檔
 string query_save_file() {
         return DATA_DIR "npc/buddha";
 }
@@ -44,9 +44,9 @@ void create()
 {
         seteuid(getuid());
         restore();
-        set_name(HIY "释迦牟尼" NOR, ({ "buddha", "fo zu", "fo", "shijia muni" }));
+        set_name(HIY "釋迦牟尼" NOR, ({ "buddha", "fo zu", "fo", "shijia muni" }));
         set("long", @LONG
-佛祖庄严宝像，让人不敢正视。
+佛祖莊嚴寶像，讓人不敢正視。
 LONG);
         set("nickname", HIW "三界法王" NOR);
         set("title", HIC "佛祖" NOR);
@@ -86,7 +86,7 @@ LONG);
         map_skill("medical", "shaolin-yishu");
 
         set("inquiry", ([
-                "转世重生" : (: ask_reborn :),
+                "轉世重生" : (: ask_reborn :),
         ]));
 
         set("chat_chance_combat", 200);
@@ -121,25 +121,25 @@ int ask_reborn()
 
         /*
         if( query("reborn/times", me)){
-                command("say 你的阿赖耶识不是已经打开了吗？");
+                command("say 你的阿賴耶識不是已經打開了嗎？");
                 return 1;
         }
         */
 
         if( !query("reborn_lunhui", me)){
-                command("say 你的转世机缘未到，强求不得！");
+                command("say 你的轉世機緣未到，強求不得！");
                 return 1;
         }
 
         if( !me->query_family() )
         {
-                command("say 你无门无派，转世得不偿失！");
+                command("say 你無門無派，轉世得不償失！");
                 return 1;
         }
 
-        command("say 你可是也对此生感到困惑，想要探寻人生真谛吗？");
-        command("say 若要转生则你之武学就将尽毁，你可愿意？");
-        message_vision( HIC"$N" HIC"对$n" HIC"道：若你心意已决就输入 decide 吧！\n"NOR,
+        command("say 你可是也對此生感到困惑，想要探尋人生真諦嗎？");
+        command("say 若要轉生則你之武學就將盡毀，你可願意？");
+        message_vision( HIC"$N" HIC"對$n" HIC"道：若你心意已決就輸入 decide 吧！\n"NOR,
                         this_object(), me) ;
 
         set_temp("reborn/ask", 1, me);
@@ -158,16 +158,16 @@ int do_decide()
         if( !query_temp("reborn/ask", me) )
                 return 0;
 
-        tell_object(me, HIW "佛祖在你耳边说道：我告诉你一句揭语，"
-                "你可参悟一下是啥意思，\n来世你若有缘再见到我，"
-                "凭此揭语我会给你开启前生记忆！\n"
-                "此揭语须当谨记在心，切记切记！\n" NOR);
+        tell_object(me, HIW "佛祖在你耳邊說道：我告訴你一句揭語，"
+                "你可參悟一下是啥意思，\n來世你若有緣再見到我，"
+                "憑此揭語我會給你開啟前生記憶！\n"
+                "此揭語須當謹記在心，切記切記！\n" NOR);
 
         for( i = 0; i < 5; i++)
                 msg += words[random(sizeof(words))];
 
-        tell_object(me, HIY "\n佛祖在你耳边说道，给你的揭语是：" HIR + msg + "\n" NOR);
-        tell_object(me, HIY "记下了吗？我即刻就送你去投胎了！\n\n"NOR);
+        tell_object(me, HIY "\n佛祖在你耳邊說道，給你的揭語是：" HIR + msg + "\n" NOR);
+        tell_object(me, HIY "記下了嗎？我即刻就送你去投胎了！\n\n"NOR);
 
         remove_call_out("reborn_player");
         call_out("reborn_player", 3, me, msg);
@@ -185,7 +185,7 @@ int reborn_player(object me, string msg)
         int money, endtime, day;
 
         my = me->query_entire_dbase();
-        if( my["gender"] == "无性" ) my["gender"] = "男性";
+        if( my["gender"] == "無性" ) my["gender"] = "男性";
 
         off_skills = my["offer"];
         all_skills = me->query_skills();
@@ -249,7 +249,7 @@ int reborn_player(object me, string msg)
 
         spc_data = ([ "hermit" : 1 ]);
         files = reborn_skill;
-        files -= keys(my["special_skill"]); // 去除转世技能重叠的bug
+        files -= keys(my["special_skill"]); // 去除轉世技能重疊的bug
         if( sizeof(files) > 0 )
         {
                 skill = files[random(sizeof(files))];
@@ -278,10 +278,10 @@ int reborn_player(object me, string msg)
         }
         reborn_data[query("id",me)] = tmp_data;
         save();
-        message("vision",HBRED"【转世重生】天界："+query("name", me)+"("+query("id", me)+")"
-                HBRED "已得佛祖点化转世之道，得到人神魔三界庇佑，元神转世重生！\n" NOR, users());
+        message("vision",HBRED"【轉世重生】天界："+query("name", me)+"("+query("id", me)+")"
+                HBRED "已得佛祖點化轉世之道，得到人神魔三界庇佑，元神轉世重生！\n" NOR, users());
 
-        message_vision("只见$N化作一屡轻烟，渐渐消失了……\n", me);
+        message_vision("只見$N化作一屢輕煙，漸漸消失了……\n", me);
         UPDATE_D->remove_user(query("id", me), 0);
         return 1;
 }

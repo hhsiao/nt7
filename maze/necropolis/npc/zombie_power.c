@@ -4,12 +4,12 @@ inherit "/maze/necropolis/necropolis_npc";
 void do_swing();
 void create()
 {
-        string *names = ({"尸煞"}); 
+        string *names = ({"屍煞"}); 
         // set_name( names[random(sizeof(names))], ({ "power zombie","zombie"}));
         set_name( names[random(sizeof(names))], ({ "power zombie" }));
         set("vendetta_mark","zombie");
-        set("long", "这是一个腐烂的僵尸。\n");
-        set("title", HIB "(鬼气)" NOR); 
+        set("long", "這是一個腐爛的殭屍。\n");
+        set("title", HIB "(鬼氣)" NOR); 
 
         set("str", 50);
         set("con", 120);
@@ -23,7 +23,7 @@ void create()
         set("attitude", "peaceful");
         //set("chat_chance", 2);
         //set("chat_msg", ({
-        //                "骷髅空洞的眼眶里闪烁着可怕的荧光。\n"
+        //                "骷髏空洞的眼眶裡閃爍著可怕的熒光。\n"
         //}) ); 
 
         set("chat_chance_combat", 100);
@@ -33,7 +33,7 @@ void create()
 
         set("combat_exp", 150000000);
         set("bellicosity", 5 );
-        set("death_msg",RED"\n$N化作了一滩血水。\n\n"NOR);
+        set("death_msg",RED"\n$N化作了一灘血水。\n\n"NOR);
 
         set_skill("force", 120);
         set_skill("dodge", 120);
@@ -74,7 +74,7 @@ void do_swing() {
         if(!enemies || sizeof(enemies)==0)
                 return;
 
-        msg = RED"$N一声嚎叫，身子旋风般转动起来！！\n"NOR;        
+        msg = RED"$N一聲嚎叫，身子旋風般轉動起來！！\n"NOR;        
         message_vision(msg,this_object());
         addn_temp("apply/damage",400);
         addn_temp("apply/attack",400);
@@ -83,7 +83,7 @@ void do_swing() {
                         return;
                 if(!present(enemy, environment(this_object())))
                 return; 
-                msg = RED"一道爪影袭向$n！"NOR;
+                msg = RED"一道爪影襲向$n！"NOR;
                 message_vision(msg,this_object(), enemy);
                 COMBAT_D->do_attack(this_object(),enemy); 
         }

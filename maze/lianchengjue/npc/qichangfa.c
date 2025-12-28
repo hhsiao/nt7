@@ -3,8 +3,8 @@ inherit NPC;
 
 void create()
 {
-        set_name("戚长发", ({ "qi changfa", "qi", "changfa" }));
-        set("nickname", HIR "铁索横江" NOR);
+        set_name("戚長髮", ({ "qi changfa", "qi", "changfa" }));
+        set("nickname", HIR "鐵索橫江" NOR);
         set("gender", "男性" );
         set("class", "swordman");
         set("attitude", "peaceful");
@@ -77,7 +77,7 @@ void attempt_apprentice(object ob)
 {
         command("haha");
         command("say 孺子可教，孺子可教。");
-        command("say 你以后定要勤和芳儿切磋武艺。");
+        command("say 你以後定要勤和芳兒切磋武藝。");
         return;
 }
 
@@ -89,7 +89,7 @@ void die(object killer)
         if (userp(killer) && environment(killer) == environment(this_object())) 
         {
                 command("haha");
-                command("say 想不到我一世英名，竟命丧于此！");
+                command("say 想不到我一世英名，竟命喪於此！");
                 return;
         }
         

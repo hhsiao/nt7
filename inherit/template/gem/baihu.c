@@ -17,9 +17,9 @@ void create()
         else*/ 
         {
 //**            set("$dbase_key", "$dbase_value\n");            /* DBASE_ENTRY */
-                set("long", HIY "可用于镶嵌10LV，属性金。\n" NOR); /* DBASE_EXIT  */
+                set("long", HIY "可用於鑲嵌10LV，屬性金。\n" NOR); /* DBASE_EXIT  */
                 set("value", 100000);
-                set("unit", "块");
+                set("unit", "塊");
                 set("can_be_tessera", 1);
                 set("magic/type", "metal");
                 set("magic/power", 500);

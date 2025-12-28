@@ -4,17 +4,17 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIR "日" HIY "月" NOR + WHT "镜" NOR, ({ "riyue jing", "riyue", "jing" }) );
+        set_name(HIR "日" HIY "月" NOR + WHT "鏡" NOR, ({ "riyue jing", "riyue", "jing" }) );
         set_weight(3000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
                 set("unit", "面");
-                set("long", HIC "传说女娲创造生灵的时候，为了时刻监视生灵的一举一动，\n"
-                                "于是请求上天赐予了她一面宝镜，名曰日月镜，拥有日月\n"
-                                "镜的人可以随时查看到游戏中的生物、玩家及NPC的位置。\n"
-                                "每次使用消耗黄金一两，即从银行扣除。\n" HIY
+                set("long", HIC "傳說女媧創造生靈的時候，為了時刻監視生靈的一舉一動，\n"
+                                "於是請求上天賜予了她一面寶鏡，名曰日月鏡，擁有日月\n"
+                                "鏡的人可以隨時查看到遊戲中的生物、玩家及NPC的位置。\n"
+                                "每次使用消耗黃金一兩，即從銀行扣除。\n" HIY
                                 "指令： echo 生物英文ID\n" NOR);
                 set("value", 800000);
                 
@@ -43,28 +43,28 @@ int do_echo(string arg)
         target = find_living(arg);
 
         if (! objectp(target))
-                return notify_fail(HIG "日月镜发出一道亮光：没有找到目标生物，可能该生物不存在或未被更新！\n" NOR);
+                return notify_fail(HIG "日月鏡發出一道亮光：沒有找到目標生物，可能該生物不存在或未被更新！\n" NOR);
                 
-        // 不能查看隐身ID及巫师
+        // 不能查看隱身ID及巫師
         if (wizardp(target))
-                return notify_fail(HIG "日月镜发出一道亮光：没有找到目标生物，可能该生物不存在或未被更新！\n" NOR);
+                return notify_fail(HIG "日月鏡發出一道亮光：沒有找到目標生物，可能該生物不存在或未被更新！\n" NOR);
                 
         // 扣除YSG
         if( query("balance", me)<10000 )
-                return notify_fail("对不起，你的银行存款不足，无法使用日月镜！\n");        
+                return notify_fail("對不起，你的銀行存款不足，無法使用日月鏡！\n");        
         
         if( (query_temp("apply/invisible", target) && !me->query_condition("niuyanlei")) || query("env/invisible", target) )
-                return notify_fail(HIG "日月镜发出一道亮光：没有找到目标生物，可能该生物不存在或未被更新！\n" NOR);
+                return notify_fail(HIG "日月鏡發出一道亮光：沒有找到目標生物，可能該生物不存在或未被更新！\n" NOR);
 
         addn("balance", -10000, me);
 
         if (! environment(target))
-                return notify_fail("对不起，该对象无法查询到具体位置。\n");
+                return notify_fail("對不起，該對象無法查詢到具體位置。\n");
 
         where = query("short", environment(target)) ? query("short", environment(target)) 
                                                                  : environment(target)->short();
 
-        tell_object(me, HIG "日月镜发出一道亮光：" + target->name() + "(" + arg + ")现在在" + 
+        tell_object(me, HIG "日月鏡發出一道亮光：" + target->name() + "(" + arg + ")現在在" + 
                          where + HIG "。\n" NOR);
 
         return 1;

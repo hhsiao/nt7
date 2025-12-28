@@ -2,7 +2,7 @@ inherit __DIR__"fengd";
 
 void create()
 {
-        set("short", "灌木丛");
+        set("short", "灌木叢");
         set("long", query_long());
         set("exits", ([
   "south" : __DIR__"fengd3",

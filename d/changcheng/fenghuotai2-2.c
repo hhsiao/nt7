@@ -6,10 +6,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "烽火台");
+        set("short", "烽火臺");
         set("long", WHT @LONG
-这里是烽火台的二楼，站在这里你可以看的很远。戍边的将士们就
-是长年守卫在这里，防止匈奴的进攻，保卫边疆的安全。
+這裡是烽火臺的二樓，站在這裡你可以看的很遠。戍邊的將士們就
+是長年守衛在這裡，防止匈奴的進攻，保衛邊疆的安全。
 LONG
 NOR  );
         set("outdoors", "changcheng");

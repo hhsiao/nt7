@@ -2,25 +2,25 @@
 
 int permit_recruit(object ob)
 {
-        return notify_fail("暂不开放\n");
+        return notify_fail("暫不開放\n");
         
-        if( query("detach/昆仑派", ob) || 
-            query("betrayer/昆仑派", ob) )
+        if( query("detach/崑崙派", ob) || 
+            query("betrayer/崑崙派", ob) )
         {
-                command("say 亏你还有脸回我昆仑山？给我滚开！");
+                command("say 虧你還有臉回我崑崙山？給我滾開！");
                 return 0;
         }
 
         if( query("betrayer/times", ob) )
         {
-                command("say 阁下不忠不信，我最痛恨你这种人了。");
+                command("say 閣下不忠不信，我最痛恨你這種人了。");
                 return 0;
         }
 
         if( query("family/family_name", ob) && 
-            query("family/family_name", ob) != "昆仑派" )
+            query("family/family_name", ob) != "崑崙派" )
         {
-                command("say 阁下既有了名师指点，还来我们昆仑派做什么？");
+                command("say 閣下既有了名師指點，還來我們崑崙派做什麼？");
                 return 0;
         }
 

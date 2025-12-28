@@ -1,11 +1,11 @@
-// NPC :zhong_wanchou.c 钟万仇 
+// NPC :zhong_wanchou.c 鍾萬仇 
 // By River 98/12
 inherit NPC;
 void create()
 {
-        set_name("钟万仇", ({ "zhong wanchou", "zhong", "wanchou"}));
-        set("title","万劫谷谷主");
-        set("nickname","马王神");
+        set_name("鍾萬仇", ({ "zhong wanchou", "zhong", "wanchou"}));
+        set("title","萬劫谷谷主");
+        set("nickname","馬王神");
         set("gender", "男性" );
         set("age", 42);
         set("str", 26);
@@ -24,7 +24,7 @@ void create()
         set("jiali", 40);
         set("unique", 1);
         
-        set("long","只见他好长一张马脸，眼睛生得甚高，一个园园的大鼻子却和嘴巴挤在一块。\n");
+        set("long","只見他好長一張馬臉，眼睛生得甚高，一個園園的大鼻子卻和嘴巴擠在一塊。\n");
         set("combat_exp", 400000);
         set("shen", -1000); 
 

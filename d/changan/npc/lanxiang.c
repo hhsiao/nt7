@@ -5,9 +5,9 @@ inherit F_DEALER;
 
 void create()
 {
-        set_name("张兰香", ({"zhang lanxiang", "zhang", "lanxiang"}));
+        set_name("張蘭香", ({"zhang lanxiang", "zhang", "lanxiang"}));
         set("shop_id",({"laoban","zhanglanxiang","zhang","lanxiang"}));
-        set("shop_title", "水果店老板");
+        set("shop_title", "水果店老闆");
         set("gender", "女性");
         set("combat_exp", 4000);
         set("age", 23);
@@ -46,6 +46,6 @@ void greeting(object ob)
 {
         if (! ob || environment(ob) != environment()) return;
 
-        say("张兰香笑咪咪地说道：这位" + RANK_D->query_respect(ob) +
-            "，新到的各种水果，买点儿回家尝尝吧。\n");
+        say("張蘭香笑咪咪地說道：這位" + RANK_D->query_respect(ob) +
+            "，新到的各種水果，買點兒回家嚐嚐吧。\n");
 }

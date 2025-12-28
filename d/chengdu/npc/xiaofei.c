@@ -4,9 +4,9 @@ inherit NPC;
 #include <ansi.h>
 void create()
 {
-        set_name("萧飞", ({ "xiao fei", "xiao" }));
-        set("title","金牛武馆教习");
-        set("long", "萧教头是武馆的新来教习，但他的弟子也有在江湖出头的了。\n");
+        set_name("蕭飛", ({ "xiao fei", "xiao" }));
+        set("title","金牛武館教習");
+        set("long", "蕭教頭是武館的新來教習，但他的弟子也有在江湖出頭的了。\n");
         set("gender", "男性");
         set("age", 35);
 

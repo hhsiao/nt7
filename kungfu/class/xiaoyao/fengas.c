@@ -10,10 +10,10 @@ mixed ask_me();
 
 void create()
 {
-        set_name("冯阿三", ({ "feng asan", "feng" , "asan"}));
-        set("long", "据说他就是鲁班的后人，当代的第一巧匠。是\n"
-                    "设计机关的能手。\n");
-        set("title", "逍遥派函谷八友");
+        set_name("馮阿三", ({ "feng asan", "feng" , "asan"}));
+        set("long", "據說他就是魯班的後人，當代的第一巧匠。是\n"
+                    "設計機關的能手。\n");
+        set("title", "逍遙派函谷八友");
         set("nickname", HIY "巧匠" NOR);
         set("gender", "男性");
         set("age", 40);
@@ -59,7 +59,7 @@ void create()
         prepare_skill("strike", "liuyang-zhang");
 
         set("inquiry", ([
-                "机关"   : (: ask_me :),
+                "機關"   : (: ask_me :),
         ]));
 
         if (random(5) > 3)
@@ -68,7 +68,7 @@ void create()
         if (random(4) > 2)
                 set("xiang_count", 1);
 
-        create_family("逍遥派", 3, "弟子");
+        create_family("逍遙派", 3, "弟子");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -91,11 +91,11 @@ void attempt_apprentice(object ob)
 
         if (ob->query_int() < 26)
         {
-                command("say 你脑袋又不灵光，能跟我做什么？");
+                command("say 你腦袋又不靈光，能跟我做什麼？");
                 return;
         }
 
-        command("say 好吧，我就收下你了，多干活，少说话！");
+        command("say 好吧，我就收下你了，多幹活，少說話！");
         command("recruit "+query("id", ob));
 }
 
@@ -105,8 +105,8 @@ mixed ask_me()
 
         ob = this_player();
         if (random(100) < 70)
-                return "我在设计机关方面是有点特长，让大家见笑了。";
+                return "我在設計機關方面是有點特長，讓大家見笑了。";
 
         command("laugh");
-        return "别吵着我，我在看书呢。哈哈，芝麻开门。。。。这书真好笑\n";
+        return "別吵著我，我在看書呢。哈哈，芝麻開門。。。。這書真好笑\n";
 }

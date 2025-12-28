@@ -8,7 +8,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "樽");
-                set("long", "气味芳香的刨花油\n");
+                set("long", "氣味芳香的刨花油\n");
                 set("value", 1000);
         }
 }

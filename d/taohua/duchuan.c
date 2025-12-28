@@ -8,8 +8,8 @@ void create()
 {
         set("short", "海船");
         set("long", @LONG
-一艘海船，大概能载十七、八个人。几名健硕的水手正在船头船尾忙
-来忙去。
+一艘海船，大概能載十七、八個人。幾名健碩的水手正在船頭船尾忙
+來忙去。
 LONG );
 
         set("valid_startroom", 1);

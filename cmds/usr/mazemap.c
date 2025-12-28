@@ -10,16 +10,16 @@ int main(object me, string arg)
         string filename, dir;
         
         if (me->is_busy())
-                return notify_fail("你现在正忙。\n");
+                return notify_fail("你現在正忙。\n");
 
         if( !wizardp(me) && (time()-query_temp("maze/map", me)<3) )
-                return notify_fail("系统气喘嘘地叹道：慢慢来 ....\n");  
+                return notify_fail("系統氣喘噓地嘆道：慢慢來 ....\n");  
         
         if( !query("maze", environment(me)) )
-                return notify_fail("这里不是迷宫区域，请用 help here 查看。\n");  
+                return notify_fail("這裡不是迷宮區域，請用 help here 查看。\n");  
                 
         if( query("jing", me)<5 )
-                return notify_fail("你现在精神状态不佳，还是等会再查吧。\n");
+                return notify_fail("你現在精神狀態不佳，還是等會再查吧。\n");
 
         addn("jing", -5, me);
         set_temp("maze/map", time(), me);

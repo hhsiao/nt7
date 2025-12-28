@@ -1,4 +1,4 @@
-// /inherit/room/house_door.c 自建屋宅大门继承文件
+// /inherit/room/house_door.c 自建屋宅大門繼承文件
 // By Alf, Last Update 2003.0712
 
 #include <ansi.h>

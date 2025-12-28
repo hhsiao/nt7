@@ -17,33 +17,33 @@ int main(object me, string arg)
                 return 0;
 
         if (! arg)
-                return notify_fail("请输入路径名和文件名。\n");
+                return notify_fail("請輸入路徑名和文件名。\n");
 
         arg=resolve_path(query("cwd", me),arg);
         switch (file_size(arg))
         {
         case -1:
-                return notify_fail("没有这个文件或是路径。\n");
+                return notify_fail("沒有這個文件或是路徑。\n");
         case -2:
                 if (arg[strlen(arg) - 1] != '/') arg += "/";
-                write("为 " + build_path(arg) + " 个文件增加了鉴别ID。\n");
+                write("為 " + build_path(arg) + " 個文件增加了鑑別ID。\n");
                 return 1;
         }
 
         if (strlen(arg) < 2)
-                return notify_fail("这个文件没有必要增加鉴别ID。\n");
+                return notify_fail("這個文件沒有必要增加鑑別ID。\n");
 
         affix = arg[strlen(arg) - 2..<1];
         if (affix != ".c" && affix != ".h")
-                return notify_fail("这个文件没有必要增加鉴别ID。\n");
+                return notify_fail("這個文件沒有必要增加鑑別ID。\n");
 
         if (VERSION_D->append_sn(arg) == 1)
         {
-                write("成功的增加了鉴别ID。\n");
+                write("成功的增加了鑑別ID。\n");
                 return 1;
         }
 
-        write("增加鉴别ID失败了。\n");
+        write("增加鑑別ID失敗了。\n");
         return 1;
 }
 
@@ -95,10 +95,10 @@ int build_path(string path)
 int help(object me)
 {
         write(@HELP
-指令格式 : fcrypt <目录名> | <文件名>
+指令格式 : fcrypt <目錄名> | <文件名>
 
-利用此一指令可以为某一个文件或是某一个目录下的所有源文件增加
-数据完整性ID。
+利用此一指令可以為某一個文件或是某一個目錄下的所有源文件增加
+數據完整性ID。
 
 HELP
     );

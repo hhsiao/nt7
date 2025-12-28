@@ -42,15 +42,15 @@ int chk_pond(object me)
         }
         //write(HIG + "flag:" + to_string(flag) + "\n"+ NOR); 
 
-        if (flag >= 12) {//连中12个1
+        if (flag >= 12) {//連中12個1
                 pond /= 2;
                 //write(HIY + "win:" + to_string(pond) + "\n"+ NOR); 
                 addn("balance", pond * 10000, me);
-                addn("cigarette_gold", pond, me); //个人累计获奖的黄金
-                log_file("static/cigarette", sprintf("(%s)%s(%s)获得头奖 %s 万两黄金。\n",  ctime(time()), me->name(), query("id", me), to_string(pond/10000))); 
-                write(HIG + "小常子拱手涎脸道：恭喜恭喜，获得奖池里" + chinese_number(pond) + "两黄金，打赏一点？\n" + NOR);
-                CHANNEL_D->channel_broadcast("rumor", "听说" + query("name", me) + "抽烟中了头奖，赢得了" + chinese_number(pond) + "两的奖池黄金。\n" + NOR);
-                CHANNEL_D->channel_broadcast("rumor", "某人(Someone.)：你已经赢过" + chinese_number(query("cigarette_gold", me)) + "两了吧，这是想要逆天吗？\n" + NOR);
+                addn("cigarette_gold", pond, me); //個人累計獲獎的黃金
+                log_file("static/cigarette", sprintf("(%s)%s(%s)獲得頭獎 %s 萬兩黃金。\n",  ctime(time()), me->name(), query("id", me), to_string(pond/10000))); 
+                write(HIG + "小常子拱手涎臉道：恭喜恭喜，獲得獎池裡" + chinese_number(pond) + "兩黃金，打賞一點？\n" + NOR);
+                CHANNEL_D->channel_broadcast("rumor", "聽說" + query("name", me) + "抽菸中了頭獎，贏得了" + chinese_number(pond) + "兩的獎池黃金。\n" + NOR);
+                CHANNEL_D->channel_broadcast("rumor", "某人(Someone.)：你已經贏過" + chinese_number(query("cigarette_gold", me)) + "兩了吧，這是想要逆天嗎？\n" + NOR);
                 do_save(pond);
                 //write(HIY + "pond:" + to_string(pond) + "\n"+ NOR); 
                 return 1;
@@ -60,24 +60,24 @@ int chk_pond(object me)
                 //pond /= 50;
                 //write(HIY + "win:" + to_string(pond) + "\n"+ NOR); 
                 //addn("balance", pond * 10000, me);
-                addn("balance", 10000000000, me);//改为每次100万，不从奖池里扣除
-                //addn("cigarette_gold", pond, me); //个人累计获奖的黄金
-                addn("cigarette_gold", 1000000, me); //个人累计获奖的黄金
-                //log_file("static/cigarette", sprintf("(%s)%s(%s)获得大奖 %s 万两黄金。\n",  ctime(time()), me->name(), query("id", me), to_string(pond/10000))); 
-                log_file("static/cigarette", sprintf("(%s)%s(%s)获得大奖 %s 万两黄金。\n",  ctime(time()), me->name(), query("id", me), to_string(1000000))); 
-                //write(HIG + "小常子拱手涎脸道：恭喜恭喜，获得奖池里" + chinese_number(pond) + "两黄金，打赏一点？\n" + NOR);
-                write(HIG + "小常子拱手涎脸道：恭喜恭喜，获得奖池里" + chinese_number(1000000) + "两黄金，打赏一点？\n" + NOR);
-                //CHANNEL_D->channel_broadcast("rumor", "听说" + query("name", me) + "抽烟中了大奖，赢得了" + chinese_number(pond) + "两的奖池黄金。\n" + NOR);
-                //CHANNEL_D->channel_broadcast("rumor", "某人(Someone.)：你已经赢过" + chinese_number(query("cigarette_gold", me)) + "两了吧，这是狗屎运气吗？\n" + NOR);
-                CHANNEL_D->channel_broadcast("rumor", "听说" + query("name", me) + "抽烟中了大奖，赢得了" + chinese_number(1000000) + "两黄金。\n" + NOR);
-                CHANNEL_D->channel_broadcast("rumor", "某人(Someone.)：你已经赢过" + chinese_number(query("cigarette_gold", me)) + "两了吧，这是狗屎运气吗？\n" + NOR);
+                addn("balance", 10000000000, me);//改為每次100萬，不從獎池裡扣除
+                //addn("cigarette_gold", pond, me); //個人累計獲獎的黃金
+                addn("cigarette_gold", 1000000, me); //個人累計獲獎的黃金
+                //log_file("static/cigarette", sprintf("(%s)%s(%s)獲得大獎 %s 萬兩黃金。\n",  ctime(time()), me->name(), query("id", me), to_string(pond/10000))); 
+                log_file("static/cigarette", sprintf("(%s)%s(%s)獲得大獎 %s 萬兩黃金。\n",  ctime(time()), me->name(), query("id", me), to_string(1000000))); 
+                //write(HIG + "小常子拱手涎臉道：恭喜恭喜，獲得獎池裡" + chinese_number(pond) + "兩黃金，打賞一點？\n" + NOR);
+                write(HIG + "小常子拱手涎臉道：恭喜恭喜，獲得獎池裡" + chinese_number(1000000) + "兩黃金，打賞一點？\n" + NOR);
+                //CHANNEL_D->channel_broadcast("rumor", "聽說" + query("name", me) + "抽菸中了大獎，贏得了" + chinese_number(pond) + "兩的獎池黃金。\n" + NOR);
+                //CHANNEL_D->channel_broadcast("rumor", "某人(Someone.)：你已經贏過" + chinese_number(query("cigarette_gold", me)) + "兩了吧，這是狗屎運氣嗎？\n" + NOR);
+                CHANNEL_D->channel_broadcast("rumor", "聽說" + query("name", me) + "抽菸中了大獎，贏得了" + chinese_number(1000000) + "兩黃金。\n" + NOR);
+                CHANNEL_D->channel_broadcast("rumor", "某人(Someone.)：你已經贏過" + chinese_number(query("cigarette_gold", me)) + "兩了吧，這是狗屎運氣嗎？\n" + NOR);
                 //pond *= 49;
                 //do_save(pond);
                 //write(HIY + "pond:" + to_string(pond) + "\n"+ NOR); 
                 return 1;
         }
 
-        pond += 10000;  //累积50%香烟售价
+        pond += 10000;  //累積50%香菸售價
         do_save(pond);
         //write(RED + "pond:" + to_string(pond) + "\n"+ NOR); 
         return 1;
@@ -87,7 +87,7 @@ int ask_pond(string name)
 {
         object me = this_player();
         pond = do_load();
-        tell_object(me, CYN + name + "鬼鬼祟祟地告诉你：听说奖池里有" + chinese_number(pond) + "两黄金，抽烟中奖可拿走部分。\n" + NOR); 
+        tell_object(me, CYN + name + "鬼鬼祟祟地告訴你：聽說獎池裡有" + chinese_number(pond) + "兩黃金，抽菸中獎可拿走部分。\n" + NOR); 
         return 1;
 }
 

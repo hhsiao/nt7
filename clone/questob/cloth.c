@@ -9,7 +9,7 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", "这是一匹丝织的布料。\n");
+                set("long", "這是一匹絲織的布料。\n");
                 set("base_unit", "匹");
                 set("base_weight", 5000);
                 set("no_sell", 1);

@@ -10,10 +10,10 @@ string chinese_name() { return "生死符"; }
 
 string update_msg_others()
 {
-       return HIR "只见$N" HIR "哀嚎连连，双手在身上一阵乱抓，苦不堪言。\n" NOR;
+       return HIR "只見$N" HIR "哀嚎連連，雙手在身上一陣亂抓，苦不堪言。\n" NOR;
 }
 
 string update_msg_self()
 {
-        return HIB "忽然一股寒流夹着一阵灼热涌上心来，你中的生死符发作了！\n" NOR;
+        return HIB "忽然一股寒流夾著一陣灼熱湧上心來，你中的生死符發作了！\n" NOR;
 }

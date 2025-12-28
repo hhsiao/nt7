@@ -57,11 +57,11 @@ int bunch_arrest(object me, string arg);
 int bunch_invite(object me, string arg);
 int join_bunch(object me, string arg);
 int bunch_color(object me, string arg);
-int bunch_efficient(object me, string arg); // 高效练功
+int bunch_efficient(object me, string arg); // 高效練功
 
 mapping citys = ([
-        "city"     : "扬州",
-        "changan"  : "长安",
+        "city"     : "揚州",
+        "changan"  : "長安",
         "chengdu"  : "成都",
 ]);
 
@@ -81,7 +81,7 @@ int main(object me, string arg)
         switch (args[0])
         {
         case "info":
-                // 显示同盟的信息
+                // 顯示同盟的信息
                 return show_bunch_info(me, arg);
 
         case "member":
@@ -101,7 +101,7 @@ int main(object me, string arg)
                 return show_bunch_area(me, arg);
 
         case "hatred":
-                // 显示同盟的仇人
+                // 顯示同盟的仇人
                 return show_bunch_hatred(me, arg);
 
         case "all":
@@ -140,8 +140,8 @@ int main(object me, string arg)
 
         case "honors":
                 if( !stringp(fname=query("bunch/bunch_name", me)) )
-                        return notify_fail("你现在还没有加入任何帮派呢。\n");
-                tell_object(me, "你所在的帮派目前帮派荣誉为 "+BUNCH_D->query_bunch_honors(fname)+" 点。\n");
+                        return notify_fail("你現在還沒有加入任何幫派呢。\n");
+                tell_object(me, "你所在的幫派目前幫派榮譽為 "+BUNCH_D->query_bunch_honors(fname)+" 點。\n");
                 return 1;
 
         case "efficient":
@@ -149,33 +149,33 @@ int main(object me, string arg)
 
         case "out":
                 if( !stringp(fname=query("bunch/bunch_name", me)) )
-                        return notify_fail("你现在还没有加入任何帮派呢。\n");
+                        return notify_fail("你現在還沒有加入任何幫派呢。\n");
 
                 if( query_temp("pending/out_bunch", me) )
                 {
-                        // 同盟的声望下降
+                        // 同盟的聲望下降
                         BUNCH_D->add_bunch_fame(fname,-query("weiwang", me));
                         CHANNEL_D->do_channel(this_object(), "rumor",
-                                "听说"+me->name(1)+"("+query("id", me)+
-                                ")义无反顾，已经背离『" + fname + "』而去。");
+                                "聽說"+me->name(1)+"("+query("id", me)+
+                                ")義無反顧，已經背離『" + fname + "』而去。");
                         delete_temp("pending/out_bunch", me);
 
-                        // 清除该用户在同盟中的信息
+                        // 清除該用戶在同盟中的信息
                         UPDATE_D->clear_user_data(query("id", me),"bunch");
                         return 1;
                 }
 
-                write("你真的想要背弃这个帮派吗？这样做会降低" + fname + "的声望。\n"
-                      YEL "如果你确定了，就再输入一次 bunch out 命令。\n" NOR);
+                write("你真的想要背棄這個幫派嗎？這樣做會降低" + fname + "的聲望。\n"
+                      YEL "如果你確定了，就再輸入一次 bunch out 命令。\n" NOR);
                 set_temp("pending/out_bunch", 1, me);
                 return 1;
         }
 
-        write("无效的参数。\n");
+        write("無效的參數。\n");
         return 1;
 }
 
-// 根据玩家和参数选择同盟的名字
+// 根據玩家和參數選擇同盟的名字
 mixed select_bunch(object me, string arg)
 {
         string fam;
@@ -194,29 +194,29 @@ mixed select_bunch(object me, string arg)
 
                 if (! stringp(fam) && objectp(ob = UPDATE_D->global_find_player(arg)))
                 {
-                        // 没有 arg 这个同盟，查看是否有该玩家
+                        // 沒有 arg 這個同盟，查看是否有該玩家
                         fam=query("bunch/bunch_name", ob);
                         UPDATE_D->global_destruct_player(ob);
                         if (! stringp(fam))
-                                return notify_fail("这人现在没有加入任何帮派。\n");
+                                return notify_fail("這人現在沒有加入任何幫派。\n");
                 }
 
                 if (! stringp(fam))
-                        return notify_fail("没有这个玩家，不能查阅相关的同盟。\n");
+                        return notify_fail("沒有這個玩家，不能查閱相關的同盟。\n");
         }
 
         if (! fam)
         {
                 // select my league
                 if( !stringp(fam=query("bunch/bunch_name", me)) )
-                        return notify_fail("你现在还没有加入任何帮派呢。\n");
+                        return notify_fail("你現在還沒有加入任何幫派呢。\n");
         }
 
         return fam;
 }
 
 
-// 显示同盟的仇人
+// 顯示同盟的仇人
 int show_bunch_hatred(object me, string arg)
 {
         mapping hatred;
@@ -234,7 +234,7 @@ int show_bunch_hatred(object me, string arg)
         hatred = BUNCH_D->query_bunch_hatred(fam);
         if (! mapp(hatred) || ! sizeof(hatred))
         {
-                write(fam + "现在没有什么仇人。\n");
+                write(fam + "現在沒有什麼仇人。\n");
                 return 1;
         }
 
@@ -242,7 +242,7 @@ int show_bunch_hatred(object me, string arg)
         ids = sort_array(ids, (: sort_hatred :), hatred);
 
         count = 0;
-        msg = WHT "目前" + fam + "在江湖上的仇敌都有\n" NOR
+        msg = WHT "目前" + fam + "在江湖上的仇敵都有\n" NOR
               HIY "--------------------------------\n" NOR;
         for (i = 0; i < sizeof(ids) && count < 30; i++)
         {
@@ -258,7 +258,7 @@ int show_bunch_hatred(object me, string arg)
 
         msg += HIY "--------------------------------\n" NOR;
         if (i < sizeof(ids))
-                msg += WHT "江湖上的敌人太多，难以尽数。\n" NOR;
+                msg += WHT "江湖上的敵人太多，難以盡數。\n" NOR;
         else
                 msg += WHT "目前一共是" + chinese_number(i) +
                        "人。\n" NOR;
@@ -266,7 +266,7 @@ int show_bunch_hatred(object me, string arg)
         return 1;
 }
 
-// 显示某一个同盟中的人员
+// 顯示某一個同盟中的人員
 int show_bunch_member(object me, string arg)
 {
         string *member;
@@ -278,25 +278,25 @@ int show_bunch_member(object me, string arg)
         if (! arg)
         {
                 if( !stringp(arg=query("bunch/bunch_name", me)) )
-                        return notify_fail("你现在还没有加入任何一个帮派呢。\n");
+                        return notify_fail("你現在還沒有加入任何一個幫派呢。\n");
         }
 
         if (! arrayp(member = BUNCH_D->query_bunch_members(arg)))
         {
-                write("现在江湖上没有(" + arg + ")这个帮派。\n");
+                write("現在江湖上沒有(" + arg + ")這個幫派。\n");
                 return 1;
         }
 
         if (sizeof(member) < 1)
-                return notify_fail(arg + "现在人丁稀落。\n");
+                return notify_fail(arg + "現在人丁稀落。\n");
 
         if (! wizardp(me))
         {
                 if( query("jing", me)<50 )
-                        return notify_fail("你现在精神不济，无法打听这些消息。\n");
+                        return notify_fail("你現在精神不濟，無法打聽這些消息。\n");
 
                 if (me->is_busy())
-                        return notify_fail("你现在正忙，没有时间打听这些消息。\n");
+                        return notify_fail("你現在正忙，沒有時間打聽這些消息。\n");
 
                 me->receive_damage("jing", 50);
                 me->start_busy(3);
@@ -316,7 +316,7 @@ int show_bunch_member(object me, string arg)
         }
 
         if (msg == "")
-                return notify_fail(arg + "现在人丁稀落。\n");
+                return notify_fail(arg + "現在人丁稀落。\n");
 
         write(arg + "目前有以下" + chinese_number(n) + "人：\n" + msg);
         return 1;
@@ -333,22 +333,22 @@ int show_bunch_all(object me, string arg)
 
         if (! mapp(fame = BUNCH_D->query_bunch_fame()))
         {
-                write("现在江湖上没有任何有名的帮派。\n");
+                write("現在江湖上沒有任何有名的幫派。\n");
                 return 1;
         }
 
         fam = keys(fame) - ({ 0 });
 
         if (sizeof(fam) < 1)
-                return notify_fail("目前江湖上没有什么有名的帮派。\n");
+                return notify_fail("目前江湖上沒有什麼有名的幫派。\n");
 
         if (! wizardp(me))
         {
                 if( query("jing", me)<50 )
-                        return notify_fail("你现在精神不济，无法打听这些消息。\n");
+                        return notify_fail("你現在精神不濟，無法打聽這些消息。\n");
 
                 if (me->is_busy())
-                        return notify_fail("你现在正忙，没有时间打听这些消息。\n");
+                        return notify_fail("你現在正忙，沒有時間打聽這些消息。\n");
 
                 me->receive_damage("jing", 50);
                 me->start_busy(3);
@@ -357,7 +357,7 @@ int show_bunch_all(object me, string arg)
         fam = sort_array(fam, (: sort_bunch :), fame);
 
         msg = sprintf(WHT "%-12s%-20s%-10s%-10s%-12s%-10s\n" NOR,
-                      "帮会名称", "帮会帮主", "玩家数", "地盘数", "联盟帮派", "总坛");
+                      "幫會名稱", "幫會幫主", "玩家數", "地盤數", "聯盟幫派", "總壇");
         msg += HIY "----------------------------------------------------------------------\n" NOR;
 
         n = 0;
@@ -374,24 +374,24 @@ int show_bunch_all(object me, string arg)
                 n++;
                 msg += sprintf(WHT "%-12s%-20s%-10s%-10s%-12s%-10s\n" NOR,
                                bunch,query("name", user)+"("+query("id", user)+")",
-                               player + " 人", area + " 处",
-                               sizeof(BUNCH_D->query_bunch_league(bunch)) + " 个",
+                               player + " 人", area + " 處",
+                               sizeof(BUNCH_D->query_bunch_league(bunch)) + " 個",
                                citys[BUNCH_D->query_bunch_info(bunch, "room_zone")]);
 
                 UPDATE_D->global_destruct_player(user);
         }
 
         if (n < 1)
-                return notify_fail("现在没有任何帮派信息。\n");
+                return notify_fail("現在沒有任何幫派信息。\n");
 
-        msg += "\n目前泥潭共有" + HIM + chinese_number(n) + NOR + "个帮派。\n";
+        msg += "\n目前泥潭共有" + HIM + chinese_number(n) + NOR + "個幫派。\n";
         msg += HIY "----------------------------------------------------------------------\n" NOR;
 
         write(msg);
         return 1;
 }
 
-// 显示同盟中的信息
+// 顯示同盟中的信息
 int show_bunch_info(object me, string arg)
 {
         string fam;
@@ -406,27 +406,27 @@ int show_bunch_info(object me, string arg)
 
         if (! arrayp(member = BUNCH_D->query_bunch_members(fam)))
         {
-                write("现在江湖上没有(" + fam + ")这个帮派。\n");
+                write("現在江湖上沒有(" + fam + ")這個幫派。\n");
                 return 1;
         }
 
         if (sizeof(member) < 1)
-                return notify_fail(fam + "现在没有一个帮派玩家。\n");
+                return notify_fail(fam + "現在沒有一個幫派玩家。\n");
 
         if (! wizardp(me))
         {
                 if( query("jing", me)<50 )
-                        return notify_fail("你现在精神不济，无法打听这些消息。\n");
+                        return notify_fail("你現在精神不濟，無法打聽這些消息。\n");
 
                 if (me->is_busy())
-                        return notify_fail("你现在正忙，没有时间打听这些消息。\n");
+                        return notify_fail("你現在正忙，沒有時間打聽這些消息。\n");
 
                 me->receive_damage("jing", 50);
                 me->start_busy(3);
         }
 
         /*
-        msg = WHT "\n" + fam + "的帮派玩家列表\n" NOR;
+        msg = WHT "\n" + fam + "的幫派玩家列表\n" NOR;
         msg += HIY "------------------------------------------------------\n" NOR;
         member = sort_array(member, (: sort_member :));
         foreach (id in member)
@@ -434,37 +434,37 @@ int show_bunch_info(object me, string arg)
                 reset_eval_cost();
                 msg += sprintf(WHT "%-10s  ", id);
                 if (objectp(ob = find_player(id)))
-                        msg += sprintf(HIY "在线    "
-                                       NOR WHT "职位：" HIM "%-20s "
-                                       NOR WHT "等级：" HIR "%-2d\n" NOR,
+                        msg += sprintf(HIY "在線    "
+                                       NOR WHT "職位：" HIM "%-20s "
+                                       NOR WHT "等級：" HIR "%-2d\n" NOR,
                                        query("bunch/title", ob),
                                        query("bunch/level", ob));
                 else
-                        msg += HIR "不在线\n" NOR;
+                        msg += HIR "不在線\n" NOR;
         }
 
         */
-        msg = WHT "\n" + fam + "的帮派资料汇总表\n" NOR;
+        msg = WHT "\n" + fam + "的幫派資料彙總表\n" NOR;
         msg += HIY "\n------------------------------------------------------\n" NOR;
-        msg += WHT + fam + "上个月收入单表\n" NOR;
+        msg += WHT + fam + "上個月收入單表\n" NOR;
         msg += HIY "------------------------------------------------------\n" NOR;
         i=query(fam+"/last_area_money", get_object(BUNCH_D));
         if (! intp(i))   i = 0;
-        msg += "地盘收入：" + MONEY_D->money_str(i) + "\n\n";
+        msg += "地盤收入：" + MONEY_D->money_str(i) + "\n\n";
         i=query(fam+"/last_npc_money", get_object(BUNCH_D));
         if (! intp(i))   i = 0;
-        msg += "帮众收入：" + MONEY_D->money_str(i) + "\n\n";
+        msg += "幫眾收入：" + MONEY_D->money_str(i) + "\n\n";
         i=query(fam+"/last_bangzhu_money", get_object(BUNCH_D));
         if (! intp(i))   i = 0;
-        msg += "帮主所得：" + MONEY_D->money_str(i) + "\n\n";
-        msg+="帮派资产："+MONEY_D->money_str(query(fam+"/money", get_object(BUNCH_D)))+"\n\n";
-        msg+="帮派荣誉："+BUNCH_D->query_bunch_honors(fam)+"\n\n";
-        msg+="帮派福利：双倍经验 "+BUNCH_D->query_bunch_efficient(fam, "exp")+" 秒、";
-        msg+="双倍潜能 "+BUNCH_D->query_bunch_efficient(fam, "pot")+" 秒、";
-        msg+="双倍体会 "+BUNCH_D->query_bunch_efficient(fam, "mar")+" 秒\n";
+        msg += "幫主所得：" + MONEY_D->money_str(i) + "\n\n";
+        msg+="幫派資產："+MONEY_D->money_str(query(fam+"/money", get_object(BUNCH_D)))+"\n\n";
+        msg+="幫派榮譽："+BUNCH_D->query_bunch_honors(fam)+"\n\n";
+        msg+="幫派福利：雙倍經驗 "+BUNCH_D->query_bunch_efficient(fam, "exp")+" 秒、";
+        msg+="雙倍潛能 "+BUNCH_D->query_bunch_efficient(fam, "pot")+" 秒、";
+        msg+="雙倍體會 "+BUNCH_D->query_bunch_efficient(fam, "mar")+" 秒\n";
         msg += HIY "------------------------------------------------------\n" NOR;
 
-        msg += sprintf("现在%s在江湖上具有 %s%d%s 点声望。\n",
+        msg += sprintf("現在%s在江湖上具有 %s%d%s 點聲望。\n",
                        fam, HIY, BUNCH_D->query_bunch_fame(fam), NOR);
         write(msg);
 
@@ -486,27 +486,27 @@ int show_bunch_area(object me, string arg)
 
         if (! arrayp(member = BUNCH_D->query_bunch_areas(fam)))
         {
-                write("现在帮派" + fam + "没有任何地盘。\n");
+                write("現在幫派" + fam + "沒有任何地盤。\n");
                 return 1;
         }
 
         if (sizeof(member) < 1)
-                return notify_fail(fam + "现在没有任何地盘。\n");
+                return notify_fail(fam + "現在沒有任何地盤。\n");
 
         if (! wizardp(me))
         {
                 if( query("jing", me)<50 )
-                        return notify_fail("你现在精神不济，无法打听这些消息。\n");
+                        return notify_fail("你現在精神不濟，無法打聽這些消息。\n");
 
                 if (me->is_busy())
-                        return notify_fail("你现在正忙，没有时间打听这些消息。\n");
+                        return notify_fail("你現在正忙，沒有時間打聽這些消息。\n");
 
                 me->receive_damage("jing", 50);
                 me->start_busy(3);
         }
 
         msg = sprintf(HIC "\n%-18s%-10s%-28s%-8s%-8s%-18s\n" NOR,
-                      "地盘名称", "城市", "驻守帮众", "开发度", "忠诚度", "上月收入");
+                      "地盤名稱", "城市", "駐守幫眾", "開發度", "忠誠度", "上月收入");
 
         msg += HIY "--------------------------------------------------------------------------------\n" NOR;
 
@@ -523,20 +523,20 @@ int show_bunch_area(object me, string arg)
                                area["area_name"], city, area["npc_name"] + "(" + area["npc_id"] + ")",
                                area["kaifa"] + "%",
                                area["zhongcheng"] + "%",
-                               area["last_money"] / 100 + " 两");
+                               area["last_money"] / 100 + " 兩");
         }
 
         if (n < 1)
-                return notify_fail(arg + "现在没有任何地盘。\n");
+                return notify_fail(arg + "現在沒有任何地盤。\n");
 
-        msg += "\n目前" + HIM + fam + NOR + "共有" + HIM + chinese_number(n) + NOR + "处地盘。\n";
+        msg += "\n目前" + HIM + fam + NOR + "共有" + HIM + chinese_number(n) + NOR + "處地盤。\n";
         msg += HIY "--------------------------------------------------------------------------------\n" NOR;
         // me->start_more(msg);
         write(msg);
         return 1;
 }
 
-// 显示某一个同盟中的人员
+// 顯示某一個同盟中的人員
 int dismiss_bunch(object me, string arg)
 {
         string *member;
@@ -546,18 +546,18 @@ int dismiss_bunch(object me, string arg)
         int n;
 
         if (wiz_level(me) < wiz_level("(arch)"))
-                return notify_fail("你的权限不够，不能强行解散帮派。\n");
+                return notify_fail("你的權限不夠，不能強行解散幫派。\n");
 
         if (! arg)
-                return notify_fail("你要解散哪个帮派？\n");
+                return notify_fail("你要解散哪個幫派？\n");
 
         if (! arrayp(member = BUNCH_D->query_bunch_members(arg)))
         {
-                write("现在江湖上没有(" + arg + ")这个帮派。\n");
+                write("現在江湖上沒有(" + arg + ")這個幫派。\n");
                 return 1;
         }
 
-        write("你强行解散了" + arg + "。\n");
+        write("你強行解散了" + arg + "。\n");
         BUNCH_D->dismiss_bunch(arg);
         return 1;
 }
@@ -569,20 +569,20 @@ int expell_bunch_member(object me, string arg)
 
         if( !stringp(fname=query("bunch/bunch_name", me)) )
         {
-                write("你现在还没有加入任何帮派呢。\n");
+                write("你現在還沒有加入任何幫派呢。\n");
                 return 1;
         }
 
         if( query("bunch/level", me) != 7 ||
             BUNCH_D->query_bunch_info(fname,"master") != query("id", me) )
         {
-                write("只有帮主才有权利开除某人出帮会！\n");
+                write("只有幫主才有權利開除某人出幫會！\n");
                 return 1;
         }
 
         if( arg == query("id", me) )
         {
-                write("开除自己？你还不如解散你的帮派！\n");
+                write("開除自己？你還不如解散你的幫派！\n");
                 return 1;
         }
 
@@ -592,14 +592,14 @@ int expell_bunch_member(object me, string arg)
 
                 if (! objectp(ob))
                 {
-                        write("没有这个玩家。\n");
+                        write("沒有這個玩家。\n");
                         return 1;
                 }
 
                 if( query("bunch/bunch_name", ob) != fname )
                 {
                         UPDATE_D->global_destruct_player(ob);
-                        write("他不是你的帮派中人，你无权开除他！\n");
+                        write("他不是你的幫派中人，你無權開除他！\n");
                         return 1;
 
                 }
@@ -611,8 +611,8 @@ int expell_bunch_member(object me, string arg)
 
         if (objectp(ob))
                 CHANNEL_D->do_channel(this_object(), "rumor",
-                        "听说"+query("name", ob)+"("+arg+")"+
-                        "被帮派『" + fname + "』给开除了。");
+                        "聽說"+query("name", ob)+"("+arg+")"+
+                        "被幫派『" + fname + "』給開除了。");
 
         UPDATE_D->clear_user_data(arg, "bunch");
 
@@ -626,26 +626,26 @@ int bunch_efficient(object me, string arg)
 
         if( !stringp(fname=query("bunch/bunch_name", me)) )
         {
-                write("你现在还没有加入任何帮派呢。\n");
+                write("你現在還沒有加入任何幫派呢。\n");
                 return 1;
         }
 
         if( query("bunch/level", me) != 7 ||
             BUNCH_D->query_bunch_info(fname,"master") != query("id", me) )
         {
-                write("只有帮主才有权利使用帮派的荣誉点！\n");
+                write("只有幫主才有權利使用幫派的榮譽點！\n");
                 return 1;
         }
 
         if( !arg || arg == "" )
         {
-                write("你要用帮派荣誉点来干什么？\n");
+                write("你要用幫派榮譽點來幹什麼？\n");
                 return 1;
         }
 
         if( BUNCH_D->query_bunch_honors(fname) < 500 )
         {
-                write("你的帮派荣誉点不够！\n");
+                write("你的幫派榮譽點不夠！\n");
                 return 1;
         }
 
@@ -655,43 +655,43 @@ int bunch_efficient(object me, string arg)
                 BUNCH_D->add_bunch_honors(fname, -500);
                 BUNCH_D->set_bunch_efficient(fname, arg, 7200);
                 CHANNEL_D->do_channel(this_object(), "rumor",
-                        "听说帮派『" + fname + HIM"』兑换了荣誉点，全帮双倍经验2小时！\n"NOR);
-                write("你开始使用帮派荣誉点200点兑换全帮双倍经验2小时！\n");
+                        "聽說幫派『" + fname + HIM"』兌換了榮譽點，全幫雙倍經驗2小時！\n"NOR);
+                write("你開始使用幫派榮譽點200點兌換全幫雙倍經驗2小時！\n");
                 break;
 
         case "pot":
                 BUNCH_D->add_bunch_honors(fname,-500);
                 BUNCH_D->set_bunch_efficient(fname, arg, 7200);
                 CHANNEL_D->do_channel(this_object(), "rumor",
-                        "听说帮派『" + fname + HIM"』兑换了荣誉点，全帮双倍潜能2小时！\n"NOR);
-                write("你开始使用帮派荣誉点200点兑换全帮双倍潜能2小时！\n");
+                        "聽說幫派『" + fname + HIM"』兌換了榮譽點，全幫雙倍潛能2小時！\n"NOR);
+                write("你開始使用幫派榮譽點200點兌換全幫雙倍潛能2小時！\n");
                 break;
 
         case "mar":
                 BUNCH_D->add_bunch_honors(fname,-500);
                 BUNCH_D->set_bunch_efficient(fname, arg, 7200);
                 CHANNEL_D->do_channel(this_object(), "rumor",
-                        "听说帮派『" + fname + HIM"』兑换了荣誉点，全帮双倍体会2小时！\n"NOR);
-                write("你开始使用帮派荣誉点200点兑换全帮双倍体会2小时！\n");
+                        "聽說幫派『" + fname + HIM"』兌換了榮譽點，全幫雙倍體會2小時！\n"NOR);
+                write("你開始使用幫派榮譽點200點兌換全幫雙倍體會2小時！\n");
                 break;
 
         case "yanjiu":
                 BUNCH_D->add_bunch_honors(fname,-500);
                 BUNCH_D->set_bunch_efficient(fname, arg, 7200);
                 CHANNEL_D->do_channel(this_object(), "rumor",
-                        "听说帮派『" + fname + HIM"』兑换了荣誉点，全帮研究效率增加20%持续2小时！\n"NOR);
-                write("你开始使用帮派荣誉点200点兑换全帮研究效率增加20%持续2小时！\n");
+                        "聽說幫派『" + fname + HIM"』兌換了榮譽點，全幫研究效率增加20%持續2小時！\n"NOR);
+                write("你開始使用幫派榮譽點200點兌換全幫研究效率增加20%持續2小時！\n");
                 break;
 
         case "jiqu":
                 BUNCH_D->add_bunch_honors(fname,-500);
                 BUNCH_D->set_bunch_efficient(fname, arg, 7200);
                 CHANNEL_D->do_channel(this_object(), "rumor",
-                        "听说帮派『" + fname + HIM"』兑换了荣誉点，全帮汲取效率增加20%持续2小时！\n"NOR);
-                write("你开始使用帮派荣誉点200点兑换全帮汲取效率增加20%持续2小时！\n");
+                        "聽說幫派『" + fname + HIM"』兌換了榮譽點，全幫汲取效率增加20%持續2小時！\n"NOR);
+                write("你開始使用幫派榮譽點200點兌換全幫汲取效率增加20%持續2小時！\n");
                 break;
         default:
-                write("你使用帮派荣誉点用来兑换什么呢？！\n");
+                write("你使用幫派榮譽點用來兌換什麼呢？！\n");
                 break;
         }
 
@@ -706,7 +706,7 @@ int appoint_bunch_member(object me, string arg)
         int lvl, flag;
 
         if( !(banghui=query("bunch/bunch_name", me)) )
-              return notify_fail("你没有参加任何帮会，无法任命别人职位。\n");
+              return notify_fail("你沒有參加任何幫會，無法任命別人職位。\n");
 
         flag = 0;
 
@@ -716,82 +716,82 @@ int appoint_bunch_member(object me, string arg)
                 flag = 1;
 
         if (! arg)
-                return notify_fail("指令格式：bunch appoint <某人> <职务> 或 bunch appoint <某人> <部门> <职务>\n");
+                return notify_fail("指令格式：bunch appoint <某人> <職務> 或 bunch appoint <某人> <部門> <職務>\n");
 
         if (! flag)
-                return notify_fail("你在帮内职位太低，无权任命别人职位！\n");
+                return notify_fail("你在幫內職位太低，無權任命別人職位！\n");
 
         if (sscanf(arg, "%s %s %s", id, item, zhiwei) == 3)
         {
                 ob = present(id, environment(me));
 
-                if (! ob) return notify_fail("这儿没有这么个人。\n");
+                if (! ob) return notify_fail("這兒沒有這麼個人。\n");
 
                 if (! ob->is_character())
-                        return notify_fail("看清楚，那并不是人！\n");
+                        return notify_fail("看清楚，那並不是人！\n");
 
                 if (! playerp(ob))
-                        return notify_fail("你只对本帮会的玩家使用这条命令！\n");
+                        return notify_fail("你只對本幫會的玩家使用這條命令！\n");
 
                 if( banghui != query("bunch/bunch_name", ob) )
-                        return notify_fail("你只对本帮会的玩家使用这条命令！\n");
+                        return notify_fail("你只對本幫會的玩家使用這條命令！\n");
 
                 if( query("bunch/level", me)<query("bunch/level", ob) )
-                        return notify_fail("对方在帮中的职位比你高，你任命他？搞笑！\n");
+                        return notify_fail("對方在幫中的職位比你高，你任命他？搞笑！\n");
 
                 if( query("bunch/level", me) == query("bunch/level", ob) )
-                        return notify_fail("对方在帮中的职位和你一样高，你任命他？搞笑！\n");
+                        return notify_fail("對方在幫中的職位和你一樣高，你任命他？搞笑！\n");
 
                 if (me->is_busy() || me->is_fighting())
-                        return notify_fail("你正忙着呢！\n");
+                        return notify_fail("你正忙著呢！\n");
 
                 if (ob->is_busy() || ob->is_fighting())
-                        return notify_fail("对方正忙着呢！\n");
+                        return notify_fail("對方正忙著呢！\n");
 
                 if (ob == me)
                         return notify_fail("自己任命自己？\n");
 
                 if (! check_item(item))
-                        return notify_fail("您任命的职务必须是中文，且为二到八字！\n");
+                        return notify_fail("您任命的職務必須是中文，且為二到八字！\n");
 
-                if (zhiwei != "护法" && zhiwei != "舵主" && zhiwei != "坛主"
-                &&  zhiwei != "堂主" && zhiwei != "香主" && zhiwei != "门人"
-                &&  zhiwei != "帮众")
-                        return notify_fail("任命的职位至上而下为：护法,舵主,坛主,堂主,香主,门人,帮众。\n");
+                if (zhiwei != "護法" && zhiwei != "舵主" && zhiwei != "壇主"
+                &&  zhiwei != "堂主" && zhiwei != "香主" && zhiwei != "門人"
+                &&  zhiwei != "幫眾")
+                        return notify_fail("任命的職位至上而下為：護法,舵主,壇主,堂主,香主,門人,幫眾。\n");
 
                 switch (zhiwei)
                 {
-                case "副帮主":
+                case "副幫主":
                         lvl = 6;
                         break;
-                case "长老":
+                case "長老":
                         lvl = 5;
                         break;
-                case "护法":
+                case "護法":
                         lvl = 4;
                         break;
                 case "舵主":
-                case "坛主":
+                case "壇主":
                 case "堂主":
                 case "香主":
                         lvl = 3;
                         break;
-                case "门人":
+                case "門人":
                         lvl = 2;
                         break;
-                case "帮众":
+                case "幫眾":
                         lvl = 1;
                         break;
                 }
 
                 if( query("bunch/level", me) <= lvl )
-                        return notify_fail("你职位太低，无权任命别人这个职位！\n");
+                        return notify_fail("你職位太低，無權任命別人這個職位！\n");
 
                 else
                 {
                         set("bunch/title", item+zhiwei, ob);
                         set("bunch/level", lvl, ob);
-                        message_vision("$N任命$n为「" + banghui + "」" + item + zhiwei + "！\n", me, ob);
+                        message_vision("$N任命$n為「" + banghui + "」" + item + zhiwei + "！\n", me, ob);
                         return 1;
                 }
         }
@@ -801,70 +801,70 @@ int appoint_bunch_member(object me, string arg)
         {
                 ob = present(id, environment(me));
 
-                if (! ob) return notify_fail("这儿没有这么个人。\n");
+                if (! ob) return notify_fail("這兒沒有這麼個人。\n");
 
                 if (! ob->is_character())
-                        return notify_fail("看清楚，那并不是人！\n");
+                        return notify_fail("看清楚，那並不是人！\n");
 
-                if (!userp(ob)) return notify_fail("你只对本帮会的玩家使用这条命令！\n");
+                if (!userp(ob)) return notify_fail("你只對本幫會的玩家使用這條命令！\n");
 
                 if( banghui != query("bunch/bunch_name", ob) )
-                        return notify_fail("你只对本帮会的玩家使用这条命令！\n");
+                        return notify_fail("你只對本幫會的玩家使用這條命令！\n");
 
                 if( query("bunch/level", me) <= query("bunch/level", ob) )
-                        return notify_fail("对方在帮中的职位比你高，你任命他？搞笑！\n");
+                        return notify_fail("對方在幫中的職位比你高，你任命他？搞笑！\n");
 
                 if (me->is_busy() || me->is_fighting())
-                        return notify_fail("你正忙着呢！\n");
+                        return notify_fail("你正忙著呢！\n");
 
                 if (ob->is_busy() || ob->is_fighting())
-                        return notify_fail("对方正忙着呢！\n");
+                        return notify_fail("對方正忙著呢！\n");
 
                 if (ob == me)
                         return notify_fail("自己任命自己？\n");
 
-                if (name != "副帮主" && name != "长老" && name != "护法" && name != "舵主"
-                &&  name != "坛主" && name != "堂主" && name != "香主" && name != "门人"
-                &&  name != "帮众")
-                        return notify_fail("任命的职位至上而下为：副帮主，长老, 护法, 舵主, 坛主, 堂主, 香主, 门人, 帮众 。\n");
+                if (name != "副幫主" && name != "長老" && name != "護法" && name != "舵主"
+                &&  name != "壇主" && name != "堂主" && name != "香主" && name != "門人"
+                &&  name != "幫眾")
+                        return notify_fail("任命的職位至上而下為：副幫主，長老, 護法, 舵主, 壇主, 堂主, 香主, 門人, 幫眾 。\n");
 
                 switch (name)
                 {
-                case "副帮主":
+                case "副幫主":
                         lvl = 6;
                         break;
-                case "长老":
+                case "長老":
                         lvl = 5;
                         break;
-                case "护法":
+                case "護法":
                         lvl = 4;
                         break;
                 case "舵主":
-                case "坛主":
+                case "壇主":
                 case "堂主":
                 case "香主":
                         lvl = 3;
                         break;
-                case "门人":
+                case "門人":
                         lvl = 2;
                         break;
-                case "帮众":
+                case "幫眾":
                         lvl = 1;
                         break;
                 }
 
                 if( query("bunch/level", me) <= lvl )
-                        return notify_fail("你职位太低，无权任命别人这个职位！\n");
+                        return notify_fail("你職位太低，無權任命別人這個職位！\n");
 
                 else
                 {
                         set("bunch/title", name, ob);
                         set("bunch/level", lvl, ob);
-                        message_vision("$N任命$n为「" + banghui + "」" + name + "！\n", me, ob);
+                        message_vision("$N任命$n為「" + banghui + "」" + name + "！\n", me, ob);
                         return 1;
                 }
         } else
-                return notify_fail("指令格式：bunch appoint <某人> <职务> 或 bunch appoint <某人> <部门> <职务>\n");
+                return notify_fail("指令格式：bunch appoint <某人> <職務> 或 bunch appoint <某人> <部門> <職務>\n");
 }
 
 int inherit_bunch_master(object me, string arg)
@@ -877,38 +877,38 @@ int inherit_bunch_master(object me, string arg)
         if( !stringp(banghui=query("bunch/bunch_name", me)) ||
             query("bunch/level", me) != 7 ||
             BUNCH_D->query_bunch_info(banghui,"master") != query("id", me) )
-                return notify_fail("只有帮会的帮主才能使用这条指令。\n");
+                return notify_fail("只有幫會的幫主才能使用這條指令。\n");
 
         if (me->is_fighting() || me->is_busy())
-                return notify_fail("你正忙着呢。\n");
+                return notify_fail("你正忙著呢。\n");
 
         if (! arg)
-                return notify_fail("你要让位给谁？\n");
+                return notify_fail("你要讓位給誰？\n");
 
         if( query("id", me) == arg )
-                return notify_fail("让位给自己？有必要吗？\n");
+                return notify_fail("讓位給自己？有必要嗎？\n");
 
         if (! ob = present(arg, environment(me)))
-                return notify_fail("这儿没有这么个玩家。\n");
+                return notify_fail("這兒沒有這麼個玩家。\n");
 
         if (! playerp(ob))
-                return notify_fail("你只能让位给玩家。\n");
+                return notify_fail("你只能讓位給玩家。\n");
 
         if( query("bunch/bunch_name", ob) != banghui )
-                return notify_fail("你只能让位给本帮会的玩家。\n");
+                return notify_fail("你只能讓位給本幫會的玩家。\n");
 
         if (ob->is_fighting() || ob->is_busy())
-                return notify_fail("对方正忙着呢。\n");
+                return notify_fail("對方正忙著呢。\n");
 
         BUNCH_D->add_bunch_info(banghui,"master",query("id", ob));
 
         set("bunch/level", 7, ob);
-        set("bunch/title", "帮主", ob);
-        set("bunch/title", "老帮主", me);
+        set("bunch/title", "幫主", ob);
+        set("bunch/title", "老幫主", me);
         set("bunch/level", 6, me);
         ob->save();
         me->save();
-        message_vision("$N将帮会「" + banghui + "」的帮主之位让位给了$n。\n", me, ob);
+        message_vision("$N將幫會「" + banghui + "」的幫主之位讓位給了$n。\n", me, ob);
         return 1;
 }
 
@@ -926,17 +926,17 @@ string show_ally(object me, string id)
         string str = "";
         int i;
 
-        str += sprintf("目前%s的同盟帮派有：\n\n", id);
+        str += sprintf("目前%s的同盟幫派有：\n\n", id);
 
         if (! list = BUNCH_D->query_bunch_league(id))
-                str += "贵帮派尚无同盟帮派。\n\n";
+                str += "貴幫派尚無同盟幫派。\n\n";
         else
         {
                 for (i = 0; i < sizeof(list); i++)
                 {
                         str += sprintf("%s\n", list[i]);
                 }
-                str += sprintf("\n共 %d 帮派。\n\n", sizeof(list));
+                str += sprintf("\n共 %d 幫派。\n\n", sizeof(list));
         }
         return me->start_more(str);
 
@@ -951,13 +951,13 @@ int show_bunch_league(object me, string arg)
         seteuid(getuid());
 
         if (me->is_busy())
-                return notify_fail("你的动作还没有完成。\n");
+                return notify_fail("你的動作還沒有完成。\n");
 
         if (me->is_fighting())
-                return notify_fail("你还在战斗中。\n");
+                return notify_fail("你還在戰鬥中。\n");
 
         if( !stringp(bname=query("bunch/bunch_name", me)) )
-                return notify_fail("你还没有组建或加入任何帮派。\n");
+                return notify_fail("你還沒有組建或加入任何幫派。\n");
 
         if (! arg)
         {
@@ -967,39 +967,39 @@ int show_bunch_league(object me, string arg)
 
         if( !query("bunch/level", me) ||
             query("bunch/level", me)<7 )
-                return notify_fail("你并不是" + bname + "帮派的龙头老大。\n");
+                return notify_fail("你並不是" + bname + "幫派的龍頭老大。\n");
 
         if (sscanf(arg, "%s %s", arg, tname) != 2)
-                return notify_fail("指令格式：bunch ally with|cancel <帮派>\n");
+                return notify_fail("指令格式：bunch ally with|cancel <幫派>\n");
         else
         {
                 if (! check_bunch(tname))
-                        return notify_fail("没有这个帮派。\n");
+                        return notify_fail("沒有這個幫派。\n");
 
                 if (arg == "with")
                 {
                         if (tname == bname)
-                                return notify_fail("你不能跟自己结盟。\n");
+                                return notify_fail("你不能跟自己結盟。\n");
 
                         if (BUNCH_D->bunch_is_league(bname, tname) )
-                                return notify_fail("此帮派已经跟贵帮派同盟了。\n");
+                                return notify_fail("此幫派已經跟貴幫派同盟了。\n");
 
                         if (! ob = find_player((string)BUNCH_D->query_bunch_info(tname, "master")))
-                                return notify_fail("对方的帮主不在，你无法对他提出要求。\n");
+                                return notify_fail("對方的幫主不在，你無法對他提出要求。\n");
 
                         if( me == query_temp("pending/bunch_ally", ob) )
                         {
-                                write(HIY "你正式宣告从现在起" + bname + "与" + tname + "达成同盟协议。\n" NOR);
-                                shout(HIY + bname + "正式宣告从现在起与" + tname + "达成同盟协议。\n" NOR);
+                                write(HIY "你正式宣告從現在起" + bname + "與" + tname + "達成同盟協議。\n" NOR);
+                                shout(HIY + bname + "正式宣告從現在起與" + tname + "達成同盟協議。\n" NOR);
                                 BUNCH_D->add_league_into_bunch(bname, tname);
                                 delete_temp("pending/bunch_ally", ob);
                                 return 1;
                         }
                         else
                         {
-                                write(HIY "你提出与" + tname + "的同盟提议。\n" NOR);
-                                tell_object(ob,bname+"的"+query("name", me)+"要求和贵帮派建立同盟关系。\n");
-                                tell_object(ob, YEL "如果你同意的话，请用 bunch ally with " + bname + "。\n" NOR);
+                                write(HIY "你提出與" + tname + "的同盟提議。\n" NOR);
+                                tell_object(ob,bname+"的"+query("name", me)+"要求和貴幫派建立同盟關係。\n");
+                                tell_object(ob, YEL "如果你同意的話，請用 bunch ally with " + bname + "。\n" NOR);
                                 set_temp("pending/bunch_ally", ob, me);
                                 return 1;
                         }
@@ -1008,18 +1008,18 @@ int show_bunch_league(object me, string arg)
                 else if (arg == "cancel")
                 {
                         if (tname == bname)
-                                return notify_fail("你不能跟自己解除结盟。\n");
+                                return notify_fail("你不能跟自己解除結盟。\n");
 
                         if (! BUNCH_D->bunch_is_league(bname, tname))
-                                return notify_fail("此帮派并没有跟贵帮派结成同盟。\n");
+                                return notify_fail("此幫派並沒有跟貴幫派結成同盟。\n");
 
-                        shout(HIY + me->name() + "代表帮派" + bname + "正式宣告从现在起解除与" + tname + "的同盟协议。\n" NOR);
+                        shout(HIY + me->name() + "代表幫派" + bname + "正式宣告從現在起解除與" + tname + "的同盟協議。\n" NOR);
                         BUNCH_D->remove_league_from_bunch(bname, tname);
                         return 1;
 
                 }
                 else
-                        return notify_fail("指令格式：bunch ally with|cancel <帮派>\n");
+                        return notify_fail("指令格式：bunch ally with|cancel <幫派>\n");
         }
 }
 
@@ -1032,17 +1032,17 @@ int bunch_arrest(object me, string arg)
         int    i, cnt;
 
         if( !stringp(banghui=query("bunch/bunch_name", me)) )
-                return notify_fail("你还没有组建或加入任何帮派。\n");
+                return notify_fail("你還沒有組建或加入任何幫派。\n");
 
         if(! arg)
         {
-                msg = HIR "通缉黑名单\n" NOR;
+                msg = HIR "通緝黑名單\n" NOR;
                 msg += "----------------------------------------------\n" NOR;
 
                 vendetta = BUNCH_D->query_bunch_info(banghui, "vendetta");
 
                 if (! arrayp(vendetta) || sizeof(vendetta) < 1)
-                        return notify_fail("目前没有被本帮派通缉的人。\n");
+                        return notify_fail("目前沒有被本幫派通緝的人。\n");
 
                 cnt = 0;
                 for (i = 0; i < sizeof(vendetta); i++)
@@ -1063,7 +1063,7 @@ int bunch_arrest(object me, string arg)
 
         if( !query("bunch/level", me) ||
               query("bunch/level", me)<7 )
-                return notify_fail("你并不是" + banghui + "帮派的龙头老大。\n");
+                return notify_fail("你並不是" + banghui + "幫派的龍頭老大。\n");
 
 
         if (sscanf(arg,"-a %s", str) == 1)
@@ -1071,30 +1071,30 @@ int bunch_arrest(object me, string arg)
                 target = UPDATE_D->global_find_player(str);
 
                 if (! target)
-                        return notify_fail("你想追杀的玩家并不存在。\n");
+                        return notify_fail("你想追殺的玩家並不存在。\n");
 
                 if (target == me)
                 {
                         UPDATE_D->global_destruct_player(target, 1);
-                        return notify_fail("追杀自己？没问题吧。\n");
+                        return notify_fail("追殺自己？沒問題吧。\n");
                 }
 
                 if (wizardp(target))
                 {
                         UPDATE_D->global_destruct_player(target, 1);
-                        return notify_fail("追杀巫师？胆子也太大了吧！\n");
+                        return notify_fail("追殺巫師？膽子也太大了吧！\n");
                 }
 
                 if( query("age", target)<18 )
                 {
                         UPDATE_D->global_destruct_player(target, 1);
-                        return notify_fail("追杀无名之辈？没问题吧。\n");
+                        return notify_fail("追殺無名之輩？沒問題吧。\n");
                 }
 
                 if( query("vendetta/"+banghui, target) )
                 {
                         UPDATE_D->global_destruct_player(target, 1);
-                        return notify_fail("此玩家已在黑名单中。\n");
+                        return notify_fail("此玩家已在黑名單中。\n");
                 }
 
                 set("vendetta/"+banghui, 1, target);
@@ -1108,11 +1108,11 @@ int bunch_arrest(object me, string arg)
 
                 if( banghui == query("bunch/bunch_name", target) )
                         message("channel:rumor",
-                                HIR"【谣言四起】"+ "某人：帮派「"+banghui+"」开始追杀本帮"+
-                                query("name", target)+"("+query("id", target)+")，帮中兄弟见到格杀勿论！\n"NOR,users());
+                                HIR"【謠言四起】"+ "某人：幫派「"+banghui+"」開始追殺本幫"+
+                                query("name", target)+"("+query("id", target)+")，幫中兄弟見到格殺勿論！\n"NOR,users());
                 else
                         message("channel:rumor",
-                                HIR"【谣言四起】"+"某人：帮派「"+banghui+"」开始追杀"+query("name", target)+"("+query("id", target)+")，帮中兄弟见到格杀勿论！\n"NOR,users());
+                                HIR"【謠言四起】"+"某人：幫派「"+banghui+"」開始追殺"+query("name", target)+"("+query("id", target)+")，幫中兄弟見到格殺勿論！\n"NOR,users());
 
                 UPDATE_D->global_destruct_player(target, 1);
                 return 1;
@@ -1121,11 +1121,11 @@ int bunch_arrest(object me, string arg)
         if (sscanf(arg, "-d %s", str) == 1)
         {
                 target = UPDATE_D->global_find_player(str);
-                if(! target)    return notify_fail("本游戏中没有这么个玩家。\n");
+                if(! target)    return notify_fail("本遊戲中沒有這麼個玩家。\n");
                 if( !query("vendetta/"+banghui, target) )
                 {
                         UPDATE_D->global_destruct_player(target, 0);
-                        return notify_fail("此玩家并不在追杀的黑名单中。\n");
+                        return notify_fail("此玩家並不在追殺的黑名單中。\n");
                 }
 
                 delete("vendetta/"+banghui, target);
@@ -1137,7 +1137,7 @@ int bunch_arrest(object me, string arg)
                 vendetta -= ({ 0 });
                 BUNCH_D->add_bunch_info(banghui, "vendetta", vendetta);
                 message("channel:rumor",
-                       HIR"【谣言四起】"+"某人：帮派「"+banghui+"」停止追杀"+query("name", target)+"("+query("id", target)+")，给予特赦。\n"NOR,users());
+                       HIR"【謠言四起】"+"某人：幫派「"+banghui+"」停止追殺"+query("name", target)+"("+query("id", target)+")，給予特赦。\n"NOR,users());
                 UPDATE_D->global_destruct_player(target, 1);
                 return 1;
         }
@@ -1155,10 +1155,10 @@ int bunch_invite(object me, string arg)
         string stuffid, stuffname;
 
         if (! arg || arg == "")
-                return notify_fail("你要邀请谁加入你的帮会？\n");
+                return notify_fail("你要邀請誰加入你的幫會？\n");
 
         if( !stringp(bunch=query("bunch/bunch_name", me)) )
-                return notify_fail("你没有参加任何帮会，无法邀请他人加入。\n");
+                return notify_fail("你沒有參加任何幫會，無法邀請他人加入。\n");
 
         flag = 0;
 
@@ -1167,39 +1167,39 @@ int bunch_invite(object me, string arg)
                 flag = 1;
 
         if( query("id", me) == arg )
-                return notify_fail("邀请自己？！\n");
+                return notify_fail("邀請自己？！\n");
 
         if (! objectp(ob = present(arg, environment(me))))
-                return notify_fail("这儿有没这么个人。\n");
+                return notify_fail("這兒有沒這麼個人。\n");
 
         if (! ob->is_character())
-                return notify_fail("你只能邀请「人」加入你的帮会。\n");
+                return notify_fail("你只能邀請「人」加入你的幫會。\n");
 
         if( query("bunch/bunch_name", ob) == query("bunch/bunch_name", me) )
-                return notify_fail(query("name", ob)+"已经是本帮弟兄了。\n");
+                return notify_fail(query("name", ob)+"已經是本幫弟兄了。\n");
 
         if (me->is_fighting() || me->is_busy())
-                return notify_fail("你正忙着呢。\n");
+                return notify_fail("你正忙著呢。\n");
 
         if (ob->is_fighting() || ob->is_busy())
-                return notify_fail("对方正忙着呢。\n");
+                return notify_fail("對方正忙著呢。\n");
 
-        if (! living(ob)) return notify_fail("你得先弄醒他再说。\n");
+        if (! living(ob)) return notify_fail("你得先弄醒他再說。\n");
 
         if (playerp(ob) && ! flag)
-                return notify_fail("你无权邀请玩家加入「" + bunch + "」！\n");
+                return notify_fail("你無權邀請玩家加入「" + bunch + "」！\n");
 
-        message_vision("$N邀请$n参加帮会「" + bunch + "」。\n", me, ob);
+        message_vision("$N邀請$n參加幫會「" + bunch + "」。\n", me, ob);
 
         if (! playerp(ob))
         {
                 if( !query("bunch/zhengzhao", ob) || !ob->is_bunch_npc() )
-                        return notify_fail("看样子"+query("name", ob)+
-                                "对你的帮会没有兴趣。\n");
+                        return notify_fail("看樣子"+query("name", ob)+
+                                "對你的幫會沒有興趣。\n");
 
                 if (sizeof(BUNCH_D->query_areas_in_bunch(bunch)) > BUNCH_D->query_bunch_fame(bunch) / 500000)
-                        return notify_fail("由于你的帮派声望不够，看样子"+query("name", ob)+
-                                "对你的帮会没有兴趣。\n");
+                        return notify_fail("由於你的幫派聲望不夠，看樣子"+query("name", ob)+
+                                "對你的幫會沒有興趣。\n");
 
                 switch(query("bunch/zhengzhao", ob) )
                 {
@@ -1208,12 +1208,12 @@ int bunch_invite(object me, string arg)
                             query("bunch/zhongcheng", ob)<query("meili", me)) &&
                             query("qi", ob)*100>query("max_qi", ob)*80 )
                         {
-                                message_vision("$N对$n说道：“即是如此，你我不如切磋(qiecuo)一下武功如何？”\n",
+                                message_vision("$N對$n說道：“即是如此，你我不如切磋(qiecuo)一下武功如何？”\n",
                                                ob, me);
                                 set_temp("invite/target", me, ob);
                                 return 1;
                         }
-                        message_vision("$N冲着$n笑道：“我可不敢高攀贵帮啊。”\n", ob, me);
+                        message_vision("$N衝著$n笑道：“我可不敢高攀貴幫啊。”\n", ob, me);
                         return 1;
 
                 case 2:
@@ -1225,14 +1225,14 @@ int bunch_invite(object me, string arg)
                                 if (money < 1) money = 1;
 
                                 money = money * 1000;
-                                message_vision("$N「嘿嘿」了几声，对$n道：“" +
-                                               chinese_number(money / 1000) + "两黄金，少一个子也不行。　盶n",
+                                message_vision("$N「嘿嘿」了幾聲，對$n道：“" +
+                                               chinese_number(money / 1000) + "兩黃金，少一個子也不行。　盶n",
                                                ob, me);
                                 set_temp("invite/target", me, ob);
                                 set_temp("invite/money", money, ob);
                                 return 1;
                         }
-                        message_vision("$N冲着$n笑道：“我可不敢高攀贵帮啊。”\n", ob, me);
+                        message_vision("$N衝著$n笑道：“我可不敢高攀貴幫啊。”\n", ob, me);
                         return 1;
 
                 case 3:
@@ -1248,8 +1248,8 @@ int bunch_invite(object me, string arg)
                                 if( member_array(query("id", me),target) != -1 )
                                 {
                                         sscanf(data[query("id", me)],"%s:%s",stuffid,stuffname);
-                                        message_vision("$N对$n大声道：我不是说过了吗？把" +
-                                                       stuffname + "(" + stuffid + ")给我找来！\n",
+                                        message_vision("$N對$n大聲道：我不是說過了嗎？把" +
+                                                       stuffname + "(" + stuffid + ")給我找來！\n",
                                                        ob, me);
                                         return 1;
                                 }
@@ -1257,7 +1257,7 @@ int bunch_invite(object me, string arg)
                                 if (sizeof(target) >= 4)
                                 {
                                         message_vision("$N笑道：承蒙大家看得起，" +
-                                                       RANK_D->query_respect(ob) + "不胜感激。\n",
+                                                       RANK_D->query_respect(ob) + "不勝感激。\n",
                                                        ob);
                                         return 1;
                                 }
@@ -1267,21 +1267,21 @@ int bunch_invite(object me, string arg)
                                 stuffname = npcneed[stuffid];
                                 data[query("id", me)]=stuffid+":"+stuffname;
                                 set_temp("invite/target", data, ob);
-                                message_vision("$N冲着$n道：只要你能在三分钟之内把" +
+                                message_vision("$N衝著$n道：只要你能在三分鐘之內把" +
                                                stuffname + "(" + stuffid + ")" +
-                                               "给我找来，一切好商量。\n",
+                                               "給我找來，一切好商量。\n",
                                                ob, me);
 
                                 // remove_call_out("delete_target");
                                 call_out("delete_target",180,ob,query("id", me));
                                 return 1;
                         }
-                        message_vision("$N冲着$n笑道：“我可不敢高攀贵帮啊。”\n", ob, me);
+                        message_vision("$N衝著$n笑道：“我可不敢高攀貴幫啊。”\n", ob, me);
                         return 1;
                 }
         } else
         {
-                tell_object(ob,"如果你愿意加入对方的帮会，请使用bunch join "+query("id", me)+"。\n");
+                tell_object(ob,"如果你願意加入對方的幫會，請使用bunch join "+query("id", me)+"。\n");
                 set_temp("invite/target", me, ob);
                 return 1;
         }
@@ -1307,29 +1307,29 @@ int join_bunch(object me, string arg)
         string bunch;
 
         if (! arg || arg == "")
-                return notify_fail("你要加入谁的帮会？\n");
+                return notify_fail("你要加入誰的幫會？\n");
 
         if( query("combat_exp", me)<1000 )
-                return notify_fail("你才初入江湖，在磨练磨练吧。\n");
+                return notify_fail("你才初入江湖，在磨練磨練吧。\n");
 
         if( stringp(bunch=query("bunch/bunch_name", me)) ||
             stringp(bunch=query("league/league_name", me)) )
-                return notify_fail("抱歉，你已经是「" + bunch + "」的人了，无法加入其他帮会。\n");
+                return notify_fail("抱歉，你已經是「" + bunch + "」的人了，無法加入其他幫會。\n");
 
         if (me->is_fighting() || me->is_busy())
-                return notify_fail("你正忙着呢。\n");
+                return notify_fail("你正忙著呢。\n");
 
         if( query("id", me) == arg )
-                return notify_fail("你没法这么做！\n");
+                return notify_fail("你沒法這麼做！\n");
 
         if (! objectp(ob = present(arg, environment(me))))
-                return notify_fail("这儿没有这么个人。\n");
+                return notify_fail("這兒沒有這麼個人。\n");
 
         if( query_temp("invite/target", me) != ob )
-                return notify_fail("抱歉，"+query("name", ob)+"并没有邀请你参加他的帮会。\n");
+                return notify_fail("抱歉，"+query("name", ob)+"並沒有邀請你參加他的幫會。\n");
 
         if( !stringp(bunch=query("bunch/bunch_name", ob)) )
-                return notify_fail("抱歉，"+query("name", ob)+"现在不属于任何帮会！\n");
+                return notify_fail("抱歉，"+query("name", ob)+"現在不屬於任何幫會！\n");
 
         BUNCH_D->add_member_into_bunch(bunch,query("id", me));
         BUNCH_D->add_bunch_fame(bunch,query("weiwang", me)/10);
@@ -1338,11 +1338,11 @@ int join_bunch(object me, string arg)
         set("bunch/bunch_id", BUNCH_D->query_bunch_info(bunch,"bunch_id"), me);
         set("bunch/type", BUNCH_D->query_bunch_info(bunch,"type"), me);
         set("bunch/level", 1, me);
-        set("bunch/title", "帮众", me);
+        set("bunch/title", "幫眾", me);
 
-        message("channel:rumor",HIM"【泥潭帮会】某人："+query("name", me)+
-                                 "("+query("id", me)+")加入帮会「"+bunch+
-                                 "」，誓死为「" + bunch + "」效力！\n" NOR, users());
+        message("channel:rumor",HIM"【泥潭幫會】某人："+query("name", me)+
+                                 "("+query("id", me)+")加入幫會「"+bunch+
+                                 "」，誓死為「" + bunch + "」效力！\n" NOR, users());
 
         delete_temp("invite/target", me);
 
@@ -1357,25 +1357,25 @@ int bunch_color(object me, string arg)
                            HIM, HIC, HIW, NOR, });
 
         if( !stringp(banghui=query("bunch/bunch_name", me)) )
-                return notify_fail("你还没有组建或加入任何帮派。\n");
+                return notify_fail("你還沒有組建或加入任何幫派。\n");
 
         if( !query("bunch/level", me) ||
               query("bunch/level", me)<7 )
-                return notify_fail("你并不是" + banghui + "帮派的龙头老大。\n");
+                return notify_fail("你並不是" + banghui + "幫派的龍頭老大。\n");
 
         if (! arg || arg == "")
-                return notify_fail("你要为帮派选择什么帮派颜色？\n");
+                return notify_fail("你要為幫派選擇什麼幫派顏色？\n");
 
         arg = color_filter(arg);
         if (member_array(arg, color) == -1)
-                return notify_fail("你要为帮派选择什么帮派颜色有问题，请重新选择！\n");
+                return notify_fail("你要為幫派選擇什麼幫派顏色有問題，請重新選擇！\n");
 
         BUNCH_D->add_bunch_info(banghui, "color", arg);
-        tell_object(me, "你为帮派选择了 " + arg + "颜色显示示例" + NOR + " 的颜色。\n");
+        tell_object(me, "你為幫派選擇了 " + arg + "顏色顯示示例" + NOR + " 的顏色。\n");
         return 1;
 }
 
-// 给所有的仇恨对象排序
+// 給所有的仇恨對象排序
 int sort_hatred(string id1, string id2, mapping hatred)
 {
         mixed *d1, *d2;
@@ -1389,7 +1389,7 @@ int sort_hatred(string id1, string id2, mapping hatred)
         return d2[1] - d1[1];
 }
 
-// 给同盟中的所有结义成员排序
+// 給同盟中的所有結義成員排序
 int sort_member(string id1, string id2)
 {
         object ob1, ob2;
@@ -1411,38 +1411,38 @@ int sort_member(string id1, string id2)
 int help(object me)
 {
         write(@HELP
-指令格式: bunch info [玩家] | hatred [玩家] | member [帮派名字]
+指令格式: bunch info [玩家] | hatred [玩家] | member [幫派名字]
           bunch top | out | area | all | expell | appoint | inherit
           ally | war | surrender | agree | arrest | invite | join | color
 
-查看目前你所在帮派的各种信息，其中：
+查看目前你所在幫派的各種信息，其中：
 
-info   ：查看帮派中的人物，成员状态，声望。
-hatred ：查看帮派的仇恨对象。
-member ：查看某个帮派的成员。
-top    ：查看帮派的声望排名。
-area   : 查看帮派的地盘信息。
-out    : 脱离自己所在的帮派。
-all    : 查看所有的帮派信息。
-expell : 开除帮派中的成员，会降低帮派声望。
-appoint: 任命帮派成员位阶及职衔。
-inherit: 禅让出帮主之位给帮里其他人。
-ally   : 查看帮派联盟及与其他帮派结盟。
-war    : 对某个帮派宣布战争。(未开放)
-surrender: 向对战状态的帮派求和。(未开放)
-agree  : 接受对战状态的帮派求和。(未开放)
-arrest : 帮派通缉令。
-invite : 邀请某人加入你的帮会。某人可以是玩家或是可征招的ＮＰＣ。
-join   : 加入某个帮派。
-tax    : 设定帮派税率。(未开放)
-doc    : 编写帮派说明。(未开放)
-color  : 帮主为帮派设置帮派的颜色。
-battle : 查看当前帮战情况。
-efficient:帮主使用帮派荣誉点让全帮高效练功。
+info   ：查看幫派中的人物，成員狀態，聲望。
+hatred ：查看幫派的仇恨對象。
+member ：查看某個幫派的成員。
+top    ：查看幫派的聲望排名。
+area   : 查看幫派的地盤信息。
+out    : 脫離自己所在的幫派。
+all    : 查看所有的幫派信息。
+expell : 開除幫派中的成員，會降低幫派聲望。
+appoint: 任命幫派成員位階及職銜。
+inherit: 禪讓出幫主之位給幫裡其他人。
+ally   : 查看幫派聯盟及與其他幫派結盟。
+war    : 對某個幫派宣佈戰爭。(未開放)
+surrender: 向對戰狀態的幫派求和。(未開放)
+agree  : 接受對戰狀態的幫派求和。(未開放)
+arrest : 幫派通緝令。
+invite : 邀請某人加入你的幫會。某人可以是玩家或是可徵招的ＮＰＣ。
+join   : 加入某個幫派。
+tax    : 設定幫派稅率。(未開放)
+doc    : 編寫幫派說明。(未開放)
+color  : 幫主為幫派設置幫派的顏色。
+battle : 查看當前幫戰情況。
+efficient:幫主使用幫派榮譽點讓全幫高效練功。
 
-巫师可以查看各个帮派的信息，只需要在命令后面加上帮派的名字或
-是帮派中的玩家。另外巫师可以使用 bunch dismiss  命令强行解散
-一个帮派。
+巫師可以查看各個幫派的信息，只需要在命令後面加上幫派的名字或
+是幫派中的玩家。另外巫師可以使用 bunch dismiss  命令強行解散
+一個幫派。
 
 see also: area, faxiang
 HELP );

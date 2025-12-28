@@ -6,8 +6,8 @@ void create()
 {
         seteuid(getuid());
         set_name("田伯光", ({ "tian boguang", "tian","boguang" }));
-        set("long", "他一身飘逸的白色长衫，风流儒雅。\n");
-        set("nickname", HIM "万里独行" NOR);
+        set("long", "他一身飄逸的白色長衫，風流儒雅。\n");
+        set("nickname", HIM "萬里獨行" NOR);
         set("gender", "男性");
         set("age", 37);
         set("attitude", "friendly");
@@ -47,7 +47,7 @@ void create()
         }) );
         set("chat_chance", 10);
         set("chat_msg", ({
-                CYN "田伯光笑道：尼姑也没关系嘛，蓄起头发，两个月就是小美人了。\n" NOR,
+                CYN "田伯光笑道：尼姑也沒關係嘛，蓄起頭髮，兩個月就是小美人了。\n" NOR,
         }) );
 
         setup();
@@ -74,13 +74,13 @@ void greeting(object ob)
         if( query("gender", ob) == "女性" )
         {
         if( query("age", ob)<26 )
-                say(CYN "田伯光笑道：妙极，妙极，又来了一个小姑娘。\n" NOR);     
+                say(CYN "田伯光笑道：妙極，妙極，又來了一個小姑娘。\n" NOR);     
         else 
-                say(CYN "田伯光笑道：妙极，妙极，可惜太老了点，我可没胃口。\n" NOR);     
+                say(CYN "田伯光笑道：妙極，妙極，可惜太老了點，我可沒胃口。\n" NOR);     
         }
         else 
-                say(CYN "田伯光笑着招招手：这位"+RANK_D->query_respect(ob) + "来喝"
-                    "两杯，这个小尼姑嘛，反正也没什么事，就让她坐着就是。\n" NOR);
+                say(CYN "田伯光笑著招招手：這位"+RANK_D->query_respect(ob) + "來喝"
+                    "兩杯，這個小尼姑嘛，反正也沒什麼事，就讓她坐著就是。\n" NOR);
         return;
 }
 
@@ -88,7 +88,7 @@ int accept_fight(object ob)
 {
         if( query("gender", ob) == "女性" )
         {
-                write(CYN "田伯光笑道：花姑娘？杀了太可惜了的。\n" NOR);
+                write(CYN "田伯光笑道：花姑娘？殺了太可惜了的。\n" NOR);
                 return 0;
         }
         return 1;

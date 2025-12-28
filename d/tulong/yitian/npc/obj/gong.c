@@ -5,7 +5,7 @@ inherit HANDS;
 
 void create()
 {
-        set_name(HIY "点金盘龙弓" NOR, ({ "panlong gong", "gong", "panlong" }));
+        set_name(HIY "點金盤龍弓" NOR, ({ "panlong gong", "gong", "panlong" }));
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);

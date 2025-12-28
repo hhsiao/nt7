@@ -10,8 +10,8 @@ void create()
                 destruct(this_object());
         else {
                 set("unit", "本");
-                set("long", YEL "这是一本薄薄的书册，书皮已然发黄，封"
-                            "面上写着「七星指」三个字。\n" NOR);
+                set("long", YEL "這是一本薄薄的書冊，書皮已然發黃，封"
+                            "面上寫著「七星指」三個字。\n" NOR);
                 set("value", 1);
                 set("no_sell", 1);
                 set("material", "paper");

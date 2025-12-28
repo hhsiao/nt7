@@ -1,4 +1,4 @@
-//honglian.c 小红莲
+//honglian.c 小紅蓮
 
 inherit ITEM;
 
@@ -6,12 +6,12 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIR"小红莲"NOR, ({"hong lian", "honglian"}));
+        set_name(HIR"小紅蓮"NOR, ({"hong lian", "honglian"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "朵");
-                set("long", "这是一朵红色小花，象极了一个小莲座。\n");
+                set("long", "這是一朵紅色小花，象極了一個小蓮座。\n");
                 set("only_do_effect", 1);
         }
         setup();
@@ -19,7 +19,7 @@ void create()
 
 int do_effect(object me)
 {
-        message_vision("$N把" + name() + "扔进嘴里，几下就吞了下去。\n", me);
+        message_vision("$N把" + name() + "扔進嘴裡，幾下就吞了下去。\n", me);
         addn("neili", 100, me);
         if( query("neili", me)>query("max_neili", me) )
                 set("neili",query("max_neili",  me), me);

@@ -3,12 +3,12 @@ inherit F_DEALER;
 
 void create()
 {
-        set_name("小贩", ({ "xiao fan", "seller", "fan" }) );
+        set_name("小販", ({ "xiao fan", "seller", "fan" }) );
         set("gender", "男性" );
         set("age", 32);
         set("long",
-                "这是个小贩，别看他长的老老实实，可你别想从他那儿掏便宜。\n"
-              "他正在沿街叫卖糖葫芦。\n");
+                "這是個小販，別看他長的老老實實，可你別想從他那兒掏便宜。\n"
+              "他正在沿街叫賣糖葫蘆。\n");
         set("shen_type", 1);
         set("combat_exp", 10000);
        set("str", 17);
@@ -20,7 +20,7 @@ void create()
        set_skill("unarmed",20);
        set("chat_chance", 20);
        set("chat_msg", ({
-                "小贩高声叫道：~ 冰 ~ 糖 ~ 葫 ~ 芦 ~ 卖！\n",
+                "小販高聲叫道：~ 冰 ~ 糖 ~ 葫 ~ 蘆 ~ 賣！\n",
         }) );       
 
         set("vendor_goods", ({

@@ -7,7 +7,7 @@ void setup()
         set_name("玩具麒麟[2;37;0m[2;37;0m", ({"weekendride"}));        
         set("gender", "男性");                
         set("long", "玩具麒麟[2;37;0m
-它是周仲通的魔幻兽。
+它是周仲通的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

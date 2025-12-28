@@ -1,32 +1,32 @@
 
-// wenjia-daofa.c 温家刀法（NPC功夫）
+// wenjia-daofa.c 溫家刀法（NPC功夫）
 
 inherit SKILL;
 
 mapping *action = ({
 ([
-        "action" : "$N一式「苍松迎客」，身体微侧，刀锋平引，斜劈$n的$l",
+        "action" : "$N一式「蒼松迎客」，身體微側，刀鋒平引，斜劈$n的$l",
         "lvl" : 0,
-        "skill_name" : "苍松迎客",
-        "damage_type" : "刺伤"
+        "skill_name" : "蒼松迎客",
+        "damage_type" : "刺傷"
 ]),
 ([
-        "action" : "$N向前跃上一步，右手急速舞动手中的$w，一招「开门见山」直挑$n的$l",
+        "action" : "$N向前躍上一步，右手急速舞動手中的$w，一招「開門見山」直挑$n的$l",
         "lvl" : 10,
-        "skill_name" : "开门见山",
-        "damage_type" : "刺伤"
+        "skill_name" : "開門見山",
+        "damage_type" : "刺傷"
 ]),
 ([
-        "action" : "$N一个斜侧步，一招「闻鸡起舞」，手中$w平平的推向$n的$l",
+        "action" : "$N一個斜側步，一招「聞雞起舞」，手中$w平平的推向$n的$l",
         "lvl" : 20,
-        "skill_name" : "闻鸡起舞",
-        "damage_type" : "刺伤"
+        "skill_name" : "聞雞起舞",
+        "damage_type" : "刺傷"
 ]),
 ([
-        "action" : "$N一招「推波助澜」，手里的$w划出一个大弧，急速砍向$n的$l",
+        "action" : "$N一招「推波助瀾」，手裡的$w劃出一個大弧，急速砍向$n的$l",
         "lvl" : 30,
-        "skill_name" : "推波助澜",
-        "damage_type" : "刺伤"
+        "skill_name" : "推波助瀾",
+        "damage_type" : "刺傷"
 ]),
 });
 
@@ -38,9 +38,9 @@ int valid_learn(object me)
 
         if (!objectp(weapon = me->query_temp("weapon"))
         || (string)weapon->query("skill_type") != "blade")
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
         if ((int)me->query("max_neili") < 100)
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
         return 1;
 }
 
@@ -75,9 +75,9 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me)
 {
         if ((int)me->query("jingli") < 40)
-                return notify_fail("你的体力不够练温家刀法。\n");
+                return notify_fail("你的體力不夠練溫家刀法。\n");
         if ((int)me->query("neili") < 20)
-                return notify_fail("你的内力不够练温家刀法。\n");
+                return notify_fail("你的內力不夠練溫家刀法。\n");
         me->receive_damage("jingli", 30);
         me->add("neili", -10);
         return 1;

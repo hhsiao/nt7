@@ -7,7 +7,7 @@ void setup()
         set_name("虎丐[2;37;0m[2;37;0m", ({"hugai"}));        
         set("gender", "女性");                
         set("long", "虎丐[2;37;0m
-它是墨丐的魔幻兽。
+它是墨丐的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

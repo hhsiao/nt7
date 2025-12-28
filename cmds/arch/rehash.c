@@ -8,11 +8,11 @@ int main(object me, string arg)
                 return 0;
 
         if (! arg)
-                return notify_fail("指令格式：rehash <路径>\n");
+                return notify_fail("指令格式：rehash <路徑>\n");
 
         if (arg[strlen(arg) - 1] != '/' ) arg += "/";
         if (file_size(arg) != -2)
-                return notify_fail("没有这个目录！\n");
+                return notify_fail("沒有這個目錄！\n");
 
         write("更新指令表：" + arg + "\n");
         COMMAND_D->rehash(arg);
@@ -22,10 +22,10 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式：rehash <目录名称>
+指令格式：rehash <目錄名稱>
 
-这个指令会更新系统内部的指令表，如果你新增或删除了某个目录下
-的指令，必须用这个指令更新该目录才能使用。
+這個指令會更新系統內部的指令表，如果你新增或刪除了某個目錄下
+的指令，必須用這個指令更新該目錄才能使用。
 HELP );
         return 1;
 }

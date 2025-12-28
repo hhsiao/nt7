@@ -7,18 +7,18 @@ inherit TASK;
 
 void create()
 {
-    set_name(HIC "真武剑" NOR, ({ "zwsword" }) );
+    set_name(HIC "真武劍" NOR, ({ "zwsword" }) );
 	set_weight(7000);
-        set("owner","张三丰");
+        set("owner","張三丰");
 	if( clonep() )
 		set_default_object(__FILE__);
 	else {
 		set("unit", "把");
-        set("long", "这是武当镇山之宝的真武宝剑。\n");
+        set("long", "這是武當鎮山之寶的真武寶劍。\n");
 		set("value", 400);
 		set("material", "steel");
-		set("wield_msg", "$N「唰」地一声抽出一把$n握在手中。\n");
-		set("unwield_msg", "$N将手中的$n插入腰间的剑鞘。\n");
+		set("wield_msg", "$N「唰」地一聲抽出一把$n握在手中。\n");
+		set("unwield_msg", "$N將手中的$n插入腰間的劍鞘。\n");
         set("task",1); 
         set("no_put_in",1); 
 	}

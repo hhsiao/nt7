@@ -11,8 +11,8 @@ void create()
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("long", GRN"从这个入口可以进入原始森林迷宫副本。(enter door)\n"NOR); 
-                set("unit", "个");
+                set("long", GRN"從這個入口可以進入原始森林迷宮副本。(enter door)\n"NOR); 
+                set("unit", "個");
                 set("lore",1);
                 set("value", 20);
         }
@@ -46,15 +46,15 @@ int do_enter(string arg)
                 FUBEN_D->enter_fuben(this_player(), arg);
         else {
                 if( valid == 0 )
-                        write("您实战经验不足，进副本恐有不测，还是先历练一下再来吧。\n");
+                        write("您實戰經驗不足，進副本恐有不測，還是先歷練一下再來吧。\n");
                 else if( valid == -1 )
-                        write("您经验太高了，就不要进去欺负那些可怜的小怪物了吧。\n");
+                        write("您經驗太高了，就不要進去欺負那些可憐的小怪物了吧。\n");
                 else if( valid == -2 )
-                        write("游戏中目前并没有开放该副本，请您核对后再试。\n");
+                        write("遊戲中目前並沒有開放該副本，請您核對後再試。\n");
                 else if( valid == -3 )
-                        write("该副本限制IP多重进入，您已经超过最高上限。\n");
+                        write("該副本限制IP多重進入，您已經超過最高上限。\n");
                 else if( valid == -4 )
-                        write("该副本被巫师关闭，您暂时无法进入。\n");
+                        write("該副本被巫師關閉，您暫時無法進入。\n");
 
         }        
         return 1;

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("书架[2;37;0m[2;37;0m", ({"sleepbag"}));        
+        set_name("書架[2;37;0m[2;37;0m", ({"sleepbag"}));        
         set("gender", "男性");                
-        set("long", "书架[2;37;0m
-它是老球球的魔幻兽。
+        set("long", "書架[2;37;0m
+它是老球球的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

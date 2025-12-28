@@ -10,8 +10,8 @@ string get_long();
 
 void create()
 {
-        set_name(NOR + YEL "万年海龟" NOR, ({ "hero of chelonian", "chelonian", "hero" }) );
-        set("title", HIM "练功法宝" NOR);
+        set_name(NOR + YEL "萬年海龜" NOR, ({ "hero of chelonian", "chelonian", "hero" }) );
+        set("title", HIM "練功法寶" NOR);
         set("gender", "男性");
         set("age", 88888);
         set("long", get_long());
@@ -72,15 +72,15 @@ string get_long()
                 string msg;
 
                 msg =  "\n" NOR + YEL
-"打不死的万年英雄海龟，适合用来实验武功或暴力发泄！\n" HIC
+"打不死的萬年英雄海龜，適合用來實驗武功或暴力發洩！\n" HIC
 "先天悟性：1\n"
 "先天根骨：30\n"
 "先天身法：1\n"
 "先天臂力：1\n"
 "加   力： 0\n"
-"危险程度：微小\n" HIG
-"可使用指令 crave <信息> 在海龟背上进行雕刻！\n\n" HIR 
-"但见万年海龟背上密密麻麻刻满了很多文字。\n\n" NOR;
+"危險程度：微小\n" HIG
+"可使用指令 crave <信息> 在海龜背上進行雕刻！\n\n" HIR 
+"但見萬年海龜背上密密麻麻刻滿了很多文字。\n\n" NOR;
 
         return msg;
 }
@@ -134,7 +134,7 @@ int receive_damage(string type, int damage, object who)
         if (! objectp(who))return 1;
 
 /*
-        // 转世后无效
+        // 轉世後無效
         if (query("reborn/times", who))
         {
                 return 1;
@@ -144,8 +144,8 @@ int receive_damage(string type, int damage, object who)
         set("env/combatd", 4, who);
         
         
-                // 帝王符图
-                // 编号36-38
+                // 帝王符圖
+                // 編號36-38
                 if( MEMBER_D->is_valid_member(who) && query("quest_tuteng/start", who) ) 
                 {
                         int n_tt;
@@ -157,14 +157,14 @@ int receive_damage(string type, int damage, object who)
                                 ob_tt = new("/clone/tuteng/diwang-suipian" + sprintf("%d", n_tt));
                                 if (ob_tt)
                                 {
-                                        write(HIG "你获得了一张帝王符图碎片。\n" NOR);
+                                        write(HIG "你獲得了一張帝王符圖碎片。\n" NOR);
                                         ob_tt->move(who, 1);
                                 }
                         }
                 }
                         
-        // 十万经验以下可增加经验和QN
-        // 随机获得一些物品
+        // 十萬經驗以下可增加經驗和QN
+        // 隨機獲得一些物品
         if (query("combat_exp", who) <= 50000000)
         {
                 if (MEMBER_D->is_valid_member(who))
@@ -183,7 +183,7 @@ int receive_damage(string type, int damage, object who)
                         if( query("experience", who)-query("learned_experience", who)<100000000 )
                         addn("experience", 30 + random(40), who);
                 }
-                // 获得钱
+                // 獲得錢
                 if (random(200) == 1)money = "gold";
                 else if (random(100) == 1)money = "silver";
                 else if (random(30) == 1)money = "coin";
@@ -195,10 +195,10 @@ int receive_damage(string type, int damage, object who)
                                 if( money == "silver")addn("balance", 1500, who);
                                 if( money == "coin")addn("balance", 40, who);
 
-                                tell_object(who, HIG "你从万年海龟身上获得了一些金钱。\n" NOR);
+                                tell_object(who, HIG "你從萬年海龜身上獲得了一些金錢。\n" NOR);
                         }                                               
                 }       
-                // 随机获得物品
+                // 隨機獲得物品
                 if (random(10000) == 1 && random(3) == 1)
                 {
                         ob = new(gift[random(sizeof(gift))]);
@@ -206,7 +206,7 @@ int receive_damage(string type, int damage, object who)
                         if (objectp(ob))
                         {
                                 ob->move(who, 1);
-                                tell_object(who, HIR "你从万年海龟身上获得了一" + query("base_unit", ob) + ob->name() + "。\n" NOR);                            
+                                tell_object(who, HIR "你從萬年海龜身上獲得了一" + query("base_unit", ob) + ob->name() + "。\n" NOR);                            
                         }
                 }
                 if (random(100000) == 1 && random(3) == 1)
@@ -216,7 +216,7 @@ int receive_damage(string type, int damage, object who)
                         if (objectp(weapon))
                         {
                                 weapon->move(who, 1);
-                                tell_object(who, HIR "你从万年海龟身上获得了一" + query("base_unit", weapon) + weapon->name() + "。\n" NOR);                            
+                                tell_object(who, HIR "你從萬年海龜身上獲得了一" + query("base_unit", weapon) + weapon->name() + "。\n" NOR);                            
                         }
                 }
                 if (random(300000) == 1 && random(4) == 1)
@@ -226,7 +226,7 @@ int receive_damage(string type, int damage, object who)
                         if (objectp(armor))
                         {
                                 armor->move(who, 1);
-                                tell_object(who, HIR "你从万年海龟身上获得了一" + query("base_unit", armor) + armor->name() + "。\n" NOR);                              
+                                tell_object(who, HIR "你從萬年海龜身上獲得了一" + query("base_unit", armor) + armor->name() + "。\n" NOR);                              
                         }
                 }
                 if (random(500000) == 1 && random(4) == 1)
@@ -236,7 +236,7 @@ int receive_damage(string type, int damage, object who)
                         if (objectp(armor2))
                         {
                                 armor2->move(who, 1);
-                                tell_object(who, HIR "你从万年海龟身上获得了一" + query("base_unit", armor2) + armor2->name() + "。\n" NOR);                            
+                                tell_object(who, HIR "你從萬年海龜身上獲得了一" + query("base_unit", armor2) + armor2->name() + "。\n" NOR);                            
                         }
                 }
         }       

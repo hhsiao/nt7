@@ -1,1 +1,1 @@
-游戏特色==@==/help/feature
+遊戲特色==@==/help/feature

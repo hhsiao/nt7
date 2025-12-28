@@ -6,10 +6,10 @@ inherit F_AUTOLOAD;
 
 void create()
 {
-        set_name(HIR"轩辕神戒"NOR, ({ "magic ring", "ring" }));
-        set("long", HIC"这是一个从远古流传下来的戒指，上面刻着一些奇怪的咒语。\n"NOR);
+        set_name(HIR"軒轅神戒"NOR, ({ "magic ring", "ring" }));
+        set("long", HIC"這是一個從遠古流傳下來的戒指，上面刻著一些奇怪的咒語。\n"NOR);
         set("weight", 400);
-        set("unit", "个");
+        set("unit", "個");
         set("value", 5000000);
         set("material", "gem");
         set("armor_prop/armor", 60);

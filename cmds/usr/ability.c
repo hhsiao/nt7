@@ -22,7 +22,7 @@ int main(object me, string arg)
                         ob = present(id, environment(me));
                         if (!ob) ob = find_player(id);
                         if (!ob) ob = find_living(id);
-                        if (!ob) return notify_fail("你要察看谁的能力？\n");
+                        if (!ob) return notify_fail("你要察看誰的能力？\n");
                 } else
                         ob = me;
         } else
@@ -35,44 +35,44 @@ int main(object me, string arg)
         if( arg && ob == me )
         {
                 if( !sscanf(arg, "+ %d", a_num) )
-                        return notify_fail("提高能力的格式：ability + 能力名称 \n");
+                        return notify_fail("提高能力的格式：ability + 能力名稱 \n");
 
                 if( a_num < 1 || a_num > 50 )
-                        return notify_fail("没有此代码的能力（请输入1-35）\n");
+                        return notify_fail("沒有此代碼的能力（請輸入1-35）\n");
 
                 if( a_num < 21 )
                 {
                         arg1 = bas_ability[a_num-1];
 
                         if( !valid_ability_improve(ob, arg1, 0) )
-                                return notify_fail("你的经验等级还不足以掌握更高的该项能力。\n");
+                                return notify_fail("你的經驗等級還不足以掌握更高的該項能力。\n");
 
                         if( !do_ability_cost(ob, arg1, 0) )
-                                return notify_fail("你没有足够的能力点和潜能储蓄来提高此项能力。\n");
+                                return notify_fail("你沒有足夠的能力點和潛能儲蓄來提高此項能力。\n");
 
                         improve_ability( ob, arg1, 0);
-                        tell_object(ob, "该第"+ (a_num) + "能力提高完毕。\n");
+                        tell_object(ob, "該第"+ (a_num) + "能力提高完畢。\n");
                         return 1;
                 }
 
                 if( !stringp(myclass=query("family/family_name", ob)) )
-                        return notify_fail("你无门无派，如何能够领会门派武功的精髓？\n");
+                        return notify_fail("你無門無派，如何能夠領會門派武功的精髓？\n");
 
                 if( !arrayp(fam_ability[myclass]) || (n = sizeof(fam_ability[myclass])) < a_num-20 )
                 {
-                         return notify_fail("OOPS，你所在的门派的此项特色还没写好耶。\n");
+                         return notify_fail("OOPS，你所在的門派的此項特色還沒寫好耶。\n");
 
                 } else
                 {
                         arg1 = fam_ability[myclass][a_num-21];
                         if( !valid_ability_improve(ob, arg1, 1) )
-                                return notify_fail("你的经验等级还不足以掌握更高的该项能力。\n");
+                                return notify_fail("你的經驗等級還不足以掌握更高的該項能力。\n");
 
                         if( !do_ability_cost(ob, arg1, 1) )
-                                return notify_fail("你没有足够的能力点储蓄来提高此项能力。\n");
+                                return notify_fail("你沒有足夠的能力點儲蓄來提高此項能力。\n");
 
                         improve_ability(ob, arg1, 1);
-                        tell_object(ob, "该第"+ (a_num) + "能力提高完毕。\n");
+                        tell_object(ob, "該第"+ (a_num) + "能力提高完畢。\n");
                 }
 
                 return 1;
@@ -80,25 +80,25 @@ int main(object me, string arg)
 
 
         write("\n");
-        write(HIC    "序号              功效                      等级          升级点数\n"NOR);
+        write(HIC    "序號              功效                      等級          升級點數\n"NOR);
         write(HIG "——————————————————————————————————\n" NOR);
-        write(HIC"基本能力进阶：\n\n"NOR);
+        write(HIC"基本能力進階：\n\n"NOR);
 
         for(i=0; i<sizeof(bas_ability); i++)
                 write(sprintf(WHT"("WHT"%3d"WHT")", (i+1)) + HIC"\t"+ get_ability_info(ob, bas_ability[i], 0) + NOR);
         write("\n");
 
         write(HIG "——————————————————————————————————\n" NOR);
-        write(HIC"门派能力进阶：\n\n"NOR);
+        write(HIC"門派能力進階：\n\n"NOR);
 
         if( !stringp(myclass=query("family/family_name", ob)) )
-                write("无门无派无特色。\n");
+                write("無門無派無特色。\n");
         /*
         else if( query("betrayer", ob) )
-                write("你有叛师前科，无法领会新门派的精髓。\n");
+                write("你有叛師前科，無法領會新門派的精髓。\n");
         */
         else if( !arrayp(fam_ability[myclass]) )
-                write("OOPS，你所在的门派的特色还没写好耶。\n");
+                write("OOPS，你所在的門派的特色還沒寫好耶。\n");
         else
                 for( i=0; i<30; i++ )
                 {
@@ -109,8 +109,8 @@ int main(object me, string arg)
         write("\n");
         write(HIG "——————————————————————————————————\n" NOR);
 
-        write(HIW"你现在总共获得 "HIC + ab + NOR+HIW" 点能力。\n" NOR);
-        write(HIW"你已经用去了 " RED+ learned_ability +NOR+HIW" 点能力，还剩下 "HIG+ (ab-learned_ability) + NOR+HIW" 点可供分配。\n" NOR);
+        write(HIW"你現在總共獲得 "HIC + ab + NOR+HIW" 點能力。\n" NOR);
+        write(HIW"你已經用去了 " RED+ learned_ability +NOR+HIW" 點能力，還剩下 "HIG+ (ab-learned_ability) + NOR+HIW" 點可供分配。\n" NOR);
         //write(HIG "——————————————————————————————————\n" NOR);
         write("\n\n");
         return 1;
@@ -125,32 +125,32 @@ write(@HELP
 指令格式 :     ability
 ----------------------------------------------------------------
 
-ability         让你知道你目前所学过的一切能力，
-ability + n     提高第ｎ项能力的等级。
+ability         讓你知道你目前所學過的一切能力，
+ability + n     提高第ｎ項能力的等級。
 
-能力是泥潭游戏中除经验值、技能值以外提高自身的一个重要途径。
-相同经验等级的，能力高的人会有更多的气血，造成更大的伤害力，
-或者可以有更高的学习效率。如何合理分配能力点是成为高手的一
+能力是泥潭遊戲中除經驗值、技能值以外提高自身的一個重要途徑。
+相同經驗等級的，能力高的人會有更多的氣血，造成更大的傷害力，
+或者可以有更高的學習效率。如何合理分配能力點是成為高手的一
 大基本要求。
 
-当你的人物等级升级而获得能力点，就可以提高自身的各项能力了！
-输入ａｂｉｌｉｔｙ就可以看到一个清晰的列表。分两大类，第一
-类共有２０项，所有门派都可以修习，大多是提高基本属性的；第
-二类有五项，属于门派武功的精髓所在，不同门派各有特色。
+當你的人物等級升級而獲得能力點，就可以提高自身的各項能力了！
+輸入ａｂｉｌｉｔｙ就可以看到一個清晰的列表。分兩大類，第一
+類共有２０項，所有門派都可以修習，大多是提高基本屬性的；第
+二類有五項，屬於門派武功的精髓所在，不同門派各有特色。
 
-每项能力共分十级，每级的功效都有详细说明。
+每項能力共分十級，每級的功效都有詳細說明。
 
-该修习什么呢？这就是由各个不同门派的特点或者个人喜好所决定
-了。如果你想在战斗中持久，就多提高些增长精气神的能力，如果
-你要提高杀伤力，就提高些力量。。。。
+該修習什麼呢？這就是由各個不同門派的特點或者個人喜好所決定
+了。如果你想在戰鬥中持久，就多提高些增長精氣神的能力，如果
+你要提高殺傷力，就提高些力量。。。。
 
 
 
-能力点重置：
-    玩家可以在泥潭商城处购买龙晶可用来重置已经分配好的能力点。
-重置后，所有能力进阶还原为能力点。第一次重置能力会消耗一个龙
-晶；之后每重置一次，会再额外消耗一个龙晶；第25次及之后的重置
-将不会再额外增加消耗，固定每次25个龙晶。
+能力點重置：
+    玩家可以在泥潭商城處購買龍晶可用來重置已經分配好的能力點。
+重置後，所有能力進階還原為能力點。第一次重置能力會消耗一個龍
+晶；之後每重置一次，會再額外消耗一個龍晶；第25次及之後的重置
+將不會再額外增加消耗，固定每次25個龍晶。
 
 ----------------------------------------------------------------
 HELP

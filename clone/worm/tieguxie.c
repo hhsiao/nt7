@@ -3,9 +3,9 @@ inherit WORM;
 
 void create()
 {
-        set_name(CYN "铁骨蝎" NOR, ({ "tiegu xie", "tiegu", "xie" }));
-        set("long", CYN "这是一条全身闪着磷光的毒蝎子。\n" NOR);
-        set("race", "野兽");
+        set_name(CYN "鐵骨蠍" NOR, ({ "tiegu xie", "tiegu", "xie" }));
+        set("long", CYN "這是一條全身閃著磷光的毒蠍子。\n" NOR);
+        set("race", "野獸");
         set("age", random(10));
         set("attitude", "peaceful");
 
@@ -14,7 +14,7 @@ void create()
 
         set("str", 40);
         set("con", 30);
-        set("limbs", ({ "头部", "身体", "尾巴" }));
+        set("limbs", ({ "頭部", "身體", "尾巴" }));
         set("verbs", ({ "bite" }));
 
         set("worm_poison", ([

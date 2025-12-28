@@ -7,8 +7,8 @@ inherit "/inherit/char/punisher";
 void create()
 {
         set_name("郭襄", ({ "guo xiang", "guo" }));
-        set("long", "她是峨嵋派的开山祖师。\n");
-        set("nickname", HIM "小东邪" NOR);
+        set("long", "她是峨嵋派的開山祖師。\n");
+        set("nickname", HIM "小東邪" NOR);
         set("gender", "女性");
         set("age", 24);
         set("attitude", "peaceful");
@@ -58,7 +58,7 @@ void create()
         map_skill("sword","huifeng-jian");
         map_skill("parry","huifeng-jian");
 
-        create_family("峨嵋派", 1, "开山祖师");
+        create_family("峨嵋派", 1, "開山祖師");
 
         setup();
 

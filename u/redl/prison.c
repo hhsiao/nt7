@@ -4,14 +4,14 @@
 #include <room.h> 
 inherit ROOM; 
 
-#define THROWTIME 30    //基础禁闭分钟
+#define THROWTIME 30    //基礎禁閉分鐘
 
 int clean_up() { return 1;}
 
 int do_cantsave()
 {
         object me = this_player();
-                tell_object(me, NOR "这是水牢里，你老实点吧。\n" NOR);
+                tell_object(me, NOR "這是水牢裡，你老實點吧。\n" NOR);
                 return -1;
 }
 
@@ -21,25 +21,25 @@ int do_action(string arg)
         object me = this_player();
         
         if (me->is_busy() && action!="stat") {
-                tell_object(me, NOR "你还是忙完手头上的事情再说吧。\n" NOR);
+                tell_object(me, NOR "你還是忙完手頭上的事情再說吧。\n" NOR);
                 return -1;
         }
 
-        if (action=="chat" || action=="rumor" || action=="ask1") {//没走出这房间就始终不能公聊
+        if (action=="chat" || action=="rumor" || action=="ask1") {//沒走出這房間就始終不能公聊
                         me->start_busy(2);
-                tell_object(me, NOR "你张口欲喊，墙壁上射出几股臭水喷了你一脸。\n" NOR);
+                tell_object(me, NOR "你張口欲喊，牆壁上射出幾股臭水噴了你一臉。\n" NOR);
                 return -1;
         }
 
         if (query("redlworkroom/prison/time", me) > query("online_time", me) && 
                 action!="tell" && action!="reply" && action!="look"  && action!="say" && action!="stat" && action!="halt") {
                 me->start_busy(2);
-                tell_object(me, NOR "你胡乱扭摆身体，陷在齐腰深的水里却动不了。\n" NOR);
+                tell_object(me, NOR "你胡亂扭擺身體，陷在齊腰深的水裡卻動不了。\n" NOR);
                 return -1;
         }
         
         if (action=="tell" || action=="reply") {
-                me->start_busy(60);//远处说话避免持续骚扰
+                me->start_busy(60);//遠處說話避免持續騷擾
         }
         
         return 0;
@@ -57,7 +57,7 @@ int throwing(object me, int i, string bmsg)
         set("redlworkroom/prison/time", query("online_time", me) + c , me);
         set("redlworkroom/prison/num", p + 1, me);
         
-        message_vision(append_color(NOR + YEL + "虚空中穿过来一只大如山岳的巨掌，对着$N" + NOR + YEL + "拦腰一捞，再缩回去就此不见了。\n" + NOR, YEL), me);
+        message_vision(append_color(NOR + YEL + "虛空中穿過來一隻大如山嶽的巨掌，對著$N" + NOR + YEL + "攔腰一撈，再縮回去就此不見了。\n" + NOR, YEL), me);
         me->move(this_object());
         return 1;
 }
@@ -79,18 +79,18 @@ int do_fr(string arg)
 {
         object me, where;
         
-        if (!arg) return notify_fail(NOR "你要输入一个在线的玩家id才行。\n"NOR );
+        if (!arg) return notify_fail(NOR "你要輸入一個在線的玩家id才行。\n"NOR );
         me = find_player(arg);
-        if (!me || !playerp(me)) return notify_fail(NOR "没有这个玩家在线。\n"NOR );
+        if (!me || !playerp(me)) return notify_fail(NOR "沒有這個玩家在線。\n"NOR );
         where = environment(me);
-        if ( (this_object() != where) || (query("in_prison", me) !=base_name(this_object())) ) return notify_fail(NOR "这个玩家没有在这里坐牢。\n"NOR );
+        if ( (this_object() != where) || (query("in_prison", me) !=base_name(this_object())) ) return notify_fail(NOR "這個玩家沒有在這裡坐牢。\n"NOR );
         
-                message_vision(append_color(NOR YEL "$N" NOR YEL "耳边响起$n的声音道：“你可以出去了”。\n" NOR, YEL), me, this_player());
+                message_vision(append_color(NOR YEL "$N" NOR YEL "耳邊響起$n的聲音道：“你可以出去了”。\n" NOR, YEL), me, this_player());
                 delete("redlworkroom/prison/time", me);
                 me->stop_busy();
                 me->move("/d/city/kedian4");
-                message_vision(append_color(NOR YEL "$N" NOR YEL "狼狈不堪地从" + query("short") + NOR + YEL + "跑了出来。\n" NOR, YEL), me);
-                tell_object(me, NOR + HIC + "一个声音告诉你道；" + HIG + "以后别再" + query("redlworkroom/prison/bmsg", me) + "了。\n" + NOR);
+                message_vision(append_color(NOR YEL "$N" NOR YEL "狼狽不堪地從" + query("short") + NOR + YEL + "跑了出來。\n" NOR, YEL), me);
+                tell_object(me, NOR + HIC + "一個聲音告訴你道；" + HIG + "以後別再" + query("redlworkroom/prison/bmsg", me) + "了。\n" + NOR);
                 set("startroom", "/d/city/wumiao", me);
                 delete("in_prison", me);
                 me->save();
@@ -103,11 +103,11 @@ int do_clr(string arg)
 {
         object me;
         
-        if (!arg) return notify_fail(NOR "你要输入一个在线的玩家id才行。\n"NOR );
+        if (!arg) return notify_fail(NOR "你要輸入一個在線的玩家id才行。\n"NOR );
         me = find_player(arg);
-        if (!me || !playerp(me)) return notify_fail(NOR "没有这个玩家在线。\n"NOR );
+        if (!me || !playerp(me)) return notify_fail(NOR "沒有這個玩家在線。\n"NOR );
         
-                tell_object(me, NOR + "你的犯罪记录被清除了。\n" + NOR);
+                tell_object(me, NOR + "你的犯罪記錄被清除了。\n" + NOR);
                 delete("redlworkroom/prison/num", me);
                 me->save();
 
@@ -119,11 +119,11 @@ int do_imm(string arg)
 {
         object me;
         
-        if (!arg) return notify_fail(NOR "你要输入一个在线的玩家id才行。\n"NOR );
+        if (!arg) return notify_fail(NOR "你要輸入一個在線的玩家id才行。\n"NOR );
         me = find_player(arg);
-        if (!me || !playerp(me)) return notify_fail(NOR "没有这个玩家在线。\n"NOR );
+        if (!me || !playerp(me)) return notify_fail(NOR "沒有這個玩家在線。\n"NOR );
         
-                tell_object(me, NOR + "你被赋予了在" + query("short") + NOR + "的豁免权。\n" + NOR);
+                tell_object(me, NOR + "你被賦予了在" + query("short") + NOR + "的豁免權。\n" + NOR);
                 set("redlworkroom/prison/immune", 1, me);
                 me->save();
 
@@ -145,7 +145,7 @@ void init()
                 add_action("do_fr", "fr");
                 add_action("do_clr", "clr");
                 add_action("do_imm", "imm");
-                write("你可以：\n释放犯人<fr sb>\n犯罪次数清零<clr sb>\n给予今后的豁免<imm sb>\n");
+                write("你可以：\n釋放犯人<fr sb>\n犯罪次數清零<clr sb>\n給予今後的豁免<imm sb>\n");
                 return; 
         }
         if (query("redlworkroom/prison/time", me)) {
@@ -158,12 +158,12 @@ void init()
                         set("prisonerlist",  ({me}));
                 else if (member_array(me, prisoners) < 0)
                         set("prisonerlist",  prisoners + ({me}));
-                cti = chinese_number(abs((query("redlworkroom/prison/time", me)-query("online_time", me))) / 60) + "分钟";
+                cti = chinese_number(abs((query("redlworkroom/prison/time", me)-query("online_time", me))) / 60) + "分鐘";
                 if (query("startroom", me)!=base_name(this_object())) {
                         message_system(filter_color(query("name", me), 1) + query("redlworkroom/prison/bmsg", me) + "(犯禁" + chinese_number(query("redlworkroom/prison/num", me)) + "次)。\n" + NOR);
-                        CHANNEL_D->channel_broadcast("rumor", NOR + MAG + "听说" + filter_color(query("name", me), 1) + "被抓进" + query("short") + NOR + MAG + "禁闭" + cti + "。\n" + NOR);
+                        CHANNEL_D->channel_broadcast("rumor", NOR + MAG + "聽說" + filter_color(query("name", me), 1) + "被抓進" + query("short") + NOR + MAG + "禁閉" + cti + "。\n" + NOR);
                 }
-                call_out("delay_msg", 2, append_color(NOR + YEL + "$N" + NOR + YEL + "像只死狗样被扔了进来，一个阴森的声音说道：" +  cti + "后自己出去。\n" + NOR, YEL), me);
+                call_out("delay_msg", 2, append_color(NOR + YEL + "$N" + NOR + YEL + "像只死狗樣被扔了進來，一個陰森的聲音說道：" +  cti + "後自己出去。\n" + NOR, YEL), me);
                 set("startroom", base_name(this_object()), me);
                 set("in_prison", base_name(this_object()), me);
                 me->save();
@@ -174,9 +174,9 @@ void init()
 
 void create()
 {
-        set("short", NOR HIC "化乐" HIK "水牢" NOR);
+        set("short", NOR HIC "化樂" HIK "水牢" NOR);
         set("long", 
-"这是化乐天里黑幽幽的水牢，一米多深的水浸满了整个房间，臭不可闻。\n"
+"這是化樂天裡黑幽幽的水牢，一米多深的水浸滿了整個房間，臭不可聞。\n"
 );
                 set("exits",([ /* sizeof() == 1 */
                         "east" : __DIR__"houdian",
@@ -202,12 +202,12 @@ void create()
 int valid_leave(object me, string dir)
 {
         if (query("redlworkroom/prison/time", me) && dir == "east") {
-                message_vision(append_color(NOR YEL "$N" NOR YEL "仿佛想起什么提示，狼狈不堪地跑出了水牢。\n" NOR, YEL), me);
+                message_vision(append_color(NOR YEL "$N" NOR YEL "彷彿想起什麼提示，狼狽不堪地跑出了水牢。\n" NOR, YEL), me);
                 delete("redlworkroom/prison/time", me);
                 me->start_busy(3);
                 me->move("/d/city/kedian4");
-                message_vision(append_color(NOR YEL "$N" NOR YEL "狼狈不堪地从" + query("short") + NOR + YEL + "跑了出来。\n" NOR, YEL), me);
-                tell_object(me, NOR + HIC + "一个声音告诉你道；" + HIG + "以后别再" + query("redlworkroom/prison/bmsg", me) + "了。\n" + NOR);
+                message_vision(append_color(NOR YEL "$N" NOR YEL "狼狽不堪地從" + query("short") + NOR + YEL + "跑了出來。\n" NOR, YEL), me);
+                tell_object(me, NOR + HIC + "一個聲音告訴你道；" + HIG + "以後別再" + query("redlworkroom/prison/bmsg", me) + "了。\n" + NOR);
                 set("startroom", "/d/city/wumiao", me);
                 delete("in_prison", me);
                 me->save();
@@ -232,7 +232,7 @@ void heart_beat()
                                 if (this_object() != where) {
                                         ti = query("redlworkroom/prison/ti", prisoner);
                                         if (ti < 1) ti = 1;
-                                        throwing(prisoner, ti, "越狱");
+                                        throwing(prisoner, ti, "越獄");
                                 }
                         }
                         set("prisonerlist",  prisoners);
@@ -248,18 +248,18 @@ void throw_flood(object me, object ob)
 mapping *fmsk = ({
                 (["id":"huajia-su",
                                 "limit":1280,
-                        "tname":"化甲术",
+                        "tname":"化甲術",
                         "fam":"全真教"
                         ]),
                 (["id":"jingxin",
                                 "limit":1280,
-                        "tname":"静心",
+                        "tname":"靜心",
                         "fam":"峨嵋派"
                         ]),
                 (["id":"jianyi",
                                 "limit":1280,
-                        "tname":"剑意",
-                        "fam":"华山派"
+                        "tname":"劍意",
+                        "fam":"華山派"
                         ]),
                 (["id":"wudu-jing",
                                 "limit":1280,
@@ -268,22 +268,22 @@ mapping *fmsk = ({
                         ]),
                 (["id":"bingchan-gong",
                                 "limit":1280,
-                        "tname":"冰蚕功",
+                        "tname":"冰蠶功",
                         "fam":"星宿派"
                         ]),
                      (["id":"freezing-force", 
-                             "tname":"冰蚕寒功", 
+                             "tname":"冰蠶寒功", 
                              "fam":"星宿派" 
                              ]), 
                 (["id":"tianwei-zhengqi",
                                 "limit":1280,
-                        "tname":"天威正气",
-                        "fam":"武当派"
+                        "tname":"天威正氣",
+                        "fam":"武當派"
                         ]),
                 (["id":"fanlao-huantong",
                                 "limit":1280,
-                        "tname":"返老还童功",
-                        "fam":"灵鹫宫"
+                        "tname":"返老還童功",
+                        "fam":"靈鷲宮"
                         ]),
                 (["id":"taishang-wangqing",
                                 "limit":1280,
@@ -292,13 +292,13 @@ mapping *fmsk = ({
                         ]),
                 (["id":"xiaoyao-you",
                                 "limit":1280,
-                        "tname":"逍遥游",
-                        "fam":"逍遥派"
+                        "tname":"逍遙遊",
+                        "fam":"逍遙派"
                         ]),
                 (["id":"qimen-xuanshu",
                                 "limit":1280,
-                        "tname":"奇门玄术",
-                        "fam":"桃花岛"
+                        "tname":"奇門玄術",
+                        "fam":"桃花島"
                         ]),
                 (["id":"xueying-dafa",
                                 "limit":1280,
@@ -313,16 +313,16 @@ mapping *fmsk = ({
                 (["id":"bixue-danxin",
                                 "limit":1280,
                         "tname":"碧血丹心",
-                        "fam":"丐帮"
+                        "fam":"丐幫"
                         ]),
                 (["id":"daojian-xiaotianwai",
                                 "limit":1280,
-                        "tname":"刀剑啸天外",
-                        "fam":"关外胡家"
+                        "tname":"刀劍嘯天外",
+                        "fam":"關外胡家"
                         ]),
                 (["id":"lunhui",
                                 "limit":1280,
-                        "tname":"轮回",
+                        "tname":"輪迴",
                         "fam":"少林派"
                         ]),
                 (["id":"huitong-tianxia",
@@ -332,17 +332,17 @@ mapping *fmsk = ({
                         ]),
                 (["id":"guangming-jing",
                                 "limit":1280,
-                        "tname":"大云光明经",
+                        "tname":"大雲光明經",
                         "fam":"明教"
                         ]),
                 (["id":"jinchan-tunyue",
                                 "limit":1280,
                         "tname":"金蟾吞月",
-                        "fam":"欧阳世家"
+                        "fam":"歐陽世家"
                         ]),
                 (["id":"qimai-liuzhuan",
                                 "limit":1280,
-                        "tname":"气脉流转",
+                        "tname":"氣脈流轉",
                         "fam":"段氏皇族"
                         ]),
                 (["id":"motun-tianxia",
@@ -352,12 +352,12 @@ mapping *fmsk = ({
                         ]),
                 (["id":"luoxian-jue",
                                 "limit":1280,
-                        "tname":"落仙诀",
-                        "fam":"唐门世家"
+                        "tname":"落仙訣",
+                        "fam":"唐門世家"
                         ]),
                 (["id":"richu-dongfang",
                                 "limit":1280,
-                        "tname":"日出东方",
+                        "tname":"日出東方",
                         "fam":"日月神教"
                         ]),
         });
@@ -371,9 +371,9 @@ int chk1()
                 mapping cg_data;
                 
         if (! str)
-                return notify_fail("你要统计什么技能？\n");
+                return notify_fail("你要統計什麼技能？\n");
         if (file_size("/kungfu/skill/" + str + ".c") == -1)
-                return notify_fail("没有这个技能存在！\n");                
+                return notify_fail("沒有這個技能存在！\n");                
         users = users();
         players = ({});
         foreach (object player in users)  {
@@ -381,10 +381,10 @@ int chk1()
                         players += ({ player });
                 }
         }
-                //write(HIY + "统计"+fmsk[idx]["tname"]+":\n" + NOR);
+                //write(HIY + "統計"+fmsk[idx]["tname"]+":\n" + NOR);
         foreach (object player in players) {
                 if (player->query_skill(str, 1)) {
-                        /*write(sprintf(HIC "%-21s年龄：%-10d所属门派：%-16s等级：%-10d\n" NOR,
+                        /*write(sprintf(HIC "%-21s年齡：%-10d所屬門派：%-16s等級：%-10d\n" NOR,
                                       player->name()+"("+query("id", player)+")",
 
                                       query("age", player),
@@ -407,7 +407,7 @@ int chk1()
                                 !query("betrayer/" + fmsk[idx]["fam"], player) && 
                                 no_cg) ) {
                                 //write(HIR + "犯禁！\n" + NOR);
-                                throwing(player, THROWTIME, "偷学" + fmsk[idx]["tname"] + "(" + str + ")");
+                                throwing(player, THROWTIME, "偷學" + fmsk[idx]["tname"] + "(" + str + ")");
                        }               
                 }
         }
@@ -438,10 +438,10 @@ int chk2sgl(object player)
                                 fsk = mfsk["id"];
                                 if (mfsk["limit"] && 
                                         player->query_skillo(fsk,1) > mfsk["limit"]) {
-                                        //write(HIY + "统计到"+player->name()+"("+query("id", player)+")的"+mfsk["tname"]+"("+fsk+")的等级超过了"+(string)mfsk["limit"]+"\n" + NOR);
-                                        log_file( "static/throw_skup", player->name()+"("+query("id", player)+")的"+mfsk["tname"]+"("+fsk+")的等级超过了"+(string)mfsk["limit"]+"\n");
-                                        throwing(player, THROWTIME, mfsk["tname"]+"("+fsk+")等级异常达到" + (string)player->query_skillo(fsk,1) + "级");
-                                        tell_object(player, NOR BLINK HIR "\n如果有异议，msg mail redl，留下你的解释。\n确定冤情后对于被禁闭的时段，可获补偿50NT/小时。\n\n" NOR);
+                                        //write(HIY + "統計到"+player->name()+"("+query("id", player)+")的"+mfsk["tname"]+"("+fsk+")的等級超過了"+(string)mfsk["limit"]+"\n" + NOR);
+                                        log_file( "static/throw_skup", player->name()+"("+query("id", player)+")的"+mfsk["tname"]+"("+fsk+")的等級超過了"+(string)mfsk["limit"]+"\n");
+                                        throwing(player, THROWTIME, mfsk["tname"]+"("+fsk+")等級異常達到" + (string)player->query_skillo(fsk,1) + "級");
+                                        tell_object(player, NOR BLINK HIR "\n如果有異議，msg mail redl，留下你的解釋。\n確定冤情後對於被禁閉的時段，可獲補償50NT/小時。\n\n" NOR);
                                         return 1;
                                 }
                         }
@@ -449,7 +449,7 @@ int chk2sgl(object player)
                 ks = filter_array(keys(player->query_skills()), (: filter_skill :), player);
                         if (r = sizeof(ks))
                         {
-                                //write(NOR + "抽检(" + player->name()+ ")\n" + NOR);
+                                //write(NOR + "抽檢(" + player->name()+ ")\n" + NOR);
                                         r = random(r);
                                         sk = ks[r];
                                         skname = to_chinese(sk);
@@ -460,10 +460,10 @@ int chk2sgl(object player)
                                         if (sklv < 2000) return 0;
                                         if (sklv < sklvmax * 13 / 10) return 0;
                                         if (sklv < sklvmax2 * 13 / 10) return 0;
-                                        //write(HIY + "统计到"+player->name()+"("+query("id", player)+")的"+skname+"("+sk+")的等级"+(string)sklv+"异常\n" + NOR);
-                                        log_file( "static/throw_skup", player->name()+"("+query("id", player)+")的"+skname+"("+sk+")的等级"+(string)sklv+"异常\n");
-                                        throwing(player, THROWTIME, skname+"("+sk+")等级异常达到" + (string)sklv + "级");
-                                        tell_object(player, NOR BLINK HIR "\n如果有异议，msg mail redl，留下你的解释。\n确定冤情后对于被禁闭的时段，可获补偿50NT/小时。\n\n" NOR);
+                                        //write(HIY + "統計到"+player->name()+"("+query("id", player)+")的"+skname+"("+sk+")的等級"+(string)sklv+"異常\n" + NOR);
+                                        log_file( "static/throw_skup", player->name()+"("+query("id", player)+")的"+skname+"("+sk+")的等級"+(string)sklv+"異常\n");
+                                        throwing(player, THROWTIME, skname+"("+sk+")等級異常達到" + (string)sklv + "級");
+                                        tell_object(player, NOR BLINK HIR "\n如果有異議，msg mail redl，留下你的解釋。\n確定冤情後對於被禁閉的時段，可獲補償50NT/小時。\n\n" NOR);
                                         return 1;
                         }
                         
@@ -478,7 +478,7 @@ int chk2()
 {
         object *users;
         object player;
-        int rall, pidx = 20;//抽检20人
+        int rall, pidx = 20;//抽檢20人
                 
         users = users();
         rall = sizeof(users);

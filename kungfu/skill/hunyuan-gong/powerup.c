@@ -11,19 +11,19 @@ int exert(object me, object target)
         int skill;
 
         if (target != me)
-                return notify_fail("你只能用混元功来提升自己的战斗力。\n");
+                return notify_fail("你只能用混元功來提升自己的戰鬥力。\n");
 
         if( query("neili", me)<100 )
-                return notify_fail("你的真气不够。\n");
+                return notify_fail("你的真氣不夠。\n");
 
         if( query_temp("powerup", me) )
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
         addn("neili", -100, me);
         me->receive_damage("qi", 0);
-        message_combatd(HIR "$N" HIR "微一凝神，运起混元功，全身劲气"
-                        "暴涨,神态自若。\n" NOR, me);
+        message_combatd(HIR "$N" HIR "微一凝神，運起混元功，全身勁氣"
+                        "暴漲,神態自若。\n" NOR, me);
 
         addn_temp("apply/attack", skill/3, me);
         addn_temp("apply/defense", skill/3, me);
@@ -43,6 +43,6 @@ void remove_effect(object me, int amount)
                 addn_temp("apply/attack", -amount, me);
                 addn_temp("apply/defense", -amount, me);
                 delete_temp("powerup", me);
-                tell_object(me, "你的混元功运行完毕，将内力收回丹田。\n");
+                tell_object(me, "你的混元功運行完畢，將內力收回丹田。\n");
         }
 }

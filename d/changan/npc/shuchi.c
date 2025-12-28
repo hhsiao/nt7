@@ -5,10 +5,10 @@ inherit F_DEALER;
 
 void create()
 {
-        set_name("书痴", ({ "shu chi", "chi", }) );
+        set_name("書痴", ({ "shu chi", "chi", }) );
         set("gender", "男性" );
         set("age", 40);
-        set("title", "汇文阁老板");
+        set("title", "匯文閣老闆");
         set("combat_exp", 50000);
         set_skill("dodge", 50);
         set_skill("parry", 50);
@@ -42,5 +42,5 @@ void greeting(object ob)
 {
         if (! ob || ! visible(ob) || environment(ob) != environment())
                 return;
-        command("say 这位" + RANK_D->query_respect(ob) + "快请进，快请进。");
+        command("say 這位" + RANK_D->query_respect(ob) + "快請進，快請進。");
 }

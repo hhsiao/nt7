@@ -7,7 +7,7 @@ void setup()
         set_name("[1;33m九尾[1;32m狐狸[2;37;0m[2;37;0m", ({"ahria"}));        
         set("gender", "女性");                
         set("long", "阿[2;37;0m
-它是阿狸的魔幻兽。
+它是阿狸的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

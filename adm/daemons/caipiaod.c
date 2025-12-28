@@ -24,7 +24,7 @@ string record_time(int time)
         ctime = "";
         ctime += chinese_number(mo) + "月";
         ctime += chinese_number(d) + "日";
-        ctime += chinese_number(h) + "时";
+        ctime += chinese_number(h) + "時";
         ctime += chinese_number(m) + "分";
         ctime += chinese_number(s) + "秒";
         return ctime;
@@ -40,7 +40,7 @@ void do_run(string type)
         return;
         if( type=="kaijiang" )
         {
-                message("system",HIW"〖福彩〗：下面将开出本期彩票大奖！\n"NOR,users());
+                message("system",HIW"〖福彩〗：下面將開出本期彩票大獎！\n"NOR,users());
                 i=0;
                 z=0;
                 while( p!=7 )
@@ -56,8 +56,8 @@ void do_run(string type)
                 for( i=0;i<sizeof(jieguo);i++ )
                         str+=jieguo[i]+" ";
 
-                message("system",HIW"〖福彩〗：第"+chinese_number(query("times", cpb))+"期兑奖号码为"+BLINK+HIR+str+"！\n"NOR,users());
-                message("system",HIW"〖福彩〗：可以去扬州彩票投注中心read biao来查看得奖名单。\n"NOR,users());
+                message("system",HIW"〖福彩〗：第"+chinese_number(query("times", cpb))+"期兌獎號碼為"+BLINK+HIR+str+"！\n"NOR,users());
+                message("system",HIW"〖福彩〗：可以去揚州彩票投注中心read biao來查看得獎名單。\n"NOR,users());
 
                 set("last_z_num", jieguo, cpb);
                 set("last_z_num_str", str, cpb);
@@ -67,7 +67,7 @@ void do_run(string type)
                 delete("end_date", cpb);
                 delete("end_cdate", cpb);
                 addn("times", 1, cpb);
-                set("start_date", (real_time()+60*60*14)/60*60, cpb);   // 间隔14小时发行彩票
+                set("start_date", (real_time()+60*60*14)/60*60, cpb);   // 間隔14小時發行彩票
                 set("start_cdate", record_time((real_time()+60*60*14)/60*60), cpb);
 
                 cpb->show_player();
@@ -76,19 +76,19 @@ void do_run(string type)
                 else set("all_gold",50000, cpb);
                 cpb->save();
 
-                message("system",HIW"〖福彩〗：下期彩票将于"+query("start_cdate", cpb)+"开始发行，欢迎购买。\n"NOR,users());
-                message("system",HIW"〖福彩〗：第"+chinese_number(query("times", cpb))+"期预计奖金"+chinese_number(query("all_gold", cpb))+" NT。\n"NOR,users());
+                message("system",HIW"〖福彩〗：下期彩票將於"+query("start_cdate", cpb)+"開始發行，歡迎購買。\n"NOR,users());
+                message("system",HIW"〖福彩〗：第"+chinese_number(query("times", cpb))+"期預計獎金"+chinese_number(query("all_gold", cpb))+" NT。\n"NOR,users());
                 /*
                 cpb->auto_post(
-                        sprintf(HIR"〖福彩〗：本期彩票开奖号码为"+str+"！"NOR),
-                        sprintf("中奖名单如下：%s",cpb->show_player()),
+                        sprintf(HIR"〖福彩〗：本期彩票開獎號碼為"+str+"！"NOR),
+                        sprintf("中獎名單如下：%s",cpb->show_player()),
                 );
                 */
                 //rm("/data/caipiao/call");
                 write_file("/data/caipiao/call",sprintf(
-                        "〖福彩〗：本期彩票大奖已开出，兑奖号码为"+str+"\n" +
-                        "〖福彩〗：下期彩票将于"+query("start_cdate", cpb)+"开始发行，欢迎购买。\n"+
-                        "〖福彩〗：下期彩票预计奖金"+chinese_number(query("all_gold", cpb))+" NT。\n"),1);
+                        "〖福彩〗：本期彩票大獎已開出，兌獎號碼為"+str+"\n" +
+                        "〖福彩〗：下期彩票將於"+query("start_cdate", cpb)+"開始發行，歡迎購買。\n"+
+                        "〖福彩〗：下期彩票預計獎金"+chinese_number(query("all_gold", cpb))+" NT。\n"),1);
                 return;
         }
         else if( type=="end" )
@@ -99,12 +99,12 @@ void do_run(string type)
                 delete("end_date", cpb);
                 delete("end_cdate", cpb);
                 cpb->save();
-                message("system",HIW"〖福彩〗：本期彩票停止购买，请关注开奖结果！\n"NOR,users());
-                message("system",HIW"〖福彩〗：本期彩票将于"+query("kaijiang_cdate", cpb)+"开奖！\n"NOR,users());
+                message("system",HIW"〖福彩〗：本期彩票停止購買，請關注開獎結果！\n"NOR,users());
+                message("system",HIW"〖福彩〗：本期彩票將於"+query("kaijiang_cdate", cpb)+"開獎！\n"NOR,users());
                 //rm("/data/caipiao/call");
                 write_file("/data/caipiao/call",sprintf(
-                        "〖福彩〗：本期彩票已停止购买，请关注开奖结果！\n" +
-                        "〖福彩〗：本期彩票将于"+query("kaijiang_cdate", cpb)+"开奖！\n"),1);
+                        "〖福彩〗：本期彩票已停止購買，請關注開獎結果！\n" +
+                        "〖福彩〗：本期彩票將於"+query("kaijiang_cdate", cpb)+"開獎！\n"),1);
                 return;
         }
         else if( type=="start" )
@@ -115,8 +115,8 @@ void do_run(string type)
                 if( !query("all_gold", cpb) )
                         set("all_gold",50000,cpb);
 
-                message("system",HIW"〖福彩〗：第"+chinese_number(query("times", cpb))+"期彩票开始发行，欢迎大家前来购买。\n"NOR,users());
-                message("system",HIW"〖福彩〗：第"+chinese_number(query("times", cpb))+"期预计奖金"+chinese_number(query("all_gold", cpb))+" NT。\n"NOR,users());
+                message("system",HIW"〖福彩〗：第"+chinese_number(query("times", cpb))+"期彩票開始發行，歡迎大家前來購買。\n"NOR,users());
+                message("system",HIW"〖福彩〗：第"+chinese_number(query("times", cpb))+"期預計獎金"+chinese_number(query("all_gold", cpb))+" NT。\n"NOR,users());
 
                 delete("end_ya", cpb);
                 delete("duijiang", cpb);
@@ -125,17 +125,17 @@ void do_run(string type)
                 delete("start_date", cpb);
                 delete("start_cdate", cpb);
                 set("kaijiang_cdate", record_time((real_time()+60*60*10)/60*60), cpb); 
-                set("kaijiang_date", (real_time()+60*60*10)/60*60, cpb);        // 间隔10小时开奖
+                set("kaijiang_date", (real_time()+60*60*10)/60*60, cpb);        // 間隔10小時開獎
                 set("end_cdate", record_time((real_time()+9*60*60)/60*60), cpb);
-                set("end_date", (real_time()+9*60*60)/60*60, cpb);              // 间隔9小时结束投注
+                set("end_date", (real_time()+9*60*60)/60*60, cpb);              // 間隔9小時結束投注
                 cpb->save();
 
-                message("system",HIW"〖福彩〗：第"+chinese_number(query("times",cpb))+"期彩票将于"+query("end_cdate", cpb)+"停止发行。\n"NOR,users());
+                message("system",HIW"〖福彩〗：第"+chinese_number(query("times",cpb))+"期彩票將於"+query("end_cdate", cpb)+"停止發行。\n"NOR,users());
                 //rm("/data/caipiao/call");
                 write_file("/data/caipiao/call",sprintf(
-                        "〖福彩〗：第"+chinese_number(query("times", cpb))+"期彩票已经发行，欢迎大家前来购买。\n" +
-                        "〖福彩〗：第"+chinese_number(query("times", cpb))+"期累计奖金"+chinese_number(query("all_gold", cpb))+" NT。\n" +
-                        "〖福彩〗：第"+chinese_number(query("times", cpb))+"期彩票将于"+query("end_cdate", cpb)+"停止发行。\n"),1);
+                        "〖福彩〗：第"+chinese_number(query("times", cpb))+"期彩票已經發行，歡迎大家前來購買。\n" +
+                        "〖福彩〗：第"+chinese_number(query("times", cpb))+"期累計獎金"+chinese_number(query("all_gold", cpb))+" NT。\n" +
+                        "〖福彩〗：第"+chinese_number(query("times", cpb))+"期彩票將於"+query("end_cdate", cpb)+"停止發行。\n"),1);
                 return;
         }
         return;

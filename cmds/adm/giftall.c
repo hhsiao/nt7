@@ -16,7 +16,7 @@ int main(object me, string arg)
                 return 0;
 
         if (! arg)
-                return notify_fail("giftall 派礼物给在线玩家，命令格式： giftall </路径/../目标文件名> <数量>\n\n");
+                return notify_fail("giftall 派禮物給在線玩家，命令格式： giftall </路徑/../目標文件名> <數量>\n\n");
 
         if (sscanf(arg, "%s %d", target, count) != 2)
                 target = arg;
@@ -26,7 +26,7 @@ int main(object me, string arg)
         gift_file = target;
 
         if (target != "nt" && file_size(gift_file) == -1)
-                return notify_fail("路径不正确，无法找到物品。\n");
+                return notify_fail("路徑不正確，無法找到物品。\n");
 
         seteuid(getuid());
 
@@ -62,9 +62,9 @@ int main(object me, string arg)
 
                         ob->move(pob);
 
-                        tell_object(pob, HIW "\n\n忽然从极高极远的天空中极速降下一只浑身烈焰的"HIR"火凤"HIW"，周身闪耀七彩光芒。\n" NOR);
-                        tell_object(pob, HIC "它爪下似乎抓着什么东西，突然"HIC"火凤"HIW"松开脚爪，有个东西直向你掉落下来。\n" NOR);
-                        tell_object(pob, HIG "你猛一提气纵身一跃丈高将此物抓在手中，又潇洒的飘落地面。\n\n" NOR);
+                        tell_object(pob, HIW "\n\n忽然從極高極遠的天空中極速降下一隻渾身烈焰的"HIR"火鳳"HIW"，周身閃耀七彩光芒。\n" NOR);
+                        tell_object(pob, HIC "它爪下似乎抓著什麼東西，突然"HIC"火鳳"HIW"鬆開腳爪，有個東西直向你掉落下來。\n" NOR);
+                        tell_object(pob, HIG "你猛一提氣縱身一躍丈高將此物抓在手中，又瀟灑的飄落地面。\n\n" NOR);
                         }
 
                 }
@@ -80,9 +80,9 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式：giftall 物品路径
+指令格式：giftall 物品路徑
 
-给在线的每一个IP的玩家一件物品。
+給在線的每一個IP的玩家一件物品。
 HELP
         );
         return 1;

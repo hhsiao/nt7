@@ -7,23 +7,23 @@ inherit F_CLEAN_UP;
 mapping default_dirs = ([
         "north":        "北方",
         "south":        "南方",
-        "east":         "东方",
+        "east":         "東方",
         "west":         "西方",
-        "northup":      "北边",
-        "southup":      "南边",
-        "eastup":       "东边",
-        "westup":       "西边",
-        "northdown":    "北边",
-        "southdown":    "南边",
-        "eastdown":     "东边",
-        "westdown":     "西边",
-        "northeast":    "东北",
+        "northup":      "北邊",
+        "southup":      "南邊",
+        "eastup":       "東邊",
+        "westup":       "西邊",
+        "northdown":    "北邊",
+        "southdown":    "南邊",
+        "eastdown":     "東邊",
+        "westdown":     "西邊",
+        "northeast":    "東北",
         "northwest":    "西北",
-        "southeast":    "东南",
+        "southeast":    "東南",
         "southwest":    "西南",
         "up":           "上面",
         "down":         "下面",
-        "enter":        "里面",
+        "enter":        "裡面",
         "out":          "外面",
 ]);
 
@@ -51,22 +51,22 @@ int main(object me, string arg)
 
 //      int i,my_dex,count = 0;
 
-        if (! arg) return notify_fail("你要往哪个方向走？\n");
+        if (! arg) return notify_fail("你要往哪個方向走？\n");
 
         if (me->over_encumbranced() && userp(me))
-                return notify_fail("你的负荷过重，动弹不得。\n");
+                return notify_fail("你的負荷過重，動彈不得。\n");
 
         if (me->query_encumbrance() < 0 && userp(me))
-                return notify_fail("你的负荷出现故障，动弹不得。\n");
+                return notify_fail("你的負荷出現故障，動彈不得。\n");
 
         if( me->is_busy() || (query("doing", me) && query("doing", me) != "trigger") )
-                return notify_fail("你的动作还没有完成，不能移动。\n");
+                return notify_fail("你的動作還沒有完成，不能移動。\n");
         
         if( query_temp("is_riding_follow", me) )
-                return notify_fail("你还是先下坐骑（ride down）后再移动。\n");
+                return notify_fail("你還是先下坐騎（ride down）後再移動。\n");
                 
         env = environment(me);
-        if (! env) return notify_fail("你哪里也去不了。\n");
+        if (! env) return notify_fail("你哪裡也去不了。\n");
 
         if (me->is_fighting())
         {
@@ -113,24 +113,24 @@ int main(object me, string arg)
                         gp += query("dex", g_ob) * 15;
 
                         if( !query("not_living", g_ob) && (fp / 2 + random(fp)) < (gp * 3 / 4) )
-                        //等铜人统一后恢复上面判断公式
+                        //等銅人統一後恢復上面判斷公式
                         //if( 5+random(query("dex", me)) <= random(query("dex", g_ob)) )
                         {
                                 me->start_busy(1);
                                 if (me->is_fighting(g_ob))
                                 {
-                                        message_vision("$N见势不好，转身要走，"
-                                                       "被$n一把拦在面前。想走"
-                                                       "？可没那么容易！\n",
+                                        message_vision("$N見勢不好，轉身要走，"
+                                                       "被$n一把攔在面前。想走"
+                                                       "？可沒那麼容易！\n",
                                                        me, g_ob);
-                                        tell_object(me, "你逃跑失败。\n");
+                                        tell_object(me, "你逃跑失敗。\n");
                                 } else
                                 {
-                                        message_vision("$N刚想离开，被$n一把"
-                                                       "拦住：慢着！想打我这"
-                                                       "儿过，没门！\n",
+                                        message_vision("$N剛想離開，被$n一把"
+                                                       "攔住：慢著！想打我這"
+                                                       "兒過，沒門！\n",
                                                        me, g_ob);
-                                        tell_object(me, "你被拦住了去路。\n");
+                                        tell_object(me, "你被攔住了去路。\n");
                                 }
 
                                 if (userp(g_ob))
@@ -144,22 +144,22 @@ int main(object me, string arg)
 
                                         if (force_power > target_power * 3)
                                         {
-                                                message_vision("$N纵声长笑：“鼠辈！安敢欺吾？”说罢"
-                                                               "往前一冲，将$n带出数步，跌倒在地。\n",
+                                                message_vision("$N縱聲長笑：“鼠輩！安敢欺吾？”說罷"
+                                                               "往前一衝，將$n帶出數步，跌倒在地。\n",
                                                                me, g_ob);
                                                 g_ob->unconcious();
                                         } else
                                         if (force_power > target_power * 2)
                                         {
-                                                message_vision("$N理都没有理$n，只是旁若无人往前走去"
-                                                               "，将$n撞得鼻青脸肿。",
+                                                message_vision("$N理都沒有理$n，只是旁若無人往前走去"
+                                                               "，將$n撞得鼻青臉腫。",
                                                                me, g_ob);
                                                 g_ob->receive_wound("qi", 100 + random(100));
                                         } else
                                         if (force_power > target_power)
                                         {
-                                                message_vision("$N一声冷笑，大踏步的向前冲"
-                                                               "去，乓的一下将$n撞到了一边。",
+                                                message_vision("$N一聲冷笑，大踏步的向前衝"
+                                                               "去，乓的一下將$n撞到了一邊。",
                                                                me, g_ob);
                                                 g_ob->receive_wound("qi", 50 + random(50));
                                         }
@@ -167,7 +167,7 @@ int main(object me, string arg)
                                                 // return 1;
                                 } else
                                         return 1;
-                                // 没有阻挡成功，继续前进
+                                // 沒有阻擋成功，繼續前進
                         }
                 }
         }
@@ -176,11 +176,11 @@ int main(object me, string arg)
         if( !mapp(exit=query("exits", env)) || undefinedp(exit[arg]) )
         {
                 if (query_verb() == "go")
-                        notify_fail("这个方向没有出路。\n");
+                        notify_fail("這個方向沒有出路。\n");
                 return 0;
         }
 
-        notify_fail("你过不去。\n");
+        notify_fail("你過不去。\n");
         result = env->valid_leave(me, arg);
         if (! objectp(me))
                 return 1;
@@ -195,11 +195,11 @@ int main(object me, string arg)
         dest = exit[arg];
         if (! (obj = find_object(dest)))
                 if (! objectp(obj = load_object(dest)))
-                        return notify_fail(sprintf("目标物件无法找到，无"
-                                                   "法向 %s 移动。\n", dest ) );
+                        return notify_fail(sprintf("目標物件無法找到，無"
+                                                   "法向 %s 移動。\n", dest ) );
         
         if (function_exists("valid_enter", obj) && ! obj->valid_enter(me))
-                return notify_fail(obj->short() + "那里现在不允许你进入。\n"); 
+                return notify_fail(obj->short() + "那裡現在不允許你進入。\n"); 
 
         /*
         if (my_temp["is_riding"] &&
@@ -209,7 +209,7 @@ int main(object me, string arg)
             arg != "northwest" && arg != "southwest")
         */
         if (objectp(riding = my_temp["is_riding"]) && member_array(arg, keys(default_dirs)) == -1)
-                return notify_fail("这个方向没法骑在座骑上过去。\n");
+                return notify_fail("這個方向沒法騎在座騎上過去。\n");
 
         if (! undefinedp(default_dirs[arg]))
                 dir = default_dirs[arg];
@@ -224,50 +224,50 @@ int main(object me, string arg)
         if (me->is_fighting())
         {
                 mout = me->name() + "往" + dir + "落荒而逃了。\n";
-                min = me->name() + "跌跌撞撞地跑了过来，模样有些狼狈。\n";
+                min = me->name() + "跌跌撞撞地跑了過來，模樣有些狼狽。\n";
         } else
         {
                 //if (objectp(thing = my_armor["cloth"]))
                 if (objectp(thing = me->query_equipped_object("cloth")))
-                        thing_msg="身着"+query("name", thing);
+                        thing_msg="身著"+query("name", thing);
                 else
                 if (userp(me))
-                        thing_msg = "一丝不挂的";
+                        thing_msg = "一絲不掛的";
                 else
                         thing_msg = "";
 
                 if (objectp(thing = my_temp["weapon"]))
-                        thing_msg+="手执"+query("name", thing);
+                        thing_msg+="手執"+query("name", thing);
 
-                if (my["race"] == "野兽")
+                if (my["race"] == "野獸")
                 {
                         if( mout = query("leave_msg", me) )
                                 mout = me->name() + "往" + dir + mout +" 。\n";
                         else
-                                mout = me->name() + "呼地往" + dir + "一窜就消失了。\n";
+                                mout = me->name() + "呼地往" + dir + "一竄就消失了。\n";
                         if( min = query("arrive_msg", me) )
                                 min = me->name() + min + " 。\n";
                         else
-                                min = me->name() + "呼地窜了出来，警惕地四周张望着。\n";
+                                min = me->name() + "呼地竄了出來，警惕地四周張望著。\n";
                 } else
                 {
                         //if (objectp(riding = my_temp["is_riding"]))
                         if (objectp(riding))
                         {
-                                mout = me->name() + "骑着" + riding->name() +
-                                       "向" + dir + "疾驰而去。\n";
-                                min = me->name() + thing_msg + "骑着" +
-                                      riding->name() + "一路疾驰而来。\n";
+                                mout = me->name() + "騎著" + riding->name() +
+                                       "向" + dir + "疾馳而去。\n";
+                                min = me->name() + thing_msg + "騎著" +
+                                      riding->name() + "一路疾馳而來。\n";
                         } else
                         {
                                 if( mout = query("leave_msg", me) )
                                         mout = me->name() + "往" + dir + mout +" 。\n";
                                 else
-                                        mout = me->name() + "往" + dir + "离开。\n";
+                                        mout = me->name() + "往" + dir + "離開。\n";
                                 if( min = query("arrive_msg", me) )
                                         min = me->name() + thing_msg + min + " 。\n";
                                 else
-                                        min = me->name() + thing_msg + "走了过来。\n";
+                                        min = me->name() + thing_msg + "走了過來。\n";
                         }
                 }
         }
@@ -332,7 +332,7 @@ int main(object me, string arg)
 
         if (me->query_weak())
         {
-                tell_object(me,"你虚弱的身体好像每迈出一步都要用出全身的力气。\n");
+                tell_object(me,"你虛弱的身體好像每邁出一步都要用出全身的力氣。\n");
                 me->start_busy(1);
         }               
 
@@ -348,7 +348,7 @@ void do_flee(object me)
         exits=query("exits", environment(me));
         if (! mapp(exits) || ! sizeof(exits)) return;
         directions = keys(exits);
-        tell_object(me, "看来该找机会逃跑了...\n");
+        tell_object(me, "看來該找機會逃跑了...\n");
         main(me, directions[random(sizeof(directions))]);
 }
 
@@ -393,7 +393,7 @@ int help(object me)
         write(@HELP
 指令格式 : go <方向>
  
-让你往指定的方向移动。
+讓你往指定的方向移動。
  
 HELP );
         return 1;

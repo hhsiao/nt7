@@ -12,7 +12,7 @@ int main(object me, string arg)
                 return 0;
 
         if( !arg)arg=query("cwf", me);
-        if (! arg) return notify_fail("你要查看哪个文件？\n");
+        if (! arg) return notify_fail("你要查看哪個文件？\n");
   
         if (sscanf(arg, "%s %s", option, str) != 2 || option != "-r")
         str = arg; 
@@ -22,7 +22,7 @@ int main(object me, string arg)
                 set("cwf", str, me);
       
         if (file_size(str) < 0)
-                       return  notify_fail("没有这个文件："  +  str  +  ")\n");
+                       return  notify_fail("沒有這個文件："  +  str  +  ")\n");
 
         list = children(str);
         number=sizeof(list);
@@ -47,7 +47,7 @@ int main(object me, string arg)
                                 if (option == "-r" && ! living(where))
                                 {
                                         destruct(list[i]);
-                                        write ("已经清除。\n");
+                                        write ("已經清除。\n");
                                 }
                         } else
                         {
@@ -57,7 +57,7 @@ int main(object me, string arg)
                         }
                 }
         } else
-                write("没有找到任何派生物件。\n");
+                write("沒有找到任何派生物件。\n");
         return  1;
 }
 
@@ -66,8 +66,8 @@ int help(object me)
         write(@HELP
 指令格式: child [-r] filename
 
-列出一个文档所有副本。
-如果用-r参数，则销毁所有不在活物身上的该文档副本。
+列出一個文檔所有副本。
+如果用-r參數，則銷燬所有不在活物身上的該文檔副本。
 
 HELP );
         return 1;

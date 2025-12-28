@@ -11,20 +11,20 @@ inherit NPC;
 mapping bunch_bad = ([ 
         "bunch_name" : "黑白道",
         "id"   : "hbd",
-        "place": "xy",      //总会
-        "boss" : "贾不假",
-        "place_name" : "襄阳", //分会
+        "place": "xy",      //總會
+        "boss" : "賈不假",
+        "place_name" : "襄陽", //分會
         "type" : "bad",
 ]);
 
 void create()
 {
-        set_name("贾不假", ({ "jia bujia", "jia" }));
+        set_name("賈不假", ({ "jia bujia", "jia" }));
         set("gender", "男性");
         set("age", 30);
-        set("long", "他就是" + bunch_bad["bunch_name"] + "设在" + bunch_bad["place_name"] + "的分坛首领。\n");
-        set("nickname",HIY"白玉为堂金作马"NOR);
-        set("title",HIB"黑"HIW"白"NOR"道分坛主"NOR);
+        set("long", "他就是" + bunch_bad["bunch_name"] + "設在" + bunch_bad["place_name"] + "的分壇首領。\n");
+        set("nickname",HIY"白玉為堂金作馬"NOR);
+        set("title",HIB"黑"HIW"白"NOR"道分壇主"NOR);
         set("per",20);
         set("combat_exp", 800000);
         set("shen_type", -1);

@@ -6,13 +6,13 @@ inherit __DIR__"normal.c";
 
 void create()
 {
-        set("short", "传功楼");
+        set("short", "傳功樓");
         set("long", 
-"传功楼所有建筑都是用一种赤红色的奇异石材所筑，台阶栏杆，莫不如\n"
-"此。整个传功楼高大雄伟，呈现出宝塔形状，共有三层，每高一层，便比下\n"
-"面小了一半左右，但是每一层看上去几乎都有不可思议的十丈之高。远远往\n"
-"上望去，整个传功楼如若一团巨大燃烧的赤红火焰，直刺苍穹，站在楼下，\n"
-"如同蝼蚁一般，顿感渺小无法往上移步。\n"        
+"傳功樓所有建築都是用一種赤紅色的奇異石材所築，臺階欄杆，莫不如\n"
+"此。整個傳功樓高大雄偉，呈現出寶塔形狀，共有三層，每高一層，便比下\n"
+"面小了一半左右，但是每一層看上去幾乎都有不可思議的十丈之高。遠遠往\n"
+"上望去，整個傳功樓如若一團巨大燃燒的赤紅火焰，直刺蒼穹，站在樓下，\n"
+"如同螻蟻一般，頓感渺小無法往上移步。\n"        
 );
                 //set("outdoors", "dongtian");
                 set("exits",([ /* sizeof() == 1 */
@@ -27,7 +27,7 @@ void create()
         set("no_drift", 1);
         set("no_sleep_room", 1); 
         set("max_carry_user" ,3);
-//        set("owner_level", 1);可以传授给外人，隐身者和冒险者等等
+//        set("owner_level", 1);可以傳授給外人，隱身者和冒險者等等
         
         setup();
 }
@@ -37,7 +37,7 @@ int valid_leave(object me, string dir)
         object gcroom = get_object(__DIR__"guangchang.c");
 
                 if(query("dongtian/chuangong/visit_time", me)>time() && wiz_level(me) < 5 && dir=="up") {
-                                tell_object(me, NOR "你等一段时间才能再上去。\n" NOR);  
+                                tell_object(me, NOR "你等一段時間才能再上去。\n" NOR);  
                                 me->start_busy(2);
                                 return -1;      
                 }
@@ -49,7 +49,7 @@ void init()
 {
         object me = this_player();
         
-        if (playerp(me)) write(NOR "脱下所有东西，包括鞋袜再上二楼去，千万不要自误。\n" NOR);
+        if (playerp(me)) write(NOR "脫下所有東西，包括鞋襪再上二樓去，千萬不要自誤。\n" NOR);
 
         ::init();
 }

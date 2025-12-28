@@ -8,10 +8,10 @@ inherit NPC;
 int level_up()
 {
         int tmp, lv;
-        message_vision(append_color(HIY + "\n$N从地上慢慢爬了起来。\n\n" + NOR, HIY), this_object());
+        message_vision(append_color(HIY + "\n$N從地上慢慢爬了起來。\n\n" + NOR, HIY), this_object());
         if (query("level") < 1) addn("level", 1);
         lv = query("level");
-//      set("title", HIC + chinese_number(lv) + "级" + NOR);    
+//      set("title", HIC + chinese_number(lv) + "級" + NOR);    
         set("str", 20 + random(lv) + lv / 2);
         set("con", 20 + random(lv) + lv / 2);
         set("dex", 20 + random(lv) + lv / 2);
@@ -50,7 +50,7 @@ void create()
         set_name(WHT "石魔像" NOR, ({ "shi moxiang", "moxiang", "shi" }) );
         set("gender", "男性" );
         set("age", 66);
-        set("long",     NOR "测试伤害和死亡的傀儡石魔像，它拥有不死之身。\n" HIR "(你如果太菜，则可能死亡)\n" NOR );
+        set("long",     NOR "測試傷害和死亡的傀儡石魔像，它擁有不死之身。\n" HIR "(你如果太菜，則可能死亡)\n" NOR );
         set("shen_type", 0);
         
         setup();
@@ -86,9 +86,9 @@ varargs void receive_damage(string type, int n)
 varargs void unconcious()
 {
 //      if (objectp(query_last_damage_from())) {
-//              message_vision(append_color(YEL + "\n$N：<杀死>" + "...\n\n" + NOR, YEL), query_last_damage_from());
+//              message_vision(append_color(YEL + "\n$N：<殺死>" + "...\n\n" + NOR, YEL), query_last_damage_from());
 //      }
-        message_vision(append_color(YEL + "\n$N晕倒了...\n\n" + NOR, YEL), this_object());
+        message_vision(append_color(YEL + "\n$N暈倒了...\n\n" + NOR, YEL), this_object());
     die(query_last_damage_from());
         return;
 }
@@ -96,7 +96,7 @@ varargs void unconcious()
 varargs void die(object killer)
 {
 //      if (objectp(killer)) {
-//              message_vision(append_color(YEL + "\n$N：<杀死>" + "...\n\n" + NOR, YEL), killer);
+//              message_vision(append_color(YEL + "\n$N：<殺死>" + "...\n\n" + NOR, YEL), killer);
 //      }
         message_vision(append_color(YEL + "\n$N散架了...\n\n" + NOR, YEL), this_object());
         level_up();

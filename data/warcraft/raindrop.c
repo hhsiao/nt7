@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("凤凰[2;37;0m[2;37;0m", ({"zhuque"}));        
+        set_name("鳳凰[2;37;0m[2;37;0m", ({"zhuque"}));        
         set("gender", "女性");                
         set("long", "quit[2;37;0m
-它是蝶舞的魔幻兽。
+它是蝶舞的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

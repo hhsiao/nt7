@@ -1,4 +1,4 @@
-// 赛神龙
+// 賽神龍
 
 #include <ansi.h>
 
@@ -11,10 +11,10 @@ string give_lhd();
 
 void create()
 {
-        set_name("赛神龙", ({ "sai shenlong", "sai", "shenlong" }) );
+        set_name("賽神龍", ({ "sai shenlong", "sai", "shenlong" }) );
         set("gender", "男性");
         set("age", 999999);
-        set("long", "此人仙风道骨，眉目菱角分明，气宇轩昂。\n");
+        set("long", "此人仙風道骨，眉目菱角分明，氣宇軒昂。\n");
         set("attitude", "peaceful");
         set("str", 100);
         set("int", 100);
@@ -31,14 +31,14 @@ void create()
         set("combat_exp", 1000000000);
 
         set("inquiry", ([
-                "蛇精" : "那九头蛇精就躲在蛇精洞内，只有用童男童女可将其引出。\n",
-                "童男童女" : "如要找到蛇精可在蛇精洞用一对童男童女将其引出，但是，此法有违人道，\n" +
-                             "当年我也是请张天师施法制作出童男童女符才将其引出的。\n",
-                "人间道"   : (: ask_renjiandao :),   
+                "蛇精" : "那九頭蛇精就躲在蛇精洞內，只有用童男童女可將其引出。\n",
+                "童男童女" : "如要找到蛇精可在蛇精洞用一對童男童女將其引出，但是，此法有違人道，\n" +
+                             "當年我也是請張天師施法制作出童男童女符才將其引出的。\n",
+                "人間道"   : (: ask_renjiandao :),   
                 "蛇精洞"   : (: ask_shedong :),     
-                "蛇精鳞片" : "当你打中蛇精时，会有一定几率掉出蛇精鳞片。\n",
-                "真·六道轮回" : (: ask_zhen :),
-                 //"轮回点"   : (: give_lhd :),
+                "蛇精鱗片" : "當你打中蛇精時，會有一定幾率掉出蛇精鱗片。\n",
+                "真·六道輪迴" : (: ask_zhen :),
+                 //"輪迴點"   : (: give_lhd :),
         ]));
 
         set_skill("unarmed", 2000);
@@ -91,8 +91,8 @@ string ask_shedong()
 {
         string msg;
         
-        command("say 这蛇精洞内满布毒蛇，地形错综复杂，一不小心就会迷路。");
-        command("say 如果要进蛇洞还是先熟悉下蛇精洞的地图吧：");
+        command("say 這蛇精洞內滿布毒蛇，地形錯綜複雜，一不小心就會迷路。");
+        command("say 如果要進蛇洞還是先熟悉下蛇精洞的地圖吧：");
         
         write(@LONG
                               蛇王洞
@@ -105,7 +105,7 @@ string ask_shedong()
                                 |
                               毒蛇窟               
                                 |
-              毒蛇窟—毒蛇窟—神龙洞—out—蛇洞外
+              毒蛇窟—毒蛇窟—神龍洞—out—蛇洞外
                                 |
                               毒蛇窟
                                 |
@@ -117,13 +117,13 @@ string ask_shedong()
                                 |
                               千蛇洞
                                 |
-                              千蛇洞—九头蛇洞—九头蛇洞
+                              千蛇洞—九頭蛇洞—九頭蛇洞
                                                    |
                                                 蛇精洞外
                                                    |
                                                  蛇精洞
 LONG);                                                 
-        return "怎么样，记熟了吗？\n";
+        return "怎麼樣，記熟了嗎？\n";
         
 }
 
@@ -136,43 +136,43 @@ string give_lhd()
         me = this_player();
         
       if( query("reborn/times", me) < 3 ) 
-                return "走开，走开，没看我正忙吗？\n";
+                return "走開，走開，沒看我正忙嗎？\n";
         
         if( query("scborn/get_lhd_sai", me) )
-                return "轮回点你不是已经领取了吗？\n";
+                return "輪迴點你不是已經領取了嗎？\n";
         
         if( query("scborn/total_lunhui_point", me) >= 18 )
-                return "你的轮回点已经达到18点了，无法再领取。\n";
+                return "你的輪迴點已經達到18點了，無法再領取。\n";
         
         if( query("scborn/total_lunhui_point", me)+3>18 )
-                return "你如果领取轮回点就会超过18点了，无法再领取，如有BUG请速与本站管理员联系。\n";
+                return "你如果領取輪迴點就會超過18點了，無法再領取，如有BUG請速與本站管理員聯繫。\n";
                                 
-        // 已经完成任务
+        // 已經完成任務
         if( query("scborn/lunhuidian/finish", me) )
-                return "不错，不错，能从蛇精身上拿到鳞片的人少之有少，阁下算是其中一个。\n";
+                return "不錯，不錯，能從蛇精身上拿到鱗片的人少之有少，閣下算是其中一個。\n";
 
-        // 分配任务
+        // 分配任務
         if( !query("scborn/lunhuidian/give_quest", me) )
         {
                 command("look"+query("id", me));
-                command("say 这轮回点异常珍贵，只赠勇者，如果阁下能证明给我看，轮回点自当奉上。");
-                command("say 前方不远处有一个蛇精洞，几百年前我将这妖孽镇压在此，使之无法在人间兴风作浪。");
+                command("say 這輪迴點異常珍貴，只贈勇者，如果閣下能證明給我看，輪迴點自當奉上。");
+                command("say 前方不遠處有一個蛇精洞，幾百年前我將這妖孽鎮壓在此，使之無法在人間興風作浪。");
                 command("ke");
-                command("say 如果阁下能从它身上取得50片蛇精鳞片，那就证明阁下必为勇者。");
-                command("say 不过，蛇精乃千年妖孽，道行高深，你可要想清楚了！");
+                command("say 如果閣下能從它身上取得50片蛇精鱗片，那就證明閣下必為勇者。");
+                command("say 不過，蛇精乃千年妖孽，道行高深，你可要想清楚了！");
                 
-                tell_object(me, this_object()->name() + HIG "让你从蛇精身上取得鳞片，证明你是勇者。\n" NOR);
+                tell_object(me, this_object()->name() + HIG "讓你從蛇精身上取得鱗片，證明你是勇者。\n" NOR);
                 set("scborn/lunhuidian/give_quest", 1, me);
                 me->save();
-                return "怎么样，有胆量去吗？";
+                return "怎麼樣，有膽量去嗎？";
         }
         
-        // 完成任务        
+        // 完成任務        
         if (! objectp(ob_hlp = present("shejing linpian", me)))
-                return "怎么样，50片蛇精鳞片取到了吗？\n";
+                return "怎麼樣，50片蛇精鱗片取到了嗎？\n";
                 
         if (base_name(ob_hlp) != "/d/shenlong/npc/obj/linpian")
-                return "怎么样，50片蛇精鳞片取到了吗？\n";
+                return "怎麼樣，50片蛇精鱗片取到了嗎？\n";
         
         if ("/adm/daemons/stored"->get_ob_amount(me, ob_hlp) >= 50)
         {
@@ -184,14 +184,14 @@ string give_lhd()
         }
         else
         {
-                return "怎么样，50片蛇精鳞片取到了吗？\n";
+                return "怎麼樣，50片蛇精鱗片取到了嗎？\n";
         }
         
         command("hehe");
         command("nod"+query("id", me));
-        command("say 不错，既然是勇者，这轮回点就奉送给你了。");        
+        command("say 不錯，既然是勇者，這輪迴點就奉送給你了。");        
                              
-        tell_object(me, HIG "恭喜你获得了 3 点轮回点。\n");
+        tell_object(me, HIG "恭喜你獲得了 3 點輪迴點。\n");
 
         set("scborn/lunhuidian/finish", 1, me);
         addn("scborn/cur_lunhui_point", 3, me);
@@ -215,35 +215,35 @@ string ask_renjiandao()
             query("con", me)<32 || 
             query("str", me)<32 || 
             query("dex", me)<32 )
-            return "你的先天属性还不足以修炼人间道，我看你还是先回去吧。\n";
+            return "你的先天屬性還不足以修煉人間道，我看你還是先回去吧。\n";
 
         if( query("reborn/times", me) < 3 )
-                return "此处不是尔等驻留之地，还是速速离去吧。\n";
+                return "此處不是爾等駐留之地，還是速速離去吧。\n";
                 
         if( me->query_skill("yinyang-shiertian",1) && query("reborn/times", me) < 4 )
-                return "哼，凡夫俗子，竟然如此贪心！\n";
+                return "哼，凡夫俗子，竟然如此貪心！\n";
 
         if (me->query_skill("lunhui-sword",1))
-                return "哼，凡夫俗子，竟然如此贪心！\n";
+                return "哼，凡夫俗子，竟然如此貪心！\n";
                 
         if (me->query_skill("renjian-dao", 1))
-                return "怎么样，这招你练熟了吗？\n";
+                return "怎麼樣，這招你練熟了嗎？\n";
                 
         command("nod");
-        command("say 千百年来，我在此镇守蛇精，洞外毒蛇密布，非等闲之辈能够进入。");
+        command("say 千百年來，我在此鎮守蛇精，洞外毒蛇密佈，非等閒之輩能夠進入。");
         command("look "+query("id", me));
-        command("say 阁下武艺超群，既然到此，你我也算一场缘分，这「人间道」就传你吧！");
+        command("say 閣下武藝超群，既然到此，你我也算一場緣分，這「人間道」就傳你吧！");
 
-        message_sort(HIC "\n$N" HIC "走上前去，在$n" HIC "耳边悄悄说了几句，然后又拿出一本书，指指点点，"
-                     "$n" HIC "不住地点头，忽而眉头深锁，忽而低头沉思 ……\n良久，$n" HIC "大笑一声，似乎"
-                     "对刚才的疑虑有所顿悟。\n", this_object(), me);
+        message_sort(HIC "\n$N" HIC "走上前去，在$n" HIC "耳邊悄悄說了幾句，然後又拿出一本書，指指點點，"
+                     "$n" HIC "不住地點頭，忽而眉頭深鎖，忽而低頭沉思 ……\n良久，$n" HIC "大笑一聲，似乎"
+                     "對剛才的疑慮有所頓悟。\n", this_object(), me);
 
         command("nod "+query("id", me));
 
-        tell_object(me, HIG "恭喜你领悟了「人间道」剑法，目前等级为10级。\n" NOR);
+        tell_object(me, HIG "恭喜你領悟了「人間道」劍法，目前等級為10級。\n" NOR);
         me->set_skill("renjian-dao", 10);
         
-        return "好自为知吧！";
+        return "好自為知吧！";
         
                 
 }
@@ -270,7 +270,7 @@ int accept_object(object me, object ob)
 
         if (base_name(ob) != "/clone/lonely/book/dugubook")
         {
-                command("say 你给我这种东西干什么？");
+                command("say 你給我這種東西幹什麼？");
                 return 0;
         }
 
@@ -279,7 +279,7 @@ int accept_object(object me, object ob)
         return 1;
 }
 
-// 真·六道轮回
+// 真·六道輪迴
 string ask_zhen()
 {
         object *obs; 
@@ -291,57 +291,57 @@ string ask_zhen()
         me = this_player();
         
         if( query("reborn/times", me) < 3)
-                return "走开，走开，没看我正忙吗？\n";
+                return "走開，走開，沒看我正忙嗎？\n";
         
         if( me->query_skill("yinyang-shiertian",1) && query("reborn/times", me) < 4 )
-                return "阁下武功已经独步天下，何必如此贪心?\n";
+                return "閣下武功已經獨步天下，何必如此貪心?\n";
 
         if( query("max_neili", me)<10000 )
-                return "你的内力修为不够，这招我还不能传你。\n";
+                return "你的內力修為不夠，這招我還不能傳你。\n";
 
         if ((int)me->query_skill("buddhism", 1) < 200)
-                return "你对禅宗心法参悟不够，这招我还不能传你。\n";
+                return "你對禪宗心法參悟不夠，這招我還不能傳你。\n";
 
         if ((int)me->query_skill("lunhui-sword", 1) < 900)
-                return "你六道轮回剑火候不够，这招我还不能传你。\n";
+                return "你六道輪迴劍火候不夠，這招我還不能傳你。\n";
 
-        // 已经完成任务
+        // 已經完成任務
         if( query("lunhui-sword_quest/zhen/finish", me) )
-                return "不错，不错，能从蛇精身上拿到鳞片的人少之有少，阁下算是其中一个。\n";
+                return "不錯，不錯，能從蛇精身上拿到鱗片的人少之有少，閣下算是其中一個。\n";
         
         /*
-        // 检查轮回点        
+        // 檢查輪迴點        
         if( query("scborn/cur_lunhui_point", me)<6 && !query("thborn/ok", me) )
-                return "可惜啊，你轮回点不足，无法领悟到此招。\n";
+                return "可惜啊，你輪迴點不足，無法領悟到此招。\n";
         */
         
-        // 分配任务
+        // 分配任務
         if( !query("lunhui-sword_quest/zhen/give_quest", me) )
         {
                 command("look "+query("id", me));
-                command("say 学此招者，必为勇者，如果阁下能证明给我看，此招便倾囊相受。");
-                command("say 前方不远处有一个蛇精洞，几百年前我将这妖孽镇压在此，使之无法在人间兴风作浪。");
+                command("say 學此招者，必為勇者，如果閣下能證明給我看，此招便傾囊相受。");
+                command("say 前方不遠處有一個蛇精洞，幾百年前我將這妖孽鎮壓在此，使之無法在人間興風作浪。");
                 command("ke");
-                command("say 如果阁下能从它身上取得10片蛇精鳞片，那就证明阁下必为勇者。");
-                command("say 不过，蛇精乃千年妖孽，道行高深，你可要想清楚了！");
+                command("say 如果閣下能從它身上取得10片蛇精鱗片，那就證明閣下必為勇者。");
+                command("say 不過，蛇精乃千年妖孽，道行高深，你可要想清楚了！");
                 
-                tell_object(me, this_object()->name() + HIG "让你从蛇精身上取得鳞片，证明你是勇者。\n" NOR);
+                tell_object(me, this_object()->name() + HIG "讓你從蛇精身上取得鱗片，證明你是勇者。\n" NOR);
                 set("lunhui-sword_quest/zhen/give_quest", 1, me);
                 me->save();
-                return "怎么样，有胆量去吗？";
+                return "怎麼樣，有膽量去嗎？";
         }
         
-        // 完成任务        
+        // 完成任務        
         if (! objectp(ob_hlp = present("shejing linpian", me)))
-                return "怎么样，10片蛇精鳞片取到了吗？\n";
+                return "怎麼樣，10片蛇精鱗片取到了嗎？\n";
                 
         if (base_name(ob_hlp) != "/d/shenlong/npc/obj/linpian")
-                return "怎么样，10片蛇精鳞片取到了吗？\n";
+                return "怎麼樣，10片蛇精鱗片取到了嗎？\n";
         
         obs = all_inventory(me); 
         obs = filter_array(obs, (: base_name($1) == "/d/shenlong/npc/obj/linpian" :)); 
         if( sizeof(obs) < 10 ) 
-                return "怎么样，10片蛇精鳞片取到了吗？\n";
+                return "怎麼樣，10片蛇精鱗片取到了嗎？\n";
 
         for (i = 0; i < 10; i++) 
         { 
@@ -352,22 +352,22 @@ string ask_zhen()
         
         command("hehe");
         command("nod "+query("id", me));
-        command("say 不错，既然是勇者，这「真·六道轮回」就传你了，你可听好了 ……");
+        command("say 不錯，既然是勇者，這「真·六道輪迴」就傳你了，你可聽好了 ……");
         
-        message_sort(HIC "\n$N" HIC "走上前去，在$n" HIC "耳边悄悄说了几句，然后又拿出一本书，指指点点，"
-                     "$n" HIC "不住地点头，忽而眉头深锁，忽而低头沉思 ……\n良久，$n" HIC "大笑一声，似乎"
-                     "对刚才的疑虑有所顿悟。\n", this_object(), me);
+        message_sort(HIC "\n$N" HIC "走上前去，在$n" HIC "耳邊悄悄說了幾句，然後又拿出一本書，指指點點，"
+                     "$n" HIC "不住地點頭，忽而眉頭深鎖，忽而低頭沉思 ……\n良久，$n" HIC "大笑一聲，似乎"
+                     "對剛才的疑慮有所頓悟。\n", this_object(), me);
                              
-        tell_object(me, HIG "恭喜你学会了「真·六道轮回」。\n");
+        tell_object(me, HIG "恭喜你學會了「真·六道輪迴」。\n");
         set("can_perform/lunhui-sword/zhen", 1, me);
         set("lunhui-sword_quest/zhen/finish", 1, me);
         
         /*
-        // 扣除轮回点
+        // 扣除輪迴點
         if( !query("thborn/ok", me) )
                 addn("scborn/cur_lunhui_point", -6, me);
 
-        // 设置扣除轮回点的出处
+        // 設置扣除輪迴點的出處
         if( !query("thborn/ok", me) )
                 set("scborn/perform_zhen_saishenlong", 1, me);
         */

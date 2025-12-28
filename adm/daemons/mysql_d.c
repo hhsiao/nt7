@@ -12,7 +12,7 @@ mapping mysql;
 
 varargs mixed exec(int handle, string sql);
 
-// 建立 MYSQL 连线
+// 建立 MYSQL 連線
 varargs mixed connect(string hostname, string database, string username)
 {
 	mixed handle;
@@ -40,7 +40,7 @@ varargs mixed connect(string hostname, string database, string username)
 	return handle;
 }
  
-// 关闭 MYSQL 连线
+// 關閉 MYSQL 連線
 varargs int close(int handle)
 {
 	if( undefinedp(handle) )
@@ -63,7 +63,7 @@ varargs int close(int handle)
 }
 
 
-// 执行 SQL 指令
+// 執行 SQL 指令
 varargs mixed exec(int handle, string sql)
 {
 	mixed value;
@@ -115,5 +115,5 @@ int remove()
 }
 string query_name()
 {
-	return "MYSQL 资料库系统(MYSQL_D)";
+	return "MYSQL 資料庫系統(MYSQL_D)";
 }

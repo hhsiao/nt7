@@ -14,8 +14,8 @@ void create()
         if( clonep() )
                 set_default_object(__FILE__);
         else {
-                set("long", "这是一个破旧的布袋。\n");
-                set("unit", "个");
+                set("long", "這是一個破舊的布袋。\n");
+                set("unit", "個");
                 set("no_get", 1);
                 set("no_steal", 1);
                 set("no_give", 1);
@@ -39,7 +39,7 @@ int do_put(string arg)
         if (!arg) return 0;
         if (sscanf(arg,"%s in dai",str) == 1 || sscanf(arg,"%s in bu dai",str) == 1) {
                 if (str != "shihui")
-                        return notify_fail("这样东西放不进去。\n");
+                        return notify_fail("這樣東西放不進去。\n");
         }
         return 0;
 }
@@ -52,33 +52,33 @@ int do_sa(string arg)
 	string msg;
 	
 	if (!(ob1 = present("shihui", ob)))
-		return notify_fail("袋里又没石灰，你撒啥？！\n");
+		return notify_fail("袋裡又沒石灰，你撒啥？！\n");
 
 	if (!arg)
-		return notify_fail("你想要用石灰粉干什么?\n");
+		return notify_fail("你想要用石灰粉幹什麼?\n");
 
 	if (arg = "shi song"
 	 && ob2 = present("shi song",environment(me))
 	 && ob3 = present("mao shiba",environment(me))) {
 		if (!me->query_temp("mao18/passed4"))
-			return notify_fail("人家打架呢，你瞎搀和啥！\n");
-		msg = HIW"$N趁$n不备，从布袋中掏出石灰粉，猛的撒向$n的眼睛！\n"NOR;
+			return notify_fail("人家打架呢，你瞎攙和啥！\n");
+		msg = HIW"$N趁$n不備，從布袋中掏出石灰粉，猛的撒向$n的眼睛！\n"NOR;
 		destruct(ob1);
 		call_out("do_attack", 1, me, ob2, ob3, msg);
 		return 1;
 	}
 	else
-		return notify_fail("石灰粉如何能够去攻击人家？！\n");
+		return notify_fail("石灰粉如何能夠去攻擊人家？！\n");
 }
 
 int do_attack(object me, object ob2, object ob3, string msg)
 {
           ob2 = present("shi song",environment(me));
 	if (random(me->query_str()) > 20 && !me->query("fail")) {
-		msg += RED"$n募地白影晃动，无数粉末冲进眼里，鼻里，口里，一时气为之窒，跟着双\n"+
-			"眼剧痛，犹似万枚钢针同时刺一般，待欲张口大叫，满嘴粉末，连喉头嗌住了，\n"+
-			"再也叫不出声来。\n"NOR;
-		msg += CYN"$N随手捡起地上单刀，顺手插入了$n肚中。\n"NOR;
+		msg += RED"$n募地白影晃動，無數粉末衝進眼裡，鼻裡，口裡，一時氣為之窒，跟著雙\n"+
+			"眼劇痛，猶似萬枚鋼針同時刺一般，待欲張口大叫，滿嘴粉末，連喉頭嗌住了，\n"+
+			"再也叫不出聲來。\n"NOR;
+		msg += CYN"$N隨手撿起地上單刀，順手插入了$n肚中。\n"NOR;
 		message_vision(msg, me, ob2);
 		ob2->die();
 		me->delete_temp("mao18/passed4");
@@ -88,10 +88,10 @@ int do_attack(object me, object ob2, object ob3, string msg)
 		return 1;
 	}
 	else {
-		log_file("quest/wuhu",sprintf("%8s%-18s从茅十八处学得五虎断门刀，失败，福：%d。\n",
+		log_file("quest/wuhu",sprintf("%8s%-18s從茅十八處學得五虎斷門刀，失敗，福：%d。\n",
 			me->name(1), "("+capitalize(me->query("id"))+")", me->query("kar") ), me);
 		me->set("mao18/fail", 1);
-		msg += HIR"谁知却撒了个空，自己也摔了一交。\n"NOR;
+		msg += HIR"誰知卻撒了個空，自己也摔了一交。\n"NOR;
 		message_vision(msg, me, ob2);
 		return 1;
 	}
@@ -101,14 +101,14 @@ int do_finish(object me, object ob)
 {
 	object ob1;
 	
-	tell_object(me,HIY"茅十八道：“你为什么用石灰撒在那史松的眼里？”声音严厉，神态更是凶恶。\n\n"+
-			"    你心中十分害怕，当下茅十八便将撒石灰、下蒙汗药等这些江湖人所不齿的卑鄙手段\n"+
-			"告诉了你。随后又说：“我这里有一本我派刀法的秘籍，你拿去自行好好钻研。只要你能\n"+
-			"勤学苦练，将来未始不能练成一身好武艺。咱们后会有期了！”说完转身离去了。\n"NOR);
+	tell_object(me,HIY"茅十八道：“你為什麼用石灰撒在那史松的眼裡？”聲音嚴厲，神態更是兇惡。\n\n"+
+			"    你心中十分害怕，當下茅十八便將撒石灰、下蒙汗藥等這些江湖人所不齒的卑鄙手段\n"+
+			"告訴了你。隨後又說：“我這裡有一本我派刀法的秘籍，你拿去自行好好鑽研。只要你能\n"+
+			"勤學苦練，將來未始不能練成一身好武藝。咱們後會有期了！”說完轉身離去了。\n"NOR);
 	ob1 = new(SHU);
 	ob1->move(me);
 	ob1->set_temp("mao18/book",me->query("id"));
-	log_file("quest/wuhu",sprintf("%8s%-18s从茅十八处学得五虎断门刀，福：%d。\n",
+	log_file("quest/wuhu",sprintf("%8s%-18s從茅十八處學得五虎斷門刀，福：%d。\n",
 		me->name(1), "("+capitalize(me->query("id"))+")", me->query("kar") ), me);
 	if (ob) destruct(ob);
 	return 1;

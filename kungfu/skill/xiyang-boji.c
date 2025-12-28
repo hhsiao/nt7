@@ -1,13 +1,13 @@
-// xiyang-boji.c 西洋搏击术
+// xiyang-boji.c 西洋搏擊術
 
 inherit SKILL;
 
 string *dodge_msg = ({
-        "$n身子一扭，恰好躲过了$N这一招。\n",
-        "可是$n突然飞身后退，敏捷的躲过了$N这一招。\n",
-        "$n奋力横移，闪开了$N的追击。\n",
-        "$n身随$N转动，忽快忽慢，让$N无法捕捉到$n的踪影。\n",
-        "$n嗔目大喝，气势异样恢弘，$N手一软，招数全然落空。\n",
+        "$n身子一扭，恰好躲過了$N這一招。\n",
+        "可是$n突然飛身後退，敏捷的躲過了$N這一招。\n",
+        "$n奮力橫移，閃開了$N的追擊。\n",
+        "$n身隨$N轉動，忽快忽慢，讓$N無法捕捉到$n的蹤影。\n",
+        "$n嗔目大喝，氣勢異樣恢弘，$N手一軟，招數全然落空。\n",
 });
 
 int valid_enable(string usage) { return usage == "dodge"; }
@@ -22,7 +22,7 @@ string query_dodge_msg(string limb)
 int practice_skill(object me)
 {
         if( query("qi", me)<50 )
-                return notify_fail("你的体力太差了，无法练习西洋搏击术。\n");
+                return notify_fail("你的體力太差了，無法練習西洋搏擊術。\n");
 
         me->receive_damage("qi", 40);
         return 1;

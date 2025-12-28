@@ -8,18 +8,18 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("玄悲大师", ({
+        set_name("玄悲大師", ({
                 "xuanbei dashi",
                 "xuanbei",
                 "dashi",
         }));
         set("long",
-                "他是一位白须白眉的老僧，身穿一袭银丝棕黄袈裟。他身材甚高，\n"
-                "但骨瘦如柴，顶门高耸，双目湛然有神。\n"
+                "他是一位白鬚白眉的老僧，身穿一襲銀絲棕黃袈裟。他身材甚高，\n"
+                "但骨瘦如柴，頂門高聳，雙目湛然有神。\n"
         );
 
 
-        set("nickname", "达摩院主持");
+        set("nickname", "達摩院主持");
         set("gender", "男性");
         set("attitude", "friendly");
         set("class", "bonze");

@@ -36,12 +36,12 @@ mapping all_skills = ([ ]);
 mapping all_record = ([ ]);
 mapping initial_skills = ([ ]);
 class mix {
-string name;            // 技能组合名称
-string dodge;           // 技能组合轻功
-string parry;           // 技能组合招架
-string force;           // 技能组合内功
-mapping need;           // 技能特效条件
-mapping stats;          // 技能组合效果
+string name;            // 技能組合名稱
+string dodge;           // 技能組合輕功
+string parry;           // 技能組合招架
+string force;           // 技能組合內功
+mapping need;           // 技能特效條件
+mapping stats;          // 技能組合效果
 }
 class mix *all_mixs = ({ });
 class dazhaomix {
@@ -123,38 +123,38 @@ int kungfu_restraint_effect(string type1, string type2)
 
 nosave mapping family_name = ([
         "shaolin"  : "少林",
-        "wudang"   : "武当",
-        "gaibang"  : "丐帮",
+        "wudang"   : "武當",
+        "gaibang"  : "丐幫",
         "quanzhen" : "全真",
-        "huashan"  : "华山",
+        "huashan"  : "華山",
         "duan"     : "段氏",
         "murong"   : "慕容",
         "xueshan"  : "雪山",
-        "lingjiu"  : "灵鹫",
+        "lingjiu"  : "靈鷲",
         "emei"     : "峨嵋",
         "taohua"   : "桃花",
-        "shenlong" : "神龙",
+        "shenlong" : "神龍",
         "gumu"     : "古墓",
         "xingxiu"  : "星宿",
-        "xiaoyao"  : "逍遥",
+        "xiaoyao"  : "逍遙",
         "xuedao"   : "血刀",
-        "ouyang"   : "欧阳",
+        "ouyang"   : "歐陽",
         "hu"       : "胡家",
         "mingjiao" : "明教",
-        "tang"     : "唐门",
+        "tang"     : "唐門",
         "riyue"    : "日月",
         "mojiao"   : "魔教",
         "taishan"  : "泰山",
         "songshan" : "嵩山",
         "hengshan" : "衡山",
-        "henshan"  : "恒山",
+        "henshan"  : "恆山",
         "qingcheng": "青城",
         "lingxiao" : "凌霄",
-        "tiezhang" : "铁掌",
-        "honghua"  : "红花",
-        "yunlong"  : "云龙",
+        "tiezhang" : "鐵掌",
+        "honghua"  : "紅花",
+        "yunlong"  : "雲龍",
         "wudu"     : "五毒",
-        "kunlun"   : "昆仑",
+        "kunlun"   : "崑崙",
 ]);
 
 void create()
@@ -185,7 +185,7 @@ void load_skill()
         file = read_file(SKILL_FILE);
         if( !stringp(file) ) return;
 
-        // 去掉"\r"保证和MSDOS的文件格式兼容
+        // 去掉"\r"保證和MSDOS的文件格式兼容
         file = replace_string(file, "\r", "");
 
         tmp = explode(file, "\n");
@@ -195,12 +195,12 @@ void load_skill()
                 // 去掉行首的空格
                 while( strlen(line) && line[0] == ' ' ) line = line[1..<1];
                 if( line[0] == '#' )
-                        // 注释
+                        // 註釋
                         continue;
 
                 if( line[0] == '&' )
                 {
-                        // 被系统注释的
+                        // 被系統註釋的
                         line = line[1..<1];
                         while( strlen(line) && line[0] == ' ' ) line = line[1..<1];
                 }
@@ -326,9 +326,9 @@ public string skillmix_stats(object me)
 
         msg += "\n\n\n\n\n\n";
         msg += sprintf(NOR HIW "┏--------------------┓\n" NOR);
-        msg += sprintf(NOR HIW "┃轻功->%-14s" NOR HIW "┃\n" NOR, to_chinese(temp->dodge));
+        msg += sprintf(NOR HIW "┃輕功->%-14s" NOR HIW "┃\n" NOR, to_chinese(temp->dodge));
         msg += sprintf(NOR HIW "┃招架->%-14s" NOR HIW "┃\n" NOR, to_chinese(temp->parry));
-        msg += sprintf(NOR HIW "┃内功->%-14s" NOR HIW "┃\n" NOR, to_chinese(temp->force));
+        msg += sprintf(NOR HIW "┃內功->%-14s" NOR HIW "┃\n" NOR, to_chinese(temp->force));
 
         need = temp->need;
         keys_need = keys(need);
@@ -502,7 +502,7 @@ void manage_skill()
                         //DEBUG_CHANNEL(sprintf("%O\n", all_skills[skill]));
                         if( sizeof(all_skills[skill]) < 9 ) effect2 = 0;
                         else effect2 = all_skills[skill][EFFECT];
-                        if( effect == effect2 ) continue; // 没有变化
+                        if( effect == effect2 ) continue; // 沒有變化
 
                         effect2 = effect - effect2;
 
@@ -548,9 +548,9 @@ varargs void query_skill_power(object me, string arg)
         int i, delta;
         mixed n;
 
-        msg = WHT "目前江湖上所有武功各种参数值如下\n\n" NOR;
+        msg = WHT "目前江湖上所有武功各種參數值如下\n\n" NOR;
         msg += "─────────────────────────────────────────\n";
-        msg += BBLU HIW "技能名称                      命中  躲闪  招架  伤害  内功  难度  级别  门派  调整\n" NOR;
+        msg += BBLU HIW "技能名稱                      命中  躲閃  招架  傷害  內功  難度  級別  門派  調整\n" NOR;
         msg += "─────────────────────────────────────────\n";
 
         if( stringp(arg) && ! undefinedp(all_skills[arg]) )
@@ -571,17 +571,17 @@ varargs void query_skill_power(object me, string arg)
                         switch(arg)
                         {
                         case "attack"   :
-                        case "攻击"     : n = 0; break;
+                        case "攻擊"     : n = 0; break;
                         case "dodge"    :
-                        case "躲闪"     : n = 1; break;
+                        case "躲閃"     : n = 1; break;
                         case "parry"    :
                         case "招架"     : n = 2; break;
                         case "damage"   :
-                        case "伤害"     : n = 3; break;
+                        case "傷害"     : n = 3; break;
                         case "force"    :
-                        case "内功"     : n = 4; break;
+                        case "內功"     : n = 4; break;
                         case "difficult":
-                        case "难度"     : n = 5; break;
+                        case "難度"     : n = 5; break;
                         case "ultimate" :
                         case "expert"   :
                         case "advance"  :
@@ -647,13 +647,13 @@ varargs void query_skill_power(object me, string arg)
                         delta = 0;
 
                 if( skl[RANK] == "ultimate" )
-                        str1 = "终极";
+                        str1 = "終極";
                 else
                 if( skl[RANK] == "expert" )
-                        str1 = "超级";
+                        str1 = "超級";
                 else
                 if( skl[RANK] == "advance" )
-                        str1 = "高级";
+                        str1 = "高級";
                 else
                         str1 = "普通";
 
@@ -661,7 +661,7 @@ varargs void query_skill_power(object me, string arg)
                         str2 = "公共";
                 else
                 if( skl[ATTRIBUTE] == "private" )
-                        str2 = "自创";
+                        str2 = "自創";
                 else
                         str2 = family_name[skl[ATTRIBUTE]];
 
@@ -959,7 +959,7 @@ void upgrade_skill_power(string skill)
                 return;
         }
 
-        // 全能类型技能（四大宗师技能等）
+        // 全能類型技能（四大宗師技能等）
         if( is_force_skill && is_dodge_skill2 && is_parry_skill )
         {
                 switch(random(5))
@@ -1576,7 +1576,7 @@ void upgrade_skill_power(string skill)
                 return;
         }
 
-        // 内功、攻击、招架
+        // 內功、攻擊、招架
         if( is_force_skill && is_parry_skill )
         {
                 switch(random(4))
@@ -1975,7 +1975,7 @@ void upgrade_skill_power(string skill)
                 return;
         }
 
-        // 内功
+        // 內功
         if( is_force_skill )
         {
                 if( force < LV1_POINT )
@@ -2347,7 +2347,7 @@ void upgrade_skill_power(string skill)
                 return;
         }
 
-        // 轻功、招架、攻击（pixie-jian）
+        // 輕功、招架、攻擊（pixie-jian）
         if( is_dodge_skill && is_parry_skill )
         {
                 switch(random(4))
@@ -2747,7 +2747,7 @@ void upgrade_skill_power(string skill)
                 return;
         }
 
-        // 轻功
+        // 輕功
         if( is_dodge_skill )
         {
                 if( dodge < LV1_POINT )
@@ -2779,7 +2779,7 @@ void upgrade_skill_power(string skill)
                 return;
         }
 
-        // 攻击、招架
+        // 攻擊、招架
         if( is_parry_skill )
         {
                 switch(random(3))
@@ -3124,7 +3124,7 @@ int attack_power(object me, string skill)
 
         if( !objectp(me) ) return 0;
 /*
-        // nt7 取消转世
+        // nt7 取消轉世
         ob = query_temp("last_opponent", me);
         if( objectp(ob) && me->is_fighting(ob) )
                 ;
@@ -3177,7 +3177,7 @@ int attack_power(object me, string skill)
                 if( me->query_freeze() ) ap = ap * 2 / 3;
                 if( query_temp("use_hubo", me) )
                 {
-                        // 命中不应该降低
+                        // 命中不應該降低
                         // ap = ap * 2/3;
                         delta = ABILITY_D->check_ability(me, "ap_power-hubo");
                         if( delta ) ap += ap*delta/100;
@@ -3211,7 +3211,7 @@ int attack_power(object me, string skill)
 
         ap += me->query_all_buff("attack");
 
-        // 提高技能等级的作用
+        // 提高技能等級的作用
         ap = ap * 10;
 
 /*
@@ -3293,7 +3293,7 @@ int defense_power(object me, string skill)
 
                 dp = dp * 10;
 
-                /* 攻击计算时候已经加入转世比较，防御时候就没有必要再次比较
+                /* 攻擊計算時候已經加入轉世比較，防禦時候就沒有必要再次比較
                 if( objectp(ob) )
                         dp += dp *
                               (query("reborn/times", me) - query("reborn/times", ob))*20/100;
@@ -3306,7 +3306,7 @@ int defense_power(object me, string skill)
                 if( me->query_weak() ) dp /= 2;
                 if( me->query_freeze() ) dp /= 10;
 
-                if( me->in_array() ) dp *= 2; // 阵法
+                if( me->in_array() ) dp *= 2; // 陣法
 
                 return dp;
         }
@@ -3355,7 +3355,7 @@ int defense_power(object me, string skill)
 
         dp = dp * 10;
 
-        /* 攻击计算时候已经加入转世比较，防御时候就没有必要再次比较
+        /* 攻擊計算時候已經加入轉世比較，防禦時候就沒有必要再次比較
         if( objectp(ob) )
                 dp += dp *
                       (query("reborn/times", me) - query("reborn/times", ob))*20/100;
@@ -3366,15 +3366,15 @@ int defense_power(object me, string skill)
                 dp += dp * tmp/100;
         }
 
-        // 门派AB加防御能力
+        // 門派AB加防禦能力
         delta = ABILITY_D->check_ability(me, "dodgeup-"+map_skill);
         if( !delta ) delta = ABILITY_D->check_ability(me, "parryup-"+map_skill);
         if(  delta ) dp += dp*delta/100;
 
         if( me->query_weak() ) dp /= 2;
-        if( me->query_freeze() ) dp /= 10; // 冰冻状况
+        if( me->query_freeze() ) dp /= 10; // 冰凍狀況
 
-        if( me->in_array() ) dp *= 2; // 阵法
+        if( me->in_array() ) dp *= 2; // 陣法
 
         for( i = 0; i < sizeof(all_poison); i++ )
                 if( me->query_condition(all_poison[i]) )
@@ -3528,7 +3528,7 @@ mapping trans_data(string mark)
         mapping temp_map;
 
         temp_stats = ([ ]);
-        // 开始解析
+        // 開始解析
         while (sscanf(mark, "%*s<%s>%s</%s>%s", key, temp_str, key, mark) > 3)
         {
                 temp_map = ([ ]);
@@ -3707,7 +3707,7 @@ void broadcast_news()
         {
                 key = keys(rdc_skills);
                 skill = key[random(sizeof(key))];
-                // manage_skill 处理数值
+                // manage_skill 處理數值
                 //value = copy(rdc_skills[skill]);
                 //all_skills[skill] = value;
                 map_delete(rdc_skills, skill);
@@ -3719,22 +3719,22 @@ void broadcast_news()
                 {
                         ob = obs[random(sizeof(obs))];
                         ob->add_skill(skill, 10 + random(6));
-                        tell_object(ob, HIM "你脑中突然灵光一闪，你对" +
-                                        to_chinese(skill) + "有了更深的领悟！\n" NOR);
+                        tell_object(ob, HIM "你腦中突然靈光一閃，你對" +
+                                        to_chinese(skill) + "有了更深的領悟！\n" NOR);
                 }
                 else
                         ob = 0;
 
                 CHANNEL_D->channel_broadcast("news",
-                                        "武学大宗师" + (ob ? ob->name(1) : "无名老人") + "闭关修行研究" +
-                                        to_chinese(skill) + "，终于悟出其破解之术，并广为流传。");
+                                        "武學大宗師" + (ob ? ob->name(1) : "無名老人") + "閉關修行研究" +
+                                        to_chinese(skill) + "，終於悟出其破解之術，並廣為流傳。");
         }
 
         if( sizeof(add_skills) > 0 )
         {
                 key = keys(add_skills);
                 skill = key[random(sizeof(key))];
-                // manage_skill 处理数值
+                // manage_skill 處理數值
                 //value = copy(add_skills[skill]);
                 //all_skills[skill] = value;
                 map_delete(add_skills, skill);
@@ -3746,15 +3746,15 @@ void broadcast_news()
                 {
                         ob = obs[random(sizeof(obs))];
                         ob->add_skill(skill, 10 + random(6));
-                        tell_object(ob, HIM "你脑中突然灵光一闪，你对" +
-                                        to_chinese(skill) + "有了更深的领悟！\n" NOR);
+                        tell_object(ob, HIM "你腦中突然靈光一閃，你對" +
+                                        to_chinese(skill) + "有了更深的領悟！\n" NOR);
                 }
                 else
                         ob = 0;
 
                 CHANNEL_D->channel_broadcast("news",
-                                        "武学大宗师" + (ob ? ob->name(1) : "无名老人") + "闭关修行研究" +
-                                        to_chinese(skill) + "，终于完善其破绽之处，并广为流传。");
+                                        "武學大宗師" + (ob ? ob->name(1) : "無名老人") + "閉關修行研究" +
+                                        to_chinese(skill) + "，終於完善其破綻之處，並廣為流傳。");
         }
         save();
 }
@@ -3832,11 +3832,11 @@ int valid_perform(object me, string file)
             !me->query_skill("douzhuan-xingyi") &&
             !me->query_skill("qiankun-danuoyi")*/ )
         {
-                tell_object(me, "你还没有受过高人指点，无法施展。\n");
+                tell_object(me, "你還沒有受過高人指點，無法施展。\n");
                 return 0;
         }
 
-        check_dazhaomix(me); // 检查并激活绝招组合特效
+        check_dazhaomix(me); // 檢查並激活絕招組合特效
         return 1;
 }
 
@@ -3870,11 +3870,11 @@ int skill_summary(object me, string skill, int level)
                 ski_lst = ([]);
                 ski_lst[ski] = 1;
                 CHANNEL_D->channel_broadcast(
-                        "news", sprintf("%s(%s)的%s已经达到了"+msg+NOR+YEL"的境界（古今武林第一人）。",
+                        "news", sprintf("%s(%s)的%s已經達到了"+msg+NOR+YEL"的境界（古今武林第一人）。",
                                         query("name", me),query("id", me),to_chinese(skill)));
 
                /*
-                HISTORY_D->add_history("技能等级排名", query("id", me), sprintf("%s %d 级，年龄 %d 排名: 1.\n",
+                HISTORY_D->add_history("技能等級排名", query("id", me), sprintf("%s %d 級，年齡 %d 排名: 1.\n",
                                         to_chinese(skill), level, query("age", me)));
                */
 
@@ -3893,11 +3893,11 @@ int skill_summary(object me, string skill, int level)
                                         map_delete(ski_lst,ski_term[i]);
                                         ski_lst[ski]=1;
                                         CHANNEL_D->channel_broadcast(
-                                                "news",sprintf("%s(%s)的%s已经达到了"+msg+NOR+YEL"的境界（当今武林第一人）。",
+                                                "news",sprintf("%s(%s)的%s已經達到了"+msg+NOR+YEL"的境界（當今武林第一人）。",
                                                                 query("name", me),query("id", me),to_chinese(skill)));
 
                                         /*
-                                        HISTORY_D->add_history("技能等级排名", query("id", me), sprintf("%s %d 级，年龄 %d 排名: 1.\n",
+                                        HISTORY_D->add_history("技能等級排名", query("id", me), sprintf("%s %d 級，年齡 %d 排名: 1.\n",
                                                                 to_chinese(skill), level, query("age", me)));
                                         */
                                         record = 1;
@@ -3907,7 +3907,7 @@ int skill_summary(object me, string skill, int level)
                                 {
                                         ski_lst[ski_term[i]] +=1;
                                         CHANNEL_D->channel_broadcast(
-                                                "news",sprintf("%s(%s)的%s已经达到了"+msg+NOR+YEL"的境界（当今武林第%s人）。",
+                                                "news",sprintf("%s(%s)的%s已經達到了"+msg+NOR+YEL"的境界（當今武林第%s人）。",
                                                                 query("name", me),query("id", me),to_chinese(skill), chinese_number(ski_lst[ski_term[i]])));
                                         record = 1;
                                 }
@@ -3915,7 +3915,7 @@ int skill_summary(object me, string skill, int level)
                                 if (level<file_level)
                                 {
                                         CHANNEL_D->channel_broadcast(
-                                              "ad",sprintf("%s(%s)"HIK"的%s已经达到了"+msg+NOR+HIK"的境界。",
+                                              "ad",sprintf("%s(%s)"HIK"的%s已經達到了"+msg+NOR+HIK"的境界。",
                                                                 query("name", me),query("id", me),to_chinese(skill)));
                                         record = 2;
                                 }
@@ -3924,11 +3924,11 @@ int skill_summary(object me, string skill, int level)
                 if (!record)
                 {
                         CHANNEL_D->channel_broadcast(
-                                "news",sprintf("%s(%s)的%s已经达到了"+msg+NOR+YEL"的境界（自古武林第一人）。",
+                                "news",sprintf("%s(%s)的%s已經達到了"+msg+NOR+YEL"的境界（自古武林第一人）。",
                                                 query("name", me),query("id", me),to_chinese(skill)));
                         ski_lst[ski] = 1;
                /*
-                        HISTORY_D->add_history("技能等级排名", query("id", me), sprintf("%s %d 级，年龄 %d 排名: 1.\n",
+                        HISTORY_D->add_history("技能等級排名", query("id", me), sprintf("%s %d 級，年齡 %d 排名: 1.\n",
                                                 to_chinese(skill), level, query("age", me)));
                */
                         record = 1;

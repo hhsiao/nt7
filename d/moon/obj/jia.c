@@ -11,7 +11,7 @@ void create()
                 set_default_object(__FILE__);
         else {
                 set("unit", "座");
-                set("long", "一个插满了各式各样的武器的架子。\n");
+                set("long", "一個插滿了各式各樣的武器的架子。\n");
                 set("value", 1);
         }
 }

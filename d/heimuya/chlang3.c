@@ -3,9 +3,9 @@ inherit ROOM;
 
 void create()
 {
-  set("short","长廊");
+  set("short","長廊");
         set("long", @LONG
-这里是非常气派的长廊，戒备森严。东边就是日月神教圣姑任大
+這裡是非常氣派的長廊，戒備森嚴。東邊就是日月神教聖姑任大
 小姐的居室。
 LONG );
   set("exits",([

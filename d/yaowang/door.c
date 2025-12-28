@@ -3,13 +3,13 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "大门");
+        set("short", "大門");
         set("long", @LONG
-这里是一处庄正高大石门，与众不同的是门两旁各摆着一个
-青石雕刻的卧虎，门上还有不少的小孔，也不知道是做什么用的，
-门的正上方的墙里嵌着一块石板，石板上刻着“药王谷”三个苍
-劲的大字，原来这里就是令武林人士变色的药王谷。在门的右边
-立着一块石碑(bei)。
+這裡是一處莊正高大石門，與眾不同的是門兩旁各擺著一個
+青石雕刻的臥虎，門上還有不少的小孔，也不知道是做什麼用的，
+門的正上方的牆裡嵌著一塊石板，石板上刻著“藥王谷”三個蒼
+勁的大字，原來這裡就是令武林人士變色的藥王谷。在門的右邊
+立著一塊石碑(bei)。
 LONG
         );
         set("exits", ([
@@ -20,17 +20,17 @@ LONG
 ]));
         set("item_desc", ([
                 "bei" :  HIW"\n     ┏----┓\n"+
-                   HIW"     ┃ "HIB"药"HIW" ┃\n"+
+                   HIW"     ┃ "HIB"藥"HIW" ┃\n"+
                    HIW"     ┃ "HIB"王"HIW" ┃\n"+
                    HIW"     ┃ "HIB"谷"HIW" ┃\n"+
                    HIW"     ┃ "HIB"重"HIW" ┃\n"+
                    HIW"     ┃ "HIB"地"HIW" ┃\n"+
                    HIW"     ┃ "HIB"擅"HIW" ┃\n"+
-                   HIW"     ┃ "HIB"闯"HIW" ┃\n"+
+                   HIW"     ┃ "HIB"闖"HIW" ┃\n"+
                    HIW"     ┃ "HIB"者"HIW" ┃\n"+
                    HIW"     ┃    ┃\n"+
-                   HIW"     ┃ "HIR"杀"HIW" ┃\n"+
-                   HIW"     ┃ "HIR"无"HIW" ┃\n"+
+                   HIW"     ┃ "HIR"殺"HIW" ┃\n"+
+                   HIW"     ┃ "HIR"無"HIW" ┃\n"+
                    HIW"     ┃ "HIR"赦"HIW" ┃\n"+
                    HIW"     ┗----┛\n"NOR,
         ]));
@@ -42,7 +42,7 @@ LONG
 int valid_leave(object me, string dir)
 {
         if( dir=="north"
-         && query("party/party_name", me) != "药王谷" )
-                return notify_fail(WHT"请看石碑！\n"NOR);
+         && query("party/party_name", me) != "藥王谷" )
+                return notify_fail(WHT"請看石碑！\n"NOR);
         return ::valid_leave(me, dir);
 }

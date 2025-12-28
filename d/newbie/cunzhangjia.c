@@ -3,10 +3,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", HIG "村长家" NOR);
+        set("short", HIG "村長家" NOR);
         set("long", @LONG
-这里是古村村长的家，屋内却是颇为朴素，墙边靠着几个农具，
-墙角一张竹床，与普通村民家没什么区别。
+這裡是古村村長的家，屋內卻是頗為樸素，牆邊靠著幾個農具，
+牆角一張竹床，與普通村民家沒什麼區別。
 LONG);
 
         set("exits", ([

@@ -10,12 +10,12 @@ void death_msg();
 
 void create()
 {
-        set_name(HIW "剑冢刀客" NOR, ({ "jianzhong daoke", "jianzhong", "daoke" }) );
-        set("title", HIY "「隐士」" NOR);
+        set_name(HIW "劍冢刀客" NOR, ({ "jianzhong daoke", "jianzhong", "daoke" }) );
+        set("title", HIY "「隱士」" NOR);
         set("gender", "男性");
         set("age", 38);
         set("long", @LONG
-这是一名中年男子，一副刀客装扮，身上透射出阵阵杀气，看上去不好对付。
+這是一名中年男子，一副刀客裝扮，身上透射出陣陣殺氣，看上去不好對付。
 LONG );
         set("combat_exp", 3000000);
         set("shen_type", 0);
@@ -32,7 +32,7 @@ LONG );
 
         set("no_clean_up", 1);
 
-        //set("no_nuoyi", 1); // 不被挪移影响
+        //set("no_nuoyi", 1); // 不被挪移影響
 
         set("str", 28);
         set("int", 25);
@@ -87,8 +87,8 @@ LONG );
         ]));
 
         set("drops", ([
-                "RA&RANDOM10"    :       100,   // 低级普通装备
-                "RA&RANDOM20"    :       40,    // 低级普通装备
+                "RA&RANDOM10"    :       100,   // 低級普通裝備
+                "RA&RANDOM20"    :       40,    // 低級普通裝備
                 "FI&/clone/goods/enchant-scroll" :   20,
                 "FI&/clone/goods/sun"    :   20,
                 "FI&/clone/goods/moon"   :   20,
@@ -127,7 +127,7 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->start_busy(5 + random(6));
         me->receive_wound("qi", 200 + random(100), ob);
-        return HIY "$N" HIY "大喝一声，拼死反抗，竟逼得$n" HIY "手忙脚乱。\n" NOR;
+        return HIY "$N" HIY "大喝一聲，拼死反抗，竟逼得$n" HIY "手忙腳亂。\n" NOR;
 }
 
 void heart_beat()
@@ -147,8 +147,8 @@ void random_move()
                 env = environment(this_object());
                 message_vision("$N急急忙忙的走了。\n", this_object());
 
-                CHANNEL_D->channel_broadcast("news", HIG "听说" + HIW +
-                        env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一带出现的" +
+                CHANNEL_D->channel_broadcast("news", HIG "聽說" + HIW +
+                        env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一帶出現的" +
                         HIR + this_object()->short() + HIG "消失了。\n" NOR);
 
                 destruct(this_object());
@@ -162,15 +162,15 @@ void death_msg()
         if (random(2) == 1)
         {
                 command("mess* sigh");
-                command("mess 想不到我隐居此处竟也被仇家找到，天亡我也！");
-                CHANNEL_D->channel_broadcast("rumor", "听说" + name() + HIM "被江湖人士所杀。" NOR);
+                command("mess 想不到我隱居此處竟也被仇家找到，天亡我也！");
+                CHANNEL_D->channel_broadcast("rumor", "聽說" + name() + HIM "被江湖人士所殺。" NOR);
         }
         else
         {
-                message_vision(HIG "猛然间，剑光一闪，跳出一个蒙面黑衣人将$N " HIG " 抱起，杀出一条血路，逃命去了 ...\n" NOR,
+                message_vision(HIG "猛然間，劍光一閃，跳出一個蒙面黑衣人將$N " HIG " 抱起，殺出一條血路，逃命去了 ...\n" NOR,
                                this_object());
-                command("mess 哼，区区鼠辈，竟也想取吾命！");
-                CHANNEL_D->channel_broadcast("rumor", "听说" + name() + HIM "遭江湖人士追杀，被"
-                                      "神秘黑衣人救走后从此销声匿迹。" NOR);
+                command("mess 哼，區區鼠輩，竟也想取吾命！");
+                CHANNEL_D->channel_broadcast("rumor", "聽說" + name() + HIM "遭江湖人士追殺，被"
+                                      "神秘黑衣人救走後從此銷聲匿跡。" NOR);
         }
 }

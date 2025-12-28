@@ -7,7 +7,7 @@ void setup()
         set_name("[1;36m青玉麒麟[2;37;0m[2;37;0m", ({"qi_linb"}));        
         set("gender", "女性");                
         set("long", "青玉麒麟[2;37;0m
-它是星宿老魔的魔幻兽。
+它是星宿老魔的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

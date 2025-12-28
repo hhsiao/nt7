@@ -21,7 +21,7 @@ int main(object me, string arg)
                 if( !ob ) ob = find_living(arg);
                 if( !ob ) ob = present(arg, environment(me));
                 if( !wizardp(me) && (!ob || query("couple/child_id", me) != query("id", ob)) )
-                        return notify_fail("你要察看谁的状态？\n"); 
+                        return notify_fail("你要察看誰的狀態？\n"); 
         }
 
         if( !ob ) ob = me;
@@ -29,12 +29,12 @@ int main(object me, string arg)
         total_item = 0;
         inv = filter_array(all_inventory(ob), "visible", me);
         if( !sizeof(inv) ) {
-                write((ob==me)? "目前你身上没有任何东西。\n"
-                        : ob->name() + "身上没有携带任何东西。\n");
+                write((ob==me)? "目前你身上沒有任何東西。\n"
+                        : ob->name() + "身上沒有攜帶任何東西。\n");
                 return 1;
         }
 
-        output = sprintf("%s身上带著下列这些东西(负重 %d%%)：\n",
+        output = sprintf("%s身上帶著下列這些東西(負重 %d%%)：\n",
                 (ob==me)? "你": ob->name(),
                 (int)ob->query_encumbrance() * 100 / (int)ob->query_max_encumbrance());
 
@@ -110,9 +110,9 @@ int main(object me, string arg)
         }
         
         if( !total_item )
-                output += "目前没有携带物品。\n";
+                output += "目前沒有攜帶物品。\n";
         else
-                output += "目前携带了" + chinese_number(total_item) +
+                output += "目前攜帶了" + chinese_number(total_item) +
                           "件物品。\n";
         write(output);
         return 1;
@@ -137,11 +137,11 @@ int help (object me)
         write(@HELP
 指令格式: inventory
  
-可列出你目前身上所携带的所有物品。
+可列出你目前身上所攜帶的所有物品。
 
-"□" 标记说明此物品为你已经装备的兵器或者已穿戴
-     的护甲，粉色表示此物品装备于你的左手。
-"○" 标记说明此物品握在你的手中。
+"□" 標記說明此物品為你已經裝備的兵器或者已穿戴
+     的護甲，粉色表示此物品裝備於你的左手。
+"○" 標記說明此物品握在你的手中。
 
 注 : 此指令可以 " i " 代替。
  

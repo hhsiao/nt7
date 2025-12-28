@@ -15,22 +15,22 @@ int valid_learn(object me)
 	if ((i >= 10 && (int)me->query("shen") < i * 5)
 	 || (i >= 50 && (int)me->query("shen") < i * 8)
 	 || (i >= 100 && (int)me->query("shen") < i * 10))
-		return notify_fail("大理乃是明门正派，看来你的侠义正气还不够啊！\n");
+		return notify_fail("大理乃是明門正派，看來你的俠義正氣還不夠啊！\n");
 
 	if ( me->query("tls") && i > 10 && i < 150 && l < i - 10)
-		return notify_fail("你的佛学修为看来不能抑止你的心中的好胜之心了！\n");
+		return notify_fail("你的佛學修為看來不能抑止你的心中的好勝之心了！\n");
 
 	if (me->query_skill("force", 1) < 20)
-		return notify_fail("你的基本内功火候还不够，无法领会乾天一阳功。\n");
+		return notify_fail("你的基本內功火候還不夠，無法領會乾天一陽功。\n");
 
 	if (i > 99 && (string)me->query("gender") != "男性")
-		return notify_fail("你不是纯阳之身，无法领会更高层的乾天一阳功。\n");
+		return notify_fail("你不是純陽之身，無法領會更高層的乾天一陽功。\n");
 
 	if ( me->query("menggu"))
-		return notify_fail("乾天一阳功怎可和邪派功夫混为一体？\n");
+		return notify_fail("乾天一陽功怎可和邪派功夫混為一體？\n");
 
 	if ( i > me->query_skill("force", 1) + 10 && i >= 200 )
-		return notify_fail("你的基本功火候未到，必须先打好基础才能继续提高。\n");
+		return notify_fail("你的基本功火候未到，必須先打好基礎才能繼續提高。\n");
 
         return valid_public(me);
 }
@@ -44,9 +44,9 @@ int practice_skill(object me)
 			me->add("potential", -1*(1+random(3)));
 			return 1;
 		}
-		else return notify_fail("你现在的修为不足以提高乾天一阳功了。\n");
+		else return notify_fail("你現在的修為不足以提高乾天一陽功了。\n");
 	}
-	else return notify_fail("你现在的乾天一阳功修为只能用学(learn)的来增加熟练度。\n");
+	else return notify_fail("你現在的乾天一陽功修為只能用學(learn)的來增加熟練度。\n");
 }
 
 string exert_function_file(string func)
@@ -57,12 +57,12 @@ string exert_function_file(string func)
 mapping exercise_msg(object me)
 {
 	return ([
-		"status_msg" : HIY + me->name()+"结珈而坐，神态安详"NOR,
-		"start_my_msg" : "你盘膝坐下，闭目合什，运起乾天一阳神功，一股纯阳真气开始在体内运转。\n",
-		"start_other_msg" : me->name()+"盘膝坐下，闭目合什,神态安详，周身似乎有一层金光笼罩。\n",
-		"halt_msg" : "$N双掌一分，平摊在胸，迅速收气，停止真气的流动。\n",
-		"end_my_msg" : "你真气在体内运行了一个周天，缓缓收气于丹田，慢慢睁开了眼睛。\n",
-		"end_other_msg" : "只见"+me->name()+"慢慢睁开眼睛，周身笼罩的金光逐渐隐去。\n"
+		"status_msg" : HIY + me->name()+"結珈而坐，神態安詳"NOR,
+		"start_my_msg" : "你盤膝坐下，閉目合什，運起乾天一陽神功，一股純陽真氣開始在體內運轉。\n",
+		"start_other_msg" : me->name()+"盤膝坐下，閉目合什,神態安詳，周身似乎有一層金光籠罩。\n",
+		"halt_msg" : "$N雙掌一分，平攤在胸，迅速收氣，停止真氣的流動。\n",
+		"end_my_msg" : "你真氣在體內運行了一個周天，緩緩收氣于丹田，慢慢睜開了眼睛。\n",
+		"end_other_msg" : "只見"+me->name()+"慢慢睜開眼睛，周身籠罩的金光逐漸隱去。\n"
 	]);
 }
 
@@ -86,7 +86,7 @@ int ob_hit(object ob, object me, int damage)
 			me->add("neili",-neili);
 			if( wizardp(me) && me->query("env/test") )
 				tell_object(me,sprintf("dec: %d,%d\n",damage,neili));
-			message_vision(CYN"$N以一阳指柔劲吸收掉$n全部的攻击。\n"NOR, me, ob);
+			message_vision(CYN"$N以一陽指柔勁吸收掉$n全部的攻擊。\n"NOR, me, ob);
 			return -damage;
 		}
 	}
@@ -101,7 +101,7 @@ int ob_hit(object ob, object me, int damage)
 	me->add_temp("dali/jujing1", i*j);
 	if( wizardp(me) && me->query("env/test") )
 		tell_object(me,sprintf("dec: %d(%d) \n",i,damage));
-	message_vision(CYN"$N以一阳指柔劲吸收掉$n部分攻击。\n"NOR, me,ob);
+	message_vision(CYN"$N以一陽指柔勁吸收掉$n部分攻擊。\n"NOR, me,ob);
 
 	return -i;
 }

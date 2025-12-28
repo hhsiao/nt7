@@ -10,13 +10,13 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", HIC "一块青色的地心噬魂，拥有集天下万毒及邪能\n"
-                            "于一身的至宝——地心噬魂，相传为邪灵之主\n"
-                            "罗刹到九幽之底，掘出当年被女娲消灭的异兽\n"
-                            "骸骨，以地心毒火精炼而成。上古神物，已经\n"
-                            "通灵。\n" NOR);
+                set("long", HIC "一塊青色的地心噬魂，擁有集天下萬毒及邪能\n"
+                            "於一身的至寶——地心噬魂，相傳為邪靈之主\n"
+                            "羅剎到九幽之底，掘出當年被女媧消滅的異獸\n"
+                            "骸骨，以地心毒火精煉而成。上古神物，已經\n"
+                            "通靈。\n" NOR);
                 set("value", 10000000);
-                set("unit", "块");
+                set("unit", "塊");
                 set("can_be_tessera", 1);
                 set("magic/type", "fire");
                 set("magic/power", 1000);

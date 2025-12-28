@@ -1,67 +1,67 @@
-// jiechen-dao.c 戒尘刀
+// jiechen-dao.c 戒塵刀
 // by gladiator
 #include <ansi.h>
 inherit SHAOLIN_SKILL;
 
 mapping *action = ({
-([      "action" : "$N内息转动，运劲于单刀，全身骨节一阵暴响，起手一式「示诞生」向$n劈出，将$n全身笼罩在赤热的刀风下",
-        "skill_name" : "示诞生",
+([      "action" : "$N內息轉動，運勁於單刀，全身骨節一陣暴響，起手一式「示誕生」向$n劈出，將$n全身籠罩在赤熱的刀風下",
+        "skill_name" : "示誕生",
         "force" : 300,
         "lvl" : 0,
         "dodge" : 15,
-        "damage_type" : "瘀伤",
+        "damage_type" : "瘀傷",
 ]),
-([      "action" : "$N面带轻笑，一招「始心镜」，火焰刀内劲由内及外慢慢涌出，$P双掌如宝像合十于胸前，向着$n深深一鞠",
-        "skill_name" : "始心镜",
+([      "action" : "$N面帶輕笑，一招「始心鏡」，火焰刀內勁由內及外慢慢湧出，$P雙掌如寶像合十於胸前，向著$n深深一鞠",
+        "skill_name" : "始心鏡",
         "force" : 350,
         "lvl" : 20,
         "dodge" : 10, 
-        "damage_type" : "震伤",
+        "damage_type" : "震傷",
 ]),
-([      "action" : "$N刀掌相合又打开，这招「现宝莲」以火焰刀无上功力聚出一朵红莲，盛开的花瓣飞舞旋转，漫布在$n四周",
-        "skill_name" : "现宝莲",
+([      "action" : "$N刀掌相合又打開，這招「現寶蓮」以火焰刀無上功力聚出一朵紅蓮，盛開的花瓣飛舞旋轉，漫布在$n四周",
+        "skill_name" : "現寶蓮",
         "force" : 400,
         "lvl" : 50,
         "dodge" : 5,
-        "weapon" : "红莲刀气",
-        "damage_type" : "割伤",
+        "weapon" : "紅蓮刀氣",
+        "damage_type" : "割傷",
 ]),
-([      "action" : "$N面带金刚相，刀气搓圆，使无数炙热的刀气相聚，这招「破法执」犹如一只巨大的飞鹰，凌空向$n飞抓而下",
-        "skill_name" : "破法执",
+([      "action" : "$N面帶金剛相，刀氣搓圓，使無數炙熱的刀氣相聚，這招「破法執」猶如一隻巨大的飛鷹，凌空向$n飛抓而下",
+        "skill_name" : "破法執",
         "force" : 340,
         "lvl" : 70,
         "dodge" : 1,
-        "damage_type" : "内伤",
+        "damage_type" : "內傷",
 ]),
-([      "action" : "$N暴喝一声，竟然使出伏魔无上的「开显圆」，气浪如飓风般围着$P飞旋，炎流将$n一步步向着$P拉扯过来",
-        "skill_name" : "开显圆",
+([      "action" : "$N暴喝一聲，竟然使出伏魔無上的「開顯圓」，氣浪如颶風般圍著$P飛旋，炎流將$n一步步向著$P拉扯過來",
+        "skill_name" : "開顯圓",
         "force" : 450,
         "lvl" : 120,
         "dodge" : -10,
-        "damage_type" : "震伤",
+        "damage_type" : "震傷",
 ]),
-([      "action" : "$N口念伏魔真经，钢刀连连劈出，将$n笼罩在炙焰之下，这如刀切斧凿般的「显真常」气浪似乎要将$p从中劈开",
-        "skill_name" : "显真常",
+([      "action" : "$N口唸伏魔真經，鋼刀連連劈出，將$n籠罩在炙焰之下，這如刀切斧鑿般的「顯真常」氣浪似乎要將$p從中劈開",
+        "skill_name" : "顯真常",
         "force" : 380,
         "lvl" : 140,
         "dodge" : -5, 
-        "weapon" : "无形刀气",
-        "damage_type" : "割伤",
+        "weapon" : "無形刀氣",
+        "damage_type" : "割傷",
 ]),
-([      "action" : "$N现宝相，结迦兰，右手「归真法」单刀挥出，半空中刀气凝结不散，但发出炙灼的气浪却排山倒海般地涌向$n",
-        "skill_name" : "归真法",
+([      "action" : "$N現寶相，結迦蘭，右手「歸真法」單刀揮出，半空中刀氣凝結不散，但發出炙灼的氣浪卻排山倒海般地湧向$n",
+        "skill_name" : "歸真法",
         "force" : 450,
         "lvl" : 160,
         "dodge" : -15, 
-        "damage_type" : "瘀伤",
+        "damage_type" : "瘀傷",
 ]),
-([      "action" : "$N虚托刀柄，一式「吉祥逝」，内力运转，跟着全身衣物无风自动，$P身体微倾，闪电一刀，斩向$n$",
+([      "action" : "$N虛託刀柄，一式「吉祥逝」，內力運轉，跟著全身衣物無風自動，$P身體微傾，閃電一刀，斬向$n$",
         "skill_name" : "吉祥逝",
         "force" : 500,
         "lvl" : 180,
         "dodge" : 5, 
-        "weapon" : "无形气浪",
-        "damage_type" : "割伤",
+        "weapon" : "無形氣浪",
+        "damage_type" : "割傷",
 ]),
 });
 
@@ -72,13 +72,13 @@ mapping *action = ({
 int valid_learn(object me)
 {
         if( query("max_neili", me)<2500 )
-                return notify_fail("以你的内力修为，还不足以练习戒尘刀。\n");
+                return notify_fail("以你的內力修為，還不足以練習戒塵刀。\n");
         if ((int)me->query_con() < 32) 
-                return notify_fail("你的根骨太低，不能驾御戒尘刀。\n");
+                return notify_fail("你的根骨太低，不能駕御戒塵刀。\n");
         if ((int)me->query_skill("force", 1) < 160)
-                return notify_fail("你基本内功不足。\n");
+                return notify_fail("你基本內功不足。\n");
         if ((int)me->query_skill("force") < 260)
-                return notify_fail("你的内功修为太浅，不能学戒尘刀。\n");
+                return notify_fail("你的內功修為太淺，不能學戒塵刀。\n");
 
         return 1;
 }
@@ -105,10 +105,10 @@ int practice_skill(object me)
 
       if( !objectp(weapon=query_temp("weapon", me)) || 
           query("skill_type", weapon) != "blade" )
-                return notify_fail("你先找把刀再说吧！\n");
+                return notify_fail("你先找把刀再說吧！\n");
 
         if( query("jingli", me)<70 || query("neili", me)<50 )
-                return notify_fail("你的体力不够，练不了戒尘刀。\n");
+                return notify_fail("你的體力不夠，練不了戒塵刀。\n");
         addn("jingli", -60, me);
         addn("neili", -35, me);
         return 1;

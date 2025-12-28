@@ -6,9 +6,9 @@ void create()
 {
             set("short", "殿堂");
             set("long", @LONG
-走到大殿之后，见是一座较小的殿堂，殿中情景却尤为可
-怖，数十具骸骨一堆堆相互纠结，骸骨大都直立如生时，有的
-手中握有兵刃，有的却是空手。西侧有一扇小石门。
+走到大殿之後，見是一座較小的殿堂，殿中情景卻尤為可
+怖，數十具骸骨一堆堆相互糾結，骸骨大都直立如生時，有的
+手中握有兵刃，有的卻是空手。西側有一扇小石門。
 LONG);
         set("objects", ([
                 __DIR__"obj/yudao" : random(2),
@@ -20,6 +20,6 @@ LONG);
                 "south" : __DIR__"dadian",
                 "west" : __DIR__"yushi",
             ]));
-            create_door("west", WHT "小石门" NOR, "east", DOOR_CLOSED);
+            create_door("west", WHT "小石門" NOR, "east", DOOR_CLOSED);
             setup();
 }

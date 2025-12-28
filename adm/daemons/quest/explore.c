@@ -1,4 +1,4 @@
-// 玩家任务守护进程：search.c
+// 玩家任務守護進程：search.c
 
 #include <ansi.h>
 
@@ -25,8 +25,8 @@ string * lost_objs = ({
         "/clone/questob/zizhubi",
 });
 
-// 接受供应的NPC：要求这些人必须在指定的场景，所以这里指明的
-// 是场景和NPC的ID。
+// 接受供應的NPC：要求這些人必須在指定的場景，所以這裡指明的
+// 是場景和NPC的ID。
 mapping rcv_npcs = ([
         "/d/chengdu/jiudian"      : "tang",
         "/d/chengdu/tidufu"       : "wu tiande",
@@ -259,7 +259,7 @@ mapping rcv_npcs = ([
 */
 void startup();
 
-// 任务对象创建
+// 任務對象創建
 void create()
 {
         seteuid(getuid());
@@ -278,7 +278,7 @@ void start_quest()
         object *obs;
         string zone, *files;
 
-        // 选择一个新的地点(目前没有EXPLORE任务的)
+        // 選擇一個新的地點(目前沒有EXPLORE任務的)
         env_rooms = keys(rcv_npcs);
         obs = children("/clone/quest/explore");
         if (arrayp(obs) && sizeof(obs) > 0)
@@ -288,50 +288,50 @@ void start_quest()
         }
 
         if (sizeof(env_rooms) < 1)
-                // 无法找到这样的地点
+                // 無法找到這樣的地點
                 return;
 
         room = env_rooms[random(sizeof(env_rooms))];
         env = get_object(room);
 
-        // 选择该地点中的人
+        // 選擇該地點中的人
         if (! objectp(npc = present(rcv_npcs[room], env)) ||
             query("startroom", npc) != base_name(env) )
-                // 无法找到该地点中合适的NPC来接收
+                // 無法找到該地點中合適的NPC來接收
                 return;
 
-        // 派生其它的任务对象：必须有可用物品，当前任务 < 5
+        // 派生其它的任務對象：必須有可用物品，當前任務 < 5
         ob_names=filter_array(lost_objs,(:!find_object($1) || !query_temp("quest_ob", get_object($1)):));
         if (sizeof(ob_names) < 1)
                 return;
 
         if (sizeof(children("/clone/quest/explore")) > 5)
-                // 系统中最多5个寻找物品的任务
+                // 系統中最多5個尋找物品的任務
                 return;
 
-        // 寻找一个放置宝物的地点
+        // 尋找一個放置寶物的地點
         if (sscanf(file_name(environment(npc)), "/d/%s/%*s", zone) == 2)
                 zone = "/d/" + zone + "/";
         else
         {
-                // 必须有一个在/d下面的地点
+                // 必須有一個在/d下面的地點
                 return;
         }
         files = get_dir(zone + "*.c");
 
-        // 初始化任务的一些信息（启动地点）
+        // 初始化任務的一些信息（啟動地點）
         qob_name = ob_names[random(sizeof(ob_names))];
         qob = new("/clone/quest/explore");
         set("quest_position", room, qob);
 
-        // 交由任务自己进行初始化
+        // 交由任務自己進行初始化
         qob->init_quest(npc, qob_name, zone, files);
 /*
         CHANNEL_D->do_channel(find_object(QUEST_D),
-                              "debug", "进程(EXPLORE)"
+                              "debug", "進程(EXPLORE)"
                               "利用" + qob_name->name() +
                               NOR HIW "和" + npc->name() +
-                              NOR HIW "创建了一个任务。");
+                              NOR HIW "創建了一個任務。");
 */
 }
 
@@ -340,27 +340,27 @@ void heart_beat()
         if (! find_object(QUEST_D))
                 return;
 
-        // 如果可以，每次心跳(4分钟)产生一个QUEST
+        // 如果可以，每次心跳(4分鐘)產生一個QUEST
         start_quest();
 }
 
-// 任务守护进程唤醒这个进程
+// 任務守護進程喚醒這個進程
 void startup()
 {
-        // 启动
+        // 啟動
         if (! find_object(QUEST_D))
                 return;
 
         if (! query_heart_beat())
                 CHANNEL_D->do_channel(find_object(QUEST_D),
-                                      "sys", "进程(EXPLORE)启动了。");
+                                      "sys", "進程(EXPLORE)啟動了。");
 
-        // 平均每四分钟产生一个任务
+        // 平均每四分鐘產生一個任務
         //set_heart_beat(110 + random(20));
         set_heart_beat(3 + random(3));
 }
 
-// 停止这个任务进程
+// 停止這個任務進程
 void stop()
 {
         set_heart_beat(0);

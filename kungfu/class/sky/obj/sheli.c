@@ -15,11 +15,11 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "个");
-                set("long", CYN "一个浑圆的暗色球体，通体透明。这便是传说\n"
-                            "中的魔教至宝——魔尊舍利。相传其中蕴藏着\n"
-                            "无比巨大的能量，武功高强者可以吸取(xi)其\n"
-                            "中的能量来增强功力。\n" NOR);
+                set("unit", "個");
+                set("long", CYN "一個渾圓的暗色球體，通體透明。這便是傳說\n"
+                            "中的魔教至寶——魔尊舍利。相傳其中蘊藏著\n"
+                            "無比巨大的能量，武功高強者可以吸取(xi)其\n"
+                            "中的能量來增強功力。\n" NOR);
                 set("value", 1000000);
         }
         setup();
@@ -31,17 +31,17 @@ int do_eat(string arg)
         object me = this_player();
 
         if (!id(arg))
-                return notify_fail("你要干什么？\n");
+                return notify_fail("你要幹什麼？\n");
 
         if( me->is_busy() )
-                return notify_fail("你现在正忙着呢。\n");
+                return notify_fail("你現在正忙著呢。\n");
 
         if( me->query("power/魔尊舍利") )
-                return notify_fail("你已经吸取过一次了，恐怕不能再次经受能量的冲击。\n");
+                return notify_fail("你已經吸取過一次了，恐怕不能再次經受能量的衝擊。\n");
 
-        message_vision (HIY "\n$N" HIY "将双手紧紧贴住魔尊舍利，"
-                        "只见一股光芒从中透出，甚至可以看到能"
-                        "量在两者间奔流窜动。\n" NOR, me);
+        message_vision (HIY "\n$N" HIY "將雙手緊緊貼住魔尊舍利，"
+                        "只見一股光芒從中透出，甚至可以看到能"
+                        "量在兩者間奔流竄動。\n" NOR, me);
         me->start_busy(60);
         remove_call_out("xiqu1");
         call_out("xiqu1", 5, me);
@@ -53,7 +53,7 @@ void xiqu1(string arg)
         object ob;
         object me = this_player();
 
-        message_vision(HIB "\n只见一股光芒从魔尊舍利中流入$N" HIB
+        message_vision(HIB "\n只見一股光芒從魔尊舍利中流入$N" HIB
                        "的身子……\n" NOR, me);
         remove_call_out("xiqu2");
         call_out("xiqu2", 4, me);
@@ -64,8 +64,8 @@ void xiqu2(string arg)
         object ob;
         object me = this_player();
 
-        message_vision(HIY "\n几许后，又一股光芒从$N" HIY "的身"
-                       "体里流出，进入魔尊舍利……\n" NOR, me);
+        message_vision(HIY "\n幾許後，又一股光芒從$N" HIY "的身"
+                       "體裡流出，進入魔尊舍利……\n" NOR, me);
         remove_call_out("xiqu3");
         call_out("xiqu3", 4, me);
 }
@@ -75,8 +75,8 @@ void xiqu3(string arg)
         object ob;
         object me = this_player();
 
-        message_vision(HIR "\n过了一会儿，又是一股光芒从魔尊舍利"
-                       "中慢慢流出，流入了$N" HIR "的身体……\n"
+        message_vision(HIR "\n過了一會兒，又是一股光芒從魔尊舍利"
+                       "中慢慢流出，流入了$N" HIR "的身體……\n"
                        NOR, me);
         remove_call_out("xiqu4");
         call_out("xiqu4", 4, me);
@@ -87,8 +87,8 @@ void xiqu4(string arg)
         object ob;
         object me = this_player();
 
-        message_vision(MAG "\n随即又见一股光芒从$N" MAG "的身体"
-                       "转入魔尊舍利……\n" NOR, me);
+        message_vision(MAG "\n隨即又見一股光芒從$N" MAG "的身體"
+                       "轉入魔尊舍利……\n" NOR, me);
         remove_call_out("xiqu5");
         call_out("xiqu5", 4, me);
 }
@@ -98,8 +98,8 @@ void xiqu5(string arg)
         object ob;
         object me = this_player();
 
-        message_vision(HIM "\n刹那间光华暴涨，光芒又从魔尊舍利"
-                       "中流到$N" HIM "的身体……\n" NOR, me);
+        message_vision(HIM "\n剎那間光華暴漲，光芒又從魔尊舍利"
+                       "中流到$N" HIM "的身體……\n" NOR, me);
         remove_call_out("xiqu6");
         call_out("xiqu6", 4, me);
 }
@@ -109,9 +109,9 @@ void xiqu6(string arg)
         object ob;
         object me = this_player();
 
-        message_vision(HIW "\n只见$N" HIW "和舍利同时发出无"
-                        "比耀眼的光华。刹那间空气炽热，几欲"
-                        "沸腾，仿佛连天地都快被烧焦一般……\n" NOR, me);
+        message_vision(HIW "\n只見$N" HIW "和舍利同時發出無"
+                        "比耀眼的光華。剎那間空氣熾熱，幾欲"
+                        "沸騰，彷彿連天地都快被燒焦一般……\n" NOR, me);
         remove_call_out("xiqu7");
         call_out("xiqu7", 2, me);
 }
@@ -133,9 +133,9 @@ void xiqu7(string arg)
           && (int)me->query_skill("force") > 330
           && me->query("power/何氏壁") )
         {
-                message_vision(HIW "\n光华稍退，犹见$N" HIW "全身晶莹"
-                               "剔透，竟发出宝石光泽，似乎已和魔尊舍利"
-                               "合为一体了。\n\n" NOR, me);
+                message_vision(HIW "\n光華稍退，猶見$N" HIW "全身晶瑩"
+                               "剔透，竟發出寶石光澤，似乎已和魔尊舍利"
+                               "合為一體了。\n\n" NOR, me);
 
                 me->add("combat_exp", exp);
                 me->add("potential", pot);
@@ -144,8 +144,8 @@ void xiqu7(string arg)
                 if (me->query("potential") > me->query_potential_limit()) 
                 me->set("potential", me->query_potential_limit());
 
-                tell_object(me, HIY "你感到魔尊舍利中的能量源源不绝的流"
-                                "入了你的丹田，顿时有一阵说不出的舒服。\n"
+                tell_object(me, HIY "你感到魔尊舍利中的能量源源不絕的流"
+                                "入了你的丹田，頓時有一陣說不出的舒服。\n"
                                 NOR);
 
                 max = me->query("max_qi");
@@ -164,20 +164,20 @@ void xiqu7(string arg)
                 me->clear_condition();
                 me->set("power/魔尊舍利", 1);
 
-                tell_object(me, HIC "你获得了" + chinese_number(exp) +
-                                "点经验、" + chinese_number(pot) + "点"
-                                "潜能、" + chinese_number(li1) + "点最"
-                                "大内力和" + chinese_number(li2) + "点"
+                tell_object(me, HIC "你獲得了" + chinese_number(exp) +
+                                "點經驗、" + chinese_number(pot) + "點"
+                                "潛能、" + chinese_number(li1) + "點最"
+                                "大內力和" + chinese_number(li2) + "點"
                                 "最\n大精力。\n" NOR);
         } else
         {
-                message_vision(HIR "\n只听$N" HIR "一声惨叫，经受不住能"
-                               "量的冲击，顿时全身筋脉尽断，鲜血狂喷，身"
-                               "体被炸了个粉碎。\n" NOR, me);
-                me->set_temp("die_reason", "妄图吸取魔尊舍利，结果全身筋脉尽断而亡。");
+                message_vision(HIR "\n只聽$N" HIR "一聲慘叫，經受不住能"
+                               "量的衝擊，頓時全身筋脈盡斷，鮮血狂噴，身"
+                               "體被炸了個粉碎。\n" NOR, me);
+                me->set_temp("die_reason", "妄圖吸取魔尊舍利，結果全身筋脈盡斷而亡。");
                 me->die(); 
         }
-        message_vision (WHT "\n魔尊舍利上的光华渐渐消逝，变成了一"
+        message_vision (WHT "\n魔尊舍利上的光華漸漸消逝，變成了一"
                         "堆粉末。\n" NOR, me);
         destruct(this_object());
         return 0;

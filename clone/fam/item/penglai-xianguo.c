@@ -6,15 +6,15 @@ int do_use(string arg);
 
 void create()
 {
-        set_name(HIM "蓬莱仙果" NOR, ({"penglai xianguo", "penglai", "xianguo", "guo"}));
+        set_name(HIM "蓬萊仙果" NOR, ({"penglai xianguo", "penglai", "xianguo", "guo"}));
         set_weight(1);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIM "\n这是一颗晶莹红透的仙果，据说服用后能功力大增。\n"
-                                      "*服用(fuyong xianguo)需消耗吸灵壶，可获得30万经验，25万潜能，1000点贡献及20万体会（双倍奖励服务加倍）。\n"
-                                      "*每服用一个蓬莱仙果会消耗一个吸灵壶，吸灵壶可从商城购买。\n" NOR);
-                set("unit", "颗");
+                set("long", HIM "\n這是一顆晶瑩紅透的仙果，據說服用後能功力大增。\n"
+                                      "*服用(fuyong xianguo)需消耗吸靈壺，可獲得30萬經驗，25萬潛能，1000點貢獻及20萬體會（雙倍獎勵服務加倍）。\n"
+                                      "*每服用一個蓬萊仙果會消耗一個吸靈壺，吸靈壺可從商城購買。\n" NOR);
+                set("unit", "顆");
                 set("value", 1);
         }
 }
@@ -41,21 +41,21 @@ int do_use(string arg)
         
         if(! objectp(ob = present("xiling hu", me)))
         {
-                return notify_fail("你身上没有吸灵壶，无法服用蓬莱仙果。\n");
+                return notify_fail("你身上沒有吸靈壺，無法服用蓬萊仙果。\n");
         }
         
         if (me->is_fighting() || me->is_busy())
                  return notify_fail("你正忙呢！\n");
                  
         // 使用描述
-        message_vision(HIY + "\n$N" HIY "一抬头服下一颗蓬莱仙果，万道金光闪过，功力大增 ……\n" NOR, me);
+        message_vision(HIY + "\n$N" HIY "一抬頭服下一顆蓬萊仙果，萬道金光閃過，功力大增 ……\n" NOR, me);
 
         exp = 300000;
         pot = 250000;
         tihui = 200000;
         gongxian = 1000;
         
-        // 活动期间
+        // 活動期間
         if (MEMBER_D->is_double_reward(me)) 
         {
                 exp *= 2;
@@ -64,13 +64,13 @@ int do_use(string arg)
                 gongxian *= 2;
         }
         
-        tell_object(me, HIG "你服下蓬莱仙果后获得了" + chinese_number(exp) + "经验，" + chinese_number(pot) + "潜"
-                            "能，" + chinese_number(gongxian) + "门派贡献及" + chinese_number(tihui) + "体会。消耗吸灵壶一个。\n\n" NOR);
+        tell_object(me, HIG "你服下蓬萊仙果後獲得了" + chinese_number(exp) + "經驗，" + chinese_number(pot) + "潛"
+                            "能，" + chinese_number(gongxian) + "門派貢獻及" + chinese_number(tihui) + "體會。消耗吸靈壺一個。\n\n" NOR);
 
-        // 消耗吸灵壶
+        // 消耗吸靈壺
         destruct(ob);
         
-        // 元神增加经验
+        // 元神增加經驗
         if( query("yuanshen_level", me) && query("yuanshen_exp", me)<2000000000 )
         {
                 ys_exp = exp / 5;

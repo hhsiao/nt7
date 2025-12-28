@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[30m我让你靠[2;37;0m[2;37;0m", ({"kaos"}));        
+        set_name("[30m我讓你靠[2;37;0m[2;37;0m", ({"kaos"}));        
         set("gender", "男性");                
         set("long", "哈哈[2;37;0m
-它是靠告非的魔幻兽。
+它是靠告非的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

@@ -2,15 +2,15 @@
 inherit TASK; 
 void create() 
 { 
-    set_name(HIR"浑天宝鉴"NOR, ({ "book", "book" }) ); 
+    set_name(HIR"渾天寶鑑"NOR, ({ "book", "book" }) ); 
     set_weight(1); 
     if( clonep() ) 
             destruct(this_object()); 
     else { 
             set("unit", "本"); 
             set("material", "book"); 
-            set("long", "一本写着浑天宝鉴内功的秘籍。\n"); 
+            set("long", "一本寫著渾天寶鑑內功的秘籍。\n"); 
          }
-    set("owner", "南贤"); 
+    set("owner", "南賢"); 
     setup();
 }

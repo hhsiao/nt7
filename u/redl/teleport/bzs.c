@@ -7,9 +7,9 @@ inherit BUILD_ROOM;
 void create()
 {
         set("short","不周山name");
-        set("long", "这里是不周山，相传不周山是人界唯一能够到达天界的路径，\n"
-"只可惜不周山终年寒冷，长年飘雪，非凡夫俗子所能徒步到达。传\n"
-"言曾有凡人为见神仙一面而只身上山，但却未曾见其返乡。\n");
+        set("long", "這裡是不周山，相傳不周山是人界唯一能夠到達天界的路徑，\n"
+"只可惜不周山終年寒冷，長年飄雪，非凡夫俗子所能徒步到達。傳\n"
+"言曾有凡人為見神仙一面而隻身上山，但卻未曾見其返鄉。\n");
         set("outdoors", "yangzhou");
         set("no_kill",1);
         set("no_fight",1);
@@ -27,7 +27,7 @@ int do_look(string arg)
 {
         object me = this_player();
         if ( arg && arg=="up" ) {
-                        tell_object(me, NOR "你凝聚目力望过去，只见云雾飘渺。\n" NOR);
+                        tell_object(me, NOR "你凝聚目力望過去，只見雲霧飄渺。\n" NOR);
                         return -1;
         }
         return 0;
@@ -37,7 +37,7 @@ int valid_leave(object me, string dir)
 {
                 if (dir=="up") {
                         if ( file_size(query("exits/up") + ".c") < 1 )
-                                return notify_fail(NOR "一个声音喝止你：你是从山脚拜上来的吗？\n" NOR);
+                                return notify_fail(NOR "一個聲音喝止你：你是從山腳拜上來的嗎？\n" NOR);
                 }
                 
         return ::valid_leave(me, dir);

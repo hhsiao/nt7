@@ -1,5 +1,5 @@
 #include <ansi.h>
-//草类药材
+//草類藥材
 
 inherit ITEM; 
 mapping *ansi= ({
@@ -16,7 +16,7 @@ mapping *ansi= ({
 
 });
 mapping *yao= ({
-([     "name":     "鱼腥草",
+([     "name":     "魚腥草",
        "id":       "yuxing cao",
        "yaoxing":  10000,
 ]),
@@ -32,15 +32,15 @@ mapping *yao= ({
        "id":       "cao shanhu",
        "yaoxing":  40000,
 ]),
-([     "name":     "穿心莲",
+([     "name":     "穿心蓮",
        "id":       "chuanxin lian",
        "yaoxing":  50000,
 ]),
-([     "name":     "泽兰",
+([     "name":     "澤蘭",
        "id":       "ze lan",
        "yaoxing":  60000,
 ]),
-([     "name":     "绞股蓝",
+([     "name":     "絞股藍",
        "id":       "jiaogu lan",
        "yaoxing":  70000,
 ]),
@@ -48,7 +48,7 @@ mapping *yao= ({
        "id":       "huer cao",
        "yaoxing":  80000,
 ]),
-([     "name":     "金钱草",
+([     "name":     "金錢草",
        "id":       "jinqian cao",
        "yaoxing":  90000,
 ]),

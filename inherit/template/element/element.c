@@ -17,9 +17,9 @@ void create()
         else*/
         {
 //**            set("$dbase_key", "$dbase_value\n");            /* DBASE_ENTRY */
-                set("long", YEL "从特殊的水晶中粹取出来的元素粉末。\n" NOR); /* DBASE_EXIT  */
+                set("long", YEL "從特殊的水晶中粹取出來的元素粉末。\n" NOR); /* DBASE_EXIT  */
                 set("value", 100);
-                set("unit", "颗");
+                set("unit", "顆");
         }
         setup();
 }

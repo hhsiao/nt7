@@ -4,11 +4,11 @@
 #include <ansi.h>
 inherit F_DBASE;
 
-// 定义提供给外部调用的接口函数
+// 定義提供給外部調用的接口函數
 public mixed teach_pfm(object who, object ob, mapping b);
 public mixed give_item(object who, object ob, mapping b);
 
-// 对应下面的提升 skills 的可激发技能
+// 對應下面的提升 skills 的可激發技能
 string *valid_types = ({
         "force",
         "dodge",
@@ -36,33 +36,33 @@ string *valid_types = ({
         "cooking",
 });
 
-// 传授武功绝招
+// 傳授武功絕招
 public mixed teach_pfm(object who, object ob, mapping b)
 {
-        string name, perform;           // 绝招名称及绝招进程记录
-        int i;                          // 导入主要技能升级的循环符
-        string msg;                     // 对于某些返回信息的描述
-        string msg1, msg2;              // 显示出的信息及回答信息
-        string sk1, sk2, sk3, sk4, sk5; // 所需要的武功名称
-        int lv1, lv2, lv3, lv4, lv5;    // 所对应的武功等级
-        int reborn;                     // 转世几次要求
-        int free;                       // 与下面的门派所对应，如果设置该参数，则
-                                        // 无须考虑传授者与被传授者的门派是否一致
-        string family;                  // 传授者的门派，如果不设置公共参数，则要
-                                        // 传授双方的门派为同一门派
-        int gongxian, shen;             // 需求的贡献及神
-        int force, dodge;               // 需求的内功等级与轻功等级
-        int neili, jingli;              // 需求的最大内力与最大精力
-        string temp1, temp2, temp3;     // 要求的进程记录
-        string tmsg1, tmsg2, tmsg3;     // 要求的进程记录的回答信息
+        string name, perform;           // 絕招名稱及絕招進程記錄
+        int i;                          // 導入主要技能升級的循環符
+        string msg;                     // 對於某些返回信息的描述
+        string msg1, msg2;              // 顯示出的信息及回答信息
+        string sk1, sk2, sk3, sk4, sk5; // 所需要的武功名稱
+        int lv1, lv2, lv3, lv4, lv5;    // 所對應的武功等級
+        int reborn;                     // 轉世幾次要求
+        int free;                       // 與下面的門派所對應，如果設置該參數，則
+                                        // 無須考慮傳授者與被傳授者的門派是否一致
+        string family;                  // 傳授者的門派，如果不設置公共參數，則要
+                                        // 傳授雙方的門派為同一門派
+        int gongxian, shen;             // 需求的貢獻及神
+        int force, dodge;               // 需求的內功等級與輕功等級
+        int neili, jingli;              // 需求的最大內力與最大精力
+        string temp1, temp2, temp3;     // 要求的進程記錄
+        string tmsg1, tmsg2, tmsg3;     // 要求的進程記錄的回答信息
         string *fams;
 
-        // 如果没有指明对象，则返回
+        // 如果沒有指明對象，則返回
         if (! stringp(name = b["name"])
            || ! stringp(perform = b["perform"]))
                 return 0;
 
-        // 判断所属门派，如为公共传授，应添加 free 参数
+        // 判斷所屬門派，如為公共傳授，應添加 free 參數
         if (! intp(free = b["free"]) || free <= 0)
         {
                 family=query("family/family_name", ob);
@@ -70,29 +70,29 @@ public mixed teach_pfm(object who, object ob, mapping b)
 
                 if( query("family/family_name", who) != family &&
                     (!arrayp(fams) || member_array(family, fams) == -1) )
-                        return RANK_D->query_respect(who) + "与我" +
-                               family + "素无渊源，不知此话从何说起。";
+                        return RANK_D->query_respect(who) + "與我" +
+                               family + "素無淵源，不知此話從何說起。";
         }
 
-        // 如果已经学会，则返回
+        // 如果已經學會，則返回
         if( query(perform, who) )
         {
                 switch (random(4))
                 {
                 case 0 :
-                        msg = "自己下去练，还来罗嗦什么。";
+                        msg = "自己下去練，還來羅嗦什麼。";
                         break;
 
                 case 1 :
-                        msg = "我不是已经教过你了么？自己下去练。";
+                        msg = "我不是已經教過你了麼？自己下去練。";
                         break;
 
                 case 2 :
-                        msg = "我能教的都教给你了，剩下的你自己领悟吧。";
+                        msg = "我能教的都教給你了，剩下的你自己領悟吧。";
                         break;
 
                 default :
-                        msg = "这招你不是已经会了么，还缠着我做甚？";
+                        msg = "這招你不是已經會了麼，還纏著我做甚？";
                         break;
                 }
                 return msg;
@@ -102,46 +102,46 @@ public mixed teach_pfm(object who, object ob, mapping b)
         {
 /*
                 if( query("reborn/times", who) < reborn )
-                        return "你目前经历的转世体验不够，这招"
-                               "暂时还不能传你。";
+                        return "你目前經歷的轉世體驗不夠，這招"
+                               "暫時還不能傳你。";
 */
                 if( query("level", who) < 100 )
-                        return "你目前经历的武道体验不够，这招"
-                               "暂时还不能传你。";
+                        return "你目前經歷的武道體驗不夠，這招"
+                               "暫時還不能傳你。";
                                
                 if( query("yuanshen_level", who) < reborn )
-                        return "你目前修炼元神境界不够，这招"
-                               "暂时还不能传你。";
+                        return "你目前修煉元神境界不夠，這招"
+                               "暫時還不能傳你。";
         }
 
-        // 判断正神或负神的要求
+        // 判斷正神或負神的要求
         if (intp(shen = b["shen"]))
         {
-                // 如果要求为负神，则作出大于判断
+                // 如果要求為負神，則作出大於判斷
                 if( shen<0 && query("shen", who)>shen )
-                        return "哼！像你这样的心慈手软之辈，又"
-                               "能干成什么大事？";
+                        return "哼！像你這樣的心慈手軟之輩，又"
+                               "能幹成什麼大事？";
 
-                // 如果要求为正神，则作出小于判断
+                // 如果要求為正神，則作出小於判斷
                 if( shen>0 && query("shen", who)<shen )
-                        return "你目前所做的侠义正事不够，这招"
-                               "暂时还不能传你。";
+                        return "你目前所做的俠義正事不夠，這招"
+                               "暫時還不能傳你。";
         }
 
-        // 判断门派贡献的要求
+        // 判斷門派貢獻的要求
         if (intp(gongxian = b["gongxian"])
             && query("family/gongji", who)<gongxian )
-                return "你为"+query("family/family_name", who)+
-                       "作出的贡献不够，这招暂时还不能传你。";
+                return "你為"+query("family/family_name", who)+
+                       "作出的貢獻不夠，這招暫時還不能傳你。";
 
-        // 判断特定的进程记录要求
+        // 判斷特定的進程記錄要求
         if( stringp(temp1=b["temp1"]) && !query(temp1, who) )
         {
                 if (stringp(tmsg1 = b["tmsg1"]))
                         return tmsg1;
                 else
-                        return "现在某些机缘未到，这招我暂时还"
-                               "不能传给你。";
+                        return "現在某些機緣未到，這招我暫時還"
+                               "不能傳給你。";
         }
 
         if( stringp(temp2=b["temp2"]) && !query(temp2, who) )
@@ -149,8 +149,8 @@ public mixed teach_pfm(object who, object ob, mapping b)
                 if (stringp(tmsg2 = b["tmsg2"]))
                         return tmsg2;
                 else
-                        return "现在某些机缘未到，这招我暂时还"
-                               "不能传给你。";
+                        return "現在某些機緣未到，這招我暫時還"
+                               "不能傳給你。";
         }
 
         if( stringp(temp3=b["temp3"]) && !query(temp3, who) )
@@ -158,67 +158,67 @@ public mixed teach_pfm(object who, object ob, mapping b)
                 if (stringp(tmsg3 = b["tmsg3"]))
                         return tmsg3;
                 else
-                        return "现在某些机缘未到，这招我暂时还"
-                               "不能传给你。";
+                        return "現在某些機緣未到，這招我暫時還"
+                               "不能傳給你。";
         }
 
-        // 判断特定的武功需求，其中 sk1 应为主 skills
+        // 判斷特定的武功需求，其中 sk1 應為主 skills
         if (stringp(sk1 = b["sk1"]) && intp(lv1 = b["lv1"]))
         {
                 if (who->query_skill(sk1, 1) <= 0)
-                        return "你连" + to_chinese(sk1) + "都"
-                               "未曾学过，何谈绝招可言？";
+                        return "你連" + to_chinese(sk1) + "都"
+                               "未曾學過，何談絕招可言？";
 
                 if (who->query_skill(sk1, 1) < lv1)
-                        return "你对" + to_chinese(sk1) + "的"
-                               "了解还不够，尚且无法领悟此招。";
+                        return "你對" + to_chinese(sk1) + "的"
+                               "瞭解還不夠，尚且無法領悟此招。";
         }
 
         if (stringp(sk2 = b["sk2"]) && intp(lv2 = b["lv2"])
            && who->query_skill(sk2, 1) < lv2)
-                return "你对" + to_chinese(sk2) + "的了解还不"
-                       "够，尚且无法领悟此招。";
+                return "你對" + to_chinese(sk2) + "的瞭解還不"
+                       "夠，尚且無法領悟此招。";
 
         if (stringp(sk3 = b["sk3"]) && intp(lv3 = b["lv3"])
            && who->query_skill(sk3, 1) < lv3)
-                return "你对" + to_chinese(sk3) + "的了解还不"
-                       "够，尚且无法领悟此招。";
+                return "你對" + to_chinese(sk3) + "的瞭解還不"
+                       "夠，尚且無法領悟此招。";
 
         if (stringp(sk4 = b["sk4"]) && intp(lv4 = b["lv4"])
            && who->query_skill(sk4, 1) < lv4)
-                return "你对" + to_chinese(sk4) + "的了解还不"
-                       "够，尚且无法领悟此招。";
+                return "你對" + to_chinese(sk4) + "的瞭解還不"
+                       "夠，尚且無法領悟此招。";
 
         if (stringp(sk5 = b["sk5"]) && intp(lv5 = b["lv5"])
            && who->query_skill(sk5, 1) < lv5)
-                return "你对" + to_chinese(sk5) + "的了解还不"
-                       "够，尚且无法领悟此招。";
+                return "你對" + to_chinese(sk5) + "的瞭解還不"
+                       "夠，尚且無法領悟此招。";
 
-        // 判断绝招对内功的要求
+        // 判斷絕招對內功的要求
         if (intp(force = b["force"])
            && force > 0
            && who->query_skill("force") < force)
-                return "你目前的内功火候不足，下去练练再来吧。";
+                return "你目前的內功火候不足，下去練練再來吧。";
 
-        // 判断绝招对轻功的要求
+        // 判斷絕招對輕功的要求
         if (intp(dodge = b["dodge"])
            && dodge > 0
            && who->query_skill("dodge") < dodge)
-                return "你目前的轻功火候不足，下去练练再来吧。";
+                return "你目前的輕功火候不足，下去練練再來吧。";
 
-        // 判断绝招对内力上限的要求
+        // 判斷絕招對內力上限的要求
         if (intp(neili = b["neili"])
            && neili > 0
             && query("max_neili", who)<neili )
-                return "你现在的内力修为不足，修炼高点再来吧。";
+                return "你現在的內力修為不足，修煉高點再來吧。";
 
-        // 判断绝招对精力上限的要求
+        // 判斷絕招對精力上限的要求
         if (intp(jingli = b["jingli"])
            && jingli > 0
             && query("max_jingli", who)<jingli )
-                return "你现在的精力修为不足，修炼高点再来吧。";
+                return "你現在的精力修為不足，修煉高點再來吧。";
 
-        // 给予学习绝招的描述信息
+        // 給予學習絕招的描述信息
         if (stringp(msg1 = b["msg1"]))
         {
                 msg = msg1;
@@ -227,55 +227,55 @@ public mixed teach_pfm(object who, object ob, mapping b)
                 switch (random(4))
                 {
                 case 0 :
-                        msg = "$N微微点了点头，伸手将$n" HIY "招"
-                              "至身前，低声在$n" HIY "耳畔讲述了"
-                              "半天，还不时伸手比划演示着什么，所"
-                              "讲全是" + to_chinese(sk1) + "的精"
-                              "微要诣。$n" HIY "听后会心一笑，看"
-                              "来对$N的教导大有所悟。";
+                        msg = "$N微微點了點頭，伸手將$n" HIY "招"
+                              "至身前，低聲在$n" HIY "耳畔講述了"
+                              "半天，還不時伸手比劃演示著什麼，所"
+                              "講全是" + to_chinese(sk1) + "的精"
+                              "微要詣。$n" HIY "聽後會心一笑，看"
+                              "來對$N的教導大有所悟。";
                         break;
 
                 case 1 :
-                        msg = "$N凝视了$n" HIY "许久，方才微微点"
-                              "了点头，说道：“我给你演示一遍，可"
-                              "看清楚了。”$N话音刚落，随即起身而"
-                              "立拉开架势，慢慢的演示开" +
+                        msg = "$N凝視了$n" HIY "許久，方才微微點"
+                              "了點頭，說道：“我給你演示一遍，可"
+                              "看清楚了。”$N話音剛落，隨即起身而"
+                              "立拉開架勢，慢慢的演示開" +
                               to_chinese(sk1) + "的招式。$n" HIY
-                              "只觉$N招式精奇，神妙非凡，实乃前所"
-                              "未闻，顿时大有感悟。";
+                              "只覺$N招式精奇，神妙非凡，實乃前所"
+                              "未聞，頓時大有感悟。";
                         break;
 
                 case 2 :
-                        msg = "$N看了看$n" HIY "，颇为赞许的说道"
+                        msg = "$N看了看$n" HIY "，頗為讚許的說道"
                               "：“想不到你的" + to_chinese(sk1) +
-                              "进展如此神速，已达此般境界。不易，"
-                              "不易。今日我便传你这招，可记清楚了"
-                              "。”说完$N便将$n" HIY "招至跟前，"
-                              "耐心讲述" + name + "的诸多精要，$n"
-                              HIY "一边听一边不住的点头。";
+                              "進展如此神速，已達此般境界。不易，"
+                              "不易。今日我便傳你這招，可記清楚了"
+                              "。”說完$N便將$n" HIY "招至跟前，"
+                              "耐心講述" + name + "的諸多精要，$n"
+                              HIY "一邊聽一邊不住的點頭。";
                         break;
 
                 default :
-                        msg = "$N哈哈一笑，对$n" HIY "赞道：“不"
-                              "错，不错。依照你现在" +
-                              to_chinese(sk1) + "的造诣，我便传授"
-                              "你" + name + "又有何妨？”说完便只"
-                              "见$N从怀中摸出一本颇为古旧的小册子"
-                              "，指着其中一段对$n" HIY "仔细讲解"
-                              "。$n" HIY "听后沉思良久，若有所悟。";
+                        msg = "$N哈哈一笑，對$n" HIY "讚道：“不"
+                              "錯，不錯。依照你現在" +
+                              to_chinese(sk1) + "的造詣，我便傳授"
+                              "你" + name + "又有何妨？”說完便只"
+                              "見$N從懷中摸出一本頗為古舊的小冊子"
+                              "，指著其中一段對$n" HIY "仔細講解"
+                              "。$n" HIY "聽後沉思良久，若有所悟。";
                         break;
                 }
         }
         message_sort(HIY "\n" + msg + "\n\n" NOR, ob, who);
 
-        // 学会该项绝招
+        // 學會該項絕招
         addn(perform, 1, who);
 
-        // 给予提示信息
-        tell_object(who, HIC "你学会了「" HIW + name +
+        // 給予提示信息
+        tell_object(who, HIC "你學會了「" HIW + name +
                          HIC "」。\n" NOR);
 
-        // 提升相对应的武功技能
+        // 提升相對應的武功技能
         if (stringp(sk1) && who->can_improve_skill(sk1))
                 who->improve_skill(sk1, 1500000);
 
@@ -299,126 +299,126 @@ public mixed teach_pfm(object who, object ob, mapping b)
                         who->improve_skill(valid_types[i], 1500000);
         }
 
-        // 提升武学修养等级
+        // 提升武學修養等級
         who->improve_skill("martial-cognize", 3500000);
 
-        // 消耗门派贡献值
+        // 消耗門派貢獻值
         if (intp(gongxian) && gongxian > 0)
                 addn("family/gongji", -gongxian, who);
 
         tell_object(who, "\n");
 
-        // 最后的回答信息
+        // 最後的回答信息
         if (stringp(msg2 = b["msg2"]))
         {
                 msg = msg2;
         } else
         {
-                // 最后的回答信息
+                // 最後的回答信息
                 switch (random(5))
                 {
                 case 0 :
-                        msg = "刚才的招式，你明白了多少？";
+                        msg = "剛才的招式，你明白了多少？";
                         break;
 
                 case 1 :
-                        msg = "招式便是如此，你自己下去领悟吧。";
+                        msg = "招式便是如此，你自己下去領悟吧。";
                         break;
 
                 case 2 :
-                        msg = "刚才我所传授的全是该招的精意，可记牢了。";
+                        msg = "剛才我所傳授的全是該招的精意，可記牢了。";
                         break;
 
                 case 3 :
-                        msg = "这招你下去后需勤加练习，方能运用自如。";
+                        msg = "這招你下去後需勤加練習，方能運用自如。";
                         break;
 
                 default :
-                        msg = "这招其实并不复杂，你自己下去练习吧。";
+                        msg = "這招其實並不複雜，你自己下去練習吧。";
                         break;
                 }
         }
         return msg;
 }
 
-// 物件的发放
+// 物件的發放
 public mixed give_item(object who, object ob, mapping b)
 {
-        object obj, owner;              // 给予的物品及拥有者
-        string item;                    // 给予物品的 base_name
-        string msg;                     // 对于某些返回信息的描述
-        string sk1, sk2, sk3;           // 所需要的武功名称
-        int lv1, lv2, lv3;              // 所对应的武功等级
-        int free;                       // 是否为公共物品派送
-        int master;                     // 是否只有直属弟子才能领取
-        int generation;                 // 门派中的辈份要求
-        string family;                  // 给予物品者的门派
-        int gongxian, shen;             // 需求的贡献及神
-        string temp1, temp2, temp3;     // 要求的进程记录
-        string tmsg1, tmsg2, tmsg3;     // 要求的进程记录的回答信息
+        object obj, owner;              // 給予的物品及擁有者
+        string item;                    // 給予物品的 base_name
+        string msg;                     // 對於某些返回信息的描述
+        string sk1, sk2, sk3;           // 所需要的武功名稱
+        int lv1, lv2, lv3;              // 所對應的武功等級
+        int free;                       // 是否為公共物品派送
+        int master;                     // 是否只有直屬弟子才能領取
+        int generation;                 // 門派中的輩份要求
+        string family;                  // 給予物品者的門派
+        int gongxian, shen;             // 需求的貢獻及神
+        string temp1, temp2, temp3;     // 要求的進程記錄
+        string tmsg1, tmsg2, tmsg3;     // 要求的進程記錄的回答信息
 
-        // 如果没有指明对象，则返回
+        // 如果沒有指明對象，則返回
         if (! stringp(item = b["item"]))
                 return 0;
 
-        // 判断所属门派，如为公共应添加 free 参数
+        // 判斷所屬門派，如為公共應添加 free 參數
         //if (! intp(free = b["free"]) || free <= 0)
         //{
                 family=query("family/family_name", ob);
 
                 if( query("family/family_name", who) != family )
-                        return RANK_D->query_respect(who) + "与我" +
-                               family + "素无渊源，不知此话从何说起。";
+                        return RANK_D->query_respect(who) + "與我" +
+                               family + "素無淵源，不知此話從何說起。";
         //}
 
-        // 查找对应的 base_name 呼出物件
+        // 查找對應的 base_name 呼出物件
         obj = find_object(item);
 
         if (! obj)
                 obj = load_object(item);
 
         if (! obj)
-                return "那东西出了点问题，你最好找巫师商量商量。";
+                return "那東西出了點問題，你最好找巫師商量商量。";
 
-        // 判断师承，如添加 master 参数，则只有直属弟子才能领取
+        // 判斷師承，如添加 master 參數，則只有直屬弟子才能領取
         if (intp(master = b["master"])
            && master > 0
             && query("family/master_id", who) != query("id", ob) )
                 return "只有我的弟子才配使用" + obj->name() + CYN
-                       "，你还是走吧。" NOR;
+                       "，你還是走吧。" NOR;
 
-        // 判断门派辈份，如果添加 master 参数，则应作缺省
+        // 判斷門派輩份，如果添加 master 參數，則應作缺省
         if (intp(generation = b["gen"])
            && generation > 0
             && query("family/generation", who)>generation )
-                return "凭你在"+query("family/family_name", who)+
-                       "中的地位，还不足以让我将" + obj->name() + CYN
+                return "憑你在"+query("family/family_name", who)+
+                       "中的地位，還不足以讓我將" + obj->name() + CYN
                        "交予你。" NOR;
 
-        // 判断正神或负神的要求
+        // 判斷正神或負神的要求
         if (intp(shen = b["shen"]))
         {
-                // 如果要求为负神，则作出大于判断
+                // 如果要求為負神，則作出大於判斷
                 if( shen<0 && query("shen", who)>shen )
-                        return "哼！像你这样的心慈手软之辈，就"
-                               "算拿着" + obj->name() + CYN "也"
-                               "是无用。" NOR;
+                        return "哼！像你這樣的心慈手軟之輩，就"
+                               "算拿著" + obj->name() + CYN "也"
+                               "是無用。" NOR;
 
-                // 如果要求为正神，则作出小于判断
+                // 如果要求為正神，則作出小於判斷
                 if( shen>0 && query("shen", who)<shen )
-                        return "你目前所做的侠义正事不够，这" +
-                               obj->name() + CYN "暂时还不能交"
-                               "给你。" NOR;
+                        return "你目前所做的俠義正事不夠，這" +
+                               obj->name() + CYN "暫時還不能交"
+                               "給你。" NOR;
         }
 
-        // 判断特定的进程记录要求
+        // 判斷特定的進程記錄要求
         if( stringp(temp1=b["temp1"]) && !query(temp1, who) )
         {
                 if (stringp(tmsg1 = b["tmsg1"]))
                         return tmsg1;
                 else
-                        return "现在某些机缘未到，这" + obj->name() +
-                               CYN "暂时还不能交给你。" NOR;
+                        return "現在某些機緣未到，這" + obj->name() +
+                               CYN "暫時還不能交給你。" NOR;
         }
 
         if( stringp(temp2=b["temp2"]) && !query(temp2, who) )
@@ -426,8 +426,8 @@ public mixed give_item(object who, object ob, mapping b)
                 if (stringp(tmsg2 = b["tmsg2"]))
                         return tmsg2;
                 else
-                        return "现在某些机缘未到，这" + obj->name() +
-                               CYN "暂时还不能交给你。" NOR;
+                        return "現在某些機緣未到，這" + obj->name() +
+                               CYN "暫時還不能交給你。" NOR;
         }
 
         if( stringp(temp3=b["temp3"]) && !query(temp3, who) )
@@ -435,51 +435,51 @@ public mixed give_item(object who, object ob, mapping b)
                 if (stringp(tmsg3 = b["tmsg3"]))
                         return tmsg3;
                 else
-                        return "现在某些机缘未到，这" + obj->name() +
-                               CYN "暂时还不能交给你。" NOR;
+                        return "現在某些機緣未到，這" + obj->name() +
+                               CYN "暫時還不能交給你。" NOR;
         }
 
-        // 判断特定的武功需求
+        // 判斷特定的武功需求
         if (stringp(sk1 = b["sk1"]) && intp(lv1 = b["lv1"]))
         {
                 if (who->query_skill(sk1, 1) <= 0)
-                        return "你连" + to_chinese(sk1) + "都未曾"
-                               "学过，拿" + obj->name() + CYN "又"
+                        return "你連" + to_chinese(sk1) + "都未曾"
+                               "學過，拿" + obj->name() + CYN "又"
                                "有何用？" NOR;
 
                 if (who->query_skill(sk1, 1) < lv1)
                         return "你的" + to_chinese(sk1) + "火候未"
-                               "到，就算拿着" + obj->name() + CYN
-                               "也没用。" NOR;
+                               "到，就算拿著" + obj->name() + CYN
+                               "也沒用。" NOR;
         }
 
         if (stringp(sk2 = b["sk2"]) && intp(lv2 = b["lv2"]))
         {
                 if (who->query_skill(sk2, 1) <= 0)
-                        return "你连" + to_chinese(sk2) + "都未曾"
-                               "学过，拿" + obj->name() + CYN "又"
+                        return "你連" + to_chinese(sk2) + "都未曾"
+                               "學過，拿" + obj->name() + CYN "又"
                                "有何用？" NOR;
 
                 if (who->query_skill(sk2, 1) < lv2)
                         return "你的" + to_chinese(sk2) + "火候未"
-                               "到，就算拿着" + obj->name() + CYN
-                               "也没用。" NOR;
+                               "到，就算拿著" + obj->name() + CYN
+                               "也沒用。" NOR;
         }
 
         if (stringp(sk3 = b["sk3"]) && intp(lv3 = b["lv3"]))
         {
                 if (who->query_skill(sk3, 1) <= 0)
-                        return "你连" + to_chinese(sk3) + "都未曾"
-                               "学过，拿" + obj->name() + CYN "又"
+                        return "你連" + to_chinese(sk3) + "都未曾"
+                               "學過，拿" + obj->name() + CYN "又"
                                "有何用？" NOR;
 
                 if (who->query_skill(sk3, 1) < lv3)
                         return "你的" + to_chinese(sk3) + "火候未"
-                               "到，就算拿着" + obj->name() + CYN
-                               "也没用。" NOR;
+                               "到，就算拿著" + obj->name() + CYN
+                               "也沒用。" NOR;
         }
 
-        // 寻找该物件的所有者
+        // 尋找該物件的所有者
         owner = environment(obj);
         while (owner)
         {
@@ -491,54 +491,54 @@ public mixed give_item(object who, object ob, mapping b)
 
         if (owner == who)
                 return "那"+query("unit", obj)+obj->name()+
-                       CYN "不就是你拿着在用么，怎么反倒找我"
-                       "来了？" NOR;
+                       CYN "不就是你拿著在用麼，怎麼反倒找我"
+                       "來了？" NOR;
 
         if (objectp(owner) && owner != ob)
         {
                 if (! owner->is_character())
                         return "那"+query("unit", obj)+obj->name()+
-                               CYN "我已经借出去了，你还是隔段时间再"
-                               "来吧。" NOR;
+                               CYN "我已經借出去了，你還是隔段時間再"
+                               "來吧。" NOR;
 
                 if( query("family/family_name", owner) == family )
                         return "那"+query("unit", obj)+obj->name()+
-                               CYN "现在是我派的" + owner->name() +
+                               CYN "現在是我派的" + owner->name() +
                                "在用，你若需要就去找他吧。" NOR;
                 else
                 if( query("family/family_name", owner) == query("family/family_name", who) )
                         return "那"+query("unit", obj)+obj->name()+
-                               CYN "现在是你派的" + owner->name() +
-                               "在用，你自己去问他要吧。" NOR;
+                               CYN "現在是你派的" + owner->name() +
+                               "在用，你自己去問他要吧。" NOR;
                 else
                         return "那"+query("unit", obj)+obj->name()+
-                               CYN "现在落在了" + owner->name() +
-                               "手中，你去把它取回来吧。" NOR;
+                               CYN "現在落在了" + owner->name() +
+                               "手中，你去把它取回來吧。" NOR;
         }
 
-        // 判断门派贡献的要求
+        // 判斷門派貢獻的要求
         if (intp(gongxian = b["gongxian"]) && gongxian > 0)
                 if (query("family/first", who)) gongxian /= 2;
 
         if (gongxian && query("family/gongji", who)<gongxian )
-                return "你为"+query("family/family_name", who)+
-                       "作出的贡献不够，这" + obj->name() + CYN
-                       "暂时还不能交给你。" NOR;
+                return "你為"+query("family/family_name", who)+
+                       "作出的貢獻不夠，這" + obj->name() + CYN
+                       "暫時還不能交給你。" NOR;
 
-        // 物件转移，给予出提示信息
+        // 物件轉移，給予出提示信息
         message_vision("$N拿出" + obj->name() + "(" +
-                       query("id", obj)+")给$n。\n"NOR,ob,who);
+                       query("id", obj)+")給$n。\n"NOR,ob,who);
         obj->move(who, 1);
         obj->start_borrowing();
 
-        // 消耗门派贡献值
+        // 消耗門派貢獻值
         if (intp(gongxian) && gongxian > 0)
                 addn("family/gongji", -gongxian, who);
 
-        // 最后的回答提示信息
+        // 最後的回答提示信息
         if (! stringp(msg = b["msg"]))
-                msg="既然这样，那这"+query("unit", obj)+
-                      obj->name() + CYN "你就暂时拿去吧。" NOR;
+                msg="既然這樣，那這"+query("unit", obj)+
+                      obj->name() + CYN "你就暫時拿去吧。" NOR;
 
         return msg;
 }

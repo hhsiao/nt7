@@ -294,14 +294,14 @@ int skill_death_penalty()
         sk = keys(skills);
         if( !mapp(learned) ) {
                 for( i = 0; i<sizeof(sk); i++ ) {
-                        // 门派技能不丢失
+                        // 門派技能不丟失
                         if( SKILL_D(sk[i])->is_fmsk() ) continue;
                         skills[sk[i]]--;
                         if( skills[sk[i]] < 1) map_delete(skills, sk[i]);
                 }
         } else {
                 for( i = 0; i<sizeof(sk); i++ ) {
-                        // 门派技能不丢失
+                        // 門派技能不丟失
                         if( SKILL_D(sk[i])->is_fmsk() ) continue;
                         if( (int)learned[sk[i]] > (skills[sk[i]]+1) * (skills[sk[i]]+1) / 2 )
                                 map_delete(learned, sk[i]);
@@ -334,7 +334,7 @@ int skill_expell_penalty()
                         continue;
                 }
 
-                // 自创的武功不降低
+                // 自創的武功不降低
                 if( SKILL_D(skname[i])->is_invent_skill() )
                         continue;
 
@@ -377,7 +377,7 @@ int skill_expell_penalty()
 
         if( tsl ) {
                 addn("skill_expell_penalty_tsl", -1);
-                tell_object(this_object(), HIY "你使用了一次无损脱师机会。\n" NOR);
+                tell_object(this_object(), HIY "你使用了一次無損脫師機會。\n" NOR);
         }
         skill_map = 0;
         skill_prepare = 0;
@@ -395,11 +395,11 @@ int can_improve_skill(string skill)
 
         switch( SKILL_D(skill)->type() ) {
         case "knowledge":
-                // 知识类技能
+                // 知識類技能
                 return 1;
 
         case "technic":
-                // 技术类技能
+                // 技術類技能
                 return 1;
 
         case "martial":
@@ -468,7 +468,7 @@ varargs void improve_skill(string skill, int amount, int weak_mode)
                 skills[skill]++;
                 learned[skill] = 0;
                 tell_object(this_object(), HIC "你的「" + to_chinese(skill) +
-                            "」进步了！\n" NOR);
+                            "」進步了！\n" NOR);
                 SKILL_D(skill)->skill_improved(this_object());
                 SKILLS_D->skill_summary(this_object(),skill,skills[skill]);
         }
@@ -484,7 +484,7 @@ varargs void improve_skill(string skill, int amount, int weak_mode)
                         learned[skill] -= skills[skill] * skills[skill];
                         if( flag++ < 10 )
                         tell_object(this_object(), HIC "你的「" + to_chinese(skill) +
-                                    "」进步了！\n" NOR);
+                                    "」進步了！\n" NOR);
                         SKILL_D(skill)->skill_improved(this_object());
                         SKILLS_D->skill_summary(this_object(),skill,skills[skill]);
                         if( flag >= 1000 && !lucky ) { learned[skill] = 0; break; }

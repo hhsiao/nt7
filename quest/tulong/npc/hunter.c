@@ -3,9 +3,9 @@ inherit NPC;
 
 void create()
 {
-        set_name("精灵猎人", ({ "spirit hunter", "hunter"}));
+        set_name("精靈獵人", ({ "spirit hunter", "hunter"}));
         set("long",
-                "他眉目清秀，手持弓箭，似乎正在等待着什么。\n");
+                "他眉目清秀，手持弓箭，似乎正在等待著什麼。\n");
         set("gender", "男性");
         set("age", 30);
         set("attitude", "peaceful");
@@ -37,7 +37,7 @@ void create()
 
         set("chat_chance",3);
         set("chat_msg", ({
-            "精灵猎人说道：这里是个大猎场，只要耐心打猎(hunting)，一定会有大收获。\n"
+            "精靈獵人說道：這裡是個大獵場，只要耐心打獵(hunting)，一定會有大收穫。\n"
         }));
 
         setup();
@@ -61,7 +61,7 @@ void greeting(object ob)
 { 
 int change=0;
 if( !ob || environment(ob) != environment() ) return;
-message_vision( "\n$N微笑道：这位"+RANK_D->query_respect(ob) + "，来到这里一定很辛苦，歇歇再走吧。\n",this_object());
+message_vision( "\n$N微笑道：這位"+RANK_D->query_respect(ob) + "，來到這裡一定很辛苦，歇歇再走吧。\n",this_object());
 }
 
 int do_hunting()
@@ -71,15 +71,15 @@ int do_hunting()
         int i;
 
         if( query_temp("in_hunting", me) )
-           return notify_fail("精灵猎人对你说：专心狩猎，不要东张西望。\n");
+           return notify_fail("精靈獵人對你說：專心狩獵，不要東張西望。\n");
         ob = users();
         for (i=sizeof(ob); i>0; i--)
         {
                 if (query_temp("in_hunting", ob[i-1]))
-                return notify_fail("精灵猎人对你说：已经有人在狩猎了，你先休息一下吧。\n");
+                return notify_fail("精靈獵人對你說：已經有人在狩獵了，你先休息一下吧。\n");
         }
-        tell_room(environment(me),query("name", me)+"开始隐藏起来，准备狩猎。\n");
-        set("hunter", HIY"猎人"NOR, me);
+        tell_room(environment(me),query("name", me)+"開始隱藏起來，準備狩獵。\n");
+        set("hunter", HIY"獵人"NOR, me);
         set_temp("in_hunting", "1", me);
         me->save();
         remove_call_out("end_hunting");
@@ -92,7 +92,7 @@ void clone_beast(object me)
 {
         object ob;
         if (! me) return;
-        tell_room(environment(me),"几只野兽从树林里警惕地走出来，要打猎就是现在了！\n");
+        tell_room(environment(me),"幾隻野獸從樹林裡警惕地走出來，要打獵就是現在了！\n");
         switch (random(6)) {
          case 0: 
         ob=new("/quest/tulong/npc/wolf");
@@ -147,9 +147,9 @@ void end_hunting(object me)
         delete_temp("in_hunting", me);
         me->save();
         remove_call_out("clone_beast");
-        tell_room(environment(me),query("name", me)+"结束了狩猎。\n");
-        tell_object(me,"你得到了一引起经验和潜能。\n");
-        tell_object(me,"你结束了狩猎。\n");
+        tell_room(environment(me),query("name", me)+"結束了狩獵。\n");
+        tell_object(me,"你得到了一引起經驗和潛能。\n");
+        tell_object(me,"你結束了狩獵。\n");
 }
 void die()
 {

@@ -7,11 +7,11 @@ void create()
 {
         set("short", "凌霄殿");
         set("long", 
-"这里就是凌霄城的根本之地--凌霄殿。向来，不管凌霄城有
-何大事，掌门都会在此召集门人，发号施令。大厅北墙上，挂着
-一个老人的肖像，是当年凌霄城创派祖师的遗像。两边柱子上刻
-着一幅对联(duilian)。旁边的兵器架上放满了寒光闪闪的长剑。
-堂额挂着一张匾，上书四个大字。" HIW "
+"這裡就是凌霄城的根本之地--凌霄殿。向來，不管凌霄城有
+何大事，掌門都會在此召集門人，發號施令。大廳北牆上，掛著
+一個老人的肖像，是當年凌霄城創派祖師的遺像。兩邊柱子上刻
+著一幅對聯(duilian)。旁邊的兵器架上放滿了寒光閃閃的長劍。
+堂額掛著一張匾，上書四個大字。" HIW "
 
                   梅    雪    凌    霄
 \n" NOR );
@@ -41,19 +41,19 @@ string look_duilian()
         "             ※※※※※※※            ※※※※※※※\n"
         "             ※※※※※※※            ※※※※※※※\n"
         "             ※※      ※※            ※※      ※※\n"
-        "             ※※" NOR + HIW "　宝　" NOR + HIR "※※            ※※" NOR + HIW "  梅  " NOR + HIR "※※\n"
+        "             ※※" NOR + HIW "　寶　" NOR + HIR "※※            ※※" NOR + HIW "  梅  " NOR + HIR "※※\n"
         "             ※※　 　 ※※            ※※      ※※\n"
-        "             ※※" NOR + HIW "  剑  " NOR + HIR "※※            ※※" NOR + HIW "  花  " NOR + HIR "※※\n"
+        "             ※※" NOR + HIW "  劍  " NOR + HIR "※※            ※※" NOR + HIW "  花  " NOR + HIR "※※\n"
         "             ※※      ※※            ※※      ※※\n"
-        "             ※※" NOR + HIW "  锋  " NOR + HIR "※※            ※※" NOR + HIW "  香  " NOR + HIR "※※\n"
+        "             ※※" NOR + HIW "  鋒  " NOR + HIR "※※            ※※" NOR + HIW "  香  " NOR + HIR "※※\n"
         "             ※※      ※※            ※※      ※※\n"
         "             ※※" NOR + HIW "  自  " NOR + HIR "※※            ※※" NOR + HIW "  自  " NOR + HIR "※※\n"
         "             ※※      ※※            ※※      ※※\n"
         "             ※※" NOR + HIW "  磨  " NOR + HIR "※※            ※※" NOR + HIW "  苦  " NOR + HIR "※※\n"
         "             ※※    　※※            ※※      ※※\n"
-        "             ※※" NOR + HIW "  砺  " NOR + HIR "※※            ※※" NOR + HIW "  寒  " NOR + HIR "※※\n"
+        "             ※※" NOR + HIW "  礪  " NOR + HIR "※※            ※※" NOR + HIW "  寒  " NOR + HIR "※※\n"
         "             ※※    　※※            ※※      ※※\n"
-        "             ※※" NOR + HIW "  出  " NOR + HIR "※※            ※※" NOR + HIW "  来  " NOR + HIR "※※\n"
+        "             ※※" NOR + HIW "  出  " NOR + HIR "※※            ※※" NOR + HIW "  來  " NOR + HIR "※※\n"
         "             ※※    　※※            ※※      ※※\n"
         "             ※※※※※※※            ※※※※※※※\n"
         "             ※※※※※※※            ※※※※※※※\n\n" NOR;

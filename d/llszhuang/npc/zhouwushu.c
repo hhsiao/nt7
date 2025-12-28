@@ -2,10 +2,10 @@
 inherit NPC;
 void create()
 {
-        set_name("周五输", ({ "zhou wushu","zhou","wushu"}) );
+        set_name("週五輸", ({ "zhou wushu","zhou","wushu"}) );
         set("long",@LONG
-周五输身材高大，面貌粗犷，双眼细长而常常带上一种病态的黄色，使人不
-欲久看。可是，周五输另带有一种神秘奇异的吸引力。
+週五輸身材高大，面貌粗獷，雙眼細長而常常帶上一種病態的黃色，使人不
+欲久看。可是，週五輸另帶有一種神秘奇異的吸引力。
 LONG
          );
         set("title",GRN"神箭八雄"NOR);
@@ -22,7 +22,7 @@ LONG
         set_skill("dodge", 500);
         set_skill("parry", 500);
         set_skill("sword",420);
-        set_skill("force",800); //防止别人来弹指
+        set_skill("force",800); //防止別人來彈指
         set_skill("hamagong",500);
         set_skill("tiyunzong",500);
         map_skill("sword","pixie-jian");
@@ -32,8 +32,8 @@ LONG
         set_temp("apply/damage",250);
         set("chat_chance",3);
         set("chat_msg", ({
-                "周五输凝视着窗外的明月，姿态悠闲之极。\n",
-                "周五输举起盛满了清溪流泉的酒壶喝了一大口，笑道：痛快，痛快！\n"
+                "週五輸凝視著窗外的明月，姿態悠閒之極。\n",
+                "週五輸舉起盛滿了清溪流泉的酒壺喝了一大口，笑道：痛快，痛快！\n"
         }) );
 
         setup();

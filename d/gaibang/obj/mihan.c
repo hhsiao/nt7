@@ -26,32 +26,32 @@ int do_give(string arg)
         string target, item;
         object obj, who, me=this_player();
 
-        if(!arg) return notify_fail("你要给谁什么东西？\n");
+        if(!arg) return notify_fail("你要給誰什麼東西？\n");
 
         if( sscanf(arg, "%s to %s", item, target)==2
         || sscanf(arg, "%s %s", target, item)==2 );
-        else return notify_fail("你要给谁什么东西？\n");
+        else return notify_fail("你要給誰什麼東西？\n");
 
         if ( item != "mihan" ) return 0;
 
         if ( !objectp(obj = present(item, me)) )
-                return notify_fail("你身上没有这样东西。\n");
+                return notify_fail("你身上沒有這樣東西。\n");
 
         if (me->is_busy())
-                return notify_fail("你正忙着呢。\n");
+                return notify_fail("你正忙著呢。\n");
 
         if (!objectp(who = present(target, environment(me))) || !living(who))
-                return notify_fail("这里没有这个人。\n");
+                return notify_fail("這裡沒有這個人。\n");
 
         if ( userp(who) )
-                return notify_fail("对方不接受这样东西。\n");
+                return notify_fail("對方不接受這樣東西。\n");
 
-        if( query("race", who) != "人类" )
-                return notify_fail("别找碴儿！畜生也能读信吗？\n");
+        if( query("race", who) != "人類" )
+                return notify_fail("別找碴兒！畜生也能讀信嗎？\n");
 
-        if( who == me) return notify_fail("自己给自己？！\n");
+        if( who == me) return notify_fail("自己給自己？！\n");
 
-        message_vision("$N给$n一封密函。\n", me, who);
+        message_vision("$N給$n一封密函。\n", me, who);
         call_out("response", 1, me, who, obj);
         obj->move(who);
 
@@ -64,40 +64,40 @@ int response(object me, object who, object obj)
 
         switch(random(3)) {
                 case 0:
-                        boss = "大金完颜洪烈六王爷";
+                        boss = "大金完顏洪烈六王爺";
                         break;
                 case 1:
-                        boss = "蒙古铁木真大汗";
+                        boss = "蒙古鐵木真大汗";
                         break;
                 case 2:
-                        boss = "大辽耶律洪基圣上";
+                        boss = "大遼耶律洪基聖上";
                         break;
                 }
 
-        message_vision("$N抽出密函仔细的看了一遍。\n", who);
+        message_vision("$N抽出密函仔細的看了一遍。\n", who);
         
         if( query("target_id", obj) != query("id", who )
          || query("target_name", obj) != who->name()){
-                message_vision("$N抬起头来，疑惑地说道：这信不是给我的呀？\n", who);
+                message_vision("$N抬起頭來，疑惑地說道：這信不是給我的呀？\n", who);
 
                 if( query("shen", who)<0){
-                        message_vision("$N奸声笑道：嘿嘿！人不为己，天诛地灭！天大的富贵送上门来，岂能放过！\n", who);
-                        message_vision("$N沉声说道：我得赶紧向"+boss+"报告丐帮的计划！\n", who);
+                        message_vision("$N奸聲笑道：嘿嘿！人不為己，天誅地滅！天大的富貴送上門來，豈能放過！\n", who);
+                        message_vision("$N沉聲說道：我得趕緊向"+boss+"報告丐幫的計劃！\n", who);
 
                         if( random(query("kar", me))>10){
-                                message_vision("$N狰狞地对$n说道：你只好自认倒霉，向阎王诉苦去吧！\n", who, me);
+                                message_vision("$N猙獰地對$n說道：你只好自認倒黴，向閻王訴苦去吧！\n", who, me);
 
                                 who->kill_ob(me);
                                 me->kill_ob(who);
                         }
                         else {
-                                message_vision("$N沉声对$n说道：快滚！这密函我留下了！\n", who, me);
+                                message_vision("$N沉聲對$n說道：快滾！這密函我留下了！\n", who, me);
                         }
 
                         destruct(obj);
                 }
                 else {
-                        message_vision("$N将密函还给$n，郑重的说道：唉！你怎麽如此大意！要让恶徒将消息走露那可怎麽办？\n", who, me);
+                        message_vision("$N將密函還給$n，鄭重的說道：唉！你怎麼如此大意！要讓惡徒將消息走露那可怎麼辦？\n", who, me);
 
                         obj->move(me);
                 }
@@ -105,30 +105,30 @@ int response(object me, object who, object obj)
                 return 1;
         }
         else if( query("owner", obj) != query("id", me)){
-                message_vision("$N抬起头来，疑惑地说道：这信不应由你送来，你是怎麽得来的？\n", who);
+                message_vision("$N抬起頭來，疑惑地說道：這信不應由你送來，你是怎麼得來的？\n", who);
 
                 if( query("shen", who)<0){
-                        message_vision("$N奸声笑道：嘿嘿！人不为己，天诛地灭！天大的富贵送上门来，岂能放过！\n", who);
-                        message_vision("$N沉声说道：我得赶紧向"+boss+"报告丐帮的计划！\n", who);
+                        message_vision("$N奸聲笑道：嘿嘿！人不為己，天誅地滅！天大的富貴送上門來，豈能放過！\n", who);
+                        message_vision("$N沉聲說道：我得趕緊向"+boss+"報告丐幫的計劃！\n", who);
 
                         if( query("shen", me)>0 && random(query("kar", me))>10){
-                                message_vision("$N狰狞地对$n说道：你只好自认倒霉，向阎王诉苦去吧！\n", who, me);
+                                message_vision("$N猙獰地對$n說道：你只好自認倒黴，向閻王訴苦去吧！\n", who, me);
 
                                 who->kill_ob(me);
                                 me->kill_ob(who);
                         }
                         else if( query("shen", me)>0){
-                                message_vision("$N沉声对$n说道：快滚！这密函我留下了！\n", who, me);
+                                message_vision("$N沉聲對$n說道：快滾！這密函我留下了！\n", who, me);
                         }
                         else {
-                                message_vision("$N拍着$n肩膀高声说道：干得好！这密函我留下了！你的功劳我记着便是。\n", who, me);
+                                message_vision("$N拍著$n肩膀高聲說道：幹得好！這密函我留下了！你的功勞我記著便是。\n", who, me);
                         }
 
                         destruct(obj);
                 }
                 else {
-                        message_vision("$N将密函还给$n，郑重的说道：唉！你怎麽如此大意！要让恶徒将消息走露那可怎麽办？\n", who, me);
-                        message_vision("$N说道：快将密函交还给丐帮吧！\n", who);
+                        message_vision("$N將密函還給$n，鄭重的說道：唉！你怎麼如此大意！要讓惡徒將消息走露那可怎麼辦？\n", who, me);
+                        message_vision("$N說道：快將密函交還給丐幫吧！\n", who);
 
                         obj->move(me);
                 }
@@ -140,11 +140,11 @@ int response(object me, object who, object obj)
         }
         
         if( query("shen", who)<0){
-                message_vision("$N抬起头来，目中阴鹫一闪，沉声说道：嘿！岂有此理，道不同不相为谋。\n", who);
+                message_vision("$N抬起頭來，目中陰鷲一閃，沉聲說道：嘿！豈有此理，道不同不相為謀。\n", who);
                                 
                 if( random(query("kar", me))>10){
-                        message_vision("$N沉声对$n说道：嘿！俗话说两国交锋，不斩来使，但算你倒霉！\n", who, me);
-                        message_vision("$N奸笑道：我正愁不知要送甚麽给"+boss+"以表达我的心意，你自个儿送上门来，可怨不得我！\n", who);
+                        message_vision("$N沉聲對$n說道：嘿！俗話說兩國交鋒，不斬來使，但算你倒黴！\n", who, me);
+                        message_vision("$N奸笑道：我正愁不知要送甚麼給"+boss+"以表達我的心意，你自個兒送上門來，可怨不得我！\n", who);
 
                         set_temp("kill_initiater", 1, who);
                         who->kill_ob(me);
@@ -156,23 +156,23 @@ int response(object me, object who, object obj)
 //                        me->start_call_out( (: call_other, __FILE__, "check_fight", me, obj :), 1);
                 }
                 else {
-                        message_vision("$N沉声对$n说道：快滚！甚麽狗屁国家民族大义？这世上只有金银权位才是好东西！\n", who, me);
-                        message_vision("$N大声说道：识时务者为俊杰，你快叫鲁老儿向"+boss+"投诚，否则大军杀到，将你丐帮夷为平地！\n", who);
+                        message_vision("$N沉聲對$n說道：快滾！甚麼狗屁國家民族大義？這世上只有金銀權位才是好東西！\n", who, me);
+                        message_vision("$N大聲說道：識時務者為俊傑，你快叫魯老兒向"+boss+"投誠，否則大軍殺到，將你丐幫夷為平地！\n", who);
                         destruct(obj);
                 }
         }
         else {
-                message_vision("$N抬起头来，对$n拱手说道：有劳"+RANK_D->query_respect(me)+"一路奔波，请代我问侯贵帮鲁长老。\n", who, me);
+                message_vision("$N抬起頭來，對$n拱手說道：有勞"+RANK_D->query_respect(me)+"一路奔波，請代我問侯貴幫魯長老。\n", who, me);
 
                 switch(random(3)) {
                 case 0:
-                        message_vision("$N说道：请告知鲁长老说他交待的大事，我届时一定会尽力，以尽侠义道的本分！\n", who);
+                        message_vision("$N說道：請告知魯長老說他交待的大事，我屆時一定會盡力，以盡俠義道的本分！\n", who);
                         break;
                 case 1:
-                        message_vision("$N说道：请告知鲁长老说我届时一定出席贵帮的君山大会，和他共襄盛举。\n", who);
+                        message_vision("$N說道：請告知魯長老說我屆時一定出席貴幫的君山大會，和他共襄盛舉。\n", who);
                         break;
                 case 2:
-                        message_vision("$N说道：请告知鲁长老说我到时或有要事在身，未必能够到来，深感汗颜。\n", who);
+                        message_vision("$N說道：請告知魯長老說我到時或有要事在身，未必能夠到來，深感汗顏。\n", who);
                         break;
                 }
 

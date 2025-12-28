@@ -1,5 +1,5 @@
 // This program is a part of NITAN MudLIB
-// hua.c 化骨绵掌
+// hua.c 化骨綿掌
 
 #include <ansi.h>
 #include <combat.h>
@@ -21,26 +21,26 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("辣手化骨只能对战斗中的对手使用。\n");
+                return notify_fail("辣手化骨只能對戰鬥中的對手使用。\n");
 
         if ((int)me->query_skill("force") < 150)
-                return notify_fail("你的内功火候不够，无法施展化骨掌。\n");
+                return notify_fail("你的內功火候不夠，無法施展化骨掌。\n");
 
         if ((int)me->query_skill("huagu-mianzhang", 1) < 100)
-                return notify_fail("你的化骨绵掌还不够娴熟，不会化骨掌。\n");
+                return notify_fail("你的化骨綿掌還不夠嫻熟，不會化骨掌。\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你的真气不够，不能化骨。\n");
+                return notify_fail("你的真氣不夠，不能化骨。\n");
 
         if (me->query_skill_mapped("strike") != "huagu-mianzhang")
-                return notify_fail("你没有激发化骨绵掌，无法施展化骨掌。\n");
+                return notify_fail("你沒有激發化骨綿掌，無法施展化骨掌。\n");
 
        if (! living(target))
-              return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+              return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         addn("neili", -100, me);
 
-        msg = MAG "$N" MAG "掌出如风，轻轻拍向$n" MAG "的肩头。\n"NOR;
+        msg = MAG "$N" MAG "掌出如風，輕輕拍向$n" MAG "的肩頭。\n"NOR;
 
         ap = attack_power(me, "strike");
         dp = defense_power(target, "force");
@@ -56,7 +56,7 @@ int perform(object me, object target)
                                           (: final, me, target, damage :));
         } else
         {
-                msg += CYN "可是$p" CYN "急忙闪在一旁，躲了开去。\n" NOR;
+                msg += CYN "可是$p" CYN "急忙閃在一旁，躲了開去。\n" NOR;
                 me->start_busy(3);
         }
 
@@ -73,6 +73,6 @@ string final(object me, object target, int damage)
                    "id":query("id", me),
                    "duration" : lvl / 60 + random(lvl / 60) ]));
 
-        return HIR "结果只听扑的一声，$p被$P一掌拍中，只"
-               "觉得全身暖洋洋的，感到有点轻飘无力。\n" NOR;
+        return HIR "結果只聽撲的一聲，$p被$P一掌拍中，只"
+               "覺得全身暖洋洋的，感到有點輕飄無力。\n" NOR;
 }

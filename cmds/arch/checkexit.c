@@ -1,8 +1,8 @@
 // checkexit.c
 // Created by jjgod
 // Updated by Lonely (06/17/2002)
-// 用于检查一个目录下的所有房间文件的出口连接是否正确
-// 不包括该目录的子目录
+// 用於檢查一個目錄下的所有房間文件的出口連接是否正確
+// 不包括該目錄的子目錄
 
 #include <ansi.h>
 
@@ -32,16 +32,16 @@ int main(object me, string arg)
         seteuid(getuid(me));
         
         if (file_size(arg) != -2)
-                return notify_fail("没有这个目录。\n");
+                return notify_fail("沒有這個目錄。\n");
 
-        info = HIR "正在检查 " + arg + " 目录下的房间文件：\n\n" NOR;
+        info = HIR "正在檢查 " + arg + " 目錄下的房間文件：\n\n" NOR;
         
-        message_system("整理批量档案中，请稍候...");  
+        message_system("整理批量檔案中，請稍候...");  
         if (! arrayp(flist = get_dir(arg + "/")) || ! sizeof(flist))
         {
-                info += HIR "没有任何可检查的文件。\n" NOR;
+                info += HIR "沒有任何可檢查的文件。\n" NOR;
                 me->start_more(info);
-                message_system("系统整理批量档案处理完毕，请继续游戏。\n" ESC + "[K"); 
+                message_system("系統整理批量檔案處理完畢，請繼續遊戲。\n" ESC + "[K"); 
                 return 1;
         }
         
@@ -84,31 +84,31 @@ int main(object me, string arg)
         
         if (! sizeof(errors))
         {
-                info += HIR "检查完毕，没有任何错误。" NOR;
+                info += HIR "檢查完畢，沒有任何錯誤。" NOR;
                 me->start_more(info);
-                message_system("系统整理批量档案处理完毕，请继续游戏。\n" ESC + "[K"); 
+                message_system("系統整理批量檔案處理完畢，請繼續遊戲。\n" ESC + "[K"); 
                 return 1;
         }
         
         key = keys(errors);
         for (i = 0; i < sizeof(key); i++)
         {
-                info += sprintf(CYN "文件 " WHT "%-30s" CYN " 的出口 " WHT "%-8s" CYN " 错误。\n" NOR,
+                info += sprintf(CYN "文件 " WHT "%-30s" CYN " 的出口 " WHT "%-8s" CYN " 錯誤。\n" NOR,
                                 key[i], errors[key[i]]);
         }
         
-        info += HIR "\n检查完毕。" NOR;
+        info += HIR "\n檢查完畢。" NOR;
         me->start_more(info);
-        message_system("系统整理批量档案处理完毕，请继续游戏。\n" ESC + "[K"); 
+        message_system("系統整理批量檔案處理完畢，請繼續遊戲。\n" ESC + "[K"); 
         return 1;
 }
 
 int help()
 {
         write(@HELP
-指令格式：checkexit <目录名>
+指令格式：checkexit <目錄名>
 
-检查指定目录下的房间文件的出口连接是否正确。
+檢查指定目錄下的房間文件的出口連接是否正確。
 HELP
         );
         return 1;

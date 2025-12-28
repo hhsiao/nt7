@@ -7,14 +7,14 @@ inherit NPC;
 
 void create()
 {
-        set_name(HIB "蓝衣" NOR, ({ "lan yi" }) );
-        set("title", CYN "群玉八娇" NOR);
+        set_name(HIB "藍衣" NOR, ({ "lan yi" }) );
+        set("title", CYN "群玉八嬌" NOR);
         set("gender", "女性" );
         set("age", 22);
         set("str", 30);
         set("per", 40);
         set("long", @LONG
-一个全身上下穿着粉装，领露酥胸的美女．
+一個全身上下穿著粉裝，領露酥胸的美女．
 LONG);
         set("combat_exp", 10);
         set("attitude", "friendly");

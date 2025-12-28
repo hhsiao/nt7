@@ -3,12 +3,12 @@
 inherit ROOM;
 void create()
 {
-        set("short", "丽春院二楼");
+        set("short", "麗春院二樓");
         set("long", @LONG
-你站在丽春院二楼。满耳的淫声秽响不绝如缕。布置得绝对精致
-的床上地下，突然对你产生莫名的诱惑和冲动。    几个可怜兮兮的
-千娇百媚在点手儿招你，你想到她们可能就是昔日江湖中的眼高于顶，
-顿时大为开心。
+你站在麗春院二樓。滿耳的淫聲穢響不絕如縷。佈置得絕對精緻
+的床上地下，突然對你產生莫名的誘惑和衝動。    幾個可憐兮兮的
+千嬌百媚在點手兒招你，你想到她們可能就是昔日江湖中的眼高於頂，
+頓時大為開心。
 LONG );
         set("exits", ([
             "down" : "/d/city/lichunyuan",
@@ -29,6 +29,6 @@ int valid_leave(object me, string dir)
 {
     me = this_player();
     if (me->query_condition("prostitute"))
-      return notify_fail("龟公一把抱住你：看你往哪里逃！\n");
+      return notify_fail("龜公一把抱住你：看你往哪裡逃！\n");
     else  return 1;
 }

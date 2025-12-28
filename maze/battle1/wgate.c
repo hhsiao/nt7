@@ -8,9 +8,9 @@ void setup_weishi(object weishi,object ob);
 
 void create()
 {
-        set("short", HIR"战场入口"NOR);
+        set("short", HIR"戰場入口"NOR);
         set("long", @LONG
-这里是战场的入口。。。
+這裡是戰場的入口。。。
 LONG);
         set("outdoors", "battle");
         set("invalid_startroom", 1);
@@ -56,7 +56,7 @@ void death_stage(object ob, int stage)
                 if( !weishi )return;
                 weishi->move(__DIR__"wtang");
                 setup_weishi(weishi,ob);
-                message("vision", "你忽然发现前面多了一个人影。\n", environment(weishi), weishi);
+                message("vision", "你忽然發現前面多了一個人影。\n", environment(weishi), weishi);
         }
 
 }
@@ -104,12 +104,12 @@ void setup_weishi(object me,object obj)
                 me->set_skill(names[i], level);
 
         set_temp("battle/team_name",query_temp("battle/team_name",  obj), me);
-        if( exp>80000000)set("name", "特级武士", me);
-        else if( exp>60000000)set("name", "一级武士", me);
-        else if( exp>40000000)set("name", "二级武士", me);
-        else if( exp>20000000)set("name", "三级武士", me);
-        else if( exp>5000000)set("name", "四级武士", me);
-        else set("name", "五级武士", me);
+        if( exp>80000000)set("name", "特級武士", me);
+        else if( exp>60000000)set("name", "一級武士", me);
+        else if( exp>40000000)set("name", "二級武士", me);
+        else if( exp>20000000)set("name", "三級武士", me);
+        else if( exp>5000000)set("name", "四級武士", me);
+        else set("name", "五級武士", me);
 
         set_temp("apply/short", ({HIW""+query_temp("battle/team_name", obj)+""NOR+me->name()+"(wushi)"}), me);
 }

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("诗水蛇山[2;37;0m[2;37;0m", ({"qqhxz"}));        
+        set_name("詩水蛇山[2;37;0m[2;37;0m", ({"qqhxz"}));        
         set("gender", "女性");                
         set("long", "是生是死[2;37;0m
-它是山水三少的魔幻兽。
+它是山水三少的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

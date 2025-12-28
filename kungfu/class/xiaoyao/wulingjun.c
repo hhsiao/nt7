@@ -10,10 +10,10 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("吴领军", ({ "wu lingjun", "wu", "lingjun" }));
-        set("long", "他是苏星河的四弟子，丹青妙技已尽得其真传。\n");
+        set_name("吳領軍", ({ "wu lingjun", "wu", "lingjun" }));
+        set("long", "他是蘇星河的四弟子，丹青妙技已盡得其真傳。\n");
         set("gender", "男性");
-        set("title", "逍遥派函谷八友");
+        set("title", "逍遙派函谷八友");
         set("nickname", HIC "丹青名手" NOR);
         set("age", 47);
         set("class", "shaman");
@@ -56,7 +56,7 @@ void create()
         prepare_skill("hand", "qingyun-shou");
         prepare_skill("strike", "liuyang-zhang");
 
-        create_family("逍遥派", 3, "弟子");
+        create_family("逍遙派", 3, "弟子");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -77,13 +77,13 @@ void attempt_apprentice(object ob)
 
         if (ob->query_int() < 26)
         {
-                command("say 你悟性太差，怎么学习丹青妙技？");
+                command("say 你悟性太差，怎麼學習丹青妙技？");
                 return;
         }
 
         if (ob->query_skill("xiaowuxiang", 1) < 20)
         {
-                command("say 你还是先将本门入门心法学好吧。");
+                command("say 你還是先將本門入門心法學好吧。");
                 return;
         }
 

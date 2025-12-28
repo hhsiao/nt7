@@ -6,12 +6,12 @@ int do_look(string arg);
 
 void create()
 {
-    set("short", HIY"演武大门"NOR);
+    set("short", HIY"演武大門"NOR);
         set("long", @LONG
-这是一个金色的门廊，往北是一个宽阔的走廊，尽头就是比武大
-厅。泥潭的顶级高手通过擂台比武一争高低，比武大厅是泥潭所有武
-者心中的圣地。如果能够跻身十大高手金榜，更是无上荣誉，风光至
-极。
+這是一個金色的門廊，往北是一個寬闊的走廊，盡頭就是比武大
+廳。泥潭的頂級高手通過擂臺比武一爭高低，比武大廳是泥潭所有武
+者心中的聖地。如果能夠躋身十大高手金榜，更是無上榮譽，風光至
+極。
 LONG );
 
     set("no_fight",1);
@@ -39,19 +39,19 @@ int valid_leave(object me, string dir)
         if (dir != "north") return 1;
 
         if (mapp(conditions = me->query_condition()))
-               return notify_fail("对不起，你的身体状况不好，不能进入！\n");
+               return notify_fail("對不起，你的身體狀況不好，不能進入！\n");
 
         if( query("eff_qi", me)<query("max_qi", me) )
-               return notify_fail("对不起，你的气血受伤了，不能进入！\n");
+               return notify_fail("對不起，你的氣血受傷了，不能進入！\n");
 
         if( query("eff_jing", me)<query("max_jing", me) )
-               return notify_fail("对不起，你的精气受伤了，不能进入！\n");
+               return notify_fail("對不起，你的精氣受傷了，不能進入！\n");
 
         inv = deep_inventory(me);
         for (i = 0; i < sizeof(inv); i++)
         {
                 if (! userp(inv[i])) continue;
-                tell_object(me, "你背的是谁？还不快快放下！\n");
+                tell_object(me, "你背的是誰？還不快快放下！\n");
                 return 0;
         }
 

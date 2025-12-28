@@ -5,12 +5,12 @@ inherit WRISTS;
 
 void create()
 {
-        set_name(HIY "绞金腕轮" NOR, ({ "jiaojin wanlun", "wanlun"}) );
+        set_name(HIY "絞金腕輪" NOR, ({ "jiaojin wanlun", "wanlun"}) );
         set_weight(20000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "对");
+                set("unit", "對");
                 set("value", 220000);
                 set("material", "leather");
                 set("armor_prop/armor", 60);

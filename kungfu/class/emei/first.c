@@ -15,7 +15,7 @@ string zm_apply()
         object ob = this_player();
         if (query("gender",ob) != "女性" || query("class",ob) != "bonze")
         {
-                return "本门历来由女尼接任掌门！\n";
+                return "本門歷來由女尼接任掌門！\n";
         }
         return ::zm_apply();
 }

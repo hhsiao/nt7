@@ -3,11 +3,11 @@ inherit ROOM;
 
 void create() 
 { 
-        set("short", HIR "血池地狱" NOR);
+        set("short", HIR "血池地獄" NOR);
         set("long", HIR @LONG
-血池地狱，你疑心怎么从酆都走到这里来了的。四处弥漫着浓厚的
-血雾，你什么也看不清楚，空中浮动着若隐若现的鬼火，血池里到处是
-死人肉和沸腾的鲜血，十分恐怖。
+血池地獄，你疑心怎麼從酆都走到這裡來了的。四處瀰漫著濃厚的
+血霧，你什麼也看不清楚，空中浮動著若隱若現的鬼火，血池裡到處是
+死人肉和沸騰的鮮血，十分恐怖。
 
 LONG NOR);
         set("no_clean_up", 0);
@@ -31,7 +31,7 @@ int valid_leave(object me, string dir)
                 if (! present("qilin xue", me) || 
                     !objectp(ob=query_temp("armor/boots", me)) || 
        query("id", ob) != "qilin xue" )
-                        return notify_fail(CYN "你没有穿麒麟靴无法进入沸腾的血池中！\n" NOR);
+                        return notify_fail(CYN "你沒有穿麒麟靴無法進入沸騰的血池中！\n" NOR);
         }
         return ::valid_leave(me, dir);
 }

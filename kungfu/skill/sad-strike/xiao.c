@@ -1,11 +1,11 @@
-// xiao.c 黯然销魂
+// xiao.c 黯然銷魂
 
 #include <ansi.h>
 #include <combat.h>
 
 inherit F_SSERVER;
 
-string name() { return HIW "黯然销魂" NOR; }
+string name() { return HIW "黯然銷魂" NOR; }
 
 int perform(object me, object target)
 {
@@ -21,28 +21,28 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能在战斗中对对手使用。\n");
+                return notify_fail(name() + "只能在戰鬥中對對手使用。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(name() + "只能空手使用。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你的真气不够！\n");
+                return notify_fail("你的真氣不夠！\n");
 
         if ((int)me->query_skill("sad-strike", 1) < 150)
-                return notify_fail("你的黯然销魂掌火候不够，无法施展" + name() + "。\n");
+                return notify_fail("你的黯然銷魂掌火候不夠，無法施展" + name() + "。\n");
 
         if ((int)me->query_skill("force") < 320)
-                return notify_fail("你的内功修为不够，无法施展" + name() + "。\n");
+                return notify_fail("你的內功修為不夠，無法施展" + name() + "。\n");
 
         if (me->query_skill_prepared("unarmed") != "sad-strike")
-                return notify_fail("你现在没有准备使用黯然销魂掌，无法施展" + name() + "。\n");
+                return notify_fail("你現在沒有準備使用黯然銷魂掌，無法施展" + name() + "。\n");
 
        if (! living(target))
-              return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+              return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIM "\n$N" HIM "一声长吟：“黯然销魂者，唯别而已矣！”，顿时心如"
-              "止水，黯然神伤，\n于不经意中随手使出了" HIR "『黯然销魂』" HIM "！\n" NOR;
+        msg = HIM "\n$N" HIM "一聲長吟：“黯然銷魂者，唯別而已矣！”，頓時心如"
+              "止水，黯然神傷，\n於不經意中隨手使出了" HIR "『黯然銷魂』" HIM "！\n" NOR;
 
         ap = attack_power(me, "unarmed") +
              me->query_skill("force");
@@ -54,12 +54,12 @@ int perform(object me, object target)
         if (ap / 2 + random(ap) > dp)
         {
                 count = ap * 60 / 100;
-                msg += HIY "$n" HIY "见$P" HIY "这一招变化莫测，奇幻无"
-                       "方，不由大吃一惊，慌乱中破绽迭出。\n" NOR;
+                msg += HIY "$n" HIY "見$P" HIY "這一招變化莫測，奇幻無"
+                       "方，不由大吃一驚，慌亂中破綻迭出。\n" NOR;
         } else
         {
-                msg += HIC "$n" HIC "不敢小觑$P" HIC
-                       "的来招，腾挪躲闪，小心招架。\n" NOR;
+                msg += HIC "$n" HIC "不敢小覷$P" HIC
+                       "的來招，騰挪躲閃，小心招架。\n" NOR;
                 count = 0;
         }
 

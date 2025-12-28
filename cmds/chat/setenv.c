@@ -24,7 +24,7 @@ int main(object user, mapping info)
                 return 0;
 
         if (! info[ARG])
-                return MESSAGE_D->error_msg("参数不全。\n");
+                return MESSAGE_D->error_msg("參數不全。\n");
 
         // I must be careful here, If some error occur to stop
         // running, the user may be ...
@@ -52,7 +52,7 @@ int main(object user, mapping info)
         }
 
         if (! result)
-                MESSAGE_D->error_msg("不能执行设置参数的要求。\n");
+                MESSAGE_D->error_msg("不能執行設置參數的要求。\n");
         else
         {
                 MESSAGE_D->send_env(user, chg);

@@ -4,14 +4,14 @@ inherit TRANS_ROOM;
 void create()
 {
 mapping map_short = ([
-         "nanyang"     : "南阳",
-         "wugong"      : "武功镇",
-         "yangzhou"    : "扬州",
-         "kaifeng"     : "开封",
-         "changan"     : "长安",
+         "nanyang"     : "南陽",
+         "wugong"      : "武功鎮",
+         "yangzhou"    : "揚州",
+         "kaifeng"     : "開封",
+         "changan"     : "長安",
          "beijing"     : "北京",
          "zhongzhou"   : "中州",
-         "xiangyang"   : "襄阳",
+         "xiangyang"   : "襄陽",
 ]);
 
 mapping trans_pay = ([
@@ -25,12 +25,12 @@ mapping trans_pay = ([
          "xiangyang"   : 100,
 ]);
 
-        set("short","马厩");
+        set("short","馬廄");
         set("long",@LONG
-这是客店后的马厩，常年供应新鲜草料。洛阳乃天下古城
-历史悠久、民风淳朴，马夫们会把马牵到马厩好生照看，将它
-们喂饱饮足，再洗刷得干乾净净。马厩雨檐下的烂木柱上钉着
-块破木牌 (paizi)。马厩中堆放著几堆草料。
+這是客店後的馬廄，常年供應新鮮草料。洛陽乃天下古城
+歷史悠久、民風淳樸，馬伕們會把馬牽到馬廄好生照看，將它
+們餵飽飲足，再洗刷得幹乾淨淨。馬廄雨簷下的爛木柱上釘著
+塊破木牌 (paizi)。馬廄中堆放著幾堆草料。
 LONG);
         set("outdoors", "luoyang");
         set("no_fight", 1);

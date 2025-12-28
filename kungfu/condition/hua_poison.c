@@ -12,10 +12,10 @@ string chinese_name() { return "化毒"; }
 
 string update_msg_others()
 {
-       return HIG "$N" HIG "的目光散乱，神色异常，脸上泛出一层黑气。\n" NOR;
+       return HIG "$N" HIG "的目光散亂，神色異常，臉上泛出一層黑氣。\n" NOR;
 }
 
 string update_msg_self()
 {
-        return HIB "忽然肺腑一阵剧痛，你体内的毒力发作了！\n" NOR;
+        return HIB "忽然肺腑一陣劇痛，你體內的毒力發作了！\n" NOR;
 }

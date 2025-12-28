@@ -9,13 +9,13 @@ inherit F_QUESTER;
 
 void create()
 {
-        set_name("铁燕", ({"tie yan", "tie", "yan"}));
-        set("title", "魔教长老");
+        set_name("鐵燕", ({"tie yan", "tie", "yan"}));
+        set("title", "魔教長老");
         set("gender", "男性");
         set("age", 52);
         set("shen_type", -1);
-        set("long", "一个又黑又瘦又小的老头，身青灰色的粗布衣服，站在那里，比别人坐着也高不了多少。\n"
-                    "和铁燕夫人站在一起看起来就像是一对刚从乡下来的老夫妻，完全没有一点特别的地方。\n");
+        set("long", "一個又黑又瘦又小的老頭，身青灰色的粗布衣服，站在那裡，比別人坐著也高不了多少。\n"
+                    "和鐵燕夫人站在一起看起來就像是一對剛從鄉下來的老夫妻，完全沒有一點特別的地方。\n");
         set("attitude", "peaceful");
 
         set("per", 21);
@@ -66,7 +66,7 @@ void create()
 
         prepare_skill("strike", "moshen-zhangfa");
         
-        create_family("魔教", 40, "长老");
+        create_family("魔教", 40, "長老");
   
         set("chat_chance_combat", 120); 
         set("chat_msg_combat", ({
@@ -92,7 +92,7 @@ void attempt_apprentice(object ob)
 
         if ((int)ob->query_skill("moshen-xinfa", 1) < 120) 
         {
-                command("say 本教的内功心法你还没练好，还要多下苦功才行！");
+                command("say 本教的內功心法你還沒練好，還要多下苦功才行！");
                 return;
         }
         
@@ -103,16 +103,16 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "历练" :
-        case "历炼" :
-        case "锻炼" :
+        case "歷練" :
+        case "歷煉" :
+        case "鍛鍊" :
                 return QUEST_D->accept_ask(this_object(), me, topic);
                 break;
 
-        case "双刀合壁" :
+        case "雙刀合壁" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/yanzi-blade/he",
-                           "name"    : "双刀合壁",
+                           "name"    : "雙刀合壁",
                            "sk1"     : "yanzi-blade",
                            "lv1"     : 200,
                            "dodge"   : 200,
@@ -167,8 +167,8 @@ void kill_ob (object ob)
 
         if (guard && ! guard->is_fighting())
         {
-                message_vision(HIW "\n$N" HIW "大怒道：居然欺负到我们铁燕"
-                               "头上来了，死吧！\n\n" NOR, guard);
+                message_vision(HIW "\n$N" HIW "大怒道：居然欺負到我們鐵燕"
+                               "頭上來了，死吧！\n\n" NOR, guard);
                 guard->kill_ob(ob);
         }
 }

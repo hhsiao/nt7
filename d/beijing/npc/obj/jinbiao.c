@@ -5,7 +5,7 @@ inherit THROWING;
 
 void create()
 {
-        set_name(HIY "金镖" NOR, ({ "jin biao", "jin", "biao" }) );
+        set_name(HIY "金鏢" NOR, ({ "jin biao", "jin", "biao" }) );
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {

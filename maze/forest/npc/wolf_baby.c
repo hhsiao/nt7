@@ -2,13 +2,13 @@
 inherit NPC;
 void create()
 {
-        string *names = ({"灰毛恶狼","黄毛恶狼","白毛恶狼"});
+        string *names = ({"灰毛惡狼","黃毛惡狼","白毛惡狼"});
         set_name( names[random(sizeof(names))], ({ "wolf"}));
         set("vendetta_mark","wolf");
-        set("race", "野兽");
+        set("race", "野獸");
         set("gender", "雄性");
         set("age", 20);
-        set("long", "这是一只残忍的恶狼。\n");
+        set("long", "這是一隻殘忍的惡狼。\n");
 
         set("str", 40);
         set("cor", 100);
@@ -19,7 +19,7 @@ void create()
         set("attitude", "peaceful");
         set("chat_chance", 2);
 
-        set("limbs", ({ "头部", "身体", "前脚", "後脚", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體", "前腳", "後腳", "尾巴" }) );
         set("verbs", ({ "bite", "claw" }) );
         set("combat_exp", 100000);
         set("bellicosity", 5 );
@@ -36,6 +36,6 @@ mixed hit_ob(object me, object victim, int damage_bonus)
 {
         victim->receive_damage("qi",30+random(30), me);
         victim->receive_wound("qi",10+random(10), me);
-        message_combatd(HIW"\n$N"+HIW"锋利的爪子在$n"+HIW"身上留下一道血淋淋的伤口！"NOR,me,victim);
+        message_combatd(HIW"\n$N"+HIW"鋒利的爪子在$n"+HIW"身上留下一道血淋淋的傷口！"NOR,me,victim);
         return;
 }

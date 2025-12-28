@@ -22,7 +22,7 @@ int main(object me, string arg)
 
         seteuid(geteuid(me));
 
-        if (! arg) return notify_fail("指令格式 : roomlong <房间档名>|here \n");
+        if (! arg) return notify_fail("指令格式 : roomlong <房間檔名>|here \n");
 
         file=resolve_path(query("cwd", me),arg);
 
@@ -35,7 +35,7 @@ int main(object me, string arg)
 
                 if (! ob) ob = present(arg, environment(me));
 
-                if (! ob) return notify_fail("没有这个档案1。\n");
+                if (! ob) return notify_fail("沒有這個檔案1。\n");
 
                 file = base_name(ob) + ".c";
 
@@ -44,14 +44,14 @@ int main(object me, string arg)
 
         if (! SECURITY_D->valid_read(file, me, "write"))
 
-                return notify_fail("没有这个档案2。\n");
+                return notify_fail("沒有這個檔案2。\n");
 
 
         ob = load_object(file);
-        if (!ob) return notify_fail(file + "这个档案有错误！\n");
+        if (!ob) return notify_fail(file + "這個檔案有錯誤！\n");
 
         if (!is_room(ob))
-                return notify_fail("这不是一个房间档案。\n");
+                return notify_fail("這不是一個房間檔案。\n");
 
         long=replace_string(query("long", ob),"\n","");
         long = replace_string(long,"“","『");
@@ -95,10 +95,10 @@ int main(object me, string arg)
         }
 
         if (!begin1)
-                return notify_fail("没有定位成功描述行首！\n");
+                return notify_fail("沒有定位成功描述行首！\n");
 
         if (!begin2)
-                return notify_fail("没有定位成功描述行尾！\n");
+                return notify_fail("沒有定位成功描述行尾！\n");
 
         str1 = "        set\(\"long\", @LONG\n";
         str2 = "LONG \);\n";
@@ -137,9 +137,9 @@ int is_room(object ob)
 int help(object me)
 {
 write(@HELP
-指令格式 : roomlong <房间档案>|here
+指令格式 : roomlong <房間檔案>|here
 
-此指令可让将房间的描述格式化为七十个字符长度。
+此指令可讓將房間的描述格式化為七十個字符長度。
 HELP
     );
     return 1;

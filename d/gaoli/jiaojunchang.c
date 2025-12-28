@@ -1,14 +1,14 @@
 // /d/gaoli/jiaojunchang
-// Room in 高丽
+// Room in 高麗
 // rich 99/03/28
 inherit ROOM;
 void create()        
 {
-        set("short", "较军场");
+        set("short", "較軍場");
         set("long", @LONG
-这是一座较军场，空旷旷的一个人也没有，只有风吹着落叶，打仗
-出兵都从这聚集军队，秋天的官兵比试也在这进行，远处的大台是皇上
-的御看台。
+這是一座較軍場，空曠曠的一個人也沒有，只有風吹著落葉，打仗
+出兵都從這聚集軍隊，秋天的官兵比試也在這進行，遠處的大臺是皇上
+的御看臺。
 LONG
         );
 set("outdoors", "gaoli");

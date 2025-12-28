@@ -8,12 +8,12 @@ void create()
 {
         set_name("毒蛇", ({ "snake", "she" }) );
         set("age", 4);
-        set("long", "一只有着三角形脑袋的蛇，尾巴沙沙做响。\n");
+        set("long", "一隻有著三角形腦袋的蛇，尾巴沙沙做響。\n");
         set("attitude", "peaceful");
 
-        set("msg_fail", "$n冲$N嘶地一吐舌头");
-        set("msg_succ", "$n嘶嘶做响，蛇头随着$N的手动了起来");
-        set("msg_trained","$n悄无声息地游到$N的脚下不动了");
+        set("msg_fail", "$n衝$N嘶地一吐舌頭");
+        set("msg_succ", "$n嘶嘶做響，蛇頭隨著$N的手動了起來");
+        set("msg_trained","$n悄無聲息地游到$N的腳下不動了");
         set("auto_follow",0);
         set("wildness", 9);
 
@@ -35,7 +35,7 @@ void init()
         ::init();
         add_action("convert","bian");
         if (interactive(ob = this_player()) &&
-            query("family/family_name", ob) != "欧阳世家" && 
+            query("family/family_name", ob) != "歐陽世家" && 
                 random(ob->query_kar() + ob->query_per()) < 30) {
                         remove_call_out("kill_ob");
                         call_out("kill_ob", 1, ob); 
@@ -60,7 +60,7 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
                               ([ "level" : poison/5 + random(poison/5),
                                  "id":query("id", me),
                                  "duration" :  poison/20 ]));
-       return HIR "只听$n痛呼了一声，给毒蛇狠狠的咬了一口！\n" NOR;
+       return HIR "只聽$n痛呼了一聲，給毒蛇狠狠的咬了一口！\n" NOR;
         if( query("bite_busy", me))victim->start_busy(2);
 }
 
@@ -70,13 +70,13 @@ int convert(string arg)
         object ob;
 
         if (arg!="snake" && arg!="she") return 0;
-        if( query("family/family_name", me) != "欧阳世家" )
-                return notify_fail("你不能化蛇为杖。\n");
+        if( query("family/family_name", me) != "歐陽世家" )
+                return notify_fail("你不能化蛇為杖。\n");
         if (random(me->query_skill("training",1)) <20) {
                 kill_ob(me);
                 return 1;
         }
-        message_vision("$N左手按住蛇头，右手轻抚其七寸，口中念念有词，片刻间将蛇化为一根蛇杖。\n",
+        message_vision("$N左手按住蛇頭，右手輕撫其七寸，口中唸唸有詞，片刻間將蛇化為一根蛇杖。\n",
                 me,);
                 ob = new("/d/baituo/npc/obj/shezhang");
         ob->move(environment(this_object()));

@@ -5,13 +5,13 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("何太冲", ({ "he taichong", "he", "taichong" }));
-        set("long", "一个五十多岁的中年男子，眉头紧锁，原来\n"
-                    "这就是昆仑派的掌门，人称“铁琴先生”的\n"
-                    "何太冲，至六大门派围攻光明顶之后，被赵\n"
-                    "用计擒拿，关押在这里。\n");
-        set("title", "昆仑派第三代掌门");
-        set("nickname", WHT "铁琴先生" NOR);
+        set_name("何太沖", ({ "he taichong", "he", "taichong" }));
+        set("long", "一個五十多歲的中年男子，眉頭緊鎖，原來\n"
+                    "這就是崑崙派的掌門，人稱“鐵琴先生”的\n"
+                    "何太沖，至六大門派圍攻光明頂之後，被趙\n"
+                    "用計擒拿，關押在這裡。\n");
+        set("title", "崑崙派第三代掌門");
+        set("nickname", WHT "鐵琴先生" NOR);
         set("gender", "男性");
         set("age", 58);
         set("attitude", "peaceful");
@@ -59,7 +59,7 @@ void create()
 
         prepare_skill("strike", "cuixin-zhang");
 
-        create_family("昆仑派", 3, "掌门");
+        create_family("崑崙派", 3, "掌門");
 
         setup();
         carry_object("/clone/cloth/cloth")->wear();
@@ -73,26 +73,26 @@ void init()
 
 int accept_fight(object who)
 {
-        command("say 哼，如我何太冲内力尚在，也由不得你猖狂。");
+        command("say 哼，如我何太沖內力尚在，也由不得你猖狂。");
         return 0;
 }
 
 int accept_hit(object who)
 {
-        command("say 哼，如我何太冲内力尚在，也由不得你猖狂。");
+        command("say 哼，如我何太沖內力尚在，也由不得你猖狂。");
         return 0;
 }
 
 int accept_kill(object who)
 {
         command("heng");
-        command("say 我何太冲被你们用诡计擒住，早就没想过要继续存活，要杀就动手吧。");
-        return notify_fail("刹那间你只觉下不了手。\n");
+        command("say 我何太沖被你們用詭計擒住，早就沒想過要繼續存活，要殺就動手吧。");
+        return notify_fail("剎那間你只覺下不了手。\n");
 }
 
 int accept_ansuan(object who)
 {
-        return notify_fail("你刚想暗算，可是只见楼上人影晃动，根本看不清楚。\n");
+        return notify_fail("你剛想暗算，可是隻見樓上人影晃動，根本看不清楚。\n");
 }
 
 int begin()
@@ -104,14 +104,14 @@ int begin()
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "sword" )
         {
-                command("say 我内力全失，现在只能和你比剑！");
-                return notify_fail("看起来何太冲并不想跟你较量。\n");
+                command("say 我內力全失，現在只能和你比劍！");
+                return notify_fail("看起來何太沖並不想跟你較量。\n");
         }
 
         command("heng");
-        command("say 进招吧！");
-        message_vision(HIY "$N话音未落，单手一抖，手中竹剑对准$n" HIY
-                           "当胸斜斜刺出！正是昆仑嫡传的两仪剑法。\n" NOR,
+        command("say 進招吧！");
+        message_vision(HIY "$N話音未落，單手一抖，手中竹劍對準$n" HIY
+                           "當胸斜斜刺出！正是崑崙嫡傳的兩儀劍法。\n" NOR,
                            obj, this_player());
 
         set_temp("bi", 1, me);
@@ -125,7 +125,7 @@ void die()
 {
         if (objectp(query("anti")))
         {
-                message_vision(CYN "\n赵敏皱了皱眉头，低声骂道：“废物！”\n" NOR,
+                message_vision(CYN "\n趙敏皺了皺眉頭，低聲罵道：“廢物！”\n" NOR,
                                    this_object());
 
                 set_temp("win_he", 1, query("anti"));

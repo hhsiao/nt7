@@ -2,7 +2,7 @@
 inherit ITEM;
 void create()
 {
-        set_name("枫林", ({ "枫林", "feng"}) );
+        set_name("楓林", ({ "楓林", "feng"}) );
         set_weight(500);
         set_max_encumbrance(80000);
         set("no_get", 1);
@@ -11,7 +11,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "片");
-                set("long", "一片浓得化不开的红枫林。\n");
+                set("long", "一片濃得化不開的紅楓林。\n");
                 set("value", 1);
         }
 }

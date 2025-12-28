@@ -7,9 +7,9 @@ inherit F_COAGENT;
 void create()
 {
         set_name("徐子陵", ({ "xu ziling", "xu", "ziling"}));
-        set("long", "一个俊俏的白衣少年，他就是名震天下的徐子陵。\n"); 
-        set("nickname", HIR "大唐双龙" NOR);
-        set("title", HIY "大宗师" NOR);
+        set("long", "一個俊俏的白衣少年，他就是名震天下的徐子陵。\n"); 
+        set("nickname", HIR "大唐雙龍" NOR);
+        set("title", HIY "大宗師" NOR);
         set("gender", "男性");
         set("age", 26);
         set("attitude", "friendly");
@@ -84,7 +84,7 @@ void kill_ob (object ob)
         ::kill_ob(ob);
         if (guard && !guard->is_fighting())
          {
-                 message_vision (CYN "$N笑道：我们两兄弟从来都是一起出手的，休怪我们无情！\n" NOR, guard);
+                 message_vision (CYN "$N笑道：我們兩兄弟從來都是一起出手的，休怪我們無情！\n" NOR, guard);
                  guard->kill_ob(ob);
          }
 }
@@ -105,7 +105,7 @@ void die()
                          if (arrayp(ob->query_team()))
                          {
                                  command("heng");
-                                 command("say 胜之不武！");
+                                 command("say 勝之不武！");
                                  set("qi", 270000);
                                  set("jing", 150000);
                                  set("neili", 35000);
@@ -123,7 +123,7 @@ void die()
              if (ob->query("sky12/floor") == 4)
              {
                       ob->set("sky12/floor", 5);
-                 command("say 阁下请便吧！");
+                 command("say 閣下請便吧！");
              }
         }
 
@@ -138,7 +138,7 @@ void die()
 
         return;
 }
-// 气血小于1000则死亡，避免他人协助帮忙转世
+// 氣血小於1000則死亡，避免他人協助幫忙轉世
 void heart_beat()
 {
         if (this_object()->query("qi") < 1000 || this_object()->query("eff_qi") < 1000)

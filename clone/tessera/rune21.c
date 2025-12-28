@@ -16,8 +16,8 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", "符文：太黄翁重符，可以放入凹槽物品。\n");
-                set("unit", "个");
+                set("long", "符文：太黃翁重符，可以放入凹槽物品。\n");
+                set("unit", "個");
                 set("enchase/SN", 21);
                 set("enchase/type", "all");
                 set("enchase/consistence", 100);

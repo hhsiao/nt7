@@ -4,7 +4,7 @@ void create()
 {
         set("short", "青山");
         set("long", @LONG
-顺山而走，山势渐渐陡了起来，杂草荆棘丛生， 使你难以行走。
+順山而走，山勢漸漸陡了起來，雜草荊棘叢生， 使你難以行走。
 LONG );
         set("exits", ([
                 "westup" : __DIR__"qingshan",

@@ -3,9 +3,9 @@ inherit NPC;
 
 void create()
 {
-	set_name("了行禅师", ({ "liaoxing chanshi","liaoxing","chanshi"}) );
-        set("long", "了行禅师是本因大师的弟子，他在同辈弟子中最不善言谈，
-但是在武学上却是十分刻苦用功。\n");
+	set_name("了行禪師", ({ "liaoxing chanshi","liaoxing","chanshi"}) );
+        set("long", "了行禪師是本因大師的弟子，他在同輩弟子中最不善言談，
+但是在武學上卻是十分刻苦用功。\n");
         set("nickname", "神境尊者");
 	set("gender", "男性" );
         set("attitude", "friendly");
@@ -16,7 +16,7 @@ void create()
 	set("int", 24);
 	set("con", 22);
 	set("dex", 22);
-        create_family("天龙寺", 14, "弟子");
+        create_family("天龍寺", 14, "弟子");
 
 	set("qi", 1100);
 	set("max_qi", 1100);

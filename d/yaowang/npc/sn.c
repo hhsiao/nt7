@@ -27,14 +27,14 @@ protected void make_book_msg()
 
 void create()
 {
-        set_name("书奴", ({ "shu nu","nu","sn" }) );
+        set_name("書奴", ({ "shu nu","nu","sn" }) );
 
         set("class","yaowang");
-        set("title",HIB"读死人不偿命"NOR);
+        set("title",HIB"讀死人不償命"NOR);
 
         set("gender", "男性" );
         set("age", 13);
-        set("long", "这是一位英俊的少年。\n");
+        set("long", "這是一位英俊的少年。\n");
         set("attitude", "peaceful");
 
  
@@ -57,7 +57,7 @@ void create()
 
         setup();
         set("inquiry", ([
-                "借书" : (: ask_all :),
+                "借書" : (: ask_all :),
                 "book" : (: ask_all :),
          ]) );
 
@@ -71,11 +71,11 @@ int do_borrow(string topic)
         object who=this_player();
 
         if(!who
-         || (query("family/family_name", who) != "药王谷" )
+         || (query("family/family_name", who) != "藥王谷" )
         || !stringp(topic)
         || !environment()
         || (base_name(environment()) != query("startroom")) )
-                return notify_fail( "你不是我们药王谷的，打听它干什么？");
+                return notify_fail( "你不是我們藥王谷的，打聽它幹什麼？");
                 
         if( ((n = member_array(topic,books)) == -1)
         && ( (n = member_array(topic,map_array(books,(: to_chinese :)))) == -1))
@@ -85,11 +85,11 @@ int do_borrow(string topic)
         if(file_size(file+".c") <= 0 || !book_ob = new(file))
                 return 0;
 
-        message_vision(sprintf("$N转身从书架上拿出一本%s交给了$n。\n",book_ob->name()),
+        message_vision(sprintf("$N轉身從書架上拿出一本%s交給了$n。\n",book_ob->name()),
                 this_object(),who);
         book_ob->move(who);
 
-        command("say 这些书你偷偷的看吧，别拿出去让人知道了。\n");
+        command("say 這些書你偷偷的看吧，別拿出去讓人知道了。\n");
         return 1;
 }
 
@@ -124,10 +124,10 @@ void destruct_book()
 int ask_all()
 {
         object me=this_player();
-        if( query("family/family_name", me) != "药王谷" )
-                return notify_fail( "你不是我们药王谷的，打听它干什么？");
+        if( query("family/family_name", me) != "藥王谷" )
+                return notify_fail( "你不是我們藥王谷的，打聽它幹什麼？");
 
-        tell_object(me, sprintf("\n我这里就只有这些我自己抄写的书，高级的要有谷主的命令才好。\n%s\n", all_msg));
+        tell_object(me, sprintf("\n我這裡就只有這些我自己抄寫的書，高級的要有谷主的命令才好。\n%s\n", all_msg));
         add_action("do_borrow", "borrow");
         add_action("do_borrow", "jieshu");
         return 1;

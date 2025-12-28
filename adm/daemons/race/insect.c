@@ -1,4 +1,4 @@
-// insect.c 昆虫
+// insect.c 昆蟲
 
 #ifndef __INSECT__
 #define __INSECT__
@@ -11,37 +11,37 @@ inherit F_DBASE;
 
 mapping *combat_action_crawl = ({
 ([
-        "action":                "$N爬上来张嘴往$n的$l狠狠地一咬",
+        "action":                "$N爬上來張嘴往$n的$l狠狠地一咬",
         "damage":                30,
-        "damage_type":        "咬伤",
+        "damage_type":        "咬傷",
 ]),
 ([
-        "action":                "$N跃上来猛地往$n的$l叮了一下",
+        "action":                "$N躍上來猛地往$n的$l叮了一下",
         "damage":                10,
-        "damage_type":        "刺伤",
+        "damage_type":        "刺傷",
 ]),
 ([
-        "action":                "$N反转身用尾巴尖对准$n的$l一刺",
+        "action":                "$N反轉身用尾巴尖對準$n的$l一刺",
         "damage":                20,
-        "damage_type":        "刺伤",
+        "damage_type":        "刺傷",
 ]),  
 });
 
 mapping *combat_action_fly = ({
 ([
-        "action":                "$N飞过来张嘴往$n的$l狠狠地一咬",
+        "action":                "$N飛過來張嘴往$n的$l狠狠地一咬",
         "damage":                30,
-        "damage_type":        "咬伤",
+        "damage_type":        "咬傷",
 ]),
 ([
-        "action":                "$N飞上来猛地往$n的$l叮了一下",
+        "action":                "$N飛上來猛地往$n的$l叮了一下",
         "damage":                10,
-        "damage_type":        "刺伤",
+        "damage_type":        "刺傷",
 ]),
 ([
-        "action":                "$N反转身用尾巴尖对准$n的$l一刺",
+        "action":                "$N反轉身用尾巴尖對準$n的$l一刺",
         "damage":                20,
-        "damage_type":        "刺伤",
+        "damage_type":        "刺傷",
 ]),  
 });
 
@@ -87,33 +87,33 @@ void setup_insect(object ob)
         ob->set_default_object(__FILE__);
         if( !ob->query_weight() ) ob->set_weight(BASE_WEIGHT + (my["str"] - 5)* 100);
 
-        if( query("subrace", ob) == "爬虫"){
-                set("dead_message",       "\n$N四脚朝天地翻了过来，死了。\n\n"        );
-                set("unconcious_message", "\n$N四脚朝天地翻了过来，不动了。\n\n"      );
-                set("revive_message",     "\n$N一下翻过身，又敏捷地四处爬动起来。\n\n");
-                set("leave_msg",          "的草丛里钻了出去"            );
-                set("arrive_msg",         "爬了过来"                              );
-                set("fleeout_message",    "的草丛里钻了出去"            );
-                set("fleein_message",     "缓缓爬了过来，动作有些迟滞"            );
+        if( query("subrace", ob) == "爬蟲"){
+                set("dead_message",       "\n$N四腳朝天地翻了過來，死了。\n\n"        );
+                set("unconcious_message", "\n$N四腳朝天地翻了過來，不動了。\n\n"      );
+                set("revive_message",     "\n$N一下翻過身，又敏捷地四處爬動起來。\n\n");
+                set("leave_msg",          "的草叢裡鑽了出去"            );
+                set("arrive_msg",         "爬了過來"                              );
+                set("fleeout_message",    "的草叢裡鑽了出去"            );
+                set("fleein_message",     "緩緩爬了過來，動作有些遲滯"            );
 
-                set("limbs", ({"头部",        "背部",        "腹部", "触角", "前腿",        "后腿", "尾巴"}) );
+                set("limbs", ({"頭部",        "背部",        "腹部", "觸角", "前腿",        "後腿", "尾巴"}) );
         }
 
-        if( query("subrace", ob) == "飞虫"){
-                set("dead_message",       "\n$N掉在地上，挣扎了几下就死了。\n\n"      );
-                set("unconcious_message", "\n$N扑的跌在地上，昏了过去。\n\n"          );
-                set("revive_message",     "\n$N张开翅膀扑腾了一下，又飞了起来。\n\n"  );
-                set("leave_msg",          "嗡嗡嗡地叫着飞了出去"              );
-                set("arrive_msg",         "嗡嗡地叫着飞了过来"                    );
-                set("fleeout_message",    "嗡嗡地叫着飞了出去"                );
-                set("fleein_message",     "缓缓飞了过来，动作有些迟滞"            );
+        if( query("subrace", ob) == "飛蟲"){
+                set("dead_message",       "\n$N掉在地上，掙扎了幾下就死了。\n\n"      );
+                set("unconcious_message", "\n$N撲的跌在地上，昏了過去。\n\n"          );
+                set("revive_message",     "\n$N張開翅膀撲騰了一下，又飛了起來。\n\n"  );
+                set("leave_msg",          "嗡嗡嗡地叫著飛了出去"              );
+                set("arrive_msg",         "嗡嗡地叫著飛了過來"                    );
+                set("fleeout_message",    "嗡嗡地叫著飛了出去"                );
+                set("fleein_message",     "緩緩飛了過來，動作有些遲滯"            );
 
-                set("limbs", ({"头部",        "背部",        "腹部",        "翅膀", "前腿",        "后腿", "尾巴"}) );
+                set("limbs", ({"頭部",        "背部",        "腹部",        "翅膀", "前腿",        "後腿", "尾巴"}) );
         }
 }
 
 mapping query_action(object me)
 {
-        if( query("subrace", me) == "爬虫")return combat_action_crawl[random(sizeof(combat_action_crawl))];
-        if( query("subrace", me) == "飞虫")return combat_action_fly[random(sizeof(combat_action_fly))];
+        if( query("subrace", me) == "爬蟲")return combat_action_crawl[random(sizeof(combat_action_crawl))];
+        if( query("subrace", me) == "飛蟲")return combat_action_fly[random(sizeof(combat_action_fly))];
 }

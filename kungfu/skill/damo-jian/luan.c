@@ -3,7 +3,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return HIM "达摩乱气剑" NOR; }
+string name() { return HIM "達摩亂氣劍" NOR; }
 
 inherit F_SSERVER;
 
@@ -19,29 +19,29 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你所使用的武器不对，难以施展" + name() + "。\n");
+                return notify_fail("你所使用的武器不對，難以施展" + name() + "。\n");
 
         if ((int)me->query_skill("damo-jian", 1) < 250)
-                return notify_fail("你达摩剑法不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你達摩劍法不夠嫻熟，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("sword") != "damo-jian")
-                return notify_fail("你没有激发达摩剑法，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發達摩劍法，難以施展" + name() + "。\n");
 
         if( query("max_neili", me)<2000 )
-                return notify_fail("你的内力修为不够，难以施展" + name() + "。\n");
+                return notify_fail("你的內力修為不夠，難以施展" + name() + "。\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你现在的真气不足，难以施展" + name() + "。\n");
+                return notify_fail("你現在的真氣不足，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIM "$N" HIM "回转剑锋，手中" + weapon->name() +
-              HIM "紫光荡漾，如作龙吟，无形剑气笼罩$n"
+        msg = HIM "$N" HIM "迴轉劍鋒，手中" + weapon->name() +
+              HIM "紫光盪漾，如作龍吟，無形劍氣籠罩$n"
               HIM "全身。\n" NOR;
 
         ap = attack_power(me, "sword") + me->query_skill("force");
@@ -57,8 +57,8 @@ int perform(object me, object target)
                 addn("neili", -200, me);
         } else
         {
-                msg += CYN "可是$n" CYN "内力深厚，使得$P"
-                       CYN "这一招没有起到任何作用。\n" NOR;
+                msg += CYN "可是$n" CYN "內力深厚，使得$P"
+                       CYN "這一招沒有起到任何作用。\n" NOR;
                 me->start_busy(3);
                 addn("neili", -100, me);
         }
@@ -76,6 +76,6 @@ string final(object me, object target, int damage)
                    "id":query("id", me),
                    "duration" : lvl / 50 + random(lvl / 20) ]));
 
-        return  HIR "霎时$n" HIR "心头一阵迷惑，体内的真气登时"
-                "不听使唤，四处游走。\n" NOR;
+        return  HIR "霎時$n" HIR "心頭一陣迷惑，體內的真氣登時"
+                "不聽使喚，四處遊走。\n" NOR;
 }

@@ -9,13 +9,13 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIR "集天地之灵气而聚成的晶体，可铸一切神兵利器。\n" NOR);
-                set("unit", "块");
+                set("long", HIR "集天地之靈氣而聚成的晶體，可鑄一切神兵利器。\n" NOR);
+                set("unit", "塊");
                 set("value", 10000);
                 set("item_origin", 1);
                 set("material_attrib", "stone");
                 set("material_name", NOR + HIR "雷火寒晶" NOR);
-                set("can_make", ({ "剑", "刀", "锤", "短兵", "箫", "棍", "杖" }));
+                set("can_make", ({ "劍", "刀", "錘", "短兵", "簫", "棍", "杖" }));
                 set("power_point", 70);
         }
 }

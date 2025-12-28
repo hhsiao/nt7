@@ -27,13 +27,13 @@ nosave string *no_busy_cmds = ({
         "tell","reply","say",
 });
 
-// 最后的输入命令(已经经过ALIAS处理)
+// 最後的輸入命令(已經經過ALIAS處理)
 string query_last_input() { return last_input; }
 
-// 最后的输入原始字符串(已经经过命令确认：/或//打头)
+// 最後的輸入原始字符串(已經經過命令確認：/或//打頭)
 string query_orginal_input() { return orginal_input; }
 
-// 是否是控制命令(以/或//打头)
+// 是否是控制命令(以/或//打頭)
 int is_direct_command() { return direct_command; }
 
 string process_input(string str);
@@ -54,7 +54,7 @@ nomask string process_history(int i)
         int size = sizeof(command_history);
         string cmd;
 
-        // 顺序由后往前
+        // 順序由後往前
         if( i < 0 )
         {
                 i = -i;
@@ -62,12 +62,12 @@ nomask string process_history(int i)
                 else if( i > size ) i = size;
                 cmd = (string)command_history[<i][HISTORY_CMD];
         }
-        // 顺序由前往后
+        // 順序由前往後
         else if( i > 0 )
         {
                 if( i > total_command_count || i < 1 || i <= total_command_count - HISTORY_BUFFER_SIZE )
                 {
-                        tell(this_object(), "指令历程范围错误。\n");
+                        tell(this_object(), "指令歷程範圍錯誤。\n");
                         return 0;
                 }
                 if( total_command_count >= HISTORY_BUFFER_SIZE )
@@ -83,7 +83,7 @@ nomask string process_history(int i)
                 }
                 else
                 {
-                        tell(this_object(), pnoun(2, this_object()) + "尚未下达任何指令。\n");
+                        tell(this_object(), pnoun(2, this_object()) + "尚未下達任何指令。\n");
                         return 0;
                 }
         }
@@ -108,7 +108,7 @@ nomask string process_input_basic_parse(string cmd) /* Return 0 if break command
                                 cmd = "chat "+ cmd[1..];
                         break;
                 case '!':
-                        // 指令历程
+                        // 指令歷程
                         {
                                 int i;
                                 sscanf(cmd, "!%d", i);
@@ -142,9 +142,9 @@ nomask void process_input_event()
 
                         chinese_time = time_period(time - wait_time);
 
-                        tell_object(usr, HIY "你等了" + chinese_time + "后，" + this_idname + HIY "终于回神了。\n" +
+                        tell_object(usr, HIY "你等了" + chinese_time + "後，" + this_idname + HIY "終於回神了。\n" +
                                          (wait_msg ? "\n留言：" + wait_msg : "") + "\n\a" NOR);
-                        msg += HIY + usr->query_idname(1) + HIY "花了" + chinese_time + "等着你回神。\n" +
+                        msg += HIY + usr->query_idname(1) + HIY "花了" + chinese_time + "等著你回神。\n" +
                                          (wait_msg ? "\n留言：" + wait_msg : "") + "\n\a" NOR;
                 }
                 //call_out((: tell(this_object(), $(msg)) :), 0);
@@ -181,16 +181,16 @@ nomask int process_input_do(string verb, string args)
                         {
                                 if( total_cmds > MAX_DO_COMMANDS && !wizardp(this_object()) )
                                 {
-                                        tell_object(this_object(), "你不能一次下超过 "+MAX_DO_COMMANDS+" 个指令。\n");
+                                        tell_object(this_object(), "你不能一次下超過 "+MAX_DO_COMMANDS+" 個指令。\n");
                                         return 1;
                                 }
-                                // 必须command，否则add_action中query_verb出问题 by Lonely
+                                // 必須command，否則add_action中query_verb出問題 by Lonely
                                 command(process_input(action));
                         }
                 }
         }
         else
-                tell_object(this_object(), "请输入要连续下达的指令。\n");
+                tell_object(this_object(), "請輸入要連續下達的指令。\n");
 
         return 1;
 }
@@ -203,7 +203,7 @@ string process_input(string str)
         int i, j;
 
         me = this_object();
-        notify_fail("什么？\n");
+        notify_fail("什麼？\n");
         clear_written();
 
         if( !living(me) || query_temp("disable_input") ) return "";
@@ -212,11 +212,11 @@ string process_input(string str)
 
         if( query_temp("dizziness", me) )
         {
-                tell_object(me, "你目前处于眩晕状态，无法进行任何动作。\n");
+                tell_object(me, "你目前處於眩暈狀態，無法進行任何動作。\n");
                 return "";
         }
 
-        // 任何一个指令输入后的触发
+        // 任何一個指令輸入後的觸發
         process_input_event();
 
         /*
@@ -226,7 +226,7 @@ string process_input(string str)
         }
         */
 
-        // 记录最原始的输入
+        // 記錄最原始的輸入
         if( str[0] == '/' ) {
                 direct_command = 1;
                 if (str[1] == '/') str = str[2..<1]; else
@@ -238,15 +238,15 @@ string process_input(string str)
         // attach system ?
         if( me->is_attach_system() ) {
                 me->detach_system();
-                tell_object(me, HIR "用户终止了当前执行的进程。\n" NOR);
+                tell_object(me, HIR "用戶終止了當前執行的進程。\n" NOR);
         }
 
         if( str == "" ) return str;
 
         if( me->reject_command() ) {
-                tell_object(me, RED "\n\n侮天鬼王突然在一阵烟雾中出现。\n\n\n\n侮天鬼王喝道：你刷屏过快，接下来十秒内系统不再接受你的指令！\n\n" NOR);
+                tell_object(me, RED "\n\n侮天鬼王突然在一陣煙霧中出現。\n\n\n\n侮天鬼王喝道：你刷屏過快，接下來十秒內系統不再接受你的指令！\n\n" NOR);
                 set_temp("command_delay", time()+10);
-                message_vision("$N突然一阵头晕目眩，傻傻的站在这不动了。\n", me);
+                message_vision("$N突然一陣頭暈目眩，傻傻的站在這不動了。\n", me);
         }
 
         if( query_temp("big5") )
@@ -256,7 +256,7 @@ string process_input(string str)
         //str = remove_fringe_blanks(str);
         str = remove_leadspace(str);
 
-        // 基本语法处理
+        // 基本語法處理
         str = process_input_basic_parse(str);
 
         if( mapp(alias) ) {
@@ -286,7 +286,7 @@ string process_input(string str)
                 command_history[last_cmd] = str;
         }
         */
-        // 记录指令历程
+        // 記錄指令歷程
         if( sizeof(command_history) >= HISTORY_BUFFER_SIZE )
                 command_history = command_history[1..] + ({ ({ str, time() }) });
         else
@@ -294,12 +294,12 @@ string process_input(string str)
 
         total_command_count++;
 
-         // 处理指令
+         // 處理指令
         if( sscanf(str, "%s %s", verb, doargs) != 2 ) verb = str;
 
         if( !doargs || !doargs[0] ) doargs = 0;
 
-        // 处理连续指令
+        // 處理連續指令
         if( process_input_do(verb, doargs) ) return "";
 
 
@@ -342,7 +342,7 @@ int set_alias(string verb, string replace)
         } else {
                 if( !mapp(alias) ) alias = ([ verb:replace ]);
                 else if( sizeof(alias) > MAX_ALIASES )
-                        return notify_fail("您设定的 alias 太多了，请先删掉一些不常用的。\n");
+                        return notify_fail("您設定的 alias 太多了，請先刪掉一些不常用的。\n");
                 else alias[verb] = replace;
                 return 1;
         }

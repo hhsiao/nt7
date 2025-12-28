@@ -2,7 +2,7 @@
 #include <ansi.h>
 
 inherit F_SSERVER;
-string name() { return "风云变色"; }
+string name() { return "風雲變色"; }
 
 int perform(object me, object target)
 {
@@ -14,31 +14,31 @@ int perform(object me, object target)
         if( !target
         ||        !target->is_character()
         ||        !me->is_fighting(target) )
-                return notify_fail("风云变色只能对战斗中的对手使用。\n");
+                return notify_fail("風雲變色只能對戰鬥中的對手使用。\n");
 
 
          /*
         if( me->query_skill_mapped("force") != "xiantian-gong" )
-                 return notify_fail("你所用的并非玄门先天功，施展不出风云变色！\n");
+                 return notify_fail("你所用的並非玄門先天功，施展不出風雲變色！\n");
          */
 
         if( me->query_skill("force") < 140 )
-                return notify_fail("你的基本内功火候未到，无法施展风云变色！\n");
+                return notify_fail("你的基本內功火候未到，無法施展風雲變色！\n");
 
         if( me->query_skill("whip") < 135 )
-                return notify_fail("风云变色需要精湛的断云鞭法方能有效施展！\n");
+                return notify_fail("風雲變色需要精湛的斷雲鞭法方能有效施展！\n");
 
         if( !query_temp("weapon", me) || query("skill_type", query_temp("weapon", me)) != "whip" )
-                return notify_fail("你并没有装备鞭作为武器。\n");
+                return notify_fail("你並沒有裝備鞭作為武器。\n");
 
         power=random(query("neili", me)/50)+query("jiali", me)/2;
         if(power<150) power=150;
         if(power>1000) power=1000;
 
         if( query("neili", me) <= 200+power*2 )
-                return notify_fail("你的内力不够使用风云变色！\n");
+                return notify_fail("你的內力不夠使用風雲變色！\n");
 
-        message_combatd(HIW"$N运足内力，猛地一扬"NOR+"$n"+HIW"卷起无边风云遮月掩日，一股"NOR+HIM"罡风"NOR+HIW"随著漫天鞭影扑天盖地的向敌人袭来。\n\n"NOR,me,
+        message_combatd(HIW"$N運足內力，猛地一揚"NOR+"$n"+HIW"捲起無邊風雲遮月掩日，一股"NOR+HIM"罡風"NOR+HIW"隨著漫天鞭影撲天蓋地的向敵人襲來。\n\n"NOR,me,
                         query_temp("weapon", me));
 
         addn_temp("apply/attack", power/2, me);

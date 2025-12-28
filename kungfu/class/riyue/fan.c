@@ -12,12 +12,12 @@ mixed ask_skill1();
 void create()
 {
         object ob;
-        set_name("范松", ({"fan song", "fan", "song"}));
+        set_name("範松", ({"fan song", "fan", "song"}));
         set("nickname", HIR "大力神魔" NOR );
-        set("title", "日月神教前辈长老");
+        set("title", "日月神教前輩長老");
         set("long", @LONG
-大力神魔范松乃是日月神教的前辈长老，武功
-高强，位尊无比。曾一度扫除五岳剑派联盟。
+大力神魔範松乃是日月神教的前輩長老，武功
+高強，位尊無比。曾一度掃除五嶽劍派聯盟。
 LONG);
         set("gender", "男性");
         set("class", "scholar");
@@ -65,15 +65,15 @@ LONG);
         prepare_skill("claw", "poyue-zhao");
         prepare_skill("cuff", "zhenyu-quan");
 
-        create_family("日月神教", 7, "前辈长老");
+        create_family("日月神教", 7, "前輩長老");
 
         set_temp("apply/damage", 200);
         set_temp("apply/unarmed_damage", 100);
         set_temp("apply/armor", 200);
 
         set("inquiry", ([
-                "破阳神斧" : (: ask_fu :),
-                "开天辟地" : (: ask_skill1 :),
+                "破陽神斧" : (: ask_fu :),
+                "開天闢地" : (: ask_skill1 :),
         ]));
 
         set("chat_chance_combat", 120);
@@ -111,7 +111,7 @@ void attempt_apprentice(object ob)
         if (! permit_recruit(ob))
                 return;
 
-        command("say 走开，我不收徒。");
+        command("say 走開，我不收徒。");
 }
 
 int recognize_apprentice(object ob, string skill)
@@ -119,40 +119,40 @@ int recognize_apprentice(object ob, string skill)
         if( query("family/family_name", ob) != "日月神教" )
         {
                 command("killair");
-                command("say 给我滚开，少在老夫面前说三道四！");
+                command("say 給我滾開，少在老夫面前說三道四！");
                 return -1;
         }
 
         if( query("family/master_id", ob) != "renwoxing" )
         {
                 command("sneer");
-                command("say 你还不配。");
+                command("say 你還不配。");
                 return -1; 
         }
 
         if( query("shen", ob)>-80000 )
         {
                 command("hmm");
-                command("say 老夫生平最痛恨的就是你这样的假仁假义之徒！");
+                command("say 老夫生平最痛恨的就是你這樣的假仁假義之徒！");
                 return -1;
         }
 
         if (skill != "hammer" && skill != "pangu-qishi")
         {
                 command("hmm");
-                command("say 我只传授你这套锤法，其余的找你师父学去。");
+                command("say 我只傳授你這套錘法，其餘的找你師父學去。");
                 return -1;
         }
 
         if (skill == "hammer" && ob->query_skill("hammer", 1) > 179)
         {
-                command("say 你锤法的造诣已经非同凡响了，剩下就自己去练吧。");
+                command("say 你錘法的造詣已經非同凡響了，剩下就自己去練吧。");
                 return -1;
         }
 
         if( query("str", ob)<32 )
         {
-                command("say …唉…本来老夫可以传授你一套绝技。");
+                command("say …唉…本來老夫可以傳授你一套絕技。");
                 command("say 可是怪你先天膂力太差，可惜啊…可惜……");
                 return -1;
         }
@@ -160,8 +160,8 @@ int recognize_apprentice(object ob, string skill)
         if( !query_temp("can_learn/fansong", ob) )
         {
                 command("haha");
-                command("say 想不到后辈中居然还有你这样的人物。");
-                command("say 这套盘古七势乃本教神技，今日我就传授予你。");
+                command("say 想不到後輩中居然還有你這樣的人物。");
+                command("say 這套盤古七勢乃本教神技，今日我就傳授予你。");
                 set_temp("can_learn/fansong", 1, ob);
         }
         return 1;
@@ -176,16 +176,16 @@ mixed ask_fu()
         me = this_player();
 
         if( query("family/family_name", me) != "日月神教" )
-                return "给我滚开！";
+                return "給我滾開！";
 
         if( query("family/master_id", me) != "renwoxing" )
-                return "你还不配！";
+                return "你還不配！";
 
         if( query("shen", me)>-100000 )
-                return "你这样心慈手软，拿了神斧又有什么用？";
+                return "你這樣心慈手軟，拿了神斧又有什麼用？";
 
         if (me->query_skill("pangu-qishi", 1) < 150)
-                return "你连盘古七势都没学好，就算神兵在手又有何用？";
+                return "你連盤古七勢都沒學好，就算神兵在手又有何用？";
 
         ob = find_object(POYANG);
         if (! ob) ob = load_object(POYANG);
@@ -198,24 +198,24 @@ mixed ask_fu()
         }
 
         if (owner == me)
-                return "破阳神斧现在不就在你手里吗？";
+                return "破陽神斧現在不就在你手裡嗎？";
 
         if (objectp(owner) && owner != this_object())
         {
                 if (! owner->is_character())
-                        return "你来晚了一步，破阳神斧我已经借出去了。";
+                        return "你來晚了一步，破陽神斧我已經借出去了。";
 
                 if( query("family/family_name", owner) == "日月神教" )
-                        return "老夫的破阳神斧现在是"+query("name", owner)+
+                        return "老夫的破陽神斧現在是"+query("name", owner)+
                                "在用，你要用就去找他吧。";
                 else
-                        return "老夫的破阳神斧现在落入了"+query("name", owner)+
-                               "之手，你去把它取回来吧！";
+                        return "老夫的破陽神斧現在落入了"+query("name", owner)+
+                               "之手，你去把它取回來吧！";
         }
         ob->move(this_object());
 
-        command("say 既然这样，老夫这柄神斧你就拿去。");
-        command("say 你用它多杀几个正派人士，扬扬咋们日月神教的威风。");
+        command("say 既然這樣，老夫這柄神斧你就拿去。");
+        command("say 你用它多殺幾個正派人士，揚揚咋們日月神教的威風。");
         command("givepoyangfuto"+query("id", me));
 
         ob = new("/d/heimuya/npc/obj/dafu");
@@ -231,36 +231,36 @@ mixed ask_skill1()
         me = this_player();
 
         if( query("can_perform/pangu-qishi/kai", me) )
-                return "这一招我不是已经教过你了吗？";
+                return "這一招我不是已經教過你了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "你又不是我日月神教的，跑来捣什么乱？";
+                return "你又不是我日月神教的，跑來搗什麼亂？";
 
         if (me->query_skill("pangu-qishi", 1) < 1)
-                return "你连盘古七势都没学，还谈什么绝招可言？";
+                return "你連盤古七勢都沒學，還談什麼絕招可言？";
 
         if( query("family/gongji", me)<1200 )
-                return "你在教内甚无作为，这招我暂时还不能传你。";
+                return "你在教內甚無作為，這招我暫時還不能傳你。";
 
         if( query("shen", me)>-120000 )
-                return "你这样心慈手软，就算学会这招又有什么用？";
+                return "你這樣心慈手軟，就算學會這招又有什麼用？";
 
         if (me->query_skill("force") < 300)
-                return "你的内功火候尚需提高，练好了再来找我吧。";
+                return "你的內功火候尚需提高，練好了再來找我吧。";
 
         if (me->query_skill("pangu-qishi", 1) < 180)
-                return "你的盘古七势还练得不到家，自己下去练练再来吧！";
+                return "你的盤古七勢還練得不到家，自己下去練練再來吧！";
 
-        message_sort(HIY "\n$n" HIY "朝$N" HIY "微微点了点头，说道：“看"
-                     "好了！”说完$n" HIY "一声断喝，手中巨斧如山岳巍峙，"
-                     "携着开天辟地之势猛劈而下，气势恢弘之极。顿时只听轰"
-                     "然一声巨响，$n" HIY "面前的山壁已被劈出一道人来宽的"
-                     "裂缝，威力之强，真可谓是惊天地，泣鬼神。直把$N" HIY
+        message_sort(HIY "\n$n" HIY "朝$N" HIY "微微點了點頭，說道：“看"
+                     "好了！”說完$n" HIY "一聲斷喝，手中巨斧如山嶽巍峙，"
+                     "攜著開天闢地之勢猛劈而下，氣勢恢弘之極。頓時只聽轟"
+                     "然一聲巨響，$n" HIY "面前的山壁已被劈出一道人來寬的"
+                     "裂縫，威力之強，真可謂是驚天地，泣鬼神。直把$N" HIY
                      "看得目瞪口呆。\n\n" NOR, me, this_object()); 
 
         command("nod2");
-        command("say 招式便是如此，你自己下去练吧。");
-        tell_object(me, HIC "你学会了「开天辟地」。\n" NOR);
+        command("say 招式便是如此，你自己下去練吧。");
+        tell_object(me, HIC "你學會了「開天闢地」。\n" NOR);
         if (me->can_improve_skill("hammer"))
                 me->improve_skill("hammer", 1500000);
         if (me->can_improve_skill("pangu-qishi"))

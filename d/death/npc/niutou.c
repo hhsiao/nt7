@@ -4,13 +4,13 @@ inherit NPC;
 
 void create()
 {
-        set_name("牛头", ({ "niu tou", "niu", "tou" }) );
+        set_name("牛頭", ({ "niu tou", "niu", "tou" }) );
         set("title", HIR "冥府地藏王殿前" NOR);
-        set("nickname", HIY "金盔" NOR + HIW "银甲" NOR);
+        set("nickname", HIY "金盔" NOR + HIW "銀甲" NOR);
         set("gender", "男性");
         set("age", 623);
         set("long", @LONG
-一个高达仗许，牛头人身的怪物，看起来很不好惹。
+一個高達仗許，牛頭人身的怪物，看起來很不好惹。
 LONG );
         set("str", 35);
         set("int", 35);
@@ -72,8 +72,8 @@ void fight_ob(object ob)
         if (is_fighting(ob))
                 return;
 
-        message_vision(HIR "$N" HIR "大怒，一声暴喝，身后"
-                       "登时腾起无数冤魂，一齐恸哭哀嚎。\n" NOR, this_object(), ob);
+        message_vision(HIR "$N" HIR "大怒，一聲暴喝，身後"
+                       "登時騰起無數冤魂，一齊慟哭哀嚎。\n" NOR, this_object(), ob);
 
         ::fight_ob(ob);
         if( !is_killing(query("id", ob)) )

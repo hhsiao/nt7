@@ -10,16 +10,16 @@ inherit TESSERA;
 void create()
 {
 //**    set_name("$name", ({ "$id", }));                        /* NAME_ENTRY */
-        set_name(HIG "翡翠绿" NOR, ({ "emerald" }) );           /* NAME_EXIT  */
+        set_name(HIG "翡翠綠" NOR, ({ "emerald" }) );           /* NAME_EXIT  */
         set_weight(20);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/
         {
 //**            set("$dbase_key", "$dbase_value\n");            /* DBASE_ENTRY */
-                set("long", HIG "一块碧透欲滴的翡翠。\n" NOR);  /* DBASE_EXIT  */
+                set("long", HIG "一塊碧透欲滴的翡翠。\n" NOR);  /* DBASE_EXIT  */
                 set("value", 50000);
-                set("unit", "颗");
+                set("unit", "顆");
                 set("level", 2);
                 set("material", "emerald");
                 set("can_be_enchased", 1);

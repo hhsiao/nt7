@@ -6,19 +6,19 @@ void create()
 {
         set("short", "蝶仙居");
         set("long",@LONG
-一来到这里，花香袭来，仔细一看，才知道这居所竟是用各种
-花瓣堆砌而成，红橙粉兰，各种颜色纵横交汇，芬芳艳丽。房间中
-央，一名年亲貌美的仙子正在将死去的蝴蝶制作成标本。想必这便
-是传说中的蝶仙了。
+一來到這裡，花香襲來，仔細一看，才知道這居所竟是用各種
+花瓣堆砌而成，紅橙粉蘭，各種顏色縱橫交匯，芬芳豔麗。房間中
+央，一名年親貌美的仙子正在將死去的蝴蝶製作成標本。想必這便
+是傳說中的蝶仙了。
 LONG);
 
         set("exits", ([        
                 "north"    : __DIR__"diexiangu2",                
         ]));
-        set("no_rideto", 1);         // 设置不能骑马到其他地方
-        set("no_flyto", 1);          // 设置不能从起来地方骑马来这里
-        set("no_die", 1);            // 死亡后移动到扁鹊居
-        set("penglai", 1);           // 表示在蓬莱岛
+        set("no_rideto", 1);         // 設置不能騎馬到其他地方
+        set("no_flyto", 1);          // 設置不能從起來地方騎馬來這裡
+        set("no_die", 1);            // 死亡後移動到扁鵲居
+        set("penglai", 1);           // 表示在蓬萊島
         set("no_fight", 1);
         
         set("objects", ([
@@ -36,14 +36,14 @@ void init ()
                 if( !query("penglai/go_quest/ok", this_player()) )
                 {
                         this_player()->start_busy(3);
-                        tell_object(this_player(), NOR + WHT "你到了此处，四周仙气缭绕令你一时间难以辨别方向。\n" NOR);
+                        tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);
                 }
                 else
                 {
                         if (random(2))
                         {
                                 this_player()->start_busy(1);
-                                tell_object(this_player(), NOR + WHT "你到了此处，四周仙气缭绕令你一时间难以辨别方向。\n" NOR);                
+                                tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);                
                         }
                 }
         }

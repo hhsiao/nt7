@@ -1,4 +1,4 @@
-// xunlei.c 奔雷手绝招：迅雷不及掩耳
+// xunlei.c 奔雷手絕招：迅雷不及掩耳
 // By Alf
 
 #include <ansi.h>
@@ -12,19 +12,19 @@ int perform(object me, object target)
     if( !target ) target = offensive_target(me);
 
     if( !target || !target->is_character() || !me->is_fighting(target) )
-   return notify_fail("「迅雷不及掩耳」只能对战斗中的对手使用。\n");
+   return notify_fail("「迅雷不及掩耳」只能對戰鬥中的對手使用。\n");
 
     if( (int)me->query_skill("yunlong-shengong", 1) < 100 )
-   return notify_fail("你的云龙神功火候尚浅，使不出「迅雷不及掩耳」。\n");
+   return notify_fail("你的雲龍神功火候尚淺，使不出「迅雷不及掩耳」。\n");
 
     if( (int)me->query_skill("benlei-shou", 1) < 100 )
-   return notify_fail("你的奔雷手还不够纯熟，无法使出「迅雷不及掩耳」。\n");
+   return notify_fail("你的奔雷手還不夠純熟，無法使出「迅雷不及掩耳」。\n");
 
     if( query("neili", me)<500 )
-   return notify_fail("你的内力修为还不够高。\n");
+   return notify_fail("你的內力修為還不夠高。\n");
 
     msg = HIY "
-$N突然大叱一声，掌随声发，施展出「迅雷不及掩耳」，双掌如排山倒海般攻向$n！\n"NOR;
+$N突然大叱一聲，掌隨聲發，施展出「迅雷不及掩耳」，雙掌如排山倒海般攻向$n！\n"NOR;
 
     if( random(query("combat_exp", me)/100)>query("combat_exp", target)/300){
       me->start_busy(3);
@@ -38,11 +38,11 @@ $N突然大叱一声，掌随声发，施展出「迅雷不及掩耳」，双掌
    target->receive_wound("qi", damage/2);
    addn("neili", -300, me);
    msg += HIR"
-$n躲避不及，被$N这一招击得倒飞了出去，人在空中，口中已狂喷鲜血！\n"NOR;
+$n躲避不及，被$N這一招擊得倒飛了出去，人在空中，口中已狂噴鮮血！\n"NOR;
     } else
     {
        me->start_busy(1);
-       msg += HIG"$n大惊之下，足尖发力，身形向后急纵，险险避过了$P这一击。\n"NOR;
+       msg += HIG"$n大驚之下，足尖發力，身形向後急縱，險險避過了$P這一擊。\n"NOR;
     }
     message_combatd(msg, me, target);
 

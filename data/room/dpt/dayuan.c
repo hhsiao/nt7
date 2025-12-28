@@ -5,10 +5,10 @@
 
 void create()
 {
-        set("short", "游戏基地大院");
+        set("short", "遊戲基地大院");
 	set ("long", @LONG
-这是一个宽阔的院落，种着各种树木，阳光照下来透过树荫投下
-层层影子。一条大路通向里面，踩得非常平滑的，看来是经常有人来
+這是一個寬闊的院落，種著各種樹木，陽光照下來透過樹蔭投下
+層層影子。一條大路通向裡面，踩得非常平滑的，看來是經常有人來
 往。 
 LONG );
 
@@ -25,8 +25,8 @@ LONG );
         setup();
 
         set("room_owner", "多炮塔");
-        set("room_name", "游戏基地");
+        set("room_name", "遊戲基地");
         set("room_id", "gamebase");
         set("room_owner_id", "dpt");
-        set("room_position", "南海之滨");
+        set("room_position", "南海之濱");
 }

@@ -7,7 +7,7 @@ void create()
 {
         set_name("唐感", ({ "tang gan", "tang", "gan"}));
         set("nickname", HIR "嫡系死士" NOR); 
-        set("long", "这是嫡系死士之一，一身的功夫却是不凡。\n");
+        set("long", "這是嫡系死士之一，一身的功夫卻是不凡。\n");
         set("gender", "男性");
         set("age", 55);
         set("class", "tangmen");
@@ -54,7 +54,7 @@ void create()
         prepare_skill("hand", "boyun-suowu");
 
         
-        create_family("唐门世家", 3, "弟子");
+        create_family("唐門世家", 3, "弟子");
         
         set("chat_chance_combat", 20);
         set("chat_msg_combat", ({

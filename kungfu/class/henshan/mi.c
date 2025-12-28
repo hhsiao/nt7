@@ -7,7 +7,7 @@ inherit F_GUARDER;
 
 void create()
 {
-        set_name("米为义", ({ "mi weiyi", "mi", "weiyi" }));
+        set_name("米為義", ({ "mi weiyi", "mi", "weiyi" }));
         set("gender", "男性" );
         set("class", "swordman");
         set("attitude", "peaceful");
@@ -78,17 +78,17 @@ void attempt_apprentice(object ob)
 
         if( query("family/master_id", ob) == "xiangdanian" )
         {
-                command("say 你既已拜我向师兄为师，我也不便收你为徒。");
+                command("say 你既已拜我向師兄為師，我也不便收你為徒。");
                 return;
         }
 
         if( query("shen", ob)<0 )
         {
-                command("say 你这人不做好事，我衡山派可容你不得。");
+                command("say 你這人不做好事，我衡山派可容你不得。");
                 return;
         }
 
-        command("say 既然如此，那你以后就跟着我吧。");
+        command("say 既然如此，那你以後就跟著我吧。");
         command("recruit "+query("id", ob));
 }
 
@@ -96,10 +96,10 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "青天揽日月" :
+        case "青天攬日月" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/henshan-quan/lan",
-                           "name"    : "青天揽日月",
+                           "name"    : "青天攬日月",
                            "sk1"     : "henshan-quan",
                            "lv1"     : 60,
                            "force"   : 80,

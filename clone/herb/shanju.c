@@ -7,7 +7,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("base_unit", "根");
-                set("long", "终南山上的山菊，药材，清火。\n");
+                set("long", "終南山上的山菊，藥材，清火。\n");
                 set("base_value", 200);
                 set("base_weight", 50);
                 set("cure_s", 1);

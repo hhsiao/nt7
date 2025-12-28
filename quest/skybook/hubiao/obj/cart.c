@@ -10,13 +10,13 @@ void destructing(object);
 
 void create()
 {
-	set_name(HIR"镖车"NOR, ({ "biao che", "silver cart", "cart", "che"}) );
+	set_name(HIR"鏢車"NOR, ({ "biao che", "silver cart", "cart", "che"}) );
 	set_weight(300000);
 	set("no_get", 1);
 	set("no_get_from", 1);
 	set_max_encumbrance(80000);
-	set("unit", "辆");
-	set("long", "一辆黑漆漆的镖车，上面插着福威镖局的镖旗。\n");
+	set("unit", "輛");
+	set("long", "一輛黑漆漆的鏢車，上面插著福威鏢局的鏢旗。\n");
 	set("closed", 1);
 	set("value", 2000);
 	set("location",1);
@@ -39,8 +39,8 @@ int do_close(string arg)
 	object ob=this_object();
 	me = this_player();
 	if(arg != "cart" && arg != "silver cart")
-		return notify_fail("你要关上什么？\n");
-	message_vision("$N把$n门关上了。\n", me, ob);
+		return notify_fail("你要關上什麼？\n");
+	message_vision("$N把$n門關上了。\n", me, ob);
 	ob->set("closed",1);
 	return 1;
 }
@@ -52,7 +52,7 @@ int do_open(string arg)
 	int i,zd=0;
 
 	if(arg != "cart" && arg != "silver cart")
-		return notify_fail("你要打开什么？\n");
+		return notify_fail("你要打開什麼？\n");
 	me = this_player();
 	cart = this_object();
 	set("closed",0);
@@ -60,16 +60,16 @@ int do_open(string arg)
 		return 1;
 
 	if( me->query("combat_exp") < 5000000 )
-		return notify_fail("就凭你这点经验，还想学别人抢镖车？\n");
+		return notify_fail("就憑你這點經驗，還想學別人搶鏢車？\n");
 
 	if ( environment(me)->query("no_fight"))
-		return notify_fail("这里动手不太好吧？\n");
+		return notify_fail("這裡動手不太好吧？\n");
 
-	message_vision("$N将$n盖打开。\n", me, this_object());
+	message_vision("$N將$n蓋打開。\n", me, this_object());
 
 	if( me->query_temp("protecting") && me->query_temp("protecting") == cart){
 		me->delete_temp("protecting");
-		CHANNEL_D->do_channel( this_object(), "rumor",sprintf("%s监守自盗，抢镖车了！"NOR, me->name(1)));
+		CHANNEL_D->do_channel( this_object(), "rumor",sprintf("%s監守自盜，搶鏢車了！"NOR, me->name(1)));
 		zd=1;
 	}
 	obj = all_inventory(environment(me));
@@ -101,13 +101,13 @@ int do_driver(string arg)
 	cart = this_object();
 /*
 	if (me->query_temp("protecting") != cart)
-		return notify_fail("你又没参加这次护镖，瞎忙活什么啊？\n");
+		return notify_fail("你又沒參加這次護鏢，瞎忙活什麼啊？\n");
 */
 	if( me->is_busy() || me->is_fighting())
-		return notify_fail("你现在正忙，不能指挥镖车前进。\n");
+		return notify_fail("你現在正忙，不能指揮鏢車前進。\n");
 
 	if (query_temp("busy/"+me->query("id")))
-		return notify_fail("你推那么快，想把镖车弄散架吗？\n");
+		return notify_fail("你推那麼快，想把鏢車弄散架嗎？\n");
 
 	if(!checkteam())
 		return 1;
@@ -116,7 +116,7 @@ int do_driver(string arg)
 	if (sizeof(team)==0) team=({me});
 /*
 	if (sizeof(team) != 0 && (team[0]!=me))
-		return notify_fail("只有队伍首领才能指挥镖队前进。\n");
+		return notify_fail("只有隊伍首領才能指揮鏢隊前進。\n");
 */
 	for(i=0;i<sizeof(team);i++){
 		if(team[i]->query("combat_exp") > maxexp) {
@@ -131,46 +131,46 @@ int do_driver(string arg)
 	for(j = 0; j < sizeof(obj); j++)
 		if(obj[j]->query("hubiao_jiefei") && obj[j]->query_temp("target") == cart) break;
 	if( j < sizeof(obj))
-		return notify_fail("劫匪尚未除去，你想往哪里走？！\n");
+		return notify_fail("劫匪尚未除去，你想往哪裡走？！\n");
 	switch(arg) {
-		case "e":	dir="east";		dirname="东面";		break;
+		case "e":	dir="east";		dirname="東面";		break;
 		case "w":	dir="west";		dirname="西面";		break;
 		case "n":	dir="north";		dirname="北面";		break;
 		case "s":	dir="south";		dirname="南面";		break;
-		case "ne":	dir="northeast";	dirname="东北";		break;
+		case "ne":	dir="northeast";	dirname="東北";		break;
 		case "nw":	dir="northwest";	dirname="西北";		break;
-		case "se":	dir="southeast";	dirname="东南";		break;
+		case "se":	dir="southeast";	dirname="東南";		break;
 		case "sw":	dir="southwest";	dirname="西南";		break;
 		case "u":	dir="up";		dirname="上面";		break;
 		case "up":	dir="up";		dirname="上面";		break;
 		case "d":	dir="down";		dirname="下面";		break;
 		case "down":	dir="down";		dirname="下面";		break;
-		case "nu":	dir="northup";		dirname="北边";		break;
-		case "eu":	dir="eastup";		dirname="东边";		break;
-		case "su":	dir="southup";		dirname="南边";		break;
-		case "wu":	dir="westup";		dirname="西边";		break;
-		case "nd":	dir="northdown";	dirname="北边";		break;
-		case "ed":	dir="eastdown";		dirname="东边";		break;
-		case "sd":	dir="southdown";	dirname="南边";		break;
-		case "wd":	dir="westdown";		dirname="西边";		break;
-		case "enter":	dir="enter";		dirname="里面";		break;
+		case "nu":	dir="northup";		dirname="北邊";		break;
+		case "eu":	dir="eastup";		dirname="東邊";		break;
+		case "su":	dir="southup";		dirname="南邊";		break;
+		case "wu":	dir="westup";		dirname="西邊";		break;
+		case "nd":	dir="northdown";	dirname="北邊";		break;
+		case "ed":	dir="eastdown";		dirname="東邊";		break;
+		case "sd":	dir="southdown";	dirname="南邊";		break;
+		case "wd":	dir="westdown";		dirname="西邊";		break;
+		case "enter":	dir="enter";		dirname="裡面";		break;
 		case "out":	dir="out";		dirname="外面";		break;
-		default:	dir=arg;		dirname="一边";		break;
+		default:	dir=arg;		dirname="一邊";		break;
 	}
 	if(!room || !room->query("exits/"+dir))
-		return notify_fail("你要往哪里去？\n");
+		return notify_fail("你要往哪裡去？\n");
 
 	newroomfile=room->query("exits/"+dir);
 	if (room->query_door(dir, "status") & DOOR_CLOSED)
-		return notify_fail("你必须先把" + room->query_door(dir, "name") + "打开！\n");
+		return notify_fail("你必須先把" + room->query_door(dir, "name") + "打開！\n");
 
 	if(!objectp(newroom=find_object(newroomfile))) newroom=load_object(newroomfile);
 
-	message_vision(HIW"镖车在$N的护卫下缓缓地往"+dirname+"的"+newroom->query("short")+HIW"离去了。\n"NOR, me);
+	message_vision(HIW"鏢車在$N的護衛下緩緩地往"+dirname+"的"+newroom->query("short")+HIW"離去了。\n"NOR, me);
 
 	move(newroom);
 
-	// 计算时间
+	// 計算時間
 	i = uptime();
 	if (query("last_time")) add("total_time", i-query("last_time"));
 	set("last_time", i);
@@ -189,7 +189,7 @@ int do_driver(string arg)
 	dir = "busy/"+me->query("id");
 	set_temp(dir, 1);
 	call_out("delete_temp", 4 + random(3), dir);
-	tell_room(newroom, HIW"镖车在镖队的护卫下缓缓地行进过来了。\n"NOR);
+	tell_room(newroom, HIW"鏢車在鏢隊的護衛下緩緩地行進過來了。\n"NOR);
 
 	remove_call_out("fail");
 	remove_call_out("check");
@@ -206,20 +206,20 @@ int do_driver(string arg)
 		set("fei_time", i);
 
 		jf = new(__DIR__"cateran");
-		jf->set_temp("target", cart); //要抢劫的目标
+		jf->set_temp("target", cart); //要搶劫的目標
 		jf->set_temp("team_member", maxplayer->query_team());
 		jf->do_copy(maxplayer);
 		jf->move(newroom);
 
 		jf = new(__DIR__"cateran");
-		jf->set_temp("target", cart); //要抢劫的目标
+		jf->set_temp("target", cart); //要搶劫的目標
 		jf->set_temp("team_member", maxplayer->query_team());
 		jf->do_copy(maxplayer);
 		jf->move(newroom);
 
 		add("cateran", 2);
-		tell_room(newroom,HIR"突然路边跳出一群劫匪！\n"NOR);
-		tell_room(newroom,HIR+jf->query("name")+"恶狠狠地说道：此路是我开！此树是我栽！知道下面是什么了吧！\n"NOR);
+		tell_room(newroom,HIR"突然路邊跳出一群劫匪！\n"NOR);
+		tell_room(newroom,HIR+jf->query("name")+"惡狠狠地說道：此路是我開！此樹是我栽！知道下面是什麼了吧！\n"NOR);
 
 		for(i=0; i<sizeof(obj); i++){
 			if(userp(obj[i]) && obj[i]->query_temp("protecting") == cart){
@@ -245,7 +245,7 @@ int do_finish(string arg)
 	cart = this_object();
 
 	if (me->is_busy() || me->is_fighting())
-		return notify_fail("你正忙着呢。\n");
+		return notify_fail("你正忙著呢。\n");
 
 	if (!checkteam())
 		return 1;
@@ -254,7 +254,7 @@ int do_finish(string arg)
 	team=me->query_team();
 
 	if (sizeof(team) != 0 && (team[0]!=me))
-		return notify_fail("只有队伍首领才能决定护镖是否已经结束。\n");
+		return notify_fail("只有隊伍首領才能決定護鏢是否已經結束。\n");
 
 	where = environment(me);
 	obj = all_inventory(where);
@@ -266,7 +266,7 @@ int do_finish(string arg)
 			break;
 	}
 	if(j < sizeof(obj))
-		return notify_fail("劫匪还在，本次任务尚未完成！\n");
+		return notify_fail("劫匪還在，本次任務尚未完成！\n");
 
 	for(j=0; j < sizeof(team); j++){
 		if(!present(team[j]) || team[j]->query_temp("protecting") != cart)
@@ -274,13 +274,13 @@ int do_finish(string arg)
 	}
 
 	if( me->query_temp("hubiao/where") != file_name(where))
-		return notify_fail("你现在还没有到达目的地！\n");
+		return notify_fail("你現在還沒有到達目的地！\n");
 
 	if( j < sizeof(team))
-		return notify_fail("你的队员尚未到齐！\n");
+		return notify_fail("你的隊員尚未到齊！\n");
 
 	if (! present(target = me->query_temp("hubiao/target"), where))
-		return notify_fail("咦？把镖交给谁啊？\n");
+		return notify_fail("咦？把鏢交給誰啊？\n");
 
 	j = 0;
 	for (i=0; i<sizeof(team); i++)
@@ -292,18 +292,18 @@ int do_finish(string arg)
 
 		time = uptime()-me->query_temp("hubiao/biao_time");
 		tui_time = query("total_time");
-		step = query("step");		                      // 实际路程 测试下来最多120步，最少59步，基本上在80步左右。那么一步60exp来算。
+		step = query("step");		                      // 實際路程 測試下來最多120步，最少59步，基本上在80步左右。那麼一步60exp來算。
 		hehe = query("hehe");		                  // 多走的路
-		cateran = query("cateran");	              // 劫匪人数，每组劫匪是两个
-        tb = cateran * 3 / 2;                          // 一组劫匪给3个TB         
+		cateran = query("cateran");	              // 劫匪人數，每組劫匪是兩個
+        tb = cateran * 3 / 2;                          // 一組劫匪給3個TB         
          exp= step * 45 + cateran * 15 ;
 			
-		exp1 = exp;                                      //标记应得奖励数值
-		exp -= hehe * hehe * 160;	                    // 多走的惩罚
-		times = -10 + step * 5;                      //每步给5秒的时间
+		exp1 = exp;                                      //標記應得獎勵數值
+		exp -= hehe * hehe * 160;	                    // 多走的懲罰
+		times = -10 + step * 5;                      //每步給5秒的時間
 
-		if (tui_time > times) exp -= (tui_time - times) * 30;      //超时惩罚
-		else exp += times - tui_time;                                   //快速奖励
+		if (tui_time > times) exp -= (tui_time - times) * 30;      //超時懲罰
+		else exp += times - tui_time;                                   //快速獎勵
 
 		if (step < 1) step = 1;
        if (exp> 5000  ) exp =5000 + random(500);
@@ -314,11 +314,11 @@ int do_finish(string arg)
           jl = exp+ random(100);
           
 		  team[i]->add("combat_exp",jl);
-			j = jl/6;                                            //奖励pot
+			j = jl/6;                                            //獎勵pot
 			team[i]->add_busy(1);			
 //                        team[i]->add("SJ_Credit", tb);
 			team[i]->add("balance", 100000);
-			team[i]->set("job_name", "福州护镖");
+			team[i]->set("job_name", "福州護鏢");
       team[i]->apply_condition("hb_job_busy", 30);
 			team[i]->clear_condition("job_busy");
       team[i]->add("potential", j);
@@ -341,29 +341,29 @@ int do_finish(string arg)
 				gold->move(environment(team[i]));
 			
                if (target)
-		        tell_object(team[i], CYN + target->query("name") + "对你表示衷心的感谢。\n"NOR);
-			    tell_object(team[i],HIY"你被奖励了"+chinese_number(jl)+"点经验，"+chinese_number(j)+"点潜能，"+chinese_number(120)+"两黄金！\n"NOR);
+		        tell_object(team[i], CYN + target->query("name") + "對你表示衷心的感謝。\n"NOR);
+			    tell_object(team[i],HIY"你被獎勵了"+chinese_number(jl)+"點經驗，"+chinese_number(j)+"點潛能，"+chinese_number(120)+"兩黃金！\n"NOR);
 	if( team[i]->query("relife/exp_ext") )     
-               tell_object(team[i],HBGRN"你仔细回想着护镖的过程，又额外增加了"+chinese_number(jl*ext/20)+"点实战经验！\n"NOR);
+               tell_object(team[i],HBGRN"你仔細回想著護鏢的過程，又額外增加了"+chinese_number(jl*ext/20)+"點實戰經驗！\n"NOR);
 
 
 	if( team[i]->query("db_exp") )     
 		
-               tell_object(team[i],HBGRN"双倍经验奖励期间，你额外地增加了"+chinese_number(dbexp)+"点实战经验！\n"NOR);
+               tell_object(team[i],HBGRN"雙倍經驗獎勵期間，你額外地增加了"+chinese_number(dbexp)+"點實戰經驗！\n"NOR);
 
 
 
 
 
 
-  log_file("job/hubiao", sprintf("%8s%-10s护镖任务奖励经验%4d，潜能%3d，现在经验%d。\n",
+  log_file("job/hubiao", sprintf("%8s%-10s護鏢任務獎勵經驗%4d，潛能%3d，現在經驗%d。\n",
 				team[i]->query("name"),
 				"("+capitalize(team[i]->query("id"))+")",
 				jl,
 				j,
 				team[i]->query("combat_exp")), team[i]
 			);
-  write_file("/log/job/Hubiao", sprintf("%8s%-10s护镖奖励经验%4d,潜能%3d,现在经验%d,应得%d,步数%d,费时%d,劫匪%d,推时%d/%d,走错%d)。\n",
+  write_file("/log/job/Hubiao", sprintf("%8s%-10s護鏢獎勵經驗%4d,潛能%3d,現在經驗%d,應得%d,步數%d,費時%d,劫匪%d,推時%d/%d,走錯%d)。\n",
 				team[i]->query("name"),
 				"("+capitalize(team[i]->query("id"))+")",
 				jl,
@@ -387,7 +387,7 @@ int do_finish(string arg)
 	me->dismiss_team();
 	if ( target)
 		destruct(target);
-	CHANNEL_D->do_channel( this_object(), "rumor",sprintf("%s率镖队顺利到达%s！", me->name(1), query("arrive")));
+	CHANNEL_D->do_channel( this_object(), "rumor",sprintf("%s率鏢隊順利到達%s！", me->name(1), query("arrive")));
 	destructing(cart);
 	return 1;
 }
@@ -460,12 +460,12 @@ void check2(object me)
 			team[j]->dismiss_team();
 			if (team[j]->query_temp("protecting")==cart)
 				team[j]->delete_temp("protecting");
-	 	        log_file("job/hubiao",sprintf("%8s%-10s护镖任务失败，现在经验%d。\n",
+	 	        log_file("job/hubiao",sprintf("%8s%-10s護鏢任務失敗，現在經驗%d。\n",
 				team[j]->name(1),"("+capitalize(team[j]->query("id"))+")", team[j]->query("combat_exp")), team[j]);
-			tell_object(team[j],HIR"由于你护镖失败，交给镖局的五十两黄金被用来赔偿了。\n"NOR);
+			tell_object(team[j],HIR"由於你護鏢失敗，交給鏢局的五十兩黃金被用來賠償了。\n"NOR);
 		}
-		tell_room(environment(cart),HIR"劫匪嘿嘿一笑，道：今天又捞了一票。话毕推着镖车走了。\n"NOR);
-		CHANNEL_D->do_channel( this_object(), "rumor", sprintf("%s的镖车被劫匪劫走了！", query("teamhead")));
+		tell_room(environment(cart),HIR"劫匪嘿嘿一笑，道：今天又撈了一票。話畢推著鏢車走了。\n"NOR);
+		CHANNEL_D->do_channel( this_object(), "rumor", sprintf("%s的鏢車被劫匪劫走了！", query("teamhead")));
 		destructing(cart);
 	}
 	else {
@@ -507,11 +507,11 @@ void fail(object ob)
 			team[j]->dismiss_team();
 			if (team[j]->query_temp("protecting")==cart)
 				team[j]->delete_temp("protecting");
-	 	        log_file("job/hubiao",sprintf("%8s%-10s护镖任务失败，现在经验%d。\n",
+	 	        log_file("job/hubiao",sprintf("%8s%-10s護鏢任務失敗，現在經驗%d。\n",
 				team[j]->name(1),"("+capitalize(team[j]->query("id"))+")", team[j]->query("combat_exp")),team[j]);
-			tell_object(team[j],HIR"由于你护镖失败，交给镖局的五十两黄金被用来赔偿了。\n"NOR);
+			tell_object(team[j],HIR"由於你護鏢失敗，交給鏢局的五十兩黃金被用來賠償了。\n"NOR);
 		}
-		CHANNEL_D->do_channel( this_object(), "rumor",sprintf("%s及其镖队护镖失败！", query("teamhead")));
+		CHANNEL_D->do_channel( this_object(), "rumor",sprintf("%s及其鏢隊護鏢失敗！", query("teamhead")));
 	}
 	destructing(cart);
 }
@@ -572,22 +572,22 @@ int checkteam()
 	if (!fail) {
 		if (query("target"))
 			return 1;
-		message("team", "接镖人等得不耐烦，已经离开了。\n", team2);
+		message("team", "接鏢人等得不耐煩，已經離開了。\n", team2);
 	}
 
 	for(j=0; j<sizeof(team2); j++){
 		team2[j]->dismiss_team();
 		if (team2[j]->query_temp("protecting")==cart)
 			team2[j]->delete_temp("protecting");
-	        log_file("job/hubiao",sprintf("%8s%-10s护镖任务失败，现在经验%d。\n",
+	        log_file("job/hubiao",sprintf("%8s%-10s護鏢任務失敗，現在經驗%d。\n",
 			team2[j]->name(1),"("+capitalize(team2[j]->query("id"))+")", team2[j]->query("combat_exp")), team2[j]);
-		tell_object(team2[j],HIR"由于你护镖失败，交给镖局的五十两黄金被用来赔偿了。\n"NOR);
+		tell_object(team2[j],HIR"由於你護鏢失敗，交給鏢局的五十兩黃金被用來賠償了。\n"NOR);
 	}
 
 	if (fail)
-		CHANNEL_D->do_channel( this_object(), "rumor",sprintf("%s的镖车被劫匪劫走了！", query("teamhead")));
+		CHANNEL_D->do_channel( this_object(), "rumor",sprintf("%s的鏢車被劫匪劫走了！", query("teamhead")));
 	else
-		CHANNEL_D->do_channel( this_object(), "rumor",sprintf("%s的镖队没能及时达到目的地！", query("teamhead")));
+		CHANNEL_D->do_channel( this_object(), "rumor",sprintf("%s的鏢隊沒能及時達到目的地！", query("teamhead")));
 	destructing(cart);
 	return 0;
 }

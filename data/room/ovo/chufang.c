@@ -16,9 +16,9 @@ string *names = ({
 
 void create()
 {
-        set("short", "厨房");
+        set("short", "廚房");
 	set ("long", @LONG
-此处便是东北偏北的厨房，只间几个仆人忙来忙去，不得歇息。
+此處便是東北偏北的廚房，只間幾個僕人忙來忙去，不得歇息。
 LONG );
 
         set("exits", ([
@@ -40,7 +40,7 @@ LONG );
         setup();
 
         set("room_owner", "小球球");
-        set("room_name", "东北偏北");
+        set("room_name", "東北偏北");
         set("room_id", "dan");
         set("room_owner_id", "ovo");
         set("room_position", "碎石小道");

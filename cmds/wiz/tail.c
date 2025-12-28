@@ -22,10 +22,10 @@ int main(object me, string arg)
 
         file=resolve_path(query("cwd", me),arg);
         if( file_size(file)<0 )
-                return notify_fail("没有这个档案。\n");
+                return notify_fail("沒有這個檔案。\n");
 
         if(!content = read_file(file))
-                return notify_fail("你没有读取这个档案内容的权限。\n");
+                return notify_fail("你沒有讀取這個檔案內容的權限。\n");
 
         output = explode(content,"\n");
         i = sizeof(output);
@@ -39,13 +39,13 @@ int help(object me)
 write(@HELP
 指令格式 :
 
-tail <档案>
+tail <檔案>
 
-此指令可让你直接读取某档案最末尾的几行。
+此指令可讓你直接讀取某檔案最末尾的幾行。
 
-tail -n <档案>
+tail -n <檔案>
 
-此指令可让你直接读取某档案最末尾的 n 行。(n 为正整数)
+此指令可讓你直接讀取某檔案最末尾的 n 行。(n 為正整數)
 
 HELP
     );

@@ -9,13 +9,13 @@ inherit NPC;
 
 void create()
 {
-	set_name(HIY "七彩" HIM "琉璃兽" NOR, ({ "qicai liulishou", "qicai", "liulishou" }) );
-	set("title", HIW "圣诞" HIR "怪兽" NOR);
+	set_name(HIY "七彩" HIM "琉璃獸" NOR, ({ "qicai liulishou", "qicai", "liulishou" }) );
+	set("title", HIW "聖誕" HIR "怪獸" NOR);
 	set("gender", "男性");
 	set("age", 8888);
 	set("long", @LONG
-这是一只长相奇特怪兽，全身幻出七彩之色，头大身小，一对浑圆的眼
-珠闪烁出摄人的光芒。
+這是一隻長相奇特怪獸，全身幻出七彩之色，頭大身小，一對渾圓的眼
+珠閃爍出攝人的光芒。
 LONG );
 	set("combat_exp", 2000000000);
 	set("shen_type", 0);
@@ -30,7 +30,7 @@ LONG );
         set("jingli", 5000000);
         set("max_jingli", 5000000);
 
-	set("no_nuoyi", 1); // 不被挪移影响
+	set("no_nuoyi", 1); // 不被挪移影響
 
         set("str", 200);
         set("int", 100);
@@ -63,7 +63,7 @@ LONG );
 
 int accept_fight(object ob)
 {
-        message_vision("$N一声巨吼，扑了过来。\n",
+        message_vision("$N一聲巨吼，撲了過來。\n",
                        this_object(), ob);
         kill_ob(ob);
         return -1;
@@ -83,7 +83,7 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
 		ob->start_busy(20 + random(10));
 		me->receive_wound("qi", 5000 + random(3000), ob);
-        return HIY "$N" HIY "周围雾气缭绕，直逼得$n" HIY "头晕目眩。\n" NOR;
+        return HIY "$N" HIY "周圍霧氣繚繞，直逼得$n" HIY "頭暈目眩。\n" NOR;
 }
 
 void heart_beat()
@@ -108,19 +108,19 @@ void unconcious()
 
 void die(object killer)
 {
-        object dob;             // 打晕这个NPC的人
-        int n;                  // 可以奖励的人的数目
-        int exp;                // 需要瓜分的经验
-        int pot;                // 需要瓜分的潜能
-        int tihui;              // 需要瓜分的体会
+        object dob;             // 打暈這個NPC的人
+        int n;                  // 可以獎勵的人的數目
+        int exp;                // 需要瓜分的經驗
+        int pot;                // 需要瓜分的潛能
+        int tihui;              // 需要瓜分的體會
         int weiwang;            // 需要瓜分的威望
-        int score;              // 需要瓜分的阅历
-        object *t;              // 杀死我的人的队伍列表
+        int score;              // 需要瓜分的閱歷
+        object *t;              // 殺死我的人的隊伍列表
         object tob;
         int i;
 
-        // 定义奖励物品列表
-		// 几率  X / 万分之一
+        // 定義獎勵物品列表
+		// 幾率  X / 萬分之一
 		mixed oblist = ([
 
 		]);
@@ -136,7 +136,7 @@ void die(object killer)
 			return;
 		}
 
-        // 找到杀了我(NPC)或是打晕我的人
+        // 找到殺了我(NPC)或是打暈我的人
         if (! objectp(dob = killer))
                 dob = query_last_damage_from();
 
@@ -189,7 +189,7 @@ void die(object killer)
 						             //"weiwang"  : weiwang + ((tob == dob) ? 50000 : 0),
 							     //"score"    : score + ((tob == dob) ? 50000 : 0),
 							      "mar"      : tihui + ((tob == dob) ? 10000 : 0),
-							     "prompt"   : "你的队伍打败" + name() + "之后"]), 999);
+							     "prompt"   : "你的隊伍打敗" + name() + "之後"]), 999);
 
 				 }
 			}
@@ -202,25 +202,25 @@ void die(object killer)
 							     //"weiwang"  : weiwang,
 						             //"score"    : score,
 						             "mar"      : tihui + ((tob == dob) ? 10000 : 0),
-							     "prompt"   : "你在打败" + name() + "之后"]), 999);
+							     "prompt"   : "你在打敗" + name() + "之後"]), 999);
 		}
 
         }
-        //25%几率掉出七彩琉璃靴
+        //25%幾率掉出七彩琉璃靴
  	if (objectp(dob) && environment(dob) == environment(this_object()) && random(4) == 1)
 	{
 		gift_ob = new("/clone/armor/qicai-xue");
-		message_vision(HIR "叮~~一声，从$N" HIR "掉出一样东西，$n" HIR 
-			           "赶紧拣了起来。\n" NOR, this_object(), dob);
+		message_vision(HIR "叮~~一聲，從$N" HIR "掉出一樣東西，$n" HIR 
+			           "趕緊揀了起來。\n" NOR, this_object(), dob);
 		tell_object(dob, BLINK + HIG "你得到了" + gift_ob->name() + BLINK + HIG "。\n" NOR);
 		gift_ob->move(dob, 1);
 	}
 
         // 消失
-        command("chat 看来这趟东方之行实在是自讨没趣！");
-	message_vision("$N长啸一声，化作一团火焰，消失在天际。\n", this_object());
+        command("chat 看來這趟東方之行實在是自討沒趣！");
+	message_vision("$N長嘯一聲，化作一團火焰，消失在天際。\n", this_object());
         CHANNEL_D->do_channel(this_object(), "rumor",
-                        "听说" + name() + HIM "被一群武林异士打败，败兴而归。" NOR);
+                        "聽說" + name() + HIM "被一群武林異士打敗，敗興而歸。" NOR);
                         
 	destruct(this_object());
 
@@ -231,7 +231,7 @@ void random_move()
 {
 	if (time() - query("born_time") > 1800)
 	{
-		message_vision("$N长啸一声，化作一团火焰，消失在天际。\n", this_object());
+		message_vision("$N長嘯一聲，化作一團火焰，消失在天際。\n", this_object());
 		destruct(this_object());
 		return;
 	}

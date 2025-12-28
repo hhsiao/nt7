@@ -5,7 +5,7 @@ void create()
    set_name("安南官兵",({ "bing" }) );
    set("gender", "男性" );
    set("age", 32);
-   set("long", "这是一个在安南城内巡逻的官兵。\n");
+   set("long", "這是一個在安南城內巡邏的官兵。\n");
        
    set("combat_exp",800000);
 
@@ -65,7 +65,7 @@ void init()
 
 int accept_fight(object me)
 {
-        command("say 大爷我正想找人杀呐，今天算你倒霉。\n");
+        command("say 大爺我正想找人殺吶，今天算你倒黴。\n");
 //        me->apply_condition("killer", 500);
         kill_ob(me);
         return 1;

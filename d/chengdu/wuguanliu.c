@@ -4,10 +4,10 @@
 inherit ROOM;
 void create()
 {
-        set("short", "金牛武馆四部");
+        set("short", "金牛武館四部");
         set("long", @LONG
-这里是「金牛武馆」教授四部，师傅刘虹瑛教授如下技能：基本
-轻功，基本内功，基本招架，基本掌法，基本剑法。
+這裡是「金牛武館」教授四部，師傅劉虹瑛教授如下技能：基本
+輕功，基本內功，基本招架，基本掌法，基本劍法。
 LONG );
         set("objects", ([
                 __DIR__"npc/liuhongying" : 1,

@@ -4,13 +4,13 @@ int welcome(object ob)
 {
         if( query("detach/星宿派", ob) || query("betrayer/星宿派", ob) )
         {
-                command("say 哈哈！想来想去都是我们星宿派好吧！");
+                command("say 哈哈！想來想去都是我們星宿派好吧！");
                 return 0;
         }
 
         if( query("betrayer/times", ob) )
         {
-                command("say 没关系，你虽然判过几次师，不过最后终于弃暗投明，可喜可贺！");
+                command("say 沒關係，你雖然判過幾次師，不過最後終於棄暗投明，可喜可賀！");
                 return 0;
         }
 
@@ -18,7 +18,7 @@ int welcome(object ob)
             query("family/family_name", ob) != "星宿派" )
         {
                 command("say 呵呵，好啊！"+query("family/family_name", ob)+
-                        "算什么！");
+                        "算什麼！");
                 return 0;
         }
 

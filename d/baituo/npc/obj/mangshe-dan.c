@@ -19,9 +19,9 @@ void init()
 
 void create()
 {
-        set_name("蟒蛇胆", ({"shedan", "dan" }));
+        set_name("蟒蛇膽", ({"shedan", "dan" }));
         set("unit", "枚");
-        set("long", "一枚深紫色的蟒蛇胆，甚是腥臭。\n");
+        set("long", "一枚深紫色的蟒蛇膽，甚是腥臭。\n");
         set("value", 20000);
                 set("no_sell", 1);
         set("medicine", 1);
@@ -34,14 +34,14 @@ int cure_ob(object me)
         if( !living(this_player()) ) return 0;
         if( used ) return 0;
         if( me->is_busy() )
-                return notify_fail("你上一个动作还没有完成。\n");
+                return notify_fail("你上一個動作還沒有完成。\n");
 
         if ((int)me->query_condition("bonze_drug") > 0
         || (int)me->query_condition("mang_shedan") > 0){
         addn("eff_jingli", -1, me);
         addn("max_jingli", -1, me);
-        message_vision(HIR "$N吃下一颗蛇胆，只觉得头重脚轻，摇摇欲倒，
-原来服食太急太多，药效适得其反！\n" NOR, me);
+        message_vision(HIR "$N吃下一顆蛇膽，只覺得頭重腳輕，搖搖欲倒，
+原來服食太急太多，藥效適得其反！\n" NOR, me);
         destruct(this_object());
         return 1;
         }        
@@ -56,10 +56,10 @@ int cure_ob(object me)
         me->apply_condition("bonze_drug", 30+me->query_condition("bonze_drug"));
         me->apply_condition("mang_shedan", 30);
         set_temp("dan_effect", 1, me);
-        tell_object(me, MAG"你张口轻轻一咬，蛇胆外皮便即破裂，登觉满口苦汁，腥极苦极，几乎要呕将出来。\n"
-                        + "可稍过片刻，你只觉呼吸顺畅，耳清目明，精神爽利，力气大增。\n"NOR);
+        tell_object(me, MAG"你張口輕輕一咬，蛇膽外皮便即破裂，登覺滿口苦汁，腥極苦極，幾乎要嘔將出來。\n"
+                        + "可稍過片刻，你只覺呼吸順暢，耳清目明，精神爽利，力氣大增。\n"NOR);
 
-        message("vision", MAG + me->name() + "吞下一颗蟒蛇胆，精神大旺，尤胜平时。\n"NOR, 
+        message("vision", MAG + me->name() + "吞下一顆蟒蛇膽，精神大旺，尤勝平時。\n"NOR, 
                         environment(me), ({me}));
 //        me->start_call_out( (: call_other, __FILE__, "delete_benefit", me :), 800);
         used = 1;
@@ -73,10 +73,10 @@ void decay()
 {
         object where = environment(this_object());
         if ( interactive(where) )
-                message("vision", MAG"蛇胆啪的一声破了，弄得你一身甚是腥臭。\n"NOR, 
+                message("vision", MAG"蛇膽啪的一聲破了，弄得你一身甚是腥臭。\n"NOR, 
                         where); 
         else
-                message("vision", MAG"蛇胆啪的一声破了，汁水流了一地。\n"NOR,
+                message("vision", MAG"蛇膽啪的一聲破了，汁水流了一地。\n"NOR,
                         where);
         destruct(this_object());
 }

@@ -16,7 +16,7 @@ int main(object me, string arg)
                 return 0;
 
         if (! arg)
-                return notify_fail("giftall 派礼物给在线玩家，命令格式： giftall </路径/../目标文件名> <数量>\n\n");
+                return notify_fail("giftall 派禮物給在線玩家，命令格式： giftall </路徑/../目標文件名> <數量>\n\n");
 
         if (sscanf(arg, "%s %d", target, count) != 2)
                 target = arg;
@@ -26,7 +26,7 @@ int main(object me, string arg)
         gift_file = target;
 
         if (file_size(gift_file) == -1)
-                return notify_fail("路径不正确，无法找到物品。\n");
+                return notify_fail("路徑不正確，無法找到物品。\n");
 
         seteuid(getuid());
 
@@ -35,17 +35,17 @@ int main(object me, string arg)
         foreach(object player in users())
         {
                 if (wiz_level(player) > 1) continue;
-                if( !interactive(player) ) continue;  // 断线的包括计划的都排除掉
+                if( !interactive(player) ) continue;  // 斷線的包括計劃的都排除掉
 
-                tell_object(player, HIW "\n\n忽然从极高极远的天空中极速降下一只浑身烈焰的"HIR"火凤"HIW"，周身闪耀七彩光芒。\n" NOR);
+                tell_object(player, HIW "\n\n忽然從極高極遠的天空中極速降下一隻渾身烈焰的"HIR"火鳳"HIW"，周身閃耀七彩光芒。\n" NOR);
 
                 if (time() - query_temp("logon_time", player) < 5400) {
-                        tell_object(player, HIW "它对着你清鸣几声，似乎是在说：很遗憾，你连线短于90分钟。\n"HIR"火凤"HIW"在你头上盘旋几圈，然后径直飞走了。\n\n" NOR);
+                        tell_object(player, HIW "它對著你清鳴幾聲，似乎是在說：很遺憾，你連線短於90分鐘。\n"HIR"火鳳"HIW"在你頭上盤旋幾圈，然後徑直飛走了。\n\n" NOR);
                         continue;
                 }
 
-                if (!query("family/master_id", player) || query("family/master_id", player)=="") {//还未拜师
-                        tell_object(player, HIW "它对着你清鸣几声，似乎是在说：很遗憾，你还没有拜师门派。\n"HIR"火凤"HIW"在你头上盘旋几圈，然后径直飞走了。\n\n" NOR);
+                if (!query("family/master_id", player) || query("family/master_id", player)=="") {//還未拜師
+                        tell_object(player, HIW "它對著你清鳴幾聲，似乎是在說：很遺憾，你還沒有拜師門派。\n"HIR"火鳳"HIW"在你頭上盤旋幾圈，然後徑直飛走了。\n\n" NOR);
                         continue;
                 }
 
@@ -56,8 +56,8 @@ int main(object me, string arg)
 
                 ob -> move(player);
 
-                tell_object(player, HIW "它爪下似乎抓着什么东西，突然"HIR"火凤"HIW"松开脚爪，" + NOR + tname + NOR + HIW + "向你掉落下来。\n" NOR);
-                tell_object(player, HIG "你猛一提气纵身一跃丈高将此物抓在手中，又潇洒的飘落地面。\n\n" NOR);
+                tell_object(player, HIW "它爪下似乎抓著什麼東西，突然"HIR"火鳳"HIW"鬆開腳爪，" + NOR + tname + NOR + HIW + "向你掉落下來。\n" NOR);
+                tell_object(player, HIG "你猛一提氣縱身一躍丈高將此物抓在手中，又瀟灑的飄落地面。\n\n" NOR);
                 countplayer += 1;
         }
         str=sprintf("共有%d位玩家得到了%s。\n\n",countplayer,tname);
@@ -68,9 +68,9 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式：giveall 物品路径
+指令格式：giveall 物品路徑
 
-给在线的所有玩家一件物品，排除无门派的，和连线时间太短的大米。
+給在線的所有玩家一件物品，排除無門派的，和連線時間太短的大米。
 HELP
         );
         return 1;

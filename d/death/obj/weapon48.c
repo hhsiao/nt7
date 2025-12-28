@@ -5,7 +5,7 @@ inherit BLADE;
 
 void create()
 {
-        set_name(RED "七煞阴阳刃" NOR, ({ "yinyang ren", "ren", "blade", "dao" }) );
+        set_name(RED "七煞陰陽刃" NOR, ({ "yinyang ren", "ren", "blade", "dao" }) );
         set_weight(4000);
         /*if( clonep() )
                 set_default_object(__FILE__);

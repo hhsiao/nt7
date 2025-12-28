@@ -9,8 +9,8 @@ void create()
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "颗");
-                set("long", "这是一颗小指甲盖大的棕色果子。\n");
+                set("unit", "顆");
+                set("long", "這是一顆小指甲蓋大的棕色果子。\n");
         }
 }
 
@@ -26,7 +26,7 @@ int do_eat(string arg)
         if(!id(arg))
                 return 0;
 
-        message_vision("$N把海松子放在嘴里嚼了嚼，苦的皱起了眉头。\n", me);
+        message_vision("$N把海松子放在嘴裡嚼了嚼，苦的皺起了眉頭。\n", me);
 
         me->apply_condition("mabi", 5);
         destruct(this_object());

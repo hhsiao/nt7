@@ -6,10 +6,10 @@ void create()
 {
         set("short", "山路");
         set("long", @LONG
-这里快接近谷低了，但北面瀑布挡住了去路。瀑布如一匹银练奔
-流而下，倾泻在一深潭之中，水声轰鸣，帘雾直上重霄。两旁山石高
-耸，陡壁断崖，象是人工劈就而成。深潭前的青石被磨得锃亮，好象
-总有人在这里来往。
+這裡快接近谷低了，但北面瀑布擋住了去路。瀑布如一匹銀練奔
+流而下，傾瀉在一深潭之中，水聲轟鳴，簾霧直上重霄。兩旁山石高
+聳，陡壁斷崖，象是人工劈就而成。深潭前的青石被磨得鋥亮，好象
+總有人在這裡來往。
 LONG );
         set("exits", ([
                 "southeast" :__DIR__"tohsq2",
@@ -32,11 +32,11 @@ int do_jump(string arg)
         me = this_player();
         if (! arg)
         {
-                message_vision("$N一闭眼，向潭中跳了下去，只觉冰冷刺"
-                               "骨，赶紧运气相抗。\n",me);
+                message_vision("$N一閉眼，向潭中跳了下去，只覺冰冷刺"
+                               "骨，趕緊運氣相抗。\n",me);
                 me->move(__DIR__"hsqtan1");
                 return 1;
         }
 
-        return notify_fail("你要跳到哪儿？\n");
+        return notify_fail("你要跳到哪兒？\n");
 }

@@ -8,8 +8,8 @@ void create()
         set("age", 55);
         set("title", HIY "南帝四大弟子" NOR);
         set("long", @LONG
-朱子柳乃是一灯大师的四大弟子之一，现在正协助
-郭靖、黄蓉镇守襄阳城。
+朱子柳乃是一燈大師的四大弟子之一，現在正協助
+郭靖、黃蓉鎮守襄陽城。
 LONG );
         set("attitude", "peaceful");
         set("per", 17);
@@ -82,29 +82,29 @@ int recognize_apprentice(object ob, string skill)
 {
         if( query("combat_exp", ob)>20000 )
         {
-                command("say 你经验也不低了，应该多出去锻炼，可别埋没在这里。");
+                command("say 你經驗也不低了，應該多出去鍛鍊，可別埋沒在這裡。");
                 return -1;
         }
 
         if (skill != "literate")
         {
                 command("shake");
-                command("say 在这儿我最多传授你一些读书写字的常识。");
-                command("say 其它的还是等你将来拜师后找师父学吧。");
+                command("say 在這兒我最多傳授你一些讀書寫字的常識。");
+                command("say 其它的還是等你將來拜師後找師父學吧。");
                 return -1;
         }
 
         if (skill == "literate" && ob->query_skill("literate", 1) > 99)
         {
                 command("haha");
-                command("say 你的文学造诣已经非常不错了，就到此为止吧。");
+                command("say 你的文學造詣已經非常不錯了，就到此為止吧。");
                 return -1;
         }
 
         if( !query_temp("can_learn/zhuziliu", ob) )
         {
                 command("smile");
-                command("say 趁年轻多读点书是好事，我就教你点读书写字的常识吧。");
+                command("say 趁年輕多讀點書是好事，我就教你點讀書寫字的常識吧。");
                 set_temp("can_learn/zhuziliu", 1, ob);
         }
         return 1;
@@ -117,7 +117,7 @@ void greeting(object ob)
        if (ob->query_skill("literate") > 99) return;
 
        command("pat"+query("id", ob));
-       command("say 这位" + RANK_D->query_respect(ob) + "，过来跟我学些知"
-               "识(" HIY "xue zhu ziliu literate" NOR + CYN ")吧。" NOR);
+       command("say 這位" + RANK_D->query_respect(ob) + "，過來跟我學些知"
+               "識(" HIY "xue zhu ziliu literate" NOR + CYN ")吧。" NOR);
 
 }

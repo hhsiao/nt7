@@ -1,6 +1,6 @@
 // longshen_toukui.c
 // Create by TEMPLATE_D. Mon Mar 18 16:50:46 2019.
-// toukui.c 头盔
+// toukui.c 頭盔
  
 #include <armor.h>
 #include <ansi.h>
@@ -9,15 +9,15 @@ inherit HEAD;
  
 void create()
 {
-	set_name("[1;35m龙神头盔[2;37;0m", ({ "longshen toukui" }));
+	set_name("[1;35m龍神頭盔[2;37;0m", ({ "longshen toukui" }));
         set_weight(1000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
 	set("material", "steel");
-	set("unit", "顶");
-	set("long", "[1;35m这是一顶龙骨铸造的头盔，用以保护头部。
+	set("unit", "頂");
+	set("long", "[1;35m這是一頂龍骨鑄造的頭盔，用以保護頭部。
 [2;37;0m");
 	set("value", 3500000);
 	set("armor_prop", ([ /* sizeof() == 1 */
@@ -47,7 +47,7 @@ int receive_summon(object me)
         return ITEM_D->receive_summon(me, this_object());
 }
 
-// 隐藏物品
+// 隱藏物品
 int hide_anywhere(object me)
 {
         return ITEM_D->hide_anywhere(me, this_object());

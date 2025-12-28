@@ -6,9 +6,9 @@
 #define FOOTER "≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈\n"
 #define IMPOSSIBLE_TO_MISS_HEADER \
                FOOTER \
-               "『 你现在运行的 MudOS driver 的设置参数并不适合 』\n" \
-               "『 此 Mudlib, 请对 driver 原码内的 'options.h'  』\n" \
-               "『 作如下的调整然后重新编译.                    』\n" \
+               "『 你現在運行的 MudOS driver 的設置參數並不適合 』\n" \
+               "『 此 Mudlib, 請對 driver 原碼內的 'options.h'  』\n" \
+               "『 作如下的調整然後重新編譯.                    』\n" \
                FOOTER
 
 private
@@ -23,7 +23,7 @@ void create()
                 case "MudOS 0.9":
                 case "MudOS v20":
                 case "MudOS v21":
-                badness += "你的 MudOS driver 版本过时了,请使用 MudOS v22 及以后的版本.\n";
+                badness += "你的 MudOS driver 版本過時了,請使用 MudOS v22 及以後的版本.\n";
         }
 
 #ifdef __CAST_CALL_OTHERS__
@@ -88,5 +88,5 @@ void create()
 #endif
 */
         if( strlen(badness) )
-                error("\n\ndriver 配置错误:\n" + IMPOSSIBLE_TO_MISS_HEADER + badness + FOOTER+"\n\n");
+                error("\n\ndriver 配置錯誤:\n" + IMPOSSIBLE_TO_MISS_HEADER + badness + FOOTER+"\n\n");
 }

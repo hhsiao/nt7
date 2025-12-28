@@ -15,22 +15,22 @@ string judge_jobmsg(object player,int flg)
         switch (s_msg)
         {
                 case "jin_caikuang":
-                        job_flg="采集铁矿";break;
+                        job_flg="採集鐵礦";break;
 
                 case "huo_zaoqiang":
-                        job_flg="打造火枪";break;
+                        job_flg="打造火槍";break;
 
                 case "shui_tiaoshui":
                         job_flg="挑水";break;
 
                 case "mu_kanshu":
-                        job_flg="砍树";        break;
+                        job_flg="砍樹";        break;
 
                 case "tu_didao":
                         job_flg="挖地道"; break;
 
 //                default:
-//                        job_msg="这位"+RANK_D->query_respect(player)+"现在好象没有任务在身。";
+//                        job_msg="這位"+RANK_D->query_respect(player)+"現在好象沒有任務在身。";
 //                        return job_msg;
 //                        write("judge_jobmsg reached default! please report.\n");
         }
@@ -38,7 +38,7 @@ string judge_jobmsg(object player,int flg)
         if(flg)
         return job_flg;
 
-        job_msg="这位"+RANK_D->query_respect(player)+"现在不是"+job_flg+"吗？等完成了再来领取其它任务吧。";
+        job_msg="這位"+RANK_D->query_respect(player)+"現在不是"+job_flg+"嗎？等完成了再來領取其它任務吧。";
         return job_msg;
 }
 
@@ -48,13 +48,13 @@ int cut_abandon_jl(string job_kind)
 
         switch (job_kind)
         {
-                case "采集铁矿":
+                case "採集鐵礦":
                         cut_cc=BASE+random(BASE*2)/2; break;
-                case "打造火枪":
+                case "打造火槍":
                         cut_cc=BASE+random(BASE*3)/2; break;
                 case "挑水":
                         cut_cc=BASE+random(BASE*3)/2; break;
-                case "砍树":
+                case "砍樹":
                         cut_cc=BASE+random(BASE*2)/2; break;
                 case "挖地道":
                         cut_cc=BASE+random(BASE*2)/2; break;
@@ -64,7 +64,7 @@ int cut_abandon_jl(string job_kind)
                 addn("family/gongji", -cut_cc, this_player());
         if( query("family/gongji", this_player())<0 )
                 delete("family/gongji", this_player());
-        tell_object(this_player(),RED"你的明教功绩下降了"+cut_cc+"点。\n"NOR);
+        tell_object(this_player(),RED"你的明教功績下降了"+cut_cc+"點。\n"NOR);
 
         delete("mingjiao/job", this_player());
 
@@ -81,34 +81,34 @@ string ask_abandon()
         player=this_player();
 
         if( !query("mingjiao/job", player) )
-                return "这位"+RANK_D->query_respect(player)+"现在好像没有任务在身。";
+                return "這位"+RANK_D->query_respect(player)+"現在好像沒有任務在身。";
 
         job_flg=judge_jobmsg(player,1);
 
         switch (job_flg)
         {
-                case "采集铁矿":
-                        id = "zhuang zheng"; name = "庄铮"; break;
-                case "打造火枪":
+                case "採集鐵礦":
+                        id = "zhuang zheng"; name = "莊錚"; break;
+                case "打造火槍":
                         id = "xin ran"; name = "辛然"; break;
                 case "挑水":
                         id = "tang yang"; name = "唐洋"; break;
-                case "砍树":
-                        id = "wen cangsong"; name = "闻苍松"; break;
+                case "砍樹":
+                        id = "wen cangsong"; name = "聞蒼松"; break;
                 case "挖地道":
                         delete_temp("didao_done", player);
-                        id = "yan yuan"; name = "颜垣"; break;
+                        id = "yan yuan"; name = "顏垣"; break;
         }
 
         if( query("id", this_object()) == id && query("name", this_object()) == name )
         {
                 if(cut_abandon_jl(job_flg))
-                        return "阁下连这种事情都办不好，将来如何光大我光明圣火教。";
+                        return "閣下連這種事情都辦不好，將來如何光大我光明聖火教。";
                 else
-                        return "阁下尽力完成这次任务吧。";
+                        return "閣下盡力完成這次任務吧。";
         }
         else
-                return "既然这位"+RANK_D->query_respect(player)+"想放弃"+job_flg+"的任务，请去跟"+name+"旗主说一声。";
+                return "既然這位"+RANK_D->query_respect(player)+"想放棄"+job_flg+"的任務，請去跟"+name+"旗主說一聲。";
 
         return "ask_abandon() has error!";
 }
@@ -127,12 +127,12 @@ void reward(object me, string job_flg)
 
         switch(job_flg)
         {
-                case "采集铁矿":
+                case "採集鐵礦":
                         add_cc=BASE+random(BASE*2)/2;                // BASE = 100
                         add_exp=BASE+random(add_cc);
                         add_pot=add_exp/3+random(add_exp/4);
                         break;
-                case "打造火枪":
+                case "打造火槍":
                         add_cc=BASE+random(BASE*3)/2;
                         add_exp=BASE+random(add_cc);
                         add_pot=add_exp/3+random(add_exp/4);
@@ -142,7 +142,7 @@ void reward(object me, string job_flg)
                         add_exp=BASE+random(add_cc);
                         add_pot=add_exp/3+random(add_exp/4);
                         break;
-                case "砍树":
+                case "砍樹":
                         add_cc=BASE+random(BASE*2)/2;
                         add_exp=BASE+random(add_cc);
                         add_pot=add_exp/3+random(add_exp/4);
@@ -162,8 +162,8 @@ void reward(object me, string job_flg)
         addn("potential", add_pot, me);
         //if (me->query("potential") > me->query_potential_limit())
         //        me->set("potential",me->query_potential_limit());
-        tell_object(me,HIG"恭喜！你的明教功绩上升了"+add_cc+"点。\n"NOR);
-        tell_object(me,HIG"你的经验上升了"+add_exp+"点。\n"NOR);
-        tell_object(me,HIG"你的潜能上升了"+add_pot+"点。\n"NOR);
+        tell_object(me,HIG"恭喜！你的明教功績上升了"+add_cc+"點。\n"NOR);
+        tell_object(me,HIG"你的經驗上升了"+add_exp+"點。\n"NOR);
+        tell_object(me,HIG"你的潛能上升了"+add_pot+"點。\n"NOR);
 
 }

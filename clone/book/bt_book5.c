@@ -1,17 +1,17 @@
-// bt_book5.c 易经
+// bt_book5.c 易經
 // Last Modified by Lonely on May. 15 2001
 inherit ITEM;
 
 void create()
 {
-        set_name("易经", ({ "yi jing", "jing", "yi" }));
+        set_name("易經", ({ "yi jing", "jing", "yi" }));
         set_weight(1000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
                 set("unit", "本");
-                set("long", "这是一本易经。\n");
+                set("long", "這是一本易經。\n");
                 set("value", 500);
                 set("material", "paper");
                 set("skill", ([

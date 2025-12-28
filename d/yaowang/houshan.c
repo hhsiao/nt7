@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "后山");
+        set("short", "後山");
         set("long", @LONG
-这是一间巨大的瓦房，房子里被直到屋顶的大木架子占满了，
-树堆上坐着一位老人。
+這是一間巨大的瓦房，房子裡被直到屋頂的大木架子佔滿了，
+樹堆上坐著一位老人。
 LONG
         );
         set("exits", ([ /* sizeof() == 1 */

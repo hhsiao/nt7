@@ -1,11 +1,11 @@
 // This program is a part of NT MudLIB
-// wenqing.c 文清小师太
+// wenqing.c 文清小師太
 
 inherit NPC;
 
 void create()
 {
-        set_name("文清小师太", ({ "wenqing","wenqing xiaoshitai","xiaoshitai"}));
+        set_name("文清小師太", ({ "wenqing","wenqing xiaoshitai","xiaoshitai"}));
         set("long",
                 "她是峨嵋派的第五代弟子。\n");
         set("gender", "女性");
@@ -66,5 +66,5 @@ void greeting(object ob)
         if( query("startroom") != base_name(environment()) )
                 return;
 
-        command( "say 这位施主请先入座，我这就给您上茶点。\n");
+        command( "say 這位施主請先入座，我這就給您上茶點。\n");
 }

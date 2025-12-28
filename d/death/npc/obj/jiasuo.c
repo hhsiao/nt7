@@ -4,7 +4,7 @@ inherit HAMMER;
 
 void create()
 {
-        set_name( HIW "枷锁" NOR, ({ "jia suo", "suo", "jia" }));
+        set_name( HIW "枷鎖" NOR, ({ "jia suo", "suo", "jia" }));
         set_weight(300);
         /*if (clonep())
                 set_default_object(__FILE__);

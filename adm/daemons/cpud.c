@@ -9,7 +9,7 @@ inherit F_DBASE;
 
 int clean_up() { return 1; }
 
-#define CHECK_PERIOD    60     // 60s检查一次
+#define CHECK_PERIOD    60     // 60s檢查一次
 #define EXPECTATION     50      // 希望心跳50次
 
 #define check_period    my["check_period"]
@@ -28,11 +28,11 @@ void create()
         mapping my;
 
         seteuid(getuid());
-        set("channel_id", "系统精灵");
-        CHANNEL_D->do_channel(this_object(), "sys", "系统精灵已经启动。");
+        set("channel_id", "系統精靈");
+        CHANNEL_D->do_channel(this_object(), "sys", "系統精靈已經啟動。");
         set_heart_beat(1);
 
-        // 初始化扫描时间
+        // 初始化掃描時間
         my = query_entire_dbase();
         if (CONFIG_D->query_int("cpu_check_period") < 2)
         {
@@ -90,7 +90,7 @@ void heart_beat()
 
         if( cost - last_0["cost"] > 10 )
                 CHANNEL_D->channel_broadcast("nch",
-                        HIR + "MudOS CPU 异常飞速提升，请检查先前60秒内所执行的程序…\n" + NOR);
+                        HIR + "MudOS CPU 異常飛速提升，請檢查先前60秒內所執行的程序…\n" + NOR);
 
         last_rusage = info;
         last_check  = time();

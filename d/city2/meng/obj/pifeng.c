@@ -3,7 +3,7 @@
 inherit CLOTH;
 void create()
 {
-        set_name(HIB"黑色披风"NOR, ({ "pi feng","cloth" }) );
+        set_name(HIB"黑色披風"NOR, ({ "pi feng","cloth" }) );
         set_weight(1000);
         /*if( clonep() )
                 set_default_object(__FILE__);

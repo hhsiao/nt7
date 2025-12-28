@@ -8,8 +8,8 @@ void create()
 {
         set("short", "瀑布下");
         set("long", @LONG
-这里是瀑布水底，水流急冲直下，你双足使劲，以「千斤坠」的
-功夫牢牢站稳，恰似中流砥柱，崎立不动。
+這裡是瀑布水底，水流急衝直下，你雙足使勁，以「千斤墜」的
+功夫牢牢站穩，恰似中流砥柱，崎立不動。
 LONG );
         set("objects", ([
                 "/d/dali/npc/gfish" : 1,
@@ -32,9 +32,9 @@ int do_jump(string arg)
         object me = this_player();
 
         if ( !arg || arg != "bank" )
-                return notify_fail( "什么？\n");
+                return notify_fail( "什麼？\n");
 
-        message_vision("$N纵身往岸上跳去。\n", me);
+        message_vision("$N縱身往岸上跳去。\n", me);
         me->move(__DIR__"yideng1");
         return 1;
 }

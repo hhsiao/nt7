@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define DING "「" HIY "定岳七方" NOR "」"
+#define DING "「" HIY "定嶽七方" NOR "」"
 
 inherit F_SSERVER;
 
@@ -15,32 +15,32 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(DING "只能对战斗中的对手使用。\n");
+                return notify_fail(DING "只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "club" )
-                return notify_fail("你所使用的武器不对，难以施展" DING "。\n");
+                return notify_fail("你所使用的武器不對，難以施展" DING "。\n");
 
         if ((int)me->query_skill("zhongping-qiang", 1) < 120)
-                return notify_fail("你中平枪法不够娴熟，难以施展" DING "。\n");
+                return notify_fail("你中平槍法不夠嫻熟，難以施展" DING "。\n");
 
         if (me->query_skill_mapped("club") != "zhongping-qiang")
-                return notify_fail("你没有激发中平枪法，难以施展" DING "。\n");
+                return notify_fail("你沒有激發中平槍法，難以施展" DING "。\n");
 
         if ((int)me->query_skill("force") < 180 )
-                return notify_fail("你的内功火候不够，难以施展" DING "。\n");
+                return notify_fail("你的內功火候不夠，難以施展" DING "。\n");
 
         if( query("max_neili", me)<2000 )
-                return notify_fail("你的内力修为不够，难以施展" DING "。\n");
+                return notify_fail("你的內力修為不夠，難以施展" DING "。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你现在的真气不够，难以施展" DING "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" DING "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIY "$N" HIY "身形一转，施出中平枪法绝技「" HIR "定岳七方"
-              HIY "」，手中" + weapon->name() + HIY "接连七刺，枪枪不离"
+        msg = HIY "$N" HIY "身形一轉，施出中平槍法絕技「" HIR "定嶽七方"
+              HIY "」，手中" + weapon->name() + HIY "接連七刺，槍槍不離"
              "$n" HIY "要害！\n" NOR;
 
         ap = attack_power(me, "club");
@@ -49,13 +49,13 @@ int perform(object me, object target)
         if (ap / 2 + random(ap * 2) > dp)
         {
                 count = ap / 10;
-                msg += HIR "$n" HIR "见$N" HIR "攻势凶猛异常，实非"
-                       "寻常，不由心生寒意，招架登时散乱。\n" NOR;
+                msg += HIR "$n" HIR "見$N" HIR "攻勢兇猛異常，實非"
+                       "尋常，不由心生寒意，招架登時散亂。\n" NOR;
         } else
         {
                 count = 0;
-                msg += HIC "$n" HIC "见$N" HIC "攻势凶猛异常，实非"
-                       "寻常，急忙打起精神，小心应付开来。\n" NOR;
+                msg += HIC "$n" HIC "見$N" HIC "攻勢兇猛異常，實非"
+                       "尋常，急忙打起精神，小心應付開來。\n" NOR;
         }
         message_combatd(msg, me, target);
 

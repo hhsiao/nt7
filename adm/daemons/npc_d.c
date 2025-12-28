@@ -37,7 +37,7 @@ object load_npc_data(string name)
                         case "stunt_msg":
                                 tmp[key] = sort_msg(trans_color(value, 3))+"\n"; 
                                 break;
-                        //case "wields":                //只拿单武器
+                        //case "wields":                //只拿單武器
                         case "wears":
                                 tmp[key] = explode(value,",");
                                 break;
@@ -60,7 +60,7 @@ object load_npc_data(string name)
         if( diff < 3 ) {
                 set("title", HIC"普通 "NOR+title, npc);
         } else if( diff < 6 ) {
-                set("title", MAG"强壮 "NOR+title, npc);
+                set("title", MAG"強壯 "NOR+title, npc);
         } else if( diff < 10 ) {
                 set("title", HIG"精英 "NOR+title, npc);
         } else {

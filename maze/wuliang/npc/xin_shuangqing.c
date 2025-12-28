@@ -1,10 +1,10 @@
-// NPC :xin_shuangqing.c 辛双清
+// NPC :xin_shuangqing.c 辛雙清
 // By River 98/12
 inherit NPC;
 void create()
 {
-        set_name("辛双清", ({ "xin shuangqing", "xin", "shuangqing"}));
-        set("title","无量剑西宗掌门");              
+        set_name("辛雙清", ({ "xin shuangqing", "xin", "shuangqing"}));
+        set("title","無量劍西宗掌門");              
         set("gender", "女性" );
         set("age", 42);
         set("str", 27);
@@ -23,7 +23,7 @@ void create()
         set("jiali", 40);
         set("unique", 1);
         
-        set("long","她是无量剑西宗的掌门，铁青着脸，嘴唇紧闭。\n");
+        set("long","她是無量劍西宗的掌門，鐵青著臉，嘴唇緊閉。\n");
         set("combat_exp", 350000);
         set("shen", 1000); 
 

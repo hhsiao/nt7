@@ -1,4 +1,4 @@
-// powerup.c 扶桑内功
+// powerup.c 扶桑內功
 
 #include <ansi.h>
 
@@ -11,20 +11,20 @@ int exert(object me, object target)
         int skill;
 
         if (target != me)
-                return notify_fail("你只能用扶桑内功来提升自己的战斗力。\n");
+                return notify_fail("你只能用扶桑內功來提升自己的戰鬥力。\n");
 
         if( query("neili", me)<100 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if( BUFF_D->check_buff(me, "powerup") )
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
         addn("neili", -90, me);
         me->receive_damage("qi", 0);
 
-        msg = HIR "$N" HIR "大喝一声，运起扶桑内功，"
-                        "全身骨节发出一阵爆豆般的声响！\n" NOR;
+        msg = HIR "$N" HIR "大喝一聲，運起扶桑內功，"
+                        "全身骨節發出一陣爆豆般的聲響！\n" NOR;
 
         data = ([
                 "attack" : skill/3,
@@ -36,11 +36,11 @@ int exert(object me, object target)
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "扶桑内功·战神",
+                "name"  : "扶桑內功·戰神",
                 "time"  : skill,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : "你的扶桑内功运行完毕，将内力收回丹田。\n",
+                "disa_msg" : "你的扶桑內功運行完畢，將內力收回丹田。\n",
                         
         ]);
         BUFF_D->buffup(buff);

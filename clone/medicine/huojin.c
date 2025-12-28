@@ -9,7 +9,7 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", MAG "这是一粒药丸，呈现出淡淡的粉色，疗伤效果颇为不错。\n" NOR);
+                set("long", MAG "這是一粒藥丸，呈現出淡淡的粉色，療傷效果頗為不錯。\n" NOR);
                 set("base_unit", "粒");
                 set("base_value", 3000);
                 set("base_weight", 60);
@@ -39,21 +39,21 @@ int do_effect(object me)
 
         if( time()-query_temp("last_eat/huojin", me)<20 )
         {
-                write("你刚服用过药，需药性发挥完效用以后才能继续服用。\n");
+                write("你剛服用過藥，需藥性發揮完效用以後才能繼續服用。\n");
                 return 1;
         }
 
         my = me->query_entire_dbase();
         if (my["eff_qi"] == my["max_qi"])
         {
-                write("你现在并没有受伤，不必服用" + name() + "。\n");
+                write("你現在並沒有受傷，不必服用" + name() + "。\n");
                 return 1;
         }
 
         set_temp("last_eat/huojin", time(), me);
 
         message_vision(MAG "$N" MAG "小心的吞下了" + name() +
-                       MAG "，运了两口气，脸色看起来好多了。\n" NOR, me);
+                       MAG "，運了兩口氣，臉色看起來好多了。\n" NOR, me);
 
         me->receive_curing("qi", 350);
         me->receive_heal("qi", 350);

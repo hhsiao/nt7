@@ -7,7 +7,7 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIR "这是一枚火红色的朱果，能起到调息内力的作用。\n" NOR);
+                set("long", HIR "這是一枚火紅色的朱果，能起到調息內力的作用。\n" NOR);
                 set("base_unit", "枚");
                 set("base_value", 3000);
                 set("base_weight", 80);
@@ -26,13 +26,13 @@ int do_effect(object me)
 
         if( time()-query_temp("last_eat/dan(D, me)")<240 )
         {
-                write("你刚服用过药，需药性发挥完效用以后才能继续服用。\n");
+                write("你剛服用過藥，需藥性發揮完效用以後才能繼續服用。\n");
                 return 1;
         }
 
         if( query("neili", me) >= query("max_neili", me) )
         {
-                write("你现在内力修为无需服用" + name() + "。\n");
+                write("你現在內力修為無需服用" + name() + "。\n");
                 return 1;
         }
 
@@ -40,8 +40,8 @@ int do_effect(object me)
 
         set_temp("last_eat/dan(D)", time(), me);
 
-        message_vision(HIY "$N" HIY "吞下一" + un + na + HIY "，内息得到了"
-                       "完全的补充。\n" NOR, me);
+        message_vision(HIY "$N" HIY "吞下一" + un + na + HIY "，內息得到了"
+                       "完全的補充。\n" NOR, me);
 
         my["neili"] = my["max_neili"];
 

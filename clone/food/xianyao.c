@@ -1,4 +1,4 @@
-// 神话世界·西游记·版本４．５０
+// 神話世界·西遊記·版本４．５０
 /* <SecCrypt CPL V3R05> */
  
 // xianyao.c        
@@ -9,8 +9,8 @@ inherit F_FOOD;
 void create()
 {
   string *names = ({
-    "龙肝",
-    "凤髓",
+    "龍肝",
+    "鳳髓",
     "熊掌",
     "猩唇",
     });
@@ -35,5 +35,5 @@ void create()
     set("no_drop",1);
     set("no_sell",1);
   }
-  set("long", "一金碗天上才有的仙肴珍馐－－"+names[i]+"。\n");
+  set("long", "一金碗天上才有的仙餚珍饈－－"+names[i]+"。\n");
 }

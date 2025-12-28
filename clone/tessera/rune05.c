@@ -1,6 +1,6 @@
 //rune05.c
 
-// Eth 爱斯
+// Eth 愛斯
 
 #include <ansi.h>
 
@@ -16,8 +16,8 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", "符文：元明文举符，可以放入凹槽物品。\n");
-                set("unit", "个");
+                set("long", "符文：元明文舉符，可以放入凹槽物品。\n");
+                set("unit", "個");
                 set("enchase/SN", 5);
                 set("enchase/type", "all");
                 set("enchase/consistence", 100); 

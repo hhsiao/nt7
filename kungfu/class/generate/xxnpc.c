@@ -31,7 +31,7 @@ void create()
         set("xxtarget",1);
 
         set("inquiry", ([
-                "战斗"   : (: do_move :),
+                "戰鬥"   : (: do_move :),
                 "challenge"  : (: do_move :),
         ]) );
 
@@ -79,12 +79,12 @@ int accept_fight()
         myfam=query("family", me);
 
         if (myfam["family_name"] == "星宿派"){
-                command("say 不用比试了，你拿命来吧！");
+                command("say 不用比試了，你拿命來吧！");
                 if( !npc->is_killing(me) ) npc->kill_ob(me);
         }
         else {
                 command("shake");
-                command("say 大家都是江湖同道，无故动武岂不是伤了和气？");
+                command("say 大家都是江湖同道，無故動武豈不是傷了和氣？");
                 return 0;
         }
         return 1;
@@ -128,9 +128,9 @@ string do_move()
         exits=query("exits", room);
         dirs = keys(exits);
         command("go "+dirs[random(sizeof(dirs))]);
-        return "出去就出去，有什么不敢？";
+        return "出去就出去，有什麼不敢？";
     }else {
-        return "我今天不是来找你的，你先一边去？";
+        return "我今天不是來找你的，你先一邊去？";
     }
 }
 
@@ -145,7 +145,7 @@ void die()
                 if( query("id", killer) == query("player", this_object())){
                         ob = new("/d/xingxiu/obj/lingpai");
                         ob->move(environment());
-message_vision("只听见啪的一声，从$N身上掉下来一件物事。\n", this_object());
+message_vision("只聽見啪的一聲，從$N身上掉下來一件物事。\n", this_object());
                         set("player",query("id",  killer), ob);
                         set("menpai", query("menpai"), ob);
                 }

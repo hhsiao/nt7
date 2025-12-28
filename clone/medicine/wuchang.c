@@ -5,14 +5,14 @@
 
 void create()
 {
-        set_name(HIR "无常丹" NOR, ({"wuchang dan", "dan"}));
+        set_name(HIR "無常丹" NOR, ({"wuchang dan", "dan"}));
         set_weight(50);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIR "这是一颗晶莹火红的无常丹，是桃花岛精心练制的奇"
-                            "药。\n" NOR);
-                set("base_unit", "颗");
+                set("long", HIR "這是一顆晶瑩火紅的無常丹，是桃花島精心練制的奇"
+                            "藥。\n" NOR);
+                set("base_unit", "顆");
                 set("base_value", 8000);
                 set("base_weight", 70);
                 set("only_do_effect", 1);
@@ -43,16 +43,16 @@ int do_effect(object me)
 
         if( time()-query_temp("last_eat/wuchang", me)<180 )
         {
-                write("你刚服用过药，需药性发挥完效用以后才能继续服用。\n");
+                write("你剛服用過藥，需藥性發揮完效用以後才能繼續服用。\n");
                 return 1;
         }
 
         set_temp("last_eat/wuchang", time(), me);
 
-        message_vision(HIR "$N" HIR "吞下无常丹，脸色泛一阵红晕。\n" NOR, me);
-        tell_object(me, HIY "你只觉得真气充沛，几乎就要澎湃而出。\n" NOR);
+        message_vision(HIR "$N" HIR "吞下無常丹，臉色泛一陣紅暈。\n" NOR, me);
+        tell_object(me, HIY "你只覺得真氣充沛，幾乎就要澎湃而出。\n" NOR);
 
-        log_file("static/using", sprintf("%s(%s) eat 无常丹 at %s.\n",
+        log_file("static/using", sprintf("%s(%s) eat 無常丹 at %s.\n",
                  me->name(1),query("id", me),ctime(time())));
 
         my = me->query_entire_dbase();

@@ -12,10 +12,10 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("unit", "个");
-                set("long", HIY "这便是刑天戴过的戒指，通体血光滔天。\n" NOR);
+                set("unit", "個");
+                set("long", HIY "這便是刑天戴過的戒指，通體血光滔天。\n" NOR);
                 set("value", 3000); 
-                set("no_sell", "这样东西不能卖。\n");
+                set("no_sell", "這樣東西不能賣。\n");
                 set("rigidity",8000);   
                 set("material", "tian jing");
                 set("no_pawn", 1);
@@ -24,7 +24,7 @@ void create()
         
         set("mod_mark", "A2031");
         set("mod_level", "M2030");
-        set("mod_name", HBRED "刑天套装" NOR);
+        set("mod_name", HBRED "刑天套裝" NOR);
         set("quality_level", 3);
 
         setup();

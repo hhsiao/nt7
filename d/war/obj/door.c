@@ -5,13 +5,13 @@ inherit "/d/war/diablo";
 void create()
 {
 
-	set_name("传送门", ({"door"}));
+	set_name("傳送門", ({"door"}));
 	if( clonep() )
 		set_default_object(__FILE__);
 	else {
 	
-		set("long", "暗黑传送门。(相关指令touch,flyto)\n");
-		set("unit", "个");
+		set("long", "暗黑傳送門。(相關指令touch,flyto)\n");
+		set("unit", "個");
 		set("base_weight", 50);
 		set("door",1);
 		set("no_get",1);
@@ -49,7 +49,7 @@ int do_touch(string arg)
         if( obj!=this_object() )  return 0;
         if( !wizardp(me)&&me->distance(obj)>40 ) 
 	{
-	        tell_object(me,"请再靠近一点，40米以内。\n");
+	        tell_object(me,"請再靠近一點，40米以內。\n");
 	        return 1;
 	}
 	
@@ -59,16 +59,16 @@ int do_touch(string arg)
 	        ]);
 						
 	
-	tell_object(me,HIG"你开启了小站传送门的灯光。\n"NOR);
+	tell_object(me,HIG"你開啟了小站傳送門的燈光。\n"NOR);
 	//if(!trans||member_array(query("zone"),ks)==-1)
 	{	
 	        if( !trans) trans=([]);
 	        trans+=([query("zone"):coor]);
                 set("trans_"+query("act"),trans,me);
-                tell_object(me,HIG"你记录了"+query("zone")+"传送门的位置。\n"NOR);
+                tell_object(me,HIG"你記錄了"+query("zone")+"傳送門的位置。\n"NOR);
         }
         
-	msg="你能传送的地方有";
+	msg="你能傳送的地方有";
 	for(j=1;j<7;j++)
 	{
 	        trans=query("trans_act"+j,me);
@@ -93,10 +93,10 @@ int do_flyto(string arg)
 	me=this_player();
 	obj=this_object();
 	
-        if( me->query_busy() ) return notify_fail("你正在忙乱中。\n");
-        if( me->is_fighting() ) return notify_fail("你正在战斗中。\n");
+        if( me->query_busy() ) return notify_fail("你正在忙亂中。\n");
+        if( me->is_fighting() ) return notify_fail("你正在戰鬥中。\n");
         
-        msg="你能传送的地方有";
+        msg="你能傳送的地方有";
         if( !arg )  {
 	        for(j=1;j<7;j++)
 	        {
@@ -112,17 +112,17 @@ int do_flyto(string arg)
 	        tell_object(me,HIY+msg+NOR+"。(flyto)\n");
 	        return 1;
 	}
-        if( !wizardp(me)&&me->distance(obj)>40 ) return notify_fail("请再靠近一点，40米以内。\n");
+        if( !wizardp(me)&&me->distance(obj)>40 ) return notify_fail("請再靠近一點，40米以內。\n");
 	
 	env = environment();
 	for(j=1;j<7;j++)
 	{
 	        trans=query("trans_act"+j,me);
-	        if( !mapp(trans) ) continue;//return notify_fail("你还没有开启这个区域的传送门。\n");
+	        if( !mapp(trans) ) continue;//return notify_fail("你還沒有開啟這個區域的傳送門。\n");
 		ks=keys(trans);
 		for(i=0;i<sizeof(ks);i++) 
 	        {
-	                if(member_array(arg,ks)==-1) continue;//return notify_fail("你还没有开启这个区域的传送门。\n");
+	                if(member_array(arg,ks)==-1) continue;//return notify_fail("你還沒有開啟這個區域的傳送門。\n");
 		 	
 		        delete_temp("moving_target",me);
 	                delete_temp("moving",me);
@@ -130,7 +130,7 @@ int do_flyto(string arg)
                         set("coor/y",trans[arg]["coor_y"],me);
                         set("coor/z",trans[arg]["coor_z"],me);
                         
- 	                tell_object(me,HIG"眨眼间你被传送到了"+HIY+arg+NOR+"。\n");
+ 	                tell_object(me,HIG"眨眼間你被傳送到了"+HIY+arg+NOR+"。\n");
  	                
  			if( arg=="rogoin"&&!query("generate/kennel",env) )
  		                env->generate_bandit("kennel");
@@ -153,7 +153,7 @@ int do_flyto(string arg)
 	
                 }
         }
-        return notify_fail("你还没有开启这个区域的传送门。\n");
+        return notify_fail("你還沒有開啟這個區域的傳送門。\n");
 }
 
 

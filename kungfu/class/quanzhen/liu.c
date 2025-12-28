@@ -10,14 +10,14 @@ mixed ask_skill1();
 
 void create()
 {
-        set_name("刘处玄", ({"liu chuxuan", "liu"}));
+        set_name("劉處玄", ({"liu chuxuan", "liu"}));
         set("gender", "男性");
         set("age", 38);
         set("class", "taoist");
-        set("nickname",WHT"长生子"NOR);
+        set("nickname",WHT"長生子"NOR);
         set("long",
-                "他就是全真三徒刘处玄刘真人，他身材瘦小，但顾盼间自有一\n"
-                "种威严气概。\n");
+                "他就是全真三徒劉處玄劉真人，他身材瘦小，但顧盼間自有一\n"
+                "種威嚴氣概。\n");
         set("attitude", "peaceful");
         set("shen_type",1);
         set("str", 30);
@@ -80,8 +80,8 @@ void create()
 
         set("book_count",1);
         set("inquiry", ([
-                "连环掌"     : (: ask_skill1 :),
-                "重阳连环掌" : (: ask_skill1 :),
+                "連環掌"     : (: ask_skill1 :),
+                "重陽連環掌" : (: ask_skill1 :),
         ]) );
 
         set("master_ob",3);
@@ -99,15 +99,15 @@ void attempt_apprentice(object ob)
 
         if ((int)ob->query_skill("quanzhen-xinfa",1) < 70 )
         {
-                command("say 你的本门内功心法火候不足,难以领略更高深的武功。");
+                command("say 你的本門內功心法火候不足,難以領略更高深的武功。");
                 return;
         }
         if( query("shen", ob)<6000 )
         {
-                command("say 多做一些行侠仗义的事情再说吧！。\n");
+                command("say 多做一些行俠仗義的事情再說吧！。\n");
                 return;
         }
-        command("say 好吧，我就收下你这个徒弟了。");
+        command("say 好吧，我就收下你這個徒弟了。");
         command("recruit "+query("id", ob));
 }
 
@@ -118,33 +118,33 @@ mixed ask_skill1()
         me = this_player();
 
         if( query("can_perform/chongyang-shenzhang/lian", me) )
-                return "这招我不是已经教会你了吗？";
+                return "這招我不是已經教會你了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "阁下与贫道素不相识，不知此话从何说起？";
+                return "閣下與貧道素不相識，不知此話從何說起？";
 
         if (me->query_skill("chongyang-shenzhang", 1) < 1)
-                return "你连重阳神掌都没学，何谈绝招可言？";
+                return "你連重陽神掌都沒學，何談絕招可言？";
 
         if( query("family/gongji", me)<100 )
-                return "你在我全真教内甚无作为，这招我暂时还不能传你。";
+                return "你在我全真教內甚無作為，這招我暫時還不能傳你。";
 
         if( query("shen", me)<10000 )
-                return "你的侠义正事还做得不够，这招我暂时还不能传你。";
+                return "你的俠義正事還做得不夠，這招我暫時還不能傳你。";
 
         if (me->query_skill("chongyang-shenzhang", 1) < 100)
-                return "你的重阳神掌不够娴熟，练高点再来吧。";
+                return "你的重陽神掌不夠嫻熟，練高點再來吧。";
 
         if (me->query_skill("force") < 120)
-                return "你的内功修为不够，修炼高后再来找我吧。";
+                return "你的內功修為不夠，修煉高後再來找我吧。";
 
-        message_sort(HIY "\n$n" HIY "眉头一皱，上下打量了$N" HIY "一番"
-                     "，当下更不答话，衣袖轻轻一抖，猛然大喝一声，顿时"
-                     "双掌纷飞，掌劲朝四面八方云贯而出，气势恢弘之极。"
+        message_sort(HIY "\n$n" HIY "眉頭一皺，上下打量了$N" HIY "一番"
+                     "，當下更不答話，衣袖輕輕一抖，猛然大喝一聲，頓時"
+                     "雙掌紛飛，掌勁朝四面八方雲貫而出，氣勢恢弘之極。"
                      "\n\n" NOR, me, this_object());
 
-        command("say 看懂了么？");
-        tell_object(me, HIC "你学会了「重阳连环掌」。\n" NOR);
+        command("say 看懂了麼？");
+        tell_object(me, HIC "你學會了「重陽連環掌」。\n" NOR);
         if (me->can_improve_skill("strike"))
                 me->improve_skill("strike", 1500000);
         if (me->can_improve_skill("chongyang-shenzhang"))

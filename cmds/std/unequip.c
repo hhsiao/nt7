@@ -18,9 +18,9 @@ int main(object me, string arg)
                 object *equipments = me->query_equipment_objects();
                 
                 if( !sizeof(equipments) )
-                        return notify_fail(pnoun(2, me)+"目前身上没有任何装备。\n");
+                        return notify_fail(pnoun(2, me)+"目前身上沒有任何裝備。\n");
 
-                msg = pnoun(2, me)+"目前身上的装备如下：\n";
+                msg = pnoun(2, me)+"目前身上的裝備如下：\n";
                 
                 foreach(ob in me->query_equipment_objects())
                         msg += "．"HIW"["NOR+me->query_equipping_part(ob)+HIW"] "+ob->query_idname()+"\n"NOR;
@@ -43,41 +43,41 @@ int main(object me, string arg)
                 {
                         part = me->query_equipping_part(ob);
                         if( me->unequip(ob, ref status) )
-                                msg("$ME卸除了装备在「"+part+"」部位上的"+ob->query_idname()+"。\n", me, 0, 1);
+                                msg("$ME卸除了裝備在「"+part+"」部位上的"+ob->query_idname()+"。\n", me, 0, 1);
                 }
                                 
                 return 1;
         }
 
         if( !objectp(ob = present(arg, me)) )
-                return notify_fail(pnoun(2, me)+"的身上并没有 "+arg+" 这个物品。\n");
+                return notify_fail(pnoun(2, me)+"的身上並沒有 "+arg+" 這個物品。\n");
 
         part = me->query_equipping_part(ob);
         if( !me->unequip(ob, ref status) )
         {
                 switch(status)
                 {
-                        // 1: 并无装备此物件
-                        // 2: 无法解除此项装备
+                        // 1: 並無裝備此物件
+                        // 2: 無法解除此項裝備
                         
                         // should not happen
-                        case 1: return notify_fail(pnoun(2, me)+"并未装备"+ob->query_idname()+"。\n"); break;
-                        case 2: return notify_fail(pnoun(2, me)+"无法卸除这项装备。\n"); break;
+                        case 1: return notify_fail(pnoun(2, me)+"並未裝備"+ob->query_idname()+"。\n"); break;
+                        case 2: return notify_fail(pnoun(2, me)+"無法卸除這項裝備。\n"); break;
                 }
         }
         else
-                msg("$ME卸除了装备在「"+part+"」部位上的"+ob->query_idname()+"。\n", me, ob, 1);
+                msg("$ME卸除了裝備在「"+part+"」部位上的"+ob->query_idname()+"。\n", me, ob, 1);
         return 1;
 }
 
 int help(object me)
 {
         string help = @HELP
-    卸除装备物品的指令，无论是武器、衣物、座骑、装饰品、团体武装都
-是利用此指令进行卸除装备的动作。
+    卸除裝備物品的指令，無論是武器、衣物、座騎、裝飾品、團體武裝都
+是利用此指令進行卸除裝備的動作。
 
-unequip '物品'           卸除装备某项物品
-unequip all              卸除装备所有物品
+unequip '物品'           卸除裝備某項物品
+unequip all              卸除裝備所有物品
 
 HELP;
         write(help);

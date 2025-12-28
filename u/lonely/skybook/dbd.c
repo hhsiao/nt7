@@ -34,9 +34,9 @@ void create()
 
 public string query_save_file() { return DATA_DIR "dbd"; }
 
-// 公共调用函数
-// 给定一个mapping ，值为数值，
-// 为该mapping 根据数值进行从高到低的排序，返回该mapping 的新序列
+// 公共調用函數
+// 給定一個mapping ，值為數值，
+// 為該mapping 根據數值進行從高到低的排序，返回該mapping 的新序列
 public string *tongji_mapping(mapping mp, int flag)
 {
         string key_mp;
@@ -50,7 +50,7 @@ public string *tongji_mapping(mapping mp, int flag)
                 
         if (! sizeof(mp))return temp_s1;
 
-        // 先将mp中的序列与值进行 值:序列 方式组合，然后对 值:序列 由大到小排序
+        // 先將mp中的序列與值進行 值:序列 方式組合，然後對 值:序列 由大到小排序
         result_mp = keys(mp);
 
         for (i = 0; i < sizeof(result_mp); i ++)
@@ -69,14 +69,14 @@ public string *tongji_mapping(mapping mp, int flag)
         return temp_s3;
 }
 
-// 得到允许登陆QQ列表
+// 得到允許登陸QQ列表
 string *get_permit_list()
 {
         restore();
         return query("permit_list");
 }
 
-// 得到拒绝登陆QQ列表
+// 得到拒絕登陸QQ列表
 string *get_deny_list()
 {
         restore();
@@ -109,7 +109,7 @@ void record_list(string qq, string s_type)
         return;
 }
 
-// 得到海龟刻字信息
+// 得到海龜刻字信息
 string query_crave()
 {
         string msg;
@@ -137,18 +137,18 @@ int do_crave(object me, string arg)
 {
         if (! arg)
         {
-                tell_object(me, "你要刻什么？\n");
+                tell_object(me, "你要刻什麼？\n");
                 return 1;
         }
 
         if (! me->query("luck_number"))
         {
-                tell_object(me, "你还没有注册呢！输入指令 help reg 查看注册信息！\n");
+                tell_object(me, "你還沒有註冊呢！輸入指令 help reg 查看註冊信息！\n");
                 return 1;
         }       
         if (sizeof(arg) > 60)
         {
-                tell_object(me, "你要雕刻的信息过长，不能超过三十个汉字或六十个字符！\n");
+                tell_object(me, "你要雕刻的信息過長，不能超過三十個漢字或六十個字符！\n");
                 return 1;
         }
 
@@ -156,7 +156,7 @@ int do_crave(object me, string arg)
         set("haigui/" + me->query("id") + "/name", filter_color(me->name()));
         save();
 
-        tell_object(me, HIG "你成功在万年海龟背上雕刻了信息！\n" NOR);
+        tell_object(me, HIG "你成功在萬年海龜背上雕刻了信息！\n" NOR);
         return 1;
 }
 
@@ -185,8 +185,8 @@ int delete_data(object me, string str)
         return 1;
 }
 
-// 统计总统含有SCB数量
-// flag = 1 统计总量，flag = 2统计有多少玩家还有SCB
+// 統計總統含有SCB數量
+// flag = 1 統計總量，flag = 2統計有多少玩家還有SCB
 public int get_scb_total(int flag)
 {
         mapping scb;
@@ -205,7 +205,7 @@ public int get_scb_total(int flag)
         for (i = 0; i < sizeof(key_scb); i ++)
         {
                 if (scb[key_scb[i]] < 1)continue;
-                // 巫师不统计
+                // 巫師不統計
                 if (key_scb[i] == "rcwiz" || key_scb[i] == "cdlove")continue;
                 
                 n ++;

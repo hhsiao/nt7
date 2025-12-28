@@ -1,6 +1,6 @@
 // This is player's own skill (Write by Lonely@nt2)
-// Create by 龙凤(Longfeng) at Wed Jul 22 01:02:59 2015
-// 龙凤神剑(longf-sword.c)
+// Create by 龍鳳(Longfeng) at Wed Jul 22 01:02:59 2015
+// 龍鳳神劍(longf-sword.c)
 
 #include <ansi.h>
 inherit SKILL;        
@@ -9,25 +9,25 @@ int is_invent_skill() { return 1; }
 
 mapping *action = ({
 // ZHAOSHI : 0
-([      "action" : "$N纵身一跃，手握$w,顿时一招「临」对准$n的$l斜斜刺出一剑",
+([      "action" : "$N縱身一躍，手握$w,頓時一招「臨」對準$n的$l斜斜刺出一劍",
 	"attack" : 260,
 	"damage" : 260,
 	"force" : 260,
 	"dodge" : 260,
 	"parry" : 260,
 	"lvl" : 100,
-	"damage_type" : "刺伤",
-	"skill_name" : "临"
+	"damage_type" : "刺傷",
+	"skill_name" : "臨"
  ]),
 // ZHAOSHI : 1
-([      "action" : "$N纵身一跃，手握$w,顿时一招「兵」对准$n的$l斜斜刺出一剑",
+([      "action" : "$N縱身一躍，手握$w,頓時一招「兵」對準$n的$l斜斜刺出一劍",
 	"attack" : 260,
 	"damage" : 260,
 	"force" : 260,
 	"dodge" : 260,
 	"parry" : 260,
 	"lvl" : 110,
-	"damage_type" : "刺伤",
+	"damage_type" : "刺傷",
 	"skill_name" : "兵"
  ]),
 // ZHAOSHI : 2
@@ -39,10 +39,10 @@ int valid_learn(object me)
         
         if( !objectp(weapon=query_temp("weapon", me) )
                  || query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
                 
         if( query("max_neili", me)<50 )
-                return notify_fail("你的内力太弱，无法练" + "龙凤神剑" + "。\n");
+                return notify_fail("你的內力太弱，無法練" + "龍鳳神劍" + "。\n");
                 
         return 1;
 }
@@ -91,13 +91,13 @@ int practice_skill(object me)
         object weapon; 
         if( !objectp(weapon=query_temp("weapon", me)) || 
                 query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");        
+                return notify_fail("你使用的武器不對。\n");        
         
         if( query("qi", me)<25 )
-                return notify_fail("你的体力不够了，休息一下再练吧。\n");
+                return notify_fail("你的體力不夠了，休息一下再練吧。\n");
                 
         if( query("neili", me)<3 )
-                return notify_fail("你的内力不够了，休息一下再练吧。\n");
+                return notify_fail("你的內力不夠了，休息一下再練吧。\n");
                 
         me->receive_damage("qi", 25);
         addn("neili", -3, me);
@@ -112,7 +112,7 @@ mixed hit_ob(object me, object victim, int damage)
         if (random(damage) > victim->query_str()) 
         {
                 result = ([ "damage" : damage ]);
-                result += ([ "msg" : HIW "你听到「喀嚓」一声轻响，已被$N的兵器所发杀气挫伤，$n顿时血冒三丈！！！\n" NOR ]);
+                result += ([ "msg" : HIW "你聽到「喀嚓」一聲輕響，已被$N的兵器所發殺氣挫傷，$n頓時血冒三丈！！！\n" NOR ]);
 
                 return result;
         }

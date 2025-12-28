@@ -5,11 +5,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "南湖边");
+        set("short", "南湖邊");
         set("long", @LONG
-这湖作椭园之形，大半部隐在花树丛中，东南西北尽是悬崖峭壁，只有刚
-爬下来的山坡比较最斜，其他各处决计无法攀上，湖畔生长着一丛丛的茶花，
-摇夷生姿。湖水清澈，闪着银光。
+這湖作橢園之形，大半部隱在花樹叢中，東南西北盡是懸崖峭壁，只有剛
+爬下來的山坡比較最斜，其他各處決計無法攀上，湖畔生長著一叢叢的茶花，
+搖夷生姿。湖水清澈，閃著銀光。
 LONG
         );
         set("resource/water", 1);
@@ -39,10 +39,10 @@ int do_drink(string arg)
         max_water=query("str", me)*10+100;
         if (current_water<max_water) {
             set("water", current_water+30, me);
-            message("vision", me->name()+"趴在湖边用手捧了一些水喝。\n"
+            message("vision", me->name()+"趴在湖邊用手捧了一些水喝。\n"
             , environment(me), ({me}) );
-            write("你喝了一口从山上瀑布流淌下来的湖水，甘美异常。\n");
+            write("你喝了一口從山上瀑布流淌下來的湖水，甘美異常。\n");
         }
-        else write("喝那么多的凉水，你不怕生病吗?\n");
+        else write("喝那麼多的涼水，你不怕生病嗎?\n");
         return 1;
 }

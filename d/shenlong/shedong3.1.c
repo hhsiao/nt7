@@ -4,7 +4,7 @@ void create()
 {
         set("short", "毒蛇窟");
         set("long",@LONG
-这是蛇洞内的毒蛇窟，只见四周满是毒蛇，恐怖非常。
+這是蛇洞內的毒蛇窟，只見四周滿是毒蛇，恐怖非常。
 LONG);
 
 	set("exits", ([

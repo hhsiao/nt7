@@ -7,7 +7,7 @@
 inherit F_DBASE;
 inherit F_CLEAN_UP;
 
-// 定义提供给外部调用的接口函数
+// 定義提供給外部調用的接口函數
 varargs public void bonus(object who, mapping b, int flag);
 varargs public void freequest_bonus(object who);
 varargs public void gift_bonus(object who, mapping b);
@@ -24,7 +24,7 @@ public void delay_battle_bonus(object who, mapping b);
 void create()
 {
         seteuid(getuid());
-        set("channel_id", "奖励精灵");
+        set("channel_id", "獎勵精靈");
 }
 
 // override set function
@@ -48,11 +48,11 @@ varargs mixed set(string idx, mixed para, object who)
                         old_lvl = query("level", who);
                         if( !old_lvl || old_lvl < 1 ) old_lvl = 1;
 
-                        // 等级封印
+                        // 等級封印
                         if( !UPDATE_D->can_improve_level(old_lvl) &&
                             para > to_int(pow(old_lvl, 3.0)*10000) )
                         {
-                                //tell_object(ob, HIR "由于你处于等级封印中，你的实战经验无法提升！\n" NOR);
+                                //tell_object(ob, HIR "由於你處於等級封印中，你的實戰經驗無法提升！\n" NOR);
                                 return;
                         }
 
@@ -77,7 +77,7 @@ varargs mixed set(string idx, mixed para, object who)
                                         set("yuanshen_level", 1, who);
                                         set("yuanshen/attack", 100, who);
                                         set("yuanshen/defense", 100, who);
-                                        tell_object(who, HIR "你冲破了瓶颈，元婴成长为元神，你可以修炼元神了！\n");
+                                        tell_object(who, HIR "你衝破了瓶頸，元嬰成長為元神，你可以修煉元神了！\n");
                                 }
 
                                 addn("ability", 4 * n, who);
@@ -85,12 +85,12 @@ varargs mixed set(string idx, mixed para, object who)
                                 addn("potential", 200 * n, who);
                                 addn("magic_points", 20 * n, who);
 
-                                tell_object(who, HIY "只见一道红光飞进你的体内，你的人物等级提升了！\n" +
-                                        "此次升级，你获得了" + chinese_number(4 * n) +
-                                        "点能力点、" + chinese_number(200 * n) +
-                                        "点潜能、" + chinese_number(20 * n) +
-                                        "点实战体会、" + chinese_number(20 * n) +
-                                        "点灵慧！\n" NOR);
+                                tell_object(who, HIY "只見一道紅光飛進你的體內，你的人物等級提升了！\n" +
+                                        "此次升級，你獲得了" + chinese_number(4 * n) +
+                                        "點能力點、" + chinese_number(200 * n) +
+                                        "點潛能、" + chinese_number(20 * n) +
+                                        "點實戰體會、" + chinese_number(20 * n) +
+                                        "點靈慧！\n" NOR);
 
                                 //UPDATE_D->improve_valid_level(who, now_lvl);
                         }
@@ -123,19 +123,19 @@ varargs mixed set(string idx, mixed para, object who)
                                 //addn("yuanshen/damage", n, who);
                                 //addn("yuanshen/armor", n, who);
 
-                                tell_object(who, HIY "只见一道红光飞进你的体内，你的元神等级提升了！\n" NOR);
+                                tell_object(who, HIY "只見一道紅光飛進你的體內，你的元神等級提升了！\n" NOR);
 
                                 if( now_lvl % 10 == 0 )
                                 {
-                                        message_vision(HIY "突然天空出现一道玄光与$N" HIY "身泛起的红光相接，$N" HIY "全体通红！\n" NOR, who);
+                                        message_vision(HIY "突然天空出現一道玄光與$N" HIY "身泛起的紅光相接，$N" HIY "全體通紅！\n" NOR, who);
                                         n = now_lvl / 10;
                                         s = old_lvl / 10;
                                         for( i=s+1;i<=n;i++ ) {
                                         switch( i )
                                         {
-                                        //case 0 : tell_object(who, HIY "你的元神等级提升到真元境界！\n" NOR);break;
-                                        case 1 : addn("energy", 1, who);tell_object(who, HIY "你的元神等级提升到引魂境界！\n" NOR);break;
-                                        case 2 : addn("energy", 2, who);tell_object(who, HIY "你的元神等级提升到元罡境界！\n" NOR);break;
+                                        //case 0 : tell_object(who, HIY "你的元神等級提升到真元境界！\n" NOR);break;
+                                        case 1 : addn("energy", 1, who);tell_object(who, HIY "你的元神等級提升到引魂境界！\n" NOR);break;
+                                        case 2 : addn("energy", 2, who);tell_object(who, HIY "你的元神等級提升到元罡境界！\n" NOR);break;
                                         case 3 :
                                                  addn("energy", 2, who);
                                                  addn("int", 2, who);
@@ -146,27 +146,27 @@ varargs mixed set(string idx, mixed para, object who)
                                                  addn("ys/str", 2, who);
                                                  addn("ys/con", 2, who);
                                                  addn("ys/dex", 2, who);
-                                                 tell_object(who, HIY "你的元神等级提升到阴阳境界！\n" NOR);
-                                                 tell_object(who, HIR "你的各项先天天赋都提高了２点！\n" NOR);
+                                                 tell_object(who, HIY "你的元神等級提升到陰陽境界！\n" NOR);
+                                                 tell_object(who, HIR "你的各項先天天賦都提高了２點！\n" NOR);
                                                  break;
-                                        case 4 : addn("energy", 3, who);tell_object(who, HIY "你的元神等级提升到神丹境界！\n" NOR);break;
-                                        case 5 : addn("energy", 3, who);tell_object(who, HIY "你的元神等级提升到神婴境界！\n" NOR);break;
+                                        case 4 : addn("energy", 3, who);tell_object(who, HIY "你的元神等級提升到神丹境界！\n" NOR);break;
+                                        case 5 : addn("energy", 3, who);tell_object(who, HIY "你的元神等級提升到神嬰境界！\n" NOR);break;
                                         case 6 :
                                                  addn("energy", 4, who);
                                                  set("yuanshen/avoid_weak", 10, who);
                                                  set("yuanshen/research_effect", 100, who);
-                                                 tell_object(who, HIY "你的元神等级提升到神通境界！\n" NOR);
-                                                 tell_object(who, HIY "你抵抗虚弱的能力提高了１０点！\n" NOR);
-                                                 tell_object(who, HIY "你对武功的研究效率提高了１００％！\n" NOR);
+                                                 tell_object(who, HIY "你的元神等級提升到神通境界！\n" NOR);
+                                                 tell_object(who, HIY "你抵抗虛弱的能力提高了１０點！\n" NOR);
+                                                 tell_object(who, HIY "你對武功的研究效率提高了１００％！\n" NOR);
                                                  break;
-                                        case 7 : addn("energy", 4, who);tell_object(who, HIY "你的元神等级提升到渡虚境界！\n" NOR);break;
-                                        case 8 : addn("energy", 5, who);tell_object(who, HIY "你的元神等级提升到神劫境界！\n" NOR);break;
+                                        case 7 : addn("energy", 4, who);tell_object(who, HIY "你的元神等級提升到渡虛境界！\n" NOR);break;
+                                        case 8 : addn("energy", 5, who);tell_object(who, HIY "你的元神等級提升到神劫境界！\n" NOR);break;
                                         case 9 :
                                                  addn("energy", 5, who);
                                                  set("yuanshen/immortal", 5, who);
                                                  //set("yuanshen/reduce_damage", 50, who);
-                                                 tell_object(who, HIY "你的元神等级提升到不灭境界！\n" NOR);
-                                                 tell_object(who, HIY "你的元神终于修炼成盘古真身神功！\n" NOR);
+                                                 tell_object(who, HIY "你的元神等級提升到不滅境界！\n" NOR);
+                                                 tell_object(who, HIY "你的元神終於修煉成盤古真身神功！\n" NOR);
 
                                                  my = who->query_entire_dbase();
                                                  spc_data = ([ "hermit" : 1 ]);
@@ -175,7 +175,7 @@ varargs mixed set(string idx, mixed para, object who)
                                                  spc_data += ([ skill : 1 ]);
                                                  */
                                                  files = reborn_skill;
-                                                 files -= keys(my["special_skill"]); // 去除转世技能重叠的bug
+                                                 files -= keys(my["special_skill"]); // 去除轉世技能重疊的bug
                                                  if( sizeof(files) > 0 )
                                                  {
                                                         skill = files[random(sizeof(files))];
@@ -188,11 +188,11 @@ varargs mixed set(string idx, mixed para, object who)
                                                         }
                                                  }
                                                  my["special_skill"] += spc_data;
-                                                 tell_object(who, HIY "由于元神修炼到不灭境界，你成功的激活了血脉力量及先天技能！\n" NOR);
+                                                 tell_object(who, HIY "由於元神修煉到不滅境界，你成功的激活了血脈力量及先天技能！\n" NOR);
                                                  break;
                                         default:
                                                  addn("yuanshen/immortal", 1, who);
-                                                 tell_object(who, HIY "你的盘古真身神功触发几率提升了１点！\n" NOR);
+                                                 tell_object(who, HIY "你的盤古真身神功觸發幾率提升了１點！\n" NOR);
                                                  break;
                                         }
                                     }
@@ -238,11 +238,11 @@ varargs mixed add(string prop, mixed data, object who)
                 return addn(prop, data, who);
 }
 
-// 延迟奖励：因为有时给出奖励的时候应该是在某些事件发生以后，
-// 但是在该事件发生时给与奖励更易于书写程序，所以奖励生成的
-// 地方在事件正在发生的时候，但是要让玩家看起来是在事件发生
-// 以后。比如杀人，人死亡的时候给与奖励是容易做的，但是我希
-// 望玩家在看到NPC 的死亡信息以后才看到奖励的信息，这时候就
+// 延遲獎勵：因為有時給出獎勵的時候應該是在某些事件發生以後，
+// 但是在該事件發生時給與獎勵更易於書寫程序，所以獎勵生成的
+// 地方在事件正在發生的時候，但是要讓玩家看起來是在事件發生
+// 以後。比如殺人，人死亡的時候給與獎勵是容易做的，但是我希
+// 望玩家在看到NPC 的死亡信息以後才看到獎勵的信息，這時候就
 // 用delay_bonus了。
 
 public void delay_bonus(object who, mapping b)
@@ -294,7 +294,7 @@ public void delay_boss_bonus(object who, mapping b)
 
 void special_bonus(object me, object who, mixed arg)
 {
-        // 随机奖励
+        // 隨機獎勵
         string *ob_list = ({
                 "/clone/gift/xiandan",
                 "/clone/gift/shenliwan",
@@ -316,8 +316,8 @@ void special_bonus(object me, object who, mixed arg)
         object ob;
 
         /*
-        message_vision("$n对$N微微一笑，道：干得不赖，辛苦"
-                       "了，正好我这里有点东西，你就拿去吧。\n",
+        message_vision("$n對$N微微一笑，道：幹得不賴，辛苦"
+                       "了，正好我這裡有點東西，你就拿去吧。\n",
                        who, me);
         */
 
@@ -326,25 +326,25 @@ void special_bonus(object me, object who, mixed arg)
         else
                 ob = new(ob_list[random(sizeof(ob_list))]);
         ob->move(who, 1);
-        tell_object(who, HIM "你获得了一" + query("unit", ob) + ob->name() +
+        tell_object(who, HIM "你獲得了一" + query("unit", ob) + ob->name() +
                         HIM "。\n" NOR);
 }
 
-// 门派任务的奖励
+// 門派任務的獎勵
 varargs public void bonus(object who, mapping b, int flag)
 {
-        int exp;                // 奖励的经验
-        int pot;                // 奖励的潜能
-        int mar;                // 奖励的实战体会
-        int shen;               // 奖励的神
-        int score;              // 奖励的江湖阅历
-        int weiwang;            // 奖励的江湖威望
-        int gongxian;           // 奖励的门派贡献
+        int exp;                // 獎勵的經驗
+        int pot;                // 獎勵的潛能
+        int mar;                // 獎勵的實戰體會
+        int shen;               // 獎勵的神
+        int score;              // 獎勵的江湖閱歷
+        int weiwang;            // 獎勵的江湖威望
+        int gongxian;           // 獎勵的門派貢獻
         int gold;
-        int pot_limit;          // 潜能的界限
-        int mar_limit;          // 实战体会的界限
-        int percent;            // 奖励的有效百分比
-        string msg;             // 奖励的描述信息
+        int pot_limit;          // 潛能的界限
+        int mar_limit;          // 實戰體會的界限
+        int percent;            // 獎勵的有效百分比
+        string msg;             // 獎勵的描述信息
         int yuanshen_exp;
         int warcraft_exp;
         object ob;
@@ -354,11 +354,11 @@ varargs public void bonus(object who, mapping b, int flag)
         int yuanshen_level;
         int vip_level;
 
-        //蛊虫
+        //蠱蟲
         if (who->is_worm2())
                 who = who->owner();
 
-        // 获得奖励的百分比
+        // 獲得獎勵的百分比
         percent = b["percent"];
         if( percent < 1 )
                 percent = 100;
@@ -374,7 +374,7 @@ varargs public void bonus(object who, mapping b, int flag)
         gongxian = b["gongxian"] * percent / 100;
         gold = b["gold"] * percent / 100;
 
-        // 玩家经验太高，削弱奖励。
+        // 玩家經驗太高，削弱獎勵。
         /*
         if( query("combat_exp", who) >= 2160000000 )
         {
@@ -484,7 +484,7 @@ varargs public void bonus(object who, mapping b, int flag)
                         mar = 1;
         }
 
-        // 魔幻兽
+        // 魔幻獸
         if( exp > 100 && intp(rate = query("env/share_exp", who)) &&
             query("warcraft/file", who) && objectp(ob=find_object(query("warcraft/file", who))) )
         {
@@ -517,28 +517,28 @@ varargs public void bonus(object who, mapping b, int flag)
 
         // 生成提示信息
         if (stringp(msg = b["prompt"]))
-                msg = HIG + msg + HIG "，你获得了";
+                msg = HIG + msg + HIG "，你獲得了";
         else
-                msg = HIG "通过这次锻炼，你获得了";
+                msg = HIG "通過這次鍛鍊，你獲得了";
 
-        if (exp > 0) msg += chinese_number(exp) + "点经验、";
-        if (pot > 0) msg += chinese_number(pot) + "点潜能、";
-        if (mar > 0) msg += chinese_number(mar) + "点实战体会、";
-        if (shen > 0) msg += chinese_number(shen) + "点正神、";
-        if (shen < 0) msg += chinese_number(-shen) + "点负神、";
-        if (score > 0) msg += chinese_number(score) + "点江湖阅历、";
-        if (weiwang > 0) msg += chinese_number(weiwang) + "点威望、";
-        if (gongxian > 0) msg += chinese_number(gongxian) + "点门派功绩、";
-        if (gold > 0) msg += chinese_number(gold) + "两黄金、";
+        if (exp > 0) msg += chinese_number(exp) + "點經驗、";
+        if (pot > 0) msg += chinese_number(pot) + "點潛能、";
+        if (mar > 0) msg += chinese_number(mar) + "點實戰體會、";
+        if (shen > 0) msg += chinese_number(shen) + "點正神、";
+        if (shen < 0) msg += chinese_number(-shen) + "點負神、";
+        if (score > 0) msg += chinese_number(score) + "點江湖閱歷、";
+        if (weiwang > 0) msg += chinese_number(weiwang) + "點威望、";
+        if (gongxian > 0) msg += chinese_number(gongxian) + "點門派功績、";
+        if (gold > 0) msg += chinese_number(gold) + "兩黃金、";
 
         if( ob )
         {
-                msg += ob->name() + "获得经验" + chinese_number(warcraft_exp) + "点、";
+                msg += ob->name() + "獲得經驗" + chinese_number(warcraft_exp) + "點、";
         }
 
         if( yuanshen_level )
         {
-                msg += "元神获得经验" + chinese_number(yuanshen_exp) + "点、";
+                msg += "元神獲得經驗" + chinese_number(yuanshen_exp) + "點、";
         }
 
         msg += "能力得到了提升。\n" NOR;
@@ -555,21 +555,21 @@ varargs public void bonus(object who, mapping b, int flag)
         addn("balance", gold*10000, who);
 }
 
-// 普通工作任务的奖励
-varargs public void work_bonus(object who, mapping b, int flag, string type/*任务类型,为活动精灵预留接口*/)
+// 普通工作任務的獎勵
+varargs public void work_bonus(object who, mapping b, int flag, string type/*任務類型,為活動精靈預留接口*/)
 {
-        int exp;                // 奖励的经验
-        int pot;                // 奖励的潜能
-        int mar;                // 奖励的实战体会
-        int shen;               // 奖励的神
-        int score;              // 奖励的江湖阅历
-        int weiwang;            // 奖励的江湖威望
-        int gongxian;           // 奖励的门派贡献
+        int exp;                // 獎勵的經驗
+        int pot;                // 獎勵的潛能
+        int mar;                // 獎勵的實戰體會
+        int shen;               // 獎勵的神
+        int score;              // 獎勵的江湖閱歷
+        int weiwang;            // 獎勵的江湖威望
+        int gongxian;           // 獎勵的門派貢獻
         int gold;
-        // int pot_limit;          // 潜能的界限
-        // int mar_limit;          // 实战体会的界限
-        int percent;            // 奖励的有效百分比
-        string msg;             // 奖励的描述信息
+        // int pot_limit;          // 潛能的界限
+        // int mar_limit;          // 實戰體會的界限
+        int percent;            // 獎勵的有效百分比
+        string msg;             // 獎勵的描述信息
         int yuanshen_exp;
         int warcraft_exp;
         object ob;
@@ -579,11 +579,11 @@ varargs public void work_bonus(object who, mapping b, int flag, string type/*任
         int yuanshen_level;
         int vip_level;
 
-        //蛊虫
+        //蠱蟲
         if (who->is_worm2())
                 who = who->owner();
 
-        // 获得奖励的百分比
+        // 獲得獎勵的百分比
         percent = b["percent"];
         if( percent < 1 )
                 percent = 100;
@@ -599,7 +599,7 @@ varargs public void work_bonus(object who, mapping b, int flag, string type/*任
         gongxian = b["gongxian"] * percent / 100;
         gold = b["gold"] * percent / 100;
 
-        // 玩家经验太高，削弱奖励。
+        // 玩家經驗太高，削弱獎勵。
         /*
         if( query("combat_exp", who) >= 2160000000 )
         {
@@ -710,7 +710,7 @@ varargs public void work_bonus(object who, mapping b, int flag, string type/*任
         }
         */
 
-        // 魔幻兽
+        // 魔幻獸
         if( exp > 100 && intp(rate = query("env/share_exp", who)) &&
             query("warcraft/file", who) && objectp(ob=find_object(query("warcraft/file", who))) )
         {
@@ -741,28 +741,28 @@ varargs public void work_bonus(object who, mapping b, int flag, string type/*任
 
         // 生成提示信息
         if (stringp(msg = b["prompt"]))
-                msg = HIC "\n" + msg + HIC "，你获得了";
+                msg = HIC "\n" + msg + HIC "，你獲得了";
         else
-                msg = HIC "\n通过这次锻炼，你获得了";
+                msg = HIC "\n通過這次鍛鍊，你獲得了";
 
-        if (exp > 0) msg += chinese_number(exp) + "点经验、";
-        if (pot > 0) msg += chinese_number(pot) + "点潜能、";
-        if (mar > 0) msg += chinese_number(mar) + "点实战体会、";
-        if (shen > 0) msg += chinese_number(shen) + "点正神、";
-        if (shen < 0) msg += chinese_number(-shen) + "点负神、";
-        if (score > 0) msg += chinese_number(score) + "点江湖阅历、";
-        if (weiwang > 0) msg += chinese_number(weiwang) + "点威望、";
-        if (gongxian > 0) msg += chinese_number(gongxian) + "点门派功绩、";
-        if (gold > 0) msg += chinese_number(gold) + "两黄金、";
+        if (exp > 0) msg += chinese_number(exp) + "點經驗、";
+        if (pot > 0) msg += chinese_number(pot) + "點潛能、";
+        if (mar > 0) msg += chinese_number(mar) + "點實戰體會、";
+        if (shen > 0) msg += chinese_number(shen) + "點正神、";
+        if (shen < 0) msg += chinese_number(-shen) + "點負神、";
+        if (score > 0) msg += chinese_number(score) + "點江湖閱歷、";
+        if (weiwang > 0) msg += chinese_number(weiwang) + "點威望、";
+        if (gongxian > 0) msg += chinese_number(gongxian) + "點門派功績、";
+        if (gold > 0) msg += chinese_number(gold) + "兩黃金、";
 
         if( ob )
         {
-                msg += ob->name() + "获得经验" + chinese_number(warcraft_exp) + "点、";
+                msg += ob->name() + "獲得經驗" + chinese_number(warcraft_exp) + "點、";
         }
 
         if( yuanshen_level )
         {
-                msg += "元神获得经验" + chinese_number(yuanshen_exp) + "点、";
+                msg += "元神獲得經驗" + chinese_number(yuanshen_exp) + "點、";
         }
 
         msg += "能力得到了提升。\n\n" NOR;
@@ -779,15 +779,15 @@ varargs public void work_bonus(object who, mapping b, int flag, string type/*任
         addn("balance", gold*10000, who);
 }
 
-// 中断性质自由任务的奖励
+// 中斷性質自由任務的獎勵
 varargs public void freequest_bonus(object who)
 {
         object gift;
-        int quest;              // 当前任务数量
-        int exp;                // 奖励的经验
-        int pot;                // 奖励的潜能
-        int mar;                // 奖励的实战体会
-        string msg;             // 奖励的描述信息
+        int quest;              // 當前任務數量
+        int exp;                // 獎勵的經驗
+        int pot;                // 獎勵的潛能
+        int mar;                // 獎勵的實戰體會
+        string msg;             // 獎勵的描述信息
         int yuanshen_exp;
         int warcraft_exp;
         object ob;
@@ -797,7 +797,7 @@ varargs public void freequest_bonus(object who)
         int yuanshen_level;
         int vip_level;
 
-        //蛊虫
+        //蠱蟲
         if (who->is_worm2())
                 who = who->owner();
 
@@ -807,7 +807,7 @@ varargs public void freequest_bonus(object who)
         quest *= 20;
         exp = quest + random(quest) + 5000;
 
-        // 因为获得奖励较多且无法累及中断任务，所以暂时不做
+        // 因為獲得獎勵較多且無法累及中斷任務，所以暫時不做
         // 上限的限制。
         pot = exp / 3;
         mar = random(quest / 2) + 500;
@@ -888,7 +888,7 @@ varargs public void freequest_bonus(object who)
             (who->query_family() && FAMILY_D->query_family_efficient(who->query_family(), "mar")) )
                 mar *= 2;
 
-        // 魔幻兽
+        // 魔幻獸
         if( exp > 100 && intp(rate = query("env/share_exp", who)) &&
             query("warcraft/file", who) && objectp(ob=find_object(query("warcraft/file", who))) )
         {
@@ -917,20 +917,20 @@ varargs public void freequest_bonus(object who)
                 exp -= yuanshen_exp;
         }
 
-        msg = HIC "\n你在这次的历练过程中，对武学似乎又"
-              "有了新的突破。你获得了" +
-              chinese_number(exp) + "点经验、" +
-              chinese_number(pot) + "点潜能、" +
-              chinese_number(mar) + "点实战体会、";
+        msg = HIC "\n你在這次的歷練過程中，對武學似乎又"
+              "有了新的突破。你獲得了" +
+              chinese_number(exp) + "點經驗、" +
+              chinese_number(pot) + "點潛能、" +
+              chinese_number(mar) + "點實戰體會、";
 
         if( ob )
         {
-                msg += ob->name() + "获得经验" + chinese_number(warcraft_exp) + "点、";
+                msg += ob->name() + "獲得經驗" + chinese_number(warcraft_exp) + "點、";
         }
 
         if( yuanshen_level )
         {
-                msg += "元神获得经验" + chinese_number(yuanshen_exp) + "点。";
+                msg += "元神獲得經驗" + chinese_number(yuanshen_exp) + "點。";
         }
 
         msg += "能力得到了提升。\n" NOR;
@@ -945,36 +945,36 @@ varargs public void freequest_bonus(object who)
         if (query("quest/freequest", who) < 1)
         {
                 delete("quest", who);
-                message_sort(HIW "\n正在这时，只见一位" +
+                message_sort(HIW "\n正在這時，只見一位" +
                              query("family/family_name", who)+
-                             "弟子急急忙忙赶到$N" HIW "身边，说"
-                             "道：“原来你在这里啊，师傅正到处派"
-                             "人找你呢。听说有要紧事交给你办，你"
-                             "赶快回去吧！这个包裹是师傅让我转交"
-                             "给你的。”\n" NOR, who);
+                             "弟子急急忙忙趕到$N" HIW "身邊，說"
+                             "道：“原來你在這裡啊，師傅正到處派"
+                             "人找你呢。聽說有要緊事交給你辦，你"
+                             "趕快回去吧！這個包裹是師傅讓我轉交"
+                             "給你的。”\n" NOR, who);
 
                 message_sort("\n"+query("family/family_name", who)+
-                             "弟子拿出一个包裹递给$N。\n\n" +
+                             "弟子拿出一個包裹遞給$N。\n\n" +
                              query("family/family_name", who)+
-                             "弟子急急忙忙地离开了。\n" NOR, who);
+                             "弟子急急忙忙地離開了。\n" NOR, who);
 
                 gift = new("/clone/misc/bag");
                 gift->move(who, 1);
         }
 }
 
-// 特殊事件的奖励
+// 特殊事件的獎勵
 varargs public void gift_bonus(object who, mapping b)
 {
-        int exp;                // 奖励的经验
-        int pot;                // 奖励的潜能
-        int mar;                // 奖励的实战体会
-        int score;              // 奖励的江湖阅历
-        int weiwang;            // 奖励的江湖威望
-        int gongxian;           // 奖励的门派贡献
-        int percent;            // 奖励的有效百分比
-        string msg;             // 奖励的描述信息
-        string temp;            // 进程记录信息
+        int exp;                // 獎勵的經驗
+        int pot;                // 獎勵的潛能
+        int mar;                // 獎勵的實戰體會
+        int score;              // 獎勵的江湖閱歷
+        int weiwang;            // 獎勵的江湖威望
+        int gongxian;           // 獎勵的門派貢獻
+        int percent;            // 獎勵的有效百分比
+        string msg;             // 獎勵的描述信息
+        string temp;            // 進程記錄信息
         int quest_times;
         int yuanshen_exp;
         int warcraft_exp;
@@ -984,11 +984,11 @@ varargs public void gift_bonus(object who, mapping b)
         int yuanshen_level;
         int vip_level;
 
-        //蛊虫
+        //蠱蟲
         if (who->is_worm2())
                 who = who->owner();
 
-        // 获得奖励的百分比
+        // 獲得獎勵的百分比
         percent = b["percent"];
 
         if( percent < 1 )
@@ -996,7 +996,7 @@ varargs public void gift_bonus(object who, mapping b)
 
         if( reborn = query("reborn/times", who) ) percent /= 2;
 
-        // 进程记录，针对第一次完成有奖励的情节
+        // 進程記錄，針對第一次完成有獎勵的情節
         temp = b["temp"];
 
         exp = b["exp"] * percent / 100;
@@ -1068,7 +1068,7 @@ varargs public void gift_bonus(object who, mapping b)
             (who->query_family() && FAMILY_D->query_family_efficient(who->query_family(), "mar")) )
                 mar *= 2;
 
-       // 魔幻兽
+       // 魔幻獸
         if( exp > 100 && intp(rate = query("env/share_exp", who)) &&
             query("warcraft/file", who) && objectp(ob=find_object(query("warcraft/file", who))) )
         {
@@ -1097,10 +1097,10 @@ varargs public void gift_bonus(object who, mapping b)
                 exp -= yuanshen_exp;
         }
 
-        // 生成谣言信息
+        // 生成謠言信息
         if (stringp(msg = b["rumor"]))
         {
-                shout(HIR "【武林传闻】" NOR + WHT "听说" +
+                shout(HIR "【武林傳聞】" NOR + WHT "聽說" +
                       who->name()+WHT"["+query("id", who)+
                       WHT "]" + msg + WHT "。\n" NOR);
         }
@@ -1109,29 +1109,29 @@ varargs public void gift_bonus(object who, mapping b)
         {
                 // 生成提示信息
                 if (stringp(msg = b["prompt"]))
-                        msg = HIW "\n" + msg + HIW "，你获得了";
+                        msg = HIW "\n" + msg + HIW "，你獲得了";
                 else
-                        msg = HIW "\n通过此次经历，你获得了";
+                        msg = HIW "\n通過此次經歷，你獲得了";
 
-                // 记录下进程
+                // 記錄下進程
                 if (stringp(temp))
                         addn(temp, 1, who);
 
-                if (exp > 0) msg += chinese_number(exp) + "点经验、";
-                if (pot > 0) msg += chinese_number(pot) + "点潜能、";
-                if (mar > 0) msg += chinese_number(mar) + "点实战体会、";
-                if (score > 0) msg += chinese_number(score) + "点江湖阅历、";
-                if (weiwang > 0) msg += chinese_number(weiwang) + "点江湖威望、";
-                if (gongxian > 0) msg += chinese_number(gongxian) + "点门派功绩、";
+                if (exp > 0) msg += chinese_number(exp) + "點經驗、";
+                if (pot > 0) msg += chinese_number(pot) + "點潛能、";
+                if (mar > 0) msg += chinese_number(mar) + "點實戰體會、";
+                if (score > 0) msg += chinese_number(score) + "點江湖閱歷、";
+                if (weiwang > 0) msg += chinese_number(weiwang) + "點江湖威望、";
+                if (gongxian > 0) msg += chinese_number(gongxian) + "點門派功績、";
 
                 if( ob )
                 {
-                        msg += ob->name() + "获得经验" + chinese_number(warcraft_exp) + "点、";
+                        msg += ob->name() + "獲得經驗" + chinese_number(warcraft_exp) + "點、";
                 }
 
                 if( yuanshen_level )
                 {
-                        msg += "元神获得经验" + chinese_number(yuanshen_exp) + "点、";
+                        msg += "元神獲得經驗" + chinese_number(yuanshen_exp) + "點、";
                 }
                 msg += "能力得到了提升。\n" NOR;
                 tell_object(who, sort_msg(msg));
@@ -1148,18 +1148,18 @@ varargs public void gift_bonus(object who, mapping b)
 
 varargs public void war_bonus(object who, mapping b)
 {
-        int exp;                // 奖励的经验
-        int pot;                // 奖励的潜能
-        int mar;                // 奖励的实战体会
-        int shen;               // 奖励的神
-        int score;              // 奖励的江湖阅历
-        int weiwang;            // 奖励的江湖威望
-        int gongxian;           // 奖励的门派贡献
+        int exp;                // 獎勵的經驗
+        int pot;                // 獎勵的潛能
+        int mar;                // 獎勵的實戰體會
+        int shen;               // 獎勵的神
+        int score;              // 獎勵的江湖閱歷
+        int weiwang;            // 獎勵的江湖威望
+        int gongxian;           // 獎勵的門派貢獻
         int gold;
-        // int pot_limit;          // 潜能的界限
-        // int mar_limit;          // 实战体会的界限
-        int percent;            // 奖励的有效百分比
-        string msg;             // 奖励的描述信息
+        // int pot_limit;          // 潛能的界限
+        // int mar_limit;          // 實戰體會的界限
+        int percent;            // 獎勵的有效百分比
+        string msg;             // 獎勵的描述信息
         int yuanshen_exp;
         int warcraft_exp;
         object ob;
@@ -1169,16 +1169,16 @@ varargs public void war_bonus(object who, mapping b)
         int yuanshen_level;
         int vip_level;
 
-        //蛊虫
+        //蠱蟲
         if (who->is_worm2())
                 who = who->owner();
 
-        // 获得奖励的百分比
+        // 獲得獎勵的百分比
         percent = b["percent"];
         if( percent < 1 )
                 percent = 100;
 
-        // 转世后奖励大幅度降低，转世奖励高是为了新人适应这里
+        // 轉世後獎勵大幅度降低，轉世獎勵高是為了新人適應這裡
         if( reborn = query("reborn/times", who) ) percent /= 4;
 
         exp = b["exp"] * percent / 100;
@@ -1190,7 +1190,7 @@ varargs public void war_bonus(object who, mapping b)
         gongxian = b["gongxian"] * percent / 100;
         gold = b["gold"] * percent / 100;
 
-        // 玩家经验太高，削弱奖励。
+        // 玩家經驗太高，削弱獎勵。
         /*
         if( query("combat_exp", who) >= 2160000000 )
         {
@@ -1281,7 +1281,7 @@ varargs public void war_bonus(object who, mapping b)
             (who->query_family() && FAMILY_D->query_family_efficient(who->query_family(), "mar")) )
                 mar *= 2;
 
-        // 魔幻兽
+        // 魔幻獸
         if( exp > 100 && intp(rate = query("env/share_exp", who)) &&
             query("warcraft/file", who) && objectp(ob=find_object(query("warcraft/file", who))) )
         {
@@ -1312,28 +1312,28 @@ varargs public void war_bonus(object who, mapping b)
 
         // 生成提示信息
         if (stringp(msg = b["prompt"]))
-                msg = HIG + msg + HIG "，你获得了";
+                msg = HIG + msg + HIG "，你獲得了";
         else
-                msg = HIG "通过这次锻炼，你获得了";
+                msg = HIG "通過這次鍛鍊，你獲得了";
 
-        if (exp > 0) msg += chinese_number(exp) + "点经验、";
-        if (pot > 0) msg += chinese_number(pot) + "点潜能、";
-        if (mar > 0) msg += chinese_number(mar) + "点实战体会、";
-        if (shen > 0) msg += chinese_number(shen) + "点正神、";
-        if (shen < 0) msg += chinese_number(-shen) + "点负神、";
-        if (score > 0) msg += chinese_number(score) + "点江湖阅历、";
-        if (weiwang > 0) msg += chinese_number(weiwang) + "点威望、";
-        if (gongxian > 0) msg += chinese_number(gongxian) + "点门派功绩、";
-        if (gold > 0) msg += chinese_number(gold) + "两黄金、";
+        if (exp > 0) msg += chinese_number(exp) + "點經驗、";
+        if (pot > 0) msg += chinese_number(pot) + "點潛能、";
+        if (mar > 0) msg += chinese_number(mar) + "點實戰體會、";
+        if (shen > 0) msg += chinese_number(shen) + "點正神、";
+        if (shen < 0) msg += chinese_number(-shen) + "點負神、";
+        if (score > 0) msg += chinese_number(score) + "點江湖閱歷、";
+        if (weiwang > 0) msg += chinese_number(weiwang) + "點威望、";
+        if (gongxian > 0) msg += chinese_number(gongxian) + "點門派功績、";
+        if (gold > 0) msg += chinese_number(gold) + "兩黃金、";
 
         if( ob )
         {
-                msg += ob->name() + "获得经验" + chinese_number(warcraft_exp) + "点、";
+                msg += ob->name() + "獲得經驗" + chinese_number(warcraft_exp) + "點、";
         }
 
         if( yuanshen_level )
         {
-                msg += "元神获得经验" + chinese_number(yuanshen_exp) + "点、";
+                msg += "元神獲得經驗" + chinese_number(yuanshen_exp) + "點、";
         }
 
         msg += "能力得到了提升。\n" NOR;
@@ -1350,21 +1350,21 @@ varargs public void war_bonus(object who, mapping b)
         addn("balance", gold*10000, who);
 }
 
-// BOSS任务的奖励
+// BOSS任務的獎勵
 varargs public void boss_bonus(object who, mapping b, int flag)
 {
-        int exp;                // 奖励的经验
-        int pot;                // 奖励的潜能
-        int mar;                // 奖励的实战体会
-        int shen;               // 奖励的神
-        int score;              // 奖励的江湖阅历
-        int weiwang;            // 奖励的江湖威望
-        int gongxian;           // 奖励的门派贡献
+        int exp;                // 獎勵的經驗
+        int pot;                // 獎勵的潛能
+        int mar;                // 獎勵的實戰體會
+        int shen;               // 獎勵的神
+        int score;              // 獎勵的江湖閱歷
+        int weiwang;            // 獎勵的江湖威望
+        int gongxian;           // 獎勵的門派貢獻
         int gold;
-        int pot_limit;          // 潜能的界限
-        int mar_limit;          // 实战体会的界限
-        int percent;            // 奖励的有效百分比
-        string msg;             // 奖励的描述信息
+        int pot_limit;          // 潛能的界限
+        int mar_limit;          // 實戰體會的界限
+        int percent;            // 獎勵的有效百分比
+        string msg;             // 獎勵的描述信息
         int yuanshen_exp;
         int warcraft_exp;
         object ob;
@@ -1374,11 +1374,11 @@ varargs public void boss_bonus(object who, mapping b, int flag)
         int yuanshen_level;
         int vip_level;
 
-        //蛊虫
+        //蠱蟲
         if (who->is_worm2())
                 who = who->owner();
 
-        // 获得奖励的百分比
+        // 獲得獎勵的百分比
         percent = b["percent"];
         if( percent < 1 )
                 percent = 100;
@@ -1395,7 +1395,7 @@ varargs public void boss_bonus(object who, mapping b, int flag)
         gold = b["gold"] * percent / 100;
         if( !gold || gold < 50 ) gold = 50;
 
-        // 玩家经验太高，削弱奖励。
+        // 玩家經驗太高，削弱獎勵。
         /*
         if( query("combat_exp", who) >= 2160000000 )
         {
@@ -1506,7 +1506,7 @@ varargs public void boss_bonus(object who, mapping b, int flag)
                         mar = 1;
         }
 
-        // 魔幻兽
+        // 魔幻獸
         if( exp > 100 && intp(rate = query("env/share_exp", who)) &&
             query("warcraft/file", who) && objectp(ob=find_object(query("warcraft/file", who))) )
         {
@@ -1537,28 +1537,28 @@ varargs public void boss_bonus(object who, mapping b, int flag)
 
         // 生成提示信息
         if (stringp(msg = b["prompt"]))
-                msg = HIG + msg + HIG "，你获得了";
+                msg = HIG + msg + HIG "，你獲得了";
         else
-                msg = HIG "通过这次锻炼，你获得了";
+                msg = HIG "通過這次鍛鍊，你獲得了";
 
-        if (exp > 0) msg += chinese_number(exp) + "点经验、";
-        if (pot > 0) msg += chinese_number(pot) + "点潜能、";
-        if (mar > 0) msg += chinese_number(mar) + "点实战体会、";
-        if (shen > 0) msg += chinese_number(shen) + "点正神、";
-        if (shen < 0) msg += chinese_number(-shen) + "点负神、";
-        if (score > 0) msg += chinese_number(score) + "点江湖阅历、";
-        if (weiwang > 0) msg += chinese_number(weiwang) + "点威望、";
-        if (gongxian > 0) msg += chinese_number(gongxian) + "点门派功绩、";
-        if (gold > 0) msg += chinese_number(gold) + "两黄金、";
+        if (exp > 0) msg += chinese_number(exp) + "點經驗、";
+        if (pot > 0) msg += chinese_number(pot) + "點潛能、";
+        if (mar > 0) msg += chinese_number(mar) + "點實戰體會、";
+        if (shen > 0) msg += chinese_number(shen) + "點正神、";
+        if (shen < 0) msg += chinese_number(-shen) + "點負神、";
+        if (score > 0) msg += chinese_number(score) + "點江湖閱歷、";
+        if (weiwang > 0) msg += chinese_number(weiwang) + "點威望、";
+        if (gongxian > 0) msg += chinese_number(gongxian) + "點門派功績、";
+        if (gold > 0) msg += chinese_number(gold) + "兩黃金、";
 
         if( ob )
         {
-                msg += ob->name() + "获得经验" + chinese_number(warcraft_exp) + "点、";
+                msg += ob->name() + "獲得經驗" + chinese_number(warcraft_exp) + "點、";
         }
 
         if( yuanshen_level )
         {
-                msg += "元神获得经验" + chinese_number(yuanshen_exp) + "点、";
+                msg += "元神獲得經驗" + chinese_number(yuanshen_exp) + "點、";
         }
 
         msg += "能力得到了提升。\n" NOR;
@@ -1575,21 +1575,21 @@ varargs public void boss_bonus(object who, mapping b, int flag)
         addn("balance", gold*10000, who);
 }
 
-// 副本任务的奖励
+// 副本任務的獎勵
 varargs public void fuben_bonus(object who, mapping b, int flag)
 {
-        int exp;                // 奖励的经验
-        int pot;                // 奖励的潜能
-        int mar;                // 奖励的实战体会
-        int shen;               // 奖励的神
-        int score;              // 奖励的江湖阅历
-        int weiwang;            // 奖励的江湖威望
-        int gongxian;           // 奖励的门派贡献
+        int exp;                // 獎勵的經驗
+        int pot;                // 獎勵的潛能
+        int mar;                // 獎勵的實戰體會
+        int shen;               // 獎勵的神
+        int score;              // 獎勵的江湖閱歷
+        int weiwang;            // 獎勵的江湖威望
+        int gongxian;           // 獎勵的門派貢獻
         int gold;
-        int pot_limit;          // 潜能的界限
-        int mar_limit;          // 实战体会的界限
-        int percent;            // 奖励的有效百分比
-        string msg;             // 奖励的描述信息
+        int pot_limit;          // 潛能的界限
+        int mar_limit;          // 實戰體會的界限
+        int percent;            // 獎勵的有效百分比
+        string msg;             // 獎勵的描述信息
         int yuanshen_exp;
         int warcraft_exp;
         object ob;
@@ -1599,11 +1599,11 @@ varargs public void fuben_bonus(object who, mapping b, int flag)
         int yuanshen_level;
         int vip_level;
 
-        //蛊虫
+        //蠱蟲
         if (who->is_worm2())
                 who = who->owner();
 
-        // 获得奖励的百分比
+        // 獲得獎勵的百分比
         percent = b["percent"];
         if( percent < 1 )
                 percent = 100;
@@ -1619,7 +1619,7 @@ varargs public void fuben_bonus(object who, mapping b, int flag)
         gongxian = b["gongxian"] * percent / 100;
         gold = b["gold"] * percent / 100;
 
-        // 玩家经验太高，削弱奖励。
+        // 玩家經驗太高，削弱獎勵。
         /*
         if( query("combat_exp", who) >= 2160000000 )
         {
@@ -1728,7 +1728,7 @@ varargs public void fuben_bonus(object who, mapping b, int flag)
                         mar = 1;
         }
 
-        // 魔幻兽
+        // 魔幻獸
         if( exp > 100 && intp(rate = query("env/share_exp", who)) &&
             query("warcraft/file", who) && objectp(ob=find_object(query("warcraft/file", who))) )
         {
@@ -1759,28 +1759,28 @@ varargs public void fuben_bonus(object who, mapping b, int flag)
 
         // 生成提示信息
         if (stringp(msg = b["prompt"]))
-                msg = HIG + msg + HIG "，你获得了";
+                msg = HIG + msg + HIG "，你獲得了";
         else
-                msg = HIG "通过这次锻炼，你获得了";
+                msg = HIG "通過這次鍛鍊，你獲得了";
 
-        if (exp > 0) msg += chinese_number(exp) + "点经验、";
-        if (pot > 0) msg += chinese_number(pot) + "点潜能、";
-        if (mar > 0) msg += chinese_number(mar) + "点实战体会、";
-        if (shen > 0) msg += chinese_number(shen) + "点正神、";
-        if (shen < 0) msg += chinese_number(-shen) + "点负神、";
-        if (score > 0) msg += chinese_number(score) + "点江湖阅历、";
-        if (weiwang > 0) msg += chinese_number(weiwang) + "点威望、";
-        if (gongxian > 0) msg += chinese_number(gongxian) + "点门派功绩、";
-        if (gold > 0) msg += chinese_number(gold) + "两黄金、";
+        if (exp > 0) msg += chinese_number(exp) + "點經驗、";
+        if (pot > 0) msg += chinese_number(pot) + "點潛能、";
+        if (mar > 0) msg += chinese_number(mar) + "點實戰體會、";
+        if (shen > 0) msg += chinese_number(shen) + "點正神、";
+        if (shen < 0) msg += chinese_number(-shen) + "點負神、";
+        if (score > 0) msg += chinese_number(score) + "點江湖閱歷、";
+        if (weiwang > 0) msg += chinese_number(weiwang) + "點威望、";
+        if (gongxian > 0) msg += chinese_number(gongxian) + "點門派功績、";
+        if (gold > 0) msg += chinese_number(gold) + "兩黃金、";
 
         if( ob )
         {
-                msg += ob->name() + "获得经验" + chinese_number(warcraft_exp) + "点、";
+                msg += ob->name() + "獲得經驗" + chinese_number(warcraft_exp) + "點、";
         }
 
         if( yuanshen_level )
         {
-                msg += "元神获得经验" + chinese_number(yuanshen_exp) + "点、";
+                msg += "元神獲得經驗" + chinese_number(yuanshen_exp) + "點、";
         }
 
         msg += "能力得到了提升。\n" NOR;
@@ -1799,18 +1799,18 @@ varargs public void fuben_bonus(object who, mapping b, int flag)
 
 varargs public void battle_bonus(object who, mapping b)
 {
-        int exp;                // 奖励的经验
-        int pot;                // 奖励的潜能
-        int mar;                // 奖励的实战体会
-        int shen;               // 奖励的神
-        int score;              // 奖励的江湖阅历
-        int weiwang;            // 奖励的江湖威望
-        int gongxian;           // 奖励的门派贡献
+        int exp;                // 獎勵的經驗
+        int pot;                // 獎勵的潛能
+        int mar;                // 獎勵的實戰體會
+        int shen;               // 獎勵的神
+        int score;              // 獎勵的江湖閱歷
+        int weiwang;            // 獎勵的江湖威望
+        int gongxian;           // 獎勵的門派貢獻
         int gold;
-        // int pot_limit;          // 潜能的界限
-        // int mar_limit;          // 实战体会的界限
-        int percent;            // 奖励的有效百分比
-        string msg;             // 奖励的描述信息
+        // int pot_limit;          // 潛能的界限
+        // int mar_limit;          // 實戰體會的界限
+        int percent;            // 獎勵的有效百分比
+        string msg;             // 獎勵的描述信息
         int yuanshen_exp;
         int warcraft_exp;
         object ob;
@@ -1820,11 +1820,11 @@ varargs public void battle_bonus(object who, mapping b)
         int yuanshen_level;
         int vip_level;
 
-        //蛊虫
+        //蠱蟲
         if (who->is_worm2())
                 who = who->owner();
 
-        // 获得奖励的百分比
+        // 獲得獎勵的百分比
         percent = b["percent"];
         if( percent < 1 )
                 percent = 100;
@@ -1840,7 +1840,7 @@ varargs public void battle_bonus(object who, mapping b)
         gongxian = b["gongxian"] * percent / 100;
         gold = b["gold"] * percent / 100;
 
-        // 玩家经验太高，削弱奖励。
+        // 玩家經驗太高，削弱獎勵。
         /*
         if( query("combat_exp", who) >= 2160000000 )
         {
@@ -1932,7 +1932,7 @@ varargs public void battle_bonus(object who, mapping b)
             (who->query_family() && FAMILY_D->query_family_efficient(who->query_family(), "mar")) )
                 mar *= 2;
 
-        // 魔幻兽
+        // 魔幻獸
         if( exp > 100 && intp(rate = query("env/share_exp", who)) &&
             query("warcraft/file", who) && objectp(ob=find_object(query("warcraft/file", who))) )
         {
@@ -1963,28 +1963,28 @@ varargs public void battle_bonus(object who, mapping b)
 
         // 生成提示信息
         if (stringp(msg = b["prompt"]))
-                msg = HIG + msg + HIG "，你获得了";
+                msg = HIG + msg + HIG "，你獲得了";
         else
-                msg = HIG "通过这次锻炼，你获得了";
+                msg = HIG "通過這次鍛鍊，你獲得了";
 
-        if (exp > 0) msg += chinese_number(exp) + "点经验、";
-        if (pot > 0) msg += chinese_number(pot) + "点潜能、";
-        if (mar > 0) msg += chinese_number(mar) + "点实战体会、";
-        if (shen > 0) msg += chinese_number(shen) + "点正神、";
-        if (shen < 0) msg += chinese_number(-shen) + "点负神、";
-        if (score > 0) msg += chinese_number(score) + "点江湖阅历、";
-        if (weiwang > 0) msg += chinese_number(weiwang) + "点威望、";
-        if (gongxian > 0) msg += chinese_number(gongxian) + "点门派功绩、";
-        if (gold > 0) msg += chinese_number(gold) + "两黄金、";
+        if (exp > 0) msg += chinese_number(exp) + "點經驗、";
+        if (pot > 0) msg += chinese_number(pot) + "點潛能、";
+        if (mar > 0) msg += chinese_number(mar) + "點實戰體會、";
+        if (shen > 0) msg += chinese_number(shen) + "點正神、";
+        if (shen < 0) msg += chinese_number(-shen) + "點負神、";
+        if (score > 0) msg += chinese_number(score) + "點江湖閱歷、";
+        if (weiwang > 0) msg += chinese_number(weiwang) + "點威望、";
+        if (gongxian > 0) msg += chinese_number(gongxian) + "點門派功績、";
+        if (gold > 0) msg += chinese_number(gold) + "兩黃金、";
 
         if( ob )
         {
-                msg += ob->name() + "获得经验" + chinese_number(warcraft_exp) + "点、";
+                msg += ob->name() + "獲得經驗" + chinese_number(warcraft_exp) + "點、";
         }
 
         if( yuanshen_level )
         {
-                msg += "元神获得经验" + chinese_number(yuanshen_exp) + "点、";
+                msg += "元神獲得經驗" + chinese_number(yuanshen_exp) + "點、";
         }
 
         msg += "能力得到了提升。\n" NOR;
@@ -2001,21 +2001,21 @@ varargs public void battle_bonus(object who, mapping b)
         addn("balance", gold*10000, who);
 }
 
-// 活动的奖励
+// 活動的獎勵
 varargs public void event_bonus(object who, mapping b, int flag)
 {
-        int exp;                // 奖励的经验
-        int pot;                // 奖励的潜能
-        int mar;                // 奖励的实战体会
-        int shen;               // 奖励的神
-        int score;              // 奖励的江湖阅历
-        int weiwang;            // 奖励的江湖威望
-        int gongxian;           // 奖励的门派贡献
+        int exp;                // 獎勵的經驗
+        int pot;                // 獎勵的潛能
+        int mar;                // 獎勵的實戰體會
+        int shen;               // 獎勵的神
+        int score;              // 獎勵的江湖閱歷
+        int weiwang;            // 獎勵的江湖威望
+        int gongxian;           // 獎勵的門派貢獻
         int gold;
-        // int pot_limit;          // 潜能的界限
-        // int mar_limit;          // 实战体会的界限
-        int percent;            // 奖励的有效百分比
-        string msg;             // 奖励的描述信息
+        // int pot_limit;          // 潛能的界限
+        // int mar_limit;          // 實戰體會的界限
+        int percent;            // 獎勵的有效百分比
+        string msg;             // 獎勵的描述信息
         int yuanshen_exp;
         int warcraft_exp;
         object ob;
@@ -2026,11 +2026,11 @@ varargs public void event_bonus(object who, mapping b, int flag)
         int yuanshen_level;
         int vip_level;
 
-        //蛊虫
+        //蠱蟲
         if (who->is_worm2())
                 who = who->owner();
 
-        // 获得奖励的百分比
+        // 獲得獎勵的百分比
         percent = b["percent"];
         if( percent < 1 )
                 percent = 100;
@@ -2046,7 +2046,7 @@ varargs public void event_bonus(object who, mapping b, int flag)
         gongxian = b["gongxian"] * percent / 100;
         gold = b["gold"] * percent / 100;
 
-        // 玩家经验太高，削弱奖励。
+        // 玩家經驗太高，削弱獎勵。
         /*
         if( query("combat_exp", who) >= 2160000000 )
         {
@@ -2157,7 +2157,7 @@ varargs public void event_bonus(object who, mapping b, int flag)
         }
         */
 
-        // 魔幻兽
+        // 魔幻獸
         if( exp > 100 && intp(rate = query("env/share_exp", who)) &&
             query("warcraft/file", who) && objectp(ob=find_object(query("warcraft/file", who))) )
         {
@@ -2189,28 +2189,28 @@ varargs public void event_bonus(object who, mapping b, int flag)
 
         // 生成提示信息
         if (stringp(msg = b["prompt"]))
-                msg = HIG + msg + HIG "，你获得了";
+                msg = HIG + msg + HIG "，你獲得了";
         else
-                msg = HIG "通过这次锻炼，你获得了";
+                msg = HIG "通過這次鍛鍊，你獲得了";
 
-        if (exp > 0) msg += chinese_number(exp) + "点经验、";
-        if (pot > 0) msg += chinese_number(pot) + "点潜能、";
-        if (mar > 0) msg += chinese_number(mar) + "点实战体会、";
-        if (shen > 0) msg += chinese_number(shen) + "点正神、";
-        if (shen < 0) msg += chinese_number(-shen) + "点负神、";
-        if (score > 0) msg += chinese_number(score) + "点江湖阅历、";
-        if (weiwang > 0) msg += chinese_number(weiwang) + "点威望、";
-        if (gongxian > 0) msg += chinese_number(gongxian) + "点门派功绩、";
-        if (gold > 0) msg += chinese_number(gold) + "两黄金、";
+        if (exp > 0) msg += chinese_number(exp) + "點經驗、";
+        if (pot > 0) msg += chinese_number(pot) + "點潛能、";
+        if (mar > 0) msg += chinese_number(mar) + "點實戰體會、";
+        if (shen > 0) msg += chinese_number(shen) + "點正神、";
+        if (shen < 0) msg += chinese_number(-shen) + "點負神、";
+        if (score > 0) msg += chinese_number(score) + "點江湖閱歷、";
+        if (weiwang > 0) msg += chinese_number(weiwang) + "點威望、";
+        if (gongxian > 0) msg += chinese_number(gongxian) + "點門派功績、";
+        if (gold > 0) msg += chinese_number(gold) + "兩黃金、";
 
         if( ob )
         {
-                msg += ob->name() + "获得经验" + chinese_number(warcraft_exp) + "点、";
+                msg += ob->name() + "獲得經驗" + chinese_number(warcraft_exp) + "點、";
         }
 
         if( yuanshen_level )
         {
-                msg += "元神获得经验" + chinese_number(yuanshen_exp) + "点、";
+                msg += "元神獲得經驗" + chinese_number(yuanshen_exp) + "點、";
         }
 
         msg += "能力得到了提升。\n" NOR;

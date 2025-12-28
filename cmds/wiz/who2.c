@@ -29,7 +29,7 @@ int main(object me, string str)
         ob_list = wiz_ob + ob_list;
 
         i = 0;
-        str = HIG" 玩家    年龄 存款       地址               所在       程序       \n" NOR
+        str = HIG" 玩家    年齡 存款       地址               所在       程序       \n" NOR
               WHT "—————————————————————————————————————\n" NOR;
         foreach (ob in ob_list)
         {
@@ -51,7 +51,7 @@ int main(object me, string str)
                         break;
         }
         str += NOR WHT "—————————————————————————————————————\n";
-        str = sprintf("%s共有 %d 位使用者连线中。\n" NOR, str, sizeof(ob_list));
+        str = sprintf("%s共有 %d 位使用者連線中。\n" NOR, str, sizeof(ob_list));
 
         me->start_more(str);
         return 1;
@@ -73,7 +73,7 @@ int help(object me)
         write(@HELP
 指令格式：who2
 
-玩家信息查询列表2。
+玩家信息查詢列表2。
 HELP );
         return 1;
 }

@@ -4,8 +4,8 @@ inherit NPC;
 
 void create()
 {
-        set_name("灰衣帮众", ({ "huiyi bangzhong", "huiyi", "bangzhong"}));
-        set("long", "他是一个身行健壮的汉子，两臂粗壮，膀阔腰圆。满脸的凶相。\n");
+        set_name("灰衣幫眾", ({ "huiyi bangzhong", "huiyi", "bangzhong"}));
+        set("long", "他是一個身行健壯的漢子，兩臂粗壯，膀闊腰圓。滿臉的兇相。\n");
         set("gender", "男性");
         set("attitude", "peaceful");
         set("age", 30);

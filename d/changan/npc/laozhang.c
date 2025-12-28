@@ -5,8 +5,8 @@ inherit F_DEALER;
 
 void create()
 {
-        set_name("老张", ({"lao zhang", "zhang", "boss"}));
-        set("title", "面馆老板");
+        set_name("老張", ({"lao zhang", "zhang", "boss"}));
+        set("title", "麵館老闆");
         set("gender", "男性");
         set("age", 35);
         set("qi", 350); 
@@ -48,6 +48,6 @@ void init()
 void greeting(object ob)
 {
         if (! ob || environment(ob) != environment()) return;
-        say("老张热情地说道：这位" + RANK_D->query_respect(ob) +
-            "，进来吃碗热乎的面条吧!。\n");
+        say("老張熱情地說道：這位" + RANK_D->query_respect(ob) +
+            "，進來吃碗熱乎的麵條吧!。\n");
 }

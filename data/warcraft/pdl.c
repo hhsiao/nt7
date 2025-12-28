@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("顶戴[2;37;0m[2;37;0m", ({"ldp"}));        
+        set_name("頂戴[2;37;0m[2;37;0m", ({"ldp"}));        
         set("gender", "女性");                
-        set("long", "顶戴[2;37;0m
-它是潘多拉的魔幻兽。
+        set("long", "頂戴[2;37;0m
+它是潘多拉的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

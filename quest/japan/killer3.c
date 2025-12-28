@@ -6,16 +6,16 @@ inherit NPC;
 
 void create()
 {
-        set_name("东瀛武士", ({ "dongying wushi", "dongyin", "wushi", "shi" }));
+        set_name("東瀛武士", ({ "dongying wushi", "dongyin", "wushi", "shi" }));
         set("gender", "男性");
-        set("long", "　　来自于东瀛的武官，烧杀劫略无恶不作。\n");
+        set("long", "　　來自於東瀛的武官，燒殺劫略無惡不作。\n");
         set("age", random(18) + 10);
         set("str", 20 + random(10));
         set("int", 20 + random(10));
         set("con", 20 + random(10));
         set("dex", 20 + random(10));
         create_family("武士道", 4, "武士");
-        // shifu("东瀛武官");
+        // shifu("東瀛武官");
         set("chat_chance_combat", 4);
         set("chat_msg_combat", ({
                 (: perform_action, "blade.slash" :),
@@ -39,7 +39,7 @@ void init()
         ob = this_object();
 
         if( interactive(me=this_player()) && query_temp("job/fleet", me) && query("target", ob) == query("id", me)){
-                message_vision(HIR "$N对$n说道：「グイス，プタ！」\n" NOR, ob, me);
+                message_vision(HIR "$N對$n說道：「グイス，プタ！」\n" NOR, ob, me);
                 ob->kill_ob(me);
                 me->fight_ob(ob);
                 me->start_busy(1);
@@ -79,6 +79,6 @@ void dest()
 
         if ( !me ) return;
 
-        message_vision("$N急急忙忙离开了。\n", me);
+        message_vision("$N急急忙忙離開了。\n", me);
         destruct(me);
 }

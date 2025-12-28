@@ -1,4 +1,4 @@
-// Room: /d/suzhou/yinyuan-tang.c    拜堂之处
+// Room: /d/suzhou/yinyuan-tang.c    拜堂之處
 // by llm 99/06
 
 #include <ansi.h>
@@ -7,11 +7,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "姻缘堂");
+        set("short", "姻緣堂");
         set("long", @LONG
-你简直走进了一片红色的世界，高低左右地垂着各式各样的红绸
-绫缎彩纸贴花，细细看去，每一处竟都绣扎着鸳鸯凤凰，透出一股股
-浓郁的喜庆气氛，当中一块横匾：          千里姻缘一线牵
+你簡直走進了一片紅色的世界，高低左右地垂著各式各樣的紅綢
+綾緞彩紙貼花，細細看去，每一處竟都繡扎著鴛鴦鳳凰，透出一股股
+濃郁的喜慶氣氛，當中一塊橫匾：          千里姻緣一線牽
 LONG );
         set("exits", ([
                 "west" : "/d/suzhou/hongniang-zhuang",

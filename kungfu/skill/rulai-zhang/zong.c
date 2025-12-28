@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define ZONG "「" HIY "万佛朝宗" NOR "」"
+#define ZONG "「" HIY "萬佛朝宗" NOR "」"
 
 inherit F_SSERVER;
  
@@ -19,51 +19,51 @@ int perform(object me, object target)
         }
 
         if( userp(me) && !query("can_perform/rulai-zhang/zong", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(ZONG "只能对战斗中的对手使用。\n");
+                return notify_fail(ZONG "只能對戰鬥中的對手使用。\n");
  
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(ZONG "只能空手施展。\n");
                 
         if( query("max_neili", me)<3000 )
-                return notify_fail("你的内力修为不够，难以施展" ZONG "。\n");
+                return notify_fail("你的內力修為不夠，難以施展" ZONG "。\n");
 
         if ((int)me->query_skill("force") < 280)
-                return notify_fail("你的内功火候不足，难以施展" ZONG "。\n");
+                return notify_fail("你的內功火候不足，難以施展" ZONG "。\n");
 
         if ((int)me->query_skill("rulai-zhang", 1) < 150)
-                return notify_fail("你千手如来掌火候不够，难以施展" ZONG "。\n");
+                return notify_fail("你千手如來掌火候不夠，難以施展" ZONG "。\n");
 
         if (me->query_skill_prepared("strike") != "rulai-zhang")
-                return notify_fail("你没有准备千手如来掌，难以施展" ZONG "。\n");
+                return notify_fail("你沒有準備千手如來掌，難以施展" ZONG "。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你现在的真气不足，难以施展" ZONG "。\n");
+                return notify_fail("你現在的真氣不足，難以施展" ZONG "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIY "\n$N" HIY "当下更不耽搁，高呼佛号，轻飘飘拍出一掌，招式"
-              "甚为寻常。但掌到中途，忽然微微摇晃，登时一掌变两掌，两掌变四"
-              "掌，四掌变八掌！铺天盖地拍向$n" HIY "。" NOR;
+        msg = HIY "\n$N" HIY "當下更不耽擱，高呼佛號，輕飄飄拍出一掌，招式"
+              "甚為尋常。但掌到中途，忽然微微搖晃，登時一掌變兩掌，兩掌變四"
+              "掌，四掌變八掌！鋪天蓋地拍向$n" HIY "。" NOR;
 
         ap=me->query_skill("strike")+query("str", me)*10;
         dp=target->query_skill("parry")+query("dex", target)*10;
 
         if (ap / 2 + random(ap) > dp)
         {
-                // 增加点感官刺激:)
+                // 增加點感官刺激:)
                 if( query("max_neili", me)>query("max_neili", target)*2 )
                 {
                         me->start_busy(1);
                         addn("neili", -100, me);
-                        msg += HIY "随即又听$N" HIY "高声喝道：「" HIR "我佛如来" HIY
-                               "」顷刻间，但见$N" HIY "八掌又变为十六掌，进而再幻化为"
-                               "三十二掌，掌势层层叠叠，波澜壮阔，气势磅礴，荡气回肠"
-                               "。如海潮般向$n" HIY "涌去。\n\n" HIR "$n" HIR "面对这"
-                               "无穷无尽的掌势，竟然放弃了抵抗，面如死灰坐以待毙。\n" NOR;
+                        msg += HIY "隨即又聽$N" HIY "高聲喝道：「" HIR "我佛如來" HIY
+                               "」頃刻間，但見$N" HIY "八掌又變為十六掌，進而再幻化為"
+                               "三十二掌，掌勢層層疊疊，波瀾壯闊，氣勢磅礴，蕩氣迴腸"
+                               "。如海潮般向$n" HIY "湧去。\n\n" HIR "$n" HIR "面對這"
+                               "無窮無盡的掌勢，竟然放棄了抵抗，面如死灰坐以待斃。\n" NOR;
 
                         message_sort(msg, me, target);
                         addn_temp("apply/attack", ap, me);
@@ -83,13 +83,13 @@ int perform(object me, object target)
                 } else
                 {
                         count = ap / 6;
-                        msg += HIR "\n$n" HIR "见掌势层层叠叠，有如海潮，一时"
-                               "只觉头晕目眩，难作抵挡。\n" NOR;
+                        msg += HIR "\n$n" HIR "見掌勢層層疊疊，有如海潮，一時"
+                               "只覺頭暈目眩，難作抵擋。\n" NOR;
                 }
         } else
         {
-                msg += HIC "\n$n" HIC "见掌势层层叠叠，有如海潮，连忙"
-                       "振作精神，勉强抵挡。\n" NOR;
+                msg += HIC "\n$n" HIC "見掌勢層層疊疊，有如海潮，連忙"
+                       "振作精神，勉強抵擋。\n" NOR;
                 count = 0;
         }
 

@@ -6,12 +6,12 @@ inherit NPC;
 
 void create()
 {
-        set_name("张三", ({ "zhang san", "zhang", "san" }));
-        set("title", HIY "侠客岛赏善使者" NOR);
+        set_name("張三", ({ "zhang san", "zhang", "san" }));
+        set("title", HIY "俠客島賞善使者" NOR);
         set("gender", "男性");
         set("age", 37);
         set("long",
-              "这是个看起来三十来岁的汉子，身材肥胖，脸色红润。\n"
+              "這是個看起來三十來歲的漢子，身材肥胖，臉色紅潤。\n"
         );
 
         set("str", 1000);
@@ -55,7 +55,7 @@ void create()
                 (: exert_function, "powerup" :),
                 (: perform_action, "unarmed.taixuan" :),
         }) );
-        create_family("侠客岛", 0, "赏善使者");
+        create_family("俠客島", 0, "賞善使者");
         setup();
 
         carry_object("/clone/misc/cloth")->wear();
@@ -65,34 +65,34 @@ void start_punish(object ob, string msg)
 {
         set_temp("punish_ob", ob);
         move(environment(ob));
-        message_vision("$N走了过来，冷冷的盯着$n。\n", this_object(), ob);
+        message_vision("$N走了過來，冷冷的盯著$n。\n", this_object(), ob);
         command("chat " + ob->name() + "，你" + msg);
-        command("chat " + "今天我" + name() + "要为武林除去此害！");
+        command("chat " + "今天我" + name() + "要為武林除去此害！");
         command("follow"+query("id", ob));
 
         if( query("no_fight", environment(ob)) )
         {
-                tell_object(ob, "你看着" + name() + "的眼神，心中不禁一寒，转身逃走。\n");
-                message("vision", ob->name() + "看到" + name() + "，脸色忽变，转身逃走。\n" +
-                        name() + "冷笑一声，紧随其后而走。\n",
+                tell_object(ob, "你看著" + name() + "的眼神，心中不禁一寒，轉身逃走。\n");
+                message("vision", ob->name() + "看到" + name() + "，臉色忽變，轉身逃走。\n" +
+                        name() + "冷笑一聲，緊隨其後而走。\n",
                         environment(ob), ({ ob }));
                 ob->move("/d/city/guangchang");
                 move("/d/city/guangchang");
-                tell_object(ob, HIR "...这...这是哪里？好熟悉啊？"
-                            "你心底一横，转过身来，索性不再走了。\n" NOR);
-                message("vision", ob->name() + "慌慌张张的跑了过来，只见有一人"
-                        "紧随其后而来。\n", environment(ob), ({ ob }));
+                tell_object(ob, HIR "...這...這是哪裡？好熟悉啊？"
+                            "你心底一橫，轉過身來，索性不再走了。\n" NOR);
+                message("vision", ob->name() + "慌慌張張的跑了過來，只見有一人"
+                        "緊隨其後而來。\n", environment(ob), ({ ob }));
         }
 
         kill_ob(ob);
         command("yun powerup");
-        tell_object(ob,"你突然天旋地转，冥冥中似乎有股力量在操纵你的命运!\n");
+        tell_object(ob,"你突然天旋地轉，冥冥中似乎有股力量在操縱你的命運!\n");
         ob->unconcious();
 }
 
 void killed_enemy(object victim)
 {
-        command("chat 嘿嘿，你也有这一天，这就叫善有善报、恶有恶报，不是不报，时辰未到。");
+        command("chat 嘿嘿，你也有這一天，這就叫善有善報、惡有惡報，不是不報，時辰未到。");
         delete("combat/need_punish", victim);
 }
 
@@ -110,8 +110,8 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->receive_wound("qi", 1000 + random(200), me);
         set("neili",query("max_neili",  me), me);
-        return HIR "$N" HIR "轻吐一口气，掌力袭来，震得$n"
-               HIR "接连退后几步，闷哼一声。\n" NOR;
+        return HIR "$N" HIR "輕吐一口氣，掌力襲來，震得$n"
+               HIR "接連退後幾步，悶哼一聲。\n" NOR;
 }
 
 void unconcious()
@@ -127,9 +127,9 @@ void die()
         if (objectp(ob) && ob == query_last_damage_from())
                 delete("combat/need_punish", ob);
 
-        command("chat 天哪！想不到我" + name() + "除害不成...反被害除...先回去练功去！");
-        message_vision(HIM "$N" HIM "狂吐几口鲜血，扔下一个烟雾弹，"
-                       HIM "趁着混乱逃走了。\n", this_object());
+        command("chat 天哪！想不到我" + name() + "除害不成...反被害除...先回去練功去！");
+        message_vision(HIM "$N" HIM "狂吐幾口鮮血，扔下一個煙霧彈，"
+                       HIM "趁著混亂逃走了。\n", this_object());
         destruct(this_object());
 }
 
@@ -147,8 +147,8 @@ void scan()
             environment(ob) != environment() ||
             query("no_fight", environment(ob)) )
         {
-                command("chat 今天我先走了，改日再来玩玩儿！");
-                message_vision("$N哈哈大笑，飘然而去。\n", this_object());
+                command("chat 今天我先走了，改日再來玩玩兒！");
+                message_vision("$N哈哈大笑，飄然而去。\n", this_object());
                 destruct(this_object());
                 return;
         }

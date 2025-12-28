@@ -32,11 +32,11 @@ protected void refresh_table()
 
 void create()
 {
-        set("short", "厨房");
+        set("short", "廚房");
         set("long", @LONG
-这里就是厨房，这里最显眼的就是一口巨大的水缸。房子中
-间的餐桌上放着各种吃食，几个厨子在走来走去的忙和着，渴了
-就随便从水缸里舀(drink)点水喝。
+這裡就是廚房，這裡最顯眼的就是一口巨大的水缸。房子中
+間的餐桌上放著各種吃食，幾個廚子在走來走去的忙和著，渴了
+就隨便從水缸裡舀(drink)點水喝。
 LONG
         );
         set("exits", ([ /* sizeof() == 1 */
@@ -63,13 +63,13 @@ int do_drink(string arg)
 
               if( query("water", me) >= me->max_water_capacity() )
      {
-                     write("你已经喝太多了，再也灌不下一滴水了。\n"); 
+                     write("你已經喝太多了，再也灌不下一滴水了。\n"); 
                     return 1; 
              } 
 
-        message_vision("$N在水缸边用杯子舀起水喝了几口。\n", me);
+        message_vision("$N在水缸邊用杯子舀起水喝了幾口。\n", me);
         addn("water", 20, me);
-        if( (query("family/family_name", me) != "药王谷" )
+        if( (query("family/family_name", me) != "藥王谷" )
         && (random(10) < 3) )
                 me->apply_condition("scorpion_poison", 10);
         return 1;

@@ -1,4 +1,4 @@
-// 通天老仙 掌管转世
+// 通天老仙 掌管轉世
 // Create By Rcwiz 09/2003
 
 #include <ansi.h>
@@ -12,9 +12,9 @@ mixed start_thborn();
 
 void create()
 {
-        set_name(HIY "炎黄天神" NOR, ({ "yanhuang tianshen", "yanhuang", "tianshen" }));
-        set("long", HIY "    炎黄天神威风凛凛，在此恭候您多时了，想要\n"
-                        "通过二次转生，必须接受天神的考验。\n" NOR);
+        set_name(HIY "炎黃天神" NOR, ({ "yanhuang tianshen", "yanhuang", "tianshen" }));
+        set("long", HIY "    炎黃天神威風凜凜，在此恭候您多時了，想要\n"
+                        "通過二次轉生，必須接受天神的考驗。\n" NOR);
 
         set("gender", "男性");
         set("age", 9999);
@@ -46,7 +46,7 @@ void create()
         map_skill("unarmed", "yinyang-shiertian");
         
         set("inquiry", ([
-                "二转"   :   (: start_thborn :),
+                "二轉"   :   (: start_thborn :),
         ]));
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -69,76 +69,76 @@ mixed start_thborn()
         object ob_taixu, ob_boss;
         
         mapping  ob_list1 = ([
-                "将军令"            : "/clone/misc/boss_item/jiangjun-ling",
-                "富士山风景画"      : "/clone/misc/boss_item/fengjing-hua",
-                "暗杀名单"          : "/clone/misc/boss_item/ansha-mingdan",
+                "將軍令"            : "/clone/misc/boss_item/jiangjun-ling",
+                "富士山風景畫"      : "/clone/misc/boss_item/fengjing-hua",
+                "暗殺名單"          : "/clone/misc/boss_item/ansha-mingdan",
                 "交子"              : "/clone/misc/boss_item/jiaozi",
-                "《樱花赞》"        : "/clone/misc/boss_item/yinghua-zan",
-                "安守阁地图"        : "/clone/misc/boss_item/anshouge-tu",
-                "天师鬼符"          : "/clone/misc/boss_item/tianshi-guifu",            
+                "《櫻花贊》"        : "/clone/misc/boss_item/yinghua-zan",
+                "安守閣地圖"        : "/clone/misc/boss_item/anshouge-tu",
+                "天師鬼符"          : "/clone/misc/boss_item/tianshi-guifu",            
         ]);        
                 
         mapping  ob_list2 = ([
-                "将军令"            : "/clone/misc/boss_item/jiangjun-ling",
-                "富士山风景画"      : "/clone/misc/boss_item/fengjing-hua",
-                "暗杀名单"          : "/clone/misc/boss_item/ansha-mingdan",
+                "將軍令"            : "/clone/misc/boss_item/jiangjun-ling",
+                "富士山風景畫"      : "/clone/misc/boss_item/fengjing-hua",
+                "暗殺名單"          : "/clone/misc/boss_item/ansha-mingdan",
                 "交子"              : "/clone/misc/boss_item/jiaozi",
-                "《樱花赞》"        : "/clone/misc/boss_item/yinghua-zan",
+                "《櫻花贊》"        : "/clone/misc/boss_item/yinghua-zan",
         ]);                
         
-        // 检查转世条件
+        // 檢查轉世條件
         if (! me->query("scborn/ok"))
-                return "你还没有通过转世，不能进行二转！\n";
+                return "你還沒有通過轉世，不能進行二轉！\n";
         
         if (me->query("thborn/ok"))
         {
-                if (me->query("thborn/repeat"))// 重新2转
+                if (me->query("thborn/repeat"))// 重新2轉
                 {
-                        tell_object(me, HIG "\n你可以进入重新二转！\n" NOR);
+                        tell_object(me, HIG "\n你可以進入重新二轉！\n" NOR);
                         me->move("/kungfu/class/sky/sky2zhuan");
                         return 1;
                 }
-                return "你不是已经二转了吗，还来干什么！\n";
+                return "你不是已經二轉了嗎，還來幹什麼！\n";
         }
 
         if (me->query("combat_exp") < 380000000)
-                return "你的实战经验不足3.8亿，不能进行二转！\n";
+                return "你的實戰經驗不足3.8億，不能進行二轉！\n";
                 
         if (me->query_skill("force", 1) < 1500)
-                return "你基本内功不足1500级别，不能进行二转！\n";
+                return "你基本內功不足1500級別，不能進行二轉！\n";
 
         if (me->query_skill("dodge", 1) < 1500)
-                return "你基本轻功不足1500级别，不能进行二转！\n";
+                return "你基本輕功不足1500級別，不能進行二轉！\n";
                 
         if (me->query_skill("parry", 1) < 1500)
-                return "你基本招架不足1500级别，不能进行二转！\n";
+                return "你基本招架不足1500級別，不能進行二轉！\n";
 
         if (! MEMBER_D->is_valib_member(me->query("id")))
-                return "你不是有效会员，不能进行二转！\n";
+                return "你不是有效會員，不能進行二轉！\n";
                           
-        // 已经接了任务                          
+        // 已經接了任務                          
         if (sizeof(me->query("scborn/thborn_item1_id")))
         {
                 if (! objectp(ob1 = present(me->query("scborn/thborn_item1_id"), me)) && ! me->query("scborn/item_ok"))
                 {
-                        return me->query("scborn/thborn_item1_name") + NOR "你找到了吗！\n";
+                        return me->query("scborn/thborn_item1_name") + NOR "你找到了嗎！\n";
                 }
                 if (! objectp(ob2 = present(me->query("scborn/thborn_item2_id"), me)) && ! me->query("scborn/item_ok"))
                 {
-                        return me->query("scborn/thborn_item2_name") + NOR "你找到了吗！\n";
+                        return me->query("scborn/thborn_item2_name") + NOR "你找到了嗎！\n";
                 }
                 /*
-                // 测试期间不开放挑战BOSS
+                // 測試期間不開放挑戰BOSS
                 if (me->query("id") != "rcwiz" && me->query("id") != "axiao" && me->query("id") != "mrhy")
                 {
-                        message_sort(HIM "\n$N" HIM "对$n" HIM "说道：不错！不错！看来你已经通过了第一"
-                                         "轮考验，现在我将送你进入无尽太虚之中挑战二转守护神，打败守护"
-                                         "神便可开启二转之门！\n", this_object(), me);
-                        tell_object(me, HIG "无尽太虚之门还未开启，请保留好你的任务物品，开放日程请留意系统通告！\n" NOR);                                 
+                        message_sort(HIM "\n$N" HIM "對$n" HIM "說道：不錯！不錯！看來你已經通過了第一"
+                                         "輪考驗，現在我將送你進入無盡太虛之中挑戰二轉守護神，打敗守護"
+                                         "神便可開啟二轉之門！\n", this_object(), me);
+                        tell_object(me, HIG "無盡太虛之門還未開啟，請保留好你的任務物品，開放日程請留意系統通告！\n" NOR);                                 
                         return 1;
                 }
                 */
-                // 两样都找到了
+                // 兩樣都找到了
                 if (! me->query("scborn/item_ok"))
                 {
                         destruct(ob1);
@@ -147,19 +147,19 @@ mixed start_thborn()
                 
                 me->set("scborn/item_ok", 1);
                 
-                message_sort(HIM "\n$N" HIM "对$n" HIM "说道：不错！不错！看来你已经通过了第一"
-                                 "轮考验，现在我将送你进入无尽太虚之中挑战二转守护神，打败守护"
-                                 "神便可开启二转之门！\n\n", this_object(), me);
+                message_sort(HIM "\n$N" HIM "對$n" HIM "說道：不錯！不錯！看來你已經通過了第一"
+                                 "輪考驗，現在我將送你進入無盡太虛之中挑戰二轉守護神，打敗守護"
+                                 "神便可開啟二轉之門！\n\n", this_object(), me);
 
-                CHANNEL_D->do_channel(this_object(), "rumor", HIY +  me->name() + "(" + me->query("id") + ")" HIM "被炎黄天神"
-                                                              "送入无尽太虚，挑战二转守护神！" NOR);        
+                CHANNEL_D->do_channel(this_object(), "rumor", HIY +  me->name() + "(" + me->query("id") + ")" HIM "被炎黃天神"
+                                                              "送入無盡太虛，挑戰二轉守護神！" NOR);        
                                                                               
                 ob_taixu = new("/kungfu/class/sky/wujin-taixu");
                 ob_boss = new("/kungfu/class/sky/npc/shouhushen");
                 ob_boss->move(ob_taixu);
                 ob_boss->set("myroom", ob_taixu);
                 
-                FUBEN_D->move_lonely_fb_room(me, ob_taixu, "系统提示：进入无尽太虚，离开请进入 out 出口！", "", "");        
+                FUBEN_D->move_lonely_fb_room(me, ob_taixu, "系統提示：進入無盡太虛，離開請進入 out 出口！", "", "");        
                 
                 me->save();                                              
                 return 1;                                                              
@@ -202,16 +202,16 @@ mixed start_thborn()
                         destruct(ob2);
                 }
 
-                message_sort(HIM "\n$N" HIM "对$n" HIM "说道：天道有序，即使阁下通过第一次转生"
-                                 "获取了超越常人的能力，但是，第二次转生需要自身达到意识上的超"
-                                 "脱激发体内蕴藏的巨大能量，从而真正的摆脱天道的束缚，脱胎换骨。"
-                                 "看来你已经获得了二次转生的基本条件，现在，你只需要接受最后的"
-                                 "考验，本大神便可协助你完成二次转生。\n"
-                                 HIM "$N" HIM "顿了顿继续道：如果你能找到" + item1 + HIM "和" +
-                                 item2 + HIM "交给本大神，我便可以协助你进入无尽太虚，挑战二转"
-                                 "守护神！\n", this_object(), me);
+                message_sort(HIM "\n$N" HIM "對$n" HIM "說道：天道有序，即使閣下通過第一次轉生"
+                                 "獲取了超越常人的能力，但是，第二次轉生需要自身達到意識上的超"
+                                 "脫激發體內蘊藏的巨大能量，從而真正的擺脫天道的束縛，脫胎換骨。"
+                                 "看來你已經獲得了二次轉生的基本條件，現在，你只需要接受最後的"
+                                 "考驗，本大神便可協助你完成二次轉生。\n"
+                                 HIM "$N" HIM "頓了頓繼續道：如果你能找到" + item1 + HIM "和" +
+                                 item2 + HIM "交給本大神，我便可以協助你進入無盡太虛，挑戰二轉"
+                                 "守護神！\n", this_object(), me);
                      
-                tell_object(me, HIG "提示：如果你找到" + item1 + HIG "和" + item2 + HIG "请再次来与天神对话！\n" NOR);
+                tell_object(me, HIG "提示：如果你找到" + item1 + HIG "和" + item2 + HIG "請再次來與天神對話！\n" NOR);
         }
         
         me->save();

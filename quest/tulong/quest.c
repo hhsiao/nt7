@@ -1,18 +1,18 @@
-// 升职体系
-// ask id about 功劳
+// 升職體系
+// ask id about 功勞
 #include <ansi.h>
 
 string *tang=({
-        HIG"火云座"NOR,
-        HIG"赤云座"NOR,
-        HIW"金云座"NOR,
-        BLU"玄云座"NOR,
-        YEL"土云座"NOR,
-        HIG"莲花座"NOR,
+        HIG"火雲座"NOR,
+        HIG"赤雲座"NOR,
+        HIW"金雲座"NOR,
+        BLU"玄雲座"NOR,
+        YEL"土雲座"NOR,
+        HIG"蓮花座"NOR,
         HIG"洪花座"NOR,
         HIW"百花座"NOR,
-        BLU"太云座"NOR,
-        YEL"宏云座"NOR,
+        BLU"太雲座"NOR,
+        YEL"宏雲座"NOR,
         });
 
 string *zhiwei=({
@@ -21,7 +21,7 @@ string *zhiwei=({
         HIY"副堂主"NOR,
         HIW"堂主"NOR,
         HIY"教主"NOR,
-        HIR"总教主"NOR,
+        HIR"總教主"NOR,
         });
 
 int find_zhiwei(int level);
@@ -108,7 +108,7 @@ int find_zhiwei(int level)
                 if(((int)us[i]->query("level")==level)
                         && ((int)us[i]->query("tiandihui/tang")==ttang))
                 {
-                        write(CYN"云风里说道：我火云教现在没有合适的位置给你。\n"NOR);
+                        write(CYN"雲風裡說道：我火雲教現在沒有合適的位置給你。\n"NOR);
                         return 0;
                 }
         }
@@ -158,13 +158,13 @@ int check_ob(object ob,int level)
         if(exp<lvl_exp)
         {
                 message_vision(
-CYN"陈进南对$N"CYN"说道：你的经验太少，无法胜任"+zhiwei[level]+CYN"之职。\n"NOR,ob);
+CYN"陳進南對$N"CYN"說道：你的經驗太少，無法勝任"+zhiwei[level]+CYN"之職。\n"NOR,ob);
                 return 0;
         }
         if(job<lvl_job)
         {
                 message_vision(
-CYN"云风里对$N"CYN"说道：论到贡献，我教中还有很多兄弟在你之上。我看你还无法胜任"+zhiwei[level]+CYN"一职。\n"NOR,ob);
+CYN"雲風裡對$N"CYN"說道：論到貢獻，我教中還有很多兄弟在你之上。我看你還無法勝任"+zhiwei[level]+CYN"一職。\n"NOR,ob);
                 return 0;
         }
         return 1;
@@ -173,17 +173,17 @@ CYN"云风里对$N"CYN"说道：论到贡献，我教中还有很多兄弟在你
 string assume_tang(object ob,int level,int ttang)
 {
         message_vision(
-CYN"云风里对着$N"CYN"点了点头道：不错，我天地会兄弟中数你尽职尽责，"+tang[ttang]+zhiwei[level]+CYN"之职就由你来担任吧。\n"NOR,ob);
+CYN"雲風裡對著$N"CYN"點了點頭道：不錯，我天地會兄弟中數你盡職盡責，"+tang[ttang]+zhiwei[level]+CYN"之職就由你來擔任吧。\n"NOR,ob);
         ob->set("tiandihui/tang",ttang);
         ob->add("tiandihui/level",1);
         ob->add("combat_exp",10000);
-        ob->set("title",HIW"火云教"+tang[ttang]+zhiwei[level]);
+        ob->set("title",HIW"火雲教"+tang[ttang]+zhiwei[level]);
         if(level>3)
-                ob->set("title",HIW"火云教"+zhiwei[level]);
+                ob->set("title",HIW"火雲教"+zhiwei[level]);
         message_vision(
-"云风里从怀中取出一些银两说道：这些银两是你辛苦所得。\n",ob);
+"雲風裡從懷中取出一些銀兩說道：這些銀兩是你辛苦所得。\n",ob);
         MONEY_D->pay_player(ob,200000);
-        return (HIW"火云教"+tang[ttang]+zhiwei[level]);
+        return (HIW"火雲教"+tang[ttang]+zhiwei[level]);
 }
 
 

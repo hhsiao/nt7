@@ -8,11 +8,11 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("上官云", ({ "shangguan yun","shangguan","yun"}) );
+        set_name("上官雲", ({ "shangguan yun","shangguan","yun"}) );
         set("gender", "男性" );
         set("age", 40);
-        set("title" , "日月神教白虎堂长老");
-        set("long", "他长手长脚, 双目精光灿然, 若有威势。\n");
+        set("title" , "日月神教白虎堂長老");
+        set("long", "他長手長腳, 雙目精光燦然, 若有威勢。\n");
         set("attitude", "friendly");
         set("shen_type", -1);
 
@@ -56,7 +56,7 @@ void create()
         prepare_skill("hand", "huanmo-longtianwu");
         prepare_skill("cuff", "xuwu-piaomiao");
 
-        create_family("日月神教",2,"弟子 白虎堂长老");
+        create_family("日月神教",2,"弟子 白虎堂長老");
 
         set("master_ob",2);
         setup();
@@ -72,10 +72,10 @@ void attempt_apprentice(object ob)
 
     if((int)ob->query_skill("riyue-xinfa", 1) < 80)
     {
-         command("say 你的内功心法尚欠火候，多练练去吧！");
+         command("say 你的內功心法尚欠火候，多練練去吧！");
          return;
     }
 
     command("recruit "+query("id", ob));
-    set("title", HIM"日月神教"HIW"白虎堂教众"NOR, ob);
+    set("title", HIM"日月神教"HIW"白虎堂教眾"NOR, ob);
 }

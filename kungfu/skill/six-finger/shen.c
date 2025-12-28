@@ -1,11 +1,11 @@
-// jingshen.c 六脉惊神
+// jingshen.c 六脈驚神
 
 #include <ansi.h>
 #include <combat.h>
 
 inherit F_SSERVER;
 
-string name() { return "六脉惊神"; }
+string name() { return "六脈驚神"; }
 
 int perform(object me, object target)
 {
@@ -24,37 +24,37 @@ int perform(object me, object target)
         }
 
         if (! me->is_fighting(target))
-                return notify_fail("「六脉惊神」只能对战斗中的对手使用。\n");
+                return notify_fail("「六脈驚神」只能對戰鬥中的對手使用。\n");
 
         if (me->query_skill_mapped("finger") != "six-finger")
-                return notify_fail("你没有激发六脉神剑，无法施展「六脉惊神」。\n");
+                return notify_fail("你沒有激發六脈神劍，無法施展「六脈驚神」。\n");
 
         if (me->query_skill_prepared("finger") != "six-finger")
-                return notify_fail("你没有准备使用六脉神剑，无法施展「六脉惊神」。\n");
+                return notify_fail("你沒有準備使用六脈神劍，無法施展「六脈驚神」。\n");
 
         skill = me->query_skill("six-finger", 1);
         skill2 = me->query_skill("sun-finger", 1);
         if (skill < 200)
-                return notify_fail("你的六脉神剑修为有限，无法使用「六脉惊神」！\n");
+                return notify_fail("你的六脈神劍修為有限，無法使用「六脈驚神」！\n");
 
         if (skill2 < 200)
-                return notify_fail("你的一阳指修为有限，无法使用「六脉惊神」！\n");
+                return notify_fail("你的一陽指修為有限，無法使用「六脈驚神」！\n");
 
         if (me->query_skill("force") < 400)
-                return notify_fail("你的内功火候不够，难以施展「六脉惊神」！\n");
+                return notify_fail("你的內功火候不夠，難以施展「六脈驚神」！\n");
 
         if( query("max_neili", me)<5000 )
-                return notify_fail("你的内力修为没有达到那个境界，无法运转内力形成「六脉惊神」！\n");
+                return notify_fail("你的內力修為沒有達到那個境界，無法運轉內力形成「六脈驚神」！\n");
 
         if( query_temp("weapon", me) )
-                return notify_fail("你必须是空手才能施展「六脉惊神」！\n");
+                return notify_fail("你必須是空手才能施展「六脈驚神」！\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你的真气不够，现在无法施展「六脉惊神」！\n");
+                return notify_fail("你的真氣不夠，現在無法施展「六脈驚神」！\n");
 
-        msg = HIY "$N" HIY "十指连动，忽伸忽缩，或点或按，空中气流激荡，剑气自"
-              HIY "$N" HIY "指中汹涌而出，惊震四方！！\n"
-               HIR "六剑连出，剑气回荡，直割得$n眉毛削落，脸面生痛，再也不能前进半分！\n" NOR; 
+        msg = HIY "$N" HIY "十指連動，忽伸忽縮，或點或按，空中氣流激盪，劍氣自"
+              HIY "$N" HIY "指中洶湧而出，驚震四方！！\n"
+               HIR "六劍連出，劍氣迴盪，直割得$n眉毛削落，臉面生痛，再也不能前進半分！\n" NOR; 
 
         message_combatd(msg, me,target);
 
@@ -62,38 +62,38 @@ int perform(object me, object target)
         if( (n = me->query_skill("qimai-liuzhuan", 1) / 100) >= 1 ) 
         {
                 damage += damage * n * 15 / 100;
-                msg = HIM"$N"HIM"运用气脉流转的辅助，使得六脉惊神伤害更强。\n"NOR; 
+                msg = HIM"$N"HIM"運用氣脈流轉的輔助，使得六脈驚神傷害更強。\n"NOR; 
                 message_combatd(msg, me,target);
         }
         addn_temp("apply/attack", i, me);
         addn_temp("apply/unarmed_damage", damage, me);
         {
-                msg =  HIC "-------------------------少冲剑 \n"NOR;
+                msg =  HIC "-------------------------少衝劍 \n"NOR;
                 message_combatd(msg,me,target);
                 COMBAT_D->do_attack(me,target,weapon,TYPE_LINK);
 
 
-                msg =  HIW "-------------------------少泽剑 \n"NOR;
+                msg =  HIW "-------------------------少澤劍 \n"NOR;
                 message_combatd(msg,me,target);
                 COMBAT_D->do_attack(me,target,weapon,TYPE_LINK);
 
 
-                msg =  HIY "------------------------ 中冲剑 \n"NOR;
+                msg =  HIY "------------------------ 中衝劍 \n"NOR;
                 message_combatd(msg,me,target);
                 COMBAT_D->do_attack(me,target,weapon,TYPE_LINK);
 
 
-                msg =  HIG "-------------------------关冲剑 \n"NOR;
+                msg =  HIG "-------------------------關衝劍 \n"NOR;
                 message_combatd(msg,me,target);
                 COMBAT_D->do_attack(me,target,weapon,TYPE_LINK);
 
 
-                msg =  HIM "-------------------------商阳剑 \n"NOR;
+                msg =  HIM "-------------------------商陽劍 \n"NOR;
                 message_combatd(msg,me,target);
                 COMBAT_D->do_attack(me,target,weapon,TYPE_LINK);
 
 
-                msg =  HIR "-------------------------少商剑 \n"NOR;
+                msg =  HIR "-------------------------少商劍 \n"NOR;
                 message_combatd(msg,me,target);
                 COMBAT_D->do_attack(me,target,weapon,TYPE_LINK);
         }

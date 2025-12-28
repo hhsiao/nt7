@@ -7,13 +7,13 @@ void create()
 {
 	set("short", HIR"火山"NOR);
         set("long", @LONG
-到这里一什么也看不见了。。。。只是有火烧身的感觉。
+到這裡一什麼也看不見了。。。。只是有火燒身的感覺。
 LONG );
 	set("exits",([
 		"northup" : __DIR__"huoshan2",
 		"eastdown" : __DIR__"hsjiao",
 	]));
-	set("outdoors","冰火岛");
+	set("outdoors","冰火島");
 	setup();
 }
 

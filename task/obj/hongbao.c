@@ -2,14 +2,14 @@
 inherit TASK;
 void create()
 {
-    set_name( HIR "红包" NOR, ({ "hongbao" }) );
+    set_name( HIR "紅包" NOR, ({ "hongbao" }) );
     set_weight(1);
     if( clonep() )
             destruct(this_object());
     else {
-            set("unit", "个");
+            set("unit", "個");
             set("material", "cloth");
-            set("long", "一个小小的红包，上面绣着：银钩赌场，黄。\n");
+            set("long", "一個小小的紅包，上面繡著：銀鉤賭場，黃。\n");
           }
     set("owner", "老先生");
         setup();
@@ -22,14 +22,14 @@ void init()
 int do_open(string arg)
 {
         object gold;
-        if(arg != "hongbao" && arg != "红包") return 0;
+        if(arg != "hongbao" && arg != "紅包") return 0;
         if(query("opened"))
-                return notify_fail("你打开小红包，但里面是空的！\n");
+                return notify_fail("你打開小紅包，但裡面是空的！\n");
         gold = new("/clone/money/gold");
         gold->set_amount(2);
-        gold->set("name","纯金叶子");
-        gold->set("base_unit","张");
+        gold->set("name","純金葉子");
+        gold->set("base_unit","張");
         gold->move(this_player());
         set("opened",1);
-        return notify_fail("你打开小红包，从里面拿出几张纯金叶子！\n");
+        return notify_fail("你打開小紅包，從裡面拿出幾張純金葉子！\n");
 }

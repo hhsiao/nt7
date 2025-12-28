@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define CAN "「" RED "残阳劲" NOR "」"
+#define CAN "「" RED "殘陽勁" NOR "」"
 
 inherit F_SSERVER;
  
@@ -15,32 +15,32 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if( userp(me) && !query("can_perform/suqin-beijian/can", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(CAN "只能在战斗中对对手使用。\n");
+                return notify_fail(CAN "只能在戰鬥中對對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
               query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对，难以施展" CAN "。\n");
+                return notify_fail("你使用的武器不對，難以施展" CAN "。\n");
 
         if (me->query_skill("force") < 80)
-                return notify_fail("你的内功的修为不够，难以施展" CAN "。\n");
+                return notify_fail("你的內功的修為不夠，難以施展" CAN "。\n");
 
         if (me->query_skill("suqin-beijian", 1) < 60)
-                return notify_fail("你的苏秦背剑修为不够，难以施展" CAN "。\n");
+                return notify_fail("你的蘇秦背劍修為不夠，難以施展" CAN "。\n");
 
         if (me->query_skill_mapped("sword") != "suqin-beijian")
-                return notify_fail("你没有激发苏秦背剑，难以施展" CAN "。\n");
+                return notify_fail("你沒有激發蘇秦背劍，難以施展" CAN "。\n");
 
         if( query("neili", me)<50 )
-                return notify_fail("你现在真气不够，难以施展" CAN "。\n");
+                return notify_fail("你現在真氣不夠，難以施展" CAN "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIR "$N" HIR "伸出两指，注力于" + weapon->name() +
-              HIR "剑脊，蓦然回转剑锋，携着全身力道向$n" HIR "划去。\n" NOR;
+        msg = HIR "$N" HIR "伸出兩指，注力於" + weapon->name() +
+              HIR "劍脊，驀然迴轉劍鋒，攜著全身力道向$n" HIR "劃去。\n" NOR;
 
         ap = me->query_skill("sword");
         dp = target->query_skill("parry");
@@ -51,14 +51,14 @@ int perform(object me, object target)
                 addn("neili", -30, me);
                 me->start_busy(2);
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 10,
-                                           RED "$n" RED "慌忙招架，可已然挡之不及，登"
-                                           "时被$N" RED "一剑扫中，鲜血直流！\n" NOR);
+                                           RED "$n" RED "慌忙招架，可已然擋之不及，登"
+                                           "時被$N" RED "一劍掃中，鮮血直流！\n" NOR);
         } else
         {
                 addn("neili", -20, me);
                 me->start_busy(3);
-                msg += CYN "可是$p" CYN "微微一笑，轻轻格挡开了$P"
-                       CYN "的剑招。\n"NOR;
+                msg += CYN "可是$p" CYN "微微一笑，輕輕格擋開了$P"
+                       CYN "的劍招。\n"NOR;
         }
 
         message_combatd(msg, me, target);

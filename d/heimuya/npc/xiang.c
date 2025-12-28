@@ -5,11 +5,11 @@ int ask_kill();
 
 void create()
 {
-    set_name("向问天", ({ "xiang wentian", "xiang"}));
+    set_name("向問天", ({ "xiang wentian", "xiang"}));
     set("nickname", HIR "天王老子" NOR );
     set("gender", "男性");
     set("title", "日月神教光明右使");
-    set("long", "他就是日月神教的光明右使。为人极为豪爽。\n");
+    set("long", "他就是日月神教的光明右使。為人極為豪爽。\n");
     set("age", 45);
     set("shen_type", -1);
 
@@ -20,10 +20,10 @@ void create()
     set("dex", 30);
     set("chat_chance", 1);
     set("inquiry", ([
-      "杨莲亭"     : "这种人，该杀！\n",
-      "东方不败"   : "篡位叛徒，我非杀了他不可！\n",
-      "杀东方不败" : (: ask_kill() :),
-      "任我行"     : "教主被困，已历十年......\n",
+      "楊蓮亭"     : "這種人，該殺！\n",
+      "東方不敗"   : "篡位叛徒，我非殺了他不可！\n",
+      "殺東方不敗" : (: ask_kill() :),
+      "任我行"     : "教主被困，已歷十年......\n",
     ]));
     set("qi", 4000);
     set("max_qi", 4000);
@@ -78,10 +78,10 @@ int ask_kill()
 {
    object ob,me = this_player();
 
-   command("tell"+query("id", this_player())+"你要去杀东方不败？\n");
-   message_vision(HIC "向问天对$N点了点头说：我助你一臂之力。\n" NOR,this_player());
+   command("tell"+query("id", this_player())+"你要去殺東方不敗？\n");
+   message_vision(HIC "向問天對$N點了點頭說：我助你一臂之力。\n" NOR,this_player());
    ob=new("/d/heimuya/npc/obj/card4");
    ob->move(me);
-   tell_object(me,"向问天从怀里摸出一块令牌塞到你的手上。\n");
+   tell_object(me,"向問天從懷裡摸出一塊令牌塞到你的手上。\n");
    return 1;
 }

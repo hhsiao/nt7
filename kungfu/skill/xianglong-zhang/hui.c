@@ -1,8 +1,8 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define HUI "「" HIR "亢龙有悔" NOR "」"
-#define HUIP "「" HIR "亢龙有悔" HIW "」"
+#define HUI "「" HIR "亢龍有悔" NOR "」"
+#define HUIP "「" HIR "亢龍有悔" HIW "」"
 
 inherit F_SSERVER;
 
@@ -13,56 +13,56 @@ int perform(object me, object target)
         int ap, dp;
 
         if( userp(me) && !query("can_perform/xianglong-zhang/hui", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(HUI "只能对战斗中的对手使用。\n");
+                return notify_fail(HUI "只能對戰鬥中的對手使用。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(HUI "只能空手使用。\n");
 
         if ((int)me->query_skill("force") < 380)
-                return notify_fail("你内功修为不够，难以施展" HUI "。\n");
+                return notify_fail("你內功修為不夠，難以施展" HUI "。\n");
 
         if( query("max_neili", me)<6000 )
-                return notify_fail("你内力修为不够，难以施展" HUI "。\n");
+                return notify_fail("你內力修為不夠，難以施展" HUI "。\n");
 
         if ((int)me->query_skill("xianglong-zhang", 1) < 250)
-                return notify_fail("你降龙十八掌火候不够，难以施展" HUI "。\n");
+                return notify_fail("你降龍十八掌火候不夠，難以施展" HUI "。\n");
 
         if (me->query_skill_mapped("strike") != "xianglong-zhang")
-                return notify_fail("你没有激发降龙十八掌，难以施展" HUI "。\n");
+                return notify_fail("你沒有激發降龍十八掌，難以施展" HUI "。\n");
 
         if (me->query_skill_prepared("strike") != "xianglong-zhang")
-                return notify_fail("你没有准备降龙十八掌，难以施展" HUI "。\n");
+                return notify_fail("你沒有準備降龍十八掌，難以施展" HUI "。\n");
 
         if( query("neili", me)<1000 )
-                return notify_fail("你现在真气不够，难以施展" HUI "。\n");
+                return notify_fail("你現在真氣不夠，難以施展" HUI "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         // 第一掌
         ap=me->query_skill("strike")+query("str", me)*5;
         dp=target->query_skill("dodge")+query("dex", target)*5;
 
-        message_sort(HIW "\n忽然$N" HIW "身形激进，左手一划，右手呼的一掌"
-                     "拍向$n" HIW "，正是降龙十八掌" HUIP "。力自掌生之际"
-                     "说到便到，以排山倒海之势向$n" HIW "狂涌而去，当真石"
-                     "破天惊，威力无比。\n" NOR, me, target);
+        message_sort(HIW "\n忽然$N" HIW "身形激進，左手一劃，右手呼的一掌"
+                     "拍向$n" HIW "，正是降龍十八掌" HUIP "。力自掌生之際"
+                     "說到便到，以排山倒海之勢向$n" HIW "狂湧而去，當真石"
+                     "破天驚，威力無比。\n" NOR, me, target);
 
         if (ap * 3 / 5 + random(ap) > dp)
         {
                 damage = ap + random(ap / 2);
                 msg = COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 60 + random(10),
-                                          HIR "$P身形一闪，竟已晃至$p跟前，$p躲"
-                                          "闪不及，顿被击个正中。\n" NOR);
+                                          HIR "$P身形一閃，竟已晃至$p跟前，$p躲"
+                                          "閃不及，頓被擊個正中。\n" NOR);
         } else
         {
-                msg = HIC "却见$p气贯双臂，凝神应对，$P掌"
-                      "力如泥牛入海，尽数卸去。\n" NOR;
+                msg = HIC "卻見$p氣貫雙臂，凝神應對，$P掌"
+                      "力如泥牛入海，盡數卸去。\n" NOR;
         }
         message_vision(msg, me, target);
 
@@ -70,21 +70,21 @@ int perform(object me, object target)
         ap=me->query_skill("strike")+query("str", me)*5;
         dp=target->query_skill("parry")+query("int", target)*5;
 
-        message_sort(HIW "\n$N" HIW "一掌既出，身子已然抢到离$n" HIW "三"
-                     "四丈之外，后掌推前掌两股掌力道合并，又是一招" HUIP
-                     "攻出，掌力犹如怒潮狂涌，势不可当。霎时$p便觉气息窒"
-                     "滞，立足不稳。\n" NOR, me, target);
+        message_sort(HIW "\n$N" HIW "一掌既出，身子已然搶到離$n" HIW "三"
+                     "四丈之外，後掌推前掌兩股掌力道合併，又是一招" HUIP
+                     "攻出，掌力猶如怒潮狂湧，勢不可當。霎時$p便覺氣息窒"
+                     "滯，立足不穩。\n" NOR, me, target);
 
         if (ap * 2 / 3 + random(ap) > dp)
         {
                 damage = ap + random(ap / 2);
                 msg = COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 70 + random(10),
-                                          HIR "$p一声惨嚎，被$P这一掌击中胸前，"
-                                          "喀嚓喀嚓断了几根肋骨。\n" NOR);
+                                          HIR "$p一聲慘嚎，被$P這一掌擊中胸前，"
+                                          "喀嚓喀嚓斷了幾根肋骨。\n" NOR);
         } else
         {
-                msg = HIC "可是$p全力抵挡招架，竟似游刃有"
-                      "余，将$P的掌力卸于无形。\n" NOR;
+                msg = HIC "可是$p全力抵擋招架，竟似遊刃有"
+                      "餘，將$P的掌力卸於無形。\n" NOR;
         }
         message_vision(msg, me, target);
 
@@ -92,21 +92,21 @@ int perform(object me, object target)
         ap=me->query_skill("strike")+query("str", me)*5;
         dp=target->query_skill("force")+query("con", target)*5;
 
-        message_sort(HIW "\n紧跟着$N" HIW "右掌斜挥，前招掌力未消，此招掌"
-                     "力又到，竟然又攻出一招" HUIP "，掌夹风势，势如破竹，"
-                     "便如一堵无形气墙，向前疾冲而去。$n" HIW "只觉气血翻"
-                     "涌，气息沉浊。\n" NOR, me, target);
+        message_sort(HIW "\n緊跟著$N" HIW "右掌斜揮，前招掌力未消，此招掌"
+                     "力又到，竟然又攻出一招" HUIP "，掌夾風勢，勢如破竹，"
+                     "便如一堵無形氣牆，向前疾衝而去。$n" HIW "只覺氣血翻"
+                     "湧，氣息沉濁。\n" NOR, me, target);
 
         if (ap *11 / 20 + random(ap) > dp)
         {
                 damage = ap + random(ap);
                 msg = COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 80 + random(10),
-                                          HIR "结果$p躲闪不及，$P掌劲顿时穿胸而"
-                                          "过，顿时口中鲜血狂喷。\n" NOR);
+                                          HIR "結果$p躲閃不及，$P掌勁頓時穿胸而"
+                                          "過，頓時口中鮮血狂噴。\n" NOR);
         } else
         {
-                msg = HIC "$p眼见来势凶猛，身形疾退，瞬间"
-                      "飘出三丈，脱出掌力之外。\n" NOR;
+                msg = HIC "$p眼見來勢兇猛，身形疾退，瞬間"
+                      "飄出三丈，脫出掌力之外。\n" NOR;
         }
         message_vision(msg, me, target);
         me->start_busy(3 + random(4));

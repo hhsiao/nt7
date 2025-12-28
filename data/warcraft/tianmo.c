@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m火凤凰[2;37;0m[2;37;0m", ({"phonix"}));        
+        set_name("[1;31m火鳳凰[2;37;0m[2;37;0m", ({"phonix"}));        
         set("gender", "女性");                
-        set("long", "浴火重生的凤凰神兽。[2;37;0m
-它是天魔的魔幻兽。
+        set("long", "浴火重生的鳳凰神獸。[2;37;0m
+它是天魔的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

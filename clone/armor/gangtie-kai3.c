@@ -1,4 +1,4 @@
-// tiejia.c 铁甲
+// tiejia.c 鐵甲
 //
 
 #include <armor.h>
@@ -8,7 +8,7 @@ inherit ARMOR;
 
 void create()
 {
-        set_name(NOR + WHT "钢铁铠" NOR, ({ "gangtie kai3", "gangtie", "kai3" }) );
+        set_name(NOR + WHT "鋼鐵鎧" NOR, ({ "gangtie kai3", "gangtie", "kai3" }) );
         set_weight(30000);
         /*if (clonep())
                 set_default_object(__FILE__);

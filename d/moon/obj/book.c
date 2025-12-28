@@ -11,7 +11,7 @@ void create()
 	else {
 		set("unit", "本");
 		set("long",
-			"这是圆月山庄中失传以久的一本刀谱。\n");
+			"這是圓月山莊中失傳以久的一本刀譜。\n");
 		set("value", 70);
 		set("material", "paper");
 		set("skill", ([

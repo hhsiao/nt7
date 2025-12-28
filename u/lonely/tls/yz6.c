@@ -3,13 +3,13 @@ inherit ROOM;
 
 void create()
 {
-        set("short", GRN"松树院"NOR);
+        set("short", GRN"松樹院"NOR);
         set("long", @LONG
-这里一座遍植青竹的小院子，当中一条小路通往千寻宝塔，白石
-地面打扫得非常干净，轻风吹过，只吹得竹叶随风飘动，发出沙沙的
-声响，却带不起一丝灰尘。东西各有一条小道。
+這裡一座遍植青竹的小院子，當中一條小路通往千尋寶塔，白石
+地面打掃得非常乾淨，輕風吹過，只吹得竹葉隨風飄動，發出沙沙的
+聲響，卻帶不起一絲灰塵。東西各有一條小道。
 LONG);
-        set("outdoors", "天龙寺");
+        set("outdoors", "天龍寺");
         set("exits", ([                           
                "southup" : __DIR__"gfd",
                "north" : __DIR__"ta1",

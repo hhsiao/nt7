@@ -5,7 +5,7 @@ void create()
           /*if (clonep())      
                  set_default_object(__FILE__); 
           else*/ { 
-                  set("long", NOR + HIW "一朵白色的小花，发出阵阵浓烈的醉人香气。\n" NOR); 
+                  set("long", NOR + HIW "一朵白色的小花，發出陣陣濃烈的醉人香氣。\n" NOR); 
                   set("base_unit", "朵");
                   set("base_value", 50); 
                   set("base_weight", 20);

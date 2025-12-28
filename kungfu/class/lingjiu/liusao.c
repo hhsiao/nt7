@@ -12,12 +12,12 @@ void create()
 {
         set_name("石嫂", ({ "shi sao", "shi", "sao" }));
         set("long", @LONG
-石嫂乃是缥缈峰灵鹫宫中九天九部中幽天部的
-首领。她如今年过半百，跟随童姥多年，出生
-入死，饱经风霜。
+石嫂乃是縹緲峰靈鷲宮中九天九部中幽天部的
+首領。她如今年過半百，跟隨童姥多年，出生
+入死，飽經風霜。
 LONG);
-        set("title", "缥缈缝灵鹫宫");
-        set("nickname", HIR "幽天部首领" NOR);
+        set("title", "縹緲縫靈鷲宮");
+        set("nickname", HIR "幽天部首領" NOR);
         set("gender", "女性");
         set("age", 56);
         set("attitude", "peaceful");
@@ -57,7 +57,7 @@ LONG);
 
         prepare_skill("strike", "liuyang-zhang");
 
-        create_family("灵鹫宫", 2, "首领");
+        create_family("靈鷲宮", 2, "首領");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -83,25 +83,25 @@ void attempt_apprentice(object ob)
         if( query("gender", ob) == "男性" )
         {
                 command("hmm");
-                command("say 走开，灵鹫宫素来不收男徒。");
+                command("say 走開，靈鷲宮素來不收男徒。");
                 return;
         }
 
         if( query("gender", ob) != "女性" )
         {
                 command("sneer");
-                command("say 灵鹫宫又不是皇宫，你一个太监跑来做甚？");
+                command("say 靈鷲宮又不是皇宮，你一個太監跑來做甚？");
                 return;
         }
 
         if ((int)ob->query_skill("xiaowuxiang", 1) < 40) 
         {
-                command("say 你把本门的心法炼好了再来找我。");
+                command("say 你把本門的心法煉好了再來找我。");
                 return;
         }
 
         command("nod2");
-        command("say 那你以后就跟着我吧。");
+        command("say 那你以後就跟著我吧。");
         command("recruit "+query("id", ob));
 
         if( query("class", ob) != "dancer" )

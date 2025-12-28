@@ -1,5 +1,5 @@
 #include <ansi.h>
-// 仁王经 renwang-jing
+// 仁王經 renwang-jing
 inherit SKILL; 
 string type() { return "knowledge"; } 
 
@@ -9,14 +9,14 @@ string family_name() { return "段氏皇族"; }
 int valid_learn(object me)
 {        
         if (me->query_skill("sun-finger", 1) < 30)
-                return notify_fail("你一阳指火候不足，无法研习仁王经。\n");        
+                return notify_fail("你一陽指火候不足，無法研習仁王經。\n");        
         
         if( query("family/family_name", me) != family_name() )
-                return notify_fail("仁王经只能段氏皇族弟子方可研习。\n");
+                return notify_fail("仁王經只能段氏皇族弟子方可研習。\n");
 
         if (me->query_skill("kurong-changong", 1) < 
             me->query_skill("renwang-jing", 1) * 60 /100)
-                return notify_fail("你枯荣禅功修为不足，无法继续研习仁王经。\n");
+                return notify_fail("你枯榮禪功修為不足，無法繼續研習仁王經。\n");
 
         return 1;
 }

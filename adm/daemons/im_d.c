@@ -11,8 +11,8 @@
     :root!root@localhost.localdomain PRIVMSG &bitlbee :You can use the yes/no commands to answer this question.
 
 *                                     ==未經同意，嚴禁流出==  *
-*               北大侠客行 修改版 2001年。
-*               北大侠客行，连续开放15年的MUD。pkuxkx.net
+*               北大俠客行 修改版 2001年。
+*               北大俠客行，連續開放15年的MUD。pkuxkx.net
 **************************************************************/
 
 /* 標頭引入檔 */
@@ -46,7 +46,7 @@ void auto_login1();
 /* 檔案主檔 */
 void create()
 {
-	set("channel_id", "QQ精灵");
+	set("channel_id", "QQ精靈");
 	seteuid(getuid());
 #ifdef DEBUG
     TELL(sprintf("[%s]啟始完成。",ctime(time()) ));
@@ -206,16 +206,16 @@ protected void read_callback(int fd,mixed message)
                         }
                         else  if( sscanf(msg,"%s:%s",id,msg1) == 2 || sscanf(msg,"%s] %s",id,msg1) == 2 )
                             {
-                            	//去掉不必要的转发前缀
-                            	msg = replace_string(msg,"北侠消息转发 (744093028): ","");
-                            	msg = replace_string(msg,"消息转发 (739663638): ","");
-                            	msg = replace_string(msg,"消息转发 (1064453141)",BLU+"消息已送至QQ群");
-                            	//过滤含有非法字符的表情
+                            	//去掉不必要的轉發前綴
+                            	msg = replace_string(msg,"北俠消息轉發 (744093028): ","");
+                            	msg = replace_string(msg,"消息轉發 (739663638): ","");
+                            	msg = replace_string(msg,"消息轉發 (1064453141)",BLU+"消息已送至QQ群");
+                            	//過濾含有非法字符的表情
                             	if ((strsrch(msg,"/:o")==-1)&&(strsrch(msg,"xiaoi.com")==-1)) {
 	                            	if (strsrch(msg,"[img]")!=-1)
 	                            	{
 	                            		str1 = explode(msg,"img]");
-	                            		msg = str1[0]+"自定义图片]";
+	                            		msg = str1[0]+"自定義圖片]";
 	                            	}
 	                            	msg = replace_string(msg,"): chat","):chat");
 	                            	msg = replace_string(msg,"] chat","):chat");
@@ -281,7 +281,7 @@ protected void read_callback(int fd,mixed message)
                     if(sscanf(m,":%s!%s JOIN :&bitlbee",id,name) == 2)
                     {
                         send_who(fd,id);
-                        TELL(sprintf("[IM Message]:%s上线了 ！",id));
+                        TELL(sprintf("[IM Message]:%s上線了 ！",id));
     					socket_write(fd,"set charset 'gb2312'\r\n");
     					socket_write(fd,"PRIVMSG &bitlbee :set charset 'gb2312'\r\n");
 			CH_D->register_relay_channel("qq");
@@ -291,7 +291,7 @@ protected void read_callback(int fd,mixed message)
                     if(sscanf(m,":%s!%s QUIT :Leaving...",id,name) == 2)
                     {
                         map_delete(users[fd]["list"],id);
-                        TELL(sprintf("[IM Message]:%s离线了 ！",id));
+                        TELL(sprintf("[IM Message]:%s離線了 ！",id));
                         continue;
                     }
                     // 狀況變線上 :root!root@rw.twku.net MODE &bitlbee +v paiting
@@ -440,7 +440,7 @@ void auto_login()
 //            return;
 				close_socket(me->query_temp("im_fd"));
         }
-        TELL("[IM Message]:开始登录本地irc服务器。");
+        TELL("[IM Message]:開始登錄本地irc服務器。");
         login_irc(me);
         call_out("auto_login1",5);
         return;
@@ -452,7 +452,7 @@ void auto_login1()
 
     del_account(me->query_temp("im_fd"),"msn");
     register_account(me->query_temp("im_fd"),"msn","msn_acount","msn_passwd");
-    TELL("[IM Message] MSN帐号添加完毕。\n");
+    TELL("[IM Message] MSN帳號添加完畢。\n");
 	return;
 }
 

@@ -6,9 +6,9 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("蒋涛", ({ "jiang tao", "jiang", "tao"}));
-        set("long", "他穿青色长袍，背上斜插长剑，二十八九岁年纪。\n"
-                    "脸罩寒霜，一副要惹事生非的模样。\n");
+        set_name("蔣濤", ({ "jiang tao", "jiang", "tao"}));
+        set("long", "他穿青色長袍，背上斜插長劍，二十八九歲年紀。\n"
+                    "臉罩寒霜，一副要惹事生非的模樣。\n");
         set("gender", "男性");
         set("age", 28);
         set("attitude", "heroism");
@@ -50,7 +50,7 @@ void create()
         prepare_skill("strike", "kunlun-zhang");
         prepare_skill("cuff", "zhentian-quan");
 
-        create_family("昆仑派", 5, "弟子");
+        create_family("崑崙派", 5, "弟子");
 
         set("chat_chance_combat", 100);
         set("chat_msg_combat", ({
@@ -74,7 +74,7 @@ void attempt_apprentice(object me)
 
         if( query("gender", me) == "女性" )
         {
-                command("say 师傅不准我收女弟子，你去找我师姊吧。");
+                command("say 師傅不准我收女弟子，你去找我師姊吧。");
                 return;
         }
 

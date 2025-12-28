@@ -3,19 +3,19 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "独木桥");
+        set("short", "獨木橋");
         set("long", @LONG
-这是一条宽约七寸的独木桥(bridge)，天风凛冽，吹的人
-衣襟头发齐飞，只要一不留神，稍一失足，立刻便要粉身碎骨。
-两崖相隔，约有五十余丈，往下看，峭壁如刀削，云卷雾涌深
-不见底，投块石子下去，也听不到回声！
+這是一條寬約七寸的獨木橋(bridge)，天風凜冽，吹的人
+衣襟頭髮齊飛，只要一不留神，稍一失足，立刻便要粉身碎骨。
+兩崖相隔，約有五十餘丈，往下看，峭壁如刀削，雲卷霧湧深
+不見底，投塊石子下去，也聽不到回聲！
 LONG);
         set("exits", ([ 
                 "north" : __DIR__"xiaojing1",
         ]));
         set("item_desc",([
-                "bridge" : YEL "这是一条宽约七寸的独木桥，看来只"
-                           "能走(zou)过一人。\n" NOR,
+                "bridge" : YEL "這是一條寬約七寸的獨木橋，看來只"
+                           "能走(zou)過一人。\n" NOR,
         ]));
 
         setup();
@@ -31,12 +31,12 @@ int do_zou(string arg)
         object me = this_player(), room;
 
         if (! arg || arg != "bridge")
-                return notify_fail("你要走什么？\n");
+                return notify_fail("你要走什麼？\n");
 
         if (me->query_skill("dodge", 1) < 100)
-                return notify_fail(HIY "\n你战战兢兢地向前迈出两"
-                                   "步，可突然间谷风刮过，危桥一"
-                                   "阵狂\n颤，吓得你赶忙收回了脚"
+                return notify_fail(HIY "\n你戰戰兢兢地向前邁出兩"
+                                   "步，可突然間穀風刮過，危橋一"
+                                   "陣狂\n顫，嚇得你趕忙收回了腳"
                                    "步。\n" NOR);
 
         if (! (room = find_object(__DIR__"bridge1")))
@@ -45,10 +45,10 @@ int do_zou(string arg)
         if (! objectp(room))
                 return notify_fail(HIW "你大叫道：BUG！BUG！\n" NOR);
 
-        message_vision(HIW "\n只见$N" HIW "轻轻跃上独木桥，飘然而"
+        message_vision(HIW "\n只見$N" HIW "輕輕躍上獨木橋，飄然而"
                        "去。\n" NOR, me);
         me->move(room);
-        message_vision(HIW "$N" HIW "从独木桥上飘然而下，来到了山"
-                       "峰的对面。\n" NOR, me);
+        message_vision(HIW "$N" HIW "從獨木橋上飄然而下，來到了山"
+                       "峰的對面。\n" NOR, me);
         return 1;
 }

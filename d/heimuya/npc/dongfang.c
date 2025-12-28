@@ -7,14 +7,14 @@ inherit F_MASTER;
 
 void create()
 {
-    set_name("东方不败", ({"dongfang bubai", "dongfang", "bubai"}));
-    set("nickname", HIY "天下无敌" NOR);
+    set_name("東方不敗", ({"dongfang bubai", "dongfang", "bubai"}));
+    set("nickname", HIY "天下無敵" NOR);
     set("title", HIM "日月神教教主" NOR);
     set("gender", "男性");
     set("shen_type", -1);
     set("age", 42);
     set("long",
-        "他就是日月神教教主。号称无人可敌，因此有一称号为「东方不败」。\n");
+        "他就是日月神教教主。號稱無人可敵，因此有一稱號為「東方不敗」。\n");
     set("attitude", "peaceful");
 
     set("per", 21);
@@ -25,12 +25,12 @@ void create()
 
     set("chat_chance", 1);
     set("chat_msg", ({
-          "东方不败叹了口气道：“唉 …… 我的杨大哥....他怎么还不回来,我好\n"
-         "挂念他 ……东方不败眼中流露无限迷茫。\n",
+          "東方不敗嘆了口氣道：“唉 …… 我的楊大哥....他怎麼還不回來,我好\n"
+         "掛念他 ……東方不敗眼中流露無限迷茫。\n",
     }));
     set("inquiry", ([
-        "杨莲亭"   : "你敢直称我爱人的名字,想找死呀？ \n",
-        "葵花宝典" : "如果你能帮我取得葵花宝典上册，我一定重重谢你。\n",
+        "楊蓮亭"   : "你敢直稱我愛人的名字,想找死呀？ \n",
+        "葵花寶典" : "如果你能幫我取得葵花寶典上冊，我一定重重謝你。\n",
     ]));
 
     set("qi", 4000);
@@ -44,15 +44,15 @@ void create()
     set("combat_exp", 2500000);
     set("score", 0);
 
-    set_skill("force", 290);             // 基本内功
+    set_skill("force", 290);             // 基本內功
     set_skill("finger", 290);            // 基本指法
-    set_skill("unarmed", 290);           // 基本拳脚
-    set_skill("dodge", 300);             // 基本躲闪
+    set_skill("unarmed", 290);           // 基本拳腳
+    set_skill("dodge", 300);             // 基本躲閃
     set_skill("parry", 290);             // 基本招架
-    set_skill("sword", 290);             // 基本剑法
-    set_skill("pixie-jian", 300);        // 辟邪剑法
-    set_skill("changquan", 280);         // 太祖长拳
-    set_skill("literate", 120);          // 读书识字
+    set_skill("sword", 290);             // 基本劍法
+    set_skill("pixie-jian", 300);        // 辟邪劍法
+    set_skill("changquan", 280);         // 太祖長拳
+    set_skill("literate", 120);          // 讀書識字
     set_skill("kuihua-xinfa", 290);      // 葵花心法
 
     map_skill("force", "kuihua-xinfa");

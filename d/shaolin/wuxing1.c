@@ -11,10 +11,10 @@ void create()
 {
         set("short", HIG "五行洞" NOR);
         set("long", @LONG
-[1；32m这是五行洞。这里地面相对比较干燥些，四壁由宽厚的木板严严
-实实的地封了起来，叩上去发出沉闷的笃笃声，看来不是实心的就是
-有几尺厚，没有斧凿等利器休想劈开它们。不过你还是想下手试一试，
-希望能从这里打开缺口。[2；37；0m
+[1；32m這是五行洞。這裡地面相對比較乾燥些，四壁由寬厚的木板嚴嚴
+實實的地封了起來，叩上去發出沉悶的篤篤聲，看來不是實心的就是
+有幾尺厚，沒有斧鑿等利器休想劈開它們。不過你還是想下手試一試，
+希望能從這裡打開缺口。[2；37；0m
 LONG );
         set("exits", ([
                 "east" : __DIR__"wuxing0",
@@ -61,7 +61,7 @@ int valid_leave(object me, string dir)
                         set_temp("wuxing/火", count, me);
                         if (check_out(me))
                         {
-                                write("你顺利地走出了五行迷宫。\n");
+                                write("你順利地走出了五行迷宮。\n");
                                 return 1;
                         }
                 }
@@ -70,7 +70,7 @@ int valid_leave(object me, string dir)
 //                        write("*木克土*\n");
                         delete_temp("wuxing", me);
                         me->move(__DIR__"jianyu1");
-                        write("你掉进机关，落入僧监。\n");
+                        write("你掉進機關，落入僧監。\n");
                         return 1;
                 }
         }

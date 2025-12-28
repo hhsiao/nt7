@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define XIAN "「" HIY "镖中现掌" NOR "」"
+#define XIAN "「" HIY "鏢中現掌" NOR "」"
 
 inherit F_SSERVER;
 
@@ -15,44 +15,44 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if( userp(me) && !query("can_perform/bagua-biao/xian", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(XIAN "只能在战斗中对对手使用。\n");
+                return notify_fail(XIAN "只能在戰鬥中對對手使用。\n");
 
         if( objectp(query_temp("weapon", me)) )
                 return notify_fail(XIAN "只能空手施展。\n");
 
         if( !objectp(anqi=query_temp("handing", me) )
             || query("skill_type", anqi) != "throwing" )
-                return notify_fail("你现在手中并没有拿着暗器。\n");
+                return notify_fail("你現在手中並沒有拿著暗器。\n");
 
         if (me->query_skill_mapped("strike") != "bagua-zhang") 
-                return notify_fail("你没有激发八卦掌，难以施展" XIAN "。\n");
+                return notify_fail("你沒有激發八卦掌，難以施展" XIAN "。\n");
 
         if (me->query_skill_prepared("strike") != "bagua-zhang") 
-                return notify_fail("你没有准备八卦掌，难以施展" XIAN "。\n");
+                return notify_fail("你沒有準備八卦掌，難以施展" XIAN "。\n");
 
         if (me->query_skill_mapped("throwing") != "bagua-biao") 
-                return notify_fail("你没有激发八卦镖诀，难以施展" XIAN "。\n");
+                return notify_fail("你沒有激發八卦鏢訣，難以施展" XIAN "。\n");
 
         if ((int)me->query_skill("bagua-zhang", 1) < 120)
-                return notify_fail("你的八卦掌不够娴熟，难以施展" XIAN "。\n");
+                return notify_fail("你的八卦掌不夠嫻熟，難以施展" XIAN "。\n");
 
         if ((int)me->query_skill("bagua-biao", 1) < 120)
-                return notify_fail("你的八卦镖诀不够娴熟，难以施展" XIAN "。\n");
+                return notify_fail("你的八卦鏢訣不夠嫻熟，難以施展" XIAN "。\n");
 
         if ((int)me->query_skill("force") < 150)
-                return notify_fail("你的内功火候不够，难以施展" XIAN "。\n");
+                return notify_fail("你的內功火候不夠，難以施展" XIAN "。\n");
 
         if( query("neili", me)<150 )
-                return notify_fail("你现在真气不足，难以施展" XIAN "。\n");
+                return notify_fail("你現在真氣不足，難以施展" XIAN "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIY "突然只听$N" HIY "喝道：“$n" HIY "看招！”"
-              "说完单手一扬，袖底顿时窜出一道金光，直射$n" HIY
+        msg = HIY "突然只聽$N" HIY "喝道：“$n" HIY "看招！”"
+              "說完單手一揚，袖底頓時竄出一道金光，直射$n" HIY
               "而去！\n" NOR;
 
         ap = me->query_skill("strike", 1) +
@@ -69,15 +69,15 @@ int perform(object me, object target)
                 damage = damage_power(me, "throwing");
                 addn("neili", -100, me);
                 msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 40,
-                                           HIY "可只见$n" HIY "哈哈一笑，身子一矮"
-                                           "，躲了过去。\n" NOR + HIR "哪知方才的"
-                                           "暗器竟是虚招，等$p" HIR "反应时$N" HIR
-                                           "已至跟前，双掌齐施，重重的印在$n" HIR
+                                           HIY "可只見$n" HIY "哈哈一笑，身子一矮"
+                                           "，躲了過去。\n" NOR + HIR "哪知方才的"
+                                           "暗器竟是虛招，等$p" HIR "反應時$N" HIR
+                                           "已至跟前，雙掌齊施，重重的印在$n" HIR
                                            "胸前。\n" NOR);
         } else
         {
-                msg += HIY "可是$p" HIY "看破了$P" HIY "的企图，没"
-                       "有受到迷惑，招手将暗器全部揽了下来。\n" NOR;
+                msg += HIY "可是$p" HIY "看破了$P" HIY "的企圖，沒"
+                       "有受到迷惑，招手將暗器全部攬了下來。\n" NOR;
         }
         message_combatd(msg, me, target);
 

@@ -6,7 +6,7 @@ inherit EQUIP;
 
 void create()
 {
-        set_name( HIM "淡烟秀才装" NOR, ({ "xiucai zhuang", "xiucai", "zhuang" }) );
+        set_name( HIM "淡煙秀才裝" NOR, ({ "xiucai zhuang", "xiucai", "zhuang" }) );
         set_weight(700);
         /*if (clonep())
                 set_default_object(__FILE__);
@@ -17,7 +17,7 @@ void create()
                 set("armor_type", "cloth");
                 set("armor_prop/armor", 2);
                 set("wear_msg","$N穿上一件$n。\n");
-                set("remove_msg","$N将$n脱了下来。\n");
+                set("remove_msg","$N將$n脫了下來。\n");
         }
 
         setup();

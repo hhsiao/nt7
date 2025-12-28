@@ -3,17 +3,17 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action" : "$N面露微笑，一招「拨云见日」，手中$w一抖，剑光暴长，洒向$n的$l",
+([      "action" : "$N面露微笑，一招「撥雲見日」，手中$w一抖，劍光暴長，灑向$n的$l",
         "force"  : 50,
         "attack" : 15,
         "dodge"  : 10,
         "parry"  : 25,
         "damage" : 10,
         "lvl"    : 0,
-        "skill_name" : "拨云见日",
-        "damage_type":  "刺伤"
+        "skill_name" : "撥雲見日",
+        "damage_type":  "刺傷"
 ]),
-([      "action" : "$N一招「仙人指路」，身形突闪，剑招陡变，手中$w从后部斜刺向$n的$l",
+([      "action" : "$N一招「仙人指路」，身形突閃，劍招陡變，手中$w從後部斜刺向$n的$l",
         "force"  : 70,
         "attack" : 21,
         "dodge"  : 25,
@@ -21,77 +21,77 @@ mapping *action = ({
         "damage" : 15,
         "lvl"    : 20,
         "skill_name" : "仙人指路",
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action" : "$N暴退数尺，一招「曹国舅拍板」，低首抚剑，随后手中$w骤然穿上，刺向$n的$l",
+([      "action" : "$N暴退數尺，一招「曹國舅拍板」，低首撫劍，隨後手中$w驟然穿上，刺向$n的$l",
         "force"  : 75,
         "attack" : 23,
         "dodge"  : 22,
         "parry"  : 32,
         "damage" : 20,
         "lvl"    : 40,
-        "skill_name" : "曹国舅拍板",
-        "damage_type":  "刺伤"
+        "skill_name" : "曹國舅拍板",
+        "damage_type":  "刺傷"
 ]),
-([      "action" : "$N身形一晃，疾掠而上，使一招「丹凤朝阳」，手中$w龙吟一声，对准$n连递数剑",
+([      "action" : "$N身形一晃，疾掠而上，使一招「丹鳳朝陽」，手中$w龍吟一聲，對準$n連遞數劍",
         "force"  : 90,
         "attack" : 29,
         "dodge"  : 10,
         "parry"  : 25,
         "damage" : 21,
         "lvl"    : 60,
-        "skill_name" : "丹凤朝阳",
-        "damage_type":  "刺伤"
+        "skill_name" : "丹鳳朝陽",
+        "damage_type":  "刺傷"
 ]),
-([      "action" : "$N身形一展，施展出「湘子吹箫」，如影相随，手中$w疾往$n的$l刺去",
+([      "action" : "$N身形一展，施展出「湘子吹簫」，如影相隨，手中$w疾往$n的$l刺去",
         "force"  : 103,
         "attack" : 31,
         "dodge"  : 13,
         "parry"  : 22,
         "damage" : 23,
         "lvl"    : 80,
-        "skill_name" : "湘子吹箫",
-        "damage_type":  "刺伤"
+        "skill_name" : "湘子吹簫",
+        "damage_type":  "刺傷"
 ]),
-([      "action" : "$N一招「采和献花」，侧过身子，手中$w疾往斜上挑起，直指$n的$l",
+([      "action" : "$N一招「採和獻花」，側過身子，手中$w疾往斜上挑起，直指$n的$l",
         "force"  : 125,
         "attack" : 35,
         "dodge"  : 15,
         "parry"  : 25,
         "damage" : 28,
         "lvl"    : 100,
-        "skill_name" : "采和献花",
-        "damage_type":  "刺伤"
+        "skill_name" : "採和獻花",
+        "damage_type":  "刺傷"
 ]),
-([      "action" : "$N微微一个转身，一招「张果老倒骑驴」，手中$w却已自肋下穿出，罩向$n的$l",
+([      "action" : "$N微微一個轉身，一招「張果老倒騎驢」，手中$w卻已自肋下穿出，罩向$n的$l",
         "force"  : 133,
         "attack" : 42,
         "dodge"  : 11,
         "parry"  : 27,
         "damage" : 33,
         "lvl"    : 120,
-        "skill_name" : "张果老倒骑驴",
-        "damage_type":  "刺伤"
+        "skill_name" : "張果老倒騎驢",
+        "damage_type":  "刺傷"
 ]),
-([      "action" : "$N神色微变，一招「汉锺离阴阳宝扇」，剑招顿时变得凌厉无比，手中$w闪电般射向$n",
+([      "action" : "$N神色微變，一招「漢鍾離陰陽寶扇」，劍招頓時變得凌厲無比，手中$w閃電般射向$n",
         "force"  : 151,
         "attack" : 47,
         "dodge"  : 13,
         "parry"  : 32,
         "damage" : 36,
         "lvl"    : 140,
-        "skill_name" : "汉锺离阴阳宝扇",
-        "damage_type":  "刺伤"
+        "skill_name" : "漢鍾離陰陽寶扇",
+        "damage_type":  "刺傷"
 ]),
-([      "action" : "$N缓缓低首，接着一招「铁拐李葫芦系腰」，手中$w中宫直进，迅捷无比地往$n刺去",
+([      "action" : "$N緩緩低首，接著一招「鐵柺李葫蘆繫腰」，手中$w中宮直進，迅捷無比地往$n刺去",
         "force"  : 165,
         "attack" : 53,
         "dodge"  : 20,
         "parry"  : 34,
         "damage" : 43,
         "lvl"    : 160,
-        "skill_name" : "铁拐李葫芦系腰",
-        "damage_type":  "刺伤"
+        "skill_name" : "鐵柺李葫蘆繫腰",
+        "damage_type":  "刺傷"
 ]),
 });
 
@@ -100,16 +100,16 @@ int valid_enable(string usage) {return usage == "sword" || usage == "parry";}
 int valid_learn(object me)
 {
         if( query("max_neili", me)<200 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if ((int)me->query_skill("force") < 20)
-                return notify_fail("你的内功火候太浅。\n");
+                return notify_fail("你的內功火候太淺。\n");
 
         if ((int)me->query_skill("sword", 1) < 10)
-                return notify_fail("你的基本剑法火候不够，无法学习八仙剑法。\n");
+                return notify_fail("你的基本劍法火候不夠，無法學習八仙劍法。\n");
 
         if ((int)me->query_skill("sword", 1) < (int)me->query_skill("baxian-jian", 1))
-                return notify_fail("你的基本剑法水平有限，无法领会更高深的八仙剑法。\n");
+                return notify_fail("你的基本劍法水平有限，無法領會更高深的八仙劍法。\n");
 
         return 1;
 }
@@ -138,17 +138,17 @@ mapping query_action(object me, object weapon)
         for(i = ttl; i > 0; i--)
                 if(lvl > action[i-1]["lvl"])
                 {
-                        seq = i; /* 获得招数序号上限 */
+                        seq = i; /* 獲得招數序號上限 */
                         break;
                 }
-        seq = random(seq);       /* 选择出手招数序号 */
+        seq = random(seq);       /* 選擇出手招數序號 */
         return ([
                 "action"      : action[seq]["action"],
                 "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
                 "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
                 "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
                 "damage"      : m_e1 + (m_e2 - m_e1) * seq / ttl,
-                "damage_type" : random(2) ? "刺伤":"割伤",
+                "damage_type" : random(2) ? "刺傷":"割傷",
         ]);
 }
 
@@ -163,13 +163,13 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if( query("qi", me)<50 )
-                return notify_fail("你的体力目前没有办法练习八仙剑法。\n");
+                return notify_fail("你的體力目前沒有辦法練習八仙劍法。\n");
 
         if( query("neili", me)<50 )
-                return notify_fail("你的内力不够，无法练习八仙剑法。\n");
+                return notify_fail("你的內力不夠，無法練習八仙劍法。\n");
 
         addn("qi", -43, me);
         addn("neili", -44, me);

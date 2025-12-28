@@ -8,8 +8,8 @@ void create()
         // set_name( names[random(sizeof(names))], ({ "ghost eye","ghost"}));
         set_name( names[random(sizeof(names))], ({ "ghost eye" }));
         set("vendetta_mark","ghost");
-        set("long", "这是个若隐若现的幽灵。\n");
-        set("title", HIB "(鬼气)" NOR); 
+        set("long", "這是個若隱若現的幽靈。\n");
+        set("title", HIB "(鬼氣)" NOR); 
 
         set("str", 50);
         set("con", 120);
@@ -24,9 +24,9 @@ void create()
         //set("shen_type", -1);        
         //set("chat_chance", 2);
         //set("chat_msg", ({
-        //               "骷髅空洞的眼眶里闪烁着可怕的荧光。\n"
+        //               "骷髏空洞的眼眶裡閃爍著可怕的熒光。\n"
         //}) ); 
-        set("death_msg",BLU"\n$N消失不见了。\n\n"NOR);
+        set("death_msg",BLU"\n$N消失不見了。\n\n"NOR);
         set("chat_chance_combat", 100);
         set("chat_msg_combat", ({
                 (: do_eye() :),
@@ -72,11 +72,11 @@ void do_eye() {
                 if(!present(enemy, environment(this_object())))
                 return;
         
-        message_vision(HIR"\n$N中现出了$n的影子，$n不由得凝视着自己的影子...... \n"NOR, this_object(),enemy); 
+        message_vision(HIR"\n$N中現出了$n的影子，$n不由得凝視著自己的影子...... \n"NOR, this_object(),enemy); 
         yourexp=query("combat_exp", enemy);
         myexp = query("combat_exp");
         if( random(myexp + yourexp)> yourexp ) {
-                message_vision(HIR"\n影子突然四分五裂，$N觉得自己的灵魂也分裂了！ \n"NOR, enemy); 
+                message_vision(HIR"\n影子突然四分五裂，$N覺得自己的靈魂也分裂了！ \n"NOR, enemy); 
                 enemy->receive_damage("jing",query("jing", enemy)/2,this_object());
                 COMBAT_D->report_status(enemy);
         } else 

@@ -7,10 +7,10 @@ inherit PRODUCING_ROOM;
 
 void create ()
 {
-        set ("short", "工部石厂");
+        set ("short", "工部石廠");
         set("long", @LONG
-这是工部的收集石料，选料打磨的地方。拣选来自全国各地运来
-的石料，分门别类，供京城建筑使用。
+這是工部的收集石料，選料打磨的地方。揀選來自全國各地運來
+的石料，分門別類，供京城建築使用。
 LONG );
         set("exits",  ([ //sizeof() == 2
                 "north" : __DIR__"gongbu",

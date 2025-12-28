@@ -6,7 +6,7 @@ int is_tessera() { return 1; }
 
 string chinese_s(mixed arg)
 {
-      if( !stringp(arg) )  return HIW "无";
+      if( !stringp(arg) )  return HIW "無";
       if( arg == "metal" ) return HIY "金";
       if( arg == "wood" )  return HIM "木";
       if( arg == "water" ) return HIB "水";
@@ -18,30 +18,30 @@ string chinese_s(mixed arg)
 mapping dict = ([
         "axe"           :"斧",
         "bow"           :"弓",
-        "sword"         :"剑",
+        "sword"         :"劍",
         "blade"         :"刀",
         "club"          :"棍",
         "dagger"        :"匕首",
         "fork"          :"叉",
-        "hammer"        :"锤",
+        "hammer"        :"錘",
         "staff"         :"杖",
         "throwing"      :"暗器",
         "whip"          :"鞭",
-        "xsword"        :"箫",
-        "head"          :"头盔",
-        "neck"          :"项链",
+        "xsword"        :"簫",
+        "head"          :"頭盔",
+        "neck"          :"項鍊",
         "cloth"         :"衣服",
         "charm"         :"符文",
         "rings"         :"戒指",
-        "armor"         :"护甲",
-        "surcoat"       :"披风",
-        "waist"         :"腰带",
-        "wrists"        :"护腕",
+        "armor"         :"護甲",
+        "surcoat"       :"披風",
+        "waist"         :"腰帶",
+        "wrists"        :"護腕",
         "shield"        :"盾甲",
-        "hands"         :"铁掌",
+        "hands"         :"鐵掌",
         "boots"         :"靴子",
         "finger"        :"指套",
-        "all"           :"所有类型",
+        "all"           :"所有類型",
 ]);
 
 string to_chinese(string str)
@@ -60,23 +60,23 @@ string extra_long()
         mapping data;
         int value;
 
-        str =  sprintf( WHT "\n物品属性 : 镶嵌物<%s" NOR+WHT">，重量%d克，下线%s丢失\n" NOR,
+        str =  sprintf( WHT "\n物品屬性 : 鑲嵌物<%s" NOR+WHT">，重量%d克，下線%s丟失\n" NOR,
                         this_object()->name(), this_object()->query_weight(),
                         (this_object()->query_autoload() || query("auto_load")) ? "不" : "" );
 
         if( mapp(query("magic")) )
         {
-                str += sprintf(WHT "魔力属性 : %s\n" NOR, chinese_s(query("magic/type")));
+                str += sprintf(WHT "魔力屬性 : %s\n" NOR, chinese_s(query("magic/type")));
                 str += sprintf(WHT "魔 力 值 : %d\n" NOR, (int)query("magic/power"));
         }
 
         type = query("enchase/type");
         if( type )
-                str += sprintf(WHT "可镶装备 : %s(%s)\n" NOR, to_chinese(type), type);
+                str += sprintf(WHT "可鑲裝備 : %s(%s)\n" NOR, to_chinese(type), type);
 /*
         level = query("enchase/level");
         if( level )
-                str += sprintf(WHT "可镶等级 : %d\n" NOR, level);
+                str += sprintf(WHT "可鑲等級 : %d\n" NOR, level);
 */
 
         if( mapp(data = copy(query("enchase/weapon_prop"))) )
@@ -84,7 +84,7 @@ string extra_long()
                 apply = keys(data);
                 for (i = 0; i<sizeof(apply); i++) {
                         value = data[apply[i]];
-                        str += HBCYN "镶嵌兵器" NOR " : ";
+                        str += HBCYN "鑲嵌兵器" NOR " : ";
                         str += EQUIPMENT_D->chinese(apply[i], value) + "\n";
                 }
         }
@@ -93,7 +93,7 @@ string extra_long()
                 apply = keys(data);
                 for (i = 0; i<sizeof(apply); i++) {
                         value = data[apply[i]];
-                        str += HBYEL "镶嵌防具" NOR " : ";
+                        str += HBYEL "鑲嵌防具" NOR " : ";
                         str += EQUIPMENT_D->chinese(apply[i], value) + "\n";
                 }
         }
@@ -102,7 +102,7 @@ string extra_long()
                 apply = keys(data);
                 for (i = 0; i<sizeof(apply); i++) {
                         value = data[apply[i]];
-                        str += HBGRN "镶嵌饰品" NOR " : ";
+                        str += HBGRN "鑲嵌飾品" NOR " : ";
                         str += EQUIPMENT_D->chinese(apply[i], value) + "\n";
                 }
         }
@@ -111,7 +111,7 @@ string extra_long()
                 apply = keys(data);
                 for (i = 0; i<sizeof(apply); i++) {
                         value = data[apply[i]];
-                        str += HBCYN "拥有属性" NOR " : ";
+                        str += HBCYN "擁有屬性" NOR " : ";
                         str += EQUIPMENT_D->chinese(apply[i], value) + "\n";
                 }
         }

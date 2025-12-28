@@ -5,11 +5,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "广场");
+        set("short", "廣場");
         set("long", @LONG
-这是千佛殿前的一个广场。往北上了台阶就是供奉西天诸佛的千
-佛殿。往西是供奉地藏王菩萨的地藏殿，往东是供奉白衣观音大士的
-白衣殿。这里每年都有不少香客聚集举办水陆大法会。
+這是千佛殿前的一個廣場。往北上了臺階就是供奉西天諸佛的千
+佛殿。往西是供奉地藏王菩薩的地藏殿，往東是供奉白衣觀音大士的
+白衣殿。這裡每年都有不少香客聚集舉辦水陸大法會。
 LONG );
         set("exits", ([
                 "east" : __DIR__"bydian",
@@ -28,7 +28,7 @@ int valid_leave(object me, string dir)
         {
                 if (dir == "southup")
                 {
-                        return notify_fail("你级别不够，不能进入达摩院。\n");
+                        return notify_fail("你級別不夠，不能進入達摩院。\n");
                 }
         }
         return ::valid_leave(me, dir);

@@ -10,9 +10,9 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIW "这是一本《百家姓》册子，里面记载着各种姓氏及起源。\n"
-                                                "使用后可修改您的姓名，指令：rename 姓 名 即可。\n" 
-                                                                "下线丢失:否\n" NOR);
+                set("long", HIW "這是一本《百家姓》冊子，裡面記載著各種姓氏及起源。\n"
+                                                "使用後可修改您的姓名，指令：rename 姓 名 即可。\n" 
+                                                                "下線丟失:否\n" NOR);
                 set("value", 1);
                 set("no_sell", 1);
                         set("unit", "本");

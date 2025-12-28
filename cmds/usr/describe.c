@@ -18,12 +18,12 @@ int main(object me, string arg)
 
         txt = explode(arg, "\n");
         if (sizeof(txt) > 8)
-                return notify_fail("请将您对自己的描述控制在八行以内。\n");
+                return notify_fail("請將您對自己的描述控制在八行以內。\n");
 
         arg = implode(txt, "\n") + "\n";
 
         set("long", arg, me);
-        write("设定了新的描述。\n");
+        write("設定了新的描述。\n");
         return 1;
 }
 
@@ -32,8 +32,8 @@ int help()
         write(@TEXT
 指令格式：describe <描述>
 
-这个指令让你设定当别人用 look 指令看你时，对你的描述，通常当你
-的描述超过一行时可以用 to describe 的方式来输入。
+這個指令讓你設定當別人用 look 指令看你時，對你的描述，通常當你
+的描述超過一行時可以用 to describe 的方式來輸入。
 TEXT
         );
         return 1;

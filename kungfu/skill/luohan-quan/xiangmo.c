@@ -1,5 +1,5 @@
 // This program is a part of NITAN MudLIB
-// xiangmo.c 罗汉降魔
+// xiangmo.c 羅漢降魔
 
 #include <ansi.h>
 #include <combat.h>
@@ -13,7 +13,7 @@ int perform(object me, object target)
         int ap, dp;
        
         // if (userp(me) && ! me->query("can_perform/luohan-quan/xiangmo"))
-        //        return notify_fail("你还没有受过高人指点，无法施展「罗汉降魔」。\n");
+        //        return notify_fail("你還沒有受過高人指點，無法施展「羅漢降魔」。\n");
                 
         if (! target)
         {
@@ -21,22 +21,22 @@ int perform(object me, object target)
                 target = me->select_opponent();
         }
         if (! target || ! me->is_fighting(target))
-                return notify_fail("「罗汉降魔」只能对战斗中的对手使用。\n");
+                return notify_fail("「羅漢降魔」只能對戰鬥中的對手使用。\n");
 
         if ((int)me->query_skill("luohan-quan", 1) < 20)
-                return notify_fail("你的罗汉拳法不够娴熟，现在还无法使用「罗汉降魔」。\n");
+                return notify_fail("你的羅漢拳法不夠嫻熟，現在還無法使用「羅漢降魔」。\n");
                                 
         if( query("neili", me)<50 )
-                return notify_fail("你现在真气不够，无法运用「罗汉降魔」。\n");
+                return notify_fail("你現在真氣不夠，無法運用「羅漢降魔」。\n");
                         
         if (me->query_skill_mapped("cuff") != "luohan-quan") 
-                return notify_fail("你没有激发罗汉拳，无法使用罗汉降魔！\n");
+                return notify_fail("你沒有激發羅漢拳，無法使用羅漢降魔！\n");
 
        if (! living(target))
-              return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+              return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIY "$N" HIY "嗨的一声，一拳平平朝$n"
-              HIY "打出，姿势有板有眼，颇具风范。\n" NOR;
+        msg = HIY "$N" HIY "嗨的一聲，一拳平平朝$n"
+              HIY "打出，姿勢有板有眼，頗具風範。\n" NOR;
 
         ap = attack_power(me, "cuff"); 
         dp = defense_power(target, "parry"); 
@@ -46,13 +46,13 @@ int perform(object me, object target)
                 damage = damage_power(me, "cuff");
                 addn("neili", -30, me);
                 msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 50,
-                                           HIR "只见$n" HIR "一个招架失误，登时"
-                                           "被这拳打了个正着，闷哼一声，退了一步。\n" NOR);
+                                           HIR "只見$n" HIR "一個招架失誤，登時"
+                                           "被這拳打了個正著，悶哼一聲，退了一步。\n" NOR);
                 me->start_busy(1 + random(2));
         } else 
         {
-                msg += CYN "可是$p" CYN "轻轻一格，架住了$P"
-                       CYN "的来拳。\n" NOR;
+                msg += CYN "可是$p" CYN "輕輕一格，架住了$P"
+                       CYN "的來拳。\n" NOR;
                 addn("neili", -10, me);
                 me->start_busy(3);
         }

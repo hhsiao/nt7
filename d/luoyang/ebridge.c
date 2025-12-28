@@ -3,11 +3,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "城东桥");
+        set("short", "城東橋");
         set("long", @LONG
-此桥高跨洛阳护城河之上，气势非凡。站在桥上向两侧望去，一条人
-工开掘的护城河将洛阳城围在当中，桥身以汉白玉造就，既美观又很坚固。
-桥上车水马龙，川流不息。桥下的护城河水清澈见底，时有游鱼跃起。
+此橋高跨洛陽護城河之上，氣勢非凡。站在橋上向兩側望去，一條人
+工開掘的護城河將洛陽城圍在當中，橋身以漢白玉造就，既美觀又很堅固。
+橋上車水馬龍，川流不息。橋下的護城河水清澈見底，時有游魚躍起。
 LONG);
         set("outdoors", "luoyang");
         set("no_clean_up", 0);
@@ -35,7 +35,7 @@ void init()
                 {
                         ob = new("/maze/juxianzhuang/npc/qiaofeng");
                         ob->move(environment(me));
-                        message_vision(HIW "$N走了过来，后面跟着一辆马车。\n", ob);
+                        message_vision(HIW "$N走了過來，後面跟著一輛馬車。\n", ob);
                 }
         }
 }

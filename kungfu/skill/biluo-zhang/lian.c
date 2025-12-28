@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define LIAN "「" HIG "峰连碧罗" NOR "」"
+#define LIAN "「" HIG "峰連碧羅" NOR "」"
 
 inherit F_SSERVER;
 
@@ -12,52 +12,52 @@ int perform(object me, object target)
         int attack_time, i, flag;
 
         if( userp(me) && !query("can_perform/biluo-zhang/lian", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(LIAN "只能对战斗中的对手使用。\n");
+                return notify_fail(LIAN "只能對戰鬥中的對手使用。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(LIAN "只能空手施展。\n");
 
         if ((int)me->query_skill("biluo-zhang", 1) < 100)
-                return notify_fail("你碧罗掌法不够娴熟，难以施展" LIAN "。\n");
+                return notify_fail("你碧羅掌法不夠嫻熟，難以施展" LIAN "。\n");
 
         if (me->query_skill_mapped("strike") != "biluo-zhang")
-                return notify_fail("你没有激发碧罗掌法，难以施展" LIAN "。\n");
+                return notify_fail("你沒有激發碧羅掌法，難以施展" LIAN "。\n");
 
         if (me->query_skill_prepared("strike") != "biluo-zhang")
-                return notify_fail("你没有准备碧罗掌法，难以施展" LIAN "。\n");
+                return notify_fail("你沒有準備碧羅掌法，難以施展" LIAN "。\n");
 
         if (me->query_skill("force") < 120)
-                return notify_fail("你的内功修为不够，难以施展" LIAN "。\n");
+                return notify_fail("你的內功修為不夠，難以施展" LIAN "。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你现在的真气不够，难以施展" LIAN "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" LIAN "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         ap = me->query_skill("strike");
         dp = target->query_skill("parry");
 
-        msg = HIC "\n$N" HIC "双掌陡然连续反转，一招「" HIG "峰连碧罗"
-              HIC "」，双掌带风，已将$n" HIC "笼罩在掌风之中。" NOR;
+        msg = HIC "\n$N" HIC "雙掌陡然連續反轉，一招「" HIG "峰連碧羅"
+              HIC "」，雙掌帶風，已將$n" HIC "籠罩在掌風之中。" NOR;
 
         message_combatd(msg, me, target);
 
         if (random(ap) > dp / 2)
         {
-                msg = HIR "结果$n" HIR "目不暇接，顿时被$N" HIR "掌"
-                      "风所困，顿时阵脚大乱。\n" NOR;
+                msg = HIR "結果$n" HIR "目不暇接，頓時被$N" HIR "掌"
+                      "風所困，頓時陣腳大亂。\n" NOR;
                 flag = 1;
                 addn_temp("apply/attack", 50, me);
         } else
         {
-                msg = HIY "$n" HIY "看清$N" HIY "这几招的来路，但"
-                      "内劲所至，掌风犀利，也只得小心抵挡。\n" NOR;          
+                msg = HIY "$n" HIY "看清$N" HIY "這幾招的來路，但"
+                      "內勁所至，掌風犀利，也只得小心抵擋。\n" NOR;          
         }
         message_combatd(msg, me, target);
 

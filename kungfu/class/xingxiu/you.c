@@ -10,11 +10,11 @@ int auto_kill();
        
 void create()  
 {  
-        set_name("游坦之", ({ "you tanzhi", "you"}));  
-        set("nickname", "铁丑");  
+        set_name("遊坦之", ({ "you tanzhi", "you"}));  
+        set("nickname", "鐵醜");  
         set("long",   
-                      "此人一张脸凹凹凸凸，一块红，一块黑，满是创伤痕痕，\n"  
-                      "五官糜烂，丑陋可怖已极，无不骇然。\n");  
+                      "此人一張臉凹凹凸凸，一塊紅，一塊黑，滿是創傷痕痕，\n"  
+                      "五官糜爛，醜陋可怖已極，無不駭然。\n");  
         set("gender", "男性");  
         set("age", 25);  
         set("attitude", "peaceful");  
@@ -66,7 +66,7 @@ void create()
         set("auto_perform",1);
 
  /*       set("inquiry", ([  
-               "易筋经" : (: ask_book :),
+               "易筋經" : (: ask_book :),
                                 
                       ]));  
 */              
@@ -77,7 +77,7 @@ void init()
 {
         if( query_temp("azi/killer", this_player()) )
         {
-                say("游坦之大叫一声：“好你个"+RANK_D->query_rude(this_player())+"，居然想杀了阿紫姑娘，我跟你拼了！！”\n");
+                say("遊坦之大叫一聲：“好你個"+RANK_D->query_rude(this_player())+"，居然想殺了阿紫姑娘，我跟你拼了！！”\n");
 //                cp_npc(this_player(),this_object());
                 //copy_status() 1.5*exp 1*neili 1*jingli
                 kill_ob(this_player());
@@ -107,12 +107,12 @@ void check_azi()
                         {   
                                 who->kill_ob(player);
                                 player->fight_ob(who); 
-                                tell_object(player,"游坦之大怒：“狗贼，你把阿紫姑娘伤成这样，你去死吧！”\n");
+                                tell_object(player,"遊坦之大怒：“狗賊，你把阿紫姑娘傷成這樣，你去死吧！”\n");
                         }
                         else 
                         {
                                 who->set_leader(player);
-                                tell_object(player,"游坦之大声叫道：“你要把阿紫姑娘带到哪里去？快把阿紫姑娘还给我！除非杀(kill)了我，要不然我绝对不会允许你把阿紫姑娘带走！”\n");
+                                tell_object(player,"遊坦之大聲叫道：“你要把阿紫姑娘帶到哪裡去？快把阿紫姑娘還給我！除非殺(kill)了我，要不然我絕對不會允許你把阿紫姑娘帶走！”\n");
                                 call_out("auto_kill",10);
                         }
                 }
@@ -121,7 +121,7 @@ void check_azi()
         }
         else  
         {
-                tell_object(me,"游坦之道：“我要去找阿紫姑娘。”\n");
+                tell_object(me,"遊坦之道：“我要去找阿紫姑娘。”\n");
                 call_out("destruct_ob",1);
         }
        
@@ -168,7 +168,7 @@ void use_poison()
         if( ob->query_condition("bingcan_poison") ) return;
         this_object()->command("halt");
         tell_object(ob, 
-        "你觉得脸上似乎沾上了什麽东西，伸手一摸却什麽也没有。\n");
+        "你覺得臉上似乎沾上了什麼東西，伸手一摸卻什麼也沒有。\n");
         ob->apply_condition("bingcan_poison", 20);
              
 }
@@ -179,18 +179,18 @@ void die()
         player = this_object()->query_last_damage_from();
         if ( objectp( player ) ) 
         {
-        message("vision","游坦之面目狰狞之极，手突然扬起，满是鲜血的
-脸上居然露出了一丝诡异的笑容，这下用尽了他
-所有的力气，终于缓缓的倒了下去。\n",environment(player));
-        message("vision","游坦之大叫一声，死了！\n",environment(player));
+        message("vision","遊坦之面目猙獰之極，手突然揚起，滿是鮮血的
+臉上居然露出了一絲詭異的笑容，這下用盡了他
+所有的力氣，終於緩緩的倒了下去。\n",environment(player));
+        message("vision","遊坦之大叫一聲，死了！\n",environment(player));
         tell_object(player, 
-        "你觉得脸上似乎沾上了什麽东西，伸手一摸却什麽也没有。\n");
+        "你覺得臉上似乎沾上了什麼東西，伸手一摸卻什麼也沒有。\n");
         player->apply_condition("bingcan_poison", 40);
-        tell_object(player,"你搜了搜游坦之的尸体，发现胸口处有件东西，你连忙把它掏了出来。\n");
+        tell_object(player,"你搜了搜遊坦之的屍體，發現胸口處有件東西，你連忙把它掏了出來。\n");
         ob=new("/d/xingxiu/obj/book.c");
         set("my_owner", player, ob);
         ob->move(player);
-        tell_object(player,"你仔细一看原来是一本书。\n");
+        tell_object(player,"你仔細一看原來是一本書。\n");
         if(!objectp(corpse = present("xiao feng",environment())) || !living(corpse) )
         {
                 delete_temp("azi/killer2", player);
@@ -212,15 +212,15 @@ int accept_object(object me, object ob)
                  ob->kill_ob(me);
                  ob->set_leader(me);
                  me->fight_ob(ob);
-                return notify_fail("你把阿紫伤成这个样子，你去死吧！\n"); 
+                return notify_fail("你把阿紫傷成這個樣子，你去死吧！\n"); 
         }
         
         else {  
                         //give some bonus and return, you disappear 
-                        tell_object(ob,"真是太谢谢你!\n"); 
+                        tell_object(ob,"真是太謝謝你!\n"); 
                         } 
         } 
-        else return notify_fail("你拿什么东西消遣我！");
+        else return notify_fail("你拿什麼東西消遣我！");
                   
 }
 
@@ -229,12 +229,12 @@ int accept_kill(object me)
         object who;
         if( !query_temp("azi/killer", me) && !query_temp("azi/killer2", me) )
         {
-        command("say " + "臭贼有帮手！咱们走！\n");
+        command("say " + "臭賊有幫手！咱們走！\n");
         
         who=find_living("a zi");
                 if(who)
                 {
-                        message("vision","游坦之抓住阿紫的胳膊，一纵身飞也似的去了。\n",environment(me));
+                        message("vision","遊坦之抓住阿紫的胳膊，一縱身飛也似的去了。\n",environment(me));
                         
                         delete_temp("azi/killer", me);
                         delete_temp("azi/killer2", me);
@@ -250,12 +250,12 @@ int accept_fight(object me)
 {
         if( !query_temp("azi/killer", me) || !query_temp("azi/killer2", me) )
         {
-        tell_object(me,"游坦之说道：“我可没心思和你玩！”\n");
+        tell_object(me,"遊坦之說道：“我可沒心思和你玩！”\n");
         return 0;
         }
         else
         {
-        tell_object(me,"游坦之怒道：“既然你这么急着投胎，我就成全你！”\n");
+        tell_object(me,"遊坦之怒道：“既然你這麼急著投胎，我就成全你！”\n");
         kill_ob(me);
         return 1;
         }

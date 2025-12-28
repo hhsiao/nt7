@@ -5,7 +5,7 @@ inherit BLADE;
 
 void create()
 {
-        set_name(HIY "齐王天刀" NOR, ({ "qiwang dao", "qiwang", "blade", "dao" }) );
+        set_name(HIY "齊王天刀" NOR, ({ "qiwang dao", "qiwang", "blade", "dao" }) );
         set_weight(4000);
         /*if( clonep() )
                 set_default_object(__FILE__);

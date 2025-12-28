@@ -7,7 +7,7 @@ inherit SKILL;
 int valid_learn(object me)
 {
         if( (int)me->query_skill("force", 1) < 10 )
-                return notify_fail("你的基本内功火候不够，不能学习特殊内功。\n");
+                return notify_fail("你的基本內功火候不夠，不能學習特殊內功。\n");
 
         return 1;
 }
@@ -53,19 +53,19 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
                         me->receive_wound("qi", damage * 4, victim);
                         if( damage < 10 )
                                 result += ([ "msg" : HIY "$N" HIY "受到$n"
-                                                     HIY "的内力反震，闷哼一声。\n" NOR ]);
+                                                     HIY "的內力反震，悶哼一聲。\n" NOR ]);
                         else if( damage < 20 )
                                 result += ([ "msg" : YEL "$N" YEL "被$n"
-                                                     YEL "以内力反震，「嘿」地一声退了两步。\n" NOR ]);
+                                                     YEL "以內力反震，「嘿」地一聲退了兩步。\n" NOR ]);
                         else if( damage < 40 )
                                 result += ([ "msg" : HIC "$N" HIC "被$n"
-                                                     HIC "以内力一震，胸口有如受到一记重锤，连退了五六步！\n" NOR ]);
+                                                     HIC "以內力一震，胸口有如受到一記重錘，連退了五六步！\n" NOR ]);
                         else if( damage < 80 )
                                 result += ([ "msg" : HIR "$N" HIR "被$n"
-                                                     HIR "的内力一震，眼前一黑，身子向后飞出丈许！！\n" NOR ]);
+                                                     HIR "的內力一震，眼前一黑，身子向後飛出丈許！！\n" NOR ]);
                         else
                                 result += ([ "msg" : RED "$N" RED "被$n"
-                                                     RED "的内力一震，只觉浑身经脉欲断，气血倒流，几乎晕了过去。\n" NOR ]);
+                                                     RED "的內力一震，只覺渾身經脈欲斷，氣血倒流，幾乎暈了過去。\n" NOR ]);
                         return result;
                 }
 
@@ -108,7 +108,7 @@ int shaolin_check(object me)
 
         if( n < 10000 ) return 0;
         lvl = me->query_skill("buddhism", 1);
-        //非少林弟子，可以用taoism、mahayana、lamaism折算成禅宗
+        //非少林弟子，可以用taoism、mahayana、lamaism折算成禪宗
         if( query("family/family_name", me) != "少林派"){
                 if( me->query_skill("taoism", 1) >= 100 )
                         lvl += me->query_skill("taoism", 1) * 3 / 5;
@@ -121,28 +121,28 @@ int shaolin_check(object me)
                 lvl += lvl * 5 / 2;
         lvl *= lvl / 25;
         if( lvl < n * 9 / 10 ) {
-                write(RED "你只觉得心中一阵绞痛，完全无法控制内息，忍"
-                      "不住大叫一声，黄豆般的汗珠涔涔而下。\n" NOR);
-                message("vision", RED + me->name() + RED "忽然大叫一声，"
-                        "黄豆般的汗珠涔涔而下，看样子痛苦之极。\n" NOR,
+                write(RED "你只覺得心中一陣絞痛，完全無法控制內息，忍"
+                      "不住大叫一聲，黃豆般的汗珠涔涔而下。\n" NOR);
+                message("vision", RED + me->name() + RED "忽然大叫一聲，"
+                        "黃豆般的汗珠涔涔而下，看樣子痛苦之極。\n" NOR,
                         environment(me), ({ me }));
                 me->receive_damage("jing", 200 + random(200));
                 me->receive_damage("qi", 400 + random(400));
                 return 1;
         } else if( lvl < n ) {
-                write(HIR "你只觉得内息一阵紊乱，四肢百骸顿时冰冷，手"
-                      "足眉发都不由自主的颤动。\n" NOR);
-                message("vision", HIR + me->name() + RED "浑身都不住的"
-                        "抖动，连眉发都在微微颤动。\n" NOR,
+                write(HIR "你只覺得內息一陣紊亂，四肢百骸頓時冰冷，手"
+                      "足眉發都不由自主的顫動。\n" NOR);
+                message("vision", HIR + me->name() + RED "渾身都不住的"
+                        "抖動，連眉發都在微微顫動。\n" NOR,
                         environment(me), ({ me }));
                 me->receive_damage("jing", 100 + random(100));
                 me->receive_damage("qi", 200 + random(200));
                 return 1;
         } else if( lvl < n * 11 / 10 ) {
-                write(HIY "你觉得有点心烦意乱，丹田中热气如"
-                      "焚，内力运行有些艰难。\n" NOR);
+                write(HIY "你覺得有點心煩意亂，丹田中熱氣如"
+                      "焚，內力運行有些艱難。\n" NOR);
         } else if( lvl < n * 13 / 10 ) {
-                write(HIC "你心中有点异样的感觉。\n" NOR);
+                write(HIC "你心中有點異樣的感覺。\n" NOR);
         }
 
         return 0;
@@ -159,15 +159,15 @@ int hatred_check(object me)
         if( hatred < 3 * force )
                 return 0;
         else if( hatred < 4 * force )
-                write(HIY "你只觉得心血潮动，经脉之间真气冲荡。\n" NOR);
+                write(HIY "你只覺得心血潮動，經脈之間真氣衝蕩。\n" NOR);
         else if( hatred < 5 * force )
-                write(HIR "你只觉得血脉贲张，浑身杀气蠢蠢欲动，一时忍不住只想放声大呼。\n" NOR);
+                write(HIR "你只覺得血脈賁張，渾身殺氣蠢蠢欲動，一時忍不住只想放聲大呼。\n" NOR);
         else if( hatred < 6 * force ) {
-                write(HIR "你心头一痛，内息几欲控制不住，只觉得眼前进行乱冒。\n" NOR);
+                write(HIR "你心頭一痛，內息幾欲控制不住，只覺得眼前進行亂冒。\n" NOR);
                 return 1;
         } else {
-                write(RED "一时间你只觉得杀气大长，人如狂如痴，真气四下冲荡，几欲破体而出。\n"
-                          "你摇摇晃晃强支片刻，嗓眼一甜，眼前登时就是一黑，“咕咚”一下倒在地上。\n" NOR);
+                write(RED "一時間你只覺得殺氣大長，人如狂如痴，真氣四下衝蕩，幾欲破體而出。\n"
+                          "你搖搖晃晃強支片刻，嗓眼一甜，眼前登時就是一黑，“咕咚”一下倒在地上。\n" NOR);
                 me->unconcious();
                 call_out("do_owner_die", 0, me);
                 return 1;
@@ -197,7 +197,7 @@ void do_owner_die(object me)
         if( query("max_neili", me)>500 )
                 set("max_neili",query("max_neili",  me)/2, me);
 
-        set_temp("die_reason", "杀戮太重，郁气填心而死", me);
+        set_temp("die_reason", "殺戮太重，鬱氣填心而死", me);
         me->die();
         set("total_hatred",query("total_hatred",  me)/2, me);
 }

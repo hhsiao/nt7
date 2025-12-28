@@ -1,4 +1,4 @@
-// kuangfeng-jian 狂风快剑
+// kuangfeng-jian 狂風快劍
 
 #include <ansi.h>
 inherit SKILL;
@@ -6,21 +6,21 @@ string type() { return "martial"; }
 string martialtype() { return "skill"; }
 
 mapping *action = ({
-([        "action" : "$N纵身跃起手中$w轻挥，斩向$n后颈",
+([        "action" : "$N縱身躍起手中$w輕揮，斬向$n後頸",
         "lvl"    : 0,
-        "skill_name" : "风平浪静"
+        "skill_name" : "風平浪靜"
 ]),
-([        "action" : "$N手中$w连话三个弧形，向$n的右臂齐肩斩落",
+([        "action" : "$N手中$w連話三個弧形，向$n的右臂齊肩斬落",
         "lvl"    : 20,
-        "skill_name" : "风起云涌"
+        "skill_name" : "風起雲湧"
 ]),
-([        "action" : "$N轻吁一声，刷刷刷刷四剑，向$n胸，腹，腰，肩四处连刺",
+([        "action" : "$N輕籲一聲，刷刷刷刷四劍，向$n胸，腹，腰，肩四處連刺",
         "lvl"    : 40,
-        "skill_name" : "风卷残云"
+        "skill_name" : "風捲殘雲"
 ]),
-([        "action" : "$N仰天一声清啸，斜行向前，$w横削直击，迅捷无比，击向$n的$l",
+([        "action" : "$N仰天一聲清嘯，斜行向前，$w橫削直擊，迅捷無比，擊向$n的$l",
         "lvl"    : 60,
-        "skill_name" : "风流云散"
+        "skill_name" : "風流雲散"
 ]),
 });
 
@@ -28,16 +28,16 @@ int valid_enable(string usage) { return usage == "sword" || usage == "parry"; }
 int valid_learn(object me)
 {
         if( query("max_neili", me)<200 )
-                return notify_fail("你的内力修为不够，无法修习狂风快剑。\n");
+                return notify_fail("你的內力修為不夠，無法修習狂風快劍。\n");
 
         if ((int)me->query_skill("dodge", 1) < 90)
-                return notify_fail("你的基本轻功火候太浅，无法修习狂风快剑。\n");
+                return notify_fail("你的基本輕功火候太淺，無法修習狂風快劍。\n");
 
         if ((int)me->query_dex() < 28)
-                return notify_fail("你的身法还不够灵活，无法修习狂风快剑。\n");
+                return notify_fail("你的身法還不夠靈活，無法修習狂風快劍。\n");
 
         if ((int)me->query_skill("sword", 1) < (int)me->query_skill("kuangfeng-jian", 1))
-                return notify_fail("你的基本剑法水平有限，无法领会更高深的狂风快剑。\n");
+                return notify_fail("你的基本劍法水平有限，無法領會更高深的狂風快劍。\n");
 
         return 1;
 }
@@ -48,9 +48,9 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me) )
                  || query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
         if( query("qi", me)<40 || query("neili", me)<30 )
-                return notify_fail("你的内力或气不够练狂风快剑。\n");
+                return notify_fail("你的內力或氣不夠練狂風快劍。\n");
         me->receive_damage("qi", 35);
         addn("neili", -20, me);
         return 1;
@@ -79,17 +79,17 @@ mapping query_action(object me, object weapon)
         for(i = ttl; i > 0; i--)
                 if(lvl > action[i-1]["lvl"])
                 {
-                        seq = i; /* 获得招数序号上限 */
+                        seq = i; /* 獲得招數序號上限 */
                         break;
                 }
-        seq = random(seq);       /* 选择出手招数序号 */
+        seq = random(seq);       /* 選擇出手招數序號 */
         return ([
                 "action"      : action[seq]["action"],
                 "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
                 "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
                 "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
                 "damage"      : m_e1 + (m_e2 - m_e1) * seq / ttl,
-                "damage_type" : random(2) ? "割伤" : "刺伤",
+                "damage_type" : random(2) ? "割傷" : "刺傷",
         ]);
 }
 int learn_bonus() { return 20; }
@@ -104,22 +104,22 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         lvl = me->query_skill("sword-cognize", 1);
         i = random(lvl);
 
-        if( /*query("family/family_name", me) == "华山剑宗" && */
+        if( /*query("family/family_name", me) == "華山劍宗" && */
             i > 40 && random(2) == 0)
         {
                 if (i < 100)
                 {
                         victim->receive_wound("qi", damage_bonus / 3);
-                        return HIC "只见$N" HIC "身形一探，剑芒陡涨，正中$n！\n" NOR;
+                        return HIC "只見$N" HIC "身形一探，劍芒陡漲，正中$n！\n" NOR;
                 }
                 if (i < 200)
                 {
                         victim->receive_wound("qi", damage_bonus / 2);
-                        return HIY "只看$N" HIY "一声清啸，剑气横飞，$n" HIY "连连中招！\n" NOR;
+                        return HIY "只看$N" HIY "一聲清嘯，劍氣橫飛，$n" HIY "連連中招！\n" NOR;
                 } else
                 {
                         victim->receive_wound("qi", damage_bonus);
-                        return HIW "但见$N" HIW "微微一笑，缓缓移动长剑，$n" HIW "已然中招！\n" NOR;
+                        return HIW "但見$N" HIW "微微一笑，緩緩移動長劍，$n" HIW "已然中招！\n" NOR;
                 }
         }
 }
@@ -129,20 +129,20 @@ string perform_action_file(string action)
 }
 int help(object me)
 {
-        write(HIC"\n狂风快剑："NOR"\n");
+        write(HIC"\n狂風快劍："NOR"\n");
         write(@HELP
 
-    狂风快剑为华山剑宗的剑法。
-    这套“狂风快剑”，是封不平在中条山隐居十五年而创制出来
-的得意剑法，剑招一剑快似一剑。他胸怀大志，不但要执掌华山一
-派，还想成了华山派掌门人之后，更进而为五岳剑派盟主，所凭持
-的便是这套一百零八式“狂风快剑”。
+    狂風快劍為華山劍宗的劍法。
+    這套“狂風快劍”，是封不平在中條山隱居十五年而創制出來
+的得意劍法，劍招一劍快似一劍。他胸懷大志，不但要執掌華山一
+派，還想成了華山派掌門人之後，更進而為五嶽劍派盟主，所憑持
+的便是這套一百零八式“狂風快劍”。
 
-        学习要求：
-                华山内功60级
-                基本轻功60级
-                后天身法25以上
-                内力300
+        學習要求：
+                華山內功60級
+                基本輕功60級
+                後天身法25以上
+                內力300
 HELP
         );
         return 1;

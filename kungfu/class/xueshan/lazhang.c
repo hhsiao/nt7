@@ -9,9 +9,9 @@ void create()
 {
         set_name("拉章活佛", ({ "lazhang huofo", "lazhang", "huofo" }));
         set("long", @LONG
-拉章活佛是雪山寺有道的高僧，对佛法有精深
-的研究。他身穿一件黄色袈裟，头带僧帽。慈
-眉善目，似乎手无缚鸡之力。
+拉章活佛是雪山寺有道的高僧，對佛法有精深
+的研究。他身穿一件黃色袈裟，頭帶僧帽。慈
+眉善目，似乎手無縛雞之力。
 LONG);
         set("title", "雪山寺活佛");
         set("gender", "男性");
@@ -86,5 +86,5 @@ void attempt_apprentice(object ob)
         if (! permit_recruit(ob))
                 return;
 
-        command("say 贫僧只研佛法，并不收徒。");
+        command("say 貧僧只研佛法，並不收徒。");
 }

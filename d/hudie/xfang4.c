@@ -1,4 +1,4 @@
-// 厢房 xfang4.c
+// 廂房 xfang4.c
  
 #include <ansi.h>
 #include <room.h>
@@ -7,11 +7,11 @@ inherit ROOM;
 
 void create() 
 { 
-        set("short", "厢房");
+        set("short", "廂房");
         set("long", @LONG
-这是一间别致的厢房，推开房门，揭开门帘，但见房内黑沉沉的
-宛似夜晚，房间内所有的窗户都用毡子遮住了，床上的帐帘也关得严
-严实实。看来这里就是「见死不救」胡青牛休息的地方了。
+這是一間別致的廂房，推開房門，揭開門簾，但見房內黑沉沉的
+宛似夜晚，房間內所有的窗戶都用氈子遮住了，床上的帳簾也關得嚴
+嚴實實。看來這裡就是「見死不救」胡青牛休息的地方了。
 LONG );
 
         set("exits", ([
@@ -23,6 +23,6 @@ LONG );
         ]));
         set("no_fight",1);
 
-        create_door("out", "竹门", "enter", DOOR_CLOSED);
+        create_door("out", "竹門", "enter", DOOR_CLOSED);
         setup();
 }

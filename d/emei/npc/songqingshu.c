@@ -4,10 +4,10 @@ mixed ask_for_zhou();
 
 void create()
 {
-        set_name("宋青书", ({ "song qingshu", "song" }));
+        set_name("宋青書", ({ "song qingshu", "song" }));
         set("long",
-                "他就是宋远桥的儿子宋青书。\n"
-                "他今年二十岁，乃是武当第三代中出类拔萃的人物。\n");
+                "他就是宋遠橋的兒子宋青書。\n"
+                "他今年二十歲，乃是武當第三代中出類拔萃的人物。\n");
         set("gender", "男性");
         set("age", 20);
         set("attitude", "aggressive");
@@ -68,7 +68,7 @@ void create()
         prepare_skill("strike", "cuixin-zhang");
         prepare_skill("claw", "jiuyin-baiguzhao");
 
-        create_family("武当派", 3, "弟子");
+        create_family("武當派", 3, "弟子");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -90,7 +90,7 @@ mixed ask_for_zhou()
         object ob;
         ob = this_player();
         command("heng");
-        command("say"+query("name", ob)+"你是什么东西？敢直呼芷若的名字？\n");
+        command("say"+query("name", ob)+"你是什麼東西？敢直呼芷若的名字？\n");
         kill_ob(this_player());
         return -1;
 }

@@ -7,11 +7,11 @@ void greeting(object);
 void init();
 void create()
 {
-        set_name("上官云", ({ "shangguan yun","shangguan","yun"}) );
+        set_name("上官雲", ({ "shangguan yun","shangguan","yun"}) );
         set("gender", "男性" );
         set("age", 40);
-        set("title" , "日月神教白虎堂长老");
-        set("long", "他长手长脚, 双目精光灿然, 若有威势。\n");
+        set("title" , "日月神教白虎堂長老");
+        set("long", "他長手長腳, 雙目精光燦然, 若有威勢。\n");
         set("attitude", "friendly");
         set("shen_type", -1);
 
@@ -44,7 +44,7 @@ void create()
         map_skill("parry", "lingshe-zhangfa");
         map_skill("staff", "lingshe-zhangfa");
 
-        create_family("日月神教",2,"弟子 白虎堂长老");
+        create_family("日月神教",2,"弟子 白虎堂長老");
 
         set("chat_chance", 3);
         
@@ -60,5 +60,5 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-             command("say 我是患难之身, 怎么能收徒呢。壮士还是请回吧!\n");
+             command("say 我是患難之身, 怎麼能收徒呢。壯士還是請回吧!\n");
 }

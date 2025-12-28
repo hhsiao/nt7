@@ -22,7 +22,7 @@ int main(object me, string arg)
         seteuid(geteuid(me)); 
 
         if (! SECURITY_D->valid_write(file, me)) 
-                return notify_fail("没有足够的读写权限。\n"); 
+                return notify_fail("沒有足夠的讀寫權限。\n"); 
                 
         if (file_size(file) == -1 )
                 file=resolve_path(query("cwd", me),file);
@@ -46,10 +46,10 @@ int main(object me, string arg)
                         }
 
                 }
-                write(HIW "转换完毕。\n" NOR);
+                write(HIW "轉換完畢。\n" NOR);
                 return 1;
         }
-        else return notify_fail("没有这个文件或目录。\n");
+        else return notify_fail("沒有這個文件或目錄。\n");
         return 1;  
 }
 
@@ -101,7 +101,7 @@ int replace(string file, string oldstr, string newstr)
                 } 
         }
 
-        write(HIW + file + "共有" + j + "个" + oldstr + "被换成" + newstr + "。\n" NOR);
+        write(HIW + file + "共有" + j + "個" + oldstr + "被換成" + newstr + "。\n" NOR);
         return 1;
 }
 int help(object me)
@@ -110,10 +110,10 @@ write(@HELP
 Written by ken@NT. All rights reserved.
 E-mail: printken@yahoo.com.hk
 
-指令格式: replace <目录或文件名> <原字符> to <新字符>
-将文件内容里的所有<原字串>转换成<新字串>。
-注意∶如果指令目录，是会深入该目录下的所有目录提取文件进行
-虑理，要小心使用！(建意放在/cmds/adm/下)
+指令格式: replace <目錄或文件名> <原字符> to <新字符>
+將文件內容裡的所有<原字串>轉換成<新字串>。
+注意∶如果指令目錄，是會深入該目錄下的所有目錄提取文件進行
+慮理，要小心使用！(建意放在/cmds/adm/下)
 HELP );
 return 1;
 }

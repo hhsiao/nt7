@@ -6,13 +6,13 @@ inherit NPC;
 void do_attack();
 void create()
 {
-        set_name("小龙", ({ "dragon baby", "dragon" }) );
+        set_name("小龍", ({ "dragon baby", "dragon" }) );
         set("vendetta_mark","dragon");
-        set("race", "野兽");
+        set("race", "野獸");
         set("gender", "雄性");
         set("age", 50);
 
-        set("long", "胖呼呼的小龙。\n");
+        set("long", "胖呼呼的小龍。\n");
 
         set("str", 60+random(20));
         set("con", 52);
@@ -27,7 +27,7 @@ void create()
         set("neili", 10000);
         set("max_neili", 10000);
         set("attitude", "peacefull");
-        set("limbs", ({ "头部", "身体", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體", "尾巴" }) );
         set("verbs", ({ "bite", "claw" }) );
         set("chat_chance_combat", 80);
         set("chat_msg_combat", ({
@@ -54,7 +54,7 @@ void do_attack()
         enemy = enemies[random(sizeof(enemies))];
         addn_temp("apply/attack",50);
         addn_temp("apply/damage",50);
-        msg = HIM"$N突然一转身，龙尾朝$n扫来！\n"NOR;
+        msg = HIM"$N突然一轉身，龍尾朝$n掃來！\n"NOR;
         message_combatd(msg, this_object(), enemy);
         COMBAT_D->do_attack(this_object(),enemy, 0, 0);
         addn_temp("apply/attack",-50);

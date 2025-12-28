@@ -11,13 +11,13 @@ int tp, op, xp;
 string *eng;
 string s_name, unit, desc;
 
-string* _tp = ({ "苦", "咸", "酸", "辛", "甘" });
-string* _op = ({ "寒", "凉", "平", "温", "热" });
-string* _xp = ({ "无", "有" });
+string* _tp = ({ "苦", "鹹", "酸", "辛", "甘" });
+string* _op = ({ "寒", "涼", "平", "溫", "熱" });
+string* _xp = ({ "無", "有" });
 
 void create()
 {
-        set_name("药材物件", ({ "herb", "object" }));
+        set_name("藥材物件", ({ "herb", "object" }));
 
         setup();
 }
@@ -60,7 +60,7 @@ string long()
         if (stringp(desc))
                 long += desc + "\n";
 
-        long += "味性：" + _tp[tp] + " 药性：" + _op[op];
+        long += "味性：" + _tp[tp] + " 藥性：" + _op[op];
         long += " 毒性：" + _xp[xp] + "\n" + NOR;
 
         return long;

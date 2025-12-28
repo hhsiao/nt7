@@ -8,16 +8,16 @@ inherit POISON;
 
 string name() { return "huanyin_poison"; }
 
-string chinese_name() { return "幻阴寒毒"; }
+string chinese_name() { return "幻陰寒毒"; }
 
 string update_msg_others()
 {
-       return HIG "$N" HIG "的痛苦的呻吟了一声，脸上笼"
-              "罩了一股淡淡的绿气。\n" NOR;
+       return HIG "$N" HIG "的痛苦的呻吟了一聲，臉上籠"
+              "罩了一股淡淡的綠氣。\n" NOR;
 }
 
 string update_msg_self()
 {
-        return HIB "忽然一阵寒气自丹田的而起，逐步渗透到四"
-               "肢白赅，透出阵阵寒意。\n" NOR;
+        return HIB "忽然一陣寒氣自丹田的而起，逐步滲透到四"
+               "肢白賅，透出陣陣寒意。\n" NOR;
 }

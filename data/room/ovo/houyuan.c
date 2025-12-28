@@ -5,10 +5,10 @@
 
 void create()
 {
-        set("short", "后院");
+        set("short", "後院");
 	set ("long", @LONG
-这是东北偏北的后院，正中一个假山，傲然而立、非常雄伟。下
-有一水池，环山而走，悠然不息。东面乃是练武之处，西面是厨房。
+這是東北偏北的後院，正中一個假山，傲然而立、非常雄偉。下
+有一水池，環山而走，悠然不息。東面乃是練武之處，西面是廚房。
 LONG );
 
         set("exits", ([
@@ -23,7 +23,7 @@ LONG );
         setup();
 
         set("room_owner", "小球球");
-        set("room_name", "东北偏北");
+        set("room_name", "東北偏北");
         set("room_id", "dan");
         set("room_owner_id", "ovo");
         set("room_position", "碎石小道");

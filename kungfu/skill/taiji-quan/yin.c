@@ -3,7 +3,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return HIW "引字诀" NOR; }
+string name() { return HIW "引字訣" NOR; }
 
 inherit F_SSERVER;
 
@@ -19,7 +19,7 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(name() + "只能空手施展。\n");
@@ -27,25 +27,25 @@ int perform(object me, object target)
         skill = me->query_skill("taiji-quan", 1);
 
         if (skill < 150)
-                return notify_fail("你的太极拳等级不够，难以施展" + name() + "。\n");
+                return notify_fail("你的太極拳等級不夠，難以施展" + name() + "。\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你的真氣不夠，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("cuff") != "taiji-quan")
-                return notify_fail("你没有激发太极拳，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發太極拳，難以施展" + name() + "。\n");
 
         if (me->query_skill_prepared("cuff") != "taiji-quan")
-                return notify_fail("你现在没有准备使用太极拳，无法使用" + name() + "。\n");
+                return notify_fail("你現在沒有準備使用太極拳，無法使用" + name() + "。\n");
 
         if (target->is_busy())
-                return notify_fail(target->name() + "目前正自顾不暇，放胆攻击吧。\n");
+                return notify_fail(target->name() + "目前正自顧不暇，放膽攻擊吧。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N" HIW "双手一圈，施出「引」字诀，如抱太极，一股"
-              "雄浑无比的力道组成了一个旋涡，圈向$n" HIW "。\n" NOR;
+        msg = HIW "$N" HIW "雙手一圈，施出「引」字訣，如抱太極，一股"
+              "雄渾無比的力道組成了一個旋渦，圈向$n" HIW "。\n" NOR;
         addn("neili", -100, me);
 
         ap = attack_power(me,"cuff");
@@ -57,16 +57,16 @@ int perform(object me, object target)
                 damage = damage_power(me, "cuff");
                 damage+= query("jiali", me);
                 msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 40,
-                                           HIR "$n" HIR "微微一楞，登时被这力道带"
-                                           "得在原地急转七八下，如转陀螺，如旋纺"
-                                           "锤。\n" NOR);
+                                           HIR "$n" HIR "微微一楞，登時被這力道帶"
+                                           "得在原地急轉七八下，如轉陀螺，如旋紡"
+                                           "錘。\n" NOR);
                 me->start_busy(2);
                 if (ap / 2 + random(ap) > dp && ! target->is_busy())
                         target->start_busy(ap / 80 + 3);
         } else
         {
-                msg += CYN "$n" CYN "见状连忙使出“千斤坠”之力定"
-                       "住身形，摆脱了$N" CYN "的力道。\n" NOR;
+                msg += CYN "$n" CYN "見狀連忙使出“千斤墜”之力定"
+                       "住身形，擺脫了$N" CYN "的力道。\n" NOR;
                 addn("neili", -50, me);
                 me->start_busy(3);
         }

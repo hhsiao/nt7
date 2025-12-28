@@ -4,10 +4,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "松树林");
+        set("short", "松樹林");
         set("long", @LONG
-这是一片松树林。几丈高的松树密密麻麻，遮得不见天日。地上
-落满松针，有不知名的野兔偷偷逃过。四周一片寂静。
+這是一片松樹林。幾丈高的松樹密密麻麻，遮得不見天日。地上
+落滿松針，有不知名的野兔偷偷逃過。四周一片寂靜。
 LONG );
         set("exits", ([
                 "south" : __DIR__"songlin" + (random(4) + 1),

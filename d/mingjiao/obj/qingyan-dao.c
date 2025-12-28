@@ -11,7 +11,7 @@ void create()
         else*/ {
            set("value", 1000);
            set("rigidity", 3);
-        set("long",HIC"这柄刀重约四十余斤，但见青光闪烁，背厚刃薄，刃锋上刻有古朴花纹，显是一件历时已久的珍品。\n"NOR);
+        set("long",HIC"這柄刀重約四十餘斤，但見青光閃爍，背厚刃薄，刃鋒上刻有古樸花紋，顯是一件歷時已久的珍品。\n"NOR);
            set("sharpness", 3);
            set("unique", 1);
            set("treasure",1);
@@ -20,8 +20,8 @@ void create()
            set("wield_maxneili", 900);
            set("wield_str", 22);
            set("unit", "把");
-        set("wield_msg", HIB"$N由背后取下宝刀，双手一分，将青焰刀抽出刀鞘，四周顿时布满凌厉的杀气。\n"NOR);
-        set("unwield_msg",HIB" 只听见仓啷一声响，$N将沉重的青焰刀插进刀鞘，背在背上。\n"NOR);
+        set("wield_msg", HIB"$N由背後取下寶刀，雙手一分，將青焰刀抽出刀鞘，四周頓時佈滿凌厲的殺氣。\n"NOR);
+        set("unwield_msg",HIB" 只聽見倉啷一聲響，$N將沉重的青焰刀插進刀鞘，背在背上。\n"NOR);
         }
         init_blade(80);
         setup();

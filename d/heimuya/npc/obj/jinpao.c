@@ -5,8 +5,8 @@ inherit CLOTH;
 
 void create()
 {
-        set_name(HIW "日月锦袍" NOR, ({ "jin pao", "jin", "pao", "cloth" }));
-        set("long", HIW "这是一件日月神教长老所穿戴的华丽锦袍。\n" NOR);
+        set_name(HIW "日月錦袍" NOR, ({ "jin pao", "jin", "pao", "cloth" }));
+        set("long", HIW "這是一件日月神教長老所穿戴的華麗錦袍。\n" NOR);
         set_weight(10);
         /*if (clonep())
                 set_default_object(__FILE__);
@@ -15,7 +15,7 @@ void create()
                 set("unit", "件");
                 set("armor_prop/armor", 1);
                 set("value", 10000);
-                set("no_sell", "我的天…连日月神教的东西你都拿出来卖？");
+                set("no_sell", "我的天…連日月神教的東西你都拿出來賣？");
         }
         setup();
 }

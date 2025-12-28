@@ -31,7 +31,7 @@ int cure_ob(object me)
       me->apply_condition("insect_poison", (int)me->query_condition("insect_poison") - 7);
    }
    if ((int)me->query_condition("xx_poison") > 50)
-   tell_object(me, "你中的星宿掌毒太深，现在服此药没什么效。\n");
+   tell_object(me, "你中的星宿掌毒太深，現在服此藥沒什麼效。\n");
    destruct(this_object());
    return 1;
 }

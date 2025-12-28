@@ -2,41 +2,41 @@ inherit SKILL;
 #include <ansi.h>
 
 mapping *action = ({
-([      "action": "$N双掌一错，一招「风起云涌」，狂风般扫向$n的$l",
+([      "action": "$N雙掌一錯，一招「風起雲湧」，狂風般掃向$n的$l",
         "force" : 100,
         "attack": 18,
         "dodge" : 30,
         "parry" : 15,
         "damage": 40,
         "lvl"   : 0,
-        "damage_type": "瘀伤"
+        "damage_type": "瘀傷"
 ]),
-([      "action": "$N一招「风雪满天」，身形突然旋转起来扑向$n，双掌拍向$n的$l",
+([      "action": "$N一招「風雪滿天」，身形突然旋轉起來撲向$n，雙掌拍向$n的$l",
         "force" : 200,
         "attack": 25,
         "dodge" : 40,
         "parry" : 30,
         "damage": 45,
         "lvl"   : 30,
-        "damage_type": "瘀伤"
+        "damage_type": "瘀傷"
 ]),
-([      "action": "$N将内力运至左手，一招「万里雪飘」，迅疾无比地抓向$n的$l",
+([      "action": "$N將內力運至左手，一招「萬里雪飄」，迅疾無比地抓向$n的$l",
         "force" : 250,
         "attack": 35,
         "dodge" : 50,
         "parry" : 55,
         "damage": 45,
         "lvl"   : 60,
-        "damage_type": "瘀伤"
+        "damage_type": "瘀傷"
 ]),
-([      "action": "$N后退一步，突然一招「千里冰封」，掌力拍向$n的$l",
+([      "action": "$N後退一步，突然一招「千里冰封」，掌力拍向$n的$l",
         "force" : 330,
         "attack": 42,
         "dodge" : 40,
         "parry" : 65,
         "damage": 50,
         "lvl"   : 120,
-        "damage_type": "瘀伤"
+        "damage_type": "瘀傷"
 ]),
 });
 
@@ -56,16 +56,16 @@ mapping query_action(object me, object weapon)
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练烈焰寒冰掌必须空手。\n");
+                return notify_fail("練烈焰寒冰掌必須空手。\n");
 
         if ((int)me->query_skill("force") < 100)
-                return notify_fail("你的内功火候不够，无法练烈焰寒冰掌。\n");
+                return notify_fail("你的內功火候不夠，無法練烈焰寒冰掌。\n");
 
         if( query("max_neili", me)<450 )
-                return notify_fail("你的内力太弱，无法练烈焰寒冰掌。\n");
+                return notify_fail("你的內力太弱，無法練烈焰寒冰掌。\n");
 
         if (me->query_skill("strike", 1) < me->query_skill("fireice-strike", 1))
-                return notify_fail("你的基本掌法水平有限，无法领会更高深的烈焰寒冰掌。\n");
+                return notify_fail("你的基本掌法水平有限，無法領會更高深的烈焰寒冰掌。\n");
 
         return 1;
 }
@@ -74,10 +74,10 @@ int valid_learn(object me)
 int practice_skill(object me)
 {
         if( query("qi", me)<60 )
-                return notify_fail("你的体力太低了，先休息一下吧。\n");
+                return notify_fail("你的體力太低了，先休息一下吧。\n");
 
         if( query("neili", me)<60 )
-                return notify_fail("你的内力不够练烈焰寒冰掌。\n");
+                return notify_fail("你的內力不夠練烈焰寒冰掌。\n");
 
         if (me->query_skill("fireice-strike", 1) < 50)
                 me->receive_damage("qi", 30);
@@ -93,7 +93,7 @@ void skill_improved(object me)
        int level = (int)me->query_skill("fireice-strike", 1);
        if(level>1800 && !query("can_perform/fireice-strike/tian",me))
        {
-          tell_object(me,HIY"你通晓了烈焰寒冰掌「" HIR "冰火二重天" HIY "」的奥秘。\n"NOR);
+          tell_object(me,HIY"你通曉了烈焰寒冰掌「" HIR "冰火二重天" HIY "」的奧秘。\n"NOR);
           set("can_perform/fireice-strike/tian",1,me);
         }
 }

@@ -3,14 +3,14 @@ inherit ITEM;
 
 void create()
 {
-        set_name( HIR"锦盒"NOR,({ "jinhe","he"}));
+        set_name( HIR"錦盒"NOR,({ "jinhe","he"}));
         set_weight(200);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-                set("treasure",1);set("unit", "个");
-                set("long","这是一个锦盒。\n");
+                set("treasure",1);set("unit", "個");
+                set("long","這是一個錦盒。\n");
                 set("value", 0);
                 set("no_put", 1);
                 set("material", "paper");

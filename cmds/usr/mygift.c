@@ -17,8 +17,8 @@ int main(object me, string arg)
                 
                 nquest=query("newbie_mygift/cur_quest_number", me);
                 tmap = MYGIFT_D->query_gift_list(nquest); 
-                tell_object(me, HIC "你决定放弃当前辅助任务，获取新的辅助任务。\n" NOR);
-                MYGIFT_D->give_mygift(me, tmap["下个奖励"]); 
+                tell_object(me, HIC "你決定放棄當前輔助任務，獲取新的輔助任務。\n" NOR);
+                MYGIFT_D->give_mygift(me, tmap["下個獎勵"]); 
                 return 1;
         }
 	return MYGIFT_D->mygift(me, arg);

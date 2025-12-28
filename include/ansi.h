@@ -175,29 +175,29 @@ Minimum requirements for VT100 emulation:
 #define UNFR    ESC+"[r"            /* Unfreeze top and bottom lines */
 #define BLINK   ESC+"[5m"           /* Initialize blink mode */
 #define U       ESC+"[4m"           /* Initialize underscore mode */
-#define ITALIC  ESC+"[3m"           /* 斜体 */
+#define ITALIC  ESC+"[3m"           /* 斜體 */
 #define REV     ESC+"[7m"           /* Turns reverse video mode on */
 #define HIREV   ESC+"[1;7m"         /* Hi intensity reverse video  */
 
 #define FLASH   ESC+"[5m"           // flash
-                /*关于行控制 */
-                /*1.移动 */
-#define TOTOP(x)        (ESC+"["+x+"A")         /*向上跳转x行*/
-#define TOBOT(x)        (ESC+"["+x+"B")         /*向下跳转x行*/
-                                                /*当 游标已经在萤幕的最下一列时, 此一命令没有作用*/
-#define TORIGHT(x)      (ESC+"["+x+"C")         /*向右移动x行*/
-                                                /*当游标已经在萤幕的最右一栏时, 此一命令没有作用。*/
-#define TOLEFT(x)       (ESC+"["+x+"D")         /*向左移动x行*/
-                                                /*当游标已经在萤幕的最左一栏时, 此一命令没有作用。*/
-#define TOPOINT(x,y)    (ESC+"["+x+";"+y+"f")   /*移动到点坐标为(x,y) x:行，y:列*/
+                /*關於行控制 */
+                /*1.移動 */
+#define TOTOP(x)        (ESC+"["+x+"A")         /*向上跳轉x行*/
+#define TOBOT(x)        (ESC+"["+x+"B")         /*向下跳轉x行*/
+                                                /*當 遊標已經在螢幕的最下一列時, 此一命令沒有作用*/
+#define TORIGHT(x)      (ESC+"["+x+"C")         /*向右移動x行*/
+                                                /*當遊標已經在螢幕的最右一欄時, 此一命令沒有作用。*/
+#define TOLEFT(x)       (ESC+"["+x+"D")         /*向左移動x行*/
+                                                /*當遊標已經在螢幕的最左一欄時, 此一命令沒有作用。*/
+#define TOPOINT(x,y)    (ESC+"["+x+";"+y+"f")   /*移動到點座標為(x,y) x:行，y:列*/
 #define TOPOINTA(x,y)   (ESC+"["+x+";"+y+"H")
                 /*2.清除屏幕*/
 #define CLR_LINE        ESC+"[K"                /*清除到行尾*/
 #define SETDISPLAY(x,y) (ESC+"["+x+";"+y+"f")
 // #define DELLINE      ESC+"[K"
-                /*3.冻结屏幕指定行*/
-/* 冻结屏幕指定行，x 是行号，从上往下数，分辨率为 800 x 600，y = 35，
- * 分辨率为 1024 x 768，y = 40。  */
+                /*3.凍結屏幕指定行*/
+/* 凍結屏幕指定行，x 是行號，從上往下數，分辨率為 800 x 600，y = 35，
+ * 分辨率為 1024 x 768，y = 40。  */
 #define FRELINE(x,y)    (ESC+"["+x+";"+y+"r")
 
 #define CUP(n)                sprintf(ESC+"[%dA",n)        /* Cursor Up n lines */

@@ -26,12 +26,12 @@ int do_tear(string str)
                 return notify_fail("你只能撕布料的衣服。\n");
     
         if( (int)query("teared_count") >= 4 )
-                return notify_fail( name() + "的袖口，下□已经没有多余的布可撕了。\n");
+                return notify_fail( name() + "的袖口，下□已經沒有多餘的布可撕了。\n");
     
-        message_vision("$N从" + name() + "撕下一条布条。\n", this_player() );       
+        message_vision("$N從" + name() + "撕下一條布條。\n", this_player() );       
         addn("teared_count", 1);
         ob = new("/clone/misc/bandage");
-        ob->set_name("从" + name() + "撕下的布条", ({ "cloth piece", "piece", "cloth" }) );
+        ob->set_name("從" + name() + "撕下的布條", ({ "cloth piece", "piece", "cloth" }) );
         ob->move(this_player(), 1);
         return 1;
 }
@@ -55,7 +55,7 @@ int washed(int n)
                 n -= n * 7 / 10;
                 break;
         }
-        set_temp("no_wear", "现在" + name() + "还是湿乎乎的，你没法穿。\n");
+        set_temp("no_wear", "現在" + name() + "還是溼乎乎的，你沒法穿。\n");
         delete_temp("daub");
         remove_call_out("dry_cloth");
         if( n ) call_out("dry_cloth", n);
@@ -67,5 +67,5 @@ void dry_cloth()
         if( !objectp(this_object()) )
                 return;
         delete_temp("no_wear");
-        message("vision", name() + "已经干了。\n", environment());
+        message("vision", name() + "已經幹了。\n", environment());
 }

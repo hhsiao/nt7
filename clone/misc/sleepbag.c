@@ -10,8 +10,8 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
             set("long",
-                "一个睡袋，江湖人士用来在野外睡觉用的。\n");
-            set("unit","个");
+                "一個睡袋，江湖人士用來在野外睡覺用的。\n");
+            set("unit","個");
             set("value", 1000);
         }
 }

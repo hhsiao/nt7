@@ -5,11 +5,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "晃天门");
+        set("short", "晃天門");
         set("long",@LONG
-过了此门，便是寺中僧侣清修之地。抬头望去，只见屋宇连绵，
-轻烟缭绕，传来一阵阵诵经、木鱼之声。这里南面是睡房，供给天龙
-俗家弟子休息之用，门口挂着一个牌子(pai)，左右各站着一位武僧。
+過了此門，便是寺中僧侶清修之地。抬頭望去，只見屋宇連綿，
+輕煙繚繞，傳來一陣陣誦經、木魚之聲。這裡南面是睡房，供給天龍
+俗家弟子休息之用，門口掛著一個牌子(pai)，左右各站著一位武僧。
 LONG);
 	set("outdoors","dali");
         set("exits", ([    			
@@ -23,10 +23,10 @@ LONG);
         ]));
                                                     
         set("item_desc",([
-           "pai" : "南面为天龙俗家弟子睡房。\n"NOR,
+           "pai" : "南面為天龍俗家弟子睡房。\n"NOR,
         ]));
 
-        create_door("east", "木门", "west", DOOR_CLOSED);
+        create_door("east", "木門", "west", DOOR_CLOSED);
 
         set("coor/x",-320);
   set("coor/y",-320);
@@ -35,11 +35,11 @@ LONG);
 }
 int valid_leave(object me, string dir)
 {
-        if (me->query("family/family_name") != "天龙寺" &&
+        if (me->query("family/family_name") != "天龍寺" &&
             present("wu seng", environment(me)) && dir =="south")
-           return notify_fail("武僧拦住你的去路，抱拳道：非天龙俗家弟子不得入睡房。\n");
+           return notify_fail("武僧攔住你的去路，抱拳道：非天龍俗家弟子不得入睡房。\n");
         if ((me->query("class") =="bonze") && dir =="south" )
-           return notify_fail("你是出家人，去到那俗家弟子睡房干嘛？\n");                
+           return notify_fail("你是出家人，去到那俗家弟子睡房幹嘛？\n");                
         return ::valid_leave(me, dir);
 }
 

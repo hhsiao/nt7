@@ -11,11 +11,11 @@ int clean_up() { return 1;}
 
 void create()
 {
-        set("short", "学堂操场");
+        set("short", "學堂操場");
         set("long", 
-"操场的前方高高耸立着一根银白色的旗杆，旗杆的顶端是一面鲜艳的\n"
-"五星红旗，衬着蓝天，映着白云，显得更加庄严。操场旁边有个小池塘，\n"
-"四周绿树环绕，野花遍地……\n");
+"操場的前方高高聳立著一根銀白色的旗杆，旗杆的頂端是一面鮮豔的\n"
+"五星紅旗，襯著藍天，映著白雲，顯得更加莊嚴。操場旁邊有個小池塘，\n"
+"四周綠樹環繞，野花遍地……\n");
                 set("outdoors", "yangzhou");
                 set("exits",([ /* sizeof() == 1 */
                         "south" : __DIR__"gate",
@@ -51,7 +51,7 @@ int do_giftbaby(object me, string msg, int p)
         r = r * p / 100;
         call_other(GIFT_D, "bonus", me, ([ "exp":r, "pot":r/3, "prompt":"你在"+msg]));
         addn("experience", r/10, me);
-        message_vision(NOR + "$N" + HIG + "在" + msg + "获得了" + chinese_number(r) + "点经验、" + chinese_number(r/3) + "点潜能、" + chinese_number(r/10) + "点体会。\n" + NOR, me);
+        message_vision(NOR + "$N" + HIG + "在" + msg + "獲得了" + chinese_number(r) + "點經驗、" + chinese_number(r/3) + "點潛能、" + chinese_number(r/10) + "點體會。\n" + NOR, me);
         return 1;
 }
 
@@ -80,7 +80,7 @@ int do_giftbaby2(object me, string msg, int p)
                         {
                                 r = random(r);
                                 me->improve_skill(ks[r], imp);
-                                message_vision(NOR + "$N" + HIG + "在" + msg + "对「" + to_chinese(ks[r]) + "」有所感悟。\n" + NOR, me);
+                                message_vision(NOR + "$N" + HIG + "在" + msg + "對「" + to_chinese(ks[r]) + "」有所感悟。\n" + NOR, me);
                         }
         return 1;
 }
@@ -111,22 +111,22 @@ void do_rndmove(object baby, string str)
         } else {
                 switch (random(10)) {
                         case 0:
-                                message_vision(CYN + "$N" + CYN + "噗通~~一声跳进池塘里去了，半饷冒出头游上岸，手里抓了条大鲤鱼。\n" + NOR, baby);
+                                message_vision(CYN + "$N" + CYN + "噗通~~一聲跳進池塘裡去了，半餉冒出頭游上岸，手裡抓了條大鯉魚。\n" + NOR, baby);
                                 if (query_temp("school/play", baby)<10) {
                                         addn_temp("school/play", 3 + random(2), baby);
                                         break;
                                 }
                                 set_temp("school/play", 1, baby);
-                                do_giftbaby(baby, "游戏过程中", 100);
+                                do_giftbaby(baby, "遊戲過程中", 100);
                                 break;
                         case 1:
-                                message_vision(CYN + "$N" + CYN + "拿出一把小刀在地上撬呀撬，居然挖出一窝蚂蚁蛋来。\n" + NOR, baby);
+                                message_vision(CYN + "$N" + CYN + "拿出一把小刀在地上撬呀撬，居然挖出一窩螞蟻蛋來。\n" + NOR, baby);
                                 if (query_temp("school/play", baby)<13) {
                                         addn_temp("school/play", 3 + random(2), baby);
                                         break;
                                 }
                                 set_temp("school/play", 1, baby);
-                                do_giftbaby2(baby, "游戏过程中", 100);
+                                do_giftbaby2(baby, "遊戲過程中", 100);
                                 break;
                         case 2:
                                 baby->command("ruffle 皮球");
@@ -149,15 +149,15 @@ void do_rndmove(object baby, string str)
                                 addn_temp("school/play", 1 + random(2), baby);
                                 break;
                         case 7:
-                                message_vision(CYN + "$N" + CYN + "像猴子一样顺着旗杆爬了上去，又快速夹紧双腿滑下来大喊道：好爽，好爽..\n" + NOR, baby);
+                                message_vision(CYN + "$N" + CYN + "像猴子一樣順著旗杆爬了上去，又快速夾緊雙腿滑下來大喊道：好爽，好爽..\n" + NOR, baby);
                                 addn_temp("school/play", 3 + random(2), baby);
                                 break;
                         case 8:
-                                message_vision(CYN + "$N" + CYN + "像猴子一样顺着旗杆爬了上去，在旗杆顶上掏出一个鸟蛋，OMG...\n" + NOR, baby);
+                                message_vision(CYN + "$N" + CYN + "像猴子一樣順著旗杆爬了上去，在旗杆頂上掏出一個鳥蛋，OMG...\n" + NOR, baby);
                                 addn_temp("school/play", 3 + random(2), baby);
                                 break;
                         default:
-                                baby->command("think 我下一步该玩什么呢？");
+                                baby->command("think 我下一步該玩什麼呢？");
                                 break;
                 }               
 
@@ -171,7 +171,7 @@ void init()
         object ob = this_player();
         if (base_name(ob)=="/clone/user/baby") {
                 ob->command("halt");
-                ob->command("think 我下一步该玩什么呢？");
+                ob->command("think 我下一步該玩什麼呢？");
                 
                 set_temp("school/init", 1, ob);
                 call_out("do_rndmove", random(6) + 10, ob, base_name(this_object()));
@@ -188,7 +188,7 @@ int valid_leave(object me, string dir)
                 
                 if (!query_temp("school/pay", me)) {
                         me->start_busy(random(6) + 10);
-                        message_vision(YEL "看门大叔气喘吁吁地跑过来一把拉住$N" YEL "道：慢着，叫你父母来缴了学费再去教室上课...\n" NOR, me);
+                        message_vision(YEL "看門大叔氣喘吁吁地跑過來一把拉住$N" YEL "道：慢著，叫你父母來繳了學費再去教室上課...\n" NOR, me);
                         set_temp("school/init", 1, me);
                         call_out("do_rndmove", 2, me, base_name(this_object()));
                         return 0;

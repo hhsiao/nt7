@@ -1,4 +1,4 @@
-// 解迷开锁房间都继承该文件
+// 解迷開鎖房間都繼承該文件
 // by Rcwiz for yhonline
 
 #include <ansi.h>
@@ -11,17 +11,17 @@ void init()
        
        if (! objectp(ob = find_object(TSROB)))
        {
-             write(HIR "TSR 物件载入出错，请与本站 (admin) 联系。\n" NOR);
+             write(HIR "TSR 物件載入出錯，請與本站 (admin) 聯繫。\n" NOR);
              return;
        }
 
        if (wizardp(me))
        {
                 
-                write(HIG"\n房间ID："+query("room_id", this_object())+"\n");
-                write(HIG "管理物件分配该房间的序列号：" + query(query("room_id"), ob) + 
+                write(HIG"\n房間ID："+query("room_id", this_object())+"\n");
+                write(HIG "管理物件分配該房間的序列號：" + query(query("room_id"), ob) + 
                           "\n"NOR);
-                write(HIG "正确开锁顺序：F、A、B、C、D、E\n" NOR);
+                write(HIG "正確開鎖順序：F、A、B、C、D、E\n" NOR);
                 
        }
        
@@ -35,29 +35,29 @@ int do_move(string arg)
        string room_id;
        
        if (! arg || arg != "desk")
-             return notify_fail("你想移动什么？\n");
+             return notify_fail("你想移動什麼？\n");
 
        if (me->is_busy() || me->is_fighting())
-             return notify_fail("等你忙完了再说吧！\n");
+             return notify_fail("等你忙完了再說吧！\n");
 
        ob = find_object(TSROB);
        
        if ( ! objectp(ob))
-             return notify_fail("TSR 物件载入出错，请与巫师联系！\n");
+             return notify_fail("TSR 物件載入出錯，請與巫師聯繫！\n");
 
        if( query("lock/unlocked", ob) )
-             return notify_fail("机关已经被打开了，这样是多此一举。\n");
+             return notify_fail("機關已經被打開了，這樣是多此一舉。\n");
 
        room_id=query("room_id", this_object());
        room_id=query(room_id, ob);
 
        if (! stringp(ob->openlock(room_id)))
-             return notify_fail("TSR 数据出错，请与巫师联系！\n");
+             return notify_fail("TSR 數據出錯，請與巫師聯繫！\n");
 
        me->start_busy(1 + random(2));
 
-       message_vision(HIC "$N" HIC "将石桌用力的旋转，只听得不远处传来"
-                      "一阵轰隆隆的像是触动机关的声音。\n" NOR, me);
+       message_vision(HIC "$N" HIC "將石桌用力的旋轉，只聽得不遠處傳來"
+                      "一陣轟隆隆的像是觸動機關的聲音。\n" NOR, me);
 
        return 1;
 }

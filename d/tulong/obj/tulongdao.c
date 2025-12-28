@@ -13,21 +13,21 @@ void start_borrowing()
 
 void create()
 {
-        set_name(CYN "屠龙刀" NOR, ({ "tulong blade" , "blade" ,"dao", "tulong" }) );
+        set_name(CYN "屠龍刀" NOR, ({ "tulong blade" , "blade" ,"dao", "tulong" }) );
         set_weight(30000);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "柄");
-                set("long", HIY "这便是号称武林至尊的屠龙宝刀，四尺来长的单刀，竟达一百多斤之重。\n相传其中藏有旷世的大秘密。\n" NOR);
+                set("long", HIY "這便是號稱武林至尊的屠龍寶刀，四尺來長的單刀，竟達一百多斤之重。\n相傳其中藏有曠世的大秘密。\n" NOR);
                 set("value", 100000);
-                set("no_sell", "这样东西不能卖。\n");
+                set("no_sell", "這樣東西不能賣。\n");
                 set("no_store", 1);
                 set("rigidity",8000);   
                 set("unique", 1);
                 set("material", "steel");
-                set("wield_msg", HIY "$N一声狂笑，从背后抽出那柄号称“"NOR+HIR"武林至尊"NOR+HIY"”的屠龙宝刀高高举起。\n" NOR);
-                set("unwield_msg", HIY "$N哈哈一笑，将屠龙宝刀插回背后。\n"NOR);
+                set("wield_msg", HIY "$N一聲狂笑，從背後抽出那柄號稱“"NOR+HIR"武林至尊"NOR+HIY"”的屠龍寶刀高高舉起。\n" NOR);
+                set("unwield_msg", HIY "$N哈哈一笑，將屠龍寶刀插回背後。\n"NOR);
         }
         set("enchase/apply_prop", ([
                 "add_busy"  : 10,
@@ -47,7 +47,7 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         int dam;
         dam = me->query_str()*100;
         victim->receive_damage("jing",dam * 2);
-        return HIM "屠龙刀夹带着刺耳的破空声划出一道道长虹，$n只感到心神意乱，勉强作出抵挡。\n" NOR;
+        return HIM "屠龍刀夾帶著刺耳的破空聲劃出一道道長虹，$n只感到心神意亂，勉強作出抵擋。\n" NOR;
 }
 
 void init()
@@ -60,10 +60,10 @@ int do_open(string arg, object me)
         object pai,ob;
         if(arg != "yitian sword" || !ob = present("yitian sword", environment(this_object()))) 
         {
-                return notify_fail("你要砍什么？\n");
+                return notify_fail("你要砍什麼？\n");
         }
         else if( query("jiali", this_player()) <= 160 )
-                return notify_fail(WHT "\n你提起屠龙刀对准倚天剑用力的砍了下去！"NOR+HIR"\n\n只听“镪”的一声脆响，飞溅出几点火星。\n" NOR);
+                return notify_fail(WHT "\n你提起屠龍刀對準倚天劍用力的砍了下去！"NOR+HIR"\n\n只聽“鏹”的一聲脆響，飛濺出幾點火星。\n" NOR);
         {
                 pai = new("/d/tulong/obj/duan1");
                 pai->move(this_player());
@@ -75,7 +75,7 @@ int do_open(string arg, object me)
                 pai->move(this_player());
                 pai = new("/d/tulong/obj/yishu");
                 pai->move(this_player());
-                message_vision(WHT "\n$N提起屠龙刀对准倚天剑用力的砍了下去！\n\n"NOR+HIW"只听一声闷响，$N手臂一震，屠龙刀和倚天剑已经断了。你发现刀剑中竟然夹藏着几卷帛绢。\n"NOR,this_player());
+                message_vision(WHT "\n$N提起屠龍刀對準倚天劍用力的砍了下去！\n\n"NOR+HIW"只聽一聲悶響，$N手臂一震，屠龍刀和倚天劍已經斷了。你發現刀劍中竟然夾藏著幾卷帛絹。\n"NOR,this_player());
                 destruct (ob);
                 destruct(this_object());
                 return 1;
@@ -106,14 +106,14 @@ void return_to_back()
                         call_out("return_to_back", 1); 
                         return; 
                 } 
-                //是否应该执行unwield
-                tell_object(me, HIR"\n一条人影从你眼前一闪而过：" +
-                            "“多谢替老夫取回" NOR + name() + HIR
-                            "，就此谢过，咱们后会有期！”\n\n"NOR);
+                //是否應該執行unwield
+                tell_object(me, HIR"\n一條人影從你眼前一閃而過：" +
+                            "“多謝替老夫取回" NOR + name() + HIR
+                            "，就此謝過，咱們後會有期！”\n\n"NOR);
 
         } else 
         { 
-                message("vision", "忽然一个人走了过来，捡起"+name()+"，叹了口气，摇摇头走了。\n", me); 
+                message("vision", "忽然一個人走了過來，撿起"+name()+"，嘆了口氣，搖搖頭走了。\n", me); 
         } 
 
         move("/clone/misc/void");

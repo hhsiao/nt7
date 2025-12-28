@@ -3,10 +3,10 @@ inherit NPC;
 string ask_me();
 void create()
 {
-        set_name("了思禅师", ({ "liaosi chanshi","liaosi","chanshi"}) );
+        set_name("了思禪師", ({ "liaosi chanshi","liaosi","chanshi"}) );
         set("nickname", "宿命尊者");
-        set("long", "了思禅师是本观大师的弟子，他在同辈弟子\n"+
-		"中最擅佛学。现司职雨花院经楼。\n");
+        set("long", "了思禪師是本觀大師的弟子，他在同輩弟子\n"+
+		"中最擅佛學。現司職雨花院經樓。\n");
         set("gender", "男性" );
         set("attitude", "friendly");
         set("class", "bonze");
@@ -16,7 +16,7 @@ void create()
         set("int", 24);
         set("con", 24);
         set("dex", 22);
-        create_family("天龙寺", 14, "弟子");
+        create_family("天龍寺", 14, "弟子");
 
         set("qi", 1300);
         set("max_qi", 1300);
@@ -46,8 +46,8 @@ void create()
 	prepare_skill("finger","yiyang-zhi");           
 	set("book_count", 5);
 	set("inquiry",([
-		"佛经" : (: ask_me :),    
-		"经书" : (: ask_me :),
+		"佛經" : (: ask_me :),    
+		"經書" : (: ask_me :),
 	]));
         setup();    
         carry_object(BINGQI_D("staff"))->wield();
@@ -59,18 +59,18 @@ string ask_me()
 	mapping fam; 
 	object ob;
 	
-	if (!(fam = this_player()->query("family")) || fam["family_name"] != "天龙寺")
+	if (!(fam = this_player()->query("family")) || fam["family_name"] != "天龍寺")
 		return RANK_D->query_respect(this_player()) + 
-		"与本派素无来往，不知此话从何谈起？";
+		"與本派素無來往，不知此話從何談起？";
 	
 	if (this_player()->query_temp("tl_book"))
-		return "你不是领过了吗？读经书贵精不在多，你先把那本看完吧";
+		return "你不是領過了嗎？讀經書貴精不在多，你先把那本看完吧";
 	if (query("book_count") < 1)
-        return "你来晚了，佛经发完了。";
+        return "你來晚了，佛經發完了。";
 	add("book_count", -1);
 	this_player()->set_temp("tl_book",1);
     ob = new("/d/tls/obj/fojing2"+random(2));
 	ob->move(this_player());
-	return "好吧，这本经书你拿回去好好钻研。";
+	return "好吧，這本經書你拿回去好好鑽研。";
 }
 #include "liao.h";

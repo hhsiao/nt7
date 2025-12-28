@@ -11,7 +11,7 @@ int main(object me, string arg)
         string no_tell, can_tell;
         
         if( !arg )
-                return notify_fail("你想要等谁回神？\n");
+                return notify_fail("你想要等誰回神？\n");
 
         /*
         if (sscanf(arg, "%s %s", arg, msg) != 2)
@@ -20,7 +20,7 @@ int main(object me, string arg)
         sscanf(arg, "%s %s", arg, msg);
                 
         if( !objectp(target = find_player(arg)) || ! me->visible(target) )
-                return notify_fail("这个用户没有登录，你无法和他交谈。\n");
+                return notify_fail("這個用戶沒有登錄，你無法和他交談。\n");
 
         my_id=query("id", me);
         no_tell=query("env/no_tell", target);
@@ -29,14 +29,14 @@ int main(object me, string arg)
         {
                 can_tell=query("env/can_tell", target);
                 if (! is_sub(my_id, can_tell))
-                        return notify_fail("这个人不想听你罗嗦啦。\n");
+                        return notify_fail("這個人不想聽你羅嗦啦。\n");
         }
         
         if (! interactive(target) || target->is_net_dead())
-                return notify_fail("此人现在不在线上，听不到你的话。\n");
+                return notify_fail("此人現在不在線上，聽不到你的話。\n");
 
         if (! living(target))
-                return notify_fail("这人现在恐怕听不到你说的话了...\n");
+                return notify_fail("這人現在恐怕聽不到你說的話了...\n");
 
         if (me->ban_say(1))
                 return 0;
@@ -56,8 +56,8 @@ int main(object me, string arg)
         else
                 set_temp("waitback_list", ([me:info]), target);
         
-        tell_object(me, HIG "你开始等待着" HIG + target->query_idname(1) + HIG "回神。\n" NOR);
-        tell_object(target, HIG + me->query_idname(1) + HIG "开始等待着你回神。\n" NOR);
+        tell_object(me, HIG "你開始等待著" HIG + target->query_idname(1) + HIG "回神。\n" NOR);
+        tell_object(target, HIG + me->query_idname(1) + HIG "開始等待著你回神。\n" NOR);
         tell_object(target, "\a", 0);
         return 1;
 }
@@ -67,12 +67,12 @@ int help(object me)
         write(@HELP
 等待指令
 
-这个指令可以让您等待闲置中的使用者，直到该使用者开始活动时通知您。
+這個指令可以讓您等待閒置中的使用者，直到該使用者開始活動時通知您。
 
 指令格式:
-waitback <使用者代号> <留言>
+waitback <使用者代號> <留言>
 
-相关指令: beep
+相關指令: beep
 HELP);
         return 1;
 }

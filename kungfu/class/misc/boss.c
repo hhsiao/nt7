@@ -14,7 +14,7 @@ void create()
         set_name("怪物", ({ "boss" }));
         set("gender", "男性" );
         set("age", 30 + random(30));
-        // set("long", "这是一个蒙面人。");
+        // set("long", "這是一個蒙面人。");
         set("attitude", "friendly");
         set("scale", 150);
         set_temp("apply/attack", 1000);
@@ -52,7 +52,7 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->start_busy(5 + random(6));
         //me->receive_wound("qi", 500 + random(600), ob);
-        return HIY "$N" HIY "怒喝一声，奋力反抗，竟逼得$n" HIY "手忙脚乱。\n" NOR;
+        return HIY "$N" HIY "怒喝一聲，奮力反抗，竟逼得$n" HIY "手忙腳亂。\n" NOR;
 }
 
 void heart_beat()
@@ -95,7 +95,7 @@ void heart_beat()
                                         message("vision", msg, environment(me), ({ enemy[i] })); 
                                         COMBAT_D->report_status(enemy[i], 1); 
                                 } else {
-                                        tell_object(enemy[i], HIR "你见这招势不可挡，收摄心神，气凝双臂，奋力招架，堪堪招架开去，惊出一身冷汗！\n\n" NOR); 
+                                        tell_object(enemy[i], HIR "你見這招勢不可擋，收攝心神，氣凝雙臂，奮力招架，堪堪招架開去，驚出一身冷汗！\n\n" NOR); 
                                 }
                         }
                         return ::heart_beat();
@@ -157,10 +157,10 @@ varargs void die(object killer)
                         message_vision(death_msg+"\n", me);
         }
         else
-                message_vision(NOR "\n$N扑在地上挣扎了几下，腿一伸，口中喷出几口" 
-                               HIR "鲜血" NOR "，死了！\n\n" NOR, me); 
+                message_vision(NOR "\n$N撲在地上掙扎了幾下，腿一伸，口中噴出幾口" 
+                               HIR "鮮血" NOR "，死了！\n\n" NOR, me); 
 
-        // 以下部分转移到equipmentd.c中处理,因涉及到动态物品
+        // 以下部分轉移到equipmentd.c中處理,因涉及到動態物品
         if( drops = query("drops") ) {
                 tmp = ([]);
                 drops = explode(drops,",");
@@ -189,7 +189,7 @@ varargs void die(object killer)
                 obs = pointerp(killer->query_team()) ?
                                 killer->query_team() : ({ killer });
                 obs = filter_array(obs, (: environment($1) == $(env) :));
-                // 如果队长不在，则这个队成员无任何奖励
+                // 如果隊長不在，則這個隊成員無任何獎勵
                 if( killer->query_team() && (!objectp(killer->query_team_leader()) || environment(killer->query_team_leader()) != env) )
                         obs = ({ });
 
@@ -206,7 +206,7 @@ varargs void die(object killer)
                         /*
                         if( query("combat_exp", user) > atoi(query("limit_exp")) )
                         {
-                                tell_object(user, ((killer == user)?"您":killer->name())+"杀死"+query("name")+"，但您经验与BOSS的水平相差过大，没有奖励。\n");
+                                tell_object(user, ((killer == user)?"您":killer->name())+"殺死"+query("name")+"，但您經驗與BOSS的水平相差過大，沒有獎勵。\n");
                                 continue;
                         }
                         */
@@ -216,7 +216,7 @@ varargs void die(object killer)
                         GIFT_D->boss_bonus(user, tmp);
                         /*
                         CHANNEL_D->channel_broadcast("news",
-                                user->query_idname()+YEL+"挑战boss战胜"+name()+YEL+"获得"+chinese_number(tmp["exp"])+"点经验奖励。\n" NOR);
+                                user->query_idname()+YEL+"挑戰boss戰勝"+name()+YEL+"獲得"+chinese_number(tmp["exp"])+"點經驗獎勵。\n" NOR);
                         */
                 }
         }

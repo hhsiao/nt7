@@ -1,4 +1,4 @@
-// wanli.c 晴空万里
+// wanli.c 晴空萬里
 
 #include <ansi.h>
 #include <combat.h>
@@ -18,25 +18,25 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("晴空万里只能对战斗中的对手使用。\n");
+                return notify_fail("晴空萬里只能對戰鬥中的對手使用。\n");
 
         if ((int)me->query_skill("never-defeated", 1) < 120)
-                return notify_fail("你的不败神功还不够娴熟，不能使用晴空万里。\n");
+                return notify_fail("你的不敗神功還不夠嫻熟，不能使用晴空萬里。\n");
                                 
         if( query("neili", me)<200 )
-                return notify_fail("你现在内力太弱，不能使用晴空万里。\n");
+                return notify_fail("你現在內力太弱，不能使用晴空萬里。\n");
                         
         if( !objectp(weapon=query_temp("weapon", me)) )
-                return notify_fail("你必须手持兵刃才能施展晴空万里！\n");
+                return notify_fail("你必須手持兵刃才能施展晴空萬里！\n");
                 
         if (me->query_skill_mapped("sword") != "never-defeated") 
-                return notify_fail("你现在没有激发不败神功为剑法，难以施展晴空万里。\n"); 
+                return notify_fail("你現在沒有激發不敗神功為劍法，難以施展晴空萬里。\n"); 
                 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIC "$N" HIC "怀抱" + weapon->name() + HIC "，一"
-              "圈圈的划向$n" HIC "，将$p" HIC "卷在当中！\n" NOR;
+        msg = HIC "$N" HIC "懷抱" + weapon->name() + HIC "，一"
+              "圈圈的划向$n" HIC "，將$p" HIC "卷在當中！\n" NOR;
         addn("neili", -20, me);
 
         ap = attack_power(me, "sword");
@@ -53,15 +53,15 @@ int perform(object me, object target)
                         limb = limbs[random(sizeof(limbs))];
                 else
                         limb = "要害";
-                pmsg = HIR "$n连忙腾挪躲闪，然而“扑哧”一声，" + weapon->name() +
-                       HIR "正好击中$p" HIR "的" + limb + "，$p"
-                       HIR "一声惨叫，连退数步。\n" NOR;
+                pmsg = HIR "$n連忙騰挪躲閃，然而“撲哧”一聲，" + weapon->name() +
+                       HIR "正好擊中$p" HIR "的" + limb + "，$p"
+                       HIR "一聲慘叫，連退數步。\n" NOR;
                 msg += COMBAT_D->do_damage(me, target, REMOTE_ATTACK, damage, 90, pmsg);
         } else 
         {
                 me->start_busy(2);
                 msg += CYN "可是$p" CYN "看破了$P"
-                       CYN "的变化，见招拆招，没有受到任何伤害。\n"NOR;
+                       CYN "的變化，見招拆招，沒有受到任何傷害。\n"NOR;
         }
 
         message_combatd(msg, me, target);

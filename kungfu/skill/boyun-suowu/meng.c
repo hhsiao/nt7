@@ -1,11 +1,11 @@
 // This program is a part of NITAN MudLIB
-// meng.c 「回梦」
+// meng.c 「迴夢」
 
 #include <ansi.h>
 
 inherit F_SSERVER;
 
-string name() { return "回梦"; }
+string name() { return "迴夢"; }
 
 int perform(object me, object target)
 {
@@ -15,21 +15,21 @@ int perform(object me, object target)
         if( !target ) target = offensive_target(me);
 
         if( !target || !target->is_character() || !me->is_fighting(target) )
-                return notify_fail("「回梦」只能对战斗中的对手使用。\n");
+                return notify_fail("「迴夢」只能對戰鬥中的對手使用。\n");
 
         if( objectp(query_temp("weapon", me)) )
-                return notify_fail("你必须空手才能使用「回梦」！\n");
+                return notify_fail("你必須空手才能使用「迴夢」！\n");
 
         if( (int)me->query_skill("boyun-suowu", 1) < 140 )
-                return notify_fail("你的拨云锁雾不够娴熟，不会使用「回梦」。\n");
+                return notify_fail("你的撥雲鎖霧不夠嫻熟，不會使用「迴夢」。\n");
 
         if( (int)me->query_skill("biyun-xinfa", 1) < 130 )
-                return notify_fail("你的碧云心法不够高，不能用来反震伤敌。\n");
+                return notify_fail("你的碧雲心法不夠高，不能用來反震傷敵。\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你现在内力太弱，不能使用「回梦」。\n");
+                return notify_fail("你現在內力太弱，不能使用「迴夢」。\n");
 
-        msg = CYN "$N默念口诀，使出「拨云锁雾」之「回梦」，意欲以内力震晕$n。\n"NOR;
+        msg = CYN "$N默唸口訣，使出「撥雲鎖霧」之「迴夢」，意欲以內力震暈$n。\n"NOR;
 
 
         ap = attack_power(me, "hand");
@@ -46,19 +46,19 @@ int perform(object me, object target)
                 addn("neili", -300, me);
 
                 if( damage < 20 )
-                        msg += HIY"结果$n受到$N的内力反震，闷哼一声，看上去很是疲惫。\n"NOR;
+                        msg += HIY"結果$n受到$N的內力反震，悶哼一聲，看上去很是疲憊。\n"NOR;
                 else if( damage < 40 )
-                        msg += HIY"结果$n被$N以内力反震，只觉得胸中烦闷，只想好好休息休息。\n"NOR;
+                        msg += HIY"結果$n被$N以內力反震，只覺得胸中煩悶，只想好好休息休息。\n"NOR;
                 else if( damage < 80 )
-                        msg += RED"结果$n被$N以内力一震，脑中嗡嗡作响，意识开始模糊起来！\n"NOR;
+                        msg += RED"結果$n被$N以內力一震，腦中嗡嗡作響，意識開始模糊起來！\n"NOR;
                 else
-                        msg += HIR"结果$n被$N的内力一震，眼前一黑，向后便倒，眼看就要不醒人事了！\n"NOR;
+                        msg += HIR"結果$n被$N的內力一震，眼前一黑，向後便倒，眼看就要不醒人事了！\n"NOR;
 
         }
         else
         {
                 me->start_busy(3);
-                msg += CYN"可是$p看破了$P的企图，并没有上当。\n"NOR;
+                msg += CYN"可是$p看破了$P的企圖，並沒有上當。\n"NOR;
         }
         message_combatd(msg, me, target);
 

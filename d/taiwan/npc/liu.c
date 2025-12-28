@@ -4,12 +4,12 @@ inherit NPC;
 
 void create()
 {
-        set_name("刘国轩", ({ "liu guoxuan", "liu"}));
+        set_name("劉國軒", ({ "liu guoxuan", "liu"}));
         set("gender", "男性");
         set("age", random(10) + 30);
         set("str", 25);
         set("dex", 16);
-        set("long", "他就是延平王府的宿将，台海安危的干城，台湾三虎的刘大将军。\n");
+        set("long", "他就是延平王府的宿將，臺海安危的干城，臺灣三虎的劉大將軍。\n");
         set("combat_exp", 75000);
         set("shen_type", 1);
         set("attitude", "peaceful");
@@ -48,7 +48,7 @@ void init()
 void greeting(object ob)
 {
         if( environment(ob) != environment() ) return;
-        say("刘国轩扬声道：小将守土有责，虽万死以不辞。\n");
+        say("劉國軒揚聲道：小將守土有責，雖萬死以不辭。\n");
 }
 
 

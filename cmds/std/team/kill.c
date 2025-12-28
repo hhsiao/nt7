@@ -12,59 +12,59 @@ int main(object me, string arg)
         object *t;
         int i;
 
-        // team kill 命令使用的标志
+        // team kill 命令使用的標誌
         int kill_flag;
         int want_kill_flag;
 
         t = me->query_team();
         if (! arrayp(t))
-                return notify_fail("你这个队伍中现在"
-                                   "没有别人，想出手就直接下KILL命令吧。\n");
+                return notify_fail("你這個隊伍中現在"
+                                   "沒有別人，想出手就直接下KILL命令吧。\n");
 
         if (! me->is_team_leader())
-                return notify_fail("只有队伍的领袖才能下命令攻击别人。\n");
+                return notify_fail("只有隊伍的領袖才能下命令攻擊別人。\n");
 
         if (! arg)
-                return notify_fail("你想率领队伍攻击谁？\n");
+                return notify_fail("你想率領隊伍攻擊誰？\n");
 
         env = environment(me);
         t = filter_array(t, (: objectp($1) && living($1) &&
                                environment($1) == $(env) :));
         if (! sizeof(t))
-                return notify_fail("你这个队伍中现在"
-                                   "没有人能够听你的号令，还是靠自己吧。\n");
+                return notify_fail("你這個隊伍中現在"
+                                   "沒有人能夠聽你的號令，還是靠自己吧。\n");
 
         if( query("no_fight", env) )
-                return notify_fail("这里不能战斗。\n");
+                return notify_fail("這裡不能戰鬥。\n");
 
         if (! objectp(obj = present(arg, env)))
-                return notify_fail("你想攻击谁？\n");
+                return notify_fail("你想攻擊誰？\n");
 
         if (! obj->is_character() || obj->is_corpse())
                 return notify_fail("看清楚了，那不是活人！\n");
 
         if (obj == me)
-                return notify_fail("什么？你要自杀也不要叫上这么多人啊！\n");
+                return notify_fail("什麼？你要自殺也不要叫上這麼多人啊！\n");
 
         if (member_array(obj, me->query_team()) != -1)
-                return notify_fail("你想攻击队伍中的人？好像没人会听你的话。\n");
+                return notify_fail("你想攻擊隊伍中的人？好像沒人會聽你的話。\n");
 
         if (query_temp("warquest/group", obj) && query("qi", obj) > query("max_qi", obj) )
-                return notify_fail("你想率领几个人的队伍攻击军队？恐怕不行吧！\n");
+                return notify_fail("你想率領幾個人的隊伍攻擊軍隊？恐怕不行吧！\n");
 
         if( query("can_speak", obj) )
         {
                 if (random(3) > 1)
-                        message_vision("\n$N大声喊道：“大家上啊，对付" + obj->name() +
-                                       "这种人不必讲究什么江湖道义！”\n\n",
+                        message_vision("\n$N大聲喊道：“大家上啊，對付" + obj->name() +
+                                       "這種人不必講究什麼江湖道義！”\n\n",
                                        me, obj);
                 else
-                        message_vision("\n$N扯着嗓子喊道：“大家并肩"
+                        message_vision("\n$N扯著嗓子喊道：“大家並肩"
                                        "子上啊！一起除掉" + obj->name() +
-                                       "这" + RANK_D->query_rude(obj) +
+                                       "這" + RANK_D->query_rude(obj) +
                                        "！”\n\n", me, obj);
         } else
-                message_vision("\n$N一挥手，喝道：“灭了这畜生！”\n\n",
+                message_vision("\n$N一揮手，喝道：“滅了這畜生！”\n\n",
                                me, obj);
 
         switch (obj->accept_kill(me))
@@ -75,27 +75,27 @@ int main(object me, string arg)
                 if (objectp(obj) &&
                     !me->is_killing(query("id", obj)) )
                 {
-                        // 因为某种原因战斗没有发生
+                        // 因為某種原因戰鬥沒有發生
                         return 1;
                 }
         default:
         }
 
-        // 战斗已经发生，队伍中所有的人参与战斗
-        message("vision", HIR "你和大家一起跟着" + me->name(1) +
-                          HIR "冲了上去，围着" + obj->name() +
-                          "就是一顿乱砍。\n" NOR, t, ({ me }));
+        // 戰鬥已經發生，隊伍中所有的人參與戰鬥
+        message("vision", HIR "你和大家一起跟著" + me->name(1) +
+                          HIR "衝了上去，圍著" + obj->name() +
+                          "就是一頓亂砍。\n" NOR, t, ({ me }));
 
-        // 判断是否是我先主动想杀死对方
+        // 判斷是否是我先主動想殺死對方
         if (userp(me) && userp(obj))
         {
-                // 对方想杀害的人和我们对我中的成员
+                // 對方想殺害的人和我們對我中的成員
                 string *obj_wants;
                 object *all_team;
                 object *ts;
 
-                // 重新取队伍的人员 - 因为队伍中晕倒的成员
-                // 没有包含在 t 数组中。
+                // 重新取隊伍的人員 - 因為隊伍中暈倒的成員
+                // 沒有包含在 t 數組中。
                 all_team = me->query_team();
                 all_team -= ({ 0 });
                 obj_wants = obj->query_want() - ({ 0 });
@@ -104,8 +104,8 @@ int main(object me, string arg)
                         ts += ({ query("id", t[i]) });
                 if (sizeof(obj_wants - ts) != sizeof(obj_wants))
                 {
-                        // 对方想杀害我们对我中的某一些人，
-                        // 因此认为是对方想杀害我们，否则
+                        // 對方想殺害我們對我中的某一些人，
+                        // 因此認為是對方想殺害我們，否則
                         // 反之
                         want_kill_flag = 0;
                 } else
@@ -115,31 +115,31 @@ int main(object me, string arg)
                 }
         }
 
-        // 判断对方是否会杀死我
+        // 判斷對方是否會殺死我
         if (living(obj) && ! userp(obj))
         {
-                // 对方会杀死我们
+                // 對方會殺死我們
                 obj->kill_ob(me);
                 kill_flag = 1;
         } else
         {
-                // 对方不会杀死我们，只是攻击我们
+                // 對方不會殺死我們，只是攻擊我們
                 obj->fight_ob(me);
                 kill_flag = 0;
         }
 
-        // 驱动队伍中所有的人
+        // 驅動隊伍中所有的人
         foreach (tob in t)
         {
-                // 杀人方向和队长保持一致：如果对方
-                // 主动攻击队伍中的某一个人，则设置
-                // 是对方挑衅
+                // 殺人方向和隊長保持一致：如果對方
+                // 主動攻擊隊伍中的某一個人，則設置
+                // 是對方挑釁
                 if (want_kill_flag)
                         tob->want_kill(obj);
 
                 tob->kill_ob(obj);
 
-                // 设置对手的攻击状态和队长保持一致
+                // 設置對手的攻擊狀態和隊長保持一致
                 if (kill_flag)
                         obj->kill_ob(tob);
                 else

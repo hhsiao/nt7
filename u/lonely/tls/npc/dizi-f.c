@@ -7,10 +7,10 @@ inherit NPC;
 void create()
 {
     int name_no = random(2); 
-	string *name_string = ({"闪电","小小胖"});
+	string *name_string = ({"閃電","小小胖"});
 
 	set_name("女弟子", ({"nv dizi", "nv", "dizi"}) );
-	set("long", "她正在专心致志地练习功夫。\n");
+	set("long", "她正在專心致志地練習功夫。\n");
 	set("gender", "女性" );
 	set("age", 23);
 	set("attitude", "peaceful");
@@ -42,12 +42,12 @@ void create()
 	prepare_skill("cuff","duanjia-quan");
 
 	set("shen_type", 0);
-	create_family("天龙寺", 16, "弟子");
+	create_family("天龍寺", 16, "弟子");
 
 	set("inquiry", ([
-		"name": "奴家叫做" + name_string[name_no] + "，从小被寺里的师傅收养。",
-		"寒雨": "说起来也是他创造了我，不过这家伙是个造ｑｕｅｓｔ狂。",
-		"jpei": "说起来也是他创造了我，不过这家伙是个造ｑｕｅｓｔ狂。",
+		"name": "奴家叫做" + name_string[name_no] + "，從小被寺裡的師傅收養。",
+		"寒雨": "說起來也是他創造了我，不過這傢伙是個造ｑｕｅｓｔ狂。",
+		"jpei": "說起來也是他創造了我，不過這傢伙是個造ｑｕｅｓｔ狂。",
 	]) );
 
 	setup();

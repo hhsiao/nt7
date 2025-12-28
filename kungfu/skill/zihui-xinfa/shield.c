@@ -1,4 +1,4 @@
-// shield.c 紫徽心法之护体神功
+// shield.c 紫徽心法之護體神功
 //
 
 #include <ansi.h>
@@ -12,23 +12,23 @@ int exert(object me, object target)
         int skill;
 
         if (target != me)
-                return notify_fail("你只能用紫徽心法来提升自己的防御力。\n");
+                return notify_fail("你只能用紫徽心法來提升自己的防禦力。\n");
 
         if( query("neili", me)<100 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if ((int)me->query_skill("zihui-xinfa",1) < 50)
-                return notify_fail("你的紫徽心法修为不够。\n");
+                return notify_fail("你的紫徽心法修為不夠。\n");
 
         if( BUFF_D->check_buff(me, "shield") )
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
         addn("neili", -100, me);
         me->receive_damage("qi", 0);
 
-        msg = HIW "$N" HIW "手指扣成北斗七星图形，运起紫徽心法，"
-                        "顿时全身紫蕴朦胧，衣袖飘扬！\n" NOR;
+        msg = HIW "$N" HIW "手指扣成北斗七星圖形，運起紫徽心法，"
+                        "頓時全身紫蘊朦朧，衣袖飄揚！\n" NOR;
                         
         data = ([
                 "armor" : skill/2,
@@ -39,11 +39,11 @@ int exert(object me, object target)
                 "target": me,
                 "type"  : "shield",
                 "attr"  : "bless",
-                "name"  : "紫徽心法·护体神功",
+                "name"  : "紫徽心法·護體神功",
                 "time"  : skill,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : "你的紫徽心法运行完毕，将内力收回丹田。\n",
+                "disa_msg" : "你的紫徽心法運行完畢，將內力收回丹田。\n",
                         
         ]);
         BUFF_D->buffup(buff);

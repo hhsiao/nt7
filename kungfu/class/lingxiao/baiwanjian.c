@@ -16,11 +16,11 @@ mixed ask_skill6();
 void create()
 {
         object ob;
-        set_name("白万剑", ({"bai wanjian", "bai", "wanjian"}));
-        set("nickname", HIW "气寒西北" NOR);
-        set("long", "白万剑是雪山派掌门人威德先生白自在的长子，他\n"
-                    "们师兄弟均以“万”字排行，他名字居然叫到白万\n"
-                    "剑，足见剑法之高。\n");
+        set_name("白萬劍", ({"bai wanjian", "bai", "wanjian"}));
+        set("nickname", HIW "氣寒西北" NOR);
+        set("long", "白萬劍是雪山派掌門人威德先生白自在的長子，他\n"
+                    "們師兄弟均以“萬”字排行，他名字居然叫到白萬\n"
+                    "劍，足見劍法之高。\n");
         set("gender", "男性");
         set("age", 34);
         set("attitude", "friendly");
@@ -37,11 +37,11 @@ void create()
         set("combat_exp", 1000000);
 
         set("inquiry",([
-                "冷剑决"   : (: ask_skill1 :),
-                "凌霄总诀" : (: ask_skill2 :),
-                "飞絮飘零" : (: ask_skill3 :),
-                "鹤冲九霄" : (: ask_skill4 :),
-                "风回雪舞" : (: ask_skill5 :),
+                "冷劍決"   : (: ask_skill1 :),
+                "凌霄總訣" : (: ask_skill2 :),
+                "飛絮飄零" : (: ask_skill3 :),
+                "鶴衝九霄" : (: ask_skill4 :),
+                "風迴雪舞" : (: ask_skill5 :),
                 "雪花六出" : (: ask_skill6 :),
         ]));
 
@@ -71,7 +71,7 @@ void create()
         prepare_skill("strike", "piaoxu-zhang");
         prepare_skill("cuff", "lingxiao-quan");
 
-        create_family("凌霄城", 6, "掌门弟子");
+        create_family("凌霄城", 6, "掌門弟子");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -107,30 +107,30 @@ void attempt_apprentice(object me)
 
         if( query("shen", me)<3000 )
         {
-                command("say 学武须先正身，试问德行这一项，你做得够吗？");
+                command("say 學武須先正身，試問德行這一項，你做得夠嗎？");
                 return;
         }
 
         if( query("combat_exp", me)<150000 )
         {
-                command("say 你现在江湖经验太浅，还是多锻炼锻炼再来吧。");
+                command("say 你現在江湖經驗太淺，還是多鍛鍊鍛鍊再來吧。");
                 return;
         }
 
         if ((int)me->query_skill("xueshan-neigong", 1) < 80)
         {
-                command("say 你本门的内功心法太差，修炼好了之后再来找我。");
+                command("say 你本門的內功心法太差，修煉好了之後再來找我。");
                 return;
         }
 
         if ((int)me->query_skill("sword", 1) < 80)
         {
-                command("say 你的剑法根基实在是太差，下去多练练再来。");
+                command("say 你的劍法根基實在是太差，下去多練練再來。");
                 return;
         }
 
         command("say 很好，很好。");
-        command("say 念在你有心，今日我便收你为徒，希望日后能有一翻作为。");
+        command("say 念在你有心，今日我便收你為徒，希望日後能有一翻作為。");
         command("recruit "+query("id", me));
 }
 
@@ -140,30 +140,30 @@ mixed ask_skill1()
 
         me = this_player();
         if( query("can_perform/hanmei-jian/leng", me) )
-                return "自己下去练，别在这里跟我罗嗦个没完！";
+                return "自己下去練，別在這裡跟我羅嗦個沒完！";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "阁下从何而来，这样打听我雪山派绝招是什么意思？";
+                return "閣下從何而來，這樣打聽我雪山派絕招是什麼意思？";
 
         if (me->query_skill("hanmei-jian", 1) < 1)
-                return "你连寒梅剑法都没学，还谈什么绝招可言？";
+                return "你連寒梅劍法都沒學，還談什麼絕招可言？";
 
         if( query("family/gongji", me)<50 )
-                return "哼，你在本派中无所作为，这一招我暂时还不能传你。";
+                return "哼，你在本派中無所作為，這一招我暫時還不能傳你。";
 
         if (me->query_skill("force") < 50)
-                return "你的内功修行实在太差，下去练练再来！";
+                return "你的內功修行實在太差，下去練練再來！";
 
         if (me->query_skill("hanmei-jian", 1) < 40)
-                return "亏你寒梅剑法练成这样，也好意思来找我。";
+                return "虧你寒梅劍法練成這樣，也好意思來找我。";
 
-        message_vision(HIY "$n" HIY "略微点了点头，将$N" HIY "招至"
-                        "跟前。轻声在$N" HIY "耳畔细说\n良久，时不"
-                        "时还伸手演化剑招，$N" HIY "一边听一边点头"
+        message_vision(HIY "$n" HIY "略微點了點頭，將$N" HIY "招至"
+                        "跟前。輕聲在$N" HIY "耳畔細說\n良久，時不"
+                        "時還伸手演化劍招，$N" HIY "一邊聽一邊點頭"
                         "。\n" NOR, me, this_object());
         command("nod");
-        command("say 这招很简单，你下去照我说的练习便成。");
-        tell_object(me, HIC "你学会了「冷剑决」。\n" NOR);
+        command("say 這招很簡單，你下去照我說的練習便成。");
+        tell_object(me, HIC "你學會了「冷劍決」。\n" NOR);
 
         if (me->can_improve_skill("sword"))
                 me->improve_skill("sword", 1500000);
@@ -181,31 +181,31 @@ mixed ask_skill2()
 
         me = this_player();
         if( query("can_perform/lingxiao-quan/jue", me) )
-                return "自己下去练，别老跟我纠缠不休！";
+                return "自己下去練，別老跟我糾纏不休！";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "阁下无故打听我雪山派的绝招是什么意思？";
+                return "閣下無故打聽我雪山派的絕招是什麼意思？";
 
         if (me->query_skill("lingxiao-quan", 1) < 1)
-                return "你连凌霄拳法都没学，还谈什么绝招可言？";
+                return "你連凌霄拳法都沒學，還談什麼絕招可言？";
 
         if( query("family/gongji", me)<100 )
-                return "哼，你在本派中无所作为，这一招我暂时还不能传你。";
+                return "哼，你在本派中無所作為，這一招我暫時還不能傳你。";
 
         if (me->query_skill("force") < 100)
-                return "你的内功修行实在太差，下去练练再来！";
+                return "你的內功修行實在太差，下去練練再來！";
 
         if (me->query_skill("lingxiao-quan", 1) < 60)
-                return "亏你凌霄拳法练成这样，也好意思来找我。";
+                return "虧你凌霄拳法練成這樣，也好意思來找我。";
 
-        message_vision(HIY "$n" HIY "打量了$N" HIY "一翻，然后微微一"
-                       "笑，示以赞许。又将$N" HIY "\n招至跟前，轻声在"
-                       "$N" HIY "耳畔细说良久，时不时还伸手比出几\n式"
-                       "拳法中的精妙之处，$N" HIY "一边听一边点头。\n"
+        message_vision(HIY "$n" HIY "打量了$N" HIY "一翻，然後微微一"
+                       "笑，示以讚許。又將$N" HIY "\n招至跟前，輕聲在"
+                       "$N" HIY "耳畔細說良久，時不時還伸手比出幾\n式"
+                       "拳法中的精妙之處，$N" HIY "一邊聽一邊點頭。\n"
                        NOR, me, this_object());
         command("nod");
-        command("say 这招并不难，只需切记‘御力而发’四字即可。");
-        tell_object(me, HIC "你学会了「凌宵总诀」。\n" NOR);
+        command("say 這招並不難，只需切記‘御力而發’四字即可。");
+        tell_object(me, HIC "你學會了「凌宵總訣」。\n" NOR);
 
         if (me->can_improve_skill("cuff"))
                 me->improve_skill("cuff", 1500000);
@@ -223,30 +223,30 @@ mixed ask_skill3()
 
         me = this_player();
         if( query("can_perform/piaoxu-zhang/piao", me) )
-                return "自己下去练，别在这里跟我罗嗦个没完！";
+                return "自己下去練，別在這裡跟我羅嗦個沒完！";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "阁下无故打听我雪山派的绝招是什么意思？";
+                return "閣下無故打聽我雪山派的絕招是什麼意思？";
 
         if (me->query_skill("piaoxu-zhang", 1) < 1)
-                return "你连飘絮掌法都没学，还谈什么绝招可言？";
+                return "你連飄絮掌法都沒學，還談什麼絕招可言？";
 
         if( query("family/gongji", me)<150 )
-                return "哼，你在本派中无所作为，这一招我暂时还不能传你。";
+                return "哼，你在本派中無所作為，這一招我暫時還不能傳你。";
 
         if (me->query_skill("force") < 100)
-                return "你的内功修行实在太差，下去练练再来！";
+                return "你的內功修行實在太差，下去練練再來！";
 
         if (me->query_skill("piaoxu-zhang", 1) < 80)
-                return "亏你飘絮掌法练成这样，也好意思来找我。";
+                return "虧你飄絮掌法練成這樣，也好意思來找我。";
 
-        message_vision(HIY "$n" HIY "略微点了点头，说道：“我给你演示"
-                      "一遍，可得瞧\n仔细了！”随即一声清啸，双掌纷飞"
-                      "贯出，掌影重重叠叠\n虚实难辨，全全笼罩$N" HIY
+        message_vision(HIY "$n" HIY "略微點了點頭，說道：“我給你演示"
+                      "一遍，可得瞧\n仔細了！”隨即一聲清嘯，雙掌紛飛"
+                      "貫出，掌影重重疊疊\n虛實難辨，全全籠罩$N" HIY
                       "全身。\n" NOR, me, this_object());
         command("nod");
-        command("say 刚才我所演示的全是这招的精华，你下去照着练就行了。");
-        tell_object(me, HIC "你学会了「飞絮飘零」。\n" NOR);
+        command("say 剛才我所演示的全是這招的精華，你下去照著練就行了。");
+        tell_object(me, HIC "你學會了「飛絮飄零」。\n" NOR);
 
         if (me->can_improve_skill("strike"))
                 me->improve_skill("strike", 1500000);
@@ -264,30 +264,30 @@ mixed ask_skill4()
 
         me = this_player();
         if( query("can_perform/yunhe-jian/chong", me) )
-                return "自己下去练，别老跟我纠缠不休！";
+                return "自己下去練，別老跟我糾纏不休！";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "阁下这样打听我雪山派绝招是什么意思？";
+                return "閣下這樣打聽我雪山派絕招是什麼意思？";
 
         if (me->query_skill("yunhe-jian", 1) < 1)
-                return "你连云鹤七剑都没学，还谈什么绝招可言？";
+                return "你連雲鶴七劍都沒學，還談什麼絕招可言？";
 
         if( query("family/gongji", me)<200 )
-                return "哼，你在本派中无所作为，这一招我暂时还不能传你。";
+                return "哼，你在本派中無所作為，這一招我暫時還不能傳你。";
 
         if (me->query_skill("force") < 150)
-                return "你的内功修行实在太差，下去练练再来！";
+                return "你的內功修行實在太差，下去練練再來！";
 
         if (me->query_skill("yunhe-jian", 1) < 100)
-                return "亏你云鹤七剑练成这样，也好意思来找我。";
+                return "虧你雲鶴七劍練成這樣，也好意思來找我。";
 
-        message_vision(HIY "$n" HIY "点了点头，随手从身后的书架上取"
-                       "出一本剑经，指\n着其中一段对$N" HIY "细说了"
-                       "良久，$N" HIY "一边听一边点头。\n" NOR, me,
+        message_vision(HIY "$n" HIY "點了點頭，隨手從身後的書架上取"
+                       "出一本劍經，指\n著其中一段對$N" HIY "細說了"
+                       "良久，$N" HIY "一邊聽一邊點頭。\n" NOR, me,
                        this_object());
         command("nod");
-        command("say 这招很简单，你下去照我说的练习便成。");
-        tell_object(me, HIC "你学会了「鹤冲九霄」。\n" NOR);
+        command("say 這招很簡單，你下去照我說的練習便成。");
+        tell_object(me, HIC "你學會了「鶴衝九霄」。\n" NOR);
 
         if (me->can_improve_skill("sword"))
                 me->improve_skill("sword", 1500000);
@@ -305,30 +305,30 @@ mixed ask_skill5()
 
         me = this_player();
         if( query("can_perform/xueshan-jian/hui", me) )
-                return "这招我不是已经教过你了吗？自己下去多练吧！";
+                return "這招我不是已經教過你了嗎？自己下去多練吧！";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "你是哪里来的？快给我快快滚开！";
+                return "你是哪裡來的？快給我快快滾開！";
 
         if (me->query_skill("xueshan-jian", 1) < 1)
-                return "你连雪山剑法都没学，还谈什么绝招可言？";
+                return "你連雪山劍法都沒學，還談什麼絕招可言？";
 
         if( query("family/gongji", me)<500 )
-                return "哼，你在本派中无所作为，这一招我暂时还不能传你。";
+                return "哼，你在本派中無所作為，這一招我暫時還不能傳你。";
 
         if (me->query_skill("force") < 100)
-                return "你的内功修行太浅，用不了这一招！";
+                return "你的內功修行太淺，用不了這一招！";
 
         if (me->query_skill("xueshan-jian", 1) < 30)
-                return "你雪山剑法尚未修炼得精深，没法用这招。";
+                return "你雪山劍法尚未修煉得精深，沒法用這招。";
 
-        message_vision(HIY "$n" HIY "微微一笑，点了点头。说着便在$N" HIY
-                        "耳边轻声述说剑\n诀精要，一边说还一边比划着些什"
-                       "么。过了良久，只见$N" HIY "\n会心的一笑，似乎有"
-                       "了什么新的感悟。\n" NOR, me, this_object());
+        message_vision(HIY "$n" HIY "微微一笑，點了點頭。說著便在$N" HIY
+                        "耳邊輕聲述說劍\n訣精要，一邊說還一邊比劃著些什"
+                       "麼。過了良久，只見$N" HIY "\n會心的一笑，似乎有"
+                       "了什麼新的感悟。\n" NOR, me, this_object());
         command("smile");
-        command("say 这一招看似复杂，实却简洁，稍加练习便成。");
-        tell_object(me, HIC "你学会了「风回雪舞」。\n" NOR);
+        command("say 這一招看似複雜，實卻簡潔，稍加練習便成。");
+        tell_object(me, HIC "你學會了「風迴雪舞」。\n" NOR);
 
         if (me->can_improve_skill("sword"))
                 me->improve_skill("sword", 1500000);
@@ -346,34 +346,34 @@ mixed ask_skill6()
 
         me = this_player();
         if( query("can_perform/xueshan-jian/chu", me) )
-                return "这招我不是已经教过你了吗？自己下去多练吧！";
+                return "這招我不是已經教過你了嗎？自己下去多練吧！";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "你是哪里来的？快给我快快滚开！";
+                return "你是哪裡來的？快給我快快滾開！";
 
         if (me->query_skill("xueshan-jian", 1) < 1)
-                return "你连雪山剑法都没学，还谈什么绝招可言？";
+                return "你連雪山劍法都沒學，還談什麼絕招可言？";
 
         if( query("family/gongji", me)<1000 )
-                return "哼，你在本派中无所作为，这一招我暂时还不能传你。";
+                return "哼，你在本派中無所作為，這一招我暫時還不能傳你。";
 
         if (me->query_skill("force") < 200)
-                return "你的内功修行太浅，用不了这一招！";
+                return "你的內功修行太淺，用不了這一招！";
 
         if (me->query_skill("xueshan-jian", 1) < 140)
-                return "你雪山剑法尚未修炼得精深，没法用这招。";
+                return "你雪山劍法尚未修煉得精深，沒法用這招。";
 
-        message_vision(HIY "$n" HIY "微微一笑，对$N" HIY "赞道：“想"
-                       "不到今日你能有如此造\n诣，我这就传你这招。”"
-                        "说完$n" HIY "拔出配剑，单手握住\n剑诀，顿时"
-                       "只见长剑抖动，虚中有实，实中有虚，剑尖剑\n锋"
-                        "齐用，凌厉刺出。$N" HIY "只觉眼前剑光一闪而"
-                       "过，随即木屑\n纷飞，面前的红漆门柱上竟豁然印"
-                       "出六道剑痕，便宛如盛\n开的梅花一般，精雕细琢"
-                       "也不过如此。\n" NOR, me, this_object());
+        message_vision(HIY "$n" HIY "微微一笑，對$N" HIY "讚道：“想"
+                       "不到今日你能有如此造\n詣，我這就傳你這招。”"
+                        "說完$n" HIY "拔出配劍，單手握住\n劍訣，頓時"
+                       "只見長劍抖動，虛中有實，實中有虛，劍尖劍\n鋒"
+                        "齊用，凌厲刺出。$N" HIY "只覺眼前劍光一閃而"
+                       "過，隨即木屑\n紛飛，面前的紅漆門柱上竟豁然印"
+                       "出六道劍痕，便宛如盛\n開的梅花一般，精雕細琢"
+                       "也不過如此。\n" NOR, me, this_object());
         command("haha");
-        command("say 这一招便是雪花六出，你下去后需得勤加练习。");
-        tell_object(me, HIC "你学会了「雪花六出」。\n" NOR);
+        command("say 這一招便是雪花六出，你下去後需得勤加練習。");
+        tell_object(me, HIC "你學會了「雪花六出」。\n" NOR);
 
         if (me->can_improve_skill("sword"))
                 me->improve_skill("sword", 1500000);

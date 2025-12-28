@@ -25,7 +25,7 @@ int main(object me,string arg)
         }
 
         if (file_size(path = resolve_path(query("cwd", me), path)) != -2)
-                return notify_fail("没有这个目录！\n");
+                return notify_fail("沒有這個目錄！\n");
 
         seteuid(getuid());
         if (path[sizeof(path)-1] != '/')
@@ -46,7 +46,7 @@ int main(object me,string arg)
                 QueryItemInfo(path);
                 break;
         default:
-                write("参数不对，请重新输入！\n");
+                write("參數不對，請重新輸入！\n");
                 break;
         }
 
@@ -60,7 +60,7 @@ void QueryNpcInfo(string path)
         object obj, me = this_player();
         int num = 0;
 
-        filename = path + "文档归类之NPC篇";
+        filename = path + "文檔歸類之NPC篇";
 
         if (file_size(filename) > 0)
                 rm(filename);
@@ -75,7 +75,7 @@ void QueryNpcInfo(string path)
                 obj = new(path + tmp);
                 if (! objectp(obj))
                 {
-                        write(RED " ...失败！\n" NOR);
+                        write(RED " ...失敗！\n" NOR);
                         continue;
                 }
                 if( !obj->is_character() || !query("name", obj) )
@@ -85,8 +85,8 @@ void QueryNpcInfo(string path)
                 }
                 num ++;
                 write_file(filename, GRN "==================================================\n" NOR, 0);
-                write_file(filename, RED "文件序号：" NOR + num + "\n", 0);
-                write_file(filename, RED "文件名称：" NOR + tmp + "\n", 0);
+                write_file(filename, RED "文件序號：" NOR + num + "\n", 0);
+                write_file(filename, RED "文件名稱：" NOR + tmp + "\n", 0);
                 write_file(filename,WHT"中文名字："NOR+query("name", obj)+"\n",0);
                 write_file(filename, WHT "英文ＩＤ: " NOR + sprintf("%s", implode(obj->parse_command_id_list(), ",")) + "\n", 0);
                 write_file(filename, QuerySkill(obj), 0);
@@ -94,11 +94,11 @@ void QueryNpcInfo(string path)
 
                 write_file(filename, sprintf("【  精  】%10d      【 精力 】%d \n",
                                              query("max_jing", obj),query("max_jingli", obj)));
-                write_file(filename, sprintf("【  气  】%10d      【 内力 】%d (+%d)\n",
+                write_file(filename, sprintf("【  氣  】%10d      【 內力 】%d (+%d)\n",
                                              query("max_qi", obj),query("max_neili", obj),query("jiali", obj)));
-                write_file(filename, sprintf("【 食物 】%10d      【 潜能 】%d \n",
+                write_file(filename, sprintf("【 食物 】%10d      【 潛能 】%d \n",
                                              query("food", obj),query("potential", obj)));
-                // write_file(filename, sprintf("【 饮水 】%10d      【 经验 】%s \n",
+                // write_file(filename, sprintf("【 飲水 】%10d      【 經驗 】%s \n",
                 //query("water", obj),query("combat_exp", obj)));
 
 
@@ -107,9 +107,9 @@ void QueryNpcInfo(string path)
         }
 
         write_file(filename, "==================================================\n", 0);
-        write_file(filename, "    本目录下总共有" GRN + num + NOR "个NPC文件！\n", 0);
+        write_file(filename, "    本目錄下總共有" GRN + num + NOR "個NPC文件！\n", 0);
         write("=========================================\n");
-        write("      共整理（"GRN + chinese_number(num) + NOR"）个NPC文件   \n\n");
+        write("      共整理（"GRN + chinese_number(num) + NOR"）個NPC文件   \n\n");
         me->start_more(read_file(filename, 1));
 }
 
@@ -118,11 +118,11 @@ void QueryRoomInfo(string path)
         string filename;
         string *file;
         object obj;
-        object finder = new("/clone/npc/trashcan");//任何一个(living object)
+        object finder = new("/clone/npc/trashcan");//任何一個(living object)
         object me = this_player();
         int num = 0;
 
-        filename = path + "文档归类之ROOM篇";
+        filename = path + "文檔歸類之ROOM篇";
 
         if (file_size(filename) > 0)
                 rm(filename);
@@ -139,7 +139,7 @@ void QueryRoomInfo(string path)
 
                 if (! objectp(obj))
                 {
-                        write(RED" ...失败！\n"NOR);
+                        write(RED" ...失敗！\n"NOR);
                         continue;
                 }
 
@@ -151,20 +151,20 @@ void QueryRoomInfo(string path)
 
                 num ++;
                 write_file(filename, "--------------------------------------------------\n", 0);
-                write_file(filename, YEL "房间序号：" WHT + num + "\n" NOR, 0);
-                write_file(filename,YEL"房间名称："WHT+query("short", obj)+"("+tmp+")\n"NOR,0);
-                write_file(filename,YEL"房间坐标："WHT"（"+query("coor/x", obj)+","+
+                write_file(filename, YEL "房間序號：" WHT + num + "\n" NOR, 0);
+                write_file(filename,YEL"房間名稱："WHT+query("short", obj)+"("+tmp+")\n"NOR,0);
+                write_file(filename,YEL"房間座標："WHT"（"+query("coor/x", obj)+","+
                            query("coor/y", obj)+","+query("coor/z", obj)+"）\n"NOR,0);
                 write_file(filename, QueryAction(obj, finder), 0);
                 if( mapp(query("coor", obj)) )
                         write(YEL " ...成功\n" NOR);
                 else
-                        write(YEL " ...成功" RED "（无坐标）\n" NOR);
+                        write(YEL " ...成功" RED "（無座標）\n" NOR);
         }
         write_file(filename, "==================================================\n", 0);
-        write_file(filename, "    本目录下总共有" GRN + num + NOR "个房间！\n", 0);
+        write_file(filename, "    本目錄下總共有" GRN + num + NOR "個房間！\n", 0);
         write("=========================================\n");
-        write("      共整理（" GRN + chinese_number(num) + NOR"）个房间文件   \n\n");
+        write("      共整理（" GRN + chinese_number(num) + NOR"）個房間文件   \n\n");
         me->start_more(read_file(filename, 1));
         destruct(finder);
 }
@@ -179,7 +179,7 @@ void QueryItemInfo(string path)
         int num = 0;
         int flag = 0;
 
-        filename = path + "文档归类之ITEM篇";
+        filename = path + "文檔歸類之ITEM篇";
 
         if (file_size(filename) > 0)
                 rm(filename);
@@ -196,7 +196,7 @@ void QueryItemInfo(string path)
 
                 if (! objectp(obj))
                 {
-                        write(RED " ...失败！\n" NOR);
+                        write(RED " ...失敗！\n" NOR);
                         continue;
                 }
 
@@ -207,10 +207,10 @@ void QueryItemInfo(string path)
                 }
                 num ++;
                 write_file(filename, GRN "--------------------------------------------------\n" NOR, 0);
-                write_file(filename, WHT "物品序号：" NOR + num + "\n", 0);
-                write_file(filename,WHT"物品名称："NOR+query("name", obj)+"("+
+                write_file(filename, WHT "物品序號：" NOR + num + "\n", 0);
+                write_file(filename,WHT"物品名稱："NOR+query("name", obj)+"("+
                            implode(obj->parse_command_id_list(), ",") + ")\n", 0);
-                write_file(filename,WHT"物品价格："NOR+MONEY_D->price_str(query("value", obj))+"\n",0);
+                write_file(filename,WHT"物品價格："NOR+MONEY_D->price_str(query("value", obj))+"\n",0);
                 /*
                 if( mapp(prop=query("weapon_prop", obj)) )
                         QueryEquipProp(obj,prop);
@@ -222,9 +222,9 @@ void QueryItemInfo(string path)
                 write(YEL " ...成功。 \n" NOR);
         }
         write_file(filename, "==================================================\n", 0);
-        write_file(filename, "    本目录下总共有" GRN + num + NOR "个物品！\n", 0);
+        write_file(filename, "    本目錄下總共有" GRN + num + NOR "個物品！\n", 0);
         write("=========================================\n");
-        write("      共整理（" GRN + chinese_number(num) + NOR "）个物品文件   \n\n");
+        write("      共整理（" GRN + chinese_number(num) + NOR "）個物品文件   \n\n");
         me->start_more(read_file(filename, 1));
 }
 
@@ -269,7 +269,7 @@ string QuerySkill(object ob)
         if (! sizeof(m_skills))
                 return("");
 
-        msg += "          " + ob->name() + "目前所学过的技能：\n";
+        msg += "          " + ob->name() + "目前所學過的技能：\n";
         m_enable = ob->query_skill_map();
 
         if (! mapp(m_enable))
@@ -296,12 +296,12 @@ string QueryEquipProp(object equip,mixed props)
         string *prop;
 
         if( stringp(type=query("skill_type", equip)) )
-                msg += sprintf("兵器类型：%-10s     攻 击 力：%d",
+                msg += sprintf("兵器類型：%-10s     攻 擊 力：%d",
                                type,query("weapon_porp/damage", equip));
 
         else
         if( stringp(type=query("skill_type", equip)) )
-                msg += sprintf("防具类型：%-10s     防 御 力：%d",
+                msg += sprintf("防具類型：%-10s     防 御 力：%d",
                                type,query("armor_porp/armor", equip));
 
         if (! sizeof(props)) return("");
@@ -324,11 +324,11 @@ string QueryEquipProp(object equip,mixed props)
 int help(object me)
 {
         write(@HELP
-指令格式：doc 路径名 -种类名
-目前提供的种类有：room、npc、item
+指令格式：doc 路徑名 -種類名
+目前提供的種類有：room、npc、item
 例：
         doc /d/city/npc -npc
-有玩家在线时最好不使用此指令。
+有玩家在線時最好不使用此指令。
 HELP);
         return 1;
 }

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("履带[2;37;0m[2;37;0m", ({"tanktank"}));        
+        set_name("履帶[2;37;0m[2;37;0m", ({"tanktank"}));        
         set("gender", "男性");                
-        set("long", "汤唯[2;37;0m
-它是梅卡瓦的魔幻兽。
+        set("long", "湯唯[2;37;0m
+它是梅卡瓦的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

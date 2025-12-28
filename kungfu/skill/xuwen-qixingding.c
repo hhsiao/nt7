@@ -1,4 +1,4 @@
-// xuwen-qixingding.c 虚蚊七星钉
+// xuwen-qixingding.c 虛蚊七星釘
 // Edit By Vin On 26/2/2001
 
 #include <ansi.h>
@@ -10,10 +10,10 @@ int valid_learn(object me)
         object ob;
   
         if (me->query_skill("throwing", 1) < 20)
-                return notify_fail("你的暗器技能不够娴熟。\n");
+                return notify_fail("你的暗器技能不夠嫻熟。\n");
 
         if ((int)me->query_skill("throwing", 1) < (int)me->query_skill("xuwen-qixingding", 1))
-                return notify_fail("你的基本暗器水平有限，难以领会更精妙的虚蚊七星钉。\n");
+                return notify_fail("你的基本暗器水平有限，難以領會更精妙的虛蚊七星釘。\n");
 
         return 1;
 }
@@ -28,7 +28,7 @@ int practice_skill(object me)
         object weapon;
 
         if( query("qi", me)<110 )
-                return notify_fail("你的体力不足练习虚蚊七星钉。\n");
+                return notify_fail("你的體力不足練習虛蚊七星釘。\n");
 
         me->receive_damage("qi", 100);
         return 1;

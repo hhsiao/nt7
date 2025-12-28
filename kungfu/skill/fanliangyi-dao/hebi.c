@@ -1,4 +1,4 @@
-// 双刀和壁
+// 雙刀和壁
 
 #include <ansi.h>
 #include <skill.h>
@@ -7,7 +7,7 @@
 
 inherit F_SSERVER;
 
-string name() { return "双刀和璧"; }
+string name() { return "雙刀和璧"; }
 //int valid_enable(string usage) { return usage=="array"; }
 
 //int form_array(object leader)
@@ -19,39 +19,39 @@ int perform(object leader, object target)
 
         member = leader->query_team();
         if (sizeof(member) != 2)
-                return notify_fail("反两仪刀共需两人，少一个多一个都不行。\n");
+                return notify_fail("反兩儀刀共需兩人，少一個多一個都不行。\n");
 
         j = sizeof (member);
         for (i = 0; i < j; i++)
         {
                 ob=member[i];
                 if (! ob|| ! living(ob) || ! ob->is_character())
-                        return notify_fail("你想和谁同使反两仪刀？\n");
+                        return notify_fail("你想和誰同使反兩儀刀？\n");
 
                 if( query_temp("array/name", ob) )
-                        return notify_fail("他已经在刀阵中了。\n");
+                        return notify_fail("他已經在刀陣中了。\n");
 
                 if (environment(leader) != environment(ob))
-                        return notify_fail("人数不够两人。\n");
+                        return notify_fail("人數不夠兩人。\n");
 
                 if (!ob->query_skill("fanliangyi-dao",1))
-                        return notify_fail(ob->name() + "还不会反两仪刀法。\n");
+                        return notify_fail(ob->name() + "還不會反兩儀刀法。\n");
 
                 if (ob->is_ghost())
-                        return notify_fail("只有阳间的人才能组刀阵。\n");
+                        return notify_fail("只有陽間的人才能組刀陣。\n");
 
                 if( query("max_neili", ob)<50 )
-                        return notify_fail(query("name", ob)+"的内力不够。\n");
+                        return notify_fail(query("name", ob)+"的內力不夠。\n");
 
                 if( !(weapon=query_temp("weapon", ob)) ||
                     query("skill_type", weapon) != "blade" )
-                        return notify_fail(query("name", ob)+"必须拿把刀做武器。\n");
+                        return notify_fail(query("name", ob)+"必須拿把刀做武器。\n");
 
                 if ((int)ob->query_skill("fanliangyi-dao",1) < 30)
-                        return notify_fail(query("name", ob)+"的反两仪刀法还不够熟练。\n");
+                        return notify_fail(query("name", ob)+"的反兩儀刀法還不夠熟練。\n");
 
                 if ((string)ob->query_skill_mapped("blade") != "fanliangyi-dao")
-                        return notify_fail(query("name", ob)+"必须使用反两仪刀法。\n");
+                        return notify_fail(query("name", ob)+"必須使用反兩儀刀法。\n");
         }
 
 //get the average array skill of the team
@@ -93,8 +93,8 @@ int perform(object leader, object target)
                 addn_temp("apply/damage", n, ob);
                 addn_temp("apply/armor", n, ob);
         }
-        message_combatd(HIG "$N" HIG "率领$n" HIG "站定两仪方位，顿时两"
-                        "人之间显得浑然天成、毫无破绽。\n" NOR, leader);
+        message_combatd(HIG "$N" HIG "率領$n" HIG "站定兩儀方位，頓時兩"
+                        "人之間顯得渾然天成、毫無破綻。\n" NOR, leader);
         return 1;
 }
 
@@ -114,7 +114,7 @@ int dismiss_array(object person)
                 addn_temp("apply/damage", -n, ob);
                 addn_temp("apply/defense", -n, ob);
                 addn_temp("apply/armor", -n, ob);
-                tell_object(ob, "刀阵解散了\n");
+                tell_object(ob, "刀陣解散了\n");
         }
 }
 

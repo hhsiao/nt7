@@ -9,14 +9,14 @@ mixed ask_skill1();
 void create()
 {
         set_name("常赫志", ({ "chang hezhi", "chang", "hezhi" }));
-        set("title", "红花会五当家");
-        set("nickname", HIB "黑无常" NOR);
-        set("long", "他身材又高又瘦，脸色蜡黄，眼睛凹进，眼\n"
-                    "角上有一粒黑痣，眉毛斜斜的倒垂下来，形\n"
-                    "相甚是可怖。他是青城派慧侣道人的徒弟。\n"
-                    "黑沙掌的功夫，江湖上无人能敌。黑白无常\n"
-                    "两兄弟是川江上著名的侠盗，一向劫富济贫，\n"
-                    "不过心狠手辣，因此得了这难听的外号。\n");
+        set("title", "紅花會五當家");
+        set("nickname", HIB "黑無常" NOR);
+        set("long", "他身材又高又瘦，臉色蠟黃，眼睛凹進，眼\n"
+                    "角上有一粒黑痣，眉毛斜斜的倒垂下來，形\n"
+                    "相甚是可怖。他是青城派慧侶道人的徒弟。\n"
+                    "黑沙掌的功夫，江湖上無人能敵。黑白無常\n"
+                    "兩兄弟是川江上著名的俠盜，一向劫富濟貧，\n"
+                    "不過心狠手辣，因此得了這難聽的外號。\n");
         set("gender", "男性");
         set("age", 32);
         set("attitude", "peaceful");
@@ -59,10 +59,10 @@ void create()
         prepare_skill("strike", "heisha-zhang");
 
         set("no_teach", ([
-                "qingcheng-neigong" : "这内功没得啥子用，你给老子好生练掌法就行了。",
+                "qingcheng-neigong" : "這內功沒得啥子用，你給老子好生練掌法就行了。",
         ]));
 
-        create_family("红花会", 4, "当家");
+        create_family("紅花會", 4, "當家");
 
         set("inquiry", ([
                 "催魂掌" : (: ask_skill1 :),
@@ -87,18 +87,18 @@ void attempt_apprentice(object me)
 
         if( query("shen", me)<5000 )
         {
-                command("say 你非我侠义中人，我不能收你。");
+                command("say 你非我俠義中人，我不能收你。");
                 return;
         }
 
         if ((int)me->query_skill("honghua-xinfa", 1) < 50)
         {
-                command("say 你把本门的心法练好了再来。");
+                command("say 你把本門的心法練好了再來。");
                 return;
         }
 
         command("heihei");
-        command("say 以后你就跟着老子吧。");
+        command("say 以後你就跟著老子吧。");
         command("recruit "+query("id", me));
 }
 
@@ -109,37 +109,37 @@ mixed ask_skill1()
         me = this_player();
 
         if( query("can_perform/heisha-zhang/cui", me) )
-                return "老子把啥子都给你说完了，你龟儿咋那么烦哦！";
+                return "老子把啥子都給你說完了，你龜兒咋那麼煩哦！";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "你龟儿子是哪儿来的？老子认不到你。";
+                return "你龜兒子是哪兒來的？老子認不到你。";
 
         if (me->query_skill("heisha-zhang", 1) < 1)
-                return "你龟儿黑砂掌都没学，还说啥子催魂掌哦！";
+                return "你龜兒黑砂掌都沒學，還說啥子催魂掌哦！";
 
           if( query("family/gongji", me)<150 )
-                return "你龟儿贡献都做得不够，喊我咋个传你嘛？";
+                return "你龜兒貢獻都做得不夠，喊我咋個傳你嘛？";
 
         if( query("shen", me)<5000 )
-                return "你连行侠仗义都搞忘了，我还敢传你啥子嘛？";
+                return "你連行俠仗義都搞忘了，我還敢傳你啥子嘛？";
 
         if (me->query_skill("force") < 150)
-                return "你龟儿内功都没学好，学啥子这招哦！";
+                return "你龜兒內功都沒學好，學啥子這招哦！";
 
         if (me->query_skill("heisha-zhang", 1) < 100)
-                return "你黑砂掌学成这副龟儿子德性，咋个练催魂掌嘛？";
+                return "你黑砂掌學成這副龜兒子德性，咋個練催魂掌嘛？";
 
-        message_vision(HIY "$n" HIY "看了看$N" HIY "，哈哈一笑，说道"
-                       "：“要得，要得！看你娃学得还\n可以，今天我就"
-                       "教你催魂掌。”$n" HIY "说罢，便轻轻拍出一掌，"
-                       "看\n似不着半点力道。正当$N" HIY "纳闷间，听得"
-                       "“噗”的一声，随即尘沙滚\n滚，飘然四起，身前"
-                       "沙地豁然留下一个乌黑的掌印，煞是惊人。\n" NOR,
+        message_vision(HIY "$n" HIY "看了看$N" HIY "，哈哈一笑，說道"
+                       "：“要得，要得！看你娃學得還\n可以，今天我就"
+                       "教你催魂掌。”$n" HIY "說罷，便輕輕拍出一掌，"
+                       "看\n似不著半點力道。正當$N" HIY "納悶間，聽得"
+                       "“噗”的一聲，隨即塵沙滾\n滾，飄然四起，身前"
+                       "沙地豁然留下一個烏黑的掌印，煞是驚人。\n" NOR,
                        me, this_object());
 
         command("heihei");
-        command("say 刚才老子说的你都要记好了好，自己下去练。");
-        tell_object(me, HIC "你学会了「催魂掌」。\n" NOR);
+        command("say 剛才老子說的你都要記好了好，自己下去練。");
+        tell_object(me, HIC "你學會了「催魂掌」。\n" NOR);
 
         if (me->can_improve_skill("strike"))
                 me->improve_skill("strike", 1500000);

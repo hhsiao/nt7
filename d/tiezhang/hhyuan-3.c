@@ -7,9 +7,9 @@ void create()
 {
     set("short", YEL"假山"NOR);
         set("long", @LONG
-你面前矗立着一座巨大的假山，一道瀑布从假山边泻将下来，飞注入
-前面的一座大池塘中，池塘底下想是另有泻水通道，是以塘水却不见满溢。
-铁掌帮为建这个花园，也不知花费了多少人力和物力。
+你面前矗立著一座巨大的假山，一道瀑布從假山邊瀉將下來，飛注入
+前面的一座大池塘中，池塘底下想是另有瀉水通道，是以塘水卻不見滿溢。
+鐵掌幫為建這個花園，也不知花費了多少人力和物力。
 LONG    );
         set("exits", ([
                 "east" : __DIR__"hhyuan-1",
@@ -28,7 +28,7 @@ LONG    );
 string look_pubu()
 {
         return @DESC
-这是一股奔腾不息的瀑布，瀑布的后面似乎隐约有个小门，你似乎可以穿(cross)过去。
+這是一股奔騰不息的瀑布，瀑布的後面似乎隱約有個小門，你似乎可以穿(cross)過去。
 DESC ;
 }
 
@@ -43,12 +43,12 @@ int do_cross(string arg)
         me = this_player();
 
         if (arg != "瀑布" || arg != "pubu") 
-                return notify_fail("你要往哪儿穿？\n");
+                return notify_fail("你要往哪兒穿？\n");
         {
-                write(HIY "你纵身一闪，向瀑布里穿去。\n" NOR);
-                message("vision", HIY + me->name() + HIY "身行一闪突然不见了。\n" NOR, environment(me), ({me}) );
+                write(HIY "你縱身一閃，向瀑布裡穿去。\n" NOR);
+                message("vision", HIY + me->name() + HIY "身行一閃突然不見了。\n" NOR, environment(me), ({me}) );
                 me->move(__DIR__"mishi");
-                message("vision", HIW + me->name() + HIW "全身湿淋淋地从瀑布里穿了进来。\n" NOR, environment(me), ({me}) );
+                message("vision", HIW + me->name() + HIW "全身溼淋淋地從瀑布裡穿了進來。\n" NOR, environment(me), ({me}) );
         }
         return 1;
 }

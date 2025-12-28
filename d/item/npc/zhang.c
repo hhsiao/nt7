@@ -1,4 +1,4 @@
-// zhang.c 张天师
+// zhang.c 張天師
 
 #include <ansi.h>
 
@@ -8,10 +8,10 @@ int ask_me();
 
 void create()
 {
-        set_name("张天师", ({ "zhang tianshi", "zhang" }));
+        set_name("張天師", ({ "zhang tianshi", "zhang" }));
         set("age", 57);
         set("gender", "男性");
-        set("long", "这是一位仙风神骨，道貌岸然的法师。\n");
+        set("long", "這是一位仙風神骨，道貌岸然的法師。\n");
         set("attitude", "peaceful");
 
         set("str", 28);
@@ -28,20 +28,20 @@ void create()
 
         set("chat_chance_combat", 3);
         set("chat_msg_combat", ({
-                "张天师摇摇铃铛，道：天灵灵，地零零，太上老君还不显灵？\n",
-                "张天师呼呼的吹了几口气。\n",
+                "張天師搖搖鈴鐺，道：天靈靈，地零零，太上老君還不顯靈？\n",
+                "張天師呼呼的吹了幾口氣。\n",
         }));
 
         set("inquiry", ([
-                "开光" : (: ask_me :),
-                "没钱" : "没钱就去赚，跟我说什么。",
-                "穷"   : "看你也是一副穷命。",
-                "魔法" : "魔法？什么玩艺？",
-                "法术" : "法术还分很多种呢，道术、妖术、仙术不一而足。",
-                "道术" : "道术？这可是本源正宗！",
-                "妖术" : "妖术啊，趋于下乘，不足为提。",
-                "仙术" : "仙术只好算是中乘，还是不能和道术相比。",
-                "浸入" : "你要是不行我可以帮你看看(show)浸入需要用什么物品。",
+                "開光" : (: ask_me :),
+                "沒錢" : "沒錢就去賺，跟我說什麼。",
+                "窮"   : "看你也是一副窮命。",
+                "魔法" : "魔法？什麼玩藝？",
+                "法術" : "法術還分很多種呢，道術、妖術、仙術不一而足。",
+                "道術" : "道術？這可是本源正宗！",
+                "妖術" : "妖術啊，趨於下乘，不足為提。",
+                "仙術" : "仙術只好算是中乘，還是不能和道術相比。",
+                "浸入" : "你要是不行我可以幫你看看(show)浸入需要用什麼物品。",
         ]));
 
         setup();
@@ -57,10 +57,10 @@ void init()
 int ask_me()
 {
         command("heihei");
-        command("say 我只给神兵利器开光，寻常刀剑莫提！要"
-                "你本人的，我可不能帮你做坏事！");
-        tell_object(this_player(), GRN "张天师在你耳边悄悄说："
-                    "你把要开光的拿出来给我看看(show)！\n" NOR);
+        command("say 我只給神兵利器開光，尋常刀劍莫提！要"
+                "你本人的，我可不能幫你做壞事！");
+        tell_object(this_player(), GRN "張天師在你耳邊悄悄說："
+                    "你把要開光的拿出來給我看看(show)！\n" NOR);
         return 1;
 }
 
@@ -68,7 +68,7 @@ int do_summon(string arg)
 {
         if (! wizardp(this_player()))
         {
-                command("say 你在我面前瞎抓个什么劲？别地试去！");
+                command("say 你在我面前瞎抓個什麼勁？別地試去！");
                 return 1;
         }
 
@@ -83,30 +83,30 @@ int do_show(string arg)
         int n;
 
         if (! arg)
-                return notify_fail("你要亮出什么东西？\n");
+                return notify_fail("你要亮出什麼東西？\n");
 
         me = this_player();
         if (! objectp(ob = present(arg, me)))
-                return notify_fail("你身上没有这种东西。\n");
+                return notify_fail("你身上沒有這種東西。\n");
 
         if( query("equipped", ob) )
-                return notify_fail("你先解除" + ob->name() + "的装备再说！\n");
+                return notify_fail("你先解除" + ob->name() + "的裝備再說！\n");
 
         message_vision("$n拿出一"+query("unit", ob)+ob->name()+
-                       "对$N说：“拜托拜托...”\n",
+                       "對$N說：“拜託拜託...”\n",
                        this_object(), me);
 
         if( query("money_id", ob) )
         {
-                command("say 你亮出钱干什么？想献给观里？那就给我好了。");
+                command("say 你亮出錢幹什麼？想獻給觀裡？那就給我好了。");
                 return 1;
         }
 
-        if( !query_temp("paid/张天师", me) )
+        if( !query_temp("paid/張天師", me) )
         {
                 command("heihei");
-                command("say 这...怎么也的有点意思意思吧？你"
-                        "说十两黄金怎么样？当然多些我也不反对。");
+                command("say 這...怎麼也的有點意思意思吧？你"
+                        "說十兩黃金怎麼樣？當然多些我也不反對。");
                 return 1;
         }
 
@@ -115,34 +115,34 @@ int do_show(string arg)
                 imbue_ob=new(query("magic/imbue_ob", ob));
                 if (! objectp(imbue_ob))
                 {
-                       command("say 你的物件有点问题，得和巫师联系！");
+                       command("say 你的物件有點問題，得和巫師聯繫！");
                        return 1;
                 }
-                tell_object(me, HIG "张天师悄悄对你说道：“恩...我看看，应该用" +
-                            imbue_ob->name() + HIG "浸入它才能进一步激发它的潜力。”\n");
-                delete_temp("paid/张天师", me);
+                tell_object(me, HIG "張天師悄悄對你說道：“恩...我看看，應該用" +
+                            imbue_ob->name() + HIG "浸入它才能進一步激發它的潛力。”\n");
+                delete_temp("paid/張天師", me);
                 destruct(imbue_ob);
                 return 1;
         }
 
         if( mapp(query("magic/imbue_ok", ob)) )
         {
-                command("say 哦！我看它现在已经不需要在浸入了，"
-                        "要发挥潜力得用别的法子了。\n");
+                command("say 哦！我看它現在已經不需要在浸入了，"
+                        "要發揮潛力得用別的法子了。\n");
                 return 1;
         }
 
         if (! ob->is_item_make())
         {
                 command("heng");
-                command("say 这...这...我看还是算了吧！");
+                command("say 這...這...我看還是算了吧！");
                 return 1;
         }
 
         if( ob->item_owner() != query("id", me) )
         {
                 command("kick"+query("id", me));
-                command("say 你以为本山人的仙术是蒙事的啊，这分明不是你的！");
+                command("say 你以為本山人的仙術是矇事的啊，這分明不是你的！");
                 return 1;
         }
 
@@ -151,27 +151,27 @@ int do_show(string arg)
                 if (ob->weapon_level() > 1)
                 {
                         command("poor"+query("id", me));
-                        command("say 它现在还不到浸入的时候..."
-                                "你要先圣化它才行啊！");
+                        command("say 它現在還不到浸入的時候..."
+                                "你要先聖化它才行啊！");
                 } else
                 {
                         command("kok"+query("id", me));
-                        command("say 你和它已经有缘了！我说你的"
-                                "记性怎么这么差？");
+                        command("say 你和它已經有緣了！我說你的"
+                                "記性怎麼這麼差？");
                 }
                 return 1;
         }
 
-        message("vision", sort_string(HIM + name() + "从口袋中摸出一张黄色"
-                                "的符纸，抽出背后的桃木剑，"
-                                "将那符纸点燃了，扫过" + ob->name() + HIM "，然"
-                                "后用桃木剑穿了，手舞足蹈，口中念念有词："
-                                "“太上老君急急如律赐令！”说罢一抖掌中剑，"
+        message("vision", sort_string(HIM + name() + "從口袋中摸出一張黃色"
+                                "的符紙，抽出背後的桃木劍，"
+                                "將那符紙點燃了，掃過" + ob->name() + HIM "，然"
+                                "後用桃木劍穿了，手舞足蹈，口中唸唸有詞："
+                                "“太上老君急急如律賜令！”說罷一抖掌中劍，"
                                 "喝道：“疾”！\n" NOR, 64), environment());
-        message_vision("焰光划出一道光华，$N发了发呆，也不知道算是怎么回事。\n",
+        message_vision("焰光劃出一道光華，$N發了發呆，也不知道算是怎麼回事。\n",
                        me);
         command("say 行了，行了！你可以走了。");
-        delete_temp("paid/张天师", me);
+        delete_temp("paid/張天師", me);
         set("can_summon/"+query("id", ob), base_name(ob), me);
         log_file("static/item", sprintf("%s %s sancitfy %s(%s)\n",
                         log_time(), log_id(me),
@@ -183,26 +183,26 @@ int accept_object(object who, object ob)
 {
         if( !query("money_id", ob) )
         {
-                command("say 这玩艺我可没啥兴趣！");
+                command("say 這玩藝我可沒啥興趣！");
                 return 0;
         }
 
         if (ob->value() < 50000)
         {
-                command("say 算是给观里的香火么？那我就收下了！");
+                command("say 算是給觀裡的香火麼？那我就收下了！");
                 return 1;
         }
 
         if (ob->value() < 100000)
         {
-                command("say 唉！看你也算有点心意，我就替你开一次光吧！");
-                set_temp("paid/张天师", 1, who);
+                command("say 唉！看你也算有點心意，我就替你開一次光吧！");
+                set_temp("paid/張天師", 1, who);
                 destruct(ob);
                 return 1;
         }
 
-        command("say 好...好...这么照顾本观，我能帮你点什么？");
-        set_temp("paid/张天师", 1, who);
+        command("say 好...好...這麼照顧本觀，我能幫你點什麼？");
+        set_temp("paid/張天師", 1, who);
         destruct(ob);
         return 1;
 }
@@ -210,20 +210,20 @@ int accept_object(object who, object ob)
 void fight_ob(object ob)
 {
         ::fight_ob(ob);
-        message_vision("$N冷笑一声，道：“这年头，什么人都有。”说完伸手一指$n。\n",
+        message_vision("$N冷笑一聲，道：“這年頭，什麼人都有。”說完伸手一指$n。\n",
                        this_object(), ob);
         ob->unconcious();
 }
 
 int accept_fight(object who)
 {
-        command("say 没兴趣。");
+        command("say 沒興趣。");
         return 0;
 }
 
 int accept_ansuan(object who)
 {
-        return notify_fail("你刚想暗算，可是眼前一花，看不太清楚。\n");
+        return notify_fail("你剛想暗算，可是眼前一花，看不太清楚。\n");
 }
 
 void receive_damage(string type, int n)

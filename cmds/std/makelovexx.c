@@ -6,10 +6,10 @@
 
 void do_makelove(object me, object target);
 string *loving_msg = ({ 
-        HIR "$N轻柔的吻者$n的唇，手掌开始不安分的抚摸$n光滑如缎子般的肌肤，$n娇喘吁吁，双手主动的抱住$N...\n" NOR,
-        WHT "$N也越来越兴奋，终于和$n结为一体，只听$n如蚊子般的“恩。。”了一声，似是痛苦，似是舒服...\n" NOR,
-        HIW "$N的动作越来越快，越来越猛，$n则配合着$N的节奏释放出对$N的爱，阵阵呻吟,春光熠熠，春潮绵绵...\n" NOR,
-        HIM "汹涌澎湃的高潮过后，$n温顺的躺在$N的怀里，听着$N的心跳声，$N轻轻的抚弄着$n光滑的皮肤，无限温柔...\n" NOR,
+        HIR "$N輕柔的吻者$n的唇，手掌開始不安分的撫摸$n光滑如緞子般的肌膚，$n嬌喘吁吁，雙手主動的抱住$N...\n" NOR,
+        WHT "$N也越來越興奮，終於和$n結為一體，只聽$n如蚊子般的“恩。。”了一聲，似是痛苦，似是舒服...\n" NOR,
+        HIW "$N的動作越來越快，越來越猛，$n則配合著$N的節奏釋放出對$N的愛，陣陣呻吟,春光熠熠，春潮綿綿...\n" NOR,
+        HIM "洶湧澎湃的高潮過後，$n溫順的躺在$N的懷裡，聽著$N的心跳聲，$N輕輕的撫弄著$n光滑的皮膚，無限溫柔...\n" NOR,
 });
 
 void do_loving(object me, object target, int n);        
@@ -27,54 +27,54 @@ int main(object me, string arg)
 /*
         if( !(query("sleep_room", where) )
               || (query("no_sleep_room", where)) )
-                return notify_fail("这里做爱可不太好，找个安全点的地方吧！\n");
+                return notify_fail("這裡做愛可不太好，找個安全點的地方吧！\n");
 */
 
         if (! arg || ! objectp(target = present(arg, where)))
-                return notify_fail("你想和谁做爱？\n");
+                return notify_fail("你想和誰做愛？\n");
 
         if( !target->is_character() || query("not_living", target) )
                 return notify_fail("看清楚了，那不是活人！\n");
 
         if( !query("can_speak", target) )
-                return notify_fail("你疯了？想和" + target->name() + "性交？\n");
+                return notify_fail("你瘋了？想和" + target->name() + "性交？\n");
 
         if (me == target)
-                return notify_fail("你自己要和自己...你还是快回家自己研究吧。\n");
+                return notify_fail("你自己要和自己...你還是快回家自己研究吧。\n");
 
         if (me->is_busy())
-                return notify_fail("你现在正忙着呢！\n");
+                return notify_fail("你現在正忙著呢！\n");
 
         if (me->is_fighting())
-                return notify_fail("边动手边做爱？你果然很有创意！\n");
+                return notify_fail("邊動手邊做愛？你果然很有創意！\n");
 
 
-        if( query("gender", me) == "无性" )
-                return notify_fail("你这人都这模样了还有兴致？真是少见。\n");
+        if( query("gender", me) == "無性" )
+                return notify_fail("你這人都這模樣了還有興致？真是少見。\n");
 
         if( query("gender", me) == query("gender", target) )
-                return notify_fail("同性恋么...还是自己好好研究怎么弄吧，这条指令不太合适。\n");
+                return notify_fail("同性戀麼...還是自己好好研究怎麼弄吧，這條指令不太合適。\n");
 
         if( query("age", me)<16 )
-                return notify_fail("你还没有发育完全，就想这事？\n");
+                return notify_fail("你還沒有發育完全，就想這事？\n");
 
         if (me->query_condition("huaiyun") > 0 ||
             target->query_condition("huaiyun") > 0)
-                return notify_fail("搞笑啊？孕妇要注意宝宝安全，怎么能这样？忍一忍拉！\n");
+                return notify_fail("搞笑啊？孕婦要注意寶寶安全，怎麼能這樣？忍一忍拉！\n");
                 
         if( query_temp("pending/makelove", me) == target )
-                return notify_fail("你已经向别人提出要求了，可是人家还没有答应你。\n");
+                return notify_fail("你已經向別人提出要求了，可是人家還沒有答應你。\n");
 
         if( query("jing", me)*100/query("max_jing", me)<80 )
-                return notify_fail("你的精神不济，现在没有力气和人家做爱。\n");
+                return notify_fail("你的精神不濟，現在沒有力氣和人家做愛。\n");
 
         if( query("qi", me)*100/query("max_qi", me)<60 )
-                return notify_fail("你的体力不支，现在没有力气和人家做爱。\n");
+                return notify_fail("你的體力不支，現在沒有力氣和人家做愛。\n");
 
 /*
         if( query("gender", me) == "男性" && 
             time()-query_temp("last_makelove", me)<120 )
-                return notify_fail("你现在是有心无力，没法再来一次。\n");
+                return notify_fail("你現在是有心無力，沒法再來一次。\n");
 */
 
 /*
@@ -84,26 +84,26 @@ int main(object me, string arg)
         {
                 can_tell=query("env/can_tell", target);
                 if( !is_sub(query("id", me),can_tell) )
-                        return notify_fail("这个人不想听你罗嗦啦。\n");
+                        return notify_fail("這個人不想聽你羅嗦啦。\n");
         }
 
         ob = all_inventory(where);
         for (i = 0; i < sizeof(ob); i++)
                 if (ob[i]->is_character() && ob[i] != me &&
                     ob[i] != target && ! wizardp(ob[i]))
-                        return notify_fail("这儿还有别人呢，多不好意思呀！\n");
+                        return notify_fail("這兒還有別人呢，多不好意思呀！\n");
                         
 */
         if( query_temp("pending/makelove", target) == me )
         {
                 delete_temp("pending/makelove", target);
                 if( query("gender", me) == "男性" )
-                        message_sort(YEL "$N过了好半响，实在受不了$n的挑逗突然一把将$n紧紧抱住压在床上....\n" NOR,
+                        message_sort(YEL "$N過了好半響，實在受不了$n的挑逗突然一把將$n緊緊抱住壓在床上....\n" NOR,
                                      me, target);
 
                 else
-                        message_sort(YEL "$N极力的忍受着$n火热的挑逗，心头小鹿撞击不停，终于瘫软在$n的怀里，"
-                                     "被$n一把横抱了起来，轻柔的放在床上....\n" NOR, me, target);
+                        message_sort(YEL "$N極力的忍受著$n火熱的挑逗，心頭小鹿撞擊不停，終於癱軟在$n的懷裡，"
+                                     "被$n一把橫抱了起來，輕柔的放在床上....\n" NOR, me, target);
                             
                 do_makelove(me, target);
                 return 1;
@@ -111,21 +111,21 @@ int main(object me, string arg)
 
         set_temp("pending/makelove", target, me);
 
-        message("vision", me->name() + "悄悄的和" + target->name() + "说了几句话。\n",
+        message("vision", me->name() + "悄悄的和" + target->name() + "說了幾句話。\n",
                 environment(me), ({ me, target }));
                 
         if( query("gender", me) == "男性" )
         {
-                message_sort(YEL "$N轻轻的注视着$n，双手搂在$n的小蛮腰，轻柔的吻着$n的小耳垂....\n" NOR, 
+                message_sort(YEL "$N輕輕的注視著$n，雙手摟在$n的小蠻腰，輕柔的吻著$n的小耳垂....\n" NOR, 
                              me, target);
                 me->force_me("tell"+query("id", target)+
-                             " 好宝贝，今天就和我欢乐一次吧。");
+                             " 好寶貝，今天就和我歡樂一次吧。");
         } else
         {
-                message_sort(YEL "$N的小脸儿红扑扑的，缠上来勾住$n的脖子，胸前紧紧的贴着$n的胸膛，"
-                             "小嘴嘟嘟的凑上来轻轻的吻着$n的嘴唇....\n" NOR, me, target);                
+                message_sort(YEL "$N的小臉兒紅撲撲的，纏上來勾住$n的脖子，胸前緊緊的貼著$n的胸膛，"
+                             "小嘴嘟嘟的湊上來輕輕的吻著$n的嘴唇....\n" NOR, me, target);                
                 me->force_me("tell"+query("id", target)+
-                            " 你现在想要我么？");
+                            " 你現在想要我麼？");
         }
 
         return 1;
@@ -148,12 +148,12 @@ void do_makelove(object me, object target)
                 woman = me;
         }
         
-        message_vision(HIB "...屋里的" + HIR "红烛" + HIB "被吹灭了...\n" NOR, me, target);
+        message_vision(HIB "...屋裡的" + HIR "紅燭" + HIB "被吹滅了...\n" NOR, me, target);
         
-        msg = YEL "$N轻轻的搂着$n，双手从$n的脸颊慢慢的抚摸下去直至胸膛，只见$p"
-              "不由的颤动了一下，一时间意乱情迷，双手紧紧的抱住了$N，把脸深"
-              "深的埋在$N的怀中，磨擦着$P的胸口，霎时间满堂春意，锦绣亦添光"
-              "华，两人渐渐的进入了忘我的状态。" NOR;
+        msg = YEL "$N輕輕的摟著$n，雙手從$n的臉頰慢慢的撫摸下去直至胸膛，只見$p"
+              "不由的顫動了一下，一時間意亂情迷，雙手緊緊的抱住了$N，把臉深"
+              "深的埋在$N的懷中，磨擦著$P的胸口，霎時間滿堂春意，錦繡亦添光"
+              "華，兩人漸漸的進入了忘我的狀態。" NOR;
         msg1 = replace_string(msg, "$N", "你");
         msg1 = replace_string(msg1, "$n", woman->name());
         msg1 = replace_string(msg1, "$P", "你");
@@ -183,7 +183,7 @@ void do_makelove(object me, object target)
         if( armor=query_temp("armor", target) && sizeof(armor) )
                 target->force_me("remove all");
                 
-        message_sort(HIM "$n闭上眼睛静静地躺在床上，感到自己身上的衣服一件一件的被脱掉，突然$n感到$N火烫的身体压上了自己...\n" NOR, 
+        message_sort(HIM "$n閉上眼睛靜靜地躺在床上，感到自己身上的衣服一件一件的被脫掉，突然$n感到$N火燙的身體壓上了自己...\n" NOR, 
                      man, woman);
 
         remove_call_out("do_loving");
@@ -231,13 +231,13 @@ void do_over(object me, object target)
         &&  random(100) < 21)
         {
                 message("shout",HIR"【家有喜事】："HIM"恭喜"HIY+query("name", me)+"("+query("id", me)+")"
-                        HIM"与"HIY+query("name", target)+"("+query("id", target)+")"HIM"做了准父母。\n"NOR,
+                        HIM"與"HIY+query("name", target)+"("+query("id", target)+")"HIM"做了準父母。\n"NOR,
                         users());
-                message_vision(HIY "\n$N突然觉得一阵做呕，旋即羞红着脸，咬咬牙想起了那个该死的。\n" NOR, target);
-                message_vision(HIM"\n$N怀孕了。赶快通知孩子的爸爸"HIY+query("name", me)+"("+query("id", me)+")"HIM"啊？．．．\n"NOR,target);
+                message_vision(HIY "\n$N突然覺得一陣做嘔，旋即羞紅著臉，咬咬牙想起了那個該死的。\n" NOR, target);
+                message_vision(HIM"\n$N懷孕了。趕快通知孩子的爸爸"HIY+query("name", me)+"("+query("id", me)+")"HIM"啊？．．．\n"NOR,target);
                 target->apply_condition("huaiyun", 1200);           
                 set("longbak",query("long",  target), target);
-                set("long", HIY"\n"+query("name", target)+"挺着个大肚子，一看就知道是怀孕了，混身散发出一股慈祥的母爱。\n"NOR, target);
+                set("long", HIY"\n"+query("name", target)+"挺著個大肚子，一看就知道是懷孕了，混身散發出一股慈祥的母愛。\n"NOR, target);
         }
 }
 
@@ -246,9 +246,9 @@ int help(object me)
         write(@HELP
 指令格式 : makelove <id>
  
-你可以用这个指令想你喜欢的人提出做爱的要求，当然要在安全的地
-方。如果对方对你设置了no_tell 的选项，你就无法提出这个要求。
-做爱以后会极大的消耗男方的精和气。
+你可以用這個指令想你喜歡的人提出做愛的要求，當然要在安全的地
+方。如果對方對你設置了no_tell 的選項，你就無法提出這個要求。
+做愛以後會極大的消耗男方的精和氣。
 
 HELP );
         return 1;

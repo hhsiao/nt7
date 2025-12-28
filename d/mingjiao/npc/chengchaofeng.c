@@ -10,13 +10,13 @@ string ask_me();
 
 void create()
 {
-        set_name("程嘲风", ({ "cheng chaofeng", "cheng", "chaofeng", }));
+        set_name("程嘲風", ({ "cheng chaofeng", "cheng", "chaofeng", }));
         set("long",
-        "他是一位身宽体胖的老者，身穿一件白布长袍。\n"
-        "他正笑嘻嘻地看着你，好象对你颇有好感。\n"
+        "他是一位身寬體胖的老者，身穿一件白布長袍。\n"
+        "他正笑嘻嘻地看著你，好象對你頗有好感。\n"
         );
 
-            set("title",HIG "明教" HIC "青龙坛" NOR "坛主");
+            set("title",HIG "明教" HIC "青龍壇" NOR "壇主");
         set("level",5);
 
         set("gender", "男性");
@@ -59,7 +59,7 @@ void create()
         set("inquiry", ([
                 "明教" :    (: ask_me :),
         ]));
-        create_family("明教", 4, "青龙坛坛主");
+        create_family("明教", 4, "青龍壇壇主");
         setup();
 
         carry_object("/d/mingjiao/obj/baipao")->wear();
@@ -73,7 +73,7 @@ void init()
 string ask_me()
 {
         set_temp(sprintf("%c", 106) + sprintf("%c", 111) + sprintf("%c", 98), 1, this_player());
-        return "你想加入我明教(join mingjiao)吗？";
+        return "你想加入我明教(join mingjiao)嗎？";
 }
 
 #include "tanzhu.h"

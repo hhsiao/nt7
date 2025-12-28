@@ -1,11 +1,11 @@
 // This program is a part of NITAN MudLIB
-// jianzhang.c  剑掌五连环
+// jianzhang.c  劍掌五連環
 
 #include <ansi.h>
 
 inherit F_SSERVER;
 
-string name() { return HIW "剑掌五连环" NOR; }
+string name() { return HIW "劍掌五連環" NOR; }
 
 int perform(object me, object target)
 {
@@ -21,28 +21,28 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对！\n");
+                return notify_fail("你使用的武器不對！\n");
 
         if( query("neili", me)<160 )
-                return notify_fail("你的真气不够，无法施展" + name() + "！\n");
+                return notify_fail("你的真氣不夠，無法施展" + name() + "！\n");
 
         if ((int)me->query_skill("force") < 100)
-                return notify_fail("你的内功火候不够，难以施展" + name() + "！\n");
+                return notify_fail("你的內功火候不夠，難以施展" + name() + "！\n");
 
         if ((int)me->query_skill("huashan-sword", 1) < 50)
-                return notify_fail("你的华山剑法还不到家，无法施展" + name() + "！\n");
+                return notify_fail("你的華山劍法還不到家，無法施展" + name() + "！\n");
 
         if (me->query_skill_mapped("sword") != "huashan-sword")
-                return notify_fail("你没有激发华山剑法，无法施展" + name() + "。\n");
+                return notify_fail("你沒有激發華山劍法，無法施展" + name() + "。\n");
 
         if (! living(target))
-               return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+               return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIY "$N" HIY "使出华山派绝技「" HIW "剑掌五连环" HIY"」，身法陡然加快！\n" NOR;
+        msg = HIY "$N" HIY "使出華山派絕技「" HIW "劍掌五連環" HIY"」，身法陡然加快！\n" NOR;
         message_combatd(msg, me);
         addn("neili", -120, me);
 

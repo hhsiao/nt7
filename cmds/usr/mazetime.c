@@ -25,7 +25,7 @@ int main(object me,string arg)
                         {
                                 if( os[j] != me->query_id(1) ) continue;
                                 
-                                msg += sprintf("副本名称：%-33s剩余时间：%s\n",
+                                msg += sprintf("副本名稱：%-33s剩餘時間：%s\n",
                                                 data[ks[i]]["name"]+"<"+ks[i]+">("+os[j]+")",
                                                 appromix_time(temp[os[j]] - time()) );
                         }
@@ -35,7 +35,7 @@ int main(object me,string arg)
 
         if( sizeof(msg) < 1 )
         {
-                write("你没有建立任何副本。\n");
+                write("你沒有建立任何副本。\n");
                 return 1;
         }
         

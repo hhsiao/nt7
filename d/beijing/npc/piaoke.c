@@ -6,7 +6,7 @@ void create()
         set("gender", "男性" );
         set("age", 32);
         set("long",
-              "一个上半身赤裸的男子。\n");
+              "一個上半身赤裸的男子。\n");
         set("shen_type", 1);
         set("combat_exp", 10000);
         set("str", 17);

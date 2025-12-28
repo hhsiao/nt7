@@ -17,16 +17,16 @@
 inherit F_CLEAN_UP;
 
 mapping valid_types = ([
-        "unarmed":      "拳脚",
-        "sword":        "剑法",
+        "unarmed":      "拳腳",
+        "sword":        "劍法",
         // "arrow":        "箭法",
         "axe":          "斧法",
         "blade":        "刀法",
         "staff":        "杖法",
-        "hammer":       "锤法",
+        "hammer":       "錘法",
         "club" :        "棍法",
-        // "dodge":        "轻功",
-        // "force":        "内功",
+        // "dodge":        "輕功",
+        // "force":        "內功",
         "whip":         "鞭法",
         "finger":       "指法",
         "hand":         "手法",
@@ -37,14 +37,14 @@ mapping valid_types = ([
 
 mapping type_name = ([
         "unarmed":      "拳",
-        "sword":        "剑",
+        "sword":        "劍",
         "arrow":        "箭",
         "axe":          "斧",
         "blade":        "刀",
         "staff":        "杖",
-        "hammer":       "锤",
+        "hammer":       "錘",
         "club" :        "棍",
-        "dodge":        "轻功",
+        "dodge":        "輕功",
         "whip":         "鞭",
         "finger":       "指",
         "hand":         "手",
@@ -61,27 +61,27 @@ string *weapon_types = ({
 });
 
 string *msga = ({ 
-        "冥冥之中，$N突然发现",
-        "$N绞尽脑汁，似乎觉得",
-        "$N灵台一片清明，想起",
-        "$N苦思以前练功时的点点滴滴，似乎想起",
-        "突然，$N脑海灵光一现，发现",
-        "$N反复比划，发现",
+        "冥冥之中，$N突然發現",
+        "$N絞盡腦汁，似乎覺得",
+        "$N靈臺一片清明，想起",
+        "$N苦思以前練功時的點點滴滴，似乎想起",
+        "突然，$N腦海靈光一現，發現",
+        "$N反覆比劃，發現",
 });
 
 string *msgb = ({ 
-        "似有相通之处，不禁心中一亮。",
-        "颇有一一印证之功，随手演练，似有所悟。",
-        "似乎可以合而为一，顿时心内一阵狂喜！",
-        "可以相互取长补短，开辟一种全新的境界。",
-        "如果连续使出，似乎可以将威力发挥至极限。",
-        "如果详加修正，可以相互弥补个中不足，创造出更完美的招式。"
+        "似有相通之處，不禁心中一亮。",
+        "頗有一一印證之功，隨手演練，似有所悟。",
+        "似乎可以合而為一，頓時心內一陣狂喜！",
+        "可以相互取長補短，開闢一種全新的境界。",
+        "如果連續使出，似乎可以將威力發揮至極限。",
+        "如果詳加修正，可以相互彌補箇中不足，創造出更完美的招式。"
 });
 
 string *banned_name = ({
         "你", "你", "我", "他", "她", "它",
-        "爸", "爷", "　", "妈",
-        "屎", "尿", "粪",
+        "爸", "爺", "　", "媽",
+        "屎", "尿", "糞",
 });
 
 string *spe_skill_level = ({
@@ -107,15 +107,15 @@ int main(object me, string arg)
         where = environment(me);
         
         if (! wizardp(me) && ! MEMBER_D->is_valid_member(query("id", me))) 
-                return notify_fail("只有会员才可以自创任何武功。\n");
+                return notify_fail("只有會員才可以自創任何武功。\n");
 
         if( !arg ) {
                 mapping invent_skills;
 
                 if( !mapp(invent_skills=query("invent", me)) )
-                        return notify_fail("你目前还没有自创任何武功。\n");
+                        return notify_fail("你目前還沒有自創任何武功。\n");
                 
-                msg = WHT "你目前共有 " HIC + chinese_number(sizeof(invent_skills)) + NOR WHT " 种自创武功：\n";
+                msg = WHT "你目前共有 " HIC + chinese_number(sizeof(invent_skills)) + NOR WHT " 種自創武功：\n";
                 invent = keys(invent_skills);
                 
                 for( i = 0; i < sizeof(invent); i++ )
@@ -131,7 +131,7 @@ int main(object me, string arg)
         }
 
         if( arg == "?" ) {
-               msg = "以下是可以自创的技能种类：\n";
+               msg = "以下是可以自創的技能種類：\n";
 
                skills = sort_array(keys(valid_types), (: strcmp :) );
                for (i = 0; i < sizeof(skills); i++)
@@ -145,9 +145,9 @@ int main(object me, string arg)
                 
                 if( sscanf(arg, "%s d", arg) == 1 ) {                        
                         if( !(meskill=query("invent/"+arg, me)) )
-                                return notify_fail("没有这种自创武功，请确认输入的基本武功英文名称。\n");
+                                return notify_fail("沒有這種自創武功，請確認輸入的基本武功英文名稱。\n");
 
-                        tell_object(me, HIR "你删除了自创武功" + to_chinese(meskill) + "(" + meskill + ")。\n" NOR);                                                
+                        tell_object(me, HIR "你刪除了自創武功" + to_chinese(meskill) + "(" + meskill + ")。\n" NOR);                                                
                         SKILLS_D->remove_skill_from_skills(me, meskill); 
 
                         CHINESE_D->remove_translate(meskill);                        
@@ -167,25 +167,25 @@ int main(object me, string arg)
                         mixed  *meskills;                                       
                         
                         if( !(meskill=query("invent/"+arg, me)) )
-                                return notify_fail("没有这种自创武功，请确认输入的基本武功英文名称。\n");
+                                return notify_fail("沒有這種自創武功，請確認輸入的基本武功英文名稱。\n");
                         
                         meskills = SKILL_D(meskill)->query_actions();
-                        msg =  HIW "自创武功" + to_chinese(meskill) + "的详细情况如下:\n" NOR;
+                        msg =  HIW "自創武功" + to_chinese(meskill) + "的詳細情況如下:\n" NOR;
                         msg += WHT "--------------------------------------------------\n" NOR;
-                        msg += HIY "武功总招数：" + chinese_number(skill_t_number(meskill)) + "招\n" NOR;
+                        msg += HIY "武功總招數：" + chinese_number(skill_t_number(meskill)) + "招\n" NOR;
                                                 
                         for( i = 0; i < sizeof(meskills); i++ ) {
-                                msg += WHT "招式" + chinese_number(i + 1) + "名称：" + 
+                                msg += WHT "招式" + chinese_number(i + 1) + "名稱：" + 
                                        meskills[i]["skill_name"] + "\n" NOR;
                                 msg += CYN "招式" + chinese_number(i + 1) + "描述：" + 
                                        meskills[i]["action"] + "\n" NOR;
-                                msg += CYN "招式" + chinese_number(i + 1) + "攻击：" + 
+                                msg += CYN "招式" + chinese_number(i + 1) + "攻擊：" + 
                                        meskills[i]["attack"] + "\n" NOR;
-                                msg += CYN "招式" + chinese_number(i + 1) + "伤害：" + 
+                                msg += CYN "招式" + chinese_number(i + 1) + "傷害：" + 
                                        meskills[i]["damage"] + "\n" NOR;
-                                msg += CYN "附加" + chinese_number(i + 1) + "伤害：" + 
+                                msg += CYN "附加" + chinese_number(i + 1) + "傷害：" + 
                                        meskills[i]["force"] + "\n" NOR;
-                                msg += CYN "招式" + chinese_number(i + 1) + "躲闪：" + 
+                                msg += CYN "招式" + chinese_number(i + 1) + "躲閃：" + 
                                        meskills[i]["dodge"] + "\n" NOR;
                                 msg += CYN "招式" + chinese_number(i + 1) + "招架：" + 
                                        meskills[i]["parry"] + "\n" NOR;
@@ -203,7 +203,7 @@ int main(object me, string arg)
                 string  *invent_skills;
 
                 if( !mapp(invents=query("invent", me)) )
-                        return notify_fail("没有这个技能种类，用 invent ? 可以查看有哪些种类。\n");
+                        return notify_fail("沒有這個技能種類，用 invent ? 可以查看有哪些種類。\n");
                 
                 invent_skills = keys(invents);
 
@@ -216,66 +216,66 @@ int main(object me, string arg)
                 }
 
                 if( !invent_skill )
-                        return notify_fail("没有这个技能种类，用 invent ? 可以查看有哪些种类。\n");
+                        return notify_fail("沒有這個技能種類，用 invent ? 可以查看有哪些種類。\n");
         } else {
                 if( stringp(invent_skill=query("invent/"+arg, me)) )
-                        return notify_fail("你已经自创了一套" + to_chinese(invent_skill) + 
-                                           "，如果要继续为这套武功创造招式，请用invent <已创武功>\n");
+                        return notify_fail("你已經自創了一套" + to_chinese(invent_skill) + 
+                                           "，如果要繼續為這套武功創造招式，請用invent <已創武功>\n");
         } 
 
         if( me->is_busy() )
-                return notify_fail("你还是先忙完手头的事再说吧！\n");         
+                return notify_fail("你還是先忙完手頭的事再說吧！\n");         
 
         if( query("pigging", where) )
-                return notify_fail("你还是专心拱猪吧！\n");
+                return notify_fail("你還是專心拱豬吧！\n");
                 
         if( !query("no_fight", where) )
-                return notify_fail("在这里闭关？不太安全吧？\n");
+                return notify_fail("在這裡閉關？不太安全吧？\n");
 
         if( !query("sleep_room", where) )
-                return notify_fail("你得找一个能够休息的地方闭关。\n");
+                return notify_fail("你得找一個能夠休息的地方閉關。\n");
                 
         if( !ultrap(me) )
-                return notify_fail("你还没有到大宗师的境界，还是好好学习锻炼吧。\n");
+                return notify_fail("你還沒有到大宗師的境界，還是好好學習鍛鍊吧。\n");
 
         if( query("yuanshen_level", me)<100 )
-                return notify_fail("你还没有到元神不灭境界，还是好好学习锻炼吧。\n");
+                return notify_fail("你還沒有到元神不滅境界，還是好好學習鍛鍊吧。\n");
 
         if( query("potential", me)-query("learned_points", me)<1000000 )
-                return notify_fail("你的潜能不够，没法闭关修行。\n");
+                return notify_fail("你的潛能不夠，沒法閉關修行。\n");
 
         if( query("qi", me)*100/query("max_qi", me)<90 )
-                return notify_fail("你现在的气太少了，无法静心闭关。\n");
+                return notify_fail("你現在的氣太少了，無法靜心閉關。\n");
 
         if( query("jing", me)*100/query("max_jing", me)<90 )
-                return notify_fail("你现在的精太少了，无法静心闭关。\n");
+                return notify_fail("你現在的精太少了，無法靜心閉關。\n");
 
         if( query("max_neili", me)<4000 )
-                return notify_fail("你觉得内力颇有不足，看来目前还难以"
-                                   "进行长时间的闭关修炼。\n");
+                return notify_fail("你覺得內力頗有不足，看來目前還難以"
+                                   "進行長時間的閉關修煉。\n");
 
         if( query("neili", me)*100/query("max_neili", me)<90 )
-                return notify_fail("你现在的内力太少了，无法静心闭关。\n");
+                return notify_fail("你現在的內力太少了，無法靜心閉關。\n");
                 
         // if( !mapp(skills_map = me->query_skillc() ) || sizeof(skills_map) < 1 )
         if( !mapp(skills_map = me->query_skills() ) || sizeof(skills_map) < 1 )
-                return notify_fail("你还是先去学点功夫再来吧。\n");
+                return notify_fail("你還是先去學點功夫再來吧。\n");
 
         if( undefinedp(skills_map[arg]) || skills_map[arg] < 1 )
-                return notify_fail("你连基本的" + valid_types[arg] + "都不会，从何谈起？\n");
+                return notify_fail("你連基本的" + valid_types[arg] + "都不會，從何談起？\n");
 
         if( skills_map[arg] < NEED_LVL )
-                return notify_fail("你还是打好" + valid_types[arg] + "的基本功吧。\n");
+                return notify_fail("你還是打好" + valid_types[arg] + "的基本功吧。\n");
 
         if( objectp(weapon=query_temp("weapon", me))){
 
                 if( member_array(arg, weapon_types) == -1 && arg != "dodge" )
-                        return notify_fail("你必须空手才能自创" + valid_types[arg] + "。\n");
+                        return notify_fail("你必須空手才能自創" + valid_types[arg] + "。\n");
 
                 if( member_array(arg,weapon_types) != -1 && query("skill_type", weapon) != arg )
-                        return notify_fail("你所使用的武器不对，无法自创" + valid_types[arg] + "。\n");
+                        return notify_fail("你所使用的武器不對，無法自創" + valid_types[arg] + "。\n");
         } else if( member_array(arg, weapon_types) != -1 )
-                        return notify_fail("你必须拿起武器才能开始自创" + valid_types[arg] + "。\n");
+                        return notify_fail("你必須拿起武器才能開始自創" + valid_types[arg] + "。\n");
 
         skills = keys(skills_map);
 
@@ -286,12 +286,12 @@ int main(object me, string arg)
         }
 
         if( sizeof(mut_skills) < 4 )
-                return notify_fail("你的" + valid_types[arg] + "修为还不够广博，再去多学习学习！\n");
+                return notify_fail("你的" + valid_types[arg] + "修為還不夠廣博，再去多學習學習！\n");
 
         mut_skills = filter_array(mut_skills, (: $(skills_map)[$1] >= NEED_LVL :));
         
         if( sizeof(mut_skills) < 4 )
-                return notify_fail("你在" + valid_types[arg] + "方面的修为还不够高深。\n");
+                return notify_fail("你在" + valid_types[arg] + "方面的修為還不夠高深。\n");
 
         mut_level = 0;
         foreach( string sk_tmp in mut_skills ) 
@@ -307,11 +307,11 @@ int main(object me, string arg)
                 set_temp("invent/spe_skill/skill_z_number", skill_t_number(invent_skill)+1, me);
                 if (skill_t_number(invent_skill) + 1 >= 10)
                         return notify_fail("你的" + to_chinese(invent_skill) + 
-                                           "招式已经到了极限，无法再自创新招式。\n");
+                                           "招式已經到了極限，無法再自創新招式。\n");
                 
-                message_vision("$N盘膝坐下，开始苦思冥想，专心的自创" + to_chinese(invent_skill) + "。\n", me);              
+                message_vision("$N盤膝坐下，開始苦思冥想，專心的自創" + to_chinese(invent_skill) + "。\n", me);              
         }
-        else    message_vision("$N盘膝坐下，开始苦思冥想，专心的自创一种" + valid_types[arg] + "。\n", me);
+        else    message_vision("$N盤膝坐下，開始苦思冥想，專心的自創一種" + valid_types[arg] + "。\n", me);
 
         set_temp("invent/skill", arg, me);
         set_temp("invent/spe_skill/skill", arg, me);
@@ -321,13 +321,13 @@ int main(object me, string arg)
         if( stringp(invent_skill) )
                 set_temp("invent/invent_skill", invent_skill, me);
         
-        me->set_short_desc("正在全神贯注地自创" + valid_types[arg] + "。");
+        me->set_short_desc("正在全神貫注地自創" + valid_types[arg] + "。");
 
         me->start_busy(bind((:call_other, __FILE__, "inventing" :), me),
                        bind((:call_other, __FILE__, "halt_inventing" :), me));
 
         CHANNEL_D->do_channel(this_object(), "rumor",
-                              sprintf("%s(%s)开始闭关自创%s。\n",
+                              sprintf("%s(%s)開始閉關自創%s。\n",
                               me->name(1),query("id", me),stringp(invent_skill)?
                               (to_chinese(invent_skill) + "新招式") : valid_types[arg]));
         return 1;
@@ -348,8 +348,8 @@ int inventing(object me)
         pot=query("potential", me);
         if( pot <= query("learned_points", me) )
         {
-                tell_object(me, "你的潜能耗尽，却一无所获，失望地站了。\n");
-                message_vision("$N睁开双目，缓缓吐了一口气，站了起来。\n", me);
+                tell_object(me, "你的潛能耗盡，卻一無所獲，失望地站了。\n");
+                message_vision("$N睜開雙目，緩緩吐了一口氣，站了起來。\n", me);
                 me->set_short_desc(0);
                 return 0;
         }
@@ -374,35 +374,35 @@ int inventing(object me)
                         s_skill["skill_e_name"] = skills;
                         s_skill["skill_c_name"] = to_chinese(skills);                        
                                                 
-                        message_sort("猛然间$N脑中略过种种招式，将" + 
+                        message_sort("猛然間$N腦中略過種種招式，將" + 
                                 sprintf( HIG"%s" NOR "以及" HIG "%s"NOR, 
                                 implode(chinese_skills[0..sizeof(chinese_skills)-2], NOR "、" HIG), 
                                 chinese_skills[sizeof(chinese_skills)-1])
-                                + "这" + chinese_number(sizeof(mut_skills)) + "种武功的招式合而为"
-                                "一作为" + to_chinese(skills) + "的新招式。\n", me);
+                                + "這" + chinese_number(sizeof(mut_skills)) + "種武功的招式合而為"
+                                "一作為" + to_chinese(skills) + "的新招式。\n", me);
                         
                         me->clear_written();                                   
-                        tell_object(me, HIC "\n\n请给" + to_chinese(skills) + "新招式起个名字(例如: " NOR HIY "悠哉" NOR HIC "):" NOR);          
+                        tell_object(me, HIC "\n\n請給" + to_chinese(skills) + "新招式起個名字(例如: " NOR HIY "悠哉" NOR HIC "):" NOR);          
                         me->set_short_desc(0);                        
                         
                         input_to( "get_z_c_name", me );
                         return 0;
                 }       
-                message_sort("猛然间$N脑中略过种种招式，将" + 
+                message_sort("猛然間$N腦中略過種種招式，將" + 
                                 sprintf( HIG"%s" NOR "以及" HIG "%s"NOR, 
                                 implode(chinese_skills[0..sizeof(chinese_skills)-2], NOR "、" HIG), 
                                 chinese_skills[sizeof(chinese_skills)-1])
-                                + "这" + chinese_number(sizeof(mut_skills)) + "种武功合而为一。\n", me);
+                                + "這" + chinese_number(sizeof(mut_skills)) + "種武功合而為一。\n", me);
 
                 me->clear_written();
-                tell_object(me, HIW"\n\n\n你自创出了一套" + valid_types[skill] + "。\n"NOR
-                                "你可以为这套" + valid_types[skill] + "取一个名字\n\n"
+                tell_object(me, HIW"\n\n\n你自創出了一套" + valid_types[skill] + "。\n"NOR
+                                "你可以為這套" + valid_types[skill] + "取一個名字\n\n"
                                 HIY"格式："HIC"<英文名> <中文名>\n\n"NOR
-                                "如输入：wuyou 无忧\n"
-                                "系统会产生一种无忧"HIR + type_name[skill] + NOR "(wuyou-"
+                                "如輸入：wuyou 無憂\n"
+                                "系統會產生一種無憂"HIR + type_name[skill] + NOR "(wuyou-"
                                 HIR + skill + NOR")的" + valid_types[skill] + "\n"
-                                HIW"勿用骚扰性或不雅的名字，否则将会被删除。\n"NOR
-                                "请输入：");
+                                HIW"勿用騷擾性或不雅的名字，否則將會被刪除。\n"NOR
+                                "請輸入：");
                 me->set_short_desc(0);                       
                 input_to( "input_skill_name", me );
                 return 0;
@@ -436,8 +436,8 @@ int halt_inventing(object me)
 {
         me->set_short_desc(0);
         delete_temp("invent", me);
-        tell_object(me, "你中止了自创。\n");
-        message_vision(HIY "$N" HIY "起身站立，神情充满了失望。\n\n" NOR, me);
+        tell_object(me, "你中止了自創。\n");
+        message_vision(HIY "$N" HIY "起身站立，神情充滿了失望。\n\n" NOR, me);
         return 1;
 }
 
@@ -502,7 +502,7 @@ int skill_t_number(string e_name)
         
         if( !flag )
         {
-                write(HIR "可能出现异常了，请找巫师帮助解决。\n" NOR);  
+                write(HIR "可能出現異常了，請找巫師幫助解決。\n" NOR);  
                 return 0;    
         }
                 
@@ -523,14 +523,14 @@ void input_skill_name(string arg, object me)
                
         if( sscanf(arg, "%s %s", arg, c_name) != 2 )
         {
-                tell_object(me, "对不起，请用：<英文名> <中文名> 的格式输入。\n请重新输入：");
+                tell_object(me, "對不起，請用：<英文名> <中文名> 的格式輸入。\n請重新輸入：");
                 input_to((: input_skill_name :), me);
                 return;
         }
         
         if ((strlen(arg) < 3) || (strlen(arg) > 10))
         {
-                tell_object(me, "对不起，英文名必须是 3 到 10 个英文字母。\n请重新输入：");
+                tell_object(me, "對不起，英文名必須是 3 到 10 個英文字母。\n請重新輸入：");
                 input_to((: input_skill_name :), me);
                 return;
         }
@@ -539,7 +539,7 @@ void input_skill_name(string arg, object me)
         {
                 if (arg[i] < 'a' || arg[i] > 'z' )
                 {
-                        tell_object(me, "对不起，英文名只能用英文字母。\n请重新输入：");
+                        tell_object(me, "對不起，英文名只能用英文字母。\n請重新輸入：");
                         input_to((: input_skill_name :), me);
                         return;
                 }
@@ -552,7 +552,7 @@ void input_skill_name(string arg, object me)
         if( file_size(SKILL_D(arg) + SYC) > 0 
          || get_object(SKILL_D(arg)) 
          || arg != to_chinese(arg) ) {
-                        tell_object(me, "对不起，已经有("+ e_name +")这种武功存在。\n请重新输入：");
+                        tell_object(me, "對不起，已經有("+ e_name +")這種武功存在。\n請重新輸入：");
                         input_to((: input_skill_name :), me);
                         return;
         }
@@ -561,20 +561,20 @@ void input_skill_name(string arg, object me)
                 c_name = LANGUAGE_D->toGB(c_name);
                 
         if( !is_chinese(c_name) ) {
-                        tell_object(me, "对不起，请用【中文】做中文名。\n请重新输入：");
+                        tell_object(me, "對不起，請用【中文】做中文名。\n請重新輸入：");
                         input_to((: input_skill_name :), me);
                         return;
         }
 
         if (member_array(c_name, banned_name) % 2 == 0)
         {
-                tell_object(me, "对不起，这种名称会造成其他人的困扰。\n请重新输入：");
+                tell_object(me, "對不起，這種名稱會造成其他人的困擾。\n請重新輸入：");
                 input_to((: input_skill_name :), me);
                 return;
         }
 
         if( strlen(c_name) > 20 ) {
-                tell_object(me, "对不起，您设置的中文名太长，请选一个精湛一点的名字。\n请重新输入：");
+                tell_object(me, "對不起，您設置的中文名太長，請選一個精湛一點的名字。\n請重新輸入：");
                 input_to((: input_skill_name :), me);
                 return;
         }
@@ -584,21 +584,21 @@ void input_skill_name(string arg, object me)
         s_skill["skill_c_name"] = c_name;
         
         if( CHINESE_D->find_skill(c_name) ) {
-                        tell_object(me, "对不起，已经有[" + c_name + "]这种武功存在。\n请重新输入：");
+                        tell_object(me, "對不起，已經有[" + c_name + "]這種武功存在。\n請重新輸入：");
                         input_to((: input_skill_name :), me);
                         return;
         }
 
 
-        tell_object(me, HIW"\n\n\n您成功的自创出了" HIG + c_name + "(" + e_name + ")" HIW "这套" + valid_types[skill]
-                                 + NOR "\n您可以为这个武功添加一段描述！\n"
+        tell_object(me, HIW"\n\n\n您成功的自創出了" HIG + c_name + "(" + e_name + ")" HIW "這套" + valid_types[skill]
+                                 + NOR "\n您可以為這個武功添加一段描述！\n"
                                  "----------------------------------------------------------------\n\n"
-                                 + sort_msg("如：" + c_name + "是创自" + me->name(1) + "的绝世" + valid_types[skill] + 
-                                            "，招式勇往直前，大开大阖，以勇猛霸道而著称，当初江湖十大掌门"
-                                            "围攻" + me->name(1) + "的时候，情势万分危机，" + me->name(1)
-                                            + "在千钧一发之际使出这套武功，顿时风云变色，化险为夷……\n\n")
+                                 + sort_msg("如：" + c_name + "是創自" + me->name(1) + "的絕世" + valid_types[skill] + 
+                                            "，招式勇往直前，大開大闔，以勇猛霸道而著稱，當初江湖十大掌門"
+                                            "圍攻" + me->name(1) + "的時候，情勢萬分危機，" + me->name(1)
+                                            + "在千鈞一髮之際使出這套武功，頓時風雲變色，化險為夷……\n\n")
                                  + "----------------------------------------------------------------\n\n"
-                                 + "请输入：");
+                                 + "請輸入：");
         me->edit(bind((: call_other, __FILE__, "describe_done", me, skill, e_name, c_name :), me));
 }
 
@@ -610,10 +610,10 @@ void describe_done(object me, string skill, string e_name, string c_name, string
         s_skill = temp["invent"]["spe_skill"];
         
         if( !stringp( msg ) || msg == "" )
-                tell_object(me, "您放弃为这套武功添加描述！\n");
+                tell_object(me, "您放棄為這套武功添加描述！\n");
         else {
                 if( strlen(msg) > 1000 ) {
-                        tell_object(me, "您设定的描述太长了，请设定一个精简的描述。\n");
+                        tell_object(me, "您設定的描述太長了，請設定一個精簡的描述。\n");
                         me->edit(bind((: call_other, __FILE__, "describe_done", me, skill, e_name, c_name :), me));
                         return;
                 }
@@ -622,7 +622,7 @@ void describe_done(object me, string skill, string e_name, string c_name, string
         s_skill["skill_result"] = msg; 
         s_skill["skill_z_number"] = 1;
         
-        tell_object(me, HIC "\n\n请给" + c_name + "招式起个名字(例如: " NOR HIY "悠哉" NOR HIC "):" NOR);         
+        tell_object(me, HIC "\n\n請給" + c_name + "招式起個名字(例如: " NOR HIY "悠哉" NOR HIC "):" NOR);         
         input_to( "get_z_c_name", me );
 }
 
@@ -663,7 +663,7 @@ void get_z_c_name(string yn, object ob)
                 yn = LANGUAGE_D->toGB(yn);
                                 
         if( yn == "" ) {
-                tell_object(ob, HIC "\n\n请给" + s_skill["skill_c_name"] + "招式起个名字(例如: " NOR HIY "悠哉" NOR HIC "):" NOR);   
+                tell_object(ob, HIC "\n\n請給" + s_skill["skill_c_name"] + "招式起個名字(例如: " NOR HIY "悠哉" NOR HIC "):" NOR);   
                 input_to( (: get_z_c_name :), ob );
                 return;
         }
@@ -672,23 +672,23 @@ void get_z_c_name(string yn, object ob)
         case 'E':
         case 'Q':
                 delete_temp("invent", ob);
-                tell_object(ob, "你决定放弃自创武功。\n");
+                tell_object(ob, "你決定放棄自創武功。\n");
                 return;
         }
 
         if( !is_chinese(yn) ) {
-                tell_object(ob, "招式名称：");
+                tell_object(ob, "招式名稱：");
                 input_to( (: get_z_c_name :), ob );
                 return;
         }
         
         s_skill["skill_name"] = yn;
 
-        tell_object(ob, HIR "\n注意问题: $N 代表你 $n 代表敌人 $l 代表攻击部位 $w 代表你的武器 \n" NOR);
-        tell_object(ob, BLINK WHT "例如:(拳脚类)\n" NOR);
-        tell_object(ob, "$N两臂紧伸，腿脚尖点地，一式「同归黄泉」，死死的包住$n往半空中自旋而上\n\n");
-        tell_object(ob, BLINK WHT "又例如:(带武器类)\n" NOR); 
-        tell_object(ob, "$N纵身一跃，手握$w,顿时一招「斜阳竖月」对准$n的某部位斜斜刺出一剑\n\n");
+        tell_object(ob, HIR "\n注意問題: $N 代表你 $n 代表敵人 $l 代表攻擊部位 $w 代表你的武器 \n" NOR);
+        tell_object(ob, BLINK WHT "例如:(拳腳類)\n" NOR);
+        tell_object(ob, "$N兩臂緊伸，腿腳尖點地，一式「同歸黃泉」，死死的包住$n往半空中自旋而上\n\n");
+        tell_object(ob, BLINK WHT "又例如:(帶武器類)\n" NOR); 
+        tell_object(ob, "$N縱身一躍，手握$w,頓時一招「斜陽豎月」對準$n的某部位斜斜刺出一劍\n\n");
         tell_object(ob, "招式描述：");
 
         input_to("get_z_c_action", ob);
@@ -708,23 +708,23 @@ void get_z_c_action(string yn, object ob)
                         
         if (yn == "") 
         {
-                tell_object(ob, HIR "\n注意问题: $N 代表你 $n 代表敌人 $l 代表攻击部位 $w 代表你的武器 \n" NOR);
-                tell_object(ob, BLINK WHT "例如:(拳脚类)\n" NOR);
-                tell_object(ob, "\t$N两臂紧伸，腿脚尖点地，一式「同归黄泉」，死死的包住$n往半空中自旋而上\n\n");
-                tell_object(ob, BLINK WHT "又例如:(带武器类)\n" NOR); 
-                tell_object(ob, "\t$N纵身一跃，手握$w,顿时一招「斜阳竖月」对准$n的某部位斜斜刺出一剑\n\n");
+                tell_object(ob, HIR "\n注意問題: $N 代表你 $n 代表敵人 $l 代表攻擊部位 $w 代表你的武器 \n" NOR);
+                tell_object(ob, BLINK WHT "例如:(拳腳類)\n" NOR);
+                tell_object(ob, "\t$N兩臂緊伸，腿腳尖點地，一式「同歸黃泉」，死死的包住$n往半空中自旋而上\n\n");
+                tell_object(ob, BLINK WHT "又例如:(帶武器類)\n" NOR); 
+                tell_object(ob, "\t$N縱身一躍，手握$w,頓時一招「斜陽豎月」對準$n的某部位斜斜刺出一劍\n\n");
                 tell_object(ob, "招式描述：");
                 input_to((: get_z_c_action :), ob);
                 return;
         }
         
-        // 退出自创
+        // 退出自創
         switch(yn[0])
         {
         case 'e':
         case 'q':
                 delete_temp("invent", ob);
-                tell_object(ob, "你决定放弃自创武功招式。\n");
+                tell_object(ob, "你決定放棄自創武功招式。\n");
                 return;
         }
                        
@@ -734,13 +734,13 @@ void get_z_c_action(string yn, object ob)
         s_skill["action"] = replace_string(s_skill["action"], " ", "");
         s_skill["action"] = replace_string(s_skill["action"], "\"", "");
         s_skill["action"] = replace_string(s_skill["action"], "你", "$N");
-        s_skill["action"] = replace_string(s_skill["action"], "老猫", "$n");               
+        s_skill["action"] = replace_string(s_skill["action"], "老貓", "$n");               
         s_skill["action"] = replace_string(s_skill["action"], "某部位", "$l");              
 
         if ( member_array(skill_type, weapon_types) != -1 )
                 s_skill["action"] = replace_string(s_skill["action"], "武器", "$w");
                 
-       // 自创武工的威力由武修、人物等级、智商决定
+       // 自創武工的威力由武修、人物等級、智商決定
         s_skill["attack"]=query("level", ob)/15+query("int", ob)+
                             sizeof(query_temp("invent/mut_skills", ob))*5+
                             query_temp("invent/mut_level", ob)/10+
@@ -769,47 +769,47 @@ void get_z_c_action(string yn, object ob)
         
         switch(skill_type){
         case "unarmed":
-                s_skill["damage_type"] = "瘀伤";
+                s_skill["damage_type"] = "瘀傷";
                 break;
         case "sword":
         case "spin":
-                s_skill["damage_type"] = "刺伤";
+                s_skill["damage_type"] = "刺傷";
                 break;
         case "blade":
-                s_skill["damage_type"] = "割伤";
+                s_skill["damage_type"] = "割傷";
                 break;
         case "strike":
-                s_skill["damage_type"] = "内伤";
+                s_skill["damage_type"] = "內傷";
                 break;
         default:
-                s_skill["damage_type"] = "瘀伤";
+                s_skill["damage_type"] = "瘀傷";
                 break;
         }                             
         s_skill["lvl"] = spe_skill_level[s_skill["skill_z_number"] - 1];                                
         
         if (s_skill["skill_z_number"] == 1)                        
-                tell_object(ob, HIR "\n你自创了一套" + s_skill["skill_c_name"] + "(" + s_skill["skill_e_name"] + ")\n" NOR
-                                HIY "武功类型：" NOR HIC + valid_types[skill_type] + "\n" NOR
+                tell_object(ob, HIR "\n你自創了一套" + s_skill["skill_c_name"] + "(" + s_skill["skill_e_name"] + ")\n" NOR
+                                HIY "武功類型：" NOR HIC + valid_types[skill_type] + "\n" NOR
                                 HIY "武功描述：\n" NOR HIC + s_skill["skill_result"] + "\n" NOR
-                                HIY "首招名称：" NOR HIC + s_skill["skill_name"] + "\n" NOR
+                                HIY "首招名稱：" NOR HIC + s_skill["skill_name"] + "\n" NOR
                                 HIY "首招描述：" NOR HIC + s_skill["action"] + "\n" NOR
-                                HIY "首招攻击：" NOR HIC + s_skill["attack"] + "\n" NOR
-                                HIY "首招伤害：" NOR HIC + s_skill["damage"] + "\n" NOR
-                                HIY "附加伤害：" NOR HIC + s_skill["force"] + "\n" NOR
+                                HIY "首招攻擊：" NOR HIC + s_skill["attack"] + "\n" NOR
+                                HIY "首招傷害：" NOR HIC + s_skill["damage"] + "\n" NOR
+                                HIY "附加傷害：" NOR HIC + s_skill["force"] + "\n" NOR
                                 HIY "首招招架：" NOR HIC + s_skill["parry"] + "\n" NOR
-                                HIY "首招躲闪：" NOR HIC + s_skill["dodge"] + "\n" NOR
-                                HIR "你确定吗？(Y/N)" NOR);
+                                HIY "首招躲閃：" NOR HIC + s_skill["dodge"] + "\n" NOR
+                                HIR "你確定嗎？(Y/N)" NOR);
         else
-                tell_object(ob, HIR "你自创了一套" + s_skill["skill_c_name"] + "(" + s_skill["skill_e_name"] + 
+                tell_object(ob, HIR "你自創了一套" + s_skill["skill_c_name"] + "(" + s_skill["skill_e_name"] + 
                                 HIR ")的第" + chinese_number(s_skill["skill_z_number"]) + "招\n" NOR
-                                HIY "此招名称：" NOR HIC + s_skill["skill_name"] + "\n" NOR
+                                HIY "此招名稱：" NOR HIC + s_skill["skill_name"] + "\n" NOR
                                 HIY "此招描述：" NOR HIC + s_skill["action"] + "\n" NOR
-                                HIY "此招攻击：" NOR HIC + s_skill["attack"] + "\n" NOR
-                                HIY "此招伤害：" NOR HIC + s_skill["damage"] + "\n" NOR
-                                HIY "附加伤害：" NOR HIC + s_skill["force"] + "\n" NOR
+                                HIY "此招攻擊：" NOR HIC + s_skill["attack"] + "\n" NOR
+                                HIY "此招傷害：" NOR HIC + s_skill["damage"] + "\n" NOR
+                                HIY "附加傷害：" NOR HIC + s_skill["force"] + "\n" NOR
                                 HIY "此招招架：" NOR HIC + s_skill["parry"] + "\n" NOR
-                                HIY "此招躲闪：" NOR HIC + s_skill["dodge"] + "\n" NOR
-                                HIR "你确定吗？(Y/N)" NOR); 
+                                HIY "此招躲閃：" NOR HIC + s_skill["dodge"] + "\n" NOR
+                                HIR "你確定嗎？(Y/N)" NOR); 
 
         input_to("decide_input", ob, skill_type, s_skill["skill_e_name"], s_skill["skill_c_name"]);
 }
@@ -826,7 +826,7 @@ void decide_input(string arg, object me, string skill, string e_name, string c_n
                 if( s_skill["skill_z_number"] == 1 ) {
                         if( objectp( ob = get_object(SKILL_D(e_name)) ) ) {
                                 delete_temp("invent", me);
-                                tell_object(me, "BUG！请联系巫师！\n");
+                                tell_object(me, "BUG！請聯繫巫師！\n");
                                 return;
                         }
                 
@@ -842,9 +842,9 @@ void decide_input(string arg, object me, string skill, string e_name, string c_n
 
                         if( get_object(SKILL_D(e_name)) ) {
                                 CHANNEL_D->do_channel(this_object(), "rumor",
-                                        sprintf("%s(%s)将生平所学的" + chinese_number(sizeof(query_temp("invent/mut_skills", me)))
-                                                + "套" + valid_types[skill] + "合而为一，自创出一套绝世的" NOR HIW
-                                                + "《" + c_name + "》" NOR HIM "，从此进入"
+                                        sprintf("%s(%s)將生平所學的" + chinese_number(sizeof(query_temp("invent/mut_skills", me)))
+                                                + "套" + valid_types[skill] + "合而為一，自創出一套絕世的" NOR HIW
+                                                + "《" + c_name + "》" NOR HIM "，從此進入"
                                                 + valid_types[skill] + "的全新境界 。" NOR,
                                                 me->name(1),query("id", me)));
                                 me->force_me("chat*admire2"+query("id", me));
@@ -856,14 +856,14 @@ void decide_input(string arg, object me, string skill, string e_name, string c_n
                                 delete_temp("invent", me);
                                 book = write_skill_book(me, c_name, e_name);
                                 book->move(me, 1);
-                                tell_object(me, HIM "你将绝世武学" + c_name + "记录在薄绢上！\n" NOR);
+                                tell_object(me, HIM "你將絕世武學" + c_name + "記錄在薄絹上！\n" NOR);
                                 me->save();
                         }
 
                 } else {
                         if( !objectp( ob = get_object(SKILL_D(e_name)) ) ) {
                                 delete_temp("invent", me);
-                                tell_object(me, "BUG！请联系巫师！\n");
+                                tell_object(me, "BUG！請聯繫巫師！\n");
                                 return;
                         }                        
                         destruct(ob);
@@ -878,8 +878,8 @@ void decide_input(string arg, object me, string skill, string e_name, string c_n
                                            ctime(time())));
                                            
                         CHANNEL_D->do_channel(this_object(), "rumor",
-                                           sprintf("%s(%s)将生平所学融合吸收，为" NOR HIW + "《" + c_name + "》" NOR
-                                           HIM "创出新的招式" NOR HIC + "《" + s_skill["skill_name"] + "》" NOR + HIM "。" , 
+                                           sprintf("%s(%s)將生平所學融合吸收，為" NOR HIW + "《" + c_name + "》" NOR
+                                           HIM "創出新的招式" NOR HIC + "《" + s_skill["skill_name"] + "》" NOR + HIM "。" , 
                                            me->name(1),query("id", me)));
                                                 
                         me->force_me("chat*admire2"+query("id", me));
@@ -890,16 +890,16 @@ void decide_input(string arg, object me, string skill, string e_name, string c_n
 
         } else {
                 if( s_skill["skill_z_number"] == 1 ) {
-                        tell_object(me, HIW"请重新输入！"
+                        tell_object(me, HIW"請重新輸入！"
                                         HIY"格式："HIC"<英文名> <中文名>\n\n"NOR
-                                        "如输入：wuyou 无忧\n"
-                                        "系统会产生一种无忧"HIR + type_name[skill] + NOR "(wuyou-"
-                                        HIR + skill + NOR")的剑法\n"
-                                        HIW"勿用骚扰性或不雅的名字\n"NOR
-                                        "请输入：");
+                                        "如輸入：wuyou 無憂\n"
+                                        "系統會產生一種無憂"HIR + type_name[skill] + NOR "(wuyou-"
+                                        HIR + skill + NOR")的劍法\n"
+                                        HIW"勿用騷擾性或不雅的名字\n"NOR
+                                        "請輸入：");
                         input_to("input_skill_name", me, skill);
                 } else {
-                        tell_object(me, HIC "\n\n请给" + c_name + "新招式起个名字(例如: " NOR HIY "悠哉" NOR HIC "):" NOR);          
+                        tell_object(me, HIC "\n\n請給" + c_name + "新招式起個名字(例如: " NOR HIY "悠哉" NOR HIC "):" NOR);          
                         input_to( "get_z_c_name", me ); 
                 }                       
         }
@@ -983,7 +983,7 @@ void finish_write_skill(object ob, string skill)
         
         if( !flag )
         {
-                tell_object(ob, HIR "可能出现异常了，请找巫师帮助解决。\n" NOR);  
+                tell_object(ob, HIR "可能出現異常了，請找巫師幫助解決。\n" NOR);  
                 return;    
         }
 
@@ -1037,7 +1037,7 @@ BOOK;
         else*/ {
                 set("unit", "本");
 BOOK;
-        content += sprintf("\t\tset(\"long\", \"这是一本用薄绢写成的书。上书：“%s”。\\n书上署名%s(%s)。\\n\");\n",
+        content += sprintf("\t\tset(\"long\", \"這是一本用薄絹寫成的書。上書：“%s”。\\n書上署名%s(%s)。\\n\");\n",
                           skill_c_name,query("name", me),query("id", me));
         content += @BOOK
                 set("value", 1);
@@ -1071,18 +1071,18 @@ int help(object me)
 {
         write(@HELP
                                          
-指令格式: invent                查看自己自创武功的情况
-          invent ?              查看目前可以自创的武功种类
-          invent <基本武功>     自创一种武功
-          invent <已创武功>     继续自创一种武功的招式
-          invent <基本武功> ?   查看该基本武功的已创武功
-          invent <基本武功> d   删除该基本武功的已创武功
+指令格式: invent                查看自己自創武功的情況
+          invent ?              查看目前可以自創的武功種類
+          invent <基本武功>     自創一種武功
+          invent <已創武功>     繼續自創一種武功的招式
+          invent <基本武功> ?   查看該基本武功的已創武功
+          invent <基本武功> d   刪除該基本武功的已創武功
 
-历来武林中堪称一代宗师者，均是于武学上总结己之所学，并能
-融会各家之所长，开创武林中先河者。武学虽然可能源于一脉，
-但各人所学加之经历之不同，却对同一事物有不同领悟。如此，
-武林才变得如今般绚丽多彩。然而，开辟武林中的新溪经并非易
-事，需要耗费无数心血及精力才有可能独树一帜，成先人所未曾
+歷來武林中堪稱一代宗師者，均是於武學上總結己之所學，並能
+融會各家之所長，開創武林中先河者。武學雖然可能源於一脈，
+但各人所學加之經歷之不同，卻對同一事物有不同領悟。如此，
+武林才變得如今般絢麗多彩。然而，開闢武林中的新溪經並非易
+事，需要耗費無數心血及精力才有可能獨樹一幟，成先人所未曾
 想。 
 
 HELP );

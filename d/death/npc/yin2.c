@@ -10,14 +10,14 @@ void create()
         object ob;
         
         
-        set_name("阴长生", ({ "yin changsheng", "yin", "changsheng" }));
+        set_name("陰長生", ({ "yin changsheng", "yin", "changsheng" }));
         set("title", HIR "冥府地藏王殿前" NOR);
-        set("nickname", HIB "阴王" NOR);
+        set("nickname", HIB "陰王" NOR);
         set("shen_type", 1);
 
         set("gender", "男性");
         set("age", 475);
-        set("long","阴长生本是个落弟秀才，后在丰都山修练成仙，御封「阴王」。\n");
+        set("long","陰長生本是個落弟秀才，後在豐都山修練成仙，御封「陰王」。\n");
 
         set("str", 60);
         set("int", 80);
@@ -71,7 +71,7 @@ void create()
         // yun perform
         set("chat_chance_combat", 120); 
         set("chat_msg_combat", ({                                
-              // 九阴神功
+              // 九陰神功
               (: command("perform claw.zhua twice") :), 
               (: command("perform claw.xin") :), 
               (: command("perform shou twice") :), 
@@ -97,7 +97,7 @@ void init()
         
         if (! wizardp(me) && userp(me))
         {
-                command("say 哼，擅闯禁地者死！");
+                command("say 哼，擅闖禁地者死！");
                 this_object()->kill_ob(me);
         }
 }
@@ -134,11 +134,11 @@ void die()
         if (! ob) ob = load_object(BADAO);
         
         command("heng");
-        command("say 看来人间也有如此厉害的角色，本王先行告辞，改日再来讨教！");
+        command("say 看來人間也有如此厲害的角色，本王先行告辭，改日再來討教！");
         
         if (! environment(ob) && random(10) == 1)
         {
-                message_vision(HIW "叮~~的一声，从阴长生身上掉出一本书，落在地上。\n" NOR, this_object());
+                message_vision(HIW "叮~~的一聲，從陰長生身上掉出一本書，落在地上。\n" NOR, this_object());
                 ob->move(environment(this_object()));
         }
         destruct(this_object());
@@ -160,23 +160,23 @@ int accept_object(object me, object ob)
 
         if( !query("can_perform/badao/san-1", me) )
         {
-                command("say 这不是天乙神酒吗！太感谢了，呵呵！");
+                command("say 這不是天乙神酒嗎！太感謝了，呵呵！");
                 command("tan");
-                command("say 可惜我无以为报，不能要你的美酒，等你学会阿鼻道第一刀再来吧！");
+                command("say 可惜我無以為報，不能要你的美酒，等你學會阿鼻道第一刀再來吧！");
                 return 0;
         }
         
         if( query("can_perform/badao/san-2", me) )
         {
-                command("say 谢谢你上次的美酒。");
-                tell_object(me, HIR "听说神龙岛观龙亭隐藏着一位高人，要学阿鼻道第三刀可以找他试试。\n" NOR);
+                command("say 謝謝你上次的美酒。");
+                tell_object(me, HIR "聽說神龍島觀龍亭隱藏著一位高人，要學阿鼻道第三刀可以找他試試。\n" NOR);
                 return 0;
         }
 
-        command("say 这不是天乙神酒吗！既然你能找到这失传已久的美酒，我便传你阿鼻道第二刀，你可听好了 ...");
+        command("say 這不是天乙神酒嗎！既然你能找到這失傳已久的美酒，我便傳你阿鼻道第二刀，你可聽好了 ...");
 
-        tell_object(me, HIG "恭喜你，领悟了阿鼻道第二刀！\n" NOR);
-        tell_object(me, HIR "听说神龙岛观龙亭隐藏着一位高人，要学阿鼻道第三刀可以找他试试。\n" NOR);
+        tell_object(me, HIG "恭喜你，領悟了阿鼻道第二刀！\n" NOR);
+        tell_object(me, HIR "聽說神龍島觀龍亭隱藏著一位高人，要學阿鼻道第三刀可以找他試試。\n" NOR);
         set("can_perform/badao/san-2", 1, me);
 
         me->save();

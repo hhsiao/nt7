@@ -3,10 +3,10 @@ inherit F_DEALER;
 
 void create()
 {
-        set_name("仆人", ({ "pu ren", "pu", "ren" }));
+        set_name("僕人", ({ "pu ren", "pu", "ren" }));
         set("age", 18);
         set("gender", "男性");
-        set("long", "这是一个长途陪伴侍侯少妇的仆人。\n");
+        set("long", "這是一個長途陪伴侍侯少婦的僕人。\n");
         set("attitude", "peaceful");
         set("str", 24);
         set("dex", 16);

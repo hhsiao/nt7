@@ -1,4 +1,4 @@
-// shanshen.c 老山参
+// shanshen.c 老山參
 
 inherit ITEM;
 
@@ -12,12 +12,12 @@ void init()
 
 void create()
 {
-        set_name("老山参", ({"laoshan shen", "shen"}));
+        set_name("老山參", ({"laoshan shen", "shen"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "株");
-                set("long", "这是一株沾满山泥的长白老山参。\n");
+                set("long", "這是一株沾滿山泥的長白老山參。\n");
                 set("value", 10000);
                 set_weight(100);
         }
@@ -27,11 +27,11 @@ void create()
 int do_eat(string arg)
 {
         if (!id(arg))
-        return notify_fail("你要吃什么？\n");
+        return notify_fail("你要吃什麼？\n");
 
         addn("eff_qi", 20, this_player());
 
-        message_vision("$N吃下一株老山参，只觉得浑身一股热气兜底冒了上来 !\n", this_player());
+        message_vision("$N吃下一株老山參，只覺得渾身一股熱氣兜底冒了上來 !\n", this_player());
         destruct(this_object());
         return 1;
 }

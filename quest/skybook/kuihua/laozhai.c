@@ -8,11 +8,11 @@ inherit ROOM;
 
 void create()
 {
-    set("short", "向阳老宅");
+    set("short", "向陽老宅");
     set("long", @LONG
-这里是一间破败的老宅院，平常没有什么人会来这里。地上横七竖八地堆
-着几件家具。西边的墙角结着一张蜘蛛网，屋里到处是尘土，显然是已经很久
-没有人住了。房间的尽头有一扇门(men)，但已被坍塌的砖瓦挡住了。
+這裡是一間破敗的老宅院，平常沒有什麼人會來這裡。地上橫七豎八地堆
+著幾件傢俱。西邊的牆角結著一張蜘蛛網，屋裡到處是塵土，顯然是已經很久
+沒有人住了。房間的盡頭有一扇門(men)，但已被坍塌的磚瓦擋住了。
 LONG
     );
 
@@ -21,7 +21,7 @@ LONG
     	]));
 
     	set("item_desc", ([
-        	"men" : "这扇门已被挡住无法通行，除非你打破(break)它。\n",
+        	"men" : "這扇門已被擋住無法通行，除非你打破(break)它。\n",
     	]) );
 	setup();
 }
@@ -44,20 +44,20 @@ int do_break(string arg)
 	int n;
 	n = this_player()->query("neili");
 	if( !arg || arg!="men" ) {
-		write("不要随随便便就乱砸别人的东西！\n"); // by pishou
+		write("不要隨隨便便就亂砸別人的東西！\n"); // by pishou
 		return 1;
 	}
-	message_vision("$N走到后门前，拜出骑马蹲裆式，深吸一口气，双掌同时拍出。\n", this_player());
+	message_vision("$N走到後門前，拜出騎馬蹲襠式，深吸一口氣，雙掌同時拍出。\n", this_player());
 
 	if (n>=500 && this_player()->query("quest/pixie/pxj_passwd")) {
-		message_vision("$N只听一声轰响，$N把门震开了！\n", this_player());
+		message_vision("$N只聽一聲轟響，$N把門震開了！\n", this_player());
 		set("exits/south", __DIR__"houyuan");
 		this_player()->set("neili",n-500);
 		remove_call_out("close");
 		call_out("close", 5, this_object());
 	}
 	else {
-		message_vision("$N大吼一声“开！”，结果什么也没发生。看来$N的内力不够强。\n", this_player());
+		message_vision("$N大吼一聲“開！”，結果什麼也沒發生。看來$N的內力不夠強。\n", this_player());
 		this_player()->set("neili",0);
 	}
 	return 1;
@@ -65,24 +65,24 @@ int do_break(string arg)
 
 void close(object room)
 {
-	message("vision","门上的砖头瓦块稀里哗拉坍塌下来，又挡住了后门。\n", room);
+	message("vision","門上的磚頭瓦塊稀里譁拉坍塌下來，又擋住了後門。\n", room);
 	room->delete("exits/south");
 }
 
 void buqun_rob(object me, object book)
 {
-	message_vision(HIY "忽然，一个蒙面人从黑影里闪了出来，一招「有凤来仪」，"
-        "手中长剑闪烁\n不定，刺向$N的咽喉！\n" NOR,  me);
+	message_vision(HIY "忽然，一個蒙面人從黑影裡閃了出來，一招「有鳳來儀」，"
+        "手中長劍閃爍\n不定，刺向$N的咽喉！\n" NOR,  me);
 
 	if( !me->query_skill("pixie-jian", 1) ) {
-		message_vision("$N一愣之间，已被蒙面人刺中！\n", me);
+		message_vision("$N一愣之間，已被蒙面人刺中！\n", me);
 		book->move(environment(me));
 		destruct(book);
 		me->unconcious();
 	}
 	else {
-	message_vision("$N身形飘忽，有如鬼魅，转了几转，移步到蒙面人的身后，躲过了"
-	"蒙面人这一招。\n", me);
+	message_vision("$N身形飄忽，有如鬼魅，轉了幾轉，移步到蒙面人的身後，躲過了"
+	"蒙面人這一招。\n", me);
 	}
-	write("蒙面人双足点地，越墙而走。\n你感觉蒙面人的身法好像是华山派的。\n");
+	write("蒙面人雙足點地，越牆而走。\n你感覺蒙面人的身法好像是華山派的。\n");
 }

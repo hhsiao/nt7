@@ -18,12 +18,12 @@ void create()
 {
         set_name("彭有敬", ({ "peng youjing", "peng", "youjing" }));
         set("long", @LONG
-彭有敬是丐帮中净衣派的首领，衣着干净华丽
-不象叫化子。他脸上挂着慈祥的笑容，一双眼
-睛有摄人心魄的力量。
+彭有敬是丐幫中淨衣派的首領，衣著乾淨華麗
+不象叫化子。他臉上掛著慈祥的笑容，一雙眼
+睛有攝人心魄的力量。
 LONG);
-        set("nickname", WHT "掌钵龙头" NOR);
-        set("title", "丐帮九袋长老");
+        set("nickname", WHT "掌缽龍頭" NOR);
+        set("title", "丐幫九袋長老");
         set("gender", "男性");
         set("age", 48);
         set("attitude", "peaceful");
@@ -76,9 +76,9 @@ LONG);
 
         prepare_skill("hand", "shexing-diaoshou");
 
-        // set("no_teach/mihun-dafa",  "你弄错了吧？这种下三滥的东西我怎么会。");
+        // set("no_teach/mihun-dafa",  "你弄錯了吧？這種下三濫的東西我怎麼會。");
 
-        create_family("丐帮", 18, "长老");
+        create_family("丐幫", 18, "長老");
 
         set("coagents", ({
                 ([ "startroom" : "/d/city/gbxiaowu",
@@ -86,8 +86,8 @@ LONG);
         }));
 
         set("inquiry", ([
-                "群魔乱舞" : (: ask_skill1 :),
-                "慑心术"   : (: ask_skill2 :),
+                "群魔亂舞" : (: ask_skill1 :),
+                "懾心術"   : (: ask_skill2 :),
         ]));
 
         set("chat_chance_combat", 120);
@@ -117,23 +117,23 @@ void attempt_apprentice(object ob)
 
         if( query("level", ob)<5 )
         {
-                command("say 你的江湖经验不够，还是先向各位长老学习吧。");
+                command("say 你的江湖經驗不夠，還是先向各位長老學習吧。");
                 return;
         }
 
         if( query("family/beggarlvl", ob)<4 )
         {
-                command("say 你在本帮的地位太低，还是先向其他师父学习吧。");
+                command("say 你在本幫的地位太低，還是先向其他師父學習吧。");
                 return;
         }
 
         if (ob->query_skill("force") < 90)
         {
-                command("say 你的内功火候还不够，还是先向其他师父学习吧。");
+                command("say 你的內功火候還不夠，還是先向其他師父學習吧。");
                 return;
         }
         command("grin");
-        command("say 那你以后就跟着我吧。");
+        command("say 那你以後就跟著我吧。");
         command("recruit "+query("id", ob));
 
         if( query("class", ob) != "beggar" )
@@ -153,31 +153,31 @@ mixed ask_skill1()
         me = this_player();
 
         if( query("can_perform/fengmo-zhang/luan", me) )
-                return "这招我不是已经教会你了吗？";
+                return "這招我不是已經教會你了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "阁下与在下素不相识，不知此话从何说起？";
+                return "閣下與在下素不相識，不知此話從何說起？";
 
         if (me->query_skill("fengmo-zhang", 1) < 1)
-                return "你连疯魔杖法都没学，何谈绝招可言？";
+                return "你連瘋魔杖法都沒學，何談絕招可言？";
 
         if( query("family/gongji", me)<400 )
-                return "你在我们丐帮内甚无作为，这招我暂时还不能传你。";
+                return "你在我們丐幫內甚無作為，這招我暫時還不能傳你。";
 
         if (me->query_skill("fengmo-zhang", 1) < 120)
-                return "你的疯魔杖法火候还不够，还是下去练高点再来吧。";
+                return "你的瘋魔杖法火候還不夠，還是下去練高點再來吧。";
 
         if (me->query_skill("force") < 150)
-                return "你现在的内功修为不足，还是练高点再来吧。";
+                return "你現在的內功修為不足，還是練高點再來吧。";
 
-        message_sort(HIY "\n$n" HIY "点了点头，对$N" HIY "说道：“给"
-                     "我看清楚了。”突然陡听$n" HIY "一声暴喝，手中铁"
-                     "杖一阵乱舞，竟似毫无章理，挥舞出数道杖影，气势"
-                     "澎湃，力不可挡。正是疯魔杖法的精要所在。\n\n" NOR,
+        message_sort(HIY "\n$n" HIY "點了點頭，對$N" HIY "說道：“給"
+                     "我看清楚了。”突然陡聽$n" HIY "一聲暴喝，手中鐵"
+                     "杖一陣亂舞，竟似毫無章理，揮舞出數道杖影，氣勢"
+                     "澎湃，力不可擋。正是瘋魔杖法的精要所在。\n\n" NOR,
                      me, this_object());
 
-        command("say 明白了么。");
-        tell_object(me, HIC "你学会了「群魔乱舞」。\n" NOR);
+        command("say 明白了麼。");
+        tell_object(me, HIC "你學會了「群魔亂舞」。\n" NOR);
         if (me->can_improve_skill("staff"))
                 me->improve_skill("staff", 1500000);
         if (me->can_improve_skill("fengmo-zhang"))
@@ -196,26 +196,26 @@ mixed ask_skill2()
         me = this_player();
 
         if( query("can_exert/huntian-qigong/shexin", me) )
-                return "这招我不是已经教会你了吗？";
+                return "這招我不是已經教會你了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "阁下与在下素不相识，不知此话从何说起？";
+                return "閣下與在下素不相識，不知此話從何說起？";
 
         if( query("family/gongji", me)<400 )
-                return "你在我们丐帮内甚无作为，这招我暂时还不能传你。";
+                return "你在我們丐幫內甚無作為，這招我暫時還不能傳你。";
 
         if (me->query_skill("huntian-qigong", 1) < 120)
-                return "你的混天气功火候还不够，还是下去练高点再来吧。";
+                return "你的混天氣功火候還不夠，還是下去練高點再來吧。";
 
         if (me->query_skill("force") < 150)
-                return "你现在的内功修为不足，还是练高点再来吧。";
+                return "你現在的內功修為不足，還是練高點再來吧。";
 
-        message_sort(HIY "\n$n" HIY "点了点头，对$N" HIY "鬼祟的说道：“给"
-                     "我听清楚了”。然后开始小声地对$N讲解摄心术的精要所在。\n\n" NOR,
+        message_sort(HIY "\n$n" HIY "點了點頭，對$N" HIY "鬼祟的說道：“給"
+                     "我聽清楚了”。然後開始小聲地對$N講解攝心術的精要所在。\n\n" NOR,
                      me, this_object());
 
-        command("say 明白了么。");
-        tell_object(me, HIC "你学会了「摄心术」。\n" NOR);
+        command("say 明白了麼。");
+        tell_object(me, HIC "你學會了「攝心術」。\n" NOR);
         if (me->can_improve_skill("force"))
                 me->improve_skill("force", 1500000);
         if (me->can_improve_skill("huntian-qigong"))
@@ -231,16 +231,16 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "历练" :
-        case "历炼" :
-        case "锻炼" :
+        case "歷練" :
+        case "歷煉" :
+        case "鍛鍊" :
                 return QUEST_D->accept_ask(this_object(), me, topic);
                 break;
 
-        case "连环诀" :
+        case "連環訣" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/liuhe-dao/lian",
-                           "name"    : "连环诀",
+                           "name"    : "連環訣",
                            "sk1"     : "liuhe-dao",
                            "lv1"     : 100,
                            "sk2"     : "force",

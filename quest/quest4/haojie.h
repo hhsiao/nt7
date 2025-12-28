@@ -1,6 +1,6 @@
   
 mapping city_area=([
- "扬州城" : ({"/d/city/","beidajie1","beidajie2","beimen","guangchang",
+ "揚州城" : ({"/d/city/","beidajie1","beidajie2","beimen","guangchang",
               "nandajie1","nandajie2","nanmen","qianzhuang","shuyuan",
               "xidajie1","xidajie2","ximen",
             }),
@@ -8,13 +8,13 @@ mapping city_area=([
               "nanhu","nanhu1","nanmen","qzroad1","qzroad2","qzroad3",
               "qzroad4","qzroad5","tieqiang","yanyu","zahuopu","zhongxin",
             }),
- "襄阳城" : ({"/d/xiangyang/","guangchang","eastjie1","eastjie2","eastroad1",
+ "襄陽城" : ({"/d/xiangyang/","guangchang","eastjie1","eastjie2","eastroad1",
               "eastroad2","jiekou2","northroad2","dingzi","northroad1",
               "jiekou1","westroad2","westroad1","westjie2","westjie1",
             }), 
          ]);
 
-string *city_name=({"扬州城","泉州城","襄阳城"});
+string *city_name=({"揚州城","泉州城","襄陽城"});
 string site_name;
 int haojie_times;
 
@@ -57,8 +57,8 @@ void haojie_begin(int num)
 
      site_name=city_name[random(sizeof(city_name))];
      message("channel:rumor", HIR"【江湖浩劫】"HIW"江湖英雄令"
-            +HIR"重现江湖，号召各路豪杰齐赴"+HIY+site_name+HIR"抵御"
-             +HIB"神秘杀手组织"+HIR"之入侵！\n"NOR,users());
+            +HIR"重現江湖，號召各路豪傑齊赴"+HIY+site_name+HIR"抵禦"
+             +HIB"神秘殺手組織"+HIR"之入侵！\n"NOR,users());
      for(n=0;n<num;n++)
      {
           killer=new("/quest/chousha/killer");
@@ -76,8 +76,8 @@ void haojie_new(int num)
      if( haojie_times >= 4 )
      {
           haojie_times=1;
-          message("channel:rumor", HIR"【江湖浩劫】经过一段时间的殊死"
-            +HIR"搏斗，双方皆有伤亡，进入了短暂的休整！\n"NOR,users()); 
+          message("channel:rumor", HIR"【江湖浩劫】經過一段時間的殊死"
+            +HIR"搏鬥，雙方皆有傷亡，進入了短暫的休整！\n"NOR,users()); 
 
           remove_call_out("haojie_begin");
           call_out("haojie_begin",120,num);
@@ -103,8 +103,8 @@ void haojie_close()
       ulist[k]->delte_temp("apply/short");
    }
 
-   message("channel:rumor", HIR"【江湖浩劫】经过各路武林豪杰的殊死抗争，"
-   +HIY"神秘杀手组织"+HIR"称霸中原武林的阴谋终于暂时宣告破灭，\n江湖中又似乎恢复"
+   message("channel:rumor", HIR"【江湖浩劫】經過各路武林豪傑的殊死抗爭，"
+   +HIY"神秘殺手組織"+HIR"稱霸中原武林的陰謀終於暫時宣告破滅，\n江湖中又似乎恢復"
    +"了以往的片刻安平！\n"NOR,users());
 
    haojie_times=0;

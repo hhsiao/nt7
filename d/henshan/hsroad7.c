@@ -2,9 +2,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "林间大道");
+        set("short", "林間大道");
         set("long", @LONG
-这里是一条林间大道，在树丛中蜿蜒。这里已是湖北境内。南边
+這裡是一條林間大道，在樹叢中蜿蜒。這裡已是湖北境內。南邊
 是便湖南。
 LONG );
         set("outdoors", "hengyang");

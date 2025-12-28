@@ -1,14 +1,14 @@
-// zhuifeng-steps.c  追风步
+// zhuifeng-steps.c  追風步
 // modified by Venus Oct.1997
 // by jacki
 
 inherit SKILL;
 
 string *dodge_msg = ({
-    "$n一个「随风而舞」，身形飘忽不定，躲过了$N这一招。\n",
-    "$n身形飘飘，使出一招「身随意转」，避过了$N的攻击。\n",
-    "$n使出「移步换形」，在千钧一发间躲过了$N的攻势。\n",
-    "$n衣袂飘飘，一招「事了拂衣去」，潇洒地避了开去。\n"
+    "$n一個「隨風而舞」，身形飄忽不定，躲過了$N這一招。\n",
+    "$n身形飄飄，使出一招「身隨意轉」，避過了$N的攻擊。\n",
+    "$n使出「移步換形」，在千鈞一髮間躲過了$N的攻勢。\n",
+    "$n衣袂飄飄，一招「事了拂衣去」，瀟灑地避了開去。\n"
 });
 
 int valid_enable(string usage)
@@ -26,7 +26,7 @@ string query_dodge_msg(string limb)
 int practice_skill(object me)
 {
     if( query("qi", me)<50 )
-        return notify_fail("你的体力太差了，不能练追风步。\n");
+        return notify_fail("你的體力太差了，不能練追風步。\n");
 
     me->receive_damage("qi", 40);
     return 1;

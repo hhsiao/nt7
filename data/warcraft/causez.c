@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("大头一号[2;37;0m[2;37;0m", ({"causeq"}));        
+        set_name("大頭一號[2;37;0m[2;37;0m", ({"causeq"}));        
         set("gender", "女性");                
-        set("long", "大头一号[2;37;0m
-它是牛大的魔幻兽。
+        set("long", "大頭一號[2;37;0m
+它是牛大的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

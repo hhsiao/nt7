@@ -6,22 +6,22 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "南山脚下");
+        set("short", "南山腳下");
         set("long",@LONG
-这是通往蓬莱岛南山的必经之路，传说南山乃仙人修炼仙法的
-地方，属于禁地。虽无人看守，但若没有仙人的指引外人是无论如
-何也无法进入的。四周植物葱郁，仙气围绕，景致甚是迷人。抬头
-仰望南山，山峰高耸，仙气缭绕，再一细看又若隐若现，令人难以
+這是通往蓬萊島南山的必經之路，傳說南山乃仙人修煉仙法的
+地方，屬於禁地。雖無人看守，但若沒有仙人的指引外人是無論如
+何也無法進入的。四周植物蔥鬱，仙氣圍繞，景緻甚是迷人。抬頭
+仰望南山，山峰高聳，仙氣繚繞，再一細看又若隱若現，令人難以
 琢磨。
 LONG);
 
         set("exits", ([
                 "north"    : __DIR__"xianrenzhilu",
         ]));
-        set("no_rideto", 1);         // 设置不能骑马到其他地方
-        set("no_flyto", 1);          // 设置不能从起来地方骑马来这里
-        set("no_die", 1);            // 死亡后移动到扁鹊居
-        set("penglai", 1);           // 表示在蓬莱岛
+        set("no_rideto", 1);         // 設置不能騎馬到其他地方
+        set("no_flyto", 1);          // 設置不能從起來地方騎馬來這裡
+        set("no_die", 1);            // 死亡後移動到扁鵲居
+        set("penglai", 1);           // 表示在蓬萊島
         set("no_fight", 1);
         
         set("region", "penglai");
@@ -37,25 +37,25 @@ void init ()
                 if( !query("penglai/go_quest/ok", this_player()) )
                 {
                         this_player()->start_busy(3);
-                        tell_object(this_player(), NOR + WHT "你到了此处，四周仙气缭绕令你一时间难以辨别方向。\n" NOR);
+                        tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);
                 }
                 else
                 {
                         if (random(2))
                         {
                                 this_player()->start_busy(1);
-                                tell_object(this_player(), NOR + WHT "你到了此处，四周仙气缭绕令你一时间难以辨别方向。\n" NOR);                
+                                tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);                
                         }
                 }
         }
         
         if( !query("penglai/nanshan_quest/ok", this_player()) )
         {
-                tell_object(this_player(), HIG "\n你正欲进入南山，却发现这里根本没有上山之路，奇哉！。\n" NOR);
+                tell_object(this_player(), HIG "\n你正欲進入南山，卻發現這裡根本沒有上山之路，奇哉！。\n" NOR);
         }
         else
         {
-                tell_object(this_player(), HIG "\n要进入南山，闭上你的眼睛(closeeye)，默念守路仙人教给你的咒语。\n" NOR);
+                tell_object(this_player(), HIG "\n要進入南山，閉上你的眼睛(closeeye)，默唸守路仙人教給你的咒語。\n" NOR);
         }
 }
 
@@ -72,7 +72,7 @@ int do_closeeye(string arg)
         if (me->is_busy())
                 return notify_fail("你正忙。\n");
                 
-        // 所有骑马的人必须下马
+        // 所有騎馬的人必須下馬
         if( objectp(horse=query_temp("is_riding", me)) )
         {
                 if( objectp(person=query_temp("is_rided_follow", horse)) )
@@ -83,28 +83,28 @@ int do_closeeye(string arg)
                 delete_temp("is_riding_follow", me);
                 delete_temp("is_riding", me);
 
-                message_vision(HIR "\n$N的" + horse->name() + HIR " 似乎受到了惊吓，前蹄一扬，所有人"
-                               "被迫跳下马。\n\n" NOR, me);
+                message_vision(HIR "\n$N的" + horse->name() + HIR " 似乎受到了驚嚇，前蹄一揚，所有人"
+                               "被迫跳下馬。\n\n" NOR, me);
 
                 return 1;
         }
                         
-        // 把背起的用户放下来
+        // 把背起的用戶放下來
         inv = deep_inventory(me);
         for (i = 0; i < sizeof(inv); i++)
         {
                 if (! playerp(inv[i])) continue;
 
-                // 被人背起的用户
+                // 被人揹起的用戶
                 inv[i]->move(__FILE__);                
         }
 
         if( query("penglai/nanshan_quest/ok", this_player()) )
         {
                 i = 20;
-                tell_object(this_player(), HIG "\n你闭上你的眼睛，默念守路仙人教给你的咒语...\n" NOR);
+                tell_object(this_player(), HIG "\n你閉上你的眼睛，默唸守路仙人教給你的咒語...\n" NOR);
                 if( !MEMBER_D->is_valid_member(query("id", this_player())) )
-                        return notify_fail("对不起，南山地图只对有效会员开放。\n");
+                        return notify_fail("對不起，南山地圖只對有效會員開放。\n");
                         
                 me->move(__DIR__"nanshanzhong" + random(i));
         }

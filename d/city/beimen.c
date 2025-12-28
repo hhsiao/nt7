@@ -9,11 +9,11 @@ string look_gaoshi();
 
 void create()
 {
-        set("short", "北门");
+        set("short", "北門");
         set("long", @LONG
-这是北城门，因为曾经失火，到现在城墙还是黑乎乎的，因此白
-纸黑字的官府告示(gaoshi)就显得特别现眼。北方是一片崇山峻岭，
-一条黄土小径在山里蜿蜒而上。
+這是北城門，因為曾經失火，到現在城牆還是黑乎乎的，因此白
+紙黑字的官府告示(gaoshi)就顯得特別現眼。北方是一片崇山峻嶺，
+一條黃土小徑在山裡蜿蜒而上。
 LONG );
         set("item_desc", ([
                 "gaoshi" : (:look_gaoshi:),
@@ -39,5 +39,5 @@ LONG );
 
 string look_gaoshi()
 {
-        return FINGER_D->get_killer() + "\n扬州知府\n程药发\n";
+        return FINGER_D->get_killer() + "\n揚州知府\n程藥發\n";
 }

@@ -1,5 +1,5 @@
 // importer.c
-// 用户档案导入器
+// 用戶檔案導入器
 
 #include <ansi.h>
 
@@ -10,17 +10,17 @@ inherit F_SAVE;
 #define SUFFIX_NAME     "fr"
 #define SUFFIX_SIZE     26
 
-// 日志等级分为 3 级，如何界定一段消息应该记录在
-// 哪一级的日志中？
+// 日誌等級分為 3 級，如何界定一段消息應該記錄在
+// 哪一級的日誌中？
 
-// LV 1: 无法复制文件、载入用户等错误信息
-// LV 2: 对用户有损的删除一类的操作信息
-// LV 3: 复制或者修改这样的无损操作信息
+// LV 1: 無法複製文件、載入用戶等錯誤信息
+// LV 2: 對用戶有損的刪除一類的操作信息
+// LV 3: 複製或者修改這樣的無損操作信息
 
 #define LOG_LEVEL       3
 #define LOG(lv, msg)    log_file(sprintf("transfer/LV%d", lv), msg);
 
-// 奇怪的是 'nosave' 关键字不许用？
+// 奇怪的是 'nosave' 關鍵字不許用？
 static string suffix = "abcdefghijklmnopqrstuvwxyz";
 static string save_dir = SAVE_DIR;
 
@@ -35,7 +35,7 @@ mapping assure_user_file(string user, int flag);
 
 void create()
 {
-        // 载入原来的 dbased 数据
+        // 載入原來的 dbased 數據
         if (clonep() || ! this_player(1))
         {
                 destruct(this_object());
@@ -45,16 +45,16 @@ void create()
         seteuid(getuid());
         restore();
 
-        set_name("用户档案导入器", ({ "data importer", "importer", }));
+        set_name("用戶檔案導入器", ({ "data importer", "importer", }));
         set_weight(1);
 
         if (clonep())
                 set_default_object(__FILE__);
         else
         {
-                set("unit", "台");
-                set("long", "这是一台用户档案导入器，请输入 help "
-                            "importer 查看详细使用说明。\n");
+                set("unit", "臺");
+                set("long", "這是一臺用戶檔案導入器，請輸入 help "
+                            "importer 查看詳細使用說明。\n");
         }
         setup();
 
@@ -84,8 +84,8 @@ int do_help(string arg)
         {
         case "importer":
                 write(@HELP
-在这里你可以使用以下这些和用户档案导入器相关的命令：
-    batch        批量导入用户数据。
+在這裡你可以使用以下這些和用戶檔案導入器相關的命令：
+    batch        批量導入用戶數據。
 HELP );
                 break;
 
@@ -93,9 +93,9 @@ HELP );
                 write(@HELP_BATCH
 指令格式 : batch
 
-批量导入用户数据。
+批量導入用戶數據。
 
-相关指令：import, merge
+相關指令：import, merge
 HELP_BATCH );
                 break;
 
@@ -103,20 +103,20 @@ HELP_BATCH );
                 write(@HELP_BATCH
 指令格式 : merge dbase
 
-将另外站点的数据库并入目前站点的数据库。
+將另外站點的數據庫併入目前站點的數據庫。
 
-相关指令：batch
+相關指令：batch
 HELP_BATCH );
                 break;
 
         default:
-                return notify_fail("你要查看什么帮助？\n");
+                return notify_fail("你要查看什麼幫助？\n");
         }
 
         return 1;
 }
 
-// 获得一个不重复的用户名
+// 獲得一個不重複的用戶名
 mapping assure_user_file(string user, int flag)
 {
 #if 0
@@ -161,7 +161,7 @@ mapping assure_user_file(string user, int flag)
         return 0;
 }
 
-// 获得指定目录下所有的用户列表
+// 獲得指定目錄下所有的用戶列表
 string *get_user_list(string dir)
 {
         string *sub_dir_list;
@@ -194,14 +194,14 @@ string *get_user_list(string dir)
         return user_list;
 }
 
-// 寻找或调入某一个玩家，本来可以使用 UPDATE_D 中的同名函数，
-// 但因为这里直接析构了 login_ob，无法对 login_ob  做改名操
-// 作。所以需要用到这个函数。
+// 尋找或調入某一個玩家，本來可以使用 UPDATE_D 中的同名函數，
+// 但因為這裡直接析構了 login_ob，無法對 login_ob  做改名操
+// 作。所以需要用到這個函數。
 
-// 如果程序处理中需要更新那些不在线的玩家，则可以使用该函数
-// 将这个玩家调入并且进行修改，请注意：修改完毕以后程序必须
-// 保存玩家，并且使用 global_destruct_player 将玩家析构，如
-// 果没有调用这个函数，则赋予玩家的定时器会自动析构玩家。
+// 如果程序處理中需要更新那些不在線的玩家，則可以使用該函數
+// 將這個玩家調入並且進行修改，請注意：修改完畢以後程序必須
+// 保存玩家，並且使用 global_destruct_player 將玩家析構，如
+// 果沒有調用這個函數，則賦予玩家的定時器會自動析構玩家。
 object global_find_player(string user)
 {
         object ob;
@@ -242,14 +242,14 @@ object global_find_player(string user)
         return ob;
 }
 
-// 析构一个被 UPDATE_D 调入的玩家
+// 析構一個被 UPDATE_D 調入的玩家
 void global_destruct_player(object ob, int raw)
 {
         object login_ob;
 
         if (objectp(ob) && ob->query_temp("temp_loaded"))
         {
-                // 增加对 login_ob 的析构
+                // 增加對 login_ob 的析構
                 if (objectp(login_ob = ob->query_temp("link_ob")))
                 {
                         if (raw) login_ob->save();
@@ -261,15 +261,15 @@ void global_destruct_player(object ob, int raw)
         }
 }
 
-// 有哪些东西不可以继续允许 autoload 载入？
+// 有哪些東西不可以繼續允許 autoload 載入？
 
-// 玩家自造的物品，考虑到玩家的 ID 可能改变了，
-// 如果继续载入势必影响其他的玩家，所以必须删
-// 除 autoload。 现在看来，似乎只有这一种，考
-// 虑到这一种并不需要把文件载入就可以查出，所
-// 以这里可以简单的通过 sscanf & filter_array
-// 来处理用户的 autoload 列表， 过滤掉 /data/
-// 目录下的文件。
+// 玩家自造的物品，考慮到玩家的 ID 可能改變了，
+// 如果繼續載入勢必影響其他的玩家，所以必須刪
+// 除 autoload。 現在看來，似乎只有這一種，考
+// 慮到這一種並不需要把文件載入就可以查出，所
+// 以這裡可以簡單的通過 sscanf & filter_array
+// 來處理用戶的 autoload 列表， 過濾掉 /data/
+// 目錄下的文件。
 void transfer_autoload(object user, string card_file)
 {
         string *autoload;
@@ -297,7 +297,7 @@ int do_merge(string arg)
         int     ok;
 
         if (arg != "dbase")
-                return notify_fail("你要并入什么？\n");
+                return notify_fail("你要併入什麼？\n");
 
         foreach (key in keys(save_dbase))
         {
@@ -352,12 +352,12 @@ int do_batch()
 
         user_list = get_user_list(save_dir);
 
-        write(WHT "开始迁移用户数据...\n\n" NOR);
+        write(WHT "開始遷移用戶數據...\n\n" NOR);
         
         i = 0;
         foreach (user in user_list)
         {
-                /* 开始转换的日志
+                /* 開始轉換的日誌
                 for (i = 1; i < LOG_LEVEL + 1; i++)
                         LOG(i, "Start transfering (" + user + ")'s data...\n");
                  */
@@ -372,16 +372,16 @@ int do_batch()
                 else write(sprintf("%-15s: " WHT "Failed" NOR "\n", user));
         }
         
-        write(WHT "\n迁移用户数据完成，共 " + sizeof(user_list) + 
-              " 名用户，成功迁移 " + i + " 名用户。\n" NOR);
+        write(WHT "\n遷移用戶數據完成，共 " + sizeof(user_list) + 
+              " 名用戶，成功遷移 " + i + " 名用戶。\n" NOR);
         return 1;
 }
 
-// 这两个定义是为了简化代码
+// 這兩個定義是為了簡化代碼
 #define user_file(x)    sprintf("%suser/%c/%s.o", save_dir, x[0], x)
 #define login_file(x)   sprintf("%slogin/%c/%s.o", save_dir, x[0], x)
 
-// 转换指定的用户
+// 轉換指定的用戶
 int transfer_user(string arg)
 {
         object  user;
@@ -407,7 +407,7 @@ int transfer_user(string arg)
 
         int     is_ok;
 
-        // 找到旧的用户文件
+        // 找到舊的用戶文件
 
         login_from = login_file(arg);
         user_from = user_file(arg);
@@ -419,7 +419,7 @@ int transfer_user(string arg)
                 return 0;
         }
 
-        // 复制用户文件到 DATA_DIR
+        // 複製用戶文件到 DATA_DIR
 
         file = assure_user_file(arg, 0);
         if (! file)
@@ -455,20 +455,20 @@ int transfer_user(string arg)
                         uid + ").\n");
         }
 
-        // 添加姓名对应，中文姓名的雷同就算了吧。
+        // 添加姓名對應，中文姓名的雷同就算了吧。
         NAME_D->map_name(user->name(), uid);
 
-        // 转换房屋为建房卡
+        // 轉換房屋為建房卡
 
-        // 注意玩家手里的钥匙要收走，但是考虑到所有的
-        // autoload 物品， 除了一些特殊情况外都要清除，
-        // 所以这里暂不考虑。
+        // 注意玩家手裡的鑰匙要收走，但是考慮到所有的
+        // autoload 物品， 除了一些特殊情況外都要清除，
+        // 所以這裡暫不考慮。
 
         switch (user->query("private_room/type"))
         {
-        case "盘龙居" : card_file = "/d/room/obj/ultracard"; break;
+        case "盤龍居" : card_file = "/d/room/obj/ultracard"; break;
         case "彩虹居" : card_file = "/d/room/obj/super"; break;
-        case "独乐居" : card_file = "/d/room/obj/card"; break;
+        case "獨樂居" : card_file = "/d/room/obj/card"; break;
         default : card_file = 0;
         }
 
@@ -480,7 +480,7 @@ int transfer_user(string arg)
                 LOG(3, "User (" + arg + ") get a free card.\n");
         }
 
-        // 删除结义、同盟关系
+        // 刪除結義、同盟關係
         if (user->query("brothers"))
         {
                 user->delete("brothers");
@@ -493,23 +493,23 @@ int transfer_user(string arg)
                 LOG(2, "Deleted (" + arg + ")'s league relation.\n");
         }
 
-        // 删除帮派
+        // 刪除幫派
         user->delete("party");
 
         // ...on 08/01 21:35.
 
-        // 确认婚姻关系，考虑到配偶的 ID 有可能变化，
-        // 所以这里要取得一个配偶唯一可能的 ID， 确
-        // 保此用户的婚姻关系不出现问题，但问题在于，
-        // 倘若在寻找这个配偶唯一可能的 ID 时，该配
-        // 偶的文件已经转移到了 /data/ 下呢？就会弄
-        // 糊涂了，因此，对于已经转移过的，要修改源
-        // 目录内的文件名。
+        // 確認婚姻關係，考慮到配偶的 ID 有可能變化，
+        // 所以這裡要取得一個配偶唯一可能的 ID， 確
+        // 保此用戶的婚姻關係不出現問題，但問題在於，
+        // 倘若在尋找這個配偶唯一可能的 ID 時，該配
+        // 偶的文件已經轉移到了 /data/ 下呢？就會弄
+        // 糊塗了，因此，對於已經轉移過的，要修改源
+        // 目錄內的文件名。
         couple_id = user->query("couple/id");
         
         if (stringp(couple_id))
         {
-                // 改变配偶名字
+                // 改變配偶名字
                 couple_file = assure_user_file(couple_id, 1);
                 couple_id = couple_file["uid"];
 
@@ -518,7 +518,7 @@ int transfer_user(string arg)
                 LOG(3, "User (" + arg + ")'s couple/id set to " + 
                        couple_id + ".\n");
                 
-                // 嗯，要自己保管好自己的结婚戒指
+                // 嗯，要自己保管好自己的結婚戒指
                 if (user->query("can_summon/wedding ring"))
                 {
                         ring_file = sprintf("%sitem/ring/%s.c", DATA_DIR, uid);
@@ -533,8 +533,8 @@ int transfer_user(string arg)
                                ring_file + ".\n");
                 }
 
-                // 从原来的数据中获得戒指的存盘信
-                // 息，导入到 DBASE_D 中。
+                // 從原來的數據中獲得戒指的存盤信
+                // 息，導入到 DBASE_D 中。
                 ring_file = sprintf("%sitem/ring/%s", DATA_DIR, arg);
                 item_data = query_object_data(ring_file);
 
@@ -550,25 +550,25 @@ int transfer_user(string arg)
                 }
         }
 
-        // 导入自造物品
+        // 導入自造物品
 
-        // 获得原来的自造物品列表
+        // 獲得原來的自造物品列表
         item_list = get_dir(sprintf("%sitem/%c/%s-*.c", save_dir, arg[0], arg));
 
         if (arrayp(item_list) && sizeof(item_list))
         {
                 foreach (item_name in item_list)
                 {
-                        // 要去掉后面的 .c 字样
+                        // 要去掉後面的 .c 字樣
                         item_file = sprintf("%sitem/%c/%s", DATA_DIR, arg[0], item_name[0..<3]);
                         item_data = query_object_data(item_file);
 
-                        // 获得物品的具体名称
+                        // 獲得物品的具體名稱
                         sscanf(item_name, arg + "-%s.c", item_name);
                         // 生成新的物品文件名
                         item_file = sprintf("%sitem/%c/%s-%s.c", DATA_DIR, uid[0], uid,
                                             item_name);
-                        // 复制文件
+                        // 複製文件
                         is_ok = cp(sprintf("%sitem/%c/%s-%s.c", save_dir, arg[0], arg, item_name), 
                                    item_file);
 
@@ -578,8 +578,8 @@ int transfer_user(string arg)
                                        ").\n");
                         } else
                         {
-                                // 将文件中全部的原来的用户 ID
-                                // 字样全部替换为新的
+                                // 將文件中全部的原來的用戶 ID
+                                // 字樣全部替換為新的
                                 if (arg != uid)
                                 {
                                         file_content = read_file(item_file);
@@ -590,14 +590,14 @@ int transfer_user(string arg)
         
                                 if (item_data)
                                 {
-                                        // 修改 "user" 属性以适应新的 ID
+                                        // 修改 "user" 屬性以適應新的 ID
                                         item_data["user"] = sprintf("%s(%s)", user->name(), uid);
         
-                                        // 将原来的物品存盘信息导入 DBASE_D
+                                        // 將原來的物品存盤信息導入 DBASE_D
                                         is_ok = DBASE_D->set_object_data(item_file, item_data);
                                 }
         
-                                // 更新用户身上的物品列表
+                                // 更新用戶身上的物品列表
                                 user->set("can_summon/" + item_name, item_file);
 
                                 LOG(3, "Item " + item_name + " of (" + arg + ") successfully "
@@ -605,15 +605,15 @@ int transfer_user(string arg)
                         }
                 }
         }
-        // 转换用户的 autoload 信息，去掉无法继续
-        // 使用的，如果获得了卡片，则增加卡片的载
+        // 轉換用戶的 autoload 信息，去掉無法繼續
+        // 使用的，如果獲得了卡片，則增加卡片的載
         // 入信息
         transfer_autoload(user, card_file);
 
-        // raw : 1，给 user 存一下盘
+        // raw : 1，給 user 存一下盤
         global_destruct_player(user, 1);
 
-        // 修改文件名，表示此用户已经转换
+        // 修改文件名，表示此用戶已經轉換
         rename(login_file(arg), login_file(arg) + ".bak");
         rename(user_file(arg), user_file(arg) + ".bak");
 

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("空无可厚非[2;37;0m[2;37;0m", ({"qilinc"}));        
+        set_name("空無可厚非[2;37;0m[2;37;0m", ({"qilinc"}));        
         set("gender", "男性");                
         set("long", "  [2;37;0m
-它是雪丙的魔幻兽。
+它是雪丙的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

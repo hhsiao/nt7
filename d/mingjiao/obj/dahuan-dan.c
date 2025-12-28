@@ -1,4 +1,4 @@
-// dahuan-dan.c 大还丹
+// dahuan-dan.c 大還丹
 
 #include <ansi.h>
 
@@ -14,12 +14,12 @@ void init()
 
 void create()
 {
-        set_name("大还丹", ({"dahuan dan", "dahuan", "dan"}));
+        set_name("大還丹", ({"dahuan dan", "dahuan", "dan"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "颗");
-                set("long", "这是一颗紫红晶亮的大还丹。此丹乃少林珍药，提高功力，灵效无比。\n");
+                set("unit", "顆");
+                set("long", "這是一顆紫紅晶亮的大還丹。此丹乃少林珍藥，提高功力，靈效無比。\n");
                 set("value", 10000);
         }
 
@@ -32,12 +32,12 @@ int do_eat(string arg)
         object me = this_player();
 
         if (!id(arg))
-        return notify_fail("你要吃什么？\n");
+        return notify_fail("你要吃什麼？\n");
 
         if ( me->query_skill_mapped("force") != "hunyuan-yiqi" )
         {
                 addn("max_neili", -10, me);
-                message_vision(HIR "$N吃下一颗大还丹，只觉得肝肠寸断，原来所练内功不符，反而大损真元！\n" NOR, me);
+                message_vision(HIR "$N吃下一顆大還丹，只覺得肝腸寸斷，原來所練內功不符，反而大損真元！\n" NOR, me);
                 me->unconcious();
                 destruct(this_object());
                 return 1;
@@ -46,13 +46,13 @@ int do_eat(string arg)
         if ( (int)me->query_condition("bonze_drug" ) > 0 )
         {
                 addn("max_neili", -1, me);
-                message_vision(HIR "$N吃下一颗大还丹，只觉得头重脚轻，摇摇欲倒，原来服食太急太多，药效适得其反！\n" NOR, me);
+                message_vision(HIR "$N吃下一顆大還丹，只覺得頭重腳輕，搖搖欲倒，原來服食太急太多，藥效適得其反！\n" NOR, me);
         }
         else
         {
                 addn("max_neili", 1, me);
-                message_vision(HIG "$N吃下一颗大还丹，只觉得体内真力源源滋生，过紫宫，入泥丸
-透十二重楼，遍布奇筋八脉，全身功力顿然提高 !\n" NOR, me);
+                message_vision(HIG "$N吃下一顆大還丹，只覺得體內真力源源滋生，過紫宮，入泥丸
+透十二重樓，遍佈奇筋八脈，全身功力頓然提高 !\n" NOR, me);
         }
 
         me->apply_condition("bonze_drug", 60);

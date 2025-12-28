@@ -9,8 +9,8 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", YEL "一块拥有神秘魔力的改造石，和装备一起冶炼可改造装备基本属性。\n" NOR);
-                set("unit", "块");
+                set("long", YEL "一塊擁有神秘魔力的改造石，和裝備一起冶煉可改造裝備基本屬性。\n" NOR);
+                set("unit", "塊");
                 set("value", 500000);
                 set("no_sell", 1);
         }

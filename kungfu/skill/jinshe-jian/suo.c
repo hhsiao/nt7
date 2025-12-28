@@ -1,5 +1,5 @@
 // This program is a part of NITAN MudLIB
-// suo.c 锁剑诀
+// suo.c 鎖劍訣
 
 #include <ansi.h>
 
@@ -12,10 +12,10 @@ int perform(object me)
 
         if( !objectp(weapon=query_temp("weapon", me) )
                  || query("id", weapon) != "jinshejian" )
-                return notify_fail("你没用金蛇剑，不能使用绝招！\n");
+                return notify_fail("你沒用金蛇劍，不能使用絕招！\n");
 
         if( query("dex", me)<20 || query("str", me)<20 )
-                return notify_fail("你的先天膂力身法孱弱, 不能使用「锁剑诀」！\n");
+                return notify_fail("你的先天膂力身法孱弱, 不能使用「鎖劍訣」！\n");
 
         me->clean_up_enemy();
         target = me->select_opponent();
@@ -23,19 +23,19 @@ int perform(object me)
         skill = me->query_skill("jinshe-jian", 1);
 
         if( !(me->is_fighting() ))
-                return notify_fail("「锁剑诀」只能对战斗中的对手使用。\n");
+                return notify_fail("「鎖劍訣」只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon2=query_temp("weapon", target)) )
-                return notify_fail("对方没有使用兵器，你用不了「锁剑诀」。\n");
+                return notify_fail("對方沒有使用兵器，你用不了「鎖劍訣」。\n");
 
         if( skill < 150)
-                return notify_fail("你的金蛇剑法等级不够, 不能使用「锁剑诀」！\n");
+                return notify_fail("你的金蛇劍法等級不夠, 不能使用「鎖劍訣」！\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你的内力不够，无法运用「锁剑诀」！\n");
+                return notify_fail("你的內力不夠，無法運用「鎖劍訣」！\n");
 
-        msg = HIC "$N手中"YEL"金蛇剑"HIC"画出一道金光，斜刺一拉，「锁剑诀」！\n"
-              YEL "金蛇剑"HIC"剑尖倒钩正好挂在$n的"+weapon2->name()+"上。\n";
+        msg = HIC "$N手中"YEL"金蛇劍"HIC"畫出一道金光，斜刺一拉，「鎖劍訣」！\n"
+              YEL "金蛇劍"HIC"劍尖倒鉤正好掛在$n的"+weapon2->name()+"上。\n";
               
         message_combatd(msg, me, target);
 
@@ -47,9 +47,9 @@ int perform(object me)
         if (ap / 2 + random(ap) > dp)
         {
                 addn("neili", -50, me);
-                msg = "$n顿时觉得眼前金光一闪，手腕一振，手中";
+                msg = "$n頓時覺得眼前金光一閃，手腕一振，手中";
                 msg += weapon2->name();
-                msg += "脱手飞出！\n" NOR;
+                msg += "脫手飛出！\n" NOR;
                 me->start_busy(random(2));
                 target->receive_damage("qi", damage);
                 target->start_busy(2);
@@ -58,7 +58,7 @@ int perform(object me)
         else
         {
                 addn("neili", -30, me);
-                msg = "$n急运内力，将手中" + weapon2->name()+ "斜斜顺势一送一搭，抽了回来。\n"NOR;
+                msg = "$n急運內力，將手中" + weapon2->name()+ "斜斜順勢一送一搭，抽了回來。\n"NOR;
                 me->start_busy(3);
         }
         message_combatd(msg, me, target);

@@ -23,37 +23,37 @@ void setup_char(object ob)
 
         if( !stringp(race=query("race", ob)) )
         {
-                race = "人类";
-                set("race", "人类", ob);
+                race = "人類";
+                set("race", "人類", ob);
         }
 
         switch(race)
         {
-        case "人类":
+        case "人類":
                 HUMAN_RACE->setup_human(ob);
                 break;
         case "妖魔":
                 MONSTER_RACE->setup_monster(ob);
                 break;
-        case "野兽":
-        case "走兽":
+        case "野獸":
+        case "走獸":
                 BEAST_RACE->setup_beast(ob);
                 break;
         case "家畜":
         case "走畜":
                 STOCK_RACE->setup_stock(ob);
                 break;
-        case "飞禽":
+        case "飛禽":
                 BIRD_RACE->setup_bird(ob);
                 break;
-        case "游鱼":
+        case "游魚":
                 FISH_RACE->setup_fish(ob);
                 break;
-        case "蛇类":
+        case "蛇類":
         case "爬蛇":
                 SNAKE_RACE->setup_snake(ob);
                 break;
-        case "昆虫":
+        case "昆蟲":
                 INSECT_RACE->setup_insect(ob);
                 break;
         default:

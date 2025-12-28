@@ -8,23 +8,23 @@ inherit SWORD;
 
 void create() 
 { 
-        set_name(HIW "无间闪电" NOR, ({"wujian shandian", "wujian", "shandian"})); 
+        set_name(HIW "無間閃電" NOR, ({"wujian shandian", "wujian", "shandian"})); 
         set_weight(15000); 
         /*if (clonep()) 
                 set_default_object(__FILE__); 
         else*/ { 
                 set("unit", "把"); 
-                set("long", sort_msg(HIR "众神采首山之天石为天帝所铸，对这一把剑还能些什么呢？"
-                                     "天帝！勇气、智慧、仁爱，一切在于两个字：圣道。无间闪电"
-                                     "是一把无敌之剑，使用方法：装备后用 smash id 来摧毁对手。\n" NOR));
+                set("long", sort_msg(HIR "眾神采首山之天石為天帝所鑄，對這一把劍還能些什麼呢？"
+                                     "天帝！勇氣、智慧、仁愛，一切在於兩個字：聖道。無間閃電"
+                                     "是一把無敵之劍，使用方法：裝備後用 smash id 來摧毀對手。\n" NOR));
                 set("value", 100000); 
                 set("material", "steel");
-                set("no_sell", "我的天…你…你知道这是啥么？这你也敢拿来卖？"); 
+                set("no_sell", "我的天…你…你知道這是啥麼？這你也敢拿來賣？"); 
                 set("rigidity", 500); 
                 set("no_put",1); 
                 set("no_steal",1);   
-                set("wield_msg",HIR"$N[噌]的一声抽出一把无间闪电，漫天乌云，电闪雷鸣，杀气四溅。\n"NOR); 
-                set("unwield_msg",HIR"$N把手中的无间闪电插入剑鞘，乌云速散，雷电消失，杀气顿无。\n"NOR); 
+                set("wield_msg",HIR"$N[噌]的一聲抽出一把無間閃電，漫天烏雲，電閃雷鳴，殺氣四濺。\n"NOR); 
+                set("unwield_msg",HIR"$N把手中的無間閃電插入劍鞘，烏雲速散，雷電消失，殺氣頓無。\n"NOR); 
         }
         init_sword(2100000); 
         setup();
@@ -34,6 +34,6 @@ mixed hit_ob(object me, object victim, int damage_bonus)
 {
         victim->receive_damage("jing", me->query_str() * 200, me);
         victim->receive_wound("jing", me->query_str() * 200, me);
-        return HIM "无间闪电夹带着刺耳的破空声划出一道道闪电，霎时间$n"
-               HIM "只感到死神来临。\n" NOR;
+        return HIM "無間閃電夾帶著刺耳的破空聲劃出一道道閃電，霎時間$n"
+               HIM "只感到死神來臨。\n" NOR;
 }

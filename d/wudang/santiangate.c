@@ -2,9 +2,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "三天门");
+        set("short", "三天門");
         set("long", @LONG
-这里是登山石阶的尽头三天门，再往上走就是武当绝顶了。
+這裡是登山石階的盡頭三天門，再往上走就是武當絕頂了。
 LONG );
         set("exits", ([
                 "northdown": __DIR__"ertiangate",

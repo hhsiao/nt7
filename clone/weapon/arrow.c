@@ -12,7 +12,7 @@ void create()
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一根细长的箭，箭翎修长，簇失锋利。\n");
+                set("long", "一根細長的箭，箭翎修長，簇失鋒利。\n");
                 set("unit", "把");
                 set("base_unit", "根");
                 set("base_weight", 100);
@@ -24,5 +24,5 @@ void create()
         init_throwing(200);
         setup();
 
-        set("no_wield", "这不是用来装备的。\n");
+        set("no_wield", "這不是用來裝備的。\n");
 }

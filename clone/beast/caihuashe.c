@@ -4,7 +4,7 @@ inherit SNAKE;
 void create()
 {
         set_name(HIC "菜花蛇" NOR, ({ "caihua she", "caihua", "she" }));
-        set("long", HIC "这是一只青幽幽的菜花蛇，头部呈椭圆形。\n" NOR);
+        set("long", HIC "這是一隻青幽幽的菜花蛇，頭部呈橢圓形。\n" NOR);
 
         set("age", 1);
         set("str", 15);
@@ -38,7 +38,7 @@ int convert(string arg)
         object ob;
 
         if (arg!="snake" && arg!="she" && arg!="caihua she") return 0;
-        if( query("family/family_name", me) != "欧阳世家" )
-                return notify_fail("你不能化蛇为杖。\n");
-        return notify_fail("菜花蛇野性太小，攻击天性很差，不能化为杖。\n");
+        if( query("family/family_name", me) != "歐陽世家" )
+                return notify_fail("你不能化蛇為杖。\n");
+        return notify_fail("菜花蛇野性太小，攻擊天性很差，不能化為杖。\n");
 }

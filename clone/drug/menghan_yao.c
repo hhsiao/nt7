@@ -6,12 +6,12 @@ inherit COMBINED_ITEM;
 void create()
 {
 
-        set_name("蒙汗药", ({ "menghan yao", "yao" }) );
+        set_name("蒙汗藥", ({ "menghan yao", "yao" }) );
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
                 set("long",
-                        "这是极普通的蒙汗药\n" );
+                        "這是極普通的蒙汗藥\n" );
                 set("unit", "些");
                 set("base_value", 1000);
                 set("no_sell", 1);
@@ -36,18 +36,18 @@ int do_pour(string arg)
         if( !arg
         ||        sscanf(arg, "%s in %s", me, what)!=2
         ||        !id(me) )
-                return notify_fail("命令格式: pour <药> in <物品>。\n");
+                return notify_fail("命令格式: pour <藥> in <物品>。\n");
 
         ob = present(what, this_player());
         if( !ob )
-                return notify_fail("你身上没有" + what + "这样东西。\n");
+                return notify_fail("你身上沒有" + what + "這樣東西。\n");
         if( !query("liquid/remaining", ob) )
-                return notify_fail(ob->name() + "里什么也没有，先装些酒水才能溶化药粉\n");
+                return notify_fail(ob->name() + "裡什麼也沒有，先裝些酒水才能溶化藥粉\n");
         f = (: call_other, __FILE__, "drink_drug" :);
         set("liquid/drink_func", bind(f,ob), ob);
         addn("liquid/slumber_effect", 100, ob);
-        message_vision("$N将一些" + name() + "倒进" + ob->name() 
-                + "摇晃了几下。\n", this_player());
+        message_vision("$N將一些" + name() + "倒進" + ob->name() 
+                + "搖晃了幾下。\n", this_player());
         add_amount(-1);
         return 1;
 }

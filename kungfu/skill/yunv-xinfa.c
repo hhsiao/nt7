@@ -31,26 +31,26 @@ int valid_learn(object me)
 {
         if( (!me->query_family() ||
             me->query_family() != "古墓派") && !query("yuanshen", me) )
-                return notify_fail("你不是古墓派中人，无法修习！\n");
+                return notify_fail("你不是古墓派中人，無法修習！\n");
 
-        if( query("gender", me) == "无性" )
-                return notify_fail("你无根无性，阴阳难调，不能修习玉女心法。\n");
+        if( query("gender", me) == "無性" )
+                return notify_fail("你無根無性，陰陽難調，不能修習玉女心法。\n");
 
         if ((int)me->query_skill("force", 1) < 150)
-                return notify_fail("你的基本内功火候还不够，不能修习玉女心法。\n");
+                return notify_fail("你的基本內功火候還不夠，不能修習玉女心法。\n");
 
         if ((int)me->query_int() < 42)
-                return notify_fail("你的后天悟性不足，无法领悟玉女心法。\n");
+                return notify_fail("你的後天悟性不足，無法領悟玉女心法。\n");
 
         if( query("max_neili", me)<1000 )
-                return notify_fail("你的内力修为不足，难以领会玉女心法。\n");
+                return notify_fail("你的內力修為不足，難以領會玉女心法。\n");
 
         return ::valid_learn(me);
 }
 
 int practice_skill(object me)
 {
-        return notify_fail("玉女心法只能用学(learn)来增加熟练度。\n");
+        return notify_fail("玉女心法只能用學(learn)來增加熟練度。\n");
 }
 mixed hit_ob(object me, object victim)
 {
@@ -80,8 +80,8 @@ mixed hit_ob(object me, object victim)
                 victim->receive_damage("qi", damage_bonus, me);
                 victim->receive_wound("qi", damage_bonus * 2 / 3, me);
 
-                return HIW "$N" HIW "手中" + wn + HIW "忽的一振，将玉"
-                       "女心经功力运于剑端，漫出无边寒意。\n" NOR;
+                return HIW "$N" HIW "手中" + wn + HIW "忽的一振，將玉"
+                       "女心經功力運於劍端，漫出無邊寒意。\n" NOR;
         } else
         if( query("skill_type", weapon) == "whip"
             && me->query_skill_mapped("whip") == "yinsuo-jinling")
@@ -92,8 +92,8 @@ mixed hit_ob(object me, object victim)
                 victim->receive_damage("qi", damage_bonus, me);
                 victim->receive_wound("qi", damage_bonus * 2 / 3, me);
 
-                return HIW "$N" HIW "一声娇喝，将玉女心法功力运至" + wn +
-                       HIW "之上，姿势妙曼，令人肃然起敬。\n" NOR;
+                return HIW "$N" HIW "一聲嬌喝，將玉女心法功力運至" + wn +
+                       HIW "之上，姿勢妙曼，令人肅然起敬。\n" NOR;
         }
 }
 int difficult_level()
@@ -111,13 +111,13 @@ int help(object me)
         write(HIC"\n玉女心法："NOR"\n");
         write(@HELP
 
-    古墓内功讲究一个“静”字，唯有平心静气、摆脱世俗之扰才
-能修习上乘武功。玉女心经修炼难度很大，学习者要不急不躁，循
-序渐进方有成功之望。可以寻觅本门秘籍《玉女心经》上下册研读。
+    古墓內功講究一個“靜”字，唯有平心靜氣、擺脫世俗之擾才
+能修習上乘武功。玉女心經修煉難度很大，學習者要不急不躁，循
+序漸進方有成功之望。可以尋覓本門秘籍《玉女心經》上下冊研讀。
 
-        学习要求：
-                基本内功10级
-                不能做太监
+        學習要求：
+                基本內功10級
+                不能做太監
 HELP
         );
         return 1;

@@ -4,9 +4,9 @@ void create()
 {
         set("short", "三清湖");
         set("long",
-"[1;32m湖水清澈透明，不时可以看到几尾鱼跳上水面。湖水尽头是\n"
-"一个大瀑布。在这里可以听到瀑布从山上直冲而下，发出的轰轰雷声。湖\n"
-"边一块巨石，上写＂三清湖＂，湖中有一叶扁舟。\n"
+"[1;32m湖水清澈透明，不時可以看到幾尾魚跳上水面。湖水盡頭是\n"
+"一個大瀑布。在這裡可以聽到瀑布從山上直衝而下，發出的轟轟雷聲。湖\n"
+"邊一塊巨石，上寫＂三清湖＂，湖中有一葉扁舟。\n"
 );
         set("exits", ([ 
   "south" : __DIR__"mountain",
@@ -31,22 +31,22 @@ void check_trigger()
                 set("yell_trigger", 1, room);
                 set("exits/enter", __DIR__"duchuan");
                 set("exits/out", __FILE__, room);
-                message("vision", "一叶扁舟缓缓地驶了过来，艄公将一块踏脚"
+                message("vision", "一葉扁舟緩緩地駛了過來，艄公將一塊踏腳"
                     "板搭上堤岸，以便乘客\n上下。\n", this_object() );
-                message("vision", "艄公将一块踏脚板搭上堤岸，形成一个向上"
-                    "的阶梯。\n", room);
+                message("vision", "艄公將一塊踏腳板搭上堤岸，形成一個向上"
+                    "的階梯。\n", room);
                 remove_call_out("on_board");
                 call_out("on_board", 15);
             }
             else
-                message("vision", "只听得湖面上隐隐传来：“别急嘛，"
-                    "这儿正忙着呐……”\n",this_object() );
+                message("vision", "只聽得湖面上隱隱傳來：“別急嘛，"
+                    "這兒正忙著吶……”\n",this_object() );
         }
         else
             message("vision", "ERROR: boat not found\n", this_object() );
     }
     else 
-        message("vision", "岸边一只渡船上的老艄公说道：正等着你呢，上来吧。\n",
+        message("vision", "岸邊一隻渡船上的老艄公說道：正等著你呢，上來吧。\n",
             this_object() );
 }
 void on_board()
@@ -55,14 +55,14 @@ void on_board()
 
     if( !query("exits/enter") ) return;
 
-    message("vision", "艄公把踏脚板收了起来，竹篙一点，扁舟向湖心驶去。\n",
+    message("vision", "艄公把踏腳板收了起來，竹篙一點，扁舟向湖心駛去。\n",
         this_object() );
 
     if( room = find_object(__DIR__"duchuan") )
     {
         delete("exits/out", room);
-        message("vision", "艄公把踏脚板收起来，说了一声“坐稳喽”，"
-            "竹篙一点，扁舟向\n湖心驶去。\n", room );
+        message("vision", "艄公把踏腳板收起來，說了一聲“坐穩嘍”，"
+            "竹篙一點，扁舟向\n湖心駛去。\n", room );
     }
     delete("exits/enter");
 
@@ -75,7 +75,7 @@ void arrive()
     if( room = find_object(__DIR__"duchuan") )
     {
         set("exits/out", __DIR__"lake", room);
-        message("vision", "艄公说“到啦，上岸吧”，随即把一块踏脚板"
+        message("vision", "艄公說“到啦，上岸吧”，隨即把一塊踏腳板"
             "搭上堤岸。\n",room );
     }
     remove_call_out("close_passage");
@@ -87,7 +87,7 @@ void close_passage()
     object room;
     if( room = find_object(__DIR__"duchuan") ) {
         delete("exits/out", room);
-        message("vision","艄公把踏脚板收起来，把扁舟驶向湖心。\n", room);
+        message("vision","艄公把踏腳板收起來，把扁舟駛向湖心。\n", room);
         delete("yell_trigger", room);
     }
 }
@@ -99,13 +99,13 @@ int do_yell(string arg)
 
     if( arg=="boat" ) arg = "船家";
     if( query("age", this_player())<16 )
-        message_vision("$N使出吃奶的力气喊了一声：“" + arg + "”\n",
+        message_vision("$N使出吃奶的力氣喊了一聲：“" + arg + "”\n",
             this_player());
     else if( query("neili", this_player())>500 )
-        message_vision("$N吸了口气，一声“" + arg + "”，声音中正平和地远远传"
+        message_vision("$N吸了口氣，一聲“" + arg + "”，聲音中正平和地遠遠傳"
             "了出去。\n", this_player());
     else
-        message_vision("$N鼓足中气，长啸一声：“" + arg + "！”\n",
+        message_vision("$N鼓足中氣，長嘯一聲：“" + arg + "！”\n",
             this_player());
     if( arg=="船家")
     {
@@ -113,7 +113,7 @@ int do_yell(string arg)
         return 1;
     }
     else
-        message_vision("江面上远远传来一阵回声：“" + arg +
+        message_vision("江面上遠遠傳來一陣回聲：“" + arg +
             "～～～”\n", this_player());
     return 1;
 }

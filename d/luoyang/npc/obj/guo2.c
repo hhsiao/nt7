@@ -9,7 +9,7 @@ void create()
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "个");
+                set("unit", "個");
                 set("value", 50);
                 set("food_remaining", 1);
                 set("food_supply", 5);

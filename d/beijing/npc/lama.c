@@ -6,7 +6,7 @@ void create()
 {
         set_name("喇嘛", ({"lama", "la ma"}));
         set("long",
-        "这是一个高大喇嘛，两臂粗壮，膀阔腰圆，似乎不是中土人士。\n"
+        "這是一個高大喇嘛，兩臂粗壯，膀闊腰圓，似乎不是中土人士。\n"
         );
 
         set("gender", "男性");
@@ -53,7 +53,7 @@ void greeting(object ob)
 
         if( userp(ob) && !query("no_fight", environment(ob)) )
         {
-                command("say 你是谁，居然敢破坏大爷的好事，不想活了是不是？！");
+                command("say 你是誰，居然敢破壞大爺的好事，不想活了是不是？！");
                 kill_ob(ob);
         }       
 }

@@ -2,53 +2,53 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action":"$N翻腕一振$w，一招「"+HIY"狮子摇头"NOR+"」，枪上红缨抖动，挽出斗大一个枪花，往$n$l直搠过去",
+([      "action":"$N翻腕一振$w，一招「"+HIY"獅子搖頭"NOR+"」，槍上紅纓抖動，挽出斗大一個槍花，往$n$l直搠過去",
         "lvl" : 0,
-        "skill_name" : "狮子摇头",
-        "damage_type":  "刺伤"
+        "skill_name" : "獅子搖頭",
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N倒转$w，一招「"+HIY"白虹经天"NOR+"」，斜身移睬宫枪杆起处，圆圆一团红影，枪尖上一点寒光疾向$n刺来",
+([      "action":"$N倒轉$w，一招「"+HIY"白虹經天"NOR+"」，斜身移睬宮槍桿起處，圓圓一團紅影，槍尖上一點寒光疾向$n刺來",
         "lvl" : 30,
-        "skill_name" : "白虹经天",
-        "damage_type":  "割伤"
+        "skill_name" : "白虹經天",
+        "damage_type":  "割傷"
 ]),
-([      "action":"$N催动身法急走如飞，手中$w一抖，使出一招「"+HIY"朝天一柱香"NOR+"」，$w挺得笔直，迅捷无伦地刺向$n的$l",
+([      "action":"$N催動身法急走如飛，手中$w一抖，使出一招「"+HIY"朝天一柱香"NOR+"」，$w挺得筆直，迅捷無倫地刺向$n的$l",
         "lvl" : 60,
         "skill_name" : "朝天一柱香",
-        "damage_type":  "割伤"
+        "damage_type":  "割傷"
 ]),
-([      "action":"$N挺起$w，一招「"+HIY"凤点头"NOR+"」，红缨抖动，$w幻出点点枪影，枪尖闪烁不定地往$n$l点到",
+([      "action":"$N挺起$w，一招「"+HIY"鳳點頭"NOR+"」，紅纓抖動，$w幻出點點槍影，槍尖閃爍不定地往$n$l點到",
         "lvl" : 90,
-        "skill_name" : "凤点头",
-        "damage_type":  "刺伤"
+        "skill_name" : "鳳點頭",
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N一招「"+HIY"春雷震怒"NOR+"」，刷刷刷连环三枪，急刺而至，朱缨乱摆，$w嗤嗤声响，颤成一个大红圈子，罩住了$n上下各路",
+([      "action":"$N一招「"+HIY"春雷震怒"NOR+"」，刷刷刷連環三槍，急刺而至，朱纓亂擺，$w嗤嗤聲響，顫成一個大紅圈子，罩住了$n上下各路",
         "lvl" : 120,
         "skill_name" : "春雷震怒",
-        "damage_type":  "割伤"
+        "damage_type":  "割傷"
 ]),
-([      "action":"$N突然大喝一声，双手抓住枪柄，劲力到处$w弯成弓形，突然一松手，电光一闪劈空刺向$n，好一招「"+HIY"灵蛇电闪"NOR+"」",
+([      "action":"$N突然大喝一聲，雙手抓住槍柄，勁力到處$w彎成弓形，突然一鬆手，電光一閃劈空刺向$n，好一招「"+HIY"靈蛇電閃"NOR+"」",
         "lvl" : 150,
-        "skill_name" : "灵蛇电闪",
-        "damage_type":  "刺伤"
+        "skill_name" : "靈蛇電閃",
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N突然踏上一睬宫$w挺得笔直，使出一招「"+HIY"孤雁出群"NOR+"」，$w来势如风，凌厉无匹地向$n的$l刺去",
+([      "action":"$N突然踏上一睬宮$w挺得筆直，使出一招「"+HIY"孤雁出群"NOR+"」，$w來勢如風，凌厲無匹地向$n的$l刺去",
         "lvl" : 180,
         "skill_name" : "孤雁出群",
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
 });
 
 int valid_enable(string usage)
 {
-        if (query("quest/射雕英雄传/yangjiaqiang/pass", this_player()))
+        if (query("quest/射鵰英雄傳/yangjiaqiang/pass", this_player()))
                  return usage == "spear" || usage == "parry";
 }
 
 int valid_learn(object me)
 {
         if( me->query_skill("yangjia-qiang", 1) < 1 )
-                return notify_fail("杨家枪只能从杨铁心处习到。\n");
+                return notify_fail("楊家槍只能從楊鐵心處習到。\n");
         return 1;
 }
 
@@ -78,8 +78,8 @@ mapping query_action(object me, object weapon)
                                         "dodge": random(20)- 5 +lv2/15,
                                         "damage": 60 + random(80) + random((level+lv2)/4),
                                         "parry": random(15)+lv2/10,
-                                        "weapon" : random(2)?"枪气":"枪锋",
-                                        "damage_type" : random(2)?"刺伤":"割伤",
+                                        "weapon" : random(2)?"槍氣":"槍鋒",
+                                        "damage_type" : random(2)?"刺傷":"割傷",
                                 ]);
                         }
                         if( query_temp("yjq/jifeng", me)){
@@ -90,8 +90,8 @@ mapping query_action(object me, object weapon)
                                         "dodge": random(20)- 5 +lv2/15,
                                         "damage": 70 + random(100) + random((level+lv2)/4),
                                         "parry": random(15)+lv2/10,
-                                        "weapon" : random(2)?"枪气":"枪锋",
-                                        "damage_type" : random(2)?"刺伤":"割伤",
+                                        "weapon" : random(2)?"槍氣":"槍鋒",
+                                        "damage_type" : random(2)?"刺傷":"割傷",
                                 ]);
                         }
                                                 if( query_temp("yjq/qinghe", me)){
@@ -102,8 +102,8 @@ mapping query_action(object me, object weapon)
                                         "dodge": random(20)- 5 +lv2/15,
                                         "damage": 80 + random(100) + random((level+lv2)/5),
                                         "parry": random(15)+lv2/10,
-                                        "weapon" : random(2)?"枪气":"枪锋",
-                                        "damage_type" : random(2)?"刺伤":"割伤",
+                                        "weapon" : random(2)?"槍氣":"槍鋒",
+                                        "damage_type" : random(2)?"刺傷":"割傷",
                                 ]);
                         }
                         if( query_temp("yjq/shenwei", me)){
@@ -114,8 +114,8 @@ mapping query_action(object me, object weapon)
                                         "dodge": random(20)- 5 +lv2/15,
                                         "damage": 80 + random(100) + random((level+lv2)/5),
                                         "parry": random(15)+lv2/10,
-                                        "weapon" : random(2)?"枪气":"枪锋",
-                                        "damage_type" : random(2)?"刺伤":"割伤",
+                                        "weapon" : random(2)?"槍氣":"槍鋒",
+                                        "damage_type" : random(2)?"刺傷":"割傷",
                                 ]);
                         }
                         return ([
@@ -137,9 +137,9 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me) )
          || query("skill_type", weapon) != "spear" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
         if( query("jingli", me)<50 )
-                return notify_fail("你的体力不够练杨家枪。\n");
+                return notify_fail("你的體力不夠練楊家槍。\n");
         me->receive_damage("jingli", 20);
         return 1;
 }
@@ -156,7 +156,7 @@ mixed hit_ob(object me, object target)
 
         if( random(5)>3 && lv>250 && !query_temp("yjq/hmq", me) )
           {
-                message_vision(YEL"$N大喝一声，双手抓住枪柄，斗然间拧腰纵臂，回身出枪，直刺$n面门，这一枪正是杨家枪法的“回马枪”" NOR,me,target);
+                message_vision(YEL"$N大喝一聲，雙手抓住槍柄，斗然間擰腰縱臂，回身出槍，直刺$n面門，這一槍正是楊家槍法的“回馬槍”" NOR,me,target);
                 addn_temp("apply/attack", me->query_skill("yangjia-qiang",1)/3, me);
                 set_temp("yjq/hmq", 1, me);
                 COMBAT_D->do_attack(me,target,query_temp("weapon", me),random(4)?1:3);

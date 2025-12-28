@@ -21,7 +21,7 @@ void init(object me)
                 return;
 
         if( query_temp("used") )
-                return tell_object(me, name(1)+"的强大能力已经被使用。\n");
+                return tell_object(me, name(1)+"的強大能力已經被使用。\n");
 
         players = BATTLEFIELD2_D->get_sorted_players();
 
@@ -39,11 +39,11 @@ void init(object me)
         }
 
         BATTLEFIELD2_D->add_bonus_score(me, 100);
-        tell_object(me, "你因为碰触"+name(1)+"而获得 "HIY"100"NOR" 点战绩红利。\n");
+        tell_object(me, "你因為碰觸"+name(1)+"而獲得 "HIY"100"NOR" 點戰績紅利。\n");
         if( target )
-        tell_object(me, "你触动了战争恐惧石碑的力量让"+target->query_idname()+NOR"变得虚弱起来。\n");
+        tell_object(me, "你觸動了戰爭恐懼石碑的力量讓"+target->query_idname()+NOR"變得虛弱起來。\n");
 
-        tell_object(target, HIR+me->query_idname()+HIR"使用了战争恐惧石碑的力量让你变得虚弱起来。\n" NOR);
+        tell_object(target, HIR+me->query_idname()+HIR"使用了戰爭恐懼石碑的力量讓你變得虛弱起來。\n" NOR);
         target->set_weak(10);
 
         call_out((: delay_destruct :), 1);
@@ -53,15 +53,15 @@ void init(object me)
 
 void create()
 {
-        set_name(RED"战争恐惧石碑"NOR, ({ "battlefield fear statue", "statue" }) );
+        set_name(RED"戰爭恐懼石碑"NOR, ({ "battlefield fear statue", "statue" }) );
         set_weight(200);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", "使用这个石碑的人可以大幅降低另一位战场中玩家的能力。");
+                set("long", "使用這個石碑的人可以大幅降低另一位戰場中玩家的能力。");
                 set("value", 1000000);
-                set("unit", "个");
+                set("unit", "個");
                 set("no_get", 1);
         }
 }

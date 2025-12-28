@@ -17,7 +17,7 @@ void create()
     else*/ 
     {
                 set("unit", "包");
-        set("long", "玉真散是华山派的疗伤灵药，可解紫霞功所造成的伤。\n");
+        set("long", "玉真散是華山派的療傷靈藥，可解紫霞功所造成的傷。\n");
                 set("value", 8000);
                 set("no_sell", 1);
                 set("medicine", 1);
@@ -30,13 +30,13 @@ int cure_ob(object me)
         if (me->query_condition("hot_drug") > 0)
         {
         addn("qi", -300, me);
-        message_vision(BLU"$N服下一包玉真散，觉得胸口闷恶难当，如中重锤。原来服食太急太多，药效适得其反！\n" NOR, me);
+        message_vision(BLU"$N服下一包玉真散，覺得胸口悶惡難當，如中重錘。原來服食太急太多，藥效適得其反！\n" NOR, me);
         destruct(this_object());
         return 1;
         }
         
    
-        message_vision(HIY"$N服下一包玉真散，只觉四体通泰，伤势大大好转。\n"NOR, me);
+        message_vision(HIY"$N服下一包玉真散，只覺四體通泰，傷勢大大好轉。\n"NOR, me);
 
         me->receive_curing("qi",500);            
         me->apply_condition("hot_drug", 15);

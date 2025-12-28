@@ -3,7 +3,7 @@
 // in any form without the written permission from authors.
 
 mapping place = ([
-        "北京东城": ({
+        "北京東城": ({
                         "/d/beijing/cagc_e","/d/beijing/caroad_e1",
                         "/d/beijing/caroad_e2","/d/beijing/zahuo",
                         "/d/beijing/yancao","/d/beijing/xingchang",
@@ -67,7 +67,7 @@ mapping place = ([
                         "/d/beijing/di_dajie2","/d/beijing/di_anmen",
                         "/d/beijing/qingmu_dating",
                      }),
-        "扬州城"   : ({ 
+        "揚州城"   : ({ 
                         "/d/city/zuixianlou2","/d/city/zuixianlou3",
                         "/d/city/zuixianlou","/d/city/beidajie2",
                         "/d/city/beimen","/d/city/beidajie1",
@@ -79,7 +79,7 @@ mapping place = ([
                         "/d/city/yaopu","/d/city/datiepu",
                         "/d/city/dongmen",
                      }),
-         "长安城"   : ({
+         "長安城"   : ({
                         "/d/changan/huanggong","/d/changan/bridge1",
                         "/d/changan/baihu2","/d/changan/beian-dadao",
                         "/d/changan/beian-daokou","/d/changan/bingying1",
@@ -145,7 +145,7 @@ mapping place = ([
                         "/d/city3/eastroad1","/d/city3/jiudian",
                         "/d/city3/wuguan",
                      }),
-        "苏州城"   : ({
+        "蘇州城"   : ({
                         "/d/suzhou/beimen","/d/suzhou/beidajie2",
                         "/d/suzhou/zijinan","/d/suzhou/jiudian",
                         "/d/suzhou/beidajie1","/d/suzhou/xiyuan",
@@ -216,7 +216,7 @@ mapping place = ([
                         "/d/hangzhou/maojiabu","/d/hangzhou/huangniling",
                         "/d/hangzhou/shuiledong","/d/hangzhou/manjuelong",
                      }),
-        "襄阳城"   : ({
+        "襄陽城"   : ({
                         "/d/xiangyang/westjie2", "/d/xiangyang/southjie2",
                         "/d/xiangyang/xiaorong1", "/d/xiangyang/zhonglie",
                         "/d/xiangyang/guangchang", "/d/xiangyang/dingzi",
@@ -273,7 +273,7 @@ mapping place = ([
                         "/d/xiangyang/walln6","/d/xiangyang/walln7",
                         "/d/xiangyang/walln8",
                      }),
-        "大理一带" : ({
+        "大理一帶" : ({
                         "/d/dali/northgate", "/d/dali/southgate",
                         "/d/dali/shanlu2", "/d/dali/buxiongbu",
                         "/d/dali/jinzhihe", "/d/dali/xiaodao1",
@@ -332,5 +332,5 @@ void place_npc(object ob, object who)
         ob->set("startroom", startroom);
         ob->set_temp("quester", who->query("id"));
         ob->set_temp("moved", ({ }));
-        message_vision("$N走了过来。\n", ob);
+        message_vision("$N走了過來。\n", ob);
 }

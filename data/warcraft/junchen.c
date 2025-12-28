@@ -4,12 +4,12 @@
 
 void setup()
 {
-        set_name("快车[2;37;0m[2;37;0m", ({"kkkkk"}));        
+        set_name("快車[2;37;0m[2;37;0m", ({"kkkkk"}));        
         set("gender", "男性");                
-        set("long", "快车[2;37;0m
-它是俊俊的魔幻兽。
+        set("long", "快車[2;37;0m
+它是俊俊的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "junchen");
         set("owner_name", "俊俊");

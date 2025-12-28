@@ -11,29 +11,29 @@ string long_desc();
 mapping default_dirs = ([
                   "north":        "北",
                   "south":        "南",
-                  "east":         "东",
+                  "east":         "東",
                   "west":         "西",
-                  "northup":      "北边",
-                  "southup":      "南边",
-                  "eastup":       "东边",
-                  "westup":       "西边",
-                  "northdown":    "北边",
-                  "southdown":    "南边",
-                  "eastdown":     "东边",
-                  "westdown":     "西边",
-                  "northeast":    "东北",
+                  "northup":      "北邊",
+                  "southup":      "南邊",
+                  "eastup":       "東邊",
+                  "westup":       "西邊",
+                  "northdown":    "北邊",
+                  "southdown":    "南邊",
+                  "eastdown":     "東邊",
+                  "westdown":     "西邊",
+                  "northeast":    "東北",
                   "northwest":    "西北",
-                  "southeast":    "东南",
+                  "southeast":    "東南",
                   "southwest":    "西南",
                   "up":           "上",
                   "down":         "下",
                   "out":          "外",
-                  "enter":        "里",
+                  "enter":        "裡",
 ]);
 
 void create()
 {
-                  set_name("纯阳神通功秘诀", ({"shentong mijue", "mijue"}));
+                  set_name("純陽神通功秘訣", ({"shentong mijue", "mijue"}));
                   set_weight(100);
                   /*if( clonep() )
                                          set_default_object(__FILE__);
@@ -42,7 +42,7 @@ void create()
                                          set("long", (: long_desc :));
                                          set("value", 10000000);
                                          set("material", "paper");
-                                         set("no_drop","这样东西不能离开你。\n");
+                                         set("no_drop","這樣東西不能離開你。\n");
                   }
 }
 
@@ -54,29 +54,29 @@ string long_desc()
         {
           desc ="
 
-纯阳神通功秘诀
+純陽神通功秘訣
 
-纯阳神通功系本山人晚年悟得。吾青壮年献身于抗金大业，大小百余战，
-杀金贼无数。无奈朝廷奸贼当道，忠义之士俱被杀戳，有功之臣惨遭灭门。
-余虽有心回天，奈我朝气数已尽，非人力所能为。为免我华夏遭灭门之厄，
-余慨叹之余，网罗天下同道之士，修活死人墓，集数万金，以为日后东山
-再起之备。余手创全真教，广传门徒，授防身之术，盼我教众徒能成为我
-大宋之中流砥拄。我大宋中兴，全系于诸人。余闭关多年，并与诤友林氏
-朝英切磋多次，兼参读九阴真经，终大彻大悟，得成大道。余戎马生涯，
-行走江湖多年，身受巨创多次，又与西毒欧阳锋大战数次，虽破其哈蟆功，
-余亦深受剧毒，元气大伤，恐不日就要归天。惜众徒皆资质一般，无人能
-授予奇功。师弟伯通虽资质奇佳，但已非纯阳之身，且不通事理。余去之
-后，恐重阳宫不日就要遭厄运，此也是天数。余特留此秘诀，藏于极密之
-处，日后有缘者自能获得此诀。尔既能得此诀，当是极为有缘。中兴华夏，
-全赖于汝，望汝不负吾望。汝若能习成此功，可进列为吾徒，日后须行侠
-仗义，替天行道。
+純陽神通功系本山人晚年悟得。吾青壯年獻身於抗金大業，大小百餘戰，
+殺金賊無數。無奈朝廷奸賊當道，忠義之士俱被殺戳，有功之臣慘遭滅門。
+餘雖有心迴天，奈我朝氣數已盡，非人力所能為。為免我華夏遭滅門之厄，
+餘慨嘆之餘，網羅天下同道之士，修活死人墓，集數萬金，以為日後東山
+再起之備。餘手創全真教，廣傳門徒，授防身之術，盼我教眾徒能成為我
+大宋之中流砥拄。我大宋中興，全繫於諸人。餘閉關多年，並與諍友林氏
+朝英切磋多次，兼參讀九陰真經，終大徹大悟，得成大道。餘戎馬生涯，
+行走江湖多年，身受巨創多次，又與西毒歐陽鋒大戰數次，雖破其哈蟆功，
+餘亦深受劇毒，元氣大傷，恐不日就要歸天。惜眾徒皆資質一般，無人能
+授予奇功。師弟伯通雖資質奇佳，但已非純陽之身，且不通事理。餘去之
+後，恐重陽宮不日就要遭厄運，此也是天數。餘特留此秘訣，藏於極密之
+處，日後有緣者自能獲得此訣。爾既能得此訣，當是極為有緣。中興華夏，
+全賴於汝，望汝不負吾望。汝若能習成此功，可進列為吾徒，日後須行俠
+仗義，替天行道。
 
-终南山王重阳
+終南山王重陽
 \n";
         }
         else desc="
-练功秘诀：须于无人僻静之处，持此秘诀，静读潜心修练(xiulian)。
-已婚者须当心走火入魔。此功光练无用，须常常和高手切磋(qiecuo)。\n";
+練功秘訣：須於無人僻靜之處，持此秘訣，靜讀潛心修練(xiulian)。
+已婚者須當心走火入魔。此功光練無用，須常常和高手切磋(qiecuo)。\n";
 
 
 return desc;
@@ -99,25 +99,25 @@ int do_xiulian(string arg)
                 seteuid(getuid());
         where = environment(me);
 
-        if(me->is_busy())return notify_fail("你正忙着呢。\n");
+        if(me->is_busy())return notify_fail("你正忙著呢。\n");
                 if( query("no_fight", where) )
-                return notify_fail("你只觉浑身懒懒地，无法凝神聚气。\n");
-        if( query("neili", me)<1000)return notify_fail("你内力不足，无法修练。\n");
-        if( query("jingli", me)<1000)return notify_fail("你精力不足，无法修练。\n");
-        if(me->query_skill("xiantian-gong",1)<300)return notify_fail("你先天功基础太差，无法修练。\n");
-        if(me->query_skill("force",1)<300)return notify_fail("你内功基础太差，无法修练。\n");
-        if(me->query_skill("taoism",1)<300)return notify_fail("你道学基础太差，无法修练。\n");
-        if( query("shen", me)<3500000)return notify_fail("你行侠仗义之事做得不够，正气不足，无法修练。\n");
+                return notify_fail("你只覺渾身懶懶地，無法凝神聚氣。\n");
+        if( query("neili", me)<1000)return notify_fail("你內力不足，無法修練。\n");
+        if( query("jingli", me)<1000)return notify_fail("你精力不足，無法修練。\n");
+        if(me->query_skill("xiantian-gong",1)<300)return notify_fail("你先天功基礎太差，無法修練。\n");
+        if(me->query_skill("force",1)<300)return notify_fail("你內功基礎太差，無法修練。\n");
+        if(me->query_skill("taoism",1)<300)return notify_fail("你道學基礎太差，無法修練。\n");
+        if( query("shen", me)<3500000)return notify_fail("你行俠仗義之事做得不夠，正氣不足，無法修練。\n");
 
         if( query("quanzhen/shentong_times", me)>20 )
         {
                 set("can_perform/xiantian-gong/shen", 1, me);
-                return notify_fail("你修练已久，该去实战应用一下了。\n");
+                return notify_fail("你修練已久，該去實戰應用一下了。\n");
         }
 
         message_vision(
-HIG"$N按照纯阳神通功秘诀，运起玄门先天功，聚天地之精气，过紫宫，入泥丸，
-透十二重楼，开玄关，通任督，劲随意到，劲到力至。\n"NOR,me);
+HIG"$N按照純陽神通功秘訣，運起玄門先天功，聚天地之精氣，過紫宮，入泥丸，
+透十二重樓，開玄關，通任督，勁隨意到，勁到力至。\n"NOR,me);
 
         me->start_busy( 1+random(5) );
 
@@ -137,7 +137,7 @@ void done()
         if( random(marries) > 0 )
         {
                 message_vision(
-HIY"$N只觉元气不足，想要打通的督脉只差一丝丝，可是偏偏就是过不去。累得出了一身大汗。\n"NOR,me);
+HIY"$N只覺元氣不足，想要打通的督脈只差一絲絲，可是偏偏就是過不去。累得出了一身大汗。\n"NOR,me);
                 addn("neili", -query("neili", me)/2, me);
                 addn("jingli", -1000, me);
                 me->improve_skill("force",100+random(400));
@@ -147,7 +147,7 @@ HIY"$N只觉元气不足，想要打通的督脉只差一丝丝，可是偏偏�
                 if( random(query("neili", me))>8000 )
                 {
                         message_vision(
-HIG"$N只觉得真气直通任督，越运真气越是充沛，灵台一片清凉光明，偏体舒畅无比。\n"NOR,me);
+HIG"$N只覺得真氣直通任督，越運真氣越是充沛，靈臺一片清涼光明，偏體舒暢無比。\n"NOR,me);
                         me->improve_skill("force",200+random(400));
                         addn("neili", -1000-random(2000), me);
                         addn("shentong", random(2), me);
@@ -155,7 +155,7 @@ HIG"$N只觉得真气直通任督，越运真气越是充沛，灵台一片清�
                 else if( random(query("neili", me))>3000 )
                 {
                         message_vision(
-HIG"$N只觉得真气通过任督，真气充沛，偏体舒畅无比。\n"NOR,me);
+HIG"$N只覺得真氣通過任督，真氣充沛，偏體舒暢無比。\n"NOR,me);
                         if( query("potential", me) )
                         {
                                 addn("potential", -1, me);
@@ -168,7 +168,7 @@ HIG"$N只觉得真气通过任督，真气充沛，偏体舒畅无比。\n"NOR,m
                 else
                 {
                         message_vision(
-HIY"$N只觉内力不足，想要打通的任脉只差一丝丝，可是偏偏就是过不去。累得出了一身大汗。\n"NOR,me);
+HIY"$N只覺內力不足，想要打通的任脈只差一絲絲，可是偏偏就是過不去。累得出了一身大汗。\n"NOR,me);
                         addn("neili", -100, me);
                         addn("jingli", -500, me);
                 }
@@ -189,36 +189,36 @@ int do_qiecuo(string arg)
                 seteuid(getuid());
         where = environment(me);
 
-        if(me->is_busy())return notify_fail("你正忙着呢。\n");
+        if(me->is_busy())return notify_fail("你正忙著呢。\n");
                 if( query("no_fight", where) )
-                return notify_fail("比试的念头刚在脑中一闪，四周就凝结了一层杀气。\n");
-        if(!arg)return notify_fail("你想和谁切磋？\n");
+                return notify_fail("比試的念頭剛在腦中一閃，四周就凝結了一層殺氣。\n");
+        if(!arg)return notify_fail("你想和誰切磋？\n");
         target = present(arg,here);
-        if(!target)return notify_fail("你想和谁切磋？\n");
+        if(!target)return notify_fail("你想和誰切磋？\n");
 
-        if( query("race", target) != "人类")return notify_fail("可惜它不懂人事。\n");
+        if( query("race", target) != "人類")return notify_fail("可惜它不懂人事。\n");
         if( query("combat_exp", target)*3<query("combat_exp", me)*2 )
-                return notify_fail("此人武功太差，无法和你切磋。\n");
+                return notify_fail("此人武功太差，無法和你切磋。\n");
 
         if(!living(target)) return notify_fail("你得等人家醒了才行。\n");
-        if(target->is_busy())return notify_fail("人家正忙着呢。\n");
+        if(target->is_busy())return notify_fail("人家正忙著呢。\n");
 
-        if( query("neili", me)<1000)return notify_fail("你内力不足，无法切磋。\n");
-        if( query("jingli", me)<1000)return notify_fail("你精力不足，无法切磋。\n");
-        if(me->query_skill("xiantian-gong",1)<300)return notify_fail("你先天功基础太差，无法切磋。\n");
-        if(me->query_skill("force",1)<300)return notify_fail("你内功基础太差，无法切磋。\n");
-        if(me->query_skill("taoism",1)<300)return notify_fail("你道学基础太差，无法切磋。\n");
+        if( query("neili", me)<1000)return notify_fail("你內力不足，無法切磋。\n");
+        if( query("jingli", me)<1000)return notify_fail("你精力不足，無法切磋。\n");
+        if(me->query_skill("xiantian-gong",1)<300)return notify_fail("你先天功基礎太差，無法切磋。\n");
+        if(me->query_skill("force",1)<300)return notify_fail("你內功基礎太差，無法切磋。\n");
+        if(me->query_skill("taoism",1)<300)return notify_fail("你道學基礎太差，無法切磋。\n");
 
-        if( query("quanzhen/shentong_times", me)<1)return notify_fail("你纯阳神通未练已久，该去修练一下了。\n");
-
-        message_vision(
-HIG"$N按照纯阳神通功秘诀，运起玄门先天功，聚天地之精气，过紫宫，入泥丸，
-透十二重楼，开玄关，通任督，劲随意到，劲到力至。\n"NOR,me);
-        message_vision(
-HIW"$N紧跟着将内力偏布全身，只见白气逐渐笼罩全身，双眼精光四射，与平时判若两人。\n" NOR, me);
+        if( query("quanzhen/shentong_times", me)<1)return notify_fail("你純陽神通未練已久，該去修練一下了。\n");
 
         message_vision(
-HIR"$N接着突然出掌攻向$n，当真是无声无息，却迅如闪电。\n" NOR, me,target);
+HIG"$N按照純陽神通功秘訣，運起玄門先天功，聚天地之精氣，過紫宮，入泥丸，
+透十二重樓，開玄關，通任督，勁隨意到，勁到力至。\n"NOR,me);
+        message_vision(
+HIW"$N緊跟著將內力偏布全身，只見白氣逐漸籠罩全身，雙眼精光四射，與平時判若兩人。\n" NOR, me);
+
+        message_vision(
+HIR"$N接著突然出掌攻向$n，當真是無聲無息，卻迅如閃電。\n" NOR, me,target);
 
                   skill = me->query_skill("force");
                   addn("neili", -skill*2, me);
@@ -243,8 +243,8 @@ HIR"$N接着突然出掌攻向$n，当真是无声无息，却迅如闪电。\n"
 
 void destroy_me(object ob)
 {
-        message_vision(HIR"$N被纯阳神通功惊人内力所惊，不由得向后连连退步，口道：“佩服！佩服！”。
-说完转身撒腿就跑，比兔子还快，转眼就不见了。\n"NOR,ob);
+        message_vision(HIR"$N被純陽神通功驚人內力所驚，不由得向後連連退步，口道：“佩服！佩服！”。
+說完轉身撒腿就跑，比兔子還快，轉眼就不見了。\n"NOR,ob);
         destruct(ob);
 }
 
@@ -266,7 +266,7 @@ void run_away(object ob)
 
         if(random(5) != 0) call_out("run_away",0,ob);
 
-        message_vision(HIR"$N被纯阳神通功惊人内力所逼，不由得向后连连退步。\n"NOR,ob);
+        message_vision(HIR"$N被純陽神通功驚人內力所逼，不由得向後連連退步。\n"NOR,ob);
 
         exit=query("exits", here);
         if( !exit ) return;
@@ -281,7 +281,7 @@ void run_away(object ob)
                 call_other(dest, "???");
         if( !(obj = find_object(dest)) )
                 return;
-        if( !wizardp(ob) && query("short", obj) == "巫师休息室" )
+        if( !wizardp(ob) && query("short", obj) == "巫師休息室" )
                 return;
 
         if( !undefinedp(default_dirs[dir]) )
@@ -291,6 +291,6 @@ void run_away(object ob)
 
 
         if( ob->move(obj) ) {
-                        message_vision(HIY"只见$N踉踉跄呛跑了过来。\n" NOR, ob);
+                        message_vision(HIY"只見$N踉踉蹌嗆跑了過來。\n" NOR, ob);
         }
 }

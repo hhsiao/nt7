@@ -1,5 +1,5 @@
 string *food_name = ({
-"翡翠烧卖", "鸭菜包子", "千层油糕", "芝麻包子", 
+"翡翠燒賣", "鴨菜包子", "千層油糕", "芝麻包子", 
 });
 
 string ask_secret()
@@ -8,9 +8,9 @@ string ask_secret()
     command( "en" );
     command( "think" );
     command("tell"+query("id", this_player())+
-        " 你帮我买个" + food );
+        " 你幫我買個" + food );
     set_temp("kid_ask/"+query("id"), food, this_player());
-    return "怎么样？帮我买了，我就告诉你！\n";
+    return "怎麼樣？幫我買了，我就告訴你！\n";
 }
 
 int accept_object( object me, object ob)

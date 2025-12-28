@@ -1,18 +1,18 @@
-// Room: 八卦图
+// Room: 八卦圖
 
 #include <ansi.h>
 inherit ROOM;
 string* dirs = ({
-        "坎", "坤", "离", "乾",
-        "艮", "震", "巽", "兑"
+        "坎", "坤", "離", "乾",
+        "艮", "震", "巽", "兌"
         });
 void create()
 {
-        set("short",HIR"八阵图"NOR);
+        set("short",HIR"八陣圖"NOR);
         set("long", @LONG
-你一踏进阵中只觉得四周变得天昏地暗。这里横七竖八的堆放着
-各种巨石，细心一看发觉每个石头摆放位置恰到好处，暗合八卦原理
-，相传是三国时代诸葛亮留下来的阵法，环环想扣，若想出过此阵并
+你一踏進陣中只覺得四周變得天昏地暗。這裡橫七豎八的堆放著
+各種巨石，細心一看發覺每個石頭擺放位置恰到好處，暗合八卦原理
+，相傳是三國時代諸葛亮留下來的陣法，環環想扣，若想出過此陣並
 非易事。
 LONG
 );            
@@ -20,12 +20,12 @@ LONG
         set("exits", ([
                 "坎" : __DIR__"baguaz0",
                 "坤" : __DIR__"baguaz0",
-                "离" : __DIR__"baguaz0",
+                "離" : __DIR__"baguaz0",
                 "乾" : __DIR__"baguaz0",
                 "艮" : __DIR__"baguaz1",
                 "震" : __DIR__"baguaz1",
                 "巽" : __DIR__"baguaz1",
-                "兑" : __DIR__"baguaz1",
+                "兌" : __DIR__"baguaz1",
         ]));
         setup();
 }
@@ -59,13 +59,13 @@ void init()
                                 ob->delete_temp("bagua_step");
                                 ob->delete_temp("bagua_temp");
                                 ob->delete_temp("bagua_count");
-                                write(HIC"你反踏“震”位，扑“乾”位，突然眼前一亮，"+HIR+dirs[random(sizeof(dirs))]+HIC+"位上现出空位，你赶忙踏了过去。\n"NOR);
+                                write(HIC"你反踏“震”位，撲“乾”位，突然眼前一亮，"+HIR+dirs[random(sizeof(dirs))]+HIC+"位上現出空位，你趕忙踏了過去。\n"NOR);
                                 ob->move(__DIR__"qilindong", 1);
                                 ob->set_temp("bagua_over",1);
-                                tell_room(environment(ob), "突然，石阵中现出一个缺口，" + ob->name() + "赶紧闪身而出。\n");
+                                tell_room(environment(ob), "突然，石陣中現出一個缺口，" + ob->name() + "趕緊閃身而出。\n");
                                 return;
                         }
-                        tell_object(ob,HIY"你发现刚才走过的路径暗合八卦，心中若有所悟！\n"NOR);
+                        tell_object(ob,HIY"你發現剛才走過的路徑暗合八卦，心中若有所悟！\n"NOR);
                         ob->add_temp("bagua_step", 1);
                 }
                 else
@@ -74,10 +74,10 @@ void init()
                         ob->delete_temp("bagua_step");
                         ob->delete_temp("bagua_temp");
                         ob->delete_temp("bagua_count");
-                        write(CYN"你发觉自己踩错了方位，阵中石阵更加变幻末测了，只好赶快抢回起始点！\n");
+                        write(CYN"你發覺自己踩錯了方位，陣中石陣更加變幻末測了，只好趕快搶回起始點！\n");
                         ob->move(__DIR__"dongkou");
-                        tell_room(environment(ob), HIR"只见" + ob->name() + 
-                                    "朗朗跄跄从石阵中退了出来。\n"NOR);
+                        tell_room(environment(ob), HIR"只見" + ob->name() + 
+                                    "朗朗蹌蹌從石陣中退了出來。\n"NOR);
                         return;
                 }
                 temp = 0;

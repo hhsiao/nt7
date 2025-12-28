@@ -9,13 +9,13 @@ void setup() {}
 
 void create()
 {
-        set_name(HIM "门神" NOR, ({ "men shen", "menshen" }));
+        set_name(HIM "門神" NOR, ({ "men shen", "menshen" }));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "这是一张画的五颜六色的门神，常常"
-                            "被人贴在门上用来驱除妖邪。\n");
-                set("unit", "张");
+                set("long", "這是一張畫的五顏六色的門神，常常"
+                            "被人貼在門上用來驅除妖邪。\n");
+                set("unit", "張");
         }
 
         set("no_get", 1);
@@ -41,12 +41,12 @@ void init()
         if (! interactive(me) || env->welcome(me))
                 return;
 
-        message_vision("门神大喝一声：“何方妖孽，也"
-                       "敢来此？”说罢手中铜锤一荡，"
-                       "将$N一锤打得飞了出去！\n", me);
+        message_vision("門神大喝一聲：“何方妖孽，也"
+                       "敢來此？”說罷手中銅錘一蕩，"
+                       "將$N一錘打得飛了出去！\n", me);
         me->move(query("startroom", env));
         me->start_busy(3);
-        message("vision", "只听“蓬”一声，" + me->name() +
-                "飞了出来，身上青一块儿紫一块儿的。\n",
+        message("vision", "只聽“蓬”一聲，" + me->name() +
+                "飛了出來，身上青一塊兒紫一塊兒的。\n",
                 environment(me), ({ me }));
 }

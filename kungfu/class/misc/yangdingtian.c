@@ -9,7 +9,7 @@ inherit "/inherit/char/punisher";
 void create()
 {
         seteuid(getuid());
-        set_name("阳顶天", ({ "yang dingtian", "yang", "dingtian" }));
+        set_name("陽頂天", ({ "yang dingtian", "yang", "dingtian" }));
         set("long", @LONG
 明教三十三代教主，一身武功非常了得。
 LONG );

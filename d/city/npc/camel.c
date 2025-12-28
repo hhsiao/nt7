@@ -1,4 +1,4 @@
-// camel.c 白骆驼
+// camel.c 白駱駝
 
 #include <command.h>
 #include <dbase.h>
@@ -9,9 +9,9 @@ inherit NPC;
 
 void create()
 {
-        set_name(HIW"白骆驼"NOR, ({ "bailuotuo" }));
-        set("long","一匹西域来的白骆驼，全身雪白，无一根杂毛。\n"
-        "中土是没有这重骆驼的。玩家可以骑上它去指定的地方(ride)。\n");
+        set_name(HIW"白駱駝"NOR, ({ "bailuotuo" }));
+        set("long","一匹西域來的白駱駝，全身雪白，無一根雜毛。\n"
+        "中土是沒有這重駱駝的。玩家可以騎上它去指定的地方(ride)。\n");
         set("race", "家畜");
         set("ridable",1);
         set("age", 5);
@@ -24,15 +24,15 @@ void create()
         set("combat_exp",50000);
         set("attitude", "peaceful");
 
-        set("limbs", ({ "头部", "腹部", "尾巴","后腿","前腿" }) );
+        set("limbs", ({ "頭部", "腹部", "尾巴","後腿","前腿" }) );
         set("verbs", ({ "bite","hoof" }) );
         set_temp("apply/attack", 50);
         set_temp("apply/armor", 15);
         set_temp("apply/damage", 25);
         set("chat_chance", 3);
         set("chat_msg", ({
-                HIW"白骆驼"NOR"挣了挣辔头，翻了翻白眼没理你。\n",
-                HIW"白骆驼"NOR"站起来嚼了口干草，然后又屈腿蹲了下来。\n",
+                HIW"白駱駝"NOR"掙了掙轡頭，翻了翻白眼沒理你。\n",
+                HIW"白駱駝"NOR"站起來嚼了口乾草，然後又屈腿蹲了下來。\n",
         }) );
 
         setup();

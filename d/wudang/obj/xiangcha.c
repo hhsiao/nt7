@@ -10,7 +10,7 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一杯热茶，悠悠地冒着香气～～～\n");
+                set("long", "一杯熱茶，悠悠地冒著香氣～～～\n");
                 set("unit", "杯");
                 set("value", 1);
                 set("remaining", 2);
@@ -28,7 +28,7 @@ int do_effect(object me)
         recover = 5;
 
         if( query("water", me) >= me->max_water_capacity() )
-                return notify_fail("你已经喝太多了，再也灌不下一滴水了。\n");
+                return notify_fail("你已經喝太多了，再也灌不下一滴水了。\n");
 
         set("value", 0);
         addn("water", query("drink_supply"), me);
@@ -41,12 +41,12 @@ int do_effect(object me)
         addn("remaining", -1);
         if (query("remaining"))
         {
-                message_vision("$N端起杯香茶，有滋有味地品了几口。\n"+
-                               "一股香气直入心脾，$N觉得精神好多了。\n", me);
+                message_vision("$N端起杯香茶，有滋有味地品了幾口。\n"+
+                               "一股香氣直入心脾，$N覺得精神好多了。\n", me);
         } else 
         { 
-                message_vision("$N端起雕花小杯，把剩下的香茶一饮而尽。\n" +
-                               "一股香气直入心脾，$N觉得精神好多了。\n", me);
+                message_vision("$N端起雕花小杯，把剩下的香茶一飲而盡。\n" +
+                               "一股香氣直入心脾，$N覺得精神好多了。\n", me);
                 destruct(this_object());
         }
         return 1;

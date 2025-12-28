@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("麒麟兽[2;37;0m[2;37;0m", ({"qilinshou"}));        
+        set_name("麒麟獸[2;37;0m[2;37;0m", ({"qilinshou"}));        
         set("gender", "男性");                
-        set("long", "攻击神兽[2;37;0m
-它是胡家刀的魔幻兽。
+        set("long", "攻擊神獸[2;37;0m
+它是胡家刀的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

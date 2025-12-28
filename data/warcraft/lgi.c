@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("老狗诶丝[2;37;0m[2;37;0m", ({"lgis"}));        
+        set_name("老狗誒絲[2;37;0m[2;37;0m", ({"lgis"}));        
         set("gender", "男性");                
         set("long", "哈哈[2;37;0m
-它是老狗玖的魔幻兽。
+它是老狗玖的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

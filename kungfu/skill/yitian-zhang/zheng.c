@@ -3,7 +3,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return HIY "谁与争锋" NOR; }
+string name() { return HIY "誰與爭鋒" NOR; }
 
 inherit F_SSERVER;
 
@@ -17,28 +17,28 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( objectp(query_temp("weapon", me)) )
-                return notify_fail("你必须空手才能使用" + name() + "。\n");
+                return notify_fail("你必須空手才能使用" + name() + "。\n");
 
         if ((lvl = (int)me->query_skill("yitian-zhang", 1)) < 120)
-                return notify_fail("你的倚天屠龙掌不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你的倚天屠龍掌不夠嫻熟，難以施展" + name() + "。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你现在真气太弱，难以施展" + name() + "。\n");
+                return notify_fail("你現在真氣太弱，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("strike") != "yitian-zhang")
-                return notify_fail("你没有激发倚天屠龙掌，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發倚天屠龍掌，難以施展" + name() + "。\n");
 
         if (me->query_skill_prepared("strike") != "yitian-zhang")
-                return notify_fail("你没有准备使用倚天屠龙掌，难以施展" + name() + "。\n");
+                return notify_fail("你沒有準備使用倚天屠龍掌，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIY "$N" HIY "神气贯通，将倚天屠龙掌二十四字一气呵成，双掌"
-              "携带着排山倒海之劲贯向$n" HIY "。\n\n" NOR;
+        msg = HIY "$N" HIY "神氣貫通，將倚天屠龍掌二十四字一氣呵成，雙掌"
+              "攜帶著排山倒海之勁貫向$n" HIY "。\n\n" NOR;
         addn("neili", -150, me);
 
         ap = attack_power(me, "strike");
@@ -46,14 +46,14 @@ int perform(object me, object target)
 
         if (ap / 2 + random(ap) > dp)
         {
-                msg += HIR "$n" HIR "顿时觉得呼吸不畅，全然被这"
-                       "股力道所制，只得拼命运动抵挡。\n" NOR;
+                msg += HIR "$n" HIR "頓時覺得呼吸不暢，全然被這"
+                       "股力道所制，只得拼命運動抵擋。\n" NOR;
                 count = ap / 10;
                 addn_temp("apply/attack", count, me);
         } else
         {
-                msg += HIC "$n" HIC "深吸一口气，凝神抵挡，犹如轻舟立"
-                       "于惊涛骇浪之中，左右颠簸，却是不倒。\n" NOR;
+                msg += HIC "$n" HIC "深吸一口氣，凝神抵擋，猶如輕舟立"
+                       "於驚濤駭浪之中，左右顛簸，卻是不倒。\n" NOR;
                 count = 0;
         }
         message_combatd(msg, me, target);

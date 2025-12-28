@@ -1,4 +1,4 @@
-// linglong.c 玉玲珑
+// linglong.c 玉玲瓏
 
 #include <ansi.h>
 #include <combat.h>
@@ -19,24 +19,24 @@ int perform(object me, object target)
         }
         
         if (! target || ! me->is_fighting(target))
-                return notify_fail("「玉玲珑」只能对战斗中的对手使用。\n");
+                return notify_fail("「玉玲瓏」只能對戰鬥中的對手使用。\n");
  
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "sword" )
-                return notify_fail("运用「玉玲珑」手中必须有剑！\n");
+                return notify_fail("運用「玉玲瓏」手中必須有劍！\n");
 
         if ((int)me->query_skill("liudaolunhui-sword", 1) < 200)
-                return notify_fail("你的六道轮回剑法不够娴熟，不会使用「玉玲珑」。\n");
+                return notify_fail("你的六道輪迴劍法不夠嫻熟，不會使用「玉玲瓏」。\n");
                                 
         if ((int)me->query_skill("force") < 300)
-                return notify_fail("你的内功修为不够高。\n");
+                return notify_fail("你的內功修為不夠高。\n");
                         
         if( query("neili", me)<800 )
-                return notify_fail("你现在内力太弱，不能使用「玉玲珑」。\n");
+                return notify_fail("你現在內力太弱，不能使用「玉玲瓏」。\n");
                         
-        msg = HIW "\n$N" HIW "身影慢慢的浮现在$n" HIW "面前，只见$N" HIW "洒出无数晶莹剔透的"
-              "玉玲珑围绕在$n" HIW "周围。\n刀光剑影的世界霎时间沉寂在这柔和的雪光之中，"
-              "好一记温柔缠绵的玉玲珑\n\n" HIM "纵情山水间，挥洒天地情!\n\n" NOR;
+        msg = HIW "\n$N" HIW "身影慢慢的浮現在$n" HIW "面前，只見$N" HIW "灑出無數晶瑩剔透的"
+              "玉玲瓏圍繞在$n" HIW "周圍。\n刀光劍影的世界霎時間沉寂在這柔和的雪光之中，"
+              "好一記溫柔纏綿的玉玲瓏\n\n" HIM "縱情山水間，揮灑天地情!\n\n" NOR;
 
         ap = me->query_skill("sword") + me->query_skill("force");
         ap+=query("jiali", me);
@@ -56,12 +56,12 @@ int perform(object me, object target)
         {
                 addn("neili", -damage/2, me);
 
-                msg += HIW "$n" HIW "顿时沉寂在这梦一般的景象之中，如痴如醉中被雪玲珑击中了!\n"
-                       "$n" HIW "完全陷入玉玲珑的威力之中无法自拔。\n看着剑光从前心穿过" NOR;
+                msg += HIW "$n" HIW "頓時沉寂在這夢一般的景象之中，如痴如醉中被雪玲瓏擊中了!\n"
+                       "$n" HIW "完全陷入玉玲瓏的威力之中無法自拔。\n看著劍光從前心穿過" NOR;
                 
                 if( objectp(weapon2=query_temp("weapon", target)) )
                 {
-                        msg += HIW "，手中" + weapon2->name() + HIW "当啷一声掉在地上。\n" NOR;
+                        msg += HIW "，手中" + weapon2->name() + HIW "噹啷一聲掉在地上。\n" NOR;
                         weapon2->move(environment(target));
                 }
                 else
@@ -77,7 +77,7 @@ int perform(object me, object target)
                
         } else 
         {
-                msg += HIY "可$n" HIY "并没有被这绚丽的雪景所吸引,依然屹立在雪花飞舞的幻景中！\n" NOR;
+                msg += HIY "可$n" HIY "並沒有被這絢麗的雪景所吸引,依然屹立在雪花飛舞的幻景中！\n" NOR;
 
                 addn("neili", -100, me);
                 me->start_busy(3);

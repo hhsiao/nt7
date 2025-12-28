@@ -3,12 +3,12 @@
 #include <ansi.h>;
 inherit NPC;
 
-#define QUESTDIR  "skybook/连城诀/"
-#define QUESTDIR1 "skybook/连城诀/复仇篇/"
-#define QUESTDIR2 "skybook/连城诀/解救丁典篇/"
-#define QUESTDIR3 "skybook/连城诀/雪谷激斗篇/"
-#define QUESTDIR4 "skybook/连城诀/宝藏篇/"
-#define QUESTDIR5 "skybook/连城诀/武功/"
+#define QUESTDIR  "skybook/連城訣/"
+#define QUESTDIR1 "skybook/連城訣/復仇篇/"
+#define QUESTDIR2 "skybook/連城訣/解救丁典篇/"
+#define QUESTDIR3 "skybook/連城訣/雪谷激鬥篇/"
+#define QUESTDIR4 "skybook/連城訣/寶藏篇/"
+#define QUESTDIR5 "skybook/連城訣/武功/"
 
 string ask_me();
 string ask_me2();
@@ -19,8 +19,8 @@ void do_kill(object ob);
 void create ()
 {
         object weapon;
-        set_name("狄云", ({"di yun","di"}));
-        set("long", "他长脸黝黑，颧骨微高，粗手大脚，象是湘西乡下常见的庄稼汉子。\n");
+        set_name("狄雲", ({"di yun","di"}));
+        set("long", "他長臉黝黑，顴骨微高，粗手大腳，象是湘西鄉下常見的莊稼漢子。\n");
         set("gender", "男性");
         set("age", 24);
         set("combat_exp", 20000000);
@@ -66,10 +66,10 @@ void create ()
                 
         set("inquiry", ([
                 "水笙" : (: ask_me :),
-                "剑谱":     (: ask_book :),
+                "劍譜":     (: ask_book :),
                 "丁典":     (: ask_book2 :),
-                "神照经":     (: ask_book2 :),
-                "万震山":     "万震山这个狗贼我非杀了他不可。\n",
+                "神照經":     (: ask_book2 :),
+                "萬震山":     "萬震山這個狗賊我非殺了他不可。\n",
         ]));
         
         set_temp("apply/attack", 120);
@@ -103,11 +103,11 @@ string ask_me()
         object ob;
         
         if (query("wucan_count") < 1)
-                return "水笙姑娘？她在雪域等着我？";
+                return "水笙姑娘？她在雪域等著我？";
 
         addn("wucan_count", -1);
         set_temp("marks/wucan", 1, this_player());
-        return "水笙姑娘？她在雪域等着我？她有什么东西捎给我么？";
+        return "水笙姑娘？她在雪域等著我？她有什麼東西捎給我麼？";
 }
 
 int accept_object(object who, object ob)
@@ -117,17 +117,17 @@ int accept_object(object who, object ob)
         
         if( (string)query("id", ob) == "wan zhenshan" ) 
         {
-                write(HIC "\n狄云说道：这位" + RANK_D->query_respect(who)+"，如此大恩大德，在下实不知何以为报。\n");
-                write(HIC "\n狄云大喜道：狗贼！想不到你也有今天！！。\n"NOR);
+                write(HIC "\n狄雲說道：這位" + RANK_D->query_respect(who)+"，如此大恩大德，在下實不知何以為報。\n");
+                write(HIC "\n狄雲大喜道：狗賊！想不到你也有今天！！。\n"NOR);
                 call_out("destroying", 1, this_object(), ob);
                 set_temp("marks/lianchenpu", 1, who);
                 return 1;
         }
         
         if( query("id", ob) != "dachang" )
-                return notify_fail("给我这东西有什么用？");
+                return notify_fail("給我這東西有什麼用？");
                 
-        message_vision("狄云笑着说道：“谢谢你！这位" + RANK_D->query_respect(ob) +"，辛苦你了。”\n", who);
+        message_vision("狄雲笑著說道：“謝謝你！這位" + RANK_D->query_respect(ob) +"，辛苦你了。”\n", who);
         if( !query_temp("marks/wucan", who) )
         {
                 return 1;
@@ -139,7 +139,7 @@ int accept_object(object who, object ob)
                 destruct( obj );
                 return 1;
         }
-        message_vision("狄云对$N说道：“这件乌蚕衣也不算是什么宝贝，聊表心意吧！”狄云从怀里掏出一团不起眼的东西，递到$N的手上。\n", who);
+        message_vision("狄雲對$N說道：“這件烏蠶衣也不算是什麼寶貝，聊表心意吧！”狄雲從懷裡掏出一團不起眼的東西，遞到$N的手上。\n", who);
         obj->move(this_player());
         return 1;
 }
@@ -157,7 +157,7 @@ void do_kill(object ob)
 
         if (interactive(ob))
         {
-                command("say 你这恶贼竟敢打我剑谱的主意，给我纳命来！\n");
+                command("say 你這惡賊竟敢打我劍譜的主意，給我納命來！\n");
                 me->set_leader(ob);
                 remove_call_out("kill_ob");
                 call_out("kill_ob", 1, ob);
@@ -170,22 +170,22 @@ string ask_book()
         object ob, me;
         
         me = this_player();
-        if( !query_temp("marks/lianchenpu",me) ) return "你说什么? \n";
+        if( !query_temp("marks/lianchenpu",me) ) return "你說什麼? \n";
         
         if( (int)query("shen", me)<100000 )
-                return "剑谱落入宵小之手，难免是万震山第二。\n";
+                return "劍譜落入宵小之手，難免是萬震山第二。\n";
 
         if( query("book_count") > 0 )
         {               
-                write(HIC "狄云说着转身从万震山尸身上搜出一本破旧书本，递了给你。\n");
+                write(HIC "狄雲說著轉身從萬震山屍身上搜出一本破舊書本，遞了給你。\n");
 
                 add("book_count", -1);
                 ob = new ("/clone/book/lian_book");
                 ob->move(this_player());
-                command("rumor "+query("name",me)+"拿到连城剑谱啦。\n");
-                return "这本连城剑谱被这狗贼霸占多时了，现在就赠与你吧。\n";
+                command("rumor "+query("name",me)+"拿到連城劍譜啦。\n");
+                return "這本連城劍譜被這狗賊霸佔多時了，現在就贈與你吧。\n";
         }
-        else return "你来晚了，现在连城剑谱已不在此处。\n";
+        else return "你來晚了，現在連城劍譜已不在此處。\n";
 
 }
 
@@ -197,43 +197,43 @@ string ask_book2()
         me = this_player();
         
         if( !query(QUESTDIR+"active", me) )
-                return "你说什么? \n";
+                return "你說什麼? \n";
         
         if( !query_temp("marks/lianchenpu", me) ) 
-                return "请先帮我把万震山这恶人抓来吧！ \n";
+                return "請先幫我把萬震山這惡人抓來吧！ \n";
                 
         if( !query_temp("tssword", me) ) 
-                return "你帮我找到唐诗剑谱了吗? \n";
+                return "你幫我找到唐詩劍譜了嗎? \n";
         
         if( ((int)query("combat_exp", me)<=1000000) )
         {
-                message_vision("$N对$n说道： 你的武功太差了，等武功好点再来吧！\n",this_object(),me);
+                message_vision("$N對$n說道： 你的武功太差了，等武功好點再來吧！\n",this_object(),me);
                 return " 快去吧。\n";   
         }
         
         if( ((int)query(QUESTDIR2+"/解救丁典", me)>=1 ))
         {
-                message_vision("$N对$n说道： 我不是已经让你去救丁大哥过了吗? \n",this_object(),me);
+                message_vision("$N對$n說道： 我不是已經讓你去救丁大哥過了嗎? \n",this_object(),me);
                 return " 快去吧。\n";   
         }
         
         if( (int)query("shen", me)<100000 )
-                return "你这恶人，有什么资格去救丁大哥?\n";
+                return "你這惡人，有什麼資格去救丁大哥?\n";
 
         command("bow " + query("id", me));
-        message_vision("$N对$n说道： 多谢帮我手刃仇人。\n",this_object(),me);
-        message_vision("$N对$n说道： 我大哥丁典被关在江凌知府中，请帮我去看看他吧。\n",this_object(),me);
+        message_vision("$N對$n說道： 多謝幫我手刃仇人。\n",this_object(),me);
+        message_vision("$N對$n說道： 我大哥丁典被關在江凌知府中，請幫我去看看他吧。\n",this_object(),me);
 
         set(QUESTDIR2+"/解救丁典", 1, me);
-        SKYBOOK_D->check_skybook(me, "连城诀");
+        SKYBOOK_D->check_skybook(me, "連城訣");
         
         i = 200+random(800);
         
         me->add("combat_exp",i+9880);
         me->add("potential",i*12);
 
-        tell_object (me,"你赢得了"+chinese_number(i+9880)+"点经验"+
-                   chinese_number(i*12)+"点潜能！\n");
+        tell_object (me,"你贏得了"+chinese_number(i+9880)+"點經驗"+
+                   chinese_number(i*12)+"點潛能！\n");
 
 }
 

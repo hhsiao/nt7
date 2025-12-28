@@ -1,5 +1,5 @@
 // Code of ShenZhou
-// lt_snake.c 两头蛇 ( ??? )
+// lt_snake.c 兩頭蛇 ( ??? )
 // by maco
 
 #include <ansi.h>
@@ -11,9 +11,9 @@ int auto_perform_double();
 void create()
 {
         int poison = 10;
-        set_name("两头蛇", ({ "liangtou she", "she", "snake" }) );
+        set_name("兩頭蛇", ({ "liangtou she", "she", "snake" }) );
         set("age", 100);
-        set("long", "这条蛇花纹斑斓，颈子两边分岔，竟然有两个头，极是狰狞。\n据说看到两头蛇的人，一定会死。\n");
+        set("long", "這條蛇花紋斑斕，頸子兩邊分岔，竟然有兩個頭，極是猙獰。\n據說看到兩頭蛇的人，一定會死。\n");
         set("attitude", "aggressive");
 
         set_weight(poison*600 + 9000);
@@ -26,7 +26,7 @@ void create()
         set("max_qi", 9000);
         set("max_jingli", 9000);
 
-        set("limbs", ({ "左颈", "右颈", "身体", "七寸", "尾巴" }) );
+        set("limbs", ({ "左頸", "右頸", "身體", "七寸", "尾巴" }) );
 
         set("combat_exp", 1200000);
 

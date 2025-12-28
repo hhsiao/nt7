@@ -4,12 +4,12 @@
 
 void setup()
 {
-        set_name("[34m魔幻兽[2;37;0m[2;37;0m", ({"feee"}));        
+        set_name("[34m魔幻獸[2;37;0m[2;37;0m", ({"feee"}));        
         set("gender", "男性");                
-        set("long", "魔幻兽[2;37;0m
-它是一般角色的魔幻兽。
+        set("long", "魔幻獸[2;37;0m
+它是一般角色的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "fee");
         set("owner_name", "一般角色");

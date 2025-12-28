@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("瑞兽麒麟王[2;37;0m[2;37;0m", ({"nixingqilin"}));        
+        set_name("瑞獸麒麟王[2;37;0m[2;37;0m", ({"nixingqilin"}));        
         set("gender", "男性");                
-        set("long", "瑞兽麒麟王[2;37;0m
-它是任性的魔幻兽。
+        set("long", "瑞獸麒麟王[2;37;0m
+它是任性的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

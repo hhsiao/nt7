@@ -1,19 +1,19 @@
 // Written by Lonely@nitan.org
-// xiaofeng.c 萧峰(乔峰)
+// xiaofeng.c 蕭峰(喬峰)
 
 #include <ansi.h>
 inherit NPC;
 
 string *quest_msg = ({
-        "萧峰见到你说道：我听说你的大名已久，今日一见当真是名不虚传！\n",
-        "段老伯如此信任于我，我却没有保护好阿朱，让她受了重伤。\n",
-        "现在阿朱的伤势只有薛神医才能医治，天可怜见，薛神医正好就在这聚贤庄上。\n",
-        "萧峰和你一见如故，无所不言，大有相见恨晚之意。\n",
-        "萧峰接着说道：我若悄悄潜入聚贤庄，将薛神医掳走，治疗阿朱之伤，当然是最稳妥的办法。\n",
-        "但乔峰是顶天立地的汉子，其能做这种偷偷摸摸之事。\n",
-        "我想先让聚贤庄上的人知道我要来，然后堂堂正正的带着阿朱进入聚贤庄，求薛神医医治。\n",
-        "那时候即使乔峰这条性命不在，阿朱也必然能得到薛神医的治疗。\n",
-        "鲍千灵、祁六、向望海三人现在就恰好在聚贤庄，帮我击败这三人，他们明天应该就会把我来到的消息告诉游氏兄弟和薛神医。\n"
+        "蕭峰見到你說道：我聽說你的大名已久，今日一見當真是名不虛傳！\n",
+        "段老伯如此信任於我，我卻沒有保護好阿朱，讓她受了重傷。\n",
+        "現在阿朱的傷勢只有薛神醫才能醫治，天可憐見，薛神醫正好就在這聚賢莊上。\n",
+        "蕭峰和你一見如故，無所不言，大有相見恨晚之意。\n",
+        "蕭峰接著說道：我若悄悄潛入聚賢莊，將薛神醫擄走，治療阿朱之傷，當然是最穩妥的辦法。\n",
+        "但喬峰是頂天立地的漢子，其能做這種偷偷摸摸之事。\n",
+        "我想先讓聚賢莊上的人知道我要來，然後堂堂正正的帶著阿朱進入聚賢莊，求薛神醫醫治。\n",
+        "那時候即使喬峰這條性命不在，阿朱也必然能得到薛神醫的治療。\n",
+        "鮑千靈、祁六、向望海三人現在就恰好在聚賢莊，幫我擊敗這三人，他們明天應該就會把我來到的消息告訴遊氏兄弟和薛神醫。\n"
 });
 
 int do_report(string arg);
@@ -21,16 +21,16 @@ void quest_stage(object ob, int stage);
 
 void create()
 {
-        set_name("萧峰", ({"xiao feng", "xiao", "feng"}));
+        set_name("蕭峰", ({"xiao feng", "xiao", "feng"}));
         set("gender", "男性");
-        set("nickname",HIB"铁掌降龙"NOR);
+        set("nickname",HIB"鐵掌降龍"NOR);
         set("age", 28);
         set("long",
-                "他就是丐帮前任帮主，因被发现是契丹人而众叛亲离。\n"
-                "在江湖上与燕子坞的慕荣复并称为「北乔峰，南慕荣」。\n"
-                "他身穿一件普通的粗布褂子，腰间用一条麻绳随便一系。\n"
-                "他身高六尺有余，体格十分魁梧，长有一张线条粗旷、十\n"
-                "分男性化的脸庞，双目如电，炯炯有神。\n");
+                "他就是丐幫前任幫主，因被發現是契丹人而眾叛親離。\n"
+                "在江湖上與燕子塢的慕榮復並稱為「北喬峰，南慕榮」。\n"
+                "他身穿一件普通的粗布褂子，腰間用一條麻繩隨便一系。\n"
+                "他身高六尺有餘，體格十分魁梧，長有一張線條粗曠、十\n"
+                "分男性化的臉龐，雙目如電，炯炯有神。\n");
         set("attitude", "peaceful");
 
         set("str", 45);
@@ -40,7 +40,7 @@ void create()
         set("dex", 30);
         set("chat_chance", 1);
         set("chat_msg", ({
-                "萧峰叹了口气道：“唉……想不到我萧峰大好男儿，居然保护不了一个阿朱！\n",
+                "蕭峰嘆了口氣道：“唉……想不到我蕭峰大好男兒，居然保護不了一個阿朱！\n",
         }));
 
         set("qi", 4000);
@@ -54,15 +54,15 @@ void create()
         set("combat_exp", 180000);
         set("shen", 20000);
 
-        set_skill("force", 120);             // 基本内功
-        set_skill("huntian-qigong", 120);    // 混天气功
-        set_skill("unarmed", 120);           // 基本拳脚
-        set_skill("xianglong-zhang", 120);   // 降龙十八掌
-        set_skill("dodge", 120);             // 基本躲闪
-        set_skill("xiaoyaoyou", 120);        // 逍遥游
+        set_skill("force", 120);             // 基本內功
+        set_skill("huntian-qigong", 120);    // 混天氣功
+        set_skill("unarmed", 120);           // 基本拳腳
+        set_skill("xianglong-zhang", 120);   // 降龍十八掌
+        set_skill("dodge", 120);             // 基本躲閃
+        set_skill("xiaoyaoyou", 120);        // 逍遙遊
         set_skill("parry", 120);             // 基本招架
-        set_skill("begging", 50);            // 叫化绝活
-        set_skill("checking", 50);           // 道听途说
+        set_skill("begging", 50);            // 叫化絕活
+        set_skill("checking", 50);           // 道聽途說
 
         map_skill("force", "huntian-qigong");
         map_skill("unarmed", "xianglong-zhang");
@@ -99,7 +99,7 @@ void greeting(object ob)
 {
         if( !ob || environment(ob) != environment() ) return;
 
-        say( "萧峰说道：你已经打败鲍千灵、祁六、向望海他们三个人了吗(report)？\n" );
+        say( "蕭峰說道：你已經打敗鮑千靈、祁六、向望海他們三個人了嗎(report)？\n" );
         add_action("do_report", "report");
 }
 
@@ -125,7 +125,7 @@ int do_report(string arg)
         if( (int)me->query_temp("juxianzhuang_step") != 10 )
                 return 0;
 
-        tell_object(me, HIW "萧峰说道：你的帮助，乔某感激不尽。那明天一早，我们就在洛阳城东桥相见！\n" NOR );
+        tell_object(me, HIW "蕭峰說道：你的幫助，喬某感激不盡。那明天一早，我們就在洛陽城東橋相見！\n" NOR );
         me->set_temp("juxianzhuang_step", 11);
         destruct(this_object());
         return 1;

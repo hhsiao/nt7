@@ -8,17 +8,17 @@ void create()
 {
         string msg;
 
-        set_name(HIY "炎黄Ⅱ中秋月饼" NOR, ({ "yh2 yuebing", "yh2", "yuebing" }) );
+        set_name(HIY "炎黃Ⅱ中秋月餅" NOR, ({ "yh2 yuebing", "yh2", "yuebing" }) );
         set_weight(1);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                msg = HIW "各位江湖豪杰：\n"
-                          "    感谢你们一直以来对炎黄的支持，在中秋佳节之期，本站\n"
-                          "为各位送上一份薄礼，希望大家以后再接再厉，将炎黄世界发\n"
-                          "扬光大！\n\n" NOR;
+                msg = HIW "各位江湖豪傑：\n"
+                          "    感謝你們一直以來對炎黃的支持，在中秋佳節之期，本站\n"
+                          "為各位送上一份薄禮，希望大家以後再接再厲，將炎黃世界發\n"
+                          "揚光大！\n\n" NOR;
                 set("long", msg);
-                set("unit", "块");
+                set("unit", "塊");
                 set("only_do_effect", 1);
         }
 }
@@ -34,7 +34,7 @@ int do_effect(object me)
 
         if(! objectp(present("yh2 yuebing", me)))return 0;
 
-               message_vision(HIY "$N" HIY "哈哈一笑，将整个炎黄Ⅱ中秋月饼一起吞了。\n" NOR, me);
+               message_vision(HIY "$N" HIY "哈哈一笑，將整個炎黃Ⅱ中秋月餅一起吞了。\n" NOR, me);
 
         
                 if (me->query("combat_exp") > 5000 || 1)
@@ -136,9 +136,9 @@ int do_effect(object me)
                 MEMBER_D->add_yhb(me->query("id"), 50000, "#####FORYHONLINEIS2003MADEBYRCWIZ#####");
 
         if (me->query("combat_exp") > 5000)
-                        message_vision(HIM "$N" HIM "获得了五十万点经验和一百万点潜能。\n" NOR, me);
+                        message_vision(HIM "$N" HIM "獲得了五十萬點經驗和一百萬點潛能。\n" NOR, me);
                 if (MEMBER_D->is_valib_member(me->query("id")))
-                        message_vision(HIY "$N" HIY "获得了五万炎黄币(yhb)！\n" NOR, me);
+                        message_vision(HIY "$N" HIY "獲得了五萬炎黃幣(yhb)！\n" NOR, me);
         
         destruct(this_object());
 

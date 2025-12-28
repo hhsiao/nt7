@@ -11,12 +11,12 @@ mixed ask_skill2();
 
 void create()
 {
-        set_name("达尔巴", ({ "da erba", "da", "erba" }));
+        set_name("達爾巴", ({ "da erba", "da", "erba" }));
         set("long", @LONG
-他是金轮法王座下的大弟子。深得法王的真传。
-身穿一件黄色袈裟，头带僧帽。
+他是金輪法王座下的大弟子。深得法王的真傳。
+身穿一件黃色袈裟，頭帶僧帽。
 LONG);
-        set("nickname", HIY "金刚佛" NOR);
+        set("nickname", HIY "金剛佛" NOR);
         set("gender", "男性");
         set("class", "bonze");
         set("age", 38);
@@ -76,8 +76,8 @@ LONG);
         create_family("密宗", 3, "活佛");
 
         set("inquiry", ([
-                "轰雷万钧" : (: ask_skill1 :),
-                "镇魂舞"   : (: ask_skill2 :),
+                "轟雷萬鈞" : (: ask_skill1 :),
+                "鎮魂舞"   : (: ask_skill2 :),
         ]));
 
         set("master_ob", 3);
@@ -95,35 +95,35 @@ void attempt_apprentice(object ob)
 
         if( query("gender", ob) != "男性" )
         {
-                command("say 修习密宗内功需要纯阳之体，你还是走吧。");
+                command("say 修習密宗內功需要純陽之體，你還是走吧。");
                 return;
         }
 
         if( query("class", ob) != "bonze" )
         {
-                command("say 我们雪山寺只收出家弟子，你还是请回吧。");
+                command("say 我們雪山寺只收出家弟子，你還是請回吧。");
                 return;
         }
 
         if( query("shen", ob)>-3000 )
         {
-                command("say 我从来不和正派人士打交道，你还是走吧。");
+                command("say 我從來不和正派人士打交道，你還是走吧。");
                 return;
         }
 
         if ((int)ob->query_skill("mizong-neigong", 1) < 50)
         {
-                command("say 你内功这么差，怎么修行高深的武技？");
+                command("say 你內功這麼差，怎麼修行高深的武技？");
                 return;
         }
 
         if ((int)ob->query_skill("lamaism", 1) < 30)
         {
-                command("say 嗯，你有空还是多修修密宗心法吧。");
+                command("say 嗯，你有空還是多修修密宗心法吧。");
                 return;
         }
 
-        command("say 这个…那你以后就跟着我练武吧！");
+        command("say 這個…那你以後就跟著我練武吧！");
         command("recruit "+query("id", ob));
 }
 
@@ -134,38 +134,38 @@ mixed ask_skill1()
         me = this_player();
 
         if( query("can_perform/dali-chu/hong", me) )
-                return "你又来干什么？自己下去多练。";
+                return "你又來幹什麼？自己下去多練。";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "我又不认识你，打听这个干什么？";
+                return "我又不認識你，打聽這個幹什麼？";
 
         if (me->query_skill("dali-chu", 1) < 1)
-                return "你连无上大力杵都没学，哪里来绝招？";
+                return "你連無上大力杵都沒學，哪裡來絕招？";
 
         if( query("family/gongji", me)<100 )
-                return "你为雪山寺效力不够，这招暂时还不能传你。";
+                return "你為雪山寺效力不夠，這招暫時還不能傳你。";
 
         if( query("shen", me)>-3000 )
-                return "你为人太过心软，这招暂时还不能传你。";
+                return "你為人太過心軟，這招暫時還不能傳你。";
 
         if (me->query_skill("force") < 120)
-                return "你的内功修为不足，还学不了这一招。";
+                return "你的內功修為不足，還學不了這一招。";
 
         if( query("max_neili", me)<800 )
-                return "你的内力修为不足，还是修炼高点再来吧。";
+                return "你的內力修為不足，還是修煉高點再來吧。";
 
         if (me->query_skill("dali-chu", 1) < 80)
-                return "等你把无上大力杵练熟了再来找我。";
+                return "等你把無上大力杵練熟了再來找我。";
 
-        message_sort(HIY "\n$n" HIY "对$N" HIY "点了点头，喝道：“瞧仔"
-                     "细了。”话音刚落，只见$n" HIY "高举手中的钢杵，在"
-                     "空中挥舞成盘，气势惊人！便在此时，那柄钢杵已携带"
-                     "着震天撞击之声猛然击落。直把$N" HIY "看得目瞪口呆"
+        message_sort(HIY "\n$n" HIY "對$N" HIY "點了點頭，喝道：“瞧仔"
+                     "細了。”話音剛落，只見$n" HIY "高舉手中的鋼杵，在"
+                     "空中揮舞成盤，氣勢驚人！便在此時，那柄鋼杵已攜帶"
+                     "著震天撞擊之聲猛然擊落。直把$N" HIY "看得目瞪口呆"
                      "。\n\n" NOR, me, this_object());
 
         command("nod");
-        command("say 看明白了就自己下去练吧。");
-        tell_object(me, HIC "你学会了「轰雷万钧」。\n" NOR);
+        command("say 看明白了就自己下去練吧。");
+        tell_object(me, HIC "你學會了「轟雷萬鈞」。\n" NOR);
 
         if (me->can_improve_skill("hammer"))
                 me->improve_skill("hammer", 1500000);
@@ -185,38 +185,38 @@ mixed ask_skill2()
         me = this_player();
 
         if( query("can_perform/xiangmo-chu/zhen", me) )
-                return "我不是让你自己下去练吗，怎么又来了？";
+                return "我不是讓你自己下去練嗎，怎麼又來了？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "我又不认识你，打听这个干什么？";
+                return "我又不認識你，打聽這個幹什麼？";
 
         if (me->query_skill("xiangmo-chu", 1) < 1)
-                return "你连金刚降魔杵都没学，哪里来绝招？";
+                return "你連金剛降魔杵都沒學，哪裡來絕招？";
 
         if( query("family/gongji", me)<200 )
-                return "你为雪山寺效力不够，这招暂时还不能传你。";
+                return "你為雪山寺效力不夠，這招暫時還不能傳你。";
 
         if( query("shen", me)>-6000 )
-                return "你为人太过心软，这招暂时还不能传你。";
+                return "你為人太過心軟，這招暫時還不能傳你。";
 
         if (me->query_skill("force") < 150)
-                return "你的内功修为不足，还学不了这一招。";
+                return "你的內功修為不足，還學不了這一招。";
 
         if( query("max_neili", me)<1500 )
-                return "你的内力修为不足，还是修炼高点再来吧。";
+                return "你的內力修為不足，還是修煉高點再來吧。";
 
         if (me->query_skill("xiangmo-chu", 1) < 100)
-                return "等你把金刚降魔杵练熟了再来找我。";
+                return "等你把金剛降魔杵練熟了再來找我。";
 
-        message_sort(HIY "\n$n" HIY "对$N" HIY "点了点头，喝道：“看清"
-                     "楚了。”话音刚落，只见$n" HIY "高举手中的钢杵，在"
-                     "空中挥舞成盘，宝相庄严，气度万千。霎时间幻出重重"
-                     "杵影，朝四面八方砸下。招式精奇，令人叹为观止。\n"
+        message_sort(HIY "\n$n" HIY "對$N" HIY "點了點頭，喝道：“看清"
+                     "楚了。”話音剛落，只見$n" HIY "高舉手中的鋼杵，在"
+                     "空中揮舞成盤，寶相莊嚴，氣度萬千。霎時間幻出重重"
+                     "杵影，朝四面八方砸下。招式精奇，令人歎為觀止。\n"
                      "\n" NOR, me, this_object());
 
         command("nod");
-        command("say 这招看似复杂，其实并不难，你下去体会吧。");
-        tell_object(me, HIC "你学会了「镇魂舞」。\n" NOR);
+        command("say 這招看似複雜，其實並不難，你下去體會吧。");
+        tell_object(me, HIC "你學會了「鎮魂舞」。\n" NOR);
 
         if (me->can_improve_skill("hammer"))
                 me->improve_skill("hammer", 1500000);

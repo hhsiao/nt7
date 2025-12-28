@@ -17,28 +17,28 @@ int help();
 mapping party=([
         "duan":         "段氏皇族",
         "emei":         "峨嵋派",
-        "gaibang":      "丐帮",
+        "gaibang":      "丐幫",
         "gumu":         "古墓派",
-        "huashan":      "华山派",
-        "hu":           "关外胡家",
-        "kunlun":       "昆仑派",
+        "huashan":      "華山派",
+        "hu":           "關外胡家",
+        "kunlun":       "崑崙派",
         "mingjiao":     "明教",
         "murong":       "慕容世家",
         "quanzhen":     "全真教",
         "shaolin":      "少林派",
-        "shenlong":     "神龙教",
+        "shenlong":     "神龍教",
         "songshan":     "嵩山派",
-        "taohua":       "桃花岛",
-        "tang":         "唐门世家",
-        "tianlong":     "天龙寺",
-        "tiezhang":     "铁掌帮",
-        "wudang":       "武当派",
+        "taohua":       "桃花島",
+        "tang":         "唐門世家",
+        "tianlong":     "天龍寺",
+        "tiezhang":     "鐵掌幫",
+        "wudang":       "武當派",
         "xingxiu":      "星宿派",
-        "xueshan":      "大轮寺",
-        "lingjiu":      "灵鹫宫",
-        "xiaoyao":      "逍遥派",
+        "xueshan":      "大輪寺",
+        "lingjiu":      "靈鷲宮",
+        "xiaoyao":      "逍遙派",
         "riyue":        "日月神教",
-        "ouyang":       "欧阳世家",
+        "ouyang":       "歐陽世家",
         "wudu":       "五毒教",
         "mojiao":       "魔教",
 ]);
@@ -74,14 +74,14 @@ mixed main(object me, string arg, int remote)
         cur_time = time();
         if( !wizardp(me) && cur_time-query_temp("last_who", me)<5 )
         {
-              return notify_fail("系统气喘嘘地叹道：慢慢来 ....\n");
+              return notify_fail("系統氣喘噓地嘆道：慢慢來 ....\n");
         }
         set_temp("last_who", cur_time, me);
 
 
         if (arg)
         {
-                if (arg == "我爱笑傲江湖")
+                if (arg == "我愛笑傲江湖")
                 {
                         str = "";
                         ob = users();
@@ -94,7 +94,7 @@ mixed main(object me, string arg, int remote)
                                         continue;
                                 if( !environment(ob[i]) && !query_temp("waiting_enter", ob[i]) )
                                 {
-                                        destruct(ob[i]);//有点危险
+                                        destruct(ob[i]);//有點危險
                                         continue;
                                 }
                                 str += ADD2(ob[i]);
@@ -115,7 +115,7 @@ mixed main(object me, string arg, int remote)
                                 case "-p": opt_party = 1;       break;
                                 case "-fam":
                                            if( !query("family/family_name", me) )
-                                                return notify_fail(me->name(1) + "现在还没有加入任何一个门派。\n");
+                                                return notify_fail(me->name(1) + "現在還沒有加入任何一個門派。\n");
                                            opt_family = me->query_family();    break;
                                 case "-f": opt_female = 1;      break;
                                 case "-m": opt_male = 1;        break;
@@ -136,7 +136,7 @@ mixed main(object me, string arg, int remote)
                                         {
                                                 RWHO_Q->send_rwho_q(option[i][1..sizeof(option[i])],
                                                                     me, opt_long);
-                                                write("网路讯息已送出，请稍候。\n");
+                                                write("網路訊息已送出，請稍候。\n");
                                                 return 1;
                                         }
 
@@ -161,9 +161,9 @@ mixed main(object me, string arg, int remote)
                                         if (! ob1 || ! me->visible(ob1))
                                                 ob1 = find_living(option[i]);
                                         if (! ob1 || ! me->visible(ob1))
-                                                return notify_fail("没有这个玩家或参数错误。\n指令格式 : who [-h] [-l] [-w] [-p] [-fam] [-m] [-f] [<ID>]\n");
+                                                return notify_fail("沒有這個玩家或參數錯誤。\n指令格式 : who [-h] [-l] [-w] [-p] [-fam] [-m] [-f] [<ID>]\n");
                                         if( !query("family/family_name", ob1) )
-                                                return notify_fail(ob1->name(1) + "现在还没有加入任何一个门派。\n");
+                                                return notify_fail(ob1->name(1) + "現在還沒有加入任何一個門派。\n");
 
                                         me = ob1;
                                         opt_family = me->query_family();
@@ -172,14 +172,14 @@ mixed main(object me, string arg, int remote)
 
         if (opt_male && opt_female)
         {
-                write("参数 -f 和 -m 不能同时使用。\n");
+                write("參數 -f 和 -m 不能同時使用。\n");
                 return 1;
         }
 
         if (opt_long && me && (vob == this_player()) && ! wizardp(me) && ! remote)
         {
                 if( query("jing", me)<5 )
-                        return notify_fail("你的精神太差了，没有办法得知其他玩家的详细资料。\n");
+                        return notify_fail("你的精神太差了，沒有辦法得知其他玩家的詳細資料。\n");
                 me->receive_damage("jing", 5);
         }
 
@@ -191,7 +191,7 @@ mixed main(object me, string arg, int remote)
         if (opt_party)
         {
                 if( !query("bunch/bunch_name", me) )
-                        return notify_fail("你现在还没有加入任何一个帮派。\n");
+                        return notify_fail("你現在還沒有加入任何一個幫派。\n");
                 ob=filter_array(ob,(:query("bunch/bunch_name", $1) ==
                         query("bunch/bunch_name", $2):),me);
         }
@@ -201,7 +201,7 @@ mixed main(object me, string arg, int remote)
                 ob = filter_array(ob,(:query("family/family_name", $1) == $(opt_family) :) );
                 /*
                 if( !query("family/family_name", me) )
-                        return notify_fail("你现在还没有加入任何一个门派。\n");
+                        return notify_fail("你現在還沒有加入任何一個門派。\n");
                 ob = filter_array(ob,(:query("family/family_name", $1) ==
                         query("family/family_name", $2):),me);
                 */
@@ -233,13 +233,13 @@ mixed main(object me, string arg, int remote)
 
         if (opt_closed)
         {
-                if( !wizardp(me) ) return notify_fail("没有这个玩家或参数错误。\n指令格式 : who [-h] [-l] [-w] [-p] [-fam] [-m] [-f] [<ID>]\n");
+                if( !wizardp(me) ) return notify_fail("沒有這個玩家或參數錯誤。\n指令格式 : who [-h] [-l] [-w] [-p] [-fam] [-m] [-f] [<ID>]\n");
                 ob=filter_array(ob,(:!interactive($1) && query("doing", $1):));
         }
 
         if (opt_interactive)
         {
-                if( !wizardp(me) ) return notify_fail("没有这个玩家或参数错误。\n指令格式 : who [-h] [-l] [-w] [-p] [-fam] [-m] [-f] [<ID>]\n");
+                if( !wizardp(me) ) return notify_fail("沒有這個玩家或參數錯誤。\n指令格式 : who [-h] [-l] [-w] [-p] [-fam] [-m] [-f] [<ID>]\n");
                 ob = filter_array(ob, (: interactive($1) :));
         }
 
@@ -248,7 +248,7 @@ mixed main(object me, string arg, int remote)
 
         if (! sizeof(ob))
         {
-                str += "泥潭中现在没有符合条件的玩家。\n";
+                str += "泥潭中現在沒有符合條件的玩家。\n";
                 if (remote) return str;
                 write(str);
                 return 1;
@@ -259,7 +259,7 @@ mixed main(object me, string arg, int remote)
         {
                 if( query("bunch/bunch_name", me) )
                         str += HIR + " (" + query("bunch/bunch_name", me) + ") " + NOR WHT;
-                else    str += HIC + " (无帮派) " + NOR WHT;
+                else    str += HIC + " (無幫派) " + NOR WHT;
         } else
         if (opt_family)
         {
@@ -267,7 +267,7 @@ mixed main(object me, string arg, int remote)
                 /*
                 if( query("family/family_name", me) )
                         str+=HIR+"("+query("family/family_name", me)+")"+NOR+WHT;
-                else    str += HIC + " (无门派) " + NOR WHT;
+                else    str += HIC + " (無門派) " + NOR WHT;
                 */
         }
 
@@ -277,22 +277,22 @@ mixed main(object me, string arg, int remote)
                 who_name = "(" + who_name + ")";
 
         if (opt_closed)
-                str += "修炼中的";
+                str += "修煉中的";
 
         if (opt_reborn)
-                str += "转世重生";
+                str += "轉世重生";
 
         if (opt_wiz)
                 str += (opt_female ? "女性" : opt_male ? "男性" : "") +
-                       "巫师" + who_name + "有：";
+                       "巫師" + who_name + "有：";
         else
                 if (opt_long) str += (opt_female ? "女性" : opt_male ? "男性" : "") +
-                                     (opt_master ? "大宗师" : "玩家") + who_name + "有：";
+                                     (opt_master ? "大宗師" : "玩家") + who_name + "有：";
                 else str += (opt_female ? "女性" : opt_male ? "男性" : "") +
-                            (opt_master ? "大宗师" : "玩家") + who_name + "有：";
+                            (opt_master ? "大宗師" : "玩家") + who_name + "有：";
 
         if (opt_employ)
-                str += "<在线的新手导师有>:";
+                str += "<在線的新手導師有>:";
 
         if (opt_number)
         {
@@ -325,12 +325,12 @@ mixed main(object me, string arg, int remote)
                 list = virep_ob;
                 ppl_cnt = 0;
 
-                str += NOR + HIC "≡" + HIY " 新手导师 " + HIC + "≡\n" NOR;
+                str += NOR + HIC "≡" + HIY " 新手導師 " + HIC + "≡\n" NOR;
                 ppl_cnt++;
                 i = sizeof(list);
                 while (i--)
                 {
-                        if (query("viremploy/job", list[i]) == "新手导师")
+                        if (query("viremploy/job", list[i]) == "新手導師")
                         {
                                 ppl_cnt++;
                                 str = sprintf("%s%12s%s%s\n",
@@ -341,20 +341,20 @@ mixed main(object me, string arg, int remote)
                          }
                 }
 
-                if ((query("viremploy/job", me) == "新手导师" || wizardp(me)) && sizeof(virlist = DB_D->query_data("virlist/teacher")))
+                if ((query("viremploy/job", me) == "新手導師" || wizardp(me)) && sizeof(virlist = DB_D->query_data("virlist/teacher")))
                 {
-                        str += NOR + HIC "\n≡"  + HIM "游戏中所有在职导师" + HIC + "≡\n" NOR;
+                        str += NOR + HIC "\n≡"  + HIM "遊戲中所有在職導師" + HIC + "≡\n" NOR;
                         for (i = 0; i < sizeof(virlist);i ++)
                         {
                                 if (find_player(virlist[i]))
                                 {
-                                        str += HIY + find_player(virlist[i])->name() + HIY + "(" + virlist[i] + ")--在线\n";
+                                        str += HIY + find_player(virlist[i])->name() + HIY + "(" + virlist[i] + ")--在線\n";
                                 }
                                 else
                                 {
                                         eob = UPDATE_D->global_find_player(virlist[i]);
                                         if( !objectp(eob) ) continue;
-                                        str += HIY + eob->name() + HIY + "(" + virlist[i] + ") --离线时间：" + NOR;
+                                        str += HIY + eob->name() + HIY + "(" + virlist[i] + ") --離線時間：" + NOR;
                                         str += HIY + sprintf("%d", (time() - query("last_on", eob)) / 86400) + "天\n" NOR;
                                         UPDATE_D->global_destruct_player(eob, 1);
 
@@ -364,12 +364,12 @@ mixed main(object me, string arg, int remote)
 
                 /*
                 ppl_cnt++;
-                str += NOR "\n" HIC "≡" + HIY " 游戏宣传 " + HIC + "≡\n\n" NOR;
+                str += NOR "\n" HIC "≡" + HIY " 遊戲宣傳 " + HIC + "≡\n\n" NOR;
                 ppl_cnt++;
                 i = sizeof(list);
                 while (i--)
                 {
-                        if (query("viremploy/job", list[i]) == "游戏宣传")
+                        if (query("viremploy/job", list[i]) == "遊戲宣傳")
                         {
                                 ppl_cnt++;
                                 str = sprintf("%s%12s%s%s\n",
@@ -476,14 +476,14 @@ mixed main(object me, string arg, int remote)
 
                         if (!new_cnt && wiz_level(list[i]) == 1) {
                                 if (count % 5) str += "\n";
-                                str += sprintf(HIY "%-13s" NOR, "新手导师：");
+                                str += sprintf(HIY "%-13s" NOR, "新手導師：");
                                 new_cnt = 1;
                                 count = 1;
                         }
 
                         if (!wiz_cnt && wiz_level(list[i]) > 1) {
                                 if (count % 5) str += "\n";
-                                str += sprintf(HIY "%-13s" NOR, "管理人员：");
+                                str += sprintf(HIY "%-13s" NOR, "管理人員：");
                                 wiz_cnt = 1;
                                 count = 1;
                         }
@@ -519,9 +519,9 @@ mixed main(object me, string arg, int remote)
         }
 
         str += HIC"≡"+HIY"---------------------------------------------------------------------------------"HIC"≡\n"NOR;
-        str = sprintf("%s共有 %s 位使用者连线中，系统负担：%s\n "
-                      HIG "*" NOR " 表示发呆中，" HIC "~" NOR " 表示聊天中，"
-                      HIR "#" NOR " 表示断线中，"HIY"@" NOR" 表示离线修炼中。\n",
+        str = sprintf("%s共有 %s 位使用者連線中，系統負擔：%s\n "
+                      HIG "*" NOR " 表示發呆中，" HIC "~" NOR " 表示聊天中，"
+                      HIR "#" NOR " 表示斷線中，"HIY"@" NOR" 表示離線修煉中。\n",
                       str, CHINESE_D->chinese_number(ppl_cnt),
                       query_load_average());
 
@@ -578,36 +578,36 @@ int help()
         write("
 指令格式 : who [-h] [-l] [-w] [-p] [-c] [-fam] [-f] [-m] [-s] [-S] [-z] [<ID>] [-n] [is <中文名字>]
 
-这个指令可以列出所有在线上的玩家及其等级。
+這個指令可以列出所有在線上的玩家及其等級。
 
--h   列出帮助屏幕。
--l   选项列出较长的讯息。
--p   只列出同帮派的玩家。
--fam 只列出同门派的玩家。
--w   只列出线上所有的巫师。
+-h   列出幫助屏幕。
+-l   選項列出較長的訊息。
+-p   只列出同幫派的玩家。
+-fam 只列出同門派的玩家。
+-w   只列出線上所有的巫師。
 -c   只列出正在聊天的玩家。
 -m   只列出江湖中的男性玩家。
 -f   只列出江湖中的女性玩家。
--u   只列出江湖中的大宗师们。
--!   只列出江湖中正在连线的玩家
--@   只列出江湖中正在离线修炼的玩家。
+-u   只列出江湖中的大宗師們。
+-!   只列出江湖中正在連線的玩家
+-@   只列出江湖中正在離線修煉的玩家。
 -s   按照ID字母升序排列所有的玩家
 -S   按照ID字母降序排列所有的玩家
--z   只列出江湖中的转世重生的玩家。
--v   只列出江湖中是新手导师的玩家。
--n   只列出当前符合查找条件的玩家的数目。
-<ID> 列出<ID>代表玩家所属门派的玩家。
-is   如果使用了这个选项，后面要跟随玩家的中文名字。
--英文代号 只列出该门派的玩家。
+-z   只列出江湖中的轉世重生的玩家。
+-v   只列出江湖中是新手導師的玩家。
+-n   只列出當前符合查找條件的玩家的數目。
+<ID> 列出<ID>代表玩家所屬門派的玩家。
+is   如果使用了這個選項，後面要跟隨玩家的中文名字。
+-英文代號 只列出該門派的玩家。
 
-"HIG"*"NOR" 表示"HIG"发呆"NOR"中，"HIC "~"NOR" 表示聊天中，"
-HIR"#"NOR" 表示"HIR"断线"NOR"中，"HIY"@"NOR" 表示"HIY"离线修炼"NOR"中。
+"HIG"*"NOR" 表示"HIG"發呆"NOR"中，"HIC "~"NOR" 表示聊天中，"
+HIR"#"NOR" 表示"HIR"斷線"NOR"中，"HIY"@"NOR" 表示"HIY"離線修煉"NOR"中。
 
 " );
         p = sort_array(keys(party), 1);
         i = sizeof(p);
         j = i;
-        write(sprintf("   %-12s%-12s    %-12s%-12s\n","英文代号","门派名","英文代号","门派名"));
+        write(sprintf("   %-12s%-12s    %-12s%-12s\n","英文代號","門派名","英文代號","門派名"));
         write("----------------------------------------------------------\n");
         for (i=0;i<j/2;i++)
         {
@@ -624,7 +624,7 @@ HIR"#"NOR" 表示"HIR"断线"NOR"中，"HIY"@"NOR" 表示"HIY"离线修炼"NOR"�
         write("----------------------------------------------------------\n");
         write(@HELP
 
-相关指令： finger
+相關指令： finger
 HELP);
         return 1;
 }

@@ -6,8 +6,8 @@ void setup()
 {
         set_name("[35m幻[2;37;0m[2;37;0m", ({"dijun"}));        
         set("gender", "男性");                
-        set("long", "呆头呆脑[2;37;0m
-它是千回的魔幻兽。
+        set("long", "呆頭呆腦[2;37;0m
+它是千回的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

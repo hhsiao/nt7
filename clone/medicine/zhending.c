@@ -3,12 +3,12 @@
 
 void create()
 {
-        set_name(YEL "固元镇定散" NOR, ({"zhending san", "san"}));
+        set_name(YEL "固元鎮定散" NOR, ({"zhending san", "san"}));
         set_weight(50);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", YEL "这是一包淡黄色的粉末，具有神奇的镇定效果。\n" NOR);
+                set("long", YEL "這是一包淡黃色的粉末，具有神奇的鎮定效果。\n" NOR);
                 set("base_unit", "包");
                 set("base_value", 5000);
                 set("base_weight", 60);
@@ -39,20 +39,20 @@ int do_effect(object me)
 
         if( time()-query_temp("last_eat/zhending", me)<10 )
         {
-                write("你刚服用过药，需药性发挥完效用以后才能继续服用。\n");
+                write("你剛服用過藥，需藥性發揮完效用以後才能繼續服用。\n");
                 return 1;
         }
 
         my = me->query_entire_dbase();
         if (my["eff_jing"] == my["max_jing"])
         {
-                write("你现在精神状态很好，无需服用" + name() + "。\n");
+                write("你現在精神狀態很好，無需服用" + name() + "。\n");
                 return 1;
         }
 
         set_temp("last_eat/zhending", time(), me);
 
-        message_vision(YEL "$N" YEL "一张嘴，吞下了" + name() +
+        message_vision(YEL "$N" YEL "一張嘴，吞下了" + name() +
                        YEL "，看上去精神好多了。\n" NOR, me);
 
         me->receive_curing("jing", 300);

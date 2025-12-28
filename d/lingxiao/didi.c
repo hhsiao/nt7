@@ -5,10 +5,10 @@ void create()
 {
         set("short", "地底");
         set("long", @LONG 
-这里按地势而言，早已深入地底，乃是大雪山的山腹之中了。
-四周土地潮湿，充满了一股浓浓的泥土味。墙上依然插着几支火
-把，照得四周亮堂堂的。一个腰悬利剑，神情警惕的剑士，正守
-在一扇巨大的石门(men)旁。
+這裡按地勢而言，早已深入地底，乃是大雪山的山腹之中了。
+四周土地潮溼，充滿了一股濃濃的泥土味。牆上依然插著幾支火
+把，照得四周亮堂堂的。一個腰懸利劍，神情警惕的劍士，正守
+在一扇巨大的石門(men)旁。
 LONG);
         set("no_clean_up", 0);
 
@@ -19,7 +19,7 @@ LONG);
                 __DIR__"npc/shi" : 1,
         ])); 
         set("item_desc", ([
-                    "men" : WHT "一扇厚厚的石门，怕有千斤之重。看样子很难推(push)开。\n" NOR
+                    "men" : WHT "一扇厚厚的石門，怕有千斤之重。看樣子很難推(push)開。\n" NOR
         ]) );
 
         setup(); 
@@ -34,17 +34,17 @@ int do_push(string arg)
 {
             object me = this_player();
 
-            message_vision(HIY "只见$N" HIY "气沉丹田，凝劲于腰，大喝一"
-                       "声，运劲向石门推去。\n" NOR, me);
+            message_vision(HIY "只見$N" HIY "氣沉丹田，凝勁於腰，大喝一"
+                       "聲，運勁向石門推去。\n" NOR, me);
 
             if( query("max_neili", me)<500 )
             {
-                       message_vision(HIR "可是$N" HIR "累了个半死，石门却"
-                               "纹丝不动。\n" NOR, me);
+                       message_vision(HIR "可是$N" HIR "累了個半死，石門卻"
+                               "紋絲不動。\n" NOR, me);
                        return 1;
             }
-            message_vision(HIC "顿时只听“喀喀喀”机关枢纽运做之声不绝，"
-                       "石门竟缓缓开了。\n" NOR, me);
+            message_vision(HIC "頓時只聽“喀喀喀”機關樞紐運做之聲不絕，"
+                       "石門竟緩緩開了。\n" NOR, me);
             set("exits/enter", __DIR__"dilao");
 
             remove_call_out("close");
@@ -60,7 +60,7 @@ void close_out()
 
 void close(object room)
 {
-            message("vision", HIW "只听里面有人大喝一声：“小王八蛋，你不进来，就给爷爷滚吧！”\n"
-                          "话音刚落，一阵劲风击到，石门被砰地一下关了。\n" NOR, room);
+            message("vision", HIW "只聽裡面有人大喝一聲：“小王八蛋，你不進來，就給爺爺滾吧！”\n"
+                          "話音剛落，一陣勁風擊到，石門被砰地一下關了。\n" NOR, room);
             delete("exits/enter", room);
 }

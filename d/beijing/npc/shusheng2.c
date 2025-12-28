@@ -6,7 +6,7 @@ void create()
         set("gender", "男性" );
         set("age", 28);
         set("long",
-        "一个邋遢的秀才，没什么学问却自问学识渊博。\n");
+        "一個邋遢的秀才，沒什麼學問卻自問學識淵博。\n");
         set("shen_type", 1);
         set("combat_exp", 10000);
        set("str", 10);

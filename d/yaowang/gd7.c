@@ -2,13 +2,13 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "过道");
+        set("short", "過道");
         set("long", @LONG
-这里是一条宽敞的过道，用青砖铺就的地面非常整洁，两旁
-是汉白玉的雕花栏杆，分外的华贵，每隔几步就有一个仆人打扮
-的青年侍立两旁，看起来都身具武功，绝非等闲之辈。置身于此，
-让人感觉到莫名的压力。西面不远是一间红砖房，门口还有四条
-大汉在把守。
+這裡是一條寬敞的過道，用青磚鋪就的地面非常整潔，兩旁
+是漢白玉的雕花欄杆，分外的華貴，每隔幾步就有一個僕人打扮
+的青年侍立兩旁，看起來都身具武功，絕非等閒之輩。置身於此，
+讓人感覺到莫名的壓力。西面不遠是一間紅磚房，門口還有四條
+大漢在把守。
 LONG
         );
         set("exits", ([ /* sizeof() == 2 */
@@ -24,8 +24,8 @@ int valid_leave(object ob,string dir)
 {
         if( !wizardp(ob)
         && (dir == "west")
-         && (query("family/family_name", ob) != "药王谷") )
-                return notify_fail("边上两个药童拦住了你的去路。\n");
+         && (query("family/family_name", ob) != "藥王谷") )
+                return notify_fail("邊上兩個藥童攔住了你的去路。\n");
 
         return ::valid_leave(ob,dir);
 }

@@ -1,6 +1,6 @@
 // This program is a part of NT MudLIB
 // redl 2014
-// 郑隐
+// 鄭隱
 
 #include <ansi.h>
 
@@ -11,9 +11,9 @@ void check_weapon();
 
 void create()
 {
-        set_name(HIC "郑隐" NOR, ({ "zheng yin", "yin", "boss" }) );
+        set_name(HIC "鄭隱" NOR, ({ "zheng yin", "yin", "boss" }) );
         set("title", HIR "血神子" NOR);
-        set("long", HIR "这是个英俊豪爽，风度翩翩的中年美男子。\n" NOR);
+        set("long", HIR "這是個英俊豪爽，風度翩翩的中年美男子。\n" NOR);
         set("gender", "男性");
         set("age", 37);
 
@@ -60,7 +60,7 @@ void create()
         set_skill("literate", 10000);
         set_skill("jingluo-xue", 5000);
 
-        set("no_nuoyi", 1); // 不被挪移影响
+        set("no_nuoyi", 1); // 不被挪移影響
         set("yuanshen", 1); 
 
         map_skill("parry", "shenzhaojing");
@@ -79,8 +79,8 @@ void create()
 
          set("chat_chance", 3);
          set("chat_msg", ({
-                (: command("say 墓园主人原本是我这里的一只小蝙蝠，也敢称血魔？") :),
-                (: command("say 小丁不堪重用，收集来的气血还不如在这摄取来的。") :),
+                (: command("say 墓園主人原本是我這裡的一隻小蝙蝠，也敢稱血魔？") :),
+                (: command("say 小丁不堪重用，收集來的氣血還不如在這攝取來的。") :),
          }));
 
         // yun perform
@@ -94,10 +94,10 @@ void create()
               (: exert_function, "recover" :),
         }));
 
-        set("my_life", 4); // 当气血低于10%的时候补满一次，设置该参数为0
+        set("my_life", 4); // 當氣血低於10%的時候補滿一次，設置該參數為0
 
         //set("auto_perform", 1);
-        set("end_time", 60);  // 必须战斗不少于60秒后死亡
+        set("end_time", 60);  // 必須戰鬥不少於60秒後死亡
         set("rewards", ([
                 "exp"   : 2500000,
                 "pot"   : 1000000,
@@ -141,12 +141,12 @@ void heart_beat()
                         this_object()->stop_busy();
                         command("halt");
                         command("yun powerup");
-                        full_self(); // 补满气血
+                        full_self(); // 補滿氣血
                 }
         return ::heart_beat();
 }
 
-// 检查武器
+// 檢查武器
 void check_weapon()
 {
         object me;
@@ -179,12 +179,12 @@ int accept_kill(object me)
 void new_life()
 {
         object ob;
-    full_self(); // 补满气血
+    full_self(); // 補滿氣血
         filter_array(all_inventory(environment(this_object())), (: $1->is_character() :))->start_busy(3);
     delete_temp("no_perform");
     delete_temp("no_exert");
     addn("my_life", -1);
-    message_vision(HIY "\n$N" HIY "背后的血光一分再一闪，一道血红色的影子慢慢出现在他身边。\n" NOR, this_object());//分身为二
+    message_vision(HIY "\n$N" HIY "背後的血光一分再一閃，一道血紅色的影子慢慢出現在他身邊。\n" NOR, this_object());//分身為二
         ob = new(__FILE__);
         set("my_life", query("my_life") + ((random(16)) ? 0 : 1), ob); 
         set("chat_chance", 0, ob);
@@ -232,14 +232,14 @@ void die(object killer)
         if( !objectp(killer) ) killer = this_object()->query_last_damage_from();
         if( !objectp(killer) ) killer = query_temp("last_damage_from");
 
-        // 如果还未重生，则重生一次
+        // 如果還未重生，則重生一次
         if (query("my_life"))
         {
                 new_life();
                 return;
         }
 
-        if( time() < query_temp("end_time") ) // 时间没有到，死亡不了
+        if( time() < query_temp("end_time") ) // 時間沒有到，死亡不了
         {
                 addn("jing", query("max_jing") / 10);
                 if( query("jing") > query("max_jing") ) set("jing", query("max_jing"));
@@ -249,7 +249,7 @@ void die(object killer)
                 if( query("qi") > query("max_qi") ) set("qi", query("max_qi"));
                 addn("eff_qi", query("max_qi") / 10);
                 if( query("eff_qi") > query("max_qi") ) set("eff_qi", query("max_qi"));
-                //message_vision(HIR "\n$N" HIR "大喝一声，运用秘法，气血有所回升！\n\n" NOR, this_object());
+                //message_vision(HIR "\n$N" HIR "大喝一聲，運用秘法，氣血有所回升！\n\n" NOR, this_object());
                 return;
         }
 
@@ -271,7 +271,7 @@ varargs void unconcious(object defeater)
         return;
 }
 
-// 不会被busy
+// 不會被busy
 /*varargs void start_busy(mixed new_busy, mixed new_interrupt)
 {
         return;
@@ -295,7 +295,7 @@ void init()
         basename = base_name(ob);
         if (strsrch(basename, __DIR__) != -1) return;
         /*if (0 && environment()==environment(ob)) {
-                tell_object(ob, query("name", me) + NOR CYN "瞥了你一眼说道：“精血太枯，先去墓园副本锻炼过，再来供奉我吧...”\n他长袖一挥之间，你已经被拂到了洞外。\n\n" NOR);
+                tell_object(ob, query("name", me) + NOR CYN "瞥了你一眼說道：“精血太枯，先去墓園副本鍛鍊過，再來供奉我吧...”\n他長袖一揮之間，你已經被拂到了洞外。\n\n" NOR);
                 ob->move("/d/emei/jldongnei");
                 return;
         }*/

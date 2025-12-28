@@ -1,21 +1,21 @@
 #include <ansi.h>
-// 武当派 tianwei-zhengqi
+// 武當派 tianwei-zhengqi
 inherit SKILL; 
 string type() { return "knowledge"; } 
 
 int is_fmsk() { return 1; }
-string family_name() { return "武当派"; }
+string family_name() { return "武當派"; }
 
 int valid_learn(object me)
 {        
         if( query("shen", me)<1000000 )
-                return notify_fail("你行侠仗义的事做得还不够，现在还无法领悟天威正气。\n");        
+                return notify_fail("你行俠仗義的事做得還不夠，現在還無法領悟天威正氣。\n");        
         
         if( query("family/family_name", me) != family_name() )
-                return notify_fail("天威正气只能武当派弟子方可研习。\n");
+                return notify_fail("天威正氣只能武當派弟子方可研習。\n");
 
         if (me->query_skill("taiji-jian", 1) < 150)
-                return notify_fail("你太极剑法修为不足，无法继续研习天威正气。\n");
+                return notify_fail("你太極劍法修為不足，無法繼續研習天威正氣。\n");
 
         return 1;
 }

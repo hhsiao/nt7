@@ -3,11 +3,11 @@ inherit NPC;
 void create()
 {
         set_name("老虎", ({ "lao hu", "hu" }) );
-        set("race", "野兽");
+        set("race", "野獸");
         set("age", 5);
-        set("long", "一只凶猛的大老虎。\n");
+        set("long", "一隻兇猛的大老虎。\n");
         set("attitude", "aggressive");
-        set("limbs", ({ "头部", "身体", "前爪", "后爪", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體", "前爪", "後爪", "尾巴" }) );
         set("verbs", ({ "bite", "claw" }) );
         set("combat_exp", 200000);
         set("str", 80);

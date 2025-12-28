@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "洞内");
+        set("short", "洞內");
         set("long", @LONG
-这里是山贼的老窝的所在。旁边有一侧洞，里面隐隐传来女子的
-哭声。一个粗壮的山贼守卫在这里。
+這裡是山賊的老窩的所在。旁邊有一側洞，裡面隱隱傳來女子的
+哭聲。一個粗壯的山賊守衛在這裡。
 LONG );
         set("exits", ([
                 "west"  : __DIR__"cedong",
@@ -29,6 +29,6 @@ int valid_leave(object me, string dir)
         if ( (dir == "west")
              && objectp(npc = present("shanzei tou", environment(me)))
              && living(npc) )
-                return notify_fail("山贼头操起拳头：你想占我老婆的便宜？快滚！\n");
+                return notify_fail("山賊頭操起拳頭：你想佔我老婆的便宜？快滾！\n");
         return ::valid_leave(me, dir);
 }

@@ -9,80 +9,80 @@ inherit F_DAMAGE;
 
 mapping *action = ({
         ([
-                "action":"$N神色端庄，长吸一口气，左手食指突然点向$n胸口",
+                "action":"$N神色端莊，長吸一口氣，左手食指突然點向$n胸口",
                 "force" : 350,
                 "dodge" : 30,
                 "damage" : 50,
                 "parry" : 35,
-                "weapon": "无形剑气",
-                "skill_name" :  "无相无色",  
+                "weapon": "無形劍氣",
+                "skill_name" :  "無相無色",  
                 "lvl" : 10,
-                "damage_type" : "刺伤"
+                "damage_type" : "刺傷"
                 ]),
                 ([
-                "action":"$N飘然退后，右手中指三曲三伸，一股无形指力猛袭$n下腹",
+                "action":"$N飄然退後，右手中指三曲三伸，一股無形指力猛襲$n下腹",
                 "force" : 400,
                 "dodge" : 40, 
                 "parry" : 30,   
                 "damage" : 80,  
-                "weapon": "无形剑气",
-                "skill_name" :  "烦恼无劫", 
+                "weapon": "無形劍氣",
+                "skill_name" :  "煩惱無劫", 
                 "lvl" : 50,
-                "damage_type" : "刺伤"
+                "damage_type" : "刺傷"
                 ]),
                 ([
-                "action":"$N丝毫不为$n所动，双手交替中，一式“烦恼无归”已封住了$n的所有退路",
+                "action":"$N絲毫不為$n所動，雙手交替中，一式“煩惱無歸”已封住了$n的所有退路",
                 "force" : 450,
                 "dodge" : 40,
                 "parry" : 25,
                 "damage": 100,
-                "weapon": "无形剑气",
-                "skill_name" :  "烦恼无归",
+                "weapon": "無形劍氣",
+                "skill_name" :  "煩惱無歸",
                 "lvl" : 80,
-                "damage_type" : "内伤"
+                "damage_type" : "內傷"
                 ]),
                 ([      
-                "action":"$N中指划动，无形指力弥漫四周。$n顿时上蹿下跳狼狈躲避",
+                "action":"$N中指划動，無形指力瀰漫四周。$n頓時上躥下跳狼狽躲避",
                 "force" : 500,
                 "dodge" : 50,
                 "parry" : 50,
                 "damage": 130,
-                "weapon": "无形剑气",
-                "skill_name" :  "烦恼无尽",
+                "weapon": "無形劍氣",
+                "skill_name" :  "煩惱無盡",
                 "lvl" : 90,
-                "damage_type" : "刺伤"
+                "damage_type" : "刺傷"
                 ]),
                 ([
-                "action":"$N忽然间化指为掌，“烦恼无形”意味古拙，掌力广被，$n莫辨其方向，难以招架",
+                "action":"$N忽然間化指為掌，“煩惱無形”意味古拙，掌力廣被，$n莫辨其方向，難以招架",
                 "force" : 550,
                 "dodge" : 55, 
                 "damage": 170,
-                "weapon": "无形剑气",
-                "skill_name" :  "烦恼无形",
+                "weapon": "無形劍氣",
+                "skill_name" :  "煩惱無形",
                 "lvl" : 60,
-                "damage_type" : "内伤"
+                "damage_type" : "內傷"
                 ]),
                 ([
-                "action":"$N俯身前探，右手食指连点数下，已将参和指发挥至极致",
+                "action":"$N俯身前探，右手食指連點數下，已將參和指發揮至極致",
                 "force" : 550,
                 "dodge" : 55,
                 "parry" : 50,
                 "damage" : 200,
-                "weapon": "无形剑气",
-                "skill_name" :  "烦恼无极",
+                "weapon": "無形劍氣",
+                "skill_name" :  "煩惱無極",
                 "lvl" : 75,
-                "damage_type" : "刺伤"
+                "damage_type" : "刺傷"
                 ]),
                 ([      
-                "action":"$N遥点数指，却是半点风声也无，$n胸口一紧，顿觉遍体冰凉",
+                "action":"$N遙點數指，卻是半點風聲也無，$n胸口一緊，頓覺遍體冰涼",
                 "force" : 580, 
                 "dodge" : 60,
                 "parry" : 50,
                 "damage" : 250,
-                "weapon": "无形剑气",
-                "skill_name" :  "烦恼无指",
+                "weapon": "無形劍氣",
+                "skill_name" :  "煩惱無指",
                 "lvl" : 90,
-                "damage_type" : "刺伤"
+                "damage_type" : "刺傷"
                 ]),
 });  
 
@@ -98,13 +98,13 @@ int valid_learn(object me)
         bb = (int)me->query_skill("qufannao-zhi",1);
         
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练去烦恼指必须空手。\n");
+                return notify_fail("練去煩惱指必須空手。\n");
         
         if ( bb  >= 60 && aa < 140 && 5 * aa <= 4 * bb )
-                return notify_fail("你的内功不够，无法修练更高深的去烦恼指。\n");
+                return notify_fail("你的內功不夠，無法修練更高深的去煩惱指。\n");
 
         if ((int)me->query_skill("finger", 1) <120)
-                return notify_fail("你的基本指法火候不够，无法学去烦恼指。\n");
+                return notify_fail("你的基本指法火候不夠，無法學去煩惱指。\n");
         return 1;
 }
 
@@ -112,10 +112,10 @@ int valid_learn(object me)
 int practice_skill(object me)
 {
         if( query("neili", me)<50 )
-                return notify_fail("你的内力不够练去烦恼指。\n");
+                return notify_fail("你的內力不夠練去煩惱指。\n");
 
         if( query("qi", me)<50 )
-                return notify_fail("你的体力不够练去烦恼指。\n");
+                return notify_fail("你的體力不夠練去煩惱指。\n");
 
         addn("neili", -20, me);
         addn("qi", -20, me);

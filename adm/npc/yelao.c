@@ -10,18 +10,18 @@ void load_killer(int num);
 int killer_times;
 void create()
 {
-        set_name("无名老人", ({ "wuming laoren", "wuming", "laoren"}));
+        set_name("無名老人", ({ "wuming laoren", "wuming", "laoren"}));
         set("gender", "男性");
         set("age", 120);
-        //set("nickname", HIW"古往今来 " HIM" 无所不知 "HIG" 笑傲江湖 "HIY" 天下无敌" NOR);
-        set("nickname", HIY "王者归来" NOR);
+        //set("nickname", HIW"古往今來 " HIM" 無所不知 "HIG" 笑傲江湖 "HIY" 天下無敵" NOR);
+        set("nickname", HIY "王者歸來" NOR);
         set("title", HIG "笑傲江湖" NOR); 
         set("long",
-                "传说中的武林前辈，据说此老乃百年前的武林宿耄，现今已百岁高龄。\n"
-                "他笑傲武林数十载，天下的武功，各门各派奇闻轶事，古往今来武林\n"
-                "典故，号称是“无所不知，无所不晓”。一身武功是出神入化，罕逢\n"
-                "敌手，至今数十年未曾与人动手。多年来一直隐居扬州城中评书为生，\n"
-                "每日在此讲述武林典故。\n");
+                "傳說中的武林前輩，據說此老乃百年前的武林宿耄，現今已百歲高齡。\n"
+                "他笑傲武林數十載，天下的武功，各門各派奇聞軼事，古往今來武林\n"
+                "典故，號稱是“無所不知，無所不曉”。一身武功是出神入化，罕逢\n"
+                "敵手，至今數十年未曾與人動手。多年來一直隱居揚州城中評書為生，\n"
+                "每日在此講述武林典故。\n");
 
         set("combat_exp", 15000000);
         set("shen_type", 1);
@@ -87,16 +87,16 @@ void create()
 
 
         set("inquiry", ([
-                "生死状": (: ask_shengsi:),
+                "生死狀": (: ask_shengsi:),
                 "生死"  : (: ask_shengsi :),
-                //"阻击"  : (: ask_zuji:),
+                //"阻擊"  : (: ask_zuji:),
         ]) );
 
         set("chat_chance", 10);
         set("chat_msg", ({  
-                CYN"无名老人捋了捋长须，哈哈大笑道：“张三丰那小道士，现在算起来也该有些出息了！”\n"NOR,
-                CYN"无名老人轻抚掌中剑匣，无不得意地说道：“老夫纵横江湖百余载，还真没遇到过对手！”\n"NOR,
-                CYN"无名老人微显扭捏之色，叹道：“林朝英那丫头，现在也不知道怎么样了。” \n"NOR, 
+                CYN"無名老人捋了捋長鬚，哈哈大笑道：“張三丰那小道士，現在算起來也該有些出息了！”\n"NOR,
+                CYN"無名老人輕撫掌中劍匣，無不得意地說道：“老夫縱橫江湖百餘載，還真沒遇到過對手！”\n"NOR,
+                CYN"無名老人微顯扭捏之色，嘆道：“林朝英那丫頭，現在也不知道怎麼樣了。” \n"NOR, 
         }));  
 
         set("chat_chance_combat", 60);
@@ -173,17 +173,17 @@ int check_time()
                         zuji_times=1;
 
                          message("channel:rumor", 
-                                MAG"【故事传闻】少林方丈玄慈接到一封信件。\n" 
-                                "信中写道：契丹国有大批武士要来偷袭少林寺，想将寺中秘藏数百年的武功图谱一举夺去。\n"
-                                "玄慈大师心想：不行，要是契丹此举成功，大宋便有亡国之祸。\n"
-                                "玄慈大师一看，信中还写道：听说这些契丹武士要道经雁门。\n"
-                                "玄慈大师心想：要在雁门关外迎击，纵不能尽数将之歼灭，也要令他们的奸谋难以得逞。\n"
-                                "玄慈大师盘算：丐帮汪帮主，万胜刀王维义，黄山鹤云道长，还有一些武林朋友都可以去迎击。\n"
-                                "玄慈大师盘算：但是恐怕敌人人数还是会比我们多得多，况且我们这边武功精强者也是寥寥无几。\n"
-                                "玄慈大师发愁：这可怎么办呢？\n"
-                                "玄慈大师深深地叹了口气。\n"
+                                MAG"【故事傳聞】少林方丈玄慈接到一封信件。\n" 
+                                "信中寫道：契丹國有大批武士要來偷襲少林寺，想將寺中秘藏數百年的武功圖譜一舉奪去。\n"
+                                "玄慈大師心想：不行，要是契丹此舉成功，大宋便有亡國之禍。\n"
+                                "玄慈大師一看，信中還寫道：聽說這些契丹武士要道經雁門。\n"
+                                "玄慈大師心想：要在雁門關外迎擊，縱不能盡數將之殲滅，也要令他們的奸謀難以得逞。\n"
+                                "玄慈大師盤算：丐幫汪幫主，萬勝刀王維義，黃山鶴雲道長，還有一些武林朋友都可以去迎擊。\n"
+                                "玄慈大師盤算：但是恐怕敵人人數還是會比我們多得多，況且我們這邊武功精強者也是寥寥無幾。\n"
+                                "玄慈大師發愁：這可怎麼辦呢？\n"
+                                "玄慈大師深深地嘆了口氣。\n"
                                 ".........\n"
-                                NOR+BLINK+HIW"一场血战即将在雁门关外展开.........\n"NOR,users());
+                                NOR+BLINK+HIW"一場血戰即將在雁門關外展開.........\n"NOR,users());
                         call_out("zuji_begin",180,num);  
                         call_out("zuji_close",3600);
                         call_out("remove_enemy",3600);
@@ -196,7 +196,7 @@ int check_time()
 
                         message("channel:rumor",
                                 MAG"【江湖】"NOR+
-                                HIB"据说江湖中某两大门派为解宿怨，一个时辰内要以武力解决。\n"NOR,users());
+                                HIB"據說江湖中某兩大門派為解宿怨，一個時辰內要以武力解決。\n"NOR,users());
                                 set("chousha_begin",time());
                                 set("chousha",1);
                                 temp=sprintf("%d",time());
@@ -208,14 +208,14 @@ int check_time()
         if((time()-query("chousha_begin")) > 10 && query("chousha")
            && (time()-query("chousha_begin")) < 60)    
         message("channel:rumor", MAG"【江湖】"NOR+
-        HIB"据可靠消息，会有两大门派在不久以后大火拼。\n"NOR,users());
+        HIB"據可靠消息，會有兩大門派在不久以後大火拼。\n"NOR,users());
         if((time()-query("chousha_begin")) > 70 && query("chousha") 
            && query("chousha")<4)
         {
          addn("chousha",1);
          message("channel:rumor", MAG"【江湖】"NOR+HIR+fam1
-         +HIC"与"+HIR+fam2
-         +HIC"两大门派积怨已久，此刻正在北京城正相互仇杀。\n"NOR,users());
+         +HIC"與"+HIR+fam2
+         +HIC"兩大門派積怨已久，此刻正在北京城正相互仇殺。\n"NOR,users());
         }
 
         if( query("chousha") == 4 )
@@ -254,7 +254,7 @@ void load_killer(int num)
                 killer1=new("/quest/quest4/killer1");
                 place_room("西城",killer1);
                 killer2=new("/quest/quest4/killer2");
-                place_room("东城",killer2);
+                place_room("東城",killer2);
                 killer1->start_escape(time);    
                 killer2->start_escape(time);
         } 
@@ -269,75 +269,75 @@ int story_check()
         string *story_msg=({}),str;
         int story_msg_len;
 
-        story_msg+= ( {"宝刀屠龙，号令武林，倚天不出，谁与争锋！\n"} );
-        story_msg+= ( {"少林禅宗精不老，武当道学气绵绵。\n"} );
-        story_msg+= ( {"古墓创派方三代，幽居古墓潜修心。\n"
-"                      银索金铃玄铁剑，玉石俱焚鬼神伤。\n"} );
-        story_msg+= ( {"华山自古称剑宗，独孤九剑傲四方。"} );
-        story_msg+= ( {"桃花岛主鬼谷才，奇门五行遁无影。\n"
-"                      碧海潮生歌一曲，方圆百里人心慌。\n"} );
-        story_msg+= ( {"日月教下尽阉党，葵花辟邪势莫挡。"} );
-        story_msg+= ( {"先天功驭全真剑，重阳一生不输人。"} );
-        story_msg+= ( {"明教绝艺圣火令，七伤挪移妙无双。"} );
-        story_msg+= ( {"丐帮四海皆为家，露宿偷讨不亦忙。\n"
-"                      刚猛无敌降龙掌，精妙轻灵打狗棒。\n"} );
-        story_msg+= ( {"慕容家传尽绝艺，斗转星移众莫敌。\n"
-"                      剑指飞扬尽随意，光复大燕待后人。"} );
-        story_msg+= ( {"星宿门下善使毒，毒掌化功魂魄寒。\n"} );
-        story_msg+= ( {"峨嵋不问世俗事，静坐参悟大乘功。\n"
-"                      渡世济人自修身，妙用无穷临济庄。\n"} );           
-        story_msg+= ( {"少林自古多绝艺，惊魔一指不寻常。\n"
-"                      习尽醉棍达摩剑，三渡座下日月鞭。\n"} );
-        story_msg+=( {"赵客缦胡缨，吴钩霜雪明。\n"
-"                      银鞍照白马，飒沓如流星；\n"
-"                      十步杀一人，千里不留行；\n"
-"                      事了拂衣去，深藏身与名；\n"
-"                      闲过信陵饮，脱剑膝前横；\n"
-"                      将炙啖朱亥，持觞劝侯嬴；\n"
-"                      三杯吐然诺，五狱倒为轻；\n"
-"                      眼花耳热后，竞气素霓生；\n"
-"                      救赵挥金锤，邯郸先震惊；\n"
-"                      千秋二壮士，亘赫大梁城；\n"
-"                      纵死侠骨香，不惭世上英；\n"
-"                      谁能书阁下，白首太玄经。\n" });
-        story_msg+= ( {"段家绝艺非寻常，六脉剑成天下惊。\n "
-"                     十年铁杵磨成针，仗剑江湖自在行。\n"});
-        story_msg+= ( {"飞雪连天射白鹿，笑书神侠倚碧鸳。\n "});
-        story_msg+= ( {"少室山头琴未冷，风陵渡口似闻声。\n "
-"                     人间自有情难老，不信娇女白发生。\n"});
-        story_msg+= ( {"白马未驮夕照去，西风已送伤心来。\n "
-"                     中原可有英雄泪，为洗秋兰带露开。\n"});
-        story_msg+= ( {"灵枢终未得天枢，素问何曾问髯胡。\n "
-"                     烛泪滴残海棠冷，忍听山歌到晓无？\n"});
-        story_msg+= ( {"漫唱采茶觉已迟，犹怜深信未相欺。\n "
-"                     世间多少痴情女，伤尽男儿不自知。\n"});
-        story_msg+= ( {"燕子坞前从此醉，杏花林里向来痴。\n "
-"                     红颜老去英雄在，落日牛羊归去迟。\n"});
-        story_msg+= ( {"倦世何由惜此身，杨郎履下漫多尘。\n "
-"                     人间自有花如雨，妾是花中第几人？ \n"});
-        story_msg+= ( {"万骑却回千骑分，中原何计御胡尘？\n "
-"                     世间一死宁无惧？君为家山我为君。\n"});
-        story_msg+= ( {"来如流水逝如风，何处来兮何所终。\n "
-"                     沧海茫茫挂帆去，天涯从此各西东。\n"});
-        story_msg+= ( {"风中弱絮荡轻盈，赢得世间倾国名。\n "
+        story_msg+= ( {"寶刀屠龍，號令武林，倚天不出，誰與爭鋒！\n"} );
+        story_msg+= ( {"少林禪宗精不老，武當道學氣綿綿。\n"} );
+        story_msg+= ( {"古墓創派方三代，幽居古墓潛修心。\n"
+"                      銀索金鈴玄鐵劍，玉石俱焚鬼神傷。\n"} );
+        story_msg+= ( {"華山自古稱劍宗，獨孤九劍傲四方。"} );
+        story_msg+= ( {"桃花島主鬼谷才，奇門五行遁無影。\n"
+"                      碧海潮生歌一曲，方圓百里人心慌。\n"} );
+        story_msg+= ( {"日月教下盡閹黨，葵花辟邪勢莫擋。"} );
+        story_msg+= ( {"先天功馭全真劍，重陽一生不輸人。"} );
+        story_msg+= ( {"明教絕藝聖火令，七傷挪移妙無雙。"} );
+        story_msg+= ( {"丐幫四海皆為家，露宿偷討不亦忙。\n"
+"                      剛猛無敵降龍掌，精妙輕靈打狗棒。\n"} );
+        story_msg+= ( {"慕容家傳盡絕藝，斗轉星移眾莫敵。\n"
+"                      劍指飛揚盡隨意，光復大燕待後人。"} );
+        story_msg+= ( {"星宿門下善使毒，毒掌化功魂魄寒。\n"} );
+        story_msg+= ( {"峨嵋不問世俗事，靜坐參悟大乘功。\n"
+"                      渡世濟人自修身，妙用無窮臨濟莊。\n"} );           
+        story_msg+= ( {"少林自古多絕藝，驚魔一指不尋常。\n"
+"                      習盡醉棍達摩劍，三渡座下日月鞭。\n"} );
+        story_msg+=( {"趙客縵胡纓，吳鉤霜雪明。\n"
+"                      銀鞍照白馬，颯沓如流星；\n"
+"                      十步殺一人，千里不留行；\n"
+"                      事了拂衣去，深藏身與名；\n"
+"                      閒過信陵飲，脫劍膝前橫；\n"
+"                      將炙啖朱亥，持觴勸侯嬴；\n"
+"                      三杯吐然諾，五獄倒為輕；\n"
+"                      眼花耳熱後，競氣素霓生；\n"
+"                      救趙揮金錘，邯鄲先震驚；\n"
+"                      千秋二壯士，亙赫大梁城；\n"
+"                      縱死俠骨香，不慚世上英；\n"
+"                      誰能書閣下，白首太玄經。\n" });
+        story_msg+= ( {"段家絕藝非尋常，六脈劍成天下驚。\n "
+"                     十年鐵杵磨成針，仗劍江湖自在行。\n"});
+        story_msg+= ( {"飛雪連天射白鹿，笑書神俠倚碧鴛。\n "});
+        story_msg+= ( {"少室山頭琴未冷，風陵渡口似聞聲。\n "
+"                     人間自有情難老，不信嬌女白髮生。\n"});
+        story_msg+= ( {"白馬未馱夕照去，西風已送傷心來。\n "
+"                     中原可有英雄淚，為洗秋蘭帶露開。\n"});
+        story_msg+= ( {"靈樞終未得天樞，素問何曾問髯鬍。\n "
+"                     燭淚滴殘海棠冷，忍聽山歌到曉無？\n"});
+        story_msg+= ( {"漫唱採茶覺已遲，猶憐深信未相欺。\n "
+"                     世間多少痴情女，傷盡男兒不自知。\n"});
+        story_msg+= ( {"燕子塢前從此醉，杏花林裡向來痴。\n "
+"                     紅顏老去英雄在，落日牛羊歸去遲。\n"});
+        story_msg+= ( {"倦世何由惜此身，楊郎履下漫多塵。\n "
+"                     人間自有花如雨，妾是花中第幾人？ \n"});
+        story_msg+= ( {"萬騎卻回千騎分，中原何計御胡塵？\n "
+"                     世間一死寧無懼？君為家山我為君。\n"});
+        story_msg+= ( {"來如流水逝如風，何處來兮何所終。\n "
+"                     滄海茫茫掛帆去，天涯從此各西東。\n"});
+        story_msg+= ( {"風中弱絮蕩輕盈，贏得世間傾國名。\n "
 "                     昨日江山今夜月，琵琶一曲唱生平。\n"});
-        story_msg+= ( {"平生至乐在何处，平生至爱是何人？\n "
-"                     一醉千杯君莫问，怜取姑射山中人。\n"});
-        story_msg+= ({ "发现BUG请报告巫师，可以获得适当奖励。\n"
-"                      隐瞒并利用BUG获利的，给予惩罚，甚至杀档处理。\n" });
-        story_msg+=({"江湖自古多浩劫，杀机一现尸成野。\n"
-"                      劝君未到功力老，勿动妄思问生死。\n"});
+        story_msg+= ( {"平生至樂在何處，平生至愛是何人？\n "
+"                     一醉千杯君莫問，憐取姑射山中人。\n"});
+        story_msg+= ({ "發現BUG請報告巫師，可以獲得適當獎勵。\n"
+"                      隱瞞並利用BUG獲利的，給予懲罰，甚至殺檔處理。\n" });
+        story_msg+=({"江湖自古多浩劫，殺機一現屍成野。\n"
+"                      勸君未到功力老，勿動妄思問生死。\n"});
 
 
         story_msg_len=sizeof(story_msg);
         str=story_msg[random(story_msg_len)];
 
-        message("channel:mess",sprintf(HIY"\n【典故】无名老人：%s\n" NOR, str),users());
+        message("channel:mess",sprintf(HIY"\n【典故】無名老人：%s\n" NOR, str),users());
         remove_call_out("story_check");
         call_out("story_check",300);
 }
 
-// 玩家之间的战斗奖励要写在这里set_override("die", func)
+// 玩家之間的戰鬥獎勵要寫在這裡set_override("die", func)
 string ask_shengsi()
 {   
         object me;
@@ -346,19 +346,19 @@ string ask_shengsi()
         me=this_player();
 
         if( query_temp("chousha/ask", me) )
-                return CYN"你现在已经加入江湖了，你的敌对门派是"+query_temp("chousha/fam",me)+"赶快去吧！\n"NOR;
+                return CYN"你現在已經加入江湖了，你的敵對門派是"+query_temp("chousha/fam",me)+"趕快去吧！\n"NOR;
 
         if( query("chousha")<2 )
-                return CYN"仇杀还没正式开始呢，先等一会吧！\n"NOR;    
+                return CYN"仇殺還沒正式開始呢，先等一會吧！\n"NOR;    
 
         if( query("chousha")>3 )
-                return CYN"你来太迟了，赶不上这次仇杀了，等下次吧！\n"NOR;
+                return CYN"你來太遲了，趕不上這次仇殺了，等下次吧！\n"NOR;
 
         if( query("combat_exp",me)<1000000 )
-                return CYN"凭你现在这点本事，不相干的事还是不要多管的好！\n"NOR;
+                return CYN"憑你現在這點本事，不相干的事還是不要多管的好！\n"NOR;
 
         if( query("score", me)<1000 )
-                return CYN"你在江湖中的声望太低了，估计没有哪个门派会邀请你！\n"NOR;
+                return CYN"你在江湖中的聲望太低了，估計沒有哪個門派會邀請你！\n"NOR;
 
         exp=query("combat_exp",me);
         temp=read_file("/quest/quest4/exp_rate",1,1);
@@ -379,12 +379,12 @@ string ask_shengsi()
         if( query_temp("chousha/fam",me) )
         {
                 set_temp("chousha/ask",1,me);
-                command("chat "+query("name",me)+"加入江湖对付"+query_temp("chousha/fam",me)+"，生死由命，立状为凭！\n");
+                command("chat "+query("name",me)+"加入江湖對付"+query_temp("chousha/fam",me)+"，生死由命，立狀為憑！\n");
 
                 if( query_temp("chousha/fam",me)==fam2 )
                 {
                         set_temp("apply/short", 
-                                ({HIW+fam1+"同道"NOR+HIG"   江湖义士   "NOR+query("name",me)+"("+query("id",me)+")"}),me);
+                                ({HIW+fam1+"同道"NOR+HIG"   江湖義士   "NOR+query("name",me)+"("+query("id",me)+")"}),me);
                 } 
                 else if( query_temp("chousha/fam",me)==fam1 )
                 {
@@ -393,7 +393,7 @@ string ask_shengsi()
                 }
     
                 call_out("heading_for",1,me);  
-                return CYN"你立刻前往京城加入此次江湖，一切好自为之了！\n"NOR;    
+                return CYN"你立刻前往京城加入此次江湖，一切好自為之了！\n"NOR;    
         }
 
         if( query("shen",me) >= 200000 || (query("shen",me) > -200000 && random(2)) )  
@@ -401,20 +401,20 @@ string ask_shengsi()
                 set_temp("chousha/fam",fam2,me);
                 delete_temp("apply/short",me);
                 set_temp("apply/short", 
-                        ({HIW+fam1+"同道"NOR+HIG"   江湖义士   "NOR+query("name",me)+"("+query("id",me)+")"}),me);
-                command("chat "+query("name",me)+"加入江湖对付"+fam2+"，生死由命，立状为凭！\n");
+                        ({HIW+fam1+"同道"NOR+HIG"   江湖義士   "NOR+query("name",me)+"("+query("id",me)+")"}),me);
+                command("chat "+query("name",me)+"加入江湖對付"+fam2+"，生死由命，立狀為憑！\n");
         } else
         {
                 set_temp("chousha/fam",fam1,me);
                 delete_temp("apply/short",me);
                 set_temp("apply/short", 
                         ({CYN+fam2+"助拳"NOR+HIG"   江湖豪客   "NOR+query("name",me)+"("+query("id",me)+")"}),me);
-                command("chat"+query("name", me)+"加入江湖对付"+fam1+"，生死由命，立状为凭！\n");
+                command("chat"+query("name", me)+"加入江湖對付"+fam1+"，生死由命，立狀為憑！\n");
         }
 
         set_temp("chousha/ask",1,me);
         call_out("heading_for",1,me);  
-        return CYN"你立刻前往北京加入此次江湖，一切好自为之了！\n"NOR;
+        return CYN"你立刻前往北京加入此次江湖，一切好自為之了！\n"NOR;
 }
 
 
@@ -427,19 +427,19 @@ string ask_zuji()
 
     me=this_player();
     if( query_temp("zuji/ask", me) )
-    return CYN"你现在已经加入阻击契丹武士了，赶快去吧！\n"NOR;   
+    return CYN"你現在已經加入阻擊契丹武士了，趕快去吧！\n"NOR;   
   
     if( zuji_times < 1 )
-    return CYN"现在江湖上好好的，你居心何在啊？！\n"NOR;
+    return CYN"現在江湖上好好的，你居心何在啊？！\n"NOR;
 
     if( zuji_times > 1 )
-    return CYN"江湖英雄令发完了，正在准备中，你等会吧！\n"NOR;
+    return CYN"江湖英雄令發完了，正在準備中，你等會吧！\n"NOR;
 
     if( query("combat_exp", me)<1000000 )
-    return CYN"你还是先学好本领再来吧！\n"NOR;
+    return CYN"你還是先學好本領再來吧！\n"NOR;
 
     if( query("score", me)<1000 )
-    return CYN"你在江湖中的声望太低了，江湖英雄令你接不起啊！\n"NOR;
+    return CYN"你在江湖中的聲望太低了，江湖英雄令你接不起啊！\n"NOR;
 
     exp=query("combat_exp", me);
     temp=read_file("/quest/quest4/killer_rate",1,1);
@@ -455,14 +455,14 @@ string ask_zuji()
     }
     
     command("chat"+query("name", me)+"接下了"+HIW"江湖英雄令"
-            +HIC"，对抗此次契丹武士，江湖各路同道共勉！\n"); 
+            +HIC"，對抗此次契丹武士，江湖各路同道共勉！\n"); 
 
     me->delte_temp("apply/short");
     me->set_temp("apply/short",
           ({HIR"英雄令使"NOR+me->name()+"("+query("id", me)+")"}));
     set_temp("zuji/ask", 1, me);
 
-    return CYN"呵呵，又是一个不怕死的，武林有望啊，多加小心吧！\n"NOR;
+    return CYN"呵呵，又是一個不怕死的，武林有望啊，多加小心吧！\n"NOR;
 }
 */
 
@@ -481,6 +481,6 @@ int heading_for(object me)
                 else if( query_temp("chousha/fam",me) == fam1 )
                         me->move("/maze/jingcheng/yingxiong");
         }
-        message_vision(YEL"$N一路马不停蹄，连夜赶到了紫金城！\n"NOR,me);
+        message_vision(YEL"$N一路馬不停蹄，連夜趕到了紫金城！\n"NOR,me);
         return 1;
 }

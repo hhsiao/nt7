@@ -1,4 +1,4 @@
-// ding.c 全真剑-定阳针
+// ding.c 全真劍-定陽針
 
 #include <ansi.h>
 
@@ -12,23 +12,23 @@ int perform(object me, object target)
         if( !target ) target = offensive_target(me);
 
         if( !target || !target->is_character() || !me->is_fighting(target) )
-                return notify_fail("定阳针只能对战斗中的对手使用。\n");
+                return notify_fail("定陽針只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me) )
          || query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if( (int)me->query_skill("quanzhen-jianfa", 1) < 40 )
-                return notify_fail("你的全真剑法不够娴熟，不能使用定阳针。\n");
+                return notify_fail("你的全真劍法不夠嫻熟，不能使用定陽針。\n");
 
         if( (int)me->query_skill("quanzhen-xinfa", 1) < 40 &&
             (int)me->query_skill("yunv-xinfa", 1) < 40 )
-                return notify_fail("你的本门内功不够娴熟，不能使用定阳针。\n");
+                return notify_fail("你的本門內功不夠嫻熟，不能使用定陽針。\n");
 
         if( query("neili", me)<150 )
-                return notify_fail("你现在内力太弱，不能使用定阳针。\n");
+                return notify_fail("你現在內力太弱，不能使用定陽針。\n");
 
-        msg = HIC "$N脚下左弓右箭，神气完足如雷霆五岳，一式「定阳针」斜斜刺出。\n"NOR;
+        msg = HIC "$N腳下左弓右箭，神氣完足如雷霆五嶽，一式「定陽針」斜斜刺出。\n"NOR;
 
         //if( !target->is_killing(me) ) target->kill_ob(me);
 
@@ -37,7 +37,7 @@ int perform(object me, object target)
                 me->start_busy(2);
 
                 damage = (int)me->query_skill("quanzhen-jianfa", 1) + (int)me->query_skill("force",1);
-                //(全真剑法级别+基本内功)
+                //(全真劍法級別+基本內功)
 
                 damage = damage/2 + random(damage/2);
 
@@ -45,13 +45,13 @@ int perform(object me, object target)
                 target->start_busy(4);
                 addn("neili", -100, me);
 
-                msg += HIR"$n看到$N这气拔千钧的一击，竟不知如何招架！\n"NOR;
+                msg += HIR"$n看到$N這氣拔千鈞的一擊，竟不知如何招架！\n"NOR;
 
         }
         else
         {
                 me->start_busy(3);
-                msg += CYN"可是$p看破了$P的企图，斜跃避开。\n"NOR;
+                msg += CYN"可是$p看破了$P的企圖，斜躍避開。\n"NOR;
         }
         message_vision(msg, me, target);
 

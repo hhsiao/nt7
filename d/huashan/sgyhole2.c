@@ -7,9 +7,9 @@ void create()
 {
         set("short", "山洞");
         set("long", @LONG
-这是一个毫不起眼的山洞，但是里面的石壁上却画满了五岳剑派
-所有已经失传的精妙绝招。花岗岩石壁(wall)上很多小人，全是用利
-器刻制，想见当初运力之人内力十分深厚。
+這是一個毫不起眼的山洞，但是裡面的石壁上卻畫滿了五嶽劍派
+所有已經失傳的精妙絕招。花崗岩石壁(wall)上很多小人，全是用利
+器刻制，想見當初運力之人內力十分深厚。
 LONG );
         set("exits", ([ /* sizeof() == 4 */
             "southup"   : __DIR__"sgyhole",
@@ -42,49 +42,49 @@ int do_think(string msg)
 
     string where, witch;
     
-    if (! msg)return notify_fail("什么？\n");
+    if (! msg)return notify_fail("什麼？\n");
 
     if (sscanf(msg, "%s from %s", witch, where) != 2)
-          return notify_fail("干什么？\n");
+          return notify_fail("幹什麼？\n");
 
-    if (witch != "万剑焚云")
-          return notify_fail("你想参悟什么？\n");
+    if (witch != "萬劍焚雲")
+          return notify_fail("你想參悟什麼？\n");
 
     if (where != "wall")
-          return notify_fail("这里没什么给你参悟的啊！\n");
+          return notify_fail("這裡沒什麼給你參悟的啊！\n");
 
     if (me->is_busy())
-          return notify_fail("你现在正忙着呢。\n");
+          return notify_fail("你現在正忙著呢。\n");
 
     if (me->is_fighting())
-          return notify_fail("你在战斗哦？！小心，来了！！！\n");
+          return notify_fail("你在戰鬥哦？！小心，來了！！！\n");
    
     if( query("can_perform/zhurong-jian/wan", me) )
-          return notify_fail("你不是已经会了吗？\n");
+          return notify_fail("你不是已經會了嗎？\n");
 
     if ((int)me->query_skill("zhurong-jian", 1) < 140)
-          return notify_fail("你祝融剑法不够娴熟，无法贯通石壁上的绝学！\n");
+          return notify_fail("你祝融劍法不夠嫻熟，無法貫通石壁上的絕學！\n");
 
     if ((int)me->query_skill("force") < 220)
-          return notify_fail("你内功修为不够，无法贯通石壁上的绝学！\n");
+          return notify_fail("你內功修為不夠，無法貫通石壁上的絕學！\n");
 
     if( query("max_neili", me)<1200 )
-          return notify_fail("你的内力修为不足，无法贯通石壁上的绝学！\n");
+          return notify_fail("你的內力修為不足，無法貫通石壁上的絕學！\n");
 
     if( query("jing", me)<100 )
-          return notify_fail("你的精力无法集中，无法领悟石壁上的绝学！\n");
+          return notify_fail("你的精力無法集中，無法領悟石壁上的絕學！\n");
 
     me->start_busy(4 + random(4));
 
     if (random(10) != 1)   
-          return notify_fail("你仔细参悟石壁上的绝学，若有所悟，但是始终无法融会贯通！\n");
+          return notify_fail("你仔細參悟石壁上的絕學，若有所悟，但是始終無法融會貫通！\n");
 
     me->receive_damage("jing", 95);
 
     me->start_busy(2 + random(4));
 
-    write(HIM "猛然间，你一声长啸，胸中豁然贯通，再无疑虑。\n" NOR);
-    write(HIC "你终于通晓了绝学「万剑焚云」。\n" NOR);
+    write(HIM "猛然間，你一聲長嘯，胸中豁然貫通，再無疑慮。\n" NOR);
+    write(HIC "你終於通曉了絕學「萬劍焚雲」。\n" NOR);
 
     set("can_perform/zhurong-jian/wan", 1, me);
 
@@ -108,29 +108,29 @@ int do_mianbi()
         c_skill = (int)ob->query_skill("zhurong-jian", 1);
         if (ob->query_skill("sword", 1) <= c_skill)
         {
-                write("你对剑法的了解显然太低，无法领悟石壁内容。\n", ob);
+                write("你對劍法的瞭解顯然太低，無法領悟石壁內容。\n", ob);
                 return 1; 
         }
 
         if (! ob->can_improve_skill("zhurong-jian"))
         {
-                write("$N的实战经验不足，无法领悟石壁内容。\n");
+                write("$N的實戰經驗不足，無法領悟石壁內容。\n");
                 return 1; 
         }
 
         if( query("jing", ob)<40 )
         {
-                write("你精力不能集中，现在无法领悟石壁内容。\n");
+                write("你精力不能集中，現在無法領悟石壁內容。\n");
                 return 1; 
         }
 
         if (c_skill >= 10)
         {
-                write("你觉得石壁内容太肤浅了。\n");
+                write("你覺得石壁內容太膚淺了。\n");
                 return 1;
         }
 
-        message_vision("$N面对着石壁趺坐静思，良久，对「祝融剑法」"
+        message_vision("$N面對著石壁趺坐靜思，良久，對「祝融劍法」"
                         "似有所悟。\n", ob);
         ob->improve_skill("zhurong-jian",1+random(query("int", ob)));
         ob->receive_damage("jing", 35);

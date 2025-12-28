@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("[35m战[36m龙[2;37;0m[2;37;0m", ({"zlong"}));        
+        set_name("[35m戰[36m龍[2;37;0m[2;37;0m", ({"zlong"}));        
         set("gender", "女性");                
-        set("long", "一只强大的远古$MAG$战$CYN$龙[2;37;0m
-它是武当小子的魔幻兽。
+        set("long", "一隻強大的遠古$MAG$戰$CYN$龍[2;37;0m
+它是武當小子的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "wud");
-        set("owner_name", "武当小子");
+        set("owner_name", "武當小子");
         set_temp("owner", "wud");
-        set_temp("owner_name", "武当小子");
+        set_temp("owner_name", "武當小子");
         ::setup();
 }

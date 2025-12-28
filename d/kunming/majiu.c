@@ -6,9 +6,9 @@ void create()
 mapping map_short = ([
          "chengdu"     : "成都",
          "dali"        : "大理",
-         "jingzhou"    : "荆州",
+         "jingzhou"    : "荊州",
          "emei"        : "峨嵋山",
-         "xiangyang"   : "襄阳",
+         "xiangyang"   : "襄陽",
 ]);
 
 mapping trans_pay = ([
@@ -19,12 +19,12 @@ mapping trans_pay = ([
          "xiangyang"   : 500,
 ]);
 
-              set("short","马厩");
+              set("short","馬廄");
               set("long",@LONG
-这是元人客栈后的马厩，常年供应新鲜草料。昆明民风淳
-朴，马夫们会把马牵到马厩好生照看，将它们喂饱饮足，再洗
-刷得干乾净净，一直伺候到客人上路。马厩雨檐下的烂木柱上
-钉着一块破木牌 (paizi)。马厩中堆放著几堆草料，正中有一
+這是元人客棧後的馬廄，常年供應新鮮草料。昆明民風淳
+樸，馬伕們會把馬牽到馬廄好生照看，將它們餵飽飲足，再洗
+刷得幹乾淨淨，一直伺候到客人上路。馬廄雨簷下的爛木柱上
+釘著一塊破木牌 (paizi)。馬廄中堆放著幾堆草料，正中有一
 口泔槽。
 LONG);
         set("outdoors", "kunming");

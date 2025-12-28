@@ -9,11 +9,11 @@ string inquiry_gao();
 void create()
 {
         set_name("小青", ( { "qing", "xiao qing" }) );
-        set("title", "药剂师");
+        set("title", "藥劑師");
         set("gender", "女性" );
         set("age", 17);
         set("long",
-              "这是个聪明乖巧的小姑娘，打扮的很朴素，一袭青衣，却也显得落落有致。\n"
+              "這是個聰明乖巧的小姑娘，打扮的很樸素，一襲青衣，卻也顯得落落有致。\n"
              );
         set("attitude", "friendly");
         set("shen_type", -1);
@@ -44,9 +44,9 @@ void create()
         set_temp("times",5);
 
         set("inquiry", ([
-            "海口大碗" : "这『海口大碗』你可以拿到顶东头小院儿去，灌水喝。\n",
-            "药罐" : "药罐在那儿，你自己看吧！\n",
-            "蛇胆膏" : (: inquiry_gao :),
+            "海口大碗" : "這『海口大碗』你可以拿到頂東頭小院兒去，灌水喝。\n",
+            "藥罐" : "藥罐在那兒，你自己看吧！\n",
+            "蛇膽膏" : (: inquiry_gao :),
         ]));
 
         setup();
@@ -73,13 +73,13 @@ void greeting(object ob)
         if( !ob || environment(ob) != environment() ) return;
         if(random(2)==1)
         {
-                say("小青笑吟吟地说道：这位" + RANK_D->query_respect(ob) +
-                    "请进，见到你真高兴。\n");
+                say("小青笑吟吟地說道：這位" + RANK_D->query_respect(ob) +
+                    "請進，見到你真高興。\n");
                 return;
         } else
         {
-                say("小青笑了笑说道：这位" + RANK_D->query_respect(ob) +
-                    "快请进吧。 \n");
+                say("小青笑了笑說道：這位" + RANK_D->query_respect(ob) +
+                    "快請進吧。 \n");
                 return;
         }
 }
@@ -89,23 +89,23 @@ string inquiry_gao()
         object ob = this_player();
 
         if (query_temp("dan") == 3)
-                return "你没见我已经作好了嘛！\n";
+                return "你沒見我已經作好了嘛！\n";
 
         if (query_temp("times") < 1)
-                return "庄主现在已经不叫我做『蛇胆膏』了！\n";
+                return "莊主現在已經不叫我做『蛇膽膏』了！\n";
 
-        say("这位" + RANK_D->query_respect(ob)+
-            "不瞒您说。师傅让我作『蛇胆膏』，\n可我",ob);
+        say("這位" + RANK_D->query_respect(ob)+
+            "不瞞您說。師傅讓我作『蛇膽膏』，\n可我",ob);
         switch (query_temp("dan"))
         {
-        case 0: write(HIY "差一只青蛇胆，一只金蛇胆。\n" NOR);
+        case 0: write(HIY "差一隻青蛇膽，一隻金蛇膽。\n" NOR);
                 break;
-        case 1: write(HIY "还差一只金蛇胆。\n" NOR);
+        case 1: write(HIY "還差一隻金蛇膽。\n" NOR);
                 break;
-        case 2: write(HIY "还差一只青蛇胆。\n" NOR);
+        case 2: write(HIY "還差一隻青蛇膽。\n" NOR);
                 break;
         }
-        return "不知哪位好心人能帮帮我呢？\n";
+        return "不知哪位好心人能幫幫我呢？\n";
 }
 
 
@@ -118,14 +118,14 @@ int accept_object(object who, object ob)
             query("id", ob) != "jindan" )
         {
                 command("shake");
-                command("say 这是啥呀？我可不要哦。");
+                command("say 這是啥呀？我可不要哦。");
                 return 0;
         }
 
         if (query_temp("times") < 1)
         {
                 command("sigh");
-                command("say 我现在已经不做『蛇胆膏』了。");
+                command("say 我現在已經不做『蛇膽膏』了。");
                 return 0;
         }
 
@@ -133,15 +133,15 @@ int accept_object(object who, object ob)
         {
                 if (query_temp("dan") == 2)
                 {
-                        message_vision("小青一看是金蛇胆，满脸遗憾地对\n"
-                                       "$N说：我还差青蛇胆，不缺金蛇胆。\n", who);
+                        message_vision("小青一看是金蛇膽，滿臉遺憾地對\n"
+                                       "$N說：我還差青蛇膽，不缺金蛇膽。\n", who);
                         return 0;
                 }
                 addn_temp("dan", 2);
                 if (query_temp("dan") == 2)
                 {
-                        message_vision("你把金蛇胆递给了小青，她高兴得跳了起来。\n"
-                                       "搂着$N的脖子说：还差青蛇胆就大功告成了！\n",who);
+                        message_vision("你把金蛇膽遞給了小青，她高興得跳了起來。\n"
+                                       "摟著$N的脖子說：還差青蛇膽就大功告成了！\n",who);
                         destruct(ob);
                         return 1;
                 }
@@ -150,27 +150,27 @@ int accept_object(object who, object ob)
         {
                 if (query_temp("dan") == 1)
                 {
-                        message_vision("小青一看是青蛇胆，满脸遗憾\n"
-                                       "地对$N说：我还差金蛇胆，不缺青蛇胆。\n",who);
+                        message_vision("小青一看是青蛇膽，滿臉遺憾\n"
+                                       "地對$N說：我還差金蛇膽，不缺青蛇膽。\n",who);
                         return 0;
                 }
                 addn_temp("dan", 1);
                 if (query_temp("dan") == 1)
                 {
-                        message_vision("你把青蛇胆递给了小青，她高兴得跳了起来。\n"
-                                       "搂着$N的脖子说：还差就金蛇胆大功告成了！\n",who);
+                        message_vision("你把青蛇膽遞給了小青，她高興得跳了起來。\n"
+                                       "摟著$N的脖子說：還差就金蛇膽大功告成了！\n",who);
                         destruct(ob);
                         return 1;
                 }
         }
 
         command("kiss "+query("id", who));
-        write(HIY "只见小青手脚麻利地把两只蛇胆投入药罐中，又加入一些\n"
-              "不知是什么的药粉，然后把稀里哗啦一摇，嘿！『蛇胆膏』做\n"
+        write(HIY "只見小青手腳麻利地把兩隻蛇膽投入藥罐中，又加入一些\n"
+              "不知是什麼的藥粉，然後把稀里嘩啦一搖，嘿！『蛇膽膏』做\n"
               "成了。\n" NOR );
-        message_vision("小青很神秘地凑近$N悄悄说了些什么。\n", who);
-        tell_object(who,"我偷偷拿了一点『蛇胆膏』送给你，庄主不会发现的。\n");
-        message_vision("小青深情地望了$N一眼，脸红了。\n",who);
+        message_vision("小青很神秘地湊近$N悄悄說了些什麼。\n", who);
+        tell_object(who,"我偷偷拿了一點『蛇膽膏』送給你，莊主不會發現的。\n");
+        message_vision("小青深情地望了$N一眼，臉紅了。\n",who);
         obn = new("/d/baituo/obj/shedangao");
         obn->move(who);
         set_temp("dan",0);

@@ -8,10 +8,10 @@ int clean_up() { return 1;}
 
 void create()
 {
-        set("short", "学堂大门");
+        set("short", "學堂大門");
         set("long",
 "','''╭⌒╮⌒╮.',''',,',.'',,','',.   \n"
-"    ╱◥██◣''o中国梦，树新风o.'',,',.   \n"
+"    ╱◥██◣''o中國夢，樹新風o.'',,',.   \n"
 "   ｜田｜田田│ '',,',.o tree new bee o   \n"
 " ------------------------------------\n"
 );
@@ -63,7 +63,7 @@ void do_emote(object ob, string str)
                 switch (random(4)) {
                         case 0:
                         case 1:
-                                ob->command("think 爸爸妈妈怎么还不来接我呢？");
+                                ob->command("think 爸爸媽媽怎麼還不來接我呢？");
                                 break;
                         case 2:
                                 ob->command("wuwu");

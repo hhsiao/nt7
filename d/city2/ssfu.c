@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "尚书府");
+        set("short", "尚書府");
         set("long", @LONG
-这里是京城尚书府了，兵部尚书赵大人经常在这里会客，和接见
-往来传递军情的前线使者。
+這裡是京城尚書府了，兵部尚書趙大人經常在這裡會客，和接見
+往來傳遞軍情的前線使者。
 LONG );
         set("outdoors", "city2");
         set("no_fly",1);

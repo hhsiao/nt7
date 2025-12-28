@@ -4,10 +4,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("厨师", ({ "cook" }) );
+        set_name("廚師", ({ "cook" }) );
         set("gender", "男性" );
         set("age", 35);
-        set("long", "一个山庄的厨子， 正在忙呢。\n");
+        set("long", "一個山莊的廚子， 正在忙呢。\n");
         set("str", 29);
         set("int", 14);
         set("combat_exp", 25000);
@@ -39,10 +39,10 @@ void greeting(object ob)
         if( !ob || environment(ob) != environment() ) return;
         switch( random(2) ) {
                 case 0:
-                 say( "厨子擦了擦头上的汗。”\n");
+                 say( "廚子擦了擦頭上的汗。”\n");
                     break;
                 case 1:
-                        say( "厨师道：“真累呀。\n");
+                        say( "廚師道：“真累呀。\n");
                         break;
         }
 }

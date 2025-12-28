@@ -4,10 +4,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("唐钝", ({"tang dun"}));
-        set("title","唐门长房弟子");
+        set_name("唐鈍", ({"tang dun"}));
+        set("title","唐門長房弟子");
         set("long",
-        "这是一个唐门长房弟子，一袭青衣，浑身透着一股邪气。本月长房轮值。\n"
+        "這是一個唐門長房弟子，一襲青衣，渾身透著一股邪氣。本月長房輪值。\n"
         );
 
         set("gender", "男性");
@@ -33,7 +33,7 @@ void create()
         map_skill("sword","shedao-qigong");
                 set("chat_chance", 3);
         set("chat_msg", ({
-            "唐钝面无表情地说道: 江湖中无人敢侵犯唐门! \n",
+            "唐鈍面無表情地說道: 江湖中無人敢侵犯唐門! \n",
         }) );
 
         setup();

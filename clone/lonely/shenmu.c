@@ -10,13 +10,13 @@ void create()
         if (clonep())
                 destruct(this_object());
         else {
-                set("long", HIG "半截蓉绿半截焦枯的木棍，看似普通，却竟如铁铸一般，坚硬无比。\n" NOR);
+                set("long", HIG "半截蓉綠半截焦枯的木棍，看似普通，卻竟如鐵鑄一般，堅硬無比。\n" NOR);
                 set("unit", "根");
                 set("value", 800000);
-                set("no_sell", "靠，连晒衣竿你也拿来卖钱？");
+                set("no_sell", "靠，連曬衣竿你也拿來賣錢？");
                 set("material", "steel");
-                set("wield_msg", HIG "$N" HIG "拿出一根半截蓉绿半截焦枯的木棍握在手中。\n" NOR);
-                set("unwield_msg", HIG "$N" HIG "将手中的南海神木挥舞个圈子，插回背上。\n" NOR);
+                set("wield_msg", HIG "$N" HIG "拿出一根半截蓉綠半截焦枯的木棍握在手中。\n" NOR);
+                set("unwield_msg", HIG "$N" HIG "將手中的南海神木揮舞個圈子，插回背上。\n" NOR);
                 set("stable", 100);
         }
         init_club(160);
@@ -38,8 +38,8 @@ mixed hit_ob(object me, object victim, int damage_bonus)
                 n = me->query_skill("club");
                 victim->receive_damage("qi", n, me);
                 victim->receive_wound("qi", n, me);
-                return HIG "$N" HIG "跨步上前，手中南海神木转动如轮，气势如虹，接二"
-                       "连三朝$n" HIG "扫去！\n" NOR;
+                return HIG "$N" HIG "跨步上前，手中南海神木轉動如輪，氣勢如虹，接二"
+                       "連三朝$n" HIG "掃去！\n" NOR;
         }
         return damage_bonus;
 }

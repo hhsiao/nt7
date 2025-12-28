@@ -4,9 +4,9 @@ inherit "/inherit/room/house_room";
 
 void create()
 {
-    set("short", "议事厅");
+    set("short", "議事廳");
     set("long", @LONG
-这是帮主和帮内重要人物商量大事之处，摆着不少桌椅。
+這是幫主和幫內重要人物商量大事之處，擺著不少桌椅。
 LONG);
 
     set("exits",

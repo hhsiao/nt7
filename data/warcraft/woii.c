@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("杨生蓝雀[2;37;0m[2;37;0m", ({"woi"}));        
+        set_name("楊生藍雀[2;37;0m[2;37;0m", ({"woi"}));        
         set("gender", "女性");                
-        set("long", "杨生蓝雀!!![2;37;0m
-它是夜世的魔幻兽。
+        set("long", "楊生藍雀!!![2;37;0m
+它是夜世的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

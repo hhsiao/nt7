@@ -6,9 +6,9 @@ inherit BOSS;
 
 void create()
 {
-        set_name(CYN "齐霞儿" NOR, ({ "qi xiaer", "qi" }) );
-        set("title", HIG "蜀山" HIC "剑侠" NOR);
-        set("long", HIR "这是传说中的蜀山第三代精英弟子，此来是为了元江金船夺宝。\n" NOR);
+        set_name(CYN "齊霞兒" NOR, ({ "qi xiaer", "qi" }) );
+        set("title", HIG "蜀山" HIC "劍俠" NOR);
+        set("long", HIR "這是傳說中的蜀山第三代精英弟子，此來是為了元江金船奪寶。\n" NOR);
         set("gender", "女性");
         set("family/family_name", "峨嵋派");
         set("age", 35);
@@ -157,7 +157,7 @@ void init()
         }
 //      if (environment() && query("no_fight", environment())) return;
 //      if (!(__DIR__"obj/door"->is_attacker(ob))) return;
-//      tell_object(ob, NOR CYN + query("name", me) + NOR + CYN "嗔怒道：就凭你也想和我峨眉争夺广成金船？\n" NOR);
+//      tell_object(ob, NOR CYN + query("name", me) + NOR + CYN "嗔怒道：就憑你也想和我峨眉爭奪廣成金船？\n" NOR);
 //      me->kill_ob(ob);
 }
 

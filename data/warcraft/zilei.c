@@ -7,9 +7,9 @@ void setup()
         set_name("士大夫[2;37;0m[2;37;0m", ({"odi"}));        
         set("gender", "男性");                
         set("long", "士大夫[2;37;0m
-它是王大汗的魔幻兽。
+它是王大汗的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "zilei");
         set("owner_name", "王大汗");

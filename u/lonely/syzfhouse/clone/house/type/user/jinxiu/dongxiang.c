@@ -4,9 +4,9 @@ inherit "/inherit/room/house_room";
 
 void create()
 {
-    set("short", "东厢");
+    set("short", "東廂");
     set("long", @LONG
-一间位于东侧的厢房。
+一間位於東側的廂房。
 LONG);
 
     set("exits",

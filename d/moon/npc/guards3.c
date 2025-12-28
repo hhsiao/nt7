@@ -2,13 +2,13 @@
 inherit NPC;
 void create()
 {
-        set_name("守卫头领", ({ "guards"}) );
+        set_name("守衛頭領", ({ "guards"}) );
         set("gender", "男性" );
-        set("title", "圆月山庄第二代弟子");
-        create_family("圆月山庄", 2, "弟子");
+        set("title", "圓月山莊第二代弟子");
+        create_family("圓月山莊", 2, "弟子");
         set("class", "moon");
         set("age", 22);
-        set("long", "这是圆月山庄庄主丁鹏门下的弟子。\n");
+        set("long", "這是圓月山莊莊主丁鵬門下的弟子。\n");
         set("combat_exp", 600000+random(400000));
         set("attitude", "friendly");
         set_skill("unarmed", 150);
@@ -25,7 +25,7 @@ void create()
         set("max_force",1000);
         set("chat_chance", 3);
         set("chat_msg", ({
-                "圆月山庄弟子警惕地注视着四周。\n",
+                "圓月山莊弟子警惕地注視著四周。\n",
         }) );
 	
 	setup();

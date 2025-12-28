@@ -7,13 +7,13 @@ void setup()
         set_name("哦[2;37;0m[2;37;0m", ({"mhs"}));        
         set("gender", "男性");                
         set("long", "哦[2;37;0m
-它是胡铁花的魔幻兽。
+它是胡鐵花的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "chu");
-        set("owner_name", "胡铁花");
+        set("owner_name", "胡鐵花");
         set_temp("owner", "chu");
-        set_temp("owner_name", "胡铁花");
+        set_temp("owner_name", "胡鐵花");
         ::setup();
 }

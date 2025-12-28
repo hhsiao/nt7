@@ -5,11 +5,11 @@ inherit THROWING;
 
 void create()
 {
-        set_name(HIW "冰魄银针" NOR, ({ "bingpo zhen", "bingpo", "zhen" }));
+        set_name(HIW "冰魄銀針" NOR, ({ "bingpo zhen", "bingpo", "zhen" }));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIW "这是一根细长的银针，针尖透出阵阵寒气。\n" NOR);
+                set("long", HIW "這是一根細長的銀針，針尖透出陣陣寒氣。\n" NOR);
                 set("unit", "些");
                 set("base_unit", "根");
                 set("base_weight", 500);

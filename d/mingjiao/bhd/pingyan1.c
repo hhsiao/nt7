@@ -1,15 +1,15 @@
-// pingyan1.c 绿野
+// pingyan1.c 綠野
 // Modify By River@SJ 99.06
 #include <ansi.h>
 inherit ROOM;
 void create()
 {
-	set("short", GRN"绿野"NOR);
+	set("short", GRN"綠野"NOR);
         set("long", @LONG
-这里是岛屿的东部。极目的是一片看不到尽头的大绿野，是活火
-山经几千万年的火山灰堆积而成，平野上一群梅花鹿正在低头吃草，
-周围一片平静，绝无可怖之处，远处高山处玄冰白雪，些处却是极目
-青绿，苍松翠柏，更诸般奇花异树，皆为中土所无。
+這裡是島嶼的東部。極目的是一片看不到盡頭的大綠野，是活火
+山經幾千萬年的火山灰堆積而成，平野上一群梅花鹿正在低頭吃草，
+周圍一片平靜，絕無可怖之處，遠處高山處玄冰白雪，些處卻是極目
+青綠，蒼松翠柏，更諸般奇花異樹，皆為中土所無。
 LONG );
 	set("exits",([
 		"south" : __DIR__"yanshi",
@@ -18,6 +18,6 @@ LONG );
 	set("objects",([
 		"/d/mingjiao/npc/lu" :  1,
 	]));
-	set("outdoors","冰火岛");
+	set("outdoors","冰火島");
 	setup();
 }

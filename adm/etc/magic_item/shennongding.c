@@ -1,4 +1,4 @@
-// 上古十大神器之 神农鼎
+// 上古十大神器之 神農鼎
 // Create by Rcwiz for Hero.cn 2003/09
 
 #include <ansi.h>
@@ -7,7 +7,7 @@ inherit ITEM;
 
 int is_magic_item() { return 1; }
 
-// 炼制的丹药
+// 煉製的丹藥
 string *gifts = ({
         "/clone/fam/pill/neili1",
         "/clone/fam/pill/neili2",
@@ -95,17 +95,17 @@ string *gifts = ({
 
 void create()
 {
-        set_name(HIG "神农鼎" NOR, ({ "shennong ding", "shennong", "ding" }) );
+        set_name(HIG "神農鼎" NOR, ({ "shennong ding", "shennong", "ding" }) );
         set_weight(400);
         if (clonep())
                 set_default_object(__FILE__);
         else
         {
-                set("unit", "个");
-                set("long", HIG "这是一个具有神奇作用的鼎，据说上古神农尝百草炼奇药，所用"
-                                "之炼制器具就是这个神农鼎。\n"
-                                "你可以用它来炼制(lianzhi)出神奇的丹药，使用liandan ? "
-                                "查看可使用次数。\n炼制丹药需要炼丹术一百级。\n" NOR);
+                set("unit", "個");
+                set("long", HIG "這是一個具有神奇作用的鼎，據說上古神農嘗百草煉奇藥，所用"
+                                "之煉製器具就是這個神農鼎。\n"
+                                "你可以用它來煉製(lianzhi)出神奇的丹藥，使用liandan ? "
+                                "查看可使用次數。\n煉製丹藥需要煉丹術一百級。\n" NOR);
         }
 
         setup();
@@ -128,24 +128,24 @@ int do_lianzhi(string arg)
 
         if (arg == "?")
         {
-                 write(HIG "使用次数 " + this_object()->query("count") + "/5\n" NOR);
+                 write(HIG "使用次數 " + this_object()->query("count") + "/5\n" NOR);
                  return 1;
         }
         if (me->is_fighting() || me->is_busy())
                  return notify_fail("你正忙呢！\n");          
 
-        message_sort(HIG "\n$N" HIG "将神农鼎放在地上，随手仍进去一些药材，渐渐地，鼎中阵"
-                         "阵青烟冒出，光华万道 ……\n" NOR, me);
+        message_sort(HIG "\n$N" HIG "將神農鼎放在地上，隨手仍進去一些藥材，漸漸地，鼎中陣"
+                         "陣青煙冒出，光華萬道 ……\n" NOR, me);
 
         gift = gifts[random(sizeof(gifts))];
         ob = new(gift);
         if (! objectp(ob))
         {
-                write(HIR "物件 " + gift + " 复制出错！\n" NOR);
+                write(HIR "物件 " + gift + " 複製出錯！\n" NOR);
         }
         else
         {
-                write(HIG "你炼制出了 " + ob->name() + HIG + " 。\n" NOR);
+                write(HIG "你煉製出了 " + ob->name() + HIG + " 。\n" NOR);
                 ob->move(me, 1);
         }
              
@@ -153,7 +153,7 @@ int do_lianzhi(string arg)
         this_object()->add("count", 1);
         if (this_object()->query("count") >= 5)
         {
-                write(HIW "只听得一阵破碎的声音，神农鼎已损坏了。\n" NOR);
+                write(HIW "只聽得一陣破碎的聲音，神農鼎已損壞了。\n" NOR);
                 destruct(this_object());                        
         }
         

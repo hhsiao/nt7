@@ -4,11 +4,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("王诚", ({ "wang cheng","wang"}) );
+        set_name("王誠", ({ "wang cheng","wang"}) );
         set("gender", "男性" );
-        set("title", "日月神教风雷堂旗主");
+        set("title", "日月神教風雷堂旗主");
         set("age", 65);
-        set("long", "此人身材矮胖，满脸堆笑，其实为人十分狠毒。\n");
+        set("long", "此人身材矮胖，滿臉堆笑，其實為人十分狠毒。\n");
         set("attitude", "friendly");
         set("shen_type", -1);
 
@@ -49,7 +49,7 @@ void create()
         prepare_skill("hand", "huanmo-longtianwu");
         prepare_skill("cuff", "xuwu-piaomiao");
 
-        create_family("日月神教",2,"弟子 风雷堂旗主");
+        create_family("日月神教",2,"弟子 風雷堂旗主");
 
         setup();
         carry_object("/clone/weapon/gangjian")->wield();

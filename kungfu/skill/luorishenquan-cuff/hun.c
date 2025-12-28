@@ -1,4 +1,4 @@
-// hun.c 夕阳红
+// hun.c 夕陽紅
 
 #include <ansi.h>
 
@@ -17,23 +17,23 @@ int perform(object me, object target)
         skill = me->query_skill("luorishenquan-cuff", 1);
 
         if (! me->is_fighting(target))
-                return notify_fail("夕阳红只能对战斗中的对手使用。\n");
+                return notify_fail("夕陽紅只能對戰鬥中的對手使用。\n");
 
         if(me->query_skill_mapped("cuff") != "luorishenquan-cuff") 
-                return notify_fail("你没有用落日神拳，无法使用「夕阳红」绝招！\n");
+                return notify_fail("你沒有用落日神拳，無法使用「夕陽紅」絕招！\n");
 
         if (me->query_skill_prepared("cuff") != "luorishenquan-cuff")
-                return notify_fail("你没有准备使用落日神拳，无法施展「夕阳红」绝招。\n");
+                return notify_fail("你沒有準備使用落日神拳，無法施展「夕陽紅」絕招。\n");
 
         if (skill < 100)
-                return notify_fail("你的落日神拳等级不够，练好了再来！\n");
+                return notify_fail("你的落日神拳等級不夠，練好了再來！\n");
 
         if( objectp(weapon=query_temp("weapon", me)) || 
             objectp(weapon=query_temp("handing", me)) )
-                return notify_fail("你必须空着双手才能使用拳法绝招。\n");
+                return notify_fail("你必須空著雙手才能使用拳法絕招。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
         
         ap = me->query_skill("cuff") + me->query_skill("force");
         ap+=query("jiali", me);
@@ -44,7 +44,7 @@ int perform(object me, object target)
         dp = target->query_skill("parry",1) + target->query_skill("dodge",1);
         dp = dp*3/2;
 
-        msg = HIW "\n$N" HIW "默运运起落日神拳法的" HIC "夕阳红" HIW "，忽的长啸一声，双拳电闪击出。\n" NOR;
+        msg = HIW "\n$N" HIW "默運運起落日神拳法的" HIC "夕陽紅" HIW "，忽的長嘯一聲，雙拳電閃擊出。\n" NOR;
 
         message_combatd(msg, me, target);
 
@@ -57,11 +57,11 @@ int perform(object me, object target)
                 COMBAT_D->do_attack(me, target, 0, 0);
         }
 
-        msg = HIW "\n$N" HIW "深吸一口气，沉沉一拳朴实无华的向$n" HIW "迎面击去。\n" NOR;
+        msg = HIW "\n$N" HIW "深吸一口氣，沉沉一拳樸實無華的向$n" HIW "迎面擊去。\n" NOR;
 
         if (ap / 2 + random(ap) > dp || !living(target))
         {
-                msg += HIW "$n" HIW "躲闪不急，惨叫一声，面门被打了个正着。\n" NOR;
+                msg += HIW "$n" HIW "躲閃不急，慘叫一聲，面門被打了個正著。\n" NOR;
                 target->receive_damage("qi", damage, me);
                 target->receive_wound("qi", damage/2, me);
                 str=COMBAT_D->status_msg(query("qi", target)*100/query("max_qi", target));
@@ -69,7 +69,7 @@ int perform(object me, object target)
                 target->start_busy(1);
         } else
         {
-                msg += HIC "$n" HIC "见势不妙，猛地向后一跃，躲开了这沉猛一拳。\n" NOR;
+                msg += HIC "$n" HIC "見勢不妙，猛地向後一躍，躲開了這沉猛一拳。\n" NOR;
         }
 
         me->start_busy(2 + random(2));

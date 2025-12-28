@@ -6,9 +6,9 @@ void create()
 {
         set("short", "蝶仙谷");
         set("long",@LONG
-进入蝴蝶谷，成群的彩蝶飞绕在你四周，而阵阵花香扑鼻而来，
-五彩的光环由天际投射而来，将这里照射得分外美丽。令你觉得置
-身如此美景，所有凡尘琐事都已抛之脑后。    
+進入蝴蝶谷，成群的彩蝶飛繞在你四周，而陣陣花香撲鼻而來，
+五彩的光環由天際投射而來，將這裡照射得分外美麗。令你覺得置
+身如此美景，所有凡塵瑣事都已拋之腦後。    
 LONG);
 
         set("exits", ([
@@ -16,10 +16,10 @@ LONG);
                 "east"     : __DIR__"wolongdao",        
                 "south"    : __DIR__"diexianju",                
         ]));
-        set("no_rideto", 1);         // 设置不能骑马到其他地方
-        set("no_flyto", 1);          // 设置不能从起来地方骑马来这里
-        set("no_die", 1);            // 死亡后移动到扁鹊居
-        set("penglai", 1);           // 表示在蓬莱岛
+        set("no_rideto", 1);         // 設置不能騎馬到其他地方
+        set("no_flyto", 1);          // 設置不能從起來地方騎馬來這裡
+        set("no_die", 1);            // 死亡後移動到扁鵲居
+        set("penglai", 1);           // 表示在蓬萊島
 
         set("n_time", 45); 
         set("n_npc", 1); 
@@ -37,14 +37,14 @@ void init ()
                 if( !query("penglai/go_quest/ok", this_player()) )
                 {
                         this_player()->start_busy(3);
-                        tell_object(this_player(), NOR + WHT "你到了此处，四周仙气缭绕令你一时间难以辨别方向。\n" NOR);
+                        tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);
                 }
                 else
                 {
                         if (random(2))
                         {
                                 this_player()->start_busy(1);
-                                tell_object(this_player(), NOR + WHT "你到了此处，四周仙气缭绕令你一时间难以辨别方向。\n" NOR);                
+                                tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);                
                         }
                 }
         }

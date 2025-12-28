@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("[1;31m龙王火[2;37;0m[2;37;0m", ({"qdds"}));        
+        set_name("[1;31m龍王火[2;37;0m[2;37;0m", ({"qdds"}));        
         set("gender", "男性");                
-        set("long", "龙王火，火龙王，龙王火起最难防。[2;37;0m
-它是七灯大师的魔幻兽。
+        set("long", "龍王火，火龍王，龍王火起最難防。[2;37;0m
+它是七燈大師的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "qideng");
-        set("owner_name", "七灯大师");
+        set("owner_name", "七燈大師");
         set_temp("owner", "qideng");
-        set_temp("owner_name", "七灯大师");
+        set_temp("owner_name", "七燈大師");
         ::setup();
 }

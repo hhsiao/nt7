@@ -75,7 +75,7 @@ varargs mixed do_emote(object me, string verb, string arg, int channel_emote, mi
 
         if (channel_emote && channel_emote == 4)
         {
-                // 根据其他MUD返回的信息做生成EMOTE表情
+                // 根據其他MUD返回的信息做生成EMOTE表情
                 if (sscanf(arg,"mud=%s name=%s id=%s age=%d gender=%s respect=%s rude=%s ",
                                         rwho["mud"],
                                         rwho["name"],
@@ -88,7 +88,7 @@ varargs mixed do_emote(object me, string verb, string arg, int channel_emote, mi
 
                 if (! mapp(def = query_emote(verb)))
                 {
-                        tell_object(me, "没有 " + verb + " 这个表情动词。\n");
+                        tell_object(me, "沒有 " + verb + " 這個表情動詞。\n");
                         return 0;
                 }
 
@@ -120,7 +120,7 @@ varargs mixed do_emote(object me, string verb, string arg, int channel_emote, mi
                 if( query("doing", me) == "scheme" )
                 {
                         if( query("jing", me)<100 )
-                                return notify_fail("你现在的精神不济，等一会儿吧。\n");
+                                return notify_fail("你現在的精神不濟，等一會兒吧。\n");
                         addn("jing", -50, me);
                 }
         }
@@ -139,7 +139,7 @@ varargs mixed do_emote(object me, string verb, string arg, int channel_emote, mi
                 }
 
                 if (! target->is_character())
-                        return notify_fail("你要对谁做这个动作？\n");
+                        return notify_fail("你要對誰做這個動作？\n");
 
                 if (! me->visible(target))
                         return 0;
@@ -153,7 +153,7 @@ varargs mixed do_emote(object me, string verb, string arg, int channel_emote, mi
                 {
                         can_emote=query("env/can_emote", target);
                         if (! is_sub(query("id", me), can_emote))
-                                return notify_fail("这个人不想接受你的动作。\n");
+                                return notify_fail("這個人不想接受你的動作。\n");
                 }
 
                 tar_name = target->name() + default_color;
@@ -385,14 +385,14 @@ string listemote(object me,int arg)
             emote = query_emote(e[i]);
              if (!mapp(emote) || sizeof(emote) < 1) continue;
              result = "------------------------------------------------------------\n";
-             result += sprintf("表情动词：%s\n",e[i]);
-//           if (emote["myself_self"]) result += sprintf("对自己使用自己看到的信息：%s",emote["myself_self"]);
-             if (emote["others_self"]) result += sprintf("对自己使用别人看到的信息：%s",emote["others_self"]);
-//           if (emote["myself_target"]) result += sprintf("对别人使用自己看到的信息：%s",emote["myself_target"]);
-//           if (emote["target"]) result += sprintf("对别人使用对方看到的信息：%s",emote["target"]);
-             if (emote["others_target"]) result += sprintf("对别人使用其他人看到信息：%s",emote["others_target"]);
-//           if (emote["myself"]) result += sprintf("没使用目标自己看到的信息：%s",emote["myself"]);
-             if (emote["others"]) result += sprintf("没使用目标别人看到的信息：%s",emote["others"]);
+             result += sprintf("表情動詞：%s\n",e[i]);
+//           if (emote["myself_self"]) result += sprintf("對自己使用自己看到的信息：%s",emote["myself_self"]);
+             if (emote["others_self"]) result += sprintf("對自己使用別人看到的信息：%s",emote["others_self"]);
+//           if (emote["myself_target"]) result += sprintf("對別人使用自己看到的信息：%s",emote["myself_target"]);
+//           if (emote["target"]) result += sprintf("對別人使用對方看到的信息：%s",emote["target"]);
+             if (emote["others_target"]) result += sprintf("對別人使用其他人看到信息：%s",emote["others_target"]);
+//           if (emote["myself"]) result += sprintf("沒使用目標自己看到的信息：%s",emote["myself"]);
+             if (emote["others"]) result += sprintf("沒使用目標別人看到的信息：%s",emote["others"]);
 
 
             result = replace_string(result, "$n", "某人");
@@ -401,8 +401,8 @@ string listemote(object me,int arg)
             result = replace_string(result, "$p", "(他/她)");
             result = replace_string(result, "$S", RANK_D->query_self(me));
             result = replace_string(result, "$s", RANK_D->query_self_rude(me));
-            result = replace_string(result, "$R", "壮士");
-            result = replace_string(result, "$r", "臭贼");
+            result = replace_string(result, "$R", "壯士");
+            result = replace_string(result, "$r", "臭賊");
             result = replace_string(result, "$C", "愚兄我");
             result = replace_string(result, "$c", "哥哥");
             str += result;

@@ -7,9 +7,9 @@ void setup()
         set_name("最深[2;37;0m[2;37;0m", ({"aweroiut"}));        
         set("gender", "男性");                
         set("long", "最深[2;37;0m
-它是盒子的魔幻兽。
+它是盒子的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "boxer");
         set("owner_name", "盒子");

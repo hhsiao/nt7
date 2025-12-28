@@ -4,10 +4,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", NOR + RED "大枣树上" NOR);
+        set("short", NOR + RED "大棗樹上" NOR);
         set("long", @LONG
-这里是石窟内的一棵百仗高的大枣树上，但见此处被树叶
-所盖，密不透风。
+這裡是石窟內的一棵百仗高的大棗樹上，但見此處被樹葉
+所蓋，密不透風。
 LONG);
         set("exits", ([
               "up"    :  __DIR__"ontree2",
@@ -31,18 +31,18 @@ int do_jump(string arg)
         object ob;
 
         if (! arg || arg != "down" )
-                return notify_fail("你要往哪儿跳？\n");
+                return notify_fail("你要往哪兒跳？\n");
 
         if (! ob = find_object(__DIR__"undertan"))
                 ob = load_object(__DIR__"undertan");
 
         if (me->is_busy())
-                return notify_fail("你现在正忙着呢！\n");
+                return notify_fail("你現在正忙著呢！\n");
 
         if (me->is_fighting())
-                return notify_fail("你还是先把你面前这个家伙解决了再说。\n");
+                return notify_fail("你還是先把你面前這個傢伙解決了再說。\n");
 
-        tell_room(ob, HIC + me->name() + "从大枣树上跳了下来。\n" NOR, me);
+        tell_room(ob, HIC + me->name() + "從大棗樹上跳了下來。\n" NOR, me);
 
         me->move(ob);
 
@@ -54,7 +54,7 @@ int valid_leave(object me, string dir)
 {
         if (dir == "down")
         { 
-               write(HIC "这里离地面太高，看来你只有跳下去了。\n" NOR);
+               write(HIC "這裡離地面太高，看來你只有跳下去了。\n" NOR);
                return -1;
         }
 

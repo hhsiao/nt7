@@ -1,4 +1,4 @@
-// guangling-san.c 广陵散
+// guangling-san.c 廣陵散
 
 #include <ansi.h>
 
@@ -11,10 +11,10 @@ int valid_enable(string usage) { return usage == "tanqin-jifa"; }
 int valid_learn(object me)
 {
         if (me->query_skill("tanqin-jifa", 1) < 50)
-                return notify_fail("你的弹琴技法水平太差，还是先练好再说吧！\n");
+                return notify_fail("你的彈琴技法水平太差，還是先練好再說吧！\n");
 
         if (me->query_skill("tanqin-jifa", 1) < me->query_skill("guangling-san", 1))
-                return notify_fail("你的弹琴技法所有有限，无法领会更精妙的广陵散。\n");
+                return notify_fail("你的彈琴技法所有有限，無法領會更精妙的廣陵散。\n");
 
         return 1;
 }
@@ -25,13 +25,13 @@ int practice_skill(object me)
 
         if( !objectp(ob=query_temp("handing", me)) || 
             ! ob->valid_as_qin())
-                return notify_fail("你不拿琴在手上，怎么练习？\n");
+                return notify_fail("你不拿琴在手上，怎麼練習？\n");
 
         if( query("jing", me)<80 )
-                return notify_fail("你的精神不够好，没法练习了。\n");
+                return notify_fail("你的精神不夠好，沒法練習了。\n");
 
         if( query("qi", me)<30 )
-                return notify_fail("你现在口干舌燥，实在是太累了。\n");
+                return notify_fail("你現在口乾舌燥，實在是太累了。\n");
 
         me->receive_damage("jing", 25);
         me->receive_damage("qi", 10);
@@ -53,7 +53,7 @@ void do_effect(object me)
         // special effort
         obs = all_inventory(environment(me)) - ({ me });
         obs->receive_heal("jing", random(lvl / 10) + 10);
-        message("vision", YEL "你听了" + me->name() +
-                YEL "一曲广陵散，整个人犹如置身于梦中一般，精神随之一振。\n" NOR,
+        message("vision", YEL "你聽了" + me->name() +
+                YEL "一曲廣陵散，整個人猶如置身於夢中一般，精神隨之一振。\n" NOR,
                 obs);
 }

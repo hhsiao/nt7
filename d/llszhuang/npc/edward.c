@@ -11,7 +11,7 @@ void create()
         set_name(HIM "笑天" NOR, ({ "xiao tian", "edward" }));
         set("gender", "男性" );
         set("age", 30 + random(30));
-        set("long", "如梦如幻无法让人看的清楚的一个人。");
+        set("long", "如夢如幻無法讓人看的清楚的一個人。");
         set("attitude", "friendly");
         set_temp("apply/attack", 3000);
         set_temp("apply/dodge", 3000);
@@ -82,7 +82,7 @@ varargs void die(object killer)
         {
                 ob = new("/d/reborn/obj/mibao");
                 ob->move(killer, 1);
-                tell_object(killer, HIR "你获得了一件密宝奇珍。\n" NOR);
+                tell_object(killer, HIR "你獲得了一件密寶奇珍。\n" NOR);
                 set_temp("mibao/finded", 1, killer);
         }
        

@@ -10,10 +10,10 @@ inherit ROOM;
 
 void init_connections();
 
-// 交通要点，所有交通信息保存在 MAP_D 中，本地连接情况保存在
-// F_DBASE 中的 trans 变量中，前为所去地点，后为价格。
+// 交通要點，所有交通信息保存在 MAP_D 中，本地連接情況保存在
+// F_DBASE 中的 trans 變量中，前為所去地點，後為價格。
 
-// 提示给顾客的信息
+// 提示給顧客的信息
 string trans_prompt()
 {
         string msg;
@@ -22,9 +22,9 @@ string trans_prompt()
         mixed pos;
 
         if (! mapp(trans = query("trans")) || sizeof(trans) < 1)
-                return "本店正在维修中，暂时不提供交通服务。\n";
+                return "本店正在維修中，暫時不提供交通服務。\n";
 
-        msg = "本店现在开通了去以下地方的通路：\n"
+        msg = "本店現在開通了去以下地方的通路：\n"
               "-----------------------------------\n";
         foreach (to in keys(trans))
         {
@@ -36,7 +36,7 @@ string trans_prompt()
                                MONEY_D->price_str(trans[to]));
         }
         msg += "-----------------------------------\n"
-               "即来即走(goto)，无需等待。\n本店价格优惠，童叟无欺。\n";
+               "即來即走(goto)，無需等待。\n本店價格優惠，童叟無欺。\n";
 
         return msg;
 }
@@ -47,7 +47,7 @@ void setup()
         init_connections();
 }
 
-// 初始化连接
+// 初始化連接
 void init_connections()
 {
         mapping trans;
@@ -62,7 +62,7 @@ void init_connections()
                 if (stringp(pos[item]["room"]) &&
                     find_object(pos[item]["room"]) == this_object())
                 {
-                        // 确定了自己的位置
+                        // 確定了自己的位置
                         here = item;
                         break;
                 }
@@ -99,45 +99,45 @@ int do_goto(string arg)
         int pay;
 
         if (! arg)
-                return notify_fail("你要去哪里？\n");
+                return notify_fail("你要去哪裡？\n");
 
         if (undefinedp(pay = query("trans/" + arg)))
-                return notify_fail("看清楚牌子(paizi)，上面哪里有这个地方？\n");
+                return notify_fail("看清楚牌子(paizi)，上面哪裡有這個地方？\n");
 
         me = this_player();
         if (me->is_busy())
-                return notify_fail("什么都等你忙完了再说吧。\n");
+                return notify_fail("什麼都等你忙完了再說吧。\n");
 
         if (me->query_condition("killer"))
-                return notify_fail("你有命案在身呢，你想肆无忌惮的在官道上溜达？！\n");
+                return notify_fail("你有命案在身呢，你想肆無忌憚的在官道上溜達？！\n");
 
         pos = MAP_D->query_trans_info(arg);
         if (! mapp(pos) || ! stringp(pos["name"]))
         {
-                write("马夫大呼道：“BUG！BUG！”\n");
+                write("馬伕大呼道：“BUG！BUG！”\n");
                 return 1;
         }
 
         if (! stringp(pos["room"]))
         {
-                write("马夫大苦笑道：“那个地方去不了哦。”\n");
+                write("馬伕大苦笑道：“那個地方去不了哦。”\n");
                 return 1;
         }
 
         if (wiz_level(me) > 0)
         {
-                write("马夫笑道：“原来是巫师啊，你不会飞么？既然非要走路，那就不收钱了。”\n");
+                write("馬伕笑道：“原來是巫師啊，你不會飛麼？既然非要走路，那就不收錢了。”\n");
                 pay = 0;
         } else
         if( query("family/family_name", me) == "段氏皇族" )
         {
                 pay = 0;
-                write("马夫道：“呦，是您啊，您就走吧，我怎好意思收您的钱。”\n");
+                write("馬伕道：“呦，是您啊，您就走吧，我怎好意思收您的錢。”\n");
         } else
         if( query("age", me) <= 14 )
         {
                 pay = 0;
-                write("马夫讶道：“小小年纪就出来了？算了，我就不收你的钱了。”\n");
+                write("馬伕訝道：“小小年紀就出來了？算了，我就不收你的錢了。”\n");
         } else
         if (me->query_skill("higgling", 1) >= 30)
         {
@@ -145,30 +145,30 @@ int do_goto(string arg)
                 switch (random(5))
                 {
                 case 0:
-                        write("你道：看在我常年照顾你生意份上，还不给点折扣？\n");
+                        write("你道：看在我常年照顧你生意份上，還不給點折扣？\n");
                         break;
 
                 case 1:
-                        write("你道：你们老板可是我的熟人啊。\n");
+                        write("你道：你們老闆可是我的熟人啊。\n");
                         break;
 
                 case 2:
-                        write("你道：这位兄弟好，最近生意好吧，给点折扣如何？\n");
+                        write("你道：這位兄弟好，最近生意好吧，給點折扣如何？\n");
                         break;
 
                 case 3:
-                        write("你道：太贵了，便宜点，便宜点我就走了。\n");
+                        write("你道：太貴了，便宜點，便宜點我就走了。\n");
                         break;
 
                 case 4:
-                        write("你道：我这是急事，您就行个好，便宜点吧。\n");
+                        write("你道：我這是急事，您就行個好，便宜點吧。\n");
                         break;
                 }
 
                 pay /= 10;
                 pay *= 10;
                 if (pay < 10) pay = 10;
-                write("马夫无奈道：“好吧，好吧，那就" + MONEY_D->price_str(pay) +
+                write("馬伕無奈道：“好吧，好吧，那就" + MONEY_D->price_str(pay) +
                       "算了。”\n");
         }
 
@@ -176,11 +176,11 @@ int do_goto(string arg)
         {
                 if (MONEY_D->player_pay(me, pay) != 1)
                         return 0;
-                message_vision("$N付了帐，对马夫说了两句什么。\n", me);
+                message_vision("$N付了帳，對馬伕說了兩句什麼。\n", me);
         }
 
-        message_vision("马夫一声招呼，开过来一辆大车，$N"
-                       "上了车就出发了。\n", me);
+        message_vision("馬伕一聲招呼，開過來一輛大車，$N"
+                       "上了車就出發了。\n", me);
         cart = new("/clone/misc/trans_cart");
         obs = filter_array(all_inventory(),
                            (: $1 == $(me) || $1->query_leader() == $(me) &&
@@ -205,15 +205,15 @@ void arrival(object me, object cart, mapping pos)
                            (: $1 == $(me) || $1->query_leader() == $(me) &&
                                           ! playerp($1) &&
                                           ! $1->is_killing(query("id", $(me))) :));
-        tell_object(me, "你到了" + pos["name"] + "，下了车。\n");
+        tell_object(me, "你到了" + pos["name"] + "，下了車。\n");
         obs->move(pos["room"]);
-        message("vision", "吱呀吱呀一辆大车赶了过来，随即就见" +
-                          me->name() + "跳了下来。\n",
+        message("vision", "吱呀吱呀一輛大車趕了過來，隨即就見" +
+                          me->name() + "跳了下來。\n",
                 environment(me), me);
 
         if (sizeof(obs = all_inventory(cart)) > 0)
         {
-                message("vision", "只听稀里哗啦一阵响，从车上扔下一堆东西来。\n",
+                message("vision", "只聽稀里嘩啦一陣響，從車上扔下一堆東西來。\n",
                         environment(me), me);
                 obs->move(pos["room"]);
         }

@@ -4,14 +4,14 @@ inherit BOOK;
 
 void create()
 {
-        set_name( "胡家刀谱",({ "blade book","book"}));
+        set_name( "胡家刀譜",({ "blade book","book"}));
         set_weight(200);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
                 set("unit", "本");
-                set("long","这是一本胡家刀谱，记录了刀法微妙之处。\n");
+                set("long","這是一本胡家刀譜，記錄了刀法微妙之處。\n");
                 set("value", 50);
                 set("material", "paper");
                 set("skill", ([

@@ -11,21 +11,21 @@ int exert(object me, object target)
         int skill;
 
         if (target != me)
-                return notify_fail("你只能用葵花魔功提升自己的战斗力。\n");
+                return notify_fail("你只能用葵花魔功提升自己的戰鬥力。\n");
 
         if( query("neili", me)<100 )
-                return notify_fail("你的真气不够！");
+                return notify_fail("你的真氣不夠！");
 
         if( query_temp("powerup", me) )
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
 
         addn("neili", -100, me);
         me->receive_damage("qi", 0);
 
-        message_combatd(HIR "$N" HIR "脸色忽红忽白，邪气大现，眼"
-                        "中精光一亮，渐渐又失去神色。\n" NOR, me);
+        message_combatd(HIR "$N" HIR "臉色忽紅忽白，邪氣大現，眼"
+                        "中精光一亮，漸漸又失去神色。\n" NOR, me);
 
         addn_temp("apply/attack", skill*2/5, me);
         addn_temp("apply/defense", skill*2/5, me);
@@ -46,6 +46,6 @@ void remove_effect(object me, int amount)
                 addn_temp("apply/attack", -amount, me);
                 addn_temp("apply/defense", -amount, me);
                 delete_temp("powerup", me);
-                tell_object(me, "你的葵花魔功运行完毕，将内力收回丹田。\n");
+                tell_object(me, "你的葵花魔功運行完畢，將內力收回丹田。\n");
         }
 }

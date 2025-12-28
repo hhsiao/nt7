@@ -1,19 +1,19 @@
 // Copyright (C) 2003, by Lonely. All rights reserved.
 // This software can not be used, copied, or modified 
 // in any form without the written permission from authors.
-// pi.c 裨将 朱雀内门
+// pi.c 裨將 朱雀內門
 
 #include <ansi.h>
 inherit NPC;
 
 void create()
 {
-        set_name("裨将", ({ "pi jiang", "pi", "jiang" }));
+        set_name("裨將", ({ "pi jiang", "pi", "jiang" }));
         set("gender", "男性");
         set("age", random(10) + 30);
         set("str", 25);
         set("dex", 16);
-        set("long", "这是一个大宋年轻将领，满脸征尘。\n");
+        set("long", "這是一個大宋年輕將領，滿臉征塵。\n");
         set("combat_exp", 45000);
         set("shen_type", 1);
         set("attitude", "peaceful");
@@ -56,12 +56,12 @@ void greeting(object ob)
                 return;
 
         if( query_temp("guo_shoucheng/start_job", ob) == 1 )
-                say("裨将皱了皱眉：这位" + RANK_D->query_respect(ob) + "，你还是安心守城吧。\n");
+                say("裨將皺了皺眉：這位" + RANK_D->query_respect(ob) + "，你還是安心守城吧。\n");
         else 
         if( query_temp("guo_shoucheng/mark_shadi", ob) == 3
          && !query_temp("guo_shoucheng/job_over", ob) )
         {
-                say("裨将拱手说道：这位" + RANK_D->query_respect(ob) + "，你来得正是时候，蒙古靼子已经快攻上城了。\n");
+                say("裨將拱手說道：這位" + RANK_D->query_respect(ob) + "，你來得正是時候，蒙古靼子已經快攻上城了。\n");
                 
                 set("env/combatd", 4, ob);
                 ob->apply_condition("jobshadi_limit", 10 + random(5));
@@ -72,7 +72,7 @@ void greeting(object ob)
         } else
         if( query_temp("guo_shoucheng/job_over", ob) )
         {
-                say("裨将拱手说道：这位" + RANK_D->query_respect(ob) + "，你已经可以回去复命了。\n");
+                say("裨將拱手說道：這位" + RANK_D->query_respect(ob) + "，你已經可以回去覆命了。\n");
                 return;
         } 
 
@@ -88,13 +88,13 @@ void to_rob(object ob)
 
         room = environment(ob);
         
-        if( query("short", environment(ob)) == "朱雀内门" )
+        if( query("short", environment(ob)) == "朱雀內門" )
         {
                 robber = new(__DIR__"robber1");
                 robber->do_change(ob);
                 set("want_kill", ob, robber);
                 robber->move(room);
-                message_vision(HIR "突然城下爬上来一个蒙古兵士。\n" NOR, this_player()); 
+                message_vision(HIR "突然城下爬上來一個蒙古兵士。\n" NOR, this_player()); 
                 robber->kill_ob(ob);
                 ob->kill_ob(robber);
         }
@@ -102,33 +102,33 @@ void to_rob(object ob)
 
 int accept_kill(object me) 
 {
-        message_vision(CYN "$N" CYN "大怒道：“给我滚！”说罢一掌把$n" CYN "劈倒在地。\n" NOR, this_object(), me); 
+        message_vision(CYN "$N" CYN "大怒道：“給我滾！”說罷一掌把$n" CYN "劈倒在地。\n" NOR, this_object(), me); 
         me->unconcious(); 
         return -1; 
 }
 
 int accept_ansuan(object who) 
 {
-        return notify_fail("你刚想暗算，可是眼前一花，看不太清楚。\n"); 
+        return notify_fail("你剛想暗算，可是眼前一花，看不太清楚。\n"); 
 }
 
 int accept_hit(object me) 
 {
 
-        message_vision(CYN "$N" CYN "大怒道：“给我滚！”说罢一掌把$n" CYN "劈倒在地。\n" NOR, this_object(), me); 
+        message_vision(CYN "$N" CYN "大怒道：“給我滾！”說罷一掌把$n" CYN "劈倒在地。\n" NOR, this_object(), me); 
         me->unconcious(); 
         return -1; 
 }
 
 int accept_fight(object who) 
 {
-        command("say 没兴趣。"); 
+        command("say 沒興趣。"); 
         return 0; 
 }
 
 void fight_ob(object ob) 
 {
-        message_vision(CYN "$N" CYN "大怒道：“给我滚！”说罢一掌把$n" CYN "劈倒在地。\n" NOR, this_object(), ob); 
+        message_vision(CYN "$N" CYN "大怒道：“給我滾！”說罷一掌把$n" CYN "劈倒在地。\n" NOR, this_object(), ob); 
         ob->unconcious(); 
         return; 
 }

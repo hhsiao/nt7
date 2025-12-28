@@ -12,13 +12,13 @@ int stop_climbing(object me);
 
 void create()
 {
-                set("short", "东篱翠微");
+                set("short", "東籬翠微");
                 set("long",
-"这是一处山坡小院的重阳节傍晚。五棵柳树围在翠绿的篱笆外抽枝\n"
-"舞絮，篱内贴着若干株李花桃花随风飘飞。\n"
-"    几条小径把院落分出几个出口，中心围拢处是一小"+CYN+"亭"+NOR+"，亭内有一石\n"
-"桌和几张石凳。绕亭遍栽层叠起伏的金菊白菊当此节气正怒放争娆，却\n"
-"合柳絮桃花自成一派诡谲风光。\n"
+"這是一處山坡小院的重陽節傍晚。五棵柳樹圍在翠綠的籬笆外抽枝\n"
+"舞絮，籬內貼著若干株李花桃花隨風飄飛。\n"
+"    幾條小徑把院落分出幾個出口，中心圍攏處是一小"+CYN+"亭"+NOR+"，亭內有一石\n"
+"桌和幾張石凳。繞亭遍栽層疊起伏的金菊白菊當此節氣正怒放爭嬈，卻\n"
+"合柳絮桃花自成一派詭譎風光。\n"
                 );
         set("item_desc", ([
                 "亭": (: look_ting :),
@@ -57,7 +57,7 @@ void create()
 int valid_leave(object me, string dir)
 {
                 //if (dir == "wiz" && ! wizardp(me) && (query("id", me) != "redl"))
-                //return notify_fail("那里只有巫师才能进去。\n");
+                //return notify_fail("那裡只有巫師才能進去。\n");
 
                 return ::valid_leave(me, dir);
 }
@@ -85,7 +85,7 @@ int do_clnew(string arg)
 {
         object me = this_player();
 
-        if (!arg) return notify_fail(NOR "你需要输入物件。\n"NOR );
+        if (!arg) return notify_fail(NOR "你需要輸入物件。\n"NOR );
         if (query("clonenew")) {
                 return 1;
         }
@@ -102,10 +102,10 @@ void init()
                 if (playerp(this_player())) {
                         me = find_player("redl");
                         if (objectp(me) && obid!=query("id", me))
-                                tell_object(me, HIG + "工作室有"+ obid + "造访！\a\n" + NOR);
+                                tell_object(me, HIG + "工作室有"+ obid + "造訪！\a\n" + NOR);
                         me = find_player("red");
                         if (objectp(me) && obid!=query("id", me))
-                                tell_object(me, HIG + "工作室有"+ obid + "造访！\a\n" + NOR);
+                                tell_object(me, HIG + "工作室有"+ obid + "造訪！\a\n" + NOR);
                 }
 
                                 add_action("do_clnew", "clnew");
@@ -120,10 +120,10 @@ void init()
 
 string look_ting(object me)
 {
-    return "                  "+HIR+BCYN+"『炼心亭』\n"+HIW+BCYN+
-    "\n「无可奈何花落去」"+NOR+"          "+HIW+BCYN+"「似曾相识燕归来」\n\n\n"+NOR+
-        "              小亭入口上方横挂匾额，两排楹联竖刻于亭柱木匾上，\n"+
-        "                           落款为红莲老祖(redl)于二零一二年冬\n";
+    return "                  "+HIR+BCYN+"『煉心亭』\n"+HIW+BCYN+
+    "\n「無可奈何花落去」"+NOR+"          "+HIW+BCYN+"「似曾相識燕歸來」\n\n\n"+NOR+
+        "              小亭入口上方橫掛匾額，兩排楹聯豎刻於亭柱木匾上，\n"+
+        "                           落款為紅蓮老祖(redl)於二零一二年冬\n";
 }
 
 
@@ -135,19 +135,19 @@ int climbing(object me)
         switch(query_temp("redlworkroom/step", me) )
         {
         case 1:
-                        message_vision(YEL + "$N提脚沿土路往山坡攀登。\n" + NOR, me);
+                        message_vision(YEL + "$N提腳沿土路往山坡攀登。\n" + NOR, me);
                         break;
         case 2:
-                        message_vision(YEL + "$N一步步地艰难地攀登翠微。\n" + NOR, me);
+                        message_vision(YEL + "$N一步步地艱難地攀登翠微。\n" + NOR, me);
                         break;
         case 3:
-                        message_vision(YEL + "$N三步一歇吃力地继续往上行走。\n" + NOR, me);
+                        message_vision(YEL + "$N三步一歇吃力地繼續往上行走。\n" + NOR, me);
                         break;
         case 4:
-                        message_vision(YEL + "$N两步一喘来到东篱院前。\n" + NOR, me);
+                        message_vision(YEL + "$N兩步一喘來到東籬院前。\n" + NOR, me);
                         break;
         default:
-                        message_vision(YEL + "$N穿过篱笆走进院内站定。\n" + NOR, me);
+                        message_vision(YEL + "$N穿過籬笆走進院內站定。\n" + NOR, me);
                         return stop_climbing(me);
         }
                 addn_temp("redlworkroom/step", 1, me);

@@ -1,4 +1,4 @@
-// hongma.c 枣红马
+// hongma.c 棗紅馬
 
 #include <command.h>
 #include <dbase.h>
@@ -9,9 +9,9 @@ inherit NPC;
 
 void create()
 {
-        set_name(RED"枣红马"NOR, ({ "zaohongma" }));
-        set("long","一匹骏马，全身火红，无一根杂毛。\n");
-        set("race", "野兽");
+        set_name(RED"棗紅馬"NOR, ({ "zaohongma" }));
+        set("long","一匹駿馬，全身火紅，無一根雜毛。\n");
+        set("race", "野獸");
         set("age", 5);
         set("ridable", 1);
         set("int", 30);
@@ -23,7 +23,7 @@ void create()
         set("combat_exp", 50000);
         set("attitude", "peaceful");
 
-        set("limbs", ({ "头部", "腹部", "尾巴","后腿","前腿" }) );
+        set("limbs", ({ "頭部", "腹部", "尾巴","後腿","前腿" }) );
         set("verbs", ({ "bite", "hoof" }) );
         set_temp("apply/attack", 50);
         set_temp("apply/armor", 15);

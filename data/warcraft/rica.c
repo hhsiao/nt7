@@ -7,7 +7,7 @@ void setup()
         set_name("[1;31m生命[2;37;0m[2;37;0m", ({"rizz"}));        
         set("gender", "女性");                
         set("long", "$HIR$生命[2;37;0m
-它是西若的魔幻兽。
+它是西若的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

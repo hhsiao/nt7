@@ -6,12 +6,12 @@ void finish(object me, object ob);
 
 void create()
 {
-        set_name(HIC"药锄"NOR, ({ "yao chu"}));
+        set_name(HIC"藥鋤"NOR, ({ "yao chu"}));
         set_weight(100);
         if( clonep() )
                 set_default_object(__FILE__);
         else {
-                set("long", "一把药锄，用来在地里挖掘（wajue）根类药材。\n");
+                set("long", "一把藥鋤，用來在地裡挖掘（wajue）根類藥材。\n");
                 set("unit", "把"); 
                 set("no_get",1);
                 set("no_drop",1);             
@@ -39,10 +39,10 @@ int do_wajue()
     	 || query("id", weapon) != "yaochu" )
     	if( !objectp(weapon=query_temp("secondary_weapon", me) )
     	 || query("id", weapon) != "yaochu" )
-        	return notify_fail("你手中得拿着工具才能挖药。\n");
+        	return notify_fail("你手中得拿著工具才能挖藥。\n");
 
   	if( !query("outdoors", environment(me)) )
-  	return notify_fail("你在房间里挖个什么劲，要挖去外面挖！\n");
+  	return notify_fail("你在房間裡挖個什麼勁，要挖去外面挖！\n");
 
   	if(!sscanf(base_name(environment(me)),"/d/wudang/%*s")
   	&& !sscanf(base_name(environment(me)),"/d/quanzhen/%*s")
@@ -53,18 +53,18 @@ int do_wajue()
   	&& !sscanf(base_name(environment(me)),"/d/gaochang/%*s")
   	&& !sscanf(base_name(environment(me)),"/d/kunlun/%*s")
   	&& !sscanf(base_name(environment(me)),"/d/songshan/%*s"))
-  	return notify_fail("只有名山大川，风景秀丽之处才可以挖掘药材!\n");
+  	return notify_fail("只有名山大川，風景秀麗之處才可以挖掘藥材!\n");
   	
 	if(me->is_busy())
-  	return notify_fail("你现在正忙,等一下再挖吧!\n");
+  	return notify_fail("你現在正忙,等一下再挖吧!\n");
 
   	if( query("wajue", environment(me))>time() )
-  	return notify_fail("这里刚刚被人挖掘过，你等一会再来吧!\n");
+  	return notify_fail("這裡剛剛被人挖掘過，你等一會再來吧!\n");
 
   	me->start_busy(5);
 
 	me->start_call_out( (: call_other, __FILE__, "finish", me, ob :), 3);
-	message_vision( HIB"$N拿起药锄，在地上一阵疯狂乱刨！\n"NOR, this_player());
+	message_vision( HIB"$N拿起藥鋤，在地上一陣瘋狂亂刨！\n"NOR, this_player());
 	return 1;
 }
 
@@ -75,13 +75,13 @@ void finish(object me, object ob)
   	if(random(5)>4) 
 	{
   		me->start_busy(2);
-  		message_vision( HIW"$N感到好象挖到什么东西了,仔细一看原来是石块!\n"NOR, this_player());
+  		message_vision( HIW"$N感到好象挖到什麼東西了,仔細一看原來是石塊!\n"NOR, this_player());
 
    	}
   
    else if ( random(20)<2) 
 	{
-  		message_vision( HIG"$N突然听到『喀嚓一声』,锄头挖断了!\n"NOR, this_player());
+  		message_vision( HIG"$N突然聽到『喀嚓一聲』,鋤頭挖斷了!\n"NOR, this_player());
   		destruct(ob);
   	}
 	else
@@ -95,6 +95,6 @@ addn("neili", -(query("neili", me)/10), 		me);
    		gen->move(me);
   		me->start_busy(2);
 
-   		message_vision(HIR"$N拿着药锄刨地三尺，挖出了一根"+gen->name()+HIR"！\n"NOR, this_player());
+   		message_vision(HIR"$N拿著藥鋤刨地三尺，挖出了一根"+gen->name()+HIR"！\n"NOR, this_player());
 	}
 }

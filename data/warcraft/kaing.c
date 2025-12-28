@@ -6,8 +6,8 @@ void setup()
 {
         set_name("[1;32m翡翠玄武[2;37;0m[2;37;0m", ({"xuanwu"}));        
         set("gender", "男性");                
-        set("long", "通体如翡翠美玉铸成的通灵生物[2;37;0m
-它是雷柯德的魔幻兽。
+        set("long", "通體如翡翠美玉鑄成的通靈生物[2;37;0m
+它是雷柯德的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

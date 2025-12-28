@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "药圃");
+        set("short", "藥圃");
         set("long", @LONG
-这里是一处很大的药苗圃，遍地开着各色怪异的小花，空气
-里弥漫着香臭混杂的怪味道。
+這裡是一處很大的藥苗圃，遍地開著各色怪異的小花，空氣
+裡瀰漫著香臭混雜的怪味道。
 LONG
         );
         set("exits", ([

@@ -5,13 +5,13 @@ inherit F_MASTER;
 inherit NPC;
 #include <ansi.h>
 
-#define QUESTDIR "quest/天龙八部/"
-#define QUESTDIR1 "quest/天龙八部/凌波微步篇/"
-#define QUESTDIR2 "quest/天龙八部/天龙营救篇/"
-#define QUESTDIR3 "quest/天龙八部/萧峰身世篇/"
-#define QUESTDIR4 "quest/天龙八部/大辽救援篇/"
-#define QUESTDIR5 "quest/天龙八部/复兴天下篇/"
-#define QUESTDIR6 "quest/天龙八部/武功/"
+#define QUESTDIR "quest/天龍八部/"
+#define QUESTDIR1 "quest/天龍八部/凌波微步篇/"
+#define QUESTDIR2 "quest/天龍八部/天龍營救篇/"
+#define QUESTDIR3 "quest/天龍八部/蕭峰身世篇/"
+#define QUESTDIR4 "quest/天龍八部/大遼救援篇/"
+#define QUESTDIR5 "quest/天龍八部/復興天下篇/"
+#define QUESTDIR6 "quest/天龍八部/武功/"
 
 string askduanyu();
 string tianlonghelp();
@@ -22,11 +22,11 @@ string ask_for_join();
 
 void create()
 {
-        set_name("了惑禅师", ({ "liaohuo chanshi","liaohuo","chanshi"}) );
-        set("nickname", "漏尽尊者");
-        set("long", "了惑禅师是本因方丈的第五位弟子，他年约四十，
-红光满面。现掌理寺中待客迎宾之职，别看他笑容可
-鞠，行事却最是稳重、沉着。\n");
+        set_name("了惑禪師", ({ "liaohuo chanshi","liaohuo","chanshi"}) );
+        set("nickname", "漏盡尊者");
+        set("long", "了惑禪師是本因方丈的第五位弟子，他年約四十，
+紅光滿面。現掌理寺中待客迎賓之職，別看他笑容可
+鞠，行事卻最是穩重、沉著。\n");
         set("gender", "男性" );
         set("class", "bonze");
         set("attitude", "friendly");
@@ -36,7 +36,7 @@ void create()
         set("int", 22);
         set("con", 23);
         set("dex", 22);
-        create_family("天龙寺", 14, "弟子");
+        create_family("天龍寺", 14, "弟子");
         set("unique", 1);
         set("qi", 1000);
         set("max_qi", 1000);
@@ -68,19 +68,19 @@ void create()
         set("inquiry",([
                 "剃度"  : (: ask_for_join :),
                 "出家"  : (: ask_for_join :),
-            		"段誉" : (: askduanyu :),
-		            "大理" : "这里便是大理。",
-		            "天龙寺" : "这里正是天龙寺，大理段家武学的最高之地。",
-		            "天龙有难" : (: tianlonghelp :),
-		            "营救" : (: asksave :),
+            		"段譽" : (: askduanyu :),
+		            "大理" : "這裡便是大理。",
+		            "天龍寺" : "這裡正是天龍寺，大理段家武學的最高之地。",
+		            "天龍有難" : (: tianlonghelp :),
+		            "營救" : (: asksave :),
 		            "搭救" : (: asksave :),
-		            "萧峰" : "江湖人称南慕容、北萧峰，端得一条好汉。",
-		            "营救段誉" : (: asksave :),
-		            "营救萧峰" : (: askxiaofeng :),
-		            "慕容复" : "江湖人称南慕容、北萧峰，听说慕容公子年级轻轻，却无所不精。",
-		            "慕容博" : "我听说是，姑苏慕容不出的杰才，可惜英年早逝。",
-		            "鸠摩智" : (: askjiumozhi :),
-		            "六脉神剑" : "传说的我天龙寺最高绝学，我估计这辈子也未能见到。",
+		            "蕭峰" : "江湖人稱南慕容、北蕭峰，端得一條好漢。",
+		            "營救段譽" : (: asksave :),
+		            "營救蕭峰" : (: askxiaofeng :),
+		            "慕容復" : "江湖人稱南慕容、北蕭峰，聽說慕容公子年級輕輕，卻無所不精。",
+		            "慕容博" : "我聽說是，姑蘇慕容不出的傑才，可惜英年早逝。",
+		            "鳩摩智" : (: askjiumozhi :),
+		            "六脈神劍" : "傳說的我天龍寺最高絕學，我估計這輩子也未能見到。",
 	]));
         setup();
         carry_object(BINGQI_D("changjian"))->wield(); 
@@ -98,7 +98,7 @@ void init()
     {
     	command("look "+me->query("id"));
     	command("touch "+me->query("id"));
-    	command("say 有这位大侠帮忙，本寺当可高枕无忧了。"); 
+    	command("say 有這位大俠幫忙，本寺當可高枕無憂了。"); 
     }
 	} 
 }
@@ -109,25 +109,25 @@ string askjiumozhi()
 	if (me->query(QUESTDIR1+"over") && !me->query(QUESTDIR2+"start"))
 	{
   	  command("nod "+me->query("id"));
-		  return "听说，大轮寺第一高僧鸠摩智将来我天龙寺佛法交流，真是我大理之幸啊。";
+		  return "聽說，大輪寺第一高僧鳩摩智將來我天龍寺佛法交流，真是我大理之幸啊。";
   }
 	if (me->query(QUESTDIR2+"start") && !me->query(QUESTDIR2+"over"))
 	{
   	  command("sigh");
   	  command("? "+me->query("id"));
-		  return "这魔僧竟然如此欺负我大理无人，什么吐蕃国第一佛法高僧，狗P狗P。";
+		  return "這魔僧竟然如此欺負我大理無人，什麼吐蕃國第一佛法高僧，狗P狗P。";
   }
 	if (me->query(QUESTDIR2+"start")&& me->query(QUESTDIR2+"over"))
 	{
   	  command("nod "+me->query("id"));
-		  return "鸠摩智妄为西域第一佛法高僧，所谓口生莲花，全是一派胡言。";
+		  return "鳩摩智妄為西域第一佛法高僧，所謂口生蓮花，全是一派胡言。";
   }
   /*
-  大轮明王鸠摩智是吐蕃国的护国法王，但只听说他具大智慧，精通佛法，每隔五年，开坛讲经说法，西域天竺各地的高僧大德，
-  云集大雪山大轮寺，执经问难，研讨内典，闻法既毕，无不欢喜赞叹而去。
+  大輪明王鳩摩智是吐蕃國的護國法王，但只聽說他具大智慧，精通佛法，每隔五年，開壇講經說法，西域天竺各地的高僧大德，
+  雲集大雪山大輪寺，執經問難，研討內典，聞法既畢，無不歡喜讚歎而去。
   */
   command("nod");
-	return "大轮明王鸠摩智是吐蕃国的护国法王，但听说他具大智慧，精通佛法，想来武功也是惊人。";
+	return "大輪明王鳩摩智是吐蕃國的護國法王，但聽說他具大智慧，精通佛法，想來武功也是驚人。";
 }
 string askxiaofeng()
 {
@@ -136,39 +136,39 @@ string askxiaofeng()
   if(!me->query(QUESTDIR3+"start"))
   {
   	  command("hoho");
-  		return "江湖人称南慕容、北萧峰，端得一条好汉，何来援救之说。";
+  		return "江湖人稱南慕容、北蕭峰，端得一條好漢，何來援救之說。";
   }
 	if (me->query(QUESTDIR3+"start") && !me->query(QUESTDIR3+"over"))
 	{
   	  command("sigh");
   	  command("shrug "+me->query("id"));
-		  return "听说这件事情，只是天龙寺向来不涉及武林之争。";
+		  return "聽說這件事情，只是天龍寺向來不涉及武林之爭。";
   }
 
 	if (me->query(QUESTDIR3+"bad"))
 	{
   	  command("heng");
   	  command("? "+me->query("id"));
-		  return "乔峰，难不是你所迫出中原，今日所谓搭救不知什么意思。假惺惺！";
+		  return "喬峰，難不是你所迫出中原，今日所謂搭救不知什麼意思。假惺惺！";
   }
 	if (me->query(QUESTDIR3+"start") && me->query(QUESTDIR3+"over")&& !me->query(QUESTDIR4+"start"))
 	{
   	  command("sigh");
   	  command("shrug "+me->query("id"));
-		  return "听说这件事情，只是天龙寺向来不涉及武林之争。";
+		  return "聽說這件事情，只是天龍寺向來不涉及武林之爭。";
   }
 	if (me->query(QUESTDIR4+"start")&& !me->query(QUESTDIR4+"over"))
 	{
   	  command("nod "+me->query("id"));
-		  return "听说这件事情，只是天龙寺向来不涉及武林之争。";
+		  return "聽說這件事情，只是天龍寺向來不涉及武林之爭。";
   }
 	if (me->query(QUESTDIR4+"start") && me->query(QUESTDIR4+"over"))
 	{
   	  command("haha "+me->query("id"));
-		  return "听说那一战，"+me->query("name")+"更是威震武林，端得厉害啊。";
+		  return "聽說那一戰，"+me->query("name")+"更是威震武林，端得厲害啊。";
   }
   command("hoho");
-	return "江湖人称南慕容、北萧峰，端得一条好汉，何来援救之说。";
+	return "江湖人稱南慕容、北蕭峰，端得一條好漢，何來援救之說。";
 }
 string asksave()
 {
@@ -177,37 +177,37 @@ string asksave()
   if(!me->query(QUESTDIR1+"start") &&!me->query(QUESTDIR2+"start"))
   {
   	  command("hoho");
-  		return "小王子素来不喜武学，只爱佛法易经，平易近人，何来援救之说？";
+  		return "小王子素來不喜武學，只愛佛法易經，平易近人，何來援救之說？";
   }
 	if (me->query(QUESTDIR1+"start") && !me->query(QUESTDIR1+"wuliangover")&& !me->query(QUESTDIR1+"over"))
 	{
   	  command("sigh");
   	  command("shrug "+me->query("id"));
-		  return "听说，前段时间小王子和镇南王又是吵架一番，至今未有回家，不知大侠可否帮助打听一下。";
+		  return "聽說，前段時間小王子和鎮南王又是吵架一番，至今未有回家，不知大俠可否幫助打聽一下。";
   }
 	if (me->query(QUESTDIR1+"start") && me->query_temp(QUESTDIR1+"yingjiu")&& !me->query(QUESTDIR1+"over"))
 	{
   	  command("sigh");
   	  command("shrug "+me->query("id"));
-		  return "听说这件事情，只是天龙寺向来不涉及武林之争。";
+		  return "聽說這件事情，只是天龍寺向來不涉及武林之爭。";
   }
 	if (me->query(QUESTDIR1+"start") && me->query(QUESTDIR1+"over")&& !me->query(QUESTDIR2+"start"))
 	{
   	  command("thank "+me->query("id"));
-		  return "只是自从万劫谷回来，小王子精神恍惚，不知所中何毒还是受何种内伤。";
+		  return "只是自從萬劫谷回來，小王子精神恍惚，不知所中何毒還是受何種內傷。";
   }
 	if (me->query(QUESTDIR2+"start") && !me->query(QUESTDIR2+"over")&& !me->query_temp(QUESTDIR2+"caught"))
 	{
   	  command("sigh "+me->query("id"));
-		  return "小王子自万劫谷回来，总是气血不定，内力怪异，才被送往我天龙寺求救来了。";
+		  return "小王子自萬劫谷回來，總是氣血不定，內力怪異，才被送往我天龍寺求救來了。";
   }
 	if (me->query(QUESTDIR2+"start") && !me->query(QUESTDIR2+"over"))
 	{
   	  command("sigh "+me->query("id"));
-		  return "竟然惹出鸠摩智这等高手，但愿王子吉人天相啊。";
+		  return "竟然惹出鳩摩智這等高手，但願王子吉人天相啊。";
   }
   command("hoho");
-	return "小王子素来不喜武学，只爱佛法易经，平易近人，何来援救之说？";
+	return "小王子素來不喜武學，只愛佛法易經，平易近人，何來援救之說？";
 }
 string askduanyu()
 {
@@ -216,37 +216,37 @@ string askduanyu()
   if(!me->query(QUESTDIR1+"start" )&&!me->query(QUESTDIR2+"start"))
   {
   	  command("hoho");
-  		return "小王子素来不喜武学，只爱佛法易经。";
+  		return "小王子素來不喜武學，只愛佛法易經。";
   }
 	if (me->query(QUESTDIR1+"start") && !me->query(QUESTDIR1+"wuliangover")&& !me->query(QUESTDIR1+"over"))
 	{
   	  command("sigh");
   	  command("shrug "+me->query("id"));
-		  return "听说，前段时间小王子和镇南王又是吵架一番，至今未有回家。";
+		  return "聽說，前段時間小王子和鎮南王又是吵架一番，至今未有回家。";
   }
 	if (me->query(QUESTDIR1+"start") && me->query_temp(QUESTDIR1+"yingjiu")&& !me->query(QUESTDIR1+"over"))
 	{
   	  command("sigh");
   	  command("shrug "+me->query("id"));
-		  return "听说这件事情，只是天龙寺向来不涉及武林之争。";
+		  return "聽說這件事情，只是天龍寺向來不涉及武林之爭。";
   }
 	if (me->query(QUESTDIR1+"start") && me->query(QUESTDIR1+"over")&& !me->query(QUESTDIR2+"start"))
 	{
   	  command("thank "+me->query("id"));
-		  return "多谢大侠搭救小王子。";
+		  return "多謝大俠搭救小王子。";
   }
 	if (me->query(QUESTDIR2+"start") && !me->query(QUESTDIR2+"over")&& !me->query_temp(QUESTDIR2+"caught"))
 	{
   	  command("sigh "+me->query("id"));
-		  return "小王子自万劫谷回来，总是气血不定，内力怪异，才被送往天龙求救来了。";
+		  return "小王子自萬劫谷回來，總是氣血不定，內力怪異，才被送往天龍求救來了。";
   }
 	if (me->query(QUESTDIR2+"start") && !me->query(QUESTDIR2+"over"))
 	{
   	  command("sigh "+me->query("id"));
-		  return "竟然惹出鸠摩智这等高手，但愿王子吉人天相啊。";
+		  return "竟然惹出鳩摩智這等高手，但願王子吉人天相啊。";
   }
   command("hoho");
-	return "段誉正是镇南王之子。";
+	return "段譽正是鎮南王之子。";
 }
 string tianlonghelp()
 {
@@ -255,23 +255,23 @@ string tianlonghelp()
   if(!me->query(QUESTDIR1+"over"))
   {
   	  command("haha");
-  		return "天龙寺是我段家武学的最高之地，高手众云，请不要危言耸听。";
+  		return "天龍寺是我段家武學的最高之地，高手眾雲，請不要危言聳聽。";
   }
 	if (me->query(QUESTDIR1+"over") && !me->query(QUESTDIR2+"start"))
 	{
   	  command("nod "+me->query("id"));
-		  return "听说，大轮寺高僧鸠摩智不日将来我天龙寺，不知是喜是祸。";
+		  return "聽說，大輪寺高僧鳩摩智不日將來我天龍寺，不知是喜是禍。";
   }
 	if (me->query(QUESTDIR2+"start") && !me->query(QUESTDIR2+"over"))
 	{
   	  command("sigh");
-		  return "这魔僧竟然如此欺负我大理无人，什么吐蕃国第一佛法高僧，狗P。";
+		  return "這魔僧竟然如此欺負我大理無人，什麼吐蕃國第一佛法高僧，狗P。";
   }
 	if (me->query(QUESTDIR2+"over"))
 	{
   	  command("thank "+me->query("id"));
-		  return "多谢大侠化解这场天龙危机，还将我大理小王子得以解救。";
+		  return "多謝大俠化解這場天龍危機，還將我大理小王子得以解救。";
   }
   command("hoho");
-	return "天龙寺是我段家武学的最高之地，高手众云，请不要危言耸听。";
+	return "天龍寺是我段家武學的最高之地，高手眾雲，請不要危言聳聽。";
 }

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;32m小毒鸟[2;37;0m[2;37;0m", ({"xdn"}));        
+        set_name("[1;32m小毒鳥[2;37;0m[2;37;0m", ({"xdn"}));        
         set("gender", "女性");                
-        set("long", "一只变异毒鸟。[2;37;0m
-它是五毒子的魔幻兽。
+        set("long", "一隻變異毒鳥。[2;37;0m
+它是五毒子的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

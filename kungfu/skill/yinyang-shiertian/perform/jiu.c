@@ -3,7 +3,7 @@
 
 inherit F_SSERVER;
 
-string name() { return HIW "九转乾坤" NOR; }
+string name() { return HIW "九轉乾坤" NOR; }
 
 int perform(object me, object target)
 {
@@ -15,25 +15,25 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name()+ "只能对战斗中的对手使用。\n");
+                return notify_fail(name()+ "只能對戰鬥中的對手使用。\n");
 
         if( query("neili", me)<900 )
-                return notify_fail("你的真气不够，无法施展" +name()+ "！\n");
+                return notify_fail("你的真氣不夠，無法施展" +name()+ "！\n");
 
         if( query("max_neili", me)<9000 )
-                return notify_fail("你的内力修为还不足以使出" +name()+ "。\n");
+                return notify_fail("你的內力修為還不足以使出" +name()+ "。\n");
 
         if ((int)me->query_skill("force") < 900)
-                return notify_fail("你的内功火候不够，难以施展" +name()+ "！\n");
+                return notify_fail("你的內功火候不夠，難以施展" +name()+ "！\n");
 
         if ((lvl = (int)me->query_skill("yinyang-shiertian", 1)) < 810)
-                return notify_fail("你的阴阳九转十二重天还不够熟练，无法使用" +name()+ "！\n");
+                return notify_fail("你的陰陽九轉十二重天還不夠熟練，無法使用" +name()+ "！\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        message_combatd(HIM "\n$N" HIM "运起阴阳九转十二重天，仿佛九天神龙翱翔天际，"
-                     HIM "正是无上绝学" +name()+ HIM "！\n" NOR, me, target);
+        message_combatd(HIM "\n$N" HIM "運起陰陽九轉十二重天，彷彿九天神龍翱翔天際，"
+                     HIM "正是無上絕學" +name()+ HIM "！\n" NOR, me, target);
 
         ap = attack_power(me, "force");
         dp = defense_power(target, "dodge") + target->query_skill("yinyang-shiertian", 1);
@@ -43,8 +43,8 @@ int perform(object me, object target)
                 if (! me->is_fighting(target))
                         break;
 
-                message_combatd(HIW "\n$N" HIW "身若游龙，挟风雷之力，从空中向$n"
-                                HIW "猛扑下来！\n" NOR, me, target);
+                message_combatd(HIW "\n$N" HIW "身若游龍，挾風雷之力，從空中向$n"
+                                HIW "猛撲下來！\n" NOR, me, target);
 
                 if (ap * 3 / 2 + random(ap) > dp)
                 {
@@ -52,20 +52,20 @@ int perform(object me, object target)
                         if( query_temp("weapon", me) )
                         {
                                 msg = COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, (i + 1) * 10 ,
-                                                          HIR "结果$n" HIR "躲闪不及，$N" HIR
-                                                          "的内劲已破体而入，$n喉头一甜，喷出一大"
-                                                          "口鲜血。\n" NOR);
+                                                          HIR "結果$n" HIR "躲閃不及，$N" HIR
+                                                          "的內勁已破體而入，$n喉頭一甜，噴出一大"
+                                                          "口鮮血。\n" NOR);
                         } else
                         {
                                 msg = COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, (i + 1) * 10,
-                                                          HIR "结果$n" HIR "躲闪不及，$N" HIR
-                                                          "的内劲已破体而入，$n喉头一甜，喷出一大"
-                                                          "口鲜血。\n" NOR);
+                                                          HIR "結果$n" HIR "躲閃不及，$N" HIR
+                                                          "的內勁已破體而入，$n喉頭一甜，噴出一大"
+                                                          "口鮮血。\n" NOR);
                         }
                 } else
                 {
-                        msg = CYN "$n" CYN "气凝双臂，奋力招架，将"
-                              "$N" CYN "的内劲卸掉。\n" NOR;
+                        msg = CYN "$n" CYN "氣凝雙臂，奮力招架，將"
+                              "$N" CYN "的內勁卸掉。\n" NOR;
                 }
 
                 message_combatd(msg, me, target);

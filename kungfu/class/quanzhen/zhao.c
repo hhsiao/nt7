@@ -1,4 +1,4 @@
-// zhao.c 赵志敬
+// zhao.c 趙志敬
 // By Lgg,1998.10
 
 #include <ansi.h>
@@ -20,14 +20,14 @@ string ask_beidouzhen();
 
 void create()
 {
-        set_name("赵志敬", ({"zhao zhijing", "zhao"}));
+        set_name("趙志敬", ({"zhao zhijing", "zhao"}));
         set("gender", "男性");
         set("age", 26);
         set("class", "taoist");
         set("long",
-                "他就是全真教第三代弟子中的好手，王处一的大弟子赵志敬。 \n"
-                "他相貌端正，但眉宇间似乎隐藏着一丝狡猾的神色。\n"
-                "他是一个长须道人，看起来却有些煞气。\n");
+                "他就是全真教第三代弟子中的好手，王處一的大弟子趙志敬。 \n"
+                "他相貌端正，但眉宇間似乎隱藏著一絲狡猾的神色。\n"
+                "他是一個長鬚道人，看起來卻有些煞氣。\n");
         set("attitude", "friendly");
         set("shen_type",-1);
         set("str", 25);
@@ -83,8 +83,8 @@ void create()
         create_family("全真教", 3, "弟子");
 
         set("inquiry", ([
-                "全真教" :  "我全真教是天下道家玄门正宗。\n",
-                 "天罡北斗阵" : (: ask_beidouzhen :),
+                "全真教" :  "我全真教是天下道家玄門正宗。\n",
+                 "天罡北斗陣" : (: ask_beidouzhen :),
                 "beidouzhen" : (: ask_beidouzhen :),
         ]) );
 
@@ -100,7 +100,7 @@ void attempt_apprentice(object ob)
         if (! permit_recruit(ob))
                 return;
 
-        command("say 好吧，我就收下你这个徒弟了。");
+        command("say 好吧，我就收下你這個徒弟了。");
         command("recruit "+query("id", ob));
 }
 
@@ -113,38 +113,38 @@ string ask_beidouzhen()
 
         if( !query("family", me) || query("family/family_name", me) != "全真教" )
           {
-                msg = "「天罡北斗阵」是我全真教的剑阵，威力无穷!";
+                msg = "「天罡北斗陣」是我全真教的劍陣，威力無窮!";
                 return msg;
           }
 
         if( query_temp("asked_beidouzhen", me) )
         {
-                msg="急什么？时辰一到就会开始练习「天罡北斗阵」！\n";
+                msg="急什麼？時辰一到就會開始練習「天罡北斗陣」！\n";
                 return msg;
         }
 
         if( query_temp("pending/beidouzhen", me) )
         {
-                msg="好好练习「天罡北斗阵」！\n";
+                msg="好好練習「天罡北斗陣」！\n";
                 command("addoil"+query("id", me));
                 return msg;
         }
 
         if( query_temp("pending/beidouzhen") || query_temp("beidou_time") )
         {
-                msg="没看到我正在忙吗？\n";
+                msg="沒看到我正在忙嗎？\n";
                 return msg;
         }
 
         if( query("eff_qi") < query("max_qi")/2 )
         {
-                msg="没看到我全身是伤吗？\n";
+                msg="沒看到我全身是傷嗎？\n";
                 return msg;
         }
 
         if(query_temp("count")>=6)
         {
-                msg="可惜现在人已够了！\n";
+                msg="可惜現在人已夠了！\n";
                 return msg;
         }
 
@@ -152,12 +152,12 @@ string ask_beidouzhen()
              query("combat_exp", me)<50000 || 
              me->query_skill("dodge") <60)
         {
-                msg="可惜"+query("name", me)+"武功太差，不够练习「天罡北斗阵」。\n";
+                msg="可惜"+query("name", me)+"武功太差，不夠練習「天罡北斗陣」。\n";
                 return msg;
         }
 
         set_temp("asked_beidouzhen", 1, me);
-        msg = "好，你先做好准备，等一会儿就让你跟随贫道一起练习「天罡北斗阵」！\n";
+        msg = "好，你先做好準備，等一會兒就讓你跟隨貧道一起練習「天罡北斗陣」！\n";
         set_temp("fighter/"+time(),query("id", me));
         delete_temp("qz/bdgranted", me);
         addn_temp("count",1);
@@ -192,13 +192,13 @@ int start()
                 {
                         if( ( ob = find_player( fighter[times[i]]) ) )
                         {
-                                tell_object(ob,"赵志敬告诉你：跑哪儿去了？不好好跟我练习阵法，当心我告诉掌教真人！\n");
+                                tell_object(ob,"趙志敬告訴你：跑哪兒去了？不好好跟我練習陣法，當心我告訴掌教真人！\n");
                                 delete_temp("asked_beidouzhen", ob);
                         }
                         continue;
                 }
 
-                message_vision(HIY"$N道：$n请做好准备！\n"NOR, me,ob);
+                message_vision(HIY"$N道：$n請做好準備！\n"NOR, me,ob);
                 delete_temp("asked_beidouzhen", ob);
                 ob->move("/d/quanzhen/dajiaochang");
                 if (j==0) ob1=ob;
@@ -212,7 +212,7 @@ int start()
         }
 
         command("halt");
-        message_vision(HIY"$N道：来人呐！\n"NOR, me);
+        message_vision(HIY"$N道：來人吶！\n"NOR, me);
 
         for( i = j;i<6;i++)
         {
@@ -221,7 +221,7 @@ int start()
                         {
                                 ob1=new( bd_fighters[i] );
                                 ob1->move(environment(me));
-                                message_vision(HIY"$N快步走了过来，作楫道：有劳各位道兄久等了！\n"NOR, ob1);
+                                message_vision(HIY"$N快步走了過來，作楫道：有勞各位道兄久等了！\n"NOR, ob1);
                         }
                 }
                 else if(i==1)
@@ -230,7 +230,7 @@ int start()
                         {
                                 ob2=new( bd_fighters[i] );
                                 ob2->move("/d/quanzhen/dajiaochang");
-                                message_vision(HIY"$N快步走了过来，作楫道：有劳各位道兄久等了！\n"NOR, ob2);
+                                message_vision(HIY"$N快步走了過來，作楫道：有勞各位道兄久等了！\n"NOR, ob2);
                         }
                 }
                   else if(i==2)
@@ -239,7 +239,7 @@ int start()
                         {
                                 ob3=new( bd_fighters[i] );
                                 ob3->move("/d/quanzhen/dajiaochang");
-                                message_vision(HIY"$N快步走了过来，作楫道：有劳各位道兄久等了！\n"NOR, ob3);
+                                message_vision(HIY"$N快步走了過來，作楫道：有勞各位道兄久等了！\n"NOR, ob3);
                         }
                 }
                   else if(i==3){
@@ -247,7 +247,7 @@ int start()
                         {
                                 ob4=new( bd_fighters[i] );
                                 ob4->move("/d/quanzhen/dajiaochang");
-                                message_vision(HIY"$N快步走了过来，作楫道：有劳各位道兄久等了！\n"NOR, ob4);
+                                message_vision(HIY"$N快步走了過來，作楫道：有勞各位道兄久等了！\n"NOR, ob4);
                         }
                 }
                   else if(i==4)
@@ -256,7 +256,7 @@ int start()
                         {
                                 ob5=new( bd_fighters[i] );
                                 ob5->move("/d/quanzhen/dajiaochang");
-                                message_vision(HIY"$N快步走了过来，作楫道：有劳各位道兄久等了！\n"NOR, ob5);
+                                message_vision(HIY"$N快步走了過來，作楫道：有勞各位道兄久等了！\n"NOR, ob5);
                         }
                 }
                 else if(i==5)
@@ -265,7 +265,7 @@ int start()
                         {
                                 ob6=new( bd_fighters[i] );
                                 ob6->move("/d/quanzhen/dajiaochang");
-                                message_vision(HIY"$N快步走了过来，作楫道：有劳各位道兄久等了！\n"NOR, ob6);
+                                message_vision(HIY"$N快步走了過來，作楫道：有勞各位道兄久等了！\n"NOR, ob6);
                         }
                   }
         }
@@ -274,7 +274,7 @@ int start()
                 query("id", ob3)+","+query("id", ob4)+","+query("id", ob5)+","+
                 query("id", ob6);
 
-        message_vision(HIG"$N清了清喉咙，大声说道：好，时辰已到，现在开始练习「天罡北斗阵」！\n"NOR,me);
+        message_vision(HIG"$N清了清喉嚨，大聲說道：好，時辰已到，現在開始練習「天罡北斗陣」！\n"NOR,me);
 
         "/d/quanzhen/dajiaochang"->do_beidouzhen2( arg );
 

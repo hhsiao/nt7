@@ -10,11 +10,11 @@ string type() { return "knowledge"; }
 
 int practice_skill(object me)
 {
-        return notify_fail("正气决只能靠学(learn)来提高。\n");
+        return notify_fail("正氣決只能靠學(learn)來提高。\n");
 }
 void skill_improved(object me)
 {
-        tell_object(me, HIR "你心里鼓荡着一股侠义之气！\n" NOR );
+        tell_object(me, HIR "你心裡鼓盪著一股俠義之氣！\n" NOR );
         addn("shen", 200, me);
 }
 

@@ -7,11 +7,11 @@ string look_gaoshi();
 
 void create()
 {
-	set("short", "南门");
+	set("short", "南門");
         set("long", @LONG
-这是南城门，城墙被当成了广告牌，贴满了花花绿绿各行各业的
-广告，官府的告示(gaoshi)因此不太显目。官兵们被近处的欢声笑语
-所吸引，似乎不是很认真在执勤。南边就是渡江桥了。
+這是南城門，城牆被當成了廣告牌，貼滿了花花綠綠各行各業的
+廣告，官府的告示(gaoshi)因此不太顯目。官兵們被近處的歡聲笑語
+所吸引，似乎不是很認真在執勤。南邊就是渡江橋了。
 LONG );
         set("outdoors", "city");
 	set("item_desc", ([
@@ -37,5 +37,5 @@ LONG );
 
 string look_gaoshi()
 {
-	return FINGER_D->get_killer() + "\n扬州知府\n程药发\n";
+	return FINGER_D->get_killer() + "\n揚州知府\n程藥發\n";
 }

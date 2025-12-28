@@ -7,7 +7,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ 
         {
-                set("long","枸枳子，味甘，色红，补血良药。\n");
+                set("long","枸枳子，味甘，色紅，補血良藥。\n");
                 set("base_unit", "粒");
                 set("base_value", 4000);
                 set("base_weight", 60);

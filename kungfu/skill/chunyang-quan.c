@@ -1,4 +1,4 @@
-// chunyang-quan.c 纯阳拳
+// chunyang-quan.c 純陽拳
 
 #include <ansi.h>;
 inherit SKILL;
@@ -8,47 +8,47 @@ string martialtype() { return "skill"; }
 int chunyangwuji(object me, object victim, object weapon, int damage);
 mapping *action = ({
 ([        "action":
-"只见$N身形一矮，大喝声中以拳化勾一个"HIW"「玄鹤捕食」"NOR"对准$n的$l戳了过去",
+"只見$N身形一矮，大喝聲中以拳化勾一個"HIW"「玄鶴捕食」"NOR"對準$n的$l戳了過去",
         "lvl" : 0,
-        "skill_name" : "玄鹤捕食"
+        "skill_name" : "玄鶴捕食"
 ]),
 ([        "action":
-"$N左手一分，身形扭转右拳运气，蜿蜒前伸，一招"HIY"「金蛇寻龟」"NOR"便往$n的$l
-招呼过去",
+"$N左手一分，身形扭轉右拳運氣，蜿蜒前伸，一招"HIY"「金蛇尋龜」"NOR"便往$n的$l
+招呼過去",
         "lvl" : 20,
-        "skill_name" : "金蛇寻龟"
+        "skill_name" : "金蛇尋龜"
 ]),
 ([        "action":
-"$N右拳在$n面门一晃，和身向前一扑左拳使了个"HIB"「野马上槽」"NOR"往$n的$l狠命一抡",
+"$N右拳在$n面門一晃，和身向前一撲左拳使了個"HIB"「野馬上槽」"NOR"往$n的$l狠命一掄",
         "lvl" : 40,
-        "skill_name" : "野马上槽"
+        "skill_name" : "野馬上槽"
 ]),
 ([        "action":
-"$N步履一沉，左拳拉开，右拳带风，一招"HIR"「黑虎掏心」"NOR"势不可挡地击向$n$l",
+"$N步履一沉，左拳拉開，右拳帶風，一招"HIR"「黑虎掏心」"NOR"勢不可擋地擊向$n$l",
         "lvl" : 60,
         "skill_name" : "黑虎掏心"
 ]),
 ([        "action":
-"只见$N拉开架式，一招"HIM"「二龙戏珠」"NOR"双拳齐出击向$n$l，虎虎有风",
+"只見$N拉開架式，一招"HIM"「二龍戲珠」"NOR"雙拳齊出擊向$n$l，虎虎有風",
         "lvl" : 80,
-        "skill_name" : "二龙戏珠"
+        "skill_name" : "二龍戲珠"
 ]),
 ([        "action":
-"$N虚晃一拳，回身欲走，只霎那间身子一侧，反脚踢起，正是"RED"「麒麟反挂」"NOR"！",
+"$N虛晃一拳，回身欲走，只霎那間身子一側，反腳踢起，正是"RED"「麒麟反掛」"NOR"！",
         "lvl" : 100,
-        "skill_name" : "麒麟反挂"
+        "skill_name" : "麒麟反掛"
 ]),
 ([        "action":
-"$N拉开后弓步，左拳一晃，右拳随出，左右拳掌交替变幻迭出，一招"GRN"「青龙
-夺食」"NOR"往$n的$l攻去",
+"$N拉開後弓步，左拳一晃，右拳隨出，左右拳掌交替變幻迭出，一招"GRN"「青龍
+奪食」"NOR"往$n的$l攻去",
         "lvl" : 120,
-        "skill_name" : "青龙夺食"
+        "skill_name" : "青龍奪食"
 ]),
 ([        "action":
-"只见$N运足气力，一个纵身，右拳从左拳后侧身穿出，身随拳至，力势千钧！
-这一招的名字叫作"HIR"「赤龙穿云」"NOR"",
+"只見$N運足氣力，一個縱身，右拳從左拳後側身穿出，身隨拳至，力勢千鈞！
+這一招的名字叫作"HIR"「赤龍穿雲」"NOR"",
         "lvl" : 140,
-        "skill_name" : "赤龙穿云"
+        "skill_name" : "赤龍穿雲"
 ]),
 });
 
@@ -58,22 +58,22 @@ int valid_combine(string combo) { return combo=="sanhua-juding"; }
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练纯阳拳必须空手。\n");
+                return notify_fail("練純陽拳必須空手。\n");
         if ((int)me->query_skill("force", 1) < 15)
-                return notify_fail("你的内功火候不够，无法学纯阳拳。\n");
+                return notify_fail("你的內功火候不夠，無法學純陽拳。\n");
         if( query("max_neili", me)<50 )
-                return notify_fail("你的内力太弱，无法练纯阳拳。\n");
+                return notify_fail("你的內力太弱，無法練純陽拳。\n");
         return 1;
 }
 
 int practice_skill(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("你的必须空手才能练习。\n");
+                return notify_fail("你的必須空手才能練習。\n");
         if( query("qi", me)<40 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
         if( query("neili", me)<40 )
-                return notify_fail("你的内力不够练纯阳拳。\n");
+                return notify_fail("你的內力不夠練純陽拳。\n");
         me->receive_damage("qi", 35);
         addn("neili", -20, me);
         return 1;
@@ -100,16 +100,16 @@ mapping query_action(object me, object weapon)
         for(i = ttl; i > 0; i--)
                 if(lvl > action[i-1]["lvl"])
                 {
-                        seq = i; /* 获得招数序号上限 */
+                        seq = i; /* 獲得招數序號上限 */
                         break;
                 }
-        seq = random(seq);       /* 选择出手招数序号 */
+        seq = random(seq);       /* 選擇出手招數序號 */
         return ([
                 "action"      : action[seq]["action"],
                 "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
                 "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
                 "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
-                "damage_type" : random(2) ? "内伤" : "瘀伤",
+                "damage_type" : random(2) ? "內傷" : "瘀傷",
                 //"post_action": (: chunyangwuji :),
         ]);
 }
@@ -136,21 +136,21 @@ int chunyangwuji(object me, object victim, object weapon, int damage)
 
         if( damage > 0 ) {
                 if( query("qi", victim) <= 0){
-                        msg = HIR"\n\t只见$N拳风威猛，当第"+chinese_number(cyq_wuji)+"招发出时，$n已经受不住$N的拳风！\n"NOR;
+                        msg = HIR"\n\t只見$N拳風威猛，當第"+chinese_number(cyq_wuji)+"招發出時，$n已經受不住$N的拳風！\n"NOR;
                         //if( me->is_killing(query("id", victim)) )
                                 victim->receive_wound("qi",query("max_qi", victim),me);
                         message_combatd(msg , me, victim);
                         finish_chunyangwuji(me, skill_lvl);
                         return 1;
-                }else msg = HIY"\n\t$N一招命中，不待$n反应第"+chinese_number(cyq_wuji+1)+"招已经以排山倒海之势向$n攻来！\n"NOR;
+                }else msg = HIY"\n\t$N一招命中，不待$n反應第"+chinese_number(cyq_wuji+1)+"招已經以排山倒海之勢向$n攻來！\n"NOR;
         }else{
                 if( random(exp_m) < random(exp_t / 2) ){
-                        msg = HIW"\n\t$N一招不中，顿时乱了自己的招数，纯阳无极的威猛招式再也使不出来！\n"NOR;
+                        msg = HIW"\n\t$N一招不中，頓時亂了自己的招數，純陽無極的威猛招式再也使不出來！\n"NOR;
                         message_combatd(msg , me, victim);
                         finish_chunyangwuji(me, skill_lvl);
                         return 1;
                 }else{
-                        msg = HIY"\n\t$N一招不中，急转身形将第"+chinese_number(cyq_wuji+1)+"招迅速递出，速度较前快且发力更深！\n"NOR;
+                        msg = HIY"\n\t$N一招不中，急轉身形將第"+chinese_number(cyq_wuji+1)+"招迅速遞出，速度較前快且發力更深！\n"NOR;
                         //addn_temp("apply/unarmed_damage", skill_lvl/3, me);
                         COMBAT_D->do_attack(me,victim,query_temp("weapon", me));
                         COMBAT_D->do_attack(me,victim,query_temp("weapon", me));
@@ -158,7 +158,7 @@ int chunyangwuji(object me, object victim, object weapon, int damage)
                 }
         }
         if( cyq_wuji >= query_temp("cyq-wuji/max_times", me)){
-                msg = HIY"\n\t$N一口气向$n连续攻出"+chinese_number(cyq_wuji)+"招，纯阳拳的威力着实不可被轻视！\n"NOR;
+                msg = HIY"\n\t$N一口氣向$n連續攻出"+chinese_number(cyq_wuji)+"招，純陽拳的威力著實不可被輕視！\n"NOR;
                 message_combatd(msg , me, victim);
                 finish_chunyangwuji(me, skill_lvl);
                 return 1;
@@ -181,15 +181,15 @@ string perform_action_file(string action)
 }
 int help(object me)
 {
-        write(HIC"\n纯阳拳："NOR"\n");
+        write(HIC"\n純陽拳："NOR"\n");
         write(@HELP
 
-    纯阳拳为王重阳所创的全真派拳法。
-    可与昊天掌互备。
+    純陽拳為王重陽所創的全真派拳法。
+    可與昊天掌互備。
 
-        学习要求：
-                先天气元功20级
-                内力100
+        學習要求：
+                先天氣元功20級
+                內力100
 HELP
         );
         return 1;

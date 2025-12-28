@@ -7,7 +7,7 @@ void setup()
         set_name("火麒麟[2;37;0m[2;37;0m", ({"xuen"}));        
         set("gender", "男性");                
         set("long", "火麒麟[2;37;0m
-它是紫菜的魔幻兽。
+它是紫菜的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

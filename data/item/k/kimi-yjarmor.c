@@ -1,4 +1,4 @@
-// ITEM Made by player(雪山飞龙:kimi) /data/item/k/kimi-yjarmor.c
+// ITEM Made by player(雪山飛龍:kimi) /data/item/k/kimi-yjarmor.c
 // Written by GAN JIANG(Doing Lu 1998/11/2)	Sun Feb 10 00:39:32 2019
 #include <ansi.h>
 #include <armor.h>
@@ -8,15 +8,15 @@ inherit F_ITEMMAKE;
 
 void create()
 {
-	set_name("[1;33m张旭[1;35m三杯[1;37m草圣传[2;37;0m", ({ "yjarmor" }));
+	set_name("[1;33m張旭[1;35m三杯[1;37m草聖傳[2;37;0m", ({ "yjarmor" }));
 	set_weight(15000);
 	set("item_make", 1);
-	set("unit", "张");
-	set("long", "这是由[1;35m无名之物[2;37;0m炼制而成的一张护甲。
-[1;32m张旭三杯草圣传，脱帽露顶王公前，挥毫落纸如云烟。[2;37;0m
+	set("unit", "張");
+	set("long", "這是由[1;35m無名之物[2;37;0m煉製而成的一張護甲。
+[1;32m張旭三杯草聖傳，脫帽露頂王公前，揮毫落紙如雲煙。[2;37;0m
 ");
 	set("makeinfo", "[1;31m
-雪山飞龙(kimi)[1;31m 出品
+雪山飛龍(kimi)[1;31m 出品
 [2;37;0m");
 	set("value", 34800000);
 	set("point", 1388);
@@ -24,8 +24,8 @@ void create()
 	set("material", "no name");
 	set("material_file", "/clone/goods/noname2");
 	set("quality_level", 3);
-	set("wear_msg", "[1;33m挥毫[1;36m落纸[1;37m[5m如云烟[2;37;0m\n");
-	set("remove_msg", "[1;32m脱帽[1;37m露顶[1;36m[5m王公前[2;37;0m\n");
+	set("wear_msg", "[1;33m揮毫[1;36m落紙[1;37m[5m如雲煙[2;37;0m\n");
+	set("remove_msg", "[1;32m脫帽[1;37m露頂[1;36m[5m王公前[2;37;0m\n");
 	if( !check_clone() ) return;
 	restore();
 	set("armor_prop/armor", apply_armor());

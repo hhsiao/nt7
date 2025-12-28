@@ -7,7 +7,7 @@ void create()
         set("age", 14);
         set("attitude", "peaceful");
         set("gender", "女性");
-        set("title", "精灵使");
+        set("title", "精靈使");
         set("str", 20);
         set("int", 20);
         set("per", 30);
@@ -49,32 +49,32 @@ void greeting(object ob)
                 return; 
                 
         if( query_temp("check_answer/" + query("id", ob)) ) {
-                command("say 请你快回答吧。");
+                command("say 請你快回答吧。");
                 return;
         }        
          
         switch(random(4)) {
         case 0 :
-                say("接引使微笑道：这位" + RANK_D->query_respect(ob) +
-                        "，请先回答我一个问题：如果你的母亲和妻子同时遇险，你会先救哪一个呢？\n");  
+                say("接引使微笑道：這位" + RANK_D->query_respect(ob) +
+                        "，請先回答我一個問題：如果你的母親和妻子同時遇險，你會先救哪一個呢？\n");  
                 set_temp("check_answer/"+query("id", ob), 1, this_object());
                 call_out("say_answer", 30, ob);
                 break;  
         case 1 :
-                say("接引使微笑道：这位" + RANK_D->query_respect(ob) +
-                        "，请先回答我一个问题：如果你的儿子和女儿同时遇险，你会先救哪一个呢？\n");
+                say("接引使微笑道：這位" + RANK_D->query_respect(ob) +
+                        "，請先回答我一個問題：如果你的兒子和女兒同時遇險，你會先救哪一個呢？\n");
                 set_temp("check_answer/"+query("id", ob), 1, this_object());
                 call_out("say_answer", 30, ob);
                 break;
         case 2 :
-                say("接引使微笑道：这位" + RANK_D->query_respect(ob) +
-                        "，请先回答我一个问题：如果你的妻子和朋友同时遇险，你会先救哪一个呢？\n");
+                say("接引使微笑道：這位" + RANK_D->query_respect(ob) +
+                        "，請先回答我一個問題：如果你的妻子和朋友同時遇險，你會先救哪一個呢？\n");
                 set_temp("check_answer/"+query("id", ob), 1, this_object());
                 call_out("say_answer", 30, ob);
                 break;
         case 3 :
-                say("接引使微笑道：这位" + RANK_D->query_respect(ob) +
-                        "，请先回答我一个问题：如果你的朋友和亲属同时遇险，你会先救哪一个呢？\n");                  
+                say("接引使微笑道：這位" + RANK_D->query_respect(ob) +
+                        "，請先回答我一個問題：如果你的朋友和親屬同時遇險，你會先救哪一個呢？\n");                  
                 set_temp("check_answer/"+query("id", ob), 1, this_object());
                 call_out("say_answer", 30, ob);
                 break;
@@ -85,8 +85,8 @@ void say_answer(object who)
 {
         if( !who || environment(who) != environment() ) return;
         command("smile");
-        command("say 对了，沉默才是答案！这本来是没有答案的问题，一切要视当时的情形而定。" + 
-                who->query_idname(1) + "过关了，去吧。\n");   
+        command("say 對了，沉默才是答案！這本來是沒有答案的問題，一切要視當時的情形而定。" + 
+                who->query_idname(1) + "過關了，去吧。\n");   
         delete_temp("check_answer/"+query("id", who), this_object());
         who->move("/d/dragon/spirit5");
         return ;
@@ -99,31 +99,31 @@ int do_answer(string arg)
         me = this_player();
         ob = this_object();
         
-        if( !arg ) return notify_fail("你说什么？\n");
+        if( !arg ) return notify_fail("你說什麼？\n");
 
         if( !(query_temp("check_answer/" + query("id", me),ob)) )
-                return notify_fail("什么？\n");
+                return notify_fail("什麼？\n");
 
 
-        message_vision("$N答道：我会先救“" + arg + "”。\n", me);
+        message_vision("$N答道：我會先救“" + arg + "”。\n", me);
 
-        if( arg == "亲属" || arg == "女儿" || arg == "儿子" || arg == "母亲" || arg == "妻子" || arg == "朋友" ) 
+        if( arg == "親屬" || arg == "女兒" || arg == "兒子" || arg == "母親" || arg == "妻子" || arg == "朋友" ) 
         {
                 switch (random(3)) {
                 case 0:      
-                        message_vision("$N侧身让出一条路。\n", ob);   
+                        message_vision("$N側身讓出一條路。\n", ob);   
                         delete_temp("check_answer/"+query("id", me), ob);
                         me->move("/d/dragon/spirit3");
                         remove_call_out("say_answer"); 
                         break;
                 case 1: 
-                        message_vision("$N侧身让出一条路。\n", ob);   
+                        message_vision("$N側身讓出一條路。\n", ob);   
                         delete_temp("check_answer/"+query("id", me), ob);
                         me->move("/d/dragon/spirit4");  
                         remove_call_out("say_answer");
                         break;
                 case 2: 
-                        message_vision("$N侧身让出一条路。\n", ob);   
+                        message_vision("$N側身讓出一條路。\n", ob);   
                         delete_temp("check_answer/"+query("id", me), ob);
                         me->move("/d/dragon/spirit0");
                         remove_call_out("say_answer");
@@ -131,7 +131,7 @@ int do_answer(string arg)
                 } 
                 return 1;
         }
-        command("say 请认真回答！\n");
+        command("say 請認真回答！\n");
         return 1;
 }
 

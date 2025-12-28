@@ -11,7 +11,7 @@ void create()
 
         set_name("蒙古可汗",({ "menggu kehan", "kehan"  }));
         set("gender", "男性" );
-        set("long", "这就是此次领兵南侵的蒙古可汗。\n");
+        set("long", "這就是此次領兵南侵的蒙古可汗。\n");
 
         set("int", 30);
         set("str", 60 + random(20));
@@ -101,7 +101,7 @@ int do_kill(string arg)
 
         if (this_object()->id(arg))
         {
-                write("有没有搞错，那是蒙古兵耶，还不快跑？！\n");
+                write("有沒有搞錯，那是蒙古兵耶，還不快跑？！\n");
                 return 1;
         } else
         if ((sscanf(arg, "%s from %s",what, who) == 2 ||
@@ -109,12 +109,12 @@ int do_kill(string arg)
              sscanf(arg, "%s on %s", what, who) == 2 ||
              sscanf(arg, "%s %s", what, who) == 2) &&
              this_object()->id(who)) {
-                write("有没有搞错，那是蒙古兵耶，还不快跑？！\n");
+                write("有沒有搞錯，那是蒙古兵耶，還不快跑？！\n");
                 return 1;
         } else
         if (arg == "roar" || arg == "hou")
         {
-                write("有没有搞错，那是蒙古兵耶，还不快跑？！\n");
+                write("有沒有搞錯，那是蒙古兵耶，還不快跑？！\n");
                 return 1;
         }
 
@@ -125,7 +125,7 @@ void new_life()
 {
         object me = this_object();
 
-        full_self(); // 补满气血
+        full_self(); // 補滿氣血
 
         delete_temp("no_perform");
         delete_temp("no_exert");
@@ -140,7 +140,7 @@ void new_life()
         set_temp("apply/armor", 100000);
         addn("my_life", -1, me);
 
-        message_vision(HIG "\n$N" HIG "大喝一声，目光顿时充满杀意！\n\n" NOR, me);
+        message_vision(HIG "\n$N" HIG "大喝一聲，目光頓時充滿殺意！\n\n" NOR, me);
 
         return;
 }
@@ -152,15 +152,15 @@ varargs void die(object killer)
         if (! objectp(ob = query_last_damage_from())) return;
         if( query_temp("warquest/party", ob) != "song")return ;
 
-        // 如果还未重生，则重生一次
+        // 如果還未重生，則重生一次
         if (query("my_life") > 0)
         {
                 new_life();
                 return;
         }
 
-        message_vision("$N率领的蒙古骑兵在几经顽抗后，终于被彻底" +
-                        HIR "消灭了" NOR "！\n",
+        message_vision("$N率領的蒙古騎兵在幾經頑抗後，終於被徹底" +
+                        HIR "消滅了" NOR "！\n",
                         this_object());
                         
         addn_temp("warquest/reward", 50, ob);
@@ -168,8 +168,8 @@ varargs void die(object killer)
         if( MEMBER_D->is_valid_member(ob) && query("quest_tuteng/start", ob) && random(100) < 2 ) 
         {
                 obj = new("/clone/tuteng/diwang-suipian"+(47+random(3)));
-                message_vision(HIR "叮~~一声，从$N" HIR "掉出一样东西，$n" HIR
-                	           "赶紧拣了起来。\n" NOR, this_object(), ob);
+                message_vision(HIR "叮~~一聲，從$N" HIR "掉出一樣東西，$n" HIR
+                	           "趕緊揀了起來。\n" NOR, this_object(), ob);
                 tell_object(ob, BLINK + HIG "你得到了" + obj->name() + BLINK + HIG "。\n" NOR);
                 obj->move(ob, 1);
         }

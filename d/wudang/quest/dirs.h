@@ -1,5 +1,5 @@
 mapping dirs = ([
-"扬州郊外" :     ({ "/d/city/jiaowai1",
+"揚州郊外" :     ({ "/d/city/jiaowai1",
                     "/d/city/jiaowai2",
                     "/d/city/jiaowai3",
                     "/d/city/jiaowai4",
@@ -13,7 +13,7 @@ mapping dirs = ([
                     "/d/city/jiaowai12",
                     "/d/city/jiaowai13"
                  }),
-"太湖一带" :     ({ "/d/guiyun/shulin1",
+"太湖一帶" :     ({ "/d/guiyun/shulin1",
                     "/d/guiyun/shulin2",
                     "/d/guiyun/shulin3",
                     "/d/guiyun/shulin4",
@@ -22,7 +22,7 @@ mapping dirs = ([
                     "/d/guiyun/shanlu2",
                     "/d/guiyun/tiandi"
                  }),
-"黄河一带" :     ({ "/d/huanghe/caodi1",
+"黃河一帶" :     ({ "/d/huanghe/caodi1",
                     "/d/huanghe/caodi2",
                     "/d/huanghe/shulin1",
                     "/d/huanghe/shulin2",
@@ -64,7 +64,7 @@ mapping dirs = ([
                     "/d/huanghe/yinpanshui"
                  }),
 
-"长白山上" :     ({ "/d/guanwai/milin1",
+"長白山上" :     ({ "/d/guanwai/milin1",
                     "/d/guanwai/milin2",
                     "/d/guanwai/milin3",
                     "/d/guanwai/heifengkou",
@@ -179,7 +179,7 @@ mapping dirs = ([
                  }),
 
 
-"佛山一带" :     ({ "/d/foshan/nanling",
+"佛山一帶" :     ({ "/d/foshan/nanling",
                     "/d/foshan/road1",
                     "/d/foshan/road2",
                     "/d/foshan/road3",
@@ -195,7 +195,7 @@ mapping dirs = ([
                     "/d/foshan/road13",
                     "/d/foshan/road14"
                  }),
-"福州一带" :     ({ "/d/fuzhou/fzroad1",
+"福州一帶" :     ({ "/d/fuzhou/fzroad1",
                     "/d/fuzhou/fzroad2",
                     "/d/fuzhou/fzroad3",
                     "/d/fuzhou/fzroad4",
@@ -221,7 +221,7 @@ mapping dirs = ([
                     "/d/fuzhou/wuyishan7",
                     "/d/fuzhou/yushan"
                  }),
-"恒山一带" :     ({ "/d/hengshan/cuiping1",
+"恆山一帶" :     ({ "/d/hengshan/cuiping1",
                     "/d/hengshan/cuiping2",
                     "/d/hengshan/cuipinggu1",
                     "/d/hengshan/cuipinggu2",
@@ -238,7 +238,7 @@ mapping dirs = ([
                     "/d/hengshan/zhandao",
                     "/d/hengshan/zhanqiao"
                  }),
-"衡山一带" :     ({ "/d/henshan/banshan",
+"衡山一帶" :     ({ "/d/henshan/banshan",
                     "/d/henshan/chidifeng",
                     "/d/henshan/denggaotai",
                     "/d/henshan/heishatan",
@@ -280,7 +280,7 @@ mapping dirs = ([
                  }),
 
 
-"华山一带" :     ({ "/d/huashan/baichi",
+"華山一帶" :     ({ "/d/huashan/baichi",
                     "/d/huashan/canglong",
                     "/d/huashan/chaopath1",
                     "/d/huashan/chaopath2",
@@ -341,7 +341,7 @@ mapping dirs = ([
                       "/d/qingcheng/zhuhezhuang",
                       "/d/qingcheng/zushidian"
                  }),
-"灵州一带" :     ({ "/d/lingzhou/chiling",
+"靈州一帶" :     ({ "/d/lingzhou/chiling",
                     "/d/lingzhou/dalu",
                     "/d/lingzhou/deling",
                     "/d/lingzhou/gongling",
@@ -361,7 +361,7 @@ mapping dirs = ([
                     "/d/lingzhou/xuanhebao"
                  }),
 
-"终南山一带" :   ({ "/d/quanzhen/baishulin1",
+"終南山一帶" :   ({ "/d/quanzhen/baishulin1",
                     "/d/quanzhen/baishulin2",
                     "/d/quanzhen/baishulin3",
                     "/d/quanzhen/baishulin4",
@@ -441,7 +441,7 @@ mapping dirs = ([
                     "/d/gumu/zhufeng"
                  }),
 
-"嵩山一带" :     ({ "/d/songshan/chaotian",
+"嵩山一帶" :     ({ "/d/songshan/chaotian",
                     "/d/songshan/chongsheng",
                     "/d/songshan/fengchantai",
                     "/d/songshan/luyanpubu",
@@ -456,7 +456,7 @@ mapping dirs = ([
                     "/d/songshan/taishique",
                     "/d/songshan/tianzhongge"
                  }),
-"泰山一带" :     ({ "/d/taishan/baihe",
+"泰山一帶" :     ({ "/d/taishan/baihe",
                     "/d/taishan/baozang",
                     "/d/taishan/beitian",
                     "/d/taishan/daizong",
@@ -480,7 +480,7 @@ mapping dirs = ([
                     "/d/taishan/yuhuang",
                     "/d/taishan/zhangren"
                  }),
-"雪山脚下" :     ({ "/d/xueshan/caoyuan",
+"雪山腳下" :     ({ "/d/xueshan/caoyuan",
                     "/d/xueshan/caoyuan1",
                     "/d/xueshan/hubian1",
                     "/d/xueshan/hubian2",

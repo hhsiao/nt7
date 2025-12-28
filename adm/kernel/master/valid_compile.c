@@ -14,7 +14,7 @@ int valid_compile(string file)
                 return 1;
         */
 
-        // 巫师目录下（分站）开放给编译
+        // 巫師目錄下（分站）開放給編譯
         if( sscanf(file, "/u/%*s") ||
             sscanf(file, "/u/%*s/%s", file) )
                 return 1;

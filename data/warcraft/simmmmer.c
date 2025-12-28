@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;33m王八龟[2;37;0m[2;37;0m", ({"bie"}));        
+        set_name("[1;33m王八龜[2;37;0m[2;37;0m", ({"bie"}));        
         set("gender", "男性");                
-        set("long", "王八龟[2;37;0m
-它是名字好怪的魔幻兽。
+        set("long", "王八龜[2;37;0m
+它是名字好怪的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

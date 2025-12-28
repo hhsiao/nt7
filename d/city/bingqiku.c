@@ -6,17 +6,17 @@ inherit ROOM;
 
 void create()
 {
-	set("short", "兵器库");
+	set("short", "兵器庫");
         set("long", @LONG
-这里是兵器库，到处银光闪闪，让人眼花缭乱。宝刀、宝剑、金
-箍棒，大刀、长剑、哨棒，短刀、短剑、短棍，各色各样的兵器应有
-尽有，你一时不知道挑什么好。
+這裡是兵器庫，到處銀光閃閃，讓人眼花繚亂。寶刀、寶劍、金
+箍棒，大刀、長劍、哨棒，短刀、短劍、短棍，各色各樣的兵器應有
+盡有，你一時不知道挑什麼好。
 LONG );
 	set("exits", ([
 		"north" : "/d/city/bingyin",
 	]));
 	set("no_clean_up", 0);
-	create_door("north", "铁门", "south", DOOR_CLOSED);
+	create_door("north", "鐵門", "south", DOOR_CLOSED);
 	set("coor/x", -10);
 	set("coor/y", -30);
 	set("coor/z", 0);

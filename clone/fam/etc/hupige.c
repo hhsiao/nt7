@@ -8,8 +8,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIW "一张巨大的白虎皮革，乃世间珍品。\n" NOR);
-                set("unit", "张");
+                set("long", HIW "一張巨大的白虎皮革，乃世間珍品。\n" NOR);
+                set("unit", "張");
                 set("value", 1000000);
         }
         setup();

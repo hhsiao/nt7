@@ -1,16 +1,16 @@
 // object.c
 
-/* 传回跟 ob 在同一环境或同一座标内之物件阵列, 包括 ob 本身 */
-/* 此 simul_efun 对于 mud 效率有很大的影响, 若有必要, 需改写成真正的 efun */
+/* 傳回跟 ob 在同一環境或同一座標內之物件陣列, 包括 ob 本身 */
+/* 此 simul_efun 對於 mud 效率有很大的影響, 若有必要, 需改寫成真正的 efun */
 object *present_objects(object ob)
 {
-        // env 为目前物件所在的空间
+        // env 為目前物件所在的空間
         object env = environment(ob);
         
-        // 没有环境！？
+        // 沒有環境！？
         if( !env ) return allocate(0);
         
-        // 如果在 map_d 系统以外直接传回 efun:all_inventory 的值
+        // 如果在 map_d 系統以外直接傳回 efun:all_inventory 的值
         return all_inventory(env);
 }
 
@@ -139,7 +139,7 @@ void destruct(object ob)
         string filename1, filename2;
 
         if( ob ) {
-                // 游戏系统没有使用bind，因此为了避免call_out的BUG，做以下修改
+                // 遊戲系統沒有使用bind，因此為了避免call_out的BUG，做以下修改
                 filename1 = file_name(ob);
                 if( stringp(filename1) ) {
                         if( sscanf(filename1, "/kungfu/skill/%*s/%s", filename1) == 2 ) {

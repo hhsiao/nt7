@@ -7,7 +7,7 @@ int execute_ask();
 void create()
 {
         set_name("湘湘", ({ "xiangxiang", "xiang" }));
-        set("title","萧员外之女");
+        set("title","蕭員外之女");
         set("gender", "女性");
           set("age", 17);
           set("attitude", "peaceful");
@@ -30,12 +30,12 @@ void create()
           set_skill("force", 60);
         set("chat_chance", 15);
         set("chat_msg", ({
-                "湘湘想到伤心处，忍不住放声大哭。\n",
-                "湘湘若有所思的道：谁能给我爹捎个信叫他来救我。\n",
+                "湘湘想到傷心處，忍不住放聲大哭。\n",
+                "湘湘若有所思的道：誰能給我爹捎個信叫他來救我。\n",
         }) );
         set("inquiry", ([
                 "信" : (: execute_ask() :),
-                "父亲" : (: execute_ask() :),
+                "父親" : (: execute_ask() :),
                 "letter" : (: execute_ask() :),
                 "家" : (: execute_ask() :),
         ]));
@@ -95,7 +95,7 @@ int execute_ask()
           letter = new ("/d/changan/npc/obj/letter");
           letter->move(me);
           command("whisper "+query("id", who)+
-                " 将这封信交给我爹！叫他快来救我！");
+                " 將這封信交給我爹！叫他快來救我！");
           command("give "+query("id", who)+" "+query("id", letter));
           who->save();
           return 1;
@@ -118,7 +118,7 @@ int check_rescure(object who)
           if( query("leader", me) )
                     return 1;
           set("leader",query("id",  who), me);
-          message_vision("$N对$n急切地说道：恩人！快点儿带我去见我爹！\n",me,who);
+          message_vision("$N對$n急切地說道：恩人！快點兒帶我去見我爹！\n",me,who);
           command("follow "+query("id", who));
           set_temp("no_return ", 1, me);
           return 1;

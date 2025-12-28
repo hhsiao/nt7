@@ -5,7 +5,7 @@ inherit NPC;
 void create()
 {
         set_name("葛光佩", ({ "ge guangpei", "ge", "guangpei"}));
-        set("title","无量剑西宗弟子");              
+        set("title","無量劍西宗弟子");              
         set("gender", "女性" );
         set("age", 36);
         set("str", 27);
@@ -13,7 +13,7 @@ void create()
         set("dex", 26);
         set("int", 25);
         set("per", 20);
-        set("no_get","葛光佩对你来说太重了。\n");
+        set("no_get","葛光佩對你來說太重了。\n");
    	set("attitude", "aggressive");
 
         set("max_qi", 1000);
@@ -24,7 +24,7 @@ void create()
         set("max_neili", 1000);      
         set("unique", 1);
         
-        set("long","她是无量剑西宗的弟子。\n");
+        set("long","她是無量劍西宗的弟子。\n");
         set("combat_exp", 200000);
         set("shen", -800); 
 
@@ -58,5 +58,5 @@ void init()
 
 void greeting(object ob)
 {
-        command("say 既然被你撞见了，"+RANK_D->query_rude(ob)+"，拿命来吧！");
+        command("say 既然被你撞見了，"+RANK_D->query_rude(ob)+"，拿命來吧！");
 }

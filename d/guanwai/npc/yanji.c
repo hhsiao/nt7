@@ -4,10 +4,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("阎基", ({ "yan ji", "yan" }));
-        set("title", "江湖医生");
+        set_name("閻基", ({ "yan ji", "yan" }));
+        set("title", "江湖醫生");
         set("gender", "男性");
-        set("long", "他是一个没落江湖医生。\n");
+        set("long", "他是一個沒落江湖醫生。\n");
         set("age", 45);
 
         set("str", 21);

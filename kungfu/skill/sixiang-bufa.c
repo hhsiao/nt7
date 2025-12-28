@@ -1,12 +1,12 @@
 inherit SKILL;
 
 string *dodge_msg = ({
-    "只见$n一招「少阴步」，身体向上笔直地纵起丈余，躲过了$N这一招。\n",
-    "$n一个「乾兑步」，向后纵出数丈之远，避开了$N的凌厉攻势。\n",
-    "$n使出「离震步」，向一旁飘然纵出，轻轻着地。\n"
-    "但是$n身形飘忽，使出「少阳步」，轻轻一纵，早已避开。\n",
-    "$n身随意转「太阴步」，倏地往一旁挪开了三尺，避过了这一招。\n",
-    "可是$n侧身一让，一个「巽坎步」，$N这一招扑了个空。\n",
+    "只見$n一招「少陰步」，身體向上筆直地縱起丈餘，躲過了$N這一招。\n",
+    "$n一個「乾兌步」，向後縱出數丈之遠，避開了$N的凌厲攻勢。\n",
+    "$n使出「離震步」，向一旁飄然縱出，輕輕著地。\n"
+    "但是$n身形飄忽，使出「少陽步」，輕輕一縱，早已避開。\n",
+    "$n身隨意轉「太陰步」，倏地往一旁挪開了三尺，避過了這一招。\n",
+    "可是$n側身一讓，一個「巽坎步」，$N這一招撲了個空。\n",
 });
 
 int valid_enable(string usage)
@@ -38,10 +38,10 @@ int query_effect_dodge(object attacker, object me)
 int practice_skill(object me)
 {
         if( query("qi", me)<70 )
-                return notify_fail("你的体力太差了，不能练四象步法。\n");
+                return notify_fail("你的體力太差了，不能練四象步法。\n");
 
         if( query("neili", me)<80 )
-                return notify_fail("你的内力太差了，不能练习四象步法。\n");
+                return notify_fail("你的內力太差了，不能練習四象步法。\n");
 
         me->receive_damage("qi", 58);
         addn("neili", -65, me);

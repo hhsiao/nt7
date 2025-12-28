@@ -2,9 +2,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "观龙亭");
+        set("short", "觀龍亭");
         set("long",@LONG
-这是一处古旧的亭子，不知是什么年代为谁所建。
+這是一處古舊的亭子，不知是什麼年代為誰所建。
 LONG);
 
 	set("exits", ([

@@ -9,8 +9,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "这是一颗晶莹剔透的九花玉露丸，具有神奇的疗效。\n");
-                set("base_unit", "颗");
+                set("long", "這是一顆晶瑩剔透的九花玉露丸，具有神奇的療效。\n");
+                set("base_unit", "顆");
                 set("base_value", 100000);
                 set("base_weight", 80);
                 set("only_do_effect", 1);
@@ -43,15 +43,15 @@ int do_effect(object me)
 
         if( time()-query_temp("last_eat/jiuhua", me)<900 )
         {
-                write("你刚服用过药，需药性发挥完效用以后才能继续服用。\n");
+                write("你剛服用過藥，需藥性發揮完效用以後才能繼續服用。\n");
                 return 1;
         }
 
         set_temp("last_eat/jiuhua", time(), me);
 
-        message_vision(HIG "$N" HIG "慢慢服下一颗" + name() +
-                       HIG "，呼吸吐纳，将丹药效力全数吸收。\n" NOR, me);
-        tell_object(me, HIG "不一会儿你只觉得精神饱满，神气完足，内力充沛之极。\n" NOR);
+        message_vision(HIG "$N" HIG "慢慢服下一顆" + name() +
+                       HIG "，呼吸吐納，將丹藥效力全數吸收。\n" NOR, me);
+        tell_object(me, HIG "不一會兒你只覺得精神飽滿，神氣完足，內力充沛之極。\n" NOR);
 
         log_file("static/using", sprintf("%s(%s) eat 九花玉露丸 at %s.\n",
                  me->name(1),query("id", me),ctime(time())));

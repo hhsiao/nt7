@@ -1,5 +1,5 @@
 // This program is a part of NITAN MudLIB
-// memberd.c 会员精灵
+// memberd.c 會員精靈
 
 // #pragma optimize
 // #pragma save_binary
@@ -45,7 +45,7 @@ void create()
         seteuid(ROOT_UID);
 }
 
-// 查询 ID 是否是冲值用户
+// 查詢 ID 是否是衝值用戶
 public int is_member(mixed ob)
 {
         mixed  ret;
@@ -83,7 +83,7 @@ public string db_str(string x)
 
 
 
-// 查询 ID 是否是有效会员
+// 查詢 ID 是否是有效會員
 public int is_valid_member(mixed ob)
 {
         mixed  ret;
@@ -108,7 +108,7 @@ public int is_valid_member(mixed ob)
         return ret;
 }
 
-// 会员双倍奖励时间
+// 會員雙倍獎勵時間
 public int is_double_reward(object ob)
 {
         int t;
@@ -130,7 +130,7 @@ public int is_double_reward(object ob)
         return 0;
 }
 
-// 查询 ID 相关信息
+// 查詢 ID 相關信息
 public mixed db_query_member(mixed ob, string key)
 {
         mixed  ret;
@@ -159,7 +159,7 @@ public mixed db_query_member(mixed ob, string key)
                 return 0;
 }
 
-// 根据条件寻找会员
+// 根據條件尋找會員
 public mixed db_find_member(string key, mixed data)
 {
         mixed  ret;
@@ -186,7 +186,7 @@ public mixed db_find_member(string key, mixed data)
         return ret;
 }
 
-// 创建新的会员
+// 創建新的會員
 public varargs int db_create_member(mixed ob, int money, string from_id)
 {
         mixed  ret;
@@ -214,9 +214,9 @@ public varargs int db_create_member(mixed ob, int money, string from_id)
         */
 
         if (!stringp(from_id) || from_id == "")
-                payinfo = sprintf("你于 %s 冲值 %d $NT。\n", TIME_D->replace_ctime(time()), money);
+                payinfo = sprintf("你於 %s 衝值 %d $NT。\n", TIME_D->replace_ctime(time()), money);
         else
-                payinfo = sprintf("你于 %s 收到 %s 的转帐 %d $NT。\n",
+                payinfo = sprintf("你於 %s 收到 %s 的轉帳 %d $NT。\n",
                                   TIME_D->replace_ctime(time()), from_id, money);
 
         sql = sprintf("INSERT INTO %s SET id = \"%s\", uid = \"%s\", money = %d, paytimes = 1, payinfo = \"%s\",
@@ -235,7 +235,7 @@ public varargs int db_create_member(mixed ob, int money, string from_id)
         return ret;
 }
 
-// 删除会员
+// 刪除會員
 public int db_remove_member(mixed ob)
 {
         mixed  ret;
@@ -265,7 +265,7 @@ public int db_remove_member(mixed ob)
         return ret;
 }
 
-// 设定会员属性
+// 設定會員屬性
 public int db_set_member(mixed ob, string key, mixed data)
 {
         mixed  ret;
@@ -325,7 +325,7 @@ public int db_set_member(mixed ob, string key, mixed data)
         return ret;
 }
 
-// 增加会员属性点
+// 增加會員屬性點
 public int db_add_member(mixed ob, string key, int num)
 {
         mixed  ret;
@@ -357,7 +357,7 @@ public int db_add_member(mixed ob, string key, int num)
         return ret;
 }
 
-// 会员卡
+// 會員卡
 public varargs mixed db_fee_member(mixed ob, int day, int flag)
 {
         mixed  ret;
@@ -420,7 +420,7 @@ public varargs mixed db_fee_member(mixed ob, int day, int flag)
         return ret;
 }
 
-// 会员冲值
+// 會員衝值
 public varargs int db_pay_member(mixed ob, int money, string from_id)
 {
         string id, sql;
@@ -457,9 +457,9 @@ public varargs int db_pay_member(mixed ob, int money, string from_id)
         if (!payinfo) payinfo = "";
 
         if (!stringp(from_id) || from_id == "")
-                info = sprintf("你于 %s 冲值 %d $NT。\n", TIME_D->replace_ctime(time()), money);
+                info = sprintf("你於 %s 衝值 %d $NT。\n", TIME_D->replace_ctime(time()), money);
         else
-                info = sprintf("你于 %s 收到 %s 的转帐 %d $NT。\n",
+                info = sprintf("你於 %s 收到 %s 的轉帳 %d $NT。\n",
                                 TIME_D->replace_ctime(time()), from_id, money);
 
         payinfo += info;
@@ -528,7 +528,7 @@ public varargs int player_pay(mixed from, int money, mixed to)
         return ret;
 }
 
-// 会员转帐
+// 會員轉帳
 public int db_transfer_member(mixed ob, mixed to, int value)
 {
         string id, to_id, sql;
@@ -564,7 +564,7 @@ public int db_transfer_member(mixed ob, mixed to, int value)
         target = UPDATE_D->global_find_player(to_id);
         if (!objectp(target))
         {
-                write("没有这个玩家，请检查确认后再试！\n");
+                write("沒有這個玩家，請檢查確認後再試！\n");
                 return 0;
         }
 
@@ -572,7 +572,7 @@ public int db_transfer_member(mixed ob, mixed to, int value)
 
         if (!is_member(id))
         {
-                write("您目前没有充值记录，也没有王者金币！\n");
+                write("您目前沒有充值記錄，也沒有王者金幣！\n");
                 return 0;
         }
 
@@ -580,13 +580,13 @@ public int db_transfer_member(mixed ob, mixed to, int value)
         money = db_query_member(id, "money");
         if (money < value)
         {
-                write("对不起，您的王者金币数量不够！\n");
+                write("對不起，您的王者金幣數量不夠！\n");
                 return 0;
         }
 
         if (!db_set_member(ob, "money", (money - value)))
         {
-                write("转帐失败，请与本站ADMIN联系！\n");
+                write("轉帳失敗，請與本站ADMIN聯繫！\n");
                 return 0;
         }
 
@@ -597,7 +597,7 @@ public int db_transfer_member(mixed ob, mixed to, int value)
 
         zhuaninfo  = db_query_member(id, "transferinfo");
         if(!zhuaninfo)zhuaninfo="";
-        zhuaninfo += sprintf("你于 %s 转帐 %d $NT给玩家 %s。\n",
+        zhuaninfo += sprintf("你於 %s 轉帳 %d $NT給玩家 %s。\n",
                            TIME_D->replace_ctime(time()),
                            value,
                            to_id);
@@ -605,8 +605,8 @@ public int db_transfer_member(mixed ob, mixed to, int value)
         db_set_member(ob, "transferinfo", zhuaninfo);
         db_add_member(ob, "transfervalue", value);
         db_add_member(ob, "transfertimes", 1);
-        write(HIG "转帐成功， 您的转帐记录已写入文件，请使用 " HIR "member show zhuaninfo " HIG " 查询！ \n" NOR);
-        write(HIC "您总共转帐了 " + HIY + value + HIC + " $NT , 祝您好运！\n" NOR);
+        write(HIG "轉帳成功， 您的轉帳記錄已寫入文件，請使用 " HIR "member show zhuaninfo " HIG " 查詢！ \n" NOR);
+        write(HIC "您總共轉帳了 " + HIY + value + HIC + " $NT , 祝您好運！\n" NOR);
 
         return 1;
 }
@@ -627,33 +627,33 @@ public void show_member_info(mixed ob, string arg)
 
         switch(arg)
         {
-        // 充值记录
+        // 充值記錄
         case "payinfo":
                 if (!is_member(ob))
                 {
-                        write("您目前没有充值记录！\n");
+                        write("您目前沒有充值記錄！\n");
                         return;
                 }
                 ret = db_query_member(ob, arg);
-                write(BBLU + HIW "您的充值记录如下：\n\n" NOR);
+                write(BBLU + HIW "您的充值記錄如下：\n\n" NOR);
                 res = explode(ret, "\n");
                 for (i = 0; i < sizeof(res); i++)
                         write(BBLU + HIY + res[i] + "\n" NOR);
                 break;
-        // 购买记录
+        // 購買記錄
         case "buyinfo":
                 if (!is_member(ob))
                 {
-                        write("您目前没有购买记录！\n");
+                        write("您目前沒有購買記錄！\n");
                         return;
                 }
                 ret = db_query_member(ob, arg);
                 if (!stringp(ret) || ret == "")
                 {
-                     write("您目前没有购买记录！\n");
+                     write("您目前沒有購買記錄！\n");
                      return;
                 }
-                write(BBLU + HIW "您的购买记录如下：\n\n" NOR);
+                write(BBLU + HIW "您的購買記錄如下：\n\n" NOR);
                 /*
                 res = explode(ret, "\n");
                 for (i = 0; i < sizeof(res); i++)
@@ -664,22 +664,22 @@ public void show_member_info(mixed ob, string arg)
 
                 break;
 
-        // 转帐记录
+        // 轉帳記錄
         case "zhuaninfo":
         case "transferinfo":
                 if (!is_member(ob))
                 {
-                        write("您目前没有转帐记录！\n");
+                        write("您目前沒有轉帳記錄！\n");
                         return;
                 }
                 //ret = db_query_member(ob, arg);
                 ret = db_query_member(ob, "transferinfo");
                 if (!stringp(ret) || ret == "")
                 {
-                     write("您目前没有转帐记录！\n");
+                     write("您目前沒有轉帳記錄！\n");
                      return;
                 }
-                write(BBLU + HIW "您的转帐记录如下：\n\n" NOR);
+                write(BBLU + HIW "您的轉帳記錄如下：\n\n" NOR);
                 res = explode(ret, "\n");
                 for (i = 0; i < sizeof(res); i++)
                         write(BBLU + HIY + res[i] + "\n" NOR);
@@ -687,58 +687,58 @@ public void show_member_info(mixed ob, string arg)
 
         // 面板
         case "info":
-                write(BBLU + HIW "\t\t       "+LOCAL_MUD_NAME()+"会员系统面板\t\t     " + VERSION + "\n" NOR);
+                write(BBLU + HIW "\t\t       "+LOCAL_MUD_NAME()+"會員系統面板\t\t     " + VERSION + "\n" NOR);
                 write(HIW "≡---------------------------------------------------------------≡\n" NOR);
                 write(HIY "WELCOME TO JOIN IN THE MEMBERS OF NT AND HOPE YOU ALL GOES WELL.\n\n" NOR);
 
-                write(sprintf(HIC "  会员代号：%-25s金币余额：%s\n" NOR,
+                write(sprintf(HIC "  會員代號：%-25s金幣餘額：%s\n" NOR,
                               id, db_query_member(ob, "money") + " $NT"));
-                write(sprintf(HIC "  入会时间：%-25s有效时间：%s\n" NOR,
+                write(sprintf(HIC "  入會時間：%-25s有效時間：%s\n" NOR,
                               db_query_member(ob, "jointime") ?
-                              TIME_D->replace_ctime(db_query_member(ob, "jointime")) : "没有入会",
+                              TIME_D->replace_ctime(db_query_member(ob, "jointime")) : "沒有入會",
                               db_query_member(ob, "endtime") > 1888888888 ?
-                              "终身会员" : (db_query_member(ob, "endtime") ?
+                              "終身會員" : (db_query_member(ob, "endtime") ?
                               TIME_D->replace_ctime(db_query_member(ob, "endtime")) : "0")));
-                write(sprintf(HIC "  冲值累计：%-25s充值次数：%d\n" NOR,
+                write(sprintf(HIC "  衝值累計：%-25s充值次數：%d\n" NOR,
                               db_query_member(ob, "payvalue") + " $NT",
                               db_query_member(ob, "paytimes")));
-                write(sprintf(HIC "  购买累计：%-25s购买次数：%d\n" NOR,
+                write(sprintf(HIC "  購買累計：%-25s購買次數：%d\n" NOR,
                               db_query_member(ob, "buyvalue") + " $NT",
                               db_query_member(ob, "buytimes")));
-                write(sprintf(HIC "  转帐累计：%-25s转帐次数：%d\n" NOR,
+                write(sprintf(HIC "  轉帳累計：%-25s轉帳次數：%d\n" NOR,
                               db_query_member(ob, "transfervalue") + " $NT",
                               db_query_member(ob, "transfertimes")));
-                write(sprintf(HIM "\n  您最后一次充值时间是               %s\n" NOR,
+                write(sprintf(HIM "\n  您最後一次充值時間是               %s\n" NOR,
                               TIME_D->replace_ctime(db_query_member(ob, "last_paytime"))));
-                write(sprintf(HIM "  您最后一次购买时间是               %s\n" NOR,
+                write(sprintf(HIM "  您最後一次購買時間是               %s\n" NOR,
                               db_query_member(ob, "last_buytime") ?
                               TIME_D->replace_ctime(db_query_member(ob, "last_buytime")) : "————"));
-                write(sprintf(HIM "  您最后一次购买物品是               %s(%s)\n" NOR,
+                write(sprintf(HIM "  您最後一次購買物品是               %s(%s)\n" NOR,
                               sizeof(db_query_member(ob, "last_buyob")) ?
                               db_query_member(ob, "last_buyob") : "————",
                               db_query_member(ob, "last_buyvalue") ?
                               db_query_member(ob, "last_buyvalue") + " $NT" : "0"));
 
-                write(HIG "\n  *请使用" HIR " member show info " HIG "          打开泥潭会员系统面板。\n" NOR);
-                write(HIG "  *请使用" HIR " member show payinfo " HIG "       查看历史充值记录。\n" NOR);
-                write(HIG "  *请使用" HIR " member show buyinfo " HIG "       查看购买物品记录。\n" NOR);
-                write(HIG "  *请使用" HIR " member show zhuaninfo " HIG "     查看历史转帐记录。\n" NOR);
-                write(HIG "  *请使用" HIR " member show goods " HIG "         查看王者商店出售的物品。\n" NOR);
-                write(HIG "  *请使用" HIR " member zhuan <$NT> to <id>" HIG " 转帐金币($NT)给别的角色(ID)。\n" NOR);
-                write(HIG "  *请使用" HIR " member buy <物品代号> " HIG "     购买物品。\n" NOR);
-                write(HIG "  *请使用" HIR " member look <物品代号> " HIG "    查看物品。\n" NOR);
-                write(HIG "  *请使用" HIR " member check <id> " HIG "         检查会员信息。\n" NOR);
-                write(HIG "  *请使用" HIR " member stats " HIG "              列出所有的会员。\n" NOR);
-                write(HIG "  *请使用" HIR " member ?? " HIG "                 member 指令帮助。\n\n\n" NOR);
+                write(HIG "\n  *請使用" HIR " member show info " HIG "          打開泥潭會員系統面板。\n" NOR);
+                write(HIG "  *請使用" HIR " member show payinfo " HIG "       查看歷史充值記錄。\n" NOR);
+                write(HIG "  *請使用" HIR " member show buyinfo " HIG "       查看購買物品記錄。\n" NOR);
+                write(HIG "  *請使用" HIR " member show zhuaninfo " HIG "     查看歷史轉帳記錄。\n" NOR);
+                write(HIG "  *請使用" HIR " member show goods " HIG "         查看王者商店出售的物品。\n" NOR);
+                write(HIG "  *請使用" HIR " member zhuan <$NT> to <id>" HIG " 轉帳金幣($NT)給別的角色(ID)。\n" NOR);
+                write(HIG "  *請使用" HIR " member buy <物品代號> " HIG "     購買物品。\n" NOR);
+                write(HIG "  *請使用" HIR " member look <物品代號> " HIG "    查看物品。\n" NOR);
+                write(HIG "  *請使用" HIR " member check <id> " HIG "         檢查會員信息。\n" NOR);
+                write(HIG "  *請使用" HIR " member stats " HIG "              列出所有的會員。\n" NOR);
+                write(HIG "  *請使用" HIR " member ?? " HIG "                 member 指令幫助。\n\n\n" NOR);
 
 
-                write(HIR "  为避免带来不必要的损失请认真阅读"+LOCAL_MUD_NAME()+"会员制度文件" HIY "(help member)\n\n" NOR);
+                write(HIR "  為避免帶來不必要的損失請認真閱讀"+LOCAL_MUD_NAME()+"會員制度文件" HIY "(help member)\n\n" NOR);
                 write(HIY "                                                 NT WIZARD GROUP\n" NOR);
                 write(HIW "≡---------------------------------------------------------------≡\n" NOR);
-                write(HIC"淘宝冲值链接地址: "NOR+HIR" \n"NOR);
+                write(HIC"淘寶衝值鏈接地址: "NOR+HIR" \n"NOR);
 
                 break;
-           // 物品清单
+           // 物品清單
            case "goods":
                 GOODS_D->show_goods(ob);
                 break;
@@ -764,33 +764,33 @@ public mixed show_all_members(int flag)
         if (!sizeof(members))
         {
                 if (flag) return ({});
-                write(HIG "暂无会员！\n" NOR);
+                write(HIG "暫無會員！\n" NOR);
                 return;
         }
 
         if (flag) return members;
 
-        write(HIM "以下是"+LOCAL_MUD_NAME()+"的所有会员列表：\n" NOR);
+        write(HIM "以下是"+LOCAL_MUD_NAME()+"的所有會員列表：\n" NOR);
         write(HIW "≡-------------------------------------------------------------------≡\n" NOR);
 
         write(sprintf(HIR "%-18s%-18s%-26s%-20s\n\n" NOR,
-                    "姓  名", "帐  号", "入会时间", "状  况"));
+                    "姓  名", "帳  號", "入會時間", "狀  況"));
 
         for (nCount = 0; nCount < sizeof(members); nCount ++)
         {
                 if (ob = find_player(members[nCount][0]))
                 {
-                        if( query("doing", ob))status=HIY"计划中"NOR;
-                        else if (interactive(ob) && query_idle(ob) > 120)status = HIM "发呆" NOR;
-                        else if (is_valid_member(members[nCount][0]))status = HIW "在线" NOR;
-                        else status = HIR "过期" NOR;
+                        if( query("doing", ob))status=HIY"計劃中"NOR;
+                        else if (interactive(ob) && query_idle(ob) > 120)status = HIM "發呆" NOR;
+                        else if (is_valid_member(members[nCount][0]))status = HIW "在線" NOR;
+                        else status = HIR "過期" NOR;
                         name = ob->name(1);
                         jointime = TIME_D->replace_ctime(db_query_member(members[nCount][0], "jointime"));
                 }
                 else
                 {
-                        if (is_valid_member(members[nCount][0])) status = NOR + WHT "离线" NOR;
-                        else status = HIR "过期" NOR;
+                        if (is_valid_member(members[nCount][0])) status = NOR + WHT "離線" NOR;
+                        else status = HIR "過期" NOR;
                         name = "———";
                         jointime = "———";
                 }
@@ -801,10 +801,10 @@ public mixed show_all_members(int flag)
                            jointime,
                            status));
 
-                m ++; // 过滤掉转帐记录文件，实际会员数
+                m ++; // 過濾掉轉帳記錄文件，實際會員數
 
         }
-        write(HIY "\n总共有 " + m + " 名注册会员。\n" NOR);
+        write(HIY "\n總共有 " + m + " 名註冊會員。\n" NOR);
         write(HIW "≡-------------------------------------------------------------------≡\n\n" NOR);
         return 1;
 }

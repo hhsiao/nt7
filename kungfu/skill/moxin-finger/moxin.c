@@ -30,14 +30,14 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if (member_array("finger", weapon_sk) != -1)
         {
                 attack = WEAPON_ATTACK;
                 if( !objectp(weapon=query_temp("weapon", me) )
                     || query("skill_type", weapon) != "finger" )
-                        return notify_fail("你所使用的武器不对，难以施展" + name() + "。\n");
+                        return notify_fail("你所使用的武器不對，難以施展" + name() + "。\n");
         } else
         {
                 attack = UNARMED_ATTACK;
@@ -46,21 +46,21 @@ int perform(object me, object target)
         }
 
         if ((int)me->query_skill("moxin-finger", 1) < 400)
-                return notify_fail("你" + to_chinese("moxin-finger") + "不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你" + to_chinese("moxin-finger") + "不夠嫻熟，難以施展" + name() + "。\n");
 
         if (member_array("finger", weapon_sk) == -1)
         {
                 if (me->query_skill_prepared("finger") != "moxin-finger")
-                        return notify_fail("你没有准备" + to_chinese("moxin-finger") + "，难以施展" + name() + "。\n");
+                        return notify_fail("你沒有準備" + to_chinese("moxin-finger") + "，難以施展" + name() + "。\n");
         }
 
         if( query("neili", me)<500 )
-                return notify_fail("你现在的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N十指掐诀，是指诸行无常，万事万物，都有焚灭之时，尘归尘土归土。$n身临其境感觉甚至连整个世界都会最终破败崩坏，归于空寂。" + "\n" + NOR;
+        msg = HIW "$N十指掐訣，是指諸行無常，萬事萬物，都有焚滅之時，塵歸塵土歸土。$n身臨其境感覺甚至連整個世界都會最終破敗崩壞，歸於空寂。" + "\n" + NOR;
 
         ap = attack_power(me, "finger");
         dp = defense_power(target, "parry");
@@ -68,7 +68,7 @@ int perform(object me, object target)
         if (ap / 2 + random(ap) > dp)
         {
                 damage = damage_power(me, "finger")*7;
-                msg += COMBAT_D->do_damage(me, target, attack, damage, 380, HIM "结果$n闪避不及，$N无情的杀招顿时透骨而入，整个人抱头跪地，元神出窍，如风中残烛般摇曳。" + "\n" NOR);
+                msg += COMBAT_D->do_damage(me, target, attack, damage, 380, HIM "結果$n閃避不及，$N無情的殺招頓時透骨而入，整個人抱頭跪地，元神出竅，如風中殘燭般搖曳。" + "\n" NOR);
                 addn("neili", -200, me);
 
                 /*
@@ -77,22 +77,22 @@ int perform(object me, object target)
                 */
         } else
         {
-                msg += NOR + CYN "$p见势不妙，运起绝世轻功，终于险险的躲过$P的这记杀招，而身前的一切，都湮灭为了空寂，连空气都感觉不到了！" + "\n" NOR;
+                msg += NOR + CYN "$p見勢不妙，運起絕世輕功，終於險險的躲過$P的這記殺招，而身前的一切，都湮滅為了空寂，連空氣都感覺不到了！" + "\n" NOR;
                 addn("neili", -100, me);
         }
 
         message_sort(msg, me, target);
 
-        msg = HIW "$N" HIW "余势未尽，招式陡然变得凌厉无比，一转念间已然攻出数招。\n" NOR;
+        msg = HIW "$N" HIW "餘勢未盡，招式陡然變得凌厲無比，一轉念間已然攻出數招。\n" NOR;
         if (ap / 2 + random(ap) > dp)
         {
                 count = ap / 20;
-                msg += HIR "$n" HIR "见$P" HIR "来势迅猛之极，一时不知该如"
-                       "何作出抵挡，竟呆立当场。\n" NOR;
+                msg += HIR "$n" HIR "見$P" HIR "來勢迅猛之極，一時不知該如"
+                       "何作出抵擋，竟呆立當場。\n" NOR;
         } else
         {
-                msg += HIY "$n" HIY "见$p" HIY "来势迅猛之极，甚难防备，连"
-                       "忙振作精神，小心抵挡。\n" NOR;
+                msg += HIY "$n" HIY "見$p" HIY "來勢迅猛之極，甚難防備，連"
+                       "忙振作精神，小心抵擋。\n" NOR;
                 count = 0;
         }
 

@@ -7,7 +7,7 @@ void setup()
         set_name("蛇[2;37;0m[2;37;0m", ({"goldfff"}));        
         set("gender", "男性");                
         set("long", "蛇[2;37;0m
-它是金蛇的魔幻兽。
+它是金蛇的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

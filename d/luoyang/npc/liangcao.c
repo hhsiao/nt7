@@ -2,10 +2,10 @@ inherit BUNCHER;
 
 void create()
 {
-        set_name("粮草官", ({ "liangcao guan", "liangcao", "guan" }) );
+        set_name("糧草官", ({ "liangcao guan", "liangcao", "guan" }) );
         set("gender", "男性" );
         set("age", 22);
-        set("long", "一个管理粮草的小官。\n");
+        set("long", "一個管理糧草的小官。\n");
         set("shen_type", 1);
         set("combat_exp", 10000);
         set("str", 10);

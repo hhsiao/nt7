@@ -1,15 +1,15 @@
-// wujiang.c 武将
+// wujiang.c 武將
 
 inherit NPC;
 
 void create()
 {
-        set_name("武将", ({ "wu jiang", "wu", "jiang" }));
+        set_name("武將", ({ "wu jiang", "wu", "jiang" }));
         set("gender", "男性");
         set("age", random(10) + 30);
         set("str", 25);
-        set("long", "他威风凛凛，杀气腾腾，虽然现在只是个守"
-                    "城小官，当年也曾经参加过几场大战役。\n");
+        set("long", "他威風凜凜，殺氣騰騰，雖然現在只是個守"
+                    "城小官，當年也曾經參加過幾場大戰役。\n");
         set("combat_exp", 80000);
         set("attitude", "peaceful");
         set_skill("unarmed", 70);
@@ -45,7 +45,7 @@ void init()
 
 int accept_fight(object me)
 {
-        message_vision("武将对$N把眼一瞪，喝道：呔，放肆，敢"
-                       "跟我比试，是不是活的不耐了！\n\n", me);
+        message_vision("武將對$N把眼一瞪，喝道：呔，放肆，敢"
+                       "跟我比試，是不是活的不耐了！\n\n", me);
         return 0;
 }

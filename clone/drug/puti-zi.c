@@ -15,14 +15,14 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "颗");
-                set("long", "这是一颗晶莹如玉的菩提子，采自灵山佛祖座前，珍稀无比，
-乃万年菩提树之实，功能化百劫，渡千灾，与天地同寿。\n");
+                set("unit", "顆");
+                set("long", "這是一顆晶瑩如玉的菩提子，採自靈山佛祖座前，珍稀無比，
+乃萬年菩提樹之實，功能化百劫，渡千災，與天地同壽。\n");
                 set("value", 10000);
                 set("no_sell", 1);
                 set("medicine", 1);
-                set("no_drop","这样东西不能离开你。\n");
-                set("no_get", "这样东西不能离开那儿。\n");
+                set("no_drop","這樣東西不能離開你。\n");
+                set("no_get", "這樣東西不能離開那兒。\n");
         }
         setup();
 }
@@ -39,14 +39,14 @@ int cure_ob(object me)
         if ( (int)me->query_condition("bonze_drug" ) > 0 )
         {
                 addn("max_neili", -(20+random(20)), me);
-                message_vision(HIR "$N又吃下一颗菩提子，只觉得肝肠寸断，五脏欲裂，原来服食太急太多，药效适得其反！\n" NOR, me);
+                message_vision(HIR "$N又吃下一顆菩提子，只覺得肝腸寸斷，五臟欲裂，原來服食太急太多，藥效適得其反！\n" NOR, me);
         }
         else if ( neili_limit <= force_limit  )
         {
                 addn("max_neili", 20+random(20), me);
                 addn("neili", 100, me);
 
-                message_vision(HIY "$N吃下一颗菩提子，顿然间只觉一股浩荡无比的真气直冲顶门...\n" NOR, this_player());
+                message_vision(HIY "$N吃下一顆菩提子，頓然間只覺一股浩蕩無比的真氣直衝頂門...\n" NOR, this_player());
                 me->apply_condition("bonze_drug", 100);
         }
 

@@ -2,15 +2,15 @@
 inherit TASK;
 void create()
 {
-    set_name(HIY"黄马甲"NOR, ({ "huang majia", "majia" }) );
+    set_name(HIY"黃馬甲"NOR, ({ "huang majia", "majia" }) );
     set_weight(10);
     if( clonep() )
             destruct(this_object());
     else {
             set("unit", "件");
             set("material", "cloth");
-            set("long", "这是一件皇上御赐给鳌拜的黄马甲。\n");
+            set("long", "這是一件皇上御賜給鰲拜的黃馬甲。\n");
           }
-    set("owner", "鳌拜");
+    set("owner", "鰲拜");
     setup();
 }

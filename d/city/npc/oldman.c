@@ -11,8 +11,8 @@ string *classes = ({
         "tortoise","crocodile","horse","donkey","cattle","rabbit"
 });
 string *title = ({
-        HIY"龙",HIC"凤凰",YEL"麒麟","象","狮","虎","豹","熊","狐","狼","狗","猪","鹿","貂","猫",
-        "鼠","猴","鹰","雕","鸡","鸭","蛇","龟","鳄","马","驴","牛","兔"
+        HIY"龍",HIC"鳳凰",YEL"麒麟","象","獅","虎","豹","熊","狐","狼","狗","豬","鹿","貂","貓",
+        "鼠","猴","鷹","雕","雞","鴨","蛇","龜","鱷","馬","驢","牛","兔"
 });
 int *petstr=({30,20,25,30,25,25,20,25,12,15,12,15,10, 5, 5, 5,12,10,18, 5, 5,15, 5,18,20,18,22,10});
 int *petdex=({30,30,25,10,20,20,25,12,20,20,20,10,22,20,20,18,30,25,25,20,20,15, 5,10,20,22,12,18});
@@ -31,15 +31,15 @@ void addaction(object pet)
 {
         switch(query("class", pet) )
         {
-                case "dragon"   :     //龙
+                case "dragon"   :     //龍
                         set("verbs", ({"angel","bite","claw","rope","tail"}), pet);break;
-                case "phenix"   :     //凤凰
+                case "phenix"   :     //鳳凰
                         set("verbs", ({"claw","poke","wind"}), pet);break;
                 case "kylin"    :     //麒麟
                         set("verbs", ({"angel","bite","hoof","knock"}), pet);break;
                 case "elephant" :     //象
                         set("verbs", ({"hoof","knock","snoot"}), pet);break;
-                case "lion"     :     //狮
+                case "lion"     :     //獅
                         set("verbs", ({"bite","claw","hoof","snap"}), pet);break;
                 case "tiger"    :     //虎
                         set("verbs", ({"bite","claw","hoof","snap","tail"}), pet);break;
@@ -51,30 +51,30 @@ void addaction(object pet)
                 case "wolf"     :     //狼
                 case "dog"      :     //狗
                         set("verbs", ({"bite","claw","hoof","snap"}), pet);break;
-                case "pig"      :     //猪
+                case "pig"      :     //豬
                         set("verbs", ({"bite","hoof","knock"}), pet);break;
                 case "deer"     :     //鹿
                 case "cattle"   :     //牛
                         set("verbs", ({"angel","hoof","knock"}), pet);break;
                 case "marten"   :     //貂
-                case "cat"      :     //猫
+                case "cat"      :     //貓
                 case "monkey"   :     //猴
                 case "rabbit"   :     //兔
                 case "mouse"    :     //鼠
                         set("verbs", ({"bite","claw","hoof"}), pet);break;
-                case "eagle"    :     //鹰
+                case "eagle"    :     //鷹
                 case "vulture"  :     //雕
-                case "chicken"  :     //鸡
-                case "duck"     :     //鸭
+                case "chicken"  :     //雞
+                case "duck"     :     //鴨
                         set("verbs", ({"claw","poke","wind"}), pet);break;
                 case "snake"    :     //蛇
                         set("verbs", ({"bite","rope","tail"}), pet);break;
-                case "tortise"  :     //龟
+                case "tortise"  :     //龜
                         set("verbs", ({"bite"}), pet);break;
-                case "crocodile":     //鳄
+                case "crocodile":     //鱷
                         set("verbs", ({"bite","claw","tail"}), pet);break;
-                case "horse"    :     //马
-                case "donkey"   :     //驴
+                case "horse"    :     //馬
+                case "donkey"   :     //驢
                         set("verbs", ({"bite","hoof","knock"}), pet);break;
                 default:
                         set("verbs", ({"bite","claw"}), pet);break;
@@ -82,10 +82,10 @@ void addaction(object pet)
 }
 void create()
 {
-        set_name("白髯老头", ({ "lao tou", "laotou", "oldman"}) );
+        set_name("白髯老頭", ({ "lao tou", "laotou", "oldman"}) );
         set("gender", "男性" );
         set("age", 64);
-        set("long","一个须发皆白的老者，精神矍铄，满面红光。如果你有兴趣，可以向他要只宠物养来玩玩。\n");
+        set("long","一個鬚髮皆白的老者，精神矍鑠，滿面紅光。如果你有興趣，可以向他要只寵物養來玩玩。\n");
         set("max_qi", 2000);
         set("max_jing", 2000);
         set("max_neili", 2000);
@@ -97,7 +97,7 @@ void create()
         set_skill("parry", 120);
         set_skill("force",120);
         set("inquiry", ([
-                "宠物"  : "你要购买(goumai)什么宠物？请看本店招牌。\n",
+                "寵物"  : "你要購買(goumai)什麼寵物？請看本店招牌。\n",
         ]) );
         set("vendor_goods", ({
                 FODDER_DIR+"siliao",
@@ -133,11 +133,11 @@ void greeting(object ob)
         if( !ob || environment(ob) != environment() ) return;
         if( query("Pet", ob) )
         {
-                say("白髯老者掀髯笑道：“这位"+RANK_D->query_respect(ob)+"，你的宠物养得如何了啊？”\n");
+                say("白髯老者掀髯笑道：“這位"+RANK_D->query_respect(ob)+"，你的寵物養得如何了啊？”\n");
         }
         else
         {
-                say("白髯老者掀髯笑道：“这位"+RANK_D->query_respect(ob)+"，来买宠物啊？”\n");
+                say("白髯老者掀髯笑道：“這位"+RANK_D->query_respect(ob)+"，來買寵物啊？”\n");
         }
 }
 int do_goumai(string arg)
@@ -146,37 +146,37 @@ int do_goumai(string arg)
         int num;
 
         if(!arg)
-                return notify_fail("老头笑道：“别急，你想购买什么宠物，请先看清楚招牌。”\n");
+                return notify_fail("老頭笑道：“別急，你想購買什麼寵物，請先看清楚招牌。”\n");
         if( query("Pet", me) && !wizardp(me) )
         {
-                command("say 这位"+RANK_D->query_respect(me)+"，宠物只能豢养一只，如果想买新的，得把旧的先还(return)给我。”\n");
+                command("say 這位"+RANK_D->query_respect(me)+"，寵物只能豢養一隻，如果想買新的，得把舊的先還(return)給我。”\n");
                 return 1;
         }
         if ( member_array(arg, classes) == -1)
-                return notify_fail("老头歉然笑道：“暂时没有这种宠物可买，请看清楚招牌。”\n");
+                return notify_fail("老頭歉然笑道：“暫時沒有這種寵物可買，請看清楚招牌。”\n");
         if( !wizardp(me) && query("combat_exp", me)<2000000 && 
                 (arg == "dragon" || arg == "phenix" || arg == "kylin"))
-                return notify_fail("老头呵呵一通，笑道：“你的经验还不足养这些宠物。”\n");
+                return notify_fail("老頭呵呵一通，笑道：“你的經驗還不足養這些寵物。”\n");
 
         num = member_array(arg, classes);
         gold = present("gold", me);
-        if(!gold) return notify_fail("老头笑了笑：“你没带金子来？”\n");
+        if(!gold) return notify_fail("老頭笑了笑：“你沒帶金子來？”\n");
         if((int) gold->query_amount() < value[num])
-                return notify_fail("老头看了你一眼：“你身上黄金没带够。”\n");
+                return notify_fail("老頭看了你一眼：“你身上黃金沒帶夠。”\n");
         pet = new("/clone/misc/pet");
         set("class", classes[num], pet);
         set("id", classes[num], pet);
         set("title", title[num]+NOR, pet);
-        set("name", "宠物", pet);
-        set("race", "野兽", pet);
-        pet->set_name("宠物", ({classes[num], "pet"}));
-        set("long", "这是一只宠物"+title[num]+"。\n"NOR, pet);
+        set("name", "寵物", pet);
+        set("race", "野獸", pet);
+        pet->set_name("寵物", ({classes[num], "pet"}));
+        set("long", "這是一隻寵物"+title[num]+"。\n"NOR, pet);
         set("level", 1, pet);
         set("owner",query("id",  me), pet);
         set_temp("owner",query("id",  me), pet);
         set_temp("ownername",query("name",  me), pet);
         set("Pet/id", classes[num], me);
-        set("Pet/name", "宠物", me);
+        set("Pet/name", "寵物", me);
 
         set("str", petstr[num]+random(10), pet);
         set("dex", petdex[num]+random(10), pet);
@@ -186,9 +186,9 @@ int do_goumai(string arg)
         set("kar", petkar[num]+random(10), pet);
         set("cor", petcor[num]+random(10), pet);
         set("cps", petcps[num]+random(10), pet);
-        set("obe", 1, pet);//初始驯服度
-        set("age", 1, pet);//年龄
-// 重量决定食量
+        set("obe", 1, pet);//初始馴服度
+        set("age", 1, pet);//年齡
+// 重量決定食量
         set("weight", weight[num]*1000, pet);
         pet->set_weight(weight[num]*1000);
         if( random(10)>4)set("gender", "雌性", pet);
@@ -197,8 +197,8 @@ int do_goumai(string arg)
 
         addaction(pet);
         pet->move(environment(me));
-        message_vision("$N掏出"HIR+chinese_number(value[num])+NOR"两"HIY"黄金"NOR"，往柜面一砸：“给我来一只"+title[num]+NOR"。”\n", me);
-        message_vision("$N看了一眼"HIY"黄金"NOR"成色，伸手一捋，把它捋到抽屉里。然后从身后笼子里取出一只"+title[num]+NOR"放在地上。\n", ob);
+        message_vision("$N掏出"HIR+chinese_number(value[num])+NOR"兩"HIY"黃金"NOR"，往櫃面一砸：“給我來一隻"+title[num]+NOR"。”\n", me);
+        message_vision("$N看了一眼"HIY"黃金"NOR"成色，伸手一捋，把它捋到抽屜裡。然後從身後籠子裡取出一隻"+title[num]+NOR"放在地上。\n", ob);
         set("Pet/class",query("class",  pet), me);
         set("Pet/exp",query("combat_exp",  pet), me);
         set("Pet/id",query("id",  pet), me);
@@ -248,9 +248,9 @@ int do_return()
         int i;
 
         if( !query("Pet", me) )
-                return notify_fail("老头呵呵乐了：“你就没养宠物，来这凑啥热闹来着？”\n");
+                return notify_fail("老頭呵呵樂了：“你就沒養寵物，來這湊啥熱鬧來著？”\n");
         if(me->is_busy())
-                return notify_fail("你上一个动作还没有完成。\n");
+                return notify_fail("你上一個動作還沒有完成。\n");
         id=query("id", me);
         ob = all_inventory(environment(me));
         for (i = 0; i < sizeof(ob); i++)
@@ -261,8 +261,8 @@ int do_return()
                 }
         }
         if( i == sizeof(ob) )
-                return notify_fail("老头奇怪地看了你一眼：“你的宠物没带来，那你怎么还给我啊？”\n");
-        message_vision("$N一把抱起地上的$n，递过柜台还给老头。\n", me, ob[i]);
+                return notify_fail("老頭奇怪地看了你一眼：“你的寵物沒帶來，那你怎麼還給我啊？”\n");
+        message_vision("$N一把抱起地上的$n，遞過櫃檯還給老頭。\n", me, ob[i]);
         delete("Pet", me);
         destruct(ob[i]);
         me->start_busy(1);
@@ -274,26 +274,26 @@ int do_lingqu()
         int i;
 
         if(me->is_busy())
-                return notify_fail("你上一个动作还没有完成。\n");
+                return notify_fail("你上一個動作還沒有完成。\n");
         if( !query("Pet", me) )
         {
-                command("say 这位"+RANK_D->query_respect(me)+"，你没暂存(zancun)过宠物，这里哪有东西可领取？”\n");
+                command("say 這位"+RANK_D->query_respect(me)+"，你沒暫存(zancun)過寵物，這裡哪有東西可領取？”\n");
                 return 1;
         }
 
         obj = objects();
         for (i=0; i<sizeof(obj); i++)
         {
-                if( query("owner", obj[i]) == query("id", me) && //奸细也有owner
+                if( query("owner", obj[i]) == query("id", me) && //奸細也有owner
                         query("curiousness", obj[i]) )
                 {
                         if(environment(obj[i]) == me )
-                                return notify_fail(ob->name()+ "说道：你不是正骑在你的宠物身上么？\n");
+                                return notify_fail(ob->name()+ "說道：你不是正騎在你的寵物身上麼？\n");
                         else
                                 if(environment(obj[i]) != environment(me) )
-                                        return notify_fail(ob->name()+"说道：你的宠物在"+(query("outdoors",environment(obj[i])) ? to_chinese(query("outdoors",environment(obj[i]))) : "哪里")+"的"+query("short",environment(obj[i]))+"，赶快去找吧。\n");
+                                        return notify_fail(ob->name()+"說道：你的寵物在"+(query("outdoors",environment(obj[i])) ? to_chinese(query("outdoors",environment(obj[i]))) : "哪裡")+"的"+query("short",environment(obj[i]))+"，趕快去找吧。\n");
                                 else
-                                        return notify_fail(ob->name()+ "说道：你的宠物不是就在你旁边么？\n");
+                                        return notify_fail(ob->name()+ "說道：你的寵物不是就在你旁邊麼？\n");
                         return 1;
                 }
         }
@@ -308,7 +308,7 @@ int do_lingqu()
         set("title",query("Pet/title",  me), pet);
         set("name",query("Pet/name",  me), pet);
         set("nickname",query("Pet/nickname",  me), pet);
-        set("race", "野兽", pet);
+        set("race", "野獸", pet);
         pet->set_name(query("Pet/name", me),({query("Pet/id", me),"pet"}));
         set("long",query("Pet/long",  me), pet);
         set("level",query("Pet/level",  me), pet);
@@ -350,7 +350,7 @@ int do_lingqu()
         addaction(pet);
 
         pet->move(environment(me));
-        message_vision("$N从身后笼子里取出一只"+pet->name()+"放在地上。\n", ob);
+        message_vision("$N從身後籠子裡取出一隻"+pet->name()+"放在地上。\n", ob);
         me->start_busy(1);
         return 1;
 }
@@ -362,9 +362,9 @@ int do_zancun()
         int i;
 
         if( !query("Pet", me) )
-                return notify_fail("老头呵呵乐了：“你就没养宠物，来这凑啥热闹来着？”\n");
+                return notify_fail("老頭呵呵樂了：“你就沒養寵物，來這湊啥熱鬧來著？”\n");
         if(me->is_busy())
-                return notify_fail("你上一个动作还没有完成。\n");
+                return notify_fail("你上一個動作還沒有完成。\n");
         id=query("id", me);
         ob = all_inventory(environment(me));
         for (i = 0; i < sizeof(ob); i++)
@@ -375,9 +375,9 @@ int do_zancun()
                 }
         }
         if( i == sizeof(ob) )
-                return notify_fail("老头奇怪地看了你一眼：“你的宠物没带来，暂存啥啊？”\n");
+                return notify_fail("老頭奇怪地看了你一眼：“你的寵物沒帶來，暫存啥啊？”\n");
         if( query_temp("feeded", ob[i]) )
-                return notify_fail(ob[i]->name()+"刚吃了东西，懒洋洋的不想理你。\n");
+                return notify_fail(ob[i]->name()+"剛吃了東西，懶洋洋的不想理你。\n");
 
         set("Pet/class",query("class",  ob[i]), me);
         set("Pet/exp",query("combat_exp",  ob[i]), me);
@@ -418,10 +418,10 @@ int do_zancun()
         set("Pet/dodge", ob[i]->query_skill("dodge",1), me);
         set("Pet/parry", ob[i]->query_skill("parry",1), me);
 
-// 取消跟随状态
+// 取消跟隨狀態
         delete_temp("comedby", me);
 
-        message_vision("$N一把抱起地上的$n，递过柜台给老头暂存。\n", me, ob[i]);
+        message_vision("$N一把抱起地上的$n，遞過櫃檯給老頭暫存。\n", me, ob[i]);
         destruct(ob[i]);
         me->start_busy(1);
         return 1;

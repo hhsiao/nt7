@@ -1,7 +1,7 @@
 // $file_name.c                                         /* COMMENT_ENTRY */
 // Create by TEMPLATE_D. $time.                         /* COMMENT_ENTRY */
 // armor.c
-// 自动创建防具的基准文件。                             /* COMMENT_EXIT  */
+// 自動創建防具的基準文件。                             /* COMMENT_EXIT  */
 
 #include <armor.h>
 inherit HANDS;
@@ -17,7 +17,7 @@ void create()
         else*/
         {
 //**            set("$dbase_key", "$dbase_value\n");    /* DBASE_ENTRY */
-                set("long", "这是一件普通的掌套。\n");  /* DBASE_EXIT  */
+                set("long", "這是一件普通的掌套。\n");  /* DBASE_EXIT  */
                 set("unit", "件");
                 set("value", 200);
                 set("material", "cloth");

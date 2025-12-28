@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("天乐龙龙[2;37;0m[2;37;0m", ({"ttlongq"}));        
+        set_name("天樂龍龍[2;37;0m[2;37;0m", ({"ttlongq"}));        
         set("gender", "男性");                
-        set("long", "天乐龙龙[2;37;0m
-它是阳九的魔幻兽。
+        set("long", "天樂龍龍[2;37;0m
+它是陽九的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "fornine");
-        set("owner_name", "阳九");
+        set("owner_name", "陽九");
         set_temp("owner", "fornine");
-        set_temp("owner_name", "阳九");
+        set_temp("owner_name", "陽九");
         ::setup();
 }

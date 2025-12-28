@@ -3,8 +3,8 @@ inherit ITEM;
 
 void create()
 {
-        set_name("药柜",({"treasure box", "box"}));
-        set("short", "药柜");
+        set_name("藥櫃",({"treasure box", "box"}));
+        set("short", "藥櫃");
         set("env/invisibility",1);
         set_max_encumbrance(50000000);
         set_weight(100);

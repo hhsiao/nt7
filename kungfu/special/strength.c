@@ -9,6 +9,6 @@ string name() { return HIR "麒麟血臂" NOR; }
 
 int perform(object me, string skill)
 {
-        return notify_fail("这项技能能够使你膂力更高，不需要运用。\n");
+        return notify_fail("這項技能能夠使你膂力更高，不需要運用。\n");
 }
 

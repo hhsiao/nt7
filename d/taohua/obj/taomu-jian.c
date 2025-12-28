@@ -9,7 +9,7 @@ inherit SWORD;
 
 void create()
 {
-        set_name(HIM"桃木剑"NOR,({ "taomu jian", "taomu", "jian" }) );
+        set_name(HIM"桃木劍"NOR,({ "taomu jian", "taomu", "jian" }) );
         set_weight(1000);
         /*if( clonep() )
                 set_default_object(__FILE__);
@@ -17,7 +17,7 @@ void create()
                 set("unit", "把");
                 set("value", 0);
                 set("material", "wood");
-                set("long", "这是一柄三尺来长，手工制成的桃木剑，似乎不是一件好兵器。\n");
+                set("long", "這是一柄三尺來長，手工製成的桃木劍，似乎不是一件好兵器。\n");
                 set("wield_msg", "$N拿出一把$n，握在手中。\n");
                 set("unequip_msg", "$N放下手中的$n。\n");
         }
@@ -40,9 +40,9 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         if (strsrch(file_name(where), "/d/taohua/") < 0)
                 return; 
 
-        if (!fam1 || fam1["family_name"] != "桃花岛")
+        if (!fam1 || fam1["family_name"] != "桃花島")
                 return;
-        if (!fam2 || fam2["family_name"] != "桃花岛")
+        if (!fam2 || fam2["family_name"] != "桃花島")
                 return;
 
         if (!userp(victim)) 

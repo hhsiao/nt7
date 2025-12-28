@@ -1,4 +1,4 @@
-// zhang.c 张志光
+// zhang.c 張志光
 // By Lgg,1998.10
 
 #include "quanzhen.h"
@@ -8,12 +8,12 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("张志光", ({"zhang zhiguang", "zhang"}));
+        set_name("張志光", ({"zhang zhiguang", "zhang"}));
         set("gender", "男性");
         set("age", 24);
         set("class", "taoist");
         set("long",
-                "他就是全真教第三代弟子中的好手，谭处端的弟子。\n");
+                "他就是全真教第三代弟子中的好手，譚處端的弟子。\n");
         set("attitude", "friendly");
         set("shen_type",1);
         set("str", 26);
@@ -67,7 +67,7 @@ void create()
         create_family("全真教", 3, "弟子");
 
         set("inquiry", ([
-                "全真教" :  "我全真教是天下道家玄门正宗。\n",
+                "全真教" :  "我全真教是天下道家玄門正宗。\n",
         ]) );
 
         setup();
@@ -82,6 +82,6 @@ void attempt_apprentice(object ob)
         if (! permit_recruit(ob))
                 return;
 
-        command("say 好吧，我就收下你这个徒弟了。");
+        command("say 好吧，我就收下你這個徒弟了。");
         command("recruit "+query("id", ob));
 }

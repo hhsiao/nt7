@@ -6,15 +6,15 @@ void create()
 
         set_name(HIR "朱雀" NOR,({"zhu que", "zhu", "que", "bird"}));
 
-        set("race", "野兽");
-        set("long", HIR "\n\n一只宽达丈许的浴火凤凰，乃四神兽之一的朱雀。\n"
-                        "它全身羽毛血红似火，整个身体便如一团火焰。\n" NOR);
+        set("race", "野獸");
+        set("long", HIR "\n\n一隻寬達丈許的浴火鳳凰，乃四神獸之一的朱雀。\n"
+                        "它全身羽毛血紅似火，整個身體便如一團火焰。\n" NOR);
         set("age", 10000);
         set("attitude", "peaceful");
 
-        set("limbs", ({ "头部", "身体", "双爪", "颈部", "翅膀" }) );
+        set("limbs", ({ "頭部", "身體", "雙爪", "頸部", "翅膀" }) );
         set("verbs", ({ "bite" }) );
-        set("title", HIY "神兽" NOR);
+        set("title", HIY "神獸" NOR);
 
         set("combat_exp", 8000000);
         set("max_neili", 15000);
@@ -64,8 +64,8 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->receive_wound("qi", 200 + random(200), me);
         set("neili",query("max_neili",  me), me);
-        return HIY "朱雀双爪幻出两道金光，刹那间霹雳电闪，紫雷"
-               "轰鸣，千万道闪电至九天而降，笼罩大地。\n" NOR;
+        return HIY "朱雀雙爪幻出兩道金光，剎那間霹靂電閃，紫雷"
+               "轟鳴，千萬道閃電至九天而降，籠罩大地。\n" NOR;
 }
 
 void die()
@@ -82,15 +82,15 @@ void die()
             query("wang_get/朱羽", me) && 
             userp(me) )
         {
-                message_vision(HIC "$N" HIC "从朱雀的尸体上拔下了一束羽毛。\n", me);
+                message_vision(HIC "$N" HIC "從朱雀的屍體上拔下了一束羽毛。\n", me);
                 yumao = new("/d/death/obj/yumao");
                 yumao->move(me);
                 delete("wang_get/朱羽", me);
                 addn("combat_exp", exp, me);
                 addn("potential", pot, me);
 
-                tell_object(me, HIC "由于你斩杀神兽朱雀，你获得了" + chinese_number(exp)
-                                + "点经验和" + chinese_number(pot) + "点潜能。\n" NOR);
+                tell_object(me, HIC "由於你斬殺神獸朱雀，你獲得了" + chinese_number(exp)
+                                + "點經驗和" + chinese_number(pot) + "點潛能。\n" NOR);
         }
         ::die();
 }

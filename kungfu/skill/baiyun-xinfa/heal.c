@@ -6,26 +6,26 @@
 int exert(object me, object target)
 {
         if( me->is_fighting() )
-                return notify_fail("战斗中运功疗伤？找死吗？\n");
+                return notify_fail("戰鬥中運功療傷？找死嗎？\n");
 
         if( me->is_busy() )
-                return notify_fail("你现在正忙着呢，哪有空运功？\n");
+                return notify_fail("你現在正忙著呢，哪有空運功？\n");
 
         if( (int)me->query_skill("baiyun-xinfa", 1) < 20)
-                return notify_fail("你的白云心法修为还不够。\n");
+                return notify_fail("你的白雲心法修為還不夠。\n");
 
         if( query("neili", me)<50 )
-                return notify_fail("你的真气不够。\n");
+                return notify_fail("你的真氣不夠。\n");
 /*
         if( query("eff_qi", me) >= query("max_qi", me) )
-                return notify_fail(HIR"你没有受伤，不必运真气疗伤！\n"NOR);
+                return notify_fail(HIR"你沒有受傷，不必運真氣療傷！\n"NOR);
 */
         if( query("eff_qi", me)<query("max_qi", me)/2 )
-                return notify_fail("你已经受伤过重，只怕一运真气便有生命危险！\n");
+                return notify_fail("你已經受傷過重，只怕一運真氣便有生命危險！\n");
 
-        write( HIW "你全身放松，坐下来运起白云心法开始疗伤。\n" NOR);
+        write( HIW "你全身放鬆，坐下來運起白雲心法開始療傷。\n" NOR);
         message("vision",
-                HIW + me->name() + "坐下运功疗伤，头顶白雾缭绕，半响后吐出一口浊气，气色已恢复正常。\n" NOR, environment(me), me);
+                HIW + me->name() + "坐下運功療傷，頭頂白霧繚繞，半響後吐出一口濁氣，氣色已恢復正常。\n" NOR, environment(me), me);
 
         me->receive_curing("qi", 10 + (int)me->query_skill("force")/5 );
         addn("neili", -50, me);
@@ -36,15 +36,15 @@ int exert(object me, object target)
 }
 int help(object me)
 {
-        write(WHT"\n白云心法之自疗："NOR"\n");
+        write(WHT"\n白雲心法之自療："NOR"\n");
         write(@HELP
 
         使用功效：
-                为自己疗伤
+                為自己療傷
 
         出手要求：
-                白云心法20级
-                内力50
+                白雲心法20級
+                內力50
 HELP
         );
         return 1;

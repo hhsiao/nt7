@@ -5,13 +5,13 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("黄伯流", ({ "huang boliu", "huang", "boliu"}));
-        set("title", "黄河帮帮主");
-        set("nickname", HIW "银髯蛟" NOR);
+        set_name("黃伯流", ({ "huang boliu", "huang", "boliu"}));
+        set("title", "黃河幫幫主");
+        set("nickname", HIW "銀髯蛟" NOR);
         set("long", @LONG
-这便是日月神教黄河帮帮主黄伯流，他看上去
-已经甚为苍老了，但是双目精光四射，银髯飘
-飘，模样威武之极。
+這便是日月神教黃河幫幫主黃伯流，他看上去
+已經甚為蒼老了，但是雙目精光四射，銀髯飄
+飄，模樣威武之極。
 LONG);
         set("gender", "男性");
         set("class", "scholar");
@@ -59,7 +59,7 @@ LONG);
         prepare_skill("claw", "poyue-zhao");
         prepare_skill("cuff", "zhenyu-quan");
 
-        create_family("黄河帮", 7, "帮主");
+        create_family("黃河幫", 7, "幫主");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({

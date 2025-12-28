@@ -2,10 +2,10 @@ inherit F_MASTER;
 inherit NPC;
 void create()
 {
-        set_name("了宽禅师", ({ "liaokuan chanshi","liaokuan","chanshi"}) );
-        set("nickname", "清为尊者");
-        set("long", "了宽禅师是本因方丈的第六位弟子，他年约四十，
-方面大耳，看起来淳朴憨厚。\n");
+        set_name("了寬禪師", ({ "liaokuan chanshi","liaokuan","chanshi"}) );
+        set("nickname", "清為尊者");
+        set("long", "了寬禪師是本因方丈的第六位弟子，他年約四十，
+方面大耳，看起來淳樸憨厚。\n");
         set("gender", "男性" );
         set("class", "bonze");
         set("attitude", "friendly");
@@ -15,7 +15,7 @@ void create()
         set("int", 22);
         set("con", 23);
         set("dex", 22);
-        create_family("天龙寺", 14, "弟子");
+        create_family("天龍寺", 14, "弟子");
 
         set("qi", 1000);
         set("max_qi", 1000);
@@ -45,8 +45,8 @@ void create()
         map_skill("strike", "qingyan-zhang");
         prepare_skill("strike","qingyan-zhang");                
         set("inquiry",([
-                "百丈桥"  : "百丈桥多年失修，寻常人等不小心就会摔下桥去",
-                "后山"  : "过了百丈桥就是后山了，那是历代高僧潜修之地，寻常人等不得进入",
+                "百丈橋"  : "百丈橋多年失修，尋常人等不小心就會摔下橋去",
+                "後山"  : "過了百丈橋就是後山了，那是歷代高僧潛修之地，尋常人等不得進入",
         ]));
         setup();
         carry_object(BINGQI_D("changjian"))->wield(); 

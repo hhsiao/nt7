@@ -27,7 +27,7 @@ int main(object me, string arg)
                         ob = find_object(arg);
 
                 if (! ob || ! ob->is_character() || ! me->visible(ob))
-                        return notify_fail("找不到这个生物。\n");
+                        return notify_fail("找不到這個生物。\n");
         }
 
         if (! me->is_admin())
@@ -39,11 +39,11 @@ int main(object me, string arg)
 
                 case "npc":
                         if (playerp(ob))
-                                return notify_fail("你不能对玩家施展法力。\n");
+                                return notify_fail("你不能對玩家施展法力。\n");
                         break;
 
                 default:
-                        return notify_fail("你不能使用该命令。\n");
+                        return notify_fail("你不能使用該命令。\n");
                 }
         }
 
@@ -52,7 +52,7 @@ int main(object me, string arg)
                 if( random(2) )
                 message("vision",
                 "\n" HIW
-                "只见晴天一道闪电．．．．．．\n"
+                "只見晴天一道閃電．．．．．．\n"
                 "\n" BLU
                 "         ———————\n" HIC
                 "               /\n"
@@ -63,9 +63,9 @@ int main(object me, string arg)
                 "               /\n"
                 "              /\n"
                 "\n" HIB
-                "不偏不倚地击中"+ob->name(1)+HIB", 将"+ob->name(1)+HIB"化为一堆灰烬。\n" NOR, all_interactive());
+                "不偏不倚地擊中"+ob->name(1)+HIB", 將"+ob->name(1)+HIB"化為一堆灰燼。\n" NOR, all_interactive());
                 else
-                message("vision", HIY "\n天空慢慢的暗了下来，忽然间天际一亮，一道闪电伴随滚滚雷声直落而下，正正劈中" +
+                message("vision", HIY "\n天空慢慢的暗了下來，忽然間天際一亮，一道閃電伴隨滾滾雷聲直落而下，正正劈中" +
                                   ob->name(1) + HIY "。\n\n" NOR, all_interactive());
                 
                 if (wizardp(ob))
@@ -76,8 +76,8 @@ int main(object me, string arg)
         
                 if (wiz_level(me) < wiz_level(ob))
                 {
-                        message_vision(HIM "\n$N" HIM "身上冒着缕缕青烟，"
-                                       "却没有半点事情。\n\n" NOR,
+                        message_vision(HIM "\n$N" HIM "身上冒著縷縷青煙，"
+                                       "卻沒有半點事情。\n\n" NOR,
                                        ob);
                         return 1;
                 }
@@ -91,8 +91,8 @@ int main(object me, string arg)
                 return 1;
         }
 
-        msg = HIC "\n$N" HIC "伸手一招，只见一道" HIY "闪电" HIC
-              "从天而降，击中了$n" HIC "！！！\n" NOR;
+        msg = HIC "\n$N" HIC "伸手一招，只見一道" HIY "閃電" HIC
+              "從天而降，擊中了$n" HIC "！！！\n" NOR;
         if (me == ob)
         {
                 msg = replace_string(msg, "$n", "$N");
@@ -103,7 +103,7 @@ int main(object me, string arg)
 
         if (! ob->is_character())
         {
-                message_vision(HIM + ob->name() + HIM "从这个世界上消失了...\n\n"
+                message_vision(HIM + ob->name() + HIM "從這個世界上消失了...\n\n"
                                NOR, me);
                 destruct(ob);
                 return 1;
@@ -117,8 +117,8 @@ int main(object me, string arg)
 
         if (wiz_level(me) < wiz_level(ob))
         {
-                message_vision(HIM "\n$N" HIM "身上冒着缕缕青烟，"
-                               "却没有半点事情。\n\n" NOR,
+                message_vision(HIM "\n$N" HIM "身上冒著縷縷青煙，"
+                               "卻沒有半點事情。\n\n" NOR,
                                ob);
                 return 1;
         }
@@ -126,7 +126,7 @@ int main(object me, string arg)
         set_temp("die_reason", "被雷劈死了", ob);
 
         if (ob == me)
-               set_temp("die_reason", "活得不耐烦，用雷把自己劈死了", ob);
+               set_temp("die_reason", "活得不耐煩，用雷把自己劈死了", ob);
 
         ob->receive_damage("qi", 1, me);
         ob->die();
@@ -143,7 +143,7 @@ int help(object me)
  
 hehehehehe...........
 
-该命令在可以被授权使用的信息包括：npc、all。
+該命令在可以被授權使用的信息包括：npc、all。
 HELP );
         return 1;
 }

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[33m泥马[2;37;0m[2;37;0m", ({"nima"}));        
+        set_name("[33m泥馬[2;37;0m[2;37;0m", ({"nima"}));        
         set("gender", "女性");                
         set("long", "哈哈[2;37;0m
-它是泥潭的魔幻兽。
+它是泥潭的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

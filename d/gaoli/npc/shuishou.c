@@ -1,4 +1,4 @@
-// 大唐双龙传
+// 大唐雙龍傳
  
 // girl.女子。
 
@@ -7,7 +7,7 @@ inherit NPC;
 void create()
 {
   set_name("水手", ({"shui shou","shui","shou"}));
-  set("long","这是在战船上工作的一个水手。\n");
+  set("long","這是在戰船上工作的一個水手。\n");
   set("gender", "男性");
   set("combat_exp", 20000);
   set("age", 18);

@@ -8,10 +8,10 @@ void create()
 {
         set("short", "山路");
         set("long", @LONG
-又行了一阵，正觉唇干口渴，忽听远处传来隐隐水声，你当即
-加快脚步。空山寂寂，那水声在山谷间激荡回响，轰轰汹汹，愈走
-水声愈大，待得走上岭顶，只见一道白龙似的大瀑布从对面双峰之
-间奔腾而下，声势甚是惊人。从岭上望下去，瀑布旁有一间草屋。
+又行了一陣，正覺唇乾口渴，忽聽遠處傳來隱隱水聲，你當即
+加快腳步。空山寂寂，那水聲在山谷間激盪迴響，轟轟洶洶，愈走
+水聲愈大，待得走上嶺頂，只見一道白龍似的大瀑布從對面雙峰之
+間奔騰而下，聲勢甚是驚人。從嶺上望下去，瀑布旁有一間草屋。
 LONG );
         set("outdoors", "taoyuan");
         set("no_clean_up", 0);
@@ -45,10 +45,10 @@ int do_find(string arg)
                 inv=all_inventory(me);
                 for(i=0; i<sizeof(inv); i++) {
                         if (userp(inv[i]))
-                                return notify_fail("你负重太大了，没法找路爬山。\n");
+                                return notify_fail("你負重太大了，沒法找路爬山。\n");
                 }
-                tell_object(me, "你左右看看没人注意你，偷偷摸摸拨开树丛溜了进去。\n");
-                tell_object(me, "你从一条没人知道的小路上了山，来到了一灯大师所在的地方。\n");
+                tell_object(me, "你左右看看沒人注意你，偷偷摸摸撥開樹叢溜了進去。\n");
+                tell_object(me, "你從一條沒人知道的小路上了山，來到了一燈大師所在的地方。\n");
                 me->move(__DIR__"yideng9");
                 return 1;
         }

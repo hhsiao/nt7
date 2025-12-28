@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define WU "「" HIW "无声无色" NOR "」"
+#define WU "「" HIW "無聲無色" NOR "」"
 
 inherit F_SSERVER;
 
@@ -21,49 +21,49 @@ int perform(object me, object target)
         }
 
         if( query("no_fight", environment(me)) )
-                return notify_fail("在这里不能攻击他人。\n");
+                return notify_fail("在這裡不能攻擊他人。\n");
 
-        // 执行天书任务的特殊房间防止龙吟中断剧情。
+        // 執行天書任務的特殊房間防止龍吟中斷劇情。
         if( query("skybook", environment(me)) )
-                return notify_fail("在这里不能攻击他人。\n");
+                return notify_fail("在這裡不能攻擊他人。\n");
 
         if (! target || ! target->is_character()
             || query("not_living", target) )
-                return notify_fail(WU "只能对对手使用。\n");
+                return notify_fail(WU "只能對對手使用。\n");
 
         if (target == me)
-                return notify_fail("你打算攻击自己？\n");
+                return notify_fail("你打算攻擊自己？\n");
 
         if( !objectp(weapon=query_temp("weapon", me) )
             || query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对，无法施展" WU "。\n");
+                return notify_fail("你使用的武器不對，無法施展" WU "。\n");
 
         if ((int)me->query_skill("zhengliangyi-jian", 1) < 160)
-                return notify_fail("你的正两仪剑法不够娴熟，难以施展" WU "。\n");
+                return notify_fail("你的正兩儀劍法不夠嫻熟，難以施展" WU "。\n");
 
         if ((int)me->query_skill("dodge") < 220)
-                return notify_fail("你的轻功火候不足，难以施展" WU "。\n");
+                return notify_fail("你的輕功火候不足，難以施展" WU "。\n");
 
         if (me->query_dex() < 45)
-                return notify_fail("你现在身法太差，难以施展" WU "。\n");
+                return notify_fail("你現在身法太差，難以施展" WU "。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你现在真气不够，难以施展" WU "。\n");
+                return notify_fail("你現在真氣不夠，難以施展" WU "。\n");
 
         if (me->query_skill_mapped("sword") != "zhengliangyi-jian") 
-                return notify_fail("你没有激发正两仪剑法，难以施展" WU "。\n");
+                return notify_fail("你沒有激發正兩儀劍法，難以施展" WU "。\n");
 
         if ((int)target->query_condition("die_guard"))
-                return notify_fail("对方正被官府保护着呢，还是别去招惹。\n");
+                return notify_fail("對方正被官府保護著呢，還是別去招惹。\n");
 
         if (target->query_competitor())
-                return notify_fail("比武的时候最好是正大光明的较量。\n");
+                return notify_fail("比武的時候最好是正大光明的較量。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N" HIW "一声阴笑，突然使出一招「无声无色」，疾向$n"
-              HIW "背后刺去。\n" NOR;
+        msg = HIW "$N" HIW "一聲陰笑，突然使出一招「無聲無色」，疾向$n"
+              HIW "背後刺去。\n" NOR;
 
         addn("neili", -200, me);
         ap = attack_power(me,"sword");
@@ -77,8 +77,8 @@ int perform(object me, object target)
                                            (: final, me, target, damage :));
         } else
         {
-                msg += HIC "可是$p" HIC "看破了$P" HIC "的企图，飞身"
-                       "一跃而起，将$P" HIC "这招化解于无形。\n" NOR;
+                msg += HIC "可是$p" HIC "看破了$P" HIC "的企圖，飛身"
+                       "一躍而起，將$P" HIC "這招化解於無形。\n" NOR;
         }
         message_combatd(msg, me, target);
         //me->want_kill(target);
@@ -93,9 +93,9 @@ string final(object me, object target, int damage)
         object weapon;
         weapon=query_temp("weapon", me);
 
-        return  HIW "结果$n" HIW "并没有察觉$N" HIW "的杀意，丝毫没把"
-                "这一招放在心上，只\n是身子略微的向前一倾。\n" NOR +
-                HIR "霎时只见$N" HIR "招数一紧，顿时只听“嗤啦”一声"
-                "破空之响，$n" HIR "\n一声惨嚎，" + weapon->name() +
-                HIR "剑身已透背而入。\n" NOR;
+        return  HIW "結果$n" HIW "並沒有察覺$N" HIW "的殺意，絲毫沒把"
+                "這一招放在心上，只\n是身子略微的向前一傾。\n" NOR +
+                HIR "霎時只見$N" HIR "招數一緊，頓時只聽“嗤啦”一聲"
+                "破空之響，$n" HIR "\n一聲慘嚎，" + weapon->name() +
+                HIR "劍身已透背而入。\n" NOR;
 }

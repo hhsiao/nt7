@@ -13,14 +13,14 @@ mixed ask_skill2();
 
 void create()
 {
-        set_name("王处一", ({"wang chuyi", "wang"}));
+        set_name("王處一", ({"wang chuyi", "wang"}));
         set("gender", "男性");
         set("age", 35);
         set("class", "taoist");
-        set("nickname",RED"玉阳子"NOR);
+        set("nickname",RED"玉陽子"NOR);
         set("long",
-                "他就是全真七子之五王处一王真人。他身材修长，服饰整洁，\n"
-                "三绺黑须飘在胸前，神态潇洒。\n");
+                "他就是全真七子之五王處一王真人。他身材修長，服飾整潔，\n"
+                "三綹黑鬚飄在胸前，神態瀟灑。\n");
         set("attitude", "peaceful");
         set("shen_type",1);
         set("str", 32);
@@ -85,11 +85,11 @@ void create()
 
         set("book_count",1);
         set("inquiry", ([
-                "全真教" :  "我全真教是天下道家玄门正宗。\n",
+                "全真教" :  "我全真教是天下道家玄門正宗。\n",
                 "南帝"   : (: ask_me :),
-                "段皇爷" : (: ask_me :),
-                "缠字诀" : (: ask_skill1 :),
-                "定阳针" : (: ask_skill2 :),
+                "段皇爺" : (: ask_me :),
+                "纏字訣" : (: ask_skill1 :),
+                "定陽針" : (: ask_skill2 :),
         ]) );
 
         set("master_ob",3);
@@ -107,15 +107,15 @@ void attempt_apprentice(object ob)
 
         if ((int)ob->query_skill("quanzhen-xinfa",1) < 90 )
         {
-                command("say 你的本门内功心法火候不足，难以领略更高深的武功。");
+                command("say 你的本門內功心法火候不足，難以領略更高深的武功。");
                 return;
         }
         if( query("shen", ob)<8000 )
         {
-                command("say 我看你还是多做一些侠义之事吧。\n");
+                command("say 我看你還是多做一些俠義之事吧。\n");
                 return;
         }
-        command("say 好吧，我就收下你这个徒弟了。");
+        command("say 好吧，我就收下你這個徒弟了。");
         command("recruit "+query("id", ob));
 }
 
@@ -132,11 +132,11 @@ string ask_me()
         if( query_temp("tmark/指", me) == 1 )
         {
                 addn_temp("tmark/指", 1, me);
-                return("去年师傅去过段皇爷那里，据说段皇爷把他最厉害的一阳指功夫传授给我师傅了。\n");
+                return("去年師傅去過段皇爺那裡，據說段皇爺把他最厲害的一陽指功夫傳授給我師傅了。\n");
         } else
         {
                 set_temp("tmark/指", 0, me);
-                return("段皇爷遇上了一件大伤心事，现在出家做了和尚了，唉！");
+                return("段皇爺遇上了一件大傷心事，現在出家做了和尚了，唉！");
         }
 }
 
@@ -147,35 +147,35 @@ mixed ask_skill1()
         me = this_player();
 
         if( query("can_perform/quanzhen-jian/chan", me) )
-                return "这招我不是已经教会你了吗？";
+                return "這招我不是已經教會你了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "阁下与贫道素不相识，不知此话从何说起？";
+                return "閣下與貧道素不相識，不知此話從何說起？";
 
         if (me->query_skill("quanzhen-jian", 1) < 1)
-                return "你连全真剑法都没学，何谈绝招可言？";
+                return "你連全真劍法都沒學，何談絕招可言？";
 
         if( query("family/gongji", me)<200 )
-                return "你在我全真教内甚无作为，这招我暂时还不能传你。";
+                return "你在我全真教內甚無作為，這招我暫時還不能傳你。";
 
         if( query("shen", me)<10000 )
-                return "你的侠义正事还做得不够，这招我暂时还不能传你。";
+                return "你的俠義正事還做得不夠，這招我暫時還不能傳你。";
 
         if (me->query_skill("quanzhen-jian", 1) < 80)
-                return "你的全真剑法不够娴熟，练高点再来吧。";
+                return "你的全真劍法不夠嫻熟，練高點再來吧。";
 
         if (me->query_skill("force") < 100)
-                return "你的内功修为不够，修炼高后再来找我吧。";
+                return "你的內功修為不夠，修煉高後再來找我吧。";
 
-        message_sort(HIY "\n$n" HIY "微笑着点了点头，说道：“看好了。”说"
-                     "罢即抽出腰间长剑，慢慢演示起来。只见$n" HIY "剑招紧"
-                     "密圆动，连绵不绝，内力便如细丝般从长剑剑锋透出，带出"
-                     "阵阵风声。直看得$N" HIY "目瞪口呆。\n\n" NOR, me,
+        message_sort(HIY "\n$n" HIY "微笑著點了點頭，說道：“看好了。”說"
+                     "罷即抽出腰間長劍，慢慢演示起來。只見$n" HIY "劍招緊"
+                     "密圓動，連綿不絕，內力便如細絲般從長劍劍鋒透出，帶出"
+                     "陣陣風聲。直看得$N" HIY "目瞪口呆。\n\n" NOR, me,
                      this_object());
 
         command("nod");
-        command("say 此招无非是以剑招迷惑对手，并无复杂之举。");
-        tell_object(me, HIC "你学会了「缠字诀」。\n" NOR);
+        command("say 此招無非是以劍招迷惑對手，並無複雜之舉。");
+        tell_object(me, HIC "你學會了「纏字訣」。\n" NOR);
         if (me->can_improve_skill("sword"))
                 me->improve_skill("sword", 1500000);
         if (me->can_improve_skill("quanzhen-jian"))
@@ -194,35 +194,35 @@ mixed ask_skill2()
         me = this_player();
 
         if( query("can_perform/quanzhen-jian/ding", me) )
-                return "这招我不是已经教会你了吗？";
+                return "這招我不是已經教會你了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "阁下与贫道素不相识，不知此话从何说起？";
+                return "閣下與貧道素不相識，不知此話從何說起？";
 
         if (me->query_skill("quanzhen-jian", 1) < 1)
-                return "你连全真剑法都没学，何谈绝招可言？";
+                return "你連全真劍法都沒學，何談絕招可言？";
 
         if( query("family/gongji", me)<400 )
-                return "你在我全真教内甚无作为，这招我暂时还不能传你。";
+                return "你在我全真教內甚無作為，這招我暫時還不能傳你。";
 
         if( query("shen", me)<12000 )
-                return "你的侠义正事还做得不够，这招我暂时还不能传你。";
+                return "你的俠義正事還做得不夠，這招我暫時還不能傳你。";
 
         if (me->query_skill("quanzhen-jian", 1) < 100)
-                return "你的全真剑法不够娴熟，练高点再来吧。";
+                return "你的全真劍法不夠嫻熟，練高點再來吧。";
 
         if (me->query_skill("force") < 150)
-                return "你的内功修为不够，修炼高后再来找我吧。";
+                return "你的內功修為不夠，修煉高後再來找我吧。";
 
-        message_sort(HIY "\n$n" HIY "点了点头，喝道：“看仔细了。”话音刚"
-                     "落，只见$n" HIY "脚下左弓右箭，深深吸入一口气，神气"
-                     "完足如雷霆五岳，电光火石间一剑斜斜刺出，顿时只听得“"
-                     "哧”的一声，$N" HIY "脚下的方砖竟然应声而碎，裂成了"
-                     "数块。\n\n" NOR, me, this_object());
+        message_sort(HIY "\n$n" HIY "點了點頭，喝道：“看仔細了。”話音剛"
+                     "落，只見$n" HIY "腳下左弓右箭，深深吸入一口氣，神氣"
+                     "完足如雷霆五嶽，電光火石間一劍斜斜刺出，頓時只聽得“"
+                     "哧”的一聲，$N" HIY "腳下的方磚竟然應聲而碎，裂成了"
+                     "數塊。\n\n" NOR, me, this_object());
 
         command("nod");
-        command("say 此招的精要无非是以气驾剑，达至随心所欲。");
-        tell_object(me, HIC "你学会了「定阳针」。\n" NOR);
+        command("say 此招的精要無非是以氣駕劍，達至隨心所欲。");
+        tell_object(me, HIC "你學會了「定陽針」。\n" NOR);
         if (me->can_improve_skill("sword"))
                 me->improve_skill("sword", 1500000);
         if (me->can_improve_skill("quanzhen-jian"))
@@ -241,18 +241,18 @@ int accept_object(object who, object ob)
 
         if( !who || environment(who) != environment() ) return 0;
         if ( !objectp(ob) ) return 0;
-        if ( !present(ob, who) ) return notify_fail("你没有这件东西。\n");
+        if ( !present(ob, who) ) return notify_fail("你沒有這件東西。\n");
 
-        if( query("name", ob) != HIR"熊胆"NOR
+        if( query("name", ob) != HIR"熊膽"NOR
                  && query("name", ob) != HIY"田七"NOR
-                 && query("name", ob) != HIW"没药"NOR
+                 && query("name", ob) != HIW"沒藥"NOR
                  && query("name", ob) != RED"血竭"NOR )
                     return 0;
 
         remove_call_out("destroying");
         call_out("destroying", 1, me, ob);
-        message_vision("王处一看了看$N送去的药，点了点头道：难为你了，\n"
-                       "我可以教你点功夫。\n", who);
+        message_vision("王處一看了看$N送去的藥，點了點頭道：難為你了，\n"
+                       "我可以教你點功夫。\n", who);
 
         addn_temp("tmark/王", 60, who);
         return 1;

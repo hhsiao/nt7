@@ -1,17 +1,17 @@
 // buildroom.c
 
-// 凡是继承这种房屋类型的，都可以建造房屋。
-// buildroom 是可以保存数据的对象，继承者必须是/d/...目录下面的文
-// 件，此时它的存盘文件的名字为：/data/room/...。
+// 凡是繼承這種房屋類型的，都可以建造房屋。
+// buildroom 是可以保存數據的對象，繼承者必須是/d/...目錄下面的文
+// 件，此時它的存盤文件的名字為：/data/room/...。
 //
-// 玩家建造的房屋保存在private_room这个mapping里面。
-// mapping的结构：
+// 玩家建造的房屋保存在private_room這個mapping裡面。
+// mapping的結構：
 // room_id : room_name
 //
-// 函数：
-// create_room    :将根据房屋的名字和ID、入口建造玩家房屋。
-// query_room_name:将返回具有该名字的房屋的代号。
-// query_room_id  :将返回具有该代号的房屋的名字。
+// 函數：
+// create_room    :將根據房屋的名字和ID、入口建造玩家房屋。
+// query_room_name:將返回具有該名字的房屋的代號。
+// query_room_id  :將返回具有該代號的房屋的名字。
 
 // #pragma save_binary
 
@@ -88,8 +88,8 @@ int receive_dbase_data(mixed data)
 
                 ks = keys(data["exits"]);
                 for (i = 0; i < sizeof(ks); i++)
-                        // 逐项增加出口，不能简单替代原来的出口，否则
-                        // 该文件的出口修改将作废。
+                        // 逐項增加出口，不能簡單替代原來的出口，否則
+                        // 該文件的出口修改將作廢。
                         if (! stringp(query("exits/" + ks[i])))
                                 set("exits/" + ks[i], data["exits"][ks[i]]);
         }
@@ -109,11 +109,11 @@ string long()
         proom = query("private_room");
         if (! proom || ! sizeof(proom))
         {
-                desc += HIM "    这里的风水极佳，是建造帮派总坛的好地方。\n" NOR;
+                desc += HIM "    這裡的風水極佳，是建造幫派總壇的好地方。\n" NOR;
                 return desc;
         }
 
-        line = "    这里坐落着帮派";
+        line = "    這裡坐落著幫派";
         idk = sort_array(keys(proom), 1);
         k = sizeof(idk) - 1;
         for (i = 0; i <= k; i++)

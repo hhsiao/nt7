@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m草泥马[2;37;0m[2;37;0m[2;37;0m", ({"nima"}));        
+        set_name("[1;31m草泥馬[2;37;0m[2;37;0m[2;37;0m", ({"nima"}));        
         set("gender", "女性");                
-        set("long", "这是一只羊驼！[2;37;0m
-它是段思平的魔幻兽。
+        set("long", "這是一隻羊駝！[2;37;0m
+它是段思平的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

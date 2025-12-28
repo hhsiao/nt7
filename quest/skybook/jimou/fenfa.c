@@ -1,4 +1,4 @@
-// 奋发
+// 奮發
 #include <mudlib.h>
 #include <daemons.h>
 #include <ansi.h>
@@ -19,25 +19,25 @@ p_id = TROOP_D->get_char_troop(ob->query_primary_id());
 p_name=ob->query_id()[0];
 if(objectp(find_user(ob->query_id()[0]))){
         if(!(CHAR_D->get_char(p_name,"skills")))
-        {       write("你不会奋发之计。\n");
+        {       write("你不會奮發之計。\n");
                 return;
 	}
 	if(!p_skill=CHAR_D->get_char(p_name,"skills")["fenfa"])
-        {       write("你不会奋发之计。\n");
+        {       write("你不會奮發之計。\n");
                 return;
         }
 	if( !p_id){
-		write("只有身在军中才能使用奋发。\n");
+		write("只有身在軍中才能使用奮發。\n");
 		return;
 	};
 }
 else
-       p_skill = 60+random(40);  //2001.4.19 npc的等级设定为60+random(40)
+       p_skill = 60+random(40);  //2001.4.19 npc的等級設定為60+random(40)
        
 	solider = TROOP_D->get_troops(p_id, "soldier");
 	s_type= keys(solider)[random(sizeof(keys(solider)))];	
 	if( solider[s_type]["energy"] < 20 ){
-		write("士兵行动力不足，难以使用奋发。\n");
+		write("士兵行動力不足，難以使用奮發。\n");
 		return;
 	};
 
@@ -47,7 +47,7 @@ else
 	if( !sizeof(troops) )return;
 	where = TROOP_D->get_troop_area(p_id);
 	if(sizeof(troops) < 2)
-	{	write("你没有被包围吧。\n");
+	{	write("你沒有被包圍吧。\n");
 		return;
 	}
 	cn =0;
@@ -76,7 +76,7 @@ TROOP_D->get_troop_side(id)==TROOP_D->get_troop_side(p_id))continue;
 		}
 //	tell_user("group","cn is "+chinese_number(cn));	
 	if(cn<2)	
-	 {       write("你没有被包围吧。\n");
+	 {       write("你沒有被包圍吧。\n");
                 return;
         }		
 	
@@ -98,10 +98,10 @@ TROOP_D->get_troop_side(id)==TROOP_D->get_troop_side(p_id))continue;
 		if( TROOP_D->get_troop_area(id) != where )continue;
 		if( (x-x2)*(x-x2)+(y-y2)*(y-y2) > 1 || TROOP_D->get_troop_side(id)==TROOP_D->get_troop_side(p_id))continue;
 		tell(deep_inventory(TROOP_D->find_troop(id)),
-			"被包围的敌人向你军冲了过来！\n",
+			"被包圍的敵人向你軍衝了過來！\n",
 			MSG_INDENT);		
 		tell(deep_inventory(TROOP_D->find_troop(p_id)),
-                        "奋勇的士兵冲入一支敌军中！\n",
+                        "奮勇的士兵衝入一支敵軍中！\n",
                         MSG_INDENT);
 kill = p_skill*p_skill*100/(21*50);
 		if(kill<200)
@@ -117,7 +117,7 @@ kills = 70*2000/(p_skill*p_skill);
 		}
 	};
 	WARAI_D->war_inf(TROOP_D->get_troops(p_id,"task_id"),
-TROOP_D->find_troop(p_id)->query_id()[1]+"使用奋发之计，杀敌"+
+TROOP_D->find_troop(p_id)->query_id()[1]+"使用奮發之計，殺敵"+
 chinese_number(kill)+"人。","b");
 	return;
 }

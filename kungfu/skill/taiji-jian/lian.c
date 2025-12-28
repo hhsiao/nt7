@@ -1,9 +1,9 @@
-// lian.c 连字诀
+// lian.c 連字訣
 
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return "连字诀"; }
+string name() { return "連字訣"; }
 
 inherit F_SSERVER;
 
@@ -23,31 +23,31 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("「" + name() + "」只能对战斗中的对手使用。\n");
+                return notify_fail("「" + name() + "」只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "sword" )
-                return notify_fail("必须拿剑才能施展「" + name() + "」。\n");
+                return notify_fail("必須拿劍才能施展「" + name() + "」。\n");
 
         if( query("neili", me)<1000 )
-                return notify_fail("你的真气不够，无法施展「" + name() + "」。\n");
+                return notify_fail("你的真氣不夠，無法施展「" + name() + "」。\n");
 
         if ((int)me->query_skill("taiji-shengong", 1) < 200)
-                return notify_fail("你的太极神功火候不够，难以施展「" + name() + "」。\n");
+                return notify_fail("你的太極神功火候不夠，難以施展「" + name() + "」。\n");
 
         if ((int)me->query_skill("taiji-jian", 1) < 200)
-                return notify_fail("你的太极剑还不到家，无法使用「" + name() + "」。\n");
+                return notify_fail("你的太極劍還不到家，無法使用「" + name() + "」。\n");
 
         if (me->query_skill_mapped("sword") != "taiji-jian")
-                return notify_fail("你没有激发太极剑法，无法使用「" + name() + "」。\n");
+                return notify_fail("你沒有激發太極劍法，無法使用「" + name() + "」。\n");
 
         time = me->query_skill("taiji-jian") / 20;
         if (time > 10) time = 10;
         if (time < 1) time = 1;
 
-        msg = HIC "$N" HIC "一声长啸，灵台清明，凝神归元，使出太极剑中的「" + name() + "」。\n"
-              HIY "手中" + weapon->name() + HIY "招式陡然变得凌厉无比，一转念"
-              HIY "间已然攻出" + chinese_number(time) + "招！\n" NOR;
+        msg = HIC "$N" HIC "一聲長嘯，靈臺清明，凝神歸元，使出太極劍中的「" + name() + "」。\n"
+              HIY "手中" + weapon->name() + HIY "招式陡然變得凌厲無比，一轉念"
+              HIY "間已然攻出" + chinese_number(time) + "招！\n" NOR;
 
         message_combatd(msg, me, target);
         skill = me->query_skill("taiji-jian", 1) / 2;

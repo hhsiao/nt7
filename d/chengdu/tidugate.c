@@ -3,10 +3,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "提督府门");
+        set("short", "提督府門");
         set("long", @LONG
-这便是提督府门。巍峨雄伟的城墙上，成都提督府五个大字十分
-显眼，气势辉煌。几名亲兵立在两旁。
+這便是提督府門。巍峨雄偉的城牆上，成都提督府五個大字十分
+顯眼，氣勢輝煌。幾名親兵立在兩旁。
 LONG );
         set("outdoors", "chengdu");
         set("exits", ([
@@ -34,18 +34,18 @@ int valid_leave(object me, string dir)
         if( query("weiwang", me) >= 10000 )
         {
                 message_vision(CYN "$N" CYN "笑道：" + RANK_D->query_respect(me) +
-                               "请进，请进！这就去让人通报。\n" NOR, bing, me);
+                               "請進，請進！這就去讓人通報。\n" NOR, bing, me);
                 return ::valid_leave(me, dir);
         }
 
         if( query("special_skill/trick", me) )
         {
-                message_vision(CYN "$N" CYN "看见$n" CYN "走了过来，刚想拦住，却"
-                               "听$n" CYN "一声断喝：给我散开！\n$N" CYN "不由得"
-                               "吓了一跳，讪讪的不敢说话。\n" NOR, bing, me);
+                message_vision(CYN "$N" CYN "看見$n" CYN "走了過來，剛想攔住，卻"
+                               "聽$n" CYN "一聲斷喝：給我散開！\n$N" CYN "不由得"
+                               "嚇了一跳，訕訕的不敢說話。\n" NOR, bing, me);
                 return ::valid_leave(me, dir);
         }
 
-        return notify_fail(CYN "亲兵上前挡住你，朗声说道：这位" +
-                           RANK_D->query_respect(me) + "请回吧。老爷不见客。\n" NOR);
+        return notify_fail(CYN "親兵上前擋住你，朗聲說道：這位" +
+                           RANK_D->query_respect(me) + "請回吧。老爺不見客。\n" NOR);
 }

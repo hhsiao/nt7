@@ -6,8 +6,8 @@ void setup()
 {
         set_name("[1;33m石[2;37;0m[35m可[2;37;0m[2;37;0m", ({"asd"}));        
         set("gender", "男性");                
-        set("long", "一只笨笨的小乌龟[2;37;0m
-它是白吃白玩的魔幻兽。
+        set("long", "一隻笨笨的小烏龜[2;37;0m
+它是白吃白玩的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

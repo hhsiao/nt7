@@ -48,7 +48,7 @@ varargs void unconcious(object defeater)
 
 void init()
 {
-        // 随机攻击玩家
+        // 隨機攻擊玩家
         if( userp(this_player()) && random(4) == 1 && !query_temp("apply/invisible", this_player()) )
         {
                 kill_ob(this_player());
@@ -59,12 +59,12 @@ void init()
 
 void die(object killer)
 {
-        object dob;             // 打晕这个NPC的人
-        int n;                  // 可以奖励的人的数目
-        int exp;                // 需要瓜分的经验
-        int pot;                // 需要瓜分的潜能
+        object dob;             // 打暈這個NPC的人
+        int n;                  // 可以獎勵的人的數目
+        int exp;                // 需要瓜分的經驗
+        int pot;                // 需要瓜分的潛能
         int exp2, pot2;
-        object *t;              // 杀死我的人的队伍列表
+        object *t;              // 殺死我的人的隊伍列表
         object tob;
         int i, mar;
         object *inv, objenv;
@@ -73,7 +73,7 @@ void die(object killer)
         string s_gift, *key_s_gift;
         int gift_point;
 
-        // 定义奖励物品列表
+        // 定義獎勵物品列表
         mixed oblist;
 
         object env;
@@ -90,7 +90,7 @@ void die(object killer)
         }
 */
 
-        if( time() < query_temp("end_time", this_object()) ) // 时间没有到，死亡不了
+        if( time() < query_temp("end_time", this_object()) ) // 時間沒有到，死亡不了
         {
                 addn("jing", query("max_jing") / 10);
                 if( query("jing") > query("max_jing") ) set("jing", query("max_jing"));
@@ -100,17 +100,17 @@ void die(object killer)
                 if( query("qi") > query("max_qi") ) set("qi", query("max_qi"));
                 addn("eff_qi", query("max_qi") / 10);
                 if( query("eff_qi") > query("max_qi") ) set("eff_qi", query("max_qi"));
-                message_vision(HIR "\n$N" HIR "全身泛起一道红光，奇迹般的活了下来！\n\n" NOR, this_object());
+                message_vision(HIR "\n$N" HIR "全身泛起一道紅光，奇蹟般的活了下來！\n\n" NOR, this_object());
                 return;
         }
         
         oblist = query("oblist");
 
-        // 通知当前房间，以便计算刷新
+        // 通知當前房間，以便計算刷新
         env = environment(this_object());
         env->npc_die(this_object());
 
-        // 找到杀了我(NPC)或是打晕我的人
+        // 找到殺了我(NPC)或是打暈我的人
         if (! objectp(dob = killer))
                 dob = query_last_damage_from();
 
@@ -120,8 +120,8 @@ void die(object killer)
                 return;
         }
 
-        // 帝王符图
-        // 编号22-30
+        // 帝王符圖
+        // 編號22-30
         if( query("quest_tuteng/start", dob) )
         {
                 int n_tt;
@@ -134,7 +134,7 @@ void die(object killer)
                         ob_tt = new("/clone/tuteng/diwang-suipian" + sprintf("%d", n_tt));
                         if (ob_tt)
                         {
-                                write(HIG "你获得了一张帝王符图碎片。\n" NOR);
+                                write(HIG "你獲得了一張帝王符圖碎片。\n" NOR);
                                 ob_tt->move(dob, 1);
                         }
                 }
@@ -171,13 +171,13 @@ void die(object killer)
                                 exp2 = exp;
                                 pot2 = pot;
 
-                                // 佩带斩妖勋章增加10%
+                                // 佩帶斬妖勳章增加10%
                                 if( tob->query_all_buff("zhanyao") )
                                 {
                                         exp2 = exp2 + exp2 / 10;
                                         pot2 = pot2 + pot2 / 10;
                                 }
-                                // 佩带十周年纪念勋章增加5%
+                                // 佩帶十週年紀念勳章增加5%
                                 if( tob->query_all_buff("year10") )
                                 {
                                         exp2 = exp2 + exp2 / 20;
@@ -196,20 +196,20 @@ void die(object killer)
                                                            "mar"      : mar + ((tob == dob) ? mar / 10 : 0),
                                                            "gold"     : gold,
                                                            "percent"  : percent,
-                                                           "prompt"   : "你的队伍杀死" + name() + "之后"]));
+                                                           "prompt"   : "你的隊伍殺死" + name() + "之後"]));
                                         }
                                 }
                         }
                 }
                 else
                 {
-                        // 佩带斩妖勋章增加10%
+                        // 佩帶斬妖勳章增加10%
                         if( dob->query_all_buff("zhanyao") )
                         {
                                 exp = exp + exp / 10;
                                 pot = pot + pot / 10;
                         }
-                        // 佩带十周年纪念勋章增加5%
+                        // 佩帶十週年紀念勳章增加5%
                         if( dob->query_all_buff("year10") )
                         {
                                 exp = exp + exp / 20;
@@ -224,34 +224,34 @@ void die(object killer)
                                    "mar"      : mar,
                                    "gold"     : gold,
                                    "percent"  : percent,
-                                   "prompt"   : "你在杀死" + name() + "之后"]));
+                                   "prompt"   : "你在殺死" + name() + "之後"]));
                 }
         }
 
-        // 一定几率掉物品在杀我的人身上dob
+        // 一定幾率掉物品在殺我的人身上dob
         if (objectp(dob) && environment(dob) == environment(this_object()))
         {
                 key_s_gift = keys(oblist);
                 s_gift = key_s_gift[random(sizeof(key_s_gift))];
                 gift_point = oblist[s_gift];
 
-                // 判断几率
+                // 判斷幾率
                 if( random(10) == 1
                         && random(MAX_POINT / ITEM_D->gift_point()) < gift_point )
                 {
-                        // 获得物品--爆出物品
+                        // 獲得物品--爆出物品
                         gift_ob = new(s_gift);
                         if (objectp(gift_ob))
                         {
-                                message_vision(HIR "叮~~一声，从$N" HIR "身上掉出一样东西。\n" NOR, this_object(), dob);
+                                message_vision(HIR "叮~~一聲，從$N" HIR "身上掉出一樣東西。\n" NOR, this_object(), dob);
                                 set("who_get/id", query("id", dob), gift_ob);
-                                set("who_get/time", time()+60, gift_ob);//一分钟内只能自己捡取
+                                set("who_get/time", time()+60, gift_ob);//一分鐘內只能自己撿取
                                 gift_ob->move(environment(this_object()));
                         }
                 }
         }
 
-        // 掉出金钱及其他物品
+        // 掉出金錢及其他物品
         if (random(5) == 1)
         {
                 inv = all_inventory(this_object());
@@ -268,7 +268,7 @@ void die(object killer)
                 }
         }
 
-        // 1/550000几率掉出无名铜人
+        // 1/550000幾率掉出無名銅人
         if (random(550000) == 1 && objectp(dob))
         {
                 object ob_tongren;
@@ -278,22 +278,22 @@ void die(object killer)
                 else
                         ob_tongren = new("/clone/tongren/tongren2");
                 ob_tongren->move(dob, 1);
-                write(HIR "你得到一个" + ob_tongren->name() + HIR "。\n");
+                write(HIR "你得到一個" + ob_tongren->name() + HIR "。\n");
         }
 
-        //1/5000几率掉出蓬莱仙果
+        //1/5000幾率掉出蓬萊仙果
         if (random(5000) == 1 && objectp(dob))
         {
                 object ob_xianguo;
 
                 ob_xianguo = new("/clone/fam/item/penglai-xianguo");
                 ob_xianguo->move(dob, 1);
-                write(HIR "你得到一颗" + ob_xianguo->name() + HIR "。\n");
+                write(HIR "你得到一顆" + ob_xianguo->name() + HIR "。\n");
         }
 
-        // 在九头蛇领地杀死九头蛇可获取少量体会
+        // 在九頭蛇領地殺死九頭蛇可獲取少量體會
         objenv = environment(this_object());
-        if( objectp(objenv) && query("short", objenv) == "九头蛇领地" )
+        if( objectp(objenv) && query("short", objenv) == "九頭蛇領地" )
         {
                 mar = 50;
 /*

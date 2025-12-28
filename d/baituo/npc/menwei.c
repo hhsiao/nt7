@@ -5,13 +5,13 @@ inherit F_GUARDER;
 
 void create()
 {
-        set_name("门卫", ({ "men wei", "men", "wei" }));
+        set_name("門衛", ({ "men wei", "men", "wei" }));
         set("long", @LONG
-这是个年富力强的卫兵，样子十分威严。虽然
-他们武艺不高，但是经过欧阳锋的训练，决非
-常人可敌。
+這是個年富力強的衛兵，樣子十分威嚴。雖然
+他們武藝不高，但是經過歐陽鋒的訓練，決非
+常人可敵。
 LONG);
-        set("nickname", WHT "铁狮子" NOR);
+        set("nickname", WHT "鐵獅子" NOR);
         set("gender", "男性" );
         set("age", 22);
         set("attitude", "friendly");
@@ -44,7 +44,7 @@ LONG);
                    "id"        : "ouyang feng" ]),
         }));
 
-        create_family("欧阳世家", 0, "侍卫");
+        create_family("歐陽世家", 0, "侍衛");
 
         setup();
         add_money("silver", 2);
@@ -69,17 +69,17 @@ void greeting(object ob)
         if (! ob || environment(ob) != environment())
                 return;
 
-        if (check_family(ob, "欧阳世家"))
+        if (check_family(ob, "歐陽世家"))
         {
-                say(CYN "门卫笑吟吟地道：这位" + RANK_D->query_respect(ob) +
-                    CYN "您辛苦了，快请进吧。\n" NOR);
+                say(CYN "門衛笑吟吟地道：這位" + RANK_D->query_respect(ob) +
+                    CYN "您辛苦了，快請進吧。\n" NOR);
                 return;
         }
 
         if( query("shen", ob)>200 )
         {
-                say(CYN "门卫两眼一瞪道：这位" + RANK_D->query_respect(ob) +
-                    CYN "你是来找麻烦的吧？\n");
+                say(CYN "門衛兩眼一瞪道：這位" + RANK_D->query_respect(ob) +
+                    CYN "你是來找麻煩的吧？\n");
                 return;
         }
 }

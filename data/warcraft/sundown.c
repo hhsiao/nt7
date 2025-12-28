@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;35m乱[1;36m世[1;31m无[1;33m畏[2;37;0m[2;37;0m", ({"sunplay"}));        
+        set_name("[1;35m亂[1;36m世[1;31m無[1;33m畏[2;37;0m[2;37;0m", ({"sunplay"}));        
         set("gender", "女性");                
-        set("long", "乱世无畏[2;37;0m
-它是大笨噗的魔幻兽。
+        set("long", "亂世無畏[2;37;0m
+它是大笨噗的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

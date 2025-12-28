@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("米多神兽[2;37;0m[2;37;0m", ({"miduoride"}));        
+        set_name("米多神獸[2;37;0m[2;37;0m", ({"miduoride"}));        
         set("gender", "男性");                
-        set("long", "米多神兽[2;37;0m
-它是米多六的魔幻兽。
+        set("long", "米多神獸[2;37;0m
+它是米多六的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

@@ -7,7 +7,7 @@ inherit NPC;
 void create()
 {
         object ob;
-        set_name("孙玉溪", ({ "sun yuxi", "sun", "yuxi" }));
+        set_name("孫玉溪", ({ "sun yuxi", "sun", "yuxi" }));
         set("gender", "男性");
         set("age", 42);
         set("attitude", "peaceful");
@@ -46,7 +46,7 @@ void create()
         prepare_skill("finger", "qixing-zhi");
 
         set("inquiry", ([
-               "七星指" : "这正是在下的绝学，阁下为何知晓？\n",
+               "七星指" : "這正是在下的絕學，閣下為何知曉？\n",
         ]));
 
         set("chat_chance_combat", 120);

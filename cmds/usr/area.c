@@ -47,7 +47,7 @@ int main(object me, string arg)
 
         }
 
-        write("无效的参数。\n");
+        write("無效的參數。\n");
         return 1;
 }
 
@@ -69,22 +69,22 @@ mixed select_bunch(object me, string arg)
 
                 if (! stringp(fam) && objectp(ob = UPDATE_D->global_find_player(arg)))
                 {
-                        // 没有 arg 这个同盟，查看是否有该玩家
+                        // 沒有 arg 這個同盟，查看是否有該玩家
                         fam=query("bunch/bunch_name", ob);
                         UPDATE_D->global_destruct_player(ob);
                         if (! stringp(fam))
-                                return notify_fail("这人现在没有加入任何帮派。\n");
+                                return notify_fail("這人現在沒有加入任何幫派。\n");
                 }
 
                 if (! stringp(fam))
-                        return notify_fail("没有这个玩家，不能查阅相关的同盟。\n");
+                        return notify_fail("沒有這個玩家，不能查閱相關的同盟。\n");
         }
 
         if (! fam)
         {
                 // select my league
                 if( !stringp(fam=query("bunch/bunch_name", me)) )
-                        return notify_fail("你现在还没有加入任何帮派呢。\n");
+                        return notify_fail("你現在還沒有加入任何幫派呢。\n");
         }
 
         return fam;
@@ -101,26 +101,26 @@ int do_area_kaifa(object me, string arg)
         object npc;
 
         if( !stringp(fam=query("bunch/bunch_name", me)) )
-                return notify_fail("你没有加入任何帮会，无法开发帮会所属地盘。\n");
+                return notify_fail("你沒有加入任何幫會，無法開發幫會所屬地盤。\n");
 
         if (! arrayp(member = BUNCH_D->query_bunch_areas(fam)))
         {
-                write("现在帮派" + fam + "没有任何地盘。\n");
+                write("現在幫派" + fam + "沒有任何地盤。\n");
                 return 1;
         }
 
         member -= ({ 0 });
 
         if (sizeof(member) < 1)
-                return notify_fail(fam + "现在没有任何地盘。\n");
+                return notify_fail(fam + "現在沒有任何地盤。\n");
 
         if (! wizardp(me))
         {
                 if( query("jing", me)<50 )
-                        return notify_fail("你现在精神不济，无法打听这些消息。\n");
+                        return notify_fail("你現在精神不濟，無法打聽這些消息。\n");
 
                 if (me->is_busy())
-                        return notify_fail("你现在正忙，没有时间打听这些消息。\n");
+                        return notify_fail("你現在正忙，沒有時間打聽這些消息。\n");
 
                 me->receive_damage("jing", 50);
                 me->start_busy(3);
@@ -129,7 +129,7 @@ int do_area_kaifa(object me, string arg)
         if (! arg)
         {
                 msg = sprintf(HIC "\n%-18s%-28s%-8s%-8s%-18s\n" NOR,
-                                "地盘名称", "驻守帮众", "开发度", "忠诚度", "上月收入");
+                                "地盤名稱", "駐守幫眾", "開發度", "忠誠度", "上月收入");
 
                 msg += HIY "----------------------------------------------------------------------\n" NOR;
 
@@ -146,13 +146,13 @@ int do_area_kaifa(object me, string arg)
                                         data["npc_name"] + "(" + data["npc_id"] + ")",
                                         data["kaifa"] + "%",
                                         data["zhongcheng"] + "%",
-                                        data["last_money"] / 100 + " 两");
+                                        data["last_money"] / 100 + " 兩");
                 }
 
                 if (j < 1)
-                        return notify_fail(arg + "现在没有任何地盘。\n");
+                        return notify_fail(arg + "現在沒有任何地盤。\n");
 
-                msg += "\n目前" + HIM + fam + NOR + "共有" + HIM + chinese_number(j) + NOR + "处地盘。\n";
+                msg += "\n目前" + HIM + fam + NOR + "共有" + HIM + chinese_number(j) + NOR + "處地盤。\n";
                 msg += HIY "----------------------------------------------------------------------\n" NOR;
 
                 write(msg);
@@ -162,28 +162,28 @@ int do_area_kaifa(object me, string arg)
         area = base_name(environment(me));
 
         if (arg != environment(me)->short())
-                return notify_fail("你必须到实地才能进行地盘开发！\n");
+                return notify_fail("你必須到實地才能進行地盤開發！\n");
 
         if (BUNCH_D->query_area_info(area, "bunch_name") != fam)
-                return notify_fail("这里不属于你的帮派地盘，你费什么劲啊！\n");
+                return notify_fail("這裡不屬於你的幫派地盤，你費什麼勁啊！\n");
 
         if (BUNCH_D->query_area_info(area, "npc_id"))
                 npc = present(BUNCH_D->query_area_info(area, "npc_id"), environment(me));
 
         if (! objectp(npc))
-                return notify_fail("负责" + arg + "地盘开发的ＮＰＣ并未就位，无法进行开发！\n");
+                return notify_fail("負責" + arg + "地盤開發的ＮＰＣ並未就位，無法進行開發！\n");
 
         data = BUNCH_D->query_all_areas();
         kaifa = data[area]["kaifa"];
 
         if (kaifa >= 100)
-                return notify_fail(arg + "的开发度已达到最大，不需再开发。\n");
+                return notify_fail(arg + "的開發度已達到最大，不需再開發。\n");
 
         money = kaifa * 10000;
 
         if( query("balance", me)<money )
         {
-                return notify_fail("你帐上的钱不够，开发" + arg + "至少要" +
+                return notify_fail("你帳上的錢不夠，開發" + arg + "至少要" +
                                    MONEY_D->money_str(money) + "！\n");
         }
 
@@ -192,7 +192,7 @@ int do_area_kaifa(object me, string arg)
 
         BUNCH_D->add_area_info(area, "kaifa", 1);
 
-        write("你花费了" + MONEY_D->money_str(money) + "将地盘" + arg + "的开发度上升了一点！\n");
+        write("你花費了" + MONEY_D->money_str(money) + "將地盤" + arg + "的開發度上升了一點！\n");
         return 1;
 }
 
@@ -210,26 +210,26 @@ int do_area_tisheng(object me, string arg)
         int j;
 
         if( !stringp(bunch=query("bunch/bunch_name", me)) )
-                return notify_fail("你没有参加任何帮会，无法提升任何ＮＰＣ。\n");
+                return notify_fail("你沒有參加任何幫會，無法提升任何ＮＰＣ。\n");
 
         if (! arrayp(member = BUNCH_D->query_bunch_areas(bunch)))
         {
-                write("现在帮派" + bunch + "没有任何地盘驻守帮众，你想提升谁的忠诚度呢。\n");
+                write("現在幫派" + bunch + "沒有任何地盤駐守幫眾，你想提升誰的忠誠度呢。\n");
                 return 1;
         }
 
         member -= ({ 0 });
 
         if (sizeof(member) < 1)
-                return notify_fail(bunch + "现在没有任何地盘驻守帮众，你想提升谁的忠诚度呢。\n");
+                return notify_fail(bunch + "現在沒有任何地盤駐守幫眾，你想提升誰的忠誠度呢。\n");
 
         if (! wizardp(me))
         {
                 if( query("jing", me)<50 )
-                        return notify_fail("你现在精神不济，无法打听这些消息。\n");
+                        return notify_fail("你現在精神不濟，無法打聽這些消息。\n");
 
                 if (me->is_busy() || me->is_fighting())
-                        return notify_fail("你现在正忙，没有时间打听这些消息。\n");
+                        return notify_fail("你現在正忙，沒有時間打聽這些消息。\n");
 
                 me->receive_damage("jing", 50);
                 me->start_busy(3);
@@ -238,7 +238,7 @@ int do_area_tisheng(object me, string arg)
         if (! arg)
         {
                 msg = sprintf(HIC "\n%-18s%-28s%-8s%-8s%-18s\n" NOR,
-                                "地盘名称", "驻守帮众", "开发度", "忠诚度", "上月收入");
+                                "地盤名稱", "駐守幫眾", "開發度", "忠誠度", "上月收入");
 
                 msg += HIY "----------------------------------------------------------------------\n" NOR;
 
@@ -255,13 +255,13 @@ int do_area_tisheng(object me, string arg)
                                         data["npc_name"] + "(" + data["npc_id"] + ")",
                                         data["kaifa"] + "%",
                                         data["zhongcheng"] + "%",
-                                        data["last_money"] / 100 + " 两");
+                                        data["last_money"] / 100 + " 兩");
                 }
 
                 if (j < 1)
-                        return notify_fail(arg + "现在没有任何地盘驻守帮众。\n");
+                        return notify_fail(arg + "現在沒有任何地盤駐守幫眾。\n");
 
-                msg += "\n目前" + HIM + bunch + NOR + "共有" + HIM + chinese_number(j) + NOR + "处地盘驻守帮众。\n";
+                msg += "\n目前" + HIM + bunch + NOR + "共有" + HIM + chinese_number(j) + NOR + "處地盤駐守幫眾。\n";
                 msg += HIY "----------------------------------------------------------------------\n" NOR;
 
                 write(msg);
@@ -269,47 +269,47 @@ int do_area_tisheng(object me, string arg)
         }
 
         if (sscanf(arg, "%d %s", amount, someone) != 2)
-                return notify_fail("命令错误，请查看此命令。\n");
+                return notify_fail("命令錯誤，請查看此命令。\n");
 
         if (amount < 0 || amount > 10)
-                return notify_fail("每次提升的值不能小于零也不能大于十点。\n");
+                return notify_fail("每次提升的值不能小於零也不能大於十點。\n");
 
         if (! ob = present(someone, environment(me)))
-                return notify_fail("这儿没有这么个人。\n");
+                return notify_fail("這兒沒有這麼個人。\n");
 
         if (! ob->is_character())
                 return notify_fail("看清楚，它不是生物。\n");
 
         if (userp(ob))
-                return notify_fail("你只能提升本帮ＮＰＣ帮众的技能。\n");
+                return notify_fail("你只能提升本幫ＮＰＣ幫眾的技能。\n");
 
         if (! living(ob))
-                return notify_fail("你得先把"+query("name", ob)+"弄醒再说。\n");
+                return notify_fail("你得先把"+query("name", ob)+"弄醒再說。\n");
 
         if (ob->is_fighting() || ob->is_busy())
-                return notify_fail(query("name", ob)+"正忙着呢。\n");
+                return notify_fail(query("name", ob)+"正忙著呢。\n");
 
         if( bunch != query("bunch/bunch_name", ob) )
-                return notify_fail("你只能提升本帮会内的ＮＰＣ帮众。\n");
+                return notify_fail("你只能提升本幫會內的ＮＰＣ幫眾。\n");
 
         if (! ob->is_bunch_npc())
-                return notify_fail(query("name", ob)+"似乎现在不接受你的提升命令。\n");
+                return notify_fail(query("name", ob)+"似乎現在不接受你的提升命令。\n");
 
         area = base_name(environment(ob));
 
         if (BUNCH_D->query_area_info(area, "bunch_name") != bunch ||
             BUNCH_D->query_area_info(area,"npc_id") != query("id", ob) )
-                return notify_fail(query("name", ob)+"似乎现在不接受你的提升命令。\n");
+                return notify_fail(query("name", ob)+"似乎現在不接受你的提升命令。\n");
 
         if ((int)BUNCH_D->query_area_info(area, "zhongcheng") >=
             query("bunch/max_zhongcheng", ob) )
-                return notify_fail(query("name", ob)+"的忠诚度已经达到最大，不需要进行提升了。\n");
+                return notify_fail(query("name", ob)+"的忠誠度已經達到最大，不需要進行提升了。\n");
 
         money = amount * 10000;
 
         if( query("balance", me)<money )
-                return notify_fail("你帐上的钱不够，"+query("name", ob)+
-                                   "的忠诚度每提升一点需要一两黄金！\n");
+                return notify_fail("你帳上的錢不夠，"+query("name", ob)+
+                                   "的忠誠度每提升一點需要一兩黃金！\n");
 
         addn("balance", -money, me);
         me->save();
@@ -324,7 +324,7 @@ int do_area_tisheng(object me, string arg)
                 addn("bunch/zhongcheng", amount, ob);
         }
 
-        write("你花了"+money/10000+"两黄金，将"+query("name", ob)+"的忠诚度提升了"+amount+"点！\n");
+        write("你花了"+money/10000+"兩黃金，將"+query("name", ob)+"的忠誠度提升了"+amount+"點！\n");
 
         return 1;
 }
@@ -340,22 +340,22 @@ int show_area_all(object me, string arg)
 
         if (! mapp(all_areas = BUNCH_D->query_all_areas()))
         {
-                write("现在泥潭没有任何地盘可被帮派利用。\n");
+                write("現在泥潭沒有任何地盤可被幫派利用。\n");
                 return 1;
         }
 
         areas = keys(all_areas);
 
         if (sizeof(areas) < 1)
-                return notify_fail("泥潭现在没有任何地盘可被帮派利用。\n");
+                return notify_fail("泥潭現在沒有任何地盤可被幫派利用。\n");
 
         if (! wizardp(me))
         {
                 if( query("jing", me)<50 )
-                        return notify_fail("你现在精神不济，无法打听这些消息。\n");
+                        return notify_fail("你現在精神不濟，無法打聽這些消息。\n");
 
                 if (me->is_busy())
-                        return notify_fail("你现在正忙，没有时间打听这些消息。\n");
+                        return notify_fail("你現在正忙，沒有時間打聽這些消息。\n");
 
                 me->receive_damage("jing", 50);
                 me->start_busy(3);
@@ -363,7 +363,7 @@ int show_area_all(object me, string arg)
 
         areas = sort_array(areas, (: sort_areas :), all_areas);
         msg = sprintf(HIC "\n%-18s%-10s%-28s%-14s%-10s\n" NOR,
-                      "地盘名称", "城市", "驻守帮众", "所属帮派", "资金(黄金)");
+                      "地盤名稱", "城市", "駐守幫眾", "所屬幫派", "資金(黃金)");
 
         msg += HIY "--------------------------------------------------------------------------------\n" NOR;
 
@@ -381,14 +381,14 @@ int show_area_all(object me, string arg)
                                data["area_name"],
                                city,
                                data["npc_name"] + "(" + data["npc_id"] + ")",
-                               stringp(data["bunch_name"]) ? data["bunch_name"] : "独 立 中",
+                               stringp(data["bunch_name"]) ? data["bunch_name"] : "獨 立 中",
                                data["money"] / 10000);
         }
 
         if (j < 1)
-                return notify_fail("现在泥潭没有任何地盘可被帮派利用。\n");
+                return notify_fail("現在泥潭沒有任何地盤可被幫派利用。\n");
 
-        msg += "\n目前泥潭共有" + HIM + chinese_number(j) + NOR + "处地盘。\n";
+        msg += "\n目前泥潭共有" + HIM + chinese_number(j) + NOR + "處地盤。\n";
         msg += HIY "--------------------------------------------------------------------------------\n" NOR;
 
         write(msg);
@@ -398,13 +398,13 @@ int show_area_all(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式: area kaifa [地盘名] | tisheng [地盘帮众ID] | all
+指令格式: area kaifa [地盤名] | tisheng [地盤幫眾ID] | all
 
-查看目前你所在帮派地盘的各种信息，其中：
+查看目前你所在幫派地盤的各種信息，其中：
 
-kaifa   ：开发帮会中地盘，增加帮会收入。
-tisheng ：提升所属帮会中驻守地盘NPC的忠诚度。
-all     : 查看所有的地盘信息。
+kaifa   ：開發幫會中地盤，增加幫會收入。
+tisheng ：提升所屬幫會中駐守地盤NPC的忠誠度。
+all     : 查看所有的地盤信息。
 
 see also: bunch
 HELP );

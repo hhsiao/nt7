@@ -9,8 +9,8 @@ inherit F_DBASE;
 void create()
 {
         seteuid(ROOT_UID);
-        set("channel_id", "执法精灵");
-        CHANNEL_D->do_channel( this_object(), "sys", "执法精灵已经启动。");
+        set("channel_id", "執法精靈");
+        CHANNEL_D->do_channel( this_object(), "sys", "執法精靈已經啟動。");
         remove_call_out("monitor");
         call_out("monitor", 1);
 }
@@ -29,39 +29,39 @@ string *catchers = ({
 });
 
 mapping family_punishers = ([
-        "武当派"   : ({ CLASS_D("misc") + "/chongxu" }),
+        "武當派"   : ({ CLASS_D("misc") + "/chongxu" }),
         "少林派"   : ({ CLASS_D("misc") + "/fangsheng" }),
-        "华山派"   : ({ CLASS_D("misc") + "/murenqing" }),
-        "华山剑宗" : ({ CLASS_D("misc") + "/murenqing" }),
+        "華山派"   : ({ CLASS_D("misc") + "/murenqing" }),
+        "華山劍宗" : ({ CLASS_D("misc") + "/murenqing" }),
         "峨嵋派"   : ({ CLASS_D("misc") + "/guoxiang" }),
-        "桃花岛"   : ({ CLASS_D("misc") + "/taogu" }),
-        "神龙教"   : ({ CLASS_D("misc") + "/zhong" }),
-        "丐帮"     : ({ CLASS_D("misc") + "/wangjiantong" }),
+        "桃花島"   : ({ CLASS_D("misc") + "/taogu" }),
+        "神龍教"   : ({ CLASS_D("misc") + "/zhong" }),
+        "丐幫"     : ({ CLASS_D("misc") + "/wangjiantong" }),
         "古墓派"   : ({ CLASS_D("misc") + "/popo" }),
         "全真教"   : ({ CLASS_D("misc") + "/laodao" }),
         "星宿派"   : ({ CLASS_D("misc") + "/xiaoxian" }),
-        "逍遥派"   : ({ CLASS_D("misc") + "/liqiushui" }),
+        "逍遙派"   : ({ CLASS_D("misc") + "/liqiushui" }),
         "雪山寺"   : ({ CLASS_D("misc") + "/laoseng" }),
-        "血刀门"   : ({ CLASS_D("misc") + "/hongri" }),
+        "血刀門"   : ({ CLASS_D("misc") + "/hongri" }),
         "密宗"     : ({ CLASS_D("misc") + "/laoseng2" }),
-        "灵鹫宫"   : ({ CLASS_D("misc") + "/tonglao" }),
+        "靈鷲宮"   : ({ CLASS_D("misc") + "/tonglao" }),
         "慕容世家" : ({ CLASS_D("misc") + "/furen" }),
-        "欧阳世家" : ({ CLASS_D("misc") + "/laonu" }),
-        "关外胡家" : ({ CLASS_D("misc") + "/huyidao" }),
+        "歐陽世家" : ({ CLASS_D("misc") + "/laonu" }),
+        "關外胡家" : ({ CLASS_D("misc") + "/huyidao" }),
         "段氏皇族" : ({ CLASS_D("misc") + "/duansh" }),
         "嵩山派"   : ({ CLASS_D("misc") + "/songshan" }),
         "衡山派"   : ({ CLASS_D("misc") + "/hengshan" }),
         "明教"     : ({ CLASS_D("misc") + "/bosi" }),
         "魔教"     : ({ CLASS_D("misc") + "/chiyou" }),
-        "红花会"   : ({ CLASS_D("misc") + "/yuwanting" }),
+        "紅花會"   : ({ CLASS_D("misc") + "/yuwanting" }),
         "日月神教" : ({ CLASS_D("misc") + "/zhanglao" }),
 // add by wuji
               "五毒教"   : ({ CLASS_D("misc") + "/wudu" }),
-              "唐门世家"   : ({ CLASS_D("misc") + "/tangmen" }),
+              "唐門世家"   : ({ CLASS_D("misc") + "/tangmen" }),
               "凌霄城"   : ({ CLASS_D("misc") + "/lingxiao" }),
-              "铁掌帮"   : ({ CLASS_D("misc") + "/tiezhang" }),
-              "绝情谷"   : ({ CLASS_D("misc") + "/jueqing" }),
-              "昆仑派"   : ({ CLASS_D("misc") + "/kunlun" }),
+              "鐵掌幫"   : ({ CLASS_D("misc") + "/tiezhang" }),
+              "絕情谷"   : ({ CLASS_D("misc") + "/jueqing" }),
+              "崑崙派"   : ({ CLASS_D("misc") + "/kunlun" }),
 ]);
 
 void monitor()
@@ -78,7 +78,7 @@ void monitor()
 
         /*
         if (VERSION_D->is_boot_synchronizing())
-                // 正在启动中同步版本？那么不启动惩罚系统
+                // 正在啟動中同步版本？那麼不啟動懲罰系統
                 return;
         */
 
@@ -88,7 +88,7 @@ void monitor()
                 return;
 
         CHANNEL_D->do_channel(this_object(), "sys",
-                              "各大门派扫描所有在线玩家。");
+                              "各大門派掃描所有在線玩家。");
 
         // search all the player for punishing
         obs = filter_array(users(),

@@ -5,7 +5,7 @@ inherit NPC;
 
 string *first_name = ({ "水", "海"});
 string *first_id = ({ "shui", "hai"});
-string *name_words = ({ "巨灵", "怪"});
+string *name_words = ({ "巨靈", "怪"});
 string *id_words = ({ "juling", "guai"});
 
 void create()
@@ -51,8 +51,8 @@ void create()
         set_temp("apply/unarmed_damage",1000+random(1000));
         set_temp("apply/armor", 1000+random(1000));
         set("drops", ([
-                "RA&RANDOM10"    :       100,   // 低级普通装备
-                "RA&RANDOM20"    :       30,    // 中级普通装备
+                "RA&RANDOM10"    :       100,   // 低級普通裝備
+                "RA&RANDOM20"    :       30,    // 中級普通裝備
                 "MO&A1000"       :       1,
                 "MO&A1001"       :       1,
                 "MO&A1002"       :       1,
@@ -87,8 +87,8 @@ mixed hit_ob(object me, object ob, int damage_bouns)
         if (damage < 0) damage = 0;
         ob->receive_wound("qi", damage, me);
         set("neili",query("max_neili",  me), me);
-        return HIC "$N" HIC "“哈”的一声吐出一口寒气，登时令$n"
-               HIC "四肢几乎冻僵。\n" NOR;
+        return HIC "$N" HIC "“哈”的一聲吐出一口寒氣，登時令$n"
+               HIC "四肢幾乎凍僵。\n" NOR;
 }
 
 void unconcious()

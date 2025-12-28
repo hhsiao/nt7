@@ -12,10 +12,10 @@ string ask_job();
 
 void create()
 {
-        set_name("闻苍松", ({ "wen cangsong", "wen", "cangsong", }));
+        set_name("聞蒼松", ({ "wen cangsong", "wen", "cangsong", }));
         set("long",
-        "他是一位高大魁伟的中年男子，身穿一件白布长袍。\n"
-        "他天生神力，手中的两头狼牙棒有万夫不当之勇，真是一条威风凛凛的汉子。\n"
+        "他是一位高大魁偉的中年男子，身穿一件白布長袍。\n"
+        "他天生神力，手中的兩頭狼牙棒有萬夫不當之勇，真是一條威風凜凜的漢子。\n"
         );
 
         set("title", HIG "明教" HIC "巨木旗" NOR "掌旗使");
@@ -65,13 +65,13 @@ void create()
         prepare_skill("strike", "guangming-zhang");
 
         create_family("明教", 37, "巨木旗掌旗使");
-        set("inherit_title",HIG"明教"NOR"巨木旗教众"NOR);
+        set("inherit_title",HIG"明教"NOR"巨木旗教眾"NOR);
 
         set("inquiry", ([
-                "name" : "在下就是明教巨木旗掌旗使闻苍松，不知阁下有何指教。",
-                "任务" : (: ask_job :),
+                "name" : "在下就是明教巨木旗掌旗使聞蒼松，不知閣下有何指教。",
+                "任務" : (: ask_job :),
                 "job"  : (: ask_job :),
-                "放弃" : (: ask_abandon :),
+                "放棄" : (: ask_abandon :),
                 "abandon" : (: ask_abandon :),
         ]));
 
@@ -88,12 +88,12 @@ string ask_job()
      object ling,axe,shugan;
 
     if( !(fam=query("family", this_player())) || fam["family_name"] != "明教" )
-        return "这位"+RANK_D->query_respect(player)+"并非我教弟兄，那敢在下那敢分派阁下什么任务呢。\n";
+        return "這位"+RANK_D->query_respect(player)+"並非我教弟兄，那敢在下那敢分派閣下什麼任務呢。\n";
 
         if( query("combat_exp", player)>400000 )
-                 return "这位"+RANK_D->query_respect(player)+"实战经验已经颇高，岂敢劳烦大架。\n";
+                 return "這位"+RANK_D->query_respect(player)+"實戰經驗已經頗高，豈敢勞煩大架。\n";
         if (fam["generation"] <37)
-                 return "这位"+RANK_D->query_respect(player)+"在我明教地位颇高，岂敢劳烦大架。\n";
+                 return "這位"+RANK_D->query_respect(player)+"在我明教地位頗高，豈敢勞煩大架。\n";
 
         if( query("mingjiao/job", player) == "mu_kanshu" && shugan=present("shugan",player) )
         {
@@ -102,15 +102,15 @@ string ask_job()
                         command("pat "+query("id", player));
                         if (axe=present("axe",player))
                                 destruct(axe);
-                        message_vision("闻苍松叫来一名教众，把$N的树干接了过去。\n",player);
+                        message_vision("聞蒼松叫來一名教眾，把$N的樹幹接了過去。\n",player);
                         destruct(shugan);
                         delete_temp("apply/short", player);
                         remove_call_out("reward");
-                        call_out("reward",1,this_player(),"砍树");
-               return query("name", player)+"干得不错！下去好好休息休息。\n"; 
+                        call_out("reward",1,this_player(),"砍樹");
+               return query("name", player)+"幹得不錯！下去好好休息休息。\n"; 
                 }
                 else
-                        return "这好象不是你砍的吧。想偷懒？\n";
+                        return "這好象不是你砍的吧。想偷懶？\n";
         }
 
         if( query("mingjiao/job", player) )
@@ -122,9 +122,9 @@ string ask_job()
 
         axe=new(OBJ_PATH"/axe");
         axe->move(player);
-        tell_object(player,"闻苍松给你一把斧头。\n");
+        tell_object(player,"聞蒼松給你一把斧頭。\n");
 
-        return "你来的正好，兄弟们演练阵法，巨木不够了，你去树林里砍些树干扛回来。\n";
+        return "你來的正好，兄弟們演練陣法，巨木不夠了，你去樹林裡砍些樹幹扛回來。\n";
 
 }
 

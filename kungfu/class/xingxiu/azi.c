@@ -10,10 +10,10 @@ int do_sou(string arg);
 void create()
 {
         set_name("阿紫", ({ "a zi", "a", "zi"}));
-        set("nickname", "星宿派小师妹");
+        set("nickname", "星宿派小師妹");
         set("long", 
                 "她就是丁春秋弟子阿紫。\n"
-                "她容颜俏丽，可眼神中总是透出一股邪气。\n");
+                "她容顏俏麗，可眼神中總是透出一股邪氣。\n");
         set("gender", "女性");
         set("age", 15);
         set("attitude", "peaceful");
@@ -48,7 +48,7 @@ void create()
         set_skill("tianshan-zhang", 10);
 
         set("no_teach", ([
-                "huagong-dafa" : "化功大法让老仙教你吧，我可不愿被他罚。",
+                "huagong-dafa" : "化功大法讓老仙教你吧，我可不願被他罰。",
         ]));
 
         map_skill("force", "guixi-gong");
@@ -72,7 +72,7 @@ void create()
 
         set("swmuding", 1);
         set("inquiry", ([
-                "木鼎" : "仓库里面一大堆，你自己去找吧！",
+                "木鼎" : "倉庫裡面一大堆，你自己去找吧！",
                 "神木王鼎" : (: ask_ding :),
         ]));
 
@@ -95,11 +95,11 @@ void attempt_apprentice(object ob)
 int ask_ding(object me)
 {
         if( query_temp("sou/done", me) == 1 )
-                return notify_fail("阿紫瞅了你一眼道：“你还想干什么？”\n");
+                return notify_fail("阿紫瞅了你一眼道：“你還想幹什麼？”\n");
         
         if( query("family/family_name", me) != "星宿派" )
         {  
-                say("阿紫说道：“这东西可不是给你用的。”\n");
+                say("阿紫說道：“這東西可不是給你用的。”\n");
                 return 0;
         }  
         
@@ -109,12 +109,12 @@ int ask_ding(object me)
         addn_temp("mark/ding", 1, me);
         if( query_temp("mark/ding", me) >= 5+random(5) )
         {
-                say("阿紫说道：你这个人怎么这么烦？神木王鼎就是不在我身上，不信你搜（sou）我好了。\n");
+                say("阿紫說道：你這個人怎麼這麼煩？神木王鼎就是不在我身上，不信你搜（sou）我好了。\n");
                 add_action("do_sou","sou");
                 return 1;
         }
         else
-                say("阿紫说道：什么神木王鼎，我可没拿……，你别冤枉好人！\n");
+                say("阿紫說道：什麼神木王鼎，我可沒拿……，你別冤枉好人！\n");
         return 1;
 }
 
@@ -129,7 +129,7 @@ int do_sou(string arg)
     if( arg=="a zi" ) 
     {
         message("vision",
-            me->name() + "狞笑着说道：“好，那我就不客气了。”\n",
+            me->name() + "獰笑著說道：“好，那我就不客氣了。”\n",
             environment(me),({me}));
         ob2->kill_ob(me);
         set_temp("last_damage_from", me, ob2);
@@ -138,11 +138,11 @@ int do_sou(string arg)
         ob1=present("xiao feng");
         if( !ob1 && !query_temp("xiaofeng/done", me) )
         {
-                say(HIY+"阿紫大声喊道：“姐夫救我，这个臭贼想非礼我！！”"NOR+"\n");
+                say(HIY+"阿紫大聲喊道：“姐夫救我，這個臭賊想非禮我！！”"NOR+"\n");
                 ob1=new("/kungfu/class/xingxiu/xiaofeng");
 
                 ob1->move(environment());
-                message_vision(HIY+"\n忽地传来一声怒喝：“何人如此大胆!阿紫不用怕，有姐夫在看谁敢欺负你？”\n"+NOR,me);
+                message_vision(HIY+"\n忽地傳來一聲怒喝：“何人如此大膽!阿紫不用怕，有姐夫在看誰敢欺負你？”\n"+NOR,me);
                 ob1->kill_ob(me);
                 me->fight_ob(ob1);
                 me->fight_ob(ob2);
@@ -166,7 +166,7 @@ int accept_kill(object me)
                 this_object()->kill_ob(me);
                 me->fight_ob(this_object());
         } 
-        say("\n阿紫大叫：“救命啊，有人要杀我！！\n\n");
+        say("\n阿紫大叫：“救命啊，有人要殺我！！\n\n");
 //      this_object()->kill_ob(me);
 //      me->fight_ob(this_object());
         set_temp("azi/killer", 1, me);
@@ -179,7 +179,7 @@ int accept_kill(object me)
                 ob->move(environment());
                 ob->kill_ob(me);
                 me->fight_ob(ob);
-                message_vision("游坦之大喝一声，挡住了你的去路！\n",me);
+                message_vision("遊坦之大喝一聲，擋住了你的去路！\n",me);
                         
         }
         if( !ob1 && !query_temp("xiaofeng/done", me) )
@@ -188,7 +188,7 @@ int accept_kill(object me)
                 ob1->move(environment());
                 ob1->kill_ob(me);
                 me->fight_ob(ob1);
-                message_vision("萧峰大喝一声，挡住了你的去路！\n",me);
+                message_vision("蕭峰大喝一聲，擋住了你的去路！\n",me);
         }
         return 1;
 }
@@ -203,9 +203,9 @@ int accept_kill(object who)
 
         if (! query("swmuding"))
         {
-                command("say 神王木鼎原来的确在我这里，可是后来被人抢走啦！");
+                command("say 神王木鼎原來的確在我這裡，可是後來被人搶走啦！");
                 command("inn"+query("id", who));
-                tell_object(who, "你看到阿紫一副楚楚可怜的样子，不禁心头一软。\n");
+                tell_object(who, "你看到阿紫一副楚楚可憐的樣子，不禁心頭一軟。\n");
                 return -1;
         }
 
@@ -217,15 +217,15 @@ int accept_kill(object who)
         obs = filter_array(obs, (: ! clonep($1) :));
         if (sizeof(obs))
         {
-                command("say 呜呜，神王木鼎真的被人抢走啦！");
-                tell_object(who, "你看阿紫神情不象是作伪，不由得叹了一口气。\n");
+                command("say 嗚嗚，神王木鼎真的被人搶走啦！");
+                tell_object(who, "你看阿紫神情不象是作偽，不由得嘆了一口氣。\n");
                 return -1;
         }
 
         if( count_gt(query("combat_exp", who),500000) && 
             query("shen", who)<-10000 )
         {
-                message_vision("$N大叫：别动手，别动手！我给你木鼎就是！\n",
+                message_vision("$N大叫：別動手，別動手！我給你木鼎就是！\n",
                                this_object());
                 ob = new("/clone/misc/swmuding");
                 ob->move(this_object());
@@ -234,13 +234,13 @@ int accept_kill(object who)
                 return -1;
         }
 
-        command("say 我说了没有木鼎了，你怎么不信！");
+        command("say 我說了沒有木鼎了，你怎麼不信！");
         return 1;
 }
 */
 
 void accept_fight(object me)
 {
-        say("阿紫眼睛一瞪：“我才没空和你胡闹呢！”\n");
+        say("阿紫眼睛一瞪：“我才沒空和你胡鬧呢！”\n");
         return;
 }

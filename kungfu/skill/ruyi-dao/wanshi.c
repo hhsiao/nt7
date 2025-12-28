@@ -1,11 +1,11 @@
-// ruyi.c 万事如意
+// ruyi.c 萬事如意
 
 #include <ansi.h>
 #include <combat.h>
 
 inherit F_SSERVER;
 
-string name() { return "万事如意"; }
+string name() { return "萬事如意"; }
 
 int perform(object me, object target)
 {
@@ -20,36 +20,36 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("「万事如意」只能对战斗中的对手使用。\n");
+                return notify_fail("「萬事如意」只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "blade" )
-                return notify_fail("刀都没有，使什么「万事如意」？\n");
+                return notify_fail("刀都沒有，使什麼「萬事如意」？\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你的真气不够！\n");
+                return notify_fail("你的真氣不夠！\n");
 
         if ((int)me->query_skill("xiaowuxiang", 1) < 100
                 && (int)me->query_skill("lingjiu-xinfa", 1) < 100
                 && (int)me->query_skill("xiaoyao-xinfa", 1) < 100
                 && (int)me->query_skill("bahuang-gong", 1) < 100
                 && (int)me->query_skill("beiming-shengong", 1) < 100)
-                return notify_fail("你的所用内功心法不正确，或者功力不够，不能使用万事如意！\n");
+                return notify_fail("你的所用內功心法不正確，或者功力不夠，不能使用萬事如意！\n");
 
         if ( me->query_skill_mapped("force") != "xiaowuxiang"
                 && me->query_skill_mapped("force") != "bahuang-gong"
                 && me->query_skill_mapped("force") != "lingjiu-xinfa"
                 && me->query_skill_mapped("force") != "xiaoyao-xinfa"
                 && me->query_skill_mapped("force") != "beiming-shengong")
-                return notify_fail("你没有运用逍遥派系列内功！\n");
+                return notify_fail("你沒有運用逍遙派系列內功！\n");
 
         if (me->query_skill("blade") < 100)
-                return notify_fail("你的如意刀法还不到家，无法使用「万事如意」！\n");
+                return notify_fail("你的如意刀法還不到家，無法使用「萬事如意」！\n");
 
         if (me->query_skill_mapped("blade") != "ruyi-dao")
-                return notify_fail("你没有激发如意刀法，无法使用「完事如意」！\n");
+                return notify_fail("你沒有激發如意刀法，無法使用「完事如意」！\n");
 
-        msg=HIC"$N"HIC"抽身长笑，随手挥出"+query("name", weapon)+HIC"，只见刀光流转，刀气纵横无孔不如，直将$n整个笼罩进去！\n"NOR;
+        msg=HIC"$N"HIC"抽身長笑，隨手揮出"+query("name", weapon)+HIC"，只見刀光流轉，刀氣縱橫無孔不如，直將$n整個籠罩進去！\n"NOR;
         message_combatd(msg, me, target);
 
         level = me->query_skill("blade");
@@ -64,15 +64,15 @@ int perform(object me, object target)
                         addn("neili", -100, target);
 
                 msg = COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 50,
-                        HIR "$p" HIR "眼见着刀光飞泄过来却手足无措，结果被$P"
-                        HIR "一刀正中胸口，闷哼一声，鲜血飞溅而出！\n" NOR);
+                        HIR "$p" HIR "眼見著刀光飛洩過來卻手足無措，結果被$P"
+                        HIR "一刀正中胸口，悶哼一聲，鮮血飛濺而出！\n" NOR);
                 me->start_busy(2);
                 target->start_busy(1+random(2));
         }
         else
         {
-                msg = HIY "$p" HIY "眼见着刀光飞泄过来，慌忙间就地一个打滚，总算避开了$P"
-                      HIY "这招万事如意！\n" NOR;
+                msg = HIY "$p" HIY "眼見著刀光飛洩過來，慌忙間就地一個打滾，總算避開了$P"
+                      HIY "這招萬事如意！\n" NOR;
                 me->start_busy(3);
         }
         message_combatd(msg, me, target);

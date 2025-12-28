@@ -3,10 +3,10 @@ inherit F_DEALER;
 void create()
 {
 
-   set_name("安南铁匠",({ "tie jiang","tie","jiang","tiejiang" }) );
+   set_name("安南鐵匠",({ "tie jiang","tie","jiang","tiejiang" }) );
         set("gender", "男性" );
         set("age", 40);
-   set("long", "这是安南的铁匠，他打造的兵器都是很好。\n");
+   set("long", "這是安南的鐵匠，他打造的兵器都是很好。\n");
      set("shop_id",({ "tie jiang","tie","jiang","tiejiang" }) );
    set("combat_exp",300000);
    set("str",26);

@@ -5,7 +5,7 @@ inherit SWORD;
 
 void create()
 {
-        set_name(HIY "黄龙剑" NOR, ({ "huanglong jian", "huanglong", "jian", "sword" }) );
+        set_name(HIY "黃龍劍" NOR, ({ "huanglong jian", "huanglong", "jian", "sword" }) );
         set_weight(4000);
         /*if( clonep() )
                 set_default_object(__FILE__);

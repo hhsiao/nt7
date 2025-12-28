@@ -1,6 +1,6 @@
 // san.c
 // 天女散花 san
-// 无影穿心掌[wuying-zhang] 的特攻
+// 無影穿心掌[wuying-zhang] 的特攻
 
 #include <ansi.h>
 #include <combat.h>
@@ -18,7 +18,7 @@ int perform(object me, object target)
 	if( !target
 	|| !target->is_character()
 	|| !me->is_fighting(target) )
-		return notify_fail("『天女散花』只能对战斗中的对手使用。\n");
+		return notify_fail("『天女散花』只能對戰鬥中的對手使用。\n");
 
 	if(!objectp(weapon = me->query_temp("weapon"))
 	|| (weapon->query("skill_type") != "throwing") )
@@ -26,17 +26,17 @@ int perform(object me, object target)
 		left = 1;
 		if(!objectp(weapon = me->query_temp("secondary_weapon"))
 		|| (weapon->query("skill_type") != "throwing") )
-			return notify_fail("你手里没有暗器，无法使用『天女散花』。\n");
+			return notify_fail("你手裡沒有暗器，無法使用『天女散花』。\n");
 	}
 
 	if(!am = weapon->query_amount())
-		return notify_fail("你手里没有暗器，无法使用『天女散花』。\n");
+		return notify_fail("你手裡沒有暗器，無法使用『天女散花』。\n");
 
 	if((ski = me->query_skill("wuying-zhang", 1)) < 150)
-		return notify_fail("你的『无影穿心掌』火候不够，不会使用『天女散花』。\n");
+		return notify_fail("你的『無影穿心掌』火候不夠，不會使用『天女散花』。\n");
 
 	if(me->query("force") < 200)
-		return notify_fail("你的真气不够，无法使用『天女散花』。\n");
+		return notify_fail("你的真氣不夠，無法使用『天女散花』。\n");
 
 	me->add("force", -200);
 
@@ -51,7 +51,7 @@ int perform(object me, object target)
 	ap = COMBAT_D->skill_power(me,"throwing",SKILL_USAGE_ATTACK);
 	dp = COMBAT_D->skill_power(target,"dodge",SKILL_USAGE_DEFENSE)/2 + COMBAT_D->skill_power(target,"perception",SKILL_USAGE_DEFENSE);
 
-	message_vision(sprintf("\n$N%s手一扬，把手中%s用『天女散花』手法朝着$n打了过去。\n\n",
+	message_vision(sprintf("\n$N%s手一揚，把手中%s用『天女散花』手法朝著$n打了過去。\n\n",
 		left?"左":"右",
 		weapon->name()), me, target);
 

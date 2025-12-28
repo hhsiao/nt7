@@ -2,9 +2,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "长廊");
+        set("short", "長廊");
         set("long", @LONG
-这是连接内堂和后堂的长廊，虽不见花木，但也能闻到淡
+這是連接內堂和後堂的長廊，雖不見花木，但也能聞到淡
 淡的花香。
 LONG);
         set("exits", ([

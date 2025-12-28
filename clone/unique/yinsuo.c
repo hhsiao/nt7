@@ -5,23 +5,23 @@ inherit WHIP;
 
 void create()
 {
-        set_name(HIW "银索" NOR + HIY "金铃" NOR,({ "yinsuo jinling", "suo", "ling",
+        set_name(HIW "銀索" NOR + HIY "金鈴" NOR,({ "yinsuo jinling", "suo", "ling",
                                                     "yinsuo", "jinling" }) );
         set_weight(1300);
         if (clonep())
                 destruct(this_object());
         else {
-                set("long", HIW "一根银色的长索，隐隐流动着金属的光"
-                            "泽，看上去很是坚韧。长索的一端系着两个"
-                            "金铃。\n" NOR);
+                set("long", HIW "一根銀色的長索，隱隱流動著金屬的光"
+                            "澤，看上去很是堅韌。長索的一端繫著兩個"
+                            "金鈴。\n" NOR);
                 set("unit", "把");
                 set("value", 800000);
                 set("no_sell", 1);
                 set("material", "steel");
-                set("wield_msg", HIW "$N" HIW "轻轻的从怀里取出一根"
-                                 "银色的长索握在手中。\n" NOR); 
-                set("unwield_msg", HIW "$N将手中银索" NOR + HIY "金"
-                                 "铃" NOR + HIW "回腰间，天地又渐渐"
+                set("wield_msg", HIW "$N" HIW "輕輕的從懷裡取出一根"
+                                 "銀色的長索握在手中。\n" NOR); 
+                set("unwield_msg", HIW "$N將手中銀索" NOR + HIY "金"
+                                 "鈴" NOR + HIW "回腰間，天地又漸漸"
                                  "放出光芒。\n" NOR);
                 set("stable", 50);
         }
@@ -42,17 +42,17 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         case 0:
                 if (! victim->is_busy())
                 victim->start_busy(me->query_skill("whip") / 10 + 2);
-                return HIY "$N" HIY "一声娇喝，手中的" NOR + HIW "银索"
-                       NOR + HIY "金铃幻出漫天鞭影，直点$n" HIY "而去！"
-                       HIR "\n$n" HIR "稍一迟疑，只觉全身一麻，已被$N"
-                       HIR "这招点中要穴。\n" NOR;
+                return HIY "$N" HIY "一聲嬌喝，手中的" NOR + HIW "銀索"
+                       NOR + HIY "金鈴幻出漫天鞭影，直點$n" HIY "而去！"
+                       HIR "\n$n" HIR "稍一遲疑，只覺全身一麻，已被$N"
+                       HIR "這招點中要穴。\n" NOR;
 
         case 1:
                 n = me->query_skill("whip");
                 victim->receive_damage("qi", n * 3 / 4, me);
                 victim->receive_wound("qi", n * 3 / 4, me);
-                return  HIY "$N" HIY "一声清啸，手中" NOR + HIW "银索"
-                        NOR + HIY "金铃宛如蛟龙通天，铺天盖地袭向$n"
+                return  HIY "$N" HIY "一聲清嘯，手中" NOR + HIW "銀索"
+                        NOR + HIY "金鈴宛如蛟龍通天，鋪天蓋地襲向$n"
                         HIY "！\n" NOR;
         }
         return damage_bonus;

@@ -5,7 +5,7 @@ inherit CLOTH;
 
 void create()
 {
-        set_name(HIY "金环锁子甲" NOR, ({ "suozi jia", "jia"}) );
+        set_name(HIY "金環鎖子甲" NOR, ({ "suozi jia", "jia"}) );
         set_weight(20000);
         /*if (clonep())
                 set_default_object(__FILE__);

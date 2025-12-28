@@ -2,10 +2,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("苏普", ({ "su pu", "su", "pu" }));
+        set_name("蘇普", ({ "su pu", "su", "pu" }));
         set("gender", "男性");
         set("age", 23);
-        set("long", "一个年轻的哈萨克牧羊人，哈萨克第一勇士苏鲁克的儿子。\n");
+        set("long", "一個年輕的哈薩克牧羊人，哈薩克第一勇士蘇魯克的兒子。\n");
         set("attitude", "friendly");
         set("combat_exp", 30000);
         set("shen_type", 1);
@@ -27,9 +27,9 @@ void create()
         set_temp("apply/defense", 60);
         set_temp("apply/unarmed_damage", 60);
         set("inquiry", ([
-                    "阿曼" : "她是我老婆，怎么着？不服咱们就摔摔跤。\n",
-                    "李文秀" : "叹，不知她上哪儿去了。这么多年我一直没法忘了她。\n",
-                    "计老人" : "计老人会酿又香又烈的美酒，会医牛羊马匹的疾病。\n",
+                    "阿曼" : "她是我老婆，怎麼著？不服咱們就摔摔跤。\n",
+                    "李文秀" : "嘆，不知她上哪兒去了。這麼多年我一直沒法忘了她。\n",
+                    "計老人" : "計老人會釀又香又烈的美酒，會醫牛羊馬匹的疾病。\n",
         ]) );
 
         setup();

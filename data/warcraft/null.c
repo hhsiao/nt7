@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[37m万年陆龟[2;37;0m[2;37;0m", ({"turtle"}));        
+        set_name("[37m萬年陸龜[2;37;0m[2;37;0m", ({"turtle"}));        
         set("gender", "男性");                
-        set("long", "这是一只万年陆龟，打它不涨经验。[2;37;0m
-它是慕容逵的魔幻兽。
+        set("long", "這是一隻萬年陸龜，打它不漲經驗。[2;37;0m
+它是慕容逵的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

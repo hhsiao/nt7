@@ -4,10 +4,10 @@ inherit ITEM;
 
 void init()
 {
-    set("no_get", "你拿不起来这样东西。试试挖挖(dig)。\n");
-    set("no_give","这么珍贵的药，哪能随便给人？\n");
-    set("no_drop","这么宝贵的丹药，扔了多可惜呀！\n");
-    set("no_sell","凡人哪里知道"+query("name", this_object())+"的价值？还是自己留着吧。\n");
+    set("no_get", "你拿不起來這樣東西。試試挖挖(dig)。\n");
+    set("no_give","這麼珍貴的藥，哪能隨便給人？\n");
+    set("no_drop","這麼寶貴的丹藥，扔了多可惜呀！\n");
+    set("no_sell","凡人哪裡知道"+query("name", this_object())+"的價值？還是自己留著吧。\n");
 
     add_action("do_dig", "dig");
     add_action("do_eat", "eat");
@@ -15,15 +15,15 @@ void init()
 
 void create()
 {
-  set_name(RED "琼草嫩芽" NOR, ({"qiong cao","cao"}));
+  set_name(RED "瓊草嫩芽" NOR, ({"qiong cao","cao"}));
   set_weight(200);
   /*if (clonep())
     set_default_object(__FILE__);
   else*/ {
-    set("unit", "颗");
-    set("long", "一颗紫红色的小草。\n");
+    set("unit", "顆");
+    set("long", "一顆紫紅色的小草。\n");
     set("value", 0);
-    set("drug_type", "补品");
+    set("drug_type", "補品");
   }
   
   // the following line is added by snowcat
@@ -38,26 +38,26 @@ int do_dig(string arg)
    where=environment(me);
 
    if( query("can_eat", me) )
-     return notify_fail("什么？\n");
+     return notify_fail("什麼？\n");
 
    if( !arg || (arg!="qiong cao" && arg!="cao"))
-     return notify_fail("你要挖什么？\n");
+     return notify_fail("你要挖什麼？\n");
 
    if(who->is_fighting() && who->is_busy())
-     return notify_fail("你很忙，没时间挖草。\n"); 
+     return notify_fail("你很忙，沒時間挖草。\n"); 
 
    if( spirit=present("spirit")){
-     message_vision("日光精灵身周光芒大盛，对$N发起了攻击。\n", who);
+     message_vision("日光精靈身周光芒大盛，對$N發起了攻擊。\n", who);
      spirit->kill_ob(who);
      who->fight_ob(spirit);
      return 1;
    }
-     message_vision("$N轻轻将$n挖了起来。\n", who, me);
+     message_vision("$N輕輕將$n挖了起來。\n", who, me);
      set("can_eat", 1, me);
      me->move(who);
-   tell_object(who, HIY "\n\n日光精灵化为一片明亮的光芒，第五个封印解开了！\n"NOR);  
-   message("channel:chat",HBMAG"【精灵神界】"+query("name", me)+"成功的解开了第五封印.\n"NOR,users());
-        set_temp("m_success/琼草", 1, me);
+   tell_object(who, HIY "\n\n日光精靈化為一片明亮的光芒，第五個封印解開了！\n"NOR);  
+   message("channel:chat",HBMAG"【精靈神界】"+query("name", me)+"成功的解開了第五封印.\n"NOR,users());
+        set_temp("m_success/瓊草", 1, me);
      remove_call_out("grow_a");
      remove_call_out("grow_b");
                 remove_call_out("grow_c");
@@ -71,7 +71,7 @@ int do_dig(string arg)
      seteuid(getuid());
      spirit=new("/quest/tulong/npc/spirit1");
      spirit->move(environment(who));
-   tell_room(environment(who), "忽然光芒大盛，日光精灵的身形现了出来。\n");
+   tell_room(environment(who), "忽然光芒大盛，日光精靈的身形現了出來。\n");
    spirit->kill_ob(who);
    who->fight_ob(spirit);
    }
@@ -85,23 +85,23 @@ int do_eat(string arg)
    int neili_add;
    
      if (!id(arg))
-         return notify_fail("你要吃什么？\n");
+         return notify_fail("你要吃什麼？\n");
    if( !query("can_eat", me) )
-     return notify_fail("你要吃什么？\n");
+     return notify_fail("你要吃什麼？\n");
 
    set("food", who->max_food_capacity(), who);
      set("water", who->max_water_capacity(), who);
 
    if( !query("eatable", me)){
-     message_vision("$N狼吞虎咽般地将一颗$n吃了下去。\n", who, me);
+     message_vision("$N狼吞虎嚥般地將一顆$n吃了下去。\n", who, me);
      destruct(me);
      return 1;
    }
 
    neili_add=30;
    
-   message_vision("$N将一颗$n轻轻嚼着咽下了肚，脸上泛起阵红晕。\n", who, me);
-   tell_object(who, "你觉得一阵热气直通七窍，浑身上下好象有使不完的力气。\n");
+   message_vision("$N將一顆$n輕輕嚼著嚥下了肚，臉上泛起陣紅暈。\n", who, me);
+   tell_object(who, "你覺得一陣熱氣直通七竅，渾身上下好象有使不完的力氣。\n");
 
   set("eff_jing",query("max_jing",  who), who);
   set("jing",query("max_jing",  who), who);
@@ -126,8 +126,8 @@ void invocation()
 int grow_a(object me)
 {
    int i=400+random(400);
-   tell_room(environment(me), me->name()+"慢慢地长出了一个小叶。\n", ({me, me}));
-   set_name(RED "一叶琼草" NOR, ({"qiong cao","cao"}));
+   tell_room(environment(me), me->name()+"慢慢地長出了一個小葉。\n", ({me, me}));
+   set_name(RED "一葉瓊草" NOR, ({"qiong cao","cao"}));
    call_out("grow_b", i, me);
    return 1;
 }
@@ -135,8 +135,8 @@ int grow_a(object me)
 int grow_b(object me)
 {
         int i=600+random(600);
-        tell_room(environment(me), me->name()+"慢慢地长出了一个小叶。\n", ({me, me}));
-        set_name(RED "二叶琼草" NOR, ({"qiong cao","cao"}));
+        tell_room(environment(me), me->name()+"慢慢地長出了一個小葉。\n", ({me, me}));
+        set_name(RED "二葉瓊草" NOR, ({"qiong cao","cao"}));
         call_out("grow_c", i, me);
         return 1;
 }
@@ -144,8 +144,8 @@ int grow_b(object me)
 int grow_c(object me)
 {
         int i=800+random(800);
-        tell_room(environment(me), me->name()+"慢慢地长出了一个小叶。\n", ({me, me}));
-        set_name(RED "三叶琼草" NOR, ({"qiong cao","cao"}));
+        tell_room(environment(me), me->name()+"慢慢地長出了一個小葉。\n", ({me, me}));
+        set_name(RED "三葉瓊草" NOR, ({"qiong cao","cao"}));
         call_out("grow_d", i, me);  
         return 1;
 }
@@ -153,8 +153,8 @@ int grow_c(object me)
 int grow_d(object me)
 {
         int i=1000+random(1000);
-        tell_room(environment(me), me->name()+"慢慢地长出了一个小叶。\n", ({me, me}));
-        set_name(RED "四叶琼草" NOR, ({"qiong cao","cao"}));
+        tell_room(environment(me), me->name()+"慢慢地長出了一個小葉。\n", ({me, me}));
+        set_name(RED "四葉瓊草" NOR, ({"qiong cao","cao"}));
         call_out("grow_e", i, me);  
         return 1;
 }
@@ -162,8 +162,8 @@ int grow_d(object me)
 int grow_e(object me)
 {
         int i=1200+random(1000);
-        tell_room(environment(me), me->name()+"慢慢地长出了一个小叶。\n", ({me, me}));
-        set_name(RED "五叶琼草" NOR, ({"qiong cao","cao"}));
+        tell_room(environment(me), me->name()+"慢慢地長出了一個小葉。\n", ({me, me}));
+        set_name(RED "五葉瓊草" NOR, ({"qiong cao","cao"}));
         call_out("grow_f", i, me);  
         return 1;
 }
@@ -171,8 +171,8 @@ int grow_e(object me)
 int grow_f(object me)
 {
         int i=1500+random(1000);
-        tell_room(environment(me), me->name()+"慢慢地长出了一个小叶。\n", ({me, me}));
-        set_name(RED "六叶琼草" NOR, ({"qiong cao","cao"}));
+        tell_room(environment(me), me->name()+"慢慢地長出了一個小葉。\n", ({me, me}));
+        set_name(RED "六葉瓊草" NOR, ({"qiong cao","cao"}));
         call_out("grow_g", i, me);  
         return 1;
 }
@@ -180,9 +180,9 @@ int grow_f(object me)
 int grow_g(object me)
 {
         int i=2000+random(1000);
-        tell_room(environment(me), me->name()+"慢慢地长出了一个小叶。\n", ({me, me}));
-   tell_room(environment(me), me->name()+"周围渐渐笼起一股红光。\n", ({me, me}));
-        set_name(RED "七叶琼芝草" NOR, ({"qiong cao","cao"}));
+        tell_room(environment(me), me->name()+"慢慢地長出了一個小葉。\n", ({me, me}));
+   tell_room(environment(me), me->name()+"周圍漸漸籠起一股紅光。\n", ({me, me}));
+        set_name(RED "七葉瓊芝草" NOR, ({"qiong cao","cao"}));
    set("eatable",1);
         return 1;
 }

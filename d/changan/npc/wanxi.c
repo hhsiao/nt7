@@ -5,15 +5,15 @@ inherit F_DEALER;
 
 void create()
 {
-        set_name("萧万喜", ({ "xiao wanxi", "xiao", "wanxi"}));
-        set("title", "当铺老板");
+        set_name("蕭萬喜", ({ "xiao wanxi", "xiao", "wanxi"}));
+        set("title", "當鋪老闆");
         set("shen_type", 1);
         set("gender", "男性");
         set_max_encumbrance(100000000);
         set("age", 34);
         set("str", 100);
         set("long",
-                "萧万喜是东城萧员外的胞弟。\n");
+                "蕭萬喜是東城蕭員外的胞弟。\n");
         set("no_get_from", 1);
         set_skill("unarmed", 60);
         set_skill("dodge", 60);
@@ -45,7 +45,7 @@ int clean_up()
 
 void die()
 {
-        message_vision("\n$N一声惨叫，死了。\n", this_object());
+        message_vision("\n$N一聲慘叫，死了。\n", this_object());
         destruct(this_object());
 }
 

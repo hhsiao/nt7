@@ -3,11 +3,11 @@ inherit TRANS_ROOM;
 
 void create()
 {
-        set("short", "唐门驿站");
+        set("short", "唐門驛站");
         set("long",
-"这是一间用木板从大木棚隔出的一间小房，装饰的还算不错，一个笑\n"
-"嘻嘻的伙计站在那里，见你进来连忙上来招呼，柜台侧面有一个大门，门\n"
-"虚掩着，里面传来马的嘶鸣声，如果你想坐车，就看看(paizi)吧。\n"
+"這是一間用木板從大木棚隔出的一間小房，裝飾的還算不錯，一個笑\n"
+"嘻嘻的夥計站在那裡，見你進來連忙上來招呼，櫃檯側面有一個大門，門\n"
+"虛掩著，裡面傳來馬的嘶鳴聲，如果你想坐車，就看看(paizi)吧。\n"
 );
 
         set("valid_startroom", 1);
@@ -19,7 +19,7 @@ void create()
                 "/d/tangmen/npc/tmxer" : 1,
         ]));
 
-        set("area", "唐门");
+        set("area", "唐門");
         set("che_id", "tmmache");
 
         setup();

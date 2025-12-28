@@ -4,7 +4,7 @@ inherit NPC;
 void create()
 {
         set_name("容子矩", ({ "rong ziju", "rong", "ziju"}));
-        set("title","无量剑东宗掌门师弟");              
+        set("title","無量劍東宗掌門師弟");              
         set("gender", "男性" );
         set("age", 46);
         set("str", 27);
@@ -23,7 +23,7 @@ void create()
         set("jiali", 40);
         set("unique", 1);
         
-        set("long","他是无量剑东宗的掌门的师弟。\n");
+        set("long","他是無量劍東宗的掌門的師弟。\n");
         set("combat_exp", 350000);
         set("shen", 1000); 
 

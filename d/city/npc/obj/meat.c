@@ -11,7 +11,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ 
         {
-                set("long", "一串烹饪好的香喷喷的烤肉，已经看不出是用什么做的了，只闻到一股股的香气扑鼻而来。\n");
+                set("long", "一串烹飪好的香噴噴的烤肉，已經看不出是用什麼做的了，只聞到一股股的香氣撲鼻而來。\n");
                 set("unit", "串");
                 set("food_remaining", 10);
                 set("food_supply", 50); 

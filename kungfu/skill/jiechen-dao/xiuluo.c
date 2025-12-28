@@ -16,42 +16,42 @@ int perform(object me, object target)
         || !target->is_character()
         || !me->is_fighting(target) 
         || !living(target))
-                return notify_fail("「修罗焰」攻击只能对战斗中的对手使用。\n");
+                return notify_fail("「修羅焰」攻擊只能對戰鬥中的對手使用。\n");
 
       if( !objectp(weapon=query_temp("weapon", me)) || 
           query("skill_type", weapon) != "blade" )
-                return notify_fail("你先找把刀再说吧！\n");
+                return notify_fail("你先找把刀再說吧！\n");
 
 
         if (me->query_skill_mapped("blade") != "jiechen-dao")
-                return notify_fail("你必须使用戒尘刀来施展「修罗焰」。\n");
+                return notify_fail("你必須使用戒塵刀來施展「修羅焰」。\n");
 
         if(me->query_skill("jiechen-dao", 1) < 180 )
-                return notify_fail("你的戒尘刀火候还嫌不够，这「修罗焰」绝技不用也罢。\n");
+                return notify_fail("你的戒塵刀火候還嫌不夠，這「修羅焰」絕技不用也罷。\n");
 
         if(me->query_skill("blade", 1) < 180 )
-                return notify_fail("你的基本刀法还不够娴熟，使不出「修罗焰」绝技。\n");
+                return notify_fail("你的基本刀法還不夠嫻熟，使不出「修羅焰」絕技。\n");
 
         if( (int)me->query_skill("hunyuan-yiqi", 1) < 140 )
-                return notify_fail("你的心意气混元功等级不够，使不出「修罗焰」绝技。\n");
+                return notify_fail("你的心意氣混元功等級不夠，使不出「修羅焰」絕技。\n");
 
         if( (int)me->query_con() < 34)
-                return notify_fail("你的身体还不够强壮，强使「修罗焰」绝技是引火自焚！\n");
+                return notify_fail("你的身體還不夠強壯，強使「修羅焰」絕技是引火自焚！\n");
 
         if ( me->query_skill_mapped("force") != "hunyuan-yiqi")
-           return notify_fail("你现在这内功平平无奇，如何使得出「修罗焰」绝技来！？\n"); 
+           return notify_fail("你現在這內功平平無奇，如何使得出「修羅焰」絕技來！？\n"); 
 
         if( query("max_neili", me)<3000 )
-           return notify_fail("你的内力修为不够，这「修罗焰」绝技不用也罢。\n");
+           return notify_fail("你的內力修為不夠，這「修羅焰」絕技不用也罷。\n");
 
         if( query("neili", me)<1000 )
-           return notify_fail("以你目前的内力来看，这「修罗焰」绝技不用也罢。\n");
+           return notify_fail("以你目前的內力來看，這「修羅焰」絕技不用也罷。\n");
 
         addn("neili", -300, me);
  
-        message_vision(HIR "\n突然$N将手中武器从右手交到左手，运出十二分真力，脸色顿时通红，\n"
-                           "宛如修罗降世。刀刃在内力的催动下立刻攻势大胜，\n"
-                           "向着$n直劈而下！\n" NOR, me, target);      
+        message_vision(HIR "\n突然$N將手中武器從右手交到左手，運出十二分真力，臉色頓時通紅，\n"
+                           "宛如修羅降世。刀刃在內力的催動下立刻攻勢大勝，\n"
+                           "向著$n直劈而下！\n" NOR, me, target);      
 
         i = me->query_skill("force") / 2 * (3+random(4));        
         jiali=query("jiali", me);

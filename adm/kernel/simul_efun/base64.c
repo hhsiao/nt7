@@ -1,7 +1,7 @@
 // /adm/simul_efun/base64.c
 // By find.
 
-// 编码
+// 編碼
 string base64_encode(string ascii)
 {
         if( !stringp(ascii) || (ascii == "") )
@@ -10,7 +10,7 @@ string base64_encode(string ascii)
         return BASE64_D->encode(ascii);
 }
 
-// 解码
+// 解碼
 string base64_decode(string b64)
 {
         if( !stringp(b64) || (b64 == "") )

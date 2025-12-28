@@ -10,7 +10,7 @@ int exert(object me, object target)
 
         if( query("neili", me)<300 )
         {
-                write("你的内力不足，无法运满一个周天。\n");
+                write("你的內力不足，無法運滿一個周天。\n");
                 return 1;
         }
 
@@ -18,19 +18,19 @@ int exert(object me, object target)
 
         if (me == target)
         {
-                message_vision(HIW "$N" HIW "深吸一口气，又缓缓的吐了出来。\n" NOR, me);
-                tell_object(me, YEL "你默运" + force_name +
-                            "，开始排除身体中的异常症状。\n" NOR);
+                message_vision(HIW "$N" HIW "深吸一口氣，又緩緩的吐了出來。\n" NOR, me);
+                tell_object(me, YEL "你默運" + force_name +
+                            "，開始排除身體中的異常症狀。\n" NOR);
                  addn("neili", -100, me);
         } else
         {
-                message_vision(HIW "$N" HIW "深吸一口气，将手掌粘到$n"
-                               HIW "的背后。\n" NOR,
+                message_vision(HIW "$N" HIW "深吸一口氣，將手掌粘到$n"
+                               HIW "的背後。\n" NOR,
                                me, target);
-                tell_object(me, YEL "你默运" + force_name + "，开始帮助" +
-                            target->name() + "排除身体中的异常症状。\n" NOR);
+                tell_object(me, YEL "你默運" + force_name + "，開始幫助" +
+                            target->name() + "排除身體中的異常症狀。\n" NOR);
                 tell_object(target, YEL + me->name() +
-                            "正在运功帮助你排除身体中的异常症状。\n" NOR);
+                            "正在運功幫助你排除身體中的異常症狀。\n" NOR);
                 addn("neili", -250, me);
         }
 
@@ -39,42 +39,42 @@ int exert(object me, object target)
         {
                 target->clear_condition();
                 
-                tell_object(target, YEL + me->name() + "正在运功将你身体中的异常症状尽数排除。\n" NOR);
+                tell_object(target, YEL + me->name() + "正在運功將你身體中的異常症狀盡數排除。\n" NOR);
                 if (me == target)
                 {
-                        tell_object(me, WHT "你调息完毕，将内力收回丹"
+                        tell_object(me, WHT "你調息完畢，將內力收回丹"
                                         "田。\n" NOR);
                         me->start_busy(1 + random(2));
                 } else
                 {
-                        tell_object(me, WHT "你调息完毕，将内力收回"
+                        tell_object(me, WHT "你調息完畢，將內力收回"
                                         "丹田。\n" NOR);
-                        tell_object(target, WHT "你觉得内息一畅，看来是" +
+                        tell_object(target, WHT "你覺得內息一暢，看來是" +
                                             me->name() + "收功了。\n");
                         me->start_busy(2 + random(3));
                         if (! target->is_busy())
                                 target->start_busy(1 + random(2));
-                        message_vision(WHT "$N将手掌从$n背后收了回"
-                                       "来。\n" NOR, me, target);
+                        message_vision(WHT "$N將手掌從$n背後收了回"
+                                       "來。\n" NOR, me, target);
                 }
         }
         else
         {
                 if (me == target)
                 {
-                        tell_object(me, "结果你没发现自己有任何异常。\n");
-                        message_vision(WHT "$N" WHT "眉角微微一动，随即恢"
-                                       "复正常。\n" NOR, me);
+                        tell_object(me, "結果你沒發現自己有任何異常。\n");
+                        message_vision(WHT "$N" WHT "眉角微微一動，隨即恢"
+                                       "復正常。\n" NOR, me);
                         me->start_busy(1);
                 } else
                 {
-                        tell_object(me, "结果你没发现" + target->name() +
-                                   "有任何异常。\n");
-                        tell_object(target, "你觉得内息一畅，看来是" +
-                                    me->name() + "收功了，大概你本来没有什"
-                                    "么异常吧。\n");
-                        message_vision(WHT "$N" WHT "将手掌从$n背后收了"
-                                       "回来。\n" NOR, me, target);
+                        tell_object(me, "結果你沒發現" + target->name() +
+                                   "有任何異常。\n");
+                        tell_object(target, "你覺得內息一暢，看來是" +
+                                    me->name() + "收功了，大概你本來沒有什"
+                                    "麼異常吧。\n");
+                        message_vision(WHT "$N" WHT "將手掌從$n背後收了"
+                                       "回來。\n" NOR, me, target);
                         me->start_busy(2);
                         if (! target->is_busy())
                                 target->start_busy(1);

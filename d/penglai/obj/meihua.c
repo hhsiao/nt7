@@ -11,7 +11,7 @@ void create()
 	else*/ {
 		set("unit", "朵");
 		set("value", 1);
-		set("long", HIY "这是一朵梅花，花瓣清香令人陶醉。\n" NOR);
+		set("long", HIY "這是一朵梅花，花瓣清香令人陶醉。\n" NOR);
 	}
 
 	setup();

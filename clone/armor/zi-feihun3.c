@@ -5,13 +5,13 @@ inherit HANDS;
 
 void create()
 {
-        set_name( NOR + MAG "紫雷飞魂" NOR, ({ "zilei feihun3", "zilei" }) );
+        set_name( NOR + MAG "紫雷飛魂" NOR, ({ "zilei feihun3", "zilei" }) );
         set_weight(4000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-                set("unit", "双");
+                set("unit", "雙");
                 set("value", 2000000);
                 set("armor_prop/armor", 100);
                                 set("armor_prop/int", 8);

@@ -34,55 +34,55 @@ if (me->query("id")!=query("usr_id")) return;
         switch (socket) {
         case "ruby":
                 if (mode == 1)
-                        message_vision(HIR + query("name") + HIR"射出一道耀眼的红光，$N在神光的沐浴下感到体力异常的充沛！\n"NOR, me);
+                        message_vision(HIR + query("name") + HIR"射出一道耀眼的紅光，$N在神光的沐浴下感到體力異常的充沛！\n"NOR, me);
                 else
-                        message_vision(HIR"随着神光渐渐的隐去，$N的体力又恢复正常了。\n"NOR, me);
+                        message_vision(HIR"隨著神光漸漸的隱去，$N的體力又恢復正常了。\n"NOR, me);
                 me->add("max_qi", me->query("max_neili") * socket_level * mode / 10);
                 me->add("eff_qi", me->query("max_neili") * socket_level * mode / 10);
                 me->add("qi", me->query("max_neili") * socket_level * mode / 10);
                 break;
         case "topaz":
                 if (mode == 1)
-                        message_vision(HIY + query("name") + HIY"射出一道夺目的黄光，$N在神光的沐浴下感到精力异常的充沛！\n"NOR, me);
+                        message_vision(HIY + query("name") + HIY"射出一道奪目的黃光，$N在神光的沐浴下感到精力異常的充沛！\n"NOR, me);
                 else
-                        message_vision(HIY"随着神光渐渐的隐去，$N的精力又恢复正常了。\n"NOR, me);
+                        message_vision(HIY"隨著神光漸漸的隱去，$N的精力又恢復正常了。\n"NOR, me);
                 me->add("max_jing", me->query("max_neili") * socket_level * mode / 30);
                 me->add("eff_jing", me->query("max_neili") * socket_level * mode / 30);
                 me->add("jing", me->query("max_neili") * socket_level * mode / 30);
                 break;
         case "sapphire":
                 if (mode == 1)
-                        message_vision(HIB + query("name") + HIB"射出一道柔和的蓝光，$N在神光的沐浴下感到内力异常的充沛！\n"NOR, me);
+                        message_vision(HIB + query("name") + HIB"射出一道柔和的藍光，$N在神光的沐浴下感到內力異常的充沛！\n"NOR, me);
                 else
-                        message_vision(HIB"随着神光渐渐的隐去，$N的内力又恢复正常了。\n"NOR, me);
+                        message_vision(HIB"隨著神光漸漸的隱去，$N的內力又恢復正常了。\n"NOR, me);
                 me->add("neili", me->query("max_neili") * socket_level * mode / 10);
                 break;
         case "emerald":
                 if (mode == 1)
-                        message_vision(HIG"忽然从" + query("name") + HIG"里幻化出一个身披绿纱的幸运女神围绕着$N的身边！\n"NOR, me);
+                        message_vision(HIG"忽然從" + query("name") + HIG"裡幻化出一個身披綠紗的幸運女神圍繞著$N的身邊！\n"NOR, me);
                 else
-                        message_vision(HIG"绿光一闪，$N的幸运女神就不见了。\n"NOR, me);
+                        message_vision(HIG"綠光一閃，$N的幸運女神就不見了。\n"NOR, me);
                 me->add_temp("apply/karey", 10 * socket_level * mode);
                 break;
         case "amethyst":
                 if (mode == 1)
-                        message_vision(MAG"一片紫色云雾迅速从" + query("name") + MAG"中涌出，转眼间就已经把$N托了起来！\n"NOR, me);
+                        message_vision(MAG"一片紫色雲霧迅速從" + query("name") + MAG"中湧出，轉眼間就已經把$N託了起來！\n"NOR, me);
                 else
-                        message_vision(MAG"紫色云雾被风吹散了，$N的身形又显现了出来。\n"NOR, me);
+                        message_vision(MAG"紫色雲霧被風吹散了，$N的身形又顯現了出來。\n"NOR, me);
                 me->add_temp("apply/dex", 10 * socket_level * mode);
                 break;
         case "diamond":
                 if (mode == 1)
-                        message_vision(HIW"「哗」，" + query("name") + HIW"划出一道闪电直冲天际，$N刹时感到体内充满了力量！\n"NOR, me);
+                        message_vision(HIW"「譁」，" + query("name") + HIW"劃出一道閃電直衝天際，$N剎時感到體內充滿了力量！\n"NOR, me);
                 else
-                        message_vision(HIW"渐渐的$N的神色又恢复了正常。\n"NOR, me);
+                        message_vision(HIW"漸漸的$N的神色又恢復了正常。\n"NOR, me);
                 me->add_temp("apply/str", 10 * socket_level * mode);
                 break;
         case "skull":
                 if (mode == 1)
-                        message_vision(WHT"$N忽然感到一股奇异的力量围绕着$P，隐隐之间只觉得充斥着莫明的魔力！\n"NOR, me);
+                        message_vision(WHT"$N忽然感到一股奇異的力量圍繞著$P，隱隱之間只覺得充斥著莫明的魔力！\n"NOR, me);
                 else
-                        message_vision(WHT"$N" + query("name") + WHT"中的咒语渐渐失去了效用！\n"NOR, me);
+                        message_vision(WHT"$N" + query("name") + WHT"中的咒語漸漸失去了效用！\n"NOR, me);
                 me->add_temp("apply/magic", 10 * socket_level * mode);
                 break;
         }

@@ -10,13 +10,13 @@ int do_decide();
 
 void create()
 {
-        set_name("黄真", ({ "huang zhen", "zhen", "huang" }));
-        set("title", HIW"商业协会"HIR"会长"NOR);
+        set_name("黃真", ({ "huang zhen", "zhen", "huang" }));
+        set("title", HIW"商業協會"HIR"會長"NOR);
         set("long", @LONG
-黄真是神剑仙猿穆人清的开门大弟子，也是这
-个钱庄的老板，管理襄阳军饷。
+黃真是神劍仙猿穆人清的開門大弟子，也是這
+個錢莊的老闆，管理襄陽軍餉。
 LONG);
-        set("nickname", HIY "铜笔铁算盘" NOR);
+        set("nickname", HIY "銅筆鐵算盤" NOR);
         set("gender", "男性");
         set("age", 59);
         set("attitude", "peaceful");
@@ -66,15 +66,15 @@ LONG);
         prepare_skill("strike", "hunyuan-zhang");
 
         set("inquiry", ([
-                "入会"     : "在我这里，可以加入(" HIY "join" NOR +
-                             CYN ")商业协会。\n" NOR,
-                "加入"     : "在我这里，可以加入(" HIY "join" NOR +
-                             CYN ")商业协会。\n" NOR,
-                "商业协会" : "在我这里，可以加入(" HIY "join" NOR +
-                             CYN ")商业协会。\n" NOR,
+                "入會"     : "在我這裡，可以加入(" HIY "join" NOR +
+                             CYN ")商業協會。\n" NOR,
+                "加入"     : "在我這裡，可以加入(" HIY "join" NOR +
+                             CYN ")商業協會。\n" NOR,
+                "商業協會" : "在我這裡，可以加入(" HIY "join" NOR +
+                             CYN ")商業協會。\n" NOR,
         ]));
 
-        create_family("华山派", 21, "弟子");
+        create_family("華山派", 21, "弟子");
 
         setup();
         carry_object("/clone/misc/cloth")->wear();
@@ -101,20 +101,20 @@ int do_join(string arg)
 {
         object me = this_player();
 
-        if (! arg || arg != "商业协会")
-                return notify_fail(CYN "黄真一楞，说道：你要加入什么？我"
-                                   "这里是商业协会。\n" NOR);
+        if (! arg || arg != "商業協會")
+                return notify_fail(CYN "黃真一楞，說道：你要加入什麼？我"
+                                   "這裡是商業協會。\n" NOR);
 
         if( query("is_vendor", me) )
-                return notify_fail(CYN "黄真皱了皱眉，说道：你不是已经加"
-                                   "入商业协会了么？\n" NOR);
+                return notify_fail(CYN "黃真皺了皺眉，說道：你不是已經加"
+                                   "入商業協會了麼？\n" NOR);
 
         if( query("bad_vendor", me) )
-                return notify_fail(CYN "黄真冷笑一声，说道：既然你已经脱"
-                                   "离了商业协会，又回来作甚？\n" NOR);
+                return notify_fail(CYN "黃真冷笑一聲，說道：既然你已經脫"
+                                   "離了商業協會，又回來作甚？\n" NOR);
 
-        tell_object(me, CYN "\n黄真点了点头，说道：你真的打算(" HIY "dec"
-                        "ide" NOR + CYN ")加入商业协会么？可考虑清楚了？"
+        tell_object(me, CYN "\n黃真點了點頭，說道：你真的打算(" HIY "dec"
+                        "ide" NOR + CYN ")加入商業協會麼？可考慮清楚了？"
                         "\n" NOR);
         set_temp("want_join", 1, me);
         return 1;
@@ -124,16 +124,16 @@ int do_unjoin(string arg)
 {
         object me = this_player();
 
-        if (! arg || arg != "商业协会")
-                return notify_fail(CYN "黄真皱了皱眉，说道：你打算脱离什"
-                                   "么？说话不清不楚的。\n" NOR);
+        if (! arg || arg != "商業協會")
+                return notify_fail(CYN "黃真皺了皺眉，說道：你打算脫離什"
+                                   "麼？說話不清不楚的。\n" NOR);
 
         if( !query("is_vendor", me) )
-                return notify_fail(CYN "黄真冷笑一声，没理你。\n" NOR);
+                return notify_fail(CYN "黃真冷笑一聲，沒理你。\n" NOR);
 
-        tell_object(me, CYN "\n黄真叹了口气，说道：如果脱离商业协会，以后"
+        tell_object(me, CYN "\n黃真嘆了口氣，說道：如果脫離商業協會，以後"
                         "可不能反悔。你真打算(" HIY "decide" NOR + CYN ")"
-                        "这么做么？\n" NOR);
+                        "這麼做麼？\n" NOR);
         set_temp("want_tuoli", 1, me);
         return 1;
 }
@@ -146,8 +146,8 @@ int do_decide()
 
         if( query_temp("want_join", me) )
         {
-                message_vision(HIC "$N" HIC "对着$n" HIC "微笑道：如今世"
-                               "道钱乃万能之物，以后好好干吧。\n" NOR,
+                message_vision(HIC "$N" HIC "對著$n" HIC "微笑道：如今世"
+                               "道錢乃萬能之物，以後好好幹吧。\n" NOR,
                                this_object(), me);
 
                 set("is_vendor", 1, me);
@@ -164,8 +164,8 @@ int do_decide()
         } else
         if( query_temp("want_tuoli", me) )
         {
-                message_vision(HIC "$N" CYN "对着$n" HIC "点点头，人各有"
-                               "志，从此以后你我再无瓜葛。\n" NOR,
+                message_vision(HIC "$N" CYN "對著$n" HIC "點點頭，人各有"
+                               "志，從此以後你我再無瓜葛。\n" NOR,
                                this_object(), me);
 
                 delete("is_vendor", me);
@@ -177,15 +177,15 @@ int do_decide()
                 set("profession", pro, me);
                 if (objectp(ob = present("shang ling", me)));
                 {
-                        message_vision(HIR "$N" HIR "将$n" HIR "的" NOR +
-                                       ob->name(1) + HIR "注销了。\n" NOR,
+                        message_vision(HIR "$N" HIR "將$n" HIR "的" NOR +
+                                       ob->name(1) + HIR "註銷了。\n" NOR,
                                        this_object(), me);
                         destruct(ob);
                 }
                 return 1;
          }
 
-         return notify_fail(CYN "黄真瞄了你一眼，皱了皱眉，没理你。\n" NOR);
+         return notify_fail(CYN "黃真瞄了你一眼，皺了皺眉，沒理你。\n" NOR);
 }
 
 int do_yao()
@@ -193,28 +193,28 @@ int do_yao()
         object ob, me = this_player();
 
         if( query("bad_vendor", me) )
-                return notify_fail(CYN "黄真不耐烦道：走开，走开。你又回"
-                                   "来作甚？\n" NOR);
+                return notify_fail(CYN "黃真不耐煩道：走開，走開。你又回"
+                                   "來作甚？\n" NOR);
 
         if( !query("is_vendor", me) )
-                return notify_fail(CYN "黄真瞄了你一眼，没理你。\n" NOR);
+                return notify_fail(CYN "黃真瞄了你一眼，沒理你。\n" NOR);
 
         if (present("shang ling", me))
-                return notify_fail(CYN "黄真皱了皱眉道：我的天，你连这都"
-                                   "要骗？果然是奸商的料。\n" NOR);
+                return notify_fail(CYN "黃真皺了皺眉道：我的天，你連這都"
+                                   "要騙？果然是奸商的料。\n" NOR);
 
         if( query_temp("shang-ling", me) )
-                return notify_fail(CYN "黄真皱眉道：刚才我不是才给了你一"
-                                   "张么？那么快就弄丢了？\n" NOR);
+                return notify_fail(CYN "黃真皺眉道：剛才我不是才給了你一"
+                                   "張麼？那麼快就弄丟了？\n" NOR);
 
         if( SHOP_D->is_owner(query("id", me)) )
-                return notify_fail(CYN "黄真微笑道：你现在不是已经开店了"
-                                   "么？还要这个干嘛。\n" NOR);
+                return notify_fail(CYN "黃真微笑道：你現在不是已經開店了"
+                                   "麼？還要這個幹嘛。\n" NOR);
 
         ob = new("/clone/misc/shang-ling");
         ob->move(this_object());
         set_temp("shang-ling", 1, me);
         command("give shang ling to "+query("id", me));
-        command("say 吃饭的家伙自己保管好，别老是来烦我。");
+        command("say 吃飯的傢伙自己保管好，別老是來煩我。");
         return 1;
 }

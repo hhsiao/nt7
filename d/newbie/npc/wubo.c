@@ -1,4 +1,4 @@
-// 有机缘的话，梦回古村，重新得到下述skill的奥义 ，成为天下无敌的组合技能
+// 有機緣的話，夢迴古村，重新得到下述skill的奧義 ，成為天下無敵的組合技能
 inherit NPC;
 inherit F_MASTER;
 
@@ -8,10 +8,10 @@ void create()
 {
         set_name("武伯", ({ "wu bo", "wu", "bo" }) );
         //set("nickname", HIY "新手福星" NOR);
-        set("title", HIC "武术教练" NOR);
+        set("title", HIC "武術教練" NOR);
         set("gender", "男性");
         set("age", 30);
-        set("long", "这是古村的武术教练，你可以拜他为师（bai wuqing zi）学习武功。\n");
+        set("long", "這是古村的武術教練，你可以拜他為師（bai wuqing zi）學習武功。\n");
         set("attitude", "peaceful");
 
         set("str", 26);
@@ -52,8 +52,8 @@ void create()
         set_temp("apply/armor", 100);
 
         set("inquiry", ([
-               "老村长"   :  "他是我尊师，有什么帮助就找他。\n",
-               "花伯"     :  "他是我师兄，你要出村就找他！\n",
+               "老村長"   :  "他是我尊師，有什麼幫助就找他。\n",
+               "花伯"     :  "他是我師兄，你要出村就找他！\n",
         ]));
 
         create_family("古村", 1, "弟子");
@@ -71,7 +71,7 @@ void attempt_apprentice(object ob)
         if( query("newbie_quest/leixing", ob) != "baishi" )
         {
              command("shake");
-             command("say 没有我尊师老村长的允许，我可不敢收你为徒！");
+             command("say 沒有我尊師老村長的允許，我可不敢收你為徒！");
              return;
         }
         */  
@@ -79,7 +79,7 @@ void attempt_apprentice(object ob)
         if( query("family", ob) )
         {
              command("yi");
-             command("say 你师傅是谁？");
+             command("say 你師傅是誰？");
              return;
         }
 
@@ -93,8 +93,8 @@ void attempt_apprentice(object ob)
 
 void init()
 {
-        tell_object(this_player(), HIG "拜师请使用指令 bai 师傅ID(bai wu bo)。\n" NOR);
-        tell_object(this_player(), HIY "查看师傅技能请使用 skills 师傅ID(skills wu bo)。\n" NOR);
+        tell_object(this_player(), HIG "拜師請使用指令 bai 師傅ID(bai wu bo)。\n" NOR);
+        tell_object(this_player(), HIY "查看師傅技能請使用 skills 師傅ID(skills wu bo)。\n" NOR);
 }
 
 void unconcious()

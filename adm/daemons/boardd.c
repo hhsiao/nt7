@@ -3,41 +3,41 @@
 // Updated by jjgod. 2002/06/16.
 // Finishd by jjgod. 2002/06/28.
 
-// databased.c 提供的函数：(* 为尚未完成)
+// databased.c 提供的函數：(* 為尚未完成)
 //
 // 版面管理：
-//   int    query_forum_id()       - 查询版面 ID
-//   mixed  query_forum_info()     - 查询版面信息
-//   string query_mud_name()       - 查询用户名('阿福-jjgod' 形式)
-//   string query_user_name()      - 查询用户 ID('jjgod' 形式)
-//   int    query_user_id()        - 查询用户编号
-//   int    query_post_id()        - 查询文章编号
-//   int    query_topic_id()       - 查询主题编号
+//   int    query_forum_id()       - 查詢版面 ID
+//   mixed  query_forum_info()     - 查詢版面信息
+//   string query_mud_name()       - 查詢用戶名('阿福-jjgod' 形式)
+//   string query_user_name()      - 查詢用戶 ID('jjgod' 形式)
+//   int    query_user_id()        - 查詢用戶編號
+//   int    query_post_id()        - 查詢文章編號
+//   int    query_topic_id()       - 查詢主題編號
 
 // 文章管理：
-//   mixed *query_all_topics()     - 返回所有主题(不包括回复) -+
-//   mixed *query_all_posts()      - 返回所有文章(包括回复)   -+- 二者格式不同
-//   mixed *query_post_info()      - 返回文章内容(根据 POST_ID)
-//   mixed *query_topic_info()     - 返回主题内容(根据 TOPIC_ID)
-//   mixed *query_new_post()       - 返回未读文章(根据不同浏览模式返回主题或者所有文章)
-//   mixed *query_post()           - 根据用户指定的编号找到应读的文章
-//   int    query_topic_number()   - 返回主题的编号
-//   int   *query_number_post()    - 根据序号找到文章的 POST_ID
-//   int   *query_number_topic()   - 根据序号找到主题的 TOPIC_ID / POST_ID
-//   mixed *query_post_data()      - 返回指定文章数据
+//   mixed *query_all_topics()     - 返回所有主題(不包括回覆) -+
+//   mixed *query_all_posts()      - 返回所有文章(包括回覆)   -+- 二者格式不同
+//   mixed *query_post_info()      - 返回文章內容(根據 POST_ID)
+//   mixed *query_topic_info()     - 返回主題內容(根據 TOPIC_ID)
+//   mixed *query_new_post()       - 返回未讀文章(根據不同瀏覽模式返回主題或者所有文章)
+//   mixed *query_post()           - 根據用戶指定的編號找到應讀的文章
+//   int    query_topic_number()   - 返回主題的編號
+//   int   *query_number_post()    - 根據序號找到文章的 POST_ID
+//   int   *query_number_topic()   - 根據序號找到主題的 TOPIC_ID / POST_ID
+//   mixed *query_post_data()      - 返回指定文章數據
 
-// 文章发表、回复与删除：
-//   int   delete_topic()          - 删除指定编号的主题
-//   int   delete_post()           - 删除指定编号的文章
-//   int   reply_topic()           - 回复主题
-//   int   add_topic_view()        - 增加主题的浏览次数
-//   int   post_new_topic()        - 发表新主题
+// 文章發表、回覆與刪除：
+//   int   delete_topic()          - 刪除指定編號的主題
+//   int   delete_post()           - 刪除指定編號的文章
+//   int   reply_topic()           - 回覆主題
+//   int   add_topic_view()        - 增加主題的瀏覽次數
+//   int   post_new_topic()        - 發表新主題
 
 // #pragma optimize
 // #pragma save_binary
 
 // #ifdef DB_SAVE
-// 暂时关闭
+// 暫時關閉
 #ifdef DB_SAVE_A
 
 #include <ansi.h>
@@ -95,7 +95,7 @@ protected int connect_to_database()
 
         n = db_connect(DB_HOST, DATABASE, DB_USER);
 
-        if (intp(n) && (n > 0))  // 连接成功
+        if (intp(n) && (n > 0))  // 連接成功
 #ifdef STATIC_LINK
         {
                 db_handle = n;
@@ -143,11 +143,11 @@ protected void create()
 
 protected int valid_caller()
 {
-        // ! 注意，正式站点一定要把下面的语句删除 !
+        // ! 注意，正式站點一定要把下面的語句刪除 !
 #ifdef DEBUG
         return 1;
 #else
-        // ! 注意，正式站点一定要把上面的语句删除 !
+        // ! 注意，正式站點一定要把上面的語句刪除 !
 
         if (! previous_object() ||
            (previous_object() != find_object(SIMUL_EFUN_OB)) &&
@@ -222,7 +222,7 @@ int query_forum_id(object board)
         return forum_id;
 }
 
-// 查询版面信息
+// 查詢版面信息
 mixed query_forum_info(object board, string key)
 {
         int forum_id;
@@ -271,8 +271,8 @@ mixed query_forum_info(object board, string key)
         return ret;
 }
 
-// 若没有作用数据库保存用户数据的工作，就要修改 NAME_D 以提供类似的
-// 把 id 转换为 name 的功能
+// 若沒有作用數據庫保存用戶數據的工作，就要修改 NAME_D 以提供類似的
+// 把 id 轉換為 name 的功能
 string query_mud_name(int user_id)
 {
         string user_name;
@@ -289,8 +289,8 @@ string query_mud_name(int user_id)
                        user_name);
 }
 
-// 把 Web 数据库保存的用户 id(类似 1、2 这样的)转换为 mud 中的 id，
-// 即 Web 论坛上的用户名
+// 把 Web 數據庫保存的用戶 id(類似 1、2 這樣的)轉換為 mud 中的 id，
+// 即 Web 論壇上的用戶名
 string query_user_name(int user_id)
 {
         int db;
@@ -329,7 +329,7 @@ string query_user_name(int user_id)
         return ret;
 }
 
-// 返回所有的主题(回复从属于主题，另置)
+// 返回所有的主題(回覆從屬於主題，另置)
 varargs mixed *query_all_topics(object board, int raw)
 {
         int forum_id;
@@ -378,8 +378,8 @@ varargs mixed *query_all_topics(object board, int raw)
         return res;
 }
 
-// 查询一个 board 所有的文章(包括回复)
-// ({ 文章编号, 所属主题编号, 作者号, 发表时间 })
+// 查詢一個 board 所有的文章(包括回覆)
+// ({ 文章編號, 所屬主題編號, 作者號, 發表時間 })
 mixed *query_all_posts(object board)
 {
         int forum_id;
@@ -426,8 +426,8 @@ mixed *query_all_posts(object board)
         return res;
 }
 
-// 查询一篇文章的详细信息
-// ({ 标题, BBCODE 鉴定号, 内容 })
+// 查詢一篇文章的詳細信息
+// ({ 標題, BBCODE 鑑定號, 內容 })
 varargs mixed *query_post_info(int post_id, int raw)
 {
         int db;
@@ -466,8 +466,8 @@ varargs mixed *query_post_info(int post_id, int raw)
         return ret;
 }
 
-// 查询一篇主题的详细信息
-// ({ 标题, 编号, 发表者编号, 发表时间, 浏览次数, 回复数, 首贴编号 })
+// 查詢一篇主題的詳細信息
+// ({ 標題, 編號, 發表者編號, 發表時間, 瀏覽次數, 回覆數, 首貼編號 })
 varargs mixed *query_topic_info(int topic_id, int raw)
 {
         int db;
@@ -507,8 +507,8 @@ varargs mixed *query_topic_info(int topic_id, int raw)
         return ret;
 }
 
-// 查询一个主题所有的回复(不包括首贴)
-// ({ 文章编号, 所属主题编号, 作者号, 发表时间 })
+// 查詢一個主題所有的回覆(不包括首貼)
+// ({ 文章編號, 所屬主題編號, 作者號, 發表時間 })
 mixed *query_all_replies(int topic_id, int first_post_id)
 {
         int db, i;
@@ -552,7 +552,7 @@ mixed *query_all_replies(int topic_id, int first_post_id)
         return res;
 }
 
-// 返回一篇主题的编号
+// 返回一篇主題的編號
 int query_topic_number(object board, int topic_id)
 {
         int num, i, max;
@@ -568,7 +568,7 @@ int query_topic_number(object board, int topic_id)
         }
 }
 
-// 根据用户名查找用户 id
+// 根據用戶名查找用戶 id
 int query_user_id(string user_name)
 {
         int db;
@@ -606,7 +606,7 @@ int query_user_id(string user_name)
         return ret;
 }
 
-// 返回主题的编号
+// 返回主題的編號
 int query_topic_id(int forum_id, string title)
 {
         int db;
@@ -648,7 +648,7 @@ int query_topic_id(int forum_id, string title)
         return ret;
 }
 
-// 返回文章的编号
+// 返回文章的編號
 int query_post_id(int forum_id, int post_time)
 {
         int db;
@@ -690,7 +690,7 @@ int query_post_id(int forum_id, int post_time)
         return ret;
 }
 
-// 把 "127.0.0.1" 转换为 7F000001 这样的 16 进制地址
+// 把 "127.0.0.1" 轉換為 7F000001 這樣的 16 進制地址
 string convert_to_ip(string ip)
 {
         array ips;
@@ -705,7 +705,7 @@ string convert_to_ip(string ip)
         return hex_ip;
 }
 
-// 发表新主题
+// 發表新主題
 int post_new_topic(object board, string title, string name, string text, string ip)
 {
         int db;
@@ -738,7 +738,7 @@ int post_new_topic(object board, string title, string name, string text, string 
                 return 0;
 #endif
 
-        // 插入主题
+        // 插入主題
         t = time();
         sql = sprintf("INSERT INTO %s (topic_title, topic_poster, topic_time, forum_id)"
                       " VALUES (\"%s\", %d, %d, %d)",
@@ -758,7 +758,7 @@ int post_new_topic(object board, string title, string name, string text, string 
         if (! intp(ret))
                 log_error("post_new_topic.db_exec", ret);
 
-        // 插入帖子内容
+        // 插入帖子內容
         post_id = query_post_id(forum_id, t);
         sql = sprintf("INSERT INTO %s (post_id, post_subject, bbcode_uid, post_text)"
                       " VALUES (%d, \"%s\", \"\", \"%s\")",
@@ -768,7 +768,7 @@ int post_new_topic(object board, string title, string name, string text, string 
         if (! intp(ret))
                 log_error("post_new_topic.db_exec", ret);
 
-        // 设定首贴 id
+        // 設定首貼 id
         sql = sprintf("UPDATE %s SET topic_first_post_id = %d, topic_last_post_id ="
                       " %d WHERE topic_id = %d", TOPICS_TABLE, post_id, post_id, topic_id);
         ret = db_exec(db, sql);
@@ -776,7 +776,7 @@ int post_new_topic(object board, string title, string name, string text, string 
         if (! intp(ret))
                 log_error("post_new_topic.db_exec", ret);
 
-        // 增加用户发帖数
+        // 增加用戶發帖數
         sql = sprintf("UPDATE %s SET user_posts = user_posts + 1 WHERE user_id ="
                       " %d", USERS_TABLE, poster_id);
         ret = db_exec(db, sql);
@@ -784,7 +784,7 @@ int post_new_topic(object board, string title, string name, string text, string 
         if (! intp(ret))
                 log_error("post_new_topic.db_exec", ret);
 
-        // 增加版面主题、文章数
+        // 增加版面主題、文章數
         sql = sprintf("UPDATE %s SET forum_posts = forum_posts + 1, "
                       "forum_topics = forum_topics + 1, forum_last_post_id = "
                       "%d WHERE forum_id = %d",
@@ -800,7 +800,7 @@ int post_new_topic(object board, string title, string name, string text, string 
         return 1;
 }
 
-// 增加主题的浏览次数
+// 增加主題的瀏覽次數
 varargs int add_topic_view(int topic_id, int count)
 {
         int db;
@@ -813,7 +813,7 @@ varargs int add_topic_view(int topic_id, int count)
         if (! intp(topic_id) || ! topic_id)
                 return 0;
 
-        // 默认增加一次
+        // 默認增加一次
         if (! count) count = 1;
 
         if (count <= 0)
@@ -842,7 +842,7 @@ varargs int add_topic_view(int topic_id, int count)
         return ret;
 }
 
-// 查询指定 post_id 的文章数据
+// 查詢指定 post_id 的文章數據
 mixed *query_post_data(int post_id)
 {
         int db;
@@ -881,7 +881,7 @@ mixed *query_post_data(int post_id)
         return ret;
 }
 
-// 根据用户指定的编号找到主题的 id
+// 根據用戶指定的編號找到主題的 id
 int *query_number_topic(object board, int num, int mode)
 {
         mixed *posts;
@@ -899,13 +899,13 @@ int *query_number_topic(object board, int num, int mode)
             num < 0 && -num > max)
                 return 0;
 
-        // 若 num < 0，则返回倒数的主题 id
+        // 若 num < 0，則返回倒數的主題 id
         if (num < 0) return posts[max + num][TOPIC_ID];
 
         return posts[num][TOPIC_ID];
 }
 
-// 根据用户指定的编号找到文章的 id
+// 根據用戶指定的編號找到文章的 id
 int *query_number_post(object board, int num)
 {
         mixed *posts;
@@ -922,13 +922,13 @@ int *query_number_post(object board, int num)
             num < 0 && -num > max - 1)
                 return 0;
 
-        // 若 num < 0，则返回倒数的主题 id
+        // 若 num < 0，則返回倒數的主題 id
         if (num < 0) return posts[max + num][TOPIC_ID];
 
         return posts[num][POST_ID];
 }
 
-// 回复主题
+// 回覆主題
 int reply_topic(object board, int topic_id, string name, string text, string ip)
 {
         int db;
@@ -973,7 +973,7 @@ int reply_topic(object board, int topic_id, string name, string text, string ip)
         if (! intp(ret))
                 log_error("reply_topic.db_exec", ret);
 
-        // 插入帖子内容
+        // 插入帖子內容
         post_id = query_post_id(forum_id, t);
         sql = sprintf("INSERT INTO %s (post_id, post_subject, bbcode_uid, post_text)"
                       " VALUES (%d, \"%s\", \"\", \"%s\")",
@@ -983,7 +983,7 @@ int reply_topic(object board, int topic_id, string name, string text, string ip)
         if (! intp(ret))
                 log_error("reply_topic.db_exec", ret);
 
-        // 设定尾贴 id，回复加一，时间更新
+        // 設定尾貼 id，回覆加一，時間更新
         sql = sprintf("UPDATE %s SET topic_replies = topic_replies + 1, "
                       "topic_last_post_id = %d, topic_time = %d WHERE topic_id = %d",
                       TOPICS_TABLE, post_id, t, topic_id);
@@ -992,7 +992,7 @@ int reply_topic(object board, int topic_id, string name, string text, string ip)
         if (! intp(ret))
                 log_error("reply_topic.db_exec", ret);
 
-        // 增加用户发帖数
+        // 增加用戶發帖數
         sql = sprintf("UPDATE %s SET user_posts = user_posts + 1 WHERE user_id ="
                       " %d", USERS_TABLE, poster_id);
         ret = db_exec(db, sql);
@@ -1000,7 +1000,7 @@ int reply_topic(object board, int topic_id, string name, string text, string ip)
         if (! intp(ret))
                 log_error("reply_topic.db_exec", ret);
 
-        // 增加版面文章数
+        // 增加版面文章數
         sql = sprintf("UPDATE %s SET forum_posts = forum_posts + 1, "
                       "forum_last_post_id = %d WHERE forum_id = %d",
                       FORUMS_TABLE, post_id, forum_id);
@@ -1015,7 +1015,7 @@ int reply_topic(object board, int topic_id, string name, string text, string ip)
         return 1;
 }
 
-// 删除主题
+// 刪除主題
 int delete_topic(object board, int topic_id)
 {
         int db;
@@ -1042,7 +1042,7 @@ int delete_topic(object board, int topic_id)
                 return 0;
 #endif
 
-        // 删除主题
+        // 刪除主題
         sql = sprintf("DELETE FROM %s WHERE topic_id = %d",
                       TOPICS_TABLE, topic_id);
         ret = db_exec(db, sql);
@@ -1050,7 +1050,7 @@ int delete_topic(object board, int topic_id)
         if (! intp(ret))
                 log_error("delete_topic.db_exec", ret);
 
-        // 删除所有本主题下文章内容
+        // 刪除所有本主題下文章內容
         posts = query_all_posts(board);
         foreach (post in posts)
         {
@@ -1062,7 +1062,7 @@ int delete_topic(object board, int topic_id)
                 }
         }
 
-        // 删除所有本主题下文章
+        // 刪除所有本主題下文章
         sql = sprintf("DELETE FROM %s WHERE topic_id = %d",
                       POSTS_TABLE, topic_id);
         ret = db_exec(db, sql);
@@ -1070,7 +1070,7 @@ int delete_topic(object board, int topic_id)
         if (! intp(ret))
                 log_error("delete_topic.db_exec", ret);
 
-        // 减少版面主题、文章数
+        // 減少版面主題、文章數
         sql = sprintf("UPDATE %s SET forum_posts = forum_posts - %d, "
                       "forum_topics = forum_topics - 1 WHERE forum_id = %d",
                       FORUMS_TABLE, sizeof(posts), forum_id);
@@ -1085,7 +1085,7 @@ int delete_topic(object board, int topic_id)
         return 1;
 }
 
-// 删除文章
+// 刪除文章
 int delete_post(object board, int post_id)
 {
         int db;
@@ -1115,11 +1115,11 @@ int delete_post(object board, int post_id)
         pdata = query_post_data(post_id);
         tinfo = query_topic_info(pdata[TOPIC_ID]);
 
-        // 若为首贴，则删除整个主题的所有文章
+        // 若為首貼，則刪除整個主題的所有文章
         if (tinfo[TOPIC_FIRST_ID] == post_id)
                 return delete_topic(board, pdata[TOPIC_ID]);
 
-        // 删除文章内容
+        // 刪除文章內容
         sql = sprintf("DELETE FROM %s WHERE post_id = %d",
                       TEXTS_TABLE, post_id);
         ret = db_exec(db, sql);
@@ -1127,7 +1127,7 @@ int delete_post(object board, int post_id)
         if (! intp(ret))
                 log_error("delete_post.db_exec", ret);
 
-        // 删除所有本主题下文章
+        // 刪除所有本主題下文章
         sql = sprintf("DELETE FROM %s WHERE post_id = %d",
                       POSTS_TABLE, post_id);
         ret = db_exec(db, sql);
@@ -1135,7 +1135,7 @@ int delete_post(object board, int post_id)
         if (! intp(ret))
                 log_error("delete_post.db_exec", ret);
 
-        // 减少版面主题、文章数
+        // 減少版面主題、文章數
         sql = sprintf("UPDATE %s SET forum_posts = forum_posts - 1"
                       " WHERE forum_id = %d",
                       FORUMS_TABLE, forum_id);

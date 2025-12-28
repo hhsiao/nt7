@@ -25,7 +25,7 @@ int main(object me, string arg)
                 
         seteuid(geteuid(me));
         if (!SECURITY_D->valid_write(dir, me))
-                return notify_fail("没有足够的读写权限.\n");
+                return notify_fail("沒有足夠的讀寫權限.\n");
                 
         else if(file_size(dir) == -2) 
         {
@@ -41,11 +41,11 @@ int main(object me, string arg)
                                 total = total + 1;
                         }
                 }
-                write(HIW "共有" + total + "个文件虽要处理\n");
-                write(HIW "所有文件处理完毕.\n" NOR);
+                write(HIW "共有" + total + "個文件雖要處理\n");
+                write(HIW "所有文件處理完畢.\n" NOR);
                 return 1;
         }
-        else return notify_fail("没有这个目录.\n");
+        else return notify_fail("沒有這個目錄.\n");
         return 1;  
 }
 
@@ -73,7 +73,7 @@ protected string *deep_file_list(string dir)
 
 protected int Ctoc(string file)
 {
-        write("把" + file + "转文小写(*.C->*.c)\n");
+        write("把" + file + "轉文小寫(*.C->*.c)\n");
         rename(file , lower_case(file));
         return 1;
 }
@@ -83,8 +83,8 @@ write(@HELP
 Written by ken@NT. All rights reserved.
 E-mail: printken@yahoo.com.hk
 
-将目录及该目录下的所有大写文件转换成小写文件.
-格式 : tolower <目录>
+將目錄及該目錄下的所有大寫文件轉換成小寫文件.
+格式 : tolower <目錄>
 HELP);
 return 1;
 }

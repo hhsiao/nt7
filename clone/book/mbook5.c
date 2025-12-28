@@ -10,9 +10,9 @@ void create()
         else*/
         {
                 set("unit", "本");
-                set("long", YEL "千斤翼乃医学宝典，介绍了各种疑难杂症的治疗方法。\n" NOR);
+                set("long", YEL "千斤翼乃醫學寶典，介紹了各種疑難雜症的治療方法。\n" NOR);
                 set("value", 3000);
-                set("no_sell", "这…这值什么钱？\n");
+                set("no_sell", "這…這值什麼錢？\n");
                 set("material", "paper");
                 set("skill",
                 ([

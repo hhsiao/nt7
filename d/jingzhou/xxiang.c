@@ -4,8 +4,8 @@ void create()
 {
         set("short", "小巷");
         set("long", @LONG
-这是一条又深又黑的巷子，散发出一阵阵污水的味道和食物发霉
-的味道，又脏又臭。
+這是一條又深又黑的巷子，散發出一陣陣汙水的味道和食物發黴
+的味道，又髒又臭。
 LONG );
         set("outdoors", "jingzhou");
         set("exits", ([

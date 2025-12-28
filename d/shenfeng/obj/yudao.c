@@ -11,7 +11,7 @@ void create()
                 set_default_object(__FILE__);
             else*/ {
                 set("unit", "柄");
-                set("long", HIW "一柄用白玉做成的单刀，相当的精美。\n" NOR);
+                set("long", HIW "一柄用白玉做成的單刀，相當的精美。\n" NOR);
                 set("value", 5000);
                 set("material", "jade");
               }

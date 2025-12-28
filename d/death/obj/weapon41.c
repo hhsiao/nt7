@@ -5,7 +5,7 @@ inherit BLADE;
 
 void create()
 {
-        set_name(CYN "蝉翼刀" NOR, ({ "chanyi dao", "chanyi", "blade", "dao" }) );
+        set_name(CYN "蟬翼刀" NOR, ({ "chanyi dao", "chanyi", "blade", "dao" }) );
         set_weight(4000);
         /*if( clonep() )
                 set_default_object(__FILE__);

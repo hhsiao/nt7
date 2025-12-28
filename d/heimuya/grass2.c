@@ -4,8 +4,8 @@ void create()
 {
         set("short", "草地");
         set("long", @LONG
-你走在一片草地。草地西边似乎香气四溢，东边好象是一个小花
-园。
+你走在一片草地。草地西邊似乎香氣四溢，東邊好象是一個小花
+園。
 LONG );
         set("exits", ([
             "west"   : __DIR__"chufang1",

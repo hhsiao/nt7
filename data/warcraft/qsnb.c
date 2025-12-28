@@ -6,8 +6,8 @@ void setup()
 {
         set_name("麒麟[2;37;0m[2;37;0m", ({"qilin"}));        
         set("gender", "男性");                
-        set("long", "这是一只上古年间麒麟[2;37;0m
-它是千水凝冰的魔幻兽。
+        set("long", "這是一隻上古年間麒麟[2;37;0m
+它是千水凝冰的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

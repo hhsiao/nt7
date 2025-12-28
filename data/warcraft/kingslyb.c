@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("里里[2;37;0m[2;37;0m", ({"kin"}));        
+        set_name("裡裡[2;37;0m[2;37;0m", ({"kin"}));        
         set("gender", "男性");                
-        set("long", "里里[2;37;0m
-它是卡老的魔幻兽。
+        set("long", "裡裡[2;37;0m
+它是卡老的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

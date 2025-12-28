@@ -18,13 +18,13 @@ int accept_object(object ob, object obj)
         {
                 set_temp("apprentice_ok", 1, ob);
                 command("say 好，"+query("name", ob)+
-                        "，你愿意拜我为师吗？");
+                        "，你願意拜我為師嗎？");
                 destruct(obj);
                 return 1;
         }
 
         command("smile");
-        command("say 这东西给我可没有什麽用。");
+        command("say 這東西給我可沒有什麼用。");
         command("give "+query("id", obj)+" to "+query("id", me));
         return 0;
 }
@@ -44,7 +44,7 @@ void attempt_apprentice(object ob)
             ob_fam["family_name"] != "少林派")
         {
                 command("say " + RANK_D->query_respect(ob) +
-                        "与本派素无来往，不知此话从何谈起？");
+                        "與本派素無來往，不知此話從何談起？");
                 return;
         }
 
@@ -52,21 +52,21 @@ void attempt_apprentice(object ob)
             ob_fam["family_name"] == "少林派")
         {
                 command("say " + RANK_D->query_respect(ob) +
-                        "是俗家弟子，不能在寺内学艺。");
+                        "是俗家弟子，不能在寺內學藝。");
                 return;
         }
 
         if (ob_fam["generation"] <= my_fam["generation"])
         {
                 command("say " + RANK_D->query_respect(ob) +
-                        "，贫僧哪里敢当 !");
+                        "，貧僧哪裡敢當 !");
                 return;
         }
 
         if (ob_fam["generation"] == (my_fam["generation"] + 1))
         {
                 command("say " + ob_fam["master_name"] +
-                        "的徒弟怎麽跑到我这儿来了，哈哈哈 !");
+                        "的徒弟怎麼跑到我這兒來了，哈哈哈 !");
                 command("recruit "+query("id", ob));
         }
 
@@ -79,21 +79,21 @@ void attempt_apprentice(object ob)
                         delete_temp("apprentice_ok", ob);
 
                         command("say 是" + ob_fam["master_name"] +
-                                "叫你来找我的吧，哈哈哈！");
-                        command("say 贫僧又得一可塑之才，真是可喜可贺！");
+                                "叫你來找我的吧，哈哈哈！");
+                        command("say 貧僧又得一可塑之才，真是可喜可賀！");
 
                         name=query("name", ob);
                         new_name = "澄" + name[1..1];
                         set("name", new_name, ob);
 
-                        command("say 从今以后你的法名叫做" + new_name +
-                                "，恭喜你荣升为少林派澄字辈弟子！");
+                        command("say 從今以後你的法名叫做" + new_name +
+                                "，恭喜你榮升為少林派澄字輩弟子！");
                         command("recruit "+query("id", ob));
                 } else
                 {
                         command("say " + RANK_D->query_respect(ob) +
-                                "，你即没有推荐信，也没有过罗汉阵，"
-                                "不能越级拜师。");
+                                "，你即沒有推薦信，也沒有過羅漢陣，"
+                                "不能越級拜師。");
                         return;
                 }
         }

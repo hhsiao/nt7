@@ -33,7 +33,7 @@ void create()
         set_name(query_gem_name(gem, lev), ({query_gem_id(gem, lev)}));
         set_weight(100);
         set("long", query_all_effect(gem));
-        set("unit", "颗");
+        set("unit", "顆");
         set("no_put",1);
 //        set("no_get",1);
 set("no_sell",1);        
@@ -61,21 +61,21 @@ int do_insert(string arg)
         object ob, me = this_player();
 
         if (!arg || arg == "")
-                return notify_fail("指令格式：insert 宝石 into 物品 at socket 编号\n");
+                return notify_fail("指令格式：insert 寶石 into 物品 at socket 編號\n");
         if (sscanf(arg, "%s into %s at socket %d", gem, item_name, index) != 3)
-                return notify_fail("指令格式：insert 宝石 into 物品 at socket 编号\n");
+                return notify_fail("指令格式：insert 寶石 into 物品 at socket 編號\n");
         if (gem != query("id")) return 0;
         if (!objectp(ob = present(item_name, me)))
-                return notify_fail("你想把它镶嵌在什么东西上？\n");
+                return notify_fail("你想把它鑲嵌在什麼東西上？\n");
         if (index > ob->query("sockets/max"))
-                return notify_fail(ob->name() + "上好象并没有这个接孔呀！\n");
+                return notify_fail(ob->name() + "上好象並沒有這個接孔呀！\n");
         if (ob->query("equipped"))
-                return notify_fail(ob->name() + "正装备着呢！\n");
+                return notify_fail(ob->name() + "正裝備著呢！\n");
         if (me->query("max_neili") < 1000 || me->query("neili") < 1500)
-                return notify_fail("以你现在的内力修为，还无法运功镶嵌宝石！\n");
+                return notify_fail("以你現在的內力修為，還無法運功鑲嵌寶石！\n");
 
-        message_vision(HIG"$N暗运内力，一使劲把" + name() + HIG"镶入了" + ob->name() + HIG"中，
-刹那间，只觉" + ob->name() + HIG"上泛出一道奇异的光芒，似乎有一股神奇的力量附在其中！\n", me);
+        message_vision(HIG"$N暗運內力，一使勁把" + name() + HIG"鑲入了" + ob->name() + HIG"中，
+剎那間，只覺" + ob->name() + HIG"上泛出一道奇異的光芒，似乎有一股神奇的力量附在其中！\n", me);
         me->add("max_neili", -100);
         me->add("neili", -1000);
         me->start_busy(2);
@@ -96,12 +96,12 @@ int do_combine(string arg)
         object *inv, gem, me = this_player();
 
         if (!arg || arg == "")
-                return notify_fail("你想合并什么宝石？\n");
+                return notify_fail("你想合併什麼寶石？\n");
         if (arg != query("id")) return 0;
         if (query("level") == 8)
-                return notify_fail("这个宝石已经是最高等级了！\n");
+                return notify_fail("這個寶石已經是最高等級了！\n");
         if (me->query("max_neili") < 500 || me->query("neili") < 800)
-                return notify_fail("以你现在的内力修为，还无法运功合并宝石！\n");
+                return notify_fail("以你現在的內力修為，還無法運功合併寶石！\n");
 
         inv = all_inventory(me);
         for(i = 0; i < sizeof(inv); i++)
@@ -109,8 +109,8 @@ int do_combine(string arg)
                         if (!objectp(gem))
                                 gem = inv[i];
                         else {
-                                message_vision(HIG"$N暗运内力劲透宝石，但见" + name() + HIG"表面异彩流动，
-渐渐的$N收回了内力，只觉" + name() + HIG"似乎变得更加完美了！\n", me);
+                                message_vision(HIG"$N暗運內力勁透寶石，但見" + name() + HIG"表面異彩流動，
+漸漸的$N收回了內力，只覺" + name() + HIG"似乎變得更加完美了！\n", me);
                                 me->add("max_neili", -10);
                                 me->add("neili", -500);
                                 me->start_busy(1);
@@ -121,5 +121,5 @@ int do_combine(string arg)
                                 return 1;
                         }
                 }
-        return notify_fail("你必须有三块同样的宝石才能进行合并！\n");
+        return notify_fail("你必須有三塊同樣的寶石才能進行合併！\n");
 }

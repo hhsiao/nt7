@@ -11,7 +11,7 @@ string extra_long()
         mixed key,list;
         object ob;
         int i;
-        str = this_object()->name()+"中可能开出的奖励包括：\n";
+        str = this_object()->name()+"中可能開出的獎勵包括：\n";
         list = query("BAOXIANG_LIST", this_object());
         if(!list || !mapp(list) ) {
                 return str;
@@ -35,7 +35,7 @@ int do_test(string arg)
 
         this = this_object();
 
-        if( !arg ) return notify_fail("你要测试什么？\n"); 
+        if( !arg ) return notify_fail("你要測試什麼？\n"); 
         if(present(arg,environment()) != this) {
                 return 0;
         }
@@ -58,27 +58,27 @@ string test(object me,object this)
         list = query("BAOXIANG_LIST", this);
 
         if(!list || !mapp(list)) {
-                str += "上没有BAOXIANG_LIST属性，或者该属性不是mapping！";
+                str += "上沒有BAOXIANG_LIST屬性，或者該屬性不是mapping！";
         } else {
                 keys = keys(list);
                 if(!sizeof(keys)) {
-                        str += "BAOXIANG_LIST列表为空！";
+                        str += "BAOXIANG_LIST列表為空！";
                 } else {
                         totalRate = 0;
                         for(i=0;i<sizeof(keys);i++) {
                                 totalRate += list[keys[i]];
                                 ob = load_object(keys[i]);      
                                 if(!ob) {
-                                        str += keys[i]+"（概率："+list[keys[i]]+"）加载失败，可能无文件或文件编译错误\n";
+                                        str += keys[i]+"（概率："+list[keys[i]]+"）加載失敗，可能無文件或文件編譯錯誤\n";
                                 } else {
                                         str += keys[i]+"["+ob->name()+"]"+"（概率："+list[keys[i]]+"）正常。\n";
                                 }
                         }
 
                         if(totalRate == TOTALRATE) {
-                                str += "总概率："+totalRate+"正常。";
+                                str += "總概率："+totalRate+"正常。";
                         } else {
-                                str += "总概率："+totalRate+"不正常！！！！";
+                                str += "總概率："+totalRate+"不正常！！！！";
                         }
                 }
 
@@ -92,7 +92,7 @@ int do_open(string arg)
         object me,this;
         me = this_player();
         this = this_object();
-        if( !arg ) return notify_fail("你要打开什么？\n");
+        if( !arg ) return notify_fail("你要打開什麼？\n");
         if(present(arg,environment()) != this) {
                 return 0;
         }
@@ -133,13 +133,13 @@ int open_baoxiang(object me,object this)
                 if(rand >= totalRate && rand < totalRate+list[keys[i]]) {
                         ob = new(keys[i]);
                         if(ob && ob->move(me)) {
-                                str = "打开了一个"+this->name()+"，从里边得到了"+ob->name()+"("+query("id",ob)+")。\n";
+                                str = "打開了一個"+this->name()+"，從裡邊得到了"+ob->name()+"("+query("id",ob)+")。\n";
                                 tell_room(environment(me),me->name()+str,({me}));
                                 tell_object(me,"你"+str);
                                 return 1;
                         } else {
                                 if(ob) {
-                                        tell_object(me,"打开"+this->name()+"失败了。\n");
+                                        tell_object(me,"打開"+this->name()+"失敗了。\n");
                                         destruct(ob);
                                 }
                                 return 0;

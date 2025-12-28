@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("祥云[2;37;0m[2;37;0m", ({"ire"}));        
+        set_name("祥雲[2;37;0m[2;37;0m", ({"ire"}));        
         set("gender", "男性");                
-        set("long", "“麟者，仁兽也，圣王之嘉瑞也[2;37;0m
-它是真理的魔幻兽。
+        set("long", "“麟者，仁獸也，聖王之嘉瑞也[2;37;0m
+它是真理的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

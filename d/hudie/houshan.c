@@ -1,14 +1,14 @@
-// 后山 houshan.c
+// 後山 houshan.c
  
 #include <ansi.h>
 inherit ROOM;
 
 void create() 
 { 
-        set("short", "后山");
+        set("short", "後山");
         set("long", @LONG
-这里是蝴蝶谷的后山，非常空旷，显得很安静，三面都是悬崖峭
-壁，犹如世外桃源一般。
+這裡是蝴蝶谷的後山，非常空曠，顯得很安靜，三面都是懸崖峭
+壁，猶如世外桃源一般。
 LONG );
 
         set("outdoors", "蝴蝶谷");

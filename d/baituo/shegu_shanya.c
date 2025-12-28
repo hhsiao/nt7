@@ -9,9 +9,9 @@ void create()
 {
         set("short", "蛇谷山崖");
         set("long", @LONG
-这是蛇谷高处的断崖，周遭既无树木，也无杂草，一派荒凉景象，
-唯有风声猎猎，不断从耳边呼啸而过。居高临下，极目而望，可以远
-眺(view)四面八方，看尽山峦形势。
+這是蛇谷高處的斷崖，周遭既無樹木，也無雜草，一派荒涼景象，
+唯有風聲獵獵，不斷從耳邊呼嘯而過。居高臨下，極目而望，可以遠
+眺(view)四面八方，看盡山巒形勢。
 LONG );
 
         set("exits", ([ 
@@ -43,66 +43,66 @@ int do_view(string arg)
         string msg;
 
         if( !arg || arg=="" ) 
-                return notify_fail( "你要往哪个方向眺望？可以从平面八个方位中选择。\n");
+                return notify_fail( "你要往哪個方向眺望？可以從平面八個方位中選擇。\n");
 
         switch (arg) {
         case "north" :
         case "n" :
-        msg = "你往北方远眺，尽是一片崇山峻岭。\n";
+        msg = "你往北方遠眺，盡是一片崇山峻嶺。\n";
                 break;
 
         case "south" :
         case "s" :
-        msg = "你往南方远眺，蛇谷地势尽在眼前，可以遥遥望见谷口。\n";
+        msg = "你往南方遠眺，蛇谷地勢盡在眼前，可以遙遙望見谷口。\n";
 
         room = load_object(__DIR__"shegu1");
         if( query("defense", room) )
-        msg += RED"谷口弥漫着血红色的毒雾，与外隔绝。\n"NOR;
-        else msg += HIW"原本红雾密布的谷口，这时却豁然开朗，所有的雾气都无影无踪了。\n"NOR;
+        msg += RED"谷口瀰漫著血紅色的毒霧，與外隔絕。\n"NOR;
+        else msg += HIW"原本紅霧密佈的谷口，這時卻豁然開朗，所有的霧氣都無影無蹤了。\n"NOR;
                 break;
 
         case "east" :
         case "e" :
-        msg = "你往东方远眺，在越过一片胡杨林後，便是黄沙莽莽的大漠。\n";
+        msg = "你往東方遠眺，在越過一片胡楊林後，便是黃沙莽莽的大漠。\n";
                 break;
 
         case "west" :
         case "w" :
-        msg = "你往西方远眺，所见尽是蛇谷林木。\n";
+        msg = "你往西方遠眺，所見盡是蛇谷林木。\n";
                 break;
 
         case "northeast" :
         case "ne" :
-        msg = "你往东北远眺，尽是一片崇山峻岭。\n";
+        msg = "你往東北遠眺，盡是一片崇山峻嶺。\n";
                 break;
 
         case "northwest" :
         case "nw" :
-        msg = "你往西北远眺，望见远方山沟间云杉茂密，白杨参天，一座大瀑布奔腾而下，景象壮观。\n";
+        msg = "你往西北遠眺，望見遠方山溝間雲杉茂密，白楊參天，一座大瀑布奔騰而下，景象壯觀。\n";
 
         room = load_object(__DIR__"shegu27");
         if( present("dang gui", room) ) 
-        msg += HIW"一眼望去，你觉得彼端山中，似有股难以描述的灵气。\n"NOR;
+        msg += HIW"一眼望去，你覺得彼端山中，似有股難以描述的靈氣。\n"NOR;
         else if( present("pusiqu she", room) ) 
-        msg += HIR"你遥望山中景色，忽然觉得有些心惊肉跳，再定神望去，越看越觉得不对劲。\n"NOR;
-        else msg += "你悠闲地观赏着山景，觉得心情轻松了不少。\n";
+        msg += HIR"你遙望山中景色，忽然覺得有些心驚肉跳，再定神望去，越看越覺得不對勁。\n"NOR;
+        else msg += "你悠閒地觀賞著山景，覺得心情輕鬆了不少。\n";
                 break;
 
         case "southeast" :
         case "se" :
-        msg = "你往东南远眺，在越过一片胡杨林後，便是黄沙莽莽的大漠。\n";
+        msg = "你往東南遠眺，在越過一片胡楊林後，便是黃沙莽莽的大漠。\n";
                 break;
 
         case "southwest" :
         case "sw" :
-        write("你往西南远眺，正可望见蛇谷密林深处的魔鬼滩地带……\n\n");
+        write("你往西南遠眺，正可望見蛇谷密林深處的魔鬼灘地帶……\n\n");
         room = load_object(__DIR__"shegu32");
         COMMAND_DIR"std/look"->look_room(me, room);
-        msg = "……距离虽远，但是居高临下，倒还看得清楚。\n";
+        msg = "……距離雖遠，但是居高臨下，倒還看得清楚。\n";
                 break;
 
         default:
-                return notify_fail( "你要往哪个方向眺望？可以从平面八个方位中选择。\n");
+                return notify_fail( "你要往哪個方向眺望？可以從平面八個方位中選擇。\n");
         }
         write(msg);
         return 1;

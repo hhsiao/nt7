@@ -7,12 +7,12 @@ int update_condition(object me, int duration)
 {
         if (duration < 1)
         {
-                message_vision(HIW"突然天空中飞下一只白鸽，降在$N的肩头。\n"NOR, me);
+                message_vision(HIW"突然天空中飛下一隻白鴿，降在$N的肩頭。\n"NOR, me);
                 if( query_temp("job_type", me) == 1 )
-                        tell_object(me,BLU"这是一封飞鸽传书，原来老仙已经对杀不杀「"+query_temp("xx_target", me)+"」的事不感兴趣了！\n"NOR);
+                        tell_object(me,BLU"這是一封飛鴿傳書，原來老仙已經對殺不殺「"+query_temp("xx_target", me)+"」的事不感興趣了！\n"NOR);
                 else if( query_temp("job_type", me) == 2 )
                         {
-                                tell_object(me,BLU"这是一封飞鸽传书，原来老仙已经对「"+query_temp("xx_target", me)+"」不感兴趣了！\n"NOR);
+                                tell_object(me,BLU"這是一封飛鴿傳書，原來老仙已經對「"+query_temp("xx_target", me)+"」不感興趣了！\n"NOR);
                                 if( query("xx_points", me)>10 )
                                         addn("xx_points", -1, me);
                                 delete_temp("xx_bonus", me);

@@ -1,4 +1,4 @@
-// /cmds/usr/checkhouse.c 查看自建屋宅情况指令
+// /cmds/usr/checkhouse.c 查看自建屋宅情況指令
 // By Alf, Last Update 2003.0720
 
 #include <ansi.h>
@@ -20,37 +20,37 @@ int main(object me, string arg)
         ob = LOGIN_D->find_body(arg);
 
     if(ob && ob != me && !wizardp(me))
-        return notify_fail("只有巫师可以查看他人的屋宅情况。\n");
+        return notify_fail("只有巫師可以查看他人的屋宅情況。\n");
     if(!ob)
-        return notify_fail("你想查看的人目前不在线。\n");
+        return notify_fail("你想查看的人目前不在線。\n");
 
     build = ob->query("house/build");
     if(sizeof(build) == 0)
         return notify_fail((ob == me ? "你" : ob->name()) + "目前尚未在「"
-                            HIY + LOCAL_MUD_NAME() + NOR"」拥有任何屋宅。\n");
+                            HIY + LOCAL_MUD_NAME() + NOR"」擁有任何屋宅。\n");
     msg  = HIC "\n" + (ob == me ? "你" : ob->name()) + "目前在「"
-           HIY + LOCAL_MUD_NAME() + HIC"」拥有的屋宅有：\n";
+           HIY + LOCAL_MUD_NAME() + HIC"」擁有的屋宅有：\n";
     msg += HIG "-----------------------------------------------------------------\n" NOR;
     key = sort_array(keys(build), 1);
     for(i = 0; i < sizeof(key); i++)
     {
         house = ob->query("house/" + key[i]);
         if(key[i] == "user")    type = "玩家住宅";
-        if(key[i] == "bang")    type = "帮会驻地";
+        if(key[i] == "bang")    type = "幫會駐地";
         if(key[i] == "xian")    type = "散仙居所";
-        msg += sprintf(HIW "一处位于" HIC "%s%s" HIW "的%s「"
-                       HIG "%s" HIW "」，价值" NOR, house["base"]["place"],
+        msg += sprintf(HIW "一處位於" HIC "%s%s" HIW "的%s「"
+                       HIG "%s" HIW "」，價值" NOR, house["base"]["place"],
                                                     house["base"]["name"],
                                                     type,
                                                     house["name"]);
         if(key[i] == "xian")
-            msg += HIW "已非凡物可以计算。\n" NOR;
+            msg += HIW "已非凡物可以計算。\n" NOR;
         else
-            msg += sprintf(HIY " %-6d两黄金" HIW "。\n", house["value"]);
+            msg += sprintf(HIY " %-6d兩黃金" HIW "。\n", house["value"]);
 
         if(wizardp(me) && wiz_level(me) > 3)
-            msg += sprintf(HIW "%s在" HIC "%s%s" HIW "的这套"
-                           HIG "%s" HIW "的屋宅编码为：『"
+            msg += sprintf(HIW "%s在" HIC "%s%s" HIW "的這套"
+                           HIG "%s" HIW "的屋宅編碼為：『"
                            HIY "%s" HIW "』。\n" NOR, (ob == me ? "你" : ob->name()),
                                                       house["base"]["place"],
                                                       house["base"]["name"],
@@ -67,8 +67,8 @@ int help(object me)
     write(@HELP
 指令格式：checkhouse [ID]
 
-这个指令可用来查看自己拥有的屋宅情况。
-巫师可用该指令查看某一玩家的屋宅情况。
+這個指令可用來查看自己擁有的屋宅情況。
+巫師可用該指令查看某一玩家的屋宅情況。
 
 HELP);
     return 1;

@@ -2,10 +2,10 @@
 inherit ROOM;
 void create()
 {
-  set("short","长廊");
+  set("short","長廊");
         set("long", @LONG
-这里是白虎堂的长廊。两边一片狼籍，看样子刚被洗劫一场，遍
-地横尸，残不忍赌。
+這裡是白虎堂的長廊。兩邊一片狼籍，看樣子剛被洗劫一場，遍
+地橫屍，殘不忍賭。
 LONG );
   set("exits",([
      "north" : __DIR__"baistep1",

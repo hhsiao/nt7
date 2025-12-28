@@ -11,21 +11,21 @@ int exert(object me, object target)
         int skill;
 
         if (target != me)
-                return notify_fail("你只能用神照经神功提升自己的战斗力。\n");
+                return notify_fail("你只能用神照經神功提升自己的戰鬥力。\n");
 
         if( query("neili", me)<100 )
-                return notify_fail("你的内力不够!");
+                return notify_fail("你的內力不夠!");
 
         if( BUFF_D->check_buff(me, "powerup") ) 
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
 
         addn("neili", -100, me);
         me->receive_damage("qi", 0);
 
-        msg = HIC "$N" HIC "大喝一声，一股气浪登时如波"
-                        "涛一般散布开来，直吹得四周飞沙走石！\n" NOR;
+        msg = HIC "$N" HIC "大喝一聲，一股氣浪登時如波"
+                        "濤一般散佈開來，直吹得四周飛沙走石！\n" NOR;
 
         data = ([
                 "attack" : skill/3,
@@ -37,11 +37,11 @@ int exert(object me, object target)
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "神照经神功·战神",
+                "name"  : "神照經神功·戰神",
                 "time"  : skill,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : "你的神照经神功运行完毕，将内力收回丹田。\n",
+                "disa_msg" : "你的神照經神功運行完畢，將內力收回丹田。\n",
                         
         ]);
         BUFF_D->buffup(buff);

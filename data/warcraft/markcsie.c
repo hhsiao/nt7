@@ -7,13 +7,13 @@ void setup()
         set_name("小胖胖[2;37;0m[2;37;0m", ({"baipa"}));        
         set("gender", "男性");                
         set("long", "胖胖[2;37;0m
-它是深入浅出的魔幻兽。
+它是深入淺出的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "markcsie");
-        set("owner_name", "深入浅出");
+        set("owner_name", "深入淺出");
         set_temp("owner", "markcsie");
-        set_temp("owner_name", "深入浅出");
+        set_temp("owner_name", "深入淺出");
         ::setup();
 }

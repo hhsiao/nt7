@@ -16,12 +16,12 @@ int do_look(string arg)
                        "6","7","8","9","10"});
       
       if( !query_temp("askok", ob )
-            && query("family/family_name", ob) != "唐门世家"
+            && query("family/family_name", ob) != "唐門世家"
             && query_temp("minchen", ob) != query("short") )
-          return notify_fail("你就不要凑热闹了！\n");;
+          return notify_fail("你就不要湊熱鬧了！\n");;
       
       if ( !arg || (arg != "wenzi" && arg != "wen zi") )
-          return notify_fail("你找什么啊！\n");
+          return notify_fail("你找什麼啊！\n");
           
       if( query_temp("askok", ob) )
       {
@@ -80,10 +80,10 @@ void get_jiguo(string arg,object me,int total)
               ob->apply_condition("tmjob2",3);
               me->apply_condition("tmjob",5);
               ob->move(where);
-              tell_object(me,HIC"一只蚊子，猛然在你的眼前掠过，定睛一看......\n"NOR);
+              tell_object(me,HIC"一隻蚊子，猛然在你的眼前掠過，定睛一看......\n"NOR);
               return;
       }  
-      write(HIG"好可怜啊！\n"NOR);
+      write(HIG"好可憐啊！\n"NOR);
                set_temp("tmjob_failed", 1, me);
        me->apply_condition("tmjob",2);
        delete_temp("started", me);

@@ -1,5 +1,5 @@
 #include <ansi.h>
-// 日出东方 richu-dongfang
+// 日出東方 richu-dongfang
 inherit SKILL; 
 string type() { return "knowledge"; } 
 
@@ -9,14 +9,14 @@ string family_name() { return "日月神教"; }
 int valid_learn(object me)
 {        
         if (me->query_skill("riyue-jian", 1) < 30)
-                return notify_fail("你日月剑法不足，无法研习日出东方。\n");
+                return notify_fail("你日月劍法不足，無法研習日出東方。\n");
         
         if( query("family/family_name", me) != family_name() )
-                return notify_fail("日出东方只能日月神教弟子方可研习。\n");
+                return notify_fail("日出東方只能日月神教弟子方可研習。\n");
 
         if (me->query_skill("riyue-xinfa", 1) < 
             me->query_skill("richu-dongfang", 1) * 60 /100)
-                return notify_fail("你日月心法修为不足，无法继续研习日出东方。\n");
+                return notify_fail("你日月心法修為不足，無法繼續研習日出東方。\n");
 
         return 1;
 }

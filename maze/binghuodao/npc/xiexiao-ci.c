@@ -6,9 +6,9 @@ int move_bhd();
 
 void create()
 {
-        set_name(HIM "谢晓词" NOR, ({ "xiexiao ci", "xiexiao", "ci" }));
+        set_name(HIM "謝曉詞" NOR, ({ "xiexiao ci", "xiexiao", "ci" }));
         set("title", HIW "冰" HIR "火" HIC "使者");
-        set("long", "她是负责护送玩家到中原的秘密使者。\n");
+        set("long", "她是負責護送玩家到中原的秘密使者。\n");
         set("gender", "女性");
         set("age", 20);
         set("max_qi", 99999);
@@ -40,7 +40,7 @@ int move_bhd()
         object me = this_player();
 
         command("wave");
-        command("say 欢迎再回到冰火岛！");
+        command("say 歡迎再回到冰火島！");
 
         me->move("/d/quanzhou/yongninggang");
         return 1;

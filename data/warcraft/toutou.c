@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("乌龟头子[2;37;0m[2;37;0m", ({"guitou"}));        
+        set_name("烏龜頭子[2;37;0m[2;37;0m", ({"guitou"}));        
         set("gender", "男性");                
-        set("long", "乌龟头子[2;37;0m
-它是偷遍天的魔幻兽。
+        set("long", "烏龜頭子[2;37;0m
+它是偷遍天的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

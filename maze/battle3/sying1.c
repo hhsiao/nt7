@@ -12,11 +12,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", HIW"元帅帐营"NOR);
+        set("short", HIW"元帥帳營"NOR);
         set("long", @LONG
-这里就是「大宋」元帅的帐营，两边分立着众将领军士，大宋元
-帅在这里负责调兵遣将，抗击蒙古军的入侵，不时有传令兵匆忙地进
-出，传递着前线的军情。
+這裡就是「大宋」元帥的帳營，兩邊分立著眾將領軍士，大宋元
+帥在這裡負責調兵遣將，抗擊蒙古軍的入侵，不時有傳令兵匆忙地進
+出，傳遞著前線的軍情。
 LONG );
 
         set("no_magic", "1");
@@ -36,7 +36,7 @@ void init()
 
         if (me == WAR_D->query_marshal())
         {
-                message_vision(HIW "帐中的将士看见$N走了进来，连忙将身体站得笔直，尊敬地向$N行礼致敬！\n" NOR, me);
+                message_vision(HIW "帳中的將士看見$N走了進來，連忙將身體站得筆直，尊敬地向$N行禮致敬！\n" NOR, me);
 
                 add_action("do_assign", ({ "appoint", "paiqian", "assign" }));
                 add_action("do_convene", ({ "convene", "dianjiang" }));
@@ -60,7 +60,7 @@ int do_convene(string arg)
         int i;
 
         me = this_player();
-        message_vision(HIR "$N召来传令兵，下令道：火速传令各营统领到本帅帐前候令！！\n", me);
+        message_vision(HIR "$N召來傳令兵，下令道：火速傳令各營統領到本帥帳前候令！！\n", me);
 
         total = WAR_D->query_generals();
         for (i = 0; i < sizeof(total); i++)
@@ -76,8 +76,8 @@ int do_convene(string arg)
 
                 if (sscanf(base_name(environment(ob)), "/maze/battle3/sy%*s"))
                 {
-                        message_vision(HIR "一位传令兵急匆匆得赶来对$N道：三军将领" +
-                                       "火速至元帅帐营侯令！！\n" NOR, ob);
+                        message_vision(HIR "一位傳令兵急匆匆得趕來對$N道：三軍將領" +
+                                       "火速至元帥帳營侯令！！\n" NOR, ob);
 
                         ob->start_call_out((: call_other, __FILE__, "go_back", ob :), 5);
                 }
@@ -90,7 +90,7 @@ void go_back(object ob)
 {
         if (! objectp(ob)) return;
 
-        message_vision(HIY "$N赶忙批盔带甲，赶至元帅帐营，还好没误了时辰。\n" NOR, ob);
+        message_vision(HIY "$N趕忙批盔帶甲，趕至元帥帳營，還好沒誤了時辰。\n" NOR, ob);
         ob->move(__DIR__"sying1");
 
         return;

@@ -15,12 +15,12 @@ void dest_ob(object);
 
 void create()
 {
-        set_name("吴劲草", ({ "wu jincao","wu"}) );
+        set_name("吳勁草", ({ "wu jincao","wu"}) );
         set("long",
-        "他是一位看上去很精干的中年男子，身穿一件白布长袍。\n"
-        "他天生神力，手中的两头狼牙棒有万夫不当之勇，真是一条威风凛凛的汉子。\n"
+        "他是一位看上去很精幹的中年男子，身穿一件白布長袍。\n"
+        "他天生神力，手中的兩頭狼牙棒有萬夫不當之勇，真是一條威風凜凜的漢子。\n"
         );
-        set("title", HIG "明教" HIW "锐金旗" NOR "掌旗副使");
+        set("title", HIG "明教" HIW "銳金旗" NOR "掌旗副使");
         set("gender", "男性");
         set("attitude", "friendly");
         set("class", "fighter");
@@ -55,16 +55,16 @@ void create()
         map_skill("parry", "jingang-quan");
 
         prepare_skill("cuff", "jingang-quan");
-        create_family("明教", 37, "锐金旗掌旗副使");
+        create_family("明教", 37, "銳金旗掌旗副使");
 
 
         set("inquiry", ([
-                "name" : "在下就是明教锐金旗掌旗副使吴劲草，不知阁下有何指教。",
-                "打铁" : (: ask_job :),
+                "name" : "在下就是明教銳金旗掌旗副使吳勁草，不知閣下有何指教。",
+                "打鐵" : (: ask_job :),
                 "datie": (: ask_job :),
-                "精铁储藏" : (: ask_jingtie_num :),
+                "精鐵儲藏" : (: ask_jingtie_num :),
                 "reserve"  : (: ask_jingtie_num :),
-                "精铁" : (: ask_jingtie :),
+                "精鐵" : (: ask_jingtie :),
                 "jingtie" : (: ask_jingtie :),
         ]));
 
@@ -82,31 +82,31 @@ string ask_job()
      object /*ling,*/chui,qiao;
 
     if( !(fam=query("family", this_player())) || fam["family_name"] != "明教" )
-        return "这位"+RANK_D->query_respect(player)+"并非我教弟兄，那敢在下那敢分派阁下什么任务呢。\n";
+        return "這位"+RANK_D->query_respect(player)+"並非我教弟兄，那敢在下那敢分派閣下什麼任務呢。\n";
 
         if( query("combat_exp", player)>400000 )
-                 return "这位"+RANK_D->query_respect(player)+"实战经验已经颇高，岂敢劳烦大架。\n";
+                 return "這位"+RANK_D->query_respect(player)+"實戰經驗已經頗高，豈敢勞煩大架。\n";
 
         if (fam["generation"] <37)
-                 return "这位"+RANK_D->query_respect(player)+"在我明教中地位颇高，岂敢劳烦大架。\n";
+                 return "這位"+RANK_D->query_respect(player)+"在我明教中地位頗高，豈敢勞煩大架。\n";
 
         if( query("mingjiao/job", player) != "jin_caikuang" )
                 return judge_jobmsg(player,0);
 
         if( !present("wujin kuangshi",player ) )
-                return "你并未采来矿石，如何打铁？\n";
+                return "你並未採來礦石，如何打鐵？\n";
 
         qiao=present("tie qiao",player );
         if (qiao) destruct(qiao);
-        tell_object(player,"你把铁锹交给吴劲草。\n\n");
+        tell_object(player,"你把鐵鍬交給吳勁草。\n\n");
 
         command("nod"+query("id", player));
 
         chui=new(OBJ_PATH"/tiechui");
         chui->move(player);
-        tell_object(player,"吴劲草给你一把铁锤。\n");
+        tell_object(player,"吳勁草給你一把鐵錘。\n");
 
-        return "好！快去把采来的矿石炼成精铁吧。\n";
+        return "好！快去把採來的礦石煉成精鐵吧。\n";
 }
 
 int accept_object(object me, object ob)
@@ -122,16 +122,16 @@ int accept_object(object me, object ob)
 
         job_flg = judge_jobmsg(me,1);
 
-        if ( job_flg !=  "采集铁矿" )
+        if ( job_flg !=  "採集鐵礦" )
         {
                 command("hmm"+query("id", me));
-                command("say 没有这项工作，就不要胡乱开采！");
+                command("say 沒有這項工作，就不要胡亂開採！");
                 return 0;
         }
         else
         {
                 command("thumb"+query("id", this_player()));
-                command("say 这位兄弟辛苦了!下去好好休息休息！");
+                command("say 這位兄弟辛苦了!下去好好休息休息！");
                 tool=present("tie chui",me );
                 if (tool) destruct(tool);
                 remove_call_out("dest_ob");
@@ -163,7 +163,7 @@ int get_jingtie_num()
 
 string ask_jingtie_num()
 {
-        return "现在还有"+chinese_number(get_jingtie_num())+"块精铁。\n";
+        return "現在還有"+chinese_number(get_jingtie_num())+"塊精鐵。\n";
 }
 
 string ask_jingtie()
@@ -174,20 +174,20 @@ string ask_jingtie()
         string job_flg;
 
         job_flg = judge_jobmsg(me,1);
-        if (job_flg != "打造火枪")
-                return "这位"+RANK_D->query_respect(me)+"好象没有造火枪的任务吧。\n";
+        if (job_flg != "打造火槍")
+                return "這位"+RANK_D->query_respect(me)+"好象沒有造火槍的任務吧。\n";
 
         if (present("jing tie",me) )
         {
                 command("hmm"+query("id", me));
-                return "你不是已经有一块了吗？还想要，真是贪得无厌。\n";
+                return "你不是已經有一塊了嗎？還想要，真是貪得無厭。\n";
         }
 
         if ( get_jingtie_num() <= 0 )
-                return "对不起，我这里已经没有精铁了。\n";
+                return "對不起，我這裡已經沒有精鐵了。\n";
 
         command("nod"+query("id", me));
-        message_vision("吴劲草拿了一块精铁给$N\n",me);
+        message_vision("吳勁草拿了一塊精鐵給$N\n",me);
         if (!(room = find_object("/d/mingjiao/mj_center.c")))
                 room = load_object("/d/mingjiao/mj_center.c");
         addn("jingtie", -1, room);
@@ -195,7 +195,7 @@ string ask_jingtie()
         jingtie=new(OBJ_PATH"/jingtie");
         jingtie->move(me);
 
-        return "这是兄弟们辛辛苦苦炼出来的精铁，你要用它好好打造兵器。\n";
+        return "這是兄弟們辛辛苦苦煉出來的精鐵，你要用它好好打造兵器。\n";
 }
 
 void dest_ob(object ob) { destruct(ob);}

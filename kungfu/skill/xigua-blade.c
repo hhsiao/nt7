@@ -1,4 +1,4 @@
-//      炎黄-玩家自创武功系统
+//      炎黃-玩家自創武功系統
 //      Made at 2007-12-19 20:43:21 by Rcwiz
 //      /kungfu/skill/xigua-blade.c  西瓜刀
 
@@ -30,7 +30,7 @@ mapping *action = ({
           "dodge"      :  234,
           "damage"     :  234,
           "skill_name" :  "西瓜刀",
-          "damage_type":  "砍伤",
+          "damage_type":  "砍傷",
 ]),
 ([        "action"     :  "西瓜刀",
           "force"      :  334,
@@ -39,7 +39,7 @@ mapping *action = ({
           "dodge"      :  234,
           "damage"     :  234,
           "skill_name" :  "西瓜刀",
-          "damage_type":  "砍伤",
+          "damage_type":  "砍傷",
 ]),
 });
 //####actions end####
@@ -75,9 +75,9 @@ int valid_learn(object me)
         object ob;
         if( !(ob=query_temp("weapon", me) )
          || query("skill_type", ob) != "blade" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
         if (me->query_skill("blade", 1) < me->query_skill("xigua-blade", 1))
-                return notify_fail("你的基本刀法火候有限，无法领会更高深的西瓜刀。\n");
+                return notify_fail("你的基本刀法火候有限，無法領會更高深的西瓜刀。\n");
         return 1;
 }
 
@@ -175,7 +175,7 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
 
 int practice_skill(object me)
 {
-        if( !query("scborn", me))return notify_fail("自创武学只能用学(learn)的来提升等级。\n");
+        if( !query("scborn", me))return notify_fail("自創武學只能用學(learn)的來提升等級。\n");
 }
 
 int difficult_level(){ return 2000;}

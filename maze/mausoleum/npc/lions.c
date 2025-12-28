@@ -5,16 +5,16 @@ void do_swing();
 void set_from_me(object me);
 void create()
 {
-        string *names = ({ "青铜狮子" });
+        string *names = ({ "青銅獅子" });
 
         ::create();
         set_name( names[random(sizeof(names))], ({ "bronze lions", "bronze", "lions"}));
         set("long", @LONG
-这是一个沉睡在皇陵青铜机关兽。身长丈许。它的眼如铜铃，咆哮起来声震四壁。在
-东方仙术的作用下，它的行动奇快，进退如风，再加上毛皮刀枪不入，利爪快如刀刃，
-端的是极难对付。
+這是一個沉睡在皇陵青銅機關獸。身長丈許。它的眼如銅鈴，咆哮起來聲震四壁。在
+東方仙術的作用下，它的行動奇快，進退如風，再加上毛皮刀槍不入，利爪快如刀刃，
+端的是極難對付。
 LONG);
-        set("title", HIR"机关兽" NOR);
+        set("title", HIR"機關獸" NOR);
 
         set("str", 150);
         set("con", 150);
@@ -35,7 +35,7 @@ LONG);
         */
 
         set("combat_exp", 100000000);
-        set("death_msg",YEL"\n$N散落成一堆青铜。\n\n"NOR);
+        set("death_msg",YEL"\n$N散落成一堆青銅。\n\n"NOR);
         set("no_corpse", 1);
 
         set("rewards", ([
@@ -87,11 +87,11 @@ void do_swing()
         if( !enemies || sizeof(enemies)==0 )
                 return;
 
-        msg = HIW"$N将身子对正敌人，张开大口，突然间金光闪动,一阵钢针由$N口中激射而出！\n"NOR;
+        msg = HIW"$N將身子對正敵人，張開大口，突然間金光閃動,一陣鋼針由$N口中激射而出！\n"NOR;
         message_vision(msg,this_object());
 
         foreach( enemy in enemies ) {
-                msg = HIW"钢针既细，为数又多，$n大惊之下，不及躲闪，被打了个正着！\n"NOR;
+                msg = HIW"鋼針既細，為數又多，$n大驚之下，不及躲閃，被打了個正著！\n"NOR;
                 message_vision(msg,this_object(), enemy);
                 enemy->receive_damage("qi",8000+random(8000),this_object());
                 COMBAT_D->report_status(enemy);

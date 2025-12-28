@@ -32,7 +32,7 @@ void more(string cmd, string *text, int line)
                 if (line <= 0)
                 {
                         line = 0;
-                        show += WHT "-------- 文件的顶部 --------\n" NOR;
+                        show += WHT "-------- 文件的頂部 --------\n" NOR;
                 }
 
                 i = line + LINES_PER_PAGE;
@@ -45,8 +45,8 @@ void more(string cmd, string *text, int line)
                 write(show);
                 return;
         }
-        show += sprintf(NOR WHT "== 未完继续 " HIY "%d%%" NOR
-                        WHT " == (ENTER 继续下一页，q 离开，b 前一页)\n" NOR,
+        show += sprintf(NOR WHT "== 未完繼續 " HIY "%d%%" NOR
+                        WHT " == (ENTER 繼續下一頁，q 離開，b 前一頁)\n" NOR,
                         line * 100 / sizeof(text));
         write(show);
         input_to("more", text, line);
@@ -81,7 +81,7 @@ void start_more(string msg)
         int len;
 
         if (! stringp(msg) || (len = strlen(msg)) < 1)
-                // 没有内容
+                // 沒有內容
                 return;
 
         if (query("env/no_more"))
@@ -151,7 +151,7 @@ void more_file(string cmd, string file, int line, int total)
 
         if (page > 301)
         {
-                show += "连续显示的行数必须小于等于300。\n";
+                show += "連續顯示的行數必須小於等於300。\n";
                 not_show = 1;
         } else
         {
@@ -186,10 +186,10 @@ void more_file(string cmd, string file, int line, int total)
         if (! not_show)
         {
                 if (line == 1)
-                        show += WHT "-------- 文件的顶部 --------\n" NOR;
+                        show += WHT "-------- 文件的頂部 --------\n" NOR;
                 else
                 if (cmd != "")
-                        show += sprintf(HIW "-------- 从第 %d 行开始 %d 行 --------\n" NOR,
+                        show += sprintf(HIW "-------- 從第 %d 行開始 %d 行 --------\n" NOR,
                                         goto_line, page);
 
                 content = read_file(file, line, page);
@@ -212,18 +212,18 @@ void more_file(string cmd, string file, int line, int total)
         if (not_show || i > 1)
         {
                 show += NOR WHT "- 未完(" HIY + total +
-                        NOR WHT ") - (回车继续，"
-                        HIY "q" NOR WHT " 离开，"
-                        HIY "b" NOR WHT " 前一页，"
+                        NOR WHT ") - (回車繼續，"
+                        HIY "q" NOR WHT " 離開，"
+                        HIY "b" NOR WHT " 前一頁，"
                         HIC "<num>" NOR WHT " 到第 "
                         HIC "n" NOR WHT " 行，"
                         HIY "n" HIC "<num>" NOR WHT
-                        "显示接下 " HIC "n" NOR WHT " 行)" NOR;
+                        "顯示接下 " HIC "n" NOR WHT " 行)" NOR;
                 s_write(show);
                 input_to("more_file", file, line + page, total);
         } else
         {
-                show += WHT "阅读完毕。\n" NOR;
+                show += WHT "閱讀完畢。\n" NOR;
                 s_write(show);
         }
 }
@@ -232,7 +232,7 @@ void start_more_file(string fn)
 {
         if (file_size(fn) < 0)
         {
-                write("没有 " + fn + " 这个文件可供阅读。\n");
+                write("沒有 " + fn + " 這個文件可供閱讀。\n");
                 return;
         }
         write("\n");

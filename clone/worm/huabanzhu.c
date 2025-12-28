@@ -4,8 +4,8 @@ inherit WORM;
 void create()
 {
         set_name(HIR "花斑蛛" NOR, ({ "huaban zhu", "huaban", "zhu" }));
-        set("long", HIR "这是一只全身五彩斑斓的毒蜘蛛。\n" NOR);
-        set("race", "野兽");
+        set("long", HIR "這是一隻全身五彩斑斕的毒蜘蛛。\n" NOR);
+        set("race", "野獸");
         set("age", random(10));
         set("attitude", "peaceful");
 
@@ -14,7 +14,7 @@ void create()
 
         set("str", 30);
         set("con", 30);
-        set("limbs", ({ "头部", "身体", "长腿", "肚子" }));
+        set("limbs", ({ "頭部", "身體", "長腿", "肚子" }));
         set("verbs", ({ "bite" }));
 
         set("worm_poison", ([

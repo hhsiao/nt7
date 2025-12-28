@@ -5,8 +5,8 @@ inherit MEDAL;
 
 void create()
 {
-        set_name(HIG "青铜荣誉勋章" NOR, ({ "bronze medal" }));
-        set("long", HIG "2005年参加炎黄9.18屠杀倭寇并获得季军的纪念勋章。\n" NOR);
+        set_name(HIG "青銅榮譽勳章" NOR, ({ "bronze medal" }));
+        set("long", HIG "2005年參加炎黃9.18屠殺倭寇並獲得季軍的紀念勳章。\n" NOR);
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);

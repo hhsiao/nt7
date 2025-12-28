@@ -3,7 +3,7 @@ inherit NPC;
 
 void create()
 {
-        set_name("进香客", ({ "jinxiang ke", "jinxiang", "ke" }) );
+        set_name("進香客", ({ "jinxiang ke", "jinxiang", "ke" }) );
         set("gender", "男性" );
         set("age", 32);
         set("shen_type", 1);
@@ -17,7 +17,7 @@ void create()
         set_skill("unarmed", 20);
         set("chat_chance", 2);
         set("chat_msg", ({
-                CYN "进香客轻轻咳嗽了一声。\n" NOR,
+                CYN "進香客輕輕咳嗽了一聲。\n" NOR,
         }) );       
 
         setup();

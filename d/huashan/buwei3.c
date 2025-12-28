@@ -4,12 +4,12 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "偏厅");
+        set("short", "偏廳");
         set("long", @LONG
-偏厅里供奉着华山历代祖师的神位。正中神案的墙上是华山派开
-山祖师风祖师的画象。画象神情清隽，非常传神。神案上香炉里插着
-三柱清香，香烟袅袅上升，散发着一股檀香味。西面有扇门通往外面
-的正厅。
+偏廳裡供奉著華山歷代祖師的神位。正中神案的牆上是華山派開
+山祖師風祖師的畫象。畫象神情清雋，非常傳神。神案上香爐裡插著
+三柱清香，香菸裊裊上升，散發著一股檀香味。西面有扇門通往外面
+的正廳。
 LONG );
         set("exits", ([ /* sizeof() == 2 */
             "west" : __DIR__"buwei1",
@@ -21,8 +21,8 @@ LONG );
         ]));
 
         set("item_desc", ([
-                      "picture" : "一个神情清隽的中年书生，腰间配着一把长剑。\n",
-                "画象" : "一个神情清隽的中年书生，腰间配着一把长剑。\n",
+                      "picture" : "一個神情清雋的中年書生，腰間配著一把長劍。\n",
+                "畫象" : "一個神情清雋的中年書生，腰間配著一把長劍。\n",
         ]));
 
         set("paper_count", 1);
@@ -45,16 +45,16 @@ int do_ketou(string arg)
            object paper, me = this_player();
         int level1, level2, level3;
 
-        message_vision("$N恭恭敬敬地在神案前的团蒲上跪了下来，对着神位磕了三个响头。\n", me);
-        me->receive_damage("qi", 5, "力尽气绝而死");
+        message_vision("$N恭恭敬敬地在神案前的團蒲上跪了下來，對著神位磕了三個響頭。\n", me);
+        me->receive_damage("qi", 5, "力盡氣絕而死");
         me->start_busy(1);
 
         if( query("qi", me) <= 50 )
-                write("你只觉得脑子有些昏昏沉沉的。\n");
+                write("你只覺得腦子有些昏昏沉沉的。\n");
         if( query("qi", me) <= 20 )
-                write("你觉得天旋地转，似乎马上便要晕去。\n");
+                write("你覺得天旋地轉，似乎馬上便要暈去。\n");
 
-        if( !(query("family/family_name", me) == "华山派"))return 1;
+        if( !(query("family/family_name", me) == "華山派"))return 1;
 
         if( !query("huashan/yin-jue", me) && query("huashan/yinjue", me)<500){
                 addn("huashan/yinjue", 1, me);
@@ -74,11 +74,11 @@ int do_ketou(string arg)
                 set("huashan/yin-jue", 1, me);
                 delete("huashan/yinjue", me);
 
-                write("你在团蒲上重重地一磕，团蒲的边上忽然裂了开来，露出一小段纸笺。\n");
-                write("你仔细的将纸笺抽出一看，上面密密麻麻的记载了练功心法，似乎与紫霞\n");
-                write("功一脉相承，但却更加深奥。\n");
-                write("你细读良久，突然晃然大悟，原来这便是紫霞密笈失传多时的最後一页！\n");
-                write("你连忙密笈收好。\n");
+                write("你在團蒲上重重地一磕，團蒲的邊上忽然裂了開來，露出一小段紙箋。\n");
+                write("你仔細的將紙箋抽出一看，上面密密麻麻的記載了練功心法，似乎與紫霞\n");
+                write("功一脈相承，但卻更加深奧。\n");
+                write("你細讀良久，突然晃然大悟，原來這便是紫霞密笈失傳多時的最後一頁！\n");
+                write("你連忙密笈收好。\n");
         }
 
         return 1;

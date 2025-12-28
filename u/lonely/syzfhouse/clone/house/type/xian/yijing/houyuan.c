@@ -4,10 +4,10 @@ inherit "/inherit/room/house_room";
 
 void create()
 {
-    set("short", "后院");
+    set("short", "後院");
     set("long", @LONG
-这是宅子的后院，正中一座假山，傲然而立，气势不凡。下有
-流水淙淙，环山而走，悠然不息。
+這是宅子的後院，正中一座假山，傲然而立，氣勢不凡。下有
+流水淙淙，環山而走，悠然不息。
 LONG);
 
     set("exits",

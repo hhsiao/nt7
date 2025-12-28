@@ -1,10 +1,10 @@
-// wugu.c 无骨
+// wugu.c 無骨
 
 #include <ansi.h>
 
 inherit F_SSERVER;
 
-string name() { return "无骨"; }
+string name() { return "無骨"; }
 
 int perform(object me, object target)
 {
@@ -20,29 +20,29 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("「无骨」只能在战斗中对对手使用。\n");
+                return notify_fail("「無骨」只能在戰鬥中對對手使用。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("「无骨」只能空手使用。\n");
+                return notify_fail("「無骨」只能空手使用。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你的真气不够！\n");
+                return notify_fail("你的真氣不夠！\n");
 
         if ((int)me->query_skill("huagu-mianzhang", 1) < 120)
-                return notify_fail("你的化骨棉掌火候不够，无法使用「无骨」绝招！\n");
+                return notify_fail("你的化骨棉掌火候不夠，無法使用「無骨」絕招！\n");
 
         if ((int)me->query_skill("force") < 100)
-                return notify_fail("你的内功修为不够，无法使用「无骨」绝招！\n");
+                return notify_fail("你的內功修為不夠，無法使用「無骨」絕招！\n");
 
         if (! me->query_skill_prepare() &&
             me->query_skill_mapped("strike") != "huagu-mianzhang")
-                return notify_fail("你现在没有准备使用化骨棉掌，无法使用「无骨」绝招！\n");
+                return notify_fail("你現在沒有準備使用化骨棉掌，無法使用「無骨」絕招！\n");
 
         if(!stringp(force = me->query_skill_mapped("force"))
                 ||force!="busi-shenlong")
-                return notify_fail("你没有使用神龙不死心法，无法使出绝招！\n");
+                return notify_fail("你沒有使用神龍不死心法，無法使出絕招！\n");
 
-        msg = HIW "只听得$N关节喀喀作响，掌心隐约透出股黑气，双臂变得柔软无骨一般！\n"NOR;
+        msg = HIW "只聽得$N關節喀喀作響，掌心隱約透出股黑氣，雙臂變得柔軟無骨一般！\n"NOR;
         ap=attack_power(me, "strike")+me->query_str()*20;
         if (living(target))
                  dp=defense_power(target, "parry")+target->query_dex()*20;
@@ -50,12 +50,12 @@ int perform(object me, object target)
         if (ap / 2 + random(ap) > dp)
         {
                 count = ap / 10;
-                msg += HIW "$n见$P招式怪异，不知该怎么招架，慌乱中$N的双掌已到面前。\n"NOR;
+                msg += HIW "$n見$P招式怪異，不知該怎麼招架，慌亂中$N的雙掌已到面前。\n"NOR;
         }
 
         else
         {
-                msg += HIW "$n抖擞精神，刹那间已看清$N的招式，从容招架。\n" NOR;
+                msg += HIW "$n抖擻精神，剎那間已看清$N的招式，從容招架。\n" NOR;
                 count = 0;
         }
 

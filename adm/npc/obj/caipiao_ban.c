@@ -1,8 +1,8 @@
-// 彩票投注系统 made by 叶雨飞(sunyc)@kync 2001/1/26
+// 彩票投注系統 made by 葉雨飛(sunyc)@kync 2001/1/26
 // remodify by Sunyc@kync 2002/7/24
 // remodify By Sunyc@kync.tomud.com 5555 2002/11/24
-// 更换奖金，可以累计，也不只是gold了
-// 改为30选7
+// 更換獎金，可以累計，也不只是gold了
+// 改為30選7
 
 #include <ansi.h>
 #include <localtime.h>
@@ -28,11 +28,11 @@ void create()
 {
         set_name(HIG "彩票投注板" NOR, ({ "touzhu ban", "touzhu", "ban"}) );
         set("long",
-                "这是全体玩家的彩票投注板。\n"
-                "如何购买彩票请read rules，\n");
+                "這是全體玩家的彩票投注板。\n"
+                "如何購買彩票請read rules，\n");
         set_weight(900000000);
         seteuid(getuid());
-        set("unit", "块");
+        set("unit", "塊");
         set("no_put", 1);
         set("no_get", 1);
 
@@ -65,38 +65,38 @@ int do_ya(int arg)
         str = "";
 
         //if( query("balance", me)/10000<10 )
-                //return notify_fail("钱庄至少要有十两黄金才能投注。\n");
+                //return notify_fail("錢莊至少要有十兩黃金才能投注。\n");
         if( MEMBER_D->db_query_member(me, "money") < 2 )
                 return notify_fail("你至少要有2NT才能投注。\n");
 
         if( query("end_ya") || query("duijiang") )
-                return notify_fail("截止时间已过，等下次再来买吧......\n");
+                return notify_fail("截止時間已過，等下次再來買吧......\n");
 
         if( query_temp("busy") )
-                return notify_fail("请稍候几秒钟再试...\n");
+                return notify_fail("請稍候幾秒鐘再試...\n");
 
         //if( !intp(arg) || !arg ) {
         if( !query_temp("z_num", me) ) {
-                tell_object(me,"请选7个30以内的号码，用逗号隔开。\n");
+                tell_object(me,"請選7個30以內的號碼，用逗號隔開。\n");
                 tell_object(me,"例如：2,3,4,5,6,7,8\n");
-                tell_object(me,"或者输入-1进行机选。\n");
-                tell_object(me,"请输入您的选择：");
+                tell_object(me,"或者輸入-1進行機選。\n");
+                tell_object(me,"請輸入您的選擇：");
                 input_to("touzhu_1",me);
                 return 1;
         } else {
-                message_vision("$N把投票单写好后，扔进了投票板。天上突然掉下了一张彩票，$N连忙揣了起来。\n",me);
+                message_vision("$N把投票單寫好後，扔進了投票板。天上突然掉下了一張彩票，$N連忙揣了起來。\n",me);
                 //addn("balance", -100000, me);
-                //tell_object(me,"钱庄已经扣除了你十两黄金。请在"+query("kaijiang_cdate")+"来等待结果吧！\n");
+                //tell_object(me,"錢莊已經扣除了你十兩黃金。請在"+query("kaijiang_cdate")+"來等待結果吧！\n");
                 if( !MEMBER_D->player_pay(me, 2) )
                 {
-                        tell_object(me,"交易失败。\n");
+                        tell_object(me,"交易失敗。\n");
                         return 1;
                 }
-                tell_object(me,"已经扣除了你2NT。请在"+query("kaijiang_cdate")+"来等待结果吧！\n");
-                tell_object(me,HIR"ＧＯＯＤ　ＬＵＣＫ 祝您好运！\n"NOR);
+                tell_object(me,"已經扣除了你2NT。請在"+query("kaijiang_cdate")+"來等待結果吧！\n");
+                tell_object(me,HIR"ＧＯＯＤ　ＬＵＣＫ 祝您好運！\n"NOR);
                 caipiao=new("/clone/misc/caipiao.c");
                 set("kaijiang_date", query("kaijiang_cdate"), caipiao);
-                // 获得一个连续字符串
+                // 獲得一個連續字符串
                 for(i=0;i<sizeof(query_temp("z_num", me));i++)
                         str+=query_temp("z_num", me)[i]+"";
                 set("z_num", str, caipiao);
@@ -108,7 +108,7 @@ int do_ya(int arg)
                         "name"  :me->name(1),
                         "z_num" :str,
                         "z_num_all":query_temp("z_num",me),
-                        "jieguo":"未开奖",
+                        "jieguo":"未開獎",
                 ]);
                 delete_temp("z_num", me);
                 if( !pointerp(all_biao) ) all_biao = ({biao});
@@ -131,10 +131,10 @@ void touzhu_1(string num,object me)
 
         if( !num || num=="" )
         {
-                tell_object(me,"请选7个1-30中的号码，用逗号隔开。\n");
+                tell_object(me,"請選7個1-30中的號碼，用逗號隔開。\n");
                 tell_object(me,"例如：2,3,4,5,6,7,8\n");
-                tell_object(me,"或者输入-1进行机选。\n");
-                tell_object(me,"请输入您的选择：");
+                tell_object(me,"或者輸入-1進行機選。\n");
+                tell_object(me,"請輸入您的選擇：");
                 input_to("touzhu_1", me);
                 return;
         }
@@ -157,7 +157,7 @@ void touzhu_1(string num,object me)
                 for( i=0;i<sizeof(jieguo);i++ )
                         str+=jieguo[i]+" ";
                 set_temp("z_num", jieguo, me);
-                write("\n您的投注号码为"HIR+str+NOR"，您确定么?[y/n]：");
+                write("\n您的投注號碼為"HIR+str+NOR"，您確定麼?[y/n]：");
                 input_to("yn",me);
                 return;
         }
@@ -177,15 +177,15 @@ void touzhu_1(string num,object me)
         if( sizeof(tmp)!=7 ) j=1;
         if( j )
         {
-                tell_object(me,"请选7个1-30中的号码，用逗号隔开。\n");
+                tell_object(me,"請選7個1-30中的號碼，用逗號隔開。\n");
                 tell_object(me,"例如：2,3,4,5,6,7,8\n");
-                tell_object(me,"或者输入-1进行机选。\n");
-                tell_object(me,"请输入您的选择：");
+                tell_object(me,"或者輸入-1進行機選。\n");
+                tell_object(me,"請輸入您的選擇：");
                 input_to("touzhu_1", me);
                 return;
         }
         set_temp("z_num", tmp, me);
-        write("\n您的投注号码为"HIR+str+NOR"，您确定么?[y/n]：");
+        write("\n您的投注號碼為"HIR+str+NOR"，您確定麼?[y/n]：");
         input_to("yn",me);
         return;
 }
@@ -193,15 +193,15 @@ void yn(string yn,object me)
 {
         if( (yn[0]!='y' && yn[0]!='Y') ) {
                 delete_temp("z_num", me);
-                write("\n好吧，请重新投注。");
-                tell_object(me,"请选7个1-30中的号码，用逗号隔开。\n");
+                write("\n好吧，請重新投注。");
+                tell_object(me,"請選7個1-30中的號碼，用逗號隔開。\n");
                 tell_object(me,"例如：2,3,4,5,6,7,8\n");
-                tell_object(me,"请输入您的选择：");
+                tell_object(me,"請輸入您的選擇：");
                 input_to("touzhu_1", me);
                 return;
         }
         else {
-                write("\n储存数据中...\n");
+                write("\n儲存數據中...\n");
                 do_ya(1);
                 return;
         }
@@ -213,35 +213,35 @@ void check(object me)
         int money=0;
         int i;
         /*query_temp("check", if( oldcrypt(me),yn) != yn){
-                write("对不起，您输入的校验码有误，不能给您发奖。\n");
+                write("對不起，您輸入的校驗碼有誤，不能給您發獎。\n");
                 delete_temp("check", me);
                 return;
         }
         else {   */
-        write("\n恭喜您中了本期大奖...\n");
+        write("\n恭喜您中了本期大獎...\n");
         delete_temp("check", me);
-        write("ok...开始发奖\n");
+        write("ok...開始發獎\n");
         switch (all_biao[query_temp("num",me)]["jieguo"])
         {
-        case "特等奖":money=query("last_gold");
+        case "特等獎":money=query("last_gold");
                 break;
-        case "一等奖":money=query("last_gold")/5;
+        case "一等獎":money=query("last_gold")/5;
                 break;
-        case "二等奖":money=query("last_gold")/10;
+        case "二等獎":money=query("last_gold")/10;
                 break;
-        case "三等奖":money=query("last_gold")/500;
+        case "三等獎":money=query("last_gold")/500;
                 break;
-        case "四等奖":money=query("last_gold")/10000;
+        case "四等獎":money=query("last_gold")/10000;
                 break;
         }
 
         MEMBER_D->db_pay_member(me, money);
 
-        write(HIR"你中了"+chinese_number(money)+" NT,已经拨入你的账户！\n");
-        message("system",HIW"〖福彩〗："+HIC" "+query("name",me)+HIW" 中了"+HIY" "+chinese_number(money)+HIW" NT，已经拨入帐户！\n"NOR,users());
-        all_biao[query_temp("num",me)]["jieguo"]="已兑奖";
+        write(HIR"你中了"+chinese_number(money)+" NT,已經撥入你的賬戶！\n");
+        message("system",HIW"〖福彩〗："+HIC" "+query("name",me)+HIW" 中了"+HIY" "+chinese_number(money)+HIW" NT，已經撥入帳戶！\n"NOR,users());
+        all_biao[query_temp("num",me)]["jieguo"]="已兌獎";
         //all_biao-=({query_temp("num", all_biao[me)]});
-        save();//存盘
+        save();//存盤
         delete_temp("num", me);
         delete_temp("check", me);
         remove_call_out("enough_rest");
@@ -261,18 +261,18 @@ int do_read(string arg)
 
         if( arg == "rules" )
         {
-                write("本彩票系统已经开通，欢迎大家前来购彩。\n");
-                write("投注请用touzhu\n");
-                write("查询请用read biao\n");
-                write("查询规则请用read duijiang\n");
-                write("请使用duijiang指令，你的奖金将自动进入你帐户。\n");
+                write("本彩票系統已經開通，歡迎大家前來購彩。\n");
+                write("投注請用touzhu\n");
+                write("查詢請用read biao\n");
+                write("查詢規則請用read duijiang\n");
+                write("請使用duijiang指令，你的獎金將自動進入你帳戶。\n");
                 return 1;
         }
         if( arg == "biao" )
         {
                 /*if( !pointerp(all_biao) || !sizeof(all_biao) )
                 {
-                        write("\n还没有人开始投注。\n");
+                        write("\n還沒有人開始投注。\n");
                         return 1;
                 }*/
                 write(show_player());
@@ -280,17 +280,17 @@ int do_read(string arg)
         }
         if( arg == "duijiang" )
         {
-                write("兑奖细则：\n");
-                write("特等奖：七个数字全部吻合。      ——全部累计奖金.\n");
-                write("一等奖：共有六个数字吻合。      ——全部累计奖金/5.\n");
-                write("二等奖：共有五个数字吻合        ——全部累计奖金/50.\n");
-                write("三等奖：共有四个数字吻合        ——全部累计奖金/500.\n");
-                write("四等奖：仅有三个数字吻合        ——全部累计奖金/10000.\n");
+                write("兌獎細則：\n");
+                write("特等獎：七個數字全部吻合。      ——全部累計獎金.\n");
+                write("一等獎：共有六個數字吻合。      ——全部累計獎金/5.\n");
+                write("二等獎：共有五個數字吻合        ——全部累計獎金/50.\n");
+                write("三等獎：共有四個數字吻合        ——全部累計獎金/500.\n");
+                write("四等獎：僅有三個數字吻合        ——全部累計獎金/10000.\n");
                 write("祝您玩得痛快!\n");
                 return 1;
         }
         else
-                write("你要看什么？购买规则请read rules，购买情况请read biao,兑奖规则请read duijiang。\n");
+                write("你要看什麼？購買規則請read rules，購買情況請read biao,兌獎規則請read duijiang。\n");
         return 1;
 }
 
@@ -305,7 +305,7 @@ string show_player()
         if( !query("duijiang") )
         {
                 h=sizeof(all_biao);
-                str+=HIW"本期彩票已有 "HIG+chinese_number(sizeof(all_biao))+HIW" 位玩家投注，投注状况如下：\n"NOR;
+                str+=HIW"本期彩票已有 "HIG+chinese_number(sizeof(all_biao))+HIW" 位玩家投注，投注狀況如下：\n"NOR;
                 str+="┏------------┳----------------------┳------┓\n";
                 while (i<h)
                 {
@@ -314,14 +314,14 @@ string show_player()
                         i++;
                 }
                 str+="┗------------┻----------------------┻------┛\n"NOR;
-                if( query("end_cdate") ) str+=HIW"本期投注截止时间："HIY+query("end_cdate")+HIW"\n本期彩票开奖时间："HIM+query("kaijiang_cdate")+"\n"NOR;
-                else str+=HIR"本期彩票已经截止购买,"HIW"开奖时间："HIG+query("kaijiang_cdate")+HIW"。\n"NOR;
-                str+=HIW"本期彩票累计奖金："HIY+query("all_gold")+HIG" NT。\n"NOR;
+                if( query("end_cdate") ) str+=HIW"本期投注截止時間："HIY+query("end_cdate")+HIW"\n本期彩票開獎時間："HIM+query("kaijiang_cdate")+"\n"NOR;
+                else str+=HIR"本期彩票已經截止購買,"HIW"開獎時間："HIG+query("kaijiang_cdate")+HIW"。\n"NOR;
+                str+=HIW"本期彩票累計獎金："HIY+query("all_gold")+HIG" NT。\n"NOR;
                 return str;
         }
         str_te=str_1=str_2=str_3=str_4=str_5=list=str_old=({});
-        str=HIW"第 "HIY+chinese_number(query("times")-1)+ HIW" 期彩票大奖已开出："+HIR+query("last_z_num_str")+NOR+"\n";
-        str+=HIW"已有 "HIG+chinese_number(sizeof(all_biao))+HIW" 个玩家投注，中奖玩家如下：\n"NOR;
+        str=HIW"第 "HIY+chinese_number(query("times")-1)+ HIW" 期彩票大獎已開出："+HIR+query("last_z_num_str")+NOR+"\n";
+        str+=HIW"已有 "HIG+chinese_number(sizeof(all_biao))+HIW" 個玩家投注，中獎玩家如下：\n"NOR;
         i=0;
         h=sizeof(all_biao);
         for(i=0;i<h;i++)
@@ -333,34 +333,34 @@ string show_player()
                         if(member_array(j,query("last_z_num"))!=-1) k++;
                 }
 
-                if ( all_biao[i]["jieguo"] == "已兑奖")
+                if ( all_biao[i]["jieguo"] == "已兌獎")
                         str_old+=({i});
                 else
                 {
                         switch (k){
                         case 7:
                                 str_te+=({i});
-                                all_biao[i]["jieguo"]="特等奖";
+                                all_biao[i]["jieguo"]="特等獎";
                                 break;
                         case 6:
                                 str_1+=({i});
-                                all_biao[i]["jieguo"]="一等奖";
+                                all_biao[i]["jieguo"]="一等獎";
                                 break;
                         case 5:
                                 str_2+=({i});
-                                all_biao[i]["jieguo"]="二等奖";
+                                all_biao[i]["jieguo"]="二等獎";
                                 break;
                         case 4:
                                 str_3+=({i});
-                                all_biao[i]["jieguo"]="三等奖";
+                                all_biao[i]["jieguo"]="三等獎";
                                 break;
                         case 3:
                                 str_4+=({i});
-                                all_biao[i]["jieguo"]="四等奖";
+                                all_biao[i]["jieguo"]="四等獎";
                                 break;
                         default:
                                 str_5+=({i});
-                                all_biao[i]["jieguo"]="无奖";
+                                all_biao[i]["jieguo"]="無獎";
                                 break;
                         }
                 }
@@ -369,7 +369,7 @@ string show_player()
         list+=str_te+str_1+str_2+str_3+str_4+str_old;
         str_te=str_1=str_2=str_3=str_4=str_5=str_old=({});
         str+="┏------------┳----------------------┳------┓\n";
-        str+= sprintf("┃%-12s┃%-22s┃%-6s┃\n","玩家名","  投   注   号   码   ","所中奖");
+        str+= sprintf("┃%-12s┃%-22s┃%-6s┃\n","玩家名","  投   注   號   碼   ","所中獎");
         str+="┣------------╋----------------------╋------┫\n";
         z=0;
         h=sizeof(list);
@@ -380,27 +380,27 @@ string show_player()
                 i=list[z];
                 name=all_biao[i];
                 str+= sprintf("┃%-12s┃%22s┃%-6s┃\n",HIR+name["name"]+NOR,(int)name["z_num"],name["jieguo"],);
-                if ( name["jieguo"] != "已兑奖" )
+                if ( name["jieguo"] != "已兌獎" )
                         m++;
                 z++;
         }
         list=({});
         str+="┗------------┻----------------------┻------┛\n"NOR;
-        str+=HIW"本期尚未兑奖注数："HIM+chinese_number(m)+HIW"\n"NOR;
-        str+=HIW"下期彩票发行时间："HIG+query("start_cdate")+HIW"\n"NOR;
-        str+=HIW"下期彩票预计奖金："HIY+query("all_gold")+HIW" NT。\n"NOR;
+        str+=HIW"本期尚未兌獎注數："HIM+chinese_number(m)+HIW"\n"NOR;
+        str+=HIW"下期彩票發行時間："HIG+query("start_cdate")+HIW"\n"NOR;
+        str+=HIW"下期彩票預計獎金："HIY+query("all_gold")+HIW" NT。\n"NOR;
         //return "/feature/more.c"->start_more(str);
         return str;
 }
 
-int do_duijiang()//兑奖指令
+int do_duijiang()//兌獎指令
 {
         int i,j,k,m,n,money;
         object me;
 
         me = this_player();
         if( !query("duijiang") )
-                return notify_fail("还未到兑奖时间！\n");
+                return notify_fail("還未到兌獎時間！\n");
         if( query_temp("busy") )
                 return notify_fail("稍候........\n");
         set_temp("busy",1);
@@ -414,32 +414,32 @@ int do_duijiang()//兑奖指令
                 if( all_biao[i]["id"] == query("id", me) && all_biao[i]["name"] == query("name", me) )
                 {
                         n = 1;
-                        if ( all_biao[i]["jieguo"] != "已兑奖" && all_biao[i]["jieguo"] != "无奖" )
+                        if ( all_biao[i]["jieguo"] != "已兌獎" && all_biao[i]["jieguo"] != "無獎" )
                         {
                                 k = i + 1;
                                 break;
                         }
-                        else if ( all_biao[i]["jieguo"] == "已兑奖" )
+                        else if ( all_biao[i]["jieguo"] == "已兌獎" )
                                 m = 1;
-                        else if ( all_biao[i]["jieguo"] == "无奖" )
+                        else if ( all_biao[i]["jieguo"] == "無獎" )
                                 m = 2;
                 }
                 i++;
         }
         delete_temp("busy");
-        if( !n || n == 0 ) return notify_fail("你并没有买彩票呀！\n");
+        if( !n || n == 0 ) return notify_fail("你並沒有買彩票呀！\n");
         else if ( k )
         {
                 set_temp("check", all_biao[k-1]["z_num"]+""+all_biao[k-1]["t_num"], me);
                 set_temp("num", k-1, me);
-                write("您的中奖号码是"+query_temp("check", me)+"。\n");
-                //write("请输入您的校验码:");
+                write("您的中獎號碼是"+query_temp("check", me)+"。\n");
+                //write("請輸入您的校驗碼:");
                 //input_to("check",me);
                 check(me);
                 return 1;
         }
-        else if( m == 1 ) return notify_fail("你已经兑过奖了！\n");
-        else if( m == 2 ) return notify_fail("你根本没中奖，来兑个屁！\n");
+        else if( m == 1 ) return notify_fail("你已經兌過獎了！\n");
+        else if( m == 2 ) return notify_fail("你根本沒中獎，來兌個屁！\n");
 }
 
 void auto_post(string title,string body)

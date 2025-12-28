@@ -7,18 +7,18 @@ inherit HAMMER;
 
 void create()
 {
-        set_name(NOR + YEL "黄金斧" NOR, ({"huangjin fu", "huangjin", "fu"}));
+        set_name(NOR + YEL "黃金斧" NOR, ({"huangjin fu", "huangjin", "fu"}));
         set_weight(20000);
         if (clonep())
                 destruct(this_object());
         else {
-                set("long", YEL "这是一柄纯金黄铸造的大斧，斧柄末端似乎有些松动。\n" NOR);
+                set("long", YEL "這是一柄純金黃鑄造的大斧，斧柄末端似乎有些鬆動。\n" NOR);
                 set("unit", "柄");
                 set("value", 800000);
                 set("no_sell", 1);
                 set("material", "gold");
-                set("wield_msg", YEL "$N" YEL "举起一柄纯黄所铸的大斧，随手挥舞了两下。\n" NOR);
-                set("unwield_msg", YEL "$N" YEL "哈哈一笑，将手中的黄金斧收回背后。\n" NOR);
+                set("wield_msg", YEL "$N" YEL "舉起一柄純黃所鑄的大斧，隨手揮舞了兩下。\n" NOR);
+                set("unwield_msg", YEL "$N" YEL "哈哈一笑，將手中的黃金斧收回背後。\n" NOR);
                 set("stable", 100);
         }
         init_hammer(180);
@@ -40,7 +40,7 @@ mixed hit_ob(object me, object victim, int damage_bonus)
                 n = me->query_skill("hammer");
                 victim->receive_damage("qi", n, me);
                 victim->receive_wound("qi", n, me);
-                return YEL "$N" YEL "一声断喝，手中黄金斧霎时金芒暴涨，呼的一声朝$n"
+                return YEL "$N" YEL "一聲斷喝，手中黃金斧霎時金芒暴漲，呼的一聲朝$n"
                        YEL "猛劈而去！\n" NOR;
         }
         return damage_bonus;
@@ -65,11 +65,11 @@ int do_pick(string arg)
         if (! environment(ob))
         {
                 ob->move(me, 1);
-                message_vision(HIC "$N" HIC "扭开斧柄，发现斧柄中空，其中藏"
-                               "有一卷竹简。\n$N" HIC "顿时大喜过望，连忙将"
-                               "之取出，收入怀中。\n" NOR, me);
+                message_vision(HIC "$N" HIC "扭開斧柄，發現斧柄中空，其中藏"
+                               "有一卷竹簡。\n$N" HIC "頓時大喜過望，連忙將"
+                               "之取出，收入懷中。\n" NOR, me);
                 return 1;
         } else
-                return notify_fail(YEL "你扭开斧柄，发现柄中空空如也，什么"
-                                   "都没有。\n" NOR);
+                return notify_fail(YEL "你扭開斧柄，發現柄中空空如也，什麼"
+                                   "都沒有。\n" NOR);
 }

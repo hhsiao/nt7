@@ -5,18 +5,18 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIC "无名古玉" NOR, ({"wuming guyu", "wuming", "guyu"}));
+        set_name(HIC "無名古玉" NOR, ({"wuming guyu", "wuming", "guyu"}));
         set_weight(2000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "块");
-                set("long", HIC "这是一块不知名的古玉，看上去非常古老，不知产于哪一年代。\n" HIG
-                                "需要通过鉴定，此玉的真面目才能显现，鉴定后可随机出现以下玉石之一：\n" HIB
-                                "古玄玉（1级）、古玄玉（2级）、古玄玉（3级）\n" HIW
-                                "玄冰石（1级）、玄冰石（2级）、玄冰石（3级）\n" HIR 
-                                "鉴定前请确认你的背包中的负重至少剩余5% 。\n" HIC
-                                "在扬州鲁班处，输入指令 " + CMD_JD + " 来请求鲁班鉴定无名古玉。\n" NOR);
+                set("unit", "塊");
+                set("long", HIC "這是一塊不知名的古玉，看上去非常古老，不知產於哪一年代。\n" HIG
+                                "需要通過鑑定，此玉的真面目才能顯現，鑑定後可隨機出現以下玉石之一：\n" HIB
+                                "古玄玉（1級）、古玄玉（2級）、古玄玉（3級）\n" HIW
+                                "玄冰石（1級）、玄冰石（2級）、玄冰石（3級）\n" HIR 
+                                "鑑定前請確認你的揹包中的負重至少剩餘5% 。\n" HIC
+                                "在揚州魯班處，輸入指令 " + CMD_JD + " 來請求魯班鑑定無名古玉。\n" NOR);
                         
                 set("value", 500000);
         }
@@ -43,21 +43,21 @@ int do_jianding(string arg)
         
         
         if (! arg || arg != query("id"))
-                return notify_fail("你想鉴定什么？\n");
+                return notify_fail("你想鑑定什麼？\n");
                 
                         
         env = environment(me);
         
         if (base_name(env) != "/d/room/xiaoyuan")
-                return notify_fail("这个物品好象只有鲁班才能鉴定，你还是上他那去吧。\n");
+                return notify_fail("這個物品好象只有魯班才能鑑定，你還是上他那去吧。\n");
                 
-        message_vision(HIY "$N拿出" + name() + HIY "让鲁班鉴定。\n", me);
+        message_vision(HIY "$N拿出" + name() + HIY "讓魯班鑑定。\n", me);
         
         
-        // 开始鉴定
-        /*40%几率鉴定出1级白玉或黑玉1块
-          35%几率鉴定出2级白玉或黑玉1块
-          25%几率鉴定出3级白玉或黑玉1块
+        // 開始鑑定
+        /*40%幾率鑑定出1級白玉或黑玉1塊
+          35%幾率鑑定出2級白玉或黑玉1塊
+          25%幾率鑑定出3級白玉或黑玉1塊
         */
         ran_point = 1 + random(100);
         if (ran_point > 60)
@@ -94,7 +94,7 @@ int do_jianding(string arg)
                 }                
         }
 
-        tell_object(me, HIG "鲁班将鉴定后的玉石交给你。\n" NOR);
+        tell_object(me, HIG "魯班將鑑定後的玉石交給你。\n" NOR);
 
         yu->move(me, 1);
         

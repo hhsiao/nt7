@@ -1,11 +1,11 @@
 // database.h
 
-// 是否采用永久连接
+// 是否採用永久連接
 #define STATIC_LINK
 //#define USE_SQLITE
-// 是否调试状态
+// 是否調試狀態
 // #define DEBUG
-// 是否允许分站新玩家注册
+// 是否允許分站新玩家註冊
 // #define REFUSE_NEW_PLAYER
 
 protected mapping all_others_db = ([
@@ -13,7 +13,7 @@ protected mapping all_others_db = ([
 ]);
 
 protected mapping stations = ([
-        "127.0.0.1" : "《泥潭·王者归来》",
+        "127.0.0.1" : "《泥潭·王者歸來》",
 ]);
 
 #ifndef DATABASE
@@ -29,5 +29,5 @@ nosave string ITEM_TABLE             = "items";
 nosave string MEMBER_TABLE           = "members";
 nosave string CARD_TABLE             = "cards";
 
-// 采用的加密算法
+// 採用的加密算法
 nosave string DB_CRYPT               = "PASSWORD";

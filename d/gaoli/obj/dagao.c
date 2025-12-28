@@ -9,9 +9,9 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "这是一个高丽的打糕，看起来很好吃。\n");
+                set("long", "這是一個高麗的打糕，看起來很好吃。\n");
                 set("no_decay",1);
-                set("unit", "个");
+                set("unit", "個");
                 set("value", 100);
                 set("food_remaining", 30);
                 set("food_supply", 50);
@@ -20,7 +20,7 @@ void create()
 /*
 int is_get_of(object pal,object ob)
 {
-  if(pal->query("family/family_name")!="弈剑派")
-  return notify_fail("只有弈剑派弟子可以捡这里的东西！！\n");
+  if(pal->query("family/family_name")!="弈劍派")
+  return notify_fail("只有弈劍派弟子可以撿這裡的東西！！\n");
   return 1;
 */

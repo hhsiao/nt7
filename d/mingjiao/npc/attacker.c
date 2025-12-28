@@ -21,7 +21,7 @@ string *dodge_skill = ({
 
 string *weapon_list = ({ "chui","sword","blade","whip","gun","sword","gangzhang","blade" }); 
 
-string *first_name = ({ "蒙面客","黑衣人","神秘人","黑衣忍者","山贼","探子","死士" }); 
+string *first_name = ({ "蒙面客","黑衣人","神秘人","黑衣忍者","山賊","探子","死士" }); 
 
 void create()
 {
@@ -38,7 +38,7 @@ void create()
         set_name(name, ({ "attacker"}));
         set("gender", "男性");
         set("age", 20 + random(40));
-        set("long", "这家伙一付凶神恶煞的模样，时不时发出邪恶的阴笑。\n");
+        set("long", "這傢伙一付凶神惡煞的模樣，時不時發出邪惡的陰笑。\n");
         set("combat_exp", 20000);
         set("attitude", "peaceful");
         set("str", 30);
@@ -83,7 +83,7 @@ void create()
                 
 void unconcious()
 {    
-        tell_room(environment(this_object()),query("name", this_object())+"转身几个起落就不见了。\n",({this_object()}));
+        tell_room(environment(this_object()),query("name", this_object())+"轉身幾個起落就不見了。\n",({this_object()}));
         destruct(this_object());        
 }
 
@@ -152,7 +152,7 @@ int checking(object me, object ob)
 
 int accept_fight(object victim)
 {
-        command("say 你这是找死！");
+        command("say 你這是找死！");
         kill_ob(victim);
         return 1;
 }

@@ -18,17 +18,17 @@
 inherit F_CLEAN_UP;
 
 string help = @HELP
-可自动建立档案标头, 并可修改标头内容
+可自動建立檔案標頭, 並可修改標頭內容
 ex :
-header filename.c //若 filename 尚无 NT 格式标头, 则自动建立预设标头, 作者为下此指令之人
-header filename author lonely // 设定 filename 作者为 lonely
-header filename update update_info // 自动往下递增 update 资讯
-header filename note note_info // 填写 NOTE(注解) 栏
+header filename.c //若 filename 尚無 NT 格式標頭, 則自動建立預設標頭, 作者為下此指令之人
+header filename author lonely // 設定 filename 作者為 lonely
+header filename update update_info // 自動往下遞增 update 資訊
+header filename note note_info // 填寫 NOTE(註解) 欄
 
-同时支援多行输入
-header filename author1/author2 输入多名作者
-header filename update1/update2 输入多行更新资讯
-header filename note1/note2     输入多行注解资讯
+同時支援多行輸入
+header filename author1/author2 輸入多名作者
+header filename update1/update2 輸入多行更新資訊
+header filename note1/note2     輸入多行註解資訊
 HELP;
 
 string default_header   = @HEADER
@@ -118,7 +118,7 @@ int main(object me, string arg)
         seteuid(getuid(me));
 
         if( !arg )
-                return notify_fail("请输入想要建立标头的档案名称。\n" );
+                return notify_fail("請輸入想要建立標頭的檔案名稱。\n" );
         
         parse = single_quote_parse(arg);
         arg = parse[0];
@@ -135,26 +135,26 @@ int main(object me, string arg)
         filename = arg;
         
         if( file_size(filename) < 0 )
-                return notify_fail("没有 "+filename+" 这个档案。\n");
+                return notify_fail("沒有 "+filename+" 這個檔案。\n");
         
         if( filename[<2..<1] == __SAVE_EXTENSION__ )
-                return notify_fail("这个档案型式不适合建立标头。\n");
+                return notify_fail("這個檔案型式不適合建立標頭。\n");
 
         file = read_file(arg);
         
-        // 检查是否已经建立标头
+        // 檢查是否已經建立標頭
         if( file[0..41] != "/* This program is a part of NiTan3 mudlib" )
         {
                 if( create_default_header(me, filename, file) )
                 {
-                        write("\n"+filename+" 预设标头建立完毕。\n");
+                        write("\n"+filename+" 預設標頭建立完畢。\n");
                         return 1;
                 }
                 else
-                        return notify_fail("你的权限不足以处理这个档案。\n");
+                        return notify_fail("你的權限不足以處理這個檔案。\n");
         }
         else if( !option || !arg2 )
-                return notify_fail(filename+" 的标头已经建立。\n");
+                return notify_fail(filename+" 的標頭已經建立。\n");
 
         if( option && arg2 )
         {
@@ -247,19 +247,19 @@ int main(object me, string arg)
                                 
                                 break;
                         }
-                        default: return notify_fail("没有 "+option+" 这个选项。\n");
+                        default: return notify_fail("沒有 "+option+" 這個選項。\n");
                 }
                 
                 line = member_array(" */", efile) + 1;
                 
                 if( write_file(filename, implode(efile, "\n"), 1) )
                 {
-                        write(me->query_idname()+"修改 "+filename+" 标头。\n");
-                        write(read_file(filename, 1, line) +"\n\n"+filename+" 预设标头建立完毕。\n");
+                        write(me->query_idname()+"修改 "+filename+" 標頭。\n");
+                        write(read_file(filename, 1, line) +"\n\n"+filename+" 預設標頭建立完畢。\n");
                         return 1;
                 }
                 else
-                        return notify_fail("你的权限不足以处理这个档案。\n");               
+                        return notify_fail("你的權限不足以處理這個檔案。\n");               
         }
 }
 

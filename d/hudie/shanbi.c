@@ -7,12 +7,12 @@ void create()
 { 
         set("short", "山壁");
         set("long", @LONG
-这里嫣红姹紫，遍山遍野都是鲜花，春光浪漫已极，转了几个弯，
-却见迎面一块山壁，路途已尽。旁边是一排花丛(huacong)。
+這裡嫣紅奼紫，遍山遍野都是鮮花，春光浪漫已極，轉了幾個彎，
+卻見迎面一塊山壁，路途已盡。旁邊是一排花叢(huacong)。
 LONG );
 
         set("item_desc", ([
-                "huacong" : "这是一排漂亮的花丛，几只蝴蝶从花从里钻了进去。\n",
+                "huacong" : "這是一排漂亮的花叢，幾隻蝴蝶從花從裡鑽了進去。\n",
         ]));
 
         set("outdoors", "蝴蝶谷");
@@ -43,14 +43,14 @@ int do_bo(string arg)
         if(!living(me) ) return 0;
 
         if ( me->is_busy() || me->is_fighting())
-              return notify_fail("你正忙着哪！\n");
+              return notify_fail("你正忙著哪！\n");
 
         if( !arg || arg != "huacong" ) return 0;
 
         if( arg == "huacong" ){
             if( (!fam || fam["family_name"] != "明教") && (!query_temp("hdq", me)) )
-                return notify_fail("你拨了拨花丛，并没有什么发现，不禁有些怅然。\n");
-            message_vision(HIC"$N拨了拨周围的花丛，突然发现右边"HIY"(Right)"HIC"好象有一条小路。\n"NOR, me);
+                return notify_fail("你撥了撥花叢，並沒有什麼發現，不禁有些悵然。\n");
+            message_vision(HIC"$N撥了撥周圍的花叢，突然發現右邊"HIY"(Right)"HIC"好象有一條小路。\n"NOR, me);
             if(!(room = find_object(__DIR__"shanbi")))
               room = load_object(__DIR__"shanbi");
               set("exits/right", __DIR__"huacong1");
@@ -61,7 +61,7 @@ int do_bo(string arg)
 
 void delete_exit(object room)
 {       
-        message("vision",HIW"一阵微风吹来，花丛动了起来，挡住了小路。\n"NOR, room);
+        message("vision",HIW"一陣微風吹來，花叢動了起來，擋住了小路。\n"NOR, room);
         delete("exits/right");
 }
 

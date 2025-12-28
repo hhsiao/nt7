@@ -3,12 +3,12 @@
 
 void create()
 {
-        set_name(HIW "白虎夺命丹" NOR, ({"duoming dan", "dan"}));
+        set_name(HIW "白虎奪命丹" NOR, ({"duoming dan", "dan"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIW "武当派的疗伤圣药，可治疗各种内伤，效果显著。\n" NOR);
-                set("base_unit", "颗");
+                set("long", HIW "武當派的療傷聖藥，可治療各種內傷，效果顯著。\n" NOR);
+                set("base_unit", "顆");
                 set("base_value", 8000);
                 set("base_weight", 80);
                 set("only_do_effect", 1);
@@ -41,16 +41,16 @@ int do_effect(object me)
 
         if( time()-query_temp("last_eat/duoming", me)<120 )
         {
-                write("你刚服用过药，需药性发挥完效用以后才能继续服用。\n");
+                write("你剛服用過藥，需藥性發揮完效用以後才能繼續服用。\n");
                 return 1;
         }
 
         set_temp("last_eat/duoming", time(), me);
 
-        message_vision(HIW "$N" HIW "服下一颗" + name() + HIW "，双目微闭，将丹药效力全数吸收。\n" NOR, me);
-        tell_object(me, HIW "突然间你觉得血脉畅通，精神饱满之极。\n" NOR);
+        message_vision(HIW "$N" HIW "服下一顆" + name() + HIW "，雙目微閉，將丹藥效力全數吸收。\n" NOR, me);
+        tell_object(me, HIW "突然間你覺得血脈暢通，精神飽滿之極。\n" NOR);
 
-        log_file("static/using", sprintf("%s(%s) eat 白虎夺命丹 at %s.\n",
+        log_file("static/using", sprintf("%s(%s) eat 白虎奪命丹 at %s.\n",
                  me->name(1),query("id", me),ctime(time())));
 
         my = me->query_entire_dbase();

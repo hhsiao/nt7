@@ -10,8 +10,8 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", HIM "一颗紫色的精致奇丹，具有着神话般的功效，传说\n"
-                                "吃了后可以消除人物的戾气。\n" NOR);
+                set("long", HIM "一顆紫色的精緻奇丹，具有著神話般的功效，傳說\n"
+                                "吃了後可以消除人物的戾氣。\n" NOR);
                 set("value", 500000);
                 set("unit", "粒");
                 set("only_do_effect", 1);
@@ -25,7 +25,7 @@ int do_effect(object me)
                        
         set("total_hatred", 0, me);
         
-        write(HIM "你只觉得灵台一片空明，纯净无比，你的戾气消除了。\n" NOR);
+        write(HIM "你只覺得靈臺一片空明，純淨無比，你的戾氣消除了。\n" NOR);
         destruct(this_object());
         return 1;
 }

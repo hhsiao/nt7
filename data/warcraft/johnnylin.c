@@ -7,7 +7,7 @@ void setup()
         set_name("[31m胡麒麟[2;37;0m[2;37;0m", ({"johnnydragon"}));        
         set("gender", "男性");                
         set("long", "This is JohnnyDragon ![2;37;0m
-它是胡一刀的魔幻兽。
+它是胡一刀的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

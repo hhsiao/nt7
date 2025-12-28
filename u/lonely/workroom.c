@@ -4,9 +4,9 @@
 inherit ROOM;
 void create()
 {
-        set("short", "高处不胜寒的工作室");
+        set("short", "高處不勝寒的工作室");
         set("long", @LONG
-这是没有建造工作室的巫师的临时住处，这里的设备非常简单，只有
+這是沒有建造工作室的巫師的臨時住處，這裡的設備非常簡單，只有
 一些常用物品。
 LONG );
 
@@ -34,7 +34,7 @@ LONG );
 int valid_leave(object me, string dir)
 {
         if (dir == "north" && ! wizardp(me))
-                return notify_fail("那里只有巫师才能进去。\n");
+                return notify_fail("那裡只有巫師才能進去。\n");
 
         return ::valid_leave(me, dir);
 }
@@ -60,7 +60,7 @@ int do_action(string arg)
                 switch (action) 
                 {
                         case "smash"  :
-                                write(HIW "这里是高处不胜寒的房间，请不要惹高处不胜寒不快。\n" NOR);
+                                write(HIW "這裡是高處不勝寒的房間，請不要惹高處不勝寒不快。\n" NOR);
                         return 1;
                 }
         }
@@ -74,7 +74,7 @@ int do_action(string arg)
                         {
                                 snoop(ob1);
                                 if (ob[i]->query("id") == "lonely")
-                                tell_object(ob[i], HIW + ob1->name(1) + "对你的窃听被中止。\n" NOR);
+                                tell_object(ob[i], HIW + ob1->name(1) + "對你的竊聽被中止。\n" NOR);
                         }
                 }
         }

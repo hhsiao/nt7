@@ -27,21 +27,21 @@ int main(object me, string str)
                 ob = present(str, environment(me));   
                 if (! ob) ob = find_player(str);   
                 if (! ob) ob = find_living(str);   
-                if (! ob) return notify_fail("你要查看谁的召唤列表？\n");   
+                if (! ob) return notify_fail("你要查看誰的召喚列表？\n");   
         }  
         
-        // 获取可召唤物品列表 
+        // 獲取可召喚物品列表 
         
         if( !mapp(ol=query("can_summon", ob)) || sizeof(ol)<1 )
-                return notify_fail("你现在还没有可以召唤的物品。\n"); 
+                return notify_fail("你現在還沒有可以召喚的物品。\n"); 
  
-        msg=query("name", ob)+"("+query("id", ob)+")可以召唤的物品有：\n\n";
+        msg=query("name", ob)+"("+query("id", ob)+")可以召喚的物品有：\n\n";
         items = keys(ol); 
         foreach (item in items) 
         { 
                 file = (string) ol[item]; 
                 if (file_size(file + ".c") < 0 && file_size(file) < 0) 
-                        nitem = HIR"<不存在的武器ID，请与巫师联系>"NOR; 
+                        nitem = HIR"<不存在的武器ID，請與巫師聯繫>"NOR; 
                 else 
                 { 
                         call_other(file, "???"); 

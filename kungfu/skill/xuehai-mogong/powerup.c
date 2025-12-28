@@ -11,19 +11,19 @@ int exert(object me, object target)
         int skill;
 
         if (target != me)
-                return notify_fail("你只能用血海魔功来提升自己的战斗力。\n");
+                return notify_fail("你只能用血海魔功來提升自己的戰鬥力。\n");
 
         if( query("neili", me)<150 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if( BUFF_D->check_buff(me, "powerup") ) 
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
         addn("neili", -100, me);
         me->receive_damage("qi", 0);
-        msg = HIR "$N" HIR "仰天一声长哮，提运血海魔功，全身"
-                        "骨骼爆响，真气荡漾，衣衫顿时膨胀，气势迫人。\n" NOR;
+        msg = HIR "$N" HIR "仰天一聲長哮，提運血海魔功，全身"
+                        "骨骼爆響，真氣盪漾，衣衫頓時膨脹，氣勢迫人。\n" NOR;
                         
         data = ([
                 "attack" : skill/3,
@@ -35,11 +35,11 @@ int exert(object me, object target)
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "血海魔功·战神",
+                "name"  : "血海魔功·戰神",
                 "time"  : skill,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : "你的血海魔功运行完毕，将内力收回丹田。\n",
+                "disa_msg" : "你的血海魔功運行完畢，將內力收回丹田。\n",
                         
         ]);
         BUFF_D->buffup(buff);

@@ -27,11 +27,11 @@ protected void init_crontab();
 
 class cron_item
 {
-        int flag;               // flag 0 现实生活; flag 1 游戏中
-        string time;            // 时间
-        string file;            // 触发物件的文件名
-        string func;            // 触发函数
-        string *args;           // 触发函数中的参数
+        int flag;               // flag 0 現實生活; flag 1 遊戲中
+        string time;            // 時間
+        string file;            // 觸發物件的文件名
+        string func;            // 觸發函數
+        string *args;           // 觸發函數中的參數
 }
 
 class cron_item *all_items = ({});
@@ -58,11 +58,11 @@ void auto_relaim()
 
         if (i = reclaim_objects())
                 CHANNEL_D->do_channel( this_object(), "sys",
-                        sprintf("系统自动清除 %d 个变量。", i));
+                        sprintf("系統自動清除 %d 個變量。", i));
 
         cpu_cost = CPU_D->get_current_cpu_cost();
 
-        // cpu过高则降低mudos心跳
+        // cpu過高則降低mudos心跳
      
         if( cpu_cost >= 95 && (int)get_config(__RC_HEARTBEAT_INTERVAL_MSEC__) == 1000 )
         {
@@ -100,37 +100,37 @@ protected void init_crontab()
                 reset_eval_cost();
                 table = explode(items[i]," ");
                 if( sizeof(table) < 3 ) {
-                        out(sprintf("以下任务格式错误：\n%s\n\n",items[i]));
+                        out(sprintf("以下任務格式錯誤：\n%s\n\n",items[i]));
                         continue;
                 }
                 time_zone = explode(table[0],":");
                 if( sizeof(time_zone) < 7 ) {
-                        out(sprintf("以下任务时间部分格式错误：\n%s\n\n",items[i]));
+                        out(sprintf("以下任務時間部分格式錯誤：\n%s\n\n",items[i]));
                         continue;
                 }
 
                 if( file_size(table[1]+".c") < 0 ) {
-                        out(sprintf("以下任务触发物件档案不存在：\n%s\n\n",items[i]));
+                        out(sprintf("以下任務觸發物件檔案不存在：\n%s\n\n",items[i]));
                         continue;
                 }
                 if( !ob = find_object(table[1]) )
                         ob = load_object(table[1]);
                 if( !ob ) {
-                        out(sprintf("以下任务触发物件无法载入：\n%s\n\n",items[i]));
+                        out(sprintf("以下任務觸發物件無法載入：\n%s\n\n",items[i]));
                         continue;
                 }
                 if( !function_exists(table[2],ob) ) {
-                        out(sprintf("以下任务触发物件中触发函数不存在：\n%s\n\n",items[i]));
+                        out(sprintf("以下任務觸發物件中觸發函數不存在：\n%s\n\n",items[i]));
                         continue;
                 }
                 if( sscanf(time_zone[0],"%d",flag) ) {
                         if( (flag != 0) && (flag != 1) ) {
-                                out(sprintf("以下任务 flag 格式错误：\n%s\n\n",items[i]));
+                                out(sprintf("以下任務 flag 格式錯誤：\n%s\n\n",items[i]));
                                 continue;
                         }
 
                 } else {
-                        out(sprintf("以下任务 flag 格式错误：\n%s\n\n",items[i]));
+                        out(sprintf("以下任務 flag 格式錯誤：\n%s\n\n",items[i]));
                         continue;
                 }
 
@@ -157,7 +157,7 @@ void add_event(function fevent, int delay_time)
                 event[fevent] = delay_time;
 }
 
-// 执行事件
+// 執行事件
 void exec_event(function fevent)
 {
         if( objectp(function_owner(fevent)) )
@@ -230,7 +230,7 @@ string hour_period(int h)
         }
 }
 
-/* 回传时间阵列 ({ 分 时 礼 日 月 年 }) */
+/* 回傳時間陣列 ({ 分 時 禮 日 月 年 }) */
 int *query_gametime_array()
 {
         return game_time;
@@ -241,7 +241,7 @@ int *query_realtime_array()
         return real_time;
 }
 
-/* 回传数位时间表示 下午 3:39 */
+/* 回傳數位時間表示 下午 3:39 */
 string gametime_digital_clock()
 {
         int h = game_time[HOUR];
@@ -259,7 +259,7 @@ string realtime_digital_clock()
 
 string time_description(string title, int *t)
 {
-        return sprintf( NOR WHT+title+NOR"%s年，%s，%s月%s日星期%s，%s%s点%s分"NOR
+        return sprintf( NOR WHT+title+NOR"%s年，%s，%s月%s日星期%s，%s%s點%s分"NOR
             ,t[YEAR]==1?"元":CHINESE_D->chinese_number(t[YEAR])
             ,season_period(t[MON])
             ,!t[MON]?"元":CHINESE_D->chinese_number(t[MON]+1)
@@ -353,7 +353,7 @@ void process_crontab(int *timearray, int flag)
                 script = all_items[row]->time;
                 timescript = allocate(6);
 
-                // %s%*(( |\t)+) 的意思是 %s(空格 or \t 跳过)接著 + 可以相配一串一个以上符合的单元
+                // %s%*(( |\t)+) 的意思是 %s(空格 or \t 跳過)接著 + 可以相配一串一個以上符合的單元
                 if( sscanf(script, "%s%*(( |\t)+)%s%*(( |\t)+)%s%*(( |\t)+)%s%*(( |\t)+)%s%*(( |\t)+)%s",
                         timescript[0],
                         timescript[1],
@@ -402,7 +402,7 @@ void process_crontab(int *timearray, int flag)
         }
 }
 
-// 独立出来每秒执行函式
+// 獨立出來每秒執行函式
 void process_per_second()
 {
 
@@ -414,7 +414,7 @@ int reset_gametime(int time)
         gametime = time;
 }
 
-/* 游戏时间每一分钟(即实际时间每2秒)执行一次 process_gametime */
+/* 遊戲時間每一分鐘(即實際時間每2秒)執行一次 process_gametime */
 void process_gametime()
 {
         game_time = analyse_time(++gametime * 60);
@@ -423,7 +423,7 @@ void process_gametime()
         process_crontab(game_time, 1);
 }
 
-/* 真实时间每一秒钟执行一次 process_realtime */
+/* 真即時間每一秒鐘執行一次 process_realtime */
 void process_realtime()
 {
         mixed *local_time = localtime(realtime);
@@ -442,8 +442,8 @@ void process_realtime()
                 process_crontab(real_time, 0);
 }
 
-// 每 1 秒运算一次
-// 实际一天等于游戏一月
+// 每 1 秒運算一次
+// 實際一天等於遊戲一月
 
 void heart_beat()
 {
@@ -453,13 +453,13 @@ void heart_beat()
                 process_realtime();
         }
 
-        // 执行 event 处理
+        // 執行 event 處理
         if( sizeof(event) )
         foreach( function fevent, int delay_time in event )
                 if( !--event[fevent] )
                         exec_event(fevent);
 
-        // 每 2 秒相当于游戏一分钟, time 每增加 1 代表游戏一分钟
+        // 每 2 秒相當於遊戲一分鐘, time 每增加 1 代表遊戲一分鐘
         //if( !(++tick % 2) )
                 process_gametime();
 }
@@ -467,8 +467,8 @@ void heart_beat()
 void create()
 {
         seteuid(ROOT_UID);
-        set("channel_id", "时间精灵");
-        //write("时间精灵已经启动。\n");
+        set("channel_id", "時間精靈");
+        //write("時間精靈已經啟動。\n");
 
         init_crontab();
         
@@ -483,7 +483,7 @@ void create()
 
 #define BOAT_FILE      "/clone/misc/dream_boat"
 
-// 分配船只
+// 分配船隻
 void alloate_boat(int which)
 {
         object ob_boat/*, ob_old_boat*/; 
@@ -493,15 +493,15 @@ void alloate_boat(int which)
         object *obs;
         
         mapping boats = ([
-                // 源地点 中文名 目的地点 中文名 默认等船时间 默认行使时间
-                "boat1" : ({ "/d/tulong/tulong/haian", "东海之滨海港", "/d/shenlong/haitan", "神龙岛", 600, 600 }),
-                "boat2" : ({ "/d/beijing/haigang", "东海之滨海港", "/d/shenlong/japangames/japan0", "日本岛", 600, 600 }),
-                "boat3" : ({ "/d/xiakedao/haibin", "南海之滨", "/d/penglai/haitan", "蓬莱仙岛", 900, 900 }),
+                // 源地點 中文名 目的地點 中文名 默認等船時間 默認行使時間
+                "boat1" : ({ "/d/tulong/tulong/haian", "東海之濱海港", "/d/shenlong/haitan", "神龍島", 600, 600 }),
+                "boat2" : ({ "/d/beijing/haigang", "東海之濱海港", "/d/shenlong/japangames/japan0", "日本島", 600, 600 }),
+                "boat3" : ({ "/d/xiakedao/haibin", "南海之濱", "/d/penglai/haitan", "蓬萊仙島", 900, 900 }),
         ]);
         
         key_boats = keys(boats);
 
-        // 删除掉当前环境中的BOAT
+        // 刪除掉當前環境中的BOAT
         for( i = 1; i <= sizeof(key_boats); i ++ )
         {               
                 if( i == 1 )
@@ -535,7 +535,7 @@ void alloate_boat(int which)
                 if (key_boats[i] == "boat2")ob_boat = new(BOAT_FILE + "2");
                 if (key_boats[i] == "boat3")ob_boat = new(BOAT_FILE + "3");
 
-                // 设置参数
+                // 設置參數
                 set("source_place", key_para[0], ob_boat);
                 set("source_place_name", key_para[1], ob_boat);
                 set("dest_place", key_para[2], ob_boat);
@@ -549,7 +549,7 @@ void alloate_boat(int which)
                 ob_boat->move(ob_place);
         }
         CHANNEL_D->channel_broadcast("news",  
-                HIG + "开往蓬莱仙岛的巨型帆船出现在南海之滨…\n" + NOR); 
+                HIG + "開往蓬萊仙島的巨型帆船出現在南海之濱…\n" + NOR); 
 }
 
 int give_money(int count)
@@ -560,7 +560,7 @@ int give_money(int count)
         string *ks;
 
         CHANNEL_D->channel_broadcast("news",  
-                HIG + "系统开始给每个玩家馈赠NT，本次馈赠数量为"+count+"NT…\n" + NOR); 
+                HIG + "系統開始給每個玩家饋贈NT，本次饋贈數量為"+count+"NT…\n" + NOR); 
 
         count = to_int(count);
         ips = ([ ]);
@@ -595,7 +595,7 @@ int pay_tutor_money(int count)
         object *obs, pob;
 
         CHANNEL_D->channel_broadcast("news",  
-                HIG + "系统开始给新手导师发放周薪，本次发放薪水为"+count+"NT…\n" + NOR); 
+                HIG + "系統開始給新手導師發放週薪，本次發放薪水為"+count+"NT…\n" + NOR); 
 
         count = to_int(count);
         
@@ -612,5 +612,5 @@ int pay_tutor_money(int count)
 
 string query_name()
 {
-        return "时间系统(TIME_D)";
+        return "時間系統(TIME_D)";
 }

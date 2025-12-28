@@ -18,10 +18,10 @@ int main(object me, string arg)
         if (! arg)
         {
                 if (objectp(ob = query_snooping(me)))
-                        write("你现在正在监听"+query("name", ob)+
-                              "所收到的讯息。\n");
+                        write("你現在正在監聽"+query("name", ob)+
+                              "所收到的訊息。\n");
                 else
-                        write("你现在没有监听任何人。\n");
+                        write("你現在沒有監聽任何人。\n");
 
                 return 1;
         } else
@@ -35,7 +35,7 @@ int main(object me, string arg)
         {
                 if (! SECURITY_D->valid_grant(me, "(admin)"))
                 {
-                        write("参数错误。\n");
+                        write("參數錯誤。\n");
                         return 1;
                 }
 
@@ -45,22 +45,22 @@ int main(object me, string arg)
                         ob = find_player(arg);
                 if (! objectp(ob))
                 {
-                        write("没有找到 " + arg + " 这个玩家，无法查看信息。\n");
+                        write("沒有找到 " + arg + " 這個玩家，無法查看信息。\n");
                         return 1;
                 }
 
-                msg = "目前有关" + ob->name(1) + "(" + geteuid(ob) + ")的监听情况如下：\n";
+                msg = "目前有關" + ob->name(1) + "(" + geteuid(ob) + ")的監聽情況如下：\n";
                 if (objectp(sob = query_snooping(ob)))
-                        msg += "正在监听" + sob->name(1) + "(" + geteuid(sob) +
+                        msg += "正在監聽" + sob->name(1) + "(" + geteuid(sob) +
                                ")收到的信息。\n";
                 else
-                        msg += "没有监听任何人。\n";
+                        msg += "沒有監聽任何人。\n";
 
                 if (objectp(sob = query_snoop(ob)))
                         msg += "正在被" + sob->name(1) + "(" + geteuid(sob) +
-                               ")窃听。\n";
+                               ")竊聽。\n";
                 else
-                        msg += "没有被任何人窃听。\n";
+                        msg += "沒有被任何人竊聽。\n";
 
                 write(msg);
                 return 1;
@@ -69,26 +69,26 @@ int main(object me, string arg)
         ob = find_player(arg);
         if (! ob) ob = find_living(arg);
         if (! ob || ! me->visible(ob))
-                return notify_fail("没有这个人。\n");
+                return notify_fail("沒有這個人。\n");
 
         if (! interactive(ob))
-                return notify_fail("这个玩家不在线上，无法监听。\n");
+                return notify_fail("這個玩家不在線上，無法監聽。\n");
 
         if( !is_sub(query("id", me),query("env/can_snoop", ob)) && 
             ! SECURITY_D->valid_grant(me, "(arch)"))
-                return notify_fail("这个玩家不允许你监听。\n");
+                return notify_fail("這個玩家不允許你監聽。\n");
 
         if (wiz_level(ob) > wiz_level(me))
-                return notify_fail("你的权限不够监听对方。\n");
+                return notify_fail("你的權限不夠監聽對方。\n");
 
               if (query("env/no_snoop",ob)) 
-                      return notify_fail("你的权限不够监听对方。\n"); 
+                      return notify_fail("你的權限不夠監聽對方。\n"); 
 
 
-        if (me == ob) return notify_fail("请用 snoop none 解除监听。\n");
+        if (me == ob) return notify_fail("請用 snoop none 解除監聽。\n");
                 
         snoop(me, ob);
-        write("你现在开始窃听" + ob->name(1) + "所收到的讯息。\n");
+        write("你現在開始竊聽" + ob->name(1) + "所收到的訊息。\n");
         /*
         if (playerp(ob)) log_file("snoop",
                 sprintf("%s(%s-%s) snoops %s on %s.\n", me->name(1),
@@ -104,10 +104,10 @@ int help()
         write(@TEXT
 指令格式：snoop <某人> | none | -i <某人>
 
-监听其他使用者所收听的讯息，snoop none 则取消监听。你监听
-对方的前提是对方允许你这么做，即设置了 can_snoop 为你的ID。
+監聽其他使用者所收聽的訊息，snoop none 則取消監聽。你監聽
+對方的前提是對方允許你這麼做，即設置了 can_snoop 為你的ID。
 
-使用 -i 参数可以查看某人目前窃听的信息。
+使用 -i 參數可以查看某人目前竊聽的信息。
 TEXT );
         return 1;
 }

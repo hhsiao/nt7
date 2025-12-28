@@ -27,37 +27,37 @@ string ask_me()
         skl = fighter->query_skills();
         if (sizeof(skl) <= 1)
                 return RANK_D->query_respect(fighter) +
-                "功力不够，不够资格闯光明圣火阵。";
+                "功力不夠，不夠資格闖光明聖火陣。";
         sname  = keys(skl);
         for(i=0; i<sizeof(skl); i++) {
                 if (skl[sname[i]] < 80)
                 return RANK_D->query_respect(fighter) +
-                "功力不够，不够资格闯光明圣火阵。";
+                "功力不夠，不夠資格闖光明聖火陣。";
         }
 
         if( query("guangming_winner", fighter) )
                 return RANK_D->query_respect(fighter) +
-                "已然闯过光明圣火阵，可不要拿范遥开这等玩笑。";
+                "已然闖過光明聖火陣，可不要拿範遙開這等玩笑。";
 
         if( query("guilty", fighter)>0 )
                 return RANK_D->query_respect(fighter) +
-                "你累犯数戒，身带重罪，我如何能准许你闯光明圣火阵！";
+                "你累犯數戒，身帶重罪，我如何能准許你闖光明聖火陣！";
 
         if( query("assigned_fighter", me) )
                 return RANK_D->query_respect(fighter) +
-                "，今日已有人挑战光明圣火阵，你过一段时间再来吧。";
+                "，今日已有人挑戰光明聖火陣，你過一段時間再來吧。";
 
         set_temp("fanyao-asked", 1, fighter);
 
-        say("\n范遥说道：好吧，我召集教主殷法王和五散人在西侧殿集合，你稍
-候到前边找我。\n");
+        say("\n範遙說道：好吧，我召集教主殷法王和五散人在西側殿集合，你稍
+候到前邊找我。\n");
 
         set("assigned_fighter",query("id",  fighter), me);
 
         if( !query_temp("yangxiao-asked", fighter) )
-        say("\n范遥又道：请你速去告知杨左使，请他即刻带同谢韦二法王和五旗使到
-东侧殿来。\n");
-        message_vision("\n范遥往南离开。\n\n", fighter);
+        say("\n範遙又道：請你速去告知楊左使，請他即刻帶同謝韋二法王和五旗使到
+東側殿來。\n");
+        message_vision("\n範遙往南離開。\n\n", fighter);
 // 1.2.3.4.
         if(!( room = find_object("/d/mingjiao/square")) )
         room = load_object("/d/mingjiao/square");
@@ -67,12 +67,12 @@ string ask_me()
                 if( !objectp(monk = present(names[j-1], room) ))
                 {
                          me->move("/d/mingjiao/dadian");
-                        message_vision("\n范遥走了过来。\n\n", fighter);
-                        return "真是对不起，五散人中有人不在，无法举行光明圣火阵。\n";
+                        message_vision("\n範遙走了過來。\n\n", fighter);
+                        return "真是對不起，五散人中有人不在，無法舉行光明聖火陣。\n";
                 }
-                message("vision","\n范遥走了过来，跟"+query("name", monk)+"俯耳轻声说了几句。\n",room,monk);
+                message("vision","\n範遙走了過來，跟"+query("name", monk)+"俯耳輕聲說了幾句。\n",room,monk);
                 monk->move("/d/mingjiao/westdian");
-                message("vision",query("name", monk)+"点了点头，快步走了出去。\n",room,monk);
+                message("vision",query("name", monk)+"點了點頭，快步走了出去。\n",room,monk);
         }
 // 5.
         if(!( room = find_object("/d/mingjiao/xingtang")) )
@@ -81,12 +81,12 @@ string ask_me()
         if( !objectp(monk = present(names[4], room) ))
         {
                  me->move("/d/mingjiao/dadian");
-                message_vision("\n范遥走了过来。\n\n", fighter);
-                return "真是对不起，五散人中有人不在，无法举行光明圣火阵。\n";
+                message_vision("\n範遙走了過來。\n\n", fighter);
+                return "真是對不起，五散人中有人不在，無法舉行光明聖火陣。\n";
         }
-        message("vision","\n范遥走了过来，跟"+query("name", monk)+"俯耳轻声说了几句。\n",room,monk);
+        message("vision","\n範遙走了過來，跟"+query("name", monk)+"俯耳輕聲說了幾句。\n",room,monk);
         monk->move("/d/mingjiao/westdian");
-        message("vision",query("name", monk)+"点了点头，快步走了出去。\n",room,monk);
+        message("vision",query("name", monk)+"點了點頭，快步走了出去。\n",room,monk);
 // 6.
         if(!( room = find_object("/d/mingjiao/dadian")) )
         room = load_object("/d/mingjiao/dadian");
@@ -94,12 +94,12 @@ string ask_me()
         if( !objectp(monk = present(names[5], room) ))
         {
                  me->move("/d/mingjiao/dadian");
-                message_vision("\n范遥走了过来。\n\n", fighter);
-                return "真是对不起，殷法王不在，无法举行光明圣火阵。\n";
+                message_vision("\n範遙走了過來。\n\n", fighter);
+                return "真是對不起，殷法王不在，無法舉行光明聖火陣。\n";
         }
-        message("vision","\n范遥走了过来，跟"+query("name", monk)+"俯耳轻声说了几句。\n",room,monk);
+        message("vision","\n範遙走了過來，跟"+query("name", monk)+"俯耳輕聲說了幾句。\n",room,monk);
         monk->move("/d/mingjiao/westdian");
-        message("vision",query("name", monk)+"点了点头，快步走了出去。\n",room,monk);
+        message("vision",query("name", monk)+"點了點頭，快步走了出去。\n",room,monk);
 // 7.
         if(!( room = find_object("/d/mingjiao/dadian")) )
         room = load_object("/d/mingjiao/dadian");
@@ -107,16 +107,16 @@ string ask_me()
         if( !objectp(monk = present(names[6], room) ))
         {
                  me->move("/d/mingjiao/dadian");
-                message_vision("\n范遥走了过来。\n\n", fighter);
-                return "真是对不起，张教主不在，无法举行光明圣火阵。\n";
+                message_vision("\n範遙走了過來。\n\n", fighter);
+                return "真是對不起，張教主不在，無法舉行光明聖火陣。\n";
         }
-        message("vision","\n范遥走了过来，跟"+query("name", monk)+"俯耳轻声说了几句。\n",room,monk);
+        message("vision","\n範遙走了過來，跟"+query("name", monk)+"俯耳輕聲說了幾句。\n",room,monk);
         monk->move("/d/mingjiao/westdian");
-        message("vision",query("name", monk)+"点了点头，快步走了出去。\n",room,monk);
+        message("vision",query("name", monk)+"點了點頭，快步走了出去。\n",room,monk);
 
         me->move("/d/mingjiao/qiandian");
         call_out("waiting", 1, me);
-        return "好！大家都出来了。\n";
+        return "好！大家都出來了。\n";
 }
 
 int waiting(object me)
@@ -126,7 +126,7 @@ int waiting(object me)
 
         if( wait_time == 100 )
         {
-                say( "范遥说道：看来他不会来了，我们回去罢！\n\n");
+                say( "範遙說道：看來他不會來了，我們回去罷！\n\n");
                 call_out("do_back", 0, me);
         }
 
@@ -138,7 +138,7 @@ int waiting(object me)
         else if( !present("yangxiao",environment(me)) || !query_temp("yangxiao-asked", fighter) )
         {
                 if( random(10) == 0 )
-                say("\n范遥说道：" + RANK_D->query_respect(fighter) + "去请了杨左使没有？ 照理他现在该到了罢？\n");
+                say("\n範遙說道：" + RANK_D->query_respect(fighter) + "去請了楊左使沒有？ 照理他現在該到了罷？\n");
 
                 wait_time++;
                 call_out("waiting", 1, me);
@@ -154,11 +154,11 @@ int preparing(object me, object fighter)
         if(!( room = find_object("/d/mingjiao/qiandian")) )
         room = load_object("/d/mingjiao/qiandian");
 
-        say( "范遥说道：不相干的人，如不欲现场观摩光明圣火阵，请即刻离开此处。\n");
+        say( "範遙說道：不相干的人，如不欲現場觀摩光明聖火陣，請即刻離開此處。\n");
 
-        message("vision", HIY "\n范遥大声宣布：西光明圣火阵合围！\n\n" NOR, room);
+        message("vision", HIY "\n範遙大聲宣佈：西光明聖火陣合圍！\n\n" NOR, room);
         command("chat"+query("title", fighter)+query("name", fighter)+
-                "于今日" + NATURE_D->game_time() + "挑战明教光明圣火阵！\n");
+                "於今日" + NATURE_D->game_time() + "挑戰明教光明聖火陣！\n");
 
         delete_temp("fanyao-asked", fighter);
         delete_temp("beat_count", fighter);
@@ -180,7 +180,7 @@ int fighting(object me, object fighter, int count)
 
         if( count <= 6 )
         {
-                message("vision", "\n光明圣火阵急速地旋转着，一层层地向内收紧！\n" NOR, room2);
+                message("vision", "\n光明聖火陣急速地旋轉著，一層層地向內收緊！\n" NOR, room2);
                 monk1 = present(names[count], room1);
                 monk1->move(room2);
         }
@@ -200,7 +200,7 @@ int fighting(object me, object fighter, int count)
                 }
                 monk1->move(room1);
 
-                say( "范遥说道：是啊，可惜呀 ... 唉！\n\n");
+                say( "範遙說道：是啊，可惜呀 ... 唉！\n\n");
                 command("sigh");
                 call_out("do_back", 5, me );
         }
@@ -232,12 +232,12 @@ int do_recruit(object me, object fighter)
         if( !(ft_fam=query("family", fighter)) || ft_fam["family_name"] != "明教" )
         {
                 command("smile");
-                say("范遥说道：" + RANK_D->query_respect(fighter) + "武功卓绝，兼又手下留情，品德更是过人一筹，范遥不胜佩服之至！\n");
+                say("範遙說道：" + RANK_D->query_respect(fighter) + "武功卓絕，兼又手下留情，品德更是過人一籌，範遙不勝佩服之至！\n");
                 call_out("do_back", 5, me );
         }
         else
         {
-                say("\n范遥说道：好，好，好！"+query("name", fighter)+"，没想到教中出了你这样一个人才？\n");
+                say("\n範遙說道：好，好，好！"+query("name", fighter)+"，沒想到教中出了你這樣一個人才？\n");
                 call_out("do_back", 5, me );
         }
         return 1;
@@ -248,7 +248,7 @@ int do_back(object me)
         object monk, room1, room2;
         int i;
 
-        message("vision", "\n范遥也挥了挥手， 五散人等随即也离开前殿。\n", environment(me) );
+        message("vision", "\n範遙也揮了揮手， 五散人等隨即也離開前殿。\n", environment(me) );
 
         if(!( room1 = find_object("/d/mingjiao/qiandian")) )
         room1 = load_object("/d/mingjiao/qiandian");

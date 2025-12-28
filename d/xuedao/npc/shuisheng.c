@@ -6,7 +6,7 @@ void create()
 {
        set_name("水笙", ({ "shui sheng", "shui" }));
        set("long", 
-     "她就是南四奇“落花流水”中的老四水岱的女儿，长的很清秀美丽。\n");
+     "她就是南四奇“落花流水”中的老四水岱的女兒，長的很清秀美麗。\n");
        set("gender", "女性");
        set("age", 21);
        set("attitude", "peaceful");

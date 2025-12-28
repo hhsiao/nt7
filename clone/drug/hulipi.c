@@ -16,8 +16,8 @@ void create()
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "张");
-                set("long", "这是一张毛长寸许，柔软光滑的狐狸皮。\n");
+                set("unit", "張");
+                set("long", "這是一張毛長寸許，柔軟光滑的狐狸皮。\n");
                 set("value", 3000);
                 set("no_sell", 1);
                 set("medicine", 1);
@@ -35,7 +35,7 @@ int cure_ob(object me)
                 addn("eff_jingli", -1, me);
                 set("jingli", 0, me);
                 me->apply_condition("bonze_drug", 30);
-                message_vision(HIR "$N吃下一张狐狸皮，只觉得肝肠寸断，五脏欲裂，原来服食太多药物，药效适得其反！\n" NOR, this_player());
+                message_vision(HIR "$N吃下一張狐狸皮，只覺得肝腸寸斷，五臟欲裂，原來服食太多藥物，藥效適得其反！\n" NOR, this_player());
                // this_object()->move("/u/aln/workroom");
                 call_out("destroy", 31);
                 return 1;
@@ -50,7 +50,7 @@ int cure_ob(object me)
         addn("jingli", 300, me);
         me->apply_condition("bonze_drug", 
         me->query_condition("bonze_drug")+30);
-        message_vision(HIY "$N吃下一张狐狸皮，只觉全身的精力都恢复了。\n" NOR, me);
+        message_vision(HIY "$N吃下一張狐狸皮，只覺全身的精力都恢復了。\n" NOR, me);
         call_out("destroy", 31);
         return 1;
 }

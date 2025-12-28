@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "御书楼");
+        set("short", "御書樓");
         set("long", @LONG
-御书楼为南岳庙历代藏书之处，天子御赐，贤达乐捐，这里早已
-洋洋大观。
+御書樓為南嶽廟歷代藏書之處，天子御賜，賢達樂捐，這裡早已
+洋洋大觀。
 LONG );
         set("exits", ([
                "south"  : __DIR__"jiayingmen",

@@ -4,7 +4,7 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIG"养精丹"NOR, ({"yangjing dan", "dan"}));
+        set_name(HIG"養精丹"NOR, ({"yangjing dan", "dan"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {

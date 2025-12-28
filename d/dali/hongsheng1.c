@@ -6,8 +6,8 @@ void create()
 {
         set("short","塔基");
         set("long", @LONG
-宏圣寺塔基座系用石板砌成，与千寻塔基为砖砌不同。基座西面
-有塔门，可入内攀登而上。
+宏聖寺塔基座系用石板砌成，與千尋塔基為磚砌不同。基座西面
+有塔門，可入內攀登而上。
 LONG );
         set("exits",([ /* sizeof() == 1 */
             "out"    : "/d/dali/hongsheng",
@@ -33,11 +33,11 @@ int valid_leave(object me, string dir)
                         me->receive_damage("qi", 20);
                         if (c_skill*c_skill*c_skill/10 < c_exp && c_skill<101)
                                 me->improve_skill("dodge", (int)me->query_skill("dodge", 1) / 5);
-                        tell_object(me,"你爬上一层楼，有些累了。\n");
+                        tell_object(me,"你爬上一層樓，有些累了。\n");
                 } else
                 {
                         set("qi", 0, me);
-                        tell_object(me,"你是在爬不动了。\n");
+                        tell_object(me,"你是在爬不動了。\n");
                         return 0;
                 }
         }

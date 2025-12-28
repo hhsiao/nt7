@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 inherit F_SSERVER;
-string name() { return HIR "刀剑" + HIY + "九" + HIR "重天" NOR; }
+string name() { return HIR "刀劍" + HIY + "九" + HIR "重天" NOR; }
 int perform(object me, object target)
 {
         mapping buff, data;
@@ -19,51 +19,51 @@ int perform(object me, object target)
                 target = me->select_opponent();
         }
         if (! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
         
         if( me->is_busy() )
-                return notify_fail("你正忙着呢。\n");
+                return notify_fail("你正忙著呢。\n");
         if( userp(me) && !query("yuanshen", me) ) 
-                return notify_fail("你尚未悟道，无法使用" + name() + "。\n"); 
+                return notify_fail("你尚未悟道，無法使用" + name() + "。\n"); 
                 
         weapon1 = query_temp("weapon", me);
         weapon2 = query_temp("secondary_weapon", me) || query_temp("handing", me);
         if (! objectp(weapon1) || ! objectp(weapon2))
-                return notify_fail("你没有同时装备刀剑，难以施展" + name() + "。\n");
+                return notify_fail("你沒有同時裝備刀劍，難以施展" + name() + "。\n");
         if (query("consistence", weapon2) <= 0)
-                return notify_fail("你的" + weapon2->name() + "已经严重"
-                                   "损坏，无法继续使用了。\n");
+                return notify_fail("你的" + weapon2->name() + "已經嚴重"
+                                   "損壞，無法繼續使用了。\n");
         type1 = query("skill_type", weapon1);
         type2 = query("skill_type", weapon2);
         if ((type1 != "sword" && type1 != "blade")
            || (type2 != "sword" && type2 != "blade"))
-                return notify_fail("你所使用的武器不对，难以施展" + name() + "。\n");
+                return notify_fail("你所使用的武器不對，難以施展" + name() + "。\n");
         if ((type1 == "sword" && type2 != "blade")
            || (type1 == "blade" && type2 != "sword"))
-                return notify_fail("你没有同时装备刀剑，难以施展" + name() + "。\n");
+                return notify_fail("你沒有同時裝備刀劍，難以施展" + name() + "。\n");
         if (me->query_skill_mapped("sword") != "daojian-guizhen"
            || me->query_skill_mapped("blade") != "daojian-guizhen")
-                return notify_fail("你没有激发刀剑归真，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發刀劍歸真，難以施展" + name() + "。\n");
         if (me->query_skill("daojian-guizhen", 1) < 1000)
-                return notify_fail("你的剑归真等级不够，难以施展" + name() + "。\n");
+                return notify_fail("你的劍歸真等級不夠，難以施展" + name() + "。\n");
         if (query("neili", me) < 200000)
-                return notify_fail("你现在的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" + name() + "。\n");
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
         
         if( userp(me) ) 
         {
                 if( (time = BUFF_D->get_buff_overtime(me, "djgz_jiu")) > 0 )
-                        return notify_fail(MAG"刀剑九重天消耗心神太甚，还需等待"+time+"秒。\n"NOR);
+                        return notify_fail(MAG"刀劍九重天消耗心神太甚，還需等待"+time+"秒。\n"NOR);
         }
         
         fmsk = me->query_skill("daojian-xiaotianwai", 1);
         ap = attack_power(me, "blade") + me->query_skill("sword-cognize", 1);
         dp = defense_power(target, "force");
         
-        delta = ABILITY_D->check_ability(me, "ap_power-djgz-jiu"); // 门派ab
+        delta = ABILITY_D->check_ability(me, "ap_power-djgz-jiu"); // 門派ab
         if( delta ) ap += ap*delta/100;
-        delta = ABILITY_D->check_ability(me, "ap_power-djgz-tian"); // 门派ab
+        delta = ABILITY_D->check_ability(me, "ap_power-djgz-tian"); // 門派ab
         if( delta ) ap += ap*delta/100;
         
         damage = damage_power(me, "blade");
@@ -72,38 +72,38 @@ int perform(object me, object target)
         damage+= me->query_all_buff("damage");
         damage+= damage / 300 * me->query_str();
         damage = damage / 4;            
-        delta = ABILITY_D->check_ability(me, "da_power-djgz-jiu"); // 门派ab
+        delta = ABILITY_D->check_ability(me, "da_power-djgz-jiu"); // 門派ab
         if( delta ) damage += damage*delta/100;
-        delta = ABILITY_D->check_ability(me, "da_power-djgz-tian"); // 门派ab
+        delta = ABILITY_D->check_ability(me, "da_power-djgz-tian"); // 門派ab
         if( delta ) damage += damage*delta/100;
         
-        msg = HIY "$N" HIY "将" + weapon1->name() + HIY "与" +
-              weapon2->name() + HIY "横置于胸前，运转出" + name() + HIY "功力，内劲如海啸般爆发。" NOR;
-        msg += HIY "空气、云都变成了暗红色，整个天地灵气，一草一木上散发出来的生机，包括" HIY "$N" HIY "强大的杀气、刀魂、剑意，"
-                   "在瞬间全部凝聚在了一起，随着手中" + weapon1->name() + HIY "和" + weapon2->name() + HIY "的共鸣，所有阻挡在"
-                   HIY"$N" HIY "面前的东西，好像全部在一瞬间被击碎，迫开。整个天空，似乎被斩成了两半，捅出了一个窟窿。"
-                   "这一人、一刀、一剑毫不留情的，狠狠的飞向了"HIY "$n"HIY"。\n\n" NOR;
+        msg = HIY "$N" HIY "將" + weapon1->name() + HIY "與" +
+              weapon2->name() + HIY "橫置於胸前，運轉出" + name() + HIY "功力，內勁如海嘯般爆發。" NOR;
+        msg += HIY "空氣、雲都變成了暗紅色，整個天地靈氣，一草一木上散發出來的生機，包括" HIY "$N" HIY "強大的殺氣、刀魂、劍意，"
+                   "在瞬間全部凝聚在了一起，隨著手中" + weapon1->name() + HIY "和" + weapon2->name() + HIY "的共鳴，所有阻擋在"
+                   HIY"$N" HIY "面前的東西，好像全部在一瞬間被擊碎，迫開。整個天空，似乎被斬成了兩半，捅出了一個窟窿。"
+                   "這一人、一刀、一劍毫不留情的，狠狠的飛向了"HIY "$n"HIY"。\n\n" NOR;
         ap *= 2;
 
         if (ap / 2 + random(ap) > dp)
         {
-                msg += HIR "$n" HIR "哪里见过$N" HIR "这样的气势，这样的武功，不禁心"
-                       "生惧意，招架顿时散乱，全然不成章理。\n" NOR;
+                msg += HIR "$n" HIR "哪裡見過$N" HIR "這樣的氣勢，這樣的武功，不禁心"
+                       "生懼意，招架頓時散亂，全然不成章理。\n" NOR;
                 target->receive_damage("jing", damage / 2);
                 target->receive_wound("jing", damage / 3);
                 msg += COMBAT_D->do_damage(me, target, SPECIAL_ATTACK, damage, 200,
-                                           HIR "$n" HIR "失魂落魄， 一时竟不知抵挡"
-                                           "，被$N" HIR "一剑刺中要害，鲜血四溅受"
-                                           "伤不轻。\n" NOR);
+                                           HIR "$n" HIR "失魂落魄， 一時竟不知抵擋"
+                                           "，被$N" HIR "一劍刺中要害，鮮血四濺受"
+                                           "傷不輕。\n" NOR);
                 ap += ap / 5;
                 damage += damage / 3;
         } else
         {
-                msg += HIG "$n" HIG "见$N" HIG "杀气大涨，丝毫不"
-                       "敢大意，急忙收敛心神，努力不受干扰。\n" NOR;
+                msg += HIG "$n" HIG "見$N" HIG "殺氣大漲，絲毫不"
+                       "敢大意，急忙收斂心神，努力不受干擾。\n" NOR;
         }
         message_combatd(sort_msg(msg), me, target);
-        msg = HIW "\n突然间$N" HIW "身形一展，右手" + weapon1->name() +
+        msg = HIW "\n突然間$N" HIW "身形一展，右手" + weapon1->name() +
                HIW "忽地一振，凌空卷出一道半弧，直劈$n" HIW "而去。\n" NOR;
         if (fmsk > 800)
         {
@@ -113,18 +113,18 @@ int perform(object me, object target)
         if (ap / 2 + random(ap) > dp)
         {
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, da_add,
-                                           HIR "$n" HIR "奋力抵挡，却哪里招架得住"
-                                           "，被$N" HIR "一招划中要脉，鲜血四处飞"
-                                           "溅。\n" NOR);
+                                           HIR "$n" HIR "奮力抵擋，卻哪裡招架得住"
+                                           "，被$N" HIR "一招劃中要脈，鮮血四處飛"
+                                           "濺。\n" NOR);
         } else
         {
-                msg += CYN "$n" CYN "心知这一招的凌厉，急忙凝神"
-                       "聚气，小心拆招，丝毫无损。\n" NOR;
+                msg += CYN "$n" CYN "心知這一招的凌厲，急忙凝神"
+                       "聚氣，小心拆招，絲毫無損。\n" NOR;
         }
         message_combatd(msg, me, target);
-        msg = HIW "\n接着$N" HIW "又将左手" + weapon2->name() +
-               HIW "朝$n" HIW "平平递出，招式看似简单，却蕴藏着"
-               "极大的杀着。\n" NOR;
+        msg = HIW "\n接著$N" HIW "又將左手" + weapon2->name() +
+               HIW "朝$n" HIW "平平遞出，招式看似簡單，卻蘊藏著"
+               "極大的殺著。\n" NOR;
         if (ap / 2 + random(ap) > dp)
         {
                 /*
@@ -132,8 +132,8 @@ int perform(object me, object target)
                 weapon2->wield();
                 */
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, da_add,
-                                           HIR "$n" HIR "只觉眼花缭乱，全然无法洞"
-                                           "察先机，$N" HIR "一招命中，射出一柱鲜"
+                                           HIR "$n" HIR "只覺眼花繚亂，全然無法洞"
+                                           "察先機，$N" HIR "一招命中，射出一柱鮮"
                                            "血。\n" NOR);
                 /*
                 weapon2->move(me, 1);
@@ -142,21 +142,21 @@ int perform(object me, object target)
                 */
         } else
         {
-                msg += CYN "$n" CYN "心知这一招的凌厉，急忙凝神"
-                       "聚气，小心拆招，丝毫无损。\n" NOR;
+                msg += CYN "$n" CYN "心知這一招的凌厲，急忙凝神"
+                       "聚氣，小心拆招，絲毫無損。\n" NOR;
         }
         message_combatd(msg, me, target);
         if( fmsk >= 1000 && query("neili", me)>1000000 )
         {
-                msg = HIC "\n====================" HIY" 刀" HIR "  剑" HIG "  啸" HIW "  天  外" HIC " ====================" NOR;
-                msg += HIC "\n猛然间，$N" HIC "手中" + weapon1->name() + HIC "和" + weapon2->name() + HIC +
-                           "发出震天般的长啸，伴随着两道光华飞至天际，但见天云突变，\n转眼间，数道金光从天边划过，飞向$n" HIC "。\n" NOR;
+                msg = HIC "\n====================" HIY" 刀" HIR "  劍" HIG "  嘯" HIW "  天  外" HIC " ====================" NOR;
+                msg += HIC "\n猛然間，$N" HIC "手中" + weapon1->name() + HIC "和" + weapon2->name() + HIC +
+                           "發出震天般的長嘯，伴隨著兩道光華飛至天際，但見天雲突變，\n轉眼間，數道金光從天邊劃過，飛向$n" HIC "。\n" NOR;
                 if (ap / 2 + random(ap)  + fmsk / 2 > dp)
                 {
                         damage *= 3;
                         msg += COMBAT_D->do_damage(me, target, SPECIAL_ATTACK, damage, 350,
-                                           HIR "$n" HIR "刹那间目瞪口呆，全然无法相信"
-                                           "眼前之景象，$N" HIR "一招命中，射出两柱鲜"
+                                           HIR "$n" HIR "剎那間目瞪口呆，全然無法相信"
+                                           "眼前之景象，$N" HIR "一招命中，射出兩柱鮮"
                                            "血。\n" NOR);
                         addn("neili", -500, me);
                         
@@ -168,7 +168,7 @@ int perform(object me, object target)
                         target->set_weak(3 + random(count));
                 } else
                 {
-                        msg += CYN "$n" CYN "丝毫不被眼前景象所影响，从容闪躲，避开这一招。\n" NOR;
+                        msg += CYN "$n" CYN "絲毫不被眼前景象所影響，從容閃躲，避開這一招。\n" NOR;
                 }
                 message_combatd(msg, me, target);
         }
@@ -178,14 +178,14 @@ int perform(object me, object target)
         dp = defense_power(target, "parry");
         if (ap / 2 + random(ap) > dp)
         {
-                msg = HIW "$n" HIW "只见无数刀光剑影向自己逼"
-                       "来，顿感眼花缭乱，心底寒意油然而生。\n" NOR;
+                msg = HIW "$n" HIW "只見無數刀光劍影向自己逼"
+                       "來，頓感眼花繚亂，心底寒意油然而生。\n" NOR;
                 count = ap / 15;
                 set_temp("daojian-guizhen/max_pfm", 1, me);
         } else
         {
-                msg = HIG "$n" HIG "突然发现自己四周皆被刀光"
-                       "剑影所包围，心知不妙，急忙小心招架。\n" NOR;
+                msg = HIG "$n" HIG "突然發現自己四周皆被刀光"
+                       "劍影所包圍，心知不妙，急忙小心招架。\n" NOR;
                 count = ap / 30;
         }
         message_combatd(msg, me, target);
@@ -208,8 +208,8 @@ int perform(object me, object target)
         
         message_combatd(msg, me, target);
         time  = 40;
-        time -= ABILITY_D->check_ability(me, "cd-djgz-jiu"); // ab门派减cd
-        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent减cd
+        time -= ABILITY_D->check_ability(me, "cd-djgz-jiu"); // ab門派減cd
+        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd
         if( wiz_level(me) > 2) time = 2;                
         buff = ([
                 "caster" : me,
@@ -217,9 +217,9 @@ int perform(object me, object target)
                 "type"   : "cooldown",
                 "type2"  : "djgz_jiu",
                 "attr"   : "curse",
-                "name"   : "刀剑归真·刀剑九重天",
+                "name"   : "刀劍歸真·刀劍九重天",
                 "time"   : time,
-                "buff_msg" : "刀剑九重天消耗心神太甚，还需等待"+time+"秒方可再次施展。\n",
+                "buff_msg" : "刀劍九重天消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : "",
                 "disa_type": 0,
         ]);

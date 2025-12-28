@@ -8,7 +8,7 @@ int kill_him();
 void create()
 {
         set_name("羽天白", ({ "master yu", "master"}) );
-        set("nickname", HIR "万胜刀魔" NOR);
+        set("nickname", HIR "萬勝刀魔" NOR);
         set("gender", "男性" );
         set("age", 64);
 	set("per", 3);
@@ -22,17 +22,17 @@ void create()
         set("force_factor", 30);
         set("long",
 "
-羽天白是西方神教中的教主，羽天白的来历谁也不清楚，
-也没人敢问。凡是问过或知道羽天白来历的人都不明不白的
+羽天白是西方神教中的教主，羽天白的來歷誰也不清楚，
+也沒人敢問。凡是問過或知道羽天白來歷的人都不明不白的
 消失了。
 \n"
 	);
         create_family("西方神教", 1, "教主");
         	set("skill_public",1);
         	    set("rank_nogen",1);
-    set("ranks",({"教徒","守卫","探子",RED"杀手"NOR,HIB"使者"NOR,
-                      HIG"青翼蝠王"NOR,HIW"白眉鹰王"NOR,HIY"金毛狮王"NOR,MAG"紫衫龙王"NOR,
-                      HIC"护法"NOR,HIC"尊者"NOR,WHT"狂刀"NOR,RED"刀魔"NOR,HIR"霸刀"NOR,HIW BLK"魅影刀煞"NOR}));
+    set("ranks",({"教徒","守衛","探子",RED"殺手"NOR,HIB"使者"NOR,
+                      HIG"青翼蝠王"NOR,HIW"白眉鷹王"NOR,HIY"金毛獅王"NOR,MAG"紫衫龍王"NOR,
+                      HIC"護法"NOR,HIC"尊者"NOR,WHT"狂刀"NOR,RED"刀魔"NOR,HIR"霸刀"NOR,HIW BLK"魅影刀煞"NOR}));
     	set("rank_levels",({ 5,10, 15,
 					20,25,30,35,40,
 					45,50, 55,60,65,
@@ -65,7 +65,7 @@ set_skill("blade",200);
 	map_skill("parry","demon-blade");
         set("inquiry", ([
                 "白天羽" : (: kill_him :),
-                "万马堂" : (: kill_him :),
+                "萬馬堂" : (: kill_him :),
         ]));
         setup();
         carry_object(__DIR__"obj/wufu")->wear();
@@ -77,16 +77,16 @@ void attempt_apprentice(object me)
 {
 	if(me->query_temp("for_bandit"))
 	{
-	command("say 好！好！老夫今天可找到块有用之材。\n");
+	command("say 好！好！老夫今天可找到塊有用之材。\n");
         command("recruit " + me->query("id") );
 		return;
 	}
 	else
 	{
 	command("sigh");
-        command("say 最近本教层出意外，先是罗刹牌被盗，再者副教主被刺，
-还有老夫宝刀的寒萸刀鞘也丢了。\n");
-	command("say 你若有能力察清此事，老夫便收你为徒。\n");
+        command("say 最近本教層出意外，先是羅剎牌被盜，再者副教主被刺，
+還有老夫寶刀的寒萸刀鞘也丟了。\n");
+	command("say 你若有能力察清此事，老夫便收你為徒。\n");
 
 	}
 }
@@ -100,7 +100,7 @@ int kill_him()
 {
 	object me;
 	me = this_player();
-	command("say 看来你已经知道我的来历了！！ \n");
+	command("say 看來你已經知道我的來歷了！！ \n");
 	this_object()->kill_ob(me);
 	me->kill_ob(this_object());
 	return 1;
@@ -110,7 +110,7 @@ int accept_object(object me, object obj)
 	if(obj->query("for_bandit"))
 	{
 	command("? "+me->query("id"));
-        command("say 你．．你杀了本教的人，偷了本教的东西，还敢来愚弄老夫！\n");
+        command("say 你．．你殺了本教的人，偷了本教的東西，還敢來愚弄老夫！\n");
 	this_object()->kill_ob(me);
 	me->kill_ob(this_object());
 	return 1;
@@ -119,7 +119,7 @@ int accept_object(object me, object obj)
 	{
 	me->set_temp("for_bandit",1);
 	command("smile");
-	command("say 好，很好，还不乘着老夫高兴，拜老夫为师？\n");
+	command("say 好，很好，還不乘著老夫高興，拜老夫為師？\n");
 	return 1;	
 	}
 	return 0;

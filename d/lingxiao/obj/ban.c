@@ -16,7 +16,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "片");
-                set("long", "一片刚刚从树上飘落的梅瓣。\n");
+                set("long", "一片剛剛從樹上飄落的梅瓣。\n");
                 set("value", 0);
                 set("material", "plant");
                 set_weight(1);

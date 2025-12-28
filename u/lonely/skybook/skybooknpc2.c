@@ -74,7 +74,7 @@ string *unarmed_list = ({
 });
 
 
-// 来自于天书OB调用，初始化BOSS
+// 來自於天書OB調用，初始化BOSS
 void init_data(string skybookOBPath, string sGender, string sID,string sName,int nHp,int nDamage,int nDefense,string sSkill,int nSkLevel,string sType, string sNandu)
 {
         
@@ -114,7 +114,7 @@ void init_data(string skybookOBPath, string sGender, string sID,string sName,int
                   set_skill("zuoyou-hubo", 2500);
                          
                         
-                        // 随机选取内功，轻功，拳脚
+                        // 隨機選取內功，輕功，拳腳
                         skforce = force_list[random(sizeof(force_list))];
                         skdodge = dodge_list[random(sizeof(dodge_list))];
                         skunarmed = unarmed_list[random(sizeof(unarmed_list))];
@@ -154,12 +154,12 @@ void init_data(string skybookOBPath, string sGender, string sID,string sName,int
                   // 衣服
                   carry_object("/clone/cloth/cloth")->wear();
                         
-                        // 从主技能目录选取perform
+                        // 從主技能目錄選取perform
                         mFile = BACKUP_D->get_dir_by("/kungfu/skill/" + sSkill + "/", -1);
                         
                         for (i = 0; i < sizeof(mFile); i ++)
                         {
-                                        if (mFile[i][0] == "perform" && mFile[i][1] == -2) // 存在perform目录
+                                        if (mFile[i][0] == "perform" && mFile[i][1] == -2) // 存在perform目錄
                                         {
                                                         mFile = BACKUP_D->get_dir_by("/kungfu/skill/" + sSkill + "/perform/", -1);
                                                         break;
@@ -202,8 +202,8 @@ void create()
 
         set("shen", 0);
 
-                                set_temp("apply/qy", 70);  // 气运
-                                set_temp("apply/fy", 70);  // 福缘      
+                                set_temp("apply/qy", 70);  // 氣運
+                                set_temp("apply/fy", 70);  // 福緣      
                         
                                 set("scborn/ok", 1);
                         
@@ -225,15 +225,15 @@ void create()
         set_skill("literate", 5000);
         set_skill("jingluo-xue", 5000);
 
-                                set("no_nuoyi", 1); // 不被挪移影响
-                                set("can_learn/dugu-jiujian/nothing", 1); //无招
+                                set("no_nuoyi", 1); // 不被挪移影響
+                                set("can_learn/dugu-jiujian/nothing", 1); //無招
                                 set("yinyang-shiertian/shier", 12);
                                 set("yinyang-shiertian/yinyang", 12);
                                 set("yinyang-shiertian/qiankun", 12);
 
 
 
-                        set("my_life", 0); // 当气血低于10%的时候补满一次，设置该参数为0
+                        set("my_life", 0); // 當氣血低於10%的時候補滿一次，設置該參數為0
 
       setup();
 }
@@ -253,17 +253,17 @@ void heart_beat()
                         }
                         if (random(5) == 1)check_weapon();
 
-                        // 每30秒恢复气血
+                        // 每30秒恢復氣血
                         if (query("last_full_time") == 0)set("last_full_time", query("create_time"));
                         if (time() - query("last_full_time") >= 30)
                         {
                                         set("last_full_time", time());
                                         
-                                        if (query("难度") == "少侠级")
+                                        if (query("難度") == "少俠級")
                                         {
                                                         nRan = 5 + random(6);
                                         }
-                                        else if (query("难度") == "大侠级")
+                                        else if (query("難度") == "大俠級")
                                         {
                                                         nRan = 10 + random(16);
                                         }
@@ -277,7 +277,7 @@ void heart_beat()
                                                 set("eff_qi", query("max_qi"));
                                         set("qi", query("eff_qi"));
                                         
-                                        message_vision(HIG "\n突然一阵金光笼罩，$N又似乎充满了力量！\n", this_object());
+                                        message_vision(HIG "\n突然一陣金光籠罩，$N又似乎充滿了力量！\n", this_object());
                                         
                         }
                         
@@ -285,14 +285,14 @@ void heart_beat()
                         return ::heart_beat();
 }
 
-// 检查武器
+// 檢查武器
 void check_weapon()
 {
         object me, ob;
         
         me = this_object();
 
-        // 同时补充内力
+        // 同時補充內力
         set("neili", query("max_neili"));
 
         if (me->is_busy())me->interrupt_busy(me, 1000); 
@@ -311,10 +311,10 @@ void check_weapon()
                 me->clear_condition();
         }
 
-        // 很小几率恢复气血
+        // 很小几率恢復氣血
         if (random(200) == 1)
         {
-                //log_file("qilin", ctime(time()) + " 成功恢复气血。\n");
+                //log_file("qilin", ctime(time()) + " 成功恢復氣血。\n");
                 if (me->query("eff_qi") < me->query("max_qi") / 3)me->add("eff_qi", me->query("max_qi") / 5);
                 if (me->query("qi") < me->query("max_qi") / 3)me->add("qi", me->query("max_qi") / 5);
         }
@@ -322,7 +322,7 @@ void check_weapon()
         if (me->is_busy())me->interrupt_busy(me); 
 
 
-                // 如果所在地方不对了则摧毁
+                // 如果所在地方不對了則摧毀
                 if (environment(this_object()) != query("env"))
                 {
                                 destruct(this_object());
@@ -363,7 +363,7 @@ void new_life()
 {
         object me = this_object();
         
-        // 补满气血
+        // 補滿氣血
         me->set("eff_qi", me->query("max_qi"));
         me->set("qi", me->query("max_qi"));
         me->set("eff_jing", me->query("max_jing"));
@@ -381,11 +381,11 @@ void new_life()
         set_temp("apply/unarmed_damage", 400000); 
         set_temp("apply/damage", 200000); 
         set_temp("apply/armor", 100000);
-        set_temp("apply/qy", 70);  // 气运
-        set_temp("apply/fy", 70);  // 福缘              
+        set_temp("apply/qy", 70);  // 氣運
+        set_temp("apply/fy", 70);  // 福緣              
         me->delete("my_life");
 
-        message_vision(HIG "\n$N" HIG "长叹一声，全身紫气大盛，竟突然恢复了战斗力！\n\n" NOR, me);
+        message_vision(HIG "\n$N" HIG "長嘆一聲，全身紫氣大盛，竟突然恢復了戰鬥力！\n\n" NOR, me);
         
         return; 
 }
@@ -411,27 +411,27 @@ int receive_damage(string type, int damage, object who)
 
         if (! who)return 0;
 
-        // 套装的追加伤害
+        // 套裝的追加傷害
         if (objectp(who))
         {
                         tzlv = TAOZHUANG_D->taozhuang_level(who);
                         
-                        if (tzlv == 3)// 天骄
+                        if (tzlv == 3)// 天驕
                         {
                                 damage *= 2;
                                 this_object()->start_busy(5+random(6));
-                                tell_object(HIM "「天骄套装」追加伤害及附加忙乱！\n" NOR);
+                                tell_object(HIM "「天驕套裝」追加傷害及附加忙亂！\n" NOR);
                         }
                         else if (tzlv == 4)
                         {
                                 damage *= 3;
                                 start_busy(5+random(6));
-                                tell_object(HIM "「无双套装」追加伤害及附加忙乱！\n" NOR);
+                                tell_object(HIM "「無雙套裝」追加傷害及附加忙亂！\n" NOR);
                                 if (random(10) < 7)
                                 {
                                         set_temp("no_perform", 1);
                                         call_out("remove_no_perform", 10);
-                                        tell_object(HIC "「无双套装」追加封招10秒！\n" NOR);
+                                        tell_object(HIC "「無雙套裝」追加封招10秒！\n" NOR);
                                 }
                         }
         }
@@ -459,7 +459,7 @@ void unconcious()
 
 void die(object killer)
 {
-      object dob;             // 打晕这个NPC的人                                                                                                                                                          
+      object dob;             // 打暈這個NPC的人                                                                                                                                                          
 
                         object skybookob;
                         
@@ -471,19 +471,19 @@ void die(object killer)
                                         return;
                         }
                 
-                        // 如果还未重生，则重生一次
+                        // 如果還未重生，則重生一次
                         if (query("my_life"))
                         {
                                         new_life();
                                         return;
                         }
-                        // 如果所在地方不对了则忽略
+                        // 如果所在地方不對了則忽略
                         if (environment(this_object()) != query("env"))
                         {
                                         return;
                         }
                 
-                  // 找到杀了我(NPC)或是打晕我的人
+                  // 找到殺了我(NPC)或是打暈我的人
                   if (! objectp(dob = killer))
                     dob = query_last_damage_from();
                         if (! objectp(dob))
@@ -495,40 +495,40 @@ void die(object killer)
                         }
                 
 
-                        // 我杀死了BOSS
+                        // 我殺死了BOSS
                         if (environment(dob) == query("born_room"))
                         {
                                         if (! objectp(skybookob = find_object(query("skybookOBPath"))))
                                                         skybookob = load_object(query("skybookOBPath"));
 
-                                        // 完成副本通关
-                                        if (query("nQuest") == dob->query("skybook14/" + query("books") + "/任务编号"))
+                                        // 完成副本通關
+                                        if (query("nQuest") == dob->query("skybook14/" + query("books") + "/任務編號"))
                                         {       
                                                         int nKilltime, nMintime;
                                                         string sQuest, sZhangjie,sTitle;
 
-                                                        // 记录该副本最快通关时间和玩家
-                                                        sQuest = dob->query("skybook14/" + query("books") + "/任务编号");
-                                                        nMintime = DB_D->query_data("skybook/record/通关时间记录/" + query("books") + "/" + sQuest + "/time");
+                                                        // 記錄該副本最快通關時間和玩家
+                                                        sQuest = dob->query("skybook14/" + query("books") + "/任務編號");
+                                                        nMintime = DB_D->query_data("skybook/record/通關時間記錄/" + query("books") + "/" + sQuest + "/time");
                                                         nKilltime = time() - query("create_time");
                                                         if (nKilltime < nMintime || nMintime == 0)
                                                         {
-                                                                        DB_D->set_data("skybook/record/通关时间记录/" + query("books") + "/" + sQuest + "/time", nKilltime);
-                                                                        DB_D->set_data("skybook/record/通关时间记录/" + query("books") + "/" + sQuest + "/id", dob->query("id"));
-                                                                        DB_D->set_data("skybook/record/通关时间记录/" + query("books") + "/" + sQuest + "/name", dob->query("name"));
+                                                                        DB_D->set_data("skybook/record/通關時間記錄/" + query("books") + "/" + sQuest + "/time", nKilltime);
+                                                                        DB_D->set_data("skybook/record/通關時間記錄/" + query("books") + "/" + sQuest + "/id", dob->query("id"));
+                                                                        DB_D->set_data("skybook/record/通關時間記錄/" + query("books") + "/" + sQuest + "/name", dob->query("name"));
 
                                                                         sZhangjie = skybookob->get_mSkybook_fuben(sQuest, 0);
                                                                         sTitle = skybookob->get_mSkybook_fuben(sQuest, 1);
                                                                         
-                                                                        CHANNEL_D->do_channel(this_object(),"rumor", "听说" + HIY + dob->query("name")  + "(" + dob->query("id") + ")" HIM "创造了《" + query("books") + "》天书【" + 
-                                                                                                       sZhangjie + "　" + sTitle + "】的最快通关记录：" + sprintf("%d", nKilltime) + "秒！\n");
+                                                                        CHANNEL_D->do_channel(this_object(),"rumor", "聽說" + HIY + dob->query("name")  + "(" + dob->query("id") + ")" HIM "創造了《" + query("books") + "》天書【" + 
+                                                                                                       sZhangjie + "　" + sTitle + "】的最快通關記錄：" + sprintf("%d", nKilltime) + "秒！\n");
                                                         }
-                                                        dob->set("skybook14/" + query("books") + "/任务编号", query("sNextQuest") );
-                                                        dob->set("skybook14/" + query("books") + "/当前章节", query("sNextQuestZhangjie"));
-                                                        dob->set("skybook14/" + query("books") + "/当前标题", query("sNextQuestTitle"));
+                                                        dob->set("skybook14/" + query("books") + "/任務編號", query("sNextQuest") );
+                                                        dob->set("skybook14/" + query("books") + "/當前章節", query("sNextQuestZhangjie"));
+                                                        dob->set("skybook14/" + query("books") + "/當前標題", query("sNextQuestTitle"));
 
-                                                        // 大结局特殊处理
-                                                        if (query("sNextQuestZhangjie") == "大结局")
+                                                        // 大結局特殊處理
+                                                        if (query("sNextQuestZhangjie") == "大結局")
                                                         {
                                                                         skybookob->endskybook(dob);
 
@@ -541,9 +541,9 @@ void die(object killer)
                                                                         string *keys_myskills, *get2kskills, ssk;
                                                                         int i;
                                                                         
-                                                                        message_vision(HIG + BLINK "\n副本通关，使用指令 " + HIC + "skybook start " + query("books") + HIG " 继续副本 ！\n" NOR, dob, this_object());
+                                                                        message_vision(HIG + BLINK "\n副本通關，使用指令 " + HIC + "skybook start " + query("books") + HIG " 繼續副本 ！\n" NOR, dob, this_object());
                                                         
-                                                                        // 一定概率提升随机技能一级
+                                                                        // 一定概率提升隨機技能一級
                                                                         getmyskills = dob->query_skills();                       
                                                                   if (sizeof(getmyskills) && random(10) < 2)
                                                                   {
@@ -553,23 +553,23 @@ void die(object killer)
                                                                                                 if (getmyskills[keys_myskills[i]] >= 1500 && ! SKILL_D(keys_myskills[i])->is_fmsk())
                                                                                                                 get2kskills += ({keys_myskills[i]});
                                                                 
-                                                                                        if (sizeof(get2kskills))// 降低修养的获得概率
+                                                                                        if (sizeof(get2kskills))// 降低修養的獲得概率
                                                                                         {
                                                                                                         ssk = get2kskills[random(sizeof(get2kskills))];
-                                                                                                        if (ssk == "martial-cognize" && random(10) < 3)ssk = get2kskills[random(sizeof(get2kskills))]; // 若是武学修养则再随机抽取一次
+                                                                                                        if (ssk == "martial-cognize" && random(10) < 3)ssk = get2kskills[random(sizeof(get2kskills))]; // 若是武學修養則再隨機抽取一次
                                                                                                         
                                                                                                         dob->add_skill(ssk,1);
-                                                                                                        log_file("0天书加技能.log", dob->query("id") + " " + ctime(time()) + " " + ssk + "\n");
-                                                                                                        tell_object(dob, HIG "\n恭喜你！技能" HIY + CHINESE_D->chinese(ssk) + HIG "等级提升1级。\n" NOR);
+                                                                                                        log_file("0天書加技能.log", dob->query("id") + " " + ctime(time()) + " " + ssk + "\n");
+                                                                                                        tell_object(dob, HIG "\n恭喜你！技能" HIY + CHINESE_D->chinese(ssk) + HIG "等級提升1級。\n" NOR);
                                                                                         }
                                                                         }
                                                                         
-                                                                        // 给予通关固定奖励
+                                                                        // 給予通關固定獎勵
                                                                         GIFT_D->delay_bonus(dob,
                                                                                 ([ "exp"      : 200000,
                                                                                    "pot"      : 200000,
                                                                                    "mar"      : 500000,
-                                                                                   "prompt"   : "天书副本通关奖励" ]), 999);    
+                                                                                   "prompt"   : "天書副本通關獎勵" ]), 999);    
                                                         }
                                         }
 

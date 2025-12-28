@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define QIAN "「" HIW "蛇影万道" NOR "」"
+#define QIAN "「" HIW "蛇影萬道" NOR "」"
 
 inherit F_SSERVER;
 
@@ -16,26 +16,26 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(QIAN "只能对战斗中的对手使用。\n");
+                return notify_fail(QIAN "只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对，难以施展" QIAN "。\n");
+                return notify_fail("你使用的武器不對，難以施展" QIAN "。\n");
 
         if ((int)me->query_skill("jinshe-jian", 1) < 180)
-                return notify_fail("你的金蛇剑法不够娴熟，难以施展" QIAN "。\n");
+                return notify_fail("你的金蛇劍法不夠嫻熟，難以施展" QIAN "。\n");
 
         if( query("neili", me)<260 )
-                return notify_fail("你的真气不够，难以施展" QIAN "。\n");
+                return notify_fail("你的真氣不夠，難以施展" QIAN "。\n");
 
         if (me->query_skill_mapped("sword") != "jinshe-jian")
-                return notify_fail("你没有激发金蛇剑法，难以施展" QIAN "。\n");
+                return notify_fail("你沒有激發金蛇劍法，難以施展" QIAN "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "\n$N" HIW "一声长吟，手中" + weapon->name() + HIW "顿时化做无数条灵蛇，"
-              "从四面八方同时向$n" HIW "袭去。\n" NOR;
+        msg = HIW "\n$N" HIW "一聲長吟，手中" + weapon->name() + HIW "頓時化做無數條靈蛇，"
+              "從四面八方同時向$n" HIW "襲去。\n" NOR;
 
         message_sort(msg, me, target);
 
@@ -45,15 +45,15 @@ int perform(object me, object target)
 
         if (ap / 2 + random(ap) > dp)
         {
-                msg = HIR "结果$n" HIR "被$N" HIR "攻了个措手不及，$n"
+                msg = HIR "結果$n" HIR "被$N" HIR "攻了個措手不及，$n"
                       HIR "慌忙招架，心中叫苦。\n" NOR;
 
                 count = ap / 10;
                 attack_time += random(ap / 35);
         } else
         {
-                msg = HIC "$n" HIC "见$N" HIC "这几剑招式凌厉，诡异"
-                      "无比，只得苦苦招架。\n" NOR;
+                msg = HIC "$n" HIC "見$N" HIC "這幾劍招式凌厲，詭異"
+                      "無比，只得苦苦招架。\n" NOR;
                 count = 0;
         }
             message_combatd(msg, me, target);

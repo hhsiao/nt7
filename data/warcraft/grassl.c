@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("爱巧[2;37;0m[2;37;0m", ({"lqiao"}));        
+        set_name("愛巧[2;37;0m[2;37;0m", ({"lqiao"}));        
         set("gender", "女性");                
         set("long", "巧[2;37;0m
-它是啊艹的魔幻兽。
+它是啊艹的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

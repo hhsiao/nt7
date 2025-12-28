@@ -15,35 +15,35 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if( userp(me) && !query("can_perform/bagua-dao/mang", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(MANG "只能在战斗中对对手使用。\n");
+                return notify_fail(MANG "只能在戰鬥中對對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
               query("skill_type", weapon) != "blade" )
-                return notify_fail("你使用的武器不对，难以施展" MANG "。\n");
+                return notify_fail("你使用的武器不對，難以施展" MANG "。\n");
 
         if (me->query_skill("force") < 200)
-                return notify_fail("你的内功的修为不够，难以施展" MANG "。\n");
+                return notify_fail("你的內功的修為不夠，難以施展" MANG "。\n");
 
         if (me->query_skill("wai-bagua", 1) < 140)
-                return notify_fail("你的外八卦神功修为不够，难以施展" MANG "。\n");
+                return notify_fail("你的外八卦神功修為不夠，難以施展" MANG "。\n");
 
         if (me->query_skill("bagua-dao", 1) < 140)
-                return notify_fail("你的八卦刀法修为不够，难以施展" MANG "。\n");
+                return notify_fail("你的八卦刀法修為不夠，難以施展" MANG "。\n");
 
         if (me->query_skill_mapped("blade") != "bagua-dao")
-                return notify_fail("你没有激发八卦刀法，难以施展" MANG "。\n");
+                return notify_fail("你沒有激發八卦刀法，難以施展" MANG "。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你的真气不够，难以施展" MANG "。\n");
+                return notify_fail("你的真氣不夠，難以施展" MANG "。\n");
 
         if (! living(target))
-               return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+               return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N" HIW "脚踏八卦四方之位，陡然一振手中" + weapon->name() +
-              HIW "，刀身顿时卷起阵阵雪亮刀芒，将$n" + HIW "团团裹住！\n" NOR;
+        msg = HIW "$N" HIW "腳踏八卦四方之位，陡然一振手中" + weapon->name() +
+              HIW "，刀身頓時捲起陣陣雪亮刀芒，將$n" + HIW "團團裹住！\n" NOR;
 
         ap = attack_power(me, "blade");
         dp = defense_power(target, "parry");
@@ -54,14 +54,14 @@ int perform(object me, object target)
                 addn("neili", -150, me);
                 me->start_busy(2);
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 50,
-                                           HIR "只听$n" HIR "一声惨叫，一蓬血雨自" HIR
-                                           "亮白的刀芒中飞溅而出！\n" NOR);
+                                           HIR "只聽$n" HIR "一聲慘叫，一蓬血雨自" HIR
+                                           "亮白的刀芒中飛濺而出！\n" NOR);
         } else
         {
                 addn("neili", -60, me);
                 me->start_busy(3);
-                msg += CYN "可是$p" CYN "眼明手快，只听叮叮当当响起了一串"
-                       CYN "刀鸣，$p" CYN "将$P" CYN "的招式全部挡开！\n" NOR;
+                msg += CYN "可是$p" CYN "眼明手快，只聽叮叮噹噹響起了一串"
+                       CYN "刀鳴，$p" CYN "將$P" CYN "的招式全部擋開！\n" NOR;
         }
         message_combatd(msg, me, target);
 

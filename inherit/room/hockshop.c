@@ -13,15 +13,15 @@ mapping pawned_objects = ([]);
 nosave int max_items = 60;
 nosave int mudday_in_realtime_second = 1440;
 
-/* 避免存物品 dummy 的出现。
- * 鉴于此服务的高系统负担，也不允许纯粹聊天
- * 类不稳定玩家占用高额系统资源。
- * 正式开放稳定后这两项标准还应提高，
- * 窃以为 age : 18, exp : 50000 较为合适。
+/* 避免存物品 dummy 的出現。
+ * 鑑於此服務的高系統負擔，也不允許純粹聊天
+ * 類不穩定玩家佔用高額系統資源。
+ * 正式開放穩定後這兩項標準還應提高，
+ * 竊以為 age : 18, exp : 50000 較為合適。
  */
-nosave int min_age = 15;        // 15岁以前不能典当。
-nosave int min_exp = 20000;     // exp < 20000 不能典当
-nosave int min_value = 1000;    // 价值小于 10 两银子的物品当铺不收
+nosave int min_age = 15;        // 15歲以前不能典當。
+nosave int min_exp = 20000;     // exp < 20000 不能典當
+nosave int min_value = 1000;    // 價值小於 10 兩銀子的物品當鋪不收
 
 #ifdef WIZARD_FLAG
 private int check_pawn_object(object me,object ob)
@@ -31,17 +31,17 @@ private int check_pawn_object(object me,object ob)
         if(!objectp(me) || !objectp(ob))
                 return 0;
 
-        /* 无论是卖到当铺还是当到当铺的东西玩家均可以通过正常渠道接触到
-           因此只要是 wiz_ob 物品就不允许流入当铺，无论动作人是不是巫师
+        /* 無論是賣到當鋪還是當到當鋪的東西玩家均可以通過正常渠道接觸到
+           因此只要是 wiz_ob 物品就不允許流入當鋪，無論動作人是不是巫師
         */
         if(ob->query_wiz_flag())
         {
                 name = ob->name();
-                log_file("shop",sprintf("%s 在 %s %s %s 被没收. %s\n",
+                log_file("shop",sprintf("%s 在 %s %s %s 被沒收. %s\n",
                         geteuid(me),to_chinese(domain_file(base_name(this_object()))),
-                        (ob->is_pawn_stamp())?"使用巫师动过手脚的当票":"卖巫师物品",
+                        (ob->is_pawn_stamp())?"使用巫師動過手腳的當票":"賣巫師物品",
                         base_name(ob),ctime(time())));
-                notify_fail(ob->name()+"是巫师物品被没收了，请立刻向天神发信做出解释！\n");
+                notify_fail(ob->name()+"是巫師物品被沒收了，請立刻向天神發信做出解釋！\n");
                 destruct(ob);
                 return 0;
         }
@@ -85,27 +85,27 @@ int do_value(string arg)
         int value;
 
         if( !arg || !(ob = present(arg, this_player())) )
-                return notify_fail("你要拿什么物品给当铺估价？\n");
+                return notify_fail("你要拿什麼物品給當鋪估價？\n");
 
         if( query("money_id", ob) )
-                return notify_fail("这是「钱」，你没见过吗？\n");
+                return notify_fail("這是「錢」，你沒見過嗎？\n");
 
         if(ob->is_food())
-                return notify_fail("食品留着自己吃吧。\n");
+                return notify_fail("食品留著自己吃吧。\n");
         if(ob->is_corpse())
-                return notify_fail("这是谁的尸首快搬走，我们这还要做生意呢。\n");
+                return notify_fail("這是誰的屍首快搬走，我們這還要做生意呢。\n");
         if(ob->is_weapon())
-                return notify_fail("兵器小店可不敢收，你去铁匠铺问问吧。\n");
+                return notify_fail("兵器小店可不敢收，你去鐵匠鋪問問吧。\n");
         if(ob->is_character())
-                return notify_fail("小店奉公守法，不敢贩卖人口。\n");
+                return notify_fail("小店奉公守法，不敢販賣人口。\n");
         if(ob->is_ctl_ob() || ob->is_iron_class_res() || ob->is_self_object())
-                return notify_fail("这样东西小铺可是不敢保存。\n");
+                return notify_fail("這樣東西小鋪可是不敢保存。\n");
         if(ob->is_poison())
                 return notify_fail("毒物小店可不敢收！\n");
         if( query("no_drop", ob) )
-                return notify_fail("这样东西本店不收。\n");
+                return notify_fail("這樣東西本店不收。\n");
         if( query("no_sell", ob) )
-                return notify_fail("这样东西本店不收。\n");
+                return notify_fail("這樣東西本店不收。\n");
 
 #ifdef WIZARD_FLAG
         if(!check_pawn_object(this_player(),ob))
@@ -122,13 +122,13 @@ int do_value(string arg)
         if( !value )
                 return notify_fail(sprintf("%s一文不值。\n",query("name", ob)));
         if(value < min_value)
-                return notify_fail(query("name", ob)+"价值太低，这不收。\n");
+                return notify_fail(query("name", ob)+"價值太低，這不收。\n");
 
         else
         {
                 value = value*price_ratio(this_object())/100;
 
-                printf("%s价值%s。\n如果你要典当(pawn)，可以拿到%s及一张当票。\n如果卖断(sell)，可以拿到%s。\n",
+                printf("%s價值%s。\n如果你要典當(pawn)，可以拿到%s及一張當票。\n如果賣斷(sell)，可以拿到%s。\n",
                         query("name", ob),chinese_value(value),
                         chinese_value(value*pawn_rate), chinese_value(value*sell_rate));
         }
@@ -142,34 +142,34 @@ int do_pawn(string arg)
         string time,redeem_time;
 
         if( !arg || !(ob = present(arg, me)) )
-                return notify_fail("你要典当什么物品？\n");
+                return notify_fail("你要典當什麼物品？\n");
 
         if( query("age", me)<min_age )
-                return notify_fail("你年龄还太小，等长大一点再说吧。\n");
+                return notify_fail("你年齡還太小，等長大一點再說吧。\n");
         if( query("combat_exp", me)<min_exp )
-                return notify_fail("你的江湖阅历还太浅，等以后有了信誉再说吧。\n");
+                return notify_fail("你的江湖閱歷還太淺，等以後有了信譽再說吧。\n");
 
         if(PAWN_D->query_being_meeting())
-                return notify_fail("『拍卖大会』期间暂时不办理典当、赎当事宜。\n");
+                return notify_fail("『拍賣大會』期間暫時不辦理典當、贖當事宜。\n");
 
         if( query("money_id", ob) )
-                return notify_fail("这是「钱」，你没见过吗？\n");
+                return notify_fail("這是「錢」，你沒見過嗎？\n");
         if(ob->is_food())
-                return notify_fail("食品留着自己吃吧。\n");
+                return notify_fail("食品留著自己吃吧。\n");
         if(ob->is_corpse())
-                return notify_fail("这是谁的尸首快搬走，我们这还要做生意呢。\n");
+                return notify_fail("這是誰的屍首快搬走，我們這還要做生意呢。\n");
         if(ob->is_weapon())
-                return notify_fail("兵器小店可不敢收，你去铁匠铺问问吧。\n");
+                return notify_fail("兵器小店可不敢收，你去鐵匠鋪問問吧。\n");
         if(ob->is_character())
-                return notify_fail("小店奉公守法，不敢贩卖人口。\n");
+                return notify_fail("小店奉公守法，不敢販賣人口。\n");
         if(ob->is_ctl_ob() || ob->is_iron_class_res() || ob->is_self_object())
-                return notify_fail("这样东西小铺可是不敢保存。\n");
+                return notify_fail("這樣東西小鋪可是不敢保存。\n");
         if(ob->is_poison())
                 return notify_fail("毒物小店可不敢收！\n");
         if( query("no_drop", ob) )
-                return notify_fail("这样东西本店不收。\n");
+                return notify_fail("這樣東西本店不收。\n");
         if( query("no_sell", ob) )
-                return notify_fail("这样东西本店不收。\n");
+                return notify_fail("這樣東西本店不收。\n");
 
 #ifdef WIZARD_FLAG
         if(!check_pawn_object(me,ob))
@@ -180,7 +180,7 @@ int do_pawn(string arg)
                 return notify_fail(sprintf("%s一文不值。\n",query("name", ob)));
 
         if(!PAWN_D->can_pawn_ob(geteuid(me)))
-                return notify_fail("你典当的东西还有很多没有赎回，小铺本小利微，不敢收你的当。\n");
+                return notify_fail("你典當的東西還有很多沒有贖回，小鋪本小利微，不敢收你的當。\n");
 
         value=query("value", ob);
         if(!value)
@@ -189,20 +189,20 @@ int do_pawn(string arg)
         if( !value )
                 return notify_fail(sprintf("%s一文不值。\n",query("name", ob)));
         if(value < min_value)
-                return notify_fail(query("name", ob)+"价值太低，这不收。\n");
+                return notify_fail(query("name", ob)+"價值太低，這不收。\n");
 
         real_value = value;
         value = value*price_ratio(this_object())/100;
         value = value*pawn_rate;
         /*
-                需记录数据：
-                时间、地点、人物、物品
+                需記錄數據：
+                時間、地點、人物、物品
         */
 
         year = query_year();
         month = query_month();
         day = query_day_in_month();
-        time = sprintf("%s创世%s年%s月%s日",MUD_NAME,(!year)?"元":chinese_number(year),
+        time = sprintf("%s創世%s年%s月%s日",MUD_NAME,(!year)?"元":chinese_number(year),
                 chinese_number(month),chinese_number(day));
         month += 6;
         if(month > 12)
@@ -213,7 +213,7 @@ int do_pawn(string arg)
         }
         else
                 last_days = query_day( ({month,day}) ) - query_day(0);
-        redeem_time = sprintf("%s创世%s年%s月%s日",MUD_NAME,(!year)?"元":chinese_number(year),
+        redeem_time = sprintf("%s創世%s年%s月%s日",MUD_NAME,(!year)?"元":chinese_number(year),
                 chinese_number(month),chinese_number(day));
 
 
@@ -225,7 +225,7 @@ int do_pawn(string arg)
                 base_name(ob),
                 time()+mudday_in_realtime_second*last_days,
                 base_name(this_object()),
-                sprintf("兹收到：\n%s典当的破烂不堪%s一%s\n应于%s以前赎回\n赎回应付%s\n\n\t%s\n\t%s\n",
+                sprintf("茲收到：\n%s典當的破爛不堪%s一%s\n應於%s以前贖回\n贖回應付%s\n\n\t%s\n\t%s\n",
                         me->name(1),ob->name(),
                         query("unit", ob),redeem_time,chinese_value(real_value),
                         to_chinese(domain_file(file_name(this_object())))+
@@ -235,22 +235,22 @@ int do_pawn(string arg)
 
         how = PAWN_D->pawn_one_object(stamp);
 
-        if(!how)        // PAWN_D 出现错误。
+        if(!how)        // PAWN_D 出現錯誤。
         {
                 destruct(stamp);
-                return notify_fail("本点由于资金周转困难，暂时不收当了，请到别处看看吧。\n");
+                return notify_fail("本點由於資金週轉困難，暫時不收當了，請到別處看看吧。\n");
         }
 
         if(how == -1)
         {
                 destruct(stamp);
-                return notify_fail("你典当的东西还有很多没有赎回，小铺本小利微，不敢收你的当。\n");
+                return notify_fail("你典當的東西還有很多沒有贖回，小鋪本小利微，不敢收你的當。\n");
         }
 
         stamp->move(me);
         pay_player(me, value);
-        message_vision("$N把身上的"+query("name", ob)+"拿出来典当了"
-                + chinese_value(value) + "，换得一张当票。\n", me);
+        message_vision("$N把身上的"+query("name", ob)+"拿出來典當了"
+                + chinese_value(value) + "，換得一張當票。\n", me);
 
         destruct(ob);
         return 1;
@@ -261,19 +261,19 @@ int do_sellob_filter(object ob)
         if(!objectp(ob))
                 return 0;
         if( query("money_id", ob) )
-                return notify_fail("这是「钱」，你没见过吗？\n");
+                return notify_fail("這是「錢」，你沒見過嗎？\n");
         if(ob->is_food())
-                return notify_fail("食品留着自己吃吧。\n");
+                return notify_fail("食品留著自己吃吧。\n");
         if(ob->is_corpse())
-                return notify_fail("这是谁的尸首快搬走，我们这还要做生意呢。\n");
+                return notify_fail("這是誰的屍首快搬走，我們這還要做生意呢。\n");
         if(ob->is_weapon())
-                return notify_fail("兵器小店可不敢收，你去铁匠铺问问吧。\n");
+                return notify_fail("兵器小店可不敢收，你去鐵匠鋪問問吧。\n");
         if(ob->is_character())
-                return notify_fail("小店奉公守法，不敢贩卖人口。\n");
+                return notify_fail("小店奉公守法，不敢販賣人口。\n");
         if( query("no_drop", ob) )
-                return notify_fail("这样东西本店不收。\n");
+                return notify_fail("這樣東西本店不收。\n");
         if( query("no_sell", ob) )
-                return notify_fail("这样东西本店不收。\n");
+                return notify_fail("這樣東西本店不收。\n");
         else
                 return 1;
 }
@@ -286,11 +286,11 @@ int do_sell(string arg)
         me=this_player();
 
         if(!arg)
-                return notify_fail("你要卖断什么物品？\n");
+                return notify_fail("你要賣斷什麼物品？\n");
         if(arg!="all")
         {
                 if(!(ob = present(arg,me)))
-                        return notify_fail("你要卖断什么物品？\n");
+                        return notify_fail("你要賣斷什麼物品？\n");
 
                 if(!do_sellob_filter(ob))
                         return 0;
@@ -307,7 +307,7 @@ int do_sell(string arg)
         {
                 inv = all_inventory(me);
                 if(!sizeof(inv))
-                        return notify_fail("你身上没有任何东西。\n");
+                        return notify_fail("你身上沒有任何東西。\n");
                 for(i=0; i<sizeof(inv); i++)
                 {
                         if(!do_sellob_filter(ob))
@@ -339,12 +339,12 @@ int do_sellt(object ob,object me)
         if(!value)
                 return notify_fail(sprintf("%s一文不值。\n",query("name", ob)));
         if(value < min_value)
-                return notify_fail(query("name", ob)+"价值太低，这不收。\n");
+                return notify_fail(query("name", ob)+"價值太低，這不收。\n");
 
         value = value*price_ratio(this_object())/100;
         value = value * sell_rate;
 
-        message_vision("$N把身上的"+query("name", ob)+"拿出卖了"+chinese_value(value)+"。\n",me);
+        message_vision("$N把身上的"+query("name", ob)+"拿出賣了"+chinese_value(value)+"。\n",me);
 
         pay_player(me, value, ob->query_credit_point_flag()?1:0);
 
@@ -378,20 +378,20 @@ int do_sellt(object ob,object me)
         return 1;
 }
 
-int do_retrieve(string arg)// 当票需进行 wiz_ob 检查
+int do_retrieve(string arg)// 當票需進行 wiz_ob 檢查
 {
         object stamp, ob,me = this_player();
         int value,pay,flag;
         string ob_name;
 
         if(PAWN_D->query_being_meeting())
-                return notify_fail("『拍卖大会』期间暂时不办理典当、赎当事宜。\n");
+                return notify_fail("『拍賣大會』期間暫時不辦理典當、贖當事宜。\n");
 
         if( !arg || arg=="" || !(stamp = present(arg, me)) )
-                return notify_fail("你要赎回哪一张当票上的典物？\n");
+                return notify_fail("你要贖回哪一張當票上的典物？\n");
 
         if( !stamp->is_pawn_stamp() )
-                return notify_fail("这不是当票。\n");
+                return notify_fail("這不是當票。\n");
 
 #ifdef WIZARD_FLAG
         if(!check_pawn_object(me,stamp))
@@ -399,22 +399,22 @@ int do_retrieve(string arg)// 当票需进行 wiz_ob 检查
 #endif
 
         if(stamp->query_master() != geteuid(me))
-                return notify_fail("这张当票不是你的。\n");
+                return notify_fail("這張當票不是你的。\n");
 
         if( stamp->query_hockshop() != base_name(this_object()) )
-                return notify_fail("这张当票不是咱这开出的，你去别的地方看看吧。\n");
+                return notify_fail("這張當票不是咱這開出的，你去別的地方看看吧。\n");
 
         if(time() > stamp->query_rtime())
         {
                 destruct(stamp);
-                return notify_fail("这张当票上的物品已经过了赎当期。\n"+
-                        "当铺的挡手把这张当票撕掉扔了。\n");
+                return notify_fail("這張當票上的物品已經過了贖當期。\n"+
+                        "當鋪的擋手把這張當票撕掉扔了。\n");
         }
 
         if( !(ob_name = stamp->query_pob_file())
         || !objectp(ob = new(ob_name)) )
-                return notify_fail("没有这张当票上的物品，你的当票别是假的吧！\n"+
-                        "当铺的挡手把这张当票撕掉扔了。\n");
+                return notify_fail("沒有這張當票上的物品，你的當票別是假的吧！\n"+
+                        "當鋪的擋手把這張當票撕掉扔了。\n");
         value=query("value", ob);
         if(!value)
                 value = ob->value();
@@ -422,15 +422,15 @@ int do_retrieve(string arg)// 当票需进行 wiz_ob 检查
         {
                 destruct(ob);
                 destruct(stamp);
-                return notify_fail("没有这张当票上的物品，你的当票别是假的吧！\n"+
-                        "当铺的挡手把这张当票撕掉扔了。\n");
+                return notify_fail("沒有這張當票上的物品，你的當票別是假的吧！\n"+
+                        "當鋪的擋手把這張當票撕掉扔了。\n");
         }
 
-        pay = player_pay(me,value); // 赎回付全款
+        pay = player_pay(me,value); // 贖回付全款
         if(!pay || pay == 2)
         {
                 destruct(ob);
-                return notify_fail(sprintf("赎回这张当票上的物品需要%s\n你身上的钱不够。\n",
+                return notify_fail(sprintf("贖回這張當票上的物品需要%s\n你身上的錢不夠。\n",
                         chinese_value(value)));
         }
 
@@ -439,8 +439,8 @@ int do_retrieve(string arg)// 当票需进行 wiz_ob 检查
         {
                 destruct(ob);
                 destruct(stamp);
-                return notify_fail("没有这张当票上的物品，你的当票别是假的吧！\n"+
-                        "当铺的挡手把这张当票撕掉扔了。\n");
+                return notify_fail("沒有這張當票上的物品，你的當票別是假的吧！\n"+
+                        "當鋪的擋手把這張當票撕掉扔了。\n");
         }
 
         else
@@ -449,11 +449,11 @@ int do_retrieve(string arg)// 当票需进行 wiz_ob 检查
                 if(!flag = ob->move(me))
                 {
                         ob->move(this_object());
-                        write(sprintf("你拿不了更多的东西了，你赎回的%s给你放在地上了。\n",
+                        write(sprintf("你拿不了更多的東西了，你贖回的%s給你放在地上了。\n",
                                 ob->name()));
                 }
                 else
-                        write(sprintf("这是你赎回的%s请收好。\n",ob->name()));
+                        write(sprintf("這是你贖回的%s請收好。\n",ob->name()));
                 return 1;
         }
 }
@@ -465,12 +465,12 @@ int do_list(string arg)
         float rate;
 
         if(!sizeof(pawned_objects))
-                return notify_fail("当铺里现在没有待出售的货物。\n");
+                return notify_fail("當鋪裡現在沒有待出售的貨物。\n");
 
         rate = price_ratio(this_object());
 
-        msg = "当铺里现在有以下货物出售：\n";
-        msg += sprintf(" %-26s%-10s%-10s\n","    商  品","  数量","   单  价");
+        msg = "當鋪裡現在有以下貨物出售：\n";
+        msg += sprintf(" %-26s%-10s%-10s\n","    商  品","  數量","   單  價");
         msg += "----------------------------------------------\n";
 
         items = keys(pawned_objects);
@@ -498,10 +498,10 @@ int do_buy(string arg)
         string *items;
 
         if(!sizeof(pawned_objects))
-                return notify_fail("当铺里现在没有待出售的货物。\n");
+                return notify_fail("當鋪裡現在沒有待出售的貨物。\n");
 
         if( !arg )
-                return notify_fail("你要买什么东西？\n");
+                return notify_fail("你要買什麼東西？\n");
 
         items = keys(pawned_objects);
         n = sizeof(items);
@@ -510,7 +510,7 @@ int do_buy(string arg)
                 if(items[i]->id(arg))
                         break;
         if( i >= sizeof(pawned_objects) )
-                return notify_fail("你要买什么东西？\n");
+                return notify_fail("你要買什麼東西？\n");
 
         value=query("value", items[i]);
         if(!value)
@@ -520,7 +520,7 @@ int do_buy(string arg)
 
         pay = player_pay(this_player(),value);
         if(!pay || (pay == 2))
-                return notify_fail("你身上的钱不够。\n");
+                return notify_fail("你身上的錢不夠。\n");
 
         ob = new(items[i]);
         if(pay == 3)
@@ -532,7 +532,7 @@ int do_buy(string arg)
 
         if(!ob->move(this_player()))
                 ob->move(this_object());
-        message_vision("$N掏出钱买下一"+query("unit", ob)+ob->name()+"。\n",
+        message_vision("$N掏出錢買下一"+query("unit", ob)+ob->name()+"。\n",
                 this_player() );
 
         return 1;

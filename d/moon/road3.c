@@ -7,7 +7,7 @@ void create()
 {
 	set("short", "山路");
 	set("long", @LONG
-一条弯弯曲曲的小路，向山上盘旋延深着。
+一條彎彎曲曲的小路，向山上盤旋延深著。
 LONG	);
 	set("exits", ([ 
   "northup" : __DIR__"door",

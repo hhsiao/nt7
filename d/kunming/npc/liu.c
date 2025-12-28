@@ -7,15 +7,15 @@ int redeem(string arg);
 
 void create()
 {
-        set_name("刘通", ({ "liu tong", "liu" }));
-        set("title", "当铺老板");
+        set_name("劉通", ({ "liu tong", "liu" }));
+        set("title", "當鋪老闆");
         set("shen_type", 0);
 
         set("gender", "男性");
         set_max_encumbrance(100000000);
         set("age", 35);
         set("long",
-                "一个一看就知道是个精明的人。\n");
+                "一個一看就知道是個精明的人。\n");
         set("no_get_from", 1);
         set("no_get",1);
         set_skill("unarmed", 60);

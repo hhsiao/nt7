@@ -9,11 +9,11 @@ void create()
         object ob;
         set_name("茅十八", ({ "mao shiba", "mao", "shiba" }));
         set("long", @LONG
-他虬髯如乱草，满脸血污，好象曾受过很重的
-伤，可以看得见他左腿上血迹未干。但他双目
-炯炯，却又有着说不出的威风。
+他虯髯如亂草，滿臉血汙，好象曾受過很重的
+傷，可以看得見他左腿上血跡未乾。但他雙目
+炯炯，卻又有著說不出的威風。
 LONG);
-        set("title", "官府通缉要犯");
+        set("title", "官府通緝要犯");
         set("gender", "男性");
         set("age", 30);
         set("str", 25);
@@ -61,16 +61,16 @@ LONG);
         }));
 
         set("inquiry", ([
-                "史松"   : "谁杀了史松这奸贼，我可以帮他提高江湖威望。",
-                // "断字诀" : "我总得留两手吧？",
+                "史松"   : "誰殺了史松這奸賊，我可以幫他提高江湖威望。",
+                // "斷字訣" : "我總得留兩手吧？",
         ]));
 
         set("chat_chance", 2);
         set("chat_msg", ({
-                CYN "茅十八说道: 他奶奶的，我就不信鳌拜有这等厉害，我正要上北京去斗他一斗。\n" NOR,
-                CYN "茅十八叹道: 我这五虎断门刀法对付盐枭可是绰绰有余，不知对付鳌拜行不行。\n" NOR,
-                CYN "茅十八说道: 他奶奶的，要谁帮我杀了史松，兄弟我就谢谢了。\n" NOR,
-                CYN "茅十八朗声说道：江湖有言为人不识陈近南，就称英雄也枉然。\n" NOR,
+                CYN "茅十八說道: 他奶奶的，我就不信鰲拜有這等厲害，我正要上北京去鬥他一鬥。\n" NOR,
+                CYN "茅十八嘆道: 我這五虎斷門刀法對付鹽梟可是綽綽有餘，不知對付鰲拜行不行。\n" NOR,
+                CYN "茅十八說道: 他奶奶的，要誰幫我殺了史松，兄弟我就謝謝了。\n" NOR,
+                CYN "茅十八朗聲說道：江湖有言為人不識陳近南，就稱英雄也枉然。\n" NOR,
                 (: random_move :)
         }) );
         setup();
@@ -98,7 +98,7 @@ int accept_object(object me, object ob)
 
         if (base_name(ob) != HEILONG)
         {
-                command("say 你给我这种东西干什么？");
+                command("say 你給我這種東西幹什麼？");
                 return 0;
         }
 
@@ -109,20 +109,20 @@ int accept_object(object me, object ob)
                 addn("combat_exp", exp, 	me);
                 addn("potential", pot, 	me);
                 addn("score", sc, 	me);
-                	tell_object(me, HIW "\n\n你成功的帮助茅十八弄到了黑龙鞭！\n" NOR +
-                                        HIC "通过这次的历练，你获得了" + chinese_number(exp) +
-                                        "点经验、" + chinese_number(pot) + "点潜能以及" +
-                                	chinese_number(sc) + "点江湖阅历。\n\n" NOR);
+                	tell_object(me, HIW "\n\n你成功的幫助茅十八弄到了黑龍鞭！\n" NOR +
+                                        HIC "通過這次的歷練，你獲得了" + chinese_number(exp) +
+                                        "點經驗、" + chinese_number(pot) + "點潛能以及" +
+                                	chinese_number(sc) + "點江湖閱歷。\n\n" NOR);
                 set("skybook/luding/mao", 1, 	me);
                 set("can_learn/wuhu-duanmendao/mao", 1, 	me);
 		}
                 command("haha");
-                command("say 多谢，多谢。那个狗腿子俺早就想除去了。");
-                command("say 俺这有一套五虎断门刀，你如果有意，倒是可以看看。\n");
+                command("say 多謝，多謝。那個狗腿子俺早就想除去了。");
+                command("say 俺這有一套五虎斷門刀，你如果有意，倒是可以看看。\n");
         } else
 	{
                 command("pat"+query("id", me));
-                command("say 要不是你的江湖经验太浅，俺真想教你点东西。");
+                command("say 要不是你的江湖經驗太淺，俺真想教你點東西。");
 	}
         destruct(ob);
         return 1;
@@ -132,13 +132,13 @@ int recognize_apprentice(object me, string skill)
 {
         if( !query("can_learn/wuhu-duanmendao/mao", me) )
         {
-                command("say 干嘛？没拜师就想向俺学东西？");
+                command("say 幹嘛？沒拜師就想向俺學東西？");
                 return -1;
         }
 
         if (skill != "wuhu-duanmendao")
         {
-                command("say 俺就只有这一套刀法拿得出手。");
+                command("say 俺就只有這一套刀法拿得出手。");
                 return -1;
         }
         return 1;
@@ -148,10 +148,10 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-                case "断字诀" :
+                case "斷字訣" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/wuhu-duanmendao/duan",
-                           "name"    : "断字诀",
+                           "name"    : "斷字訣",
                            "sk1"     : "wuhu-duanmendao",
                            "lv1"     : 150,
                            "force"   : 140,

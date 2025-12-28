@@ -9,8 +9,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", RED "一颗神秘的神丹，散发出隐隐血光。\n" NOR);
-                set("unit", "块");
+                set("long", RED "一顆神秘的神丹，散發出隱隱血光。\n" NOR);
+                set("unit", "塊");
                 set("value", 20000);
         }
 }

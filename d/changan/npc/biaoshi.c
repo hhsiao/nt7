@@ -4,8 +4,8 @@ inherit NPC;
 
 void create()
 {
-        string *surname=({"赵","钱","孙","李","周","吴","郑","王",});
-        set_name(surname[random(sizeof(surname))]+"镖师", ({ "biaoshi", "biao"}) );
+        string *surname=({"趙","錢","孫","李","周","吳","鄭","王",});
+        set_name(surname[random(sizeof(surname))]+"鏢師", ({ "biaoshi", "biao"}) );
         set("gender", "男性" );
         set("age", 25);
         set("str", 45);
@@ -14,7 +14,7 @@ void create()
         set("int", 20);
         set("per", 20);
         set("kar", 15);
-        set("long", "一位训练有素的镖师。\n");
+        set("long", "一位訓練有素的鏢師。\n");
         set("combat_exp", 50000);
         set("attitude", "heroism");
         set_skill("parry", 90);

@@ -11,7 +11,7 @@ int main(object me, string arg)
         if (! SECURITY_D->valid_grant(me, "(arch)"))
                 return 0;
 
-        output = sprintf("%-45s %-20s %5s %s\n", "物件", "函数", "延迟时间", "参数"); 
+        output = sprintf("%-45s %-20s %5s %s\n", "物件", "函數", "延遲時間", "參數"); 
         if (arg && arg != "")
                 info = filter_array(call_out_info(), (: $1[1]==$2 :), arg);
         else
@@ -28,9 +28,9 @@ int main(object me, string arg)
 int help()
 {
         write(@LONG
-指令格式：callouts [<函数名称>]
+指令格式：callouts [<函數名稱>]
 
-列出系统中所有的定时器。
+列出系統中所有的定時器。
 
 LONG );
         return 1;

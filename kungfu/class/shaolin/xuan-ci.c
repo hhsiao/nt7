@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// xuan-ci.c 玄慈大师
+// xuan-ci.c 玄慈大師
 
 #include <ansi.h>
 inherit NPC;
@@ -13,14 +13,14 @@ inherit F_QUESTER;
 mixed ask_wldh();
 void create()
 {
-        set_name("玄慈大师", ({
+        set_name("玄慈大師", ({
                 "xuanci dashi",
                 "xuanci",
                 "dashi",
         }));
         set("long",
-                "他是一位白须白眉的老僧，身穿一袭金丝绣红袈裟。\n"
-                "他身材略显佝偻，但却满面红光，目蕴慈笑，显得神完气足。\n"
+                "他是一位白鬚白眉的老僧，身穿一襲金絲繡紅袈裟。\n"
+                "他身材略顯佝僂，但卻滿面紅光，目蘊慈笑，顯得神完氣足。\n"
         );
 
         set("nickname", "少林寺方丈");
@@ -88,8 +88,8 @@ void init()
         ::init();
         if( interactive(ob = this_player()) && !is_fighting() &&
             query_temp("juxianzhuang_step", ob) == 4){
-                set("inquiry/武林大会", (: ask_wldh :));
-                set("inquiry/聚贤庄", (: ask_wldh :));
+                set("inquiry/武林大會", (: ask_wldh :));
+                set("inquiry/聚賢莊", (: ask_wldh :));
         }
 }
 
@@ -99,12 +99,12 @@ mixed ask_wldh()
 
         if( (int)query_temp("in_speech")
          || query_temp("juxianzhuang_step", me) != 4 )
-                return notify_fail("玄慈大师很迷惑的看了看你。。。\n");
+                return notify_fail("玄慈大師很迷惑的看了看你。。。\n");
 
         set_temp("in_speech", 1);
         remove_call_out("say_msg");
         call_out("say_msg", 1, me, 1);
-        return CYN"阿弥陀佛，施主来我少林的目的老衲已经猜到了。可惜老衲身在红尘外，不问红尘事了，阿弥陀佛……" NOR;
+        return CYN"阿彌陀佛，施主來我少林的目的老衲已經猜到了。可惜老衲身在紅塵外，不問紅塵事了，阿彌陀佛……" NOR;
 }
 
 int say_msg(object me, int index)
@@ -116,30 +116,30 @@ int say_msg(object me, int index)
 
         switch( index ) {
         case(1):
-                message_vision(CYN"$N说道：阿弥陀佛，老衲当年犯下无数罪孽，终此一生，可能也难以补偿，哪里还能再去过问红尘中的腥风血雨啊。\n"NOR, this_object(), me);
+                message_vision(CYN"$N說道：阿彌陀佛，老衲當年犯下無數罪孽，終此一生，可能也難以補償，哪裡還能再去過問紅塵中的腥風血雨啊。\n"NOR, this_object(), me);
                 break;
         case(2):
-                message_vision(WHT"<$N一脸拒人千里的模样，于是$n开始发挥你舌粲莲花、才辩无双的本领。>\n"NOR, this_object(), me);
+                message_vision(WHT"<$N一臉拒人千里的模樣，於是$n開始發揮你舌粲蓮花、才辯無雙的本領。>\n"NOR, this_object(), me);
                 break;
         case(3):
-                message_vision(CYN"$N说道：唉，既然徐长老和施主诚心相邀，那好吧，到武林大会那日我会派玄难、玄寂两位师弟前去聚贤庄，代表少林派参加大会。\n"NOR, this_object(), me);
+                message_vision(CYN"$N說道：唉，既然徐長老和施主誠心相邀，那好吧，到武林大會那日我會派玄難、玄寂兩位師弟前去聚賢莊，代表少林派參加大會。\n"NOR, this_object(), me);
                 break;
         case(4):
-                message_vision(CYN"$N说道：人缘常满，欢喜无量，阿弥托佛，善哉善哉！施主若无其他事情，可以回洛阳将我的意思转达(report)给徐长老了。\n"NOR, this_object(), me);
+                message_vision(CYN"$N說道：人緣常滿，歡喜無量，阿彌託佛，善哉善哉！施主若無其他事情，可以回洛陽將我的意思轉達(report)給徐長老了。\n"NOR, this_object(), me);
                 break;
         case(5):
-                message_vision(WHT"<$N说完后便闭目入定，独自诵起佛经。>\n"NOR, this_object(), me);
+                message_vision(WHT"<$N說完後便閉目入定，獨自誦起佛經。>\n"NOR, this_object(), me);
                 break;
         case(6):
-                message_vision(CYN"$N念道：我独经行时，见佛在大众，名闻满十方，广饶益众生。自惟失此利，我为自欺诳。\n"NOR, this_object(), me);
+                message_vision(CYN"$N念道：我獨經行時，見佛在大眾，名聞滿十方，廣饒益眾生。自惟失此利，我為自欺誑。\n"NOR, this_object(), me);
                 break;
         case(7):
-                message_vision(CYN"$N念道：我常于日夜，每思惟是事，欲以问世尊，为失为不失，我常见世尊，称赞诸菩萨，以是于日夜，筹量此是事……。\n"NOR, this_object(), me);
+                message_vision(CYN"$N念道：我常於日夜，每思惟是事，欲以問世尊，為失為不失，我常見世尊，稱讚諸菩薩，以是於日夜，籌量此是事……。\n"NOR, this_object(), me);
                 break;
         default:
                 set_temp("juxianzhuang_step", 5, me);
-                delete("inquiry/武林大会");
-                delete("inquiry/聚贤庄");
+                delete("inquiry/武林大會");
+                delete("inquiry/聚賢莊");
                 delete_temp("in_speech");
                 return 1;
         }
@@ -152,16 +152,16 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "历练" :
-        case "历炼" :
-        case "锻炼" :
+        case "歷練" :
+        case "歷煉" :
+        case "鍛鍊" :
                 return QUEST_D->accept_ask(this_object(), me, topic);
                 break;
 
-        case "一苇渡江" :
+        case "一葦渡江" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/shaolin-shenfa/du",
-                           "name"    : "一苇渡江",
+                           "name"    : "一葦渡江",
                            "sk1"     : "shaolin-shenfa",
                            "lv1"     : 100,
                            "sk2"     : "dodge",
@@ -169,10 +169,10 @@ int accept_ask(object me, string topic)
                            "gongxian": 1000, ]));
                 break;
 
-        case "罗汉降魔" :
+        case "羅漢降魔" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/luohan-quan/xiangmo",
-                           "name"    : "罗汉降魔",
+                           "name"    : "羅漢降魔",
                            "sk1"     : "luohan-quan",
                            "lv1"     : 100,
                            "sk2"     : "buddhism",
@@ -180,10 +180,10 @@ int accept_ask(object me, string topic)
                            "gongxian": 200, ]));
                 break;
 
-        case "大金刚神通" :
+        case "大金剛神通" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/jingang-quan/jingang",
-                           "name"    : "大金刚神通",
+                           "name"    : "大金剛神通",
                            "sk1"     : "jingang-quan",
                            "lv1"     : 100,
                            "sk2"     : "buddhism",
@@ -202,10 +202,10 @@ int accept_ask(object me, string topic)
                            "gongxian": 600, ]));
                 break;
 
-        case "惊魔一指" :
+        case "驚魔一指" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/yizhi-chan/jingmo",
-                           "name"    : "惊魔一指",
+                           "name"    : "驚魔一指",
                            "sk1"     : "yizhi-chan",
                            "lv1"     : 150,
                            "sk2"     : "force",
@@ -213,10 +213,10 @@ int accept_ask(object me, string topic)
                            "gongxian": 600, ]));
                 break;
 
-        case "指点江山" :
+        case "指點江山" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/yizhi-chan/dian",
-                           "name"    : "指点江山",
+                           "name"    : "指點江山",
                            "sk1"     : "yizhi-chan",
                            "lv1"     : 150,
                            "sk2"     : "force",
@@ -224,10 +224,10 @@ int accept_ask(object me, string topic)
                            "gongxian": 600, ]));
                 break;
 
-        case "无色无相" :
+        case "無色無相" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/wuxiang-zhi/wuse",
-                           "name"    : "无色无相",
+                           "name"    : "無色無相",
                            "sk1"     : "wuxiang-zhi",
                            "lv1"     : 120,
                            "sk2"     : "force",
@@ -235,10 +235,10 @@ int accept_ask(object me, string topic)
                            "gongxian": 400, ]));
                 break;
 
-        case "修罗索命指" :
+        case "修羅索命指" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/xiuluo-zhi/jueming",
-                           "name"    : "修罗索命指",
+                           "name"    : "修羅索命指",
                            "sk1"     : "xiuluo-zhi",
                            "lv1"     : 150,
                            "sk2"     : "force",
@@ -246,10 +246,10 @@ int accept_ask(object me, string topic)
                            "gongxian": 800, ]));
                 break;
 
-        case "金刚伏魔决" :
+        case "金剛伏魔決" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/jingang-zhi/fumo",
-                           "name"    : "金刚伏魔决",
+                           "name"    : "金剛伏魔決",
                            "sk1"     : "jingang-zhi",
                            "lv1"     : 150,
                            "sk2"     : "buddhism",
@@ -257,10 +257,10 @@ int accept_ask(object me, string topic)
                            "gongxian": 600, ]));
                 break;
 
-        case "一指点三脉" :
+        case "一指點三脈" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/jingang-zhi/san",
-                           "name"    : "一指点三脉",
+                           "name"    : "一指點三脈",
                            "sk1"     : "jingang-zhi",
                            "lv1"     : 200,
                            "sk2"     : "jingluo-xue",
@@ -268,10 +268,10 @@ int accept_ask(object me, string topic)
                            "gongxian": 1000, ]));
                 break;
 
-        case "菩提寂灭" :
+        case "菩提寂滅" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/duoluoye-zhi/jimie",
-                           "name"    : "菩提寂灭",
+                           "name"    : "菩提寂滅",
                            "sk1"     : "duoluoye-zhi",
                            "lv1"     : 150,
                            "sk2"     : "buddhism",
@@ -301,10 +301,10 @@ int accept_ask(object me, string topic)
                            "gongxian": 500, ]));
                 break;
 
-        case "群山叠影" :
+        case "群山疊影" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/xumishan-zhang/ying",
-                           "name"    : "群山叠影",
+                           "name"    : "群山疊影",
                            "sk1"     : "xumishan-zhang",
                            "lv1"     : 120,
                            "sk2"     : "force",
@@ -334,10 +334,10 @@ int accept_ask(object me, string topic)
                            "gongxian": 400, ]));
                 break;
 
-        case "千叶佛手" :
+        case "千葉佛手" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/qianye-shou/qianye",
-                           "name"    : "千叶佛手",
+                           "name"    : "千葉佛手",
                            "sk1"     : "qianye-shou",
                            "lv1"     : 120,
                            "sk2"     : "force",
@@ -345,10 +345,10 @@ int accept_ask(object me, string topic)
                            "gongxian": 400, ]));
                 break;
 
-        case "神龙抓" :
+        case "神龍抓" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/longzhua-gong/zhua",
-                           "name"    : "神龙抓",
+                           "name"    : "神龍抓",
                            "sk1"     : "longzhua-gong",
                            "lv1"     : 150,
                            "sk2"     : "force",
@@ -356,10 +356,10 @@ int accept_ask(object me, string topic)
                            "gongxian": 1000, ]));
                 break;
 
-        case "荡妖除魔" :
+        case "蕩妖除魔" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/yingzhua-gong/chumo",
-                           "name"    : "荡妖除魔",
+                           "name"    : "蕩妖除魔",
                            "sk1"     : "yingzhua-gong",
                            "lv1"     : 150,
                            "sk2"     : "force",
@@ -367,10 +367,10 @@ int accept_ask(object me, string topic)
                            "gongxian": 600, ]));
                 break;
 
-        case "佛心剑" :
+        case "佛心劍" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/fumo-jian/foxin",
-                           "name"    : "佛心剑",
+                           "name"    : "佛心劍",
                            "sk1"     : "fumo-jian",
                            "lv1"     : 150,
                            "sk2"     : "force",
@@ -378,10 +378,10 @@ int accept_ask(object me, string topic)
                            "gongxian": 700, ]));
                 break;
 
-        case "修罗索命" :
+        case "修羅索命" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/xiuluo-dao/suoming",
-                           "name"    : "修罗索命",
+                           "name"    : "修羅索命",
                            "sk1"     : "xiuluo-dao",
                            "lv1"     : 150,
                            "sk2"     : "force",
@@ -389,10 +389,10 @@ int accept_ask(object me, string topic)
                            "gongxian": 500, ]));
                 break;
 
-        case "舍身喂鹰" :
+        case "捨身喂鷹" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/cibei-dao/sheshen",
-                           "name"    : "舍身喂鹰",
+                           "name"    : "捨身喂鷹",
                            "sk1"     : "cibei-dao",
                            "lv1"     : 150,
                            "sk2"     : "force",
@@ -400,10 +400,10 @@ int accept_ask(object me, string topic)
                            "gongxian": 400, ]));
                 break;
 
-        case "无常五化" :
+        case "無常五化" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/wuchang-zhang/wuchang",
-                           "name"    : "无常五化",
+                           "name"    : "無常五化",
                            "sk1"     : "wuchang-zhang",
                            "lv1"     : 150,
                            "sk2"     : "force",
@@ -435,10 +435,10 @@ int accept_ask(object me, string topic)
                            "gongxian": 400, ]));
                 break;
 
-        case "韦陀伏魔" :
+        case "韋陀伏魔" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/weituo-gun/fumo",
-                           "name"    : "韦陀伏魔",
+                           "name"    : "韋陀伏魔",
                            "sk1"     : "weituo-gun",
                            "lv1"     : 150,
                            "sk2"     : "buddhism",

@@ -2,7 +2,7 @@ inherit BUNCHER;
 
 void create()
 {
-        set_name("老妇", ({ "old woman", "old", "woman" }) );
+        set_name("老婦", ({ "old woman", "old", "woman" }) );
         set("gender", "女性" );
         set("age", 63);
         set("shen_type", 1);

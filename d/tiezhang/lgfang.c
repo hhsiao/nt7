@@ -4,12 +4,12 @@ inherit ROOM;
 
 void create()
 {
-        set("short",HIC "练功房" NOR);
+        set("short",HIC "練功房" NOR);
         set("long", @LONG
-这是一间用花岗岩砌成的石屋。室内一只大炉中燃了洪炭，煮着热气腾
-腾的一镬 (huo)东西，镬旁两个黑衣小童，一个使劲推拉风箱，另一个用铁
-铲翻炒镬中之物，听这沙沙之声，所炒的似是铁沙。几名帮中弟子闭目盘膝
-坐在锅前，或对着腾上的热气吐呐，或把手掌插入(charu)镬中苦练掌法。
+這是一間用花崗岩砌成的石屋。室內一隻大爐中燃了洪炭，煮著熱氣騰
+騰的一鑊 (huo)東西，鑊旁兩個黑衣小童，一個使勁推拉風箱，另一個用鐵
+鏟翻炒鑊中之物，聽這沙沙之聲，所炒的似是鐵沙。幾名幫中弟子閉目盤膝
+坐在鍋前，或對著騰上的熱氣吐吶，或把手掌插入(charu)鑊中苦練掌法。
 LONG
         );
         set("exits", ([ 
@@ -21,7 +21,7 @@ LONG
         ]));
 
         set("item_desc", ([
-                "huo" : HIR "\n这是一口巨大的铁锅，锅中盛满铁沙，下面燃着炭火。\n" NOR,
+                "huo" : HIR "\n這是一口巨大的鐵鍋，鍋中盛滿鐵沙，下面燃著炭火。\n" NOR,
         ]));
 
         setup();
@@ -41,32 +41,32 @@ int do_cha(string arg)
         if ( ! living(me)) return 0;
         if ( ! living(this_player()) || arg != "huo" )
         {
-                write("你想往哪儿插呀！\n");
+                write("你想往哪兒插呀！\n");
                 return 1;
         }
 
         if( me->is_busy() )
-                return notify_fail("你现在正忙着呢。\n");
+                return notify_fail("你現在正忙著呢。\n");
 
         if ( (int)me->query_skill("strike", 1) < 30 )
-                return notify_fail("你将双手插入镬中，灼热的铁沙登时烫得你怪叫不止，看来还是吧掌法练高点再来吧。\n");
+                return notify_fail("你將雙手插入鑊中，灼熱的鐵沙登時燙得你怪叫不止，看來還是吧掌法練高點再來吧。\n");
 
         if ( (int)me->query_skill("strike", 1) > 100)
-                return notify_fail("你将双手插入镬中，发现用铁沙练习已丝毫提高不了你的掌法了。\n");
+                return notify_fail("你將雙手插入鑊中，發現用鐵沙練習已絲毫提高不了你的掌法了。\n");
 
         if (! me->can_improve_skill("strike"))
-                return notify_fail("你的实战经验不够，无法再加深你的掌法！\n");
+                return notify_fail("你的實戰經驗不夠，無法再加深你的掌法！\n");
 
         if( query("qi", me)<40 )
         {
-                write("你觉得一股热气直逼上来，焦燥难当。还是休息一下再接着练吧！\n");
+                write("你覺得一股熱氣直逼上來，焦燥難當。還是休息一下再接著練吧！\n");
                 return 1;
         }
 
         me->receive_damage("qi", 30);
         me->improve_skill("strike",query("con", me)*2);
         me->start_busy(random(2));
-        message_vision(HIR "\n$N" HIR "将双手插进镬中的铁沙里。\n" NOR, me);
-        write(RED "灼热的铁沙将你的双手烫得通红，你觉得双手登时变得更加强壮有力了。\n" NOR);
+        message_vision(HIR "\n$N" HIR "將雙手插進鑊中的鐵沙裡。\n" NOR, me);
+        write(RED "灼熱的鐵沙將你的雙手燙得通紅，你覺得雙手登時變得更加強壯有力了。\n" NOR);
         return 1;
 }

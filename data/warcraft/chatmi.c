@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("洞房不败[2;37;0m[2;37;0m", ({"chatmism"}));        
+        set_name("洞房不敗[2;37;0m[2;37;0m", ({"chatmism"}));        
         set("gender", "男性");                
-        set("long", "撒旦发[2;37;0m
-它是信息的魔幻兽。
+        set("long", "撒旦發[2;37;0m
+它是信息的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

@@ -4,18 +4,18 @@ inherit TESSERA;
 
 void create()
 {
-        set_name(HIY "上古·太虚" NOR, ({"tai xu", "tai", "xu"}));
+        set_name(HIY "上古·太虛" NOR, ({"tai xu", "tai", "xu"}));
         set_weight(50);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", HIY "一块金黄色的太虚，拥有无穷变化的魔力，这\n"
-                            "便是传说中的至宝——上古太虚，相传为上古\n"
-                            "时代，黄帝得九天玄女所送南北精铁炼制而成。\n"
-                            "上古神物，已经通灵。\n" NOR);
+                set("long", HIY "一塊金黃色的太虛，擁有無窮變化的魔力，這\n"
+                            "便是傳說中的至寶——上古太虛，相傳為上古\n"
+                            "時代，黃帝得九天玄女所送南北精鐵煉製而成。\n"
+                            "上古神物，已經通靈。\n" NOR);
                 set("value", 10000000);
-                set("unit", "块");
+                set("unit", "塊");
                 set("can_be_tessera", 1);
                 set("magic/type", "metal");
                 set("magic/power", 1000);

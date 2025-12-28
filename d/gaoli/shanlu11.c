@@ -1,14 +1,14 @@
 // /d/gaoli/xuanwumen
-// Room in 高丽
+// Room in 高麗
 // rich 99/03/28
 inherit ROOM;
 void create()        
 {
         set("short", "山路");
         set("long", @LONG
-你走在一条山路上。再往南边走不远就是高丽的玉龙门了。这里的
-行人不是很多。看来平时很少有人到这里来。向北望去，隐约可以看到
-高丽的烽火台。
+你走在一條山路上。再往南邊走不遠就是高麗的玉龍門了。這裡的
+行人不是很多。看來平時很少有人到這裡來。向北望去，隱約可以看到
+高麗的烽火臺。
 LONG
         );
 set("outdoors", "gaoli");

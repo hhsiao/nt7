@@ -15,16 +15,16 @@ void create()
 {
         set_name("卓不凡", ({ "zhuo bufan", "zhuo", "bufan"}));
         set("gender", "男性");
-        set("title", "一字慧剑门门主");
-        set("nickname", HIY "剑神" NOR);
+        set("title", "一字慧劍門門主");
+        set("nickname", HIY "劍神" NOR);
         set("age", 37);
         set("long", @LONG
-三十三年前，一字慧剑门满门师徒给童姥杀得
-精光，当时卓不凡不在福建，幸免于难，从此
-再也不敢回去，逃到长白山中荒僻极寒之地苦
-研剑法，无意中得了前辈高手遗下来的一部剑
-经，勤练剑法三十余年，终于剑术大成，自信
-天下无敌。
+三十三年前，一字慧劍門滿門師徒給童姥殺得
+精光，當時卓不凡不在福建，倖免於難，從此
+再也不敢回去，逃到長白山中荒僻極寒之地苦
+研劍法，無意中得了前輩高手遺下來的一部劍
+經，勤練劍法三十餘年，終於劍術大成，自信
+天下無敵。
 LONG );
         set("attitude", "peaceful");
         set("str", 30);
@@ -63,16 +63,16 @@ LONG );
         prepare_skill("strike", "liuyang-zhang");
 
         set("inquiry", ([
-                "剑芒"     : (: ask_me :),
-                "周公剑"   : "此乃天下第一剑法。",
-                "剑神"     : "论空手，自然是我主公虚竹子第一。但若是论剑法嘛，还得是我。",
-                "天山童姥" : "她杀尽我一字慧剑门满门师徒，幸亏她死得早！",
-                "虚竹"     : "他是我们灵鹫宫新的主公，我们全部听他号令。",
-                "虚竹子"   : "他是我们灵鹫宫新的主公，我们全部听他号令。",
-                "剑法"     : "我的周公剑天下无双，除了主公，没第二人能够敌过。",
+                "劍芒"     : (: ask_me :),
+                "周公劍"   : "此乃天下第一劍法。",
+                "劍神"     : "論空手，自然是我主公虛竹子第一。但若是論劍法嘛，還得是我。",
+                "天山童姥" : "她殺盡我一字慧劍門滿門師徒，幸虧她死得早！",
+                "虛竹"     : "他是我們靈鷲宮新的主公，我們全部聽他號令。",
+                "虛竹子"   : "他是我們靈鷲宮新的主公，我們全部聽他號令。",
+                "劍法"     : "我的周公劍天下無雙，除了主公，沒第二人能夠敵過。",
         ]));
 
-        create_family("一字慧剑门", 3, "门主");
+        create_family("一字慧劍門", 3, "門主");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -89,17 +89,17 @@ LONG );
 
 int recognize_apprentice(object ob, string skill)
 {
-        if( query("family/family_name", ob) != "灵鹫宫" )
+        if( query("family/family_name", ob) != "靈鷲宮" )
         {
                 command("killair");
-                command("say 你是什么东西，竟想习我精妙的剑法！");
+                command("say 你是什麼東西，竟想習我精妙的劍法！");
                 return -1;
         }
 
         if( query("family/master_id", ob) != "xuzhu zi" )
         {
                 command("hmm");
-                command("say 恐怕这灵鹫宫里，还轮不到你说话。");
+                command("say 恐怕這靈鷲宮裡，還輪不到你說話。");
                 return -1; 
 
         }
@@ -107,21 +107,21 @@ int recognize_apprentice(object ob, string skill)
         if (skill != "zhougong-jian" && skill != "sword")
         {
                 command("hmm");
-                command("say 其它武功我不传授。");
+                command("say 其它武功我不傳授。");
                 return -1;
         }
 
         if (skill == "sword" && ob->query_skill("sword", 1) > 179)
         {
                 command("hmm");
-                command("say 够了，剩下的剑法自己去研究。");
+                command("say 夠了，剩下的劍法自己去研究。");
                 return -1;
         }
 
         if( !query_temp("can_learn/zhuobufan", ob) )
         {
                 command("nod2");
-                command("say 既然你感兴趣，又是主公的弟子，我就教你这套周公剑。");
+                command("say 既然你感興趣，又是主公的弟子，我就教你這套周公劍。");
                 set_temp("can_learn/zhuobufan", 1, ob);
         }
         return 1;
@@ -133,43 +133,43 @@ mixed ask_me()
 
         me = this_player();
         if( query("can_perform/zhougong-jian/mang", me) )
-                return "我已经说得够多了，别跟我纠缠不休。";
+                return "我已經說得夠多了，別跟我糾纏不休。";
 
-        if( query("family/family_name", me) != "灵鹫宫" && 
-           query("family/family_name", me) != "一字慧剑门" )
-                return "哼！不知阁下这话是什么意思？";
+        if( query("family/family_name", me) != "靈鷲宮" && 
+           query("family/family_name", me) != "一字慧劍門" )
+                return "哼！不知閣下這話是什麼意思？";
 
         if (me->query_skill("zhougong-jian", 1) < 1)
-                return "你周公剑都未曾练过，还谈什么绝招。";
+                return "你周公劍都未曾練過，還談什麼絕招。";
 
-        if( query("family/family_name", me) == "灵鹫宫" && 
+        if( query("family/family_name", me) == "靈鷲宮" && 
            query("family/gongji", me)<1000 )
-                return "主公有令，不得传功给无功劳的弟子。";
+                return "主公有令，不得傳功給無功勞的弟子。";
 
         if (me->query_skill("force") < 200)
-                return "你的内功练成这样，还练什么剑法！";
+                return "你的內功練成這樣，還練什麼劍法！";
 
         if( query("max_neili", me)<2200 )
-                return "你的内力弱成这样，还练什么剑法！";
+                return "你的內力弱成這樣，還練什麼劍法！";
 
         if (me->query_skill("zhougong-jian", 1) < 140)
-                return "你的周公剑火候还差得远，再回去练练！";
+                return "你的周公劍火候還差得遠，再回去練練！";
 
-        message_sort(HIY "$n" HIY "更不答话，拔出腰间佩剑，长剑一"
-                     "挺，剑尖上突然生出半尺吞吐不定的青芒。当真"
-                     "气势如虹，一展王者风范。$N" HIY "的目光顿"
-                     "时一亮，似乎明白了什么。\n" NOR, me,
+        message_sort(HIY "$n" HIY "更不答話，拔出腰間佩劍，長劍一"
+                     "挺，劍尖上突然生出半尺吞吐不定的青芒。當真"
+                     "氣勢如虹，一展王者風範。$N" HIY "的目光頓"
+                     "時一亮，似乎明白了什麼。\n" NOR, me,
                      this_object());
         command("hmm");
         command("say 看清楚了？");
-        tell_object(me, HIC "你学会了「剑芒」。\n" NOR);
+        tell_object(me, HIC "你學會了「劍芒」。\n" NOR);
         if (me->can_improve_skill("sword"))
                 me->improve_skill("sword", 1500000);
         if (me->can_improve_skill("zhougong-jian"))
                 me->improve_skill("zhougong-jian", 1500000);
         me->improve_skill("martial-cognize", 1500000);
         set("can_perform/zhougong-jian/mang", 1, me);
-        if( query("family/family_name", me) == "灵鹫宫" )
+        if( query("family/family_name", me) == "靈鷲宮" )
                 addn("family/gongji", -1000, me);
         return 1;
 }
@@ -182,7 +182,7 @@ void attempt_apprentice(object ob)
 
         command("smile");
         command("say 甚好！甚好！");
-        command("say 我一字慧剑门门下无徒，今日老夫便收下你。");
+        command("say 我一字慧劍門門下無徒，今日老夫便收下你。");
         command("recruit "+query("id", ob));
 }
 */

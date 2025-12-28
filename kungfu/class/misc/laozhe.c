@@ -5,9 +5,9 @@ inherit "/inherit/char/punisher";
 
 void create()
 {
-        set_name("唐门老者", ({ "tangmen laozhe", "tangmen", "laozhe"}));
+        set_name("唐門老者", ({ "tangmen laozhe", "tangmen", "laozhe"}));
         set("long", 
-"唐门世家隐退的老者，没有人知道他的姓名。\n");
+"唐門世家隱退的老者，沒有人知道他的姓名。\n");
         set("gender", "男性");
         set("age", 91);
         set("class", "tangmen");
@@ -59,7 +59,7 @@ void create()
         
         prepare_skill("hand", "boyun-suowu");
         
-        create_family("唐门世家", 0, "掌门");
+        create_family("唐門世家", 0, "掌門");
 
         set_temp("apply/damage", 100);  
         set_temp("apply/unarmed_damage", 100);  

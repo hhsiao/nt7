@@ -1,4 +1,4 @@
-// 智慧水晶 与同伴系统关联 参考文件 help mater
+// 智慧水晶 與同伴系統關聯 參考文件 help mater
 
 #include <ansi.h>
 
@@ -11,9 +11,9 @@ void create()
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIM "一块粉色的水晶碎片，你的同伴最喜欢。\n" NOR);
+                set("long", HIM "一塊粉色的水晶碎片，你的同伴最喜歡。\n" NOR);
                 set("value", 1);
-                set("unit", "块");
+                set("unit", "塊");
         }
         setup();
 }

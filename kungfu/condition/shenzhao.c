@@ -6,16 +6,16 @@ inherit POISON;
 
 string name() { return "shenzhao"; }
 
-string chinese_name() { return "神照经内劲"; }
+string chinese_name() { return "神照經內勁"; }
 
 string update_msg_others()
 {
-       return HIR "只见$N" HIR "呛呛退了数步，身子摇晃，双"
-              "腿渐渐弯曲，似乎喝醉了一般。\n" NOR;
+       return HIR "只見$N" HIR "嗆嗆退了數步，身子搖晃，雙"
+              "腿漸漸彎曲，似乎喝醉了一般。\n" NOR;
 }
 
 string update_msg_self()
 {
-        return HIW "你只感内息顿滞，真气不畅，一张脸涨得通"
-               "红，便要跌倒。\n" NOR;
+        return HIW "你只感內息頓滯，真氣不暢，一張臉漲得通"
+               "紅，便要跌倒。\n" NOR;
 }

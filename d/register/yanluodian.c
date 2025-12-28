@@ -13,27 +13,27 @@ int do_wash(string arg);
 int do_born(string arg);
 
 mapping born = ([
-        "关外人氏" : "/d/guanwai/kedian",
-        "燕赵人氏" : "/d/beijing/kedian",
-        "齐鲁人氏" : "/d/taishan/kedian",
-        "秦晋人氏" : "/d/changan/kezhan",
+        "關外人氏" : "/d/guanwai/kedian",
+        "燕趙人氏" : "/d/beijing/kedian",
+        "齊魯人氏" : "/d/taishan/kedian",
+        "秦晉人氏" : "/d/changan/kezhan",
         "蒙古人氏" : 0,
         "中原人氏" : "/d/shaolin/kedian1",
         "西域人氏" : "/d/xingxiu/kedian",
-        "荆州人氏" : "/d/xiangyang/kedian",
-        "扬州人氏" : "/d/city/kedian",
-        "苏州人氏" : "/d/suzhou/kedian",
+        "荊州人氏" : "/d/xiangyang/kedian",
+        "揚州人氏" : "/d/city/kedian",
+        "蘇州人氏" : "/d/suzhou/kedian",
         "杭州人氏" : "/d/hangzhou/kedian",
         "福建人氏" : "/d/fuzhou/kedian",
         "巴蜀人氏" : "/d/city3/kedian",
-        "云南人氏" : "/d/dali/kedian",
+        "雲南人氏" : "/d/dali/kedian",
         "黔中人氏" : 0,
-        "两广人氏" : "/d/foshan/beidimiao",
-        "欧阳世家" : ([ "born"      : "西域人氏",
-                        "surname"   : "欧阳",
+        "兩廣人氏" : "/d/foshan/beidimiao",
+        "歐陽世家" : ([ "born"      : "西域人氏",
+                        "surname"   : "歐陽",
                         "startroom" : "/d/baituo/dating",
                      ]),
-        "关外胡家" : ([ "born"      : "关外人氏",
+        "關外胡家" : ([ "born"      : "關外人氏",
                         "surname"   : "胡",
                         "startroom" : "/d/guanwai/xiaowu",
                      ]),
@@ -53,25 +53,25 @@ void create()
         string desc;
         string *position;
 
-        set("short", HIR "阎罗殿" NOR);
+        set("short", HIR "閻羅殿" NOR);
         set("long", @LONG
-这里阴深恐怖，让人感觉到一阵阵的寒意，两旁列着牛头马面，冥
-府狱卒，各个威严肃穆。十殿阎罗，尽皆在此，地藏王坐在大堂之上，
-不怒自威，你的腿脚不禁都有些软了。
-    大殿角落有一个石头砌成的池子，其中水清澈却不见底，不知道它
+這裡陰深恐怖，讓人感覺到一陣陣的寒意，兩旁列著牛頭馬面，冥
+府獄卒，各個威嚴肅穆。十殿閻羅，盡皆在此，地藏王坐在大堂之上，
+不怒自威，你的腿腳不禁都有些軟了。
+    大殿角落有一個石頭砌成的池子，其中水清澈卻不見底，不知道它
 究竟有多深。
-    旁边有一个牌子(paizi)，你也许应该仔细看看。
+    旁邊有一個牌子(paizi)，你也許應該仔細看看。
 LONG );
         set("no_fight", 1);
         set("item_desc", ([
-                "paizi" : "投胎乃人生大事，切记不可草率！选好方向，就输入born <地名>。\n"
+                "paizi" : "投胎乃人生大事，切記不可草率！選好方向，就輸入born <地名>。\n"
         ]));
 
         set("objects", ([
                 __DIR__"npc/dizangwang" : 1,
         ]));
 
-        set("no_say", "阎罗殿内阴森恐怖，你哪里敢乱说话？\n");
+        set("no_say", "閻羅殿內陰森恐怖，你哪裡敢亂說話？\n");
 
         desc = query("item_desc/paizi");
         position = keys(born);
@@ -114,7 +114,7 @@ int do_wash(string arg)
             ! userp(me))
                 return 1;
 
-        write(HIC "你跳入忘忧池，顿时被一股激流卷了进去。\n" NOR, me);
+        write(HIC "你跳入忘憂池，頓時被一股激流捲了進去。\n" NOR, me);
 
         tmpstr = tmpint = tmpcon = tmpdex = 13;
 
@@ -159,13 +159,13 @@ int do_wash(string arg)
         my["kar"] = 10 + random(21);
         my["per"] = 10 + random(21);
 
-        write(HIC "“啪”的一声，你被湿漉漉的抛了出来。\n" NOR, me);
-        write(sprintf(HIY "\n你这次获得的四项先天天赋分别是：\n"
+        write(HIC "“啪”的一聲，你被溼漉漉的拋了出來。\n" NOR, me);
+        write(sprintf(HIY "\n你這次獲得的四項先天天賦分別是：\n"
                           "膂力：【 " HIG "%d" HIY " 】 "
                           "悟性：【 " HIG "%d" HIY " 】 "
                           "根骨：【 " HIG "%d" HIY " 】 "
                           "身法：【 " HIG "%d" HIY " 】\n"
-                          "如果你满意，就去投胎(born)吧！\n\n" NOR,
+                          "如果你滿意，就去投胎(born)吧！\n\n" NOR,
                       tmpstr, tmpint, tmpcon, tmpdex));
         set_temp("washed", 1, me);
 
@@ -186,17 +186,17 @@ int do_born(string arg)
                 return 1;
 
         if( !query_temp("washed", me) )
-                return notify_fail("你现在忘忧池中洗一下(wash)，选择好天赋你在投胎也不迟啊！\n");
+                return notify_fail("你現在忘憂池中洗一下(wash)，選擇好天賦你在投胎也不遲啊！\n");
 
         if (arg && arg[0] < 160)
-                return notify_fail("你必须输入中文地名，比如born 扬州人氏，或者是born 欧阳世家以避免投错胎。\n");
+                return notify_fail("你必須輸入中文地名，比如born 揚州人氏，或者是born 歐陽世家以避免投錯胎。\n");
 
         new_name = 0;
         if (arg) sscanf(arg, "%s %s", arg, new_name);
 
         if (! arg || (! stringp(dest = born[arg]) && ! mapp(dest)))
         {
-                message_vision("牛头恶狠狠的对$N说：你要干什么！投胎去哪里？\n", me);
+                message_vision("牛頭惡狠狠的對$N說：你要幹什麼！投胎去哪裡？\n", me);
                 return 1;
         }
 
@@ -209,7 +209,7 @@ int do_born(string arg)
                         obj = load_object(dest);
                 set("startroom", dest, me);
                 set("born", arg, me);
-                set("born_family", "没有", me);
+                set("born_family", "沒有", me);
         } else
         {
                 if (! objectp(obj = find_object(dest["startroom"])))
@@ -221,24 +221,24 @@ int do_born(string arg)
                                 new_name = dest["surname"] + new_name;
 
                         if (strlen(new_name) > 8)
-                                return notify_fail("你的名字太长了。\n");
+                                return notify_fail("你的名字太長了。\n");
 
                         if (strlen(new_name) < 4)
                                 return notify_fail("你的名字太短了。\n");
 
                         if (! is_chinese(new_name))
-                                return notify_fail("请你用中文起名字。\n");
+                                return notify_fail("請你用中文起名字。\n");
                 }
 
                 if( query("surname", me) != dest["surname"] )
                 {
-                        // 名字需要变化
+                        // 名字需要變化
                         NAME_D->remove_name(me->name(1),query("id", me));
                         if( !new_name)new_name=dest["surname"]+query("purename", me);
                         if (stringp(msg = NAME_D->invalid_new_name(new_name)))
                         {
                                 write(msg);
-                                write("你可以考虑在投入世家的时候重新选择名字：born <世家> <名字>\n");
+                                write("你可以考慮在投入世家的時候重新選擇名字：born <世家> <名字>\n");
                                 return 1;
                         }
                         set("surname", dest["surname"], me);
@@ -259,23 +259,23 @@ int do_born(string arg)
         }
         if (! objectp(obj))
         {
-                message_vision("牛头一呆，搔搔头说：怎么好像有问题...\n", me);
+                message_vision("牛頭一呆，搔搔頭說：怎麼好像有問題...\n", me);
                 return 1;
         }
 
-        message_vision("牛头飞起一脚，将$N踢了出去。\n", me);
+        message_vision("牛頭飛起一腳，將$N踢了出去。\n", me);
         
         foreach (item in all_inventory(me))
                 if( !query("armor_type", item) )
                 {
-                        message_vision("$N丢下了$n。\n", me, item);
+                        message_vision("$N丟下了$n。\n", me, item);
                         if( item->is_character() || query("value", item) )
                                 item->move(environment(me));
                         else
                                 destruct(item);
                 }
 
-        // 选择特殊技能
+        // 選擇特殊技能
         UPDATE_D->born_player(me);
 
         me->move(obj);
@@ -283,7 +283,7 @@ int do_born(string arg)
         set("age", 14, me);
         me->save();
         HELP_CMD->main(me, "rules");
-        message_vision("$N揉揉眼睛，迷惘的望着这个陌生的世界。\n", me);
+        message_vision("$N揉揉眼睛，迷惘的望著這個陌生的世界。\n", me);
 
         return 1;
 }

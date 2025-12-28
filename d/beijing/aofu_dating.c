@@ -3,12 +3,12 @@ inherit ROOM;
 
 void create()
 {
-        set("short","鳌府大厅");
+        set("short","鰲府大廳");
         set("long", @LONG
-这里是鳌狠府的大厅，大厅相当的宽敞明亮，四周的墙上悬挂满
-了各朝名人的真迹，正堂坐着一个满面虬须，身材魁梧，身着黄马褂
-的中年男子，看来那就是当朝第一大臣，被御封为『满洲第一勇士』
-的鳌狠了。大厅往北是一条走廊，那是通往鳌府的后院所在。
+這裡是鰲狠府的大廳，大廳相當的寬敞明亮，四周的牆上懸掛滿
+了各朝名人的真跡，正堂坐著一個滿面虯鬚，身材魁梧，身著黃馬褂
+的中年男子，看來那就是當朝第一大臣，被御封為『滿洲第一勇士』
+的鰲狠了。大廳往北是一條走廊，那是通往鰲府的後院所在。
 LONG );
         set("exits", ([
                 "north" :  "/d/beijing/aofu_zoulang2",
@@ -27,6 +27,6 @@ LONG );
 int valid_leave(object me, string dir)
 {
         if (objectp(present("ao bai", environment(me))) && dir == "north")
-                return notify_fail("鳌拜大声喝道：他奶奶的，你要干嘛？\n\n");
+                return notify_fail("鰲拜大聲喝道：他奶奶的，你要幹嘛？\n\n");
         return ::valid_leave(me, dir);
 }

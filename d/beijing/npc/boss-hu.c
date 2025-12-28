@@ -3,14 +3,14 @@
 
 inherit NPC;
 
-#define PLACE "bjw"     //扬州
+#define PLACE "bjw"     //揚州
 #define TYPE  "bad"    //黑道
-#define WAIT_TIME 60    //完成不了任务的反省时间
+#define WAIT_TIME 60    //完成不了任務的反省時間
 
 
 
 mapping bunch_bad = ([
-        "bunch_name" : "修罗门",
+        "bunch_name" : "修羅門",
         "id"   : "xlm",
         "place": "bjw",
         "boss" : "胡媚娘",
@@ -23,8 +23,8 @@ void create()
         set_name("胡媚娘", ({ "hu meiniang", "hu","meiniang" }));
         set("gender", "女性");
         set("age", 26);
-        set("long", "她装扮的妖艳无比，一双眼睛能摄人魂魄。\n");
-        set("title",HIB"修罗门北京坛主"NOR);
+        set("long", "她裝扮的妖豔無比，一雙眼睛能攝人魂魄。\n");
+        set("title",HIB"修羅門北京壇主"NOR);
         set("per",29);
         set("combat_exp", 1000000);
         set("shen_type", -1);

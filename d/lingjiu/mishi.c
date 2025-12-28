@@ -6,7 +6,7 @@ void create()
 {
         set("short", "密室");
         set("long", @LONG
-这是个阴暗的密室，墙上的油灯发出昏暗的黄光。
+這是個陰暗的密室，牆上的油燈發出昏暗的黃光。
 LONG );
         set("valid_startroom", 1); 
 
@@ -35,7 +35,7 @@ int valid_leave(object me, string dir)
                 (!present("shoufa tu1", this_object())) ||
                 (!present("shoufa tu2", this_object())) ||
                 (!present("pu", this_object())) )
-                        return notify_fail("这的秘辑不见了你怎能就走呢！\n");
+                        return notify_fail("這的秘輯不見了你怎能就走呢！\n");
 
         return ::valid_leave(me, dir);
 }

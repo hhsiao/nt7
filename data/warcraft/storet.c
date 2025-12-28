@@ -6,14 +6,14 @@ void setup()
 {
         set_name("[1;33m朱雀[2;37;0m[2;37;0m", ({"zhuque"}));        
         set("gender", "男性");                
-        set("long", "鸟类的一种。[2;37;0m
-它是库散的魔幻兽。
+        set("long", "鳥類的一種。[2;37;0m
+它是庫散的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");
         set("owner", "storet");
-        set("owner_name", "库散");
+        set("owner_name", "庫散");
         set_temp("owner", "storet");
-        set_temp("owner_name", "库散");
+        set_temp("owner_name", "庫散");
         ::setup();
 }

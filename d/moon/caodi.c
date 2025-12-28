@@ -9,9 +9,9 @@ void create()
 {
 	set("short", "幽香湖旁");
 	set("long", @LONG
-地势到此豁然开朗，眼前是各式各样的奇花异草。左边是一个小湖，
-幽风袭面，清香暗涌。北面则是陡峭的山崖，你这才发现，刚才的
-灯光就来自这座山上。
+地勢到此豁然開朗，眼前是各式各樣的奇花異草。左邊是一個小湖，
+幽風襲面，清香暗湧。北面則是陡峭的山崖，你這才發現，剛才的
+燈光就來自這座山上。
 LONG
 	);
 	set("exits", ([ 
@@ -33,24 +33,24 @@ int do_jump(string arg)
    object me, room;
    int mlvl;
    me = this_player();
-   if(!arg || arg != "对面") 
+   if(!arg || arg != "對面") 
     {
-     write("你要向哪边跳？？");
+     write("你要向哪邊跳？？");
      return 0; 
     }
    mlvl = (int)me->query_skill("move",1);
    if(mlvl < 50)
     {
-      message_vision("$N纵身向对面跳了过去，呼呼....\n不好！！！没跳到！！！\n", me);
+      message_vision("$N縱身向對面跳了過去，呼呼....\n不好！！！沒跳到！！！\n", me);
     me->unconcious();
       me->set("kee",(int)me->query("kee")/2);
       me->set("eff_kee",(int)me->query("eff_kee")/2);
       me->start_busy(4);
     }
    else{
-      message_vision("$N纵身向对面跳了过去，你只觉得耳边风声忽忽作响。。。。\n\n", me);
+      message_vision("$N縱身向對面跳了過去，你只覺得耳邊風聲忽忽作響。。。。\n\n", me);
       room = load_object(__DIR__"zz7");
-      message_vision("你跳到对面，好累哪。。。\n", me);
+      message_vision("你跳到對面，好累哪。。。\n", me);
       me->move(room);
    }
    return 1;

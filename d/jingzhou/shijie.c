@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "石阶");
+        set("short", "石階");
         set("long", @LONG
-这里是一排青石铺砌的石阶，往北可以通往萧湘书院，往南则是
-一片翠绿的竹林。
+這裡是一排青石鋪砌的石階，往北可以通往蕭湘書院，往南則是
+一片翠綠的竹林。
 LONG );
         set("outdoors", "jingzhou");
         set("exits", ([

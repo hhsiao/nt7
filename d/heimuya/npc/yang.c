@@ -4,9 +4,9 @@ inherit NPC;
 
 void create()
 {
-        set_name("杨莲亭", ({ "yang lianting", "yang" }));
-        set("long","他身形魁梧，满脸虬髯，形貌极为雄健。\n");
-        set("title", "日月神教成德堂总管");
+        set_name("楊蓮亭", ({ "yang lianting", "yang" }));
+        set("long","他身形魁梧，滿臉虯髯，形貌極為雄健。\n");
+        set("title", "日月神教成德堂總管");
         set("gender", "男性");
         set("age", 40);
         set("per", 29);

@@ -8,8 +8,8 @@ void create()
         set("age", 55);
         set("title", HIY "南帝四大弟子" NOR);
         set("long", @LONG
-朱子柳乃是一灯大师的四大弟子之一，现在正协助
-郭靖、黄蓉镇守襄阳城。
+朱子柳乃是一燈大師的四大弟子之一，現在正協助
+郭靖、黃蓉鎮守襄陽城。
 LONG );
         set("attitude", "peaceful");
         set("per", 17);
@@ -80,7 +80,7 @@ int recognize_apprentice(object ob, string skill)
 {
         if( query("combat_exp", ob)>20000 )
         {
-                command("say 你现在应该多出去锻炼锻炼，呆在这里可不是办法。");
+                command("say 你現在應該多出去鍛鍊鍛鍊，呆在這裡可不是辦法。");
                 return -1;
         }
 
@@ -89,38 +89,38 @@ int recognize_apprentice(object ob, string skill)
            && skill != "parry")
         {
                 command("hmm");
-                command("say 我最多传授你一些" HIY "内功" NOR + CYN "、" HIY
-                        "轻功" NOR + CYN "和" HIY "招架" NOR + CYN "的基本常识。" NOR);
-                command("say 其它的还是等你将来拜师后找师父学吧。");
+                command("say 我最多傳授你一些" HIY "內功" NOR + CYN "、" HIY
+                        "輕功" NOR + CYN "和" HIY "招架" NOR + CYN "的基本常識。" NOR);
+                command("say 其它的還是等你將來拜師後找師父學吧。");
                 return -1;
         }
 
         if (skill == "force" && ob->query_skill("force", 1) > 99)
         {
                 command("hehe");
-                command("say 你内功方面的造诣已经相当不错了，就到此为止吧。");
+                command("say 你內功方面的造詣已經相當不錯了，就到此為止吧。");
                 return -1;
         }
 
         if (skill == "parry" && ob->query_skill("parry", 1) > 99)
         {
                 command("hehe");
-                command("say 你招架方面的造诣已经相当不错了，就到此为止吧。");
+                command("say 你招架方面的造詣已經相當不錯了，就到此為止吧。");
                 return -1;
         }
 
         if (skill == "dodge" && ob->query_skill("dodge", 1) > 99)
         {
                 command("hehe");
-                command("say 你轻功方面的造诣已经相当不错了，就到此为止吧。");
+                command("say 你輕功方面的造詣已經相當不錯了，就到此為止吧。");
                 return -1;
         }
 
         if( !query_temp("can_learn/wusantong", ob) )
         {
                 command("smile");
-                command("say 不错，不错。趁现在多学点东西是好事。");
-                command("say 我就教你些内功、轻功和招架的基本常识吧。");
+                command("say 不錯，不錯。趁現在多學點東西是好事。");
+                command("say 我就教你些內功、輕功和招架的基本常識吧。");
                 set_temp("can_learn/wusantong", 1, ob);
         }
         return 1;
@@ -136,7 +136,7 @@ void greeting(object ob)
 		return;
 
         command("nod"+query("id", ob));
-        command("say " + RANK_D->query_respect(ob) + "，我正在传授基本武功。");
-        command("say 有空就过来学学(" HIY "xue wu santong skills" NOR + CYN ")吧。" NOR);
+        command("say " + RANK_D->query_respect(ob) + "，我正在傳授基本武功。");
+        command("say 有空就過來學學(" HIY "xue wu santong skills" NOR + CYN ")吧。" NOR);
 
 }

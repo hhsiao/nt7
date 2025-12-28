@@ -1,4 +1,4 @@
-// chongxu.c 冲虚
+// chongxu.c 沖虛
 
 #include <ansi.h>
 
@@ -6,8 +6,8 @@ inherit "/inherit/char/punisher";
 
 void create()
 {
-        set_name("冲虚", ({ "chong xu", "xu" }));
-        set("long",  "他就是武当派的高手冲虚道长，道貌岸然，飘飘欲仙。\n");
+        set_name("沖虛", ({ "chong xu", "xu" }));
+        set("long",  "他就是武當派的高手沖虛道長，道貌岸然，飄飄欲仙。\n");
         set("gender", "男性");
         set("age", 55);
         set("attitude", "peaceful");
@@ -53,7 +53,7 @@ void create()
         prepare_skill("unarmed", "taiji-quan");
         prepare_skill("strike", "wudang-zhang");
 
-        create_family("武当派", 0, "名宿");
+        create_family("武當派", 0, "名宿");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({

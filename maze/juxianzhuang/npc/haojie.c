@@ -2,12 +2,12 @@ inherit NPC;
 
 void create()
 {
-        set_name("江湖豪杰", ({ "jianghu haojie","haojie" }) );
-        set("nickname", "市井豪杰");
+        set_name("江湖豪傑", ({ "jianghu haojie","haojie" }) );
+        set("nickname", "市井豪傑");
         set("gender", "男性");
         set("age", 24);
         set("long",
-                "江湖豪杰。\n");
+                "江湖豪傑。\n");
         set("attitude", "peaceful");
 
         set("str", 26);

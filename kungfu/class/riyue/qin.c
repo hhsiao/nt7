@@ -8,11 +8,11 @@ mixed ask_skill1();
 
 void create()
 {
-        set_name("秦伟邦", ({ "qin weibang", "qin", "weibang"}));
+        set_name("秦偉邦", ({ "qin weibang", "qin", "weibang"}));
         set("title", "日月神教青旗旗主");
         set("long", @LONG
-这是日月神教青旗旗主秦伟邦，三十多岁年纪
-便已被提拔为旗主，可谓功劳不小。
+這是日月神教青旗旗主秦偉邦，三十多歲年紀
+便已被提拔為旗主，可謂功勞不小。
 LONG);
         set("gender", "男性" );
         set("class", "scholar");
@@ -59,7 +59,7 @@ LONG);
         create_family("日月神教", 14, "旗主");
 
         set("inquiry", ([
-                "环环相扣" : (: ask_skill1 :),
+                "環環相扣" : (: ask_skill1 :),
         ]));
 
         set("chat_chance_combat", 120);
@@ -84,19 +84,19 @@ void attempt_apprentice(object ob)
         if( query("shen", ob)>0 )
         {
                 command("heng");
-                command("say 我日月神教从来不和正派人士结交，快给我滚开。");
+                command("say 我日月神教從來不和正派人士結交，快給我滾開。");
                 return;
         }
 
         if( query("gender", ob) == "女性" )
         {
                 command("sneer");
-                command("say 教内规矩甚严，我职位未到，不敢私收女徒。");
+                command("say 教內規矩甚嚴，我職位未到，不敢私收女徒。");
                 return;
         }
 
         command("nod2");
-        command("say 那你就跟着我吧，入教之后的各种规矩可要多注意。");
+        command("say 那你就跟著我吧，入教之後的各種規矩可要多注意。");
         command("recruit "+query("id", ob));
         return;
 }
@@ -108,33 +108,33 @@ mixed ask_skill1()
         me = this_player();
 
         if( query("can_perform/danding-dao/kou", me) )
-                return "这招我已经教过你了，自己下去练吧。";
+                return "這招我已經教過你了，自己下去練吧。";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "你又不是我日月神教的，跑来捣什么乱？";
+                return "你又不是我日月神教的，跑來搗什麼亂？";
 
         if (me->query_skill("danding-dao", 1) < 1)
-                return "你连丹碇刀法都没学，还谈什么绝招可言？";
+                return "你連丹碇刀法都沒學，還談什麼絕招可言？";
 
         if( query("family/gongji", me)<80 )
-                return "你在教内甚无作为，这招我暂时还不能传你。";
+                return "你在教內甚無作為，這招我暫時還不能傳你。";
 
         if( query("shen", me)>-8000 )
-                return "你这样心慈手软，就算学会这招又有什么用？";
+                return "你這樣心慈手軟，就算學會這招又有什麼用？";
 
         if (me->query_skill("force") < 100)
-                return "你的内功火候尚需提高，练好了再来找我吧。";
+                return "你的內功火候尚需提高，練好了再來找我吧。";
 
         if (me->query_skill("danding-dao", 1) < 80)
-                return "你的丹碇刀法还练得不到家，自己下去练练再来吧！";
+                return "你的丹碇刀法還練得不到家，自己下去練練再來吧！";
 
-        message_sort(HIY "\n$n" HIY "点了点头，将$N" HIY "招至身边，在耳"
-                     "旁低声细说良久，$N" HIY "听后不禁会心地一笑，看来大"
+        message_sort(HIY "\n$n" HIY "點了點頭，將$N" HIY "招至身邊，在耳"
+                     "旁低聲細說良久，$N" HIY "聽後不禁會心地一笑，看來大"
                      "有所悟。\n\n" NOR, me, this_object());
 
         command("nod");
-        command("say 这招很简单，稍加练习便行。");
-        tell_object(me, HIC "你学会了「环环相扣」。\n" NOR);
+        command("say 這招很簡單，稍加練習便行。");
+        tell_object(me, HIC "你學會了「環環相扣」。\n" NOR);
         if (me->can_improve_skill("blade"))
                 me->improve_skill("blade", 1500000);
         if (me->can_improve_skill("danding-dao"))

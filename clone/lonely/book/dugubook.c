@@ -1,11 +1,11 @@
 #include <ansi.h>; 
 inherit ITEM;
-// 独孤九剑之无招解迷物件
+// 獨孤九劍之無招解迷物件
 // Edit by Rcwiz for Hero
 
 void create()
 {
-        set_name(HIW "「独孤九剑残本」" NOR, ({ "dugu canben", "dugu", "canben" }));
+        set_name(HIW "「獨孤九劍殘本」" NOR, ({ "dugu canben", "dugu", "canben" }));
         set_weight(500);
         if (clonep())
                 destruct(this_object());
@@ -13,10 +13,10 @@ void create()
                 set("unit", "本");
                 set("material", "paper");
                 set("no_sell", 1);
-                set("long", HIW "\n这是一本用薄纸写成的书，封皮上写有「独孤九剑\n"
-                                  "残本」六字。书皮泛黄，看来已经保存很久了。书\n"
-                                  "中记载了剑魔独孤求败所创独孤九剑之精髓。\n"
-                                  "你试图翻阅里面记载的内容，但是你只觉得深奥无\n"
-                                  "比，如无独孤求败本人讲解，是永远无法参透的。\n");
+                set("long", HIW "\n這是一本用薄紙寫成的書，封皮上寫有「獨孤九劍\n"
+                                  "殘本」六字。書皮泛黃，看來已經保存很久了。書\n"
+                                  "中記載了劍魔獨孤求敗所創獨孤九劍之精髓。\n"
+                                  "你試圖翻閱裡面記載的內容，但是你只覺得深奧無\n"
+                                  "比，如無獨孤求敗本人講解，是永遠無法參透的。\n");
         }
 }

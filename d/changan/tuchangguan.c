@@ -4,9 +4,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "土娼馆");
+        set("short", "土娼館");
         set("long", @LONG
-还没想好呢！呵呵！
+還沒想好呢！呵呵！
 LONG );
         set("exits", ([ /* sizeof() == 1 */
                 "south" : "/d/changan/huarui6",

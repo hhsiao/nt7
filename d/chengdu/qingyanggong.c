@@ -7,11 +7,11 @@ int do_back();
 
 void create()
 {
-        set("short", "青羊宫");
+        set("short", "青羊宮");
         set("long", @LONG
-青羊宫是天下第一大道观。观中林木婆娑，冠盖亭亭观中道士匆
-匆来去，没人得空理你，更没人接待你。你觉得到一种宽松的失落。
-旁边有一个木门（door）。
+青羊宮是天下第一大道觀。觀中林木婆娑，冠蓋亭亭觀中道士匆
+匆來去，沒人得空理你，更沒人接待你。你覺得到一種寬鬆的失落。
+旁邊有一個木門（door）。
 LONG );
         set("exits", ([
                 "northeast" : __DIR__"westroad1",
@@ -20,7 +20,7 @@ LONG );
                 "/clone/npc/walker" : 1,
         ]));
         set("item_desc", ([
-                "door" : "厚厚的木门紧关着，有些年岁了。\n" ,
+                "door" : "厚厚的木門緊關著，有些年歲了。\n" ,
         ]));
         set("no_clean_up", 0);
         set("coor/x", -15250);
@@ -35,7 +35,7 @@ void init()
 
         if( query("family/family_name", me) == "峨嵋派" )
         {
-                tell_object(me, HIG "\n你突然发现峨嵋派弟子留在此处的"
+                tell_object(me, HIG "\n你突然發現峨嵋派弟子留在此處的"
                                 "密信。\n" NOR);
                 set_temp("want_leave", 1, me);
 
@@ -56,10 +56,10 @@ void letter(object me)
                 return;
 
         tell_object(me, WHT "  ┏------------┓\n"
-                            "  ┃观旁树林内有┃\n"
-                            "  ┃本派密道能够┃\n"
+                            "  ┃觀旁樹林內有┃\n"
+                            "  ┃本派密道能夠┃\n"
                             "  ┃直通(" HIY "back" NOR + WHT ")峨┃\n"
-                            "  ┃嵋华藏庵大殿┃\n"
+                            "  ┃嵋華藏庵大殿┃\n"
                             "  ┗------------┛\n" NOR);
 }
 
@@ -69,11 +69,11 @@ int do_back()
 
         if( query_temp("want_leave", me) )
         {
-                message("vision", HIC "忽然间只见" + me->name() + HIC
-                                  "身形一晃，竟没了踪影。\n" NOR,
+                message("vision", HIC "忽然間只見" + me->name() + HIC
+                                  "身形一晃，竟沒了蹤影。\n" NOR,
                                   environment(me), ({me}));
                 me->move("/d/emei/midao5");
-                tell_object(me, HIC "\n你钻进了青羊观树林内的密道。\n\n" NOR);
+                tell_object(me, HIC "\n你鑽進了青羊觀樹林內的密道。\n\n" NOR);
         }
         return 1;
 }
@@ -81,7 +81,7 @@ int do_back()
 int do_open(string arg)
 {
         if(arg=="door")
-        return notify_fail("你用力拉了拉木门，结果一点动静都没有，看来是被反锁了！\n");
+        return notify_fail("你用力拉了拉木門，結果一點動靜都沒有，看來是被反鎖了！\n");
         else return 0;
 }
 
@@ -90,25 +90,25 @@ int do_knock(string arg)
         object me;
         me = this_player();
         if (!arg||arg=="")
-                return notify_fail("你要敲什么？\n");
+                return notify_fail("你要敲什麼？\n");
           if (arg != "door")
-                return notify_fail("你要敲什么？\n");
+                return notify_fail("你要敲什麼？\n");
           if( arg=="door" ) {
-                message_vision("$N试著敲了敲木门。\n", me);
-                if( query("bunch/bunch_name", me) != "修罗门" && query("shen", me) <= 0 )
+                message_vision("$N試著敲了敲木門。\n", me);
+                if( query("bunch/bunch_name", me) != "修羅門" && query("shen", me) <= 0 )
                 {
-                        message_vision(HIB"木门吱呀一声开了，从里面探出个头来，看了$N两眼说道：“是来投靠咱们修罗门的吧！”，
-说完一把把$N拉了进去。\n"NOR, me);
+                        message_vision(HIB"木門吱呀一聲開了，從裡面探出個頭來，看了$N兩眼說道：“是來投靠咱們修羅門的吧！”，
+說完一把把$N拉了進去。\n"NOR, me);
                         me->move(__DIR__"xlm_cdfb");
                         return 1;
                 }
-                if( good_bunch(me) || (query("bunch/bunch_name", me) != "修罗门" && query("shen", me)>0) )
+                if( good_bunch(me) || (query("bunch/bunch_name", me) != "修羅門" && query("shen", me)>0) )
                 {
-                                command("say 哪里来的邪魔歪道，找打么？\n");
+                                command("say 哪裡來的邪魔歪道，找打麼？\n");
                         return 1;
                 }
-                message_vision("木门吱呀一声开了，从里面探出个头来，看了$N两眼说道：“既然是本门的兄弟，就进来吧！”，
-说完一把把$N拉了进去。\n",me);
+                message_vision("木門吱呀一聲開了，從裡面探出個頭來，看了$N兩眼說道：“既然是本門的兄弟，就進來吧！”，
+說完一把把$N拉了進去。\n",me);
                 me->move(__DIR__"xlm_cdfb");
                 return 1;
         }

@@ -4,7 +4,7 @@ void create()
 {
         set("short", "前院");
         set("long", @LONG
-这里是前院的小广场，用青砖铺就的地面非常整洁。
+這裡是前院的小廣場，用青磚鋪就的地面非常整潔。
 LONG
         );
         set("exits", ([ /* sizeof() == 4 */
@@ -21,5 +21,5 @@ LONG
         set("no_fight", 1);
         set("outdoors", "yaowang");
         setup();
-//加个post板
+//加個post板
 }

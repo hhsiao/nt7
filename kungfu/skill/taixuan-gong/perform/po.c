@@ -7,7 +7,7 @@
 
 inherit F_SSERVER;
 
-#define PO "「" HIC "乘风破浪" NOR "」"
+#define PO "「" HIC "乘風破浪" NOR "」"
 
 int perform(object me)
 {
@@ -22,33 +22,33 @@ int perform(object me)
         me->clean_up_enemy();
 
         if (! me->is_fighting())
-                return notify_fail(PO "只能对战斗中的对手使用。\n");
+                return notify_fail(PO "只能對戰鬥中的對手使用。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(PO "只能空手施展。\n");
                 
         if( query("max_neili", me)<8500 )
-                return notify_fail("你的内力的修为不够，现在无法使用" PO "。\n");
+                return notify_fail("你的內力的修為不夠，現在無法使用" PO "。\n");
 
         if (me->query_skill("taixuan-gong", 1) < 260)
-                return notify_fail("你的太玄功还不够娴熟，难以施展" PO "。\n");
+                return notify_fail("你的太玄功還不夠嫻熟，難以施展" PO "。\n");
 
         if (me->query_skill_mapped("force") != "taixuan-gong")
-                return notify_fail("你现在没有激发太玄功为内功，难以施展" PO "。\n");
+                return notify_fail("你現在沒有激發太玄功為內功，難以施展" PO "。\n");
 
         if (me->query_skill_prepared("unarmed") != "taixuan-gong")
-                return notify_fail("你现在没有准备使用太玄功，难以施展" PO "。\n");
+                return notify_fail("你現在沒有準備使用太玄功，難以施展" PO "。\n");
 
         obs = me->query_enemy();
 
         if( query("neili", me)<sizeof(obs)*220 )
-                return notify_fail("你的真气不够，无法运用" PO "。\n");
+                return notify_fail("你的真氣不夠，無法運用" PO "。\n");
 
-        msg = HIW "只见$N" HIW"仰望天际，心中思绪万千。忽然间，$N" HIW "一声长叹，"
-              "随即双掌不停地拍出，侠客岛石壁上的太玄图谱已一幅幅涌上心头，"
-              "霎那间四周狂风骤起，尘土飞扬，气势如虹。这正是太玄功绝招「" 
-              NOR + HIC "乘风破浪" NOR + HIW "」。转眼间，$N" HIW "双掌越发"
-              "凌厉，已不知不觉地将四周笼罩，当真令人胆战心惊。\n" NOR;
+        msg = HIW "只見$N" HIW"仰望天際，心中思緒萬千。忽然間，$N" HIW "一聲長嘆，"
+              "隨即雙掌不停地拍出，俠客島石壁上的太玄圖譜已一幅幅湧上心頭，"
+              "霎那間四周狂風驟起，塵土飛揚，氣勢如虹。這正是太玄功絕招「" 
+              NOR + HIC "乘風破浪" NOR + HIW "」。轉眼間，$N" HIW "雙掌越發"
+              "凌厲，已不知不覺地將四周籠罩，當真令人膽戰心驚。\n" NOR;
 
         message_combatd(sort_msg(msg), me);
 
@@ -67,13 +67,13 @@ int perform(object me)
                         switch (random(2))
                         {
                         case 0:
-                                tell_object(obs[i], HIR "你只觉眼前风沙飞扬，周围风声萧萧，"
-                                                    "一股内劲已经穿体而过。\n" NOR);
+                                tell_object(obs[i], HIR "你只覺眼前風沙飛揚，周圍風聲蕭蕭，"
+                                                    "一股內勁已經穿體而過。\n" NOR);
                                 break;
 
                         default:
-                                tell_object(obs[i], HIR "你只觉眼前风沙飞扬，周围风沙狂舞，"
-                                                    "猛然间只觉千万股内劲已穿体而过。\n" NOR);
+                                tell_object(obs[i], HIR "你只覺眼前風沙飛揚，周圍風沙狂舞，"
+                                                    "猛然間只覺千萬股內勁已穿體而過。\n" NOR);
                                 break;
                         }
 
@@ -92,38 +92,38 @@ int perform(object me)
                         switch (random(5))
                         {
                         case 0:
-                                msg = HIR "只听" + obs[i]->name() +
-                                      HIR "一声惨嚎，接连退了数步，“"
-                                      "哇”的呕出一大口鲜血。\n" NOR;
+                                msg = HIR "只聽" + obs[i]->name() +
+                                      HIR "一聲慘嚎，接連退了數步，“"
+                                      "哇”的嘔出一大口鮮血。\n" NOR;
                                 msg += "( " + obs[i]->name() + eff_status_msg(p) + " )\n\n";
                                 break;
 
                         case 1:
-                                msg = HIR "只见" + obs[i]->name() +
-                                      HIR "向后飞出丈远，重重的跌落在"
-                                      "地上，衣衫破烂，再也无法站起来"
+                                msg = HIR "只見" + obs[i]->name() +
+                                      HIR "向後飛出丈遠，重重的跌落在"
+                                      "地上，衣衫破爛，再也無法站起來"
                                       "。\n" NOR;
                                 msg += "( " + obs[i]->name() + eff_status_msg(p) + " )\n\n";
                                 break;
 
                         case 2:
-                                msg = HIR "只见" + obs[i]->name() +
-                                      HIR "歪歪斜斜倒退几步，伏倒"
+                                msg = HIR "只見" + obs[i]->name() +
+                                      HIR "歪歪斜斜倒退幾步，伏倒"
                                       "在地，痛苦不堪。"
                                       "。\n" NOR;
                                 msg += "( " + obs[i]->name() + eff_status_msg(p) + " )\n\n";
                                 break;
 
                         case 3:
-                                msg = HIR "狂风卷过，" + obs[i]->name() +
-                                      HIR "只见，飞沙狂舞，却动也动不了"
-                                      "忽然间，却瘫软在地。\n" NOR;
+                                msg = HIR "狂風捲過，" + obs[i]->name() +
+                                      HIR "只見，飛沙狂舞，卻動也動不了"
+                                      "忽然間，卻癱軟在地。\n" NOR;
                                 msg += "( " + obs[i]->name() + eff_status_msg(p) + " )\n\n";
                                 break;
 
                         default:
                                 msg = HIR + obs[i]->name() +
-                                      HIR "急忙飞身而起，却猛然坠地，伤痕遍体，鲜"
+                                      HIR "急忙飛身而起，卻猛然墜地，傷痕遍體，鮮"
                                       "血不止。\n" NOR;
                                 msg += "( " + obs[i]->name() + eff_status_msg(p) + " )\n\n";
                                 break;
@@ -135,15 +135,15 @@ int perform(object me)
                         flag = 1;
                 } else
                 {
-                        tell_object(obs[i], HIY "你只觉风沙狂起，顿时运力抵抗，方才挡"
-                                    "住这招。\n" NOR);
+                        tell_object(obs[i], HIY "你只覺風沙狂起，頓時運力抵抗，方才擋"
+                                    "住這招。\n" NOR);
                 }
                 if( query("neili", obs[i])<0 )
                         set("neili", 0, obs[i]);
         }
 
         if (! flag) 
-                message_combatd(HIY "风沙骤停，却没有任何人受伤。\n\n" NOR, me, 0, obs);
+                message_combatd(HIY "風沙驟停，卻沒有任何人受傷。\n\n" NOR, me, 0, obs);
 
         return 1;
 }

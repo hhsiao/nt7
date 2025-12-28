@@ -3,7 +3,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return HIW "风起云涌" NOR; }
+string name() { return HIW "風起雲湧" NOR; }
 
 inherit F_SSERVER;
 
@@ -17,29 +17,29 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能在战斗中对对手使用。\n");
+                return notify_fail(name() + "只能在戰鬥中對對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
               query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对，难以施展" + name() + "。\n");
+                return notify_fail("你使用的武器不對，難以施展" + name() + "。\n");
 
         if (me->query_skill("dodge", 1) < 140)
-                return notify_fail("你的基本轻功的修为不够，难以施展" + name() + "。\n");
+                return notify_fail("你的基本輕功的修為不夠，難以施展" + name() + "。\n");
 
         if (me->query_skill("kuangfeng-jian", 1) < 140)
-                return notify_fail("你的狂风快剑修为不够，难以施展" + name() + "。\n");
+                return notify_fail("你的狂風快劍修為不夠，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("sword") != "kuangfeng-jian")
-                return notify_fail("你没有激发狂风快剑，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發狂風快劍，難以施展" + name() + "。\n");
 
         if( query("neili", me)<250 )
-                return notify_fail("你现在真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你現在真氣不夠，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N" HIW "凝神聚气，运转手中" + weapon->name() + HIW "，刹那间犹如\n"
-              "狂风骤起，风声萧萧，" + weapon->name() + HIW "猛地卷向$n" HIW "。\n" NOR;
+        msg = HIW "$N" HIW "凝神聚氣，運轉手中" + weapon->name() + HIW "，剎那間猶如\n"
+              "狂風驟起，風聲蕭蕭，" + weapon->name() + HIW "猛地卷向$n" HIW "。\n" NOR;
 
         ap = attack_power(me, "sword") + me->query_skill("dodge");
         dp = defense_power(target, "parry") + target->query_skill("dodge");
@@ -50,14 +50,14 @@ int perform(object me, object target)
                 addn("neili", -230, me);
                 me->start_busy(2);
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 55 + random(6),
-                                           HIR "$n" HIR "看得目瞪口呆，只觉一阵狂风吹过，" + weapon->name() + HIR
-                                           "却已透胸而过。\n" NOR);
+                                           HIR "$n" HIR "看得目瞪口呆，只覺一陣狂風吹過，" + weapon->name() + HIR
+                                           "卻已透胸而過。\n" NOR);
         } else
         {
                 addn("neili", -120, me);
                 me->start_busy(2);
-                msg += CYN "可是$n" CYN "微微一笑，轻轻格躲开了$N"
-                       CYN "的剑招。\n"NOR;
+                msg += CYN "可是$n" CYN "微微一笑，輕輕格躲開了$N"
+                       CYN "的劍招。\n"NOR;
         }
 
         message_combatd(msg, me, target);

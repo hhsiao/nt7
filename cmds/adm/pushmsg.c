@@ -17,13 +17,13 @@ int main(object me, string arg)
                 return 0;
 
         if (! is_root(me) && ! SECURITY_D->valid_grant(me, "(admin)"))
-                return notify_fail("你没有权限访问安全系统。\n");
+                return notify_fail("你沒有權限訪問安全系統。\n");
 
         if (! arg)
-                return notify_fail("指令：pushmsg + 参数：\n" +
-                                   "add 标题 间隔时长(秒) 循环次数 内容 ： 添加PUSHMSG\n" +
-                                   "list : 显示当前广播\n" +
-                                   "del 标题: 删除指定广播\n");
+                return notify_fail("指令：pushmsg + 參數：\n" +
+                                   "add 標題 間隔時長(秒) 循環次數 內容 ： 添加PUSHMSG\n" +
+                                   "list : 顯示當前廣播\n" +
+                                   "del 標題: 刪除指定廣播\n");
 
         if (arg == "list")
                 return SCAN_D->show_push_lish();
@@ -32,10 +32,10 @@ int main(object me, string arg)
                 return SCAN_D->delete_push_msg(title);
 
         if (sscanf(arg, "add %s %d %d %s", title, delay, times, info) != 4)
-                return notify_fail("指令：pushmsg + 参数：\n" +
-                                   "add 标题 间隔时长(秒) 循环次数 内容 ： 添加PUSHMSG\n" +
-                                   "list : 显示当前广播\n" +
-                                   "del 标题: 删除指定广播\n");
+                return notify_fail("指令：pushmsg + 參數：\n" +
+                                   "add 標題 間隔時長(秒) 循環次數 內容 ： 添加PUSHMSG\n" +
+                                   "list : 顯示當前廣播\n" +
+                                   "del 標題: 刪除指定廣播\n");
 
 
         // 添加

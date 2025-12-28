@@ -9,9 +9,9 @@ void create()
         int skill, nl, lvl;
         int exp;
 
-        set_name("蒙古军官",({ "menggu junguan", "junguan" }) );
+        set_name("蒙古軍官",({ "menggu junguan", "junguan" }) );
         set("gender", "男性" );
-        set("long","这是一名蒙古将领，正带着军马执行着战斗任务。\n");
+        set("long","這是一名蒙古將領，正帶著軍馬執行著戰鬥任務。\n");
 
         set("int", 30);
         set("str", 30 + random(20));
@@ -61,7 +61,7 @@ void create()
 
         prepare_skill("hand", "dashou-yin");   
         set_temp("warquest/party", "meng"); 
-        // 自动行军标记
+        // 自動行軍標記
         set_temp("warquest/move_from", "/d/city2/mying1"); 
         set_temp("apply/reduce_damage", 50);
         addn_temp("apply/armor", 400);
@@ -104,7 +104,7 @@ int do_kill(string arg)
 
         if (this_object()->id(arg))
         {
-                write("有没有搞错，那是蒙古兵耶，还不快跑？！\n");
+                write("有沒有搞錯，那是蒙古兵耶，還不快跑？！\n");
                 return 1;
         } else
         if ((sscanf(arg, "%s from %s",what, who) == 2 ||
@@ -112,12 +112,12 @@ int do_kill(string arg)
              sscanf(arg, "%s on %s", what, who) == 2 ||
              sscanf(arg, "%s %s", what, who) == 2) &&
              this_object()->id(who)) {
-                write("有没有搞错，那是蒙古兵耶，还不快跑？！\n");
+                write("有沒有搞錯，那是蒙古兵耶，還不快跑？！\n");
                 return 1;
         } else
         if (arg == "roar" || arg == "hou")
         {
-                write("有没有搞错，那是蒙古兵耶，还不快跑？！\n");
+                write("有沒有搞錯，那是蒙古兵耶，還不快跑？！\n");
                 return 1;
         }
 
@@ -130,11 +130,11 @@ varargs void die(object killer)
         if (objectp(killer) && playerp(killer)) 
         {
                 addn_temp("warquest/reward", 150, killer);
-                GIFT_D->delay_war_bonus(killer, ([ "prompt" : "因歼灭蒙古骑兵", "exp" : 100000, "pot" : 40000, "mar" : 4000, "gold" : 400 ])); 
+                GIFT_D->delay_war_bonus(killer, ([ "prompt" : "因殲滅蒙古騎兵", "exp" : 100000, "pot" : 40000, "mar" : 4000, "gold" : 400 ])); 
         }
 
-        message_vision("$N率领的蒙古骑兵在几经顽抗后，终于被彻底" +
-                        HIR "消灭了" NOR "！\n",
+        message_vision("$N率領的蒙古騎兵在幾經頑抗後，終於被徹底" +
+                        HIR "消滅了" NOR "！\n",
                         this_object());
 
         return ::die();

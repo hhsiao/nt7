@@ -10,9 +10,9 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("傅思归", ({ "fu sigui", "fu", "sigui" }));
-        set("title", "大理国护卫" );
-        set("long", "他是大理国四大护卫之一。\n");
+        set_name("傅思歸", ({ "fu sigui", "fu", "sigui" }));
+        set("title", "大理國護衛" );
+        set("long", "他是大理國四大護衛之一。\n");
         set("gender", "男性");
         set("age", 40);
         set("class", "officer");
@@ -79,6 +79,6 @@ void attempt_apprentice(object ob)
                 return;
 
         command("ah");
-        command("say 世子殿下何需如此，只要有事吩咐在下一声便是。");
+        command("say 世子殿下何需如此，只要有事吩咐在下一聲便是。");
         return;
 }

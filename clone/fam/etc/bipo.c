@@ -8,8 +8,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIW "晶莹剔透的寒晶，寒气刺骨，乃天界极品。\n" NOR);
-                set("unit", "块");
+                set("long", HIW "晶瑩剔透的寒晶，寒氣刺骨，乃天界極品。\n" NOR);
+                set("unit", "塊");
                 set("value", 12000);
                 set("can_be_enchased", 1);
                 set("magic/type", "cold");

@@ -8,7 +8,7 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "颗");
+                set("unit", "顆");
                 set("value", 500000);
                 set("enchase/name", "帝王之心");
                 set("enchase/point", 30);

@@ -23,18 +23,18 @@ mapping itemlist = ([
 
 void create()
 {
-        set_name(HIG "丛林狩猎者" NOR, ({ "forest hunter","hunter" }) );
+        set_name(HIG "叢林狩獵者" NOR, ({ "forest hunter","hunter" }) );
 
         set("gender", "男性");
         set("age", 30);
         set("long",
-                GRN"\n    这是一个猎物收购者，给他一定数量的猎物，获取你的奖励！
-                \n      十张狼皮  五块狼肉  一对狼眼
-                \n      十张熊皮  五只熊掌  一只熊胆    
-                \n      十张虎皮  五具虎骨  一根虎鞭
-                \n      十张蛇皮  五个蛇胆  一个蛇蛋
-                \n      三块龙鳞  一个龙蛋
-                \n      一只流氓兔
+                GRN"\n    這是一個獵物收購者，給他一定數量的獵物，獲取你的獎勵！
+                \n      十張狼皮  五塊狼肉  一對狼眼
+                \n      十張熊皮  五隻熊掌  一隻熊膽    
+                \n      十張虎皮  五具虎骨  一根虎鞭
+                \n      十張蛇皮  五個蛇膽  一個蛇蛋
+                \n      三塊龍鱗  一個龍蛋
+                \n      一隻流氓兔
                 \n"NOR);
         set("attitude", "peaceful");
         set("str", 26000);
@@ -47,8 +47,8 @@ void create()
 
         set("chat_chance", 10);
         set("chat_msg", ({
-                BLU"丛林狩猎者说道：收购各种猎物。\n"NOR ,
-                YEL"丛林狩猎者说道：唉，我那走丢了的孩子啊......\n"NOR ,
+                BLU"叢林狩獵者說道：收購各種獵物。\n"NOR ,
+                YEL"叢林狩獵者說道：唉，我那走丟了的孩子啊......\n"NOR ,
 
         }) );
 
@@ -77,7 +77,7 @@ int accept_object(object me, object obj)
         if (undefinedp(itemlist[filename]))
         {
                 command("shake");
-                command("say 这是什么东西，我不需要！");
+                command("say 這是什麼東西，我不需要！");
                 return 0;
         }
         
@@ -104,7 +104,7 @@ int accept_object(object me, object obj)
 
 void give_reward_forest(object ob, int ref_exp) 
 {
-        //ref_exp是参考经验，exp不影响gold，高级玩家可以到forest挣钱
+        //ref_exp是參考經驗，exp不影響gold，高級玩家可以到forest掙錢
         int user_exp;
         int exp,pot,mar,score,gold;
         string reward_msg;
@@ -128,12 +128,12 @@ void give_reward_forest(object ob, int ref_exp)
                 gold *= gold_times;
         if (gold < 1) gold = 1;
         /*
-        reward_msg =GRN"你得到了报酬：\n\t\t" +
-        chinese_number(exp) + "点实战经验\n\t\t"+
-        chinese_number(pot) + "点潜能\n\t\t" +
-        chinese_number(mar) + "点体会\n\t\t" +
-        chinese_number(score) + "点评价\n\t\t" + 
-        chinese_number(gold) + "两黄金\n"NOR;
+        reward_msg =GRN"你得到了報酬：\n\t\t" +
+        chinese_number(exp) + "點實戰經驗\n\t\t"+
+        chinese_number(pot) + "點潛能\n\t\t" +
+        chinese_number(mar) + "點體會\n\t\t" +
+        chinese_number(score) + "點評價\n\t\t" + 
+        chinese_number(gold) + "兩黃金\n"NOR;
         tell_object(ob,reward_msg);
 
         addn("combat_exp", exp, ob);

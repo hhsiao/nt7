@@ -6,12 +6,12 @@ inherit F_COAGENT;
 
 void create()
 {
-        set_name("李逍遥", ({ "li xiaoyao", "li", "xiaoyao"}));
-        set("long", "仙剑奇侠传中的传奇人物，少年得蜀山剑派\n" 
-                    "高人授艺，兼习家传绝学飞龙探云手以及冰\n"
-                    "心决，乃一代不世的剑侠。\n"); 
-        set("nickname", HIW "蜀山剑神" NOR);
-        set("title", HIY "大宗师" NOR);
+        set_name("李逍遙", ({ "li xiaoyao", "li", "xiaoyao"}));
+        set("long", "仙劍奇俠傳中的傳奇人物，少年得蜀山劍派\n" 
+                    "高人授藝，兼習家傳絕學飛龍探雲手以及冰\n"
+                    "心決，乃一代不世的劍俠。\n"); 
+        set("nickname", HIW "蜀山劍神" NOR);
+        set("title", HIY "大宗師" NOR);
         set("gender", "男性");
         set("age", 24);
         set("attitude", "friendly");
@@ -91,7 +91,7 @@ void die()
                          if (arrayp(ob->query_team()))
                          {
                                  command("heng");
-                                 command("say 胜之不武！");
+                                 command("say 勝之不武！");
                                  set("qi", 290000);
                                  set("jing", 90000);
                                  set("neili", 35000);
@@ -109,7 +109,7 @@ void die()
              if (ob->query("sky12/floor") == 2)
              {
                       ob->set("sky12/floor", 3);
-                 command("say 阁下请便吧！");
+                 command("say 閣下請便吧！");
              }            
         }
 
@@ -125,7 +125,7 @@ void die()
         return;
 }
 
-// 气血小于1000则死亡，避免他人协助帮忙转世
+// 氣血小於1000則死亡，避免他人協助幫忙轉世
 void heart_beat()
 {
         if (this_object()->query("qi") < 1000 || this_object()->query("eff_qi") < 1000)

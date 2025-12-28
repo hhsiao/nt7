@@ -3,13 +3,13 @@ inherit ROOM;
 
 void create()
 {
-        set("short", HIW"白石阶"NOR);
+        set("short", HIW"白石階"NOR);
         set("long", @LONG
-这里是依山而建的一段石阶路，是用点苍山特有的白石砌成，
-路很陡很险。左面就是悬崖，一阵大风吹来，你不由的晃了几晃，
-吓出一身冷汗。
+這裡是依山而建的一段石階路，是用點蒼山特有的白石砌成，
+路很陡很險。左面就是懸崖，一陣大風吹來，你不由的晃了幾晃，
+嚇出一身冷汗。
 LONG);
-        set("outdoors", "天龙寺");
+        set("outdoors", "天龍寺");
         set("exits", ([             
                "southdown" : __DIR__"dmg",               
         ]));

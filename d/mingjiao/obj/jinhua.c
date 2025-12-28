@@ -8,10 +8,10 @@ void create()
        /*if( clonep() )
                set_default_object(__FILE__);
        else*/ {
-                set("long", "一串金光灿烂，闪闪发光的，黄金铸成的梅花。\n");               
+                set("long", "一串金光燦爛，閃閃發光的，黃金鑄成的梅花。\n");               
                set("unit", "串");
                set("base_value", 10000);
-               set("base_unit", "颗");
+               set("base_unit", "顆");
                set("base_weight", 10);
        }
        set_amount(81);

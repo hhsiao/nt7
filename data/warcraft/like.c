@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[5m[1;33m地坤势[2;37;0m[2;37;0m", ({"sleepbag"}));        
+        set_name("[5m[1;33m地坤勢[2;37;0m[2;37;0m", ({"sleepbag"}));        
         set("gender", "女性");                
-        set("long", "说死你。[2;37;0m
-它是不老仙的魔幻兽。
+        set("long", "說死你。[2;37;0m
+它是不老仙的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

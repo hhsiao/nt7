@@ -1,13 +1,13 @@
-// dizi3.c 烈火旗教众
+// dizi3.c 烈火旗教眾
 #include <ansi.h>
 inherit NPC;
 int hiting_ob(object ob);
 void moving_ob(object ob);
 void create()
 {
-       set_name("烈火旗教众", ({"jiao zhong","zhong"}));
-       set("long", "他是身材高大，两臂粗壮，膀阔腰圆。他手持兵刃，\n"+
-                   "身穿一红色圣衣，似乎有一身武艺。\n");
+       set_name("烈火旗教眾", ({"jiao zhong","zhong"}));
+       set("long", "他是身材高大，兩臂粗壯，膀闊腰圓。他手持兵刃，\n"+
+                   "身穿一紅色聖衣，似乎有一身武藝。\n");
         set("gender", "男性");
         set("attitude", "peaceful");        
         set("age", 35);
@@ -35,7 +35,7 @@ void create()
         map_skill("parry", "liehuo-jian");
         map_skill("blade", "liehuo-jian");
         setup();
-        create_family("明教",39,"教众");
+        create_family("明教",39,"教眾");
         carry_object("/clone/weapon/changjian")->wield();
         carry_object("/d/mingjiao/obj/black-cloth")->wear();
 }

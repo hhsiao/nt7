@@ -5,7 +5,7 @@ inherit SWORD;
 
 void create()
 {
-        set_name(YEL "吴阳剑" NOR, ({ "wuyang jian", "wuyang", "jian", "sword" }) );
+        set_name(YEL "吳陽劍" NOR, ({ "wuyang jian", "wuyang", "jian", "sword" }) );
         set_weight(4000);
         /*if( clonep() )
                 set_default_object(__FILE__);

@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "岩洞");
+        set("short", "巖洞");
         set("long", @LONG
-这里是一个大岩洞，在白驼山特殊的地质条件下经过漫长的年代
-形成的。洞内蜿蜒曲折，也不知延伸到了何处。
+這裡是一個大巖洞，在白駝山特殊的地質條件下經過漫長的年代
+形成的。洞內蜿蜒曲折，也不知延伸到了何處。
 LONG );
         set("exits", ([
                 "enter"     : __DIR__"cave1",
@@ -25,7 +25,7 @@ int valid_leave(object me, string dir)
 {
         if (dir == "enter"
            && objectp(present("mang she", environment(me))))
-                        return notify_fail("蟒蛇盘在岩洞口，将路封了个严实。\n");
+                        return notify_fail("蟒蛇盤在巖洞口，將路封了個嚴實。\n");
 
         return ::valid_leave(me, dir);
 }

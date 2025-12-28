@@ -1,4 +1,4 @@
-// chen.c 陈近南
+// chen.c 陳近南
 
 inherit NPC;
 inherit F_MASTER;
@@ -12,14 +12,14 @@ string ask_me1();
 
 void create()
 {
-        set_name("陈近南", ({ "chen jinnan", "chen","jinnan" }));
-        set("title", HIR "天地会"HIM"总舵主"NOR );
-        set("nickname", HIC "英雄无敌" NOR);
+        set_name("陳近南", ({ "chen jinnan", "chen","jinnan" }));
+        set("title", HIR "天地會"HIM"總舵主"NOR );
+        set("nickname", HIC "英雄無敵" NOR);
         set("long",
-                "\n这是一个文士打扮的中年书生，神色和蔼。\n"
-                "他就是天下闻名的天地会总舵主陈近南，\n"
-                "据说十八般武艺，样样精通。\n"
-                "偶尔向这边看过来，顿觉他目光如电，英气逼人。\n");
+                "\n這是一個文士打扮的中年書生，神色和藹。\n"
+                "他就是天下聞名的天地會總舵主陳近南，\n"
+                "據說十八般武藝，樣樣精通。\n"
+                "偶爾向這邊看過來，頓覺他目光如電，英氣逼人。\n");
         set("gender", "男性");
         set("class", "scholar");
         set("age", 45);
@@ -70,20 +70,20 @@ void create()
                 (: exert_function, "recover" :),
         }) );
 
-        create_family("云龙门",1, "开山祖师");
+        create_family("雲龍門",1, "開山祖師");
         set("book_count", 1);
         set("inquiry", ([
-                "天地会" :  "只要是英雄好汉，都可以入我天地会(join tiandihui)。",
-                "入会" :  "还不快快如天地会一同反清复明。",
-                "反清复明" : "去棺材店和回春堂仔细瞧瞧吧！\n",
-                "暗号"     : "敲三下！\n",
+                "天地會" :  "只要是英雄好漢，都可以入我天地會(join tiandihui)。",
+                "入會" :  "還不快快如天地會一同反清復明。",
+                "反清復明" : "去棺材店和回春堂仔細瞧瞧吧！\n",
+                "暗號"     : "敲三下！\n",
                 "切口"     : "敲三下！\n",
-                "绝招" : (: ask_me :),
-                "绝技" : (: ask_me :),
-                "疾电" : (: ask_me :),
+                "絕招" : (: ask_me :),
+                "絕技" : (: ask_me :),
+                "疾電" : (: ask_me :),
                 "凝血神爪" : (: ask_me :),
-                "云龙剑谱" : (: ask_me1 :),
-                "退会" : (: ask_tuihui :),
+                "雲龍劍譜" : (: ask_me1 :),
+                "退會" : (: ask_tuihui :),
                 "tuihui"   : (: ask_tuihui :),
         ]) );
 
@@ -103,15 +103,15 @@ int ask_tuihui()
         object ob;
         ob=this_player();
 
-        if( query("party/party_name", ob) != "天地会" )
+        if( query("party/party_name", ob) != "天地會" )
         {
-                message_vision("陈近南笑了笑，对$N说道：你还没"
-                               "加入我天地会呢，退什么退？\n", ob);
+                message_vision("陳近南笑了笑，對$N說道：你還沒"
+                               "加入我天地會呢，退什麼退？\n", ob);
                 return 1;
         }
         command("look "+query("id", ob));
         command("sigh ");
-        command("say 反清复明，就要坚贞志士，你去吧! ");
+        command("say 反清復明，就要堅貞志士，你去吧! ");
         delete("party", ob);
         delete("rank", ob);
         return 1;
@@ -123,26 +123,26 @@ mixed ask_me()
 
         me = this_player();
         if( query("can_perform/ningxue-shenzhao/ji", me) )
-                return "你真会开玩笑，会了还来找我。";
+                return "你真會開玩笑，會了還來找我。";
 
 /*
         if( !query("story/shenzhao", me) )
-                return "你打听这个干嘛？";
+                return "你打聽這個幹嘛？";
 */
 
         if( query("shen", me)<1000000 )
-                return "习武之人最重一个“侠”字，侠义方面你还做得不够！";
+                return "習武之人最重一個“俠”字，俠義方面你還做得不夠！";
 
         if (me->query_skill("ningxue-shenzhao", 1) < 250)
-                return "你的凝血神爪还不到家，要多练练！";
+                return "你的凝血神爪還不到家，要多練練！";
 
-        message_vision(HIY "$n" HIY "点了点头，变掌为爪，"
-                       "随意挥洒而出，双爪顿时幻出漫天爪影，"
-                       "气势恢弘无比。\n" NOR,
+        message_vision(HIY "$n" HIY "點了點頭，變掌為爪，"
+                       "隨意揮灑而出，雙爪頓時幻出漫天爪影，"
+                       "氣勢恢弘無比。\n" NOR,
                        me, this_object());
         command("nod");
         command("say 你可明白了？");
-        tell_object(me, HIC "你学会了「疾电」这一招。\n" NOR);
+        tell_object(me, HIC "你學會了「疾電」這一招。\n" NOR);
         if (me->can_improve_skill("claw"))
                 me->improve_skill("claw", 500000);
         if (me->can_improve_skill("dodge"))
@@ -163,14 +163,14 @@ string ask_me1()
         object ob;
 
         if( !(fam=query("family", this_player())) || 
-                fam["family_name"] != "云龙门")
-                return RANK_D->query_respect(this_player())+ "与本派素无来往，不知此话从何谈起？";
+                fam["family_name"] != "雲龍門")
+                return RANK_D->query_respect(this_player())+ "與本派素無來往，不知此話從何談起？";
         if (query("book_count") < 1)
-                return "你来晚了，本派的云龙真经不在此处。";
+                return "你來晚了，本派的雲龍真經不在此處。";
         addn("book_count", -1);
         ob = new("/clone/book/yljianpu");
         ob->move(this_player());
-        return "好吧，这本「云龙剑谱」你拿回去好好钻研。";
+        return "好吧，這本「雲龍劍譜」你拿回去好好鑽研。";
 }
 
 void attempt_apprentice(object ob)
@@ -180,32 +180,32 @@ void attempt_apprentice(object ob)
 
         if ((int)ob->query_skill("yunlong-shengong", 1) < 50)
         {
-                command("say 我云龙神功乃内家武功，最重视内功心法。");
+                command("say 我雲龍神功乃內家武功，最重視內功心法。");
                 command("say " + RANK_D->query_respect(ob) +
-                        "是否还应该在云龙神功上多下点功夫？");
+                        "是否還應該在雲龍神功上多下點功夫？");
                 return;
         }
         if( query("weiwang", ob)<60 )
         {
-                command("say 我云龙门武功天下无敌，凡入我门，\n必闯荡江湖，行侠仗义，为天下苍生谋福利。\n");
+                command("say 我雲龍門武功天下無敵，凡入我門，\n必闖蕩江湖，行俠仗義，為天下蒼生謀福利。\n");
                 command("say " + RANK_D->query_respect(ob) +
-                        "是否应该先出去闯一闯，做几件惊天动地的大事？");
+                        "是否應該先出去闖一闖，做幾件驚天動地的大事？");
                 return ;
         }
         if( query("shen", ob)>0 && query("shen", ob)<5000){
-                command("say 学武之人，德义为先，功夫的高低倒还在其次，未练武，要先学做人。");
+                command("say 學武之人，德義為先，功夫的高低倒還在其次，未練武，要先學做人。");
                 command("say 在德行方面，" + RANK_D->query_respect(ob) +
-                        "是否还做得不够？");
+                        "是否還做得不夠？");
                 return ;
         }
         if( query("weiwang", ob)<80 )
         {
                 if( query("shen", ob)<0 )
-                command("say "+ RANK_D->query_respect(ob) +"虽然是邪派中人，但也还做了些好事。\n");
-                command("chat 我天地会所作所为，无一不是前人所未行之事。\n");
-                command("chat 万事开创在我，骇人听闻，物议沸然，又何足论？\n");
+                command("say "+ RANK_D->query_respect(ob) +"雖然是邪派中人，但也還做了些好事。\n");
+                command("chat 我天地會所作所為，無一不是前人所未行之事。\n");
+                command("chat 萬事開創在我，駭人聽聞，物議沸然，又何足論？\n");
                 command("chat 今天就收了你吧！！\n");
-                command("chat 想不到我一身惊人艺业，今日终于有了传人，哈哈哈哈！！！！\n");
+                command("chat 想不到我一身驚人藝業，今日終於有了傳人，哈哈哈哈！！！！\n");
                 message_vision(HIC "$N的江湖威望提高了！\n" NOR,this_player());
                 set("weiwang", 80, ob);
         }

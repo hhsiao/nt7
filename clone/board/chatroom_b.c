@@ -5,7 +5,7 @@ inherit BULLETIN_BOARD;
 void create()
 {
         set_name("聊天室留言板", ({ "board" }));
-        set("long", "大家都来灌灌水，一起说废话。\n" );
+        set("long", "大家都來灌灌水，一起說廢話。\n" );
         set("capacity", 100);
         // not setup now
         // I will call setup after set from me
@@ -33,10 +33,10 @@ int do_discard(string arg)
         int num;
 
         if (! arg || sscanf(arg, "%d", num) != 1)
-                return notify_fail("指令格式：discard <留言编号>\n");
+                return notify_fail("指令格式：discard <留言編號>\n");
         notes = query("notes");
         if (! arrayp(notes) || num < 1 || num > sizeof(notes))
-                return notify_fail("没有这张留言。\n");
+                return notify_fail("沒有這張留言。\n");
         num--;
         if (notes[num]["author"] != (string) this_player(1)->query("name") + "-" +
                                     this_player(1)->query("id")
@@ -45,13 +45,13 @@ int do_discard(string arg)
         &&        (string)SECURITY_D->get_status(this_player(1)) != "(boss)"
         &&      (string)SECURITY_D->get_status(this_player(1)) != "(arch)")
         {
-                write("这个留言不是你写的，你也不是这个聊天室的老大。\n");
+                write("這個留言不是你寫的，你也不是這個聊天室的老大。\n");
                 return 1;
         }
 
         notes = notes[0..num - 1] + notes[num + 1..sizeof(notes) - 1];
         set("notes", notes);
         save();
-        write("删除第 " + (num+1) + " 号留言....Ok。\n");
+        write("刪除第 " + (num+1) + " 號留言....Ok。\n");
         return 1;
 }

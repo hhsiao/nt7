@@ -10,9 +10,9 @@ void create()
     else {
             set("unit", "把");
             set("material", "steel");
-            set("long", "这是一把漆黑的刀。\n");
+            set("long", "這是一把漆黑的刀。\n");
           }
-    set("owner", "傅红雪");
+    set("owner", "傅紅雪");
     setup();
 }
 

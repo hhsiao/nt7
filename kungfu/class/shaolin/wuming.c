@@ -1,14 +1,14 @@
-// wuming.c 无名老僧
+// wuming.c 無名老僧
 
 inherit NPC;
 inherit F_COAGENT;
 
 void create()
 {
-        set_name("无名老僧", ({ "wuming laoseng", "wuming" }));
+        set_name("無名老僧", ({ "wuming laoseng", "wuming" }));
         set("long",
-                "他是一位须发花白的老僧，身着粗布衣衫，是"
-                "少林寺里面打杂的僧人。\n"
+                "他是一位鬚髮花白的老僧，身著粗布衣衫，是"
+                "少林寺裡面打雜的僧人。\n"
         );
 
         set("gender", "男性");
@@ -88,7 +88,7 @@ void create()
         prepare_skill("finger", "nianhua-zhi");
         prepare_skill("strike", "sanhua-zhang");
 
-        create_family("少林派", 0, "打杂僧人");
+        create_family("少林派", 0, "打雜僧人");
 
         setup();
 

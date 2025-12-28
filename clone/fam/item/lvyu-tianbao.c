@@ -4,17 +4,17 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIG "绿玉天宝" NOR, ({ "lvyu tianbao" }) );
+        set_name(HIG "綠玉天寶" NOR, ({ "lvyu tianbao" }) );
         set_weight(1);
 
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIG "这是一颗绿色宝石，据说拥有着奇幻的力量。\n"
-                                                "输入指令 up9lv <你的兵器ID> 可将你的兵器升级为9级兵器。\n" NOR);
+                set("long", HIG "這是一顆綠色寶石，據說擁有著奇幻的力量。\n"
+                                                "輸入指令 up9lv <你的兵器ID> 可將你的兵器升級為9級兵器。\n" NOR);
                 set("value", 1);
                 set("no_sell", 1);
-                        set("unit", "块");
+                        set("unit", "塊");
         }
 
         setup();
@@ -40,13 +40,13 @@ int do_up9lv(string arg)
                 if (! arg)return notify_fail("指令格式: up9lv <你兵器的ID>\n");
 
                 if (! objectp(weapon = present(arg, me)))
-                        return notify_fail("你身上没有这样道具。\n");
+                        return notify_fail("你身上沒有這樣道具。\n");
            
             if (! weapon->is_item_make())
-                        return notify_fail("无法在此道具上完成。\n");
+                        return notify_fail("無法在此道具上完成。\n");
 
             if (weapon->weapon_level() >= 50000)
-                        return notify_fail("你的兵器已经是九级兵器了，不需要再升级了。\n");
+                        return notify_fail("你的兵器已經是九級兵器了，不需要再升級了。\n");
 
         // 
                 weapon->set("owner/combat", 6000000);
@@ -57,8 +57,8 @@ int do_up9lv(string arg)
 
                 weapon->save();
             
-        tell_object(me, HIC "你感受" + weapon->name() + HIC "发生了"
-                    "不可言喻的变化。\n" NOR);
+        tell_object(me, HIC "你感受" + weapon->name() + HIC "發生了"
+                    "不可言喻的變化。\n" NOR);
 
                 destruct(this_object());
                 return 1;

@@ -16,10 +16,10 @@ void create()
         set("gender", "女性");
         set("age", 42);
         set("long", @LONG
-她就是古墓派的开山祖师林朝英，虽然已经是
-四十许人，望之却还如同三十出头。当年她与
-全真教主王重阳本是一对痴心爱侣，只可惜有
-缘无份，只得独自在这古墓上幽居。
+她就是古墓派的開山祖師林朝英，雖然已經是
+四十許人，望之卻還如同三十出頭。當年她與
+全真教主王重陽本是一對痴心愛侶，只可惜有
+緣無份，只得獨自在這古墓上幽居。
 LONG);
 
         set("attitude", "friendly");
@@ -74,15 +74,15 @@ LONG);
         prepare_skill("unarmed", "meinv-quan");
         prepare_skill("strike", "tianluo-diwang");
 
-        create_family("古墓派", 1, "开山祖师");
+        create_family("古墓派", 1, "開山祖師");
 
         set("inquiry", ([
-                "王重阳"     :  "大胆后辈小子，也敢直呼重阳祖师之名？\n",
-                "重阳祖师"   :  "重阳是全真教的掌教，自号“活死人”。\n",
-                "古墓派"     :  "是啊，这里就是我一手创下的古墓派\n",
-                "玉蜂针"     :  "我这儿没有，别问我。\n",
-                "玉女心经"   :  ( : ask_xinjing :),
-                "玉女心经秘籍" : (: ask_yunv :),
+                "王重陽"     :  "大膽後輩小子，也敢直呼重陽祖師之名？\n",
+                "重陽祖師"   :  "重陽是全真教的掌教，自號“活死人”。\n",
+                "古墓派"     :  "是啊，這裡就是我一手創下的古墓派\n",
+                "玉蜂針"     :  "我這兒沒有，別問我。\n",
+                "玉女心經"   :  ( : ask_xinjing :),
+                "玉女心經秘籍" : (: ask_yunv :),
         ]));
 
         set_temp("apply/attack", 150);
@@ -123,72 +123,72 @@ void attempt_apprentice(object ob)
         }
 
         if (ob->query_int() < 35) {
-                command("say 我古墓派的功夫最讲一个悟字，你的资质不够。");
+                command("say 我古墓派的功夫最講一個悟字，你的資質不夠。");
                 return;
         }
 
         if ((int)ob->query_skill("yunv-xinfa", 1) < 120 ) {
-                command("say 玉女心法乃本门绝学，你因该在这方面多加练习。");
+                command("say 玉女心法乃本門絕學，你因該在這方面多加練習。");
                 return;
         }
 
-        command("say 好吧，看你也是性情中人，我就收下你这个徒弟了。");
+        command("say 好吧，看你也是性情中人，我就收下你這個徒弟了。");
         command("recruit "+query("id", ob));
 }
 int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "历练" :
-        case "历炼" :
-        case "锻炼" :
+        case "歷練" :
+        case "歷煉" :
+        case "鍛鍊" :
                 return QUEST_D->accept_ask(this_object(), me, topic);
                 break;
 
-        case "连环剑术" :
+        case "連環劍術" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/yunv-jian/lian",
-                           "name"    : "连环剑术",
+                           "name"    : "連環劍術",
                            "sk1"     : "yunv-jian",
                            "lv1"     : 120,
                            "dodge"   : 100,
                            "gongxian": 600, ]));
                 break;
 
-            case "双剑交错" :
+            case "雙劍交錯" :
                     return MASTER_D->teach_pfm(me, this_object(),
                             ([ "perform" : "can_perform/yunv-jian/jiao",
-                               "name"    : "双剑交错",
+                               "name"    : "雙劍交錯",
                              "sk1"     : "yunv-jian",
                              "lv1"     : 80,
                              "dodge"   : 100,
                              "gongxian": 600, ]));
                   break;
 
-          case "素心诀" :
+          case "素心訣" :
                   return MASTER_D->teach_pfm(me, this_object(),
                           ([ "perform" : "can_perform/yunv-jian/su",
-                             "name"    : "素心诀",
+                             "name"    : "素心訣",
                              "sk1"     : "yunv-jian",
                              "lv1"     : 220,
                              "dodge"   : 100,
                              "gongxian": 800, ]));
                   break;
 
-        case "风神诀" :
+        case "風神訣" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/yinsuo-jinling/feng",
-                           "name"    : "风神诀",
+                           "name"    : "風神訣",
                            "sk1"     : "yinsuo-jinling",
                            "lv1"     : 140,
                            "force"   : 180,
                            "gongxian": 700, ]));
                 break;
 
-        case "开天辟地" :
+        case "開天闢地" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/yinsuo-jinling/kai",
-                           "name"    : "开天辟地",
+                           "name"    : "開天闢地",
                            "sk1"     : "yinsuo-jinling",
                            "lv1"     : 130,
                            "force"   : 180,
@@ -206,24 +206,24 @@ int ask_xinjing()
 
         if( query("family/master_name", me) != "林朝英" )
         {
-               command("say 玉女心经的口诀我只传授给我的弟子。\n");
+               command("say 玉女心經的口訣我只傳授給我的弟子。\n");
                return 1;
         }
         if( query("can_learn/yunv-xinfa/wall", me) )
         {
-               command("say 玉女心经的口诀我不是已经传授给你了吗？\n");
+               command("say 玉女心經的口訣我不是已經傳授給你了嗎？\n");
                return 1;
         }
 
         if (me->query_skill("yunv-xinfa", 1) < 180)
         {
-               command("say 你玉女心经的修为还不够，现在不能传授给你口诀。\n");
+               command("say 你玉女心經的修為還不夠，現在不能傳授給你口訣。\n");
                return 1;
         }
 
         command("nod");
-        msg = HIC"林朝英说道：“好吧，现在我就将玉女心经的口诀传授给你，你可记好了！”";
-        msg += HIY"\n林朝英在悄悄地将玉女心经的口诀传授给$N。\n" NOR;
+        msg = HIC"林朝英說道：“好吧，現在我就將玉女心經的口訣傳授給你，你可記好了！”";
+        msg += HIY"\n林朝英在悄悄地將玉女心經的口訣傳授給$N。\n" NOR;
 
         message_vision(msg, me);
 
@@ -243,17 +243,17 @@ string ask_yunv()
         if( !(fam=query("family", this_player())) || 
                 fam["family_name"] != "古墓派")
                 return RANK_D->query_respect(this_player()) +
-                "与本派毫无瓜葛，何以问起本派的心经？";
+                "與本派毫無瓜葛，何以問起本派的心經？";
         if (!(lvl_yunv = this_player()->query_skill("yunv-xinfa",1)) ||
                 lvl_yunv < 55)
                 return RANK_D->query_respect(this_player()) +
-                "的玉女心法火候不足，我不能将玉女心经交给你";
+                "的玉女心法火候不足，我不能將玉女心經交給你";
         if (query("book_count") < 1)
-                return "你来晚了，本派的玉女心经已经被人取走了。";
+                return "你來晚了，本派的玉女心經已經被人取走了。";
         addn("book_count", -1);
         ob = new("/clone/book/yunvjing2");
         ob->move(this_player());
-        return "好吧，这本「玉女心经」你拿回去好好研读。";
+        return "好吧，這本「玉女心經」你拿回去好好研讀。";
 }
 
 

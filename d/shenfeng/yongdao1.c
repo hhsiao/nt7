@@ -5,7 +5,7 @@ void create()
 {
         set("short", "甬道");
         set("long", @LONG
-这个山洞里伸手不见五指，黑沉沉的甚么也瞧不见。
+這個山洞裡伸手不見五指，黑沉沉的甚麼也瞧不見。
 LONG);
         set("exits", ([
                 "out" : __DIR__"shenfeng",
@@ -32,16 +32,16 @@ int do_use(string arg)
                 return 0;
 
         if( query("mark/light", this_object()) )
-                return notify_fail("你已经点着火折了。\n");
+                return notify_fail("你已經點著火折了。\n");
 
         if (arg == "fire")
         {
-                     message_vision(HIR "\n$N" HIR "取出火折一晃，发现从这下去离地"
-                               "面至少有十七八丈，峰内地面远比外面的为低。\n"
+                     message_vision(HIR "\n$N" HIR "取出火折一晃，發現從這下去離地"
+                               "面至少有十七八丈，峰內地面遠比外面的為低。\n"
                                "\n" NOR, me);
 
-                set("long", "凭借火折的微光，你可以看到从这下去离地面至少有十"
-                            "七\n八丈高，峰内地面远比外面的为低。\n");
+                set("long", "憑藉火折的微光，你可以看到從這下去離地面至少有十"
+                            "七\n八丈高，峰內地面遠比外面的為低。\n");
 
                 addn("mark/light",query("id", me));
                 return 1;
@@ -53,21 +53,21 @@ int do_tiao(string arg)
         object ob, me = this_player();
 
         if( !query("mark/light", this_object()) )
-                return notify_fail("洞里一片漆黑，你根本探不清方向。\n");
+                return notify_fail("洞裡一片漆黑，你根本探不清方向。\n");
 
                if (! arg || arg != "down")
                 return notify_fail("你要往哪跳？\n");
 
-        message_vision(HIY "\n$N" HIY "豫了一下，鼓气勇气，跳了下去。\n\n" NOR, me);
+        message_vision(HIY "\n$N" HIY "豫了一下，鼓氣勇氣，跳了下去。\n\n" NOR, me);
 
-        // 判断是谁点燃的火折，如果持火折者跳了下去，则恢复黑暗。
+        // 判斷是誰點燃的火折，如果持火折者跳了下去，則恢復黑暗。
         if( query("mark/light", this_object()) == query("id", me) )
         {
                 delete("mark/light");
-                       set("long", "山洞里伸手不见五指，黑沉沉的甚么也瞧不见。\n");
+                       set("long", "山洞裡伸手不見五指，黑沉沉的甚麼也瞧不見。\n");
 
-                message("vision", HIR + me->name() + HIR "径自拿着火折跳了下去"
-                        "，洞内随即又是一片漆黑。\n" NOR, environment(me), ({me}));
+                message("vision", HIR + me->name() + HIR "徑自拿著火折跳了下去"
+                        "，洞內隨即又是一片漆黑。\n" NOR, environment(me), ({me}));
         }
 
             if ((int)me->query_skill("dodge", 1) < 150 )
@@ -75,8 +75,8 @@ int do_tiao(string arg)
                 me->move(__DIR__"shishi");
                 me->receive_wound("qi", 300);
                 me->unconcious();
-                message("vision", HIR "\n突然听得「砰」的一声，只见一个人从上"
-                                  "面的山峰上坠了下来，真是壮观。\n" NOR,
+                message("vision", HIR "\n突然聽得「砰」的一聲，只見一個人從上"
+                                  "面的山峰上墜了下來，真是壯觀。\n" NOR,
                                   environment(me), ({me}));
 
                 if (objectp(ob = present("fire", this_player()))&&!userp(ob))
@@ -85,13 +85,13 @@ int do_tiao(string arg)
         } else
         {
                 me->move(__DIR__"shishi");
-                message("vision", HIY + me->name() + HIY "从上面跳了下来。\n" NOR,
+                message("vision", HIY + me->name() + HIY "從上面跳了下來。\n" NOR,
                                   environment(me), ({me}));
 
                 if (objectp(ob = present("fire", this_player()))&&!userp(ob))
                 {
-                        message_vision(HIR "\n突然间$N" HIR "手一松，火折子不"
-                                       "知掉到哪里去了。\n", me);
+                        message_vision(HIR "\n突然間$N" HIR "手一鬆，火摺子不"
+                                       "知掉到哪裡去了。\n", me);
                         destruct(ob);
                 }
         }

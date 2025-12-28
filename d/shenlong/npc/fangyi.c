@@ -7,9 +7,9 @@ inherit NPC;
 void create()
 {
 	set_name("方怡", ({"fang yi", "fang","yi"}));
-	set("title",HIY"神龙教"HIR"赤龙使"NOR"座下弟子");
+	set("title",HIY"神龍教"HIR"赤龍使"NOR"座下弟子");
 	set("long",
-	        "她原来是沐王府家将，现在是神龙教赤龙门女弟子，长得活泼可爱。\n"
+	        "她原來是沐王府家將，現在是神龍教赤龍門女弟子，長得活潑可愛。\n"
 	);
 
 	set("gender", "女性");

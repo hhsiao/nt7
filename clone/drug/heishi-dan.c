@@ -16,8 +16,8 @@ void create()
             set_default_object(__FILE__);
     else*/ 
     {
-                set("unit", "颗");
-        set("long", "黑黑的一颗药丸，毫不起眼，却是崆峒派的疗伤圣药。\n");
+                set("unit", "顆");
+        set("long", "黑黑的一顆藥丸，毫不起眼，卻是崆峒派的療傷聖藥。\n");
                 set("value", 20000);
                 set("no_sell", 1);
                 set("medicine", 1);
@@ -37,11 +37,11 @@ int cure_ob(object me)
                         {
                                 addn("neili", -(query("neili", me)), me);
                         }        
-                message_vision(BLU"$N服下一颗黑石玉洞丹，觉得体内真气翻涌，内力大损。原来服食太急太多，药效适得其反！\n" NOR, me);
+                message_vision(BLU"$N服下一顆黑石玉洞丹，覺得體內真氣翻湧，內力大損。原來服食太急太多，藥效適得其反！\n" NOR, me);
                 destruct(this_object());
                 return 1;
         }
-        message_vision(BLU"$N服下一颗黑石玉洞丹，只觉三焦通畅，五气调和，内外伤都大有好转。\n"NOR, me);
+        message_vision(BLU"$N服下一顆黑石玉洞丹，只覺三焦通暢，五氣調和，內外傷都大有好轉。\n"NOR, me);
         set("eff_qi",query("max_qi",  me), me);
         set("qi",query("max_qi",  me), me);
                 me->apply_condition("hot_drug", 20);

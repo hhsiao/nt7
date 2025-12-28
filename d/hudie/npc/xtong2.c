@@ -8,7 +8,7 @@ void create()
 	set("gender", "男性" );
 	set("age", 16);
 	set("long",
-		"这是一个青衣小童，正拿着扇子对着炉子煽着。\n");
+		"這是一個青衣小童，正拿著扇子對著爐子煽著。\n");
 	set("combat_exp", 50000);
 	set("attitude", "friendly");
 	setup();

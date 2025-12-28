@@ -2,12 +2,12 @@ inherit ROOM;
 
 void create()
 {
-        set("short","王盘山岛边");
+        set("short","王盤山島邊");
         set("long", @LONG
-王盘山在钱塘江口的东海之中，是个荒凉小岛，山石嶙峋，向无人居。岸边
-两人各举大旗，挥舞示意，只见两面大旗上均绣着一头大鹰，双翅伸展，甚是威
-武。两面大旗之间站着一个老者。王盘山是个小岛，山石树木无可观之处。东南
-角有个港湾，桅樯高耸，停泊着十来艘大船，想是巨鲸帮、海沙派一干人的座船。
+王盤山在錢塘江口的東海之中，是個荒涼小島，山石嶙峋，向無人居。岸邊
+兩人各舉大旗，揮舞示意，只見兩面大旗上均繡著一頭大鷹，雙翅伸展，甚是威
+武。兩面大旗之間站著一個老者。王盤山是個小島，山石樹木無可觀之處。東南
+角有個港灣，桅檣高聳，停泊著十來艘大船，想是巨鯨幫、海沙派一干人的座船。
 LONG );
         set("exits",([
                 "southdown":"/d/tulong/tulong/boat2",
@@ -27,7 +27,7 @@ int valid_leave(object me,string dir)
 {
         object ob;
         if( !query_temp("dao", me) && dir == "east" )
-        return notify_fail("一进了会场就是生死之斗，还是先砸了他们的船(break boat)以防不测。\n");
+        return notify_fail("一進了會場就是生死之鬥，還是先砸了他們的船(break boat)以防不測。\n");
 
         if( query_temp("dao", me) && dir == "east" && ob=present("baiguishou") )
         {
@@ -43,6 +43,6 @@ int valid_leave(object me,string dir)
         if (objectp(ob)) ob->kill_ob(me);
         ob=present("jiao zhong 4");
         if (objectp(ob)) ob->kill_ob(me);
-        return notify_fail("向东的路被白龟寿拦住了。\n"); }
+        return notify_fail("向東的路被白龜壽攔住了。\n"); }
         return 1;
 }

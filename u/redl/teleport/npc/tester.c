@@ -12,7 +12,7 @@ int drop_reward()
         object *inv, ob, me = this_player();
 
         if(me->is_busy()) {
-                        write(NOR "你正忙着呢。\n" NOR);
+                        write(NOR "你正忙著呢。\n" NOR);
                         return 1;
         }
         
@@ -24,7 +24,7 @@ int drop_reward()
                            :));
                            
         if (arrayp(inv) && sizeof(inv)) foreach (ob in inv) {
-                tell_object(me,CYN + query("name") + "从你身上搜走了一块洞天令。\n"+ NOR); 
+                tell_object(me,CYN + query("name") + "從你身上搜走了一塊洞天令。\n"+ NOR); 
                 destruct(ob);
         }
         
@@ -38,7 +38,7 @@ int get_reward()
         me = this_player();
         
         if(me->is_busy()) {
-                        write(NOR "你正忙着呢。\n" NOR);
+                        write(NOR "你正忙著呢。\n" NOR);
                         return 1;
         }
         
@@ -50,22 +50,22 @@ int get_reward()
                            :));
                            
        if (arrayp(inv) && sizeof(inv) > 50) {
-                tell_object(me,CYN + query("name") + "说道：你身上的东西太多了。\n"+ NOR); 
+                tell_object(me,CYN + query("name") + "說道：你身上的東西太多了。\n"+ NOR); 
                 return 1;
        }
 
 
         if( query("online_time", me) < 86400 * 14){
-                tell_object(me,CYN + query("name") + "说道：你在线时间没有超过两周，是小号吧？\n"+ NOR); 
+                tell_object(me,CYN + query("name") + "說道：你在線時間沒有超過兩週，是小號吧？\n"+ NOR); 
                 return 1;
         }      
         amount = query("combat_exp", me);
         if( amount < 1000000000){
-                tell_object(me,CYN + query("name") + "说道：你这点点经验进去能干什么？\n"+ NOR); 
+                tell_object(me,CYN + query("name") + "說道：你這點點經驗進去能幹什麼？\n"+ NOR); 
                 return 1;
         }
         if( query("dongtian/lingpai/test_gifttime", me) > time()  && wiz_level(me) < 6 ){
-                tell_object(me,CYN + query("name") + "说道：洞天令每天只能领取一次！\n"+ NOR); 
+                tell_object(me,CYN + query("name") + "說道：洞天令每天只能領取一次！\n"+ NOR); 
                 return 1;
         }
         
@@ -73,20 +73,20 @@ int get_reward()
         while (amount--) {
                         obj = new(CL_OBJ[random(sizeof(CL_OBJ))]);
                         if ( wiz_level(me) < 6 ) {
-                set("no_uget", "这是测试物品！", obj);
-                set("no_drop", "这是测试物品！", obj);
-                set("no_give", "这是测试物品！", obj);
-                set("no_sell", "这是测试物品！", obj);
-                set("no_get", "这是测试物品！", obj);
-                set("no_steal", "这是测试物品！", obj);
-                set("no_beg", "这是测试物品！", obj);
-                set("no_put", "这是测试物品！", obj);
-                set("no_store", "这是测试物品！", obj);
+                set("no_uget", "這是測試物品！", obj);
+                set("no_drop", "這是測試物品！", obj);
+                set("no_give", "這是測試物品！", obj);
+                set("no_sell", "這是測試物品！", obj);
+                set("no_get", "這是測試物品！", obj);
+                set("no_steal", "這是測試物品！", obj);
+                set("no_beg", "這是測試物品！", obj);
+                set("no_put", "這是測試物品！", obj);
+                set("no_store", "這是測試物品！", obj);
             }
                         obj->move(me);
         }
         set("dongtian/lingpai/test_gifttime", time() + 86400, me);
-        message_vision(YEL + query("name") + NOR + YEL+ "拿出"+chinese_number(CL_NUM)+"块洞天令交给"+ NOR +"$N"+ NOR + YEL+"。\n" + NOR, me);        
+        message_vision(YEL + query("name") + NOR + YEL+ "拿出"+chinese_number(CL_NUM)+"塊洞天令交給"+ NOR +"$N"+ NOR + YEL+"。\n" + NOR, me);        
         return 1;
 }      
 
@@ -102,9 +102,9 @@ int go_dt(string arg)
 
 void create()
 {
-        set_name(NOR MAG "测试使者" NOR, ({ "t", "ceshi shizhe", "tester" }));
+        set_name(NOR MAG "測試使者" NOR, ({ "t", "ceshi shizhe", "tester" }));
         set("long", @LONG
-关于服务，请<ask t about all>。
+關於服務，請<ask t about all>。
 LONG);
         set("gender", "男性" );
         set("age", 30);
@@ -124,7 +124,7 @@ LONG);
 
         set("inquiry", ([
                 "洞天令" : (: get_reward :),
-                "销毁洞天令" : (: drop_reward :),
+                "銷燬洞天令" : (: drop_reward :),
                 "emei" : (: go_dt("emei") :),
                 "songshan" : (: go_dt("songshan") :),
                 "huangshan" : (: go_dt("huangshan") :),

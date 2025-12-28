@@ -1,4 +1,4 @@
-// 本文件仅由 room_gameover_hj.c 使用，
-// 并且仅在 IS_TEST 为非零值时生效。
+// 本文件僅由 room_gameover_hj.c 使用，
+// 並且僅在 IS_TEST 為非零值時生效。
 
 string *test_id_list = ({ "--" , });

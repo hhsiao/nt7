@@ -15,10 +15,10 @@ string ask_job();
 void create()
 {
         set_name("摘星子", ({ "zhaixing zi", "zhaixing", "zi" }));
-        set("nickname", HIR "星宿派大师兄" NOR);
+        set("nickname", HIR "星宿派大師兄" NOR);
         set("long",
-                "他就是丁春秋的大弟子、星宿派大师兄摘星子。\n"
-                "他三十多岁，脸庞瘦削，眼光中透出一丝乖戾之气。\n");
+                "他就是丁春秋的大弟子、星宿派大師兄摘星子。\n"
+                "他三十多歲，臉龐瘦削，眼光中透出一絲乖戾之氣。\n");
         set("gender", "男性");
         set("age", 35);
         set("attitude", "peaceful");
@@ -56,7 +56,7 @@ void create()
         set_skill("literate", 140);
 
         set("no_teach", ([
-                "huagong-dafa" : "化功大法要老仙亲自传授。",
+                "huagong-dafa" : "化功大法要老仙親自傳授。",
         ]));
 
         map_skill("force", "huagong-dafa");
@@ -76,7 +76,7 @@ void create()
         }));
 
         set("inquiry", ([
-                "炼心弹"    : (: ask_me :),
+                "煉心彈"    : (: ask_me :),
                 "秘籍"      : (: ask_book :),
                 "天山器法"  : (: ask_book :),
                 "job"       : (: ask_job :),
@@ -111,7 +111,7 @@ void attempt_apprentice(object ob)
         if( query("shen", ob)>0 )
         {
              command("heng");
-             command("say 老仙最讨厌你们这些正道中人，你还是回去吧！");
+             command("say 老仙最討厭你們這些正道中人，你還是回去吧！");
              return;
         }
         command("say 好吧，我就收下你了。");
@@ -125,15 +125,15 @@ string ask_me()
         object ob;
 
         if( !(fam=query("family", this_player())) || fam["family_name"] != "星宿派" )
-                return RANK_D->query_respect(this_player()) + "与本派素无来往，不知此话从何谈起？\n";
+                return RANK_D->query_respect(this_player()) + "與本派素無來往，不知此話從何談起？\n";
 
         if (query("dan_count") < 1)
-                return "你来晚了，没有炼心弹了。\n";
+                return "你來晚了，沒有煉心彈了。\n";
 
         addn("dan_count", -1);
         ob = new("/d/xingxiu/obj/lianxindan");
         ob->move(this_player());
-        return "这些练心弹够你用的了吧。\n";
+        return "這些練心彈夠你用的了吧。\n";
 }
 
 string ask_book()
@@ -142,24 +142,24 @@ string ask_book()
         object ob;
 
         if( !(fam=query("family", this_player())) || fam["family_name"] != "星宿派" )
-                return RANK_D->query_respect(this_player()) + "与本派素无来往，不知此话从何谈起？\n";
+                return RANK_D->query_respect(this_player()) + "與本派素無來往，不知此話從何談起？\n";
 
         if (query("book_count") < 1)
-                return "你来晚了，现在没什么剩的了。\n";
+                return "你來晚了，現在沒什麼剩的了。\n";
 
         addn("book_count", -1);
         ob = new("/clone/book/throw_book");
         ob->move(this_player());
-        return "好吧，这本书你拿回去好好看看吧。\n";
+        return "好吧，這本書你拿回去好好看看吧。\n";
 }
 
 int accept_ask(object me, string topic)
 {
         switch(topic)
         {
-             case "历练" :
-             case "历炼" :
-             case "锻炼" :
+             case "歷練" :
+             case "歷煉" :
+             case "鍛鍊" :
                 return QUEST_D->accept_ask(this_object(), me, topic);
                 break;
 
@@ -174,10 +174,10 @@ int accept_ask(object me, string topic)
                                  "force"    :  80 ]));
                   break;
 
-             case "冰雪纷飞":
+             case "冰雪紛飛":
                  return MASTER_D->teach_pfm(me, this_object(),
                                (["perform"  :  "can_perform/tianshan-zhang/xue",
-                                 "name"     :  "冰雪纷飞",
+                                 "name"     :  "冰雪紛飛",
                                  "sk1"      :  "tianshan-zhang",
                                  "lv1"      :  60,
                                  "shen"     :  -22000,
@@ -185,10 +185,10 @@ int accept_ask(object me, string topic)
                                  "force"    :  80 ]));
                   break;
 
-             case "满天花雨":
+             case "滿天花雨":
                  return MASTER_D->teach_pfm(me, this_object(),
                                (["perform"  :  "can_perform/feixing-shu/hua",
-                                 "name"     :  "满天花雨",
+                                 "name"     :  "滿天花雨",
                                  "sk1"      :  "feixing-shu",
                                  "lv1"      :  100,
                                  "sk2"      :  "force",
@@ -197,10 +197,10 @@ int accept_ask(object me, string topic)
                                  "family/gongji" :  400 ]));
                   break;
 
-             case "火墙":
+             case "火牆":
                  return MASTER_D->teach_pfm(me, this_object(),
                                (["perform"  :  "can_perform/chousui-zhang/huo",
-                                 "name"     :  "火墙",
+                                 "name"     :  "火牆",
                                  "sk1"      :  "chousui-zhang",
                                  "lv1"      :  150,
                                  "sk2"      :  "huagong-dafa",
@@ -211,10 +211,10 @@ int accept_ask(object me, string topic)
                                  "family/gongji" :  600 ]));
                   break;
 
-             case "锁魂势":
+             case "鎖魂勢":
                  return MASTER_D->teach_pfm(me, this_object(),
                                (["perform"  :  "can_perform/chanhun-suo/suo",
-                                 "name"     :  "锁魂势",
+                                 "name"     :  "鎖魂勢",
                                  "sk1"      :  "chanhun-suo",
                                  "lv1"      :  70,
                                  "sk2"      :  "force",
@@ -223,10 +223,10 @@ int accept_ask(object me, string topic)
                                  "family/gongji" :  400 ]));
                   break;
 
-             case "三阴毒爪":
+             case "三陰毒爪":
                  return MASTER_D->teach_pfm(me, this_object(),
                                (["perform"  :  "can_perform/sanyin-zhua/zhua",
-                                 "name"     :  "三阴毒爪",
+                                 "name"     :  "三陰毒爪",
                                  "sk1"      :  "sanyin-zhua",
                                  "lv1"      :  100,
                                  "sk2"      :  "force",
@@ -247,10 +247,10 @@ int accept_ask(object me, string topic)
                                  "family/gongji" :  500 ]));
                   break;
 
-             case "腐尸毒":
+             case "腐屍毒":
                  return MASTER_D->teach_pfm(me, this_object(),
                                (["perform"  :  "can_perform/chousui-zhang/shi",
-                                 "name"     :  "腐尸毒",
+                                 "name"     :  "腐屍毒",
                                  "sk1"      :  "chousui-zhang",
                                  "lv1"      :  140,
                                  "sk2"      :  "force",
@@ -287,30 +287,30 @@ string ask_job()
         shen=query("shen", me);
         exp=query("combat_exp", me);
 
-        if(!fam) return "看得出你对老仙态度恭敬，何不加入我星宿派呢？";
+        if(!fam) return "看得出你對老仙態度恭敬，何不加入我星宿派呢？";
         if( fam["family_name"] != "星宿派" && !query_temp("ding_flatter", me) )
-                return "你对老仙的态度看上去不太恭敬啊！";
+                return "你對老仙的態度看上去不太恭敬啊！";
         if(exp<500000)
-                return "哈哈哈，你再加把力练功吧。";
+                return "哈哈哈，你再加把力練功吧。";
         if(exp>=750000)
-                return "老仙最近的情况我不太清楚，你自己去问问他老人家吧。";
+                return "老仙最近的情況我不太清楚，你自己去問問他老人家吧。";
         if(me->query_condition("wait_xx_task"))
-                return "上次搞砸了，这次你就等等吧。";
+                return "上次搞砸了，這次你就等等吧。";
         if( interactive(me) && query_temp("xx_job", me) )
-                return "你怎么还在这里发呆？";
+                return "你怎麼還在這裡發呆？";
         if(interactive(me) && me->query_condition("wait_xx_task"))
-                return "老仙现在心情还好，不用你来为他分忧。";
+                return "老仙現在心情還好，不用你來為他分憂。";
         if(query("di_count") < 1)
-                return "老仙现在心情还好，你别再来烦我了。";
+                return "老仙現在心情還好，你別再來煩我了。";
         ob = new(__DIR__"obj/di");
         addn("di_count", -1);
         ob->move(me);
         set("name", MAG"紫玉短笛"NOR, ob);
-        set("long", MAG"这玉笛短得出奇，只不来七寸来长、通体紫红，晶莹可爱。\n"NOR, ob);
+        set("long", MAG"這玉笛短得出奇，只不來七寸來長、通體紫紅，晶瑩可愛。\n"NOR, ob);
         set("xx_user", getuid(me), ob);
         if(fam["family_name"] != "星宿派")
-                set_temp("apply/short", ({MAG"星宿派门客"NOR+me->name()+"("+query("id", me)+")"}), me);
+                set_temp("apply/short", ({MAG"星宿派門客"NOR+me->name()+"("+query("id", me)+")"}), me);
         set_temp("xx_job", 1, me);
-        message_vision("\n$N拿出一只玉制短笛，交给$n。\n", this_object(), me);
-        return "老仙最近心情不佳，你可要多多为他老人家分忧才是！\n";
+        message_vision("\n$N拿出一隻玉製短笛，交給$n。\n", this_object(), me);
+        return "老仙最近心情不佳，你可要多多為他老人家分憂才是！\n";
 }

@@ -5,7 +5,7 @@ inherit DAGGER;
 
 void create()
 {
-        set_name(HIG "青阳神匕" NOR, ({ "qingyang dagger", "dagger", "qingyang" }) );
+        set_name(HIG "青陽神匕" NOR, ({ "qingyang dagger", "dagger", "qingyang" }) );
         set_weight(4000);
         /*if( clonep() )
                 set_default_object(__FILE__);

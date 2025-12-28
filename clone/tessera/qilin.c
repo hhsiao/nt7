@@ -10,9 +10,9 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", YEL "可用于镶嵌10LV，属性土。\n" NOR);
+                set("long", YEL "可用於鑲嵌10LV，屬性土。\n" NOR);
                 set("value", 100000);
-                set("unit", "块");
+                set("unit", "塊");
                 set("level", 4);
                 set("no_identify", 1);
         }

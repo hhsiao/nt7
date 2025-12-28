@@ -2,27 +2,27 @@
 // jianmang.c
 
 /*
-卓不凡第二击不中，五分惊讶之外，更增了五分惧怕，身子滴溜溜的打了半个
-圈子，长剑一挺，剑尖上突然生出半尺吞吐不定的青芒。群众中有十余人齐声
-惊呼：“剑芒，剑芒！”那剑芒犹似长蛇般伸缩不定，卓不凡脸露狞笑，丹田
-中提一口真气，青芒突盛，向虚竹胸口刺来。
+卓不凡第二擊不中，五分驚訝之外，更增了五分懼怕，身子滴溜溜的打了半個
+圈子，長劍一挺，劍尖上突然生出半尺吞吐不定的青芒。群眾中有十餘人齊聲
+驚呼：“劍芒，劍芒！”那劍芒猶似長蛇般伸縮不定，卓不凡臉露獰笑，丹田
+中提一口真氣，青芒突盛，向虛竹胸口刺來。
 
-虚竹从未见过别人的兵刃上能生出青芒，听得群豪呼喝，料想是一门厉害武功，
-自己定然对付不了，脚步一错，滑了开去。卓不凡这一剑出了全力，中途无法
-变招，刷的一声响，长剑刺入了大石柱中，深入尺许。这根石柱乃极坚硬的花
-岗石所制，软身的长剑居然刺入一尺有余，可见他附在剑刃上的真力实是非同
+虛竹從未見過別人的兵刃上能生出青芒，聽得群豪呼喝，料想是一門厲害武功，
+自己定然對付不了，腳步一錯，滑了開去。卓不凡這一劍出了全力，中途無法
+變招，刷的一聲響，長劍刺入了大石柱中，深入尺許。這根石柱乃極堅硬的花
+崗石所制，軟身的長劍居然刺入一尺有餘，可見他附在劍刃上的真力實是非同
 小可，
 
-Maco备注：
-剑芒此一perform，本来出处不属桃花岛。然而Kane造出此code，长久以来也
-被认定为玉箫剑法标准perform，Maco在此便将错就错，依着前人脚步略加拓
-展code变化性，增加些许趣味。
+Maco備註：
+劍芒此一perform，本來出處不屬桃花島。然而Kane造出此code，長久以來也
+被認定為玉簫劍法標準perform，Maco在此便將錯就錯，依著前人腳步略加拓
+展code變化性，增加些許趣味。
 
-双重剑芒作用，在於将剩余的剑芒有效时间一次用光，合为一剑，威力大幅提
-高，然而剑芒效果立刻结束，普通剑也会立刻断裂，这是和平常相同的。剩余
-时间越长，威力越大，可说是使尽剑芒余力的一击。
+雙重劍芒作用，在於將剩餘的劍芒有效時間一次用光，合為一劍，威力大幅提
+高，然而劍芒效果立刻結束，普通劍也會立刻斷裂，這是和平常相同的。剩餘
+時間越長，威力越大，可說是使盡劍芒餘力的一擊。
 
-又，“剑意”高低，影响双重剑芒威力至钜。
+又，“劍意”高低，影響雙重劍芒威力至鉅。
 */
 
 #include <ansi.h>
@@ -30,7 +30,7 @@ Maco备注：
 
 inherit F_SSERVER;
 
-string name() { return "剑芒"; }
+string name() { return "劍芒"; }
 
 void checking(object me, object weapon,int damage);
 void remove_effect1(object me, object weapon, int damage) ;
@@ -51,47 +51,47 @@ int perform(object me, object target)
         if( !target
         ||  !target->is_character()
         ||  !me->is_fighting(target) )
-                return notify_fail("剑芒只能对战斗中的对手使用。\n");
+                return notify_fail("劍芒只能對戰鬥中的對手使用。\n");
 
         // jianyi = (int)me->query("tianmo_jieti/times");
         jianyi = (int)me->query_skill("yuxiao-jianfa", 1) / 200;
         if (jianyi > 8) jianyi = 8;
 
         if( !objectp(weapon) || query("skill_type", weapon) != "sword" )
-                return notify_fail("你手中无剑，怎能运用「剑芒」？！\n");
+                return notify_fail("你手中無劍，怎能運用「劍芒」？！\n");
 
         if( query_temp("th_jianmang", me) )
         {
                 if( jianyi < 1 )
-                        return notify_fail("以你对剑意的领悟，剑芒施展至当下威力，已是极限！\n");
+                        return notify_fail("以你對劍意的領悟，劍芒施展至當下威力，已是極限！\n");
         }
 
         if( query_temp("th_wait_jianmang", me) && !query_temp("th_jianmang", me) )
-                return notify_fail("你气血翻涌，无法运用「剑芒」！\n");
+                return notify_fail("你氣血翻湧，無法運用「劍芒」！\n");
 
         if( query_temp("th_jianzhi", me) )
-                return notify_fail("你正在运用剑指相配的攻势，不能分心运用「剑芒」！\n");
+                return notify_fail("你正在運用劍指相配的攻勢，不能分心運用「劍芒」！\n");
 
         if( me->query_skill("yuxiao-jianfa",1) < 200 )
-                return notify_fail("你玉箫剑法修为还不够，还未领悟「剑芒」！\n");
+                return notify_fail("你玉簫劍法修為還不夠，還未領悟「劍芒」！\n");
 
         if( me->query_skill("bibo-shengong", 1) < 150 )
-                return notify_fail("你的碧波神功修为火候未到，施展剑芒只会伤及自身！\n");
+                return notify_fail("你的碧波神功修為火候未到，施展劍芒只會傷及自身！\n");
 
         if( me->query_skill_mapped("force") != "bibo-shengong")
-                return notify_fail("你所用的内功无法施展玉箫剑法的「剑芒」！\n");
+                return notify_fail("你所用的內功無法施展玉簫劍法的「劍芒」！\n");
 
         if( query("max_neili", me) <= 1200 )
-                return notify_fail("你的内力修为不足，劲力不足以施展剑芒！\n");
+                return notify_fail("你的內力修為不足，勁力不足以施展劍芒！\n");
 
         if( query("neili", me) <= 600 )
-                return notify_fail("你的内力不够，劲力不足以施展剑芒！\n");
+                return notify_fail("你的內力不夠，勁力不足以施展劍芒！\n");
 
         if( query("jingli", me) <= 200 )
-                return notify_fail("你的精力有限，不足以施展剑芒！\n");
+                return notify_fail("你的精力有限，不足以施展劍芒！\n");
         
         if( BUFF_D->check_buff(me, "yxjf_jianmang") )
-                return notify_fail("你正在使用剑芒中！\n");
+                return notify_fail("你正在使用劍芒中！\n");
                 
         sword = me->query_skill("yuxiao-jianfa",1)/10;
         damage = me->query_skill("force") + me->query_skill("qimen-wuxing",1);
@@ -128,21 +128,21 @@ int perform(object me, object target)
                         "target": me,
                         "type"  : "yxjf_jianmang",
                         "attr"  : "bless",
-                        "name"  : "玉箫剑法·剑芒",
+                        "name"  : "玉簫劍法·劍芒",
                         "time"  : skill/2,
                         "buff_data": data,      
                         "buff_msg" : "",
-                        "disa_msg" : "你的剑芒运行完毕，将内力收回丹田。\n",
+                        "disa_msg" : "你的劍芒運行完畢，將內力收回丹田。\n",
                         
                 ]);
                 BUFF_D->buffup(buff);
                 me->start_busy(1);
 
                 message_combatd(HIC
-                        "$N傲身长笑，手中"+NOR+weapon->name()+HIG"渐渐变成惨碧半透明色，\n"+
-                        "一团青碧色豪芒从剑柄处直游至剑尖 ......\n"+NOR+
-                        weapon->name()+NOR+HIC"前端蓦地伸出三尺"+HIG"剑芒"NOR+
-                        HIC"，忽伸忽缩，吞吐不定，看上去诡异绝伦！！！\n"NOR,
+                        "$N傲身長笑，手中"+NOR+weapon->name()+HIG"漸漸變成慘碧半透明色，\n"+
+                        "一團青碧色豪芒從劍柄處直遊至劍尖 ......\n"+NOR+
+                        weapon->name()+NOR+HIC"前端驀地伸出三尺"+HIG"劍芒"NOR+
+                        HIC"，忽伸忽縮，吞吐不定，看上去詭異絕倫！！！\n"NOR,
                 me);
                 call_out("checking", 1, me, weapon, damage);
                 call_out("remove_effect2", sword*2/3, me);
@@ -162,13 +162,13 @@ void checking(object me, object weapon, int damage)
         }
         if( !me->is_fighting() )
         {
-                message_combatd("\n$N见战局已毕，便即收起了催动剑芒的内力。\n", me);
+                message_combatd("\n$N見戰局已畢，便即收起了催動劍芒的內力。\n", me);
                 remove_effect1(me, weapon, damage);
                 return ;
         }
         else if( !weapon || environment(weapon) != me || weapon != query_temp("weapon", me) )
         {
-                message_combatd("\n$N手中兵器已失，剑芒真力随之瓦解。\n"NOR, me);
+                message_combatd("\n$N手中兵器已失，劍芒真力隨之瓦解。\n"NOR, me);
                 remove_effect1(me, weapon, damage);
                 return ;
         }
@@ -176,20 +176,20 @@ void checking(object me, object weapon, int damage)
          || me->query_skill_mapped("force") != "bibo-shengong" )
         {
                 remove_effect1(me, weapon, damage);
-                message_combatd(HIG"\n$N武功路数陡变，"+
+                message_combatd(HIG"\n$N武功路數陡變，"+
                         weapon->name()+HIG"上青芒消逝。\n"NOR, me);
                 return ;
         }
         else if( query_temp("th_jianmang", me) <= 0 )
         {
-                tell_object(me,HIG"\n剑芒威力已到极限！\n"NOR);
+                tell_object(me,HIG"\n劍芒威力已到極限！\n"NOR);
                 remove_effect1(me, weapon, damage);
                 return;
         }
         else call_out("checking", 1, me, weapon,damage);
 
         if (random(2))
-                message_combatd(HIG"$N的"NOR+"$n"+NOR+HIG"顶端青色剑芒忽长忽短，闪烁不定....\n"NOR,me,query_temp("weapon", me));
+                message_combatd(HIG"$N的"NOR+"$n"+NOR+HIG"頂端青色劍芒忽長忽短，閃爍不定....\n"NOR,me,query_temp("weapon", me));
         return;
 }
 
@@ -204,13 +204,13 @@ void remove_effect1(object me, object weapon, int damage)
         if( environment(weapon) != me || weapon != query_temp("weapon", me) )
                 return;
         else if( query("weapon_prop/damage", weapon)<40){
-                message_combatd(HIW"\n只听得一声清响，$N手中"+weapon->name()+
-                        HIW"经不住内力冲击，已裂成碎片！！\n"NOR,me);
+                message_combatd(HIW"\n只聽得一聲清響，$N手中"+weapon->name()+
+                        HIW"經不住內力衝擊，已裂成碎片！！\n"NOR,me);
                 destruct(weapon);
         }
         else {
                 message_combatd(HIY"\n$N手中"+weapon->name()+HIY+
-                        "“咯”的一声轻响，附在剑上的青芒已消失得无影无踪。\n"NOR, me);
+                        "“咯”的一聲輕響，附在劍上的青芒已消失得無影無蹤。\n"NOR, me);
         }
 }
 
@@ -219,5 +219,5 @@ void remove_effect2(object me)
         if (!me) return;
         delete_temp("th_jianmang", me);
         delete_temp("th_wait_jianmang", me);
-        tell_object(me, HIG"\n你经过一段时间调气养息，经脉气血已运转如常。\n"NOR);
+        tell_object(me, HIG"\n你經過一段時間調氣養息，經脈氣血已運轉如常。\n"NOR);
 }

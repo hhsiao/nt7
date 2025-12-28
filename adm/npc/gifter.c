@@ -15,9 +15,9 @@ mixed ask_gift6();
 
 void create()
 {
-        set_name(HIM "礼物天使" NOR, ({ "gift angel", "tianshi", "gift", "angel", "liwu" }));
+        set_name(HIM "禮物天使" NOR, ({ "gift angel", "tianshi", "gift", "angel", "liwu" }));
         set("long", @LONG
-礼物天使，负责泥潭节庆期间礼物发放的天使。
+禮物天使，負責泥潭節慶期間禮物發放的天使。
 LONG);
         set("gender", "女性" );
         set("age", 18);
@@ -36,15 +36,15 @@ LONG);
         set("combat_exp", 1200000);
 
         set("inquiry", ([
-                "节日礼物" : (: get_reward :),
-                "礼物" : (: get_reward :),
+                "節日禮物" : (: get_reward :),
+                "禮物" : (: get_reward :),
 /*
                 "gift" : (: ask_gift :),
-                // "国庆礼物" : (: ask_gift1 :),
-                // "会员体验" : (: ask_gift2 :),
-                // "元旦礼物" : (: ask_gift3 :),
-                "春节礼物" : (: ask_gift4 :),
-                // "春节特殊礼物" : (: ask_gift5 :),
+                // "國慶禮物" : (: ask_gift1 :),
+                // "會員體驗" : (: ask_gift2 :),
+                // "元旦禮物" : (: ask_gift3 :),
+                "春節禮物" : (: ask_gift4 :),
+                // "春節特殊禮物" : (: ask_gift5 :),
                 // "新人福利" : (: ask_gift6 :),
 */
         ]));
@@ -75,7 +75,7 @@ mixed ask_gift()
         file = read_file(CONFIG_DIR + "gift");
         if (! stringp(file))
         {
-                command("say 可惜，天神还没有打算做任务礼物呢！");
+                command("say 可惜，天神還沒有打算做任務禮物呢！");
                 return 1;
         }
 
@@ -84,35 +84,35 @@ mixed ask_gift()
 
         if (sscanf(file, "%s %d to %d", gift, time1, time2) != 3)
         {
-                command("say 奇怪，礼物怎么不见了，难道是天神在作怪？！");
+                command("say 奇怪，禮物怎麼不見了，難道是天神在作怪？！");
                 return 1;
         }
 
         if( query("gifter/"+time1, me) )
         {
-                command("say 呵呵～这就是您的不是了！我已经给过您礼物了啊！");
+                command("say 呵呵～這就是您的不是了！我已經給過您禮物了啊！");
                 return 1;
         }
 
         if (time() < time1 || time() > time2)
         {
-                command("say 对不起，你来的不是时候，现在送你礼物，天神会惩罚我的！");
+                command("say 對不起，你來的不是時候，現在送你禮物，天神會懲罰我的！");
                 return 1;
         }
 
         if (! ob = new(gift))
         {
-                 command("say 奇怪，礼物有大问题，你赶快和天神报告吧！");
+                 command("say 奇怪，禮物有大問題，你趕快和天神報告吧！");
                  return 1;
         } else
         {
                 set("gifter/"+time1, 1, me);
                 ob->move(me, 1);
 
-                message_vision(HIW "$N" HIW "凌空一指，突然天空中一道" HIM "七" HIY "彩" HIR "霞" HIC "光" HIW "笼罩$n，转瞬即逝！\n" NOR,
+                message_vision(HIW "$N" HIW "凌空一指，突然天空中一道" HIM "七" HIY "彩" HIR "霞" HIC "光" HIW "籠罩$n，轉瞬即逝！\n" NOR,
                                this_object(), me);
 
-                tell_object(me, HIG "你身上好象多了一个礼物（gift），你快看看是什么礼物吧。\n" NOR);
+                tell_object(me, HIG "你身上好象多了一個禮物（gift），你快看看是什麼禮物吧。\n" NOR);
                 return 1;
         }
 }
@@ -126,9 +126,9 @@ mixed ask_gift1()
         td = time() / 86400;
 
         if( query("gifter/which_day", me) == td )
-                return "你今天已经领过礼物了。";
+                return "你今天已經領過禮物了。";
 
-        tell_object(me, HIY "\n你领取了一个今天的礼物(" HIM "天师护身符" NOR + HIY ")，祝你在王者归来里玩的愉快！\n" NOR);
+        tell_object(me, HIY "\n你領取了一個今天的禮物(" HIM "天師護身符" NOR + HIY ")，祝你在王者歸來裡玩的愉快！\n" NOR);
 
         ob = new("/clone/goods/tianshi-charm");
         ob->move(me, 1);
@@ -148,7 +148,7 @@ mixed ask_gift2()
 
 
         if( query("gifter/monfee1", me) )
-                return "你已经体验过会员了。";
+                return "你已經體驗過會員了。";
 
         id=query("id", me);
 
@@ -175,7 +175,7 @@ mixed ask_gift2()
 
         set("gifter/monfee1", 1, me);
 
-        tell_object(me, HIY "\n你领取了一个月的(" HIM "会员体验" NOR + HIY ")，祝你在王者归来里玩的愉快！\n" NOR);
+        tell_object(me, HIY "\n你領取了一個月的(" HIM "會員體驗" NOR + HIY ")，祝你在王者歸來裡玩的愉快！\n" NOR);
 
         return 1;
 }
@@ -186,7 +186,7 @@ mixed ask_gift3()
 
 
         if( query("gifter/20081224", me) )
-                return "你已经领过元旦礼物了，不要太贪心。:)";
+                return "你已經領過元旦禮物了，不要太貪心。:)";
 
         if (! MEMBER_D->is_valid_member(me))
         {
@@ -205,7 +205,7 @@ mixed ask_gift3()
 
         set("gifter/20081224", 1, me);
 
-        tell_object(me, HIY "\n天空突现一道金光照耀着你，你冥冥中感觉到在2009年将万事有如神助！\n" NOR);
+        tell_object(me, HIY "\n天空突現一道金光照耀著你，你冥冥中感覺到在2009年將萬事有如神助！\n" NOR);
 
         return 1;
 }
@@ -217,7 +217,7 @@ mixed ask_gift4()
 
 
         if( query("gifter/20120120", me) )
-                return "你已经领过春节礼物了，不要太贪心。:)";
+                return "你已經領過春節禮物了，不要太貪心。:)";
 
         addn("combat_exp", 2000000, me);
         addn("potential", 1000000, me);
@@ -270,23 +270,23 @@ mixed ask_gift4()
 
                 tell_object(me,
 HIW"\n"+
-"     ┏---------------- "HIR"春节快乐"HIW" ----------------┓\n"+
+"     ┏---------------- "HIR"春節快樂"HIW" ----------------┓\n"+
 "     ┃  ┌-------- Happy  New  Year --------┐  ┃\n"+
 "     ┃  │                                  │  ┃\n"+
 "     ┃  │                                  │  ┃\n");
                 if( strlen(query("name", me)) == 2)tell_object(me,
-HIW"┃│亲爱的"+query("name", me)+"：│┃\n");
+HIW"┃│親愛的"+query("name", me)+"：│┃\n");
                 if( strlen(query("name", me)) == 4)tell_object(me,
-HIW"┃│亲爱的"+query("name", me)+"：│┃\n");
+HIW"┃│親愛的"+query("name", me)+"：│┃\n");
                 if( strlen(query("name", me)) == 6)tell_object(me,
-HIW"┃│亲爱的"+query("name", me)+"：│┃\n");
+HIW"┃│親愛的"+query("name", me)+"：│┃\n");
                 if( strlen(query("name", me)) == 8)tell_object(me,
-HIW"┃│亲爱的"+query("name", me)+"：│┃\n");
+HIW"┃│親愛的"+query("name", me)+"：│┃\n");
                 if( strlen(query("name", me)) == 10)tell_object(me,
-HIW"┃│亲爱的"+query("name", me)+"：│┃\n");
+HIW"┃│親愛的"+query("name", me)+"：│┃\n");
         tell_object(me,
-HIW"     ┃  │      愿您和您的家人在新的一年    │  ┃\n"+
-"     ┃  │  里，健康、快乐、平安！          │  ┃\n"+
+HIW"     ┃  │      願您和您的家人在新的一年    │  ┃\n"+
+"     ┃  │  裡，健康、快樂、平安！          │  ┃\n"+
 "     ┃  │                                  │  ┃\n"+
 "     ┃  │             *  *"HIR"r"HIW"*  *            │  ┃\n"+
 "     ┃  │          * *"HIR"a"HIW"* "HIG"^"HIY"Y"HIG"^"HIW" *"HIR"i"HIW"* *         │  ┃\n"+
@@ -302,7 +302,7 @@ HIW"     ┃  │      愿您和您的家人在新的一年    │  ┃\n"+
 "     ┃  │                "GRN"/|\\"HIW"               │  ┃\n"+
 "     ┃  │               "GRN"/\\\\/\\"HIW"              │  ┃\n"+
 "     ┃  │                                  │  ┃\n"+
-"     ┃  │                  "RED"泥潭巫师组恭贺"HIW"  │  ┃\n"+
+"     ┃  │                  "RED"泥潭巫師組恭賀"HIW"  │  ┃\n"+
 HIW"     ┃  └----------------------------------┘  ┃\n"+
 "     ┗------------------------------------------┛\n"+
 "\n" NOR);
@@ -315,7 +315,7 @@ mixed ask_gift5()
         object me = this_player();
 
         if( query("gifter/20090121", me) )
-                return "你已经领过春节特殊礼物了，不要太贪心。:)";
+                return "你已經領過春節特殊禮物了，不要太貪心。:)";
 
         if (! MEMBER_D->is_valid_member(me))
                 addn("time_reward/quest", 259200, me);
@@ -323,7 +323,7 @@ mixed ask_gift5()
                 addn("time_reward/quest", 518400, me);
 
         set("gifter/20090121", 1, me);
-        tell_object(me, HIY "\n你领取了春节特殊礼物，祝你新年快乐！\n" NOR);
+        tell_object(me, HIY "\n你領取了春節特殊禮物，祝你新年快樂！\n" NOR);
 
         return 1;
 }
@@ -332,11 +332,11 @@ mixed ask_gift6()
 {
         object me = this_player();
         if( query("gifter/20090701", me) )
-                return "你已经领过新人福利了，不要太贪心。:)";
+                return "你已經領過新人福利了，不要太貪心。:)";
 
         addn("max_neili", 100000, me);
         addn("max_jingli", 100000, me);
         set("gifter/20090701", 1, me);
-        tell_object(me, HIY "\n你领取了新人福利，祝你玩得愉快！\n" NOR);
+        tell_object(me, HIY "\n你領取了新人福利，祝你玩得愉快！\n" NOR);
         return 1;
 }

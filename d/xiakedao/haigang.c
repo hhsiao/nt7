@@ -6,10 +6,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "渔港");
+        set("short", "漁港");
         set("long", @LONG
-这里是个小小渔港。南面海面漂浮着几艘小船，抬眼望，海天相
-连，无边无际。海鸥掠过浪尖，悠悠翩然。
+這裡是個小小漁港。南面海面漂浮著幾艘小船，抬眼望，海天相
+連，無邊無際。海鷗掠過浪尖，悠悠翩然。
 LONG );
         set("outdoors", "nanhai");
         set("exits", ([
@@ -41,19 +41,19 @@ int do_enter(string arg)
         string dir;
 
         if (arg != "boat")
-                return notify_fail("你要去哪儿？\n" );
+                return notify_fail("你要去哪兒？\n" );
 
         ob = this_player();
 
         if (! lingpai = present("shangfa ling", ob))
-                return notify_fail(HIC "船夫说道：“你没有赏善罚恶令，不能到侠客岛去！\n" NOR);
+                return notify_fail(HIC "船伕說道：“你沒有賞善罰惡令，不能到俠客島去！\n" NOR);
 
-        message_vision(HIG "船夫点了点头道：“既然阁下有赏善罚恶令，我就送你到侠客岛去！”\n" NOR, ob);
+        message_vision(HIG "船伕點了點頭道：“既然閣下有賞善罰惡令，我就送你到俠客島去！”\n" NOR, ob);
         
         destruct(lingpai);
 
-        message_vision("船夫一见有人上船，忙叫了一声：开船喽！\n", ob);
-        message_vision("船夫升起帆，船就向南方航行。\n", ob);
+        message_vision("船伕一見有人上船，忙叫了一聲：開船嘍！\n", ob);
+        message_vision("船伕升起帆，船就向南方航行。\n", ob);
         
         ob->move("/d/xiakedao/duchuan");
         tell_object(ob, BLU "你在海上航行了一整天.......\n" NOR ) ;
@@ -66,8 +66,8 @@ void home(object ob)
         if (! objectp(ob))
                 return;
 
-        tell_object(ob, "大船终于抵达了南海岸边。你走下船来。\n");
+        tell_object(ob, "大船終於抵達了南海岸邊。你走下船來。\n");
         ob->move (__DIR__"haitan");
-        message("vision", ob->name() + "下了小舟，走了过来。\n",
+        message("vision", ob->name() + "下了小舟，走了過來。\n",
                 environment(ob), ob);
 }

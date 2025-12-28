@@ -11,12 +11,12 @@ void create()
 {
         set_name("拓跋", ({ "tuoba", }));
         set("long",
-        "他是一位带发修行的头陀，身穿一件白布长袍。\n"
-        "他个子不高，但很结实，看上去颇为纯朴。可是脸上经常浮现出奇怪的笑容，让\n"
-        "人有些摸不着头脑。\n"
+        "他是一位帶髮修行的頭陀，身穿一件白布長袍。\n"
+        "他個子不高，但很結實，看上去頗為純樸。可是臉上經常浮現出奇怪的笑容，讓\n"
+        "人有些摸不著頭腦。\n"
         );
 
-        set("title",HIG "明教" NOR "风字门门主");
+        set("title",HIG "明教" NOR "風字門門主");
         set("level",5);
 
         set("gender", "男性");
@@ -61,9 +61,9 @@ void create()
         prepare_skill("cuff", "shenghuo-quan");
         prepare_skill("strike", "guangming-zhang");
 
-        set("mingjiao_party","风字门");
-        set("inherit_title",HIG"明教"NOR"风字门教众"NOR);
-        create_family("明教", 38, "风字门门主");
+        set("mingjiao_party","風字門");
+        set("inherit_title",HIG"明教"NOR"風字門教眾"NOR);
+        create_family("明教", 38, "風字門門主");
         setup();
 
         carry_object("/d/mingjiao/obj/baipao")->wear();

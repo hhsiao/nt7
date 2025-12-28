@@ -17,29 +17,29 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能在战斗中对对手使用。\n");
+                return notify_fail(name() + "只能在戰鬥中對對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
               query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对，难以施展" + name() + "。\n");
+                return notify_fail("你使用的武器不對，難以施展" + name() + "。\n");
 
         if (me->query_skill("force") < 180)
-                return notify_fail("你的内功的修为不够，难以施展" + name() + "。\n");
+                return notify_fail("你的內功的修為不夠，難以施展" + name() + "。\n");
 
         if (me->query_skill("liuxing-jianfa", 1) < 120)
-                return notify_fail("你的流星剑法修为不够，难以施展" + name() + "。\n");
+                return notify_fail("你的流星劍法修為不夠，難以施展" + name() + "。\n");
 
         if( query("neili", me)<250 )
-                return notify_fail("你的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你的真氣不夠，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("sword") != "liuxing-jianfa")
-                return notify_fail("你没有激发流星剑法，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發流星劍法，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIY "$n" HIY "蓦地眼前光华大盛，$N" HIY "手中" + weapon->name() + HIY
-              "活像从天外飞来的流星，只奔$n" HIY "而去，那一瞬间的光芒和速度，没有一件事能阻挡。\n" NOR;
+        msg = HIY "$n" HIY "驀地眼前光華大盛，$N" HIY "手中" + weapon->name() + HIY
+              "活像從天外飛來的流星，只奔$n" HIY "而去，那一瞬間的光芒和速度，沒有一件事能阻擋。\n" NOR;
 
         ap = attack_power(me, "sword");
         dp = defense_power(target, "parry");
@@ -50,15 +50,15 @@ int perform(object me, object target)
                 addn("neili", -150, me);
 
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 55,
-                                           HIR "$n" HIR "尚未反应，已被$N" HIR "手中的" + weapon->name() +
-                                           HIR "当胸搠中，鲜血飞溅！\n" NOR);
+                                           HIR "$n" HIR "尚未反應，已被$N" HIR "手中的" + weapon->name() +
+                                           HIR "當胸搠中，鮮血飛濺！\n" NOR);
                 me->start_busy(2);
         } else
         {
                 addn("neili", -60, me);
 
-                msg += CYN "可是$p" CYN "并不慌乱，收敛心神，轻轻格挡开了$P"
-                       CYN "的剑招。\n" NOR;
+                msg += CYN "可是$p" CYN "並不慌亂，收斂心神，輕輕格擋開了$P"
+                       CYN "的劍招。\n" NOR;
                 me->start_busy(3);
         }
         message_combatd(msg, me, target);

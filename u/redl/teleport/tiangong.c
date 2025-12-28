@@ -1,6 +1,6 @@
 // This program is a part of NITAN MudLIB 
 // redl 2013/9
-//神器展览室的作用，玩家无法拾取
+//神器展覽室的作用，玩家無法拾取
 #include <ansi.h> 
 #include <room.h> 
 inherit __DIR__"normal.c"; 
@@ -43,7 +43,7 @@ int do_clear()
                         if( sizeof(inv) > 0 ) {
                 foreach( object ob2 in inv ) {
                         if( !ob2->is_character() ) {
-                                        message_vision(append_color(NOR + CYN + "几个机关人冲过来，把$N" + NOR + CYN + "快速" + (random(2) ? "装进" : "扫到") + "垃圾袋里。\n" + NOR, CYN), ob2);
+                                        message_vision(append_color(NOR + CYN + "幾個機關人衝過來，把$N" + NOR + CYN + "快速" + (random(2) ? "裝進" : "掃到") + "垃圾袋裡。\n" + NOR, CYN), ob2);
                                         destruct(ob2); 
                         }
                 }
@@ -63,25 +63,25 @@ int create_item()
         while (i--) {
                 ob = EQUIPMENT_D->create_dynamic("", 60, 600);
         //      rnd = random(100);
-//              //if (sscanf(base_name(ob), "/clone/tessera/%*s")) rnd = 100;//排除宝石
+//              //if (sscanf(base_name(ob), "/clone/tessera/%*s")) rnd = 100;//排除寶石
 //              if (rnd<1) {
 //                      CHANNEL_D->channel_broadcast("wiz", "太古" + base_name(ob) + "\n");
 //                      set_lv(ob, 1);
-//                      msg = HIK "黑白两色照耀天地，太古洪荒" + (random(2) ? "气息" : "味道") + "让人窒息...\n";
+//                      msg = HIK "黑白兩色照耀天地，太古洪荒" + (random(2) ? "氣息" : "味道") + "讓人窒息...\n";
 //              }
 //              else if (rnd<10) {
-//                      CHANNEL_D->channel_broadcast("wiz", "远古" + base_name(ob) + "\n");
+//                      CHANNEL_D->channel_broadcast("wiz", "遠古" + base_name(ob) + "\n");
 //                      set_lv(ob, 0);
-//                      msg = HIY "数颗流星疾射而过，远古蛮荒" + (random(2) ? "气息" : "味道") + "四散飘逸...\n";
+//                      msg = HIY "數顆流星疾射而過，遠古蠻荒" + (random(2) ? "氣息" : "味道") + "四散飄逸...\n";
 //              }
                 ob->move(this_object());
-                message_vision(msg + HIC + (random(2) ? "哐啷" : "噹地") + "~" + (random(2) ? "~" : "") + "~一声，" + 
-                                                                                     ob->name() + NOR + HIC + (random(2) ? "从天而降" : "掉下来") + 
-                                                                                     "，" + (random(2) ? "差点" : "险些") + 
-                                                                                      (random(2) ? "砸到你头上" : "落到云海下") + 
-                                                                                      "，楼里" + (random(2) ? "传来" : "响起") + 
-                                                                                      (random(2) ? "几句" : "两人的") + 
-                                                                                      (random(2) ? "叫骂" : "吵架声") + "。\n" + NOR, 
+                message_vision(msg + HIC + (random(2) ? "哐啷" : "噹地") + "~" + (random(2) ? "~" : "") + "~一聲，" + 
+                                                                                     ob->name() + NOR + HIC + (random(2) ? "從天而降" : "掉下來") + 
+                                                                                     "，" + (random(2) ? "差點" : "險些") + 
+                                                                                      (random(2) ? "砸到你頭上" : "落到雲海下") + 
+                                                                                      "，樓裡" + (random(2) ? "傳來" : "響起") + 
+                                                                                      (random(2) ? "幾句" : "兩人的") + 
+                                                                                      (random(2) ? "叫罵" : "吵架聲") + "。\n" + NOR, 
                                                                              ob);
         }
         rnd = CREATE_INTERVAL / 2 + random(CREATE_INTERVAL / 2);
@@ -92,11 +92,11 @@ int create_item()
 
 void create()
 {
-        set("short", "天宫宝楼");
+        set("short", "天宮寶樓");
         set("long", 
-"这是云端之上的一坪绝地，常年不见风雨雷电，只有日月静静地\n"
-"轮番流转。中央是座七层的木质楼阁，据说那上面是为天神打造神器\n"
-"的处所，楼里隐约有打铁和画符的声音可闻。\n"
+"這是雲端之上的一坪絕地，常年不見風雨雷電，只有日月靜靜地\n"
+"輪番流轉。中央是座七層的木質樓閣，據說那上面是為天神打造神器\n"
+"的處所，樓裡隱約有打鐵和畫符的聲音可聞。\n"
 );
                 set("exits",([ /* sizeof() == 1 */
                         "out" : __DIR__"teleport",
@@ -126,17 +126,17 @@ int do_action(string arg)
         
         if (action=="get") {
                 if (!arg || arg=="" || arg=="all") {
-                                tell_object(me, NOR "你到底想拿什么？\n" NOR);
+                                tell_object(me, NOR "你到底想拿什麼？\n" NOR);
                                 return -1;
                         }
                         
                         ob = present(arg, this_object());
                         if (!ob || !objectp(ob)) {
-                                        tell_object(me, NOR "附近没有这样东西。\n" NOR);
+                                        tell_object(me, NOR "附近沒有這樣東西。\n" NOR);
                                         return -1;
                         }
                         if (!sscanf(base_name(ob), "/inherit/template/armor/%*s") && !sscanf(base_name(ob), "/inherit/template/weapon/%*s")) {
-                                        tell_object(me, NOR "这样东西拿不起来。\n" NOR);
+                                        tell_object(me, NOR "這樣東西拿不起來。\n" NOR);
                                         return -1;
                         }
                         
@@ -145,13 +145,13 @@ int do_action(string arg)
                                 sscanf(base_name(ob), "/inherit/template/armor/hands%*s")
                                 ) {
                                 if (query("teleport/tweapon", me) < 1) {
-                                        tell_object(me, NOR "你还没有购买天宫宝楼武器兑换券，指令<ntstore buy tweapon>。\n" NOR);
+                                        tell_object(me, NOR "你還沒有購買天宮寶樓武器兌換券，指令<ntstore buy tweapon>。\n" NOR);
                                         return -1;
                                 }
                                 if (ob->move(me)) {
                                         addn("teleport/tweapon", -1, me);
                                         addn("teleport/log/tweapon", 1, me);
-                                        message_vision(NOR "$N手疾眼快，飞快把$n" NOR "抢在手里。\n" NOR, me, ob);
+                                        message_vision(NOR "$N手疾眼快，飛快把$n" NOR "搶在手裡。\n" NOR, me, ob);
                                 } else {
                                         tell_object(me, NOR "你身上超重了？\n" NOR);
                                 }
@@ -160,13 +160,13 @@ int do_action(string arg)
                         
                         if (sscanf(base_name(ob), "/inherit/template/armor/%*s")) {
                                 if (query("teleport/tarmor", me) < 1) {
-                                        tell_object(me, NOR "你还没有购买天宫宝楼防具兑换券，指令<ntstore buy tarmor>。\n" NOR);
+                                        tell_object(me, NOR "你還沒有購買天宮寶樓防具兌換券，指令<ntstore buy tarmor>。\n" NOR);
                                         return -1;
                                 }
                                 if (ob->move(me)) {
                                         addn("teleport/tarmor", -1, me);
                                         addn("teleport/log/tarmor", 1, me);
-                                        message_vision(NOR "$N手疾眼快，飞快把$n" NOR "抢在手里。\n" NOR, me, ob);
+                                        message_vision(NOR "$N手疾眼快，飛快把$n" NOR "搶在手裡。\n" NOR, me, ob);
                                 } else {
                                         tell_object(me, NOR "你身上超重了？\n" NOR);
                                 }

@@ -4,7 +4,7 @@
 
 inherit F_CLEAN_UP;
 
-string name() { return "无法无天"; }
+string name() { return "無法無天"; }
 
 int perform(object me, object target)
 {
@@ -13,19 +13,19 @@ int perform(object me, object target)
         int skill;
 
         if( query("neili", me)<100 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if ((int)me->query_skill("moshen-zhenshen", 1) < 100)
-                return notify_fail("你的魔神真身修为不够。\n");
+                return notify_fail("你的魔神真身修為不夠。\n");
 
         if( BUFF_D->check_buff(me, "mszs_wu") ) 
-                return notify_fail("你已经运起魔神真身绝招无法无天了。\n");
+                return notify_fail("你已經運起魔神真身絕招無法無天了。\n");
 
         skill = me->query_skill("force");
         addn("neili", -100, me);
         me->receive_damage("qi", 0);
 
-        msg = HIY "$N" HIY "默运魔功，内劲在身体内快速的运转，霎时在体外形成一层罡气！\n" NOR;
+        msg = HIY "$N" HIY "默運魔功，內勁在身體內快速的運轉，霎時在體外形成一層罡氣！\n" NOR;
         
         data = ([
                 "armor" : skill/2,
@@ -36,11 +36,11 @@ int perform(object me, object target)
                 "target": me,
                 "type"  : "mszs_wu",
                 "attr"  : "bless",
-                "name"  : "魔神真身·无法无天",
+                "name"  : "魔神真身·無法無天",
                 "time"  : skill,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : "你的无法无天运行完毕，将内力收回丹田。\n",
+                "disa_msg" : "你的無法無天運行完畢，將內力收回丹田。\n",
                         
         ]);
         BUFF_D->buffup(buff);

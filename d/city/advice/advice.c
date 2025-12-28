@@ -3,10 +3,10 @@ inherit ROOM;
 int is_chat_room()      { return 1;}
 void create()
 {
-       set("short", HIY "游戏客服" NOR);
+       set("short", HIY "遊戲客服" NOR);
         set("long", @LONG
-大家对游戏种遇到的问题及游戏发展的意见都可以POST在这里！
-谢谢大家合作。
+大家對遊戲種遇到的問題及遊戲發展的意見都可以POST在這裡！
+謝謝大家合作。
 LONG );
 
         set("exits", ([

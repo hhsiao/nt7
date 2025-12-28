@@ -21,12 +21,12 @@ int main(object me, string arg)
 
         if (BACKUP_D->is_backuping())
         {
-                write("注意：自动备份马上就要开始工作，现在不能执行恢复操作。\n");
+                write("注意：自動備份馬上就要開始工作，現在不能執行恢復操作。\n");
                 return 1;
         }
 
         if (! arg)
-                return notify_fail("你想要干什么？\n");
+                return notify_fail("你想要幹什麼？\n");
 
         if (sscanf(arg, "%s from %d", what, day) != 2)
         {
@@ -41,11 +41,11 @@ int main(object me, string arg)
                 ob = get_object(what);
 
         if (! ob || ! ob->is_ob_saved())
-                return notify_fail("你想要恢复什么？\n");
+                return notify_fail("你想要恢復什麼？\n");
         
         if (day < 1 || day > 7)
         {
-                write("没有这个备份数据区。\n");
+                write("沒有這個備份數據區。\n");
                 return 1;
         }
 
@@ -59,10 +59,10 @@ int main(object me, string arg)
 inherit F_SAVE;
 inherit F_DBASE;
 
-// 保存数据的映射变量
+// 保存數據的映射變量
 mapping save_dbase;
 
-// 提供给外部的函数
+// 提供給外部的函數
 mixed   query_data();
 mixed   query_object_data(object ob);
 
@@ -73,14 +73,14 @@ void create()
                 save_dbase = ([]);
 }
 
-// 某个物件读取自己的记录
+// 某個物件讀取自己的記錄
 mixed query_data()
 {
         return query_object_data(previous_object());
 }
 
 
-// 读取某个对象的记录
+// 讀取某個對象的記錄
 mixed query_object_data(mixed ob)
 {
         string index;
@@ -117,7 +117,7 @@ TEXT;
         destruct(obn);
         rm("/cmds/arch/ob_dbase.c");
         
-        write(sprintf("从(%s)中复制%s的数据完毕。\n", dir, ob->name()));
+        write(sprintf("從(%s)中複製%s的數據完畢。\n", dir, ob->name()));
 
         return 1;
 }

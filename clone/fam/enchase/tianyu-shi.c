@@ -8,8 +8,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", NOR + MAG "一块周身泛着紫光的石头，似乎蕴藏着不寻常的力量。\n" NOR);
-                set("unit", "块");
+                set("long", NOR + MAG "一塊周身泛著紫光的石頭，似乎蘊藏著不尋常的力量。\n" NOR);
+                set("unit", "塊");
                 set("value", 5000);
                 set("enchase/name", "天羽奇石");
                 set("enchase/point", 30);

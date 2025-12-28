@@ -15,20 +15,20 @@ int main(object me, string arg)
 
         skill = me->query_skill_mapped("cooking");
         if (! skill)
-                return notify_fail("请先激发你要使用的菜艺。\n");
+                return notify_fail("請先激發你要使用的菜藝。\n");
 
         menu = SKILL_D(skill)->query_menu(me);
         if (! arg)
         {
                 if (! menu || sizeof(menu) < 1)
                 {
-                        write("你不会利用" + to_chinese(skill) +
-                        "做任何菜肴。\n");
+                        write("你不會利用" + to_chinese(skill) +
+                        "做任何菜餚。\n");
                         return 1;
                 }
 
-                msg = "你现在使用" + to_chinese(skill) + "会做" +
-                      implode(keys(menu), "、") + "这些菜肴。";
+                msg = "你現在使用" + to_chinese(skill) + "會做" +
+                      implode(keys(menu), "、") + "這些菜餚。";
                 write(sort_string(msg, 64));
                 return 1;
         }
@@ -36,7 +36,7 @@ int main(object me, string arg)
         if (! objectp(cailiao = present("cai liao", me)) ||
             cailiao->query_amount() < 1)
         {
-                write("你现在手头没有菜料，没法做菜。\n");
+                write("你現在手頭沒有菜料，沒法做菜。\n");
                 return 1;
         }
 
@@ -45,8 +45,8 @@ int main(object me, string arg)
             ! sizeof(menu_list = filter_array(keys(menu),
                                         (: member_array($(arg), $(menu)[$1]) != -1 :))))
         {
-                write("你现在还不知道怎么做『" HIG + arg + NOR
-                      "』这味菜。\n");
+                write("你現在還不知道怎麼做『" HIG + arg + NOR
+                      "』這味菜。\n");
                 return 1;
         }
 
@@ -54,22 +54,22 @@ int main(object me, string arg)
 
         if ((int)me->query_skill(skill, 1) < 50)
         {
-                write("你这点" + to_chinese(skill) + "还是不要浪费菜料了。\n");
+                write("你這點" + to_chinese(skill) + "還是不要浪費菜料了。\n");
                 return 1;
         }
 
 
 
  
-            message_vision("$N卷起袖子，运用锅铲瓢盆、酱油茶"
-                       "醋，精心调制出一份" + arg + "来。\n", me);
+            message_vision("$N捲起袖子，運用鍋鏟瓢盆、醬油茶"
+                       "醋，精心調製出一份" + arg + "來。\n", me);
             cailiao->add_amount(-1);
 
-            if (arg == "翠丝白玉汤" || "cuisibaiyu tang" || "香菇鸡茸汤" || "xianggujirong tang" || "芙蓉蛋花羹" || "furongdanhua geng" || "青荷鳅盘汤" || "qingheqiupan tang")
+            if (arg == "翠絲白玉湯" || "cuisibaiyu tang" || "香菇雞茸湯" || "xianggujirong tang" || "芙蓉蛋花羹" || "furongdanhua geng" || "青荷鰍盤湯" || "qingheqiupan tang")
            {
             ob = new("/clone/food/dish2");
             ob->set_name(arg, menu[arg] + ({ "dish" }));
-            ob->set("long","一份由"+me->name(1)+"精心烹制的"+
+            ob->set("long","一份由"+me->name(1)+"精心烹製的"+
                             ob->name() + "。\n");
             set("skill", skill, ob);
             set("level", me->query_skill(skill,1), ob);
@@ -82,7 +82,7 @@ int main(object me, string arg)
            {
             ob = new("/clone/food/dish");
             ob->set_name(arg, menu[arg] + ({ "dish" }));
-            ob->set("long","一份由"+me->name(1)+"精心烹制的"+
+            ob->set("long","一份由"+me->name(1)+"精心烹製的"+
                             ob->name() + "。\n");
             set("skill", skill, ob);
             set("level", me->query_skill(skill,1), ob);
@@ -95,7 +95,7 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式 : cook [<菜肴名称>]
+指令格式 : cook [<菜餚名稱>]
 
 HELP );
         return 1;

@@ -12,10 +12,10 @@ string ask_job();
 
 void create()
 {
-        set_name("颜垣", ({ "yan yuan", "yan", "yuan", }));
+        set_name("顏垣", ({ "yan yuan", "yan", "yuan", }));
         set("long",
-        "他是一个矮矮胖胖的汉子，身穿一件白布长袍。\n"
-        "他天生神力，手中的两头狼牙棒有万夫不当之勇，真是一条威风凛凛的汉子。\n"
+        "他是一個矮矮胖胖的漢子，身穿一件白布長袍。\n"
+        "他天生神力，手中的兩頭狼牙棒有萬夫不當之勇，真是一條威風凜凜的漢子。\n"
         );
         set("title", HIG "明教" HIY "厚土旗" NOR "掌旗使");
 
@@ -65,15 +65,15 @@ void create()
         prepare_skill("strike", "guangming-zhang");
 
         set("inquiry", ([
-                "name" : "在下就是明教厚土旗掌旗使颜垣，不知阁下有何指教。",
-                "任务" : (: ask_job :),
+                "name" : "在下就是明教厚土旗掌旗使顏垣，不知閣下有何指教。",
+                "任務" : (: ask_job :),
                 "job"  : (: ask_job :),
-                "放弃" : (: ask_abandon :),
+                "放棄" : (: ask_abandon :),
                 "abandon" : (: ask_abandon :),
         ]));
 
         create_family("明教", 37, "厚土旗掌旗使");
-        set("inherit_title",HIG"明教"NOR"厚土旗教众"NOR);
+        set("inherit_title",HIG"明教"NOR"厚土旗教眾"NOR);
 
         setup();
 
@@ -87,24 +87,24 @@ string ask_job()
      object qiao;
 
     if( !(fam=query("family", this_player())) || fam["family_name"] != "明教" )
-        return "这位"+RANK_D->query_respect(player)+"并非我教弟兄，那敢在下那敢分派阁下什么任务呢。\n";
+        return "這位"+RANK_D->query_respect(player)+"並非我教弟兄，那敢在下那敢分派閣下什麼任務呢。\n";
 
         if( query("combat_exp", player)>400000 )
-                 return "这位"+RANK_D->query_respect(player)+"实战经验已经颇高，岂敢劳烦大架。\n";
+                 return "這位"+RANK_D->query_respect(player)+"實戰經驗已經頗高，豈敢勞煩大架。\n";
 
         if (fam["generation"] <= 37)
-                 return "这位"+RANK_D->query_respect(player)+"在我明教地位已经颇高，岂敢劳烦大架。\n";
+                 return "這位"+RANK_D->query_respect(player)+"在我明教地位已經頗高，豈敢勞煩大架。\n";
 
         if( query("mingjiao/job", player) == "tu_didao" && query_temp("didao_done", player) )
         {
                 command("haha"+query("id", player));
                 if (qiao=present("tie qiao",player))
                         destruct(qiao);
-                command("say 咱们的地道又向前进了一步。");
+                command("say 咱們的地道又向前進了一步。");
                 delete_temp("didao_done", player);
                 remove_call_out("reward");
                 call_out("reward",1,this_player(),"挖地道");
-               return query("name", player)+"干得不错！下去好好休息休息。\n"; 
+               return query("name", player)+"幹得不錯！下去好好休息休息。\n"; 
         }
 
         if( query("mingjiao/job", player) )
@@ -116,9 +116,9 @@ string ask_job()
 
         qiao=new(OBJ_PATH"/qiao");
         qiao->move(player);
-        tell_object(player,"颜垣给你一把铁锹。\n");
+        tell_object(player,"顏垣給你一把鐵鍬。\n");
 
-        return "咱们厚土旗负责挖地道，将来会有大用场。你去跟弟兄们一起将地道挖深点。\n";
+        return "咱們厚土旗負責挖地道，將來會有大用場。你去跟弟兄們一起將地道挖深點。\n";
 
 }
 

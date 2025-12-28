@@ -10,13 +10,13 @@ void create()
 {
         set_name("丹青生", ({ "danqing sheng", "danqing", "dan", "qing", "sheng" }));
         set("long", @LONG
-只见这人髯长及腹，左手拿着一只酒杯，脸上
-醺醺然大有醉意，这就是梅庄四位庄主排行第
-四的丹青生。他好酒、好画、好剑，人称三绝。
-三绝之中，以酒为首，丹青次之，剑道居末。
+只見這人髯長及腹，左手拿著一隻酒杯，臉上
+醺醺然大有醉意，這就是梅莊四位莊主排行第
+四的丹青生。他好酒、好畫、好劍，人稱三絕。
+三絕之中，以酒為首，丹青次之，劍道居末。
 LONG);
-        set("title", "梅庄四庄主");
-        set("nickname", HIR "梅庄四友" NOR);
+        set("title", "梅莊四莊主");
+        set("nickname", HIR "梅莊四友" NOR);
         set("gender", "男性");
         set("age", 54);
         set("attitude", "peaceful");
@@ -58,16 +58,16 @@ LONG);
 
         prepare_skill("unarmed", "zuiquan-sanda");
 
-        create_family("梅庄", 1, "庄主");
+        create_family("梅莊", 1, "莊主");
 
         set("inquiry", ([
-                "绝招"        : "你要问什么绝招？",
-                "绝技"        : "你要问什么绝技？",
-                "任我行"      : "任我行乃日月神教上代教主，不过已经失踪很久了。",
-                "东方不败"    : "东方教主武功深不可测，天下无敌。",
-                "日月神教"    : "我们梅庄四友和日月神教已无瓜葛，你提它作甚？",
-                "溪山行旅图"  : "我一直想看看北宋范中立《溪山行旅图》究竟是怎样的。",
-                "醉里乾坤"    : (: ask_skill1 :),
+                "絕招"        : "你要問什麼絕招？",
+                "絕技"        : "你要問什麼絕技？",
+                "任我行"      : "任我行乃日月神教上代教主，不過已經失蹤很久了。",
+                "東方不敗"    : "東方教主武功深不可測，天下無敵。",
+                "日月神教"    : "我們梅莊四友和日月神教已無瓜葛，你提它作甚？",
+                "溪山行旅圖"  : "我一直想看看北宋範中立《溪山行旅圖》究竟是怎樣的。",
+                "醉裡乾坤"    : (: ask_skill1 :),
         ]));
 
         set("chat_chance_combat", 100);
@@ -92,31 +92,31 @@ void attempt_apprentice(object me)
 
         if( query("family/family_name", me) && 
              query("family/family_name", me) == "日月神教" && 
-             query("family/master_name", me) == "东方不败" )
+             query("family/master_name", me) == "東方不敗" )
         {
                 command("yi");
-                command("say 我道是谁，原来是东方教主的弟子。");
-                command("say 这件事我不便插手，你去找我大哥、二哥好了。");
-                set("move_party/日月神教—梅庄", 1, me);
+                command("say 我道是誰，原來是東方教主的弟子。");
+                command("say 這件事我不便插手，你去找我大哥、二哥好了。");
+                set("move_party/日月神教—梅莊", 1, me);
                 return;
         }
 
         if( query("combat_exp", me)<50000 )
         {
                 command("sigh");
-                command("say 你的江湖经验太浅，还是先多锻炼锻炼再说吧。");
+                command("say 你的江湖經驗太淺，還是先多鍛鍊鍛鍊再說吧。");
                 return;
         }
 
         if ((int)me->query_skill("wuzheng-xinfa", 1) < 80
            && (int)me->query_skill("xuantian-wujigong", 1) < 80)
         {
-                command("say 你连本门的内功都没学好，我收你做甚？");
+                command("say 你連本門的內功都沒學好，我收你做甚？");
                 return;
         }
 
         command("en");
-        command("say 那你以后就跟着我吧。");
+        command("say 那你以後就跟著我吧。");
         command("recruit "+query("id", me));
 }
 
@@ -127,36 +127,36 @@ mixed ask_skill1()
         me = this_player();
 
         if( query("can_perform/pomopima-jian/zui", me) )
-                return "我已经教过你了，自己下去练，别老是跟我纠缠不休。";
+                return "我已經教過你了，自己下去練，別老是跟我糾纏不休。";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return RANK_D->query_respect(me) + "和本教素无瓜葛，何出此言？";
+                return RANK_D->query_respect(me) + "和本教素無瓜葛，何出此言？";
 
         if (me->query_skill("pomopima-jian", 1) < 1)
-                return "你连泼墨披麻剑都没学，何谈此言？";
+                return "你連潑墨披麻劍都沒學，何談此言？";
 
         if( query("family/gongji", me)<300 )
-                return "你对本庄所作出的贡献不够，这一招我暂时还不能传你。";
+                return "你對本莊所作出的貢獻不夠，這一招我暫時還不能傳你。";
 
         if (me->query_skill("pomopima-jian", 1) < 120)
-                return "你的泼墨披麻剑还练得不到家，自己下去练练再来吧！";
+                return "你的潑墨披麻劍還練得不到家，自己下去練練再來吧！";
 
         if (me->query_skill("force") < 150)
-                return "你的内功火候尚不精纯，学不了这一招。";
+                return "你的內功火候尚不精純，學不了這一招。";
 
-        message_vision(HIY "$n" HIY "哈哈一笑，举起手中酒杯一口饮"
-                       "干，说道：好，今日老夫便传你这招！\n$n" HIY
-                       "说完左掌猛力拍落，一股掌力击在地下，“蓬”"
-                       "的一声响，身子向后\n跃起，已在丈许之外。只"
-                       "见他尚未站定，长剑已在身前连划三个圆圈，幻"
-                       "作\n三个光圈。三个光圈便如是有形之物，凝在"
-                       "空中停得片刻，缓缓向$N" HIY "身前移\n去。"
-                       "这几个剑气化成的光圈骤视之似不及一字电剑的"
-                       "凌厉，但剑气满室，寒\n风袭体。直看得$N" HIY
+        message_vision(HIY "$n" HIY "哈哈一笑，舉起手中酒杯一口飲"
+                       "幹，說道：好，今日老夫便傳你這招！\n$n" HIY
+                       "說完左掌猛力拍落，一股掌力擊在地下，“蓬”"
+                       "的一聲響，身子向後\n躍起，已在丈許之外。只"
+                       "見他尚未站定，長劍已在身前連劃三個圓圈，幻"
+                       "作\n三個光圈。三個光圈便如是有形之物，凝在"
+                       "空中停得片刻，緩緩向$N" HIY "身前移\n去。"
+                       "這幾個劍氣化成的光圈驟視之似不及一字電劍的"
+                       "凌厲，但劍氣滿室，寒\n風襲體。直看得$N" HIY
                        "目瞪口呆。\n" NOR, me, this_object());
         command("haha");
-        command("say 精要便是如此，自己下去练吧。");
-        tell_object(me, HIC "你学会了「醉里乾坤」。\n" NOR);
+        command("say 精要便是如此，自己下去練吧。");
+        tell_object(me, HIC "你學會了「醉裡乾坤」。\n" NOR);
 
         if (me->can_improve_skill("sword"))
                 me->improve_skill("sword", 1500000);

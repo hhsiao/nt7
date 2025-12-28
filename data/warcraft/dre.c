@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m火鸟[2;37;0m[2;37;0m", ({"bird"}));        
+        set_name("[1;31m火鳥[2;37;0m[2;37;0m", ({"bird"}));        
         set("gender", "男性");                
-        set("long", "鸟一只[2;37;0m
-它是段米的魔幻兽。
+        set("long", "鳥一隻[2;37;0m
+它是段米的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

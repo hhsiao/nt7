@@ -11,8 +11,8 @@ void create()
 {
         set_name("全冠清", ({ "quan guanqing", "quan", "guanqing" }));
         set("gender", "男性");
-        set("long", "这是位沉默寡言却颇有心计的阴毒的丐帮八袋弟子。\n");
-        set("title", "丐帮八袋弟子");
+        set("long", "這是位沉默寡言卻頗有心計的陰毒的丐幫八袋弟子。\n");
+        set("title", "丐幫八袋弟子");
         set("nickname", HIY "十方秀才" NOR);
         set("age", 37);
         set("attitude", "peaceful");
@@ -60,7 +60,7 @@ void create()
         prepare_skill("strike", "tongchui-zhang");
         prepare_skill("unarmed", "jueming-tui");
 
-        create_family("丐帮", 19, "弟子");
+        create_family("丐幫", 19, "弟子");
 
         set("coagents", ({
                 ([ "startroom" : "/d/city/ma_zhengting",
@@ -100,7 +100,7 @@ void attempt_apprentice(object ob)
                 return;
 
         command("hmm");
-        command("say 嗯…也好。你以后就跟着我吧。");
+        command("say 嗯…也好。你以後就跟著我吧。");
         command("recruit "+query("id", ob));
 
         if( query("class", ob) != "beggar" )

@@ -9,8 +9,8 @@ void create()
 {
         set("short", "居所");
 	set ("long", @LONG
-这就是东北偏北主人小球球休息、读书的地方。楼上就是主人的
-卧室，西面则是书房。 
+這就是東北偏北主人小球球休息、讀書的地方。樓上就是主人的
+臥室，西面則是書房。 
 LONG );
 
         set("exits", ([
@@ -27,7 +27,7 @@ LONG );
         ]));
     
         set("room_owner", "小球球");
-        set("room_name", "东北偏北");
+        set("room_name", "東北偏北");
         set("room_id", "dan");
         set("room_owner_id", "ovo");
         set("room_position", "碎石小道");

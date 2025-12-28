@@ -13,8 +13,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "壶");
-                set("long", HIC "这是一壶珍贵之极的玄冰碧火酒。\n" NOR);
+                set("unit", "壺");
+                set("long", HIC "這是一壺珍貴之極的玄冰碧火酒。\n" NOR);
                 set("value", 50000);
         }
         setup();
@@ -25,24 +25,24 @@ int do_drink(string arg)
         object me = this_player();
 
         if (! arg || ! id(arg))
-                return notify_fail("你要喝什么东西？\n");
+                return notify_fail("你要喝什麼東西？\n");
 
         if (me->is_busy())
-                return notify_fail("急什么，小心别噎着了。\n");
+                return notify_fail("急什麼，小心別噎著了。\n");
 
-        message_vision(HIC "$N" HIC "一仰头，将整瓶" + name() +
+        message_vision(HIC "$N" HIC "一仰頭，將整瓶" + name() +
                        HIC "喝了下去。\n" NOR, me);
 
         if( !query("skybook/item/xuanbingjiu", me) )
         {
-                message_vision(HIB "突然间$N" HIB "脸色忽的一变，冷不丁打"
-                               "了几个寒战。\n" NOR, me);
+                message_vision(HIB "突然間$N" HIB "臉色忽的一變，冷不丁打"
+                               "了幾個寒戰。\n" NOR, me);
                 me->apply_condition("xuanbing-jiu", 50 + random(50));
 
         } else
         {
-                message_vision(HIW "$N" HIW "一声长吁，体内阴阳真气相互交"
-                               "替，白雾蒸腾而起。\n" NOR, me);
+                message_vision(HIW "$N" HIW "一聲長吁，體內陰陽真氣相互交"
+                               "替，白霧蒸騰而起。\n" NOR, me);
 
                 if (me->can_improve_skill("force"))
                         me->improve_skill("force", 100000);

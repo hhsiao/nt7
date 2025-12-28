@@ -4,10 +4,10 @@ void create()
         string *names = ({"小虎"});
         set_name( names[random(sizeof(names))], ({ "baby tiger","tiger"}));
         set("vendetta_mark","tiger");
-        set("race", "野兽");
+        set("race", "野獸");
         set("gender", "雄性");
         set("age", 20);
-        set("long", "这是一只可爱的小虎。\n");
+        set("long", "這是一隻可愛的小虎。\n");
 
         set("str", 40);
         set("cor", 100);
@@ -19,10 +19,10 @@ void create()
 /*
         set("chat_chance", 2);
         set("chat_msg", ({
-                "小虎朝你张牙舞爪的示威。\n"
+                "小虎朝你張牙舞爪的示威。\n"
         }) );
 */
-        set("limbs", ({ "头部", "身体", "前脚", "後脚", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體", "前腳", "後腳", "尾巴" }) );
         set("verbs", ({ "bite", "claw" }) );
         set("combat_exp", 100000);
         set("bellicosity", 5 );

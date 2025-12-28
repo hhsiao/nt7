@@ -3,7 +3,7 @@ inherit SKILL;
 int is_ultimate_skill() { return 1; }
 
 string *dodge_msg = ({
-        "$n乱跳一通，避过了$N的攻势。\n",
+        "$n亂跳一通，避過了$N的攻勢。\n",
 });
 
 int valid_enable(string usage) { return (usage == "dodge");}
@@ -18,7 +18,7 @@ string query_dodge_msg(string limb)
 int practice_skill(object me)
 {
         if( query("qi", me)<50 )
-                return notify_fail("你的体力太差了，无法继续练习。\n");
+                return notify_fail("你的體力太差了，無法繼續練習。\n");
 
         me->receive_damage("qi", 40);
         return 1;

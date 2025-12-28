@@ -10,8 +10,8 @@ void create()
                 destruct(this_object());
         else {
                 set("unit", "本");
-                set("long", HIY "这是一本薄薄的书册，书皮看上去很新，像是"
-                            "重新抄写的，封面上写着「天竺佛指」四个字。\n" NOR);
+                set("long", HIY "這是一本薄薄的書冊，書皮看上去很新，像是"
+                            "重新抄寫的，封面上寫著「天竺佛指」四個字。\n" NOR);
                 set("value", 1);
                 set("no_sell", 1);
                 set("material", "paper");

@@ -5,7 +5,7 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIB"〖"HIY+"百变神通"HIB+"〗"NOR, ({"book","shu"}));
+        set_name(HIB"〖"HIY+"百變神通"HIB+"〗"NOR, ({"book","shu"}));
         set_weight(600);
         /*if (clonep())
                 set_default_object(__FILE__);
@@ -15,7 +15,7 @@ void create()
                 set("value", 1000);
                 set("material", "paper");
                 set("long",
-                "一本可以学习易容术的书。\n");
+                "一本可以學習易容術的書。\n");
                 set("value", 100);
                 set("skill", ([
                         "name" : "pretending",

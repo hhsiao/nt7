@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("博尔顿[2;37;0m[2;37;0m", ({"bolton"}));        
+        set_name("博爾頓[2;37;0m[2;37;0m", ({"bolton"}));        
         set("gender", "男性");                
         set("long", "跑得快.[2;37;0m
-它是米特尼克的魔幻兽。
+它是米特尼克的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

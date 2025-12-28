@@ -15,13 +15,13 @@ int main(object me,string arg)
                 return 0;
 
         if( !arg || sscanf(arg, "%d", max_node)!=1 )
-                return notify_fail("map 节点数\n节点数 最好是5，到底系统能承受多少，不知道:(\n");
+                return notify_fail("map 節點數\n節點數 最好是5，到底系統能承受多少，不知道:(\n");
 
         if(max_node>20) 
-                return notify_fail("不要乱来，小心系统崩溃!\n 最好是5，到底系统能承受多少，不知道:(\n");
+                return notify_fail("不要亂來，小心繫統崩潰!\n 最好是5，到底系統能承受多少，不知道:(\n");
 
         if(max_node<=0) 
-                return notify_fail("负数行吗？");
+                return notify_fail("負數行嗎？");
 
         if(!find_object(filename))      load_object(filename);
         if(!find_object(filename)) 

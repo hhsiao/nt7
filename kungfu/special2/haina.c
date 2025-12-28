@@ -4,7 +4,7 @@
 
 int is_scborn() { return 1; }
 
-string name() { return HIC "海纳百川" NOR; }
+string name() { return HIC "海納百川" NOR; }
 
 int perform(object me, string skill, string arg)
 {
@@ -13,20 +13,20 @@ int perform(object me, string skill, string arg)
 	joblv = me->query_joblv();
 
         if (me->query_temp("special2/haina/joblv"))
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
-	if (me->query("yhjob/job") != "隐士")
-		return notify_fail("你的职业错误，无法施展。\n");
+	if (me->query("yhjob/job") != "隱士")
+		return notify_fail("你的職業錯誤，無法施展。\n");
 		
 	if (me->query("neili") < 1000)
-		return notify_fail("你的内力不足，无法施展。\n");
+		return notify_fail("你的內力不足，無法施展。\n");
 
 	if (joblv < 20)
-		return notify_fail("你的职业等级不足，无法施展。\n");		
+		return notify_fail("你的職業等級不足，無法施展。\n");		
 
-        if (me->is_busy())return notify_fail("等你忙完再说吧！\n");
+        if (me->is_busy())return notify_fail("等你忙完再說吧！\n");
 
-        message_vision(HIM "$N" HIM "脸色微变，深吸一口气，然后缓缓吐出，顷刻间，周身弥漫着阵阵薄雾。\n" NOR, me);
+        message_vision(HIM "$N" HIM "臉色微變，深吸一口氣，然後緩緩吐出，頃刻間，周身瀰漫著陣陣薄霧。\n" NOR, me);
  
         me->add("neili", -1000);
         me->start_busy(1);
@@ -36,7 +36,7 @@ int perform(object me, string skill, string arg)
         me->set_temp("special2/haina/joblv", joblv);
 	armor = me->query_temp("apply/armor");
 	damage = me->query_temp("apply/damage");
-	attack = 1;//me->query_temp("apply/attack"); 在 combatd.c里做处理
+	attack = 1;//me->query_temp("apply/attack"); 在 combatd.c裡做處理
 
 	armor = armor + armor / 10;
 	attack = 1;//attack * (10 + (joblv - 20) / 2) / 100;
@@ -61,7 +61,7 @@ void remove_effect(object me, int joblv, int armor, int damage, int attack)
 		me->add_temp("apply/damage", -1 * damage);
 		me->add_temp("apply/attack", -1 * attack);
 	        me->delete_temp("special2/haina/joblv");
-	        tell_object(me, "你海纳百川运功完毕。\n");
+	        tell_object(me, "你海納百川運功完畢。\n");
         }
 }
 

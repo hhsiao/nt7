@@ -8,8 +8,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", NOR + WHT "这是一张毛质颇为不错的狐狸皮。\n" NOR);
-                set("base_unit", "张");
+                set("long", NOR + WHT "這是一張毛質頗為不錯的狐狸皮。\n" NOR);
+                set("base_unit", "張");
                 set("base_value", 2000);
                 set("base_weight", 300);
         }

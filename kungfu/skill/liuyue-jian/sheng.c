@@ -3,7 +3,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return HIW "天升剑诀" NOR; }
+string name() { return HIW "天升劍訣" NOR; }
 
 inherit F_SSERVER;
 
@@ -16,29 +16,29 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能在战斗中对对手使用。\n");
+                return notify_fail(name() + "只能在戰鬥中對對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
               query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对，难以施展" + name() + "。\n");
+                return notify_fail("你使用的武器不對，難以施展" + name() + "。\n");
 
         if (me->query_skill("force") < 200)
-                return notify_fail("你的内功的修为不够，难以施展" + name() + "。\n");
+                return notify_fail("你的內功的修為不夠，難以施展" + name() + "。\n");
 
         if (me->query_skill("liuyue-jian", 1) < 140)
-                return notify_fail("你的流月剑舞修为不够，难以施展" + name() + "。\n");
+                return notify_fail("你的流月劍舞修為不夠，難以施展" + name() + "。\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你的真氣不夠，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("sword") != "liuyue-jian")
-                return notify_fail("你没有激发流月剑舞，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發流月劍舞，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N" HIW "手腕一阵疾抖，剑身微颤，剑作龙吟。刹那间剑芒陡涨，"
-              "如天河倒泻一般洒向$n"
+        msg = HIW "$N" HIW "手腕一陣疾抖，劍身微顫，劍作龍吟。剎那間劍芒陡漲，"
+              "如天河倒瀉一般灑向$n"
               HIW "。\n" NOR;
 
         message_combatd(msg, me, target);

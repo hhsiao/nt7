@@ -7,7 +7,7 @@ void setup()
         set_name("麒麟[2;37;0m[2;37;0m", ({"sleepbag"}));        
         set("gender", "男性");                
         set("long", "麒麟[2;37;0m
-它是暴雨的魔幻兽。
+它是暴雨的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

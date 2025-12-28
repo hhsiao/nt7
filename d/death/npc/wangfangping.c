@@ -12,7 +12,7 @@ void create()
 
         set("gender", "男性");
         set("age", 475);
-        set("long", "王方平本是山中道士，后在丰都山修炼成仙，御封「鬼王」。\n");
+        set("long", "王方平本是山中道士，後在豐都山修煉成仙，御封「鬼王」。\n");
 
         set_skill("unarmed", 500);
         set_skill("dodge", 500);

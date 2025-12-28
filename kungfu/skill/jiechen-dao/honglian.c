@@ -9,43 +9,43 @@ int perform(object me)
         object weapon;
 
         if( !me->is_fighting() || !living(me))
-                return notify_fail("「红莲火」只能在战斗中的使用。\n");
+                return notify_fail("「紅蓮火」只能在戰鬥中的使用。\n");
 
       if( !objectp(weapon=query_temp("weapon", me)) || 
           query("skill_type", weapon) != "blade" )
-                return notify_fail("你先找把刀再说吧！\n");
+                return notify_fail("你先找把刀再說吧！\n");
 
         if( query_temp("honglian", me) )
-                return notify_fail("你正在使用「红莲火」。\n");  
+                return notify_fail("你正在使用「紅蓮火」。\n");  
 
         if( query_temp("mz_lx", me) )
                 return notify_fail("你正在使用「降妖伏魔咒」。\n");  
 
         if((int)me->query_skill("jiechen-dao", 1) < 180 )
-                return notify_fail("你的戒尘刀不够娴熟，还不能领会「红莲火」之诀窍。\n");
+                return notify_fail("你的戒塵刀不夠嫻熟，還不能領會「紅蓮火」之訣竅。\n");
 
         if (me->query_skill_mapped("blade") != "jiechen-dao")
-                return notify_fail("你必须使用戒尘刀来施展「红莲火」。\n");   
+                return notify_fail("你必須使用戒塵刀來施展「紅蓮火」。\n");   
 
         if( query("max_neili", me)<3500 )
-                return notify_fail("你的内力修为太弱，使不出「红莲火」。\n");                
+                return notify_fail("你的內力修為太弱，使不出「紅蓮火」。\n");                
 
         if( query("neili", me)<800 )
-                return notify_fail("你现在真气不够，使不出「红莲火」。\n");
+                return notify_fail("你現在真氣不夠，使不出「紅蓮火」。\n");
 
 
         if(userp(me) && (int)me->query_skill("buddhism", 1) < 180 )
-                return notify_fail("你对禅宗心法的领悟不够，无法使用「红莲火」。\n");
+                return notify_fail("你對禪宗心法的領悟不夠，無法使用「紅蓮火」。\n");
 
         if(userp(me) && me->query_skill_mapped("force") != "hunyuan-yiqi")
-                return notify_fail("你的内功不对，根本不能使出「红莲火」。\n");
+                return notify_fail("你的內功不對，根本不能使出「紅蓮火」。\n");
                                                                                      
         if( !query("jiali", me) )
-                return notify_fail("「红莲火」全以内力为本。你不加力，是无法发挥出它的威力的。\n");
+                return notify_fail("「紅蓮火」全以內力為本。你不加力，是無法發揮出它的威力的。\n");
 
-        message_vision(RED "\n$N祭起戒尘刀之「红莲火」绝技，精纯的内力呈红色缓缓涌出，\n"
-                           "于身前三尺之处，便即停住不动，将这飘荡无定的真气定在半空，\n"
-                           "它虽是虚无缥缈，不可捉摸，却能杀人于无形，实是厉害不过！\n" NOR, me);
+        message_vision(RED "\n$N祭起戒塵刀之「紅蓮火」絕技，精純的內力呈紅色緩緩湧出，\n"
+                           "於身前三尺之處，便即停住不動，將這飄蕩無定的真氣定在半空，\n"
+                           "它雖是虛無縹緲，不可捉摸，卻能殺人於無形，實是厲害不過！\n" NOR, me);
         me->start_busy(1);
         set_temp("honglian", 1, me);
         addn("neili", -300, me);
@@ -91,7 +91,7 @@ int check_fight(object me)
         }
         else if (userp(me))
         {
-                  message_vision(HIY"$N一刀劈出，突然变招，竟然是完全不同的招数来！\n"NOR,me);
+                  message_vision(HIY"$N一刀劈出，突然變招，竟然是完全不同的招數來！\n"NOR,me);
                   me->start_busy(1);
                   addn_temp("apply/parry", -me->query_skill("jiechen-dao",1)/3, me);
                   addn_temp("apply/arrmor", -me->query_skill("jiechen-dao",1)/3, me);
@@ -106,7 +106,7 @@ int check_fight(object me)
 int remove_effect(object me)
 {
    string msg;
-   message_vision(HIY "\n$N回手一招红莲火使完，双手合十立于当地，示慈悲为怀。\n\n"NOR, me);
+   message_vision(HIY "\n$N回手一招紅蓮火使完，雙手合十立於當地，示慈悲為懷。\n\n"NOR, me);
    addn_temp("apply/parry", -me->query_skill("jiechen-dao",1)/3, me);
    addn_temp("apply/armor", -me->query_skill("jiechen-dao",1)/3, me);
    delete_temp("honglian", me);

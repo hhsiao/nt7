@@ -5,7 +5,7 @@ inherit SWORD;
 
 void create()
 {
-        set_name(MAG "古松残镢" NOR, ({ "gusong jian", "gusong", "jian", "sword" }) );
+        set_name(MAG "古松殘钁" NOR, ({ "gusong jian", "gusong", "jian", "sword" }) );
         set_weight(4000);
         /*if( clonep() )
                 set_default_object(__FILE__);

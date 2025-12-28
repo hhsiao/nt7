@@ -3,13 +3,13 @@
 inherit TESSERA;
 
 mapping gems = ([
-        "ruby":         "红宝石",
-        "topaz":        "黄宝石",
-        "sapphire":     "蓝宝石",
-        "emerald":      "翡翠绿",
+        "ruby":         "紅寶石",
+        "topaz":        "黃寶石",
+        "sapphire":     "藍寶石",
+        "emerald":      "翡翠綠",
         "amethyst":     "紫水晶",
-        "diamond":      "水晶钻",
-        "skull":        "骷髅头",
+        "diamond":      "水晶鑽",
+        "skull":        "骷髏頭",
 ]);
 mapping gems_color = ([
         "ruby":         HIR,
@@ -22,7 +22,7 @@ mapping gems_color = ([
 ]);
 
 string *gems_level = ({
-        "细碎的",
+        "細碎的",
         "",
         "稀世",
         "神之",
@@ -70,8 +70,8 @@ void create()
         
         set_name(query_gem_name(gem, level), ({query_gem_id(gem, level)}));
         set_weight(20);
-        set("long", WHT "这是一颗宝石，上面似乎附着某种神奇的魔力。\n" NOR);
-        set("unit", "颗");     
+        set("long", WHT "這是一顆寶石，上面似乎附著某種神奇的魔力。\n" NOR);
+        set("unit", "顆");     
         set("no_beg", 1);
         set("no_steal", 1);
         set("no_pawn", 1);

@@ -16,8 +16,8 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", "符文：玄明恭华符，可以放入凹槽物品。\n");
-                set("unit", "个");
+                set("long", "符文：玄明恭華符，可以放入凹槽物品。\n");
+                set("unit", "個");
                 set("enchase/SN", 10);
                 set("enchase/type", "all");
                 set("enchase/consistence", 100); 

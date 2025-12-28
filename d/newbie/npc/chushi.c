@@ -2,8 +2,8 @@ inherit NPC;
 
 void create()
 {
-        set_name("厨师", ({ "chu shi", "chu", "shi" }));
-        set("long", "古村的厨师，你可以问他要(yao)一些吃的。\n");
+        set_name("廚師", ({ "chu shi", "chu", "shi" }));
+        set("long", "古村的廚師，你可以問他要(yao)一些吃的。\n");
         set("gender", "男性");
         set("age", 50);
         set("combat_exp", 7500);

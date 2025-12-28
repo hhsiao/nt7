@@ -29,6 +29,6 @@ string long()
                 set("dt_name", load_name());
                 set("dt_time", time() + 60);
         }
-        return "这是一枚铜质令牌，有金篆文刻字『" + query("dt_name") + "』。\n";
+        return "這是一枚銅質令牌，有金篆文刻字『" + query("dt_name") + "』。\n";
 }
 

@@ -9,23 +9,23 @@ int ask_job()
         myfam=query("family", me);
         
 
-        if (! myfam || myfam["family_name"] != "唐门世家")
+        if (! myfam || myfam["family_name"] != "唐門世家")
         {
-                command("say 你是我们的人吗？再说我的任务你不一定肯做啊，回去吧！");
+                command("say 你是我們的人嗎？再說我的任務你不一定肯做啊，回去吧！");
                 return 1;
         }
 
         if( query("tangmen/yanli", me) >= 100 )
         {       
                 command("gongxi");
-                command("say 看你长的一表人才，就知道你是一块料，上山去吧！");
+                command("say 看你長的一表人才，就知道你是一塊料，上山去吧！");
                 set("tangmen/upshan", 1, me);
                 return 1;
         }
 
         if( query_temp("started", me) )
         {
-                command("say 你有任务，为什么不去做？");
+                command("say 你有任務，為什麼不去做？");
                 return 1;
         }
         
@@ -34,19 +34,19 @@ int ask_job()
                 delete_temp("tmjob_failed", me);
                 me->apply_condition("tmagain", 1);
                 command("hmm");
-                command("你先下去歇歇吧，过会再来！\n");
+                command("你先下去歇歇吧，過會再來！\n");
                 return 1;
         }               
         
         if (me->query_condition("tmagain") > 0)
         {       command("heng");
-                command("say 做不了说一下，你等等吧！");
+                command("say 做不了說一下，你等等吧！");
                 return 1;
         }        
 
         if( query_temp("jobok", me) == 1 )
         {
-                command("say 好好，干的好，你下去歇歇吧。");
+                command("say 好好，乾的好，你下去歇歇吧。");
                 addn("combat_exp", 3000, me);
                 delete_temp("started", me);
                 delete_temp("find_wz", me);
@@ -57,9 +57,9 @@ int ask_job()
         }
         
 
-        command("say 你去给我抓一只蚊子回来吧。");
-        command("say 此事不可马虎，关系到你的前程，一定要全力去做。");
-        command("say 找不到的话就问问别人，说不定有收获啊");
+        command("say 你去給我抓一隻蚊子回來吧。");
+        command("say 此事不可馬虎，關係到你的前程，一定要全力去做。");
+        command("say 找不到的話就問問別人，說不定有收穫啊");
 
         set_temp("started", 1, me);
         remove_call_out("putting");

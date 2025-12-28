@@ -4,9 +4,9 @@ inherit "/inherit/room/house_room";
 
 void create()
 {
-    set("short", "讲武堂");
+    set("short", "講武堂");
     set("long", @LONG
-这里是帮内人士探讨武功的地方。
+這裡是幫內人士探討武功的地方。
 LONG);
 
     set("exits",

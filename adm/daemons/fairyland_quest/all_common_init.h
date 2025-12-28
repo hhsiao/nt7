@@ -1,11 +1,11 @@
 // 本文件被 all_room_info_hj.h
 // 及 1_room_info_special.h 
-// 在  void init() 内调用。
+// 在  void init() 內調用。
 
 // naihe 0:29 03-10-21
 
 
-// 函数名、前后 {} 符号在这里都是不需要的，放在这里摆个样子，看着清晰些
+// 函數名、前後 {} 符號在這裡都是不需要的，放在這裡擺個樣子，看著清晰些
 //void init()
 //{
 
@@ -16,15 +16,15 @@
         remove_call_out("get_out_here");
         call_out("get_out_here",1, me);
     }
-    // 玩家在游戏时，将保持所有状态饱满。
+    // 玩家在遊戲時，將保持所有狀態飽滿。
     if( query_temp("huanjing", me) == "start" )
         full_all( me );
 
     if( query("room_mark") != 1 && query("hj_game/npc", me) )
         return;
-// 如果不是 1 号房间，来的又是 NPC 的话，直接 return 得了，免得
-// add_action() 很耗资源。
-// 若是NPC，还要进行一些其他的动作，不可以在这里 return 。
+// 如果不是 1 號房間，來的又是 NPC 的話，直接 return 得了，免得
+// add_action() 很耗資源。
+// 若是NPC，還要進行一些其他的動作，不可以在這裡 return 。
 
     // 禁止的指令
     add_action( "block_cmds", ({

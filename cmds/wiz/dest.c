@@ -13,7 +13,7 @@ int main(object me, string arg)
                 return 0;
 
         if (! arg)
-                return notify_fail("指令格式 : dest <物件之名称或档名>\n");
+                return notify_fail("指令格式 : dest <物件之名稱或檔名>\n");
 
         if (sscanf(arg, "%s %s", option, target) == 2 &&
             option == "-c")
@@ -30,7 +30,7 @@ int main(object me, string arg)
         if (! obj) obj = present(target, environment(me));
         if (! obj) obj = find_object(target);
         if (! obj) obj = find_object(resolve_path(query("cwd", me), target));
-        if (! obj) return notify_fail("没有这样物件....。\n");
+        if (! obj) return notify_fail("沒有這樣物件....。\n");
 
         seteuid(getuid());
 
@@ -43,16 +43,16 @@ int main(object me, string arg)
 
                 case "noneuser":
                         if (playerp(obj))
-                                return notify_fail("你不能对玩家施展法力。\n");
+                                return notify_fail("你不能對玩家施展法力。\n");
                         break;
 
                 case "user":
                         if (! playerp(obj))
-                                return notify_fail("你只能对玩家施展法力。\n");
+                                return notify_fail("你只能對玩家施展法力。\n");
                         break;
 
                 default:
-                        return notify_fail("你不能使用该命令。\n");
+                        return notify_fail("你不能使用該命令。\n");
                 }
         }
 
@@ -60,13 +60,13 @@ int main(object me, string arg)
 
         if (playerp(obj) && wiz_level(me) < wiz_level("(arch)"))
         {
-                write("你没有权限摧毁玩家。\n");
+                write("你沒有權限摧毀玩家。\n");
                 return 1;
         }
 
         if (! SECURITY_D->valid_write(base_name(obj), me, "dest"))
         {
-                write("你没有权限操作这个对象。\n");
+                write("你沒有權限操作這個對象。\n");
                 return 1;
         }
 
@@ -74,26 +74,26 @@ int main(object me, string arg)
         {
                 if (clonep(obj))
                 {
-                        write("该对象是复制对象，没有派生对象，无法执行 -c 选项。\n");
+                        write("該對象是複製對象，沒有派生對象，無法執行 -c 選項。\n");
                         return 1;
                 }
 
                 if (obj == find_object(USER_OB))
                 {
-                        write("你不能清除使用者的派生对象。\n");
+                        write("你不能清除使用者的派生對象。\n");
                         return 1;
                 }
 
                 if (obj == find_object(LOGIN_OB))
                 {
-                        write("你不能清除使用者连接信息的派生对象。\n");
+                        write("你不能清除使用者連接信息的派生對象。\n");
                         return 1;
                 }
 
                 obs = children(base_name(obj));
                 foreach (obj in obs)
                 {
-                        write("你摧毁了" + obj->name(1) + "(" +
+                        write("你摧毀了" + obj->name(1) + "(" +
                               file_name(obj) + ")。\n");
                         destruct(obj);
                 }
@@ -102,13 +102,13 @@ int main(object me, string arg)
         }
 
         if (me == obj)
-                message_vision("$N召唤出一个黑洞，一头钻了进去。\n", me);
+                message_vision("$N召喚出一個黑洞，一頭鑽了進去。\n", me);
         else
         if (environment(me) == environment(obj))
-                message_vision("$N召唤出一个黑洞，一脚把将$n踢了进去。\n", me, obj);
+                message_vision("$N召喚出一個黑洞，一腳把將$n踢了進去。\n", me, obj);
 
         destruct(obj);
-        if (obj) write("你无法将这个物件摧毁。\n"); else
+        if (obj) write("你無法將這個物件摧毀。\n"); else
         if (me) write("Ok.\n");
 
         return 1;
@@ -117,16 +117,16 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式 : dest [-c] <物件之名称或档名>
+指令格式 : dest [-c] <物件之名稱或檔名>
 
-利用此一指令可将一个物件 object 从记忆体中清除，若清除物件，
-则下一次参考到这个物件的时候会重新将它编译。
+利用此一指令可將一個物件 object 從記憶體中清除，若清除物件，
+則下一次參考到這個物件的時候會重新將它編譯。
 
-如果使用了 -c 参数，则将清除该档案派生出的所有对象。
+如果使用了 -c 參數，則將清除該檔案派生出的所有對象。
 
-该命令在可以被授权使用的信息包括：noneuser、user、all。
+該命令在可以被授權使用的信息包括：noneuser、user、all。
 
-参考资料： destruct()
+參考資料： destruct()
 HELP );
         return 1;
 }

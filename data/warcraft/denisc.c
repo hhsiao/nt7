@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("丰满[2;37;0m[2;37;0m", ({"fengman"}));        
+        set_name("豐滿[2;37;0m[2;37;0m", ({"fengman"}));        
         set("gender", "男性");                
-        set("long", "丰满[2;37;0m
-它是健康的魔幻兽。
+        set("long", "豐滿[2;37;0m
+它是健康的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

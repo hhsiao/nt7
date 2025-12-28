@@ -33,23 +33,23 @@ string *valid_types = ({
 });
 
 string *skill_level_desc = ({
-        BLU"不堪一击",BLU"毫不足虑",BLU"不足挂齿",BLU"初学乍练",BLU"勉勉强强",
-        HIB"初窥门径",HIB"初出茅庐",HIB"略知一二",HIB"普普通通",HIB"平平淡淡",
-        CYN"平淡无奇",CYN"粗通皮毛",CYN"半生不熟",CYN"马马虎虎",CYN"略有小成",
-        HIC"已有小成",HIC"鹤立鸡群",HIC"驾轻就熟",HIC"青出于蓝",HIC"融会贯通",
-        HIG"心领神会",HIG"炉火纯青",HIG"了然于胸",HIG"略有大成",HIG"已有大成",
-        YEL"豁然贯通",YEL"出类拔萃",YEL"无可匹敌",YEL"技冠群雄",YEL"神乎其技",
-        HIY"出神入化",HIY"非同凡响",HIY"傲视群雄",HIY"登峰造极",HIY"无与伦比",
-        RED"所向披靡",RED"一代宗师",RED"精深奥妙",RED"神功盖世",RED"举世无双",
-        WHT"惊世骇俗",WHT"撼天动地",WHT"震古铄今",WHT"超凡入圣",WHT"威镇寰宇",
-        HIW"空前绝后",HIW"天人合一",MAG"深藏不露",HIM"深不可测",HIR"返璞归真"
+        BLU"不堪一擊",BLU"毫不足慮",BLU"不足掛齒",BLU"初學乍練",BLU"勉勉強強",
+        HIB"初窺門徑",HIB"初出茅廬",HIB"略知一二",HIB"普普通通",HIB"平平淡淡",
+        CYN"平淡無奇",CYN"粗通皮毛",CYN"半生不熟",CYN"馬馬虎虎",CYN"略有小成",
+        HIC"已有小成",HIC"鶴立雞群",HIC"駕輕就熟",HIC"青出於藍",HIC"融會貫通",
+        HIG"心領神會",HIG"爐火純青",HIG"瞭然於胸",HIG"略有大成",HIG"已有大成",
+        YEL"豁然貫通",YEL"出類拔萃",YEL"無可匹敵",YEL"技冠群雄",YEL"神乎其技",
+        HIY"出神入化",HIY"非同凡響",HIY"傲視群雄",HIY"登峰造極",HIY"無與倫比",
+        RED"所向披靡",RED"一代宗師",RED"精深奧妙",RED"神功蓋世",RED"舉世無雙",
+        WHT"驚世駭俗",WHT"撼天動地",WHT"震古鑠今",WHT"超凡入聖",WHT"威鎮寰宇",
+        HIW"空前絕後",HIW"天人合一",MAG"深藏不露",HIM"深不可測",HIR"返璞歸真"
 });
 
 string *knowledge_level_desc = ({
-        BLU"新学乍用",BLU"初窥门径",HIB"略知一二",HIB"半生不熟",
-        CYN"马马虎虎",CYN"已有小成",HIC"融会贯通",HIC"心领神会",
-        GRN"了然於胸",GRN"豁然贯通",YEL"非同凡响",YEL"举世无双",
-        HIY"震古铄今",RED"无与伦比",WHT"超凡入圣",HIW"空前绝后",
+        BLU"新學乍用",BLU"初窺門徑",HIB"略知一二",HIB"半生不熟",
+        CYN"馬馬虎虎",CYN"已有小成",HIC"融會貫通",HIC"心領神會",
+        GRN"瞭然於胸",GRN"豁然貫通",YEL"非同凡響",YEL"舉世無雙",
+        HIY"震古鑠今",RED"無與倫比",WHT"超凡入聖",HIW"空前絕後",
 });
 
 int sort_skill(string sk1, string sk2, mapping spos);
@@ -143,8 +143,8 @@ int main(object me, string arg)
                                 arg = 0;
                                 skill1 = 0;
                         } else
-                                return notify_fail("没有(" + skill1 +
-                                                   ")这种技能。\n");
+                                return notify_fail("沒有(" + skill1 +
+                                                   ")這種技能。\n");
                 }
 
                 if (! ob || ! ob->is_character())
@@ -159,7 +159,7 @@ int main(object me, string arg)
                 }
 
                 if (! ob || ! ob->is_character() || ! me->visible(ob))
-                        return notify_fail("你要察看谁的技能？\n");
+                        return notify_fail("你要察看誰的技能？\n");
         }
 
         if (ob != me)
@@ -192,21 +192,21 @@ int main(object me, string arg)
         }
 
         if (! valid_check)
-                return notify_fail("只有巫师或有师徒/夫妻/结拜/同盟关系的人"
+                return notify_fail("只有巫師或有師徒/夫妻/結拜/同盟關係的人"
                                    "才能察看他人的技能。\n");
 
         skl = ob->query_skills();
         if (! sizeof(skl))
         {
                 write((ob==me ? "你" : ob->name()) +
-                      "目前并没有学会任何技能。\n");
+                      "目前並沒有學會任何技能。\n");
                 return 1;
         }
 
         // calucate spos to sort
         sname = keys(skl);
 
-        str = (ob == me ? "你" : ob->name()) + "目前所学到的";
+        str = (ob == me ? "你" : ob->name()) + "目前所學到的";
         // filter array by skill1
         if (skill1)
         {
@@ -217,7 +217,7 @@ int main(object me, string arg)
                         sname = filter_array(sname, (: filter_for_enable :), skill1);
                         // sname = sort_array(sname, (: sort_skill :), ob);
                         sname = sort_array(sname, (: $(skl)[$2] - $(skl)[$1] :));
-                        str += to_chinese(skill1) + "及相关技能";
+                        str += to_chinese(skill1) + "及相關技能";
                 } else
                 if (SKILL_D(skill1)->main_skill() &&
                     member_array(SKILL_D(skill1)->main_skill(), sname) == -1)
@@ -229,14 +229,14 @@ int main(object me, string arg)
                 } else
                 {
                         sname = filter_array(sname, (: filter_for_combine :), skill1);
-                        str += to_chinese(skill1) + "和可以激发的基础武技与能够互备的技能";
+                        str += to_chinese(skill1) + "和可以激發的基礎武技與能夠互備的技能";
                 }
         } else
                 str += "所有技能";
 
         if (! sizeof(sname))
         {
-                write("你目前还没有掌握该技能。\n");
+                write("你目前還沒有掌握該技能。\n");
                 return 1;
         }
 
@@ -392,26 +392,26 @@ int help(object me)
         write(@HELP
 指令格式 : skills|cha [<技能名> of <某人 | me >] | [<某人>]
 
-这个指令可以让你(你)查询所学过的技能。
+這個指令可以讓你(你)查詢所學過的技能。
 
-你也可以指定一个和你有师徒关系的对象，用 skills 可以查知对方的技能状况。
-也可以查询某人某项技能的情况，比如skills taiji-shengong of song， 或者
-是skills literate of me， 用这种方法查询时分以下几种情况：
+你也可以指定一個和你有師徒關係的對象，用 skills 可以查知對方的技能狀況。
+也可以查詢某人某項技能的情況，比如skills taiji-shengong of song， 或者
+是skills literate of me， 用這種方法查詢時分以下幾種情況：
 
-1 如果查询的技能是一种基本武技，将同时返回所有在这种基本武技的基础上能
-  够激发的武功技能。
+1 如果查詢的技能是一種基本武技，將同時返回所有在這種基本武技的基礎上能
+  夠激發的武功技能。
 
-2 如果查询的技能是一种武技中的某些招式路数，比如降龙十八掌，或是降龙十
-  八掌中的神龙摆尾等，则显示玩家学到与之相关的招式路数。如果玩家已经将
-  这种武技融会贯通，则按照普通技能显示(3)。
+2 如果查詢的技能是一種武技中的某些招式路數，比如降龍十八掌，或是降龍十
+  八掌中的神龍擺尾等，則顯示玩家學到與之相關的招式路數。如果玩家已經將
+  這種武技融會貫通，則按照普通技能顯示(3)。
 
-3 如果查询的技能是一种普通的武技，则显示可以激发的基本武技基础和可以与
-  之互备的武功。
+3 如果查詢的技能是一種普通的武技，則顯示可以激發的基本武技基礎和可以與
+  之互備的武功。
 
-使用该命令可以了解你学到的武功技能。玩家查询的时候不需要指明me参数，可
-以直接输入<技能名>参数。
+使用該命令可以瞭解你學到的武功技能。玩家查詢的時候不需要指明me參數，可
+以直接輸入<技能名>參數。
 
-巫师可以查询任何人或 NPC 的技能状况。
+巫師可以查詢任何人或 NPC 的技能狀況。
 
 HELP
     );

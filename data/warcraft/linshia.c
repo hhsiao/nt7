@@ -6,8 +6,8 @@ void setup()
 {
         set_name("[1;31m粉色妹妹[2;37;0m[2;37;0m", ({"meimei"}));        
         set("gender", "女性");                
-        set("long", "人间尤物[2;37;0m
-它是肋胃地的魔幻兽。
+        set("long", "人間尤物[2;37;0m
+它是肋胃地的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

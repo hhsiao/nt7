@@ -20,11 +20,11 @@ string query_long()
 	object ob = query_mob();
 
 	if(!ob || ob->query_open())
-		return "这是一条窄窄的上山小路，两旁怪石嶙峋，中间的路倒是很
-平坦，看样子是被人专门开掘出来的。\n";
+		return "這是一條窄窄的上山小路，兩旁怪石嶙峋，中間的路倒是很
+平坦，看樣子是被人專門開掘出來的。\n";
 	else
-		return "这是一条窄窄的上山小路，两旁怪石嶙峋，中间的路倒是很
-平坦，看样子是被人专门开掘出来的。路中央一块大石头挡住了
+		return "這是一條窄窄的上山小路，兩旁怪石嶙峋，中間的路倒是很
+平坦，看樣子是被人專門開掘出來的。路中央一塊大石頭擋住了
 向西的去路。\n";
 }
 
@@ -34,8 +34,8 @@ mapping query_desc()
 
 	if(ob && !ob->query_open())
 		return ([
-"石头" : "这是一块大青石头，不知道能不能推(push)开。\n",
-"大石头" : "这是一块大青石头，不知道能不能推(push)开。\n",
+"石頭" : "這是一塊大青石頭，不知道能不能推(push)開。\n",
+"大石頭" : "這是一塊大青石頭，不知道能不能推(push)開。\n",
 ]);
 
 	else
@@ -65,10 +65,10 @@ int do_push(string arg)
 {
 	object ob = query_mob(), me = this_player();
 
-	if( !ob || ob->query_open() || ((arg != "石头") && (arg != "大石头")) )
+	if( !ob || ob->query_open() || ((arg != "石頭") && (arg != "大石頭")) )
 		return 0;
 
-	message_vision("$N双膀一较力，使劲推了一下大石头。\n", me);
+	message_vision("$N雙膀一較力，使勁推了一下大石頭。\n", me);
 	ob->do_push(me);
 
 	return 1;

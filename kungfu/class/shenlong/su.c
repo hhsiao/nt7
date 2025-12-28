@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// su.c 苏荃
+// su.c 蘇荃
 
 #include "shenlong.h"
 
@@ -13,9 +13,9 @@ mixed ask_hengchen();
 mixed ask_huixiang();
 void create()
 {
-        set_name("苏荃", ({ "su quan", "su" }));
-        set("title",  HIY"神龙教"NOR"教主夫人" );
-        set("long", "她就是神龙教教主洪安通的夫人。\n");
+        set_name("蘇荃", ({ "su quan", "su" }));
+        set("title",  HIY"神龍教"NOR"教主夫人" );
+        set("long", "她就是神龍教教主洪安通的夫人。\n");
         set("gender", "女性");
         set("age", 23);
         set("attitude", "friendly");
@@ -62,26 +62,26 @@ void create()
         prepare_skill("strike", "huagu-mianzhang");
         prepare_skill("hand", "shenlong-bashi");
 
-        create_family("神龙教", 1, "教主夫人");
+        create_family("神龍教", 1, "教主夫人");
 
         set("inquiry", ([
-                "神龙教" : "一般人是入不了我神龙教的(join shenlongjiao)。",
-                "入教"   : "一般人是入不了我神龙教的(join shenlongjiao)。",
-                "退教"   : "哈哈哈哈！退教？这么多年我还真听过几起，不过他们已经都死了。",
-                "口号"   : "万年不老！永享仙福！寿与天齐！文武仁圣！",
-                "rujiao" : "一般人是入不了我神龙教的(join shenlongjiao)。",
-                "tuijiao": "哈哈哈哈！退教？这么多年我还真听过几起，不过他们已经都死了。",
-              "贵妃回眸" : (: ask_huimou :),
-              "小怜横陈" : (: ask_hengchen :),
-              "飞燕回翔" : (: ask_huixiang :),
+                "神龍教" : "一般人是入不了我神龍教的(join shenlongjiao)。",
+                "入教"   : "一般人是入不了我神龍教的(join shenlongjiao)。",
+                "退教"   : "哈哈哈哈！退教？這麼多年我還真聽過幾起，不過他們已經都死了。",
+                "口號"   : "萬年不老！永享仙福！壽與天齊！文武仁聖！",
+                "rujiao" : "一般人是入不了我神龍教的(join shenlongjiao)。",
+                "tuijiao": "哈哈哈哈！退教？這麼多年我還真聽過幾起，不過他們已經都死了。",
+              "貴妃回眸" : (: ask_huimou :),
+              "小憐橫陳" : (: ask_hengchen :),
+              "飛燕迴翔" : (: ask_huixiang :),
         ]));
 
         set("chat_chance_combat", 50);
         set("chat_msg_combat", ({
                 (: command("smile") :),
                 (: command("haha") :),
-                (: command("chat 凭你这" + RANK_D->query_rude(this_player())+",也敢在太岁爷头上动土?\n") :),
-                (: command("say 你活得不耐烦了找死啊？\n") :),
+                (: command("chat 憑你這" + RANK_D->query_rude(this_player())+",也敢在太歲爺頭上動土?\n") :),
+                (: command("say 你活得不耐煩了找死啊？\n") :),
                 (: perform_action, "staff.chang" :),
                 (: perform_action, "staff.chang" :),
                 (: perform_action, "staff.chang" :),
@@ -129,7 +129,7 @@ void greeting(object ob)
 
 void attempt_apprentice(object ob)
 {
-        command("say 好吧，你就和我学武功吧。");
+        command("say 好吧，你就和我學武功吧。");
         command("recruit "+query("id", ob));
 }
 
@@ -137,16 +137,16 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "历练" :
-        case "历炼" :
-        case "锻炼" :
+        case "歷練" :
+        case "歷煉" :
+        case "鍛鍊" :
                 return QUEST_D->accept_ask(this_object(), me, topic);
                 break;
 
-        case "玉女无情" :
+        case "玉女無情" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/meiren-sanzhao/wuqing",
-                           "name"    : "玉女无情",
+                           "name"    : "玉女無情",
                            "sk1"     : "meiren-sanzhao",
                            "lv1"     : 100,
                            "sk2"     : "sword",
@@ -168,27 +168,27 @@ mixed ask_huimou()
 
          me = this_player();
          if( query("can_perform/shenlong-bashi/huimou", me) )
-                return "自己多练练，少在我面前罗嗦！";
+                return "自己多練練，少在我面前羅嗦！";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "你是哪儿来的？找死啊？";
+                return "你是哪兒來的？找死啊？";
 
         if( query("shen", me)>-50000 )
-                return "你要好好为我神教效力，手段要更狠更毒。我才能传你这门绝招！";
+                return "你要好好為我神教效力，手段要更狠更毒。我才能傳你這門絕招！";
 
         if (me->query_skill("shenlong-bashi", 1) < 150)
-                return "你的神龙八式手法根基不够，还得多练习练习。";
+                return "你的神龍八式手法根基不夠，還得多練習練習。";
 
         if (me->query_skill("force", 1) < 150)
-                return "你的内功火候不足，学不成这贵妃回眸。";
+                return "你的內功火候不足，學不成這貴妃回眸。";
 
 
-         message_vision(HIY "$n" HIY "点头对你说道：“你看好了！”然后，又转身对沐剑屏说道：“剑屏，"
-                     "你过来！”说罢身子微曲，纤腰轻扭，右足反踢，向沐剑屏小腹踹去。沐"
-                     "剑屏连忙后缩相避，$n顺势反过身来，左手搂住沐剑屏的头颈，右手竟已"
-                     "轻轻点在沐剑屏后心的穴道上。"NOR, me, this_object());
+         message_vision(HIY "$n" HIY "點頭對你說道：“你看好了！”然後，又轉身對沐劍屏說道：“劍屏，"
+                     "你過來！”說罷身子微曲，纖腰輕扭，右足反踢，向沐劍屏小腹踹去。沐"
+                     "劍屏連忙後縮相避，$n順勢反過身來，左手摟住沐劍屏的頭頸，右手竟已"
+                     "輕輕點在沐劍屏後心的穴道上。"NOR, me, this_object());
 
-        tell_object(me, HIG "你学会了贵妃回眸。" NOR);
+        tell_object(me, HIG "你學會了貴妃回眸。" NOR);
         if (me->can_improve_skill("hand"))
                 me->improve_skill("hand", 150000);
         if (me->can_improve_skill("shenlong-bashi"))
@@ -204,27 +204,27 @@ mixed ask_hengchen()
 
         me = this_player();
         if( query("can_perform/shenlong-bashi/hengchen", me) )
-        return "自己多练练，少在我面前罗嗦！";
+        return "自己多練練，少在我面前羅嗦！";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "你是哪儿来的？找死啊？";
+                return "你是哪兒來的？找死啊？";
 
         if( query("shen", me)>-80000 )
-                return "你要好好为我神教效力，手段要更狠更毒。我才能传你这门绝招！";
+                return "你要好好為我神教效力，手段要更狠更毒。我才能傳你這門絕招！";
 
         if (me->query_skill("shenlong-bashi", 1) < 150)
-                return "你的神龙八式手法根基不够，还得多练习练习。";
+                return "你的神龍八式手法根基不夠，還得多練習練習。";
 
         if (me->query_skill("force", 1) < 150)
-        return "你的内功火候不足，学不成这小怜横陈。";
+        return "你的內功火候不足，學不成這小憐橫陳。";
 
-        message_vision(HIY"$n" HIY "翻身卧倒并让沐剑屏伸出右足，虚踏她后腰，手中假装持刀架住她"
-                       "头颈。蓦见$n脑袋向着她自己胸口钻落，沐剑屏架颈中的一刀自然落空，"
-                       "她顺势在地下一个筋斗在沐剑屏胯下钻过，右手轻轻击在沐剑屏后心。"NOR,
+        message_vision(HIY"$n" HIY "翻身臥倒並讓沐劍屏伸出右足，虛踏她後腰，手中假裝持刀架住她"
+                       "頭頸。驀見$n腦袋向著她自己胸口鑽落，沐劍屏架頸中的一刀自然落空，"
+                       "她順勢在地下一個筋斗在沐劍屏胯下鑽過，右手輕輕擊在沐劍屏後心。"NOR,
                        me, this_object());
 
-        command("say 这就是美女三招的第二招——「小怜横陈」。");
-        tell_object(me, HIG "你学会了小怜横陈。" NOR);
+        command("say 這就是美女三招的第二招——「小憐橫陳」。");
+        tell_object(me, HIG "你學會了小憐橫陳。" NOR);
         if (me->can_improve_skill("hand"))
                 me->improve_skill("hand", 150000);
         if (me->can_improve_skill("shenlong-bashi"))
@@ -240,26 +240,26 @@ mixed ask_huixiang()
 
         me = this_player();
         if( query("can_perform/shenlong-bashi/huixiang", me) )
-                return "自己多练练，少在我面前罗嗦！";
+                return "自己多練練，少在我面前羅嗦！";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "你是哪儿来的？找死啊？";
+                return "你是哪兒來的？找死啊？";
 
         if( query("shen", me)>-100000 )
-                return "你要好好为我神教效力，手段要更狠更毒。我才能传你这门绝招！";
+                return "你要好好為我神教效力，手段要更狠更毒。我才能傳你這門絕招！";
 
         if (me->query_skill("shenlong-bashi", 1) < 160)
-                return "你的神龙八式手法根基不够，还得多练习练习。";
+                return "你的神龍八式手法根基不夠，還得多練習練習。";
 
         if (me->query_skill("force", 1) < 160)
-                return "你的内功火候不足，学不成这飞燕回翔。";
+                return "你的內功火候不足，學不成這飛燕迴翔。";
 
-        message_vision(HIY"$n" HIY "让沐剑屏左手拿住她双手手腕，右手虚执兵器，架在她的肤光白腻头"
-                     "颈之中，$n笑道：“看仔细了！”右足向前轻踢，脱身而出，接着双手回转"
-                     "击出一招，正中沐剑屏后心。"NOR, me, this_object());
+        message_vision(HIY"$n" HIY "讓沐劍屏左手拿住她雙手手腕，右手虛執兵器，架在她的膚光白膩頭"
+                     "頸之中，$n笑道：“看仔細了！”右足向前輕踢，脫身而出，接著雙手迴轉"
+                     "擊出一招，正中沐劍屏後心。"NOR, me, this_object());
 
-        command("say 这就是美女三招的第二招——「飞燕回翔」。");
-        tell_object(me, HIG "你学会了飞燕回翔。" NOR);
+        command("say 這就是美女三招的第二招——「飛燕迴翔」。");
+        tell_object(me, HIG "你學會了飛燕迴翔。" NOR);
         if (me->can_improve_skill("hand"))
                 me->improve_skill("hand", 150000);
         if (me->can_improve_skill("shenlong-bashi"))

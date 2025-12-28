@@ -12,7 +12,7 @@ void create()
 {                            
         set_name("蒙古箭手",({ "menggu jianshou","jianshou" }) );
         set("gender", "男性" );
-        set("long","这是一名蒙古神箭手，正警惕地监视着襄阳城的情况。\n");
+        set("long","這是一名蒙古神箭手，正警惕地監視著襄陽城的情況。\n");
 
         set("int", 30);
         set("str", 30+random(10));
@@ -151,7 +151,7 @@ void seek_ob(object me)
                         if( query("qi", me)>num*400 && query("jing", me)>num*100 )
                         {
                                 tell_object(all_inventory(room),
-                                        HIB "你觉得一股猛烈的危机从"HIR"东面"HIW+chinese_number(step)+"箭地"HIB"外传来！\n"NOR);  
+                                        HIB "你覺得一股猛烈的危機從"HIR"東面"HIW+chinese_number(step)+"箭地"HIB"外傳來！\n"NOR);  
                                 for (i = 0; i < num; i++)
                                         bow->do_shoot(query("killer", me),me,bow,room,"west",step);
                                 if (num > 4) num = 4;
@@ -159,7 +159,7 @@ void seek_ob(object me)
                                         me->start_busy(num * 2);
                         } else
                                 tell_object(all_inventory(room),
-                                        HIB"你觉得好象有人在"HIR"东面"HIW+chinese_number(step)+"箭地"HIB"外朝你这边窥视了一眼！\n"NOR);
+                                        HIB"你覺得好象有人在"HIR"東面"HIW+chinese_number(step)+"箭地"HIB"外朝你這邊窺視了一眼！\n"NOR);
                 }
         }
         remove_call_out("seek_ob"); 
@@ -183,7 +183,7 @@ void die()
                         addn_temp("guo_shoucheng/killed_mgb", query_str()/5, ob);
                 else
                         addn_temp("guo_shoucheng/killed_mgb", 1, ob);
-                tell_object(ob, RED "一名蒙古弓箭手又丧命于你的利箭之下！\n" NOR);
+                tell_object(ob, RED "一名蒙古弓箭手又喪命於你的利箭之下！\n" NOR);
         }
         destruct(this_object());
         return;

@@ -8,13 +8,13 @@ mixed ask_skill1();
 
 void create()
 {
-        set_name("贾布", ({ "jia bu", "jia", "bu"}));
-        set("title", "日月神教青龙堂长老");
+        set_name("賈布", ({ "jia bu", "jia", "bu"}));
+        set("title", "日月神教青龍堂長老");
         set("nickname", YEL "金面使者" NOR);
         set("long", @LONG
-这是日月神教青龙堂长老贾布。只见他蜡黄瘦
-脸，两边太阳穴高高鼓起，变如藏了一枚枚核
-桃似的，表情甚是严肃。
+這是日月神教青龍堂長老賈布。只見他蠟黃瘦
+臉，兩邊太陽穴高高鼓起，變如藏了一枚枚核
+桃似的，表情甚是嚴肅。
 LONG);
         set("gender", "男性" );
         set("class", "scholar");
@@ -61,10 +61,10 @@ LONG);
 
         prepare_skill("claw", "xiao-qinna");
 
-        create_family("日月神教", 13, "青龙堂长老");
+        create_family("日月神教", 13, "青龍堂長老");
 
         set("inquiry", ([
-                "惊虹一笔" : (: ask_skill1 :),
+                "驚虹一筆" : (: ask_skill1 :),
         ]));
 
         set("chat_chance_combat", 120);
@@ -89,21 +89,21 @@ void attempt_apprentice(object ob)
         if( query("shen", ob)>-25000 )
         {
                 command("hmm");
-                command("say 我从来不和正派武林人士交往，你快滚吧！");
+                command("say 我從來不和正派武林人士交往，你快滾吧！");
                 return;
         }
 
         if( query("combat_exp", ob)<200000 )
         {
-                command("say 你现在江湖经验太浅，还应该多走动走动。");
+                command("say 你現在江湖經驗太淺，還應該多走動走動。");
                 return;
         }
 
         if (ob->query_skill("dagger", 1) < 80)
         {
                 command("en");
-                command("say 我所精研的乃是打穴法，这三十四路苍虹笔法天下无双。");
-                command("say 你既然要做我的弟子，就应该在短兵刃上面多下功夫。");
+                command("say 我所精研的乃是打穴法，這三十四路蒼虹筆法天下無雙。");
+                command("say 你既然要做我的弟子，就應該在短兵刃上面多下功夫。");
                 return;
         }
 
@@ -111,13 +111,13 @@ void attempt_apprentice(object ob)
            && ob->query_skill("riyue-xinfa", 1) < 80)
         {
                 command("hmm");
-                command("say 你连本门最基本的内功都没修好，怎么学习上乘武学。");
+                command("say 你連本門最基本的內功都沒修好，怎麼學習上乘武學。");
                 return;
         }
 
         command("nod2");
-        command("say 那你以后就跟着我好了。");
-        command("say 教内事务繁多，切莫乱了规矩。");
+        command("say 那你以後就跟著我好了。");
+        command("say 教內事務繁多，切莫亂了規矩。");
         command("recruit "+query("id", ob));
         return;
 }
@@ -129,34 +129,34 @@ mixed ask_skill1()
         me = this_player();
 
         if( query("can_perform/canghong-bifa/jing", me) )
-                return "这一招我不是已经教过你了吗？";
+                return "這一招我不是已經教過你了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "你又不是我日月神教的，跑来捣什么乱？";
+                return "你又不是我日月神教的，跑來搗什麼亂？";
 
         if (me->query_skill("canghong-bifa", 1) < 1)
-                return "你连苍虹笔法都没学，还谈什么绝招可言？";
+                return "你連蒼虹筆法都沒學，還談什麼絕招可言？";
 
         if( query("family/gongji", me)<400 )
-                return "你在教内甚无作为，这招我暂时还不能传你。";
+                return "你在教內甚無作為，這招我暫時還不能傳你。";
 
         if( query("shen", me)>-30000 )
-                return "你这样心慈手软，就算学会这招又有什么用？";
+                return "你這樣心慈手軟，就算學會這招又有什麼用？";
 
         if (me->query_skill("force") < 150)
-                return "你的内功火候尚需提高，练好了再来找我吧。";
+                return "你的內功火候尚需提高，練好了再來找我吧。";
 
         if (me->query_skill("canghong-bifa", 1) < 100)
-                return "你的苍虹笔法还练得不到家，自己下去练练再来吧！";
+                return "你的蒼虹筆法還練得不到家，自己下去練練再來吧！";
 
-        message_sort(HIY "\n$n" HIY "哈哈一笑，说道：不错，不错，孺子可"
-                     "教也。今天老夫就传你这招。$n" HIY "说完便将$N" HIY
-                     "招至身前，嘀嘀咕咕说了半天。\n\n" NOR, me,
+        message_sort(HIY "\n$n" HIY "哈哈一笑，說道：不錯，不錯，孺子可"
+                     "教也。今天老夫就傳你這招。$n" HIY "說完便將$N" HIY
+                     "招至身前，嘀嘀咕咕說了半天。\n\n" NOR, me,
                      this_object());
 
         command("nod");
-        command("say 刚才我所说的便是这笔法的精要，你听懂了多少？");
-        tell_object(me, HIC "你学会了「惊虹一笔」。\n" NOR);
+        command("say 剛才我所說的便是這筆法的精要，你聽懂了多少？");
+        tell_object(me, HIC "你學會了「驚虹一筆」。\n" NOR);
         if (me->can_improve_skill("dagger"))
                 me->improve_skill("dagger", 1500000);
         if (me->can_improve_skill("canghong-bifa"))

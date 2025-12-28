@@ -27,7 +27,7 @@ int main(object me, string str)
         ob_list = sort_array(ob_list, "sort_user");
         ob_list = wiz_ob + ob_list;
 
-        str = HIG" 玩家        id         悟性-后天 根骨-后天 身法-后天 膂力-后天 异常 容貌\n"NOR
+        str = HIG" 玩家        id         悟性-後天 根骨-後天 身法-後天 膂力-後天 異常 容貌\n"NOR
               WHT"——————————————————————————————————\n"NOR;
         i = 0;
         foreach (ob in ob_list)
@@ -65,7 +65,7 @@ int main(object me, string str)
                 if (i++ >= 200) break;
         }
         str += WHT"——————————————————————————————————\n"NOR +
-               sprintf("%s共有 %d 位使用者连线中。\n", LOCAL_MUD_NAME(), sizeof(ob_list));
+               sprintf("%s共有 %d 位使用者連線中。\n", LOCAL_MUD_NAME(), sizeof(ob_list));
         me->start_more(str);
         return 1;
 }
@@ -86,7 +86,7 @@ int help(object me)
         write(@HELP
 指令格式：who3
 
-玩家信息查询列表3。
+玩家信息查詢列表3。
 HELP );
         return 1;
 }            

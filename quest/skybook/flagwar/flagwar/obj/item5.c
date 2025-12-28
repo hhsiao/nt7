@@ -4,10 +4,10 @@ inherit ITEM;
 
 void create()
 {
-	      set_name(HIG"抢旗战 - "HIW"惊雷符"NOR, ({"fwar count seal","seal"}) );
+	      set_name(HIG"搶旗戰 - "HIW"驚雷符"NOR, ({"fwar count seal","seal"}) );
         set_weight(300);
-        set("unit", "个");
-        set("long", "抢旗战专用特殊物品，放在身上在死亡时会自动使用。\n");
+        set("unit", "個");
+        set("long", "搶旗戰專用特殊物品，放在身上在死亡時會自動使用。\n");
         set("value", 1);
         set("no_store",1);
         set("no_sell", 1);

@@ -3,11 +3,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "商家堡大厅");
+        set("short", "商家堡大廳");
         set("long", @LONG
-这里是商家堡的大厅，大厅内很是宽敞明亮，地上刻有一个
-巨大的铁八卦。正对厅门摆放着一张八仙桌，一人压座中堂，身
-材高大魁梧，留着短须，神情甚为严肃，正是「八卦刀」商剑鸣。
+這裡是商家堡的大廳，大廳內很是寬敞明亮，地上刻有一個
+巨大的鐵八卦。正對廳門擺放著一張八仙桌，一人壓座中堂，身
+材高大魁梧，留著短鬚，神情甚為嚴肅，正是「八卦刀」商劍鳴。
 LONG);
         set("exits", ([
                 "north"  : __DIR__"shang_houting",
@@ -38,9 +38,9 @@ int valid_leave(object me, string dir)
            dir == "west")
         {
                 if( query("family/family_name", me) != "商家堡" && 
-                   query("born_family", me) != "山东商家" && 
+                   query("born_family", me) != "山東商家" && 
                    objectp(present("shang jianming", environment(me))))
-                        return notify_fail(CYN "商剑鸣对你喝道：什么东西，居然"
+                        return notify_fail(CYN "商劍鳴對你喝道：什麼東西，居然"
                                            "敢在我面前放肆！\n" NOR);
         }
         return ::valid_leave(me, dir);

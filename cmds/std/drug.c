@@ -16,40 +16,40 @@ int main(object me, string arg)
         function f;
 
         if (! arg)
-                return notify_fail("你要下什么毒？\n");
+                return notify_fail("你要下什麼毒？\n");
 
         if (me->is_busy())
-                return notify_fail("先忙完了你手中的事情再想怎么害人吧！\n");
+                return notify_fail("先忙完了你手中的事情再想怎麼害人吧！\n");
 
         if (me->is_fighting())
-                return notify_fail("你现在正在打架，没时间下毒。\n");
+                return notify_fail("你現在正在打架，沒時間下毒。\n");
 
         if (sscanf(arg, "%s in %s", item, target) != 2)
-                return notify_fail("你要往哪里下毒？\n");
+                return notify_fail("你要往哪裡下毒？\n");
 
         dest = present(target, me);
         if (! dest)
-                return notify_fail("这里没有这样东西。\n");
+                return notify_fail("這裡沒有這樣東西。\n");
 
         if (! objectp(obj = present(item, me)))
-                return notify_fail("你身上没有这样东西。\n");
+                return notify_fail("你身上沒有這樣東西。\n");
 
         if( !stringp(query("poison_type", obj)) )
-                return notify_fail("这不是毒药啊。\n");
+                return notify_fail("這不是毒藥啊。\n");
 
         if( !query("can_drug", obj) )
-                return notify_fail("这种毒药不能下在食物中。\n");
+                return notify_fail("這種毒藥不能下在食物中。\n");
 
         if( query("food_remaining", dest)<1 )
         {
-                tell_object(me, "这东西看上去没有人会去吃。\n");
+                tell_object(me, "這東西看上去沒有人會去吃。\n");
                 return 1;
         }
 
-        message("vision", sprintf("%s将一东西偷偷洒到了%s上面。\n",
+        message("vision", sprintf("%s將一東西偷偷灑到了%s上面。\n",
                 me->name(), dest->name()), environment(me), ({ me }));
 
-        message("vision", sprintf("你将一%s%s偷偷洒到了%s上面。\n",
+        message("vision", sprintf("你將一%s%s偷偷灑到了%s上面。\n",
                 query("unit", obj),obj->name(),dest->name()),me);
 
         f = bind((: call_other, __FILE__, "do_effect",
@@ -95,9 +95,9 @@ int do_effect(string type, mixed para)
 int help(object me)
 {
 write(@HELP
-指令格式 : drug <毒药> in <食物>
+指令格式 : drug <毒藥> in <食物>
  
-这个指令可以让你将某样毒药下在食物中。
+這個指令可以讓你將某樣毒藥下在食物中。
 HELP
     );
     return 1;

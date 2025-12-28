@@ -30,7 +30,7 @@ int main(object me,string arg)
 
     objects((: check_ob :));
 
-    //选择附和查询条件的
+    //選擇附和查詢條件的
     reset_eval_cost();
     obj_ind = keys(sm_obj_mem);
     obj_ind = filter_array(obj_ind, (: $(sm_obj_mem)[$1] >= $2 :) , large*1024);
@@ -40,20 +40,20 @@ int main(object me,string arg)
     obj_ind = sort_array(obj_ind, (: $(sm_obj_mem)[$2] - $(sm_obj_mem)[$1] :));
     obj_ind = sort_array(obj_ind, (: $(sm_obj_num)[$2] - $(sm_obj_num)[$1] :));
 
-    // 选择前100个
-    msg = "目前系统中占用内存超过" + chinese_number(large) + "K的物品如下：\n";
-    msg += sprintf(HIY "%-40s%-10s%s\n" NOR, "物品文件", "复制数量", "耗用内存");
+    // 選擇前100個
+    msg = "目前系統中佔用內存超過" + chinese_number(large) + "K的物品如下：\n";
+    msg += sprintf(HIY "%-40s%-10s%s\n" NOR, "物品文件", "複製數量", "耗用內存");
     for (i = 0; i < sizeof(obj_ind) && i < 100; i++)
         msg += sprintf("%-40s %-10d %s\n",
                    obj_ind[i],
                    sm_obj_num[obj_ind[i]], 
                    memory_expression(sm_obj_mem[obj_ind[i]]));
 
-    msg += sprintf( "共%s个物品，使用 %s bytes 记忆体。\n", 
+    msg += sprintf( "共%s個物品，使用 %s bytes 記憶體。\n", 
         chinese_number(obj_num),
         memory_expression(sm_all_mem) );    
 
-    msg += "检查完毕！\n";
+    msg += "檢查完畢！\n";
 
     sm_obj_mem = 0;
     sm_obj_num = 0;
@@ -104,10 +104,10 @@ int help(object me)
 {
     write(@HELP
 
-指令格式 : bigmem 记忆体大小
+指令格式 : bigmem 記憶體大小
 
-这个指令告诉你占用的记忆体数量超过指定大小的所有物品。
-若没有指明数值，则缺省为10(k)。
+這個指令告訴你佔用的記憶體數量超過指定大小的所有物品。
+若沒有指明數值，則缺省為10(k)。
 
 HELP);
     return 1;

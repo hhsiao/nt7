@@ -1,35 +1,35 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action": "$N使一招「雪花飘零」，双拳飞出，袭向$n$l",
+([      "action": "$N使一招「雪花飄零」，雙拳飛出，襲向$n$l",
         "force" : 60,
         "dodge" : 20,
         "parry" : 20,
         "attack": 15,
         "damage": 20,
         "lvl"   : 0,
-        "skill_name" : "雪花飘零",
-        "damage_type": "瘀伤"
+        "skill_name" : "雪花飄零",
+        "damage_type": "瘀傷"
 ]),
-([      "action": "$N左右双拳连环击出，一招「天地同寿」，拳风骤响，袭向$n$l",
+([      "action": "$N左右雙拳連環擊出，一招「天地同壽」，拳風驟響，襲向$n$l",
         "force" : 85,
         "dodge" : 25,
         "parry" : 25,
         "attack": 17,
         "damage": 43,
         "lvl"   : 20,
-        "skill_name" : "天地同寿",
-        "damage_type":  "瘀伤"
+        "skill_name" : "天地同壽",
+        "damage_type":  "瘀傷"
 ]),
-([      "action": "$N左掌圈花扬起，屈肘当胸，右手虎口朝上，一招「千斤坠地」打向$n的",
+([      "action": "$N左掌圈花揚起，屈肘當胸，右手虎口朝上，一招「千斤墜地」打向$n的",
         "force" : 165,
         "dodge" : 31,
         "parry" : 33,
         "attack": 21,
         "damage": 68,
         "lvl"   : 40,
-        "skill_name" : "千斤坠地",
-        "damage_type":  "瘀伤"
+        "skill_name" : "千斤墜地",
+        "damage_type":  "瘀傷"
 ]),
 });
 
@@ -43,19 +43,19 @@ int valid_combine(string combo)
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练飘风拳法必须空手。\n");
+                return notify_fail("練飄風拳法必須空手。\n");
 
         if ((int)me->query_skill("force") < 30)
-                return notify_fail("你的内功火候不够，无法学飘风拳法。\n");
+                return notify_fail("你的內功火候不夠，無法學飄風拳法。\n");
 
         if( query("max_neili", me)<100 )
-                return notify_fail("你的内力太弱，无法练飘风拳法。\n");
+                return notify_fail("你的內力太弱，無法練飄風拳法。\n");
 
         if ((int)me->query_skill("cuff", 1) < 20)
-                return notify_fail("你的基本拳法火候太浅。\n");
+                return notify_fail("你的基本拳法火候太淺。\n");
 
         if ((int)me->query_skill("cuff", 1) < (int)me->query_skill("piaofeng-quan", 1))
-                return notify_fail("你的基本拳法水平有限，无法领会更高深的飘风拳法。\n");
+                return notify_fail("你的基本拳法水平有限，無法領會更高深的飄風拳法。\n");
 
         return 1;
 }
@@ -80,10 +80,10 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me)
 {
         if( query("qi", me)<80 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
 
         if( query("neili", me)<80 )
-                return notify_fail("你的内力不够练飘风拳法。\n");
+                return notify_fail("你的內力不夠練飄風拳法。\n");
 
         me->receive_damage("qi", 55);
         addn("neili", -45, me);

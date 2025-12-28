@@ -30,7 +30,7 @@ string long()
                 return desc;
 
         desc += HIW + (query("gender") == "男性" ? "他" : "她") +
-                "正在寻求帮派势力的庇护，可邀请加入帮派。\n" NOR;
+                "正在尋求幫派勢力的庇護，可邀請加入幫派。\n" NOR;
 
         return desc;
 }
@@ -48,11 +48,11 @@ int init_area_npc(object ob)
                 set("bunch/zhengzhao", 3);
 
         areas = BUNCH_D->query_all_areas();
-        // 如果地盘没有加载到系统中，则该地盘没有被帮派占领
+        // 如果地盤沒有加載到系統中，則該地盤沒有被幫派佔領
         if (undefinedp(areas[base_name(room)]))
                 return 0;
 
-        if (areas[base_name(room)]["bunch_name"] == "独立中")
+        if (areas[base_name(room)]["bunch_name"] == "獨立中")
                 return 0;
 
         data = ([ "bunch_name"     : areas[base_name(room)]["bunch_name"],
@@ -79,26 +79,26 @@ int accept_object(object who, object ob)
         if (!query("bunch/bunch_name", who))
         {
                 command("say 即然" + RANK_D->query_respect(who) +
-                        "如此客气，那我就收下了。\n");
+                        "如此客氣，那我就收下了。\n");
                 return 1;
         }
 
         if (query("bunch/bunch_name", who) == query("bunch/bunch_name"))
         {
-                command("say 都是帮中兄弟，何必如此客气？\n");
+                command("say 都是幫中兄弟，何必如此客氣？\n");
                 return 0;
         }
 
         if (query("startroom") != base_name(environment(this_object())))
         {
-                command("say 我身体有点不适，你有事等我回去再说吧。\n");
+                command("say 我身體有點不適，你有事等我回去再說吧。\n");
                 return 0;
         }
 
         if (query("bunch/zhengzhao") == 1)
         {
                 command("say " + RANK_D->query_self(this_object()) +
-                        "只对武功感兴趣，其他一概免谈。\n");
+                        "只對武功感興趣，其他一概免談。\n");
                 return 0;
         }
 
@@ -106,8 +106,8 @@ int accept_object(object who, object ob)
         {
                 if (query_temp("invite/target") != who)
                 {
-                        command("say 无功不受禄，不知" +
-                                RANK_D->query_respect(who) + "给我" + ob->name() +
+                        command("say 無功不受祿，不知" +
+                                RANK_D->query_respect(who) + "給我" + ob->name() +
                                 "有何用意？\n");
                         return 0;
                 }
@@ -115,22 +115,22 @@ int accept_object(object who, object ob)
                 if (!query("money_id", ob))
                 {
                         command("say " + RANK_D->query_self_rude(this_object()) +
-                                 "只对钱有兴趣，你的破玩意自己留着吧。\n");
+                                 "只對錢有興趣，你的破玩意自己留著吧。\n");
                         return 0;
                 }
 
                 if (ob->value() < query_temp("invite/money") * 10)
                 {
-                        command("say 我不是说过了吗？" +
+                        command("say 我不是說過了嗎？" +
                                 chinese_number(query_temp("invite/money") / 1000) +
-                                "两黄金，少一下子也不行！\n");
+                                "兩黃金，少一下子也不行！\n");
                         return 0;
                 }
 
                 if (query("bunch/bunch_name") &&
                     query("bunch/zhongcheng") > who->query_kar())
                 {
-                        command("say 若是收了你的钱，我如何对得起帮中其他弟兄？\n");
+                        command("say 若是收了你的錢，我如何對得起幫中其他弟兄？\n");
                         return 0;
                 }
 
@@ -147,7 +147,7 @@ int accept_object(object who, object ob)
 
                 if (member_array(query("id", who), obj) == -1)
                 {
-                        command("say 你我素不相识，为何给" +
+                        command("say 你我素不相識，為何給" +
                                 RANK_D->query_self(this_object()) + ob->name() +
                                 "？\n");
                         return 0;
@@ -168,7 +168,7 @@ int accept_object(object who, object ob)
                 if (query("bunch/bunch_name") &&
                     query("bunch/zhongcheng") > query("meili", who))
                 {
-                        command("say 若是收了你的东西，我如何对得起帮中其他弟兄？\n");
+                        command("say 若是收了你的東西，我如何對得起幫中其他弟兄？\n");
                         return 0;
                 }
 
@@ -182,13 +182,13 @@ int do_join_bunch(object who)
 
         if (! stringp(bunch = query("bunch/bunch_name", who)))
         {
-                command("say 咦？你没有加入帮会，那我如何加入呢？\n");
+                command("say 咦？你沒有加入幫會，那我如何加入呢？\n");
                 return 0;
         }
 
         if (bunch == query("bunch/bunch_name"))
         {
-                command("say 咱们都是同帮弟兄，有事好商量嘛。\n");
+                command("say 咱們都是同幫弟兄，有事好商量嘛。\n");
                 return 0;
         }
 
@@ -196,8 +196,8 @@ int do_join_bunch(object who)
 
         command("say 既然" + RANK_D->query_respect(who) +
                 "如此看得起" + RANK_D->query_self(this_object()) +
-                "，那我也不能对不起你啊。\n");
-        message_vision("$N决定加入帮会「" + bunch + "」！\n",
+                "，那我也不能對不起你啊。\n");
+        message_vision("$N決定加入幫會「" + bunch + "」！\n",
                 this_object());
 
         BUNCH_D->add_area_into_bunch(bunch, area, environment(this_object())->short(), this_object());
@@ -219,11 +219,11 @@ void die()
         room = environment(this_object());
 
         areas = BUNCH_D->query_all_areas();
-        // 如果地盘没有加载到系统中，则该地盘没有被帮派占领
+        // 如果地盤沒有加載到系統中，則該地盤沒有被幫派佔領
         if (undefinedp(areas[base_name(room)]))
                 return ::die();
 
-        if (query("bunch/bunch_name") == "独立中")
+        if (query("bunch/bunch_name") == "獨立中")
                 return ::die();
 
         kaifa = areas[base_name(room)]["kaifa"];
@@ -239,8 +239,8 @@ void die()
 
         set("bunch/zhongcheng", zhongcheng);
 
-        message("channel:rumor", HIM "【谣言】某人：由于" + query("name") + "被杀，" +
-                                 room->short() + "的开发度降为" + kaifa + "！\n" NOR, users());
+        message("channel:rumor", HIM "【謠言】某人：由於" + query("name") + "被殺，" +
+                                 room->short() + "的開發度降為" + kaifa + "！\n" NOR, users());
 
         return ::die();
 }

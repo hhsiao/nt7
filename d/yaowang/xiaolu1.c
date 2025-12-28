@@ -6,8 +6,8 @@ void create()
 {
         set("short", "小路");
         set("long", @LONG
-这是一条小土路，两旁杂草丛生，非常荒凉，看样子很少有
-人来这里。南面是一扇小木门，背面是一片荆棘丛。
+這是一條小土路，兩旁雜草叢生，非常荒涼，看樣子很少有
+人來這裡。南面是一扇小木門，背面是一片荊棘叢。
 LONG
         );
         set("exits", ([ /* sizeof() == 2 */
@@ -17,5 +17,5 @@ LONG
 
         set("outdoors", "yaowang");
         setup();
-        create_door("south", "木门", "north", DOOR_CLOSED);
+        create_door("south", "木門", "north", DOOR_CLOSED);
 }

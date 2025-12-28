@@ -8,8 +8,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                 set("long", HIY "一块神奇的幻石，散射出七彩光芒。\n" NOR);
-                set("unit", "块");
+                 set("long", HIY "一塊神奇的幻石，散射出七彩光芒。\n" NOR);
+                set("unit", "塊");
                 set("value", 8000);
                 set("can_be_enchased", 1);
                 set("magic/type", "magic");

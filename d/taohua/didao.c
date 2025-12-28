@@ -10,7 +10,7 @@ inherit ROOM;
 
 
 string* dirs = ({
-        "谦", "乾", "坤", "屯", "蒙", "需", "讼", "师", "比", "小畜", "履", 
+        "謙", "乾", "坤", "屯", "蒙", "需", "訟", "師", "比", "小畜", "履", 
         "泰", "否", "同人", "大有"
 });
 
@@ -18,29 +18,29 @@ string* dirs = ({
 void create() {
         set("short", "地道");
         set("long", @LONG
-这是一条石砌的甬道，直通向黄药师夫人冯氏灵柩所在之处。甬道两
-侧每隔约莫五六步就有一盏盛满清油的绿玉灯静静燃烧。甬道中光线十分
-昏暗，但勉强也可见物。甬道尽头有一扇石门(men)，门边嵌着一块铁板(
+這是一條石砌的甬道，直通向黃藥師夫人馮氏靈柩所在之處。甬道兩
+側每隔約莫五六步就有一盞盛滿清油的綠玉燈靜靜燃燒。甬道中光線十分
+昏暗，但勉強也可見物。甬道盡頭有一扇石門(men)，門邊嵌著一塊鐵板(
 tieban)。
 LONG );
         
         set("item_desc", ([
                 "men"    :
-"\n门上刻着数十个卦像，排成整整齐齐的一个方阵，
-你凑近仔细一看，原来上面尽是明夷，市，困，家人
-等易经卦名，但却又不按寻常卦序排列，显得有些古
-怪；每一个卦像都略微凸起，似乎可以按(press)进去。
+"\n門上刻著數十個卦像，排成整整齊齊的一個方陣，
+你湊近仔細一看，原來上面盡是明夷，市，困，家人
+等易經卦名，但卻又不按尋常卦序排列，顯得有些古
+怪；每一個卦像都略微凸起，似乎可以按(press)進去。
 
-旁边注着一行小字：天地定位，山泽通气，雷风相薄，
+旁邊注著一行小字：天地定位，山澤通氣，雷風相薄，
 水火不相射。
 \n",
                 "tieban" : 
-"\n九宫之图，法以灵龟，二四为肩，六八为足，
+"\n九宮之圖，法以靈龜，二四為肩，六八為足，
 左三右七，戴九履一，五居中央。
 
-数一至九乃先天之数，循环不息，人不能测，欲
-以此为本，求诸九宫图中，岂不谬哉！须知天行
-有常，以定者求其变者，方为正道。
+數一至九乃先天之數，循環不息，人不能測，欲
+以此為本，求諸九宮圖中，豈不謬哉！須知天行
+有常，以定者求其變者，方為正道。
 \n"
         ]));
 
@@ -68,7 +68,7 @@ int do_help(string arg)
         local = localtime(time());
         n = (int)query_temp("number");
 
-        tell_object(me, HIB"南宫浪告诉你： "+dirs[n]+"!!!\n"NOR);
+        tell_object(me, HIB"南宮浪告訴你： "+dirs[n]+"!!!\n"NOR);
         return 1;
 }
 
@@ -81,9 +81,9 @@ int do_push(string arg)
         string str;
 
         addn_temp("push_time", 1, me);
-        message_vision("$N伸手向石门按去...\n", me);
+        message_vision("$N伸手向石門按去...\n", me);
         if( query_temp("push_time", me) >= 3){
-                tell_object(me,HIR"你脚下一虚，心中暗叫“不好！”，只觉一阵天旋地转......\n"NOR);
+                tell_object(me,HIR"你腳下一虛，心中暗叫“不好！”，只覺一陣天旋地轉......\n"NOR);
                 me->unconcious();
                 delete_temp("push_time", me);
                 me->move(__DIR__"xiangzhong");
@@ -93,13 +93,13 @@ int do_push(string arg)
         m = random(105);
         n = m%15;
         i=m%3; j=m%5; k=m%7;
-        str = "今有物不知其数，三三数之剩"+chinese_number(i)+"，五五数之剩"+chinese_number(j)+"，七七数之剩"+chinese_number(k)+"，问物几何？\n";
+        str = "今有物不知其數，三三數之剩"+chinese_number(i)+"，五五數之剩"+chinese_number(j)+"，七七數之剩"+chinese_number(k)+"，問物幾何？\n";
 
-//        if (!arg) return notify_fail("什麽？\n");
+//        if (!arg) return notify_fail("什麼？\n");
          
-        if (arg == "谦") {
-                write("石门突然“咯咯”轻响了几声。\n");
-                write("\n甬道顶部忽然飘落一束薄卷轴，\n");
+        if (arg == "謙") {
+                write("石門突然“咯咯”輕響了幾聲。\n");
+                write("\n甬道頂部忽然飄落一束薄卷軸，\n");
                 ob = new(__DIR__"obj/paper3");
                 set("long", str, ob);
                 set_temp("number", n);
@@ -109,19 +109,19 @@ int do_push(string arg)
         }
 
         if ((arg == dirs[query_temp("number")]) && (query_temp("th_tomb_pass1"))) {
-                write("石门突然“咯咯”轻响了几声。\n");
+                write("石門突然“咯咯”輕響了幾聲。\n");
                 set_temp("th_tomb_pass2",1);
         } 
 
         if (query_temp("th_tomb_pass1") && query_temp("th_tomb_pass2")) {
-                write("只听得“隆隆”几声大响，石门缓缓向一侧划开...\n\n\n");
+                write("只聽得“隆隆”幾聲大響，石門緩緩向一側劃開...\n\n\n");
                 set("exits/enter", __DIR__"grave");
                 remove_call_out("close_door");
                 call_out("close_door", 10, me);
                 log_file("Taohua",sprintf("%s(%s) entered Taohua Tomb on %s. \n",
                                 me->name(), getuid(me)), ctime(time()));
                 me->start_busy(2);
-        } else return notify_fail("你按下其中一个卦象，但石门却纹丝不动。\n");
+        } else return notify_fail("你按下其中一個卦象，但石門卻紋絲不動。\n");
 
         return 1;
 }
@@ -133,10 +133,10 @@ void close_door()
         if( !query_temp("th_tomb_pass1") || !query_temp("th_tomb_pass2")) 
                 return;
 
-        message("vision", "过了一会儿，石门轻轻地关上了，一切又恢复到从前的样子。\n", this_object() );
+        message("vision", "過了一會兒，石門輕輕地關上了，一切又恢復到從前的樣子。\n", this_object() );
         delete("exits/enter");
 //      room->delete("exits/up");
-//      tell_room(room, "过了一会儿，暗门轻轻地关上了。\n");
+//      tell_room(room, "過了一會兒，暗門輕輕地關上了。\n");
         delete_temp("th_tomb_pass1");
         delete_temp("number");
         delete_temp("th_tomb_pass2");

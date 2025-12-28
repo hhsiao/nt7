@@ -15,8 +15,8 @@ int ask_job();
 void create()
 {
         set_name("唐柔", ({ "tang rou", "tang" }));
-        set("nickname", HIG "锦江老四" NOR);
-        set("long", "这是锦江四公子的老四，一身的功夫却是不凡。\n");
+        set("nickname", HIG "錦江老四" NOR);
+        set("long", "這是錦江四公子的老四，一身的功夫卻是不凡。\n");
         set("gender", "男性");
         set("age", 25);
         set("class", "tangmen");
@@ -65,7 +65,7 @@ void create()
         prepare_skill("hand", "boyun-suowu");
 
         
-        create_family("唐门世家", 3, "弟子");
+        create_family("唐門世家", 3, "弟子");
 
         set("inquiry", ([
                 "job" : ( : ask_job  : ),
@@ -99,33 +99,33 @@ void attempt_apprentice(object ob)
         if( query("shen", ob)>1000 || query("shen", ob)<1000
          || query("combat_exp", ob)>10000 )
         {
-                command("say “我唐门世家乃是武林世家，你已是武林中人，我不能收你为徒！”\n");
+                command("say “我唐門世家乃是武林世家，你已是武林中人，我不能收你為徒！”\n");
                 return;
         }
         if( query("dex", ob)<30 )
         {
-                command("say “你的身法太差了，不要误了自己啊！”\n");
+                command("say “你的身法太差了，不要誤了自己啊！”\n");
                 return;    
         }
         if( query("int", ob)<28){
-                command("say 唐门历来注重弟子的文学修为。");
-                command("say 本派功夫要能熟练运用，必须能体会其中所含深远意境，悟性差了是不行的。");
-                command("say " + RANK_D->query_respect(ob) + "的悟性还大有潜力可挖，还是请回吧。");
+                command("say 唐門歷來注重弟子的文學修為。");
+                command("say 本派功夫要能熟練運用，必須能體會其中所含深遠意境，悟性差了是不行的。");
+                command("say " + RANK_D->query_respect(ob) + "的悟性還大有潛力可挖，還是請回吧。");
                 return;
         }
         if( query("str", ob)<30){
-                command("say " + RANK_D->query_respect(ob) + "的先天膂力不够，还是请回吧。");
+                command("say " + RANK_D->query_respect(ob) + "的先天膂力不夠，還是請回吧。");
                 return;
         }
         */
 
-        if( query("family/family_name", ob) == "唐门世家"
+        if( query("family/family_name", ob) == "唐門世家"
          && query("family/master_name", ob) != "唐柔" )
         {
-                command("say “你已是我唐门人，我的功夫不是太高的，你还是找我大师兄吧!”\n");
+                command("say “你已是我唐門人，我的功夫不是太高的，你還是找我大師兄吧!”\n");
                 return;
         }                    
-        command("say “好吧，从今天起你就是唐门的弟子了。”\n");
+        command("say “好吧，從今天起你就是唐門的弟子了。”\n");
         set("tangmen/yanli", 1, ob);
         command("recruit "+query("id", ob));
 }

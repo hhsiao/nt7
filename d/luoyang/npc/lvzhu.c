@@ -4,8 +4,8 @@ inherit NPC;
 
 void create()
 {
-        set_name("绿竹翁", ({ "lvzhu weng", "lv", "lvzhu", "weng"}));
-        set("long", "他便是洛阳东城的绿竹翁。\n"); 
+        set_name("綠竹翁", ({ "lvzhu weng", "lv", "lvzhu", "weng"}));
+        set("long", "他便是洛陽東城的綠竹翁。\n"); 
         set("gender", "男性");
         set("age", 71);
         set("attitude", "friendly");

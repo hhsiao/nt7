@@ -13,12 +13,12 @@ int main(object me, string arg)
         if (! SECURITY_D->valid_grant(me, "(wizard)"))
                 return 0;
 
-        if( !arg ) return notify_fail("指令格式：ilist <物件或档名>\n");
+        if( !arg ) return notify_fail("指令格式：ilist <物件或檔名>\n");
 
         ob = present(arg, me);
         if( !ob ) ob = present(arg, environment(me));
         if (! ob) ob = find_object(resolve_path(query("cwd", me), arg));
-        if( !ob ) return notify_fail("没有这样物件或这样物件没有被载入　\n");
+        if( !ob ) return notify_fail("沒有這樣物件或這樣物件沒有被載入　\n");
 
         list = inherit_list(ob);
         printf("%O：\n%s", ob,
@@ -37,9 +37,9 @@ protected string format_inherit_list(object ob, string *list, string *deeplist,
         for(int i=sizeof(list)-1; i>=0; i--) {
                 msg += indent + (member_array(list[i], deeplist)==-1? "□": (i==0 ? "└ " : "├ "))  + list[i];
                 switch(inherits(list[i], ob)) {
-                        case 0: msg += " (最新版有，但此物件未继承)"; break;
+                        case 0: msg += " (最新版有，但此物件未繼承)"; break;
                         case 1: break;
-                        case 2: msg += " (旧版)"; break;
+                        case 2: msg += " (舊版)"; break;
                 }
                 if( deep_ob = find_object(list[i]) ) {
                         string *l;
@@ -47,7 +47,7 @@ protected string format_inherit_list(object ob, string *list, string *deeplist,
                         if( recursive && sizeof(l = inherit_list(deep_ob)) )
                                 msg += format_inherit_list(ob, l, deeplist, indent + (i==0 ? "  " : "│")+ "  ", 1);
                 }
-                else msg += " (未载入，可能继承其他物件)\n";
+                else msg += " (未載入，可能繼承其他物件)\n";
         }
         return msg;
 }
@@ -55,9 +55,9 @@ protected string format_inherit_list(object ob, string *list, string *deeplist,
 int help ()
 {
         write(@HELP
-指令格式: ilist <物件或档名>
+指令格式: ilist <物件或檔名>
  
-列出一个物件所继承的所有物件　
+列出一個物件所繼承的所有物件　
  
 HELP
 );

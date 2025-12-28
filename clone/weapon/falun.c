@@ -34,7 +34,7 @@ int wield()
         || (me->query_str() - 10 )/5 < query_amount()
         || query_amount() > 5
         || me->query_skill("longxiang", 1) < 101)
-                return notify_fail("你使不了那么多法轮。\n");
+                return notify_fail("你使不了那麼多法輪。\n");
         }
         
         return ::wield();
@@ -42,7 +42,7 @@ int wield()
 
 void create()
 {
-        set_name("法轮", ({ "fa lun", "fa", "lun" }) );
+        set_name("法輪", ({ "fa lun", "fa", "lun" }) );
 //      set_weight(5000);
         /*if( clonep() )
                 set_default_object(__FILE__);
@@ -52,13 +52,13 @@ void create()
                 set("base_weight", 6000);
                 set("base_speed", -2);
                 set("base_dodge", -2);
-                set("long", "这是直径尺半的一个铁环，上面刻满了密宗伏魔真言，环内中空。\n");
+                set("long", "這是直徑尺半的一個鐵環，上面刻滿了密宗伏魔真言，環內中空。\n");
                 set("value", 1000);
                 set("material", "iron");
                 set("no_sell",1);
                 set("base_rigidity", 80);
                 set("base_weapon", 25);
-                set("wield_msg", "$N拿出一副$n，试了试重量，然後握在手中。\n");
+                set("wield_msg", "$N拿出一副$n，試了試重量，然後握在手中。\n");
                 set("unwield_msg", "$N放下手中的$n。\n");
         }
 

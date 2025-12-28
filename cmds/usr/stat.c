@@ -24,7 +24,7 @@ int main(object me, string arg)
                 ob = present(arg, environment(me));
                 if (!ob) ob = find_player(arg);
                 if (!ob) ob = find_living(arg);
-                if (!ob) return notify_fail("你要察看谁的状态？\n");
+                if (!ob) return notify_fail("你要察看誰的狀態？\n");
         } else
                 ob = me;
 
@@ -33,14 +33,14 @@ int main(object me, string arg)
         vend_list = query("vendetta", ob);
         busy_list = ob->query_busy();
 
-        msg  = WHT"\n当前状态\n"NOR;
+        msg  = WHT"\n當前狀態\n"NOR;
         msg += HIR BLK"----------------------------------------------------------------\n"NOR;
 
         if( (!mapp(buff_list) || !sizeof(buff_list)) &&
             (!mapp(cont_list) || !sizeof(cont_list)) &&
             (!mapp(vend_list) || !sizeof(vend_list)) &&
              !busy_list ) {
-                msg += "没有任何异常状态作用中。\n";
+                msg += "沒有任何異常狀態作用中。\n";
                 msg += HIR BLK"----------------------------------------------------------------\n"NOR;
                 write(msg);
                 return 1;
@@ -141,9 +141,9 @@ int main(object me, string arg)
         {
                 msg += HIR BLK"----------------------------------------------------------------\n"NOR;
                 if( intp(busy_list) )
-                        msg += sprintf(HIB"%-22s%-9d\n", "忙乱中", busy_list);
+                        msg += sprintf(HIB"%-22s%-9d\n", "忙亂中", busy_list);
                 else
-                        msg += sprintf(HIB"%-22s%-9s\n", "忙乱中", "……");
+                        msg += sprintf(HIB"%-22s%-9s\n", "忙亂中", "……");
         }
 
         msg += HIR BLK"----------------------------------------------------------------\n"NOR;
@@ -161,7 +161,7 @@ write(@HELP
 指令格式 :     stat
 [0;1;37m--------------------------------------------------------------------------------------------------------------------------------[0m
 
-这个指令可以让你知道你目前所拥有的所有异常状态与持续时间。
+這個指令可以讓你知道你目前所擁有的所有異常狀態與持續時間。
 
 [0;1;37m--------------------------------------------------------------------------------------------------------------------------------[0m
 HELP

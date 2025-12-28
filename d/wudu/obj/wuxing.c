@@ -6,12 +6,12 @@ inherit ITEM;
 void create()
 {
         set_weight(50);
-        set_name("无形之毒", ({ "wuxing du","yao"}) );
+        set_name("無形之毒", ({ "wuxing du","yao"}) );
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "包");
-                set("long", "这是一包五毒教的秘制的毒药，吃了它必死无疑。\n");
+                set("long", "這是一包五毒教的秘製的毒藥，吃了它必死無疑。\n");
                 set("value", 50);
                 set("poison_type", "poison");
                 set("can_pour", 1);
@@ -31,9 +31,9 @@ void create()
 
 int do_effect(object me)
 {
-        message_vision("$N一仰脖，把毒药全部倒入了嘴中。\n",
+        message_vision("$N一仰脖，把毒藥全部倒入了嘴中。\n",
                        me);
-        set_temp("die_reason", "吃了毒药去见黑白无常了", me);
+        set_temp("die_reason", "吃了毒藥去見黑白無常了", me);
         me->die();
         destruct(this_object());
         return 1;

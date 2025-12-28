@@ -4,10 +4,10 @@ inherit NPC;
 
 void create()
 {
-	set_name("本观大师", ({ "benguan dashi","benguan","dashi"}) );
+	set_name("本觀大師", ({ "benguan dashi","benguan","dashi"}) );
         set("nickname", "牟尼堂老僧");
-        set("long", "这位白须白眉，枯黄精瘦，身穿一袭金丝木
-棉袈裟的老僧便是本因方丈的师兄本观大师。\n");
+        set("long", "這位白鬚白眉，枯黃精瘦，身穿一襲金絲木
+棉袈裟的老僧便是本因方丈的師兄本觀大師。\n");
 	set("gender", "男性" );
         set("attitude", "friendly");
 	set("class", "bonze");
@@ -17,7 +17,7 @@ void create()
 	set("int", 25);
 	set("con", 25);
 	set("dex", 28);
-        create_family("天龙寺", 13, "弟子");
+        create_family("天龍寺", 13, "弟子");
         set("unique", 1);
 	
 	set("qi", 3500);

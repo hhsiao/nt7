@@ -1,6 +1,6 @@
 // This program is a part of NITAN MudLIB 
 // redl 2015/10
-// 广成金船里掉落
+// 廣成金船裡掉落
 inherit ITEM;
 #include <ansi.h>
 
@@ -8,8 +8,8 @@ void create()
 {
         set_name(NOR CYN "乾坤"YEL"符昭"NOR, ({"qiankun fuzhao", "fu", "fuzhao"}));
         set("long",
-                "这是张神秘的符纸，使用(use 数字序号)可以抽取虚弱的对手的魂魄，作为你在乾坤棋盘里的茶宠。\n");
-        set("unit", "张");
+                "這是張神秘的符紙，使用(use 數字序號)可以抽取虛弱的對手的魂魄，作為你在乾坤棋盤裡的茶寵。\n");
+        set("unit", "張");
         set("weight", 10);
         set("value", 100000000);
 }
@@ -44,13 +44,13 @@ int rdm(object me, object target, int step)
                         lv1 = p1->query_skillo("du-sheng", 1);
                         lv2 = p2->query_skillo("du-sheng", 1);
                         if (lv1 && !random(4)) {
-                                tell_room(room, NOR + CYN + query("name", p1) + NOR + CYN + "桀桀桀地冒出几声阴笑，\n然后慢慢吐出口气道：赌～～啊～～～\n" + NOR);
+                                tell_room(room, NOR + CYN + query("name", p1) + NOR + CYN + "桀桀桀地冒出幾聲陰笑，\n然後慢慢吐出口氣道：賭～～啊～～～\n" + NOR);
                                 if (random(lv2*3) > lv1) {
-                                        tell_room(room, NOR + CYN + query("name", p2) + NOR + CYN + "中食指轻揉双太阳穴，猛地睁大眼睛冲着" + query("name", p1) + NOR + CYN + "一盯。\n" + NOR);
-                                        tell_room(room, NOR + CYN + query("name", p1) + NOR + CYN + "噗地涌上一口鲜血，又强忍着内伤吞了回去。\n" + NOR);
+                                        tell_room(room, NOR + CYN + query("name", p2) + NOR + CYN + "中食指輕揉雙太陽穴，猛地睜大眼睛衝著" + query("name", p1) + NOR + CYN + "一盯。\n" + NOR);
+                                        tell_room(room, NOR + CYN + query("name", p1) + NOR + CYN + "噗地湧上一口鮮血，又強忍著內傷吞了回去。\n" + NOR);
                                         return random2(6);
                                 } else {
-                                        tell_room(room, NOR + CYN + query("name", p1) + NOR + CYN + "继续怪笑道：～啊～～～～圣～～\n" + NOR);
+                                        tell_room(room, NOR + CYN + query("name", p1) + NOR + CYN + "繼續怪笑道：～啊～～～～聖～～\n" + NOR);
                                         return 6;
                                 }
                         }
@@ -58,13 +58,13 @@ int rdm(object me, object target, int step)
                         lv1 = p1->query_skillo("du-shen", 1);
                         lv2 = p2->query_skillo("du-shen", 1);
                         if (lv1 && !random(5)) {
-                                tell_room(room, NOR + CYN + query("name", p1) + NOR + CYN + "悠闲地嚼着巧克力，\n手指上的戒指却偷偷对着骰子一晃...\n" + NOR);
+                                tell_room(room, NOR + CYN + query("name", p1) + NOR + CYN + "悠閒地嚼著巧克力，\n手指上的戒指卻偷偷對著骰子一晃...\n" + NOR);
                                 if (random(lv2*3) > lv1) {
-                                        tell_room(room, NOR + CYN + query("name", p2) + NOR + CYN + "皱皱眉，拿起嘴里衔着的大雪茄，对" + query("name", p1) + NOR + CYN + "劈脸一喷。\n" + NOR);
-                                        tell_room(room, NOR + CYN + query("name", p1) + NOR + CYN + "被呛得咳嗽不止，气急指着" + query("name", p2) + NOR + CYN + "道：你～～\n" + NOR);
+                                        tell_room(room, NOR + CYN + query("name", p2) + NOR + CYN + "皺皺眉，拿起嘴裡銜著的大雪茄，對" + query("name", p1) + NOR + CYN + "劈臉一噴。\n" + NOR);
+                                        tell_room(room, NOR + CYN + query("name", p1) + NOR + CYN + "被嗆得咳嗽不止，氣急指著" + query("name", p2) + NOR + CYN + "道：你～～\n" + NOR);
                                         return random2(6);
                                 } else {
-                                        tell_room(room, NOR + CYN + query("name", p1) + NOR + CYN + "脸上露出赌神一样的招牌微笑。\n" + NOR);
+                                        tell_room(room, NOR + CYN + query("name", p1) + NOR + CYN + "臉上露出賭神一樣的招牌微笑。\n" + NOR);
                                         if (step==3) return query("a_n1");
                                         if (step==4) return query("b_n1");
                                 }
@@ -130,7 +130,7 @@ void display_bet(int i, int j)
 "└───┘\n" + NOR;
                 break;
         }
-        tell_room(room,str + "(" + (string)i + ")点\n" + NOR);
+        tell_room(room,str + "(" + (string)i + ")點\n" + NOR);
 }
 
 int do_start_bet(object me, object target, int step)
@@ -147,7 +147,7 @@ int do_start_bet(object me, object target, int step)
         {
                 case 0:
                         set_temp("flag_bet", 1);
-                                        message_vision(NOR "$N大声道：$n你可敢接下此符？\n" NOR, me, target);
+                                        message_vision(NOR "$N大聲道：$n你可敢接下此符？\n" NOR, me, target);
                                         sklv1 = target->query_skillo("du-sheng", 1);
                                         sklv2 = target->query_skillo("du-shen", 1);
                                         eff = 1.00;
@@ -163,61 +163,61 @@ int do_start_bet(object me, object target, int step)
                                         //DEBUG_CHANNEL("iaccept:" + (string)iaccept + "\n");
                                         if ( iaccept < 15 ) {
                                                 if (eff < 0.4) 
-                                                        message_vision(NOR "$N大喜过望道：正当博取这一线生机。\n" NOR, target);
+                                                        message_vision(NOR "$N大喜過望道：正當博取這一線生機。\n" NOR, target);
                                                 else
-                                                        message_vision(NOR "$N想也不想说道：吾有何不敢？\n" NOR, target);
+                                                        message_vision(NOR "$N想也不想說道：吾有何不敢？\n" NOR, target);
                                         } else {
-                                                message_vision(NOR "$n一把扯掉" + name() + NOR "，理都没理$N的挑衅。\n" NOR, me, target);
+                                                message_vision(NOR "$n一把扯掉" + name() + NOR "，理都沒理$N的挑釁。\n" NOR, me, target);
                                                 delete_temp("flag_bet");
                                                 return 0;
                                         }
                     break;
                 case 1:
-                        tell_room(environment(), RED + me->name() + NOR + "轻轻一扔，骰子滴溜溜一转：\n");
+                        tell_room(environment(), RED + me->name() + NOR + "輕輕一扔，骰子滴溜溜一轉：\n");
                         display_bet(itmp = rdm( me,  target,  step), 1);
                         set("a_n1", itmp);
                                                 break;
                 case 2:
-                        tell_room(environment(), HIW + target->name() + NOR + "轻轻一扔，骰子滴溜溜一转：\n");
+                        tell_room(environment(), HIW + target->name() + NOR + "輕輕一扔，骰子滴溜溜一轉：\n");
                         display_bet(itmp = rdm( me,  target,  step), 0);
                         set("b_n1", itmp);
                                                 break;
                 case 3:
-                        tell_room(environment(), RED + me->name() + NOR + "对着骰子哈了口气，狠狠地一扔：\n");
+                        tell_room(environment(), RED + me->name() + NOR + "對著骰子哈了口氣，狠狠地一扔：\n");
                         display_bet(itmp = rdm( me,  target,  step), 1);
                         set("a_n2", itmp);
                                                 break;
                 case 4:
-                        tell_room(environment(), HIW + target->name() + NOR + "对着骰子哈了口气，狠狠地一扔：\n");
+                        tell_room(environment(), HIW + target->name() + NOR + "對著骰子哈了口氣，狠狠地一扔：\n");
                         display_bet(itmp = rdm( me,  target,  step), 0);
                         set("b_n2", itmp);
                                                 break;
                                 default:
                                 if (query("a_n1") == query("a_n2")) {
-                                        jgmsg1 = "\"" + "一对" + chinese_number(query("a_n1")) + "\"";
+                                        jgmsg1 = "\"" + "一對" + chinese_number(query("a_n1")) + "\"";
                                         set("a_n1", (query("a_n1") + query("a_n2")) * 100);
                                 }
                                 else {
                                         set("a_n1", query("a_n1") + query("a_n2"));
-                                                                                jgmsg1 = "\"" + chinese_number(query("a_n1")) + "点" + "\"";
+                                                                                jgmsg1 = "\"" + chinese_number(query("a_n1")) + "點" + "\"";
                                 }
                                         
                                 if (query("b_n1") == query("b_n2")) {
-                                        jgmsg2 = "\"" + "一对" + chinese_number(query("b_n1")) + "\"";
+                                        jgmsg2 = "\"" + "一對" + chinese_number(query("b_n1")) + "\"";
                                         set("b_n1", (query("b_n1") + query("b_n2")) * 100);
                                 }
                                 else  {
                                         set("b_n1", query("b_n1") + query("b_n2"));
-                                        jgmsg2 = "\"" + chinese_number(query("b_n1")) + "点" + "\"";
+                                        jgmsg2 = "\"" + chinese_number(query("b_n1")) + "點" + "\"";
                                 }
 
                                 if (query("a_n1") > query("b_n1")) {
-                                        message_vision(NOR + name() + "上一行字显示：" + jgmsg1 + "大于" + jgmsg2 + "，" +  "$N" + NOR + "得胜。\n" + NOR, me);
+                                        message_vision(NOR + name() + "上一行字顯示：" + jgmsg1 + "大於" + jgmsg2 + "，" +  "$N" + NOR + "得勝。\n" + NOR, me);
                                         return 1;
                                 } else if (query("a_n1") < query("b_n1")) {
-                                        message_vision(NOR + name() + "上一行字显示：" + jgmsg2 + "大于" + jgmsg1 + "，" +  "$N" + NOR + "得胜。\n" + NOR, target);
+                                        message_vision(NOR + name() + "上一行字顯示：" + jgmsg2 + "大於" + jgmsg1 + "，" +  "$N" + NOR + "得勝。\n" + NOR, target);
                                 } else {
-                                        message_vision(NOR + name() + "上一行字显示：" + jgmsg1 + "等于" + jgmsg2 + "，" +  "$N" NOR "和$n" + NOR + "平局。\n" + NOR, me, target);
+                                        message_vision(NOR + name() + "上一行字顯示：" + jgmsg1 + "等於" + jgmsg2 + "，" +  "$N" NOR "和$n" + NOR + "平局。\n" + NOR, me, target);
                                 }
                                 return 0;
                 }
@@ -231,57 +231,57 @@ int do_use(string arg)
         object *enemies, enemy;
         object chong, me = this_player();
         if (!environment() || environment()!=me) return 0;
-        if (!arg) return notify_fail("参数为数字1-9。\n");
-        if (strlen(arg)!=1) return notify_fail("参数为数字1-9。\n");
-        if (arg[0] < '1' || arg[0] > '9') return notify_fail("参数为数字1-9。\n");
+        if (!arg) return notify_fail("參數為數字1-9。\n");
+        if (strlen(arg)!=1) return notify_fail("參數為數字1-9。\n");
+        if (arg[0] < '1' || arg[0] > '9') return notify_fail("參數為數字1-9。\n");
         if (me->is_busy()) {
                 write (NOR BUSY_MESSAGE NOR);
                 return 1;
         }
         if (!me->is_fighting()) {
-                write (NOR "你必须在战斗里才能使用。" NOR);
+                write (NOR "你必須在戰鬥裡才能使用。" NOR);
                 return 1;
         }
         me->start_busy(1);
         i = to_int(arg);
-        need = i*i*i/2 + 1;//到第9颗需要365枚棋子，约18万泥潭币
-/*参数为数字1-9。
-你的乾坤白棋子数量不足以支持这么多茶宠(需要1枚棋子)。
-你的乾坤白棋子数量不足以支持这么多茶宠(需要5枚棋子)。
-你的乾坤白棋子数量不足以支持这么多茶宠(需要14枚棋子)。
-你的乾坤白棋子数量不足以支持这么多茶宠(需要33枚棋子)。
-你的乾坤白棋子数量不足以支持这么多茶宠(需要63枚棋子)。
-你的乾坤白棋子数量不足以支持这么多茶宠(需要109枚棋子)。
-你的乾坤白棋子数量不足以支持这么多茶宠(需要172枚棋子)。
-你的乾坤白棋子数量不足以支持这么多茶宠(需要257枚棋子)。
-你的乾坤白棋子数量不足以支持这么多茶宠(需要365枚棋子)。*/
+        need = i*i*i/2 + 1;//到第9顆需要365枚棋子，約18萬泥潭幣
+/*參數為數字1-9。
+你的乾坤白棋子數量不足以支持這麼多茶寵(需要1枚棋子)。
+你的乾坤白棋子數量不足以支持這麼多茶寵(需要5枚棋子)。
+你的乾坤白棋子數量不足以支持這麼多茶寵(需要14枚棋子)。
+你的乾坤白棋子數量不足以支持這麼多茶寵(需要33枚棋子)。
+你的乾坤白棋子數量不足以支持這麼多茶寵(需要63枚棋子)。
+你的乾坤白棋子數量不足以支持這麼多茶寵(需要109枚棋子)。
+你的乾坤白棋子數量不足以支持這麼多茶寵(需要172枚棋子)。
+你的乾坤白棋子數量不足以支持這麼多茶寵(需要257枚棋子)。
+你的乾坤白棋子數量不足以支持這麼多茶寵(需要365枚棋子)。*/
         if ( need > query("qiankunqipan/limit_guest", me)) {
-                write(NOR "你的乾坤白棋子数量不足以支持这么多茶宠(需要"+(string)need+"枚棋子)。\n" NOR); 
+                write(NOR "你的乾坤白棋子數量不足以支持這麼多茶寵(需要"+(string)need+"枚棋子)。\n" NOR); 
                 return 1;
         }
         enemies = me->query_enemy();
         if( !enemies || sizeof(enemies) < 1 ) {
-                write (NOR "你目前没有敌人。" NOR);
+                write (NOR "你目前沒有敵人。" NOR);
                 return 1;
         }
         enemy = enemies[random(sizeof(enemies))];
         if (!enemy) {
-                write (NOR "你目前没有敌人。" NOR);
+                write (NOR "你目前沒有敵人。" NOR);
                 return 1;
         }
         if (!enemy->is_character() || !query("can_speak", enemy)) {
-                write (NOR "你没法和" + enemy->name() + NOR "签订茶宠契约。" NOR);
+                write (NOR "你沒法和" + enemy->name() + NOR "簽訂茶寵契約。" NOR);
                 return 1;
         }
         if (query_temp("is_qkfz", enemy)) {
-                write (NOR + enemy->name() + NOR "已经签订过茶宠契约。" NOR);
+                write (NOR + enemy->name() + NOR "已經簽訂過茶寵契約。" NOR);
                 return 1;
         }       
         if (playerp(enemy) && !query_temp("in_pkd", enemy)) {
-                write (NOR + "只有在屠人场才能逼玩家约。" NOR);
+                write (NOR + "只有在屠人場才能逼玩家約。" NOR);
                 return 1;
         }       
-        message_vision(NOR YEL "$N" NOR YEL  "扬手祭出一张" + name() + NOR YEL "飘过去，正好“pia ~”地贴在$n" NOR YEL  "的额头上。\n" NOR, me, enemy);
+        message_vision(NOR YEL "$N" NOR YEL  "揚手祭出一張" + name() + NOR YEL "飄過去，正好“pia ~”地貼在$n" NOR YEL  "的額頭上。\n" NOR, me, enemy);
         if (do_start_bet(me, enemy, 0)) {
                 message_vision(NOR YEL "$N" NOR YEL  "抽走了$n" NOR YEL  "的一魂二魄。\n" NOR, me, enemy);
                 set_temp("is_qkfz", 1, enemy);
@@ -291,10 +291,10 @@ int do_use(string arg)
                 enemy->die(me);
         }
         else {
-                message_vision(NOR YEL "$N" NOR YEL  "想约$n" NOR YEL  "已然失败。\n" NOR, me, enemy);
+                message_vision(NOR YEL "$N" NOR YEL  "想約$n" NOR YEL  "已然失敗。\n" NOR, me, enemy);
                 if (query_temp("flag_bet")) {
-                        set_temp("die_reason", NOR + "想约"+enemy->name()+"失败而亡" + NOR, me);
-                        me->die(enemy);//平局算发起人死亡
+                        set_temp("die_reason", NOR + "想約"+enemy->name()+"失敗而亡" + NOR, me);
+                        me->die(enemy);//平局算發起人死亡
                 }
         }
         destruct(this_object());

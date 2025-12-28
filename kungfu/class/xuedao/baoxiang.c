@@ -11,10 +11,10 @@ mixed ask_skill1();
 
 void create()
 {
-        set_name("宝象", ({ "bao xiang", "bao", "xiang" }));
+        set_name("寶象", ({ "bao xiang", "bao", "xiang" }));
         set("long", @LONG
-一个极高极瘦的僧人，俩眼凶芒四射。此人在
-血刀老祖门下，最是心狠手辣。
+一個極高極瘦的僧人，倆眼兇芒四射。此人在
+血刀老祖門下，最是心狠手辣。
 LONG);
         set("gender", "男性");
         set("age", 35);
@@ -61,7 +61,7 @@ LONG);
         prepare_skill("hand", "dashou-yin");
 
         set("no_teach", ([
-                "xuedao-daofa" : "血刀大法必须由老祖亲传。",
+                "xuedao-daofa" : "血刀大法必須由老祖親傳。",
         ]));
 
         set("chat_chance_combat", 100);
@@ -100,27 +100,27 @@ void attempt_apprentice(object ob)
         if( query("class", ob) != "bonze" )
         {
                 set_temp("pending/join_bonze", 1, ob);
-                command("say 你不是出家人，我们血刀门是不会收留的。"
-                        "如果你要出家，请找善勇师弟。");
+                command("say 你不是出家人，我們血刀門是不會收留的。"
+                        "如果你要出家，請找善勇師弟。");
                 return;
         }
 
         if( query("shen", ob)>0 )
         {
-                command("say 我正想找你们侠义道的晦气。\n");
+                command("say 我正想找你們俠義道的晦氣。\n");
                 this_object()->kill_ob(ob);
                 return;
         }
 
         if ((int)ob->query_skill("lamaism", 1) < 40)
         {
-                command("say 入我血刀门，修习密宗佛法是首要的。\n");
+                command("say 入我血刀門，修習密宗佛法是首要的。\n");
                 return;
         }
 
         if ((int)ob->query_skill("force") < 75)
         {
-                command("say 你这个笨蛋！怎么不先把内功练好！\n");
+                command("say 你這個笨蛋！怎麼不先把內功練好！\n");
                 return;
         }
 
@@ -134,36 +134,36 @@ mixed ask_skill1()
         me = this_player();
 
         if( query("can_perform/honglian-dao/huo", me) )
-                return "我不是都已经教过你了吗？";
+                return "我不是都已經教過你了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "你又不是我血刀门的，再罗嗦我宰了你！";
+                return "你又不是我血刀門的，再羅嗦我宰了你！";
 
         if (me->query_skill("honglian-dao", 1) < 1)
-                return "你连红莲刀法都没学，还罗嗦什么？";
+                return "你連紅蓮刀法都沒學，還羅嗦什麼？";
 
         if( query("family/gongji", me)<80 )
-                return "老祖说了，咋们的绝技不传无功之人。";
+                return "老祖說了，咋們的絕技不傳無功之人。";
 
         if( query("shen", me)>-8000 )
-                return "你这样心慈手软，就算学会这招又有什么用？";
+                return "你這樣心慈手軟，就算學會這招又有什麼用？";
 
         if (me->query_skill("force") < 120)
-                return "你的内功修为实在太差，快去多练练再来。";
+                return "你的內功修為實在太差，快去多練練再來。";
 
         if( query("max_neili", me)<800 )
-                return "你的内力差成这样，居然还好意思来找我？";
+                return "你的內力差成這樣，居然還好意思來找我？";
 
         if (me->query_skill("honglian-dao", 1) < 80)
-                return "等你把红莲刀法练熟了再来找我吧。";
+                return "等你把紅蓮刀法練熟了再來找我吧。";
 
-        message_vision(HIY "$n" HIY "狞笑数声，伸手将$N" HIY "招到身前，低声在$N" HIY
-                       "耳旁嘀咕了半\n天。然后又拔出腰刀翻转数下，斜撩而出。似乎是"
-                       "一种颇为\n独特的刀诀。\n" NOR, me, this_object());
+        message_vision(HIY "$n" HIY "獰笑數聲，伸手將$N" HIY "招到身前，低聲在$N" HIY
+                       "耳旁嘀咕了半\n天。然後又拔出腰刀翻轉數下，斜撩而出。似乎是"
+                       "一種頗為\n獨特的刀訣。\n" NOR, me, this_object());
 
         command("bored");
-        command("say 好了，好了。你自己去练吧。");
-        tell_object(me, HIC "你学会了「流星火雨」。\n" NOR);
+        command("say 好了，好了。你自己去練吧。");
+        tell_object(me, HIC "你學會了「流星火雨」。\n" NOR);
 
         if (me->can_improve_skill("blade"))
                 me->improve_skill("blade", 1500000);

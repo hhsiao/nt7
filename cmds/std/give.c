@@ -17,11 +17,11 @@ int main(object me, string arg)
         mixed info;
         int i, amount;
 
-        if (! arg) return notify_fail("你要给谁什么东西？\n");
+        if (! arg) return notify_fail("你要給誰什麼東西？\n");
 
         if (sscanf(arg, "%s to %s", item, target) == 2 ||
             sscanf(arg, "%s %s", target, item) == 2 );
-        else return notify_fail("你要给谁什么东西？\n");
+        else return notify_fail("你要給誰什麼東西？\n");
 
         if (! objectp(who = present(target, environment(me))))
         {
@@ -29,15 +29,15 @@ int main(object me, string arg)
 
                 if (sscanf(arg, "%s %s %s", ext, target, item) != 3 ||
                     ! objectp(who = present(ext + " " + target, environment(me))))
-                        return notify_fail("这里没有这个人。\n");
+                        return notify_fail("這裡沒有這個人。\n");
         }
 
 
-        if (me == who) return notify_fail("毛病！你自己给自己东西干吗？\n");
+        if (me == who) return notify_fail("毛病！你自己給自己東西幹嗎？\n");
         if (in_input(who))
-                return notify_fail("你还是得等人家忙完了再说吧。\n");
+                return notify_fail("你還是得等人家忙完了再說吧。\n");
         if (! living(who))
-                return notify_fail("你还是得等人家醒了再说吧。\n");
+                return notify_fail("你還是得等人家醒了再說吧。\n");
 
         if( playerp(me) && !wizardp(me) && stringp(no_accept=query("env/no_accept", who)) )
         {
@@ -46,7 +46,7 @@ int main(object me, string arg)
                     !is_sub(query("id", me),query("env/can_accept", who)) )
                 {
                         // user refuse to accept
-                        return notify_fail("人家现在不想要什么东西。\n");
+                        return notify_fail("人家現在不想要什麼東西。\n");
                 }
         }
 
@@ -64,19 +64,19 @@ int main(object me, string arg)
                 }
 
                 if (!obj)
-                        return notify_fail("你身上没有这样东西。\n");
+                        return notify_fail("你身上沒有這樣東西。\n");
 
                 if( query_temp("is_riding", me) == obj )
-                        return notify_fail("你正骑着它呢。\n");
+                        return notify_fail("你正騎著它呢。\n");
 
                 if (! obj->query_amount())
-                        return notify_fail( obj->name() + "不能被分开给人。\n");
+                        return notify_fail( obj->name() + "不能被分開給人。\n");
 
                 if (amount < 1)
-                        return notify_fail("东西的数量至少是一个。\n");
+                        return notify_fail("東西的數量至少是一個。\n");
 
                 if (amount > obj->query_amount() )
-                        return notify_fail("你没有那么多的" + obj->name() + "。\n");
+                        return notify_fail("你沒有那麼多的" + obj->name() + "。\n");
 
                 else if (amount == (int)obj->query_amount())
                 {
@@ -115,12 +115,12 @@ int main(object me, string arg)
                 }
                 if (! amount)
                 {
-                        write("你什么都没有给出去。\n");
+                        write("你什麼都沒有給出去。\n");
                         return 1;
                 }
-                message_vision("$N将一堆东西递给$n。\n",me,who);
+                message_vision("$N將一堆東西遞給$n。\n",me,who);
 
-                write("给完了。\n");
+                write("給完了。\n");
                 return 1;
         }
 
@@ -135,10 +135,10 @@ int main(object me, string arg)
                 }
         }
         if (!obj)
-                return notify_fail("你身上没有这样东西。\n");
+                return notify_fail("你身上沒有這樣東西。\n");
 
         if( query_temp("is_riding", me) == obj )
-                return notify_fail("你正骑着它呢。\n");
+                return notify_fail("你正騎著它呢。\n");
 
         do_give(me, obj, who, 1);
         return 1;
@@ -148,25 +148,25 @@ int do_give(object me, object obj, object who,int info)
 {
         if( query("no_drop", obj) && !who->is_ultra() )
         {
-                tell_object(me, "这样东西不能随便给人。\n");
+                tell_object(me, "這樣東西不能隨便給人。\n");
                 return 0;
         }
 
         if (living(obj))
         {
-                tell_object(me, "天哪！你怎么连活人生意也做？\n");
+                tell_object(me, "天哪！你怎麼連活人生意也做？\n");
                 return 0;
         }
 
         if( query("dynamic_quest", obj) && playerp(who) )
         {
-                tell_object(me, "这种物件岂可随意给人！\n");
+                tell_object(me, "這種物件豈可隨意給人！\n");
                 return 0;
         }
 
         if( playerp(who) && query("maze_item", obj) )
         {
-                tell_object(me, "副本物品不能送给别人。\n");
+                tell_object(me, "副本物品不能送給別人。\n");
                 return 0;
         }
 
@@ -174,24 +174,24 @@ int do_give(object me, object obj, object who,int info)
             sizeof(filter_array(all_inventory(who),(:!query("equipped", $1):))) >= MAX_ITEM_CARRIED && 
             ! obj->can_combine_to(who))
         {
-                tell_object(me, "人家身上的东西实在是太多了，没法再拿东西了。\n");
+                tell_object(me, "人家身上的東西實在是太多了，沒法再拿東西了。\n");
                 return 0;
         }
 
         switch(query("equipped", obj) )
         {
         case "worn":
-                tell_object(me, obj->name() + "必须脱下来才能给别人。\n");
+                tell_object(me, obj->name() + "必須脫下來才能給別人。\n");
                 return 0;
 
         case "wielded":
-                tell_object(me, obj->name() + "必须解除装备才能给别人。\n");
+                tell_object(me, obj->name() + "必須解除裝備才能給別人。\n");
                 return 0;
         }
 
         if (info)
         if( query("id", who) != "you xun" )
-        message_vision("$N拿出" + obj->short() + "给$n。\n", me, who);
+        message_vision("$N拿出" + obj->short() + "給$n。\n", me, who);
 
         /*
         if( query("dynamic_quest", obj) )
@@ -214,13 +214,13 @@ int do_give(object me, object obj, object who,int info)
 
                 r = 0;
 
-                // 接受物品的时候先判断是否为NPC帮派任务
-                if( query("bunch_quest", me) && query("bunch_quest/type", me) == "寻找物品" )
+                // 接受物品的時候先判斷是否為NPC幫派任務
+                if( query("bunch_quest", me) && query("bunch_quest/type", me) == "尋找物品" )
                         r = accept_object(me, who, obj);
 
                 if (! r)
                 {
-                        // 接受物品的时候先判断是否有重载的接收函数
+                        // 接受物品的時候先判斷是否有重載的接收函數
                         f=query_temp("override/accept_object", who);
                         if (functionp(f))
                                 r = (*f)(who, me, obj);
@@ -229,8 +229,8 @@ int do_give(object me, object obj, object who,int info)
                 }
 
                 if (! r)
-                        // 重载的函数不接受，也不处理(返回-1)
-                        // 那么就调用accept_object进行处理
+                        // 重載的函數不接受，也不處理(返回-1)
+                        // 那麼就調用accept_object進行處理
                         r = who->accept_object(me, obj);
 
                 if (! objectp(who)) return 0;
@@ -255,14 +255,14 @@ int do_give(object me, object obj, object who,int info)
 
         if (! playerp(who) && obj->value())
         {
-                message_vision("$n接过了$N的" + obj->short() + "。\n", me, who);
+                message_vision("$n接過了$N的" + obj->short() + "。\n", me, who);
                 destruct(obj);
                 return 1;
         }
 
         if (! obj->move(who))
         {
-                message_vision("然而$n没能拿住$N的" + obj->name() + "。\n", me, who);
+                message_vision("然而$n沒能拿住$N的" + obj->name() + "。\n", me, who);
                 return 0;
         }
 
@@ -285,26 +285,26 @@ int accept_object(object me, object who, object ob)
 
         bunch_quest=query("bunch_quest", me);
 
-        //给错人了
+        //給錯人了
         if (bunch_quest["target"] != base_name(who))
                 return 0;
 
-        //给错东西了
+        //給錯東西了
         if (ob->name() != bunch_quest["obj_name"])
                 return 0;
 
-        message_sort("$N接过" + ob->name() + "，翻来覆去看了看，喜不"
-                     "自胜，一时间是激动万分。半晌才对$n道：“这位" +
+        message_sort("$N接過" + ob->name() + "，翻來覆去看了看，喜不"
+                     "自勝，一時間是激動萬分。半晌才對$n道：“這位" +
                      RANK_D->query_respect(me) +
-                     "，实在是感激不尽，这点小意思，务必笑纳！”\n", who, me);
+                     "，實在是感激不盡，這點小意思，務必笑納！”\n", who, me);
 
-        message_vision("$N交给$n一些白银作为报酬。\n", who, me);
+        message_vision("$N交給$n一些白銀作為報酬。\n", who, me);
 
         reward = new("/clone/money/silver");
         reward->set_amount(20);
         reward->move(me, 1);
 
-        // 奖励
+        // 獎勵
         addn("pk_score", -2, me);
         if (query("pk_score", me) < 0) set("pk_score", 0, me);
 
@@ -318,8 +318,8 @@ int accept_object(object me, object who, object ob)
                "pot" : pot,
                "score" : score,
                "weiwang" : weiwang,
-               "prompt": "在帮助" + who->name() + "寻找" + bunch_quest["obj_name"] +
-                         HIG "的过程中，经过锻炼" ]);
+               "prompt": "在幫助" + who->name() + "尋找" + bunch_quest["obj_name"] +
+                         HIG "的過程中，經過鍛鍊" ]);
 
         GIFT_D->delay_bonus(me, b);
 
@@ -333,10 +333,10 @@ int accept_object(object me, object who, object ob)
 int help(object me)
 {
         write(@HELP
-指令格式 : give <物品名称> | all to <某人>
-      或 : give <某人> <物品名称> | all
+指令格式 : give <物品名稱> | all to <某人>
+      或 : give <某人> <物品名稱> | all
 
-这个指令可以让你将某样物品给别人，当然，首先你要拥有这样物品。
+這個指令可以讓你將某樣物品給別人，當然，首先你要擁有這樣物品。
 
 HELP );
         return 1;

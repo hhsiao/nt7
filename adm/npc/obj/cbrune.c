@@ -28,13 +28,13 @@ void create()
         set_weight(3000);
 
         set("long", HIW @LONG
-这是一个可以用来快速合成升级符文的神器，你需要将准备合成的材料放在身上就可以了。
+這是一個可以用來快速合成升級符文的神器，你需要將準備合成的材料放在身上就可以了。
 
-合成符文    cb <符文> 例如：cb rune09，表示将要合成为符文rune09
+合成符文    cb <符文> 例如：cb rune09，表示將要合成為符文rune09
 
 LONG NOR );
         set("value", 200000);
-        set("unit", "台");
+        set("unit", "臺");
         set("no_get", 1);
 
         setup();
@@ -56,16 +56,16 @@ int do_cb(string arg)
         
         me = this_player();
                 
-        if( me->is_busy() ) return notify_fail("你正忙着呢！\n"); 
-        if( query_temp("do_busy") ) return notify_fail("符文合成器气喘嘘地叹道：慢慢来 ....\n");  
+        if( me->is_busy() ) return notify_fail("你正忙著呢！\n"); 
+        if( query_temp("do_busy") ) return notify_fail("符文合成器氣喘噓地嘆道：慢慢來 ....\n");  
 
         if( !arg || strsrch(arg, "rune") < 0 ) 
-                return notify_fail("你想要合成什么？格式:cb rune09\n");     
+                return notify_fail("你想要合成什麼？格式:cb rune09\n");     
       
         sscanf(arg, "rune%s", a); 
         n = to_int(a);
         if( n < 2 || n > 33 )
-                return notify_fail("你想要合成什么？格式:cb rune09\n");
+                return notify_fail("你想要合成什麼？格式:cb rune09\n");
  	
  	set_temp("do_busy", 1);
  	remove_call_out("do_reset");
@@ -85,7 +85,7 @@ int do_cb(string arg)
                 obs1 = filter_array(all_inventory(me),(:query("id", $1) == $(str) && !$1->is_item_make():)); 
                 k = sizeof(obs1)/3;
                 if( k < 1 ) {
-                        write(HIG "你没有准备足够的符文合成所需材料。\n");
+                        write(HIG "你沒有準備足夠的符文合成所需材料。\n");
                         me->start_busy(1);
                         return -1;
                 }
@@ -100,7 +100,7 @@ int do_cb(string arg)
                                 ob->move(me);
                         }
                 }
-                write(HIW "只见符文合成器发出一道白光从你身上扫过，你发现身上的符文似乎发生了某些变化。\n");
+                write(HIW "只見符文合成器發出一道白光從你身上掃過，你發現身上的符文似乎發生了某些變化。\n");
                 return 1;
         }
                 
@@ -116,7 +116,7 @@ int do_cb(string arg)
         k = min(t1, t2);
         if( k < 1 ) {
                 me->start_busy(1);
-                write(HIG "你没有准备足够的符文合成所需材料。\n");
+                write(HIG "你沒有準備足夠的符文合成所需材料。\n");
                 return -1;
         }
         
@@ -134,7 +134,7 @@ int do_cb(string arg)
                         ob->move(me);
                 }
         }
-        write(HIW "只见符文合成器发出一道白光从你身上扫过，你发现身上的符文似乎发生了某些变化。\n");          
+        write(HIW "只見符文合成器發出一道白光從你身上掃過，你發現身上的符文似乎發生了某些變化。\n");          
         me->start_busy(1);
         return 1;        
 }

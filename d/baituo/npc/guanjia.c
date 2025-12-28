@@ -5,7 +5,7 @@ void create()
         set_name("管家", ({ "guan jia", "guan", "jia" }));
         set("gender", "男性" );
         set("age", 30);
-        set("long", "一个管家。\n");
+        set("long", "一個管家。\n");
         set("shen_type", -1);
         set("combat_exp", 20000);
         set("str", 24);

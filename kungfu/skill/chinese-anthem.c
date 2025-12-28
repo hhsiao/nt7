@@ -1,4 +1,4 @@
-// chinese-anthem.c 义勇军进行曲
+// chinese-anthem.c 義勇軍進行曲
 
 #include <ansi.h>
 
@@ -20,10 +20,10 @@ int practice_skill(object me)
         object ob;
 
         if( query("jing", me)<80 )
-                return notify_fail("你的精神不够好，没法练习了。\n");
+                return notify_fail("你的精神不夠好，沒法練習了。\n");
 
         if( query("qi", me)<70 )
-                return notify_fail("你现在实在是太累了。\n");
+                return notify_fail("你現在實在是太累了。\n");
 
         me->receive_damage("jing", 50);
         me->receive_damage("qi", 50);
@@ -61,18 +61,18 @@ void do_effect(object me)
                 }
         }
 
-        message("vision", HIY "你听了这首慷慨激昂的国歌，不禁激"
-                "动万分，说不出的兴奋。\n" NOR, obs, ({ me }));
-        tell_object(me, HIY "你演奏完了这首慷慨激昂的国歌，不禁激"
-                "动万分，说不出的兴奋。\n" NOR);
+        message("vision", HIY "你聽了這首慷慨激昂的國歌，不禁激"
+                "動萬分，說不出的興奮。\n" NOR, obs, ({ me }));
+        tell_object(me, HIY "你演奏完了這首慷慨激昂的國歌，不禁激"
+                "動萬分，說不出的興奮。\n" NOR);
         if (attacker)
         {
                 if( query("gender", attacker) == "女性" )
-                        msg = HIR "\n一时间$N" HIR "不觉是心潮澎湃，不能"
-                              "自已，杏目圆睁，口中一声娇喝：“倭贼！受死吧！”\n" NOR;
+                        msg = HIR "\n一時間$N" HIR "不覺是心潮澎湃，不能"
+                              "自已，杏目圓睜，口中一聲嬌喝：“倭賊！受死吧！”\n" NOR;
                 else
-                        msg = HIR "\n一时间$N" HIR "不觉是热血沸腾，对$n"
-                              HIR "大喝道：“东洋倭贼，还不受死？”\n" NOR;
+                        msg = HIR "\n一時間$N" HIR "不覺是熱血沸騰，對$n"
+                              HIR "大喝道：“東洋倭賊，還不受死？”\n" NOR;
                 message_vision(msg, attacker, target);
                 
                 i = (lvl - 200) / 10;

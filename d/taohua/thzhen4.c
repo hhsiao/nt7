@@ -17,9 +17,9 @@ void create()
 
         set("short", "桃花林");
         set("long", @LONG
-你一走进桃林，看见东一簇桃花，西一丛桃树，顿时目眩神迷，迷失
-了方向。你慌乱中刚想退出，回头一瞧，来路已在花丛中消失得无影无踪，
-看来只有硬着头皮往前走了。
+你一走進桃林，看見東一簇桃花，西一叢桃樹，頓時目眩神迷，迷失
+了方向。你慌亂中剛想退出，回頭一瞧，來路已在花叢中消失得無影無蹤，
+看來只有硬著頭皮往前走了。
 LONG );
 
         set("exits", ([
@@ -43,10 +43,10 @@ LONG );
 }
 void init()
 {
-        set_temp("die_reason", "误入桃花迷阵被桃花瓣射死", this_player());
+        set_temp("die_reason", "誤入桃花迷陣被桃花瓣射死", this_player());
         this_player()->receive_damage("qi", 15);
         this_player()->receive_wound("qi",  15);
-        message_vision(HIR "突然一阵桃花瓣象雨点般疾射$N！\n" NOR, this_player());
+        message_vision(HIR "突然一陣桃花瓣象雨點般疾射$N！\n" NOR, this_player());
 }
 
 int valid_leave(object me, string dir)

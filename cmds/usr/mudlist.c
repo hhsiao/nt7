@@ -12,7 +12,7 @@
 inherit F_CLEAN_UP;
 
 string help = @HELP
-        标准 mudlist 指令。
+        標準 mudlist 指令。
 HELP;
 
 int online;
@@ -28,11 +28,11 @@ string cstatus(int status, string color)
 
         if( status & ONLINE)
         {
-                str+=HIW"连线"NOR;
+                str+=HIW"連線"NOR;
                 online++;
         }
-        if( status&SHUTDOWN)    str+=YEL"关闭"NOR;
-        if( status&DISCONNECT)  str+=WHT"断线"NOR;
+        if( status&SHUTDOWN)    str+=YEL"關閉"NOR;
+        if( status&DISCONNECT)  str+=WHT"斷線"NOR;
         str += color;
 
         return sprintf("%-18s",str);
@@ -48,7 +48,7 @@ int main(object me, string arg)
         mixed c=({}),v=({});
 
         if( !i2=find_object(INTERMUD2_D) )
-                return tell(me, "网路精灵并没有被载入。\n", CMDMSG);
+                return tell(me, "網路精靈並沒有被載入。\n", CMDMSG);
 
         if( arg )
         {
@@ -84,8 +84,8 @@ int main(object me, string arg)
         v=keys(x);
         v = sort_array(v,1);
 
-        str+="□INTERMUD_2 MUDLIST\n\n"HIY"Cf"NOR"-系统成功自动判断编码类型\n"HIG"GB"NOR"-确认为GB编码\n"HIR"AD"NOR"-确认有大量广告讯息\n"HIB"Ig"NOR"-隔绝讯息\n\n";
-        str+=sprintf("现在时刻：%s\n\n□确定常驻列表\n"HBBLU"%-:21s%-26s%-16s%5s %18s %-16s\n"NOR,TIME_D->replace_ctime(time()),"名称","中文名称(线上人数)","IP 位址","端口","状态","最后接触");
+        str+="□INTERMUD_2 MUDLIST\n\n"HIY"Cf"NOR"-系統成功自動判斷編碼類型\n"HIG"GB"NOR"-確認為GB編碼\n"HIR"AD"NOR"-確認有大量廣告訊息\n"HIB"Ig"NOR"-隔絕訊息\n\n";
+        str+=sprintf("現在時刻：%s\n\n□確定常駐列表\n"HBBLU"%-:21s%-26s%-16s%5s %18s %-16s\n"NOR,TIME_D->replace_ctime(time()),"名稱","中文名稱(線上人數)","IP 位址","端口","狀態","最後接觸");
         str+=repeat_string("--",52)+"\n";
         foreach(t in c)
         {
@@ -129,13 +129,13 @@ int main(object me, string arg)
 
         }
 
-        str+=repeat_string("--",52)+"\n共 "+sizeof(mudlist)+" 笔资料，有 "+online+" 个 Mud 连线中。\n\n□等待确认列表\n";
-        str+=sprintf(HBBLU"%-:21s%-26s%-16s%5s %18s %-16s\n"NOR,"名称","中文名称(线上人数)","IP 位置","端口","回应","最后接触");
+        str+=repeat_string("--",52)+"\n共 "+sizeof(mudlist)+" 筆資料，有 "+online+" 個 Mud 連線中。\n\n□等待確認列表\n";
+        str+=sprintf(HBBLU"%-:21s%-26s%-16s%5s %18s %-16s\n"NOR,"名稱","中文名稱(線上人數)","IP 位置","端口","回應","最後接觸");
         str+=repeat_string("--",52)+"\n";
         foreach(t in v)
         str+=sprintf("%-:21s%-26s%-16s%5s %18d %-16s\n",t,(incoming_mudlist[x[t]]["MUDNAME"]||"")+NOR+(incoming_mudlist[x[t]]["USERS"]?"("+incoming_mudlist[x[t]]["USERS"]+")":""),incoming_mudlist[x[t]]["HOSTADDRESS"],incoming_mudlist[x[t]]["PORT"]+"",incoming_mudlist[x[t]]["CONNECTION"],TIME_D->replace_ctime(incoming_mudlist[x[t]]["LASTESTCONTACT"]));
         str+=repeat_string("--",52)+"\n";
-        str+="共 "+sizeof(incoming_mudlist)+" 笔资料，下次资讯更新:"+TIME_D->replace_ctime(fetch_variable("refresh_limit",i2)+REFRESH_INCOMING_TIME)+"\n\n总计共 "+sizeof(mudlist+incoming_mudlist)+" 个 Mud 。\n";
+        str+="共 "+sizeof(incoming_mudlist)+" 筆資料，下次資訊更新:"+TIME_D->replace_ctime(fetch_variable("refresh_limit",i2)+REFRESH_INCOMING_TIME)+"\n\n總計共 "+sizeof(mudlist+incoming_mudlist)+" 個 Mud 。\n";
 
         online=0;
 

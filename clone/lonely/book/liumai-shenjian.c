@@ -3,7 +3,7 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIW "「六脉神剑谱」" NOR, ({ "liumai jianpu", "liumai", "jianpu"}));
+        set_name(HIW "「六脈神劍譜」" NOR, ({ "liumai jianpu", "liumai", "jianpu"}));
         set_weight(500);
         if (clonep())
                destruct(this_object());
@@ -11,8 +11,8 @@ void create()
                 set("unit", "本");
                 set("material", "paper");
                 set("no_sell", 1);
-                set("long", HIW "\n这是一本用薄纸写成的书，封皮上写有「六脉神"
-                            "剑谱」四\n字。你可以试着读读(read)看。\n\n" NOR, );
+                set("long", HIW "\n這是一本用薄紙寫成的書，封皮上寫有「六脈神"
+                            "劍譜」四\n字。你可以試著讀讀(read)看。\n\n" NOR, );
         }
 }
 
@@ -32,63 +32,63 @@ int do_du(string arg)
 
         if (! arg)
         {
-                write("研读六脉神剑谱指令格式：read <技能> from <六脉神剑谱>\n");
+                write("研讀六脈神劍譜指令格式：read <技能> from <六脈神劍譜>\n");
                 return 1;
         }
 
         if (sscanf(arg, "%s from %s", skill, book) != 2)
         {
-                write("研读六脉神剑谱指令格式：read <技能> from <六脉神剑谱>\n");
+                write("研讀六脈神劍譜指令格式：read <技能> from <六脈神劍譜>\n");
                 return 1;
         }
 
         if (me->is_busy())
         {
-                write("你现在正忙着呢。\n");
+                write("你現在正忙著呢。\n");
                 return 1;
         }
 
         if (me->is_fighting())
         {
-                write("你无法在战斗中专心下来研读新知！\n");
+                write("你無法在戰鬥中專心下來研讀新知！\n");
                 return 1;
         }
 
         if( query("no_fight", where )
             && query("doing", me) != "scheme" )
         {
-                write("你无法在这里静下心来研读六脉神剑谱。\n");
+                write("你無法在這裡靜下心來研讀六脈神劍譜。\n");
                 return 1;
         }
 
         if (! me->query_skill("literate", 1))
         {
-                write("你是个文盲，先学点文化(literate)吧。\n");
+                write("你是個文盲，先學點文化(literate)吧。\n");
                 return 1;
         }
 
         if (! id(book))
         {
-                write("这里没有这本书。\n");
+                write("這裡沒有這本書。\n");
                 return 1;
         }
 
-        if (skill != "shaochong-sword" && skill != "少冲剑"
-           && skill != "guanchong-sword" && skill != "关冲剑"
-           && skill != "shaoze-sword" && skill != "少泽剑"
-           && skill != "zhongchong-sword" && skill != "中冲剑"
-           && skill != "shangyang-sword" && skill != "商阳剑"
-           && skill != "shaoshang-sword" && skill != "少商剑"
-           && skill != "无形剑气" && skill != "六脉剑气"
-           && skill != "万剑纵横")
+        if (skill != "shaochong-sword" && skill != "少衝劍"
+           && skill != "guanchong-sword" && skill != "關衝劍"
+           && skill != "shaoze-sword" && skill != "少澤劍"
+           && skill != "zhongchong-sword" && skill != "中衝劍"
+           && skill != "shangyang-sword" && skill != "商陽劍"
+           && skill != "shaoshang-sword" && skill != "少商劍"
+           && skill != "無形劍氣" && skill != "六脈劍氣"
+           && skill != "萬劍縱橫")
         {
-                write("六脉神剑谱上并没有记载你打算研究的内容。\n" NOR);
+                write("六脈神劍譜上並沒有記載你打算研究的內容。\n" NOR);
                 return 1;
         }
 
         if( query("combat_exp", me) < 1000000 )
         {
-                write("你的实战经验不足，再怎么读也没用。\n");
+                write("你的實戰經驗不足，再怎麼讀也沒用。\n");
                 return 1;
         }
 
@@ -96,34 +96,34 @@ int do_du(string arg)
             || query("qi", me)<100
             || query("neili", me)<200 )
         {
-                write("你现在过于疲倦，无法专心下来研读新知。\n");
+                write("你現在過於疲倦，無法專心下來研讀新知。\n");
                 return 1;
         }
 
-        if (skill == "无形剑气")
+        if (skill == "無形劍氣")
         {
            if( query("can_perform/liumai-shenjian/qi", me) )
            {
-                write("你不是已经会了吗？\n");
+                write("你不是已經會了嗎？\n");
                 return 1;
            }
            if (me->query_skill("liumai-shenjian", 1) < 185)
            {
-                write("你六脉神剑不够熟练，无法研读此绝招！\n");
+                write("你六脈神劍不夠熟練，無法研讀此絕招！\n");
                 return 1;
            }
 
            if (random (10) != 1)
            {
-                write("你研究了半天，仍然无法将「无形剑气」融会贯通！\n");
+                write("你研究了半天，仍然無法將「無形劍氣」融會貫通！\n");
                 me->start_busy(15); 
                 set("jing", 1, me);
                 return 1;
            }
-           msg = HIG "$N" HIG "翻看剑谱，仔细研究上面所记载的武学，霎那间忽有所悟"
+           msg = HIG "$N" HIG "翻看劍譜，仔細研究上面所記載的武學，霎那間忽有所悟"
                      "……\n" NOR;
-           msg += HIG "$N" HIG "中指一按，一股凌厉无伦的无形剑气直奔天际。\n" NOR;
-           msg += HIG "$N" HIG "长叹一声，感慨万千，将内力收回丹田。\n" NOR; 
+           msg += HIG "$N" HIG "中指一按，一股凌厲無倫的無形劍氣直奔天際。\n" NOR;
+           msg += HIG "$N" HIG "長嘆一聲，感慨萬千，將內力收回丹田。\n" NOR; 
            message_vision(msg, me); 
 
            if (me->can_improve_skill("finger"))
@@ -133,7 +133,7 @@ int do_du(string arg)
            if (me->can_improve_skill("martial-cognize"))
                    me->improve_skill("martial-cognize", 1500000);
 
-           write(HIW "你学会了「" HIG "无形剑气" HIW "」。\n" NOR);
+           write(HIW "你學會了「" HIG "無形劍氣" HIW "」。\n" NOR);
            set("can_perform/liumai-shenjian/qi", 1, me);
            destruct(this_object());
            return 1;
@@ -141,31 +141,31 @@ int do_du(string arg)
     
         else 
        
-        if (skill == "六脉剑气")
+        if (skill == "六脈劍氣")
         {
            if( query("can_perform/liumai-shenjian/six", me) )
            {
-                write("你不是已经会了吗？\n");
+                write("你不是已經會了嗎？\n");
                 return 1;
            }
            if (me->query_skill("liumai-shenjian", 1) < 220)
            {
-                write("你六脉神剑不够熟练，无法研读此绝招！\n");
+                write("你六脈神劍不夠熟練，無法研讀此絕招！\n");
                 return 1;
            }
 
            if (random (18) != 1)
            {
-                write("你研究了半天，仍然无法将「六脉剑气」融会贯通！\n");
+                write("你研究了半天，仍然無法將「六脈劍氣」融會貫通！\n");
                 me->start_busy(15);
                 set("jing", 1, me);
                 return 1;
            }
-           msg = HIG "$N" HIG "翻看剑谱，仔细研究上面所记载的武学，霎那间忽有所悟"
+           msg = HIG "$N" HIG "翻看劍譜，仔細研究上面所記載的武學，霎那間忽有所悟"
                      "……\n" NOR;
-           msg += HIW "$N" HIW "摊开双手，手指连弹，霎时间空气炙热，几"
-                  "欲沸腾，六道剑气分自六穴，一起冲向天际" HIW "！\n" NOR;
-           msg += HIG "$N" HIG "长叹一声，感慨万千，将内力收回丹田。\n" NOR; 
+           msg += HIW "$N" HIW "攤開雙手，手指連彈，霎時間空氣炙熱，幾"
+                  "欲沸騰，六道劍氣分自六穴，一起衝向天際" HIW "！\n" NOR;
+           msg += HIG "$N" HIG "長嘆一聲，感慨萬千，將內力收回丹田。\n" NOR; 
            message_vision(msg, me); 
 
            if (me->can_improve_skill("finger"))
@@ -175,7 +175,7 @@ int do_du(string arg)
            if (me->can_improve_skill("martial-cognize"))
                    me->improve_skill("martial-cognize", 1500000);
 
-           write(HIW "你学会了「" HIG "六脉剑气" HIW "」。\n" NOR);
+           write(HIW "你學會了「" HIG "六脈劍氣" HIW "」。\n" NOR);
            set("can_perform/liumai-shenjian/six", 1, me);
            destruct(this_object());
            return 1;
@@ -183,37 +183,37 @@ int do_du(string arg)
  
         else 
 
-        if (skill == "万剑纵横")
+        if (skill == "萬劍縱橫")
         {
            if( query("can_perform/liumai-shenjian/zong", me) )
            {
-                write("你不是已经会了吗？\n");
+                write("你不是已經會了嗎？\n");
                 return 1;
            }
            if (me->query_skill("liumai-shenjian", 1) < 240)
            {
-                write("你六脉神剑不够熟练，无法研读此绝招！\n");
+                write("你六脈神劍不夠熟練，無法研讀此絕招！\n");
                 return 1;
            }
            if (me->query_skill("force", 1) < 340)
            {
-                write("你内功火候不够，无法研读此绝招！\n");
+                write("你內功火候不夠，無法研讀此絕招！\n");
                 return 1;
            }
 
            if (random (50) != 1)
            {
-                write("你研究了半天，仍然无法将「万剑纵横」融会贯通！\n");
+                write("你研究了半天，仍然無法將「萬劍縱橫」融會貫通！\n");
                 me->start_busy(15);
                 set("jing", 1, me);
                 return 1;
            }
-           msg = HIG "$N" HIG "翻看剑谱，仔细研究上面所记载的武学，霎那间忽有所悟"
+           msg = HIG "$N" HIG "翻看劍譜，仔細研究上面所記載的武學，霎那間忽有所悟"
                      "……\n" NOR;
-           msg += HIM "$N" HIM "一声清啸，十指纷弹，顿觉六脉剑谱已涌上心头，此起"
-                  "彼伏、连绵不绝。霎时剑气如奔，连绵无尽的万道剑气豁然贯向虚空" HIM 
+           msg += HIM "$N" HIM "一聲清嘯，十指紛彈，頓覺六脈劍譜已湧上心頭，此起"
+                  "彼伏、連綿不絕。霎時劍氣如奔，連綿無盡的萬道劍氣豁然貫向虛空" HIM 
                   "！\n" NOR;
-           msg += HIG "$N" HIG "长叹一声，感慨万千，将内力收回丹田。\n" NOR; 
+           msg += HIG "$N" HIG "長嘆一聲，感慨萬千，將內力收回丹田。\n" NOR; 
            message_sort(msg, me); 
 
            if (me->can_improve_skill("finger"))
@@ -223,7 +223,7 @@ int do_du(string arg)
            if (me->can_improve_skill("martial-cognize"))
                    me->improve_skill("martial-cognize", 1500000);
 
-           write(HIW "你学会了「" HIG "万剑纵横" HIW "」。\n" NOR);
+           write(HIW "你學會了「" HIG "萬劍縱橫" HIW "」。\n" NOR);
            set("can_perform/liumai-shenjian/zong", 1, me);
            destruct(this_object());
            return 1;
@@ -233,33 +233,33 @@ int do_du(string arg)
        
         if (me->query_skill("liumai-shenjian", 1))
         {
-             write("你不是已经会六脉神剑了吗？还学这干什么？\n");
+             write("你不是已經會六脈神劍了嗎？還學這幹什麼？\n");
              return 1;
         }
 
         else 
  
-        if (skill == "shaochong-sword" || skill == "少冲剑")
+        if (skill == "shaochong-sword" || skill == "少衝劍")
                 skill = "shaochong-sword";
         else
 
-        if (skill == "shaoze-sword" || skill == "少泽剑")
+        if (skill == "shaoze-sword" || skill == "少澤劍")
                 skill = "shaoze-sword";
         else
 
-        if (skill == "shaoshang-sword" || skill == "少商剑")
+        if (skill == "shaoshang-sword" || skill == "少商劍")
                 skill = "shaoshang-sword";
         else
 
-        if (skill == "zhongchong-sword" || skill == "中冲剑")
+        if (skill == "zhongchong-sword" || skill == "中衝劍")
                 skill = "zhongchong-sword";
         else
 
-        if (skill == "guanchong-sword" || skill == "关冲剑")
+        if (skill == "guanchong-sword" || skill == "關衝劍")
                 skill = "guanchong-sword";
         else
 
-        if (skill == "shangyang" || skill == "商阳剑")
+        if (skill == "shangyang" || skill == "商陽劍")
                 skill = "shangyang-sword";
 
         if (! SKILL_D(skill)->valid_learn(me))
@@ -267,7 +267,7 @@ int do_du(string arg)
 
         if (! me->can_improve_skill(skill))
                {
-                       write("你的实战经验不足，再怎么读也没用。\n");
+                       write("你的實戰經驗不足，再怎麼讀也沒用。\n");
                        return 1;
                }
 
@@ -275,11 +275,11 @@ int do_du(string arg)
 
         if (lv >= 1)
         {
-                write("你研读了一会儿，但是发现上面所说的实在有限。\n");
+                write("你研讀了一會兒，但是發現上面所說的實在有限。\n");
                 return 1;
         }
 
-        // 天赋聪颖增加研读速度
+        // 天賦聰穎增加研讀速度
         if( query("special_skill/clever", me) )
                 me->improve_skill(skill,query("int", me)+5);
         else
@@ -288,9 +288,9 @@ int do_du(string arg)
         me->receive_damage("qi", random(50) + 30);
         me->receive_damage("jing", random(50) + 30);
         addn("neili", -lv, me);
-        message("vision", me->name() + "正专心地研读六脉神剑谱。\n",
+        message("vision", me->name() + "正專心地研讀六脈神劍譜。\n",
                           environment(me), me);
-        write("你仔细研读六脉神剑谱，颇有心得。\n");
+        write("你仔細研讀六脈神劍譜，頗有心得。\n");
         destruct(this_object());
         return 1;
 }

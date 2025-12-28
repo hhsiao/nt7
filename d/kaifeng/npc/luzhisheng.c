@@ -3,11 +3,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("鲁智深", ({"lu zhisheng", "lu", "zhisheng"}));
-        set("long", "这个胖大和尚露出好一身花绣，正是五台山来的僧人。\n");
+        set_name("魯智深", ({"lu zhisheng", "lu", "zhisheng"}));
+        set("long", "這個胖大和尚露出好一身花繡，正是五臺山來的僧人。\n");
         set("gender", "男性");
         set("nickname", HIM "花和尚" NOR);
-        set("title", "梁山好汉");
+        set("title", "梁山好漢");
         set("age", 42);
         set("shen_type", 1);
         set("str", 35);
@@ -46,9 +46,9 @@ void create()
 
         set("chat_chance", 5);
         set("chat_msg", ({
-                CYN "鲁智深喝道：你这厮，贼眉贼眼的看老爷作什么？\n" NOR,
-                CYN "鲁智深愤愤的道：几个破落户敢打洒家菜园子的主意，哼，哼！\n" NOR,
-                CYN "鲁智深说道：方丈说过上一年就让我当个阁主，院主什么的。\n" NOR,
+                CYN "魯智深喝道：你這廝，賊眉賊眼的看老爺作什麼？\n" NOR,
+                CYN "魯智深憤憤的道：幾個破落戶敢打灑家菜園子的主意，哼，哼！\n" NOR,
+                CYN "魯智深說道：方丈說過上一年就讓我當個閣主，院主什麼的。\n" NOR,
         }));
         setup();
 

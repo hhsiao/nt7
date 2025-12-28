@@ -4,8 +4,8 @@ void create()
 {
         set("short", "三老峰");
         set("long", @LONG
-此处乃武当山三老峰，只见三座奇峰突兀，惊险无比，行人多不
-敢放胆在此玩赏风景。
+此處乃武當山三老峰，只見三座奇峰突兀，驚險無比，行人多不
+敢放膽在此玩賞風景。
 LONG );
         set("exits", ([
                 "northdown": __DIR__"wuyaling",

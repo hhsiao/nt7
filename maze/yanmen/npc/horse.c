@@ -4,15 +4,15 @@ inherit F_RIDDING;
 
 void create()
 {
-        set_name(BLK"蒙古马"NOR, ({"menggu ma", "horse", "ma"}));
-        set("race", "野兽");
+        set_name(BLK"蒙古馬"NOR, ({"menggu ma", "horse", "ma"}));
+        set("race", "野獸");
         set("age", 3);
 
         set("combat_exp", 500000);
         set("long", 
-                "一匹蒙古高头大马，全身毛发黝黑发亮，煞是威风神俊。\n");
+                "一匹蒙古高頭大馬，全身毛髮黝黑髮亮，煞是威風神俊。\n");
 
-        set("limbs", ({ "头部", "身体", "蹄子", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體", "蹄子", "尾巴" }) );
         set("verbs", ({ "bite", "claw" }) );
 
         set("str", 20+random(10));
@@ -34,7 +34,7 @@ void create()
 
         set("chat_chance", 5);
         set("chat_msg", ({
-              CYN"蒙古马呼哧呼哧，蹄子不停地刨着地。\n"NOR,
+              CYN"蒙古馬呼哧呼哧，蹄子不停地刨著地。\n"NOR,
         }) );
 
         setup();

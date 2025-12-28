@@ -1,4 +1,4 @@
-// tie-ren.c 铁人
+// tie-ren.c 鐵人
 
 #include <ansi.h>
 
@@ -6,12 +6,12 @@ inherit FIGHTER;
 
 void create()
 {
-        set_name("铁人", ({ "tie ren", "ren" }) );
+        set_name("鐵人", ({ "tie ren", "ren" }) );
         set("gender", "男性" );
         set("age", 30);
-        set("long", "一个练功用的比武铁人，是仿制木人制作的，由于是用\n"
-                    "精制铁材所制的，所以具有更持久的耐力，但是同时也\n"
-                    "具有更强大的攻击力，练起功来也就更残酷。\n");
+        set("long", "一個練功用的比武鐵人，是仿製木人制作的，由於是用\n"
+                    "精製鐵材所制的，所以具有更持久的耐力，但是同時也\n"
+                    "具有更強大的攻擊力，練起功來也就更殘酷。\n");
         set("scale", 200);
         set("min_exp", 50000);
 

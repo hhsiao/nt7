@@ -1,6 +1,6 @@
 // This is player's own perform (Write by Lonely@nt2)
-// Create by 龙凤(Longfeng) at Thu Jul 23 19:12:08 2015
-// 龙凤呈祥(xiang)
+// Create by 龍鳳(Longfeng) at Thu Jul 23 19:12:08 2015
+// 龍鳳呈祥(xiang)
 #include <ansi.h>
 #include <combat.h>
 
@@ -8,7 +8,7 @@ inherit F_SSERVER;
 
 int is_player_perform() { return 1; }
 
-string name() { return HIW "龙凤呈祥" NOR; }
+string name() { return HIW "龍鳳呈祥" NOR; }
 
 string *weapon_sk = ({
         "sword", "blade", "staff", "whip", "club", "hammer", "axe"
@@ -30,14 +30,14 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if (member_array("sword", weapon_sk) != -1)
         {
                 attack = WEAPON_ATTACK;
                 if( !objectp(weapon=query_temp("weapon", me) )
                     || query("skill_type", weapon) != "sword" )
-                        return notify_fail("你所使用的武器不对，难以施展" + name() + "。\n");
+                        return notify_fail("你所使用的武器不對，難以施展" + name() + "。\n");
         } else
         {
                 attack = UNARMED_ATTACK;
@@ -46,21 +46,21 @@ int perform(object me, object target)
         }
 
         if ((int)me->query_skill("longf-sword", 1) < 400)
-                return notify_fail("你" + to_chinese("longf-sword") + "不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你" + to_chinese("longf-sword") + "不夠嫻熟，難以施展" + name() + "。\n");
 
         if (member_array("sword", weapon_sk) == -1)
         {
                 if (me->query_skill_prepared("sword") != "longf-sword")
-                        return notify_fail("你没有准备" + to_chinese("longf-sword") + "，难以施展" + name() + "。\n");
+                        return notify_fail("你沒有準備" + to_chinese("longf-sword") + "，難以施展" + name() + "。\n");
         }
 
         if( query("neili", me)<500 )
-                return notify_fail("你现在的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N口中默念：「龙凤呈祥」。$N一声清啸，凭借浑厚的内力，凭空吹奏起「太阳当空照，花儿对我笑，小鸟说早早早，为什么背上小书包。我要上学校，天天不迟到，爱学习爱劳动，长大要为人民立功劳。」的曲子,欢快中带着一丝淡淡的忧伤，仿佛又回到了遥远的童年。" + "\n" + NOR;
+        msg = HIW "$N口中默唸：「龍鳳呈祥」。$N一聲清嘯，憑藉渾厚的內力，憑空吹奏起「太陽當空照，花兒對我笑，小鳥說早早早，為什麼背上小書包。我要上學校，天天不遲到，愛學習愛勞動，長大要為人民立功勞。」的曲子,歡快中帶著一絲淡淡的憂傷，彷彿又回到了遙遠的童年。" + "\n" + NOR;
 
         ap = attack_power(me, "sword");
         dp = defense_power(target, "parry");
@@ -68,7 +68,7 @@ int perform(object me, object target)
         if (ap / 2 + random(ap) > dp)
         {
                 damage = damage_power(me, "sword")*7;
-                msg += COMBAT_D->do_damage(me, target, attack, damage, 380, HIM "$N吹奏间隙缓步而上，$n却仍沉浸在「龙凤呈祥之上学歌」的回忆之中，$N一击得手。" + "\n" NOR);
+                msg += COMBAT_D->do_damage(me, target, attack, damage, 380, HIM "$N吹奏間隙緩步而上，$n卻仍沉浸在「龍鳳呈祥之上學歌」的回憶之中，$N一擊得手。" + "\n" NOR);
                 addn("neili", -200, me);
 
                 /*
@@ -77,22 +77,22 @@ int perform(object me, object target)
                 */
         } else
         {
-                msg += NOR + CYN "幸而$n精通音律,会唱这首「龙凤呈祥之上学歌」，$n严阵以待，$N无处下手。" + "\n" NOR;
+                msg += NOR + CYN "幸而$n精通音律,會唱這首「龍鳳呈祥之上學歌」，$n嚴陣以待，$N無處下手。" + "\n" NOR;
                 addn("neili", -100, me);
         }
 
         message_sort(msg, me, target);
 
-        msg = HIW "$N" HIW "余势未尽，招式陡然变得凌厉无比，一转念间已然攻出数招。\n" NOR;
+        msg = HIW "$N" HIW "餘勢未盡，招式陡然變得凌厲無比，一轉念間已然攻出數招。\n" NOR;
         if (ap / 2 + random(ap) > dp)
         {
                 count = ap / 20;
-                msg += HIR "$n" HIR "见$P" HIR "来势迅猛之极，一时不知该如"
-                       "何作出抵挡，竟呆立当场。\n" NOR;
+                msg += HIR "$n" HIR "見$P" HIR "來勢迅猛之極，一時不知該如"
+                       "何作出抵擋，竟呆立當場。\n" NOR;
         } else
         {
-                msg += HIY "$n" HIY "见$p" HIY "来势迅猛之极，甚难防备，连"
-                       "忙振作精神，小心抵挡。\n" NOR;
+                msg += HIY "$n" HIY "見$p" HIY "來勢迅猛之極，甚難防備，連"
+                       "忙振作精神，小心抵擋。\n" NOR;
                 count = 0;
         }
 

@@ -5,10 +5,10 @@ void create()
 {
   set("short","秘道");
         set("long", @LONG
-这是一条异常幽静的走廊，四周漆黑一团，你好象什么都看不见
-似的走在里面，你不觉想到这似乎在每个角落都藏着无限杀机，太恐
-怖了，四周毫无声息，好象掉下一根针都可能听到。墙上有一个凸起，
-象是一个机关(button)。
+這是一條異常幽靜的走廊，四周漆黑一團，你好象什麼都看不見
+似的走在裡面，你不覺想到這似乎在每個角落都藏著無限殺機，太恐
+怖了，四周毫無聲息，好象掉下一根針都可能聽到。牆上有一個凸起，
+象是一個機關(button)。
 LONG );
 
   set("exits",([
@@ -17,7 +17,7 @@ LONG );
       "south" : __DIR__"didao5",
   ]));
         set("item_desc", ([
-            "button" : "这是一个石头上雕刻出来的图像，凸起着令人感觉有点异样，似乎可以按动(push)。\n",
+            "button" : "這是一個石頭上雕刻出來的圖像，凸起著令人感覺有點異樣，似乎可以按動(push)。\n",
         ]));
 
   set("no_clean_up", 0);
@@ -37,13 +37,13 @@ int do_push(string arg)
 
         if ((arg != "button") || !arg)
         {
-                write("你要按什么？\n");
+                write("你要按什麼？\n");
                 return 1;
         }
 
         if( query("str", me)<12 )
         {
-                write("你臂力还按不动什么！\n");
+                write("你臂力還按不動什麼！\n");
                 return 1;
         }
 
@@ -53,16 +53,16 @@ int do_push(string arg)
         if (!query("exits/out"))
         {
                 set("exits/out", __DIR__"huoting");
-                message_vision("$N按下了机关，只见侧墙打开，几线亮光透射进来。\n",me);
+                message_vision("$N按下了機關，只見側牆打開，幾線亮光透射進來。\n",me);
                 set("exits/down", __DIR__"didao1", room);
-                message("vision", "侧墙传来一阵嘎嘎声响，露出一个黑黝黝的洞口。\n", room);
+                message("vision", "側牆傳來一陣嘎嘎聲響，露出一個黑黝黝的洞口。\n", room);
         }
         else
         {
                 delete("exits/out");
-                message_vision("很快机关又变回了原样。洞口又被封住了。\n",me);
+                message_vision("很快機關又變回了原樣。洞口又被封住了。\n",me);
                 delete("exits/down", room);
-                message("vision", "侧墙传来一阵嘎嘎声响，洞口被封住了。\n", room);
+                message("vision", "側牆傳來一陣嘎嘎聲響，洞口被封住了。\n", room);
         }
         return 1;
 }

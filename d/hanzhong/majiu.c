@@ -3,10 +3,10 @@ inherit TRANS_ROOM;
 
 void create()
 {
-      set("short","马厩");
+      set("short","馬廄");
         set("long", @LONG
-这是武功镇的马厩，因为平时来往的人不多，显得有些破旧。马
-厩雨檐下的烂木柱上钉着一块破木牌 (paizi)。厩中堆放著几堆草料，
+這是武功鎮的馬廄，因為平時來往的人不多，顯得有些破舊。馬
+廄雨簷下的爛木柱上釘著一塊破木牌 (paizi)。廄中堆放著幾堆草料，
 正中有一口泔槽。
 LONG );
       set("outdoors", "hanzhong");

@@ -7,15 +7,15 @@ inherit MEDICAL_BOOK;
 
 void create()
 {
-        set_name(HIG "桃花药术" NOR, ({ "taohua yaoshu", "yaoshu" }));
+        set_name(HIG "桃花葯術" NOR, ({ "taohua yaoshu", "yaoshu" }));
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
                 set("unit", "本");
-                set("long", "这是一本泛黄的书籍，上面用古篆书"
-                            "写着“桃花药术”几个字。\n",
+                set("long", "這是一本泛黃的書籍，上面用古篆書"
+                            "寫著“桃花葯術”幾個字。\n",
 
                 );
                 set("material", "paper");
@@ -30,13 +30,13 @@ void create()
                 set("can_make", ([
                         "liuhe" : 80,           // 六合返精散
                         "qingxin" : 100,        // 清心定神散
-                        "zhending": 150,        // 固元镇定散
-                        "dieda" : 80,           // 跌打伤愈膏
+                        "zhending": 150,        // 固元鎮定散
+                        "dieda" : 80,           // 跌打傷愈膏
                         "huojin" : 100,         // 活筋舒血丸
-                        "tongmai" : 150,        // 贯气通脉丹
-                        "jiedu" : 100,          // 牛黄解毒丸
+                        "tongmai" : 150,        // 貫氣通脈丹
+                        "jiedu" : 100,          // 牛黃解毒丸
                         "jiuhua" : 200,         // 九花玉露丸
-                        "wuchang" : 250,        // 无常丹
+                        "wuchang" : 250,        // 無常丹
                 ]));
         }
         setup();

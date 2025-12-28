@@ -1,14 +1,14 @@
-// /adm/daemons/x_named.c 随机物品名称生成守护程序
+// /adm/daemons/x_named.c 隨機物品名稱生成守護程序
 // By Alf@Syzf, Last Update 2005.0208
 
 #include <ansi.h>
 #include "include/x_name.h"
 
-#define RATE        10      //机率判断基准
-#define RATE_A      30      //中缀出现机率
-#define RATE_B      50      //前缀出现机率[色彩出现机率]
-#define RATE_C      100     //单色出现机率（中、前缀齐全）
-#define RATE_X      1000    //多色出现机率（中、前缀齐全）
+#define RATE        10      //機率判斷基準
+#define RATE_A      30      //中綴出現機率
+#define RATE_B      50      //前綴出現機率[色彩出現機率]
+#define RATE_C      100     //單色出現機率（中、前綴齊全）
+#define RATE_X      1000    //多色出現機率（中、前綴齊全）
 
 varargs int x_name(object obj, string arg)
 {
@@ -112,7 +112,7 @@ varargs int x_name(object obj, string arg)
                ]);
 
         obj->set_name(name["name"], name["id"]);
-        obj->set("long", "这是一" + obj->query("unit") + obj->short() + "。\n");
+        obj->set("long", "這是一" + obj->query("unit") + obj->short() + "。\n");
     }
     return 1;
 }

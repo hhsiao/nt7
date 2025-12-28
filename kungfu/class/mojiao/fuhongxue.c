@@ -6,11 +6,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("傅红雪", ({"fu hongxue", "fu", "hongxue"}));
+        set_name("傅紅雪", ({"fu hongxue", "fu", "hongxue"}));
         set("gender", "男性");
         set("age", 26);
         set("shen_type", -1);
-        set("long", "一身很普通的装束，让人很难把他和大名鼎鼎的傅红雪联系在一起。\n");
+        set("long", "一身很普通的裝束，讓人很難把他和大名鼎鼎的傅紅雪聯繫在一起。\n");
         set("attitude", "peaceful");
 
         set("per", 21);
@@ -83,7 +83,7 @@ void create()
 
 void attempt_apprentice(object ob)
 {       
-        command("say 我不收徒，你还是另找他人吧！");
+        command("say 我不收徒，你還是另找他人吧！");
 }
 
 int accept_ask(object me, string topic)
@@ -101,10 +101,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -50000, ]));
                 break;
 
-        case "斩诀" :
+        case "斬訣" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/mingyue-blade/zhan",
-                           "name"    : "斩诀",
+                           "name"    : "斬訣",
                            "sk1"     : "mingyue-blade",
                            "lv1"     : 200,
                            "dodge"   : 200,
@@ -121,7 +121,7 @@ int recognize_apprentice(object ob, string skill)
 {
         if (ob->query_skill(skill, 1) >= 400)
         {
-                command("say 够了！我就教你到这里吧，武功还是"
+                command("say 夠了！我就教你到這裡吧，武功還是"
                         "要靠自己多研究才是！");
                 return -1;
         }
@@ -138,16 +138,16 @@ int recognize_apprentice(object ob, string skill)
         {
                 if( query("family/family_name", ob) != "魔教" )
                 {
-                        command("say 你和我素无渊源，我为什么要教你武功？");
+                        command("say 你和我素無淵源，我為什麼要教你武功？");
                         return -1;
                 } 
                                                
-                message_vision("$N看了看$n，点点头道：天涯明月刀也没有什么难学的。\n",
+                message_vision("$N看了看$n，點點頭道：天涯明月刀也沒有什麼難學的。\n",
                                this_object(), ob);
                 set_temp("can_learn/fuhongxue/mingyue-blade", 1, ob);
                 return 1;
         }
 
-        command("say 我只懂得一点天涯明月刀，你可不要为难我。");
+        command("say 我只懂得一點天涯明月刀，你可不要為難我。");
         return -1;
 }

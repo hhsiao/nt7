@@ -1,4 +1,4 @@
-// qiangdao.c 强盗
+// qiangdao.c 強盜
 // lag.2000/3/17
 
 inherit NPC;
@@ -11,11 +11,11 @@ void create()
         me=this_player();
         if (! me) return; 
         myskill=me->query_skill("force");
-        set_name(HIC"逍遥派叛徒首领"NOR,({query("id", me)+"-pantu"}));
+        set_name(HIC"逍遙派叛徒首領"NOR,({query("id", me)+"-pantu"}));
         set("title",query("name", me)+"定下的");
         set("gender", "男性");
         set("age", 28);
-        set("long", "他是一个逍遥派叛徒。\n");
+        set("long", "他是一個逍遙派叛徒。\n");
         
         set("attitude", "peaceful");
         set("qi",query("qi", me));
@@ -29,7 +29,7 @@ void create()
         set("per",query("per", me));
         set("killer",query("id", me));
         set("combat_exp",query("combat_exp", me));
-// 加下面5句是让强盗自动走，增添玩家做机器人的困难！-糖圆SMILE
+// 加下面5句是讓強盜自動走，增添玩家做機器人的困難！-糖圓SMILE
         set("chat_chance_combat", 60);  
         set("chat_msg_combat", ({
                 (: perform_action, "blade.ruyi" :),
@@ -84,7 +84,7 @@ void leave()
 {
         object ob = this_object();
         if (!ob->is_fighting()) {
-                message_vision(HIC "逍遥派叛徒首领钻进路边的杂草，不见了。\n" NOR,this_object());
+                message_vision(HIC "逍遙派叛徒首領鑽進路邊的雜草，不見了。\n" NOR,this_object());
                 destruct(this_object());
                 }
         else call_out("leave",30);
@@ -93,7 +93,7 @@ void leave()
 void die()
 {
         object ob;
-        message_vision("$N大叫一声：我不甘心！消失了。\n", this_object());
+        message_vision("$N大叫一聲：我不甘心！消失了。\n", this_object());
         ob = new("/d/xiaoyao/obj/zhi");
         ob->move(environment(this_object()));
         destruct(this_object());

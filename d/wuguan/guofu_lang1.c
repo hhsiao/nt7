@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "长廊");
+        set("short", "長廊");
         set("long", @LONG
-这是个长廊，通向西练武场，人们急冲冲的走过，不时有
-人被抬出来，看样子是练功脱力昏倒的。
+這是個長廊，通向西練武場，人們急衝衝的走過，不時有
+人被抬出來，看樣子是練功脫力昏倒的。
 LONG);
         set("no_fight", 1);
         set("exits", ([

@@ -7,9 +7,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "蛇谷树林");
+        set("short", "蛇谷樹林");
         set("long", @LONG
-这是白驼山的蛇谷之中，林木葱郁，北方传来轰轰的激流巨响，
+這是白駝山的蛇谷之中，林木蔥鬱，北方傳來轟轟的激流巨響，
 似乎是一座瀑布。
 LONG );
 

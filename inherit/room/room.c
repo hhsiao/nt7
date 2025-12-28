@@ -93,10 +93,10 @@ void reset()
                         foreach (ob in obs)
                                 destruct(ob);
                         if (query("outdoors"))
-                                message("vision", "一阵风吹过，卷走了一些东西。\n",
+                                message("vision", "一陣風吹過，捲走了一些東西。\n",
                                         this_object());
                         else
-                                message("vision", "突然叮叮咣咣一阵响声过后，好像少了点什么似的。\n",
+                                message("vision", "突然叮叮咣咣一陣響聲過後，好像少了點什麼似的。\n",
                                         this_object());
                 }
         }
@@ -160,11 +160,11 @@ void reset()
 string look_door(string dir)
 {
         if (! mapp(doors) || undefinedp(doors[dir]))
-                return "你要看什么？\n";
+                return "你要看什麼？\n";
         if (doors[dir]["status"] & DOOR_CLOSED)
-                return "这个" + doors[dir]["name"] + "是关着的。\n";
+                return "這個" + doors[dir]["name"] + "是關著的。\n";
         else
-                return "这个" + doors[dir]["name"] + "是开着的。\n";
+                return "這個" + doors[dir]["name"] + "是開著的。\n";
 }
 
 varargs int open_door(string dir, int from_other_side)
@@ -173,17 +173,17 @@ varargs int open_door(string dir, int from_other_side)
         object ob;
 
         if (! mapp(doors) || undefinedp(doors[dir]))
-                return notify_fail("这个方向没有门。\n");
+                return notify_fail("這個方向沒有門。\n");
 
         if (! (doors[dir]["status"] & DOOR_CLOSED))
-                return notify_fail(doors[dir]["name"] + "已经是开着的了。\n");
+                return notify_fail(doors[dir]["name"] + "已經是開著的了。\n");
 
         exits = query("exits");
         if (! mapp(exits) || undefinedp(exits[dir]))
                 error("Room: open_door: attempt to open a door with out an exit.\n");
 
         if (from_other_side)
-                message("vision", "有人从另一边将" + doors[dir]["name"] + "打开了。\n", this_object());
+                message("vision", "有人從另一邊將" + doors[dir]["name"] + "打開了。\n", this_object());
         else
         if (objectp(ob = find_object(exits[dir])))
         {
@@ -200,17 +200,17 @@ varargs int close_door(string dir, int from_other_side)
         object ob;
 
         if (! mapp(doors) || undefinedp(doors[dir]))
-                return notify_fail("这个方向没有门。\n");
+                return notify_fail("這個方向沒有門。\n");
 
         if ((doors[dir]["status"] & DOOR_CLOSED))
-                return notify_fail(doors[dir]["name"] + "已经是关着的了。\n");
+                return notify_fail(doors[dir]["name"] + "已經是關著的了。\n");
 
         exits = query("exits");
         if (! mapp(exits) || undefinedp(exits[dir]))
                 error("Room: close_door: attempt to open a door with out an exit.\n");
 
         if (from_other_side)
-                message("vision", "有人从另一边将" + doors[dir]["name"] + "关上了。\n", this_object());
+                message("vision", "有人從另一邊將" + doors[dir]["name"] + "關上了。\n", this_object());
         else
         if (objectp(ob = find_object(exits[dir])))
         {
@@ -278,7 +278,7 @@ int valid_leave(object me, string dir)
         if (mapp(doors) && !undefinedp(doors[dir]))
         {
                 if (doors[dir]["status"] & DOOR_CLOSED && ! wizardp(me))
-                        return notify_fail("你必须先把" + doors[dir]["name"] + "打开！\n");
+                        return notify_fail("你必須先把" + doors[dir]["name"] + "打開！\n");
         }
         return 1;
 }
@@ -419,11 +419,11 @@ void open_gate()
                         exits += gate_dir;
                         set("exits",exits);
                 }
-                tell_object(this_object(),"旭日东升，"+gate_name+"打开了。\n");
+                tell_object(this_object(),"旭日東昇，"+gate_name+"打開了。\n");
         }
 
-        // 每次昼夜更替都和 mud_time 对一次时，保持开关门时间精确。
-        // 同时也保证门两边房间开关门的同步。
+        // 每次晝夜更替都和 mud_time 對一次時，保持開關門時間精確。
+        // 同時也保證門兩邊房間開關門的同步。
         if( sscanf( NATURE_D->day_or_night(),"%s %d",day_night,time) ) {
                 if( day_night == "day" )
                         call_out("close_gate",time);
@@ -439,10 +439,10 @@ void close_gate()
 
         remove_call_out("close_gate");
         do_close_gate();
-        tell_object(this_object(),"天色已晚，"+query("gate_name")+"关上了。\n");
+        tell_object(this_object(),"天色已晚，"+query("gate_name")+"關上了。\n");
 
-        // 每次昼夜更替都和 mud_time 对一次时，保持开关门时间精确。
-        // 同时也保证门两边房间开关门的同步。
+        // 每次晝夜更替都和 mud_time 對一次時，保持開關門時間精確。
+        // 同時也保證門兩邊房間開關門的同步。
         if( sscanf( NATURE_D->day_or_night(),"%s %d",day_night,time) ) {
                 if( day_night == "day" )
                         call_out("open_gate",time+600);

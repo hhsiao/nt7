@@ -4,9 +4,9 @@ void create()
 {
         set("short", "碎石路");
         set("long", @LONG
-这是一条用五彩的碎石子铺成的小路静静的东面延伸，路边
-是轻轻的嫩草，路的两旁各有一个小花坛，里面开着艳丽的花朵。
-西面是一个大空场。北面是一排青砖瓦房。
+這是一條用五彩的碎石子鋪成的小路靜靜的東面延伸，路邊
+是輕輕的嫩草，路的兩旁各有一個小花壇，裡面開著豔麗的花朵。
+西面是一個大空場。北面是一排青磚瓦房。
 LONG
         );
         set("exits", ([
@@ -23,8 +23,8 @@ int valid_leave(object ob,string dir)
 {
         if( !wizardp(ob)
         && (dir == "north")
-         && (query("family/family_name", ob) != "药王谷") )
-                return notify_fail("边上窜出两个童子拦住了你的去路。\n");
+         && (query("family/family_name", ob) != "藥王谷") )
+                return notify_fail("邊上竄出兩個童子攔住了你的去路。\n");
 
         return ::valid_leave(ob,dir);
 }

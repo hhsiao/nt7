@@ -38,7 +38,7 @@ varargs void die(object killer)
                 return;
         }
 
-        if( time() < query_temp("end_time", me) ) // 时间没有到，死亡不了
+        if( time() < query_temp("end_time", me) ) // 時間沒有到，死亡不了
         {
                 addn("jing", query("max_jing") / 10);
                 if( query("jing") > query("max_jing") ) set("jing", query("max_jing"));
@@ -48,7 +48,7 @@ varargs void die(object killer)
                 if( query("qi") > query("max_qi") ) set("qi", query("max_qi"));
                 addn("eff_qi", query("max_qi") / 10);
                 if( query("eff_qi") > query("max_qi") ) set("eff_qi", query("max_qi"));
-                message_vision(HIR "\n$N" HIR "大喝一声，运用秘法，气血有所回升！\n\n" NOR, me);
+                message_vision(HIR "\n$N" HIR "大喝一聲，運用秘法，氣血有所回升！\n\n" NOR, me);
                 return;
         }
 
@@ -63,10 +63,10 @@ varargs void die(object killer)
                         message_vision(death_msg, me);
         }
         else
-                message_vision(NOR "\n$N扑在地上挣扎了几下，腿一伸，口中喷出几口" 
-                               HIR "鲜血" NOR "，死了！\n\n" NOR, me); 
+                message_vision(NOR "\n$N撲在地上掙扎了幾下，腿一伸，口中噴出幾口" 
+                               HIR "鮮血" NOR "，死了！\n\n" NOR, me); 
 
-        // 以下部分转移到equipmentd.c中处理,因涉及到动态物品
+        // 以下部分轉移到equipmentd.c中處理,因涉及到動態物品
         if( mapp(drops = query("drops")) ) {
                 EQUIPMENT_D->killer_reward(killer,this_object(),drops);
                 /*
@@ -113,7 +113,7 @@ varargs void die(object killer)
                 obs = pointerp(killer->query_team()) ?
                                 killer->query_team() : ({ killer });
                 obs = filter_array(obs, (: environment($1) == $(env) :));
-                // 如果队长不在，则这个队成员无任何奖励
+                // 如果隊長不在，則這個隊成員無任何獎勵
                 if( killer->query_team() && (!objectp(killer->query_team_leader()) || environment(killer->query_team_leader()) != env) )
                         obs = ({ });
 
@@ -134,7 +134,7 @@ varargs void die(object killer)
                                 else if( query("level", user) <= fuben_level+20 ) percent = 80;
                                 else if( query("level", user) <= fuben_level+30 ) percent = 50;
                                 else {
-                                        tell_object(user, ((killer == user)?"您":killer->name())+"杀死"+query("name")+"，但您经验与BOSS的水平相差过大，没有奖励。\n");
+                                        tell_object(user, ((killer == user)?"您":killer->name())+"殺死"+query("name")+"，但您經驗與BOSS的水平相差過大，沒有獎勵。\n");
                                         continue;
                                 }
                                 */
@@ -144,7 +144,7 @@ varargs void die(object killer)
                         else
                         {
                                 if( query("combat_exp", user) > query("combat_exp")*2 ) {
-                                        tell_object(user, ((killer == user)?"您":killer->name())+"杀死"+query("name")+"，但您经验与BOSS的水平相差过大，没有奖励。\n");
+                                        tell_object(user, ((killer == user)?"您":killer->name())+"殺死"+query("name")+"，但您經驗與BOSS的水平相差過大，沒有獎勵。\n");
                                         continue;
                                 }
                         }

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("小鸡[2;37;0m[2;37;0m", ({"xji"}));        
+        set_name("小雞[2;37;0m[2;37;0m", ({"xji"}));        
         set("gender", "女性");                
-        set("long", "小鸡[2;37;0m
-它是小葵的魔幻兽。
+        set("long", "小雞[2;37;0m
+它是小葵的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

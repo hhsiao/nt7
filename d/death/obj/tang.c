@@ -11,11 +11,11 @@ void init()
 
 void create()
 {
-        set_name(HIW "孟婆汤" NOR, ({"mengpo tang", "soup", "tang"}));
+        set_name(HIW "孟婆湯" NOR, ({"mengpo tang", "soup", "tang"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIW "一碗热气腾腾的孟婆汤，散发着浓烈的草药气味。\n");
+                set("long", HIW "一碗熱氣騰騰的孟婆湯，散發著濃烈的草藥氣味。\n");
                 set("unit", "碗");
                 set("only_do_effect", 1);
         }
@@ -29,11 +29,11 @@ int do_eat(string arg)
         int max;
 
         if( me->is_busy() )
-                return notify_fail("急什么，小心别噎着了。\n");
+                return notify_fail("急什麼，小心別噎著了。\n");
 
         set_temp("last_eat/mengpo_tang", time(), me);
 
-        message_vision(HIW "$N" HIW "一仰头，将孟婆汤全部喝了下去，精神为之一振。\n" NOR, me);
+        message_vision(HIW "$N" HIW "一仰頭，將孟婆湯全部喝了下去，精神為之一振。\n" NOR, me);
 
         set("jingli",query("max_jingli",  me), me);
         set("neili",query("max_neili",  me), me);

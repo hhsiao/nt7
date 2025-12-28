@@ -1,80 +1,80 @@
 inherit SKILL;
 
 mapping *action = ({
-([        "action" : "$N一招「斜阳照路」，左掌叠于右掌之上，劈向$n",
+([        "action" : "$N一招「斜陽照路」，左掌疊於右掌之上，劈向$n",
         "force" : 80,
         "attack": 2,
         "dodge" : 30,
         "parry" : 1,
         "damage": 5,
         "lvl"   : 0,
-        "skill_name" : "斜阳照路",
-        "damage_type" : "瘀伤"
+        "skill_name" : "斜陽照路",
+        "damage_type" : "瘀傷"
 ]),
-([        "action" : "$N一招「千山鸟飞绝」，面色凝重，双掌轻飘飘地拍向$n",
+([        "action" : "$N一招「千山鳥飛絕」，面色凝重，雙掌輕飄飄地拍向$n",
         "force" : 100,
         "attack": 8,
         "dodge" : 25,
         "parry" : 3,
         "damage": 30,
         "lvl"   : 20,
-        "skill_name" : "千山鸟飞绝",
-        "damage_type" : "内伤"
+        "skill_name" : "千山鳥飛絕",
+        "damage_type" : "內傷"
 ]),
-([        "action" : "$N一招「长空明净」，双掌幻化一片掌影，将$n笼罩于内。",
+([        "action" : "$N一招「長空明淨」，雙掌幻化一片掌影，將$n籠罩於內。",
         "force" : 130,
         "attack": 12,
         "dodge" : 43,
         "parry" : 4,
         "damage": 35,
         "lvl"   : 30,
-        "skill_name" : "长空明净",
-        "damage_type" : "瘀伤"
+        "skill_name" : "長空明淨",
+        "damage_type" : "瘀傷"
 ]),
 
-([        "action" : "$N一招「万水千山」，向$n的$l连击数掌",
+([        "action" : "$N一招「萬水千山」，向$n的$l連擊數掌",
         "force" : 150,
         "attack": 15,
         "dodge" : 55,
         "parry" : 8,
         "damage": 50,
         "lvl"   : 40,
-        "skill_name" : "万水千山",
-        "damage_type" : "瘀伤"
+        "skill_name" : "萬水千山",
+        "damage_type" : "瘀傷"
 ]),
-([        "action" : "$N一招「万径人踪灭」，只见一片掌影攻向$n",
+([        "action" : "$N一招「萬徑人蹤滅」，只見一片掌影攻向$n",
         "force" : 180,
         "attack": 22,
         "dodge" : 52,
         "parry" : 0,
         "damage": 30,
         "lvl"   : 60,
-        "skill_name" : "万径人踪灭",
-        "damage_type" : "瘀伤"
+        "skill_name" : "萬徑人蹤滅",
+        "damage_type" : "瘀傷"
 ]),
 
-([        "action" : "$N双掌平挥，一招「过关斩将」击向$n",
+([        "action" : "$N雙掌平揮，一招「過關斬將」擊向$n",
         "force" : 230,
         "attack": 23,
         "dodge" : 65,
         "parry" : 11,
         "damage": 50,
         "lvl"   : 80,
-        "skill_name" : "过关斩将",
-        "damage_type" : "瘀伤"
+        "skill_name" : "過關斬將",
+        "damage_type" : "瘀傷"
 ]),
-([        "action" : "$N一招「彩云遮月」，只见一片掌影攻向$n",
+([        "action" : "$N一招「彩雲遮月」，只見一片掌影攻向$n",
         "force" : 260,
         "attack": 28,
         "dodge" : 63,
         "parry" : 5,
         "damage": 80,
         "lvl"   : 100,
-        "skill_name" : "彩云遮月",
-        "damage_type" : "内伤"
+        "skill_name" : "彩雲遮月",
+        "damage_type" : "內傷"
 ]),
 
-([        "action" : "$N施出「高山流水」，右手横扫$n的$l，左手攻向$n的胸口",
+([        "action" : "$N施出「高山流水」，右手橫掃$n的$l，左手攻向$n的胸口",
         "force" : 280,
         "attack": 25,
         "dodge" : 77,
@@ -82,27 +82,27 @@ mapping *action = ({
         "parry" : 12,
         "lvl"   : 120,
         "skill_name" : "高山流水",
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
-([        "action" : "$N左掌虚晃，右掌一记「夕阳西下」击向$n的头部",
+([        "action" : "$N左掌虛晃，右掌一記「夕陽西下」擊向$n的頭部",
         "force" : 320,
         "attack": 31,
         "dodge" : 80,
         "parry" : 15,
         "damage": 100,
         "lvl"   : 140,
-        "skill_name" : "夕阳西下",
-        "damage_type" : "瘀伤"
+        "skill_name" : "夕陽西下",
+        "damage_type" : "瘀傷"
 ]),
-([        "action" : "$N施出「万毒噬体」，双掌同时击向$n的$l",
+([        "action" : "$N施出「萬毒噬體」，雙掌同時擊向$n的$l",
         "force" : 360,
         "attack": 32,
         "dodge" : 81,
         "parry" : 10,
         "damage": 130,
         "lvl"   : 160,
-        "skill_name" : "万毒噬体",
-        "damage_type" : "瘀伤"
+        "skill_name" : "萬毒噬體",
+        "damage_type" : "瘀傷"
 ])
 });
 
@@ -113,23 +113,23 @@ int valid_enable(string usage)
 
 int valid_learn(object me)
 {
-        if( query("character", me) != "心狠手辣" && query("character", me) != "国士无双" )
-                return notify_fail("练五毒神掌必须要心狠手辣，我看你这点做得还不够。\n"); 
+        if( query("character", me) != "心狠手辣" && query("character", me) != "國士無雙" )
+                return notify_fail("練五毒神掌必須要心狠手辣，我看你這點做得還不夠。\n"); 
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练五毒神掌必须空手。\n");
+                return notify_fail("練五毒神掌必須空手。\n");
 
         if ((int)me->query_skill("force") < 150)
-                return notify_fail("你的内功火候不够，无法练五毒神掌。\n");
+                return notify_fail("你的內功火候不夠，無法練五毒神掌。\n");
 
         if( query("max_neili", me)<1200 )
-                return notify_fail("你的内力太弱，无法练五毒神掌。\n");
+                return notify_fail("你的內力太弱，無法練五毒神掌。\n");
 
         if ((int)me->query_skill("strike", 1) < 120)
-                return notify_fail("你的基本掌法火候不够，无法练五毒神掌。\n");
+                return notify_fail("你的基本掌法火候不夠，無法練五毒神掌。\n");
 
         if ((int)me->query_skill("strike", 1) < (int)me->query_skill("wudu-shenzhang", 1))
-                return notify_fail("你的基本掌法水平有限，无法领会更高深的五毒神掌。\n");
+                return notify_fail("你的基本掌法水平有限，無法領會更高深的五毒神掌。\n");
 
         return 1;
 }
@@ -146,9 +146,9 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me)
 {
         if( query("qi", me)<90 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
         if( query("neili", me)<80 )
-                return notify_fail("你的内力不够练五毒神掌。\n");
+                return notify_fail("你的內力不夠練五毒神掌。\n");
 
         me->receive_damage("qi", 81);
         addn("neili", -73, me);

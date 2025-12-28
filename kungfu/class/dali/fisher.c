@@ -6,9 +6,9 @@ inherit NPC;
 
 void create()
 {
-        set_name("点苍渔隐", ({ "diancang yuyin", "yuyin", "fisher"}));
+        set_name("點蒼漁隱", ({ "diancang yuyin", "yuyin", "fisher"}));
         set("long",
-                "他四十来岁年纪，一张黑漆漆的锅底脸，虬髯满腮，根根如铁。\n");
+                "他四十來歲年紀，一張黑漆漆的鍋底臉，虯髯滿腮，根根如鐵。\n");
         set("gender", "男性");
         set("age", 45);
         set("attitude", "heroism");
@@ -49,15 +49,15 @@ int accept_object(object who, object ob)
         object thisroom;
         thisroom = find_object("/d/heizhao/yideng1.c");
 
-        if( query("name", ob) == "金娃娃" && query("race", ob) == "野兽" )
+        if( query("name", ob) == "金娃娃" && query("race", ob) == "野獸" )
         {
                 remove_call_out("destroying");
                 call_out("destroying", 1, ob);
 
-        write("点苍渔隐接过金娃娃，上上下下打量了你几眼，忽的将金娃娃抛\n");
-        write("回水中，冷冷的说道：休想以此上去害我师父，拼着给师叔一顿\n");
-        write("责骂。 \n");
-        write("他转身抛金娃娃，加上说得口沫横飞，不小心把小船的入口让了出来。\n");
+        write("點蒼漁隱接過金娃娃，上上下下打量了你幾眼，忽的將金娃娃拋\n");
+        write("回水中，冷冷的說道：休想以此上去害我師父，拼著給師叔一頓\n");
+        write("責罵。 \n");
+        write("他轉身拋金娃娃，加上說得口沫橫飛，不小心把小船的入口讓了出來。\n");
         set("exits/enter", "/d/heizhao/smallboat.c", thisroom);
         remove_call_out("closing");
         call_out("closing", 5, thisroom);
@@ -67,7 +67,7 @@ int accept_object(object who, object ob)
 
 void closing(object thisroom)
 {
-        say("点苍渔隐骂了几句，回到了他原来坐的地方。\n");
+        say("點蒼漁隱罵了幾句，回到了他原來坐的地方。\n");
         delete("exits/enter", thisroom);
 }
 

@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return HIG "啸沧海" NOR; }
+string name() { return HIG "嘯滄海" NOR; }
 
 inherit F_SSERVER;
 
@@ -15,31 +15,31 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(name() + "只能空手施展。\n");
 
         if ((int)me->query_skill("tanzhi-shentong", 1) < 200)
-                return notify_fail("你的弹指神通不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你的彈指神通不夠嫻熟，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("finger") != "tanzhi-shentong")
-                return notify_fail("你没有激发弹指神通，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發彈指神通，難以施展" + name() + "。\n");
 
         if (me->query_skill_prepared("finger") != "tanzhi-shentong")
-                return notify_fail("你没有准备弹指神通，难以施展" + name() + "。\n");
+                return notify_fail("你沒有準備彈指神通，難以施展" + name() + "。\n");
 
         if( query("max_neili", me)<3000 )
-                return notify_fail("你的内力修为不足，难以施展" + name() + "。\n");
+                return notify_fail("你的內力修為不足，難以施展" + name() + "。\n");
 
         if( query("neili", me)<800 )
-                return notify_fail("你现在的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIG "突然间$N" HIG "指锋一转，力聚指尖“嗤”的弹出一道紫芒，直袭$n"
-              HIG "气海大穴。\n" NOR;
+        msg = HIG "突然間$N" HIG "指鋒一轉，力聚指尖“嗤”的彈出一道紫芒，直襲$n"
+              HIG "氣海大穴。\n" NOR;
 
         ap = attack_power(me, "finger");
         dp = defense_power(target, "force");
@@ -58,13 +58,13 @@ int perform(object me, object target)
                 if( query("neili", target)<0 )
                         set("neili", 0, target);
 
-                msg += HIR "$n" HIR "只觉$N" HIR "指风袭体，随即上体一"
-                       "阵冰凉，顿感真气涣散几欲晕厥。\n" NOR;
+                msg += HIR "$n" HIR "只覺$N" HIR "指風襲體，隨即上體一"
+                       "陣冰涼，頓感真氣渙散幾欲暈厥。\n" NOR;
                 me->start_busy(2);
         } else
         {
-                msg += CYN "可是$p" CYN "防守严密，紧守门户，顿时令$P"
-                       CYN "的攻势化为乌有。\n" NOR;
+                msg += CYN "可是$p" CYN "防守嚴密，緊守門戶，頓時令$P"
+                       CYN "的攻勢化為烏有。\n" NOR;
                 me->start_busy(3);
         }
         message_combatd(msg, me, target);

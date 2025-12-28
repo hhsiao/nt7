@@ -8,15 +8,15 @@ int redeem(string arg);
 void create()
 {
         set_name("祁老二", ({ "qi laoer", "qi", "laoer" }));
-        set("title", "当铺老板");
+        set("title", "當鋪老闆");
         set("shen_type", 0);
 
         set("gender", "男性");
         set_max_encumbrance(100000000);
         set("age", 35);
         set("str", 100);
-        set("long", "据说祁老二本是祁连山的二寨主，后来不知\n"
-                    "怎么的改行做了这个。\n");
+        set("long", "據說祁老二本是祁連山的二寨主，後來不知\n"
+                    "怎麼的改行做了這個。\n");
         set("no_get_from", 1);
 
         set_skill("unarmed", 60);

@@ -6,14 +6,14 @@ inherit NPC;
 
 void create()
 {
-        set_name("竹叶青", ({ "qing she", "she", "qing" }) );
-        set("race", "野兽");
+        set_name("竹葉青", ({ "qing she", "she", "qing" }) );
+        set("race", "野獸");
         set("age", 2);
-        set("long", "一只让人看了起鸡皮疙瘩的竹叶青蛇。\n");
+        set("long", "一隻讓人看了起雞皮疙瘩的竹葉青蛇。\n");
         set("attitude", "peaceful");
         set("str", 20);
         set("cor", 20);
-        set("limbs", ({ "头部", "身体", "七寸", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體", "七寸", "尾巴" }) );
         set("verbs", ({ "bite" }) );
 
         set("combat_exp", 3000+random(300));
@@ -56,6 +56,6 @@ int hit_ob(object me, object ob, int damage)
         if( random(damage)>query_temp("apply/armor", ob )
         &&        (int)ob->query_condition("snake_poison") < 10 ) {
                 ob->apply_condition("snake_poison", 20);
-        tell_object(ob, HIG "你觉得被咬中的地方一阵麻木！\n" NOR );
+        tell_object(ob, HIG "你覺得被咬中的地方一陣麻木！\n" NOR );
         }
 }

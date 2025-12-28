@@ -9,12 +9,12 @@ int do_out();
 
 void create()
 {
-        set("short", "迷宫树林");
+        set("short", "迷宮樹林");
         set("long", @LONG
-这是迷宫中的一个路口，但见四下黑森森的都是树木，脚下小路
-东盘西曲，密林中难辨方向，举步踏到的尽是矮树杂草，荆棘钩刺到
-小腿，划得你鲜血淋淋。一个小木桩上钉了五个木牌，分别指向五条
-小路，并标明『金，木，水，火，土』。北边树木稀少些，看来可以
+這是迷宮中的一個路口，但見四下黑森森的都是樹木，腳下小路
+東盤西曲，密林中難辨方向，舉步踏到的盡是矮樹雜草，荊棘鉤刺到
+小腿，劃得你鮮血淋淋。一個小木樁上釘了五個木牌，分別指向五條
+小路，並標明『金，木，水，火，土』。北邊樹木稀少些，看來可以
 是走出去(out)的方向。
 LONG );
         set("exits", ([
@@ -40,10 +40,10 @@ void init()
         me=this_player();
 
         if (me->query_skill("dodge",1)<100 && random(10)==1) {
-                message_vision("$N一个不小心，在树丛上一拌，“咕嘟”一下摔进了荆棘丛。\n", me);
+                message_vision("$N一個不小心，在樹叢上一拌，“咕嘟”一下摔進了荊棘叢。\n", me);
                 addn("qi", -100, me);
                 addn("eff_qi", -100, me);
-                message_vision("$N挣扎了半天，从荆棘丛里爬了出来，浑身扎满了刺，痛苦难当。\n", me);
+                message_vision("$N掙扎了半天，從荊棘叢裡爬了出來，渾身扎滿了刺，痛苦難當。\n", me);
         }
         add_action("do_findout", "findout");
         add_action("do_out", "out");
@@ -57,15 +57,15 @@ int valid_leave(object me, string dir)
         mazepath=query_temp("mazepath", me);
 
         mpath=sprintf("%d",mazepath);
-        tell_object(me, "密码："+mpath+"\n");
+        tell_object(me, "密碼："+mpath+"\n");
 
         walked=sprintf("%d%d%d%d%d",(query_temp("mark/maze金", me)-1),(query_temp("mark/maze木", me)-1),(query_temp("mark/maze水", me)-1),(query_temp("mark/maze火", me)-1),(query_temp("mark/maze土", me)-1));
-        tell_object(me, "走过："+walked+"\n");
+        tell_object(me, "走過："+walked+"\n");
 
         addn("qi", -10, me);
 
         if (walked==mpath) {
-                tell_object(me,"你苦思冥想，精掐细算，终于找到了破此迷宫之道。只三转两转，便走了出去。\n");
+                tell_object(me,"你苦思冥想，精掐細算，終於找到了破此迷宮之道。只三轉兩轉，便走了出去。\n");
                 set("exits/"+dir, "/d/dali/yingroom1.c");
                 remove_call_out("closing");
                 call_out("closing",1,dir);
@@ -104,10 +104,10 @@ int do_findout(string arg)
                 inv=all_inventory(me);
                 for(i=0; i<sizeof(inv); i++) {
                         if (userp(inv[i]))
-                                return notify_fail("你负重太大了，没法找路爬山。\n");
+                                return notify_fail("你負重太大了，沒法找路爬山。\n");
                 }
-                tell_object(me, "你左右看看没人注意你，偷偷摸摸拨开树丛溜了进去。\n");
-                tell_object(me, "你从一条没人知道的小路上了山，来到了一灯大师所在的地方。\n");
+                tell_object(me, "你左右看看沒人注意你，偷偷摸摸撥開樹叢溜了進去。\n");
+                tell_object(me, "你從一條沒人知道的小路上了山，來到了一燈大師所在的地方。\n");
                 me->move("/d/dali/yideng9.c");
                 return 1;
         }
@@ -119,7 +119,7 @@ int do_out()
         object me;
         me=this_player();
 
-        tell_object(me, "你苦思冥想，左转右看了许久，觉得没有什么办法找到路，只好从原路退了回去。\n");
+        tell_object(me, "你苦思冥想，左轉右看了許久，覺得沒有什麼辦法找到路，只好從原路退了回去。\n");
         set_temp("mark/maze金", 1, me);
         set_temp("mark/maze木", 1, me);
         set_temp("mark/maze水", 1, me);

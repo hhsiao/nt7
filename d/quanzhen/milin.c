@@ -6,16 +6,16 @@ inherit ROOM;
 void create()
 {
 
-        set("short","树林");
+        set("short","樹林");
 
         set("long", @LONG
-走在林中，你只闻铮铮琴声，一股淡淡白烟，带着极甜的花香，
-自密林深处传出。一群乳白色的蜜蜂在你身旁飞来飞去。不论往哪ㄦ
-走尽是茂密的树林。附近有一团花丛(flowers)。
+走在林中，你只聞錚錚琴聲，一股淡淡白煙，帶著極甜的花香，
+自密林深處傳出。一群乳白色的蜜蜂在你身旁飛來飛去。不論往哪ㄦ
+走盡是茂密的樹林。附近有一團花叢(flowers)。
 LONG );
 
         set("item_desc",([
-                "flowers" : "这花丛既深且密，你向后看去几忽看不到底，花间有些孔隙，似乎经常有些动物在丛中钻来钻去。\n",
+                "flowers" : "這花叢既深且密，你向後看去幾忽看不到底，花間有些孔隙，似乎經常有些動物在叢中鑽來鑽去。\n",
         ]));
 
         set("exits",([ 
@@ -41,12 +41,12 @@ int do_push(){
         object me=this_player();
         
         if (me->is_busy())
-                return notify_fail("你现在正忙着哪！\n");
+                return notify_fail("你現在正忙著哪！\n");
 
         if( query("hide_person", this_object()) )
-                return notify_fail("你看见里面有影子晃动，还是不钻的好，别有什么猛兽。\n");
+                return notify_fail("你看見裡面有影子晃動，還是不鑽的好，別有什麼猛獸。\n");
 
-        tell_object(me, "你轻轻地推开花木，向里钻了进去。\n");
+        tell_object(me, "你輕輕地推開花木，向裡鑽了進去。\n");
         
         room = load_object("/d/quanzhen/flowers");
         

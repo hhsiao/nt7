@@ -9,11 +9,11 @@ int query_autoload() { return 1; }
 
 void create()
 {
-        set_name(YEL "风四郎家的钥匙" NOR, ({ "key", "1 of alxpang" }));
+        set_name(YEL "風四郎家的鑰匙" NOR, ({ "key", "1 of alxpang" }));
         set_weight(10);
         set("long", @LONG
-一把用来开启海景房(sea)的钥匙。
-这是原配钥匙。
+一把用來開啟海景房(sea)的鑰匙。
+這是原配鑰匙。
 LONG );
         set("unit", "把");
         set("no_pawn", 1);

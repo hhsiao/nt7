@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m环球美人之王[2;37;0m[2;37;0m", ({"meiren"}));        
+        set_name("[1;31m環球美人之王[2;37;0m[2;37;0m", ({"meiren"}));        
         set("gender", "女性");                
-        set("long", "丰腰肥臀[2;37;0m
-它是好美人的魔幻兽。
+        set("long", "豐腰肥臀[2;37;0m
+它是好美人的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

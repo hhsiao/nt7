@@ -2,11 +2,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "商家堡大门");
+        set("short", "商家堡大門");
         set("long", @LONG
-一座巨大的宅院映入你的眼帘，正对着你的是一扇朱漆铜钉
-的大门，四周是近丈高的围墙。大门的上方横着一块匾，匾上写
-着「商家堡」三个大字。
+一座巨大的宅院映入你的眼簾，正對著你的是一扇朱漆銅釘
+的大門，四周是近丈高的圍牆。大門的上方橫著一塊匾，匾上寫
+著「商家堡」三個大字。
 LONG);
         set("exits", ([
                 "north"  : __DIR__"shang_qgc",
@@ -29,7 +29,7 @@ int valid_leave(object me, string dir)
 
         if (dir != "north"
            || ! objectp(zhen = present("shang baozhen", this_object()))
-            || (query("born_family", me) == "山东商家"
+            || (query("born_family", me) == "山東商家"
             && !query("family/family_name", me)) )
                 return ::valid_leave(me, dir);
 

@@ -4,12 +4,12 @@
 
 void setup()
 {
-        set_name("地图精[2;37;0m[2;37;0m", ({"maphere"}));        
+        set_name("地圖精[2;37;0m[2;37;0m", ({"maphere"}));        
         set("gender", "女性");                
         set("long", "111[2;37;0m
-它是橙子的魔幻兽。
+它是橙子的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "orga");
         set("owner_name", "橙子");

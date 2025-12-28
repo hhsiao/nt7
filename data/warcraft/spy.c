@@ -7,9 +7,9 @@ void setup()
         set_name("[2;37;0m[2;37;0m", ({"pys"}));        
         set("gender", "男性");                
         set("long", "spy[2;37;0m
-它是的魔幻兽。
+它是的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "spy");
         set("owner_name", "");

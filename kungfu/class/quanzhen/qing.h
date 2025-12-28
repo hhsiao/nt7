@@ -1,4 +1,4 @@
-// qing.h 出家和清字辈收徒和推荐给志字辈
+// qing.h 出家和清字輩收徒和推薦給志字輩
 #include "quanzhen.h"
 
 int accept_object(object ob, object obj)
@@ -10,7 +10,7 @@ int accept_object(object ob, object obj)
 
         if( query_temp("have_letter", ob) && present("quanzhenletter1",ob) )
         {
-                command("say 怎麽样，你拿我的推荐信去拜师了吗 ?");
+                command("say 怎麼樣，你拿我的推薦信去拜師了嗎 ?");
                 return 0;
         }
 
@@ -20,14 +20,14 @@ int accept_object(object ob, object obj)
          && !query_temp("have_letter", ob) )
         {
                 set_temp("fight_ok", 1, ob);
-                command("say 好，既然已有掌门真人许可，我们就来验证一下武功。");
+                command("say 好，既然已有掌門真人許可，我們就來驗證一下武功。");
                 remove_call_out("destroying");
                 call_out("destroying", 1, me, obj);
                 return 1;
         }
 
         command("smile");
-        command("say 这东西给我可没有什麽用。");
+        command("say 這東西給我可沒有什麼用。");
         command("give"+query("id", obj)+"to"+query("id", me));
         return 0;
 }
@@ -69,8 +69,8 @@ int checking(object me, object ob)
 
         if( (query("qi", me)*100/my_max_qi) <= 50 )
         {
-                command("say 青出於蓝胜於蓝，不愧是全真门下弟子！恭喜你了！\n");
-                message_vision("$N交给$n一封推荐信。\n", me, ob);
+                command("say 青出於藍勝於藍，不愧是全真門下弟子！恭喜你了！\n");
+                message_vision("$N交給$n一封推薦信。\n", me, ob);
                 set_temp("have_letter", 1, ob);
                 obj=new("/d/quanzhen/obj/tuijianxin-1");
                 obj->move(ob);
@@ -79,7 +79,7 @@ int checking(object me, object ob)
 
         if( (query("qi", ob)*100/his_max_qi)<50 )
         {
-                command("say 看来" + RANK_D->query_respect(ob) + "还得多加练习，方能在本教诸多弟子中出人头地！\n");
+                command("say 看來" + RANK_D->query_respect(ob) + "還得多加練習，方能在本教諸多弟子中出人頭地！\n");
                 return 1;
         }
 
@@ -92,16 +92,16 @@ string ask_for_join()
         mappingmy_fam=query("family", me);
 
         if( query("class", me) == "quanzhen" )
-                return "无量寿佛！你我同属玄门，何故跟小道开这等无聊玩笑？\n";
+                return "無量壽佛！你我同屬玄門，何故跟小道開這等無聊玩笑？\n";
 
         if( my_fam["family_name"] == "全真教" && my_fam["generation"] <= 4)
-                return "无量寿佛！玄门清修之士，应自小开始修行。\n";
+                return "無量壽佛！玄門清修之士，應自小開始修行。\n";
 
         if( query("betrayer", me)>0 )
-                return "无量寿佛！你生性反复无常，非我玄门清修之士之所为。\n";
+                return "無量壽佛！你生性反覆無常，非我玄門清修之士之所為。\n";
 
         set_temp("pending/join_quanzhen", 1, me);
-        return "无量寿佛！施主若真心皈依我全真教门，请跪下(kneel)受戒。\n";
+        return "無量壽佛！施主若真心皈依我全真教門，請跪下(kneel)受戒。\n";
 }
 
 int do_kneel()
@@ -112,12 +112,12 @@ int do_kneel()
         if( !query_temp("pending/join_quanzhen", me))return 0;
 
         message_vision(
-                "$N右手捏着莲花指，恭恭敬敬地磕下头去。\n\n"
-                "$n伸出双手，将$N头顶长发挽成一个道髻。\n\n",me,this_object());
+                "$N右手捏著蓮花指，恭恭敬敬地磕下頭去。\n\n"
+                "$n伸出雙手，將$N頭頂長髮挽成一個道髻。\n\n",me,this_object());
         name=query("purename", me);
         if( !name)name=query("name", me);
-        new_name = name[0..0] + "静" + name[1..1];
-        command("say 从今以后你的道法号就叫做" + new_name + "。");
+        new_name = name[0..0] + "靜" + name[1..1];
+        command("say 從今以後你的道法號就叫做" + new_name + "。");
         command("smile");
         delete_temp("pending/join_quanzhen", me);
         set("name", new_name, me);
@@ -140,12 +140,12 @@ void attempt_apprentice(object ob)
                 return;
 
         if( query("shen", ob)<0){
-                command( "say 行侠仗义是我辈学武人的基本品质，你已快入魔道，我岂能收你为徒。\n");
+                command( "say 行俠仗義是我輩學武人的基本品質，你已快入魔道，我豈能收你為徒。\n");
                 return;
         }
         if( query("gender", ob) == "男性" && query("gender", me) == "女性" )
         {
-                command("say 我不收男徒，你还是去拜我几位师兄为师吧。\n");
+                command("say 我不收男徒，你還是去拜我幾位師兄為師吧。\n");
                 return;
         }
 
@@ -154,17 +154,17 @@ void attempt_apprentice(object ob)
                 if( ob_fam["generation"] <= my_fam["generation"] &&
                     ob_fam["family_name"] == my_fam["family_name"] )
                 {
-                        command("say "+RANK_D->query_respect(ob)+"，这个贫道哪敢当！");
+                        command("say "+RANK_D->query_respect(ob)+"，這個貧道哪敢當！");
                         return;
                 }
         }
         if( query("class", ob) != "quanzhen" )
         {
-                command ("say 无量寿佛！贫道就收下你做『俗家弟子』了。");
+                command ("say 無量壽佛！貧道就收下你做『俗家弟子』了。");
         }
         else
         {
-                command ("say 无量寿佛！贫道就收你为全真教正式弟子。");
+                command ("say 無量壽佛！貧道就收你為全真教正式弟子。");
         }
         command("recruit "+query("id", ob));
 }

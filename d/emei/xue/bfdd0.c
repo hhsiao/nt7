@@ -6,10 +6,10 @@ void create()
                 int rnd = random(100);
         set("short", "九老洞");
         set("long", @LONG
-这就是峨嵋第一大洞，洞内深窈无比，神秘难测。你一走进来，
-便发觉洞中叉叉洞多如迷宫，怪异莫测，似乎黝黑无底。洞里隐隐传
-来鸡犬鼓乐之声，令人惊异间，忽有蝙蝠群涌而至扑熄火炬。还是快
-快离开吧。
+這就是峨嵋第一大洞，洞內深窈無比，神秘難測。你一走進來，
+便發覺洞中叉叉洞多如迷宮，怪異莫測，似乎黝黑無底。洞裡隱隱傳
+來雞犬鼓樂之聲，令人驚異間，忽有蝙蝠群湧而至撲熄火炬。還是快
+快離開吧。
 LONG );
         /*set("objects", ([
              __DIR__"npc/bianfu1" : 10,
@@ -41,8 +41,8 @@ LONG );
 void init()
 {
         object me = this_player();
-        //不改short_name是为了避免玩家利用walk指令过迷宫
-        tell_object(me, "\n你来到了九老洞第四层的入口。\n\n"); 
+        //不改short_name是為了避免玩家利用walk指令過迷宮
+        tell_object(me, "\n你來到了九老洞第四層的入口。\n\n"); 
         return ::init();
 }
 

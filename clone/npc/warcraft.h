@@ -1,28 +1,28 @@
 // This program is a part of NT MudLIB
 // Written by Lonely@nitan.org
 // warcraft.c
-// 魔兽系统
-        // 智慧型（青龙.木）     可增加主人回避率及冥思速度
-        // 攻击型（白虎.金）     可增加主人命中率及体会上限
-        // 防御型（玄武.水）     可增加主人防御力及内力上限
-        // 灵动型（朱雀.火）     可增加主人攻击力及潜能上限
-        // 均衡型（麒麟.土）     可增加主人攻击力及精力上限
+// 魔獸系統
+        // 智慧型（青龍.木）     可增加主人迴避率及冥思速度
+        // 攻擊型（白虎.金）     可增加主人命中率及體會上限
+        // 防禦型（玄武.水）     可增加主人防禦力及內力上限
+        // 靈動型（朱雀.火）     可增加主人攻擊力及潛能上限
+        // 均衡型（麒麟.土）     可增加主人攻擊力及精力上限
 
-// 金的明亮、木的深沉、水的清冷、火的炙热、土的厚实。
+// 金的明亮、木的深沉、水的清冷、火的炙熱、土的厚實。
 /*
-金  系  中级防御（描述：你的身上金光乱舞，使对手攻击无处着手
+金  系  中級防禦（描述：你的身上金光亂舞，使對手攻擊無處著手
         。）
-木  系  中级防御（描述：眼见就要打在你的身上，却发现象打在木
-        头上，被强大的弹力震的身形不稳，在原地打了几个圈。）
-水  系  中级防御（描述：对手的攻击打在身上就象石牛入海，不知
-        所终。）
-火  系  中级防御（描述：熊熊的火焰使对手浑身灼热，攻击还未递
-        到身前就自己缩了回去。）
-土  系  中级防御（描述：对手的攻击打在身上，却象以卵击石般攻
-        击到厚实的大地上软弱无力。）
-神  兽  高级防御（有战斗中自动气血恢复功能，对手无从攻击。）
-兽  王  太初、太始，太初是攻击系，在防御的同时有自动攻击功能，
-        太始是防御系，可防护任何属性的攻击。
+木  系  中級防禦（描述：眼見就要打在你的身上，卻發現象打在木
+        頭上，被強大的彈力震的身形不穩，在原地打了幾個圈。）
+水  系  中級防禦（描述：對手的攻擊打在身上就象石牛入海，不知
+        所終。）
+火  系  中級防禦（描述：熊熊的火焰使對手渾身灼熱，攻擊還未遞
+        到身前就自己縮了回去。）
+土  系  中級防禦（描述：對手的攻擊打在身上，卻象以卵擊石般攻
+        擊到厚實的大地上軟弱無力。）
+神  獸  高級防禦（有戰鬥中自動氣血恢復功能，對手無從攻擊。）
+獸  王  太初、太始，太初是攻擊系，在防禦的同時有自動攻擊功能，
+        太始是防禦系，可防護任何屬性的攻擊。
 */
 
 #include <ansi.h>
@@ -54,7 +54,7 @@ int is_owner(object me) { return query_temp("owner") == query("id", me); }
 string chinese_s(mixed arg)
 {
       if (arg == "白虎")  return HIY "金" NOR;
-      if (arg == "青龙")  return WHT "木" NOR;
+      if (arg == "青龍")  return WHT "木" NOR;
       if (arg == "玄武")  return HIG "水" NOR;
       if (arg == "朱雀")  return HIR "火" NOR;
       if (arg == "麒麟")  return YEL "土" NOR;
@@ -64,19 +64,19 @@ void create()
 {
         seteuid(getuid());
 
-        set_name("魔幻兽", ({ "warcraft" }));
-        set("long", "玩家可以骑上它去指定的地方(rideto)。\n");
-        set("race", "野兽");
-        set("race_type", WHT "青龙" NOR);
+        set_name("魔幻獸", ({ "warcraft" }));
+        set("long", "玩家可以騎上它去指定的地方(rideto)。\n");
+        set("race", "野獸");
+        set("race_type", WHT "青龍" NOR);
         set("unit", "只");
         set("str", 30);
         set("int", 30);
         set("con", 30);
         set("dex", 30);
-        set("no_sell", "这你也要卖？你忘记当初与它的血之盟约吗？");
+        set("no_sell", "這你也要賣？你忘記當初與它的血之盟約嗎？");
         set("owner", "lonely");
-        set("owner_name", "高处不胜寒");
-        set("limbs", ({ "头部", "身体", "前心", "後背", "尾巴" }) );
+        set("owner_name", "高處不勝寒");
+        set("limbs", ({ "頭部", "身體", "前心", "後背", "尾巴" }) );
         set("verbs", ({ "bite", "hoof" }) );
 
         set("qi", 300);
@@ -125,12 +125,12 @@ string get_level()
         string level;
 
         if( query("level")/10 < 9 )
-                level = CHINESE_D->chinese_number(query("level")/10+1) + "级" + CHINESE_D->chinese_number(query("level")%10) + "阶";
+                level = CHINESE_D->chinese_number(query("level")/10+1) + "級" + CHINESE_D->chinese_number(query("level")%10) + "階";
         else
         if( query("level")/10 == 9 )
-                level = HIM "上古神兽" NOR;
+                level = HIM "上古神獸" NOR;
         else
-                level = HIY "远古圣兽" NOR;
+                level = HIY "遠古聖獸" NOR;
 
         // 太始、太初
         return level;
@@ -146,9 +146,9 @@ string long()
         level = get_level();
 
         result += "\n";
-        result += HIW "幻兽等级：" + level + "\n" NOR;
-        result += HIW "魔力属性：" + chinese_s(query("race_type")) + "\n" NOR;
-        result += HIW "魔力数值：" + query("magic/power")  + "\n" NOR;
+        result += HIW "幻獸等級：" + level + "\n" NOR;
+        result += HIW "魔力屬性：" + chinese_s(query("race_type")) + "\n" NOR;
+        result += HIW "魔力數值：" + query("magic/power")  + "\n" NOR;
         result += "\n";
 
         return result;
@@ -196,33 +196,33 @@ void heart_beat()
 
         ob = this_object();
 
-        // 自动回复状态
+        // 自動回覆狀態
         if( !is_fighting() && (query("qi") < query("max_qi") ||
             query("jing") < query("max_jing") ||
             query("eff_qi") < query("max_qi") ||
             query("eff_jing") < query("max_jing")) )
                     full_self();
 
-        // 如果主人下线则自动保存后离开
+        // 如果主人下線則自動保存後離開
         if( !(env1=environment()) || !objectp(owner = find_player(query("owner", ob))) ) {
-                message_vision("$N一闪就不见了。\n", ob);
+                message_vision("$N一閃就不見了。\n", ob);
                 destruct(ob);
                 return;
         }
 
         if( !(env2=environment(owner)) ) return;
-        // 如果主人不在同一地图则移动主人面前
-        // 动作状态；仅仅跟随(follow)、保护(guard)
+        // 如果主人不在同一地圖則移動主人面前
+        // 動作狀態；僅僅跟隨(follow)、保護(guard)
         if( living(ob) && (query_temp("comedby", owner) == ob || query("actions", ob)) &&
             env1 != env2 && env1 != owner && !query("no_magic", env2) ) {
                 if( is_fighting() ) remove_all_enemy(1);
                 ob->move(env2);
-                message_vision("忽然一阵旋风袭过，$n" NOR "已出现在这里。\n", owner, ob);
+                message_vision("忽然一陣旋風襲過，$n" NOR "已出現在這裡。\n", owner, ob);
 
-                // 自动跟随
+                // 自動跟隨
                 ob->set_leader(owner);
 
-                // 自动保护，如果是仅跟随状态则不保护
+                // 自動保護，如果是僅跟隨狀態則不保護
                 if( query("actions", ob) == "guard" ) {
                         GUARD_CMD->main(ob, owner);
                 }
@@ -233,15 +233,15 @@ void heart_beat()
                 ;
         else {
 
-        // 气血小于保护限制则隐藏
+        // 氣血小於保護限制則隱藏
         if( query("env/wimpy") > 0 && query("env/wimpy") < 100 ) {
                 if (query("qi") * 100 / query("max_qi") <= query("env/wimpy") ) {
                         if( env == owner ) {
                                 delete_temp("is_riding", owner);
                                 delete_temp("is_rided_by");
                         }
-                        // 隐藏
-                        message_vision(HIR "\n$N" HIR "迅速移动到" + owner->name() + HIR "身后，躲了起来。\n" NOR, ob);
+                        // 隱藏
+                        message_vision(HIR "\n$N" HIR "迅速移動到" + owner->name() + HIR "身後，躲了起來。\n" NOR, ob);
                         destruct(ob);
 
                         return;
@@ -249,15 +249,15 @@ void heart_beat()
         }
 
         // 同伴技能=========
-        // 疗伤，扰乱，清醒，震慑，防护
-        // 加生命、加杀气、加命中闪避
-        // A、护卫战斗B、减少伤害C、增加伤害D、伤害豁免E、虚弱状态
+        // 療傷，擾亂，清醒，震懾，防護
+        // 加生命、加殺氣、加命中閃避
+        // A、護衛戰鬥B、減少傷害C、增加傷害D、傷害豁免E、虛弱狀態
 
-        // 麒麟--治疗
+        // 麒麟--治療
         if( (query("max_qi", owner) > query("qi", owner) || query("max_qi", owner) > query("eff_qi", owner))
             && query("race_type") == "麒麟" ) {
                 if( random(15) < query("level")/10 ) {
-                        tell_object(owner, HIY + ob->name() + HIY "全身闪出火红般的光芒照向你，你感觉气血有所恢复。\n" NOR);
+                        tell_object(owner, HIY + ob->name() + HIY "全身閃出火紅般的光芒照向你，你感覺氣血有所恢復。\n" NOR);
                         addn("qi", 500 + random(query("magic/power"))*200, owner);
                         addn("eff_qi", 200 + random(query("magic/power"))*80, owner);
                         if( query("eff_qi", owner) > query("max_qi", owner) ) set("eff_qi", query("max_qi", owner), owner);
@@ -265,35 +265,35 @@ void heart_beat()
                 }
         }
 
-        // 白虎--令对手忙乱
+        // 白虎--令對手忙亂
         if( query("race_type") == "白虎" && owner->is_fighting() ) {
                 int time_busy;
                 target = offensive_target(owner);
                 if( objectp(target) && random(15) < query("level")/10 && !target->is_busy() ) {
-                        message_vision(HIG "$N" HIG "长嘶一声，震耳欲聋，冲天而起，直扑向$n" HIG "$n" HIG
-                                       "被这突如其来的变故弄得手忙脚乱。\n" NOR, ob, target);
+                        message_vision(HIG "$N" HIG "長嘶一聲，震耳欲聾，沖天而起，直撲向$n" HIG "$n" HIG
+                                       "被這突如其來的變故弄得手忙腳亂。\n" NOR, ob, target);
                         time_busy = 1 + random(1 + query("level")/10);
                         if( time_busy > 5 ) time_busy = 5;
                         target->start_busy(time_busy);
                 }
         }
 
-        // 朱雀--降低主人忙乱时间
+        // 朱雀--降低主人忙亂時間
         if( query("race_type") == "朱雀" && owner->is_fighting() ) {
                 int int_busy;
                 if( owner->is_busy() && random(15) < query("level")/10 ) {
-                        tell_object(owner, HIM + ob->name() + HIM "扇动着巨大的翅膀，狂风四起，你感觉突然见轻松了许多。\n" NOR);
+                        tell_object(owner, HIM + ob->name() + HIM "扇動著巨大的翅膀，狂風四起，你感覺突然見輕鬆了許多。\n" NOR);
 
                         int_busy = 1 + random(1 + query("level")/10);
                         owner->interrupt_me(owner, int_busy);
                 }
         }
 
-        // 青龙--震慑对手，令其暂时无法攻击，此效果时间随机为3-7秒
-        if( query("race_type") == "青龙" && owner->is_fighting() ) {
+        // 青龍--震懾對手，令其暫時無法攻擊，此效果時間隨機為3-7秒
+        if( query("race_type") == "青龍" && owner->is_fighting() ) {
                 target = offensive_target(owner);
                 if( objectp(target) && random(15) < query("level")/10 && !query_temp("hiding_kuihua", owner) ) {
-                        message_vision(HIR "$N" HIR "对着$n" HIR"一声长啸，$n" HIR "突觉心神俱裂，难受无比。\n" NOR,
+                        message_vision(HIR "$N" HIR "對著$n" HIR"一聲長嘯，$n" HIR "突覺心神俱裂，難受無比。\n" NOR,
                                        ob, target);
 
                         set_temp("hiding_kuihua", 1, owner);
@@ -303,11 +303,11 @@ void heart_beat()
                 }
         }
 
-        // 玄武--防护
-        // 玄武--减少主人伤害
+        // 玄武--防護
+        // 玄武--減少主人傷害
         if( query("race_type") == "玄武" && owner->is_fighting() ) {
                 if( random(15) < query("level")/10 && !query_temp("protect_xuanwu", owner) ) {
-                        tell_object(owner, HIM + ob->name() + HIM "发出一道耀眼的光芒，将你全身笼罩在内，你感觉到全身表面有层龟壳般保护。\n" NOR);
+                        tell_object(owner, HIM + ob->name() + HIM "發出一道耀眼的光芒，將你全身籠罩在內，你感覺到全身表面有層龜殼般保護。\n" NOR);
                         addn_temp("reduce_damage", 60, owner);
                         set_temp("protect_xuanwu", 1, owner);
                         remove_call_out("del_protect");
@@ -325,7 +325,7 @@ int do_modify(string arg)
         object me = this_player();
 
         if( !arg || sscanf(arg,"%s %s", item, msg) != 2 )
-                return notify_fail("SYNTAX: modify 款项 内容\n");
+                return notify_fail("SYNTAX: modify 款項 內容\n");
 
         if( item == "flee" ) {
                 set("env/wimpy", atoi(msg));
@@ -336,7 +336,7 @@ int do_modify(string arg)
 
         if( item == "actions" ) {
                 if( msg != "follow" && msg != "guard" )
-                        return notify_fail("你只可以设置为follow或者guard状态。\n");
+                        return notify_fail("你只可以設置為follow或者guard狀態。\n");
 
                 set("actions", msg);
                 set_temp("comedby", this_object(), me);
@@ -352,49 +352,49 @@ int do_modify(string arg)
                 return notify_fail("描述必需不含空格！\n");
 
         if( CHINESE_D->check_return(msg) )
-                return notify_fail("描述必需不含回车键！\n");
+                return notify_fail("描述必需不含回車鍵！\n");
 
         msg = trans_color(msg, 3);
         switch(item)
         {
         case "desc":
                 if( CHINESE_D->check_length(msg) > 100 )
-                        return notify_fail("描述太长！\n");
+                        return notify_fail("描述太長！\n");
                 set("long", msg+NOR"\n");
                 write("ＯＫ\n");
                 save();
                 return 1;
         case "nickname" :
                 if( CHINESE_D->check_length(msg) > 20 )
-                        return notify_fail("描述太长！\n");
+                        return notify_fail("描述太長！\n");
                 set("nickname",msg+NOR);
                 write("ＯＫ\n");
                 save();
                 return 1;
         case "title" :
                 if( CHINESE_D->check_length(msg) > 20 )
-                        return notify_fail("描述太长！\n");
+                        return notify_fail("描述太長！\n");
                 set("title",msg+NOR);
                 write("ＯＫ\n");
                 save();
                 return 1;
         case "arrive_msg" :
                 if( CHINESE_D->check_length(msg) > 60 )
-                        return notify_fail("描述太长！\n");
+                        return notify_fail("描述太長！\n");
                 set("arrive_msg",msg+NOR);
                 write("ＯＫ\n");
                 save();
                 return 1;
         case "leave_msg" :
                 if( CHINESE_D->check_length(msg) > 60 )
-                        return notify_fail("描述太长！\n");
+                        return notify_fail("描述太長！\n");
                 set("leave_msg",msg+NOR);
                 write("ＯＫ\n");
                 save();
                 return 1;
 
         }
-        return notify_fail("你要修改什么？\n");
+        return notify_fail("你要修改什麼？\n");
 
 }
 
@@ -407,33 +407,33 @@ int do_teach(string arg)
         me = this_player();
 
         if( !myskill = me->query_skill(arg, 1) )
-                return notify_fail("这项技能你好象还不会呢！\n");
+                return notify_fail("這項技能你好象還不會呢！\n");
 
         if( arg != "unarmed" && arg != "parry" && arg != "dodge" && arg != "force" )
-                return notify_fail("它学不会这项技能的！\n");
+                return notify_fail("它學不會這項技能的！\n");
 
         itskill = query_skill(arg,1);
         if( myskill <= itskill )
-                return notify_fail(name()+"以嘲笑的目光望着你。\n");
+                return notify_fail(name()+"以嘲笑的目光望著你。\n");
 
         if( query("potential", me) - query("learned_points", me) < 1 )
-                return notify_fail("你的潜能不够！\n");
+                return notify_fail("你的潛能不夠！\n");
 
         gin_cost = 100/ (int) query_int();
         if( (int)query("jing", me) < gin_cost )
-                return notify_fail("你显然太累了没有办法教！\n");
+                return notify_fail("你顯然太累了沒有辦法教！\n");
 
         me->receive_damage("jing", gin_cost);
         addn("potential", -1, me);
         amount = (int)me->query_int() * (int) query_int();
-        message_vision(sprintf("$N不厌其烦地教$n「%s」。\n", to_chinese(arg)), me, this_object());
+        message_vision(sprintf("$N不厭其煩地教$n「%s」。\n", to_chinese(arg)), me, this_object());
 
         if( random(100) < query("obedience") )
-                command("emote 很不情愿地哼了一声。");
+                command("emote 很不情願地哼了一聲。");
         else
         {
                 improve_skill(arg, amount);
-                message_vision(sprintf("$N似乎真的学会了一些「%s」！\n", to_chinese(arg)), this_object());
+                message_vision(sprintf("$N似乎真的學會了一些「%s」！\n", to_chinese(arg)), this_object());
         }
         return 1;
 
@@ -461,21 +461,21 @@ int do_shape(string arg)
 
         my = query_entire_dbase();
 
-        printf("精气： %s%3d/ %3d %s(%3d%%)"NOR"  气血： %s%3d/ %3d %s(%3d%%)\n"+NOR,
+        printf("精氣： %s%3d/ %3d %s(%3d%%)"NOR"  氣血： %s%3d/ %3d %s(%3d%%)\n"+NOR,
                 status_color(my["jing"], my["eff_jing"]), my["jing"],my["eff_jing"],
                 status_color(my["eff_jing"], my["max_jing"]),     my["eff_jing"] * 100 / my["max_jing"],
                 status_color(my["qi"], my["eff_qi"]), my["qi"], my["eff_qi"],
                 status_color(my["eff_qi"], my["max_qi"]),     my["eff_qi"] * 100 / my["max_qi"]
         );
 
-        printf("食物： %d\t\t饮水： %d\n",
+        printf("食物： %d\t\t飲水： %d\n",
         my["food"], my["water"]);
-        printf("主人： %s\t\t等级： %s\n",
+        printf("主人： %s\t\t等級： %s\n",
         my["owner"],get_level());
-        printf("经验： %d\t\t杀气： %d\n",
+        printf("經驗： %d\t\t殺氣： %d\n",
         my["combat_exp"],my["bellicosity"]
         );
-        printf("智慧： %d\t\t体质： %d\n",
+        printf("智慧： %d\t\t體質： %d\n",
         query_int(), query_con()
         );
         printf("速度： %d\t\t力量： %d\n",
@@ -485,14 +485,14 @@ int do_shape(string arg)
         at_pt= COMBAT_D->skill_power(this_object(), "unarmed", SKILL_USAGE_ATTACK);
         pa_pt= COMBAT_D->skill_power(this_object(), "parry", SKILL_USAGE_DEFENSE);
         do_pt= COMBAT_D->skill_power(this_object(), "dodge", SKILL_USAGE_DEFENSE);
-        printf("攻击： %d\t\t防御： %d\n\n",
+        printf("攻擊： %d\t\t防禦： %d\n\n",
         at_pt+1, pa_pt/2+do_pt/2+1
         );
         return 1;
 }
 */
 
-// 显示同伴状态
+// 顯示同伴狀態
 int do_shape(string arg)
 {
         object ob;
@@ -509,30 +509,30 @@ int do_shape(string arg)
 
                 actions = "自由";
         else
-                actions == "follow" ? "仅跟随" : "保护";
+                actions == "follow" ? "僅跟隨" : "保護";
 
-	str = HIY + ob->name() + HIY "状态属性如下(" + HIR + actions + HIY + ")：\n" NOR;
+	str = HIY + ob->name() + HIY "狀態屬性如下(" + HIR + actions + HIY + ")：\n" NOR;
         str += line;
 
-        str += HIR "等级：" + sprintf("%s",get_level()) + "\n" NOR;
-        str += HIR "属性：" + sprintf("%s",chinese_s(query("race_type"))) + "\n" NOR;
+        str += HIR "等級：" + sprintf("%s",get_level()) + "\n" NOR;
+        str += HIR "屬性：" + sprintf("%s",chinese_s(query("race_type"))) + "\n" NOR;
         str += HIR "魔值：" + sprintf("%d",query("magic/power")) + "\n" NOR;
 
-        str += HIW "经验：" + sprintf("%d", query("combat_exp")) + "\n" + NOR;
+        str += HIW "經驗：" + sprintf("%d", query("combat_exp")) + "\n" + NOR;
         str += HIW "悟性：" + sprintf("%-22d速度：%d", query("int"), query("dex")) + "\n" + NOR;
         str += HIW "臂力：" + sprintf("%-22d根骨：%d", query("str"), query("con")) + "\n" + NOR;
 
         str += HIC "生命：" + sprintf("%d", query("qi")) + "/" + sprintf("%d", query("eff_qi")) + "\n" NOR;
-        str += HIC "内力：" + sprintf("%d", query("neili")) + "/" + sprintf("%d", query("max_neili")) + "\n" NOR;
-        str += HIC "精气：" + sprintf("%d", query("jing")) + "/" + sprintf("%d", query("eff_jing")) + "\n" NOR;
+        str += HIC "內力：" + sprintf("%d", query("neili")) + "/" + sprintf("%d", query("max_neili")) + "\n" NOR;
+        str += HIC "精氣：" + sprintf("%d", query("jing")) + "/" + sprintf("%d", query("eff_jing")) + "\n" NOR;
         str += HIC "精力：" + sprintf("%d", query("jingli")) + "/" + sprintf("%d", query("max_jingli")) + "\n" NOR;
 
         at_pt= COMBAT_D->skill_power(this_object(), "unarmed", SKILL_USAGE_ATTACK);
         pa_pt= COMBAT_D->skill_power(this_object(), "parry", SKILL_USAGE_DEFENSE);
         do_pt= COMBAT_D->skill_power(this_object(), "dodge", SKILL_USAGE_DEFENSE);
 
-        str += HIM "攻击：" + sprintf("%d", at_pt+1) + "\n" NOR;
-        str += HIM "防御：" + sprintf("%d", pa_pt/2+do_pt/2+1) + "\n" NOR;
+        str += HIM "攻擊：" + sprintf("%d", at_pt+1) + "\n" NOR;
+        str += HIM "防禦：" + sprintf("%d", pa_pt/2+do_pt/2+1) + "\n" NOR;
 
         str+= line;
 
@@ -578,9 +578,9 @@ varargs mixed set(string idx, mixed para, object ob)
                                 add_skill("unarmed", 50*j);
                                 add_skill("force", 50*j);
 
-                                message_vision(HIY "$N" HIY "身忽的泛起红光，无数道紫光隐入$N" HIY "的身体，不见了！\n" NOR, ob);
+                                message_vision(HIY "$N" HIY "身忽的泛起紅光，無數道紫光隱入$N" HIY "的身體，不見了！\n" NOR, ob);
                                 if( lvl%10 == 0 )
-                                        message_vision(HIY "突然天空出现一道玄光与$N" HIY "身泛起的红光相接，$N" HIY "全体通红！\n" NOR, ob);
+                                        message_vision(HIY "突然天空出現一道玄光與$N" HIY "身泛起的紅光相接，$N" HIY "全體通紅！\n" NOR, ob);
                                 save();
                         }
                 }
@@ -610,7 +610,7 @@ mixed add(string prop, mixed data)
                 return addn(prop, data);
 }
 
-// 召唤接口
+// 召喚接口
 varargs int receive_whistle(object me, int flag)
 {
         object env, follower;
@@ -618,7 +618,7 @@ varargs int receive_whistle(object me, int flag)
 
         if( (env = environment()) && env == me )
         {
-                write(name() + "你不是正骑着吗？你召唤个什么劲？\n");
+                write(name() + "你不是正騎著嗎？你召喚個什麼勁？\n");
                 return 1;
         }
 
@@ -632,7 +632,7 @@ varargs int receive_whistle(object me, int flag)
                         RIDE_CMD->do_ride(me, this_object());
                         return 1;
                 }
-                message_vision(name() + "一闪就不见了。\n", me);
+                message_vision(name() + "一閃就不見了。\n", me);
                 /*
                 period = time() - ((int) query("last_save"));
                 if( period < 0 || period > 900 )
@@ -652,24 +652,24 @@ varargs int receive_whistle(object me, int flag)
                                 env = environment(env);
 
                         message("vision", HIG "突然" + name() + HIG "化作一道光芒，"
-                                HIG "瞬间消失了！\n\n" NOR, env);
+                                HIG "瞬間消失了！\n\n" NOR, env);
 
                         if( interactive(env = environment()) )
                         {
                                 delete_temp("is_riding", env);
                                 delete_temp("is_rided_by");
                                 tell_object(env, HIM + name() +
-                                        HIM "忽然离你而去了！\n" NOR);
-                                // 让所有的人也下马
+                                        HIM "忽然離你而去了！\n" NOR);
+                                // 讓所有的人也下馬
                                 if (objectp(follower = query_temp("is_rided_follow", this_object())))
                                 {
                                         delete_temp("is_riding_follow", follower);
                                         delete_temp("is_rided_follow");
-                                        tell_object(follower, HIM + name() + HIM "忽然离你而去了！\n" NOR);
+                                        tell_object(follower, HIM + name() + HIM "忽然離你而去了！\n" NOR);
                                 }
                         }
                 }
-                message_vision(HIG "$n" HIG "不知从哪里窜到$N" HIG "面前！\n\n" NOR,
+                message_vision(HIG "$n" HIG "不知從哪裡竄到$N" HIG "面前！\n\n" NOR,
                         me, this_object());
         }
 
@@ -694,17 +694,17 @@ varargs void die(object killer)
         if( !objectp(owner) )
                 return ::die(killer);
 
-        message_vision(HIR "$N" HIR "哀伤地说道：对不起，主人，我不能再保护你了，珍重！\n" NOR, this_object());
-        tell_object(owner, HIG "你的魔兽死亡了，请到张天师处［ask zhang about 魔兽复活］来复活你的魔兽！\n" NOR);
+        message_vision(HIR "$N" HIR "哀傷地說道：對不起，主人，我不能再保護你了，珍重！\n" NOR, this_object());
+        tell_object(owner, HIG "你的魔獸死亡了，請到張天師處［ask zhang about 魔獸復活］來複活你的魔獸！\n" NOR);
         set("warcraft/status", "died", owner);
 
         UPDATE_D->global_destruct_player(owner, 1);
 
-        // 死亡掉经验2%
+        // 死亡掉經驗2%
         exp = query("combat_exp");
         add("combat_exp", -exp*2/100);
 
-        // 状态复原
+        // 狀態復原
         full_self();
 
         destruct(this_object());
@@ -723,8 +723,8 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
 
         result = ([ "damage": -query("magic/power") ]);
 
-        result += (["msg" :   HIC "$N" HIC "的攻击打在$n"
-                              HIC "厚实的护甲上。\n" NOR ]);
+        result += (["msg" :   HIC "$N" HIC "的攻擊打在$n"
+                              HIC "厚實的護甲上。\n" NOR ]);
 
         return result;
 }
@@ -734,10 +734,10 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 
         ob->receive_wound("qi", 200 + query("magic/power"), me);
 
-        return sort_msg(HIR "$N" HIR "张嘴朝着$n，" HIR "喉咙深处微"
-               "微闪出光芒，一团约十公分大小的火球，自$N"
-               HIR "嘴中射出，飞快的击中$n" HIR "的胸口，"
-               "$n" HIR "蹬蹬蹬的倒退了几步，跪了下来。\n" NOR);
+        return sort_msg(HIR "$N" HIR "張嘴朝著$n，" HIR "喉嚨深處微"
+               "微閃出光芒，一團約十公分大小的火球，自$N"
+               HIR "嘴中射出，飛快的擊中$n" HIR "的胸口，"
+               "$n" HIR "蹬蹬蹬的倒退了幾步，跪了下來。\n" NOR);
 }
 
 /*
@@ -751,7 +751,7 @@ int do_look(string target)
 
 
         if (! id(target))
-                return notify_fail("你要看什么？");
+                return notify_fail("你要看什麼？");
 
         if (! stringp(msg = query("look_msg", ob)) ) return 1;
 
@@ -762,7 +762,7 @@ int do_look(string target)
 
 int accept_ask(object who, string topic)
 {
-        // 设置的回答列表
+        // 設置的回答列表
         object ob;
 
         mapping ans;
@@ -818,7 +818,7 @@ mixed whichask()
         return msg;
 }
 
-// 查询设置的对话列表
+// 查詢設置的對話列表
 mixed answer_list()
 {
         object ob;
@@ -868,27 +868,27 @@ int delete_answer(int n)
 
         ans = query("answer", ob);
 
-        if (! sizeof(ans)) return notify_fail("（A）无法删除该信息。\n");
+        if (! sizeof(ans)) return notify_fail("（A）無法刪除該信息。\n");
 
         key_ans = keys(ans);
 
-        if (! sizeof(key_ans)) return notify_fail("（B）无法删除该信息。\n");
+        if (! sizeof(key_ans)) return notify_fail("（B）無法刪除該信息。\n");
 
         if (n > sizeof(key_ans) + 1)
-                return notify_fail("（C）无法删除该信息。\n");
+                return notify_fail("（C）無法刪除該信息。\n");
 
         if (n < 1)
-                return notify_fail("（D）无法删除该信息。\n");
+                return notify_fail("（D）無法刪除該信息。\n");
 
-        // 开始删除
+        // 開始刪除
         map_delete(ans, key_ans[n - 1]);
         set("answer", ans, ob);
-        write("删除完毕！\n");
+        write("刪除完畢！\n");
         return 1;
 }
 */
 
-// 接受存盘数据的接口函数
+// 接受存盤數據的接口函數
 int receive_dbase_data(mixed data)
 {
         mapping temp;
@@ -902,7 +902,7 @@ int receive_dbase_data(mixed data)
         return 1;
 }
 
-// 进行保存数据的接口函数
+// 進行保存數據的接口函數
 mixed save_dbase_data()
 {
         mapping data;

@@ -1,4 +1,4 @@
-// zhen.c 猴拳「震」字诀
+// zhen.c 猴拳「震」字訣
 // by Lonely
 
 #include <ansi.h>
@@ -14,18 +14,18 @@ int perform(object me, object target)
         if( !target ) target = offensive_target(me);
 
         if( !target || !target->is_character() || !me->is_fighting(target) )
-                return notify_fail("神功震敌只能对战斗中的对手使用。\n");
+                return notify_fail("神功震敵只能對戰鬥中的對手使用。\n");
 
         if( objectp(query_temp("weapon", me)) )
-                return notify_fail("你必须空手才能使用「震」字诀！\n");         
+                return notify_fail("你必須空手才能使用「震」字訣！\n");         
                 
         if( (int)me->query_skill("houquan", 1) < 40 )
-                return notify_fail("你的猴拳不够娴熟，不会使用「震」字诀。\n");
+                return notify_fail("你的猴拳不夠嫻熟，不會使用「震」字訣。\n");
                                 
         if( query("neili", me)<200 )
-                return notify_fail("你现在内力太弱，不能使用「震」字诀。\n");
+                return notify_fail("你現在內力太弱，不能使用「震」字訣。\n");
                         
-        msg = CYN "$N默运神功，使出猴拳「震」字诀，企图以内力震伤$n。\n"NOR;
+        msg = CYN "$N默運神功，使出猴拳「震」字訣，企圖以內力震傷$n。\n"NOR;
         
         ap = attack_power(me, "unarmed");
         dp = defense_power(target, "force");
@@ -34,10 +34,10 @@ int perform(object me, object target)
                 damage = damage_power(me, "unarmed");
                 addn("neili", -200, me);
                 
-                if( damage < 20 ) pmsg = HIY"结果$n受到$N的内力反震，闷哼一声。\n"NOR;
-                else if( damage < 40 ) pmsg = HIY"结果$n被$N以内力反震，「嘿」地一声退了两步。\n"NOR;
-                else if( damage < 80 ) pmsg = RED"结果$n被$N以内力一震，胸口有如受到一记重锤，连退了五六步！\n"NOR;
-                else pmsg = HIR"结果$n被$N的内力一震，眼前一黑，身子向后飞出丈许！！\n"NOR;
+                if( damage < 20 ) pmsg = HIY"結果$n受到$N的內力反震，悶哼一聲。\n"NOR;
+                else if( damage < 40 ) pmsg = HIY"結果$n被$N以內力反震，「嘿」地一聲退了兩步。\n"NOR;
+                else if( damage < 80 ) pmsg = RED"結果$n被$N以內力一震，胸口有如受到一記重錘，連退了五六步！\n"NOR;
+                else pmsg = HIR"結果$n被$N的內力一震，眼前一黑，身子向後飛出丈許！！\n"NOR;
                 
                 msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 50, pmsg);
                 
@@ -49,7 +49,7 @@ int perform(object me, object target)
         {
                 addn("neili", -50, me);
                 me->start_busy(3);
-                msg += CYN"可是$p看破了$P的企图，并没有上当。\n"NOR;
+                msg += CYN"可是$p看破了$P的企圖，並沒有上當。\n"NOR;
         }
         message_combatd(msg, me, target);
 

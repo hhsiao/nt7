@@ -30,8 +30,8 @@ int clean_up() { return 1; }
 void create()
 {
        seteuid(ROOT_UID);
-       set("channel_id", "系统精灵");
-       CHANNEL_D->do_channel( this_object(), "sys", "杏子林地图已经启动。\n");
+       set("channel_id", "系統精靈");
+       CHANNEL_D->do_channel( this_object(), "sys", "杏子林地圖已經啟動。\n");
        call_out("regenerate_map",1);
 }
 
@@ -40,7 +40,7 @@ int regenerate_map()
         int kk;
 
         remove_call_out("regenerate_map");
-        CHANNEL_D->do_channel(this_object(),"sys", "开始重新生成杏子林地图。\n");
+        CHANNEL_D->do_channel(this_object(),"sys", "開始重新生成杏子林地圖。\n");
 
         room_list = get_dir(DOOM_PATH+"/dynamic/*.c");
         for(kk=0;kk<sizeof(room_list);kk++)
@@ -53,7 +53,7 @@ int regenerate_map()
                 j = random(sizeof(room_list));
                 dyna_room += ({room_list[j]});
                 room_list -= ({room_list[j]});
-        } // 随机分配位置完毕
+        } // 隨機分配位置完畢
 
         size = sizeof(dyna_room);
 
@@ -69,10 +69,10 @@ int regenerate_map()
                         room_object += ({cur_room});
         }
 
-        // 开始生成路径
+        // 開始生成路徑
         for(i=0;i<size;i++)
         {
-                //生成四个不同的方向对
+                //生成四個不同的方向對
                 dirs =  ({      "north","northeast","northwest","south",
                                 "southwest","southeast","east","west",
                                 //"northup","northdown","eastup","eastdown",
@@ -111,7 +111,7 @@ int regenerate_map()
                         set("exits/"+rev_dir2, dyna_room[i], (room_object[int_dir]));
                 }
                 int_dir = random(size);
-                tell_room(room_object[i],HIW"一阵天旋地转之后，你发现一切都已经变了...\n"NOR);
+                tell_room(room_object[i],HIW"一陣天旋地轉之後，你發現一切都已經變了...\n"NOR);
         }
         set("exits/south", DOOM_PATH+"/road4", (room_object[size-1]));
         set("exits/south", DOOM_PATH+"/road4", (room_object[0]));

@@ -3,10 +3,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("哈萨克人", ({ "hasake ren", "hasake", "ren"}));
+        set_name("哈薩克人", ({ "hasake ren", "hasake", "ren"}));
         set("gender", "男性");
         set("age", 26);
-        set("long", "一个哈萨克族青年，赶着几十只羊。\n");
+        set("long", "一個哈薩克族青年，趕著幾十只羊。\n");
         set("attitude", "friendly");
         set("combat_exp", 4000);
         set("shen_type", 0);
@@ -28,15 +28,15 @@ void create()
         set_temp("apply/damage", 25);
 
         set("inquiry", ([
-                    "苏普"   : "呀，你也要跟苏普摔跤？往东走你就会找到他。",
-                    "阿曼"   : "叹，我摔跤总赢不了苏普。",
-                    "计老人" : "计老人会酿又香又烈的美酒，会医牛羊马匹的疾病。",
+                    "蘇普"   : "呀，你也要跟蘇普摔跤？往東走你就會找到他。",
+                    "阿曼"   : "嘆，我摔跤總贏不了蘇普。",
+                    "計老人" : "計老人會釀又香又烈的美酒，會醫牛羊馬匹的疾病。",
         ]));
 
         set("chat_chance", 10);
         set("chat_msg", ({
-                CYN "哈萨克人道：上个月我用刀砍死了一头狼，剥了狼皮送给咱阿妹。\n" NOR,
-                CYN "哈萨克人道：阿曼是草原上一朵会走路的花。\n" NOR,
+                CYN "哈薩克人道：上個月我用刀砍死了一頭狼，剝了狼皮送給咱阿妹。\n" NOR,
+                CYN "哈薩克人道：阿曼是草原上一朵會走路的花。\n" NOR,
         }) );
 
         setup();

@@ -1,4 +1,4 @@
-// haishi.c 海市蜃楼
+// haishi.c 海市蜃樓
 
 #include <ansi.h>
 #include <combat.h>
@@ -20,31 +20,31 @@ int perform(object me, object target)
         }
         
         if (! target || ! me->is_fighting(target))
-                return notify_fail("「海市蜃楼」只能在战斗中对对手使用。\n");
+                return notify_fail("「海市蜃樓」只能在戰鬥中對對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if (me->query_skill("sword", 1) < 150)
-                return notify_fail("你的剑术修为不够，目前不能使用「海市蜃楼」！\n");
+                return notify_fail("你的劍術修為不夠，目前不能使用「海市蜃樓」！\n");
 
         if (me->query_skill("sanfen-jianshu", 1) < 150)
-                return notify_fail("你的三分剑术的修为不够，不能使用这一绝技！\n");
+                return notify_fail("你的三分劍術的修為不夠，不能使用這一絕技！\n");
 
         if (me->query_skill("dodge") < 150)
-                return notify_fail("你的轻功修为不够，无法使用「海市蜃楼」！\n");
+                return notify_fail("你的輕功修為不夠，無法使用「海市蜃樓」！\n");
  
         if( query("neili", me)<200 )
-                return notify_fail("你的真气不够！\n");
+                return notify_fail("你的真氣不夠！\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N" HIW "狂喝一声，手中" + weapon->name() +
-              HIW "将到之际，突然圈转，使出三分剑术的独得之秘"
-              "「海市蜃楼」，一招之中\n又另蕴涵三招，招式繁复狠"
-              "辣，剑招虚虚实实，霍霍剑光径直逼向$n"
+        msg = HIW "$N" HIW "狂喝一聲，手中" + weapon->name() +
+              HIW "將到之際，突然圈轉，使出三分劍術的獨得之秘"
+              "「海市蜃樓」，一招之中\n又另蘊涵三招，招式繁複狠"
+              "辣，劍招虛虛實實，霍霍劍光徑直逼向$n"
               HIW "！\n\n" NOR;
 
         addn("neili", -150, me);
@@ -57,20 +57,20 @@ int perform(object me, object target)
         {
                 damage = damage_power(me, "sword");
                 msg += COMBAT_D->do_damage(me, target, REMOTE_ATTACK, damage, 70,
-                                           HIR "$n" HIR "完全无法辨清虚实，只感一阵触心的刺痛，一声惨叫，已被$N"
-                                           HIR "凌厉的剑招刺中。\n" NOR);
+                                           HIR "$n" HIR "完全無法辨清虛實，只感一陣觸心的刺痛，一聲慘叫，已被$N"
+                                           HIR "凌厲的劍招刺中。\n" NOR);
                 if (ap / 3 + random(ap) > dp)
                 {
                         damage /= 2;
                         msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 100,
-                                                   HIR "\n$N" HIR "见$n" HIR "重创之下不禁破绽迭出，"
-                                                   HIR "冷笑一声，手中" + weapon->name() +
-                                                   HIR "挥洒，又攻出一剑，正中$p" HIR "胸口。\n" NOR);
+                                                   HIR "\n$N" HIR "見$n" HIR "重創之下不禁破綻迭出，"
+                                                   HIR "冷笑一聲，手中" + weapon->name() +
+                                                   HIR "揮灑，又攻出一劍，正中$p" HIR "胸口。\n" NOR);
                 }
         } else
         {
-                msg += HIC "$n" HIC "见状身形急退，避开了$N"
-                       HIC "凌厉的攻击！\n" NOR;
+                msg += HIC "$n" HIC "見狀身形急退，避開了$N"
+                       HIC "凌厲的攻擊！\n" NOR;
         }
 
         message_combatd(msg, me, target);

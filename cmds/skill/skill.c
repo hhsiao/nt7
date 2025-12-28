@@ -44,25 +44,25 @@ int main(object me, string arg)
         seteuid(getuid());
 
         if (! arg)
-                return notify_fail("指令格式：skill  <技能名称> | <技能中文名>\n");
+                return notify_fail("指令格式：skill  <技能名稱> | <技能中文名>\n");
 
         MYGIFT_D->check_mygift(me, "newbie_mygift/skill");
         if (! stringp(file = SKILL_D(arg)) || file_size(file + ".c") <= 0)
         {
                 // 英文的找不到？那就找中文名
                 if (! stringp(arg = CHINESE_D->find_skill(arg)))
-                        return notify_fail("没有这种技能存在。\n");
+                        return notify_fail("沒有這種技能存在。\n");
 
-                // 根据中文名找到了英文名，看看是否真的有此技能
+                // 根據中文名找到了英文名，看看是否真的有此技能
                 if (! stringp(file = SKILL_D(arg)) || file_size(file + ".c") <= 0)
-                        return notify_fail("没有这种技能存在。\n");
+                        return notify_fail("沒有這種技能存在。\n");
         }
 
-        msg = "关于" + to_chinese(arg) + "的详细属性如下：\n";
+        msg = "關於" + to_chinese(arg) + "的詳細屬性如下：\n";
         msg += HIC "≡" HIY "------------------------------------"
                "--------" HIC "≡\n" NOR;
-        msg += WHT + "  武功名称：  " HIG + arg + "\n" + NOR;
-        msg += WHT + "  中文名称：  " HIG + to_chinese(arg) + "\n" + NOR;
+        msg += WHT + "  武功名稱：  " HIG + arg + "\n" + NOR;
+        msg += WHT + "  中文名稱：  " HIG + to_chinese(arg) + "\n" + NOR;
 
         is_force = 0;
 
@@ -71,7 +71,7 @@ int main(object me, string arg)
 
         if (member_array(arg, valid_types) != -1)
         {
-                msg += WHT "  武功所属：  " HIG "基本武功\n" NOR;
+                msg += WHT "  武功所屬：  " HIG "基本武功\n" NOR;
                 msg += HIC "≡" HIY "----------------------------"
                        "----------------" HIC "≡\n" NOR;
                 write(msg);
@@ -86,7 +86,7 @@ int main(object me, string arg)
                 return 1;
         }
 
-        // 查询武功的 pfm 情况
+        // 查詢武功的 pfm 情況
         msg1 = "";
         j = 0;
         dir = file;
@@ -119,14 +119,14 @@ int main(object me, string arg)
 
                         if (msg1 != "")
                         {
-                                msg += WHT "  武功绝招：  " NOR;
+                                msg += WHT "  武功絕招：  " NOR;
                                 msg += msg1;
                                 msg += "\n";
                         }
                 }
         }
 
-        // 查询内功的 exert 情况
+        // 查詢內功的 exert 情況
         if (! is_force)
         {
                 msg += HIC "≡" HIY "----------------------------"
@@ -175,7 +175,7 @@ int main(object me, string arg)
 
         if (msg1 != "")
         {
-                msg += WHT "  内功功能：  " NOR;
+                msg += WHT "  內功功能：  " NOR;
                 msg += msg1;
                 msg += "\n";
         }
@@ -189,13 +189,13 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式：skill  <技能名称> | <技能中文名>
+指令格式：skill  <技能名稱> | <技能中文名>
 
-这个指令让你检查指定的某种武功或技能（技能名称可输入中
-文名）如果你本身具备这项技能，则会显示出该技能的绝招及
+這個指令讓你檢查指定的某種武功或技能（技能名稱可輸入中
+文名）如果你本身具備這項技能，則會顯示出該技能的絕招及
 特殊功能。
 
-相关指令：skills
+相關指令：skills
 
 HELP);
         return 1;

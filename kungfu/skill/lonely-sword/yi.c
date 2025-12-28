@@ -1,11 +1,11 @@
-// yi.c 剑意
+// yi.c 劍意
 
 #include <ansi.h>
 #include <combat.h>
 
 inherit F_SSERVER;
 
-string name() { return "剑意"; }
+string name() { return "劍意"; }
 
 int perform(object me, object target)
 {
@@ -21,37 +21,37 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("你只能对战斗中的对手使用绝招。\n");
+                return notify_fail("你只能對戰鬥中的對手使用絕招。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "sword" )
-                return notify_fail("无剑如何运用剑意？\n");
+                return notify_fail("無劍如何運用劍意？\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你现在的真气不够，无法使用剑意！\n");
+                return notify_fail("你現在的真氣不夠，無法使用劍意！\n");
 
         if ((int)me->query_skill("lonely-sword", 1) < 120)
-                return notify_fail("你的独孤九剑还不到家，无法使用剑意！\n");
+                return notify_fail("你的獨孤九劍還不到家，無法使用劍意！\n");
 
         if (me->query_skill_mapped("sword") != "lonely-sword")
-                return notify_fail("你没有激发独孤九剑，无法使用剑意！\n");
+                return notify_fail("你沒有激發獨孤九劍，無法使用劍意！\n");
 
        if (! living(target))
-              return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+              return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         switch (random(3))
         {
         case 0:
-                msg = HIM "$N" HIM "一剑刺出，连自已也不知道要刺往何处。\n" NOR;
+                msg = HIM "$N" HIM "一劍刺出，連自已也不知道要刺往何處。\n" NOR;
                 break;
 
         case 1:
-                msg = HIM "$N" HIM "随手挥洒手中的" + weapon->name() +
-                       HIM "，漫无目的，不成任何招式。\n" NOR;
+                msg = HIM "$N" HIM "隨手揮灑手中的" + weapon->name() +
+                       HIM "，漫無目的，不成任何招式。\n" NOR;
                 break;
 
         default:
-                msg = HIM "$N" HIM "斜斜刺出一剑，准头之差，令人匪夷所思。\n" NOR;
+                msg = HIM "$N" HIM "斜斜刺出一劍，準頭之差，令人匪夷所思。\n" NOR;
                 break;
         }
 
@@ -64,13 +64,13 @@ int perform(object me, object target)
                 damage = damage + random(damage);
                 addn("neili", -180, me);
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 200,
-                                           HIR "$n" HIR "全然无法领会$P"
-                                           HIR "这莫名其妙的招数，一个疏神，登时受创！\n" NOR);
+                                           HIR "$n" HIR "全然無法領會$P"
+                                           HIR "這莫名其妙的招數，一個疏神，登時受創！\n" NOR);
                 me->start_busy(2);
         } else
         {
-                msg += CYN "$n" CYN "淡然处之，并没有将$P"
-                       CYN "此招放在心上，随手架开，不漏半点破绽。\n" NOR;
+                msg += CYN "$n" CYN "淡然處之，並沒有將$P"
+                       CYN "此招放在心上，隨手架開，不漏半點破綻。\n" NOR;
                 addn("neili", -60, me);
                 me->start_busy(3);
         }

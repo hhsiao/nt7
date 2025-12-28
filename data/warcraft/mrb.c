@@ -7,7 +7,7 @@ void setup()
         set_name("慕容雪[2;37;0m[2;37;0m", ({"mrblong"}));        
         set("gender", "男性");                
         set("long", "美少女[2;37;0m
-它是一哥的魔幻兽。
+它是一哥的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

@@ -16,7 +16,7 @@ int main(object me, string arg)
                 return 0;
 
         if( !arg || sscanf(arg, "%s to %s", srcfile, dstfile)!=2 )
-                return notify_fail("指令格式：aconvert <原文件> to <目标文件>\n");
+                return notify_fail("指令格式：aconvert <原文件> to <目標文件>\n");
         seteuid(geteuid(me));
         srcfile=resolve_path(query("cwd", me),srcfile);
         dstfile=resolve_path(query("cwd", me),dstfile);
@@ -27,7 +27,7 @@ int main(object me, string arg)
         }
 
         if (file_size(dstfile)!=-1)
-                return notify_fail("目标文件："+dstfile+" 已经存在，你不能覆盖它！\n");
+                return notify_fail("目標文件："+dstfile+" 已經存在，你不能覆蓋它！\n");
 
         if (file_size(srcfile)==-1)
                 return notify_fail("原文件："+srcfile+" 不存在！\n");
@@ -38,7 +38,7 @@ int main(object me, string arg)
                 field[i] = replace_color(field[i], 1);
                 field[i] = field[i] + "\n";
                 if( !write_file(dstfile, field[i], 0) )
-                        return notify_fail("写文件 "+dstfile+" 失败！请检查您的权限。\n");
+                        return notify_fail("寫文件 "+dstfile+" 失敗！請檢查您的權限。\n");
         }
         write("convert file："+srcfile+" to "+dstfile+"\n",me);
         return 1;
@@ -89,9 +89,9 @@ string replace_color(string arg,int flag)
 int help(object me)
 {
 write(@HELP
-指令格式 : zhuanhuan <原文件> to <目标文件>
+指令格式 : zhuanhuan <原文件> to <目標文件>
 
-    用途 : 转换文本文件里的ansi颜色代码。
+    用途 : 轉換文本文件裡的ansi顏色代碼。
 HELP
         );
         return 1;

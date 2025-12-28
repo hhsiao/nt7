@@ -12,12 +12,12 @@ mixed ask_me2();
 
 void create()
 {
-        set_name("莫声谷", ({ "mo shenggu", "mo" }));
-        set("nickname", "武当七侠");
+        set_name("莫聲谷", ({ "mo shenggu", "mo" }));
+        set("nickname", "武當七俠");
         set("long",
-                "他就是张三丰的七弟子莫声谷。\n"
-                "他看起来二十多岁，显得稚气未脱。\n"
-                "但也是江湖中行侠仗义，声明远播的侠客。\n");
+                "他就是張三丰的七弟子莫聲谷。\n"
+                "他看起來二十多歲，顯得稚氣未脫。\n"
+                "但也是江湖中行俠仗義，聲明遠播的俠客。\n");
         set("gender", "男性");
         set("age", 40);
         set("attitude", "peaceful");
@@ -65,26 +65,26 @@ void create()
         prepare_skill("unarmed", "taiji-quan");
 
         set("no_teach", ([
-                "taiji-shengong" : "要想学习太极神功请向张真人请教。",
-                "taiji-jian"     : "太极剑必须张真人亲传。",
-                "taiji-quan"     : "太极拳必须张真人亲传。",
+                "taiji-shengong" : "要想學習太極神功請向張真人請教。",
+                "taiji-jian"     : "太極劍必須張真人親傳。",
+                "taiji-quan"     : "太極拳必須張真人親傳。",
         ]));
 
         set("inquiry", ([
                 "隔山打牛" : (: ask_skill1 :),
-                "太极初升" : (: ask_skill2 :),
-                // "绕指柔剑" : (: ask_me :),
-                // "宋青书"   : (: ask_me1 :),
+                "太極初升" : (: ask_skill2 :),
+                // "繞指柔劍" : (: ask_me :),
+                // "宋青書"   : (: ask_me1 :),
                 // "raozhi"   : (: ask_me :),
                 // "qingshu"  : (: ask_me1 :),
                 // "teach"    : (: ask_me2 :),
                 // "指教"     : (: ask_me2 :),
-                "石柱"     : "在石柱面壁可以大有收获的。",
-                "面壁"     : "面壁是一定要注明技能的。",
-                "张三丰"   : "我恩师学究天人，尤其是他的道学心法。"
+                "石柱"     : "在石柱面壁可以大有收穫的。",
+                "面壁"     : "面壁是一定要註明技能的。",
+                "張三丰"   : "我恩師學究天人，尤其是他的道學心法。"
         ]));
 
-        create_family("武当派", 2, "弟子");
+        create_family("武當派", 2, "弟子");
 
         set("chat_chance_combat", 30);
         set("chat_msg_combat", ({
@@ -107,29 +107,29 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)<2000 )
         {
-                command("say 我武当乃是堂堂名门正派，对弟子要求极严。");
+                command("say 我武當乃是堂堂名門正派，對弟子要求極嚴。");
                 command("say 在德行方面，" + RANK_D->query_respect(ob) +
-                        "是否还做得不够？");
+                        "是否還做得不夠？");
                 return;
         }
 
         if ((int)ob->query_skill("yinyun-ziqi", 1) < 50)
         {
-                command("say 我武当派最注重内功心法" + RANK_D->query_respect(ob)+
-                        "是否应该在武当心法上多下点功夫啊?");
+                command("say 我武當派最注重內功心法" + RANK_D->query_respect(ob)+
+                        "是否應該在武當心法上多下點功夫啊?");
                 return;
         }
 
         if ((int)ob->query_skill("taoism", 1) < 50)
         {
-                command("say 习武是为了强身健体，一味的练武是不可取的做！");
-                command("say 我看你还需要在修身养性方面多锻炼锻炼，以提高你"
+                command("say 習武是為了強身健體，一味的練武是不可取的做！");
+                command("say 我看你還需要在修身養性方面多鍛鍊鍛鍊，以提高你"
                         "的道德心法。");
                 return;
         }
 
         command("say 好吧，我就收下你了。");
-        command("say 希望你能好好用功，发扬我武当精神!");
+        command("say 希望你能好好用功，發揚我武當精神!");
         command("recruit "+query("id", ob));
         if( query("class", ob) != "taoist" )
                 set("class", "taoist", ob);
@@ -141,32 +141,32 @@ mixed ask_skill1()
 
         me = this_player();
         if( query("can_perform/zhenshan-zhang/da", me) )
-                return "能教的我都教了，你自己练习吧。";
+                return "能教的我都教了，你自己練習吧。";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return RANK_D->query_respect(me) + "不是我们武当派的人，何出此言？";
+                return RANK_D->query_respect(me) + "不是我們武當派的人，何出此言？";
 
         if (me->query_skill("zhenshan-zhang", 1) < 1)
-                return "你连震山掌都没学，还谈什么绝招可言？";
+                return "你連震山掌都沒學，還談什麼絕招可言？";
 
         if( query("family/gongji", me)<50 )
-                return "你为我武当派效力还不够，这招我先不忙传你。";
+                return "你為我武當派效力還不夠，這招我先不忙傳你。";
 
         if( query("shen", me)<6000 )
-                return "你行侠仗义的事情做的还很不够，我不能传你绝招！";
+                return "你行俠仗義的事情做的還很不夠，我不能傳你絕招！";
 
         if (me->query_skill("zhenshan-zhang", 1) < 40)
-                return "你的震山掌修为太浅，修炼好了再来吧。";
+                return "你的震山掌修為太淺，修煉好了再來吧。";
 
         if( query("max_neili", me)<200 )
-                return "你的内力修为太浅，修炼高了再来吧。";
+                return "你的內力修為太淺，修煉高了再來吧。";
 
-        message_vision(HIY "$n" HIY "点了点头，将$N" HIY "招至"
-                       "身边，在耳旁低声细说良久，$N" HIY "听"
-                       "后会心\n的一笑，看来大有所悟。\n" NOR, me,
+        message_vision(HIY "$n" HIY "點了點頭，將$N" HIY "招至"
+                       "身邊，在耳旁低聲細說良久，$N" HIY "聽"
+                       "後會心\n的一笑，看來大有所悟。\n" NOR, me,
                        this_object());
-        command("say 这招再简单不过，自己下去练吧。");
-        tell_object(me, HIC "你学会了「隔山打牛」。\n" NOR);
+        command("say 這招再簡單不過，自己下去練吧。");
+        tell_object(me, HIC "你學會了「隔山打牛」。\n" NOR);
         if (me->can_improve_skill("strike"))
                 me->improve_skill("strike", 1500000);
         if (me->can_improve_skill("zhenshan-zhang"))
@@ -184,34 +184,34 @@ mixed ask_skill2()
 
         me = this_player();
         if( query("can_perform/wudang-jian/sheng", me) )
-                return "你自己去练习吧。";
+                return "你自己去練習吧。";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return RANK_D->query_respect(me) + "不是我们武当派的人，何出此言？";
+                return RANK_D->query_respect(me) + "不是我們武當派的人，何出此言？";
 
         if (me->query_skill("wudang-jian", 1) < 1)
-                return "你连武当剑法都没学，还谈什么绝招可言？";
+                return "你連武當劍法都沒學，還談什麼絕招可言？";
 
         if( query("family/gongji", me)<80 )
-                return "你为我武当派效力还不够，这招我先不忙传你。";
+                return "你為我武當派效力還不夠，這招我先不忙傳你。";
 
         if( query("shen", me)<8000 )
-                return "你行侠仗义的事情做的还很不够，我不能传你绝招！";
+                return "你行俠仗義的事情做的還很不夠，我不能傳你絕招！";
 
         if (me->query_skill("force") < 80)
-                return "你的内功的修为不够，练高了再来吧。";
+                return "你的內功的修為不夠，練高了再來吧。";
 
         if (me->query_skill("wudang-jian", 1) < 60)
-                return "你的武当剑法修为太浅，修炼好了再来吧。";
+                return "你的武當劍法修為太淺，修煉好了再來吧。";
 
         if( query("max_neili", me)<300 )
-                return "你的内力修为太浅，修炼高了再来吧。";
+                return "你的內力修為太淺，修煉高了再來吧。";
 
-        message_vision(HIY "$n" HIY "微微一笑，从怀中轻轻取出了一本"
-                       "剑谱，指着其中一段对$N" HIY "细\n说良久，$N"
-                       HIY "一边听一边点头。\n" NOR, me, this_object());
-        command("say 你懂了吗？");
-        tell_object(me, HIC "你学会了「太极初升」。\n" NOR);
+        message_vision(HIY "$n" HIY "微微一笑，從懷中輕輕取出了一本"
+                       "劍譜，指著其中一段對$N" HIY "細\n說良久，$N"
+                       HIY "一邊聽一邊點頭。\n" NOR, me, this_object());
+        command("say 你懂了嗎？");
+        tell_object(me, HIC "你學會了「太極初升」。\n" NOR);
         if (me->can_improve_skill("sword"))
                 me->improve_skill("sword", 1500000);
         if (me->can_improve_skill("wudang-jian"))

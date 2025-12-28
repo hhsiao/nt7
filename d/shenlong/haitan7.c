@@ -2,9 +2,9 @@ inherit DEMONROOM;
 
 void create()
 {
-        set("short", "仙人掌丛林");
+        set("short", "仙人掌叢林");
         set("long",@LONG
-这是神龙岛东部一片仙人掌丛林，这里四处都是一人高的仙人掌。
+這是神龍島東部一片仙人掌叢林，這裡四處都是一人高的仙人掌。
 LONG);
 
 	set("exits", ([

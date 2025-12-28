@@ -14,7 +14,7 @@ void create()
         ::create();
         set("gender", "男性" );
         set("age", 30 + random(30));
-        // set("long", "这是一个蒙面人。");
+        // set("long", "這是一個蒙面人。");
         set("attitude", "friendly");
         set("chat_chance", 30);
         set("chat_msg", ({ (: random_move :) }));
@@ -60,15 +60,15 @@ void set_from_me(object me)
 
 int accept_fight(object ob)
 {
-        command("say 我可没兴趣陪你玩，快给我滚开。");
+        command("say 我可沒興趣陪你玩，快給我滾開。");
         return 0;
 }
 
 int accept_hit(object ob)
 {
-        message_vision(HIW "$N" HIW "脸色一变，闪过一道杀气。怒"
-                       "喝道：好一个" + RANK_D->query_rude(ob) +
-                       "，来吧！\n" NOR, this_object());
+        message_vision(HIW "$N" HIW "臉色一變，閃過一道殺氣。怒"
+                       "喝道：好一個" + RANK_D->query_rude(ob) +
+                       "，來吧！\n" NOR, this_object());
         kill_ob(ob);
         return 1;
 }
@@ -83,12 +83,12 @@ int accept_kill(object ob)
 
 int accept_ansuan(object ob)
 {
-        return notify_fail("那人警惕性好高，你难以下手。\n");
+        return notify_fail("那人警惕性好高，你難以下手。\n");
 }
 
 int accept_touxi(object ob)
 {
-        return notify_fail("那人警惕性好高，你难以下手。\n");
+        return notify_fail("那人警惕性好高，你難以下手。\n");
 }
 
 void unconcious()

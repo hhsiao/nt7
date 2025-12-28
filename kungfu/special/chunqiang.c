@@ -2,11 +2,11 @@
 
 inherit F_CLEAN_UP;
 
-string name() { return HIC "唇枪舌剑" NOR; }
+string name() { return HIC "唇槍舌劍" NOR; }
 
 int perform(object me, string skill)
 {
-        return notify_fail("你拥有异人之口才，能够混淆是非，颠倒黑白。于炎黄黑店、普通NPC商店购买\n"
-                           "物品可获得市价9折的优惠。同时，具备八面玲珑的相关特效。不需要运用。\n");
+        return notify_fail("你擁有異人之口才，能夠混淆是非，顛倒黑白。於炎黃黑店、普通NPC商店購買\n"
+                           "物品可獲得市價9折的優惠。同時，具備八面玲瓏的相關特效。不需要運用。\n");
 }
 

@@ -54,10 +54,10 @@ mapping place = ([
                         "/d/beijing/xingchang", "/d/beijing/minju_y",
                         "/d/beijing/mianguan", "/d/beijing/yong_3",
                         "/d/beijing/tiantan", "/d/beijing/caishi", }),
-        "长安城"   : ({ "/d/changan/dong-chengmen", "/d/changan/nan-chengmen",
+        "長安城"   : ({ "/d/changan/dong-chengmen", "/d/changan/nan-chengmen",
                         "/d/changan/xi-chengmen", "/d/changan/bei-chengmen",
                         "/d/changan/qinglong2", "/d/changan/baihu2", }),
-        "洛阳城"   : ({ "/d/luoyang/xidoor", "/d/luoyang/beidoor",
+        "洛陽城"   : ({ "/d/luoyang/xidoor", "/d/luoyang/beidoor",
                         "/d/luoyang/dongdoor", "/d/luoyang/nandoor",
                         "/d/luoyang/juyi", "/d/luoyang/nantou",
                         "/d/luoyang/suanming", "/d/luoyang/laofang",
@@ -65,51 +65,51 @@ mapping place = ([
         "中州城"   : ({ "/d/zhongzhou/shizhongxin", "/d/zhongzhou/nanmeng",
                         "/d/zhongzhou/beimen", "/d/zhongzhou/chenglou",
                         "/d/zhongzhou/yanlingdong1", "/d/zhongzhou/inpomiao", }),
-        "开封城"   : ({ "/d/kaifeng/road4", "/d/kaifeng/zhuque",
+        "開封城"   : ({ "/d/kaifeng/road4", "/d/kaifeng/zhuque",
                         "/d/kaifeng/yanqing", "/d/kaifeng/huiguan",
                         "/d/kaifeng/nanying", "/d/kaifeng/fangsheng", }),
-        "扬州城"   : ({ "/d/city/beimen", "/d/city/nanmen",
+        "揚州城"   : ({ "/d/city/beimen", "/d/city/nanmen",
                         "/d/city/ximen", "/d/city/dongmen", }),
-        "苏州城"   : ({ "/d/suzhou/xidajie2", "/d/suzhou/dongdajie2",
+        "蘇州城"   : ({ "/d/suzhou/xidajie2", "/d/suzhou/dongdajie2",
                         "/d/suzhou/road5", "/d/suzhou/road1",
                         "/d/suzhou/gumujiaohe", "/d/suzhou/zhenquting", }),
         "杭州城"   : ({ "/d/hangzhou/suti2", "/d/hangzhou/jujingyuan",
                         "/d/hangzhou/liuzhuang", "/d/hangzhou/road19",
                         "/d/hangzhou/huangniling", "/d/hangzhou/qinglindong", }),
-        "襄阳城"   : ({ "/d/xiangyang/westjie2", "/d/xiangyang/southjie2",
+        "襄陽城"   : ({ "/d/xiangyang/westjie2", "/d/xiangyang/southjie2",
                         "/d/xiangyang/xiaorong1", "/d/xiangyang/zhonglie",
                         "/d/xiangyang/guangchang", "/d/xiangyang/dingzi", }),
         "成都城"   : ({ "/d/chengdu/southroad1", "/d/chengdu/qingyanggong",
                         "/d/chengdu/northroad2", "/d/chengdu/fuheqiaoe", }),
         "昆明城"   : ({ "/d/kunming/nandajie2", "/d/kunming/yunnan2",
                         "/d/kunming/xiaoximen", "/d/kunming/xiaolu", }),
-        "荆州城"   : ({ "/d/jingzhou/guangchang", "/d/jingzhou/jznanmen",
+        "荊州城"   : ({ "/d/jingzhou/guangchang", "/d/jingzhou/jznanmen",
                         "/d/jingzhou/wenquan", "/d/jingzhou/zizhulin", }),
-        "兰州城"   : ({ "/d/lanzhou/square", "/d/lanzhou/road3",
+        "蘭州城"   : ({ "/d/lanzhou/square", "/d/lanzhou/road3",
                         "/d/lanzhou/southgate", "/d/lanzhou/westgate", }),
         "泉州城"   : ({ "/d/quanzhou/guangchang", }),
         "福州城"   : ({ "/d/fuzhou/xixiaojie", "/d/fuzhou/dongxiaojie",
                         "/d/fuzhou/nanhoujie2", "/d/fuzhou/nanmen", }),
-        "灵州"     : ({ "/d/lingzhou/xidajie", "/d/lingzhou/nanmen",
+        "靈州"     : ({ "/d/lingzhou/xidajie", "/d/lingzhou/nanmen",
                         "/d/lingzhou/dongdajie", }),
-        "汉中镇"   : ({ "/d/hanzhong/dongjie", "/d/hanzhong/xijie", }),
-        "华山附近" : ({ "/d/huashan/pingxinshi", "/d/village/square",
+        "漢中鎮"   : ({ "/d/hanzhong/dongjie", "/d/hanzhong/xijie", }),
+        "華山附近" : ({ "/d/huashan/pingxinshi", "/d/village/square",
                         "/d/village/wexit", }),
         "凌霄城附近" : ({ "/d/lingxiao/sroad5", "/d/lingxiao/bar", }),
         "五毒教附近" : ({ "/d/wudu/cun3", "/d/wudu/jiang2",
                           "/d/wudu/bianzhai1", "/d/wudu/milin4", }),
-        "佛山一带" : ({ "/d/foshan/street1", "/d/foshan/southgate", }),
-        "南海一带" : ({ "/d/xiakedao/xkroad4" }),
-        "汝州一带" : ({ "/d/ruzhou/ruzhou" }),
-        "嵩山一带" : ({ "/d/songshan/tianzhongge", "/d/shaolin/shijie1",
+        "佛山一帶" : ({ "/d/foshan/street1", "/d/foshan/southgate", }),
+        "南海一帶" : ({ "/d/xiakedao/xkroad4" }),
+        "汝州一帶" : ({ "/d/ruzhou/ruzhou" }),
+        "嵩山一帶" : ({ "/d/songshan/tianzhongge", "/d/shaolin/shijie1",
                         "/d/shaolin/shijie8", }),
-        "终南山"   : ({ "/d/quanzhen/shanlu1", "/d/quanzhen/shijie1",
+        "終南山"   : ({ "/d/quanzhen/shanlu1", "/d/quanzhen/shijie1",
                         "/d/quanzhen/shijie9", "/d/quanzhen/cuipinggu",
                         "/d/quanzhen/baishulin3", "/d/quanzhen/taiyi1",
                         "/d/quanzhen/banshanting", }),
         "星宿海"   : ({ "/d/xingxiu/tianroad2", }),
         "天山"     : ({ "/d/lingjiu/yan", }),
-        "关外"     : ({ "/d/guanwai/baihe", "/d/guanwai/road8",
+        "關外"     : ({ "/d/guanwai/baihe", "/d/guanwai/road8",
                         "/d/guanwai/xuedi1", "/d/guanwai/beicheng",
                         "/d/guanwai/shanshenmiao" }),
         "西域"     : ({ "/d/xingxiu/shamo4", "/d/baituo/gebi",
@@ -117,7 +117,7 @@ mapping place = ([
                         "/d/xuedao/sroad3", "/d/xuedao/nroad6",
                         "/d/mingjiao/gebitan5",
                         "/d/xingxiu/nanjiang2" }),
-        "大理一带" : ({ "/d/dali/northgate", "/d/dali/southgate",
+        "大理一帶" : ({ "/d/dali/northgate", "/d/dali/southgate",
                         "/d/dali/shanlu2", "/d/dali/buxiongbu",
                         "/d/dali/jinzhihe", "/d/dali/xiaodao1",
                         "/d/dali/tianweijing", "/d/dali/wuding",
@@ -160,9 +160,9 @@ void init_npc_skill(object ob, int lvl)
                 ob->set_skill(ks[i], sk_lvl);
 }
 
-string *nations = ({ "中国", "日本", "龟慈", "荷兰", "天竺", "蒙古",
-                     "俄罗斯", "英吉利", "法兰西", "西班牙", "葡萄牙",
-                     "比利时", "塔吉克斯坦", "哈沙克斯坦", "乌兹别克斯坦" });
+string *nations = ({ "中國", "日本", "龜慈", "荷蘭", "天竺", "蒙古",
+                     "俄羅斯", "英吉利", "法蘭西", "西班牙", "葡萄牙",
+                     "比利時", "塔吉克斯坦", "哈沙克斯坦", "烏茲別克斯坦" });
 
 // generate a npc with nation & skill level
 object create_npc(string nation, int lvl)
@@ -171,7 +171,7 @@ object create_npc(string nation, int lvl)
 
         switch (nation)
         {
-        case "中国":
+        case "中國":
                 ob = new(CLASS_D("generate") + "/chinese");
                 NPC_D->generate_cn_name(ob);
                 break;
@@ -180,11 +180,11 @@ object create_npc(string nation, int lvl)
                 NPC_D->generate_jp_name(ob);
                 break;
         case "英吉利":
-        case "法兰西":
+        case "法蘭西":
         case "西班牙":
         case "葡萄牙":
-        case "比利时":
-        case "荷兰":
+        case "比利時":
+        case "荷蘭":
                 ob = new(CLASS_D("generate") + "/european");
                 NPC_D->generate_e_name(ob);
                 break;
@@ -193,11 +193,11 @@ object create_npc(string nation, int lvl)
                 NPC_D->generate_in_name(ob);
                 break;
         case "花剌子模":
-        case "龟慈":
-        case "俄罗斯":
+        case "龜慈":
+        case "俄羅斯":
         case "塔吉克斯坦":
         case "哈沙克斯坦":
-        case "乌兹别克斯坦":
+        case "烏茲別克斯坦":
         case "蒙古":
                 return 0;
         }
@@ -229,7 +229,7 @@ object create_challenger()
 
         n = ({ "日本", "日本", "日本",
                "天竺",
-               "英吉利", "法兰西", "西班牙", "葡萄牙", "比利时", "荷兰", });
+               "英吉利", "法蘭西", "西班牙", "葡萄牙", "比利時", "荷蘭", });
         return create_npc(n[random(sizeof(n))], lvl);
 }
 
@@ -254,7 +254,7 @@ void set_from_me(object tob, object fob, int scale)
         my["con"] = hp_status["con"] * scale / 100;
         my["dex"] = hp_status["dex"] * scale / 100;
 
-        // 计算最大气血
+        // 計算最大氣血
         s = fob->query_con() + fob->query_str();
         max_qi = 100;
 
@@ -350,7 +350,7 @@ void place_npc(object ob, string *not_place, string *in_place)
         set("place", p, ob);
         set("startroom", startroom, ob);
         set_temp("moved", ({}), ob);
-        message_vision("$N走了过来。\n", ob);
+        message_vision("$N走了過來。\n", ob);
 }
 
 #define MAX_MOVED       5
@@ -386,7 +386,7 @@ void random_move(object ob)
                         if (!get_object(exits[dir]))
                         {
                                 dirs -= ({ dir });
-                                log_file("log", sprintf("%s 的 %s 方向房间不存在。\n", base_name(environment(ob)), dir));
+                                log_file("log", sprintf("%s 的 %s 方向房間不存在。\n", base_name(environment(ob)), dir));
                                 continue;
                         }
                         if (stringp(GO_CMD->query_reverse(dir)) &&

@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("[47;1m[34m乌云踏雪[2;37;0m[2;37;0m", ({"wuyun"}));        
+        set_name("[47;1m[34m烏雲踏雪[2;37;0m[2;37;0m", ({"wuyun"}));        
         set("gender", "女性");                
-        set("long", "乌云踏雪[2;37;0m
-它是雾中楼的魔幻兽。
+        set("long", "烏雲踏雪[2;37;0m
+它是霧中樓的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");
         set("owner", "sss");
-        set("owner_name", "雾中楼");
+        set("owner_name", "霧中樓");
         set_temp("owner", "sss");
-        set_temp("owner_name", "雾中楼");
+        set_temp("owner_name", "霧中樓");
         ::setup();
 }

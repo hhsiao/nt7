@@ -8,7 +8,7 @@ inherit F_CLEAN_UP;
 
 int guilei_dir(object me, string dir, string type, int continueable, int *total);
 int guilei_file(object me, string file, string type);
-nosave int all_num;        //判断多少文件给归类
+nosave int all_num;        //判斷多少文件給歸類
 
 int main(object me, string arg)
 {
@@ -20,11 +20,11 @@ int main(object me, string arg)
               return 0;
 
         seteuid(geteuid(me));
-        write("guilei 命令 v1.0  \n小鱼儿(smallfish)于2002年1月8号编写。\n"+"主页：http://www.jdmr.com\n邮件：cunsun@sina.com\n");
+        write("guilei 命令 v1.0  \n小魚兒(smallfish)於2002年1月8號編寫。\n"+"主頁：http://www.jdmr.com\n郵件：cunsun@sina.com\n");
 
         continueable = 1;
          if (!arg || !(sscanf(arg,"%s %s",dir,type) == 2))
-                return notify_fail("格式：guilei <路径> room|npc \n");
+                return notify_fail("格式：guilei <路徑> room|npc \n");
 
                dir=resolve_path(query("cwd", me),dir);
 
@@ -32,13 +32,13 @@ int main(object me, string arg)
                 dir += "/";
 
         if (file_size(dir) != -2)
-                return notify_fail("没有" + dir + "这个路径。\n");
+                return notify_fail("沒有" + dir + "這個路徑。\n");
 
-        //归类类型
+        //歸類類型
         switch(type)
         {
                 case "room":
-                        type_name = "房间";
+                        type_name = "房間";
                         break;
                 case "npc":
                         type_name = "NPC";
@@ -47,23 +47,23 @@ int main(object me, string arg)
                         type_name = "物品";
                         break;
                 default:
-                        return notify_fail("格式：guilei <路径> room|npc \n");
+                        return notify_fail("格式：guilei <路徑> room|npc \n");
         }
 
         set("cwd", dir, me);
 
-        message_system("整理归类" + type_name + "档案中，请稍候...");
+        message_system("整理歸類" + type_name + "檔案中，請稍候...");
         if (! guilei_dir(me, dir, type, continueable, total))
         {
-                write(HIR "归类遇到错误中止。\n" NOR);
+                write(HIR "歸類遇到錯誤中止。\n" NOR);
         }
 
         if (total[0] > 0)
         {
-                write(HIC "总共有" + HIW + total[0] + HIC "个档案被成功归类！\n" NOR);
-                write(HIC "归类信息存放在" + HIW + "/log/static/" + type + HIC "之中！\n" NOR);
+                write(HIC "總共有" + HIW + total[0] + HIC "個檔案被成功歸類！\n" NOR);
+                write(HIC "歸類信息存放在" + HIW + "/log/static/" + type + HIC "之中！\n" NOR);
         } else
-                write(HIC "没有归类任何档案。\n" NOR);
+                write(HIC "沒有歸類任何檔案。\n" NOR);
 
         return 1;
 }
@@ -83,13 +83,13 @@ int guilei_dir(object me, string dir, string type, int continueable, int *total)
         if (! sizeof(file))
         {
                 if (file_size(dir) == -2)
-                        write(dir + "这个目录是空的。\n");
+                        write(dir + "這個目錄是空的。\n");
                 else
-                        write("没有" + dir + "这个目录。\n");
+                        write("沒有" + dir + "這個目錄。\n");
                 return 1;
         }
 
-        write (HIY "开始检查目录" + dir + "下面的所有文件。\n" NOR);
+        write (HIY "開始檢查目錄" + dir + "下面的所有文件。\n" NOR);
         i = sizeof(file);
         compcount = 0;
         filecount = 0;
@@ -117,9 +117,9 @@ int guilei_dir(object me, string dir, string type, int continueable, int *total)
 
                 // continue to compile next file
         }
-        write(HIC "\n整理了目录" + dir + "下的" + HIW + filecount + HIC +
-              "个文件\n，检查了其中" + HIW + compcount + HIC +
-              "个档案。\n，归类了其中" + HIW + all_num + HIC + "个档案。\n" + NOR );
+        write(HIC "\n整理了目錄" + dir + "下的" + HIW + filecount + HIC +
+              "個文件\n，檢查了其中" + HIW + compcount + HIC +
+              "個檔案。\n，歸類了其中" + HIW + all_num + HIC + "個檔案。\n" + NOR );
 
         i = sizeof(file);
         while (i--)
@@ -147,12 +147,12 @@ int guilei_file(object me, string file, string type)
         object obj,*inv;
 
         if (file == "/cmds/adm/guilei.c")
-                // 不自我读本指令文件
+                // 不自我讀本指令文件
                 return 1;
 
         write (".");
 
-        //归类房间文件
+        //歸類房間文件
         if (type == "room"){
                 document = read_file(file);
                 if (!document) return 0;
@@ -179,7 +179,7 @@ int guilei_file(object me, string file, string type)
                 }
         }
 
-        //归类NPC文件
+        //歸類NPC文件
         if (type == "npc")
         {
                 document = read_file(file);
@@ -239,7 +239,7 @@ int guilei_file(object me, string file, string type)
                 }
         }
 
-        //归类物品文件
+        //歸類物品文件
         if (type == "obj"){
             if (strsrch(file, "/d/wizard/") > 0) return 0;
             if (strsrch(file, "/d/room/") > 0) return 0;
@@ -254,7 +254,7 @@ int guilei_file(object me, string file, string type)
                 return 0;
             }
 
-            //归类ARMOR类物品
+            //歸類ARMOR類物品
             if( mapp(query("armor_prop", obj)) && stringp(armor_type=query("armor_type", obj)) )
             {
 
@@ -329,7 +329,7 @@ int guilei_file(object me, string file, string type)
                 all_num ++;
             }
 
-            //归类兵器
+            //歸類兵器
             if( mapp(query("weapon_prop", obj)) && stringp(armor_type=query("skill_type", obj)) )
             {
 
@@ -387,7 +387,7 @@ int guilei_file(object me, string file, string type)
                 all_num ++;
             }
 
-            //归类书本
+            //歸類書本
             if( mapp(bookskill=query("skill", obj)) )
             {
                 if (undefinedp(bookskill["name"]) )
@@ -442,20 +442,20 @@ int guilei_file(object me, string file, string type)
 int help (object me)
 {
         write(@HELP
-指令格式: guilei <路径|文件名> <room|npc|obj>
+指令格式: guilei <路徑|文件名> <room|npc|obj>
 
-这个指令让你指定对一个文件或者一个目录下的房间、人物、物品的
-属性进行归类。
-room参数表示归类房间文件，信息包括文件名、房间名、房间里的物
+這個指令讓你指定對一個文件或者一個目錄下的房間、人物、物品的
+屬性進行歸類。
+room參數表示歸類房間文件，信息包括文件名、房間名、房間裡的物
 品文件名、物品中文名、物品英文名；
-npc 参数表示归类人物文件，信息包括文件名、中文名、英文名、门
-派ID、门派中文名、身上物品的文件名、物品ID、物品中文名、人物
-的给项HP属性、人物的主要SCORE属性；
-obj 参数表示归类物品文件，信息包括文件名、物品ID、物品中文名、
-物品的价值等等；
+npc 參數表示歸類人物文件，信息包括文件名、中文名、英文名、門
+派ID、門派中文名、身上物品的文件名、物品ID、物品中文名、人物
+的給項HP屬性、人物的主要SCORE屬性；
+obj 參數表示歸類物品文件，信息包括文件名、物品ID、物品中文名、
+物品的價值等等；
 
-归类信息存放在/log/static目录下。
-绝地末日：smallfish
+歸類信息存放在/log/static目錄下。
+絕地末日：smallfish
 
 HELP );
         return 1;

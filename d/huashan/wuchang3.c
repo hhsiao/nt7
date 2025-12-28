@@ -4,17 +4,17 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "东练武场");
+        set("short", "東練武場");
         set("long", @LONG
-这里是华山派的练武场，场上立这几个木人，地处偏僻，有些荒
-凉。
+這裡是華山派的練武場，場上立這幾個木人，地處偏僻，有些荒
+涼。
 LONG );
         set("exits", ([ /* sizeof() == 2 */
             "west"     : __DIR__"wuchang1",
         ]));
         set("outdoors", "huashan");
 
-        set("for_family", "华山派");
+        set("for_family", "華山派");
 
         setup();
         replace_program(ROOM);

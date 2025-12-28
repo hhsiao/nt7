@@ -7,9 +7,9 @@ void setup()
         set_name("太古[2;37;0m[2;37;0m", ({"armorblong"}));        
         set("gender", "男性");                
         set("long", "握草[2;37;0m
-它是麒麟甲的魔幻兽。
+它是麒麟甲的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "armorb");
         set("owner_name", "麒麟甲");

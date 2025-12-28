@@ -1,7 +1,7 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action": "$N单手上抬，一招查拳的［冲天炮］，对准$n的$l猛击下去",
+([      "action": "$N單手上抬，一招查拳的［沖天炮］，對準$n的$l猛擊下去",
         "force" : 120,
         "attack": 30,
         "dodge" : 5,
@@ -9,10 +9,10 @@ mapping *action = ({
         "damage": 40,
         "lvl"   : 0,
         "skill_name" : "查拳",
-        "damage_type":  "砸伤"
+        "damage_type":  "砸傷"
 ]),
-([      "action": "$N一招燕青拳的［白鹤亮翅］，身子已向左转成弓箭步，两臂向后成钩手，呼\n"
-                  "的一声轻响，反击$n$l",
+([      "action": "$N一招燕青拳的［白鶴亮翅］，身子已向左轉成弓箭步，兩臂向後成鉤手，呼\n"
+                  "的一聲輕響，反擊$n$l",
         "force" : 180,
         "attack": 35,
         "dodge" : 10,
@@ -20,9 +20,9 @@ mapping *action = ({
         "damage": 55,
         "lvl"   : 0,
         "skill_name" : "燕青拳",
-        "damage_type":  "瘀伤"
+        "damage_type":  "瘀傷"
 ]),
-([      "action": "$N往后一纵，施展小擒拿手的手法，双手对着$n$l处的关节直直抓去",
+([      "action": "$N往後一縱，施展小擒拿手的手法，雙手對著$n$l處的關節直直抓去",
         "force" : 220,
         "attack": 40,
         "dodge" : 15,
@@ -30,29 +30,29 @@ mapping *action = ({
         "damage": 70,
         "lvl"   : 0,
         "skill_name" : "小擒拿手",
-        "damage_type":  "抓伤"
+        "damage_type":  "抓傷"
 ]),
-([      "action": "$N左拳拉开，右拳转臂回扰，一招少林的大金刚拳突然击出，带着许许风声贯向$n",
+([      "action": "$N左拳拉開，右拳轉臂回擾，一招少林的大金剛拳突然擊出，帶著許許風聲貫向$n",
         "force" : 280,
         "attack": 60,
         "dodge" : 22,
         "parry" : 20,
         "damage": 90,
         "lvl"   : 30,
-        "skill_name" : "少林大金刚拳",
-        "damage_type":  "瘀伤"
+        "skill_name" : "少林大金剛拳",
+        "damage_type":  "瘀傷"
 ]),
-([      "action": "只见$N运足气力，使出八极拳中的［八极翻手式］，双掌对着$n的$l平平攻去",
+([      "action": "只見$N運足氣力，使出八極拳中的［八極翻手式］，雙掌對著$n的$l平平攻去",
         "force" : 340,
         "attack": 55,
         "dodge" : 40,
         "parry" : 40,
         "damage": 80,
         "lvl"   : 60,
-        "skill_name" : "八极拳",
-        "damage_type":  "瘀伤"
+        "skill_name" : "八極拳",
+        "damage_type":  "瘀傷"
 ]),
-([      "action": "$N大喝一声，左手往$n身后一抄，右掌往$n反手击去，正是八卦掌的招式",
+([      "action": "$N大喝一聲，左手往$n身後一抄，右掌往$n反手擊去，正是八卦掌的招式",
         "force" : 360,
         "attack": 65,
         "dodge" : 30,
@@ -60,49 +60,49 @@ mapping *action = ({
         "damage": 95,
         "lvl"   : 80,
         "skill_name" : "八卦掌",
-        "damage_type":  "瘀伤"
+        "damage_type":  "瘀傷"
 ]),
-([      "action": "$N提气游走，左手护胸，右手一招游身八卦掌的［游空探爪］，迅速拍向$n$l",
+([      "action": "$N提氣遊走，左手護胸，右手一招遊身八卦掌的［遊空探爪］，迅速拍向$n$l",
         "force" : 420,
         "attack": 80,
         "dodge" : 45,
         "parry" : 45,
         "damage": 85,
         "lvl"   : 100,
-        "skill_name" : "游身八卦掌",
-        "damage_type":  "瘀伤"
+        "skill_name" : "遊身八卦掌",
+        "damage_type":  "瘀傷"
 ]),
-([      "action": "只见$N拉开架式，把武当派的绵掌使得密不透风，招招不离$n的$l",
+([      "action": "只見$N拉開架式，把武當派的綿掌使得密不透風，招招不離$n的$l",
         "force" : 380,
         "attack": 75,
         "dodge" : 90,
         "parry" : 90,
         "damage": 70,
         "lvl"   : 120,
-        "skill_name" : "武当绵掌",
-        "damage_type":  "瘀伤"
+        "skill_name" : "武當綿掌",
+        "damage_type":  "瘀傷"
 ]),
-([      "action": "$N突然飞身一跃而起，双手握做爪状，朝着$n的$l猛然抓去，凛然是鹰爪功的招式",
+([      "action": "$N突然飛身一躍而起，雙手握做爪狀，朝著$n的$l猛然抓去，凜然是鷹爪功的招式",
         "force" : 440,
         "attack": 105,
         "dodge" : 90,
         "parry" : 70,
         "damage": 105,
         "lvl"   : 140,
-        "skill_name" : "鹰爪功",
-        "damage_type":  "抓伤"
+        "skill_name" : "鷹爪功",
+        "damage_type":  "抓傷"
 ]),
-([      "action": "只见$N身形一矮，双手翻滚，一招太极拳［云手］直拿$n$l",
+([      "action": "只見$N身形一矮，雙手翻滾，一招太極拳［雲手］直拿$n$l",
         "force" : 450,
         "attack": 90,
         "dodge" : 90,
         "parry" : 100,
         "damage": 90,
         "lvl"   : 160,
-        "skill_name" : "太极拳",
-        "damage_type":  "瘀伤"
+        "skill_name" : "太極拳",
+        "damage_type":  "瘀傷"
 ]),
-([      "action": "$N一个转身，趁$n不备，反手将$n牢牢抱住猛的朝地面摔去，竟然是蒙古的摔角招式",
+([      "action": "$N一個轉身，趁$n不備，反手將$n牢牢抱住猛的朝地面摔去，竟然是蒙古的摔角招式",
         "force" : 460,
         "attack": 105,
         "dodge" : 5,
@@ -110,50 +110,50 @@ mapping *action = ({
         "damage": 105,
         "lvl"   : 180,
         "skill_name" : "摔角",
-        "damage_type":  "摔伤"
+        "damage_type":  "摔傷"
 ]),
 });
 
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练百花错拳必须空手。\n");
+                return notify_fail("練百花錯拳必須空手。\n");
 
         if( query("max_neili", me)<1500 )
-                return notify_fail("你的内力修为远远不足，难以练习百花错拳。\n");
+                return notify_fail("你的內力修為遠遠不足，難以練習百花錯拳。\n");
 
         if ((int)me->query_skill("force", 1) < 150)
-                return notify_fail("你的内功火候尚浅，无法学习百花错拳。\n");
+                return notify_fail("你的內功火候尚淺，無法學習百花錯拳。\n");
 
         if ((int)me->query_skill("unarmed", 1) < 200)
-                return notify_fail("你的拳脚根基有限，无法体会百花错拳要诣。\n");
+                return notify_fail("你的拳腳根基有限，無法體會百花錯拳要詣。\n");
 
         if ((int)me->query_skill("cuff", 1) < 150)
-                return notify_fail("你的拳法根基有限，无法体会百花错拳要诣。\n");
+                return notify_fail("你的拳法根基有限，無法體會百花錯拳要詣。\n");
 
         if ((int)me->query_skill("hand", 1) < 150)
-                return notify_fail("你的手法根基有限，无法体会百花错拳要诣。\n");
+                return notify_fail("你的手法根基有限，無法體會百花錯拳要詣。\n");
 
         if ((int)me->query_skill("claw", 1) < 150)
-                return notify_fail("你的爪法根基有限，无法体会百花错拳要诣。\n");
+                return notify_fail("你的爪法根基有限，無法體會百花錯拳要詣。\n");
 
         if ((int)me->query_skill("strike") < 150)
-                return notify_fail("你的掌法根基有限，无法体会百花错拳要诣。\n");
+                return notify_fail("你的掌法根基有限，無法體會百花錯拳要詣。\n");
 
         if ((int)me->query_skill("unarmed", 1)/3 < (int)me->query_skill("baihua-quan", 1)/2)
-                return notify_fail("你的拳脚根基火候不足，无法领会更高深的百花错拳。\n");
+                return notify_fail("你的拳腳根基火候不足，無法領會更高深的百花錯拳。\n");
 
         if ((int)me->query_skill("cuff", 1) < (int)me->query_skill("baihua-quan", 1))
-                return notify_fail("你的拳法根基火候不足，无法领会更高深的百花错拳。\n");
+                return notify_fail("你的拳法根基火候不足，無法領會更高深的百花錯拳。\n");
 
         if ((int)me->query_skill("hand", 1) < (int)me->query_skill("baihua-quan", 1))
-                return notify_fail("你的手法根基火候不足，无法领会更高深的百花错拳。\n");
+                return notify_fail("你的手法根基火候不足，無法領會更高深的百花錯拳。\n");
 
         if ((int)me->query_skill("claw", 1) < (int)me->query_skill("baihua-quan", 1))
-                return notify_fail("你的爪法根基火候不足，无法领会更高深的百花错拳。\n");
+                return notify_fail("你的爪法根基火候不足，無法領會更高深的百花錯拳。\n");
 
         if ((int)me->query_skill("strike", 1) < (int)me->query_skill("baihua-quan", 1))
-                return notify_fail("你的掌法根基火候不足，无法领会更高深的百花错拳。\n");
+                return notify_fail("你的掌法根基火候不足，無法領會更高深的百花錯拳。\n");
 
         return 1;
 }
@@ -183,10 +183,10 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me)
 {
         if( query("qi", me)<60 )
-                return notify_fail("你现在手足酸软，休息一下再练吧。\n");
+                return notify_fail("你現在手足痠軟，休息一下再練吧。\n");
 
         if( query("neili", me)<120 )
-                return notify_fail("你的内力不够了。\n");
+                return notify_fail("你的內力不夠了。\n");
 
         me->receive_damage("qi", 50);
         addn("neili", -100, me);

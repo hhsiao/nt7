@@ -4,8 +4,8 @@ void create()
 {
         set("short", "山路");
         set("long", @LONG
-这里是荒凉的山路，只有一条蜿蜒崎岖的小径，这里荒无人烟，
-让人觉得背后冷飕飕的。
+這裡是荒涼的山路，只有一條蜿蜒崎嶇的小徑，這裡荒無人煙，
+讓人覺得背後冷颼颼的。
 LONG );
         set("exits", ([
                 "westup"    : "/d/beijing/shanlu3",

@@ -3,22 +3,22 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "广场");
+        set("short", "廣場");
         set("long", @LONG
-这里是城市的正中心，一个很宽阔的广场，铺着青石地面。
-游手好闲的人常在这里溜溜达达，经常有艺人在这里表演。中
-央一棵大榕树(tree)盘根错节，据传已有千年的树龄，是这座
-城市的历史见证。树干底部有一个很大的树洞 (dong)。 你可
-以看到北边有来自各地的行人来来往往，南面人声鼎沸，一派
-繁华景象，东边不时地传来朗朗的读书声，西边则见不到几个
-行人，一片肃静。
+這裡是城市的正中心，一個很寬闊的廣場，鋪著青石地面。
+遊手好閒的人常在這裡溜溜達達，經常有藝人在這裡表演。中
+央一棵大榕樹(tree)盤根錯節，據傳已有千年的樹齡，是這座
+城市的歷史見證。樹幹底部有一個很大的樹洞 (dong)。 你可
+以看到北邊有來自各地的行人來來往往，南面人聲鼎沸，一派
+繁華景象，東邊不時地傳來朗朗的讀書聲，西邊則見不到幾個
+行人，一片肅靜。
 LONG);
         set("no_sleep_room",1);
         set("outdoors", "city");
         set("item_desc", ([
-                "dong" : WHT "\n这是一个黑不溜湫的大洞，里面不知道"
-                         "有些什么古怪。\n" NOR,
-                "tree" : GRN "\n这是一棵巨大古老的大榕树，枝叶非常"
+                "dong" : WHT "\n這是一個黑不溜湫的大洞，裡面不知道"
+                         "有些什麼古怪。\n" NOR,
+                "tree" : GRN "\n這是一棵巨大古老的大榕樹，枝葉非常"
                          "的茂密。\n" NOR,
         ]));
 
@@ -47,7 +47,7 @@ int do_xxx(string str)
         int i;
 
         if (! str)
-                return notify_fail("什么？\n"); 
+                return notify_fail("什麼？\n"); 
 
         me = this_player();
         ob = find_player(str);
@@ -60,7 +60,7 @@ int do_xxx(string str)
         }
 
         if (! ob)
-                return notify_fail("没有找到这个物品。\n");
+                return notify_fail("沒有找到這個物品。\n");
 
 
         

@@ -10,8 +10,8 @@ void create()
 {
         set("short", "石洞");
         set("long", @LONG
-这是一个石洞，四周点着八盏油灯，使得整个房间非常明
-亮。山洞四周石壁(bi)上像是刻画着什么东西，你禁不住想看
+這是一個石洞，四周點著八盞油燈，使得整個房間非常明
+亮。山洞四周石壁(bi)上像是刻畫著什麼東西，你禁不住想看
 看。
 LONG );
         set("exits", ([
@@ -21,7 +21,7 @@ LONG );
         set("no_clean_up", 0);
         set("item_desc",([
                 "bi"  : (: look_bi :),
-                "weapon": "图中人物手持刀剑，互相挥砍……\n",
+                "weapon": "圖中人物手持刀劍，互相揮砍……\n",
         ]));
         set("coor/x", -3100);
         set("coor/y", -22100);
@@ -42,19 +42,19 @@ string look_bi()
 
         if( me->query_skill("literate", 1)
          || query("learned_literate", me)){
-                msg = HIC "\n你走到石壁前，仔细观看石壁上的内容，发现石壁布满\n"
-                        "蝌蚪形状的文字。你仔细推敲这些文字却一无所获。\n" NOR;
+                msg = HIC "\n你走到石壁前，仔細觀看石壁上的內容，發現石壁佈滿\n"
+                        "蝌蚪形狀的文字。你仔細推敲這些文字卻一無所獲。\n" NOR;
         } else {
-                msg = HIC "\n你走到石壁前，仔细观看石壁上的内容，发现石壁布满\n"
-                        "蝌蚪形状的文字，由于你从未读过书，所以你并没有在\n"
-                        "意那些文字。你猛然看到文字下面有很多图画，是用利\n"
-                        "器所刻。上面画着各式各样的人物，有的手持长剑，有\n"
-                        "的手握钢刀……但见图中人物手中兵器(weapon)不尽相\n"
-                        "同，每个人物的武功招式也不同，但是上面人物却仍旧\n"
-                        "裸露全身，其周身经脉走向清晰无比，配合着各种招式，\n"
-                        "你似乎隐隐觉得其中隐藏着太玄功更高深绝招，似乎是\n"
-                        "跟武器运用有密切关系， 但你一时却也参悟(canwu)不\n"
-                        "透，尽管如此，你却忍不住想跟着学(think)起来。\n" NOR;
+                msg = HIC "\n你走到石壁前，仔細觀看石壁上的內容，發現石壁佈滿\n"
+                        "蝌蚪形狀的文字，由於你從未讀過書，所以你並沒有在\n"
+                        "意那些文字。你猛然看到文字下面有很多圖畫，是用利\n"
+                        "器所刻。上面畫著各式各樣的人物，有的手持長劍，有\n"
+                        "的手握鋼刀……但見圖中人物手中兵器(weapon)不盡相\n"
+                        "同，每個人物的武功招式也不同，但是上面人物卻仍舊\n"
+                        "裸露全身，其周身經脈走向清晰無比，配合著各種招式，\n"
+                        "你似乎隱隱覺得其中隱藏著太玄功更高深絕招，似乎是\n"
+                        "跟武器運用有密切關係， 但你一時卻也參悟(canwu)不\n"
+                        "透，儘管如此，你卻忍不住想跟著學(think)起來。\n" NOR;
         }
 
         return msg;
@@ -74,38 +74,38 @@ int do_think(string arg)
                 add = me->query_int() / 10;
 
         if (! living(me) || arg != "bi")
-                return notify_fail("你要参悟什么？\n");
+                return notify_fail("你要參悟什麼？\n");
 
         if (me->is_busy() || me->is_fighting())
-                return notify_fail("你现在正忙着呢。\n");
+                return notify_fail("你現在正忙著呢。\n");
 
         if( me->query_skill("literate",1) || query("learned_literate", me) )
-                return notify_fail("你发现石壁上的武功深奥之极，一时难以体会！\n");
+                return notify_fail("你發現石壁上的武功深奧之極，一時難以體會！\n");
 
         if( query("int", me)<27 )
-                return notify_fail("你若有所悟，然而总是有点不明白。\n");
+                return notify_fail("你若有所悟，然而總是有點不明白。\n");
 
         if( query("dex", me)<27 )
-                return notify_fail("你研究了半天，只觉招式始终无法随意施展。\n");
+                return notify_fail("你研究了半天，只覺招式始終無法隨意施展。\n");
 
         if ((int)me->query_skill("force", 1) < 220)
-                return notify_fail("你的基本内功火候不够，无法领悟石壁"
+                return notify_fail("你的基本內功火候不夠，無法領悟石壁"
                                    "上的武功。\n");
 
         if( query("max_neili", me)<5000 )
-                return notify_fail("你的内力修为不足，无法学习石壁上的武功。\n");
+                return notify_fail("你的內力修為不足，無法學習石壁上的武功。\n");
 
         if( query("jing", me)<85 )
-                return notify_fail("你现在精神不济，过于疲倦，还是休息"
-                                   "一会吧。\n");
+                return notify_fail("你現在精神不濟，過於疲倦，還是休息"
+                                   "一會吧。\n");
 
         if ((int)me->query_skill("taixuan-gong", 1) < 120)
-                return notify_fail("你觉得石壁上记载的武功对你来说过于复杂，一"
-                                   "时难以领悟。\n");
+                return notify_fail("你覺得石壁上記載的武功對你來說過於複雜，一"
+                                   "時難以領悟。\n");
 
         if ((int)me->query_skill("taixuan-gong", 1) >= 180)
-                return notify_fail("你觉得石壁上记载的武功对你来说太浅了，结果你"
-                                   "什么也没学到。\n");
+                return notify_fail("你覺得石壁上記載的武功對你來說太淺了，結果你"
+                                   "什麼也沒學到。\n");
 
         me->receive_damage("jing", 75);
 
@@ -113,9 +113,9 @@ int do_think(string arg)
                 me->improve_skill("taixuan-gong", add);
 
         me->start_busy(random(2));
-        message_vision(HIY "\n$N" HIY "聚精会神的参详墙上所记载的神功，"
+        message_vision(HIY "\n$N" HIY "聚精會神的參詳牆上所記載的神功，"
                        "似有所悟。\n" NOR, me);
-        write(HIC "你对「太玄功」有了新的领悟。\n" NOR);
+        write(HIC "你對「太玄功」有了新的領悟。\n" NOR);
         return 1;
 }
 
@@ -125,45 +125,45 @@ int do_canwu(string msg)
 
     string where, witch;
 
-    if (! msg)return notify_fail("什么？\n");
+    if (! msg)return notify_fail("什麼？\n");
 
     if (sscanf(msg, "%s from %s", witch, where) != 2)
-          return notify_fail("干什么？\n");
+          return notify_fail("幹什麼？\n");
 
     if (me->is_busy())
-          return notify_fail("你现在正忙着呢。\n");
+          return notify_fail("你現在正忙著呢。\n");
 
     if (me->is_fighting())
-          return notify_fail("你在战斗哦？！小心，来了！！！\n");
+          return notify_fail("你在戰鬥哦？！小心，來了！！！\n");
 
     if (witch != "weapon")
-          return notify_fail("你想参悟什么？\n");
+          return notify_fail("你想參悟什麼？\n");
 
     if (where != "bi")
-          return notify_fail("这里没什么给你参悟的啊！\n");
+          return notify_fail("這裡沒什麼給你參悟的啊！\n");
 
     if (me->query_skill("literate", 1)
          || query("learned_literate", me) )
-          return notify_fail("你对着石壁想了半天也没发现什么！\n");
+          return notify_fail("你對著石壁想了半天也沒發現什麼！\n");
 
     if ((int)me->query_skill("force", 1) < 240)
-          return notify_fail("你的内功修为不够，无法领悟如何利用"
-                             "太玄功来驾御兵器！\n");
+          return notify_fail("你的內功修為不夠，無法領悟如何利用"
+                             "太玄功來駕御兵器！\n");
 
     if( query("max_neili", me)<6000 )
-          return notify_fail("你的内力修为不足，无法领悟如何利用"
-                             "太玄功来驾御兵器！\n");
+          return notify_fail("你的內力修為不足，無法領悟如何利用"
+                             "太玄功來駕御兵器！\n");
 
     if( query("jing", me)<100 )
-          return notify_fail("你的精力无法集中，无法领悟如何利用"
-                             "太玄功来驾御兵器！\n");
+          return notify_fail("你的精力無法集中，無法領悟如何利用"
+                             "太玄功來駕御兵器！\n");
 
     if (me->query_skill("taixuan-gong", 1) < 200)
-          return notify_fail("你对太玄功所知实在有限，无法领悟如何利用"
-                             "太玄功来驾御兵器！\n");
+          return notify_fail("你對太玄功所知實在有限，無法領悟如何利用"
+                             "太玄功來駕御兵器！\n");
 
     if( query("can_learned/taixuan-gong/enable_weapon", me) )
-          return notify_fail("石壁上的绝技你早已融会贯通，不必再参悟了。\n");
+          return notify_fail("石壁上的絕技你早已融會貫通，不必再參悟了。\n");
 
     me->receive_damage("jing", 95);
 
@@ -175,8 +175,8 @@ int do_canwu(string msg)
 
         if( query("canwu_taixuan/count", me) >= 50 )
         {
-            write(HIM "猛然间，你一声长啸，胸中豁然贯通，再无疑虑。\n" NOR);
-            write(HIC "你终于通晓了如何利用太玄功来驾御兵器。\n" NOR);
+            write(HIM "猛然間，你一聲長嘯，胸中豁然貫通，再無疑慮。\n" NOR);
+            write(HIC "你終於通曉瞭如何利用太玄功來駕御兵器。\n" NOR);
 
             set("can_learned/taixuan-gong/enable_weapon", 1, me);
             delete("canwu_taixuan/count", me);
@@ -191,10 +191,10 @@ int do_canwu(string msg)
             return 1;
         }
 
-        write(HIC "你对如何利用太玄功来驾御兵器有了更新的认识，但其中仍然有许"
-                  "多不解之处。\n" NOR);
+        write(HIC "你對如何利用太玄功來駕御兵器有了更新的認識，但其中仍然有許"
+                  "多不解之處。\n" NOR);
         return 1;
     }
-    else return notify_fail("你仔细研究石壁上所刻画的内容，但却没什么效果！\n");
+    else return notify_fail("你仔細研究石壁上所刻畫的內容，但卻沒什麼效果！\n");
 
 }

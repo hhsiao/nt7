@@ -1,9 +1,9 @@
-//edit by gladiator 擒龙打
+//edit by gladiator 擒龍打
 
 #include <ansi.h>
 #include <combat.h>
 
-#define QIN "「" HIR "擒龙打" NOR "」"
+#define QIN "「" HIR "擒龍打" NOR "」"
 
 inherit F_SSERVER;
 
@@ -18,33 +18,33 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if( userp(me) && me->query_skill("qinlong-shou",1)<120 && !query("can_perform/qinlong-shou/qin", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(QIN "只能在战斗中对对手使用。\n");
+                return notify_fail(QIN "只能在戰鬥中對對手使用。\n");
 
         if( query_temp("weapon", me) )
-                return notify_fail("你使用的武器不对，难以施展" QIN "。\n");
+                return notify_fail("你使用的武器不對，難以施展" QIN "。\n");
 
         if (me->query_skill("force") < 100)
-                return notify_fail("你的内功的修为不够，难以施展" QIN "。\n");
+                return notify_fail("你的內功的修為不夠，難以施展" QIN "。\n");
 
         if (me->query_skill("qinlong-shou", 1) < 100)
-                return notify_fail("你的擒龙手修为不够，难以施展" QIN "。\n");
+                return notify_fail("你的擒龍手修為不夠，難以施展" QIN "。\n");
 
         if (me->query_skill_mapped("hand") != "qinlong-shou")
-                return notify_fail("你没有激发擒龙手，难以施展" QIN "。\n");
+                return notify_fail("你沒有激發擒龍手，難以施展" QIN "。\n");
 
         if( query("neili", me)<250 )
-                return notify_fail("你现在真气不够，难以施展" QIN "。\n");
+                return notify_fail("你現在真氣不夠，難以施展" QIN "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         wn = weapon->name();
 
-        msg = HIC "$N" HIC "施出「" HIR QIN HIC "」绝技，" +
-              HIC "微作龙吟，双手曲成爪抓向$n" HIC "。\n" NOR;
+        msg = HIC "$N" HIC "施出「" HIR QIN HIC "」絕技，" +
+              HIC "微作龍吟，雙手曲成爪抓向$n" HIC "。\n" NOR;
 
         ap = me->query_skill("hand");
         dp = target->query_skill("parry");
@@ -58,8 +58,8 @@ int perform(object me, object target)
                 addn("neili", -150, me);
         } else
         {
-                msg += CYN "可是$p" CYN "并不慌乱，收敛心神，轻轻格挡开了$P"
-                       CYN "的剑招。\n"NOR;
+                msg += CYN "可是$p" CYN "並不慌亂，收斂心神，輕輕格擋開了$P"
+                       CYN "的劍招。\n"NOR;
                 me->start_busy(3);
                 addn("neili", -60, me);
         }
@@ -75,6 +75,6 @@ string final(object me, object target, int damage)
         if( query("neili", target)<0 )
                 set("neili", 0, target);
 
-        return  HIR "结果$n" HIR "不慎被$N" HIR "手指射出的"
-                "指气爪中劳宫穴，全身真气不禁狂泄而出！\n" NOR;
+        return  HIR "結果$n" HIR "不慎被$N" HIR "手指射出的"
+                "指氣爪中勞宮穴，全身真氣不禁狂洩而出！\n" NOR;
 }

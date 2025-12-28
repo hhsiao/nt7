@@ -7,8 +7,8 @@ void create()
         set_name("林平之", ({ "lin pingzhi","lin","pingzhi"}));
         set("gender", "男性");
         set("age", 18);
-        set("long", "林平之是岳不群最小的一个弟子，"
-                    "也是他的东床快婿。\n");
+        set("long", "林平之是嶽不群最小的一個弟子，"
+                    "也是他的東床快婿。\n");
         set("attitude", "peaceful");
 
         set("str", 26);
@@ -51,7 +51,7 @@ void create()
         map_skill("unarmed", "huashan-quan");
         map_skill("dodge", "feiyan-huixiang");
 
-        create_family("华山派", 14, "弟子");
+        create_family("華山派", 14, "弟子");
         setup();
 
         carry_object("/clone/weapon/changjian")->wield();
@@ -67,7 +67,7 @@ void die()
         if( objectp(killer = query_last_damage_from()) &&
             userp(killer) )
         {
-                     message_vision("$N得到一本辟邪剑谱。\n",killer);
+                     message_vision("$N得到一本辟邪劍譜。\n",killer);
                     book=new("/clone/book/pixie_book");
                      book->move(killer);
                }

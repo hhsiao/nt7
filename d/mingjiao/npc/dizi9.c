@@ -1,11 +1,11 @@
-// dizi9.c 雷字门教众
+// dizi9.c 雷字門教眾
 #include <ansi.h>
 inherit NPC;
 void create()
 {
         string weapon;
-        set_name("雷字门教众", ({"jiao zhong","zhong"}));
-        set("long","这是一位杨逍属下雷字门的教众。\n");
+        set_name("雷字門教眾", ({"jiao zhong","zhong"}));
+        set("long","這是一位楊逍屬下雷字門的教眾。\n");
         set("gender", random(2)?"女性":"男性");
         set("attitude", "peaceful");
         set("age", 18+random(30));
@@ -34,7 +34,7 @@ void create()
         map_skill("blade", "lieyan-dao");
         map_skill("sword", "liehuo-jian");
         setup();
-        create_family("明教",39,"教众");
+        create_family("明教",39,"教眾");
         weapon = random(2)?("/clone/weapon/changjian"):("/clone/weapon/blade");
         carry_object(weapon)->wield();
         carry_object("/d/mingjiao/obj/black-cloth")->wear();

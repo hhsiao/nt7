@@ -9,7 +9,7 @@ void create()
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "个");                
+                set("unit", "個");                
         }
         setup();
 }
@@ -76,12 +76,12 @@ int do_open(string arg)
 
         if (random(10) < 3)
         {                
-                write("你打开包裹一看，里面尽是一些不值钱的东西，随手将之仍在一边。\n");
+                write("你打開包裹一看，裡面盡是一些不值錢的東西，隨手將之仍在一邊。\n");
                 destruct(this_object());
                 return 1;
         }
 
-        // 获取一些奖励
+        // 獲取一些獎勵
         exp=query("combat_exp", me)/1000000+50+random(100);
         qn = 50 + random(200);
 
@@ -91,8 +91,8 @@ int do_open(string arg)
 
         if (objectp(ob))
         {
-                msg = HIR "\n你获得了 " + chinese_number(exp) + " 点实战经验及 " + chinese_number(qn) + " 点潜能。\n" NOR;
-                msg += HIY "你从" + this_object()->name() + HIY "搜出" + ob->name() + HIY "。\n\n" NOR;
+                msg = HIR "\n你獲得了 " + chinese_number(exp) + " 點實戰經驗及 " + chinese_number(qn) + " 點潛能。\n" NOR;
+                msg += HIY "你從" + this_object()->name() + HIY "搜出" + ob->name() + HIY "。\n\n" NOR;
                 tell_object(me, msg);
                 ob->move(me, 1);
                 addn("combat_exp", exp, me);
@@ -100,7 +100,7 @@ int do_open(string arg)
         }
         else
         {
-                write("物件" + sob + " 错误。\n");
+                write("物件" + sob + " 錯誤。\n");
         }
 
         destruct(this_object());

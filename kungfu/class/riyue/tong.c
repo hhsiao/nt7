@@ -7,12 +7,12 @@ inherit F_MASTER;
 void create()
 {
         set_name("童百熊", ({ "tong baixiong", "tong", "baixiong"}) );
-        set("nickname", HIR "赤胆忠心" NOR );
-        set("title", "日月神教风雷堂长老");
+        set("nickname", HIR "赤膽忠心" NOR );
+        set("title", "日月神教風雷堂長老");
         set("long", @LONG
-这就是日月神教风雷堂长老童百熊，他在教中
-立位已久，只见他白发披散，银髯戟张，脸上
-的肌肉不停牵动。
+這就是日月神教風雷堂長老童百熊，他在教中
+立位已久，只見他白髮披散，銀髯戟張，臉上
+的肌肉不停牽動。
 LONG);
         set("gender", "男性");
         set("class", "scholar");
@@ -60,7 +60,7 @@ LONG);
         prepare_skill("claw", "poyue-zhao");
         prepare_skill("cuff", "zhenyu-quan");
 
-        create_family("日月神教", 13, "风雷堂长老");
+        create_family("日月神教", 13, "風雷堂長老");
 
         set_temp("apply/damage", 200);
         set_temp("apply/unarmed_damage", 100);
@@ -87,5 +87,5 @@ void attempt_apprentice(object ob)
         if (! permit_recruit(ob))
                 return;
 
-             command("say 老夫年岁已大，不再收徒，你去找其他长老好了。");
+             command("say 老夫年歲已大，不再收徒，你去找其他長老好了。");
 }

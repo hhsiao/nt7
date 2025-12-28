@@ -11,7 +11,7 @@ void create()
         else*/ {
                 set("unit", "些");
                 set("value", 0);
-                set("base_unit", "颗");
+                set("base_unit", "顆");
                 set("base_weight", 1);
                 set("base_value", 0);
                 set("material", "iron");

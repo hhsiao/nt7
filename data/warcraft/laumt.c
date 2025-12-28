@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;36m剪刀兽[2;37;0m[2;37;0m", ({"laumtbb"}));        
+        set_name("[1;36m剪刀獸[2;37;0m[2;37;0m", ({"laumtbb"}));        
         set("gender", "男性");                
-        set("long", "我就是大怪诞[2;37;0m
-它是不辣魔特的魔幻兽。
+        set("long", "我就是大怪誕[2;37;0m
+它是不辣魔特的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

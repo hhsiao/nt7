@@ -5,11 +5,11 @@ inherit TRANS_ROOM;
 
 void create()
 {
-        set("short","马厩");
+        set("short","馬廄");
         set("long",@LONG
-这是南阳城的马厩，常年供应新鲜草料。南阳地处中原，来往的行人
-络绎不绝。马厩雨檐下的烂木柱上钉着一块破木牌(paizi)。
-    马厩中堆放著几堆草料，正中有一口泔槽。
+這是南陽城的馬廄，常年供應新鮮草料。南陽地處中原，來往的行人
+絡繹不絕。馬廄雨簷下的爛木柱上釘著一塊破木牌(paizi)。
+    馬廄中堆放著幾堆草料，正中有一口泔槽。
 LONG);
         set("outdoors", "nanyang");
         set("region", "nanyang");

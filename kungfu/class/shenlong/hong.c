@@ -16,9 +16,9 @@ string ask_tool();
 void create()
 {
         set_name("洪安通", ({ "hong antong", "hong" }));
-        set("title",  HIY "神龙教" NOR "教主" );
+        set("title",  HIY "神龍教" NOR "教主" );
         set("nickname", HIR "永享仙福" NOR);
-        set("long", "他就是武功盖世、令江湖人等谈之色变的神龙教教主洪安通。\n");
+        set("long", "他就是武功蓋世、令江湖人等談之色變的神龍教教主洪安通。\n");
         set("gender", "男性");
         set("age", 50);
         set("attitude", "friendly");
@@ -73,22 +73,22 @@ void create()
         prepare_skill("strike", "huagu-mianzhang");
         prepare_skill("hand", "shenlong-bashi");
 
-        create_family("神龙教", 1, "教主");
+        create_family("神龍教", 1, "教主");
 
         set("inquiry", ([
-                "神龙教" : "一般人是入不了我神龙教的(join shenlongjiao)。",
-                "入教"   : "一般人是入不了我神龙教的(join shenlongjiao)。",
+                "神龍教" : "一般人是入不了我神龍教的(join shenlongjiao)。",
+                "入教"   : "一般人是入不了我神龍教的(join shenlongjiao)。",
                 "洪安通" : "你不想活了是不是？",
-                "教主"   : "我就是神龙教教主。",
-                "绝招"   : "你想学什么绝技啊？",
-                "绝技"   : "你想学什么绝技啊？",
-                "飞仙法" : (: ask_fei :),
-                "神龙再现" : (: ask_xian :),
-                "摧心断肠" : (: ask_cui :),
+                "教主"   : "我就是神龍教教主。",
+                "絕招"   : "你想學什麼絕技啊？",
+                "絕技"   : "你想學什麼絕技啊？",
+                "飛仙法" : (: ask_fei :),
+                "神龍再現" : (: ask_xian :),
+                "摧心斷腸" : (: ask_cui :),
                 "工具"   : (: ask_tool :),
                 "tool"   : (: ask_tool :),
-                "铁锹"   : (: ask_tool :),
-                "神龙锹" : (: ask_tool :),
+                "鐵鍬"   : (: ask_tool :),
+                "神龍鍬" : (: ask_tool :),
                 "qiao"   : (: ask_tool :),
         ]));
 
@@ -123,36 +123,36 @@ int do_flatter(string arg)
 {
         if( !query_temp("pending/flatter", this_player()) )
         {
-                command("say 你想嚷嚷什么，吵得我心烦意乱的。");
+                command("say 你想嚷嚷什麼，吵得我心煩意亂的。");
                 return 0;
         }
 
-        if (! arg ) return notify_fail("你说我什么？\n");
+        if (! arg ) return notify_fail("你說我什麼？\n");
 
         set_temp("pending/flatter", 0, this_player());
-        message_vision(CYN "$N大声说道：" + arg + "\n" NOR,
+        message_vision(CYN "$N大聲說道：" + arg + "\n" NOR,
                        this_player());
 
-        if (strsrch(arg, "万年不老") >=0 && (strsrch(arg, "永享仙福") >=0 &&
-            strsrch(arg, "寿与天齐") >=0 && strsrch(arg, "文武仁圣") >=0))
+        if (strsrch(arg, "萬年不老") >=0 && (strsrch(arg, "永享仙福") >=0 &&
+            strsrch(arg, "壽與天齊") >=0 && strsrch(arg, "文武仁聖") >=0))
         {
                 command("smile");
-                command("say 这还差不多。\n");
+                command("say 這還差不多。\n");
                 command("recruit "+query("id", this_player()));
         } else
         {
-                command("say 你如此不把我放在眼里，我又怎能容你？!");
+                command("say 你如此不把我放在眼裡，我又怎能容你？!");
                 kill_ob(this_player());
         }
         return 1;
 }
 
-// 万年不老,永享仙福,寿与天齐,文武仁圣
+// 萬年不老,永享仙福,壽與天齊,文武仁聖
 
 void die()
 {
-        message_vision("\n$N奇道：“咦,居然有人能杀了我,....”"
-                       "说完睁着两眼倒地死了。\n", this_object());
+        message_vision("\n$N奇道：“咦,居然有人能殺了我,....”"
+                       "說完睜著兩眼倒地死了。\n", this_object());
         ::die();
 }
 
@@ -189,26 +189,26 @@ mixed ask_fei()
 
         me = this_player();
         if( query("can_perform/shedao-qigong/fei", me) )
-                return "自己多练练，少在我面前罗嗦！";
+                return "自己多練練，少在我面前羅嗦！";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "你是哪儿来的？找死啊？";
+                return "你是哪兒來的？找死啊？";
 
         if( query("shen", me)>-40000 )
-                return "你的手段还不够毒，我可不能传给你绝招！";
+                return "你的手段還不夠毒，我可不能傳給你絕招！";
 
         if( query("family/gongji", me)<800 )
-                return "你为我神龙教效力还不够，这招我先不忙传你。";
+                return "你為我神龍教效力還不夠，這招我先不忙傳你。";
 
         if (me->query_skill("shedao-qigong", 1) < 100)
-                return "你的蛇岛奇功学好了么？还好意思来问我？";
+                return "你的蛇島奇功學好了麼？還好意思來問我？";
 
-        message_vision(HIM "$n" HIM "点头道：“看清楚了！”说罢以"
-                       "掌为剑“唰唰唰”接连劈出数剑，宛若数把剑在"
+        message_vision(HIM "$n" HIM "點頭道：“看清楚了！”說罷以"
+                       "掌為劍“唰唰唰”接連劈出數劍，宛若數把劍在"
                        "手，真是神乎其神！\n" NOR,
                        me, this_object());
-        command("say 运用很简单，不过你懂了没有？");
-        tell_object(me, HIG "你学会了飞仙术。\n" NOR);
+        command("say 運用很簡單，不過你懂了沒有？");
+        tell_object(me, HIG "你學會了飛仙術。\n" NOR);
         if (me->can_improve_skill("sword"))
                 me->improve_skill("sword", 90000);
         me->improve_skill("martial-cognize", 1500000);
@@ -223,26 +223,26 @@ mixed ask_xian()
 
         me = this_player();
         if( query("can_perform/shedao-qigong/xian", me) )
-                return "自己多练练，少在我面前罗嗦！";
+                return "自己多練練，少在我面前羅嗦！";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "你是哪儿来的？找死啊？";
+                return "你是哪兒來的？找死啊？";
 
         if( query("shen", me)>-50000 )
-                return "你要好好为我神教效力，手段要更狠更毒。我才能传你这门绝招！";
+                return "你要好好為我神教效力，手段要更狠更毒。我才能傳你這門絕招！";
 
         if( query("family/gongji", me)<800 )
-                return "你为我神龙教效力还不够，这招我先不忙传你。";
+                return "你為我神龍教效力還不夠，這招我先不忙傳你。";
 
         if (me->query_skill("shedao-qigong", 1) < 120)
-                return "你的蛇岛奇功根基不够，岂能就窥测其中奥妙？";
+                return "你的蛇島奇功根基不夠，豈能就窺測其中奧妙？";
 
-        message_vision(HIM "$n" HIM "点头道：“你且看着，说罢双掌"
-                       "齐推，眼见招式已老，忽然间去势一变，宛若"
-                       "龙行天际，曲折婉转不留半点痕迹。\n" NOR,
+        message_vision(HIM "$n" HIM "點頭道：“你且看著，說罷雙掌"
+                       "齊推，眼見招式已老，忽然間去勢一變，宛若"
+                       "龍行天際，曲折婉轉不留半點痕跡。\n" NOR,
                        me, this_object());
-        command("say 你可懂了其中奥妙？");
-        tell_object(me, HIG "你学会了神龙再现。\n" NOR);
+        command("say 你可懂了其中奧妙？");
+        tell_object(me, HIG "你學會了神龍再現。\n" NOR);
         if (me->can_improve_skill("sword"))
                 me->improve_skill("sword", 90000);
         if (me->can_improve_skill("staff"))
@@ -261,27 +261,27 @@ mixed ask_cui()
 
         me = this_player();
         if( query("can_perform/shedao-qigong/cui", me) )
-                return "自己多练练，少在我面前罗嗦！";
+                return "自己多練練，少在我面前羅嗦！";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "你是哪儿来的？找死啊？";
+                return "你是哪兒來的？找死啊？";
 
         if( query("shen", me)>-50000 )
-                return "你要好好为我神教效力，手段要更狠更毒。我才能传你这门绝招！";
+                return "你要好好為我神教效力，手段要更狠更毒。我才能傳你這門絕招！";
 
         if( query("family/gongji", me)<800 )
-                return "你为我神龙教效力还不够，这招我先不忙传你。";
+                return "你為我神龍教效力還不夠，這招我先不忙傳你。";
 
         if (me->query_skill("shedao-qigong", 1) < 120)
-                return "你的蛇岛奇功根基不够，岂能就窥测其中奥妙？";
+                return "你的蛇島奇功根基不夠，豈能就窺測其中奧妙？";
 
-        message_vision(HIM "$n" HIM "点头道：“你且看着，只听$n"
-                       HIM "大喝一声，一掌击出，隐隐然有风雷之声。\n"
-                       "一时间$N" HIM "只觉得呼吸困难，$p" HIM "掌力"
-                       "犹如排山倒海一般，撼天动地。\n" NOR,
+        message_vision(HIM "$n" HIM "點頭道：“你且看著，只聽$n"
+                       HIM "大喝一聲，一掌擊出，隱隱然有風雷之聲。\n"
+                       "一時間$N" HIM "只覺得呼吸困難，$p" HIM "掌力"
+                       "猶如排山倒海一般，撼天動地。\n" NOR,
                        me, this_object());
-        command("say 这招不求花巧变化，乃是以力取胜，你可明白？");
-        tell_object(me, HIG "你学会了摧心断肠。\n" NOR);
+        command("say 這招不求花巧變化，乃是以力取勝，你可明白？");
+        tell_object(me, HIG "你學會了摧心斷腸。\n" NOR);
         if (me->can_improve_skill("sword"))
                 me->improve_skill("sword", 90000);
         if (me->can_improve_skill("staff"))
@@ -296,29 +296,29 @@ mixed ask_cui()
 
 void attempt_apprentice(object ob)
 {
-        if( query("party/party_name", ob) != "神龙教" )
+        if( query("party/party_name", ob) != "神龍教" )
         {
-                command("say 你不是本教教众, 想来找死啊!");
+                command("say 你不是本教教眾, 想來找死啊!");
                 return;
         }
 
         if( query("shen", ob)>-1000 )
         {
-                command("say 林冲拜梁山还要投名状，你不杀两"
-                        "个白道人物怎么表示真心？！");
+                command("say 林沖拜梁山還要投名狀，你不殺兩"
+                        "個白道人物怎麼表示真心？！");
                 return;
         }
 
         if( query_temp("pending/flatter", ob) )
         {
-                command("say 你如此不把我放在眼里，我又怎能容你？");
+                command("say 你如此不把我放在眼裡，我又怎能容你？");
                 kill_ob(ob);
                 return 0;
         } else
         {
-                command("say 我洪安通比起古往今来的圣人怎么样啊？");
-                message_vision("洪安通微闭双眼，手捻长须，一副"
-                               "等人拍马(flatter)的样子。\n",
+                command("say 我洪安通比起古往今來的聖人怎麼樣啊？");
+                message_vision("洪安通微閉雙眼，手捻長鬚，一副"
+                               "等人拍馬(flatter)的樣子。\n",
                                this_player());
                 set_temp("pending/flatter", 1, ob);
                 return 0;
@@ -336,9 +336,9 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "历练" :
-        case "历炼" :
-        case "锻炼" :
+        case "歷練" :
+        case "歷煉" :
+        case "鍛鍊" :
                 return QUEST_D->accept_ask(this_object(), me, topic);
                 break;
 
@@ -369,10 +369,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -50000, ]));
                 break;
 
-        case "盖世英雄" :
+        case "蓋世英雄" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/yingxiong-sanzhao/yingxiong",
-                           "name"    : "盖世英雄",
+                           "name"    : "蓋世英雄",
                            "sk1"     : "yingxiong-sanzhao",
                            "lv1"     : 150,
                            "sk2"     : "force",
@@ -381,10 +381,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -50000, ]));
                 break;
 
-        case "舍身" :
+        case "捨身" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/yingxiong-sanzhao/sheshen",
-                           "name"    : "舍身",
+                           "name"    : "捨身",
                            "sk1"     : "yingxiong-sanzhao",
                            "lv1"     : 150,
                            "sk2"     : "force",
@@ -393,10 +393,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -50000, ]));
                 break;
 
-        case "神龙初现" :
+        case "神龍初現" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/shenlong-bashi/xian",
-                           "name"    : "神龙初现",
+                           "name"    : "神龍初現",
                            "sk1"     : "shenlong-bashi",
                            "lv1"     : 100,
                            "sk2"     : "hand",
@@ -419,10 +419,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -50000, ]));
                 break;
 
-        case "哼字诀" :
+        case "哼字訣" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/shedao-qigong/heng",
-                           "name"    : "哼字诀",
+                           "name"    : "哼字訣",
                            "sk1"     : "shedao-qigong",
                            "lv1"     : 200,
                            "sk2"     : "sword",
@@ -432,10 +432,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -50000, ]));
                 break;
 
-        case "吼字诀" :
+        case "吼字訣" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/shedao-qigong/hou",
-                           "name"    : "吼字诀",
+                           "name"    : "吼字訣",
                            "sk1"     : "shedao-qigong",
                            "lv1"     : 200,
                            "sk2"     : "sword",
@@ -455,16 +455,16 @@ string ask_tool()
         object ob, me = this_player();
 
         if( !(fam=query("family", me)) || 
-                fam["family_name"] != "神龙教")
-                return "这位"+RANK_D->query_respect(me)+ "与本教素无来往，不知此话从何谈起？";
+                fam["family_name"] != "神龍教")
+                return "這位"+RANK_D->query_respect(me)+ "與本教素無來往，不知此話從何談起？";
         if( present("shenlong qiao", me) )
-                return "你现在身上不是有锹了嘛，怎么又来要了？真是贪得无餍！";
+                return "你現在身上不是有鍬了嘛，怎麼又來要了？真是貪得無饜！";
         if( me->query_skill("digging", 1) <= 30)
-                return "你拿着东西也没什么用，还是留给别人吧！";
+                return "你拿著東西也沒什麼用，還是留給別人吧！";
         if( query("count") < 1)
-                return "来晚啦，你要的东西给别人先拿走了！";
+                return "來晚啦，你要的東西給別人先拿走了！";
         ob = new(__DIR__"obj/shenlongqiao");
         ob->move(me);
         addn("count", -1);
-        return "好吧，这有一把神龙锹，你就拿去吧。";
+        return "好吧，這有一把神龍鍬，你就拿去吧。";
 }

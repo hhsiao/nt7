@@ -10,12 +10,12 @@ int check_busy(object me);
 
 void create()
 {
-        set("short",HIR "铁矿" NOR);
+        set("short",HIR "鐵礦" NOR);
         set("long", @LONG
-[1；37m这里是一个光秃秃的小山丘，四周什么花草树木也没有。仔细一
-看，发现山丘周围有些黑黝黝的大石头，这就是光明顶盛产的乌金铁
-矿石。明教教众用的兵器都是用这种矿石铸造而成，比之寻常精铁铸
-造的兵器更为坚固，锋利。[2；37；0m
+[1；37m這裡是一個光禿禿的小山丘，四周什麼花草樹木也沒有。仔細一
+看，發現山丘周圍有些黑黝黝的大石頭，這就是光明頂盛產的烏金鐵
+礦石。明教教眾用的兵器都是用這種礦石鑄造而成，比之尋常精鐵鑄
+造的兵器更為堅固，鋒利。[2；37；0m
 LONG );
         set("exits", ([ /* sizeof() == 1 */
           "east" : __DIR__"rjqmenlou1",
@@ -36,7 +36,7 @@ void init()
 
 int do_save(string arg)
 {
-        write("这里并非一般地方,不能在这里纪录。\n");
+        write("這裡並非一般地方,不能在這裡紀錄。\n");
         return 1;
 }
 
@@ -47,29 +47,29 @@ int do_wa(string arg)
         me = this_player();
 
         if( me->is_busy() || query_temp("pending/job_busy", me) )
-                return notify_fail("你正忙着呢。\n");
+                return notify_fail("你正忙著呢。\n");
 
         if( query("mingjiao/job", me) != "jin_caikuang")
-                return notify_fail("这里不能随便乱挖！\n");
+                return notify_fail("這裡不能隨便亂挖！\n");
 
         if( present("wujin kuangshi", me) )
-                return notify_fail("你已经有一块矿石，实在抱不动第二块了。\n");
+                return notify_fail("你已經有一塊礦石，實在抱不動第二塊了。\n");
 
         if( !objectp(qiao = present("tie qiao", me)) )
-                 return notify_fail("你没有趁手的工具，无法开采铁矿\n");
+                 return notify_fail("你沒有趁手的工具，無法開採鐵礦\n");
 
         if( query("jing", me) < 50 || query("qi", me) < 30 )
-                return notify_fail("你已经精疲力竭了！\n");
+                return notify_fail("你已經精疲力竭了！\n");
 
         if( query("wa_times") > 0 )
         {
-                message_vision("$N将铁锹拿在手上，看准了一块黑黝黝的乌金铁矿石，用力向下挖去。\n",me);
+                message_vision("$N將鐵鍬拿在手上，看準了一塊黑黝黝的烏金鐵礦石，用力向下挖去。\n",me);
                 set_temp("pending/job_busy", 1, me);
                 call_out("start_wa", 10, me);
                 me->start_busy( (: check_busy :) );
         }
         else
-                tell_object(me,"矿石似乎都被挖光了。\n");
+                tell_object(me,"礦石似乎都被挖光了。\n");
 
         return 1;
 
@@ -87,7 +87,7 @@ int start_wa(object me)
 
         if(query("jingli", me)>90 && random(3)==1)
         {
-                message_vision("$N将一小块"+HIB"乌金矿石"NOR+"挖了出来放在身上。\n",me);
+                message_vision("$N將一小塊"+HIB"烏金礦石"NOR+"挖了出來放在身上。\n",me);
                 addn("wa_times",-1);
                 kuangshi=new(__DIR__"obj/kuangshi");
                 if (! kuangshi->move(me))
@@ -97,7 +97,7 @@ int start_wa(object me)
         }
         else
         {
-                tell_object(me,HIR"你突然觉得气力不济，怎样也无法将那块矿石挖出。\n"NOR);
+                tell_object(me,HIR"你突然覺得氣力不濟，怎樣也無法將那塊礦石挖出。\n"NOR);
                 addn("jing",-20, me);
                 addn("qi",-30, me);
         }
@@ -112,7 +112,7 @@ int valid_leave(object me, string dir)
 //      object ob;
 
         if (dir == "northeast" && query_temp("job_busy", me) )
-               return notify_fail("你正忙着挖矿呢！\n");
+               return notify_fail("你正忙著挖礦呢！\n");
 
         return ::valid_leave(me, dir);
 }

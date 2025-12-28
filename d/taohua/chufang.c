@@ -6,10 +6,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "厨房");
+        set("short", "廚房");
         set("long", @LONG
-这里常年有几个哑仆在烹调食物，等候传唤。对待这些人不用太客气，
-命令(order)他们就可以了。
+這裡常年有幾個啞僕在烹調食物，等候傳喚。對待這些人不用太客氣，
+命令(order)他們就可以了。
 LONG );
         set("exits", ([
                 "south" : __DIR__"changlang",
@@ -44,7 +44,7 @@ int do_order()
         mapping myfam;
 
         myfam=query("family", me);
-        if ( !myfam || myfam["family_name"] != "桃花岛" )
+        if ( !myfam || myfam["family_name"] != "桃花島" )
                 return notify_fail("你非桃花弟子，不能拿取食物！\n");
 
         inv = all_inventory(me);
@@ -58,9 +58,9 @@ int do_order()
 
         if ( (int)me->max_food_capacity()-food_ind < 10
         && (int)me->max_water_capacity()-water_ind < 10 )
-                return notify_fail("你已吃饱喝足，还是等会儿再要吧！\n");
+                return notify_fail("你已吃飽喝足，還是等會兒再要吧！\n");
 
-        message_vision("$N打手势命令一个哑仆拿些食物吃喝。\n", me);
+        message_vision("$N打手勢命令一個啞僕拿些食物吃喝。\n", me);
 
         if ( (int)me->max_food_capacity()-food_ind >= 40 && !f
         && !present( "chicken", environment(me) )
@@ -78,21 +78,21 @@ int do_order()
                 break;
            }
                 ob1->move(me);
-                message_vision("哑仆面无表情地拿出"+ob1->name()+"给$N。\n", me);
+                message_vision("啞僕面無表情地拿出"+ob1->name()+"給$N。\n", me);
         }
         else if ( (int)me->max_food_capacity()-food_ind >= 40 )
-                message_vision("哑仆指了指$N拿着的食物，摇了摇头。\n", me);
-        else message_vision("哑仆指了指$N的肚子，摇了摇手。\n", me);
+                message_vision("啞僕指了指$N拿著的食物，搖了搖頭。\n", me);
+        else message_vision("啞僕指了指$N的肚子，搖了搖手。\n", me);
 
         if ( (int)me->max_water_capacity()-water_ind >= 40 && !w
         && !present("tea", environment(me)) ) {
                 ob2 = new(__DIR__"obj/xiangcha");
                 ob2->move(me);
-                message_vision("哑仆面无表情地拿出"+ob2->name()+"给$N。\n", me);
+                message_vision("啞僕面無表情地拿出"+ob2->name()+"給$N。\n", me);
         }
         else if ( (int)me->max_water_capacity()-water_ind >= 40 )
-                message_vision("哑仆指了指$N拿着的食物，摇了摇头。\n", me);
-        else message_vision("哑仆指了指$N的肚子，摇了摇手。\n", me);
+                message_vision("啞僕指了指$N拿著的食物，搖了搖頭。\n", me);
+        else message_vision("啞僕指了指$N的肚子，搖了搖手。\n", me);
 
         return 1;
 }
@@ -108,7 +108,7 @@ int valid_leave(object me, string dir)
         }
 
         if ( (f>0 || w>0) && present("ya pu", environment(me)) ) 
-                return notify_fail("哑仆拦着你，指了指你拿着的食物，摇了摇头。\n");
+                return notify_fail("啞僕攔著你，指了指你拿著的食物，搖了搖頭。\n");
 
         return ::valid_leave(me, dir);
 }

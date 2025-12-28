@@ -12,8 +12,8 @@ inherit F_COAGENT;
 void create()
 {
         object ob1,ob2;
-        set_name("公孙止", ({ "gongsun zhi", "gongsun", "zhi" }));
-        set("nickname", HIR "阴阳刃" NOR);
+        set_name("公孫止", ({ "gongsun zhi", "gongsun", "zhi" }));
+        set("nickname", HIR "陰陽刃" NOR);
         set("gender", "男性");
         set("attitude", "peaceful");
         set("shen_type", 0);
@@ -65,7 +65,7 @@ void create()
 
         prepare_skill("strike", "jueqing-zhang");
 
-        create_family("绝情谷", 4, "谷主");
+        create_family("絕情谷", 4, "谷主");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -123,39 +123,39 @@ void attempt_apprentice(object ob)
         if( query("family/master_name", ob) == "裘千尺" )
         {
                 command("sneer");
-                command("say 我公孙止可不收裘千尺那恶妇的徒弟。");
+                command("say 我公孫止可不收裘千尺那惡婦的徒弟。");
                 return;
         }
 
         if( query("shen", ob)>-30000 )
         {
-                command("say 我公孙止最看不惯你们这些正道人士。");
-                command("say 你还是请回吧！");
+                command("say 我公孫止最看不慣你們這些正道人士。");
+                command("say 你還是請回吧！");
                 return;
         }
 
         if( query("combat_exp", ob)<300000 )
         {
-                command("say 你现在经验尚浅，还是多在江湖上走走吧。");
+                command("say 你現在經驗尚淺，還是多在江湖上走走吧。");
                 return;
         }
 
         if ((int)ob->query_skill("jueqing-xinfa", 1) < 120)
         {
-                command("say 我绝情谷武功讲究心神合一，最重视基本心法。");
-                command("say 你的绝情心法还不够熟练，下去练练再来吧。");
+                command("say 我絕情谷武功講究心神合一，最重視基本心法。");
+                command("say 你的絕情心法還不夠熟練，下去練練再來吧。");
                 return;
         }
 
         if ((int)ob->query_skill("dodge") < 180)
         {
-                command("say 我绝情谷武功需配合灵动的身法。");
-                command("say 你是否还应该在轻功修为上多下点功夫？");
+                command("say 我絕情谷武功需配合靈動的身法。");
+                command("say 你是否還應該在輕功修為上多下點功夫？");
                 return;
         }
 
         command("nod");
-        command("say 念你还是个可造之才，今日我就收下你吧。");
+        command("say 念你還是個可造之才，今日我就收下你吧。");
         command("recruit "+query("id", ob));
 }
 
@@ -163,9 +163,9 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "历练" :
-        case "历炼" :
-        case "锻炼" :
+        case "歷練" :
+        case "歷煉" :
+        case "鍛鍊" :
                 return QUEST_D->accept_ask(this_object(), me, topic);
                 break;
 
@@ -180,10 +180,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -60000, ]));
                 break;
 
-        case "狂风式" :
+        case "狂風式" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/zilei-jian/feng",
-                           "name"    : "狂风式",
+                           "name"    : "狂風式",
                            "sk1"     : "zilei-jian",
                            "lv1"     : 100,
                            "dodge"   : 140,
@@ -191,10 +191,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -45000, ]));
                 break;
 
-        case "破阳刀" :
+        case "破陽刀" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/poguang-dao/yang",
-                           "name"    : "破阳刀",
+                           "name"    : "破陽刀",
                            "sk1"     : "poguang-dao",
                            "lv1"     : 100,
                            "force"   : 120,
@@ -202,10 +202,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -60000, ]));
                 break;
 
-        case "寒冰环" :
+        case "寒冰環" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/poguang-dao/bing",
-                           "name"    : "寒冰环",
+                           "name"    : "寒冰環",
                            "sk1"     : "poguang-dao",
                            "lv1"     : 100,
                            "force"   : 140,
@@ -213,18 +213,18 @@ int accept_ask(object me, string topic)
                            "shen"    : -45000, ]));
                 break;
 
-        case "魂飞魄散" :
+        case "魂飛魄散" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/jueqing-zhang/hun",
-                           "name"    : "魂飞魄散",
+                           "name"    : "魂飛魄散",
                            "sk1"     : "jueqing-zhang",
-                           "msg1"    : this_object()->name() + "点了"
-                                       "点头，说道：“好，我给你演示"
-                                        "一遍，你看清楚了。”说完" +
-                                       this_object()->name() + "运转"
-                                       "真气，将内力注于掌风之中，双"
-                                       "掌猛然拍向虚空，掌风凌厉无比"
-                                       "，气势凌人，直可惊天地，泣鬼"
+                           "msg1"    : this_object()->name() + "點了"
+                                       "點頭，說道：“好，我給你演示"
+                                        "一遍，你看清楚了。”說完" +
+                                       this_object()->name() + "運轉"
+                                       "真氣，將內力注於掌風之中，雙"
+                                       "掌猛然拍向虛空，掌風凌厲無比"
+                                       "，氣勢凌人，直可驚天地，泣鬼"
                                        "神。",
                            "lv1"     : 120,
                            "force"   : 160,
@@ -232,20 +232,20 @@ int accept_ask(object me, string topic)
                            "shen"    : -92000, ]));
                 break;
 
-        case "日月无华" :
+        case "日月無華" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/yinyang-ren/hua",
-                           "name"    : "日月无华",
+                           "name"    : "日月無華",
                            "sk1"     : "yinyang-ren",
                            "lv1"     : 160,
                            "gongxian": 600,
                            "shen"    : -35000, ]));
                 break;
 
-        case "横空出世" :
+        case "橫空出世" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/yinyang-ren/heng",
-                           "name"    : "横空出世",
+                           "name"    : "橫空出世",
                            "sk1"     : "yinyang-ren",
                            "lv1"     : 180,
                            "dodge"   : 180,
@@ -254,10 +254,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -100000 ]));
                 break;
 
-        case "阴阳环" :
+        case "陰陽環" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/yinyang-ren/huan",
-                           "name"    : "阴阳环",
+                           "name"    : "陰陽環",
                            "sk1"     : "yinyang-ren",
                            "lv1"     : 180,
                            "dodge"   : 200,
@@ -265,7 +265,7 @@ int accept_ask(object me, string topic)
                            "shen"    : -120000, ]));
                 break;
 
-        case "黑剑" :
+        case "黑劍" :
                 return MASTER_D->give_item(me, this_object(),
                         ([ "item"    : HEIJIAN,
                            "master"  : 1,
@@ -274,7 +274,7 @@ int accept_ask(object me, string topic)
                            "shen"    : -46000, ]));
                 break;
 
-        case "黄金锯齿刀" :
+        case "黃金鋸齒刀" :
                 return MASTER_D->give_item(me, this_object(),
                         ([ "item"    : JUCHI,
                            "master"  : 1,

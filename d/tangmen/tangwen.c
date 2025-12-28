@@ -1,4 +1,4 @@
-//tangwen.c                四川唐门—唐闻卧室
+//tangwen.c                四川唐門—唐聞臥室
 
 #include <ansi.h>
 #include <room.h>
@@ -6,10 +6,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "寝室");
+        set("short", "寢室");
         set("long",
-"这是一间简陋的卧室。屋中只有一张硬木床和一张枣木红桌。这里住\n"
-"着唐老太太的贴身保镖唐闻。\n"
+"這是一間簡陋的臥室。屋中只有一張硬木床和一張棗木紅桌。這裡住\n"
+"著唐老太太的貼身保鏢唐聞。\n"
 );
         set("exits", ([
                         "east" : __DIR__"nzlang2",

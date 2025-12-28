@@ -18,37 +18,37 @@ int valid_force(string force)
 }
 
 mapping *action = ({
-([      "action" : "$N单掌一抖，运聚先天功功力，呼啸着向$n的$l处拍去",
+([      "action" : "$N單掌一抖，運聚先天功功力，呼嘯著向$n的$l處拍去",
         "dodge"  : -87,
         "force"  : 430,
         "attack" : 163,
         "parry"  : -81,
         "damage" : 83,
-        "damage_type": "内伤"
+        "damage_type": "內傷"
 ]),
-([      "action" : "$N右掌平伸，左掌运起先天功的劲力，猛地拍向$n的$l",
+([      "action" : "$N右掌平伸，左掌運起先天功的勁力，猛地拍向$n的$l",
         "dodge"  : -85,
         "force"  : 440,
         "attack" : 147,
         "parry"  : -77,
         "damage" : 81,
-        "damage_type": "内伤"
+        "damage_type": "內傷"
 ]),
-([      "action" : "$N身形一展，右掌护住心脉，左掌中攻直进，贯向$n$l",
+([      "action" : "$N身形一展，右掌護住心脈，左掌中攻直進，貫向$n$l",
         "dodge"  : -75,
         "force"  : 450,
         "attack" : 182,
         "parry"  : -67,
         "damage" : 93,
-        "damage_type": "内伤"
+        "damage_type": "內傷"
 ]),
-([      "action" : "$N运转先天真气，双掌回圈，顿时一波澎湃的气劲直袭$n",
+([      "action" : "$N運轉先天真氣，雙掌迴圈，頓時一波澎湃的氣勁直襲$n",
         "dodge"  : -87,
         "force"  : 480,
         "attack" : 183,
         "parry"  : -85,
         "damage" : 105,
-        "damage_type": "内伤"
+        "damage_type": "內傷"
 ]),
 });
 
@@ -67,41 +67,41 @@ int valid_enable(string usage)
 int valid_learn(object me)
 {
         if( query("character", me) != "光明磊落"
-            && query("character", me) != "国士无双" )
-                return notify_fail("你只觉先天功正大恢弘，依自己的天性似乎难以领悟。\n");
+            && query("character", me) != "國士無雙" )
+                return notify_fail("你只覺先天功正大恢弘，依自己的天性似乎難以領悟。\n");
 
         /*
         if( query("int", me)<28 )
-                return notify_fail("你的先天悟性不足，难以领会高深的先天功。\n");
+                return notify_fail("你的先天悟性不足，難以領會高深的先天功。\n");
         */
 
         if( query("con", me)<32 )
-                return notify_fail("你的先天根骨孱弱，无法修炼高深的先天功。\n");
+                return notify_fail("你的先天根骨孱弱，無法修煉高深的先天功。\n");
 
-        if( query("gender", me) == "无性" && query("xiantian-gong", me)>29 )
-                return notify_fail("你无根无性，阴阳不调，难以领会高深的先天功。\n");
+        if( query("gender", me) == "無性" && query("xiantian-gong", me)>29 )
+                return notify_fail("你無根無性，陰陽不調，難以領會高深的先天功。\n");
 
         if ((int)me->query_skill("taoism", 1) < 200)
-                return notify_fail("你对道学心法的理解不够，难以领会先天功。\n");
+                return notify_fail("你對道學心法的理解不夠，難以領會先天功。\n");
 
         if ((int)me->query_skill("force", 1) < 200)
-                return notify_fail("你的基本内功火候不足，难以领会先天功。\n");
+                return notify_fail("你的基本內功火候不足，難以領會先天功。\n");
 
         if ((int)me->query_skill("unarmed", 1) < 200)
-                return notify_fail("你的基本拳脚火候不足，难以领会先天功。\n");
+                return notify_fail("你的基本拳腳火候不足，難以領會先天功。\n");
 
         if( query("max_neili", me)<4000 )
-                return notify_fail("你的内力修为不足，难以领会先天功。\n");
+                return notify_fail("你的內力修為不足，難以領會先天功。\n");
 
         if (me->query_skill("taoism", 1) < 320
            && me->query_skill("taoism", 1) < me->query_skill("xiantian-gong", 1))
-                return notify_fail("你对道学心法的理解不够，难以锻炼更深厚的先天功。\n");
+                return notify_fail("你對道學心法的理解不夠，難以鍛鍊更深厚的先天功。\n");
 
         if (me->query_skill("force", 1) < me->query_skill("xiantian-gong", 1))
-                return notify_fail("你的基本内功水平不够，难以锻炼更深厚的先天功。\n");
+                return notify_fail("你的基本內功水平不夠，難以鍛鍊更深厚的先天功。\n");
 
         if (me->query_skill("unarmed", 1) < me->query_skill("xiantian-gong", 1))
-                return notify_fail("你的基本拳脚水平不够，难以锻炼更深厚的先天功。\n");
+                return notify_fail("你的基本拳腳水平不夠，難以鍛鍊更深厚的先天功。\n");
 
         return ::valid_learn(me);
 }
@@ -125,14 +125,14 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         {
                 addn("neili", -30, me);
                 victim->receive_wound("qi", damage_bonus / 2, me);
-                return HIR"随着""$N""的攻击,一股先天纯阳真力瞬间爆发了出来，$n"  //return HIW "$N" HIW "先天功的潜力发挥了出来，突然间$n"
-                       HIR "只感五内俱焚，喉咙沙哑无比，不禁咳一口鲜血！\n" NOR;// HIW "只感喉咙一甜，喷出一口鲜血！\n" NOR;
+                return HIR"隨著""$N""的攻擊,一股先天純陽真力瞬間爆發了出來，$n"  //return HIW "$N" HIW "先天功的潛力發揮了出來，突然間$n"
+                       HIR "只感五內俱焚，喉嚨沙啞無比，不禁咳一口鮮血！\n" NOR;// HIW "只感喉嚨一甜，噴出一口鮮血！\n" NOR;
         }
 }
 
 int practice_skill(object me)
 {
-        return notify_fail("先天功只能用学(learn)来增加熟练度。\n");
+        return notify_fail("先天功只能用學(learn)來增加熟練度。\n");
 }
 
 int difficult_level()
@@ -143,7 +143,7 @@ int difficult_level()
 string perform_action_file(string action)
 {
 //        if ((int)this_player()->query("int") < 28)
-//                return "你的先天悟性不够，无法知晓如何运用先天功绝招。\n";
+//                return "你的先天悟性不夠，無法知曉如何運用先天功絕招。\n";
 
         return __DIR__"xiantian-gong/perform/" + action;
 }
@@ -166,12 +166,12 @@ void skill_improved(object me)
         {
                 if( me->add("can_exert/xiantian-gong/shentong",random(i))<60 )
                 {
-                        tell_object(me, HIC "你对先天功「" HIW "纯阳神通功"
-                                        HIC "」有了新的领悟。\n" NOR);
+                        tell_object(me, HIC "你對先天功「" HIW "純陽神通功"
+                                        HIC "」有了新的領悟。\n" NOR);
                 } else
                 {
-                        tell_object(me, HIC "你通晓了先天功「" HIW "纯阳神通功"
-                                        HIC "」的奥秘。\n" NOR);
+                        tell_object(me, HIC "你通曉了先天功「" HIW "純陽神通功"
+                                        HIC "」的奧秘。\n" NOR);
                         me->improve_skill("martial-cognize", 1500000);
                         me->improve_skill("martial-cognize", 1500000);
                         me->improve_skill("martial-cognize", 1500000);
@@ -205,17 +205,17 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
                 switch (random(2))
                 {
                 case 0:
-                        result += (["msg" : HIR "只见$n" HIR "先天护体神功自然而"
-                                            "然发动，将$N" HIR "的力道尽数反震回"
+                        result += (["msg" : HIR "只見$n" HIR "先天護體神功自然而"
+                                            "然發動，將$N" HIR "的力道盡數反震回"
                                             "去。\n" NOR]);
                         break;
                 case 1:
-                        result += (["msg" : HIR "只见$n" HIR "先天护体神功自然而"
-                                            "然发动，将$N" HIR "的攻击化为无形。\n" NOR]);
+                        result += (["msg" : HIR "只見$n" HIR "先天護體神功自然而"
+                                            "然發動，將$N" HIR "的攻擊化為無形。\n" NOR]);
                         break;
                 default:
-                        result += (["msg" : HIR "只见$n" HIR "先天护体神功自然而"
-                                            "然发动，抵抗$N" HIR "的攻击。\n" NOR]);
+                        result += (["msg" : HIR "只見$n" HIR "先天護體神功自然而"
+                                            "然發動，抵抗$N" HIR "的攻擊。\n" NOR]);
                         break;
                 }
                 return result;

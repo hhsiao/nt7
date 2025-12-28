@@ -7,13 +7,13 @@ void setup()
         set_name("[1;36m四不象[2;37;0m[2;37;0m", ({"sibuxiang"}));        
         set("gender", "男性");                
         set("long", "  [2;37;0m
-它是净秃的魔幻兽。
+它是淨禿的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");
         set("owner", "tuzi");
-        set("owner_name", "净秃");
+        set("owner_name", "淨禿");
         set_temp("owner", "tuzi");
-        set_temp("owner_name", "净秃");
+        set_temp("owner_name", "淨禿");
         ::setup();
 }

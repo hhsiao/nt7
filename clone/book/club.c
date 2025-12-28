@@ -11,7 +11,7 @@ void create()
         else*/
         {
                 set("unit", "本");
-                set("long","这是一本修习棍法的武经。\n里面记载着少林派弟子数百年的练功心得，上面画着各式舞棍的小人。\n");
+                set("long","這是一本修習棍法的武經。\n裡面記載著少林派弟子數百年的練功心得，上面畫著各式舞棍的小人。\n");
                 set("value", 500);
                 set("material", "book");
                 set("skill", ([

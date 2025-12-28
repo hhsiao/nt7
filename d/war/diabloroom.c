@@ -1,11 +1,11 @@
 /*
     ----------------------------------------    暗黑之城    ----------------------------------------------
-     ① 1.罗格营地 2.冰冻之原 3.石块旷野 4.黑暗森林 5.黑色荒地 6.外侧回廊 7.监牢一层 8.内侧回廊 9.墓穴二层
-     ② 1.鲁高·因 2.地下水道 3.干燥高地 4.死亡之殿 5.遥远绿洲 6.失落城市 7.皇宫监牢 8.庇难之所 9.术士峡谷
-     ③ 1.库拉海港 2.蜘蛛森林 3.庞大湿地 4.剥皮丛林 5.库拉上层 6.库拉商场 7.库拉下层 8.崔凡克   9.憎恨囚牢
-     ④ 1.群魔堡垒 2.神罚之城 3.火焰之河 4.罗格之岛 5.九龙之塔 6.天囚之城 7.迷雾沼泽 8.格拉瑞特 9.飓风极地
-     ⑤ 1.哈洛加斯 2.冰冻高原 3.亚瑞特   4.水晶通道 5.冰河之路 6.痛苦之厅 7.冰冻苔原 8.远古之路 9.要塞二层
-     ⑥ 1.特罗巴岛 2.罗巴山脉 3.十二列岛 4.远古员峤 5.失落岱兴 6.玛雅部落 7.雷泽国度 8.东海汤谷 9.荣耀之路
+     ① 1.羅格營地 2.冰凍之原 3.石塊曠野 4.黑暗森林 5.黑色荒地 6.外側迴廊 7.監牢一層 8.內側迴廊 9.墓穴二層
+     ② 1.魯高·因 2.地下水道 3.乾燥高地 4.死亡之殿 5.遙遠綠洲 6.失落城市 7.皇宮監牢 8.庇難之所 9.術士峽谷
+     ③ 1.庫拉海港 2.蜘蛛森林 3.龐大溼地 4.剝皮叢林 5.庫拉上層 6.庫拉商場 7.庫拉下層 8.崔凡克   9.憎恨囚牢
+     ④ 1.群魔堡壘 2.神罰之城 3.火焰之河 4.羅格之島 5.九龍之塔 6.天囚之城 7.迷霧沼澤 8.格拉瑞特 9.颶風極地
+     ⑤ 1.哈洛加斯 2.冰凍高原 3.亞瑞特   4.水晶通道 5.冰河之路 6.痛苦之廳 7.冰凍苔原 8.遠古之路 9.要塞二層
+     ⑥ 1.特羅巴島 2.羅巴山脈 3.十二列島 4.遠古員嶠 5.失落岱興 6.瑪雅部落 7.雷澤國度 8.東海湯谷 9.榮耀之路
 */
 
 #include <room.h>
@@ -169,7 +169,7 @@ string short_desc()
                     y<=coor["y1"] &&z>=coor["z1"]&&z<=coor["z2"] )
                         desc=coor["name"];
         }
-        if( !desc ) desc="无尽虚空";
+        if( !desc ) desc="無盡虛空";
         return desc;
 }
 
@@ -194,14 +194,14 @@ void create()
         set("walls",walls);
         set("short", HIC+short_desc()+NOR);
         set("long",
-HIC"\n                   此处便是暗黑之地。\n\n"NOR
-        " 移动指令 "HIY"moving "NOR"<"HIY"方位"NOR"|"HIY"目标"NOR">
-        停止移动： "HIY"stopping"NOR"
-        回扬州： "HIY"back"NOR"
-        显示地图：        "HIY"set eve_map n(9-29)"NOR"
-        显示地图分辨率：  "HIY"set eve_step n(建议10-100)"NOR"
-        定位地图中心坐标："HIY"set eve_center x(建议自己或者center)"NOR"
- // 屏蔽他人移动、战斗信息："HIY"set combat_message "NOR"<"HIY"1"NOR"|"HIY"2"NOR">
+HIC"\n                   此處便是暗黑之地。\n\n"NOR
+        " 移動指令 "HIY"moving "NOR"<"HIY"方位"NOR"|"HIY"目標"NOR">
+        停止移動： "HIY"stopping"NOR"
+        回揚州： "HIY"back"NOR"
+        顯示地圖：        "HIY"set eve_map n(9-29)"NOR"
+        顯示地圖分辨率：  "HIY"set eve_step n(建議10-100)"NOR"
+        定位地圖中心座標："HIY"set eve_center x(建議自己或者center)"NOR"
+ // 屏蔽他人移動、戰鬥信息："HIY"set combat_message "NOR"<"HIY"1"NOR"|"HIY"2"NOR">
 "NOR);
         set("outdoors", "war");
         set("valid_startroom", 1);
@@ -257,16 +257,16 @@ varargs void generate_bandit(string zone,mapping coor,int z)
         if( query("generate/"+zone) ) return;
 
         if( member_array("no_door", ks)==-1 )
-                if( !sizeof(filter_array(children(__DIR__"obj/door"),(:query("zone",$1)==$2:),zone)) )//区域没有门时才生成
+                if( !sizeof(filter_array(children(__DIR__"obj/door"),(:query("zone",$1)==$2:),zone)) )//區域沒有門時才生成
                 {
-                        door=new(__DIR__"obj/door");//区域生成传送门
+                        door=new(__DIR__"obj/door");//區域生成傳送門
                         set("zone",zone,door);
                         set("no_reset",1,door);
                         set("act",coor["act"],door);
                         door->set_coor();
                         door->move(this_object());
                 }
-        if( member_array("bandit", ks)==-1 &&//没有怪物的区域设定坟墓
+        if( member_array("bandit", ks)==-1 &&//沒有怪物的區域設定墳墓
             member_array("no_tomb", ks)==-1 )
                 if( !sizeof(filter_array(children(__DIR__"obj/tomb"),(:query("zone",$1)==$2:),zone)) )
                 {
@@ -281,7 +281,7 @@ varargs void generate_bandit(string zone,mapping coor,int z)
         if( member_array("boss", ks)!=-1)
                 if( !sizeof(filter_array(children(__DIR__"npc/boss"),(:query("zone",$1)==$2:),zone)) )
                 {
-                        bandit=new(__DIR__"npc/boss");//区域生成BOSS
+                        bandit=new(__DIR__"npc/boss");//區域生成BOSS
 
                         set("zone",zone,bandit);
                         set("skill_level",coor["level"],bandit);
@@ -308,7 +308,7 @@ varargs void generate_bandit(string zone,mapping coor,int z)
                 for(i=0;i<length_x/step;i++)
                         for(j=0;j<length_y/step;j++)
                         {
-                                bandit=new(__DIR__"npc/bandit");//区域以步长step生成小怪
+                                bandit=new(__DIR__"npc/bandit");//區域以步長step生成小怪
                                 set("name",coor["bandit"],bandit);
                                 set("zone",zone,bandit);
                                 set("skill_level",coor["level"],bandit);
@@ -417,7 +417,7 @@ int do_perform(string arg)
 
         if( !query("diablo_achieve/"+query("coor/z",me)+"/hero",me) )
         {
-                tell_object(me,"你需要打通暗黑城后才可以使用绝招。\n");
+                tell_object(me,"你需要打通暗黑城後才可以使用絕招。\n");
                 return 1;
         }
         return 0;
@@ -430,7 +430,7 @@ int do_cast(string arg)
 
         if( !query("diablo_achieve/"+query("coor/z",me)+"/hero",me))
         {
-                tell_object(me,"你需要打通暗黑城后才可以使用绝招。\n");
+                tell_object(me,"你需要打通暗黑城後才可以使用絕招。\n");
                 return 1;
         }
         return 0;
@@ -443,12 +443,12 @@ int do_quit(string arg)
 
         if( this_player()->is_fighting() )
         {
-                tell_object(me,"你还在战斗。\n");
+                tell_object(me,"你還在戰鬥。\n");
                 return 1;
         }
         if( query("block_move",this_player()) )
         {
-                tell_object(me,"你死了先touch tomb复活。\n");
+                tell_object(me,"你死了先touch tomb復活。\n");
                 return 1;
         }
         delete("coor",me);
@@ -462,15 +462,15 @@ int do_dismiss(string arg)
         object me=this_player();
 
         if( !mapp(employ=query("employ",me)) )
-                return notify_fail("你还没有雇佣兵，怎么解雇。\n");
+                return notify_fail("你還沒有僱傭兵，怎麼解僱。\n");
 
         foreach(string animal in keys(HERO))
                 if( arg==HERO[animal]["name"] ) animal1=animal ;
 
-        if( !animal1 ) return notify_fail("没有这种雇佣兵种类啊。\n");
+        if( !animal1 ) return notify_fail("沒有這種僱傭兵種類啊。\n");
 
         if( member_array(animal1,keys(employ))==-1 )
-                return notify_fail("你没有这种雇佣兵，怎么解雇。\n");
+                return notify_fail("你沒有這種僱傭兵，怎麼解僱。\n");
 
         //map_delete(employ,animal1);
         delete("employ/"+animal1,me);
@@ -492,25 +492,25 @@ int do_back(string arg)
         dest="/d/city/guangchang";
         if( !(obj = load_object(dest)) )
         {
-                tell_object(me,"无法移动。\n");
+                tell_object(me,"無法移動。\n");
                 return 1;
         }
 
         if( query("coor/z",me) )
         {
-                tell_object(me,"你可能在洞穴里，需要找到出口。\n");
+                tell_object(me,"你可能在洞穴裡，需要找到出口。\n");
                 return 1;
         }
 
         if( me->is_fighting() )
         {
-                tell_object(me,"你还在战斗。\n");
+                tell_object(me,"你還在戰鬥。\n");
                 return 1;
         }
 
         if( query("block_move",me) )
         {
-                tell_object(me,"你死了先touch tomb复活。\n");
+                tell_object(me,"你死了先touch tomb復活。\n");
                 return 1;
         }
 
@@ -518,7 +518,7 @@ int do_back(string arg)
                 if( member_array("bandit",keys(query_zone(this_player())))!=-1 )
                 {
                         delete("coor",me);
-                        tell_object(me,"你回到了罗格营地。\n");
+                        tell_object(me,"你回到了羅格營地。\n");
                         return 1;
                 }
 
@@ -530,7 +530,7 @@ int do_back(string arg)
 
 int do_nowield(string arg)
 {
-        tell_object(this_player(),"只有在基地才能上下战车，你已经到了战场，早干啥去了。\n");
+        tell_object(this_player(),"只有在基地才能上下戰車，你已經到了戰場，早幹啥去了。\n");
         return 1;
 }
 
@@ -544,11 +544,11 @@ int do_dropping(string arg)
 
         me=this_player();
         if( !arg ) {
-                write("你要丢弃什麽东西？\n");
+                write("你要丟棄什麼東西？\n");
                 return 1;
         }
         if( query_temp("timer/big_cmd",me)+2 > time()) {
-                write("此命令比较耗费系统资源，每两秒只能执行一次。\n");
+                write("此命令比較耗費系統資源，每兩秒只能執行一次。\n");
                 return 1;
         }
         if( !wizardp(me))
@@ -565,7 +565,7 @@ int do_dropping(string arg)
 
         if( sscanf(arg, "%d %s", amount, item)==2 ) {
                 if( !objectp(obj = present(item, me)) ) {
-                        write("你身上没有这样东西。\n");
+                        write("你身上沒有這樣東西。\n");
                         return 1;
                 }
                 if( stringp(query("no_drop",obj)) ) {
@@ -573,19 +573,19 @@ int do_dropping(string arg)
                         return 1;
                 }
                 if( !obj->query_amount() ) {
-                        write(obj->name() + "不能被分开丢弃。\n");
+                        write(obj->name() + "不能被分開丟棄。\n");
                         return 1;
                 }
                 if( amount < 1 ) {
-                        write("东西的数量至少是一个。\n");
+                        write("東西的數量至少是一個。\n");
                         return 1;
                 }
                 if( no_drop = query("no_drop",obj) ) {
-                        write(stringp(no_drop) ? no_drop : "这样东西不能随意丢弃。\n");
+                        write(stringp(no_drop) ? no_drop : "這樣東西不能隨意丟棄。\n");
                         return 1;
                 }
                 if( amount > obj->query_amount() ) {
-                        write("你没有那麽多的" + obj->name() + "。\n");
+                        write("你沒有那麼多的" + obj->name() + "。\n");
                         return 1;
                 }
                 else if( amount == (int)obj->query_amount() )
@@ -599,7 +599,7 @@ int do_dropping(string arg)
         }
 
         if( !objectp(obj = present(arg, me)) ) {
-                write("你身上没有这样东西。\n");
+                write("你身上沒有這樣東西。\n");
                 return 1;
         }
         return do_drop(me, obj);
@@ -611,7 +611,7 @@ int do_drop(object me, object obj)
         mixed no_drop;
 
         if( no_drop = query("no_drop",obj) )
-                return notify_fail( stringp(no_drop) ? no_drop : "这样东西不能随意丢弃。\n");
+                return notify_fail( stringp(no_drop) ? no_drop : "這樣東西不能隨意丟棄。\n");
 
         gui=new("/d/war/obj/gui");
         set("coor/x",query("coor/x",me),gui);
@@ -620,9 +620,9 @@ int do_drop(object me, object obj)
         gui->move(environment(me));
         if( obj->move(gui) ) {
                 if( obj->is_character() )
-                        message_vision("$N将$n从背上放了下来，放在临时货柜里。\n", me, obj);
+                        message_vision("$N將$n從背上放了下來，放在臨時貨櫃裡。\n", me, obj);
                 else {
-                        message_vision( sprintf("$N丢下%s放到一个新的临时货柜里。\n", obj->short() ),me);
+                        message_vision( sprintf("$N丟下%s放到一個新的臨時貨櫃裡。\n", obj->short() ),me);
                         me->save();
                 }
                 return 1;
@@ -633,7 +633,7 @@ int do_drop(object me, object obj)
 
 int do_nothing(string arg)
 {
-        tell_object(this_player(),"这里是古战场，禁止使用绝招。\n");
+        tell_object(this_player(),"這裡是古戰場，禁止使用絕招。\n");
         return 1;
 }
 
@@ -650,24 +650,24 @@ int do_driving(string arg)
 
         if( !max_speed ) max_speed=187;
         if( !max_driving ) max_driving=1000000;
-        if( !arg ) return notify_fail("你要往哪里去？\n");
+        if( !arg ) return notify_fail("你要往哪裡去？\n");
         if( me->over_encumbranced() )
-                return notify_fail("你的负荷过重，动弹不得。\n");
+                return notify_fail("你的負荷過重，動彈不得。\n");
         if( (!obj=present(arg,environment(me)))&&(!obj=present(arg,me)) )
-                return notify_fail("没有这个地方？\n");
+                return notify_fail("沒有這個地方？\n");
 
         if( me->distance(obj)<250000 )
         {
-                return notify_fail("你距离"+query("name",obj)+"太近了,请使用moving,当前距离"+me->distance(obj)+"米。\n");
+                return notify_fail("你距離"+query("name",obj)+"太近了,請使用moving,當前距離"+me->distance(obj)+"米。\n");
         }
 
         if( query_temp("moving",me)<max_speed*80/100 )
         {
-                return notify_fail("你的速度还不够。（要达到战车最大速度的８０％才可以开始强行\n");
+                return notify_fail("你的速度還不夠。（要達到戰車最大速度的８０％才可以開始強行\n");
         }
 
         if( query_temp("driving_target",me) )
-                return notify_fail("你正在强行状态。\n");
+                return notify_fail("你正在強行狀態。\n");
 
         set_temp("driving",query_temp("moving",me),me);
         set_temp("acc_driving",max_driving/5,me);
@@ -675,7 +675,7 @@ int do_driving(string arg)
         delete_temp("direction",me);
         delete_temp("moving_target",me);
         delete_temp("arounding_target",me);
-        write("你开始向"+query("name",obj)+"强行。\n");
+        write("你開始向"+query("name",obj)+"強行。\n");
         return 1;
 }
 
@@ -689,25 +689,25 @@ int do_moving(string arg)
 
         max_speed=query_temp("apply/max_speed",me);
         if( query("block_move",me) )
-                return notify_fail("你还没复活，请touch tomb复活。\n");
+                return notify_fail("你還沒復活，請touch tomb復活。\n");
 
         if( me->query_busy() )
-                return notify_fail("你正忙着呢，再等一会。\n");
+                return notify_fail("你正忙著呢，再等一會。\n");
         if( me->over_encumbranced() )
-                return notify_fail("你的负荷过重，动弹不得。\n");
+                return notify_fail("你的負荷過重，動彈不得。\n");
 
         if( !max_speed ) max_speed=query("max_speed");
-        if( !arg ) return notify_fail("你要往哪里移动\n");
+        if( !arg ) return notify_fail("你要往哪裡移動\n");
         if( arg=="down"||arg=="up" )
-                return notify_fail("就你这水平还想上天入地？\n");
+                return notify_fail("就你這水平還想上天入地？\n");
         if( query_temp("driving_target",me) )
-                return notify_fail("你正在强行状态，呆会再试。\n");
+                return notify_fail("你正在強行狀態，呆會再試。\n");
 
         if( member_array(arg, directions)==-1 )
         {
                 if( !obj=present(arg,environment(me)) )
                         obj=present(arg,me);
-                if( !obj ) return notify_fail("你只能向目标或者方位移动。\n");
+                if( !obj ) return notify_fail("你只能向目標或者方位移動。\n");
                 if( objectp(obj) ) {
                         delete_temp("direction",me);
                         distance=me->distance(obj);
@@ -715,7 +715,7 @@ int do_moving(string arg)
                                 set("coor/x",query("coor/x",obj),me);
                                 set("coor/y",query("coor/y",obj),me);
                                 set("coor/z",query("coor/z",obj),me);
-                                return notify_fail("你已经抵达"+query("name",obj)+"了。\n");
+                                return notify_fail("你已經抵達"+query("name",obj)+"了。\n");
                         }
 
                         set_temp("moving",5,me);
@@ -723,7 +723,7 @@ int do_moving(string arg)
 
                         set_temp("moving_target",obj,me);
                         delete_temp("arounding_target",me);
-                        write("你开始向"+query("name",obj)+"移动。\n");
+                        write("你開始向"+query("name",obj)+"移動。\n");
                         return 1;
                 }
         }
@@ -735,7 +735,7 @@ int do_moving(string arg)
                 delete_temp("arounding_target",me);
                 set_temp("moving",5,me);
                 set_temp("acc_speed",max_speed/5,me);
-                write("你开始向"+arg+"方向移动。\n");
+                write("你開始向"+arg+"方向移動。\n");
                 return 1;
         }
 }
@@ -744,8 +744,8 @@ int do_stopping(string arg)
 {
         object me = this_player();
 
-        if( !query_temp("moving",me) ) return notify_fail("你没有在移动状态。\n");
-        if( query_temp("driving",me) ) return notify_fail("你正在强行状态，稍后再试。\n");
+        if( !query_temp("moving",me) ) return notify_fail("你沒有在移動狀態。\n");
+        if( query_temp("driving",me) ) return notify_fail("你正在強行狀態，稍後再試。\n");
         delete_temp("speed_x",me);
         delete_temp("speed_y",me);
         delete_temp("speed_z",me);
@@ -753,7 +753,7 @@ int do_stopping(string arg)
         delete_temp("moving_target",me);
         delete_temp("arounding_target",me);
         delete_temp("arounding",me);
-        tell_object(me,"你停止移动。\n");
+        tell_object(me,"你停止移動。\n");
         return 1;
 }
 
@@ -798,14 +798,14 @@ int alternative_die(object me)
 
 
                 if( objectp(ob) ) {
-                        message_vision (RED"\n$N在暗黑城的"+query_zone(me)["name"]+"被$n杀死了！\n\n"NOR,me,ob);
+                        message_vision (RED"\n$N在暗黑城的"+query_zone(me)["name"]+"被$n殺死了！\n\n"NOR,me,ob);
                         set_temp("die_reason", "被"+ob->name(1)+HIY"捏碎了蛋,死掉了！",me);
-                        tell_object(me,"你被传送到坟墓附近，请touch tomb复活。\n");
+                        tell_object(me,"你被傳送到墳墓附近，請touch tomb復活。\n");
 
                 } else {
-                        message_vision (RED"\n$N在暗黑城的"+query_zone(me)["name"]+"被$n杀死了！\n\n"NOR,me);
+                        message_vision (RED"\n$N在暗黑城的"+query_zone(me)["name"]+"被$n殺死了！\n\n"NOR,me);
                         set_temp("die_reason", "被捏碎了蛋,死掉了！",me);
-                        tell_object(me,"你被传送到坟墓附近，请touch tomb复活。\n");
+                        tell_object(me,"你被傳送到墳墓附近，請touch tomb復活。\n");
 
                 }
                 tomb=filter_array(children("/d/war/obj/tomb"),(: //environment($1) == this_object() &&
@@ -819,7 +819,7 @@ int alternative_die(object me)
                 if( objectp(ob = query_temp("last_damage_from",me))&&userp(ob) && query("eve_reward",me))
                 {
                         addn("isk",query("eve_reward",me),ob);
-                        tell_object(ob,"你获得了"+query("eve_reward",me)+"ISK的赏金");
+                        tell_object(ob,"你獲得了"+query("eve_reward",me)+"ISK的賞金");
                 }
         }
         return 0;
@@ -835,18 +835,18 @@ int do_around(string arg)
 
         max_speed=query_temp("apply/max_speed",me);
         if( me->over_encumbranced() )
-                return notify_fail("你的负荷过重，动弹不得。\n");
+                return notify_fail("你的負荷過重，動彈不得。\n");
         if( !max_speed ) max_speed=175;
-        if( !arg ) return notify_fail("你要环绕哪个目标\n");
+        if( !arg ) return notify_fail("你要環繞哪個目標\n");
 
-        if( query_temp("driving_target",me) )  return notify_fail("你正在强行状态，呆会再试。\n");
+        if( query_temp("driving_target",me) )  return notify_fail("你正在強行狀態，呆會再試。\n");
         if( !obj=present(arg,environment(me)) )
                 obj=present(arg,me);
         if( !objectp(obj) )
-                return notify_fail("你只能环绕目标。\n");
+                return notify_fail("你只能環繞目標。\n");
 
-        if( me->distance(obj)<500 ) return notify_fail("环绕至少500米。\n");
-        if( me->distance(obj)>30000 ) return notify_fail("环绕最多30km。\n");
+        if( me->distance(obj)<500 ) return notify_fail("環繞至少500米。\n");
+        if( me->distance(obj)>30000 ) return notify_fail("環繞最多30km。\n");
 
         delete_temp("direction",me);
         distance=me->distance(obj);
@@ -855,8 +855,8 @@ int do_around(string arg)
         delete_temp("moving_target",me);
         set_temp("arounding_target",obj,me);
         set_temp("arounding",number,me);
-        write("你开始以半径"+me->distance(obj)+"向"+query("name",obj)+"环绕。\n");
-        message_vision(YEL"\n$N开始以半径"+me->distance(obj)+"环绕$n。\n",me,obj);
+        write("你開始以半徑"+me->distance(obj)+"向"+query("name",obj)+"環繞。\n");
+        message_vision(YEL"\n$N開始以半徑"+me->distance(obj)+"環繞$n。\n",me,obj);
         return 1;
 }
 
@@ -868,9 +868,9 @@ int do_move(string arg)
         int i,amount;
 
         me=this_player();
-        if( !arg ) return notify_fail("你要搬什么?\n");
+        if( !arg ) return notify_fail("你要搬什麼?\n");
         if( sscanf(arg, "%s from gui%s", arg, from)!=2 )
-                return notify_fail("指令格式：move <物品ID> from gui+<编号>\n");
+                return notify_fail("指令格式：move <物品ID> from gui+<編號>\n");
 
         from = "gui" + from;
         env = present(from, environment(me));
@@ -878,22 +878,22 @@ int do_move(string arg)
 
         target = query_temp("weapon",me);
         if( !target || query("skill_type",target)!="tank" ) {
-                tell_object(me, "你没有操作战车，无法激活货柜仓。\n");
+                tell_object(me, "你沒有操作戰車，無法激活貨櫃倉。\n");
                 return 1;
         }
         if( me->distance(env)>5000 ) {
-                tell_object(me, "你距离货柜太远了，无法操作货柜（至少5000米内）。\n");
+                tell_object(me, "你距離貨櫃太遠了，無法操作貨櫃（至少5000米內）。\n");
                 return 1;
         }
         if( sscanf(arg, "%d %s", amount, item)==2 ) {
                 if( !objectp(obj = present(item, env)) )
-                        return notify_fail("货柜里没有这样东西。\n");
+                        return notify_fail("貨櫃裡沒有這樣東西。\n");
                 if( !obj->query_amount() )
-                        return notify_fail( obj->name() + "不能被分开拿走。\n");
+                        return notify_fail( obj->name() + "不能被分開拿走。\n");
                 if( amount < 1 )
-                        return notify_fail("东西的个数至少是一个。\n");
+                        return notify_fail("東西的個數至少是一個。\n");
                 if( amount > obj->query_amount() ) {
-                        return notify_fail("货柜里没有那麽多的" + obj->name() + "。\n");
+                        return notify_fail("貨櫃裡沒有那麼多的" + obj->name() + "。\n");
                 } else if(amount == (int)obj->query_amount()) {
                         return do_get(me, obj, env);
                 } else {
@@ -904,7 +904,7 @@ int do_move(string arg)
                         set("long",query("long",obj),obj2);
                         set("unit",query("unit",obj),obj2);
                         obj2->move(me);
-                        if( query("skill_type",env)=="tank" ) //设置战车
+                        if( query("skill_type",env)=="tank" ) //設置戰車
                                 switch(query("material",obj2))
                                 {
                                 case "mine":
@@ -941,7 +941,7 @@ int do_move(string arg)
         if( arg=="all" ) {
                 inv = all_inventory(env);
                 if( !sizeof(inv) )
-                        return notify_fail("货柜里面没有任何东西。\n");
+                        return notify_fail("貨櫃裡面沒有任何東西。\n");
                 for(i=0; i<sizeof(inv); i++) {
                         if( (inv[i]->is_character() && !query("yes_carry",inv[i])) || query("no_get",inv[i]) ||
                                 query("lore",inv[i])) continue;
@@ -951,9 +951,9 @@ int do_move(string arg)
                 return 1;
         }
         if( !objectp(obj = present(arg, env)) || (living(obj) && !(int)query("yes_carry",obj)) )
-                return notify_fail("货柜里没有这样东西。\n");
+                return notify_fail("貨櫃裡沒有這樣東西。\n");
         if( query("no_get",obj) )
-                return notify_fail("这个东西拿不起来。\n");
+                return notify_fail("這個東西拿不起來。\n");
 
         return do_get(me, obj, env);
 }
@@ -965,12 +965,12 @@ int do_get(object me, object obj, object env)
         string prep, str;
 
         target = me->query_temp("weapon");
-        if( !obj ) return notify_fail("没有这个东西。\n");
-        if( !target ) return notify_fail("你没有操作战车，无法激活货柜仓。\n");
-        if( query("skill_type",target)!="tank") return notify_fail("你没有操作战车，无法激活货柜仓。\b");
+        if( !obj ) return notify_fail("沒有這個東西。\n");
+        if( !target ) return notify_fail("你沒有操作戰車，無法激活貨櫃倉。\n");
+        if( query("skill_type",target)!="tank") return notify_fail("你沒有操作戰車，無法激活貨櫃倉。\b");
 
         if( obj->is_character()  && living(obj) ) {
-                return notify_fail("你不能装活物。\n");
+                return notify_fail("你不能裝活物。\n");
         } else {
                 if( query("no_get",obj) ) return 0;
         }
@@ -992,26 +992,26 @@ int do_get(object me, object obj, object env)
                 if( me->is_fighting() )
                         me->start_busy(1);
                 if( obj->is_character()  && !query("yes_carry",obj))
-                        message_vision( "$N将$n扶了起来背在背上。\n", me, obj );
+                        message_vision( "$N將$n扶了起來背在背上。\n", me, obj );
                 else {
                         switch( query("prep",env) ) {
                                 case "on":
-                                        prep = "从" + env->name() + "上拿起";
+                                        prep = "從" + env->name() + "上拿起";
                                         break;
                                 case "under":
-                                        prep = "从" + env->name() + "下拿出";
+                                        prep = "從" + env->name() + "下拿出";
                                         break;
                                 case "behind":
-                                        prep = "从" + env->name() + "后拿出";
+                                        prep = "從" + env->name() + "後拿出";
                                         break;
                                 case "inside":
-                                        prep = "从" + env->name() + "中拿出";
+                                        prep = "從" + env->name() + "中拿出";
                                         break;
                                 default:
-                                        prep = "从" + env->name() + "中拿出";
+                                        prep = "從" + env->name() + "中拿出";
                                         break;
                         }
-                        message_vision( sprintf("$N%s" + str + ",放进" + query("name",target) + "的货柜仓。\n", prep, query("unit",obj)), me, obj );
+                        message_vision( sprintf("$N%s" + str + ",放進" + query("name",target) + "的貨櫃倉。\n", prep, query("unit",obj)), me, obj );
                 }
                 inv = all_inventory(env);
                 if( !sizeof(inv) )
@@ -1033,7 +1033,7 @@ string display_map(string arg)
         me=this_player();
 
         if( !arg||sscanf(arg,"%d %d %s",length,n,name)!=3 )
-        {       msg="地图查看格式为map 步长，地图大小，中心物体\n";
+        {       msg="地圖查看格式為map 步長，地圖大小，中心物體\n";
                 write(msg);
                 return msg;
         }
@@ -1066,7 +1066,7 @@ string display_map(string arg)
         ks=sizeof(wall);
         if( ks )
 
-        for(k=0;k<ks;k++)//每个墙壁进行标记
+        for(k=0;k<ks;k++)//每個牆壁進行標記
         {
                 int x_1,x_2,y_1,y_2;
                 x1=wall[k]["x1"];//X小
@@ -1087,7 +1087,7 @@ string display_map(string arg)
                 if( x_2>x2) x_2=x2;
                 if( y_2<y2) y_2=y2;
                 if( y_1>y1) y_1=y1;
-                if( query("coor/z",me)<z1||query("coor/z",me)>z2 ) continue;//玩家视野在墙内
+                if( query("coor/z",me)<z1||query("coor/z",me)>z2 ) continue;//玩家視野在牆內
 
                 for(j=(max_y-y1)*(n-1)/length_y;j<(max_y-y2)*(n-1)/length_y;j++)
                 for(i=(x1-min_x)*(n-1)/length_x;i<=(x2-min_x)*(n-1)/length_x;i++)
@@ -1125,7 +1125,7 @@ string display_map(string arg)
                         xy[(max_y-query("coor/y",inv[i]))*(n-1)/length_y][(query("coor/x",inv[i])-min_x)*(n-1)/length_x] = type;
 
         }
-        //上面是对房间中的obj 进行分类标记
+        //上面是對房間中的obj 進行分類標記
 
         for(j=0;j<n;j++)
                 for(i=0;i<n;i++)
@@ -1137,7 +1137,7 @@ string display_map(string arg)
                 }
 
 
-        //上面对房间的墙壁标记
+        //上面對房間的牆壁標記
 
         write(FRELINE(0, 80));
         write(SETDISPLAY(1, 88) + "┏");
@@ -1180,7 +1180,7 @@ string display_map(string arg)
                 write(SAVEC);
                 k=2+i;
                 h=n*2+90;
-                if(k==(n+1)/2) write(SETDISPLAY(k       , 88) + "西"+msg+SETDISPLAY(k,h)+ "东");
+                if(k==(n+1)/2) write(SETDISPLAY(k       , 88) + "西"+msg+SETDISPLAY(k,h)+ "東");
                 else write(SETDISPLAY(k , 88) + "┃"+msg+SETDISPLAY(k, h)+ "┃");
                 write(REST);
         }

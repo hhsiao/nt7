@@ -11,10 +11,10 @@ void create()
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIW "从天空上摘下来一颗星星，这可不是用金钱来"
-                            "衡量的，怎么也算是一番心意阿。\n" NOR);
+                set("long", HIW "從天空上摘下來一顆星星，這可不是用金錢來"
+                            "衡量的，怎麼也算是一番心意阿。\n" NOR);
                 set("value", 0);
-                set("unit", "颗");
+                set("unit", "顆");
         }
         setup();
 }

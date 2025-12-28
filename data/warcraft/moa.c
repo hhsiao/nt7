@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[5m[1;32m忍[34m者[1;33m神[35m龟[2;37;0m[2;37;0m", ({"mojiao"}));        
+        set_name("[5m[1;32m忍[34m者[1;33m神[35m龜[2;37;0m[2;37;0m", ({"mojiao"}));        
         set("gender", "男性");                
-        set("long", "公共卫生[2;37;0m
-它是魔教弟子的魔幻兽。
+        set("long", "公共衛生[2;37;0m
+它是魔教弟子的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

@@ -37,5 +37,5 @@ void create()
 
 string query_name()
 {
-        return "序号系统(SERIAL_NUMBER_D)";
+        return "序號系統(SERIAL_NUMBER_D)";
 }

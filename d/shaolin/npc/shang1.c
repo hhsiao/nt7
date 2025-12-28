@@ -5,7 +5,7 @@ void create()
         set_name("丫鬟", ({ "ya huan", "ya", "huan"}));
         set("gender", "女性" );
         set("age", 12);
-        set("long", "一个十多岁的小姑娘，在这里当丫鬟。\n");
+        set("long", "一個十多歲的小姑娘，在這裡當丫鬟。\n");
         set("shen_type", 1);
         set("combat_exp", 2000);
         set("str", 17);

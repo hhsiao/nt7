@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("及时雨[2;37;0m[2;37;0m", ({"lssj"}));        
+        set_name("及時雨[2;37;0m[2;37;0m", ({"lssj"}));        
         set("gender", "男性");                
-        set("long", "及时雨[2;37;0m
-它是玉麒麟的魔幻兽。
+        set("long", "及時雨[2;37;0m
+它是玉麒麟的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

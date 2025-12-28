@@ -1,4 +1,4 @@
-// hyz_damage.c 混元无极劲伤
+// hyz_damage.c 混元無極勁傷
 
 #include <ansi.h>
 #include <condition.h>
@@ -8,14 +8,14 @@ inherit POISON;
 
 string name() { return "hyz_damage"; } 
 
-string chinese_name() { return "混元无极劲内伤"; } 
+string chinese_name() { return "混元無極勁內傷"; } 
 
 string update_msg_others() 
 {
-        return HIW "$N" HIW "的脸色突然大为苍白，摇摇欲坠，似乎是内伤发作了！\n" NOR; 
+        return HIW "$N" HIW "的臉色突然大為蒼白，搖搖欲墜，似乎是內傷發作了！\n" NOR; 
 }
 
 string update_msg_self() 
 {
-        return HIW "忽然你一阵头晕目眩，你所中的混元无极劲内伤发作了！\n" NOR; 
+        return HIW "忽然你一陣頭暈目眩，你所中的混元無極勁內傷發作了！\n" NOR; 
 }

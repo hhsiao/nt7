@@ -3,14 +3,14 @@ inherit ITEM;
 
 void create()
 {
-        set_name("小钩子", ({ "hook" , "gou zi"}) );
+        set_name("小鉤子", ({ "hook" , "gou zi"}) );
         set_weight(100);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "个");
-                set("long", "一个小小的钩子，看起来很象用来钓鱼的钩子，也许你可以用
-它来做一个钓鱼杆。(make) \n");
+                set("unit", "個");
+                set("long", "一個小小的鉤子，看起來很象用來釣魚的鉤子，也許你可以用
+它來做一個釣魚杆。(make) \n");
                 set("value", 10);
         }
 }
@@ -30,7 +30,7 @@ int do_make(string arg)
    inv = all_inventory(me);
    for(i=0; i<sizeof(inv); i++)
    {
-      if( query("name", inv[i]) == "细麻线"){xxan=1;xan=inv[i];}
+      if( query("name", inv[i]) == "細麻線"){xxan=1;xan=inv[i];}
       if( query("name", inv[i]) == "桃枝"){taozhi1=1;taozhi=inv[i];}
    }
    if ( xxan && taozhi1)
@@ -39,10 +39,10 @@ int do_make(string arg)
       destruct(taozhi);
       fpole = new(__DIR__"fpole");
       fpole->move(me);
-      message_vision("$N用灵巧的双手造成了一个别致的小鱼杆。\n", me);
+      message_vision("$N用靈巧的雙手造成了一個別致的小魚杆。\n", me);
       destruct(this_object());
    }
    else
-      message_vision("$N摆弄着手里的细麻线。\n", me);
+      message_vision("$N擺弄著手裡的細麻線。\n", me);
    return 1;
 }

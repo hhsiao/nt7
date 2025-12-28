@@ -6,8 +6,8 @@ void create()
 {
         set("short", "土路");
         set("long", @LONG
-这是一条黄土飞扬的路，不算太宽，路上的行人也不多，大概是
-地处偏远的缘故，几乎没有什么人烟。
+這是一條黃土飛揚的路，不算太寬，路上的行人也不多，大概是
+地處偏遠的緣故，幾乎沒有什麼人煙。
 LONG );
         set("exits",  ([  /*  sizeof()  ==  2  */
                 "southwest" : "/d/changan/tulu3",

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("小飞侠[2;37;0m[2;37;0m", ({"ttqilin"}));        
+        set_name("小飛俠[2;37;0m[2;37;0m", ({"ttqilin"}));        
         set("gender", "女性");                
-        set("long", "小飞侠[2;37;0m
-它是刀小刀的魔幻兽。
+        set("long", "小飛俠[2;37;0m
+它是刀小刀的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

@@ -1,4 +1,4 @@
-// dazongshi.c 大宗师
+// dazongshi.c 大宗師
 
 #include <ansi.h>;
 inherit NPC;
@@ -6,8 +6,8 @@ string ask_me();
 
 void create()
 {
-        set_name("大宗师", ({ "da zongshi", "zongshi" }));
-        set("long","他就是江湖的大宗师。你只有先向他挑战，才能获得江湖对你实力和地位的承认。\n");
+        set_name("大宗師", ({ "da zongshi", "zongshi" }));
+        set("long","他就是江湖的大宗師。你只有先向他挑戰，才能獲得江湖對你實力和地位的承認。\n");
         set("gender", "男性");
         set("age", 40);
         set("class", "taoist");
@@ -61,11 +61,11 @@ void create()
         map_skill("parry", "liangyi-jian");
         map_skill("sword", "taiji-jian");
         set("inquiry", ([
-                "秒杀" : (: ask_me :),
+                "秒殺" : (: ask_me :),
                 "出手" : (: ask_me :),
-                "杀手" : (: ask_me :),
-                "挑战" : (: ask_me :),
-                "品评" : (: ask_me :),
+                "殺手" : (: ask_me :),
+                "挑戰" : (: ask_me :),
+                "品評" : (: ask_me :),
                 "武功" : (: ask_me :),
         ]));
         setup();
@@ -78,7 +78,7 @@ string ask_me()
         object me = this_player(), ob = this_object();
 
         if( query("combat_exp", me)<500000 )
-                return "等你的经验凑够了五十万，再来找我吧。";
+                return "等你的經驗湊夠了五十萬，再來找我吧。";
         set("killer/id",query("id",  me), ob);
         set("killer/time", time(), ob);
         set("eff_qi", 6000);
@@ -92,7 +92,7 @@ string ask_me()
         command("yun powerup");
         set("neili", 5000);
         set("jiali", 100);
-        return "好吧，那就来吧。";
+        return "好吧，那就來吧。";
 }
 void die()
 {
@@ -108,13 +108,13 @@ void die()
                         new_killer=12345/(time()-query("killer/time", ob));
                         if( query("KILLER", me[i]) >= new_killer )
                         {
-                                tell_object(me[i],HIR"\n大宗师临死前告诉你：“没有进步，白来一趟。”\n"NOR);
+                                tell_object(me[i],HIR"\n大宗師臨死前告訴你：“沒有進步，白來一趟。”\n"NOR);
                                 if( me[i]->quert("zongshi_winner")<3)addn("score", -5000, me[i]);
                         }
                         else
                         {
-                                tell_object(me[i],HIR"\n大宗师临死前告诉你：“好，好！好！没有白来这一趟。”\n"NOR);
-                                message("channel:chat",HIM"【闲聊】某人："+query("name", me[i])+chinese_number(time()-query("killer/time", ob))+"秒中刺杀大宗师成功。\n"NOR,users());
+                                tell_object(me[i],HIR"\n大宗師臨死前告訴你：“好，好！好！沒有白來這一趟。”\n"NOR);
+                                message("channel:chat",HIM"【閒聊】某人："+query("name", me[i])+chinese_number(time()-query("killer/time", ob))+"秒中刺殺大宗師成功。\n"NOR,users());
                                 set("KILLER", new_killer, me[i]);
                                 addn("zongshi_winner", 1, me[i]);
                                 if( me[i]->quert("zongshi_winner")<3)addn("score", 10000, me[i]);

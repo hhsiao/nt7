@@ -1,7 +1,7 @@
 #include <ansi.h> 
 #include <combat.h> 
 
-#define HONG "「" HIR "红霞贯日" NOR "」" 
+#define HONG "「" HIR "紅霞貫日" NOR "」" 
 
 inherit F_SSERVER; 
 
@@ -12,7 +12,7 @@ int perform(object me, object target)
                 object weapon;
 
         if( userp(me) && !query("can_perform/yecha-gun/hongxia", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n"); 
+                return notify_fail("你所使用的外功中沒有這種功能。\n"); 
 
         if (! target) 
         { 
@@ -21,31 +21,31 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target)) 
-                return notify_fail(HONG "只能对战斗中的对手使用。\n"); 
+                return notify_fail(HONG "只能對戰鬥中的對手使用。\n"); 
 
         skill = me->query_skill("yecha-gun", 1);
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "club" )
-                return notify_fail("你使用的武器不对，难以施展" HONG "。\n");
+                return notify_fail("你使用的武器不對，難以施展" HONG "。\n");
                 
         if (skill < 120) 
-                return notify_fail("你的夜叉棍法等级不够，难以施展" HONG "。\n"); 
+                return notify_fail("你的夜叉棍法等級不夠，難以施展" HONG "。\n"); 
 
         if( query("neili", me)<200 )
-                return notify_fail("你的真气不够，难以施展" HONG "。\n"); 
+                return notify_fail("你的真氣不夠，難以施展" HONG "。\n"); 
 
         if (me->query_skill_mapped("club") != "yecha-gun") 
-                return notify_fail("你没有激发夜叉棍法，难以施展" HONG "。\n"); 
+                return notify_fail("你沒有激發夜叉棍法，難以施展" HONG "。\n"); 
 
         if (target->is_busy()) 
-                return notify_fail(target->name() + "目前正自顾不暇，放胆攻击吧。\n"); 
+                return notify_fail(target->name() + "目前正自顧不暇，放膽攻擊吧。\n"); 
 
         if (! living(target)) 
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n"); 
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n"); 
 
-        msg = HIR "$N" HIR "身形曼妙，手中铁棍" HIR "虚虚实实，舞出无数的棍影" 
-              "宛若满天的红霞，将$n重重包围。\n" NOR; 
+        msg = HIR "$N" HIR "身形曼妙，手中鐵棍" HIR "虛虛實實，舞出無數的棍影" 
+              "宛若滿天的紅霞，將$n重重包圍。\n" NOR; 
         
         addn("neili", -50, me);
 
@@ -57,17 +57,17 @@ int perform(object me, object target)
                 addn("neili", -150, me);
                 damage = ap / 8 + random(ap / 8); 
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 30, 
-                                           HIR "$n" HIR "只觉$N" HIR "棍影重重，" 
-                                           "无所不在，自己无处躲闪，顿时身上" 
-                                           "连中数棍，被攻了个措手不及。\n" NOR); 
+                                           HIR "$n" HIR "只覺$N" HIR "棍影重重，" 
+                                           "無所不在，自己無處躲閃，頓時身上" 
+                                           "連中數棍，被攻了個措手不及。\n" NOR); 
 
                 me->start_busy(1); 
                 if (ap / 2 + random(ap) > dp && ! target->is_busy()) 
                         target->start_busy(ap / 30 + 2); 
         } else 
         {
-                msg += CYN "$n" CYN "只见$N" CYN "看破了棍法中的虚实，凝神" 
-                       "化解开来。\n" NOR; 
+                msg += CYN "$n" CYN "只見$N" CYN "看破了棍法中的虛實，凝神" 
+                       "化解開來。\n" NOR; 
                 addn("neili", -80, me);
                 me->start_busy(3); 
         } 

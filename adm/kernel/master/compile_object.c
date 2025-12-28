@@ -5,26 +5,26 @@
 // filename named by 'file'.  It should return 0 if no object is to be
 // associated.
 /*
-名称：
-        compile_object - 提供虚拟物件 (virtual object) 功能的 mudlib 介面。
-语法：
+名稱：
+        compile_object - 提供虛擬物件 (virtual object) 功能的 mudlib 介面。
+語法：
         object compile_object( string pathname );
 
-        物件 compile_object( 字串 路径名 );
+        物件 compile_object( 字串 路徑名 );
 用法：
-        当 mudlib 指示驱动程式载入一个不存在于记忆体中的档案，驱动程式会呼
-        叫 compile_object 函式。举例来说，如果 mudlib 呼叫
-        call_other("/obj/file.r", "some_function") 或 new("/obj/file.r") 时
-        ，记忆体中没有叫做 /obj/file.r.c 的东西，驱动程式就呼叫主宰物件
+        當 mudlib 指示驅動程式載入一個不存在於記憶體中的檔案，驅動程式會呼
+        叫 compile_object 函式。舉例來說，如果 mudlib 呼叫
+        call_other("/obj/file.r", "some_function") 或 new("/obj/file.r") 時
+        ，記憶體中沒有叫做 /obj/file.r.c 的東西，驅動程式就呼叫主宰物件
          (master object) 的 compile_object("/obj/file.r")。如果 mudlib 不希
-        望连结 (associate) /obj/file.r 档案，compile_object() 将传回 0。如
-        果 mudlib 愿意，就要传回 /obj/file.r 这个物件。在 compile_object()
-        连结一个档案名称和物件之后，对驱动程式而言，就如同游戏中存在
-        file.r.c 这个档案，而载入此物件时产生的就是 compile_object() 传回的
+        望連結 (associate) /obj/file.r 檔案，compile_object() 將傳回 0。如
+        果 mudlib 願意，就要傳回 /obj/file.r 這個物件。在 compile_object()
+        連結一個檔案名稱和物件之後，對驅動程式而言，就如同遊戲中存在
+        file.r.c 這個檔案，而載入此物件時產生的就是 compile_object() 傳回的
         物件。
 作者：
         Tim Hollebeek  Beek@ZorkMUD, Lima Bean, IdeaExchange, and elsewhere
-翻译：
+翻譯：
         spock@muds.net          2000.May.20.    v22 版
 */
 

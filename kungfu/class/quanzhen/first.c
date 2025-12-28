@@ -14,7 +14,7 @@ string zm_apply()
         object ob = this_player();
         if (query("class", ob) != "taoist")
         {
-                return "本教例由全真道士掌门！";
+                return "本教例由全真道士掌門！";
         }
         return ::zm_apply();
 }

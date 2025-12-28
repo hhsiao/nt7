@@ -12,8 +12,8 @@ void create()
         set("age", 24);
         set("class", "taoist");
         set("long",
-                "他就是全真教第三代弟子中的好手，马钰的大弟子李志常。\n"
-                "他相貌平常，一脸正气。\n");
+                "他就是全真教第三代弟子中的好手，馬鈺的大弟子李志常。\n"
+                "他相貌平常，一臉正氣。\n");
         set("attitude", "friendly");
         set("shen_type",1);
         set("str", 26);
@@ -68,7 +68,7 @@ void create()
         create_family("全真教", 3, "弟子");
 
         set("inquiry", ([
-                "全真教" :  "我全真教是天下道家玄门正宗。\n",
+                "全真教" :  "我全真教是天下道家玄門正宗。\n",
         ]) );
 
         set("master_ob",2);
@@ -84,6 +84,6 @@ void attempt_apprentice(object ob)
         if (! permit_recruit(ob))
                 return;
 
-        command("say 好吧，我就收下你这个徒弟了。");
+        command("say 好吧，我就收下你這個徒弟了。");
         command("recruit "+query("id", ob));
 }

@@ -2,25 +2,25 @@
 
 mixed names = ({
         ({
-        "朱雀外门","青龙外门","白虎外门","玄武外门","天安门",
-        "扬州武馆","福威镖局","玄妙观","灵隐寺","泉州南门",
-        "灵州南门","诸葛亮殿","烟雨楼","南阳城","佛山南门",                
-        "蛇骨塔","长安乐坊","衡阳西街","喜州城","葛鲁城", 
-        "北疆小镇","山海关","老龙头","长白天池","天山脚下",
-        "丽春院","涌泉寺","听雨轩","五老峰","紫金城",
-        "松风观","终南山脚","抱子岩","白马潭","升仙坊",                
-        "嘉应门","悬空寺","峻极禅院","侠义厅","萧家桥", 
+        "朱雀外門","青龍外門","白虎外門","玄武外門","天安門",
+        "揚州武館","福威鏢局","玄妙觀","靈隱寺","泉州南門",
+        "靈州南門","諸葛亮殿","煙雨樓","南陽城","佛山南門",                
+        "蛇骨塔","長安樂坊","衡陽西街","喜州城","葛魯城", 
+        "北疆小鎮","山海關","老龍頭","長白天池","天山腳下",
+        "麗春院","湧泉寺","聽雨軒","五老峰","紫金城",
+        "松風觀","終南山腳","抱子巖","白馬潭","昇仙坊",                
+        "嘉應門","懸空寺","峻極禪院","俠義廳","蕭家橋", 
         }),
         ({
-         "宋兵","流氓","偏将","裨将","佐将","小贩","男孩","郭芙","老先生",
-                 "小孩","书店老板","武三通","穷汉","铁匠","朱子柳","店小二","宋兵",
-                 "静玄师太","静照师太","宋远桥","莫声谷","陆乘风","韩宝驹","黄药师","余沧海",
-                 "殷野王","邓百川","尹志平","小龙女","刘承风","欧阳锋","白衣少女","九翼道人",
-                 "阿紫","玉磬子","玉音子","岳夫人","岳不群","令狐冲","玄苦大师","清善比丘",
-                 "独臂神尼","庄夫人","双儿","吴六奇","木婉清","萧远山","李沅芷","向问天",
-                 "曲洋","黑白子","程瑶迦","程瑶迦","沐剑屏","天柏道人","本尘","本观",
-                 "天山童姥","韦一笑","谢逊","澄坚","陆乘风","张翠山","宋青书","玄贞道长",
-                 "石破天","苏星河","慕容复","朱丹臣","简长老","封不平",
+         "宋兵","流氓","偏將","裨將","佐將","小販","男孩","郭芙","老先生",
+                 "小孩","書店老闆","武三通","窮漢","鐵匠","朱子柳","店小二","宋兵",
+                 "靜玄師太","靜照師太","宋遠橋","莫聲谷","陸乘風","韓寶駒","黃藥師","餘滄海",
+                 "殷野王","鄧百川","尹志平","小龍女","劉承風","歐陽鋒","白衣少女","九翼道人",
+                 "阿紫","玉磬子","玉音子","嶽夫人","嶽不群","令狐沖","玄苦大師","清善比丘",
+                 "獨臂神尼","莊夫人","雙兒","吳六奇","木婉清","蕭遠山","李沅芷","向問天",
+                 "曲洋","黑白子","程瑤迦","程瑤迦","沐劍屏","天柏道人","本塵","本觀",
+                 "天山童姥","韋一笑","謝遜","澄堅","陸乘風","張翠山","宋青書","玄貞道長",
+                 "石破天","蘇星河","慕容復","朱丹臣","簡長老","封不平",
 
         }),
         });
@@ -34,33 +34,33 @@ string ask_job()
   ob=this_player();
   me=this_object();
   exp=query("combat_exp", ob);
- /*myfam=query("family/family_name", me);//同一门派的才给他job,把这四行去
-  obfam=query("family/family_name", ob);//掉后就没有门派限制
+ /*myfam=query("family/family_name", me);//同一門派的才給他job,把這四行去
+  obfam=query("family/family_name", ob);//掉後就沒有門派限制
   if(!myfam ||!obfam||myfam != obfam) 
-  return "你不是本门弟子,我不能给你工作!";
+  return "你不是本門弟子,我不能給你工作!";
   */
   if( interactive(ob) && query_temp("zzz_job_target", ob )
       && (int)ob->query_condition("zzz_mission"))  
-       return "你上一次的任务还没完成!";
+       return "你上一次的任務還沒完成!";
   if( interactive(ob) && !query_temp("zzz_job_target", ob )
       && (int)ob->query_condition("zzz_mission"))  
-       return "你办事不力，先等会吧。";
+       return "你辦事不力，先等會吧。";
    
     if (interactive(ob) &&
        (int)ob->query_condition("zzz_busy"))  
-       return "现在我可没有给你的任务，等会再来吧。\n";
+       return "現在我可沒有給你的任務，等會再來吧。\n";
      
         
         if(exp<=100000)     
-    return "你的武功太差了,等练强了再来吧。\n";
-    job_type="保护";
+    return "你的武功太差了,等練強了再來吧。\n";
+    job_type="保護";
            set_temp("zzz_job_type", job_type, ob);
         
-        if(job_type=="保护")
+        if(job_type=="保護")
         {target = names[1][random(sizeof(names[1]))];
     ob->apply_condition("zzz_mission",30);    
         set_temp("zzz_job_target", target, ob);
-    message_vision(CYN"$N点了点头，对$n说道:蒙古人收买了一批武林败类,好象要暗杀"+target+"，你去保护他一下。\n"NOR , me,ob);
+    message_vision(CYN"$N點了點頭，對$n說道:蒙古人收買了一批武林敗類,好象要暗殺"+target+"，你去保護他一下。\n"NOR , me,ob);
     call_out("begin_kill",30,ob,target);
         return "多加小心。";
         }
@@ -69,31 +69,31 @@ string ask_job()
 int accept_object(object who, object ob,object me)
 {
         if( query("id", ob) != "corpse"){
-                command("say 你给我这个干吗?");
+                command("say 你給我這個幹嗎?");
                 return 0;
         }
         if( !query_temp("zzz_job_target", who)){
-                command("say 好啊！不过你得先申请任务。");
+                command("say 好啊！不過你得先申請任務。");
                 return 0;
         }
 
-/*if( query_temp("zzz_job_type", who) == "杀" )
+/*if( query_temp("zzz_job_type", who) == "殺" )
                 if( query("victim_name", ob) != query_temp("zzz_job_target", who )
                          || query("victim_user", ob) || query_temp("zzz_given", who) )
                 {       command("shake");
-                command("say 你杀错人了。");
+                command("say 你殺錯人了。");
                 return 0;
         }*/
-        if( query_temp("zzz_job_type", who) == "保护" )
+        if( query_temp("zzz_job_type", who) == "保護" )
                 if( query_temp("must_killby", ob) != query("id", who )
                          || query("victim_user", ob) || query_temp("zzz_given", who) )
                 {       command("shake");
-                command("say 你杀错人了。");
+                command("say 你殺錯人了。");
                 return 0;
         } 
 
   /*if( query("kill_by", ob) != who){
-                command("say 这个任务似乎不是你自己完成的吧？");
+                command("say 這個任務似乎不是你自己完成的吧？");
                 return 0;
         }
 set_temp("zzz_given", 1, who); */
@@ -107,7 +107,7 @@ void ok(object who)
         int exp,pot,i;
         if (!who) return;
         command("pat"+query("id", who));
-        command("say 干的好，你办事干净利落,将来必成大器!");
+        command("say 乾的好，你辦事幹淨利落,將來必成大器!");
         if( !query("zzz_job_count", who) )
                 set("zzz_job_count", 1, who);
         else
@@ -129,9 +129,9 @@ void ok(object who)
                 delete_temp("zzz_job_type", who);
                 who->clear_condition("zzz_mission");
           who->apply_condition("zzz_busy",1);  
-                                tell_object(who,HIW"你被奖励了：\n" + 
-                       chinese_number(exp) + "点实战经验\n" +
-                       chinese_number(pot) + "点潜能\n"+
+                                tell_object(who,HIW"你被獎勵了：\n" + 
+                       chinese_number(exp) + "點實戰經驗\n" +
+                       chinese_number(pot) + "點潛能\n"+
                        NOR);
                 return;
 }
@@ -148,13 +148,13 @@ string ask_fangqi()
          object me;
          me = this_player();
          if(me->query_condition("zzz_mission")<=1)
-         return "你没有领任务,跑这里瞎嚷嚷什麽?";
+         return "你沒有領任務,跑這裡瞎嚷嚷什麼?";
          me->clear_condition("zzz_mission");
          addn("combat_exp", -100+random(20), me);
           me->apply_condition("zzz_busy",4+random(10));
          delete_temp("zzz_job_target", me);
                  delete_temp("zzz_job_type", me);
-         return "没关系,下次继续努力 。";
+         return "沒關係,下次繼續努力 。";
 }
 
 
@@ -163,7 +163,7 @@ void begin_kill(object me,string target)
    int i,flag=0;
    if(!me->query_condition("zzz_mission"))
    return;
-   if( query_temp("zzz_job_type", me) != "保护" || query_temp("zzz_job_target", me) != target )
+   if( query_temp("zzz_job_type", me) != "保護" || query_temp("zzz_job_target", me) != target )
    return;
    ob = all_inventory(environment(me));
    for(i=0; i<sizeof(ob); i++)
@@ -182,15 +182,15 @@ void begin_kill(object me,string target)
         obj->move(environment(me));
     if( random(10)>7 || query("id", me) == "zzz" )
         {obj->do_copy(me,1);
-         set("title", HIR"武林败类"NOR, obj);
+         set("title", HIR"武林敗類"NOR, obj);
          set_temp("zzz_job_super", 1, me);
         }
         else
         obj->do_copy(me,0);
         set_temp("must_killby",query("id",  me), obj);
-        message_vision(GRN"\n$N对着"+target+"发出一阵阴笑声，令"+target+"全身上下的寒毛根根竖起，不寒而栗。\n"NOR,obj); 
-        message_vision(HIY"$N对$n喝道:大胆狂徒,竟敢在这撒野！！\n"NOR,me,obj);    
-    message_vision(HIY"$N阴阴一笑:要你多管闲事,去死吧！！\n"NOR,obj);
+        message_vision(GRN"\n$N對著"+target+"發出一陣陰笑聲，令"+target+"全身上下的寒毛根根豎起，不寒而慄。\n"NOR,obj); 
+        message_vision(HIY"$N對$n喝道:大膽狂徒,竟敢在這撒野！！\n"NOR,me,obj);    
+    message_vision(HIY"$N陰陰一笑:要你多管閒事,去死吧！！\n"NOR,obj);
     obj->kill_ob(me);
 }
 
@@ -204,6 +204,6 @@ string ask_gonglao(object who)
   i=0;
   else 
   i=query("zzz_job_count", me);
-  message_vision(CYN"$N对$n说道:你已经完成了" + chinese_number(i) + "次任务。\n"NOR,who,me);
-  return "继续努力吧！";
+  message_vision(CYN"$N對$n說道:你已經完成了" + chinese_number(i) + "次任務。\n"NOR,who,me);
+  return "繼續努力吧！";
 }

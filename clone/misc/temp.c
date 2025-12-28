@@ -11,8 +11,8 @@ inherit ROOM;
 void create()
 {
         seteuid(getuid());
-        set("short", "无边落木");
-        set("long", "这是一处渺无人迹的地方。\n");
+        set("short", "無邊落木");
+        set("long", "這是一處渺無人跡的地方。\n");
         set("no_fight", 1);
         set_heart_beat(1);
 }

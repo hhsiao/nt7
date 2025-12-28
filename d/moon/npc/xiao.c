@@ -4,7 +4,7 @@ inherit NPC;
 void create()
 {       
         set_name("小香", ({ "xiang" }) );
-        set("long", "这是一个美丽的少女，但眉眼中却蕴着淡淡的忧伤。\n");
+        set("long", "這是一個美麗的少女，但眉眼中卻蘊著淡淡的憂傷。\n");
         set("age", 16);
         set("gender", "女性");
         set("attitude", "peaceful");

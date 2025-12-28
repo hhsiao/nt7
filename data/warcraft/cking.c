@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("美丽的童话[2;37;0m[2;37;0m", ({"jinhu"}));        
+        set_name("美麗的童話[2;37;0m[2;37;0m", ({"jinhu"}));        
         set("gender", "女性");                
-        set("long", "美丽的童话[2;37;0m
-它是阿杰的魔幻兽。
+        set("long", "美麗的童話[2;37;0m
+它是阿杰的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

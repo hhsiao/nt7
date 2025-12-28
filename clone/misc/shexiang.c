@@ -1,4 +1,4 @@
-// Yanwu.c 烟雾弹
+// Yanwu.c 煙霧彈
 
 #include <command.h>
 #include <ansi.h>
@@ -12,7 +12,7 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一包散发出异香的药粉。它可以用(apply)来散发香味，借机逃走。\n");
+                set("long", "一包散發出異香的藥粉。它可以用(apply)來散發香味，藉機逃走。\n");
                 set("unit", "包");
                 set("value", 100000);
                 set("no_sell", 1);
@@ -33,7 +33,7 @@ int apply_for_wimpy(object me)
         int sc;
 
         if (me->is_busy())
-                return notify_fail("你现在正在忙着呢。\n");
+                return notify_fail("你現在正在忙著呢。\n");
 
         me->clean_up_enemy();
         if (me->is_fighting())
@@ -49,11 +49,11 @@ int apply_for_wimpy(object me)
                         if (sc > 500000) sc = 500000;
                         if (sc / 4 + random(sc) > 200000)
                         {
-                                message_vision("\n$N掏出麝香粉就往空中一洒，然而$n"
-                                               "大喝一声道：“也不看看" +
+                                message_vision("\n$N掏出麝香粉就往空中一灑，然而$n"
+                                               "大喝一聲道：“也不看看" +
                                                RANK_D->query_self(obs[i]) +
-                                               "行走江湖有多少年，你居然还敢玩这种把戏？”\n"
-                                               "说罢只见$n伸手一挥，将$N的香粉全部震开。\n",
+                                               "行走江湖有多少年，你居然還敢玩這種把戲？”\n"
+                                               "說罷只見$n伸手一揮，將$N的香粉全部震開。\n",
                                                me, obs[i]);
                                 destruct(this_object());
                                 return 1;
@@ -62,10 +62,10 @@ int apply_for_wimpy(object me)
         }
 
         set_temp("no_follow", 1, me);
-        tell_room(environment(me), HIM "\n忽然一阵异香传来，真是"
-                                   "沁人心肺，舒泰无比，众人一时间只想睡觉。\n" NOR);
+        tell_room(environment(me), HIM "\n忽然一陣異香傳來，真是"
+                                   "沁人心肺，舒泰無比，眾人一時間只想睡覺。\n" NOR);
 
-        set_temp("success_flee", "你借着众人迷乱成功的逃走了。\n", me);
+        set_temp("success_flee", "你藉著眾人迷亂成功的逃走了。\n", me);
         GO_CMD->do_flee(me);
         destruct(this_object());
         return 1;
@@ -74,7 +74,7 @@ int apply_for_wimpy(object me)
 int do_apply(string arg)
 {
         if (! arg || ! id(arg))
-                return notify_fail("你要用什么？\n");
+                return notify_fail("你要用什麼？\n");
 
         return apply_for_wimpy(this_player());
 }

@@ -6,12 +6,12 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "药房");
+        set("short", "藥房");
         set("long", @LONG
-这里是黄药师储藏平日炼制药材的地方，桃花岛弟子也经常到这里来
-取用一些自己合用的药物。散发出阵阵沁人心肺花香的就是桃花岛名闻天
-下的九花玉露丸，气味刺鼻的则是解毒灵药田七鲨胆散，颜色猩红如血的
-是疗伤圣药无常丹。北面是一道长廊。
+這裡是黃藥師儲藏平日煉製藥材的地方，桃花島弟子也經常到這裡來
+取用一些自己合用的藥物。散發出陣陣沁人心肺花香的就是桃花島名聞天
+下的九花玉露丸，氣味刺鼻的則是解毒靈藥田七鯊膽散，顏色猩紅如血的
+是療傷聖藥無常丹。北面是一道長廊。
 LONG );
         set("exits", ([
                 "north" : __DIR__"changlang2",
@@ -34,11 +34,11 @@ int valid_leave(object me, string dir)
         mapping myfam;
         myfam=query("family", me);
 
-        if ( (!myfam || myfam["family_name"] != "桃花岛") && dir == "north" )
-                return notify_fail("桃花岛不留外客，你不能住在这里！\n");
+        if ( (!myfam || myfam["family_name"] != "桃花島") && dir == "north" )
+                return notify_fail("桃花島不留外客，你不能住在這裡！\n");
 
-        if( query("gender", me) == "无性" && dir == "north" )
-                return notify_fail("你不能住在这里！\n");
+        if( query("gender", me) == "無性" && dir == "north" )
+                return notify_fail("你不能住在這裡！\n");
 
         return ::valid_leave(me, dir);
 }

@@ -3,12 +3,12 @@ inherit __DIR__"pill";
 
 void create()
 {
-        set_name(NOR + YEL "千年人参" NOR, ({ "qiannian renshen", "qiannian",
+        set_name(NOR + YEL "千年人參" NOR, ({ "qiannian renshen", "qiannian",
                                               "renshen", "shen", "herb_renshen2" }));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", YEL "产于高山上的珍贵药材，服用后可提升内功等级。\n" NOR);
+                set("long", YEL "產於高山上的珍貴藥材，服用後可提升內功等級。\n" NOR);
                 set("base_unit", "株");
                 set("base_value", 15000);
                 set("base_weight", 300);
@@ -16,8 +16,8 @@ void create()
                 set("pill_skill", "force");
                 set("pill_point", 35000);
                 set("force_point", 5);
-                set("pill_msg1", HIR "你只觉一股暖气散布全身，说不出的舒服受用。\n" NOR);
-                set("pill_msg2", HIY "你只觉一股热流涌上，内息得到了完全的补充。\n" NOR);
+                set("pill_msg1", HIR "你只覺一股暖氣散佈全身，說不出的舒服受用。\n" NOR);
+                set("pill_msg2", HIY "你只覺一股熱流湧上，內息得到了完全的補充。\n" NOR);
         }
         setup();
 }

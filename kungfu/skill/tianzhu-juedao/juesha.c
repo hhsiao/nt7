@@ -9,30 +9,30 @@ int perform(object me, object target)
         object weapon;
         extra = me->query_skill("tianzhu-juedao",1);
 
-        if ( extra < 150) return notify_fail("你的天竺绝刀还不够纯熟！\n");
+        if ( extra < 150) return notify_fail("你的天竺絕刀還不夠純熟！\n");
 
         if( !target ) target = offensive_target(me);
         if( !target ||        !me->is_fighting(target) )
-                return notify_fail("［天竺绝杀］只能对战斗中的对手使用。\n");
+                return notify_fail("［天竺絕殺］只能對戰鬥中的對手使用。\n");
 
 
         if( !objectp(weapon=query_temp("weapon", me) )
          || query("skill_type", weapon) != "blade" )
-            return notify_fail("你使用的武器不对。\n");
+            return notify_fail("你使用的武器不對。\n");
 
         if (me->query_skill_mapped("blade") != "tianzhu-juedao")
-                return notify_fail("你还没有准备天竺绝刀！\n");
+                return notify_fail("你還沒有準備天竺絕刀！\n");
 
         if( query("max_neili", me)<1600 )
-                return notify_fail("你内力修为不足！\n");
+                return notify_fail("你內力修為不足！\n");
         if( query("neili", me)<600 )
-                return notify_fail("你内力不够！\n");
+                return notify_fail("你內力不夠！\n");
 
         weapon=query_temp("weapon", me);
         addn("neili", -400, me);
         addn("jingli", -100, me);
-        msg = HIY  "$N使出天竺绝刀中的［天竺绝杀］，一招连环三式，手中的"+ 
-                  weapon->name()+ HIY"闪电般向$n攻出！\n"
+        msg = HIY  "$N使出天竺絕刀中的［天竺絕殺］，一招連環三式，手中的"+ 
+                  weapon->name()+ HIY"閃電般向$n攻出！\n"
                   "第一刀！" NOR;
         message_vision(msg,me,target);
         addn_temp("apply/damage", 200, me);

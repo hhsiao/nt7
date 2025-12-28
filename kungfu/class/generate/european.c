@@ -7,7 +7,7 @@ inherit CHALLENGER;
 void create()
 {
         set_name("西洋人", ({ "european" }));
-        set("long", "一个西洋人。\n");
+        set("long", "一個西洋人。\n");
         set("gender", "男性");
         set("age", 20);
         set("str", 20);
@@ -39,7 +39,7 @@ void create()
         map_skill("dodge", "xiyang-boji");
         map_skill("parry", "xiyang-jian");
 
-        set("rank_info/rude", "红毛鬼");
+        set("rank_info/rude", "紅毛鬼");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -58,36 +58,36 @@ void create()
 string challenge()
 {
         set("opinion/msg", ({
-                (random(2) ? "此人来自据说是比俄罗斯的莫斯科还要遥远的西方。"
-                           : "这是西洋武士，和我们中土人大不一样。"),
-                (random(2) ? "是啊，遥远的地方，武技也是颇为奇特。"
-                           : "嗯，西洋剑术适宜刺击，不过并不善于劈砍。"),
-                (random(2) ? "从如此遥远的地方赶来，也真是够难为他的了！"
-                           : "西洋剑术固然注重实战效果，不过仍然算不得是上乘剑术。"),
+                (random(2) ? "此人來自據說是比俄羅斯的莫斯科還要遙遠的西方。"
+                           : "這是西洋武士，和我們中土人大不一樣。"),
+                (random(2) ? "是啊，遙遠的地方，武技也是頗為奇特。"
+                           : "嗯，西洋劍術適宜刺擊，不過並不善於劈砍。"),
+                (random(2) ? "從如此遙遠的地方趕來，也真是夠難為他的了！"
+                           : "西洋劍術固然注重實戰效果，不過仍然算不得是上乘劍術。"),
         }));
 
         command(random(2) ? "haha" : "killair");
         switch (random(2))
         {
         case 0:
-                return "我来自" + query("nation") + "，听说你们中原"
-                        "武术高明，特地前来切磋切磋！";
+                return "我來自" + query("nation") + "，聽說你們中原"
+                        "武術高明，特地前來切磋切磋！";
 
         default:
-                return "我是" + query("nation") + "的" + name() + "，你们中"
-                       "原有没有人愿意和我比试一下武艺？";
+                return "我是" + query("nation") + "的" + name() + "，你們中"
+                       "原有沒有人願意和我比試一下武藝？";
         }
 }
 
 void unconcious()
 {
-        command("chat 啊！怎么……怎么这么厉害？");
+        command("chat 啊！怎麼……怎麼這麼厲害？");
         die();
 }
 
 void competition_with(object ob)
 {
-        command("say 好吧！我们就分个高低看看！\n");
+        command("say 好吧！我們就分個高低看看！\n");
         ::competition_with(ob);
 }
 

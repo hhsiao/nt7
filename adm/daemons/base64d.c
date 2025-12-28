@@ -1,8 +1,8 @@
 /****************************************
  * base64_d.c                           *
  *                                      *
- * BASE64 编码和解码。我是为了 ESMTP 协 *
- * 议的认证信息写的这个玩意，因为我们是 *
+ * BASE64 編碼和解碼。我是為了 ESMTP 協 *
+ * 議的認證信息寫的這個玩意，因為我們是 *
  * 要用的。                             *
  *                                      *
  * by Find@TX.                          *
@@ -19,7 +19,7 @@ void create()
         seteuid(getuid());
 }
 
-/* 对传入的字符串进行 BASE64 编码 */
+/* 對傳入的字符串進行 BASE64 編碼 */
 string encode(string ascii)
 {
         int l,b;
@@ -53,7 +53,7 @@ string encode(string ascii)
         return out;
 }
 
-/* 对传入的 BASE64 编码字符串进行解码 */
+/* 對傳入的 BASE64 編碼字符串進行解碼 */
 string decode(string b64)
 {
         int l,b;
@@ -70,7 +70,7 @@ string decode(string b64)
 
         l = strlen(b64);
 
-        if( l%4 )        // 错误！
+        if( l%4 )        // 錯誤！
                 return "";
 
         b = l/4;

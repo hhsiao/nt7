@@ -27,34 +27,34 @@ int main(object me, string arg)
                 if (! obj || ! me->visible(obj)) obj = find_player(arg);
                 if (! obj || ! me->visible(obj)) obj = find_living(arg);
                 if (! obj) obj = find_object(resolve_path(query("cwd", me), arg));
-                if (! obj) return notify_fail("没有这样物件....。\n");
+                if (! obj) return notify_fail("沒有這樣物件....。\n");
         }
 
         write(sprintf("物件 [%O]\n-----------------------------------------------------\n", obj));
-        write("档案：\t\t" + base_name(obj) + ".c\n");
-        write("领域：\t\t" + domain_file(base_name(obj)) + "\n");
+        write("檔案：\t\t" + base_name(obj) + ".c\n");
+        write("領域：\t\t" + domain_file(base_name(obj)) + "\n");
         write("作者：\t\t" + author_file(base_name(obj)) + "\n");
-        write("权限：\t\tuid = " + getuid(obj) + ", euid = " + geteuid(obj) + "\n");
-        write("等级：\t\t" + wizhood(obj) + "\n");
-        write("使用记忆体：\t" + memory_info(obj) + "\n");
+        write("權限：\t\tuid = " + getuid(obj) + ", euid = " + geteuid(obj) + "\n");
+        write("等級：\t\t" + wizhood(obj) + "\n");
+        write("使用記憶體：\t" + memory_info(obj) + "\n");
         str = "";
         if (living(obj))         str += "生物 ";
         if (userp(obj))                str += "使用者 ";
-        if (interactive(obj))        str += "线上 ";
-        if (wizardp(obj))        str += "巫师 ";
-        if (clonep(obj))         str += "复制 ";
-        if (virtualp(obj))         str += "虚拟 ";
-        if( query("env/invisible", obj))str+="隐身";
+        if (interactive(obj))        str += "線上 ";
+        if (wizardp(obj))        str += "巫師 ";
+        if (clonep(obj))         str += "複製 ";
+        if (virtualp(obj))         str += "虛擬 ";
+        if( query("env/invisible", obj))str+="隱身";
         if (query_heart_beat(obj)) str += "心跳:" + query_heart_beat(obj) + " ";
-        write("属性：\t\t" + str + "\n");
+        write("屬性：\t\t" + str + "\n");
 
         if ((ttl = obj->query_time_to_leave()) > 0)
-                write("禁闭：\t\t" + appromix_time(ttl) + "\n");
+                write("禁閉：\t\t" + appromix_time(ttl) + "\n");
 
-        write("复制个数：\t" + sizeof(children(base_name(obj)+".c")) + "\n");
-        write("参考连结：\t" + refs(obj) + "\n");
+        write("複製個數：\t" + sizeof(children(base_name(obj)+".c")) + "\n");
+        write("參考連結：\t" + refs(obj) + "\n");
         if (obj->is_telneting())
-                write("远程登陆：\t" + obj->query_dest_addr() + "\n");
+                write("遠程登陸：\t" + obj->query_dest_addr() + "\n");
 
         if (stringp(ext = obj->query_info()))
                 write(ext);
@@ -65,9 +65,9 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式 : info <物件之名称或档名>
+指令格式 : info <物件之名稱或檔名>
 
-利用此一指令可得知一些有关该物件的资讯。
+利用此一指令可得知一些有關該物件的資訊。
 HELP );
         return 1;
 }

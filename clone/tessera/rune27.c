@@ -1,6 +1,6 @@
 //rune27.c
 
-// Ohm 欧姆
+// Ohm 歐姆
 
 #include <ansi.h>
 
@@ -16,8 +16,8 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", "符文：翰宠妙成符，可以放入凹槽物品。\n");
-                set("unit", "个");
+                set("long", "符文：翰寵妙成符，可以放入凹槽物品。\n");
+                set("unit", "個");
                 set("enchase/SN", 27);
                 set("enchase/type", "all");
                 set("enchase/consistence", 100); 

@@ -18,7 +18,7 @@ int main(object me, string arg)
         can = SECURITY_D->valid_grant(me, "(arch)");
 
         if (! arg)
-                return notify_fail("你要把谁送进地狱？\n");
+                return notify_fail("你要把誰送進地獄？\n");
 
         sscanf(arg, "%s because %s", arg, because);
 
@@ -42,17 +42,17 @@ int main(object me, string arg)
         }
 
         if (! time)
-                return notify_fail("你要禁闭别人多久？\n");
+                return notify_fail("你要禁閉別人多久？\n");
 
         ob = find_player(arg);
         if (wiz_level(me) < 1 && ! objectp(ob))
-                return notify_fail("没有这个玩家。\n");
+                return notify_fail("沒有這個玩家。\n");
 
         if (! objectp(ob))
         {
                 ob = UPDATE_D->global_find_player(arg);
                 if (! objectp(ob))
-                        return notify_fail("没有这个玩家。\n");
+                        return notify_fail("沒有這個玩家。\n");
 
                 if( stringp(query("startroom", ob)) )
                         ob->move(query("startroom", ob));
@@ -61,20 +61,20 @@ int main(object me, string arg)
         }
 
         if (! ob || ! me->visible(ob))
-                return notify_fail("没有这个玩家。\n");
+                return notify_fail("沒有這個玩家。\n");
 
         if (ob == me || time < 0)
-                return notify_fail("疯了... 你真是疯了！\n");
+                return notify_fail("瘋了... 你真是瘋了！\n");
 
         if ( query("in_prison", ob) && wiz_level(me) < 6 ) 
-                return notify_fail("他正在另一处牢房里呢！\n"); 
+                return notify_fail("他正在另一處牢房裡呢！\n"); 
         delete("in_prison", ob);
         delete("redlworkroom/prison/time", ob);
         delete("dongtian/prison/time", ob);
         
         /*
         if (wiz_level(ob) > 0)
-                return notify_fail("你不能禁闭巫师！\n");
+                return notify_fail("你不能禁閉巫師！\n");
         */
 
         bmsg = "";
@@ -83,7 +83,7 @@ int main(object me, string arg)
                 if (! because)
                 {
                         UPDATE_D->global_destruct_player(ob);
-                        return notify_fail("送人进监狱你必须有一个理由才行。\n");
+                        return notify_fail("送人進監獄你必須有一個理由才行。\n");
                 }
 
                 switch (because)
@@ -98,7 +98,7 @@ int main(object me, string arg)
 
                 default:
                         UPDATE_D->global_destruct_player(ob);
-                        return notify_fail("你这个理由也太不充分了。\n");
+                        return notify_fail("你這個理由也太不充分了。\n");
                 }
         }
 
@@ -106,13 +106,13 @@ int main(object me, string arg)
         {
                 if (card = present("throw card", me))
                 {
-                        message("vision", me->name() + "掏出一张卡片，"
-                                "滴嘀咕咕的不知道在说些什么，好像"
+                        message("vision", me->name() + "掏出一張卡片，"
+                                "滴嘀咕咕的不知道在說些什麼，好像"
                                 "提到了"+query("name", ob)+"。\n",
                                 environment(me), ({ me }));
                         tell_object(me, "你掏出" + card->name() + "，"
-                                "口中念念有词：天灵灵！地灵灵！快把" +
-                                query("name", ob)+"送到地狱去！\n");
+                                "口中唸唸有詞：天靈靈！地靈靈！快把" +
+                                query("name", ob)+"送到地獄去！\n");
                         time=query("time_to_leave", card);
                         destruct(card);
                         can = 1;
@@ -121,7 +121,7 @@ int main(object me, string arg)
 
         if (! can)
         {
-                tell_object(me, "你无权把"+query("name", ob)+"送进地狱！\n");
+                tell_object(me, "你無權把"+query("name", ob)+"送進地獄！\n");
                 UPDATE_D->global_destruct_player(ob);
                 return 0;
         }
@@ -139,18 +139,18 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式 : throw <玩家ID> [ <时间> ] because <理由>
+指令格式 : throw <玩家ID> [ <時間> ] because <理由>
  
-这个指令可以让你把某个玩家禁闭一段时间。时间以分钟为单位，可
-以用 h 表示小时，d 表示天，m 表示月份，y 表示年。
+這個指令可以讓你把某個玩家禁閉一段時間。時間以分鐘為單位，可
+以用 h 表示小時，d 表示天，m 表示月份，y 表示年。
 
-禁闭他人理由主要如下：
-1. 口出污言秽语(rude)
-2. 发布他人说的污言秽语(copy)
-3. 造谣生事(rumor)
-4. 散布重复信息(flood)
-5. 使用系统错误，档案待查(bug)
-6. 出于维护该玩家档案的目的(main)
+禁閉他人理由主要如下：
+1. 口出汙言穢語(rude)
+2. 發佈他人說的汙言穢語(copy)
+3. 造謠生事(rumor)
+4. 散佈重複信息(flood)
+5. 使用系統錯誤，檔案待查(bug)
+6. 出於維護該玩家檔案的目的(main)
 
 see also : free 
 HELP );

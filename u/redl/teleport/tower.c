@@ -6,10 +6,10 @@ inherit __DIR__"normal.c";
 
 void create()
 {
-        set("short", "铁塔之顶");
+        set("short", "鐵塔之頂");
         set("long", 
-"这是开封铁塔尖尖的顶部，几个模糊的黑影正静静趴伏在塔的周\n"
-"围各檐角上，紧张地窥视着塔里的情况。\n"
+"這是開封鐵塔尖尖的頂部，幾個模糊的黑影正靜靜趴伏在塔的周\n"
+"圍各簷角上，緊張地窺視著塔裡的情況。\n"
 );
                 set("outdoors", "yangzhou");
                 set("exits",([ /* sizeof() == 1 */

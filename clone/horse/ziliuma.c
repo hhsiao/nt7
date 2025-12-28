@@ -4,11 +4,11 @@ inherit NPC;
 
 void create()
 {
-        set_name(MAG "紫骝马" NOR, ({ "ziliuma"}));
-        set("race", "野兽");
+        set_name(MAG "紫騮馬" NOR, ({ "ziliuma"}));
+        set("race", "野獸");
         set("gender", "雄性");
         set("age", 2+random(3));
-        set("long", "这是一匹紫骝宝马，日行千里，夜行八百。\n");
+        set("long", "這是一匹紫騮寶馬，日行千里，夜行八百。\n");
         set("ridable", 1);
         set("int", 30);
         set("qi", 300);
@@ -19,7 +19,7 @@ void create()
         set("combat_exp", 50000);
         set("attitude", "peaceful");
 
-        set("limbs", ({ "头部", "腹部", "尾巴","后腿","前腿" }) );
+        set("limbs", ({ "頭部", "腹部", "尾巴","後腿","前腿" }) );
         set("verbs", ({ "bite", "hoof" }) );
         set_temp("apply/attack", 50);
         set_temp("apply/armor", 15);

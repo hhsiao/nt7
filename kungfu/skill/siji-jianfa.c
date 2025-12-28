@@ -1,37 +1,37 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action":"$N使一式「春暖花开」，手中$w由左至右横扫向向$n的$l",
+([      "action":"$N使一式「春暖花開」，手中$w由左至右橫掃向向$n的$l",
         "force" : 60,
         "attack": 5,
         "dodge" : 10,
         "damage": 33,
         "lvl" : 0,
-        "damage_type":  "割伤"
+        "damage_type":  "割傷"
 ]),
-([      "action":"$N踏上一步，「夏日炎炎」，手中$w盘旋飞舞出一道剑光刺向$n的$l",
+([      "action":"$N踏上一步，「夏日炎炎」，手中$w盤旋飛舞出一道劍光刺向$n的$l",
         "force" : 120,
         "attack": 15,
         "dodge" : 20,
         "damage": 51,
         "lvl" : 40,
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N手中$w一抖，一招「秋风萧瑟」，斜斜一剑反腕撩出，攻向$n的$l",
+([      "action":"$N手中$w一抖，一招「秋風蕭瑟」，斜斜一劍反腕撩出，攻向$n的$l",
         "force" : 150,
         "attack": 64,
         "dodge" : 25,
         "damage": 85,
         "lvl" : 80,
-        "damage_type":  "割伤"
+        "damage_type":  "割傷"
 ]),
-([      "action":"$N手中$w连绕数个大圈，一式「冬掣寒星」，一道剑光飞向$n的$l",
+([      "action":"$N手中$w連繞數個大圈，一式「冬掣寒星」，一道劍光飛向$n的$l",
         "force" : 180,
         "attack": 95,
         "dodge" : 30,
         "damage": 125,
         "lvl" : 120,
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
 });
 
@@ -40,16 +40,16 @@ int valid_enable(string usage) { return usage == "sword" || usage == "parry"; }
 int valid_learn(object me)
 {
         if ((int)me->query_skill("sword", 1) < 100)
-                return notify_fail("你的基本剑法火候不到，无法学习四季剑法。\n");
+                return notify_fail("你的基本劍法火候不到，無法學習四季劍法。\n");
 
         if ((int)me->query_skill("force") < 30)
-                return notify_fail("你的内功火候不到，无法学习四季剑法。\n");
+                return notify_fail("你的內功火候不到，無法學習四季劍法。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你的内力太差，无法学习四季剑法。\n");
+                return notify_fail("你的內力太差，無法學習四季劍法。\n");
 
         if (me->query_skill("sword", 1) < me->query_skill("siji-jianfa", 1))
-                return notify_fail("你的基本剑法水平有限，无法领会更高深的四季剑法。\n");
+                return notify_fail("你的基本劍法水平有限，無法領會更高深的四季劍法。\n");
 
         return 1;
 }
@@ -77,13 +77,13 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if( query("qi", me)<150 )
-                return notify_fail("你的体力不够练四季剑法。\n");
+                return notify_fail("你的體力不夠練四季劍法。\n");
 
         if( query("neili", me)<150 )
-                return notify_fail("你的内力不够练四季剑法。\n");
+                return notify_fail("你的內力不夠練四季劍法。\n");
 
         me->receive_damage("qi", 125);
         addn("neili", -125, me);

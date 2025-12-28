@@ -5,12 +5,12 @@ inherit NPC;
 void create()
 {
         set_name("凌思退", ({ "ling situi", "ling" }));
-        set("title", "荆州知府");
+        set("title", "荊州知府");
         set("gender", "男性");
         set("age", 35);
         set("str", 20);
         set("dex", 20);
-        set("long", "他就是凌思退，荆州现任知府。\n");
+        set("long", "他就是凌思退，荊州現任知府。\n");
         set("combat_exp", 30000);
         set("shen_type", 0);
         set("attitude", "heroism");

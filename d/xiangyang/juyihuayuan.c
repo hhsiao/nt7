@@ -5,11 +5,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "花园");
+        set("short", "花園");
         set("long", @LONG
-这是聚义馆的大花园。园内种着各种各样的花草，清风吹来，你
-能闻到股股花香。园内东西两侧各有一排厢房，北面是一湖池水，水
-上架着走廊，直通西大街。南面是馆内厨房，东南方向有一间物品房。
+這是聚義館的大花園。園內種著各種各樣的花草，清風吹來，你
+能聞到股股花香。園內東西兩側各有一排廂房，北面是一湖池水，水
+上架著走廊，直通西大街。南面是館內廚房，東南方向有一間物品房。
 LONG );
         set("outdoors", "xiangyang");
 
@@ -32,10 +32,10 @@ LONG );
 int valid_leave(object me, string dir)
 {
         if( query("gender", me) != "男性" && dir == "west" )
-                return notify_fail("男女有别，请到对面住！\n");
+                return notify_fail("男女有別，請到對面住！\n");
 
         if( query("gender", me) != "女性" && dir == "east" )
-                return notify_fail("男女有别，请到对面住！\n");
+                return notify_fail("男女有別，請到對面住！\n");
 
         return ::valid_leave(me, dir);
 }

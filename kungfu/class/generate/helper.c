@@ -33,8 +33,8 @@ void kill_ob(object ob)
 {
         if( query("family/family_name", ob) == query("family/family_name") )
         {
-                message_vision(HIC "$N" HIC "看了看对方，连忙往后一跳，"
-                               "大声喊道：“大家住手！有话好说！”\n" NOR,
+                message_vision(HIC "$N" HIC "看了看對方，連忙往後一跳，"
+                               "大聲喊道：“大家住手！有話好說！”\n" NOR,
                                this_object());
                 return;
         }
@@ -44,14 +44,14 @@ void kill_ob(object ob)
 
 int accept_fight(object ob)
 {
-        message_vision("$N连连摇头，道：“不必了，我没有兴趣。”\n",
+        message_vision("$N連連搖頭，道：“不必了，我沒有興趣。”\n",
                        this_object());
         return 0;
 }
 
 int accept_hit(object ob)
 {
-        message_vision("$N往后一退，道：“我可没有兴趣和你过招。”\n",
+        message_vision("$N往後一退，道：“我可沒有興趣和你過招。”\n",
                        this_object());
         return 0;
 }
@@ -60,14 +60,14 @@ int accept_kill(object ob)
 {
         if (ob == query_temp("owner"))
         {
-                message_vision("$N向后一退，大声喊道：“所谓合则留，不合"
-                               "则去，我是不能侍奉你了！”\n说罢，也不待"
-                               "$n回话，自顾去了。\n", this_object(), ob);
+                message_vision("$N向後一退，大聲喊道：“所謂合則留，不合"
+                               "則去，我是不能侍奉你了！”\n說罷，也不待"
+                               "$n回話，自顧去了。\n", this_object(), ob);
                 destruct(this_object());
                 return -1;
         }
 
-        message_vision("$N一声冷笑，道：“岂有此理！接招吧！”\n",
+        message_vision("$N一聲冷笑，道：“豈有此理！接招吧！”\n",
                        this_object());
         return 1;
 }
@@ -104,8 +104,8 @@ void scan()
         {
                 if (environment())
                 {
-                        command("tell"+query("id", ob)+"跟随你一年，是"
-                                "时候回侠客岛啦，改日再会吧！\n");
+                        command("tell"+query("id", ob)+"跟隨你一年，是"
+                                "時候回俠客島啦，改日再會吧！\n");
                         message_vision("$N急急忙忙的走了。\n", this_object());
                 }
                 destruct(this_object());
@@ -115,18 +115,18 @@ void scan()
 
         env = environment(ob);
         if (environment() == env || ob->is_ghost())
-                // 和主人在的地点相同，或是主人处于鬼魂状态
+                // 和主人在的地點相同，或是主人處於鬼魂狀態
                 return;
 
         if (is_busy() || is_fighting() || ! living(this_object()))
-                // 现在忙
+                // 現在忙
                 return;
 
         if( !sizeof(query("exits", env)) || 
             ! sizeof(query("exits",environment())))
                 return;
 
-        message_vision("$N急急忙忙的走开了。\n", this_object());
+        message_vision("$N急急忙忙的走開了。\n", this_object());
         if (! move(env)) return;
         obs = filter_array(all_inventory(env),
                            (: $1->is_character() &&
@@ -134,11 +134,11 @@ void scan()
                               $1->query_competitor() != $(ob) :));
         if (sizeof(obs))
         {
-                message_vision("$N急急忙忙的敢了过来，看见$n正"
-                               "在苦斗，当即大喝一声，加入了$n的战团！\n",
+                message_vision("$N急急忙忙的敢了過來，看見$n正"
+                               "在苦鬥，當即大喝一聲，加入了$n的戰團！\n",
                                this_object(), ob);
                 foreach (enemy in obs) kill_ob(enemy);
         } else
-                message_vision("$N走了过来，站在$n的身后。\n",
+                message_vision("$N走了過來，站在$n的身後。\n",
                                this_object(), ob);
 }

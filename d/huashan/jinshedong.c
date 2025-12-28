@@ -17,13 +17,13 @@ void create()
 
         set("book_count", 1);
         set("sword_count", 1);
-        msg = "只见对面石壁上斜倚着一副骷髅骨，身上衣服已烂了七八成，那骷髅\n"
-              "骨宛然尚可见到是个人形。你见到这副情形，一颗心嘣嘣乱跳，见石室中\n"
-              "别无其他可怖事物，于走近仔细照看。石壁上有几百幅用利器刻成的简陋\n"
-              "人形，每个人形均不相同，举手踢足，似在练武。你挨次看去，密密层层\n"
-              "的都是图形，心下不解，不知刻在这里有甚么用意。图形尽处，石壁上出\n"
-              "现了几行字，也是以利器所刻，凑过去一看，见刻的是十六个字：“重宝\n"
-              "秘术，付与有缘，入我门来，遇祸莫怨。”";
+        msg = "只見對面石壁上斜倚著一副骷髏骨，身上衣服已爛了七八成，那骷髏\n"
+              "骨宛然尚可見到是個人形。你見到這副情形，一顆心嘣嘣亂跳，見石室中\n"
+              "別無其他可怖事物，於走近仔細照看。石壁上有幾百幅用利器刻成的簡陋\n"
+              "人形，每個人形均不相同，舉手踢足，似在練武。你挨次看去，密密層層\n"
+              "的都是圖形，心下不解，不知刻在這裡有甚麼用意。圖形盡處，石壁上出\n"
+              "現了幾行字，也是以利器所刻，湊過去一看，見刻的是十六個字：“重寶\n"
+              "秘術，付與有緣，入我門來，遇禍莫怨。”";
 
         if (! ob = find_object(SWORD))
                  ob = load_object(SWORD);
@@ -32,32 +32,32 @@ void create()
         {
                  destruct(ob);
 
-                 msg += "这十六字之旁，有个剑柄凸出\n在石壁之上，似是一把剑（sword）插入了石"
-                        "壁，直至剑柄。\n";
+                 msg += "這十六字之旁，有個劍柄凸出\n在石壁之上，似是一把劍（sword）插入了石"
+                        "壁，直至劍柄。\n";
         }
         else if (query("sword_count") > 0)
         {
-                msg += "这十六字之旁，有个剑柄凸出\n在石壁之上，似是一把剑（sword）插入了石"
-                       "壁，直至剑柄。\n";
+                msg += "這十六字之旁，有個劍柄凸出\n在石壁之上，似是一把劍（sword）插入了石"
+                       "壁，直至劍柄。\n";
         }
 
         else msg += "\n";
 
         set("long", @LONG
-只见对面石壁上斜倚着一副骷髅骨，身上衣服已烂了七八成，那
-骷髅骨宛然尚可见到是个人形。你见到这副情形，一颗心嘣嘣乱跳，
-见石室中别无其他可怖事物，于走近仔细照看。石壁上有几百幅用利
-器刻成的简陋人形，每个人形均不相同，举手踢足，似在练武。你挨
-次看去，密密层层的都是图形，心下不解，不知刻在这里有甚么用意。
-图形尽处，石壁上出现了几行字，也是以利器所刻，凑过去一看，见
-刻的是十六个字：『重宝秘术，付与有缘，入我门来，遇祸莫怨。』
-这十六字之旁，有个剑柄凸出在石壁之上，似是一把剑（sword）插入
-了石壁，直至剑柄。
+只見對面石壁上斜倚著一副骷髏骨，身上衣服已爛了七八成，那
+骷髏骨宛然尚可見到是個人形。你見到這副情形，一顆心嘣嘣亂跳，
+見石室中別無其他可怖事物，於走近仔細照看。石壁上有幾百幅用利
+器刻成的簡陋人形，每個人形均不相同，舉手踢足，似在練武。你挨
+次看去，密密層層的都是圖形，心下不解，不知刻在這裡有甚麼用意。
+圖形盡處，石壁上出現了幾行字，也是以利器所刻，湊過去一看，見
+刻的是十六個字：『重寶秘術，付與有緣，入我門來，遇禍莫怨。』
+這十六字之旁，有個劍柄凸出在石壁之上，似是一把劍（sword）插入
+了石壁，直至劍柄。
 LONG );
 
         set("item_desc", ([
-              "ya"    : NOR + WHT "悬崖下峭壁高耸，一条青藤（teng）直垂而下。\n" NOR,
-              "teng"  : HIG "一根青藤，在半空中摇晃着，可以用他爬（climb）上悬崖。\n" NOR,
+              "ya"    : NOR + WHT "懸崖下峭壁高聳，一條青藤（teng）直垂而下。\n" NOR,
+              "teng"  : HIG "一根青藤，在半空中搖晃著，可以用他爬（climb）上懸崖。\n" NOR,
               "sword" : (: look_sword :),
         ]));        
 
@@ -81,9 +81,9 @@ int do_wa()
         object ob;
 
         if (me->is_busy() || me->is_fighting())
-                return notify_fail("等你忙完了再说吧！\n");
+                return notify_fail("等你忙完了再說吧！\n");
 
-        message_vision(HIC "$N" HIC "使劲地在地上挖，不一会儿挖出一个洞来。\n", me);
+        message_vision(HIC "$N" HIC "使勁地在地上挖，不一會兒挖出一個洞來。\n", me);
 
         if( query("book_count") < 1 )
         {
@@ -91,7 +91,7 @@ int do_wa()
                 return 1;
         }
 
-        tell_object(me, HIG "你猛然发现下面有几本书，你将它拿了起来。\n");
+        tell_object(me, HIG "你猛然發現下面有幾本書，你將它拿了起來。\n");
 
         ob = new(THE_BOOK);
         ob->move(me, 1);
@@ -116,14 +116,14 @@ string look_sword()
         if (! environment(ob))
         {
               destruct(ob);
-              return HIG "一柄形状奇特的剑。\n" NOR;
+              return HIG "一柄形狀奇特的劍。\n" NOR;
         }
         else if (query("sword_count") > 0)
         */
         if (query("sword_count") > 0)
-                return HIG "一柄形状奇特的剑。\n" NOR;
+                return HIG "一柄形狀奇特的劍。\n" NOR;
 
-        return "你要看什么？\n";
+        return "你要看什麼？\n";
 }
 
 int do_ba(string arg)
@@ -132,22 +132,22 @@ int do_ba(string arg)
         object ob;
         string show;
 
-        show = "只见对面石壁上斜倚着一副骷髅骨，身上衣服已烂了七八成，那骷髅\n"
-              "骨宛然尚可见到是个人形。他见到这副情形，一颗心嘣嘣乱跳，见石室中\n"
-              "别无其他可怖事物，于走近仔细照看。石壁上有几百幅用利器刻成的简陋\n"
-              "人形，每个人形均不相同，举手踢足，似在练武。他挨次看去，密密层层\n"
-              "的都是图形，心下不解，不知刻在这里有甚么用意。图形尽处，石壁上出\n"
-              "现了几行字，也是以利器所刻，凑过去一看，见刻的是十六个字：“重宝\n"
-              "秘术，付与有缘，入我门来，遇祸莫怨。”\n";
+        show = "只見對面石壁上斜倚著一副骷髏骨，身上衣服已爛了七八成，那骷髏\n"
+              "骨宛然尚可見到是個人形。他見到這副情形，一顆心嘣嘣亂跳，見石室中\n"
+              "別無其他可怖事物，於走近仔細照看。石壁上有幾百幅用利器刻成的簡陋\n"
+              "人形，每個人形均不相同，舉手踢足，似在練武。他挨次看去，密密層層\n"
+              "的都是圖形，心下不解，不知刻在這裡有甚麼用意。圖形盡處，石壁上出\n"
+              "現了幾行字，也是以利器所刻，湊過去一看，見刻的是十六個字：“重寶\n"
+              "秘術，付與有緣，入我門來，遇禍莫怨。”\n";
 
         if (! arg || arg != "sword")
-               return notify_fail("你要拔什么？\n");
+               return notify_fail("你要拔什麼？\n");
 
         if (me->is_busy() || me->is_fighting())
-               return notify_fail("等你忙完了再说吧！\n");
+               return notify_fail("等你忙完了再說吧！\n");
 
         if (me->query_str() < 40)
-               return notify_fail("你臂力不足，无法将剑拔起。\n");    
+               return notify_fail("你臂力不足，無法將劍拔起。\n");    
 
         /*
         if (! ob = find_object(SWORD))
@@ -161,14 +161,14 @@ int do_ba(string arg)
         {
         */
                 if (query("sword_count") < 1)
-                return notify_fail("你要拔什么？\n");
+                return notify_fail("你要拔什麼？\n");
                 ob = new(SWORD);
                 addn("sword_count", -1);
         /*
         }
         */
 
-        message_vision(HIG "$N" HIG "用力将剑从地上拔出。\n", me);
+        message_vision(HIG "$N" HIG "用力將劍從地上拔出。\n", me);
         ob->move(me);
 
         set("long", show);
@@ -180,9 +180,9 @@ int do_climb(string arg)
         object me = this_player();
 
         if (me->is_busy() || me->is_fighting())
-               return notify_fail("等你忙完了再说吧！\n");
+               return notify_fail("等你忙完了再說吧！\n");
 
-        message_vision(HIG "$N" HIG "拉着青藤爬上悬崖……\n", me);
+        message_vision(HIG "$N" HIG "拉著青藤爬上懸崖……\n", me);
                 
         me->move("/d/huashan/chaoyang");
 

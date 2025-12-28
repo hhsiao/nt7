@@ -1,9 +1,9 @@
-// 太极剑意
+// 太極劍意
 
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return HIM "太极剑意" NOR; }
+string name() { return HIM "太極劍意" NOR; }
 
 inherit F_SSERVER;
 
@@ -23,38 +23,38 @@ int perform(object me, object target)
          int flagremote;
 
         if( userp(me) && !query("yuanshen", me) )
-                return notify_fail("你尚未悟道，无法使用太极剑意！\n");
+                return notify_fail("你尚未悟道，無法使用太極劍意！\n");
 
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能在战斗中对对手使用。\n");
+                return notify_fail(name() + "只能在戰鬥中對對手使用。\n");
 
 
         if( me->is_busy() )
-                return notify_fail("你正忙着呢。\n");
+                return notify_fail("你正忙著呢。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对！\n");
+                return notify_fail("你使用的武器不對！\n");
 
         if ((int)me->query_skill("taiji-jian", 1) < 1000)
-                return notify_fail("你太极剑法不够娴熟，无法施展" + name() + "。\n");
+                return notify_fail("你太極劍法不夠嫻熟，無法施展" + name() + "。\n");
 
         if( query("neili", me)<2000 )
-                return notify_fail("你现在真气不够，无法施展" + name() + "！\n");
+                return notify_fail("你現在真氣不夠，無法施展" + name() + "！\n");
 
         if (me->query_skill_mapped("sword") != "taiji-jian")
-                return notify_fail("你没有激发太极剑法，无法使用" + name() + "。\n");
+                return notify_fail("你沒有激發太極劍法，無法使用" + name() + "。\n");
         
         if( userp(me) ) 
         {
                 if( (time = BUFF_D->get_buff_overtime(me, "tjj_jian")) > 0 )
-                        return notify_fail(MAG"太极剑意消耗心神太甚，还需等待"+time+"秒。\n"NOR);
+                        return notify_fail(MAG"太極劍意消耗心神太甚，還需等待"+time+"秒。\n"NOR);
         }
         
         if (! living(target))
-               return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+               return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         addn("neili", -1000, me);
 
@@ -78,10 +78,10 @@ int perform(object me, object target)
           damage = damage + damage*(xy/50<10?10:xy/50)/10;
           damage = damage /2 *(query("str",me)+query("dex",me)) ;
         
-        delta = ABILITY_D->check_ability(me, "ap_power-tjj-jian"); // 门派ab
+        delta = ABILITY_D->check_ability(me, "ap_power-tjj-jian"); // 門派ab
         if( delta ) ap += ap*delta/100;
         
-        delta = ABILITY_D->check_ability(me, "da_power-tjj-jian"); // 门派ab
+        delta = ABILITY_D->check_ability(me, "da_power-tjj-jian"); // 門派ab
         if( delta ) damage += damage*delta/100;
         
         //target->start_busy(10);
@@ -97,12 +97,12 @@ int perform(object me, object target)
          if(tjss > 12000) damage += damage/7;
          if(tjss > 16000) damage += damage/6;
                  
-        message_combatd(sort_msg(HIY "\n$N" HIY "身形一转，手中" + weapon->name() + HIY "轻灵而出，犹如碧"
-                     "波荡漾，蜿蜒起伏，形态飘逸潇洒之极，颇具" HIC "太極" HIY "之意" HIY "……\n" NOR), me);
+        message_combatd(sort_msg(HIY "\n$N" HIY "身形一轉，手中" + weapon->name() + HIY "輕靈而出，猶如碧"
+                     "波盪漾，蜿蜒起伏，形態飄逸瀟灑之極，頗具" HIC "太極" HIY "之意" HIY "……\n" NOR), me);
 
-        msg = HIM "$N" HIM "将内力灌输于剑上，呼的一剑抖出，空气几欲凝固。\n" NOR;
+        msg = HIM "$N" HIM "將內力灌輸於劍上，呼的一劍抖出，空氣幾欲凝固。\n" NOR;
         if (ap*2/3 + random(ap / 2) < dp)
-                msg += CYN "$n" CYN "眼明手快，斜身闪开。\n" NOR;
+                msg += CYN "$n" CYN "眼明手快，斜身閃開。\n" NOR;
         else
         {
                         
@@ -110,10 +110,10 @@ int perform(object me, object target)
                                            (: attack1, me, target, damage :));
         }
 
-        msg += HIM "\n$N" HIM "轻摇" + weapon->name() + HIM "，霎时，剑气纵横，流光乍现，令人目不暇接。\n" NOR;
+        msg += HIM "\n$N" HIM "輕搖" + weapon->name() + HIM "，霎時，劍氣縱橫，流光乍現，令人目不暇接。\n" NOR;
         if (ap*2/3 + random(ap / 2) < fp)
 
-                msg += CYN "$n" CYN "倒吸一口凉气，飞身一跳，狼狈地躲过这招。\n" NOR;
+                msg += CYN "$n" CYN "倒吸一口涼氣，飛身一跳，狼狽地躲過這招。\n" NOR;
         else
         {
                 msg += COMBAT_D->do_damage(me, target, (flagremote ? REMOTE_ATTACK : WEAPON_ATTACK), damage, 100 + (xy / 2 + random(xy / 2)>500?500:xy / 2 + random(xy / 2)),
@@ -124,8 +124,8 @@ int perform(object me, object target)
         message_combatd(msg, me, target);
         
         time = 40;
-        time -= ABILITY_D->check_ability(me, "cd-tjj-jian"); // ab门派减cd
-        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent减cd  
+        time -= ABILITY_D->check_ability(me, "cd-tjj-jian"); // ab門派減cd
+        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd  
                 
         buff =  
         ([
@@ -134,9 +134,9 @@ int perform(object me, object target)
                 "type"   : "cooldown",
                 "type2"  : "tjj_jian",
                 "attr"   : "curse",
-                "name"   : "太极剑法·太极剑意",
+                "name"   : "太極劍法·太極劍意",
                 "time"   : time,
-                "buff_msg" : "太极剑意消耗心神太甚，还需等待"+time+"秒方可再次施展。\n",
+                "buff_msg" : "太極劍意消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : "",
                 "disa_type": 0,
         ]);
@@ -149,15 +149,15 @@ string attack1(object me, object target, int damage)
 {
         string msg;
 
-        msg = HIR "$N" HIR "剑法飘逸无比，令$n" HIR "毫无反应，"
-              "竟呆立当场，不守不攻。\n" NOR;
+        msg = HIR "$N" HIR "劍法飄逸無比，令$n" HIR "毫無反應，"
+              "竟呆立當場，不守不攻。\n" NOR;
 
         // if( random(2) != 1 ) return msg;
         //if( target->query_condition("no_perform") ) return msg;
 
         target->apply_condition("no_perform", 5);
 
-        msg += WHT "$n" WHT "感到气脉受损，全身力道竟似涣散了一般，全然无法控制。\n" NOR;
+        msg += WHT "$n" WHT "感到氣脈受損，全身力道竟似渙散了一般，全然無法控制。\n" NOR;
 
         return msg;
 }
@@ -167,8 +167,8 @@ string attack2(object me, object target, int damage)
         mapping buff, data;
         string msg;
 
-        msg = HIR "$N" HIR "剑法越发凌厉，将$n" HIR "逼得接连后退，"
-              "剑光一闪，令$n" HIR "再也无从躲避。\n" NOR;
+        msg = HIR "$N" HIR "劍法越發凌厲，將$n" HIR "逼得接連後退，"
+              "劍光一閃，令$n" HIR "再也無從躲避。\n" NOR;
 
         if( random(2) != 1 ) return msg;
         
@@ -183,16 +183,16 @@ string attack2(object me, object target, int damage)
                 "target": target,
                 "type"  : "tjj_fengyin",
                 "attr"  : "curse",
-                "name"  : "太极剑法·封印",
+                "name"  : "太極劍法·封印",
                 "time"  : 30,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : HIR "你的忽视虚弱，忽视忙乱、忽视绝招冷冻能力终于解除封印。\n" NOR,
+                "disa_msg" : HIR "你的忽視虛弱，忽視忙亂、忽視絕招冷凍能力終於解除封印。\n" NOR,
                         
         ]);
         BUFF_D->buffup(buff);
 
-        msg += WHT "$n" WHT "感到自身的忽视虚弱，忽视忙乱、忽视绝招冷冻能力被封印。\n" NOR;
+        msg += WHT "$n" WHT "感到自身的忽視虛弱，忽視忙亂、忽視絕招冷凍能力被封印。\n" NOR;
 
         return msg;
 }

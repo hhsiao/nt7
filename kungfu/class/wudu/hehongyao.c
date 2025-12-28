@@ -7,17 +7,17 @@ inherit F_GUARDER;
 
 void create()
 {
-        set_name("何红药", ({ "he hongyao", "he" }));
+        set_name("何紅藥", ({ "he hongyao", "he" }));
         set("nickname", WHT "疤面丐婆" NOR);
         set("long", @LONG
-他就是五毒教的长老，教主的姑姑何红药。虽然是
-教主的长辈，但功夫却是一块跟上代教主学的。据
-说她曾经被立为教主继承人，但后来犯下大错，所
-以被罚到此处看守圣地，以赎前罪。她穿着一身破
-旧的衣衫，满脸疤痕，长得骨瘦如柴，双目中满是
+他就是五毒教的長老，教主的姑姑何紅藥。雖然是
+教主的長輩，但功夫卻是一塊跟上代教主學的。據
+說她曾經被立為教主繼承人，但後來犯下大錯，所
+以被罰到此處看守聖地，以贖前罪。她穿著一身破
+舊的衣衫，滿臉疤痕，長得骨瘦如柴，雙目中滿是
 怨毒之色。
 LONG);
-        set("title", "五毒教长老");
+        set("title", "五毒教長老");
         set("gender", "女性");
         set("age", 45);
         set("attitude", "friendly");
@@ -59,8 +59,8 @@ LONG);
         set_skill("martial-cognize", 160);
 
         set("no_teach", ([
-                "xiuluo-yinshagong"  : "修罗阴煞功必须由教主亲传。",
-                "hansha-sheying"     : "含沙射影这技能我都没能够学好。",
+                "xiuluo-yinshagong"  : "修羅陰煞功必須由教主親傳。",
+                "hansha-sheying"     : "含沙射影這技能我都沒能夠學好。",
         ]));
 
         map_skill("force", "xiuluo-yinshagong");
@@ -83,14 +83,14 @@ LONG);
         }));
 
         set("guarder", ([
-                "refuse_other": CYN "$N" CYN "身形一晃，挡住$n" CYN
-                                "，喝道：没有教主准许，谁也不得进入"
-                                "本教圣地。" NOR,
-                "refuse_carry": CYN "$N" CYN "对$n" CYN "喝道：你"
-                                "背上背的是什么人？给我放下来！" NOR,
+                "refuse_other": CYN "$N" CYN "身形一晃，擋住$n" CYN
+                                "，喝道：沒有教主准許，誰也不得進入"
+                                "本教聖地。" NOR,
+                "refuse_carry": CYN "$N" CYN "對$n" CYN "喝道：你"
+                                "背上背的是什麼人？給我放下來！" NOR,
         ]));
 
-        create_family("五毒教", 11, "长老");
+        create_family("五毒教", 11, "長老");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -117,34 +117,34 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)>-1000 )
         {
-                command("say 我越看你越象六扇门派来的卧底。");
+                command("say 我越看你越象六扇門派來的臥底。");
                 return;
         }
         if( query("shen", ob)>-8000 )
         {
-                command("say 你心慈手软，我是不会收你的！");
+                command("say 你心慈手軟，我是不會收你的！");
                 return;
         }
         if( query("combat_exp", ob)<60000 )
         {
-                command("say 你还是先去增长点经验吧。");
+                command("say 你還是先去增長點經驗吧。");
                 return;
         }
         if ((int)ob->query_skill("wudu-shengong", 1) < 80)
         {
-                command("say 你的五毒心法还学的不够啊。");
+                command("say 你的五毒心法還學的不夠啊。");
                 return;
         }
         if ((int)ob->query_skill("wudu-qishu", 1) < 50)
         {
-                command("say 我五毒教弟子以毒杀人，修习毒技是首要的。");
-                command("say 你是否还应该多多钻研本门的绝学？");
+                command("say 我五毒教弟子以毒殺人，修習毒技是首要的。");
+                command("say 你是否還應該多多鑽研本門的絕學？");
                 return;
         }
 
        command("nod");
-       command("say 不错，不错。");
+       command("say 不錯，不錯。");
        command("recruit "+query("id", ob));
-       set("title", "五毒教护法", ob);
+       set("title", "五毒教護法", ob);
        return;
 }

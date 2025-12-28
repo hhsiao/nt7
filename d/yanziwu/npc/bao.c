@@ -11,7 +11,7 @@ void create()
         set_name("包不同", ({"bao butong", "bao"}));
         set("gender", "男性");
         set("age", 31);
-        set("long", "他是慕容家四大家臣之三，生性喜欢饶舌。\n");
+        set("long", "他是慕容家四大家臣之三，生性喜歡饒舌。\n");
         set("attitude", "peaceful");
         set("str", 21);
         set("int", 26);
@@ -45,7 +45,7 @@ void create()
 
         set("inquiry", ([
                 "慕容博":   "那是老主人。\n",
-                "慕容复":   "他就是我们跟随的公子！\n",
+                "慕容復":   "他就是我們跟隨的公子！\n",
         ]));
 
         set("coagents", ({
@@ -62,6 +62,6 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        command("say 我们跟随慕容公子，不收徒。");
+        command("say 我們跟隨慕容公子，不收徒。");
         return;
 }

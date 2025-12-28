@@ -4,9 +4,9 @@ inherit NPC;
 
 void create()
 {
-        set_name(HIW "冰" HIR "火" HIC"守护神" NOR, ({ "binghuo shouhushen", "binghuo", "shouhushen" }));
+        set_name(HIW "冰" HIR "火" HIC"守護神" NOR, ({ "binghuo shouhushen", "binghuo", "shouhushen" }));
         set("title", HIB "暗夜流星" NOR); 
-        set("long", HIC "传说他就是冰火岛的守护神，在这里已经守护了千万年。\n" NOR);
+        set("long", HIC "傳說他就是冰火島的守護神，在這裡已經守護了千萬年。\n" NOR);
 
         set("gender", "男性");
         set("age", 9999);
@@ -22,8 +22,8 @@ void create()
         set_temp("apply/unarmed_damage", 5000000); 
         set_temp("apply/damage", 5000000); 
         set_temp("apply/armor", 200000);
-        set_temp("apply/qy", 80);  // 气运
-        set_temp("apply/fy", 80);  // 福缘      
+        set_temp("apply/qy", 80);  // 氣運
+        set_temp("apply/fy", 80);  // 福緣      
 
         set("scborn/ok", 1);
 
@@ -67,7 +67,7 @@ void create()
 
         set_skill("jingluo-xue", 9999);
 
-        set("no_nuoyi", 1); // 不被挪移影响
+        set("no_nuoyi", 1); // 不被挪移影響
 
         map_skill("parry", "qiankun-danuoyi");
         map_skill("force", "yinyang-shiertian");
@@ -90,7 +90,7 @@ void create()
               // 
               (: command("perform sword.ben twice") :), 
               (: command("perform sword.ben and sword.tian") :),
-              // 阴阳12t
+              // 陰陽12t
               (: command("perform finger.tian twice") :), 
               (: command("perform finger.zhen and finger.jiu") :), 
 
@@ -102,7 +102,7 @@ void create()
 
         }));
 
-        set("my_life", 1); // 当气血低于10%的时候补满一次，设置该参数为0
+        set("my_life", 1); // 當氣血低於10%的時候補滿一次，設置該參數為0
 
         setup();
 
@@ -161,7 +161,7 @@ void new_life()
 {
         object me = this_object();
 
-        // 补满气血
+        // 補滿氣血
         set("eff_qi",query("max_qi",  me), me);
         set("qi",query("max_qi",  me), me);
         set("eff_jing",query("max_jing",  me), me);
@@ -179,11 +179,11 @@ void new_life()
         set_temp("apply/unarmed_damage", 150000); 
         set_temp("apply/damage", 150000); 
         set_temp("apply/armor", 100000);
-        set_temp("apply/qy", 70);  // 气运
-        set_temp("apply/fy", 70);  // 福缘      
+        set_temp("apply/qy", 70);  // 氣運
+        set_temp("apply/fy", 70);  // 福緣      
         delete("my_life", me);
 
-        message_vision(HIG "\n$N" HIG "大喝一声，目光顿时充满杀意！\n\n" NOR, me);
+        message_vision(HIG "\n$N" HIG "大喝一聲，目光頓時充滿殺意！\n\n" NOR, me);
         
         return; 
 }
@@ -210,7 +210,7 @@ void die(object killer)
                 return;
         }
 
-        // 如果还未重生，则重生一次
+        // 如果還未重生，則重生一次
         if (query("my_life"))
         {
                 new_life();
@@ -218,7 +218,7 @@ void die(object killer)
         }
 
 
-        // 不给予奖励
+        // 不給予獎勵
         ::die(killer);
         return;
 }  

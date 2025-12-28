@@ -4,10 +4,10 @@
 inherit ROOM;
 void create()
 {
-	set("short", "月影楼顶");
+	set("short", "月影樓頂");
 	set("long", @LONG
-此处两边飞楼插空，雕栏绣槛，绿窗油壁。
-四面香风，穿窗而入，令人沉醉。
+此處兩邊飛樓插空，雕欄繡檻，綠窗油壁。
+四面香風，穿窗而入，令人沉醉。
 LONG	);
 	set("exits", ([ 
   "down" : __DIR__"yyl2",

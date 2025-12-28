@@ -8,7 +8,7 @@ void create()
         set("gender", "男性");
         set("age", 30);
         set("long",
-                "这家伙满脸横肉一付凶神恶煞的模样，令人望而生畏。\n");
+                "這傢伙滿臉橫肉一付凶神惡煞的模樣，令人望而生畏。\n");
         set("combat_exp", 10000);
         set("shen_type", -1);
         set("attitude", "aggressive");

@@ -6,7 +6,7 @@ void create()
 {
     set("short", "小院");
     set("long", @LONG
-一个不大的院子，穿过院子就是一间小屋，屋门紧闭着。
+一個不大的院子，穿過院子就是一間小屋，屋門緊閉著。
 LONG);
 
     set("exits",

@@ -7,11 +7,11 @@ inherit NPC;
 void create()
 {
         set_name(NOR "阿三" NOR, ({ "a san","san","npc_asan" }) );
-        set("title", NOR "通吃帮和尚" NOR);
+        set("title", NOR "通吃幫和尚" NOR);
         set("nickname", MAG "三撇老蛋" NOR);
         set("gender", "男性");
         set("age", 19);
-        set("long", NOR"他就是江湖上赫赫有名的通吃帮不守戒律的和尚。\n"NOR);
+        set("long", NOR"他就是江湖上赫赫有名的通吃幫不守戒律的和尚。\n"NOR);
         set("attitude", "peaceful");
         set("str", 26);
         set("con", 27);

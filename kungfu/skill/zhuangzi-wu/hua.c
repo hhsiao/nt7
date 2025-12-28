@@ -12,28 +12,28 @@ int perform(object me, object target)
         int count, cnt, skill;
 
         if( BUFF_D->check_buff(me, "dodgeup") )
-                return notify_fail("你已经运起" HUA "了。\n");
+                return notify_fail("你已經運起" HUA "了。\n");
 
         if ((int)me->query_skill("zhuangzi-wu", 1) < 150)
-                return notify_fail("你的庄子舞等级不够，难以施展" HUA "。\n");
+                return notify_fail("你的莊子舞等級不夠，難以施展" HUA "。\n");
 
         if ((int)me->query_dex() < 32)
-                return notify_fail("你的身法不够，难以施展" HUA "。\n");
+                return notify_fail("你的身法不夠，難以施展" HUA "。\n");
 
         if ((int)me->query_skill("force", 1) < 150)
-                return notify_fail("你的内功火候不够，难以施展" HUA "。\n");
+                return notify_fail("你的內功火候不夠，難以施展" HUA "。\n");
 
         if ((int)me->query_skill("dodge", 1) < 150)
-                return notify_fail("你的轻功修为不够，难以施展" HUA "。\n");
+                return notify_fail("你的輕功修為不夠，難以施展" HUA "。\n");
 
         if( query("max_neili", me)<1000 )
-                return notify_fail("你的内力修为不够，难以施展" HUA "。\n");
+                return notify_fail("你的內力修為不夠，難以施展" HUA "。\n");
 
         if( query("neili", me)<250 )
-                return notify_fail("你此时的内力不足，难以施展" HUA "。\n");
+                return notify_fail("你此時的內力不足，難以施展" HUA "。\n");
 
-        msg = MAG "$N" MAG "一声清啸，身形一展，舞步宛如行云流水、彩碟飞"
-              "扬，速度变得异常敏捷。\n\n" NOR;
+        msg = MAG "$N" MAG "一聲清嘯，身形一展，舞步宛如行雲流水、彩碟飛"
+              "揚，速度變得異常敏捷。\n\n" NOR;
         
         
         skill = me->query_skill("zhuangzi-wu", 1);
@@ -53,11 +53,11 @@ int perform(object me, object target)
                 "target": me,
                 "type"  : "dodgeup",
                 "attr"  : "bless",
-                "name"  : "庄子舞·化蝶",
+                "name"  : "莊子舞·化蝶",
                 "time"  : skill/2,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : "你的化蝶运行完毕，将内力收回丹田。\n",
+                "disa_msg" : "你的化蝶運行完畢，將內力收回丹田。\n",
                         
         ]);
         BUFF_D->buffup(buff);

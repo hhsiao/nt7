@@ -6,8 +6,8 @@ void setup()
 {
         set_name("水谷心音[2;37;0m[2;37;0m", ({"nini"}));        
         set("gender", "女性");                
-        set("long", "水谷心音 于2009年在AV界出道，属于Duo Entertainment事务所.[2;37;0m
-它是湛哥的魔幻兽。
+        set("long", "水谷心音 於2009年在AV界出道，屬於Duo Entertainment事務所.[2;37;0m
+它是湛哥的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

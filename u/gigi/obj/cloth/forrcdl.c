@@ -11,7 +11,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "堆");
-                 set("long","这是绿莲老猪的"+YEL"一大堆便便"NOR+"。\n"); 
+                 set("long","這是綠蓮老豬的"+YEL"一大堆便便"NOR+"。\n"); 
                 set("value",0);
                 set("material", "cloth");
                 set("armor_prop/armor", 1);

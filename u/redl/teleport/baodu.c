@@ -7,10 +7,10 @@ inherit __DIR__"normal.c";
 
 void create()
 {
-        set("short", "抱犊山道");
+        set("short", "抱犢山道");
         set("long", 
-"这是七十二福地中的抱犊山门户，北上有条幽静小路蜿蜒，两旁\n"
-"全是火红色的枫叶林，只微微听得见流水潺潺的声音。\n"
+"這是七十二福地中的抱犢山門戶，北上有條幽靜小路蜿蜒，兩旁\n"
+"全是火紅色的楓葉林，只微微聽得見流水潺潺的聲音。\n"
 );
                 set("outdoors", "yangzhou");
                 set("exits",([ /* sizeof() == 1 */

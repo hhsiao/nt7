@@ -11,7 +11,7 @@ void create()
 	/*if (clonep())
 		set_default_object(__FILE__);
 	else*/ {
-		set("long", "一碟水灵新鲜的水蜜桃。\n");
+		set("long", "一碟水靈新鮮的水蜜桃。\n");
 		set("unit", "碟");
 		set("value", 80);
 		set("food_remaining", 4);

@@ -1,11 +1,11 @@
-// liandu.c 毒液练药
+// liandu.c 毒液練藥
 
 #include <ansi.h>
 #include <combat.h>
 
 inherit F_SSERVER;
 
-string name() { return "炼毒"; }
+string name() { return "煉毒"; }
 
 int perform(object me, object target)
 {
@@ -18,32 +18,32 @@ int perform(object me, object target)
         int sk;
 
         if (! target)
-                return notify_fail("你要取哪条蛇的毒液练药？\n");
+                return notify_fail("你要取哪條蛇的毒液練藥？\n");
 
         if (! target->is_snake())
-                return notify_fail("看清楚些，那不是蛇，你瞎搞什么？\n");
+                return notify_fail("看清楚些，那不是蛇，你瞎搞什麼？\n");
 
         if (living(target))
-                return notify_fail("那条蛇还精神着呢，你找死啊。\n");
+                return notify_fail("那條蛇還精神著呢，你找死啊。\n");
 
         if ((int)me->query_skill("shedu-qiqiao", 1) < 80)
-                return notify_fail("你的蛇毒奇巧还不够娴熟，不能炼制毒药。\n");
+                return notify_fail("你的蛇毒奇巧還不夠嫻熟，不能煉製毒藥。\n");
 
         if ((int)me->query_skill("hamagong", 1) < 80)
-                return notify_fail("你的蛤蟆功的修为不够，不能炼制毒药。\n");
+                return notify_fail("你的蛤蟆功的修為不夠，不能煉製毒藥。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你现在的内力不够！\n");
+                return notify_fail("你現在的內力不夠！\n");
 
         addn("neili", -50, me);
         me->start_busy(random(3));
 
-        msg = HIC "\n$N" HIC "伸出双指，捏住" + target->name() +
-              HIC "的嘴巴，以内力迫出毒液练药。\n" NOR;
+        msg = HIC "\n$N" HIC "伸出雙指，捏住" + target->name() +
+              HIC "的嘴巴，以內力迫出毒液練藥。\n" NOR;
 
         p=query("snake_poison", target);
         if (! mapp(p))
-                return notify_fail("看来你是弄不出什么毒液来了。\n" NOR);
+                return notify_fail("看來你是弄不出什麼毒液來了。\n" NOR);
 
         lvl = (int) me->query_skill("poison", 1) / 2 +
               (int) me->query_skill("shedu-qiqiao", 1);
@@ -59,23 +59,23 @@ int perform(object me, object target)
 
         if (! amount)
         {
-                msg += WHT "$N" WHT "挤了半天，结果啥也没有挤出来，算是白忙活了。\n\n" NOR;
+                msg += WHT "$N" WHT "擠了半天，結果啥也沒有擠出來，算是白忙活了。\n\n" NOR;
                 message_combatd(msg, me);
                 return 1;
         }
 
         if (amount < lvl)
         {
-                msg += WHT "$N" WHT "挤了一点毒液出来。\n\n" NOR;
+                msg += WHT "$N" WHT "擠了一點毒液出來。\n\n" NOR;
                 message_combatd(msg, me);
-                tell_object(me, HIY "可惜这点毒液连练一颗毒药都不够。\n" NOR);
+                tell_object(me, HIY "可惜這點毒液連練一顆毒藥都不夠。\n" NOR);
                 return 1;
         }
 
-        msg += HIM "$N" HIM "将" + target->name() + HIM "的毒液悉数挤"
-               "出，在内力的作用下化成了一颗晶莹剔透的药丸。\n\n" NOR;
+        msg += HIM "$N" HIM "將" + target->name() + HIM "的毒液悉數擠"
+               "出，在內力的作用下化成了一顆晶瑩剔透的藥丸。\n\n" NOR;
         message_combatd(msg, me);
-        tell_object(me, HIC "你炼制了一颗蛇毒药丸。\n" NOR);
+        tell_object(me, HIC "你煉製了一顆蛇毒藥丸。\n" NOR);
 
         // improve skill
         exp = lvl / 5;

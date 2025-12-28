@@ -3,11 +3,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("张康年", ({ "zhang kangnian", "zhang", "kangnian" }));
-        set("title", HIR "御前侍卫" NOR);
+        set_name("張康年", ({ "zhang kangnian", "zhang", "kangnian" }));
+        set("title", HIR "御前侍衛" NOR);
         set("age", 32);
         set("gender", "男性");
-        set("long", "一个身材魁梧的中年男子，他便是御前侍卫张康年。\n");
+        set("long", "一個身材魁梧的中年男子，他便是御前侍衛張康年。\n");
         set("attitude", "peaceful");
 
         set("str", 30);
@@ -27,7 +27,7 @@ void create()
 
        set("chat_chance_combat", 10);
         set("chat_msg_combat", ({
-                "张康年喝道：太岁头上居然敢动土？\n",
+                "張康年喝道：太歲頭上居然敢動土？\n",
         }));
         setup();
         carry_object("/d/beijing/npc/obj/sword4")->wield();
@@ -47,7 +47,7 @@ void init()
 
 int accept_fight(object me)
 {
-        command("say 这可是你活腻了自找的，休得怪我无情。\n");
+        command("say 這可是你活膩了自找的，休得怪我無情。\n");
         me->apply_condition("killer", 500);
         kill_ob(me);
         return 1;

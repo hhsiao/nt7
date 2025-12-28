@@ -5,8 +5,8 @@ int is_snake(){return 1;}
 
 void create()
 {
-        set_name(HIR "九头蛇" NOR, ({ "jiutou she", "jiutou", "she" }));
-        set("long", HIR "这是一只巨大的毒蛇，长有九个头，形状十分可怕。\n" NOR);
+        set_name(HIR "九頭蛇" NOR, ({ "jiutou she", "jiutou", "she" }));
+        set("long", HIR "這是一隻巨大的毒蛇，長有九個頭，形狀十分可怕。\n" NOR);
 
         set("age", 90);
         set("str", 300);
@@ -28,7 +28,7 @@ void create()
         set("max_neili", 650000);
         set("neili", 650000);
 
-        set("no_nuoyi", 1); // 不被挪移影响
+        set("no_nuoyi", 1); // 不被挪移影響
 
         set("snake_poison", ([
                 "level"  : 600,
@@ -110,18 +110,18 @@ mixed hit_ob(object me, object ob, int damage)
         {
                 if (query("qi", ob) < 150)
                 {
-                        msg = HIR "你觉得伤口有些发麻，连忙运功化解，但"
-                              "是一时体力不支，难以施为。\n" NOR;
+                        msg = HIR "你覺得傷口有些發麻，連忙運功化解，但"
+                              "是一時體力不支，難以施為。\n" NOR;
                 } else
                 if (query("jing", ob) < 60)
                 {
-                        msg = HIR "你觉得伤口有些发麻，连忙运功化解，但"
-                              "是一时精神不济，难以施为。\n" NOR;
+                        msg = HIR "你覺得傷口有些發麻，連忙運功化解，但"
+                              "是一時精神不濟，難以施為。\n" NOR;
                 } else
                 if (query("neili", ob) < damage / 5 + 50)
                 {
-                        msg = HIR "你觉得伤口有些发麻，连忙运功化解，但"
-                              "是一时内力不足，难以施为。\n" NOR;
+                        msg = HIR "你覺得傷口有些發麻，連忙運功化解，但"
+                              "是一時內力不足，難以施為。\n" NOR;
                 } else
                 {
                         ob->add("neili", -damage / 5);
@@ -129,7 +129,7 @@ mixed hit_ob(object me, object ob, int damage)
                                 set("neili", 0, ob);
                         ob->receive_damage("qi", 20);
                         ob->receive_damage("jing", 10);
-                        return HIM "你觉得被咬中的地方有些发麻，连忙运功"
+                        return HIM "你覺得被咬中的地方有些發麻，連忙運功"
                                "化解毒性。\n" NOR;
                 }
         }
@@ -139,7 +139,7 @@ mixed hit_ob(object me, object ob, int damage)
                                        "id"    : "nature poison",
                                        "duration" : dur / 2, ])))
         {
-                msg += HIR "$n" HIR "脸色一变，只觉被咬中的地方一阵麻木。\n" NOR;
+                msg += HIR "$n" HIR "臉色一變，只覺被咬中的地方一陣麻木。\n" NOR;
         }
         return msg;
 }

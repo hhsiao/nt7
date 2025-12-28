@@ -6,17 +6,17 @@ inherit ROOM;
 
 void create()
 {
-	set("short", "万佛洞内洞");
+	set("short", "萬佛洞內洞");
 	set("long", @LONG
-这里是万佛洞的内洞了，洞内显得较昏暗异常，你看不清什么东
-西，洞内静静的，只听见自己的脚步声和心跳呼吸声，隐隐有个人面
-对着墙壁坐着。这里没有什么明显的出口。
+這裡是萬佛洞的內洞了，洞內顯得較昏暗異常，你看不清什麼東
+西，洞內靜靜的，只聽見自己的腳步聲和心跳呼吸聲，隱隱有個人面
+對著牆壁坐著。這裡沒有什麼明顯的出口。
 LONG);
 	set("exits", ([
 	       "south" : __DIR__"wfd2",
         ]));
       
-        create_door("south", "石门", "north", DOOR_CLOSED);
+        create_door("south", "石門", "north", DOOR_CLOSED);
 	setup();
 }
 

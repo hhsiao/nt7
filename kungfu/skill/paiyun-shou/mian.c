@@ -1,5 +1,5 @@
 // This program is a part of NITAN MudLIB
-// mian 绵绵不绝
+// mian 綿綿不絕
 
 
 #include <ansi.h>
@@ -7,7 +7,7 @@
 
 inherit F_SSERVER;
 
-string name() { return "绵绵不绝"; }
+string name() { return "綿綿不絕"; }
 
 int perform(object me, object target)
 {
@@ -16,23 +16,23 @@ int perform(object me, object target)
 
         if( !target ) target = offensive_target(me);
         if( !target || !me->is_fighting(target) )
-                return notify_fail("「绵绵不绝」只能在战斗中对对手使用。\n");
+                return notify_fail("「綿綿不絕」只能在戰鬥中對對手使用。\n");
 
         if( objectp(query_temp("weapon", me)) )
-                return notify_fail("使用「绵绵不绝」时必须空手！\n");
+                return notify_fail("使用「綿綿不絕」時必須空手！\n");
 
         if( (int)me->query_skill("paiyun-shou", 1) < 120 )
-                return notify_fail("你的排云推手不够娴熟，不会使用「绵绵不绝」。\n");
+                return notify_fail("你的排雲推手不夠嫻熟，不會使用「綿綿不絕」。\n");
 
         if( query("max_neili", me)<1100 )
-                return notify_fail("你现在内力修为不够，不能使用「绵绵不绝」。\n");
+                return notify_fail("你現在內力修為不夠，不能使用「綿綿不絕」。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你现在内力太弱，不能使用「绵绵不绝」。\n");
+                return notify_fail("你現在內力太弱，不能使用「綿綿不絕」。\n");
 
         if( me->query_skill_prepared("hand") != "paiyun-shou"
         ||  me->query_skill_mapped("hand") != "paiyun-shou")
-                return notify_fail("你必须全面运用排云推手，才能使用「绵绵不绝」。\n");
+                return notify_fail("你必須全面運用排雲推手，才能使用「綿綿不絕」。\n");
 
 
         i = (me->query_skill("paiyun-shou", 1)/2);
@@ -49,7 +49,7 @@ int perform(object me, object target)
         {
                 y = 6;
         }
-        msg = HIY "$N忽然身随掌起，双掌圈动，似虚而实，似柔而刚。一掌拍出，第二掌接踵而至，一连"+chinese_number(y)+"掌，其意如排云滚滚。\n" NOR;
+        msg = HIY "$N忽然身隨掌起，雙掌圈動，似虛而實，似柔而剛。一掌拍出，第二掌接踵而至，一連"+chinese_number(y)+"掌，其意如排雲滾滾。\n" NOR;
         message_combatd(msg, me, target);
         addn_temp("apply/attack", i, me);
 

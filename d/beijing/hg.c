@@ -4,10 +4,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "皇宫大殿");
+        set("short", "皇宮大殿");
         set("long", @LONG
-这里便是紫禁城的正门的大殿，寻常百姓是到不了这里来的，如
-果你以不正当的途径到了这里，还是赶快离开为好。
+這裡便是紫禁城的正門的大殿，尋常百姓是到不了這裡來的，如
+果你以不正當的途徑到了這裡，還是趕快離開為好。
 LONG );
         set("exits", ([
                 "north" : "/d/beijing/hgmen_n",

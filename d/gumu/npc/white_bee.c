@@ -8,14 +8,14 @@ inherit NPC;
 void create()
 {
         set_name(WHT"玉蜂群"NOR, ({ "yufeng qun","bees" }) );
-        set("race", "昆虫");
-        set("subrace", "飞虫");
+        set("race", "昆蟲");
+        set("subrace", "飛蟲");
         set("age", 1);
-        set("long", "这是古墓派驯养的一群玉蜂，嗡嗡的，不知有多少。\n");
+        set("long", "這是古墓派馴養的一群玉蜂，嗡嗡的，不知有多少。\n");
         set("str", 60);
         set("dex", 80);
 
-        set("limbs", ({ "密集处", "稀薄处", "核心", "外围" }) );
+        set("limbs", ({ "密集處", "稀薄處", "核心", "外圍" }) );
 
         set("max_jing",1000);
         set("jing",1000);
@@ -40,7 +40,7 @@ void die()
 {
         object ob;
 
-        message_vision("\n$N终于都死了，地上白茫茫一片。\n", this_object());
+        message_vision("\n$N終於都死了，地上白茫茫一片。\n", this_object());
         destruct(this_object());
 }
 
@@ -69,29 +69,29 @@ int do_attack(string arg)
         if (!arg) return 0;
 
         victim = arg;
-        if( victim == query("id", me))return notify_fail("玉蜂群不知所措，只是围着你打转。\n");
+        if( victim == query("id", me))return notify_fail("玉蜂群不知所措，只是圍著你打轉。\n");
 
         ob = present(victim, environment(me));
         bees = present("yufeng qun", environment(me));
 
-        if (!ob) return notify_fail("这里并无此人！\n");
+        if (!ob) return notify_fail("這裡並無此人！\n");
 
-        message_vision(HIR "$N嘴里嗡嗡作声，指挥玉蜂群向$n攻去。\n" NOR, me, ob);
+        message_vision(HIR "$N嘴裡嗡嗡作聲，指揮玉蜂群向$n攻去。\n" NOR, me, ob);
 
-        if( query("owner") != me || query("race", ob) != "人类"
+        if( query("owner") != me || query("race", ob) != "人類"
                  || query("family/family_name", ob) == "古墓派"){
-                message_vision( "$N不知所措，只是围着你打转。\n" NOR, bees );
+                message_vision( "$N不知所措，只是圍著你打轉。\n" NOR, bees );
                 return 1;
         }
 
         if( random(20) ){
-                message_vision( HIW"只见$N发疯般向$n扑了过去。\n" NOR, bees, ob );
+                message_vision( HIW"只見$N發瘋般向$n撲了過去。\n" NOR, bees, ob );
                 bees->kill_ob(ob);
                 me->want_kill(ob);
                 ob->kill_ob(me);
         }
         else
-                message_vision( "$N不知所措，只是围着你打转。\n" NOR, bees );
+                message_vision( "$N不知所措，只是圍著你打轉。\n" NOR, bees );
 
         return 1;
 }

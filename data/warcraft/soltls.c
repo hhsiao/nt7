@@ -7,7 +7,7 @@ void setup()
         set_name("拜拜[2;37;0m[2;37;0m", ({"seebye"}));        
         set("gender", "女性");                
         set("long", "拜拜[2;37;0m
-它是第五言福的魔幻兽。
+它是第五言福的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

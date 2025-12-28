@@ -6,11 +6,11 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("花万紫",({"hua wanzi", "hua", "wanzi"}));
-        set("long", "花万紫是凌宵城雪山剑派中少有的女弟子，只见她颇\n"
-                    "具姿色，在众多六代弟子中甚为出众。\n");
+        set_name("花萬紫",({"hua wanzi", "hua", "wanzi"}));
+        set("long", "花萬紫是凌宵城雪山劍派中少有的女弟子，只見她頗\n"
+                    "具姿色，在眾多六代弟子中甚為出眾。\n");
         set("gender", "女性");
-        set("nickname", HIR "寒梅女侠" NOR);
+        set("nickname", HIR "寒梅女俠" NOR);
         set("age", 24);
         set("attitude", "friendly");
         set("shen_type", 1);
@@ -74,9 +74,9 @@ void attempt_apprentice(object me)
 
         if( query("gender", me) != "女性" )
         {
-                command("say 我不便收男徒，你去找我师兄吧。");
+                command("say 我不便收男徒，你去找我師兄吧。");
                 return;
         }
-        command("say 很好，你以后就跟着我吧。");
+        command("say 很好，你以後就跟著我吧。");
         command("recruit "+query("id", me));
 }

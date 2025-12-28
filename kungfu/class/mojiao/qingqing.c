@@ -16,11 +16,11 @@ void create()
         set("age", 21);
         set("shen_type", -1);
         set("long", "
-穿着一身淡青色的衣服，就像是春天晴朗的天空，
-晴空下清澈的湖水，湖水中倒映着的远山，美得
-神秘而朦胧。笑容清新，甜柔，纯洁，高贵。腰
-上挂着一柄弯刀，弯刀是用纯银作刀鞘，刀柄上
-镶着一粒光泽圆润的明珠。");
+穿著一身淡青色的衣服，就像是春天晴朗的天空，
+晴空下清澈的湖水，湖水中倒映著的遠山，美得
+神秘而朦朧。笑容清新，甜柔，純潔，高貴。腰
+上掛著一柄彎刀，彎刀是用純銀作刀鞘，刀柄上
+鑲著一粒光澤圓潤的明珠。");
 
         set("attitude", "peaceful");
 
@@ -83,8 +83,8 @@ void create()
         }) );
 
         set("inquiry", ([
-                "圆月弯刀"      : (: ask_blade :),
-                "圆月魔刀"      : (: ask_blade :),
+                "圓月彎刀"      : (: ask_blade :),
+                "圓月魔刀"      : (: ask_blade :),
         ]));
 
         set_temp("apply/attack", 280);
@@ -101,17 +101,17 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        command("say 我不收徒，你还是另找他人吧！");
+        command("say 我不收徒，你還是另找他人吧！");
 }
 
 int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "当时明月在" :
+        case "當時明月在" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/moon-blade/yue",
-                           "name"    : "当时明月在",
+                           "name"    : "當時明月在",
                            "sk1"     : "moon-blade",
                            "lv1"     : 300,
                            "dodge"   : 300,
@@ -119,10 +119,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -50000, ]));
                 break;
 
-        case "小楼一夜听春雨" :
+        case "小樓一夜聽春雨" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/moon-blade/ting",
-                           "name"    : "小楼一夜听春雨",
+                           "name"    : "小樓一夜聽春雨",
                            "sk1"     : "moon-blade",
                            "lv1"     : 300,
                            "dodge"   : 300,
@@ -155,13 +155,13 @@ int recognize_apprentice(object ob, string skill)
 
         if (owner != ob)
         {
-                command("say 你还是先拿到圆月弯刀后再来找我学习圆月刀法吧！");
+                command("say 你還是先拿到圓月彎刀後再來找我學習圓月刀法吧！");
                 return -1;
         }
 
         if (ob->query_skill(skill, 1) >= 600)
         {
-                command("say 够了！我就教你到这里吧，武功还是"
+                command("say 夠了！我就教你到這裡吧，武功還是"
                         "要靠自己多研究才是！");
                 return -1;
         }
@@ -178,17 +178,17 @@ int recognize_apprentice(object ob, string skill)
         {
                 if( query("family/family_name", ob) != "魔教" )
                 {
-                        command("say 你和我素无渊源，我为什么要教你武功？");
+                        command("say 你和我素無淵源，我為什麼要教你武功？");
                         return -1;
                 }
 
-                message_vision("$N看了看$n，点点头道：圆月刀法也没有什么难学的。\n",
+                message_vision("$N看了看$n，點點頭道：圓月刀法也沒有什麼難學的。\n",
                                this_object(), ob);
                 set_temp("can_learn/qingqing/moon-blade", 1, ob);
                 return 1;
         }
 
-        command("say 我只懂得一点圆月刀法，你可不要为难我。");
+        command("say 我只懂得一點圓月刀法，你可不要為難我。");
         return -1;
 }
 
@@ -204,35 +204,35 @@ mixed ask_blade()
                 return "你找死啊？";
 
         if( query("combat_exp", me)<2000000 )
-                return "你武功太差了，就别给我魔教丢脸了。";
+                return "你武功太差了，就別給我魔教丟臉了。";
 
    if( query("family/first", me) ) cost = 250; 
              else cost = 500; 
              if( query("family/gongji", me) < cost ) 
-                     return "你为我魔教效力还不够，等你拥有足够的师门功绩再来兑换圆月弯刀使用时间吧。";
+                     return "你為我魔教效力還不夠，等你擁有足夠的師門功績再來兌換圓月彎刀使用時間吧。";
 
         call_other(MOON_BLADE, "???");
         ob = find_object(MOON_BLADE);
         if (! objectp(ob))
-                return "刀没了！";
+                return "刀沒了！";
 
         if (objectp(owner = environment(ob)))
         {
                 if(owner == me)
                 {
                         destruct(ob);
-                        return "你什么意思？不要就拿回来嘛。\n";
+                        return "你什麼意思？不要就拿回來嘛。\n";
                 }
                 if(owner->is_character())
                 {
-                        return "刀已经被" + owner->name(1) + "拿走了。等归还后你再来取吧。\n";
+                        return "刀已經被" + owner->name(1) + "拿走了。等歸還後你再來取吧。\n";
                 }
-                return "刀已经被人借走了。现在不知道在什么地方。\n";
+                return "刀已經被人借走了。現在不知道在什麼地方。\n";
         }
         ob->move(me, 1);
         ob->start_borrowing();
     addn("family/gongji", -cost, me); 
-        message_vision("$N掏出一把象月芽儿样的弯刀，递给$n，"
+        message_vision("$N掏出一把象月芽兒樣的彎刀，遞給$n，"
                        "道：“你可要拿好了！切勿被他人拿走”。\n", this_object(), me);
         return 1;
 }

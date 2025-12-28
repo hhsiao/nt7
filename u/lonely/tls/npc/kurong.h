@@ -6,23 +6,23 @@ int ask_xingyue(object who)
 	me=this_player();
 
 	myfam = me->query("family");
-	if (!myfam || myfam["family_name"] != "天龙寺") {
+	if (!myfam || myfam["family_name"] != "天龍寺") {
 		command("knock "+(string)me->query("id"));
-		command("say 你非我派弟子，也敢来滥竽充数!\n");
+		command("say 你非我派弟子，也敢來濫竽充數!\n");
 		return 1;
 	}
 	if (me->query_skill("buddhism", 1) < 180){
 		command("pat "+(string)me->query("id"));
-		command("say 你的佛法还需精进，这星月菩提目前是不适合你的!\n");
+		command("say 你的佛法還需精進，這星月菩提目前是不適合你的!\n");
 		return 1;
 	}
 	command("nod "+(string)me->query("id"));
 	ob=present("xingyue puti",this_object());
 	if(ob){
 		ob->move(me);
-		command("say 你这么勤奋修行，这佛门至宝就送你防身吧!\n");
+		command("say 你這麼勤奮修行，這佛門至寶就送你防身吧!\n");
 	} else
-		command("say 你这么勤奋修行，不错不错，可惜我已经把它送给你的师兄弟了。\n");
+		command("say 你這麼勤奮修行，不錯不錯，可惜我已經把它送給你的師兄弟了。\n");
 	return 1;
 }
 
@@ -33,28 +33,28 @@ void attempt_apprentice(object ob)
 
 	myfam = (mapping)ob->query("family");
 	if (!myfam) return;
-	if (myfam["family_name"] != "天龙寺") {
-		command ("say 你不是天龙寺弟子，这话从何说起！\n");
+	if (myfam["family_name"] != "天龍寺") {
+		command ("say 你不是天龍寺弟子，這話從何說起！\n");
 		return;
 	}
 	if((int)ob->query_skill("buddhism",1)<140){
-		command("say 我段家武功与佛学息息相关，我看"+RANK_D->query_respect(ob)+"的禅宗修为似乎不够？");
+		command("say 我段家武功與佛學息息相關，我看"+RANK_D->query_respect(ob)+"的禪宗修為似乎不夠？");
 		return;
 	}
 	if((int)ob->query_skill("yiyang-zhi",1)<160){
-		command("say 我天龙寺武功首推一阳指，我看"+RANK_D->query_respect(ob)+"似乎应在一阳指上多下点功夫。");
+		command("say 我天龍寺武功首推一陽指，我看"+RANK_D->query_respect(ob)+"似乎應在一陽指上多下點功夫。");
 		return;
 	}
 	if((int)ob->query_skill("qiantian-yiyang",1)<160) {
-		command("say 修练一阳指内功最为重要，我看"+RANK_D->query_respect(ob)+"似乎应在乾天一阳功上多下点功夫。");
+		command("say 修練一陽指內功最為重要，我看"+RANK_D->query_respect(ob)+"似乎應在乾天一陽功上多下點功夫。");
 		return;
 	}
 	if(!(ob->query("tls")) && !(ob->query_temp("tls_app"))){
-		command("say 阿弥陀佛！请回吧，贫僧不轻易收出家弟子。");
+		command("say 阿彌陀佛！請回吧，貧僧不輕易收出家弟子。");
 		return;
 	}
 	if(ob->query("tls")&&((int)ob->query("shen") > 1000 || (int)ob->query("shen")+1000 <0 )){
-		command("say 我天龙寺乃清修之地，依我看"+RANK_D->query_respect(ob)+"似乎红尘未了,不宜继续修行。");
+		command("say 我天龍寺乃清修之地，依我看"+RANK_D->query_respect(ob)+"似乎紅塵未了,不宜繼續修行。");
 		return;
 	}
 
@@ -67,21 +67,21 @@ void attempt_apprentice(object ob)
 		new_name="本"+old_name[0..0];
 	}
 	if (!ob->query("tls") || (string)ob->query("class")!="bonze"){
-		command("say 贫僧只收出家弟子，今日老僧帮你剃度。");
-		message_vision("$N双手合什，喃喃念道: \n",ob);
-		message_vision("我闻浮屠道  中有解脱门  置心如止水  视身等浮云 \n",ob);
-		message_vision("抖擞垢秽衣  度脱生死轮  胡为爱所苦  不去尚逡巡 \n",ob);
-		message_vision("回念发弘愿  愿此见在身  只受过去报  不结未来恩 \n",ob);
-		message_vision("誓以智慧水  永洗烦恼尘  不将恩爱子  再结烦忧根 \n",ob);
-		message_vision("枯荣禅师伸出一只皮包骨头的瘦手在"+ob->query("name")+"的头上一按，顿时头发尽落。\n",ob);
+		command("say 貧僧只收出家弟子，今日老僧幫你剃度。");
+		message_vision("$N雙手合什，喃喃念道: \n",ob);
+		message_vision("我聞浮屠道  中有解脫門  置心如止水  視身等浮雲 \n",ob);
+		message_vision("抖擻垢穢衣  度脫生死輪  胡為愛所苦  不去尚逡巡 \n",ob);
+		message_vision("回念發弘願  願此見在身  只受過去報  不結未來恩 \n",ob);
+		message_vision("誓以智慧水  永洗煩惱塵  不將恩愛子  再結煩憂根 \n",ob);
+		message_vision("枯榮禪師伸出一隻皮包骨頭的瘦手在"+ob->query("name")+"的頭上一按，頓時頭髮盡落。\n",ob);
 	}
 	ob->set("name",new_name);
 	ob->set("class","bonze");
 	ob->set("tls",1);
-	command("chat 入我门来法名"+new_name);
+	command("chat 入我門來法名"+new_name);
 	command("recruit " + ob->query("id") );
 	command("chat 哈哈哈哈!");
-	command("chat 老衲终于找到一个可传衣钵之人,真是可喜可贺!");
+	command("chat 老衲終於找到一個可傳衣缽之人,真是可喜可賀!");
 	return;
 }
 
@@ -97,14 +97,14 @@ int ask_dudan(object who)
 	mapping myfam;
 	me=this_player();
 	myfam = (mapping)me->query("family");
-	if (!myfam || myfam["family_name"] != "天龙寺") {
+	if (!myfam || myfam["family_name"] != "天龍寺") {
 		command("slap "+(string)me->query("id"));
-		command("say 你非我派弟子，也敢来滥竽充数!\n");
+		command("say 你非我派弟子，也敢來濫竽充數!\n");
 		return 1;
 	}
 	if (me->query_skill("kurong-changong", 1) < 20){
 		command("pat "+(string)me->query("id"));
-		command("say 你的枯荣禅功根基不够，这毒丹我是不能给你吃的!\n");
+		command("say 你的枯榮禪功根基不夠，這毒丹我是不能給你吃的!\n");
 		return 1;
 	}
 	if((int)me->query("dudan_given") < (int)(me->query_skill("kurong-changong", 1)/10)) {
@@ -112,12 +112,12 @@ int ask_dudan(object who)
 		me->add("dudan_given",1);
 		ob_dan = new("/d/tls/npc/obj/dudan");
 		ob_dan->move(me);
-		message_vision("$N获得一颗毒丹。\n",this_player());
-		command("say 这是一颗毒丹，可是对于修炼枯荣禅功，极为有益，你这么勤奋练功就赠给你吧!\n");
+		message_vision("$N獲得一顆毒丹。\n",this_player());
+		command("say 這是一顆毒丹，可是對於修煉枯榮禪功，極為有益，你這麼勤奮練功就贈給你吧!\n");
 		return 1;
 	}
 	else  {
-		command("say 你现在还是好好修炼枯荣禅功，老想靠药物来增涨可是不行! \n");
+		command("say 你現在還是好好修煉枯榮禪功，老想靠藥物來增漲可是不行! \n");
 		return 1;
 	}
 }
@@ -132,18 +132,18 @@ string ask_liumai2()
 
 	myfam = (mapping)ob->query("family");
 
-	if (myfam["family_name"] != "天龙寺"||!ob->query("tls")||ob->query("class") != "bonze"){
-		return "对不起，我不知道！\n";
+	if (myfam["family_name"] != "天龍寺"||!ob->query("tls")||ob->query("class") != "bonze"){
+		return "對不起，我不知道！\n";
 
 	}
    if (ob->query("liumai_pass") && (ob->query_skill("liumai-shenjian",1) < 181)) {
 		command ("nod "+ ob->query("id"));
-		message_vision("枯荣长老一掌向地拍去，身后轰然移开一扇石门，$N看也不看，走了过去。\n", ob);
+		message_vision("枯榮長老一掌向地拍去，身後轟然移開一扇石門，$N看也不看，走了過去。\n", ob);
 		thing = deep_inventory(ob);
 		i = sizeof(thing);
 		while (i--)
 		if (thing[i]->is_character()) {
-			message_vision("枯荣长老突然伸手一拦，道；你怎么带外人进洞？。\n", ob);
+			message_vision("枯榮長老突然伸手一攔，道；你怎麼帶外人進洞？。\n", ob);
 			me->set_leader(ob);
 			remove_call_out("kill_ob");
 			call_out("kill_ob", 0, me);
@@ -153,30 +153,30 @@ string ask_liumai2()
 		return "";
 	}
 	if( ob->query_skill("yiyang-zhi",1) < 180 )
-		return "你的一阳指修炼的这么差，还不回去好好练功!!\n";
+		return "你的一陽指修煉的這麼差，還不回去好好練功!!\n";
 	if (ob->query("max_neili") < 4500)
-		return "你的内力修炼的这么差，还不回去好好练功!!\n";
+		return "你的內力修煉的這麼差，還不回去好好練功!!\n";
 	if (ob->query_skill("force", 1) < 200)
-		return "你的内功修炼的这么差，还不回去好好练功!!\n";
+		return "你的內功修煉的這麼差，還不回去好好練功!!\n";
 	if (ob->query_temp("try_fight"))
-		return "你不是正在接我的招吗？!\n";
+		return "你不是正在接我的招嗎？!\n";
 	if (ob->query_temp("try"))
-		return "如果你准备好了，请确定(try)。 \n";
+		return "如果你準備好了，請確定(try)。 \n";
 	if (me->query_temp("try"))
-		return "对不起，现在正有人在准备过招. \n";
+		return "對不起，現在正有人在準備過招. \n";
 	if (me->query_temp("try_fight"))
-		return "对不起，现在我正忙着，你有什么要求一会儿再说. \n";
+		return "對不起，現在我正忙著，你有什麼要求一會兒再說. \n";
         if (ob->query_skill("liumai-shenjian",1) > 180){
-		ob->set("quest/天龙八部/武功/liumai_update",1);
-		return "你的六脉神剑修为已经登峰造级，老衲这里也不能给你什么帮助了，\n"+
-			"你去找镇南王世子段誉吧，也许他能给你些帮助。";
+		ob->set("quest/天龍八部/武功/liumai_update",1);
+		return "你的六脈神劍修為已經登峰造級，老衲這裡也不能給你什麼幫助了，\n"+
+			"你去找鎮南王世子段譽吧，也許他能給你些幫助。";
 	}
 	else {
-		command("say 依照天龙寺祖上传下规矩，" + RANK_D->query_respect(ob) + "你必须接下我十招不死不昏，才够资格进普云洞修习六脉神剑。");
+		command("say 依照天龍寺祖上傳下規矩，" + RANK_D->query_respect(ob) + "你必須接下我十招不死不昏，才夠資格進普雲洞修習六脈神劍。");
 		ob->set_temp("try",1);
 		me->set_temp("try",1);
 		call_out("wait", 1, me, 0);
-		return "如果你准备好了接招，请确定（try)。\n";
+		return "如果你準備好了接招，請確定（try)。\n";
 	}
 }
 
@@ -190,7 +190,7 @@ void init()
     {
     	command("look "+me->query("id"));
     	command("touch "+me->query("id"));
-    	command("say 有这位大侠帮忙，本寺当可高枕无忧了。");
+    	command("say 有這位大俠幫忙，本寺當可高枕無憂了。");
     }
 	}
 	add_action("do_yes", "try");
@@ -212,15 +212,15 @@ int do_kill(string arg)
 	if (ob == this_object() || ob == me) return 0;
 	if (!ob || !ob->is_character()) return 0;
 
-	if (ob->query("family/family_name") == "天龙寺") {
-		if (me->query("family/family_name") == "天龙寺") {
-			message_vision(ob2->name()+"向$N沉声喝道：出家人戒杀生，怎么连自己的同门都杀？！\n", me);
+	if (ob->query("family/family_name") == "天龍寺") {
+		if (me->query("family/family_name") == "天龍寺") {
+			message_vision(ob2->name()+"向$N沉聲喝道：出家人戒殺生，怎麼連自己的同門都殺？！\n", me);
 		}
 		else {
-			message_vision(ob2->name()+"向$N沉声喝道：大胆狂徒，居然来天龙寺行凶！\n", me);
+			message_vision(ob2->name()+"向$N沉聲喝道：大膽狂徒，居然來天龍寺行兇！\n", me);
 			kill_ob(me);
 		}
-		me->set("vendetta/天龙寺", 1);
+		me->set("vendetta/天龍寺", 1);
 		return 1;
 	}
 	return 0;
@@ -234,7 +234,7 @@ int do_yes()
 
 	if( !ob->query_temp("try")) return 0;
 
-	message_vision("$N单掌一立，沉声说道：“请”。\n",ob );
+	message_vision("$N單掌一立，沉聲說道：“請”。\n",ob );
 	set("max_jing",3000);
 	set("jing",3000);
 	set("eff_jingli",3000);
@@ -252,7 +252,7 @@ int do_yes()
 	me->set_temp("try_fight",1);
 	ob->set_temp("try_fight",1);
 	call_out("fighting",  3, me, ob, 0);
-	message_vision("枯荣大师双掌合什，躬身一揖，恭恭敬敬的道：“请指教。”\n",ob);
+	message_vision("枯榮大師雙掌合什，躬身一揖，恭恭敬敬的道：“請指教。”\n",ob);
 	return 1;
 }
 
@@ -261,7 +261,7 @@ void waiting(object me, int wait_time)
 	object fighter;
 
 	if( wait_time >= 150 ) {
-		say( "枯荣大师说道：看来你不打算接我十招了！\n\n");
+		say( "枯榮大師說道：看來你不打算接我十招了！\n\n");
 		call_out("do_recover", 0, me);
 		return;
 	}
@@ -284,7 +284,7 @@ void fighting(object me, object fighter, int count)
 		}
 		me->delete_temp("try_fight");
 		room->set("exits/out","/d/tls/songlin-1");
-                command("chat* 摇了摇头，说道：想不到... 唉！");
+                command("chat* 搖了搖頭，說道：想不到... 唉！");
 		command("sigh");
 		return;
 	}
@@ -308,15 +308,15 @@ void do_congra(object me, object fighter)
 	fighter->set("liumai_pass",1);
 	me->delete_temp("try_fight");
 	command("smile");
-        command("say 恭喜，恭喜，你技艺青出于蓝胜于蓝，可以修习本寺神功六脉神剑,你去吧。\n");
+        command("say 恭喜，恭喜，你技藝青出於藍勝於藍，可以修習本寺神功六脈神劍,你去吧。\n");
 	room->set("exits/out","/d/tls/songlin-1");
-	message_vision(HIY"\n枯荣长老一掌向地拍去，身后轰然移开一扇石门，$N看也不看，走了过去。\n"NOR,fighter);
+	message_vision(HIY"\n枯榮長老一掌向地拍去，身後轟然移開一扇石門，$N看也不看，走了過去。\n"NOR,fighter);
 
         thing = deep_inventory(fighter);
 	i = sizeof(thing);
 	while (i--)
 	if (thing[i]->is_character()) {
-		message_vision("枯荣长老突然伸手一拦，道；你怎么带外人进洞？。\n", fighter);
+		message_vision("枯榮長老突然伸手一攔，道；你怎麼帶外人進洞？。\n", fighter);
 		me->set_leader(fighter);
 		remove_call_out("kill_ob");
 		call_out("kill_ob", 0, me);

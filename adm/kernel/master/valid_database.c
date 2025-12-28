@@ -9,17 +9,17 @@ mixed valid_database(object ob, string action, mixed *info)
         {
                 if( action == "connect" ) {
                         /*
-                         * 这里演示的多站点数据库互动
-                         * 协作的返回密码写法，单站点
-                         * 简单返回密码即可（by Find）
+                         * 這裡演示的多站點數據庫互動
+                         * 協作的返回密碼寫法，單站點
+                         * 簡單返回密碼即可（by Find）
                          */
          
                         switch (info[1])
                         {
-                             case "127.0.0.1":              // 其它站点的地址
-                                        return "xkx200303";      // 这个站点的密码
+                             case "127.0.0.1":              // 其它站點的地址
+                                        return "xkx200303";      // 這個站點的密碼
                                 case "localhost":
-                                        return "xkx200303";      // 本地站点的密码
+                                        return "xkx200303";      // 本地站點的密碼
                                default:
                                   if(info[0]=="/adm/etc/userdb.db") 
                                   return 1;

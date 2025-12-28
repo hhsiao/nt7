@@ -1,4 +1,4 @@
-// qianqianbiao.c                       心有千千镖
+// qianqianbiao.c                       心有千千鏢
 
 #include <weapon.h>
 #include <ansi.h>
@@ -6,7 +6,7 @@ inherit ITEM;
 
 void create()
 {
-        set_name("心有千千镖" NOR, ({"biao"}));
+        set_name("心有千千鏢" NOR, ({"biao"}));
         set_weight(50);
 
         /*if (clonep())
@@ -14,7 +14,7 @@ void create()
         else*/
         {
                 set("unit", "枚");
-                set("long", "这是一枚四川唐门秘制的暗器，威力无比。\n");
+                set("long", "這是一枚四川唐門秘製的暗器，威力無比。\n");
                 set("value", 0);
         }
         setup();
@@ -39,29 +39,29 @@ int do_perform(string arg)
                 return 0;
         
         if ( !(me->is_fighting()) )
-                return notify_fail("心有千千镖只能在战斗中使用。\n");
+                return notify_fail("心有千千鏢只能在戰鬥中使用。\n");
  
         if( (int)me->query_skill("tangmen-throwing", 1) < 180 )
-                return notify_fail("你的唐门暗器手法不够娴熟，无法使用心有千千镖。\n");
+                return notify_fail("你的唐門暗器手法不夠嫻熟，無法使用心有千千鏢。\n");
 
         if( query("max_neili", me)<3000 )
-                return notify_fail("你的内力修为不够，无法使用心有千千镖。\n");
+                return notify_fail("你的內力修為不夠，無法使用心有千千鏢。\n");
 
         if( query_temp("xinqian", me) )
-                return notify_fail("你忙于战斗，无法分神使用心有千千镖了。\n");
+                return notify_fail("你忙於戰鬥，無法分神使用心有千千鏢了。\n");
 
         if( query("neili", me)<1500 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
         
         if( query("yanli", me)<100 )
-                return notify_fail("你的眼力太差了，目标不精确！\n");       
+                return notify_fail("你的眼力太差了，目標不精確！\n");       
 
-        msg = HIR"\n$N突然身行一止，从怀中摸出一枚手掌大小的暗器，一扬手向$n掷去。\n只见$n的周身飞舞着无数的光影，却听不到一丝声音。\n"NOR;
+        msg = HIR"\n$N突然身行一止，從懷中摸出一枚手掌大小的暗器，一揚手向$n擲去。\n只見$n的周身飛舞著無數的光影，卻聽不到一絲聲音。\n"NOR;
         message_vision(msg, me, target);
         addn("neili", -1500, me);
         set_temp("xinqian", 1, me);
 
-        tell_object(target, HIR"\n你急忙屏气凝神，希望能够躲开这致命的一击。\n"NOR);
+        tell_object(target, HIR"\n你急忙屏氣凝神，希望能夠躲開這致命的一擊。\n"NOR);
         target->start_busy(6);
 
         remove_call_out("effect_biao");
@@ -80,9 +80,9 @@ int effect_biao(object me, object target)
 
         if ( ( myskill >= trskill ) && ( random(100) != 0 ) )
                 {
-                        msg = HIR"忽然那无数的光影一闪而没，$n身行一顿，喷出一口鲜血，仰天而倒。\n"NOR;
+                        msg = HIR"忽然那無數的光影一閃而沒，$n身行一頓，噴出一口鮮血，仰天而倒。\n"NOR;
                         message_vision(msg, me, target);
-                        tell_object(target, HIR"你只觉得胸口一阵钻心的疼痛。低头一看只见那枚暗器已经深深的嵌在你的心口。\n血迹中隐约有几个小字[心有千千...]。"NOR);
+                        tell_object(target, HIR"你只覺得胸口一陣鑽心的疼痛。低頭一看只見那枚暗器已經深深的嵌在你的心口。\n血跡中隱約有幾個小字[心有千千...]。"NOR);
                         delete_temp("xinqian", me);
                         me->start_busy(5);
                         this_object()->move(target);
@@ -90,8 +90,8 @@ int effect_biao(object me, object target)
                 }
         else
                 {
-                        tell_object(target, HIR"忽然那无数的光影一闪而没，你心中一惊急忙运内力于全身。\n"NOR);
-                        msg = HIR"$n双臂急舞，衣袖带起破风之声。只听当的一声轻响，竟将那枚暗器磕飞开去。\n"NOR;
+                        tell_object(target, HIR"忽然那無數的光影一閃而沒，你心中一驚急忙運內力於全身。\n"NOR);
+                        msg = HIR"$n雙臂急舞，衣袖帶起破風之聲。只聽噹的一聲輕響，竟將那枚暗器磕飛開去。\n"NOR;
                         message_vision(msg, me, target);
                         if( query("neili", target)<800 )
                                 set("neili", 0, target);

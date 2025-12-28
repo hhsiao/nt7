@@ -4,9 +4,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "侧厅");
+        set("short", "側廳");
         set("long", @LONG
-这里是万安寺的侧厅，地上摆着几个蒲团。
+這裡是萬安寺的側廳，地上擺著幾個蒲團。
 LONG );
         set("exits", ([
                 "east" : "/d/tulong/yitian/was_zoulang1",

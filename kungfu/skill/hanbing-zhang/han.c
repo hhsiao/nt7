@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define HAN "「" HIW "极天寒掌" NOR "」"
+#define HAN "「" HIW "極天寒掌" NOR "」"
 
 inherit F_SSERVER;
 
@@ -12,38 +12,38 @@ int perform(object me, object target)
         int ap, dp;
 
         if( userp(me) && !query("can_perform/hanbing-zhang/han", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(HAN "只能对战斗中的对手使用。\n");
+                return notify_fail(HAN "只能對戰鬥中的對手使用。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(HAN "只能空手施展。\n");
 
         if ((int)me->query_skill("hanbing-zhang", 1) < 160)
-                return notify_fail("你寒冰掌不够娴熟，难以施展" HAN "。\n");
+                return notify_fail("你寒冰掌不夠嫻熟，難以施展" HAN "。\n");
 
         if (me->query_skill_prepared("strike") != "hanbing-zhang")
-                return notify_fail("你没有准备寒冰掌，难以施展" HAN "。\n");
+                return notify_fail("你沒有準備寒冰掌，難以施展" HAN "。\n");
 
         if (me->query_skill("force") < 180)
-                return notify_fail("你的内功修为不够，难以施展" HAN "。\n");
+                return notify_fail("你的內功修為不夠，難以施展" HAN "。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你现在的真气不够，难以施展" HAN "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" HAN "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         ap = me->query_skill("strike");
         dp = target->query_skill("parry");
 
-        msg = HIY "\n$N" HIY "运转真气，将内力注于掌上，施出"
-              "绝招「" HIW "极天寒掌" HIY "」，双掌猛然拍向$n" 
-              HIY "，掌风阴寒无比，透出阵阵寒气，犹如置身冰天"
-              "雪地中一般，令人不寒而栗。\n" NOR;
+        msg = HIY "\n$N" HIY "運轉真氣，將內力注於掌上，施出"
+              "絕招「" HIW "極天寒掌" HIY "」，雙掌猛然拍向$n" 
+              HIY "，掌風陰寒無比，透出陣陣寒氣，猶如置身冰天"
+              "雪地中一般，令人不寒而慄。\n" NOR;
 
         if (ap / 2 + random(ap) > dp)
         {
@@ -51,19 +51,19 @@ int perform(object me, object target)
                 damage += random(damage);
 
                 msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 60,
-                                           HIR "但见$N" HIR "双掌拍来，掌风作响，"
-                                           "寒气逼人。$n" HIR "顿觉心惊胆战，"
-                                           "毫无招架之力，微迟疑间$N" HIR "这掌"
-                                           "已正中$n" HIR "胸口，顿将$p震退数步。"
+                                           HIR "但見$N" HIR "雙掌拍來，掌風作響，"
+                                           "寒氣逼人。$n" HIR "頓覺心驚膽戰，"
+                                           "毫無招架之力，微遲疑間$N" HIR "這掌"
+                                           "已正中$n" HIR "胸口，頓將$p震退數步。"
                                            " \n" NOR);
 
                 me->start_busy(3);
                 addn("neili", -220, me);
         } else
         {
-                msg += CYN "$n" CYN "见$N" CYN "这掌拍来，内力"
-                       "充盈，气势凌人，只得奋力向后一纵，才躲"
-                       "过这一掌。\n" NOR;
+                msg += CYN "$n" CYN "見$N" CYN "這掌拍來，內力"
+                       "充盈，氣勢凌人，只得奮力向後一縱，才躲"
+                       "過這一掌。\n" NOR;
 
                 me->start_busy(4);
                 addn("neili", -120, me);

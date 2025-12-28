@@ -4,14 +4,14 @@
 inherit ROOM;
 void create()
 {
-        set("short", "兵器铺");
+        set("short", "兵器鋪");
         set("long", @LONG
-这着是一家小小店面的兵器铺，可是卖的兵器可不寻常。种类固
-然中土难得一见，能用的人更是稀少。掌柜的拿着眼瞟得你直发毛。
-你转脸就看到墙上的招牌(zhaopai)。
+這著是一家小小店面的兵器鋪，可是賣的兵器可不尋常。種類固
+然中土難得一見，能用的人更是稀少。掌櫃的拿著眼瞟得你直發毛。
+你轉臉就看到牆上的招牌(zhaopai)。
 LONG );
         set("item_desc", ([
-                "zhaopai": "请用 \"list\" 列出货物表，\"buy\" 向老板购物。\n",
+                "zhaopai": "請用 \"list\" 列出貨物表，\"buy\" 向老闆購物。\n",
         ]));
         set("objects", ([
                 __DIR__"npc/tanghuai" : 1,

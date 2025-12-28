@@ -3,12 +3,12 @@ inherit NPC;
 
 void create()
 {
-        set_name("铁传甲", ({ "tie chuanjia", "tie", "chuanjia" }) );
-        set("nickname", WHT "铁甲金刚" NOR);
-        set("title", "忠心护卫");
+        set_name("鐵傳甲", ({ "tie chuanjia", "tie", "chuanjia" }) );
+        set("nickname", WHT "鐵甲金剛" NOR);
+        set("title", "忠心護衛");
         set("gender", "男性");
         set("age", 42);
-        set("long", "一个身材魁梧的汉子。\n");
+        set("long", "一個身材魁梧的漢子。\n");
         set("attitude", "peaceful");
 
         set("str", 40);
@@ -82,7 +82,7 @@ void die()
                          if (arrayp(ob->query_team()))
                          {
                                  command("heng");
-                                 command("say 胜之不武！");
+                                 command("say 勝之不武！");
                                  set("qi", 160000);
                                  set("jing", 60000);
                                  set("neili", 35000);
@@ -100,7 +100,7 @@ void die()
              if (ob->query("sky12/floor") == 1)
              {
                       ob->set("sky12/floor", 2);
-                 command("say 阁下请便吧！");
+                 command("say 閣下請便吧！");
              }
         }
 
@@ -115,7 +115,7 @@ void die()
 
         return;
 }
-// 气血小于1000则死亡，避免他人协助帮忙转世
+// 氣血小於1000則死亡，避免他人協助幫忙轉世
 void heart_beat()
 {
         if (this_object()->query("qi") < 1000 || this_object()->query("eff_qi") < 1000)

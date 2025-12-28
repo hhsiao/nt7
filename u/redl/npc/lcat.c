@@ -1,13 +1,13 @@
 // This program is a part of NITAN MudLIB 
 // redl 2013/5
-//大搬迁工具，玩家在肚子里能tell say，其余动作全部不行，也就不能get东西和kill
+//大搬遷工具，玩家在肚子裡能tell say，其餘動作全部不行，也就不能get東西和kill
 
 /*
-cfollow                         跟随我
-ckick                           踢回化乐天
-ceat xxx                        叫它吞东西，包括玩家生物，是为储藏和禁闭(可断线quit)
-cpuke                           把所有吞掉的东西吐出来
-cpat                            拍头将猫变为侍女
+cfollow                         跟隨我
+ckick                           踢回化樂天
+ceat xxx                        叫它吞東西，包括玩家生物，是為儲藏和禁閉(可斷線quit)
+cpuke                           把所有吞掉的東西吐出來
+cpat                            拍頭將貓變為侍女
 */
 
 #include <ansi.h> 
@@ -23,12 +23,12 @@ void do_knock(string arg);
 
 void create()
 {
-        set_name(HIK "小懒猫" NOR, ({ "lazy cat", "cat", "lazy_cat" }) );
-        set("race", "野兽");
+        set_name(HIK "小懶貓" NOR, ({ "lazy cat", "cat", "lazy_cat" }) );
+        set("race", "野獸");
         set("gender", "雌性");
         set("age", 16);
         set("longx",
-                        NOR HIK"它是在化乐天里长大的浅灰色的小猫，宝蓝色的大眼睛，皮毛滑亮柔顺！\n"NOR);
+                        NOR HIK"它是在化樂天里長大的淺灰色的小貓，寶藍色的大眼睛，皮毛滑亮柔順！\n"NOR);
         set("dex",1000000);
         set("con",1000000);
         set("int",1000000);
@@ -63,10 +63,10 @@ void create()
         set_temp("apply/add_busy", 5);
 
                 set_temp("owner", 1);//reset obj
-                set_temp("owner_name", "红莲老祖");
+                set_temp("owner_name", "紅蓮老祖");
                 set_temp("owner_id", "redl");
                 set("owner", 1);//reset obj
-                set("owner_name", "红莲老祖");
+                set("owner_name", "紅蓮老祖");
                 set("owner_id", "redl");
                 
         setup();
@@ -76,13 +76,13 @@ void create()
 void msg_tele()
 {
         object me = this_object();
-        message_vision(MAG "紫色遁光闪烁间，一只$N" NOR MAG "出现在眼前。\n" NOR, me);
+        message_vision(MAG "紫色遁光閃爍間，一隻$N" NOR MAG "出現在眼前。\n" NOR, me);
 }
 
 void msg_tele2()
 {
         object me = this_object();
-        message_vision(MAG "紫色遁光闪烁间，$N" NOR MAG "往里一扑就消失了。\n" NOR, me);
+        message_vision(MAG "紫色遁光閃爍間，$N" NOR MAG "往裡一撲就消失了。\n" NOR, me);
 }
 
 void do_knock(string arg)
@@ -150,22 +150,22 @@ void do_start_hslj(string arg)
         type = to_int(arg);
         switch(type) {
                 case 1:
-                        wm = "go 1 " + HIW + ")参加裸体初级赛";
+                        wm = "go 1 " + HIW + ")參加裸體初級賽";
                         break;
                 case 2:
-                        wm = "go 2 " + HIW + ")参加裸体中级赛";
+                        wm = "go 2 " + HIW + ")參加裸體中級賽";
                         break;
                 case 3:
-                        wm = "go 3 " + HIW + ")参加裸体高级赛";
+                        wm = "go 3 " + HIW + ")參加裸體高級賽";
                         break;
                 case 4:
-                        wm = "go 4 " + HIW + ")参加裸体不限级赛";
+                        wm = "go 4 " + HIW + ")參加裸體不限級賽";
                         break;
                 default:
-                        wm = "go northup " + HIW + ")参加无限制终极赛";
+                        wm = "go northup " + HIW + ")參加無限制終極賽";
                         break;
         }
-        message_system(NOR + HIW + "华山论剑将于十分钟后自动开始，欢迎从( "+ HIY + "rideto huashan;walk 猴子望月;"+ wm + "。\n"NOR);
+        message_system(NOR + HIW + "華山論劍將於十分鐘後自動開始，歡迎從( "+ HIY + "rideto huashan;walk 猴子望月;"+ wm + "。\n"NOR);
         remove_call_out("do_open_hs");
         call_out("do_open_hs", 60, arg);
 }
@@ -183,7 +183,7 @@ int accept_fight(object who)
 
 int accept_ansuan(object who) 
 { 
-        return notify_fail(query("name") + NOR + "敏捷地一跳就躲开了。\n" + NOR); 
+        return notify_fail(query("name") + NOR + "敏捷地一跳就躲開了。\n" + NOR); 
 } 
 
 void receive_damage(string type, int n) 
@@ -215,7 +215,7 @@ int big_blowing()
         mixed flag;
         
         me = this_object();
-        message_vision(YEL "$N" YEL "喉咙里呼噜呼噜作响，突然狂啸一声：嗷嗡~~~\n" NOR, me);
+        message_vision(YEL "$N" YEL "喉嚨裡呼嚕呼嚕作響，突然狂嘯一聲：嗷嗡~~~\n" NOR, me);
         obs = me->query_enemy();
         
         for (i = 0; i < sizeof(obs); i++)
@@ -223,7 +223,7 @@ int big_blowing()
                         if (! obs[i]->is_busy()) obs[i]->start_busy(3);
                         flag = query("env/immortal", obs[i]);
                         if (flag) delete("env/immortal", obs[i]);
-                        message_vision(YEL "$N" YEL "被" + query("name") + NOR + YEL "的吼声震得眼冒金星，心胆俱裂！\n" NOR, obs[i]);
+                        message_vision(YEL "$N" YEL "被" + query("name") + NOR + YEL "的吼聲震得眼冒金星，心膽俱裂！\n" NOR, obs[i]);
                         obs[i]->unconcious(); 
                         if (flag) set("env/immortal", flag, obs[i]);
         }
@@ -247,7 +247,7 @@ int is_home(string where)
 string long()
 {
         object me = this_player();
-        if (query_temp("redl/in_cat", me)) return HIR "这是猫的胃里，到处是腐烂的食物，你泡在胃液里，全身都快被酸腐蚀掉了。\n" NOR "你在考虑是用tell求被puke，还是用say打发时间呢？" NOR;
+        if (query_temp("redl/in_cat", me)) return HIR "這是貓的胃裡，到處是腐爛的食物，你泡在胃液裡，全身都快被酸腐蝕掉了。\n" NOR "你在考慮是用tell求被puke，還是用say打發時間呢？" NOR;
         return (is_owner(me)) ? query("longx") + "(指令:cfollow、ckick、ceat、cpuke、cpat)\n" + NOR : query("longx");
 }
 
@@ -279,8 +279,8 @@ int do_action(string arg)
         string action = query_verb();
         object me = this_player();
         if (query_temp("redl/in_cat", me) && action!="tell" && action!="reply" && action!="look" && action!="say") {
-                if (action=="chat" || action=="rumor" || action=="ask1") tell_object(me, NOR "你张口欲喊，臭烘烘的酸水灌进你嘴里了。\n" NOR);
-                        else tell_object(me, NOR "你乱扭乱动，但却在胃液里越陷越深了。\n" NOR);
+                if (action=="chat" || action=="rumor" || action=="ask1") tell_object(me, NOR "你張口欲喊，臭烘烘的酸水灌進你嘴裡了。\n" NOR);
+                        else tell_object(me, NOR "你亂扭亂動，但卻在胃液裡越陷越深了。\n" NOR);
                 return 1;
         }
         return 0;
@@ -291,8 +291,8 @@ int do_ceat(string arg)
         object *obs, ob, where;
         
         if (!arg) {//eat all
-                return notify_fail(     "功能：把在同一个房间的对象吞到肚子里关起来，再用 cpuke 指令一次吐到另个房间去。\n"
-                                                        "参数： a 全部对象,  p 全部玩家,  n 全部NPC,  i 全部物品,  id_name 指定对象\n");
+                return notify_fail(     "功能：把在同一個房間的對象吞到肚子裡關起來，再用 cpuke 指令一次吐到另個房間去。\n"
+                                                        "參數： a 全部對象,  p 全部玩家,  n 全部NPC,  i 全部物品,  id_name 指定對象\n");
         }
 
         obs  =  all_inventory(environment(this_object()));
@@ -304,9 +304,9 @@ int do_ceat(string arg)
                                 //where = environment(ob);
                         //if (!where) continue;
                         set_temp("redl/in_cat", 1, ob);
-                        message_vision(YEL "$N" NOR YEL "喉咙里呼噜呼噜作响，突然嗷嗡一声张开大口把$n" NOR YEL "吞了。\n" NOR, this_object(), ob);
+                        message_vision(YEL "$N" NOR YEL "喉嚨裡呼嚕呼嚕作響，突然嗷嗡一聲張開大口把$n" NOR YEL "吞了。\n" NOR, this_object(), ob);
                         ob->move(this_object());
-                        message_vision(YEL "$N" NOR YEL "掉进了猫肚子！\n" NOR, ob);
+                        message_vision(YEL "$N" NOR YEL "掉進了貓肚子！\n" NOR, ob);
                                 ob->start_busy(999999);
                 }
                         break;
@@ -315,9 +315,9 @@ int do_ceat(string arg)
                                 if (is_owner(ob) || base_name(ob)==base_name(this_object())) continue;
                         if (!playerp(ob)) continue;
                         set_temp("redl/in_cat", 1, ob);
-                        message_vision(YEL "$N" NOR YEL "喉咙里呼噜呼噜作响，突然嗷嗡一声张开大口把$n" NOR YEL "吞了。\n" NOR, this_object(), ob);
+                        message_vision(YEL "$N" NOR YEL "喉嚨裡呼嚕呼嚕作響，突然嗷嗡一聲張開大口把$n" NOR YEL "吞了。\n" NOR, this_object(), ob);
                         ob->move(this_object());
-                        message_vision(YEL "$N" NOR YEL "掉进了猫肚子！\n" NOR, ob);
+                        message_vision(YEL "$N" NOR YEL "掉進了貓肚子！\n" NOR, ob);
                                 ob->start_busy(999999);
                 }
                         break;
@@ -327,9 +327,9 @@ int do_ceat(string arg)
                         if (playerp(ob)) continue;
                         if (! ob->is_character() || ob->is_corpse()) continue;
                         set_temp("redl/in_cat", 1, ob);
-                        message_vision(YEL "$N" NOR YEL "喉咙里呼噜呼噜作响，突然嗷嗡一声张开大口把$n" NOR YEL "吞了。\n" NOR, this_object(), ob);
+                        message_vision(YEL "$N" NOR YEL "喉嚨裡呼嚕呼嚕作響，突然嗷嗡一聲張開大口把$n" NOR YEL "吞了。\n" NOR, this_object(), ob);
                         ob->move(this_object());
-                        message_vision(YEL "$N" NOR YEL "掉进了猫肚子！\n" NOR, ob);
+                        message_vision(YEL "$N" NOR YEL "掉進了貓肚子！\n" NOR, ob);
                                 ob->start_busy(999999);
                 }
                         break;
@@ -338,9 +338,9 @@ int do_ceat(string arg)
                                 if (is_owner(ob) || base_name(ob)==base_name(this_object())) continue;
                         if (ob->is_character()) continue;
                         set_temp("redl/in_cat", 1, ob);
-                        message_vision(YEL "$N" NOR YEL "喉咙里呼噜呼噜作响，突然嗷嗡一声张开大口把$n" NOR YEL "吞了。\n" NOR, this_object(), ob);
+                        message_vision(YEL "$N" NOR YEL "喉嚨裡呼嚕呼嚕作響，突然嗷嗡一聲張開大口把$n" NOR YEL "吞了。\n" NOR, this_object(), ob);
                         ob->move(this_object());
-                        message_vision(YEL "$N" NOR YEL "掉进了猫肚子！\n" NOR, ob);
+                        message_vision(YEL "$N" NOR YEL "掉進了貓肚子！\n" NOR, ob);
                                 ob->start_busy(999999);
                 }
                         break;
@@ -349,9 +349,9 @@ int do_ceat(string arg)
                                 if (is_owner(ob) || base_name(ob)==base_name(this_object())) continue;
                         if (query("id", ob)!=arg) continue;
                         set_temp("redl/in_cat", 1, ob);
-                        message_vision(YEL "$N" NOR YEL "喉咙里呼噜呼噜作响，突然嗷嗡一声张开大口把$n" NOR YEL "吞了。\n" NOR, this_object(), ob);
+                        message_vision(YEL "$N" NOR YEL "喉嚨裡呼嚕呼嚕作響，突然嗷嗡一聲張開大口把$n" NOR YEL "吞了。\n" NOR, this_object(), ob);
                         ob->move(this_object());
-                        message_vision(YEL "$N" NOR YEL "掉进了猫肚子！\n" NOR, ob);
+                        message_vision(YEL "$N" NOR YEL "掉進了貓肚子！\n" NOR, ob);
                                 ob->start_busy(999999);
                 }
                         break;
@@ -363,8 +363,8 @@ int do_ceat(string arg)
 int do_cpat()
 {
         object *obs  =  all_inventory(this_object());
-        if ( sizeof(obs)>0 ) return notify_fail("猫的肚子里还装有东西呢，你看是不是找个地方先吐出来再变？\n");
-        message_vision(YEL "$n" NOR YEL "轻轻拍了拍$N" NOR YEL "的脑袋，$N" NOR YEL "“喵呜~”就地一滚变成了个小姑娘。\n" NOR, this_object(), this_player());
+        if ( sizeof(obs)>0 ) return notify_fail("貓的肚子裡還裝有東西呢，你看是不是找個地方先吐出來再變？\n");
+        message_vision(YEL "$n" NOR YEL "輕輕拍了拍$N" NOR YEL "的腦袋，$N" NOR YEL "“喵嗚~”就地一滾變成了個小姑娘。\n" NOR, this_object(), this_player());
         new(__DIR__"queen")->move(environment(this_object()));
         destruct(this_object());
         return 1;
@@ -379,7 +379,7 @@ int do_cpuke()
                 delete_temp("redl/in_cat", ob);
                 ob->move(where);
                 ob->stop_busy();
-                message_vision(YEL "$N" NOR YEL "喉咙里咕噜咕噜作呕，呃地混着一口黏液把$n" NOR YEL "吐了出来。\n" NOR, this_object(), ob);
+                message_vision(YEL "$N" NOR YEL "喉嚨裡咕嚕咕嚕作嘔，呃地混著一口黏液把$n" NOR YEL "吐了出來。\n" NOR, this_object(), ob);
         }
         return 1;
 }
@@ -410,9 +410,9 @@ void do_cfollow2(object me, object ob)
         if( !me || !ob ) return;
         if (!query("ridable", ob)) return;
         if (environment(me)!=environment(ob) && environment(ob)!=me && environment(me)!=ob) {
-                message_vision(MAG "紫色遁光闪烁间，$N" NOR MAG "往里一扑就消失了。\n" NOR, ob);
+                message_vision(MAG "紫色遁光閃爍間，$N" NOR MAG "往裡一撲就消失了。\n" NOR, ob);
                 ob->move(environment(me));
-                message_vision(MAG "紫色遁光闪烁间，一只$n" NOR MAG "出现在$N脚边。\n" NOR, me, ob);
+                message_vision(MAG "紫色遁光閃爍間，一隻$n" NOR MAG "出現在$N腳邊。\n" NOR, me, ob);
         }
         if(me->is_fighting()) {
                 obs = me->query_enemy();
@@ -428,7 +428,7 @@ int do_ckick()
         ob->command("cat " + query("id", me));
         me->command("kick lazy_cat");
         delete("ridable", ob);
-        message_vision(CYN "$n" NOR CYN "一愣，回眸深深望了$N一眼，慢慢地走开了...\n" NOR, me, ob);
+        message_vision(CYN "$n" NOR CYN "一愣，回眸深深望了$N一眼，慢慢地走開了...\n" NOR, me, ob);
         ob->command("follow none");
         ob->command("guard cancel");
         ob->move(HOMEROOM);
@@ -470,7 +470,7 @@ int random_move()
 
 int accept_object(object me, object obj)
 {
-        message_vision(NOR CYN "$N" NOR CYN "喵呜一声张口把$n" NOR CYN "吞了。\n" NOR, this_object(), obj);
+        message_vision(NOR CYN "$N" NOR CYN "喵嗚一聲張口把$n" NOR CYN "吞了。\n" NOR, this_object(), obj);
         destruct(obj);
         return 1;       
 }

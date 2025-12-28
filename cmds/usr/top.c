@@ -7,10 +7,10 @@
 inherit F_CLEAN_UP;
 
 string help = @HELP
-列出各种排行榜：
+列出各種排行榜：
 
 top gaoshou             - 世界高手排行榜
-top average             - 世界高手练功速度排行榜
+top average             - 世界高手練功速度排行榜
 HELP;
 
 int top_list(object ob1,object ob2);
@@ -27,7 +27,7 @@ int main(object me, string arg)
         string *res;
 
         if( time()-query_temp("last_top", me)<10 )
-              return notify_fail("系统气喘嘘地叹道：慢慢来 ....\n");
+              return notify_fail("系統氣喘噓地嘆道：慢慢來 ....\n");
 
         if( !wizardp(me) )
                 set_temp("last_top", time(), me);
@@ -61,22 +61,22 @@ int main(object me, string arg)
         }
 
         if( n < 1 || n > 200 )
-                return notify_fail("显示排名数量不得小于 1 或大于 200。\n");
+                return notify_fail("顯示排名數量不得小於 1 或大於 200。\n");
 
         switch( arg1 )
         {
         case "average":
-                if( !wizardp(me) ) return notify_fail("练功速度排名查询功能不对玩家开放。\n");
+                if( !wizardp(me) ) return notify_fail("練功速度排名查詢功能不對玩家開放。\n");
                 ob = filter_array(users(), (: playerp($1) && living($1) && !wizardp($1) :));
                 list = sort_array(ob, (: top_average :));
-                msg = HIR "\n\t  ======== "+LOCAL_MUD_NAME()+"练功速度排行榜 ========\n" NOR;
+                msg = HIR "\n\t  ======== "+LOCAL_MUD_NAME()+"練功速度排行榜 ========\n" NOR;
                 msg += HIR "\t  /                                      \\\n" NOR;   
-                msg += sprintf(HIY "%-10s%-20s%-12s%-12s%-12s\n" NOR, "高手排名", "尊姓大名", "经验", "潜能", "体会");
+                msg += sprintf(HIY "%-10s%-20s%-12s%-12s%-12s\n" NOR, "高手排名", "尊姓大名", "經驗", "潛能", "體會");
                 msg += HIM "---------------------------------------------------------------\n"NOR;
                 for (i = 0 ;i < n ; i++)
                 {
                         if( i >= sizeof(list))
-                                msg += sprintf(HIW" %-9s 暂时空缺。　　　　　　　　　　　　　　　\n"NOR,chinese_number(i+1));
+                                msg += sprintf(HIW" %-9s 暫時空缺。　　　　　　　　　　　　　　　\n"NOR,chinese_number(i+1));
                         else {
                                 res = query_temp("average", list[i]);
                                 if( list[i] == me ) msg += BBLU HIY;
@@ -90,21 +90,21 @@ int main(object me, string arg)
                 msg += HIM "---------------------------------------------------------------\n"NOR;
                 msg += HIR "\t  \\                                      /\n" NOR;
                 msg += HIR "\t  ========================================\n" NOR;
-                msg += HIC "排行榜中经验、潜能、体会的数据为平均每分钟获取速度\n" NOR;
-                msg += HIC + NATURE_D->game_time() + "记。\n" NOR;
+                msg += HIC "排行榜中經驗、潛能、體會的數據為平均每分鐘獲取速度\n" NOR;
+                msg += HIC + NATURE_D->game_time() + "記。\n" NOR;
                 write(msg);
                 break;
         case "gaoshou":
                 ob = filter_array(users(), (: playerp($1) && living($1) && !wizardp($1) :));
                 list = sort_array(ob, (: top_list :));
-                msg = HIR "\n\t  ======== "+LOCAL_MUD_NAME()+"在线高手排行榜 ========\n" NOR;
+                msg = HIR "\n\t  ======== "+LOCAL_MUD_NAME()+"在線高手排行榜 ========\n" NOR;
                 msg += HIR "\t  /                                      \\\n" NOR;   
-                msg += sprintf(HIY "%-10s%-20s%-22s%-20s\n" NOR, "高手排名", "尊姓大名", "所属门派", "评价");
+                msg += sprintf(HIY "%-10s%-20s%-22s%-20s\n" NOR, "高手排名", "尊姓大名", "所屬門派", "評價");
                 msg += HIM "---------------------------------------------------------------\n"NOR;
                 for (i = 0 ;i < n ; i++)
                 {
                         if( i >= sizeof(list))
-                                msg += sprintf(HIW" %-9s 暂时空缺。　　　　　　　　　　　　　　　\n"NOR,chinese_number(i+1));
+                                msg += sprintf(HIW" %-9s 暫時空缺。　　　　　　　　　　　　　　　\n"NOR,chinese_number(i+1));
                         else {
                                 if( list[i] == me ) msg += BBLU HIY;
                                 msg+=sprintf(HIW" %-9s%-20s%-22s%-20s\n"NOR,chinese_number(i+1),query("name", list[i])+"("+
@@ -116,7 +116,7 @@ int main(object me, string arg)
                 msg += HIM "---------------------------------------------------------------\n"NOR;
                 msg += HIR "\t  \\                                      /\n" NOR;
                 msg += HIR "\t  ========================================\n" NOR;
-                msg += HIC + NATURE_D->game_time() + "记。\n" NOR;
+                msg += HIC + NATURE_D->game_time() + "記。\n" NOR;
                 write(msg);
                 break;
         default:

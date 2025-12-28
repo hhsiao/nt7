@@ -4,10 +4,10 @@ inherit "/inherit/room/house_room";
 
 void create()
 {
-    set("short", "前厅");
+    set("short", "前廳");
     set("long", @LONG
-这里是主人迎接八方来客的地方。大凡客人来拜见主人，少不得在这
-里寒暄叙话，了尽仰慕之情。东西两侧各是一间厢房。
+這裡是主人迎接八方來客的地方。大凡客人來拜見主人，少不得在這
+裡寒暄敘話，了盡仰慕之情。東西兩側各是一間廂房。
 LONG);
 
     set("exits",

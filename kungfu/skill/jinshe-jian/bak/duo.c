@@ -1,5 +1,5 @@
 // This program is a part of NITAN MudLIB
-// duo.c  金蛇剑法  (夺魄)
+// duo.c  金蛇劍法  (奪魄)
 
 #include <ansi.h>
 inherit F_SSERVER;
@@ -13,22 +13,22 @@ int perform(object me, object target)
         
         if( !target ) target = offensive_target(me);
         if( !target || !target->is_character() )
-                return notify_fail("夺魄只能对同地方的对手使用。\n");
+                return notify_fail("奪魄只能對同地方的對手使用。\n");
         if( !target
         ||      !target->is_character()
         ||      !me->is_fighting(target) )
-                return notify_fail("夺魄只能对战斗中的对手使用。\n");
+                return notify_fail("奪魄只能對戰鬥中的對手使用。\n");
                 
         if( (int)me->query_skill("jinshe-jian", 1) < 100 )
-                return notify_fail("你的金蛇剑法不够娴熟，不会使用「夺魄」。\n");
+                return notify_fail("你的金蛇劍法不夠嫻熟，不會使用「奪魄」。\n");
                 
         if( query("neili", me)<200 )
-                return notify_fail("你现在内力太弱，不能使出夺魄。\n");
+                return notify_fail("你現在內力太弱，不能使出奪魄。\n");
                 
         if( query_temp("sword", target) == 1 )
-                return notify_fail(query("name", target)+"正在魂飞魄散间，快放手攻击啊!\n");
+                return notify_fail(query("name", target)+"正在魂飛魄散間，快放手攻擊啊!\n");
                 
-        msg = HIW "$N突然眼中金芒大盛，一股寒意破空直袭$n。\n"NOR;
+        msg = HIW "$N突然眼中金芒大盛，一股寒意破空直襲$n。\n"NOR;
         addn("neili", -400, me);
         me->start_busy(1);
         
@@ -39,7 +39,7 @@ int perform(object me, object target)
 
         if (ap / 2 + random(ap) > dp)
         {
-                msg += WHT"$p被吓得魂飞魄散，只见对方攻势大盛，越战越勇。\n"NOR;
+                msg += WHT"$p被嚇得魂飛魄散，只見對方攻勢大盛，越戰越勇。\n"NOR;
                 if (! target->is_busy())
                 target->start_busy(3);
                 addn("neili", -100, me);
@@ -59,7 +59,7 @@ int perform(object me, object target)
         }
         else
         {
-                msg += HIY"$p沉着应战，没有受到“夺魄”攻击的影响！\n"NOR;
+                msg += HIY"$p沉著應戰，沒有受到“奪魄”攻擊的影響！\n"NOR;
         }
         message_combatd(msg, me, target);
         return 1;
@@ -71,6 +71,6 @@ void end(object target,int damage)
         delete_temp("sword", target);
         addn_temp("apply/attack", 0-damage, target);
         addn_temp("apply/defense", 0-damage, target);
-        message_vision(RED"$N终于从夺魄的阴影里恢复了出来。\n"NOR,target);
+        message_vision(RED"$N終於從奪魄的陰影裡恢復了出來。\n"NOR,target);
 }
 

@@ -32,7 +32,7 @@ void create()
                 
                 stype = (random(2)) ? 1 : -1;
         ishen = stype * 100000 * lv * lv;
-        snick = (stype==1) ? (shen_names[lv] + "善人") : (shen_names[lv] + "恶人");
+        snick = (stype==1) ? (shen_names[lv] + "善人") : (shen_names[lv] + "惡人");
         
         set_name(NOR + "居民" + NOR, ({ "ju min", "ju"}));
         set("nickname", CYN + snick + NOR);
@@ -126,11 +126,11 @@ void init()
 
 void die(object killer)
 {
-        object dob;             // 打晕这个NPC的人
-        int n;                  // 可以奖励的人的数目
-        int exp;                // 需要瓜分的经验
-        int pot;                // 需要瓜分的潜能
-        object *t;              // 杀死我的人的队伍列表
+        object dob;             // 打暈這個NPC的人
+        int n;                  // 可以獎勵的人的數目
+        int exp;                // 需要瓜分的經驗
+        int pot;                // 需要瓜分的潛能
+        object *t;              // 殺死我的人的隊伍列表
         object tob;
 //      int i;
 //              object *inv;
@@ -139,7 +139,7 @@ void die(object killer)
 //              string s_gift,*key_s_gift;
 //              int gift_point;
 
-        // 定义奖励物品列表
+        // 定義獎勵物品列表
                 mixed oblist;
                 
                 object env;
@@ -160,10 +160,10 @@ void die(object killer)
                 oblist = query("oblist");
 
 
-                // 通知当前房间，以便计算刷新
+                // 通知當前房間，以便計算刷新
                 env = environment(this_object());
                 env->npc_die(this_object());
-        // 找到杀了我(NPC)或是打晕我的人
+        // 找到殺了我(NPC)或是打暈我的人
         if (! objectp(dob = killer))
                 dob = query_last_damage_from();
 
@@ -221,7 +221,7 @@ void die(object killer)
                                                                    GIFT_D->delay_bonus(tob,
                                                                           ([ "exp"      : exp + ((tob == dob) ? exp / 10 : 0),
                                                                                  "pot"      : pot + ((tob == dob) ? pot / 10 : 0),
-                                                                                 "prompt"   : "你的队伍杀死" + name() + "之后"]));
+                                                                                 "prompt"   : "你的隊伍殺死" + name() + "之後"]));
 
                                                  }
                                         }
@@ -235,7 +235,7 @@ void die(object killer)
                                                                                  "mar"      : pot / 3,
                                                                                  "gongxian"      : pot / 25,
                                                                                  "gold"      : 20,
-                                                                                 "prompt"   : "你在杀死" + name() + "之后"]));
+                                                                                 "prompt"   : "你在殺死" + name() + "之後"]));
                                 }
 
         }

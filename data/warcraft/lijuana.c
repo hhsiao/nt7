@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m真爱一龙[2;37;0m[2;37;0m", ({"lilonga"}));        
+        set_name("[1;31m真愛一龍[2;37;0m[2;37;0m", ({"lilonga"}));        
         set("gender", "女性");                
-        set("long", "天下有情人终成眷属[2;37;0m
-它是李一娟的魔幻兽。
+        set("long", "天下有情人終成眷屬[2;37;0m
+它是李一娟的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

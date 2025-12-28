@@ -2,13 +2,13 @@
 inherit ITEM;
 void create()
 {
-        set_name(HIG"蛇胆"NOR, ({"she dan"}));
+        set_name(HIG"蛇膽"NOR, ({"she dan"}));
         set_weight(100);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一颗蛇胆!\n");
-                set("unit", "颗"); 
+                set("long", "一顆蛇膽!\n");
+                set("unit", "顆"); 
                 set("no_get",1);
                 set("no_put",1);
                 set("no_give",1);   
@@ -30,7 +30,7 @@ int do_eat(string arg)
     maxneili=query("max_neili", me);
     
   if(!id(arg)) return 0;
-  if(me->is_busy()) return notify_fail("你上一个动作还没有完成。\n");
+  if(me->is_busy()) return notify_fail("你上一個動作還沒有完成。\n");
   
 if( query("max_neili", me)>me->query_skill("force",1)*50 )
 {
@@ -39,7 +39,7 @@ if( query("max_neili", me)>me->query_skill("force",1)*50 )
 addn("max_neili", 10+random(40), me);
 }
     
-  message_vision(HIY"$N拿起蛇胆吃了下去,感觉内力最大值增加了数点。\n"NOR,me);
+  message_vision(HIY"$N拿起蛇膽吃了下去,感覺內力最大值增加了數點。\n"NOR,me);
        destruct(this_object());
        return 1;
 }

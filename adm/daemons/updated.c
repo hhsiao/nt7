@@ -40,10 +40,10 @@ int set_valid_level(int level)
         valid_level = level;
         return level;
 }
-// 等级封印
+// 等級封印
 int can_improve_level(int level)
 {
-        // 取消等级封印
+        // 取消等級封印
         return 1;
         if (level >= valid_level)
                 return 0;
@@ -68,11 +68,11 @@ int level_summary(object me, int level)
                 lvl_lst = ([]);
                 lvl_lst[str] = 1;
                 CHANNEL_D->channel_broadcast(
-                        "news", sprintf("%s(%s)的人物等级已经达到了 %d 级（古今武林第一人）。",
+                        "news", sprintf("%s(%s)的人物等級已經達到了 %d 級（古今武林第一人）。",
                                         query("name", me),query("id", me),level));
 
                 /*
-                HISTORY_D->add_history("人物等级排名", query("id", me), sprintf("人物等级 %d 级，年龄 %d 排名: 1.\n",
+                HISTORY_D->add_history("人物等級排名", query("id", me), sprintf("人物等級 %d 級，年齡 %d 排名: 1.\n",
                                         level, query("age", me)));
                 */
         }
@@ -87,11 +87,11 @@ int level_summary(object me, int level)
                                 map_delete(lvl_lst,lvl_term[i]);
                                 lvl_lst[str]=1;
                                 CHANNEL_D->channel_broadcast(
-                                        "news",sprintf("%s(%s)的人物等级已经达到了 %d 级（当今武林第一人）。",
+                                        "news",sprintf("%s(%s)的人物等級已經達到了 %d 級（當今武林第一人）。",
                                                         query("name", me),query("id", me),level));
                 /*
 
-                                HISTORY_D->add_history("人物等级排名", query("id", me), sprintf("人物等级 %d 级，年龄 %d 排名: 1.\n",
+                                HISTORY_D->add_history("人物等級排名", query("id", me), sprintf("人物等級 %d 級，年齡 %d 排名: 1.\n",
                                                         level, query("age", me)));
                 */
                         }
@@ -103,11 +103,11 @@ int level_summary(object me, int level)
                                 if( n <= 10 )
                                 {
                                         CHANNEL_D->channel_broadcast(
-                                                "news",sprintf("%s(%s)的人物等级已经达到了 %d 级（当今武林第%s人）。",
+                                                "news",sprintf("%s(%s)的人物等級已經達到了 %d 級（當今武林第%s人）。",
                                                                 query("name", me),query("id", me),level,chinese_number(lvl_lst[lvl_term[i]])));
 
                 /*
-                                        HISTORY_D->add_history("人物等级排名", query("id", me), sprintf("人物等级 %d 级，年龄 %d 排名: %d.\n",
+                                        HISTORY_D->add_history("人物等級排名", query("id", me), sprintf("人物等級 %d 級，年齡 %d 排名: %d.\n",
                                                                 level, query("age", me), n));
                 */
                                 }
@@ -116,7 +116,7 @@ int level_summary(object me, int level)
                         if (level<file_level)
                         {
                                 CHANNEL_D->channel_broadcast(
-                                        "news",sprintf("%s(%s)的人物已经达到了 %d 级。",
+                                        "news",sprintf("%s(%s)的人物已經達到了 %d 級。",
                                                         query("name", me),query("id", me),level));
                         }
                 }
@@ -141,13 +141,13 @@ int improve_valid_level(object ob, int level)
                 if (sizeof(total) >= 10)
                 {
                         CHANNEL_D->channel_broadcast("news", HIM+query("id", ob)+HIM"合"+implode(total[0..sizeof(total) - 3], "、") +
-                                "和" + total[sizeof(total) - 2] + "等众人之力，"+
-                                "破除了" HIY + valid_level + NOR +HIM "级封印。\n" NOR);
+                                "和" + total[sizeof(total) - 2] + "等眾人之力，"+
+                                "破除了" HIY + valid_level + NOR +HIM "級封印。\n" NOR);
                         valid_level += 10;
                         total = ({});
                         for( i = 0; i < 10; i++ )
-                                HISTORY_D->add_history("破除等级封印", total[i],
-                                                       sprintf("人物等级 %d 级，排名: %d.\n", level, i));
+                                HISTORY_D->add_history("破除等級封印", total[i],
+                                                       sprintf("人物等級 %d 級，排名: %d.\n", level, i));
                 }
                 save();
         }
@@ -186,7 +186,7 @@ void check_user(object ob)
         if( query("family/generation", ob) == 0 )
                 delete("family", ob);
 
-        if( query("gender", ob) == "无性" )
+        if( query("gender", ob) == "無性" )
                 set("class", "eunach", ob);
 
         if( query("combat/today/which_day", ob) != time()/86400 )
@@ -195,7 +195,7 @@ void check_user(object ob)
         if( query("couple", ob) && !query("static/marry", ob) )
                 set("static/marry", 1, ob);
         /*
-        if( query("family/family_name", ob) == "丐帮" &&
+        if( query("family/family_name", ob) == "丐幫" &&
             query("family/beggarlvl", ob) )
         {
                 budai = new("/d/gaibang/obj/budai");
@@ -207,13 +207,13 @@ void check_user(object ob)
         if (mapp(party = my["party"]) && stringp(party["party_name"]))
                 party["party_name"] = filter_color(party["party_name"]);
 
-        // 记录名字
+        // 記錄名字
         NAME_D->map_name(query("name", ob),query("id", ob));
 
-        // 重新设置运行计时器
+        // 重新設置運行計時器
         reset_eval_cost();
 
-        // 赋予称号
+        // 賦予稱號
         set_title(ob);
 
         if (undefinedp(my["eff_jing"]))  my["eff_jing"] = my["max_jing"];
@@ -293,7 +293,7 @@ varargs string clear_user_data(string user, string cat, int raw)
             getuid(previous_object()) != ROOT_UID &&
             geteuid(previous_object()) != "lonely" &&
             geteuid(previous_object()) != user)
-                return "你无权清除该玩家的数据。\n";
+                return "你無權清除該玩家的數據。\n";
 
         // find the user's body
         seteuid(getuid());
@@ -307,14 +307,14 @@ varargs string clear_user_data(string user, string cat, int raw)
                 if (!ob)
                 {
                         catch(destruct(login_ob));
-                        return "暂时无法生成玩家对象。\n";
+                        return "暫時無法生成玩家對象。\n";
                 }
 
                 if (!ob->restore())
                 {
                         catch(destruct(login_ob));
                         catch(destruct(ob));
-                        return "没有这个玩家。\n";
+                        return "沒有這個玩家。\n";
                 }
 
                 ob->setup();
@@ -352,7 +352,7 @@ varargs string clear_user_data(string user, string cat, int raw)
                                 if (environment(temp))
                                 {
                                         message("vision", HIM + temp->name() +
-                                                HIM "忽然化作一缕清烟，不见了！\n" NOR,
+                                                HIM "忽然化作一縷清煙，不見了！\n" NOR,
                                                 environment(temp));
                                 }
                         }
@@ -385,7 +385,7 @@ varargs string clear_user_data(string user, string cat, int raw)
                             environment(item))
                         {
                                 message("vision", HIM + item->name() +
-                                        "忽然化作一股轻烟，不见了！\n" NOR,
+                                        "忽然化作一股輕煙，不見了！\n" NOR,
                                         environment(item));
                         }
 
@@ -421,7 +421,7 @@ varargs string clear_user_data(string user, string cat, int raw)
                                 if (environment(temp))
                                 {
                                         message("vision", HIM + temp->name() +
-                                                HIM "忽然化作一缕清烟，不见了！\n" NOR,
+                                                HIM "忽然化作一縷清煙，不見了！\n" NOR,
                                                 environment(temp));
                                 }
                         }
@@ -449,7 +449,7 @@ varargs string clear_user_data(string user, string cat, int raw)
                                 if (environment(temp))
                                 {
                                         message("vision", HIM + temp->name() +
-                                                HIM "忽然化作一缕清烟，不见了！\n" NOR,
+                                                HIM "忽然化作一縷清煙，不見了！\n" NOR,
                                                 environment(temp));
                                 }
                         }
@@ -478,7 +478,7 @@ varargs string clear_user_data(string user, string cat, int raw)
                                 if (environment(temp))
                                 {
                                         message("vision", HIM + temp->name() +
-                                                HIM "忽然化作一缕清烟，不见了！\n" NOR,
+                                                HIM "忽然化作一縷清煙，不見了！\n" NOR,
                                                 environment(temp));
                                 }
                         }
@@ -707,7 +707,7 @@ varargs string remove_user(string user, int raw)
                 rm(DATA_DIR + flogin);
                 rm(DATA_DIR + fuser);
         }
-        // 论坛删除ID
+        // 論壇刪除ID
         BOARD_D->db_remove_player(user);
 #else
         cp(DATA_DIR + flogin, TEMP_DIR + flogin);
@@ -740,7 +740,7 @@ void born_player(object me)
         set("eff_jing", 450, me);
         set("jing", 450, me);
 
-        msg = HIG "你与生俱来的技能有：" NOR;
+        msg = HIG "你與生俱來的技能有：" NOR;
 
         // 查看所有的特殊技能文件
         // files = get_dir("/kungfu/special/");
@@ -753,11 +753,11 @@ void born_player(object me)
                 // for (i = 0; i < sizeof(files); i++)
                         // sscanf(files[i], "%s.c", files[i]);
 
-                // 先天容貌 < 20 不会驻颜
+                // 先天容貌 < 20 不會駐顏
                 if( query("per", me)<20 )
                         files -= ({ "youth" });
 
-                // 获得第一项技能
+                // 獲得第一項技能
                 special = files[random(sizeof(files))];
                 set("special_skill/"+special, 1, me);
                 msg += SPECIAL_D(special)->name();
@@ -766,7 +766,7 @@ void born_player(object me)
                 //if (sizeof(files) && random(100) == 1)
                 if (sizeof(files))
                 {
-                        // 获得第二项技能
+                        // 獲得第二項技能
                         special = files[random(sizeof(files))];
                         set("special_skill/"+special, 1, me);
                         msg += HIG "、" NOR + SPECIAL_D(special)->name();
@@ -774,7 +774,7 @@ void born_player(object me)
 
                 if (random(1000000) == 1)
                 {
-                        // 获得终极技能
+                        // 獲得終極技能
                         special = special_ultimate[random(sizeof(special_ultimate))];
                         set("special_skill/"+special, 1, me);
                         msg += HIG "、" NOR + SPECIAL_D(special)->name();
@@ -785,7 +785,7 @@ void born_player(object me)
                                       "notice_player", me, msg :), 0);
         }
 #ifdef DB_BOARD
-        // 论坛创建ID
+        // 論壇創建ID
         BOARD_D->db_create_user(me);
 #endif
 }
@@ -798,7 +798,7 @@ void notice_player(object me, string msg)
                                       me:), 3);
 }
 
-// 给予新的MYGIFT辅助任务
+// 給予新的MYGIFT輔助任務
 void give_new_mygift_quest(object me)
 {
         MYGIFT_D->give_mygift(me, "1");
@@ -822,7 +822,7 @@ mixed set_title_base(mixed ts)
         title_base = ts;
 }
 
-// 清除某个玩家的 title
+// 清除某個玩家的 title
 void remove_title(object ob)
 {
         int i;
@@ -844,7 +844,7 @@ void remove_title(object ob)
         return;
 }
 
-// 设置某个玩家的 title
+// 設置某個玩家的 title
 void set_title(object ob)
 {
         string id;
@@ -862,15 +862,15 @@ void set_title(object ob)
                         return;
                 }
 
-        // 这个用户并没有分配的称号
+        // 這個用戶並沒有分配的稱號
         delete("granted_title", ob);
 }
 
-// 寻找或调入某一个玩家
-// 如果程序处理中需要更新那些不在线的玩家，则可以使用该函数
-// 将这个玩家调入并且进行修改，请注意：修改完毕以后程序必须
-// 保存玩家，并且使用 global_destruct_player 将玩家析构，如
-// 果没有调用这个函数，则赋予玩家的定时器会自动析构玩家。
+// 尋找或調入某一個玩家
+// 如果程序處理中需要更新那些不在線的玩家，則可以使用該函數
+// 將這個玩家調入並且進行修改，請注意：修改完畢以後程序必須
+// 保存玩家，並且使用 global_destruct_player 將玩家析構，如
+// 果沒有調用這個函數，則賦予玩家的定時器會自動析構玩家。
 object global_find_player(string user)
 {
         object ob;
@@ -905,7 +905,7 @@ object global_find_player(string user)
         return ob;
 }
 
-// 析构一个被 UPDATE_D 调入的玩家
+// 析構一個被 UPDATE_D 調入的玩家
 void global_destruct_player(object ob, int raw)
 {
         if( objectp(ob) && query_temp("temp_loaded", ob) )

@@ -9,7 +9,7 @@ void create()
 	string *name_string = ({"老","大","少","小"});
 
 	set_name("男弟子", ({"nan dizi", "nan", "dizi"}) );
-	set("long", "他正在专心致志地练习功夫。\n");
+	set("long", "他正在專心致志地練習功夫。\n");
 	set("gender", "男性" );
 	set("age", 26);
 	set("attitude", "peaceful");
@@ -41,12 +41,12 @@ void create()
 	prepare_skill("finger","yiyang-zhi");
 
 	set("shen_type", 0);
-	create_family("天龙寺", 10, "弟子");
+	create_family("天龍寺", 10, "弟子");
 
 	set("inquiry", ([
-		"name": "在下姓杀，名唤" + name_string[name_no] + "手，从十六岁起便投在这里学艺。",
-		"寒雨": "说起来也是他创造了我，不过这家伙是个造ｑｕｅｓｔ狂。",
-		"jpei": "说起来也是他创造了我，不过这家伙是个造ｑｕｅｓｔ狂。",
+		"name": "在下姓殺，名喚" + name_string[name_no] + "手，從十六歲起便投在這裡學藝。",
+		"寒雨": "說起來也是他創造了我，不過這傢伙是個造ｑｕｅｓｔ狂。",
+		"jpei": "說起來也是他創造了我，不過這傢伙是個造ｑｕｅｓｔ狂。",
 	]) );
 
 	setup();

@@ -6,12 +6,12 @@
 inherit CONDITION_MOD;
 
 string id               = "battlefield_player_1";
-string name     = HIW"永"NOR WHT"恒"HIW"荣"NOR WHT"耀"NOR;
+string name     = HIW"永"NOR WHT"恆"HIW"榮"NOR WHT"耀"NOR;
 string type     = CONDITION_TYPE_POSITIVE;
 int time                = 86400;
 int heartbeat   = 0;
 
-// 启动状态时的效果
+// 啟動狀態時的效果
 void start_effect(object ob)
 {
         addn(query_key()+"/"+BUFF_STR, 8, ob);
@@ -30,13 +30,13 @@ void start_effect(object ob)
         ::start_effect(ob);
 }
 
-// 结束状态时的效果
+// 結束狀態時的效果
 void stop_effect(object ob)
 {
         ::stop_effect(ob);
 }
 
-// 状态进行中的效果
+// 狀態進行中的效果
 void heart_beat_effect(object ob)
 {
 

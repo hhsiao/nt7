@@ -7,15 +7,15 @@ inherit NPC;
 
 void create()
 {
-        set_name(HIW"照玉狮子马"NOR, ({"shizi ma", "horse", "ma"}));
-        set("race", "野兽");
+        set_name(HIW"照玉獅子馬"NOR, ({"shizi ma", "horse", "ma"}));
+        set("race", "野獸");
         set("age", 3);
 
         set("combat_exp", 2000000);
         set("long",
-                "一匹高头大马，全身雪白的毛发，煞是神俊。\n");
+                "一匹高頭大馬，全身雪白的毛髮，煞是神俊。\n");
 
-        set("limbs", ({ "头部", "身体", "蹄子", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體", "蹄子", "尾巴" }) );
         set("verbs", ({ "bite", "hoof" }) );
 
         set("str", 20+random(10));
@@ -37,7 +37,7 @@ void create()
 
         set("chat_chance", 5);
         set("chat_msg", ({
-                 HIC "照玉狮子马不住地低鸣，蹄子不停地刨打着地面。\n" NOR,
+                 HIC "照玉獅子馬不住地低鳴，蹄子不停地刨打著地面。\n" NOR,
         }) );
 
         setup();
@@ -57,7 +57,7 @@ int do_ride(string arg)
 
         if (me != WAR_D->query_marshal())  
         { 
-                message_vision(HIY "$N一声嘶鸣，把$n掀翻在地，顿时$n满嘴是泥！！\n" NOR, 
+                message_vision(HIY "$N一聲嘶鳴，把$n掀翻在地，頓時$n滿嘴是泥！！\n" NOR, 
                         this_object(), me);
                 return 1;
         }                            
@@ -81,7 +81,7 @@ void heading_for(object me)
 {
         if (! objectp(me)) return;
         message_vision(
-                HIW "$N快马加鞭，连夜飞弛，终于赶到了宋军大营！\n" NOR, me);
+                HIW "$N快馬加鞭，連夜飛弛，終於趕到了宋軍大營！\n" NOR, me);
         me->move("/d/city2/sying1");
         return;
 }

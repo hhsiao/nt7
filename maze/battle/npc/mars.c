@@ -7,12 +7,12 @@ inherit NPC;
 
 void create()
 {
-        set_name("战神", ({ "zhan shen", "mars", "zhan", "shen" }) );
+        set_name("戰神", ({ "zhan shen", "mars", "zhan", "shen" }) );
         set("title", HIY "神族" NOR);
         set("gender", "男性");
         set("age", 58);
         set("long", @LONG
-长年在战场杀戮下丧失生命的的战士魂魄所凝聚型成的战神。
+長年在戰場殺戮下喪失生命的的戰士魂魄所凝聚型成的戰神。
 LONG );
         set("combat_exp", 1000000000);
         set("shen_type", 0);
@@ -64,8 +64,8 @@ void fight_ob(object ob)
         if (is_fighting(ob))
                 return;
 
-        message_vision(HIR "$N" HIR "怒吼一声，两眼中"
-                       "凶光毕露。\n" NOR, this_object(), ob);
+        message_vision(HIR "$N" HIR "怒吼一聲，兩眼中"
+                       "兇光畢露。\n" NOR, this_object(), ob);
 
         ::fight_ob(ob);
         if( !is_killing(query("id", ob)) )
@@ -74,7 +74,7 @@ void fight_ob(object ob)
 
 int accept_fight(object ob)
 {
-        message_vision("$N一阵狂叫，猛然扑了上来。\n",
+        message_vision("$N一陣狂叫，猛然撲了上來。\n",
                        this_object(), ob);
         kill_ob(ob);
         return -1;
@@ -94,8 +94,8 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->receive_wound("qi", 20000 + random(20000), me);
         set("neili",query("max_neili",  me), me);
-        return HIR "$N" HIR "身上腾起一股火焰，登时逼得$n"
-               HIR "退后几步，闷哼一声。\n" NOR;
+        return HIR "$N" HIR "身上騰起一股火焰，登時逼得$n"
+               HIR "退後幾步，悶哼一聲。\n" NOR;
 }
 
 varargs void die(object killer)
@@ -110,7 +110,7 @@ varargs void die(object killer)
         {
                 BATTLEFIELD2_D->add_killnpc_score(killer, 1);
         }
-        //CHANNEL_D->channel_broadcast("combat", this_object()->query_idname()+"：你们这些愚蠢的人类不要以为这样就可以打败我...");
+        //CHANNEL_D->channel_broadcast("combat", this_object()->query_idname()+"：你們這些愚蠢的人類不要以為這樣就可以打敗我...");
         BATTLEFIELD2_D->add_npc(base_name(this_object()));
 
         ::die(killer);

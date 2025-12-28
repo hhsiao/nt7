@@ -3,11 +3,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "西门");
+        set("short", "西門");
         set("long", @LONG
-这是个山庄的西门。拱月形的竹门分外雅致，门上挂着块竹牌，
-上面写着「西门外面有毒蛇出没，慎行」几个醒目的大字。西门外面
-则是杂草丛生，很是荒凉。
+這是個山莊的西門。拱月形的竹門分外雅緻，門上掛著塊竹牌，
+上面寫著「西門外面有毒蛇出沒，慎行」幾個醒目的大字。西門外面
+則是雜草叢生，很是荒涼。
 LONG );
         set("outdoors", "baituo");
         set("exits", ([
@@ -36,8 +36,8 @@ int valid_leave(object me, string dir)
         if (dir == "west"
             && query("combat_exp", me)<600
            && guarder)
-                return notify_fail(CYN "门卫拦住你道：你经验太低，会被"
-                                   "毒蛇咬死，还是不要乱闯的好。\n" NOR);
+                return notify_fail(CYN "門衛攔住你道：你經驗太低，會被"
+                                   "毒蛇咬死，還是不要亂闖的好。\n" NOR);
 
         return 1;
 }

@@ -15,31 +15,31 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("你只能对战斗中的对手使用「乱影剑」。\n");
+                return notify_fail("你只能對戰鬥中的對手使用「亂影劍」。\n");
 
         if( query_temp("myj_luan_cd", me) && time()-query_temp("myj_luan_cd", me) < 1 )
-                return notify_fail("你上一个动作还没有完成，不能施用外功。\n");
+                return notify_fail("你上一個動作還沒有完成，不能施用外功。\n");
 
         if (! objectp(weapon = query_temp("weapon",me)) ||
             (string)query("skill_type",weapon) != "sword")
-                return notify_fail("你使用的武器不对！\n");
+                return notify_fail("你使用的武器不對！\n");
                 
         if (me->query_skill_mapped("sword") != "meiying-jian")
-                return notify_fail("你没有激发魅影剑法，无法施展。\n"); 
+                return notify_fail("你沒有激發魅影劍法，無法施展。\n"); 
 
         if ((int)me->query_skill("meiying-jian", 1) < 200)
-                return notify_fail("你目前功力还使不出「乱影剑」。\n");
+                return notify_fail("你目前功力還使不出「亂影劍」。\n");
 
         if ((int)query("neili",me) < 300)
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if (! living(target))
-               return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+               return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
              set_temp("myj_luan_cd",time(),me);
         addn("neili", -200,me);
-        msg = HIM "\n$N" HIM "露出诡异的笑容，忽然身法陡然加快，有如完全鬼影般旋转，"
-              "手中$N" HIM "乱影般激射而出，$n" HIW "只觉魅影围绕，窒息之极！\n" NOR;
+        msg = HIM "\n$N" HIM "露出詭異的笑容，忽然身法陡然加快，有如完全鬼影般旋轉，"
+              "手中$N" HIM "亂影般激射而出，$n" HIW "只覺魅影圍繞，窒息之極！\n" NOR;
 
         if (random(10) < 2)
         {
@@ -59,12 +59,12 @@ int perform(object me, object target)
                 damage = ap * 2 + random(ap);
 
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 100, 
-                                           HIR "只见$n" HIR "已被$N" HIR
-                                           "刺得体无完肤，血如箭般由全身喷射而出！\n" NOR);
+                                           HIR "只見$n" HIR "已被$N" HIR
+                                           "刺得體無完膚，血如箭般由全身噴射而出！\n" NOR);
         } else
         {
-                msg += HIC "可是$p" HIC "急忙抽身躲开，使$P"
-                       HIC "这招没有得逞。\n" NOR;
+                msg += HIC "可是$p" HIC "急忙抽身躲開，使$P"
+                       HIC "這招沒有得逞。\n" NOR;
         }
         message_combatd(sort_msg(msg), me, target);
 

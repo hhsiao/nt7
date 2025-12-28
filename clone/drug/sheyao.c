@@ -5,7 +5,7 @@ inherit ITEM;
 int cure_ob(string);
 void create()
 {
-   set_name("蛇药", ({"she yao", "yao"}));
+   set_name("蛇藥", ({"she yao", "yao"}));
    /*if (clonep())
       set_default_object(__FILE__);
    else*/ {

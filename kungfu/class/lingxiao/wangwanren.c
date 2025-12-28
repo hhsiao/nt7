@@ -6,10 +6,10 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("王万仞", ({"wang wanren", "wang", "wanren"}));
-        set("long", "他是凌霄城第六代弟子王万仞，专门负责接送新入\n"
-                    "门的弟子上山。他本是凌霄城中杰出弟子，只是好\n"
-                    "酒贪杯，才被罚到此守卫。\n");
+        set_name("王萬仞", ({"wang wanren", "wang", "wanren"}));
+        set("long", "他是凌霄城第六代弟子王萬仞，專門負責接送新入\n"
+                    "門的弟子上山。他本是凌霄城中傑出弟子，只是好\n"
+                    "酒貪杯，才被罰到此守衛。\n");
         set("gender", "男性");
         set("age", 34);
         set("attitude", "friendly");
@@ -27,7 +27,7 @@ void create()
 
         set("chat_chance", 1);
         set("chat_msg", ({
-                CYN "王万仞打了个喷嚏，骂道：这鬼地方可真够冷的，要是有点酒喝就暖和多了。\n" NOR,
+                CYN "王萬仞打了個噴嚏，罵道：這鬼地方可真夠冷的，要是有點酒喝就暖和多了。\n" NOR,
         }) );
 
         set_skill("force", 100);
@@ -76,6 +76,6 @@ void attempt_apprentice(object me)
         if (! permit_recruit(me))
                 return;
 
-        command("say 嗯？拜我为师？好说，好说。");
+        command("say 嗯？拜我為師？好說，好說。");
         command("recruit "+query("id", me));
 }

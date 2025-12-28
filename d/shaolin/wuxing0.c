@@ -11,10 +11,10 @@ void create()
 {
         set("short",HIY "五行洞" NOR);
         set("long", @LONG
-[1；33m这是五行洞。四周一片亮晶晶的，定睛细看，却是无数锋利的刀
-尖从墙上，地上，顶上，四面八方向你伸过来，稍不留神就会自己撞
-到刀尖上去。刀光眩目，更添彻骨寒意。几具血淋淋的断肢残骸挂在
-刀尖上，看来已经有些时日了。墙壁黑乎乎的，似是钢铁铸成。[2；37；0m
+[1；33m這是五行洞。四周一片亮晶晶的，定睛細看，卻是無數鋒利的刀
+尖從牆上，地上，頂上，四面八方向你伸過來，稍不留神就會自己撞
+到刀尖上去。刀光眩目，更添徹骨寒意。幾具血淋淋的斷肢殘骸掛在
+刀尖上，看來已經有些時日了。牆壁黑乎乎的，似是鋼鐵鑄成。[2；37；0m
 LONG );
         set("exits", ([
                 "east" : __DIR__"wuxing4",
@@ -61,7 +61,7 @@ int valid_leave(object me, string dir)
                         set_temp("wuxing/水", count, me);
                         if (check_out(me))
                         {
-                                write("你顺利地走出了五行迷宫。\n");
+                                write("你順利地走出了五行迷宮。\n");
                                 return 1;
                         }
                 }
@@ -70,7 +70,7 @@ int valid_leave(object me, string dir)
 //                        write("*金克木*\n");
                         delete_temp("wuxing", me);
                         me->move(__DIR__"jianyu1");
-                        write("你掉进机关，落入僧监。\n");
+                        write("你掉進機關，落入僧監。\n");
                         return 1;
                 }
         }

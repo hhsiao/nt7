@@ -1,4 +1,4 @@
-// 乱射
+// 亂射
 #include <mudlib.h>
 #include <daemons.h>
 #include <ansi.h>
@@ -17,24 +17,24 @@ void main(object ob)
 	p_id = TROOP_D->get_char_troop(this_body()->query_primary_id());
 	p_name=this_body()->query_id()[0];
         if(!(CHAR_D->get_char(p_name,"skills")))
-        {       write("你不会乱射之计。\n");
+        {       write("你不會亂射之計。\n");
                 return;
         }
         if(!p_skill=CHAR_D->get_char(p_name,"skills")["luanshe"])
-        {       write("你不会乱射之计。\n");
+        {       write("你不會亂射之計。\n");
                 return;
         }
 	if( !p_id){
-		write("只有身在军中才能使用乱射。\n");
+		write("只有身在軍中才能使用亂射。\n");
 		return;
 	};
 	solider = TROOP_D->get_troops(p_id, "soldier");
 	if( !sizeof(solider) || member_array("bowman", keys(solider)) == -1 ){ 
-		write("你的手下没有弓兵，怎能使用乱射。\n");
+		write("你的手下沒有弓兵，怎能使用亂射。\n");
 		return;
 	};
 	if( solider["bowman"]["energy"] < 20 ){
-		write("弓兵行动力不足，难以使用乱射。\n");
+		write("弓兵行動力不足，難以使用亂射。\n");
 		return;
 	};
 
@@ -58,10 +58,10 @@ void main(object ob)
 		if( TROOP_D->get_troop_area(id) != where )continue;
 		if( (x-x2)*(x-x2)+(y-y2)*(y-y2) > 4 )continue;
 		tell(deep_inventory(TROOP_D->find_troop(id)),
-			"一阵箭雨从天而降，毫无防备的士兵连声惨叫。\n",
+			"一陣箭雨從天而降，毫無防備的士兵連聲慘叫。\n",
 			MSG_INDENT);		
 		tell(deep_inventory(TROOP_D->find_troop(p_id)),
-                        "乱箭射一队人马之中！\n",
+                        "亂箭射一隊人馬之中！\n",
                         MSG_INDENT);
 		kill = p_skill*100/11;
 		enemy = TROOP_D->get_troops(id, "soldier");
@@ -72,7 +72,7 @@ void main(object ob)
 	ob->award_exp(ob->query_sk_level("sk_zhimou")/2+random(20) ,"luanshe");
   	load_object("/daemons/cast_d.c")->reg_player(p_name, "luanshe");
 	WARAI_D->war_inf(TROOP_D->get_troops(p_id,"task_id"),
-TROOP_D->find_troop(p_id)->query_id()[1]+"使用乱射之计，杀敌"+
+TROOP_D->find_troop(p_id)->query_id()[1]+"使用亂射之計，殺敵"+
 chinese_number(kill)+"人。","b");
 
 }

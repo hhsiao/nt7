@@ -1,5 +1,5 @@
-// by naihe 200?.??.??   不记得什么时候写的了
-// 有时候可以替代 notify_fail() ，在一些 add_action() 函数里 return errs() 可以禁止继续执行。
+// by naihe 200?.??.??   不記得什麼時候寫的了
+// 有時候可以替代 notify_fail() ，在一些 add_action() 函數里 return errs() 可以禁止繼續執行。
 varargs int errs(string msg, object who)
 {
         if( !msg )

@@ -12,7 +12,7 @@ void create()
         else
         	set_name(HIM "彩蝶仙子" NOR, ({ "caidie xianzi", "caidie", "xianzi" }));
         	
-        set("long", HIM "这便是传说中的蝶仙，一身彩衣打扮，背上还有一对彩色的翅膀，样貌比天仙更胜三分。\n" NOR);
+        set("long", HIM "這便是傳說中的蝶仙，一身綵衣打扮，背上還有一對彩色的翅膀，樣貌比天仙更勝三分。\n" NOR);
 
         set("gender", "女性");
         set("age", 9999);
@@ -44,8 +44,8 @@ void create()
         map_skill("unarmed", "yinyang-shiertian");
         
         set("inquiry", ([
-                "蝴蝶标本"   :   "做好的蝴蝶标本都都交给小蝶仙了，不过我正需要这个，能否帮帮忙。\n",
-		"蓬莱仙岛"               :   "这不是你该来的地方，我看你还是快走吧。\n",
+                "蝴蝶標本"   :   "做好的蝴蝶標本都都交給小蝶仙了，不過我正需要這個，能否幫幫忙。\n",
+		"蓬萊仙島"               :   "這不是你該來的地方，我看你還是快走吧。\n",
         ]));
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -70,8 +70,8 @@ int accept_object(object me, object obj)
 	    base_name(obj) == "/d/penglai/obj/biaoben")
 	{
 		command("nod");
-		message_vision(HIC "$N" HIC "接过" + obj->name() + HIC "，道：目前我正需要这个，谢谢 ……\n" NOR, this_object());
-		message_vision(NOR + CYN "\n$N" NOR "拿出十两白银给" + me->name() + NOR + CYN "。\n" NOR, this_object(), me);
+		message_vision(HIC "$N" HIC "接過" + obj->name() + HIC "，道：目前我正需要這個，謝謝 ……\n" NOR, this_object());
+		message_vision(NOR + CYN "\n$N" NOR "拿出十兩白銀給" + me->name() + NOR + CYN "。\n" NOR, this_object(), me);
 		ob = new("/clone/money/silver");
 		ob->set_amount(10);
 		ob->move(me, 1);

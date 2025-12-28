@@ -5,26 +5,26 @@
 
 inherit NPC;
 
-#define PLACE "xy"      //长安
+#define PLACE "xy"      //長安
 #define TYPE  "good"    //白道
-#define WAIT_TIME 60    //完成不了任务的反省时间
+#define WAIT_TIME 60    //完成不了任務的反省時間
 
 mapping bunch_good = ([
-        "bunch_name" : "无极帮",
+        "bunch_name" : "無極幫",
         "id"   : "wjb",
         "place": "xy",
-        "boss" : "金无极",
+        "boss" : "金無極",
         "type" : "good",
 ]);
 
 void create()
 {
-        set_name("金无极", ({ "jin wuji", "jin" }));
+        set_name("金無極", ({ "jin wuji", "jin" }));
         set("gender", "男性");
         set("age", 42);
-        set("long", "他就是鼎鼎大名的" + bunch_good["bunch_name"] + "的帮主。\n");
-        set("nickname",HIY"无极神笔"NOR);
-        set("title","无极帮帮主");
+        set("long", "他就是鼎鼎大名的" + bunch_good["bunch_name"] + "的幫主。\n");
+        set("nickname",HIY"無極神筆"NOR);
+        set("title","無極幫幫主");
         set("per",26);
         set("combat_exp", 1000000);
         set("shen_type", 1);

@@ -11,8 +11,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "个");
-                set("long", "这是一个黑石瓶子，看上去听不起眼的。\n");
+                set("unit", "個");
+                set("long", "這是一個黑石瓶子，看上去聽不起眼的。\n");
                 set("value", 1000);
                 set("material", "stone");
         }

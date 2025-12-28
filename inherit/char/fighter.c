@@ -1,4 +1,4 @@
-// fighter 练功人
+// fighter 練功人
 
 #include <ansi.h>
 
@@ -14,25 +14,25 @@ void setup()
 
         ::setup();
 
-        set_temp("eff_status_msg", "它看起来还可以继续用来练功。");
+        set_temp("eff_status_msg", "它看起來還可以繼續用來練功。");
 }
 
 void unconcious()
 {
-        message_vision(HIY "咔喇一声，" + name() +
-                       "坏了。\n\n" NOR, this_object());
+        message_vision(HIY "咔喇一聲，" + name() +
+                       "壞了。\n\n" NOR, this_object());
         set("jing", 0);
         set("eff_jing", 0);
         set("qi", 0);
         set("eff_qi", 0);
         set("damaged", 1);
-        set_temp("eff_status_msg", HIR " 它已经被打坏了。" NOR);
+        set_temp("eff_status_msg", HIR " 它已經被打壞了。" NOR);
 }
 
 void die()
 {
-        message_vision(HIR "\n一阵希哩哗啦的声音过后，" + name() +
-                       "算是彻底的报废了。\n\n" NOR, this_object());
+        message_vision(HIR "\n一陣希哩嘩啦的聲音過後，" + name() +
+                       "算是徹底的報廢了。\n\n" NOR, this_object());
         destruct(this_object());
 }
 
@@ -50,26 +50,26 @@ int accept_fight(object ob)
         if( stringp(query("for_family", env)) &&
             query("for_family", env) == query("family/family_name", ob) &&
             query("out_family", ob) )
-                return notify_fail("你还是外出历练吧，不能总呆在这里。\n");
+                return notify_fail("你還是外出歷練吧，不能總呆在這裡。\n");
 
         if( query("combat_exp", ob) < 12000 )
-                return notify_fail("你这点身手还不足以和" + name() + "练功。\n");
+                return notify_fail("你這點身手還不足以和" + name() + "練功。\n");
 
         if( is_fighting() )
-                return notify_fail("这个" + name() + "正在和人练功呢。\n");
+                return notify_fail("這個" + name() + "正在和人練功呢。\n");
 
         if( query("damaged") )
-                return notify_fail("这个" + name() + "已经被打坏了！\n");
+                return notify_fail("這個" + name() + "已經被打壞了！\n");
 
         if( query("fight_times") >= 10 ) {
                 unconcious();
-                return notify_fail("这个" + name() + "已经被打坏了！\n");
+                return notify_fail("這個" + name() + "已經被打壞了！\n");
         }
 
         if( objectp(query("last_fighter")) &&
             query("id", query("last_fighter")) != query("id", ob) )
-                return notify_fail("这是" + query("fighter_name") +
-                                   "的练功木人！\n");
+                return notify_fail("這是" + query("fighter_name") +
+                                   "的練功木人！\n");
 
         set("last_fighter", ob);
         set("fighter_name", ob->name());
@@ -189,10 +189,10 @@ int accept_fight(object ob)
 int accept_hit(object ob)
 {
         if( query("damaged") )
-                return notify_fail("这个" + name() + "已经被打坏了！\n");
+                return notify_fail("這個" + name() + "已經被打壞了！\n");
 
         if( query("combat_exp", ob) < 12000 )
-                return notify_fail("你这点身手还不足以和" + name() + "练功。\n");
+                return notify_fail("你這點身手還不足以和" + name() + "練功。\n");
 
         return 1;
 }
@@ -204,16 +204,16 @@ int accept_kill(object ob)
         me = this_object();
 
         if( ob->is_busy() )
-                return notify_fail("你现在正忙，没有时间拆东西。\n");
+                return notify_fail("你現在正忙，沒有時間拆東西。\n");
 
         if( query("combat_exp", ob) < 12000 )
-                return notify_fail("你这点身手还不足以拆掉" + name() + "。\n");
+                return notify_fail("你這點身手還不足以拆掉" + name() + "。\n");
 
         if( !query("damaged") && query("combat_exp", ob) < query("combat_exp") ) {
-                    message_vision("$N扑上去想拆掉$n，结果$n“蓬蓬”几下"
+                    message_vision("$N撲上去想拆掉$n，結果$n“蓬蓬”幾下"
                                "就把$N撩倒在地。\n", ob, me);
                     ob->start_busy(3);
-                    write("这个练功的" + name() + "太强了，你拆不掉它。\n");
+                    write("這個練功的" + name() + "太強了，你拆不掉它。\n");
                 return -1;
         }
 
@@ -227,7 +227,7 @@ int accept_kill(object ob)
 
 int accept_ansuan(object ob)
 {
-        return notify_fail("一个" + name() + "有什么好暗算的？\n");
+        return notify_fail("一個" + name() + "有什麼好暗算的？\n");
 }
 
 // remove kill action
@@ -250,7 +250,7 @@ void destroy(object ob, object me)
         if( !objectp(me) )
             return;
 
-        message_vision("$N扑上去几下子就把$n给拆了。\n", ob, me);
+        message_vision("$N撲上去幾下子就把$n給拆了。\n", ob, me);
         destruct(me);
 }
 

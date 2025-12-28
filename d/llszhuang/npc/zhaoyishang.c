@@ -2,11 +2,11 @@
 inherit NPC;
 void create()
 {
-        set_name("赵一伤", ({ "zhao yishang","zhao","yishang"}) );
+        set_name("趙一傷", ({ "zhao yishang","zhao","yishang"}) );
         set("long",@LONG
-赵一伤是马贼起家，凶残暴烈，早名震西陲。此人身形雄伟之极，脸的下
-半部长满了针剌般的短髭，连棱角分明的厚唇也差点遮盖了，一对眼铜铃般大，
-闪闪生威，顾盼间自有一股慑人气态。
+趙一傷是馬賊起家，兇殘暴烈，早名震西陲。此人身形雄偉之極，臉的下
+半部長滿了針剌般的短髭，連稜角分明的厚唇也差點遮蓋了，一對眼銅鈴般大，
+閃閃生威，顧盼間自有一股懾人氣態。
 LONG
          );
         set("title",RED"神箭八雄"NOR);
@@ -24,7 +24,7 @@ LONG
         set_skill("dodge", 500);
         set_skill("parry", 500);
         set_skill("sword",420);
-        set_skill("force",800); //防止别人来弹指
+        set_skill("force",800); //防止別人來彈指
         set_skill("hamagong",400);
         set_skill("tiyunzong",400);
         map_skill("sword","pixie-jian");

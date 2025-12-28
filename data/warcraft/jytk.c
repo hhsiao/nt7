@@ -7,7 +7,7 @@ void setup()
         set_name("[5m[1;31m神[1;36m器[2;37;0m[2;37;0m", ({"goodmt"}));        
         set("gender", "男性");                
         set("long", "$BLINK$$HIR$神$HIC$器[2;37;0m
-它是九月天空的魔幻兽。
+它是九月天空的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

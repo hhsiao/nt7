@@ -6,7 +6,7 @@ inherit F_UNIQUE;
  
 void create()
 {
-        set_name("「魅影剑法」上册", ({ "meiying book1", "book1", }));
+        set_name("「魅影劍法」上冊", ({ "meiying book1", "book1", }));
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
@@ -14,8 +14,8 @@ void create()
         {
                 set("unit", "本");
                 set("long",
-        "这是一本发旧的秘籍。上书：“「魅影剑法」上册”。\n"
-        "书皮泛黄，看来已经保存很久了。\n", );
+        "這是一本發舊的秘籍。上書：“「魅影劍法」上冊”。\n"
+        "書皮泛黃，看來已經保存很久了。\n", );
                 set("value", 0);
                 set("material", "paper");
                 set("skill", ([

@@ -6,8 +6,8 @@ void setup()
 {
         set_name("小虎[2;37;0m[2;37;0m", ({"xiaohu"}));        
         set("gender", "男性");                
-        set("long", "这是一只雪白的小老虎。[2;37;0m
-它是包子的魔幻兽。
+        set("long", "這是一隻雪白的小老虎。[2;37;0m
+它是包子的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

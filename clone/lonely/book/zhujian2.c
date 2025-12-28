@@ -4,16 +4,16 @@ inherit ITEM;
 
 void create()
 {
-        set_name(YEL "竹简" NOR, ({ "zhu jian", "zhu", "jian" }));
+        set_name(YEL "竹簡" NOR, ({ "zhu jian", "zhu", "jian" }));
         set_weight(500);
         if (clonep())
                 destruct(this_object());
         else {
                 set("unit", "卷");
-                set("long", YEL "一卷非常陈旧的竹简，系在上面的皮革都已断裂，竹"
-                            "简上密密\n麻麻写满了小字，也不知是什么内容。\n" NOR);
+                set("long", YEL "一卷非常陳舊的竹簡，系在上面的皮革都已斷裂，竹"
+                            "簡上密密\n麻麻寫滿了小字，也不知是什麼內容。\n" NOR);
                 set("value", 1);
-                set("no_sell", "快拿走，什么破玩意？");
+                set("no_sell", "快拿走，什麼破玩意？");
                 set("material", "bamboo");
                 set("skill", ([
                         "name" : "zhuangzi-wu",

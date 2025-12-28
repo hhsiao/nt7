@@ -1,5 +1,5 @@
 // Code of ShenZhou
-//xiongdan-wan.c 白云熊胆丸
+//xiongdan-wan.c 白雲熊膽丸
 //kane 1998.6
 #include <ansi.h>
 inherit PILL;
@@ -10,15 +10,15 @@ void setup()
 int cure_ob(string);
 void create()
 {
-        set_name(HIW"白云熊胆丸"NOR, ({"xiongdan wan","wan"}));
+        set_name(HIW"白雲熊膽丸"NOR, ({"xiongdan wan","wan"}));
         set_weight(50);
         /*if (clonep())
             set_default_object(__FILE__);
     else*/
     {
-                set("unit", "颗");
+                set("unit", "顆");
         set("long",
-"一颗洁白光润的药丸，以熊胆等大补药物炼制而成，功能理气化虚，\n调元固本，于重伤之人更有吊命之效。\n");
+"一顆潔白光潤的藥丸，以熊膽等大補藥物煉製而成，功能理氣化虛，\n調元固本，於重傷之人更有吊命之效。\n");
                 set("value", 10000);
                 set("no_sell", 1);
                 set("medicine", 1);
@@ -35,12 +35,12 @@ int cure_ob(object me)
                 else
                         addn("jingli", -(query("jingli", me)), me);
 
-                message_vision(BLU"$N服下一颗"+query("name")+BLU"，觉得胸口郁闷，四肢乏力。原来服食太急\n太多，药效适得其反！\n" NOR, me);
+                message_vision(BLU"$N服下一顆"+query("name")+BLU"，覺得胸口鬱悶，四肢乏力。原來服食太急\n太多，藥效適得其反！\n" NOR, me);
                 destruct(this_object());
                 return 1;
         }
            
-        message_vision(HIW"$N服下一颗"+query("name")+HIW"，只觉全身暖融融的，说不出的受用，伤势\n霍然而愈。\n"NOR, me);
+        message_vision(HIW"$N服下一顆"+query("name")+HIW"，只覺全身暖融融的，說不出的受用，傷勢\n霍然而愈。\n"NOR, me);
         set("eff_jing",query("max_jing",  me), me);
         set("jing",query("max_jing",  me), me);
             set("jingli",query("max_jingli",  me), me);

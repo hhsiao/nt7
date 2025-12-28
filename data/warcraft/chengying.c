@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m幻兽[2;37;0m[2;37;0m", ({"xuanyuan"}));        
+        set_name("[1;31m幻獸[2;37;0m[2;37;0m", ({"xuanyuan"}));        
         set("gender", "男性");                
         set("long", "你看不到我你看不到我你看不到我[2;37;0m
-它是承影的魔幻兽。
+它是承影的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

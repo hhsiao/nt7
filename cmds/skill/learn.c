@@ -9,9 +9,9 @@ inherit F_CLEAN_UP;
 int can_learn(object me, string skill);
 
 string *reject_msg = ({
-        "说道：您太客气了，这怎么敢当？\n",
-        "像是受宠若惊一样，说道：请教？这怎么敢当？\n",
-        "笑着说道：您见笑了，我这点雕虫小技怎够资格指点您什么？\n",
+        "說道：您太客氣了，這怎麼敢當？\n",
+        "像是受寵若驚一樣，說道：請教？這怎麼敢當？\n",
+        "笑著說道：您見笑了，我這點雕蟲小技怎夠資格指點您什麼？\n",
 });
 
 void create() { seteuid(getuid()); }
@@ -35,16 +35,16 @@ int main(object me, string arg)
         int vip_level;
 
         if( query("pigging", where) )
-                return notify_fail("你还是专心拱猪吧！\n");
+                return notify_fail("你還是專心拱豬吧！\n");
 
         if( me->is_busy() )
                 return notify_fail(BUSY_MESSAGE);
 
         if( t == query_temp("time/learn", me) )
-                return notify_fail("你刚刚才学习过（如果你要连续学习，可以指明学习的次数）。\n");
+                return notify_fail("你剛剛才學習過（如果你要連續學習，可以指明學習的次數）。\n");
 
         if( !arg || (i = sizeof(args = explode(arg, " "))) < 2 )
-                return notify_fail("指令格式：learn|xue <某人> <技能> <次数>\n");
+                return notify_fail("指令格式：learn|xue <某人> <技能> <次數>\n");
 
         i--;
         if( i >= 2 && sscanf(args[i], "%d", times) && times )
@@ -67,17 +67,17 @@ int main(object me, string arg)
                 c *= n;
 
         if( times < 1 || times > c )
-                return notify_fail("学习次数最少一次，最多也不能超过" + chinese_number(c) +"次。\n");
+                return notify_fail("學習次數最少一次，最多也不能超過" + chinese_number(c) +"次。\n");
 
         if( me->is_fighting() )
-                return notify_fail("临阵磨枪？来不及啦。\n");
+                return notify_fail("臨陣磨槍？來不及啦。\n");
 
         if( !(ob = present(teacher, environment(me))) || !ob->is_character() )
-                return notify_fail("你要向谁求教？\n");
+                return notify_fail("你要向誰求教？\n");
 
         if( !living(ob) )
                 return notify_fail("嗯……你得先把" + ob->name() +
-                                   "弄醒再说。\n");
+                                   "弄醒再說。\n");
 
         if( !me->is_apprentice_of(ob) || ob->is_boss() || !ob->can_learn_from() ||
             playerp(ob) || ob->is_first() || ob->is_baby() ) {
@@ -92,45 +92,45 @@ int main(object me, string arg)
         }
 
         if( !master_skill = ob->query_skill(skill, 1) )
-                return notify_fail("这项技能你恐怕必须找别人学了。\n");
+                return notify_fail("這項技能你恐怕必須找別人學了。\n");
 
         if( ob->is_fighting() )
-                return notify_fail(ob->name() + "忙着料理别人，没空理你耶。\n");
+                return notify_fail(ob->name() + "忙著料理別人，沒空理你耶。\n");
 
         flag = query("no_teach/"+skill, ob);
         if( functionp(flag) ) 
                 flag = evaluate(flag, ob);  
         if( stringp(flag) ) {
-                message_vision(CYN "$N" CYN "摇摇头，说道：" + flag + "\n" NOR, ob);
+                message_vision(CYN "$N" CYN "搖搖頭，說道：" + flag + "\n" NOR, ob);
                 return 1;
         } else if( intp(flag) && flag ) {
                 if( flag != -1 )
                         // show the messaeg if the result was not -1
-                        write(CYN + ob->name() + CYN "说道：对不起，" +
-                              to_chinese(skill) + "可不能随便传授。\n" NOR);
+                        write(CYN + ob->name() + CYN "說道：對不起，" +
+                              to_chinese(skill) + "可不能隨便傳授。\n" NOR);
                 return 1;
         }
 
         if( /*me->is_apprentice_of(ob) &&*/
             SKILL_D(skill)->type() == "martial" &&
             me->query_skill(skill, 1) >= SKILL_D(skill)->valid_learn_level() ) {
-                write(ob->name() + "说：嗯.... 你的" + to_chinese(skill) +
-                      "功力已经是非同凡响了，我就不再教你，你自己多研究吧。\n");
+                write(ob->name() + "說：嗯.... 你的" + to_chinese(skill) +
+                      "功力已經是非同凡響了，我就不再教你，你自己多研究吧。\n");
                 return 1;
         }
 
         my_skill = me->query_skillo(skill, 1);
         if( my_skill >= master_skill )
-                return notify_fail("这项技能你的程度已经不输你师父了。\n");
+                return notify_fail("這項技能你的程度已經不輸你師父了。\n");
 
         if( my_skill >= (master_skill-query("betrayer/times", me)*20) )
-                return notify_fail(CYN + ob->name() + CYN "皱了皱眉头，不禁想"
-                                   "起你过去的叛师经历。\n" NOR);
+                return notify_fail(CYN + ob->name() + CYN "皺了皺眉頭，不禁想"
+                                   "起你過去的叛師經歷。\n" NOR);
 
         if( !can_learn(me, skill) )
                 return 0;
 
-        notify_fail("依你目前的能力，没有办法学习这种技能。\n");
+        notify_fail("依你目前的能力，沒有辦法學習這種技能。\n");
         if( !SKILL_D(skill)->valid_learn(me) ) return 0;
 
         jing_cost = 150 / (int)me->query_int() + 1;
@@ -140,27 +140,27 @@ int main(object me, string arg)
         }
 
         if( (query("potential", me)-query("learned_points", me))<times )
-                return notify_fail("你的潜能不够学习这么多次了。\n");
+                return notify_fail("你的潛能不夠學習這麼多次了。\n");
 
         if( SKILL_D(skill)->is_fmsk() && query("family/gongji", me) < times )
-                return notify_fail("你的门派贡献点数不够学习这么多次了。\n");
+                return notify_fail("你的門派貢獻點數不夠學習這麼多次了。\n");
 
-        write(sprintf(HIC "你开始向%s请教" + chinese_number(times) +
-                      "句有关「%s」的疑问。\n" NOR,
+        write(sprintf(HIC "你開始向%s請教" + chinese_number(times) +
+                      "句有關「%s」的疑問。\n" NOR,
                       ob->name(),
                       to_chinese(skill)));
 
         if( query("env/no_teach", ob)){
-                write("但是" + ob->name() + "现在并不准备回答你的问题。\n");
+                write("但是" + ob->name() + "現在並不準備回答你的問題。\n");
                 return 1;
         }
 
-        tell_object(ob, sprintf("%s向你请教有关「%s」的问题。\n",
+        tell_object(ob, sprintf("%s向你請教有關「%s」的問題。\n",
                     me->name(), to_chinese(skill)));
 
         if( !me->can_improve_skill(skill) ) {
-                write("也许是缺乏实战经验，你对" +
-                      ob->name() + "的回答总是无法领会。\n");
+                write("也許是缺乏實戰經驗，你對" +
+                      ob->name() + "的回答總是無法領會。\n");
                 return 1;
         }
 
@@ -186,7 +186,7 @@ int main(object me, string arg)
                         t3=query("neili", me)/neili_cost;
                         t4 = t1 + t3;
                         if( t4 == 0 ) {
-                                write("然而你今天太累了，无法再进行任何学习了。\n");
+                                write("然而你今天太累了，無法再進行任何學習了。\n");
                                 return 1;
                         }
 
@@ -244,16 +244,16 @@ int main(object me, string arg)
         me->improve_skill(skill, t4 * (4 + rand));
 
         if( skill_name = SKILL_D(skill)->query_skill_name(my_skill) )
-                write(sprintf("你听了%s的指导，对「%s」"
-                              "这一招似乎有些心得。\n",
+                write(sprintf("你聽了%s的指導，對「%s」"
+                              "這一招似乎有些心得。\n",
                               ob->name(), skill_name));
         else
-                write(sprintf("你听了%s的指导，似乎有些"
+                write(sprintf("你聽了%s的指導，似乎有些"
                               "心得。\n", ob->name()));
 
         if( t4 > 0 && t4 < times )
-                write("但是你今天太累了，学习了" + chinese_number(t4) +
-                      "次以后只好先停下来。\n");
+                write("但是你今天太累了，學習了" + chinese_number(t4) +
+                      "次以後只好先停下來。\n");
 
         return 1;
 }
@@ -270,7 +270,7 @@ int can_learn(object me, string skill)
         if( stringp(mskill = SKILL_D(skill)->main_skill()) &&
             mskill != skill &&
             me->query_skill(mskill, 1) > 0 )
-                return notify_fail("你现在没有必要再单独学习" + to_chinese(skill) + "了。\n");
+                return notify_fail("你現在沒有必要再單獨學習" + to_chinese(skill) + "了。\n");
         */
         skills = me->query_skills();
         if( !mapp(skills) )
@@ -291,10 +291,10 @@ int can_learn(object me, string skill)
                         continue;
 
                 if( !SKILL_D(skill_name)->valid_force(skill) )
-                        return notify_fail(HIR "你发现自身所学的" HIY +
+                        return notify_fail(HIR "你發現自身所學的" HIY +
                                            to_chinese(skill_name) + HIR
                                            "和" HIY + to_chinese(skill) +
-                                           HIR "冲突不已，根本没办法并"
+                                           HIR "衝突不已，根本沒辦法並"
                                            "存。\n" NOR);
         }
 
@@ -304,16 +304,16 @@ int can_learn(object me, string skill)
 int help(object me)
 {
         write(@HELP
-指令格式 : learn|xue <某人> [about] <技能> <次数>
+指令格式 : learn|xue <某人> [about] <技能> <次數>
 
-这个指令可以让你向别人请教有关某一种技能的疑难问题，当然，你请教的对象在这
-项技能上的造诣必须比你高，而你经由这种方式学习得来的技能也不可能高於你所请
-教的人，然而因为这种学习方式相当於一种「经验的传承」，因此学习可以说是熟悉
-一种新技能最快的方法。
+這個指令可以讓你向別人請教有關某一種技能的疑難問題，當然，你請教的對象在這
+項技能上的造詣必須比你高，而你經由這種方式學習得來的技能也不可能高於你所請
+教的人，然而因為這種學習方式相當於一種「經驗的傳承」，因此學習可以說是熟悉
+一種新技能最快的方法。
 
-此外学习也需要消耗一些精力，而消耗的精力跟你自己、与你学习对象的悟性有关。
+此外學習也需要消耗一些精力，而消耗的精力跟你自己、與你學習對象的悟性有關。
 
-其他相关指令 : apprentice, practice, skills, study
+其他相關指令 : apprentice, practice, skills, study
 HELP
         );
         return 1;

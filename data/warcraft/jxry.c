@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("金鳞瑞兽[2;37;0m[2;37;0m", ({"qilin"}));        
+        set_name("金鱗瑞獸[2;37;0m[2;37;0m", ({"qilin"}));        
         set("gender", "男性");                
-        set("long", "金鳞瑞兽 御风而来[2;37;0m
-它是吉祥如意的魔幻兽。
+        set("long", "金鱗瑞獸 御風而來[2;37;0m
+它是吉祥如意的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

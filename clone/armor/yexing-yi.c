@@ -14,12 +14,12 @@ void create()
         else*/
         {
                 set("unit", "件");
-                set("long", HIB "一件黑色的夜行衣，穿上它可以让你身法更轻盈。\n" NOR);
+                set("long", HIB "一件黑色的夜行衣，穿上它可以讓你身法更輕盈。\n" NOR);
                 set("material", "cloth");
                 set("value", 800000);
                 set("armor_prop/armor", 100);
                 set("armor_prop/dodge", 10);
-                set("special/desc", HIR "提升有效轻功10级。"); 
+                set("special/desc", HIR "提升有效輕功10級。"); 
                 set("limit", ([
                         "exp"  :  1200000,
                 ]));

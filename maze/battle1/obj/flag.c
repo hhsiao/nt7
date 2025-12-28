@@ -12,7 +12,7 @@ HIR"    ★"NOR + "\n" +
 HIB"    ||"NOR + "\n" +
 HIB"    ||"NOR + RED"~~~~~~~~~~~~~~~~~~~~"NOR + "\n" +
 HIB"    ||"NOR + RED"                  /"NOR + "\n" +
-HIB"    ||"NOR + HIY"    王者无敌"NOR + RED"     ("NOR + "\n" +
+HIB"    ||"NOR + HIY"    王者無敵"NOR + RED"     ("NOR + "\n" +
 HIB"    ||"NOR + RED"                  \\"NOR + "\n" +
 HIB"    ||"NOR + RED"~~~~~~~~~~~~~~~~~~~~"NOR  + "\n" +
 HIB"    ||"NOR + "\n" +

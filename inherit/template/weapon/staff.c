@@ -1,7 +1,7 @@
 // $file_name.c                                         /* COMMENT_ENTRY */
 // Create by TEMPLATE_D. $time.                         /* COMMENT_ENTRY */
 // axe.c
-// 自动创建斧头的基准文件。                             /* COMMENT_EXIT  */
+// 自動創建斧頭的基準文件。                             /* COMMENT_EXIT  */
 
 #include <weapon.h>
 
@@ -19,12 +19,12 @@ void create()
         else*/
         {
 //**            set("$dbase_key", "$dbase_value\n");    /* DBASE_ENTRY */
-                set("long", "这是一根普通的杖。\n");    /* DBASE_EXIT  */
+                set("long", "這是一根普通的杖。\n");    /* DBASE_EXIT  */
                 set("unit", "根");
                 set("value", 200);
                 set("material", "steel");
-                set("wield_msg", "$N「唰」的一声抽出一根$n握在手中。\n");
-                set("unwield_msg", "$N将手中的$n背到背上。\n");
+                set("wield_msg", "$N「唰」的一聲抽出一根$n握在手中。\n");
+                set("unwield_msg", "$N將手中的$n背到背上。\n");
         }
 
 //**    $function_name($argument);                      /* FUNCTION_ENTRY */

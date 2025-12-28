@@ -9,10 +9,10 @@ inherit F_MASTER;
 void create()
 {
         set_name("石清露", ({ "shi qinglu", "shi", "qinglu" }));
-        set("long", "她是苏星河最小的徒弟，少妇打扮，容貌甚美。\n");
+        set("long", "她是蘇星河最小的徒弟，少婦打扮，容貌甚美。\n");
         set("gender", "女性");
-        set("title", "逍遥派函谷八友");
-        set("nickname", MAG "莳花少妇" NOR);
+        set("title", "逍遙派函谷八友");
+        set("nickname", MAG "蒔花少婦" NOR);
         set("age", 33);
         set("class", "shaman");
         set("attitude", "peaceful");
@@ -53,7 +53,7 @@ void create()
         prepare_skill("hand", "qingyun-shou");
         prepare_skill("strike", "liuyang-zhang");
 
-        create_family("逍遥派", 3, "弟子");
+        create_family("逍遙派", 3, "弟子");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -74,10 +74,10 @@ void attempt_apprentice(object ob)
 
         if (ob->query_int() < 25)
         {
-                command("say 唉，你悟性太差，逍遥派是不会收留的。");
+                command("say 唉，你悟性太差，逍遙派是不會收留的。");
                 return;
         }
 
-        command("say …嗯…那你以后就跟着我吧。");
+        command("say …嗯…那你以後就跟著我吧。");
         command("recruit "+query("id", ob));
 }

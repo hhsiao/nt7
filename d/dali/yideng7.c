@@ -7,9 +7,9 @@ void create()
 {
         set("short", "缺口");
         set("long", @LONG
-山路中间突然中断，前面的山中间裂开，出现了一个缺口(gap)。
-石壁直上直下，下面黑黝黝地深不见低，看来可能是地震造成的。山
-路在对面的山上继续蜿蜒向前。
+山路中間突然中斷，前面的山中間裂開，出現了一個缺口(gap)。
+石壁直上直下，下面黑黝黝地深不見低，看來可能是地震造成的。山
+路在對面的山上繼續蜿蜒向前。
 LONG );
         set("exits", ([
                 "down":__DIR__"yideng5",
@@ -20,7 +20,7 @@ LONG );
                 ]) );
 
         set("item_desc",([
-                "gap" : "这缺口看起来倒是不宽，可以跳过去，但是对面有个书生挡着，如果他在你跳到半空的时候出手攻击，那你是必死无疑。\n",
+                "gap" : "這缺口看起來倒是不寬，可以跳過去，但是對面有個書生擋著，如果他在你跳到半空的時候出手攻擊，那你是必死無疑。\n",
                 ]));
         
         set("invalid_startroom", 1);
@@ -42,7 +42,7 @@ void init()
 int do_kill(string arg)
 {
         if (arg=="zhu" || arg=="ziliu" || arg=="zhu ziliu") {
-                tell_object(this_object(), "隔着这个缺口，你怎么攻击他啊？\n");
+                tell_object(this_object(), "隔著這個缺口，你怎麼攻擊他啊？\n");
                 return 1;
         }
         return 0;
@@ -50,6 +50,6 @@ int do_kill(string arg)
 
 int do_steal(string arg)
 {
-        tell_object(this_object(), "山顶之上，决无遮掩，你没有办法偷袭。\n");
+        tell_object(this_object(), "山頂之上，決無遮掩，你沒有辦法偷襲。\n");
         return 1;
 }

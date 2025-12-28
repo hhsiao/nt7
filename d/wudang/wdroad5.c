@@ -5,10 +5,10 @@ void create()
 {
         set("short", "青石大道");
         set("long", @LONG
-你走在一条青石大道上，四周静悄悄的。四周是浓密的树
-林，阴森森的十分怕人。西北方不远就是陕鄂的边界了。北边
-却是一片草地。你抬头向远方眺望，隐隐约约能够看到武当山
-的影子，只令人想飞奔而上。
+你走在一條青石大道上，四周靜悄悄的。四周是濃密的樹
+林，陰森森的十分怕人。西北方不遠就是陝鄂的邊界了。北邊
+卻是一片草地。你抬頭向遠方眺望，隱隱約約能夠看到武當山
+的影子，只令人想飛奔而上。
 LONG);
         set("outdoors", "sanbuguan");
         set("exits", ([
@@ -35,25 +35,25 @@ int do_float()
         if (me->query_skill("tiyunzong", 1) < 160 ||
             me->query_skill("dodge", 1) < 160)
         {
-                message_vision("$N跳了跳，原地蹦哒了一会儿。\n", me);
+                message_vision("$N跳了跳，原地蹦噠了一會兒。\n", me);
                 return 1;
         }
 
         if( query("neili", me)<150 )
         {
-                tell_object(me, "你的内力不够，还是休息一下再说吧。\n");
+                tell_object(me, "你的內力不夠，還是休息一下再說吧。\n");
                 return 1;
         }
 
         addn("neili", -120, me);
 
-        message_sort(HIC "\n$N" HIC"深吸一口气，迈开大步，双足"
-                     "如飞，踩着山间杂草，飘然而起，直奔那武当"
-                     "山去了！转瞬不见，只留下远远一个影子。\n"
+        message_sort(HIC "\n$N" HIC"深吸一口氣，邁開大步，雙足"
+                     "如飛，踩著山間雜草，飄然而起，直奔那武當"
+                     "山去了！轉瞬不見，只留下遠遠一個影子。\n"
                      "\n" NOR, me);
         me->move("/d/wudang/guangchang");
-        tell_object(me, "片刻，你已经飞身上了武当山上。\n");
-        message("vision", "只见一阵清风掠过，" + me->name() +
-                "已经飘然而至。\n", environment(me), ({ me }));
+        tell_object(me, "片刻，你已經飛身上了武當山上。\n");
+        message("vision", "只見一陣清風掠過，" + me->name() +
+                "已經飄然而至。\n", environment(me), ({ me }));
         return 1;
 }

@@ -1,4 +1,4 @@
-// qiantang.c 事件：钱塘江潮信
+// qiantang.c 事件：錢塘江潮信
 
 #include <ansi.h>
 
@@ -8,14 +8,14 @@ void create() { seteuid(getuid()); }
 #define STATUS_START            2
 #define STATUS_END              3
 
-// 开始创建事件
+// 開始創建事件
 void create_event()
 {
-        // 明年8月份18日涨潮，提前一天提示
+        // 明年8月份18日漲潮，提前一天提示
         EVENT_D->at_after(1, -8, -17, -12, STATUS_PROMPT);
 }
 
-// 奖励
+// 獎勵
 private void do_bonus(object room)
 {
         object *obs;
@@ -27,23 +27,23 @@ private void do_bonus(object room)
         if (sizeof(obs) < 1)
                 return;
 
-        msg = HIC "只听“隆隆”一阵雷鸣响过，潮水如涌一般的向岸边卷来。\n"
-                  "刹那间，漫江沸腾，波涛万顷，潮高丈馀，万马奔腾，真有\n"
-                  "“涛来势转雄，猎猎驾长风。雷震云霓里，山飞霜雪中”的\n"
-                  "壮丽气势！正所谓“远若素练横江，声如金鼓；近则亘如山\n"
-                  "岳，奋如雷霆”。一时间你不禁沉浸当中，天地万物都已然\n"
-                  "忘怀了。\n" NOR;
+        msg = HIC "只聽“隆隆”一陣雷鳴響過，潮水如湧一般的向岸邊捲來。\n"
+                  "剎那間，漫江沸騰，波濤萬頃，潮高丈餘，萬馬奔騰，真有\n"
+                  "“濤來勢轉雄，獵獵駕長風。雷震雲霓裡，山飛霜雪中”的\n"
+                  "壯麗氣勢！正所謂“遠若素練橫江，聲如金鼓；近則亙如山\n"
+                  "嶽，奮如雷霆”。一時間你不禁沉浸當中，天地萬物都已然\n"
+                  "忘懷了。\n" NOR;
         message("vision", msg, obs);
-        msg = "听说八月十八" + implode(sizeof(obs) > 4 ? obs[0..3]->name(1)
+        msg = "聽說八月十八" + implode(sizeof(obs) > 4 ? obs[0..3]->name(1)
                                                        : obs->name(1), "、") +
-              "等人在钱塘江观潮。";
+              "等人在錢塘江觀潮。";
         CHANNEL_D->do_channel(this_object(), "rumor", msg);
 
         obs=filter_array(obs,(:query("combat_exp", $1) >= 10000:));
         if (sizeof(obs) < 1)
                 return;
 
-        msg = HIG "你望着汹涌的潮水，若有所悟，对武功又有了新的体会。\n" NOR;
+        msg = HIG "你望著洶湧的潮水，若有所悟，對武功又有了新的體會。\n" NOR;
         message("vision", msg, obs);
         for( int i=0; i<sizeof(obs); i++ )
         {
@@ -51,38 +51,38 @@ private void do_bonus(object room)
                 obs[i]->improve_potential(100 + random(100));
                 obs[i]->improve_skill("force", 1000 + random(1000), 1);
         }
-        MAP_D->record_rumor(obs, "钱塘江潮信", this_object());
+        MAP_D->record_rumor(obs, "錢塘江潮信", this_object());
 }
 
-// 事件触发
+// 事件觸發
 void trigger_event(int status)
 {
         object room;
 
         room = find_object("/d/hangzhou/qiantang");
 
-        // 钱塘江潮信
+        // 錢塘江潮信
         switch (status)
         {
         case STATUS_PROMPT:
                 CHANNEL_D->do_channel(this_object(), "rumor",
-                        "八月十八又要到了，听说不少人前往钱塘江观潮。");
-                // 明天18点钟起潮
+                        "八月十八又要到了，聽說不少人前往錢塘江觀潮。");
+                // 明天18點鐘起潮
                 EVENT_D->at_after(0, 0, 1, -18, STATUS_START);
                 break;
                 
         case STATUS_START:
                 if (objectp(room))
                         do_bonus(room);
-                // 一个小时以后落潮
+                // 一個小時以後落潮
                 EVENT_D->at_after(0, 0, 0, 1, STATUS_END);
                 break;
 
         case STATUS_END:
                 if (objectp(room))
-                        message("vision", "潮水渐渐的退了下去，你这才"
-                                          "仿佛从梦中醒了过来。\n", room);
-                // 继续执行default中的内容
+                        message("vision", "潮水漸漸的退了下去，你這才"
+                                          "彷彿從夢中醒了過來。\n", room);
+                // 繼續執行default中的內容
 
         default:
                 create_event();
@@ -95,8 +95,8 @@ string query_detail(string topic)
 {
         switch (topic)
         {
-        case "钱塘江潮信":
-                return "每年八月十八钱塘江涨潮，非常准时，故称之为潮信。每次潮水来临"
-                       "时波涛汹涌，气势逼人，十分壮观。\n";
+        case "錢塘江潮信":
+                return "每年八月十八錢塘江漲潮，非常準時，故稱之為潮信。每次潮水來臨"
+                       "時波濤洶湧，氣勢逼人，十分壯觀。\n";
         }
 }

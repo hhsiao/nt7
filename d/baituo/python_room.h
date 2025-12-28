@@ -1,4 +1,4 @@
-// snake_room.h 蛇谷中有蛇的房间
+// snake_room.h 蛇谷中有蛇的房間
 
 void python_attack(object);
 
@@ -10,9 +10,9 @@ void init()
 
         string *msg =
         ({
-                HIR"你走到这里，突然觉得有股腥臭的气味……\n"NOR,
-                HIR"你耳边听到一阵沙沙的细碎声响，心里提高了警觉。\n"NOR,
-                HIR"你一走到这地方，突然有点心神不宁……\n"NOR,
+                HIR"你走到這裡，突然覺得有股腥臭的氣味……\n"NOR,
+                HIR"你耳邊聽到一陣沙沙的細碎聲響，心裡提高了警覺。\n"NOR,
+                HIR"你一走到這地方，突然有點心神不寧……\n"NOR,
         });
 
         me = this_player();
@@ -25,10 +25,10 @@ void init()
                 set("hide_python", 1, here);
 
 
-        if( random(query("hide_python")+1) != 0 && query("race", me) != "蛇类"){
+        if( random(query("hide_python")+1) != 0 && query("race", me) != "蛇類"){
                 remove_call_out("python_attack");
                 call_out("python_attack", 6+random(3), me);
-                if( query("family/family_name", me) == "白驼山" )
+                if( query("family/family_name", me) == "白駝山" )
                 tell_object(me, msg[random(sizeof(msg))]);
         }
 }
@@ -50,8 +50,8 @@ void python_attack(object me)
         python->move(here);
         set("last_comeout", time() );
 
-        message("vision", HIR"你忽然闻得一阵腥风，猛见一条"+python->name()+HIR"窜了出来，露出獠牙，疾向"+me->name()+"咬去！\n"NOR, environment(me), me);
-        tell_object(me, HIR"你耳中忽闻嘶嘶声响，一迟疑间，蓦地腥臭迎面，一条"+python->name()+HIR"从旁窜出，猛然向你张口扑来！\n"NOR);
+        message("vision", HIR"你忽然聞得一陣腥風，猛見一條"+python->name()+HIR"竄了出來，露出獠牙，疾向"+me->name()+"咬去！\n"NOR, environment(me), me);
+        tell_object(me, HIR"你耳中忽聞嘶嘶聲響，一遲疑間，驀地腥臭迎面，一條"+python->name()+HIR"從旁竄出，猛然向你張口撲來！\n"NOR);
 
         python->kill_ob(me);
 

@@ -1,4 +1,4 @@
-// yirong.c 易容术
+// yirong.c 易容術
 
 inherit SKILL;
 
@@ -13,6 +13,6 @@ int valid_learn(object me)
 
 int practice_skill(object me)
 {
-        return notify_fail("易容术只能靠学(learn)来提高。\n");
+        return notify_fail("易容術只能靠學(learn)來提高。\n");
 }
 

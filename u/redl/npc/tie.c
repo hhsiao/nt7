@@ -1,6 +1,6 @@
 // This program is a part of NITAN MudLIB 
 // redl 2012/12/1 
-// tie-ren.c 铁人
+// tie-ren.c 鐵人
 
 #include <ansi.h>
 
@@ -8,12 +8,12 @@ inherit NPC;
 
 void create()
 {
-        set_name(HIR "进攻铁人" NOR, ({ "tie ren", "ren", "tie" }) );
+        set_name(HIR "進攻鐵人" NOR, ({ "tie ren", "ren", "tie" }) );
         set("gender", "女性" );
         set("age", 30);
-        set("long", "一个练功用的比武铁人，是仿制木人制作的，由于是经\n"
-                    "过redl改造后的，所以具有更持久的耐力，但是同时也\n"
-                    "具有更强大的攻击力，练起功来也就更残酷。\n");
+        set("long", "一個練功用的比武鐵人，是仿製木人制作的，由於是經\n"
+                    "過redl改造後的，所以具有更持久的耐力，但是同時也\n"
+                    "具有更強大的攻擊力，練起功來也就更殘酷。\n");
         set("scale", 200);
         set("min_exp", 1000000000);
 
@@ -68,15 +68,15 @@ int do_preskhand(string arg)
         int nlv;
         string bhand, shand, strpfm;
 
-        //write("正确格式：ss 等级 基础空手技能名 特殊空手技能名 绝招名\n");
+        //write("正確格式：ss 等級 基礎空手技能名 特殊空手技能名 絕招名\n");
 
         if (!arg || arg==""){
-                write("正确格式：ss 等级 基础空手技能名 特殊空手技能名 绝招名\n");
+                write("正確格式：ss 等級 基礎空手技能名 特殊空手技能名 絕招名\n");
                 return 1;
         }
 
         if (sscanf(arg, "%d %s %s %s",nlv, bhand, shand, strpfm) != 4){
-                write("正确格式：ss 等级 基础空手技能名 特殊空手技能名 绝招名\n");
+                write("正確格式：ss 等級 基礎空手技能名 特殊空手技能名 絕招名\n");
                 return 1;
         }
         set_skill(bhand, nlv);

@@ -8,10 +8,10 @@ string family_name() { return "密宗"; }
 int valid_learn(object me)
 {        
         if (me->query_skill("xuedao-daofa", 1) < 100)
-                return notify_fail("你血刀大法火候不足，无法研习血影大法。\n");        
+                return notify_fail("你血刀大法火候不足，無法研習血影大法。\n");        
         
         if( query("family/family_name", me) != family_name() )
-                return notify_fail("血影大法只能密宗弟子方可研习。\n");
+                return notify_fail("血影大法只能密宗弟子方可研習。\n");
 
         return 1;
 }

@@ -10,23 +10,23 @@ int  leave();
 int  is_stay_in_room()        { return 1; }
 
 mapping family_punishers = ([
-        "武当派"   : ({ CLASS_D("misc") + "/chongxu" }),
+        "武當派"   : ({ CLASS_D("misc") + "/chongxu" }),
         "少林派"   : ({ CLASS_D("misc") + "/fangsheng" }),
-        "华山派"   : ({ CLASS_D("misc") + "/murenqing" }),
+        "華山派"   : ({ CLASS_D("misc") + "/murenqing" }),
         "峨嵋派"   : ({ CLASS_D("misc") + "/guoxiang" }),
-        "桃花岛"   : ({ CLASS_D("misc") + "/taogu" }),
-        "神龙教"   : ({ CLASS_D("misc") + "/zhong" }),
-        "丐帮"     : ({ CLASS_D("misc") + "/wangjiantong" }),
+        "桃花島"   : ({ CLASS_D("misc") + "/taogu" }),
+        "神龍教"   : ({ CLASS_D("misc") + "/zhong" }),
+        "丐幫"     : ({ CLASS_D("misc") + "/wangjiantong" }),
         "古墓派"   : ({ CLASS_D("misc") + "/popo" }),
         "全真教"   : ({ CLASS_D("misc") + "/laodao" }),
         "星宿派"   : ({ CLASS_D("misc") + "/xiaoxian" }),
-        "逍遥派"   : ({ CLASS_D("misc") + "/liqiushui" }),
-        "大轮寺"   : ({ CLASS_D("misc") + "/laoseng" }),
-        "血刀门"   : ({ CLASS_D("misc") + "/hongri" }),
-        "灵鹫宫"   : ({ CLASS_D("misc") + "/tonglao" }),
+        "逍遙派"   : ({ CLASS_D("misc") + "/liqiushui" }),
+        "大輪寺"   : ({ CLASS_D("misc") + "/laoseng" }),
+        "血刀門"   : ({ CLASS_D("misc") + "/hongri" }),
+        "靈鷲宮"   : ({ CLASS_D("misc") + "/tonglao" }),
         "慕容世家" : ({ CLASS_D("misc") + "/furen" }),
-        "欧阳世家" : ({ CLASS_D("misc") + "/laonu" }),
-        "关外胡家" : ({ CLASS_D("misc") + "/huyidao" }),
+        "歐陽世家" : ({ CLASS_D("misc") + "/laonu" }),
+        "關外胡家" : ({ CLASS_D("misc") + "/huyidao" }),
         "段氏皇族" : ({ CLASS_D("misc") + "/duansh" }),
         "明教"     : ({ CLASS_D("misc") + "/yangdingtian" }),
         "日月神教" : ({ CLASS_D("misc") + "/zhanglao" }),
@@ -72,7 +72,7 @@ void set_from_me(object me,int arg)
         {
                 jieti=query("reborn/times", me);
 
-                //五次解体以上的玩家，杀手来自各个门派
+                //五次解體以上的玩家，殺手來自各個門派
                 // if (jieti >= 5 || "日月神教" == me->query("family/family_name"))
                 if (1)
                         set("family/family_name", keys(family_punishers)[random(sizeof(family_punishers))], npc);
@@ -251,10 +251,10 @@ void set_from_me(object me,int arg)
                 if( stringp(query("family/family_name", npc)) )
                 switch(query("family/family_name", npc) )
                 {
-                        case "武当派":
-                        case "华山派":
+                        case "武當派":
+                        case "華山派":
                         case "峨嵋派":
-                        case "桃花岛":
+                        case "桃花島":
                         case "全真教":
                         case "慕容世家":
                                 weapon = new("/clone/weapon/changjian");
@@ -266,20 +266,20 @@ void set_from_me(object me,int arg)
                                 weapon->move(npc);
                                 weapon->wield();
                                 break;
-                        case "大轮寺":
+                        case "大輪寺":
                                 weapon = new("/clone/weapon/falun");
                                 weapon->move(npc);
                                 weapon->set_amount(4);
                                 weapon->wield();
                                 break;
-                        case "关外胡家":
-                        case "血刀门":
+                        case "關外胡家":
+                        case "血刀門":
                                 weapon = new("/clone/weapon/blade");
                                 weapon->move(npc);
                                 weapon->wield();
                                 break;
                         case "星宿派":
-                        case "神龙教":
+                        case "神龍教":
                                 weapon = new("/clone/weapon/gangzhang");
                                 weapon->move(npc);
                                 weapon->wield();
@@ -321,9 +321,9 @@ void set_from_me(object me,int arg)
         }
 
         if( query("family/family_name", npc) )
-                set("long","此人是"+query("family/family_name", npc)+"的杀手。\n");
+                set("long","此人是"+query("family/family_name", npc)+"的殺手。\n");
         else
-                set("long","此人是泥潭远古时代的创世神将！\n");
+                set("long","此人是泥潭遠古時代的創世神將！\n");
 
         npc->reset_action();
 
@@ -334,7 +334,7 @@ int accept_fight(object ob)
 {
         object me;
         me = this_object();
-        command("say 你给我去死吧！");
+        command("say 你給我去死吧！");
         command("yun powerup");
         command("yun shield");
         switch (me->query_skill_mapped("force"))
@@ -390,7 +390,7 @@ int accept_hit(object ob)
 {
         object me;
         me = this_object();
-        command("say 你给我去死吧！");
+        command("say 你給我去死吧！");
         command("yun powerup");
         command("yun shield");
         switch (me->query_skill_mapped("force"))
@@ -446,7 +446,7 @@ int accept_kill(object ob)
 {
         object me;
         me = this_object();
-        command("say 你给我去死吧！");
+        command("say 你給我去死吧！");
         command("yun powerup");
         command("yun shield");
         switch (me->query_skill_mapped("force"))
@@ -508,7 +508,7 @@ void random_move()
               return;
         }
 
-        // NPC移到迷宫中，不需要随机走动了
+        // NPC移到迷宮中，不需要隨機走動了
         // NPC_D->random_move(this_object());
 }
 

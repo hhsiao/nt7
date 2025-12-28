@@ -7,7 +7,7 @@ void create()
     set_name("郭芙", ({"guo fu", "guo", "fu"}));
     set("gender", "女性");
     set("age", 19);
-    set("long", "她是郭靖黄蓉的大女儿，东邪黄药师的大外孙女，长得如花似玉。\n");
+    set("long", "她是郭靖黃蓉的大女兒，東邪黃藥師的大外孫女，長得如花似玉。\n");
 
     set("attitude", "peaceful");
        

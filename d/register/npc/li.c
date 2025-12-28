@@ -7,7 +7,7 @@ void greeting(object me);
 void create()
 {
         set_name("李自成", ({ "li zicheng", "li"}));
-        set("long", "他面透煞气，暴戾异常，看得你心里毛毛的。\n");
+        set("long", "他面透煞氣，暴戾異常，看得你心裡毛毛的。\n");
         set("gender", "男性");
         set("age", 49);
         set("attitude", "peaceful");
@@ -37,23 +37,23 @@ void greeting(object me)
                 return;
 
         command("nod"+query("id", me));
-        command("say 这位" + RANK_D->query_respect(me) +
-                "，哈哈，你来得正好！咱们讲究的就是心狠手辣\n"
-                "什么正派人士，全是伪君子，我们要把他们统统杀光！");
+        command("say 這位" + RANK_D->query_respect(me) +
+                "，哈哈，你來得正好！咱們講究的就是心狠手辣\n"
+                "什麼正派人士，全是偽君子，我們要把他們統統殺光！");
 }
 
 void check_leave(object me, string dir)
 {
         if (dir == "out")
         {
-                message_vision("$N对$n狂笑道：上啊！杀光那帮伪君子！\n",
+                message_vision("$N對$n狂笑道：上啊！殺光那幫偽君子！\n",
                                this_object(), me);
-                command("chat 哈哈！你们这些伪君子小心了！");
+                command("chat 哈哈！你們這些偽君子小心了！");
                 set("character", "心狠手辣", me);
         } else
         if (dir == "south")
         {
                 command("heng");
-                command("say 胆小鬼！");
+                command("say 膽小鬼！");
         }
 }

@@ -31,12 +31,12 @@ int main(object me, string arg)
         seteuid(getuid(me));
 
         if (! arg)
-                return notify_fail("指令格式 : query all | <物件之名称或档名>\n" );
+                return notify_fail("指令格式 : query all | <物件之名稱或檔名>\n" );
         target = arg;
 
         if (target == "all" || target == "ALL")
         {
-                write(sprintf("目前数据库中保存的数据有：%d 项。\n",
+                write(sprintf("目前數據庫中保存的數據有：%d 項。\n",
                               sizeof(DBASE_D->query_save_dbase())));
                 return 1;
         }
@@ -63,7 +63,7 @@ int main(object me, string arg)
                                                 ffile += ({ "/data/item/cruise/" + flist[i] });
                                 }
                         }
-                        write(sprintf("漫游包的数据中含有字符(%s)的物件如下：\n%O\n", arg2, ffile));
+                        write(sprintf("漫遊包的數據中含有字符(%s)的物件如下：\n%O\n", arg2, ffile));
                         return 1;
                 }
         }
@@ -75,9 +75,9 @@ int main(object me, string arg)
 
         result = DBASE_D->query_object_data(obj);
         if (undefinedp(result))
-                write("该物件在数据库中没有任何记录。\n");
+                write("該物件在數據庫中沒有任何記錄。\n");
         else
-                write(sprintf("该物件(%O)保存的数据：\n%O\n", obj, result));
+                write(sprintf("該物件(%O)保存的數據：\n%O\n", obj, result));
 
         return 1;
 }
@@ -85,11 +85,11 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式 : query all | <物件之名称或档名>
+指令格式 : query all | <物件之名稱或檔名>
 
-利用此一指令可以查询一个物件(object)保存在数据库中的记录。
+利用此一指令可以查詢一個物件(object)保存在數據庫中的記錄。
 
-参考资料：clear
+參考資料：clear
 HELP
     );
     return 1;

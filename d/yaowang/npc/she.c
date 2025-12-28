@@ -3,16 +3,16 @@ inherit NPC;
 
 void create()
 {
-        set_name(HIG"眼镜蛇"NOR, ({ "yanjing she", "she" }) );
-        set("race", "野兽");
+        set_name(HIG"眼鏡蛇"NOR, ({ "yanjing she", "she" }) );
+        set("race", "野獸");
         set("age", 2);
-        set("long", "一条眼镜蛇，足有手臂粗细。\n");
+        set("long", "一條眼鏡蛇，足有手臂粗細。\n");
         set("attitude", "peaceful");
  
         set("str", 30);
         set("cor", 26);
 
-        set("limbs", ({ "头部", "身体", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體", "尾巴" }) );
         set("verbs", ({ "bite" }) );
  
         set("combat_exp", 3000);
@@ -29,7 +29,7 @@ void create()
 void die()
 {
         object ob1, ob2;
-        message_vision(HIR"$N倒在地上卷曲了两下身子，$N死了。\n"NOR, this_object());
+        message_vision(HIR"$N倒在地上捲曲了兩下身子，$N死了。\n"NOR, this_object());
         if(random(10)>8)
         {
         ob1 = new(__DIR__"obj/shedu");

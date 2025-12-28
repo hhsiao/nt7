@@ -5,39 +5,39 @@ string martialtype() { return "skill"; }
 int is_pbsk() { return 1; }
 
 mapping *action = ({
-([        "action" : "$N右掌一拂而起，一招"CYN"「推窗望月」"NOR"，自侧面连消带打，登时将$n的力道带斜。",
+([        "action" : "$N右掌一拂而起，一招"CYN"「推窗望月」"NOR"，自側面連消帶打，登時將$n的力道帶斜。",
         "lvl"    : 0,
         "skill_name" : "推窗望月"
 ]),
-([        "action" : "$N使一招"YEL"「分水擒龙」"NOR"，左掌陡然沿着伸长的右臂，飞快的一削而出，斩向$n的$l",
+([        "action" : "$N使一招"YEL"「分水擒龍」"NOR"，左掌陡然沿著伸長的右臂，飛快的一削而出，斬向$n的$l",
         "lvl"    : 10,
-        "skill_name" : "分水擒龙"
+        "skill_name" : "分水擒龍"
 ]),
-([        "action" : "$N突然使一式"HIW"「白云幻舞」"NOR"，双臂如旋风一般一阵狂舞，刮起一阵旋转的气浪。 ",
+([        "action" : "$N突然使一式"HIW"「白雲幻舞」"NOR"，雙臂如旋風一般一陣狂舞，颳起一陣旋轉的氣浪。 ",
         "lvl"    : 20,
-        "skill_name" : "白云幻舞"
+        "skill_name" : "白雲幻舞"
 ]),
-([        "action" : "$N一招"HIY"「掌中乾坤」"NOR"，猛地侧过身来，右臂自左肋下疾翻而出，拇，中两指扣圈猛弹$n的$l",
+([        "action" : "$N一招"HIY"「掌中乾坤」"NOR"，猛地側過身來，右臂自左肋下疾翻而出，拇，中兩指扣圈猛彈$n的$l",
         "lvl"    : 30,
         "skill_name" : "掌中乾坤"
 ]),
-([        "action" : "$N一招"RED"「落日赶月」"NOR"，伸掌一拍一收，一拍无丝毫力道，一收之间，一股阴柔无比的力道才陡然发出。",
+([        "action" : "$N一招"RED"「落日趕月」"NOR"，伸掌一拍一收，一拍無絲毫力道，一收之間，一股陰柔無比的力道才陡然發出。",
         "lvl"    : 40,
-        "skill_name" : "落日赶月"
+        "skill_name" : "落日趕月"
 ]),
-([        "action" : "$N身行暴起，一式"BLU"「蛰雷为动」"NOR"，双掌横横切出，掌缘才递出，呜呜呼啸之声狂作。",
+([        "action" : "$N身行暴起，一式"BLU"「蟄雷為動」"NOR"，雙掌橫橫切出，掌緣才遞出，嗚嗚呼嘯之聲狂作。",
         "lvl"    : 50,
-        "skill_name" : "蛰雷为动"
+        "skill_name" : "蟄雷為動"
 ]),
-([        "action" : "$N一招"MAG"「天罗地网」"NOR"，左掌大圈而出，右掌小圈而出，两股奇异的力道一会之下，击向$n的$l",
+([        "action" : "$N一招"MAG"「天羅地網」"NOR"，左掌大圈而出，右掌小圈而出，兩股奇異的力道一會之下，擊向$n的$l",
         "lvl"    : 60,
-        "skill_name" : "天罗地网"
+        "skill_name" : "天羅地網"
 ]),
-([        "action" : "$N一招"HIG"「五指幻山」"NOR"，猛一吐气，单掌有如推门，另一掌却是迅疾无比的一推即收。",
+([        "action" : "$N一招"HIG"「五指幻山」"NOR"，猛一吐氣，單掌有如推門，另一掌卻是迅疾無比的一推即收。",
         "lvl"    : 80,
         "skill_name" : "五指幻山"
 ]),
-([        "action" : "$N突然大吼一声，一招"HIR"「猛虎下山」"NOR"身行疾飞而起，猛向$n直扑而下，空气中暴出“呜”的一声刺耳尖啸。",
+([        "action" : "$N突然大吼一聲，一招"HIR"「猛虎下山」"NOR"身行疾飛而起，猛向$n直撲而下，空氣中暴出“嗚”的一聲刺耳尖嘯。",
         "lvl"    : 100,
         "skill_name" : "猛虎下山"
 ]),
@@ -45,7 +45,7 @@ mapping *action = ({
 
 /*
 mapping *action = ({
-([      "action": "$N右掌一拂而起，施出「推窗望月」自侧面连消带打，登时将$n力道带斜",
+([      "action": "$N右掌一拂而起，施出「推窗望月」自側面連消帶打，登時將$n力道帶斜",
         "force"  : 187,
         "attack" : 45,
         "dodge"  : 33,
@@ -53,9 +53,9 @@ mapping *action = ({
         "damage" : 38,
         "lvl"    : 0,
         "skill_name" : "推窗望月",
-        "damage_type": "瘀伤"
+        "damage_type": "瘀傷"
 ]),
-([      "action": "$N施出「分水擒龙」，左掌陡然沿着伸长的右臂一削而出，斩向$n的$l",
+([      "action": "$N施出「分水擒龍」，左掌陡然沿著伸長的右臂一削而出，斬向$n的$l",
         "force"  : 212,
         "attack" : 53,
         "dodge"  : 34,
@@ -63,9 +63,9 @@ mapping *action = ({
         "damage" : 43,
         "lvl"    : 20,
         "skill_name" : "推窗望月",
-        "damage_type": "瘀伤"
+        "damage_type": "瘀傷"
 ]),
-([      "action": "$N一招「白云幻舞」，双臂如旋风一般一阵狂舞，刮起一阵旋转的气浪",
+([      "action": "$N一招「白雲幻舞」，雙臂如旋風一般一陣狂舞，颳起一陣旋轉的氣浪",
         "force"  : 224,
         "attack" : 67,
         "dodge"  : 45,
@@ -73,49 +73,49 @@ mapping *action = ({
         "damage" : 51,
         "lvl"    : 40,
         "skill_name" : "推窗望月",
-        "damage_type": "瘀伤"
+        "damage_type": "瘀傷"
 ]),
-([      "action": "$N陡然一招「掌内乾坤」，侧过身来，右臂自左肋下翻出，直拍向$n而去",
+([      "action": "$N陡然一招「掌內乾坤」，側過身來，右臂自左肋下翻出，直拍向$n而去",
         "force"  : 251,
         "attack" : 91,
         "dodge"  : 61,
         "parry"  : 63,
         "damage" : 68,
         "lvl"    : 80,
-        "skill_name" : "掌内乾坤",
-        "damage_type": "瘀伤"
+        "skill_name" : "掌內乾坤",
+        "damage_type": "瘀傷"
 ]),
-([      "action": "$N一招「落日赶月」，伸掌一拍一收，顿时一股阴柔无比的力道向$n迸去",
+([      "action": "$N一招「落日趕月」，伸掌一拍一收，頓時一股陰柔無比的力道向$n迸去",
         "force"  : 297,
         "attack" : 93,
         "dodge"  : 81,
         "parry"  : 87,
         "damage" : 76,
         "lvl"    : 120,
-        "skill_name" : "落日赶月",
-        "damage_type": "瘀伤"
+        "skill_name" : "落日趕月",
+        "damage_type": "瘀傷"
 ]),
-([      "action": "$N身行暴起，一式「蛰雷为动」，双掌横横向$n切出，呜呜呼啸之声狂作",
+([      "action": "$N身行暴起，一式「蟄雷為動」，雙掌橫橫向$n切出，嗚嗚呼嘯之聲狂作",
         "force"  : 310,
         "attack" : 91,
         "dodge"  : 67,
         "parry"  : 71,
         "damage" : 73,
         "lvl"    : 160,
-        "skill_name" : "蛰雷为动",
-        "damage_type": "瘀伤"
+        "skill_name" : "蟄雷為動",
+        "damage_type": "瘀傷"
 ]),
-([      "action": "$N一招「天罗地网」，左掌大圈而出，右掌小圈而发，两股力道同时击向$n",
+([      "action": "$N一招「天羅地網」，左掌大圈而出，右掌小圈而發，兩股力道同時擊向$n",
         "force"  : 324,
         "attack" : 102,
         "dodge"  : 71,
         "parry"  : 68,
         "damage" : 85,
         "lvl"    : 200,
-        "skill_name" : "天罗地网",
-        "damage_type": "瘀伤"
+        "skill_name" : "天羅地網",
+        "damage_type": "瘀傷"
 ]),
-([      "action": "$N施一招「五指幻山」，单掌有如推门，另一掌却是迅疾无比的一推即收",
+([      "action": "$N施一招「五指幻山」，單掌有如推門，另一掌卻是迅疾無比的一推即收",
         "force"  : 330,
         "attack" : 112,
         "dodge"  : 55,
@@ -123,17 +123,17 @@ mapping *action = ({
         "damage" : 92,
         "lvl"    : 220,
         "skill_name" : "五指幻山",
-        "damage_type": "瘀伤"
+        "damage_type": "瘀傷"
 ]),
-([      "action": "$N突然大吼一声，一招「铁掌神威」，身行疾飞而起，再猛向$n直扑而下",
+([      "action": "$N突然大吼一聲，一招「鐵掌神威」，身行疾飛而起，再猛向$n直撲而下",
         "force"  : 321,
         "attack" : 123,
         "dodge"  : 73,
         "parry"  : 72,
         "damage" : 95,
         "lvl"    : 240,
-        "skill_name" : "铁掌神威",
-        "damage_type": "瘀伤"
+        "skill_name" : "鐵掌神威",
+        "damage_type": "瘀傷"
 ]),
 });
 */
@@ -147,25 +147,25 @@ int valid_learn(object me)
 {
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练铁掌掌法必须空手。\n");
+                return notify_fail("練鐵掌掌法必須空手。\n");
 
         if( query("str", me)<32 )
-                return notify_fail("你的先天臂力孱弱，难以修炼铁掌掌法。\n");
+                return notify_fail("你的先天臂力孱弱，難以修煉鐵掌掌法。\n");
 
         if( query("con", me)<32 )
-                return notify_fail("你的先天根骨孱弱，难以修炼铁掌掌法。\n");
+                return notify_fail("你的先天根骨孱弱，難以修煉鐵掌掌法。\n");
 
         if( query("max_neili", me)<2000 )
-                return notify_fail("你的内力修为太弱，难以修炼铁掌掌法。\n");
+                return notify_fail("你的內力修為太弱，難以修煉鐵掌掌法。\n");
 
         if ((int)me->query_skill("force") < 230)
-                return notify_fail("你的内功火候不足，难以修炼铁掌掌法。\n");
+                return notify_fail("你的內功火候不足，難以修煉鐵掌掌法。\n");
 
         if ((int)me->query_skill("strike", 1) < 150)
-                return notify_fail("你的基本掌法火候不够，难以修炼铁掌掌法。\n");
+                return notify_fail("你的基本掌法火候不夠，難以修煉鐵掌掌法。\n");
 
         if ((int)me->query_skill("strike", 1) < (int)me->query_skill("tie-zhang", 1))
-                return notify_fail("你的基本掌法水平有限，无法领会更高深的铁掌掌法。\n");
+                return notify_fail("你的基本掌法水平有限，無法領會更高深的鐵掌掌法。\n");
 
         return 1;
 }
@@ -193,16 +193,16 @@ mapping query_action(object me, object weapon)
         for(i = ttl; i > 0; i--)
                 if(lvl > action[i-1]["lvl"])
                 {
-                        seq = i; /* 获得招数序号上限 */
+                        seq = i; /* 獲得招數序號上限 */
                         break;
                 }
-        seq = random(seq);       /* 选择出手招数序号 */
+        seq = random(seq);       /* 選擇出手招數序號 */
         return ([
                 "action"      : action[seq]["action"],
                 "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
                 "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
                 "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
-                "damage_type" : random(2) ? "内伤" : "瘀伤",
+                "damage_type" : random(2) ? "內傷" : "瘀傷",
         ]);
 }
 
@@ -211,15 +211,15 @@ int practice_skill(object me)
         int cost;
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练铁掌掌法必须空手。\n");
+                return notify_fail("練鐵掌掌法必須空手。\n");
 
         if( query("qi", me)<150 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
 
         cost = me->query_skill("tie-zhang", 1) / 5 + 80;
 
         if( query("neili", me)<cost )
-                return notify_fail("你的内力不够练铁掌掌法。\n");
+                return notify_fail("你的內力不夠練鐵掌掌法。\n");
 
         me->receive_damage("qi", 120);
         addn("neili", -cost, me);
@@ -240,11 +240,11 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         {
                 victim->receive_wound("qi", (damage_bonus - 90) / 2, me);
 
-                return random(2) ? HIR "只听$n" HIR "前胸「咔嚓」一声脆响，竟像是"
-                                   "肋骨断折的声音。\n" NOR:
+                return random(2) ? HIR "只聽$n" HIR "前胸「咔嚓」一聲脆響，竟像是"
+                                   "肋骨斷折的聲音。\n" NOR:
 
-                                   HIR "$n" HIR "一声惨叫，胸前「咔嚓咔嚓」几声脆"
-                                   "响，口中鲜血狂喷。\n" NOR;
+                                   HIR "$n" HIR "一聲慘叫，胸前「咔嚓咔嚓」幾聲脆"
+                                   "響，口中鮮血狂噴。\n" NOR;
         }
 }
 
@@ -265,16 +265,16 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
         {
                 if( random(query("rigidity", weap))<3 )
                 {
-                        message_combatd(HIW"$N运掌如刀，连击三十六下，只听见「啪」地一声，$n手中的" + weap->name() + "已经断为两截！\n" NOR, me, victim );
+                        message_combatd(HIW"$N運掌如刀，連擊三十六下，只聽見「啪」地一聲，$n手中的" + weap->name() + "已經斷為兩截！\n" NOR, me, victim );
                         seteuid(getuid());
                         piece = new("/clone/misc/piece");
-                        piece->set_name("断掉的"+query("name", weap),({query("id", weap),"piece"}));
+                        piece->set_name("斷掉的"+query("name", weap),({query("id", weap),"piece"}));
                         piece->move(environment(me));
                         destruct(weap);
                 }
                 else
                 {
-                        message_combatd(HIW"$N运掌如刀，连击三十六下，只听见「当」地一声，$n手中的" + weap->name() + "被刀气震落到地上！\n" NOR, me,victim );
+                        message_combatd(HIW"$N運掌如刀，連擊三十六下，只聽見「當」地一聲，$n手中的" + weap->name() + "被刀氣震落到地上！\n" NOR, me,victim );
                         weap->move(environment(me));
                 }
                 victim->reset_action();
@@ -295,16 +295,16 @@ int power_point(object me) { return 1.0; }
 
 int help(object me)
 {
-        write(HIC"\n铁掌掌法："NOR"\n");
+        write(HIC"\n鐵掌掌法："NOR"\n");
         write(@HELP
 
-    铁掌掌法是铁掌帮镇帮掌法。
-    铁掌掌力浑厚恶毒，与降龙十八掌、黯然销魂掌并称天下。
+    鐵掌掌法是鐵掌幫鎮幫掌法。
+    鐵掌掌力渾厚惡毒，與降龍十八掌、黯然銷魂掌並稱天下。
 
 
-        学习要求：
-                归元吐纳法100级
-                内力修为1000
+        學習要求：
+                歸元吐納法100級
+                內力修為1000
 HELP
         );
         return 1;

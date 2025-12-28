@@ -16,13 +16,13 @@ mixed ask_pfm();
 void create()
 {
         object ob;
-    set_name("张乘风", ({"zhang chengfeng", "zhang", "chengfeng"}));
+    set_name("張乘風", ({"zhang chengfeng", "zhang", "chengfeng"}));
     set("nickname", HIY "金猴神魔" NOR );
-    set("title", "日月神教长老");
+    set("title", "日月神教長老");
     set("gender", "男性");
     set("age", 42);
     set("shen_type", -1);
-    set("long", "他是日月神教长老。\n");
+    set("long", "他是日月神教長老。\n");
     set("attitude", "peaceful");
 
     set("per", 21);
@@ -44,11 +44,11 @@ void create()
     set("inquiry", ([
         "黑木崖"   : "本教弟子或持教主令牌方能上崖！\n",
         "日月神教" : "本教弟子或持教主令牌方能上崖！\n",
-        "黑木令"   : "那是本教教主令牌，见牌如见教主亲临！\n",
+        "黑木令"   : "那是本教教主令牌，見牌如見教主親臨！\n",
                 "南海神木" : (: ask_gun :),
         "上崖"     : (: shang_ya :),
-        "绝招"     : (: ask_pfm :),
-        "天旋地转" : (: ask_pfm :),
+        "絕招"     : (: ask_pfm :),
+        "天旋地轉" : (: ask_pfm :),
     ]) );
 
     set_skill("force", 150);
@@ -77,7 +77,7 @@ void create()
     prepare_skill("hand", "huanmo-longtianwu");
     prepare_skill("cuff", "xuwu-piaomiao");
 
-    create_family("日月神教", 2, "长老");
+    create_family("日月神教", 2, "長老");
 
     set("master_ob",3);
         setup();
@@ -105,12 +105,12 @@ void attempt_apprentice(object ob)
 
     if((int)ob->query_skill("riyue-xinfa", 1) < 120)
     {
-         command("say 本教的内功心法你还没练好，还要多下苦功才行！");
+         command("say 本教的內功心法你還沒練好，還要多下苦功才行！");
          return;
     }
 
     command("recruit "+query("id", ob));
-    set("title", HIM"日月神教"HIY"金猴护法"NOR, ob);
+    set("title", HIM"日月神教"HIY"金猴護法"NOR, ob);
 }
 
 mixed ask_gun()
@@ -122,17 +122,17 @@ mixed ask_gun()
         me = this_player();
 
         if( query("family/family_name", me) != "日月神教" )
-                return "给我滚开！";
+                return "給我滾開！";
 
         if( query("family/master_id", me) != "renwoxing"
             && query("family/master_id", me) != "xiangwentian" )
-                return "你还不配！";
+                return "你還不配！";
 
         if( query("shen", me)>-80000 )
-                return "你这样心慈手软，拿了神木又有什么用？";
+                return "你這樣心慈手軟，拿了神木又有什麼用？";
 
         if (me->query_skill("tianmo-gun", 1) < 120)
-                return "你连日月天魔棍都没学好，就算神兵在手又有何用？";
+                return "你連日月天魔棍都沒學好，就算神兵在手又有何用？";
 
         ob = find_object(SHENMU);
         if (! ob) ob = load_object(SHENMU);
@@ -145,24 +145,24 @@ mixed ask_gun()
         }
 
         if (owner == me)
-                return "南海神木现在不就在你手里吗？";
+                return "南海神木現在不就在你手裡嗎？";
 
         if (objectp(owner) && owner != this_object())
         {
                 if (! owner->is_character())
-                        return "你来晚了一步，南海神木我已经借出去了。";
+                        return "你來晚了一步，南海神木我已經借出去了。";
 
                 if( query("family/family_name", owner) == "日月神教" )
-                        return "老夫的南海神木现在是"+query("name", owner)+
+                        return "老夫的南海神木現在是"+query("name", owner)+
                                "在用，你要用就去找他吧。";
                 else
-                        return "老夫的南海神木现在落入了"+query("name", owner)+
-                               "之手，你去把它取回来吧！";
+                        return "老夫的南海神木現在落入了"+query("name", owner)+
+                               "之手，你去把它取回來吧！";
         }
         ob->move(this_object());
 
-        command("say 既然这样，老夫这根南海神木你就拿去。");
-        command("say 你用它多杀几个正派人士，扬扬咋们日月神教的威风。");
+        command("say 既然這樣，老夫這根南海神木你就拿去。");
+        command("say 你用它多殺幾個正派人士，揚揚咋們日月神教的威風。");
         command("givenanhaishenmuto"+query("id", me));
 
         ob = new("/d/heimuya/npc/obj/shutonggun");
@@ -176,15 +176,15 @@ int shang_ya()
     ob = this_player ( ) ;
     if( query("family/family_name", ob) == "日月神教" )
     {
-        message_vision("张乘风一招手，崖上落下一个大吊篮。\n",ob);
-        message_vision("$N一弯腰进了吊篮，吊篮缓缓地铰上崖去......\n", ob);
+        message_vision("張乘風一招手，崖上落下一個大吊籃。\n",ob);
+        message_vision("$N一彎腰進了吊籃，吊籃緩緩地鉸上崖去......\n", ob);
         myenv = environment (ob) ;
         ob->move ("/d/heimuya/basket");
         call_out("goto_heimuya", 10, ob) ;
         return 1;
     }
     else  
-    message_vision("张乘风上上下下打量了$N一下：什么！上崖？你的黑木令呢？！\n",ob);
+    message_vision("張乘風上上下下打量了$N一下：什麼！上崖？你的黑木令呢？！\n",ob);
     return 1;
 }
 
@@ -197,9 +197,9 @@ int accept_object(object who, object ob)
 
     if( query("id", ob) == "heimuling" )
     {
-        message_vision("张乘风对$N说：好！这位" + RANK_D->query_respect(who) + "不错，那就请吧！\n" , who);
-        message_vision("张乘风一招手，崖上落下一个大吊篮。\n", who);
-        message_vision("$N一弯腰进了吊篮，吊篮缓缓地铰上崖去......\n", who);
+        message_vision("張乘風對$N說：好！這位" + RANK_D->query_respect(who) + "不錯，那就請吧！\n" , who);
+        message_vision("張乘風一招手，崖上落下一個大吊籃。\n", who);
+        message_vision("$N一彎腰進了吊籃，吊籃緩緩地鉸上崖去......\n", who);
         myenv = environment (who) ;
         who->move ("/d/heimuya/basket");
         call_out("goto_heimuya",10,who) ;
@@ -208,7 +208,7 @@ int accept_object(object who, object ob)
 /*
     else  
     {
-        message_vision("张乘风对$N说：你敢耍我？！\n", who);
+        message_vision("張乘風對$N說：你敢耍我？！\n", who);
         this_object()->kill_ob(who);
     }
 */
@@ -217,7 +217,7 @@ int accept_object(object who, object ob)
 
 void goto_heimuya (object ob)
 {
-    tell_object(ob , "你眼前一亮，一幢幢白色建筑屹立眼前，霎是辉煌。\n");
+    tell_object(ob , "你眼前一亮，一幢幢白色建築屹立眼前，霎是輝煌。\n");
     ob->move ("/d/heimuya/chengdedian") ;
 }
 
@@ -226,21 +226,21 @@ mixed ask_pfm()
      object me = this_player();
 
      if( query("can_perform/tianmo-gun/tian", me) )
-           return RANK_D->query_respect(me) + "是想和老夫切磋一下武艺？";
+           return RANK_D->query_respect(me) + "是想和老夫切磋一下武藝？";
 
      if( query("family/family_name", me) != query("family/family_name") )
-           return "本教武功独步武林，这位" + RANK_D->query_respect(me) +
-                  "既然想学，不如入我日月神教如何？";
+           return "本教武功獨步武林，這位" + RANK_D->query_respect(me) +
+                  "既然想學，不如入我日月神教如何？";
 
      if (me->query_skill("tianmo-gun", 1) < 150)
-           return "你的天魔棍尚欠火候，再多练练去吧！";
+           return "你的天魔棍尚欠火候，再多練練去吧！";
 
-     message_vision(HIY "$n" HIY "对$N" HIY "点了点头：仔细看清楚了。\n" HIY
-                    "只见$n" HIY "深吸口气，手中熟铜棍斜起向上，“呼”地一声" HIY
-                    "迅疾点出，$N" HIY "只觉灵光闪闪，有如万条灵蛇般漫天飞舞。" NOR,
+     message_vision(HIY "$n" HIY "對$N" HIY "點了點頭：仔細看清楚了。\n" HIY
+                    "只見$n" HIY "深吸口氣，手中熟銅棍斜起向上，“呼”地一聲" HIY
+                    "迅疾點出，$N" HIY "只覺靈光閃閃，有如萬條靈蛇般漫天飛舞。" NOR,
                     me, this_object());
-     command("say 看懂了没有？");
-     tell_object(me, HIC "你学会了「天旋地转」这一招。\n" NOR);
+     command("say 看懂了沒有？");
+     tell_object(me, HIC "你學會了「天旋地轉」這一招。\n" NOR);
      if (me->can_improve_skill("club"))
              me->improve_skill("club", 160000);
      set("can_perform/tianmo-gun/tian", 1, me);

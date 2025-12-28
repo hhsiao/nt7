@@ -3,11 +3,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "大榕树上");
+        set("short", "大榕樹上");
         set("long", @LONG
-人说大树底下好乘凉，没想到大树上更凉快。这棵大榕树真不愧
-为千年神木，至今仍绿叶繁茂。当你抬头往上看的时候似乎有个影在
-树梢之间移动，不过也许是风吹动所造成的错觉。
+人說大樹底下好乘涼，沒想到大樹上更涼快。這棵大榕樹真不愧
+為千年神木，至今仍綠葉繁茂。當你抬頭往上看的時候似乎有個影在
+樹梢之間移動，不過也許是風吹動所造成的錯覺。
 LONG
         );
 
@@ -38,35 +38,35 @@ int do_jump(string arg)
         
         me = this_player();
         if( !arg || arg != "down") 
-                return notify_fail("你要往哪个方向爬？\n");
+                return notify_fail("你要往哪個方向爬？\n");
 
         if( query("gender", me) != "女性" )
                 message("vision",
-                        me->name() + "气喘嘘嘘的抓住树干，屁股一扭一扭地往下爬去。\n",
+                        me->name() + "氣喘噓噓的抓住樹幹，屁股一扭一扭地往下爬去。\n",
                         environment(me), ({me}) );
         else 
         if( query("age", me)<40 && query("per", me)>24 )
                 message("vision",
-                        me->name() + "象仙子般继续向下飘去，转瞬即逝。\n",
+                        me->name() + "象仙子般繼續向下飄去，轉瞬即逝。\n",
                         environment(me), ({me}) );
         else 
                 message("vision",
-                        me->name() + "战战兢兢的抓住树干往下爬去。\n",    environment(me), ({me}) );
+                        me->name() + "戰戰兢兢的抓住樹幹往下爬去。\n",    environment(me), ({me}) );
         
         me->move(__DIR__"tree");
      
         if( query("gender", me) != "女性" )
                 message("vision",
-                        me->name() + "气喘嘘嘘地从上面爬了下来。\n",
+                        me->name() + "氣喘噓噓地從上面爬了下來。\n",
                         environment(me), ({me}) );
         else 
         if( query("age", me)<40 && query("per", me)>24 )
-                message("vision","一阵清香飞来，你定眼一看，"+
-                        me->name() + "已经婷婷玉立在你眼前。\n",
+                message("vision","一陣清香飛來，你定眼一看，"+
+                        me->name() + "已經婷婷玉立在你眼前。\n",
                         environment(me), ({me}) );   
           
         else 
-                message("vision", me->name() + "战战兢兢地从上面爬了下来。\n", 
+                message("vision", me->name() + "戰戰兢兢地從上面爬了下來。\n", 
                         environment(me), ({me}) );   
         
         return 1;
@@ -75,7 +75,7 @@ int do_jump(string arg)
 int valid_leave(object me, string dir)
 {
         if ( dir=="down" && !wizardp(me))
-                return notify_fail("这里没法直接走，看来你只能爬(climb)下去！\n");
+                return notify_fail("這裡沒法直接走，看來你只能爬(climb)下去！\n");
 
         return 1;
 }

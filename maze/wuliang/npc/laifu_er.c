@@ -1,10 +1,10 @@
-// NPC :laifu_er.c 来福儿 
+// NPC :laifu_er.c 來福兒 
 // By River 98/12
 inherit NPC;
 void create()
 {
-        set_name("来福儿", ({ "laifu er", "laifu", "er"}));
-        set("title","万劫谷家人");                
+        set_name("來福兒", ({ "laifu er", "laifu", "er"}));
+        set("title","萬劫谷家人");                
         set("gender", "男性" );
         set("age", 33);
         set("str", 17);
@@ -22,7 +22,7 @@ void create()
         set("max_neili", 500);      
         set("unique", 1);
         
-        set("long","一个老老实实的人，已经在万劫谷中多年了。\n");
+        set("long","一個老老實實的人，已經在萬劫谷中多年了。\n");
         set("combat_exp", 50000);
         set("shen", 0); 
 

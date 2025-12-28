@@ -1,7 +1,7 @@
 // Copyright (C) 2003, by Lonely. All rights reserved.
 // This software can not be used, copied, or modified 
 // in any form without the written permission from authors.
-// qu.c 曲灵风
+// qu.c 曲靈風
 
 #include <ansi.h>
 #include "taohua.h"
@@ -18,12 +18,12 @@ mixed ask_skill1();
 
 void create()
 {
-        set_name("曲灵风", ({ "qu lingfeng", "qu", "lingfeng" }));
+        set_name("曲靈風", ({ "qu lingfeng", "qu", "lingfeng" }));
         set("gender", "男性");
         set("age", 46);
-        set("long", "曲灵风是黄药师的大徒弟，也是黄药师最得意的徒儿。他\n"
-                    "对黄药师一贯忠心耿耿，尤其是性格古怪，象极了他师父\n"
-                    "的邪气。他身形修长，相貌英俊，白衣飘飘，形容潇洒。\n");
+        set("long", "曲靈風是黃藥師的大徒弟，也是黃藥師最得意的徒兒。他\n"
+                    "對黃藥師一貫忠心耿耿，尤其是性格古怪，象極了他師父\n"
+                    "的邪氣。他身形修長，相貌英俊，白衣飄飄，形容瀟灑。\n");
         set("attitude", "friendly");
         set("class", "scholar");
         set("str", 30);
@@ -70,7 +70,7 @@ void create()
 
         prepare_skill("finger", "tanzhi-shentong");
 
-        create_family("桃花岛", 2, "弟子");
+        create_family("桃花島", 2, "弟子");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -83,17 +83,17 @@ void create()
         }));
 
         set("inquiry", ([
-                "东邪"     : "家师人称东邪！呵呵。",
-                "西毒"     : "欧阳锋是与家师并世齐名的高手，人称老毒物。",
-                "南帝"     : "听家师说段王爷现在出家当了和尚，法名一灯。",
-                "北丐"     : "北丐洪七公是丐帮帮主，现在扬州城外。",
-                "黄蓉"     : "她是师父的爱女。",
-                "黄药师"   : "你要拜访家师？",
-                "桃花岛"   : "这儿就是桃花岛，你若不是本派弟子，要过桃花阵。",
-                "桃花阵"   : "往南就是了。",
-                "风雷神剑" : (: ask_skill1 :),
-                "河图"     : (: ask_book1 :),
-                "洛书"     : (: ask_book2 :),
+                "東邪"     : "家師人稱東邪！呵呵。",
+                "西毒"     : "歐陽鋒是與家師並世齊名的高手，人稱老毒物。",
+                "南帝"     : "聽家師說段王爺現在出家當了和尚，法名一燈。",
+                "北丐"     : "北丐洪七公是丐幫幫主，現在揚州城外。",
+                "黃蓉"     : "她是師父的愛女。",
+                "黃藥師"   : "你要拜訪家師？",
+                "桃花島"   : "這兒就是桃花島，你若不是本派弟子，要過桃花陣。",
+                "桃花陣"   : "往南就是了。",
+                "風雷神劍" : (: ask_skill1 :),
+                "河圖"     : (: ask_book1 :),
+                "洛書"     : (: ask_book2 :),
         ]));
         set("master_ob", 4);
         setup();
@@ -113,19 +113,19 @@ void attempt_apprentice(object ob)
         {
                 if (master != name())
                 {
-                        command("say 家师不是让你拜" + master + "的吗？你怎么来"
-                                "找我来了？");
+                        command("say 家師不是讓你拜" + master + "的嗎？你怎麼來"
+                                "找我來了？");
                         return;
                 }
-                command("say 好吧，既然家师有令，我就收下你了，不过要好好遵守桃"
-                        "花岛的规矩。");
+                command("say 好吧，既然家師有令，我就收下你了，不過要好好遵守桃"
+                        "花島的規矩。");
                 command("recruit "+query("id", ob));
                 delete_temp("taohua/master", ob);
                 return;
         }
 
         command("shake");
-        command("say 我可不敢擅自收徒，你还是找家师黄岛主吧！");
+        command("say 我可不敢擅自收徒，你還是找家師黃島主吧！");
 }
 */
 
@@ -139,27 +139,27 @@ void attempt_apprentice(object ob)
         if ((int)ob->query_skill("bibo-shengong", 1) < 60)
         {
                 command("say " + RANK_D->query_respect(ob) +
-                        "是否还应该在内功修为上多下点功夫？");
+                        "是否還應該在內功修為上多下點功夫？");
                 return;
         }
 
         if ((int)ob->query_skill("literate", 1) < 60)
         {
                 command("say " + RANK_D->query_respect(ob) +
-                        "是否还应该在文学修养上多下点功夫？");
+                        "是否還應該在文學修養上多下點功夫？");
                 return;
         }
 
         if( query("gender", this_player()) == "男性" )
-                ttt = "门生";
+                ttt = "門生";
                 
         else if( query("gender", this_player()) == "女性" )
                 ttt = "青衣"; 
                 
         command("recruit "+query("id", ob));
-        set("title", "归云庄"+ttt, ob);
-        command("say " + "虽然我收你为徒，但我不喜俗务，所以你还是陆师弟的门下，明白了麽？\n");
-        command("say " + "以後来这儿，先进密室等我，注意别让别人发现了。\n");
+        set("title", "歸雲莊"+ttt, ob);
+        command("say " + "雖然我收你為徒，但我不喜俗務，所以你還是陸師弟的門下，明白了麼？\n");
+        command("say " + "以後來這兒，先進密室等我，注意別讓別人發現了。\n");
         return;
 }
 
@@ -170,30 +170,30 @@ mixed ask_skill1()
         me = this_player();
 
         if( query("can_perform/luoying-shenjian/fenglei", me) )
-                return "这一招我不是已经教过你了吗？";
+                return "這一招我不是已經教過你了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "你不是我们桃花岛的人，问这个干嘛？";
+                return "你不是我們桃花島的人，問這個幹嘛？";
 
         if (me->query_skill("luoying-shenjian", 1) < 1)
-                return "你连落英神剑都没学，还谈什么绝招可言？";
+                return "你連落英神劍都沒學，還談什麼絕招可言？";
 
         if( query("family/gongji", me)<120 )
-                return "师父吩咐过，不传功给无功劳的弟子。";
+                return "師父吩咐過，不傳功給無功勞的弟子。";
 
         if (me->query_skill("force") < 120)
-                return "你的内功修为不够，还是多锻炼锻炼吧。";
+                return "你的內功修為不夠，還是多鍛鍊鍛鍊吧。";
 
         if (me->query_skill("luoying-shenjian", 1) < 80)
-                return "你的落英神剑还不够熟练，练高了再来找我。";
+                return "你的落英神劍還不夠熟練，練高了再來找我。";
 
-        message_sort(HIY "\n$n" HIY "看了看$N" HIY "，没说什么，随手从怀中轻轻取"
-                     "出了一本剑谱，指着其中一段对$N" HIY "细说良久，$N" HIY "一"
-                     "边听一边不住地点头。\n\n" NOR, me, this_object());
+        message_sort(HIY "\n$n" HIY "看了看$N" HIY "，沒說什麼，隨手從懷中輕輕取"
+                     "出了一本劍譜，指著其中一段對$N" HIY "細說良久，$N" HIY "一"
+                     "邊聽一邊不住地點頭。\n\n" NOR, me, this_object());
 
         command("nod");
-        command("say 这招并不复杂，你自己下去练吧。");
-        tell_object(me, HIC "你学会了「风雷神剑」。\n" NOR);
+        command("say 這招並不複雜，你自己下去練吧。");
+        tell_object(me, HIC "你學會了「風雷神劍」。\n" NOR);
         if (me->can_improve_skill("sword"))
                 me->improve_skill("sword", 1500000);
         if (me->can_improve_skill("luoying-shenjian"))
@@ -210,7 +210,7 @@ mixed ask_book1()
         object ob, owner, me = this_player();
 
         if( !query_temp("taohua/countbook", me) )
-                return "对不起，没师父的允许，书籍恕不外借。";
+                return "對不起，沒師父的允許，書籍恕不外借。";
 
         ob = find_object(HETU);
 
@@ -225,24 +225,24 @@ mixed ask_book1()
         }
 
         if (owner == me)
-                return "嗯？那本「河图」不就是你拿着在看么？";
+                return "嗯？那本「河圖」不就是你拿著在看麼？";
 
         if (objectp(owner) && owner != this_object())
         {
                 if (! owner->is_character())
-                        return "你来晚了一步，我师父已将「河图」借给别人了。";
+                        return "你來晚了一步，我師父已將「河圖」借給別人了。";
 
-                if( query("family/family_name", owner) == "桃花岛" )
-                        return "那本「河图」现在在我师兄"+query("name", owner)+
+                if( query("family/family_name", owner) == "桃花島" )
+                        return "那本「河圖」現在在我師兄"+query("name", owner)+
                                "手中，你要看就去找他吧。";
                 else
-                        return "那本「河图」现在已落到了"+query("name", owner)+
+                        return "那本「河圖」現在已落到了"+query("name", owner)+
                                "手中，你去找他吧！";
         }
         ob->move(this_object());
 
-        message_vision(CYN "$N" CYN "叹道：既然是师父的命令，这本「河图」就"
-                       "交给你吧。\n" NOR, this_object(), me);
+        message_vision(CYN "$N" CYN "嘆道：既然是師父的命令，這本「河圖」就"
+                       "交給你吧。\n" NOR, this_object(), me);
         command("givehetuto"+query("id", me));
         return 1;
 }
@@ -252,7 +252,7 @@ mixed ask_book2()
         object ob, owner, me = this_player();
 
         if( !query_temp("taohua/countbook", me) )
-                return "对不起，没师父的允许，书籍恕不外借。";
+                return "對不起，沒師父的允許，書籍恕不外借。";
 
         ob = find_object(LUOSHU);
 
@@ -267,24 +267,24 @@ mixed ask_book2()
         }
 
         if (owner == me)
-                return "嗯？那本「洛书」不就是你拿着在看么？";
+                return "嗯？那本「洛書」不就是你拿著在看麼？";
 
         if (objectp(owner) && owner != this_object())
         {
                 if (! owner->is_character())
-                        return "你来晚了一步，我师父已将「洛书」借给别人了。";
+                        return "你來晚了一步，我師父已將「洛書」借給別人了。";
 
-                if( query("family/family_name", owner) == "桃花岛" )
-                        return "那本「洛书」现在在我师兄"+query("name", owner)+
+                if( query("family/family_name", owner) == "桃花島" )
+                        return "那本「洛書」現在在我師兄"+query("name", owner)+
                                "手中，你要看就去找他吧。";
                 else
-                        return "那本「洛书」现在已落到了"+query("name", owner)+
+                        return "那本「洛書」現在已落到了"+query("name", owner)+
                                "手中，你去找他吧！";
         }
         ob->move(this_object());
 
-        message_vision(CYN "$N" CYN "叹道：既然是师父的命令，这本「洛书」就"
-                       "交给你吧。\n" NOR, this_object(), me);
+        message_vision(CYN "$N" CYN "嘆道：既然是師父的命令，這本「洛書」就"
+                       "交給你吧。\n" NOR, this_object(), me);
         command("giveluoshuto"+query("id", me));
         return 1;
 }

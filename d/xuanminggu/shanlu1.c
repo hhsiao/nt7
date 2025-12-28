@@ -4,7 +4,7 @@ void create()
 {
         set("short", "山路");
         set("long", @LONG
-这是玄冥峰的山路，四周树木高耸，走兽成群。
+這是玄冥峰的山路，四周樹木高聳，走獸成群。
 LONG );
         set("exits", ([
                 "southeast"  : __DIR__"shanjiao",

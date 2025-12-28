@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "绝情谷山脚");
+        set("short", "絕情谷山腳");
         set("long", @LONG
-这里是绝情谷山脚下，但见四周溪流飞瀑，树木高耸，两
-边山峰壁立，景色极尽清幽。 
+這裡是絕情谷山腳下，但見四周溪流飛瀑，樹木高聳，兩
+邊山峰壁立，景色極盡清幽。 
 LONG);
         set("outdoors", "jueqing");
         set("exits", ([

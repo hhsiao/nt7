@@ -4,12 +4,12 @@ inherit ITEM;
 void create()
 {
         set_weight(100);
-        set_name(GRN "孔雀胆" NOR, ({"kongque dan", "kongque", "dan"}));
+        set_name(GRN "孔雀膽" NOR, ({"kongque dan", "kongque", "dan"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "瓶");
-                set("long", GRN "这是一瓶碧绿色的剧毒粉末，可杀人于无形。\n" NOR);
+                set("long", GRN "這是一瓶碧綠色的劇毒粉末，可殺人於無形。\n" NOR);
                 set("value", 50);
                 set("poison_type", "poison");
                 set("can_pour", 1);
@@ -18,7 +18,7 @@ void create()
                 set("poison", ([
                         "level" : 200,
                         "id"    : "he tieshou",
-                        "name"  : "孔雀胆剧毒",
+                        "name"  : "孔雀膽劇毒",
                         "duration": 15,
                 ]));
                 set("no_sell", 1);
@@ -29,8 +29,8 @@ void create()
 
 int do_effect(object me)
 {
-        message_vision("$N一仰脖，将孔雀胆倒入了嘴中。\n", me);
-        set_temp("die_reason", "吃了孔雀胆去见黑白无常了", me);
+        message_vision("$N一仰脖，將孔雀膽倒入了嘴中。\n", me);
+        set_temp("die_reason", "吃了孔雀膽去見黑白無常了", me);
         me->die();
         destruct(this_object());
         return 1;

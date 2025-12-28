@@ -4,11 +4,11 @@ inherit THROWING;
 
 void create()
 {
-        set_name("钢镖", ({"gangbiao", "biao" }));
+        set_name("鋼鏢", ({"gangbiao", "biao" }));
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "这是一把普通的钢镖。\n");
+                set("long", "這是一把普通的鋼鏢。\n");
                 set("unit", "些");
                 set("base_value", 1);
                 set("material", "steel");

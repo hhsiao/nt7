@@ -5,11 +5,11 @@ inherit ROOM;
 #include <wanted.h>
 void create()
 {
-        set("short",HIY"无量剑宗"NOR);
+        set("short",HIY"無量劍宗"NOR);
 	set("long", @LONG
-「无量剑」于五代后唐年间在南诏无量山创派，掌门人居住无量山剑湖宫。
-自大宋仁过年间分为东、北、西三宗，每隔五年，三宗门下弟子便在剑湖宫中
-比武斗剑，获胜者入住剑湖宫。
+「無量劍」於五代後唐年間在南詔無量山創派，掌門人居住無量山劍湖宮。
+自大宋仁過年間分為東、北、西三宗，每隔五年，三宗門下弟子便在劍湖宮中
+比武鬥劍，獲勝者入住劍湖宮。
 LONG
 	);
 	set("exits", ([ 
@@ -33,9 +33,9 @@ int valid_leave(object me,string dir)
 		return 0;
      if( dir == "enter"
       && (present("yu guangbiao", environment(me))))
-         return notify_fail("郁光标上前拦住你的去路：无量剑重地，任何人不得擅自入内。\n");
+         return notify_fail("鬱光標上前攔住你的去路：無量劍重地，任何人不得擅自入內。\n");
      if( dir == "enter"
       && (present("wu guangsheng", environment(me))))
-         return notify_fail("吴光胜上前拦住你的去路：无量剑重地，任何人不得擅自入内。\n");
+         return notify_fail("吳光勝上前攔住你的去路：無量劍重地，任何人不得擅自入內。\n");
          return ::valid_leave(me, dir);
 }

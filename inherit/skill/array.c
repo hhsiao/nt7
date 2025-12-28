@@ -1,7 +1,7 @@
 /**************************
  * array.c
  *
- * 阵法基础物件。
+ * 陣法基礎物件。
  * #define SKI_ZHEN
  * by Find.
  **************************/
@@ -11,18 +11,18 @@
 
 inherit F_CLEAN_UP;
 
-nosave  string mp,      // 阵法所属门派
-        name,                // 阵法名称
-        ski_name,        // 此阵法的 id
-        su_msg,                // 成阵讯息
-        skill_type;        // 阵法所用的武功
+nosave  string mp,      // 陣法所屬門派
+        name,                // 陣法名稱
+        ski_name,        // 此陣法的 id
+        su_msg,                // 成陣訊息
+        skill_type;        // 陣法所用的武功
 
-nosave  int num,                // 阵法要求的人员数量
-        master_level,                // 阵主阵法等级
-        member_level,                // 成员阵法等级
-        master_skill_level,        // 阵主武功等级
-        member_skill_level,        // 成员武功等级
-        e_level;                // 阵法的有效值
+nosave  int num,                // 陣法要求的人員數量
+        master_level,                // 陣主陣法等級
+        member_level,                // 成員陣法等級
+        master_skill_level,        // 陣主武功等級
+        member_skill_level,        // 成員武功等級
+        e_level;                // 陣法的有效值
 
 void create()
 {
@@ -46,7 +46,7 @@ int valid_learn(object me)
         if( stringp(mp)
         && !wizardp(me)
          && (query("family/family_name", me) != mp) )
-                return notify_fail("你不能学习这个阵法。\n");
+                return notify_fail("你不能學習這個陣法。\n");
 
         return 1;
 }
@@ -124,14 +124,14 @@ int valid_build(object who)
 
         if( mp && (query("family/family_name", who) != mp) )
         {
-                tell_object(who,sprintf("只有本门派弟子才能使用『%s』。\n",
+                tell_object(who,sprintf("只有本門派弟子才能使用『%s』。\n",
                         name ));
                 return 0;
         }
 
         if(who->query_skill(ski_name,1) < master_level)
         {
-                tell_object(who,sprintf("你对『%s』的理解不够，无法主持此阵法。\n",
+                tell_object(who,sprintf("你對『%s』的理解不夠，無法主持此陣法。\n",
                         name ));
                 return 0;
         }
@@ -139,7 +139,7 @@ int valid_build(object who)
         if( !(n = who->query_skill(skill_type,1))
         || (n < master_skill_level) )
         {
-                tell_object(who,sprintf("你的『%s』等级太低，无法主持『%s』。\n",
+                tell_object(who,sprintf("你的『%s』等級太低，無法主持『%s』。\n",
                         to_chinese(skill_type),name));
                 return 0;
         }
@@ -155,16 +155,16 @@ int valid_member(object who)
                 return 0;
 
         if( mp && (query("family/family_name", who) != mp) )
-                return notify_fail(sprintf("只有本门派弟子才能使用『%s』。\n",
+                return notify_fail(sprintf("只有本門派弟子才能使用『%s』。\n",
                         name ));
 
         if(who->query_skill(ski_name,1) < member_level)
-                return notify_fail(sprintf("%s对『%s』的理解不够，无法参加%s。\n",
+                return notify_fail(sprintf("%s對『%s』的理解不夠，無法參加%s。\n",
                         who->name(),name,name));
 
         if( !(n = who->query_skill(skill_type,1))
         || (n < member_skill_level) )
-                return notify_fail(sprintf("%s的『%s』等级太低，无法参加『%s』。\n",
+                return notify_fail(sprintf("%s的『%s』等級太低，無法參加『%s』。\n",
                         who->name(),to_chinese(skill_type),name));
 
         return 1;
@@ -176,7 +176,7 @@ string success_msg()
                 return su_msg;
 
         else
-                return sprintf(MAG BWHT"\n$N带领的『%s』开始发挥威力！\n"NOR,name);
+                return sprintf(MAG BWHT"\n$N帶領的『%s』開始發揮威力！\n"NOR,name);
 }
 
 void set_success_msg(string arg)

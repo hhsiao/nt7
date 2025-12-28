@@ -7,9 +7,9 @@ inherit SURCOAT;
 
 void create()
 {
-	set_name("[1;31m圣武士披风[2;37;0m", ({ "wushi pifeng" }));
+	set_name("[1;31m聖武士披風[2;37;0m", ({ "wushi pifeng" }));
         set_weight(200);
-	set("long", "[1;31m圣武士所穿戴的披风，蕴藏着神奇的力量！
+	set("long", "[1;31m聖武士所穿戴的披風，蘊藏著神奇的力量！
 [2;37;0m");
         /*if (clonep())
                 set_default_object(__FILE__);
@@ -45,7 +45,7 @@ int receive_summon(object me)
         return ITEM_D->receive_summon(me, this_object());
 }
 
-// 隐藏物品
+// 隱藏物品
 int hide_anywhere(object me)
 {
         return ITEM_D->hide_anywhere(me, this_object());

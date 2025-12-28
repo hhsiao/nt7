@@ -7,11 +7,11 @@ inherit F_FOOD;
 
 void create()
 {
-        set_name(WHT "白米饭" NOR, ({ "rice", "mi fan" }) );
+        set_name(WHT "白米飯" NOR, ({ "rice", "mi fan" }) );
         if( clonep() )
                 set_default_object(__FILE__);
         else {
-                set("long", "一碗香喷喷的白米饭。\n");
+                set("long", "一碗香噴噴的白米飯。\n");
                 set("unit", "碗");
                 set("value", 10);
                 set("food_remaining", 4);

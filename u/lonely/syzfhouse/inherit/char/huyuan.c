@@ -1,4 +1,4 @@
-// /inherit/char/huyuan.c 屋宅护院的继承文件
+// /inherit/char/huyuan.c 屋宅護院的繼承文件
 // By Alf, Last Update 2003.0718
 
 #include <ansi.h>
@@ -57,27 +57,27 @@ void add_all_settings()
 
     all_inquiry += ([
         "客人"     : (: ask_vip :),
-        "贵宾"     : (: ask_vip :),
+        "貴賓"     : (: ask_vip :),
         "vip"      : (: ask_vip :),
         "guest"    : (: ask_vip :),
-        "升级"     : (: ask_level :),
-        "等级"     : (: ask_level :),
-        "级别"     : (: ask_level :),
+        "升級"     : (: ask_level :),
+        "等級"     : (: ask_level :),
+        "級別"     : (: ask_level :),
         "level"    : (: ask_level :),
         "faction"  : (: ask_faction :),
         "menpai"   : (: ask_faction :),
-        "门派"     : (: ask_faction :),
+        "門派"     : (: ask_faction :),
         "武功"     : (: ask_faction :),
         "技能"     : (: ask_faction :),
-        "武功等级" : (: ask_faction :),
-        "技能等级" : (: ask_faction :),
-        "武功级别" : (: ask_faction :),
-        "技能级别" : (: ask_faction :),
+        "武功等級" : (: ask_faction :),
+        "技能等級" : (: ask_faction :),
+        "武功級別" : (: ask_faction :),
+        "技能級別" : (: ask_faction :),
         "skill"    : (: ask_faction :),
         "skills"   : (: ask_all_faction :),
-        "武功总览" : (: ask_all_faction :),
-        "门派总览" : (: ask_all_faction :),
-        "技能总览" : (: ask_all_faction :),
+        "武功總覽" : (: ask_all_faction :),
+        "門派總覽" : (: ask_all_faction :),
+        "技能總覽" : (: ask_all_faction :),
     ]);
 
     this_object()->set("inquiry", all_inquiry);
@@ -115,14 +115,14 @@ void unconcious()
         room = get_object(path + "/" + file[i]);
         if(room == environment(me))
         {
-            tell_room(room, me->name(1) + "惨呼一声：“主....人，"
-                                          "来闯的点子太硬，我、我"
-                                          "挡不住了......\n\n");
+            tell_room(room, me->name(1) + "慘呼一聲：“主....人，"
+                                          "來闖的點子太硬，我、我"
+                                          "擋不住了......\n\n");
             continue;
         }
-        tell_room(room, HIR "\n门外忽然传来" + me->name(1) +
-                            "的一声闷哼：“主....人，来闯的点子"
-                            "太硬，我、我挡不住了......\n\n" NOR);
+        tell_room(room, HIR "\n門外忽然傳來" + me->name(1) +
+                            "的一聲悶哼：“主....人，來闖的點子"
+                            "太硬，我、我擋不住了......\n\n" NOR);
     }
     ::unconcious();
 }
@@ -224,7 +224,7 @@ int accept_fight(object who)
     {
         if(this_player()->query("bang/name") == query("owner_name"))
         {
-	        message_vision("$N对$n摇头道：“您是在开玩笑吧？在下可不敢与您动手！”\n",
+	        message_vision("$N對$n搖頭道：“您是在開玩笑吧？在下可不敢與您動手！”\n",
 	                        this_object(), this_player());
 	        return 0;
         }
@@ -235,7 +235,7 @@ int accept_fight(object who)
         if(this_player()->query("id") == query("owner")
             || this_player()->query("couple/couple_id") == query("owner"))
         {
-	        message_vision("$N对$n摇头道：“您是在开玩笑吧？在下可不敢与您动手！”\n",
+	        message_vision("$N對$n搖頭道：“您是在開玩笑吧？在下可不敢與您動手！”\n",
 	                        this_object(), this_player());
 	        return 0;
         }
@@ -243,7 +243,7 @@ int accept_fight(object who)
 
     if(base_name(environment(this_object())) == this_object()->query("startroom"))
     {
-	    message_vision("$N朝$n怒喝道：“你敢打这里的主意！有我在，"
+	    message_vision("$N朝$n怒喝道：“你敢打這裡的主意！有我在，"
 	                   "就由不得你撒野！”\n", this_object(), this_player());
 	}
 
@@ -366,7 +366,7 @@ int return_home(object home)
         return 1;
     if(!this_object()->is_livings() || is_fighting())
         return 0;
-    message("vision", this_object()->name() + "急急忙忙地离开了。\n",
+    message("vision", this_object()->name() + "急急忙忙地離開了。\n",
                                                        environment(),
                                                        this_object());
     return move(home);

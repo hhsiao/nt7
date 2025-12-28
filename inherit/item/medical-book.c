@@ -25,7 +25,7 @@ void setup()
                 return;
 
         ks = keys(med);
-        msg += "上面记载了";
+        msg += "上面記載了";
         for (i = 0; i < sizeof(ks); i++)
         {
                 if (file_size(MEDICINE(ks[i]) + ".c") < 0)
@@ -38,7 +38,7 @@ void setup()
                 if (i) msg += "、";
                 msg += MEDICINE(ks[i])->name();
         }
-        msg += "的炼制方法，倒是可以仔细读读(read)，琢磨一下。\n";
+        msg += "的煉製方法，倒是可以仔細讀讀(read)，琢磨一下。\n";
         msg = sort_string(msg, 64);
         set("long", msg);
 }
@@ -61,27 +61,27 @@ int do_read(string arg)
         int jing_cost;
 
         if (! arg)
-                return notify_fail("你要读什么？\n");
+                return notify_fail("你要讀什麼？\n");
 
         if (sscanf(arg, "%s from %s", m_name, arg) != 2)
-                return notify_fail("研究配制药物：read 药名 from " +
+                return notify_fail("研究配製藥物：read 藥名 from " +
                                    query("id") + "\n");
 
         if (! id(arg))
-                return notify_fail("没有这本书啊。\n");
+                return notify_fail("沒有這本書啊。\n");
 
         med = query("can_make");
         if (! mapp(med) || ! sizeof(med))
         {
-                write(name() + "上面并没有记载任何值得"
-                      "特别研究的内容。\n");
+                write(name() + "上面並沒有記載任何值得"
+                      "特別研究的內容。\n");
                 return 1;
         }
 
         me = this_player();
         if (query("can_make/" + m_name, me))
         {
-                write("你已经通晓了「" + m_name + "」的秘密，没什么好研究的了。\n");
+                write("你已經通曉了「" + m_name + "」的秘密，沒什麼好研究的了。\n");
                 return 1;
         }
 
@@ -94,8 +94,8 @@ int do_read(string arg)
 
         if (i >= sizeof(ks))
         {
-                write(name() + "上面并没有记载有关" +
-                      m_name + "的内容。\n");
+                write(name() + "上面並沒有記載有關" +
+                      m_name + "的內容。\n");
                 return 1;
         }
 
@@ -104,8 +104,8 @@ int do_read(string arg)
         lvl = (int)me->query_skill(skill, 1);
         if (! lvl)
         {
-                write("你现在对" + to_chinese(skill) + "还是"
-                      "一窍不通，怎么研究得明白？\n");
+                write("你現在對" + to_chinese(skill) + "還是"
+                      "一竅不通，怎麼研究得明白？\n");
                 return 1;
         }
 
@@ -113,8 +113,8 @@ int do_read(string arg)
         if (jing_cost > query("jing", me))
         {
                 set("jing", 0, me);
-                write("你觉得你现在精神不济，难以研究有关" +
-                      fm_name + "的知识。\n");
+                write("你覺得你現在精神不濟，難以研究有關" +
+                      fm_name + "的知識。\n");
                 return 1;
         }
 
@@ -122,24 +122,24 @@ int do_read(string arg)
 
         if (lvl < (int)med[ks[i]])
         {
-                write("你觉得" + fm_name + "实在是"
-                      "太复杂了，以你目前的" + to_chinese(skill) +
-                      "的学识恐怕还难以弄明白。\n");
+                write("你覺得" + fm_name + "實在是"
+                      "太複雜了，以你目前的" + to_chinese(skill) +
+                      "的學識恐怕還難以弄明白。\n");
                 return 1;
         }
 
         if (random(lvl) < (int)med[ks[i]])
         {
-                write(random(2) ? "你研究了一会儿有关" + fm_name +
-                                  "的内容，有些收获，不过还没有彻底明白。\n"
-                                : "你仔细阅读了一会儿有关" + m_name +
-                                  "的内容，明白了不少其中奥妙。\n");
+                write(random(2) ? "你研究了一會兒有關" + fm_name +
+                                  "的內容，有些收穫，不過還沒有徹底明白。\n"
+                                : "你仔細閱讀了一會兒有關" + m_name +
+                                  "的內容，明白了不少其中奧妙。\n");
                 return 1;
         }
 
-        write("你细细的研读了有关" + fm_name +
-              "的内容，终于恍然大悟，彻底明白了其中的奥妙。\n");
-        write(HIC "你学会了炼制" + fm_name + HIC "的方法。\n");
+        write("你細細的研讀了有關" + fm_name +
+              "的內容，終於恍然大悟，徹底明白了其中的奧妙。\n");
+        write(HIC "你學會了煉製" + fm_name + HIC "的方法。\n");
         set("can_make/"+m_name, ks[i], me);
         return 1;
 }

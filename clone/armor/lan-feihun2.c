@@ -5,13 +5,13 @@ inherit HANDS;
 
 void create()
 {
-        set_name( HIC "蓝光飞魂" NOR, ({ "languang feihun2", "languang2" }) );
+        set_name( HIC "藍光飛魂" NOR, ({ "languang feihun2", "languang2" }) );
         set_weight(4000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-                set("unit", "双");
+                set("unit", "雙");
                 set("value", 2000000);
                 set("armor_prop/armor", 100);
                                 set("armor_prop/str", 12);

@@ -1,87 +1,87 @@
-// jingang-zhi.c - 少林大力金刚指
+// jingang-zhi.c - 少林大力金剛指
        
 inherit SHAOLIN_SKILL;
         
 mapping *action = ({
-([     "action": "$N身体半蹲，右指中宫直进，一式「降龙伏虎」击向$n的$l",
+([     "action": "$N身體半蹲，右指中宮直進，一式「降龍伏虎」擊向$n的$l",
        "force" : 80,
        "attack": 20,
        "parry" : 20,
        "dodge" : -5,
        "damage": 20,
        "lvl"   : 0,
-       "skill_name" : "降龙伏虎",
-       "damage_type" : "刺伤"
+       "skill_name" : "降龍伏虎",
+       "damage_type" : "刺傷"
 ]),
-([     "action": "$N轻轻一纵，居高临下，一式「普渡众生」，点向$n的周身大穴",
+([     "action": "$N輕輕一縱，居高臨下，一式「普渡眾生」，點向$n的周身大穴",
        "force" : 100,
        "attack": 40,
        "parry" : 15,
        "dodge" : 0,
        "damage": 25,
        "lvl"   : 40,
-       "skill_name" : "普渡众生",
-       "damage_type" : "刺伤"
+       "skill_name" : "普渡眾生",
+       "damage_type" : "刺傷"
 ]),
-([     "action": "$N身形飘忽不定，一式「佛祖献花」，右指击向$n的$l",
+([     "action": "$N身形飄忽不定，一式「佛祖獻花」，右指擊向$n的$l",
        "force" : 110,
        "attack": 30,
        "parry" : 25,
        "dodge" : -5,
        "damage": 30,
        "lvl"   : 80,
-       "skill_name" : "佛祖献花",
-       "damage_type" : "刺伤"
+       "skill_name" : "佛祖獻花",
+       "damage_type" : "刺傷"
 ]),
-([     "action": "$N不动声色，突然一招「斩妖除魔」，左右双指分别指向$n的各大要穴",
+([     "action": "$N不動聲色，突然一招「斬妖除魔」，左右雙指分別指向$n的各大要穴",
        "force" : 150,
        "attack": 40,
        "parry" : 25,
        "dodge" : -10,
        "damage": 120,
        "lvl"   : 60,
-       "skill_name" : "斩妖除魔",
-       "damage_type" : "刺伤"
+       "skill_name" : "斬妖除魔",
+       "damage_type" : "刺傷"
 ]),
-([     "action": "$N摒指如刀，一招「五丁开山」，双指呈刀势从意想不到的角度劈向$n",
+([     "action": "$N摒指如刀，一招「五丁開山」，雙指呈刀勢從意想不到的角度劈向$n",
        "force" : 180,
        "attack": 50,
        "parry" : 30,
        "dodge" : -15,
        "damage": 160,
        "lvl"   : 80,
-       "skill_name" : "五丁开山",
-       "damage_type" : "割伤"
+       "skill_name" : "五丁開山",
+       "damage_type" : "割傷"
 ]),
-([     "action": "$N盘膝端坐，一招「佛法无边」，右手拇指弹出一道劲风，击向$n",
+([     "action": "$N盤膝端坐，一招「佛法無邊」，右手拇指彈出一道勁風，擊向$n",
        "force" : 160,
        "attack": 60,
        "parry" : 30,
        "dodge" : 5,
        "damage": 100,
        "lvl"   : 200,
-       "skill_name" : "佛法无边",
-       "damage_type" : "刺伤"
+       "skill_name" : "佛法無邊",
+       "damage_type" : "刺傷"
 ]),
-([     "action": "$N纵身而上，一招「金刚伏魔」，双手食指端部各射出一道青气击向$n",
+([     "action": "$N縱身而上，一招「金剛伏魔」，雙手食指端部各射出一道青氣擊向$n",
        "force" : 180,
        "attack": 60,
        "parry" : 40,
        "dodge" : -5,
        "damage": 120,
        "lvl"   : 225,
-       "skill_name" : "金刚伏魔",
-       "damage_type" : "刺伤"
+       "skill_name" : "金剛伏魔",
+       "damage_type" : "刺傷"
 ]),
-([     "action": "$N脸上忽现祥和之气，一招「无色无相」，一指遥遥指向$n，似乎毫无劲力",
+([     "action": "$N臉上忽現祥和之氣，一招「無色無相」，一指遙遙指向$n，似乎毫無勁力",
        "force" : 200,
        "attack": 70,
        "parry" : 50,
        "dodge" : 15,
        "damage": 180,
        "lvl"   : 250,
-       "skill_name" : "无色无相",
-       "damage_type" : "刺伤"
+       "skill_name" : "無色無相",
+       "damage_type" : "刺傷"
 ]),
 });
 
@@ -92,16 +92,16 @@ int valid_combine(string combo) { return combo == "xumishan-zhang"; }
 int valid_learn(object me) 
 { 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练大力金刚指必须空手。\n"); 
+                return notify_fail("練大力金剛指必須空手。\n"); 
       
         if ((int)me->query_skill("force") < 60) 
-                return notify_fail("你的内功火候不够，无法学大力金刚指。\n"); 
+                return notify_fail("你的內功火候不夠，無法學大力金剛指。\n"); 
      
         if( query("max_neili", me)<300 )
-                return notify_fail("你的内力太弱，无法练大力金刚指。\n"); 
+                return notify_fail("你的內力太弱，無法練大力金剛指。\n"); 
       
         if ((int)me->query_skill("finger", 1) < (int)me->query_skill("jingang-zhi", 1))
-                return notify_fail("你的基本指法水平有限，无法领会更高深的大力金刚指。\n"); 
+                return notify_fail("你的基本指法水平有限，無法領會更高深的大力金剛指。\n"); 
       
         return 1; 
 } 
@@ -126,10 +126,10 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me) 
 { 
         if( query("qi", me)<70 )
-                return notify_fail("你的体力太低了。\n"); 
+                return notify_fail("你的體力太低了。\n"); 
       
         if( query("neili", me)<70 )
-                return notify_fail("你的内力不够练大力金刚指。\n"); 
+                return notify_fail("你的內力不夠練大力金剛指。\n"); 
       
         me->receive_damage("qi", 60); 
         addn("neili", -64, me);

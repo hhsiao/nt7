@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("虚空[2;37;0m[2;37;0m", ({"gdragon"}));        
+        set_name("虛空[2;37;0m[2;37;0m", ({"gdragon"}));        
         set("gender", "男性");                
-        set("long", "虚空[2;37;0m
-它是谢尔顿的魔幻兽。
+        set("long", "虛空[2;37;0m
+它是謝爾頓的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "sheldon");
-        set("owner_name", "谢尔顿");
+        set("owner_name", "謝爾頓");
         set_temp("owner", "sheldon");
-        set_temp("owner_name", "谢尔顿");
+        set_temp("owner_name", "謝爾頓");
         ::setup();
 }

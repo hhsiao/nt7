@@ -1,87 +1,87 @@
-// panyun-shou.c 排云手
+// panyun-shou.c 排雲手
 
 inherit SKILL;
 
 mapping *action = ({
-([        "action" : "$N跨开马步，右掌前出，十指伸缩，虚虚实实地袭向$n的全身要穴",
+([        "action" : "$N跨開馬步，右掌前出，十指伸縮，虛虛實實地襲向$n的全身要穴",
         "force" : 30,
         "dodge" : 1,
         "parry" : 4,
         "damage": 0,
         "lvl" : 0,
-        "damage_type" : "抓伤"
+        "damage_type" : "抓傷"
 ]),
-([        "action" : "$N退后一步，双掌一起排出，如钩如戢，插向$n的$l",
+([        "action" : "$N退後一步，雙掌一起排出，如鉤如戢，插向$n的$l",
         "force" : 40,
         "dodge" : 15,
         "parry" : 5,
         "damage": 0,
         "lvl"   : 15,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([        "action" : "$N忽的一转身，两手环扣，拢成圈状，猛击$n的下颌",
+([        "action" : "$N忽的一轉身，兩手環扣，攏成圈狀，猛擊$n的下頜",
         "force" : 60,
         "dodge" : 18,
         "parry" : 7,
         "damage": 10,
         "lvl" : 30,
-        "damage_type" : "内伤"
+        "damage_type" : "內傷"
 ]),
-([        "action" : "$N双手平伸，十指微微上下抖动，戳向$n的$l",
+([        "action" : "$N雙手平伸，十指微微上下抖動，戳向$n的$l",
         "force" : 80,
         "dodge" : 25,
         "parry" : 11,
         "damage": 12,
         "lvl"   : 40,
-        "damage_type" : "内伤"
+        "damage_type" : "內傷"
 ]),
-([        "action" : "$N左手护胸，腋下含空，右手五指如钩，打向$n的要穴",
+([        "action" : "$N左手護胸，腋下含空，右手五指如鉤，打向$n的要穴",
         "force" : 100,
         "dodge" : 30,
         "parry" : 14,
         "damage": 15,
         "lvl"   : 50,
-        "damage_type" : "内伤"
+        "damage_type" : "內傷"
 ]),
-([        "action" : "$N右腿斜上，上手取目，下手反勾$n的裆部",
+([        "action" : "$N右腿斜上，上手取目，下手反勾$n的襠部",
         "force" : 115,
         "dodge" : 35,
         "parry" : 17,
         "damage": 19,
         "lvl"   : 60,
-        "damage_type" : "内伤"
+        "damage_type" : "內傷"
 ]),
-([        "action" : "$N一手虚指$n的剑诀，劈空抓向$n手中的兵刃",
+([        "action" : "$N一手虛指$n的劍訣，劈空抓向$n手中的兵刃",
         "force" : 130,
         "dodge" : 32,
         "parry" : 13,
         "damage": 21,
         "lvl"   : 70,
-        "damage_type" : "抓伤"
+        "damage_type" : "抓傷"
 ]),
-([        "action" : "$N左手指向$n胸前的五道大穴，右手斜指太阳穴，两面夹击$n",
+([        "action" : "$N左手指向$n胸前的五道大穴，右手斜指太陽穴，兩面夾擊$n",
         "force" : 150,
         "dodge" : 38,
         "parry" : 18,
         "damage": 24,
         "lvl"   : 80,
-        "damage_type" : "内伤"
+        "damage_type" : "內傷"
 ]),
-([        "action" : "$N一手撑天，一手指地，劲气笼罩$n的全身",
+([        "action" : "$N一手撐天，一手指地，勁氣籠罩$n的全身",
         "force" : 170,
         "dodge" : 42,
         "parry" : 12,
         "damage": 27,
         "lvl"   : 90,
-        "damage_type" : "内伤"
+        "damage_type" : "內傷"
 ]),
-([        "action" : "$N拳掌招若隐若现，若有若无，缓缓地拍向$n的丹田",
+([        "action" : "$N拳掌招若隱若現，若有若無，緩緩地拍向$n的丹田",
         "force" : 190,
         "dodge" : 50,
         "parry" : 15,
         "damage": 30,
         "lvl" : 100,
-        "damage_type" : "内伤"
+        "damage_type" : "內傷"
 ]),
 });
 
@@ -95,13 +95,13 @@ int valid_combine(string combo)
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练排云手必须空手。\n");
+                return notify_fail("練排雲手必須空手。\n");
 
         if ((int)me->query_skill("force") < 40)
-                return notify_fail("你的内功火候不够，无法学排云手。\n");
+                return notify_fail("你的內功火候不夠，無法學排雲手。\n");
 
         if( query("max_neili", me)<250 )
-                return notify_fail("你的内力太弱，无法练排云手。\n");
+                return notify_fail("你的內力太弱，無法練排雲手。\n");
 
         return 1;
 }
@@ -127,10 +127,10 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me)
 {
         if( query("qi", me)<50 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
 
         if( query("neili", me)<40 )
-                return notify_fail("你的内力不够练排云手。\n");
+                return notify_fail("你的內力不夠練排雲手。\n");
 
         me->receive_damage("qi", 37);
         addn("neili", -25, me);

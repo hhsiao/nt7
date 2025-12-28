@@ -8,11 +8,11 @@ inherit F_GUARDER;
 void create()
 {
         set_name("高根明", ({ "gao genming","gao","genming" }) );
-        set("nickname", "市井豪杰");
+        set("nickname", "市井豪傑");
         set("gender", "男性");
         set("age", 24);
         set("long",
-                "高根明是岳不群的第五位弟子。\n");
+                "高根明是嶽不群的第五位弟子。\n");
         set("attitude", "peaceful");
 
         set("str", 26);
@@ -56,7 +56,7 @@ void create()
                    "id"        : "yue buqun" ]),
         }));
 
-        create_family("华山派", 14, "弟子");
+        create_family("華山派", 14, "弟子");
         setup();
 
         carry_object("/clone/weapon/changjian")->wield();
@@ -74,32 +74,32 @@ int permit_pass(object me, string dir)
 
         if( query_temp("beg_huashan", me) )
         {
-                message_vision("$N眼睛一弹，对$n喝道：“你乱"
-                               "跑个啥？是奸细么？”\n", this_object(), me);
+                message_vision("$N眼睛一彈，對$n喝道：“你亂"
+                               "跑個啥？是奸細麼？”\n", this_object(), me);
                 return -1;
         }
 
-        notify_fail("看来" + name() + "不打算让你过去。\n");
+        notify_fail("看來" + name() + "不打算讓你過去。\n");
 
         inv = all_inventory(me);
         for (i = 0; i < sizeof(inv); i++)
         {
                 if (! playerp(inv[i])) continue;
-                if( query("family/family_name", inv[i]) != "华山派" )
+                if( query("family/family_name", inv[i]) != "華山派" )
                 {
-                        message_vision("$N对$n喝道：你背的是谁？还不快快放下！\n",
+                        message_vision("$N對$n喝道：你背的是誰？還不快快放下！\n",
                                        this_object(), me);
                         return 0;
                 }
         }
 
         if( query("family/family_name", me) && 
-            query("family/family_name", me) != "华山派" || 
+            query("family/family_name", me) != "華山派" || 
             !query("family/family_name", me) && 
             query("combat_exp", me)>20000 )
         {
-                message_vision("$N对$n道：对不起，不是我们华山派的人"
-                               "请勿入本派重地。\n", this_object(), me);
+                message_vision("$N對$n道：對不起，不是我們華山派的人"
+                               "請勿入本派重地。\n", this_object(), me);
                 return 0;
         }
 

@@ -3,7 +3,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return HIR "破神诀" NOR; }
+string name() { return HIR "破神訣" NOR; }
 
 inherit F_SSERVER;
 
@@ -20,33 +20,33 @@ int perform(object me, object target)
                 target = me->select_opponent();
         }
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(name() + "只能空手施展。\n");
 
         if ((int)me->query_skill("bahuang-gong", 1) < 220
                 && (int)me->query_skill("beiming-shengong", 1) < 220)
-                return notify_fail("你的本门火候不够，难以施展" + name() + "。\n");
+                return notify_fail("你的本門火候不夠，難以施展" + name() + "。\n");
 
         if ((int)me->query_skill("liuyang-zhang", 1) < 220)
-                return notify_fail("你的天山六阳掌不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你的天山六陽掌不夠嫻熟，難以施展" + name() + "。\n");
 
         if( query("max_neili", me)<3500 )
-                return notify_fail("你的内力修为不足，难以施展" + name() + "。\n");
+                return notify_fail("你的內力修為不足，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("force") != "bahuang-gong"
                 && me->query_skill_mapped("force") != "beiming-shengong")
-                return notify_fail("你没有激发本门内功，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發本門內功，難以施展" + name() + "。\n");
 
         if( query("neili", me)<800 )
-                return notify_fail("你现在真气不足，难以施展" + name() + "。\n");
+                return notify_fail("你現在真氣不足，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIR "$N" HIR "将八荒六合唯我独尊功提运至极限，全身真气迸发，呼的一掌"
-              "向$n" HIR "头顶猛然贯落。\n" NOR;
+        msg = HIR "$N" HIR "將八荒六合唯我獨尊功提運至極限，全身真氣迸發，呼的一掌"
+              "向$n" HIR "頭頂猛然貫落。\n" NOR;
 
         addn("neili", -500, me);
         ap = attack_power(me, "strike") + me->query_skill("force");
@@ -59,10 +59,10 @@ int perform(object me, object target)
                 damage = 0;
                 if( !playerp(target) && query("max_neili", me)>query("max_neili", target)*2 )
                 {
-                        msg += HIR "顿时只听“噗”的一声，$N" HIR "一掌将$n"
-                               HIR "头骨拍得粉碎，脑浆四溅，当即瘫了下去。\n"
-                               NOR "( $n" RED "受伤过重，已经有如风中残烛，"
-                               "随时都可能断气。" NOR ")\n";
+                        msg += HIR "頓時只聽“噗”的一聲，$N" HIR "一掌將$n"
+                               HIR "頭骨拍得粉碎，腦漿四濺，當即癱了下去。\n"
+                               NOR "( $n" RED "受傷過重，已經有如風中殘燭，"
+                               "隨時都可能斷氣。" NOR ")\n";
                         damage = -1;
                 } else
                 {
@@ -71,15 +71,15 @@ int perform(object me, object target)
                         damage*= 2;
 
                         msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 85,
-                                                   HIR "$n" HIR "慌忙抵挡，可已然不及，$N"
-                                                   HIR "掌劲如洪水般涌入体内，接连震断数根"
-                                                   "肋骨。\n:内伤@?");
+                                                   HIR "$n" HIR "慌忙抵擋，可已然不及，$N"
+                                                   HIR "掌勁如洪水般湧入體內，接連震斷數根"
+                                                   "肋骨。\n:內傷@?");
                 }
                 me->start_busy(2);
         } else
         {
-                msg += CYN "$p" CYN "见$P" CYN "掌劲澎湃，决计抵挡不"
-                       "住，当即身子向后横丈许，躲闪开来。\n" NOR;
+                msg += CYN "$p" CYN "見$P" CYN "掌勁澎湃，決計抵擋不"
+                       "住，當即身子向後橫丈許，躲閃開來。\n" NOR;
                 me->start_busy(3);
         }
         message_combatd(msg, me, target);

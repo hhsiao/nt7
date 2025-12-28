@@ -8,8 +8,8 @@ inherit F_COAGENT;
 
 void create()
 {
-        set_name("刘正风", ({ "liu zhengfeng", "liu", "zhengfeng" }));
-        set("nickname", HIR "落雁剑" NOR);
+        set_name("劉正風", ({ "liu zhengfeng", "liu", "zhengfeng" }));
+        set("nickname", HIR "落雁劍" NOR);
         set("gender", "男性" );
         set("class", "swordman");
         set("attitude", "peaceful");
@@ -65,8 +65,8 @@ void create()
         create_family("衡山派", 13, "名宿");
 
         set("no_teach", ([
-                "liuyun-zhang" : "这流云掌向来只由掌门人亲授，你还是找我师兄传授吧！",
-                "shilin-jian"  : "石廪剑法向来只由掌门人亲授，你还是找我师兄传授吧！",
+                "liuyun-zhang" : "這流雲掌向來只由掌門人親授，你還是找我師兄傳授吧！",
+                "shilin-jian"  : "石廩劍法向來只由掌門人親授，你還是找我師兄傳授吧！",
         ]));
 
         set("chat_chance_combat", 120);
@@ -104,34 +104,34 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)<30000 )
         {
-                command("say 我衡山剑派乃是堂堂名门正派，对弟子要求严格。");
-                command("say 你在这侠义与德行方面是否还做得不够？");
+                command("say 我衡山劍派乃是堂堂名門正派，對弟子要求嚴格。");
+                command("say 你在這俠義與德行方面是否還做得不夠？");
                 return;
         }
 
         if( query("combat_exp", ob)<200000 )
         {
-                command("say 你现在经验尚浅，还是多在江湖上走走吧。");
+                command("say 你現在經驗尚淺，還是多在江湖上走走吧。");
                 return;
         }
 
         if ((int)ob->query_skill("henshan-jian", 1) < 120)
         {
-                command("say 我衡山乃五岳剑派之一，最为重视剑法。");
-                command("say 你的衡山剑法还不够熟练，下去练练再来吧。");
+                command("say 我衡山乃五嶽劍派之一，最為重視劍法。");
+                command("say 你的衡山劍法還不夠熟練，下去練練再來吧。");
                 return;
         }
 
         if ((int)ob->query_skill("force") < 150)
         {
-                command("say 我衡山剑派虽善用剑，但内功却是御剑之本。");
-                command("say 你是否还应该在内功心法上多下点功夫？");
+                command("say 我衡山劍派雖善用劍，但內功卻是御劍之本。");
+                command("say 你是否還應該在內功心法上多下點功夫？");
                 return;
          }
 
         command("haha");
         command("say 孺子可教，孺子可教。今日我就收下你吧。");
-        command("say 你以后定要勤练武，多行善，扬我衡山派雄风。");
+        command("say 你以後定要勤練武，多行善，揚我衡山派雄風。");
         command("recruit "+query("id", ob));
 }
 
@@ -139,15 +139,15 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "乱剑覆花" :
+        case "亂劍覆花" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/furong-jian/luan",
-                           "name"    : "乱剑覆花",
-                           "msg1"    : "$N点了点头，忽然一声轻啸，腾"
-                                       "空而起，蓦地挽出一个剑花，顷"
-                                       "刻间只见得剑花四散，洋洋洒洒"
-                                       "，犹如无数花瓣从半空洒下，招"
-                                       "式当真精奇无比。",
+                           "name"    : "亂劍覆花",
+                           "msg1"    : "$N點了點頭，忽然一聲輕嘯，騰"
+                                       "空而起，驀地挽出一個劍花，頃"
+                                       "刻間只見得劍花四散，洋洋灑灑"
+                                       "，猶如無數花瓣從半空灑下，招"
+                                       "式當真精奇無比。",
                            "sk1"     : "furong-jian",
                            "lv1"     : 100,
                            "force"   : 140,
@@ -157,10 +157,10 @@ int accept_ask(object me, string topic)
                            "shen"    : 20000, ]));
                 break;
 
-        case "一剑落九雁" :
+        case "一劍落九雁" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/luoyan-jian/luo",
-                           "name"    : "一剑落九雁",
+                           "name"    : "一劍落九雁",
                            "sk1"     : "luoyan-jian",
                            "lv1"     : 150,
                            "force"   : 220,
@@ -189,7 +189,7 @@ void init(object ob)
                         command("play xiaoao-jianghu");
                 else
                         say(CYN + this_object()->name() +
-                            CYN "深深地叹了口气。\n" NOR);
+                            CYN "深深地嘆了口氣。\n" NOR);
         }
         return;
 }

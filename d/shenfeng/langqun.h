@@ -10,8 +10,8 @@ void init()
 
         if (userp(me) && ! present("e lang", this_object()))
         {
-                message("vision", HIR "\n突然间，只见几条黑影向你扑"
-                                  "了过来。\n" NOR, this_object());
+                message("vision", HIR "\n突然間，只見幾條黑影向你撲"
+                                  "了過來。\n" NOR, this_object());
 
                 for (i = 0; i < 5; i++)
                 {
@@ -27,7 +27,7 @@ int valid_leave(object me, string dir)
         object ob = present("e lang", environment(me));
 
         if (ob && living(ob))
-                return notify_fail(HIR "\n霎时只见几条饿狼飞身一闪，挡"
+                return notify_fail(HIR "\n霎時只見幾條餓狼飛身一閃，擋"
                                    "住了你的去路。\n" NOR);
 
         return 1;

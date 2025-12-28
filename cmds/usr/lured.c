@@ -13,21 +13,21 @@ int main(object me, string arg)
         object ob, env;
 
 	if (! arg)
-                return notify_fail("指令格式： lured <诱饵> \n");
+                return notify_fail("指令格式： lured <誘餌> \n");
 
 	if (! objectp(ob = present(arg, me)))
-		return notify_fail("你身上没有这样东西。\n");
+		return notify_fail("你身上沒有這樣東西。\n");
 
 	if( !query("lure", ob) )
-		return notify_fail("这东西好象不是诱饵吧！\n");
+		return notify_fail("這東西好象不是誘餌吧！\n");
 
 	if (me->is_busy())
-		return notify_fail("等你忙完了再说吧！\n");
+		return notify_fail("等你忙完了再說吧！\n");
 
 	if( query_temp("hunting", me) )
-		return notify_fail("别着急，再等等！\n");
+		return notify_fail("彆著急，再等等！\n");
 
-	message_vision(HIG "$N将" + ob->name() + "放在地上，躲在一旁静静守侯着 ……\n" NOR, me);
+	message_vision(HIG "$N將" + ob->name() + "放在地上，躲在一旁靜靜守侯著 ……\n" NOR, me);
 
 	me->start_busy(3 + random(5));
 set_temp("hunting", 1, 	me);
@@ -60,7 +60,7 @@ void do_hunt(object me, object env, object ob)
 
 delete_temp("hunting", 	me);
 
-        // 获得几率判断是否动物出现
+        // 獲得幾率判斷是否動物出現
 	point = quarry[temp[i]];
 	if( MEMBER_D->is_valid_member(query("id", me)) )
 		point += 3;
@@ -72,7 +72,7 @@ delete_temp("hunting", 	me);
 	{
 		if (base_name(environment(me)) == base_name(env))
 		{
-			write(HIY "等了半天却不见猎物出现，你只好把" + ob->name() + HIY "收了起来。\n");
+			write(HIY "等了半天卻不見獵物出現，你只好把" + ob->name() + HIY "收了起來。\n");
 		}
 		else
 		{
@@ -84,30 +84,30 @@ delete_temp("hunting", 	me);
 	obq = new("/clone/quarry/" + temp[i]);
 	obq->move(env);
 set("owner",query("id",  me), 	obq);
-        set("name", HIR+me->name()+"("+query("id", me)+")猎出的"+obq->name()+NOR, obq);
+        set("name", HIR+me->name()+"("+query("id", me)+")獵出的"+obq->name()+NOR, obq);
   
 	if (environment(me) == env)
 	{
 		switch(random(4))
 		{
 			case 0:
-			message_vision(HIG "不一会儿，一只" + obq->name() + HIG "窜了出来，将" + 
-                                       ob->name() + HIG "一口咬在嘴里。\n" NOR, me);
+			message_vision(HIG "不一會兒，一隻" + obq->name() + HIG "竄了出來，將" + 
+                                       ob->name() + HIG "一口咬在嘴裡。\n" NOR, me);
 			break;
 
 			case 1:
-			message_vision(HIM "转眼间，一只" + obq->name() + HIG "突然出现，将" + 
-                                       ob->name() + HIG "吞进嘴里。\n" NOR, me);
+			message_vision(HIM "轉眼間，一隻" + obq->name() + HIG "突然出現，將" + 
+                                       ob->name() + HIG "吞進嘴裡。\n" NOR, me);
 			break;
 
 			case 2:
-			message_vision(HIW "良久，一只" + obq->name() + HIG "大摇大摆地走了出来，仔细地打量着" + 
+			message_vision(HIW "良久，一隻" + obq->name() + HIG "大搖大擺地走了出來，仔細地打量著" + 
                                        ob->name() + HIG "。\n" NOR, me);
 			break;
 
 			default:
-			message_vision(HIC "少时，一只" + obq->name() + HIG "窜了过来，一口将" + 
-                                       ob->name() + HIG "叼在了嘴上，相貌贪婪之极。\n" NOR, me);
+			message_vision(HIC "少時，一隻" + obq->name() + HIG "竄了過來，一口將" + 
+                                       ob->name() + HIG "叼在了嘴上，相貌貪婪之極。\n" NOR, me);
 			break;
 		}
 	}
@@ -122,8 +122,8 @@ int help(object me)
 	write(@HELP
 指令格式 :
 
-        lured <诱饵>：在当前地点放置诱饵等待猎物出现。
-                     注：一次只能放一个诱饵。
+        lured <誘餌>：在當前地點放置誘餌等待獵物出現。
+                     注：一次只能放一個誘餌。
                      
 HELP
     );

@@ -12,11 +12,11 @@ void create()
         else*/
         {
                 set("material", "paper");
-                set("unit", "张");
-                set("long", HIY "这是一张道符，上面画着一个古怪的巨兽。\n" NOR);
+                set("unit", "張");
+                set("long", HIY "這是一張道符，上面畫著一個古怪的巨獸。\n" NOR);
                 set("value", 10000);
                 set("armor_prop/greedy", 1);
-                set("special/desc", "5%几率打中对手降低对方食物及饮水量。");
+                set("special/desc", "5%幾率打中對手降低對方食物及飲水量。");
         }
         setup();
 }

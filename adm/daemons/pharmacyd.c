@@ -3,38 +3,38 @@
 // 2002.05.09
 // last update 2002.08.23
 
-//  此物件负责处理所有药物相关的事务，包括：
+//  此物件負責處理所有藥物相關的事務，包括：
 //
-//  1.根据药性获得相应的药材。
-//  2.核对处方将药材转化为药物。
-//  3.处理及保存新的处方数据。
-//  4.将药材或药物的名称与编号互相转换。
+//  1.根據藥性獲得相應的藥材。
+//  2.核對處方將藥材轉化為藥物。
+//  3.處理及保存新的處方數據。
+//  4.將藥材或藥物的名稱與編號互相轉換。
 
 /***********************************************************
-保存药物编号及对应名称的映射如下：
+保存藥物編號及對應名稱的映射如下：
 mapping data = ([
         "herb" : ([
                 0 : "甘草",
                 1 : "沉香",
                 ]),
         "medicine" : ([
-                0 : "玄黄紫清丹",
-                1 : "甘草润肺散",
+                0 : "玄黃紫清丹",
+                1 : "甘草潤肺散",
                 ]),
         ]);
 
-保存处方的映射如下：
+保存處方的映射如下：
 mapping prescription = ([
         1, 2, 3 : 1,
         2, 3, 4 : 2,
         ]);
 
-保存药材相关信息的映射如下：
+保存藥材相關信息的映射如下：
 mapping relation = ([
         0 : ([
                 "eng"  : ({"gan cao", "cao"}),
                 "unit" : "棵",
-                "desc" : "一棵紫红色的小草，看起来煞是可爱。",
+                "desc" : "一棵紫紅色的小草，看起來煞是可愛。",
                 ]),
         ]);
 ***********************************************************/
@@ -55,13 +55,13 @@ int register_all_medicine();
 void create()
 {
         seteuid(ROOT_UID);
-        initialize(); // 初始化，包括载入数据，刷新映射等
+        initialize(); // 初始化，包括載入數據，刷新映射等
 
-        set("channel_id", "制药精灵");
-        CHANNEL_D->do_channel( this_object(), "sys", "制药系统已经启动。");
+        set("channel_id", "製藥精靈");
+        CHANNEL_D->do_channel( this_object(), "sys", "製藥系統已經啟動。");
 }
 
-// 初始化，包括载入数据，刷新映射等
+// 初始化，包括載入數據，刷新映射等
 void initialize()
 {
         restore();        
@@ -88,10 +88,10 @@ void remove() { save(); }
 string query_save_file() { return DATA_DIR "pharmacyd"; }
 
 /*********************************************************************
-                       以下为增加、删除数据的接口
+                       以下為增加、刪除數據的接口
 *********************************************************************/
 
-// 注册药材id及对应中文名称
+// 註冊藥材id及對應中文名稱
 int register_herb(int id, string name)
 {
         object ob;
@@ -114,7 +114,7 @@ int register_herb(int id, string name)
         return 1;
 }
 
-// 设置药材的基本信息
+// 設置藥材的基本信息
 int set_relation(int id, mapping rt)
 {
         mapping map;
@@ -136,7 +136,7 @@ int set_relation(int id, mapping rt)
         return 1;
 }
 
-// 注册药物id及对应名称(由药物物件取得)
+// 註冊藥物id及對應名稱(由藥物物件取得)
 int register_medicine(int id)
 {
         object obj;
@@ -166,7 +166,7 @@ int register_medicine(int id)
         return 1;
 }
 
-// 注册所有药物
+// 註冊所有藥物
 int register_all_medicine()
 {
         int i, id;
@@ -186,7 +186,7 @@ int register_all_medicine()
         return 1;
 }
 
-// 注销某一药材或药物
+// 註銷某一藥材或藥物
 int unregister(string type, int id)
 {
 
@@ -202,7 +202,7 @@ int unregister(string type, int id)
         return 1;
 }
 
-// 增加处方数据
+// 增加處方數據
 int add_prescription(int *herbs, string medicine)
 {
         if (! mapp(prescription))
@@ -213,7 +213,7 @@ int add_prescription(int *herbs, string medicine)
         return 1;
 }
 
-// 删除处方数据
+// 刪除處方數據
 int delete_prescription(int *herbs)
 {
         if (! mapp(prescription) || undefinedp(prescription[herbs]))
@@ -224,13 +224,13 @@ int delete_prescription(int *herbs)
 }
 
 /*********************************************************************
-                       以下为供外部调用的查询接口
+                       以下為供外部調用的查詢接口
 *********************************************************************/
 
-// 返回该药材的基本信息，在药材初始化时调用
+// 返回該藥材的基本信息，在藥材初始化時調用
 mapping query_relation(int id) { return relation[id]; }
 
-// 通过药材或药物名查询编号
+// 通過藥材或藥物名查詢編號
 int check_id(string name)
 {
         int loc;
@@ -251,7 +251,7 @@ int check_id(string name)
         return key[loc];
 }
 
-// 通过类型(药材或药物)及id查询中文名称
+// 通過類型(藥材或藥物)及id查詢中文名稱
 string check_name(string type, int id)
 {
         mapping fname;
@@ -263,20 +263,20 @@ string check_name(string type, int id)
         return fname[id];
 }
 
-// 查询该类型(药材或药物)某一id是否已注册
+// 查詢該類型(藥材或藥物)某一id是否已註冊
 int already_registerd(string type, int id)
 {
         if (type != "herb" && type != "medicine")
-                return notify_fail("查询类型错误！\n");
+                return notify_fail("查詢類型錯誤！\n");
 
         return undefinedp(data[type][id]) == 0;
 }
 
 /*********************************************************************
-                       以下为调用查看数据列表的接口
+                       以下為調用查看數據列表的接口
 *********************************************************************/
 
-// 返回药材列表
+// 返回藥材列表
 string list_herb()
 {
         int i;
@@ -287,9 +287,9 @@ string list_herb()
         herbs = data["herb"];
 
         if (! mapp(herbs) || ! sizeof(herbs))
-                return "目前尚未完成药材数据构造！\n";
+                return "目前尚未完成藥材數據構造！\n";
 
-        line  = WHT"\n目前已收集的药材数据如下：\n\n"NOR;
+        line  = WHT"\n目前已收集的藥材數據如下：\n\n"NOR;
         key   = keys(herbs);
         key   = sort_array(key, 1);
 
@@ -305,7 +305,7 @@ string list_herb()
         return line;
 }
 
-// 返回药物列表
+// 返回藥物列表
 string list_medicine()
 {
         int i;
@@ -316,9 +316,9 @@ string list_medicine()
         medicines = data["medicine"];
 
         if (! mapp(medicines) || ! sizeof(medicines))
-                return "目前尚未完成药物数据构造！\n";
+                return "目前尚未完成藥物數據構造！\n";
 
-        line  = WHT"\n目前已收集的药物数据如下：\n\n"NOR;
+        line  = WHT"\n目前已收集的藥物數據如下：\n\n"NOR;
         key   = keys(medicines);
         key   = sort_array(key, 1);
 
@@ -334,7 +334,7 @@ string list_medicine()
         return line;
 }
 
-// 返回处方列表
+// 返回處方列表
 string list_prescription()
 {
         int i;
@@ -342,7 +342,7 @@ string list_prescription()
         int *key, *value;
 
         if (! mapp(prescription) || ! sizeof(prescription))
-                return "目前尚无药方数据可供查询！\n";
+                return "目前尚無藥方數據可供查詢！\n";
 
         line  = "";
         key   = keys(prescription);
@@ -361,20 +361,20 @@ string list_prescription()
 }
 
 /*********************************************************************
-                       以下为按要求生成药材的接口
+                       以下為按要求生成藥材的接口
 
-                其中，每件药材的属性都是唯一的，形式如下：
+                其中，每件藥材的屬性都是唯一的，形式如下：
 
-                味性(Taste)     ：苦、咸、酸、甘、辛
-                药性(Officinal) ：寒、凉、平、温、热
-                毒性(toXicity)  ：有、无
+                味性(Taste)     ：苦、鹹、酸、甘、辛
+                藥性(Officinal) ：寒、涼、平、溫、熱
+                毒性(toXicity)  ：有、無
 
-                所以，以 {x,y,z} 形式的数组对应唯一一种药
-                材，总数即为 5x5x2 = 50 种。
+                所以，以 {x,y,z} 形式的數組對應唯一一種藥
+                材，總數即為 5x5x2 = 50 種。
 
 *********************************************************************/
 
-// 根据属性计算编号，创建药材
+// 根據屬性計算編號，創建藥材
 object build_herb(int *prop)
 {
         int num;
@@ -391,7 +391,7 @@ object build_herb(int *prop)
             sizeof(prop) > 3)
                 error("Pharmacyd:Wrong Herb Prop.\n");
 
-        // 算法为 10*x + 2*y + z 即可得到该药材的唯一编号。
+        // 算法為 10*x + 2*y + z 即可得到該藥材的唯一編號。
         num  = xp;
         num += op * 2;
         num += tp * 10;
@@ -407,7 +407,7 @@ object build_herb(int *prop)
         return ob;
 }
 
-// 根据编号创建药材
+// 根據編號創建藥材
 object clone_herb(int id)
 {
         object ob;
@@ -433,16 +433,16 @@ object clone_herb(int id)
 }
 
 /*********************************************************************
-                       以下为按处方生成药物的接口
+                       以下為按處方生成藥物的接口
 
-                每次制药的成功率大约为50%，
-                能否制药的能力限制暂时未予以考虑。
-                若制药失败，有一定机会得到 催化剂 炼金水 黄金
-                中的一种，否则将得到废料。
+                每次製藥的成功率大約為50%，
+                能否製藥的能力限制暫時未予以考慮。
+                若製藥失敗，有一定機會得到 催化劑 鍊金水 黃金
+                中的一種，否則將得到廢料。
 
 *********************************************************************/
 
-// 核对处方将药材转化为药物
+// 核對處方將藥材轉化為藥物
 object build_medicine(object *herbs)
 {
         object obj;

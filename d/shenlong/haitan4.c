@@ -4,7 +4,7 @@ void create()
 {
         set("short", "沙地");
         set("long",@LONG
-这是神龙岛东部的一片沙地。
+這是神龍島東部的一片沙地。
 LONG);
 
 	set("exits", ([

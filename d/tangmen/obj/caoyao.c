@@ -8,18 +8,18 @@ void init()
 
 void create()
 {
-        set_name("草药", ({"cao yao","cao","yao"}));
+        set_name("草藥", ({"cao yao","cao","yao"}));
         set("unit", "株");
-        set("long", "这是一株普通的草药。\n");
+        set("long", "這是一株普通的草藥。\n");
         setup();
 }
 
 int do_eat(string arg)
 {
-if (!id(arg))  return notify_fail("你要吃什么？\n");
+if (!id(arg))  return notify_fail("你要吃什麼？\n");
 if(arg=="yao") 
 {
-tell_object(this_player(), HIG "你只觉一股清香沁入心肺,顿时灵台一片空明,神意清爽！\n" NOR );
+tell_object(this_player(), HIG "你只覺一股清香沁入心肺,頓時靈臺一片空明,神意清爽！\n" NOR );
 set_temp("nopoison", 1, this_player());
 set("eff_jingli",query("max_jingli",  this_player()), this_player());
 set("jingli",query("max_jingli",  this_player()), this_player());

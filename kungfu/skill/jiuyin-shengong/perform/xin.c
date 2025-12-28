@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define XIN "「" HIR "摄心大法" NOR "」"
+#define XIN "「" HIR "攝心大法" NOR "」"
 
 inherit F_SSERVER;
 
@@ -20,33 +20,33 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(XIN "只能在战斗中对对手使用。\n");
+                return notify_fail(XIN "只能在戰鬥中對對手使用。\n");
 
         if ((int)me->query_skill("jiuyin-shengong", 1) < 280)
-                return notify_fail("你九阴神功不够娴熟，难以施展" XIN "。\n");
+                return notify_fail("你九陰神功不夠嫻熟，難以施展" XIN "。\n");
  
         if ((int)me->query_skill("force", 1) < 280)
-                return notify_fail("你内功根基不够，难以施展" XIN "。\n");   
+                return notify_fail("你內功根基不夠，難以施展" XIN "。\n");   
 
         if (me->query_skill_mapped("force") != "jiuyin-shengong")
-                return notify_fail("你没有激发九阴神功为内功，难以施展" XIN "。\n");
+                return notify_fail("你沒有激發九陰神功為內功，難以施展" XIN "。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你现在的真气不够，难以施展" XIN "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" XIN "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
                             
-        msg = HIM "\n$N" HIM "猛然间尖啸一声，施展出九阴神功中的「" HIR "摄心大法" HIM"」。"
-              "只见$N" HIM "各种招式千奇百怪、变化多端，脸上喜怒哀乐，怪状百出。\n" NOR;
+        msg = HIM "\n$N" HIM "猛然間尖嘯一聲，施展出九陰神功中的「" HIR "攝心大法" HIM"」。"
+              "只見$N" HIM "各種招式千奇百怪、變化多端，臉上喜怒哀樂，怪狀百出。\n" NOR;
 
         ap = attack_power(me, "force");
         dp = defense_power(target, "force");
 
         if (ap / 2 + random(ap) > dp)
         {
-             msg += HIG "$n" HIG "登时觉得胸口苦闷之极，心神难以自制，喜怒哀乐竟全随着$N" HIG
-                    "而变。顷刻之间，$n" HIG "顿觉精力不济，头晕目眩。\n" NOR; 
+             msg += HIG "$n" HIG "登時覺得胸口苦悶之極，心神難以自制，喜怒哀樂竟全隨著$N" HIG
+                    "而變。頃刻之間，$n" HIG "頓覺精力不濟，頭暈目眩。\n" NOR; 
 
              me->start_busy(2 + random(4));
              addn("neili", -400, me);
@@ -70,8 +70,8 @@ int perform(object me, object target)
 
         } else
         {
-              msg += NOR + CYN "$n" NOR + CYN "怒喝道：“尔等妖法，休想迷惑我！”。猛然间，招式陡快，"
-                     "竟将$N" NOR + CYN "这招破去。\n" NOR;
+              msg += NOR + CYN "$n" NOR + CYN "怒喝道：“爾等妖法，休想迷惑我！”。猛然間，招式陡快，"
+                     "竟將$N" NOR + CYN "這招破去。\n" NOR;
               addn("neili", -200, me);
               me->start_busy(1 + random(2));
         }
@@ -84,6 +84,6 @@ void remove_effs(object target)
 {
         if( !objectp(target) || !query_temp("eff/jiuyin-shengong/xin", target))return ;
         delete_temp("eff/jiuyin-shengong/xin", target);
-        tell_object(target, HIW "猛然间你气血上冲，头昏胀痛之感顿然消去，精力逐渐集中起来。\n" NOR);
+        tell_object(target, HIW "猛然間你氣血上衝，頭昏脹痛之感頓然消去，精力逐漸集中起來。\n" NOR);
         return;      
 }

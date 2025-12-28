@@ -11,7 +11,7 @@ void create()
 
         set_name("白衣少女", ({ "baiyi girl", "girl"}));
         set("long", 
-                "她披著一袭轻纱般的白衣，面容秀美绝俗。\n");
+                "她披著一襲輕紗般的白衣，面容秀美絕俗。\n");
         set("gender", "女性");
         set("age", 26);
         set("attitude", "peaceful");
@@ -67,10 +67,10 @@ void create()
     set("chat_chance_combat", 50);
 
         set("inquiry", ([
-            "配药" : (: ask_aoyao :),
-            "炼药" : (: ask_aoyao :),
-            "制药" : (: ask_aoyao :),
-            "熬药" : (: ask_aoyao :),
+            "配藥" : (: ask_aoyao :),
+            "煉藥" : (: ask_aoyao :),
+            "製藥" : (: ask_aoyao :),
+            "熬藥" : (: ask_aoyao :),
         ]));
 
         setup();
@@ -91,11 +91,11 @@ void init()
 int ask_aoyao()
 {
         object me = this_player();
-        message_vision(query("name")+"向$N解释道：\n",me);
-        message_vision("你先将盖子打开[open lip]，然后加入所需的药材[add **** in lu]\n",me);
-        message_vision("记着适量倒一些玉蜂蜜[pour mi]，这是我古墓圣药的药引。再扣好盖子[close lip]\n",me);
-        message_vision("把炭盆点燃[burn coal]，等炉火旺起来了。就可以熬药了[aoyao]。\n",me);
-        message_vision("熬药时要随时控制火候，还要不停搅拌，很累人的。药熬好了之后，\n",me);
-        message_vision("记得先灭了火[mie huo]再取药[qu yao]，以免被烫伤。\n",me);
+        message_vision(query("name")+"向$N解釋道：\n",me);
+        message_vision("你先將蓋子打開[open lip]，然後加入所需的藥材[add **** in lu]\n",me);
+        message_vision("記著適量倒一些玉蜂蜜[pour mi]，這是我古墓聖藥的藥引。再扣好蓋子[close lip]\n",me);
+        message_vision("把炭盆點燃[burn coal]，等爐火旺起來了。就可以熬藥了[aoyao]。\n",me);
+        message_vision("熬藥時要隨時控制火候，還要不停攪拌，很累人的。藥熬好了之後，\n",me);
+        message_vision("記得先滅了火[mie huo]再取藥[qu yao]，以免被燙傷。\n",me);
         return 1;
 }

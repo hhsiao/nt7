@@ -2,10 +2,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("刽子手", ({ "guizi shou", "guizi", "shou" }));
+        set_name("劊子手", ({ "guizi shou", "guizi", "shou" }));
         set("long", 
-                "一个身材剽悍的男子，手里提着柄钢刀。\n"
-              "在刑场中专门负责屠人。\n");
+                "一個身材剽悍的男子，手裡提著柄鋼刀。\n"
+              "在刑場中專門負責屠人。\n");
         set("gender", "男性");
         set("age", 30);
         set("attitude", "heroism");

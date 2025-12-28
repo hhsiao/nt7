@@ -3,13 +3,13 @@
 inherit HAMMER;
 void create()
 {
-        set_name(YEL "铜钹" NOR,  ({ "tong bo", "tong", "bo" }));
+        set_name(YEL "銅鈸" NOR,  ({ "tong bo", "tong", "bo" }));
         set_weight(10000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "柄");
-                set("long", "一柄用熟铜打造的钹。\n");
+                set("long", "一柄用熟銅打造的鈸。\n");
                 set("value", 2000);
                 set("material", "gold");
         }

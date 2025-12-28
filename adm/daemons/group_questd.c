@@ -58,33 +58,33 @@ mapping family = ([
                        "/d/shaolin/guangchang4","/d/shaolin/zoulang8",
                        "/d/shaolin/wuchang2","/d/shaolin/banruo2",
                        "/d/shaolin/bagua2","/d/shaolin/zhulin4", }),
-        "武当派"   : ({ "/d/wudang/wdroad1","/d/wudang/gyroad1",
+        "武當派"   : ({ "/d/wudang/wdroad1","/d/wudang/gyroad1",
                        "/d/wudang/jindian","/d/wudang/shanlu4",
                        "/d/wudang/wuyaling","/d/wudang/zixiaogate",
                        "/d/wudang/taizipo", }),
-        "丐帮"     : ({ "/d/city/ml1", "/d/city/ml2",
+        "丐幫"     : ({ "/d/city/ml1", "/d/city/ml2",
                        "/d/city/ml3", "/d/gaibang/pomiao",
                        "/d/gaibang/shoushe", "/d/gaibang/inhole",
                        "/d/city/ml4", "/d/gaibang/slandao1",
                        "/d/gaibang/slandao2", }),
         "全真教"   : ({ "/d/quanzhen/shanlu4","/d/quanzhen/shijie7",
                        "/d/quanzhen/houshan","/d/quanzhen/datang3", }),
-        "华山派"   : ({ "/d/huashan/buwei1","/d/huashan/qunxianguan",
+        "華山派"   : ({ "/d/huashan/buwei1","/d/huashan/qunxianguan",
                        "/d/huashan/songlin1", }),
-        "灵鹫宫"   : ({ "/d/lingjiu/changl1","/d/lingjiu/liangong",
+        "靈鷲宮"   : ({ "/d/lingjiu/changl1","/d/lingjiu/liangong",
                        "/d/lingjiu/huayuan","/d/lingjiu/changl6",}),
         "峨嵋派"   : ({ "/d/emei/jinding","/d/emei/woyunan",
                        "/d/emei/hcazhengdian","/d/emei/xiaolu1", }),
-        "桃花岛"   : ({ "/d/taohua/taolin","/d/taohua/zhulin3", }),
+        "桃花島"   : ({ "/d/taohua/taolin","/d/taohua/zhulin3", }),
         "明教"     : ({ "/d/mingjiao/shanmen","/d/mingjiao/shanlu2",
                        "/d/mingjiao/lhqpaifang","/d/mingjiao/lhqhoumen", }),
         "魔教"     : ({ "/d/yuanyue/shibanlu4","/d/yuanyue/senling1", }),
-        "神龙教"   : ({ "/d/shenlong/fengding","/d/shenlong/wuchang", }),
+        "神龍教"   : ({ "/d/shenlong/fengding","/d/shenlong/wuchang", }),
         "古墓派"   : ({ "/d/gumu/zhengting","/d/gumu/qianting", }),
         "星宿派"   : ({ "/d/xingxiu/xxh1","/d/xingxiu/xxh2", }),
-        "逍遥派"   : ({ "/d/xiaoyao/qingcaop","/d/xiaoyao/xiaodao4", }),
+        "逍遙派"   : ({ "/d/xiaoyao/qingcaop","/d/xiaoyao/xiaodao4", }),
 /*
-        "血刀门"   : ({ "/d/xuedao/shandong2", "/d/xuedao/sroad9", }),
+        "血刀門"   : ({ "/d/xuedao/shandong2", "/d/xuedao/sroad9", }),
         "雪山寺"   : ({ "/d/xueshan/hubian1","/d/xueshan/chang",}),
 */
         "密宗"     : ({ "/d/xuedao/shandong2", "/d/xuedao/sroad9",
@@ -96,13 +96,13 @@ mapping family = ([
                        "/d/heimuya/changtan", }),
         // add by wuji
 
-        "铁掌帮" : ({ "/d/tiezhang/wztang","/d/tiezhang/hxfang",
+        "鐵掌幫" : ({ "/d/tiezhang/wztang","/d/tiezhang/hxfang",
                        "/d/tiezhang/pingtai","/d/tiezhang/xxs",
                        "/d/tiezhang/sslu-1","/d/tiezhang/dong3",  }),
         "凌霄城" : ({ "/d/lingxiao/cheng","/d/lingxiao/didi",
                        "/d/lingxiao/stone","/d/lingxiao/wave2",
                        "/d/lingxiao/fenghuo","/d/lingxiao/houyuan1",  }),
-        "昆仑派" : ({ "/d/kunlun/shanbi","/d/kunlun/nanwoshi",
+        "崑崙派" : ({ "/d/kunlun/shanbi","/d/kunlun/nanwoshi",
                        "/d/kunlun/lianwu","/d/kunlun/xianjing",
                        "/d/kunlun/xuedi","/d/kunlun/kunlun3",  }),
         "青城派" : ({ "/d/qingcheng/maguchi","/d/qingcheng/qiandian",
@@ -114,29 +114,29 @@ mapping family = ([
         "泰山派" : ({ "/d/taishan/duzunju","/d/taishan/fengyue",
                        "/d/taishan/wudafu","/d/taishan/yitian",
                        "/d/taishan/muliyuan","/d/taishan/yaocan",  }),
-        "恒山派" : ({ "/d/hengshan/beiyuemiao","/d/hengshan/baiyuan",
+        "恆山派" : ({ "/d/hengshan/beiyuemiao","/d/hengshan/baiyuan",
                        "/d/hengshan/jijiaooshi","/d/hengshan/hufengkou",
                        "/d/hengshan/shaodao2","/d/hengshan/zhaitang",  }),
         "衡山派" : ({ "/d/henshan/kefang","/d/henshan/inhole3",
                        "/d/henshan/houdian","/d/henshan/furong",
                        "/d/henshan/ontree2","/d/henshan/nantian",  }),
 
-        "红花会" : ({ "/d/huijiang/damen","/d/huijiang/zongduo",
+        "紅花會" : ({ "/d/huijiang/damen","/d/huijiang/zongduo",
                        "/d/huijiang/xiagu","/d/huijiang/xiepo",
                        "/d/huijiang/goldroom","/d/huijiang/wuchang",  }),
         // end add
         "慕容世家" : ({ "/d/yanziwu/shuwu","/d/yanziwu/yimen", }),
-        "关外胡家" : ({ "/d/guanwai/xiaowu","/d/guanwai/xiaoyuan",}),
+        "關外胡家" : ({ "/d/guanwai/xiaowu","/d/guanwai/xiaoyuan",}),
         "段氏皇族" : ({ "/d/dali/neitang","/d/dali/chahua7",
                        "/d/dali/chahua3","/d/dali/wfdating", }),
-        "欧阳世家" : ({ "/d/baituo/dating","/d/baituo/huayuan",
+        "歐陽世家" : ({ "/d/baituo/dating","/d/baituo/huayuan",
                        "/d/baituo/houyuan", }),
-        "唐门世家" : ({ "/d/tangmen/tmdamen","/d/tangmen/gudao2",
+        "唐門世家" : ({ "/d/tangmen/tmdamen","/d/tangmen/gudao2",
                        "/d/tangmen/lianyunge","/d/tangmen/qianyuan", }),
 ]);
 
 nosave mapping place = ([
-        "北京东城": ({
+        "北京東城": ({
                         "/d/beijing/cagc_e","/d/beijing/caroad_e1",
                         "/d/beijing/caroad_e2","/d/beijing/zahuo",
                         "/d/beijing/yancao","/d/beijing/xingchang",
@@ -200,7 +200,7 @@ nosave mapping place = ([
                         "/d/beijing/di_dajie2","/d/beijing/di_anmen",
                         "/d/beijing/qingmu_dating",
                      }),
-        "扬州城"   : ({
+        "揚州城"   : ({
                         "/d/city/zuixianlou2","/d/city/zuixianlou3",
                         "/d/city/zuixianlou","/d/city/beidajie2",
                         "/d/city/beimen","/d/city/beidajie1",
@@ -212,7 +212,7 @@ nosave mapping place = ([
                         "/d/city/yaopu","/d/city/datiepu",
                         "/d/city/dongmen",
                      }),
-         "长安城"   : ({
+         "長安城"   : ({
                         "/d/changan/huanggong","/d/changan/bridge1",
                         "/d/changan/baihu2","/d/changan/beian-dadao",
                         "/d/changan/beian-daokou","/d/changan/bingying1",
@@ -278,7 +278,7 @@ nosave mapping place = ([
                         "/d/chengdu/eastroad1","/d/chengdu/jiudian",
                         "/d/chengdu/wuguan",
                      }),
-        "苏州城"   : ({
+        "蘇州城"   : ({
                         "/d/suzhou/beimen","/d/suzhou/beidajie2",
                         "/d/suzhou/zijinan","/d/suzhou/jiudian",
                         "/d/suzhou/beidajie1","/d/suzhou/xiyuan",
@@ -349,7 +349,7 @@ nosave mapping place = ([
                         "/d/hangzhou/maojiabu","/d/hangzhou/huangniling",
                         "/d/hangzhou/shuiledong","/d/hangzhou/manjuelong",
                      }),
-        "襄阳城"   : ({
+        "襄陽城"   : ({
                         "/d/xiangyang/westjie2", "/d/xiangyang/southjie2",
                         "/d/xiangyang/xiaorong1", "/d/xiangyang/zhonglie",
                         "/d/xiangyang/guangchang", "/d/xiangyang/dingzi",
@@ -403,7 +403,7 @@ nosave mapping place = ([
                         "/d/xiangyang/walln8",
                      }),
 
-        "大理一带" : ({
+        "大理一帶" : ({
                         "/d/dali/northgate", "/d/dali/southgate",
                         "/d/dali/shanlu2", "/d/dali/buxiongbu",
                         "/d/dali/jinzhihe", "/d/dali/xiaodao1",
@@ -432,14 +432,14 @@ nosave mapping place = ([
                      }),
 ]);
 
-string *nations = ({ "日本", "荷兰", "天竺", "日本", "日本",
-                     "日本", "英吉利", "法兰西", "西班牙", "葡萄牙",
-                     "比利时"});
+string *nations = ({ "日本", "荷蘭", "天竺", "日本", "日本",
+                     "日本", "英吉利", "法蘭西", "西班牙", "葡萄牙",
+                     "比利時"});
 
-string *foreigner = ({ "佣兵团", "探险队", "侵略军", "亡命团伙", "流窜犯" });
+string *foreigner = ({ "傭兵團", "探險隊", "侵略軍", "亡命團伙", "流竄犯" });
 
-string *chinese = ({ "黑风寨", "斧头帮", "山西土匪", "山东响马", "湘西土匪",
-                     "乌龙岗强盗", "太行山土匪", "落日峰毛贼", "荒漠大盗" });
+string *chinese = ({ "黑風寨", "斧頭幫", "山西土匪", "山東響馬", "湘西土匪",
+                     "烏龍崗強盜", "太行山土匪", "落日峰毛賊", "荒漠大盜" });
 
 void add_killer(object killer);
 void be_killed(int num);
@@ -476,9 +476,9 @@ void be_killed(int num)
         all_enemy -= num;
         listeners = filter_array(users(), (: filter_listener :));
         if (all_enemy <= 0)
-                message("group_quest",HIR "【情报】" NOR + HIY + "太棒了！所有的敌人全部都给消灭了！\n" + NOR,listeners);
+                message("group_quest",HIR "【情報】" NOR + HIY + "太棒了！所有的敵人全部都給消滅了！\n" + NOR,listeners);
         else if (all_enemy < 6)
-                message("group_quest",HIR "【情报】" NOR + HIY + "加油啊！根据最新情报，还剩下" + chinese_number(all_enemy) + "个敌人！\n" + NOR,listeners);
+                message("group_quest",HIR "【情報】" NOR + HIY + "加油啊！根據最新情報，還剩下" + chinese_number(all_enemy) + "個敵人！\n" + NOR,listeners);
         return;
 }
 
@@ -515,8 +515,8 @@ void go_on_process(object ob)
 void create()
 {
         seteuid(ROOT_UID);
-        set("channel_id", "任务精灵");
-        CHANNEL_D->do_channel( this_object(), "sys", "群组任务系统已经启动。");
+        set("channel_id", "任務精靈");
+        CHANNEL_D->do_channel( this_object(), "sys", "群組任務系統已經啟動。");
         ready_to_start();
 }
 
@@ -536,7 +536,7 @@ object create_npc(string nation, int lvl)
 
         switch (nation)
         {
-        case "中国":
+        case "中國":
                 ob = new(CLASS_D("generate") + "/quest_chinese");
                 NPC_D->generate_cn_name(ob);
                 break;
@@ -545,11 +545,11 @@ object create_npc(string nation, int lvl)
                 NPC_D->generate_jp_name(ob);
                 break;
         case "英吉利":
-        case "法兰西":
+        case "法蘭西":
         case "西班牙":
         case "葡萄牙":
-        case "比利时":
-        case "荷兰":
+        case "比利時":
+        case "荷蘭":
                 ob = new(CLASS_D("generate") + "/quest_european");
                 generate_e_name(ob);
                 break;
@@ -608,7 +608,7 @@ void start_quest()
 
         ready_to_start();
         if( nowtime[1] < 9 ) return;
-        CHANNEL_D->do_channel(this_object(), "sys", "群组任务系统开始选择任务。");
+        CHANNEL_D->do_channel(this_object(), "sys", "群組任務系統開始選擇任務。");
 
         all_quest = quest_name;
 
@@ -617,7 +617,7 @@ void start_quest()
                 name = all_quest[random(sizeof(all_quest))];
 
                 CHANNEL_D->do_channel(this_object(), "sys",
-                                      "群组任务系统选择了任务(" + name + ")。");
+                                      "群組任務系統選擇了任務(" + name + ")。");
 
                 all_quest -= ({ name });
                 name = GROUP_QUEST_DIR + name;
@@ -657,8 +657,8 @@ void process_quest(object ob)
         step++;
 
         prompt = ob->prompt();
-        //if (! prompt) prompt = HIR "【群组任务】" NOR;
-        if (! prompt) prompt = HIR "【群组】" NOR;
+        //if (! prompt) prompt = HIR "【群組任務】" NOR;
+        if (! prompt) prompt = HIR "【群組】" NOR;
         if (functionp(line)) catch(line = evaluate(line));
         if (stringp(line))
         {
@@ -682,7 +682,7 @@ varargs void place_npc(object ob,string arg,string the_type,int lvl,string pp)
 
         switch (arg)
         {
-                case "外敌":
+                case "外敵":
                         set("my_type", arg, ob);
                         startroom = place[the_type][random(sizeof(place[the_type]))];
                         if (! objectp(pos = get_object(startroom)))
@@ -690,18 +690,18 @@ varargs void place_npc(object ob,string arg,string the_type,int lvl,string pp)
                                                         the_type, startroom));
                         set("place", the_type, ob);
                         break;
-                case "门派":
+                case "門派":
                         set("my_type", arg, ob);
-                        set("门派", the_type, ob);
+                        set("門派", the_type, ob);
                         startroom = family[the_type][random(sizeof(family[the_type]))];
                         if (! objectp(pos = get_object(startroom)))
                                 log_file("log", sprintf("error to place npc to %s:%s\n",
                                                         the_type, startroom));
                         set("place", the_type, ob);
                         break;
-                case "帮派":
+                case "幫派":
                         set("my_type", arg, ob);
-                        set("帮派", the_type, ob);
+                        set("幫派", the_type, ob);
                         startroom = place[pp][random(sizeof(place[pp]))];
                         if (! objectp(pos = get_object(startroom)))
                                 log_file("log", sprintf("error to place npc to %s:%s\n",
@@ -716,39 +716,39 @@ varargs void place_npc(object ob,string arg,string the_type,int lvl,string pp)
                 case 1:
                 case 2:
                 case 3:
-                        set("nickname", "小喽罗", ob);
+                        set("nickname", "小嘍羅", ob);
                         set("bonus", 600, ob);
                         break;
                 case 4:
                 case 5:
                 case 6:
-                        set("nickname", "普通成员", ob);
+                        set("nickname", "普通成員", ob);
                         set("bonus", 800, ob);
                         break;
                 case 7:
                 case 8:
                 case 9:
-                        set("nickname", "小头目", ob);
+                        set("nickname", "小頭目", ob);
                         set("bonus", 1000, ob);
                         break;
                 case 10:
                 case 11:
                 case 12:
-                        set("nickname", "大头目", ob);
+                        set("nickname", "大頭目", ob);
                         set("bonus", 1500, ob);
                         break;
                 case 13:
                 case 14:
-                        set("nickname", "首领", ob);
+                        set("nickname", "首領", ob);
                         set("bonus", 2000, ob);
                         break;
                 case 15:
                 case 16:
-                        set("nickname", "大首领", ob);
+                        set("nickname", "大首領", ob);
                         set("bonus", 3000, ob);
                         break;
                 default:
-                        set("nickname", "总首领", ob);
+                        set("nickname", "總首領", ob);
                         set("bonus", 5000, ob);
                         break;
         }
@@ -756,7 +756,7 @@ varargs void place_npc(object ob,string arg,string the_type,int lvl,string pp)
         ob->move(pos);
         set("startroom", startroom, ob);
         set_temp("moved", ({}), ob);
-        message_vision("$N走了过来。\n", ob);
+        message_vision("$N走了過來。\n", ob);
 }
 
 // random move
@@ -846,7 +846,7 @@ void set_enemy(int num)
 {
         all_enemy = num;
 }
-//本函数用于查找地点列表的错误
+//本函數用於查找地點列表的錯誤
 void check_all_place()
 {
         int i,j;
@@ -861,7 +861,7 @@ void check_all_place()
                 {
                         write(the_place[j] + "\n");
                         if (!objectp(env = get_object(the_place[j])))
-                                log_file("static/party_quest",sprintf("门派任务错误记录：%s\n",the_place[j]));
+                                log_file("static/party_quest",sprintf("門派任務錯誤記錄：%s\n",the_place[j]));
                 }
         }
 }

@@ -6,35 +6,35 @@ string type() { return "martial"; }
 string martialtype() { return "skill"; }
 
 mapping *action = ({
-([        "action" : "$N右脚立定、左脚虚点，一式「起手式」，左右手一高一低，击向$n的$l",
+([        "action" : "$N右腳立定、左腳虛點，一式「起手式」，左右手一高一低，擊向$n的$l",
         "lvl" : 0,
         "skill_name" : "起手式"
 ]),
-([        "action" : "$N左脚虚踏，全身右转，一招「石破天惊」，右拳猛地击向$n的$l",
+([        "action" : "$N左腳虛踏，全身右轉，一招「石破天驚」，右拳猛地擊向$n的$l",
         "lvl" : 10,
-        "skill_name" : "石破天惊"
+        "skill_name" : "石破天驚"
 ]),
-([        "action" : "$N双手大开大阖，宽打高举，使一招「铁闩横门」，双拳向$n的$l打去",
+([        "action" : "$N雙手大開大闔，寬打高舉，使一招「鐵閂橫門」，雙拳向$n的$l打去",
         "lvl" : 20,
-        "skill_name" : "铁闩横门"
+        "skill_name" : "鐵閂橫門"
 ]),
-([        "action" : "$N左掌圈花扬起，屈肘当胸，右手虎口朝上，一招「千斤坠地」打向$n的$l",
+([        "action" : "$N左掌圈花揚起，屈肘當胸，右手虎口朝上，一招「千斤墜地」打向$n的$l",
         "lvl" : 30,
-        "skill_name" : "千斤坠地"
+        "skill_name" : "千斤墜地"
 ]),
-([        "action" : "$N使一招「傍花拂柳」，上身前探，双拳划了个半圈，击向$n的$l",
+([        "action" : "$N使一招「傍花拂柳」，上身前探，雙拳劃了個半圈，擊向$n的$l",
         "lvl" : 40,
         "skill_name" : "傍花拂柳"
 ]),
-([        "action" : "$N双拳划弧，一记「金刚挚尾」，掌出如电，一下子切到$n的手上",
+([        "action" : "$N雙拳劃弧，一記「金剛摯尾」，掌出如電，一下子切到$n的手上",
         "lvl" : 50,
-        "skill_name" : "金刚挚尾"
+        "skill_name" : "金剛摯尾"
 ]),
-([        "action" : "$N施出「封闭手」，双拳拳出如风，同时打向$n头，胸，腹三处要害",
+([        "action" : "$N施出「封閉手」，雙拳拳出如風，同時打向$n頭，胸，腹三處要害",
         "lvl" : 60,
-        "skill_name" : "封闭手"
+        "skill_name" : "封閉手"
 ]),
-([        "action" : "$N左脚内扣，右腿曲坐，一式「粉石碎玉」，双拳齐齐捶向$n的胸口",
+([        "action" : "$N左腳內扣，右腿曲坐，一式「粉石碎玉」，雙拳齊齊捶向$n的胸口",
         "lvl" : 80,
         "skill_name" : "粉石碎玉"
 ])
@@ -46,13 +46,13 @@ int valid_combine(string combo) { return combo=="hunyuan-zhang"; }
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练劈石破玉拳必须空手。\n");
+                return notify_fail("練劈石破玉拳必須空手。\n");
 
         if ((int)me->query_skill("force") < 90)
-                return notify_fail("你的内功火候不够，无法学劈石破玉拳。\n");
+                return notify_fail("你的內功火候不夠，無法學劈石破玉拳。\n");
 
         if( query("max_neili", me)<450 )
-                return notify_fail("你的内力太弱，无法练劈石破玉拳。\n");
+                return notify_fail("你的內力太弱，無法練劈石破玉拳。\n");
 
         return 1;
 }
@@ -60,11 +60,11 @@ int valid_learn(object me)
 int practice_skill(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("你的必须空手才能练习。\n");
+                return notify_fail("你的必須空手才能練習。\n");
         if( query("qi", me)<50 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
         if( query("neili", me)<40 )
-                return notify_fail("你的内力不够练「劈石破玉拳」。\n");
+                return notify_fail("你的內力不夠練「劈石破玉拳」。\n");
         me->receive_damage("qi", 35);
         addn("neili", -25, me);
         return 1;
@@ -91,16 +91,16 @@ mapping query_action(object me, object weapon)
         for(i = ttl; i > 0; i--)
                 if(lvl > action[i-1]["lvl"])
                 {
-                        seq = i; /* 获得招数序号上限 */
+                        seq = i; /* 獲得招數序號上限 */
                         break;
                 }
-        seq = random(seq);       /* 选择出手招数序号 */
+        seq = random(seq);       /* 選擇出手招數序號 */
         return ([
                 "action"      : action[seq]["action"],
                 "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
                 "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
                 "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
-                "damage_type" : "瘀伤",
+                "damage_type" : "瘀傷",
         ]);
 }
 int learn_bonus() { return 15; }
@@ -117,12 +117,12 @@ int help(object me)
         write(HIC"\n劈石破玉拳："NOR"\n");
         write(@HELP
 
-    劈石破玉拳原为劈石及破玉两路拳法绝学，为华山武功。
-    可与混元掌互备。
+    劈石破玉拳原為劈石及破玉兩路拳法絕學，為華山武功。
+    可與混元掌互備。
 
-        学习要求：
-                紫霞神功10级
-                内力50
+        學習要求：
+                紫霞神功10級
+                內力50
 HELP
         );
         return 1;

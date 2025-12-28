@@ -29,7 +29,7 @@ int main(object me, string file)
 
         if (! file) file = query("cwf", me);
         if (! file)
-                return notify_fail("你要重新编译什麽档案？\n");
+                return notify_fail("你要重新編譯什麼檔案？\n");
 
         if ((obj = present(file, environment(me))) && playerp(obj) ||
             (obj = find_player(file)) && playerp(obj))
@@ -44,7 +44,7 @@ int main(object me, string file)
         }
 
         if (file_size(file) == -1)
-                return notify_fail("没有这个档案。\n");
+                return notify_fail("沒有這個檔案。\n");
 
         set("cwf", file, me);
 
@@ -53,7 +53,7 @@ int main(object me, string file)
                 if (obj == environment(me))
                 {
                         if (file_name(obj) == VOID_OB)
-                                return notify_fail("你不能在 VOID_OB 里重新编译 VOID_OB。\n");
+                                return notify_fail("你不能在 VOID_OB 裡重新編譯 VOID_OB。\n");
                         inv = all_inventory(obj);
                         i = sizeof(inv);
                         while (i--)
@@ -67,9 +67,9 @@ int main(object me, string file)
                 if (obj == find_object(VERSION_D) &&
                     VERSION_D->is_release_server())
                 {
-                        // 如果是版本发布的服务器，则删除
-                        // VERSION_D 的 bin 代码，因为在没有
-                        // VERSION_D 的时候 driver 是不予编译的。
+                        // 如果是版本發佈的服務器，則刪除
+                        // VERSION_D 的 bin 代碼，因為在沒有
+                        // VERSION_D 的時候 driver 是不予編譯的。
                         bin_file = "/binaries" + base_name(obj) + ".b";
                         write("Remove: " + bin_file + "\n");
                         rm(bin_file);
@@ -78,12 +78,12 @@ int main(object me, string file)
                 destruct(obj);
         }
 
-        if (obj) return notify_fail("无法清除旧程式码。\n");
+        if (obj) return notify_fail("無法清除舊程式碼。\n");
 
-        write("重新编译 " + file + "：");
+        write("重新編譯 " + file + "：");
         err = catch(call_other(file, "???"));
         if (err)
-                write(sprintf( "发生错误：\n%s\n", err));
+                write(sprintf( "發生錯誤：\n%s\n", err));
         else
         {
                 write("成功！\n");
@@ -106,7 +106,7 @@ protected int update_player(object me)
                 return notify_fail("你不能更新聊天ID。\n");
 
         if (wiz_level(me) > wiz_level(this_player()))
-                return notify_fail("你没有权限更新这个人物。\n");
+                return notify_fail("你沒有權限更新這個人物。\n");
 
         seteuid(getuid());
         env = environment(me);
@@ -119,7 +119,7 @@ protected int update_player(object me)
                 set("id",query("id",  me), link_ob);
                 if (! link_ob->restore())
                 {
-                        write("找不到该玩家的存盘数据。\n");
+                        write("找不到該玩家的存盤數據。\n");
                         return 1;
                 }
                 if (interactive(me))
@@ -128,8 +128,8 @@ protected int update_player(object me)
 
         if( query("id", link_ob) != getuid(me) )
         {
-                write (sprintf("连接对象的ID(%s)和用户的ID(%s)不相同，不能"
-                       "更新该玩家。\n",query("id", link_ob),getuid(me)));
+                write (sprintf("連接對象的ID(%s)和用戶的ID(%s)不相同，不能"
+                       "更新該玩家。\n",query("id", link_ob),getuid(me)));
                 return 1;
         }
 
@@ -143,10 +143,10 @@ protected int update_player(object me)
                 equip += ([ ob[i] : query("equipped", ob[i]) ]);
         ob->move(VOID_OB);
 
-        // 保存用户的进度
+        // 保存用戶的進度
         me->save();
 
-        // 如果在线，移动互动对象
+        // 如果在線，移動互動對象
         if (interactive(me))
                 exec(link_ob, me);
         destruct(me);
@@ -158,7 +158,7 @@ protected int update_player(object me)
         for (i = 0; i < sizeof(dob); i++)
                 destruct(dob[i]);
 
-        write("身体更新完毕。\n\n");
+        write("身體更新完畢。\n\n");
         obj->move(env);
         ob->move(obj);
 
@@ -180,11 +180,11 @@ protected int update_player(object me)
 int help(object me)
 {
   write(@HELP
-指令格式 : update <档名|here|me|玩家名>
+指令格式 : update <檔名|here|me|玩家名>
 
-这个指令可以更新档案, 并将新档的内容载入记忆体内. 若目标为
-'here' 则更新所在环境. 若目标为 'me' 则更新自己的人物. 若目
-标为玩家则可更新玩家物件.
+這個指令可以更新檔案, 並將新檔的內容載入記憶體內. 若目標為
+'here' 則更新所在環境. 若目標為 'me' 則更新自己的人物. 若目
+標為玩家則可更新玩家物件.
 
 HELP
     );

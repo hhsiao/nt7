@@ -8,10 +8,10 @@ inherit F_COAGENT;
 
 void create()
 {
-        set_name("风波恶", ({"feng boe", "feng"}));
+        set_name("風波惡", ({"feng boe", "feng"}));
         set("gender", "男性");
         set("age", 28);
-        set("long", "他是慕容家四大家臣之四，最喜欢打架，轻易却不服输。\n");
+        set("long", "他是慕容家四大家臣之四，最喜歡打架，輕易卻不服輸。\n");
         set("attitude", "peaceful");
         set("str", 24);
         set("int", 21);
@@ -48,7 +48,7 @@ void create()
 
         set("inquiry", ([
                 "慕容博":   "那是老主人。\n",
-                "慕容复":   "他就是我们跟随的公子！\n",
+                "慕容復":   "他就是我們跟隨的公子！\n",
         ]));
 
         set("coagents", ({
@@ -66,6 +66,6 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        command("say 我们跟随慕容公子，不收徒。");
+        command("say 我們跟隨慕容公子，不收徒。");
         return;
 }

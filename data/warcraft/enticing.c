@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[5m[1;31m凤凰[1;36m涅[1;32m磐[2;37;0m[2;37;0m[2;37;0m", ({"niepan"}));        
+        set_name("[5m[1;31m鳳凰[1;36m涅[1;32m磐[2;37;0m[2;37;0m[2;37;0m", ({"niepan"}));        
         set("gender", "女性");                
         set("long", "涅磐重生[2;37;0m
-它是夭天的魔幻兽。
+它是夭天的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

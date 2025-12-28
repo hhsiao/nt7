@@ -4,12 +4,12 @@
 
 void setup()
 {
-        set_name("泥鳅[2;37;0m[2;37;0m", ({"along"}));        
+        set_name("泥鰍[2;37;0m[2;37;0m", ({"along"}));        
         set("gender", "男性");                
         set("long", "灰白[2;37;0m
-它是狂六的魔幻兽。
+它是狂六的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "kuangf");
         set("owner_name", "狂六");

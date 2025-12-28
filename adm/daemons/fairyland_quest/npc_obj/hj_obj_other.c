@@ -1,6 +1,6 @@
-//                标准描述长度示例                                   |
-// 幻境内物品  其他类型（包括补充HP的物品）
-// by naihe  2002-10-25  于茂名
+//                標準描述長度示例                                   |
+// 幻境內物品  其他類型（包括補充HP的物品）
+// by naihe  2002-10-25  於茂名
 
 #include <ansi.h>
 
@@ -8,15 +8,15 @@ inherit ITEM;
 
 
 string *names=({
-    "无名果",
+    "無名果",
     "仙人果",
-    "淘气之果",
-    "毒龙果",
-    "野生果实",
-    ""HIR"红色宝石"NOR"",
-    ""HIG"绿色宝石"NOR"",
-    ""HIB"蓝色宝石"NOR"",
-    ""YEL"试炼之果"NOR"",
+    "淘氣之果",
+    "毒龍果",
+    "野生果實",
+    ""HIR"紅色寶石"NOR"",
+    ""HIG"綠色寶石"NOR"",
+    ""HIB"藍色寶石"NOR"",
+    ""YEL"試煉之果"NOR"",
 });
 
 string *ids=({
@@ -44,15 +44,15 @@ string *heal_hps=({
 });
 
 string *longs=({
-    "这是一枚很小的不知名的果实，你可以把它吃下(chixia)。\n",
-    "这是一枚小小的果子，名叫“仙人果”，相传是仙人们吃了增加道行的东西。\n你可以把它吃下(chixia)。\n",
-    "这枚果子怪模怪样的，但却有补血活气的功效。你可以把它吃下(chixia)。\n",
-    "这是一枚毒龙果，相传是远古毒龙曾用于疗伤的果品。\n人类吃下(chixia)了可不知道会发生什么事。\n",
-    "这是一枚野生果实，在林子里随处可见。你可以把它吃下(chixia)。\n",
-    "这是一颗红色的宝石，散发着迷人的幽幽光芒。\n",
-    "这是一颗绿色的宝石，散发着迷人的幽幽光芒。\n",
-    "这是一颗蓝色的宝石，散发着迷人的幽幽光芒。\n",
-    "这是一枚“试炼之果”，似有特别神奇的功效。你可以把它吃下(chixia)试试看。\n",
+    "這是一枚很小的不知名的果實，你可以把它吃下(chixia)。\n",
+    "這是一枚小小的果子，名叫“仙人果”，相傳是仙人們吃了增加道行的東西。\n你可以把它吃下(chixia)。\n",
+    "這枚果子怪模怪樣的，但卻有補血活氣的功效。你可以把它吃下(chixia)。\n",
+    "這是一枚毒龍果，相傳是遠古毒龍曾用於療傷的果品。\n人類吃下(chixia)了可不知道會發生什麼事。\n",
+    "這是一枚野生果實，在林子裡隨處可見。你可以把它吃下(chixia)。\n",
+    "這是一顆紅色的寶石，散發著迷人的幽幽光芒。\n",
+    "這是一顆綠色的寶石，散發著迷人的幽幽光芒。\n",
+    "這是一顆藍色的寶石，散發著迷人的幽幽光芒。\n",
+    "這是一枚“試煉之果”，似有特別神奇的功效。你可以把它吃下(chixia)試試看。\n",
 });
 
 
@@ -73,8 +73,8 @@ void setme( int iii )
     set("long", longs[ iii ]);
     set("heal_hp",heal_hps[ iii ]);
     set("unit", "枚");
-    set("value", 0);  // 该物扔下后将消失
-    //set("no_refresh", 1); // 此类允许被MUD刷掉
+    set("value", 0);  // 該物扔下後將消失
+    //set("no_refresh", 1); // 此類允許被MUD刷掉
 
     set("hj_game/obj","other");
 }
@@ -110,8 +110,8 @@ int do_chixia(string arg)
 
     if( query("heal_hp") != "yes" || !arg || !id(arg) )
         return 0;
-    //if(me->is_busy()) return notify_fail("你还忙着呢，小心吃了噎着。\n");
-    // 不限制忙时，否则果品没什么大用处。
+    //if(me->is_busy()) return notify_fail("你還忙著呢，小心吃了噎著。\n");
+    // 不限制忙時，否則果品沒什麼大用處。
 
     if( query("id", ob) == "slguo" )
     {
@@ -119,18 +119,18 @@ int do_chixia(string arg)
         {
             if( random(3) )
             {
-                message_vision(CYN"$N"NOR+CYN"吞下一"+query("unit", ob)+query("name", ob)+""NOR+CYN"，顿时觉得精神一振，似乎力量增强了一点！\n"NOR,me);
+                message_vision(CYN"$N"NOR+CYN"吞下一"+query("unit", ob)+query("name", ob)+""NOR+CYN"，頓時覺得精神一振，似乎力量增強了一點！\n"NOR,me);
                 addn_temp("hj_game_mepower", 1, me);
             }
             else
             {
-                message_vision(CYN"$N"NOR+CYN"吞下一"+query("unit", ob)+query("name", ob)+""NOR+CYN"，顿时觉得精神一振，似有无穷内息涌涌而来！\n"NOR,me);
+                message_vision(CYN"$N"NOR+CYN"吞下一"+query("unit", ob)+query("name", ob)+""NOR+CYN"，頓時覺得精神一振，似有無窮內息湧湧而來！\n"NOR,me);
                 addn_temp("hj_hp_max", 10+random(11), me);
             }
         }
         else
         {
-            message_vision(CYN"$N"NOR+CYN"吞下一"+query("unit", ob)+query("name", ob)+""NOR+CYN"，但觉腹中绞痛，看来是吃下了有毒的东西！\n"NOR,me);
+            message_vision(CYN"$N"NOR+CYN"吞下一"+query("unit", ob)+query("name", ob)+""NOR+CYN"，但覺腹中絞痛，看來是吃下了有毒的東西！\n"NOR,me);
             addn_temp("hj_hp", -(20+random(31)), me);
         }
 
@@ -138,16 +138,16 @@ int do_chixia(string arg)
         return 1;
     }
 
-// 无论是否饱和都能吃，但最多也就加到 MAX HP 。
-// 若是饱和状态下吃，将会增加忙时！
-// 否则无忙时。
+// 無論是否飽和都能吃，但最多也就加到 MAX HP 。
+// 若是飽和狀態下吃，將會增加忙時！
+// 否則無忙時。
 
     temp=query_temp("hj_hp", me);
 
     if( temp >= query_temp("hj_hp_max", me) )
     {
         me->start_busy(2);
-        tell_object(me,"你吃得饱饱的，差点给噎住了。\n");
+        tell_object(me,"你吃得飽飽的，差點給噎住了。\n");
     }
 
     switch(query("id", ob) )
@@ -159,7 +159,7 @@ int do_chixia(string arg)
         case "dl guo":temp_add=100-random(150);break; //  -50  -  100
         case "ys guo":temp_add=10;break;              //  10
     }
-    temp_add *= 3;  // 加强效力
+    temp_add *= 3;  // 加強效力
 
     temp1 = 1 + temp_add + temp;
 
@@ -168,9 +168,9 @@ int do_chixia(string arg)
 
     set_temp("hj_hp", temp1, me);
     if( temp_add>=0 )
-    message_vision(CYN"$N"NOR+CYN"吞下一"+query("unit", ob)+query("name", ob)+""NOR+CYN"，顿时觉得精神一振。\n"NOR,me);
+    message_vision(CYN"$N"NOR+CYN"吞下一"+query("unit", ob)+query("name", ob)+""NOR+CYN"，頓時覺得精神一振。\n"NOR,me);
     else 
-    message_vision(CYN"$N"NOR+CYN"吞下一"+query("unit", ob)+query("name", ob)+""NOR+CYN"，只觉得腹如绞痛，看来是吃下了有毒的东西！\n"NOR,me);
+    message_vision(CYN"$N"NOR+CYN"吞下一"+query("unit", ob)+query("name", ob)+""NOR+CYN"，只覺得腹如絞痛，看來是吃下了有毒的東西！\n"NOR,me);
 
     destruct(ob);
     return 1;

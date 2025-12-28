@@ -3,14 +3,14 @@ inherit NPC;
 
 void create()
 {
-        set_name("鳌拜", ({ "ao bai", "ao", "bai" }));
+        set_name("鰲拜", ({ "ao bai", "ao", "bai" }));
         set("age", 32);
         set("gender", "男性");
-        set("title", "当朝第一大臣");
-        set("nickname", HIR "满洲第一勇士" NOR );
+        set("title", "當朝第一大臣");
+        set("nickname", HIR "滿洲第一勇士" NOR );
         set("long",
-                "他就是满洲第一勇士，身穿一件黄马褂。他身材魁梧，\n"
-                "相貌狰狞，太阳穴高高鼓起，似乎身怀绝世武功。\n");
+                "他就是滿洲第一勇士，身穿一件黃馬褂。他身材魁梧，\n"
+                "相貌猙獰，太陽穴高高鼓起，似乎身懷絕世武功。\n");
         set("attitude", "peaceful");
 
         set("age", 50);
@@ -47,7 +47,7 @@ void create()
 
 int accept_fight(object me)
 {
-	command("say 他奶奶的，你活腻了！来人，给我拿下！\n");
+	command("say 他奶奶的，你活膩了！來人，給我拿下！\n");
 	me->apply_condition("killer", 500);
         kill_ob(me);
         return 1;

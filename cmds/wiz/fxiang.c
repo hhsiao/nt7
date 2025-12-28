@@ -24,7 +24,7 @@ int main(object me, string arg)
         i = sizeof(file);
         if (! i)
         {
-                write("目前没有任何宝箱。\n");
+                write("目前沒有任何寶箱。\n");
                 return 1;
         }
 
@@ -33,14 +33,14 @@ int main(object me, string arg)
                 sscanf(arg, "%d", j);
                 j--;
                 if (j < 0 || j >= i)
-                        return notify_fail("没有这个宝箱。\n");
+                        return notify_fail("沒有這個寶箱。\n");
 
                 me->force_me("goto " + file[j]);
                 me->force_me("look baoxiang");
                 return 1; 
         }
 
-        msg = "目前" + LOCAL_MUD_NAME() + "的宝箱有以下这些：\n";
+        msg = "目前" + LOCAL_MUD_NAME() + "的寶箱有以下這些：\n";
         for (j = 0; j < i; j++)
         {
                 msg += sprintf(HIY "%3d" NOR ". %10s", j + 1, xiang[j] );
@@ -51,7 +51,7 @@ int main(object me, string arg)
                         l = 0;
                 }
         }
-        msg += "用 fxiang n 去看你想看的宝箱。\n";
+        msg += "用 fxiang n 去看你想看的寶箱。\n";
         write(msg);
         return 1;
 }

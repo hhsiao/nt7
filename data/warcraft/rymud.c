@@ -7,7 +7,7 @@ void setup()
         set_name("香菜[2;37;0m[2;37;0m", ({"xiangcai"}));        
         set("gender", "女性");                
         set("long", "香菜[2;37;0m
-它是花太香的魔幻兽。
+它是花太香的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

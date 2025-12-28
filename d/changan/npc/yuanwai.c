@@ -4,9 +4,9 @@ inherit NPC;
 
 void create()
 {
-        set_name("萧员外", ({"xiao yuanwai", "xiao","yuanwai" }));
+        set_name("蕭員外", ({"xiao yuanwai", "xiao","yuanwai" }));
         set("gender", "男性");
-        set("rank_info/respect", "老员外");
+        set("rank_info/respect", "老員外");
         set("age", 50);
         set("attitude", "peaceful");
         set("shen_type", 1);
@@ -42,7 +42,7 @@ int accept_object (object who, object ob)
 {
         object me = this_object();
         object room = environment(me);
-        if( query("short", room) != "萧家大厅" )
+        if( query("short", room) != "蕭家大廳" )
                 return 0;
 
         if( query("id", ob) == "xin" && !userp(ob) )
@@ -59,16 +59,16 @@ void read_letter(object me, object who, object ob)
         destruct (ob);
         reset_eval_cost();
 
-        message_vision("$N看完信，不由得涕泪俱下。\n"
-                       "$N道：这些天我差人寻遍长安城，也没找"
-                       "到我那孩儿，\n原来竟被人拐卖到了青楼之中。\n\n",
+        message_vision("$N看完信，不由得涕淚俱下。\n"
+                       "$N道：這些天我差人尋遍長安城，也沒找"
+                       "到我那孩兒，\n原來竟被人拐賣到了青樓之中。\n\n",
                        me);
 
-        message_vision("$N对$n道：若非这位" +
+        message_vision("$N對$n道：若非這位" +
                        RANK_D->query_respect(who)+
-                       "前来相告，我可能今生就见不到我的女儿了，\n" +
+                       "前來相告，我可能今生就見不到我的女兒了，\n" +
                        RANK_D->query_respect(who) +
-                       "这份恩德叫老夫如何报答啊！\n", me, who);
+                       "這份恩德叫老夫如何報答啊！\n", me, who);
 
         remove_call_out("send_to_fight");
         call_out("send_to_fight",3,me,who);
@@ -78,15 +78,15 @@ void send_to_fight (object me, object who)
 {
         object yupei = new("/d/changan/npc/obj/yupei");
         yupei->move(who);
-        message_vision("$N对$n说道：还请这位" +
+        message_vision("$N對$n說道：還請這位" +
                        RANK_D->query_respect(who) +
-                       "再帮帮忙，将我女儿搭救出来！\n\n",
+                       "再幫幫忙，將我女兒搭救出來！\n\n",
                        me, who);
 
-        message_vision("$N从衣袋内取出一块玉佩交给$n，道"
-                       "“这是我家传玉佩，湘湘见到会认得的！\n",
+        message_vision("$N從衣袋內取出一塊玉佩交給$n，道"
+                       "“這是我家傳玉佩，湘湘見到會認得的！\n",
                        me, who);
-        message_vision("$N给$n一块玉佩。\n", me, who);
+        message_vision("$N給$n一塊玉佩。\n", me, who);
         who->save();
 }
 
@@ -97,7 +97,7 @@ void check_daughter(object me)
           object who;
           object yupei;
           reset_eval_cost();
-          if( query("short", room) != "萧家大厅" )
+          if( query("short", room) != "蕭家大廳" )
                     return;
 
           if( !xiangxiang || !query("leader", xiangxiang) )
@@ -117,7 +117,7 @@ void check_daughter(object me)
 void cry_daughter(object me, object xiangxiang, object who, object yupei)
 {
 //      object book;
-        message_vision("$N见了$n一愣，然后老泪纵横地将$n拉过去。\n",
+        message_vision("$N見了$n一愣，然後老淚縱橫地將$n拉過去。\n",
                        me, xiangxiang); 
         destruct(xiangxiang);
       
@@ -125,9 +125,9 @@ void cry_daughter(object me, object xiangxiang, object who, object yupei)
         yupei->move(me);
         destruct(yupei);
         command("thank "+query("id", who));
-        command("say 这位" + RANK_D->query_respect(who) +
-                "救我儿湘湘逃出魔掌！老夫这里有一本书，\n是"
-                "祖上传下来的，就送给" + RANK_D->query_respect(who) +
+        command("say 這位" + RANK_D->query_respect(who) +
+                "救我兒湘湘逃出魔掌！老夫這裡有一本書，\n是"
+                "祖上傳下來的，就送給" + RANK_D->query_respect(who) +
                 "吧！\n");
         carry_object("/d/changan/npc/obj/book");
         command("give book to "+query("id", who));

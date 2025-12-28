@@ -9,20 +9,20 @@ int exert(object me, object target)
         int skill;
 
         if (target != me)
-                return notify_fail("你只能用玉女心经来提升自己的战斗力。\n");
+                return notify_fail("你只能用玉女心經來提升自己的戰鬥力。\n");
 
         if( query("neili", me)<150 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if( BUFF_D->check_buff(me, "powerup") )
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
 
         addn("neili", -100, me);
 
-        msg = HIC "$N" HIC "脸色微微一沉，默运玉女心经，双掌"
-                        "向外一分，姿势曼妙之极。\n" NOR;
+        msg = HIC "$N" HIC "臉色微微一沉，默運玉女心經，雙掌"
+                        "向外一分，姿勢曼妙之極。\n" NOR;
 
         data = ([
                 "attack" : skill/3,
@@ -34,11 +34,11 @@ int exert(object me, object target)
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "玉女心经·战神",
+                "name"  : "玉女心經·戰神",
                 "time"  : skill,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : "你的玉女心经运行完毕，将内力收回丹田。\n",
+                "disa_msg" : "你的玉女心經運行完畢，將內力收回丹田。\n",
                         
         ]);
         BUFF_D->buffup(buff);

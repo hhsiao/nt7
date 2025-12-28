@@ -4,12 +4,12 @@
 
 void setup()
 {
-        set_name("[31m远古龙[2;37;0m[2;37;0m", ({"konglong"}));        
+        set_name("[31m遠古龍[2;37;0m[2;37;0m", ({"konglong"}));        
         set("gender", "男性");                
-        set("long", "$RED$远古龙[2;37;0m
-它是重小雨的魔幻兽。
+        set("long", "$RED$遠古龍[2;37;0m
+它是重小雨的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "woacsy");
         set("owner_name", "重小雨");

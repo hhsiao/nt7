@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include "/kungfu/skill/eff_msg.h";
 
-#define ZHI "「" HIY "乾坤一掷" NOR "」"
+#define ZHI "「" HIY "乾坤一擲" NOR "」"
 
 inherit F_SSERVER;
 
@@ -15,33 +15,33 @@ int perform(object me, object target)
         object weapon;
 
         if( userp(me) && !query("can_perform/bagua-biao/zhi", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(ZHI "只能在战斗中对对手使用。\n");
+                return notify_fail(ZHI "只能在戰鬥中對對手使用。\n");
 
         if( !objectp(weapon=query_temp("handing", me)) || 
             query("skill_type", weapon) != "throwing" )
-                return notify_fail("你现在手中并没有拿着暗器。\n");
+                return notify_fail("你現在手中並沒有拿著暗器。\n");
 
         if (weapon->query_amount() < 30)
                 return notify_fail("至少要有三十枚暗器你才能施展" ZHI "。\n");
 
         if ((skill = me->query_skill("bagua-biao", 1)) < 120)
-                return notify_fail("你的八卦镖诀不够娴熟，难以施展" ZHI "。\n");
+                return notify_fail("你的八卦鏢訣不夠嫻熟，難以施展" ZHI "。\n");
 
         if ((int)me->query_skill("force") < 200)
-                return notify_fail("你的内功火候不够，难以施展" ZHI "。\n");
+                return notify_fail("你的內功火候不夠，難以施展" ZHI "。\n");
 
         if( query("neili", me)<150 )
-                return notify_fail("你现在真气不足，难以施展" ZHI "。\n");
+                return notify_fail("你現在真氣不足，難以施展" ZHI "。\n");
 
         if (! living(target))
-               return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+               return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg= HIY "只见$N" HIY "纵身一跃而起，一声暴喝，十指箕张，将手中所有"
+        msg= HIY "只見$N" HIY "縱身一躍而起，一聲暴喝，十指箕張，將手中所有"
              "的" + weapon->name() + HIY "打了出去！\n";
 
         my_exp=query("combat_exp", me)+skill*skill/10*skill;
@@ -55,7 +55,7 @@ int perform(object me, object target)
                 if (random(my_exp/400) >ob_exp/100) n += 5 + random(10);
                 if (weapon->query_amount() < n) n = weapon->query_amount();
 
-                msg += "$p" HIY "刹时只觉眼前金光万道，反应不及，接连中了$P"
+                msg += "$p" HIY "剎時只覺眼前金光萬道，反應不及，接連中了$P"
                        HIY+chinese_number(n)+query("base_unit", weapon)+
                        weapon->name() + HIY "！\n" NOR;
                 target->receive_damage("qi", skill * 3 / 2 + random(skill * 3 / 2), me);
@@ -73,7 +73,7 @@ int perform(object me, object target)
                 message_combatd(msg, me, target);
         } else
         {
-                msg += NOR + CYN "可是$p" CYN "眼明手快，躲过了$P" CYN "发出"
+                msg += NOR + CYN "可是$p" CYN "眼明手快，躲過了$P" CYN "發出"
                        "的所有" + weapon->name() + CYN "。\n" NOR;
                 message_combatd(msg, me, target);
         }

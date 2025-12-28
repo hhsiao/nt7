@@ -5,7 +5,7 @@ inherit STAFF;
 
 void create()
 {
-        set_name(HIR "盘龙杖" NOR, ({ "panlong zhang", "zhang", "panlong", "staff" }) );
+        set_name(HIR "盤龍杖" NOR, ({ "panlong zhang", "zhang", "panlong", "staff" }) );
         set_weight(8000);
         /*if( clonep() )
                 set_default_object(__FILE__);

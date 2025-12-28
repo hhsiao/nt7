@@ -2,23 +2,23 @@
 
 int permit_recruit(object ob)
 {
-        if( query("detach/灵鹫宫", ob) || 
-            query("betrayer/灵鹫宫", ob) )
+        if( query("detach/靈鷲宮", ob) || 
+            query("betrayer/靈鷲宮", ob) )
         {
-                command("say 离开了缥缈峰就不要再回来！");
+                command("say 離開了縹緲峰就不要再回來！");
                 return 0;
         }
 
         if( query("betrayer/times", ob) )
         {
-                command("say 阁下不忠不信，我们灵鹫宫最恨的就是你这种人。");
+                command("say 閣下不忠不信，我們靈鷲宮最恨的就是你這種人。");
                 return 0;
         }
 
         if( query("family/family_name", ob) && 
-            query("family/family_name", ob) != "灵鹫宫" )
+            query("family/family_name", ob) != "靈鷲宮" )
         {
-                command("say 你有了师傅，就不要来我们灵鹫宫了！");
+                command("say 你有了師傅，就不要來我們靈鷲宮了！");
                 return 0;
         }
 

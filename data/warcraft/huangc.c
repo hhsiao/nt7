@@ -7,7 +7,7 @@ void setup()
         set_name("睚在[2;37;0m[2;37;0m", ({"sfd"}));        
         set("gender", "男性");                
         set("long", "睚在[2;37;0m
-它是械城的魔幻兽。
+它是械城的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

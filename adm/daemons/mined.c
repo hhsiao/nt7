@@ -23,13 +23,13 @@ string chinese_mine_class(string cs)
         {
                 case IRON_MINE:
                 case IRON_RES_CU:
-                        return "粗铁";
+                        return "粗鐵";
                 case IRON_RES_JING:
-                        return "精铁";
+                        return "精鐵";
                 case STEEL_RES:
-                        return "钢";
+                        return "鋼";
                 case BLACK_IRON:
-                        return "玄铁";
+                        return "玄鐵";
                 default:
                         return 0;
         }
@@ -56,11 +56,11 @@ object query_mine_class_up_ob(string cs)
 {
         switch (cs)
         {
-                case IRON_MINE:                // 铁矿 -> 粗铁
+                case IRON_MINE:                // 鐵礦 -> 粗鐵
                         return new(MINE_DIR"iron_cu");
-                case IRON_RES_CU:        // 粗铁 -> 精铁
+                case IRON_RES_CU:        // 粗鐵 -> 精鐵
                         return new(MINE_DIR"iron_jing");
-                case IRON_RES_JING:        // 精铁 -> 钢
+                case IRON_RES_JING:        // 精鐵 -> 鋼
                         return new(MINE_DIR"iron_steel");
                 case BLACK_IRON:
                         return new(MINE_DIR"black_iron");
@@ -73,9 +73,9 @@ int query_mine_class_up_quantity(string cs)
 {
         switch (cs)
         {
-                case IRON_RES_CU:        // 粗铁 -> 精铁
+                case IRON_RES_CU:        // 粗鐵 -> 精鐵
                         return 3;
-                case IRON_RES_JING:        // 精铁 -> 钢
+                case IRON_RES_JING:        // 精鐵 -> 鋼
                         return 3;
                 default:
                         return 0;

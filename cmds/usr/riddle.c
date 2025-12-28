@@ -13,16 +13,16 @@ int main(object me, string arg)
         if( wizardp(me) && stringp(arg) )
         {
                 ob = LOGIN_D->find_body(arg);
-                if (!ob) return notify_fail("咦... 有这个人吗?\n");
+                if (!ob) return notify_fail("咦... 有這個人嗎?\n");
         } else
                 ob = me;
 
         riddle = query("riddle", ob);
 
-        write(WHT"\t　　                " + ob->name()+ "正在解的谜题\n"NOR);
+        write(WHT"\t　　                " + ob->name()+ "正在解的謎題\n"NOR);
         write(HIR BLK"------------------------------------------------------------------------------──────────────────────────\n"NOR);
 
-        if( !riddle )   write (HIR "无\n"NOR);
+        if( !riddle )   write (HIR "無\n"NOR);
         else
         {
                 list = keys(riddle);
@@ -44,10 +44,10 @@ int main(object me, string arg)
 
         riddle = query("m_success", ob);
 
-        write(WHT"\t　　            "+ob->name()+ "已经解开的谜题\n"NOR);
+        write(WHT"\t　　            "+ob->name()+ "已經解開的謎題\n"NOR);
         write(HIR BLK"------------------------------------------------------------------------------──────────────────────────\n"NOR);
 
-        if( !riddle )        write (HIR "无\n"NOR,16);
+        if( !riddle )        write (HIR "無\n"NOR,16);
         else
         {
                 list = keys(riddle);
@@ -64,10 +64,10 @@ int main(object me, string arg)
 
         riddle = query("imbue", ob);
 
-        write(WHT"\t　　            " + ob->name()+ "解谜增加的属性\n"NOR);
+        write(WHT"\t　　            " + ob->name()+ "解謎增加的屬性\n"NOR);
         write(HIR BLK"------------------------------------------------------------------------------──────────────────────────\n"NOR);
 
-        if( !riddle )        write (HIR "无\n"NOR);
+        if( !riddle )        write (HIR "無\n"NOR);
         else
         {
                 list = keys(riddle);
@@ -78,10 +78,10 @@ int main(object me, string arg)
                         {
                         case "dex": attr = "敏捷"; break;
                         case "int": attr = "才智"; break;
-                        case "con": attr = "体质"; break;
+                        case "con": attr = "體質"; break;
                         case "str": attr = "力量"; break;
                         case "cps": attr = "定力"; break;
-                        case "kar": attr = "运气"; break;
+                        case "kar": attr = "運氣"; break;
                         default: attr = "";
                         }
 
@@ -101,7 +101,7 @@ int help(object me)
 [0;1;36m指令格式 :     riddle            [0m
 [0;1;37m----------------------------------------------------------------[0m
 
-这个指令可以让你知道你目前已经解开的谜题，以及因解密增加的属性
+這個指令可以讓你知道你目前已經解開的謎題，以及因解密增加的屬性
 
 [0;1;37m----------------------------------------------------------------[0m
 HELP

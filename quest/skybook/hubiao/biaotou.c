@@ -12,7 +12,7 @@ void create()
 
 	name = RNAME_D->get_random_name(i);
 	set_name(name["name"], name["id"]);
-	set("title", HIW"福威镖局总镖头"NOR);
+	set("title", HIW"福威鏢局總鏢頭"NOR);
 	set("gender", (i==0?"女性":"男性"));
 	set("age", 35 +random(30));
 	set("combat_exp", 100000);
@@ -26,8 +26,8 @@ void create()
 
 	set("chat_chance", 2);
         set("chat_msg",({
-		CYN+query("name")+"喝道：“闲杂人等闪开了。”\n"NOR,
-		CYN+query("name")+"喝道：“快走快走，别偷懒！”\n"NOR,
+		CYN+query("name")+"喝道：“閒雜人等閃開了。”\n"NOR,
+		CYN+query("name")+"喝道：“快走快走，別偷懶！”\n"NOR,
 	}));
 
 	set_skill("literate", query("int") * 10);

@@ -4,15 +4,15 @@ inherit NPC;
 void create()
 {
         set_name(HIB"黑熊"NOR, ({ "hei xiong", "xiong" }) );
-        set("race", "野兽");
+        set("race", "野獸");
         set("age", 4);
-        set("long", "一只高大的黑熊，非常雄壮。\n");
+        set("long", "一隻高大的黑熊，非常雄壯。\n");
         set("attitude", "peaceful");
  
         set("str", 30);
         set("cor", 26);
 
-        set("limbs", ({ "头部", "身体", "爪子"}) );
+        set("limbs", ({ "頭部", "身體", "爪子"}) );
         set("verbs", ({ "bite" }) );
  
         set("combat_exp", 3000);
@@ -29,7 +29,7 @@ void create()
 void die()
 {
         object ob1, ob2, ob3;
-        message_vision(HIR"$N身体一歪，倒在地上，$N死了。\n"NOR, this_object());
+        message_vision(HIR"$N身體一歪，倒在地上，$N死了。\n"NOR, this_object());
         if(random(10)>8)
         {
         ob1 = new(__DIR__"obj/xiongdan");

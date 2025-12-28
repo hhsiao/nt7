@@ -20,7 +20,7 @@ inherit F_DBASE;
 void create()
 {
         seteuid(ROOT_UID);
-        set("channel_id", "网路频道");
+        set("channel_id", "網路頻道");
 }
 
 // This is the interface to the intermud channels
@@ -95,7 +95,7 @@ void incoming_request(mapping info)
                         (AUX_PATH + "affirmation_a")->send_affirmation_a(info["HOSTADDRESS"],
                                 info["PORTUDP"], "remote_q@" + Mud_name(),
                                 info["SOURCE_ID"],
-                                sprintf("%s没有这个人(%s)。",
+                                sprintf("%s沒有這個人(%s)。",
                                         LOCAL_MUD_NAME(), info["TARGET_ID"]),
                                 "remote_q");
                         return;
@@ -113,7 +113,7 @@ void incoming_request(mapping info)
                                 (AUX_PATH + "affirmation_a")->send_affirmation_a(info["HOSTADDRESS"],
                                         info["PORTUDP"], "remote_q@" + Mud_name(),
                                         info["SOURCE_ID"],
-                                        sprintf("%s(%s@%s)不接受你的表情动作。",
+                                        sprintf("%s(%s@%s)不接受你的表情動作。",
                                                 ob->name(1), capitalize(query("id", ob)), Mud_name()),
                                         "remote_q");
                                 return;

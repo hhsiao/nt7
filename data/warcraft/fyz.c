@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("魔幻兽[2;37;0m[2;37;0m", ({"myfy"}));        
+        set_name("魔幻獸[2;37;0m[2;37;0m", ({"myfy"}));        
         set("gender", "男性");                
-        set("long", "魔幻兽[2;37;0m
-它是菜比朱的魔幻兽。
+        set("long", "魔幻獸[2;37;0m
+它是菜比朱的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

@@ -1,8 +1,8 @@
 // This program is a part of NT MudLIB
 // Written by Lonely@nitan.org
 // combatd.c
-// 增加绝招组合特效set_temp("bonus/"+x)
-// reset_combat_cache来降低计算频度
+// 增加絕招組合特效set_temp("bonus/"+x)
+// reset_combat_cache來降低計算頻度
 // Updated by Lonely@nt7
 
 // #pragma optimize
@@ -17,7 +17,7 @@
 
 inherit F_DBASE;
 
-#define NCH_CHANNEL(x) CHANNEL_D->channel_broadcast("nch", "战斗精灵："+(string)x)
+#define NCH_CHANNEL(x) CHANNEL_D->channel_broadcast("nch", "戰鬥精靈："+(string)x)
 
 #define DEFAULT_MAX_PK_PERDAY   8
 #define DEFAULT_MAX_PK_PERMAN   3
@@ -31,57 +31,57 @@ inherit F_DBASE;
 
 #undef USE_SKILLS_COMBAT
 
-//BBLU HIY"卍"NOR CYN" $n"CYN"魅影悬梭，"CYN"周身被"HIR"血魔化影"NOR CYN"笼罩住，$N"CYN"丈外皆不可进。 "NOR BBLU HIY"卍\n"NOR;
-//BBLU HIY"卍"NOR CYN" $n"CYN"梵音声声，"CYN"周身被"MAG"罗摩·毗湿奴神"NOR CYN"笼罩住，$N丈外皆不可进。 "NOR BBLU HIY"卍\n"NOR;//
+//BBLU HIY"卍"NOR CYN" $n"CYN"魅影懸梭，"CYN"周身被"HIR"血魔化影"NOR CYN"籠罩住，$N"CYN"丈外皆不可進。 "NOR BBLU HIY"卍\n"NOR;
+//BBLU HIY"卍"NOR CYN" $n"CYN"梵音聲聲，"CYN"周身被"MAG"羅摩·毗溼奴神"NOR CYN"籠罩住，$N丈外皆不可進。 "NOR BBLU HIY"卍\n"NOR;//
 
-// 确定身体部位，根据受伤的部位确定防具的防护
+// 確定身體部位，根據受傷的部位確定防具的防護
 mapping armor_vs_limb = ([
-        "头部" : ({ TYPE_HEAD }),
-        "左脸" : ({ TYPE_HEAD }),
-        "右脸" : ({ TYPE_HEAD }),
+        "頭部" : ({ TYPE_HEAD }),
+        "左臉" : ({ TYPE_HEAD }),
+        "右臉" : ({ TYPE_HEAD }),
         "左耳" : ({ TYPE_HEAD }),
         "右耳" : ({ TYPE_HEAD }),
-        "颈部" : ({ TYPE_HEAD }),
+        "頸部" : ({ TYPE_HEAD }),
         "胸口" : ({ TYPE_CLOTH,TYPE_ARMOR,TYPE_SURCOAT }),
-        "后心" : ({ TYPE_CLOTH,TYPE_ARMOR,TYPE_SURCOAT }),
+        "後心" : ({ TYPE_CLOTH,TYPE_ARMOR,TYPE_SURCOAT }),
         "左肩" : ({ TYPE_CLOTH,TYPE_ARMOR,TYPE_SURCOAT }),
         "右肩" : ({ TYPE_CLOTH,TYPE_ARMOR,TYPE_SURCOAT }),
         "左臂" : ({ TYPE_CLOTH,TYPE_ARMOR,TYPE_SURCOAT }),
         "右臂" : ({ TYPE_CLOTH,TYPE_ARMOR,TYPE_SURCOAT }),
         "左手" : ({ TYPE_WRISTS }),
         "右手" : ({ TYPE_WRISTS }),
-        "两肋" : ({ TYPE_CLOTH,TYPE_ARMOR,TYPE_SURCOAT,TYPE_WAIST }),
-        "腰间" : ({ TYPE_CLOTH,TYPE_ARMOR,TYPE_SURCOAT,TYPE_WAIST }),
+        "兩肋" : ({ TYPE_CLOTH,TYPE_ARMOR,TYPE_SURCOAT,TYPE_WAIST }),
+        "腰間" : ({ TYPE_CLOTH,TYPE_ARMOR,TYPE_SURCOAT,TYPE_WAIST }),
         "小腹" : ({ TYPE_CLOTH,TYPE_ARMOR,TYPE_SURCOAT,TYPE_WAIST }),
         "左腿" : ({ TYPE_PANTS,TYPE_ARMOR }),
         "右腿" : ({ TYPE_PANTS,TYPE_ARMOR }),
-        "左脚" : ({ TYPE_BOOTS }),
-        "右脚" : ({ TYPE_BOOTS }),
+        "左腳" : ({ TYPE_BOOTS }),
+        "右腳" : ({ TYPE_BOOTS }),
 ]);
 
 mapping limb_damage = ([
-// 人类身体部位
-        "头部"  :   100,
-        "颈部"  :   90,
+// 人類身體部位
+        "頭部"  :   100,
+        "頸部"  :   90,
         "胸口"  :   90,
-        "后心"  :   80,
+        "後心"  :   80,
         "左肩"  :   50,
         "右肩"  :   55,
         "左臂"  :   40,
         "右臂"  :   45,
         "左手"  :   20,
         "右手"  :   30,
-        "腰间"  :   60,
+        "腰間"  :   60,
         "小腹"  :   70,
         "左腿"  :   40,
         "右腿"  :   50,
-        "左脚"  :   35,
-        "右脚"  :   40,
-//  动物身体部位
-        "头部"  :   100,
-        "身体"  :   80,
-        "前脚"  :   40,
-        "后脚"  :   50,
+        "左腳"  :   35,
+        "右腳"  :   40,
+//  動物身體部位
+        "頭部"  :   100,
+        "身體"  :   80,
+        "前腳"  :   40,
+        "後腳"  :   50,
         "腿部"  :   40,
         "尾巴"  :   10,
         "翅膀"  :   50,
@@ -89,129 +89,129 @@ mapping limb_damage = ([
 ]);
 
 nosave string *danger_limbs = ({
-        "头部", "颈部", "胸口", "后心","小腹",
+        "頭部", "頸部", "胸口", "後心","小腹",
 });
 
 string *head_damage_me_msg = ({
-        append_color(HIR "你觉得头有一点发晕。\n" NOR, HIR),
-        append_color(HIB "你觉得一阵晕眩，身体晃了一下。\n" NOR, HIB),
-        append_color(BLU "你只得眼冒金星，浑身发飘。\n" NOR, BLU),
+        append_color(HIR "你覺得頭有一點發暈。\n" NOR, HIR),
+        append_color(HIB "你覺得一陣暈眩，身體晃了一下。\n" NOR, HIB),
+        append_color(BLU "你只得眼冒金星，渾身發飄。\n" NOR, BLU),
 });
 
 string *body_damage_me_msg = ({
-        append_color(HIR "你只觉$l隐隐作痛，体内真气受到一点振荡。\n" NOR, HIR),
-        append_color(HIB "你只觉$l生疼，体内真气一阵乱窜。\n" NOR, HIB),
-        append_color(BLU "你只觉得$l处剧痛，连带着体内真气一阵外泄。\n" NOR, BLU),
+        append_color(HIR "你只覺$l隱隱作痛，體內真氣受到一點振盪。\n" NOR, HIR),
+        append_color(HIB "你只覺$l生疼，體內真氣一陣亂竄。\n" NOR, HIB),
+        append_color(BLU "你只覺得$l處劇痛，連帶著體內真氣一陣外洩。\n" NOR, BLU),
 });
 
 string *guard_msg = ({
-        append_color(CYN "$N注视著$n的行动，企图寻找机会出手。\n" NOR, CYN),
-        append_color(CYN "$N正盯著$n的一举一动，随时准备发动攻势。\n" NOR, CYN),
-        append_color(CYN "$N缓缓地移动脚步，想要找出$n的破绽。\n" NOR, CYN),
-        append_color(CYN "$N目不转睛地盯著$n的动作，寻找进攻的最佳时机。\n" NOR, CYN),
-        append_color(CYN "$N慢慢地移动著脚步，伺机出手。\n" NOR, CYN),
+        append_color(CYN "$N注視著$n的行動，企圖尋找機會出手。\n" NOR, CYN),
+        append_color(CYN "$N正盯著$n的一舉一動，隨時準備發動攻勢。\n" NOR, CYN),
+        append_color(CYN "$N緩緩地移動腳步，想要找出$n的破綻。\n" NOR, CYN),
+        append_color(CYN "$N目不轉睛地盯著$n的動作，尋找進攻的最佳時機。\n" NOR, CYN),
+        append_color(CYN "$N慢慢地移動著腳步，伺機出手。\n" NOR, CYN),
 });
 
 string *catch_hunt_human_msg = ({
-        append_color(HIW "$N和$n仇人相见份外眼红，立刻打了起来！\n" NOR, HIW),
-        append_color(HIW "$N对著$n大喝：「可恶，又是你！」\n" NOR, HIW),
-        append_color(HIW "$N和$n一碰面，二话不说就打了起来！\n" NOR, HIW),
-        append_color(HIW "$N一眼瞥见$n，「哼」的一声冲了过来！\n" NOR, HIW),
-        append_color(HIW "$N一见到$n，愣了一愣，大叫：「我宰了你！」\n" NOR, HIW),
-        append_color(HIW "$N喝道：「$n，我们的帐还没算完，看招！」\n" NOR, HIW),
+        append_color(HIW "$N和$n仇人相見份外眼紅，立刻打了起來！\n" NOR, HIW),
+        append_color(HIW "$N對著$n大喝：「可惡，又是你！」\n" NOR, HIW),
+        append_color(HIW "$N和$n一碰面，二話不說就打了起來！\n" NOR, HIW),
+        append_color(HIW "$N一眼瞥見$n，「哼」的一聲衝了過來！\n" NOR, HIW),
+        append_color(HIW "$N一見到$n，愣了一愣，大叫：「我宰了你！」\n" NOR, HIW),
+        append_color(HIW "$N喝道：「$n，我們的帳還沒算完，看招！」\n" NOR, HIW),
         append_color(HIW "$N喝道：「$n，看招！」\n" NOR, HIW),
 });
 
 string *catch_hunt_beast_msg = ({
-        append_color(HIW "$N怒吼一声，扑了过来攻击$n！\n" NOR, HIW),
-        append_color(HIW "$N对著$n大吼，想杀死$n！\n" NOR, HIW),
-        append_color(HIW "$N发出连串低吼，突然暴起攻击$n！\n" NOR, HIW),
+        append_color(HIW "$N怒吼一聲，撲了過來攻擊$n！\n" NOR, HIW),
+        append_color(HIW "$N對著$n大吼，想殺死$n！\n" NOR, HIW),
+        append_color(HIW "$N發出連串低吼，突然暴起攻擊$n！\n" NOR, HIW),
 });
 
 string *catch_hunt_bird_msg = ({
-        append_color(HIW "$N对著$n一声怒鸣，飞冲了过来！\n" NOR, HIW),
-        append_color(HIW "$N怒鸣几声，突然暴起攻击$n！\n" NOR, HIW),
-        append_color(HIW "$N一声锐鸣，猛然向$n发动攻击！\n" NOR, HIW),
+        append_color(HIW "$N對著$n一聲怒鳴，飛衝了過來！\n" NOR, HIW),
+        append_color(HIW "$N怒鳴幾聲，突然暴起攻擊$n！\n" NOR, HIW),
+        append_color(HIW "$N一聲銳鳴，猛然向$n發動攻擊！\n" NOR, HIW),
 });
 
 string *catch_hunt_msg = ({
-        append_color(HIW "$N和$n仇人相见分外眼红，立刻打了起来！\n" NOR, HIW),
-        append_color(HIW "$N对著$n大喝：「可恶，又是你！」\n" NOR, HIW),
-        append_color(HIW "$N和$n一碰面，二话不说就打了起来！\n" NOR, HIW),
-        append_color(HIW "$N一眼瞥见$n，「哼」的一声冲了过来！\n" NOR, HIW),
-        append_color(HIW "$N一见到$n，愣了一愣，大叫：「我宰了你！」\n" NOR, HIW),
-        append_color(HIW "$N喝道：「$n，我们的帐还没算完，看招！」\n" NOR, HIW),
+        append_color(HIW "$N和$n仇人相見分外眼紅，立刻打了起來！\n" NOR, HIW),
+        append_color(HIW "$N對著$n大喝：「可惡，又是你！」\n" NOR, HIW),
+        append_color(HIW "$N和$n一碰面，二話不說就打了起來！\n" NOR, HIW),
+        append_color(HIW "$N一眼瞥見$n，「哼」的一聲衝了過來！\n" NOR, HIW),
+        append_color(HIW "$N一見到$n，愣了一愣，大叫：「我宰了你！」\n" NOR, HIW),
+        append_color(HIW "$N喝道：「$n，我們的帳還沒算完，看招！」\n" NOR, HIW),
         append_color(HIW "$N喝道：「$n，看招！」\n" NOR, HIW),
 });
 
 string *winner_msg = ({
-        append_color(CYN "\n$N哈哈大笑，说道：承让了！\n\n" NOR, CYN),
-        append_color(CYN "\n$N双手一拱，笑著说道：承让！\n\n" NOR, CYN),
-        append_color(CYN "\n$N胜了这招，向后跃开三尺，笑道：承让！\n\n" NOR, CYN),
-        append_color(CYN "\n$N双手一拱，笑著说道：知道我的利害了吧！\n\n" NOR, CYN),
-        append_color(CYN "\n$N胜了这招，向后跃开三尺，叹道：真是拔剑四顾心茫然！\n\n" NOR, CYN),
-        append_color(CYN "\n$n向后退了几步，说道：这场比试算我输了，下回看我怎么收拾你！\n\n" NOR, CYN),
-        append_color(CYN "\n$n向后一纵，恨恨地说道：君子报仇，十年不晚！\n\n" NOR, CYN),
-        append_color(CYN "\n$n脸色一寒，说道：算了算了，就当是我让你吧！\n\n" NOR, CYN),
-        append_color(CYN "\n$n纵声而笑，叫道：“你运气好！你运气好！”一面身子向后跳开。\n\n" NOR, CYN),
-        append_color(CYN "\n$n脸色微变，说道：佩服，佩服！\n\n" NOR, CYN),
-        append_color(CYN "\n$n向后退了几步，说道：这场比试算我输了，佩服，佩服！\n\n" NOR, CYN),
-        append_color(CYN "\n$n向后一纵，躬身做揖说道：阁下武艺不凡，果然高明！\n\n" NOR, CYN),
+        append_color(CYN "\n$N哈哈大笑，說道：承讓了！\n\n" NOR, CYN),
+        append_color(CYN "\n$N雙手一拱，笑著說道：承讓！\n\n" NOR, CYN),
+        append_color(CYN "\n$N勝了這招，向後躍開三尺，笑道：承讓！\n\n" NOR, CYN),
+        append_color(CYN "\n$N雙手一拱，笑著說道：知道我的利害了吧！\n\n" NOR, CYN),
+        append_color(CYN "\n$N勝了這招，向後躍開三尺，嘆道：真是拔劍四顧心茫然！\n\n" NOR, CYN),
+        append_color(CYN "\n$n向後退了幾步，說道：這場比試算我輸了，下回看我怎麼收拾你！\n\n" NOR, CYN),
+        append_color(CYN "\n$n向後一縱，恨恨地說道：君子報仇，十年不晚！\n\n" NOR, CYN),
+        append_color(CYN "\n$n臉色一寒，說道：算了算了，就當是我讓你吧！\n\n" NOR, CYN),
+        append_color(CYN "\n$n縱聲而笑，叫道：“你運氣好！你運氣好！”一面身子向後跳開。\n\n" NOR, CYN),
+        append_color(CYN "\n$n臉色微變，說道：佩服，佩服！\n\n" NOR, CYN),
+        append_color(CYN "\n$n向後退了幾步，說道：這場比試算我輸了，佩服，佩服！\n\n" NOR, CYN),
+        append_color(CYN "\n$n向後一縱，躬身做揖說道：閣下武藝不凡，果然高明！\n\n" NOR, CYN),
 });
 
 string *weapon_parry_throwing = ({
-        append_color(HIR "$n手中$v一挥，将$w打飞。\n" NOR, HIR),
-        append_color(HIR "$n将$v在身前一横，$w打在$v上，$n手上觉得一阵酸麻。\n" NOR, HIR),
-        append_color(HIR "$n猛力挥动手中$v，将$w打得无影无踪。\n" NOR, HIY),
+        append_color(HIR "$n手中$v一揮，將$w打飛。\n" NOR, HIR),
+        append_color(HIR "$n將$v在身前一橫，$w打在$v上，$n手上覺得一陣痠麻。\n" NOR, HIR),
+        append_color(HIR "$n猛力揮動手中$v，將$w打得無影無蹤。\n" NOR, HIY),
 });
 
 string *unarm_parry_throwing = ({
-        append_color(HIR "$n长袖一卷，将$w收入囊中。\n" NOR, HIY),
-        append_color(HIR "$n伸出两个手指轻轻一夹，便将$w接在手中。\n" NOR, HIY),
-        append_color(HIR "$n脱下一只鞋子对准$w一捞，$w掉入$n的鞋中。\n" NOR, HIY),
+        append_color(HIR "$n長袖一捲，將$w收入囊中。\n" NOR, HIY),
+        append_color(HIR "$n伸出兩個手指輕輕一夾，便將$w接在手中。\n" NOR, HIY),
+        append_color(HIR "$n脫下一隻鞋子對準$w一撈，$w掉入$n的鞋中。\n" NOR, HIY),
 });
 
 string *weapon_parry_sixmai = ({
-        append_color(HIR "$n舞动$v，将自身罩在一道光幕之中，挡住了$N六脉神剑的攻势。\n" NOR, HIY),
-        append_color(HIR "$n挥动$v，接住了$N六脉神剑的无形剑气。\n" NOR, HIY),
-        append_color(HIR "$n挥舞$v，六脉神剑的无形剑气尽数打在$v上。\n" NOR, HIY),
+        append_color(HIR "$n舞動$v，將自身罩在一道光幕之中，擋住了$N六脈神劍的攻勢。\n" NOR, HIY),
+        append_color(HIR "$n揮動$v，接住了$N六脈神劍的無形劍氣。\n" NOR, HIY),
+        append_color(HIR "$n揮舞$v，六脈神劍的無形劍氣盡數打在$v上。\n" NOR, HIY),
 });
 
 string *unarm_parry_sixmai = ({
-        append_color(HIR "$n运起内力，衣袖鼓风而前，接住了$N的六脉神剑，袖子却被无形剑气切下一片。\n" NOR, HIY),
-        append_color(HIR "$n在身前布起一道气墙，只听「嗤」，「嗤」之声，$N的剑气尽数打在气墙上。\n" NOR, HIY),
-        append_color(HIR "$n将内力尽数布在$l处，接下了$N的六脉神剑，但$l处的表皮却已烧焦。\n" NOR, HIY),
+        append_color(HIR "$n運起內力，衣袖鼓風而前，接住了$N的六脈神劍，袖子卻被無形劍氣切下一片。\n" NOR, HIY),
+        append_color(HIR "$n在身前布起一道氣牆，只聽「嗤」，「嗤」之聲，$N的劍氣盡數打在氣牆上。\n" NOR, HIY),
+        append_color(HIR "$n將內力盡數布在$l處，接下了$N的六脈神劍，但$l處的表皮卻已燒焦。\n" NOR, HIY),
 });
 
 string *star_move_weapon = ({
-        append_color(HIR "只见$n长袖在$N的$w上一带一送，$w在空中硬生生转了个湾，奔向$P自己的$l。\n" NOR, HIY),
-        append_color(HIR "$n使一招斗转星移，$N的$w竟然倒转过来，奔向$P自己的$l。\n" NOR, HIY),
+        append_color(HIR "只見$n長袖在$N的$w上一帶一送，$w在空中硬生生轉了個灣，奔向$P自己的$l。\n" NOR, HIY),
+        append_color(HIR "$n使一招斗轉星移，$N的$w竟然倒轉過來，奔向$P自己的$l。\n" NOR, HIY),
 });
 
 string *star_move_unarm = ({
-        append_color(HIR "$n运用斗转星移，暗中将$N的内力尽数送了回去，$N只觉得$l处一阵剧疼。\n" NOR, HIY),
-        append_color(HIR "$n的长袖一带一送，$N的这一招竟然打到了自己身上。\n" NOR, HIY),
+        append_color(HIR "$n運用斗轉星移，暗中將$N的內力盡數送了回去，$N只覺得$l處一陣劇疼。\n" NOR, HIY),
+        append_color(HIR "$n的長袖一帶一送，$N的這一招竟然打到了自己身上。\n" NOR, HIY),
 });
 
 string *qiankun_move_weapon = ({
-        append_color(HIR "只见$n长袖在$N的$w上一带一送，$w在空中硬生生转了个湾，奔向$P自己的$l。\n" NOR, HIY),
-        append_color(HIR "$n使一招乾坤大挪移，$N的$w竟然倒转过来，奔向$P自己的$l。\n" NOR, HIY),
+        append_color(HIR "只見$n長袖在$N的$w上一帶一送，$w在空中硬生生轉了個灣，奔向$P自己的$l。\n" NOR, HIY),
+        append_color(HIR "$n使一招乾坤大挪移，$N的$w竟然倒轉過來，奔向$P自己的$l。\n" NOR, HIY),
 });
 
 string *qiankun_move_unarm = ({
-        append_color(HIR "$n运用乾坤大挪移，暗中将$N的内力尽数送了回去，$N只觉得$l处一阵剧疼。\n" NOR, HIY),
-        append_color(HIR "$n的长袖一带一送，$N的这一招竟然打到了自己身上。\n" NOR, HIY),
+        append_color(HIR "$n運用乾坤大挪移，暗中將$N的內力盡數送了回去，$N只覺得$l處一陣劇疼。\n" NOR, HIY),
+        append_color(HIR "$n的長袖一帶一送，$N的這一招竟然打到了自己身上。\n" NOR, HIY),
 });
 
-// 反击
+// 反擊
 string *counter_msg = ({
-        append_color(HIR "$N全然不顾$n的攻击，以快制快。\n" NOR, HIR),
-        append_color(HIR "$N不求自保，奋力抢攻而上。\n" NOR, HIR),
+        append_color(HIR "$N全然不顧$n的攻擊，以快制快。\n" NOR, HIR),
+        append_color(HIR "$N不求自保，奮力搶攻而上。\n" NOR, HIR),
 });
 
-// 暴击
+// 暴擊
 string *critical_msg = ({
-        append_color(BLINK HIY "卍 $N的凶狠进攻对$n造成了暴击。 卍\n" NOR, BLINK HIY),
+        append_color(BLINK HIY "卍 $N的兇狠進攻對$n造成了暴擊。 卍\n" NOR, BLINK HIY),
 });
 
 // message after damage info
@@ -230,7 +230,7 @@ void create()
         int pd, pm;
 
         seteuid(getuid());
-        set("channel_id", "战斗精灵");
+        set("channel_id", "戰鬥精靈");
 
         if( undefinedp(pd = CONFIG_D->query_int("max pk perday")) )
                 pd = DEFAULT_MAX_PK_PERDAY;
@@ -265,147 +265,147 @@ string damage_msg(int damage, string type)
         string str;
 
         if( damage == 0 )
-                return "结果没有造成任何伤害。\n";
+                return "結果沒有造成任何傷害。\n";
 
         switch( type )
         {
-        case "擦伤":
-        case "拉伤":
-        case "割伤":
-                if( damage < 100 ) return "结果只是轻轻地划破$p的皮肉。\n"; else
-                if( damage < 200 ) return "结果在$p$l划出一道细长的血痕。\n"; else
-                if( damage < 400 ) return "结果「嗤」地一声，$w已在$p$l划出一道伤口！\n"; else
-                if( damage < 600 ) return "结果「嗤」地一声，$w已在$p$l划出一道血淋淋的伤口！\n"; else
-                if( damage < 1000 )return "结果「嗤」地一声，$w已在$p$l划出一道又长又深的伤口，溅得$N满脸鲜血！\n"; else
-                                   return "结果只听见$n一声惨嚎，$w已在$p$l划出一道深及见骨的可怕伤口！\n";
+        case "擦傷":
+        case "拉傷":
+        case "割傷":
+                if( damage < 100 ) return "結果只是輕輕地劃破$p的皮肉。\n"; else
+                if( damage < 200 ) return "結果在$p$l劃出一道細長的血痕。\n"; else
+                if( damage < 400 ) return "結果「嗤」地一聲，$w已在$p$l劃出一道傷口！\n"; else
+                if( damage < 600 ) return "結果「嗤」地一聲，$w已在$p$l劃出一道血淋淋的傷口！\n"; else
+                if( damage < 1000 )return "結果「嗤」地一聲，$w已在$p$l劃出一道又長又深的傷口，濺得$N滿臉鮮血！\n"; else
+                                   return "結果只聽見$n一聲慘嚎，$w已在$p$l劃出一道深及見骨的可怕傷口！\n";
                 break;
-        case "刺伤":
-                if( damage < 100 ) return "结果只是轻轻地刺破$p的皮肉。\n"; else
-                if( damage < 200 ) return "结果在$p$l刺出一个创口。\n"; else
-                if( damage < 400 ) return "结果「噗」地一声，$w已刺入了$n$l寸许！\n"; else
-                if( damage < 800 ) return "结果「噗」地一声，$w已刺进$n的$l，使$p不由自主地退了几步！\n"; else
-                if( damage < 1000 )return "结果「噗嗤」地一声，$w已在$p$l刺出一个血肉□糊的血窟窿！\n"; else
-                                   return "结果只听见$n一声惨嚎，$w已在$p的$l对穿而出，鲜血溅得满地！\n";
+        case "刺傷":
+                if( damage < 100 ) return "結果只是輕輕地刺破$p的皮肉。\n"; else
+                if( damage < 200 ) return "結果在$p$l刺出一個創口。\n"; else
+                if( damage < 400 ) return "結果「噗」地一聲，$w已刺入了$n$l寸許！\n"; else
+                if( damage < 800 ) return "結果「噗」地一聲，$w已刺進$n的$l，使$p不由自主地退了幾步！\n"; else
+                if( damage < 1000 )return "結果「噗嗤」地一聲，$w已在$p$l刺出一個血肉□糊的血窟窿！\n"; else
+                                   return "結果只聽見$n一聲慘嚎，$w已在$p的$l對穿而出，鮮血濺得滿地！\n";
                 break;
-        case "踢伤":
-                if( damage < 50 )  return  "结果只是轻轻地踢到，比拍苍蝇稍微重了点。\n";else
-                if( damage < 100 ) return "结果在$n的$l造成一处瘀青。\n";else
-                if( damage < 200 ) return "结果一踢命中，$n的$l登时肿了一块老高！\n";else
-                if( damage < 400 ) return "结果一踢命中，$n闷哼了一声显然吃了不小的亏！\n";else
-                if( damage < 600 ) return "结果「砰」地一声，$n退了两步！\n";else
-                if( damage < 800 ) return "结果这一下「砰」地一声踢得$n连退了好几步，差一点摔倒！\n";else
-                if( damage < 1000 )return "结果重重地踢中，$n「哇」地一声吐出一口鲜血！\n";else
-                                   return "结果只听见「砰」地一声巨响，$n像一捆稻草般飞了出去！！\n";
+        case "踢傷":
+                if( damage < 50 )  return  "結果只是輕輕地踢到，比拍蒼蠅稍微重了點。\n";else
+                if( damage < 100 ) return "結果在$n的$l造成一處瘀青。\n";else
+                if( damage < 200 ) return "結果一踢命中，$n的$l登時腫了一塊老高！\n";else
+                if( damage < 400 ) return "結果一踢命中，$n悶哼了一聲顯然吃了不小的虧！\n";else
+                if( damage < 600 ) return "結果「砰」地一聲，$n退了兩步！\n";else
+                if( damage < 800 ) return "結果這一下「砰」地一聲踢得$n連退了好幾步，差一點摔倒！\n";else
+                if( damage < 1000 )return "結果重重地踢中，$n「哇」地一聲吐出一口鮮血！\n";else
+                                   return "結果只聽見「砰」地一聲巨響，$n像一捆稻草般飛了出去！！\n";
                 break;
-        case "瘀伤":
-        case "震伤":
-                if( damage < 50 )  return "结果只是轻轻地碰到，比拍苍蝇稍微重了点。\n"; else
-                if( damage < 100 ) return "结果在$p的$l造成一处瘀青。\n"; else
-                if( damage < 200 ) return "结果一击命中，$n的$l登时肿了一块老高！\n"; else
-                if( damage < 400 ) return "结果一击命中，$n闷哼了一声显然吃了不小的亏！\n"; else
-                if( damage < 600 ) return "结果「砰」地一声，$n退了两步！\n"; else
-                if( damage < 800 ) return "结果这一下「砰」地一声打得$n连退了好几步，差一点摔倒！\n"; else
-                if( damage < 1000 )return "结果重重地击中，$n「哇」地一声吐出一口鲜血！\n"; else
-                                   return "结果只听见「砰」地一声巨响，$n像一捆稻草般飞了出去！\n";
+        case "瘀傷":
+        case "震傷":
+                if( damage < 50 )  return "結果只是輕輕地碰到，比拍蒼蠅稍微重了點。\n"; else
+                if( damage < 100 ) return "結果在$p的$l造成一處瘀青。\n"; else
+                if( damage < 200 ) return "結果一擊命中，$n的$l登時腫了一塊老高！\n"; else
+                if( damage < 400 ) return "結果一擊命中，$n悶哼了一聲顯然吃了不小的虧！\n"; else
+                if( damage < 600 ) return "結果「砰」地一聲，$n退了兩步！\n"; else
+                if( damage < 800 ) return "結果這一下「砰」地一聲打得$n連退了好幾步，差一點摔倒！\n"; else
+                if( damage < 1000 )return "結果重重地擊中，$n「哇」地一聲吐出一口鮮血！\n"; else
+                                   return "結果只聽見「砰」地一聲巨響，$n像一捆稻草般飛了出去！\n";
                 break;
-        case "抓伤":
-                if( damage < 50 )  return "结果只是轻轻地抓到，比抓痒稍微重了点。\n";else
-                if( damage < 100 ) return "结果在$p的$l抓出几条血痕。\n";else
-                if( damage < 200 ) return "结果一抓命中，$n的$l被抓得鲜血飞溅！\n";else
-                if( damage < 400 ) return "结果「嗤」地一声，$l被抓得深可见骨！！\n";else
-                if( damage < 600 ) return "结果一抓命中，$n的$l被抓得血肉横飞！！！\n";else
-                if( damage < 800 ) return "结果这一下「嗤」地一声抓得$n连晃好几下，差一点摔倒！\n";else
-                if( damage < 1000 )return "结果$n哀号一声，$l被抓得筋断骨折！！\n";else
-                                   return "结果只听见$n一声惨嚎，$l被抓出五个血窟窿！鲜血溅得满地！！\n";
+        case "抓傷":
+                if( damage < 50 )  return "結果只是輕輕地抓到，比抓癢稍微重了點。\n";else
+                if( damage < 100 ) return "結果在$p的$l抓出幾條血痕。\n";else
+                if( damage < 200 ) return "結果一抓命中，$n的$l被抓得鮮血飛濺！\n";else
+                if( damage < 400 ) return "結果「嗤」地一聲，$l被抓得深可見骨！！\n";else
+                if( damage < 600 ) return "結果一抓命中，$n的$l被抓得血肉橫飛！！！\n";else
+                if( damage < 800 ) return "結果這一下「嗤」地一聲抓得$n連晃好幾下，差一點摔倒！\n";else
+                if( damage < 1000 )return "結果$n哀號一聲，$l被抓得筋斷骨折！！\n";else
+                                   return "結果只聽見$n一聲慘嚎，$l被抓出五個血窟窿！鮮血濺得滿地！！\n";
                 break;
-        case "内伤":
-                if( damage < 50 )  return "结果只是把$n打得退了半步，毫发无损。\n"; else
-                if( damage < 100 ) return "结果$n痛哼一声，在$p的$l造成一处瘀伤。\n"; else
-                if( damage < 200 ) return "结果一击命中，把$n打得痛得弯下腰去！\n"; else
-                if( damage < 400 ) return "结果$n闷哼了一声，脸上一阵青一阵白，显然受了点内伤！\n"; else
-                if( damage < 600 ) return "结果$n脸色一下变得惨白，昏昏沉沉接连退了好几步！\n"; else
-                if( damage < 800 ) return "结果重重地击中，$n「哇」地一声吐出一口鲜血！\n"; else
-                if( damage < 1000 )return "结果「轰」地一声，$n全身气血倒流，口中鲜血狂喷而出！\n"; else
-                                   return "结果只听见几声喀喀轻响，$n一声惨叫，像滩软泥般塌了下去！\n";
+        case "內傷":
+                if( damage < 50 )  return "結果只是把$n打得退了半步，毫髮無損。\n"; else
+                if( damage < 100 ) return "結果$n痛哼一聲，在$p的$l造成一處瘀傷。\n"; else
+                if( damage < 200 ) return "結果一擊命中，把$n打得痛得彎下腰去！\n"; else
+                if( damage < 400 ) return "結果$n悶哼了一聲，臉上一陣青一陣白，顯然受了點內傷！\n"; else
+                if( damage < 600 ) return "結果$n臉色一下變得慘白，昏昏沉沉接連退了好幾步！\n"; else
+                if( damage < 800 ) return "結果重重地擊中，$n「哇」地一聲吐出一口鮮血！\n"; else
+                if( damage < 1000 )return "結果「轟」地一聲，$n全身氣血倒流，口中鮮血狂噴而出！\n"; else
+                                   return "結果只聽見幾聲喀喀輕響，$n一聲慘叫，像灘軟泥般塌了下去！\n";
                 break;
-        case "点穴":
-                if( damage < 60 )  return "结果只是轻轻的碰到$n的$l，根本没有点到穴道。\n"; else
-                if( damage < 100 ) return "结果$n痛哼一声，在$p的$l造成一处淤青。\n"; else
-                if( damage < 200 ) return "结果一击命中，$N点中了$n$l上的穴道，$n只觉一阵麻木！\n"; else
-                if( damage < 400 ) return "结果$n闷哼了一声，脸上一阵青一阵白，登时觉得$l麻木！\n"; else
-                if( damage < 800 ) return "结果$n脸色一下变得惨白，被$N点中$l的穴道,一阵疼痛遍布整个$l！\n"; else
-                if( damage < 1000 )return "结果$n一声大叫，$l的穴道被点中,疼痛直入心肺！\n"; else
-                                   return "结果只听见$n一声惨叫，一阵剧痛夹杂着麻痒游遍全身，跟着直挺挺的倒了下去！\n";
+        case "點穴":
+                if( damage < 60 )  return "結果只是輕輕的碰到$n的$l，根本沒有點到穴道。\n"; else
+                if( damage < 100 ) return "結果$n痛哼一聲，在$p的$l造成一處淤青。\n"; else
+                if( damage < 200 ) return "結果一擊命中，$N點中了$n$l上的穴道，$n只覺一陣麻木！\n"; else
+                if( damage < 400 ) return "結果$n悶哼了一聲，臉上一陣青一陣白，登時覺得$l麻木！\n"; else
+                if( damage < 800 ) return "結果$n臉色一下變得慘白，被$N點中$l的穴道,一陣疼痛遍佈整個$l！\n"; else
+                if( damage < 1000 )return "結果$n一聲大叫，$l的穴道被點中,疼痛直入心肺！\n"; else
+                                   return "結果只聽見$n一聲慘叫，一陣劇痛夾雜著麻癢遊遍全身，跟著直挺挺的倒了下去！\n";
                 break;
-        case "抽伤":
-        case "鞭伤":
-                if( damage < 50 )  return "结果只是在$n的皮肉上碰了碰，好象只蹭破点皮。\n"; else
-                if( damage < 100 ) return "结果在$n$l抽出一道轻微的紫痕。\n"; else
-                if( damage < 200 ) return "结果「啪」地一声在$n$l抽出一道长长的血痕！\n"; else
-                if( damage < 400 ) return "结果只听「啪」地一声，$n连晃好几下，差一点摔倒！\n"; else
-                if (damage < 600)  return "结果$p的$l上被抽了一道血淋淋的创口！\n"; else
-                if( damage < 800 ) return "结果只听「啪」地一声，$n的$l被抽得皮开肉绽，痛得$p咬牙切齿！\n"; else
-                if( damage < 1000 )return "结果「啪」地一声爆响！这一下好厉害，只抽得$n皮开肉绽，血花飞溅！\n"; else
-                                   return "结果只听见$n一声惨嚎，$w重重地抽上了$p的$l，$n顿时血肉横飞，十命断了九条！\n";
+        case "抽傷":
+        case "鞭傷":
+                if( damage < 50 )  return "結果只是在$n的皮肉上碰了碰，好象只蹭破點皮。\n"; else
+                if( damage < 100 ) return "結果在$n$l抽出一道輕微的紫痕。\n"; else
+                if( damage < 200 ) return "結果「啪」地一聲在$n$l抽出一道長長的血痕！\n"; else
+                if( damage < 400 ) return "結果只聽「啪」地一聲，$n連晃好幾下，差一點摔倒！\n"; else
+                if (damage < 600)  return "結果$p的$l上被抽了一道血淋淋的創口！\n"; else
+                if( damage < 800 ) return "結果只聽「啪」地一聲，$n的$l被抽得皮開肉綻，痛得$p咬牙切齒！\n"; else
+                if( damage < 1000 )return "結果「啪」地一聲爆響！這一下好厲害，只抽得$n皮開肉綻，血花飛濺！\n"; else
+                                   return "結果只聽見$n一聲慘嚎，$w重重地抽上了$p的$l，$n頓時血肉橫飛，十命斷了九條！\n";
                 break;
-        case "反震伤":
-        case "反弹伤":
-                if( damage < 50 )  return "结果$N受到$n的内力反震，闷哼一声。\n"; else
-                if( damage < 100 ) return "结果$N被$n的反震得气血翻腾，大惊失色。\n"; else
-                if( damage < 200 ) return "结果$N被$n的反震得站立不稳，摇摇晃晃。\n"; else
-                if( damage < 400 ) return "结果$N被$n以内力反震，「嘿」地一声退了两步。\n"; else
-                if( damage < 600 ) return "结果$N被$n的震得反弹回来的力量震得半身发麻。\n"; else
-                if( damage < 800 ) return "结果$N被$n的内力反震，胸口有如受到一记重击，连退了五六步！\n"; else
-                if( damage < 1000 )return "结果$N被$n内力反震，眼前一黑，身子向後飞出丈许！\n"; else
-                                   return "结果$N被$n内力反震，眼前一黑，狂吐鲜血，身子象断了线的风筝向後飞去！\n";
+        case "反震傷":
+        case "反彈傷":
+                if( damage < 50 )  return "結果$N受到$n的內力反震，悶哼一聲。\n"; else
+                if( damage < 100 ) return "結果$N被$n的反震得氣血翻騰，大驚失色。\n"; else
+                if( damage < 200 ) return "結果$N被$n的反震得站立不穩，搖搖晃晃。\n"; else
+                if( damage < 400 ) return "結果$N被$n以內力反震，「嘿」地一聲退了兩步。\n"; else
+                if( damage < 600 ) return "結果$N被$n的震得反彈回來的力量震得半身發麻。\n"; else
+                if( damage < 800 ) return "結果$N被$n的內力反震，胸口有如受到一記重擊，連退了五六步！\n"; else
+                if( damage < 1000 )return "結果$N被$n內力反震，眼前一黑，身子向後飛出丈許！\n"; else
+                                   return "結果$N被$n內力反震，眼前一黑，狂吐鮮血，身子象斷了線的風箏向後飛去！\n";
                 break;
-        case "砸伤":
-        case "挫伤":
-                if( damage < 50 )  return "结果只是轻轻地碰到，像是给$n搔了一下痒。\n"; else
-                if( damage < 100 ) return "结果在$n的$l砸出一个小臌包。\n"; else
-                if( damage < 200 ) return "结果$N这一下砸个正着，$n的$l登时肿了一块老高！\n"; else
-                if( damage < 400 ) return "结果$N这一下砸个正着，$n闷哼一声显然吃了不小的亏！\n"; else
-                if( damage < 600 ) return "结果只听「砰」地一声，$n疼得连腰都弯了下来！\n"; else
-                if( damage < 800 ) return "结果这一下「轰」地一声砸得$n眼冒金星，差一点摔倒！\n"; else
-                if( damage < 1000 )return "结果重重地砸中，$n眼前一黑，「哇」地一声吐出一口鲜血！\n"; else
-                                   return "结果只听见「轰」地一声巨响，$n被砸得血肉模糊，惨不忍睹！\n";
+        case "砸傷":
+        case "挫傷":
+                if( damage < 50 )  return "結果只是輕輕地碰到，像是給$n搔了一下癢。\n"; else
+                if( damage < 100 ) return "結果在$n的$l砸出一個小臌包。\n"; else
+                if( damage < 200 ) return "結果$N這一下砸個正著，$n的$l登時腫了一塊老高！\n"; else
+                if( damage < 400 ) return "結果$N這一下砸個正著，$n悶哼一聲顯然吃了不小的虧！\n"; else
+                if( damage < 600 ) return "結果只聽「砰」地一聲，$n疼得連腰都彎了下來！\n"; else
+                if( damage < 800 ) return "結果這一下「轟」地一聲砸得$n眼冒金星，差一點摔倒！\n"; else
+                if( damage < 1000 )return "結果重重地砸中，$n眼前一黑，「哇」地一聲吐出一口鮮血！\n"; else
+                                   return "結果只聽見「轟」地一聲巨響，$n被砸得血肉模糊，慘不忍睹！\n";
                 break;
-        case "咬伤":
-                if( damage < 100 ) return "结果只是轻轻地蹭了一下$p的皮肉。\n";else
-                if( damage < 200 ) return "结果在$p$l咬出一排牙印。\n";else
-                if( damage < 400 ) return "结果$p被咬下一片肉来！\n";else
-                if( damage < 800 ) return "结果$p连皮带肉被咬下一大块！\n";else
-                if( damage < 1000 )return "结果在$p的身上咬下来血肉模糊的一大块$l肉！\n";else
-                                   return "结果只听见$n一声惨嚎，$p的$l上的肉被一口咬掉，露出骨头！！\n";
+        case "咬傷":
+                if( damage < 100 ) return "結果只是輕輕地蹭了一下$p的皮肉。\n";else
+                if( damage < 200 ) return "結果在$p$l咬出一排牙印。\n";else
+                if( damage < 400 ) return "結果$p被咬下一片肉來！\n";else
+                if( damage < 800 ) return "結果$p連皮帶肉被咬下一大塊！\n";else
+                if( damage < 1000 )return "結果在$p的身上咬下來血肉模糊的一大塊$l肉！\n";else
+                                   return "結果只聽見$n一聲慘嚎，$p的$l上的肉被一口咬掉，露出骨頭！！\n";
                 break;
-        case "灼伤":
-        case "烧伤":
-                if( damage < 100 ) return "结果只是把$p的$l烫了一下。\n";else
-                if( damage < 200 ) return "结果$p的$l被$w灼炙得起了个小疱。\n";else
-                if( damage < 400 ) return "结果$p的$l被$w烧得红肿疼痛，痛得不住冒汗咬牙！\n";else
-                if( damage < 800 ) return "结果「嗤」一声轻响，$p祗觉$l上一片热痛，已被$w烧成了暗红色，犹如焦炭！\n";else
-                if( damage < 1000 )return "结果「嗤嗤」一阵声响过去，$n神色痛楚难当，$l被$w烧得一片焦黑，青烟直冒！\n";else
-                                   return "结果只听见$n长声惨呼，在地上不住打滚，$l已被$w烧得皮肉尽烂，焦臭四溢！！\n";
+        case "灼傷":
+        case "燒傷":
+                if( damage < 100 ) return "結果只是把$p的$l燙了一下。\n";else
+                if( damage < 200 ) return "結果$p的$l被$w灼炙得起了個小皰。\n";else
+                if( damage < 400 ) return "結果$p的$l被$w燒得紅腫疼痛，痛得不住冒汗咬牙！\n";else
+                if( damage < 800 ) return "結果「嗤」一聲輕響，$p祗覺$l上一片熱痛，已被$w燒成了暗紅色，猶如焦炭！\n";else
+                if( damage < 1000 )return "結果「嗤嗤」一陣聲響過去，$n神色痛楚難當，$l被$w燒得一片焦黑，青煙直冒！\n";else
+                                   return "結果只聽見$n長聲慘呼，在地上不住打滾，$l已被$w燒得皮肉盡爛，焦臭四溢！！\n";
                 break;
-        case "冻伤":
-                if( damage < 100 ) return "结果$p祗是觉得$l有些冷飕飕地，还挺凉快的。\n";else
-                if( damage < 200 ) return "结果$p的$l被冻得有些麻木。\n";else
-                if( damage < 400 ) return "结果$p机伶伶地打了个寒颤！\n";else
-                if( damage < 800 ) return "结果$p脸色一变，神情有些僵硬，身子也冷得瑟瑟发抖！\n";else
-                if( damage < 1000 )return "结果$p身子打颤，脸色苍白，嘴唇冻得发紫，牙关格格直响！\n";else
-                                   return "结果祗听见$n声音一哑，脸上惨白得没半分血色，颤抖不休，浑身血液似乎都结成了冰！！\n";
+        case "凍傷":
+                if( damage < 100 ) return "結果$p祗是覺得$l有些冷颼颼地，還挺涼快的。\n";else
+                if( damage < 200 ) return "結果$p的$l被凍得有些麻木。\n";else
+                if( damage < 400 ) return "結果$p機伶伶地打了個寒顫！\n";else
+                if( damage < 800 ) return "結果$p臉色一變，神情有些僵硬，身子也冷得瑟瑟發抖！\n";else
+                if( damage < 1000 )return "結果$p身子打顫，臉色蒼白，嘴唇凍得發紫，牙關格格直響！\n";else
+                                   return "結果祗聽見$n聲音一啞，臉上慘白得沒半分血色，顫抖不休，渾身血液似乎都結成了冰！！\n";
                 break;
         default:
-                if( !type) type = "伤害";
-                if( damage < 50 )  str = "结果只是勉强造成一处轻微"; else
-                if( damage < 100 ) str = "结果造成轻微的"; else
-                if( damage < 200 ) str = "结果造成一处"; else
-                if( damage < 400 ) str = "造成一处严重"; else
-                if( damage < 500 ) str = "结果造成颇为严重的"; else
-                if( damage < 600 ) str = "结果造成相当严重的"; else
-                if( damage < 800 ) str = "结果造成十分严重的"; else
-                if( damage < 1000 )str = "结果造成极其严重的"; else
-                                   str = "结果造成非常可怕的严重";
+                if( !type) type = "傷害";
+                if( damage < 50 )  str = "結果只是勉強造成一處輕微"; else
+                if( damage < 100 ) str = "結果造成輕微的"; else
+                if( damage < 200 ) str = "結果造成一處"; else
+                if( damage < 400 ) str = "造成一處嚴重"; else
+                if( damage < 500 ) str = "結果造成頗為嚴重的"; else
+                if( damage < 600 ) str = "結果造成相當嚴重的"; else
+                if( damage < 800 ) str = "結果造成十分嚴重的"; else
+                if( damage < 1000 )str = "結果造成極其嚴重的"; else
+                                   str = "結果造成非常可怕的嚴重";
                 return str + type + "！\n";
         }
 }
@@ -413,72 +413,72 @@ string damage_msg(int damage, string type)
 varargs string eff_status_msg(int ratio, int dam_type)
 {
         if( !dam_type ) dam_type = 1;
-        if( ratio==100 ) return HIG "看来身上并无丝毫伤痕。" NOR;
-        if( ratio > 95 ) return HIG "似乎只受了点轻伤，但无伤大体。" NOR;
+        if( ratio==100 ) return HIG "看來身上並無絲毫傷痕。" NOR;
+        if( ratio > 95 ) return HIG "似乎只受了點輕傷，但無傷大體。" NOR;
         if( ratio > 90 ) {
                 if (dam_type == 3)
-                        return HIY "看来有些萎靡，好像精力受损。" NOR;
+                        return HIY "看來有些萎靡，好像精力受損。" NOR;
                 else if (dam_type == 2)
-                        return HIY "精神似乎受了些损伤，表情有点僵硬。" NOR;
-                else    return HIY "可能受了几处皮肉伤。" NOR;
+                        return HIY "精神似乎受了些損傷，表情有點僵硬。" NOR;
+                else    return HIY "可能受了幾處皮肉傷。" NOR;
         }
-        if( ratio > 80 ) return HIY "受了几处创伤，似乎并不碍事。" NOR;
+        if( ratio > 80 ) return HIY "受了幾處創傷，似乎並不礙事。" NOR;
         if( ratio > 60 ) {
                 if (dam_type == 3)
-                        return HIY "骨软筋麻，涕泪交流。" NOR;
+                        return HIY "骨軟筋麻，涕淚交流。" NOR;
                 else if (dam_type == 2)
-                        return HIY "神情惨然，耳鼻中竟然有鲜血渗出。" NOR;
-                else    return HIY "身上受伤不轻，正在流着血。" NOR;
+                        return HIY "神情慘然，耳鼻中竟然有鮮血滲出。" NOR;
+                else    return HIY "身上受傷不輕，正在流著血。" NOR;
         }
         if( ratio > 40 ) {
                 if (dam_type == 3)
-                        return HIY "面部抽搐不止，已经不能自己。" NOR;
-                else    return HIR "流血不止，动作散乱，已经在走下坡路了。" NOR;
+                        return HIY "面部抽搐不止，已經不能自己。" NOR;
+                else    return HIR "流血不止，動作散亂，已經在走下坡路了。" NOR;
         }
-        if( ratio > 30 ) return HIR "伤痕累累，正在勉力支撑著不倒下去。" NOR;
-        if( ratio > 20 ) return HIR "遍体鳞伤，只剩下最后一口气了。" NOR;
-        if( ratio > 10 ) return RED "浑身浴血，就要倒在地上。" NOR;
-        if( ratio > 5  ) return RED "瞳孔放大，已经奄奄一息，命在旦夕了。" NOR;
-        return RED "如风中残烛，随时都可能断气。" NOR;
+        if( ratio > 30 ) return HIR "傷痕累累，正在勉力支撐著不倒下去。" NOR;
+        if( ratio > 20 ) return HIR "遍體鱗傷，只剩下最後一口氣了。" NOR;
+        if( ratio > 10 ) return RED "渾身浴血，就要倒在地上。" NOR;
+        if( ratio > 5  ) return RED "瞳孔放大，已經奄奄一息，命在旦夕了。" NOR;
+        return RED "如風中殘燭，隨時都可能斷氣。" NOR;
 }
 
 varargs string status_msg(int ratio, int dam_type)
 {
         if( !dam_type ) dam_type = 1;
-        if( ratio==100 ) return HIG "精力充沛，神完气足，" NOR;
-        if( ratio > 95 ) return HIG "似乎有些疲惫，但是仍然十分有活力，" NOR;
-        if( ratio > 90 ) return HIY "看起来可能有些不济，" NOR;
+        if( ratio==100 ) return HIG "精力充沛，神完氣足，" NOR;
+        if( ratio > 95 ) return HIG "似乎有些疲憊，但是仍然十分有活力，" NOR;
+        if( ratio > 90 ) return HIY "看起來可能有些不濟，" NOR;
         if( ratio > 80 ) {
                 if (dam_type == 3)
-                        return HIY "精力有点不足，但仍攻守从容，" NOR;
+                        return HIY "精力有點不足，但仍攻守從容，" NOR;
                 else if (dam_type == 2)
-                        return HIY "神情有些恍惚，但仍应付自如，" NOR;
-                else    return HIY "动作有点不太灵光，但仍有条不紊，" NOR;
+                        return HIY "神情有些恍惚，但仍應付自如，" NOR;
+                else    return HIY "動作有點不太靈光，但仍有條不紊，" NOR;
         }
         if( ratio > 60 ) {
                 if (dam_type == 3)
-                        return HIY "行动虽然无碍，精力明显跟不上了，" NOR;
+                        return HIY "行動雖然無礙，精力明顯跟不上了，" NOR;
                 else if (dam_type == 2)
-                        return HIY "反应开始迟缓，双目无神，" NOR;
-                else    return HIY "气喘嘘嘘，脸色惨白，" NOR;
+                        return HIY "反應開始遲緩，雙目無神，" NOR;
+                else    return HIY "氣喘噓噓，臉色慘白，" NOR;
         }
         if( ratio > 40 ) {
                 if (dam_type == 3)
-                        return HIR "精力涣散，似乎对痛痒都失去知觉，" NOR;
+                        return HIR "精力渙散，似乎對痛癢都失去知覺，" NOR;
                 else if (dam_type == 2)
-                        return HIR "眼光迷离，六神无主，" NOR;
-                else    return HIR "似乎十分疲惫，看来需要好好休息了，" NOR;
+                        return HIR "眼光迷離，六神無主，" NOR;
+                else    return HIR "似乎十分疲憊，看來需要好好休息了，" NOR;
         }
-        if( ratio > 30 ) return HIR "头重脚轻，正在勉力支撑著不倒下去，" NOR;
+        if( ratio > 30 ) return HIR "頭重腳輕，正在勉力支撐著不倒下去，" NOR;
         if( ratio > 20 ) {
                 if (dam_type == 3)
-                        return HIR "看来已经麻木不仁了，" NOR;
+                        return HIR "看來已經麻木不仁了，" NOR;
                 else if (dam_type == 2)
-                        return HIR "看起来已经魂不守舍了，" NOR;
-                else    return HIR "看起来已经力不从心了，" NOR;
+                        return HIR "看起來已經魂不守舍了，" NOR;
+                else    return HIR "看起來已經力不從心了，" NOR;
         }
-        if( ratio > 10 ) return RED "摇头晃脑、歪歪斜斜，濒于晕倒，" NOR;
-        return RED "已经陷入半昏迷状态，神智全失，" NOR;
+        if( ratio > 10 ) return RED "搖頭晃腦、歪歪斜斜，瀕於暈倒，" NOR;
+        return RED "已經陷入半昏迷狀態，神智全失，" NOR;
 }
 
 varargs mixed report_status(object ob, int effective)
@@ -540,7 +540,7 @@ int valid_power(object ob, int combat_exp)
 {
         int t;
 
-        // 经验超过10000亿后对战斗影响不再加成
+        // 經驗超過10000億後對戰鬥影響不再加成
         if( combat_exp > EXP_LIMIT )
                 combat_exp = EXP_LIMIT;
 
@@ -569,7 +569,7 @@ int famsk_buff(object ob, string skill, int usage)
         string martial_skill = ob->query_skill_mapped(skill);
 
 
-        famsk = ob->query_skill("xiaoyao-you", 1); // 逍遥游
+        famsk = ob->query_skill("xiaoyao-you", 1); // 逍遙遊
         percent = famsk / 100;
         if( ratio < percent ) ratio = percent;
 
@@ -584,26 +584,26 @@ int famsk_buff(object ob, string skill, int usage)
 
                 if( skill = "sword" ) {
                         switch( martial_skill ) {
-                        case "qiankun-jian" :   // 乾坤无极
+                        case "qiankun-jian" :   // 乾坤無極
                                 famsk = ob->query_skill("kunlun-wuji", 1);
                                 percent = famsk / 50;
                                 if( ratio < percent ) ratio = percent;
                                 break;
 
-                        case "huifeng-jian" :   // 静心
+                        case "huifeng-jian" :   // 靜心
                                 famsk = ob->query_skill("jingxin", 1);
                                 percent = famsk / 50;
                                 if( ratio < percent ) ratio = percent;
                                 break;
 
-                        case "huashan-sword":   // 剑意
+                        case "huashan-sword":   // 劍意
                         case "lonely-sword" :
                                 famsk = ob->query_skill("jianyi", 1);
                                 percent = famsk / 50;
                                 if( ratio < percent ) ratio = percent;
                                 break;
 
-                        case "taiji-jian"   :   // 天威正气
+                        case "taiji-jian"   :   // 天威正氣
                                 famsk = ob->query_skill("tianwei-zhengqi", 1);
                                 percent = famsk / 50;
                                 if( ratio < percent ) ratio = percent;
@@ -630,7 +630,7 @@ int famsk_buff(object ob, string skill, int usage)
 
                 if( skill = "finger" ) {
                         switch( martial_skill ) {
-                        case "tanzhi-shentong" :   // 奇门玄术
+                        case "tanzhi-shentong" :   // 奇門玄術
                                 famsk = ob->query_skill("qimen-xuanshu", 1);
                                 percent = famsk / 50;
                                 if( ratio < percent ) ratio = percent;
@@ -644,7 +644,7 @@ int famsk_buff(object ob, string skill, int usage)
 
                 if( skill = "strike" ) {
                         switch( martial_skill ) {
-                        case "piaoxue-zhang":   // 静心
+                        case "piaoxue-zhang":   // 靜心
                                 famsk = ob->query_skill("jingxin", 1);
                                 percent = famsk / 50;
                                 if( ratio < percent ) ratio = percent;
@@ -657,7 +657,7 @@ int famsk_buff(object ob, string skill, int usage)
 
                 if( skill = "cuff" ) {
                         switch( martial_skill ) {
-                        case "taiji-quan":   // 天威正气
+                        case "taiji-quan":   // 天威正氣
                                 famsk = ob->query_skill("tianwei-zhengqi", 1);
                                 percent = famsk / 50;
                                 if( ratio < percent ) ratio = percent;
@@ -672,12 +672,12 @@ int famsk_buff(object ob, string skill, int usage)
                 if( query("special_skill/yixing", ob) )
                         ratio += 15;
 
-                famsk = ob->query_skill("jianyi", 1);  // 剑意
+                famsk = ob->query_skill("jianyi", 1);  // 劍意
                 percent = famsk / 50;
                 if( ratio < percent ) ratio = percent;
                 if( ratio >= 100 ) return 100;
 
-                if( ob->in_array() )    // 阵法防御
+                if( ob->in_array() )    // 陣法防禦
                         ratio += ob->query_array_level() / 100;
         }
 
@@ -696,11 +696,11 @@ varargs int skill_power(object ob, string skill, int usage, int delta)
         mapping fight;
         int ratio = 0;
 
-        if( !living(ob) ) return 0; // 晕倒时 power 永远等于零
-        if( ob->over_encumbranced() ) return 0; // 负重小于零时 power 永远等于零
+        if( !living(ob) ) return 0; // 暈倒時 power 永遠等於零
+        if( ob->over_encumbranced() ) return 0; // 負重小於零時 power 永遠等於零
 
         if( userp(ob) && ob->is_ghost() )
-                return 0;  // 鬼魂的 power 永远等于零
+                return 0;  // 鬼魂的 power 永遠等於零
 
         level = ob->query_skill(skill);
 
@@ -773,12 +773,12 @@ int do_protect(object me, object weapon,int ap, object victim)
         if (random(100) < ABILITY_D->check_ability(me, "protect"))
                 return 0;
 
-        // 阵法防御
+        // 陣法防禦
         if( victim->in_array() && victim->query_array_status() )
         {
                 ob = victim->query_array_obstructor();
                 if( !objectp(ob) || !ob->is_busy() ) return 0;
-                str = HIC BWHT+ob->name()+"飞身移步，挡在了"+victim->name()+"的身前。\n" NOR;
+                str = HIC BWHT+ob->name()+"飛身移步，擋在了"+victim->name()+"的身前。\n" NOR;
         }
         else
         {
@@ -843,19 +843,19 @@ protected int armor_protect(object me, object armor, int factor, object weapon)
         int ret,fth;
         string skill;
 
-        // 兵器有透甲能力。如透甲锥之类的暗器
+        // 兵器有透甲能力。如透甲錐之類的暗器
         if( objectp(weapon) && weapon->through_armor() )
                 return 0;
 
-        // 套装属性也被计入在内
+        // 套裝屬性也被計入在內
         ret = 0;
         if( objectp(armor) ) ret = armor->query_equipping_buff("armor");
 
         if( ret <= 0 )
                 return 0;
 
-        // 内功是否有穿透护甲的能力
-        // 如借物传力、隔山打牛之类
+        // 內功是否有穿透護甲的能力
+        // 如借物傳力、隔山打牛之類
         // 徒手此能力才起作用
         if( !weapon )     // 徒手
         {
@@ -864,7 +864,7 @@ protected int armor_protect(object me, object armor, int factor, object weapon)
                         skill = SKILL_D(me->query_skill_mapped("force"));
                         fth = get_object(skill)->query_through_armor(me, factor);
 
-                        if( fth >= ret )  // 穿透力大于防护力
+                        if( fth >= ret )  // 穿透力大於防護力
                                 ret = 0;
                         else
                                 ret -= fth;
@@ -914,7 +914,7 @@ mixed attack_damage(object me, object victim, string attack_skill, object weapon
 #endif
 
         if( my["character"] == "心狠手辣" ) {
-                //damage_info += "心狠手辣的性格，伤害额外增加20%\n";
+                //damage_info += "心狠手辣的性格，傷害額外增加20%\n";
                 damage += damage * 20 / 100;
         }
 
@@ -927,33 +927,33 @@ mixed attack_damage(object me, object victim, string attack_skill, object weapon
                 damage += damage * my["yuanshen_level"] / 100;
         }
 
-        // 先天技能浩然正气对邪气类效果加倍
+        // 先天技能浩然正氣對邪氣類效果加倍
         if( query("special/haoran", me) && query("shen", victim) < 0 )
                 damage *= 2;
         else
-        // 先天技能九幽魔气对正气类效果加倍
+        // 先天技能九幽魔氣對正氣類效果加倍
         if( query("special/jiuyou", me) && query("shen", victim) > 0 )
                 damage *= 2;
 
         martial_skill = me->query_skill_mapped(attack_skill);
 
-        // 昆仑无极的影响
+        // 崑崙無極的影響
         if( martial_skill == "qiankun-jian" && me->query_skill("kunlun-wuji", 1) >= 100 )
                 damage += me->query_skill("kunlun-wuji", 1);
 
-        // 血影大法的影响
+        // 血影大法的影響
        if( martial_skill == "xuedao-daofa" && me->query_skill("xueying-dafa", 1) >= 100 )
                 damage += me->query_skill("xueying-dafa", 1) * 2;
 
-        // 臂力的影响
+        // 臂力的影響
         damage_bonus = me->query_str();
         if( my["jianu"] ) {
                 // does angry bonus
                 damage_bonus += me->cost_craze(my["jianu"]);
                 if( me->query_craze() > 1000 &&
                     random(my["jianu"] + 200) > 200 ) {
-                        damage_info += random(2) ? HIR "$N" HIR "大喝一声，双目圆睁，一股凌厉的杀气油然而起！\n" NOR
-                                                 : HIR "$N" HIR "奋不顾身的扑上前来，招招紧逼$n" HIR "，毫不容情。\n" NOR;
+                        damage_info += random(2) ? HIR "$N" HIR "大喝一聲，雙目圓睜，一股凌厲的殺氣油然而起！\n" NOR
+                                                 : HIR "$N" HIR "奮不顧身的撲上前來，招招緊逼$n" HIR "，毫不容情。\n" NOR;
                         me->cost_craze(200 + random(300));
                         damage_bonus += my["jianu"] * 10;
                 }
@@ -966,9 +966,9 @@ mixed attack_damage(object me, object victim, string attack_skill, object weapon
         // Let force skill take effect.
         if( my["jiali"] && (my["neili"] > my["jiali"]) ) {
                 if( force_skill = me->query_skill_mapped("force") ) {
-                        // 镶嵌有天地日月灵珠的护甲加力内功反震伤害减半
-                        //if( objectp(ob = query_temp("armor/armor", victim)) && ob->query_magic_item() == "天地日月灵珠" )
-                        if( objectp(ob = victim->query_equipped_object("armor")) && ob->query_magic_item() == "天地日月灵珠" )
+                        // 鑲嵌有天地日月靈珠的護甲加力內功反震傷害減半
+                        //if( objectp(ob = query_temp("armor/armor", victim)) && ob->query_magic_item() == "天地日月靈珠" )
+                        if( objectp(ob = victim->query_equipped_object("armor")) && ob->query_magic_item() == "天地日月靈珠" )
                                 delta = 2;
                         else
                                 delta = 1;
@@ -994,7 +994,7 @@ mixed attack_damage(object me, object victim, string attack_skill, object weapon
         if( damage_bonus > 0 )
                 damage += (damage_bonus + random(damage_bonus)) / 2;
 
-        // 根据攻击的部位影响伤害
+        // 根據攻擊的部位影響傷害
         if( !undefinedp(limb_damage[limb]) )
                 damage = (damage * limb_damage[limb] / 100);
 
@@ -1006,11 +1006,11 @@ mixed attack_damage(object me, object victim, string attack_skill, object weapon
                 if( !living(me) || !living(victim) ) break;
                 if( damage < 1 ) break;
 
-                // 真武宝石30%几率无视一切的dodge、parry特防
-                if( ((objectp(ob = me->query_equipped_object("hand")) && ob->query_magic_item() == "真武宝石") ||
-                     (objectp(ob = me->query_equipped_object("hand",2)) && ob->query_magic_item() == "真武宝石")) && random(100) < 30 )
+                // 真武寶石30%幾率無視一切的dodge、parry特防
+                if( ((objectp(ob = me->query_equipped_object("hand")) && ob->query_magic_item() == "真武寶石") ||
+                     (objectp(ob = me->query_equipped_object("hand",2)) && ob->query_magic_item() == "真武寶石")) && random(100) < 30 )
                 {
-                        damage_info += HIY + ob->name() + HIY "上的真武宝石发出一道耀眼的光芒，另所有人无法辨别眼前事物 ……\n" NOR;
+                        damage_info += HIY + ob->name() + HIY "上的真武寶石發出一道耀眼的光芒，另所有人無法辨別眼前事物 ……\n" NOR;
                 }
                 else
                 {
@@ -1026,7 +1026,7 @@ mixed attack_damage(object me, object victim, string attack_skill, object weapon
                                 foo = SKILL_D(defense_skill)->valid_damage(me, victim, damage, weapon);
                                 if( stringp(foo) ) damage_info += foo; else
                                 if( intp(foo) ) {
-                                        // 发挥化甲术的特效
+                                        // 發揮化甲術的特效
                                         if( delta )
                                                 foo = foo - foo / 100 * (hjs / 50);
                                         else
@@ -1034,7 +1034,7 @@ mixed attack_damage(object me, object victim, string attack_skill, object weapon
                                         damage += foo;
                                 } else if( mapp(foo) ) {
                                         damage_info += foo["msg"];
-                                        // 发挥化甲术的特效
+                                        // 發揮化甲術的特效
                                         if( delta )
                                                 foo["damage"] = foo["damage"] - foo["damage"] / 100 * (hjs / 50);
                                         else
@@ -1051,7 +1051,7 @@ mixed attack_damage(object me, object victim, string attack_skill, object weapon
                                 foo = SKILL_D(defense_skill)->valid_damage(me, victim, damage, weapon);
                                 if( stringp(foo) ) damage_info += foo; else
                                 if( intp(foo) ) {
-                                        // 发挥化甲术的特效
+                                        // 發揮化甲術的特效
                                         if( delta )
                                                 foo = foo - foo / 100 * (hjs / 50);
                                         else
@@ -1059,7 +1059,7 @@ mixed attack_damage(object me, object victim, string attack_skill, object weapon
                                         damage += foo;
                                 } else if( mapp(foo) ) {
                                         damage_info += foo["msg"];
-                                        // 发挥化甲术的特效
+                                        // 發揮化甲術的特效
                                         if( delta )
                                                 foo["damage"] = foo["damage"] - foo["damage"] / 100 * (hjs / 50);
                                         else
@@ -1073,21 +1073,21 @@ mixed attack_damage(object me, object victim, string attack_skill, object weapon
                 if( victim->query_skill_mapped("dodge") == "lingbo-weibu" &&
                      query_temp("immortal", victim) && random(100) < 90 ) {
                         damage = 0;
-                        damage_info += HIY "$n" HIY "施展凌波微步逆天绝招「神光离合」，一道耀眼的光芒环绕全身，顿时让所有的攻击落空 ……\n" NOR;
+                        damage_info += HIY "$n" HIY "施展凌波微步逆天絕招「神光離合」，一道耀眼的光芒環繞全身，頓時讓所有的攻擊落空 ……\n" NOR;
                 }
 
-                // 发挥披风--孔雀圣石的效果
+                // 發揮披風--孔雀聖石的效果
 
-                if( objectp(ob = victim->query_equipped_object("surcoat")) && ob->query_magic_item() == "孔雀圣石" && random(100) < 20 )
+                if( objectp(ob = victim->query_equipped_object("surcoat")) && ob->query_magic_item() == "孔雀聖石" && random(100) < 20 )
                 {
-                        damage_info += HIG + ob->name() + HIG "上的孔雀圣石发出一道奇异的光芒，数道青光将" + victim->name() +
-                                  HIG "笼罩，但见一只发光的孔雀跳跃飞舞，却不让任何人靠近。\n" NOR;
+                        damage_info += HIG + ob->name() + HIG "上的孔雀聖石發出一道奇異的光芒，數道青光將" + victim->name() +
+                                  HIG "籠罩，但見一隻發光的孔雀跳躍飛舞，卻不讓任何人靠近。\n" NOR;
 
-                        // 发挥兵器--真武宝石的效果
-                        if( ((objectp(ob = me->query_equipped_object("hand")) && ob->query_magic_item() == "真武宝石") ||
-                             (objectp(ob = me->query_equipped_object("hand",2)) && ob->query_magic_item() == "真武宝石")) && random(100) > 10 )
-                                damage_info += HIY "可是" + ob->name() + HIY "上的真武宝石发出一道亮光，"
-                                              "那发光的孔雀顿时消失不见。\n" NOR;
+                        // 發揮兵器--真武寶石的效果
+                        if( ((objectp(ob = me->query_equipped_object("hand")) && ob->query_magic_item() == "真武寶石") ||
+                             (objectp(ob = me->query_equipped_object("hand",2)) && ob->query_magic_item() == "真武寶石")) && random(100) > 10 )
+                                damage_info += HIY "可是" + ob->name() + HIY "上的真武寶石發出一道亮光，"
+                                              "那發光的孔雀頓時消失不見。\n" NOR;
                         else
                                damage = 0;
                 }
@@ -1104,7 +1104,7 @@ mixed attack_damage(object me, object victim, string attack_skill, object weapon
                                                 foo = ob->valid_damage(me, victim, damage, weapon);
                                                 if( stringp(foo) ) damage_info += foo; else
                                                 if( intp(foo) ) {
-                                                        // 发挥化甲术的特效
+                                                        // 發揮化甲術的特效
                                                         if( delta )
                                                                 foo = foo - foo / 100 * (hjs / 50);
                                                         else
@@ -1112,7 +1112,7 @@ mixed attack_damage(object me, object victim, string attack_skill, object weapon
                                                         damage += foo;
                                                 } else if( mapp(foo) ) {
                                                         damage_info += foo["msg"];
-                                                        // 发挥化甲术的特效
+                                                        // 發揮化甲術的特效
                                                         if( delta )
                                                                 foo["damage"] = foo["damage"] - foo["damage"] / 100 * (hjs / 50);
                                                         else
@@ -1126,7 +1126,7 @@ mixed attack_damage(object me, object victim, string attack_skill, object weapon
                 if( damage < 1 ) break;
 
 
-                // 特殊内功护体神功
+                // 特殊內功護體神功
                 if( shield = query_temp("shield_force", victim) )
                 {
                         string s_type, s_msg;
@@ -1164,7 +1164,7 @@ mixed attack_damage(object me, object victim, string attack_skill, object weapon
                         if( damage < 1 ) break;
                 }
                 //
-                // 解决用连招刷内力牛的问题
+                // 解決用連招刷內力牛的問題
                 //
                 if( victim->is_neili_cow() ) break;
 
@@ -1195,12 +1195,12 @@ mixed attack_damage(object me, object victim, string attack_skill, object weapon
                                 damage2 = random(damage);
                                 scale = 100 + damage2 * 10 / damage * 10;
                                 damage += damage2;
-                                damage_info += HIY "$N" HIY "福至心灵，有如神助，一击之中竟产生多重伤害，给予$n" HIY "造成「" + scale + "%」的伤害！\n" NOR;
+                                damage_info += HIY "$N" HIY "福至心靈，有如神助，一擊之中竟產生多重傷害，給予$n" HIY "造成「" + scale + "%」的傷害！\n" NOR;
                         }
                 }
 
                 //
-                // 连招攻击容易暴击
+                // 連招攻擊容易暴擊
                 //
                 if( (attack_type == TYPE_LINK /*|| random(100) < me->query_all_buff("critical")*/) && random(100) < 70 )
                 {
@@ -1208,38 +1208,38 @@ mixed attack_damage(object me, object victim, string attack_skill, object weapon
                         damage *= 3;
                 }
 
-                // 致命一击
+                // 致命一擊
                 if( random(100) < me->query_all_buff("fatal_blow") && random(100) < 80 )
                 {
-                        damage_info += HIY "\n$N" HIY "触发致命一击，对$n" HIY "造成" HIG "「400%」" HIY "的伤害！\n" NOR;
+                        damage_info += HIY "\n$N" HIY "觸發致命一擊，對$n" HIY "造成" HIG "「400%」" HIY "的傷害！\n" NOR;
                         damage *= 4;
                 }
 
-                // 发挥兵器-赤炼虎胆的特效（右手）
-                if( objectp(ob = me->query_equipped_object("hand")) && ob->query_magic_item() == "赤炼虎胆" && random(100) < 70 ) {
-                        damage_info += HIR "\n" + ob->name() + HIR "上的赤炼虎胆宝石发出一道奇异的光芒，一只发光的"
-                                                       "的白虎张牙舞爪般的扑向$n" HIR "。\n" NOR;
+                // 發揮兵器-赤煉虎膽的特效（右手）
+                if( objectp(ob = me->query_equipped_object("hand")) && ob->query_magic_item() == "赤煉虎膽" && random(100) < 70 ) {
+                        damage_info += HIR "\n" + ob->name() + HIR "上的赤煉虎膽寶石發出一道奇異的光芒，一隻發光的"
+                                                       "的白虎張牙舞爪般的撲向$n" HIR "。\n" NOR;
                         damage += damage / 5;
                 }
 
-                // 发挥兵器-赤炼虎胆的特效（左手）
-                if( objectp(ob = me->query_equipped_object("hand",2)) && ob->query_magic_item() == "赤炼虎胆" && random(100) < 70 ) {
-                        damage_info += HIR "\n" + ob->name() + HIR "上的赤炼虎胆宝石发出一道奇异的光芒，一只发光的"
-                                                       "的白虎张牙舞爪般的扑向$n" HIR "。\n" NOR;
+                // 發揮兵器-赤煉虎膽的特效（左手）
+                if( objectp(ob = me->query_equipped_object("hand",2)) && ob->query_magic_item() == "赤煉虎膽" && random(100) < 70 ) {
+                        damage_info += HIR "\n" + ob->name() + HIR "上的赤煉虎膽寶石發出一道奇異的光芒，一隻發光的"
+                                                       "的白虎張牙舞爪般的撲向$n" HIR "。\n" NOR;
                         damage += damage / 5;
                 }
 
-                // 发挥腰带-碧海残镢的作用
-                if( objectp(ob = me->query_equipped_object("waist")) && ob->query_magic_item() == "碧海残镢" && random(100) < 70 ) {
-                        damage_info += HIC + ob->name() + HIC "上的碧海残镢青光一闪，「碧海苍穹」呈现，发出震耳般的海啸声 ……\n" NOR;
+                // 發揮腰帶-碧海殘钁的作用
+                if( objectp(ob = me->query_equipped_object("waist")) && ob->query_magic_item() == "碧海殘钁" && random(100) < 70 ) {
+                        damage_info += HIC + ob->name() + HIC "上的碧海殘钁青光一閃，「碧海蒼穹」呈現，發出震耳般的海嘯聲 ……\n" NOR;
                         damage += damage / 5;
                         if( !victim->is_busy() && random(100) < 30 )
                                 victim->start_busy(3);
                 }
 
-                // 发挥护腕-麒麟火的作用
-                if( objectp(ob = me->query_equipped_object("wrists")) && ob->query_magic_item() == "麒麟圣火" && random(100) < 70 ) {
-                        damage_info += HIR + ob->name() + HIR "上的麒麟圣火发闪出火红般的光芒，「麒麟圣火」长久不熄，令人难以喘息 ……\n" NOR;
+                // 發揮護腕-麒麟火的作用
+                if( objectp(ob = me->query_equipped_object("wrists")) && ob->query_magic_item() == "麒麟聖火" && random(100) < 70 ) {
+                        damage_info += HIR + ob->name() + HIR "上的麒麟聖火發閃出火紅般的光芒，「麒麟聖火」長久不熄，令人難以喘息 ……\n" NOR;
                         damage += damage / 5;
                         if( query("neili", victim) >= 300 )
                         {
@@ -1249,9 +1249,9 @@ mixed attack_damage(object me, object victim, string attack_skill, object weapon
                 }
 
                 /*
-                // 兵器有透甲能力。如透甲锥之类的暗器
+                // 兵器有透甲能力。如透甲錐之類的暗器
                 if(objectp(weapon) && weapon->through_armor())
-                        break;       // 硬功的防护作用。armor_vs_force
+                        break;       // 硬功的防護作用。armor_vs_force
                 absp = skill_power(victim, "iron-cloth", SKILL_USAGE_ABSORB);
                 if( absp )
                 {
@@ -1311,36 +1311,36 @@ varargs mixed inflict_damage(object me, object victim, string attack_skill, int 
 
                 martial_skill = me->query_skill_prepared(attack_skill);
 
-                // 发挥靴子-流星赶月
-                if( objectp(ob = victim->query_equipped_object("boots")) && ob->query_magic_item() == "流星赶月" && random(100) < 70 )
+                // 發揮靴子-流星趕月
+                if( objectp(ob = victim->query_equipped_object("boots")) && ob->query_magic_item() == "流星趕月" && random(100) < 70 )
                 {
-                        damage_info += HIW "刹那间，" + ob->name() + HIW "发出刺眼的金光，神技「流星赶月」已然激活，周身幻出无数身影，化解了二成的伤害！\n" NOR;
+                        damage_info += HIW "剎那間，" + ob->name() + HIW "發出刺眼的金光，神技「流星趕月」已然激活，周身幻出無數身影，化解了二成的傷害！\n" NOR;
                         damage -= damage / 5;
                 }
 
-                // 发挥头盔-圣龙之魂
-                if( objectp(ob = victim->query_equipped_object("head")) && ob->query_magic_item() == "圣龙之魂" && random(100) < 70 )
+                // 發揮頭盔-聖龍之魂
+                if( objectp(ob = victim->query_equipped_object("head")) && ob->query_magic_item() == "聖龍之魂" && random(100) < 70 )
                 {
-                        damage_info += HIC "刹那间，" + ob->name() + HIC "发出刺眼的红光，并不停的颤抖，神技「圣龙之魂」已然发出，顷刻间，化解了二成的伤害！\n" NOR;
+                        damage_info += HIC "剎那間，" + ob->name() + HIC "發出刺眼的紅光，並不停的顫抖，神技「聖龍之魂」已然發出，頃刻間，化解了二成的傷害！\n" NOR;
                         damage -= damage / 5;
                 }
 
-                // 发挥盔甲-玄武圣石
-                if( objectp(ob = victim->query_equipped_object("armor")) && ob->query_magic_item() == "玄武圣石" && random(100) < 70 )
+                // 發揮盔甲-玄武聖石
+                if( objectp(ob = victim->query_equipped_object("armor")) && ob->query_magic_item() == "玄武聖石" && random(100) < 70 )
                 {
-                        damage_info += HIB "刹那间，" + ob->name() + HIC "发出刺眼的蓝光，"+ob->name()+"幻化成一块玄武甲，消弱$N的大部分攻击。\n" NOR;
+                        damage_info += HIB "剎那間，" + ob->name() + HIC "發出刺眼的藍光，"+ob->name()+"幻化成一塊玄武甲，消弱$N的大部分攻擊。\n" NOR;
                         damage -= damage / 5;
                 }
 
-                // 发挥衣服-雪地圣音
-                if( objectp(ob = victim->query_equipped_object("cloth")) && ob->query_magic_item() == "雪地圣音" && random(100) < 70 )
+                // 發揮衣服-雪地聖音
+                if( objectp(ob = victim->query_equipped_object("cloth")) && ob->query_magic_item() == "雪地聖音" && random(100) < 70 )
                 {
-                        damage_info += HIW "刹那间，" + ob->name() + HIW "发出刺眼的白光，天色突变，漫天飞雪狂舞，无数雪精自天而下，纷纷落向$n，然后形成一道屏障，阻挡$N的大部分攻击。\n" NOR;
+                        damage_info += HIW "剎那間，" + ob->name() + HIW "發出刺眼的白光，天色突變，漫天飛雪狂舞，無數雪精自天而下，紛紛落向$n，然後形成一道屏障，阻擋$N的大部分攻擊。\n" NOR;
                         damage -= damage / 5;
                 }
 
                 /*
-                // 以伤换内力或精力
+                // 以傷換內力或精力
                 if( shield = query_temp("afm_abs_shield", victim) )
                 {
                         int s_ratio, s_force;
@@ -1377,7 +1377,7 @@ varargs mixed inflict_damage(object me, object victim, string attack_skill, int 
                 */
 
 
-                // 发挥化甲术的特效
+                // 發揮化甲術的特效
                 if( attack_skill == "unarmed" && martial_skill == "xiantian-gong"
                 ||  martial_skill == "quanzhen-jian" )
                         armor -= armor / 100 * hjs / 50;
@@ -1391,7 +1391,7 @@ varargs mixed inflict_damage(object me, object victim, string attack_skill, int 
                 if( random(100) >= me->query_all_buff("through_armor") )
                         wounded -= random(armor);
 
-                // 昆仑无极的穿透作用
+                // 崑崙無極的穿透作用
                 if( martial_skill == "qiankun-jian" && me->query_skill("kunlun-wuji", 1) >= 125 )
                         wounded += me->query_skill("kunlun-wuji", 1) / 125 * 100;
 
@@ -1414,7 +1414,7 @@ varargs mixed inflict_damage(object me, object victim, string attack_skill, int 
 
                 damage = victim->receive_damage("qi", damage, me);
                 if( damage < 1 )
-                        damage_info += BLU "$n" BLU "神奇的化解了$N" BLU "这一击的物理伤害！\n" NOR;
+                        damage_info += BLU "$n" BLU "神奇的化解了$N" BLU "這一擊的物理傷害！\n" NOR;
 
                 if( wounded > 0 &&
                         (has_weapon || me->is_killing(your["id"]) || random(3) == 1) ) {
@@ -1423,12 +1423,12 @@ varargs mixed inflict_damage(object me, object victim, string attack_skill, int 
                 } else  wounded = 0;
 
 
-                // 奇门玄术的反伤效果
+                // 奇門玄術的反傷效果
                 if( victim->query_skill("qimen-xuanshu", 1) >= 100 )
                 {
                         if( random(victim->query_skill("qimen-xuanshu", 1)) > 100 && random(3) == 1 )
                         {
-                                damage_info += HIG "$n" HIG "施展出「奇门玄术」的反伤效果，使得$N" HIG "自身同时也受到损伤。\n" NOR;
+                                damage_info += HIG "$n" HIG "施展出「奇門玄術」的反傷效果，使得$N" HIG "自身同時也受到損傷。\n" NOR;
                                 me->receive_damage("qi", damage * victim->query_skill("qimen-xuanshu", 1) / 5000, victim);
                                 me->receive_wound("qi", wounded * victim->query_skill("qimen-xuanshu", 1) / 5000, victim);
 
@@ -1446,7 +1446,7 @@ varargs mixed inflict_damage(object me, object victim, string attack_skill, int 
                         }
                 }
 
-                // 血影大法伤内力效果
+                // 血影大法傷內力效果
                 if( martial_skill == "xuedao-daofa" && me->query_skill("xueying-dafa", 1) >= 1 )
                 {
                         addn("neili", -1 * (me->query_skill("xueying-dafa", 1) + me->query_skill("xuedao-daofa", 1)) / 12, victim);
@@ -1454,23 +1454,23 @@ varargs mixed inflict_damage(object me, object victim, string attack_skill, int 
                                 set("neili", 0, victim);
                 }
 
-                // 极品防具伤害反射效果
+                // 極品防具傷害反射效果
                 avoid = victim->query_all_buff("counter_damage");
                 if( random(100) < avoid  ) {
                         /*
                         if( n = sizeof(eqs) )
                                 for( i=0;i<n;i++ )
                                         if( eqs[i]->query_equipping_buff("counter_damage") )
-                                                damage_info += BLINK + HIM + eqs[i]->name() + BLINK + HIM "发出一道奇异眩目的红光袭向$N！\n" NOR;
+                                                damage_info += BLINK + HIM + eqs[i]->name() + BLINK + HIM "發出一道奇異眩目的紅光襲向$N！\n" NOR;
                         */
-                        damage_info += BLINK + HIM + "$n" + BLINK + HIM "的装备发出一道奇异眩目的红光袭向$N！\n" NOR;
+                        damage_info += BLINK + HIM + "$n" + BLINK + HIM "的裝備發出一道奇異眩目的紅光襲向$N！\n" NOR;
                         me->receive_damage("qi", damage/5, victim);
                         me->receive_wound("qi", wounded/5, victim);
 
                         damage_info += report_status(me, 1);
                 }
 
-                // 内功反震效果
+                // 內功反震效果
                 if( query_temp("damage_shield", victim) )
                 {
                         // Ok, we don't want it to be exploited... on players
@@ -1502,7 +1502,7 @@ varargs mixed inflict_damage(object me, object victim, string attack_skill, int 
                                 else
                                         avoid = query_temp("heal_shield/amount",victim);
 
-                                me->receive_full(query_temp("heal_shield/type",victim),avoid); // 恢复气血
+                                me->receive_full(query_temp("heal_shield/type",victim),avoid); // 恢復氣血
                                 damage_info += query_temp("heal_shield/msg",victim);
                         }
                         victim->stop_busy();
@@ -1521,7 +1521,7 @@ int reset_combat_cache(object me)
 }
 
 //
-// 攻击力计算
+// 攻擊力計算
 //
 varargs int attack_value(object me, string skill, int delta)
 {
@@ -1542,17 +1542,17 @@ varargs int attack_value(object me, string skill, int delta)
         level = me->query_skill(skill);
         attack += level * buff;
 
-        // 忙乱
+        // 忙亂
         if( me->is_busy() ) attack /= 3;
 
-        // 虚弱
+        // 虛弱
         if( me->is_weak() ) attack /= 2;
 
-        // 迟缓
+        // 遲緩
         if( me->is_freeze() ) attack /= 10;
 
         /*
-        // 手部受伤，使用unarmed，减半
+        // 手部受傷，使用unarmed，減半
         if( skill == "unarmed" && (me->query_limb_wound("右手") ||
             me->query_limb_wound("左手")) )
                 attack /= 2;
@@ -1564,7 +1564,7 @@ varargs int attack_value(object me, string skill, int delta)
 }
 
 //
-// 防御力计算
+// 防禦力計算
 //
 varargs int defend_value(object me, string skill, int delta)
 {
@@ -1585,17 +1585,17 @@ varargs int defend_value(object me, string skill, int delta)
         level = me->query_skill(skill);
         defend += level * buff;
 
-        // 忙乱
+        // 忙亂
         if( me->is_busy() ) defend /= 3;
 
-        // 虚弱
+        // 虛弱
         if( me->is_weak() ) defend /= 2;
 
-        // 迟缓
+        // 遲緩
         if( me->is_freeze()) defend /= 10;
 
         /*
-        // 手部受伤，使用unarmed，减半
+        // 手部受傷，使用unarmed，減半
         if( skill == "unarmed" && (me->query_limb_wound("右手") ||
             me->query_limb_wound("左手")) )
                 defend /= 2;
@@ -1607,11 +1607,11 @@ varargs int defend_value(object me, string skill, int delta)
 }
 
 //
-// 战斗计算
+// 戰鬥計算
 //
 protected int attact_result(object me, object victim, int ap, int dp, int pp)
 {
-	int ratio = 50;	// + 招架的可能性大 - 躲闪的可能性大.
+	int ratio = 50;	// + 招架的可能性大 - 躲閃的可能性大.
 
 	object weapon_me,weapon_v;
 	string result;
@@ -1623,11 +1623,11 @@ protected int attact_result(object me, object victim, int ap, int dp, int pp)
 
         weapon_v  = query_temp("weapon", victim);
 
-        // 判断对于此招是躲闪还是招架.
-        if( weapon_me )  // 进攻者有兵器?
+        // 判斷對於此招是躲閃還是招架.
+        if( weapon_me )  // 進攻者有兵器?
         {
 	        ratio -= 5;
-	        //if( query("falg", weapon_me) & EDGED ) // 锋利的兵器
+	        //if( query("falg", weapon_me) & EDGED ) // 鋒利的兵器
 	        //	ratio -= 5;
         }
 
@@ -1637,11 +1637,11 @@ protected int attact_result(object me, object victim, int ap, int dp, int pp)
 	        //if( query("flag", weapon_v) & TWO_HANDED)
 	        //	ratio += 5;
 	        if( query_temp("weapon", victim)
-		    &&  query_temp("secondary_weapon", victim) ) // 双手都有兵器,招架可能性大.
+		    &&  query_temp("secondary_weapon", victim) ) // 雙手都有兵器,招架可能性大.
 		        ratio += 8;
         }
 
-        if( pp > dp ) // 招架技能高于躲闪技能
+        if( pp > dp ) // 招架技能高於躲閃技能
 	        ratio += 10;
         else
 	        ratio -= 10;
@@ -1660,10 +1660,10 @@ protected int attact_result(object me, object victim, int ap, int dp, int pp)
 	else
 	{
 		if( range_random((ap + dp)/2, ap + dp) < dp )
-			return RESULT_DODGE; // 躲闪
+			return RESULT_DODGE; // 躲閃
 	}
 
-	return RESULT_ATTACK; // 击中
+	return RESULT_ATTACK; // 擊中
 }
 
 
@@ -1717,7 +1717,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
         }
 
         // 新手村不可以pk
-        // 杀万年乌龟处不能PK
+        // 殺萬年烏龜處不能PK
         if( userp(me) && userp(victim) && query("no_pk", env) )
         {
                 message_vision(HIW "$N" HIW "和$n" HIW "各自退了一步，收住了招。\n" NOR,
@@ -1727,7 +1727,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
                 return 0;
         }
 
-        // 在马上无法战斗
+        // 在馬上無法戰鬥
         /*
         if( objectp(query_temp("is_riding", me)) )
                 "/cmds/std/unride"->main(me);
@@ -1799,26 +1799,26 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
         } else if( query_temp("action_flag", me) == 0){
                 result = "\n" + action["action"] + "！\n";
         } else
-                result = WHT "\n$N攻势凌厉无匹，瞬间又已攻出一招。\n" NOR + action["action"] + "！\n";
+                result = WHT "\n$N攻勢凌厲無匹，瞬間又已攻出一招。\n" NOR + action["action"] + "！\n";
         //
         // (2) Prepare AP, DP for checking if hit.
         //
         if( martial_skill = me->query_skill_mapped(attack_skill) )
-                limb = SKILL_D(martial_skill)->query_attack_limb(me, victim); // 一些技能专门攻击特定部位
+                limb = SKILL_D(martial_skill)->query_attack_limb(me, victim); // 一些技能專門攻擊特定部位
         else
                 martial_skill = attack_skill;
 
         if( !limb ) {
                 limbs=query("limbs", victim);
                 if( !arrayp(limbs) ) {
-                        limbs = ({ "身体" });
+                        limbs = ({ "身體" });
                         set("limbs", limbs, victim);
                 }
                 limb = limbs[random(sizeof(limbs))];
         }
 
 
-        // 阵法防御
+        // 陣法防禦
         if( victim->in_array() && victim->query_array_status() &&
             (random(100) < (victim->query_array_level() / 100 + 60))) {
                 if( ((your["qi"] < your["max_qi"] * 2 / 5) ||
@@ -1828,33 +1828,33 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
                 }
         }
         /*
-         * 两套技能系统，第一套是采用skill对应combat中数据，则skill中的dodge,parry为影响自己的防御数值
-         * 第二套采用skill技能本身的写法数据，则skill中的dodge,parry为影响对手防御的数值
-         * 如果#define USE_SKILLS_COMBAT则为采用第一套，否则视为采用第二套，本游戏采用第二套
+         * 兩套技能系統，第一套是採用skill對應combat中數據，則skill中的dodge,parry為影響自己的防禦數值
+         * 第二套採用skill技能本身的寫法數據，則skill中的dodge,parry為影響對手防禦的數值
+         * 如果#define USE_SKILLS_COMBAT則為採用第一套，否則視為採用第二套，本遊戲採用第二套
          */
         fight = ([]);
 #ifdef USE_SKILLS_COMBAT
         // 第一套
-        if( att = SKILLS_D->skill_query_power(martial_skill) ) { // combat 数值
-                fight["attack"] = to_int(att[ATTACK]);      // 攻击时候增加自己的命中
+        if( att = SKILLS_D->skill_query_power(martial_skill) ) { // combat 數值
+                fight["attack"] = to_int(att[ATTACK]);      // 攻擊時候增加自己的命中
                 my_temp["fight"] = copy(fight);
         } else {
 #endif
         // 第二套
                 if( intp(action["attack"]) )
-                        fight["attack"] = action["attack"]; // 攻击时候增加自己的命中
+                        fight["attack"] = action["attack"]; // 攻擊時候增加自己的命中
                 my_temp["fight"] = copy(fight);
                 fight = ([]);
-                if( intp(action["dodge"]) )   // 负值越大，对手越难躲闪
-                        fight["dodge"] = action["dodge"];   // 攻击时候影响对手的躲闪
-                if( intp(action["parry"]) )   // 负值越大，对手越难招架
-                        fight["parry"] = action["parry"];   // 攻击时候影响对手的招架
+                if( intp(action["dodge"]) )   // 負值越大，對手越難躲閃
+                        fight["dodge"] = action["dodge"];   // 攻擊時候影響對手的躲閃
+                if( intp(action["parry"]) )   // 負值越大，對手越難招架
+                        fight["parry"] = action["parry"];   // 攻擊時候影響對手的招架
                 your_temp["fight"] = copy(fight);
 #ifdef USE_SKILLS_COMBAT
         }
 #endif
         //
-        // 连招攻击
+        // 連招攻擊
         //
         if( attack_type == TYPE_LINK && query_temp("combat_cache/ap_value", me) ) {
                 ap = query_temp("combat_cache/ap_value", me);
@@ -1863,16 +1863,16 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
         {
                 ap = attack_value(me, attack_skill, SKILL_USAGE_ATTACK, 0);
 
-                if( sizeof(me->query_enemy()) > 1 )  // 敌人越多，命中降低
+                if( sizeof(me->query_enemy()) > 1 )  // 敵人越多，命中降低
                         ap = ap * 9 / (7 + sizeof(me->query_enemy())*2);
 
-                if( !me->visible(victim) ) ap /= 10; // 敌人隐身
-                if( member_array(limb, danger_limbs) != -1 ) // 攻击危险部位命中降低
+                if( !me->visible(victim) ) ap /= 10; // 敵人隱身
+                if( member_array(limb, danger_limbs) != -1 ) // 攻擊危險部位命中降低
                         ap -= ap / 10;
-                if( my["character"] == "阴险奸诈" )
+                if( my["character"] == "陰險奸詐" )
                         ap += ap * 20 / 100;
 
-                if( victim->in_array() ) ap /= 2; // 对方在阵法中降低命中
+                if( victim->in_array() ) ap /= 2; // 對方在陣法中降低命中
 
                 if( attack_type == TYPE_LINK ) set_temp("combat_cache/ap_value", ap, me);
         }
@@ -1881,9 +1881,9 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
         defense_skill = victim->query_skill_mapped("dodge");
 
 #ifdef USE_SKILLS_COMBAT
-        if( defense_skill && (def = SKILLS_D->skill_query_power(defense_skill)) ) { // combat 数值
+        if( defense_skill && (def = SKILLS_D->skill_query_power(defense_skill)) ) { // combat 數值
                 fight = ([]);
-                fight["dodge"] = to_int(def[DODGE]);  // 防御时候的躲闪
+                fight["dodge"] = to_int(def[DODGE]);  // 防禦時候的躲閃
                 your_temp["fight"] = copy(fight);
         }
 #endif
@@ -1908,9 +1908,9 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
         defense_skill = victim->query_skill_mapped("parry");
 
 #ifdef USE_SKILLS_COMBAT
-        if( defense_skill && (def = SKILLS_D->skill_query_power(defense_skill)) ) { // combat 数值
+        if( defense_skill && (def = SKILLS_D->skill_query_power(defense_skill)) ) { // combat 數值
                 fight = ([]);
-                fight["parry"] = to_int(def[PARRY]);  // 防御时候的招架
+                fight["parry"] = to_int(def[PARRY]);  // 防禦時候的招架
                 your_temp["fight"] = copy(fight);
         }
 #endif
@@ -1940,7 +1940,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
         }
 
         //
-        // 计算战斗结果。
+        // 計算戰鬥結果。
         //
         damage_info = "";
 
@@ -1955,14 +1955,14 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
 	{
 	case RESULT_PROTECT :
 		if( !query_temp("protectors_msg", victim) )
-                        result += HIC"$n身边映出一道蓝色的光环，将$N的招式挡在了外面\n"NOR;
+                        result += HIC"$n身邊映出一道藍色的光環，將$N的招式擋在了外面\n"NOR;
 		else
 			result += query_temp("protectors_msg", victim);
 
 	        damage = RESULT_PROTECT;
 		break;
 
-	case RESULT_DODGE   :	// 躲闪
+	case RESULT_DODGE   :	// 躲閃
 	        defense_skill = victim->query_skill_mapped("dodge");
 	        if( !defense_skill ) defense_skill = "dodge";
                         result += SKILL_D(defense_skill)->query_dodge_msg(limb, victim);
@@ -1971,23 +1971,23 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
 		break;
 
         case RESULT_PARRY   :   // 招架
-                // 双手都拿有武器招架住，应该反击几率还是比较大的，予 50% 反击几率
-	        // 拿的是双手武器招架，反击我想应该比较困难，予反击几率 20%
-		// 如一手武器一手拳脚，或双手空拳，是否能反击比较灵活，予反击几率 30%
+                // 雙手都拿有武器招架住，應該反擊幾率還是比較大的，予 50% 反擊幾率
+	        // 拿的是雙手武器招架，反擊我想應該比較困難，予反擊幾率 20%
+		// 如一手武器一手拳腳，或雙手空拳，是否能反擊比較靈活，予反擊幾率 30%
 	        if( objectp(weapon_v = query_temp("secondary_weapon", victim)) )
 	        {
 		        /*
-		        if( query("flag", weapon_v) & 2 ) // 双手各拿有武器
+		        if( query("flag", weapon_v) & 2 ) // 雙手各拿有武器
 		        {
 			        if ( random(100) < 50 ) att_back = 1;
 		        }
-		        else // 拿的双手武器
+		        else // 拿的雙手武器
 		        */
 		        {
 			        if ( random(100) < 20 ) att_back = 1;
 		        }
 	        }
-	        else // 一手武器或双手空拳
+	        else // 一手武器或雙手空拳
 	        {
 	                if( random(100) < 30 ) att_back = 1;
 	        }
@@ -2010,7 +2010,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
                                                 weapon2->move(environment(victim));
                                                 set("consistence", 0, weapon2);
 
-                                                parry_msg += HIW "$n" HIW "只觉得虎口剧震，兵器脱手而出！。\n" NOR;
+                                                parry_msg += HIW "$n" HIW "只覺得虎口劇震，兵器脫手而出！。\n" NOR;
 
                                                 victim->reset_action();
                                         }
@@ -2070,7 +2070,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
                 damage = RESULT_PARRY;
 		break;
 
-	case RESULT_ATTACK  : // 击中
+	case RESULT_ATTACK  : // 擊中
 
         //
         // (3) Fight!
@@ -2152,27 +2152,27 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
                 result = replace_string(result, "$w", "手指" );
         else if( attack_skill == "strike" || attack_skill == "claw" )
                 result = replace_string(result, "$w", "手掌" );
-        else    result = replace_string(result, "$w", "拳头" );
+        else    result = replace_string(result, "$w", "拳頭" );
 
         message_combatd(result, me, victim, damage_info);
 
         if( damage > 0 ) {
 #if INSTALL_COMBAT_TEST
                 if( userp(me)/* && query("env/combat_test", me)*/ )
-                        tell_object(me, HIW "( 你对" +
+                        tell_object(me, HIW "( 你對" +
                                         query("name", victim)+HIW"造成"+
-                                        damage + "点伤害，" +
-                                        wounded + "点创伤。)\n" NOR);
+                                        damage + "點傷害，" +
+                                        wounded + "點創傷。)\n" NOR);
                 if( userp(victim)/* && query("env/combat_test", victim)*/ )
                         tell_object(victim, HIG "( 你受到" +
-                                        query("name", me)+HIG+damage+"点伤害，"+
-                                        wounded + "点创伤。)\n" NOR);
+                                        query("name", me)+HIG+damage+"點傷害，"+
+                                        wounded + "點創傷。)\n" NOR);
 #endif
                 if( attack == 1 ) {
                         switch( limb ) {
-                        // 头、颈受伤会伤一些神。
-                        case "头部":
-                        case "颈部":
+                        // 頭、頸受傷會傷一些神。
+                        case "頭部":
+                        case "頸部":
                                 damage /= 4;
                                 if( damage < 1 )
                                         damage = 1;
@@ -2186,9 +2186,9 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
                                 else
                                         tell_object(victim, head_damage_me_msg[0]);
                                 break;
-                        // 击中这些部位真气会受到振荡。
+                        // 擊中這些部位真氣會受到振盪。
                         case "胸口":
-                        case "后心":
+                        case "後心":
                         case "小腹":
                                 if( query("max_neili", victim) && query("neili", victim)){
                                         damage /= 4;
@@ -2213,7 +2213,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
                         victim->receive_limbs_wound(limb, damage);
                 }
 
-                // 显示玩家精气、气血
+                // 顯示玩家精氣、氣血
                 /*
                 if( query("env/verbose", me) )
                 {
@@ -2224,7 +2224,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
                         tell_object(me, SETDISPLAY(21,50)+HIY"┏--------------------------┓");
                         tell_object(me, SETDISPLAY(22,50)+HIY"┃");
                         tell_object(me, SETDISPLAY(22,52)+HIG"精："HIR+query("jing",me)+"/"+query("eff_jing",me));
-                        tell_object(me, SETDISPLAY(22,65)+HIG"气："HIR+query("qi",me)+"/"+query("eff_qi",me));
+                        tell_object(me, SETDISPLAY(22,65)+HIG"氣："HIR+query("qi",me)+"/"+query("eff_qi",me));
                         tell_object(me, SETDISPLAY(22,78)+HIY"┃");
                         tell_object(me, SETDISPLAY(23,50)+HIY"┗--------------------------┛"NOR);
                         tell_object(me, REST);
@@ -2232,7 +2232,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
                 */
 
                 if( query("special_skill/monster", victim) && random(5) == 1){
-                        message_vision(HIG "$N" HIG "施展出「天妖临世」，$n" HIG "自身同时也受到损伤。\n" NOR, victim, me);
+                        message_vision(HIG "$N" HIG "施展出「天妖臨世」，$n" HIG "自身同時也受到損傷。\n" NOR, victim, me);
                         me->receive_damage("qi", damage, victim);
                         if( random(2) == 1 ) me->receive_wound("qi", wounded, victim);
                         damage_info = report_status(me, 1);
@@ -2240,21 +2240,21 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
                 }
 
                 if( query("special_skill/demon", victim) && random(5) == 1 )
-                        message_vision(HIW "$N" HIW "强提一口丹田之气，真气运转之下，力保心脉不死！\n" NOR, victim, me);
+                        message_vision(HIW "$N" HIW "強提一口丹田之氣，真氣運轉之下，力保心脈不死！\n" NOR, victim, me);
                         victim->receive_curing("qi", victim->query("max_qi") / 3);
 
                 if( victim->is_busy() ) {
                       victim->interrupt_me(me, 80 + random(40));
-                        //message_vision(HIW "$N行动微觉受制，急忙默运真气，移开了周身要穴！\n" NOR, victim);
+                        //message_vision(HIW "$N行動微覺受制，急忙默運真氣，移開了周身要穴！\n" NOR, victim);
                 }
 
                 if( victim->query_condition("no_perform") && !random(6) ) {
-                        message_vision(HIY"$N发现自己气血运行不畅，急忙默运真气，硬是压下了翻腾不已的气血！\n"NOR, victim);
+                        message_vision(HIY"$N發現自己氣血運行不暢，急忙默運真氣，硬是壓下了翻騰不已的氣血！\n"NOR, victim);
                         victim->clear_condition("no_perform");
                 }
 
                 if( me->query_condition("no_exert") && !random(6) ) {
-                        message_vision(HIC"$N发现自己内息不匀，急忙默运真气，调理内息！\n"NOR, victim);
+                        message_vision(HIC"$N發現自己內息不勻，急忙默運真氣，調理內息！\n"NOR, victim);
                         victim->clear_condition("no_exert");
                 }
 
@@ -2273,7 +2273,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
                         }
                 }
                 // if(me->query("special_skill/tianmo") && random(5) == 1) {
-                //         message_vision(HIR"$N脑中浮现出天魔解体时所领会的武学精华，以敌血补己气，攻势更显凌厉！\n" NOR, me, victim);
+                //         message_vision(HIR"$N腦中浮現出天魔解體時所領會的武學精華，以敵血補己氣，攻勢更顯凌厲！\n" NOR, me, victim);
                 //         me->receive_curing("qi", (me->query("max_qi")*(int)me->query("special_skill/tianmo",1)*2/100));
                 //         do_attack(me, victim, weapon, 3);
                 // }
@@ -2285,7 +2285,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
         else
                 WEAPON_D->bash_weapon(me, victim, weapon, damage);
 
-        if( n = query_temp("buff/berserk_attack", victim) ) {  // 反击
+        if( n = query_temp("buff/berserk_attack", victim) ) {  // 反擊
                 for ( int i=0;i<n;i++ ) {
                         if ( !living(victim) || victim->is_busy() ) break;
                         if ( your["weapon"] && (victim->query_skill_mapped(query("skill_type",your["weapon"]))== query_temp("buff/berserk_skill", victim))) {
@@ -2297,33 +2297,33 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
                 //return;         // Here we return, fixed n hits is good enough.
         }
 
-        //delete_temp("bonus", me; // 绝招组合特效发挥完毕
+        //delete_temp("bonus", me; // 絕招組合特效發揮完畢
 
-        // 是否进行反击
+        // 是否進行反擊
         // See if the victim can make a riposte.
         if( att_back || (attack_type == TYPE_REGULAR &&
             damage < 1 &&
             your_temp["guarding"]) ) {
                 your_temp["guarding"];
                 if( random(my["dex"]) < 10 ) {
-                        message_combatd("$N一击不中，露出了破绽！\n",
+                        message_combatd("$N一擊不中，露出了破綻！\n",
                                         me, 0, "");
                         do_attack(victim, me, your_temp["weapon"],
                                   TYPE_QUICK);
                 } else {
-                        message_combatd("$N见$n攻击失误，趁机发动攻击！\n",
+                        message_combatd("$N見$n攻擊失誤，趁機發動攻擊！\n",
                                         victim, me, "");
                         do_attack(victim, me, your_temp["weapon"],
                                   TYPE_RIPOSTE);
                 }
         }
 
-        if( attack_type==TYPE_REGULAR &&        // 正常进攻
-            damage > 1 &&                       // 受到伤害
+        if( attack_type==TYPE_REGULAR &&        // 正常進攻
+            damage > 1 &&                       // 受到傷害
             /*random(query("kar",me)+query("kar",victim)) < query("kar",me) &&
             random(20) <= 10*/
             query("combat_exp", me) > query("combat_exp", victim) ) {
-                message_combatd("\n$N一击得手，乘胜追击继续进攻。\n", me, 0, "");
+                message_combatd("\n$N一擊得手，乘勝追擊繼續進攻。\n", me, 0, "");
                 do_attack(me, victim, my_temp["weapon"], TYPE_RIPOSTE);
         }
 }
@@ -2376,7 +2376,7 @@ varargs string do_damage(object me, object target, mixed type,
                 return "";
         }
 
-        // 在马上无法战斗
+        // 在馬上無法戰鬥
         /*
         if( objectp(query_temp("is_riding", me)) )
                 "/cmds/std/unride"->main(me);
@@ -2448,7 +2448,7 @@ varargs string do_damage(object me, object target, mixed type,
         if( query("yuanshen_level", me) )
                damage += damage * query("yuanshen_level", me) / 100;
 
-        // 发挥昆仑无极的威力
+        // 發揮崑崙無極的威力
         if( me->query_skill("kunlun-wuji", 1) >= 100 )
                 damage += me->query_skill("kunlun-wuji", 1);
 
@@ -2466,10 +2466,10 @@ varargs string do_damage(object me, object target, mixed type,
                     attack_skill == "lonely-sword") )
                         break;
 
-                if( ((objectp(ob = me->query_equipped_object("hand")) && ob->query_magic_item() == "真武宝石") ||
-                     (objectp(ob = me->query_equipped_object("hand",2)) && ob->query_magic_item() == "真武宝石")) && random(100) < 30 )
+                if( ((objectp(ob = me->query_equipped_object("hand")) && ob->query_magic_item() == "真武寶石") ||
+                     (objectp(ob = me->query_equipped_object("hand",2)) && ob->query_magic_item() == "真武寶石")) && random(100) < 30 )
                 {
-                        msg += HIY + ob->name() + HIY "上的真武宝石发出一道耀眼的光芒，另所有人无法辨别眼前事物 ……\n" NOR;
+                        msg += HIY + ob->name() + HIY "上的真武寶石發出一道耀眼的光芒，另所有人無法辨別眼前事物 ……\n" NOR;
                 }
                 else
                 {
@@ -2490,7 +2490,7 @@ varargs string do_damage(object me, object target, mixed type,
                                 if( damage > 0 && random(target->query_skill("parry")) > me->query_skill("force") / 2 )
                                 {
                                         damage = 0;
-                                        msg += HIM "然而，$n" HIM "留有后手，招数再度忽然的一变，摹可明方，内力四处回旋，无形中牵引着$N" HIM "的招式改变方向！\n" NOR;
+                                        msg += HIM "然而，$n" HIM "留有後手，招數再度忽然的一變，摹可明方，內力四處迴旋，無形中牽引著$N" HIM "的招式改變方向！\n" NOR;
                                 }
                         }
 
@@ -2498,14 +2498,14 @@ varargs string do_damage(object me, object target, mixed type,
                                 foo = SKILL_D(skill)->valid_damage(me, target, damage, weapon);
                                 if( stringp(foo) ) msg += foo; else
                                 if( intp(foo) ) {
-                                        // 发挥化甲术的特效
+                                        // 發揮化甲術的特效
                                         if( hjs > 100 )
                                                 foo = foo - foo / 100 * hjs / 100;
                                         damage += foo;
                                 } else
                                 if( mapp(foo) ) {
                                         msg += foo["msg"];
-                                        // 发挥化甲术的特效
+                                        // 發揮化甲術的特效
                                         if( hjs > 100 )
                                                 foo["damage"] = foo["damage"] - foo["damage"] / 100 * hjs / 100;
                                         damage += foo["damage"];
@@ -2530,14 +2530,14 @@ varargs string do_damage(object me, object target, mixed type,
                                 foo = SKILL_D(skill)->valid_damage(me, target, damage, weapon);
                                 if( stringp(foo) ) msg += foo; else
                                 if( intp(foo) ) {
-                                        // 发挥化甲术的特效
+                                        // 發揮化甲術的特效
                                         if( hjs > 100 )
                                                 foo = foo - foo / 100 * hjs / 100;
                                         damage += foo;
                                 } else
                                 if( mapp(foo) ) {
                                         msg += foo["msg"];
-                                        // 发挥化甲术的特效
+                                        // 發揮化甲術的特效
                                         if( hjs > 100 )
                                                 foo["damage"] = foo["damage"] - foo["damage"] / 100 * hjs / 100;
                                         damage += foo["damage"];
@@ -2546,7 +2546,7 @@ varargs string do_damage(object me, object target, mixed type,
                 }
                 if( damage < 1) break;
 
-                // 特殊内功金钢不坏体保护功能
+                // 特殊內功金鋼不壞體保護功能
                 if( shield = query_temp("shield_force", target) )
                 {
                         s_type = shield["type"];
@@ -2576,14 +2576,14 @@ varargs string do_damage(object me, object target, mixed type,
                         foo = cloth->valid_damage(me, target, damage, weapon);
                         if( stringp(foo) ) msg += foo; else
                         if( intp(foo) ) {
-                                // 发挥化甲术的特效
+                                // 發揮化甲術的特效
                                 if( hjs > 100 )
                                         foo = foo - foo / 100 * hjs / 100;
                                 damage += foo;
                         } else
                         if( mapp(foo) ) {
                                 msg += foo["msg"];
-                                // 发挥化甲术的特效
+                                // 發揮化甲術的特效
                                 if( hjs > 100 )
                                         foo["damage"] = foo["damage"] - foo["damage"] / 100 * hjs / 100;
                                 damage += foo["damage"];
@@ -2592,14 +2592,14 @@ varargs string do_damage(object me, object target, mixed type,
                         foo = cloth->valid_damage(me, target, damage, weapon);
                         if( stringp(foo) ) msg += foo; else
                         if( intp(foo) ) {
-                                // 发挥化甲术的特效
+                                // 發揮化甲術的特效
                                 if( hjs > 100 )
                                         foo = foo - foo / 100 * hjs / 100;
                                 damage += foo;
                         } else
                         if( mapp(foo) ) {
                                 msg += foo["msg"];
-                                // 发挥化甲术的特效
+                                // 發揮化甲術的特效
                                 if( hjs > 100 )
                                         foo["damage"] = foo["damage"] - foo["damage"] / 100 * hjs / 100;
                                 damage += foo["damage"];
@@ -2609,7 +2609,7 @@ varargs string do_damage(object me, object target, mixed type,
                 if( damage < 1 ) break;
 
                 /*
-                // 以伤换内力或精力
+                // 以傷換內力或精力
                 if( shield = query_temp("afm_abs_shield", target) )
                 {
                         s_type = shield["type"];
@@ -2635,7 +2635,7 @@ varargs string do_damage(object me, object target, mixed type,
             query_temp("immortal", target) && random(100) < 90 )
         {
                 damage = 0;
-                msg += HIY "$n" HIY "施展凌波微步逆天绝招「神光离合」，一道耀眼的光芒环绕全身，顿时化去所有的伤害 ……\n" NOR;
+                msg += HIY "$n" HIY "施展凌波微步逆天絕招「神光離合」，一道耀眼的光芒環繞全身，頓時化去所有的傷害 ……\n" NOR;
         }
 
         /*
@@ -2684,8 +2684,8 @@ varargs string do_damage(object me, object target, mixed type,
                         // eforced
                         my["neili"] -= jiali;
 
-                        if( objectp(ob = target->query_equipped_object("armor")) && ob->query_magic_item() == "天地日月灵珠" )
-                        //if( objectp(ob = query_temp("armor/armor", target)) && ob->query_magic_item() == "天地日月灵珠" )
+                        if( objectp(ob = target->query_equipped_object("armor")) && ob->query_magic_item() == "天地日月靈珠" )
+                        //if( objectp(ob = query_temp("armor/armor", target)) && ob->query_magic_item() == "天地日月靈珠" )
                                 jiali /= 2;
 
                         if( type == REMOTE_ATTACK || (type == SPECIAL_ATTACK && random(100)<70) ) {
@@ -2696,8 +2696,8 @@ varargs string do_damage(object me, object target, mixed type,
                                 if( !living(target) ) break;
                                 // check special force effort
                                 skill = target->query_skill_mapped("force");
-                                if( stringp(skill) && (!objectp(ob = me->query_equipped_object("hand")) || ob->query_magic_item() != "真武宝石") &&
-                                    (!objectp(ob = me->query_equipped_object("hand",2)) || ob->query_magic_item() != "真武宝石") ) {
+                                if( stringp(skill) && (!objectp(ob = me->query_equipped_object("hand")) || ob->query_magic_item() != "真武寶石") &&
+                                    (!objectp(ob = me->query_equipped_object("hand",2)) || ob->query_magic_item() != "真武寶石") ) {
                                         foo = SKILL_D(skill)->valid_damage(me, target, damage_bonus);
                                         if( stringp(foo) ) msg += foo; else
                                         if( intp(foo) ) damage_bonus += foo; else
@@ -2712,34 +2712,34 @@ varargs string do_damage(object me, object target, mixed type,
 
                 if( damage < 1 ) break;
 
-                // 发挥兵器--赤炼虎胆的特效
-                if( objectp(ob = me->query_equipped_object("hand")) && ob->query_magic_item() == "赤炼虎胆" && random(100) < 70 )
+                // 發揮兵器--赤煉虎膽的特效
+                if( objectp(ob = me->query_equipped_object("hand")) && ob->query_magic_item() == "赤煉虎膽" && random(100) < 70 )
                 {
-                        msg += HIR "\n" + ob->name() + HIR "上的赤炼虎胆宝石发出一道奇异的光芒，一只发光的"
-                               "的白虎张牙舞爪般的扑向$n" HIR "。\n" NOR;
+                        msg += HIR "\n" + ob->name() + HIR "上的赤煉虎膽寶石發出一道奇異的光芒，一隻發光的"
+                               "的白虎張牙舞爪般的撲向$n" HIR "。\n" NOR;
                         damage += damage / 5;
                 }
 
-                // 发挥兵器-赤炼虎胆的特效（左手）
-                if( objectp(ob = me->query_equipped_object("hand",2)) && ob->query_magic_item() == "赤炼虎胆" && random(100) < 70 ) {
-                        msg += HIR "\n" + ob->name() + HIR "上的赤炼虎胆宝石发出一道奇异的光芒，一只发光的"
-                               "的白虎张牙舞爪般的扑向$n" HIR "。\n" NOR;
+                // 發揮兵器-赤煉虎膽的特效（左手）
+                if( objectp(ob = me->query_equipped_object("hand",2)) && ob->query_magic_item() == "赤煉虎膽" && random(100) < 70 ) {
+                        msg += HIR "\n" + ob->name() + HIR "上的赤煉虎膽寶石發出一道奇異的光芒，一隻發光的"
+                               "的白虎張牙舞爪般的撲向$n" HIR "。\n" NOR;
                         damage += damage / 5;
                 }
 
-                // 发挥腰带--碧海残镢的作用
-                if( objectp(ob = me->query_equipped_object("waist")) && ob->query_magic_item() == "碧海残镢" && random(100) < 70 )
+                // 發揮腰帶--碧海殘钁的作用
+                if( objectp(ob = me->query_equipped_object("waist")) && ob->query_magic_item() == "碧海殘钁" && random(100) < 70 )
                 {
-                        msg += HIC + ob->name() + HIC "上的碧海残镢青光一闪，「碧海苍穹」呈现，发出震耳般的海啸声 ……\n" NOR;
+                        msg += HIC + ob->name() + HIC "上的碧海殘钁青光一閃，「碧海蒼穹」呈現，發出震耳般的海嘯聲 ……\n" NOR;
                         damage += damage / 5;
                         if( !target->is_busy() && random(100) < 30 )
                                 target->start_busy(3);
                 }
 
-                // 发挥护腕--麒麟圣火的作用
-                if( objectp(ob = me->query_equipped_object("wrists")) && ob->query_magic_item() == "麒麟圣火" && random(100) < 70 )
+                // 發揮護腕--麒麟聖火的作用
+                if( objectp(ob = me->query_equipped_object("wrists")) && ob->query_magic_item() == "麒麟聖火" && random(100) < 70 )
                 {
-                        msg += HIR + ob->name() + HIR "上的麒麟火发闪出火红般的光芒，「麒麟圣火」长久不熄，令人难以喘息 ……\n" NOR;
+                        msg += HIR + ob->name() + HIR "上的麒麟火發閃出火紅般的光芒，「麒麟聖火」長久不熄，令人難以喘息 ……\n" NOR;
                         damage += damage / 5;
                         if( query("neili", target) >= 300 )
                         {
@@ -2753,56 +2753,56 @@ varargs string do_damage(object me, object target, mixed type,
                         damage2 = random(damage);
                         scale = 100 + damage2 * 10 / damage * 10;
                         damage += damage2;
-                        msg += HIY "$N" HIY "福至心灵，有如神助，一击之中竟产生多重伤害，给予$n" HIY "造成「" + scale + "%」的伤害！\n" NOR;
+                        msg += HIY "$N" HIY "福至心靈，有如神助，一擊之中竟產生多重傷害，給予$n" HIY "造成「" + scale + "%」的傷害！\n" NOR;
                 }
 
-                // 致命一击
+                // 致命一擊
                 if( random(100) < me->query_all_buff("fatal_blow") && random(100) < 80 )
                 {
-                        msg += HIY "\n$N" HIY "触发致命一击，对$n" HIY "造成" HIG "「400%」" HIY "的伤害！\n" NOR;
+                        msg += HIY "\n$N" HIY "觸發致命一擊，對$n" HIY "造成" HIG "「400%」" HIY "的傷害！\n" NOR;
                         damage *= 4;
                 }
 
-                // 发挥靴子-流星赶月的作用
-                if( objectp(ob = target->query_equipped_object("boots")) && ob->query_magic_item() == "流星赶月" && random(100) < 70 )
+                // 發揮靴子-流星趕月的作用
+                if( objectp(ob = target->query_equipped_object("boots")) && ob->query_magic_item() == "流星趕月" && random(100) < 70 )
                 {
-                        msg += HIW "刹那间，" + ob->name() + HIW "发出刺眼的金光，神技「流星赶月」已然激活，周身幻出无数身影，化解了二成的伤害！\n" NOR;
+                        msg += HIW "剎那間，" + ob->name() + HIW "發出刺眼的金光，神技「流星趕月」已然激活，周身幻出無數身影，化解了二成的傷害！\n" NOR;
                         damage -= damage / 5;
                 }
 
-                // 发挥头盔-圣龙之魂的作用
-                if( objectp(ob = target->query_equipped_object("head")) && ob->query_magic_item() == "圣龙之魂" && random(100) < 70 )
+                // 發揮頭盔-聖龍之魂的作用
+                if( objectp(ob = target->query_equipped_object("head")) && ob->query_magic_item() == "聖龍之魂" && random(100) < 70 )
                 {
-                        msg += HIC "刹那间，" + ob->name() + HIC "发生刺眼的红光，并不停的颤抖，神技「圣龙之魂」已然发出，顷刻间，化解了二成的伤害！\n" NOR;
+                        msg += HIC "剎那間，" + ob->name() + HIC "發生刺眼的紅光，並不停的顫抖，神技「聖龍之魂」已然發出，頃刻間，化解了二成的傷害！\n" NOR;
                         damage -= damage / 5;
                 }
 
-                // 发挥盔甲-玄武圣石
-                if( objectp(ob = target->query_equipped_object("armor")) && ob->query_magic_item() == "玄武圣石" && random(100) < 70 )
+                // 發揮盔甲-玄武聖石
+                if( objectp(ob = target->query_equipped_object("armor")) && ob->query_magic_item() == "玄武聖石" && random(100) < 70 )
                 {
-                        msg += HIB "刹那间，" + ob->name() + HIC "发出刺眼的蓝光，"+ob->name()+"幻化成一块玄武甲，阻挡$N的大部分攻击。\n" NOR;
+                        msg += HIB "剎那間，" + ob->name() + HIC "發出刺眼的藍光，"+ob->name()+"幻化成一塊玄武甲，阻擋$N的大部分攻擊。\n" NOR;
                         damage -= damage / 5;
                 }
 
-                // 发挥衣服-雪地圣音的作用
-                if( objectp(ob = target->query_equipped_object("boots")) && ob->query_magic_item() == "雪地圣音" && random(100) < 70 )
+                // 發揮衣服-雪地聖音的作用
+                if( objectp(ob = target->query_equipped_object("boots")) && ob->query_magic_item() == "雪地聖音" && random(100) < 70 )
                 {
-                        msg += HIW "刹那间，" + ob->name() + HIW "发出刺眼的白光，天色突变，漫天飞雪狂舞，无数雪精自天而下，纷纷落向$n，然后形成一道屏障，阻挡$N的大部分攻击。\n" NOR;
+                        msg += HIW "剎那間，" + ob->name() + HIW "發出刺眼的白光，天色突變，漫天飛雪狂舞，無數雪精自天而下，紛紛落向$n，然後形成一道屏障，阻擋$N的大部分攻擊。\n" NOR;
                         damage -= damage / 5;
                 }
 
-                // 发挥披风--孔雀圣石的效果
-                if( objectp(ob = target->query_equipped_object("surcoat")) && ob->query_magic_item() == "孔雀圣石" && random(100) < 20 )
+                // 發揮披風--孔雀聖石的效果
+                if( objectp(ob = target->query_equipped_object("surcoat")) && ob->query_magic_item() == "孔雀聖石" && random(100) < 20 )
                 {
-                        msg += HIG + ob->name() + HIG "上的孔雀圣石发出一道奇异的光芒，数道青光将" +
-                               target->name() +  HIG "笼罩，但见一只发光的孔雀跳跃飞舞，却不让任何人靠近。\n" NOR;
+                        msg += HIG + ob->name() + HIG "上的孔雀聖石發出一道奇異的光芒，數道青光將" +
+                               target->name() +  HIG "籠罩，但見一隻發光的孔雀跳躍飛舞，卻不讓任何人靠近。\n" NOR;
 
-                        // 发挥兵器--真武宝石的效果
-                        if( ((objectp(ob = me->query_equipped_object("hand")) && ob->query_magic_item() == "真武宝石") ||
-                             (objectp(ob = me->query_equipped_object("hand",2)) && ob->query_magic_item() == "真武宝石")) && random(100) > 10 )
+                        // 發揮兵器--真武寶石的效果
+                        if( ((objectp(ob = me->query_equipped_object("hand")) && ob->query_magic_item() == "真武寶石") ||
+                             (objectp(ob = me->query_equipped_object("hand",2)) && ob->query_magic_item() == "真武寶石")) && random(100) > 10 )
                         {
-                                msg += HIY "可是" + ob->name() + HIY "的真武宝石发出一道亮光，那发光"
-                                       "的孔雀顿时消失不见。\n" NOR;
+                                msg += HIY "可是" + ob->name() + HIY "的真武寶石發出一道亮光，那發光"
+                                       "的孔雀頓時消失不見。\n" NOR;
 
                         }
                         else
@@ -2817,7 +2817,7 @@ varargs string do_damage(object me, object target, mixed type,
                         damage = (damage - 500) / 2 + 500;
                 */
                 // do damage
-                // 发挥化甲术的特效
+                // 發揮化甲術的特效
                 if( hjs > 100 )
                         armor = armor - armor / 100 * hjs / 100;
 
@@ -2829,7 +2829,7 @@ varargs string do_damage(object me, object target, mixed type,
                 if( me->query_skill("kunlun-wuji", 1) >= 125 )
                         wound += wound + me->query_skill("kunlun-wuji", 1) / 125 * 100;
 
-                // 血影大法伤内力效果
+                // 血影大法傷內力效果
                 if( me->query_skill("xueying-dafa", 1) >= 100 )
                 {
                         addn("neili", -1 * (me->query_skill("xueying-dafa", 1) + me->query_skill("xuedao-daofa", 1)) / 12, target);
@@ -2839,7 +2839,7 @@ varargs string do_damage(object me, object target, mixed type,
 
                 damage = target->receive_damage("qi", damage, me);
                 if( damage < 1 )
-                       msg += BLU "$n" BLU "神奇的化解了$N" BLU "这一击的所有物理伤害！\n" NOR;
+                       msg += BLU "$n" BLU "神奇的化解了$N" BLU "這一擊的所有物理傷害！\n" NOR;
 
                 if( wound > 0 )
                         wound = target->receive_wound("qi", wound, me);
@@ -2849,14 +2849,14 @@ varargs string do_damage(object me, object target, mixed type,
                 if( stringp(final) ) {
                         if( sscanf(final, "%s@%s", final, limb) == 2 ) {
                                 if( sscanf(final, "%s:%s", result, damage_type) != 2 ) {
-                                        result = HIR "这招打了个正中！";
+                                        result = HIR "這招打了個正中！";
                                         damage_type = final;
                                 }
                                 if( sscanf(limb, "?%*s") ) {
                                         // auto select limb
                                         limbs=query("limbs", target);
                                         if( !arrayp(limbs) ) {
-                                                limbs = ({ "身体" });
+                                                limbs = ({ "身體" });
                                                 set("limbs", limbs, target);
                                         }
                                         limb = limbs[random(sizeof(limbs))];
@@ -2880,16 +2880,16 @@ varargs string do_damage(object me, object target, mixed type,
                         msg += replace_string(report_status(target, 1), "$N", "$n");
                 }
 #if INSTALL_COMBAT_TEST
-                msg += HIW "( $N" HIW "对$n" HIW "造成" + damage + "点伤害，" + wound + "点创伤。)\n" NOR;
+                msg += HIW "( $N" HIW "對$n" HIW "造成" + damage + "點傷害，" + wound + "點創傷。)\n" NOR;
 #endif
 
-                // 奇门玄术的反伤效果
+                // 奇門玄術的反傷效果
                 if( target->query_skill("qimen-xuanshu", 1) >= 100 )
                 {
                         if( random(target->query_skill("qimen-xuanshu", 1)) > 100 && random(3) == 1 )
                         {
-                                msg += HIG "$n" HIG "施展出「奇门玄术」的反伤效果，使得$N" HIG "自身同时也受到损伤。\n" NOR;
-                                // 反伤
+                                msg += HIG "$n" HIG "施展出「奇門玄術」的反傷效果，使得$N" HIG "自身同時也受到損傷。\n" NOR;
+                                // 反傷
                                 me->receive_damage("qi", damage * target->query_skill("qimen-xuanshu", 1) / 5000, target);
                                 me->receive_wound("qi", wound * target->query_skill("qimen-xuanshu", 1) / 5000, target);
 
@@ -2914,7 +2914,7 @@ varargs string do_damage(object me, object target, mixed type,
                         }
                 }
 
-                // 极品防具反噬效果
+                // 極品防具反噬效果
                 avoid=target->query_all_buff("counter_damage");
                 if( random(100) < avoid && random(5) == 1 )
                 {
@@ -2922,7 +2922,7 @@ varargs string do_damage(object me, object target, mixed type,
                         if( n = sizeof(eqs) )
                                 for( i=0;i<n;i++ )
                                         if( eqs[i]->query_equipping_buff("counter_damage") )
-                                                msg += BLINK + HIM + eqs[i]->name() + BLINK + HIM "发出一道奇异眩目的红光袭向$N！\n" NOR;
+                                                msg += BLINK + HIM + eqs[i]->name() + BLINK + HIM "發出一道奇異眩目的紅光襲向$N！\n" NOR;
 
                         me->receive_damage("qi", damage/5, target);
                         me->receive_wound("qi", wound/5, target);
@@ -2934,7 +2934,7 @@ varargs string do_damage(object me, object target, mixed type,
                         msg += report_status(me, 1);
                 }
                 if( query("special_skill/monster", target) && random(5) == 1){
-                        message_vision(HIG "$N" HIG "施展出「天妖临世」，$n" HIG "自身同时也受到损伤。\n" NOR, target, me);
+                        message_vision(HIG "$N" HIG "施展出「天妖臨世」，$n" HIG "自身同時也受到損傷。\n" NOR, target, me);
                         me->receive_damage("qi", damage, target);
                         if( random(2) == 1 ) me->receive_wound("qi", wound, target);
                         /*
@@ -2945,7 +2945,7 @@ varargs string do_damage(object me, object target, mixed type,
                         msg += report_status(me, 1);
                 }
 
-                // 特殊效果类buff 伤害反噬
+                // 特殊效果類buff 傷害反噬
                 if( query_temp("damage_shield", target) )
                 {
                         // Ok, we don't want it to be exploited... on players
@@ -2964,7 +2964,7 @@ varargs string do_damage(object me, object target, mixed type,
                         target->stop_busy();
                 }
 
-                // 特殊效果类buff，对手中了buff healshield则给攻击着可以偷血。
+                // 特殊效果類buff，對手中了buff healshield則給攻擊著可以偷血。
                 if( query_temp("heal_shield", target) )
                 {
                         if( query(query_temp("heal_shield/type",target),me) < query("max_"+query_temp("heal_shield/type",target),me))
@@ -2982,12 +2982,12 @@ varargs string do_damage(object me, object target, mixed type,
                         }
                         target->stop_busy();
                 }
-                  // special_skill/dame 魔体恢复30%的伤害应加在这里
+                  // special_skill/dame 魔體恢復30%的傷害應加在這裡
                 break;
         }
 
         //msg += SKILLS_D->do_dazhaomix(me, target, damage);
-        //delete_temp("bonus", me); // 已经激活的绝招组合特效发挥完毕
+        //delete_temp("bonus", me); // 已經激活的絕招組合特效發揮完畢
 
         if( foo_after_hit ) msg += foo_after_hit;
         if( foo_before_hit ) msg = foo_before_hit + msg;
@@ -3069,8 +3069,8 @@ void fight(object me, object victim)
                     attack_skill == "blade" || attack_skill == "hammer" || attack_skill == "whip") ) {
                         for (i=0; i<sizeof(keys(prepare)); i++)
                                 me->prepare_skill((keys(prepare))[i]);
-                        tell_object(me, HIY "你现在采用" HIR "空手技能" HIY "进行攻击，"
-                                        HIY "取消所备" HIR "兵器技能" HIY "攻击。\n" NOR);
+                        tell_object(me, HIY "你現在採用" HIR "空手技能" HIY "進行攻擊，"
+                                        HIY "取消所備" HIR "兵器技能" HIY "攻擊。\n" NOR);
                 }
         }
 
@@ -3197,16 +3197,16 @@ void start_berserk(object me, object obj)
          || query("no_fight", environment(me))//Areweinapeaceroom?
         )   return;
 
-        message_vision("$N用一种异样的眼神扫视著在场的每一个人。\n", me);
+        message_vision("$N用一種異樣的眼神掃視著在場的每一個人。\n", me);
         if( (shen < -50000 || sb_shen>100000) && me->query_per()>random(obj->query_per())*2 &&  !wizardp(obj) ) {
-                message_vision("$N对著$n喝道：" + RANK_D->query_self_rude(me)
-                        + "看你实在很不顺眼，去死吧。\n", me, obj);
+                message_vision("$N對著$n喝道：" + RANK_D->query_self_rude(me)
+                        + "看你實在很不順眼，去死吧。\n", me, obj);
                 me->want_kill(obj);
                 me->kill_ob(obj);
                 obj->fight_ob(me);
         } else {
-                message_vision("$N对著$n喝道：喂！" + RANK_D->query_rude(obj)
-                        + "，" + RANK_D->query_self_rude(me) + "正想找人打架，陪我玩两手吧！\n",me, obj);
+                message_vision("$N對著$n喝道：喂！" + RANK_D->query_rude(obj)
+                        + "，" + RANK_D->query_self_rude(me) + "正想找人打架，陪我玩兩手吧！\n",me, obj);
                 me->fight_ob(obj);
                 obj->fight_ob(me);
         }
@@ -3300,56 +3300,56 @@ int player_escape(object killer, object ob)
         switch( random(7) )
         {
         case 0:
-                msg = "突然只听幽幽一声长叹，一掌轻轻按来。$N大吃一惊，不及"
-                      "多加思索，只是抬手一格。匆忙之间只怕对手过于厉害，难"
-                      "以招架，急忙向后跃开。却见来人并不追击，只是一伸手拎"
-                      "起$n，转身飘然而去，仙踪渺然。\n";
+                msg = "突然只聽幽幽一聲長嘆，一掌輕輕按來。$N大吃一驚，不及"
+                      "多加思索，只是抬手一格。匆忙之間只怕對手過於厲害，難"
+                      "以招架，急忙向後躍開。卻見來人並不追擊，只是一伸手拎"
+                      "起$n，轉身飄然而去，仙蹤渺然。\n";
                 break;
 
         case 1:
-                msg = "$N将$n打翻在地，“哈哈”一声笑声尚未落下，只听有人冷"
-                      "哼一声，忽然间掌风袭体，$N顿感呼吸不畅，几欲窒息，慌"
-                      "忙中急忙退后，待得立稳脚跟，却见$n早已无影无踪。\n";
+                msg = "$N將$n打翻在地，“哈哈”一聲笑聲尚未落下，只聽有人冷"
+                      "哼一聲，忽然間掌風襲體，$N頓感呼吸不暢，幾欲窒息，慌"
+                      "忙中急忙退後，待得立穩腳跟，卻見$n早已無影無蹤。\n";
                 break;
 
         case 2:
-                msg = "一人忽然掠至，喝道：“岂有此理？我龙岛主最恨此欺善怕"
-                      "恶之辈，休走！”说罢一掌击来，$N奋力招架，一招之下几"
-                      "欲吐血！只见来人轻轻提起$n，冷笑两声，转身离去，$N惊"
-                      "骇之下，竟然说不出一句话来。\n";
+                msg = "一人忽然掠至，喝道：“豈有此理？我龍島主最恨此欺善怕"
+                      "惡之輩，休走！”說罷一掌擊來，$N奮力招架，一招之下幾"
+                      "欲吐血！只見來人輕輕提起$n，冷笑兩聲，轉身離去，$N驚"
+                      "駭之下，竟然說不出一句話來。\n";
                 break;
 
         case 3:
-                msg = "突然一人喝道：“且慢！”只见一道黑影掠到，飞起一脚将"
-                      "$N踢了个跟头，左手拎起$n，冷冷对$N道：“今日所幸尚未"
-                      "伤人命，你作恶不甚，饶你去吧！”$N捂胸运气，不住喘息"
-                      "，眼睁睁的看着来人去了。\n";
+                msg = "突然一人喝道：“且慢！”只見一道黑影掠到，飛起一腳將"
+                      "$N踢了個跟頭，左手拎起$n，冷冷對$N道：“今日所幸尚未"
+                      "傷人命，你作惡不甚，饒你去吧！”$N捂胸運氣，不住喘息"
+                      "，眼睜睜的看著來人去了。\n";
                 break;
 
         case 4:
-                msg = "$N跨前一步，忽然看到面前已多了两人，一胖一瘦，一喜一"
-                      "怒，不由暗生疑窦。一人手中亮出一面铜牌，笑道：“这位" +
-                      RANK_D->quert_respect(killer)+ "，这面罚恶铜牌你收下可"
-                      "好？”$N听了大吃一惊，手只是一软，哪里还敢搭半句话？"
-                      "那瘦子冷冷看了过来，目光如电，$N讪讪笑了两声，目送两"
-                      "人带了$n逍遥而去。\n";
+                msg = "$N跨前一步，忽然看到面前已多了兩人，一胖一瘦，一喜一"
+                      "怒，不由暗生疑竇。一人手中亮出一面銅牌，笑道：“這位" +
+                      RANK_D->quert_respect(killer)+ "，這面罰惡銅牌你收下可"
+                      "好？”$N聽了大吃一驚，手只是一軟，哪裡還敢搭半句話？"
+                      "那瘦子冷冷看了過來，目光如電，$N訕訕笑了兩聲，目送兩"
+                      "人帶了$n逍遙而去。\n";
 
         case 5:
-                msg = "恰在此时，正逢一老者路过，只见他微一颦眉，喝道：“兀"
-                      "那" + RANK_D->query_rude(killer)+ "，伤人做甚？”$N大"
-                      "怒道：“你是何人，如此嚣张？”老者大怒，一掌拍落，$N"
-                      "向上只是一格，“噗噜”一下双腿陷入土中，足有半尺。老"
-                      "者森然道：“我乃侠客岛木岛主是也，如有不服，恭候大驾"
-                      "！”此时$N内息如狂，连句场面话也说不出来，只能眼看$n"
-                      "被那木岛主带了离去。\n";
+                msg = "恰在此時，正逢一老者路過，只見他微一顰眉，喝道：“兀"
+                      "那" + RANK_D->query_rude(killer)+ "，傷人做甚？”$N大"
+                      "怒道：“你是何人，如此囂張？”老者大怒，一掌拍落，$N"
+                      "向上只是一格，“噗嚕”一下雙腿陷入土中，足有半尺。老"
+                      "者森然道：“我乃俠客島木島主是也，如有不服，恭候大駕"
+                      "！”此時$N內息如狂，連句場面話也說不出來，只能眼看$n"
+                      "被那木島主帶了離去。\n";
                 break;
 
         default:
-                msg = "忽听“哈哈”一阵长笑，一人道：“龙兄，想不到我们三十"
-                      "年不履中土，这些武林高手却是越来越不长进了！”另一人"
-                      "道：“正是，看来赏善罚恶，漫漫无期，终无尽头。”$N听"
-                      "得大汗涔涔而下，环顾四方却无一人，转回头来，更是大吃"
-                      "一惊！连$n也不见了。\n";
+                msg = "忽聽“哈哈”一陣長笑，一人道：“龍兄，想不到我們三十"
+                      "年不履中土，這些武林高手卻是越來越不長進了！”另一人"
+                      "道：“正是，看來賞善罰惡，漫漫無期，終無盡頭。”$N聽"
+                      "得大汗涔涔而下，環顧四方卻無一人，轉回頭來，更是大吃"
+                      "一驚！連$n也不見了。\n";
                 break;
         }
 
@@ -3358,8 +3358,8 @@ int player_escape(object killer, object ob)
                 msg = replace_string(msg, "$n", ob->name());
                 message_sort(msg, killer);
         } else {
-                msg = "正逢一老者路过，见了" + ob->name() + "晕倒在地，叹口"
-                      "气，将他扶起带走了。\n";
+                msg = "正逢一老者路過，見了" + ob->name() + "暈倒在地，嘆口"
+                      "氣，將他扶起帶走了。\n";
                 message("vision", msg, environment(ob));
         }
 
@@ -3370,18 +3370,18 @@ int player_escape(object killer, object ob)
                         iob->move(environment(ob));
         */
 
-        // 初始化玩家的状态
+        // 初始化玩家的狀態
         ob->clear_condition();
         ob->remove_killer(killer);
         killer->remove_killer(ob);
 
-        // 通缉伤人凶手
+        // 通緝傷人兇手
         if( !killer->query_condition("killer") ) {
-                msg = "听说官府发下海捕文书，缉拿伤人凶手" +
+                msg = "聽說官府發下海捕文書，緝拿傷人兇手" +
                              killer->name(1) + "。";
                 killer->apply_condition("killer", 500);
         } else {
-                msg = "听说官府加紧捉拿累次伤人的暴徒" +
+                msg = "聽說官府加緊捉拿累次傷人的暴徒" +
                              killer->name(1) + "。";
                 killer->apply_condition("killer", 800 +
                         (int)killer->query_condition("killer"));
@@ -3399,9 +3399,9 @@ int player_escape(object killer, object ob)
         if( intp(ob->query_busy()) )
                 ob->start_busy(30);
 
-        tell_object(ob, "你睁开眼来，看到两位老者正在静坐修炼。\n"
-                    HIG "龙岛主告诉你：" + RANK_D->query_respect(ob) +
-                        "，你要想离岛不妨和我说一声(ask long about 离岛)。\n" NOR);
+        tell_object(ob, "你睜開眼來，看到兩位老者正在靜坐修煉。\n"
+                    HIG "龍島主告訴你：" + RANK_D->query_respect(ob) +
+                        "，你要想離島不妨和我說一聲(ask long about 離島)。\n" NOR);
         return 1;
 }
 
@@ -3414,18 +3414,18 @@ void announce(object ob, string event)
 
         switch( event ) {
         case "dead":
-                message_vision(NOR "\n$N扑在地上挣扎了几下，腿一伸，口中喷出几口"
-                               HIR "鲜血" NOR "，死了！\n\n" NOR, ob);
+                message_vision(NOR "\n$N撲在地上掙扎了幾下，腿一伸，口中噴出幾口"
+                               HIR "鮮血" NOR "，死了！\n\n" NOR, ob);
                 if( environment(ob) && playerp(environment(ob)) && living(environment(ob)) )
-                        tell_object(environment(ob),NOR "\n" + ob->name() + "扑腾了几下，腿一伸，口中喷出几口"
-                               HIR "鲜血" NOR "，死了！\n\n" NOR);
+                        tell_object(environment(ob),NOR "\n" + ob->name() + "撲騰了幾下，腿一伸，口中噴出幾口"
+                               HIR "鮮血" NOR "，死了！\n\n" NOR);
                 break;
         case "unconcious":
-                message_vision("\n$N脚下一个不稳，跌在地上一动也不动了。\n\n", ob);
+                message_vision("\n$N腳下一個不穩，跌在地上一動也不動了。\n\n", ob);
                 player_escape(0, ob);
                 break;
         case "revive":
-                message_vision("\n$N慢慢睁开眼睛，清醒了过来。\n\n", ob);
+                message_vision("\n$N慢慢睜開眼睛，清醒了過來。\n\n", ob);
                 break;
         }
 }
@@ -3479,13 +3479,13 @@ void winner_reward(object winner, object victim)
 
                 if( temp == query("pk_perman") ) {
                         // reach limit
-                        tell_object(winner, BLINK HIR "\n今天你已经打晕" +
+                        tell_object(winner, BLINK HIR "\n今天你已經打暈" +
                                     victim->name() + chinese_number(temp) +
                                     "次了，手下留"
-                                    "情吧，否则麻烦可要找上门了。\n" NOR);
+                                    "情吧，否則麻煩可要找上門了。\n" NOR);
                 } else if( temp > query("pk_perman") )
                         // too many times
-                        set("combat/need_punish", "这厮逼人太甚，真是岂有此理！", winner);
+                        set("combat/need_punish", "這廝逼人太甚，真是豈有此理！", winner);
 
                 // count how many users that winner hit to unconcious
                 temp = ++today["total_count"];
@@ -3496,19 +3496,19 @@ void winner_reward(object winner, object victim)
 
                 if( temp == query("pk_perday") ) {
                         // reach limit
-                        tell_object(winner, BLINK HIR "\n今天你已经打晕" +
+                        tell_object(winner, BLINK HIR "\n今天你已經打暈" +
                                     chinese_number(temp) + "次玩家了，手下留"
-                                    "情吧，否则麻烦可要找上门了。\n" NOR);
+                                    "情吧，否則麻煩可要找上門了。\n" NOR);
                 } else if( temp > query("pk_perday") )
                         // too many users
-                        set("combat/need_punish", "丧尽天良，大肆屠戮，罪无可恕！", winner);
+                        set("combat/need_punish", "喪盡天良，大肆屠戮，罪無可恕！", winner);
         }
         set("combat/today", today, winner);
 }
 
 void family_kill(object killer, object victim)
 {
-        // 以下为门派功绩处理
+        // 以下為門派功績處理
         if( !objectp(killer) || !playerp(killer) ||
             !objectp(victim) ||
             !stringp(query("family/family_name", killer)) )
@@ -3518,21 +3518,21 @@ void family_kill(object killer, object victim)
             query("family/family_name", victim) )
                 return;
 
-        // quest 任务
+        // quest 任務
         if( stringp(query("quest/id", killer)) &&
             query("quest/id", killer) == query("id", victim) )
                 return;
 
-        // free 任务
+        // free 任務
         if( !playerp(victim) && query_temp("quest_ob", victim) )
                 return;
 
-        // ultra 任务
+        // ultra 任務
         if( !playerp(victim) && stringp(query_temp("quester", victim)) &&
             query_temp("quester", victim) == query("id", killer) )
                 return;
 
-        // ultra 任务
+        // ultra 任務
         if( !playerp(victim) && (query("quest_dg", killer) ||
             query("quest_hs", killer) || query("quest_sn", killer) ||
             query("quest_kh", killer)) )
@@ -3540,20 +3540,20 @@ void family_kill(object killer, object victim)
 
         if( playerp(victim) ) {
                 addn("family/gongji", -500, killer);
-                tell_object(killer, sprintf("由于你残害同门弟子，师门功绩下降 %d 点。\n", 500));
+                tell_object(killer, sprintf("由於你殘害同門弟子，師門功績下降 %d 點。\n", 500));
 /*
         } else {
                 if( killer->is_apprentice_of(victim) ) {
                         addn("family/gongji", -1000, killer);
-                        tell_object(killer,sprintf("由于欺师灭组的行为，师门功绩下降 %d 点。\n", 1000));
+                        tell_object(killer,sprintf("由於欺師滅組的行為，師門功績下降 %d 點。\n", 1000));
                 }
                 else if( query("family/generation", killer)>query("family/generation", victim)){
                         addn("family/gongji", -600, killer);
-                        tell_object(killer,sprintf("由于你残害同门尊长，师门功绩下降 %d 点。\n", 600));
+                        tell_object(killer,sprintf("由於你殘害同門尊長，師門功績下降 %d 點。\n", 600));
                 }
                 else {
                         addn("family/gongji", -300, killer);
-                        tell_object(killer,sprintf("由于你残害同门，师门功绩下降 %d 点。\n", 300));
+                        tell_object(killer,sprintf("由於你殘害同門，師門功績下降 %d 點。\n", 300));
                 }
 */
         }
@@ -3617,7 +3617,7 @@ void killer_reward(object killer, object victim)
                         // adjust shen
                         shen_delta = -vs["shen"] / 2;
                         if( shen_delta > 100 ) {
-                                // 非线性校正获得的正神
+                                // 非線性校正獲得的正神
                                 shen_delta = (shen_delta - 100) / 3 + 100;
 
                                 if( shen_delta > 200 )
@@ -3627,7 +3627,7 @@ void killer_reward(object killer, object victim)
                                         shen_delta = (shen_delta - 300) / 3 + 300;
                         } else
                         if( shen_delta < -100 ) {
-                                // 非线性校正获得的负神
+                                // 非線性校正獲得的負神
                                 shen_delta = (shen_delta + 100) / 3 - 100;
 
                                 if( shen_delta < -200 )
@@ -3684,18 +3684,18 @@ void killer_reward(object killer, object victim)
 
                         //if( victim->query_condition("killer") ) {
                         if( query("pk_score", victim)>0){
-                                // 奖励设置
+                                // 獎勵設置
                                 if( query("combat/today/"+query("id", killer), victim) )
                                         addn("pk_score", -1, victim);
                                 else {
                                         kill_bonus=query("combat_exp", victim)/100;
                                         if( kill_bonus > 1000000 ) kill_bonus = 1000000;
                                         addn("combat_exp", kill_bonus, killer);
-                                        tell_object(killer, "你获得了" + kill_bonus + "点经验奖励。\n");
+                                        tell_object(killer, "你獲得了" + kill_bonus + "點經驗獎勵。\n");
                                 }
 
                                 set("combat/punish", time(), victim);
-                                follow_msg = "听说杀人凶手" + victim->name(1) +
+                                follow_msg = "聽說殺人兇手" + victim->name(1) +
                                              "被" + killer->name(1) + "在" +
                                              environment(victim)->short() + HIM
                                              "就地正法了。";
@@ -3703,7 +3703,7 @@ void killer_reward(object killer, object victim)
                         }
 
                         if( playerp(killer) && killer->in_array() && killer->query_array_status() ) {
-                                follow_msg = sprintf("%s(%s)被%s(%s)带领的『%s』做掉啦！！\n",
+                                follow_msg = sprintf("%s(%s)被%s(%s)帶領的『%s』做掉啦！！\n",
                                                 victim->name(1),
                                                 capitalize(query("id", victim)),
                                                 killer->query_array_master()->name(1),
@@ -3712,7 +3712,7 @@ void killer_reward(object killer, object victim)
                         }
 
                        if( playerp(killer) && killer->in_team() && objectp(killer->query_team_leader()) ) {
-                                follow_msg = sprintf("%s(%s)被%s(%s)带领的队伍做掉啦！！\n",
+                                follow_msg = sprintf("%s(%s)被%s(%s)帶領的隊伍做掉啦！！\n",
                                                 victim->name(1),
                                                 capitalize(query("id", victim)),
                                                 killer->query_team_leader()->name(1),
@@ -3728,11 +3728,11 @@ void killer_reward(object killer, object victim)
                                 kcombat["WPK"]++;
 
                         if( !killer->query_condition("killer") ) {
-                                follow_msg = "听说官府发下海捕文书，缉拿杀人凶手" +
+                                follow_msg = "聽說官府發下海捕文書，緝拿殺人兇手" +
                                              killer->name(1) + "。";
                                 killer->apply_condition("killer", 500);
                         } else {
-                                follow_msg = "听说官府加紧捉拿累犯重案的暴徒" +
+                                follow_msg = "聽說官府加緊捉拿累犯重案的暴徒" +
                                              killer->name(1) + "。";
                                 killer->apply_condition("killer", 800 +
                                         (int)killer->query_condition("killer"));
@@ -3741,10 +3741,10 @@ void killer_reward(object killer, object victim)
                         addn("pk_score", 1, killer);
                         set("pk_score_time", time(), killer);
 
-                        HISTORY_D->add_history("PK_SCORE", query("id", killer), sprintf("杀死玩家 %s(%s)，年龄 %d、等级 %d，对手等级 %d\n",
+                        HISTORY_D->add_history("PK_SCORE", query("id", killer), sprintf("殺死玩家 %s(%s)，年齡 %d、等級 %d，對手等級 %d\n",
                                 query("name", victim), query("id", victim), query("age", killer), query("level", killer), query("level", victim)));
                         // be killed
-                        HISTORY_D->add_history("BK_SCORE", query("id", victim), sprintf("被玩家 %s(%s)杀死，年龄 %d、等级 %d，对手等级 %d\n",
+                        HISTORY_D->add_history("BK_SCORE", query("id", victim), sprintf("被玩家 %s(%s)殺死，年齡 %d、等級 %d，對手等級 %d\n",
                                 query("name", killer), query("id", killer), query("age", victim), query("level", victim), query("level", killer)));
 
                         // assure data of kcombat
@@ -3763,7 +3763,7 @@ void killer_reward(object killer, object victim)
                         if( mapp(query("drops", victim)) )
                                 EQUIPMENT_D->killer_reward(killer,victim,query("drops", victim));
 
-                        // 任务
+                        // 任務
                 }
 
                 if( vs["can_speak"] )
@@ -3786,14 +3786,14 @@ void killer_reward(object killer, object victim)
                 // remove vendetta
                 map_delete(vs, "vendetta");
 
-                // 有tianshi charm且不被通缉死亡无损失
+                // 有tianshi charm且不被通緝死亡無損失
                 if( objectp(charm = present("tianshi charm", victim)) /*&& !victim->query_condition("killer")*/ )
                 {
                         set_temp("tianshi_charm", 1, victim);
                         no_loss = 1;
                 }
 
-                // 被玩家杀死且自己受到保护死亡无损失
+                // 被玩家殺死且自己受到保護死亡無損失
                 else
                 if( objectp(killer) && playerp(killer) &&
                     (query("age", victim)<20 ||
@@ -3802,7 +3802,7 @@ void killer_reward(object killer, object victim)
                     !query("combat/WPK", victim) )
                         no_loss = 1;
 
-                // 被玩家杀死且杀手年纪小于20岁或经验小于2000万死亡无损失
+                // 被玩家殺死且殺手年紀小於20歲或經驗小於2000萬死亡無損失
                 else
                 if( objectp(killer) && playerp(killer) &&
                     (query("age", killer)<20 ||
@@ -3826,7 +3826,7 @@ void killer_reward(object killer, object victim)
                         if( exp_damage < 1 ) exp_damage = 1;
                         if( exp_damage > 5 ) exp_damage = 5;
 
-                        // pk红名惩罚
+                        // pk紅名懲罰
                         if( vs["pk_score"] > 3 )
                                 exp_damage += 5;
                         else if( vs["pk_score"] >= 1 )
@@ -3854,10 +3854,10 @@ void killer_reward(object killer, object victim)
                         if( vs["experience"] > vs["learned_experience"] )
                                  vs["experience"] += (vs["learned_experience"] - vs["experience"]) / 100;
 
-                        if( !query("death", victim))flag=100;//生死玄关
+                        if( !query("death", victim))flag=100;//生死玄關
                         else if( query("special_skill/zhuque", victim) && random(100) < 60 ) flag=0;
                         else {
-                                // 按照实战经验修正掉技能几率
+                                // 按照實戰經驗修正掉技能幾率
                                 if( query("combat_exp", victim) >= 200000000)flag=20;
                                 else if( query("combat_exp", victim) >= 80000000)flag=30;
                                 else if( query("combat_exp", victim) >= 50000000)flag=40;
@@ -3877,32 +3877,32 @@ void killer_reward(object killer, object victim)
                 if( objectp(killer) && killer->is_character() ) {
                         msg = "被" + filter_color(killer->name(1));
 
-                        if( query("race", killer) == "野兽"
-                         || query("race", killer) == "蛇类"
-                         || query("race", killer) == "游鱼"
-                         || query("race", killer) == "昆虫")msg+="咬死了";
+                        if( query("race", killer) == "野獸"
+                         || query("race", killer) == "蛇類"
+                         || query("race", killer) == "游魚"
+                         || query("race", killer) == "昆蟲")msg+="咬死了";
                         else if( query("race", killer) == "家畜")msg+="踩死了";
-                        else if( query("race", killer) == "飞禽")msg+="啄死了";
+                        else if( query("race", killer) == "飛禽")msg+="啄死了";
                         else {
 
                         actions = killer->query_action();
-                                switch (mapp(actions) ? actions["damage_type"] : "杀伤") {
-                                case "擦伤":
-                                case "割伤":
+                                switch (mapp(actions) ? actions["damage_type"] : "殺傷") {
+                                case "擦傷":
+                                case "割傷":
                                         msg+="砍死了";
                                         break;
-                                case "刺伤":
+                                case "刺傷":
                                         msg+="刺死了";
                                         break;
-                                case "震伤":
-                                case "瘀伤":
-                                        msg+="击死了";
+                                case "震傷":
+                                case "瘀傷":
+                                        msg+="擊死了";
                                         break;
-                                case "内伤":
+                                case "內傷":
                                         msg+="震死了";
                                         break;
                                 default:
-                                        msg+="杀死了";
+                                        msg+="殺死了";
                                 }
                         }
                 }
@@ -3912,7 +3912,7 @@ void killer_reward(object killer, object victim)
 
                 delete_temp("die_reason", victim);
                 CHANNEL_D->channel_broadcast("combat",
-                        sprintf("听说%s" HIR + msg + "。", victim->name(1)));
+                        sprintf("聽說%s" HIR + msg + "。", victim->name(1)));
 
                 // show the follow msg after victim die
                 if( follow_msg )
@@ -3943,7 +3943,7 @@ void killer_reward(object killer, object victim)
                                 addn("static/sadly", 1, couple);
                                 tell_object(couple, "你的妻子死在了" +
                                             killer->name(1) + "的手下" +
-                                            "，你感到了一阵深深的哀伤。\n");
+                                            "，你感到了一陣深深的哀傷。\n");
                         }
                 }
         }
@@ -3987,18 +3987,18 @@ void hit_with_poison(object me, object victim, object ob)
                 delete_temp("daub", ob);
         }
 
-        msg = HIG "突然$n觉得受伤的地方有一些麻痒";
+        msg = HIG "突然$n覺得受傷的地方有一些麻癢";
         if( p["id"] == query("id", victim)){
                 if( !query_temp("has_announce/defense1", victim)){
                         set_temp("has_announce/defense1", 1, victim);
                         victim->start_call_out(bind((: call_other,
                                 __FILE__, "clear_announce", victim :), victim), 15);
-                        msg += "。\n" NOR HIC "$n默一运功，冷笑两声：“好你个" +
-                               RANK_D->query_rude(me) + "，居然在我面前卖弄" +
+                        msg += "。\n" NOR HIC "$n默一運功，冷笑兩聲：“好你個" +
+                               RANK_D->query_rude(me) + "，居然在我面前賣弄" +
                                RANK_D->query_self_rude(victim) +
-                               "毒药！真是假李鬼碰上真李逵了！”\n" NOR;
+                               "毒藥！真是假李鬼碰上真李逵了！”\n" NOR;
                 } else
-                        msg += "，不过$n并没有在意。\n" NOR;
+                        msg += "，不過$n並沒有在意。\n" NOR;
                 set_ahinfo(msg);
                 return;
         }
@@ -4008,10 +4008,10 @@ void hit_with_poison(object me, object victim, object ob)
                         set_temp("has_announce/defense2", 1, victim);
                         victim->start_call_out(bind((: call_other,
                                 __FILE__, "clear_announce", victim :), victim), 15);
-                        msg += "。\n" NOR HIC "$n呼吸数次，嘿然冷笑道："
-                               "“米粒之珠，也放光华？”\n" NOR;
+                        msg += "。\n" NOR HIC "$n呼吸數次，嘿然冷笑道："
+                               "“米粒之珠，也放光華？”\n" NOR;
                 } else
-                        msg += "，不过$n显然并没有把它放在心上。\n" NOR;
+                        msg += "，不過$n顯然並沒有把它放在心上。\n" NOR;
                 set_ahinfo(msg);
                 return;
         }
@@ -4021,11 +4021,11 @@ void hit_with_poison(object me, object victim, object ob)
                         set_temp("has_announce/defense3", 1, victim);
                         victim->start_call_out(bind((: call_other,
                                 __FILE__, "clear_announce", victim :), victim), 15);
-                        msg += "。\n" NOR HIC "$n深吸一口气，哈哈长笑道：“好家伙，居然" +
+                        msg += "。\n" NOR HIC "$n深吸一口氣，哈哈長笑道：“好傢伙，居然" +
                                (ob == me ? "在身上淬毒" : "使用淬毒兵器") +
-                               "，你这些下三滥的手段也敢到我面前卖弄？”\n" NOR;
+                               "，你這些下三濫的手段也敢到我面前賣弄？”\n" NOR;
                 } else
-                        msg += "，不过$n看起来似乎并无大碍。\n" NOR;
+                        msg += "，不過$n看起來似乎並無大礙。\n" NOR;
                 set_ahinfo(msg);
                 return;
         }
@@ -4034,12 +4034,12 @@ void hit_with_poison(object me, object victim, object ob)
 
         msg += "，大概是中毒了。\n" NOR;
         if( p["level"] < victim->query_skill("force") ) {
-                msg += HIG "$n深深吸一了口气，面目凝重，手中的攻势陡然一紧。\n" NOR;
+                msg += HIG "$n深深吸一了口氣，面目凝重，手中的攻勢陡然一緊。\n" NOR;
                 set_ahinfo(msg);
                 return;
         }
 
-        msg += HIR "$n闷哼一声，攻势顿缓，神情甚是痛苦。\n" NOR;
+        msg += HIR "$n悶哼一聲，攻勢頓緩，神情甚是痛苦。\n" NOR;
         if( !victim->is_busy() )
                 victim->start_busy(1 + random(2));
         set_ahinfo(msg);
@@ -4081,18 +4081,18 @@ void hit_poison(object me, object victim, object ob)
                 delete_temp("daub", ob);
         }
 
-        msg = HIG "突然$N觉得浑身有些麻痒";
+        msg = HIG "突然$N覺得渾身有些麻癢";
         if( p["id"] == query("id", me)){
                 if( !query_temp("has_announce/defense1", me)){
                         set_temp("has_announce/defense1", 1, me);
                         me->start_call_out(bind((: call_other,
                                 __FILE__, "clear_announce", me :), me), 15);
-                        msg += "。\n" NOR HIC "$N默一运功，冷笑两声：“好你个" +
-                               RANK_D->query_rude(victim) + "，居然在我面前卖弄" +
+                        msg += "。\n" NOR HIC "$N默一運功，冷笑兩聲：“好你個" +
+                               RANK_D->query_rude(victim) + "，居然在我面前賣弄" +
                                RANK_D->query_self_rude(victim) +
-                               "的毒药！把你衣服上的毒药都还给我！”\n" NOR;
+                               "的毒藥！把你衣服上的毒藥都還給我！”\n" NOR;
                 } else
-                        msg += "，不过$N并没有在意。\n" NOR;
+                        msg += "，不過$N並沒有在意。\n" NOR;
                 set_ahinfo(msg);
                 return;
         }
@@ -4102,10 +4102,10 @@ void hit_poison(object me, object victim, object ob)
                         set_temp("has_announce/defense2", 1, me);
                         me->start_call_out(bind((: call_other,
                                 __FILE__, "clear_announce", me :), me), 15);
-                        msg += "。\n" NOR HIC "$N呼吸数次，嘿然冷笑道：“米粒之珠，也"
-                               "放光华？你在衣衫上淬毒我就怕你了？”\n" NOR;
+                        msg += "。\n" NOR HIC "$N呼吸數次，嘿然冷笑道：“米粒之珠，也"
+                               "放光華？你在衣衫上淬毒我就怕你了？”\n" NOR;
                 } else
-                        msg += "，不过$N显然并没有把它放在心上。\n" NOR;
+                        msg += "，不過$N顯然並沒有把它放在心上。\n" NOR;
                 set_ahinfo(msg);
                 return;
         }
@@ -4115,24 +4115,24 @@ void hit_poison(object me, object victim, object ob)
                         set_temp("has_announce/defense3", 1, me);
                         me->start_call_out(bind((: call_other,
                                 __FILE__, "clear_announce", me :), me), 15);
-                        msg += "。\n" NOR HIC "$N深吸一口气，哈哈长笑道：“你居然在衣衫上"
-                               "淬毒，这些下三滥的手段也敢到我面前卖弄？”\n" NOR;
+                        msg += "。\n" NOR HIC "$N深吸一口氣，哈哈長笑道：“你居然在衣衫上"
+                               "淬毒，這些下三濫的手段也敢到我面前賣弄？”\n" NOR;
                 } else
-                        msg += "，不过$N看起来似乎并无大碍。\n" NOR;
+                        msg += "，不過$N看起來似乎並無大礙。\n" NOR;
                 set_ahinfo(msg);
                 return;
         }
 
         me->affect_by(poison_type, ap);
 
-        msg += "，看来有些不妙。\n" NOR;
+        msg += "，看來有些不妙。\n" NOR;
         if( p["level"] < me->query_skill("force") ) {
-                msg += HIG "$N深深吸一了口气，面目凝重，手中的攻势陡然一紧。\n" NOR;
+                msg += HIG "$N深深吸一了口氣，面目凝重，手中的攻勢陡然一緊。\n" NOR;
                 set_ahinfo(msg);
                 return;
         }
 
-        msg += HIR "$N脚步一个跄踉，攻势顿缓，神色难看之极。\n" NOR;
+        msg += HIR "$N腳步一個蹌踉，攻勢頓緩，神色難看之極。\n" NOR;
         me->start_busy(1 + random(2));
         set_ahinfo(msg);
         return;
@@ -4155,11 +4155,11 @@ protected void quest_kill(object killer, object victim)
         object ob,*all_killer,obj;
         object tongren;
 
-        // 以下是NPC帮派任务的奖励
-        // 如果是追杀任务
+        // 以下是NPC幫派任務的獎勵
+        // 如果是追殺任務
         if( !playerp(victim) && query("bunch_quest", victim)){
                 quest=query("bunch_quest", victim);
-                if( quest["type"] == "追杀" &&
+                if( quest["type"] == "追殺" &&
                     ((quest["bunch_type"] == "good" && good_bunch(killer) && query("shen", killer) >= 0) ||
                     (quest["bunch_type"] == "bad" && bad_bunch(killer) && query("shen", killer) <= 0)) &&
                     query("combat_exp", killer)<5000000000){
@@ -4174,7 +4174,7 @@ protected void quest_kill(object killer, object victim)
                                "pot" : pot,
                                "score" : score,
                                "weiwang" : weiwang,
-                               "prompt": "在追杀" + victim->name() + HIG "的过程中，经过锻炼",
+                               "prompt": "在追殺" + victim->name() + HIG "的過程中，經過鍛鍊",
                                "percent" : 300,
                         ]);
 
@@ -4183,9 +4183,9 @@ protected void quest_kill(object killer, object victim)
                 return;
         }
 
-        // 如果是铲除外敌任务
+        // 如果是剷除外敵任務
         if( query("bunch_quest", killer) &&
-            query("bunch_quest", killer)["type"] == "铲除外敌" &&
+            query("bunch_quest", killer)["type"] == "剷除外敵" &&
             query("bunch_quest", killer)["ob"] == victim){
                 quest=query("bunch_quest", killer);
 
@@ -4200,7 +4200,7 @@ protected void quest_kill(object killer, object victim)
                        "pot" : pot,
                        "score" : score,
                        "weiwang" : weiwang,
-                       "prompt": "在铲除外来敌人" + victim->name() + HIG "的过程中，经过锻炼",
+                       "prompt": "在剷除外來敵人" + victim->name() + HIG "的過程中，經過鍛鍊",
                        "percent" : 300,
                 ]);
 
@@ -4211,7 +4211,7 @@ protected void quest_kill(object killer, object victim)
                 return;
         }
 
-        // 以下是组队任务的奖励
+        // 以下是組隊任務的獎勵
         if( !playerp(victim) && query("my_type", victim)){
                 /*
                 if( objectp(victim->query_defeated_by()) &&
@@ -4220,7 +4220,7 @@ protected void quest_kill(object killer, object victim)
                 */
                 switch(query("my_type", victim) )
                 {
-                case "外敌":
+                case "外敵":
                         GROUP_QUEST_D->be_killed(1);
                         GROUP_QUEST_D->add_killer(killer);
                         exp=query("bonus", victim);
@@ -4231,8 +4231,8 @@ protected void quest_kill(object killer, object victim)
                         if( GROUP_QUEST_D->query_drop() < 2 && random(10) == 1 ) {
                                 GROUP_QUEST_D->add_drop(1);
                                 tongren = new("/clone/tongren/tongren"+(1+random(2)));
-                                message_vision(HIR "叮~~一声，从$N" HIR "掉出一样东西，$n" HIR
-                                               "赶紧拣了起来。\n" NOR, victim, killer);
+                                message_vision(HIR "叮~~一聲，從$N" HIR "掉出一樣東西，$n" HIR
+                                               "趕緊揀了起來。\n" NOR, victim, killer);
                                 tell_object(killer, BLINK + HIG "你得到了" + tongren->name() + BLINK + HIG "。\n" NOR);
                                 tongren->move(killer, 1);
                         }
@@ -4240,8 +4240,8 @@ protected void quest_kill(object killer, object victim)
                                                  "weiwang" : weiwang, "score" : score, "percent" : 300 ]), 1);
                         if( GROUP_QUEST_D->query_enemy() == 0 ) {
                                 tongren = new("/clone/tongren/tongren"+(1+random(2)));
-                                message_vision(HIR "叮~~一声，从$N" HIR "掉出一样东西，$n" HIR
-                                               "赶紧拣了起来。\n" NOR, victim, killer);
+                                message_vision(HIR "叮~~一聲，從$N" HIR "掉出一樣東西，$n" HIR
+                                               "趕緊揀了起來。\n" NOR, victim, killer);
                                 tell_object(killer, BLINK + HIG "你得到了" + tongren->name() + BLINK + HIG "。\n" NOR);
                                 tongren->move(killer, 1);
 
@@ -4257,16 +4257,16 @@ protected void quest_kill(object killer, object victim)
                                         if( !objectp(ob) || !playerp(ob) )
                                                 continue;
 
-                                        tell_object(ob, HIW "所有入侵的敌人都给打退了，由于你也参与了战斗，" +
-                                                            "因此现在你也一起分享胜利果实！\n" NOR);
+                                        tell_object(ob, HIW "所有入侵的敵人都給打退了，由於你也參與了戰鬥，" +
+                                                            "因此現在你也一起分享勝利果實！\n" NOR);
                                         GIFT_D->bonus(ob, ([ "exp" : exp, "pot" : pot, "mar" : mar,
                                                              "weiwang" : weiwang, "score" : score, "percent" : 300 ]), 1);
                                 }
                         }
                         break;
-                case "门派":
+                case "門派":
                         GROUP_QUEST_D->be_killed(1);
-                        if( query("门派", victim) == query("family/family_name", killer)){
+                        if( query("門派", victim) == query("family/family_name", killer)){
                                 GROUP_QUEST_D->add_killer(killer);
                                 exp=query("bonus", victim);
                                 pot = exp;
@@ -4276,8 +4276,8 @@ protected void quest_kill(object killer, object victim)
                         if( GROUP_QUEST_D->query_drop() < 2 && random(10) == 1 ) {
                                 GROUP_QUEST_D->add_drop(1);
                                 tongren = new("/clone/tongren/tongren"+(1+random(2)));
-                                message_vision(HIR "叮~~一声，从$N" HIR "掉出一样东西，$n" HIR
-                                               "赶紧拣了起来。\n" NOR, victim, killer);
+                                message_vision(HIR "叮~~一聲，從$N" HIR "掉出一樣東西，$n" HIR
+                                               "趕緊揀了起來。\n" NOR, victim, killer);
                                 tell_object(killer, BLINK + HIG "你得到了" + tongren->name() + BLINK + HIG "。\n" NOR);
                                 tongren->move(killer, 1);
                                 }
@@ -4286,8 +4286,8 @@ protected void quest_kill(object killer, object victim)
                         }
                         if( GROUP_QUEST_D->query_enemy() == 0 ) {
                                 tongren = new("/clone/tongren/tongren"+(1+random(2)));
-                                message_vision(HIR "叮~~一声，从$N" HIR "掉出一样东西，$n" HIR
-                                               "赶紧拣了起来。\n" NOR, victim, killer);
+                                message_vision(HIR "叮~~一聲，從$N" HIR "掉出一樣東西，$n" HIR
+                                               "趕緊揀了起來。\n" NOR, victim, killer);
                                 tell_object(killer, BLINK + HIG "你得到了" + tongren->name() + BLINK + HIG "。\n" NOR);
                                 tongren->move(killer, 1);
                                 all_killer = GROUP_QUEST_D->query_killer();
@@ -4302,16 +4302,16 @@ protected void quest_kill(object killer, object victim)
                                         if( !objectp(ob) || !playerp(ob))
                                                 continue;
 
-                                        tell_object(ob, HIW "所有入侵的敌人都给打退了，由于你也参与了战斗，" +
-                                                            "因此现在你也一起分享胜利果实！\n" NOR);
+                                        tell_object(ob, HIW "所有入侵的敵人都給打退了，由於你也參與了戰鬥，" +
+                                                            "因此現在你也一起分享勝利果實！\n" NOR);
                                         GIFT_D->bonus(ob, ([ "exp" : exp, "pot" : pot, "mar" : mar,
                                                              "gongxian" : weiwang, "score" : score, "weiwang" : weiwang, "percent" : 300 ]), 1);
                                 }
                         }
                         break;
-                case "帮派":
+                case "幫派":
                         GROUP_QUEST_D->be_killed(1);
-                        if( query("帮派", victim) == query("bunch/bunch_name", killer)){
+                        if( query("幫派", victim) == query("bunch/bunch_name", killer)){
                                 GROUP_QUEST_D->add_killer(killer);
                                 exp=query("bonus", victim);
                                 pot = exp;
@@ -4321,8 +4321,8 @@ protected void quest_kill(object killer, object victim)
                                 if( GROUP_QUEST_D->query_drop() < 2 && random(10) == 1 ) {
                                 GROUP_QUEST_D->add_drop(1);
                                 tongren = new("/clone/tongren/tongren"+(1+random(2)));
-                                message_vision(HIR "叮~~一声，从$N" HIR "掉出一样东西，$n" HIR
-                                               "赶紧拣了起来。\n" NOR, victim, killer);
+                                message_vision(HIR "叮~~一聲，從$N" HIR "掉出一樣東西，$n" HIR
+                                               "趕緊揀了起來。\n" NOR, victim, killer);
                                 tell_object(killer, BLINK + HIG "你得到了" + tongren->name() + BLINK + HIG "。\n" NOR);
                                 tongren->move(killer, 1);
                                 }
@@ -4331,11 +4331,11 @@ protected void quest_kill(object killer, object victim)
                         }
                         if( GROUP_QUEST_D->query_enemy() == 0 ) {
                                 tongren = new("/clone/tongren/tongren"+(1+random(2)));
-                                message_vision(HIR "叮~~一声，从$N" HIR "掉出一样东西，$n" HIR
-                                               "赶紧拣了起来。\n" NOR, victim, killer);
+                                message_vision(HIR "叮~~一聲，從$N" HIR "掉出一樣東西，$n" HIR
+                                               "趕緊揀了起來。\n" NOR, victim, killer);
                                 tell_object(killer, BLINK + HIG "你得到了" + tongren->name() + BLINK + HIG "。\n" NOR);
                                 tongren->move(killer, 1);
-                                BUNCH_D->add_bunch_honors(query("帮派", victim), 200);
+                                BUNCH_D->add_bunch_honors(query("幫派", victim), 200);
                                 all_killer = GROUP_QUEST_D->query_killer();
                                 n = sizeof(all_killer);
                                 exp = 2000+20*n;
@@ -4348,8 +4348,8 @@ protected void quest_kill(object killer, object victim)
                                         if( !objectp(ob) || !playerp(ob) )
                                                 continue;
 
-                                        tell_object(ob, HIW "所有入侵的敌人都给打退了，由于你也参与了战斗，" +
-                                                            "因此现在你也一起分享胜利果实！\n" NOR);
+                                        tell_object(ob, HIW "所有入侵的敵人都給打退了，由於你也參與了戰鬥，" +
+                                                            "因此現在你也一起分享勝利果實！\n" NOR);
                                         GIFT_D->bonus(ob, ([ "exp" : exp, "pot" : pot, "mar" : mar,
                                                              "weiwang" : weiwang, "score" : score, "percent" : 300 ]), 1);
                                 }
@@ -4359,18 +4359,18 @@ protected void quest_kill(object killer, object victim)
                 return;
         }
 
-        // 以下是宗师任务的奖励
-        if( mapp(quest=query("quest_kh", killer)) && quest["desc"] == "灭"){//葵花太监
+        // 以下是宗師任務的獎勵
+        if( mapp(quest=query("quest_kh", killer)) && quest["desc"] == "滅"){//葵花太監
                 if( (quest["name"] == "男子" && query("gender", victim) == "男性") ||
                     (quest["name"] == "女子" && query("gender", victim) == "女性") ||
-                    (quest["type"] == "地点" && (domain_file(base_name(victim)) == quest["dir"] ||
+                    (quest["type"] == "地點" && (domain_file(base_name(victim)) == quest["dir"] ||
                     (stringp(query("startroom", victim)) && (domain_file(query("startroom", victim)) == quest["dir"])) ||
                      base_dir(victim) == quest["dir1"])) ) {
                         if( (quest["time"]-time()) < 0 ) {
                                 delete("quest_kh", killer);
                                 return ;
                         }
-                        else if( query("race", victim) == "野兽")return ;
+                        else if( query("race", victim) == "野獸")return ;
                         else {
                                 level = (quest["level"]+1)*(70+random(20));
                                 exp = level;
@@ -4390,8 +4390,8 @@ protected void quest_kill(object killer, object victim)
                 }
         }
 
-        if( mapp(quest=query("quest_dg", killer))){//独孤求败
-                if( quest["type"] == "杀" && victim->name(1) == quest["name"] ) {
+        if( mapp(quest=query("quest_dg", killer))){//獨孤求敗
+                if( quest["type"] == "殺" && victim->name(1) == quest["name"] ) {
                         if( (i=query("questdg_times", killer))<8 )
                                 i = 15-i;
                         else
@@ -4471,8 +4471,8 @@ protected void quest_kill(object killer, object victim)
                         all_quest += 1;
                         if( all_quest == 1000 ) {
                                 obj = new("/clone/gift/xuanhuang");
-                                tell_object(killer,"由于你已经累计完成了一千个任务，因此你得到了一个" +
-                                                query("name", obj)+"作为奖励\n");
+                                tell_object(killer,"由於你已經累計完成了一千個任務，因此你得到了一個" +
+                                                query("name", obj)+"作為獎勵\n");
                                 if( !obj->move(killer) )
                                         obj->move(environment(killer));
                                 set("all_quest_dg", 0, killer);
@@ -4482,9 +4482,9 @@ protected void quest_kill(object killer, object victim)
                 }
         }
 
-        if( mapp(quest=query("quest_hs", killer))){//黄裳
-                if( quest["type"]=="杀"&&quest["name"]==victim->name(1) ) {
-                        tell_object(killer,"恭喜你！你又为绿林立了一功！\n");
+        if( mapp(quest=query("quest_hs", killer))){//黃裳
+                if( quest["type"]=="殺"&&quest["name"]==victim->name(1) ) {
+                        tell_object(killer,"恭喜你！你又為綠林立了一功！\n");
                         if( (i=query("quesths_times", killer))<15 )
                                 i = 15-i;
                         else
@@ -4566,8 +4566,8 @@ protected void quest_kill(object killer, object victim)
                         all_quest += 1;
                         if( all_quest == 1000 ) {
                                 obj = new("/clone/gift/xuanhuang");
-                                tell_object(killer,"由于你已经累计完成了一千个任务，因此你得到了一个" +
-                                                query("name", obj)+"作为奖励\n");
+                                tell_object(killer,"由於你已經累計完成了一千個任務，因此你得到了一個" +
+                                                query("name", obj)+"作為獎勵\n");
                                 if( !obj->move(killer) )
                                         obj->move(environment(killer));
                                 set("all_quest_hs", 0, killer);
@@ -4578,8 +4578,8 @@ protected void quest_kill(object killer, object victim)
         }
 
         if( mapp(quest=query("quest_sn", killer))){//南海神尼
-                if( quest["type"]=="杀"&&quest["name"]==victim->name(1) ) {
-                        tell_object(killer,"恭喜你！你又为南海神尼立了一功！\n");
+                if( quest["type"]=="殺"&&quest["name"]==victim->name(1) ) {
+                        tell_object(killer,"恭喜你！你又為南海神尼立了一功！\n");
                         if( (i=query("questsn_times", killer))<15 )
                                 i = 15-i;
                         else i = 1;
@@ -4660,8 +4660,8 @@ protected void quest_kill(object killer, object victim)
                         all_quest += 1;
                         if( all_quest == 1000 ) {
                                 obj = new("/clone/gift/xuanhuang");
-                                tell_object(killer,"由于你已经累计完成了一千个任务，因此你得到了一个" +
-                                                query("name", obj)+"作为奖励\n");
+                                tell_object(killer,"由於你已經累計完成了一千個任務，因此你得到了一個" +
+                                                query("name", obj)+"作為獎勵\n");
                                 if( !obj->move(killer) )
                                         obj->move(environment(killer));
                                 set("all_quest_sn", 0, killer);

@@ -5,10 +5,10 @@ void create()
 {
         set("short", "密道");
         set("long", @LONG
-这里是冰火岛祭坛内的一处密道，幽幽长长，深不见底不
-知道通向何处。密道内灯光昏暗，阴风阵阵，不时传来诡异的
-笑声，偶尔还触及一两根不知是人是兽的枯骨，让你全身直起
-鸡皮疙瘩。情急之下只有四处寻路(xunlu)看看有没新的出路。
+這裡是冰火島祭壇內的一處密道，幽幽長長，深不見底不
+知道通向何處。密道內燈光昏暗，陰風陣陣，不時傳來詭異的
+笑聲，偶爾還觸及一兩根不知是人是獸的枯骨，讓你全身直起
+雞皮疙瘩。情急之下只有四處尋路(xunlu)看看有沒新的出路。
 LONG);
         set("no_sleep_room",1);
         set("objects", ([
@@ -26,11 +26,11 @@ void init()
 
         if (random(2))
         {
-                tell_object(me, HIC "你不小心踩到一副枯骨，竟然惊慌异常……\n" NOR);
+                tell_object(me, HIC "你不小心踩到一副枯骨，竟然驚慌異常……\n" NOR);
         }
         else
         {
-                tell_object(me, HIC "突然一群吸血蝙蝠飞过，你连忙应付 ……\n" NOR);
+                tell_object(me, HIC "突然一群吸血蝙蝠飛過，你連忙應付 ……\n" NOR);
         }
 }
 
@@ -38,7 +38,7 @@ int do_wang()
 {
         object ob = this_player();
 
-        message_vision(HIC "\n$N" HIC "四处乱窜，寻找新的出路，似乎发现远处射出一丝光亮。\n"NOR, ob);
+        message_vision(HIC "\n$N" HIC "四處亂竄，尋找新的出路，似乎發現遠處射出一絲光亮。\n"NOR, ob);
 
         switch (random(4))
         {

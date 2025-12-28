@@ -8,12 +8,12 @@ inherit NPC;
 
 string *degree_desc = ({
         BLU "士卒" NOR,
-        BLU "游击" NOR,
-        HIC "参将" NOR,
-        HIC "裨将" NOR,
-        HIY "佐将" NOR,
-        HIY "副将" NOR,
-        HIR "将军" NOR,
+        BLU "遊擊" NOR,
+        HIC "參將" NOR,
+        HIC "裨將" NOR,
+        HIY "佐將" NOR,
+        HIY "副將" NOR,
+        HIR "將軍" NOR,
         HIR "提督" NOR,
 });
 
@@ -31,15 +31,15 @@ int add_degree(object ob,int lv);
 void create()
 {
         set_name("郭靖", ({"guo jing", "guo", "jing"}));
-        set("nickname", HIY "北侠" NOR);
-        set("title", "襄阳城大将");
+        set("nickname", HIY "北俠" NOR);
+        set("title", "襄陽城大將");
         set("gender", "男性");
         set("age", 41);
         set("long",
-                "他就是人称北侠的郭靖，既是蒙古成吉思汗的金刀驸马，又是\n"
-                "江南七怪、全真派马钰道长、「北丐」洪七公和「老顽童」周\n"
-                "伯通等人的徒弟，身兼数门武功。他身着一件灰色长袍，体态\n"
-                "魁梧，敦厚的面目中透出一股威严。\n");
+                "他就是人稱北俠的郭靖，既是蒙古成吉思汗的金刀駙馬，又是\n"
+                "江南七怪、全真派馬鈺道長、「北丐」洪七公和「老頑童」周\n"
+                "伯通等人的徒弟，身兼數門武功。他身著一件灰色長袍，體態\n"
+                "魁梧，敦厚的面目中透出一股威嚴。\n");
         set("attitude", "friendly");
         set_max_encumbrance(100000000);
         set("per", 20);
@@ -49,41 +49,41 @@ void create()
         set("dex", 25);
         set("chat_chance", 1);
         set("chat_msg", ({
-                "郭靖叹了口气道：“蒙古兵久攻襄阳不下，一定会再出诡计，蓉儿又不在身边，这....\n",
-                "郭靖说道：“华筝公主近来不知可好，抽空一定要回大漠去看看她。\n",
+                "郭靖嘆了口氣道：“蒙古兵久攻襄陽不下，一定會再出詭計，蓉兒又不在身邊，這....\n",
+                "郭靖說道：“華箏公主近來不知可好，抽空一定要回大漠去看看她。\n",
         }));
 
         set("inquiry", ([
-                "周伯通" : "你见到我周大哥了？他现在可好？\n",
-                "老顽童" : "周大哥一贯这样，没点正经！\n",
-                "洪七公" : "师父除了吃，就是喜欢玩。到处玩，还是为了找吃的。\n",
-                "黄药师" : "那是我泰山大人。他云游四海，神龙见首不见尾的。\n",
-                "一灯大师" : "在下对大师好生感激。\n",
-                "欧阳锋" : "这个老毒物，害死我六位师父，一待襄阳事了，决不与他干休。\n",
-                "黄蓉"   : "蓉儿是我的爱妻，你问她做甚？\n",
-                "蓉儿"   : "蓉儿就是蓉儿了。你问这么多干嘛？\n",
-                "郭芙"   : "这个女儿，又笨又不听话。\n",
-                "郭襄"   : "襄儿生于乱世，这辈子又多艰厄。但愿她能快乐一世。\n",
-                "郭破虏" : "那是我的小儿子。\n",
-                "杨过"   : "过儿确实有出息。\n",
-                "马钰"   : "马道长于我有半师之谊。\n",
-                "丘处机" : "邱道长义薄云天，是真豪杰。\n",
-                "柯镇恶" : "那是我大师父。\n",
-                "朱聪"   : "那是我二师父。\n",
-                "韩宝驹" : "那是我三师父。\n",
-                "南希仁" : "那是我四师父。\n",
-                "张阿生" : "那是我五师父。\n",
-                "全金发" : "那是我六师父。\n",
-                "韩小莹" : "那是我七师父。\n",
-                "丐帮"   : "丐帮英雄几百年了，守卫襄阳多亏了他们。\n",
-                "拜师"   : "现在蒙古人围攻襄阳，我哪有心情收徒啊！\n",
+                "周伯通" : "你見到我周大哥了？他現在可好？\n",
+                "老頑童" : "周大哥一貫這樣，沒點正經！\n",
+                "洪七公" : "師父除了吃，就是喜歡玩。到處玩，還是為了找吃的。\n",
+                "黃藥師" : "那是我泰山大人。他雲遊四海，神龍見首不見尾的。\n",
+                "一燈大師" : "在下對大師好生感激。\n",
+                "歐陽鋒" : "這個老毒物，害死我六位師父，一待襄陽事了，決不與他干休。\n",
+                "黃蓉"   : "蓉兒是我的愛妻，你問她做甚？\n",
+                "蓉兒"   : "蓉兒就是蓉兒了。你問這麼多幹嘛？\n",
+                "郭芙"   : "這個女兒，又笨又不聽話。\n",
+                "郭襄"   : "襄兒生於亂世，這輩子又多艱厄。但願她能快樂一世。\n",
+                "郭破虜" : "那是我的小兒子。\n",
+                "楊過"   : "過兒確實有出息。\n",
+                "馬鈺"   : "馬道長於我有半師之誼。\n",
+                "丘處機" : "邱道長義薄雲天，是真豪傑。\n",
+                "柯鎮惡" : "那是我大師父。\n",
+                "朱聰"   : "那是我二師父。\n",
+                "韓寶駒" : "那是我三師父。\n",
+                "南希仁" : "那是我四師父。\n",
+                "張阿生" : "那是我五師父。\n",
+                "全金髮" : "那是我六師父。\n",
+                "韓小瑩" : "那是我七師父。\n",
+                "丐幫"   : "丐幫英雄幾百年了，守衛襄陽多虧了他們。\n",
+                "拜師"   : "現在蒙古人圍攻襄陽，我哪有心情收徒啊！\n",
                 "守城"   : (: ask_shoucheng :),
-                "复命"   : (: ask_fuming :),
+                "覆命"   : (: ask_fuming :),
                 "撤退"   : (: ask_chetui :),
-                "狙击"   : (: ask_jianlou :),
-                "连珠箭法":   (: ask_lianzhu :),
+                "狙擊"   : (: ask_jianlou :),
+                "連珠箭法":   (: ask_lianzhu :),
                 "策封"   :   (: ask_degree :),
-                "参军"   :   (: ask_canjun :),
+                "參軍"   :   (: ask_canjun :),
                 ]));
 
         set("qi", 10000);
@@ -130,7 +130,7 @@ void create()
 
         prepare_skill("strike", "dragon-strike");
         
-        create_family("郭府", 1, "北侠");
+        create_family("郭府", 1, "北俠");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -173,58 +173,58 @@ void init()
                 if( query("mark/guofu_over", ob) )
                 {
                         command("hmm");
-                        command("say 我不是让你另谋出路吗？又跑回来干嘛？");
+                        command("say 我不是讓你另謀出路嗎？又跑回來幹嘛？");
                         command("say 敦儒，修文，送" + ob->name() + NOR + CYN "出去！");
-                        message_vision(HIC "\n只见$N" HIC "一招手，顿时从正厅进来了两"
-                                       "位青年，将$n" HIC "架了出去。\n\n",
+                        message_vision(HIC "\n只見$N" HIC "一招手，頓時從正廳進來了兩"
+                                       "位青年，將$n" HIC "架了出去。\n\n",
                                        this_object(), ob);
                         ob->move("/d/xiangyang/westjie1");
-                        tell_room(environment(ob), HIC "\n只见两位青年架着" + ob->name() +
-                                                   HIC "从郭府大厅走了过来。\n" NOR, ({ ob }));
+                        tell_room(environment(ob), HIC "\n只見兩位青年架著" + ob->name() +
+                                                   HIC "從郭府大廳走了過來。\n" NOR, ({ ob }));
                 } else
                 if( query("mark/guofu_out", ob )
                  && query("combat_exp", ob)<100000 )
                 {
-                        command("say 你现在的武功已经有一定的底子了，应该多走动走动。");
-                        command("say 别老是呆在我这里，这对你帮助不大。敦儒，修文，送客！");
-                        message_vision(HIC "\n只见$N" HIC "一招手，顿时从正厅进来了两"
-                                       "位青年，将$n" HIC "送了出去。\n\n",
+                        command("say 你現在的武功已經有一定的底子了，應該多走動走動。");
+                        command("say 別老是呆在我這裡，這對你幫助不大。敦儒，修文，送客！");
+                        message_vision(HIC "\n只見$N" HIC "一招手，頓時從正廳進來了兩"
+                                       "位青年，將$n" HIC "送了出去。\n\n",
                                        this_object(), ob);
                         ob->move("/d/xiangyang/westjie1");
-                        tell_room(environment(ob), HIC "\n只见两位青年陪着" + ob->name() +
-                                                   HIC "从郭府大厅走了过来。\n" NOR, ({ ob }));
+                        tell_room(environment(ob), HIC "\n只見兩位青年陪著" + ob->name() +
+                                                   HIC "從郭府大廳走了過來。\n" NOR, ({ ob }));
                 } else
                 if ((int)ob->query_condition("killer"))
                 {
                         command("sigh");
-                        command("say 你杀性如此之重，我这里也留不得你，你还是走吧。");
+                        command("say 你殺性如此之重，我這裡也留不得你，你還是走吧。");
                         command("say 敦儒，修文，送客！");
-                        message_vision(HIC "\n只见$N" HIC "一招手，顿时从正厅进来了两"
-                                       "位青年，将$n" HIC "架了出去。\n\n",
+                        message_vision(HIC "\n只見$N" HIC "一招手，頓時從正廳進來了兩"
+                                       "位青年，將$n" HIC "架了出去。\n\n",
                                        this_object(), ob);
                         ob->move("/d/xiangyang/westjie1");
                         set("mark/guofu_over", 1, ob);
                         delete("mark/guofu_ok", ob);
-                        tell_room(environment(ob), HIC "\n只见两位青年架着" + ob->name() +
-                                                   HIC "从郭府大厅走了过来。\n" NOR, ({ ob }));
+                        tell_room(environment(ob), HIC "\n只見兩位青年架著" + ob->name() +
+                                                   HIC "從郭府大廳走了過來。\n" NOR, ({ ob }));
                 } else
 */
-                // 隐藏情节：郭靖教授三门特殊武功
-                if( query("mark/guofu_ok", ob)//①确认被收容于郭府
-                   && query("mark/guofu_job", ob)>200//②郭府工作总量大于两百
-                   && query("combat_exp", ob)>10000//③确认经验值在一万和两万之间
+                // 隱藏情節：郭靖教授三門特殊武功
+                if( query("mark/guofu_ok", ob)//①確認被收容於郭府
+                   && query("mark/guofu_job", ob)>200//②郭府工作總量大於兩百
+                   && query("combat_exp", ob)>10000//③確認經驗值在一萬和兩萬之間
                    && query("combat_exp", ob)<500000
-                   && !query_temp("job_name", ob)//④此时没有领取工作
-                   && !query("family/family_name", ob)//⑤没有拜师
-                   && !query("can_learn/3skills/guojing", ob)//⑤保证以前未触发此情节
-                   && ! stringp(ob->query_skill_mapped("force"))) //⑥ 没有激发特殊内功
+                   && !query_temp("job_name", ob)//④此時沒有領取工作
+                   && !query("family/family_name", ob)//⑤沒有拜師
+                   && !query("can_learn/3skills/guojing", ob)//⑤保證以前未觸發此情節
+                   && ! stringp(ob->query_skill_mapped("force"))) //⑥ 沒有激發特殊內功
                 {
                         command("look "+query("id", ob));
                         command("yi");
-                        command("whisper "+query("id", ob)+"你在我郭府内工作也有"
-                                "一定的时间\n了，怎么连一技之长也没有？以后怎能行走江"
-                                "湖啊？…嗯…这\n样好了，从今日起，你每天到我这里来，"
-                                "我传授你几项简单的\n特殊武功好了。\n" NOR);
+                        command("whisper "+query("id", ob)+"你在我郭府內工作也有"
+                                "一定的時間\n了，怎麼連一技之長也沒有？以後怎能行走江"
+                                "湖啊？…嗯…這\n樣好了，從今日起，你每天到我這裡來，"
+                                "我傳授你幾項簡單的\n特殊武功好了。\n" NOR);
                         set("can_learn/3skills/guojing", 1, ob);
                 }
          }
@@ -240,49 +240,49 @@ string ask_shoucheng()
                 ene = query_enemy();
 
                 if (sizeof(ene) > 1)
-                        return "“请" + RANK_D->query_respect(me) + "稍等片刻，我先和这" +
-                                sizeof(ene) + "位高手切磋几下！”\n";
+                        return "“請" + RANK_D->query_respect(me) + "稍等片刻，我先和這" +
+                                sizeof(ene) + "位高手切磋幾下！”\n";
                 if (sizeof(ene) == 1)
-                        return "“请" + RANK_D->query_respect(me) + "稍等片刻，我先和" +
-                                ene[0]->name() + "切磋几下！”\n";
+                        return "“請" + RANK_D->query_respect(me) + "稍等片刻，我先和" +
+                                ene[0]->name() + "切磋幾下！”\n";
         }
 
         if( query_temp("guo_shoucheng/mark_shadi", me) )
-                return "“" + RANK_D->query_respect(me) + "不是已有守城任务了吗！”\n";
+                return "“" + RANK_D->query_respect(me) + "不是已有守城任務了嗎！”\n";
 
         if( query_temp("guo_shoucheng/mark_jianlou", me) )
-                return "“" + RANK_D->query_respect(me) + "不是已有狙击任务了吗！”\n";
+                return "“" + RANK_D->query_respect(me) + "不是已有狙擊任務了嗎！”\n";
 
         if( query("combat_exp", me)<100000 )
-                       return "“" + RANK_D->query_respect(me) + "手无缚鸡之力，还是别领任务的为好！”\n";
+                       return "“" + RANK_D->query_respect(me) + "手無縛雞之力，還是別領任務的為好！”\n";
 
                if ((int)me->query_skill("force", 1) < 60)
-                       return "守城是件危险工作，我看" + RANK_D->query_respect(me) + "的基本内力不足！\n";
+                       return "守城是件危險工作，我看" + RANK_D->query_respect(me) + "的基本內力不足！\n";
 
                if ((int)me->query_condition("jobshadi_failed"))
                {
-                message_vision("$N对着$n摇了摇头说：逃跑失败了还来见我??\n", this_object(), me);
-                return "“" + RANK_D->query_respect(me) + "你还是别领任务的为好！”\n";
+                message_vision("$N對著$n搖了搖頭說：逃跑失敗了還來見我??\n", this_object(), me);
+                return "“" + RANK_D->query_respect(me) + "你還是別領任務的為好！”\n";
                }
 
                if( query_temp("guo_shoucheng/failed", me) )
                {
                  delete_temp("guo_shoucheng", me);
                  me->apply_condition("jobshadi_failed", 4);
-                 return "“临阵脱逃，还敢回来见我！！？？”\n";
+                 return "“臨陣脫逃，還敢回來見我！！？？”\n";
                }
 
               if ((int)me->query_condition("jobshadi_limit"))
                {
-                message_vision("$N对着$n摇了摇头说：你不是正做着守城任务吗??\n", this_object(), me);
-                return "“" + RANK_D->query_respect(me) + "你快点回你的岗位上去！”\n";
+                message_vision("$N對著$n搖了搖頭說：你不是正做著守城任務嗎??\n", this_object(), me);
+                return "“" + RANK_D->query_respect(me) + "你快點回你的崗位上去！”\n";
                }
 
                if ((int)me->query_condition("guojob2_busy"))
                {
-                message_vision(CYN "$N对着$n摇了摇头说：疲惫之师不利作战！！\n" NOR,
+                message_vision(CYN "$N對著$n搖了搖頭說：疲憊之師不利作戰！！\n" NOR,
                             this_object(), me);
-                return "“" + RANK_D->query_respect(me) + "你还是休息一下再来吧！”\n";
+                return "“" + RANK_D->query_respect(me) + "你還是休息一下再來吧！”\n";
                }
 
                if( query("shen", me)>0 )
@@ -291,14 +291,14 @@ string ask_shoucheng()
                 case 0:
                         set_temp("guo_shoucheng/mark_shadi", 1, me);
                         set_temp("guo_shoucheng/carry_location", "eastgate1", me);
-                        return "“现在蒙古靼子侵犯中原，这位" +
-                                RANK_D->query_respect(me) + "去玄武内门帮助宋军守城吧。";
+                        return "“現在蒙古靼子侵犯中原，這位" +
+                                RANK_D->query_respect(me) + "去玄武內門幫助宋軍守城吧。";
 
                        break;
                 case 1:
                         set_temp("guo_shoucheng/mark_shadi", 2, me);
                         set_temp("guo_shoucheng/carry_location", "northgate1", me);
-                        return "“现在蒙古靼子侵犯中原，这位" + RANK_D->query_respect(me) + "去青龙内门帮助宋军守城吧。";
+                        return "“現在蒙古靼子侵犯中原，這位" + RANK_D->query_respect(me) + "去青龍內門幫助宋軍守城吧。";
 
                                break;
                 }
@@ -309,13 +309,13 @@ string ask_shoucheng()
                 case 0:
                         set_temp("guo_shoucheng/mark_shadi", 3, me);
                         set_temp("guo_shoucheng/carry_location", "southgate1", me);
-                return "“现在蒙古靼子侵犯中原，这位"+RANK_D->query_respect(me)+"去朱雀内门帮助宋军守城吧。";
+                return "“現在蒙古靼子侵犯中原，這位"+RANK_D->query_respect(me)+"去朱雀內門幫助宋軍守城吧。";
 
                        break;
                 case 1:
                         set_temp("guo_shoucheng/mark_shadi", 4, me);
                         set_temp("guo_shoucheng/carry_location", "westgate1", me);
-                return "“现在蒙古靼子侵犯中原，这位"+RANK_D->query_respect(me)+"去白虎内门帮助宋军守城吧。";
+                return "“現在蒙古靼子侵犯中原，這位"+RANK_D->query_respect(me)+"去白虎內門幫助宋軍守城吧。";
 
                        break;
                 }
@@ -333,58 +333,58 @@ string ask_jianlou()
                 ene = query_enemy();
 
                 if (sizeof(ene) > 1)
-                        return "“请"+RANK_D->query_respect(me) +
-                               "稍等片刻，我先和这" + sizeof(ene) + "位高手切磋几下！”\n";
+                        return "“請"+RANK_D->query_respect(me) +
+                               "稍等片刻，我先和這" + sizeof(ene) + "位高手切磋幾下！”\n";
                 if (sizeof(ene) == 1)
-                        return "“请" + RANK_D->query_respect(me) + "稍等片刻，我先和"
-                                + ene[0]->name() + "切磋几下！”\n";
+                        return "“請" + RANK_D->query_respect(me) + "稍等片刻，我先和"
+                                + ene[0]->name() + "切磋幾下！”\n";
         }
 
         if( query_temp("guo_shoucheng/mark_shadi", me) )
-                return "“"+RANK_D->query_respect(me)+"不是已有守城任务了吗！”\n";
+                return "“"+RANK_D->query_respect(me)+"不是已有守城任務了嗎！”\n";
 
         if( query_temp("guo_shoucheng/mark_jianlou", me) )
-                return "“"+RANK_D->query_respect(me)+"不是已有狙击任务了吗！”\n";
+                return "“"+RANK_D->query_respect(me)+"不是已有狙擊任務了嗎！”\n";
 
         if ((int)me->query_condition("jobshadi_failed"))
         {
                 message_vision(
-                        "$N对着$n摇了摇头说：逃跑失败了还来见我??\n", this_object(), me);
-                return "“"+RANK_D->query_respect(me)+"你还是别领任务的为好！”\n";
+                        "$N對著$n搖了搖頭說：逃跑失敗了還來見我??\n", this_object(), me);
+                return "“"+RANK_D->query_respect(me)+"你還是別領任務的為好！”\n";
         }
 
         if( query_temp("guo_shoucheng/failed", me) )
         {
                 delete_temp("guo_shoucheng", me);
                 me->apply_condition("jobshadi_failed",4);
-                return "“临阵脱逃，还敢回来见我！！？？”\n";
+                return "“臨陣脫逃，還敢回來見我！！？？”\n";
         }
 
         if ((int)me->query_skill("arrow", 1) < 50)
         {
-                message_vision(CYN"$N对着$n摇了摇头说：你的基本箭法太差了！\n"NOR,
+                message_vision(CYN"$N對著$n搖了搖頭說：你的基本箭法太差了！\n"NOR,
                                this_object(), me);
-                return "“"+RANK_D->query_respect(me)+"，我怕你难以胜任啊！”\n";
+                return "“"+RANK_D->query_respect(me)+"，我怕你難以勝任啊！”\n";
         }
 
         if ((int)me->query_condition("jobjianlou_limit"))
         {
-                message_vision("$N对着$n摇了摇头说：你不是正做着阻击任务吗？？\n",
+                message_vision("$N對著$n搖了搖頭說：你不是正做著阻擊任務嗎？？\n",
                                 this_object(), me);
-                return "“"+RANK_D->query_respect(me)+"，请你快点回你的岗位上去！”\n";
+                return "“"+RANK_D->query_respect(me)+"，請你快點回你的崗位上去！”\n";
         }
 
         if ((int)me->query_condition("guojob2_busy"))
         {
-                message_vision(CYN"$N对着$n摇了摇头说：疲惫之师不利作战！！\n"NOR,
+                message_vision(CYN"$N對著$n搖了搖頭說：疲憊之師不利作戰！！\n"NOR,
                                 this_object(), me);
-                return "“"+RANK_D->query_respect(me)+"你还是休息一下再来吧！”\n";
+                return "“"+RANK_D->query_respect(me)+"你還是休息一下再來吧！”\n";
         }
 
         set_temp("guo_shoucheng/mark_jianlou", 2, me);
         set_temp("guo_shoucheng/where", "east_out", me);
-        return "“那就有劳这位"+RANK_D->query_respect(me) +
-               "前往青龙内门的东城箭楼，负责狙击蒙古箭手的任务吧。\n”";
+        return "“那就有勞這位"+RANK_D->query_respect(me) +
+               "前往青龍內門的東城箭樓，負責狙擊蒙古箭手的任務吧。\n”";
 }
 
 string ask_fuming()
@@ -397,7 +397,7 @@ string ask_fuming()
         {
                 delete_temp("guo_shoucheng", me);
                 me->apply_condition("jobshadi_failed",4);
-                return "“临阵脱逃，还敢回来复命！！？？”\n";
+                return "“臨陣脫逃，還敢回來覆命！！？？”\n";
         }
 
         if( query_temp("guo_shoucheng/help_killed", me )
@@ -435,29 +435,29 @@ string ask_fuming()
                 GIFT_D->bonus(me, ([ "exp" : job_exp, "pot" : job_pot, "mar" : job_mar, "score" : job_sco ]));
 
 /*
-                tell_object(me, HIW "你被奖励了" + chinese_number(job_exp) + "点经验值及" +
-                                chinese_number(job_pot) + "点潜能和" + chinese_number(job_sco) + "点阅历体会。\n" NOR);
+                tell_object(me, HIW "你被獎勵了" + chinese_number(job_exp) + "點經驗值及" +
+                                chinese_number(job_pot) + "點潛能和" + chinese_number(job_sco) + "點閱歷體會。\n" NOR);
 */
                 delete_temp("guo_shoucheng", me);
                 me->apply_condition("guojob2_busy", 2);
                 //addn("guo_shoucheng/reward_exp", job_exp, me);
                 //addn("guo_shoucheng/reward_potential", job_pot, me);
 
-                return "“"+RANK_D->query_respect(me) + "，为国杀敌，不错不错！”\n";
+                return "“"+RANK_D->query_respect(me) + "，為國殺敵，不錯不錯！”\n";
         }
 
         if( !query_temp("guo_shoucheng/mark_shadi", me )
                  && !query_temp("guo_shoucheng/mark_jianlou", me )
                  || !query_temp("guo_shoucheng/job_over", me) )
-                return "“你好象没完成任务吧，还来复什么命？”\n";
+                return "“你好象沒完成任務吧，還來複什麼命？”\n";
 
         if( query_temp("guo_shoucheng/killed_mgb", me)<1 )
         {
                 delete_temp("guo_shoucheng", me);
-                return "“你杀了几个敌人啊，就从前线逃回来了？\n";
+                return "“你殺了幾個敵人啊，就從前線逃回來了？\n";
         }
 
-        message_vision(CYN "$N对$n说道：“"+RANK_D->query_respect(me)+"辛苦了，去休息一下吧！”\n" NOR, this_object(), me);
+        message_vision(CYN "$N對$n說道：“"+RANK_D->query_respect(me)+"辛苦了，去休息一下吧！”\n" NOR, this_object(), me);
 
         job_exp=(query_temp("guo_shoucheng/killed_mgb", me))*100;
         job_exp += query_temp("guo_jianlou/killed_mgb", me)*100;
@@ -488,8 +488,8 @@ string ask_fuming()
                 }
 #endif
 
-        tell_object(me, HIW "你被奖励了" + chinese_number(job_exp) + "点经验值及" +
-                        chinese_number(job_pot) + "点潜能和" + chinese_number(job_sco) + "点阅历还有一些威望体会。\n" NOR);
+        tell_object(me, HIW "你被獎勵了" + chinese_number(job_exp) + "點經驗值及" +
+                        chinese_number(job_pot) + "點潛能和" + chinese_number(job_sco) + "點閱歷還有一些威望體會。\n" NOR);
 */
 
         GIFT_D->bonus(me, ([ "exp" : job_exp, "pot" : job_pot, "mar" : job_mar, "score" : job_sco, "weiwang" : 5 ]));
@@ -510,7 +510,7 @@ string ask_fuming()
 
         delete_temp("guo_shoucheng", me);
 
-        return "“" + RANK_D->query_respect(me) + "，为国杀敌，奋勇当先，当记军功" HIY +
+        return "“" + RANK_D->query_respect(me) + "，為國殺敵，奮勇當先，當記軍功" HIY +
                 chinese_number(reward) + NOR + CYN "策！！！”\n" NOR;
 }
 
@@ -523,7 +523,7 @@ string ask_chetui()
         if( !query_temp("guo_shoucheng/start_job", me )
                  && !query_temp("guo_shoucheng/mark_jianlou", me )
                  && !query_temp("guo_shoucheng/mark_shadi", me) )
-                return "你没有领任务,跑这里瞎嚷嚷什麽？";
+                return "你沒有領任務,跑這裡瞎嚷嚷什麼？";
 
         me->apply_condition("jobshadi_limit", 0);
         me->apply_condition("jobjianlou_limit", 0);
@@ -531,7 +531,7 @@ string ask_chetui()
         me->apply_condition("jobshadi_failed", 4);
         delete_temp("guo_shoucheng", me);
 
-        return "没关系，下次继续努力 。";
+        return "沒關係，下次繼續努力 。";
 }
 
 string ask_lianzhu()
@@ -540,14 +540,14 @@ string ask_lianzhu()
 
         if( query("jungong", me)>100 )
         {
-                message_sort(HIC "$N哈哈大笑道：“这套连珠箭法(lianzhu-arrow)我就" +
-                             "传于你了，望你奋勇杀敌，多立战功，我也无憾了！\n" NOR, ob);
-                return "时间紧迫，现在就开始学吧(qingjiao lianzhu-arrow)！\n";
+                message_sort(HIC "$N哈哈大笑道：“這套連珠箭法(lianzhu-arrow)我就" +
+                             "傳於你了，望你奮勇殺敵，多立戰功，我也無憾了！\n" NOR, ob);
+                return "時間緊迫，現在就開始學吧(qingjiao lianzhu-arrow)！\n";
         } else
         {
-                message_sort(HIC "$N微微点头道：“这套连珠箭法(lianzhu-arrow)是我的" +
-                             "毕生心血之作，\n不便轻易相传！！\n" NOR, ob);
-                return "若阁下真有奋勇杀敌，助我大宋之心，日后必慷慨相送！\n";
+                message_sort(HIC "$N微微點頭道：“這套連珠箭法(lianzhu-arrow)是我的" +
+                             "畢生心血之作，\n不便輕易相傳！！\n" NOR, ob);
+                return "若閣下真有奮勇殺敵，助我大宋之心，日後必慷慨相送！\n";
         }
 }
 
@@ -557,24 +557,24 @@ int do_study(string arg)
         object me = this_player(), ob = this_object();
 
         if (! arg || arg != "lianzhu-arrow")
-                return notify_fail("你要向郭靖请教(qingjiao)什么？\n");
+                return notify_fail("你要向郭靖請教(qingjiao)什麼？\n");
 
         if (me->query_skill("lianzhu-arrow", 1) > me->query_skill("arrow", 1))
-                return notify_fail("你的基本箭法太差了，无法继续学习连珠箭法。\n");
+                return notify_fail("你的基本箭法太差了，無法繼續學習連珠箭法。\n");
 
         if (me->query_skill("lianzhu-arrow", 1) * me->query_skill("lianzhu-arrow", 1) > query("jungong", me)*50 )
-                return notify_fail("你的守城军功不够多，郭靖不愿继续教你了！\n");
+                return notify_fail("你的守城軍功不夠多，郭靖不願繼續教你了！\n");
 
         if( query("learned_points", me) >= query("potential", me) )
-                return notify_fail("你的潜能不够了！\n");
+                return notify_fail("你的潛能不夠了！\n");
 
         if( query("jing", me)<100 || query("qi", me)<100 )
-                return notify_fail("你现在太累了，先休息一下吧！\n");
+                return notify_fail("你現在太累了，先休息一下吧！\n");
 
         me->receive_damage("qi", 10 + random(40));
         me->receive_damage("jing", 10 + random(40));
         addn("learned_points", 1, me);
-        message_vision(HIC "$N指点了$n一些有关" HIW "「连珠箭法」" HIC "的问题，" +
+        message_vision(HIC "$N指點了$n一些有關" HIW "「連珠箭法」" HIC "的問題，" +
                        "$n似乎有些心得。\n" NOR, ob, me);
 
         me->improve_skill("lianzhu-arrow", random(me->query_skill("arrow", 1)));
@@ -590,14 +590,14 @@ int ask_degree()
         if( query_temp("degree_jungong", ob) )
         {
                 command("say " + RANK_D->query_respect(ob) + "稍安勿躁，" +
-                        "我已经派人前往请封了！\n");
+                        "我已經派人前往請封了！\n");
                 return 1;
         }
         
         lv=query("degree_jungong", ob);
         if (lv >= sizeof(degree_desc))
         {
-                command("say 草民岂敢为大人请封，大人若亲自前往朝纲，前途自不限量！\n");
+                command("say 草民豈敢為大人請封，大人若親自前往朝綱，前途自不限量！\n");
                 return 1;
         }
                 
@@ -610,17 +610,17 @@ int ask_degree()
 
         if( lv <= query("degree_jungong", ob) )
         {
-                command("say"+query("name", ob)+"，要获得更高的策封，必须多立军功才可以啊！\n");
+                command("say"+query("name", ob)+"，要獲得更高的策封，必須多立軍功才可以啊！\n");
                 return 1;
         }
 
-        command("say " + RANK_D->query_respect(ob) + "请稍候，我即刻派人前往京城为" +
-                RANK_D->query_respect(ob) + "请封！\n");
+        command("say " + RANK_D->query_respect(ob) + "請稍候，我即刻派人前往京城為" +
+                RANK_D->query_respect(ob) + "請封！\n");
 
         call_out("add_degree", 10, ob, lv);
         set_temp("degree_jungong", 1, ob);
-        message("channel:rumor", MAG "【大宋襄阳】" + CHINESE_D->chinese_date((time()-14*365*24*60*60)) +
-                "，一匹快马从襄阳出发，直奔大宋京城！\n" NOR, users());
+        message("channel:rumor", MAG "【大宋襄陽】" + CHINESE_D->chinese_date((time()-14*365*24*60*60)) +
+                "，一匹快馬從襄陽出發，直奔大宋京城！\n" NOR, users());
 
         return 1;
 }
@@ -634,9 +634,9 @@ int add_degree(object ob,int lv)
                 old_degree=query("degree", ob);
         else old_degree = "";
 
-        message("channel:rumor", HIY "【大宋京城】奉天承命，皇帝诏曰：" +
+        message("channel:rumor", HIY "【大宋京城】奉天承命，皇帝詔曰：" +
                 "策封"+old_degree+""+HIW+query("name", ob)+
-                HIY " 为大宋 " NOR + degree + HIY "，钦此！\n" NOR, users());
+                HIY " 為大宋 " NOR + degree + HIY "，欽此！\n" NOR, users());
 
         delete_temp("degree_jungong", ob);
 
@@ -660,22 +660,22 @@ int add_degree(object ob,int lv)
 string clear_degree(string arg)
 {
         if ((strsrch(arg, BLU "士卒" NOR) >= 0) ||
-            (strsrch(arg, BLU "游击" NOR) >= 0) ||
-            (strsrch(arg, HIC "参将" NOR) >= 0) ||
-            (strsrch(arg, HIC "裨将" NOR) >= 0) ||
-            (strsrch(arg, HIY "佐将" NOR) >= 0) ||
-            (strsrch(arg, HIY "副将" NOR) >= 0) ||
-            (strsrch(arg, HIR "将军" NOR) >= 0) ||
+            (strsrch(arg, BLU "遊擊" NOR) >= 0) ||
+            (strsrch(arg, HIC "參將" NOR) >= 0) ||
+            (strsrch(arg, HIC "裨將" NOR) >= 0) ||
+            (strsrch(arg, HIY "佐將" NOR) >= 0) ||
+            (strsrch(arg, HIY "副將" NOR) >= 0) ||
+            (strsrch(arg, HIR "將軍" NOR) >= 0) ||
             (strsrch(arg, HIR "提督" NOR) >= 0) ||
             (strsrch(arg, HIM " ☆ " NOR) >= 0))
         {
                 arg = replace_string(arg, BLU "士卒" NOR,"");
-                arg = replace_string(arg, BLU "游击" NOR,"");
-                arg = replace_string(arg, HIC "参将" NOR,"");
-                arg = replace_string(arg, HIC "裨将" NOR,"");
-                arg = replace_string(arg, HIY "佐将" NOR,"");
-                arg = replace_string(arg, HIY "副将" NOR,"");
-                arg = replace_string(arg, HIR "将军" NOR,"");
+                arg = replace_string(arg, BLU "遊擊" NOR,"");
+                arg = replace_string(arg, HIC "參將" NOR,"");
+                arg = replace_string(arg, HIC "裨將" NOR,"");
+                arg = replace_string(arg, HIY "佐將" NOR,"");
+                arg = replace_string(arg, HIY "副將" NOR,"");
+                arg = replace_string(arg, HIR "將軍" NOR,"");
                 arg = replace_string(arg, HIR "提督" NOR,"");
                 arg = replace_string(arg, HIM " ☆ " NOR,"");
         }
@@ -692,14 +692,14 @@ int recognize_apprentice(object ob, string skill)
 {
         if( !query("can_learn/3skills/guojing", ob) )
         {
-                command("say 现在蒙古人围攻襄阳，我哪有心情授课啊。");
-                command("say 等你将来拜师之后你师父自然会教你，不用心急。");
+                command("say 現在蒙古人圍攻襄陽，我哪有心情授課啊。");
+                command("say 等你將來拜師之後你師父自然會教你，不用心急。");
                 return -1;
         }
 
         if( query("combat_exp", ob)>50000 )
         {
-                command("say 你经验也不低了，应该多出去锻炼，呆在这对你帮助不大。\n");
+                command("say 你經驗也不低了，應該多出去鍛鍊，呆在這對你幫助不大。\n");
                 return -1;
         }
 
@@ -711,15 +711,15 @@ int recognize_apprentice(object ob, string skill)
            && skill != "changquan")
         {
                 command("shake");
-                command("say 我最多传授你几项较为基本的特殊技能，复杂了你领悟不了。");
-                command("say 你可以跟我学郭氏心法、飞檐走壁、太祖长拳和一些基本技能。\n");
+                command("say 我最多傳授你幾項較為基本的特殊技能，複雜了你領悟不了。");
+                command("say 你可以跟我學郭氏心法、飛簷走壁、太祖長拳和一些基本技能。\n");
                 return -1;
         }
 
         if( !query_temp("can_learn/guojing", ob) )
         {
                 command("nod2");
-                command("say 念你勤奋刻苦，我便传授你一些技能，可要认真记好了。");
+                command("say 念你勤奮刻苦，我便傳授你一些技能，可要認真記好了。");
                 set_temp("can_learn/guojing", 1, ob);
         }
         return 1;

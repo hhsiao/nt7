@@ -10,7 +10,7 @@ void create()
 {
         set_name("唐缺", ({ "tang que", "tang", "que" }));
         set("long",
-                "他是唐门第二代弟子中的杰出人物。\n");
+                "他是唐門第二代弟子中的傑出人物。\n");
         set("gender", "男性");
         set("age", 40);
         set("attitude", "heroism");
@@ -58,7 +58,7 @@ void create()
         prepare_skill("hand", "boyun-suowu");
 
 
-        create_family("唐门世家", 2, "嫡系高手");
+        create_family("唐門世家", 2, "嫡系高手");
         set("class", "tangmen");
 
         set("chat_chance_combat", 20);
@@ -102,11 +102,11 @@ void greeting(object ob)
         if (interactive(ob)
          && !query("no_fight", environment(ob)) )
         {
-              if( !(fam=query("family", ob)) || fam["family_name"] != "唐门世家" )
+              if( !(fam=query("family", ob)) || fam["family_name"] != "唐門世家" )
                 {
                    if( query("shen", ob)>-1000 )
                         {
-                        command("say 这里是唐门内堂，不要在这儿胡乱走动");
+                        command("say 這裡是唐門內堂，不要在這兒胡亂走動");
                         obj = all_inventory(environment(me));
                         for(i=0; i<sizeof(obj); i++)
                         {
@@ -114,7 +114,7 @@ void greeting(object ob)
                         if(obj[i]==me) continue;
                         if( (query("shen", obj[i])<-1000) )
                         {
-                                command("say 我最恨胡作非为的鼠辈，让我结果了你的性命!!");
+                                command("say 我最恨胡作非為的鼠輩，讓我結果了你的性命!!");
                                 me->kill_ob(obj[i]);
                                 obj[i]->kill_ob(me);
                         }
@@ -122,7 +122,7 @@ void greeting(object ob)
                         }
 
            else{
-                        command("say 一定要杀了你这江湖败类！");
+                        command("say 一定要殺了你這江湖敗類！");
                         me->set_leader(ob);
                         remove_call_out("kill_ob");
                         call_out("kill_ob", 1, ob);
@@ -143,22 +143,22 @@ void attempt_apprentice(object ob)
          {
                 command("say 我收徒最注重德行！");
                 command("say 在德行方面，" + RANK_D->query_respect(ob) +
-                        "是否还做得不够？");
+                        "是否還做得不夠？");
                 return;
         }
 
         if ((int)ob->query_skill("biyun-xinfa", 1) < 120) {
-                command("say 唐门虽然以暗器为主，但还是要辅以内力。");
+                command("say 唐門雖然以暗器為主，但還是要輔以內力。");
                 command("say " + RANK_D->query_respect(ob) +
-                        "是否还应该在碧云心法上多下点功夫？");
+                        "是否還應該在碧雲心法上多下點功夫？");
                 return;
         }
         if( query("int", ob)<28){
-                command("say 唐门历来注重弟子的文学修为。");
-                command("say 本派功夫要能熟练运用，必须能体会其中所含深远意境，悟性差了是不行的。");
-                command("say " + RANK_D->query_respect(ob) + "的悟性还大有潜力可挖，还是请回吧。");
+                command("say 唐門歷來注重弟子的文學修為。");
+                command("say 本派功夫要能熟練運用，必須能體會其中所含深遠意境，悟性差了是不行的。");
+                command("say " + RANK_D->query_respect(ob) + "的悟性還大有潛力可挖，還是請回吧。");
                 return;
         }
-        command("say 哈哈哈，我就收下你，记住以后要在江湖行侠仗义喔！");
+        command("say 哈哈哈，我就收下你，記住以後要在江湖行俠仗義喔！");
         command("recruit "+query("id", ob));
 }

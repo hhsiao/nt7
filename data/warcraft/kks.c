@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("小可爱[2;37;0m[2;37;0m", ({"mhs"}));        
+        set_name("小可愛[2;37;0m[2;37;0m", ({"mhs"}));        
         set("gender", "男性");                
-        set("long", "小可爱[2;37;0m
-它是楚留香的魔幻兽。
+        set("long", "小可愛[2;37;0m
+它是楚留香的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

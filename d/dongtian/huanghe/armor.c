@@ -15,7 +15,7 @@ void create()
         
         set_name(HIY "洞天甲" NOR, ({ "dongtian jia", "jia" }));
         set_weight(100);
-                set("longx", NOR "这副铠甲由洞天的傀儡侍卫凝聚而成。" NOR);
+                set("longx", NOR "這副鎧甲由洞天的傀儡侍衛凝聚而成。" NOR);
                 set("unit", "副");
                 set("value", 500);
                 set("material", "steel");
@@ -70,7 +70,7 @@ void reborn(object own)
                 set("armor_prop/magic_find", 5 + lv * 2);
                 set("armor_prop/max_neili", 200000 + lv * 40000); 
                 set("armor_prop/max_jingli", 150000 + lv * 30000); 
-        set("quality_level", lv + 1);//装饰
+        set("quality_level", lv + 1);//裝飾
         set("dt_owner", own);
         fill();
 
@@ -89,7 +89,7 @@ int query_autoload() { return 0; }
         if (f) {
                 own = query("dt_owner");
                 if (own && own==environment()) {
-                        message_vision(NOR + CYN + "$N" + NOR + CYN + "身上的$n" + NOR + CYN + "化作一阵流光往" + query("dtname") + NOR + CYN + "飞走了。\n" + NOR, own, me);
+                        message_vision(NOR + CYN + "$N" + NOR + CYN + "身上的$n" + NOR + CYN + "化作一陣流光往" + query("dtname") + NOR + CYN + "飛走了。\n" + NOR, own, me);
                 }
                 delete("dt_owner");
         }
@@ -109,7 +109,7 @@ void heart_beat()
         }
         //if( !query("equipped") ) return;
         if (query("n_flee") < 1) {
-                message_vision(NOR + CYN + "$N" + NOR + CYN + "身上的$n" + NOR + CYN + "化作一阵流光往" + query("dtname") + NOR + CYN + "飞走了。\n" + NOR, own, me);
+                message_vision(NOR + CYN + "$N" + NOR + CYN + "身上的$n" + NOR + CYN + "化作一陣流光往" + query("dtname") + NOR + CYN + "飛走了。\n" + NOR, own, me);
                 destruct(me);
                 return;
         }
@@ -119,8 +119,8 @@ void heart_beat()
                 enemy = enemies[random(sizeof(enemies))];
                 if (enemy && objectp(enemy) && enemy->is_character() && !query_temp("flag_hslj", enemy)) {
                         set("flag_use_summ", 1);
-                message_vision(append_color(NOR + HIY + "\n$N" + NOR + HIY + "身上的" + name() + NOR + HIY + (random(2)? "七彩" : "光华") + 
-                        (random(2)? "流转" : "熠熠") + "，" + (random(2)? "化作" : "凝成") + "个傀儡侍卫扑向$n" + NOR + HIY + "。\n\n" NOR, HIY),
+                message_vision(append_color(NOR + HIY + "\n$N" + NOR + HIY + "身上的" + name() + NOR + HIY + (random(2)? "七彩" : "光華") + 
+                        (random(2)? "流轉" : "熠熠") + "，" + (random(2)? "化作" : "凝成") + "個傀儡侍衛撲向$n" + NOR + HIY + "。\n\n" NOR, HIY),
                         own, enemy);
                                 ob = new(__DIR__"npc/guarder3");
                                 set("shadow_own", own, ob);

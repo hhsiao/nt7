@@ -7,13 +7,13 @@ void setup()
         set_name("朱[2;37;0m[2;37;0m", ({"zzzzz"}));        
         set("gender", "女性");                
         set("long", "朱[2;37;0m
-它是头彩阿阿的魔幻兽。
+它是頭彩阿阿的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");
         set("owner", "txaa");
-        set("owner_name", "头彩阿阿");
+        set("owner_name", "頭彩阿阿");
         set_temp("owner", "txaa");
-        set_temp("owner_name", "头彩阿阿");
+        set_temp("owner_name", "頭彩阿阿");
         ::setup();
 }

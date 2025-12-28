@@ -1,11 +1,11 @@
-// Killer-s.c ,No greeting, 武当功夫, 南门
+// Killer-s.c ,No greeting, 武當功夫, 南門
 inherit NPC;
 
 void create()
 {
-        set_name("杀手", ({"killer"}));
+        set_name("殺手", ({"killer"}));
         set("long",
-        "这是一个身材高大的江湖人，两臂粗壮，膀阔腰圆，看起来似乎不怀好意。\n"
+        "這是一個身材高大的江湖人，兩臂粗壯，膀闊腰圓，看起來似乎不懷好意。\n"
         );
 
         set("gender", "男性");
@@ -51,8 +51,8 @@ void create()
 
         set("chat_chance", 20);
         set("chat_msg", ({
-                "杀手说道: 这次看那些玩家们往哪儿跑。\n",
-                "杀手说道: 杀! 杀! 杀!!!。\n",
+                "殺手說道: 這次看那些玩家們往哪兒跑。\n",
+                "殺手說道: 殺! 殺! 殺!!!。\n",
                 (: random_move :)
         }) );
 

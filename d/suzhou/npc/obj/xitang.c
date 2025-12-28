@@ -10,7 +10,7 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一包五颜六色的的喜糖。\n");
+                set("long", "一包五顏六色的的喜糖。\n");
                 set("unit", "包");
                 set("food_remaining", 3);
                 set("food_supply", 20);

@@ -1,16 +1,16 @@
-// youji.c 游骥
+// youji.c 遊驥
 
 #include <ansi.h>
 inherit NPC;
 
 void create()
 {
-        set_name("游骥", ({ "you ji", "you", "ji" }) );
+        set_name("遊驥", ({ "you ji", "you", "ji" }) );
         set("gender", "男性");
-        set("nickname",HIW"游氏双雄"NOR);
-        set("title","聚贤庄大庄主");
+        set("nickname",HIW"遊氏雙雄"NOR);
+        set("title","聚賢莊大莊主");
         set("age", 40);
-        set("long","他就是聚贤庄的大庄主游骥。\n");
+        set("long","他就是聚賢莊的大莊主遊驥。\n");
         set("combat_exp", 300000);
         set("shen_type", 1);
         set("attitude", "peaceful");

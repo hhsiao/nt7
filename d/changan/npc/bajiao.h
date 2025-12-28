@@ -1,8 +1,8 @@
-// bajiao.h 群玉八娇
+// bajiao.h 群玉八嬌
 
 int accept_fight(object me)
 {
-        command("say 小女子哪里是您的对手？");
+        command("say 小女子哪裡是您的對手？");
         return 0;
 }
 
@@ -16,11 +16,11 @@ void init()
 void says(object me)
 {
           string *msgs = ({
-                    "$N吃吃一笑，抿嘴看着你。\n",
-                    "$N含情脉脉地对你说“……你……你还不明白妾身的心意吗？\n",
-                    "看来$N很想跟你(shuijiao)一次\n",
+                    "$N吃吃一笑，抿嘴看著你。\n",
+                    "$N含情脈脈地對你說“……你……你還不明白妾身的心意嗎？\n",
+                    "看來$N很想跟你(shuijiao)一次\n",
                     "$N很想跟你……\n",
-                    "$N对你婉尔一笑。\n",
+                    "$N對你婉爾一笑。\n",
         });
 
         string msg;
@@ -30,7 +30,7 @@ void says(object me)
                 return;
 
         if( query("gender", me) != "男性" )
-                msg = "$N打了个哈欠，看上去困极了。\n";
+                msg = "$N打了個哈欠，看上去困極了。\n";
         else
                 msg = msgs[random(sizeof(msgs))];
 
@@ -47,26 +47,26 @@ int do_sleep()
         case "男性":
                 break;
         case "女性":
-                return notify_fail("你还有这爱好？没看出来。\n");
+                return notify_fail("你還有這愛好？沒看出來。\n");
         default:
-                return notify_fail("你似乎没有这能力吧？\n");
+                return notify_fail("你似乎沒有這能力吧？\n");
         }
 
         if (is_busy() || is_fighting())
-                return notify_fail("你没看见人家正忙着呢吗？\n");
+                return notify_fail("你沒看見人家正忙著呢嗎？\n");
 
         if (query_temp("makelove_with") == who)
         {
-                write("你好好做你的，别三心二意的。\n");
+                write("你好好做你的，別三心二意的。\n");
                 return 1;
         }
 
         if (query_temp("makelove_with"))
-                return notify_fail("两个一起上？你还是饶了人家吧！\n");
+                return notify_fail("兩個一起上？你還是饒了人家吧！\n");
 
-          message_vision(HIM "$N" HIM "轻轻搂着$n" HIM "柔软的"
-                       "身体，不由得一阵阵发麻的快感传遍全身，"
-                       "不知不觉的开始扭动着……\n\n"NOR, who, me);
+          message_vision(HIM "$N" HIM "輕輕摟著$n" HIM "柔軟的"
+                       "身體，不由得一陣陣發麻的快感傳遍全身，"
+                       "不知不覺的開始扭動著……\n\n"NOR, who, me);
           who->command_function("remove all");
           who->start_busy(999);
 
@@ -95,7 +95,7 @@ void get_fainted(object who, object me)
         if (! who || environment(who) != environment())
                 return;
 
-        message_vision("$N对$n神秘地一笑。\n", me, who);
+        message_vision("$N對$n神秘地一笑。\n", me, who);
         who->unconcious();
         while (i--)
         {
@@ -104,7 +104,7 @@ void get_fainted(object who, object me)
                         continue;
                 if( !query("money_id", obj) )
                         continue;
-                    message_vision("$N从$n身上拿出" +
+                    message_vision("$N從$n身上拿出" +
                                query("name", obj)+
                                "。\n", me, who);
                     destruct(obj);
@@ -113,7 +113,7 @@ void get_fainted(object who, object me)
 
         if (i < 0)
                 // Get nothing
-                command("chat 气死老娘了，原来是一个穷鬼！");
+                command("chat 氣死老孃了，原來是一個窮鬼！");
 }
 
 int accept_kill(object me)
@@ -121,7 +121,7 @@ int accept_kill(object me)
         object ob;
         if (is_fighting()) return 1;
         if (query("called")) return 1;
-        command("say 要杀人了，快来人救命啊！");
+        command("say 要殺人了，快來人救命啊！");
         ob = present("bao biao");
         if (! ob)
         {
@@ -129,15 +129,15 @@ int accept_kill(object me)
                 ob=new(__DIR__"baobiao");
                 ob->move(environment());
         }
-        message_vision(HIC "\n忽然从门外冲进来几个保镖，对"
-                       "$N" HIC "大喊一声“干什么？在这儿闹"
-                       "事，想找死吗？\n\n"NOR, me);
+        message_vision(HIC "\n忽然從門外衝進來幾個保鏢，對"
+                       "$N" HIC "大喊一聲“幹什麼？在這兒鬧"
+                       "事，想找死嗎？\n\n"NOR, me);
         ob->kill_ob(me);
         ob->set_leader(me);
         me->kill_ob(ob);
         set("called", 1);
         call_out("regenerate", 200);
-        return notify_fail("坏事了！");
+        return notify_fail("壞事了！");
 }
 
 int regenerate()

@@ -43,9 +43,9 @@ private mapping B2G_Cache=([]),
 #define is_GB(x)    ((x)>=0xa1&&(x)<=0xfe) //60%
 
 /*
-        推测一字串为Big5码的可能性(百分比机率)
-        低于20%的百分比就几乎可确定为GB码
-        判断的正确度与字串长度呈正比
+        推測一字串為Big5碼的可能性(百分比機率)
+        低於20%的百分比就幾乎可確定為GB碼
+        判斷的正確度與字串長度呈正比
  */
 int encode_conjecture(string arg)
 {
@@ -78,8 +78,8 @@ int encode_conjecture(string arg)
 }
 
 /*
-        自动判别编码并传回采用Big5码之字串
-        仅适用于长度较长之字串, 判别率较高
+        自動判別編碼並傳回採用Big5碼之字串
+        僅適用於長度較長之字串, 判別率較高
 string auto_G2B(string arg)
 {
         int con = encode_conjecture(arg);
@@ -290,5 +290,5 @@ void create()
 
 string query_name()
 {
-        return "语言系统(LANGUAGE_D)";
+        return "語言系統(LANGUAGE_D)";
 }

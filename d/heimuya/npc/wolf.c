@@ -5,14 +5,14 @@ inherit NPC;
 void create()
 {
         set_name("狼", ({ "wolf2", "lang" }) );
-        set("race", "野兽");
+        set("race", "野獸");
         set("age", 5);
-        set("long", "一匹昂首直立，两眼放着绿光的狼。\n");
+        set("long", "一匹昂首直立，兩眼放著綠光的狼。\n");
         set("attitude", "aggressive");
 
         set("str", 26);
         set("cor", 30);
-        set("limbs", ({ "头部", "身体", "腿部", "尾巴",}) );
+        set("limbs", ({ "頭部", "身體", "腿部", "尾巴",}) );
         set("verbs", ({ "bite" }) );
 
         set("combat_exp", 5000);

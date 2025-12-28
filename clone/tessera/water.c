@@ -11,9 +11,9 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", HIC "这是一块玄冰，极北万年冰山所孕，色玄黑，寒气逼人。\n" NOR);
+                set("long", HIC "這是一塊玄冰，極北萬年冰山所孕，色玄黑，寒氣逼人。\n" NOR);
                 set("value", 2000);
-                set("unit", "块");
+                set("unit", "塊");
                 set("magic/element", "water");
         }
         setup();

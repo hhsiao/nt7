@@ -5,7 +5,7 @@
 inherit NPC;
 
 #define LEV 550
-#define COPYNPC "/d/kaifeng/linggt/npc/boss"    //复制来源于
+#define COPYNPC "/d/kaifeng/linggt/npc/boss"    //複製來源於
 #define BONUS_EXP 8000000
 
 int do_copyskill();
@@ -27,11 +27,11 @@ int summ_ghost()
 
 void create()
 {
-        set_name( "刘根" , ({ "liu gen", "liu" }));
+        set_name( "劉根" , ({ "liu gen", "liu" }));
         set("long", @LONG
-此乃南岳衡山散修，全身生绿毛。炼有青木真气和大洞帝乙驱鬼神通。
+此乃南嶽衡山散修，全身生綠毛。煉有青木真氣和大洞帝乙驅鬼神通。
 LONG);
-        set("title", NOR HIG "绿毛真人" NOR);
+        set("title", NOR HIG "綠毛真人" NOR);
         set("str", 1);
         set("con", 1);
         set("dex", 1);
@@ -61,7 +61,7 @@ LONG);
         }));
                 set("auto_perform", 1);
 
-        set("death_msg", NOR "\n$N" + (random(2)? "尖叫" : "嘶吼") + (random(2)? "一声" : "一头") + "栽倒，" + (random(2)? "化作脓血" : "散作青烟") + (random(2)? "。。" : "。。。") + "\n" NOR);
+        set("death_msg", NOR "\n$N" + (random(2)? "尖叫" : "嘶吼") + (random(2)? "一聲" : "一頭") + "栽倒，" + (random(2)? "化作膿血" : "散作青煙") + (random(2)? "。。" : "。。。") + "\n" NOR);
 
                 set("guarder_level", LEV + random(350));
                 do_copyskill();
@@ -92,7 +92,7 @@ int check_weapon(int chance)
         {
                 weapon = new(wname);
                 weapon->move(me); 
-                str = sprintf("%s" HIY "虚空一抓，突然%s" HIY "出现在他的手中。\n" NOR,
+                str = sprintf("%s" HIY "虛空一抓，突然%s" HIY "出現在他的手中。\n" NOR,
                                        query("name", me),
                                        query("name", weapon));
                         tell_room(environment(me), str, me);
@@ -222,7 +222,7 @@ int do_copyskill()
         my_tmp = me->query_entire_temp_dbase(); 
         my_tmp["apply"] = apply;
         
-        //蝙蝠减弱攻击增强防御
+        //蝙蝠減弱攻擊增強防禦
         applytmp = my_tmp["apply/attack"] / 3;
         my_tmp["apply/attack"] /= 2;
         my_tmp["apply/armor"] += applytmp;
@@ -310,7 +310,7 @@ void init()
         if (strsrch(basename, __DIR__) != -1) return;
         own = query_temp("owner", ob);
         if (own && strsrch(base_name(own), __DIR__) != -1) return;
-        tell_object(ob, query("name", me) + NOR CYN "阴阴地向你扑来...\n" NOR);
+        tell_object(ob, query("name", me) + NOR CYN "陰陰地向你撲來...\n" NOR);
         me->kill_ob(ob);
         if (playerp(ob)) set("enemy_player", ob);
 }
@@ -345,7 +345,7 @@ varargs void die()
                 message_vision(append_color(query("death_msg"),CYN), this_object());
                         if (!query("is_shadow", this_object())) {
                                 if (killer && objectp(killer) && environment(killer)==environment(this_object())) GIFT_D->delay_bonus(killer, 
-                                        ([ "exp" : BONUS_EXP, "pot" : BONUS_EXP/3, "mar" : BONUS_EXP/6, "prompt" : "你在广成金船击败" + name() + "之后"]));
+                                        ([ "exp" : BONUS_EXP, "pot" : BONUS_EXP/3, "mar" : BONUS_EXP/6, "prompt" : "你在廣成金船擊敗" + name() + "之後"]));
                         }
                                         
                 destruct(this_object());

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("没有[2;37;0m[2;37;0m", ({"moyou"}));        
+        set_name("沒有[2;37;0m[2;37;0m", ({"moyou"}));        
         set("gender", "女性");                
-        set("long", "什么都是没有的[2;37;0m
-它是胡理胡徒的魔幻兽。
+        set("long", "什麼都是沒有的[2;37;0m
+它是胡理胡徒的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

@@ -11,22 +11,22 @@ int main(object me, string arg)
         object *guard;
 
         if (! arg)
-                return notify_fail("你要使用什么东西？\n");
+                return notify_fail("你要使用什麼東西？\n");
 
         if (! objectp(ob = present(arg, me)))
         {
                 ob = present(arg, environment(me));
 
                 if (! objectp(ob))
-                        return notify_fail("你身上没有这样东西，附近也没有。\n");
+                        return notify_fail("你身上沒有這樣東西，附近也沒有。\n");
         }
 
         if (! undefinedp(count = ob->query_amount()) && count < 1)
-                return notify_fail(ob->name() + "已经用完了。\n");
+                return notify_fail(ob->name() + "已經用完了。\n");
 
         if (me->is_busy())
         {
-                write("你上一个动作还没有完成。\n");
+                write("你上一個動作還沒有完成。\n");
                 return 1;
         }
 
@@ -44,7 +44,7 @@ int main(object me, string arg)
         {
                 return ob->do_apply(me);
         } else
-                return notify_fail("怎么用" + ob->name() + "？\n");
+                return notify_fail("怎麼用" + ob->name() + "？\n");
 
         return 1;
 }
@@ -54,7 +54,7 @@ int help(object me)
         write(@HELP
 指令格式 : apply <物品>
 
-这个指令可以让你是用特殊物品，发挥它的功效。
+這個指令可以讓你是用特殊物品，發揮它的功效。
  
 HELP );
         return 1;

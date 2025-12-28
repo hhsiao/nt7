@@ -5,25 +5,25 @@ inherit SWORD;
 
 void create()
 {
-        set_name(NOR + CYN "镇岳尚方" NOR, ({ "zhenyue shangfang", "zhenyue", 
+        set_name(NOR + CYN "鎮嶽尚方" NOR, ({ "zhenyue shangfang", "zhenyue", 
                                               "shangfang", "sword" }));
         set_weight(8000);
         if (clonep())
                 destruct(this_object());
         else {
                 set("long", NOR + CYN "
-此剑乃周昭王瑕在位五十一年以二年岁次壬午，铸五剑，各投
-五岳，铭曰镇岳尚方，古文篆书，剑长五尺通体流光。剑脊与
-剑柄之上还铸有无数密密麻麻的古篆，似乎与武学有关。\n" NOR);
+此劍乃周昭王瑕在位五十一年以二年歲次壬午，鑄五劍，各投
+五嶽，銘曰鎮嶽尚方，古文篆書，劍長五尺通體流光。劍脊與
+劍柄之上還鑄有無數密密麻麻的古篆，似乎與武學有關。\n" NOR);
                 set("unit", "柄");
                 set("value", 800000);
                 set("no_sell", 1);
                 set("material", "steel");
-                set("wield_msg", CYN "$N" CYN "蓦地纵声长啸，霎时寒"
-                                 "芒一闪，一道青光破空划过，落于$N"
-                                 CYN "掌间。\n" NOR);
-                set("unwield_msg", CYN "$N" CYN "一声轻哼，将手中的"
-                                   "镇岳尚方宝剑插入剑鞘。\n" NOR);
+                set("wield_msg", CYN "$N" CYN "驀地縱聲長嘯，霎時寒"
+                                 "芒一閃，一道青光破空劃過，落於$N"
+                                 CYN "掌間。\n" NOR);
+                set("unwield_msg", CYN "$N" CYN "一聲輕哼，將手中的"
+                                   "鎮嶽尚方寶劍插入劍鞘。\n" NOR);
                 set("skill", ([
                         "name"         : "zhenyue-jue",
                         "exp_required" : 300000,
@@ -59,14 +59,14 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         case 0:
                 victim->receive_damage("jing", n / 2, me);
                 victim->receive_wound("jing", n / 4, me);
-                return HIW "$N" HIW "将真气运于" NOR + CYN "镇"
-                       "岳尚方" HIW "剑身，霎时剑芒暴涨，逼得$n"
-                       HIW "连连后退！\n" NOR;
+                return HIW "$N" HIW "將真氣運於" NOR + CYN "鎮"
+                       "嶽尚方" HIW "劍身，霎時劍芒暴漲，逼得$n"
+                       HIW "連連後退！\n" NOR;
         case 1:
                 victim->receive_damage("qi", n, me);
                 victim->receive_wound("qi", n, me);
-                return HIR "$N" HIR "手中" NOR + CYN "镇岳尚方"
-                       HIR "青光荡漾，透出一道道寒冷的剑气直向$n"
+                return HIR "$N" HIR "手中" NOR + CYN "鎮嶽尚方"
+                       HIR "青光盪漾，透出一道道寒冷的劍氣直向$n"
                        HIR "而去！\n" NOR;
         }
         return damage_bonus;

@@ -5,7 +5,7 @@ inherit SKILL;
 int is_pbsk() { return 1; }
 
 mapping *action = ({
-([      "action" : "$N使出一招「雪海茫茫」，双掌陡然攻出，带着丝丝阴风击向$n的$l",
+([      "action" : "$N使出一招「雪海茫茫」，雙掌陡然攻出，帶著絲絲陰風擊向$n的$l",
         "force" : 100,
         "attack": 25,
         "dodge" : 15,
@@ -13,9 +13,9 @@ mapping *action = ({
         "damage": 10,
         "lvl"   : 0,
         "skill_name" : "雪海茫茫",
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N使出一招「幽冥寒山」，左掌护胸，右掌掌心带着极寒之气拍向$n的$l",
+([      "action" : "$N使出一招「幽冥寒山」，左掌護胸，右掌掌心帶著極寒之氣拍向$n的$l",
         "force" : 130,
         "attack": 30,
         "dodge" : 10,
@@ -23,29 +23,29 @@ mapping *action = ({
         "damage": 20,
         "lvl"   : 30,
         "skill_name" : "幽冥寒山",
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N怪叫一声，一招「阴风怒号」，双掌铺天盖地般拍向$n的$l",
+([      "action" : "$N怪叫一聲，一招「陰風怒號」，雙掌鋪天蓋地般拍向$n的$l",
         "force" : 160,
         "attack": 45,
         "dodge" : 20,
         "parry" : 20,
         "damage": 25,
         "lvl"   : 60,
-        "skill_name" : "阴风怒号",
-        "damage_type" : "瘀伤"
+        "skill_name" : "陰風怒號",
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N一照「凄雨冷风」，双掌拍出满天阴风，忽然右掌悄无声息的拍向$n的$l",
+([      "action" : "$N一照「淒雨冷風」，雙掌拍出滿天陰風，忽然右掌悄無聲息的拍向$n的$l",
         "force" : 180,
         "attack": 50,
         "dodge" : 20,
         "parry" : 30,
         "damage": 30,
         "lvl"   : 80,
-        "skill_name" : "凄雨冷风",
-        "damage_type" : "瘀伤"
+        "skill_name" : "淒雨冷風",
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N身形一跃，一招「亡命冰原」，左掌快若疾电般击向$n的$l",
+([      "action" : "$N身形一躍，一招「亡命冰原」，左掌快若疾電般擊向$n的$l",
         "force" : 210,
         "attack": 65,
         "dodge" : 25,
@@ -53,19 +53,19 @@ mapping *action = ({
         "damage": 35,
         "lvl"   : 100,
         "skill_name" : "亡命冰原",
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N阴笑一声，一招「孤山绝寒」，双掌一错，右掌忽然暴长数尺击向$n的$l",
+([      "action" : "$N陰笑一聲，一招「孤山絕寒」，雙掌一錯，右掌忽然暴長數尺擊向$n的$l",
         "force" : 280,
         "attack": 95,
         "dodge" : 25,
         "parry" : 25,
         "damage": 55,
         "lvl"   : 120,
-        "skill_name" : "孤山绝寒",
-        "damage_type" : "瘀伤"
+        "skill_name" : "孤山絕寒",
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N一招「雪原孤月」，身形急晃，一跃而至$n跟前，右掌带着冲天寒气击向$n的$l",
+([      "action" : "$N一招「雪原孤月」，身形急晃，一躍而至$n跟前，右掌帶著沖天寒氣擊向$n的$l",
         "force" : 320,
         "attack": 110,
         "dodge" : 30,
@@ -73,9 +73,9 @@ mapping *action = ({
         "damage": 70,
         "lvl"   : 140,
         "skill_name" : "雪原孤月",
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N仰天长啸，一招「魂葬玄冥」，双掌掌风似千古不化的寒冰般扑向$n的$l",
+([      "action" : "$N仰天長嘯，一招「魂葬玄冥」，雙掌掌風似千古不化的寒冰般撲向$n的$l",
         "force" : 360,
         "attack": 135,
         "dodge" : 30,
@@ -83,9 +83,9 @@ mapping *action = ({
         "damage": 95,
         "lvl"   : 150,
         "skill_name" : "魂葬玄冥",
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N身法陡然一变，使出一式「幽玄冥冥」，掌影千变万幻，令$n无法躲闪",
+([      "action" : "$N身法陡然一變，使出一式「幽玄冥冥」，掌影千變萬幻，令$n無法躲閃",
         "force" : 420,
         "attack": 150,
         "dodge" : 30,
@@ -93,17 +93,17 @@ mapping *action = ({
         "damage": 110,
         "lvl"   : 160,
         "skill_name" : "幽玄冥冥",
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N仰天一声狂啸，一式「冰坚地狱」，双掌携带着万古冰坚直直贯向$n",
+([      "action" : "$N仰天一聲狂嘯，一式「冰堅地獄」，雙掌攜帶著萬古冰堅直直貫向$n",
         "force" : 450,
         "attack": 185,
         "dodge" : 40,
         "parry" : 80,
         "damage": 160,
         "lvl"   : 180,
-        "skill_name" : "冰坚地狱",
-        "damage_type" : "内伤"
+        "skill_name" : "冰堅地獄",
+        "damage_type" : "內傷"
 ])
 });
 
@@ -115,28 +115,28 @@ int valid_enable(string usage)
 int valid_learn(object me)
 {
         if( query("character", me) == "光明磊落" )
-                return notify_fail("你心中暗想：我为人光明磊落，岂能学习这种阴毒武功？\n");
+                return notify_fail("你心中暗想：我為人光明磊落，豈能學習這種陰毒武功？\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练玄冥神掌必须空手。\n");
+                return notify_fail("練玄冥神掌必須空手。\n");
 
         if ((int)me->query_skill("force") < 200)
-                return notify_fail("你的内功火候不够，无法练习玄冥神掌。\n");
+                return notify_fail("你的內功火候不夠，無法練習玄冥神掌。\n");
 
        if( query("con", me)<30 )
-                return notify_fail("你先天根骨不足，无法修炼玄冥神掌。\n");
+                return notify_fail("你先天根骨不足，無法修煉玄冥神掌。\n");
 
         if( query("max_neili", me)<2000 )
-                return notify_fail("你的内力太弱，无法练习玄冥神掌。\n");
+                return notify_fail("你的內力太弱，無法練習玄冥神掌。\n");
 
         if ((int)me->query_skill("strike", 1) < 100)
-                return notify_fail("你的基本掌法火候不够，无法练玄冥神掌。\n");
+                return notify_fail("你的基本掌法火候不夠，無法練玄冥神掌。\n");
 
         if ((int)me->query_skill("xuanming-shengong", 1) < (int)me->query_skill("xuanming-zhang", 1))
-                return notify_fail("你的玄冥神功水平有限，无法领会更高深的玄冥神掌。\n");
+                return notify_fail("你的玄冥神功水平有限，無法領會更高深的玄冥神掌。\n");
 
         if ((int)me->query_skill("strike", 1) < (int)me->query_skill("xuanming-zhang", 1))
-                return notify_fail("你的基本掌法水平有限，无法领会更高深的玄冥神掌。\n");
+                return notify_fail("你的基本掌法水平有限，無法領會更高深的玄冥神掌。\n");
 
         return 1;
 }
@@ -161,13 +161,13 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me)
 {
         if( query("con", me)<30 )
-                return notify_fail("你先天根骨不足，无法修炼玄冥神掌。\n");
+                return notify_fail("你先天根骨不足，無法修煉玄冥神掌。\n");
 
         if( query("qi", me)<100 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
 
         if( query("neili", me)<100 )
-                return notify_fail("你的内力不够练玄冥神掌。\n");
+                return notify_fail("你的內力不夠練玄冥神掌。\n");
 
         me->receive_damage("qi", 80);
         addn("neili", -80, me);
@@ -194,7 +194,7 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
                                  "duration" : lvl / 40 + random(lvl / 20) ])))
         {
                 addn("neili", -100, me);
-                return HIW "$n" HIW "忽然感到一股莫名的恶心，阴寒的冷气攻心，全身瘫软，嘴皮乌紫。\n" NOR;
+                return HIW "$n" HIW "忽然感到一股莫名的噁心，陰寒的冷氣攻心，全身癱軟，嘴皮烏紫。\n" NOR;
         }
 }
 

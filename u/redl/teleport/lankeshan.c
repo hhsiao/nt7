@@ -6,12 +6,12 @@ inherit __DIR__"normal.c";
 
 void create()
 {
-        set("short","天生石梁");
+        set("short","天生石樑");
         set("long", @LONG
-这里是烂柯山顶峰。左方有座石亭横书“日迟亭”，右边二人高
-的石碑上面竖刻着“青霞第八洞天”。正前方有道拱如虬龙的天生石
-梁，东西宽约十丈，彩虹一样高高架起，形成了个方圆百米的洞窟。
-洞里幽风阵阵，清凉无比，确实是个参禅打坐的绝佳去处。
+這裡是爛柯山頂峰。左方有座石亭橫書“日遲亭”，右邊二人高
+的石碑上面豎刻著“青霞第八洞天”。正前方有道拱如虯龍的天生石
+梁，東西寬約十丈，彩虹一樣高高架起，形成了個方圓百米的洞窟。
+洞裡幽風陣陣，清涼無比，確實是個參禪打坐的絕佳去處。
 LONG );
         set("outdoors", "yangzhou");
         set("exits",([ /* sizeof() == 1 */
@@ -39,7 +39,7 @@ int do_sit()
         set_temp("time_enter_qroom", time() + 10, me);
         if (!(load_object(file))) 
         cp("/u/redl/teleport/qroom.c", file);
-        tell_object(me, NOR CYN "你随意找了颗棋子盘腿一坐，眨眼就变幻了空间。\n" NOR); 
+        tell_object(me, NOR CYN "你隨意找了顆棋子盤腿一坐，眨眼就變幻了空間。\n" NOR); 
         me->move(file);
         return 1;
 }
@@ -49,9 +49,9 @@ void init()
 {
         object me = this_player(); 
         if (query_temp("time_enter_qroom", me) < time()) {
-                tell_object(me, NOR "你望着洞里阡陌纵横的棋盘，禁不住想找一颗棋子坐(" CYN "sit" NOR ")上去。\n" NOR); 
+                tell_object(me, NOR "你望著洞裡阡陌縱橫的棋盤，禁不住想找一顆棋子坐(" CYN "sit" NOR ")上去。\n" NOR); 
                 add_action("do_sit","sit");  
-        } else tell_object(me, NOR "你进出过于频繁，望着阡陌棋盘，似乎忘记了去处。\n" NOR); 
+        } else tell_object(me, NOR "你進出過於頻繁，望著阡陌棋盤，似乎忘記了去處。\n" NOR); 
 }  
 
 

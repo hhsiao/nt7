@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[30m黑甲龟[2;37;0m[2;37;0m", ({"sleepbag"}));        
+        set_name("[30m黑甲龜[2;37;0m[2;37;0m", ({"sleepbag"}));        
         set("gender", "女性");                
-        set("long", "厚无形，黑无色。[2;37;0m
-它是空劫的魔幻兽。
+        set("long", "厚無形，黑無色。[2;37;0m
+它是空劫的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

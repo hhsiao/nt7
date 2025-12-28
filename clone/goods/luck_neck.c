@@ -6,16 +6,16 @@ inherit NECK;
  
 void create()
 {
-        set_name(BMAG "幸运女神项链" NOR, ({ "luck neck", "neck" }) );
+        set_name(BMAG "幸運女神項鍊" NOR, ({ "luck neck", "neck" }) );
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-                set("unit", "个");
-                set("long", HIY "这便是幸运女神戴过的项链，神光浮现。\n" NOR);
+                set("unit", "個");
+                set("long", HIY "這便是幸運女神戴過的項鍊，神光浮現。\n" NOR);
                 set("value", 3000); 
-                set("no_sell", "这样东西不能卖。\n");
+                set("no_sell", "這樣東西不能賣。\n");
                 set("rigidity",8000);   
                 set("material", "tian jing");
                 set("no_pawn", 1);
@@ -24,7 +24,7 @@ void create()
         
         set("mod_mark", "A3020");
         set("mod_level", "M3002");
-        set("mod_name", HBRED "幸运女神之眷念" NOR);
+        set("mod_name", HBRED "幸運女神之眷念" NOR);
         set("quality_level", 4);
 
         setup();

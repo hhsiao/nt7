@@ -70,11 +70,11 @@ void create()
         
         if( exp>5000000000 ) title+=HIR" 世外高人"NOR;
         else if( exp>1000000000 ) title+=HIG" 江湖名宿"NOR;
-        else if( exp>500000000 ) title+=MAG" 武林宗师"NOR;
+        else if( exp>500000000 ) title+=MAG" 武林宗師"NOR;
         else if( exp>100000000 ) title+=HIB" 威震一方"NOR;
-        else if( exp>50000000 ) title+=RED" 声名赫赫"NOR;
-        else if( exp>10000000 ) title+=HIC" 当世英杰"NOR;
-        else title+=HIW" 后起之秀"NOR;
+        else if( exp>50000000 ) title+=RED" 聲名赫赫"NOR;
+        else if( exp>10000000 ) title+=HIC" 當世英傑"NOR;
+        else title+=HIW" 後起之秀"NOR;
         set("title",title); 
         //set("env/wimpy", 60);
         
@@ -105,7 +105,7 @@ void init()
                 if( random(10)>8 && !ob->is_fighting() )
                 {
                         command("touch "+query("id", ob));
-                        command("say "+RANK_D->query_respect(ob) +"，你来得正好，我们又有强援了，哈哈！\n");
+                        command("say "+RANK_D->query_respect(ob) +"，你來得正好，我們又有強援了，哈哈！\n");
                 }
         }
     
@@ -120,7 +120,7 @@ void init()
                 */
                 if( 1 )
                 {
-                        message_vision(HIR"$N对$n怒喝道: “邪魔外道，看你往哪里跑，还不速速下跪受死！\n"NOR,killer,ob);
+                        message_vision(HIR"$N對$n怒喝道: “邪魔外道，看你往哪裡跑，還不速速下跪受死！\n"NOR,killer,ob);
 
                         command("yun powerup");
                         set_temp(query("id", ob), 1, killer);
@@ -129,10 +129,10 @@ void init()
                         ob->kill_ob(killer);
                 } else
                 if( query("combat_exp", killer)*2/5>query("combat_exp", ob) && random(5)>3 )
-                        message_vision(HIC"$N对$n喝道: “杀你这种小角色怕脏了我的手，还不快给我滚！\n"NOR,killer,ob); 
+                        message_vision(HIC"$N對$n喝道: “殺你這種小角色怕髒了我的手，還不快給我滾！\n"NOR,killer,ob); 
                 else
                 if( query("combat_exp", killer)<query("combat_exp", ob)*2/5 && random(5)>3 )
-                        message_vision(HIW"$N对$n大义凛然道: “撞到阁下手里我也认了，要杀要剐悉听尊便！\n"NOR,killer,ob);
+                        message_vision(HIW"$N對$n大義凜然道: “撞到閣下手裡我也認了，要殺要剮悉聽尊便！\n"NOR,killer,ob);
                         
                 return;
         } else
@@ -170,7 +170,7 @@ void set_from_me(object me, int scale)
         my["eff_qi"] = my["max_qi"];
         my["qi"] = my["max_qi"];
 
-        // 这里修改
+        // 這裡修改
         exp = query("combat_exp", me)*12/10;
         if (exp > query("combat_exp"))
                 set("combat_exp", exp);
@@ -178,11 +178,11 @@ void set_from_me(object me, int scale)
         title = query("title_bak");
         if( exp>5000000000 ) title+=HIR"   世外高人"NOR;
         else if( exp>1000000000 ) title+=HIG"   江湖名宿"NOR;
-        else if( exp>500000000 ) title+=MAG"   武林宗师"NOR;
+        else if( exp>500000000 ) title+=MAG"   武林宗師"NOR;
         else if( exp>100000000 ) title+=HIB"   威震一方"NOR;
-        else if( exp>50000000 ) title+=RED"   声名赫赫"NOR;
-        else if( exp>10000000 ) title+=HIC"   当世英杰"NOR;
-        else title+=HIW"   后起之秀"NOR;
+        else if( exp>50000000 ) title+=RED"   聲名赫赫"NOR;
+        else if( exp>10000000 ) title+=HIC"   當世英傑"NOR;
+        else title+=HIW"   後起之秀"NOR;
         set("env/wimpy", 60);
         set("title",title);  
         
@@ -201,13 +201,13 @@ int do_kill(string arg)
         if(!arg) return 0;
         if(this_object()->id(arg))
         {
-                write("门派仇杀是非多，还是少惹为妙。\n");
+                write("門派仇殺是非多，還是少惹為妙。\n");
                 return 1;
         }
         else
         if(sscanf(arg,"%s from %s",what,who)==2 && this_object()->id(who))
         {
-                write("还是到别处去施展你的本事吧。\n");
+                write("還是到別處去施展你的本事吧。\n");
                 return 1;
         }
         return 0;
@@ -215,15 +215,15 @@ int do_kill(string arg)
 
 int accept_fight(object ob)
 {
-        command("say 我可没兴趣陪你玩，快给我滚开。");
+        command("say 我可沒興趣陪你玩，快給我滾開。");
         return 0;
 }
 
 int accept_hit(object ob)
 {
-        message_vision(HIW "$N" HIW "脸色一变，闪过一道杀气。怒"
-                       "喝道：好一个" + RANK_D->query_rude(ob) +
-                       "，来吧！\n" NOR, this_object());
+        message_vision(HIW "$N" HIW "臉色一變，閃過一道殺氣。怒"
+                       "喝道：好一個" + RANK_D->query_rude(ob) +
+                       "，來吧！\n" NOR, this_object());
 
         NPC_D->copy_from_me(this_object(), ob, 150, 1);
         kill_ob(ob);
@@ -240,12 +240,12 @@ int accept_kill(object ob)
 
 int accept_ansuan(object ob)
 {
-        return notify_fail("那人警惕性好高，你难以下手。\n");
+        return notify_fail("那人警惕性好高，你難以下手。\n");
 }
 
 int accept_touxi(object ob)
 {
-        return notify_fail("那人警惕性好高，你难以下手。\n");
+        return notify_fail("那人警惕性好高，你難以下手。\n");
 }
 
 
@@ -253,8 +253,8 @@ void escape_me()
 {
         object ob=this_object(); 
         message_vision(
-                HIW"$N大笑了几声：“今天痛痛快快地砍了这帮江湖宵小们一顿，\n"+
-                "总算没有辜负掌门的重托了，哈哈哈哈！”\n说罢，一个筋斗跳出战圈，不知去向。\n"NOR,ob);
+                HIW"$N大笑了幾聲：“今天痛痛快快地砍了這幫江湖宵小們一頓，\n"+
+                "總算沒有辜負掌門的重託了，哈哈哈哈！”\n說罷，一個筋斗跳出戰圈，不知去向。\n"NOR,ob);
         remove_call_out("escape_me");
         destruct(ob);
 }
@@ -269,7 +269,7 @@ void die()
         me = this_object();
         killer = me->query_last_damage_from();
         
-        message_vision(HIC"$N惨嚎一声，口喷鲜血，到在地上死了。\n"NOR,me);
+        message_vision(HIC"$N慘嚎一聲，口噴鮮血，到在地上死了。\n"NOR,me);
         
         if( killer && userp(killer) 
                 && query_temp("chousha/fam", killer) == query("family/family_name", me) ) {
@@ -282,7 +282,7 @@ void die()
                 if(reward_exp > 20000) reward_exp=20000;
                 if( !query_temp(query("id", killer), me) )
                 {
-                        tell_object(killer,HIW"可惜，你杀的人不是你该杀的！\n"NOR);
+                        tell_object(killer,HIW"可惜，你殺的人不是你該殺的！\n"NOR);
                         reward_exp=reward_exp/10;
                 }
                 reward_exp=reward_exp/2+random(reward_exp/2);
@@ -303,9 +303,9 @@ void die()
                                         &&  query_temp("chousha/fam", team[n]) == query_temp("chousha/fam", killer )
                                         &&  team[n]->is_killing(me) )   
                                         {
-                                                tell_object(team[n],HIW"你所参加的队伍奖励你奋勇杀敌之战功——"
-                                                        +"你获得了"+CHINESE_D->chinese_number(team_exp)+"点实战经验和\n"
-                                                        +CHINESE_D->chinese_number(team_pot)+"点潜能奖励！\n"NOR);
+                                                tell_object(team[n],HIW"你所參加的隊伍獎勵你奮勇殺敵之戰功——"
+                                                        +"你獲得了"+CHINESE_D->chinese_number(team_exp)+"點實戰經驗和\n"
+                                                        +CHINESE_D->chinese_number(team_pot)+"點潛能獎勵！\n"NOR);
 
                                                 addn("chousha_quest/reward_exp", team_exp, team[n]);
                                                 addn("chousha_quest/reward_potential", team_pot, team[n]);
@@ -318,10 +318,10 @@ void die()
                         reward_pot=team_pot*2;
                 }
 
-                tell_object(killer,HIW"在实战中，你获得了"+
-                        CHINESE_D->chinese_number(reward_exp) +"点的『实战经验』"+
-                        CHINESE_D->chinese_number(reward_pot)+"点的『潜能』\n"
-                        +"及"+CHINESE_D->chinese_number(reward_score)+"点综合评价奖励！\n"NOR); 
+                tell_object(killer,HIW"在實戰中，你獲得了"+
+                        CHINESE_D->chinese_number(reward_exp) +"點的『實戰經驗』"+
+                        CHINESE_D->chinese_number(reward_pot)+"點的『潛能』\n"
+                        +"及"+CHINESE_D->chinese_number(reward_score)+"點綜合評價獎勵！\n"NOR); 
                         
                 addn("chousha_quest/reward_exp", reward_exp, killer);
                 addn("chousha_quest/reward_potential", reward_pot, killer);

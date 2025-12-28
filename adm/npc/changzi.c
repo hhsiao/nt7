@@ -11,27 +11,27 @@ int get_reward()
         me = this_player();
         
         if( query("online_time", me) < 3600){
-                tell_object(me,CYN + query("name") + "深情地看了你一眼说：你在线时间还没有超过一小时吧？\n"+ NOR); 
+                tell_object(me,CYN + query("name") + "深情地看了你一眼說：你在線時間還沒有超過一小時吧？\n"+ NOR); 
                 return 1;
         }      
         amount = query("active", me);
         if( amount < 1){
-                tell_object(me,CYN + query("name") + "面孔扭曲地说：你至少也要有1点活跃度才能来我这兑换呀！\n"+ NOR); 
+                tell_object(me,CYN + query("name") + "面孔扭曲地說：你至少也要有1點活躍度才能來我這兌換呀！\n"+ NOR); 
                 return 1;
         }
         if( time() - query("active_endtime", me) < 3600){
-                tell_object(me,CYN + query("name") + "抠了抠鼻孔，慢悠悠地说：活跃度每小时兑换一次！\n"+ NOR); 
+                tell_object(me,CYN + query("name") + "摳了摳鼻孔，慢悠悠地說：活躍度每小時兌換一次！\n"+ NOR); 
                 return 1;
         }
         
         if (amount > 100) amount=100;
         addn("active", -amount, me);
         
-                if( query("online_time", me) < 86400) obj = new(__DIR__"obj/xianghy");//一天以内的新玩家，可以抽到天赋丹和低级rune
-                else obj = new(__DIR__"obj/xianghy2");//一天以上的老玩家可以抽到中高级rune
+                if( query("online_time", me) < 86400) obj = new(__DIR__"obj/xianghy");//一天以內的新玩家，可以抽到天賦丹和低級rune
+                else obj = new(__DIR__"obj/xianghy2");//一天以上的老玩家可以抽到中高級rune
                 
                 obj->set_amount(amount);
-        message_vision(YEL + query("name") + NOR + YEL+ "拿出"+chinese_number(amount)+"个箱子交给"+ NOR +"$N"+ NOR + YEL+"。\n" + NOR, me);        
+        message_vision(YEL + query("name") + NOR + YEL+ "拿出"+chinese_number(amount)+"個箱子交給"+ NOR +"$N"+ NOR + YEL+"。\n" + NOR, me);        
         obj->move(me);
         set("active_endtime", time(), me);
         return 1;
@@ -40,9 +40,9 @@ int get_reward()
 void create()
 {
         set_name(NOR "小常子" NOR, ({ "xiao changzi", "xiao", "changzi" }));
-         set("nickname", YEL "聊天室伙计" NOR);
+         set("nickname", YEL "聊天室夥計" NOR);
         set("long", @LONG
-泥潭捡大粪先行者，金盆洗手后在公共聊天室端茶递水。
+泥潭撿大糞先行者，金盆洗手後在公共聊天室端茶遞水。
 LONG);
         set("gender", "男性" );
         set("age", 30);
@@ -61,9 +61,9 @@ LONG);
         set("combat_exp", 1200000);
 
         set("inquiry", ([
-                        "奖池" : (: call_other("/u/redl/obj/cigarette_c", "ask_pond", query("name") ) :) ,
-                "宝箱" : (: get_reward :),
-                "活跃度" : (: get_reward :),
+                        "獎池" : (: call_other("/u/redl/obj/cigarette_c", "ask_pond", query("name") ) :) ,
+                "寶箱" : (: get_reward :),
+                "活躍度" : (: get_reward :),
         ]));
 
         setup();

@@ -6,11 +6,11 @@ inherit "/inherit/char/punisher";
 
 void create()
 {
-        set_name("钟志灵", ({ "pang toutuo", "pang" ,"toutuo"}));
-        set("title", HIY "神龙教" NOR "左护法");
-        set("nickname",HIR "辽东胖尊者" NOR);
-        set("long", "这头陀身材奇高，而且瘦得出奇；脸上皮包骨头、双\n"
-                    "目深陷，当真便如僵尸一般。\n" );
+        set_name("鍾志靈", ({ "pang toutuo", "pang" ,"toutuo"}));
+        set("title", HIY "神龍教" NOR "左護法");
+        set("nickname",HIR "遼東胖尊者" NOR);
+        set("long", "這頭陀身材奇高，而且瘦得出奇；臉上皮包骨頭、雙\n"
+                    "目深陷，當真便如殭屍一般。\n" );
         set("gender", "男性");
         set("age", 44);
 
@@ -61,7 +61,7 @@ void create()
                 (: exert_function, "recover" :),
         }));
 
-        create_family("神龙教", 0, "白龙使");
+        create_family("神龍教", 0, "白龍使");
 
         setup();
         carry_object("/clone/misc/cloth")->wear();

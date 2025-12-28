@@ -27,12 +27,12 @@ int do_eat(string arg)
     	maxneili=query("max_neili", me);
     
   	if(!id(arg)) return 0;
-  	if(me->is_busy()) return notify_fail("你上一个动作还没有完成。\n");
+  	if(me->is_busy()) return notify_fail("你上一個動作還沒有完成。\n");
 
         if( time()-query("eat_drug/yuqingsan", me)<2400 )
-                return notify_fail("你刚服用过药时间不久，需药性发挥完效用以后才能继续服用。\n"); 
+                return notify_fail("你剛服用過藥時間不久，需藥性發揮完效用以後才能繼續服用。\n"); 
     
-        addn("max_jingli", 10+random(5), me);message_vision(HIB"$N拿起玉清散吃了下去,感觉自己的精力有所增加。\n"NOR,me);
+        addn("max_jingli", 10+random(5), me);message_vision(HIB"$N拿起玉清散吃了下去,感覺自己的精力有所增加。\n"NOR,me);
       set("eat_drug/yuqingsan", time(), me);
      	destruct(this_object());
       	return 1;

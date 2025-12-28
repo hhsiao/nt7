@@ -9,7 +9,7 @@ void init();
 
 void create()
 {
-        set_name(RED "续命八丹" NOR, ({"xuming badan", "badan", "dan"}));
+        set_name(RED "續命八丹" NOR, ({"xuming badan", "badan", "dan"}));
         set_weight(20);
         /*if (clonep())
                 set_default_object(__FILE__);
@@ -42,7 +42,7 @@ int cure_ob(object me)
         me->apply_condition("xx_poison", me->query_condition("xx_poison") - 50);
         if (me->query_condition("hanbing_damage") > 30)
         me->apply_condition("hanbing_damage", 10);
-        message_vision(HIG "$N吃下一粒续命八丹，把命吊了回来! \n" NOR, me);
+        message_vision(HIG "$N吃下一粒續命八丹，把命吊了回來! \n" NOR, me);
 
         destruct(this_object());
         return 1;

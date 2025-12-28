@@ -47,11 +47,11 @@ void setup_monster(object ob)
         //        ob->init_limbs(LIMBS);
         if( !ob->query_weight() ) ob->set_weight(BASE_WEIGHT + (my["str"] - 10)* 2000);
 
-        set("dead_message",       "\n$N仰天惨嚎了一声，趴在地上不动了。\n\n"      );
-        set("unconcious_message", "\n$N咆哮一声，倒在地上昏了过去。\n\n"          );
-        set("revive_message",     "\n$N慢慢睁开眼睛，清醒了过来。\n\n"            );
-        set("leave_msg",          "离开"                                  );
-        set("arrive_msg",         "缓缓地走了过来"                            );
-        set("fleeout_message",    "咆哮着落荒而逃了"                  );
-        set("fleein_message",     "摇摇摆摆地跑了过来，伸出舌头呼呼地喘着粗气");
+        set("dead_message",       "\n$N仰天慘嚎了一聲，趴在地上不動了。\n\n"      );
+        set("unconcious_message", "\n$N咆哮一聲，倒在地上昏了過去。\n\n"          );
+        set("revive_message",     "\n$N慢慢睜開眼睛，清醒了過來。\n\n"            );
+        set("leave_msg",          "離開"                                  );
+        set("arrive_msg",         "緩緩地走了過來"                            );
+        set("fleeout_message",    "咆哮著落荒而逃了"                  );
+        set("fleein_message",     "搖搖擺擺地跑了過來，伸出舌頭呼呼地喘著粗氣");
 }

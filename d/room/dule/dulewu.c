@@ -1,4 +1,4 @@
-// dulewu.c 独乐居小屋
+// dulewu.c 獨樂居小屋
 #include <ansi.h>
 
 //** inherit PRIVATE_ROOM;
@@ -9,13 +9,13 @@ void create()
         set("short", "小屋");                   /* EXAMPLE */
 //**    set("short", "ROOM_NAME小屋");
         set("long", @LONG
-屋子不大，靠窗的地方摆了一张床，屋中一张桌，几只椅，非常简单。
-恐怕只有甘于寂寞的人才住得了这种简朴的屋子。
+屋子不大，靠窗的地方擺了一張床，屋中一張桌，幾隻椅，非常簡單。
+恐怕只有甘於寂寞的人才住得了這種簡樸的屋子。
 LONG );
 
-        set("default_long", "屋子不大，靠窗的地方摆了一张床，"   /**/
-                            "屋中一张桌，几只椅，非常简单。"     /**/
-                            "看来主人是一个甘于平淡寂寞的人。"); /**/
+        set("default_long", "屋子不大，靠窗的地方擺了一張床，"   /**/
+                            "屋中一張桌，幾隻椅，非常簡單。"     /**/
+                            "看來主人是一個甘於平淡寂寞的人。"); /**/
 
 //**    set("objects", ([
 //**            "/adm/npc/obj/xiang" : 1,
@@ -60,11 +60,11 @@ int do_findbaby(string arg)
                 return 0;
 
         if( !query("couple/child_id", me) )
-                return notify_fail("你又还没有孩子，来这里凑什么热闹啊？\n");
+                return notify_fail("你又還沒有孩子，來這裡湊什麼熱鬧啊？\n");
 
         if( objectp(baby=find_living(query("couple/child_id", me)) )
         &&  environment(baby) && baby->is_baby())
-                return notify_fail("你们的孩子已经跑出去玩了，好好四处找找吧！\n");
+                return notify_fail("你們的孩子已經跑出去玩了，好好四處找找吧！\n");
 
         if( query("gender", me) == "女性" )
                 file=read_file("/data/baby/"+query("id", me)+".o");
@@ -77,12 +77,12 @@ int do_findbaby(string arg)
                 baby->load_baby(me);
                 baby->move(environment(me));
                 message_vision("你忽然看到床底下" +
-                        ({"探出一颗小脑瓜", "伸出一双小脚丫", "伸出一支小手"})
+                        ({"探出一顆小腦瓜", "伸出一雙小腳丫", "伸出一支小手"})
                         [random(3)] + "．．．\n", me);
 
         } else
         {
-                tell_object(me, MAG "你们的孩子不幸夭折了，请节哀吧。\n" NOR);
+                tell_object(me, MAG "你們的孩子不幸夭折了，請節哀吧。\n" NOR);
                 delete("couple/child_id", me);
                 delete("couple/child_name", me);
         }

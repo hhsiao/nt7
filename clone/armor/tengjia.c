@@ -13,7 +13,7 @@ void create()
         else*/
         {
                 set("unit", "件");
-                set("long", "一件轻便藤甲。\n");
+                set("long", "一件輕便藤甲。\n");
                 set("value", 1500);
                 set("material", "wood");
                 set("armor_prop/armor", 25);

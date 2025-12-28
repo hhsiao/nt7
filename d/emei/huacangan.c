@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "华藏庵");
+        set("short", "華藏庵");
         set("long", @LONG
-华藏庵是金顶的主要建筑，规模宏大，中祀普贤菩萨，旁列万佛。
-华藏庵后边是睹光台，旁边是卧云庵。
+華藏庵是金頂的主要建築，規模宏大，中祀普賢菩薩，旁列萬佛。
+華藏庵後邊是睹光臺，旁邊是臥雲庵。
 LONG );
         set("outdoors", "emei");
         set("exits", ([

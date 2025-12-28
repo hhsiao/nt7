@@ -5,7 +5,7 @@ inherit "/inherit/char/punisher";
 void create()
 {
         set_name("方生", ({ "fang sheng", "fang" }));
-        set("long", "他面目慈和，显然是一得道高僧。\n");
+        set("long", "他面目慈和，顯然是一得道高僧。\n");
 
         set("gender", "男性");
         set("attitude", "friendly");

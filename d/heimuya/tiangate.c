@@ -3,11 +3,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "天香堂大门");
+        set("short", "天香堂大門");
         set("long", @LONG
-这是日月神教下第四大堂天香堂的大门，门前摆放着两座石狮，
-镇守着朱漆大门。大门两旁站着数名轻装女子，单手持着长鞭，警惕
-地注视着周围的一切。
+這是日月神教下第四大堂天香堂的大門，門前擺放著兩座石獅，
+鎮守著朱漆大門。大門兩旁站著數名輕裝女子，單手持著長鞭，警惕
+地注視著周圍的一切。
 LONG );
         set("outdoors", "heimuya");
         set("exits", ([
@@ -26,8 +26,8 @@ int valid_leave(object me, string dir)
            && dir == "south"
             && query("family/family_name", me )
             && query("family/family_name", me) != "日月神教" )
-                return notify_fail(CYN "日月弟子将你拦住，说道：这里乃神"
-                                   "教重地，他人不得入内。\n" NOR);
+                return notify_fail(CYN "日月弟子將你攔住，說道：這裡乃神"
+                                   "教重地，他人不得入內。\n" NOR);
 
         return ::valid_leave(me, dir);
 }

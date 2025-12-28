@@ -31,14 +31,14 @@ void set_from_me(object me)
 
 int accept_fight(object ob)
 {
-        command("say 很好！那我就不客气了。");
+        command("say 很好！那我就不客氣了。");
         kill_ob(ob);
         return 1;
 }
 
 int accept_hit(object ob)
 {
-        command("say 哼！什么人？");
+        command("say 哼！什麼人？");
         kill_ob(ob);
         return 1;
 }
@@ -67,10 +67,10 @@ int accept_object(object who, object ob)
                 set("reply_to_name",query("send_from_name",  ob), rob);
                 set("receive_from",query("id",  who), rob);
                 set("receive_from_name", who->name(1), rob);
-                rob->set("long","这是一封由"+name()+"收到"+
-                                 query("send_from_name", ob)+"的来信写的回执。\n");
-                command("say 多谢这位" + RANK_D->query_respect(who) + "把信带到，这点钱算是你的辛苦费了。");
-                message_vision("$N交给$n一张回执。\n", this_object(), who);
+                rob->set("long","這是一封由"+name()+"收到"+
+                                 query("send_from_name", ob)+"的來信寫的回執。\n");
+                command("say 多謝這位" + RANK_D->query_respect(who) + "把信帶到，這點錢算是你的辛苦費了。");
+                message_vision("$N交給$n一張回執。\n", this_object(), who);
                 rob->move(who, 1);
 
                 bonus = new("/clone/money/silver");

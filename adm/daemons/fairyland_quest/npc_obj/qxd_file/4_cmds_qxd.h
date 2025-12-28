@@ -1,4 +1,4 @@
-// hj 内基本指令
+// hj 內基本指令
 
 int do_who_in_hj()
 {
@@ -7,7 +7,7 @@ int do_who_in_hj()
 
     rooms = find_object( HJ_DIR+ "room_door_hj" );
     if( !rooms ) rooms = load_object( HJ_DIR + "room_door_hj" );
-    if( !rooms ) return errs("发生意外错误，无法查询。\n");
+    if( !rooms ) return errs("發生意外錯誤，無法查詢。\n");
     write( rooms->who_in_hj()[ "info" ] );
     return 1;
 }
@@ -18,16 +18,16 @@ int do_hjtop()
 
     out_room = find_object( HJ_OUT_ROOM );
     if( !out_room )
-        return errs("现在无法查看记录。\n");
+        return errs("現在無法查看記錄。\n");
     write(HIW"
-       『幻境·遥远传说之起缘·幽灵显现』
+       『幻境·遙遠傳說之起緣·幽靈顯現』
 "+out_room->get_TOP_pic()+"\n"NOR);
     return 1;
 }
 
-// 有BUG 55555555 已改正，并且优化了一下下。  naihe 2:36 03-10-24
-// 接纳玩家 pah (xsmarter) 的建议，加入了放弃技能的指令。
-// 改了列表方式，虽然比之前的烦琐，但能够根据我的需要来排序。
+// 有BUG 55555555 已改正，並且優化了一下下。  naihe 2:36 03-10-24
+// 接納玩家 pah (xsmarter) 的建議，加入了放棄技能的指令。
+// 改了列表方式，雖然比之前的煩瑣，但能夠根據我的需要來排序。
 int do_gsks( string arg )
 {
     object me = this_player();
@@ -46,14 +46,14 @@ int do_gsks( string arg )
 
     if( !all_skills || !mapp(all_skills) || sizeof(all_skills) < 1 ||
         !all_damages || !mapp(all_damages) || sizeof(all_damages) < 1 )
-        return errs("你并未学得任何 幻境 内的技能。\n");
+        return errs("你並未學得任何 幻境 內的技能。\n");
 
     if( !arg ) arg = ".";
 
     if( sscanf(arg, "-d %s", msg) )
     {
         if( undefinedp( all_skills[msg] ) || undefinedp( all_damages[msg] ) )
-            return errs("你并不懂得这项幻境内的技能。\n");
+            return errs("你並不懂得這項幻境內的技能。\n");
 
         arg = all_skills[msg];
         delete_temp("hj_game_skills/"+msg, me);
@@ -61,11 +61,11 @@ int do_gsks( string arg )
         delete("huanjing2003/last_skills_name/"+msg, me);
         delete("huanjing2003/last_skills_lv/"+msg, me);
         me->save();
-        message_vision( "$N逆运技能，把自己所懂得的「"+arg+"」散去了。\n",me);
+        message_vision( "$N逆運技能，把自己所懂得的「"+arg+"」散去了。\n",me);
         return 1;
     }
 
-    // 下面开始以固定排序，列出玩家所懂得的技能。
+    // 下面開始以固定排序，列出玩家所懂得的技能。
     list = ({ "heal", "hfzj", "hyzj", "llzj", "ydzj", "dhzj", "fhzj", "gszj", });
 
 
@@ -73,7 +73,7 @@ int do_gsks( string arg )
     pic = "◆";
     msg = clcl +
           "╭--------------┬--┬----------┬----------┬------------------╮\n" +
-          "│    技   能   │LV│ 运用(yun)│ 绝技(pfm)│    效     果     │\n" +
+          "│    技   能   │LV│ 運用(yun)│ 絕技(pfm)│    效     果     │\n" +
           "├--------------┼--┼----------┼----------┼------------------┤\n";
 
 
@@ -82,29 +82,29 @@ int do_gsks( string arg )
         if( undefinedp( all_skills[list[i]] ) || undefinedp( all_damages[list[i]] ) )
             continue;
 
-        // 上色、特殊技提示及绝招提示
+        // 上色、特殊技提示及絕招提示
         cl = "";
         t1 = "   ----   ";
         t2 = "   ----   ";
         switch( list[i] )
         {
-            case "heal" : cl = CYN; t1 = "克制(kz)"; break;
-            case "hfzj" : cl = HIW; t1 = "翔空(xk)"; t2 = "狂风(kf)"; break;
-            case "hyzj" : cl = HIM; t1 = "聪敏(cm)"; t2 = "暴雨(by)"; break;
-            case "llzj" : cl = HIC; t1 = "力量(ll)"; t2 = "惊雷(jl)"; break;
-            case "ydzj" : cl = HIG; t1 = "光芒(gm)"; t2 = "迅电(xd)"; break;
-            case "dhzj" : cl = HIB; t1 = "守护(sh)"; t2 = "夺魂(dh)"; break;
-            case "fhzj" : cl = HIR; t1 = "热情(rq)"; t2 = "火焰(hy)"; break;
-            case "gszj" : cl = HIY; t1 = "寻石(xs)"; t2 = "巨石(js)"; break;
+            case "heal" : cl = CYN; t1 = "剋制(kz)"; break;
+            case "hfzj" : cl = HIW; t1 = "翔空(xk)"; t2 = "狂風(kf)"; break;
+            case "hyzj" : cl = HIM; t1 = "聰敏(cm)"; t2 = "暴雨(by)"; break;
+            case "llzj" : cl = HIC; t1 = "力量(ll)"; t2 = "驚雷(jl)"; break;
+            case "ydzj" : cl = HIG; t1 = "光芒(gm)"; t2 = "迅電(xd)"; break;
+            case "dhzj" : cl = HIB; t1 = "守護(sh)"; t2 = "奪魂(dh)"; break;
+            case "fhzj" : cl = HIR; t1 = "熱情(rq)"; t2 = "火焰(hy)"; break;
+            case "gszj" : cl = HIY; t1 = "尋石(xs)"; t2 = "巨石(js)"; break;
         }
 
-        // 加效果标记，让人一眼可以看出是否能yun, pfm 以及技能高低
+        // 加效果標記，讓人一眼可以看出是否能yun, pfm 以及技能高低
         if( all_damages[list[i]] > 99 )
             all_damages[list[i]] = 99;
-        // 这一句实际上和 me->set_temp() 同样效果。莫非 mapping 也是类似“指针”的？
+        // 這一句實際上和 me->set_temp() 同樣效果。莫非 mapping 也是類似“指針”的？
         // 例如： mapping test = objecttt->query("lalala");
         //        objecttt->delete("lalala");
-        // 那么这个时候， lalala 的值，也成为“0”了！反之亦然。
+        // 那麼這個時候， lalala 的值，也成為“0”了！反之亦然。
         temp = all_damages[list[i]];
 
         if( t1 != "   ----   " )
@@ -128,29 +128,29 @@ int do_gsks( string arg )
         msg += sprintf( clcl+"│%s%s(%s)"+clcl+"│%2d"+clcl+"│%-10s"+clcl+"│%-10s"+clcl+"│"+cl+"%-18s"+clcl+"│\n"+clcl,
             cl, all_skills[list[i]],list[i],
             all_damages[list[i]],t1, t2, lv_pic );
-        // 技能数量 +1
+        // 技能數量 +1
         amount ++;
     }
 
-    // 为了今后若有扩展时，也可以显示新技能
-    // 这一段未完善，需要看加的是什么技能再考虑更改。
+    // 為了今後若有擴展時，也可以顯示新技能
+    // 這一段未完善，需要看加的是什麼技能再考慮更改。
     key = keys( all_damages );
     for( i=0; i<sizeof( key ); i++ )
     {
-        // 已在前面处理过了，或者技能设置有误，跳过
+        // 已在前面處理過了，或者技能設置有誤，跳過
         if( member_array(key[i],list) != -1 || undefinedp( all_skills[ key[i] ] ) )
             continue;
-        // 不加入颜色设置
+        // 不加入顏色設置
         msg += sprintf( clcl+"│%s(%s)"+clcl+"│%2d"+clcl+"│%-10s"+clcl+"│%-10s"+clcl+"│"+cl+"%-18s"+clcl+"│\n"+clcl,
             all_skills[key[i]], key[i],
             all_damages[key[i]], "   ----   ","   ----   ","");
             amount ++;
     }
-    // 没有通过检测的技能
+    // 沒有通過檢測的技能
     if( !amount )
-        return errs("你并未学得任何 幻境 内的技能。\n");
+        return errs("你並未學得任何 幻境 內的技能。\n");
     msg += clcl+ "╰--------------┴--┴----------┴----------┴------------------╯\n"NOR;
-    write( "  以下是你学得的幻境内技能(共"+chinese_number(amount)+"项)：\n" + msg + "  如需要放弃某项技能，请使用指令：<gsks -d 技能名>  例如：gsks -d heal\n  请注意，输入指令将直接放弃该技能，并无法恢复！\n");
+    write( "  以下是你學得的幻境內技能(共"+chinese_number(amount)+"項)：\n" + msg + "  如需要放棄某項技能，請使用指令：<gsks -d 技能名>  例如：gsks -d heal\n  請注意，輸入指令將直接放棄該技能，並無法恢復！\n");
     return 1;
 }
 
@@ -173,23 +173,23 @@ int do_ghp()
     if( hp > hp_max ) color = HIC;
 
     if( !temp = query("find_name") )
-        temp = "神秘国度";
+        temp = "神秘國度";
     switch( temp )
     {
-        case "风之国度": temp = HIW+temp+NOR;break;
-        case "雨之国度": temp = HIM+temp+NOR;break;
-        case "雷之国度": temp = HIC+temp+NOR;break;
-        case "电之国度": temp = HIG+temp+NOR;break;
+        case "風之國度": temp = HIW+temp+NOR;break;
+        case "雨之國度": temp = HIM+temp+NOR;break;
+        case "雷之國度": temp = HIC+temp+NOR;break;
+        case "電之國度": temp = HIG+temp+NOR;break;
     }
     temp2 = "";
     if( query_temp("hj_special/xk", me))temp2+=HIW"「翔空」"NOR;
-    if( query_temp("hj_special/cm", me))temp2+=HIM"「聪敏」"NOR;
+    if( query_temp("hj_special/cm", me))temp2+=HIM"「聰敏」"NOR;
     if( query_temp("hj_special/ll", me))temp2+=HIC"「力量」"NOR;
     if( query_temp("hj_special/gm", me))temp2+=HIG"「光芒」"NOR;
-    if( query_temp("hj_special/kz", me))temp2+=CYN"「克制」"NOR;
-    if( query_temp("hj_special/sh", me))temp2+=HIB"「守护」"NOR;
-    if( query_temp("hj_special/rq", me))temp2+=HIR"「热情」"NOR;
-    if( query_temp("hj_special/xs", me))temp2+=HIY"「寻石」"NOR;
+    if( query_temp("hj_special/kz", me))temp2+=CYN"「剋制」"NOR;
+    if( query_temp("hj_special/sh", me))temp2+=HIB"「守護」"NOR;
+    if( query_temp("hj_special/rq", me))temp2+=HIR"「熱情」"NOR;
+    if( query_temp("hj_special/xs", me))temp2+=HIY"「尋石」"NOR;
 
     if( temp2 == "" ) temp2 = " ---";
 
@@ -202,13 +202,13 @@ int do_ghp()
     }
     if( strlen( temp3 ) > 20 ) temp3 = temp3[0..19] + ">>>>";
 
-    write( sprintf("【 %s ‖ LV "HIY"%d"NOR" ‖ 气息：%s%d"NOR"/"HIG"%d"NOR" ‖ 得分："HIY"%d"NOR" ‖ 基本力量："HIY"%s"NOR" ‖ 累计杀死NPC "HIM"%d"NOR" 个 】\n【 技能运用中：%s 】\n"NOR,
+    write( sprintf("【 %s ‖ LV "HIY"%d"NOR" ‖ 氣息：%s%d"NOR"/"HIG"%d"NOR" ‖ 得分："HIY"%d"NOR" ‖ 基本力量："HIY"%s"NOR" ‖ 累計殺死NPC "HIM"%d"NOR" 個 】\n【 技能運用中：%s 】\n"NOR,
         temp,query("huanjing2003/lv", me),color,
         hp,hp_max,query_temp("hj_score", me),temp3,query("huanjing2003/kill_npc", me),temp2));
     return 1;
 }
 
-// heal 方式更新，可以实现自动恢复。
+// heal 方式更新，可以實現自動恢復。
 int do_gheal(string arg)
 {
     object target,me=this_player();
@@ -216,46 +216,46 @@ int do_gheal(string arg)
     if( !me_ok(me) ) return 0;
 
     if( !query_temp("hj_game_skills/heal", me) || !query_temp("hj_game_damages/heal", me) )
-        return errs("你并不懂得恢复技能。\n");
+        return errs("你並不懂得恢復技能。\n");
 
     if( !arg || arg == query("id", me))target=me;
     else target=present( arg,environment( me ) );
-    if( !target ) return errs("你要帮谁恢复气息？\n");
-    if( !target->is_character() ) return errs("这不是活物。\n");
-    if( !living(target) ) return errs("还是先等这人醒来再说吧。\n");
+    if( !target ) return errs("你要幫誰恢復氣息？\n");
+    if( !target->is_character() ) return errs("這不是活物。\n");
+    if( !living(target) ) return errs("還是先等這人醒來再說吧。\n");
     if( !query_temp("hj_hp", target) || !query_temp("hj_hp_max", target) )
-        return errs("这人没有丝毫气息，还是免了吧。\n");
+        return errs("這人沒有絲毫氣息，還是免了吧。\n");
 
-    // 本指令亦可帮NPC恢复气息（将有迷题型NPC需要玩家去帮助） :)
-    // 已不可帮助NPC恢复气息。
+    // 本指令亦可幫NPC恢復氣息（將有迷題型NPC需要玩家去幫助） :)
+    // 已不可幫助NPC恢復氣息。
     if( query_temp("hj_need_waiting", me) == "fighting" || query_temp("hj_fighting", me) )
-            return errs("你还在战斗中，要疗伤得先停下来(halt / ht)。\n");
+            return errs("你還在戰鬥中，要療傷得先停下來(halt / ht)。\n");
 
     if( query_temp("hj_healing", me) )
-        return errs("你已在运用恢复之技。\n");
+        return errs("你已在運用恢復之技。\n");
 
     if( me->is_busy() )
-        return errs("你还忙着呢。\n");
+        return errs("你還忙著呢。\n");
 
     if(target == me )
     {
         if( query_temp("hj_hp", me)>(query_temp("hj_hp_max", me)*9/10) )
-            return errs("你还健康得很，不必调和气息。\n");
-        message_vision(CYN"$N"NOR+CYN"定下心来，静静地调和自己的气息。\n"NOR,me);
+            return errs("你還健康得很，不必調和氣息。\n");
+        message_vision(CYN"$N"NOR+CYN"定下心來，靜靜地調和自己的氣息。\n"NOR,me);
     }
     else
     {
-        if( present( "hj temp leave obj", target )      // 已经暂时离开游戏了，不能帮他恢复hp
+        if( present( "hj temp leave obj", target )      // 已經暫時離開遊戲了，不能幫他恢復hp
            || query("hj_game/npc", target )
            || query_temp("huanjing", target) != "start"
         )
-            return errs("你不能帮助这个人恢复气息。\n");
+            return errs("你不能幫助這個人恢復氣息。\n");
 
         if( query_temp("hj_hp", target)>(query_temp("hj_hp_max", target)*9/10) )
-            return errs("这人还健康得很，不必调和气息。\n");
+            return errs("這人還健康得很，不必調和氣息。\n");
         if( query_temp("hj_hp", me)<100 )
-            return errs("你自顾不暇，还为别人疗伤？\n");
-        message_vision(CYN"$N"NOR+CYN"把手掌贴在$n"NOR+CYN"的背上，运起「恢复之技」来。\n"NOR, me, target );
+            return errs("你自顧不暇，還為別人療傷？\n");
+        message_vision(CYN"$N"NOR+CYN"把手掌貼在$n"NOR+CYN"的背上，運起「恢復之技」來。\n"NOR, me, target );
     }
 
     set_temp("hj_healing", target, me);
@@ -286,18 +286,18 @@ void healing( object me)
        || !query_temp("hj_hp_max", target )
       || present( "hj temp leave obj", target )
     )
-         return hj_halt( CYN"$N"NOR+CYN"内劲一撤，停止了运用恢复之技。\n"NOR );
+         return hj_halt( CYN"$N"NOR+CYN"內勁一撤，停止了運用恢復之技。\n"NOR );
     env_target = environment( target );
     env_me = environment( me );
     if( !env_target || env_target != env_me || !query("room_mark", env_target )
       || query("room_mark", env_target) == 1 )
-        return hj_halt( CYN"$N"NOR+CYN"内劲一撤，停止了运用恢复之技。\n"NOR );
-    // 基本判断通过。
+        return hj_halt( CYN"$N"NOR+CYN"內勁一撤，停止了運用恢復之技。\n"NOR );
+    // 基本判斷通過。
     if( query_temp("hj_hp", target)>(query_temp("hj_hp_max", target)*9/10) )
     {
         if( me == target )
-            return hj_halt( CYN"$N"NOR+CYN"调息已顺，长长地舒了一口气。\n"NOR);
-        return hj_halt( CYN"$N"NOR+CYN"见得$n"NOR+CYN"已经调息顺畅，撤回了掌来。\n"NOR);
+            return hj_halt( CYN"$N"NOR+CYN"調息已順，長長地舒了一口氣。\n"NOR);
+        return hj_halt( CYN"$N"NOR+CYN"見得$n"NOR+CYN"已經調息順暢，撤回了掌來。\n"NOR);
     }
 
     if( me->is_busy() )
@@ -308,13 +308,13 @@ void healing( object me)
     }
     heal_lv=query_temp("hj_game_damages/heal", me);
     heal_hp = (heal_lv / 2 + random(heal_lv / 2 ));  // lv 100 = 50 + random(50)
-    // 雨之国度主动技能效果  使用恢复之技能时效力增强
+    // 雨之國度主動技能效果  使用恢復之技能時效力增強
     if( query_temp("hj_game_find", me) == "yu" )
         heal_hp += (heal_hp / 3) + random(heal_hp/5);
     if(target == me)
     {
 
-        // 飞火之技唯一体现(1)，使用 heal 时降低忙时
+        // 飛火之技唯一體現(1)，使用 heal 時降低忙時
         if( query_temp("hj_special/rq", me) )
             me->start_busy(1)+random(2);
         else me->start_busy(2+random(2));
@@ -322,26 +322,26 @@ void healing( object me)
         addn_temp("hj_hp", heal_hp, me);
         if( query_temp("hj_hp", me)>query_temp("hj_hp_max", me) )
             set_temp("hj_hp",query_temp("hj_hp_max",  me), me);
-        message_vision(CYN"$N"NOR+CYN"定心调和气息，只觉得伤势恢复了些。\n"NOR,me);
-        tell_object( me, sprintf("当前： %d / %d \n",
+        message_vision(CYN"$N"NOR+CYN"定心調和氣息，只覺得傷勢恢復了些。\n"NOR,me);
+        tell_object( me, sprintf("當前： %d / %d \n",
             query_temp("hj_hp", me),query_temp("hj_hp_max", me)));
 
         /* 取消
-        // 运用这个技能，将可能损失一点力量
+        // 運用這個技能，將可能損失一點力量
         if( !random(query_temp("hj_game_mepower", me)*3 )
            && query_temp("hj_game_mepower", me)>20 )
         {
             addn_temp("hj_game_mepower", -1, me);
-            tell_object(me,HIY"你只觉得元气恢复了许多，但力气却似乎小了。\n"NOR);
+            tell_object(me,HIY"你只覺得元氣恢復了許多，但力氣卻似乎小了。\n"NOR);
         }
         */
-        // 但也可能获得等级提升
+        // 但也可能獲得等級提升
         if( !random(query_temp("hj_game_damages/heal", me)*2) )
         {
             addn_temp("hj_game_damages/heal", 1, me);
             if( query_temp("hj_game_damages/heal", me)>99 )
                 set_temp("hj_game_damages/heal", 99, me);
-            else tell_object(me,HIY"你对「恢复之技」的领会又进了一层！\n"NOR);
+            else tell_object(me,HIY"你對「恢復之技」的領會又進了一層！\n"NOR);
         }
         remove_call_out("healing");
         call_out("healing", 1, me );
@@ -349,16 +349,16 @@ void healing( object me)
     }
 
     if( query_temp("hj_hp", me)<100 )
-        return hj_halt( CYN"$N"NOR+CYN"正在帮助$n"NOR+CYN"疗伤，却发现自己气息不畅，只得罢手。\n"NOR);
+        return hj_halt( CYN"$N"NOR+CYN"正在幫助$n"NOR+CYN"療傷，卻發現自己氣息不暢，只得罷手。\n"NOR);
 
 
-    // 飞火之技唯一体现(2)，使用 heal 时降低忙时
+    // 飛火之技唯一體現(2)，使用 heal 時降低忙時
     if( query_temp("hj_special/rq", me) )
         me->start_busy( 1+random(3) );
     else
         me->start_busy(3+random(3));
-    // 取消此设置
-    // 若是为非NPC人物（即玩家）疗伤，对方会有忙时。
+    // 取消此設置
+    // 若是為非NPC人物（即玩家）療傷，對方會有忙時。
     //    if( !target->query("hj_game/npc") )
     //        target->start_busy(2+random(2));
     addn_temp("hj_hp", heal_hp, target);
@@ -366,11 +366,11 @@ void healing( object me)
     if( query_temp("hj_hp", target)>query_temp("hj_hp_max", target) )
         set_temp("hj_hp",query_temp("hj_hp_max",  target), target);
 
-    message_vision(CYN"$N"NOR+CYN"全力施行为$n"NOR+CYN"疗伤，只见得$n"NOR+CYN"的脸色好转了许多。\n"NOR, me, target);
-    // 帮助他人(无论是否NPC)，将获得一小点的加分，但需要消耗自身的气息。
-    // 已更改，需要消耗自己气息（小量），但不会有得分。
+    message_vision(CYN"$N"NOR+CYN"全力施行為$n"NOR+CYN"療傷，只見得$n"NOR+CYN"的臉色好轉了許多。\n"NOR, me, target);
+    // 幫助他人(無論是否NPC)，將獲得一小點的加分，但需要消耗自身的氣息。
+    // 已更改，需要消耗自己氣息（小量），但不會有得分。
     addn_temp("hj_hp", -random(heal_lv/3), me);
-    message_vision(CYN"$N"NOR+CYN"聚精会神，转眼间脸上已现出疲惫之色！\n"NOR,me);
+    message_vision(CYN"$N"NOR+CYN"聚精會神，轉眼間臉上已現出疲憊之色！\n"NOR,me);
     remove_call_out("healing");
     call_out("healing", 1, me );
     return;
@@ -385,18 +385,18 @@ int do_hjquit(string arg)
     if ( !arg || (arg!= "fail" && arg!="ok") )
         return errs(HIG"\n             <hjquit> 指令使用提示：
 
-< hjquit fail >     放弃所有的成绩，立刻退出 幻境 游戏。
-                      "HIR"使用此指令将减少你的1点贡献度，请慎用。"NOR"
-< hjquit ok >       以正常方式退出（类似使用 回归之镜），
-                      但你必须有 500 分以上的当前得分，并且
-                      需要一定的 已进行游戏 时间。
+< hjquit fail >     放棄所有的成績，立刻退出 幻境 遊戲。
+                      "HIR"使用此指令將減少你的1點貢獻度，請慎用。"NOR"
+< hjquit ok >       以正常方式退出（類似使用 迴歸之鏡），
+                      但你必須有 500 分以上的當前得分，並且
+                      需要一定的 已進行遊戲 時間。
 \n"NOR);
 
     if ( arg == "fail" )
     {
         if( query("shenzhou/pts", me)<1 )
-            return errs("你连1点贡献度都没有，不得使用本指令。\n");
-        write("你输入了强制退出指令，视作失败的情况退出 幻境 1 游戏。"HIR"本指令将扣除你一点贡献度！\n"NOR);
+            return errs("你連1點貢獻度都沒有，不得使用本指令。\n");
+        write("你輸入了強制退出指令，視作失敗的情況退出 幻境 1 遊戲。"HIR"本指令將扣除你一點貢獻度！\n"NOR);
         addn("shenzhou/pts", -1, me);
         set_temp("hj_hp", -1, me);
         me->start_busy(5);
@@ -404,29 +404,29 @@ int do_hjquit(string arg)
     }
 
     if( me->is_busy() || query_temp("hj_need_waiting", me) )
-        return errs("你还忙着呢。\n");
+        return errs("你還忙著呢。\n");
 
     qxd = present( "qixing deng",me);
     if( !qxd || query("my_master", qxd) != me )
-        return errs("你身上没有七星灯？……或者你不是它的主人？……\n");
+        return errs("你身上沒有七星燈？……或者你不是它的主人？……\n");
 
     if( !query("can_quit_hj", qxd) )
-        return errs("你才刚进来游戏没多久，确实要退出请使用 <hjquit fail> 指令作放弃退出。\n"HIR"请注意，使用 fail 类型指令退出将会扣减你的贡献度1点，请慎用！\n"NOR);
+        return errs("你才剛進來遊戲沒多久，確實要退出請使用 <hjquit fail> 指令作放棄退出。\n"HIR"請注意，使用 fail 類型指令退出將會扣減你的貢獻度1點，請慎用！\n"NOR);
 
     if( !query_temp("hj_score", me) || query_temp("hj_score", me)<500 )
-        return errs("你当前的游戏得分不够 500 分，确实要退出请使用 <hjquit fail> 指令作放弃退出。\n"HIR"请注意，使用 fail 类型指令退出将会扣减你的贡献度1点，请慎用！\n"NOR);
+        return errs("你當前的遊戲得分不夠 500 分，確實要退出請使用 <hjquit fail> 指令作放棄退出。\n"HIR"請注意，使用 fail 類型指令退出將會扣減你的貢獻度1點，請慎用！\n"NOR);
 
     if( query("wait_over", qxd) == "yes" )
-        return errs("你的游戏时间即将结束，请稍为等待即可。\n");
+        return errs("你的遊戲時間即將結束，請稍為等待即可。\n");
 
-    message_vision(CYN"$N"NOR+CYN"高声叫道：“现实映现！”\n"NOR,me);
-    write(HIR"使用本指令，将扣除你的 500 点游戏得分！\n"NOR);
+    message_vision(CYN"$N"NOR+CYN"高聲叫道：“現實映現！”\n"NOR,me);
+    write(HIR"使用本指令，將扣除你的 500 點遊戲得分！\n"NOR);
     addn_temp("hj_score", -499, me);
     me->start_busy(3);
 
     set("use_huigui", "yes", qxd);
 
-    message_vision(WHT"只见一阵白雾不知从何处飘来，愈来愈浓……\n"NOR,me);
+    message_vision(WHT"只見一陣白霧不知從何處飄來，愈來愈濃……\n"NOR,me);
     return 1;
 }
 
@@ -435,9 +435,9 @@ int do_hjtime()
     object me = this_player();
     int enter_time=query_temp("hj_enter_time", me);;
 
-    write(sprintf( "你进入游戏的时间是 %s ，现在的时间是 %s ，\n游戏时间%s 。\n",
+    write(sprintf( "你進入遊戲的時間是 %s ，現在的時間是 %s ，\n遊戲時間%s 。\n",
         !enter_time ? "未知" : ctime_format( enter_time ),  ctime_format(),
-        !enter_time ? "未知" : sprintf( "共 %d 小时 %d 分 %d 秒",
+        !enter_time ? "未知" : sprintf( "共 %d 小時 %d 分 %d 秒",
             ( time() - enter_time ) / 3600,
             ( ( time() - enter_time ) % 3600 ) / 60,
             ( ( time() - enter_time ) % 3600 ) % 60 ) ) );
@@ -451,12 +451,12 @@ int do_halt()
     string temp;
 
     if( !me_ok(me) )
-        return errs( "什么？\n");
+        return errs( "什麼？\n");
     if( (!query_temp("hj_healing", me) && !query_temp("hj_fighting", me)) ||
         !query_temp("hj_need_waiting", me) )
     {
         delete_temp("hj_need_waiting", me);
-        return errs( "你现在并不在战斗或疗伤中。\n");
+        return errs( "你現在並不在戰鬥或療傷中。\n");
     }
     temp=query_temp("hj_need_waiting", me);
     if( temp == "healing" )
@@ -464,164 +464,164 @@ int do_halt()
         target=query_temp("hj_healing", me);
         if( target == me )
         {
-            hj_halt(CYN"$N"NOR+CYN"急吸一口大气，停止了调整气息。\n"NOR);
+            hj_halt(CYN"$N"NOR+CYN"急吸一口大氣，停止了調整氣息。\n"NOR);
             return 1;
         }
-        hj_halt(CYN"$N"NOR+CYN"掌力一收，停下了对$n"NOR+CYN"的疗伤。\n"NOR);
+        hj_halt(CYN"$N"NOR+CYN"掌力一收，停下了對$n"NOR+CYN"的療傷。\n"NOR);
         return 1;
     }
-    hj_halt(CYN"$N"NOR+CYN"虚晃一招，跃出战圈不打了。\n"NOR);
+    hj_halt(CYN"$N"NOR+CYN"虛晃一招，躍出戰圈不打了。\n"NOR);
     return 1;
 }
 
-// 若主人（玩家）不在，本物件会被清除，所以不用考虑
-// 延时中发生的意外。
+// 若主人（玩家）不在，本物件會被清除，所以不用考慮
+// 延時中發生的意外。
 void delete_special_sks( object me, string sks, string sks_name )
 {
-    // 话这么说，基本安全总要做的
+    // 話這麼說，基本安全總要做的
     if( !me || !me_ok(me) )
         return;
-    // 如果用 wiztools 停止了运用，这里再停一次，岂非搞笑？所以要看看它是否还在用。
+    // 如果用 wiztools 停止了運用，這裡再停一次，豈非搞笑？所以要看看它是否還在用。
     if( !query_temp("hj_special/"+sks, me) )
         return;
     delete_temp("hj_special/"+sks, me);
-    message_vision( HIY"\n只见围着$N"HIY"的一圈微光隐退，「"+sks_name+"」技能的效力消失了。\n\n"NOR, me);
+    message_vision( HIY"\n只見圍著$N"HIY"的一圈微光隱退，「"+sks_name+"」技能的效力消失了。\n\n"NOR, me);
 }
 
 int do_gyun( string arg )
 {
-    // 这个指令的扩展不好，不管了，就这样罢。
-    // 实在需要扩充时，再改为好扩充的方式。
+    // 這個指令的擴展不好，不管了，就這樣罷。
+    // 實在需要擴充時，再改為好擴充的方式。
     object me = this_player();
     string *sp_sks = ({ "xk", "cm", "ll", "gm", "kz", "sh", "rq", "xs" }), find_name;
     int HpNeed = 50, hpneed, del_time;
-    // HpNeed 可能浮动增加 20%
+    // HpNeed 可能浮動增加 20%
     mapping sks_sks = ([
-        "xk": ({ "翔空", "风之国度", "hfzj", "呼风之技" }),
-        "cm": ({ "聪敏", "雨之国度", "hyzj", "唤雨之技" }),
-        "ll": ({ "力量", "雷之国度", "llzj", "落雷之技" }),
-        "gm": ({ "光芒", "电之国度", "ydzj", "引电之技" }),
-        "kz": ({ "克制",       "--", "heal", "恢复之技" }),
-        "sh": ({ "守护",       "--", "dhzj", "夺魂之技" }),
-        "rq": ({ "热情",       "--", "fhzj", "飞火之技" }),
-        "xs": ({ "寻石",       "--", "gszj", "滚石之技" }),
+        "xk": ({ "翔空", "風之國度", "hfzj", "呼風之技" }),
+        "cm": ({ "聰敏", "雨之國度", "hyzj", "喚雨之技" }),
+        "ll": ({ "力量", "雷之國度", "llzj", "落雷之技" }),
+        "gm": ({ "光芒", "電之國度", "ydzj", "引電之技" }),
+        "kz": ({ "剋制",       "--", "heal", "恢復之技" }),
+        "sh": ({ "守護",       "--", "dhzj", "奪魂之技" }),
+        "rq": ({ "熱情",       "--", "fhzj", "飛火之技" }),
+        "xs": ({ "尋石",       "--", "gszj", "滾石之技" }),
     ]);
 
 
     if( !me_ok(me) )
     {
-        write("什么？\n");
+        write("什麼？\n");
         return 1;
     }
 
     if( !arg || member_array( arg, sp_sks ) == -1 )
     {
         write( sprintf("
-      你的特殊技能运用情况：
+      你的特殊技能運用情況：
 "WHT"=====================================
 "HIW"    翔空(xk)   >>>>>>   %s
-"HIM"    聪敏(cm)   >>>>>>   %s
+"HIM"    聰敏(cm)   >>>>>>   %s
 "HIC"    力量(ll)   >>>>>>   %s
 "HIG"    光芒(gm)   >>>>>>   %s
-"NOR+CYN"    克制(kz)   >>>>>>   %s
-"HIB"    守护(sh)   >>>>>>   %s
-"HIR"    热情(rq)   >>>>>>   %s
-"HIY"    寻石(xs)   >>>>>>   %s
+"NOR+CYN"    剋制(kz)   >>>>>>   %s
+"HIB"    守護(sh)   >>>>>>   %s
+"HIR"    熱情(rq)   >>>>>>   %s
+"HIY"    尋石(xs)   >>>>>>   %s
 "NOR+WHT"=====================================\n"NOR,
-    query_temp("hj_special/xk", me)?"运用中":"--",
-    query_temp("hj_special/cm", me)?"运用中":"--",
-    query_temp("hj_special/ll", me)?"运用中":"--",
-    query_temp("hj_special/gm", me)?"运用中":"--",
-    query_temp("hj_special/kz", me)?"运用中":"--",
-    query_temp("hj_special/sh", me)?"运用中":"--",
-    query_temp("hj_special/rq", me)?"运用中":"--",
-    query_temp("hj_special/xs", me)?"运用中":"--"));
+    query_temp("hj_special/xk", me)?"運用中":"--",
+    query_temp("hj_special/cm", me)?"運用中":"--",
+    query_temp("hj_special/ll", me)?"運用中":"--",
+    query_temp("hj_special/gm", me)?"運用中":"--",
+    query_temp("hj_special/kz", me)?"運用中":"--",
+    query_temp("hj_special/sh", me)?"運用中":"--",
+    query_temp("hj_special/rq", me)?"運用中":"--",
+    query_temp("hj_special/xs", me)?"運用中":"--"));
         return 1;
     }
 
-    // 忙时限制有调整，这是为了可以在战斗中或疗伤中运用技能
+    // 忙時限制有調整，這是為了可以在戰鬥中或療傷中運用技能
     if( me->query_busy() > 5 )
     {
-        write("你现在实在是太忙了(忙时5秒以上)，无法静心运用特殊技能。\n");
+        write("你現在實在是太忙了(忙時5秒以上)，無法靜心運用特殊技能。\n");
         return 1;
     }
-    // 不得重复运用。
+    // 不得重複運用。
     if( query_temp("hj_special/"+arg, me) )
     {
-        write("你已在运用这个技能。\n");
+        write("你已在運用這個技能。\n");
         return 1;
     }
-    // 需要大量气息
+    // 需要大量氣息
     hpneed = HpNeed + random(HpNeed/5);
     if( query_temp("hj_hp", me)<(hpneed+50) )
     {
-        write("你的气息太弱，无法运用特殊技能。\n");
+        write("你的氣息太弱，無法運用特殊技能。\n");
         return 1;
     }
     if( query_temp("hj_game_damages/"+sks_sks[arg][2], me)<YUN_LvNeed )
     {
-        write(sprintf("你的「%s」等级不够，无法运用「%s」技能。\n",
+        write(sprintf("你的「%s」等級不夠，無法運用「%s」技能。\n",
             sks_sks[arg][3], sks_sks[arg][0] ) );
         return 1;
     }
     // 效力
     del_time=query_temp("hj_game_damages/"+sks_sks[arg][2], me)*4/5;
-    // 若是F,Y,L,D四种特殊技，非本国子民效力减半
+    // 若是F,Y,L,D四種特殊技，非本國子民效力減半
     if( sks_sks[arg][1] != "--" && query("find_name") != sks_sks[arg][1] )
         del_time /= 2;
 
     set_temp("hj_special/"+arg, del_time, me);
-    // 这个 set 的值无实用意义，可使用任意非零值。
+    // 這個 set 的值無實用意義，可使用任意非零值。
     addn_temp("hj_hp", -hpneed, me);
     //    me->start_busy( me->query_busy() + 1 );
-    // 取消技能运用的忙时。因其本身需要大量气息，故不必限制忙时。
-    // 各特殊技运用时的描述
+    // 取消技能運用的忙時。因其本身需要大量氣息，故不必限制忙時。
+    // 各特殊技運用時的描述
     switch( sks_sks[arg][0] )
     {
         // #########################################################
         case "翔空":
-            message_vision(HIW"\n只见$N"HIW"张开双手，仰天闭目口诵咒文，霎时间平地起风，$N"HIW"竟至浮身半空！\n"
-                "这正是风之「翔空」秘籍！\n\n"NOR, me);
+            message_vision(HIW"\n只見$N"HIW"張開雙手，仰天閉目口誦咒文，霎時間平地起風，$N"HIW"竟至浮身半空！\n"
+                "這正是風之「翔空」秘籍！\n\n"NOR, me);
             break;
         // #########################################################
-        case "聪敏":
-            message_vision(HIM"\n只见$N"NOR+HIM"两手互握，低头闭目默念咒文，顿时似有无限灵感纷涌而至！\n"
-                "这正是雨之「聪敏」秘籍！\n\n"NOR, me);
+        case "聰敏":
+            message_vision(HIM"\n只見$N"NOR+HIM"兩手互握，低頭閉目默唸咒文，頓時似有無限靈感紛湧而至！\n"
+                "這正是雨之「聰敏」秘籍！\n\n"NOR, me);
             break;
         // #########################################################
         case "力量":
-            message_vision(HIC"\n只见$N"HIC"双目圆睁单拳向天，口中大喝一声，顿时全身筋骨噼啪作响，气势惊人！\n"
-                "这正是雷之「力量」秘籍！\n\n"NOR, me);
+            message_vision(HIC"\n只見$N"HIC"雙目圓睜單拳向天，口中大喝一聲，頓時全身筋骨噼啪作響，氣勢驚人！\n"
+                "這正是雷之「力量」秘籍！\n\n"NOR, me);
             break;
         // #########################################################
         case "光芒":
-            message_vision(HIG"\n只见$N"HIG"右手摊掌缓缓前伸，刹那间掌心凝聚一团耀眼光芒，瞬间笼罩全身！\n"
-                "这正是电之「光芒」秘籍！\n\n"NOR, me);
+            message_vision(HIG"\n只見$N"HIG"右手攤掌緩緩前伸，剎那間掌心凝聚一團耀眼光芒，瞬間籠罩全身！\n"
+                "這正是電之「光芒」秘籍！\n\n"NOR, me);
             break;
         // #########################################################
-        case "克制":
-            message_vision( CYN"\n只见$N"NOR+CYN"双掌合十，默默地念了几句咒文，顿时一阵清风掠起，让人心境平和，再无烦忧。\n"
-                "这正是恢复之技「克制」秘籍！\n\n"NOR, me );
+        case "剋制":
+            message_vision( CYN"\n只見$N"NOR+CYN"雙掌合十，默默地念了幾句咒文，頓時一陣清風掠起，讓人心境平和，再無煩憂。\n"
+                "這正是恢復之技「剋制」秘籍！\n\n"NOR, me );
             del_time *= 4;  // 效力持久
             break;
         // #########################################################
-        case "守护":
-            message_vision( HIB"\n只见$N"HIB"双手食指并置额心，口念咒文，四处即时和起一阵凄厉之声，似有灵体护身一般！\n"
-                "这正是夺魂之技「守护」秘籍！\n\n"NOR, me );
+        case "守護":
+            message_vision( HIB"\n只見$N"HIB"雙手食指並置額心，口唸咒文，四處即時和起一陣淒厲之聲，似有靈體護身一般！\n"
+                "這正是奪魂之技「守護」秘籍！\n\n"NOR, me );
             break;
         // #########################################################
-        case "热情":
-            message_vision( HIR"\n只见$N"HIR"左手握拳置于左腰之旁，右手伸出食、中二指，满脸笑容，大喊一声：“耶！”\n"
-                "这正是飞火之技「热情」秘籍！\n\n"NOR,me);
+        case "熱情":
+            message_vision( HIR"\n只見$N"HIR"左手握拳置於左腰之旁，右手伸出食、中二指，滿臉笑容，大喊一聲：“耶！”\n"
+                "這正是飛火之技「熱情」秘籍！\n\n"NOR,me);
             break;
         // #########################################################
-        case "寻石":
-            message_vision( HIY"\n只见$N"HIY"双手紧握放在脸前，闭目喃喃祈祷道：“石头，石头，我要石头……”\n"
-                "这正是滚石之技「寻石」秘籍！\n\n"NOR,me);
+        case "尋石":
+            message_vision( HIY"\n只見$N"HIY"雙手緊握放在臉前，閉目喃喃祈禱道：“石頭，石頭，我要石頭……”\n"
+                "這正是滾石之技「尋石」秘籍！\n\n"NOR,me);
             break;
         // #########################################################
     }
     call_out( "delete_special_sks", del_time , me, arg, sks_sks[arg][0] );
-    write( sprintf( "技能约持续 %d 秒幻境时间有效。\n", del_time ) );
+    write( sprintf( "技能約持續 %d 秒幻境時間有效。\n", del_time ) );
     return 1;
 }

@@ -17,7 +17,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "只");
-                set("long", "一只质地精细的瓦罐，不知道有什么用途。\n");
+                set("long", "一隻質地精細的瓦罐，不知道有什麼用途。\n");
                 set("no_drop", 1);
                 set("no_get", 1);
                 set("no_steal", 1);
@@ -47,16 +47,16 @@ int do_hold(string arg)
 
         ob = present(arg, environment(me));
         if( !ob || !living(ob))
-                return notify_fail("这里没有这个生物。\n");
+                return notify_fail("這裡沒有這個生物。\n");
 
-        if( query("sub", ob) != "xx_job")return notify_fail("这东西最好不要抓。\n");
+        if( query("sub", ob) != "xx_job")return notify_fail("這東西最好不要抓。\n");
 
-        if (this_player()->is_busy()) return notify_fail("你正忙着呢。\n");
+        if (this_player()->is_busy()) return notify_fail("你正忙著呢。\n");
 
-        if( query_temp("hold", this_player()))return notify_fail("已经有毒虫了，修炼吧。");
+        if( query_temp("hold", this_player()))return notify_fail("已經有毒蟲了，修煉吧。");
 
         if( query("playerid", ob) != query("id", this_player()) )
-                return notify_fail("别人找出来的，你好意思抓吗？:)\n");
+                return notify_fail("別人找出來的，你好意思抓嗎？:)\n");
 
 
 
@@ -65,16 +65,16 @@ int do_hold(string arg)
         {
 
         if(this_player()->query_skill("poison",1)*10 > random(this_player()->query_skill("force")*3)) {
-                        message_vision(HIG"$N举起手中的瓦罐猛地将"+query("name", ob)+"扣住，然后小心翼翼地将瓦罐翻起来盖住。\n"NOR,this_player());
+                        message_vision(HIG"$N舉起手中的瓦罐猛地將"+query("name", ob)+"扣住，然後小心翼翼地將瓦罐翻起來蓋住。\n"NOR,this_player());
                         set("bug_hold",1);
                         set("count", random(10));
-                        set("long","一只质地精细的瓦罐。\n里面盛着一只"+query("name", ob)+"。\n");
+                        set("long","一隻質地精細的瓦罐。\n裡面盛著一隻"+query("name", ob)+"。\n");
                         set("xiulian", random(5));
                         set("bug_name",query("name", ob));
                         set_temp("bug_hold", 1, this_player());
                         set_temp("found", 1, this_player());
                         destruct(ob);
-         }else message_vision("$N猛的出手用瓦罐扣向"+query("name", ob)+",但"+query("name", ob)+"机灵的跳开了。\n",this_player());
+         }else message_vision("$N猛的出手用瓦罐扣向"+query("name", ob)+",但"+query("name", ob)+"機靈的跳開了。\n",this_player());
 
          }
 
@@ -84,16 +84,16 @@ int do_hold(string arg)
          else
          {
          if(this_player()->query_skill("poison",1) > random(this_player()->query_skill("force")*3)) {
-                        message_vision(HIG"$N举起手中的瓦罐猛地将"+query("name", ob)+"扣住，然后小心翼翼地将瓦罐翻起来盖住。\n"NOR,this_player());
+                        message_vision(HIG"$N舉起手中的瓦罐猛地將"+query("name", ob)+"扣住，然後小心翼翼地將瓦罐翻起來蓋住。\n"NOR,this_player());
                         set("bug_hold",1);
                         set("count", random(10));
-                        set("long","一只质地精细的瓦罐。\n里面盛着一只"+query("name", ob)+"。\n");
+                        set("long","一隻質地精細的瓦罐。\n裡面盛著一隻"+query("name", ob)+"。\n");
                         set("xiulian", random(5));
                         set("bug_name",query("name", ob));
                         set_temp("bug_hold", 1, this_player());
                         set_temp("found", 1, this_player());
                         destruct(ob);
-         }else message_vision("$N猛的出手用瓦罐扣向"+query("name", ob)+",但"+query("name", ob)+"机灵的跳开了。\n",this_player());
+         }else message_vision("$N猛的出手用瓦罐扣向"+query("name", ob)+",但"+query("name", ob)+"機靈的跳開了。\n",this_player());
          }
 
 
@@ -109,10 +109,10 @@ int do_hold(string arg)
 
 int do_xiulian()
 {
-        if(this_player()->is_busy()) return notify_fail("你正忙着呢。\n");
-        if (query("bug_hold")!=1) return notify_fail("没有毒虫，你想要用空气修行吗？\n");
-        message_vision(HIR"$N运起内力护住全身大穴，然后闭上眼睛将手指伸入瓦罐。\n"NOR, this_player());
-        message_vision(HIR+query("bug_name")+"立刻咬住$N的手吸起血来。\n"NOR, this_player());
+        if(this_player()->is_busy()) return notify_fail("你正忙著呢。\n");
+        if (query("bug_hold")!=1) return notify_fail("沒有毒蟲，你想要用空氣修行嗎？\n");
+        message_vision(HIR"$N運起內力護住全身大穴，然後閉上眼睛將手指伸入瓦罐。\n"NOR, this_player());
+        message_vision(HIR+query("bug_name")+"立刻咬住$N的手吸起血來。\n"NOR, this_player());
         call_out("do_xiulian2", 10, this_player());
         this_player()->start_busy(10);
         return 1;
@@ -120,12 +120,12 @@ int do_xiulian()
 
 void do_xiulian2(object me){
         object dan;
-        message_vision("$N运功完毕，身子一震，慢慢地站了起来。\n",me);
+        message_vision("$N運功完畢，身子一震，慢慢地站了起來。\n",me);
         if (query("xiulian")<=0){
                 dan=new("/d/xingxiu/obj/dudan");
                 set("player",query("id",  this_player()), dan);
-                message_vision(HIG+query("bug_name")+"将血吸完，肚子高高涨起，啪地一身掉进罐底，挣扎了几下，死了。\n"NOR, this_player());
-                message_vision("$N将死"+query("bug_name")+"拿出瓦罐，将其肚子剖开，拿出一粒腥如血的丹丸来。\n"NOR, this_player());
+                message_vision(HIG+query("bug_name")+"將血吸完，肚子高高漲起，啪地一身掉進罐底，掙扎了幾下，死了。\n"NOR, this_player());
+                message_vision("$N將死"+query("bug_name")+"拿出瓦罐，將其肚子剖開，拿出一粒腥如血的丹丸來。\n"NOR, this_player());
                 if( query("combat_exp", me)<100000){
                      tell_object(this_player(),HIR"你中毒了！\n"NOR);
                      this_player()->affect_by("huadu_poison",
@@ -135,9 +135,9 @@ void do_xiulian2(object me){
                 }
                 set_temp("found", 1, this_player());
                 delete("bug_hold", this_object());
-                set("long", "一只质地精细的瓦罐。\n");
+                set("long", "一隻質地精細的瓦罐。\n");
                 dan->move(this_player());
-        } else message_vision(HIR+query("bug_name")+"肚子高高涨起，啪地一身掉进罐底。\n"NOR, this_player());
+        } else message_vision(HIR+query("bug_name")+"肚子高高漲起，啪地一身掉進罐底。\n"NOR, this_player());
         addn("xiulian",-1);
         if (this_player()->query_skill("poison",1)<420)
                 this_player()->improve_skill("poison", this_player()->query_skill("feixing-shu",1));

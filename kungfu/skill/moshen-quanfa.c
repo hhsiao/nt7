@@ -1,37 +1,37 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action": "$N腰一闪，挥起左拳朝$n的$l处打去",
+([      "action": "$N腰一閃，揮起左拳朝$n的$l處打去",
         "force" : 60,
         "attack": 20,
         "dodge" : 40,
         "parry" : 5,
         "damage": 6,
         "lvl"   : 0,
-        "skill_name" : "冲天炮",
-        "damage_type":  "砸伤"
+        "skill_name" : "沖天炮",
+        "damage_type":  "砸傷"
 ]),
-([      "action": "$N身形往后一退，气沉丹田，双拳猛地朝$n的$l处打去",
+([      "action": "$N身形往後一退，氣沉丹田，雙拳猛地朝$n的$l處打去",
         "force" : 80,
         "attack": 25,
         "dodge" : 43,
         "parry" : 6,
         "damage": 7,
         "lvl"   : 30,
-        "skill_name" : "拔草寻蛇",
-        "damage_type":  "瘀伤"
+        "skill_name" : "拔草尋蛇",
+        "damage_type":  "瘀傷"
 ]),
-([      "action": "$N纵身跃起，双腿一扫，接着一个跟斗，右拳猛地朝$n的$l处打来",
+([      "action": "$N縱身躍起，雙腿一掃，接著一個跟斗，右拳猛地朝$n的$l處打來",
         "force" : 100,
         "attack": 28,
         "dodge" : 45,
         "parry" : 8,
         "damage": 10,
         "lvl"   : 60,
-        "skill_name" : "叶底偷桃",
-        "damage_type":  "抓伤"
+        "skill_name" : "葉底偷桃",
+        "damage_type":  "抓傷"
 ]),
-([      "action": "$N左拳攻向$n面部，同时右拳朝$n的$l处用力打去",
+([      "action": "$N左拳攻向$n面部，同時右拳朝$n的$l處用力打去",
         "force" : 120,
         "attack": 35,
         "dodge" : 47,
@@ -39,7 +39,7 @@ mapping *action = ({
         "damage": 17,
         "lvl"   : 80,
         "skill_name" : "黑虎掏心",
-        "damage_type":  "瘀伤"
+        "damage_type":  "瘀傷"
 ]),
 });
 
@@ -51,16 +51,16 @@ int valid_enable(string usage)
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练魔神拳法必须空手。\n");
+                return notify_fail("練魔神拳法必須空手。\n");
 
         if( query("max_neili", me)<100 )
-                return notify_fail("你的内力不够，无法练习魔神拳法法。\n");
+                return notify_fail("你的內力不夠，無法練習魔神拳法法。\n");
 
         if ((int)me->query_skill("cuff", 1) < 20)
-                return notify_fail("你的基本拳法火候太浅。\n");
+                return notify_fail("你的基本拳法火候太淺。\n");
 
         if ((int)me->query_skill("cuff", 1) < (int)me->query_skill("moshen-quanfa", 1))
-                return notify_fail("你的基本拳法火候有限，无法领会更高深的魔神拳法法。\n");
+                return notify_fail("你的基本拳法火候有限，無法領會更高深的魔神拳法法。\n");
 
         return 1;
 }
@@ -85,10 +85,10 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me)
 {
         if( query("qi", me)<70 )
-                return notify_fail("你现在手足酸软，休息一下再练吧。\n");
+                return notify_fail("你現在手足痠軟，休息一下再練吧。\n");
 
         if( query("neili", me)<60 )
-                return notify_fail("你的内力不够了。\n");
+                return notify_fail("你的內力不夠了。\n");
 
         me->receive_damage("qi", 65);
         addn("neili", -40, me);

@@ -1,19 +1,19 @@
-//对应武器数据表
+//對應武器數據表
 mapping weapon_file =
 ([
-    "sword" : "/clone/weapon/gangjian",   //钢剑
-    "blade" : "/clone/weapon/gangdao",    //钢刀
+    "sword" : "/clone/weapon/gangjian",   //鋼劍
+    "blade" : "/clone/weapon/gangdao",    //鋼刀
     "dadao" : "/clone/weapon/dadao",      //大刀
-    "staff" : "/clone/weapon/gangzhang",  //钢杖
-    "qiang" : "/clone/weapon/changqiang", //长枪
-    "axe"   : "/clone/weapon/tiefu",      //铁斧
-    "fork"  : "/clone/weapon/gangcha",    //钢叉
-    "whip"  : "/clone/weapon/changbian",  //长鞭
+    "staff" : "/clone/weapon/gangzhang",  //鋼杖
+    "qiang" : "/clone/weapon/changqiang", //長槍
+    "axe"   : "/clone/weapon/tiefu",      //鐵斧
+    "fork"  : "/clone/weapon/gangcha",    //鋼叉
+    "whip"  : "/clone/weapon/changbian",  //長鞭
     "wodao" : "/clone/weapon/wodao",      //倭刀
-    "xiyang-jian" : "/clone/weapon/xiyang-jian",    //西洋剑
+    "xiyang-jian" : "/clone/weapon/xiyang-jian",    //西洋劍
 ]);
 
-//技能名称对照表
+//技能名稱對照表
 mapping weapon_type =
 ([
     "axe"     : "斧法",
@@ -22,22 +22,22 @@ mapping weapon_type =
     "dadao"   : "刀法",
     "fork"    : "叉法",
     "finger"  : "指法",
-    "qiang"   : "枪法",
+    "qiang"   : "槍法",
     "staff"   : "杖法",
-    "sword"   : "剑法",
+    "sword"   : "劍法",
     "unarmed" : "拳法",
     "whip"    : "鞭法",
 ]);
 
-//技能情况数据表
+//技能情況數據表
 mapping *all_skill = ({
 ([
-    "faction" : "白驼",             //所属门派
-    "name"    : "灵蛇杖法",         //技能名称
-    "code"    : "baituo_1",         //技能代号
-    "weapon"  : "staff",            //武器类型
-    "gender"  : "all",              //性别限制
-    "horse"   : 0,                  //马术需求
+    "faction" : "白駝",             //所屬門派
+    "name"    : "靈蛇杖法",         //技能名稱
+    "code"    : "baituo_1",         //技能代號
+    "weapon"  : "staff",            //武器類型
+    "gender"  : "all",              //性別限制
+    "horse"   : 0,                  //馬術需求
     "m_skill" : ([                  //技能映射
                     "unarmed" : "shexing-diaoshou",
                     "dodge"   : "chanchu-bufa",
@@ -45,15 +45,15 @@ mapping *all_skill = ({
                     "staff"   : "lingshe-zhangfa",
                     "force"   : "hamagong",
                 ]),
-    "p_skill" : ([]),               //预备技能
-    "special" : ([                  //特殊标记
+    "p_skill" : ([]),               //預備技能
+    "special" : ([                  //特殊標記
                     "weapon/she" :  30,
                     "weapon/id"  : "gang zhang",
                 ]),
 ]),
 ([
     "faction" : "峨嵋",
-    "name"    : "回风拂柳剑",
+    "name"    : "迴風拂柳劍",
     "code"    : "emei_1",
     "weapon"  : "sword",
     "gender"  : "female",
@@ -72,7 +72,7 @@ mapping *all_skill = ({
 ]),
 ([
     "faction" : "峨嵋",
-    "name"    : "九阴摧心爪",
+    "name"    : "九陰摧心爪",
     "code"    : "emei_2",
     "weapon"  : "claw",
     "gender"  : "female",
@@ -87,8 +87,8 @@ mapping *all_skill = ({
                 ]),
 ]),
 ([
-    "faction" : "丐帮",
-    "name"    : "降龙十八掌",
+    "faction" : "丐幫",
+    "name"    : "降龍十八掌",
     "code"    : "gaibang_1",
     "weapon"  : "unarmed",
     "gender"  : "all",
@@ -100,7 +100,7 @@ mapping *all_skill = ({
                 ]),
 ]),
 ([
-    "faction" : "丐帮",
+    "faction" : "丐幫",
     "name"    : "打狗棒法",
     "code"    : "gaibang_2",
     "weapon"  : "staff",
@@ -114,8 +114,8 @@ mapping *all_skill = ({
                 ]),
 ]),
 ([
-    "faction" : "华山",
-    "name"    : "华山剑法",
+    "faction" : "華山",
+    "name"    : "華山劍法",
     "code"    : "huashan_1",
     "weapon"  : "sword",
     "gender"  : "all",
@@ -131,8 +131,8 @@ mapping *all_skill = ({
                 ]),
 ]),
 ([
-    "faction" : "华山",
-    "name"    : "两仪刀法",
+    "faction" : "華山",
+    "name"    : "兩儀刀法",
     "code"    : "huashan_2",
     "weapon"  : "blade",
     "gender"  : "all",
@@ -145,8 +145,8 @@ mapping *all_skill = ({
                 ]),
 ]),
 ([
-    "faction" : "昆仑",
-    "name"    : "两仪剑法",
+    "faction" : "崑崙",
+    "name"    : "兩儀劍法",
     "code"    : "kunlun_1",
     "weapon"  : "sword",
     "gender"  : "all",
@@ -159,8 +159,8 @@ mapping *all_skill = ({
                 ]),
 ]),
 ([
-    "faction" : "灵鹫",
-    "name"    : "天羽奇剑",
+    "faction" : "靈鷲",
+    "name"    : "天羽奇劍",
     "code"    : "lingjiu_1",
     "weapon"  : "sword",
     "gender"  : "female",
@@ -177,7 +177,7 @@ mapping *all_skill = ({
 ]),
 ([
     "faction" : "青城",
-    "name"    : "松风剑法",
+    "name"    : "松風劍法",
     "code"    : "qingcheng_1",
     "weapon"  : "sword",
     "gender"  : "male",
@@ -191,7 +191,7 @@ mapping *all_skill = ({
 ]),
 ([
     "faction" : "全真",
-    "name"    : "全真剑法",
+    "name"    : "全真劍法",
     "code"    : "quanzhen_1",
     "weapon"  : "sword",
     "gender"  : "all",
@@ -205,7 +205,7 @@ mapping *all_skill = ({
 ]),
 ([
     "faction" : "少林",
-    "name"    : "达摩剑法",
+    "name"    : "達摩劍法",
     "code"    : "shaolin_1",
     "weapon"  : "sword",
     "gender"  : "male",
@@ -255,8 +255,8 @@ mapping *all_skill = ({
                 ]),
 ]),
 ([
-    "faction" : "神龙",
-    "name"    : "蛇岛奇剑",
+    "faction" : "神龍",
+    "name"    : "蛇島奇劍",
     "code"    : "shenlong_1",
     "weapon"  : "sword",
     "gender"  : "all",
@@ -269,8 +269,8 @@ mapping *all_skill = ({
                 ]),
 ]),
 ([
-    "faction" : "神龙",
-    "name"    : "神龙八式",
+    "faction" : "神龍",
+    "name"    : "神龍八式",
     "code"    : "shenlong_2",
     "weapon"  : "unarmed",
     "gender"  : "all",
@@ -283,7 +283,7 @@ mapping *all_skill = ({
 ]),
 ([
     "faction" : "桃花",
-    "name"    : "落英神剑",
+    "name"    : "落英神劍",
     "code"    : "taohua_1",
     "weapon"  : "sword",
     "gender"  : "all",
@@ -297,7 +297,7 @@ mapping *all_skill = ({
 ]),
 ([
     "faction" : "桃花",
-    "name"    : "九阴白骨爪",
+    "name"    : "九陰白骨爪",
     "code"    : "taohua_2",
     "weapon"  : "claw",
     "gender"  : "all",
@@ -312,8 +312,8 @@ mapping *all_skill = ({
                 ]),
 ]),
 ([
-    "faction" : "武当",
-    "name"    : "太极剑法",
+    "faction" : "武當",
+    "name"    : "太極劍法",
     "code"    : "wudang_1",
     "weapon"  : "sword",
     "gender"  : "all",
@@ -327,7 +327,7 @@ mapping *all_skill = ({
 ]),
 ([
     "faction" : "武官",
-    "name"    : "杨家枪法",
+    "name"    : "楊家槍法",
     "code"    : "wuguan_1",
     "weapon"  : "qiang",
     "gender"  : "all",
@@ -357,7 +357,7 @@ mapping *all_skill = ({
 ]),
 ([
     "faction" : "武官",
-    "name"    : "托天叉法",
+    "name"    : "託天叉法",
     "code"    : "wuguan_3",
     "weapon"  : "fork",
     "gender"  : "all",
@@ -372,7 +372,7 @@ mapping *all_skill = ({
 ]),
 ([
     "faction" : "武官",
-    "name"    : "风魔斧法",
+    "name"    : "風魔斧法",
     "code"    : "wuguan_4",
     "weapon"  : "axe",
     "gender"  : "all",
@@ -386,8 +386,8 @@ mapping *all_skill = ({
                 ]),
 ]),
 ([
-    "faction" : "云龙",
-    "name"    : "云龙剑法",
+    "faction" : "雲龍",
+    "name"    : "雲龍劍法",
     "code"    : "yunlong_1",
     "weapon"  : "sword",
     "gender"  : "all",
@@ -405,8 +405,8 @@ mapping *all_skill = ({
                 ]),
 ]),
 ([
-    "faction" : "云龙",
-    "name"    : "云龙鞭法",
+    "faction" : "雲龍",
+    "name"    : "雲龍鞭法",
     "code"    : "yunlong_2",
     "weapon"  : "whip",
     "gender"  : "all",
@@ -424,8 +424,8 @@ mapping *all_skill = ({
                 ]),
 ]),
 ([
-    "faction" : "云龙",
-    "name"    : "五虎断门刀",
+    "faction" : "雲龍",
+    "name"    : "五虎斷門刀",
     "code"    : "yunlong_3",
     "weapon"  : "blade",
     "gender"  : "all",
@@ -443,7 +443,7 @@ mapping *all_skill = ({
                 ]),
 ]),
 ([
-    "faction" : "云龙",
+    "faction" : "雲龍",
     "name"    : "凝血神抓",
     "code"    : "yunlong_4",
     "weapon"  : "claw",
@@ -462,7 +462,7 @@ mapping *all_skill = ({
 ]),
 ([
     "faction" : "倭寇",
-    "name"    : "东瀛忍术",
+    "name"    : "東瀛忍術",
     "code"    : "wokou",
     "weapon"  : "wodao",
     "gender"  : "male",
@@ -478,11 +478,11 @@ mapping *all_skill = ({
 ]),
 ([
     "faction" : "西洋",
-    "name"    : "西洋搏击",
+    "name"    : "西洋搏擊",
     "code"    : "xiyang",
     "weapon"  : "xiyang-jian",
     "gender"  : "male",
-    "nation"  : "欧洲",
+    "nation"  : "歐洲",
     "no_list" : 1,
     "m_skill" : ([
                     "sword"   : "xiyang-jian",
@@ -494,7 +494,7 @@ mapping *all_skill = ({
 ]),
 ([
     "faction" : "巡捕",
-    "name"    : "呼卢喝雉手",
+    "name"    : "呼盧喝雉手",
     "code"    : "butou",
     "weapon"  : "unarmed",
     "gender"  : "male",

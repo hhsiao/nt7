@@ -5,9 +5,9 @@ void create()
 {
         set("short",HIB"墓地"NOR);
         set("long",@LONG
-走到这里越发感到荒凉，黄叶随风乱舞，四处弥漫着朽木腐烂的气味。没
-膝的杂草中有一座土坟，墓碑(bei) 上落满了尘土，不仔细看，很难辩出上面
-写些什么。墓前并无纸灰，看起来好久没有人来祭拜了。
+走到這裡越發感到荒涼，黃葉隨風亂舞，四處瀰漫著朽木腐爛的氣味。沒
+膝的雜草中有一座土墳，墓碑(bei) 上落滿了塵土，不仔細看，很難辯出上面
+寫些什麼。墓前並無紙灰，看起來好久沒有人來祭拜了。
 LONG
         );
         set("no_fight", 1);
@@ -28,16 +28,16 @@ LONG
              ________
             /        \
            /          \
-          |        辽  |
+          |        遼  |
           |            |
-          |        东  |
+          |        東  |
           |     胡     |
           |     一 大  |
           |     刀     |
-          |     夫 侠  |
-          | 苗  妇     |
+          |     夫 俠  |
+          | 苗  婦     |
           | 人         |
-          | 凤  之     |
+          | 鳳  之     |
           | 立         |
           |     墓     |
           |            |
@@ -61,19 +61,19 @@ int do_wa(string arg)
         me = this_player();
 
         if( ! arg || arg != "di")
-                return notify_fail("你要挖什麽？\n");
+                return notify_fail("你要挖什麼？\n");
 
-        if( ob = present("hu fei",environment(me)) &&!me->query("quest/雪山飞狐/复仇篇/over")) {
-//              message_vision("$N用一种异样的眼神看着$n。\n", ob,me);
-                return notify_fail(CYN"胡斐喝道：休要打扰我爹娘的清静！\n"NOR"你不敢再有动作！\n");
+        if( ob = present("hu fei",environment(me)) &&!me->query("quest/雪山飛狐/復仇篇/over")) {
+//              message_vision("$N用一種異樣的眼神看著$n。\n", ob,me);
+                return notify_fail(CYN"胡斐喝道：休要打擾我爹孃的清靜！\n"NOR"你不敢再有動作！\n");
         }
 
         if ((int)me->query("jingli") < 500)
-                return notify_fail("你的精力不够做这件事！\n");
+                return notify_fail("你的精力不夠做這件事！\n");
 
         if(random(10)!=6) {
                 me->add("jingli",-200);
-                return notify_fail("你看准了墓后三尺之处，运劲于指，伸手挖土。\n");
+                return notify_fail("你看準了墓後三尺之處，運勁於指，伸手挖土。\n");
         }
 
         dao = new(__DIR__"obj/lengyue-dao");
@@ -88,8 +88,8 @@ int do_wa(string arg)
                 tell_room(environment(me), me->name() + "挖了半天，只弄了一手泥。\n", ({ me }));
                 return notify_fail("你挖了半天，只弄了一手泥。\n");
         }
-        message_vision("挖地三尺，$N感到双手手指同时碰到一件冰冷坚硬之物，再向两旁摸索，是一柄带鞘的单刀。\n"+
-                       "$N抓住刀柄轻轻把单刀从土中抽出，刀刃抽出寸许，毫无生锈。\n",me);
+        message_vision("挖地三尺，$N感到雙手手指同時碰到一件冰冷堅硬之物，再向兩旁摸索，是一柄帶鞘的單刀。\n"+
+                       "$N抓住刀柄輕輕把單刀從土中抽出，刀刃抽出寸許，毫無生鏽。\n",me);
         me->add("jingli", -500);
         dao->move(me);
         return 1;

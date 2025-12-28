@@ -4,16 +4,16 @@ inherit CLASS_D("generate") + "/boss";
 void set_from_me(object me);
 void create()
 {
-        string *names = ({ "陶俑千人长" });
+        string *names = ({ "陶俑千人長" });
 
         ::create();
         set_name( names[random(sizeof(names))], ({ "qian renzhang", "qian" }));
         set("long", @LONG
-这是一个沉睡在皇陵千年陶俑千人长，身高七尺有余，由陶土烧制而成，看起来十分
-坚硬。他手持一柄青铜巨锤，神情颇为威武。在机关消息的作用下，他的四肢可以活
-动，攻守进退也有模有样，但总归不算非常灵活。
+這是一個沉睡在皇陵千年陶俑千人長，身高七尺有餘，由陶土燒製而成，看起來十分
+堅硬。他手持一柄青銅巨錘，神情頗為威武。在機關消息的作用下，他的四肢可以活
+動，攻守進退也有模有樣，但總歸不算非常靈活。
 LONG);
-        set("title", YEL"皇陵四品护卫" NOR);
+        set("title", YEL"皇陵四品護衛" NOR);
 
         set("str", 80);
         set("con", 80);
@@ -28,7 +28,7 @@ LONG);
         set("auto_perfrom", 1);
 
         set("combat_exp", 100000000);
-        set("death_msg",YEL"\n$N化成了一堆黄土。\n\n"NOR);
+        set("death_msg",YEL"\n$N化成了一堆黃土。\n\n"NOR);
         set("no_corpse", 1);
 
         set("rewards", ([

@@ -7,9 +7,9 @@ void create()
     if( clonep() )
             destruct(this_object());
     else {
-            set("unit", "张");
+            set("unit", "張");
             set("material", "paper");
-            set("long", "一张折的很好的纸条，纸身上好像还盖了大印。\n");
+            set("long", "一張折的很好的紙條，紙身上好像還蓋了大印。\n");
           }
     set("owner", "李可秀");
     setup();

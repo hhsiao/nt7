@@ -1,5 +1,5 @@
-// pai21.c 21点牌
-// make by 猫部猫(Catyboy)
+// pai21.c 21點牌
+// make by 貓部貓(Catyboy)
 
 #include <ansi.h>
 #define MAX_PAI  52
@@ -10,19 +10,19 @@ int has_start;
 mapping player;                        // 玩家ID
 mapping player_data;
 
-// 参数
-int game_start;                        // 1局是否开始?
+// 參數
+int game_start;                        // 1局是否開始?
 string who_play;                // 正在出牌的人
 
 // 牌容器
-int remain;                                // 所剩的牌数量
+int remain;                                // 所剩的牌數量
 mixed pai_on_desk;                // 可以使用的牌                
 mapping player_hand;        // 玩家手上的牌
 
-// 计数器
+// 計數器
 mapping counter = ([]);
 
-string *suit_str = ({  WHT"方块"NOR , HIB"梅花"NOR ,HIR"红桃"NOR , HBWHT BLK"黑桃"NOR});
+string *suit_str = ({  WHT"方塊"NOR , HIB"梅花"NOR ,HIR"紅桃"NOR , HBWHT BLK"黑桃"NOR});
 string *suit_char = ({ "D","C","H","S"});
 string *rank_str = ({ "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" });
 
@@ -93,7 +93,7 @@ void reset_pai()
 
 int reset_all()
 {
-        // 重置整个游戏
+        // 重置整個遊戲
         int i;
 
         has_start = 0;
@@ -112,12 +112,12 @@ int reset_all()
 
 void create()
 {
-        set_name("21点牌桌", ({"card desk","pai","pai21"}));
+        set_name("21點牌桌", ({"card desk","pai","pai21"}));
         if( clonep() )
                 set_default_object(__FILE__);
         else {
-                set("long", "一张桌子，上面放着一些牌，使用方法请使用(helppai)命令。\n");
-                set("unit", "张");
+                set("long", "一張桌子，上面放著一些牌，使用方法請使用(helppai)命令。\n");
+                set("unit", "張");
                 set("value", 1);
         }
         player = ([]);
@@ -126,27 +126,27 @@ void create()
 
 void init()
 {
-        // 帮助
+        // 幫助
         add_action("do_help", "helppai");
 
         // 基本指令
-    add_action("do_reset", "reset");                // 重置整个游戏
-        add_action("do_restart", "restart");        // 重新游戏
+    add_action("do_reset", "reset");                // 重置整個遊戲
+        add_action("do_restart", "restart");        // 重新遊戲
         add_action("do_join", "join");                        // 加入牌局
-        add_action("do_start", "start");                // 开始游戏
+        add_action("do_start", "start");                // 開始遊戲
         
         add_action("do_xipai", "xipai");                // 洗牌
         add_action("do_view", "view");                        // 看牌
                 
-        add_action("do_nextone", "next");                // 催促下一个
+        add_action("do_nextone", "next");                // 催促下一個
         add_action("do_pass", "pass");                        // 不要牌
         
-        // 扩展指令
+        // 擴展指令
         add_action("do_chupai", "play");                // 玩
         add_action("do_daopai", "daopai");                // 倒牌
 
-        // 计数器
-        add_action("do_showc", "showc");                // 显示计数器
+        // 計數器
+        add_action("do_showc", "showc");                // 顯示計數器
 }
 
 int do_reset(string arg)
@@ -156,7 +156,7 @@ int do_reset(string arg)
                 if(!is_playing(this_player()))
                         return notify_fail("你都不玩牌啊！\n");
 
-                msg(this_player(),0,"$N复位计数器了。\n");
+                msg(this_player(),0,"$N復位計數器了。\n");
                 counter = ([]);
                 return 1;
         }
@@ -172,17 +172,17 @@ int do_restart(string arg)
         string* key;
 
         if(!is_playing(this_player()))
-                return notify_fail("你都不玩，开始什么啊！\n");
+                return notify_fail("你都不玩，開始什麼啊！\n");
 
         if(!has_start)
-                return notify_fail("游戏还没有开始。\n");
+                return notify_fail("遊戲還沒有開始。\n");
 
         if(sizeof(player)!=0)
-                msg(this_player(),0,"$N开始新的一轮牌局了。\n\n");
+                msg(this_player(),0,"$N開始新的一輪牌局了。\n\n");
 
         reset_pai();
         restore_player_data();
-        msg(0,0,"在开始游戏之前(play)，请各位洗牌(xipai)。\n");
+        msg(0,0,"在開始遊戲之前(play)，請各位洗牌(xipai)。\n");
         return 1;
 }
 
@@ -192,9 +192,9 @@ int do_join(string arg)
 
         me = this_player();
         if(has_start)
-                return notify_fail("牌局已经开始，不能加入了。\n");
+                return notify_fail("牌局已經開始，不能加入了。\n");
         if(is_playing(me))
-                return notify_fail("你已经参加了。\n");
+                return notify_fail("你已經參加了。\n");
         
         // add player
         query("id", player[me)]="yes";
@@ -206,15 +206,15 @@ int do_join(string arg)
 int do_start(string arg)
 {
         if(!is_playing(this_player()))
-                return notify_fail("你都不玩，开始什么啊！\n");
+                return notify_fail("你都不玩，開始什麼啊！\n");
         
         if(has_start)
-                return notify_fail("牌局已经开始了。\n");
+                return notify_fail("牌局已經開始了。\n");
 
         has_start = 1;
-        msg(this_player(),0,"$N开始了牌局。\n\n");
+        msg(this_player(),0,"$N開始了牌局。\n\n");
         auto_order();
-        msg(0,0,"在开始游戏之前(play)，请各位洗牌(xipai)。\n");
+        msg(0,0,"在開始遊戲之前(play)，請各位洗牌(xipai)。\n");
         return 1;
 }
 
@@ -224,7 +224,7 @@ int do_xipai(string arg)
         mixed* pai;
 
         if(!is_playing(this_player()))
-                return notify_fail("你都不玩，洗什么牌啊！\n");
+                return notify_fail("你都不玩，洗什麼牌啊！\n");
         
         pai = pai_on_desk;
         sum = remain;
@@ -256,7 +256,7 @@ int do_chupai(string arg)
                 who_play=query("id", this_player());
 
         if( who_play != query("id", this_player()) )
-                return notify_fail("还没有轮到到你啊。\n");
+                return notify_fail("還沒有輪到到你啊。\n");
 
         done = 0;
                 
@@ -266,7 +266,7 @@ int do_chupai(string arg)
         if( !pick_in(query("id", this_player()),id) )
                 return 0;
 
-        msg(this_player(),0,"$N摸了一张"+id_to_pai(id)+"。\n");
+        msg(this_player(),0,"$N摸了一張"+id_to_pai(id)+"。\n");
 
         done = 1;
 
@@ -274,7 +274,7 @@ int do_chupai(string arg)
         inv=player_hand[query("id", this_player())];
         sum = c21(inv);
                         
-        msg(this_player(),0,"$N手上有"HIY+sum+"点"NOR"了。\n");
+        msg(this_player(),0,"$N手上有"HIY+sum+"點"NOR"了。\n");
         if(sum>21)
         {
                 do_pass(HIR"爆了！！！"NOR"\n");
@@ -302,7 +302,7 @@ int do_view(string arg)
         
         pai = player_hand[arg];
         if(pai==0)
-                return notify_fail("牌局没有这个玩家。\n");
+                return notify_fail("牌局沒有這個玩家。\n");
         
         if(hand_name)
                 write(hand_name+"：");
@@ -320,7 +320,7 @@ string extra_long()
         me = this_player();
         idx = keys(player);
         
-        r = sprintf("牌盒里面有%d张牌\n",remain);
+        r = sprintf("牌盒裡面有%d張牌\n",remain);
         
         if(sizeof(player)>0)
         {
@@ -351,7 +351,7 @@ int pick_out()
         }
         else
         {
-                msg(0,0,"没有牌了");
+                msg(0,0,"沒有牌了");
                 return -1;
         }
 }
@@ -403,7 +403,7 @@ string view_pai(string which)
                 return 0;
  
         if(sizeof_pai(pai)==0)
-                return "没有牌";
+                return "沒有牌";
 
         s = "";
         for(i=0;i<pai[0];i++)
@@ -411,7 +411,7 @@ string view_pai(string which)
                 p = id_to_pai(pai[i+1]);
                 s+= p +" ";
         }
-        return sprintf("%s：%d点",s,c21(pai));
+        return sprintf("%s：%d點",s,c21(pai));
 }
 
 int do_nextone(string arg)
@@ -423,18 +423,18 @@ int do_nextone(string arg)
                 return notify_fail("你都不玩牌啊！\n");
 
         if(who_play==0)
-                return notify_fail("现在是谁出牌啊？\n");
+                return notify_fail("現在是誰出牌啊？\n");
 
         id = who_play;
         ob = get_player(id);
         
         if(ob==0)
-                return msg(0,0,"有玩家缺场了，请重新开始游戏(reset pai)。\n");
+                return msg(0,0,"有玩家缺場了，請重新開始遊戲(reset pai)。\n");
 
         if( query("id", this_player()) != id )
-                msg(this_player(),ob,"$N对$n说道：到你了。\n");
+                msg(this_player(),ob,"$N對$n說道：到你了。\n");
         else
-                msg(this_player(),0,"对自己说道：到我啦！\n");
+                msg(this_player(),0,"對自己說道：到我啦！\n");
         return 1;
 }
 
@@ -449,11 +449,11 @@ int do_pass(string arg)
                 return notify_fail("你都不玩牌啊！\n");
 
         if( who_play != query("id", this_player()) )
-                return notify_fail("还没有到你啊！\n");
+                return notify_fail("還沒有到你啊！\n");
 
         if(!arg)
                 arg = "ＰＡＳＳ！！";
-        msg(this_player(),0,"$N说道："+arg+"\n");
+        msg(this_player(),0,"$N說道："+arg+"\n");
         old = who_play;
         who_play = player[who_play];
 
@@ -549,7 +549,7 @@ int do_showc(string arg)
 
         idx = keys(counter);
         
-        r = "计数表(Scoreboard)\n－－－－－－－－－－－－－－－－－\nID　　　　　　　　分数\n－－－－－－－－－－－－－－－－－\n";
+        r = "計數表(Scoreboard)\n－－－－－－－－－－－－－－－－－\nID　　　　　　　　分數\n－－－－－－－－－－－－－－－－－\n";
         for(i=0;i<sizeof(idx);i++)
                 r = sprintf("%s%-14s%10d\n", r,idx[i],counter[idx[i]]);
         r += "－－－－－－－－－－－－－－－－－\n";
@@ -568,10 +568,10 @@ int do_daopai(string arg)
         int i,id;
         
         if(!is_playing(this_player()))
-                return notify_fail("你都不玩，搞什么啊！\n");
+                return notify_fail("你都不玩，搞什麼啊！\n");
 
         if(!has_start)
-                return notify_fail("游戏还没有开始。\n");
+                return notify_fail("遊戲還沒有開始。\n");
 
         if(remain>0)
         {
@@ -583,7 +583,7 @@ int do_daopai(string arg)
                 return 1;
         }
         else
-                return notify_fail("没有牌了。\n");
+                return notify_fail("沒有牌了。\n");
 }
 
 int pai_number(int pai)
@@ -665,7 +665,7 @@ void finish_21()
         inv = sort_array(inv2,"sort_21",this_object());
         
         lpoint = -1;
-        r = "结果\n－－－－－－－－－－－－－－－－－\nID　　　　　　　　点数       得分\n－－－－－－－－－－－－－－－－－\n";
+        r = "結果\n－－－－－－－－－－－－－－－－－\nID　　　　　　　　點數       得分\n－－－－－－－－－－－－－－－－－\n";
         for(i=0;i<sizeof(inv);i++)
         {
                 sscanf(inv[i],"%s:%d",id,k);
@@ -691,44 +691,44 @@ void finish_21()
         
         reset_pai();
         restore_player_data();
-        msg(0,0,"请各位重新洗牌(xipai)开始新的一局。\n");
+        msg(0,0,"請各位重新洗牌(xipai)開始新的一局。\n");
 }
 
 int do_help(string arg)
 {
         this_player()->start_more( @HELP
-玩21点牌桌使用方法:
-——[开始游戏]———————————————
-帮助命令：helppai
-加入命令：join　　　　　加入游戏
-开始命令：start 　　　　开始以后不能再加入
-重置命令：reset pai 　　结束游戏
+玩21點牌桌使用方法:
+——[開始遊戲]———————————————
+幫助命令：helppai
+加入命令：join　　　　　加入遊戲
+開始命令：start 　　　　開始以後不能再加入
+重置命令：reset pai 　　結束遊戲
 
-——[游戏命令]———————————————
-重新游戏：restart
-　　摸牌：play　　　　　进行游戏
+——[遊戲命令]———————————————
+重新遊戲：restart
+　　摸牌：play　　　　　進行遊戲
 不再要牌: pass
 
 ——[其它命令]———————————————
 洗牌命令：xipai
-看牌命令：view [玩家ID] 观察玩家手上的牌
+看牌命令：view [玩家ID] 觀察玩家手上的牌
 催促命令：next　　　　　催促正在出牌的人
 
-——[计数牌使用]——————————————
-显示: showc
+——[計數牌使用]——————————————
+顯示: showc
 重置: reset counter
 
 
 
 
-——[游戏规则]———————————————
-游戏开始以后，每人轮流摸牌直到不摸为止。
-最后根据每人手上的点数决定胜负。
-点数 > 21 为输，点数<21的时候点数大者胜。
-J，Q，k为10点，A可以为1点或者为11点。
+——[遊戲規則]———————————————
+遊戲開始以後，每人輪流摸牌直到不摸為止。
+最後根據每人手上的點數決定勝負。
+點數 > 21 為輸，點數<21的時候點數大者勝。
+J，Q，k為10點，A可以為1點或者為11點。
 
 ——————————————————————
-                        make by 猫部猫(Catyboy) v1.0
+                        make by 貓部貓(Catyboy) v1.0
 HELP
         );
         return 1;

@@ -4,10 +4,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("褚万春", ({"zhu wanchun", "zhu", "wanchun"}));
+        set_name("褚萬春", ({"zhu wanchun", "zhu", "wanchun"}));
         set("gender", "男性");
-        set("long", "他是凌霄城第六代弟子褚万春，和孙万年一样，贼眉鼠眼。\n"
-                    "也因为行止不端，被关在这里。\n");
+        set("long", "他是凌霄城第六代弟子褚萬春，和孫萬年一樣，賊眉鼠眼。\n"
+                    "也因為行止不端，被關在這裡。\n");
         set("age", 24);
         set("attitude", "peaceful");
 
@@ -64,5 +64,5 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        command("say 快滚！快滚！没看见你爷爷被关在这里吗？");
+        command("say 快滾！快滾！沒看見你爺爺被關在這裡嗎？");
 }

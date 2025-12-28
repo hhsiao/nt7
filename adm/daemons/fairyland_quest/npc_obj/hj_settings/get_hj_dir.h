@@ -1,4 +1,4 @@
-// 非常重要。被 obj_list.h 调嵌，请勿改动。
+// 非常重要。被 obj_list.h 調嵌，請勿改動。
 // 1:36 03-10-19
 
 
@@ -23,4 +23,4 @@ string get_hj_dir()
 
 #define        HJ_DIR        get_hj_dir()
 
-#include "room_amount_hj.h"    // 该文件内定义了 HJ_ROOM_AMOUNT 幻境最大房间号
+#include "room_amount_hj.h"    // 該文件內定義了 HJ_ROOM_AMOUNT 幻境最大房間號

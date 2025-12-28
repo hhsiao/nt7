@@ -6,12 +6,12 @@ inherit NPC;
 
 void create()
 {
-        set_name("北海谪龙", ({ "king of dragon", "dragon" }) );
-        set("title", HIC "龙族" NOR);
+        set_name("北海謫龍", ({ "king of dragon", "dragon" }) );
+        set("title", HIC "龍族" NOR);
         set("gender", "男性");
         set("age", 23);
         set("long", @LONG
-这是一个老人，眉目之间透出一股忧伤。
+這是一個老人，眉目之間透出一股憂傷。
 LONG );
         set("combat_exp", 10000000);
         set("shen_type", 0);
@@ -58,8 +58,8 @@ void fight_ob(object ob)
         if (is_fighting(ob))
                 return;
 
-        message_vision(HIC "$N" HIC "大怒，一声暴喝，四周"
-                       "登时雪花飘飘。\n" NOR, this_object(), ob);
+        message_vision(HIC "$N" HIC "大怒，一聲暴喝，四周"
+                       "登時雪花飄飄。\n" NOR, this_object(), ob);
 
         ::fight_ob(ob);
         if( !is_killing(query("id", ob)) )
@@ -68,7 +68,7 @@ void fight_ob(object ob)
 
 int accept_fight(object ob)
 {
-        message_vision("$N似乎没有听见$n在说什么。\n",
+        message_vision("$N似乎沒有聽見$n在說什麼。\n",
                        this_object(), ob);
         return 0;
 }
@@ -87,8 +87,8 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->receive_wound("qi", 200 + random(200), me);
         set("neili",query("max_neili",  me), me);
-        return HIC "$N" HIC "“哈”的一声吐出一口寒气，登时令$n"
-               HIC "四肢几乎冻僵。\n" NOR;
+        return HIC "$N" HIC "“哈”的一聲吐出一口寒氣，登時令$n"
+               HIC "四肢幾乎凍僵。\n" NOR;
 }
 
 void unconcious()
@@ -101,9 +101,9 @@ void die()
         object ob;
 
         ob = new("/clone/tessera/rune11");
-        command("chat 天哪！这年头，看来是没有我立足的地方了！");
-        message_sort(HIC "$N" HIC "身子一旋，一阵冰雹忽然打来，待你睁眼，只听叮玲玲一声"
-                     "轻响，掉下来一"+query("unit", ob)+
+        command("chat 天哪！這年頭，看來是沒有我立足的地方了！");
+        message_sort(HIC "$N" HIC "身子一旋，一陣冰雹忽然打來，待你睜眼，只聽叮玲玲一聲"
+                     "輕響，掉下來一"+query("unit", ob)+
                      ob->name() + HIC "。\n" NOR, this_object());
         ob->move(environment());
         destruct(this_object());
@@ -115,7 +115,7 @@ void random_move()
         {
                 message_vision("$N急急忙忙的走了。\n", this_object());
                 CHANNEL_D->channel_broadcast("rumor",
-                        "听说" + name() + HIM "在人间反省自新，遇"
+                        "聽說" + name() + HIM "在人間反省自新，遇"
                         "赦免返回天界。" NOR);
                 destruct(this_object());
                 return;

@@ -8,8 +8,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "张");
-                set("long", HIC "交子是古代最早的纸币，是倭寇搜刮民财的证据。\n"  NOR);
+                set("unit", "張");
+                set("long", HIC "交子是古代最早的紙幣，是倭寇搜刮民財的證據。\n"  NOR);
 
                 set("value", 500000);
         }

@@ -11,15 +11,15 @@ mapping query_questdg()
                 questdg = QUESTDG_D("1find")->query_questdg();
         else
         questdg = QUESTDG_D("1kill")->query_questdg();
-        if (questdg["type"] == "寻") 
+        if (questdg["type"] == "尋") 
         {
                 if (random(5) == 3)
                 {
                         questdg["type"] = "送";
-                        questdg["name"] = "回执";
+                        questdg["name"] = "回執";
                 }
         } 
-        if (questdg["type"] == "杀") 
+        if (questdg["type"] == "殺") 
         {
                 if (random(3) == 2)
                 {

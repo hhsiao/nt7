@@ -6,7 +6,7 @@ void create()
         set_name("阿曼", ({ "a man", "a", "man" }));
         set("gender", "女性");
         set("age", 18);
-        set("long", "美丽的哈萨克姑娘，身形袅娜面目姣好，眼光中闪烁著笑意。\n");
+        set("long", "美麗的哈薩克姑娘，身形嫋娜面目姣好，眼光中閃爍著笑意。\n");
         set("shen_type", 1);
         set("per", 30);
         set("shen", 200);
@@ -17,9 +17,9 @@ void create()
         set("int", 24);
         set("attitude", "friendly");
         set("inquiry", ([
-                "苏普" : "嘻嘻，不告诉你。\n",
-                "毛毯" : "客人，请到帐蓬里挑选。\n",
-                "李文秀" : "她才是一个大美人呢。\n",
+                "蘇普" : "嘻嘻，不告訴你。\n",
+                "毛毯" : "客人，請到帳蓬裡挑選。\n",
+                "李文秀" : "她才是一個大美人呢。\n",
         ]));
         setup();
         add_money("silver", 30);

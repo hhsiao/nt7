@@ -1,4 +1,4 @@
-// ITEM Made by player(马三:zjing) /data/item/z/zjing-zjtt.c
+// ITEM Made by player(馬三:zjing) /data/item/z/zjing-zjtt.c
 // Written by GAN JIANG(Doing Lu 1998/11/2)	Fri Jan 18 10:37:59 2019
 #include <ansi.h>
 #include <armor.h>
@@ -12,10 +12,10 @@ void create()
 	set_weight(3500);
 	set("item_make", 1);
 	set("unit", "套");
-	set("long", "这是由[1;35m无名之物[2;37;0m炼制而成的一套指套。
+	set("long", "這是由[1;35m無名之物[2;37;0m煉製而成的一套指套。
 ");
 	set("makeinfo", "[1;31m
-马三(zjing)[1;31m 出品
+馬三(zjing)[1;31m 出品
 [2;37;0m");
 	set("value", 35760000);
 	set("point", 1783);
@@ -23,8 +23,8 @@ void create()
 	set("material", "no name");
 	set("material_file", "/clone/goods/noname2");
 	set("quality_level", 6);
-	set("wear_msg", "[33m$N[33m装备[33m$n[33m。[2;37;0m\n");
-	set("remove_msg", "[33m$N[33m脱下了[33m$n[33m。[2;37;0m\n");
+	set("wear_msg", "[33m$N[33m裝備[33m$n[33m。[2;37;0m\n");
+	set("remove_msg", "[33m$N[33m脫下了[33m$n[33m。[2;37;0m\n");
 	if( !check_clone() ) return;
 	restore();
 	set("armor_prop/unarmed_damage", apply_damage());

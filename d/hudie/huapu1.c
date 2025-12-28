@@ -7,8 +7,8 @@ void create()
 { 
         set("short", "花圃");
         set("long", @LONG
-这里是蝴蝶谷的花圃，是『见死不救』胡青牛用来种各种各样药
-材的，里面种满了诸般花草。
+這裡是蝴蝶谷的花圃，是『見死不救』胡青牛用來種各種各樣藥
+材的，裡面種滿了諸般花草。
 LONG );
 
         set("outdoors", "蝴蝶谷");
@@ -47,12 +47,12 @@ int valid_leave(object me, string dir)
         if( query_temp("mark/steps", me) >= 5){
             me->move(__DIR__"caojing");
             delete_temp("mark/steps", me);
-              return notify_fail("你乱走一气，忽然眼前一亮，来到一处草径。\n");
+              return notify_fail("你亂走一氣，忽然眼前一亮，來到一處草徑。\n");
         }  
         if( query_temp("mark/steps", me) <= 0){
             me->move(__DIR__"niupeng");
             delete_temp("mark/steps", me);
-              return notify_fail("你累得半死，却颓然发现又走回了牛棚。\n");
+              return notify_fail("你累得半死，卻頹然發現又走回了牛棚。\n");
         }      
         return ::valid_leave(me, dir);
 }

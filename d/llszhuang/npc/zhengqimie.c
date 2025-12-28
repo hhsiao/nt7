@@ -2,13 +2,13 @@
 inherit NPC;
 void create()
 {
-        set_name("郑七灭", ({ "zheng qimie","zheng","qimie"}) );
+        set_name("鄭七滅", ({ "zheng qimie","zheng","qimie"}) );
         set("long",@LONG
-郑七灭是武林第一美男子，一张英俊得绝无瑕疵的脸庞裹，嵌着一双比深黑
-海洋里闪闪发光的宝石还明亮的眼睛，冷冷地扫视四方。
+鄭七滅是武林第一美男子，一張英俊得絕無瑕疵的臉龐裹，嵌著一雙比深黑
+海洋裡閃閃發光的寶石還明亮的眼睛，冷冷地掃視四方。
 LONG
          );
-        set("nickname","邪异箭");
+        set("nickname","邪異箭");
         set("title",BLU"神箭八雄"NOR);
         set("max_jing", 4000);
         set("max_qi", 8000);                    
@@ -24,7 +24,7 @@ LONG
         set_skill("dodge", 500);
         set_skill("parry", 400);
         set_skill("sword",420);
-        set_skill("force",800); //防止别人来弹指
+        set_skill("force",800); //防止別人來彈指
         set_skill("hamagong",400);
         set_skill("tiyunzong",400);
         map_skill("sword","pixie-jian");

@@ -8,13 +8,13 @@ int is_chat_room() { return 1; }
 
 void create()
 {
-      set("short", "菩提树下");
+      set("short", "菩提樹下");
         set("long", @LONG
-菩提本无树，明镜亦非台；本来无一物，何处惹尘埃。
+菩提本無樹，明鏡亦非臺；本來無一物，何處惹塵埃。
 LONG );
 
         set("exits", ([ /* sizeof() == 1 */
-                 "尘埃":"/d/city/swing",
+                 "塵埃":"/d/city/swing",
         ]));
 
         set("valid_startroom", 1);
@@ -26,7 +26,7 @@ LONG );
 int valid_leave(object me, string dir)
 {
         if (dir == "north" && ! wizardp(me))
-                return notify_fail("那里只有巫师才能进去。\n");
+                return notify_fail("那裡只有巫師才能進去。\n");
 
         return ::valid_leave(me, dir);
 }

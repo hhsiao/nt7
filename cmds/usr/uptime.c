@@ -25,7 +25,7 @@ int main()
         if (d) time = chinese_number(d) + "天";
         else time = "";
 
-        if (h) time += chinese_number(h) + "小时";
+        if (h) time += chinese_number(h) + "小時";
         if (m) time += chinese_number(m) + "分";
         time += chinese_number(s) + "秒";
 
@@ -34,8 +34,8 @@ int main()
         rtime = TIME_D->replace_ctime(r);
 */
 
-        //write(HIC + LOCAL_MUD_NAME() + "已经执行了" + time + "，将在 " + rtime + " 重启。\n\n" NOR);
-        write(LOCAL_MUD_NAME() + "已经执行了" + time + "。\n\n");
+        //write(HIC + LOCAL_MUD_NAME() + "已經執行了" + time + "，將在 " + rtime + " 重啟。\n\n" NOR);
+        write(LOCAL_MUD_NAME() + "已經執行了" + time + "。\n\n");
         return 1;
 }
 
@@ -44,7 +44,7 @@ int help(object me)
         write(@HELP
 指令格式 : uptime
  
-这个指令告诉您这个泥巴游戏已经连续执行了多久。
+這個指令告訴您這個泥巴游戲已經連續執行了多久。
  
 HELP
     );

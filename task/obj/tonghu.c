@@ -3,16 +3,16 @@
 inherit TASK;
 void create()
 {
-    set_name( YEL "大铜茶壶" NOR, ({ "tong hu" }) );
+    set_name( YEL "大銅茶壺" NOR, ({ "tong hu" }) );
     set_weight(1);
     if( clonep() )
             destruct(this_object());
     else {
-            set("unit", "个");
+            set("unit", "個");
             set("material", "steel");
-            set("long", "这是一个大铜茶壶。\n");
+            set("long", "這是一個大銅茶壺。\n");
           }
-    set("owner", "龟公");
+    set("owner", "龜公");
     setup();
 }
 

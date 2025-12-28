@@ -1,11 +1,11 @@
-// feiyan-zhoubi 飞檐走壁
+// feiyan-zhoubi 飛簷走壁
 
 inherit SKILL;
 
 string *dodge_msg = ({
-        "$n身形急转，避过了$N的攻势。\n",
-        "可是$n拔地而起，躲过了$N这一招。\n",
-        "$n作闪右避，总算躲过了$N这一招。\n",
+        "$n身形急轉，避過了$N的攻勢。\n",
+        "可是$n拔地而起，躲過了$N這一招。\n",
+        "$n作閃右避，總算躲過了$N這一招。\n",
 });
 
 int valid_enable(string usage) { return (usage == "dodge") || (usage == "move"); }
@@ -20,7 +20,7 @@ string query_dodge_msg(string limb)
 int practice_skill(object me)
 {
         if( query("qi", me)<50 )
-                return notify_fail("你的体力太差了，迈不开丁字步。\n");
+                return notify_fail("你的體力太差了，邁不開丁字步。\n");
 
         me->receive_damage("qi", 40);
         return 1;

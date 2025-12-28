@@ -1,4 +1,4 @@
-// xiaofan.c 小贩子
+// xiaofan.c 小販子
 
 inherit KNOWER;
 inherit F_DEALER;
@@ -6,13 +6,13 @@ inherit F_DEALER;
 
 void create()
 {
-        set_name("小贩子", ({ "xiao fan", "xiao", "fan" }) );
+        set_name("小販子", ({ "xiao fan", "xiao", "fan" }) );
         set("gender", "男性" );
         set("age", 34);
-        set("long", "这是个小贩，别看他长的老老实实，可你别想从他那儿掏便宜。\n");
+        set("long", "這是個小販，別看他長的老老實實，可你別想從他那兒掏便宜。\n");
         set("combat_exp", 300);
         set("attitude", "peaceful");
-        set("rank_info/respect", "小贩子");
+        set("rank_info/respect", "小販子");
         set("vendor_goods", ({
                 "/d/mingjiao/obj/book",
                 "/d/village/npc/obj/stick",
@@ -39,7 +39,7 @@ void greeting(object ob)
         if( !ob || environment(ob) != environment() ) return;
         switch(random(2)){
           case 0:
-          say(CYN"小贩子笑咪咪地说道：这位"+RANK_D->query_respect(ob)+"，要明教简史吗？\n"NOR);
+          say(CYN"小販子笑咪咪地說道：這位"+RANK_D->query_respect(ob)+"，要明教簡史嗎？\n"NOR);
           break;
           case 1:
           break;

@@ -7,9 +7,9 @@ int give_yao();
 
 void create()
 {
-        set_name("唐药", ({ "tang yao", "tang", "yao"}));
+        set_name("唐藥", ({ "tang yao", "tang", "yao"}));
         set("long",
-"唐门二代弟子，在唐门地位颇高。\n");
+"唐門二代弟子，在唐門地位頗高。\n");
         set("gender", "男性");
         set("age", 55);
         set("class", "tangmen");
@@ -56,7 +56,7 @@ void create()
         
         prepare_skill("hand", "boyun-suowu");
         
-        create_family("唐门世家", 2, "弟子");
+        create_family("唐門世家", 2, "弟子");
 
         set("inquiry", ([
                 "job" : ( : give_job  : ),
@@ -89,20 +89,20 @@ int give_job()
 
         if( !environment() || base_name(environment()) != query("startroom") )
         {
-                say("唐药说道:“我现在没心情给你派活，等我回制药房再说吧！”\n");
+                say("唐藥說道:“我現在沒心情給你派活，等我回製藥房再說吧！”\n");
                 return 0;
         }
 
         if( !query_temp("tangmen/yao", me) )
-                command("say “这里没有活能给你干，你听谁说的？”");
+                command("say “這裡沒有活能給你幹，你聽誰說的？”");
         else
         {
                 if( query_temp("yao", me) )
                 {
-                        command("say “你还没有完成刚才给你的任务呢！”");
+                        command("say “你還沒有完成剛才給你的任務呢！”");
                         return 1;
                 }
-                write("唐药说道:“我这里正缺一味草药，快去药圃给我找(zhao)一株草药(yao)来吧！”\n");
+                write("唐藥說道:“我這裡正缺一味草藥，快去藥圃給我找(zhao)一株草藥(yao)來吧！”\n");
                 set_temp("yao", 1, me);
         }
         return 1;
@@ -113,18 +113,18 @@ int give_yao()
         object me = this_player();
         object ob;
         
-        if( query("family/family_name", me) != "唐门世家" )
+        if( query("family/family_name", me) != "唐門世家" )
         {
-                command("say 你不是我唐门中人，我无法给你散花天雨！\n");
+                command("say 你不是我唐門中人，我無法給你散花天雨！\n");
                 return 1;
         } else
         {
-                command("say 此散花天雨威力无穷，配合唐门奇毒使用的话，世上没有对手！\n");
+                command("say 此散花天雨威力無窮，配合唐門奇毒使用的話，世上沒有對手！\n");
                 ob = new("/kungfu/class/tangmen/obj/san");
 //                ob->move(this_object());
 //                command("givesanhuatianyuto"+query("id", me));
                 ob->move(me, 1);
-                message_vision("$N对$n点了点头。\n", this_object(), me); 
+                message_vision("$N對$n點了點頭。\n", this_object(), me); 
                 return 1;
         }
                 
@@ -132,7 +132,7 @@ int give_yao()
 
 int accept_object(object who, object ob)
 {
-        command("say 要是找到了，就放到储藏室去吧！给我干什么?");
-        write("唐药冲着你摇了摇头，然后又小心翼翼的反弄着一株碧绿色的药草。\n");
+        command("say 要是找到了，就放到儲藏室去吧！給我幹什麼?");
+        write("唐藥衝著你搖了搖頭，然後又小心翼翼的反弄著一株碧綠色的藥草。\n");
         return 0;
 }

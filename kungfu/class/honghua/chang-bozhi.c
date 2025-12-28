@@ -7,14 +7,14 @@ inherit F_MASTER;
 void create()
 {
         set_name("常伯志", ({ "chang bozhi", "chang", "bozhi" }));
-        set("title", "红花会六当家");
-        set("nickname", HIR "黑无常" NOR);
-        set("long", "他身材又高又瘦，脸色蜡黄，眼睛凹进，眼\n"
-                    "角上有一粒黑痣，眉毛斜斜的倒垂下来，形\n"
-                    "相甚是可怖。他是青城派慧侣道人的徒弟。\n"
-                    "黑沙掌的功夫，江湖上无人能敌。黑白无常\n"
-                    "两兄弟是川江上著名的侠盗，一向劫富济贫，\n"
-                    "不过心狠手辣，因此得了这难听的外号。\n");
+        set("title", "紅花會六當家");
+        set("nickname", HIR "黑無常" NOR);
+        set("long", "他身材又高又瘦，臉色蠟黃，眼睛凹進，眼\n"
+                    "角上有一粒黑痣，眉毛斜斜的倒垂下來，形\n"
+                    "相甚是可怖。他是青城派慧侶道人的徒弟。\n"
+                    "黑沙掌的功夫，江湖上無人能敵。黑白無常\n"
+                    "兩兄弟是川江上著名的俠盜，一向劫富濟貧，\n"
+                    "不過心狠手辣，因此得了這難聽的外號。\n");
         set("gender", "男性");
         set("age", 32);
         set("attitude", "peaceful");
@@ -57,10 +57,10 @@ void create()
         prepare_skill("strike", "heisha-zhang");
 
         set("no_teach", ([
-                "qingcheng-neigong" : "这内功没得啥子用，你给老子好生练掌法就行了。",
+                "qingcheng-neigong" : "這內功沒得啥子用，你給老子好生練掌法就行了。",
         ]));
 
-        create_family("红花会", 4, "当家");
+        create_family("紅花會", 4, "當家");
 
         set("chat_chance_combat", 100);
         set("chat_msg_combat", ({
@@ -80,17 +80,17 @@ void attempt_apprentice(object me)
 
         if( query("shen", me)<5000 )
         {
-                command("say 你非我侠义中人，我不能收你。");
+                command("say 你非我俠義中人，我不能收你。");
                 return;
         }
 
         if ((int)me->query_skill("honghua-xinfa", 1) < 50)
         {
-                command("say 你把本门的心法练好了再来。");
+                command("say 你把本門的心法練好了再來。");
                 return;
         }
 
         command("heihei");
-        command("say 以后你就跟着老子吧。");
+        command("say 以後你就跟著老子吧。");
         command("recruit "+query("id", me));
 }

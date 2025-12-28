@@ -15,9 +15,9 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
 /*        if (strsrch(file_name(where), "/d/taohua/") < 0)
                 return; 
 */
-        if (!fam1 || fam1["family_name"] != "桃花岛")
+        if (!fam1 || fam1["family_name"] != "桃花島")
                 return 0;
-        if (!fam2 || fam2["family_name"] != "桃花岛")
+        if (!fam2 || fam2["family_name"] != "桃花島")
                 return 0;
 
 /*        if (!userp(victim)) 

@@ -22,7 +22,7 @@ void create()
         set("per", 20);
         set("str", 15);
 
-        set("long", "她是一个小丫鬟。\n" + description());
+        set("long", "她是一個小丫鬟。\n" + description());
 
         setup();
 
@@ -48,8 +48,8 @@ void set_owner(object owner)
         if (environment() &&
             environment(owner) == environment())
         {
-                // 跟随主人
-                message_vision("$N跟在$n的身后。\n", this_object(), owner);
+                // 跟隨主人
+                message_vision("$N跟在$n的身後。\n", this_object(), owner);
                 set_leader(owner);
         }
 
@@ -65,8 +65,8 @@ string long()
                 return ::long();
 
         msg = short() +
-              "\n这是"+owner->name(1)+"("+query("id", owner)+
-              ")的贴身丫鬟。\n" + description();
+              "\n這是"+owner->name(1)+"("+query("id", owner)+
+              ")的貼身丫鬟。\n" + description();
         return msg;
 }
 
@@ -79,34 +79,34 @@ int do_name(string arg)
                 return 0;
 
         if (! stringp(arg))
-                return notify_fail("你要起什么名字？\n");
+                return notify_fail("你要起什麼名字？\n");
 
         if (sscanf(arg, "%s %s", arg, mid) != 2)
-                return notify_fail("你想起什么名字(name 中文名字 英文代号)？\n");
+                return notify_fail("你想起什麼名字(name 中文名字 英文代號)？\n");
 
         if (strlen(mid) < 3)
-                return notify_fail("你这个英文代号用的也太短了。\n");
+                return notify_fail("你這個英文代號用的也太短了。\n");
 
         if (strlen(mid) > 8)
-                return notify_fail("你这个英文代号用的也太短了。\n");
+                return notify_fail("你這個英文代號用的也太短了。\n");
 
         if (! is_legal_id(mid))
-                return notify_fail("英文代号必须使用英文小写字母。\n");
+                return notify_fail("英文代號必須使用英文小寫字母。\n");
 
         if (! is_chinese(arg))
-                return notify_fail("请你用中文起名字。\n");
+                return notify_fail("請你用中文起名字。\n");
 
         if (strlen(arg) < 4)
-                return notify_fail("这个名字太短了。\n");
+                return notify_fail("這個名字太短了。\n");
 
         if (strlen(arg) > 8)
-                return notify_fail("你起的这个名字也太长了。\n");
+                return notify_fail("你起的這個名字也太長了。\n");
 
         if (arg == name())
-                return notify_fail("人家现在不就是叫这个名字么？\n");
+                return notify_fail("人家現在不就是叫這個名字麼？\n");
 
         if (arg == this_player()->name(1))
-                return notify_fail("你怎么取一个和自己一样的名字？\n");
+                return notify_fail("你怎麼取一個和自己一樣的名字？\n");
 
         if (msg = NAME_D->invalid_new_name(arg))
         {
@@ -115,12 +115,12 @@ int do_name(string arg)
         }
 
         if (query("name") != DEFAULT_NAMR)
-                return notify_fail("人家已经有名字了，你就别费心了。\n");
+                return notify_fail("人家已經有名字了，你就別費心了。\n");
 
-        message_vision("$N想了一会儿，对$n道：“这样吧，以后你就叫" +
+        message_vision("$N想了一會兒，對$n道：“這樣吧，以後你就叫" +
                        arg + "好了。”\n$n拍手道：“好呀好呀！就依" +
                        RANK_D->query_respect(this_player()) +  "之" +
-                       "言，以后我就叫" + arg + "了。”\n",
+                       "言，以後我就叫" + arg + "了。”\n",
                        this_player(), this_object());
         set_name(arg, ({ mid }));
         remove_action("do_name", "name");
@@ -131,17 +131,17 @@ int do_name(string arg)
 int do_nick(string arg)
 {
         if (! arg)
-                return notify_fail("你要给" + name() + "一个什么昵称？\n");
+                return notify_fail("你要給" + name() + "一個什麼暱稱？\n");
 
         if (arg == "none")
         {
                 delete("nickname");
-                write("你把" + name() + "的绰号取消了。\n");
+                write("你把" + name() + "的綽號取消了。\n");
                 return 1;
         }
 
         if (strlen(arg) > 80)
-                return notify_fail("你的绰号占用的资源过多，请重新设置。\n");
+                return notify_fail("你的綽號佔用的資源過多，請重新設置。\n");
 
         arg = replace_string(arg, "$BLK$", BLK);
         arg = replace_string(arg, "$RED$", RED);
@@ -161,10 +161,10 @@ int do_nick(string arg)
         arg = replace_string(arg, "$NOR$", NOR);
 
         if (strlen(filter_color(arg)) > 30)
-                return notify_fail("你想的这个绰号太长了，想一个短一点的、响亮一点的。\n");
+                return notify_fail("你想的這個綽號太長了，想一個短一點的、響亮一點的。\n");
 
         set("nickname", arg + NOR);
-        write("你为" + name() + "选了一个绰号。\n");
+        write("你為" + name() + "選了一個綽號。\n");
         return 1;
 }
 
@@ -179,33 +179,33 @@ mixed accept_ask(object who, string topic)
         me = this_object();
 
         if (! objectp(owner = query_temp("owner")))
-                message_vision("$N看看周围，有些羞涩，没有回答$n的话。\n",
+                message_vision("$N看看周圍，有些羞澀，沒有回答$n的話。\n",
                                me, who);
 
         if (topic == "name" || topic == "名字" || topic == "姓名")
         {
-                // 询问名字
+                // 詢問名字
                 if (who != owner)
-                        return "你打听我名字干什么？你是坏人还是好人？";
+                        return "你打聽我名字幹什麼？你是壞人還是好人？";
 
                 if (name() == DEFAULT_NAMR)
                 {
                         remove_action("do_name", "name");
                         add_action("do_name", "name");
-                        return "我现在还没有名字呢，你给我起(name)一个好不好？";
+                        return "我現在還沒有名字呢，你給我起(name)一個好不好？";
                 }
 
-                return "我的名字叫" + name() + "呀，你不记得了么？";
+                return "我的名字叫" + name() + "呀，你不記得了麼？";
         }
 
-        if (topic == "nick" || topic == "昵称" || topic == "绰号")
+        if (topic == "nick" || topic == "暱稱" || topic == "綽號")
         {
-                // 询问昵称
+                // 詢問暱稱
                 nick = query("nickname");
                 if (who != owner)
                 {
                         if (! stringp(nick) || strlen(nick) < 1)
-                                return "我没有什么绰号哦。";
+                                return "我沒有什麼綽號哦。";
 
                         return "嗯... 人家都叫我" + nick + "。";
                 }
@@ -214,44 +214,44 @@ mixed accept_ask(object who, string topic)
                 add_action("do_nick", "snick");
 
                 if (! stringp(nick))
-                        return "我现在没有绰号呀，是要给我起(snick)一个吗？";
+                        return "我現在沒有綽號呀，是要給我起(snick)一個嗎？";
 
-                return "我现在叫" + nick + NOR CYN "呀，你打算给我换(snick)一个么？";
+                return "我現在叫" + nick + NOR CYN "呀，你打算給我換(snick)一個麼？";
         }
 
         if( topic == owner->name(1) || topic == query("id", owner) )
         {
                 if (who == owner)
                 {
-                        message_vision("$N抿着嘴嘻嘻一笑，对$n道：“你"
-                                       "就不要逗我开心拉！”\n", me, who);
+                        message_vision("$N抿著嘴嘻嘻一笑，對$n道：“你"
+                                       "就不要逗我開心拉！”\n", me, who);
                         return 1;
                 }
 
                 return "是我主人呀！你找"+gender_pronoun(query("gender", owner))+
-                       "有什么事情么？";
+                       "有什麼事情麼？";
         }
 
         if (topic == name() || topic == query("id"))
         {
                 if (who == owner)
-                        return "哎！我在这儿呢。";
+                        return "哎！我在這兒呢。";
                 else
 
-                        return "你找我有事情么？先问过我的主人吧。";
+                        return "你找我有事情麼？先問過我的主人吧。";
         }
 
         if (who != owner)
         {
-                // 和主人是夫妻关系
+                // 和主人是夫妻關係
                 if( query("id", who) == query("couple/id", owner) )
                 {
-                        message_vision("$N盈盈对着$n道了一个万福。\n",
+                        message_vision("$N盈盈對著$n道了一個萬福。\n",
                                        me, who);        
                         return 1;
                 }
 
-                // 和主人是结拜兄弟关系
+                // 和主人是結拜兄弟關係
                 if (who->is_brother(owner))
                 {
                         message_vision("$N嘻嘻一笑，道：“" +
@@ -265,24 +265,24 @@ mixed accept_ask(object who, string topic)
                 switch (random(5))
                 {
                 case 0:
-                        message_vision("$N眨着大眼睛，无辜的望着$n，一副"
-                                       "天真无邪的样子。\n", me, who);
+                        message_vision("$N眨著大眼睛，無辜的望著$n，一副"
+                                       "天真無邪的樣子。\n", me, who);
                         break;
                 case 1:
-                        message_vision("$N嘻嘻一笑，没有搭理$n。\n", me, who);
+                        message_vision("$N嘻嘻一笑，沒有搭理$n。\n", me, who);
                         break;
                 case 2:
                         message_vision("$N道：“" + owner->name(1) +
-                                       "说啦，不让我和你们说话，外面坏人"
+                                       "說啦，不讓我和你們說話，外面壞人"
                                        "可多了。”\n", me, who);
                         break;
                 case 3:
-                        message_vision("$N闪了闪，对$n道：“我不懂事的，"
-                                       "您别逗我啦。”\n", me, who);
+                        message_vision("$N閃了閃，對$n道：“我不懂事的，"
+                                       "您別逗我啦。”\n", me, who);
                         break;
                 default:
-                        message_vision("$N听了$n的话，什么也没有说，只是"
-                                       "用那双清澈的目光扫了$n一眼。\n", me, who);
+                        message_vision("$N聽了$n的話，什麼也沒有說，只是"
+                                       "用那雙清澈的目光掃了$n一眼。\n", me, who);
                         break;
                 }
 
@@ -297,19 +297,19 @@ mixed accept_ask(object who, string topic)
                 obs = obs = all_inventory(me);
                 obs=filter_array(obs,(:!query("equipped", $1):));
                 if (! sizeof(obs))
-                        return "我身上现在啥也没有呀。";
+                        return "我身上現在啥也沒有呀。";
 
                 count = 0;
                 names = allocate(sizeof(obs));
                 foreach (cob in obs)
                         if (! count || member_array(cob->name(), names) == -1)
                                 names[count++] = cob->name();
-                tell_object(who, sort_string(name() + "悄悄地告诉你：“我身上现在带着" +
+                tell_object(who, sort_string(name() + "悄悄地告訴你：“我身上現在帶著" +
                                              implode(names, "、") + "呢。”\n", 60));
-                return "你现在要用什么？";
+                return "你現在要用什麼？";
         }
 
-        // 察看询问的是否是身上携带的物品
+        // 察看詢問的是否是身上攜帶的物品
         obs = all_inventory(me);
         foreach (cob in obs)
         {
@@ -320,10 +320,10 @@ mixed accept_ask(object who, string topic)
                         continue;
 
                 // 找到了
-                message_vision("$N道：“等一下，在这儿呢。”说完掏出" +
-                               cob->name() + "递给$n。\n", me, who);
+                message_vision("$N道：“等一下，在這兒呢。”說完掏出" +
+                               cob->name() + "遞給$n。\n", me, who);
                 if (! cob->move(who))
-                        message_vision("可是$n身上带的东西太多，没能接住$N的" +
+                        message_vision("可是$n身上帶的東西太多，沒能接住$N的" +
                                        cob->name() + "。\n", me, who);
                 return 1;
         }
@@ -331,11 +331,11 @@ mixed accept_ask(object who, string topic)
         switch (random(3))
         {
         case 0:
-                return "你说什么？我没听清楚呀。";
+                return "你說什麼？我沒聽清楚呀。";
         case 1:
-                return "哦？你是想要东西吗？要什么呢？";
+                return "哦？你是想要東西嗎？要什麼呢？";
         default:
-                return "等...等一下，你说什么？";
+                return "等...等一下，你說什麼？";
         }
 }
 
@@ -350,57 +350,57 @@ int accept_object(object who, object ob)
 
         if( (who != owner) && query("couple/id", who) != query("id", owner) )
         {
-                message_vision("$N连忙摇头，道：“我可不能要您的东西，不然" +
-                               (owner ? owner->name() : "主人") +"会责备我的。”\n", me);
+                message_vision("$N連忙搖頭，道：“我可不能要您的東西，不然" +
+                               (owner ? owner->name() : "主人") +"會責備我的。”\n", me);
                 return 0;
         }
 
         if (ob->is_character() && query("can_speak"))
         {
-                message_vision("$N皱皱眉，为难道，“这...这我不方便拿呀。”\n", me);
+                message_vision("$N皺皺眉，為難道，“這...這我不方便拿呀。”\n", me);
                 return 0;
         }
 
         if (ob->is_corpse())
         {
-                message_vision("$N“呀”了一声道：“这，这个也要我拿？”\n", me);
+                message_vision("$N“呀”了一聲道：“這，這個也要我拿？”\n", me);
                 return 0;
         }
 
-        message_vision("$N道：“" + name() + "，你把这" + ob->name() +
+        message_vision("$N道：“" + name() + "，你把這" + ob->name() +
                        "收好了。 ”\n", owner);
         if (ob->move(me))
         {
-                message_vision("$N点点头，轻轻把" + ob->name() +
-                               "接了过去，稳稳的收好。\n", me);
+                message_vision("$N點點頭，輕輕把" + ob->name() +
+                               "接了過去，穩穩的收好。\n", me);
                 return -1;
         }
 
-        message_vision("$N“呜呜”道：“这个... 我已经拿不动了。”\n", me);
+        message_vision("$N“嗚嗚”道：“這個... 我已經拿不動了。”\n", me);
         return -1;
 }
 
 int accept_ansuan(object ob)
 {
-        return notify_fail("那么清纯的小姑娘，你不忍心下手。\n");
+        return notify_fail("那麼清純的小姑娘，你不忍心下手。\n");
 }
 
 int accept_touxi(object ob)
 {
-        message_vision("然而$N看到那姑娘是如此天真清纯，再难忍心下手。\n", ob);
+        message_vision("然而$N看到那姑娘是如此天真清純，再難忍心下手。\n", ob);
         return -1;
 }
 
 int accept_fight(object ob)
 {
-        message_vision("$N往后一缩，楚楚可怜的望着$n。\n",
+        message_vision("$N往後一縮，楚楚可憐的望著$n。\n",
                        this_object(), ob);
         return -1;
 }
 
 int accept_hit(object ob)
 {
-        message_vision("$N往后一缩，楚楚可怜的望着$n，让$n心中不由得一软。\n",
+        message_vision("$N往後一縮，楚楚可憐的望著$n，讓$n心中不由得一軟。\n",
                        this_object(), ob);
         return -1;
 }
@@ -413,22 +413,22 @@ int accept_kill(object ob)
         me = this_object();
         if (ob == query_temp("owner"))
         {
-                message_vision("$N向后一退，委屈的喊道：“为什么，为什么"
-                               "要这样对我？\n$n心中一软，没有下手，眼睁"
-                               "睁的看着$N跑掉了。\n", me, ob);
+                message_vision("$N向後一退，委屈的喊道：“為什麼，為什麼"
+                               "要這樣對我？\n$n心中一軟，沒有下手，眼睜"
+                               "睜的看著$N跑掉了。\n", me, ob);
                 obs = all_inventory(me);
                 obs=filter_array(obs,(:!query("equipped", $1):));
                 if (sizeof(obs))
                 {
-                        message_vision("$N将身上的东西扔了一地...\n", me);
+                        message_vision("$N將身上的東西扔了一地...\n", me);
                         obs->move(environment());
                 }
                 destruct(me);
                 return -1;
         }
 
-        message_vision("$N连忙往后避去，委屈的冲$n喊道：“这位" +
-                       RANK_D->query_respect(ob) +"，你认错人了吧！”\n",
+        message_vision("$N連忙往後避去，委屈的衝$n喊道：“這位" +
+                       RANK_D->query_respect(ob) +"，你認錯人了吧！”\n",
                        me, ob);
         return -1;
 }
@@ -457,7 +457,7 @@ void relay_emote(object me, string arg)
         {
                 if( me->add_temp("last_emote_times",1)>2 )
                 {
-                        message_vision(HIR "$N" HIR "冷笑一声，飞起一脚将$n"
+                        message_vision(HIR "$N" HIR "冷笑一聲，飛起一腳將$n"
                                        HIR "踢倒在地！\n", this_object(), me);
                         me->receive_damage("qi", 50, this_object());
                         me->receive_damage("jing", 40, this_object());
@@ -487,7 +487,7 @@ void relay_emote(object me, string arg)
         case "killair": command("heng " + my_id);       break;
         case "slap":    command("angry " + my_id);      break;
         case "zhen":    command("pain");                break;
-        case "poor":    command("say 你才可怜呢。");    break;
+        case "poor":    command("say 你才可憐呢。");    break;
         case "xbc":     command("say 你才是小白菜呢。");break;
         case "flop":    command("standup");             break;
         case "tang":    command("say 不要...我不要！"); break;
@@ -495,25 +495,25 @@ void relay_emote(object me, string arg)
         case "break":   command("inn " + my_id);        break;
         case "cat":     command("xixi " + my_id);       break;
         case "lean":    command("shy " + my_id);        break;
-        case "tnnd":    command("say 你这人好恶心哦。");break;
+        case "tnnd":    command("say 你這人好惡心哦。");break;
         case "wave":    command("say 你快走吧。");      break;
         case "shrug":   command("? " + my_id);          break;
-        case "xixi":    command("say 你好不正经。");    break;
-        case "laugh":   command("say 怎么像一个...傻子？");     break;
+        case "xixi":    command("say 你好不正經。");    break;
+        case "laugh":   command("say 怎麼像一個...傻子？");     break;
         case "inn":     command("nopretend " + my_id);  break;
         case "sorry":   command("tang " + my_id);       break;
         case "chaxie":  command("pat " + my_id);        break;
         case "pat":     command("escape");              break;
         case "smile":   command("smile " + my_id);      break;
-        case "shzi":    command("say 乱指啥？");        break;
+        case "shzi":    command("say 亂指啥？");        break;
         case "haha":
         case "hehe":
-        case "hoho":    command("say 傻笑什么。");      break;
+        case "hoho":    command("say 傻笑什麼。");      break;
         case "cut":
         case "knife":
         case "club":    command("say " + owner->name(1) + "救命呀！");          break;
         case "rascal":  command("say 我可天真了。");                            break;
-        default:        command("say " + owner->name(1) + "！有坏人呀！");      break;
+        default:        command("say " + owner->name(1) + "！有壞人呀！");      break;
         }
 }
 
@@ -535,11 +535,11 @@ void scan()
 
         env = environment(ob);
         if (environment() == env || ob->is_ghost())
-                // 和主人在的地点相同，或是主人处于鬼魂状态
+                // 和主人在的地點相同，或是主人處於鬼魂狀態
                 return;
 
         if (is_busy() || is_fighting() || ! living(this_object()))
-                // 现在忙
+                // 現在忙
                 return;
 
         if( !sizeof(query("exits", env)) || 
@@ -547,24 +547,24 @@ void scan()
                 return;
 
         if (environment())
-                message_vision("$N轻移莲步，慢慢走开了。\n", me);
+                message_vision("$N輕移蓮步，慢慢走開了。\n", me);
 
         if (! move(env)) return;
 
         switch (random(3))
         {
         case 0:
-                message_vision("$N慢慢走了过来，站在$n的身边，一双清澈"
-                               "的眼睛巡视着周围。\n", me, ob);
+                message_vision("$N慢慢走了過來，站在$n的身邊，一雙清澈"
+                               "的眼睛巡視著周圍。\n", me, ob);
                 break;
 
         case 1:
-                message_vision("$N三步并作两步，赶了过来，站到了$n的身"
-                               "边。\n", me, ob);
+                message_vision("$N三步並作兩步，趕了過來，站到了$n的身"
+                               "邊。\n", me, ob);
                 break;
 
         default:
-                message_vision("$N悄悄地走了过来，站在$n的身后，望着大"
+                message_vision("$N悄悄地走了過來，站在$n的身後，望著大"
                                "家。\n", me, ob);
                 break;
         }
@@ -577,12 +577,12 @@ string description()
         int per;
 
         per = query_per();
-        if (per >= 30) return "她有倾国倾城之貌，容色丽郁，娇艳绝伦，堪称人间仙子！\n";
-        if (per >= 28) return "她清丽绝俗，风姿动人。俏脸生春，妙目含情，轻轻一笑，不觉让人怦然心动。\n";
-        if (per >= 26) return "她肤如凝脂，眉目如画，风情万种，楚楚动人。当真是我见犹怜！\n";
-        if (per >= 24) return "她容色秀丽，面带晕红，眼含秋波。举手投足之间，确有一番风韵。\n";
-        if (per >= 21) return "她气质高雅，面目姣好，虽算不上绝世佳人，也颇有几份姿色。\n";
-        return "她相貌平平，还看得过去。\n";
+        if (per >= 30) return "她有傾國傾城之貌，容色麗鬱，嬌豔絕倫，堪稱人間仙子！\n";
+        if (per >= 28) return "她清麗絕俗，風姿動人。俏臉生春，妙目含情，輕輕一笑，不覺讓人怦然心動。\n";
+        if (per >= 26) return "她膚如凝脂，眉目如畫，風情萬種，楚楚動人。當真是我見猶憐！\n";
+        if (per >= 24) return "她容色秀麗，面帶暈紅，眼含秋波。舉手投足之間，確有一番風韻。\n";
+        if (per >= 21) return "她氣質高雅，面目姣好，雖算不上絕世佳人，也頗有幾份姿色。\n";
+        return "她相貌平平，還看得過去。\n";
 }
 
 string query_autoload()

@@ -5,10 +5,10 @@ inherit BUILD_ROOM;
 
 void create()
 {
-        set("short","青砖路");
+        set("short","青磚路");
         set("long",
-"这是一条非常平整的青砖铺成的路，北面是一个非常别致的小花园，\n"
-"东南面是一个三岔口。\n"
+"這是一條非常平整的青磚鋪成的路，北面是一個非常別緻的小花園，\n"
+"東南面是一個三岔口。\n"
 );
         set("recordable_room",1);
         set("outdoors","playertown");        

@@ -7,9 +7,9 @@ void create()
 {
         set("short", "天神走廊");
         set("long", 
-"这条长廊优雅精致，盘龙小柱顶着一个个的盖子，连接着各个去处，一\n"
-"个个的盖子上面都是一幅精美的画卷，从盘古开天，到封神之战，让人走在\n"
-"这长廊之上，也能感受上古之战的地裂天崩。\n"
+"這條長廊優雅精緻，盤龍小柱頂著一個個的蓋子，連接著各個去處，一\n"
+"個個的蓋子上面都是一幅精美的畫卷，從盤古開天，到封神之戰，讓人走在\n"
+"這長廊之上，也能感受上古之戰的地裂天崩。\n"
 );
                 set("exits",([ /* sizeof() == 1 */
                                 "down" : "/u/redl/teleport/teleport",
@@ -28,7 +28,7 @@ void create()
 
 int discmds() 
 { 
-        tell_object(this_player(), "你不能在这里做这个动作。\n");  
+        tell_object(this_player(), "你不能在這裡做這個動作。\n");  
         return -1;  
 } 
 
@@ -55,7 +55,7 @@ int valid_leave(object me, string dir)
         
         if (wiz_level(me) < 2 && dir!="down") 
                 {
-                        tell_object(me, NOR "那不是你可以进去的地方。\n" NOR);  
+                        tell_object(me, NOR "那不是你可以進去的地方。\n" NOR);  
                         return -1;      
                 }
         

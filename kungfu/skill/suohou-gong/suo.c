@@ -5,7 +5,7 @@
 
 inherit F_SSERVER;
 
-string name() { return CYN "铁爪锁喉" NOR; }
+string name() { return CYN "鐵爪鎖喉" NOR; }
 
 int perform(object me, object target)
 {
@@ -20,28 +20,28 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name()+"只能对战斗中的对手使用。\n");
+                return notify_fail(name()+"只能對戰鬥中的對手使用。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(name()+"只能空手施展。\n");
 
         if ((int)me->query_skill("suohou-gong", 1) < 150)
-                return notify_fail("你琐喉功火候不够，难以施展"+name()+"。\n");
+                return notify_fail("你瑣喉功火候不夠，難以施展"+name()+"。\n");
 
         if (me->query_skill_mapped("claw") != "suohou-gong")
-                return notify_fail("你没有激发琐喉功，难以施展"+name()+"。\n");
+                return notify_fail("你沒有激發瑣喉功，難以施展"+name()+"。\n");
 
         if (me->query_skill_prepared("claw") != "suohou-gong")
-                return notify_fail("你没有准备琐喉功，难以施展"+name()+"。\n");
+                return notify_fail("你沒有準備瑣喉功，難以施展"+name()+"。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你现在的真气不足，难以施展"+name()+"。\n");
+                return notify_fail("你現在的真氣不足，難以施展"+name()+"。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIR "$N" HIR "一声冷笑，蓦地拔地而起，右手一招「" NOR +
-              CYN "铁爪锁喉" HIR "」直取$n" HIR "颈部。\n" NOR;
+        msg = HIR "$N" HIR "一聲冷笑，驀地拔地而起，右手一招「" NOR +
+              CYN "鐵爪鎖喉" HIR "」直取$n" HIR "頸部。\n" NOR;
         addn("neili", -20, me);
 
         ap = attack_power(me, "claw");
@@ -53,10 +53,10 @@ int perform(object me, object target)
 
                 if( query("max_neili", me)>query("max_neili", target)*2 )
                 {
-                        msg += HIR "霎时只听「喀嚓」一声脆响，$N" HIR "五"
-                               "指竟将$n" HIR "的喉结捏个粉碎。\n" NOR "("
-                               " $n" RED "受伤过重，已经有如风中残烛，随时"
-                               "都可能断气。" NOR ")\n";
+                        msg += HIR "霎時只聽「喀嚓」一聲脆響，$N" HIR "五"
+                               "指竟將$n" HIR "的喉結捏個粉碎。\n" NOR "("
+                               " $n" RED "受傷過重，已經有如風中殘燭，隨時"
+                               "都可能斷氣。" NOR ")\n";
 
                         damage = -1;
                         me->start_busy(1);
@@ -74,8 +74,8 @@ int perform(object me, object target)
                                 limb = "要害";
 
                         msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 75,
-                                                   HIR "$n" HIR "慌忙躲闪，却听「喀嚓」一"
-                                                   "声，$N" HIR "五指正拿中$n" HIR "的" +
+                                                   HIR "$n" HIR "慌忙躲閃，卻聽「喀嚓」一"
+                                                   "聲，$N" HIR "五指正拿中$n" HIR "的" +
                                                    limb + "。\n" NOR);
                         me->start_busy(3);
                         addn("neili", -180, me);
@@ -83,7 +83,7 @@ int perform(object me, object target)
         } else
         {
                 msg += CYN "可是$n" CYN "看破了$P"
-                       CYN "的企图，身形急动，躲开了这一抓。\n"NOR;
+                       CYN "的企圖，身形急動，躲開了這一抓。\n"NOR;
                 me->start_busy(4);
                 addn("neili", -100, me);
         }

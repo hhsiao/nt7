@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "御马监");
+        set("short", "御馬監");
         set("long", @LONG
-这里是汴梁城皇宫内的御马监，饲养着各地进贡来的名马，几个
-太监在忙着给马梳洗，清理草料。
+這裡是汴梁城皇宮內的御馬監，飼養著各地進貢來的名馬，幾個
+太監在忙著給馬梳洗，清理草料。
 LONG );
         set("indo0rs", "city2");
         set("no_fly",1);

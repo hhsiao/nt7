@@ -14,8 +14,8 @@ void death_msg();
 void create()
 {
         object ob1,ob2;
-        set_name("公孙止", ({ "gongsun zhi", "gongsun", "zhi" }));
-        set("nickname", HIR "阴阳刃" NOR);
+        set_name("公孫止", ({ "gongsun zhi", "gongsun", "zhi" }));
+        set("nickname", HIR "陰陽刃" NOR);
         set("gender", "男性");
         set("attitude", "peaceful");
         set("shen_type", 0);
@@ -71,7 +71,7 @@ void create()
 
         prepare_skill("strike", "jueqing-zhang");
 
-        create_family("绝情谷", 4, "谷主");
+        create_family("絕情谷", 4, "谷主");
 
 /*
         set("chat_chance", 30);
@@ -104,8 +104,8 @@ void create()
         ]));
 
         set("drops", ([
-                "RA&RANDOM40"    :       100,   // 低级普通装备
-                "RA&RANDOM50"    :       40,    // 低级普通装备
+                "RA&RANDOM40"    :       100,   // 低級普通裝備
+                "RA&RANDOM50"    :       40,    // 低級普通裝備
                 "FI&/clone/goods/enchant-scroll" :   20,
                 "FI&/clone/goods/sun"    :   20,
                 "FI&/clone/goods/moon"   :   20,
@@ -172,7 +172,7 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->start_busy(5 + random(6));
         me->receive_wound("qi", 3500 + random(3500), ob);
-        return HIY "$N" HIY "大喝一声，拼死反抗，竟逼得$n" HIY "手忙脚乱。\n" NOR;
+        return HIY "$N" HIY "大喝一聲，拼死反抗，竟逼得$n" HIY "手忙腳亂。\n" NOR;
 }
 
 void heart_beat()
@@ -192,7 +192,7 @@ void random_move()
                 env = environment(this_object());
                 message_vision("$N急急忙忙的走了。\n", this_object());
 
-                CHANNEL_D->channel_broadcast("news", HIG "听说" + HIW + env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一带出现的" +
+                CHANNEL_D->channel_broadcast("news", HIG "聽說" + HIW + env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一帶出現的" +
                         HIR + this_object()->short() + HIG "消失了。\n" NOR);
 
                 destruct(this_object());
@@ -204,7 +204,7 @@ void random_move()
 void death_msg()
 {
         //command("chat* heng");
-        command("mess* tnnd 敢来我绝情山庄撒野，走着瞧！");
+        command("mess* tnnd 敢來我絕情山莊撒野，走著瞧！");
 }
 
 void die(object killer)
@@ -217,7 +217,7 @@ void die(object killer)
                 return;
         }
 
-        if( time() < query_temp("end_time") ) // 时间没有到，死亡不了
+        if( time() < query_temp("end_time") ) // 時間沒有到，死亡不了
         {
                 addn("jing", query("max_jing") / 10);
                 if( query("jing") > query("max_jing") ) set("jing", query("max_jing"));
@@ -227,18 +227,18 @@ void die(object killer)
                 if( query("qi") > query("max_qi") ) set("qi", query("max_qi"));
                 addn("eff_qi", query("max_qi") / 10);
                 if( query("eff_qi") > query("max_qi") ) set("eff_qi", query("max_qi"));
-                message_vision(HIR "\n$N" HIR "大喝一声，运用秘法，气血有所回升！\n\n" NOR, this_object());
+                message_vision(HIR "\n$N" HIR "大喝一聲，運用秘法，氣血有所回升！\n\n" NOR, this_object());
                 return;
         }
 
         if (! objectp(killer))
                 killer = query_last_damage_from();
 
-        // 战胜金轮获取小龙女线索
+        // 戰勝金輪獲取小龍女線索
         if (query("can_perform/surge-force/quest/step", killer) == 2)
         {
-                tell_object(killer, HIM "\n正在这时，你收到杨过托人带来的口信：龙儿已与我会面，但\n"
-                                    "身中情花剧毒，请尽快找到解毒灵药！\n\n" NOR);
+                tell_object(killer, HIM "\n正在這時，你收到楊過託人帶來的口信：龍兒已與我會面，但\n"
+                                    "身中情花劇毒，請儘快找到解毒靈藥！\n\n" NOR);
                 set("can_perform/surge-force/quest/step", 3, killer);
                 killer->save();
         }
@@ -248,8 +248,8 @@ void die(object killer)
                 object dan;
                 dan = new("/clone/fam/quest/jueqing-dan");
 
-                message_vision(HIR "叮~~一声，从$N" HIR "掉出一颗绝情丹，$n" HIR
-                                   "赶紧拣了起来。\n" NOR, this_object(), killer);
+                message_vision(HIR "叮~~一聲，從$N" HIR "掉出一顆絕情丹，$n" HIR
+                                   "趕緊揀了起來。\n" NOR, this_object(), killer);
                 tell_object(killer, BLINK + HIG "你得到了" + dan->name() + BLINK + HIG "。\n" NOR);
                 dan->move(killer, 1);
                 set("can_perform/surge-force/quest/jueqing-dan", 1, killer);

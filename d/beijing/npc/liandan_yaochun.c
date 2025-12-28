@@ -12,11 +12,11 @@ void create()
         set("gender", "男性");
         set("age", 56);
         set("title", HIG "回春堂" NOR);
-        set("nickname",HIR "跌打名医" NOR);
+        set("nickname",HIR "跌打名醫" NOR);
         set("long",
-                "这便是京城回春堂药铺的跌打名医姚春，身材干\n"
-                "瘦，其貌不扬。当年天地会徐天川受了伤，便由\n"
-                "他医治，此人既是名医，擒拿短打也是一绝。\n");
+                "這便是京城回春堂藥鋪的跌打名醫姚春，身材幹\n"
+                "瘦，其貌不揚。當年天地會徐天川受了傷，便由\n"
+                "他醫治，此人既是名醫，擒拿短打也是一絕。\n");
         set("attitude", "heroism");
         set("shen_type",1);
         set("str", 32);
@@ -42,29 +42,29 @@ void create()
         map_skill("medical", "bencao-shuli");
 
         set("inquiry", ([
-                "徐天川"  :  "那老猴儿便是我给医治的，怎么你也知道。\n",
-                "炼丹"    : (:do_liandan:),
+                "徐天川"  :  "那老猴兒便是我給醫治的，怎麼你也知道。\n",
+                "煉丹"    : (:do_liandan:),
                 "liandan" : (:do_liandan:),
-                "quest"   :  "在我这里可以帮着我「" HIR "炼丹" NOR + CYN
-                             "」，如果愿意可以想我询问。\n",
-                "job"     :  "在我这里可以帮着我「" HIR "炼丹" NOR + CYN
-                             "」，如果愿意可以想我询问。\n",
-                "药材"    :  "去找我的小童，他会帮你处理。\n",
-                "原料"    :  "去找我的小童，他会帮你处理。\n",
-                "yaocai"  :  "去找我的小童，他会帮你处理。\n",
-                "药"      :  "去找我的小童，他会帮你处理。\n",
-                "医术"    : (: ask_me :),
-                "学医术"  : (: ask_me :),
-                "学习医术": (: ask_me :),
-                "炼丹术"  : (: ask_me :),
-                "针灸术"  : (: ask_me :),
-                "本草术理": (: ask_me :),
-                "基本医术": (: ask_me :),
-                "学习"    : (: ask_me :),
-                "学技"    : (: ask_me :),
-                "银针"    : (: ask_yinzhen :),
-                "针"      : (: ask_yinzhen :),
-                "针灸"    : (: ask_yinzhen :),
+                "quest"   :  "在我這裡可以幫著我「" HIR "煉丹" NOR + CYN
+                             "」，如果願意可以想我詢問。\n",
+                "job"     :  "在我這裡可以幫著我「" HIR "煉丹" NOR + CYN
+                             "」，如果願意可以想我詢問。\n",
+                "藥材"    :  "去找我的小童，他會幫你處理。\n",
+                "原料"    :  "去找我的小童，他會幫你處理。\n",
+                "yaocai"  :  "去找我的小童，他會幫你處理。\n",
+                "藥"      :  "去找我的小童，他會幫你處理。\n",
+                "醫術"    : (: ask_me :),
+                "學醫術"  : (: ask_me :),
+                "學習醫術": (: ask_me :),
+                "煉丹術"  : (: ask_me :),
+                "針灸術"  : (: ask_me :),
+                "本草術理": (: ask_me :),
+                "基本醫術": (: ask_me :),
+                "學習"    : (: ask_me :),
+                "學技"    : (: ask_me :),
+                "銀針"    : (: ask_yinzhen :),
+                "針"      : (: ask_yinzhen :),
+                "針灸"    : (: ask_yinzhen :),
         ]) );
 
         setup();
@@ -91,11 +91,11 @@ int do_liandan()
         {
                 if( query_temp("liandan", me)<4 )
                 {
-                        command("say 不是要去炼丹吗，怎么还在这呆着？\n");
+                        command("say 不是要去煉丹嗎，怎麼還在這待著？\n");
                         return 1;
                 }
-                message_vision(CYN "姚春对$N" CYN "微笑道：炼丹是个修身养性的"
-                               "过程，你能成功，很不错！\n" NOR, me);
+                message_vision(CYN "姚春對$N" CYN "微笑道：煉丹是個修身養性的"
+                               "過程，你能成功，很不錯！\n" NOR, me);
 
                 exp = 200 + random(140);
                 pot = exp / 3;
@@ -106,20 +106,20 @@ int do_liandan()
                 addn("over_quest/liandan_quest", 1, me);
                 if (! query("zhufu_mod/waist", me) && random(10) == 1) 
                 {
-                        message_vision("$n对$N嘿嘿一笑，道：干得不赖，有点" 
-                                       "意思，这个神之祝福束带就算是我送给你的礼物吧。\n",
+                        message_vision("$n對$N嘿嘿一笑，道：幹得不賴，有點" 
+                                       "意思，這個神之祝福束帶就算是我送給你的禮物吧。\n",
                                        me, this_object());
                         ob = new("/clone/goods/zhufu_waist"); 
                         ob->move(me, 1); 
-                        tell_object(me, HIM "\n你获得了一个" + ob->name() + HIM "！\n" NOR);
+                        tell_object(me, HIM "\n你獲得了一個" + ob->name() + HIM "！\n" NOR);
                         set("zhufu_mod/waist", 1, me); 
                 }
                 return 1;
         } else
         {
-                message_vision(CYN "姚春对$N" CYN "点了点头，说道：炼丹是考验"
-                               "人的定力修为，心不静则事不成，你去向童子询问「"
-                               HIG "药材" NOR + CYN "」吧。\n", me);
+                message_vision(CYN "姚春對$N" CYN "點了點頭，說道：煉丹是考驗"
+                               "人的定力修為，心不靜則事不成，你去向童子詢問「"
+                               HIG "藥材" NOR + CYN "」吧。\n", me);
                 set_temp("liandan", 1, me);
                 return 1;
         }
@@ -132,45 +132,45 @@ string ask_me()
         me = this_player();
 
         if( query("can_learn_medical/yaochun", me) == 1 )
-                return "我不是答应教你了吗，你这人怎么那么罗嗦？";
+                return "我不是答應教你了嗎，你這人怎麼那麼羅嗦？";
 
         if( query("shen", me)<-10000 )
-                return "你这种魔头，不去杀人都算是武林大幸了。";
+                return "你這種魔頭，不去殺人都算是武林大幸了。";
 
         if( query("over_quest/liandan_quest", me)<100 )
-                return "这样吧，你先帮我炼丹百次，心诚之时我自然会传授给你。";
+                return "這樣吧，你先幫我煉丹百次，心誠之時我自然會傳授給你。";
 
         if( query("shen", me)<0 )
-                return "你侠义正事做得不够，多多行善之后我自然会传授给你。";
+                return "你俠義正事做得不夠，多多行善之後我自然會傳授給你。";
 
         set("can_learn_medical/yaochun", 1, me);
-               return "既然你欲诚心钻研学医之道，我就成全成全你吧。"; 
+               return "既然你欲誠心鑽研學醫之道，我就成全成全你吧。"; 
 }
 
 int recognize_apprentice(object me, string skill)
 {
         if( query("shen", me)<-10000 )
         {
-                command("say 给我滚开！我不会传授任何技能给你这种魔头！");
+                command("say 給我滾開！我不會傳授任何技能給你這種魔頭！");
                 return -1;
         }
 
         if( !query("can_learn_medical/yaochun", me) )
         {
-                command("say 我的医术向来是不轻易传授的。");
+                command("say 我的醫術向來是不輕易傳授的。");
                 return -1;
         }
 
         if (skill == "literate")
         {
-                command("say 读书写字自己去找教书先生学去。");
+                command("say 讀書寫字自己去找教書先生學去。");
                 return -1;
         }
 
         if (skill != "medical" &&
             skill != "zhenjiu-shu")
         {
-                command("say 我只能传授基本医术和针灸术。");
+                command("say 我只能傳授基本醫術和針灸術。");
                 return -1;
         }
 
@@ -184,17 +184,17 @@ string ask_yinzhen()
         object me = this_player();
 
         if( query("shen", me)<-0 )
-                return "你走吧，我的神针可不会给你这样的人。";
+                return "你走吧，我的神針可不會給你這樣的人。";
 
         if ((int)me->query_skill("zhenjiu-shu", 1) < 60)
-                return "你针灸术还不娴熟，随便用针会弄出人命来的。";
+                return "你針灸術還不嫻熟，隨便用針會弄出人命來的。";
 
         if (present("yin zhen", this_player()))
-                return "你身上不是还有一根吗？";
+                return "你身上不是還有一根嗎？";
 
         ob = new("/d/beijing/obj/yinzhen");
         ob->move(me);
 
-        message_vision(HIW "\n姚春从针盒里轻轻拈出一根银针，递给了$N" HIW "。\n" NOR, me);
-                return "这针可是用来救命的，好好的利用它为人治病吧。";
+        message_vision(HIW "\n姚春從針盒裡輕輕拈出一根銀針，遞給了$N" HIW "。\n" NOR, me);
+                return "這針可是用來救命的，好好的利用它為人治病吧。";
 }

@@ -1,6 +1,6 @@
 // Code of JHSH
-// baituo snake 白驼山蛇谷的蛇
-// 注意：千万不可用在蛇谷以外的房间！
+// baituo snake 白駝山蛇谷的蛇
+// 注意：千萬不可用在蛇谷以外的房間！
 // by maco
 #include <ansi.h>
 
@@ -12,9 +12,9 @@ void create()
         set("age", 4);
         set("attitude", "peaceful");
 
-        set("msg_fail", "$n冲$N嘶地一吐舌头");
-        set("msg_succ", "$n嘶嘶做响，蛇头随着$N的手动了起来");
-        set("msg_trained","$n悄无声息地游到$N的脚下不动了");
+        set("msg_fail", "$n衝$N嘶地一吐舌頭");
+        set("msg_succ", "$n嘶嘶做響，蛇頭隨著$N的手動了起來");
+        set("msg_trained","$n悄無聲息地游到$N的腳下不動了");
         set("wildness", 9);
 
         set("str", 26);
@@ -41,36 +41,36 @@ void set_kind(int poison)
         {
         case 0:
                 set_name("毒蛇", ({ "snake", "she" }) );
-                set("long", "一只有着三角形脑袋的蛇，尾巴沙沙做响。\n");
+                set("long", "一隻有著三角形腦袋的蛇，尾巴沙沙做響。\n");
                 set("combat_exp", 1000);
                 break;
         case 1:
                 set_name("黑蛇", ({ "hei she", "snake" ,"she" }) );
-                set("long", "这条黑蛇身子黑得发亮，身上白点也是闪闪发光，张开大口，露出四根獠牙。\n");
+                set("long", "這條黑蛇身子黑得發亮，身上白點也是閃閃發光，張開大口，露出四根獠牙。\n");
                 break;
         case 2:
-                set_name("竹叶青", ({ "zhuye qing", "snake" }) );
-                set("long", "一只身体碧绿的蛇，显得特别细小。\n");
+                set_name("竹葉青", ({ "zhuye qing", "snake" }) );
+                set("long", "一隻身體碧綠的蛇，顯得特別細小。\n");
                 break;
         case 3:
                 set_name("百步蛇", ({ "baibu she", "she", "snake" }) );
-                set("long", "一条青色长蛇，黄鳞覆体。据说被百步蛇咬了，走出一百步必死无疑。\n");
+                set("long", "一條青色長蛇，黃鱗覆體。據說被百步蛇咬了，走出一百步必死無疑。\n");
                 break;
         case 4:
                 set_name("青花蛇", ({ "qinghua she", "she", "snake" }) );
-                set("long", "一条混身青黄相间的毒蛇，斑条鲜明，蛇头奇扁，作三角之形，显具剧毒。\n");
+                set("long", "一條混身青黃相間的毒蛇，斑條鮮明，蛇頭奇扁，作三角之形，顯具劇毒。\n");
                 break;
         case 5:
                 set_name("蝮蛇", ({ "fu she", "she", "snake" }) );
-                set("long", "一条细颈青身的蝮蛇。\n");
+                set("long", "一條細頸青身的蝮蛇。\n");
                 break;
         case 6:
-                set_name("赤练蛇", ({ "chilian she", "chilian", "she", "snake" }) );
-                set("long", "一条尺许长的赤练蛇，青红斑斓，甚是可怖。\n");
+                set_name("赤練蛇", ({ "chilian she", "chilian", "she", "snake" }) );
+                set("long", "一條尺許長的赤練蛇，青紅斑斕，甚是可怖。\n");
                 break;
         case 7:
-                set_name("金线蛇", ({ "jinxian she", "she", "snake" }) );
-                set("long", "一条方头小蛇，全身绿鳞覆体，一条金线由蛇腹而下。\n");
+                set_name("金線蛇", ({ "jinxian she", "she", "snake" }) );
+                set("long", "一條方頭小蛇，全身綠鱗覆體，一條金線由蛇腹而下。\n");
                 break;
         }
         set_weight(poison*600 + 9000);
@@ -108,7 +108,7 @@ void init()
         ::init();
         add_action("convert","bian");
         if (interactive(ob = this_player()) &&
-            query("family/family_name", ob) != "欧阳世家" && 
+            query("family/family_name", ob) != "歐陽世家" && 
                 random(ob->query_kar() + ob->query_per()) < 30) {
                         remove_call_out("kill_ob");
                         call_out("kill_ob", 1, ob);
@@ -119,7 +119,7 @@ void init()
 void die()
 {
         object ob;
-        message_vision("$N全身扭曲，翻腾挥舞，全身软软地散了开来。\n", this_object());
+        message_vision("$N全身扭曲，翻騰揮舞，全身軟軟地散了開來。\n", this_object());
         ob = new(DRUG_D("shedan"));
         ob->move(environment(this_object()));
         destruct(this_object());
@@ -138,7 +138,7 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
                                  "id":query("id", me),
                                  "duration" :  poison/20 ]));
         }
-        return HIR "只听$n痛呼了一声，给毒蛇狠狠的咬了一口！\n" NOR;
+        return HIR "只聽$n痛呼了一聲，給毒蛇狠狠的咬了一口！\n" NOR;
 }
 
 int convert(string arg)
@@ -147,17 +147,17 @@ int convert(string arg)
         object ob;
 
         if (arg!="snake" && arg!="she") return 0;
-        if( query("family/family_name", me) != "欧阳世家" )
-                return notify_fail("你不能化蛇为杖。\n");
+        if( query("family/family_name", me) != "歐陽世家" )
+                return notify_fail("你不能化蛇為杖。\n");
 
         if( query("name", this_object()) != "毒蛇" )
-                return notify_fail(this_object()->name()+"不适合化为蛇杖。\n");
+                return notify_fail(this_object()->name()+"不適合化為蛇杖。\n");
 
         if (random(me->query_skill("training",1)) <20) {
                 kill_ob(me);
                 return 1;
         }
-        message_vision("$N左手按住蛇头，右手轻抚其七寸，口中念念有词，片刻间将蛇化为一根蛇杖。\n",
+        message_vision("$N左手按住蛇頭，右手輕撫其七寸，口中唸唸有詞，片刻間將蛇化為一根蛇杖。\n",
                 me,);
                 ob = new("/d/xingxiu/obj/shezhang");
         ob->move(environment(this_object()));

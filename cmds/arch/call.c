@@ -9,7 +9,7 @@ void create()
         seteuid(getuid());
         set("name", "呼叫指令");
                 set("id", "call");  
-        set("channel_id",HIW"呼叫精灵");
+        set("channel_id",HIW"呼叫精靈");
 }
 
 
@@ -31,16 +31,16 @@ int main(object me, string arg)
                 if (sscanf(arg, "-%s %s", euid, arg) == 2)
                 {
                         if ((string)SECURITY_D->get_status(me) != "(admin)")
-                                return notify_fail("你不能设定自己的 euid。\n");
+                                return notify_fail("你不能設定自己的 euid。\n");
                         seteuid(euid);
                 }
                 else
                         seteuid(geteuid(this_player()));
 
                 if (sscanf(arg, "%s->%s(%s", objname, func, param) != 3)
-                        return notify_fail("指令格式：call <物件>-><函数>( <参数>, ... )\n");
+                        return notify_fail("指令格式：call <物件>-><函數>( <參數>, ... )\n");
         } else
-                return notify_fail("指令格式：call <物件>-><函数>( <参数>, ... )\n");
+                return notify_fail("指令格式：call <物件>-><函數>( <參數>, ... )\n");
 
         if (strlen(param) >= 1 && param[strlen(param) - 1] == ')')
                 param = param[0..<2];
@@ -63,31 +63,31 @@ int main(object me, string arg)
 
                 case "self":
                         if (obj != me)
-                                return notify_fail("你只能使用该命令呼叫自身的函数。\n");
+                                return notify_fail("你只能使用該命令呼叫自身的函數。\n");
                         break;
 
                 case "npc":
                         if (playerp(obj) || ! obj->is_character())
-                                return notify_fail("你只能呼叫 NPC 的函数。\n");
+                                return notify_fail("你只能呼叫 NPC 的函數。\n");
                         break;
 
                 case "user":
                         if (! playerp(obj))
-                                return notify_fail("你只能对玩家使用这个命令。\n");
+                                return notify_fail("你只能對玩家使用這個命令。\n");
                         break;
 
                 case "nonechar":
                         if (obj->is_character())
-                                return notify_fail("你只能对非角色对象使用这个命令。\n");
+                                return notify_fail("你只能對非角色對象使用這個命令。\n");
                         break;
 
                 case "wizard":
                         if (! wizardp(obj))
-                                return notify_fail("你只能对巫师使用这个命令。\n");
+                                return notify_fail("你只能對巫師使用這個命令。\n");
                         break;
 
                 default:
-                        return notify_fail("你不能使用该命令。\n");
+                        return notify_fail("你不能使用該命令。\n");
                 }
         }
 
@@ -101,7 +101,7 @@ int main(object me, string arg)
                                 obj->name(1), geteuid(obj), func, param));
         } else
         if (! master()->valid_write(base_name(obj), me, "set"))
-                return notify_fail("你没有直接呼叫这个物件的函数的权力。\n");
+                return notify_fail("你沒有直接呼叫這個物件的函數的權力。\n");
 
         args = explode(param, ",");
         for (i = 0; i < sizeof(args); i++)
@@ -122,8 +122,8 @@ int main(object me, string arg)
         if (func == "set" && playerp(obj) &&
             sizeof(args) && args[0] == "name")
         {
-                write(HIY "建议不要用 call 命令修改玩家的名"
-                      "字，请参见 changename 命令。\n" NOR);
+                write(HIY "建議不要用 call 命令修改玩家的名"
+                      "字，請參見 changename 命令。\n" NOR);
         }
 
         args = ({ func }) + args;
@@ -132,7 +132,7 @@ int main(object me, string arg)
         e = eval_cost();
         if (catch(result = call_other(obj, args)))
         {
-                write(HIR "呼叫中发生了错误。\n" NOR);
+                write(HIR "呼叫中發生了錯誤。\n" NOR);
                 return 1;
         }
 
@@ -154,14 +154,14 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式 : call <物件>-><函数>(<参数>, ...... )
+指令格式 : call <物件>-><函數>(<參數>, ...... )
  
-呼叫<物件>里的<函数>并传入相关<参数>.
+呼叫<物件>裡的<函數>並傳入相關<參數>.
 
-该命令在可以被授权使用的信息包括：
+該命令在可以被授權使用的信息包括：
 self、npc、user、nonechar、wizard、all。
 
-相关命令：findusr
+相關命令：findusr
 HELP );
         return 1;
 }

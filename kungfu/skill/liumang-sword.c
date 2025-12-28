@@ -4,112 +4,112 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action": HIW "$N大喝一声，一招「流氓霸市」，手中$w平空横扫，一条剑气划向$n的$l" NOR,
+([      "action": HIW "$N大喝一聲，一招「流氓霸市」，手中$w平空橫掃，一條劍氣划向$n的$l" NOR,
         "force" : 25,
         "dodge" : 20,
         "parry" : 25,
         "lvl"   : 0,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action": HIW "$N向前跨上一步，右手$w使出一式「雷剑闪」直刺$n的$l" NOR,
+([      "action": HIW "$N向前跨上一步，右手$w使出一式「雷劍閃」直刺$n的$l" NOR,
         "force" : 30,
         "dodge" : 25,
         "parry" : 30,
         "lvl"   : 6,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action": HIW "$N身形往右一挫，右手$w使出一式「冲心剑」刺向$n的$l" NOR,
+([      "action": HIW "$N身形往右一挫，右手$w使出一式「衝心劍」刺向$n的$l" NOR,
         "force" : 30,
         "dodge" : 35,
         "parry" : 35,
         "lvl"   : 12,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action": HIW "$N双膝下沉，右手$w使出一式「锁喉式」，由下而上疾刺$n的$l" NOR,
+([      "action": HIW "$N雙膝下沉，右手$w使出一式「鎖喉式」，由下而上疾刺$n的$l" NOR,
         "force" : 35,
         "dodge" : 35,
         "parry" : 40,
         "lvl"   : 15,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action": HIW "$N一招「车轮剑」，$w自上而下划出一个大弧，平平地向$n的$l挥去" NOR,
+([      "action": HIW "$N一招「車輪劍」，$w自上而下劃出一個大弧，平平地向$n的$l揮去" NOR,
         "force" : 35,
         "dodge" : 45,
         "parry" : 45,
         "lvl"   : 18,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action": HIW "$N上身往左侧一拧，一招「恶龙摆尾」，右手$w反手向$n的$l挥去" NOR,
+([      "action": HIW "$N上身往左側一擰，一招「惡龍擺尾」，右手$w反手向$n的$l揮去" NOR,
         "force" : 35,
         "dodge" : 45,
         "parry" : 55,
         "lvl"   : 21,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action": HIW "$N一招「摧心式」，剑锋平指，一气呵成横扫$n的$l" NOR,
+([      "action": HIW "$N一招「摧心式」，劍鋒平指，一氣呵成橫掃$n的$l" NOR,
         "force" : 40,
         "dodge" : 60,
         "parry" : 55,
         "lvl"   : 24,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
 ([      "action": HIW "$N左腿提膝，手中$w斜指，一招「破目式」刺向$n的$l" NOR,
         "force" : 40,
         "dodge" : 55,
         "parry" : 60,
         "lvl"   : 27,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action": HIW "$N一招「回龙式」，$w自下而上划出一个大弧，平平地挥向$n的$l" NOR,
+([      "action": HIW "$N一招「回龍式」，$w自下而上劃出一個大弧，平平地揮向$n的$l" NOR,
         "force" : 45,
         "dodge" : 65,
         "parry" : 65,
         "lvl"   : 30,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action": HIW "$N使出「套月式」，$w划出三个圆圈，剑锋直出，绵绵不断划向$n的$l" NOR,
+([      "action": HIW "$N使出「套月式」，$w劃出三個圓圈，劍鋒直出，綿綿不斷划向$n的$l" NOR,
         "force" : 45,
         "dodge" : 70,
         "parry" : 70,
         "lvl"   : 35,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action": HIW "$N一招「卷风式」，$w轻灵地划出几个圆弧，迅速地向$n的$l挥去" NOR,
+([      "action": HIW "$N一招「捲風式」，$w輕靈地劃出幾個圓弧，迅速地向$n的$l揮去" NOR,
         "force" : 50,
         "dodge" : 75,
         "parry" : 80,
         "lvl"   : 40,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action": HIW "$N一招「抱头式」，$w划出一个左低右高的大弧，斜斜地斩向$n的$l" NOR,
+([      "action": HIW "$N一招「抱頭式」，$w劃出一個左低右高的大弧，斜斜地斬向$n的$l" NOR,
         "force" : 50,
         "dodge" : 75,
         "parry" : 80,
         "lvl"   : 45,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action": HIW "$N使出「缠丝式」，$w由右向左划出一个大８字，将$n圈在其中" NOR,
+([      "action": HIW "$N使出「纏絲式」，$w由右向左劃出一個大８字，將$n圈在其中" NOR,
         "force" : 55,
         "dodge" : 85,
         "parry" : 80,
         "lvl"   : 50,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action": HIW "$N左脚踏实，右脚虚点，一招「恶人指路」，右手$w带着一团剑花，逼向$n的$l" NOR,
+([      "action": HIW "$N左腳踏實，右腳虛點，一招「惡人指路」，右手$w帶著一團劍花，逼向$n的$l" NOR,
         "force" : 55,
         "dodge" : 95,
         "parry" : 80,
         "lvl"   : 60,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([  "action" : HIC "$N回身拧腰，右手虚抱，一招「天人同灭」，$w中宫直进，刺向$n的$l" NOR,
+([  "action" : HIC "$N回身擰腰，右手虛抱，一招「天人同滅」，$w中宮直進，刺向$n的$l" NOR,
         "force" : 950,
         "attack": 1140,
         "dodge" : 2220,
         "parry" : 2220,
         "damage": 1140,
         "lvl" : 2500,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
 });
 
@@ -119,10 +119,10 @@ int valid_enable(string usage) { return (usage == "sword") || (usage == "parry")
 int valid_learn(object me)
 {
         if( query("max_neili", me)<1500 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if ((int)me->query_skill("sword", 1) < 100)
-                return notify_fail("你的基本剑法火候太浅。\n");
+                return notify_fail("你的基本劍法火候太淺。\n");
 
         return 1;
 }
@@ -160,13 +160,13 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
                 {
                 case 0:
                         result += (["msg" : HIC "$n" HIC "一抖手中的" + m_weapon->name() +
-                                            HIC "，划出了一个圆圈，竟然让$N" +
-                                            HIC "的攻击全然落空。\n" NOR]);
+                                            HIC "，劃出了一個圓圈，竟然讓$N" +
+                                            HIC "的攻擊全然落空。\n" NOR]);
                         break;
                 default:
-                        result += (["msg" : HIC "$n" HIC "晃动手中的" + m_weapon->name() +
-                                            HIC "，不住的变幻剑势，让$N"
-                                            HIC "完全无法捕捉到力道。\n" NOR]);
+                        result += (["msg" : HIC "$n" HIC "晃動手中的" + m_weapon->name() +
+                                            HIC "，不住的變幻劍勢，讓$N"
+                                            HIC "完全無法捕捉到力道。\n" NOR]);
                         break;
                 }
                 return result;
@@ -179,7 +179,7 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         me->receive_damage("qi", 50);
         addn("neili", -64, me);

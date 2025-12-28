@@ -3,12 +3,12 @@ inherit NPC;
 
 void create()
 {
-        set_name("封万里", ({"feng wanli", "feng", "wanli"}));
-        set("nickname", HIR "风火神龙" NOR);
-        set("long", "他是凌霄城第六代弟子封万里，是第六代弟子中\n"
-                    "最为出类拔萃的人物。其剑法刚猛迅捷，如狂风\n"
-                    "似烈火，因此得了个风火神龙的外号。但不知为\n"
-                    "何，他少了一只手臂,眼中全是愤怒悔恨之色。\n");
+        set_name("封萬里", ({"feng wanli", "feng", "wanli"}));
+        set("nickname", HIR "風火神龍" NOR);
+        set("long", "他是凌霄城第六代弟子封萬里，是第六代弟子中\n"
+                    "最為出類拔萃的人物。其劍法剛猛迅捷，如狂風\n"
+                    "似烈火，因此得了個風火神龍的外號。但不知為\n"
+                    "何，他少了一隻手臂,眼中全是憤怒悔恨之色。\n");
         set("gender", "男性");
         set("age", 34);
         set("attitude", "friendly");
@@ -70,19 +70,19 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        command("say 我不收徒，快给我滚开！");
+        command("say 我不收徒，快給我滾開！");
 }
 
 int accept_fight(object who)
 {
-        command("say 别以为我少了一臂便好欺负，给我滚开！");
+        command("say 別以為我少了一臂便好欺負，給我滾開！");
         return 0;
 }
 
 int accept_hit(object me)
 {
         object obj = this_object();
-        command("say 无耻之徒，别以为我少了一臂便能任人宰割，受死吧！\n");
+        command("say 無恥之徒，別以為我少了一臂便能任人宰割，受死吧！\n");
         this_player()->kill_ob(obj);
         kill_ob(me);
         return 1;

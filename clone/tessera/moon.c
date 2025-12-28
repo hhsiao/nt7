@@ -13,9 +13,9 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", WHT "太阴真火凝聚而成，月白色，能摄心定神，百邪不侵。。\n" NOR);
+                set("long", WHT "太陰真火凝聚而成，月白色，能攝心定神，百邪不侵。。\n" NOR);
                 set("value", 50000);
-                set("unit", "块");
+                set("unit", "塊");
                 set("can_enchant", "armor");
                 set("auto_load", 1);
         }
@@ -35,29 +35,29 @@ int do_extract(object obj)
 
         ob = this_object();
 
-        if( !obj ) return notify_fail("没有这个物品。\n");
+        if( !obj ) return notify_fail("沒有這個物品。\n");
 
         if( query("enchase", ob) )
-                return notify_fail("月魄已经附魔过属性了。\n");
+                return notify_fail("月魄已經附魔過屬性了。\n");
 
         if( !query("enchase", obj) || !(applied_prop=query("enchase/apply_prop", obj)) )
-                return notify_fail("这个物品上面没有可用来附魔的属性。\n");
+                return notify_fail("這個物品上面沒有可用來附魔的屬性。\n");
 
         if( obj->is_item_make() || !(ins=query("enchase/inset", obj)) )
-                return notify_fail("这个物品无法用来附魔的属性。\n");
+                return notify_fail("這個物品無法用來附魔的屬性。\n");
 
         if( query("skill_type", obj) || query("armor_type", obj) != "hands" || query("armor_type", obj) != "finger" )
-                return notify_fail("日魂只能用来附魔防具类物品的属性。\n");
+                return notify_fail("日魂只能用來附魔防具類物品的屬性。\n");
 
         if( random(100) < 20 )
-                return notify_fail("附魔失败。\n");
+                return notify_fail("附魔失敗。\n");
 
         res = ins[random(sizeof(ins))];
         ins -= ({ res });
 
         enchase_prop = res["enchase_prop"];
         if( !mapp(enchase_prop) )
-                return notify_fail("附魔失败。\n");
+                return notify_fail("附魔失敗。\n");
 
         set("enchase/inset", ins, obj);
         apply = keys(enchase_prop);

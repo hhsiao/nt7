@@ -2,10 +2,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("王府亲兵", ({ "qin bing", "qin", "bing" }));
+        set_name("王府親兵", ({ "qin bing", "qin", "bing" }));
         set("age", 32);
         set("gender", "男性");
-        set("long", "一名尽忠职守的亲兵，警惕的注视着过往的人。\n");
+        set("long", "一名盡忠職守的親兵，警惕的注視著過往的人。\n");
         set("attitude", "peaceful");
         set("str", 24);
         set("dex", 23);

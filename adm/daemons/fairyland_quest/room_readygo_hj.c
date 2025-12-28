@@ -1,9 +1,9 @@
-//                标准描述长度示例                                   |
-// “幻境”寻宝系列主题之准备进入游戏房间
+//                標準描述長度示例                                   |
+// “幻境”尋寶系列主題之準備進入遊戲房間
 // by naihe  2002-10-24
 
-// 14:23 03-10-25 加入了一幅水晶的图片
-// PS： 这是自己画的 HOHOHO
+// 14:23 03-10-25 加入了一幅水晶的圖片
+// PS： 這是自己畫的 HOHOHO
 
 
 
@@ -16,34 +16,34 @@ inherit ROOM;
 void sing_song(int i);
 
 string *context=({
-    " ",   // 这个莫要删了
-    "亲爱的勇士啊  既然你来到了这个地方",
-    "就请听我叙述我曾知道的故事",
-    "让我告诉你  那古老的传说吧……",
-    "相传在远古的时候",
-    "大地上有着四个古老的国度",
-    "他们是风、雨、雷、电之国度",
-    "他们都有着自己的宝物",
-    "用于维系自身  生活于各自的领土",
-    "时光变迁  混乱出现",
-    "他们之间爆发了战争",
-    "不复停留在原本的家园",
-    "他们之间的战争由宝物而起",
-    "但最终却都未能得到它们",
-    "四个国家由此而消亡",
-    "宝物们也四散消藏。",
-    "亲爱的勇士啊",
-    "你是否愿意寻求宝物",
-    "来见识那古老国度的神秘光芒？",
-    "来吧  踏出你选择的步伐",
-    "进入你将走向的未知之端。",
+    " ",   // 這個莫要刪了
+    "親愛的勇士啊  既然你來到了這個地方",
+    "就請聽我敘述我曾知道的故事",
+    "讓我告訴你  那古老的傳說吧……",
+    "相傳在遠古的時候",
+    "大地上有著四個古老的國度",
+    "他們是風、雨、雷、電之國度",
+    "他們都有著自己的寶物",
+    "用於維繫自身  生活於各自的領土",
+    "時光變遷  混亂出現",
+    "他們之間爆發了戰爭",
+    "不復停留在原本的家園",
+    "他們之間的戰爭由寶物而起",
+    "但最終卻都未能得到它們",
+    "四個國家由此而消亡",
+    "寶物們也四散消藏。",
+    "親愛的勇士啊",
+    "你是否願意尋求寶物",
+    "來見識那古老國度的神秘光芒？",
+    "來吧  踏出你選擇的步伐",
+    "進入你將走向的未知之端。",
 });
 
 string singing="no";
 string look_shuijing();
 
 string pler1,pler2,pler3,pler4,id1,id2,id3,id4,
-pler1="风翔",pler2="雨洒",pler3="雷鸣",pler4="电闪",
+pler1="風翔",pler2="雨灑",pler3="雷鳴",pler4="電閃",
 id1="aa",id2="bb",id3="cc",id4="dd";
 
 int *pler_data1=({
@@ -90,12 +90,12 @@ void hjset_long()
                       . \\/  *
 
 
-  "NOR"这里一片漆黑，你只见得面前空中悬浮着一块"+cl+"水晶"NOR"(shuijing)。\n");
+  "NOR"這裡一片漆黑，你只見得面前空中懸浮著一塊"+cl+"水晶"NOR"(shuijing)。\n");
 }
 
 void create()
 {
-    set("short",BLU"虚空之境"NOR);
+    set("short",BLU"虛空之境"NOR);
     hjset_long();
 
     set("no_fight", "1");
@@ -126,7 +126,7 @@ void init()
 
 int do_nocmds()
 {
-    write("这里禁止使用这个指令。\n");
+    write("這裡禁止使用這個指令。\n");
     return 1;
 }
 
@@ -134,9 +134,9 @@ void get_out_here(object me)
 {
     if( !me || !environment(me) || environment(me) != this_object() ) return;
 
-    message_vision( HIR"一阵奇异震荡袭来，$N"HIR"还未及反应，已发现自己身处别处了。\n"NOR, me);
+    message_vision( HIR"一陣奇異震盪襲來，$N"HIR"還未及反應，已發現自己身處別處了。\n"NOR, me);
     me->move( __DIR__"room_door_hj" );
-    message_vision("一阵莫名的震荡忽来忽逝，$N不知怎么的就忽地出现在这里了。\n",me);
+    message_vision("一陣莫名的震盪忽來忽逝，$N不知怎麼的就忽地出現在這裡了。\n",me);
 }
 
 void reset()
@@ -147,7 +147,7 @@ void reset()
 
 string look_shuijing()
 {
-    write("水晶散发着幽幽的光芒。");
+    write("水晶散發著幽幽的光芒。");
     if( singing == "yes" || !query_temp("hj2003-valid_enter", this_player()) )
         return "\n";
 
@@ -163,7 +163,7 @@ void sing_song(int i)
     singing="yes";
     if (i<sizeof(context))
     {
-        if(i==0) message_vision(CYN"$N忽地听到了一阵歌声传来，却不知道来自何处。\n"NOR,me);
+        if(i==0) message_vision(CYN"$N忽地聽到了一陣歌聲傳來，卻不知道來自何處。\n"NOR,me);
         else message("vision",MAG"      "+context[ i ] + "\n"NOR,this_object());
         i ++;
         remove_call_out("sing_song");
@@ -172,13 +172,13 @@ void sing_song(int i)
     else
     {
         singing="no";
-        message("vision",CYN"歌声渐弱，似是渐渐远去般，终于听不见声息了。\n"NOR,this_object());
-        message("vision","你将要选择(xuanze)哪一个国度？ 例如：风之国度 <xuanze feng>\n"NOR,this_object());
+        message("vision",CYN"歌聲漸弱，似是漸漸遠去般，終於聽不見聲息了。\n"NOR,this_object());
+        message("vision","你將要選擇(xuanze)哪一個國度？ 例如：風之國度 <xuanze feng>\n"NOR,this_object());
     }
 }
 
-// 风 = 身法dex   雨 = 悟性int   雷 = 膂力str   电 = 根骨con
-// 美丽 = 容貌per   善良 = 神shen(shen_type=-1为负神)   年纪 = 年龄age   富有 = 存款balance
+// 風 = 身法dex   雨 = 悟性int   雷 = 膂力str   電 = 根骨con
+// 美麗 = 容貌per   善良 = 神shen(shen_type=-1為負神)   年紀 = 年齡age   富有 = 存款balance
 
 int do_xuanze(string arg)
 {
@@ -186,24 +186,24 @@ int do_xuanze(string arg)
     int i,temp;
     mapping xuanze_arg;
 
-    // 从正门走进来的才可以。
+    // 從正門走進來的才可以。
     if( !query_temp("hj2003-valid_enter", me) )
         return 0;
     if( !arg )
         arg = "@_@";
     xuanze_arg = ([
-        "风" : "feng",
+        "風" : "feng",
         "雨" : "yu",
         "雷" : "lei",
-        "电" : "dian",
+        "電" : "dian",
     ]);
-    // 可以输入中文进行选择
+    // 可以輸入中文進行選擇
     if( xuanze_arg[ arg ] )
         arg = xuanze_arg[ arg ];
     if( arg!="feng" && arg!="yu" && arg!="lei" && arg!="dian" )
-        return notify_fail("你将要选择(xuanze)哪一个国度？ 例如：风之国度 <xuanze feng>\n");
+        return notify_fail("你將要選擇(xuanze)哪一個國度？ 例如：風之國度 <xuanze feng>\n");
     delete_temp("hj2003-valid_enter", me);
-    all_mine = deep_inventory(me); // 原来是  all，现在改为 deep ，BUG 哪里逃
+    all_mine = deep_inventory(me); // 原來是  all，現在改為 deep ，BUG 哪裡逃
     if( all_mine && sizeof( all_mine ) > 0 )
     {
         for(i=0;i<sizeof(all_mine);i++)
@@ -214,11 +214,11 @@ int do_xuanze(string arg)
     }
 
     if(temp)
-        write(HIR"你身上之前的"+chinese_number(temp)+"个幻境相关物品被清除掉了。\n"NOR);
+        write(HIR"你身上之前的"+chinese_number(temp)+"個幻境相關物品被清除掉了。\n"NOR);
     set_temp("huanjing", arg, me);
     qx_deng=new( QXD_FILE );
 
-// ########  下面为 七星灯 设置游戏内所需资讯。 ########
+// ########  下面為 七星燈 設置遊戲內所需資訊。 ########
 
 
     set("my_master", me, qx_deng);
@@ -252,16 +252,16 @@ int do_xuanze(string arg)
     set("hj_quest_info4/balance", pler_data4[4], qx_deng);
 
     if(arg == "feng")
-        set("find_name", "风之国度", qx_deng);
+        set("find_name", "風之國度", qx_deng);
     if(arg == "yu")
-        set("find_name", "雨之国度", qx_deng);
+        set("find_name", "雨之國度", qx_deng);
     if(arg == "lei")
-        set("find_name", "雷之国度", qx_deng);
+        set("find_name", "雷之國度", qx_deng);
     if(arg == "dian")
-        set("find_name", "电之国度", qx_deng);
+        set("find_name", "電之國度", qx_deng);
     set_temp("hj_game_find", arg, me);
 
-// ############## 资讯更新 ###############
+// ############## 資訊更新 ###############
 
     if( query("id", me) != id1 && 
         query("id", me) != id2 && 
@@ -290,7 +290,7 @@ int do_xuanze(string arg)
         });
     }
 
-    write("你得到一盏七星灯。\n");
+    write("你得到一盞七星燈。\n");
     qx_deng->move(me);
     return 1;
 }

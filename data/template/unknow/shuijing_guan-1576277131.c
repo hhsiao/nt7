@@ -14,9 +14,9 @@ void create()
         else*/
         {
 	set("material", "steel");
-	set("unit", "顶");
-	set("long", "[1;35m这是一顶用水晶雕琢而成的头冠，手工精巧无比，人间罕有。
-[1;36m佩带后可提高研究及学习次数上限10%。
+	set("unit", "頂");
+	set("long", "[1;35m這是一頂用水晶雕琢而成的頭冠，手工精巧無比，人間罕有。
+[1;36m佩帶後可提高研究及學習次數上限10%。
 [2;37;0m");
 
 	set("value", 3500000);
@@ -26,7 +26,7 @@ void create()
 ]));
 
 	set("special", ([ /* sizeof() == 1 */
-  "desc" : "[1;31m佩带后可提高研究及学习次数上限10%。[2;37;0m",
+  "desc" : "[1;31m佩帶後可提高研究及學習次數上限10%。[2;37;0m",
 ]));
 	set("require", ([ /* sizeof() == 2 */
   "int" : 30,
@@ -54,7 +54,7 @@ int receive_summon(object me)
         return ITEM_D->receive_summon(me, this_object());
 }
 
-// 隐藏物品
+// 隱藏物品
 int hide_anywhere(object me)
 {
         return ITEM_D->hide_anywhere(me, this_object());

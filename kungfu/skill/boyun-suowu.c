@@ -1,48 +1,48 @@
-// boyun-suowu 拨云锁雾
+// boyun-suowu 撥雲鎖霧
 
 inherit SKILL;
 
 mapping *action = ({
-([      "action" : "$N双手飘浮不定,突然从不可以思意的角度，拍向$n的胸口",
+([      "action" : "$N雙手飄浮不定,突然從不可以思意的角度，拍向$n的胸口",
         "dodge" : 50,
         "damage": 60,
         "lvl" : 10,
-        "skill_name" : "云里雾里",
-        "damage_type" : "瘀伤"
+        "skill_name" : "雲裡霧裡",
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N长啸一声，平地飞起三丈，居高临下脚上头下，双手重叠在一起，运劲压向对手，$n大惊失色",
+([      "action" : "$N長嘯一聲，平地飛起三丈，居高臨下腳上頭下，雙手重疊在一起，運勁壓向對手，$n大驚失色",
         "dodge" : 60,
         "damage": 100,
-        "skill_name" : "拨开云雾",
-        "damage_type" : "瘀伤"
+        "skill_name" : "撥開雲霧",
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$n眼前一花，失去$N的身影，只听见身后响起一阵掌风，只见$N双手同时拍中$n背门要害",
+([      "action" : "$n眼前一花，失去$N的身影，只聽見身後響起一陣掌風，只見$N雙手同時拍中$n背門要害",
         "dodge" : 70,
         "damage": 80,
-        "skill_name" : "迷云幽雾",
-        "damage_type" : "瘀伤"
+        "skill_name" : "迷雲幽霧",
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N掌指齐出，拍拿并施，拿向$n的三路要害",
+([      "action" : "$N掌指齊出，拍拿並施，拿向$n的三路要害",
         "dodge" : 90,
         "damage": 100,
         "lvl" : 10,
-        "skill_name" : "云深雾泽",
-        "damage_type" : "瘀伤"
+        "skill_name" : "雲深霧澤",
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N运气狂哮，四面八方出现无数掌影，一掌突出，夹着雷霆万钧之式拍向$n",
+([      "action" : "$N運氣狂哮，四面八方出現無數掌影，一掌突出，夾著雷霆萬鈞之式拍向$n",
         "dodge" : 120,
         "damage": 150,
         "lvl" : 80,
-        "skill_name" : "漫天云雾",
-        "damage_type" : "瘀伤"
+        "skill_name" : "漫天雲霧",
+        "damage_type" : "瘀傷"
 ]),
 });
 
 string *parry_msg = ({
-        "$N一招击在$n身上，却被$n随手破去。\n",
-        "$n轻轻一带，$N发现自己招数尽数落空。\n",
-        "$n左牵右引，$N如身处漩流，连续转了好几个圈。\n",
-        "$n轻轻一转，$N一招击在地上，只打得尘土飞扬。\n",
+        "$N一招擊在$n身上，卻被$n隨手破去。\n",
+        "$n輕輕一帶，$N發現自己招數盡數落空。\n",
+        "$n左牽右引，$N如身處漩流，連續轉了好幾個圈。\n",
+        "$n輕輕一轉，$N一招擊在地上，只打得塵土飛揚。\n",
 });
 int valid_enable(string usage)
 {
@@ -56,11 +56,11 @@ string query_parry_msg(string limb)
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练拨云锁雾必需空手。\n");
+                return notify_fail("練撥雲鎖霧必需空手。\n");
         if ((int)me->query_skill("biyun-xinfa", 1) < 10)
-                return notify_fail("你的碧云心法火候不够，无法学拨云锁雾。\n");
+                return notify_fail("你的碧雲心法火候不夠，無法學撥雲鎖霧。\n");
         if( query("max_neili", me)<100 )
-                return notify_fail("你的内力太弱，无法练拨云锁雾。\n");
+                return notify_fail("你的內力太弱，無法練撥雲鎖霧。\n");
         return 1;
 }
 
@@ -87,16 +87,16 @@ mapping query_action(object me, object weapon)
         for(i = ttl; i > 0; i--)
                 if(lvl > action[i-1]["lvl"])
                 {
-                        seq = i; /* 获得招数序号上限 */
+                        seq = i; /* 獲得招數序號上限 */
                         break;
                 }
-        seq = random(seq);       /* 选择出手招数序号 */
+        seq = random(seq);       /* 選擇出手招數序號 */
         return ([
                 "action"      : action[seq]["action"],
                 "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
                 "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
                 "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
-                "damage_type" : random(2) ? "内伤" : "瘀伤",
+                "damage_type" : random(2) ? "內傷" : "瘀傷",
         ]);
 }
 
@@ -109,9 +109,9 @@ int power_point(object me) { return 1.0; }
 int practice_skill(object me)
 {
         if( query("qi", me)<30 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
         if( query("neili", me)<100 )
-                return notify_fail("你的内力不够练拨云锁雾。\n");
+                return notify_fail("你的內力不夠練撥雲鎖霧。\n");
         me->receive_damage("qi", 25);
         return 1;
 }

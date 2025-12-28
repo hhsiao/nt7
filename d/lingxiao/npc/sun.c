@@ -4,9 +4,9 @@ inherit NPC;
 
 void create()
 {
-        set_name("孙万年", ({"sun wannian", "sun", "wannian"}));
-        set("long", "他是凌宵城第六代弟子孙万年，生得獐头鼠目。\n"
-                    "因为品行不端，被关在这里思过。\n");
+        set_name("孫萬年", ({"sun wannian", "sun", "wannian"}));
+        set("long", "他是凌宵城第六代弟子孫萬年，生得獐頭鼠目。\n"
+                    "因為品行不端，被關在這裡思過。\n");
         set("age", 24);
         set("attitude", "peaceful");
 
@@ -63,5 +63,5 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        command("say 拜你奶奶的雄，没看见老子被关在这里的吗？");
+        command("say 拜你奶奶的雄，沒看見老子被關在這裡的嗎？");
 }

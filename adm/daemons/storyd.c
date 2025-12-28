@@ -29,10 +29,10 @@ string query_save_file()
 void create()
 {
         seteuid(ROOT_UID);
-        set("channel_id", "故事精灵");
-        CHANNEL_D->do_channel( this_object(), "sys", "故事系统已经启动。");
+        set("channel_id", "故事精靈");
+        CHANNEL_D->do_channel( this_object(), "sys", "故事系統已經啟動。");
 
-        // 恢复故事发生状况
+        // 恢復故事發生狀況
         restore();
 
         if (! arrayp(story_name))
@@ -52,7 +52,7 @@ int query_next_update()
 
 void init_story()
 {
-        CHANNEL_D->do_channel(this_object(), "sys", "故事系统更新所有故事。");
+        CHANNEL_D->do_channel(this_object(), "sys", "故事系統更新所有故事。");
         story_name = get_dir(STORY_DIR + "*.c");
         story_name = map_array(story_name, (: $1[0..<3] :));
 
@@ -63,7 +63,7 @@ private void ready_to_start()
 {
         int dp;
 
-        // 保存当前故事状况
+        // 保存當前故事狀況
         save();
 
         if ((dp = time() - last_update) >= REFRESH_INTERVAL)
@@ -104,11 +104,11 @@ varargs void start_story(string sname)
 
         /*
         if (VERSION_D->is_boot_synchronizing())
-                // 正在启动中同步版本？那么不启动任何故事
+                // 正在啟動中同步版本？那麼不啟動任何故事
                 return;
         */
 
-        CHANNEL_D->do_channel(this_object(), "sys", "故事系统开始选择故事。");
+        CHANNEL_D->do_channel(this_object(), "sys", "故事系統開始選擇故事。");
 
         if (sname)
                 all_story = explode(sname, ",");
@@ -124,7 +124,7 @@ varargs void start_story(string sname)
                         history[name] = (int)time();
 
                 CHANNEL_D->do_channel(this_object(), "sys",
-                                      "故事系统选择了故事(" + name + ")。");
+                                      "故事系統選擇了故事(" + name + ")。");
 
                 all_story -= ({ name });
                 if (ob = find_object(STORY_DIR + name))
@@ -215,13 +215,13 @@ void give_gift(string gift, int amount, string msg)
 
         if (sizeof(ips) >= 1)
         {
-                // 需要三个以上的IP登录才给与奖品
+                // 需要三個以上的IP登錄才給與獎品
 
-                // 随即抽一个IP
+                // 隨即抽一個IP
                 ks = keys(ips);
                 ip = ks[random(sizeof(ks))];
 
-                // 在该IP地址上随即抽取一个玩家
+                // 在該IP地址上隨即抽取一個玩家
                 pob = ips[ip][random(sizeof(ips[ip]))];
 
                 env = environment(pob);
@@ -239,7 +239,7 @@ void give_gift(string gift, int amount, string msg)
                         ob->move(env);
                 }
                 CHANNEL_D->do_channel( this_object(),
-                        "sys", sprintf(NOR WHT "赠品%s" NOR WHT "掉到了"
+                        "sys", sprintf(NOR WHT "贈品%s" NOR WHT "掉到了"
                                 HIC "%s" NOR WHT "(%O" NOR WHT ")。" NOR,
                                 ob->name(), env->short(), env));
         }
@@ -255,9 +255,9 @@ string query_info()
 
         dp = REFRESH_INTERVAL - dp;
         if (dp < 0)
-                msg = "故事精灵马上刷新所有故事。\n";
+                msg = "故事精靈馬上刷新所有故事。\n";
         else
-                msg = "故事精灵将在" + appromix_time(dp) + "后刷新所有故事。\n";
+                msg = "故事精靈將在" + appromix_time(dp) + "後刷新所有故事。\n";
 
         return msg;
 }

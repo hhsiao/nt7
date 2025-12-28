@@ -24,7 +24,7 @@ string get_book()
 {
         if(objectp(book)) destruct(book);
         if(objectp(book_owner) && userp(book_owner)) book_owner->unconcious();
-        return book_owner_name + "飞身去抓九阴真经~";
+        return book_owner_name + "飛身去抓九陰真經~";
 }
 
 int do_rumor(string arg)
@@ -33,25 +33,25 @@ int do_rumor(string arg)
         return 1;
 }
 nosave mixed *story = ({
-        "陈玄风：你这两天怎么不好好练九阴白骨爪了？",
-        "梅超风：你还说...你还说...你不爱我了！",
-        "梅超风：你不知道，现在流行美甲?人家小姐说我的指甲成色不好,都是白骨爪练的。",
-        "陈玄风：......",
-        "陈玄风：那...那本真经呢？",
-        "梅超风：我想想...哦上次做头发的时候，随便翻翻，忘记拿回来了。",
-        "陈玄风口吐白沫，昏了过去。（臭婆娘....败家子....）",
-        (: do_rumor, "\"铜尸\" 陈玄风重出江湖..." :),
-        book_owner_name + "，悬崖边。",
-        book_owner_name + "：逃到这应该找不到我了吧！！抓紧时间练功！",
-        book_owner_name + "：恩，九阴真经果然厉害，可惜只有下本.......",
-        "陈玄风：哼哼.........",
+        "陳玄風：你這兩天怎麼不好好練九陰白骨爪了？",
+        "梅超風：你還說...你還說...你不愛我了！",
+        "梅超風：你不知道，現在流行美甲?人家小姐說我的指甲成色不好,都是白骨爪練的。",
+        "陳玄風：......",
+        "陳玄風：那...那本真經呢？",
+        "梅超風：我想想...哦上次做頭髮的時候，隨便翻翻，忘記拿回來了。",
+        "陳玄風口吐白沫，昏了過去。（臭婆娘....敗家子....）",
+        (: do_rumor, "\"銅屍\" 陳玄風重出江湖..." :),
+        book_owner_name + "，懸崖邊。",
+        book_owner_name + "：逃到這應該找不到我了吧！！抓緊時間練功！",
+        book_owner_name + "：恩，九陰真經果然厲害，可惜只有下本.......",
+        "陳玄風：哼哼.........",
         book_owner_name + "：哇！鬼呀！！！",
-        "陈玄风，" + book_owner_name + "：啊！九阴真经啊！！！！",
+        "陳玄風，" + book_owner_name + "：啊！九陰真經啊！！！！",
         (: get_book :),
-        (: do_rumor, book_owner_name + "为了九阴真经不慎跌下悬崖，摔晕了。" :),
+        (: do_rumor, book_owner_name + "為了九陰真經不慎跌下懸崖，摔暈了。" :),
 });
 
-string prompt() { return HIW "【武林轶事】" NOR; }
+string prompt() { return HIW "【武林軼事】" NOR; }
 
 mixed query_story_message(int step)
 {

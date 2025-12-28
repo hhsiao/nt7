@@ -8,12 +8,12 @@ inherit NPC;
 
 void create()
 {
-        set_name(NOR + YEL "神雕" NOR, ({ "shen diao", "shen", "diao" }) );
-        set("title", HIG "独孤无畏" NOR);
+        set_name(NOR + YEL "神鵰" NOR, ({ "shen diao", "shen", "diao" }) );
+        set("title", HIG "獨孤無畏" NOR);
         set("gender", "男性");
         set("age", 120);
-        set("long", HIY "这是独孤求败生前所养大雕，后来被「神雕大侠」杨过收养。\n"
-                        "此雕天神神力，常人难敌。\n" NOR);
+        set("long", HIY "這是獨孤求敗生前所養大雕，後來被「神鵰大俠」楊過收養。\n"
+                        "此雕天神神力，常人難敵。\n" NOR);
 
         set("combat_exp", 90000000);
         set("attitude", "heroism");
@@ -132,7 +132,7 @@ int receive_damage(string type, int damage, object who)
         if (! objectp(who))return 1;
         
 /*
-        // 转世后无效
+        // 轉世後無效
         if( query("reborn/times", who) )
         {
                 return 1;
@@ -140,11 +140,11 @@ int receive_damage(string type, int damage, object who)
 */
         
         
-        // 强行关闭战斗信息
+        // 強行關閉戰鬥信息
         set("env/combatd", 4,   who);
 
-        // 帝王符图
-        // 编号39-42
+        // 帝王符圖
+        // 編號39-42
         if( MEMBER_D->is_valid_member(who) && query("quest_tuteng/start", who) ) 
         {
                 int n_tt;
@@ -156,20 +156,20 @@ int receive_damage(string type, int damage, object who)
                         ob_tt = new("/clone/tuteng/diwang-suipian" + sprintf("%d", n_tt));
                         if (ob_tt)
                         {
-                                write(HIG "你获得了一张帝王符图碎片。\n" NOR);
+                                write(HIG "你獲得了一張帝王符圖碎片。\n" NOR);
                                 ob_tt->move(who, 1);
                         }
                 }
         }
                 
-        // 五十万经验到八十万经验以下可增加经验和QN
-        // 随机获得一些物品
+        // 五十萬經驗到八十萬經驗以下可增加經驗和QN
+        // 隨機獲得一些物品
         if( query("combat_exp", who) >= 500000 && query("combat_exp", who) <= 100000000 )
         {
                 if( MEMBER_D->is_valid_member(who) )
                 {                       
                         who->add("combat_exp", 600+random(800));
-                        // 限制POT上限2000万
+                        // 限制POT上限2000萬
                         if( query("potential", who)-query("learned_points", who)<200000000 )
                         {
                                 addn("potential", 300+random(400), who);
@@ -192,7 +192,7 @@ int receive_damage(string type, int damage, object who)
                         }
                 }               
 
-                // 获得钱
+                // 獲得錢
                 if (random(1000) == 1)money = "gold";
                 else if (random(400) == 1)money = "silver";
                 else if (random(50) == 1)money = "coin";
@@ -204,10 +204,10 @@ int receive_damage(string type, int damage, object who)
                                 if( money == "silver")addn("balance", 15000, who);
                                 if( money == "coin")addn("balance", 400, who);
 
-                                tell_object(who, HIG "你从神雕身上获得了一些金钱。\n"NOR);
+                                tell_object(who, HIG "你從神鵰身上獲得了一些金錢。\n"NOR);
                         }                                               
                 }
-                // 随机获得物品
+                // 隨機獲得物品
                 if (random(10000) == 1 && random(3) == 1)
                 {
                         ob = new(gift[random(sizeof(gift))]);
@@ -215,7 +215,7 @@ int receive_damage(string type, int damage, object who)
                         if (objectp(ob))
                         {
                                 ob->move(who, 1);
-                                tell_object(who,HIR"你从神雕身上获得了一"+query("base_unit", ob)+ob->name()+"。\n"NOR);                         
+                                tell_object(who,HIR"你從神鵰身上獲得了一"+query("base_unit", ob)+ob->name()+"。\n"NOR);                         
                         }
                 }
                 if (random(100000) == 1 && random(3) == 1)
@@ -225,7 +225,7 @@ int receive_damage(string type, int damage, object who)
                         if (objectp(weapon))
                         {
                                 weapon->move(who, 1);
-                                tell_object(who,HIR"你从神雕身上获得了一"+query("base_unit", weapon)+weapon->name()+"。\n"NOR);                         
+                                tell_object(who,HIR"你從神鵰身上獲得了一"+query("base_unit", weapon)+weapon->name()+"。\n"NOR);                         
                         }
                 }
                 if (random(300000) == 1 && random(3) == 1)
@@ -235,7 +235,7 @@ int receive_damage(string type, int damage, object who)
                         if (objectp(armor))
                         {
                                 armor->move(who, 1);
-                                tell_object(who,HIR"你从神雕身上获得了一"+query("base_unit", armor)+armor->name()+"。\n"NOR);                           
+                                tell_object(who,HIR"你從神鵰身上獲得了一"+query("base_unit", armor)+armor->name()+"。\n"NOR);                           
                         }
                 }
                 if (random(500000) == 1 && random(4) == 1)
@@ -245,15 +245,15 @@ int receive_damage(string type, int damage, object who)
                         if (objectp(armor2))
                         {
                                 armor2->move(who, 1);
-                                tell_object(who,HIR"你从神雕身上获得了一"+query("base_unit", armor2)+armor2->name()+"。\n"NOR);                         
+                                tell_object(who,HIR"你從神鵰身上獲得了一"+query("base_unit", armor2)+armor2->name()+"。\n"NOR);                         
                         }
                 }
         }       
 
-        // 经验不符合要求也可获得奖励，但几率更低
+        // 經驗不符合要求也可獲得獎勵，但幾率更低
         else
         {
-                // 获得钱
+                // 獲得錢
                 if (random(500) == 1)money = "gold";
                 else if (random(200) == 1)money = "silver";
                 else if (random(50) == 1)money = "coin";
@@ -265,11 +265,11 @@ int receive_damage(string type, int damage, object who)
                                 if( money == "silver")addn("balance", 15000, who);
                                 if( money == "coin")addn("balance", 400, who);
 
-                                tell_object(who, HIG "你从神雕身上获得了一些金钱。\n"NOR);
+                                tell_object(who, HIG "你從神鵰身上獲得了一些金錢。\n"NOR);
                         }                                               
                 }
 
-                // 随机获得物品
+                // 隨機獲得物品
                 if (random(10000) == 1 && random(3) == 1)
                 {
                         ob = new(gift[random(sizeof(gift))]);
@@ -277,7 +277,7 @@ int receive_damage(string type, int damage, object who)
                         if (objectp(ob))
                         {
                                 ob->move(who, 1);
-                                tell_object(who,HIR"你从神雕身上获得了一"+query("base_unit", ob)+ob->name()+"。\n"NOR);                         
+                                tell_object(who,HIR"你從神鵰身上獲得了一"+query("base_unit", ob)+ob->name()+"。\n"NOR);                         
                         }
                 }
                 if (random(600000) == 1 && random(4) == 1)
@@ -287,7 +287,7 @@ int receive_damage(string type, int damage, object who)
                         if (objectp(weapon))
                         {
                                 weapon->move(who, 1);
-                                tell_object(who,HIR"你从神雕身上获得了一"+query("base_unit", weapon)+weapon->name()+"。\n"NOR); 
+                                tell_object(who,HIR"你從神鵰身上獲得了一"+query("base_unit", weapon)+weapon->name()+"。\n"NOR); 
                         }
                 }
                 if (random(800000) == 1 && random(5) == 1)
@@ -297,7 +297,7 @@ int receive_damage(string type, int damage, object who)
                         if (objectp(armor))
                         {
                                 armor->move(who, 1);
-                                tell_object(who,HIR"你从神雕身上获得了一"+query("base_unit", armor)+armor->name()+"。\n"NOR);            
+                                tell_object(who,HIR"你從神鵰身上獲得了一"+query("base_unit", armor)+armor->name()+"。\n"NOR);            
                         }
                 }
                 if (random(1000000) == 1 && random(8) == 1)
@@ -307,7 +307,7 @@ int receive_damage(string type, int damage, object who)
                         if (objectp(armor2))
                         {
                                 armor2->move(who, 1);
-                                tell_object(who,HIR"你从神雕身上获得了一"+query("base_unit", armor2)+armor2->name()+"。\n"NOR);   
+                                tell_object(who,HIR"你從神鵰身上獲得了一"+query("base_unit", armor2)+armor2->name()+"。\n"NOR);   
                         }
                 }       
         }

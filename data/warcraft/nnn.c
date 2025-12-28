@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[30m记录点[2;37;0m[2;37;0m", ({"teak_save"}));        
+        set_name("[30m記錄點[2;37;0m[2;37;0m", ({"teak_save"}));        
         set("gender", "男性");                
-        set("long", "$BLK$记录点[2;37;0m
-它是影邪的魔幻兽。
+        set("long", "$BLK$記錄點[2;37;0m
+它是影邪的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

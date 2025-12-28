@@ -1,4 +1,4 @@
-//开始阅读文件：/kungfu/class/misc/houwang.c
+//開始閱讀文件：/kungfu/class/misc/houwang.c
 //redl 2015/5
 #include <ansi.h>
 inherit NPC;
@@ -42,10 +42,10 @@ int random_move()
                 command("go " + direction);
                 if (!list || !sizeof(list)) {
                         list = ({env->short()});
-                                CHANNEL_D->channel_broadcast("rumor", "据传老子的追随者们已经离开了" + env->short() + "。");
+                                CHANNEL_D->channel_broadcast("rumor", "據傳老子的追隨者們已經離開了" + env->short() + "。");
                 } else if (member_array(env->short(), list)==-1) {
                         list += ({env->short()});
-                                CHANNEL_D->channel_broadcast("rumor", "据传老子的追随者们已经离开了" + env->short() + "。");
+                                CHANNEL_D->channel_broadcast("rumor", "據傳老子的追隨者們已經離開了" + env->short() + "。");
                 }
                 set("slots", list);
         }
@@ -57,10 +57,10 @@ int random_move()
 void create()
 {
         set_name(HIG "大青牛" NOR, ({ "qing niu", "qing", "niu" }));
-        set("title", CYN "圣人坐骑" NOR);
-        set("race", "野兽");
+        set("title", CYN "聖人坐騎" NOR);
+        set("race", "野獸");
         set("age", 48);
-        set("long", "这是一只野蛮的畜生，四蹄健壮牛角狰狞。\n");
+        set("long", "這是一隻野蠻的畜生，四蹄健壯牛角猙獰。\n");
         set("rank_info/rude", "畜生");
         set("rank_info/respect", "老牛");
         set("combat_exp", 5000000000);
@@ -106,7 +106,7 @@ int receive_damage(string type, int n, object who)
                         unit = query("base_unit", ob);
                         if (!unit) unit = query("unit", ob);
                         ob->move(who, 1);
-                        tell_object(who, HIW "你从" + name() + NOR + HIW + "身上敲下了一" + unit + ob->name() + "。\n" NOR);                            
+                        tell_object(who, HIW "你從" + name() + NOR + HIW + "身上敲下了一" + unit + ob->name() + "。\n" NOR);                            
                 }
         }
         addn("shadow_hp", -n);
@@ -160,10 +160,10 @@ void die(object killer)
         enemy = query("killer");                        
                 if (objectp(enemy) && 
                         environment(this_object()) == environment(enemy)) {
-                        message_vision(HIW "\n$N" HIW "抓住牛角，跳上牛背冲着$n" HIW "的脑门一巴掌，干掉了$n" HIW "。\n\n" NOR, enemy, this_object());
+                        message_vision(HIW "\n$N" HIW "抓住牛角，跳上牛背衝著$n" HIW "的腦門一巴掌，幹掉了$n" HIW "。\n\n" NOR, enemy, this_object());
                         radd = 10000 + random(query("level", enemy) * query("level", enemy));
                         addn("drug_addjingli", radd, enemy);
-                tell_object(enemy, HIC "你翻阅" HIY "《太上灵宝老子化胡妙经》" HIC "，精力上限额外增加" HIY + chinese_number(radd) + HIC "点。\n" NOR);
+                tell_object(enemy, HIC "你翻閱" HIY "《太上靈寶老子化胡妙經》" HIC "，精力上限額外增加" HIY + chinese_number(radd) + HIC "點。\n" NOR);
                         return ::die(enemy);
                 }
                 

@@ -5,8 +5,8 @@ inherit NPC;
 void create()
 {
         set_name("日月弟子", ({ "riyue dizi", "riyue", "dizi" }));
-        set("title", HIG "青龙堂" NOR);
-        set("long", "这是日月神教青龙堂下的弟子，他警惕地巡视着四周的情形。\n");
+        set("title", HIG "青龍堂" NOR);
+        set("long", "這是日月神教青龍堂下的弟子，他警惕地巡視著四周的情形。\n");
         set("gender", "男性");
         set("attitude", "peaceful");
 
@@ -54,5 +54,5 @@ void greeting(object ob)
 {
         if (! ob || environment(ob) != environment()) return;
 
-        say(CYN "日月弟子高声呼喊道：日月神教，文成武德。千秋万载，一统江湖。\n" NOR);
+        say(CYN "日月弟子高聲呼喊道：日月神教，文成武德。千秋萬載，一統江湖。\n" NOR);
 }

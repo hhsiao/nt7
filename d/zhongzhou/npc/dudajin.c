@@ -3,10 +3,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("都大锦", ({ "du dajin", "du", "dajin"}) );
+        set_name("都大錦", ({ "du dajin", "du", "dajin"}) );
         set("nickname", YEL "多臂熊" NOR );
-        set("title", "龙门镖局总镖头");
-        set("long", "这便是龙门镖局的总镖头都大锦，乃是少林寺俗家弟子。\n");
+        set("title", "龍門鏢局總鏢頭");
+        set("long", "這便是龍門鏢局的總鏢頭都大錦，乃是少林寺俗家弟子。\n");
         set("shen_type", 1);
         set("gender", "男性" );
         set("attitude", "friendly");

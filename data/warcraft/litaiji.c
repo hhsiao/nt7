@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("小猪[2;37;0m[2;37;0m", ({"qilin"}));        
+        set_name("小豬[2;37;0m[2;37;0m", ({"qilin"}));        
         set("gender", "男性");                
-        set("long", "小猪[2;37;0m
-它是李百的魔幻兽。
+        set("long", "小豬[2;37;0m
+它是李百的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

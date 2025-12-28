@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// ma.c 马大元
+// ma.c 馬大元
 
 #include <ansi.h>
 #include "gaibang.h"
@@ -12,13 +12,13 @@ mixed ask_skill1();
 
 void create()
 {
-        set_name("马大元", ({ "ma dayuan", "ma", "dayuan" }));
+        set_name("馬大元", ({ "ma dayuan", "ma", "dayuan" }));
         set("long", @LONG
-这是一个四十多岁的精壮汉子，身材魁梧，双
-目如电。此人就是丐帮副帮主马大元。
+這是一個四十多歲的精壯漢子，身材魁梧，雙
+目如電。此人就是丐幫副幫主馬大元。
 LONG);
-        set("nickname", CYN "铁爪锁喉" NOR);
-        set("title", "丐帮副帮主");
+        set("nickname", CYN "鐵爪鎖喉" NOR);
+        set("title", "丐幫副幫主");
         set("gender", "男性");
         set("age", 48);
         set("attitude", "peaceful");
@@ -62,9 +62,9 @@ LONG);
         set_skill("martial-cognize", 240);
 
         set("no_teach", ([
-                "dagou-bang"    : "打狗棒法向来只有继位帮主能够学"
-                                  "习，要学去找帮主。",
-                "dragon-strike" : "降龙十八掌向来只有和帮主学习。",
+                "dagou-bang"    : "打狗棒法向來只有繼位幫主能夠學"
+                                  "習，要學去找幫主。",
+                "dragon-strike" : "降龍十八掌向來只有和幫主學習。",
         ]));
 
         map_skill("force", "huntian-qigong");
@@ -77,10 +77,10 @@ LONG);
 
         prepare_skill("claw", "suohou-gong");
 
-        create_family("丐帮", 18, "副帮主");
+        create_family("丐幫", 18, "副幫主");
 
         set("inquiry", ([
-                "铁爪锁喉" : (: ask_skill1 :),
+                "鐵爪鎖喉" : (: ask_skill1 :),
         ]));
 
         set("chat_chance_combat", 120);
@@ -110,35 +110,35 @@ void attempt_apprentice(object ob)
 
         if( query("combat_exp", ob)<200000 )
         {
-                command("say 你的江湖经验不够，还是先向各位长老学习吧。");
+                command("say 你的江湖經驗不夠，還是先向各位長老學習吧。");
                 return;
         }
 
         if( query("shen", ob)<30000 )
         {
-                command("say 你身为丐帮弟子，竟然不做好事？");
+                command("say 你身為丐幫弟子，竟然不做好事？");
                 return;
         }
 
         if( query("family/beggarlvl", ob)<5 )
         {
-                command("say 你在本帮的地位太低，还是先向各位长老学习吧。");
+                command("say 你在本幫的地位太低，還是先向各位長老學習吧。");
                 return;
         }
 
         if ((int)ob->query_str() < 26)
         {
-                command("say 我的武艺以刚猛为主，你膂力不行，还是算了吧。");
+                command("say 我的武藝以剛猛為主，你膂力不行，還是算了吧。");
                 return;
         }
 
         if (ob->query_skill("force") < 150)
         {
-                command("say 你的内功火候还不够，还是先向各位长老学习吧。");
+                command("say 你的內功火候還不夠，還是先向各位長老學習吧。");
                 return;
         }
         command("nod");
-        command("say 我今日便收你为徒，倘若勤恳努力，将来必有一番作为。");
+        command("say 我今日便收你為徒，倘若勤懇努力，將來必有一番作為。");
         command("recruit "+query("id", ob));
 
         if( query("class", ob) != "beggar" )
@@ -157,31 +157,31 @@ mixed ask_skill1()
         me = this_player();
 
         if( query("can_perform/suohou-gong/suo", me) )
-                return "自己下去练习，别老是纠缠不休。";
+                return "自己下去練習，別老是糾纏不休。";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "那是江湖上朋友送的外号，你问这个干嘛？";
+                return "那是江湖上朋友送的外號，你問這個幹嘛？";
 
         if (me->query_skill("suohou-gong", 1) < 1)
-                return "你学过锁喉功吗？不学哪来绝招。";
+                return "你學過鎖喉功嗎？不學哪來絕招。";
 
         if( query("family/gongji", me)<400 )
-                return "你在丐帮内甚无作为，这招我暂时还不能传你。";
+                return "你在丐幫內甚無作為，這招我暫時還不能傳你。";
 
         if( query("shen", me)<20000 )
-                return "你侠义正事做得不够，这招我暂时还不能传你。";
+                return "你俠義正事做得不夠，這招我暫時還不能傳你。";
 
         if (me->query_skill("suohou-gong", 1) < 150)
-                return "你的锁喉功还不到家，要多练练。";
+                return "你的鎖喉功還不到家，要多練練。";
 
-        message_sort(HIY "\n$n" HIY "笑了笑，将$N" HIY "招至身旁，轻"
-                     "声在$N" HIY "耳边低声吩咐了几句，不时还握拳成爪"
-                     "比划演示，全是锁喉功绝招的精微要诣，$N" HIY "一"
-                     "边听一边不住地点头。\n\n" NOR, me, this_object());
+        message_sort(HIY "\n$n" HIY "笑了笑，將$N" HIY "招至身旁，輕"
+                     "聲在$N" HIY "耳邊低聲吩咐了幾句，不時還握拳成爪"
+                     "比劃演示，全是鎖喉功絕招的精微要詣，$N" HIY "一"
+                     "邊聽一邊不住地點頭。\n\n" NOR, me, this_object());
 
         command("nod");
-        command("say 这便是锁喉功的要诣所在，可记清楚了？");
-        tell_object(me, HIC "你学会了「铁爪锁喉」。\n" NOR);
+        command("say 這便是鎖喉功的要詣所在，可記清楚了？");
+        tell_object(me, HIC "你學會了「鐵爪鎖喉」。\n" NOR);
 
         if (me->can_improve_skill("claw"))
                 me->improve_skill("claw", 1500000);

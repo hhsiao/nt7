@@ -8,7 +8,7 @@ void create()
         set("title", "女易牙");
         set("gender", "女性" );
         set("age", 36);
-        set("long", "一个白皙丰满的中年妇人。\n");
+        set("long", "一個白皙豐滿的中年婦人。\n");
         set("combat_exp", 2000);
         set("attitude", "friendly");
         setup();
@@ -24,17 +24,17 @@ void init()
 int do_yao(string arg)
 {
         object m,mm;
-        message_vision("$N向田嫂问道：大嫂，开饭了吗？\n", this_player());
+        message_vision("$N向田嫂問道：大嫂，開飯了嗎？\n", this_player());
 
         if( query("food", this_player()) >= 
            (int)this_player()->max_food_capacity()*90/100 )
-                return notify_fail("田嫂笑道：没那，等开饭时再来吧！\n");
+                return notify_fail("田嫂笑道：沒那，等開飯時再來吧！\n");
 
         if((present("baozi", this_player())))
-        return notify_fail("田嫂笑道：不要拿着手里的，还看着锅里的！\n");
+        return notify_fail("田嫂笑道：不要拿著手裡的，還看著鍋裡的！\n");
         
         if ( present("baozi", environment()) )
-                return notify_fail("田嫂笑道：那不是有一块呢嘛，吃完再说！\n");
+                return notify_fail("田嫂笑道：那不是有一塊呢嘛，吃完再說！\n");
 
         m=new(__DIR__"obj/baozi2");
         mm=new(__DIR__"obj/baozi2");
@@ -43,6 +43,6 @@ int do_yao(string arg)
         m->move(this_player());
         mm->move(this_player());
 
-        message_vision("田嫂对$N笑道：饿了吧，慢点吃。\n", this_player());
+        message_vision("田嫂對$N笑道：餓了吧，慢點吃。\n", this_player());
                 return 1;
 }

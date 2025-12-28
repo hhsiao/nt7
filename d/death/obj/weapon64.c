@@ -13,8 +13,8 @@ void create()
                 set("unit", "柄");
                 set("value", 3600000);
                 set("material", "steel");
-                set("long", HIW "\n太阿乃九穹七狱神兵之一。\n" NOR);
-                set("wield_msg", HIR "$N轻轻抖出$n" HIR "，刹时雷声轰鸣，一股杀气直聂九霄。\n" );
+                set("long", HIW "\n太阿乃九穹七獄神兵之一。\n" NOR);
+                set("wield_msg", HIR "$N輕輕抖出$n" HIR "，剎時雷聲轟鳴，一股殺氣直聶九霄。\n" );
         }
         init_sword(190);
         setup();

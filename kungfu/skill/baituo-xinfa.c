@@ -12,5 +12,5 @@ int valid_learn(object me)
 
 int practice_skill(object me)
 {
-    return notify_fail("白驼心法只能用学(learn)的来增加熟练度。\n");
+    return notify_fail("白駝心法只能用學(learn)的來增加熟練度。\n");
 }

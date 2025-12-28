@@ -1,5 +1,5 @@
 // fight.h
-// 丐帮升袋
+// 丐幫升袋
 
 int accept_object(object ob, object obj)
 {
@@ -14,25 +14,25 @@ int accept_object(object ob, object obj)
 
         if( query("id", obj) != "qingzhu ling" )
         {
-                command("say 啥玩艺？还是自个留着吧。");
+                command("say 啥玩藝？還是自個留著吧。");
                 return 0;
         }
 
-        if (! ob_fam || ob_fam["family_name"] != "丐帮")
+        if (! ob_fam || ob_fam["family_name"] != "丐幫")
         {
-                command("say 你是从哪里搞来的青竹令？");
+                command("say 你是從哪裡搞來的青竹令？");
                 return 0;
         }
 
         if( query("combat_exp", ob)<10000 )
         {
-                command("say 你这种水平简长老怎么会给你青竹令？");
+                command("say 你這種水平簡長老怎麼會給你青竹令？");
                 return 0;
         }
 
         if( query_temp("have_cloth", ob) && present("po bu",ob) )
         {
-                command("say 你不是已经有破布么？回去找简长老吧。");
+                command("say 你不是已經有破布麼？回去找簡長老吧。");
                 return 0;
         }
 
@@ -53,37 +53,37 @@ int accept_object(object ob, object obj)
             || (query("family/beggarlvl", ob) >= 7
             && query("combat_exp", ob) <= 800000) )
         {
-             command("say 就你那点脓水？我看就算了吧。");
+             command("say 就你那點膿水？我看就算了吧。");
              return 0;
         }
 
         if( (query("family/beggarlvl", ob) == 0
-            && query("title", me) == "丐帮一袋弟子" )
+            && query("title", me) == "丐幫一袋弟子" )
             || (query("family/beggarlvl", ob) == 1
-            && query("title", me) == "丐帮二袋弟子" )
+            && query("title", me) == "丐幫二袋弟子" )
             || (query("family/beggarlvl", ob) == 2
-            && query("title", me) == "丐帮三袋弟子" )
+            && query("title", me) == "丐幫三袋弟子" )
             || (query("family/beggarlvl", ob) == 3
-            && query("title", me) == "丐帮四袋弟子" )
+            && query("title", me) == "丐幫四袋弟子" )
             || (query("family/beggarlvl", ob) == 4
-            && query("title", me) == "丐帮五袋弟子" )
+            && query("title", me) == "丐幫五袋弟子" )
             || (query("family/beggarlvl", ob) == 5
-            && query("title", me) == "丐帮六袋弟子" )
+            && query("title", me) == "丐幫六袋弟子" )
             || (query("family/beggarlvl", ob) == 6
-            && query("title", me) == "丐帮七袋弟子" )
+            && query("title", me) == "丐幫七袋弟子" )
             || (query("family/beggarlvl", ob) == 7
-            && query("title", me) == "丐帮八袋弟子" )
+            && query("title", me) == "丐幫八袋弟子" )
             || (query("family/beggarlvl", ob) == 8
-            && query("title", me) == "丐帮九袋长老") )
+            && query("title", me) == "丐幫九袋長老") )
         {
                 set_temp("fight_ok",query("id",  me), ob);
-                command("say 好吧。既然已有青竹令，那就看你的运气了。");
+                command("say 好吧。既然已有青竹令，那就看你的運氣了。");
                 destruct(obj);
                 return 1;
         }
 
         command("hmm");
-        command("say 你到底懂不懂我们丐帮升袋的规矩？");
+        command("say 你到底懂不懂我們丐幫升袋的規矩？");
         return 0;
 }
 
@@ -94,7 +94,7 @@ int accept_fight(object ob)
 
         if (is_fighting())
         {
-                command("say 你等会，让我把面前的这个家伙放倒再说。");
+                command("say 你等會，讓我把面前的這個傢伙放倒再說。");
                 return 0;
         }
 
@@ -102,26 +102,26 @@ int accept_fight(object ob)
            || query("jing") < query("eff_jing") * 2 / 3
            || query("neili") < query("max_neili") * 2 / 3)
         {
-                command("say 我现在有点疲倦，待我歇会儿再说。");
+                command("say 我現在有點疲倦，待我歇會兒再說。");
                 return 0;
         }
 
         if( query("family/family_name", ob) != query("family/family_name") )
         {
-                command("say 免了，我可没兴趣和你动手。");
+                command("say 免了，我可沒興趣和你動手。");
                 return 0;
         }
 
         if( query_temp("fight_ok", ob) != query("id") )
         {
-                command("say 你去向简长老要了青竹令再来找我。");
+                command("say 你去向簡長老要了青竹令再來找我。");
                 return 0;
         }
 
         delete_temp("fight_ok", ob);
 
         command("nod");
-        command("say 就让我试一试你的身手，看看你究竟有啥水平？");
+        command("say 就讓我試一試你的身手，看看你究竟有啥水平？");
         competition_with(ob);
         return 1;
 }
@@ -139,7 +139,7 @@ void lost()
         set("from", this_object()->name(1), ob);
         ob->move(this_object());
 
-        command("say 厉害，厉害。既然你胜过了我，这块破布就拿去吧。");
+        command("say 厲害，厲害。既然你勝過了我，這塊破布就拿去吧。");
         command("give po bu to "+query("id", me));
         ::lost();
 }
@@ -153,6 +153,6 @@ void win()
                 command("heihei");
                 return;
         }
-        command("say 就你这点水平也想升袋？下去练练再来吧。");
+        command("say 就你這點水平也想升袋？下去練練再來吧。");
         ::win();
 }

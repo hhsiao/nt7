@@ -9,11 +9,11 @@ int query_autoload() { return 1; }
 
 void create()
 {
-        set_name(YEL "灭下家的钥匙" NOR, ({ "key", "1 of sky" }));
+        set_name(YEL "滅下家的鑰匙" NOR, ({ "key", "1 of sky" }));
         set_weight(10);
         set("long", @LONG
-一把用来开启海南岛(sky)的钥匙。
-这是原配钥匙。
+一把用來開啟海南島(sky)的鑰匙。
+這是原配鑰匙。
 LONG );
         set("unit", "把");
         set("no_pawn", 1);

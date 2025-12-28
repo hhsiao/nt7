@@ -5,11 +5,11 @@ string ask_me();
 
 void create()
 {
-        set_name("出尘子", ({ "chuchen zi", "chuchen" }));
-        set("nickname", "星宿派八师兄");
+        set_name("出塵子", ({ "chuchen zi", "chuchen" }));
+        set("nickname", "星宿派八師兄");
         set("long", 
-                "他就是丁春秋的八弟子出尘子。\n"
-                "他身才矮胖，可手中握的钢杖又长又重。\n");
+                "他就是丁春秋的八弟子出塵子。\n"
+                "他身才矮胖，可手中握的鋼杖又長又重。\n");
         set("gender", "男性");
         set("age", 25);
         set("attitude", "peaceful");
@@ -63,5 +63,5 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        command("say 老仙还没允许我收徒呢。");
+        command("say 老仙還沒允許我收徒呢。");
 }

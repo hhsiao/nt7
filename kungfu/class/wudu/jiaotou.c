@@ -8,13 +8,13 @@ inherit F_GUARDER;
 void create()
 {
         set_name("沙千里", ({ "sha qianli", "sha", "qianli" }));
-        set("nickname", HIR "黑龙" NOR);
+        set("nickname", HIR "黑龍" NOR);
         set("long",@LONG
-他就是五毒教的护法弟子沙千里，身材魁梧，方
-面大耳。在教中转管招募教众，教授弟子们的入
-门功夫。
+他就是五毒教的護法弟子沙千里，身材魁梧，方
+面大耳。在教中轉管招募教眾，教授弟子們的入
+門功夫。
 LONG);
-        set("title","五毒教护法弟子");
+        set("title","五毒教護法弟子");
         set("gender", "男性");
         set("age", 32);
         set("attitude", "friendly");
@@ -61,15 +61,15 @@ LONG);
         }));
 
         set("guarder", ([
-                "refuse_other": CYN "$N" CYN "身形一晃，挡在$n" CYN
-                                "跟前，厉声说道：非本教弟子，不得进"
+                "refuse_other": CYN "$N" CYN "身形一晃，擋在$n" CYN
+                                "跟前，厲聲說道：非本教弟子，不得進"
                                 "入本教禁地。" NOR,
-                "refuse_carry": CYN "$N" CYN "对$n" CYN "喝道：你"
-                                "背上背的是什么人？快给我放下来！"
+                "refuse_carry": CYN "$N" CYN "對$n" CYN "喝道：你"
+                                "背上背的是什麼人？快給我放下來！"
                                 NOR,
         ]));
 
-        create_family("五毒教", 13, "护法弟子");
+        create_family("五毒教", 13, "護法弟子");
 
         setup();
 
@@ -86,10 +86,10 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)>-1000 )
         {
-                command("say 我教弟子贵在随心所欲，不收伪君子");
+                command("say 我教弟子貴在隨心所欲，不收偽君子");
                 return;
         }
         command("recruit "+query("id", ob));
-        set("title", "五毒教教众", ob);
+        set("title", "五毒教教眾", ob);
         return;
 }

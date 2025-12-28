@@ -1,19 +1,19 @@
 // This program is a part of NITAN MudLIB 
 // redl 2012/12/1 
 ///clone/medicine/guiyuan.c
-//解决新人追问在南贤后无法full，和task面对上古妖王的危险
+//解決新人追問在南賢后無法full，和task面對上古妖王的危險
 
 #include <ansi.h>
 #include "medicine.h"
 
 void create()
 {
-        set_name(CYN "临" HIK "寂" NOR CYN "归元丹" NOR, ({"guiyuan dan", "dan", "guiyuan", "linji"}));
+        set_name(CYN "臨" HIK "寂" NOR CYN "歸元丹" NOR, ({"guiyuan dan", "dan", "guiyuan", "linji"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "炼自沈芝毓传授的救命神丹，效果奇妙无比（可以预先服用有备无患）。\n");
-                set("base_unit", "颗");
+                set("long", "煉自沈芝毓傳授的救命神丹，效果奇妙無比（可以預先服用有備無患）。\n");
+                set("base_unit", "顆");
                 set("base_value", 80000);
                 set("base_weight", 200);
                 set("only_do_effect", 1);
@@ -48,22 +48,22 @@ void call_full(object me)
 
     addn("call_time", -1);
     if (query("call_time")<1) {
-        write(YEL + "你藏在舌下的" + name() + NOR + YEL + "已经悄悄融化了...\n" + NOR);
+        write(YEL + "你藏在舌下的" + name() + NOR + YEL + "已經悄悄融化了...\n" + NOR);
         add_amount(-1); 
         if (query_amount() < 1) destruct(this_object()); 
         return;
     }
     
-    addn("jingli", -(3+random(3)), me);//消耗3~5精力维持
+    addn("jingli", -(3+random(3)), me);//消耗3~5精力維持
     if (query("jingli", me)<100) {
-        write(YEL + "你精力不济，咬碎了藏在舌下的" + name() + NOR + YEL + "...\n" + NOR);
+        write(YEL + "你精力不濟，咬碎了藏在舌下的" + name() + NOR + YEL + "...\n" + NOR);
         add_amount(-1); 
         if (query_amount() < 1) destruct(this_object()); 
         return;
     }
     
     if (environment(this_object())!=me) {//drop或者give,sell等
-        tell_object(me, YEL + "你放弃的" + name() + NOR + YEL + "已经悄悄融化了...\n" + NOR );
+        tell_object(me, YEL + "你放棄的" + name() + NOR + YEL + "已經悄悄融化了...\n" + NOR );
         add_amount(-1); 
         if (query_amount() < 1) destruct(this_object()); 
         return;
@@ -73,8 +73,8 @@ void call_full(object me)
         if (my["jing"]<my["max_jing"]/4 || my["qi"]<my["max_qi"]/4) {
                 my["jing"]   = my["eff_jing"]   = my["max_jing"]; 
                 my["qi"]     = my["eff_qi"]     = my["max_qi"]; 
-                if (my["neili"]<my["max_neili"]/2) my["neili"] = my["max_neili"] /2;//只补50%内力，不补精力
-                message_vision(HIG + "$N" + HIG + "咬舌一声轻叱，吞下一颗"+NOR+name()+HIG+"，气定神闲之极。\n" + NOR, me);
+                if (my["neili"]<my["max_neili"]/2) my["neili"] = my["max_neili"] /2;//只補50%內力，不補精力
+                message_vision(HIG + "$N" + HIG + "咬舌一聲輕叱，吞下一顆"+NOR+name()+HIG+"，氣定神閒之極。\n" + NOR, me);
         add_amount(-1); 
         if (query_amount() < 1) destruct(this_object()); 
         return;
@@ -88,18 +88,18 @@ int do_effect(object me)
                 int t = time()-query_temp("last_eat/guiyuan", me);
         if( t < 240 )
         {
-                write("你刚服用过临寂归元丹，需"+chinese_number( 240 -t)+"秒以后才能再次服用。\n");
+                write("你剛服用過臨寂歸元丹，需"+chinese_number( 240 -t)+"秒以後才能再次服用。\n");
                 return 1;
         }
         if (query("jingli", me)<500) {
-                        write(YEL + "你精力不济，无法服用" + name() + NOR + YEL + "...\n" + NOR);
+                        write(YEL + "你精力不濟，無法服用" + name() + NOR + YEL + "...\n" + NOR);
                 return 1;
         }
 
         set_temp("last_eat/guiyuan", time(), me);
 
         me->start_busy(3);
-        message_vision(YEL + "$N" + YEL + "将一颗" + name() + NOR + YEL "取出来轻轻放进嘴里，悄悄含在舌下。\n" + NOR, me);
+        message_vision(YEL + "$N" + YEL + "將一顆" + name() + NOR + YEL "取出來輕輕放進嘴裡，悄悄含在舌下。\n" + NOR, me);
                        
         remove_call_out("call_full");
         set("call_time", 190 + random(10));

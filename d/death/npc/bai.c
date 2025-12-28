@@ -7,24 +7,24 @@ inherit NPC;
 string ask_diyudao();
 
 string *death_msg = ({
-        HIW "白无常说道：喂！新来的，你叫什么名字？\n\n" NOR,
-        HIW "白无常用奇异的眼光盯著你，好像要看穿你的一切似的。\n\n" NOR,
-        HIW "白无常「哼」的一声，从袖中掏出一本像帐册的东西翻看著。\n\n" NOR,
-        HIW "白无常合上册子，说道：咦？阳寿未尽？怎么可能？\n\n" NOR,
-        HIW "白无常搔了搔头，叹道：罢了罢了，你走吧。\n\n"
-                "一股阴冷的浓雾突然出现，很快地包围了你。\n\n" NOR,
+        HIW "白無常說道：喂！新來的，你叫什麼名字？\n\n" NOR,
+        HIW "白無常用奇異的眼光盯著你，好像要看穿你的一切似的。\n\n" NOR,
+        HIW "白無常「哼」的一聲，從袖中掏出一本像帳冊的東西翻看著。\n\n" NOR,
+        HIW "白無常合上冊子，說道：咦？陽壽未盡？怎麼可能？\n\n" NOR,
+        HIW "白無常搔了搔頭，嘆道：罷了罷了，你走吧。\n\n"
+                "一股陰冷的濃霧突然出現，很快地包圍了你。\n\n" NOR,
 });
 
 void create()
 {
-        set_name("白无常", ({ "bai wuchang", "bai", "wuchang" }));
+        set_name("白無常", ({ "bai wuchang", "bai", "wuchang" }));
         set("title", HIR "冥府地藏王殿前" NOR);
-        set("long", "\n白无常瞪著你，焦黄的脸上看不出任何喜怒哀乐。\n");
+        set("long", "\n白無常瞪著你，焦黃的臉上看不出任何喜怒哀樂。\n");
         set("attitude", "peaceful");
         set("chat_chance", 15);
         set("chat_msg", ({
-                CYN "白无常狠狠的敲了敲你的脑袋，你觉得头晕晕的。\n", NOR,
-                CYN "白无常嘿嘿奸笑两声。\n" NOR,
+                CYN "白無常狠狠的敲了敲你的腦袋，你覺得頭暈暈的。\n", NOR,
+                CYN "白無常嘿嘿奸笑兩聲。\n" NOR,
         }) );
         set("age", 217);
 
@@ -63,8 +63,8 @@ void create()
         map_skill("force", "never-defeated");
 
         set("inquiry", ([
-                "地狱道" : (: ask_diyudao :),
-                "锦镧袈裟" : "此乃袈裟中的上品，穿戴者可不坠地狱，不入轮回！\n",                
+                "地獄道" : (: ask_diyudao :),
+                "錦鑭袈裟" : "此乃袈裟中的上品，穿戴者可不墜地獄，不入輪迴！\n",                
         ]));
         setup();
 
@@ -114,8 +114,8 @@ void death_stage(object ob, int stage)
         
         ob->move(REVIVE_ROOM);
         set("startroom", REVIVE_ROOM, ob);
-        message("vision", HIW "你忽然发现前面多了一个人影，不过那人影又好像已经在那里\n"
-                          "很久了，只是你一直没发觉。\n" NOR, environment(ob), ob);
+        message("vision", HIW "你忽然發現前面多了一個人影，不過那人影又好像已經在那裡\n"
+                          "很久了，只是你一直沒發覺。\n" NOR, environment(ob), ob);
 }
 
 string ask_diyudao()
@@ -130,35 +130,35 @@ string ask_diyudao()
             query("con", me)<32 || 
             query("str", me)<32 || 
             query("dex", me)<32 )
-            return "你的先天属性还不足以修炼地狱道，我看你还是先回去吧。\n";
+            return "你的先天屬性還不足以修煉地獄道，我看你還是先回去吧。\n";
 
         if( query("reborn/times", me)<3 )
-                return "走开，走开，没看我正忙吗？\n";
+                return "走開，走開，沒看我正忙嗎？\n";
                 
         if( me->query_skill("yinyang-shiertian",1) && query("reborn/times", me)<4 )
-                return "哼，凡夫俗子，竟然如此贪心！\n";
+                return "哼，凡夫俗子，竟然如此貪心！\n";
 
         if (me->query_skill("lunhui-sword",1))
-                return "哼，凡夫俗子，竟然如此贪心！\n";        
+                return "哼，凡夫俗子，竟然如此貪心！\n";        
                 
         if (me->query_skill("diyu-dao", 1))
-                return "怎么样，这招你练熟了吗？\n";
+                return "怎麼樣，這招你練熟了嗎？\n";
                 
         command("nod");
-        command("say 阎王爷吩咐过了，叫我在此等候有缘者，既然如此，这「地狱道」就传你吧！");
+        command("say 閻王爺吩咐過了，叫我在此等候有緣者，既然如此，這「地獄道」就傳你吧！");
         
-        message_sort(HIC "\n$N" HIC "掏出一根哭丧棒，挥舞了几下，然后猛然点向$n" HIC "周身大穴，招式"
-                     "$n" HIC "平凡简单之极，但却蕴藏着任何人难以招架的力量，$n" HIC "倒退几步，双手"
-                     "捂住胸口，一口鲜血吐出 ……。\n" NOR, this_object(), me);
+        message_sort(HIC "\n$N" HIC "掏出一根哭喪棒，揮舞了幾下，然後猛然點向$n" HIC "周身大穴，招式"
+                     "$n" HIC "平凡簡單之極，但卻蘊藏著任何人難以招架的力量，$n" HIC "倒退幾步，雙手"
+                     "捂住胸口，一口鮮血吐出 ……。\n" NOR, this_object(), me);
                         
         command("heng");
-        command("say 这些凡人还真是不中用，就这么几下就抵受不住了，哎~。");
-        command("say 好了，这「地狱道」的功力已经传授给你了，此地不是你等长留之地，你还是速速离开吧！");
+        command("say 這些凡人還真是不中用，就這麼幾下就抵受不住了，哎~。");
+        command("say 好了，這「地獄道」的功力已經傳授給你了，此地不是你等長留之地，你還是速速離開吧！");
         
-        tell_object(me, HIG "恭喜你领悟了「地狱道」剑法，目前等级为10级。\n" NOR);
+        tell_object(me, HIG "恭喜你領悟了「地獄道」劍法，目前等級為10級。\n" NOR);
         me->set_skill("diyu-dao", 10);
         
-        return "好自为知！";
+        return "好自為知！";
         
                 
 }

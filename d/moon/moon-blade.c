@@ -1,34 +1,34 @@
 inherit SKILL;
 mapping *action = ({
-        ([      "action":               "$N神功默运，使出“暮云收尽溢清寒”，手中的$w急斩$n的$l",
+        ([      "action":               "$N神功默運，使出“暮雲收盡溢清寒”，手中的$w急斬$n的$l",
                 "damage":               80,
                 "dodge" :               200,
                 "parry" :               100,
-                "damage_type":  "割伤"
+                "damage_type":  "割傷"
         ]),
-        ([      "action":               "$N手中的$w，突然一招“银汉无声转玉盘”化为漫天刀光，卷向$n的$l",
+        ([      "action":               "$N手中的$w，突然一招“銀漢無聲轉玉盤”化為漫天刀光，卷向$n的$l",
                 "damage":               70,
                 "dodge" :               150,
                 "parry" :               150,
-                "damage_type":  "割伤"
+                "damage_type":  "割傷"
         ]),
-        ([      "action":               "$N刀锋忽转，手中的$w使出神刀斩里的“月光如水水如天”，闪电般劈向$n的$l",
+        ([      "action":               "$N刀鋒忽轉，手中的$w使出神刀斬裡的“月光如水水如天”，閃電般劈向$n的$l",
                 "damage":               90,
                 "dodge" :               200,
                 "parry" :               100,
-                "damage_type":  "割伤"
+                "damage_type":  "割傷"
         ]),
-        ([      "action":               "$N身影晃动，刀式飘忽，一招“梨花清影溶溶月”，手中的$w，急袭$n的$l",
+        ([      "action":               "$N身影晃動，刀式飄忽，一招“梨花清影溶溶月”，手中的$w，急襲$n的$l",
                 "damage":               50,
                 "dodge" :               200,
                 "parry" :               200,
-                "damage_type":  "割伤"
+                "damage_type":  "割傷"
         ]),
-        ([      "action":               "$N刀锋向外，去势如风，手中的$w，一气呵成横扫$n的$l",
+        ([      "action":               "$N刀鋒向外，去勢如風，手中的$w，一氣呵成橫掃$n的$l",
                 "damage":               100,
                 "dodge" :               200,
                 "parry" :               100,
-                "damage_type":  "割伤"
+                "damage_type":  "割傷"
         ]),
 });
 
@@ -36,13 +36,13 @@ int valid_learn(object me)
 {
         if( (int)me->query_skill("force", 1) < 200 )
                 return
-                notify_fail("你的内功心法火候不足，无法习练圆月神刀斩。\n");
+                notify_fail("你的內功心法火候不足，無法習練圓月神刀斬。\n");
                       if( (int)me->query_skill("blade", 1) < 200 )
                 return
-                notify_fail("你的基本刀法火候不足，无法习练圆月神刀斩。\n");
+                notify_fail("你的基本刀法火候不足，無法習練圓月神刀斬。\n");
                       if( me->query("class")!="bandit" )
                 return
-                notify_fail("你无法领悟圆月神刀斩的真义。\n");
+                notify_fail("你無法領悟圓月神刀斬的真義。\n");
         return 1;
 }
 
@@ -62,21 +62,21 @@ int practice_skill(object me)
 
         if( !objectp(weapon = me->query_temp("weapon"))
         ||      (string)weapon->query("skill_type") != "blade" )
-                return notify_fail("你必须先找一把刀，才能练刀法。\n");
+                return notify_fail("你必須先找一把刀，才能練刀法。\n");
 
         if( (int)me->query("kee") < 40 )
-                return notify_fail("你的体力不够练这门刀法，还是先休息休息吧。\n");
+                return notify_fail("你的體力不夠練這門刀法，還是先休息休息吧。\n");
         me->receive_damage("kee", 40);
         return 1;
 }
 int effective_level() { return 40;}
 
 string *parry_msg = ({
-        "$n使一招“寒刀月影”，手中的$v化成一片刀影护住全身要害。\n",
+        "$n使一招“寒刀月影”，手中的$v化成一片刀影護住全身要害。\n",
 });
 
 string *unarmed_parry_msg = ({
-        "$n使出“神女奔月”，$v化成漫天刀光，将攻势化解于无形。\n",
+        "$n使出“神女奔月”，$v化成漫天刀光，將攻勢化解於無形。\n",
 });
 
 string query_parry_msg(object weapon)

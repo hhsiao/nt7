@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("傲丽薇[2;37;0m[2;37;0m", ({"toflying"}));        
+        set_name("傲麗薇[2;37;0m[2;37;0m", ({"toflying"}));        
         set("gender", "女性");                
-        set("long", "傲丽薇[2;37;0m
-它是普派的魔幻兽。
+        set("long", "傲麗薇[2;37;0m
+它是普派的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

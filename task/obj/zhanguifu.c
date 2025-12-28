@@ -3,16 +3,16 @@
 inherit TASK;
 void create()
 {
-    set_name( HIY "天师斩鬼符" NOR, ({ "zhangui fu" }) );
+    set_name( HIY "天師斬鬼符" NOR, ({ "zhangui fu" }) );
     set_weight(1);
     if( clonep() )
             destruct(this_object());
     else {
-            set("unit", "张");
+            set("unit", "張");
             set("material", "paper");
-            set("long", "这是一张天师斩鬼符。\n");
+            set("long", "這是一張天師斬鬼符。\n");
           }
-    set("owner", "张天师");
+    set("owner", "張天師");
     setup();
 }
 

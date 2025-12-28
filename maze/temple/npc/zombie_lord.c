@@ -4,10 +4,10 @@ inherit BOSS;
 void do_summon();
 void create()
 {
-        set_name( "僵尸王", ({ "lord zombie" }));
+        set_name( "殭屍王", ({ "lord zombie" }));
         set("vendetta_mark","zombie");
-        set("long", "这是一个腐烂的僵尸王，看起来好可怕。。\n");
-        set("title", HIB "(鬼气)" NOR); 
+        set("long", "這是一個腐爛的殭屍王，看起來好可怕。。\n");
+        set("title", HIB "(鬼氣)" NOR); 
 
         set("str", 50);
         set("con", 120);
@@ -28,7 +28,7 @@ void create()
 
         set("combat_exp", 200000000);
         set("bellicosity", 5 );
-        set("death_msg",RED"\n$N化作了一滩血水。\n\n"NOR);
+        set("death_msg",RED"\n$N化作了一灘血水。\n\n"NOR);
 
         set_skill("force", 1200);
         set_skill("dodge", 1200);
@@ -49,8 +49,8 @@ void create()
 
 /*
         set("drops", ([
-                "RA&EPIL60"    :       70,    // 中级普通装备
-                "RA&EPIL70"    :       30,    // 中级普通装备
+                "RA&EPIL60"    :       70,    // 中級普通裝備
+                "RA&EPIL70"    :       30,    // 中級普通裝備
         ]));
 */
         
@@ -80,7 +80,7 @@ void do_summon()
         obs = all_inventory(environment(me));
         obs=filter_array(obs,(:query("id", $1) == "zombie":));
         if( sizeof(obs) > 10 ) return;
-        message_vision(HIM "\n$N嗬嗬干嚎，周围的僵尸应声而来。\n" NOR, me); 
+        message_vision(HIM "\n$N嗬嗬乾嚎，周圍的殭屍應聲而來。\n" NOR, me); 
         zombie = new(__DIR__"zombie");
         zombie->move(environment(me));
         enemies = me->query_enemy();
@@ -89,7 +89,7 @@ void do_summon()
                 zombie->kill_ob(enemy);
                 enemy->kill_ob(zombie);
         } 
-        message_vision( "\n\n$N恶狠狠地扑了上来。\n" , zombie);
+        message_vision( "\n\n$N惡狠狠地撲了上來。\n" , zombie);
         call_out("leave",20+random(10),zombie);
         if( !this_object()->is_busy() )
                 this_object()->start_busy(3);

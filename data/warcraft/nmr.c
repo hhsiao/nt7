@@ -7,13 +7,13 @@ void setup()
         set_name("泥煤[2;37;0m[2;37;0m", ({"nmride"}));        
         set("gender", "女性");                
         set("long", "泥煤[2;37;0m
-它是鱼湾弯的魔幻兽。
+它是魚灣彎的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");
         set("owner", "nmr");
-        set("owner_name", "鱼湾弯");
+        set("owner_name", "魚灣彎");
         set_temp("owner", "nmr");
-        set_temp("owner_name", "鱼湾弯");
+        set_temp("owner_name", "魚灣彎");
         ::setup();
 }

@@ -5,9 +5,9 @@ void create()
 {
         set("short", "大瀑布");
 	set("long", @LONG
-你又奔出一阵，双腿酸软，气喘吁吁，终于走出了大松林。猛听得水声响
-亮，轰轰隆隆，便如潮水大至一般，抬头一看，只见西北角上犹如银河倒悬，
-一条大瀑布从高崖上直泻下来。
+你又奔出一陣，雙腿痠軟，氣喘吁吁，終於走出了大松林。猛聽得水聲響
+亮，轟轟隆隆，便如潮水大至一般，抬頭一看，只見西北角上猶如銀河倒懸，
+一條大瀑布從高崖上直瀉下來。
 LONG
 	);
 	set("exits", ([ 
@@ -27,9 +27,9 @@ int valid_leave(object me,string dir)
 { 
      if( dir == "southeast"
       && (present("gan guanghao", environment(me))))
-         return notify_fail("干光豪对你奸笑一声：想逃，你留下命来吧。\n");
+         return notify_fail("幹光豪對你奸笑一聲：想逃，你留下命來吧。\n");
      if( dir == "southeast"
       && (present("ge guangpei", environment(me))))
-         return notify_fail("葛光佩对你冷笑一声：想逃，你留下命来吧。\n");
+         return notify_fail("葛光佩對你冷笑一聲：想逃，你留下命來吧。\n");
          return ::valid_leave(me, dir);
 }

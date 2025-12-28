@@ -10,24 +10,24 @@ inherit SWORD;
 inherit F_UNIQUE;   
 void create()   
 { 
-        set_name(HIR "赤霄剑" NOR, ({"chixiao sword", "chixiao", "sword"}));   
+        set_name(HIR "赤霄劍" NOR, ({"chixiao sword", "chixiao", "sword"}));   
         set_weight(15000); 
         /*if (clonep())   
                 set_default_object(__FILE__);   
         else*/ {
                 set("unit", "把");   
-                set("long", HIY "这是一把饰有七彩珠、九华玉的寒光逼人、刃如霜雪的宝剑。\n"
-                                "这把剑就是斩蛇起义的赤霄剑，赤霄剑是一把帝道之剑。\n" NOR);
+                set("long", HIY "這是一把飾有七彩珠、九華玉的寒光逼人、刃如霜雪的寶劍。\n"
+                                "這把劍就是斬蛇起義的赤霄劍，赤霄劍是一把帝道之劍。\n" NOR);
         set("value", 100000);  
         set("material", "steel");  
-        set("no_sell", "我的天…你…你知道这是啥么？这你也敢拿来卖？");   
+        set("no_sell", "我的天…你…你知道這是啥麼？這你也敢拿來賣？");   
         set("unique", 1);     
         set("rigidity", 500);   
         set("replica_ob", "/clone/weapon/changjian");  
         set("no_put",1);
         set("no_steal",1); 
-        set("wield_msg",HIR"$N[噌]的一声抽出一把赤剑，忽然从旁边跳出一条赤龙，围着$N转。\n"NOR);   
-        set("unwield_msg",HIR"$N把手中的赤剑插入剑鞘，赤龙化做长虹飞到天空，消失了。\n"NOR);    
+        set("wield_msg",HIR"$N[噌]的一聲抽出一把赤劍，忽然從旁邊跳出一條赤龍，圍著$N轉。\n"NOR);   
+        set("unwield_msg",HIR"$N把手中的赤劍插入劍鞘，赤龍化做長虹飛到天空，消失了。\n"NOR);    
         } 
         init_sword(900);   
         setup();
@@ -36,6 +36,6 @@ mixed hit_ob(object me, object victim, int damage_bonus)
 { 
         victim->receive_damage("jing",query("str", me)*2,me);
         victim->receive_wound("jing",query("str", me)*2,me);
-        return HIR "赤剑[叮]一声响，霎那，那条赤龙张口就咬$n"  
+        return HIR "赤劍[叮]一聲響，霎那，那條赤龍張口就咬$n"  
                HIR "，$n只能冷冷做怕。\n" NOR; 
 }

@@ -1,6 +1,6 @@
-//      炎黄-玩家自创武功系统
+//      炎黃-玩家自創武功系統
 //      Made at 2006-03-04 22:19:30 by Rcwiz
-//      /kungfu/skill/paoxiao-lun.c  大水法红莲咆哮轮
+//      /kungfu/skill/paoxiao-lun.c  大水法紅蓮咆哮輪
 
 inherit SKILL;
 #include <ansi.h>
@@ -8,9 +8,9 @@ inherit SKILL;
 #define PMSKILLS_D        "/adm/daemons/pmskillsd"
 
 string *parry_msg = ({
-HIG "环境洒家会计师急口令哈飒飒飒飒撒生活上 \n" NOR,
-HIG "环境洒家会计师急口令哈飒飒飒飒撒生活上 \n" NOR,
-HIG "环境洒家会计师急口令哈飒飒飒飒撒生活上 \n" NOR,
+HIG "環境灑家會計師急口令哈颯颯颯颯撒生活上 \n" NOR,
+HIG "環境灑家會計師急口令哈颯颯颯颯撒生活上 \n" NOR,
+HIG "環境灑家會計師急口令哈颯颯颯颯撒生活上 \n" NOR,
 });
 
 string query_parry_msg(object weapon)
@@ -23,14 +23,14 @@ string who_make(){ return "yeying"; }
 
 //####actions start####
 mapping *action = ({
-([        "action"     :  "环境洒家会计师急口令哈飒飒飒飒撒",
+([        "action"     :  "環境灑家會計師急口令哈颯颯颯颯撒",
           "force"      :  387,
           "attack"     :  159,
           "parry"      :  48,
           "dodge"      :  80,
           "damage"     :  230,
-          "skill_name" :  "环境是是是",
-          "damage_type":  "瘀伤",
+          "skill_name" :  "環境是是是",
+          "damage_type":  "瘀傷",
 ])
 });
 //####actions end####
@@ -66,9 +66,9 @@ int valid_learn(object me)
         object ob;
         if( query_temp("weapon", me )
          || query("secondary_weapon", me) )
-                return notify_fail("你必须空手练习。\n");
+                return notify_fail("你必須空手練習。\n");
         if (me->query_skill("unarmed", 1) < me->query_skill("paoxiao-lun", 1))
-                return notify_fail("你的基本拳脚火候有限，无法领会更高深的大水法红莲咆哮轮。\n");
+                return notify_fail("你的基本拳腳火候有限，無法領會更高深的大水法紅蓮咆哮輪。\n");
         return 1;
 }
 
@@ -102,7 +102,7 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         if (damage_bonus < 160 || ! living(victim))return 0;
 
         if( random(3) || me->is_busy() || query_temp("pmskill/lian", me) || query("neili", me)<100)return 0;
-        message_vision(HIR "\n环境洒家会计师急口令环境洒家会计师急口令\n" NOR, me, victim);
+        message_vision(HIR "\n環境灑家會計師急口令環境灑家會計師急口令\n" NOR, me, victim);
 
         me->start_busy(1 + random(attack_time));
 
@@ -149,13 +149,13 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
                 switch (random(3))
                 {
                 case 0:
-                   result += (["msg" : HIC "环境洒家会计师急口令环境洒家会计师急口令\n" NOR]);
+                   result += (["msg" : HIC "環境灑家會計師急口令環境灑家會計師急口令\n" NOR]);
                 break;
                 case 1:
-                   result += (["msg" : HIC "环境洒家会计师急口令环境洒家会计师急口令\n" NOR]);
+                   result += (["msg" : HIC "環境灑家會計師急口令環境灑家會計師急口令\n" NOR]);
                 break;
                 default:
-                   result += (["msg" : HIC "环境洒家会计师急口令环境洒家会计师急口令\n" NOR]);
+                   result += (["msg" : HIC "環境灑家會計師急口令環境灑家會計師急口令\n" NOR]);
                 break;
                 }
                 return result;
@@ -165,7 +165,7 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
 
 int practice_skill(object me)
 {
-        if( !query("scborn", me))return notify_fail("自创武学只能用学(learn)的来提升等级。\n");
+        if( !query("scborn", me))return notify_fail("自創武學只能用學(learn)的來提升等級。\n");
 }
 
 int difficult_level(){ return 2000;}

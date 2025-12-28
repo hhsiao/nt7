@@ -10,10 +10,10 @@ string ask_me();
 
 void create()
 {
-        set_name("范百龄", ({ "fan bailing", "fan", "bailing" }));
-        set("long", "他是苏星河的二弟子，通晓棋技。\n");
+        set_name("範百齡", ({ "fan bailing", "fan", "bailing" }));
+        set("long", "他是蘇星河的二弟子，通曉棋技。\n");
         set("gender", "男性");
-        set("title", "逍遥派函谷八友");
+        set("title", "逍遙派函谷八友");
         set("nickname", HIR "棋迷" NOR);
         set("age", 53);
         set("class", "shaman");
@@ -56,7 +56,7 @@ void create()
         prepare_skill("hand", "qingyun-shou");
         prepare_skill("strike", "liuyang-zhang");
 
-        create_family("逍遥派", 3, "弟子");
+        create_family("逍遙派", 3, "弟子");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -65,7 +65,7 @@ void create()
                 (: exert_function, "recover" :),
         }));
         set("inquiry", ([
-                "棋谱":(:ask_me:),
+                "棋譜":(:ask_me:),
         ]) );
         set("book_count", 1);
         set("master_ob", 3);
@@ -81,14 +81,14 @@ void attempt_apprentice(object ob)
         if (ob->query_int() < 27)
         {
                 command("sigh");
-                command("say 学习棋道要求悟性极高之人，我看你并不适合。");
+                command("say 學習棋道要求悟性極高之人，我看你並不適合。");
                 return;
         }
 
         if (ob->query_skill("xiaowuxiang", 1) < 30)
         {
                 command("sigh");
-                command("say 你连本门的入门心法都没有学好，教我如何收你？");
+                command("say 你連本門的入門心法都沒有學好，教我如何收你？");
                 return;
         }
 
@@ -101,12 +101,12 @@ string ask_me()
         object me,ob;
         ob=this_player();
         if (query("book_count") < 1)
-                return "你来晚了，棋谱我已经赠送给别入了。";
+                return "你來晚了，棋譜我已經贈送給別入了。";
 
         addn("book_count", -1);
-        command("say 好吧，那我就把它送给你了。\n");
-        message_vision(HIY"范百龄微笑着从怀中拿出了一本书，交了给$N\n\n"NOR,ob);
+        command("say 好吧，那我就把它送給你了。\n");
+        message_vision(HIY"範百齡微笑著從懷中拿出了一本書，交了給$N\n\n"NOR,ob);
         me=new("/clone/book/hand_book");
         me->move(ob);
-        return "这本棋谱可千万不要随便给别人。\n";
+        return "這本棋譜可千萬不要隨便給別人。\n";
 }

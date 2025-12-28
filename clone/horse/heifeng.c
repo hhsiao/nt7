@@ -3,8 +3,8 @@ inherit "/clone/horse/horse.c";
 
 void create()
 {
-        set_name(HIB "黑风" NOR, ({ "hei feng"}));
-        set("long", HIB "一匹浑身黝黑的马，看起来很能跑。\n" NOR);
+        set_name(HIB "黑風" NOR, ({ "hei feng"}));
+        set("long", HIB "一匹渾身黝黑的馬，看起來很能跑。\n" NOR);
 
         set("tili", 1000);
         set("max_tili", 1000);

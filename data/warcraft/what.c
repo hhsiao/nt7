@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("小飞虎[2;37;0m[2;37;0m", ({"tttiger"}));        
+        set_name("小飛虎[2;37;0m[2;37;0m", ({"tttiger"}));        
         set("gender", "男性");                
-        set("long", "小飞虎[2;37;0m
-它是瓦特力的魔幻兽。
+        set("long", "小飛虎[2;37;0m
+它是瓦特力的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

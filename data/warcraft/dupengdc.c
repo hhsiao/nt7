@@ -4,12 +4,12 @@
 
 void setup()
 {
-        set_name("[31m神龙[2;37;0m[2;37;0m", ({"shou"}));        
+        set_name("[31m神龍[2;37;0m[2;37;0m", ({"shou"}));        
         set("gender", "男性");                
-        set("long", "一条龙，哇好大。[2;37;0m
-它是淡定人生的魔幻兽。
+        set("long", "一條龍，哇好大。[2;37;0m
+它是淡定人生的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "dupengdc");
         set("owner_name", "淡定人生");

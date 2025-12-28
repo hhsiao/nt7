@@ -5,7 +5,7 @@ inherit WHIP;
 
 void create()
 {
-        set_name(HIR "盘龙索" NOR, ({ "panlong suo", "suo", "panlong", "whip" }) );
+        set_name(HIR "盤龍索" NOR, ({ "panlong suo", "suo", "panlong", "whip" }) );
         set_weight(4000);
         /*if( clonep() )
                 set_default_object(__FILE__);

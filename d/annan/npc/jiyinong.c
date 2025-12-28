@@ -5,8 +5,8 @@ void create()
    set_name("武元甲",({ "wu yuanjia","yuanjia"}) );
         set("gender", "男性" );
         set("age", 32);
-   set("long", "这是武元甲,安南大将军。\n");
-    set("guard","安南威武大将军");   
+   set("long", "這是武元甲,安南大將軍。\n");
+    set("guard","安南威武大將軍");   
    set("combat_exp",800000);
    set("attitude", "peaceful");
    set_skill("unarmed",100);
@@ -69,7 +69,7 @@ void init()
 
 int accept_fight(object me)
 {
-        command("say 大爷我正想找人杀呐，今天算你倒霉。\n");
+        command("say 大爺我正想找人殺吶，今天算你倒黴。\n");
 //        me->apply_condition("killer", 500);
         kill_ob(me);
         return 1;

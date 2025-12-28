@@ -3,11 +3,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("吴三桂", ({ "wu sangui", "wu" }));
+        set_name("吳三桂", ({ "wu sangui", "wu" }));
         set("age", 58);
         set("title", HIY "平西王" NOR);
         set("gender", "男性");
-        set("long", "这就是大名鼎鼎的引清兵入关的平西王吴三桂\n");
+        set("long", "這就是大名鼎鼎的引清兵入關的平西王吳三桂\n");
         set("attitude", "peaceful");
         set("str", 30);
         set("dex", 30);
@@ -58,12 +58,12 @@ void greeting(object ob)
         if (stringp(startroom = query("startroom")) &&
             find_object(startroom) == environment())
         {
-                say(CYN "吴三桂喝道：“什么人！居然敢擅闯本王府！”\n\n" NOR +
-                    HIR "只见吴三桂举手一抬，听得“轰”的一声，一团火焰从枪口窜出。\n" NOR);
-                tell_object(ob, HIR "你躲避不及，只觉胸口一阵剧疼，鲜血狂涌而出！\n" NOR);
+                say(CYN "吳三桂喝道：“什麼人！居然敢擅闖本王府！”\n\n" NOR +
+                    HIR "只見吳三桂舉手一抬，聽得“轟”的一聲，一團火焰從槍口竄出。\n" NOR);
+                tell_object(ob, HIR "你躲避不及，只覺胸口一陣劇疼，鮮血狂湧而出！\n" NOR);
                 ob->receive_wound("qi", 90);
         } else
-                say(CYN "吴三桂瞪着你，磨了磨牙。\n" NOR);
+                say(CYN "吳三桂瞪著你，磨了磨牙。\n" NOR);
 }
 
 void unconcious()

@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("[5m[1;35m小泽玛利亚[2;37;0m[2;37;0m", ({"xoxo"}));        
+        set_name("[5m[1;35m小澤瑪利亞[2;37;0m[2;37;0m", ({"xoxo"}));        
         set("gender", "女性");                
-        set("long", "小泽玛利亚同时有着西方女优的狂野性感和东方女性的温柔唯美。[2;37;0m
-它是耶稣的魔幻兽。
+        set("long", "小澤瑪利亞同時有著西方女優的狂野性感和東方女性的溫柔唯美。[2;37;0m
+它是耶穌的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");
         set("owner", "yes");
-        set("owner_name", "耶稣");
+        set("owner_name", "耶穌");
         set_temp("owner", "yes");
-        set_temp("owner_name", "耶稣");
+        set_temp("owner_name", "耶穌");
         ::setup();
 }

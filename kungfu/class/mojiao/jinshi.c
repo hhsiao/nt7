@@ -9,14 +9,14 @@ inherit F_QUESTER;
 
 void create()
 {
-        set_name("金狮", ({"jin shi", "jin", "shi"}));
-        set("title", "魔教长老");
+        set_name("金獅", ({"jin shi", "jin", "shi"}));
+        set("title", "魔教長老");
         set("gender", "男性");
         set("age", 52);
         set("shen_type", -1);
-        set("long", "魔教四大长老之首，此人三尺多高，三尺长的袍子穿在他身上，已经拖下了地。\n"
-                    "他的胡子比这件金袍更长，他的剑比胡子还长。背后却背着柄四尺长的剑，用\n"
-                    "黄金铸成的剑鞘已拖在地上，这个人看起来实在也不像是个人。\n");
+        set("long", "魔教四大長老之首，此人三尺多高，三尺長的袍子穿在他身上，已經拖下了地。\n"
+                    "他的鬍子比這件金袍更長，他的劍比鬍子還長。背後卻揹著柄四尺長的劍，用\n"
+                    "黃金鑄成的劍鞘已拖在地上，這個人看起來實在也不像是個人。\n");
         set("attitude", "peaceful");
 
         set("per", 21);
@@ -67,7 +67,7 @@ void create()
 
         prepare_skill("strike", "moshen-zhangfa");
         
-        create_family("魔教", 40, "长老");
+        create_family("魔教", 40, "長老");
   
         set("chat_chance_combat", 120); 
         set("chat_msg_combat", ({
@@ -93,7 +93,7 @@ void attempt_apprentice(object ob)
 
         if ((int)ob->query_skill("moshen-xinfa", 1) < 120) 
         {
-                command("say 本教的内功心法你还没练好，还要多下苦功才行！");
+                command("say 本教的內功心法你還沒練好，還要多下苦功才行！");
                 return;
         }
         
@@ -104,16 +104,16 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "历练" :
-        case "历炼" :
-        case "锻炼" :
+        case "歷練" :
+        case "歷煉" :
+        case "鍛鍊" :
                 return QUEST_D->accept_ask(this_object(), me, topic);
                 break;
 
-        case "狂剑" :
+        case "狂劍" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/jinshi-kuangjian/kuang",
-                           "name"    : "狂剑",
+                           "name"    : "狂劍",
                            "sk1"     : "jinshi-kuangjian",
                            "lv1"     : 200,
                            "dodge"   : 200,

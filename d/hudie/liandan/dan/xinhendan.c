@@ -8,7 +8,7 @@ void create()
             	set_default_object(__FILE__);
        else 
 	{       
-         	set("unit", "颗"); 
+         	set("unit", "顆"); 
              	set("no_get",1);
             	set("no_give",1);
       	}
@@ -24,10 +24,10 @@ int do_eat(string arg)
   	object me = this_player();
     
   	if(!id(arg)) return 0;
-  	if(me->is_busy()) return notify_fail("你上一个动作还没有完成。\n");
+  	if(me->is_busy()) return notify_fail("你上一個動作還沒有完成。\n");
     
 addn("shen", -50000, 	me);
- 	message_vision(HIB"$N拿起心狠手辣丹吃了下去，感觉丹田传来一阵阵寒意，双眼冒出狠辣杀气！！！\n"NOR,me);
+ 	message_vision(HIB"$N拿起心狠手辣丹吃了下去，感覺丹田傳來一陣陣寒意，雙眼冒出狠辣殺氣！！！\n"NOR,me);
        destruct(this_object());
        return 1;
 }

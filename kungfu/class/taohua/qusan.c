@@ -11,13 +11,13 @@ string ask_xiao();
 void create()
 {
         set_name("曲三", ({ "qu san", "san", "qu" }));
-        set("title", "酒店老板");
+        set("title", "酒店老闆");
         set("nickname", "跛子");
         set("gender", "男性");
         set("age", 25);
         set("long",
-                "他是最近新搬到此地的一个跛子。他无精打彩地招呼着客人，"
-                "眼睛不时呆呆地看着天空。\n");
+                "他是最近新搬到此地的一個跛子。他無精打彩地招呼著客人，"
+                "眼睛不時呆呆地看著天空。\n");
         set("attitude", "friendly");
         set("class", "scholar");
         set("str", 30);
@@ -65,15 +65,15 @@ void create()
 
         set("attitude", "friendly");
         set("inquiry", ([
-                "黄药师" : "我师…，什么？我这里不卖药。\n",
-                "卖药"   : "不卖药就是不卖药。\n",
-                "曲灵风" : "啊！我，……你说的人我不认识。\n",
-                "生意"   : "这个么……。\n",
-                "学艺"   : (: ask_xueyi :),
+                "黃藥師" : "我師…，什麼？我這裡不賣藥。\n",
+                "賣藥"   : "不賣藥就是不賣藥。\n",
+                "曲靈風" : "啊！我，……你說的人我不認識。\n",
+                "生意"   : "這個麼……。\n",
+                "學藝"   : (: ask_xueyi :),
                 "古玩"   : (: ask_xiao :),
         ]));
 
-        // create_family("桃花岛", 2, "弟子");
+        // create_family("桃花島", 2, "弟子");
         set("vendor_goods", ({
                 "/d/city/obj/peanut",
         }));
@@ -102,8 +102,8 @@ void greeting(object ob)
         if (!ob || environment(ob) != environment())
                 return;
 
-        say("曲三有气无力地说道：这位" + RANK_D->query_respect(ob) +
-            "，买点五香花生下酒吧。\n");
+        say("曲三有氣無力地說道：這位" + RANK_D->query_respect(ob) +
+            "，買點五香花生下酒吧。\n");
 }
 
 /*
@@ -112,7 +112,7 @@ void unconcious()
         object ob;
         object who = this_player();
 
-        message_vision("\n突然，只见曲三用尽最后一丝气力向$N打出一个铁八卦！\n",
+        message_vision("\n突然，只見曲三用盡最後一絲氣力向$N打出一個鐵八卦！\n",
                 who);
         who->receive_damage("qi",100);
         who->receive_wound("qi",100);
@@ -130,37 +130,37 @@ int accept_object(object me, object obj)
 
 int accept_obj(object me, object obj)
 {
-        if( query("name", obj) == "黄药师手谕" )
+        if( query("name", obj) == "黃藥師手諭" )
         {
                 command("ah");
-                message_vision(CYN "$N双手颤抖的展开书信，急匆匆的读了起来。\n", this_object());
-                message_vision(CYN "$N一边读，一边热泪盈眶！\n", this_object());
+                message_vision(CYN "$N雙手顫抖的展開書信，急匆匆的讀了起來。\n", this_object());
+                message_vision(CYN "$N一邊讀，一邊熱淚盈眶！\n", this_object());
                 command("cry");
-                command("say 多谢"+ RANK_D->query_respect(me) + "了。\n");
+                command("say 多謝"+ RANK_D->query_respect(me) + "了。\n");
                 set_temp("huang_shouyu", 1, me);
         }
 
-        if( query("name", obj) == "长命锁" )
+        if( query("name", obj) == "長命鎖" )
         {
                 command("ah");
-                command("say 这不是我女儿的东西吗？她现在怎麽样了？！");
+                command("say 這不是我女兒的東西嗎？她現在怎麼樣了？！");
                 set_temp("shagu_amulet", 1, me);
         }
 
         if( query_temp("huang_shouyu", me )
              && query_temp("shagu_amulet", me) )
         {
-                command("say 曲某不肖，不为师父分忧，反劳师父日夜牵挂；有劳" +
-                        RANK_D->query_respect(me) + "费心奔走了。\n");
+                command("say 曲某不肖，不為師父分憂，反勞師父日夜牽掛；有勞" +
+                        RANK_D->query_respect(me) + "費心奔走了。\n");
 
                 command("thank "+query("id", me));
 
-                if( query("family/family_name", me) == "桃花岛" )
-                // &&  me->query("family/master_name") != "黄药师")
+                if( query("family/family_name", me) == "桃花島" )
+                // &&  me->query("family/master_name") != "黃藥師")
                 {
-                        command("say " + RANK_D->query_respect(me) + "天资不错，在下身无" +
-                                "长物，唯有一身武艺，若不嫌我武功低浅，可点拨" + RANK_D->query_respect(me) + "一二。");
-                        command("say " + RANK_D->query_respect(me) + "只需向我询问『学艺』即可。");
+                        command("say " + RANK_D->query_respect(me) + "天資不錯，在下身無" +
+                                "長物，唯有一身武藝，若不嫌我武功低淺，可點撥" + RANK_D->query_respect(me) + "一二。");
+                        command("say " + RANK_D->query_respect(me) + "只需向我詢問『學藝』即可。");
                         set("help_lingfeng", 1, me);
                         delete_temp("huang_shouyu", me);
                         delete_temp("shagu_amulet", me);
@@ -178,15 +178,15 @@ int ask_xueyi()
 
         me = this_player();
         if( !query_temp("lingfeng_teach", me )
-         && (query("family/master_name", me) != "曲灵风") )
+         && (query("family/master_name", me) != "曲靈風") )
         {
-                command("say " + RANK_D->query_respect(me) + "说笑了，在下只是个穷卖酒的，有啥可教的？");
+                command("say " + RANK_D->query_respect(me) + "說笑了，在下只是個窮賣酒的，有啥可教的？");
                 return 1;
         }
 
         if (base_name(environment(me)) != "/d/jiaxing/xiaodian")
         {
-                command("say 这得回到酒店再说。");
+                command("say 這得回到酒店再說。");
                 return 1;
         }
 
@@ -201,14 +201,14 @@ int ask_xueyi()
         if (k > 2)
         {
                 command("whisper "+query("id", me)+
-                        "这里耳目众多，实不是传功授艺之所，还是先打发了周围闲人再说。");
+                        "這裡耳目眾多，實不是傳功授藝之所，還是先打發了周圍閒人再說。");
                 return 1;
         }
 
-        command("say " + RANK_D->query_respect(me) + "随我来。");
-        tell_object(me, CYN "曲三脱下破旧的布衣，换上一身青袍，在脸上摸了几把。\n" NOR);
-        tell_object(me, CYN "曲三打开碗橱，将一只碗向右旋转，忽听得喀喇喇一声响，"
-                        "橱壁向两旁分开，露出黑黝黝的一个洞来。\n" NOR);
+        command("say " + RANK_D->query_respect(me) + "隨我來。");
+        tell_object(me, CYN "曲三脫下破舊的布衣，換上一身青袍，在臉上摸了幾把。\n" NOR);
+        tell_object(me, CYN "曲三打開碗櫥，將一隻碗向右旋轉，忽聽得喀喇喇一聲響，"
+                        "櫥壁向兩旁分開，露出黑黝黝的一個洞來。\n" NOR);
         set_temp("taohua/master", this_object()->name(), me);
         me->move("/d/jiaxing/mishi");
 
@@ -223,26 +223,26 @@ string ask_xiao()
         mapping myfam;
 
         myfam=query("family", me);
-        if (! myfam || myfam["family_name"] != "桃花岛")
+        if (! myfam || myfam["family_name"] != "桃花島")
         {
                 command("xixi");
-                return RANK_D->query_respect(me) + "有什么古玩要卖给在下？";
+                return RANK_D->query_respect(me) + "有什麼古玩要賣給在下？";
         }
 
 
         if (query("xiao_count") < 1)
-                return "最近生意不好，哪里有钱买古玩？";
+                return "最近生意不好，哪裡有錢買古玩？";
 
         if( present("tongxiao",this_player()) || query_temp("get_xiao", this_player()) )
-                return RANK_D->query_respect(me) + "还没有把古玩交给黄岛主？";
+                return RANK_D->query_respect(me) + "還沒有把古玩交給黃島主？";
 
-        command("say " + RANK_D->query_respect(me) + "是从桃花岛来的？");
+        command("say " + RANK_D->query_respect(me) + "是從桃花島來的？");
 
         if (me->query_skill("bibo-shengong", 1) < 100)
-                return "久闻黄岛主收藏奇珍异宝，我有些古玩，想请他老人家鉴赏。";
+                return "久聞黃島主收藏奇珍異寶，我有些古玩，想請他老人家鑑賞。";
 
         if (me->query_skill("yuxiao-jianfa", 1) < 100)
-                return "久闻黄岛主收藏奇珍异宝，我有些古玩，想请他老人家鉴赏。";
+                return "久聞黃島主收藏奇珍異寶，我有些古玩，想請他老人家鑑賞。";
 
 
         command("touch"+query("id", me));
@@ -251,7 +251,7 @@ string ask_xiao()
         addn("xiao_count", -1);
         set_temp("get_xiao", 1, this_player());
 
-        message_vision("曲三递给$N一支青铜箫。\n", this_player());
+        message_vision("曲三遞給$N一支青銅簫。\n", this_player());
 
-        return "我近日得到一件古玩，麻烦你带给黄岛主鉴赏鉴赏。";
+        return "我近日得到一件古玩，麻煩你帶給黃島主鑑賞鑑賞。";
 }

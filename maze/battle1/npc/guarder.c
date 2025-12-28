@@ -7,12 +7,12 @@ inherit NPC;
 
 void create()
 {
-        set_name(HIY "守护者" NOR, ({ "guarder",}));
+        set_name(HIY "守護者" NOR, ({ "guarder",}));
         set("title", HIR "" NOR);
         set("gender", "男性");
         set("age", 22+random(23));
         set("long", @LONG
-他带着一副冰冷的面具，无法辨识模样。
+他帶著一副冰冷的面具，無法辨識模樣。
 LONG);
         set("attitude", "friendly");
         set("str", 80);
@@ -111,7 +111,7 @@ void heart_beat()
         if (query("neili") < 1 && random(50) == 1)                                              
                 set("neili", query("max_neili"));
 
-        // 守护房间出口
+        // 守護房間出口
         env = environment(this_object());
         if (objectp(env))
         {

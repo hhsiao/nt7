@@ -27,8 +27,8 @@ int do_sort_players(int day)
         object login_ob, user_ob;
 
         seteuid(getuid());
-        message("system", "\n--- 整理玩家储存档中，请稍候 ---\n", users());
-        write("处理中：");
+        message("system", "\n--- 整理玩家儲存檔中，請稍候 ---\n", users());
+        write("處理中：");
         count = 0;
         fail = 0;
         succ = 0;
@@ -82,7 +82,7 @@ int do_sort_players(int day)
         }
         destruct(login_ob);
 
-        write("\n总共有 " + count + " 位使用者。\n");
-        write("为 " + succ + " 个玩家增加了鉴别 ID，另外 " + fail + " 个使用者无法处理。\n");
+        write("\n總共有 " + count + " 位使用者。\n");
+        write("為 " + succ + " 個玩家增加了鑑別 ID，另外 " + fail + " 個使用者無法處理。\n");
         return 1;
 }

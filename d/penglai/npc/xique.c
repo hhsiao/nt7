@@ -5,8 +5,8 @@ int is_pld_npc(){return 1;}
 
 void create()
 {
-        set_name(HIW "喜鹊" NOR, ({ "xi que", "xi", "que" }));
-        set("long", HIW "这是一只可爱的喜鹊，看起来很机灵，最喜欢吃青梅。\n" NOR);
+        set_name(HIW "喜鵲" NOR, ({ "xi que", "xi", "que" }));
+        set("long", HIW "這是一隻可愛的喜鵲，看起來很機靈，最喜歡吃青梅。\n" NOR);
 
         set("age", 1);
         set("str", 1);
@@ -39,8 +39,8 @@ void create()
         
         if (random(400) == 1)
         {
-       	       set_name(HIM "喜鹊仙子" NOR, ({ "xique xianzi", "xique", "xianzi" }));
-       	       set("long", HIM "这是传说中喜鹊化作的仙子，着一身喜鹊羽衣，美貌无比，令人心醉。\n" NOR);       
+       	       set_name(HIM "喜鵲仙子" NOR, ({ "xique xianzi", "xique", "xianzi" }));
+       	       set("long", HIM "這是傳說中喜鵲化作的仙子，著一身喜鵲羽衣，美貌無比，令人心醉。\n" NOR);       
        	       set("gift/exp", 100);
 	       set("gift/pot", 50); 	
                set("str", 30);                  

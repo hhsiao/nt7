@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[5m[1;37m神秘货[1;37m[5m[2;37;0m[2;37;0m", ({"xxman"}));        
+        set_name("[5m[1;37m神秘貨[1;37m[5m[2;37;0m[2;37;0m", ({"xxman"}));        
         set("gender", "男性");                
-        set("long", "$BLINK$$HIW$神秘货$HIW$$BLINK$[2;37;0m
-它是神秘人物的魔幻兽。
+        set("long", "$BLINK$$HIW$神秘貨$HIW$$BLINK$[2;37;0m
+它是神秘人物的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

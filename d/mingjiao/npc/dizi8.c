@@ -1,10 +1,10 @@
-// dizi8.c 风字门教众
+// dizi8.c 風字門教眾
 #include <ansi.h>
 inherit NPC;
 void create()
 {
-        set_name("风字门教众", ({"jiao zhong","zhong"}));
-        set("long","这是一位杨逍属下风字门的教众。\n");
+        set_name("風字門教眾", ({"jiao zhong","zhong"}));
+        set("long","這是一位楊逍屬下風字門的教眾。\n");
         set("gender", "男性");
         set("attitude", "peaceful");
         set("class", random(2)?"bonze":"taoist");
@@ -33,7 +33,7 @@ void create()
         map_skill("blade", "lieyan-dao");
 
         setup();
-        create_family("明教",39,"教众");
+        create_family("明教",39,"教眾");
         carry_object("/clone/weapon/blade")->wield();
         carry_object("/d/mingjiao/obj/black-cloth")->wear();
 }

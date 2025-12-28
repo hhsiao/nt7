@@ -1,5 +1,5 @@
-// qixi.c 事件：七夕牛郎织女星相会
-// couple/id 如果结婚则奖励加倍
+// qixi.c 事件：七夕牛郎織女星相會
+// couple/id 如果結婚則獎勵加倍
 #include <ansi.h>
 
 void create() { seteuid(getuid()); }
@@ -8,14 +8,14 @@ void create() { seteuid(getuid()); }
 #define STATUS_START            2
 #define STATUS_END              3
 
-// 开始创建事件
+// 開始創建事件
 void create_event()
 {
-        // 明年7月7日牛郎织女星相会，提前一天提示
+        // 明年7月7日牛郎織女星相會，提前一天提示
         EVENT_D->at_after(1, -7, -6, -12, STATUS_PROMPT);
 }
 
-// 奖励
+// 獎勵
 private void do_bonus(object room)
 {
         object *obs;
@@ -29,23 +29,23 @@ private void do_bonus(object room)
         if (sizeof(obs) < 1)
                 return;
 
-        msg = HIW "\n只见天际群星光芒齐放，鹊桥隐现，牛郎织女之星光华闪耀，\n"
-                  "会聚于鹊桥之上，刹那间，群星围绕，流光溢彩，一番盛大\n"
-                  "景象。正所谓：\n" HIY
-                  "　　    维天有汉，监亦有光。\n"
-                  "        岐彼织女，终日七襄。\n"
-                  "        虽则七襄，不成报章。\n"
-                  "        睕彼牵牛，不以报箱。\n" HIW
-                  "令人毕生难忘，又有古诗云：\n" HIY
-                  "　　    迢迢牵牛星，皎皎河汉女。\n"
-                  "        纤纤灌素手，札札弄机杼；\n"
-                  "        终日不成章，泣涕零如雨。\n"
-                  "        河汉清且浅，相去复几许?\n"
-                  "        盈盈一水问，脉脉不得语。\n" NOR;
+        msg = HIW "\n只見天際群星光芒齊放，鵲橋隱現，牛郎織女之星光華閃耀，\n"
+                  "會聚於鵲橋之上，剎那間，群星圍繞，流光溢彩，一番盛大\n"
+                  "景象。正所謂：\n" HIY
+                  "　　    維天有漢，監亦有光。\n"
+                  "        岐彼織女，終日七襄。\n"
+                  "        雖則七襄，不成報章。\n"
+                  "        睕彼牽牛，不以報箱。\n" HIW
+                  "令人畢生難忘，又有古詩云：\n" HIY
+                  "　　    迢迢牽牛星，皎皎河漢女。\n"
+                  "        纖纖灌素手，札札弄機杼；\n"
+                  "        終日不成章，泣涕零如雨。\n"
+                  "        河漢清且淺，相去復幾許?\n"
+                  "        盈盈一水問，脈脈不得語。\n" NOR;
 
         message("vision", msg, obs);
-        msg = "听说七月初七" + implode(sizeof(obs) > 4 ? obs[0..3]->name(1) : obs->name(1), "、") +
-              "等人在望月台观赏牛郎织女星相会。";
+        msg = "聽說七月初七" + implode(sizeof(obs) > 4 ? obs[0..3]->name(1) : obs->name(1), "、") +
+              "等人在望月臺觀賞牛郎織女星相會。";
 
         CHANNEL_D->do_channel(this_object(), "rumor", msg);
 
@@ -53,12 +53,12 @@ private void do_bonus(object room)
         if (sizeof(obs) < 1)
                 return;
 
-        msg = HIG "你望着浩瀚的天际以及牛郎星与织女星发出耀眼的光芒，似乎若有所思。\n" NOR;
+        msg = HIG "你望著浩瀚的天際以及牛郎星與織女星發出耀眼的光芒，似乎若有所思。\n" NOR;
         message("vision", msg, obs);
 
         for( i=0; i<sizeof(obs); i++ )
         {
-                // 已经结婚的则奖励加倍
+                // 已經結婚的則獎勵加倍
                 if( stringp(query("couple/id", obs[i])))
                 {
                         if (query("combat_exp", obs[i]) < 1000000000)
@@ -76,38 +76,38 @@ private void do_bonus(object room)
                         addn("magic_points", 30*p+random(21*p), obs[i]);
                 }
         }
-        MAP_D->record_rumor(obs, "望月台七夕盛景", this_object());
+        MAP_D->record_rumor(obs, "望月臺七夕盛景", this_object());
 }
 
-// 事件触发
+// 事件觸發
 void trigger_event(int status)
 {
         object room;
 
         room = find_object("/d/henshan/wangyuetai");
 
-        // 钱塘江潮信
+        // 錢塘江潮信
         switch (status)
         {
         case STATUS_PROMPT:
                 CHANNEL_D->do_channel(this_object(), "rumor",
-                        "七月初七又要到了，听说不少人前往望月台观赏牛郎织女星相会。");
-                // 明天18点钟相会
+                        "七月初七又要到了，聽說不少人前往望月臺觀賞牛郎織女星相會。");
+                // 明天18點鐘相會
                 EVENT_D->at_after(0, 0, 1, -18, STATUS_START);
                 break;
 
         case STATUS_START:
                 if (objectp(room))
                         do_bonus(room);
-                // 一个小时以后完毕
+                // 一個小時以後完畢
                 EVENT_D->at_after(0, 0, 0, 1, STATUS_END);
                 break;
 
         case STATUS_END:
                 if (objectp(room))
-                        message("vision", "天际逐渐暗淡了下来，恢复了平静，你这才"
-                                          "仿佛从梦中醒了过来。\n", room);
-                // 继续执行default中的内容
+                        message("vision", "天際逐漸暗淡了下來，恢復了平靜，你這才"
+                                          "彷彿從夢中醒了過來。\n", room);
+                // 繼續執行default中的內容
 
         default:
                 create_event();
@@ -120,9 +120,9 @@ string query_detail(string topic)
 {
         switch (topic)
         {
-        case "望月台七夕盛景":
-                return "每年七月初七牛郎星与织女星在鹊桥相会，非常准时，故称之为七夕盛景色。每次两星相会"
-                       "时群星闪耀，光彩照人，场面甚是壮观。\n";
+        case "望月臺七夕盛景":
+                return "每年七月初七牛郎星與織女星在鵲橋相會，非常準時，故稱之為七夕盛景色。每次兩星相會"
+                       "時群星閃耀，光彩照人，場面甚是壯觀。\n";
         }
 }
 

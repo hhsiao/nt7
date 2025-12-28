@@ -1,4 +1,4 @@
-// powerup.c 两仪神功加力
+// powerup.c 兩儀神功加力
 
 #include <ansi.h>
 
@@ -11,20 +11,20 @@ int exert(object me, object target)
         int skill;
 
         if (target != me)
-                return notify_fail("你只能用两仪神功来提升自己的战斗力。\n");
+                return notify_fail("你只能用兩儀神功來提升自己的戰鬥力。\n");
 
         if( query("neili", me)<150 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if( BUFF_D->check_buff(me, "powerup") )
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
         addn("neili", -100, me);
         me->receive_damage("qi", 0);
         
-        msg = HIY "$N" HIY "陡然一声清啸，运起两仪神功，全身"
-                        "骨骼一阵爆响，真气荡漾，衣衫顿时膨胀，气势迫"
+        msg = HIY "$N" HIY "陡然一聲清嘯，運起兩儀神功，全身"
+                        "骨骼一陣爆響，真氣盪漾，衣衫頓時膨脹，氣勢迫"
                         "人。\n" NOR;
                         
         data = ([
@@ -37,11 +37,11 @@ int exert(object me, object target)
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "两仪神功·战神",
+                "name"  : "兩儀神功·戰神",
                 "time"  : skill,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : "你的两仪神功运行完毕，将内力收回丹田。\n",
+                "disa_msg" : "你的兩儀神功運行完畢，將內力收回丹田。\n",
                         
         ]);
         BUFF_D->buffup(buff);

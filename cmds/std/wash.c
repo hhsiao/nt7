@@ -14,18 +14,18 @@ int main(object me, string arg)
         int remain;
 
         if (!arg)
-                return notify_fail("你要洗什么？\n");
+                return notify_fail("你要洗什麼？\n");
 
         target = arg;
 
         if( !query("resource/water", environment(me)) )
-                return notify_fail("这里没水，你怎么洗？\n");
+                return notify_fail("這裡沒水，你怎麼洗？\n");
 
         if (me->is_busy())
                 return notify_fail("先忙玩了你的事情再洗吧！\n");
 
         if (me->is_fighting())
-                return notify_fail("你还是打完了架再洗吧！\n");
+                return notify_fail("你還是打完了架再洗吧！\n");
 
         if (target == "hand" || target == "me")
         {
@@ -36,14 +36,14 @@ int main(object me, string arg)
                 dest = present(target, me);
                 if (! dest) dest = present(target, environment(me));
                 if (! dest)
-                        return notify_fail("这里没有这样东西。\n");
+                        return notify_fail("這裡沒有這樣東西。\n");
 
                 if (dest->is_character())
                 {
                         if (dest != me)
                         {
                                 dest->force_me("chat*rascal"+query("id", me));
-                                return notify_fail("你要给人家" + dest->name() +
+                                return notify_fail("你要給人家" + dest->name() +
                                                    "洗澡？\n");
                         }
                         // daub on me
@@ -52,22 +52,22 @@ int main(object me, string arg)
                     !mapp(query("weapon_prop", dest)) )
                 {
                         return notify_fail("那既不是武器，也不是防具，"
-                                           "你有什么好清洗的？\n");
+                                           "你有什麼好清洗的？\n");
                 }
         }
 
         if( remain=query_temp("daub/poison/remain", dest) )
         {
                 if (remain > 10000)
-                        msg = "，只见洗完的水变得腥臭无比，令人掩鼻。\n";
+                        msg = "，只見洗完的水變得腥臭無比，令人掩鼻。\n";
                 else
                 if (remain > 4000)
-                        msg = "，就见那水忽的变了颜色，碧汪汪的，气味古怪。\n";
+                        msg = "，就見那水忽的變了顏色，碧汪汪的，氣味古怪。\n";
                 else
                 if (remain > 1000)
-                        msg = "，清水随即色变，散发出一种难闻的气味。\n";
+                        msg = "，清水隨即色變，散發出一種難聞的氣味。\n";
                 else
-                        msg = "，洗后水的颜色变得有点不对。\n";
+                        msg = "，洗後水的顏色變得有點不對。\n";
         } else
                 msg = "。\n";
 
@@ -88,7 +88,7 @@ int main(object me, string arg)
                 if (! dest || ! me)
                         return 1;
 
-                message_vision("$N将脱下来的$n好好的洗了洗" + msg, me, dest);
+                message_vision("$N將脫下來的$n好好的洗了洗" + msg, me, dest);
                 dest->washed(120 + random(120));
                 return 1;
         }
@@ -102,8 +102,8 @@ int help(object me)
 write(@HELP
 指令格式 : wash <武器> | <防具> | hand
 
-这个指令可以让你将武器、防具好好冲洗一下，以清除上面的毒。当然没有
-毒清洗它也不是什么坏事。
+這個指令可以讓你將武器、防具好好沖洗一下，以清除上面的毒。當然沒有
+毒清洗它也不是什麼壞事。
 HELP
     );
     return 1;

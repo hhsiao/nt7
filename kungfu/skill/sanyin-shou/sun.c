@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define SUN "「" HIR "损筋诀" NOR "」"
+#define SUN "「" HIR "損筋訣" NOR "」"
 
 inherit F_SSERVER;
 
@@ -18,34 +18,34 @@ int perform(object me)
         }
 
         if( userp(me) && !query("can_perform/sanyin-shou/sun", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         skill = me->query_skill("sanyin-shou", 1);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(SUN "只能对战斗中的对手使用。\n");
+                return notify_fail(SUN "只能對戰鬥中的對手使用。\n");
 
         if (skill < 140)
-                return notify_fail("你的三阴手等级不够，难以施展" SUN "。\n");
+                return notify_fail("你的三陰手等級不夠，難以施展" SUN "。\n");
 
         if( query("max_neili", me)<1600 )
-                return notify_fail("你的内力修为不足，难以施展" SUN "。\n");
+                return notify_fail("你的內力修為不足，難以施展" SUN "。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你的内力不够，难以施展" SUN "。\n");
+                return notify_fail("你的內力不夠，難以施展" SUN "。\n");
 
         if (me->query_skill_mapped("hand") != "sanyin-shou")
-                return notify_fail("你没有激发三阴手，难以施展" SUN "。\n");
+                return notify_fail("你沒有激發三陰手，難以施展" SUN "。\n");
 
         if (me->query_skill_prepared("hand") != "sanyin-shou")
-                return notify_fail("你现在没有准备使用三阴手，难以施展" SUN "。\n");
+                return notify_fail("你現在沒有準備使用三陰手，難以施展" SUN "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIR "$N" HIR "悄然游走至$n" HIR "跟前，陡然使出"
-              "三阴手绝技「损筋诀」，单掌轻轻拂过$n" HIR "太阳"
-              "穴，不着半点力道。\n" NOR;
+        msg = HIR "$N" HIR "悄然遊走至$n" HIR "跟前，陡然使出"
+              "三陰手絕技「損筋訣」，單掌輕輕拂過$n" HIR "太陽"
+              "穴，不著半點力道。\n" NOR;
 
         damage = skill / 2 + random(skill / 2);
 
@@ -60,13 +60,13 @@ int perform(object me)
                 target->start_busy(1);
                 msg += COMBAT_D->do_damage(me, target, REMOTE_ATTACK,
                        damage, 50, HIR "$n" HIR "稍不留神，已被$N" HIR
-                       "单掌拂中，只觉眼前一黑，几欲晕倒。\n" NOR);
+                       "單掌拂中，只覺眼前一黑，幾欲暈倒。\n" NOR);
         }
         else
         {
                 addn("neili", -100, me);
-                msg += CYN "$n" CYN "见状大吃一惊，急忙向后猛退数步，"
-                       "终于避开了$N" CYN "这一击。\n" NOR;
+                msg += CYN "$n" CYN "見狀大吃一驚，急忙向後猛退數步，"
+                       "終於避開了$N" CYN "這一擊。\n" NOR;
                 me->start_busy(4);
         }
         message_combatd(msg, me, target);

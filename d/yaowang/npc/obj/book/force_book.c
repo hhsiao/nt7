@@ -2,7 +2,7 @@ inherit ITEM;
 
 void create()
 {
-       set_name("基本内功", ({ "force book"}));
+       set_name("基本內功", ({ "force book"}));
         set_weight(600);
         /*if( clonep() )
                 set_default_object(__FILE__);
@@ -10,16 +10,16 @@ void create()
         {
         set("unit", "本");
         set("long",
-"这本书上面只有一些字迹模糊的字句，似乎\n"
-"写的是一些内功修炼的经验之谈。\n");
+"這本書上面只有一些字跡模糊的字句，似乎\n"
+"寫的是一些內功修煉的經驗之談。\n");
         set("value", 800);
         set("material", "paper");
         set("skill", ([
-        "name":         "force", // 武功名称,
-        "exp_required": 100,    // 读此书需要的最低经验.
-        "jing_cost":     15,      // 读书花的神.
-        "difficulty":   20,      // 参看 /cmds/std/study.c
-        "max_skill":    60,      // 能读到的最高等级.
+        "name":         "force", // 武功名稱,
+        "exp_required": 100,    // 讀此書需要的最低經驗.
+        "jing_cost":     15,      // 讀書花的神.
+        "difficulty":   20,      // 參看 /cmds/std/study.c
+        "max_skill":    60,      // 能讀到的最高等級.
 ]) );
         }
 }

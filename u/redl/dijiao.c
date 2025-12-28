@@ -8,7 +8,7 @@ void create()
 { 
                 set("short", "地窖"); 
                 set("long", 
-                                                        "这里阴凉透气，是保鲜食品和储藏美酒的好地方。\n"
+                                                        "這裡陰涼透氣，是保鮮食品和儲藏美酒的好地方。\n"
                 ); 
                                 
                                 set("objects", ([ 
@@ -56,7 +56,7 @@ void init()
         object me = this_player();
         if (!query_temp("can_enterredlroom", me) && query("id", me) != "redl" && query("couple/couple_id", me) != "redl")
         {
-                        message_vision(YEL "一股微风吹过，把$N吹到了室外。\n" NOR, me);
+                        message_vision(YEL "一股微風吹過，把$N吹到了室外。\n" NOR, me);
                         me->move(__DIR__"cangku");
                         return;
         }

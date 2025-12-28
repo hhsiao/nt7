@@ -3,7 +3,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define JING "「" HIW "白首太玄经" NOR "」"
+#define JING "「" HIW "白首太玄經" NOR "」"
 
 inherit F_SSERVER;
 
@@ -24,70 +24,70 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(JING "只能对战斗中的对手使用。\n");
+                return notify_fail(JING "只能對戰鬥中的對手使用。\n");
 
         if( (!objectp(weapon=query_temp("weapon", me))) || 
             (query("skill_type", weapon) != "sword"
              && query("skill_type", weapon) != "blade") )
-                return notify_fail("你使用的武器不对，难以施展" JING "。\n");
+                return notify_fail("你使用的武器不對，難以施展" JING "。\n");
 
         if ((int)me->query_skill("force", 1) < 340)
-                return notify_fail("你内功修为不够，难以施展" JING "。\n");
+                return notify_fail("你內功修為不夠，難以施展" JING "。\n");
 
         if( query("max_neili", me)<10000 )
-                return notify_fail("你内力修为不够，难以施展" JING "。\n");
+                return notify_fail("你內力修為不夠，難以施展" JING "。\n");
 
         lvl = (int)me->query_skill("taixuan-gong", 1);
         if (lvl < 340)
-                return notify_fail("你太玄功火候不够，难以施展" JING "。\n");
+                return notify_fail("你太玄功火候不夠，難以施展" JING "。\n");
 
         if (me->query_skill_mapped("sword") != "taixuan-gong"
             && me->query_skill_mapped("blade") != "taixuan-gong")
-                return notify_fail("你没有激发太玄功为刀或剑，难以施展" JING "。\n");
+                return notify_fail("你沒有激發太玄功為刀或劍，難以施展" JING "。\n");
 
-        // 分别判断激发刀剑时需要的刀、剑等级。
+        // 分別判斷激發刀劍時需要的刀、劍等級。
         if (me->query_skill_mapped("sword") == "taixuan-gong")
         {               
                 if (me->query_skill("sword", 1) < 340)
-                        return notify_fail("你的基本剑法火候不足，难以施展" JING "。\n");
+                        return notify_fail("你的基本劍法火候不足，難以施展" JING "。\n");
 
                 else 
                 {
                         if( query("skill_type", weapon) == "sword" )
-                                flag = 1; // 设置激发为sword标志
-                        sub_msg = "剑";
+                                flag = 1; // 設置激發為sword標誌
+                        sub_msg = "劍";
                 }
         }
-        else // 激发为刀
+        else // 激發為刀
         {
                 if (me->query_skill("blade", 1) < 340)
-                        return notify_fail("你的基本刀法火候不足，难以施展" JING "。\n");
+                        return notify_fail("你的基本刀法火候不足，難以施展" JING "。\n");
                 else 
                 {
-                        flag = 0; // 设置激发为blade标志
+                        flag = 0; // 設置激發為blade標誌
                         sub_msg = "刀";
                 }
         }
 
         if( query("neili", me)<850 )
-                return notify_fail("你现在真气不够，难以施展" JING "。\n");
+                return notify_fail("你現在真氣不夠，難以施展" JING "。\n");
 
         if (me->query_skill("martial-cognize", 1) < 260)
-                return notify_fail("你武学修养不足，难以施展" JING "。\n");
+                return notify_fail("你武學修養不足，難以施展" JING "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        message_combatd(sort_msg(HIM "\n$N" HIM "情不自禁的纵声长啸，霎时之间，千百种招式纷至沓来，涌"
-                     "向心头。$N" HIM "随手挥舞，已是不按次序，但觉无论何种招式皆能随心所欲"
-                     "，既不必存想内息，亦不须记忆招数，石壁上的千百种招式，自然而然的从心"
-                     "中传向手足，尽数袭向$n" HIM "。\n" NOR), me, target);
+        message_combatd(sort_msg(HIM "\n$N" HIM "情不自禁的縱聲長嘯，霎時之間，千百種招式紛至沓來，湧"
+                     "向心頭。$N" HIM "隨手揮舞，已是不按次序，但覺無論何種招式皆能隨心所欲"
+                     "，既不必存想內息，亦不須記憶招數，石壁上的千百種招式，自然而然的從心"
+                     "中傳向手足，盡數襲向$n" HIM "。\n" NOR), me, target);
 
 
         if (flag)ap = attack_power(me, "sword") + me->query_str()*20;
         else ap = attack_power(me, "blade") + me->query_str()*20;
 
-        // 第一招，判断对方臂力
+        // 第一招，判斷對方臂力
         dp = defense_power(target, "parry") + target->query_str()*20;
         
         if (flag) damage = damage_power(me, "sword");
@@ -95,15 +95,15 @@ int perform(object me, object target)
         damage += query("jiali", me);
         damage *= 3;
         
-        delta = ABILITY_D->check_ability(me, "ap_power-txg-jing"); // 门派ab
+        delta = ABILITY_D->check_ability(me, "ap_power-txg-jing"); // 門派ab
         if( delta ) ap += ap*delta/100;
         
-        delta2 = ABILITY_D->check_ability(me, "da_power-txg-jing"); // 门派ab
+        delta2 = ABILITY_D->check_ability(me, "da_power-txg-jing"); // 門派ab
         if( delta2 ) damage += damage*delta2/100;
                 
-        message_combatd(sort_msg(HIW "\n$N" HIW "突然间只觉得右肋下‘渊液穴’上一动，一道热线沿着‘足少"
-                     "阳胆经’，向着‘日月’、‘京门’二穴行去，一招‘十步杀一人’的" + sub_msg + 
-                     "法已随意使出，各种招式源源而出，将$n" HIW "笼罩。\n" NOR), me, target);
+        message_combatd(sort_msg(HIW "\n$N" HIW "突然間只覺得右肋下‘淵液穴’上一動，一道熱線沿著‘足少"
+                     "陽膽經’，向著‘日月’、‘京門’二穴行去，一招‘十步殺一人’的" + sub_msg + 
+                     "法已隨意使出，各種招式源源而出，將$n" HIW "籠罩。\n" NOR), me, target);
 
         if (ap / 2 + random(ap) > dp)
         {
@@ -112,40 +112,40 @@ int perform(object me, object target)
                                          (: final1, me, target, damage, weapon, lvl :));
         } else
         {
-                msg = HIC "$n" HIC "气贯双臂，凝神以对，竟将$N" HIC "之力卸去。\n" NOR;
+                msg = HIC "$n" HIC "氣貫雙臂，凝神以對，竟將$N" HIC "之力卸去。\n" NOR;
         }
         message_combatd(sort_msg(msg), me, target);
 
         if( flag)ap=attack_power(me,"sword")+me->query_int()*20;
         else ap=attack_power(me,"blade")+me->query_int()*20;
-        // 第二招，判断对方悟性
+        // 第二招，判斷對方悟性
         dp=defense_power(target,"parry")+target->query_int()*20;
         
         if( delta ) ap += ap*delta/100;
-        message_combatd(sort_msg(HIW "\n$N" HIW "肌肤如欲胀裂，内息不由自主的依着‘赵客缦胡缨’那套经脉运"
-                     "行图谱转动，同时手舞足蹈，似是大欢喜，又似大苦恼。\n" NOR), me);
+        message_combatd(sort_msg(HIW "\n$N" HIW "肌膚如欲脹裂，內息不由自主的依著‘趙客縵胡纓’那套經脈運"
+                     "行圖譜轉動，同時手舞足蹈，似是大歡喜，又似大苦惱。\n" NOR), me);
 
         if (ap / 2 + random(ap) > dp)
         {
                 msg = COMBAT_D->do_damage(me, target, REMOTE_ATTACK, damage, 85 + random(10),
-                                          HIY "$n" HIY "冷笑一声，觉得$N" HIY "此招肤浅之极，于"
-                                          "是随意招架，猛然间，「噗嗤」！一声，" + weapon->name() +
-                                          HIY "已穿透$n" HIY "的胸膛，鲜血不断涌出。\n" NOR, me , target);
+                                          HIY "$n" HIY "冷笑一聲，覺得$N" HIY "此招膚淺之極，於"
+                                          "是隨意招架，猛然間，「噗嗤」！一聲，" + weapon->name() +
+                                          HIY "已穿透$n" HIY "的胸膛，鮮血不斷湧出。\n" NOR, me , target);
         } else
         {
-                msg = HIC "$n" HIC "会心一笑，看出$N" HIC "这招中的破绽，随意施招竟将这招化去。\n" NOR;
+                msg = HIC "$n" HIC "會心一笑，看出$N" HIC "這招中的破綻，隨意施招竟將這招化去。\n" NOR;
         }
         message_combatd(sort_msg(msg), me, target);
 
         if (flag)ap = attack_power(me, "sword") + me->query_con()*20;
         else ap = attack_power(me, "blade") + me->query_con()*20;
-        // 第三招，判断对方根骨
+        // 第三招，判斷對方根骨
         dp = defense_power(target, "force") + target->query_con()*20;
         
         if( delta ) ap += ap*delta/100;
-        message_combatd(sort_msg(HIW "\n‘赵客缦胡缨’既毕，接下去便是‘吴钩霜雪明’，$N" HIW "更"
-                    "不思索，石壁上的图谱一幅幅在脑海中自然涌出，自‘银鞍照白马’直到‘谁能书阁下’，"
-                    "一气呵成的使了出来。\n" NOR), me);
+        message_combatd(sort_msg(HIW "\n‘趙客縵胡纓’既畢，接下去便是‘吳鉤霜雪明’，$N" HIW "更"
+                    "不思索，石壁上的圖譜一幅幅在腦海中自然湧出，自‘銀鞍照白馬’直到‘誰能書閣下’，"
+                    "一氣呵成的使了出來。\n" NOR), me);
 
         if (ap / 2 + random(ap) > dp)
         {
@@ -153,19 +153,19 @@ int perform(object me, object target)
                                            (: final2, me, target, damage :));
         } else
         {
-                msg = HIC "$n" HIC "默运内功，内劲贯于全身，奋力抵挡住$N" HIC "这招。\n" NOR;
+                msg = HIC "$n" HIC "默運內功，內勁貫於全身，奮力抵擋住$N" HIC "這招。\n" NOR;
         }
         message_combatd(sort_msg(msg), me, target);
 
-        // 第四招，判断对方身法
+        // 第四招，判斷對方身法
 
         if (flag)ap = attack_power(me, "sword") + me->query_dex()*20;
         else ap = attack_power(me, "blade") + me->query_dex()*20;        
         dp = defense_power(target, "dodge") + target->query_dex()*20;
         
         if( delta ) ap += ap*delta/100;
-        message_combatd(HIW "\n待得‘谁能书阁下’这套功夫演完，$N" HIW "只觉气息逆转"
-                     "，‘不惭世上英’倒使上去。\n" NOR, me);
+        message_combatd(HIW "\n待得‘誰能書閣下’這套功夫演完，$N" HIW "只覺氣息逆轉"
+                     "，‘不慚世上英’倒使上去。\n" NOR, me);
 
         if (ap / 2 + random(ap) > dp)
         {
@@ -173,8 +173,8 @@ int perform(object me, object target)
                                           (: final3, me, target, damage, weapon, lvl, sub_msg :));
         } else
         {
-                msg = HIC "$n" HIC "见这招来势凶猛，身形疾退，瞬间飘出三"
-                      "丈，方才躲过$N" HIC "这招。\n" NOR;
+                msg = HIC "$n" HIC "見這招來勢兇猛，身形疾退，瞬間飄出三"
+                      "丈，方才躲過$N" HIC "這招。\n" NOR;
         }
         message_combatd(sort_msg(msg), me, target);
 
@@ -187,18 +187,18 @@ string final1(object me, object target, int damage, object weapon, int lvl)
 {
         addn("neili", -(lvl+random(lvl)), target);
 
-        return  HIY "$n" HIY "却觉$N" HIY "这招气势恢弘，于是运力奋力抵挡。但是无奈这"
-                "招威力惊人，$n" HIY "闷哼一声，倒退几步，顿觉内息涣散，" + weapon->name() + HIY 
-                "上早已染满鲜血！\n" NOR;
+        return  HIY "$n" HIY "卻覺$N" HIY "這招氣勢恢弘，於是運力奮力抵擋。但是無奈這"
+                "招威力驚人，$n" HIY "悶哼一聲，倒退幾步，頓覺內息渙散，" + weapon->name() + HIY 
+                "上早已染滿鮮血！\n" NOR;
 }
 
 string final2(object me, object target, int damage)
 {
         target->receive_damage("jing", damage / 2, me);
         target->receive_wound("jing", damage / 4, me);
-        return  HIY "$n" HIY "心中一惊，但见$N" HIY "这几招奇异无比，招式变化莫测，"
-                "但威力却依然不减，正犹豫间，$n" HIY "却已中招，顿感精力不济，浑"
-                "身无力。\n" NOR;
+        return  HIY "$n" HIY "心中一驚，但見$N" HIY "這幾招奇異無比，招式變化莫測，"
+                "但威力卻依然不減，正猶豫間，$n" HIY "卻已中招，頓感精力不濟，渾"
+                "身無力。\n" NOR;
 }
 
 string final3(object me, object target, int damage, object weapon, int lvl, string msg)
@@ -206,8 +206,8 @@ string final3(object me, object target, int damage, object weapon, int lvl, stri
    
         target->start_busy(4 + random(lvl/50));
   
-        return  HIY "$N" HIY + msg + "法奇妙无比，手中" + weapon->name() + HIY "时而宛若游龙，时而"
-                "宛若惊鸿，霎那间$n" HIY "已遍体鳞伤，$N" HIY "猛然将手中" + weapon->name() + HIY "一"
-                "转，剑势陡然加快，将$n" HIY "团团围住，竟无一丝空隙！\n" NOR;
+        return  HIY "$N" HIY + msg + "法奇妙無比，手中" + weapon->name() + HIY "時而宛若游龍，時而"
+                "宛若驚鴻，霎那間$n" HIY "已遍體鱗傷，$N" HIY "猛然將手中" + weapon->name() + HIY "一"
+                "轉，劍勢陡然加快，將$n" HIY "團團圍住，竟無一絲空隙！\n" NOR;
 
 }

@@ -5,12 +5,12 @@ inherit F_LIQUID;
 
 void create()
 {
-        set_name(GRN "酸菜粉丝汤" NOR, ({"soup"}));
+        set_name(GRN "酸菜粉絲湯" NOR, ({"soup"}));
         set_weight(50);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一碗香气扑鼻的酸菜粉丝汤。\n");
+                set("long", "一碗香氣撲鼻的酸菜粉絲湯。\n");
                 set("unit", "碗");
                 set("value", 160);
                 set("max_liquid", 8);
@@ -18,7 +18,7 @@ void create()
 
         set("liquid", ([
                 "type": "water",
-                "name": "酸菜粉丝汤",
+                "name": "酸菜粉絲湯",
                 "remaining": 12,
                 "drunk_supply": 40,
         ]));

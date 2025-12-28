@@ -10,8 +10,8 @@ void create()
         set_name("桑三娘", ({ "sang sanniang", "sang", "sanniang"}) );
         set("gender", "女性" );
         set("age", 45);
-        set("title", "日月神教天香堂长老");
-        set("long", "身情古怪，面无丝毫微笑，面容却相当清秀。 \n"
+        set("title", "日月神教天香堂長老");
+        set("long", "身情古怪，面無絲毫微笑，面容卻相當清秀。 \n"
                     );
         set("attitude", "friendly");
         set("shen_type", -1);
@@ -43,7 +43,7 @@ void create()
         
         map_skill("parry", "taiji-jian");
         map_skill("blade", "taiji-jian");
-        create_family("日月神教",2,"弟子 天香堂长老");
+        create_family("日月神教",2,"弟子 天香堂長老");
 
         set("chat_chance", 3);
         setup();

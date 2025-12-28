@@ -6,8 +6,8 @@ void create()
 {
         set("short", "天仙道");
         set("long",@LONG
-走在这根道上犹如踏上云层的感觉一般，轻飘飘的，从未试过
-这种感觉，阳光照射在仙气上折射出的各种光圈，五彩斑斓，美丽
+走在這根道上猶如踏上雲層的感覺一般，輕飄飄的，從未試過
+這種感覺，陽光照射在仙氣上折射出的各種光圈，五彩斑斕，美麗
 非常。
 LONG);
 
@@ -17,10 +17,10 @@ LONG);
                 "west"     : __DIR__"wuchi",
                 "east"     : __DIR__"tianxiandao2",                
         ]));
-        set("no_rideto", 1);         // 设置不能骑马到其他地方
-        set("no_flyto", 1);          // 设置不能从起来地方骑马来这里
-        set("no_die", 1);            // 死亡后移动到扁鹊居
-        set("penglai", 1);           // 表示在蓬莱岛
+        set("no_rideto", 1);         // 設置不能騎馬到其他地方
+        set("no_flyto", 1);          // 設置不能從起來地方騎馬來這裡
+        set("no_die", 1);            // 死亡後移動到扁鵲居
+        set("penglai", 1);           // 表示在蓬萊島
 
         set("region", "penglai");
         setup();
@@ -33,14 +33,14 @@ void init ()
                 if( !query("penglai/go_quest/ok", this_player()) )
                 {
                         this_player()->start_busy(3);
-                        tell_object(this_player(), NOR + WHT "你到了此处，四周仙气缭绕令你一时间难以辨别方向。\n" NOR);
+                        tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);
                 }
                 else
                 {
                         if (random(2))
                         {
                                 this_player()->start_busy(1);
-                                tell_object(this_player(), NOR + WHT "你到了此处，四周仙气缭绕令你一时间难以辨别方向。\n" NOR);                
+                                tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);                
                         }
                 }
         }

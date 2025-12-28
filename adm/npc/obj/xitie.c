@@ -1,4 +1,4 @@
-// xitie.c 喜贴，参加婚宴的请柬
+// xitie.c 喜貼，參加婚宴的請柬
 // llm 99/07
 
 inherit ITEM;
@@ -11,9 +11,9 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("unit", "张");
-                set("long", "一张大红的帖子，上面写着：\n"
-                        "诚邀阁下参加我们的在汝州红娘庄的婚礼和汝州喜福堂的婚宴。\n");
+                set("unit", "張");
+                set("long", "一張大紅的帖子，上面寫著：\n"
+                        "誠邀閣下參加我們的在汝州紅娘莊的婚禮和汝州喜福堂的婚宴。\n");
                 set("material", "paper");
         }
         setup();

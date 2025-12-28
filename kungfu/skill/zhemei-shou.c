@@ -7,45 +7,45 @@ string type() { return "martial"; }
 string martialtype() { return "skill"; }
 
 mapping *action = ({
-([        "action" : "$N一招"GRN"「吹梅笛怨」"NOR"，双手横挥，抓向$n",
+([        "action" : "$N一招"GRN"「吹梅笛怨」"NOR"，雙手橫揮，抓向$n",
         "lvl" : 0,
         "skill_name" : "吹梅笛怨"
 ]),
-([        "action" : "$N一招"YEL"「黄昏独自愁」"NOR"，身子跃然而起，抓向$n的头部",
+([        "action" : "$N一招"YEL"「黃昏獨自愁」"NOR"，身子躍然而起，抓向$n的頭部",
         "lvl" : 10,
-        "skill_name" : "黄昏独自愁"
+        "skill_name" : "黃昏獨自愁"
 ]),
-([        "action" : "$N一招"CYN"「寒山一带伤心碧」"NOR"，双手纷飞，$n只觉眼花缭乱",
+([        "action" : "$N一招"CYN"「寒山一帶傷心碧」"NOR"，雙手紛飛，$n只覺眼花繚亂",
         "lvl" : 30,
-        "skill_name" : "寒山一带伤心碧"
+        "skill_name" : "寒山一帶傷心碧"
 ]),
-([        "action" : "$N一招"MAG"「梅花雪落覆白苹」"NOR"，双手合击，$n只觉无处可避",
+([        "action" : "$N一招"MAG"「梅花雪落覆白蘋」"NOR"，雙手合擊，$n只覺無處可避",
         "lvl" : 40,
-        "skill_name" : "梅花雪落覆白苹"
+        "skill_name" : "梅花雪落覆白蘋"
 ]),
-([        "action" : "$N一招"HIW"「砌下落梅如雪乱」"NOR"，双手飘然抓向$n",
+([        "action" : "$N一招"HIW"「砌下落梅如雪亂」"NOR"，雙手飄然抓向$n",
         "lvl" : 50,
-        "skill_name" : "砌下落梅如雪乱"
+        "skill_name" : "砌下落梅如雪亂"
 ]),
 
-([        "action" : "$N双手平举，一招"GRN"「云破月来花弄影」"NOR"击向$n",
+([        "action" : "$N雙手平舉，一招"GRN"「雲破月來花弄影」"NOR"擊向$n",
         "lvl" : 60,
-        "skill_name" : "云破月来花弄影"
+        "skill_name" : "雲破月來花弄影"
 ]),
-([        "action" : "$N一招"HIB"「花开堪折直须折」"NOR"，拿向$n，似乎$n的全身都被笼罩",
+([        "action" : "$N一招"HIB"「花開堪折直須折」"NOR"，拿向$n，似乎$n的全身都被籠罩",
         "lvl" : 70,
-        "skill_name" : "花开堪折直须折"
+        "skill_name" : "花開堪折直須折"
 ]),
 
-([        "action" : "$N左手虚晃，右手一记"HIR"「红颜未老恩先绝」"NOR"击向$n的头部",
+([        "action" : "$N左手虛晃，右手一記"HIR"「紅顏未老恩先絕」"NOR"擊向$n的頭部",
         "lvl" : 80,
-        "skill_name" : "红颜未老恩先绝"
+        "skill_name" : "紅顏未老恩先絕"
 ]),
-([        "action" : "$N施出"HIM"「虚妄笑红」"NOR"，右手横扫$n的$l，左手攻向$n的胸口",
+([        "action" : "$N施出"HIM"「虛妄笑紅」"NOR"，右手橫掃$n的$l，左手攻向$n的胸口",
         "lvl" : 90,
-        "skill_name" : "虚妄笑红"
+        "skill_name" : "虛妄笑紅"
 ]),
-([        "action" : "$N施出"HIR"「玉石俱焚」"NOR"，不顾一切扑向$n",
+([        "action" : "$N施出"HIR"「玉石俱焚」"NOR"，不顧一切撲向$n",
         "lvl" : 100,
         "skill_name" : "玉石俱焚"
 ])
@@ -57,30 +57,30 @@ int valid_combine(string combo) { return combo=="liuyang-zhang"; }
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练逍遥折梅手必须空手。\n");
+                return notify_fail("練逍遙折梅手必須空手。\n");
 
         if( query("max_neili", me)<900 )
-                return notify_fail("你的内力太弱，无法练逍遥折梅手。\n");
+                return notify_fail("你的內力太弱，無法練逍遙折梅手。\n");
 
         if ((int)me->query_skill("force") < 120)
-                return notify_fail("你的内功火候不够，无法练逍遥折梅手。\n");
+                return notify_fail("你的內功火候不夠，無法練逍遙折梅手。\n");
 
         if ((int)me->query_skill("hand", 1) < 100)
-                return notify_fail("你的基本手法火候不够，无法练逍遥折梅手。\n");
+                return notify_fail("你的基本手法火候不夠，無法練逍遙折梅手。\n");
 
         if ((int)me->query_skill("hand", 1) < (int)me->query_skill("zhemei-shou", 1))
-                return notify_fail("你的基本手法水平有限，无法领会更高深的逍遥折梅手。\n");
+                return notify_fail("你的基本手法水平有限，無法領會更高深的逍遙折梅手。\n");
 
         return 1;
 }
 int practice_skill(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("你的必须空手才能练习。\n");
+                return notify_fail("你的必須空手才能練習。\n");
         if( query("qi", me)<60 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
         if( query("neili", me)<60 )
-                return notify_fail("你的内力不够练天山折梅手。\n");
+                return notify_fail("你的內力不夠練天山折梅手。\n");
         me->receive_damage("qi", 40);
         addn("neili", -30, me);
         return 1;
@@ -107,16 +107,16 @@ mapping query_action(object me, object weapon)
         for(i = ttl; i > 0; i--)
                 if(lvl > action[i-1]["lvl"])
                 {
-                        seq = i; /* 获得招数序号上限 */
+                        seq = i; /* 獲得招數序號上限 */
                         break;
                 }
-        seq = random(seq);       /* 选择出手招数序号 */
+        seq = random(seq);       /* 選擇出手招數序號 */
         return ([
                 "action"      : action[seq]["action"],
                 "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
                 "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
                 "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
-                "damage_type" : random(2) ? "内伤" : "瘀伤",
+                "damage_type" : random(2) ? "內傷" : "瘀傷",
         ]);
 }
 mixed hit_ob(object me, object victim, int damage_bonus)
@@ -128,7 +128,7 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         if( random(damage_bonus) > victim->query_str()/10 )
         {
                 victim->receive_wound("qi", damage_bonus / 3, me);
-                return HIC "你听到一声脆响，仿佛是梅枝折断的声音！\n" NOR;
+                return HIC "你聽到一聲脆響，彷彿是梅枝折斷的聲音！\n" NOR;
         }
 }
 int learn_bonus() { return 0; }
@@ -145,12 +145,12 @@ int help(object me)
         write(HIC"\n天山折梅手："NOR"\n");
         write(@HELP
 
-    天山折梅手是逍遥派手法。
-    可与天山六阳掌互备。
+    天山折梅手是逍遙派手法。
+    可與天山六陽掌互備。
 
-        学习要求：
-                北冥神功15级或八荒六合唯我独尊功15级
-                内力50
+        學習要求：
+                北冥神功15級或八荒六合唯我獨尊功15級
+                內力50
 HELP
         );
         return 1;

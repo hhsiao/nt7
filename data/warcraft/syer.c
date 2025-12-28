@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("骑马儿[2;37;0m[2;37;0m", ({"qimaer"}));        
+        set_name("騎馬兒[2;37;0m[2;37;0m", ({"qimaer"}));        
         set("gender", "女性");                
-        set("long", "骑马儿[2;37;0m
-它是冶子的魔幻兽。
+        set("long", "騎馬兒[2;37;0m
+它是冶子的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

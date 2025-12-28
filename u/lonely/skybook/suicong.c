@@ -1,5 +1,5 @@
 cat suicong.c
-// 随从系统
+// 隨從系統
 
 #include <ansi.h>
 inherit F_CLEAN_UP;
@@ -22,18 +22,18 @@ int main(object me, string arg)
         
         if (! find_object(SUICONG_D))load_object(SUICONG_D);
         
-        // 显示所有可以获得随从列表
+        // 顯示所有可以獲得隨從列表
         if (arg == "list")
         {
                 return SUICONG_D->show_suicong(me);             
         }
         
-        // 查看指定随从
+        // 查看指定隨從
         if (sscanf(arg, "cha %s", arg1) == 1)
         {
                 return SUICONG_D->show_suicong_target(me, arg1);
         }
-        // 查看指定玩家的指定随从
+        // 查看指定玩家的指定隨從
         if (sscanf(arg, "chaplayer %s %s", arg1, arg2) == 2)
         {
                 object ob = find_player(arg1);
@@ -41,22 +41,22 @@ int main(object me, string arg)
                                 
                 return SUICONG_D->show_suicong_target(ob, arg2);
         }
-        // 召唤随从     
+        // 召喚隨從     
         if (sscanf(arg, "sum %s", arg1) == 1)
         {
                 return SUICONG_D->summon_suicong(me, arg1);
         }
-        // 隐藏随从
+        // 隱藏隨從
         if (arg == "hide")
         {
                 return SUICONG_D->hide_suicong(me, arg1);
         }
-        // 测试开发期间使用，玩家可领取2名随从体验
+        // 測試開發期間使用，玩家可領取2名隨從體驗
         if (arg == "tiyan")
         {
-                SUICONG_D->give_suicong(me, "少侠·平一指");
+                SUICONG_D->give_suicong(me, "少俠·平一指");
 
-                write(HIG "领取了【少侠·平一指】，请使用 suicong sum 少侠·平一指 召唤！\n" NOR);
+                write(HIG "領取了【少俠·平一指】，請使用 suicong sum 少俠·平一指 召喚！\n" NOR);
                 return 1;
         }
 }
@@ -68,24 +68,24 @@ int help(object me)
         write(@TEXT              
         
 =--------------------------------------------------------------------------------------=
-        随从系统控制指令  >>
+        隨從系統控制指令  >>
 
-        suicong                   查看指令说明和当前召唤出的随从
-        suicong list              查看所有已经开放的随从
-        suicong cha 随从名        查看指定随从的详细信息
-        suicong sum 随从名        召唤指定随从出战，召唤后会替换掉当前已出战的随从
-        suicong hide 随从名       将召唤出来的随从收回
-        suicong tiyan             领取1名随从进行体验，正式开放后会删除
+        suicong                   查看指令說明和當前召喚出的隨從
+        suicong list              查看所有已經開放的隨從
+        suicong cha 隨從名        查看指定隨從的詳細信息
+        suicong sum 隨從名        召喚指定隨從出戰，召喚後會替換掉當前已出戰的隨從
+        suicong hide 隨從名       將召喚出來的隨從收回
+        suicong tiyan             領取1名隨從進行體驗，正式開放後會刪除
 TEXT);  
         
         if (wizardp(me))
         {
-                write("\n        suicong chaplayer ID 随从名   ： 可查看指定玩家指定的随从属性\n");
+                write("\n        suicong chaplayer ID 隨從名   ： 可查看指定玩家指定的隨從屬性\n");
         }
         
         
         sMsg = "\n=--------------------------------------------------------------------------------------=\n";
-        sMsg+= "当前召唤出的随从有：" + HIG + SUICONG_D->get_sum(me) + "\n" NOR;
+        sMsg+= "當前召喚出的隨從有：" + HIG + SUICONG_D->get_sum(me) + "\n" NOR;
         sMsg+=   "=--------------------------------------------------------------------------------------=\n";
         write(sMsg);
         return 1;

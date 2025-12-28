@@ -9,14 +9,14 @@ mixed ask_skill2();
 
 void create()
 {
-        set_name("王剑英", ({ "wang jianying", "wang", "jianying" }));
+        set_name("王劍英", ({ "wang jianying", "wang", "jianying" }));
         set("long", @LONG
-他是镇远镖局总镖头王维扬的大儿子，看上去红
-光满面，气宇轩昂，神态自若，便知他内力深厚，
-除了他父亲，俨然便是当世八卦门第一高手，八
-卦门掌门的继承人。
+他是鎮遠鏢局總鏢頭王維揚的大兒子，看上去紅
+光滿面，氣宇軒昂，神態自若，便知他內力深厚，
+除了他父親，儼然便是當世八卦門第一高手，八
+卦門掌門的繼承人。
 LONG );
-        set("title", "当世八卦门第一高手");
+        set("title", "當世八卦門第一高手");
           set("gender", "男性");
           set("age", 48);
         set("class", "fighter");
@@ -54,8 +54,8 @@ LONG );
           set_skill("martial-cognize", 160);
 
         set("no_teach", ([
-                "nei-bagua" : "内八卦神功必须由我父亲亲自传授。",
-                "bagua-dao" : "八卦刀法向来便是由我父亲亲自教授。",
+                "nei-bagua" : "內八卦神功必須由我父親親自傳授。",
+                "bagua-dao" : "八卦刀法向來便是由我父親親自教授。",
         ]));
 
         map_skill("blade", "bagua-dao");
@@ -69,11 +69,11 @@ LONG );
         prepare_skill("cuff", "bagua-quan");
         prepare_skill("strike", "bagua-zhang");
 
-          create_family("八卦门", 2, "高手");
+          create_family("八卦門", 2, "高手");
 
         set("inquiry", ([
-                "掌中夹镖" : (: ask_skill1 :),
-                "镖中现掌" : (: ask_skill2 :),
+                "掌中夾鏢" : (: ask_skill1 :),
+                "鏢中現掌" : (: ask_skill2 :),
         ]));
 
         set("chat_chance_combat", 100);
@@ -104,13 +104,13 @@ void attempt_apprentice(object me)
 
         if( query("combat_exp", me)<100000 )
             {
-                      command("say 你的江湖经验太差了，还是在镖局里再摸爬滚打一段时间吧！");
+                      command("say 你的江湖經驗太差了，還是在鏢局裡再摸爬滾打一段時間吧！");
                       return;
             }
 
         if (me->query_skill("bagua-xinfa", 1) < 80)
         {
-                command("say 你本门的内功修为太差，还是练练再说吧。");
+                command("say 你本門的內功修為太差，還是練練再說吧。");
                 return;
         }
 
@@ -128,37 +128,37 @@ mixed ask_skill1()
         me = this_player();
 
         if( query("can_perform/bagua-zhang/jia", me) )
-                return "该说的我都说完了，还有什么不明白就自己下去练！";
+                return "該說的我都說完了，還有什麼不明白就自己下去練！";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return RANK_D->query_respect(me) + "和本镖局素无来往，何出此言？";
+                return RANK_D->query_respect(me) + "和本鏢局素無來往，何出此言？";
 
         if (me->query_skill("bagua-zhang", 1) < 1)
-                return "你连八卦掌都没学，谈什么绝招？";
+                return "你連八卦掌都沒學，談什麼絕招？";
 
         if (me->query_skill("bagua-biao", 1) < 1)
-                return "你连八卦镖都没学，谈什么绝招？";
+                return "你連八卦鏢都沒學，談什麼絕招？";
 
         if( query("gongxian", me)<400 )
-                return "你为镖局出力不够，这招我暂时不忙传你。";
+                return "你為鏢局出力不夠，這招我暫時不忙傳你。";
 
         if (me->query_skill("bagua-zhang", 1) < 120)
-                return "你的八卦掌还练得不到家，自己下去练练再来吧！";
+                return "你的八卦掌還練得不到家，自己下去練練再來吧！";
 
         if (me->query_skill("bagua-biao", 1) < 120)
-                return "你的八卦镖还练得不到家，自己下去练练再来吧！";
+                return "你的八卦鏢還練得不到家，自己下去練練再來吧！";
 
         if (me->query_skill("force") < 150)
-                return "嗯，你的镖掌都已经娴熟了，但是切记内功火候是基础，这可半点马虎不得。";
+                return "嗯，你的鏢掌都已經嫻熟了，但是切記內功火候是基礎，這可半點馬虎不得。";
 
-        message_vision(HIY "$n" HIY "点了点头，伸手将$N" HIY "招到身边，在耳旁嘀嘀"
-                       "咕咕了半\n天，还时不时伸出手比划两下。$N" HIY "一边听一边不"
-                       "住的点头称\n是，似乎对$n" HIY "的教导大有感悟。\n" NOR, me,
+        message_vision(HIY "$n" HIY "點了點頭，伸手將$N" HIY "招到身邊，在耳旁嘀嘀"
+                       "咕咕了半\n天，還時不時伸出手比劃兩下。$N" HIY "一邊聽一邊不"
+                       "住的點頭稱\n是，似乎對$n" HIY "的教導大有感悟。\n" NOR, me,
                        this_object());
 
         command("nod");
-        command("say 该说的我都说了，你自己下去练习吧。");
-        tell_object(me, HIC "你学会了「掌中夹镖」。\n" NOR);
+        command("say 該說的我都說了，你自己下去練習吧。");
+        tell_object(me, HIC "你學會了「掌中夾鏢」。\n" NOR);
 
         if (me->can_improve_skill("strike"))
                 me->improve_skill("strike", 1500000);
@@ -182,39 +182,39 @@ mixed ask_skill2()
         me = this_player();
 
         if( query("can_perform/bagua-biao/xian", me) )
-                return "嗯？这招不是已经教过你了吗？";
+                return "嗯？這招不是已經教過你了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return RANK_D->query_respect(me) + "和本镖局素无来往，何出此言？";
+                return RANK_D->query_respect(me) + "和本鏢局素無來往，何出此言？";
 
         if (me->query_skill("bagua-zhang", 1) < 1)
-                return "你连八卦掌都没学，谈什么绝招？";
+                return "你連八卦掌都沒學，談什麼絕招？";
 
         if (me->query_skill("bagua-biao", 1) < 1)
-                return "你连八卦镖都没学，谈什么绝招？";
+                return "你連八卦鏢都沒學，談什麼絕招？";
 
         if( query("gongxian", me)<400 )
-                return "你为镖局出力不够，这招我暂时不忙传你。";
+                return "你為鏢局出力不夠，這招我暫時不忙傳你。";
 
         if (me->query_skill("bagua-zhang", 1) < 120)
-                return "你的八卦掌还练得不到家，自己下去练练再来吧！";
+                return "你的八卦掌還練得不到家，自己下去練練再來吧！";
 
         if (me->query_skill("bagua-biao", 1) < 120)
-                return "你的八卦镖还练得不到家，自己下去练练再来吧！";
+                return "你的八卦鏢還練得不到家，自己下去練練再來吧！";
 
         if (me->query_skill("force") < 200)
-                return "嗯，你的镖掌都已经娴熟了，但是切记内功火候是基础，这可半点马虎不得。";
+                return "嗯，你的鏢掌都已經嫻熟了，但是切記內功火候是基礎，這可半點馬虎不得。";
 
-        message_vision(HIY "$n" HIY "看了$N" HIY "半天，赞许的点了点头，对$N" HIY
-                       "说道：“既然你\n如此有心，我就给你演示一遍，你可看仔细了！"
-                       "”听得话音\n刚落，顿时从$n" HIY "袖底窜出一道金光，直奔$N"
-                       HIY "而去，$N" HIY "见\n状立即飞身躲避，可刹那间只见$n" HIY
-                       "身形一晃，一双手掌\n已搭在$N" HIY "胸前。$N" HIY "顿时呆立"
-                       "当场，半响都说不出话来。\n" NOR, me, this_object());
+        message_vision(HIY "$n" HIY "看了$N" HIY "半天，讚許的點了點頭，對$N" HIY
+                       "說道：“既然你\n如此有心，我就給你演示一遍，你可看仔細了！"
+                       "”聽得話音\n剛落，頓時從$n" HIY "袖底竄出一道金光，直奔$N"
+                       HIY "而去，$N" HIY "見\n狀立即飛身躲避，可剎那間只見$n" HIY
+                       "身形一晃，一雙手掌\n已搭在$N" HIY "胸前。$N" HIY "頓時呆立"
+                       "當場，半響都說不出話來。\n" NOR, me, this_object());
 
         command("haha");
-        command("say 这招教给你了，但切记我们身在天子脚下，千万别去招惹官府。");
-        tell_object(me, HIC "你学会了「镖中现掌」。\n" NOR);
+        command("say 這招教給你了，但切記我們身在天子腳下，千萬別去招惹官府。");
+        tell_object(me, HIC "你學會了「鏢中現掌」。\n" NOR);
 
         if (me->can_improve_skill("strike"))
                 me->improve_skill("strike", 1500000);

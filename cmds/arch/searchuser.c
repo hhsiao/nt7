@@ -20,24 +20,24 @@ int main(object me,string arg)
                 return 0;
 
         if (!arg)
-                return notify_fail("你要查什么？\n");
+                return notify_fail("你要查什麼？\n");
         sscanf(arg,"%s %s %s %d %d",type,func,tilde,val1,val2);
         if (!type && type != "skill" && type != "setting")
-                return notify_fail("参数错误！请用help searchuser!\n");
+                return notify_fail("參數錯誤！請用help searchuser!\n");
         if ((!tilde)||((tilde!=">")&&(tilde!="<")&&(tilde!="=")&&(tilde!="<>")))
-                return notify_fail("匹配符错误！请用help searchuser!\n");
+                return notify_fail("匹配符錯誤！請用help searchuser!\n");
         if (!val1)
-                return notify_fail("缺少第一参数！请用help searchuser!\n");
+                return notify_fail("缺少第一參數！請用help searchuser!\n");
         if ((!val2)&&(tilde=="<>"))
-                return notify_fail("缺少第二参数!请用help searchuser!\n");
+                return notify_fail("缺少第二參數!請用help searchuser!\n");
         if ((val2<=val1)&&(tilde=="<>"))
-                return notify_fail("第一、第二参数配置错误!请用help searchuser!\n");
-        message("system", "\n*** 正在检查玩家储存档参数，这可能要几分钟时间，请稍候.... ***\n", users());
+                return notify_fail("第一、第二參數配置錯誤!請用help searchuser!\n");
+        message("system", "\n*** 正在檢查玩家儲存檔參數，這可能要幾分鐘時間，請稍候.... ***\n", users());
 
         seteuid(getuid());
-        write("检查中：\n");
+        write("檢查中：\n");
         log_file("static/check_log", sprintf("-------------------------------------------------\n"));
-        log_file("static/check_log", sprintf("符合条件：[%s]%s%s%d,%d的玩家清单：\n",type,func,tilde,val1,val2));
+        log_file("static/check_log", sprintf("符合條件：[%s]%s%s%d,%d的玩家清單：\n",type,func,tilde,val1,val2));
         count3=0;
         ppl_cnt = 0;
         dir = get_dir(DATA_DIR + "login/");
@@ -55,25 +55,25 @@ int main(object me,string arg)
                                 if(!tempob->restore())
                            {
                                    destruct(tempob);
-                                         write("没有" + tempid + "这个玩家!\n");
+                                         write("沒有" + tempid + "這個玩家!\n");
                                    continue;
                            }
 
                            if( query("id", tempob) != tempid )
                            {
                                    destruct(tempob);
-                                   write("玩家"+tempid+"的ID"+query("id", tempob)+"不正确。\n");
+                                   write("玩家"+tempid+"的ID"+query("id", tempob)+"不正確。\n");
                                    continue;
                            }
 
                            if (! objectp(user_ob = find_player(tempid)))
                            {
-                                   online = 0;//该玩家不在线
+                                   online = 0;//該玩家不在線
                                    user_ob = LOGIN_D->make_body(tempob);
                                    if (! user_ob)
                                    {
                                            destruct(tempob);
-                                           write("无法生成玩家"+tempid+"。\n");
+                                           write("無法生成玩家"+tempid+"。\n");
                                            continue;
                                    }
 
@@ -81,7 +81,7 @@ int main(object me,string arg)
                                    {
                                            destruct(tempob);
                                            destruct(user_ob);
-                                           write("无法读取玩家档案"+tempid+"。\n");
+                                           write("無法讀取玩家檔案"+tempid+"。\n");
                                            continue;
                                    }
                            } else
@@ -155,9 +155,9 @@ int main(object me,string arg)
                 }//for(j=0; j<sizeof(ppls); j++) {
         }//for(i=0; i<sizeof(dir); i++) {
         
-        write("\n\n总共有"+ ppl_cnt + "位使用者。\n");
-        write( count3 + " 个使用者符合检查要求。\n");
-        log_file("static/check_log",sprintf("\n此次检查由%s[%s]在%s操作!\n",query("name", this_player()),geteuid(this_player()),ctime(time())[0..15]));
+        write("\n\n總共有"+ ppl_cnt + "位使用者。\n");
+        write( count3 + " 個使用者符合檢查要求。\n");
+        log_file("static/check_log",sprintf("\n此次檢查由%s[%s]在%s操作!\n",query("name", this_player()),geteuid(this_player()),ctime(time())[0..15]));
         return 1;
 }//main
 
@@ -171,16 +171,16 @@ int if3()
 int help(object me)
 {
         write(@HELP
-指令格式: searchuser <skill|setting> <参数> <表达符号> <数值1> [数值2]
-检查MUD中所有在线未在线玩家中，符合指定条件的玩家信息，记录
-存放在/log/static/check_log目录下。
-其中skill表示检查玩家的武功，setting表示检查玩家的其它各类
-属性。
-表达符号有：
->    大于符号
-<    小于符号
-=    等于符号
-<>   区段，表示在数值1和数值2之间
+指令格式: searchuser <skill|setting> <參數> <表達符號> <數值1> [數值2]
+檢查MUD中所有在線未在線玩家中，符合指定條件的玩家信息，記錄
+存放在/log/static/check_log目錄下。
+其中skill表示檢查玩家的武功，setting表示檢查玩家的其它各類
+屬性。
+表達符號有：
+>    大於符號
+<    小於符號
+=    等於符號
+<>   區段，表示在數值1和數值2之間
 
 HELP );
         return 1;

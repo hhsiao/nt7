@@ -11,10 +11,10 @@ int perform(object me, object target)
 	if( !target
 	||	!target->is_character()
 	||	!me->is_fighting(target) )
-		return notify_fail("「空魂异血」只能对战斗中的对手使用。\n");
+		return notify_fail("「空魂異血」只能對戰鬥中的對手使用。\n");
 
 	if (ANNIE_D->check_buff(target,"cursedflesh"))
-		return notify_fail("对方已经受到类似技能的影响了。\n");
+		return notify_fail("對方已經受到類似技能的影響了。\n");
 
 	buff =
 	([
@@ -22,9 +22,9 @@ int perform(object me, object target)
 		"who":	target,
 		"type": "cursedflesh",
 		"att": "curse",
-		"name": "破邪心经·空魂异血",
+		"name": "破邪心經·空魂異血",
 		"time": 30,
-		"buff_msg":HIC"\n$n"HIC"面上浮现出青蓝之色，喷出一团腥臭的烟气。\n"HIB"$N"HIB"猝不及防，吸进一口毒雾，登时摇摇欲坠．．．\n\n"NOR,
+		"buff_msg":HIC"\n$n"HIC"面上浮現出青藍之色，噴出一團腥臭的煙氣。\n"HIB"$N"HIB"猝不及防，吸進一口毒霧，登時搖搖欲墜．．．\n\n"NOR,
 	]);
 	ANNIE_D->buffup(buff);
 	me->perform_busy(2);

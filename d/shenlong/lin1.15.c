@@ -2,9 +2,9 @@ inherit DEMONROOM;
 
 void create()
 {
-        set("short", "东部丛林危险地带");
+        set("short", "東部叢林危險地帶");
         set("long",@LONG
-这是神龙岛原始丛林深处，再往前走就是危险地带了，小心。
+這是神龍島原始叢林深處，再往前走就是危險地帶了，小心。
 LONG);
 
 	set("exits", ([

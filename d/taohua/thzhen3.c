@@ -21,9 +21,9 @@ void create()
 
         set("short", "桃花林");
         set("long", @LONG
-你走了几步，忽然想到如果岛中有人，不如在原地静坐待变，如此乱
-闯终究不是个了局。说也奇怪，开始你无论如何也离不开原地，现在想觅
-路回去，却发现自己离原地好象越来越远了。
+你走了幾步，忽然想到如果島中有人，不如在原地靜坐待變，如此亂
+闖終究不是個了局。說也奇怪，開始你無論如何也離不開原地，現在想覓
+路回去，卻發現自己離原地好象越來越遠了。
 LONG );
 
                 set("exits", ([
@@ -61,7 +61,7 @@ int valid_leave(object me, string dir)
   gain = random((me->query_skill("qimen-wuxing", 1)) / 30) + 1;
   if (dirs[count] == dir || dirs2[count] == dir) {
         me->move("/d/taohua/xiaojing");
-        if (!myfam || myfam["family_name"] == "桃花岛") {
+        if (!myfam || myfam["family_name"] == "桃花島") {
                 if( query("combat_exp", me)<20000+random(10000)){
                             addn("combat_exp", gain, me);
                         if( query("potential", me)<query("max_potential", me) )

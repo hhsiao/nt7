@@ -1,18 +1,18 @@
 // Copyright (C) 2003, by Lonely. All rights reserved.
 // This software can not be used, copied, or modified 
 // in any form without the written permission from authors.
-// wu.c 武眠风
+// wu.c 武眠風
 
 inherit NPC;
 
 string ask_me_2(string name);
 void create()
 {
-        set_name("武眠风", ({ "wu mianfeng", "wu" }));
+        set_name("武眠風", ({ "wu mianfeng", "wu" }));
         set("long","
-他是黄药师的五弟子武眠风，他身材瘦小，沉默寡言，在江湖
-上名声不响，但却极得黄药师信任，顾而命他掌管桃花岛药房
-重地。他在桃花弟子中尤精剑法。\n");
+他是黃藥師的五弟子武眠風，他身材瘦小，沉默寡言，在江湖
+上名聲不響，但卻極得黃藥師信任，顧而命他掌管桃花島藥房
+重地。他在桃花弟子中尤精劍法。\n");
         set("gender", "男性");
         set("age", 40);
         set("attitude", "friendly");
@@ -56,7 +56,7 @@ void create()
 
         prepare_skill("strike", "luoying-shenjian");
 
-        create_family("桃花岛", 2, "弟子");
+        create_family("桃花島", 2, "弟子");
         setup();
         set("inquiry", ([
                     "九花玉露丸" : (: ask_me_2, "yulu-wan" :)
@@ -74,18 +74,18 @@ string ask_me_2(string name)
         mapping fam; 
         object ob;
         
-        if( !(fam=query("family", this_player())) || fam["family_name"] != "桃花岛" )
+        if( !(fam=query("family", this_player())) || fam["family_name"] != "桃花島" )
                 return RANK_D->query_respect(this_player()) + 
-                "与本派素无来往，不知此话从何谈起？";
+                "與本派素無來往，不知此話從何談起？";
 
-        if( query("family/master_name", this_player()) != "黄药师" )
-                return "你功夫不够，还是不要为妙。";                
+        if( query("family/master_name", this_player()) != "黃藥師" )
+                return "你功夫不夠，還是不要為妙。";                
 
         if (query("yulu_count") < 1)
-                return "抱歉，你来得不是时候，已经发完了。";
+                return "抱歉，你來得不是時候，已經發完了。";
 
         if (this_player()->query_condition("work") > 0)
-                return "我不是才给过你药吗？怎麽又来要了，真是贪得无厌！";
+                return "我不是才給過你藥嗎？怎麼又來要了，真是貪得無厭！";
 
         ob = new("/d/taohua/obj/"+name);
         ob->move(this_player(), 1);
@@ -93,15 +93,15 @@ string ask_me_2(string name)
 
         addn("yulu_count", -1);
 
-        message_vision("武眠风给$N一粒"+query("name", ob)+"。\n",this_player());
+        message_vision("武眠風給$N一粒"+query("name", ob)+"。\n",this_player());
 
-        return "拿去吧。小心别弄丢了。";
+        return "拿去吧。小心別弄丟了。";
 }
 
 int accept_kill(object me)
 {
-        if( query("family/family_name", me) == "桃花岛"){
-        command("say 你我本是同门，如何要加害于我！\n");
+        if( query("family/family_name", me) == "桃花島"){
+        command("say 你我本是同門，如何要加害於我！\n");
         set("th_killer", 1, me);
         kill_ob(me);
         return 1;
@@ -113,7 +113,7 @@ void unconcious()
         object ob, me=this_object();
 
         if( objectp(ob=query_temp("last_damage_from", me) )
-         && query("family/family_name", ob) == "桃花岛" )
+         && query("family/family_name", ob) == "桃花島" )
         set("th_killer", 1, ob);
 
         ::unconcious();

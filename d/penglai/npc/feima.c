@@ -5,8 +5,8 @@ int is_pld_npc(){return 1;}
 
 void create()
 {
-        set_name(HIW "飞马" NOR, ({ "fei ma", "fei", "ma" }));
-        set("long", HIW "这是一只长着翅膀的骏马，模样甚是威风。\n" NOR);
+        set_name(HIW "飛馬" NOR, ({ "fei ma", "fei", "ma" }));
+        set("long", HIW "這是一隻長著翅膀的駿馬，模樣甚是威風。\n" NOR);
 
         set("age", 190);
         set("str", 40);
@@ -40,7 +40,7 @@ void create()
 }
 void init()
 {
-	// 随机攻击玩家
+	// 隨機攻擊玩家
 	if (userp(this_player()) && random(5) == 1)
 	{
 		kill_ob(this_player());

@@ -7,7 +7,7 @@
 // By Zen(SnowMan.ZD) 19/09/2002
 // Modified by Zen(SnowMan.ZD) 01/06/2003
 
-// 头文件，拼音 <-> 汉字一一对应。
+// 頭文件，拼音 <-> 漢字一一對應。
 
 #include <names.h>
 
@@ -65,33 +65,33 @@ protected nomask string *selete_namestring(string key, int sex)
 } 
 
 /*
-传回一个mapping：
+傳回一個mapping：
         ([ name : "xxx", id : ({ "xxx", "xxx" }) ])
-        name 为中文姓名，id 为拼音。
+        name 為中文姓名，id 為拼音。
         如：
-                ([ name : "高圆圆", id : ({ "gao yuanyuan", "gao", "yuanyuan" }) ])
+                ([ name : "高圓圓", id : ({ "gao yuanyuan", "gao", "yuanyuan" }) ])
         
 可以指定的包括：
- gender = 性别, 1 = female, 0 = male.
- long_name = 名子的数目。long_name = -1， 只有一个名字，long_name = 0，随即1-2个名字，long_name > 0，两个名字。
+ gender = 性別, 1 = female, 0 = male.
+ long_name = 名子的數目。long_name = -1， 只有一個名字，long_name = 0，隨即1-2個名字，long_name > 0，兩個名字。
  name_a = 姓
  name_b = 名
- name_c = 中间名, 如 一二三 的 二。
+ name_c = 中間名, 如 一二三 的 二。
 
 例子：
-        random_name(0, 0, 0, 0, 0) -> 随机男性姓名，名为随机一个或两个字。
-        random_name(1, 0, 0, 0, 0) -> 随机女性姓名，名为随机一个或两个字。
-        random_name(0, 1, 0, 0, 0) -> 随机男性姓名，名两个字。
-        random_name(0, -1, 0, 0, 0) -> 随机男性姓名，名一个字。
-        random_name(1, 1, 0, 0, 0) -> 随机女性姓名，名两个字。
-        random_name(0, -1, 0, 0, 0) -> 随机女性姓名，名一个字。
+        random_name(0, 0, 0, 0, 0) -> 隨機男性姓名，名為隨機一個或兩個字。
+        random_name(1, 0, 0, 0, 0) -> 隨機女性姓名，名為隨機一個或兩個字。
+        random_name(0, 1, 0, 0, 0) -> 隨機男性姓名，名兩個字。
+        random_name(0, -1, 0, 0, 0) -> 隨機男性姓名，名一個字。
+        random_name(1, 1, 0, 0, 0) -> 隨機女性姓名，名兩個字。
+        random_name(0, -1, 0, 0, 0) -> 隨機女性姓名，名一個字。
         
-        random_name(0, 0, "李", 0, 0) -> 男姓，姓为李，名为随机一个或两个字。
-        random_name(0, 0, 0, "强", 0) -> 男姓，姓随机，名为随机一个或两个字，但最后一个字为强。
-        random_name(0, 1, "李", "强", 0) -> 男姓，姓李，名为两个字，最后一个字为强，中间随机。
-        random_name(0, 1, "李", 0, "强") -> 男姓，姓李，名为两个字，中间一个字为强，最后随机。
+        random_name(0, 0, "李", 0, 0) -> 男姓，姓為李，名為隨機一個或兩個字。
+        random_name(0, 0, 0, "強", 0) -> 男姓，姓隨機，名為隨機一個或兩個字，但最後一個字為強。
+        random_name(0, 1, "李", "強", 0) -> 男姓，姓李，名為兩個字，最後一個字為強，中間隨機。
+        random_name(0, 1, "李", 0, "強") -> 男姓，姓李，名為兩個字，中間一個字為強，最後隨機。
         
-        random_name(0, 0, 0, 0, "强") -> 男姓，姓随机，名随机，但如果是两个字，中间一个字为强。
+        random_name(0, 0, 0, 0, "強") -> 男姓，姓隨機，名隨機，但如果是兩個字，中間一個字為強。
 */
 varargs nomask mapping random_name(int gender, int long_name, string name_a, string name_b, string name_c)
 {       
@@ -100,7 +100,7 @@ varargs nomask mapping random_name(int gender, int long_name, string name_a, str
 
         // write("name_a = " + name_a + ", name_b = " + name_b + ", name_c = " + name_c + "\n");
         
-        // 给出了姓。
+        // 給出了姓。
         if( name_a ){
                 if( member_array(name_a, key_sur) != -1 ){
                         str = name_a;
@@ -113,12 +113,12 @@ varargs nomask mapping random_name(int gender, int long_name, string name_a, str
                 vor = sur_name[str];
         }
         
-        // 表格里没有这个字。
+        // 表格裡沒有這個字。
         if( !str || !vor )
                 return 0;
         
         
-        // 给出了中间名字(有long_name)，或名字(无long_name)。
+        // 給出了中間名字(有long_name)，或名字(無long_name)。
         if( name_b ){
                 if( gender ){
                         i = f_size;
@@ -157,11 +157,11 @@ varargs nomask mapping random_name(int gender, int long_name, string name_a, str
                 nach = key;
         }
         
-        // 表格里没有这个字。
+        // 表格裡沒有這個字。
         if( !str2 || !nach )
                 return 0;
                 
-        // long_name = -1， 只有一个名字，long_name = 0，随即1-2个名字，long_name > 0，两个名字。
+        // long_name = -1， 只有一個名字，long_name = 0，隨即1-2個名字，long_name > 0，兩個名字。
         if( ((!random(3) && !long_name) || long_name > 0) && long_name >= 0 ){
                 if( name_c ){
                         if( gender ){

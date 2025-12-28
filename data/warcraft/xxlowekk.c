@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("猪二八[2;37;0m[2;37;0m", ({"xxl"}));        
+        set_name("豬二八[2;37;0m[2;37;0m", ({"xxl"}));        
         set("gender", "男性");                
-        set("long", "猪二八[2;37;0m
-它是多多的魔幻兽。
+        set("long", "豬二八[2;37;0m
+它是多多的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

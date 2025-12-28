@@ -15,10 +15,10 @@ void create()
                 set_default_object(__FILE__);
         else
         {
-                set("unit", "个");
-                set("long", HIR "这是上古神器之一的崆峒印，拥有着使人不老的神力。\n"
-                                "使用(use)后随机减一岁年龄或加一点容貌，当容貌达到\n"
-                                "三十后则减年龄。\n" NOR);
+                set("unit", "個");
+                set("long", HIR "這是上古神器之一的崆峒印，擁有著使人不老的神力。\n"
+                                "使用(use)後隨機減一歲年齡或加一點容貌，當容貌達到\n"
+                                "三十後則減年齡。\n" NOR);
         }
         setup();
 }
@@ -39,12 +39,12 @@ int do_use(string arg)
         if (me->is_fighting() || me->is_busy())
                  return notify_fail("你正忙呢！\n");
                          
-        message_sort(HIR "\n$N" HIR "托起手中的崆峒印，一道金光将$P" HIR "笼罩 ……\n" NOR, me);
+        message_sort(HIR "\n$N" HIR "托起手中的崆峒印，一道金光將$P" HIR "籠罩 ……\n" NOR, me);
                         
         if (me->query("per") >= 30)
         {
                me->add("mud_age", -86400);
-               write(HIW "你看起来更加年亲了。\n");
+               write(HIW "你看起來更加年親了。\n");
         }
         else 
         {
@@ -52,12 +52,12 @@ int do_use(string arg)
                 {
                         case 0:
                            me->add("mud_age", -86400);
-                           write(HIW "你看起来更加年亲了。\n" NOR);
+                           write(HIW "你看起來更加年親了。\n" NOR);
                            break;
                            
                         case 1:
                            me->add("per", 1);
-                           write(HIG "你看起来更加容光焕发了！\n" NOR);
+                           write(HIG "你看起來更加容光煥發了！\n" NOR);
                            break;
                            
                         default: break;

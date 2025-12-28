@@ -4,19 +4,19 @@ inherit NPC;
 
 #include <ansi.h>
 
-// 接收的货物
+// 接收的貨物
 #define CHECK_GOODS     "cuprum_ore"
 
 void create()
 {
-        set_name("刘工匠", ({ "liu gongjiang", "liu", "worker" }) );
-        set("title", HIY "天国大匠" NOR);
+        set_name("劉工匠", ({ "liu gongjiang", "liu", "worker" }) );
+        set("title", HIY "天國大匠" NOR);
         set("gender", "男性" );
         set("age", 52);
         set("str", 33);
         set("long", @LONG
-一个毫不起眼的老匠人，但是却有着难以言喻的威严。从旁边学徒工
-人们的眼神中你感觉他不是一般的人物。
+一個毫不起眼的老匠人，但是卻有著難以言喻的威嚴。從旁邊學徒工
+人們的眼神中你感覺他不是一般的人物。
 LONG);
         set("attitude", "friendly");
 
@@ -39,7 +39,7 @@ int filter_ob(object ob)
 
         owner = ob->query_owner();
         if (! objectp(owner))
-                // 该车无主
+                // 該車無主
                 return 0;
 
         if (environment(owner) != environment())
@@ -47,11 +47,11 @@ int filter_ob(object ob)
                 return 0;
 
         if( query_temp("goods/id", ob) != CHECK_GOODS )
-                // 没有装载铜矿石
+                // 沒有裝載銅礦石
                 return 0;
 
         if( query_temp("goods/amount", ob)<1 )
-                // 没有货
+                // 沒有貨
                 return 0;
 
         return 1;
@@ -74,51 +74,51 @@ void heart_beat()
 
         if (! stringp(startroom = query("startroom")) ||
             find_object(startroom) != environment())
-                // 不在出生地点
+                // 不在出生地點
                 return;
 
         obs = all_inventory(environment());
         obs = filter_array(obs, (: filter_ob :));
         if (sizeof(obs) < 1)
         {
-                // 没有到达合适的车辆，停止心跳
+                // 沒有到達合適的車輛，停止心跳
                 set_heart_beat(0);
                 return;
         }
 
-        // 到达了合适的车辆
+        // 到達了合適的車輛
         ob = obs[0];
         owner = ob->query_owner();
-        message_vision("$N看到$n押货而来，连连点头道：“很"
-                       "好！很好！就卸到这里吧！”\n",
+        message_vision("$N看到$n押貨而來，連連點頭道：“很"
+                       "好！很好！就卸到這裡吧！”\n",
                        this_object(), owner);
         tell_object(owner,"你卸下"+query_temp("goods/name", ob)+
-                    "，将" + ob->name() + "交给学徒拉走。\n");
+                    "，將" + ob->name() + "交給學徒拉走。\n");
 
-        // 卸下铜矿石
+        // 卸下銅礦石
         goods=query_temp("goods", ob);
         amount = goods["amount"];
         environment()->improve_product_amount(goods["id"], amount);
 
-        // 给与奖励
+        // 給與獎勵
         MONEY_D->pay_player(owner, amount * 10);
-        tell_object(owner, "你领到了一些工钱。\n");
+        tell_object(owner, "你領到了一些工錢。\n");
         if( query_temp("job/owner", ob) == owner )
         {
-                // 这个是本人领的工作，获得奖励
+                // 這個是本人領的工作，獲得獎勵
                 GIFT_D->work_bonus(owner, ([ "exp" : 10000 + random(5000),
                                         "pot" : 5000 + random(3000),
                                         "score" : 30 + random(50),
-                                        "prompt" : "通过这次押送" + goods["name"] + HIG ]));
+                                        "prompt" : "通過這次押送" + goods["name"] + HIG ]));
 
-                // 去掉我做这个工作的信息
+                // 去掉我做這個工作的信息
                 delete("job/"+query_temp("job/info", ob), owner);
         }
         destruct(ob);
 
         if (sizeof(obs) < 2)
         {
-                // 已经处理完毕，没有新的车辆到达，停止心跳
+                // 已經處理完畢，沒有新的車輛到達，停止心跳
                 set_heart_beat(0);
         }
 }

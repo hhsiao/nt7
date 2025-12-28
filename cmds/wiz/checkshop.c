@@ -23,8 +23,8 @@ int help (object me)
         write(@HELP
 指令格式 : checkshop
 
-查询所有黑店本届经营状况。
-相关指令：openshop、closeshop、cshshop、setowner
+查詢所有黑店本屆經營狀況。
+相關指令：openshop、closeshop、cshshop、setowner
 HELP );
         return 1;
 }

@@ -7,11 +7,11 @@
 
 void create()
 {
-        set("short", "逍遥洞迎客厅");
+        set("short", "逍遙洞迎客廳");
 	set ("long", @LONG
-这里是逍遥洞的主人暴雪迎接八方来客的地方。大凡客人来拜见
-暴雪，少不得在这里寒暄叙话，了尽仰慕之情。东面通往一个茶室，
-是主人陪同客人品尝天下名茶之处。 
+這裡是逍遙洞的主人暴雪迎接八方來客的地方。大凡客人來拜見
+暴雪，少不得在這裡寒暄敘話，了盡仰慕之情。東面通往一個茶室，
+是主人陪同客人品嚐天下名茶之處。 
 LONG );
 
         set("exits", ([
@@ -20,7 +20,7 @@ LONG );
                 "east"   : __DIR__"chashi",
         ]));
 
-        create_door("east", "木门", "west", DOOR_CLOSED);
+        create_door("east", "木門", "west", DOOR_CLOSED);
 
         set("objects", ([
                 "/d/room/roomnpc/yahuan" : 2,
@@ -30,8 +30,8 @@ LONG );
         setup();
 
         set("room_owner", "暴雪");
-        set("room_name", "逍遥洞");
+        set("room_name", "逍遙洞");
         set("room_id", "blz");
         set("room_owner_id", "blz");
-        set("room_position", "青砖路");
+        set("room_position", "青磚路");
 }

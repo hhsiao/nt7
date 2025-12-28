@@ -9,8 +9,8 @@ void create()
     else {
             set("unit", "只");
             set("material", "stone");
-            set("long", WHT"这玉笛短得出奇，只不来七寸来长、通体洁白，晶莹可爱。\n" NOR);
+            set("long", WHT"這玉笛短得出奇，只不來七寸來長、通體潔白，晶瑩可愛。\n" NOR);
           }
-    set("owner", "采花子");
+    set("owner", "採花子");
     setup();
 }

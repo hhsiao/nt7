@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;33m迈巴赫[2;37;0m[2;37;0m", ({"mbh"}));        
+        set_name("[1;33m邁巴赫[2;37;0m[2;37;0m", ({"mbh"}));        
         set("gender", "女性");                
         set("long", "finsih[2;37;0m
-它是周肆丹的魔幻兽。
+它是周肆丹的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

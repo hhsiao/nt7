@@ -7,11 +7,11 @@ inherit PRODUCING_ROOM;
 
 void create ()
 {
-        set ("short", "工部铜厂");
+        set ("short", "工部銅廠");
         set("long", @LONG
-这是工部的冶铜场地，专门拣选来自全国各地运来的铜矿石，然
-后溶化冶炼精铜，最后铸成铜锭发到全国各地，当然一个主要用途是
-用来铸造国家发行的货币。
+這是工部的冶銅場地，專門揀選來自全國各地運來的銅礦石，然
+後溶化冶煉精銅，最後鑄成銅錠發到全國各地，當然一個主要用途是
+用來鑄造國家發行的貨幣。
 LONG );
         set("exits",  ([ //sizeof() == 2
                 "south" : __DIR__"gongbu",
@@ -24,12 +24,12 @@ LONG );
         set("no_fight", 1);
         set("no_sleep_room", 1);
 
-        set("product/cuprum", ([ "name" : "黄铜",
+        set("product/cuprum", ([ "name" : "黃銅",
                                  "rate" : 100,
                                  "max"  : 10000,
                                  "cost" : ({ "cuprum_ore" }), ]));
 
-        set("product/cuprum_ore", ([ "name" : "铜矿石",
+        set("product/cuprum_ore", ([ "name" : "銅礦石",
                                      "max"  : 10000,
                                      "rate" : 50, ]));
 

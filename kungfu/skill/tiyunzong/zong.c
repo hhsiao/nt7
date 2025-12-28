@@ -3,7 +3,7 @@
 
 #include <ansi.h>
 
-string name() { return "纵字诀"; }
+string name() { return "縱字訣"; }
 
 void remove_effect(object me,int count);
 
@@ -15,37 +15,37 @@ int perform(object me, object target)
         int delta;
 
         if( (int)me->query_skill("tiyunzong",1) < 120 )
-                return notify_fail("你的梯云纵不够娴熟，不会使用「纵字诀」！\n");
+                return notify_fail("你的梯雲縱不夠嫻熟，不會使用「縱字訣」！\n");
 
         if( (int)me->query_skill("taiji-shengong", 1) < 120 )
-                return notify_fail("你的太极神功等级不够，不能使用「纵字诀」！\n");
+                return notify_fail("你的太極神功等級不夠，不能使用「縱字訣」！\n");
 
         if (me->query_skill_mapped("force") != "taiji-shengong")
-                return notify_fail("你的内功不对，不能使用「纵字诀」。\n");
+                return notify_fail("你的內功不對，不能使用「縱字訣」。\n");
 
         if( (int)me->query_dex() < 28 )
-                return notify_fail("你的身法太低，不能使用「纵字诀」！\n");
+                return notify_fail("你的身法太低，不能使用「縱字訣」！\n");
 
         if( (int)me->query_skill("dodge",1) < 120 )
-                return notify_fail("你的基本轻功太差，身体笨拙，不能使用「纵字诀」！\n");
+                return notify_fail("你的基本輕功太差，身體笨拙，不能使用「縱字訣」！\n");
 
         if( query("neili", me)<600 )
-                return notify_fail("你的内力太少了，无法使用出「纵字诀」！\n");
+                return notify_fail("你的內力太少了，無法使用出「縱字訣」！\n");
 
         if (me->query_skill_mapped("dodge") != "tiyunzong")
-                return notify_fail("你现在激发的轻身数使用「纵字诀」绝技。\n");
+                return notify_fail("你現在激發的輕身數使用「縱字訣」絕技。\n");
 
         if( BUFF_D->check_buff(me, "dodgeup") )
-                return notify_fail("你正在使用梯云纵的特殊防御「纵字诀」！\n");
+                return notify_fail("你正在使用梯雲縱的特殊防禦「縱字訣」！\n");
 
         if( query_temp("zong", me) )
-                return notify_fail("你正在使用梯云纵的特殊防御「纵字诀」！\n");
+                return notify_fail("你正在使用梯雲縱的特殊防禦「縱字訣」！\n");
 
-        msg = HIY"$N突然深吸一口气，一抬腿猛的拔高数丈，升势刚尽，双腿连续踢出，" +
-                        "身体又上升丈许，才有如大鸟般盘旋落下！\n" NOR;
+        msg = HIY"$N突然深吸一口氣，一抬腿猛的拔高數丈，升勢剛盡，雙腿連續踢出，" +
+                        "身體又上升丈許，才有如大鳥般盤旋落下！\n" NOR;
 
         improve = (int)me->query_skill("dodge")* 10;
-        delta = ABILITY_D->check_ability(me, "dp_power-tyz-zong"); // 门派ab
+        delta = ABILITY_D->check_ability(me, "dp_power-tyz-zong"); // 門派ab
         if( delta ) improve += improve*delta/100;
 
         data = ([
@@ -56,11 +56,11 @@ int perform(object me, object target)
                 "target": me,
                 "type"  : "dodgeup",
                 "attr"  : "bless",
-                "name"  : "梯云纵·纵字诀",
+                "name"  : "梯雲縱·縱字訣",
                 "time"  : improve/10,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : HIY"你散去丹田凝聚的内力，混身经脉真气流动，气定神闲，精神弈弈。\n"NOR,
+                "disa_msg" : HIY"你散去丹田凝聚的內力，混身經脈真氣流動，氣定神閒，精神弈弈。\n"NOR,
                         
         ]);
         BUFF_D->buffup(buff);
@@ -81,8 +81,8 @@ void remove_effect(object me, int count)
                 BUFF_D->debuff(me, "dodgeup", 1);
   
                 delete_temp("zong", me);
-                tell_object(me, HIY"你散去丹田凝聚的内力，混身经脉真气流动，气定神闲，精神弈弈。\n"NOR);
-                tell_room(environment(me), HIY + me->name()+"全身骨头一阵轻响，散去了混身的功力。\n"NOR,  ({ me }));
+                tell_object(me, HIY"你散去丹田凝聚的內力，混身經脈真氣流動，氣定神閒，精神弈弈。\n"NOR);
+                tell_room(environment(me), HIY + me->name()+"全身骨頭一陣輕響，散去了混身的功力。\n"NOR,  ({ me }));
                 return;
         }
         call_out("remove_effect", 1 , me ,count -1);
@@ -91,16 +91,16 @@ void remove_effect(object me, int count)
 
 int help(object me)
 {
-        write(WHT"\n梯云纵「纵」字诀："NOR"\n");
+        write(WHT"\n梯雲縱「縱」字訣："NOR"\n");
         write(@HELP
-        武当轻功，当世可谓独步武林，天下轻功无出其右，临敌之时使出「纵」字
-        诀，可以用来大幅度提升自己的轻功有效等级，增加胜算或逃脱机率。
+        武當輕功，當世可謂獨步武林，天下輕功無出其右，臨敵之時使出「縱」字
+        訣，可以用來大幅度提升自己的輕功有效等級，增加勝算或逃脫機率。
 
-        要求：  梯云纵等级 120 以上；
-                太极神功等级 120 以上；
-                基本轻功等级 120 以上；
-                内力 600 以上；
-                后天身法 28 以上。
+        要求：  梯雲縱等級 120 以上；
+                太極神功等級 120 以上；
+                基本輕功等級 120 以上；
+                內力 600 以上；
+                後天身法 28 以上。
 HELP
         );
         return 1;

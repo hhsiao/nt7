@@ -22,7 +22,7 @@ void start()
                 if (!r || !objectp(r)) continue;
                 delete("exits", r);
         }
-        for (int i = NLOW; i < NHIGH + 1; i++) {//建路径
+        for (int i = NLOW; i < NHIGH + 1; i++) {//建路徑
                 r = get_object(__DIR__ + FILENAME + (string)i);
                 exitstmp = ({});
                 for (int i2 = 0; i2 < exitsn; i2++) {

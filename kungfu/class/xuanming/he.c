@@ -9,7 +9,7 @@ inherit F_GUARDER;
 
 void create()
 {
-        set_name("鹤笔翁", ({ "hebi weng", "hebi", "weng" }));
+        set_name("鶴筆翁", ({ "hebi weng", "hebi", "weng" }));
         set("gender", "男性");
         set("shen_type", -1);
         set("age", 50);
@@ -58,9 +58,9 @@ void create()
         create_family("玄冥谷", 2, "弟子");
 
         set("no_teach", ([
-                "xuanming-shengong" : "玄冥神功要我师父百损道人亲自传授。",
-                "xuanming-zhang"    : "玄冥神掌要我师父亲自传授，你还是去找他老人家吧！",
-                "dulong-shenzhua"   : "这个你还是找我师兄鹿杖客吧，他比我厉害多了！",
+                "xuanming-shengong" : "玄冥神功要我師父百損道人親自傳授。",
+                "xuanming-zhang"    : "玄冥神掌要我師父親自傳授，你還是去找他老人家吧！",
+                "dulong-shenzhua"   : "這個你還是找我師兄鹿杖客吧，他比我厲害多了！",
         ])); 
 
         set("chat_chance_combat", 120);
@@ -73,10 +73,10 @@ void create()
         }));
 
         set("inquiry", ([
-                "张无忌"    :   "哼，臭小子屡次坏我大事！我非杀了他不可！\n",
-                "赵敏"      :   "那丫头诡计多端，忘恩负义，枉我兄弟为她出生入死。\n",
-                "百损道人"  :   "他是我恩师，你问这干什么？\n",
-                "鹿杖客"    :   "他是我师兄，我们从小跟着师父学艺，亲同手足。\n", 
+                "張無忌"    :   "哼，臭小子屢次壞我大事！我非殺了他不可！\n",
+                "趙敏"      :   "那丫頭詭計多端，忘恩負義，枉我兄弟為她出生入死。\n",
+                "百損道人"  :   "他是我恩師，你問這幹什麼？\n",
+                "鹿杖客"    :   "他是我師兄，我們從小跟著師父學藝，親同手足。\n", 
         ]));
 
         set_temp("apply/attack", 80);
@@ -96,7 +96,7 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        tell_object(ob, "玄冥谷暂不开放。\n");
+        tell_object(ob, "玄冥谷暫不開放。\n");
         return;
 
         if (! permit_recruit(ob))
@@ -104,19 +104,19 @@ void attempt_apprentice(object ob)
 
         if( query("family/master_name", ob) == "鹿杖客" )
         {
-                command("say 你既然已得到我师兄指点，还是好好跟着他学吧！");
+                command("say 你既然已得到我師兄指點，還是好好跟著他學吧！");
                 return;
         }
 
         if( query("shen", ob)>0 )
         {
-                command("say 我玄冥谷向来不和你们这些正道人士交往。");
-                command("say 你还是请回吧！");
+                command("say 我玄冥谷向來不和你們這些正道人士交往。");
+                command("say 你還是請回吧！");
                 return;
         }
 
         command("nod");
-        command("say 今日我就暂且收下你，日后定须刻苦练武。");
+        command("say 今日我就暫且收下你，日後定須刻苦練武。");
         command("recruit "+query("id", ob));
 }
 
@@ -124,50 +124,50 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "掌打飞花" :
+        case "掌打飛花" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/feihua-zhang/fei",
-                           "name"    : "掌打飞花",
+                           "name"    : "掌打飛花",
                            "sk1"     : "feihua-zhang",
                            "lv1"     : 40,
                            "gongxian": 100,
                            "shen"    : -2000, ]));
                 break;
 
-        case "卷字决" :
+        case "卷字決" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/piaofeng-quan/juan",
-                           "name"    : "卷字决",
+                           "name"    : "卷字決",
                            "sk1"     : "piaofeng-quan",
                            "lv1"     :  30,
                            "gongxian":  80,
                            "shen"    : -500, ]));
                 break;
 
-        case "残月刺" :
+        case "殘月刺" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/jingyue-bifa/ci",
-                           "name"    : "残月刺",
+                           "name"    : "殘月刺",
                            "sk1"     : "jingyue-bifa",
                            "lv1"     : 30,
                            "gongxian": 200,
                            "shen"    : -2400, ]));
                 break;
 
-        case "内点乾坤" :
+        case "內點乾坤" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/hexing-bifa/dian",
-                           "name"    : "内点乾坤",
+                           "name"    : "內點乾坤",
                            "sk1"     : "hexing-bifa",
                            "lv1"     : 100,
                            "gongxian": 320,
                            "shen"    : -8000, ]));
                 break;
 
-        case "如影相随" :
+        case "如影相隨" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/xuanming-zhang/ying",
-                           "name"    : "如影相随",
+                           "name"    : "如影相隨",
                            "sk1"     : "xuanming-zhang",
                            "lv1"     :  100,
                            "dodge"   :  180,
@@ -175,7 +175,7 @@ int accept_ask(object me, string topic)
                            "shen"    : -32000, ]));
                 break;
 
-         case "鹤形笔" :
+         case "鶴形筆" :
                 return MASTER_D->give_item(me, this_object(),
                                (["item"     :  BI,
                                  "master"   :  1,

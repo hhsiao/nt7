@@ -9,7 +9,7 @@ void create()
         else {
                 set("unit", "把");
                 set("material", "wood");
-                set("long", "这是一把普通的胡琴。\n");
+                set("long", "這是一把普通的胡琴。\n");
         }
         set("owner", "莫大");
         setup();

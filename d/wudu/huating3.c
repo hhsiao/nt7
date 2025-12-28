@@ -3,10 +3,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "腾蛟亭");
+        set("short", "騰蛟亭");
         set("long", @LONG
-这里是一个花园中的小亭子，雕梁画栋，古色古香。壁上
-挂着一幅「月下舞剑图」。
+這裡是一個花園中的小亭子，雕樑畫棟，古色古香。壁上
+掛著一幅「月下舞劍圖」。
 LONG);
 
         set("exits", ([
@@ -15,9 +15,9 @@ LONG);
         ]));
 
         set("item_desc", ([
-                "tu": HIY "\n你只见图中少女手持钢钩，含笑而立。恍惚间你"
-                      "似乎觉得有无\n数道剑气扑面而来。这里面似乎隐含着"
-                      "某种奥秘。\n\n" NOR,
+                "tu": HIY "\n你只見圖中少女手持鋼鉤，含笑而立。恍惚間你"
+                      "似乎覺得有無\n數道劍氣撲面而來。這裡面似乎隱含著"
+                      "某種奧秘。\n\n" NOR,
         ]));
         setup();
 }
@@ -38,26 +38,26 @@ int do_think(string arg)
                 add = me->query_int() * 3;
 
         if (! living(me) || arg != "tu")
-                return notify_fail("你要参悟什么？\n");
+                return notify_fail("你要參悟什麼？\n");
 
         if (me->is_busy() || me->is_fighting())
-                return notify_fail("你现在正忙着呢。\n");
+                return notify_fail("你現在正忙著呢。\n");
 
         if ((int)me->query_skill("sword", 1) < 30)
-                return notify_fail("你的基本剑法火候不够，无法领悟图画"
-                                   "上的剑法。\n");
+                return notify_fail("你的基本劍法火候不夠，無法領悟圖畫"
+                                   "上的劍法。\n");
 
         if ((int)me->query_skill("jinwu-goufa", 1) < 30)
-                return notify_fail("你发现图中所记载的剑法过于深奥，自"
-                                   "己一时难以领会。\n");
+                return notify_fail("你發現圖中所記載的劍法過於深奧，自"
+                                   "己一時難以領會。\n");
 
         if ((int)me->query_skill("jinwu-goufa", 1) > 150)
-                return notify_fail("你发现图中所记载的剑法过于肤浅，自"
-                                   "己无法领会到任何东西。\n");
+                return notify_fail("你發現圖中所記載的劍法過於膚淺，自"
+                                   "己無法領會到任何東西。\n");
 
         if( query("jing", me)<25 )
-                return notify_fail("你现在精神不济，过于疲倦，还是休息"
-                                   "一会吧。\n");
+                return notify_fail("你現在精神不濟，過於疲倦，還是休息"
+                                   "一會吧。\n");
 
         me->receive_damage("jing", 20);
 
@@ -65,8 +65,8 @@ int do_think(string arg)
                 me->improve_skill("jinwu-goufa", add);
 
         me->start_busy(random(2));
-        message_vision(HIY "\n$N" HIY "聚精会神的参详图中所记载的剑法，"
+        message_vision(HIY "\n$N" HIY "聚精會神的參詳圖中所記載的劍法，"
                        "似有所悟。\n" NOR, me);
-        write(HIC "你对「金蜈钩法」有了新的领悟。\n" NOR);
+        write(HIC "你對「金蜈鉤法」有了新的領悟。\n" NOR);
         return 1;
 }

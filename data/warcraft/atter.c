@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;32m古利亚诺斯[2;37;0m[2;37;0m", ({"lionheart"}));        
+        set_name("[1;32m古利亞諾斯[2;37;0m[2;37;0m", ({"lionheart"}));        
         set("gender", "男性");                
-        set("long", "拥有散发著翠绿色光芒，名为古利亚诺斯[2;37;0m
-它是薇塔的魔幻兽。
+        set("long", "擁有散發著翠綠色光芒，名為古利亞諾斯[2;37;0m
+它是薇塔的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

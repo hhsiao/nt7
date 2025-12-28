@@ -9,7 +9,7 @@ int clean_up() { return 1;}
 int do_cantsave()
 {
         object me = this_player();
-                tell_object(me, NOR "这是牢里，你老实点吧。\n" NOR);
+                tell_object(me, NOR "這是牢裡，你老實點吧。\n" NOR);
                 return -1;
 }
 
@@ -19,19 +19,19 @@ int do_action(string arg)
         object me = this_player();
         
         if (me->is_busy() && action!="stat") {
-                tell_object(me, NOR "你还是忙完手头上的事情再说吧。\n" NOR);
+                tell_object(me, NOR "你還是忙完手頭上的事情再說吧。\n" NOR);
                 return -1;
         }
 
         if (query("dongtian/prison/time", me) > query("online_time", me) && action!="tell" && action!="reply" && action!="look" && action!="say" && action!="stat") {
                 me->start_busy(2);
-                if (action=="chat" || action=="rumor" || action=="ask1") tell_object(me, NOR "你张口欲喊，墙壁上射出几股臭水喷了你一脸。\n" NOR);
-                        else tell_object(me, NOR "你胡乱扭摆身体，陷在齐腰深的水里却动不了。\n" NOR);
+                if (action=="chat" || action=="rumor" || action=="ask1") tell_object(me, NOR "你張口欲喊，牆壁上射出幾股臭水噴了你一臉。\n" NOR);
+                        else tell_object(me, NOR "你胡亂扭擺身體，陷在齊腰深的水裡卻動不了。\n" NOR);
                 return -1;
         }
         
         if (action=="tell" || action=="reply") {
-                me->start_busy(60);//远处说话避免持续骚扰
+                me->start_busy(60);//遠處說話避免持續騷擾
         }
         
         return 0;
@@ -49,7 +49,7 @@ int throwing(object me, int i)
         set("dongtian/prison/time", query("online_time", me) + c , me);
         set("dongtian/prison/num", p + 1, me);
         
-        message_vision(append_color(NOR + YEL + "虚空中穿过来一只大如山岳的巨掌，对着$N" + NOR + YEL + "拦腰一捞，再缩回去就此不见了。\n" + NOR, YEL), me);
+        message_vision(append_color(NOR + YEL + "虛空中穿過來一隻大如山嶽的巨掌，對著$N" + NOR + YEL + "攔腰一撈，再縮回去就此不見了。\n" + NOR, YEL), me);
         me->move(this_object());
         return 1;
 }
@@ -83,11 +83,11 @@ void init()
                         set("prisonerlist",  ({me}));
                 else if (member_array(me, prisoners) < 0)
                         set("prisonerlist",  prisoners + ({me}));
-                cti = chinese_number(abs((query("dongtian/prison/time", me)-query("online_time", me))) / 60) + "分钟";
+                cti = chinese_number(abs((query("dongtian/prison/time", me)-query("online_time", me))) / 60) + "分鐘";
                 if (query("startroom", me)!=base_name(this_object())) {
-                        CHANNEL_D->channel_broadcast("rumor", NOR + MAG + "听说" + filter_color(query("name", me), 1) + "被抓进" + query("dtname") + "禁闭" + cti + "。\n" + NOR);
+                        CHANNEL_D->channel_broadcast("rumor", NOR + MAG + "聽說" + filter_color(query("name", me), 1) + "被抓進" + query("dtname") + "禁閉" + cti + "。\n" + NOR);
                 }
-                call_out("delay_msg", 2, append_color(NOR + YEL + "$N" + NOR + YEL + "像只死狗样被扔了进来，一个阴森的声音说道：" +  cti + "后自己滚出去。\n" + NOR, YEL), me);
+                call_out("delay_msg", 2, append_color(NOR + YEL + "$N" + NOR + YEL + "像只死狗樣被扔了進來，一個陰森的聲音說道：" +  cti + "後自己滾出去。\n" + NOR, YEL), me);
                 set("startroom", base_name(this_object()), me);
                 set("in_prison", base_name(this_object()), me);
                 me->save();
@@ -103,7 +103,7 @@ void create()
         set("dtname", __DIR__"guangchang.c"->load_name());
         set("short", query("dtname") + "水牢");
         set("long", 
-"这是洞天里黑幽幽的水牢，一米多深的水浸满了整个房间，臭不可闻。\n"
+"這是洞天裡黑幽幽的水牢，一米多深的水浸滿了整個房間，臭不可聞。\n"
 );
                 //set("outdoors", "dongtian");
                 set("exits",([ /* sizeof() == 1 */
@@ -122,7 +122,7 @@ void create()
         set("no_sleep_room", 1); 
         set("valid_startroom", 1);
         
-        set("owner_level", 1);  //不能成为外来者避风港
+        set("owner_level", 1);  //不能成為外來者避風港
         
         set_heart_beat(15);
 
@@ -132,11 +132,11 @@ void create()
 int valid_leave(object me, string dir)
 {
         if (query("dongtian/prison/time", me) && dir == "north") {
-                message_vision(append_color(NOR YEL "$N" NOR YEL "仿佛想起什么提示，狼狈不堪地逃出了水牢。\n" NOR, YEL), me);
+                message_vision(append_color(NOR YEL "$N" NOR YEL "彷彿想起什麼提示，狼狽不堪地逃出了水牢。\n" NOR, YEL), me);
                 delete("dongtian/prison/time", me);
                 me->start_busy(3);
                 me->move(__DIR__"teleport");
-                message_vision(append_color(NOR YEL "$N" NOR YEL "狼狈不堪地从" + query("dtname") +  NOR YEL "水牢逃了出来。\n" NOR, YEL), me);
+                message_vision(append_color(NOR YEL "$N" NOR YEL "狼狽不堪地從" + query("dtname") +  NOR YEL "水牢逃了出來。\n" NOR, YEL), me);
                 set("startroom", "/d/city/wumiao", me);
                 delete("in_prison", me);
                 me->save();

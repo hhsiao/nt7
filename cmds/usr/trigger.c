@@ -25,7 +25,7 @@ int main(object me, string arg)
         filename=DATA_DIR+"trigger/"+query("id", me)+__SAVE_EXTENSION__;
         if( !arg) {
                 if( file_size(filename) > 0 ) {
-                        write(HIC"您目前已设定有的触发如下：\n"NOR);
+                        write(HIC"您目前已設定有的觸發如下：\n"NOR);
                         file = read_file(filename);
                         msg = HIW"";
 
@@ -35,8 +35,8 @@ int main(object me, string arg)
                                         tg_cmd = replace_string(tg_cmd, ",", ";");
                                         msg += "-----------------------------------------------\n";
                                         msg += "(" + chinese_number(i+1) + ")\n";
-                                        msg += HIY"触发字符："HIW + tg_msg + "\n";
-                                        msg += HIY"触发指令："HIW + tg_cmd + "\n";
+                                        msg += HIY"觸發字符："HIW + tg_msg + "\n";
+                                        msg += HIY"觸發指令："HIW + tg_cmd + "\n";
                                         msg += "-----------------------------------------------\n";
                                 }
                         }
@@ -47,34 +47,34 @@ int main(object me, string arg)
                         return 1;
                 }
                 else
-                        return notify_fail(HIW"指令格式：trigger 触发字符:执行指令\n"HIY"[提示：如需设置多个指令，每个指令之间用逗号[,]间隔开]\n"NOR);
+                        return notify_fail(HIW"指令格式：trigger 觸發字符:執行指令\n"HIY"[提示：如需設置多個指令，每個指令之間用逗號[,]間隔開]\n"NOR);
         }
 
         if( arg == "clear" ) {
                 if( query("doing", me) == "trigger" )
-                        return notify_fail("你现在正在执行触发，请先停下来再清除它。\n");
+                        return notify_fail("你現在正在執行觸發，請先停下來再清除它。\n");
 
                 delete("trigger", me);
                 if( file_size(filename) >= 0 ) {
                         rm(filename);
-                        write(HIW"成功清除触发设置。\n"NOR);
+                        write(HIW"成功清除觸發設置。\n"NOR);
                         return 1;
                 } else {
-                        write(HIW"你并没有设置触发。\n"NOR);
+                        write(HIW"你並沒有設置觸發。\n"NOR);
                         return 1;
                 }
         }
 
         if( sscanf(arg, "rm %d", line) ) {
                 if( query("doing", me) == "trigger" )
-                        return notify_fail("你现在正在执行触发，请先停下来再清除它。\n");
+                        return notify_fail("你現在正在執行觸發，請先停下來再清除它。\n");
 
                 if( file_size(filename) > 0 ) {
                         file = read_file(filename);
                         lines = explode(file, "\n");
 
                         if( line > sizeof(lines) )
-                                return notify_fail(HIY"第 " + chinese_number(line) +" 条触发设置不存在。\n"NOR);
+                                return notify_fail(HIY"第 " + chinese_number(line) +" 條觸發設置不存在。\n"NOR);
 
                         msg = "";
 
@@ -82,10 +82,10 @@ int main(object me, string arg)
                                 if( i + 1 == line ) {
                                         if( sscanf(lines[i], "%s:%s", tg_msg, tg_cmd) ) {
                                                 tg_cmd = replace_string(tg_cmd, ",", ";");
-                                                write(HIR"你成功删除第" + chinese_number(line) + "条触发如下：\n");
+                                                write(HIR"你成功刪除第" + chinese_number(line) + "條觸發如下：\n");
                                                 write("-----------------------------------------------\n");
-                                                write(HIY"触发字符："HIW + tg_msg + "\n");
-                                                write(HIY"触发指令："HIW + tg_cmd + "\n");
+                                                write(HIY"觸發字符："HIW + tg_msg + "\n");
+                                                write(HIY"觸發指令："HIW + tg_cmd + "\n");
                                                 write("-----------------------------------------------\n");
                                         }
 
@@ -99,40 +99,40 @@ int main(object me, string arg)
                         return 1;
                 }
                 else
-                        return notify_fail(HIY"你目前并没有触发设置。\n"NOR);
+                        return notify_fail(HIY"你目前並沒有觸發設置。\n"NOR);
         }
         if( arg == "start" ) {
-                return notify_fail("目前该功能暂时关闭。\n");
+                return notify_fail("目前該功能暫時關閉。\n");
                 if( file_size(filename) < 1 )
-                        return notify_fail("你目前还没有制订触发。\n");
+                        return notify_fail("你目前還沒有制訂觸發。\n");
 
                 if( query("trigger", me) )
-                        return notify_fail(HIY"你并没有关闭触发功能，不需要再开启。\n"NOR);
+                        return notify_fail(HIY"你並沒有關閉觸發功能，不需要再開啟。\n"NOR);
 
                 if( query("doing", me) )
-                        return notify_fail("你现在正在忙于锻炼，不能开展新触发。\n");
+                        return notify_fail("你現在正在忙於鍛鍊，不能開展新觸發。\n");
 
                 env = environment(me);
                 if( !env )
-                        return notify_fail("你现在什么都做不了。\n");
+                        return notify_fail("你現在什麼都做不了。\n");
 
                 if( env->is_chat_room() )
-                        return notify_fail("你不能在聊天室里面执行计划。\n");
+                        return notify_fail("你不能在聊天室裡面執行計劃。\n");
 
                 if( query("combat_exp", me)<5000 )
-                        return notify_fail("你的实战经验太浅薄，还是先好好锻炼锻炼再说吧。\n");
+                        return notify_fail("你的實戰經驗太淺薄，還是先好好鍛鍊鍛鍊再說吧。\n");
 
                 if( query("potential", me)-query("learned_points", me)<100 )
-                        return notify_fail("你的潜能太少，难以开展触发。\n");
+                        return notify_fail("你的潛能太少，難以開展觸發。\n");
 
                 if( sizeof(filter_array(all_inventory(env), (: userp :))) > 12 )
-                        return notify_fail("这里的人实在太多了，你难以静心开展触发。\n");
+                        return notify_fail("這裡的人實在太多了，你難以靜心開展觸發。\n");
 
                 addn("learned_points", 100, me);
 
                 file = read_file(filename);
                 set("trigger", file, me);
-                write(HIG"你开启了触发功能。\n"NOR);
+                write(HIG"你開啟了觸發功能。\n"NOR);
                 set("startroom", base_name(env), me);
                 CLOSE_D->user_closed(me);
                 me->set_short_desc(0);
@@ -141,42 +141,42 @@ int main(object me, string arg)
         }
 
         if( query("doing", me) == "trigger" )
-                return notify_fail("你现在正在执行触发，请先停下来再修改。\n");
+                return notify_fail("你現在正在執行觸發，請先停下來再修改。\n");
 
         if( strlen(arg) > 300 )
-                return notify_fail(HIY"你的触发设定太长了，请控制在300个字节以内，\n"NOR);
+                return notify_fail(HIY"你的觸發設定太長了，請控制在300個字節以內，\n"NOR);
 
         if( file_size(filename) > 0 ) {
                 file = read_file(filename);
                 lines = explode(file, "\n");
 
                 if( sizeof(lines) >= TRIGGER_CMD_SIZE )
-                        return notify_fail(HIY"你只能设置" + chinese_number(TRIGGER_CMD_SIZE) + "条触发，需要删除一些触发才能继续设置。\n"NOR);
+                        return notify_fail(HIY"你只能設置" + chinese_number(TRIGGER_CMD_SIZE) + "條觸發，需要刪除一些觸發才能繼續設置。\n"NOR);
         }
 
         if( sscanf(arg, "%s:%s", tg_msg, tg_cmd) ) {
                 if( !tg_msg || !tg_cmd )
-                        write(HIW"增加触发失败。\n"NOR);
+                        write(HIW"增加觸發失敗。\n"NOR);
                 else
                 if( write_file(filename, tg_msg + ":" + tg_cmd + "\n") ) {
                         tg_cmd = replace_string(tg_cmd, ",", ";");
-                        write(HIG"你成功增加了一条触发如下：\n");
+                        write(HIG"你成功增加了一條觸發如下：\n");
                         write("-----------------------------------------------\n");
-                        write(HIY"触发字符："HIW + tg_msg + "\n");
-                        write(HIY"触发指令："HIW + tg_cmd + "\n");
+                        write(HIY"觸發字符："HIW + tg_msg + "\n");
+                        write(HIY"觸發指令："HIW + tg_cmd + "\n");
                         write("-----------------------------------------------\n");
                 }
                 else
-                        write(HIW"增加触发失败。\n"NOR);
+                        write(HIW"增加觸發失敗。\n"NOR);
         }
         else
-                return notify_fail(HIW"指令格式：trigger 触发字符:执行指令\n"HIY"[提示：如需设置多个指令，每个指令之间用逗号[,]间隔开]\n"NOR);
+                return notify_fail(HIW"指令格式：trigger 觸發字符:執行指令\n"HIY"[提示：如需設置多個指令，每個指令之間用逗號[,]間隔開]\n"NOR);
 
         return 1;
 
 }
 
-// 开始执行触发
+// 開始執行觸發
 int continue_trigger(object me)
 {
         if( !query("trigger", me) )
@@ -188,7 +188,7 @@ int continue_trigger(object me)
         return 1;
 }
 
-// 中止触发
+// 中止觸發
 int cancel_trigger(object me)
 {
         me->delete_override("unconcious");
@@ -207,7 +207,7 @@ int cancel_trigger(object me)
         return 0;
 }
 
-// 执行触发中
+// 執行觸發中
 void execute_trigger(object me)
 {
         string cmd, *cmds, *run;
@@ -276,25 +276,25 @@ int help (object me)
 {
        write(@HELP
 指令格式：
-[一]、增加一条触发：trigger 触发字符:执行指令
-      例如：我想触发“运功完毕”，也就是屏幕上出现“运功完毕”，我就
-      让他打坐练内，那么我们可以如下面这么设置：
-      trigger 运功完毕:dazuo 100
-      执行看看，你会发现只要屏幕上一出现“运功完毕”这些字，系统就会
-      自动帮你用100点内力打坐。
-      也许你会问：如果我想屏幕上出现“运功完毕”就先读书一次再打坐，
-      也就是屏幕上出现“运功完毕”时同时执行两个指令，那怎么设置呢？
-      很简单，你只需要把各个指令之间用逗号[,]间隔开就可以了。如下：
-      trigger 运功完毕:study book,dazuo 100
-      系统就会在屏幕上出现“运功完毕”时就先帮你读书读书一次再打坐了。
-      当然也同离线计划练功一样也是支持 alias 简化指令的。
-[二]：查看设置的所有触发：trigger
-[三]：删除一条触发：trigger rm 数字
-      说明：这个数字就是你要删除的那条触发的位置，可以通过查看你要删
-      除的那条触发的位置。
-[四]：删除所有触发：trigger clear
-[五]：关闭触发：halt
-[六]：启动触发：trigger start
+[一]、增加一條觸發：trigger 觸發字符:執行指令
+      例如：我想觸發“運功完畢”，也就是屏幕上出現“運功完畢”，我就
+      讓他打坐練內，那麼我們可以如下面這麼設置：
+      trigger 運功完畢:dazuo 100
+      執行看看，你會發現只要屏幕上一出現“運功完畢”這些字，系統就會
+      自動幫你用100點內力打坐。
+      也許你會問：如果我想屏幕上出現“運功完畢”就先讀書一次再打坐，
+      也就是屏幕上出現“運功完畢”時同時執行兩個指令，那怎麼設置呢？
+      很簡單，你只需要把各個指令之間用逗號[,]間隔開就可以了。如下：
+      trigger 運功完畢:study book,dazuo 100
+      系統就會在屏幕上出現“運功完畢”時就先幫你讀書讀書一次再打坐了。
+      當然也同離線計劃練功一樣也是支持 alias 簡化指令的。
+[二]：查看設置的所有觸發：trigger
+[三]：刪除一條觸發：trigger rm 數字
+      說明：這個數字就是你要刪除的那條觸發的位置，可以通過查看你要刪
+      除的那條觸發的位置。
+[四]：刪除所有觸發：trigger clear
+[五]：關閉觸發：halt
+[六]：啟動觸發：trigger start
 
 see also: scheme
 HELP

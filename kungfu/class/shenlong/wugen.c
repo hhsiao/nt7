@@ -8,11 +8,11 @@ inherit F_GUARDER;
 
 void create()
 {
-        set_name("无根道长", ( { "wugen daozhang", "wugen","daozhang" }) );
-        set("title", HIY"神龙教"HIR"赤龙使"NOR);
+        set_name("無根道長", ( { "wugen daozhang", "wugen","daozhang" }) );
+        set("title", HIY"神龍教"HIR"赤龍使"NOR);
         set("gender", "男性" );
         set("age", 55);
-        set("long", "这是个五十来岁的黑须道长，相貌威武，眼中略带杀气。\n");
+        set("long", "這是個五十來歲的黑鬚道長，相貌威武，眼中略帶殺氣。\n");
 
         set("str", 30);
         set("int", 25);
@@ -55,14 +55,14 @@ void create()
 
         prepare_skill("strike", "huashan-zhang");
 
-        create_family("神龙教", 0, "长老");
+        create_family("神龍教", 0, "長老");
 
         set("inquiry", ([
-                "神龙教" : "一般人是入不了我神龙教的(join shenlongjiao).\n",
-                "洪安通" : "教主脾气不好,要讨他欢心才好。\n",
-                "教主"   : "教主脾气不好,要讨他欢心才好。\n",
-                "入教"   : "一般人是入不了我神龙教的(join shenlongjiao).\n",
-                "口号"   : "万年不老！永享仙福！寿与天齐！文武仁圣！\n",
+                "神龍教" : "一般人是入不了我神龍教的(join shenlongjiao).\n",
+                "洪安通" : "教主脾氣不好,要討他歡心才好。\n",
+                "教主"   : "教主脾氣不好,要討他歡心才好。\n",
+                "入教"   : "一般人是入不了我神龍教的(join shenlongjiao).\n",
+                "口號"   : "萬年不老！永享仙福！壽與天齊！文武仁聖！\n",
         ]));
 
         set("coagents", ({
@@ -102,6 +102,6 @@ void greeting(object ob)
 
 void attempt_apprentice(object ob)
 {
-        command("say 贫道不收徒！");
+        command("say 貧道不收徒！");
         return;
 }

@@ -11,7 +11,7 @@ void create()
         else*/
         {
                 set("unit", "本");
-                set("long","这是一本薄薄的小册子，上面写着血刀秘籍四个小字。\n");
+                set("long","這是一本薄薄的小冊子，上面寫著血刀秘籍四個小字。\n");
                 set("no_sell", 1);
                 set("material", "silk");
                 set("skill", ([

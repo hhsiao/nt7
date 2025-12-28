@@ -14,7 +14,7 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-         set("long", "这玉笛短得出奇，只不来七寸来长、通体洁白，晶莹可爱。\n");
+         set("long", "這玉笛短得出奇，只不來七寸來長、通體潔白，晶瑩可愛。\n");
                 set("unit", "支");
                 set("value", 1);
                 set("no_sell", 1);
@@ -35,17 +35,17 @@ int do_blow(string arg)
 {
         object ob, me=this_player();
 
-        if (!arg && arg != "di" && arg != "yu di") return notify_fail("你要吹什么？\n");
+        if (!arg && arg != "di" && arg != "yu di") return notify_fail("你要吹什麼？\n");
         
         if (me->is_busy())
-        return notify_fail("你前一个动作还没有做完。\n");
+        return notify_fail("你前一個動作還沒有做完。\n");
 
-        message_vision("$N把玉笛放到口边，轻轻一吹，只听一阵极尖极细的哨子声远远传了出去。\n", me);
+        message_vision("$N把玉笛放到口邊，輕輕一吹，只聽一陣極尖極細的哨子聲遠遠傳了出去。\n", me);
 
         if( !query("no_fight", environment(me) )
         && query("fire_source") > 0 && me->query_skill("poison", 1) > 99){        
 
-        message_vision(HIR"随着哨子声，玉笛里突然飞出蓝印印的一点火星，火星陡地熄灭，随即大亮，蓬的一声响，腾向半空，升起有丈许，这才缓缓降落。\n"NOR, me);
+        message_vision(HIR"隨著哨子聲，玉笛裡突然飛出藍印印的一點火星，火星陡地熄滅，隨即大亮，蓬的一聲響，騰向半空，升起有丈許，這才緩緩降落。\n"NOR, me);
 
         addn("fire_source", -1);
         ob=new("/d/xingxiu/obj/flute_fire");
@@ -60,22 +60,22 @@ int do_put(string arg)
         int amount;
 
         if( !arg || sscanf(arg, "%s in %s", item, target) != 2 )
-                return notify_fail("你要将什么东西放进哪里？\n");
+                return notify_fail("你要將什麼東西放進哪裡？\n");
         
         if( !objectp(obj = present(item, me)) )
-                return notify_fail("你要给谁什么东西？\n");
+                return notify_fail("你要給誰什麼東西？\n");
 
         if (!id(target)) return 0;
 
         if( item == "all" ) {
-                write("还是一样一样来吧。\n");
+                write("還是一樣一樣來吧。\n");
                 return 1;
         }
         if( query("id", obj) != "liu huang"){
-                write(query("name", obj)+"对玉笛而言太重了。\n");
+                write(query("name", obj)+"對玉笛而言太重了。\n");
                 return 1;
         }
-                message_vision( sprintf(HIY "$N将一%s%s放进%s。\n" NOR,
+                message_vision( sprintf(HIY "$N將一%s%s放進%s。\n" NOR,
                         query("unit", obj),obj->name(),
                         this_object()->name()),me );
                 destruct(obj);

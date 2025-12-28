@@ -5,7 +5,7 @@ inherit F_GUARDER;
 
 void create()
 {
-        set_name("绿衫少女", ({ "lvshan shaonv", "lvshan", "shaonv" }) );      
+        set_name("綠衫少女", ({ "lvshan shaonv", "lvshan", "shaonv" }) );      
         set("gender", "女性");
         set("age", 17);
         set("attitude", "peaceful");
@@ -37,7 +37,7 @@ void create()
         map_skill("dodge", "jueqing-shenfa");
         map_skill("force", "jueqing-xinfa");
     
-        create_family("绝情谷", 5, "女弟子");
+        create_family("絕情谷", 5, "女弟子");
         setup();
 
         carry_object("/clone/weapon/changjian")->wield();

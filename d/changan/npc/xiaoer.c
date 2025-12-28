@@ -24,15 +24,15 @@ void greeting(object ob)
 {
         if (! ob || ! visible(ob) || environment(ob) != environment())
                 return;
-        say(name() + "笑咪咪地说道：这位" + RANK_D->query_respect(ob) +
-            "，进来歇歇脚，休息一下吧。\n");
+        say(name() + "笑咪咪地說道：這位" + RANK_D->query_respect(ob) +
+            "，進來歇歇腳，休息一下吧。\n");
 }
 
 int accept_object(object who, object ob)
 {
         if( query("money_id", ob) && ob->value() >= 300 )
         {
-                tell_object(who, "小二一哈腰，说道：多谢您老，客官请上楼歇息。\n");
+                tell_object(who, "小二一哈腰，說道：多謝您老，客官請上樓歇息。\n");
                 set_temp("rent_paid", 1, who);
                 return 1;
         }

@@ -1,21 +1,21 @@
-//help.c,具有部分bbs和超强的文件链接功能
-//created by hyee，看到Host的help系统受到启发
-//不同的mudlib请注意修正define的目录和valid_write()
+//help.c,具有部分bbs和超強的文件鏈接功能
+//created by hyee，看到Host的help系統受到啟發
+//不同的mudlib請注意修正define的目錄和valid_write()
 //2001.1.30 change by xkiller@ldj.ciom
 #include <mudlib.h>
 #include <ansi.h>
 #include <login.h>
-/*定义其他文档的所在目录*/
+/*定義其他文檔的所在目錄*/
 #define DIR "/help/"
-/*定义本文件的存档所在的目录*/
+/*定義本文件的存檔所在的目錄*/
 #define POST DIR"mudbbs.o"
-/*定义玩家register文件所在目录*/
+/*定義玩家register文件所在目錄*/
 #define REGISTER DIR+"register/"
-/*定义各种留言板所在目录*/
+/*定義各種留言板所在目錄*/
 #define BOARD "/clone/board/"
 /*board的主存文件*/
 #define BOARDCENTER BOARD+"center.h"
-/*定义能对本系统进行修改的巫师等级*/
+/*定義能對本系統進行修改的巫師等級*/
 #define WIZLEVEL "(wizard)"
 inherit ITEM;
 inherit F_SAVE;
@@ -59,7 +59,7 @@ string query_save_file()
 void create()
 {
         seteuid(getuid());
-        set("name","泥潭·江湖论坛");
+        set("name","泥潭·江湖論壇");
         mkdir(DIR);
         mkdir(REGISTER);
         restore();
@@ -81,7 +81,7 @@ int main(object me, string arg)
         seteuid(getuid());
         set_temp("help", 1, me);
         m_display();
-        write(YEL"你将要选择："NOR);
+        write(YEL"你將要選擇："NOR);
         input_to((:confirm_main_choice:),this_player());
         return 1;
 }
@@ -93,23 +93,23 @@ void view_main()
      me = this_player();
      select=query_temp("select", me);
      write(CLR"\n");
-     if(select== "main") name = "主选单";
-     else if( select== "intro") name = "游戏概况";
-     else if( select== "news") name = "泥潭新闻";
-     else if( select== "map") name = "泥潭地图";
-     else if( select== "family" ) name="门派介绍";
-     else if( select== "skills" ) name="武功介绍";
-     else if( select== "user") name = "个人设定";
-     else if( select== "board") name = "论坛精华";
+     if(select== "main") name = "主選單";
+     else if( select== "intro") name = "遊戲概況";
+     else if( select== "news") name = "泥潭新聞";
+     else if( select== "map") name = "泥潭地圖";
+     else if( select== "family" ) name="門派介紹";
+     else if( select== "skills" ) name="武功介紹";
+     else if( select== "user") name = "個人設定";
+     else if( select== "board") name = "論壇精華";
      else if( select== "post") name = "灌水天地";
-     else if( select== "other" ) name="其他内容";
-     else if( select== "xyz" ) name="好好学习";
-     write(HIY"分类选单"HIC"                     【"HIY+MUD_NAME+HIC"江湖论坛】            "HIY"选单["+select+"]\n"NOR);
-     write("目前选择：[ "+HIG+name+NOR+" ]\n");
+     else if( select== "other" ) name="其他內容";
+     else if( select== "xyz" ) name="好好學習";
+     write(HIY"分類選單"HIC"                     【"HIY+MUD_NAME+HIC"江湖論壇】            "HIY"選單["+select+"]\n"NOR);
+     write("目前選擇：[ "+HIG+name+NOR+" ]\n");
      write(HIR"□－－－－－－－－－－－－－－┤ 公告版 ├－－－－－－－－－－－－－－□\n"NOR);
      auto_load();
      write(HIR"□－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－□\n"NOR);
-     write(CYN"                       【请您使用首字母选择进入】\n"NOR);
+     write(CYN"                       【請您使用首字母選擇進入】\n"NOR);
 }
 void view_main_1()
 {
@@ -124,7 +124,7 @@ void view_main_1()
        }
      if (!wizardp(this_player())) ppl_cnt = ppl_cnt - wiz_cnt;
      write(HIY"_.-*```*-.__.-*```*-.__.-*```*-.__.-*```*-.__.-*```*-.__.-*```*-.__.-*\n"NOR);
-     write(YEL"现在时间:["CYN""+ctime(time())+""YEL"]    在线玩家：["CYN""+ppl_cnt+""YEL"]  目前权限:["CYN""+wizhood(this_player())+""YEL"]\n"NOR,);
+     write(YEL"現在時間:["CYN""+ctime(time())+""YEL"]    在線玩家：["CYN""+ppl_cnt+""YEL"]  目前權限:["CYN""+wizhood(this_player())+""YEL"]\n"NOR,);
 }
 void view_main_k()
 {
@@ -133,35 +133,35 @@ void view_main_k()
      me = this_player();
      select=query_temp("select", me);
      write(CLR"\n");
-     if(select== "main") name = "主选单";
-     else if( select== "intro") name = "游戏概况";
-     else if( select== "news") name = "泥潭新闻";
-     else if( select== "map") name = "泥潭地图";
-     else if( select== "family" ) name="门派介绍";
-     else if( select== "skills" ) name="武功介绍";
-     else if( select== "user") name = "个人设定";
-     else if( select== "board") name = "论坛精华";
+     if(select== "main") name = "主選單";
+     else if( select== "intro") name = "遊戲概況";
+     else if( select== "news") name = "泥潭新聞";
+     else if( select== "map") name = "泥潭地圖";
+     else if( select== "family" ) name="門派介紹";
+     else if( select== "skills" ) name="武功介紹";
+     else if( select== "user") name = "個人設定";
+     else if( select== "board") name = "論壇精華";
      else if( select== "post") name = "灌水天地";
-     else if( select== "other" ) name="其他内容";
-     else if( select== "xyz" ) name="好好学习";
-     write(YEL"分类选单"WHT"                         【"+MUD_NAME+"】                  "YEL"选单["+select+"]\n"NOR);
-     write("目前选择：[ "+HIG+name+NOR+" ]\n");
+     else if( select== "other" ) name="其他內容";
+     else if( select== "xyz" ) name="好好學習";
+     write(YEL"分類選單"WHT"                         【"+MUD_NAME+"】                  "YEL"選單["+select+"]\n"NOR);
+     write("目前選擇：[ "+HIG+name+NOR+" ]\n");
      write(RED"□－－－－－－－－－－－－－－┤ 公告版 ├－－－－－－－－－－－－－－□\n"NOR);
 }
 void m_display()
  {
      set_temp("select", "main", this_player());
      view_main();
-     write("                        "BRED+HIG"(I)"NOR"ntro   〖  游戏概况  〗\n");
-     write("                        "BRED+HIG"(M)"NOR"ap     〖  泥潭地图  〗\n");
-     write("                        "BRED+HIG"(F)"NOR"amily  〖  门派介绍  〗\n");
-//     write("                        "BRED+HIG"(S)"NOR"kills  〖  武功介绍  〗\n");
-     write("                        "BRED+HIG"(N)"NOR"ews    〖  泥潭新闻  〗\n");
-     write("                        "BRED+HIG"(O)"NOR"ther   〖  其他内容  〗\n");
-     write("                        "BRED+HIG"(B)"NOR"oard   〖  论坛精华  〗\n");
-     write("                        "BRED+HIG"(X)"NOR"yz     〖  好好学习  〗\n");
+     write("                        "BRED+HIG"(I)"NOR"ntro   〖  遊戲概況  〗\n");
+     write("                        "BRED+HIG"(M)"NOR"ap     〖  泥潭地圖  〗\n");
+     write("                        "BRED+HIG"(F)"NOR"amily  〖  門派介紹  〗\n");
+//     write("                        "BRED+HIG"(S)"NOR"kills  〖  武功介紹  〗\n");
+     write("                        "BRED+HIG"(N)"NOR"ews    〖  泥潭新聞  〗\n");
+     write("                        "BRED+HIG"(O)"NOR"ther   〖  其他內容  〗\n");
+     write("                        "BRED+HIG"(B)"NOR"oard   〖  論壇精華  〗\n");
+     write("                        "BRED+HIG"(X)"NOR"yz     〖  好好學習  〗\n");
      write("                        "BRED+HIG"(P)"NOR"ost    〖  灌水天地  〗\n");
-     write("                        "BRED+HIG"(U)"NOR"ser    〖  个人设定  〗\n");
+     write("                        "BRED+HIG"(U)"NOR"ser    〖  個人設定  〗\n");
      write("                        "BRED+HIG"(G)"NOR"oodbye 【  "HIM"回到江湖"NOR"  】\n");
      view_main_1();
 }
@@ -184,9 +184,9 @@ int message1()
       int i;
       me = this_player();
       i=query("combat/MKS", me)+query("combat/PKS", me);
-      write(HIM"      亲爱的"HIR+me->name()+HIM"啊, 您在【泥潭】的江湖中已经摸爬滚打了"+age_string(query("mud_age",me))+"耶!!\n");
-      write(HIM"在您在本泥巴的分分秒秒中,您已经累积了"+chinese_number(query("combat_exp", me))+"点的江湖经验\n");
-      write(HIM"      共击倒"+chinese_number(i)+"个对手\n");
+      write(HIM"      親愛的"HIR+me->name()+HIM"啊, 您在【泥潭】的江湖中已經摸爬滾打了"+age_string(query("mud_age",me))+"耶!!\n");
+      write(HIM"在您在本泥巴的分分秒秒中,您已經累積了"+chinese_number(query("combat_exp", me))+"點的江湖經驗\n");
+      write(HIM"      共擊倒"+chinese_number(i)+"個對手\n");
       write(CYN"                        加油喔!!addoil!! \n");
 }
 string age_string(int time)
@@ -201,7 +201,7 @@ string age_string(int time)
         day = time % 30;
         month = time / 30;
         return (month?month + "月":"") + (day?day + "天":"") +
-        (hour?hour + "小时":"") + min + "分";
+        (hour?hour + "小時":"") + min + "分";
 }
 
 int message()
@@ -209,7 +209,7 @@ int message()
  write(WHT"   ●    （ ● ）  （●）      ●）     ●     （●）   □●□   （●\n"NOR);
  write(WHT" ＜｜＞   └｜┘    （（（   （｜     （｜）   　｜）     ｜      （□\n"NOR);
  write(WHT"  ／＼    ＜  □   （         ／ ）    （□     （ ＼   □  □    ＜））\n"NOR);
- write(HIC""HIR+this_player()->name()+HIC",千万别挖泥太久喽，注意劳逸结合。迈步如婴之炯然，蓄势如日之初升。\n"NOR);
+ write(HIC""HIR+this_player()->name()+HIC",千萬別挖泥太久嘍，注意勞逸結合。邁步如嬰之炯然，蓄勢如日之初升。\n"NOR);
 }
 
 int wizlist()
@@ -256,9 +256,9 @@ int wizlist()
             }
         }
         write(HIG"           【 仙人 】: "NOR+str1+"\n");
-        write(HIB"           【 学徒 】: "NOR+str2+"\n");
-        write(HIC"           【 巫师 】: "NOR+str3+"\n");
-        write(HIY"           【 大巫师 】: "NOR+str4+"\n");
+        write(HIB"           【 學徒 】: "NOR+str2+"\n");
+        write(HIC"           【 巫師 】: "NOR+str3+"\n");
+        write(HIY"           【 大巫師 】: "NOR+str4+"\n");
         write(HIW"           【 天神 】: "NOR+str5+"\n");
 }
 
@@ -325,7 +325,7 @@ protected void confirm_main_choice(string arg)
                      case 'U':
                      set_temp("select", "user", this_player());
                      u_display();
-                     write(YEL"\r请输入您的选择:"NOR);
+                     write(YEL"\r請輸入您的選擇:"NOR);
                      input_to((:confirm_u_choice:),this_player());
                      return;
                      break;
@@ -335,15 +335,15 @@ protected void confirm_main_choice(string arg)
                      return;
         }
         m_display();
-        write(YEL"请输入您的选择:"NOR);
+        write(YEL"請輸入您的選擇:"NOR);
         input_to((:confirm_main_choice:),this_player());
           return;
 }
 /*留言板程序*/
 void view1()
 {
-        write(CYN"  (P)"NOR"发表 "CYN"(D)"NOR"删除 "CYN"(U)"NOR"上翻 "CYN"(O)"NOR"下翻"
-        CYN" (B)"NOR"返回 "CYN"(E)"NOR"读取 "CYN"(K)"NOR"上移 "CYN"(J)"NOR"下移\n");
+        write(CYN"  (P)"NOR"發表 "CYN"(D)"NOR"刪除 "CYN"(U)"NOR"上翻 "CYN"(O)"NOR"下翻"
+        CYN" (B)"NOR"返回 "CYN"(E)"NOR"讀取 "CYN"(K)"NOR"上移 "CYN"(J)"NOR"下移\n");
         write(RED"□－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－□\n"NOR);
         return;
 }
@@ -356,7 +356,7 @@ string view_msg(int flag,object ob)
         int i,k,b,f;
         file="";
         k=sizeof(notes)-1;
-        if(!sizeof(notes)) return "目前没有任何留言。\n";
+        if(!sizeof(notes)) return "目前沒有任何留言。\n";
         if(flag<0) flag=k;
         if(flag>k) flag=0;
         set(memer, flag, me);
@@ -393,7 +393,7 @@ protected void confirm_p_choice(string arg,object ob)
                         if( time()-query("postover", this_player())<900 &&
                             !wizardp(this_player(1)))
                         {
-                                write("你已经在不久前留言了，请稍等一会才继续留言。\n");
+                                write("你已經在不久前留言了，請稍等一會才繼續留言。\n");
                                 display(ob);
                                 return;
                         }
@@ -445,13 +445,13 @@ protected void confirm_p_choice(string arg,object ob)
                         notes=query("notes", ob);
                         if( !pointerp(notes) || !sizeof(notes) )
                         {
-                                write("留言板上目前没有任何留言。\n");
+                                write("留言板上目前沒有任何留言。\n");
                                 display(ob);
                                 return;
                         }
                         if(  num+1 > sizeof(notes) )
                         {
-                                write("没有这张留言。\n");
+                                write("沒有這張留言。\n");
                                 display(ob);
                                 return;
                         }
@@ -467,7 +467,7 @@ protected void confirm_p_choice(string arg,object ob)
 }
 int edi(function callback)
 {
-        write(CYN"    书写结束用'.'，取消输入用 '^q'，使用内建列编辑器用 '^e'。\n"NOR);
+        write(CYN"    書寫結束用'.'，取消輸入用 '^q'，使用內建列編輯器用 '^e'。\n"NOR);
         write(GRN"------－－－－－－－－－－－－－－－－－－－－－－－－－－－－－--\n│"NOR);
         input_to("input_lines", "", callback);
         return 1;
@@ -480,7 +480,7 @@ void input_lines(string line, string text, function callback)
                 (*callback)(text);
                 return;
         } else if( line=="^q" ) {
-                write("输入取消。\n");
+                write("輸入取消。\n");
                 main(this_player(),0);
         } else if( line=="^e" ) {
         } else  {
@@ -495,7 +495,7 @@ void done_post(mapping note,object ob,string text)
         mapping *notes;
         if(strlen(text)<20)
         {
-                write(CYN"本文被认为是灌水文章，不予发表。\n"NOR);
+                write(CYN"本文被認為是灌水文章，不予發表。\n"NOR);
                 display(ob);
                 return;
         }
@@ -507,7 +507,7 @@ void done_post(mapping note,object ob,string text)
         else
                 notes += ({ note });
         set("notes", notes, ob);
-        write("留言完毕。\n");
+        write("留言完畢。\n");
         ob->save();
         set("postover", time(), this_player());
         display(ob);
@@ -518,7 +518,7 @@ int do_post(string arg,object ob)
         mapping note;
         if(!arg||arg=="")
         {
-                write(YEL"\n请指定一个标题:"NOR"(“Q”键取消)");
+                write(YEL"\n請指定一個標題:"NOR"(“Q”鍵取消)");
                 input_to((:do_post:),ob);
                 return 1;
         }
@@ -546,14 +546,14 @@ void do_discard(object ob)
 
         if( !arrayp(notes) ||!sizeof(notes)||num < 1 || num > sizeof(notes))
         {
-                write("没有这张留言。\n");
+                write("沒有這張留言。\n");
                 return;
         }
         num--;
         if( notes[num]["authorid"] != query("id", this_player(1) )
         &&      wiz_level(this_player(1)) < wiz_level(WIZLEVEL))
         {
-                write("这个留言不是你写的。\n");
+                write("這個留言不是你寫的。\n");
                 return;
         }
         if(num == 0)
@@ -562,7 +562,7 @@ void do_discard(object ob)
                 notes = notes[0..num-1] + notes[num+1..sizeof(notes)-1];
         set("notes", notes, ob);
         ob->save();
-        write("删除第 " + (num+1) + " 号留言....Ok。\n");
+        write("刪除第 " + (num+1) + " 號留言....Ok。\n");
         return;
 }
 varargs void view2(int line,string *text,object ob,int i)
@@ -570,10 +570,10 @@ varargs void view2(int line,string *text,object ob,int i)
         int w=line;
         if(i) w=w+17;
         write( YEL"－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－\n"NOR);
-             printf("   总行数:"HIR+"%5d "NOR+"已阅读行数:"HIC+"%5d "+NOR CYN"(T"NOR"x"CYN")"NOR"翻到x行 "CYN"(U)"NOR"向上 "
+             printf("   總行數:"HIR+"%5d "NOR+"已閱讀行數:"HIC+"%5d "+NOR CYN"(T"NOR"x"CYN")"NOR"翻到x行 "CYN"(U)"NOR"向上 "
              CYN"(D)"NOR"向下 "CYN"(R)"NOR"退出 "CYN"(B)"NOR"返回  \n",sizeof(text),w);
              write( YEL"－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－\n"NOR);
-             write(YEL"您的选择："NOR);
+             write(YEL"您的選擇："NOR);
              input_to((:do_more:),text,line,ob);
              return;
 }
@@ -604,7 +604,7 @@ void do_more(string cmd,string *text,int line,object ob)
         switch(cmd) {
         case "d":
              case "D":
-        //xkiller增加:本来屏幕就小还被占用那么多,---呵呵(增加的几个ascii图形更是无法显示)
+        //xkiller增加:本來屏幕就小還被佔用那麼多,---呵呵(增加的幾個ascii圖形更是無法顯示)
                      write(ESC+"[1A"+ESC+"[200D"+ESC+"[K");
                 write(ESC+"[1A"+ESC+"[200D"+ESC+"[K");
                 write(ESC+"[1A"+ESC+"[200D"+ESC+"[K");
@@ -658,64 +658,64 @@ int register()
            me = this_player();
            if( !query("register", me)){
                 write(CLR"\n");
-                 write(WHT"【使用者设定】        "YEL"【"+MUD_NAME+"注册单】\n"NOR);
+                 write(WHT"【使用者設定】        "YEL"【"+MUD_NAME+"註冊單】\n"NOR);
                  write("\n");
-                 write(YEL"目前选择：\n\n"NOR);
-                 write(WHT"    您的代号     : "NOR);
+                 write(YEL"目前選擇：\n\n"NOR);
+                 write(WHT"    您的代號     : "NOR);
                  input_to((:a:),this_player());
                  return 1;
         }
-            write("你已经填写过注册单啦。\n");
+            write("你已經填寫過註冊單啦。\n");
              input_to("confirm_u_choice",this_player());
              return 1;
 }
 protected void a(string arg, string register)
 {
-           register = "代号     : "+arg+"\n";
+           register = "代號     : "+arg+"\n";
            set_temp("register", register, this_player());
-           write(WHT"    您的昵称     : "NOR);
+           write(WHT"    您的暱稱     : "NOR);
            input_to((:b:),this_player(),register);
 }
 protected void b(string arg, string register)
 {
-           register = "昵称     : "+arg+"\n";
+           register = "暱稱     : "+arg+"\n";
            set_temp("register", register, this_player());
-           write(WHT"    真实姓名     : "NOR);
+           write(WHT"    真實姓名     : "NOR);
            input_to((:c:),this_player());
 }
 protected void c(string arg, string register)
 {
            register = "姓名     : "+arg+"\n";
            set_temp("register", register, this_player());
-           write(WHT"    联系地址     : "NOR);
+           write(WHT"    聯繫地址     : "NOR);
            input_to((:d:),this_player());
 }
 protected void d(string arg, string register)
 {
-           register = "联系地址     : "+arg+"\n";
+           register = "聯繫地址     : "+arg+"\n";
            set_temp("register", register, this_player());
-           write(WHT"    工作单位/学校: "NOR);
+           write(WHT"    工作單位/學校: "NOR);
            input_to((:e:),this_player());
 }
 protected void e(string arg, string register)
 {
-           register = "工作单位/学校: "+arg+"\n";
+           register = "工作單位/學校: "+arg+"\n";
            set_temp("register", register, this_player());
-           write(WHT"    电子信箱: "NOR);
+           write(WHT"    電子信箱: "NOR);
            input_to((:f:),this_player());
 }
 protected void f(string arg, string register)
 {
-           register = "电子信箱: "+arg+"\n";
+           register = "電子信箱: "+arg+"\n";
            set_temp("register", register, this_player());
-           write(WHT"    联系电话: "NOR);
+           write(WHT"    聯繫電話: "NOR);
            input_to((:g:),this_player());
 }
 protected void g(string arg, string register)
 {
-           register = "联系电话: "+arg+"\n";
+           register = "聯繫電話: "+arg+"\n";
            set_temp("register", register, this_player());
-           write(WHT"\n\n\n\n\n\n以上资料是否正确(Y/N)？(Q)取消注册 [N]:"NOR);
+           write(WHT"\n\n\n\n\n\n以上資料是否正確(Y/N)？(Q)取消註冊 [N]:"NOR);
            input_to((:y:),this_player());
 }
 protected void y(string arg, string register)
@@ -739,7 +739,7 @@ protected void y(string arg, string register)
                    table=query_temp("register", this_player());
                    delete_temp("register", this_player());
                    write_file(REGISTER+query("id", this_player()),table,1);
-                   write("◇设置一切正确。\n");
+                   write("◇設置一切正確。\n");
                    input_to("confirm_u_choice",this_player());
                    return;
                    break;
@@ -747,7 +747,7 @@ protected void y(string arg, string register)
              case 'Q':
                    delete_temp("register", this_player());
                    u_display();
-                   write(YEL"\r请输入您的选择:"NOR);
+                   write(YEL"\r請輸入您的選擇:"NOR);
                    input_to((:confirm_u_choice:),this_player());
                    return ;
                    break;
@@ -764,10 +764,10 @@ int pager()
             object me;
             me = this_player();
             if( query_temp("call_on", me)){
-                    write("打开 Pager 频道\n");
+                    write("打開 Pager 頻道\n");
                     delete_temp("call_on", me);
             } else {
-                   write("关闭 Pager 频道\n");
+                   write("關閉 Pager 頻道\n");
                    set_temp("call_on", 1, me);
            }
            return 1;
@@ -779,16 +779,16 @@ int cloak()
            if(!wizardp(me))
             {
                    u_display();
-                   write(YEL"\r请输入您的选择:"NOR);
+                   write(YEL"\r請輸入您的選擇:"NOR);
                    input_to((:confirm_u_choice:),this_player());
                    return 1;
            }
            if( query("env/invisibility", me) )
            {
-                    write("我要重现江湖...\n");
+                    write("我要重現江湖...\n");
                     delete("env/invisibility", me);
             } else {
-                    write("哈哈！我隐形起来了。\n");
+                    write("哈哈！我隱形起來了。\n");
                     set("env/invisibility", 5, me);
            }
           return 1;
@@ -798,7 +798,7 @@ int lock()
             object me,ob;
             me = this_player();
             ob=query_temp("link_ob", me);
-            write(WHT"▲ 请输入注册密码，以解除萤幕锁定："NOR);
+            write(WHT"▲ 請輸入註冊密碼，以解除螢幕鎖定："NOR);
             input_to("get_old_pass", 1, ob);
             return 1;
 }
@@ -807,7 +807,7 @@ protected void confirm_u_choice(string arg)
          set_temp("help_u", 1, this_player());
          if(arg=="") {
                      u_display();
-                     write(YEL "\r请重新输入您的选择:"NOR);
+                     write(YEL "\r請重新輸入您的選擇:"NOR);
                      input_to((:confirm_u_choice:),this_player());
                      return ;
              }
@@ -820,14 +820,14 @@ protected void confirm_u_choice(string arg)
             case 'p':
              case 'P':
                     pager();
-                    write(YEL "\r请重新输入您的选择:"NOR);
+                    write(YEL "\r請重新輸入您的選擇:"NOR);
                     input_to((:confirm_u_choice:),this_player());
                      return ;
                      break;
             case 'c':
              case 'C':
                     cloak();
-                    write(YEL "\r请重新输入您的选择:"NOR);
+                    write(YEL "\r請重新輸入您的選擇:"NOR);
                     input_to((:confirm_u_choice:),this_player());
                     return ;
                     break;
@@ -843,14 +843,14 @@ protected void confirm_u_choice(string arg)
             case 'g':
              case 'G':
                      m_display();
-                     write(YEL "\r请输入您的选择:"NOR);
+                     write(YEL "\r請輸入您的選擇:"NOR);
                      delete_temp("help_u", this_player());
                      input_to((:confirm_main_choice:),this_player());
                      return ;
                      break;
             default:
                    u_display();
-                   write(YEL"\r请输入您的选择:"NOR);
+                   write(YEL"\r請輸入您的選擇:"NOR);
                    input_to((:confirm_u_choice:),this_player());
                    return ;
         }
@@ -860,11 +860,11 @@ void u_display()
 {
               view_main();
               if (wizardp(this_player()))
-              write("                       "CYN"(Ｃ)"NOR"loak       隐身术\n");
-              write("                       "CYN"(Ｌ)"NOR"ockScreen  锁定萤幕\n");
-              write("                       "CYN"(Ｒ)"NOR"egister    江湖注册\n");
-              write("                       "CYN"(Ｐ)"NOR"ager       呼叫器开关\n");
-              write("                       "CYN"(Ｇ)"NOR"return     返回主菜单\n");
+              write("                       "CYN"(Ｃ)"NOR"loak       隱身術\n");
+              write("                       "CYN"(Ｌ)"NOR"ockScreen  鎖定螢幕\n");
+              write("                       "CYN"(Ｒ)"NOR"egister    江湖註冊\n");
+              write("                       "CYN"(Ｐ)"NOR"ager       呼叫器開關\n");
+              write("                       "CYN"(Ｇ)"NOR"return     返回主菜單\n");
               view_main_1();
 }
 void get_old_pass(string pass, object ob)
@@ -876,7 +876,7 @@ void get_old_pass(string pass, object ob)
                 return ;
         }
         u_display();
-        write(YEL"\r请输入您的选择:"NOR);
+        write(YEL"\r請輸入您的選擇:"NOR);
         input_to((:confirm_u_choice:),this_player());
         return ;
 }
@@ -891,7 +891,7 @@ void getname1(string arg)
         int k;
         if(!arg||arg=="")
         {
-                write(CYN"请输入链接名称："NOR);
+                write(CYN"請輸入鏈接名稱："NOR);
                 input_to("getname1");
                 return;
         }
@@ -903,12 +903,12 @@ void getname1(string arg)
         k=strlen(arg);
         if(k<2||k>16)
         {
-                write(GRN"链接名称字数必须在2到16个字元之间！\n"NOR);
-                write(CYN"请输入链接名称："NOR);
+                write(GRN"鏈接名稱字數必須在2到16個字元之間！\n"NOR);
+                write(CYN"請輸入鏈接名稱："NOR);
                 input_to("getname1");
                 return;
         }
-        write(GRN"请输入链接档案( Q 放弃）："NOR);
+        write(GRN"請輸入鏈接檔案( Q 放棄）："NOR);
         input_to("getname2",arg);
         return;
 }
@@ -923,8 +923,8 @@ void getname2(string str,string arg)
         }
         if(file_size(str)<0)
         {
-                write(YEL"没有这个档案！\n"NOR);
-                write(GRN"请输入链接档案："NOR);
+                write(YEL"沒有這個檔案！\n"NOR);
+                write(GRN"請輸入鏈接檔案："NOR);
                 input_to("getname2",arg);
                 return;
         }
@@ -954,7 +954,7 @@ void view7(string arg)
         string file=read_file(find_file()),*text;
         if(!arg)
         {
-                write(CYN"请选择要修改的选项：(Q键取消)"NOR);
+                write(CYN"請選擇要修改的選項：(Q鍵取消)"NOR);
                 input_to("view7");
                 return;
         }
@@ -975,7 +975,7 @@ void view7(string arg)
                 return;
         }
         k--;
-        write(YEL"您要修改(1)名称或者(2)链接？"NOR);
+        write(YEL"您要修改(1)名稱或者(2)鏈接？"NOR);
         input_to("view8",text[k],k);
         return;
 }
@@ -984,16 +984,16 @@ void view8(string arg,string str,int k)
         string *w = explode(str,"==@==");
         switch(arg) {
                 case "1":
-                write(CYN"请输入名称:"NOR);
+                write(CYN"請輸入名稱:"NOR);
                 input_to("view9",str,k,1);
                 return;
                 case "2":
                 if(file_size(w[1])<0&&strsrch(w[1],"subdir")>-1)
                 {
-                        write(GRN"这是一个目录,不是链接文档!\n"NOR);                                 view7(0);
+                        write(GRN"這是一個目錄,不是鏈接文檔!\n"NOR);                                 view7(0);
                         return;
                 }
-                write(CYN"请输入链接文档:"NOR);
+                write(CYN"請輸入鏈接文檔:"NOR);
                 input_to("view9",str,k,0);
                 return;
         }
@@ -1009,7 +1009,7 @@ void view9(string arg,string str,int i,int j)
         else {
                 if(file_size(arg)<0)
                 {
-                        write(RED"没有这个文档!\n"NOR);
+                        write(RED"沒有這個文檔!\n"NOR);
                         view8("2",str,i);
                         return;
                 }
@@ -1029,13 +1029,13 @@ void view3()
         file=read_file(str);
         if(!file)
         {
-                write("资料采集中......\n");
+                write("資料採集中......\n");
                 return;
         }
         text=explode(file,"\n");
         if(!j=sizeof(text))
         {
-                write("资料采集中......\n");
+                write("資料採集中......\n");
                 return;
         }
         t=({});
@@ -1062,13 +1062,13 @@ void view4()
         file=read_file(str);
         if(!file)
         {
-                write("资料采集中......\n");
+                write("資料採集中......\n");
                 return;
         }
         text=explode(file,"\n");
         if(!j=sizeof(text))
         {
-                write("资料采集中......\n");
+                write("資料採集中......\n");
                 return;
         }
         for(file="",i=0;i<j;i++)
@@ -1089,7 +1089,7 @@ void view5(string arg)
         file=find_file();
         file=read_file(file);
         if(!file) {
-                write(RED"没有链接文件!\n"NOR);
+                write(RED"沒有鏈接文件!\n"NOR);
                 display();
                 return;
         }
@@ -1101,15 +1101,15 @@ void view5(string arg)
         }
         if(!k)
         {
-                write(GRN"请输入你要查看的内容:"NOR);
+                write(GRN"請輸入你要查看的內容:"NOR);
                 input_to("view5");
                 return;
         }
         text=explode(file,"\n");
         if(j=sizeof(text)<k-1)
         {
-                write(GRN"没有这个文件!\n"NOR);
-                write(GRN"请输入你要查看的内容:"NOR);
+                write(GRN"沒有這個文件!\n"NOR);
+                write(GRN"請輸入你要查看的內容:"NOR);
                 input_to("view5");
                 return;
         }
@@ -1123,8 +1123,8 @@ void view5(string arg)
         t=t+"/"+w[1];
         if(file_size(DIR+t+".h")<0)
         {
-                write(GRN"没有这个文件!\n"NOR);
-                write(GRN"请输入你要查看的内容:"NOR);
+                write(GRN"沒有這個文件!\n"NOR);
+                write(GRN"請輸入你要查看的內容:"NOR);
                 input_to("view5");
                 return;
         }
@@ -1144,15 +1144,15 @@ void delfile(string arg)
         }
         if(k<1)
         {
-                write(CYN"你要删除第几号链接:"NOR);
+                write(CYN"你要刪除第幾號鏈接:"NOR);
                 input_to("delfile");
                 return;
         }
         text=explode(file,"\n");
         if(v=sizeof(text)<k)
         {
-                write(GRN"没有这个链接!\n");
-                write(CYN"你要删除第几号链接:"NOR);
+                write(GRN"沒有這個鏈接!\n");
+                write(CYN"你要刪除第幾號鏈接:"NOR);
                 input_to("delfile");
                 return;
         }
@@ -1183,7 +1183,7 @@ varargs void display(object ob)
                 view1();
                 write(view_msg(i,ob));
                 view_main_1();
-                write(YEL "\r请输入您的选择:"NOR);
+                write(YEL "\r請輸入您的選擇:"NOR);
                      input_to((:confirm_p_choice:),ob);
                      return;
         }
@@ -1199,9 +1199,9 @@ varargs void display(object ob)
         write(BRED +CYN"(B)"NOR +BRED"返回 "NOR);
         if(wiz_level(WIZLEVEL)<=wiz_level(me))
         write(BRED +CYN"  (A)"NOR+BRED"加入 "CYN+BRED"(C)"NOR+BRED"修改 "CYN+BRED"(D)"NOR
-        +BRED"删除 "CYN+BRED"(S)"NOR+BRED"查看 "CYN+BRED"(M)"NOR+BRED"新建"NOR);
+        +BRED"刪除 "CYN+BRED"(S)"NOR+BRED"查看 "CYN+BRED"(M)"NOR+BRED"新建"NOR);
         write("\n");
-        write(YEL "\r请输入您的选择:"NOR);
+        write(YEL "\r請輸入您的選擇:"NOR);
         input_to((:confirm_choice:),this_player());
 }
 protected void confirm_choice(string arg)
@@ -1241,10 +1241,10 @@ protected void confirm_choice(string arg)
                      case "A":
                 if(wiz_level(me)<wiz_level(WIZLEVEL))
                 {
-                        write(RED"你的权限不足，不能修改这里的档案！\n");
+                        write(RED"你的權限不足，不能修改這裡的檔案！\n");
                         return;
                 }
-                write(CYN"请输入链接名称："NOR);
+                write(CYN"請輸入鏈接名稱："NOR);
                 input_to("getname1");
                 return;
                 break;
@@ -1252,10 +1252,10 @@ protected void confirm_choice(string arg)
                      case "D":
                 if(wiz_level(me)<wiz_level(WIZLEVEL))
                 {
-                        write(RED"你的权限不足，不能修改这里的档案！\n");
+                        write(RED"你的權限不足，不能修改這裡的檔案！\n");
                         return;
                 }
-                write(CYN"你要删除第几号链接:"NOR"(“Q”取消)");
+                write(CYN"你要刪除第幾號鏈接:"NOR"(“Q”取消)");
                 input_to("delfile");
                 return;
                 break;
@@ -1267,9 +1267,9 @@ protected void confirm_choice(string arg)
                 write(BRED +CYN"(B)"NOR +BRED"返回 "NOR);
                 if(wiz_level(WIZLEVEL)<=wiz_level(me))
                 write(BRED +CYN"  (A)"NOR+BRED"加入 "CYN+BRED"(C)"NOR+BRED"修改 "CYN+BRED"(D)"NOR
-                +BRED"删除 "CYN+BRED"(S)"NOR+BRED"查看 "CYN+BRED"(M)"NOR+BRED"新建"NOR);
+                +BRED"刪除 "CYN+BRED"(S)"NOR+BRED"查看 "CYN+BRED"(M)"NOR+BRED"新建"NOR);
                 write("\n");
-                write(YEL "\r请输入您的选择:"NOR);
+                write(YEL "\r請輸入您的選擇:"NOR);
                 input_to((:confirm_choice:),me);
                 return;
                 break;
@@ -1277,10 +1277,10 @@ protected void confirm_choice(string arg)
                      case "M":
                 if(wiz_level(me)<wiz_level(WIZLEVEL))
                 {
-                        write(RED"你的权限不足，不能修改这里的档案！\n");
+                        write(RED"你的權限不足，不能修改這裡的檔案！\n");
                         return;
                 }
-                write(CYN"请输入目录名称："NOR);
+                write(CYN"請輸入目錄名稱："NOR);
                 input_to("getname3");
                 return;
         }
@@ -1313,12 +1313,12 @@ void view6()
                         name=query("name", ob);
                         name=replace_string(name,"板","");
                         name=replace_string(name,"簿","");
-                        name=replace_string(name,"册","");
+                        name=replace_string(name,"冊","");
                         name=replace_string(name,"弟子","");
-                        name=replace_string(name,"报告","");
+                        name=replace_string(name,"報告","");
                         name=replace_string(name,"留言","");
-                        name=replace_string(name,"记事","");
-                        name=replace_string(name,"教众","");
+                        name=replace_string(name,"記事","");
+                        name=replace_string(name,"教眾","");
                         name=replace_string(name,"版","");
                         if(strlen(name)>16)
                         name=name[0..15];
@@ -1337,8 +1337,8 @@ void view6()
                         write("\n");
                         str+="\n";
                 }
-                str+=sprintf(" 『"HIC +BBLU+"%2s"NOR+"』"+WHT+"【%|16s】\n"NOR,"B","返回主菜单");
-                printf(" 『"HIC +BBLU+"%2s"NOR+"』"+WHT+"【%|16s】\n"NOR,"B","返回主菜单");
+                str+=sprintf(" 『"HIC +BBLU+"%2s"NOR+"』"+WHT+"【%|16s】\n"NOR,"B","返回主菜單");
+                printf(" 『"HIC +BBLU+"%2s"NOR+"』"+WHT+"【%|16s】\n"NOR,"B","返回主菜單");
                 write_file(BOARDCENTER,str,1);
         }
         view_main_1();
@@ -1358,7 +1358,7 @@ protected void confirm_k_choice(string arg)
              }
              else if(!k)
              {
-                     write(CYN"请输入您的选择:"NOR);
+                     write(CYN"請輸入您的選擇:"NOR);
                      input_to((:confirm_k_choice:),this_player());
                 return;
         }
@@ -1368,7 +1368,7 @@ protected void confirm_k_choice(string arg)
         ob=load_object(dir);
         if( !ob || !query("board_id", ob) || query("wizlvl", ob)>wiz_level(this_player()) )
         {
-                write(CYN"没有这个留言板!\n请输入您的选择:"NOR);
+                write(CYN"沒有這個留言板!\n請輸入您的選擇:"NOR);
                      input_to((:confirm_k_choice:),this_player());
                 return;
         }
@@ -1385,7 +1385,7 @@ void getname3(string arg)
         if(!file) file="";
         if(!arg||arg=="")
         {
-                write(CYN"请输入目录名称："NOR);
+                write(CYN"請輸入目錄名稱："NOR);
                 input_to("getname3");
                 return;
         }
@@ -1397,8 +1397,8 @@ void getname3(string arg)
         k=strlen(arg);
         if(k<2||k>16)
         {
-                write(GRN"目录名称字数必须在2到16个字元之间！\n"NOR);
-                write(CYN"请输入目录名称："NOR);
+                write(GRN"目錄名稱字數必須在2到16個字元之間！\n"NOR);
+                write(CYN"請輸入目錄名稱："NOR);
                 input_to("getname3");
                 return;
         }
@@ -1440,8 +1440,8 @@ int help(object me)
 {
   write(@HELP
 
-泥潭游戏中的在线ＢＢＳ系统，从游戏的帮助到玩家的交流
-内容丰富，操作简便。
+泥潭遊戲中的在線ＢＢＳ系統，從遊戲的幫助到玩家的交流
+內容豐富，操作簡便。
 HELP
     );
     return 1;

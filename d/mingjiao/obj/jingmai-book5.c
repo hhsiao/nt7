@@ -3,7 +3,7 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIW"孙思邈千斤方"NOR, ({ "jingmai book", "book", "shu" }) );
+        set_name(HIW"孫思邈千斤方"NOR, ({ "jingmai book", "book", "shu" }) );
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {

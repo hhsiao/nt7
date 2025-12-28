@@ -33,24 +33,24 @@ int main(object me, string arg)
 
                 if( undefinedp(query(key, get_object(CONFIG_D))) )
                 {
-                        write("现在配置中没有 " + key + " 这个参数。\n");
+                        write("現在配置中沒有 " + key + " 這個參數。\n");
                         return 1;
                 }
 
                 delete(key, get_object(CONFIG_D));
-                write("去掉了参数：" + key + "。\n");
+                write("去掉了參數：" + key + "。\n");
                 return 1;
         }
 
         if (sscanf(arg, "%s=%s", key, val) == 2)
         {
-                // 去掉key/val两端的空格
+                // 去掉key/val兩端的空格
                 key = trim(key);
                 val = trim(val);
 
                 if ((len = strsrch(val, '#')) != -1)
                 {
-                        // 有尾注
+                        // 有尾註
                         affix = val[len..<1];
                         val = val[0..len - 1];
                         val = trim(val);
@@ -61,17 +61,17 @@ int main(object me, string arg)
                 sscanf(val, "\"%s\"", val);
                 if (strlen(val) < 1)
                 {
-                        write("你没有指明这个参数的值，如果需要删除的话请用 -d 选项。\n");      
+                        write("你沒有指明這個參數的值，如果需要刪除的話請用 -d 選項。\n");      
                         return 1;
                 }
 
                 if( !undefinedp(query(key, get_object(CONFIG_D))) && 
                     intp(query(key, get_object(CONFIG_D))) )
-                        // 原先参数的值是整数
+                        // 原先參數的值是整數
                         if (! sscanf(val, "%d", val))
-                                write("注意：原先 " + key + " 使用的是整数值，现在类型变化了。\n");
+                                write("注意：原先 " + key + " 使用的是整數值，現在類型變化了。\n");
 
-                write(sprintf("重新设置了 %s 参数为 %O。\n", key, val));
+                write(sprintf("重新設置了 %s 參數為 %O。\n", key, val));
                 set(key, val, get_object(CONFIG_D));
                 if (stringp(affix))
                         set_temp("affix/"+key, affix, get_object(CONFIG_D));
@@ -87,8 +87,8 @@ int main(object me, string arg)
 
         if (arg == "-r")
         {
-                // 重新读取配置
-                write("重新读取运行中的配置参数。\n\n");
+                // 重新讀取配置
+                write("重新讀取運行中的配置參數。\n\n");
                 if (objectp(ob = find_object(CONFIG_D)))
                 {
                         destruct(ob);
@@ -98,29 +98,29 @@ int main(object me, string arg)
         }
 
         msg = "";
-        msg += "Mud 名称：\t\t" + get_config(__MUD_NAME__) + "\n"; 
-        msg += "网路地址名称伺服器埠号：" + get_config(__MUD_PORT__) + "\n"; 
-        msg += "Mudlib 路径：\t\t" + get_config(__MUD_LIB_DIR__) + "\n"; 
-        msg += "MudOS 执行档路径：\t" + get_config(__BIN_DIR__) + "\n\n"; 
+        msg += "Mud 名稱：\t\t" + get_config(__MUD_NAME__) + "\n"; 
+        msg += "網路地址名稱伺服器埠號：" + get_config(__MUD_PORT__) + "\n"; 
+        msg += "Mudlib 路徑：\t\t" + get_config(__MUD_LIB_DIR__) + "\n"; 
+        msg += "MudOS 執行檔路徑：\t" + get_config(__BIN_DIR__) + "\n\n"; 
 
         dbase = CONFIG_D->query_entire_dbase();
         if (! mapp(dbase))
         {
-                write(msg + "现在没有任何运行中的配置参数。\n");
+                write(msg + "現在沒有任何運行中的配置參數。\n");
                 return 1;
         }
 
-        msg += "现在系统的运行配置参数：\n";
+        msg += "現在系統的運行配置參數：\n";
         cfg = keys(dbase);
         cfg = filter_array(cfg, (: stringp($(dbase)[$1]) || intp($(dbase)[$1]) :));
         if (stringp(arg) && strlen(arg))
         {
-                // 寻找匹配的参数
+                // 尋找匹配的參數
                 cfg = filter_array(cfg, (: strsrch($1, $(arg)) != -1 :));
                 if (! sizeof(cfg))
                 {
-                        write(msg + "现在没有任何可以和 " + arg +
-                              " 匹配的配置参数。\n");
+                        write(msg + "現在沒有任何可以和 " + arg +
+                              " 匹配的配置參數。\n");
                         return 1;
                 }
         }
@@ -141,7 +141,7 @@ int main(object me, string arg)
         return 1;
 }
 
-// 写回参数
+// 寫回參數
 void write_config()
 {
         string *tmp;
@@ -154,23 +154,23 @@ void write_config()
         int len;
         int i;
 
-        // 取当前所有的参数
+        // 取當前所有的參數
         if (! mapp(dbase = CONFIG_D->query_entire_dbase()))
                 dbase = ([ ]);
         cfg = keys(dbase);
         cfg = filter_array(cfg, (: stringp($(dbase)[$1]) || intp($(dbase)[$1]) :));
 
-        // 读取配置文件
+        // 讀取配置文件
         file = read_file(CONFIG_D->query_config_file_name());
         if (! stringp(file))
                 file = "";
 
-        // 去掉"\r"保证和MSDOS的文件格式兼容
+        // 去掉"\r"保證和MSDOS的文件格式兼容
         file = replace_string(file, "\r", "");
 
         tmp = explode(file, "\n");
 
-        // 去掉最后的空行
+        // 去掉最後的空行
         while (sizeof(tmp) && tmp[sizeof(tmp) - 1] == "")
                 tmp = tmp[0..<2];
 
@@ -185,16 +185,16 @@ void write_config()
 
                 if (line[0] == '&')
                 {
-                        // 被系统注释的
+                        // 被系統註釋的
                         line = line[1..<1];
                         while (strlen(line) && line[0] == ' ') line = line[1..<1];
                 }
 
-                // 去掉#以后所有的字符
+                // 去掉#以後所有的字符
                 len = strsrch(line, '#');
                 if (len != -1)
                 {
-                        // 记录尾注
+                        // 記錄尾註
                         affix = line[len..<1];
                         line = line[0..len - 1];
                 } else
@@ -203,7 +203,7 @@ void write_config()
                 if (! strlen(line))
                         continue;
 
-                // 检查该行
+                // 檢查該行
                 if (sscanf(line, "%s:%s", arg, value) != 2)
                         continue;
 
@@ -211,7 +211,7 @@ void write_config()
                 while ((len = strlen(arg)) > 0 && arg[len - 1] == ' ')
                         arg = arg[0..<2];
 
-                // 更换该行
+                // 更換該行
                 value = dbase[arg];
 
                 if (stringp(value))
@@ -224,7 +224,7 @@ void write_config()
 
                 cfg -= ({ arg });
 
-                // 加上尾注
+                // 加上尾註
                 if (stringp(affix))
                         line = sprintf("%-44s %s", line, affix);
 
@@ -248,15 +248,15 @@ void write_config()
 
         file = implode(tmp, "\n") + "\n";
         write_file(CONFIG_D->query_config_file_name(), file, 1);
-        write("将参数写回到配置文件中。\n");
+        write("將參數寫回到配置文件中。\n");
 }
 
-// 去掉str两端的空格
+// 去掉str兩端的空格
 string trim(string str)
 {
         int len;
 
-        // 去掉str两端的空格
+        // 去掉str兩端的空格
         while (str[0] == ' ') str = str[1..<1];
         while ((len = strlen(str) - 1) >= 0 && str[len] == ' ')
                 str = str[0..<2];
@@ -267,14 +267,14 @@ string trim(string str)
 int help(object me)
 {
         write(@HELP
-指令格式 : config [-r | -w] | [<配置项>=<值>] | [-d <配置项>]
+指令格式 : config [-r | -w] | [<配置項>=<值>] | [-d <配置項>]
 
-Show 出本 MUD 的 Startup Configuration 。如果不加参数则同时
-显示出运行中的配置(/adm/etc/config)。
+Show 出本 MUD 的 Startup Configuration 。如果不加參數則同時
+顯示出運行中的配置(/adm/etc/config)。
 
--r 可以重新读取运行中的配置。
--w 可以重新写入运行中的配置。
--d 可以去掉一个配置项。
+-r 可以重新讀取運行中的配置。
+-w 可以重新寫入運行中的配置。
+-d 可以去掉一個配置項。
 
 HELP );
         return 1;

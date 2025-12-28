@@ -13,23 +13,23 @@ void start_borrowing()
 
 void create()
 {
-        set_name(CYN "倚天剑" NOR, ({ "yitian sword", "jian", "sword" }) );
+        set_name(CYN "倚天劍" NOR, ({ "yitian sword", "jian", "sword" }) );
         set_weight(1000);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "柄");
-                set("long", HIY "这便与天下至尊的屠龙宝刀并称的倚天剑。\n相传让刀剑对砍(duikan)可以得到旷世的武林秘籍。\n" NOR);
+                set("long", HIY "這便與天下至尊的屠龍寶刀並稱的倚天劍。\n相傳讓刀劍對砍(duikan)可以得到曠世的武林秘籍。\n" NOR);
                 set("value", 100000);
-                set("no_sell", "这样东西不能卖。\n");
+                set("no_sell", "這樣東西不能賣。\n");
                 set("no_store", 1);
                 set("rigidity",8000);   
                 set("unique", 1); 
                 set("replica_ob","/d/city/npc/obj/changjian"); 
                 set("enchase/flute", 9);    
                 set("material", "steel");
-                set("wield_msg", HIW "只听“嗖”的一声破空声响，号称天下第一神兵的倚天剑已被$N握在手中。\n" NOR);
-                set("unwield_msg", HIW "$N将倚天剑插回腰间，天地又渐渐放出光芒。\n"NOR);
+                set("wield_msg", HIW "只聽“嗖”的一聲破空聲響，號稱天下第一神兵的倚天劍已被$N握在手中。\n" NOR);
+                set("unwield_msg", HIW "$N將倚天劍插回腰間，天地又漸漸放出光芒。\n"NOR);
         }
         set("enchase/apply_prop", ([
                 "add_busy"  : 10,
@@ -54,7 +54,7 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         if( query("neili", victim)<0 )
         set("neili", 0, victim);
 
-        return HIW "倚天剑携着飕飕刺骨风声，直直刺向$n，$n只感到全身的内力竟一丝丝随着剑锋涌出。\n" NOR;
+        return HIW "倚天劍攜著颼颼刺骨風聲，直直刺向$n，$n只感到全身的內力竟一絲絲隨著劍鋒湧出。\n" NOR;
 }
 
 void return_to_back() 
@@ -81,13 +81,13 @@ void return_to_back()
                         call_out("return_to_back", 1); 
                         return; 
                 } 
-                //是否应该执行unwield
-                tell_object(me, HIR"\n一条人影从你眼前一闪而过：" +
-                            "“多谢替老夫取回" NOR + name() + HIR
-                            "，就此谢过，咱们后会有期！”\n\n"NOR);
+                //是否應該執行unwield
+                tell_object(me, HIR"\n一條人影從你眼前一閃而過：" +
+                            "“多謝替老夫取回" NOR + name() + HIR
+                            "，就此謝過，咱們後會有期！”\n\n"NOR);
         } else 
         { 
-                message("vision", "忽然一个人走了过来，捡起"+name()+"，叹了口气，摇摇头走了。\n", me); 
+                message("vision", "忽然一個人走了過來，撿起"+name()+"，嘆了口氣，搖搖頭走了。\n", me); 
         } 
 
         move("/clone/misc/void");

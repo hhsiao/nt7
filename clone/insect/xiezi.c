@@ -1,4 +1,4 @@
-// xiezi.c 蝎子
+// xiezi.c 蠍子
 
 #include <ansi.h>
 
@@ -6,16 +6,16 @@ inherit POISON_INSECT;
 
 void create()
 {
-        set_name("蝎子", ({ "xie zi" }) );
+        set_name("蠍子", ({ "xie zi" }) );
         set_weight(180);
-        set("race", "野兽");
+        set("race", "野獸");
         set("age", 2);
-        set("long", "一只张牙舞爪的蝎子。\n");
+        set("long", "一隻張牙舞爪的蠍子。\n");
         set("attitude", "peaceful");
         set("str", 20);
         set("con", 20);
         set("unit", "只");
-        set("limbs", ({ "头部", "身体", "脚", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體", "腳", "尾巴" }) );
         set("verbs", ({ "bite" }) );
 
         set("insect_poison", ([

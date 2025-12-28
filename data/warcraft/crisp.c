@@ -6,8 +6,8 @@ void setup()
 {
         set_name("[1;31m血玄武[2;37;0m[2;37;0m", ({"kok"}));        
         set("gender", "男性");                
-        set("long", "魔兽[2;37;0m
-它是血刃的魔幻兽。
+        set("long", "魔獸[2;37;0m
+它是血刃的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

@@ -7,7 +7,7 @@ void setup()
         set_name("米四麒麟[2;37;0m[2;37;0m", ({"miduoqilins"}));        
         set("gender", "男性");                
         set("long", "米四麒麟[2;37;0m
-它是米多四的魔幻兽。
+它是米多四的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

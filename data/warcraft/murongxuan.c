@@ -7,7 +7,7 @@ void setup()
         set_name("光明麒麟[2;37;0m[2;37;0m", ({"murongxuanride"}));        
         set("gender", "男性");                
         set("long", "光明麒麟[2;37;0m
-它是慕容光明的魔幻兽。
+它是慕容光明的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

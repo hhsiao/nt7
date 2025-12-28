@@ -1,17 +1,17 @@
 //Cracked by Roath
-// /d/hangzhou/npc/yang.c   杨铁心
+// /d/hangzhou/npc/yang.c   楊鐵心
 // by aln 2 / 98
 
 inherit NPC;
 
 void create()
 {
-        set_name("杨铁心", ({ "yang tiexin", "yang" }) );
+        set_name("楊鐵心", ({ "yang tiexin", "yang" }) );
         set("gender", "男性");
         set("age", 25);
         set("long",
-"一个白净面皮的汉子。\n"
-"他是岳飞麾下名将杨再兴的后代。\n");
+"一個白淨面皮的漢子。\n"
+"他是岳飛麾下名將楊再興的後代。\n");
         set("combat_exp", 180000);
         set("shen_type",  1);
         set("attitude", "friendly");
@@ -42,10 +42,10 @@ void create()
 */
 
         set("inquiry", ([
-                "郭啸天" : "他是我义兄。",
-                "包惜弱" : "她是我浑家。",
-                "杨康" : "这是一个道人给我未出世的儿女取的名字。",
-                "郭靖" : "这是我义兄郭啸天的骨肉。",
+                "郭嘯天" : "他是我義兄。",
+                "包惜弱" : "她是我渾家。",
+                "楊康" : "這是一個道人給我未出世的兒女取的名字。",
+                "郭靖" : "這是我義兄郭嘯天的骨肉。",
                 "李萍" : "她是我嫂子",
         ]));
 

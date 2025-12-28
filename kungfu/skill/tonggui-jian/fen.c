@@ -16,7 +16,7 @@ int perform(object me, object target)
         int ap, dp;
 
         if( userp(me) && !query("can_perform/tonggui-jian/fen", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target)
         {
@@ -25,32 +25,32 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(FEN "只能对战斗中的对手使用。\n");
+                return notify_fail(FEN "只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对，无法施展" FEN "。\n");
+                return notify_fail("你使用的武器不對，無法施展" FEN "。\n");
 
         if ((int)me->query_skill("tonggui-jian", 1) < 120)
-                return notify_fail("你的同归剑法不够娴熟，难以施展" FEN "。\n");
+                return notify_fail("你的同歸劍法不夠嫻熟，難以施展" FEN "。\n");
 
         if ((int)me->query_skill("force") < 150)
-                return notify_fail("你的内功火候不足，难以施展" FEN "。\n");
+                return notify_fail("你的內功火候不足，難以施展" FEN "。\n");
 
         if( query("max_neili", me)<1500 )
-                return notify_fail("你的内力修为不足，难以施展" FEN "。\n");
+                return notify_fail("你的內力修為不足，難以施展" FEN "。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你现在的真气不够，难以施展" FEN "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" FEN "。\n");
 
         if (me->query_skill_mapped("sword") != "tonggui-jian") 
-                return notify_fail("你没有激发同归剑法，难以施展" FEN "。\n");
+                return notify_fail("你沒有激發同歸劍法，難以施展" FEN "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIY "$N" HIY "凄然一声长叹，施出同归剑法「" HIR "玉石俱焚"
-              HIY "」，反转过" + weapon->name() + HIY "剑身，连人带剑扑"
+        msg = HIY "$N" HIY "悽然一聲長嘆，施出同歸劍法「" HIR "玉石俱焚"
+              HIY "」，反轉過" + weapon->name() + HIY "劍身，連人帶劍撲"
               "向$n" HIY "而去！\n" NOR;
         addn("max_neili", -50, me);
 
@@ -69,23 +69,23 @@ int perform(object me, object target)
                 if (ap < dp * 3 / 4
                     && query("max_neili", me)<query("max_neili", target)*3/4 )
                 {
-                        msg += HIY "可是$n" HIY "一声冷哼，飞身闪开来招，又顺势转身一"
-                               "掌拍向$N" HIY "面门。\n" NOR + HIR "只听“喀嚓”一声"
-                               "，$n" HIR "那掌正好打在$N" HIR "头顶，$N" HIR "哀嚎一"
-                               "声，软软的瘫倒。\n" NOR;
+                        msg += HIY "可是$n" HIY "一聲冷哼，飛身閃開來招，又順勢轉身一"
+                               "掌拍向$N" HIY "面門。\n" NOR + HIR "只聽“喀嚓”一聲"
+                               "，$n" HIR "那掌正好打在$N" HIR "頭頂，$N" HIR "哀嚎一"
+                               "聲，軟軟的癱倒。\n" NOR;
                         message_combatd(msg, me, target);
                         me->set_temp("die_reason","使用一招玉石俱焚，拼命不成，反被"
-                                     + target->name() + "击毙");
+                                     + target->name() + "擊斃");
                         me->die(target);
                         return 1;
                 } else
                 if (ap > dp
                     && query("max_neili", me)>query("max_neili", target) )
                 {
-                        msg += HIR "$n" HIR "眼见$N" HIR "来势如此凶悍，这一招决计无"
-                               "法抵挡，骇怖达于极点，竟致僵立，束手待毙。\n只听“噗"
-                               "嗤”一声，" + weapon->name() + HIR "已然透过$n" HIR
-                               "前胸而入，喷出一股血雨。\n" NOR;
+                        msg += HIR "$n" HIR "眼見$N" HIR "來勢如此兇悍，這一招決計無"
+                               "法抵擋，駭怖達於極點，竟致僵立，束手待斃。\n只聽“噗"
+                               "嗤”一聲，" + weapon->name() + HIR "已然透過$n" HIR
+                               "前胸而入，噴出一股血雨。\n" NOR;
                         message_combatd(msg, me, target);
                         target->set_temp("die_reason","被"+me->name()+"使一招玉"
                                          "石俱焚刺死了");
@@ -94,18 +94,18 @@ int perform(object me, object target)
                 } else
                 if (ap / 2 + random(ap * 2 / 3) > dp)
                 {
-                        msg += HIR "$n" HIR "眼见$N" HIR "来势如此凶悍，只觉这一招决"
-                               "计无法抵挡，骇怖达于极点，慌乱之中一掌猛拍而出，击\n"
-                               "向$N" HIR "面门，竟也是同归于尽的招数。只听“噗嗤”一"
-                               "声，" + weapon->name() + HIR "已然透过$n" HIR "前胸，"
-                               "喷出一股血雨。\n同时$n" HIR "那一掌也正好打在$N" HIR
-                               "头顶，听得“喀嚓”一声，$N" HIR "头盖骨完全碎裂，软软"
-                               "的瘫倒。\n" NOR;
+                        msg += HIR "$n" HIR "眼見$N" HIR "來勢如此兇悍，只覺這一招決"
+                               "計無法抵擋，駭怖達於極點，慌亂之中一掌猛拍而出，擊\n"
+                               "向$N" HIR "面門，竟也是同歸於盡的招數。只聽“噗嗤”一"
+                               "聲，" + weapon->name() + HIR "已然透過$n" HIR "前胸，"
+                               "噴出一股血雨。\n同時$n" HIR "那一掌也正好打在$N" HIR
+                               "頭頂，聽得“喀嚓”一聲，$N" HIR "頭蓋骨完全碎裂，軟軟"
+                               "的癱倒。\n" NOR;
                         message_combatd(msg, me, target);
-                        me->set_temp("die_reason","使用一招玉石俱焚与"+
-                                     target->name() + "同归于尽了");
+                        me->set_temp("die_reason","使用一招玉石俱焚與"+
+                                     target->name() + "同歸於盡了");
                         target->set_temp("die_reason","被"+me->name()+"使一招玉"
-                                         "石俱焚，两人一块去见了黑白无常");
+                                         "石俱焚，兩人一塊去見了黑白無常");
                         target->die(me);
                         me->die();
                         return 1;
@@ -120,10 +120,10 @@ int perform(object me, object target)
                                 limb = limbs[random(sizeof(limbs))];
                         else
                                 limb = "要害";
-                        pmsg = HIR "$n" HIR "眼见$N" HIR "来势如此凶悍，只觉这一招决"
-                               "计无法抵挡，急忙飞身闪避，然而只听“嗤啦”一声，那\n"
+                        pmsg = HIR "$n" HIR "眼見$N" HIR "來勢如此兇悍，只覺這一招決"
+                               "計無法抵擋，急忙飛身閃避，然而只聽“嗤啦”一聲，那\n"
                                "柄" + weapon->name() + HIR "已然刺穿" + limb + HIR "，"
-                               "喷出一股血雨。\n" NOR;
+                               "噴出一股血雨。\n" NOR;
                         msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage,
                                90, pmsg);
                 }
@@ -131,8 +131,8 @@ int perform(object me, object target)
         {
                 me->start_busy(8);
                 msg += HIY "可是$n" HIY "早已料到$N"
-                       HIY "有此一着，身形急动，躲开"
-                       "了这一杀着。\n" NOR;
+                       HIY "有此一著，身形急動，躲開"
+                       "了這一殺著。\n" NOR;
         }
         message_combatd(msg, me, target);
         return 1;

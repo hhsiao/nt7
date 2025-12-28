@@ -1,15 +1,15 @@
-// shanshen.c 老山参
+// shanshen.c 老山參
 
 inherit ITEM;
 
 void create()
 {
-        set_name("老山参", ({"laoshan shen", "shen"}));
+        set_name("老山參", ({"laoshan shen", "shen"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "株");
-                set("long", "这是一株沾满山泥的老山参。\n");
+                set("long", "這是一株沾滿山泥的老山參。\n");
                 set("value", 10000);
                 set("only_do_effect", 1);
         }
@@ -19,11 +19,11 @@ void create()
 int do_effect(object me)
 {
         if( query("eff_qi", me)>query("max_qi", me)-20 )
-                return notify_fail("你现在没有必要服用这支老山参。\n");
+                return notify_fail("你現在沒有必要服用這支老山參。\n");
 
         addn("eff_qi", 200, me);
 
-        message_vision("$N吃下一株老山参，只觉得浑身一股热气兜底冒了上来 !\n", this_player());
+        message_vision("$N吃下一株老山參，只覺得渾身一股熱氣兜底冒了上來 !\n", this_player());
         destruct(this_object());
         return 1;
 }

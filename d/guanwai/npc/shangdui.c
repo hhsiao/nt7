@@ -4,13 +4,13 @@ inherit ITEM;
 int j=3;
 void create()
 {
-        set_name("清兵人马", ({ "qingbingrenma"}));
+        set_name("清兵人馬", ({ "qingbingrenma"}));
         set("unit", "只");
         set_weight(90000000);
         set("long", "
-一只远道而来的清兵人马，看来有不少高手。中间插
-着一面大旗，似乎写着“大清”二个大字，队伍之中
-似乎有一辆囚车。。。\n");
+一隻遠道而來的清兵人馬，看來有不少高手。中間插
+著一面大旗，似乎寫著“大清”二個大字，隊伍之中
+似乎有一輛囚車。。。\n");
         set("no_get", 1);
         set("no_drop", 1);
          set("no_put",1);
@@ -34,11 +34,11 @@ int do_rob()
 
    if(!living(me)) return 0;
    if( !query("kill_yunlong", me) )
-       return notify_fail("你胆子不小，竟敢和大清做对？\n");
+       return notify_fail("你膽子不小，竟敢和大清做對？\n");
    if(objectp(present("qingbing", environment(me))))
-       return notify_fail("清兵看来武功不弱，你还是先打发了面前这个再说吧！\n");  
+       return notify_fail("清兵看來武功不弱，你還是先打發了面前這個再說吧！\n");  
 
-   message_vision(HIR"$N对着$n大吼一声："+me->name()+"在此！快把囚车里的义士给放了！\n"NOR, me, ob);
+   message_vision(HIR"$N對著$n大吼一聲："+me->name()+"在此！快把囚車裡的義士給放了！\n"NOR, me, ob);
    set_temp("xx_rob", 1, me);
    remove_call_out("make_bs");
    call_out("make_bs", 1, me, ob); 
@@ -56,7 +56,7 @@ void make_bs(object me, object ob)
            obj1->do_copy(me);
           j=j-1;     }
 else {
-       message_vision(HIW"$N见已经无活人，将反清义士救出！！\n"NOR, me);    
+       message_vision(HIW"$N見已經無活人，將反清義士救出！！\n"NOR, me);    
        ;    
        obj=new(__DIR__"dashi");
        obj->move(environment(me));
@@ -65,12 +65,12 @@ else {
        addn("combat_exp", 30, me);
        addn("potential", 10, me);
        addn("shen", 100, me);
-        tell_object(me,"你被奖励了\n二百点经验值。\n");
+        tell_object(me,"你被獎勵了\n二百點經驗值。\n");
        delete_temp("rob_start", me);
        delete_temp("xx_rob", me);
        delete_temp("rob_job", me);
        delete_temp("j", me);
-       message_vision("$N转过几个小山丘就不见了。\n",ob);
+       message_vision("$N轉過幾個小山丘就不見了。\n",ob);
        destruct(ob);
     }
 }
@@ -78,7 +78,7 @@ else {
 void aaa(object me)
 {
         if (! me) return;
-       message_vision("$N转过几个小山丘就不见了。\n",me);       
+       message_vision("$N轉過幾個小山丘就不見了。\n",me);       
        destruct(me);
        return;
 }

@@ -9,16 +9,16 @@ void remove_effect(object me, int amount);
 int exert(object me, object target)
 {
 	int skill;
-	int sk_fxj; // 飞絮劲的效果
+	int sk_fxj; // 飛絮勁的效果
 
 	if (target != me)
-		return notify_fail("你只能用九阴神功提升自己的战斗力。\n");
+		return notify_fail("你只能用九陰神功提升自己的戰鬥力。\n");
 
 	if( query("neili", me)<100 )
-		return notify_fail("你的内力不够!");
+		return notify_fail("你的內力不夠!");
 
 	if( query_temp("powerup", me) )
-		return notify_fail("你已经在运功中了。\n");
+		return notify_fail("你已經在運功中了。\n");
 
 	skill = me->query_skill("force");
 	
@@ -40,8 +40,8 @@ int exert(object me, object target)
 addn("neili", -100, 	me);
 	me->receive_damage("qi", 0);
 
-	message_combatd(HIY "$N" HIY "缓缓的吐出了一口气，只"
-                        "见衣袖飘飘、气涨如鼓，似要飞扬！\n" NOR, me);
+	message_combatd(HIY "$N" HIY "緩緩的吐出了一口氣，只"
+                        "見衣袖飄飄、氣漲如鼓，似要飛揚！\n" NOR, me);
 
 addn_temp("apply/attack", skill*2/5, 	me);
 addn_temp("apply/defense", skill*2/5, 	me);
@@ -66,6 +66,6 @@ addn_temp("apply/defense", -1*amount*2/5, 	me);
 addn_temp("apply/damage", -1*amount/3, 	me);
 	        
 delete_temp("powerup", 	me);
-                tell_object(me, "你的九阴神功运行完毕，将内力收回丹田。\n");
+                tell_object(me, "你的九陰神功運行完畢，將內力收回丹田。\n");
         }
 }

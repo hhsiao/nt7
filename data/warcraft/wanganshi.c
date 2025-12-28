@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;33m黄鹤楼[2;37;0m[2;37;0m", ({"cigarette"}));        
+        set_name("[1;33m黃鶴樓[2;37;0m[2;37;0m", ({"cigarette"}));        
         set("gender", "男性");                
-        set("long", "~黄鹤楼~[2;37;0m
-它是王安石的魔幻兽。
+        set("long", "~黃鶴樓~[2;37;0m
+它是王安石的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

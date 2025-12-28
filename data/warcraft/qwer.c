@@ -4,12 +4,12 @@
 
 void setup()
 {
-        set_name("天乐龙[2;37;0m[2;37;0m", ({"ttlong"}));        
+        set_name("天樂龍[2;37;0m[2;37;0m", ({"ttlong"}));        
         set("gender", "女性");                
-        set("long", "天乐龙[2;37;0m
-它是黑雨的魔幻兽。
+        set("long", "天樂龍[2;37;0m
+它是黑雨的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "qwer");
         set("owner_name", "黑雨");

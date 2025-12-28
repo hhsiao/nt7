@@ -10,12 +10,12 @@ mixed ask_shenpian();
 
 void create()
 {
-        set_name("程灵素", ({ "cheng lingsu", "cheng" }));
+        set_name("程靈素", ({ "cheng lingsu", "cheng" }));
         set("gender", "女性");
         set("age", 24);
         set("long", @long
-她看上去双眉紧缩，不知道有什么心事，长得相貌平平，并不出众。
-身材瘦小，穿着粗布衣衫。
+她看上去雙眉緊縮，不知道有什麼心事，長得相貌平平，並不出眾。
+身材瘦小，穿著粗布衣衫。
 long);
         set("attitude", "peaceful");
         set("str", 22);
@@ -24,7 +24,7 @@ long);
         set("dex", 27);
         set("chat_chance", 10);
         set("chat_msg", ({
-                "程灵素哀哀的叹了口气。\n",
+                "程靈素哀哀的嘆了口氣。\n",
         }));
 
         set("qi", 2500);
@@ -45,8 +45,8 @@ long);
 
         set("inquiry",([
                 "胡斐":     "他...他...\n",
-                "袁紫衣":   "我...你提他干什么？\n",
-                "药王神篇" : (: ask_shenpian :),
+                "袁紫衣":   "我...你提他幹什麼？\n",
+                "藥王神篇" : (: ask_shenpian :),
         ]));
 
         setup();
@@ -55,16 +55,16 @@ long);
 
 int recognize_apprentice(object me, string skill)
 {
-        if( query("family/family_name", me) != "关外胡家" )
+        if( query("family/family_name", me) != "關外胡家" )
         {
-                command("say 你是谁？来干什么？");
+                command("say 你是誰？來幹什麼？");
                 return -1;
         }
 
         if (skill != "poison" && skill != "dispel-poison" &&
             skill != "medical" && skill != "yaowang-miaoshu")
         {
-                command("say 我只会毒功和医术，别的我就没法子教你啦！");
+                command("say 我只會毒功和醫術，別的我就沒法子教你啦！");
                 return -1;
         }
 
@@ -78,7 +78,7 @@ int recognize_apprentice(object me, string skill)
         if( !query_temp("can_learn/cheng/poison", me) )
         {
                 set_temp("can_learn/cheng/poison", 1, me);
-                command("say 看在胡斐你面子上，我就叫你一点本事吧，你可要好自为之！");
+                command("say 看在胡斐你面子上，我就叫你一點本事吧，你可要好自為之！");
                 return 1;
         }
 
@@ -94,28 +94,28 @@ mixed ask_shenpian()
         me = this_player();
         if (me->is_bad())
         {
-                if( query("family/family_name", me) == "关外胡家" )
-                        message_vision(CYN "$N" CYN "冷哼一声，对$n" CYN "道："
-                                       "“你难道忘记了你师傅是怎么教你的吗？现在居"
-                                       "然和那三个家伙一样走上了邪道，我如何能"
-                                       "将《药王神篇》交予你？”\n" NOR,
+                if( query("family/family_name", me) == "關外胡家" )
+                        message_vision(CYN "$N" CYN "冷哼一聲，對$n" CYN "道："
+                                       "“你難道忘記了你師傅是怎麼教你的嗎？現在居"
+                                       "然和那三個傢伙一樣走上了邪道，我如何能"
+                                       "將《藥王神篇》交予你？”\n" NOR,
                                        this_object(), me);
                 else
-                        message_vision(CYN "$N" CYN "冷笑一声，对$n" CYN "说道"
-                                       "：“好一个邪派妖徒，竟敢贪图本派宝物！"
+                        message_vision(CYN "$N" CYN "冷笑一聲，對$n" CYN "說道"
+                                       "：“好一個邪派妖徒，竟敢貪圖本派寶物！"
                                        "”\n" NOR,
                                        this_object(), me);
                 return 1;
         }
 
-        if( query("family/family_name", me) != "关外胡家" )
-                return "你不是关外胡家的，打听它干什么？";
+        if( query("family/family_name", me) != "關外胡家" )
+                return "你不是關外胡家的，打聽它幹什麼？";
 
         if( query("shen", me)<100000 )
-                return "你侠义正事做得还不够，《药王神篇》我不能给你。";
+                return "你俠義正事做得還不夠，《藥王神篇》我不能給你。";
 
         if (me->query_skill("medical", 1) < 100)
-                return "你基本医术尚未学好，给了你你也读不懂。";
+                return "你基本醫術尚未學好，給了你你也讀不懂。";
 
         ob = find_object(SHENPIAN);
         if (! ob) ob = load_object(SHENPIAN);
@@ -128,24 +128,24 @@ mixed ask_shenpian()
         }
 
         if (owner == me)
-                return "我这《药王神篇》现在不就在你手里吗？";
+                return "我這《藥王神篇》現在不就在你手裡嗎？";
 
         if (objectp(owner) && owner != this_object())
         {
                 if (! owner->is_character())
-                        return "你来晚了一步，我已经把《药王神篇》借给你同门师兄弟了。";
+                        return "你來晚了一步，我已經把《藥王神篇》借給你同門師兄弟了。";
 
                 if( query("family/master_id", owner) == query("id") )
-                        return "嗯，《药王神篇》现在在你同门师兄弟"+query("name", owner)+
-                               "手里，你去找他吧。";
+                        return "嗯，《藥王神篇》現在在你同門師兄弟"+query("name", owner)+
+                               "手裡，你去找他吧。";
                 else
-                        return "本门的《药王神篇》现在落入了"+query("name", owner)+
-                               "之手，你去把它取回来吧！";
+                        return "本門的《藥王神篇》現在落入了"+query("name", owner)+
+                               "之手，你去把它取回來吧！";
         }
 
         ob->move(this_object());
-        message_vision(HIC "$N" HIC "微微一笑，道：“这本《药王神篇》现在"
-                       "给你，记住，千万不可用它为非作歹！”\n" NOR,
+        message_vision(HIC "$N" HIC "微微一笑，道：“這本《藥王神篇》現在"
+                       "給你，記住，千萬不可用它為非作歹！”\n" NOR,
                        this_object(), me);
         command("give yaowang shenpian to "+query("id", me));
         return 1;

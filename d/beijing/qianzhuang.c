@@ -2,18 +2,18 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "天下钱庄");
+        set("short", "天下錢莊");
         set("long", @LONG
-天下钱庄是京城里最大的一所钱庄，已经有过百年的历史了，信
-誉相当的好。钱庄的大门正对着一个高高的柜台，钱庄的老板正在柜
-台后面清理着帐目，柜台左边的墙上挂着一个牌子(paizi)。
+天下錢莊是京城裡最大的一所錢莊，已經有過百年的歷史了，信
+譽相當的好。錢莊的大門正對著一個高高的櫃檯，錢莊的老闆正在櫃
+臺後面清理著帳目，櫃檯左邊的牆上掛著一個牌子(paizi)。
 LONG );
         set("item_desc", ([
-        "paizi" : "\n本庄有利息，至少百分之一。\n
-      存钱        deposit或者cun\n
-      取钱        withdraw或者qu\n
-      钱币兑换    convert或者duihuan\n
-      查帐        check或者chazhang\n",
+        "paizi" : "\n本莊有利息，至少百分之一。\n
+      存錢        deposit或者cun\n
+      取錢        withdraw或者qu\n
+      錢幣兌換    convert或者duihuan\n
+      查帳        check或者chazhang\n",
         ]));
         set("exits", ([
                 "south" : "/d/beijing/di_5",

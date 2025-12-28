@@ -1,4 +1,4 @@
-// caiyao.h  采药
+// caiyao.h  採藥
 // sdong 08/06/98
 
 #include <ansi.h>
@@ -51,32 +51,32 @@ int do_search(string arg)
         me = this_player();
 
         if( me->is_fighting() || me->is_busy() )
-                return notify_fail("你正忙着。\n");
+                return notify_fail("你正忙著。\n");
 
         if( query_temp("herb/got", me) )
-                return notify_fail("这里已经找过了，再找也找不出什么了！\n");
+                return notify_fail("這裡已經找過了，再找也找不出什麼了！\n");
 
         if( !present("yao chu", me) )
-                return notify_fail("你没有工具，无法拨开灌木山草寻找草药！\n");
+                return notify_fail("你沒有工具，無法撥開灌木山草尋找草藥！\n");
 
         if( query("jing", me)<30 )
-                return notify_fail("你太累了，先歇息一会儿吧。\n");
+                return notify_fail("你太累了，先歇息一會兒吧。\n");
 
         addn_temp("herb/times", 1, me);
         me->receive_damage("jing", 5);
         me->start_busy(1+random(2));
 
         if( query("count")<1 && query_temp("herb/times", me)>30 )
-                return notify_fail("你把四周的灌木杂草都翻遍了，可是没发现什么，看来这里没指望了！\n");
+                return notify_fail("你把四周的灌木雜草都翻遍了，可是沒發現什麼，看來這裡沒指望了！\n");
 
-        message_vision("$N用药锄拨动着四周的灌木杂草，仔细地看有没有草药！\n", me);
+        message_vision("$N用藥鋤撥動著四周的灌木雜草，仔細地看有沒有草藥！\n", me);
 
         power=query_temp("herb/times", me)*(query("kar", me)+query("int", me)+query("str", me))/3;
         power *= query("count");
 
         if( power/2 + random(power/2) > 100 ) {
                 set_temp("herb/found", 1, me);
-                message_vision(HIG"\n$N用药锄不断的拨动着四周的山草，忽然发现杂草之中有一株特别的草！\n"NOR, me);
+                message_vision(HIG"\n$N用藥鋤不斷的撥動著四周的山草，忽然發現雜草之中有一株特別的草！\n"NOR, me);
                 return 1;
         }
 
@@ -85,7 +85,7 @@ int do_search(string arg)
           {
                 ob=new(beasts[random(sizeof(beasts))]);
                 ob->move(environment(me));
-                message_vision(HIR"突然从草丛中惊起一只$N，它大概受了惊吓，发疯似地向$n发起进攻！\n"NOR, ob,me);
+                message_vision(HIR"突然從草叢中驚起一隻$N，它大概受了驚嚇，發瘋似地向$n發起進攻！\n"NOR, ob,me);
 
                 if( query("id", ob) == "xiaobaozi")setup_ob(ob,me);
                 ob->kill_ob(me);
@@ -97,7 +97,7 @@ int do_search(string arg)
         /*
         if( random(101) == 50 && query("combat_exp", me)>10000 )
         {
-                message_vision(HIR"\n$N一不小心用力过猛，忽听嘎巴一声，药锄断为两截！\n"NOR, me);
+                message_vision(HIR"\n$N一不小心用力過猛，忽聽嘎巴一聲，藥鋤斷為兩截！\n"NOR, me);
                 ob = present("yao chu", me);
                 if(ob)destruct(ob);
         }*/
@@ -161,18 +161,18 @@ int do_dig(string arg)
         me = this_player();
 
         if( me->is_fighting() || me->is_busy() )
-                return notify_fail("你正忙着。\n");
+                return notify_fail("你正忙著。\n");
         if( !(ob = present("yao chu", me)) )
-                return notify_fail("你没有药锄，怎么挖？\n");
+                return notify_fail("你沒有藥鋤，怎麼挖？\n");
 
         if( query("jing", me)<25 )
-                return notify_fail("你太累了，先歇息一会儿吧。\n");
+                return notify_fail("你太累了，先歇息一會兒吧。\n");
 
         me->receive_damage("jing", 20);
         me->start_busy(1);
 
         if( !query_temp("herb/found", me)){
-                message_vision("$N拿着药锄使劲的挖着土，忽听嘎巴一声，药锄断为两截！\n", me);
+                message_vision("$N拿著藥鋤使勁的挖著土，忽聽嘎巴一聲，藥鋤斷為兩截！\n", me);
                 destruct(ob);
                 return 1;
         }
@@ -182,17 +182,17 @@ int do_dig(string arg)
         herb->move(me, 1);
         set("player",query("id",  me), herb);
 
-        message_vision(HIY"$N用药锄小心翼翼的把$n"+HIY"从土中起出！\n"NOR, me,herb);
+        message_vision(HIY"$N用藥鋤小心翼翼的把$n"+HIY"從土中起出！\n"NOR, me,herb);
         if( query_temp("qz/caiyao", me) )
         {
                 exp = 100 + random( 180 );
                 pot = exp/3;
 
                 GIFT_D->work_bonus(me, ([ "exp" : exp, "pot" : pot, "gongxian" : 5+random(6),
-                                          "prompt" : "你通过挖药材" ]));
+                                          "prompt" : "你通過挖藥材" ]));
         }
 
-        message_vision(HIR"\n$N兴奋过度，把药锄一甩，忽听嘎巴一声，药锄断为两截！\n"NOR, me);
+        message_vision(HIR"\n$N興奮過度，把藥鋤一甩，忽聽嘎巴一聲，藥鋤斷為兩截！\n"NOR, me);
         destruct(ob);
         delete_temp("herb/found", me);
         set_temp("herb/got", 1, me);

@@ -9,8 +9,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIW "一张从神兽白虎身上剥下的皮，雪白无暇，无比的坚韧。\n" NOR);
-                set("unit", "张");
+                set("long", HIW "一張從神獸白虎身上剝下的皮，雪白無暇，無比的堅韌。\n" NOR);
+                set("unit", "張");
                 set("value", 1000000);
               set("item_origin", 1);
               set("material_attrib", "silk");

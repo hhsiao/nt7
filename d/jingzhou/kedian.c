@@ -5,14 +5,14 @@ void create()
 {
         set("short", "客店");
         set("long", @LONG
-这是一家价钱低廉的客栈，生意很是清淡。外地游客偶尔选择这
-里落脚，你在这里住可要小心，听说荆州有黑店。
+這是一家價錢低廉的客棧，生意很是清淡。外地遊客偶爾選擇這
+裡落腳，你在這裡住可要小心，聽說荊州有黑店。
 LONG );
         set("no_fight", 1);
         set("valid_startroom", 1);
         set("no_sleep_room",1);
         set("item_desc", ([
-                "paizi" : "楼上雅房，每夜五十两白银。\n",
+                "paizi" : "樓上雅房，每夜五十兩白銀。\n",
         ]));
         set("objects", ([
                 __DIR__"npc/xiaoer" : 1,
@@ -32,8 +32,8 @@ int valid_leave(object me, string dir)
 {
 
         if( !query_temp("rent_paid", me) && dir == "up" )
-                return notify_fail(CYN "店小二一下挡在楼梯前，白眼一"
-                                   "翻：怎麽着，想白住啊！\n" NOR);
+                return notify_fail(CYN "店小二一下擋在樓梯前，白眼一"
+                                   "翻：怎麼著，想白住啊！\n" NOR);
 
         return ::valid_leave(me, dir);
 }

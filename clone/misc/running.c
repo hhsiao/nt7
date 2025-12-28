@@ -18,7 +18,7 @@ void create()
         else*/
         {
                 set("value", 1);
-                set("long", "你正在快马上奔跑 ……\n");
+                set("long", "你正在快馬上奔跑 ……\n");
                 set("unit", "次");
                 set("material", "air");
                 set("no_get", "!@#$!@#%%^@!^\n");

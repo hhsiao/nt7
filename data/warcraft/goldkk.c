@@ -7,7 +7,7 @@ void setup()
         set_name("狗[2;37;0m[2;37;0m", ({"goldkkk"}));        
         set("gender", "男性");                
         set("long", "狗[2;37;0m
-它是金狗的魔幻兽。
+它是金狗的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

@@ -8,13 +8,13 @@
 // #pragma save_binary
 
 mapping gems = ([
-        "ruby":         "红宝石",
-        "topaz":        "黄宝石",
-        "sapphire":     "蓝宝石",
-        "emerald":      "翡翠绿",
+        "ruby":         "紅寶石",
+        "topaz":        "黃寶石",
+        "sapphire":     "藍寶石",
+        "emerald":      "翡翠綠",
         "amethyst":     "紫水晶",
-        "diamond":      "水晶钻",
-        "skull":        "骷髅头",
+        "diamond":      "水晶鑽",
+        "skull":        "骷髏頭",
 ]);
 mapping gems_color = ([
         "ruby":         HIR,
@@ -27,7 +27,7 @@ mapping gems_color = ([
 ]);
 
 string *gems_level = ({
-        "细碎的",
+        "細碎的",
         "",
         "稀世",
         "神之",
@@ -59,7 +59,7 @@ mixed identify_ob(object me, object ob)
         mixed   obj;
         mapping data, temp;
 
-        level = query("level", ob); // 只有宝石种类，没有等级
+        level = query("level", ob); // 只有寶石種類，沒有等級
         if( !level )
         {
                 mf = query_temp("magic_find", me);
@@ -104,11 +104,11 @@ mixed identify_ob(object me, object ob)
         return obj;
 }
 
-// 无上神品->上古神品->中古神品->远古神品->太古神品
-// 太始、太初、太玄 太虚、洪荒
-// 冥古宙、太古宙、元古宙和显生宙
-// 其中元古宙又划分为古元古代、中元古代和新元古代；
-// 显生宙划分古生代、中生代和新生代。
+// 無上神品->上古神品->中古神品->遠古神品->太古神品
+// 太始、太初、太玄 太虛、洪荒
+// 冥古宙、太古宙、元古宙和顯生宙
+// 其中元古宙又劃分為古元古代、中元古代和新元古代；
+// 顯生宙劃分古生代、中生代和新生代。
 varargs int identify_ultimate_ob(object item, int close)
 {
         mapping data, prop;
@@ -235,8 +235,8 @@ varargs int identify_ultimate_ob(object item, int close)
 
                 if (!close)
                 CHANNEL_D->do_channel(find_object(ITEM_D), "rumor",
-                              "听说上古神品" + item->name() + HIM +
-                              "来到了人间。");
+                              "聽說上古神品" + item->name() + HIM +
+                              "來到了人間。");
 
                 //MYGIFT_D->check_mygift(find_player(item_owner()), "newbie_mygift/ultimate");
 
@@ -332,8 +332,8 @@ varargs int identify_ultimate_ob(object item, int close)
 
                         if (!close)
                         CHANNEL_D->do_channel(find_object(ITEM_D), "rumor",
-                                "听说上古神品" + item->name() + HIM +
-                                "来到了人间。");
+                                "聽說上古神品" + item->name() + HIM +
+                                "來到了人間。");
 
                 } else
                 {
@@ -412,8 +412,8 @@ varargs int identify_ultimate_ob(object item, int close)
 
                         if (!close)
                         CHANNEL_D->do_channel(find_object(ITEM_D), "rumor",
-                                "听说远古神品" + item->name() + HIM +
-                                "来到了人间。");
+                                "聽說遠古神品" + item->name() + HIM +
+                                "來到了人間。");
                 }
 
                 set("ultimate/ob", 1, item);
@@ -511,8 +511,8 @@ varargs int identify_ultimate_ob(object item, int close)
                 item->save();
                 if (!close)
                 CHANNEL_D->do_channel(find_object(ITEM_D), "rumor",
-                              "听说远古神品" + item->name() + HIM +
-                              "来到了人间。");
+                              "聽說遠古神品" + item->name() + HIM +
+                              "來到了人間。");
 
                 log_file("static/ultimate", sprintf("%s Have 105 SN. Wash %d Times. %s\n",
                           base_name(item),query("enchase/wash", item),TIME_D->replace_ctime(time())));
@@ -633,8 +633,8 @@ varargs int identify_ultimate_ob(object item, int close)
                 item->save();
                 if (!close)
                 CHANNEL_D->do_channel(find_object(ITEM_D), "rumor",
-                              "听说太古神品" + item->name() + HIM +
-                              "来到了人间。");
+                              "聽說太古神品" + item->name() + HIM +
+                              "來到了人間。");
 
                 log_file("static/ultimate", sprintf("%s Have 121 SN. Wash %d Times. %s\n",
                           base_name(item),query("enchase/wash", item),TIME_D->replace_ctime(time())));

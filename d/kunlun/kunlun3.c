@@ -5,12 +5,12 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "昆仑之巅");
+        set("short", "崑崙之巔");
         set("long", @LONG
-四下无声，只有风吹松涛，幽韵天成，仰视苍天，注视群山，令
-人不觉怆然而发思古之幽情！往前看，只见一块很大的冰壁，下临绝
-崖，大冰壁表面极其光滑，如同镜子一般，散发出奇异的光芒，往下
-看，峭壁如刀削，云卷雾涌，深不见底。
+四下無聲，只有風吹松濤，幽韻天成，仰視蒼天，注視群山，令
+人不覺愴然而發思古之幽情！往前看，只見一塊很大的冰壁，下臨絕
+崖，大冰壁表面極其光滑，如同鏡子一般，散發出奇異的光芒，往下
+看，峭壁如刀削，雲卷霧湧，深不見底。
 LONG );
         set("exits", ([
                 "down" : __DIR__"kunlun2",
@@ -39,14 +39,14 @@ int do_throw(string arg)
                 return 0;
 
         if( query("betrayer", me) )
-                return notify_fail("你与判师门派中的纠葛未了，无法使用昆仑镜！\n");
+                return notify_fail("你與判師門派中的糾葛未了，無法使用崑崙鏡！\n");
 
         if( !arg || arg != "contract" )
-                return notify_fail("你要用什么掷向那冰壁？\n");
+                return notify_fail("你要用什麼擲向那冰壁？\n");
 
-        message_vision( HIW "$N" HIW "将泛紫光的阎王契(Contract)掷向那冰壁，阎王契没入其中、竟尔消失不见。\n"
-                        HIW "只见本就平滑的大冰壁愈见光洁、而后渐渐透明，渐渐化作了水银镜般的模样，\n"
-                        HIW "原来这正是通往地狱的通道：" HIR "「昆仑镜」" HIW "(enter mirror)。\n" NOR, me );
+        message_vision( HIW "$N" HIW "將泛紫光的閻王契(Contract)擲向那冰壁，閻王契沒入其中、竟爾消失不見。\n"
+                        HIW "只見本就平滑的大冰壁愈見光潔、而後漸漸透明，漸漸化作了水銀鏡般的模樣，\n"
+                        HIW "原來這正是通往地獄的通道：" HIR "「崑崙鏡」" HIW "(enter mirror)。\n" NOR, me );
         set_temp("throw_contract", 1, me);
         destruct(ob);
         return 1;
@@ -62,22 +62,22 @@ int do_enter(string arg)
                 return 0;
 
         if( !arg || arg != "mirror" )
-                return notify_fail("你想要去那里？\n");
+                return notify_fail("你想要去那裡？\n");
 
         inv = deep_inventory(me);
         for( i=sizeof(inv)-1; i>=0; i-- ) {
                 if( objectp(inv[i]) && inv[i]->is_character() ) {
-                        tell_object(me, "你不可以将其他玩家或者NPC(包括宠物)背进昆仑镜中。\n");
+                        tell_object(me, "你不可以將其他玩家或者NPC(包括寵物)背進崑崙鏡中。\n");
                         return 0;
                 }
         }
 
-        message_vision( HIW "$N" HIW "谨慎举步，缓缓走入了昆仑镜中。\n" NOR, me );
-        tell_object(me, HIM "只见四周俱是五彩瑰丽景象，如临仙境，好半晌后你才回过神、走出隧道，来到幽冥界。\n" NOR);
+        message_vision( HIW "$N" HIW "謹慎舉步，緩緩走入了崑崙鏡中。\n" NOR, me );
+        tell_object(me, HIM "只見四周俱是五彩瑰麗景象，如臨仙境，好半晌後你才回過神、走出隧道，來到幽冥界。\n" NOR);
         delete_temp("throw_contract", me);
         me->move("/d/death/youmingjie");
         set("startroom", "/d/death/youmingjie", me);
-        message("vision",HBRED"【转世重生】地府："+query("name", me)+"("+query("id", me)+")"
-                HBRED "进入幽冥界，欲挑战幽冥地府考验，换取转世奇缘！\n" NOR, users());
+        message("vision",HBRED"【轉世重生】地府："+query("name", me)+"("+query("id", me)+")"
+                HBRED "進入幽冥界，欲挑戰幽冥地府考驗，換取轉世奇緣！\n" NOR, users());
         return 1;
 }

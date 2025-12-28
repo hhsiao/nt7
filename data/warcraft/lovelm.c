@@ -6,8 +6,8 @@ void setup()
 {
         set_name("麒麟[2;37;0m[2;37;0m", ({"qilin"}));        
         set("gender", "男性");                
-        set("long", "我有一头小毛驴我从来也不骑[2;37;0m
-它是宇文成都的魔幻兽。
+        set("long", "我有一頭小毛驢我從來也不騎[2;37;0m
+它是宇文成都的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

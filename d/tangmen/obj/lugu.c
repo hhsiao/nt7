@@ -9,7 +9,7 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一根刚刚剔出来的野鹿骨头。\n");
+                set("long", "一根剛剛剔出來的野鹿骨頭。\n");
                 set("unit", "根");
                 set("value", 300);
         }

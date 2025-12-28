@@ -1,5 +1,5 @@
 // This program is a part of NITAN MudLIB
-// cong-buqi.c  丛不弃
+// cong-buqi.c  叢不棄
 
 #include <ansi.h>
 inherit NPC;
@@ -7,13 +7,13 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("丛不弃", ({ "cong buqi", "cong" }) );
+        set_name("叢不棄", ({ "cong buqi", "cong" }) );
         set("gender", "男性");
         set("class", "swordsman");
-        set("title", "华山剑宗第十三代弟子");
+        set("title", "華山劍宗第十三代弟子");
         set("age", 52);
         set("long",
-                "丛不弃是华山剑宗高手。\n");
+                "叢不棄是華山劍宗高手。\n");
         set("attitude", "peaceful");
         set("str", 26);
         set("con", 30);
@@ -63,7 +63,7 @@ void create()
         prepare_skill("strike", "hunyuan-zhang");
         prepare_skill("cuff", "poyu-quan");
 
-        create_family("华山剑宗", 13, "弟子");
+        create_family("華山劍宗", 13, "弟子");
 
         set_temp("apply/attack", 220);
         set_temp("apply/defense", 220);

@@ -12,9 +12,9 @@ void create()
 {
     set("short", HIY"金色走廊"NOR);
         set("long", @LONG
-这里是一条金碧辉煌的走廊，前面通往拍卖休息室，墙壁上画着
-一块黑底金字的大匾(dabian)，整个走廊静谧严肃，令人不敢大声喧
-哗。
+這裡是一條金碧輝煌的走廊，前面通往拍賣休息室，牆壁上畫著
+一塊黑底金字的大匾(dabian)，整個走廊靜謐嚴肅，令人不敢大聲喧
+譁。
 LONG );
 
     set("no_fight",1);
@@ -46,13 +46,13 @@ int do_look(string arg)
     pms = load_object("/adm/npc/fjtx");
     heidian_record=query(HEIDIAN, pms);
     destruct(pms);
-    msg = HIC +LOCAL_MUD_NAME()+ HIY HEIDIAN_NAME HIC " 历代店主：\n"NOR;
+    msg = HIC +LOCAL_MUD_NAME()+ HIY HEIDIAN_NAME HIC " 歷代店主：\n"NOR;
     msg += HIC "-------------------------------------------------------------------------\n" NOR;
     if (!sizeof(heidian_record))
-        msg += HIY "目前还没有数据。\n";
+        msg += HIY "目前還沒有數據。\n";
     else
     {
-        msg += sprintf(HIW"%-25s%-30s%-10s%s\n"NOR,"姓名","拍卖时间","拍卖师","价格");
+        msg += sprintf(HIW"%-25s%-30s%-10s%s\n"NOR,"姓名","拍賣時間","拍賣師","價格");
         for (i = 0;i < sizeof(heidian_record);i++)
             msg += sprintf(HIY"%-25s%-30s%-10s%d\n"NOR,
                    heidian_record[i]["name"]+"("+heidian_record[i]["id"]+")",

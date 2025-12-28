@@ -1,4 +1,4 @@
-//liandodge.c                唐门练武场
+//liandodge.c                唐門練武場
 
 inherit ROOM;
 
@@ -7,12 +7,12 @@ int do_lian(string);
 
 void create ()
 {
-        set ("short", "练武场");
+        set ("short", "練武場");
         set ("long", @LONG
-这是一个宽敞的练武场。你的面前的场子上立满了一根根木桩，
-几个唐门弟子正在上面施展轻功身法，飞快的四处游走，但不时也
-有几个摔了下来，弄的鼻青脸肿。你要不怕就也上去练练 (yue)基
-本的轻功身法吧。
+這是一個寬敞的練武場。你的面前的場子上立滿了一根根木樁，
+幾個唐門弟子正在上面施展輕功身法，飛快的四處遊走，但不時也
+有幾個摔了下來，弄的鼻青臉腫。你要不怕就也上去練練 (yue)基
+本的輕功身法吧。
 LONG);
 
         set("exits", ([
@@ -35,27 +35,27 @@ int do_lian(string arg)
         me = this_player();
 
         if ( !arg || ( arg != "zhuang" ) )
-                return notify_fail("你想干什么？\n");
+                return notify_fail("你想幹什麼？\n");
 
         jingli_cost = (-1) * (5 + random(15));
 
         if( query("jingli", me) <= (-jingli_cost) )
-                return notify_fail("你太疲劳了，没有精力练功了。\n");
+                return notify_fail("你太疲勞了，沒有精力練功了。\n");
 
         if ( (int)me->query_skill("dodge", 1) < 51 )  
         {
-                write("你气运丹田，轻轻一纵身跳上一根较矮的木桩，但是脚下一晃摔了下来！\n不过你对轻功身法有了一点了解。\n");
+                write("你氣運丹田，輕輕一縱身跳上一根較矮的木樁，但是腳下一晃摔了下來！\n不過你對輕功身法有了一點了解。\n");
                 addn("jingli", jingli_cost, me);
                 me->improve_skill("dodge",(15+random(query("int", me)/2)));
         }
         else
                 if ( (int)me->query_skill("dodge", 1) < 101 )  
                 {
-                        write("你气随心升，一晃身跃上一根木桩，只是感到内息略有阻滞！\n你对轻功身法有了一些认识。\n");
+                        write("你氣隨心升，一晃身躍上一根木樁，只是感到內息略有阻滯！\n你對輕功身法有了一些認識。\n");
                         addn("jingli", jingli_cost, me);
                         me->improve_skill("dodge",(20+random(query("int", me)/2)));
                 }
                 else
-                        write("你随意的在木桩上飞奔跳跃，感到已经没有困难。\n你在这里已经学不到什么了！\n");
+                        write("你隨意的在木樁上飛奔跳躍，感到已經沒有困難。\n你在這裡已經學不到什麼了！\n");
         return 1;
 }

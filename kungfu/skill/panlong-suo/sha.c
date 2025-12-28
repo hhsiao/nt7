@@ -1,6 +1,6 @@
 #include <ansi.h>
 
-#define SHA "「" HIR "绝命七杀" NOR "」"
+#define SHA "「" HIR "絕命七殺" NOR "」"
 
 inherit F_SSERVER;
  
@@ -12,7 +12,7 @@ int perform(object me, object target)
         int i;
 
         if( userp(me) && !query("can_perform/panlong-suo/sha", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target)
         {
@@ -21,39 +21,39 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(SHA "只能对战斗中的对手使用。\n");
+                return notify_fail(SHA "只能對戰鬥中的對手使用。\n");
  
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "whip" )
-                return notify_fail("你使用的武器不对，难以施展" SHA "。\n");
+                return notify_fail("你使用的武器不對，難以施展" SHA "。\n");
 
         if ((int)me->query_skill("force") < 220)
-                return notify_fail("你的内功火候不够，难以施展" SHA "。\n");
+                return notify_fail("你的內功火候不夠，難以施展" SHA "。\n");
 
         if ((int)me->query_skill("panlong-suo", 1) < 180)
-                return notify_fail("你的霹雳盘龙索还不到家，难以施展" SHA "。\n");
+                return notify_fail("你的霹靂盤龍索還不到家，難以施展" SHA "。\n");
 
         if (me->query_skill_mapped("whip") != "panlong-suo")
-                return notify_fail("你没有激发霹雳盘龙索，难以施展" SHA "。\n");
+                return notify_fail("你沒有激發霹靂盤龍索，難以施展" SHA "。\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你的真气不够，难以施展" SHA "。\n");
+                return notify_fail("你的真氣不夠，難以施展" SHA "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIR "突然间$N" HIR "猛的猱身扑上，手中" + weapon->name() +
-              HIR "急转，便似不要命般地向$n" HIR "猛攻过去。\n" NOR;
+        msg = HIR "突然間$N" HIR "猛的猱身撲上，手中" + weapon->name() +
+              HIR "急轉，便似不要命般地向$n" HIR "猛攻過去。\n" NOR;
 
         if (random(me->query_skill("whip")) > target->query_skill("parry") / 2)
         {
-                msg += HIR "$n" HIR "卒不及防，登时手忙脚乱，招架疏"
-                       "散，慌忙中难以抵挡。\n" NOR;
+                msg += HIR "$n" HIR "卒不及防，登時手忙腳亂，招架疏"
+                       "散，慌忙中難以抵擋。\n" NOR;
                 count = me->query_skill("whip") / 20;
         } else
         {
-                msg += HIC "$n" HIC "心底一惊，连忙全神应对，不敢有"
-                       "丝毫大意。\n" NOR;
+                msg += HIC "$n" HIC "心底一驚，連忙全神應對，不敢有"
+                       "絲毫大意。\n" NOR;
                 count = 0;
         }
 

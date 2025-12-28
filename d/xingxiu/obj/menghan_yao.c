@@ -5,12 +5,12 @@ inherit COMBINED_ITEM;
 void create()
 {
 
-        set_name("蒙汗药", ({ "menghan yao", "yao" }) );
+        set_name("蒙汗藥", ({ "menghan yao", "yao" }) );
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
                 set("long",
-                        "这是极普通的蒙汗药\n" );
+                        "這是極普通的蒙汗藥\n" );
                 set("unit", "包");
                 set("base_value", 700);
                 set("base_unit", "份");

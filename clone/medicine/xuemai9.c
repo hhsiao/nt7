@@ -1,4 +1,4 @@
-// xuemai1.c 血脉丹
+// xuemai1.c 血脈丹
 
 #include <ansi.h>
 #include "medicine.h"
@@ -6,12 +6,12 @@
 int is_xuemai_dan() { return 1;}
 void create()
 {
-        set_name(HIR "九品血脉丹" NOR, ({"xuemai dan9", "dan"}));
+        set_name(HIR "九品血脈丹" NOR, ({"xuemai dan9", "dan"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "这是一粒血脉丹，可激活体内血脉能力。\n");
-                set("base_unit", "颗");
+                set("long", "這是一粒血脈丹，可激活體內血脈能力。\n");
+                set("base_unit", "顆");
 
                 set("base_value", 200000);
                 set("base_weight", 80);
@@ -40,6 +40,6 @@ void create()
 
 int do_effect(object me) 
 {
-        write("血脉丹只能在修炼血脉upblood时候服用。\n"); 
+        write("血脈丹只能在修煉血脈upblood時候服用。\n"); 
         return 1;
 }

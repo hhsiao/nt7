@@ -5,18 +5,18 @@
 
 
 //
-// Client 讯息类别定义
+// Client 訊息類別定義
 //
-#define SYSMSG          "SYSMSG"                // 系统讯息
-#define ENVMSG          "ENVMSG"                // 环境讯息
-#define CMDMSG          "CMDMSG"                // 指令讯息
-#define CHNMSG          "CHNMSG"                // 频道讯息
-#define EMTMSG          "EMTMSG"                // 表情讯息
-#define SAYMSG          "SAYMSG"                // 说话讯息
-#define TELLMSG         "TELLMSG"               // 交谈讯息
-#define ERRMSG          "ERRMSG"                // 错误讯息
-#define ETCMSG          "ETCMSG"                // 其他讯息
-#define GAMEMSG         "GAMEMSG"               // 游戏讯息
+#define SYSMSG          "SYSMSG"                // 系統訊息
+#define ENVMSG          "ENVMSG"                // 環境訊息
+#define CMDMSG          "CMDMSG"                // 指令訊息
+#define CHNMSG          "CHNMSG"                // 頻道訊息
+#define EMTMSG          "EMTMSG"                // 表情訊息
+#define SAYMSG          "SAYMSG"                // 說話訊息
+#define TELLMSG         "TELLMSG"               // 交談訊息
+#define ERRMSG          "ERRMSG"                // 錯誤訊息
+#define ETCMSG          "ETCMSG"                // 其他訊息
+#define GAMEMSG         "GAMEMSG"               // 遊戲訊息
 
 int  is_loging_now();
 int  start_log();

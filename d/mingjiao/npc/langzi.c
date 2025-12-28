@@ -2,7 +2,7 @@ inherit NPC;
 void create()
 {
          set_name("江湖浪子", ({ "jianghu langzi", "langzi" }));
-        set("long", "一名满脸彪捍之色的江湖豪客。\n");
+        set("long", "一名滿臉彪捍之色的江湖豪客。\n");
         set("gender", "男性");
         set("age", 30);
         set("attitude", "heroism");

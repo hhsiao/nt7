@@ -3,10 +3,10 @@ inherit __DIR__"normal.c";
 
 void create()
 {
-        set("short", "广成金船");
+        set("short", "廣成金船");
         set("long", @LONG
-这就是广成金船上庞大的船舱群，内部四通八达。需要悄悄地便宜行事，
-但愿别遇上其他的夺宝队伍啊。
+這就是廣成金船上龐大的船艙群，內部四通八達。需要悄悄地便宜行事，
+但願別遇上其他的奪寶隊伍啊。
 LONG );
 //         set("exits", ([
 //                 "south" : __DIR__"chuan" + (string)random(50),

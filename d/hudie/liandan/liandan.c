@@ -6,10 +6,10 @@ int do_dan(object me,object obj);
 int do_yao(object me,object obj);
 void create()
 {
-        set("short", HIY"炼丹房"NOR);
+        set("short", HIY"煉丹房"NOR);
         set("long", @LONG
-这里是华佗的炼丹室,房间中央放着一个炼丹炉,
-玩家们可以拿着自己挖掘来的草药练出自己所需的丹丹药!
+這裡是華佗的煉丹室,房間中央放著一個煉丹爐,
+玩家們可以拿著自己挖掘來的草藥練出自己所需的丹丹藥!
 LONG
         );
         set("exits", ([
@@ -34,13 +34,13 @@ int do_fangdan(string arg)
     object ob;
     object me = this_player();
 
-    if(!arg) return notify_fail("你要放什么药进去？\n");
+    if(!arg) return notify_fail("你要放什麼藥進去？\n");
 
     if( !query_temp("zhuyao", me) )
-    return notify_fail("练丹要先放主药,要不然练不出好丹!\n");
+    return notify_fail("練丹要先放主藥,要不然練不出好丹!\n");
 
     if( !objectp(obj = present(arg, me)) )
-    return notify_fail("你身上并没有这样东西!\n");
+    return notify_fail("你身上並沒有這樣東西!\n");
 
     return do_dan(me, obj);
 
@@ -52,13 +52,13 @@ int do_zhuyao(string arg)
     object ob;
     object me = this_player();
 
-    if(!arg) return notify_fail("你要拿什么东西当主药？\n");
+    if(!arg) return notify_fail("你要拿什麼東西當主藥？\n");
 
     if( !objectp(obj = present(arg, me)) )
-    return notify_fail("你身上并没有这样东西!\n");
+    return notify_fail("你身上並沒有這樣東西!\n");
 
   if(me->is_busy())
-  return notify_fail("您现在正忙,等一下再挖吧!\n");
+  return notify_fail("您現在正忙,等一下再挖吧!\n");
 
 
     return do_yao(me, obj);
@@ -78,24 +78,24 @@ int do_liandan(string arg)
     zjb=query_temp("zjb_dan", me);
     liandan = me->query_skill("liandan-shu",1);
 
-    if (!arg) return notify_fail("你要练哪个种类的丹？\n");
+    if (!arg) return notify_fail("你要練哪個種類的丹？\n");
 
     if( !query_temp("liandan", me) )
-    return notify_fail("你没放丹,你练个屁!\n");
+    return notify_fail("你沒放丹,你練個屁!\n");
 
 
-// By zjb@ty 以下都是治疗残废的药的练法
+// By zjb@ty 以下都是治療殘廢的藥的練法
     if (arg == "shoubi") {
     addn("combat_exp", 1000, me);
     delete_temp("zhuyaoname", me);
     delete_temp("danname", me);
 
     
-// By zjb@ty 炼丹的额外奖励!
+// By zjb@ty 煉丹的額外獎勵!
     addn("combat_exp", zjb*1000+random(1000), me);
     addn("potential", zjb*100+random(500), me);
     me->start_busy(5);
-    write(HIR"你在炼丹的时候不知不觉经验也随着上去了!\n"NOR);
+    write(HIR"你在煉丹的時候不知不覺經驗也隨著上去了!\n"NOR);
 
     if (shoubi==32 && zhuyao==1) {
     delete_temp("liandan", me);
@@ -103,7 +103,7 @@ int do_liandan(string arg)
     dan=new("/d/zjb/yao/shoubi1");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIG"你练出了治疗臂伤的良药伤药丸!\n"NOR);
+    return notify_fail(HIG"你練出了治療臂傷的良藥傷藥丸!\n"NOR);
     }
     if (shoubi==26 && zhuyao==2) {
     delete_temp("liandan", me);
@@ -112,7 +112,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/shoubi2");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIB"你练出了治疗臂伤的良药补伤丸!\n"NOR);
+    return notify_fail(HIB"你練出了治療臂傷的良藥補傷丸!\n"NOR);
     }
     if (shoubi==27 && zhuyao==3) {
     delete_temp("liandan", me);
@@ -121,7 +121,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/shoubi3");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIG"你练出了治疗臂伤的良药先复汤!\n"NOR);
+    return notify_fail(HIG"你練出了治療臂傷的良藥先復湯!\n"NOR);
     }
     if (shoubi==33 && zhuyao==4) {
     delete_temp("liandan", me);
@@ -130,7 +130,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/shoubi4");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIG"你练出了治疗臂伤的良药复方血竭酊!\n"NOR);
+    return notify_fail(HIG"你練出了治療臂傷的良藥複方血竭酊!\n"NOR);
     }
 
     delete_temp("liandan", me);
@@ -139,7 +139,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/chayao");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIW"你的配方好象不对,练出一个无名药品!\n"NOR);
+    return notify_fail(HIW"你的配方好象不對,練出一個無名藥品!\n"NOR);
     }
 
     if (arg == "tui") {
@@ -147,11 +147,11 @@ int do_liandan(string arg)
     delete_temp("zhuyaoname", me);
     delete_temp("danname", me);
     
-// By zjb@ty 炼丹的额外奖励!
+// By zjb@ty 煉丹的額外獎勵!
     addn("combat_exp", zjb*1000+random(1000), me);
     addn("potential", zjb*100+random(500), me);
     me->start_busy(5);
-    write(HIR"你在炼丹的时候不知不觉经验也随着上去了!\n"NOR);
+    write(HIR"你在煉丹的時候不知不覺經驗也隨著上去了!\n"NOR);
 
     if (tui==74 && zhuyao==11) {
     delete_temp("liandan", me);
@@ -160,7 +160,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/tui1");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIC"你练出了治疗腿伤的良药--活血止痛汤!\n"NOR);
+    return notify_fail(HIC"你練出了治療腿傷的良藥--活血止痛湯!\n"NOR);
     }
     if (tui==151 && zhuyao==12) {
     delete_temp("liandan", me);
@@ -169,7 +169,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/tui2");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIG"你练出了治疗腿伤的良药--宋氏接骨散!\n"NOR);
+    return notify_fail(HIG"你練出了治療腿傷的良藥--宋氏接骨散!\n"NOR);
     }
 
     delete_temp("liandan", me);
@@ -178,7 +178,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/chayao");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIW"你的配方好象不对,练出一个无名药品!\n"NOR);
+    return notify_fail(HIW"你的配方好象不對,練出一個無名藥品!\n"NOR);
     }
     
     if (arg == "all") {
@@ -186,11 +186,11 @@ int do_liandan(string arg)
     delete_temp("zhuyaoname", me);
     delete_temp("danname", me);
 
-// By zjb@ty 炼丹的额外奖励!
+// By zjb@ty 煉丹的額外獎勵!
     addn("combat_exp", zjb*1000+random(1000), me);
     addn("potential", zjb*100+random(500), me);
     me->start_busy(5);
-    write(HIR"你在炼丹的时候不知不觉经验也随着上去了!\n"NOR);
+    write(HIR"你在煉丹的時候不知不覺經驗也隨著上去了!\n"NOR);
 
     if (all==51 && zhuyao==21) {
     delete_temp("liandan", me);
@@ -199,7 +199,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/all1");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIG"你练出了疗伤圣药--祛腐生肌散!\n"NOR);
+    return notify_fail(HIG"你練出了療傷聖藥--祛腐生肌散!\n"NOR);
     }
     if (all==64 && zhuyao==22) {
     delete_temp("liandan", me);
@@ -208,7 +208,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/all2");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIG"你练出了疗伤圣药--七厘丹!\n"NOR);
+    return notify_fail(HIG"你練出了療傷聖藥--七釐丹!\n"NOR);
     }
     if (all==40 && zhuyao==23) {
     delete_temp("liandan", me);
@@ -217,7 +217,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/all3");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIG"你练出了疗伤圣药--壮筋续骨丹!\n"NOR);
+    return notify_fail(HIG"你練出了療傷聖藥--壯筋續骨丹!\n"NOR);
     }
     if (all==55 && zhuyao==24) {
     delete_temp("liandan", me);
@@ -226,7 +226,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/all4");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIG"你练出了疗伤圣药--朱砂没药散!\n"NOR);
+    return notify_fail(HIG"你練出了療傷聖藥--硃砂沒藥散!\n"NOR);
     }
     
     delete_temp("liandan", me);
@@ -235,21 +235,21 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/chayao");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIW"你的配方好象不对,练出一个无名药品!\n"NOR);
+    return notify_fail(HIW"你的配方好象不對,練出一個無名藥品!\n"NOR);
     }
 
-// By zjb@ty 以下是随机炼丹的程序!    
+// By zjb@ty 以下是隨機煉丹的程序!    
     if (arg == "random") {
     addn("combat_exp", 1000, me);
     delete_temp("zhuyaoname", me);
     delete_temp("danname", me);
     
-// By zjb@ty 炼丹的额外奖励!
+// By zjb@ty 煉丹的額外獎勵!
     me->improve_skill("liandan-shu", me->query_int()*300+random(100));
     addn("combat_exp", zjb*1000+random(1000), me);
     addn("potential", zjb*100+random(500), me);
     me->start_busy(5);
-    write(HIR"你在炼丹的时候不知不觉经验也随着上去了!\n"NOR);
+    write(HIR"你在煉丹的時候不知不覺經驗也隨著上去了!\n"NOR);
 
     if ( liandan > 500 && zjb > 15) {
     if ( zjb>15 && zjb<20 && all2 < 211 &&all2 > 100 
@@ -260,7 +260,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan11");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(BLINK HIR"你竟然练出了可以使人重生的还魂丹!!!\n"NOR);
+    return notify_fail(BLINK HIR"你竟然練出了可以使人重生的還魂丹!!!\n"NOR);
     }
     }
 
@@ -274,7 +274,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan19");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIC"你练出了可以增加全部武功的技能丹!!!\n"NOR);
+    return notify_fail(HIC"你練出了可以增加全部武功的技能丹!!!\n"NOR);
     }
 
     if ( zjb < 15 && zjb>3 && all2 < 200 && all2 > 30 
@@ -285,7 +285,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan12");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIB"你练出了可以使人返老还童的仙丹!!!\n"NOR);
+    return notify_fail(HIB"你練出了可以使人返老還童的仙丹!!!\n"NOR);
     }
 
     if ( zjb < 15 && zjb>10 && all2 < 150 && all2 > 40 
@@ -296,7 +296,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan6");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIR"你练出了可以增加先天臂力的臂力丹!!!\n"NOR);
+    return notify_fail(HIR"你練出了可以增加先天臂力的臂力丹!!!\n"NOR);
     }
 
     if ( zjb < 15 && zjb>10 && all2 < 150 && all2 > 40 
@@ -307,7 +307,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan7");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIR"你练出了可以增加先天身法的身法丹!!!\n"NOR);
+    return notify_fail(HIR"你練出了可以增加先天身法的身法丹!!!\n"NOR);
     }
 
     if ( zjb < 15 && zjb>10 && all2 < 150 && all2 > 40 
@@ -318,7 +318,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan8");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIR"你练出了可以增加先天根骨的根骨丹!!!\n"NOR);
+    return notify_fail(HIR"你練出了可以增加先天根骨的根骨丹!!!\n"NOR);
     }
 
     if ( zjb < 15 && zjb>10 && all2 < 150 && all2 > 40 
@@ -329,7 +329,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan9");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIR"你练出了可以增加先天悟性的悟性丹!!!\n"NOR);
+    return notify_fail(HIR"你練出了可以增加先天悟性的悟性丹!!!\n"NOR);
     }
 
    if ( zjb < 15 && zjb>10 && all2 < 150 && all2 > 40 
@@ -340,7 +340,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan23");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIR"你练出了可以增加奇功的奇功丸!!!\n"NOR);
+    return notify_fail(HIR"你練出了可以增加奇功的奇功丸!!!\n"NOR);
     }
 
     if ( zjb < 15 && zjb>10 && all2 < 150 && all2 > 40 
@@ -351,7 +351,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan10");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIR"你练出了可以增加先天容貌的养颜丹!!\n"NOR);
+    return notify_fail(HIR"你練出了可以增加先天容貌的養顏丹!!\n"NOR);
     }
 
     }
@@ -363,7 +363,7 @@ int do_liandan(string arg)
     dan = new("/d/city/npc/obj/yangjing");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIY"你练出了疗精用的养精丹!\n"NOR);
+    return notify_fail(HIY"你練出了療精用的養精丹!\n"NOR);
     }
 
 
@@ -374,7 +374,7 @@ int do_liandan(string arg)
     dan = new("/d/city/npc/obj/jinchuang");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIY"你练出了疗伤用的金创药!\n"NOR);
+    return notify_fail(HIY"你練出了療傷用的金創藥!\n"NOR);
     }
 
     if ( zjb < 8 && zjb>3 && all2 < 100 && all2 > 30 && random(10)>4
@@ -385,7 +385,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan2");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIG"你练出了可使自己使自己脱离busy的疾风丹\n"NOR);
+    return notify_fail(HIG"你練出了可使自己使自己脫離busy的疾風丹\n"NOR);
     }
     
     if ( zjb < 6 && zjb > 3 && all2 < 100 && all2 > 20 
@@ -396,7 +396,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan3");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIW"你练出了少林圣药菩提子!\n"NOR);
+    return notify_fail(HIW"你練出了少林聖藥菩提子!\n"NOR);
     }
     
     if ( zjb < 10 && zjb > 4 && all2 < 100 && all2 > 20 
@@ -407,7 +407,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan4");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIW"你练出了少林圣药大还丹!\n"NOR);
+    return notify_fail(HIW"你練出了少林聖藥大還丹!\n"NOR);
     }
 
     if ( zjb < 6 && zjb > 3 && all2 < 100 && all2 > 20 
@@ -418,7 +418,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan5");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIW"你练出了补精圣药,肾宝!!!\n"NOR);
+    return notify_fail(HIW"你練出了補精聖藥,腎寶!!!\n"NOR);
     }
 
     if ( zjb < 10 && zjb > 2 && all2 < 100 && all2 > 10 
@@ -429,7 +429,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan13");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIG"你练出了可解百毒的解毒丸!!!\n"NOR);
+    return notify_fail(HIG"你練出了可解百毒的解毒丸!!!\n"NOR);
     }
 
     if ( zjb < 10 && zjb > 2 && all2 < 100 && all2 > 10 
@@ -440,7 +440,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan14");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIG"你练出了可增加攻击力的战神丸!!!\n"NOR);
+    return notify_fail(HIG"你練出了可增加攻擊力的戰神丸!!!\n"NOR);
     }
 
     if ( zjb < 15 && zjb > 2 && all2 < 100 && all2 > 30 
@@ -451,7 +451,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan15");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIG"你练出了可增加技能的龙丹!!!\n"NOR);
+    return notify_fail(HIG"你練出了可增加技能的龍丹!!!\n"NOR);
     }
 
     if ( zjb < 7&& zjb > 2 && all2 < 100 && all2 > 20 &&random(10)>4
@@ -462,7 +462,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan1");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIR"你练出了可使自己状态恢复满的血气丹!\n"NOR);
+    return notify_fail(HIR"你練出了可使自己狀態恢復滿的血氣丹!\n"NOR);
     }
 
     if ( zjb < 10 && zjb > 3 && all2 < 100 && all2 > 10 
@@ -473,7 +473,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan16");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIB"你练出了可增加正气的正气丸!!!\n"NOR);
+    return notify_fail(HIB"你練出了可增加正氣的正氣丸!!!\n"NOR);
     }
 
     if ( zjb < 15 && zjb > 3 && all2 < 150 && all2 > 30 
@@ -484,7 +484,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan17");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIR"你练出了可增加基本内功的太级丹!!!\n"NOR);
+    return notify_fail(HIR"你練出了可增加基本內功的太級丹!!!\n"NOR);
     }
 
     if ( zjb < 15 && zjb > 1 && all2 < 150 && all2 > 10 
@@ -495,7 +495,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan18");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIR"你练出了可增加基本负神的邪神丸!!!\n"NOR);
+    return notify_fail(HIR"你練出了可增加基本負神的邪神丸!!!\n"NOR);
     }
 
     if ( zjb < 15 && zjb > 3 && all2 < 150 && all2 > 30 
@@ -506,7 +506,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan20");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIR"你练出了可增加基本轻功的惊风丸!!!\n"NOR);
+    return notify_fail(HIR"你練出了可增加基本輕功的驚風丸!!!\n"NOR);
     }
 
     if ( zjb < 15 && zjb > 3 && all2 < 150 && all2 > 30 
@@ -517,7 +517,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan21");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIR"你练出了可增加基本拳脚的神力丸!!!\n"NOR);
+    return notify_fail(HIR"你練出了可增加基本拳腳的神力丸!!!\n"NOR);
     }
 
     if ( zjb < 10 && zjb > 4 && all2 < 150 && all2 > 50 
@@ -528,7 +528,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/dan22");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIR"你练出了可增加读书写字的智力丸!!!\n"NOR);
+    return notify_fail(HIR"你練出了可增加讀書寫字的智力丸!!!\n"NOR);
     }
 
     delete_temp("liandan", me);
@@ -537,7 +537,7 @@ int do_liandan(string arg)
     dan = new("/d/zjb/yao/chayao");
     set("zhuren", ""+query("id", me)+"", dan);
     dan->move(me);
-    return notify_fail(HIW"你此次炼丹失败,练出一个无名药品!\n"NOR);
+    return notify_fail(HIW"你此次煉丹失敗,練出一個無名藥品!\n"NOR);
 }
     }
 
@@ -549,12 +549,12 @@ int do_dan(object me,object obj)
     foreach ( ob in all_inventory(me)){
     if (ob->short(1)!=arg) continue;
     if( !query("yao", ob)){
-    write("这样东西并不能拿来练药!\n");
+    write("這樣東西並不能拿來練藥!\n");
     return 1;
     }
 
     if( query_temp("danname/"+query("id", ob, me)+"") )
-    return notify_fail("你已经把"+ob->name()+"放进练丹炉了!\n");
+    return notify_fail("你已經把"+ob->name()+"放進練丹爐了!\n");
 
     if( query("shoubi", ob) )
     addn_temp("liandan/shoubi",query("shoubi",  ob), me);
@@ -570,7 +570,7 @@ int do_dan(object me,object obj)
 
     set_temp("danname/"+query("id", ob)+"", 1, me);
     addn_temp("zjb_dan", 1, me);
-    write(HIR"你把"+ob->name()+HIR"放进了炼丹炉!\n"NOR);
+    write(HIR"你把"+ob->name()+HIR"放進了煉丹爐!\n"NOR);
     destruct(ob);
     return 1;
     }
@@ -583,15 +583,15 @@ int do_yao(object me,object obj)
     me = this_player();
  
     if( query_temp("zhuyao", me) )
-    return notify_fail("对不起你已经拿"+query_temp("zhuyaoname", me)+"做主药了!\n");
+    return notify_fail("對不起你已經拿"+query_temp("zhuyaoname", me)+"做主藥了!\n");
 
     foreach ( ob in all_inventory(me)){
     if (ob->short(1)!=arg) continue;
     if( !query("zhuyao", ob)){
-    write("这样东西并不能做主药!\n");
+    write("這樣東西並不能做主藥!\n");
       return 1;
     }
-    write(HIR"你拿"+ob->name()+HIR"做主药!\n"NOR);
+    write(HIR"你拿"+ob->name()+HIR"做主藥!\n"NOR);
     set_temp("zhuyao",query("zhuyao",  ob), me);
     set_temp("zhuyaoname", ""+ob->name()+"", me);
     destruct(ob);

@@ -21,9 +21,9 @@ void create()
 
         set("short", "桃花林");
         set("long", @LONG
-这桃林似乎无穷无尽一般，其中小径更却是纵横交错，匪夷所思。你
-拼命想离开原地，但几个转折又回到了原地。一连几次，似乎只是在同一
-个地方兜圈子。
+這桃林似乎無窮無盡一般，其中小徑更卻是縱橫交錯，匪夷所思。你
+拼命想離開原地，但幾個轉折又回到了原地。一連幾次，似乎只是在同一
+個地方兜圈子。
 LONG );
 
         set("exits", ([
@@ -48,10 +48,10 @@ LONG );
 
 void init()
 {
-        set_temp("die_reason", "误入桃花迷阵被桃花瓣射死", this_player());
+        set_temp("die_reason", "誤入桃花迷陣被桃花瓣射死", this_player());
         this_player()->receive_damage("qi", 15);
         this_player()->receive_wound("qi",  15);
-        message_vision(HIR "突然一阵桃花瓣象雨点般疾射$N！\n" NOR, this_player());
+        message_vision(HIR "突然一陣桃花瓣象雨點般疾射$N！\n" NOR, this_player());
 }
 
 int valid_leave(object me, string dir)
@@ -69,7 +69,7 @@ int valid_leave(object me, string dir)
           if (dirs[count] == dir || dirs2[count] == dir)
           {
                 me->move("/d/taohua/thzhen3");
-                if (! myfam || myfam["family_name"] == "桃花岛")
+                if (! myfam || myfam["family_name"] == "桃花島")
                 {
                         if( query("combat_exp", me)<20000+random(10000) )
                         {

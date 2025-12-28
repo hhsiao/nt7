@@ -11,8 +11,8 @@ void create()
         set_name("桑三娘", ({ "sang sanniang", "sang", "sanniang"}) );
         set("gender", "女性" );
         set("age", 45);
-        set("title", "日月神教天香堂长老");
-        set("long", "神情古怪，面无丝毫微笑，面容却相当清秀。 \n");
+        set("title", "日月神教天香堂長老");
+        set("long", "神情古怪，面無絲毫微笑，面容卻相當清秀。 \n");
         set("attitude", "friendly");
         set("shen_type", -1);
 
@@ -56,7 +56,7 @@ void create()
         prepare_skill("hand", "huanmo-longtianwu");
         prepare_skill("cuff", "xuwu-piaomiao");
 
-        create_family("日月神教",2,"弟子 天香堂长老");
+        create_family("日月神教",2,"弟子 天香堂長老");
 
         set("master_ob",2);
         setup();
@@ -70,10 +70,10 @@ void attempt_apprentice(object ob)
 
     if((int)ob->query_skill("riyue-xinfa", 1) < 80)
     {
-         command("say 你的内功心法尚欠火候，多练练去吧！");
+         command("say 你的內功心法尚欠火候，多練練去吧！");
          return;
     }
 
     command("recruit "+query("id", ob));
-    set("title", HIM"日月神教"HIG"天香堂教众"NOR, ob);
+    set("title", HIM"日月神教"HIG"天香堂教眾"NOR, ob);
 }

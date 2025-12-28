@@ -2,8 +2,8 @@
 // Date: YZC 96/01/19
 
 string* dirs = ({
-        "坎", "坤", "离", "乾",
-        "艮", "震", "巽", "兑"
+        "坎", "坤", "離", "乾",
+        "艮", "震", "巽", "兌"
         });
 
 int check_dirs(object me, string dir)
@@ -25,7 +25,7 @@ int check_dirs(object me, string dir)
                 case "坤":
                         delete_temp("bagua/count", me);
                         break;
-                case "离":
+                case "離":
                         if (bc == 1 || bc == 12 ) {
                                 set_temp("bagua/count", bc+1, me);
                                 addn("neili", -50, me);}
@@ -60,7 +60,7 @@ int check_dirs(object me, string dir)
                         else
                                 delete_temp("bagua/count", me);
                         break;
-                case "兑":
+                case "兌":
                         if (bc == 5 || bc == 10 || bc == 14 || bc == 16) {
                                 set_temp("bagua/count", bc+1, me);
                                 me->receive_wound("jing", 50); }

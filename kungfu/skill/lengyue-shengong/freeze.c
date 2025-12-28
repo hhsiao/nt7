@@ -24,16 +24,16 @@ int exert(object me, object target)
         }
 
         if (! me->is_fighting(target))
-                return notify_fail("你只能用寒气攻击战斗中的对手。\n");
+                return notify_fail("你只能用寒氣攻擊戰鬥中的對手。\n");
 
         if ((skill=me->query_skill("lengyue-shengong", 1)) < 150)
-                return notify_fail("你的冷月神功火候不够，无法运用寒气。\n");
+                return notify_fail("你的冷月神功火候不夠，無法運用寒氣。\n");
 
         if( query("neili", me)<1000 )
-                return notify_fail("你的内力不够!");
+                return notify_fail("你的內力不夠!");
 
-        msg = HIW "$N" HIW "默运冷月神功，一股寒气迎面扑向$n"
-              HIW "，四周登时雪花飘飘。\n" NOR;
+        msg = HIW "$N" HIW "默運冷月神功，一股寒氣迎面撲向$n"
+              HIW "，四周登時雪花飄飄。\n" NOR;
         
         message_combatd(msg, me, target);
         
@@ -54,8 +54,8 @@ int exert(object me, object target)
                 else
                         set("neili", 0, target);
 
-                msg = HIG "$n" HIG "忽然觉得一阵透骨寒意，霎时间"
-                       "浑身的血液几乎都要凝固了。\n" NOR;
+                msg = HIG "$n" HIG "忽然覺得一陣透骨寒意，霎時間"
+                       "渾身的血液幾乎都要凝固了。\n" NOR;
                        
                 if (! target->is_busy()) target->start_busy(1);
                 
@@ -64,19 +64,19 @@ int exert(object me, object target)
                         "target": target,
                         "type"  : "lengyue",
                         "attr"  : "curse",
-                        "name"  : "冷月神功·冷月寒气",
+                        "name"  : "冷月神功·冷月寒氣",
                         "time"  : time,
                         "buff_data": "lengyue-shengong_freeze",      
                         "buff_msg" : msg,
-                        "disa_msg" : HIY "你感到身边的寒气渐渐散去了。\n" NOR,
+                        "disa_msg" : HIY "你感到身邊的寒氣漸漸散去了。\n" NOR,
                         
                 ]);
                 if( !BUFF_D->check_buff(target, "lengyue") )
                 BUFF_D->buffup(buff);
         } else
         {
-                msg = HIY "$n" HIY "感到一阵寒意自心底泛起，连忙"
-                       "运动抵抗，堪勘无事。\n" NOR;
+                msg = HIY "$n" HIY "感到一陣寒意自心底泛起，連忙"
+                       "運動抵抗，堪勘無事。\n" NOR;
 
                 message_combatd(msg, me, target);
         }

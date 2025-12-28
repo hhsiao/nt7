@@ -6,8 +6,8 @@ void setup()
 {
         set_name("[1;32m睡袋[2;37;0m[2;37;0m", ({"sleepbag"}));        
         set("gender", "女性");                
-        set("long", "旅行居家必备之物。[2;37;0m
-它是科恩的魔幻兽。
+        set("long", "旅行居家必備之物。[2;37;0m
+它是科恩的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

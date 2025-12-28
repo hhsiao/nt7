@@ -13,7 +13,7 @@ string long()
 void create()
 {
         
-        set_name(HIY "气运符" NOR, ({ "qiyun fu", "fu" }));
+        set_name(HIY "氣運符" NOR, ({ "qiyun fu", "fu" }));
         set_weight(100);
                 set("unit", "枚");
                 set("value", 500);
@@ -46,13 +46,13 @@ void reborn(object own)
         dtns = explode(query("dtname"),"");
         dtn = dtns[0]+dtns[1]+dtns[2]+dtns[3];
         set("dtname2", dtn);
-        set_name(HIC +  dtn + HIY + "气运符" + NOR, ({ "qiyun fu", "fu" }));
-        set("longx", HIG "这是一枚护身符，由洞天的气运结成的宝贝，退出游戏或洞天都会飞走。\n" NOR);
+        set_name(HIC +  dtn + HIY + "氣運符" + NOR, ({ "qiyun fu", "fu" }));
+        set("longx", HIG "這是一枚護身符，由洞天的氣運結成的寶貝，退出遊戲或洞天都會飛走。\n" NOR);
                                 set("armor_prop/max_experience", 2000000 + lv * 200000);
                 set("armor_prop/kar", 120 + lv * 16);
                 set("armor_prop/research_effect", 50 + lv * 6);
                 set("armor_prop/derive_effect", 50 + lv * 6);
-        set("quality_level", lv + 1);//装饰
+        set("quality_level", lv + 1);//裝飾
         set("dt_owner", own);
         set("n_flee", 3600 + lv * 720);
         set("material", "tian jing");
@@ -74,7 +74,7 @@ void heart_beat()
         }
         if ( query("n_flee") < 1 || 
         (strsrch(base_name(environment(own)), "/d/dongtian") == -1) ) {
-                message_vision(NOR + CYN + "$N" + NOR + CYN + "身上的$n" + NOR + CYN + "化作一阵流光往" + query("dtname") + "大殿" + NOR + CYN + "飞走了。\n" + NOR, own, me);
+                message_vision(NOR + CYN + "$N" + NOR + CYN + "身上的$n" + NOR + CYN + "化作一陣流光往" + query("dtname") + "大殿" + NOR + CYN + "飛走了。\n" + NOR, own, me);
                 destruct(me);
                 return;
         }

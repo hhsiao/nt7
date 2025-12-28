@@ -9,11 +9,11 @@ inherit F_MASTER;
 void create()
 {
         set_name("巴天石", ({ "ba tianshi", "ba", "tianshi" }));
-        set("title", "大理国护国三公" );
+        set("title", "大理國護國三公" );
         set("nickname", HIW "司空" NOR);
         set("long", @LONG
-他是大理国三公之一。一个又瘦又黑的汉子，但他
-的擅长轻功。
+他是大理國三公之一。一個又瘦又黑的漢子，但他
+的擅長輕功。
 LONG);
         set("gender", "男性");
         set("age", 46);
@@ -83,6 +83,6 @@ void attempt_apprentice(object ob)
                 return;
 
         command("smile");
-        command("say 世子殿下何需如此，只要有事吩咐在下一声便是。");
+        command("say 世子殿下何需如此，只要有事吩咐在下一聲便是。");
         return;
 }

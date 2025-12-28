@@ -6,12 +6,12 @@ void finish(object me, object ob);
 
 void create()
 {
-        set_name(RED"镰刀"NOR, ({ "lian dao"}));
+        set_name(RED"鐮刀"NOR, ({ "lian dao"}));
         set_weight(100);
         if( clonep() )
                 set_default_object(__FILE__);
         else {
-                set("long", "一把采药人常用的镰刀，用来寻找（search）草类药材。\n");
+                set("long", "一把採藥人常用的鐮刀，用來尋找（search）草類藥材。\n");
                 set("unit", "把"); 
                 set("no_get",1);
                 set("no_drop",1);             
@@ -39,26 +39,26 @@ int do_search()
     	 || query("id", weapon) != "liandao" )
     	if( !objectp(weapon=query_temp("secondary_weapon", me) )
     	 || query("id", weapon) != "liandao" )
-        	return notify_fail("你不拿着工具，找到药材也割不下来啊！\n");
+        	return notify_fail("你不拿著工具，找到藥材也割不下來啊！\n");
 
         if( strsrch(query("short", environment(me)),"草")<0
-         && strsrch(query("short", environment(me)),"丛")<0
+         && strsrch(query("short", environment(me)),"叢")<0
               && strsrch(query("long", environment(me)),"草")<0
-              && strsrch(query("long", environment(me)),"丛")<0 )
+              && strsrch(query("long", environment(me)),"叢")<0 )
 
 
-  	return notify_fail("只有草丛中才有可能找到药草!\n");
+  	return notify_fail("只有草叢中才有可能找到藥草!\n");
   	
 	if(me->is_busy())
-  	return notify_fail("你现在正忙,等一下再找吧!\n");
+  	return notify_fail("你現在正忙,等一下再找吧!\n");
 
   	if( query("search", environment(me))>time() )
-  	return notify_fail("为了环境保护，请不要践踏草坪!\n");
+  	return notify_fail("為了環境保護，請不要踐踏草坪!\n");
 
   	me->start_busy(5);
 
 	me->start_call_out( (: call_other, __FILE__, "finish", me, ob :), 3);
-	message_vision( HIB"$N四处张望，看看能不能找到有用的药草。\n"NOR, this_player());
+	message_vision( HIB"$N四處張望，看看能不能找到有用的藥草。\n"NOR, this_player());
 	return 1;
 }
 
@@ -69,13 +69,13 @@ void finish(object me, object ob)
   	if(random(5)>3) 
 	{
   		me->start_busy(2);
-  		message_vision( HIW"寻找一番之后$N一无所获，只得失望地叹了口气。\n"NOR, this_player());
+  		message_vision( HIW"尋找一番之後$N一無所獲，只得失望地嘆了口氣。\n"NOR, this_player());
 
    	}
   
   	else if ( random(20)<1) 
 	{
-  		message_vision( HIG"$N好不容易找到一棵有用的药草，割了两下却发现镰刀崩坏了!\n"NOR, this_player());
+  		message_vision( HIG"$N好不容易找到一棵有用的藥草，割了兩下卻發現鐮刀崩壞了!\n"NOR, this_player());
   		destruct(ob);
   	}
 	else
@@ -89,7 +89,7 @@ addn("neili", -(query("neili", me)/10), 		me);
    		cao->move(me);
   		me->start_busy(2);
 
-   		message_vision(HIR"$N突然发现一棵"+cao->name()+HIR"，连忙拿起镰刀，小心翼翼地将其割取下来。\n"NOR, this_player());
+   		message_vision(HIR"$N突然發現一棵"+cao->name()+HIR"，連忙拿起鐮刀，小心翼翼地將其割取下來。\n"NOR, this_player());
 	}
 }
 

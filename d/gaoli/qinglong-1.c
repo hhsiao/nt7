@@ -1,14 +1,14 @@
 // /d/gaoli/zhuquedajie2
-// Room in 高丽
+// Room in 高麗
 // rich 99/03/28
 inherit ROOM;
 void create()        
 {
-        set("short", "飞凤大街");
+        set("short", "飛鳳大街");
         set("long", @LONG
-你走在一条宽阔的石板大街上。东面就是皇城御道了，南边是兵营
-的大门，里面不时传来呐喊的声音。北边是一个马房，这里可以听到马
-叫的声音，非常热闹。
+你走在一條寬闊的石板大街上。東面就是皇城御道了，南邊是兵營
+的大門，裡面不時傳來吶喊的聲音。北邊是一個馬房，這裡可以聽到馬
+叫的聲音，非常熱鬧。
 LONG
         );
 set("outdoors", "gaoli");

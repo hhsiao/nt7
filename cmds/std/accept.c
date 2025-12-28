@@ -10,26 +10,26 @@ int main(object me, string arg)
         string r;
 
         if( query("pigging", environment(me)) )
-                return notify_fail("你还是安心的拱猪吧！\n");
+                return notify_fail("你還是安心的拱豬吧！\n");
 
         if (! objectp(ob = STORY_D->query_running_story())
             || base_name(ob) != STORY_DIR + "challenge")
-                return notify_fail("现在没有人来挑战，你瞎动什么？\n");
+                return notify_fail("現在沒有人來挑戰，你瞎動什麼？\n");
 
         if (me->is_in_prison())
                 return notify_fail("好好的做你的牢吧。\n");
 
         if (me->is_ghost())
-                return notify_fail("你还是等还了阳再说吧。\n");
+                return notify_fail("你還是等還了陽再說吧。\n");
 
         if (wizardp(me))
-                return notify_fail("你一个巫师捣什么乱？\n");
+                return notify_fail("你一個巫師搗什麼亂？\n");
 
         if (me->is_busy())
-                return notify_fail("你现在正忙，等有空了再说吧！\n");
+                return notify_fail("你現在正忙，等有空了再說吧！\n");
 
         if (me->is_fighting())
-                return notify_fail("你还是把眼前的敌人放倒再说吧！\n");
+                return notify_fail("你還是把眼前的敵人放倒再說吧！\n");
 
         if (r = ob->cannot_accept(me))
                 return notify_fail(r);
@@ -43,9 +43,9 @@ int help(object me)
         write(@HELP
 指令格式 : accept
 
-接收来自挑战者的挑战。当然的有人向你挑战才可以。
+接收來自挑戰者的挑戰。當然的有人向你挑戰才可以。
 
-其他相关指令: fight, hit
+其他相關指令: fight, hit
 
 HELP );
         return 1;

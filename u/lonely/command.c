@@ -78,16 +78,16 @@ protected nomask int command_hook(string arg)
         if( stringp(file = find_command(verb)) && call_other(file, "main", me, arg) )
                 ; else
         if( me->is_in_prison() )
-                return notify_fail("狱卒喝道：你老老实实的呆着别动！" + appromix_time(me->query_time_to_leave(), 1) + "放你出去！\n")
+                return notify_fail("獄卒喝道：你老老實實的待著別動！" + appromix_time(me->query_time_to_leave(), 1) + "放你出去！\n")
                 ; else
         if( query("id") == "guest" )
-                return notify_fail("既然仅仅是来参观，还是不要说话了！\n")
+                return notify_fail("既然僅僅是來參觀，還是不要說話了！\n")
                 ; else
         if( EMOTE_D->do_emote(me, verb, arg) )
                 ; else
         if( CHANNEL_D->do_channel(me, verb, arg) )
                 ; else
-        if( mapp(para) && para["auto_say"] && query_fail_msg() == "什么？\n" &&
+        if( mapp(para) && para["auto_say"] && query_fail_msg() == "什麼？\n" &&
                 stringp(file = find_command("say")) && !me->is_direct_command() &&
                 call_other(file, "main", me, me->query_orginal_input()) )
                 ; else
@@ -99,7 +99,7 @@ protected nomask int command_hook(string arg)
                 info["utime"] - utime);
 #endif
 
-        // 累计 timecost
+        // 累計 timecost
         total_timecost += 100000;
 
         return 1;

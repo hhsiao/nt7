@@ -7,9 +7,9 @@ void setup()
         set_name("[1;37m大排量摩托[2;37;0m[2;37;0m", ({"zuoqi"}));        
         set("gender", "男性");                
         set("long", "2000cc[2;37;0m
-它是毒娃的魔幻兽。
+它是毒娃的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "duwa");
         set("owner_name", "毒娃");

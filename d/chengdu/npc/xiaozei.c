@@ -4,10 +4,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("小贼", ({ "xiao zei","xiao","zei" }) );
+        set_name("小賊", ({ "xiao zei","xiao","zei" }) );
         set("gender", "男性" );
         set("age", 15);
-        set("long", "一个笑嘻嘻看着你的小孩。\n");
+        set("long", "一個笑嘻嘻看著你的小孩。\n");
 
         set("str", 25);
         set("con", 25);
@@ -42,9 +42,9 @@ void create()
         setup();
         set("chat_chance", 15);
         set("chat_msg", ({
-                "小贼说道: 好心的大爷哪～ 赏我要饭的几个铜板吧～\n",
-                "小贼懒洋洋地打了个哈欠。\n",
-                "小贼伸手捉住了身上的虱子，骂道: 小爷身上没几两肉，叫你们还咬! \n",
+                "小賊說道: 好心的大爺哪～ 賞我要飯的幾個銅板吧～\n",
+                "小賊懶洋洋地打了個哈欠。\n",
+                "小賊伸手捉住了身上的蝨子，罵道: 小爺身上沒幾兩肉，叫你們還咬! \n",
                 (: random_move :)
         }) );
         carry_object("/clone/food/jitui");
@@ -103,12 +103,12 @@ int accept_object(object me, object obj)
 {
         if( query("money_id", obj) && obj->value() >= 1){
                 command("smile");
-                command("say 多谢啦 ! 其实我还是有点钱的，这次只不过试试你罢了 !");
+                command("say 多謝啦 ! 其實我還是有點錢的，這次只不過試試你罷了 !");
                 command("give10silverto"+query("id", me));
         }
         else {
                 command("shake");
-                command("say 这种东西鬼才要 ! 滚一边去 !");
+                command("say 這種東西鬼才要 ! 滾一邊去 !");
                 command("give"+query("id", obj)+"to"+query("id", me));
 //                obj->move(this_player());
         }
@@ -117,6 +117,6 @@ int accept_object(object me, object obj)
 
 int accept_fight(object me)
 {
-        command("say " + RANK_D->query_respect(me) + "饶命ⅵ小的这就离开ⅵ\n");
+        command("say " + RANK_D->query_respect(me) + "饒命ⅵ小的這就離開ⅵ\n");
         return 0;
 }

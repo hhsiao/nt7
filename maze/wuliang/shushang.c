@@ -6,15 +6,15 @@ inherit ROOM;
 
 void create()
 {
-	set("short", "树上");
+	set("short", "樹上");
 	set("long", @LONG
-你现在的处境还是不妙，树枝不停地发出『吱吱』的响声，随时会断你人
-还是挂在半空，不住摇晃，向下望去，只见深谷中云雾弥漫，见不到尽头，看
-那崖壁好象有条细缝(feng)。
+你現在的處境還是不妙，樹枝不停地發出『吱吱』的響聲，隨時會斷你人
+還是掛在半空，不住搖晃，向下望去，只見深谷中雲霧瀰漫，見不到盡頭，看
+那崖壁好象有條細縫(feng)。
 LONG
 	);
 	set("item_desc", ([
-	   "feng" : "你的脚勉强可以够到。\n"
+	   "feng" : "你的腳勉強可以夠到。\n"
         ]));
         set("outdoors", "大理");
 
@@ -33,7 +33,7 @@ int do_down(string arg)
 {
 	object me;
  	me = this_player();
-	message_vision(HIR "$N继续爬向崖壁，『啊～～不好！』树枝断了，$N急速向下坠去。\n" NOR, me);
+	message_vision(HIR "$N繼續爬向崖壁，『啊～～不好！』樹枝斷了，$N急速向下墜去。\n" NOR, me);
         me->unconcious();
         me->move("/d/dali/shanlu3");
 	return 1;
@@ -43,7 +43,7 @@ int do_move(string arg)
 {
 	object me = this_player();
         if (!arg || arg!="feng") return 0;
-        message_vision(HIR "$N小心地攀住树枝，向崖缝用脚探去，勉强攀援而下。\n"  NOR, me);
+        message_vision(HIR "$N小心地攀住樹枝，向崖縫用腳探去，勉強攀援而下。\n"  NOR, me);
         me->move(__DIR__"banshan1");
         return 1; 
 }

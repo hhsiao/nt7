@@ -1,11 +1,11 @@
 // This program is a part of NT MudLIB
-// wenyin.c 文音小师太
+// wenyin.c 文音小師太
 
 inherit NPC;
 
 void create()
 {
-        set_name("文音小师太", ({ "wenyin","wenyin xiaoshitai","xiaoshitai"}));
+        set_name("文音小師太", ({ "wenyin","wenyin xiaoshitai","xiaoshitai"}));
         set("long",
                 "她是峨嵋派的第五代弟子。\n");
         set("gender", "女性");

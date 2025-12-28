@@ -6,7 +6,7 @@ void create()
         set("gender", "男性" );
         set("age", 22);
         set("long",
-                "一个京城里的混混。\n");
+                "一個京城裡的混混。\n");
         set("shen_type", -1);
         set("combat_exp", 10000);
        set("str", 10);
@@ -18,7 +18,7 @@ void create()
        set_skill("unarmed",20);
        set("chat_chance", 1);
        set("chat_msg", ({
-                "地痞无聊的伸了懒腰。\n",
+                "地痞無聊的伸了懶腰。\n",
         }) );       
 
         setup();

@@ -3,11 +3,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("游坦之", ({ "you tanzhi", "you"}));
-        set("nickname", "铁丑");
+        set_name("遊坦之", ({ "you tanzhi", "you"}));
+        set("nickname", "鐵醜");
         set("long",
-                      "此人一张脸凹凹凸凸，一块红，一块黑，满是创伤痕痕，\n"
-                      "五官糜烂，丑陋可怖已极，无不骇然。\n");
+                      "此人一張臉凹凹凸凸，一塊紅，一塊黑，滿是創傷痕痕，\n"
+                      "五官糜爛，醜陋可怖已極，無不駭然。\n");
         set("gender", "男性");
         set("age", 25);
         set("attitude", "peaceful");

@@ -7,7 +7,7 @@ void create()
 {
         set_name(HIW "天空之翼" NOR, ({ "tiankong zhiyi2", "tiankong", "zhiyi2" }) );
         set_weight(2000);
-        set("long", HIW "这是一件白色的披风，上绘蓝天白云，飘逸之极。\n" NOR);
+        set("long", HIW "這是一件白色的披風，上繪藍天白雲，飄逸之極。\n" NOR);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
@@ -19,7 +19,7 @@ void create()
                                 set("armor_prop/dex", 10);
                                 set("armor_prop/int", 3);
                                 set("armor_prop/dodge", 30);
-                                set("special/desc", HIR "提升有效轻功30级。");
+                                set("special/desc", HIR "提升有效輕功30級。");
                                 set("limit", ([ 
                                         "exp" : 18000000,
                                         "scborn" : 1,

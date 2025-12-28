@@ -4,10 +4,10 @@ inherit BUNCHER;
 
 void create()
 {
-        set_name("说书老人", ({"shuoshu laoren", "laoren"}) );
+        set_name("說書老人", ({"shuoshu laoren", "laoren"}) );
         set("gender", "男性" );
         set("age", 53);
-        set("long","一位慈眉善目的老人，正在说书。\n");
+        set("long","一位慈眉善目的老人，正在說書。\n");
         set("combat_exp", 6000);
         set("str", 30);
         set("attitude","heroism");
@@ -26,11 +26,11 @@ void init()
 void says(object me)
 {
         string *msgs = ({
-                "$N绘声绘色地说着书。\n",
-                "$N滔滔不绝地说着书。\n",
-                "$N说得眉飞色舞。\n",
-                "$N说道：“欲知后事如何，且听下回分解。”\n",
-                "$N端起茶碗喝了几口茶水，又开始接着说书。\n",
+                "$N繪聲繪色地說著書。\n",
+                "$N滔滔不絕地說著書。\n",
+                "$N說得眉飛色舞。\n",
+                "$N說道：“欲知後事如何，且聽下回分解。”\n",
+                "$N端起茶碗喝了幾口茶水，又開始接著說書。\n",
         });
         message_vision (msgs[random(sizeof(msgs))], me);
         remove_call_out("says");

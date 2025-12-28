@@ -5,17 +5,17 @@ inherit ITEM;
 
 void create()
 {
-        set_name( "易经《杂卦篇》", ({ "jing", "yi jing" }));
+        set_name( "易經《雜卦篇》", ({ "jing", "yi jing" }));
         set_weight(200);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "本");
-                set("long", "这是一册易经。上面写着：\n
-　　乾刚，坤柔。
+                set("long", "這是一冊易經。上面寫著：\n
+　　乾剛，坤柔。
 　　震起也，艮止也。
-　　兑见，而巽伏也。
-　　离上，而坎下也。 
+　　兌見，而巽伏也。
+　　離上，而坎下也。 
 \n");
                 set("value", 200);
                 set("material", "paper");

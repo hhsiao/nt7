@@ -19,58 +19,58 @@ int main(object me, string arg)
         mapping data;
 
         if( !arg )
-                return notify_fail("指令格式：resolve <动态装备>\n");
+                return notify_fail("指令格式：resolve <動態裝備>\n");
 
         if( me->is_busy() )
-                return notify_fail("先忙完了你的事情再做这件事情吧！\n");
+                return notify_fail("先忙完了你的事情再做這件事情吧！\n");
 
         if( me->is_fighting() )
-                return notify_fail("你现在正在打架，没时间做这些事情。\n");
+                return notify_fail("你現在正在打架，沒時間做這些事情。\n");
 
         if( !objectp(item = present(arg, me)) )
-                return notify_fail("你身上没有" + arg + "这样装备啊。\n");
+                return notify_fail("你身上沒有" + arg + "這樣裝備啊。\n");
 
         if( !objectp(scroll = present("resolve scroll", me)) )
-                return notify_fail("你身上没有分解卷轴。\n");
+                return notify_fail("你身上沒有分解卷軸。\n");
 
         if( query("max_neili", me)<300 )
-                return notify_fail("你现在的内力修为有限，无法分解物品。\n");
+                return notify_fail("你現在的內力修為有限，無法分解物品。\n");
 
         if( query("max_jingli", me)<300 )
-                return notify_fail("你现在的精力修为有限，无法分解物品。\n");
+                return notify_fail("你現在的精力修為有限，無法分解物品。\n");
 
         if( query("jingli", me)<300 )
-                return notify_fail("你现在精力不济，无法分解物品。\n");
+                return notify_fail("你現在精力不濟，無法分解物品。\n");
 
         if( query("equipped", item) )
                 return notify_fail("你先卸除他先。\n");
 
         if( query("no_identify", item) )
-                return notify_fail("此物品还没有签定。\n");
+                return notify_fail("此物品還沒有簽定。\n");
 
         if( sscanf(base_name(item), "/data/%*s") || query("item_owner", item) )
-                return notify_fail("你先解除该物品的被绑定状态。\n");
+                return notify_fail("你先解除該物品的被綁定狀態。\n");
 
         if( query("quality_level", item) < 3 && (!query("enchase", item) || !query("enchase/apply_prop", item)) )
-                return notify_fail("这个物品上面没有可用来分解的属性元素。\n");
+                return notify_fail("這個物品上面沒有可用來分解的屬性元素。\n");
 
         if( item->is_item_make() || (query("quality_level", item) < 3 && !sizeof(ins=query("insert", item))) )
-                return notify_fail("这个物品无法用来分解属性元素。\n");
+                return notify_fail("這個物品無法用來分解屬性元素。\n");
 
         if( query("maze_item", item) )
-                return notify_fail("这个物品来历不明，不可以用来分解。\n");
+                return notify_fail("這個物品來歷不明，不可以用來分解。\n");
 
               if( query("unique", item) ) //redl 2014
-                      return notify_fail("这个物品来历不明，不可以用来分解。\n"); 
+                      return notify_fail("這個物品來歷不明，不可以用來分解。\n"); 
 
         if( !query("weapon_prop", item) && !query("armor_prop", item) )
-                return notify_fail("这个物品不是完整的装备，不可以用来分解。\n");
+                return notify_fail("這個物品不是完整的裝備，不可以用來分解。\n");
 
         if( query("enchase/increase", item) )
-                return notify_fail("改造过的装备不可以用来分解属性元素。\n");
+                return notify_fail("改造過的裝備不可以用來分解屬性元素。\n");
 
-        tell_object(me, HIM "\n你双目微闭，将分解卷轴与"+item->name()+HIM"凝于身前，运转内劲迫"
-                        "使它们空中旋转交融。\n" NOR);
+        tell_object(me, HIM "\n你雙目微閉，將分解卷軸與"+item->name()+HIM"凝於身前，運轉內勁迫"
+                        "使它們空中旋轉交融。\n" NOR);
 
         me->start_busy(1);
         addn("jingli", -200, me);
@@ -122,11 +122,11 @@ int main(object me, string arg)
         
         map_delete(apply, "damage");
         
-        message("vision", HIW "\n霎时间只见" + me->name() + HIW "身前一道道"
-                "光华闪过，但转瞬即逝，似乎发生了什么不同寻常的"
+        message("vision", HIW "\n霎時間只見" + me->name() + HIW "身前一道道"
+                "光華閃過，但轉瞬即逝，似乎發生了什麼不同尋常的"
                 "事情。\n\n" NOR, environment(me), ({me}));
 
-        tell_object(me, HIW "霎时间只见万道光华疾闪而过，你急忙伸出双手，发现掌心蕴漾着七色霞光。\n\n" NOR);
+        tell_object(me, HIW "霎時間只見萬道光華疾閃而過，你急忙伸出雙手，發現掌心蘊漾著七色霞光。\n\n" NOR);
 
         addn("max_jingli", -1, me);
         destruct(scroll);

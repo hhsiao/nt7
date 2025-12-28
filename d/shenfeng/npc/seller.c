@@ -3,10 +3,10 @@ inherit F_VENDOR;
 
 void create()
 {
-        set_name("珠宝商", ({ "zhubao shang", "zhubao", "shang" }));
+        set_name("珠寶商", ({ "zhubao shang", "zhubao", "shang" }));
         set("gender", "男性" );
         set("age", 32);
-        set("long", "这是一个来自西域的珠宝商人。\n");
+        set("long", "這是一個來自西域的珠寶商人。\n");
         set("combat_exp", 300);
         set("str", 17);
         set("dex", 20);

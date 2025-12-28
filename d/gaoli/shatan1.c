@@ -1,11 +1,11 @@
-// Room in 高丽
+// Room in 高麗
 inherit ROOM;
 void create()        
 {
-        set("short", "沙滩");
+        set("short", "沙灘");
         set("long", @LONG        
-你走在沙滩之上，脚下是松软的海沙。南边是一望无际的大海。远
-远望去，还有几艘大船停泊在岸边，在海浪的冲击下不住的摇晃。
+你走在沙灘之上，腳下是鬆軟的海沙。南邊是一望無際的大海。遠
+遠望去，還有幾艘大船停泊在岸邊，在海浪的衝擊下不住的搖晃。
 LONG
         );
 set("outdoors", "gaoli");

@@ -14,16 +14,16 @@ inherit F_NOCLONE;
 #define MS sprintf("%c%c", 13, 10 )
 #define CC sprintf("%c", 10 )
 #define MSG(x)  CHANNEL_D->channel_broadcast("nch", x)
-#define NTRATIO 20      //1人民币:泥潭币
+#define NTRATIO 20      //1人民幣:泥潭幣
 #define GIFT1000 0
 
-mapping giftlist = ([   //每1000NT赠品
+mapping giftlist = ([   //每1000NT贈品
                                 "/d/emei/obj/pantao"                            :       100,
                                 "/d/dongtian/obj/wanxiangbook"          :       20,
                                 "/kungfu/class/sky/obj/shenjiu"         :       5,
                                 "/clone/goods/tianjing"                         :       1,
                                 ]);
-string *firstgift = ({  //第一次充值就赠
+string *firstgift = ({  //第一次充值就贈
                 "/d/emei/obj/pantao",
                 "/u/redl/obj/fanghuamu",
                 "/u/redl/obj/chutou3",
@@ -62,7 +62,7 @@ void send(object me)
         if( socket_fd < 0 )
                 return;
         if (query("btc/querytimeout") < time()) {
-                command("say 网络超时...");
+                command("say 網絡超時...");
                 socket_close();
                 return;
         }
@@ -106,7 +106,7 @@ void connect(object me)
         }
         else
         {
-                command("say 咦...redl的比特币服务网关出现连接故障。");
+                command("say 咦...redl的比特幣服務網關出現連接故障。");
                         reset_fd();
 //                      MSG((string)socket_fd + query_name() + " timeout.");
         }
@@ -146,8 +146,8 @@ void socket_rece(int fd, mixed msg)
         switch (query("btc/act", me)) {
                 case 1:
                         if (sscanf(msg, "price %s new %s" + MS, price, newAddr)==2) {
-                                tell_object(me, HIG + filter_color(query_name()) + "告诉你：你获得分配的新比特币地址为 " + BLINK HIY + newAddr + "\n"+ NOR
-                                                CYN "  (上行亮黄色的30来位的字母数字组合就是地址，不包含空格。有疑问 ask zhong ben cong about help)\n" NOR);
+                                tell_object(me, HIG + filter_color(query_name()) + "告訴你：你獲得分配的新比特幣地址為 " + BLINK HIY + newAddr + "\n"+ NOR
+                                                CYN "  (上行亮黃色的30來位的字母數字組合就是地址，不包含空格。有疑問 ask zhong ben cong about help)\n" NOR);
                                 set("btc/address", newAddr, me);
                                 delete("btc/act", me);
                                 socket_close();
@@ -156,16 +156,16 @@ void socket_rece(int fd, mixed msg)
                 case 2:
                         if (sscanf(msg, "price %s address %s balance %s value %s" + MS, price, address, balance, value)==4) {
                                 if (query("btc/address", me) == address ) {
-                                        tell_object(me, HIG + filter_color(query_name()) + "告诉你：你本轮有效的比特币地址为 " + HIY + address + "\n" + NOR);
+                                        tell_object(me, HIG + filter_color(query_name()) + "告訴你：你本輪有效的比特幣地址為 " + HIY + address + "\n" + NOR);
                                         val = to_float(value);
                                         nt = to_int(val * NTRATIO);
-                                        if (val > 1) //最小价值1元钱
+                                        if (val > 1) //最小价值1元錢
                                         {
                                                 balance2 = to_string(to_float(balance)/to_float(100000000));
-                                                tell_object(me, HIG " -此地址有" + HIY + balance + HIG + "聪的比特币，时价" + HIY + price + HIG + "元/币，总共价值" +
-                                                        HIY + value + HIG + "元，自动兑换为" + HIY + (string)nt + HIG "泥潭币。\n\a" + NOR);
-                                                bmsg += HIC + filter_color(query("name", me)) + "(" + query("id", me) + ")汇入" + HIY + balance2 + HIC + "BTC，等于用" + HIY + value + HIC + "元兑换成" + HIY + (string)nt + HIC "泥潭币。";
-                                                //发赠品1
+                                                tell_object(me, HIG " -此地址有" + HIY + balance + HIG + "聰的比特幣，時價" + HIY + price + HIG + "元/幣，總共價值" +
+                                                        HIY + value + HIG + "元，自動兌換為" + HIY + (string)nt + HIG "泥潭幣。\n\a" + NOR);
+                                                bmsg += HIC + filter_color(query("name", me)) + "(" + query("id", me) + ")匯入" + HIY + balance2 + HIC + "BTC，等於用" + HIY + value + HIC + "元兌換成" + HIY + (string)nt + HIC "泥潭幣。";
+                                                //發贈品1
                                                 if (!query("btc/count_nt", me) ) {
                                                                 foreach (string fgo in firstgift) {
                                                                         gfl[fgo] += 1;
@@ -176,7 +176,7 @@ void socket_rece(int fd, mixed msg)
                                                 if (query("top10/num") && (query("top10/weeks") != query("top10/weeks", me))) {
                                                         set("top10/weeks", query("top10/weeks"), me);
                                                         gfl["/d/emei/obj/pantao"] += query("top10/num") * 20;
-                                                        tell_object(me, HIC "你是本周第" + HIY + chinese_number(11-query("top10/num")) + HIC + "个来兑换的玩家，此id在本周内无法重复获得附赠。\n" NOR);
+                                                        tell_object(me, HIC "你是本週第" + HIY + chinese_number(11-query("top10/num")) + HIC + "個來兌換的玩家，此id在本週內無法重複獲得附贈。\n" NOR);
                                                         addn("top10/num", -1);
                                                         set("btc/giftlist" , gfl, me);
                                                 }
@@ -189,15 +189,15 @@ void socket_rece(int fd, mixed msg)
                                                         MEMBER_D->db_create_member(target, nt);
                                                 flower = nt / 100;
                                                 addn("flowers/amount", flower, me);
-                                                tell_object(me, HIC "你获得了 " + flower + " 张新手导师评价票。\n" NOR);
-                                                addn("vip/score", nt/10, me); // VIP成长值
-                                                tell_object(me, HIY "你获得了 " + nt/10 + " 点VIP成长值。\n" NOR);
+                                                tell_object(me, HIC "你獲得了 " + flower + " 張新手導師評價票。\n" NOR);
+                                                addn("vip/score", nt/10, me); // VIP成長值
+                                                tell_object(me, HIY "你獲得了 " + nt/10 + " 點VIP成長值。\n" NOR);
                                                 addn("btc/count_nt", nt, me);
                                                 addn("btc/count_satoshi", to_int(balance), me);
                                                 set("btc/last_address", address, me);
 
 
-                                                //发赠品2
+                                                //發贈品2
                                                 if (GIFT1000) {
                                                         gfr = nt / 1000;
                                                         if (gfr > 0) {
@@ -209,12 +209,12 @@ void socket_rece(int fd, mixed msg)
                                                 }
 
                                                 log_file("static/recharge_btc",sprintf("%s %s have recharge %s ， %s BTC to %d $NT\n",TIME_D->replace_ctime(time()),address,target,balance2,nt));
-                                                delete("btc/address", me);//成功后则删掉地址
-                                                //tell_object(me, BLINK + HIR + "你的比特币地址已作废，必须重新申请。\n" + NOR);
-                                                command("say " + BLINK + HIR + query("name", me) + BLINK + HIR + "，你刚才这个地址已作废，必须向我重新申请后才能再发送比特币。" + NOR);
+                                                delete("btc/address", me);//成功後則刪掉地址
+                                                //tell_object(me, BLINK + HIR + "你的比特幣地址已作廢，必須重新申請。\n" + NOR);
+                                                command("say " + BLINK + HIR + query("name", me) + BLINK + HIR + "，你剛才這個地址已作廢，必須向我重新申請後才能再發送比特幣。" + NOR);
                                                 if (gfl && mapp(gfl) && sizeof(gfl)) {
                                                         bi = sizeof(gfl);
-                                                        bmsg += "并获赠";
+                                                        bmsg += "並獲贈";
                                                         foreach (string fgo in keys(gfl)) {
                                                                 bi --;
                                                                 bmsg +=  HIY + chinese_number((gfl[fgo])) +  HIC + load_object(fgo)->name();
@@ -225,8 +225,8 @@ void socket_rece(int fd, mixed msg)
                                                         //command("say " + sort_msg(bmsg+"\n", 100));
                                                         CHANNEL_D->channel_broadcast("chat", sort_msg(bmsg+"\n", 100));
                                         } else {
-                                                tell_object(me, HIG" -此地址有" + HIY + balance + HIG + "聪的比特币，时价" + HIY + price + HIG + "元/币，总共价值" +
-                                                        HIY + value + HIG + "元，因为价值少于1元而无法兑换，凑足1元再来。\n" + NOR);
+                                                tell_object(me, HIG" -此地址有" + HIY + balance + HIG + "聰的比特幣，時價" + HIY + price + HIG + "元/幣，總共價值" +
+                                                        HIY + value + HIG + "元，因為價值少於1元而無法兌換，湊足1元再來。\n" + NOR);
                                         }
                                         delete("btc/act", me);
                                         socket_close();
@@ -253,49 +253,49 @@ void get_help()
 {
         write(
 NOR BBLU HIY "----------------------------------------------------------------------------------\n"
-NOR HIC "“比特币非货币，但普通民众在自担风险的前提下有参与商品买卖的自由。” ——PBC\n"
-NOR HIC "“比特币(BTC)是区块链(blockchain)公帐交易系统里孵出的数字签名财产。” ——sb.\n"
-NOR HBWHT HIM "【比特币兑换泥潭币步骤】\n"
-NOR "1)先ask zhong ben cong about btc获取一个新的比特币地址。\n"
-NOR "2)复制下这个地址粘贴到记事本里，如果忘记了地址，请重复上一步。\n"
-NOR "3)到你所在国家的交易所去注册帐号，并充值购买比特币(交易所网址参见附录)。\n"
-NOR "4)在交易所里提款比特币，重点是把你在这里获得的比特币地址作为提款地址。\n"
-NOR "5)等待几分钟，交易所提示提取比特币成功，回到这里重复第一步，完成兑换！\n"
-NOR "注：（不同交易所提币的手续费不同，国内普遍为千分之一或万分之一每笔。\n"
-NOR "      如果你懂，也可以有自己的软件钱包，帮助别人兑换泥潭币，价值到达一元人民币都行。\n"
-NOR "      比特币地址为全球透明账簿，它的汇款细节，任何人都可以在区块链查询到。）\n"
-NOR HBWHT HIM "【比特币兑换泥潭币比例】\n"
-NOR "在此完成兑换时，泥潭自动按比特币的即时价格，\n"
-NOR "把你汇入指定的地址的比特币先兑换成人民币点数，\n"
-NOR "再按人民币点数1比" + (string)NTRATIO + "兑换为泥潭币(以及一些新闻里的活动赠品)。\n"
-NOR "然后你本次充值过的比特币地址立即被作废。\n"
-NOR HIR "严重警告：\n"
-NOR "    兑换泥潭币成功后的比特币地址" BLINK HIR "作废" NOR "，此后再往此地址发送的比特币无效，不补偿。\n"
-NOR HBWHT HIM "【附录】\n"
-NOR HIY " 境内交易所网址：\n"
+NOR HIC "“比特幣非貨幣，但普通民眾在自擔風險的前提下有參與商品買賣的自由。” ——PBC\n"
+NOR HIC "“比特幣(BTC)是區塊鏈(blockchain)公帳交易系統裡孵出的數字簽名財產。” ——sb.\n"
+NOR HBWHT HIM "【比特幣兌換泥潭幣步驟】\n"
+NOR "1)先ask zhong ben cong about btc獲取一個新的比特幣地址。\n"
+NOR "2)複製下這個地址粘貼到記事本里，如果忘記了地址，請重複上一步。\n"
+NOR "3)到你所在國家的交易所去註冊帳號，並充值購買比特幣(交易所網址參見附錄)。\n"
+NOR "4)在交易所裡提款比特幣，重點是把你在這裡獲得的比特幣地址作為提款地址。\n"
+NOR "5)等待幾分鐘，交易所提示提取比特幣成功，回到這裡重複第一步，完成兌換！\n"
+NOR "注：（不同交易所提幣的手續費不同，國內普遍為千分之一或萬分之一每筆。\n"
+NOR "      如果你懂，也可以有自己的軟件錢包，幫助別人兌換泥潭幣，價值到達一元人民幣都行。\n"
+NOR "      比特幣地址為全球透明賬簿，它的匯款細節，任何人都可以在區塊鏈查詢到。）\n"
+NOR HBWHT HIM "【比特幣兌換泥潭幣比例】\n"
+NOR "在此完成兌換時，泥潭自動按比特幣的即時價格，\n"
+NOR "把你匯入指定的地址的比特幣先兌換成人民幣點數，\n"
+NOR "再按人民幣點數1比" + (string)NTRATIO + "兌換為泥潭幣(以及一些新聞裡的活動贈品)。\n"
+NOR "然後你本次充值過的比特幣地址立即被作廢。\n"
+NOR HIR "嚴重警告：\n"
+NOR "    兌換泥潭幣成功後的比特幣地址" BLINK HIR "作廢" NOR "，此後再往此地址發送的比特幣無效，不補償。\n"
+NOR HBWHT HIM "【附錄】\n"
+NOR HIY " 境內交易所網址：\n"
 NOR " www.okcoin.cn\n"
 NOR " www.huobi.com\n"
 NOR " www.btcchina.com\n"
 NOR " www.chbtc.com\n"
-NOR HIY " 跨境交易所网址：\n"
-NOR " www.coinbase.com 美国\n"
-NOR " www.okcoin.com 中国\n"
-NOR " www.bitstamp.net 美国\n"
+NOR HIY " 跨境交易所網址：\n"
+NOR " www.coinbase.com 美國\n"
+NOR " www.okcoin.com 中國\n"
+NOR " www.bitstamp.net 美國\n"
 NOR " www.igot.com 澳洲、阿拉伯\n"
-NOR " www.btc-e.com 欧洲\n"
-NOR " www.bityes.com 中国\n"
-NOR " www.bitcoin.de 德国、欧洲\n"
-NOR " www.tradehill.com 美国、欧洲\n"
-NOR " www.bitcurex.com 欧洲\n"
-NOR " www.campbx.com 欧洲\n"
-NOR " www.crypto-trade.com 德国、欧洲\n"
-NOR " www.cavirtex.com 欧洲\n"
-NOR " www.canadianbitcoins.com 美国\n"
-NOR " www.localbitcoins.com 当面交易\n"
-NOR "注：（根据自己所在地区的墙来选择，比如igot是基本覆盖了除大陆和朝鲜之外的地区。\n"
-NOR "      自己去判断交易所的位置和信誉，第一次买比特币先试试该交易所支持的最小充值额度。\n"
-NOR "      不要过份依赖交易所来保证币的安全，大额的比特币最好存到自己的软件钱包吧。）\n"
-NOR HBWHT HIM "【简单概念普及】\n"
+NOR " www.btc-e.com 歐洲\n"
+NOR " www.bityes.com 中國\n"
+NOR " www.bitcoin.de 德國、歐洲\n"
+NOR " www.tradehill.com 美國、歐洲\n"
+NOR " www.bitcurex.com 歐洲\n"
+NOR " www.campbx.com 歐洲\n"
+NOR " www.crypto-trade.com 德國、歐洲\n"
+NOR " www.cavirtex.com 歐洲\n"
+NOR " www.canadianbitcoins.com 美國\n"
+NOR " www.localbitcoins.com 當面交易\n"
+NOR "注：（根據自己所在地區的牆來選擇，比如igot是基本覆蓋了除大陸和朝鮮之外的地區。\n"
+NOR "      自己去判斷交易所的位置和信譽，第一次買比特幣先試試該交易所支持的最小充值額度。\n"
+NOR "      不要過份依賴交易所來保證幣的安全，大額的比特幣最好存到自己的軟件錢包吧。）\n"
+NOR HBWHT HIM "【簡單概念普及】\n"
 NOR CYN "https://zh-cn.bitcoin.it/wiki/%E7%AE%80%E4%BB%8B \n"
 NOR CYN "http://btc.p2pbucks.com/ \n"
 NOR CYN "http://www.01btc.com/article/558.html \n"
@@ -319,7 +319,7 @@ int get_reward()
         object me = this_player(), obj;
         mapping gfl = query("btc/giftlist" , me);
 
-                    tell_object(me, HIG + filter_color(query_name()) + "告诉你：此服务已经关闭。\n"+ NOR);
+                    tell_object(me, HIG + filter_color(query_name()) + "告訴你：此服務已經關閉。\n"+ NOR);
                     return 1;
         addn_temp("btc/asknum", 1, me);
         if (query_temp("btc/asknum", me) > 15+random(6)) {
@@ -328,35 +328,35 @@ int get_reward()
                 return 1;
         }
         if( query("online_time", me) < 3600){
-                tell_object(me, HIG + filter_color(query_name()) + "告诉你：在线时间还不足一小时吧？\n"+ NOR);
+                tell_object(me, HIG + filter_color(query_name()) + "告訴你：在線時間還不足一小時吧？\n"+ NOR);
                 return 1;
         }
         if( !query("can_summon/qiankun", me)){
-                tell_object(me, HIG + filter_color(query_name()) + "告诉你：你连乾坤袋都还没有？\n"+ NOR);
+                tell_object(me, HIG + filter_color(query_name()) + "告訴你：你連乾坤袋都還沒有？\n"+ NOR);
                 return 1;
         }
         if (me->is_busy()){
-                tell_object(me, HIG + filter_color(query_name()) + "告诉你：你现在正忙呢。\n"+ NOR);
+                tell_object(me, HIG + filter_color(query_name()) + "告訴你：你現在正忙呢。\n"+ NOR);
                 return 1;
         }
         if( query("btc/asktime") > time() || ( query_fd() >= 0 ) ){
         //if( ( query_fd() >= 0 ) ){
-                tell_object(me, HIG + filter_color(query_name()) + "告诉你：我现在正忙呢。\n"+ NOR);
+                tell_object(me, HIG + filter_color(query_name()) + "告訴你：我現在正忙呢。\n"+ NOR);
                 return 1;
         }
                 if (gfl && mapp(gfl) && sizeof(gfl)){
-                                tell_object(me, HIG + filter_color(query_name()) + "告诉你：你以前获得的赠品还没有领取呢。\n" + NOR);
+                                tell_object(me, HIG + filter_color(query_name()) + "告訴你：你以前獲得的贈品還沒有領取呢。\n" + NOR);
                                 me->start_busy(1);
                                 return 1;
                 }
         if( query("btc/asktime", me) > time() ){
-                tell_object(me, HIG + filter_color(query_name()) + "告诉你：太啰嗦了，你过会儿再来。\n"+ NOR);
+                tell_object(me, HIG + filter_color(query_name()) + "告訴你：太囉嗦了，你過會兒再來。\n"+ NOR);
                 me->start_busy(1);
                 return 1;
         }
 
         if (!can_ask()) {
-                tell_object(me, HIG + filter_color(query_name()) + "告诉你：周一的13点到15点之间的两小时不接生意。\n"+ NOR);
+                tell_object(me, HIG + filter_color(query_name()) + "告訴你：週一的13點到15點之間的兩小時不接生意。\n"+ NOR);
                 return 1;
         }
 
@@ -379,20 +379,20 @@ int get_gift()
             mapping gfl = query("btc/giftlist" , me);
 
         if (me->is_busy()){
-                tell_object(me, HIG + filter_color(query_name()) + "告诉你：你现在正忙呢。\n"+ NOR);
+                tell_object(me, HIG + filter_color(query_name()) + "告訴你：你現在正忙呢。\n"+ NOR);
                 return 1;
         }
                 if (!gfl || !mapp(gfl) || !sizeof(gfl)){
                                 if (!query("btc/count_nt", me))
-                                        tell_object(me, HIG + filter_color(query_name()) + "告诉你：你有个毛的赠品。\n" + NOR);
+                                        tell_object(me, HIG + filter_color(query_name()) + "告訴你：你有個毛的贈品。\n" + NOR);
                                 else
-                                        tell_object(me, HIG + filter_color(query_name()) + "告诉你：你的赠品已经领完了。\n" + NOR);
+                                        tell_object(me, HIG + filter_color(query_name()) + "告訴你：你的贈品已經領完了。\n" + NOR);
                                 me->start_busy(1);
                                 return 1;
                 }
         inv = all_inventory(me);
         if (inv && sizeof(inv) >= 70) {
-                        tell_object(me, HIG + filter_color(query_name()) + "告诉你：你身上的东西太多了。\n" + NOR);
+                        tell_object(me, HIG + filter_color(query_name()) + "告訴你：你身上的東西太多了。\n" + NOR);
                                 me->start_busy(1);
                 return 1;
         }
@@ -409,9 +409,9 @@ int get_gift()
                                         gfl[fgo] -= 1;
                                         if (gfl[fgo]<1) map_delete(gfl, fgo);
                                         message_vision(NOR CYN  + filter_color(query_name()) + NOR + CYN +
-                                                "递给$N" + NOR + CYN + "一" + unit + query("name", obj)+ NOR + CYN + "。\n" NOR, me);
+                                                "遞給$N" + NOR + CYN + "一" + unit + query("name", obj)+ NOR + CYN + "。\n" NOR, me);
                                 } else {
-                                        tell_object(me, HIG + filter_color(query_name()) + "告诉你：你该减肥了。\n" + NOR);
+                                        tell_object(me, HIG + filter_color(query_name()) + "告訴你：你該減肥了。\n" + NOR);
                                         destruct(obj);
                                         break;
                                 }
@@ -423,13 +423,13 @@ int get_gift()
 
 void create()
 {
-        set_name(NOR "中本聪" NOR, ({ "zhong ben cong", "zhong", "cong" }));
+        set_name(NOR "中本聰" NOR, ({ "zhong ben cong", "zhong", "cong" }));
                 set("nickname", NOR BLU "神秘人" NOR);
         set("long", BCYN + HIC + @LONG
-    浩瀚的互联网如同星空，这是个宇宙的隐者。
-自由穿梭于此星球和其他星球之间，不屑留点痕迹。
-如果有可能，真想听你讲自己的故事，但我也知道，
-你是不会留给这个机会了……
+    浩瀚的互聯網如同星空，這是個宇宙的隱者。
+自由穿梭於此星球和其他星球之間，不屑留點痕跡。
+如果有可能，真想聽你講自己的故事，但我也知道，
+你是不會留給這個機會了……
 LONG + NOR);
         set("gender", "男性" );
         set("age", 40);
@@ -453,11 +453,11 @@ LONG + NOR);
 
         set("inquiry", ([
                         "btc" : (: get_reward :),
-                        "比特币" : (: get_reward :),
+                        "比特幣" : (: get_reward :),
                         "help" : (: get_help :),
-                        "说明" : (: get_help :),
+                        "說明" : (: get_help :),
                         "gift" : (: get_gift :),
-                        "赠品" : (: get_gift :),
+                        "贈品" : (: get_gift :),
         ]));
 
                 set("socket_fd", -1);
@@ -472,6 +472,6 @@ void init()
 //      string addr;
 //     if( interactive(ob = this_player()) && living(ob) &&
 //      stringp(addr = query("btc/address", ob)) && strlen(addr) > 25 ) {
-//              tell_object(ob, NOR "你现在的比特币地址为 " + addr + "\n" + NOR);
+//              tell_object(ob, NOR "你現在的比特幣地址為 " + addr + "\n" + NOR);
 //     }
 }

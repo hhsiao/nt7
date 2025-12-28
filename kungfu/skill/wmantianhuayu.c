@@ -2,46 +2,46 @@
 #include <combat.h>
 inherit SKILL;
 mapping *action = ({
-([  "action":"$N将$w扣在拇指上用力一弹，一招「"+MAG+"飞花逐蝶"+NOR+"」$w夹杂着丝丝劲风射向$n的$l",
+([  "action":"$N將$w扣在拇指上用力一彈，一招「"+MAG+"飛花逐蝶"+NOR+"」$w夾雜著絲絲勁風射向$n的$l",
     "force" : 180,
     "lvl" : 0,
-    "skill_name" : MAG "飞花逐蝶" NOR,
-    "damage_type":"刺伤",
+    "skill_name" : MAG "飛花逐蝶" NOR,
+    "damage_type":"刺傷",
     "post_action":  (: call_other, WEAPON_D, "throw_weapon" :),
  ]),
-([  "action":"$N左手一扬一招「"+HIW+"雪花翩翩"+NOR+"」$w犹如雪花，似缓实速射向$n的$l",
+([  "action":"$N左手一揚一招「"+HIW+"雪花翩翩"+NOR+"」$w猶如雪花，似緩實速射向$n的$l",
     "force" : 180,
     "lvl" : 40,
     "skill_name" : HIW "雪花翩翩"NOR,
-    "damage_type":"刺伤",
+    "damage_type":"刺傷",
     "post_action":  (: call_other, WEAPON_D, "throw_weapon" :),
 ]),
-([  "action":"$N大喝一声一招「"+BLU+"乾坤一掷"+NOR+"」手中$w突然急射而出",
+([  "action":"$N大喝一聲一招「"+BLU+"乾坤一擲"+NOR+"」手中$w突然急射而出",
     "force" : 180,
     "lvl" : 80,
-    "skill_name" : BLU "乾坤一掷" NOR,
-    "damage_type":"刺伤",
+    "skill_name" : BLU "乾坤一擲" NOR,
+    "damage_type":"刺傷",
     "post_action":  (: call_other, WEAPON_D, "throw_weapon" :),
 ]),
-([  "action":"$N身形加快一招「"+RED+"薰容逐电"+NOR+"」$w闪电一般射向$n的$l",
+([  "action":"$N身形加快一招「"+RED+"薰容逐電"+NOR+"」$w閃電一般射向$n的$l",
     "force" : 180,
     "lvl" : 120,
-    "skill_name" : RED "薰容逐电" NOR,
-    "damage_type":"刺伤",
+    "skill_name" : RED "薰容逐電" NOR,
+    "damage_type":"刺傷",
     "post_action":  (: call_other, WEAPON_D, "throw_weapon" :),
 ]),
-([  "action":"$N突然身形一跃，手一扬一招「"+YEL+"流荧飞逝"+NOR+"」,$w闪电一般射向$n的$l",
+([  "action":"$N突然身形一躍，手一揚一招「"+YEL+"流熒飛逝"+NOR+"」,$w閃電一般射向$n的$l",
     "force" : 180,
     "lvl" : 160,
-    "skill_name" : YEL "流荧飞逝" NOR,
-    "damage_type":"刺伤",
+    "skill_name" : YEL "流熒飛逝" NOR,
+    "damage_type":"刺傷",
     "post_action":  (: call_other, WEAPON_D, "throw_weapon" :),
 ]),
-([  "action":"$N不快不慢，一招「"+HIW+"流星逐月"+NOR+"」,$w在半空中划出一道圆弧射向$n的$l",
+([  "action":"$N不快不慢，一招「"+HIW+"流星逐月"+NOR+"」,$w在半空中劃出一道圓弧射向$n的$l",
     "force" : 180,
     "lvl" : 200,
     "skill_name" : HIW "流星逐月" NOR,
-    "damage_type":"刺伤",
+    "damage_type":"刺傷",
     "post_action":  (: call_other, WEAPON_D, "throw_weapon" :),
 ]),
 });
@@ -50,7 +50,7 @@ int practice_level(){   return 200;  }
 int valid_learn(object me)
 {
       if (me->query_skill("throwing",1) <= me->query_skill("wmantianhuayu",1))
-      return notify_fail("你的基础不够，无法领会更高深的技巧！\n");
+      return notify_fail("你的基礎不夠，無法領會更高深的技巧！\n");
     return 1;
 }
 string query_skill_name(int level)
@@ -77,7 +77,7 @@ mapping query_action(object me, object weapon)
         return (["action":BOLD"一"+query("unit", weapon)+"$w"+BOLD+"射向$n"+BOLD+"的$l"NOR,
                  "dodge": -3*random(level),
                  "damage": level,
-                 "damage_type":"刺伤",
+                 "damage_type":"刺傷",
                  "post_action":  (: call_other, WEAPON_D, "throw_weapon" :),
                 ]);
     return a_action;
@@ -89,12 +89,12 @@ int practice_skill(object me)
     object ob;
     if( query("qi", me)<30
      || query("neili", me)<35 )
-        return notify_fail("你的内力或气不够，没有办法练习漫天花雨。\n");
+        return notify_fail("你的內力或氣不夠，沒有辦法練習漫天花雨。\n");
     if( !objectp(ob=query_temp("weapon", me) )
      || query("skill_type", ob) != "throwing" )
     if( !objectp(ob=query_temp("secondary_weapon", me) )
      || query("skill_type", ob) != "throwing" )
-        return notify_fail("你装备的武器不对。\n");
+        return notify_fail("你裝備的武器不對。\n");
     me->receive_damage("qi", 30);
     addn("force", -20, me);
     addn_temp("pratice_throwing", 1, me);
@@ -106,7 +106,7 @@ int practice_skill(object me)
            ob->add_amount(-1);
            delete_temp("pratice_throwing", me);
     }
-    write("你按著所学练了一遍漫天花雨。\n");
+    write("你按著所學練了一遍漫天花雨。\n");
     return 1;
 }
 
@@ -125,7 +125,7 @@ void do_interlink(object me, object victim)
         all_enemy=enemy[0]->name();
         for (i=1;i<sizeof(enemy);i++)
             all_enemy+=("、"+enemy[i]->name());
-        message_vision(BOLD+"$N纵身跃起，衣袖一挥，几"+query("unit", weapon)+weapon->name()+"同时射向"+all_enemy+"。\n\n"NOR,me);
+        message_vision(BOLD+"$N縱身躍起，衣袖一揮，幾"+query("unit", weapon)+weapon->name()+"同時射向"+all_enemy+"。\n\n"NOR,me);
         set_temp("wmantianhuayu", 1, me);
         for (i=0;i<sizeof(enemy);i++){
             for (j=0;j<(skill/(60*sizeof(enemy)));j++)

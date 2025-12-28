@@ -21,7 +21,7 @@ int is_worm()
         return 1;
 }
 
-int is_worm2()//蛊虫有主吗？ GIFTD把奖励转嫁给主人
+int is_worm2()//蠱蟲有主嗎？ GIFTD把獎勵轉嫁給主人
 {
         return owner();
 }
@@ -59,16 +59,16 @@ int do_upg(string arg)
                 query("jingli", me) < query("max_jingli", me) || 
                 query("neili", me) < query("max_neili", me)
                 ) {
-                return notify_fail(NOR "你目前的状态不佳。\n" NOR);
+                return notify_fail(NOR "你目前的狀態不佳。\n" NOR);
         }
         if (!is_canup()) {
-                return notify_fail(NOR "你还需要对" +name()+NOR+ "进行杀戮培养。\n" NOR);
+                return notify_fail(NOR "你還需要對" +name()+NOR+ "進行殺戮培養。\n" NOR);
         }
         if (query("max_jingli", me) <= costm / 2) {
-                return notify_fail(NOR "你的最大精力不足以升级" +name()+NOR+ "。\n" NOR);
+                return notify_fail(NOR "你的最大精力不足以升級" +name()+NOR+ "。\n" NOR);
         }
         if (query("max_neili", me) <= costm) {
-                return notify_fail(NOR "你的最大内力不足以升级" +name()+NOR+ "。\n" NOR);
+                return notify_fail(NOR "你的最大內力不足以升級" +name()+NOR+ "。\n" NOR);
         }
         cost = 500 + random(costm / (10 + query("levelp") / 5));
         addn("max_jingli", -cost/2, me);
@@ -80,8 +80,8 @@ int do_upg(string arg)
         set("eff_jing", 0, me);
         set("eff_qi", 0, me);
         addn("upg_energy_count", cost);
-        message_vision(HIY "$N" HIY "划破眉心，蘸起一滴" HIR "精血" HIY "点在$n" HIY "的头上，自身却奄奄一息。\n" NOR, me, this_object());
-        tell_object(me, NOR + "( 你损失了"+(string)(cost/2)+"点最大精力和"+(string)cost+"点最大内力 )\n" NOR);
+        message_vision(HIY "$N" HIY "劃破眉心，蘸起一滴" HIR "精血" HIY "點在$n" HIY "的頭上，自身卻奄奄一息。\n" NOR, me, this_object());
+        tell_object(me, NOR + "( 你損失了"+(string)(cost/2)+"點最大精力和"+(string)cost+"點最大內力 )\n" NOR);
         if (query("upg_energy_count") >= costm) {
                 delete("upg_energy_count");
                 //call_out("levelup", 1);
@@ -90,7 +90,7 @@ int do_upg(string arg)
                 me->start_busy(4);
         }
         else {
-                message_vision(NOR "$N" NOR "轻轻扇动了一下翅膀，想要飞起来。\n" NOR, this_object());
+                message_vision(NOR "$N" NOR "輕輕扇動了一下翅膀，想要飛起來。\n" NOR, this_object());
                 me->start_busy(2);
         }
         return 1;
@@ -100,7 +100,7 @@ int do_stays()
 {
         if (query_temp("gstay_time") > time()) return 0;
         set_temp("gstay_time", time()+300);
-        message_vision(NOR "$N" NOR "脸上居然人性化地露出一个“本座就在这呆会儿的表情”。\n" NOR, this_object());
+        message_vision(NOR "$N" NOR "臉上居然人性化地露出一個“本座就在這呆會兒的表情”。\n" NOR, this_object());
         return 1;
 }
 
@@ -112,7 +112,7 @@ void msgcanup()
         
         if (!own) return;
         if (!me->is_fighting()) {
-                tell_object(own, NOR + query("name", me) + NOR "嗡嗡嗡地乱飞，蠢蠢不安的样子。 (你可以尝试upg jincan gu？)\n" NOR);
+                tell_object(own, NOR + query("name", me) + NOR "嗡嗡嗡地亂飛，蠢蠢不安的樣子。 (你可以嘗試upg jincan gu？)\n" NOR);
                 return;
         }
         call_out("msgcanup", 2);
@@ -129,7 +129,7 @@ int addexp(int n)
         if (!own) return 1;
         addn("jcg/upg_energy", n, own);
         if (is_canup()) {
-                //message_vision(HIY "$N" HIY "可以升级了。\n" NOR, me);
+                //message_vision(HIY "$N" HIY "可以升級了。\n" NOR, me);
                 call_out("msgcanup", 2);
         }
 }
@@ -149,10 +149,10 @@ void levelup()
                 if (lv > query("can_perform/qianzhu-wandushou/jin", own)) addn("can_perform/qianzhu-wandushou/jin", 1, own);
         //}
         set("levelp", lv, me);
-        message_vision(HIC "$N" HIC "抱成一团互相胡乱撕咬，顷刻之后，你发现它们的数量少了一只。\n" NOR, me);
-        if (lv >= 70) n1 = HIB "百毒" + NOR + YEL + "金蚕蛊";
-        else if (lv >= 40) n1 = HIB "剧毒" + NOR + YEL + "金蚕蛊";
-        else n1 = NOR + YEL + "金蚕蛊";
+        message_vision(HIC "$N" HIC "抱成一團互相胡亂撕咬，頃刻之後，你發現它們的數量少了一隻。\n" NOR, me);
+        if (lv >= 70) n1 = HIB "百毒" + NOR + YEL + "金蠶蠱";
+        else if (lv >= 40) n1 = HIB "劇毒" + NOR + YEL + "金蠶蠱";
+        else n1 = NOR + YEL + "金蠶蠱";
         if (lv<99)
                 set_name( NOR + chinese_number(100 - lv) + "只" + n1 + NOR, ({ "jincan gu", "jincan", "gu" }));
         else {
@@ -190,14 +190,14 @@ void levelup()
 void create()
 {
                 set("levelp", 0);
-                set_name( NOR "金蚕蛊" NOR, ({ "jincan gu", "jincan", "gu" }));
+                set_name( NOR "金蠶蠱" NOR, ({ "jincan gu", "jincan", "gu" }));
         //levelup();
-        set("long", WHT "这是一些浑身骨刺，性情凶恶的蛊虫。\n传说饲养到最后能金刚不坏，并且无坚不摧。\n"
-                        HIK"( stays指令可以让它驻留 )\n" NOR);
-        set("race", "野兽");
+        set("long", WHT "這是一些渾身骨刺，性情兇惡的蠱蟲。\n傳說飼養到最後能金剛不壞，並且無堅不摧。\n"
+                        HIK"( stays指令可以讓它駐留 )\n" NOR);
+        set("race", "野獸");
         set("attitude", "peaceful");
 
-        set("limbs", ({ "头部", "身体", "尾巴", "翅膀" }));
+        set("limbs", ({ "頭部", "身體", "尾巴", "翅膀" }));
         set("verbs", ({ "bite" }));
 
         set("combat_exp", (1<<62)/2);
@@ -253,7 +253,7 @@ mixed hit_ob(object me, object ob, int damage)
         if( !limb ) {
                 limbs=query("limbs", ob);
                 if( !arrayp(limbs) ) {
-                        limbs = ({ "身体" });
+                        limbs = ({ "身體" });
                         set("limbs", limbs, ob);
                 }
         }
@@ -269,37 +269,37 @@ mixed hit_ob(object me, object ob, int damage)
                 if (lv > 0 && !random(7 - chance2)) {
                         if (!random(14 - lv / 10) && !ob->is_weak()) {
                                 limb = limbs[random(sizeof(limbs))];
-                                message_vision(HIY "$N" HIY "的尾部一震，射出一根" HIR "血红蛰针" HIY "钉在$n" HIY "的"+ limb +"，$n" HIY "浑身酸软无力。\n" NOR, me, ob);
+                                message_vision(HIY "$N" HIY "的尾部一震，射出一根" HIR "血紅蟄針" HIY "釘在$n" HIY "的"+ limb +"，$n" HIY "渾身痠軟無力。\n" NOR, me, ob);
                                 ob->set_weak(lv / 4 + 1, 0);
                         }
                         if ((!random(14 - lv / 10) || (lv >= 99)) && !ob->is_freeze()) {
                                 limb = limbs[random(sizeof(limbs))];
-                                message_vision(HIY "$N" HIY "的尾部一震，射出一根" HIB "幽蓝蛰针" HIY "正中$n" HIY "的"+ limb +"，$n" HIY "被冻结起来了。\n" NOR, me, ob);
+                                message_vision(HIY "$N" HIY "的尾部一震，射出一根" HIB "幽藍蟄針" HIY "正中$n" HIY "的"+ limb +"，$n" HIY "被凍結起來了。\n" NOR, me, ob);
                                 ob->set_freeze(lv / 4 + 1, 0);
                         }
                         if (lv >= 30 && !random(10 - lv / 20) && !ob->is_busy()) {
                                 limb = limbs[random(sizeof(limbs))];
-                                message_vision(HIY "$N" HIY "的尾部一震，射出一根" HIK "漆黑蛰针" HIY "正中$n" HIY "的"+ limb +"，$n" HIY "整个变得僵直。\n" NOR, me, ob);
+                                message_vision(HIY "$N" HIY "的尾部一震，射出一根" HIK "漆黑蟄針" HIY "正中$n" HIY "的"+ limb +"，$n" HIY "整個變得僵直。\n" NOR, me, ob);
                                 ob->start_busy(3 + random(3));
                         }
                         if (lv >= 65 && !random(7) && query("neili", ob) > 0) {
                                 limb = limbs[random(sizeof(limbs))];
-                                message_vision(HIY "$N" HIY "的尾部一震，射出一根" HIG "油绿蛰针" HIY "正中$n" HIY "的"+ limb +"，$n" HIY "真气狂泻不止。\n" NOR, me, ob);
+                                message_vision(HIY "$N" HIY "的尾部一震，射出一根" HIG "油綠蟄針" HIY "正中$n" HIY "的"+ limb +"，$n" HIY "真氣狂瀉不止。\n" NOR, me, ob);
                                 addn("neili", -query("neili", ob)/2, ob);
                         }
                         if (lv >= 75 && !random(6) && query("neili", ob) > 0) {
                                 limb = limbs[random(sizeof(limbs))];
-                                message_vision(HIY "$N" HIY "的尾部一震，射出一根" HIG "油绿蛰针" HIY "正中$n" HIY "的"+ limb +"，$n" HIY "真气狂泻不止。\n" NOR, me, ob);
+                                message_vision(HIY "$N" HIY "的尾部一震，射出一根" HIG "油綠蟄針" HIY "正中$n" HIY "的"+ limb +"，$n" HIY "真氣狂瀉不止。\n" NOR, me, ob);
                                 addn("neili", -query("neili", ob)/2, ob);
                         }
                         if (lv >= 85 && !random(5) && query("neili", ob) > 0) {
                                 limb = limbs[random(sizeof(limbs))];
-                                message_vision(HIY "$N" HIY "的尾部一震，射出一根" HIG "油绿蛰针" HIY "正中$n" HIY "的"+ limb +"，$n" HIY "真气狂泻不止。\n" NOR, me, ob);
+                                message_vision(HIY "$N" HIY "的尾部一震，射出一根" HIG "油綠蟄針" HIY "正中$n" HIY "的"+ limb +"，$n" HIY "真氣狂瀉不止。\n" NOR, me, ob);
                                 addn("neili", -query("neili", ob)/2, ob);
                         }
                         if (lv >= 99 && random(3) && !ob->query_condition("no_perform")) {
                                 limb = limbs[random(sizeof(limbs))];
-                                message_vision(HIY "$N" HIY "的尾部一震，射出一根" HIM "粉红蛰针" HIY "正中$n" HIY "的"+ limb +"，$n" HIY "突然忘了绝招。\n" NOR, me, ob);
+                                message_vision(HIY "$N" HIY "的尾部一震，射出一根" HIM "粉紅蟄針" HIY "正中$n" HIY "的"+ limb +"，$n" HIY "突然忘了絕招。\n" NOR, me, ob);
                                 ob->apply_condition("no_perform", lv / 4 + 1);
                         }
                 }
@@ -325,7 +325,7 @@ mixed hit_ob(object me, object ob, int damage)
                         damage = damage2 + random(damage2/4);
                 limb = limbs[random(sizeof(limbs))];
                         if (((random(lv * 2) + 100) * (100 + chance1) / 100) > random(query("level", ob))) {
-                                message_combatd(HIW "$N" HIW "的尾部一震，暴雨般射出" + chinese_number(damage/1000000+1) + "根蛰针，正中$n" HIW "的"+ limb +"。\n" NOR, me, ob);
+                                message_combatd(HIW "$N" HIW "的尾部一震，暴雨般射出" + chinese_number(damage/1000000+1) + "根蟄針，正中$n" HIW "的"+ limb +"。\n" NOR, me, ob);
                                 ob->receive_damage("jing", damage / 2, me);
                                 ob->receive_wound("jing", damage / 4, me);
                                 ob->receive_damage("qi", damage, me);
@@ -333,15 +333,15 @@ mixed hit_ob(object me, object ob, int damage)
                                 COMBAT_D->report_status(ob);
                         }
                         else {
-                                message_combatd(HIW "$N" HIW "的尾部一震，暴雨般射出" + chinese_number(damage/1000000+1) + "根蛰针，$n" HIW + 
-                                        (random(2) ? "猛地":"轻轻") + (random(2) ? "一跳":"后退") +"避开了。\n" NOR, me, ob);
+                                message_combatd(HIW "$N" HIW "的尾部一震，暴雨般射出" + chinese_number(damage/1000000+1) + "根蟄針，$n" HIW + 
+                                        (random(2) ? "猛地":"輕輕") + (random(2) ? "一跳":"後退") +"避開了。\n" NOR, me, ob);
                         }
                   }
                 }
         if ( base_name(me)!=base_name(ob) && (!query_temp("suck_energy_jcg", ob)) ) {
                 limit_exp = query("combat_exp", ob);
                 if (ob->is_worm() && query("worm_poison/level", ob) && query("worm_poison/level", ob)>1 ) {
-                        message_vision(HIR "$N" HIR "的脖子一晃，变出张血盆巨口死死咬住$n" HIR "，$n" HIR "体内的" + (string)query("worm_poison/level", ob) + "点生命精华快速流失。\n" NOR, me, ob);
+                        message_vision(HIR "$N" HIR "的脖子一晃，變出張血盆巨口死死咬住$n" HIR "，$n" HIR "體內的" + (string)query("worm_poison/level", ob) + "點生命精華快速流失。\n" NOR, me, ob);
                         addexp(query("worm_poison/level", ob));
                         set("qi", -1<<62, ob);
                         set("eff_qi", -1<<62, ob);
@@ -349,13 +349,13 @@ mixed hit_ob(object me, object ob, int damage)
                 } 
                 else if ( !userp(ob) && 
                         limit_exp > 0 && 
-                        ( random(limit_exp) < 100000000 ||//小于1亿
+                        ( random(limit_exp) < 100000000 ||//小於1億
                         random(5000 + (ob->is_boss() ? 10000 : 0)) < lv )
                         ) {
                         limit_exp = limit_exp / 1000000;
                         if (limit_exp > 500) limit_exp = 250;
                         if (limit_exp < 1) limit_exp = 1;
-                        message_vision(HIR "$N" HIR "的脖子一晃，变出张血盆巨口死死咬住$n" HIR "，$n" HIR "体内的" + (string)limit_exp + "点生命精华快速流失。\n" NOR, me, ob);
+                        message_vision(HIR "$N" HIR "的脖子一晃，變出張血盆巨口死死咬住$n" HIR "，$n" HIR "體內的" + (string)limit_exp + "點生命精華快速流失。\n" NOR, me, ob);
                         addexp(limit_exp);
                         set("qi", -1<<62, ob);
                         set("eff_qi", -1<<62, ob);
@@ -369,7 +369,7 @@ void heart_beat_p()
 {
         object own = owner();
         if (!own) {
-                message_vision(HIY "$N" HIY "一震背上的金翅，嗖地不见了。\n" NOR, this_object());
+                message_vision(HIY "$N" HIY "一震背上的金翅，嗖地不見了。\n" NOR, this_object());
                 destruct(this_object());
                 return;
         }
@@ -396,7 +396,7 @@ void heart_beat_p()
                         set("neili", query("max_neili"));
                         set("jingli", query("max_jingli"));
                         set_temp("gfull_time", time() + 144 - query("levelp"));
-                        if (!query("no_fight", environment(own))) message_combatd(HIW "$N" HIW "背上的六对金色翅膀一扇，状态有所恢复。\n" NOR, this_object());
+                        if (!query("no_fight", environment(own))) message_combatd(HIW "$N" HIW "背上的六對金色翅膀一扇，狀態有所恢復。\n" NOR, this_object());
                 }
         }
         call_out("heart_beat_p", 1);
@@ -407,7 +407,7 @@ int receive_damage(string type, int n)
         int lv = query("levelp");
         if (query("jinchan_msgtime")<time()){
                         set("jinchan_msgtime",time());
-                        message_combatd(HIY "$N" HIY "背上的六对金色翅膀一扇，坚若磐石。\n" NOR, this_object());
+                        message_combatd(HIY "$N" HIY "背上的六對金色翅膀一扇，堅若磐石。\n" NOR, this_object());
                         return ::receive_damage(type, 0);
         }
         if (lv >= 99 && random(2)) return ::receive_damage(type, 0);
@@ -470,20 +470,20 @@ int make_request(object master, object who)
         mapping mval = ([]);
 
         if (query("family/jcg/request_time", who) > time()) {
-                tell_object(who, NOR + CYN + master->name() + NOR + CYN + "摇摇头说：这么不成器，你过段时间再来吧。\n" + NOR);
+                tell_object(who, NOR + CYN + master->name() + NOR + CYN + "搖搖頭說：這麼不成器，你過段時間再來吧。\n" + NOR);
                 return 0;
         }
         if (query("can_perform/qianzhu-wandushou/jin", who)) {
-                tell_object(who, NOR + CYN + master->name() + NOR + CYN + "疑惑道：你不是已经拥有金蚕蛊了嘛。\n" + NOR);
+                tell_object(who, NOR + CYN + master->name() + NOR + CYN + "疑惑道：你不是已經擁有金蠶蠱了嘛。\n" + NOR);
                 return 0;
         }
         set("family/jcg/request_time", time() + 1800, who);
         while (!mval["id"] || !mval["name"] || !mval["unit"])
                 mval = request();
         set("family/jcg/request_job", mval, who);
-        tell_object(who, NOR + CYN + master->name() + NOR + CYN + "说道：听说祖师爷饮食嗜好非凡，你这次带"+
-                mval["unit"]+mval["name"]+"("+mval["id"]+")去问问辛辰子师兄？\n" + NOR+
-                HIK"( 你接到了分尸送器官的任务，参见cut ? from corpse )\n\n");
+        tell_object(who, NOR + CYN + master->name() + NOR + CYN + "說道：聽說祖師爺飲食嗜好非凡，你這次帶"+
+                mval["unit"]+mval["name"]+"("+mval["id"]+")去問問辛辰子師兄？\n" + NOR+
+                HIK"( 你接到了分屍送器官的任務，參見cut ? from corpse )\n\n");
         return 1;
 }
 
@@ -504,11 +504,11 @@ int is_complete_request(object master, object who, object ob)
         delete("family/jcg/request_time", who);
         addn("family/jcg/request_complete", 1, who);
         if (query("family/jcg/request_complete", who) < 9) {
-                tell_object(who, NOR CYN + master->name() + NOR CYN + "对你恶狠狠地笑了笑。\n" + NOR);
+                tell_object(who, NOR CYN + master->name() + NOR CYN + "對你惡狠狠地笑了笑。\n" + NOR);
                 return 1;
         }
-        master->command("say 好吧，我可以带回山去讨好老怪了。这蛊你拿去多练习练习！");
-        tell_object(who, HIC "你学会了「百毒金蚕蛊」。\n" NOR);
+        master->command("say 好吧，我可以帶回山去討好老怪了。這蠱你拿去多練習練習！");
+        tell_object(who, HIC "你學會了「百毒金蠶蠱」。\n" NOR);
         if (who->can_improve_skill("qianzhu-wandushou"))
                 who->improve_skill("qianzhu-wandushou", 1500000);
         if (who->can_improve_skill("hand"))

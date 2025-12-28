@@ -11,8 +11,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long","这是一双朝廷官员惯用的官靴。\n");
-                set("unit", "双");
+                set("long","這是一雙朝廷官員慣用的官靴。\n");
+                set("unit", "雙");
                 set("no_transfer",1);
                 set("material", "cloth");
                 set("armor_type", "feet");

@@ -3,9 +3,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short", HIY+BLINK"挑战擂台"NOR);
+        set("short", HIY+BLINK"挑戰擂臺"NOR);
         set("long", @LONG
-[1；36m这里是专门设来接受外国挑战的擂台。
+[1；36m這裡是專門設來接受外國挑戰的擂臺。
 LONG );
         set("no_drift", 1);
         set("no_clean_up", 0);

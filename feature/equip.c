@@ -32,7 +32,7 @@ int query_equipping_buff(string key)
         
         if( !equipping ) return 0;
         
-        // 套装系统加成
+        // 套裝系統加成
         if( data = query_temp("fullsuit", equipping) )
         {
                 fullsuit = 1;
@@ -46,7 +46,7 @@ int query_equipping_buff(string key)
                 }
         }
         
-        // 装备本身加成        
+        // 裝備本身加成        
         foreach(object ob in equipping->query_equipment_objects())
         {
                 if( !objectp(ob) ) continue;
@@ -72,7 +72,7 @@ void resetup_char(object ob)
         });
 
         if( !playerp(ob) && !ob->is_baby() ) return;
-        // 战场上无效
+        // 戰場上無效
         if( query_temp("warquest", ob) ) return;
         
         if( !undefinedp(query("armor_prop")) ) {
@@ -228,23 +228,23 @@ int valid_equip(object user)
         mixed no_wield;
         
         if( query("no_identify") )
-                return notify_fail(this_object()->name() + "需要鉴定后才可以使用。\n");
+                return notify_fail(this_object()->name() + "需要鑑定後才可以使用。\n");
         
         if( query("consistence") < 1 )
-                return notify_fail(this_object()->name() + "现在损坏太严重了，不能继续装备了。\n");
+                return notify_fail(this_object()->name() + "現在損壞太嚴重了，不能繼續裝備了。\n");
         
         if( no_wield = query("no_wield") ) {
                 // can not wield
                 if( stringp(no_wield) )
                         return notify_fail(no_wield);
                 else
-                        return notify_fail("这样东西无法装备。");
+                        return notify_fail("這樣東西無法裝備。");
         }
 
         if( query("ultimate/121") )
                 //if( this_object()->item_owner() != query("id", user) )
                 if( this_object()->item_owner() != "lonely" )
-                        return notify_fail("太古神器只能本人装备。");
+                        return notify_fail("太古神器只能本人裝備。");
               
         return 1;
 }
@@ -275,35 +275,35 @@ int wear()
         // Check if we have "armor_prop" defined.
         if( !mapp(query("armor_prop")) ||
             !stringp(type = query("armor_type")) )
-                return notify_fail("你只能穿戴可当作护具的东西。\n");
+                return notify_fail("你只能穿戴可當作護具的東西。\n");
         
         /*
         if( (type == "hands" || type == "finger") )
         {
                 if( owner->query_equipping_object("hand") > 1 )
-                        return notify_fail("你必须空出一只手来才能装备"+this_object()->name()+"。\n");
+                        return notify_fail("你必須空出一隻手來才能裝備"+this_object()->name()+"。\n");
 
                 if( weapon = owner->query_equipped_object("hand") ) {
                         if( query("flag", weapon)&TWO_HANDED )
-                                return notify_fail("你必须空出一只手来才能装备"+this_object()->name()+"。\n");
+                                return notify_fail("你必須空出一隻手來才能裝備"+this_object()->name()+"。\n");
                 }
         
                 if( query("flag") & TWO_HANDED ) {
                         if( sizeof(owner->query_equipping_object("hand")) > 0 )
-                                return notify_fail("你必须空出一只手来才能装备"+this_object()->name()+"。\n");
+                                return notify_fail("你必須空出一隻手來才能裝備"+this_object()->name()+"。\n");
                 }
         }
         */
         
         if( !owner->equip(this_object(), ref status) )
-                return notify_fail("无法装备该物品。\n");
+                return notify_fail("無法裝備該物品。\n");
   
         if( query("bindable") && query("bindable") == 1 &&
             !query("bind_owner") && userp(owner) ) {
                 set("bind_owner",query("id", owner));
                 set("set_data", 1);
-                tell_object(owner, HIM "你内心深处隐隐约约的感应到" + this_object()->name() +
-                                   HIM "与你融为一体。\n" NOR);
+                tell_object(owner, HIM "你內心深處隱隱約約的感應到" + this_object()->name() +
+                                   HIM "與你融為一體。\n" NOR);
         }
 
         return 1;
@@ -324,7 +324,7 @@ int wield()
         if( query("equipped") ) return 1;
 
         if( query("skill_type") == "throwing" )
-                return notify_fail("暗器只能拿在手里，无需装备。\n");
+                return notify_fail("暗器只能拿在手裡，無需裝備。\n");
 
         // If handing it now, stop handing
         if( query_temp("handing", owner) == this_object() )
@@ -333,35 +333,35 @@ int wield()
         // Check if we have "weapon_prop" defined.
         if( !mapp(query("weapon_prop")) ||
             !stringp(query("skill_type")) )
-                return notify_fail("你只能装备可当作武器的东西。\n");
+                return notify_fail("你只能裝備可當作武器的東西。\n");
 
         /*
-        flag = query("flag"); // 双手武器标志 1:必须双手才能装备,2:可以不同手装备
+        flag = query("flag"); // 雙手武器標誌 1:必須雙手才能裝備,2:可以不同手裝備
 
         if( sizeof(owner->query_equipping_object("hand")) > 1 )
-                return notify_fail("你必须空出一只手来才能装备"+this_object()->name()+"。\n");
+                return notify_fail("你必須空出一隻手來才能裝備"+this_object()->name()+"。\n");
         
         if( weapon = owner->query_equipped_object("hand", 1) ) {
                 if( query("flag", weapon)&TWO_HANDED )
-                        return notify_fail("你必须空出一只手来才能装备"+this_object()->name()+"。\n");
+                        return notify_fail("你必須空出一隻手來才能裝備"+this_object()->name()+"。\n");
         }
  
         if( flag & TWO_HANDED ) {
                 if( sizeof(owner->query_equipping_object("hand")) > 0 )
-                        return notify_fail("你必须空出一只手来才能装备"+this_object()->name()+"。\n");
+                        return notify_fail("你必須空出一隻手來才能裝備"+this_object()->name()+"。\n");
         } 
         */
         
         if( !owner->equip(this_object(), ref status) )
-                return notify_fail("无法装备该物品。\n");
+                return notify_fail("無法裝備該物品。\n");
                        
-        // bindable == 1 装备绑定
+        // bindable == 1 裝備綁定
         if( query("bindable") && query("bindable") == 1 &&
             !query("bind_owner") && userp(owner) ) {
                 set("bind_owner",query("id", owner));
                 set("set_data", 1);
-                tell_object(owner, HIM "你内心深处隐隐约约的感应到" + this_object()->name() +
-                                   HIM "与你融为一体。\n" NOR);
+                tell_object(owner, HIM "你內心深處隱隱約約的感應到" + this_object()->name() +
+                                   HIM "與你融為一體。\n" NOR);
         }
 
         return 1;
@@ -380,10 +380,10 @@ int unequip()
                 return 0;
 
         if( !stringp(equipped = query("equipped")) )
-                return notify_fail("你目前并没有装备这样东西。\n");
+                return notify_fail("你目前並沒有裝備這樣東西。\n");
 
         if( !owner->unequip(this_object(), ref status) )
-                return notify_fail("无法解除该物品。\n");
+                return notify_fail("無法解除該物品。\n");
 
         return 1;
 }

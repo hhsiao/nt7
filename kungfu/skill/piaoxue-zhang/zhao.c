@@ -12,7 +12,7 @@ int perform(object me, object target)
         int ap, dp;
         int damage, flagremote = 0;
         int lvl_jingxin = me->query_skill("jingxin", 1);
-        int lvl_emjy = me->query_skill("emei-jiuyang", 1);//不须要求mapped
+        int lvl_emjy = me->query_skill("emei-jiuyang", 1);//不須要求mapped
         int lvl_ngxy = me->query_skill("force-cognize", 1);
         int time;
         mapping buff;
@@ -22,38 +22,38 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能在战斗中对对手使用。\n");
+                return notify_fail(name() + "只能在戰鬥中對對手使用。\n");
 
         if( query_temp("weapon", me) ||
             query_temp("secondary_weapon", me) )
-                return notify_fail("你必须空手才能施展" + name() + "。\n");
+                return notify_fail("你必須空手才能施展" + name() + "。\n");
 
         if (me->query_skill("force") < 300)
-                return notify_fail("你的内功的修为不够，无法施展" + name() + "。\n");
+                return notify_fail("你的內功的修為不夠，無法施展" + name() + "。\n");
 
         if (me->query_skill("piaoxue-zhang", 1) < 180)
-                return notify_fail("你的飘雪穿云掌修为不够，无法施展" + name() + "。\n");
+                return notify_fail("你的飄雪穿雲掌修為不夠，無法施展" + name() + "。\n");
 
         if( query("neili", me)<1000 || query("max_neili", me)<3500 )
-                return notify_fail("你的真气不够，无法施展" + name() + "。\n");
+                return notify_fail("你的真氣不夠，無法施展" + name() + "。\n");
 
         if (me->query_skill_mapped("strike") != "piaoxue-zhang")
-                return notify_fail("你没有激发飘雪穿云掌，无法施展" + name() + "。\n");
+                return notify_fail("你沒有激發飄雪穿雲掌，無法施展" + name() + "。\n");
 
         if (me->query_skill_prepared("strike") != "piaoxue-zhang")
-                return notify_fail("你没有准备飘雪穿云掌，无法施展" + name() + "。\n");
+                return notify_fail("你沒有準備飄雪穿雲掌，無法施展" + name() + "。\n");
 
         if (! living(target))
-               return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+               return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
 //        if( userp(me) ) 
 //        {
                 if( (time = BUFF_D->get_buff_overtime(me, "emaq_piaoxuezhao")) > 0 )
-                        return notify_fail(MAG"佛光普照消耗心神太甚，还需等待"+time+"秒。\n"NOR);
+                        return notify_fail(MAG"佛光普照消耗心神太甚，還需等待"+time+"秒。\n"NOR);
 //        }
 
-        msg = HIY "$N" HIY "运起全身功力，顿时真气迸发，全身骨骼噼啪作"
-              "响，猛然一掌向$n" HIY "\n全力拍出，力求一击毙敌，正是一"
+        msg = HIY "$N" HIY "運起全身功力，頓時真氣迸發，全身骨骼噼啪作"
+              "響，猛然一掌向$n" HIY "\n全力拍出，力求一擊斃敵，正是一"
               "招「佛光普照」。\n" NOR;
 
         ap = attack_power(me, "strike") +
@@ -77,18 +77,18 @@ int perform(object me, object target)
                 {
                 addn("neili", -1000, me);
                 me->start_busy(5);
-                msg += HIW "只听轰然一声巨响，$n" HIW "已被一招正中，可$N"
-                       HIW "只觉全身内力犹如江河入\n海，又如水乳交融，登"
-                       "时消失得无影无踪。\n" NOR;
+                msg += HIW "只聽轟然一聲巨響，$n" HIW "已被一招正中，可$N"
+                       HIW "只覺全身內力猶如江河入\n海，又如水乳交融，登"
+                       "時消失得無影無蹤。\n" NOR;
                 }
         else 
-        if ((target->query_skill_mapped("force") == "jiuyang-shengong") && random(5)<2)//元神后40%
+        if ((target->query_skill_mapped("force") == "jiuyang-shengong") && random(5)<2)//元神後40%
         {
                 addn("neili", -1000, me);
                 me->start_busy(5);
-                msg += HIW "只听轰然一声巨响，$n" HIW "已被一招正中，可$N"
-                       HIW "只觉全身内力犹如江河入\n海，又如水乳交融，登"
-                       "时消失得无影无踪。\n" NOR;
+                msg += HIW "只聽轟然一聲巨響，$n" HIW "已被一招正中，可$N"
+                       HIW "只覺全身內力猶如江河入\n海，又如水乳交融，登"
+                       "時消失得無影無蹤。\n" NOR;
         } 
         else
         if (ap * 4 / 5 + random(ap) > dp)
@@ -117,7 +117,7 @@ int perform(object me, object target)
                                 damage += damage * lvl_ngxy / 10000;
                                 if (lvl_emjy > 1000 && lvl_ngxy > 1000 && !userp(target)) damage *= lvl_emjy / 1000 + lvl_ngxy / 1000;
                                 if (lvl_emjy > 5000 && lvl_ngxy > 3500) {
-                                        if ((lvl_emjy / 150) > 85) {//12000lv满85% REMOTE_ATTACK
+                                        if ((lvl_emjy / 150) > 85) {//12000lv滿85% REMOTE_ATTACK
                                                 if (random(100) < 86) flagremote = 1;
                                         } else {
                                                 if (random(100) < (lvl_emjy / 150)) flagremote = 1;
@@ -136,16 +136,16 @@ int perform(object me, object target)
                                         switch(query("character", me) )
                                         {
                                                 case "心狠手辣":
-                                                        msg += NOR CYN "$N" NOR CYN "桀桀怪笑，虚晃一掌，倏的冲$n"
-                                                        NOR CYN "头顶抓下。\n" NOR;
+                                                        msg += NOR CYN "$N" NOR CYN "桀桀怪笑，虛晃一掌，倏的衝$n"
+                                                        NOR CYN "頭頂抓下。\n" NOR;
                                                         break;
-                                                case "阴险奸诈":
-                                                        msg += NOR CYN "$N" NOR CYN "冷笑数声，虚晃一掌，飞向$n"
-                                                        NOR CYN "头顶抓下。\n" NOR;
+                                                case "陰險奸詐":
+                                                        msg += NOR CYN "$N" NOR CYN "冷笑數聲，虛晃一掌，飛向$n"
+                                                        NOR CYN "頭頂抓下。\n" NOR;
                                                         break;
                                                 default:
-                                                        msg += NOR CYN "$N" NOR CYN "扬声吐气，虚晃一掌，奋力向$n"
-                                                        NOR CYN "头顶抓下。\n" NOR;
+                                                        msg += NOR CYN "$N" NOR CYN "揚聲吐氣，虛晃一掌，奮力向$n"
+                                                        NOR CYN "頭頂抓下。\n" NOR;
                                                         break;
                                         }                                                                               
                                         if ( random((int)me->query_skill("jiuyin-baiguzhao", 1) * (query("jiali", me) + 1)) > (int)target->query_skill("parry", 1) / 2 && 
@@ -153,20 +153,20 @@ int perform(object me, object target)
                                         ) {
                                                 msg += COMBAT_D->do_damage(me, target, REMOTE_ATTACK, ( (damage > query("max_qi", target)) ? query("max_qi", target) + 1 : damage  ), 
                                                 90 + (int)me->query_skill("jiuyin-baiguzhao", 1) /50, 
-                                                HIR "$N" HIR "这一爪来势好快，正抓中$n"
+                                                HIR "$N" HIR "這一爪來勢好快，正抓中$n"
                                                 HIR "的檀中大穴，$n" HIR
-                                                "一声惨叫，软绵绵的瘫了下去。\n" NOR);
+                                                "一聲慘叫，軟綿綿的癱了下去。\n" NOR);
                                                 flagclaw = 1;
                     } else {
                                                 msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 90 + (int)me->query_skill("jiuyin-baiguzhao", 1) /50, 
-                                                HIR "$n" HIR "连忙躲闪，但“扑哧”一声，$N"
+                                                HIR "$n" HIR "連忙躲閃，但“撲哧”一聲，$N"
                                                 HIR "五指正插入$n" HIR "的手背。\n" NOR);
                     }
                                                 target->affect_by("jy_poison",
                                                 ([ "level" : query("jiali", me) / 50 + 200 + query("level", me) * 10,
                                                         "id":query("id", me),
                                                         "duration" : (int)me->query_skill("jiuyin-baiguzhao", 1) / 10 + query("level", me) ]));
-                                                msg += NOR BLU "$n" BLU "突然只膝弯曲，身子慢慢垂下，口中发出似人似鬼的荷荷之声。\n" NOR; 
+                                                msg += NOR BLU "$n" BLU "突然只膝彎曲，身子慢慢垂下，口中發出似人似鬼的荷荷之聲。\n" NOR; 
                 }
                                                                 
                                 if (flagclaw) {
@@ -208,12 +208,12 @@ int perform(object me, object target)
                                                                                                 }
                                                                                         }
                                                 msg = COMBAT_D->do_damage(me, target, (flagremote ? REMOTE_ATTACK : UNARMED_ATTACK), damage, 135 + lvl_jingxin /25 + lvl_emjy / 20, 
-                                                        NOR CYN "$N" NOR CYN "大喝一声，双袖鼓荡起" + ((flagremote) ? BLINK : NOR) + HIW "峨眉九阳"  
-                                                        NOR CYN + ((flagremote) ? "螺旋透劲" : "劲气") + "，顺势往旁一推。\n" NOR
-                                                        HIR "只听轰然一声巨响，$n" HIR "被$N"
-                                                        HIR "一招正中，身子便如稻草般平平飞出"
-                                                        "，重\n重摔在地下，呕出一大口鲜血，动"
-                                                        "也不动。\n" NOR);
+                                                        NOR CYN "$N" NOR CYN "大喝一聲，雙袖鼓盪起" + ((flagremote) ? BLINK : NOR) + HIW "峨眉九陽"  
+                                                        NOR CYN + ((flagremote) ? "螺旋透勁" : "勁氣") + "，順勢往旁一推。\n" NOR
+                                                        HIR "只聽轟然一聲巨響，$n" HIR "被$N"
+                                                        HIR "一招正中，身子便如稻草般平平飛出"
+                                                        "，重\n重摔在地下，嘔出一大口鮮血，動"
+                                                        "也不動。\n" NOR);
                                         } else {
                                                                                         if (flagremote && !random(3)){
                                                                                                 if (damage<query("eff_qi", target)/5) {
@@ -225,26 +225,26 @@ int perform(object me, object target)
                                                                                                 }
                                                                                         }
                                                 msg += COMBAT_D->do_damage(me, target, (flagremote ? REMOTE_ATTACK : UNARMED_ATTACK), damage, 135 + lvl_jingxin /25 + lvl_emjy / 20, 
-                                                NOR CYN "$N" NOR CYN "大喝一声，双袖鼓荡起" + ((flagremote) ? BLINK : NOR) + HIW "峨眉九阳"  
-                                                NOR CYN + ((flagremote) ? "螺旋透劲" : "劲气") + "，用力往前一推。\n" NOR
-                                                HIR "只听轰然一声巨响，$n" HIR "被$N"
-                                                HIR "一招正中，身子便如稻草般平平飞出"
-                                                "，重\n重摔在地下，呕出一大口鲜血，动"
-                                                "也不动。\n" NOR);
+                                                NOR CYN "$N" NOR CYN "大喝一聲，雙袖鼓盪起" + ((flagremote) ? BLINK : NOR) + HIW "峨眉九陽"  
+                                                NOR CYN + ((flagremote) ? "螺旋透勁" : "勁氣") + "，用力往前一推。\n" NOR
+                                                HIR "只聽轟然一聲巨響，$n" HIR "被$N"
+                                                HIR "一招正中，身子便如稻草般平平飛出"
+                                                "，重\n重摔在地下，嘔出一大口鮮血，動"
+                                                "也不動。\n" NOR);
                                                         }
                 }
                 else
                                         msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 145 + lvl_jingxin /25, 
-                                                HIR "只听轰然一声巨响，$n" HIR "被$N"
-                                                HIR "一招正中，身子便如稻草般平平飞出"
-                                                "，重\n重摔在地下，呕出一大口鲜血，动"
-                                                "也不动。\n" NOR);
+                                                HIR "只聽轟然一聲巨響，$n" HIR "被$N"
+                                                HIR "一招正中，身子便如稻草般平平飛出"
+                                                "，重\n重摔在地下，嘔出一大口鮮血，動"
+                                                "也不動。\n" NOR);
         } else
         {
                 addn("neili", -500, me);
                 me->start_busy(3);
-                msg += CYN "可是$p" CYN "内力深厚，及时摆脱了"
-                       CYN "$P" CYN "内力的牵扯，躲开了这一击！\n" NOR;
+                msg += CYN "可是$p" CYN "內力深厚，及時擺脫了"
+                       CYN "$P" CYN "內力的牽扯，躲開了這一擊！\n" NOR;
         }
         message_combatd(msg, me, target);
 
@@ -259,9 +259,9 @@ int perform(object me, object target)
                 "type"   : "cooldown",
                 "type2"  : "emaq_piaoxuezhao",
                 "attr"   : "curse",
-                "name"   : "飘雪穿云掌·佛光普照",
+                "name"   : "飄雪穿雲掌·佛光普照",
                 "time"   : time,
-                "buff_msg" : "佛光普照消耗心神太甚，还需等待"+time+"秒方可再次施展。\n",
+                "buff_msg" : "佛光普照消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : "",
                 "disa_type": 0,
                 ]);

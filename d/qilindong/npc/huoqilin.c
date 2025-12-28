@@ -6,12 +6,12 @@ void big_blowing();
 void create()
 {
         set_name(HIR"火麒麟"NOR, ({ "huo qilin", "qilin" }) );
-        set("race", "野兽");
+        set("race", "野獸");
         set("gender", "雄性");
         set("age", 200);
         set("long", 
-"这是一条全身赤红，吸天地之间的火气而长大的火麒麟！
-它全身散发着赤红色的火焰。\n");
+"這是一條全身赤紅，吸天地之間的火氣而長大的火麒麟！
+它全身散發著赤紅色的火焰。\n");
         
         set("str", 100);
         set("con", 100);
@@ -25,7 +25,7 @@ void create()
         set("max_jing", 50000);
         set("max_neili", 50000);
         set("attitude", "aggressive");
-        set("limbs", ({ "头部", "身体", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體", "尾巴" }) );
         set("verbs", ({ "bite", "claw" }) );
 
         set("chat_chance_combat", 80); 
@@ -48,8 +48,8 @@ void big_blowing()
      ob = this_object();        
      me = this_player();
 
-     tell_room(environment(ob),HIR "\n\n火麒麟突然吐出一股炽可焚金的火焰，"
-                  "整个天地似乎都被烧着了！！！\n\n"NOR);
+     tell_room(environment(ob),HIR "\n\n火麒麟突然吐出一股熾可焚金的火焰，"
+                  "整個天地似乎都被燒著了！！！\n\n"NOR);
 
 
      inv = all_inventory(environment(ob));
@@ -58,7 +58,7 @@ void big_blowing()
      {
                 dam = random(500) + 100;               
                 inv[i]->receive_wound("qi",dam);
-                tell_object(inv[i], HBRED"你被火焰烧着，顿觉气血大受损伤！\n\n"NOR);
+                tell_object(inv[i], HBRED"你被火焰燒著，頓覺氣血大受損傷！\n\n"NOR);
      } 
 }
 
@@ -72,7 +72,7 @@ void init()
         if (! interactive(me = this_player())) 
                return; 
 
-       // 自动攻击玩家                
+       // 自動攻擊玩家                
        kill_ob(me); 
 } 
 void die()
@@ -82,7 +82,7 @@ void die()
         int exp, userexp;
 
         ob = this_object();
-        message_vision(HIR"\n$N" HIG"挣扎了几下，发出一声惨叫，便不再动弹了。\n"NOR, ob);
+        message_vision(HIR"\n$N" HIG"掙扎了幾下，發出一聲慘叫，便不再動彈了。\n"NOR, ob);
 
         if(objectp(killer = ob->query_last_damage_from()) &&
            ! killer->query("reborn_start/qilindong/qilin") )
@@ -92,15 +92,15 @@ void die()
                 obj = new(__DIR__"obj/qilin");
                 obj ->move(killer, 1);
                
-                message_vision(HIC "\n\n一团火焰猛地升腾，一个声音对$N说道："
-                               "谢谢你杀死火麒麟，你将得到麒麟臂作为奖励！\n\n" NOR, killer); 
-                message_vision(HIY"只见$N" HIY"慢慢消失，只剩下了一只麒麟的前臂。\n"
-                               "\n$n随即将麒麟臂捡了起来。\n\n"NOR, ob, killer);            
+                message_vision(HIC "\n\n一團火焰猛地升騰，一個聲音對$N說道："
+                               "謝謝你殺死火麒麟，你將得到麒麟臂作為獎勵！\n\n" NOR, killer); 
+                message_vision(HIY"只見$N" HIY"慢慢消失，只剩下了一隻麒麟的前臂。\n"
+                               "\n$n隨即將麒麟臂撿了起來。\n\n"NOR, ob, killer);            
                 killer->set("reborn_start/qilindong/qilin",1);
                 killer->add("combat_exp",exp);
                 killer->add("potential",20000);                       
-                message("vison", HBMAG"【转世传闻】：据说" + killer->query("name") +
-                                "成功地杀死了火麒麟，得到宝物麒麟臂!\n"NOR, users());
+                message("vison", HBMAG"【轉世傳聞】：據說" + killer->query("name") +
+                                "成功地殺死了火麒麟，得到寶物麒麟臂!\n"NOR, users());
         }              
         destruct(ob);
 } 

@@ -4,12 +4,12 @@
 
 void setup()
 {
-        set_name("小猫[2;37;0m[2;37;0m", ({"xiaomao"}));        
+        set_name("小貓[2;37;0m[2;37;0m", ({"xiaomao"}));        
         set("gender", "女性");                
-        set("long", "小猫[2;37;0m
-它是真果脯的魔幻兽。
+        set("long", "小貓[2;37;0m
+它是真果脯的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "guopu");
         set("owner_name", "真果脯");

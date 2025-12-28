@@ -6,13 +6,13 @@ inherit F_COAGENT;
 
 void create()
 {
-        set_name("华英雄", ({ "hua yingxiong", "hua", "yingxiong"}));
-        set("long", "一个俊俏的中年男子，衣着长衫，他就是华英雄。\n"
-                    "传说他命犯天煞孤星，一生漂泊，落于异地。尔后\n"
-                    "习得一身绝技，兼修炼「中华傲决」，大败「东洋\n"
-                    "战神」无敌。\n"); 
-        set("nickname", HIW "中华英雄" NOR);
-        set("title", HIY "大宗师" NOR);
+        set_name("華英雄", ({ "hua yingxiong", "hua", "yingxiong"}));
+        set("long", "一個俊俏的中年男子，衣著長衫，他就是華英雄。\n"
+                    "傳說他命犯天煞孤星，一生漂泊，落於異地。爾後\n"
+                    "習得一身絕技，兼修煉「中華傲決」，大敗「東洋\n"
+                    "戰神」無敵。\n"); 
+        set("nickname", HIW "中華英雄" NOR);
+        set("title", HIY "大宗師" NOR);
         set("gender", "男性");
         set("age", 26);
         set("attitude", "friendly");
@@ -91,7 +91,7 @@ void die()
                          if (arrayp(ob->query_team()))
                          {
                                  command("heng");
-                                 command("say 胜之不武！");
+                                 command("say 勝之不武！");
                                  set("qi", 280000);
                                  set("jing", 60000);
                                  set("neili", 35000);
@@ -109,7 +109,7 @@ void die()
              if (ob->query("sky12/floor") == 3)
              {
                       ob->set("sky12/floor", 4);
-                 command("say 阁下请便吧！");
+                 command("say 閣下請便吧！");
              }
         }
 
@@ -125,7 +125,7 @@ void die()
         return;
 }
 
-// 气血小于1000则死亡，避免他人协助帮忙转世
+// 氣血小於1000則死亡，避免他人協助幫忙轉世
 void heart_beat()
 {
         if (this_object()->query("qi") < 1000 || this_object()->query("eff_qi") < 1000)

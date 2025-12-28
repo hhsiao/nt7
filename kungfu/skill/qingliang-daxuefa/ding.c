@@ -3,7 +3,7 @@
 
 inherit F_SSERVER;
 
-string name() { return HIC "透骨钉" NOR; }
+string name() { return HIC "透骨釘" NOR; }
 
 int perform(object me)
 {
@@ -18,33 +18,33 @@ int perform(object me)
         }
 
         if (! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         weapon=query_temp("weapon", me);
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "dagger" )
-                return notify_fail("你所使用的武器不对，难以施展" + name() + "。\n");
+                return notify_fail("你所使用的武器不對，難以施展" + name() + "。\n");
 
         skill = me->query_skill("qingliang-daxuefa", 1);
 
         if (me->query_skill("force") < 150)
-                return notify_fail("你的内功修为不够，难以施展" + name() + "。\n");
+                return notify_fail("你的內功修為不夠，難以施展" + name() + "。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你现在的真气不足，难以施展" + name() + "。\n");
+                return notify_fail("你現在的真氣不足，難以施展" + name() + "。\n");
 
         if (skill < 100)
-                return notify_fail("你清凉打穴法修为有限，难以施展" + name() + "。\n");
+                return notify_fail("你清涼打穴法修為有限，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("dagger") != "qingliang-daxuefa")
-                return notify_fail("你没有激发清凉打穴法，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發清涼打穴法，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIC "$N" HIC "侧身将手中" + weapon->name() + HIC "斜刺而出，一式「"
-              HIR "透骨钉" NOR + HIC "」卷带着呼呼风声，将$n" HIC "包围紧裹。\n" NOR;
+        msg = HIC "$N" HIC "側身將手中" + weapon->name() + HIC "斜刺而出，一式「"
+              HIR "透骨釘" NOR + HIC "」卷帶著呼呼風聲，將$n" HIC "包圍緊裹。\n" NOR;
 
         ap = attack_power(me, "dagger");
         dp = defense_power(target, "parry");
@@ -53,16 +53,16 @@ int perform(object me)
                 addn("neili", -200, me);
                 damage = damage_power(me, "dagger");
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 50,
-                                           HIR "顿时只听得“噗嗤”一声，$n" HIR
-                                           "胸口被$N" HIR "这一招刺中，溅出一柱鲜血。\n" NOR);
+                                           HIR "頓時只聽得“噗嗤”一聲，$n" HIR
+                                           "胸口被$N" HIR "這一招刺中，濺出一柱鮮血。\n" NOR);
                 me->start_busy(1);
                 if (ap / 3 + random(ap) > dp && ! target->is_busy())
                         target->start_busy(ap / 80 + 1);
         } else
         {
                 msg += CYN "可是$p" CYN "的看破了$P" CYN
-                       "的招式，巧妙的一一拆解，没露半点"
-                       "破绽！\n" NOR;
+                       "的招式，巧妙的一一拆解，沒露半點"
+                       "破綻！\n" NOR;
                 addn("neili", -50, me);
                 me->start_busy(3);
         }

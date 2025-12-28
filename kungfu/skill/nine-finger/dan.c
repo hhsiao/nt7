@@ -19,34 +19,34 @@ int perform(object me, object target)
         }
         
         if (! target || ! me->is_fighting(target))
-                return notify_fail("「九字真言」只能对战斗中的对手使用。\n");
+                return notify_fail("「九字真言」只能對戰鬥中的對手使用。\n");
  
         if(me->query_skill_mapped("finger") != "nine-finger") 
-                return notify_fail("你没有用九字真言手印，无法使用「九字真言」绝招！\n");
+                return notify_fail("你沒有用九字真言手印，無法使用「九字真言」絕招！\n");
 
         if (me->query_skill_prepared("finger") != "nine-finger")
-                return notify_fail("你没有准备使用九字真言手印，无法施展「九字真言」绝招。\n");
+                return notify_fail("你沒有準備使用九字真言手印，無法施展「九字真言」絕招。\n");
 
         if( objectp(weapon=query_temp("weapon", me)) || 
             objectp(weapon=query_temp("handing", me)) )
-                return notify_fail("你必须空着双手才能使用指法绝招。\n");
+                return notify_fail("你必須空著雙手才能使用指法絕招。\n");
 
         if ((int)me->query_skill("nine-finger", 1) < 200)
-                return notify_fail("你的九字真言手印不够娴熟，不会使用「九字真言」。\n");
+                return notify_fail("你的九字真言手印不夠嫻熟，不會使用「九字真言」。\n");
                                 
         if ((int)me->query_skill("force") < 300)
-                return notify_fail("你的内功修为不够高。\n");
+                return notify_fail("你的內功修為不夠高。\n");
                         
         if( query("neili", me)<800 )
-                return notify_fail("你现在内力太弱，不能使用「九字真言」。\n");
+                return notify_fail("你現在內力太弱，不能使用「九字真言」。\n");
                         
-        msg = HIM "\n$N" HIM "口中默诵九字真言，忽然招式一缓，身形急退，须臾已在丈许之外。\n"
-              "$n" HIM "见$N" HIM "力有不继，正要抢上反击，却见$N" HIM "双手紧扣，拇指微伸，遥指$n" HIM "。 \n"
-              "$n" HIM "一时乱了阵脚，不知$N" HIM "所出何招，心头一阵迷惘。\n"
-              "忽闻$N" HIM "一声龙吟:\n"
-              HIW " 临 兵 斗 者 皆 阵 列 在 前 !\n"
-              HIM "喝声中混杂着强劲的" + HIW + to_chinese(me->query_skill_mapped("force")) + HIM "，$n" HIM "不由心神大乱，\n"
-              "只感到对方此拳充天塞地，螺旋真气滔滔不绝从四面八方涌来，即使协生双翼，还是避无可避！\n\n" NOR;
+        msg = HIM "\n$N" HIM "口中默誦九字真言，忽然招式一緩，身形急退，須臾已在丈許之外。\n"
+              "$n" HIM "見$N" HIM "力有不繼，正要搶上反擊，卻見$N" HIM "雙手緊扣，拇指微伸，遙指$n" HIM "。 \n"
+              "$n" HIM "一時亂了陣腳，不知$N" HIM "所出何招，心頭一陣迷惘。\n"
+              "忽聞$N" HIM "一聲龍吟:\n"
+              HIW " 臨 兵 鬥 者 皆 陣 列 在 前 !\n"
+              HIM "喝聲中混雜著強勁的" + HIW + to_chinese(me->query_skill_mapped("force")) + HIM "，$n" HIM "不由心神大亂，\n"
+              "只感到對方此拳充天塞地，螺旋真氣滔滔不絕從四面八方湧來，即使協生雙翼，還是避無可避！\n\n" NOR;
 
         ap = me->query_skill("finger") + me->query_skill("force");
         ap+=query("jiali", me);
@@ -69,9 +69,9 @@ int perform(object me, object target)
                 addn("neili", -damage/2, me);
                 if (weapon2)
                 {
-                        msg += HIM "\n$n" HIM "见$N" HIM "来势凶猛，不敢正面抵挡，手中" + weapon2->name() + HIM "满天幻影，防得水泄不通\n"
-                               HIM "$N" HIM "竟是置若罔闻，" HIW "螺旋劲气" HIM "仍旧绵绵不绝，$n" HIM "手中" + weapon2->name() + HIM "在真气激荡之下，\n"
-                               HIM "化为寸许的二三十截，飞上半空，闪出点点白光！\n" NOR;
+                        msg += HIM "\n$n" HIM "見$N" HIM "來勢兇猛，不敢正面抵擋，手中" + weapon2->name() + HIM "滿天幻影，防得水洩不通\n"
+                               HIM "$N" HIM "竟是置若罔聞，" HIW "螺旋勁氣" HIM "仍舊綿綿不絕，$n" HIM "手中" + weapon2->name() + HIM "在真氣激盪之下，\n"
+                               HIM "化為寸許的二三十截，飛上半空，閃出點點白光！\n" NOR;
                                 damage -= damage/3;
                                 weapon2->set_name("碎裂的"+query("name", weapon2));
                                 weapon2->move(environment(target));
@@ -79,8 +79,8 @@ int perform(object me, object target)
                                 set("weapon_prop", 0, weapon2);
                                 target->reset_action();
                 } else
-                        msg += HIM "\n$n" HIM "见$N" HIM "来势凶猛，不敢正面抵挡，侧身进步双掌奋力侧击$N，\n"
-                               "$N" HIM "竟是置若罔闻，" HIW "螺旋劲气" HIM "仍旧绵绵不绝，$n" HIM "无可奈何之下，被击个正着！\n" NOR;
+                        msg += HIM "\n$n" HIM "見$N" HIM "來勢兇猛，不敢正面抵擋，側身進步雙掌奮力側擊$N，\n"
+                               "$N" HIM "竟是置若罔聞，" HIW "螺旋勁氣" HIM "仍舊綿綿不絕，$n" HIM "無可奈何之下，被擊個正著！\n" NOR;
 
                 target->receive_damage("qi",damage,me);
                 target->receive_wound("qi",damage/2 + random(damage/2),me);
@@ -92,11 +92,11 @@ int perform(object me, object target)
         } else 
         {
                 if (weapon2)
-                        msg += HIM "\n$n" HIM "见$N" HIM "来势凶猛，不敢正面抵挡，手中" + weapon2->name() + HIM "满天幻影，防得水泄不通\n"
-                               "$N" HIM "被缓得一缓，" HIW "螺旋劲气" HIM "已然落空\n" NOR;
+                        msg += HIM "\n$n" HIM "見$N" HIM "來勢兇猛，不敢正面抵擋，手中" + weapon2->name() + HIM "滿天幻影，防得水洩不通\n"
+                               "$N" HIM "被緩得一緩，" HIW "螺旋勁氣" HIM "已然落空\n" NOR;
                 else
-                        msg += HIM "\n$n" HIM "见$N" HIM "来势凶猛，不敢正面抵挡，侧身进步双掌奋力侧击$N，\n"
-                               HIM "$N" HIM "被缓得一缓，" HIW "螺旋劲气" MAG "已然落空，但$n" HIM "也被$N" HIM "震得气血翻涌！\n" NOR;
+                        msg += HIM "\n$n" HIM "見$N" HIM "來勢兇猛，不敢正面抵擋，側身進步雙掌奮力側擊$N，\n"
+                               HIM "$N" HIM "被緩得一緩，" HIW "螺旋勁氣" MAG "已然落空，但$n" HIM "也被$N" HIM "震得氣血翻湧！\n" NOR;
 
                 addn("neili", -100, me);
                 me->start_busy(3);

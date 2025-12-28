@@ -4,9 +4,9 @@ inherit NPC;
 
 void create()
 {
-        set_name("苏万虹", ({"su wanhong", "su", "wanhong"}));
+        set_name("蘇萬虹", ({"su wanhong", "su", "wanhong"}));
         set("gender", "男性");
-        set("long", "他是凌霄城第六代弟子苏万虹，很得白自在的喜欢。\n");
+        set("long", "他是凌霄城第六代弟子蘇萬虹，很得白自在的喜歡。\n");
         set("age", 24);
         set("attitude", "peaceful");
 
@@ -64,5 +64,5 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        command("say 我不收徒，你去找我其它师兄好了。");
+        command("say 我不收徒，你去找我其它師兄好了。");
 }

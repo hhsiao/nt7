@@ -12,9 +12,9 @@ void set_players(object *ob) {
 void add_player(object ob) {
         if(member_array(ob,players)==-1) {
                 players += ({ob});
-                message_vision(BLU"$N对$n说道：谢谢！\n"NOR,this_object(),ob);
+                message_vision(BLU"$N對$n說道：謝謝！\n"NOR,this_object(),ob);
         } else
-                message_vision(BLU"$N对$n说道：你已经答应帮忙，你不会反悔吧！\n"NOR,this_object(),ob);
+                message_vision(BLU"$N對$n說道：你已經答應幫忙，你不會反悔吧！\n"NOR,this_object(),ob);
 }
 
 void del_player(object ob) {
@@ -32,7 +32,7 @@ void create()
 {
         set_name("丁一", ({ "ding yi","ding"}) );
         set("gender", "男性" );
-        //set("title", HIC "三清宫"NOR);
+        //set("title", HIC "三清宮"NOR);
         set("age", 80);
         set("str", 50);
         set("con", 120);
@@ -123,17 +123,17 @@ void init()
         add_action("do_answer", "answer");
         add_action("do_accept", "accept");
         add_action("do_report", "report");
-        // 避免组队快结束时候进入混经验
+        // 避免組隊快結束時候進入混經驗
         //add_action("do_help", "help");
 }
 
 void greeting(object ob)
 {
         if( !ob || environment(ob) != environment() ) return;
-        if( query_temp("开场白结束") || query_temp("开始说开场白") || query_temp("任务") )
+        if( query_temp("開場白結束") || query_temp("開始說開場白") || query_temp("任務") )
                 return;
-        message_vision(CYN "$N有气无力地说道：这位" + RANK_D->query_respect(ob) +
-                "，能听我一言吗？(answer yes/no)\n" NOR, this_object(), ob);
+        message_vision(CYN "$N有氣無力地說道：這位" + RANK_D->query_respect(ob) +
+                "，能聽我一言嗎？(answer yes/no)\n" NOR, this_object(), ob);
 }
 
 int do_answer(string arg) {
@@ -143,27 +143,27 @@ int do_answer(string arg) {
                         return 0;
                 if(present("tape",environment()))
                         return 0;
-                set_temp("开始说开场白",1);
+                set_temp("開始說開場白",1);
                 ob = new(__DIR__"obj/taoist_tape");
                 ob->move(environment());
                 ob->play_sound_0(this_object(),0);
         } else if(arg=="no") {
-                message_vision(BLU"$N说道：谁想听你这个牛鼻子废话！\n",this_player());
+                message_vision(BLU"$N說道：誰想聽你這個牛鼻子廢話！\n",this_player());
         } else
-                return notify_fail("你要回答什么？\n");
+                return notify_fail("你要回答什麼？\n");
         return 1;
 }
 
 int do_accept(string arg) {
         object ob,env,*team;
-        if(!query_temp("开场白结束"))
+        if(!query_temp("開場白結束"))
                 return 0;
-        if(query_temp("任务"))
+        if(query_temp("任務"))
                 return 0;
         if(arg=="yes") {
                 if(present("tape",environment()))
                         return 1;
-                delete_temp("开场白结束");
+                delete_temp("開場白結束");
                 team = copy(this_player()->query_team());
                 if(!team || sizeof(team)==0)
                         team = ({this_player()});
@@ -181,9 +181,9 @@ int do_accept(string arg) {
                 ob->play_sound_1(this_object(),0);
         }
         else if(arg=="no") {
-                delete_temp("开场白结束");
-                delete_temp("开始说开场白");
-                message_vision(BLU"$N说道：没好处的事情我可不干！\n",this_player());
+                delete_temp("開場白結束");
+                delete_temp("開始說開場白");
+                message_vision(BLU"$N說道：沒好處的事情我可不幹！\n",this_player());
         }
         else
                 return 0;
@@ -210,9 +210,9 @@ int do_report(string arg) {
         quest_index=query("quest/quest_index", mazeobj);
         switch(quest_index) {
                         case(1):
-                                if( query("quest/killed/骷髅", mazeobj) >= query("quest/to_kill/骷髅", mazeobj) && 
-                                         query("quest/killed/僵尸", mazeobj) >= query("quest/to_kill/僵尸", mazeobj) && 
-                                         query("quest/killed/幽灵", mazeobj) >= query("quest/to_kill/幽灵", mazeobj )
+                                if( query("quest/killed/骷髏", mazeobj) >= query("quest/to_kill/骷髏", mazeobj) && 
+                                         query("quest/killed/殭屍", mazeobj) >= query("quest/to_kill/殭屍", mazeobj) && 
+                                         query("quest/killed/幽靈", mazeobj) >= query("quest/to_kill/幽靈", mazeobj )
                                          ) {
                                                  //mazeobj->delete("quest/to_kill");
                                                  set_temp("in_speech",1);
@@ -220,13 +220,13 @@ int do_report(string arg) {
                                                 ob->move(environment());
                                                 ob->play_sound_2(this_object(),0);
                                 } else
-                                                return notify_fail("你尚未完成任务！\n");
+                                                return notify_fail("你尚未完成任務！\n");
                                 break;
                         case(2):
-                                if( query("quest/killed/骷髅武士", mazeobj) >= query("quest/to_kill/骷髅武士", mazeobj) && 
-                                         query("quest/killed/骷髅法师", mazeobj) >= query("quest/to_kill/骷髅法师", mazeobj) && 
-                                         query("quest/killed/血僵尸", mazeobj) >= query("quest/to_kill/血僵尸", mazeobj) && 
-                                         query("quest/killed/尸煞", mazeobj) >= query("quest/to_kill/尸煞", mazeobj) && 
+                                if( query("quest/killed/骷髏武士", mazeobj) >= query("quest/to_kill/骷髏武士", mazeobj) && 
+                                         query("quest/killed/骷髏法師", mazeobj) >= query("quest/to_kill/骷髏法師", mazeobj) && 
+                                         query("quest/killed/血殭屍", mazeobj) >= query("quest/to_kill/血殭屍", mazeobj) && 
+                                         query("quest/killed/屍煞", mazeobj) >= query("quest/to_kill/屍煞", mazeobj) && 
                                          query("quest/killed/幽冥之火", mazeobj) >= query("quest/to_kill/幽冥之火", mazeobj) && 
                                          query("quest/killed/幽冥之眼", mazeobj) >= query("quest/to_kill/幽冥之眼", mazeobj )
                                          ) {
@@ -236,11 +236,11 @@ int do_report(string arg) {
                                                 ob->move(environment());
                                                 ob->play_sound_3(this_object(),0);
                                 } else
-                                                return notify_fail("你尚未完成任务！\n");
+                                                return notify_fail("你尚未完成任務！\n");
                                 break;
                         case(3):
                                 if( query("quest/killed/心武", mazeobj) >= query("quest/to_kill/心武", mazeobj) && 
-                                         query("quest/finded/聚灵塔", mazeobj) >= query("quest/to_find/聚灵塔", mazeobj )
+                                         query("quest/finded/聚靈塔", mazeobj) >= query("quest/to_find/聚靈塔", mazeobj )
                                  ) {
                                                  //mazeobj->delete("quest/to_kill");
                                                  //mazeobj->delete("quest/to_find");
@@ -249,12 +249,12 @@ int do_report(string arg) {
                                                 ob->move(environment());
                                                 ob->play_sound_4(this_object(),0);
                                 } else
-                                                return notify_fail("你尚未完成任务！\n");
+                                                return notify_fail("你尚未完成任務！\n");
                                 break;
                  case(4):
                                 if( query("quest/finded/骨杖", mazeobj) >= query("quest/to_find/骨杖", mazeobj) && 
                                          query("quest/finded/幽冥之火", mazeobj) >= query("quest/to_find/幽冥之火", mazeobj) && 
-                                         query("quest/finded/僵尸血", mazeobj) >= query("quest/to_find/僵尸血", mazeobj )
+                                         query("quest/finded/殭屍血", mazeobj) >= query("quest/to_find/殭屍血", mazeobj )
                                  ) {
                                                  //mazeobj->delete("quest/to_find");
                                                  set_temp("in_speech",1);
@@ -262,16 +262,16 @@ int do_report(string arg) {
                                                 ob->move(environment());
                                                 ob->play_sound_5(this_object(),this_player(),0);
                                 } else
-                                                return notify_fail("你尚未完成任务！\n");
+                                                return notify_fail("你尚未完成任務！\n");
                                 break;
                 case(5):
                                 if(!query_leader()) {
-                                        message_vision(BLU"$N对$n说：你带路吧。\n"NOR,this_object(),this_player());
+                                        message_vision(BLU"$N對$n說：你帶路吧。\n"NOR,this_object(),this_player());
                                         set_leader(this_player());
                                         return 1;
                                 }
                                 env = environment(this_object());
-                                if( query("short", env) == HIY"聚灵法阵"NOR){
+                                if( query("short", env) == HIY"聚靈法陣"NOR){
                                                 obs = all_inventory(env);
                                                 has_enemy = 0;
                                                 foreach(ob in obs) {
@@ -291,7 +291,7 @@ int do_report(string arg) {
                                                 return 0;
                                 break;
                 case(6):
-                                if( query("quest/killed/亡灵", mazeobj) >= query("quest/to_kill/亡灵", mazeobj )
+                                if( query("quest/killed/亡靈", mazeobj) >= query("quest/to_kill/亡靈", mazeobj )
                                  ) {
                                                  delete("quest/to_kill", mazeobj);
                                                  set("last_quester",this_player());
@@ -300,7 +300,7 @@ int do_report(string arg) {
                                                 ob->move(environment());
                                                 ob->play_sound_7(this_object(),0);
                                 } else
-                                                return notify_fail("你尚未完成任务！\n");
+                                                return notify_fail("你尚未完成任務！\n");
                                 break;
 
         }
@@ -323,8 +323,8 @@ void smart_action3()
                 target = enemies[random(sizeof(enemies))];
                 if(target)
                 {
-                        msg = HIG "$N口中喃喃地念着咒文，左手一挥，手中聚起五色光芒，霎时化为叁股！\n\n";
-                        msg += HIC "一团青光射向$n！\n" NOR;
+                        msg = HIG "$N口中喃喃地念著咒文，左手一揮，手中聚起五色光芒，霎時化為叄股！\n\n";
+                        msg += HIC "一團青光射向$n！\n" NOR;
 
                         yourexp=query("combat_exp", target);
                         myexp=query("combat_exp", me);
@@ -333,17 +333,17 @@ void smart_action3()
                                 damage = 10000 + random(10000);
                                 damage = damage + random(damage);
 
-                                msg +=  HIR "结果「嗤」地一声，青光从$p身上透体而过，拖出一条长长的黑气钻入地下！\n"NOR;
+                                msg +=  HIR "結果「嗤」地一聲，青光從$p身上透體而過，拖出一條長長的黑氣鑽入地下！\n"NOR;
                                 target->receive_damage("qi", damage, me);
                                 target->receive_wound("qi", damage/3, me);
                         } else
-                                msg += "结果「嗤」地一声，青光从$p身上透体而过，无声无息地钻入地下！\n";
+                                msg += "結果「嗤」地一聲，青光從$p身上透體而過，無聲無息地鑽入地下！\n";
 
                         message_vision(msg, me, target);
                         if (damage > 0)
                                 COMBAT_D->report_status(target);
 
-                        msg = HIW "\n一团白光射向$n！\n" NOR;
+                        msg = HIW "\n一團白光射向$n！\n" NOR;
                         yourexp=query("max_neili", target);
                         myexp=query("max_neili", me);
                         if( random(myexp + yourexp) > yourexp )
@@ -351,16 +351,16 @@ void smart_action3()
                                 damage = 10000 + random(10000);
                                 damage = damage + random(damage);
 
-                                msg +=  HIR "结果「嗤」地一声，白光从$p身上透体而过，拖出一条长长的黑气钻入地下！\n"NOR;
+                                msg +=  HIR "結果「嗤」地一聲，白光從$p身上透體而過，拖出一條長長的黑氣鑽入地下！\n"NOR;
                                 target->receive_damage("qi", damage, me);
                                 target->receive_wound("qi", damage/3, me);
                         } else
-                                msg += "结果「嗤」地一声，白光从$p身上透体而过，无声无息地钻入地下！\n";
+                                msg += "結果「嗤」地一聲，白光從$p身上透體而過，無聲無息地鑽入地下！\n";
                         message_vision(msg, me, target);
                         if (damage > 0)
                                 COMBAT_D->report_status(target);
 
-                        msg = HIM "\n一团紫光射向$n！\n" NOR;
+                        msg = HIM "\n一團紫光射向$n！\n" NOR;
                         yourexp = target->query_skill("martial-cognize", 1);
                         myexp = me->query_skill("martial-cognize", 1);
                         if( random(myexp + yourexp) > yourexp )
@@ -368,12 +368,12 @@ void smart_action3()
                                 damage = 20000 + random(20000);
                                 damage = damage + random(damage);
 
-                                msg +=  HIR "结果「嗤」地一声，紫光从$p身上透体而过，拖出一条长长的七彩光气，光气绕了\n"
-                                            "回转过来又从$N顶门注入$P的体内！\n" NOR;
+                                msg +=  HIR "結果「嗤」地一聲，紫光從$p身上透體而過，拖出一條長長的七彩光氣，光氣繞了\n"
+                                            "迴轉過來又從$N頂門注入$P的體內！\n" NOR;
                                 target->receive_damage("qi", damage, me);
                                 target->receive_wound("qi", damage/3, me);
                         } else
-                                msg += "结果「嗤」地一声，紫光从$p身上透体而过，无声无息地钻入地下！\n";
+                                msg += "結果「嗤」地一聲，紫光從$p身上透體而過，無聲無息地鑽入地下！\n";
                         message_vision(msg, me, target);
                         if (damage > 0)
                                 COMBAT_D->report_status(target);
@@ -420,8 +420,8 @@ void summon_undead(object env,object mazeobj) {
         }
 
         /*
-        if( query("quest/killed/亡灵", mazeobj) >= query("quest/to_kill/亡灵", mazeobj)){
-                        message_vision(BLINK HIC"\n聚灵塔升上天空，聚灵法阵发出耀眼的五彩光芒。\n\n"NOR,this_object());
+        if( query("quest/killed/亡靈", mazeobj) >= query("quest/to_kill/亡靈", mazeobj)){
+                        message_vision(BLINK HIC"\n聚靈塔升上天空，聚靈法陣發出耀眼的五彩光芒。\n\n"NOR,this_object());
                         obs = all_inventory(env);
                         foreach(ob in obs) {
                                 if(ob->is_undead())
@@ -429,8 +429,8 @@ void summon_undead(object env,object mazeobj) {
                         }
         }
         */
-        //message_vision(HIC"\n聚灵塔上光华一闪，一个鬼灵钻了出来。\n\n"NOR,this_object());
-        tell_room(env,HIC"\n聚灵塔上光华一闪，一个鬼灵被吸了过来！\n\n"NOR);
+        //message_vision(HIC"\n聚靈塔上光華一閃，一個鬼靈鑽了出來。\n\n"NOR,this_object());
+        tell_room(env,HIC"\n聚靈塔上光華一閃，一個鬼靈被吸了過來！\n\n"NOR);
         i = random(100);
         if(i<5) {
                 j = random(2);
@@ -509,9 +509,9 @@ int accept_object(object me, object obj)
         quest_index=query("quest/quest_index", mazeobj);
         switch(quest_index) {
                 case(3):
-                                if(obj->name()=="聚灵塔" &&
+                                if(obj->name()=="聚靈塔" &&
                                    query("id", obj) == "spirit tower"){
-                                                set("quest/finded/聚灵塔", 1, mazeobj);
+                                                set("quest/finded/聚靈塔", 1, mazeobj);
                                                 command("pat "+query("id", me));
                                                 destruct(obj);
                                                 return 1;
@@ -532,9 +532,9 @@ int accept_object(object me, object obj)
                                                 destruct(obj);
                                                 return 1;
                                 }
-                                if(obj->name()=="僵尸血" &&
+                                if(obj->name()=="殭屍血" &&
                                    query("id", obj) == "zombie blood"){
-                                                set("quest/finded/僵尸血", 1, mazeobj);
+                                                set("quest/finded/殭屍血", 1, mazeobj);
                                                 command("pat "+query("id", me));
                                                 destruct(obj);
                                                 return 1;
@@ -563,7 +563,7 @@ void give_reward_necropolis(object *ob,object reward_giver) {
                                 continue;
                         //if(!environment(member) || !environment(member)->query("virtual_room"))
                                 //continue;
-                        if(mazedir!=FUBEN_D->query_maze_dir(member))//不在同一个副本里
+                        if(mazedir!=FUBEN_D->query_maze_dir(member))//不在同一個副本里
                                 continue;
                         ref_exp = 300000;
                         ref_pot = 120000;
@@ -588,17 +588,17 @@ void give_reward_necropolis(object *ob,object reward_giver) {
                         pot = ref_pot;
                         mar = ref_mar;
 
-                        if( sizeof(team) > 1 && member->is_team_leader() ) // 鼓励组队
+                        if( sizeof(team) > 1 && member->is_team_leader() ) // 鼓勵組隊
                                 exp = exp * 3 / 2;
-                        if( sizeof(team) > 4 && member->is_team_leader() ) // 鼓励组队
+                        if( sizeof(team) > 4 && member->is_team_leader() ) // 鼓勵組隊
                                 exp = exp * 3 / 2;
                         /*
-                        reward_msg =HIR"墓园的危机解除，你被奖励了：\n\t\t" +
-                        chinese_number(exp) + "点实战经验\n\t\t"+
-                        chinese_number(pot) + "点潜能\n\t\t" +
-                        chinese_number(mar) + "点体会\n\t\t" +
-                        chinese_number(score) + "点评价\n\t\t" +
-                        chinese_number(gold) + "两黄金\n"NOR;
+                        reward_msg =HIR"墓園的危機解除，你被獎勵了：\n\t\t" +
+                        chinese_number(exp) + "點實戰經驗\n\t\t"+
+                        chinese_number(pot) + "點潛能\n\t\t" +
+                        chinese_number(mar) + "點體會\n\t\t" +
+                        chinese_number(score) + "點評價\n\t\t" +
+                        chinese_number(gold) + "兩黃金\n"NOR;
                         tell_object(member,reward_msg);
                         addn("combat_exp", exp, member);
                         addn("potential", pot, member);
@@ -606,7 +606,7 @@ void give_reward_necropolis(object *ob,object reward_giver) {
                         addn("score", score, member);
                         addn("balance", gold*10000, member);
                         */
-                        GIFT_D->fuben_bonus(member, ([ "prompt" : HIR "墓园的危机解除" NOR,
+                        GIFT_D->fuben_bonus(member, ([ "prompt" : HIR "墓園的危機解除" NOR,
                                                  "exp" : exp, "pot" : pot, "mar" : mar,
                                                  "score" : score, "gold" : gold ]));
 
@@ -636,7 +636,7 @@ void die() {
 
                         if (sscanf(dir,"/f/%s/%s/maze",quest,userid)==2) {
                                         /*
-                                        tell_room(environment(),HIY"副本将在三十秒后消失！\n"NOR);
+                                        tell_room(environment(),HIY"副本將在三十秒後消失！\n"NOR);
                                         SCHEDULE_D->set_event(30, 0, mazeobj, "remove_maze");
                                         */
                                         FUBEN_D->delay_clear_fuben(quest, userid);

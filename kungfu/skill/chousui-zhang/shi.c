@@ -3,7 +3,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return WHT "腐尸毒" NOR; }
+string name() { return WHT "腐屍毒" NOR; }
 
 inherit F_SSERVER;
 
@@ -21,7 +21,7 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( userp(me) && (query_temp("weapon", me )
             || query_temp("secondary_weapon", me)) )
@@ -31,28 +31,28 @@ int perform(object me, object target)
         lvp = me->query_skill("poison");
 
         if (lvl < 140)
-                return notify_fail("你的抽髓掌不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你的抽髓掌不夠嫻熟，難以施展" + name() + "。\n");
 
         if (lvp < 200)
-                return notify_fail("你对毒技的了解不够，难以施展" + name() + "。\n");
+                return notify_fail("你對毒技的瞭解不夠，難以施展" + name() + "。\n");
 
         if ((int)me->query_skill("throwing") < 180)
-                return notify_fail("你暗器手法火候不够，难以施展" + name() + "。\n");
+                return notify_fail("你暗器手法火候不夠，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("strike") != "chousui-zhang")
-                return notify_fail("你没有激发抽髓掌，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發抽髓掌，難以施展" + name() + "。\n");
 
         if (me->query_skill_prepared("strike") != "chousui-zhang")
-                return notify_fail("你没有准备抽髓掌，难以施展" + name() + "。\n");
+                return notify_fail("你沒有準備抽髓掌，難以施展" + name() + "。\n");
 
         if( query("max_neili", me)<1200 )
-                return notify_fail("你的内力修为不足，难以施展" + name() + "。\n");
+                return notify_fail("你的內力修為不足，難以施展" + name() + "。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你现在的内息不足，难以施展" + name() + "。\n");
+                return notify_fail("你現在的內息不足，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         /*
         corpse = filter_array(all_inventory(environment(me)),
@@ -61,29 +61,29 @@ int perform(object me, object target)
                               || !query("defeated_by", $1)):));
 
         if (userp(me) && sizeof(corpse) < 1)
-                return notify_fail("你附近没有合适的尸体，难以施展" + name() + "。\n");
+                return notify_fail("你附近沒有合適的屍體，難以施展" + name() + "。\n");
 
-        // 允许等级 250 以上的任务 NPC 施展此招
+        // 允許等級 250 以上的任務 NPC 施展此招
         if (! userp(me) && lvl < 250 && sizeof(corpse) < 1)
-                return notify_fail("你附近没有合适的尸体，难以施展" + name() + "。\n");
+                return notify_fail("你附近沒有合適的屍體，難以施展" + name() + "。\n");
 
         if (sizeof(corpse) >= 1)
                 name = corpse[0]->name();
         else
         */
-                name = "路边的行人";
+                name = "路邊的行人";
 
-        msg = WHT "$N" WHT "随手抓起" + name + WHT "，将「"
-              HIR "腐尸毒" NOR + WHT"」毒质运于其上，朝$n"
-              WHT "猛掷而去。\n" NOR;
+        msg = WHT "$N" WHT "隨手抓起" + name + WHT "，將「"
+              HIR "腐屍毒" NOR + WHT"」毒質運於其上，朝$n"
+              WHT "猛擲而去。\n" NOR;
 
         ap = attack_power(me, "strike") +
              me->query_skill("poison", 1);
 
-        delta = ABILITY_D->check_ability(me, "ap_power-csz-shi"); // 门派ab
+        delta = ABILITY_D->check_ability(me, "ap_power-csz-shi"); // 門派ab
         if( delta ) ap += ap*delta/100;
 
-        // 将任务NPC和玩家区分，再计算防御状况
+        // 將任務NPC和玩家區分，再計算防禦狀況
         if (userp(me))
                 dp = defense_power(target, "dodge") +
                      target->query_skill("martial-cognize")/2;
@@ -105,8 +105,8 @@ int perform(object me, object target)
                 addn("neili", -300, me);
         } else
         {
-                msg += CYN "可是$n" CYN "见势不妙，急忙腾挪身形，终"
-                       "于避开了$N" CYN "掷来的尸体。\n" NOR;
+                msg += CYN "可是$n" CYN "見勢不妙，急忙騰挪身形，終"
+                       "於避開了$N" CYN "擲來的屍體。\n" NOR;
                 me->start_busy(3);
                 addn("neili", -200, me);
         }
@@ -132,6 +132,6 @@ string final(object me, object target, int damage)
         target->receive_damage("jing", damage, me);
         target->receive_wound("jing", damage / 2, me);
 
-        return  HIR "$n" HIR "只闻一股恶臭传来，大惊之下难以招"
-                "架，顿被尸体击个正中。\n" NOR;
+        return  HIR "$n" HIR "只聞一股惡臭傳來，大驚之下難以招"
+                "架，頓被屍體擊個正中。\n" NOR;
 }

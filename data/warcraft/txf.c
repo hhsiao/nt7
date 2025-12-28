@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("大鸟[2;37;0m[2;37;0m", ({"quer"}));        
+        set_name("大鳥[2;37;0m[2;37;0m", ({"quer"}));        
         set("gender", "女性");                
         set("long", "大[2;37;0m
-它是呔选的魔幻兽。
+它是呔選的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");
         set("owner", "txf");
-        set("owner_name", "呔选");
+        set("owner_name", "呔選");
         set_temp("owner", "txf");
-        set_temp("owner_name", "呔选");
+        set_temp("owner_name", "呔選");
         ::setup();
 }

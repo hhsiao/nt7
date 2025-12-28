@@ -12,17 +12,17 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", NOR + YEL "这是一个用桃木制成的盒子，可以用来存放丹药，据说，凡是存放\n"
-                                                      "在这个盒子里的丹药下线后都不会丢失。\n" HIG
-                                                                          "指令格式：存储丹药：  store cun 数量 丹药ID\n"
-                                                                          "          取出丹药：  store qu 数量 丹药ID\n"
+                set("long", NOR + YEL "這是一個用桃木製成的盒子，可以用來存放丹藥，據說，凡是存放\n"
+                                                      "在這個盒子裡的丹藥下線後都不會丟失。\n" HIG
+                                                                          "指令格式：存儲丹藥：  store cun 數量 丹藥ID\n"
+                                                                          "          取出丹藥：  store qu 數量 丹藥ID\n"
                                                                           "          查看盒子：  store show \n" NOR);
                 set("value", 1);
                 set("no_sell", 1);
                                 set("no_give", 1);
                                 set("no_drop", 1);
 
-                        set("unit", "个");
+                        set("unit", "個");
         }
 
         setup();
@@ -47,10 +47,10 @@ int do_store(string arg)
     // 先取下面具
     if (me->query_temp("apply/mask_flag"))
     {
-         return notify_fail("阁下为何不以真面目示人？\n");
+         return notify_fail("閣下為何不以真面目示人？\n");
     }
 
-        if (! arg)return notify_fail("\n未输入参数或输入参数错误。\n");
+        if (! arg)return notify_fail("\n未輸入參數或輸入參數錯誤。\n");
 
         if (arg == "show")
         {                
@@ -58,17 +58,17 @@ int do_store(string arg)
                 return 1;
         }
 
-        // 查看所有仓库用户
+        // 查看所有倉庫用戶
         if (arg == "list")
         {
                 if (! wizardp(me))return 0;
                 DANSTORE_D->show_store_list();
                 return 1;
         }
-        // 查看其他玩家的存储情况
+        // 查看其他玩家的存儲情況
         if (sscanf(arg, "show %s", para) == 1)
         {
-                if (! wizardp(me))return notify_fail("\n输入参数过多！\n");
+                if (! wizardp(me))return notify_fail("\n輸入參數過多！\n");
 
                 DANSTORE_D->show_player_objects(para);
                 
@@ -76,10 +76,10 @@ int do_store(string arg)
         }
 
         if (sscanf(arg, "%s %d %s", para, amount, ob_id) != 3)
-                return notify_fail("\n输入参数错误 。\n");
+                return notify_fail("\n輸入參數錯誤 。\n");
         
         if (amount < 1)
-                return notify_fail("\n输入数量不能小于 1 。\n");
+                return notify_fail("\n輸入數量不能小於 1 。\n");
 
         if (para == "cun")
         {
@@ -92,5 +92,5 @@ int do_store(string arg)
                 return 1;        
         }
         
-        return notify_fail("\n输入参数错误。\n");
+        return notify_fail("\n輸入參數錯誤。\n");
 }

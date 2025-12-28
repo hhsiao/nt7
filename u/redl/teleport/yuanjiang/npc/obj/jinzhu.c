@@ -6,7 +6,7 @@ inherit ITEM;
 void create()
 {
         set_name(NOR YEL "金蛛" NOR, ({"jin zhu", "jin", "zhu" }));
-                set("long", "这是只休眠着的异种生物，驱使方法可能要去哀牢山问大颠上人了。\n");
+                set("long", "這是隻休眠著的異種生物，驅使方法可能要去哀牢山問大顛上人了。\n");
                 set("unit", "只");
                 set("value", 10000000);
                 set("base_value", 10000000);

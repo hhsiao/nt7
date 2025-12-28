@@ -6,7 +6,7 @@ inherit WAIST;
 void create()
 {
         object ob;
-        set_name("竹篓", ({"zhu lou", "zhu", "lou"}));
+        set_name("竹簍", ({"zhu lou", "zhu", "lou"}));
         set_weight(300);
         set_max_encumbrance(15000);
         if (clonep())
@@ -85,10 +85,10 @@ void create()
                 }
         } else
         {
-                set("unit", "个");
-                set("long", "这是一个小口大肚的竹篓，常用来存放草药。\n");
-                set("wear_msg", "$N将竹篓背在背上。\n");
-                set("remove_msg", "$N将竹篓从背上放了下来。\n");
+                set("unit", "個");
+                set("long", "這是一個小口大肚的竹簍，常用來存放草藥。\n");
+                set("wear_msg", "$N將竹簍背在背上。\n");
+                set("remove_msg", "$N將竹簍從背上放了下來。\n");
                 set("value", 50);
                 set("material", "bamboo");
                 set("armor_prop/armor", 3);

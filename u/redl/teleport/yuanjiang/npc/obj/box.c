@@ -5,10 +5,10 @@ inherit ITEM;
 
 void create() 
 { 
-              set_name(NOR HIY "金船" HIW"宝箱"NOR, ({"box"}) ); 
+              set_name(NOR HIY "金船" HIW"寶箱"NOR, ({"box"}) ); 
                         set_weight(100000000000);
-                set("long", NOR "这是金船里遗落的宝箱，打开(open)试试？\n" NOR);
-                set("unit", "个");
+                set("long", NOR "這是金船裡遺落的寶箱，打開(open)試試？\n" NOR);
+                set("unit", "個");
                 set("value", 1);
                 set("no_uget", 1);
                 set("no_drop", 1);
@@ -40,7 +40,7 @@ int do_touch()
                 who->start_busy(1);     
                 
         if (query("neili", who)<1000000) {
-                tell_object(who, NOR "你内力不足。\n" NOR); 
+                tell_object(who, NOR "你內力不足。\n" NOR); 
                 return 1;
         }
         if (query("jingli", who)<500000) {
@@ -48,23 +48,23 @@ int do_touch()
                 return 1;
         }
         
-        message_vision(NOR CYN "$N运转真气到手上，用力去掀箱子的顶盖。\n" NOR, who); 
+        message_vision(NOR CYN "$N運轉真氣到手上，用力去掀箱子的頂蓋。\n" NOR, who); 
         addn("neili", -100000, who);
         addn("jingli", -50000, who);
         addn("touch_num", 1, me);
         if (query("touch_num", me) < 10 || 
                 query("touch_num", me) < random(500)) {
-                        tell_object(who, NOR "箱子抖了一下，似乎还要继续加把劲。\n" NOR); 
+                        tell_object(who, NOR "箱子抖了一下，似乎還要繼續加把勁。\n" NOR); 
                         return 1;
                 }
         
-        tell_object(who, HIW "箱子嘭地炸开，其内元磁真气四散逃逸(xi)，一点黑星挣脱了漩涡飞进你的手里，你赶紧张嘴往喉咙里一倒。\n" NOR);
+        tell_object(who, HIW "箱子嘭地炸開，其內元磁真氣四散逃逸(xi)，一點黑星掙脫了漩渦飛進你的手裡，你趕緊張嘴往喉嚨裡一倒。\n" NOR);
         addn("yuan_ci_num", random(6)+ 3, environment(me));
-        CHANNEL_D->channel_broadcast("news", HIG "听说" + HIC + query("name", who) + HIG + "在金船里得到了一颗" HIY "广成铁丹"HIG"。");
+        CHANNEL_D->channel_broadcast("news", HIG "聽說" + HIC + query("name", who) + HIG + "在金船裡得到了一顆" HIY "廣成鐵丹"HIG"。");
         set_temp("jinchuan/iyca", 1, who);
         "/u/redl/teleport/ailao"->yuanci_attack(who);
         set_temp("jinchuan/iyca", 1, who);
-        GIFT_D->delay_bonus(who, ([ "exp" : 7500000, "pot" : 2500000, "mar" : 1000000, "prompt" : "你在吞下广成铁丹之后"]));
+        GIFT_D->delay_bonus(who, ([ "exp" : 7500000, "pot" : 2500000, "mar" : 1000000, "prompt" : "你在吞下廣成鐵丹之後"]));
         //destruct(me);
         delete("touch_num", me);//重置
         me->move(get_object("/u/redl/teleport/yuanjiang/chuan" + (string)random(50)));

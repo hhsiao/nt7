@@ -4,12 +4,12 @@
 inherit NPC;
 
 string *degree_desc = ({
-       HIR "总督" NOR,
+       HIR "總督" NOR,
        MAG "兵部侍郎" NOR,
-       MAG "兵部尚书" NOR,
-       HIB "镇北节度使" NOR,
-       HIB "征讨大将军" NOR,
-       HIW "兵马大元帅" NOR,
+       MAG "兵部尚書" NOR,
+       HIB "鎮北節度使" NOR,
+       HIB "征討大將軍" NOR,
+       HIW "兵馬大元帥" NOR,
 });
 string clear_degree(string arg);
 string ask_fengshang();
@@ -19,11 +19,11 @@ int add_degree(object ob, int lv);
 
 void create()
 {
-        set_name("刘公公", ({"liu gonggong", "liu"}));   
-        set("gender", "无性");
+        set_name("劉公公", ({"liu gonggong", "liu"}));   
+        set("gender", "無性");
         set("age", random(20) + 20);
 
-        set("long", "这是一个京城皇宫中的一名太监，负责为皇帝传送奏本。\n");
+        set("long", "這是一個京城皇宮中的一名太監，負責為皇帝傳送奏本。\n");
         set("combat_exp", 800000);
         set("attitude", "peaceful");
         set("max_qi", 3000);
@@ -34,7 +34,7 @@ void create()
         set("inquiry", ([
                  "策封" :   (: ask_degree :),  
                  "出兵" :   (: ask_chubing :),    
-                 "封赏" :   (: ask_fengshang :),  
+                 "封賞" :   (: ask_fengshang :),  
              ]));
 
         setup();
@@ -49,7 +49,7 @@ int ask_degree()
         if( query_temp("degree_jungong", ob) )
         {
                  command("say 大人稍安勿躁，"
-                        + "咱家已经启奏圣上了，还是先耐心恭候圣上旨意吧！\n");
+                        + "咱家已經啟奏聖上了，還是先耐心恭候聖上旨意吧！\n");
                  return 1;
         }
 
@@ -59,18 +59,18 @@ int ask_degree()
 
         if (lv > (sizeof(degree_desc) + 8))
         {
-                 command("say 大人已经官居极品，位高权重，该多考虑些"
-                        + "为国家社稷出力才是！\n");
+                 command("say 大人已經官居極品，位高權重，該多考慮些"
+                        + "為國家社稷出力才是！\n");
                  return 1;       
         }
 
         if( lv <= query("degree_jungong", ob) || query("degree_jungong", ob)<8 )
         {
-                 command("say 要获得更高的策封，大人所立军功好象不够啊！\n");
+                 command("say 要獲得更高的策封，大人所立軍功好象不夠啊！\n");
                  return 1;
         }
 
-        command("say 大人请稍候，咱家这就立刻禀报圣上，为大人请封！\n");
+        command("say 大人請稍候，咱家這就立刻稟報聖上，為大人請封！\n");
 
         remove_call_out("add_degree");
         call_out("add_degree", 10, ob, lv);
@@ -91,9 +91,9 @@ int add_degree(object ob, int lv)
                 + "......\n"NOR,
                 users());
 
-        message("channel:rumor", MAG"【大宋京城】"HIY"奉天承命，皇帝诏曰："
+        message("channel:rumor", MAG"【大宋京城】"HIY"奉天承命，皇帝詔曰："
                 +"策封"+old_degree+""+HIW+query("name", ob )
-                + HIY" 为大宋 "NOR + degree + HIY"，钦此！\n"NOR,
+                + HIY" 為大宋 "NOR + degree + HIY"，欽此！\n"NOR,
                 users());
         delete_temp("degree_jungong", ob);
 
@@ -118,20 +118,20 @@ int add_degree(object ob, int lv)
 string clear_degree(string arg)
 {
                if ((strsrch(arg, HIR "提督" NOR) >= 0)
-        ||  (strsrch(arg, HIR "总督" NOR) >= 0) 
+        ||  (strsrch(arg, HIR "總督" NOR) >= 0) 
         ||  (strsrch(arg, MAG "兵部侍郎" NOR) >= 0) 
-        ||  (strsrch(arg, MAG "兵部尚书" NOR) >= 0)
-        ||  (strsrch(arg, HIB "镇北节度使" NOR) >= 0) 
-        ||  (strsrch(arg, HIB "征讨大将军" NOR) >= 0) 
-        ||  (strsrch(arg, HIW "兵马大元帅" NOR) >= 0) 
+        ||  (strsrch(arg, MAG "兵部尚書" NOR) >= 0)
+        ||  (strsrch(arg, HIB "鎮北節度使" NOR) >= 0) 
+        ||  (strsrch(arg, HIB "征討大將軍" NOR) >= 0) 
+        ||  (strsrch(arg, HIW "兵馬大元帥" NOR) >= 0) 
         ||  (strsrch(arg, HIM " ☆ " NOR) >= 0))
                {
-                    arg = replace_string(arg, HIR "总督" NOR, "");
+                    arg = replace_string(arg, HIR "總督" NOR, "");
                     arg = replace_string(arg, MAG "兵部侍郎" NOR, ""); 
-                    arg = replace_string(arg, MAG "兵部尚书" NOR, "");
-                    arg = replace_string(arg, HIB "镇北节度使" NOR, "");   
-                    arg = replace_string(arg, HIB "征讨大将军" NOR, "");
-                    arg = replace_string(arg, HIW "兵马大元帅" NOR, "");
+                    arg = replace_string(arg, MAG "兵部尚書" NOR, "");
+                    arg = replace_string(arg, HIB "鎮北節度使" NOR, "");   
+                    arg = replace_string(arg, HIB "征討大將軍" NOR, "");
+                    arg = replace_string(arg, HIW "兵馬大元帥" NOR, "");
                     arg = replace_string(arg, HIR "提督" NOR, "");   
                     arg = replace_string(arg, HIM " ☆ " NOR, "");
                }
@@ -146,15 +146,15 @@ string ask_chubing()
                int liangcao, i, reward;
 
                if (me->query_condition("junquest_fail"))
-                       return "大人尚是待罪之身，轻言出兵，恐性命难保啊，还是请回吧！\n";
+                       return "大人尚是待罪之身，輕言出兵，恐性命難保啊，還是請回吧！\n";
                if (me->query_condition("junquest_song"))
-                       return "大人已经经军令在身了，还在这里磨蹭什么啊？！\n";
+                       return "大人已經經軍令在身了，還在這裡磨蹭什麼啊？！\n";
                if( query("degree_jungong", me)<8 )
-                       return "大人官低位卑，如何能任一军之帅，难服人心哪？！\n"; 
+                       return "大人官低位卑，如何能任一軍之帥，難服人心哪？！\n"; 
 
                temp = read_file("/quest/quest_jun/song/master", 1, 1);
                if (temp != "" && (time() - query("begin/time")) < 4200)
-                       return "现在已经有人率军出征了，大人可以前去助阵。\n";
+                       return "現在已經有人率軍出征了，大人可以前去助陣。\n";
 
                set_temp("jun_quest/party", "song", me);
 
@@ -188,12 +188,12 @@ string ask_chubing()
                remove_call_out("quest_begin");
                call_out("quest_begin", 10, me->short(1), me);
                set("party/party_name", HIW"大宋"NOR, me);
-               set("party/rank", HIW"兵马元帅"NOR, me);
+               set("party/rank", HIW"兵馬元帥"NOR, me);
                delete("jun_quest/jiang", me);
 
-               return HIC"大人，朝中可用之兵已经所剩无几，仅此数营步兵，尚可一战，\n"
-                       + "此次出征，任重道远，无奈事关我大宋国运，还望大人尽力而为，"
-                       + "望大人\n早日得胜，凯旋回朝！御马监有为将军备的千里马，可助大人脚力。\n"NOR;
+               return HIC"大人，朝中可用之兵已經所剩無幾，僅此數營步兵，尚可一戰，\n"
+                       + "此次出征，任重道遠，無奈事關我大宋國運，還望大人盡力而為，"
+                       + "望大人\n早日得勝，凱旋迴朝！御馬監有為將軍備的千里馬，可助大人腳力。\n"NOR;
 }
 
 void quest_begin(string who, object me)
@@ -202,10 +202,10 @@ void quest_begin(string who, object me)
               string temp;
               int num, i;
 
-              message("channel:rumor", MAG"【大宋史记】"
+              message("channel:rumor", MAG"【大宋史記】"
                       + CHINESE_D->chinese_date((time() - 14 * 365 * 24 * 60 * 60))
-                      + "蒙古可汗大举南侵，大宋派出\n " + who + "\n"
-                      + MAG" ，兴师北上抗敌.....\n"NOR,
+                      + "蒙古可汗大舉南侵，大宋派出\n " + who + "\n"
+                      + MAG" ，興師北上抗敵.....\n"NOR,
                       users());
 
               set("begin/time", time());
@@ -275,18 +275,18 @@ string ask_fengshang()
         reward=query("jun_quest/reward", me);
 
         if (me->query_condition("junquest_fail"))
-                 return "大人犹是待罪之身，还敢来要什么封赏？？\n";
+                 return "大人猶是待罪之身，還敢來要什麼封賞？？\n";
 
         if (! intp(reward) || reward < 1)
-                 return "大人于社稷有何功劳啊，哪来什么封赏？？\n";
+                 return "大人於社稷有何功勞啊，哪來什麼封賞？？\n";
 
         if( query_temp("ask_fengshang", me) )
                  return "大人稍安勿躁，"
-                        + "咱家已经启奏圣上了，还是先耐心恭候圣上旨意吧！\n";
+                        + "咱家已經啟奏聖上了，還是先耐心恭候聖上旨意吧！\n";
         remove_call_out("add_fengshang");
         call_out("add_fengshang", 10, me, reward);
         set_temp("ask_fengshang", 1, me);
-        return "大人请稍候，咱家这就立刻禀报圣上，为大人请功！\n"; 
+        return "大人請稍候，咱家這就立刻稟報聖上，為大人請功！\n"; 
 }
 
                  
@@ -313,15 +313,15 @@ void add_fengshang(object me,int reward)
         addn("potential", pot, me);
         addn("experience", random(21), me);
         addn("balance", 10000000, me);
-        message("channel:rumor", MAG"【大宋京城】" HIY "奉天承命，皇帝诏曰：\n"
-                + me->short(1) + "\n" + HIY"抗蒙有功，赏黄金千两，绸缎五百匹，美女十名，"
-                + " 记军功 "HIR + chinese_number(jungong)
-                + HIY" 策，钦此！\n\n"NOR,
+        message("channel:rumor", MAG"【大宋京城】" HIY "奉天承命，皇帝詔曰：\n"
+                + me->short(1) + "\n" + HIY"抗蒙有功，賞黃金千兩，綢緞五百匹，美女十名，"
+                + " 記軍功 "HIR + chinese_number(jungong)
+                + HIY" 策，欽此！\n\n"NOR,
                 users());       
 
-        tell_object(me, HIW"你获得了" + HIR + chinese_number(exp)
-                    + HIW"点经验和" + HIR + chinese_number(pot) 
-                    + HIW"点潜能奖励！！\n"NOR);
+        tell_object(me, HIW"你獲得了" + HIR + chinese_number(exp)
+                    + HIW"點經驗和" + HIR + chinese_number(pot) 
+                    + HIW"點潛能獎勵！！\n"NOR);
         
         jiang=query("jun_quest/jiang", me);
         if (jiang && sizeof(jiang) > 0)
@@ -339,13 +339,13 @@ void add_fengshang(object me,int reward)
                 addn("experience", random(11), jiang["jiang"+i]);
                 addn("balance", 5000000, jiang["jiang"+i]);
                   
-                message("channel:rumor", MAG"【大宋京城】" HIY "奉天承命，皇帝诏曰：\n"
-                        + jiang["jiang" + i]->short(1) + "\n" + HIY"抗蒙有功，赏黄金五百两，绸缎两百匹，"
-                        + " 记军功 "HIR + chinese_number(jungong) + HIY" 策，钦此！\n\n"NOR,
+                message("channel:rumor", MAG"【大宋京城】" HIY "奉天承命，皇帝詔曰：\n"
+                        + jiang["jiang" + i]->short(1) + "\n" + HIY"抗蒙有功，賞黃金五百兩，綢緞兩百匹，"
+                        + " 記軍功 "HIR + chinese_number(jungong) + HIY" 策，欽此！\n\n"NOR,
                         users()); 
                 delete("party", jiang["jiang"+i]);
-                tell_object(jiang["jiang" + i], HIW"你获得了" + HIR + chinese_number(exp)
-                            + HIW"点经验和" + HIR + chinese_number(pot) + HIW"点潜能奖励！！\n"NOR);  
+                tell_object(jiang["jiang" + i], HIW"你獲得了" + HIR + chinese_number(exp)
+                            + HIW"點經驗和" + HIR + chinese_number(pot) + HIW"點潛能獎勵！！\n"NOR);  
         }       
          
         bingfu = present("bing fu", me);       

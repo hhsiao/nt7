@@ -10,8 +10,8 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "根");
-                set("no_sell", "这...这是什么东西？我可不敢要。\n");
-                set("long", "一块黑黝黝的木头，不知道有什么用处。\n");
+                set("no_sell", "這...這是什麼東西？我可不敢要。\n");
+                set("long", "一塊黑黝黝的木頭，不知道有什麼用處。\n");
                 set("value", 1);
                 set("material", "ivory");
         }

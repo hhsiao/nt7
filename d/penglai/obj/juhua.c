@@ -11,7 +11,7 @@ void create()
 	else*/ {
 		set("unit", "朵");
 		set("value", 1);
-		set("long", HIY "这是一朵菊花，花瓣呈现出各种不同的颜色，据说只有蓬莱仙岛才有。\n" NOR);
+		set("long", HIY "這是一朵菊花，花瓣呈現出各種不同的顏色，據說只有蓬萊仙島才有。\n" NOR);
 	}
 
 	setup();

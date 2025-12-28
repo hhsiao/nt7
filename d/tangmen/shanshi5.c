@@ -10,10 +10,10 @@ void create ()
 {
         set ("short", "山道");
         set ("long", @LONG
-这里是后山一条昏暗的山道。山道的两旁已不象刚才那么树木繁
-茂，反而是光秃秃的没有一棵植物，这里的山石竟发出深深的赤红色
-光泽，不知与处别的石头有什么不同，空气中飘这一股腥臊的气味，
-可能有毒物潜伏在附近，离开这里吧。
+這裡是後山一條昏暗的山道。山道的兩旁已不象剛才那麼樹木繁
+茂，反而是光禿禿的沒有一棵植物，這裡的山石竟發出深深的赤紅色
+光澤，不知與處別的石頭有什麼不同，空氣中飄這一股腥臊的氣味，
+可能有毒物潛伏在附近，離開這裡吧。
 LONG);
         set("area","tangmen");
         set("outdoors", "tangmen");
@@ -42,24 +42,24 @@ int do_qiao(string arg)
         jingli_cost = (-1) * (10 + random(15));
 
         if ( !arg || ( arg != "shi" ) )
-                return notify_fail("你想干什么？\n");
+                return notify_fail("你想幹什麼？\n");
 
         if( !(query_temp("biao", me)) )
-                        return notify_fail("你没事做吗？乱敲什么呀！\n");
+                        return notify_fail("你沒事做嗎？亂敲什麼呀！\n");
         if( !weapon || (query("id", weapon) != "hammer") )
-                return notify_fail("你手上没有铁锤，难道用手？\n");
+                return notify_fail("你手上沒有鐵錘，難道用手？\n");
         if( query_temp("find", me) )
-                return notify_fail("你已经找到一块精铁矿石了，没有力气再带一块！\n");
+                return notify_fail("你已經找到一塊精鐵礦石了，沒有力氣再帶一塊！\n");
 
         if( query("jingli", me) <= (-jingli_cost) )
-                return notify_fail("你太疲劳了，没有精力再继续敲凿了。\n");
+                return notify_fail("你太疲勞了，沒有精力再繼續敲鑿了。\n");
 
         if ( (int)query("shi") >= 1 )
         {
-                message_vision(YEL"$N扬起手中的铁锤重重的砸在道旁的山石上。\n"NOR, me);
+                message_vision(YEL"$N揚起手中的鐵錘重重的砸在道旁的山石上。\n"NOR, me);
                 if( random(1+query("kar", me)-10) >= 3 )
                 {
-                        message_vision(HIG"$N听到山石发出清脆的碎裂声，终于给你敲下来了一大块！\n$N低头刚要抱起矿石，突然一只毒蝎从石后爬了出来！\n"NOR, me);
+                        message_vision(HIG"$N聽到山石發出清脆的碎裂聲，終於給你敲下來了一大塊！\n$N低頭剛要抱起礦石，突然一隻毒蠍從石後爬了出來！\n"NOR, me);
                         enemy = new(__DIR__"npc/xiezi");
                         enemy->move(this_object());
                         new(__DIR__"obj/kuangshi")->move(this_object());
@@ -72,7 +72,7 @@ int do_qiao(string arg)
                 addn("shi",-1);
         }
         else
-                return notify_fail("山道边的山石都被砸碎了，没有可以用的了。\n");
+                return notify_fail("山道邊的山石都被砸碎了，沒有可以用的了。\n");
 
         return 1;
 }
@@ -89,7 +89,7 @@ int valid_leave(object me, string dir)
         else 
                 true = 0;
         if ( ( (dir == "southeast") || (dir == "northup") ) && objectp( present("kuang shi", me))  && true && living(ob))
-                return notify_fail("毒蝎挡住了你离开的道路，看来只有杀了它才能走了！\n");
+                return notify_fail("毒蠍擋住了你離開的道路，看來只有殺了它才能走了！\n");
         else
                 return ::valid_leave(me, dir);
 }

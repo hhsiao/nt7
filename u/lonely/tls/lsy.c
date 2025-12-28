@@ -5,12 +5,12 @@ inherit ROOM;
 
 void create()
 {
-	set("short", HIW"龙树院"NOR);
+	set("short", HIW"龍樹院"NOR);
 	set("long", @LONG
-你进入了一间小松木屋，木屋门上挂了一个牌匾，上边写着“龙树院”，
-你吃了一惊，想不到大名鼎鼎的天龙寺龙树院竟然就是这间小屋。
+你進入了一間小松木屋，木屋門上掛了一個牌匾，上邊寫著“龍樹院”，
+你吃了一驚，想不到大名鼎鼎的天龍寺龍樹院竟然就是這間小屋。
 LONG);
-	set("indoors", "天龙寺");
+	set("indoors", "天龍寺");
 	set("exits", ([             
 		"out" : __DIR__"songlin-1",
 	]));

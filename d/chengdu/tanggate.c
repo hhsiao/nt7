@@ -5,11 +5,11 @@ inherit ROOM;
 string look_gaoshi();
 void create()
 {
-        set("short", "唐门大门");
+        set("short", "唐門大門");
         set("long", @LONG
-这里就是名闻天下的唐门的大门(gate)。唐门建的十分巍峨，青
-墙碧瓦下的铜包大门紧紧关闭，两边唐门弟子一溜排开，这个架势看
-来是不好进去了。
+這裡就是名聞天下的唐門的大門(gate)。唐門建的十分巍峨，青
+牆碧瓦下的銅包大門緊緊關閉，兩邊唐門弟子一溜排開，這個架勢看
+來是不好進去了。
 LONG );
         set("outdoors", "chengdu");
         set("no_fight",1);

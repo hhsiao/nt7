@@ -6,12 +6,12 @@ inherit NPC;
 void create()
 {
         set_name("蜈蚣", ({ "wugong", "gong", "wu" }) );
-        set("race", "野兽");
+        set("race", "野獸");
         set("age", 2);
-        set("long", "一只赤红色的毒蜈蚣，竟有一尺来长。\n");
+        set("long", "一隻赤紅色的毒蜈蚣，竟有一尺來長。\n");
         set("attitude", "peaceful");
 
-        set("limbs", ({ "头部", "背壳", "尾钳" }) );
+        set("limbs", ({ "頭部", "背殼", "尾鉗" }) );
         set("verbs", ({ "bite", "claw" }) );
 
         set("combat_exp", 25000);
@@ -29,14 +29,14 @@ int hit_ob(object me, object ob, int damage)
         if( random(damage)>query_temp("apply/armor", ob) && ob->query_condition("xie_poison")<20 )
         {
                 ob->apply_condition("xie_poison", 40);
-                tell_object(ob, HIG "你觉得被刺中的地方一阵麻木！\n" NOR );
+                tell_object(ob, HIG "你覺得被刺中的地方一陣麻木！\n" NOR );
         }
 }
 
 void die()
 {
         object ob;
-        message_vision("$N背壳“啪”的一声破裂了，身体抽动了几下，死了。\n", this_object());
+        message_vision("$N背殼“啪”的一聲破裂了，身體抽動了幾下，死了。\n", this_object());
 //        ob = new(__DIR__"xiezike");
 //        ob->move(environment(this_object()));
         destruct(this_object());

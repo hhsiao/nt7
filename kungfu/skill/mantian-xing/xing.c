@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define XING "「" HIR "穹外飞星" NOR "」"
+#define XING "「" HIR "穹外飛星" NOR "」"
 
 #include "/kungfu/skill/eff_msg.h";
 
@@ -19,40 +19,40 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(XING "只能在战斗中对对手使用。\n");
+                return notify_fail(XING "只能在戰鬥中對對手使用。\n");
 
         if( !objectp(weapon=query_temp("handing", me)) || 
             query("skill_type", weapon) != "throwing" )
-                return notify_fail("你现在手中没有拿着暗器，难以施展" XING "。\n");
+                return notify_fail("你現在手中沒有拿著暗器，難以施展" XING "。\n");
 
         if (weapon->query_amount() < 15)
                 return notify_fail("至少要有十五枚暗器才能施展" XING "。\n");
 
         if ((skill = me->query_skill("mantian-xing", 1)) < 80)
-                return notify_fail("你的满天星不够娴熟，难以施展" XING "。\n");
+                return notify_fail("你的滿天星不夠嫻熟，難以施展" XING "。\n");
 
         if ((int)me->query_skill("force") < 150)
-                return notify_fail("你的内功修为不足，难以施展" XING "。\n");
+                return notify_fail("你的內功修為不足，難以施展" XING "。\n");
 
         if( query("max_neili", me)<1200 )
-                return notify_fail("你的内力修为不足，难以施展" XING "。\n");
+                return notify_fail("你的內力修為不足，難以施展" XING "。\n");
 
         if( query("neili", me)<150 )
-                return notify_fail("你现在真气不足，难以施展" XING "。\n");
+                return notify_fail("你現在真氣不足，難以施展" XING "。\n");
 
         if( BUFF_D->check_buff(target, "mtx_xing") ) 
-                return notify_fail("对方已经中了你的绝招，现在是废人一个，赶快进攻吧！\n");
+                return notify_fail("對方已經中了你的絕招，現在是廢人一個，趕快進攻吧！\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         addn("neili", -100, me);
         weapon->add_amount(-15);
 
-        msg = HIR "$N" HIR "蓦地飞身跃起，十指箕张，施出「穹外飞星」将"
-              "手中" + weapon->name() + HIR "尽数凌空射出。\n霎时破空声"
-              "骤响，" + weapon->name() + HIR "便如同陨星飞坠一般，笼罩"
-              "$n" HIR "各处大穴！\n" NOR;
+        msg = HIR "$N" HIR "驀地飛身躍起，十指箕張，施出「穹外飛星」將"
+              "手中" + weapon->name() + HIR "盡數凌空射出。\n霎時破空聲"
+              "驟響，" + weapon->name() + HIR "便如同隕星飛墜一般，籠罩"
+              "$n" HIR "各處大穴！\n" NOR;
 
         my_exp=attack_power(me, "throwing");
         ob_exp=defense_power(target, "dodge");
@@ -67,9 +67,9 @@ int perform(object me, object target)
                         if (random(my_exp / 2) > ob_exp) n += 1 + random(2);
                         if (random(my_exp / 4) > ob_exp) n += 1 + random(2);
 
-                        msg += HIR "结果$n" HIR "一声惨叫，同时中了$P" HIR +
+                        msg += HIR "結果$n" HIR "一聲慘叫，同時中了$P" HIR +
                                chinese_number(n)+query("base_unit", weapon)+
-                               weapon->name() + HIR "，直感两耳轰鸣，目不视"
+                               weapon->name() + HIR "，直感兩耳轟鳴，目不視"
                                "物。\n" NOR;
 
                         while (n--)
@@ -89,11 +89,11 @@ int perform(object me, object target)
                                 "target": target,
                                 "type"  : "mtx_xing",
                                 "attr"  : "curse",
-                                "name"  : "满天星·穹外飞星",
+                                "name"  : "滿天星·穹外飛星",
                                 "time"  : skill/15,
                                 "buff_data": data,      
                                 "buff_msg" : "",
-                                "disa_msg" : HIY "渐渐的你觉得力气一丝丝的恢复了。\n" NOR,
+                                "disa_msg" : HIY "漸漸的你覺得力氣一絲絲的恢復了。\n" NOR,
                         
                         ]);
                         BUFF_D->buffup(buff);
@@ -109,14 +109,14 @@ int perform(object me, object target)
                         msg += "( $n" + eff_status_msg(p) + " )\n";
                         message_combatd(msg, me, target);
 
-                        tell_object(target, RED "你现在要穴受到重损，乃至全身"
-                                            "乏力，提不上半点力道！\n" NOR);
-                        tell_object(me, HIC "你心知刚才这招已打中对方要寒，不"
+                        tell_object(target, RED "你現在要穴受到重損，乃至全身"
+                                            "乏力，提不上半點力道！\n" NOR);
+                        tell_object(me, HIC "你心知剛才這招已打中對方要寒，不"
                                             "禁暗自冷笑。\n" NOR);
                 } else
                 {
-                        msg += HIR "$n" HIR "集中生智，双手画圈回旋挥舞，拨弄"
-                               "开了要害处的杀着，可还是受了点轻伤。\n" NOR;
+                        msg += HIR "$n" HIR "集中生智，雙手畫圈迴旋揮舞，撥弄"
+                               "開了要害處的殺著，可還是受了點輕傷。\n" NOR;
 
                         target->receive_damage("qi", skill);
                         target->receive_wound("qi", skill/2);
@@ -125,16 +125,16 @@ int perform(object me, object target)
                         msg += "( $n" + eff_status_msg(p) + " )\n";
                         message_combatd(msg, me, target);
 
-                        tell_object(target, RED "你只觉全身几处一阵刺痛，知道"
-                                            "自己虽被击中，但却是避开了要穴。"
+                        tell_object(target, RED "你只覺全身幾處一陣刺痛，知道"
+                                            "自己雖被擊中，但卻是避開了要穴。"
                                             "\n" NOR);
                         //target->kill_ob(me);
                         me->start_busy(1 + random(2));
                 }
         } else
         {
-                 msg += CYN "可是$n" CYN "小巧腾挪，好不容易避开了"
-                        CYN "$N" CYN "铺天盖地的攻击。\n" NOR;
+                 msg += CYN "可是$n" CYN "小巧騰挪，好不容易避開了"
+                        CYN "$N" CYN "鋪天蓋地的攻擊。\n" NOR;
                  me->start_busy(3);
                  message_combatd(msg, me, target);
         }

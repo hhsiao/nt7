@@ -12,12 +12,12 @@ mixed ask_skill2();
 
 void create()
 {
-        set_name("吴长风", ({ "wu changfeng", "wu", "changfeng" }));
+        set_name("吳長風", ({ "wu changfeng", "wu", "changfeng" }));
         set("long", @LONG
-吴长风乃丐帮元老，武功甚为了得。
+吳長風乃丐幫元老，武功甚為了得。
 LONG);
-        set("nickname", HIR "大勇长老" NOR);
-        set("title", "丐帮九袋长老");
+        set("nickname", HIR "大勇長老" NOR);
+        set("title", "丐幫九袋長老");
         set("gender", "男性");
         set("age", 45);
         set("attitude", "peaceful");
@@ -68,11 +68,11 @@ LONG);
 
         prepare_skill("strike", "liuhe-zhang");
 
-        create_family("丐帮", 18, "长老");
+        create_family("丐幫", 18, "長老");
 
         set("inquiry", ([
-                "乌龙探海" : (: ask_skill1 :),
-                "闪刀诀"   : (: ask_skill2 :),
+                "烏龍探海" : (: ask_skill1 :),
+                "閃刀訣"   : (: ask_skill2 :),
         ]));
 
         set("chat_chance_combat", 120);
@@ -102,29 +102,29 @@ void attempt_apprentice(object ob)
 
         if( query("combat_exp", ob)<120000 )
         {
-                command("say 你的江湖经验不够，还是先向其他师父学习吧。");
+                command("say 你的江湖經驗不夠，還是先向其他師父學習吧。");
                 return;
         }
 
         if( query("shen", ob)<20000 )
         {
-                command("say 你身为丐帮弟子，竟然不做好事？");
+                command("say 你身為丐幫弟子，竟然不做好事？");
                 return;
         }
 
         if( query("family/beggarlvl", ob)<4 )
         {
-                command("say 你在本帮的地位太低，还是先向其他师父学习吧。");
+                command("say 你在本幫的地位太低，還是先向其他師父學習吧。");
                 return;
         }
 
         if (ob->query_skill("force") < 90)
         {
-                command("say 你的内功火候还不够，还是先向其他师父学习吧。");
+                command("say 你的內功火候還不夠，還是先向其他師父學習吧。");
                 return;
         }
         command("nod");
-        command("say 我便收下你，希望日后努力上进，能有所作为。");
+        command("say 我便收下你，希望日後努力上進，能有所作為。");
         command("recruit "+query("id", ob));
 
         if( query("class", ob) != "beggar" )
@@ -144,41 +144,41 @@ mixed ask_skill1()
         me = this_player();
 
         if( query("can_perform/liuhe-zhang/tan", me) )
-                return "这招我不是已经教会你了吗？";
+                return "這招我不是已經教會你了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "阁下与在下素不相识，不知此话从何说起？";
+                return "閣下與在下素不相識，不知此話從何說起？";
 
         if (me->query_skill("liuhe-zhang", 1) < 1)
-                return "你连六合掌法都未曾学过，哪里来绝招？";
+                return "你連六合掌法都未曾學過，哪裡來絕招？";
 
         if( query("family/gongji", me)<50 )
-                return "你在我们丐帮内甚无作为，这招我暂时还不能传你。";
+                return "你在我們丐幫內甚無作為，這招我暫時還不能傳你。";
 
         if( query("shen", me)<3000 )
-                return "你侠义正事做得不够，这招我先不忙传你。";
+                return "你俠義正事做得不夠，這招我先不忙傳你。";
 
         if (me->query_skill("force") < 100)
-                return "你的内功火候不足，学不成这招。";
+                return "你的內功火候不足，學不成這招。";
 
         if (me->query_skill("liuhe-zhang", 1) < 60)
-                return "你的六合掌法火候未到，还得多练习练习。";
+                return "你的六合掌法火候未到，還得多練習練習。";
 
-        message_sort(HIY "\n$n" HIY "哈哈一笑，也不答话，忽然间单掌飕"
-                     "的探出，正向$N" HIY "胸前拍落。$N" HIY "登时大惊"
-                     "失色，急忙向后跃开数尺，可已然不及，$n" HIY "的"
-                     "单掌正搭在$N" HIY "的胸部左侧，招术甚为奇巧。\n"
+        message_sort(HIY "\n$n" HIY "哈哈一笑，也不答話，忽然間單掌颼"
+                     "的探出，正向$N" HIY "胸前拍落。$N" HIY "登時大驚"
+                     "失色，急忙向後躍開數尺，可已然不及，$n" HIY "的"
+                     "單掌正搭在$N" HIY "的胸部左側，招術甚為奇巧。\n"
                      "\n" NOR, me, this_object());
 
         if( query("gender", me) == "女性" )
         {
                 command("ah");
-                command("say …对…对不住…我…我忘了你是女的。");
+                command("say …對…對不住…我…我忘了你是女的。");
         } else
                 command("haha");
 
-        command("say 招式便是如此，自己下去练习吧。");
-        tell_object(me, HIC "你学会了「乌龙探海」。\n" NOR);
+        command("say 招式便是如此，自己下去練習吧。");
+        tell_object(me, HIC "你學會了「烏龍探海」。\n" NOR);
 
         if (me->can_improve_skill("strike"))
                 me->improve_skill("strike", 1500000);
@@ -197,36 +197,36 @@ mixed ask_skill2()
         me = this_player();
 
         if( query("can_perform/liuhe-dao/shan", me) )
-                return "这招我不是已经教会你了吗？";
+                return "這招我不是已經教會你了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "阁下与在下素不相识，不知此话从何说起？";
+                return "閣下與在下素不相識，不知此話從何說起？";
 
         if (me->query_skill("liuhe-dao", 1) < 1)
-                return "你连六合刀法都未曾学过，哪里来绝招？";
+                return "你連六合刀法都未曾學過，哪裡來絕招？";
 
         if( query("family/gongji", me)<200 )
-                return "你在我们丐帮内甚无作为，这招我暂时还不能传你。";
+                return "你在我們丐幫內甚無作為，這招我暫時還不能傳你。";
 
         if( query("shen", me)<5000 )
-                return "你侠义正事做得不够，这招我先不忙传你。";
+                return "你俠義正事做得不夠，這招我先不忙傳你。";
 
         if (me->query_skill("force") < 100)
-                return "你的内功火候不足，学不成这招。";
+                return "你的內功火候不足，學不成這招。";
 
         if (me->query_skill("liuhe-dao", 1) < 80)
-                return "你的六合刀法火候未到，还得多练习练习。";
+                return "你的六合刀法火候未到，還得多練習練習。";
 
-        message_sort(HIY "\n$n" HIY "对$N" HIY "笑了笑，拔出腰间佩刀"
-                     "握在手中，说道：“这六合刀法的要诀不过是展、抹"
-                     "、钩、剁、砍、劈六势，看好了。”说完便只见$n" HIY
-                     "手中钢刀吞吐不定，形若游龙，势如猛虎。接连变换"
-                     "了数种方位，最后只听哧的一声砍落，刀身震得嗡嗡"
-                     "直响。\n" NOR, me, this_object());
+        message_sort(HIY "\n$n" HIY "對$N" HIY "笑了笑，拔出腰間佩刀"
+                     "握在手中，說道：“這六合刀法的要訣不過是展、抹"
+                     "、鉤、剁、砍、劈六勢，看好了。”說完便只見$n" HIY
+                     "手中鋼刀吞吐不定，形若游龍，勢如猛虎。接連變換"
+                     "了數種方位，最後只聽哧的一聲砍落，刀身震得嗡嗡"
+                     "直響。\n" NOR, me, this_object());
 
         command("nod");
-        command("say 只要掌握了四象六合的方位，这招便不难练习。");
-        tell_object(me, HIC "你学会了「闪刀诀」。\n" NOR);
+        command("say 只要掌握了四象六合的方位，這招便不難練習。");
+        tell_object(me, HIC "你學會了「閃刀訣」。\n" NOR);
 
         if (me->can_improve_skill("blade"))
                 me->improve_skill("blade", 1500000);

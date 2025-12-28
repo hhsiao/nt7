@@ -8,11 +8,11 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("贾布", ({ "jia bu", "jia", "bu"}) );
+        set_name("賈布", ({ "jia bu", "jia", "bu"}) );
         set("gender", "男性" );
         set("age", 45);
-        set("title", "日月神教青龙堂长老");
-        set("long", "他蜡黄瘦脸，两边太阳穴高高鼓起，便如藏了一枚核桃似的。\n");
+        set("title", "日月神教青龍堂長老");
+        set("long", "他蠟黃瘦臉，兩邊太陽穴高高鼓起，便如藏了一枚核桃似的。\n");
         set("attitude", "friendly");
         set("shen_type", -1);
 
@@ -53,11 +53,11 @@ void create()
         map_skill("parry", "tianmo-zhang");
         map_skill("strike", "tianmo-zhang");
 
-        create_family("日月神教",2,"弟子 青龙堂长老");
+        create_family("日月神教",2,"弟子 青龍堂長老");
 
         set("chat_chance", 1);
         set("chat_msg", ({
-               "贾布叹道: “攘外必先安内，堂中令牌被盗若是被教主知道，我命休矣。”\n"
+               "賈布嘆道: “攘外必先安內，堂中令牌被盜若是被教主知道，我命休矣。”\n"
         }) );
         set("master_ob",2);
         setup();
@@ -71,10 +71,10 @@ void attempt_apprentice(object ob)
 
     if((int)ob->query_skill("riyue-xinfa", 1) < 80)
     {
-         command("say 你的内功心法尚欠火候，多练练去吧！");
+         command("say 你的內功心法尚欠火候，多練練去吧！");
          return;
     }
 
     command("recruit "+query("id", ob));
-    set("title", HIM"日月神教"HIC"青龙堂教众"NOR, ob);
+    set("title", HIM"日月神教"HIC"青龍堂教眾"NOR, ob);
 }

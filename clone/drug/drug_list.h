@@ -1,7 +1,7 @@
 // Code of ShenZhou
 mapping *drug_list = ({
         ([
-                "name": "养心丸",
+                "name": "養心丸",
                 "file": "yangxin",
                 "time": 5,
                 "s": 15,
@@ -9,7 +9,7 @@ mapping *drug_list = ({
                 "n": 0,
         ]),
         ([
-                "name": "归元丹",
+                "name": "歸元丹",
                 "file": "guiyuan",
                 "time": 5,
                 "s": 15,
@@ -17,7 +17,7 @@ mapping *drug_list = ({
                 "n": 0,
         ]),
         ([
-                "name": "金创药",
+                "name": "金創藥",
                 "file": "jinchuang",
                 "time": 10,
                 "s": 20,
@@ -41,7 +41,7 @@ mapping *drug_list = ({
                 "n": 40,
         ]),
         ([
-                "name": "田七鲨胆散",
+                "name": "田七鯊膽散",
                 "file": "tianqi-san",
                 "time": 45,
                 "s": 5,
@@ -57,7 +57,7 @@ mapping *drug_list = ({
                 "n": 0,
         ]),
         ([
-                "name": "养精丹",
+                "name": "養精丹",
                 "file": "yangjing",
                 "time": 5,
                 "s": 0,
@@ -65,7 +65,7 @@ mapping *drug_list = ({
                 "n": 0,
         ]),
         ([
-                "name": "蛇药",
+                "name": "蛇藥",
                 "file": "sheyao",
                 "time": 10,
                          "s": 0,
@@ -73,7 +73,7 @@ mapping *drug_list = ({
                 "n": 0,
         ]),
         ([
-                "name": "续命八丹",
+                "name": "續命八丹",
                 "file": "badan",
                 "time": 60,
                 "s": 125,
@@ -81,7 +81,7 @@ mapping *drug_list = ({
                 "n": 63,
         ]),
         ([
-                "name": "通犀地龙丸",
+                "name": "通犀地龍丸",
                 "file": "dilong-wan",
                 "time": 100,
                 "s": 20,
@@ -97,7 +97,7 @@ mapping *drug_list = ({
                 "n": 167,
         ]),
         ([
-                "name": "回阳五龙散",
+                "name": "回陽五龍散",
                 "file": "huiyang-san",
                 "time": 30,
                 "s": 40,
@@ -105,7 +105,7 @@ mapping *drug_list = ({
                 "n": 88,
         ]),
         ([
-                "name": "灵心丹",
+                "name": "靈心丹",
                 "file": "lingxin-dan",
                 "time": 10,
                 "s": 110,
@@ -113,7 +113,7 @@ mapping *drug_list = ({
                 "n": 87,
         ]),
         ([
-                "name": "三黄宝蜡丸",
+                "name": "三黃寶蠟丸",
                         "file": "sanhuang-wan",
                 "time": 50,
                 "s": 5,
@@ -121,7 +121,7 @@ mapping *drug_list = ({
                 "n": 0,
         ]),
         ([
-                "name": "人参养荣丸",
+                "name": "人參養榮丸",
                 "file": "yangrong-wan",
                 "time": 40,
                 "s": 185,
@@ -153,7 +153,7 @@ mapping *drug_list = ({
                 "n": 147,
         ]),
                 ([
-                                "name": "补阴丸",
+                                "name": "補陰丸",
                 "file": "buyin-wan",
                 "time": 60,
                 "s": 0,

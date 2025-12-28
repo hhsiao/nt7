@@ -3,10 +3,10 @@ inherit ROOM;
 
 void create()
 {
-	set("short", "郭府大门");
+	set("short", "郭府大門");
 	set("long", 
-"建筑古朴的大宅院出现在你的眼前。只见门楼高挑，门前
-立了两个石狮，大门上书两个大字" YEL "
+"建築古樸的大宅院出現在你的眼前。只見門樓高挑，門前
+立了兩個石獅，大門上書兩個大字" YEL "
 
               ※※※※※※※※※※※
               ※                  ※
@@ -14,8 +14,8 @@ void create()
               ※                  ※
               ※※※※※※※※※※※" NOR "
 
-你从大门瞧进去，好象里面人来人往，都很繁忙的样子。这里
-站着位青年，神情威严。接待前来保卫襄阳的各方义士。
+你從大門瞧進去，好象裡面人來人往，都很繁忙的樣子。這裡
+站著位青年，神情威嚴。接待前來保衛襄陽的各方義士。
 ");
         set("outdoors", "wuguan");
 	set("exits", ([
@@ -34,37 +34,37 @@ int valid_leave(object me, string dir)
         if( query("mark/guofu_ok", me )
            && present("wu dunru", environment(me)) 
            && dir == "south")
-             return notify_fail(CYN "\n武敦儒伸手将你拦住道：现在"
-                                "襄阳城内不太平，你还是多呆一会吧"
+             return notify_fail(CYN "\n武敦儒伸手將你攔住道：現在"
+                                "襄陽城內不太平，你還是多呆一會吧"
                                 "。\n" NOR);
 
 /*
         if( query("mark/guofu_over", me )
            && present("wu dunru", environment(me))
            && dir == "north")
-             return notify_fail(CYN "\n武敦儒将你拦住，冷笑道：郭"
-                                "府留你不下，你还是走吧。\n" NOR);
+             return notify_fail(CYN "\n武敦儒將你攔住，冷笑道：郭"
+                                "府留你不下，你還是走吧。\n" NOR);
 
         if( query("mark/guofu_out", me )
            && present("wu dunru", environment(me)) 
            && dir == "north")
              return notify_fail(CYN "\n武敦儒笑道：你再留在郭府已"
-                                "无多大的用处，还是多去闯荡闯荡吧"
+                                "無多大的用處，還是多去闖蕩闖蕩吧"
                                 "。\n" NOR);
 
         if( query("combat_exp", me)>5000
             && !query("mark/guofu_ok", me )
            && present("wu dunru", environment(me)) 
            && dir == "north")
-             return notify_fail(CYN "\n武敦儒抱拳道：现襄阳正值动"
-                                "乱时期，没师父许可，任何人不得入"
-                                "内。\n" NOR);
+             return notify_fail(CYN "\n武敦儒抱拳道：現襄陽正值動"
+                                "亂時期，沒師父許可，任何人不得入"
+                                "內。\n" NOR);
 
         if( !query("mark/guofu_ok", me )
            && present("wu dunru", environment(me)) 
            && dir == "north")
-             return notify_fail(CYN "\n武敦儒伸手将你拦住道：如果"
-                                "你不打算帮忙打杂，就别进来。\n" NOR);
+             return notify_fail(CYN "\n武敦儒伸手將你攔住道：如果"
+                                "你不打算幫忙打雜，就別進來。\n" NOR);
 */
 
         return ::valid_leave(me, dir);

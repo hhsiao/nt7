@@ -2,7 +2,7 @@ inherit NPC;
 
 void create()
 {
-        set_name("少妇", ({ "shao fu", "fu" }) );
+        set_name("少婦", ({ "shao fu", "fu" }) );
         set("gender", "女性" );
         set("age", 23);
 

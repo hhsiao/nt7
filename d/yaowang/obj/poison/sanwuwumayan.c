@@ -6,11 +6,11 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIR "三蜈五蟆烟" NOR, ({"sanwuwuma yan", "fen"}));
+        set_name(HIR "三蜈五蟆煙" NOR, ({"sanwuwuma yan", "fen"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一袋剧毒的毒药，如果用来炼暗器有见血封喉之效。\n");
+                set("long", "一袋劇毒的毒藥，如果用來煉暗器有見血封喉之效。\n");
                 set("unit", "袋");
                 set("value", 20000);
                 set("poison_type", "yaowang_poison");
@@ -20,7 +20,7 @@ void create()
                 set("poison", ([
                         "level" : 180,
                         "id"    : "yaowang",
-                        "name"  : "剧毒",
+                        "name"  : "劇毒",
                         "duration": 15,
                 ]));
                 set("only_do_effect", 1);
@@ -30,8 +30,8 @@ void create()
 
 int do_effect(object me)
 {
-        message_vision("$N仰头把一小袋" + name() + "都咽了下去。\n", me);
-        set_temp("die_reason", "吸了三蜈五蟆烟，莫名其妙的见了阎王", me);
+        message_vision("$N仰頭把一小袋" + name() + "都嚥了下去。\n", me);
+        set_temp("die_reason", "吸了三蜈五蟆煙，莫名其妙的見了閻王", me);
         me->die();
         destruct(this_object());
         return 1;
@@ -40,6 +40,6 @@ void init()
 { 
         add_action("do_dian", "dian"); 
 } 
-// 后面的待写!如果点燃后，在场的所有id根据本身内力的深厚来决定是否中毒。
-// 并且此烟点燃的时间有限，在一个点燃的有效时间可以判断有几次中毒的机会。
-// 此毒的载体可以放到火折、火把或者香烟一类。也可以考虑别的。
+// 後面的待寫!如果點燃後，在場的所有id根據本身內力的深厚來決定是否中毒。
+// 並且此煙點燃的時間有限，在一個點燃的有效時間可以判斷有幾次中毒的機會。
+// 此毒的載體可以放到火折、火把或者香菸一類。也可以考慮別的。

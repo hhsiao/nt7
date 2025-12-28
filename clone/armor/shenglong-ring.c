@@ -5,14 +5,14 @@ inherit RINGS;
 
 void create()
 {
-        set_name(HIY "圣龙之泉" NOR, ({ "shenglong ring", "shenglong", "ring" }));
+        set_name(HIY "聖龍之泉" NOR, ({ "shenglong ring", "shenglong", "ring" }));
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-                set("unit", "个");
-                set("long", HIY "圣龙之泉乃古老神兽圣龙之化身，象征着「能量」！\n" NOR);
+                set("unit", "個");
+                set("long", HIY "聖龍之泉乃古老神獸聖龍之化身，象徵著「能量」！\n" NOR);
                 set("value", 200000);
                 set("material", "gold");
                 set("armor_prop/con", 20);

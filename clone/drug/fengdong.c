@@ -11,11 +11,11 @@ void setup_ob(object me,object victim);
 
 void create()
 {
-                  set("short","风洞");
+                  set("short","風洞");
 
                   set("long",@LONG
-这个大洞又高又宽，由两大花岗岩夹峙而成。洞内清风习习，凉气飕飕，
-故称风洞。听说有时会狂风大作，看来要小心一些。
+這個大洞又高又寬，由兩大花崗岩夾峙而成。洞內清風習習，涼氣颼颼，
+故稱風洞。聽說有時會狂風大作，看來要小心一些。
 LONG);
 
                   set("exits",([
@@ -36,16 +36,16 @@ void init()
 int do_throw(string arg)
 {
         object ob;
-        if(!arg)return notify_fail("你想扔什么？");
+        if(!arg)return notify_fail("你想扔什麼？");
         ob = present(arg,this_player());
-        if(!ob)return notify_fail("你想扔什么？");
+        if(!ob)return notify_fail("你想扔什麼？");
         message_vision( HIY"\n$N把$n往外扔去！\n"NOR, this_player(), ob);
         remove_call_out("blow");
         call_out("blow",1  );
         if(userp(ob))
         {
                 ob->move("/d/zhongnan/shanlu18");
-                message_vision( HIY"\n$N被扔了出来！\n"NOR, ob);
+                message_vision( HIY"\n$N被扔了出來！\n"NOR, ob);
          }
         else destruct(ob);
         return 1;
@@ -62,11 +62,11 @@ int blow()
         if(!environment(this_player())) return 1;
         if( base_name(environment(this_player())) != "/d/zhongnan/fengdong") return 1;
 
-        message_vision( HIY"\n突然一阵狂风夹带石块向风洞袭来，声势惊人！\n"NOR, this_player() );
+        message_vision( HIY"\n突然一陣狂風夾帶石塊向風洞襲來，聲勢驚人！\n"NOR, this_player() );
 
         for ( i=0 ; i < sizeof(inv); i++)
         {
-                if( query("race", inv[i]) == "人类" )
+                if( query("race", inv[i]) == "人類" )
                 {
                         blow_result(inv[i]);
                 }
@@ -87,7 +87,7 @@ private int blow_result(object victim)
         {
                 ob2=new("/d/zhongnan/npc/bigbear");
                 ob2->move(environment(victim));
-                message_vision(HIR"突然从洞口中走进一只$N，它看到有人，大概受了惊吓，发疯似地向$n发起进攻！\n"NOR, ob2,victim);
+                message_vision(HIR"突然從洞口中走進一隻$N，它看到有人，大概受了驚嚇，發瘋似地向$n發起進攻！\n"NOR, ob2,victim);
                 setup_ob(ob2,victim);
                 ob2->kill_ob(victim);
                 addn_temp("offenders/"+query("id", victim), 1, ob2);
@@ -105,8 +105,8 @@ private int blow_result(object victim)
 
         if ( ap > dp){
         limbs=query("limbs", victim);
-                victim->receive_wound("qi", random(20), "被石块砸死了！");
-                victim->receive_damage("qi", random(ob->query_weight()/100), "被石块砸死了！");
+                victim->receive_wound("qi", random(20), "被石塊砸死了！");
+                victim->receive_damage("qi", random(ob->query_weight()/100), "被石塊砸死了！");
 
                 message_vision(CYN"$N猝不及防，$n"+CYN+"砸在了$N的"+limbs[random(sizeof(limbs))]
                           +"上。\n"NOR, victim, ob);
@@ -114,8 +114,8 @@ private int blow_result(object victim)
                 //ob->move(environment(victim));
         }
         else if ( ap < dp/7 && ob->query_weight() < 7000
-                 && query("race", victim) == "人类"){
-                message_vision(CYN"不料$N眼明手快，身子一侧，把$n"+CYN+"轻轻地接在手里。\n\n"NOR, victim, ob);
+                 && query("race", victim) == "人類"){
+                message_vision(CYN"不料$N眼明手快，身子一側，把$n"+CYN+"輕輕地接在手裡。\n\n"NOR, victim, ob);
 
                 ob->move(victim);
 
@@ -124,7 +124,7 @@ private int blow_result(object victim)
 
                 dodge_skill = victim->query_skill_mapped("dodge");
                 if( !dodge_skill ) dodge_skill = "dodge";
-                message_vision("$N一闪，正好躲过"+query("name", ob)+".\n",victim);
+                message_vision("$N一閃，正好躲過"+query("name", ob)+".\n",victim);
 
                 destruct(ob);
         }

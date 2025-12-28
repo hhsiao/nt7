@@ -8,7 +8,7 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一碗热气腾腾的粥。\n");
+                set("long", "一碗熱氣騰騰的粥。\n");
                 set("unit", "碗");
                 set("value", 20);
                 set("max_liquid", 20);
@@ -16,7 +16,7 @@ void create()
 
     set("liquid", ([
         "type": "water",
-        "name": "热粥",
+        "name": "熱粥",
         "remaining": 20,
         "drunk_supply": 40,
     ]));

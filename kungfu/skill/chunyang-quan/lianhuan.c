@@ -1,14 +1,14 @@
 // Code of Shenzhou
-///kungfu/skill/chunyang-quan/lianhuan.c 连环三招
+///kungfu/skill/chunyang-quan/lianhuan.c 連環三招
 // sdong 07/98
 //
-//【巫师】董晓(Sdong)：make lianhuan only add apply/attack
-//【巫师】董晓(Sdong)：the style of qz perform should be high speed but not high damage
+//【巫師】董曉(Sdong)：make lianhuan only add apply/attack
+//【巫師】董曉(Sdong)：the style of qz perform should be high speed but not high damage
 /*
-**maco 补：连环本质应该是剑掌腿。**
-尹志平左剑平刺，右掌正击，同时左腿横扫而出，正是全真派中的「三连环」绝招。赵志敬高纵丈馀，挥剑下削。尹志平长剑脱手，猛往对方掷去，跟著「嘿」的一声，双掌齐出。
+**maco 補：連環本質應該是劍掌腿。**
+尹志平左劍平刺，右掌正擊，同時左腿橫掃而出，正是全真派中的「三連環」絕招。趙志敬高縱丈餘，揮劍下削。尹志平長劍脫手，猛往對方擲去，跟著「嘿」的一聲，雙掌齊出。
 
-杨过见这几招凌厉变幻，已非己之所知，不禁手心人全是冷汗，眼见赵志敬身在半空，一个势虚，一个势实，看来这两掌要打得他筋折骨断。岂知赵志敬竟在这情势危急异常之际忽然空中翻身，急退寻丈，轻轻巧巧的落了下来。
+楊過見這幾招凌厲變幻，已非己之所知，不禁手心人全是冷汗，眼見趙志敬身在半空，一個勢虛，一個勢實，看來這兩掌要打得他筋折骨斷。豈知趙志敬竟在這情勢危急異常之際忽然空中翻身，急退尋丈，輕輕巧巧的落了下來。
 */
 
 
@@ -29,34 +29,34 @@ int perform(object me, object target)
         if( !target
         ||        !target->is_character()
         ||        !me->is_fighting(target) )
-                return notify_fail("连环三招只能对战斗中的对手使用。\n");
+                return notify_fail("連環三招只能對戰鬥中的對手使用。\n");
 
 
         if( objectp(query_temp("weapon", me)) )
-                return notify_fail("连环三招需空手才能施展！\n");
+                return notify_fail("連環三招需空手才能施展！\n");
 
         if( me->query_skill_mapped("cuff") != "chunyang-quan" )
-                return notify_fail("你所用的并非纯阳拳，不能施展连环三招！\n");
+                return notify_fail("你所用的並非純陽拳，不能施展連環三招！\n");
 
         if( me->query_skill_prepared("cuff") != "chunyang-quan" )
-                return notify_fail("你所备的并非纯阳拳，不能施展连环三招！\n");
+                return notify_fail("你所備的並非純陽拳，不能施展連環三招！\n");
 
         if( me->query_skill_mapped("force") != "xiantian-gong" )
-                return notify_fail("你所用的并非玄门先天功，施展不出连环三招！\n");
+                return notify_fail("你所用的並非玄門先天功，施展不出連環三招！\n");
 
         if( me->query_skill("force") < 140 )
-                return notify_fail("你的玄门先天功火候未到，无法施展连环三招！\n");
+                return notify_fail("你的玄門先天功火候未到，無法施展連環三招！\n");
 
         if( me->query_skill("cuff") < 135 )
-                return notify_fail("连环三招需要精湛的纯阳拳方能有效施展！\n");
+                return notify_fail("連環三招需要精湛的純陽拳方能有效施展！\n");
 
         if( query("neili", me) <= 200 )
-                return notify_fail("你的内力不够使用连环三招！\n");
+                return notify_fail("你的內力不夠使用連環三招！\n");
         if( query("jingli", me) <= 200 )
-                return notify_fail("你的精力不够使用连环三招！\n");
+                return notify_fail("你的精力不夠使用連環三招！\n");
 
 
-        message_vision(HIR "$N怒喝一声，拚尽全力，突然闪电般攻出拳、掌、腿连环三招！\n\n" NOR, me, target);
+        message_vision(HIR "$N怒喝一聲，拚盡全力，突然閃電般攻出拳、掌、腿連環三招！\n\n" NOR, me, target);
 
         skill = me->query_skill("strike")/2 + me->query_skill("cuff") / 8;
         if(skill>300)skill=300;
@@ -80,12 +80,12 @@ int perform(object me, object target)
         if( query_temp("restore", me))me->prepare_skill("cuff","chunyang-quan");
         addn_temp("apply/attack", -skill, me);
 
-        message_vision( "\n紧跟着$N突然腾空飞起，使出一招鸳鸯连环腿，两腿风驰电掣连环踢向$n\n",me,target);
+        message_vision( "\n緊跟著$N突然騰空飛起，使出一招鴛鴦連環腿，兩腿風馳電掣連環踢向$n\n",me,target);
         if( random(query("combat_exp", me))>query("combat_exp", target)/3 )
         {
                 if( ( target->query_skill("dodge")+target->query_skill("parry") ) < random((me->query_skill("cuff") + me->query_skill("force"))*2/3) )
                 {
-                        message_vision(HIR"只听$N一声惨叫，这连环二腿正中心口。但见$n一个身躯突然平平飞出，腾的一响，尘土飞扬，跌在丈许之外，直挺挺的躺在地下，再也不动。\n\n"NOR, target,target );
+                        message_vision(HIR"只聽$N一聲慘叫，這連環二腿正中心口。但見$n一個身軀突然平平飛出，騰的一響，塵土飛揚，跌在丈許之外，直挺挺的躺在地下，再也不動。\n\n"NOR, target,target );
                         target->receive_wound("qi",query("qi", target)+1,me);
                         target->receive_damage("qi",query("qi", target)+1,me);
                         addn("neili", -query("jiali", me), me);
@@ -103,8 +103,8 @@ int perform(object me, object target)
                         target->receive_wound("qi", (int)me->query_skill("strike"), me);
 
                         limb=query("limbs", target);
-                        type = "瘀伤";
-                        message_vision("只听$N一声惨叫，这连环二腿正中$P"+limb[random(sizeof(limb))]+"，结果把$P踢摔了个跟头。\n",target);
+                        type = "瘀傷";
+                        message_vision("只聽$N一聲慘叫，這連環二腿正中$P"+limb[random(sizeof(limb))]+"，結果把$P踢摔了個跟頭。\n",target);
 
                         str=COMBAT_D->status_msg(query("qi", target)*100/query("max_qi", target));
                         message_vision("($N"+str+")\n", target);
@@ -113,7 +113,7 @@ int perform(object me, object target)
         }
         else if( ( random( target->query_skill("dodge") ) >  me->query_skill("cuff")*2/3) && random(5) == 1 )
         {
-                message_vision(HIR"$N猛觉得劲风罩来，心知不妙，慌忙闪开，结果$n踢了个空，白白自己重重跌了一跤。\n\n"NOR, target,me );
+                message_vision(HIR"$N猛覺得勁風罩來，心知不妙，慌忙閃開，結果$n踢了個空，白白自己重重跌了一跤。\n\n"NOR, target,me );
                 me->receive_damage("qi", 30+random(50),  me);
                 me->start_busy(1+random(3));
                 str=COMBAT_D->status_msg(query("qi", me)*100/query("max_qi", me));
@@ -121,7 +121,7 @@ int perform(object me, object target)
         }
         else
         {
-                message_vision( "$N眼见这一腿来势凶猛，当下双足一点，跃高四尺，躲开了$n这一招，不过也出了一身冷汗。\n\n" NOR,  target,me);
+                message_vision( "$N眼見這一腿來勢兇猛，當下雙足一點，躍高四尺，躲開了$n這一招，不過也出了一身冷汗。\n\n" NOR,  target,me);
                 me->start_busy(1);
         }
 

@@ -1,4 +1,4 @@
-// shield.c 九阴神功护体神功
+// shield.c 九陰神功護體神功
 //
 
 #include <ansi.h>
@@ -12,23 +12,23 @@ int exert(object me, object target)
         int skill;
 
         if (target != me)
-                return notify_fail("你只能用九阴神功来提升自己的防御力。\n");
+                return notify_fail("你只能用九陰神功來提升自己的防禦力。\n");
 
         if( query("neili", me)<100 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if ((int)me->query_skill("jiuyin-shengong", 1) < 50)
-                return notify_fail("你的九阴神功修为不够。\n");
+                return notify_fail("你的九陰神功修為不夠。\n");
 
         if( query_temp("shield", me) )
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
         addn("neili", -100, me);
         me->receive_damage("qi", 0);
 
         message_combatd(HIW "$N" HIW "身子一晃，衣袖一波波的"
-                        "不住激荡，劲气逼人！\n" NOR, me);
+                        "不住激盪，勁氣逼人！\n" NOR, me);
 
         addn_temp("apply/armor", skill/2, me);
         set_temp("shield", 1, me);
@@ -46,6 +46,6 @@ void remove_effect(object me, int amount)
         {
                 addn_temp("apply/armor", -amount, me);
                 delete_temp("shield", me);
-                tell_object(me, "你的九阴神功运行完毕，将内力收回丹田。\n");
+                tell_object(me, "你的九陰神功運行完畢，將內力收回丹田。\n");
         }
 }

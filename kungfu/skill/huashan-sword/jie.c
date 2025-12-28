@@ -1,5 +1,5 @@
 // This program is a part of NITAN MudLIB
-// jie.c 华山剑法「截手式」
+// jie.c 華山劍法「截手式」
 
 #include <ansi.h>
 #include <combat.h>
@@ -17,31 +17,31 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if (target->is_busy())
-                return notify_fail(target->name() + "目前正自顾不暇，放胆攻击吧！\n");
+                return notify_fail(target->name() + "目前正自顧不暇，放膽攻擊吧！\n");
 
         if ((level = me->query_skill("huashan-sword", 1)) < 30)
-                return notify_fail("你的华山剑法不够娴熟，无法施展" + name() + " 。\n");
+                return notify_fail("你的華山劍法不夠嫻熟，無法施展" + name() + " 。\n");
 
         if (me->query_skill_mapped("sword") != "huashan-sword")
-                return notify_fail("你没有激发华山剑法，无法施展" + name() + "。\n");
+                return notify_fail("你沒有激發華山劍法，無法施展" + name() + "。\n");
 
         if( query("neili", me)<60 )
-                return notify_fail("你现在真气不够，无法使用「截手式」。\n");
+                return notify_fail("你現在真氣不夠，無法使用「截手式」。\n");
 
         if (! living(target))
-               return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+               return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "\n但见$N" HIW "长剑一勒，使出华山剑法绝技之"
-              "「" HIG "截手式" HIW "」，转折之际天衣无缝，一\n"
-              "剑既出，后着源源倾泻，如大浪跃滩，层层叠叠，迅"
-              "然扑向$n" HIW "！\n" NOR;
+        msg = HIW "\n但見$N" HIW "長劍一勒，使出華山劍法絕技之"
+              "「" HIG "截手式" HIW "」，轉折之際天衣無縫，一\n"
+              "劍既出，後著源源傾瀉，如大浪躍灘，層層疊疊，迅"
+              "然撲向$n" HIW "！\n" NOR;
 
         addn("neili", -50, me);
         ap = attack_power(me, "sword");
@@ -49,19 +49,19 @@ int perform(object me, object target)
 
         if (ap / 2 + random(ap) > dp)
         {
-                msg += HIR "结果$p" HIR "瘁不及防，连连倒退"
-                       "几步，一时间无法回手！\n" NOR;
+                msg += HIR "結果$p" HIR "瘁不及防，連連倒退"
+                       "幾步，一時間無法回手！\n" NOR;
                 target->start_busy(level / 90 + 2);
         } else
         {
                 if( objectp(weapon=query_temp("weapon", target)) )
-                        msg += CYN "但是$p" CYN "识破了$P" CYN "的用意，"
-                               "自顾将手中的" + weapon->name() +
-                               CYN "舞成一团光花，$P"
-                               CYN "一怔之下再也攻不进去。\n" NOR;
+                        msg += CYN "但是$p" CYN "識破了$P" CYN "的用意，"
+                               "自顧將手中的" + weapon->name() +
+                               CYN "舞成一團光花，$P"
+                               CYN "一怔之下再也攻不進去。\n" NOR;
                 else
-                        msg += CYN "但是$p" CYN "双手戳点刺拍，将$P"
-                               CYN "的来招一一架开。\n" NOR;
+                        msg += CYN "但是$p" CYN "雙手戳點刺拍，將$P"
+                               CYN "的來招一一架開。\n" NOR;
 
                 me->start_busy(1);
         }

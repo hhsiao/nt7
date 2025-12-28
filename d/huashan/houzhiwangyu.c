@@ -6,9 +6,9 @@ void create()
 {
         set("short", "猴子望月");
         set("long", @LONG
-此处原是一仞高耸入云的峭壁，不知何年由人从峭壁的半腰硬是
-开出一条栈道来，栈道旁有一粗十余丈的擎天石柱，石柱顶生一松，
-松旁有一天生奇石，宛如翘首望月的猴子。 
+此處原是一仞高聳入雲的峭壁，不知何年由人從峭壁的半腰硬是
+開出一條棧道來，棧道旁有一粗十餘丈的擎天石柱，石柱頂生一鬆，
+松旁有一天生奇石，宛如翹首望月的猴子。 
 LONG );
         set("exits", ([ /* sizeof() == 3 */
                 "southdown" : __DIR__"liyubei",
@@ -42,7 +42,7 @@ int do_open()
         object me = this_player();
 
         if (query("exits/up"))
-                return notify_fail("门已经是开着的了。\n");
+                return notify_fail("門已經是開著的了。\n");
 
         set("exits", ([ /* sizeof() == 3 */
                 "southdown" : __DIR__"liyubei",
@@ -54,11 +54,11 @@ int do_open()
 //                      "4" : "/adm/npc/biwu4", 
         ]));
 
-        message_vision(HIY "$N" HIY "轻轻一推，将通向武林大会会场的"
-                       "大门开启了。\n" NOR, me);
+        message_vision(HIY "$N" HIY "輕輕一推，將通向武林大會會場的"
+                       "大門開啟了。\n" NOR, me);
 
-        shout(HIY "【华山论剑】" NOR + WHT + me->name() + WHT "[" +
-              query("id", me)+WHT"]开启了华山绝顶的武林大会会场。\n"NOR);
+        shout(HIY "【華山論劍】" NOR + WHT + me->name() + WHT "[" +
+              query("id", me)+WHT"]開啟了華山絕頂的武林大會會場。\n"NOR);
 
         return 1;
 }
@@ -68,13 +68,13 @@ int do_close()
         object me = this_player();
 
         if (! query("exits/up"))
-                return notify_fail("门已经是关着的了。\n");
+                return notify_fail("門已經是關著的了。\n");
 
         set("exits", ([ /* sizeof() == 3 */
                 "southdown" : __DIR__"liyubei",
         ]));
-        message_vision(WHT "$N" WHT "顺手一带，将通向武林大会会场的"
-                       "大门关上了。\n" NOR, me);
+        message_vision(WHT "$N" WHT "順手一帶，將通向武林大會會場的"
+                       "大門關上了。\n" NOR, me);
         return 1;
 }
 
@@ -104,23 +104,23 @@ int valid_leave(object me, string dir)
         if (inv[i]->is_xpzhu()) continue;
 
                 if (me->query_condition("killer"))
-                        return notify_fail("杀人者不可以进入比武场！！！\n");
+                        return notify_fail("殺人者不可以進入比武場！！！\n");
 
                 if (! wizardp(me) &&
                     inv[i]->is_cruise_ob())
-                        return notify_fail("不可以携带"+inv[i]->name(1)+"进入比武场！！！\n");
+                        return notify_fail("不可以攜帶"+inv[i]->name(1)+"進入比武場！！！\n");
 
                 if (! wizardp(me) &&
                     inv[i]->is_item_make())
-                        return notify_fail("不可以携带"+inv[i]->name(1)+"进入比武场！！！\n");
+                        return notify_fail("不可以攜帶"+inv[i]->name(1)+"進入比武場！！！\n");
 
                 if (! wizardp(me) &&
                     query("weapon_prop", inv[i]) )
-                        return notify_fail("不可以携带"+inv[i]->name(1)+"进入比武场！！！\n");
+                        return notify_fail("不可以攜帶"+inv[i]->name(1)+"進入比武場！！！\n");
 
                 if (! wizardp(me) &&
                     query("armor_prop", inv[i]) )
-                        return notify_fail("不可以携带"+inv[i]->name(1)+"进入比武场！！！\n");
+                        return notify_fail("不可以攜帶"+inv[i]->name(1)+"進入比武場！！！\n");
         }
 
         if (wizardp(me)) {
@@ -128,8 +128,8 @@ int valid_leave(object me, string dir)
         }
         
                 if (dir == "1" && query("level", me) >= 20 && query("level", me) <= 100) {
-                        message_competition((ultrap(me) ? "大宗师" : "") +
-                            me->name(1) + "进入华山绝顶的1号比武场。");
+                        message_competition((ultrap(me) ? "大宗師" : "") +
+                            me->name(1) + "進入華山絕頂的1號比武場。");
         set_temp("flag_hslj", 1, me);
         BUFF_D->debuff(me, "powerofsun", "bless");
         BUFF_D->debuff(me, "powerofmoon", "bless");
@@ -137,8 +137,8 @@ int valid_leave(object me, string dir)
                                 return 1;
                 }
                 if (dir == "2" && query("level", me) >= 101 && query("level", me) <= 200)  {
-                        message_competition((ultrap(me) ? "大宗师" : "") +
-                            me->name(1) + "进入华山绝顶的2号比武场。");
+                        message_competition((ultrap(me) ? "大宗師" : "") +
+                            me->name(1) + "進入華山絕頂的2號比武場。");
         set_temp("flag_hslj", 2, me);
         BUFF_D->debuff(me, "powerofsun", "bless");
         BUFF_D->debuff(me, "powerofmoon", "bless");
@@ -146,8 +146,8 @@ int valid_leave(object me, string dir)
                                 return 1;
                 }
                 if (dir == "3" && query("level", me) >= 201)  {
-                        message_competition((ultrap(me) ? "大宗师" : "") +
-                            me->name(1) + "进入华山绝顶的3号比武场。");
+                        message_competition((ultrap(me) ? "大宗師" : "") +
+                            me->name(1) + "進入華山絕頂的3號比武場。");
         set_temp("flag_hslj", 3, me);
         BUFF_D->debuff(me, "powerofsun", "bless");
         BUFF_D->debuff(me, "powerofmoon", "bless");
@@ -155,8 +155,8 @@ int valid_leave(object me, string dir)
                                 return 1;
                 }
                 if (dir == "4" && query("level", me) >= 20) {
-                        message_competition((ultrap(me) ? "大宗师" : "") +
-                            me->name(1) + "进入华山绝顶的4号比武场。");
+                        message_competition((ultrap(me) ? "大宗師" : "") +
+                            me->name(1) + "進入華山絕頂的4號比武場。");
         set_temp("flag_hslj", 4, me);
         BUFF_D->debuff(me, "powerofsun", "bless");
         BUFF_D->debuff(me, "powerofmoon", "bless");
@@ -167,13 +167,13 @@ int valid_leave(object me, string dir)
         if (dir == "northup")
         {
                 if (me->query_condition("killer"))
-                        return notify_fail("杀人者不可以进入比武场！！！\n");
-                message_competition((ultrap(me) ? "大宗师" : "") +
-                            me->name(1) + "进入华山绝顶的论剑比武场。");
+                        return notify_fail("殺人者不可以進入比武場！！！\n");
+                message_competition((ultrap(me) ? "大宗師" : "") +
+                            me->name(1) + "進入華山絕頂的論劍比武場。");
         set_temp("flag_hslj", 5, me);
                 return 1;
         }
         
-        return notify_fail("你不可以到那边比武！！\n");
+        return notify_fail("你不可以到那邊比武！！\n");
 }
 

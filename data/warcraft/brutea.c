@@ -7,9 +7,9 @@ void setup()
         set_name("布布[2;37;0m[2;37;0m", ({"bruta"}));        
         set("gender", "男性");                
         set("long", "布布[2;37;0m
-它是布一的魔幻兽。
+它是布一的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "brutea");
         set("owner_name", "布一");

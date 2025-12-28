@@ -10,7 +10,7 @@ int valid_leave(object me, string dir)
 {
         if (random(2) && me->is_fighting())
         {
-                tell_object(me, "你还是先解决目前的敌人吧！\n"); 
+                tell_object(me, "你還是先解決目前的敵人吧！\n"); 
                 return 0;
         }
                 
@@ -19,24 +19,24 @@ int valid_leave(object me, string dir)
 
 int discmds() 
 { 
-        tell_object(this_player(), "你不能在这里毛手毛脚。\n");  
+        tell_object(this_player(), "你不能在這裡毛手毛腳。\n");  
         return -1;  
 } 
 
 int do_esc() 
 { 
         if (!query_temp("jinchuan/iesc", this_player())) {
-                tell_object(this_player(), "你已经没有小乾坤符了。\n");  
+                tell_object(this_player(), "你已經沒有小乾坤符了。\n");  
                 return -1;
         }
-        if (strsrch(base_name(this_object()), "yuanjiang/chuan7")!=-1) {//处于10天干船舱时
-                tell_object(this_player(), "你没法在这里使用小乾坤符。\n");  
+        if (strsrch(base_name(this_object()), "yuanjiang/chuan7")!=-1) {//處於10天干船艙時
+                tell_object(this_player(), "你沒法在這裡使用小乾坤符。\n");  
                 return -1;
         }
         addn_temp("jinchuan/iesc", -1, this_player());
-        message_vision(HIY "$N" HIY "一挥衣袖，洒出一片金光突然消失了。\n" NOR, this_player());
+        message_vision(HIY "$N" HIY "一揮衣袖，灑出一片金光突然消失了。\n" NOR, this_player());
         this_player()->move(get_object(__DIR__"chuan" + (string)random(50)));
-        message_vision(HIY "$N" HIY "随着一片金光突然出现在这个船舱里。\n" NOR, this_player());
+        message_vision(HIY "$N" HIY "隨著一片金光突然出現在這個船艙裡。\n" NOR, this_player());
         return 1;  
 } 
 
@@ -44,8 +44,8 @@ int do_get()
 {
         if (this_player()->is_fighting())
              {
-                if (strsrch(base_name(this_object()), "yuanjiang/chuan7")!=-1) {//处于10天干船舱时不能在战斗结束前get胜利品
-                tell_object(this_player(), "战斗里没法去捡东西！\n"); 
+                if (strsrch(base_name(this_object()), "yuanjiang/chuan7")!=-1) {//處於10天干船艙時不能在戰鬥結束前get勝利品
+                tell_object(this_player(), "戰鬥裡沒法去撿東西！\n"); 
                 return -1;
             }
         }
@@ -60,7 +60,7 @@ int do_chou()
         string msg = "";
         
         if (num<1) {
-                tell_object(me, NOR "此地元磁真气已经匮乏。\n" NOR); 
+                tell_object(me, NOR "此地元磁真氣已經匱乏。\n" NOR); 
                 return -1;
         }
         
@@ -74,7 +74,7 @@ int do_chou()
                         
         addn("gcjinchuan_yuancizhenqi/" + (string)rnd, 1, me);
         addn("yuan_ci_num", -1, this_object());
-        tell_object(me, NOR "你伸掌从舱底的破洞处，向着元江漩涡下面的地肺运功一吸，得到一条" + HIY + ({"","金","木","土","水","火"})[rnd] + NOR "行元磁真气。\n" NOR); 
+        tell_object(me, NOR "你伸掌從艙底的破洞處，向著元江漩渦下面的地肺運功一吸，得到一條" + HIY + ({"","金","木","土","水","火"})[rnd] + NOR "行元磁真氣。\n" NOR); 
         for (int i = 1; i <= 5; i++) {
                 msg += ({"","金","木","土","水","火"})[i] + "." + (string)(query("gcjinchuan_yuancizhenqi/" + (string)i, me)) + "  ";
         }
@@ -101,7 +101,7 @@ void init()
         room = this_object();
         doors = filter_array( all_inventory(room), (: strsrch(base_name($1), "yuanjiang/npc/obj/door")!=-1 :) );
         if (sizeof(doors)>0) {
-                tell_object(this_player(), NOR"\n你发现了一个神秘的舱门(door)。\n\n"NOR); 
+                tell_object(this_player(), NOR"\n你發現了一個神秘的艙門(door)。\n\n"NOR); 
                 return;
         }
 
@@ -119,10 +119,10 @@ void init()
         }
         
         if ( query("stop_run") ) return;
-        tell_object(this_player(), NOR"\n金船轰隆一摇，你摔了一跤崴了脚，半天都爬不起来。\n\n"NOR); 
+        tell_object(this_player(), NOR"\n金船轟隆一搖，你摔了一跤崴了腳，半天都爬不起來。\n\n"NOR); 
         if (query_temp("apply/shade_vision", this_player()) && !random(4)) {
                 delete_temp("apply/shade_vision", this_player());
-        message_vision(HIK "$N" HIK "的身形逐渐显露出来，变的清晰可见。\n" NOR, this_player());
+        message_vision(HIK "$N" HIK "的身形逐漸顯露出來，變的清晰可見。\n" NOR, this_player());
         }
         this_player()->start_busy(2+ random(4));
         set("stop_run", random(3), room);

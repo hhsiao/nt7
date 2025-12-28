@@ -3,12 +3,12 @@ inherit ROOM;
 
 void create()
 {
-        set("short","康府大门");
+        set("short","康府大門");
         set("long", @LONG
-这里便是康亲王的王府大门所在。来到这里，一座富丽堂皇的巨
-宅院出现在你的眼前，大门两侧是两头高大的石狮子。门上挂着两个
-灯笼，赫然写着大大的『康』字。门前站着两个提刀的侍卫，警惕的
-注视着过往的行人。
+這裡便是康親王的王府大門所在。來到這裡，一座富麗堂皇的巨
+宅院出現在你的眼前，大門兩側是兩頭高大的石獅子。門上掛著兩個
+燈籠，赫然寫著大大的『康』字。門前站著兩個提刀的侍衛，警惕的
+注視著過往的行人。
 LONG );
         set("exits", ([
                 "west" : "/d/beijing/bei_2",
@@ -26,6 +26,6 @@ LONG );
 int valid_leave(object me, string dir)
 {
         if (objectp(present("shi wei", environment(me))) && dir == "east")
-                return notify_fail("康府侍卫一把拦住你，朗声喝道：王府要地，怎由闲杂人等随便进出。\n\n");
+                return notify_fail("康府侍衛一把攔住你，朗聲喝道：王府要地，怎由閒雜人等隨便進出。\n\n");
         return ::valid_leave(me, dir);
 }

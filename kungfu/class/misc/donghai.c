@@ -6,12 +6,12 @@ inherit NPC;
 
 void create()
 {
-        set_name("东海三太子", ({ "prince of dragon", "dragon", "san taizi" }) );
-        set("title", HIG "龙族" NOR);
+        set_name("東海三太子", ({ "prince of dragon", "dragon", "san taizi" }) );
+        set("title", HIG "龍族" NOR);
         set("gender", "男性");
         set("age", 23);
         set("long", @LONG
-这是一个神采奕奕的年轻人，风度翩翩，气宇轩昂。
+這是一個神采奕奕的年輕人，風度翩翩，氣宇軒昂。
 LONG );
         set("combat_exp", 10000000);
         set("shen_type", 0);
@@ -58,7 +58,7 @@ void fight_ob(object ob)
         if (is_fighting(ob))
                 return;
 
-        message_vision(HIW "$N" HIW "冷哼一声，一股云气自身后"
+        message_vision(HIW "$N" HIW "冷哼一聲，一股雲氣自身後"
                        "升起，似真似幻。\n" NOR, this_object(), ob);
 
         ::fight_ob(ob);
@@ -68,7 +68,7 @@ void fight_ob(object ob)
 
 int accept_fight(object ob)
 {
-        message_vision("$N扫了$n一眼，没有理$n。\n",
+        message_vision("$N掃了$n一眼，沒有理$n。\n",
                        this_object(), ob);
         return 0;
 }
@@ -87,8 +87,8 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->receive_wound("qi", 200 + random(200), me);
         set("neili",query("max_neili",  me), me);
-        return HIY "$N" HIY "身上闪过一道电光，登时令$n"
-               HIY "浑身麻木，手脚酸软。\n" NOR;
+        return HIY "$N" HIY "身上閃過一道電光，登時令$n"
+               HIY "渾身麻木，手腳痠軟。\n" NOR;
 }
 
 void unconcious()
@@ -108,17 +108,17 @@ varargs void die(object killer)
         });
         str = prize[random(sizeof(prize))];
         ob = new(str);
-        command("chat 呀！想不到凡人也有如此厉害的！");
-        message_sort(HIR "$N" HIR "吐一口鲜血，驾云而去。只听叮玲玲一声"
-                     "轻响，$N"HIR"\n掉下了一"+query("unit", ob)+
+        command("chat 呀！想不到凡人也有如此厲害的！");
+        message_sort(HIR "$N" HIR "吐一口鮮血，駕雲而去。只聽叮玲玲一聲"
+                     "輕響，$N"HIR"\n掉下了一"+query("unit", ob)+
                      ob->name() + HIR "。\n", this_object());
 
         if (objectp(killer)) set("who_get", ([ "id"    : query("id", killer),
-                                               "time"  : time() + 60]), ob); // 60秒内只允许杀死我的ID拣
+                                               "time"  : time() + 60]), ob); // 60秒內只允許殺死我的ID揀
 
         ob->move(environment());
-        // 帝王符图
-        // 编号32
+        // 帝王符圖
+        // 編號32
         if (random(10) == 1)
         {
                 int n_tt;
@@ -127,19 +127,19 @@ varargs void die(object killer)
                 ob_tt = new("/clone/tuteng/diwang-suipian" + sprintf("%d", n_tt));
                 if (ob_tt)
                 {
-                        write(HIG "叮~~一张帝王符图碎片落在地上。\n" NOR);
+                        write(HIG "叮~~一張帝王符圖碎片落在地上。\n" NOR);
                         ob_tt->move(environment());
                 }
         }
 
-        // 1/600几率掉出无名铜人
+        // 1/600幾率掉出無名銅人
         if (random(600) < 1)
         {
                 object ob_tongren;
                 ob_tongren = new("/clone/tongren/tongren" + (1 + random(2)));
-                message_vision(HIR "当~~一声，从$N" HIR "身上掉出" + ob_tongren->name() + HIR "，落在地上。\n" NOR, this_object());
+                message_vision(HIR "當~~一聲，從$N" HIR "身上掉出" + ob_tongren->name() + HIR "，落在地上。\n" NOR, this_object());
                 set("who_get/id", "NONE", ob_tongren);
-                set("who_get/time", time() + 30, ob_tongren); // 30秒内都不能捡取
+                set("who_get/time", time() + 30, ob_tongren); // 30秒內都不能撿取
                 ob_tongren->move(environment(this_object()));
         }
         destruct(this_object());
@@ -151,8 +151,8 @@ void random_move()
         {
                 message_vision("$N急急忙忙的走了。\n", this_object());
                 CHANNEL_D->channel_broadcast("rumor",
-                        "听说" + name() + HIM "修炼良久，元气恢复，"
-                        "已经安然返回神界。" NOR);
+                        "聽說" + name() + HIM "修煉良久，元氣恢復，"
+                        "已經安然返回神界。" NOR);
                 destruct(this_object());
                 return;
         }

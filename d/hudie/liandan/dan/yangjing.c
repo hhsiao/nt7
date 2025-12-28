@@ -3,7 +3,7 @@
 inherit ITEM;
 void create()
 {
-   set_name("养精丹", ({"yangjing dan", "dan"}));
+   set_name("養精丹", ({"yangjing dan", "dan"}));
    /*if (clonep())
       set_default_object(__FILE__);
    else*/ {
@@ -20,7 +20,7 @@ int do_eat(string arg)
 {
    object me = this_player();
    if(!id(arg))
-       return notify_fail("你要吃什么？\n");
+       return notify_fail("你要吃什麼？\n");
    message_vision("$N吃下一粒" + name() + "。\n", me);
 /*   if (((int)me->query_condition("xx_poison") > 0) ||
          (query("eff_jing", me)<query("max_jing", me))){

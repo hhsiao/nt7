@@ -10,7 +10,7 @@ void create()
         set_name("公冶乾", ({"gongye qian", "gongye"}));
         set("gender", "男性");
         set("age", 35);
-        set("long", "他是慕容家四大家臣之二，为人稳重。\n");
+        set("long", "他是慕容家四大家臣之二，為人穩重。\n");
         set("attitude", "peaceful");
         set("str", 27);
         set("int", 24);
@@ -54,7 +54,7 @@ void create()
 
         set("inquiry", ([
                 "慕容博":   "那是老主人。\n",
-                "慕容复":   "他就是我们跟随的公子！\n",
+                "慕容復":   "他就是我們跟隨的公子！\n",
         ]));
 
         setup();
@@ -65,6 +65,6 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        command("say 我们跟随慕容公子，不收徒。");
+        command("say 我們跟隨慕容公子，不收徒。");
         return;
 }

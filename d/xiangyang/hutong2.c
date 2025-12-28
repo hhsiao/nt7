@@ -5,11 +5,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "胡同");
+        set("short", "衚衕");
         set("long", @LONG
-这里是襄阳城内老百姓的居住区。只见胡同两边是有些小店面，
-有米行、小杂货铺等。一些居民从这里进进出出。你似乎觉得这里有
-些诡秘。旁边有个小木门（door）。
+這裡是襄陽城內老百姓的居住區。只見衚衕兩邊是有些小店面，
+有米行、小雜貨鋪等。一些居民從這裡進進出出。你似乎覺得這裡有
+些詭秘。旁邊有個小木門（door）。
 LONG );
         set("outdoors", "xiangyang");
         set("exits", ([
@@ -20,7 +20,7 @@ LONG );
         ]));
 
         set("item_desc", ([
-                "door" : "厚厚的木板门，看起来相当陈旧。\n" ,
+                "door" : "厚厚的木板門，看起來相當陳舊。\n" ,
         ]));
 
         set("coor/x", -7830);
@@ -36,7 +36,7 @@ void init()
 int do_open(string arg)
 {
         if(arg=="door")
-        return notify_fail("你用力推了推门，结果一点动静都没有！看来是从里面反锁了。\n");
+        return notify_fail("你用力推了推門，結果一點動靜都沒有！看來是從裡面反鎖了。\n");
         else return 0;
 }
 
@@ -45,25 +45,25 @@ int do_knock(string arg)
         object me;
         me = this_player();
         if (!arg||arg=="") 
-                return notify_fail("你要敲什么？\n");
+                return notify_fail("你要敲什麼？\n");
           if (arg != "door")
-                return notify_fail("你要敲什么？\n");
+                return notify_fail("你要敲什麼？\n");
           if( arg=="door" ) {
-                message_vision("$N试著敲了敲木门。\n", me);
+                message_vision("$N試著敲了敲木門。\n", me);
                 if( query("bunch/bunch_name", me) != "黑白道" && query("shen", me) <= 0 )
                 {
-                        message_vision(HIB"木门吱呀一声开了，从里面探出个头来，看了$N两眼说道：“是来投靠咱们黑白道的吧！”，
-说完一把把$N拉了进去。\n"NOR, me);
+                        message_vision(HIB"木門吱呀一聲開了，從裡面探出個頭來，看了$N兩眼說道：“是來投靠咱們黑白道的吧！”，
+說完一把把$N拉了進去。\n"NOR, me);
                         me->move(__DIR__"hbd_xyfb");
                         return 1;
                 }
                 if( good_bunch(me) || query("shen", me)>0 && query("bunch/bunch_name", me) != "黑白道" )
                 { 
-                        message_vision("木门吱呀一声开了，从里面探出个头来，看了$N两眼说道：“你这种人也敢来此，活的不耐烦了么？”\n门被重重的关上了。\n",me);  
+                        message_vision("木門吱呀一聲開了，從裡面探出個頭來，看了$N兩眼說道：“你這種人也敢來此，活的不耐煩了麼？”\n門被重重的關上了。\n",me);  
                         return 1; 
                 } 
-                message_vision("门板吱呀一声开了，从里面探出个头来，看了$N两眼说道：“既然是本帮的兄弟，就进来吧！”，
-说完一把把$N拉了进去。\n",me);
+                message_vision("門板吱呀一聲開了，從裡面探出個頭來，看了$N兩眼說道：“既然是本幫的兄弟，就進來吧！”，
+說完一把把$N拉了進去。\n",me);
                 me->move(__DIR__"hbd_xyfb"); 
                 return 1; 
         }

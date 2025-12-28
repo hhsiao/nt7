@@ -1,18 +1,18 @@
 // This program is a part of NITAN MudLIB
 // bunchd.c
 /*
-【帮派荣誉点的功能】
-帮派荣誉点是一种消耗点数，仅通过特殊活动获取。通过bunch指令可以随时查
-询本帮派的荣誉点数。帮主可通过消耗荣誉点数换取以下特殊功能之一：
+【幫派榮譽點的功能】
+幫派榮譽點是一種消耗點數，僅通過特殊活動獲取。通過bunch指令可以隨時查
+詢本幫派的榮譽點數。幫主可通過消耗榮譽點數換取以下特殊功能之一：
 
-帮派荣誉点可以通过 group quest 获得
+幫派榮譽點可以通過 group quest 獲得
 
-全帮双倍经验2小时，消耗X点帮派荣誉点。
-全帮双倍潜能2小时，消耗X点帮派荣誉点。
-全帮双倍体会2小时，消耗X点帮派荣誉点。
-全帮研究效率增加20%持续3小时，消耗X点帮派荣誉点。
-全帮汲取效率增加20%持续3小时，消耗X点帮派荣誉点。
-全帮冥思效率增加20%持续3小时，消耗X点帮派荣誉点。
+全幫雙倍經驗2小時，消耗X點幫派榮譽點。
+全幫雙倍潛能2小時，消耗X點幫派榮譽點。
+全幫雙倍體會2小時，消耗X點幫派榮譽點。
+全幫研究效率增加20%持續3小時，消耗X點幫派榮譽點。
+全幫汲取效率增加20%持續3小時，消耗X點幫派榮譽點。
+全幫冥思效率增加20%持續3小時，消耗X點幫派榮譽點。
 */
 
 #include <ansi.h>
@@ -23,13 +23,13 @@
 inherit F_SAVE;
 inherit F_DBASE;
 
-// 帮派声望最大是10亿
+// 幫派聲望最大是10億
 #define MAX_BUNCH_FAME         1000000000
 
-// 每个帮派最多有100个仇人
+// 每個幫派最多有100個仇人
 #define MAX_HATRED_PERSON       100
 
-// 当仇人超过的时候每次移除多少个
+// 當仇人超過的時候每次移除多少個
 #define HATREDP_REMOVED         10
 #define BUNCH_HOME              "/data/bunch/"
 #define RM_CMD                  "/cmds/wiz/rm"
@@ -41,7 +41,7 @@ mapping last_bunch_fame;
 // area's base_name & short
 mapping area_fame;
 
-// 帮派对仇人仇恨度的排序
+// 幫派對仇人仇恨度的排序
 private int sort_hatred(string id1, string id2, mapping hatred);
 public mixed manage_areas();
 public void dismiss_bunch(string fname);
@@ -53,32 +53,32 @@ void add_bunch_honors(string bname, int honors);
 
 nosave string *npc_bunch = ({
         "黑白道",
-        "修罗门",
-        "小刀会",
-        "侠义盟",
-        "无极帮",
-        "紫衫会",
+        "修羅門",
+        "小刀會",
+        "俠義盟",
+        "無極幫",
+        "紫衫會",
 });
 
 nosave string *bad_weather = ({
-        "受干旱的影响，$N亏空",
-        "由于暴雨袭击，$N收成跌了",
-        "$N遭到了倭寇的袭击，被劫",
-        "官府加重对$N的征税，$N亏空",
-        "疾病在$N肆虐，损失惨重",
-        "龙卷风袭卷了$N，结果造成巨大损失",
-        "$N发生暴动，人员伤亡惨重，损失",
-        "$N突发地震，人员伤亡惨重，花费巨大",
+        "受乾旱的影響，$N虧空",
+        "由於暴雨襲擊，$N收成跌了",
+        "$N遭到了倭寇的襲擊，被劫",
+        "官府加重對$N的徵稅，$N虧空",
+        "疾病在$N肆虐，損失慘重",
+        "龍捲風襲捲了$N，結果造成巨大損失",
+        "$N發生暴動，人員傷亡慘重，損失",
+        "$N突發地震，人員傷亡慘重，花費巨大",
 });
 
 nosave mapping citys = ([
         "bj"  : "北京城",
-        "yz"  : "扬州城",
-        "ca"  : "长安城",
+        "yz"  : "揚州城",
+        "ca"  : "長安城",
         "cd"  : "成都城",
-        "sz"  : "苏州城",
+        "sz"  : "蘇州城",
         "hz"  : "杭州城",
-        "xy"  : "襄阳城",
+        "xy"  : "襄陽城",
         "dl"  : "大理城",
 ]);
 
@@ -123,12 +123,12 @@ void topten_bunch_add(string bunch_name)
 
         save();
 }
-// 返回最近第几场取胜的帮派名称
+// 返回最近第幾場取勝的幫派名稱
 string query_bunch_topten(int n)
 {
         mapping data;
 
-        if( !sizeof(bunch_topten) ) return "精意山庄";
+        if( !sizeof(bunch_topten) ) return "精意山莊";
         data = bunch_topten[sizeof(bunch_topten)-n];
         return data["bunch_name"];
 }
@@ -218,7 +218,7 @@ void init_player(object me)
         me->move("/maze/binghuodao/haitan"+(1+random(2)));
 }
 
-// 参与战争
+// 參與戰爭
 void join_battle(object me)
 {
 //      string where;
@@ -227,28 +227,28 @@ void join_battle(object me)
 
         /*
         if( battle_start_flag )
-                return tell_object(me, "战场已经开启，报名终止。\n");
+                return tell_object(me, "戰場已經開啟，報名終止。\n");
         */
 
         if( me->is_busy() )
                 return tell_object(me, BUSY_MESSAGE);
 
         if( me->is_fighting() )
-                return tell_object(me, "你目前正在战斗中，还是先处理目前的对手再说吧。\n");
+                return tell_object(me, "你目前正在戰鬥中，還是先處理目前的對手再說吧。\n");
 
         if( me->query_condition("killer") )
-                return tell_object(me, "官府正在通缉你，你还敢在这儿抛头露面？\n");
+                return tell_object(me, "官府正在通緝你，你還敢在這兒拋頭露面？\n");
 
         if( !battle_open_flag )
-                return tell_object(me, "战争没有发出集结，目前无法报名。\n");
+                return tell_object(me, "戰爭沒有發出集結，目前無法報名。\n");
 
         if( me->is_ghost() )
-                return tell_object(me, "等你还阳后，再报名吧。\n");
+                return tell_object(me, "等你還陽後，再報名吧。\n");
 
         init_player(me);
 
         CHANNEL_D->channel_broadcast("war", "目前共有 "+sizeof(total)+
-                                            " 位玩家报名参与"HIY"第"HIG+chinese_number(battle_times+1)+HIY"届帮派争夺战。"NOR);
+                                            " 位玩家報名參與"HIY"第"HIG+chinese_number(battle_times+1)+HIY"屆幫派爭奪戰。"NOR);
 
 }
 
@@ -267,7 +267,7 @@ void stop_battle()
                 //ob->remove_all_killer();
                 ob->remove_all_enemy(1);
                 restore_status(ob);
-                tell_object(ob, "你被传离战场...\n");
+                tell_object(ob, "你被傳離戰場...\n");
         }
 
         total = allocate(0);
@@ -280,13 +280,13 @@ public void win_battle(object me, string bunch_name)
 {
         stop_battle();
 
-        CHANNEL_D->channel_broadcast("news", HIY + "恭喜帮派【" + bunch_name + "】获得了第" + HIG +
-                              chinese_number(battle_times+1) + HIY "届帮派争夺战的胜利！\n" NOR);
-        CHANNEL_D->channel_broadcast("news", HIY + "本届帮派争夺战中，" + me->name() + HIY + "(" + me->query_id(1) +
-                              ")居功至伟，获得了丰厚的奖励！\n" NOR);
-        CHANNEL_D->channel_broadcast("news", HIY + "帮派" + bunch_name + "所有人员在接下来二十四小时内拥有冰火岛历练独家所有权！\n" NOR);
+        CHANNEL_D->channel_broadcast("news", HIY + "恭喜幫派【" + bunch_name + "】獲得了第" + HIG +
+                              chinese_number(battle_times+1) + HIY "屆幫派爭奪戰的勝利！\n" NOR);
+        CHANNEL_D->channel_broadcast("news", HIY + "本屆幫派爭奪戰中，" + me->name() + HIY + "(" + me->query_id(1) +
+                              ")居功至偉，獲得了豐厚的獎勵！\n" NOR);
+        CHANNEL_D->channel_broadcast("news", HIY + "幫派" + bunch_name + "所有人員在接下來二十四小時內擁有冰火島歷練獨家所有權！\n" NOR);
 
-        tell_object(me, HIY "你在本届帮战中成为最后的夺旗者，获得了二百万经验、二百万潜能和二百万实战体会奖励！\n" NOR);
+        tell_object(me, HIY "你在本屆幫戰中成為最後的奪旗者，獲得了二百萬經驗、二百萬潛能和二百萬實戰體會獎勵！\n" NOR);
         addn("combat_exp", 2000000, me);
         addn("potential", 2000000, me);
         addn("experience", 2000000, me);
@@ -296,15 +296,15 @@ public void win_battle(object me, string bunch_name)
         set_heart_beat(1800 + random(30));
 }
 
-// 某战场开始接受报名 TIME_D 调用
+// 某戰場開始接受報名 TIME_D 調用
 void start_join()
 {
         string *dirs;
         object ob;
         int i;
 
-        CHANNEL_D->channel_broadcast("war", HIY"荣耀"NOR YEL"之战"HIR"发出战争集结，即将在 "+(BATTLE_JOIN_TIME/60)+
-                                            " 分钟后发动"HIY"第"HIG+chinese_number(battle_times+1)+HIY"届帮派争夺战，"HIR"请准备加入战役(help bunch_war)。\n"NOR);
+        CHANNEL_D->channel_broadcast("war", HIY"榮耀"NOR YEL"之戰"HIR"發出戰爭集結，即將在 "+(BATTLE_JOIN_TIME/60)+
+                                            " 分鐘後發動"HIY"第"HIG+chinese_number(battle_times+1)+HIY"屆幫派爭奪戰，"HIR"請準備加入戰役(help bunch_war)。\n"NOR);
 
         total = ({});
         battle_open_flag = 1;
@@ -337,12 +337,12 @@ void start_battle()
                 total = allocate(0);
                 battle_open_flag = 0;
                 battle_start_time = 0;
-                CHANNEL_D->channel_broadcast("war", "报名参与"HIY"第"HIG+chinese_number(battle_times+1)+HIY"届帮派争夺战"HIR"的玩家不足 5 人，取消本次战役。");
+                CHANNEL_D->channel_broadcast("war", "報名參與"HIY"第"HIG+chinese_number(battle_times+1)+HIY"屆幫派爭奪戰"HIR"的玩家不足 5 人，取消本次戰役。");
                 return;
         }
 
-        CHANNEL_D->channel_broadcast("war", "开始出征！共计 "+sizeof(total)+
-                                            " 位玩家参与"HIY"第"HIG+chinese_number(battle_times+1)+HIY"届帮派争夺战，"HIR"计时 "+(BATTLE_TIME/60)+" 分钟结束。");
+        CHANNEL_D->channel_broadcast("war", "開始出征！共計 "+sizeof(total)+
+                                            " 位玩家參與"HIY"第"HIG+chinese_number(battle_times+1)+HIY"屆幫派爭奪戰，"HIR"計時 "+(BATTLE_TIME/60)+" 分鐘結束。");
 
         ob = new("/maze/binghuodao/npc/xiexun");
         ob->move("/maze/binghuodao/jitan");
@@ -358,20 +358,20 @@ public int query_bunch_battle(object me)
 
         str = "";
 
-        str += HIG "\n当前天下第一帮：" + HIY + query_bunch_topten(1) + NOR;
-        str += HIG "\n当前帮战的状态：";
-        str += battle_start_flag ? HIR "当前帮战进行中。" NOR : (battle_start_time > 0 ? HIY "帮战准备中，即将开始。" NOR :"当前帮战未进行。");
+        str += HIG "\n當前天下第一幫：" + HIY + query_bunch_topten(1) + NOR;
+        str += HIG "\n當前幫戰的狀態：";
+        str += battle_start_flag ? HIR "當前幫戰進行中。" NOR : (battle_start_time > 0 ? HIY "幫戰準備中，即將開始。" NOR :"當前幫戰未進行。");
         str += "\n";
-        str += battle_start_flag ? HIR "当前帮战还剩余" + time_period(battle_time_countdown) + "结束。" NOR : "";
+        str += battle_start_flag ? HIR "當前幫戰還剩餘" + time_period(battle_time_countdown) + "結束。" NOR : "";
         str += "\n";
 
-        str += HIG "\n最近十届帮派争夺战获胜帮派：\n" NOR;
-        str += sprintf("%-15s%-15s%-40s\n", "届数", "帮派", "胜利日期");
+        str += HIG "\n最近十屆幫派爭奪戰獲勝幫派：\n" NOR;
+        str += sprintf("%-15s%-15s%-40s\n", "屆數", "幫派", "勝利日期");
         str += "----------------------------------------------------------\n";
 
         if( n = sizeof(bunch_topten) )
         {
-                // 显示最近10届
+                // 顯示最近10屆
                 if( n > 10 )
                         t = n - 10;
                 else
@@ -396,7 +396,7 @@ public int query_bunch_battle(object me)
                 }
         }
         str += "----------------------------------------------------------\n";
-        str+= HIG "绿色代表你当前所在帮派。\n" NOR;
+        str+= HIG "綠色代表你當前所在幫派。\n" NOR;
         tell_object(me, str);
         return 1;
 }
@@ -453,22 +453,22 @@ int check_out(object me)
         my["qi"] = 1;
         my["jing"] = 1;
 
-        tell_object(me, HIR "\n你觉得眼前一阵模糊...这下完了！\n" NOR);
+        tell_object(me, HIR "\n你覺得眼前一陣模糊...這下完了！\n" NOR);
         if( ob = me->query_last_damage_from() )
         {
-                msg = me->name(1) + "惨遭" + ob->name(1) + "的毒手，被无情ＰＫ。";
+                msg = me->name(1) + "慘遭" + ob->name(1) + "的毒手，被無情ＰＫ。";
         } else
-                 msg = me->name(1) + "运气不佳，本领有限、已经惨遭ＰＫ。";
+                 msg = me->name(1) + "運氣不佳，本領有限、已經慘遭ＰＫ。";
 
         message("vision", msg, environment(me), ({ me }));
 
         restore_status(me);
         total -= ({ me });
 
-        message("vision", "一个黑影倏的窜了出来，随即就是“啪”的"
-                "一声，就见" + me->name() +"摔倒了地上，一副半死不"
-                "活的样子。\n", environment(me), ({ me }));
-        tell_object(me, "半昏半迷中，你觉得被人拎了起来，又"
+        message("vision", "一個黑影倏的竄了出來，隨即就是“啪”的"
+                "一聲，就見" + me->name() +"摔倒了地上，一副半死不"
+                "活的樣子。\n", environment(me), ({ me }));
+        tell_object(me, "半昏半迷中，你覺得被人拎了起來，又"
                 "重重的摔倒了地上。\n");
 
         if( !living(me) )
@@ -485,10 +485,10 @@ void create()
         string bang;
 
         seteuid(getuid());
-        set("channel_id", HIY "帮派通告" NOR);
+        set("channel_id", HIY "幫派通告" NOR);
         restore();
         set_heart_beat(1800);
-        // 转移到timed.c中调用
+        // 轉移到timed.c中調用
         //SCHEDULE_D->set_event(7200, 1, this_object(), "manage_areas");
 
         if (! mapp(bunch_fame)) bunch_fame = ([ ]);
@@ -503,13 +503,13 @@ void remove()
 {
         save();
 }
-// 要在 CMDS:REBOOT 里面加上调用
+// 要在 CMDS:REBOOT 裡面加上調用
 public void mud_shutdown()
 {
         save();
 }
 
-// 心跳：维护帮派的通常信息
+// 心跳：維護幫派的通常信息
 void heart_beat()
 {
         int t;
@@ -521,7 +521,7 @@ void heart_beat()
         last = query("last_check");
         if ((t / 86400) != (last / 86400))
         {
-                // 天数发生了变化：复制帮派的名望信息
+                // 天數發生了變化：複製幫派的名望信息
                 all_fam = keys(bunch_fame) - ({ 0 });
                 last_bunch_fame = ([ ]);
 
@@ -552,8 +552,8 @@ void heart_beat()
                         case 300:
                         case 600:
                         case 900:
-                                CHANNEL_D->channel_broadcast("war", HIY"荣耀"NOR YEL"之战"HIR"发出战争集结，即将在 "+(battle_start_time/60)+
-                                            " 分钟后发动"HIY"第"HIG+chinese_number(battle_times+1)+HIY"届帮派争夺战，"HIR"请准备加入战役(help bunch_war)。"NOR);
+                                CHANNEL_D->channel_broadcast("war", HIY"榮耀"NOR YEL"之戰"HIR"發出戰爭集結，即將在 "+(battle_start_time/60)+
+                                            " 分鐘後發動"HIY"第"HIG+chinese_number(battle_times+1)+HIY"屆幫派爭奪戰，"HIR"請準備加入戰役(help bunch_war)。"NOR);
                                 break;
                 }
 
@@ -565,7 +565,7 @@ void heart_beat()
 
         if( --battle_time_countdown <= 0 )
         {
-                CHANNEL_D->do_channel(this_object(), "news", HIM "很遗憾，本届天下第一帮争夺战在由于超时而结束了!\n" NOR);
+                CHANNEL_D->do_channel(this_object(), "news", HIM "很遺憾，本屆天下第一幫爭奪戰在由於超時而結束了!\n" NOR);
                 stop_battle();
                 return;
         }
@@ -574,8 +574,8 @@ void heart_beat()
                 auto_check();
 
         if( battle_time_countdown == 60 || battle_time_countdown == 180 )
-                CHANNEL_D->channel_broadcast("war", HIR"战"NOR RED"争"HIR"："+HIY"第"HIG+chinese_number(battle_times+1)+
-                                                    HIY"届帮派争夺战"HIR"即将在 "+(battle_time_countdown/60)+" 分钟后结束..."NOR);
+                CHANNEL_D->channel_broadcast("war", HIR"戰"NOR RED"爭"HIR"："+HIY"第"HIG+chinese_number(battle_times+1)+
+                                                    HIY"屆幫派爭奪戰"HIR"即將在 "+(battle_time_countdown/60)+" 分鐘後結束..."NOR);
 }
 
 public mixed manage_areas()
@@ -608,43 +608,43 @@ public mixed manage_areas()
 
                 bunch_name = area_fame[area]["bunch_name"];
 
-                if (bunch_name == "独立中")
+                if (bunch_name == "獨立中")
                         continue;
 
                 if (! (room = get_object(area)))
                         continue;
 
-                // 盘点时候帮派 NPC 不在时候则无收入
+                // 盤點時候幫派 NPC 不在時候則無收入
                 if (undefinedp(area_fame[area]["npc_id"]) ||
                     ! objectp(npc = present(area_fame[area]["npc_id"], room)))
                         continue;
 
                 if (! mapp(query(bunch_name)))
                 {
-                        message("channel:rumor", HIM"【泥潭帮会】由于帮派瓦解，" +
-                                query("short", room)+"宣布脱离帮会"+"「"+bunch_name+
+                        message("channel:rumor", HIM"【泥潭幫會】由於幫派瓦解，" +
+                                query("short", room)+"宣佈脫離幫會"+"「"+bunch_name+
                                 "」" + "的控制！\n" NOR, users());
 
                         delete("bunch", npc);
-                        area_fame[area]["bunch_name"] = "独立中";
+                        area_fame[area]["bunch_name"] = "獨立中";
                         continue;
                 }
 
                 if (area_fame[area]["money"] < -1000000 ||
                     query(bunch_name + "/money") < -100000000)
                 {
-                        message("channel:rumor", HIM"【泥潭帮会】由于经营不善，" +
-                                query("short", room)+"宣布脱离帮会"+"「"+bunch_name+
+                        message("channel:rumor", HIM"【泥潭幫會】由於經營不善，" +
+                                query("short", room)+"宣佈脫離幫會"+"「"+bunch_name+
                                 "」" + "的控制！\n" NOR, users());
 
-                        // 调整帮派威望
+                        // 調整幫派威望
                         weiwang = bunch_fame[bunch_name];
                         weiwang -= 1000;
                         if (weiwang < 0) weiwang = 0;
                         bunch_fame[bunch_name] = weiwang;
 
                         delete("bunch", npc);
-                        area_fame[area]["bunch_name"] = "独立中";
+                        area_fame[area]["bunch_name"] = "獨立中";
                         continue;
                 }
 
@@ -690,7 +690,7 @@ public mixed manage_areas()
 
                                 area_money -= bad_money;
                         } else
-                        { // 开发度高的，一般来说自然灾害影响不大
+                        { // 開發度高的，一般來說自然災害影響不大
                                 bad_area = "";
                                 area_money += (kaifa / 2) * (jizhi / 2) * 10000;
                         }
@@ -745,8 +745,8 @@ public mixed manage_areas()
 
                 if (query(bunch + "/money") < -100000000)
                 {
-                        message("channel:rumor", HIW "【泥潭帮会】由于帮派资产长期严重亏损，帮会「" +
-                                                 bunch + "」无法维持日常开支，土崩瓦解了！\n" NOR, users());
+                        message("channel:rumor", HIW "【泥潭幫會】由於幫派資產長期嚴重虧損，幫會「" +
+                                                 bunch + "」無法維持日常開支，土崩瓦解了！\n" NOR, users());
                         lost += ({ bunch });
                         map_delete(data, bunch);
                 }
@@ -798,34 +798,34 @@ public mixed manage_areas()
 
                 if( !data[query("bunch/bunch_name", player)])continue;
 
-                tell_object(player,HIG"帮派「"+query("bunch/bunch_name", player)+"」"+"发饷，你的存款增加了"+
+                tell_object(player,HIG"幫派「"+query("bunch/bunch_name", player)+"」"+"發餉，你的存款增加了"+
                                     MONEY_D->money_str(data[query("bunch/bunch_name", player)])+"！\n"NOR);
 
 #ifndef LONELY_IMPROVED
                 if( query("balance", player)>2000000000 )
-                        tell_object(player, RED "你在钱庄的钱已达到二十万两黄金，快点花吧！\n" NOR);
+                        tell_object(player, RED "你在錢莊的錢已達到二十萬兩黃金，快點花吧！\n" NOR);
                 else
 #endif
                         addn("balance", data[query("bunch/bunch_name", player)], player);
         }
 
         if (bad_area == "")
-                message("channel:rumor", HIM "【帮派】某人：各地盘收入良好，请各位帮主速来钱庄转帐！\n" NOR,
+                message("channel:rumor", HIM "【幫派】某人：各地盤收入良好，請各位幫主速來錢莊轉帳！\n" NOR,
                         users());
         else
         {
                 str = bad_weather[random(sizeof(bad_weather))];
                 str = replace_string(str, "$N", bad_area);
 
-                message("channel:rumor", HIM "【帮派】某人：" + str +
+                message("channel:rumor", HIM "【幫派】某人：" + str +
                                          MONEY_D->money_str(bad_money) + "！\n" NOR, users());
         }
         save();
 }
 
-// 返回帮派声望：如果参数为空，返回mapping类型，包含了所有同
-// 盟的声望；如果参数是人物， 则返回该人物所在的那个帮派的声
-// 望；如果参数是帮派，则返回该帮派的声望。
+// 返回幫派聲望：如果參數為空，返回mapping類型，包含了所有同
+// 盟的聲望；如果參數是人物， 則返回該人物所在的那個幫派的聲
+// 望；如果參數是幫派，則返回該幫派的聲望。
 public mixed query_bunch_fame(mixed ob)
 {
         string fname;
@@ -844,18 +844,18 @@ public mixed query_bunch_fame(mixed ob)
         return bunch_fame;
 }
 
-// 查询昨天的帮派名望信息
+// 查詢昨天的幫派名望信息
 public mapping query_all_last_bunch_fame()
 {
         if (! mapp(last_bunch_fame))
-                // 没有昨天的信息，返回今天的
+                // 沒有昨天的信息，返回今天的
                 return bunch_fame;
 
-        // 返回昨天的帮派声望信息
+        // 返回昨天的幫派聲望信息
         return last_bunch_fame;
 }
 
-// 查询帮派的仇恨信息：输入的ob可以是帮派的名字，也可是
+// 查詢幫派的仇恨信息：輸入的ob可以是幫派的名字，也可是
 // 中的人物。
 public mapping query_bunch_hatred(mixed ob)
 {
@@ -876,7 +876,7 @@ public mapping query_bunch_hatred(mixed ob)
         return hatred;
 }
 
-// 变化帮派声望：输入的ob可以是帮派的名字，也可是帮派中的人物。
+// 變化幫派聲望：輸入的ob可以是幫派的名字，也可是幫派中的人物。
 public void add_bunch_fame(mixed ob, int n)
 {
         int new_fame;
@@ -893,7 +893,7 @@ public void add_bunch_fame(mixed ob, int n)
         if (! stringp(fname) || undefinedp(query(fname + "/member")))
                 return;
 
-        // 计算新的帮派声望
+        // 計算新的幫派聲望
         new_fame = bunch_fame[fname] + n;
         if (new_fame < 0) new_fame = 0;
         if (new_fame > MAX_BUNCH_FAME)
@@ -901,7 +901,7 @@ public void add_bunch_fame(mixed ob, int n)
         bunch_fame[fname] = new_fame;
 }
 
-// 帮派间仇杀
+// 幫派間仇殺
 public void bunch_kill(object killer, object victim)
 {
         int kexp;
@@ -913,21 +913,21 @@ public void bunch_kill(object killer, object victim)
         mapping hatred;
         mixed *d;
 
-        // 只有玩家之间的仇杀才计算在内
+        // 只有玩家之間的仇殺才計算在內
         if (! objectp(killer) || ! playerp(killer) ||
             ! objectp(victim) || ! playerp(victim))
                 return;
 
-        // 巫师之间的比划可不能算数
+        // 巫師之間的比劃可不能算數
         if (wizardp(killer) || wizardp(victim))
                 return;
 
-        // 查看这两个玩家所处的帮派
+        // 查看這兩個玩家所處的幫派
         kfam=query("bunch/bunch_name", killer);
         vfam=query("bunch/bunch_name", victim);
 
         if (! stringp(kfam) && ! stringp(vfam))
-                // 都不在帮派内，不必继续了
+                // 都不在幫派內，不必繼續了
                 return;
 
         kexp=query("combat_exp", killer);
@@ -936,10 +936,10 @@ public void bunch_kill(object killer, object victim)
         if (kfam == vfam)
         {
                 if( !killer->is_killing(query("id", victim)) )
-                        // 失手所杀，不予理会
+                        // 失手所殺，不予理會
                         return;
 
-                // 帮派内残杀？不与理会，直接扣除帮派和个人1/10威望。
+                // 幫派內殘殺？不與理會，直接扣除幫派和個人1/10威望。
                 add_bunch_fame(kfam, -bunch_fame[kfam] / 10);
                 addn("weiwang", -query("weiwang", killer)/10, killer);
                 return;
@@ -947,9 +947,9 @@ public void bunch_kill(object killer, object victim)
         if (bunch_is_league(kfam, vfam))
         {
                 if( !killer->is_killing(query("id", victim)) )
-                        // 失手所杀，不予理会
+                        // 失手所殺，不予理會
                         return;
-                // 同盟帮派内残杀？直接扣除帮派和个人1/20威望。
+                // 同盟幫派內殘殺？直接扣除幫派和個人1/20威望。
                 add_bunch_fame(kfam, -bunch_fame[kfam] / 20);
                 addn("weiwang", -query("weiwang", killer)/20, killer);
                 return;
@@ -957,17 +957,17 @@ public void bunch_kill(object killer, object victim)
 
         if (kexp < vexp*3 && vexp >= 100000)
         {
-                // 杀手的经验不是远远的大于对方，并且被杀的
-                // 人有一定的经验，这将导致帮派声望的降低。
+                // 殺手的經驗不是遠遠的大於對方，並且被殺的
+                // 人有一定的經驗，這將導致幫派聲望的降低。
                 fame_delta=vexp+query("score", killer)*2+
                              query("weiwang", killer)*10;
                 fame_delta /= 1000;
         } else
-                // 对手经验太少，或是差距太大，不影响声望
+                // 對手經驗太少，或是差距太大，不影響聲望
                 fame_delta = 0;
 
-        // 查看杀手所在的帮派是否仇恨死者：如果仇恨，则能够
-        // 带动声望的变化。
+        // 查看殺手所在的幫派是否仇恨死者：如果仇恨，則能夠
+        // 帶動聲望的變化。
         if (stringp(kfam))
         {
                 string path;
@@ -976,16 +976,16 @@ public void bunch_kill(object killer, object victim)
                 d = query(path);
                 if (arrayp(d) && sizeof(d) >= 2 && intp(d[1]))
                 {
-                        // 仇恨死者，帮派获得额外的声望
+                        // 仇恨死者，幫派獲得額外的聲望
                         if (d[1] > 2000)
                                 CHANNEL_D->do_channel(this_object(), "rumor",
-                                        "听说" + killer->name(1) + "击毙了" +
-                                        victim->name(1) + "，为" +
-                                        kfam + "出了一口恶气。");
+                                        "聽說" + killer->name(1) + "擊斃了" +
+                                        victim->name(1) + "，為" +
+                                        kfam + "出了一口惡氣。");
                         fame_delta += d[1] / 3;
 
-                        // 对此人的仇恨降低(降低的要比增加的要多)，
-                        // 具体可以看fame_delta 与仇恨度公司的差异
+                        // 對此人的仇恨降低(降低的要比增加的要多)，
+                        // 具體可以看fame_delta 與仇恨度公司的差異
                         d[1] -= fame_delta;
                         if (d[1] <= 0)
                                 delete(path);
@@ -994,16 +994,16 @@ public void bunch_kill(object killer, object victim)
                 }
         }
 
-        // 调整两个帮派的声望
+        // 調整兩個幫派的聲望
         add_bunch_fame(killer,  fame_delta);
         add_bunch_fame(victim, -fame_delta);
 
-        // 统计该杀手对本门的残害程度
+        // 統計該殺手對本門的殘害程度
         if (! stringp(vfam))
                 return;
 
-        // 仇恨程度和声望的变化都是在一个数量级上(K经验)，但
-        // 是仇恨程度低于声望的变化。
+        // 仇恨程度和聲望的變化都是在一個數量級上(K經驗)，但
+        // 是仇恨程度低於聲望的變化。
         vexp = vexp/1000 + 1;
         if (vexp > 5000)
                 vexp = (vexp - 5000) / 16 + 2000;
@@ -1019,13 +1019,13 @@ public void bunch_kill(object killer, object victim)
                 return;
         }
 
-        // 每个帮派最多记录若干个仇人
+        // 每個幫派最多記錄若干個仇人
         if (! undefinedp(d = hatred[kid]))
         {
                 if (! arrayp(d) || sizeof(d) < 2 ||
                     ! intp(d[1]) || ! stringp(d[0]))
                 {
-                        // 这个ID的数据出了故障
+                        // 這個ID的數據出了故障
                         d = 0;
                 }
         } else
@@ -1034,8 +1034,8 @@ public void bunch_kill(object killer, object victim)
                 string *ids;
                 int i;
 
-                // 过滤去掉一些人，为什么不去掉一个？这是为
-                // 了防止过滤频繁的进行过滤操作。
+                // 過濾去掉一些人，為什麼不去掉一個？這是為
+                // 了防止過濾頻繁的進行過濾操作。
                 ids = sort_array(keys(hatred),
                                  (: sort_hatred :), hatred);
                 for (i = 0; i < sizeof(ids) && i < HATREDP_REMOVED; i++)
@@ -1050,21 +1050,21 @@ public void bunch_kill(object killer, object victim)
                 d[1] += vexp;
         }
 
-        // 记录这个人的信息
+        // 記錄這個人的信息
         hatred[kid] = d;
 }
 
-// 去掉所有帮派对某个人的仇恨信息
+// 去掉所有幫派對某個人的仇恨信息
 public void remove_hatred(string id)
 {
         mixed dbase, bunch, hatred;
         string fam;
 
         if (! mapp(dbase = query_entire_dbase()))
-                // 现在还没有仇恨信息
+                // 現在還沒有仇恨信息
                 return;
 
-        // 查阅所有的
+        // 查閱所有的
         foreach (fam in keys(dbase))
         {
                 reset_eval_cost();
@@ -1073,11 +1073,11 @@ public void remove_hatred(string id)
                         continue;
 
                 if (mapp(hatred = bunch["hatred"]))
-                        // 去掉该帮派对某人的仇恨信息
+                        // 去掉該幫派對某人的仇恨信息
                         map_delete(hatred, id);
 
                 if (! mapp(hatred) || sizeof(hatred) < 1)
-                        // 这个帮派已经没有仇恨信息
+                        // 這個幫派已經沒有仇恨信息
                         map_delete(bunch, "hatred");
         }
 
@@ -1089,37 +1089,37 @@ public mixed valid_new_build(object ob, string id, string name)
         object env;
 
         if (! env = environment(ob))
-                return "好象出现了点问题，请和巫师联系！\n";
+                return "好象出現了點問題，請和巫師聯繫！\n";
 
         if (! env->is_create_bunch_room())
-                return "这里不可以用来建设帮派总坛，请另选地点。\n";
+                return "這裡不可以用來建設幫派總壇，請另選地點。\n";
 
         if (env->query_room_id(id) || env->query_room_name(name))
-                return "这里已经有个房间使用了这个代号了。\n";
+                return "這裡已經有個房間使用了這個代號了。\n";
 
         if (file_size(BUNCH_HOME + id + "/center.c") > 0)
-                return "已经有别的帮派使用了这个ID代号了。\n";
+                return "已經有別的幫派使用了這個ID代號了。\n";
         // ......
         return 0;
 }
 
-// 查看是否可以创建这个
+// 查看是否可以創建這個
 public mixed valid_new_bunch(string fname)
 {
         if (query(fname + "/member"))
-                return "人家早就有叫这个的啦，你就别凑热闹了。\n";
+                return "人家早就有叫這個的啦，你就別湊熱鬧了。\n";
 
         if (member_array(fname, npc_bunch) != -1)
-                return "江湖上早有这个现成的帮派，你还想做什么？\n";
+                return "江湖上早有這個現成的幫派，你還想做什麼？\n";
 
         if (! undefinedp(FAMILY_D->query_family_fame(fname))
                 || ! undefinedp(LEAGUE_D->query_league_fame(fname)))
-                return "江湖上已经有" + fname + "了，你还想做什么？\n";
+                return "江湖上已經有" + fname + "了，你還想做什麼？\n";
 
         return 0;
 }
 
-// 创建帮派
+// 創建幫派
 public void create_bunch(string fname, string id, string type, int base, object *obs)
 {
         mapping data;
@@ -1148,7 +1148,7 @@ public void create_bunch(string fname, string id, string type, int base, object 
                         zone = domain_file(position);
 
                         data += ([ "level" : 7,
-                                   "title" : "帮主" ]);
+                                   "title" : "幫主" ]);
                 } else
                 {
                         data += ([ "level" : 6,
@@ -1204,10 +1204,10 @@ CODE;
 
 void create()
 {
-        set_name("任务使者", ({ "quester" }));
+        set_name("任務使者", ({ "quester" }));
         set("gender", "男性");
         set("age", 23);
-        set("long", "他是一个长得很英俊的男子，看上去风流倜傥。\n");
+        set("long", "他是一個長得很英俊的男子，看上去風流倜儻。\n");
 CODE;
         if (type == "bad")
         {
@@ -1268,10 +1268,10 @@ int sort_by_id(mapping quest1, mapping quest2);
 void create()
 {
 CODE;
-        code += sprintf("\tset(\"short\", \"%s总坛\");\n", fname);
+        code += sprintf("\tset(\"short\", \"%s總壇\");\n", fname);
 
-        code += sprintf("\tset(\"long\", \"房间的墙上有一块牌子(paizi)。加入帮派" +
-                        "%s的玩家，可以在这里选择任务去完成。\\n\");\n", fname);
+        code += sprintf("\tset(\"long\", \"房間的牆上有一塊牌子(paizi)。加入幫派" +
+                        "%s的玩家，可以在這裡選擇任務去完成。\\n\");\n", fname);
 
         code += "\tset(\"objects\", ([\n\t\t__DIR__\"npc/quester\" : 1,\n\t]));\n";
         code += "\tset(\"exits\", ([\n\t\t\"south\" : __DIR__\"room9\", \n\t]));\n";
@@ -1296,8 +1296,8 @@ int is_bunch_room() { return 1; }
 
 void create()
 {
-        set("short", "空房间 - 请使用 cshort 来编辑标题");
-        set("long", "这是一间什么也没有的空房间，请利用 clong 来编辑房间叙述。\n");
+        set("short", "空房間 - 請使用 cshort 來編輯標題");
+        set("long", "這是一間什麼也沒有的空房間，請利用 clong 來編輯房間敘述。\n");
 
         set("exits", ([
                 "north" : __DIR__"room0",
@@ -1313,43 +1313,43 @@ CODE;
         env->save();
         CP_CMD->copy_dir("/d/room/bunch/", BUNCH_HOME + id + "/");
 
-        message("vision",creater->name()+"找了一堆工人来在"+query("short", env)+
-                "敲敲打打的，建造出一些房间。\n", env);
+        message("vision",creater->name()+"找了一堆工人來在"+query("short", env)+
+                "敲敲打打的，建造出一些房間。\n", env);
 
         data = ([
-                "bunch_id"      : id,                // 帮派代号
-                "bunch_name"    : fname,             // 帮派名称
-                "time"          : time(),            // 帮派成立时间
-                "master"        : master,            // 帮派帮主
-                "color"         : NOR,               // 帮派颜色
-                "money"         : 10000000,          // 帮派资金
-                "member"        : obs->query_id(0),  // 帮派成员
-                "type"          : type,              // 帮派正邪
-                "tax"           : 5,                 // 帮派税率
-                "alert"         : 0,                 // 帮派警戒(1~4)
-                "league"        : ({}),              // 帮派同盟
-                "char_status"   : 0,                 // 帮派人材
-                "weapon_status" : 0,                 // 帮派武器
-                "char_money"    : 0,                 // 投资在人材的金额
-                "weapon_money"  : 0,                 // 投资在武器的金额
+                "bunch_id"      : id,                // 幫派代號
+                "bunch_name"    : fname,             // 幫派名稱
+                "time"          : time(),            // 幫派成立時間
+                "master"        : master,            // 幫派幫主
+                "color"         : NOR,               // 幫派顏色
+                "money"         : 10000000,          // 幫派資金
+                "member"        : obs->query_id(0),  // 幫派成員
+                "type"          : type,              // 幫派正邪
+                "tax"           : 5,                 // 幫派稅率
+                "alert"         : 0,                 // 幫派警戒(1~4)
+                "league"        : ({}),              // 幫派同盟
+                "char_status"   : 0,                 // 幫派人材
+                "weapon_status" : 0,                 // 幫派武器
+                "char_money"    : 0,                 // 投資在人材的金額
+                "weapon_money"  : 0,                 // 投資在武器的金額
                 "senior"        : obs->query_id(0),  // 元老（不可提升）
-                "room_position" : position,          // 帮派所在文件路径
-                "room_entry"    : entry,             // 帮派入口文件路径
-                "room_name"     : fname,             // 帮派入口处房间名
-                "room_id"       : id,                // 帮派入口房间代码
-                "room_zone"     : zone,              // 帮派所在位置区域
-                "war_target"    : "NULL",            // 帮派战争敌对帮派
-                "war_kill"      : 0,                 // 战争杀死对手数量
-                "war_endtime"   : 0,                 // 帮派战争结束时间
-                "war_win"       : 0,                 // 帮派战争胜利次数
-                "war_lose"      : 0,                 // 帮派战争失败次数
+                "room_position" : position,          // 幫派所在文件路徑
+                "room_entry"    : entry,             // 幫派入口文件路徑
+                "room_name"     : fname,             // 幫派入口處房間名
+                "room_id"       : id,                // 幫派入口房間代碼
+                "room_zone"     : zone,              // 幫派所在位置區域
+                "war_target"    : "NULL",            // 幫派戰爭敵對幫派
+                "war_kill"      : 0,                 // 戰爭殺死對手數量
+                "war_endtime"   : 0,                 // 幫派戰爭結束時間
+                "war_win"       : 0,                 // 幫派戰爭勝利次數
+                "war_lose"      : 0,                 // 幫派戰爭失敗次數
         ]);
         set(fname, data);
 
         save();
 }
 
-// 解散帮派
+// 解散幫派
 public void dismiss_bunch(string fname)
 {
         string *ids;
@@ -1360,17 +1360,17 @@ public void dismiss_bunch(string fname)
         map_delete(bunch_fame, fname);
         if (mapp(last_bunch_fame)) map_delete(last_bunch_fame, fname);
 
-        // 清除帮派中的所有玩家的相关信息
+        // 清除幫派中的所有玩家的相關信息
         ids = query(fname + "/member");
         dir = query(fname + "/room_id");
         pos = query(fname + "/room_position");
 
         if (arrayp(ids))
         {
-                // 帮派中还有玩家，清除他们的信息
+                // 幫派中還有玩家，清除他們的信息
                 foreach (id in ids)
                 {
-                        // 处理中
+                        // 處理中
                         reset_eval_cost();
                         UPDATE_D->clear_user_data(id, "bunch");
                 }
@@ -1380,12 +1380,12 @@ public void dismiss_bunch(string fname)
 
         if (arrayp(ids))
         {
-                // 帮派中还有地盘，清除他们的信息
+                // 幫派中還有地盤，清除他們的信息
                 foreach (id in ids)
                 {
-                        // 处理中
+                        // 處理中
                         reset_eval_cost();
-                        area_fame[id]["bunch_name"] = "独立中";
+                        area_fame[id]["bunch_name"] = "獨立中";
 
                         ob = get_object(id);
                         if (! ob) continue;
@@ -1402,21 +1402,21 @@ public void dismiss_bunch(string fname)
                 room = get_object(pos);
                 if (objectp(room))
                 {
-                        message("vision", "突然几个童子飞也似"
-                                  "的冲了过来，手里操着各种家伙"
-                                  "，嚷嚷道：闪开！都闪开！\n",
+                        message("vision", "突然幾個童子飛也似"
+                                  "的衝了過來，手裡操著各種傢伙"
+                                  "，嚷嚷道：閃開！都閃開！\n",
                                   room);
                         room->destroy_room(dir);
                         room->save();
                 }
         }
 
-        // 清除帮派的所有信息
+        // 清除幫派的所有信息
         delete(fname);
         save();
 }
 
-// 查询帮派中的弟兄
+// 查詢幫派中的弟兄
 public string *query_bunch_members(mixed ob)
 {
         string *member;
@@ -1436,7 +1436,7 @@ public string *query_bunch_members(mixed ob)
         return member;
 }
 
-// 查询帮派中的地盘
+// 查詢幫派中的地盤
 public string *query_bunch_areas(mixed ob)
 {
         string *areas, *aname;
@@ -1480,7 +1480,7 @@ public string *query_bunch_league(mixed ob)
         return member;
 }
 
-// 查询地盘的信息
+// 查詢地盤的信息
 public mixed query_area_info(string afile, string info)
 {
         if (! stringp(afile) || ! stringp(info))
@@ -1498,7 +1498,7 @@ public mixed query_area_info(string afile, string info)
         return area_fame[afile][info];
 }
 
-// 查询帮派的信息
+// 查詢幫派的信息
 public mixed query_bunch_info(string fname, string info)
 {
         if (stringp(fname) && stringp(info))
@@ -1512,7 +1512,7 @@ public mixed query_bunch_info(string fname, string info)
                 return 0;
 }
 
-// 在帮派中变动其他参数，例如帮派资产、帮主等。
+// 在幫派中變動其他參數，例如幫派資產、幫主等。
 public void add_bunch_info(string fname, string info, mixed n)
 {
         if (! mapp(query(fname)))
@@ -1527,7 +1527,7 @@ public void add_bunch_info(string fname, string info, mixed n)
                 set(fname + "/" + info, n);
 }
 
-// 改变地盘中的参数值
+// 改變地盤中的參數值
 public void add_area_info(string afile, string info, mixed value)
 {
         if (undefinedp(area_fame[afile]))
@@ -1555,7 +1555,7 @@ public void remove_area_from_areas(string area_file)
         map_delete(area_fame, area_file);
 }
 
-// 从帮派中去掉一个人
+// 從幫派中去掉一個人
 public varargs void remove_member_from_bunch(mixed fname, string id)
 {
         mapping bunch;
@@ -1585,7 +1585,7 @@ public varargs void remove_member_from_bunch(mixed fname, string id)
         if (sizeof(member) < 1)
         {
                 CHANNEL_D->do_channel(this_object(), "rumor",
-                        "听说" + fname + "人才凋零，昔日帮众尽皆散去，从此江湖再无此帮派了。");
+                        "聽說" + fname + "人才凋零，昔日幫眾盡皆散去，從此江湖再無此幫派了。");
 
                 map_delete(bunch_fame, fname);
                 if (mapp(last_bunch_fame)) map_delete(last_bunch_fame, fname);
@@ -1596,12 +1596,12 @@ public varargs void remove_member_from_bunch(mixed fname, string id)
 
                 if (arrayp(areas))
                 {
-                        // 帮派中还有地盘，清除他们的信息
+                        // 幫派中還有地盤，清除他們的信息
                         foreach (area in areas)
                         {
-                                // 处理中
+                                // 處理中
                                 reset_eval_cost();
-                                area_fame[area]["bunch_name"] = "独立中";
+                                area_fame[area]["bunch_name"] = "獨立中";
 
                                 room = get_object(area);
                                 if (! room) continue;
@@ -1618,9 +1618,9 @@ public varargs void remove_member_from_bunch(mixed fname, string id)
                         room = get_object(pos);
                         if (objectp(room))
                         {
-                                message("vision", "突然几个童子飞也似"
-                                        "的冲了过来，手里操着各种家伙"
-                                        "，嚷嚷道：闪开！都闪开！\n",
+                                message("vision", "突然幾個童子飛也似"
+                                        "的衝了過來，手裡操著各種傢伙"
+                                        "，嚷嚷道：閃開！都閃開！\n",
                                         room);
                                 room->destroy_room(dir);
                                 room->save();
@@ -1632,7 +1632,7 @@ public varargs void remove_member_from_bunch(mixed fname, string id)
                 bunch["member"] = member;
 }
 
-// 在帮派中增加一个人
+// 在幫派中增加一個人
 public void add_member_into_bunch(string fname, string id)
 {
         string *member;
@@ -1648,7 +1648,7 @@ public void add_member_into_bunch(string fname, string id)
         save();
 }
 
-// 增加地盘到帮派控制中
+// 增加地盤到幫派控制中
 public void add_area_into_bunch(string fname, string afile, string aname, object ob)
 {
         string bname;
@@ -1674,9 +1674,9 @@ public void add_area_into_bunch(string fname, string afile, string aname, object
         } else
         {
                 bname = area_fame[afile]["bunch_name"];
-                if (bname != "独立中")
-                        message("channel:rumor",  HIM "【帮派】某人：" + aname +
-                                "宣布脱离帮派「" + bname + "」的控制！\n" NOR, users());
+                if (bname != "獨立中")
+                        message("channel:rumor",  HIM "【幫派】某人：" + aname +
+                                "宣佈脫離幫派「" + bname + "」的控制！\n" NOR, users());
                 area_fame[afile]["bunch_name"] = fname;
                 area_fame[afile]["zhongcheng"] = 10;
         }
@@ -1685,16 +1685,16 @@ public void add_area_into_bunch(string fname, string afile, string aname, object
         set("bunch/zhongcheng", 10, ob);
         set("bunch/max_zhongcheng", 100, ob);
 
-        message("channel:rumor",HIM"【帮派】某人："+query("name", ob)+
-                "加入帮派「" + fname + "」！\n" NOR, users());
+        message("channel:rumor",HIM"【幫派】某人："+query("name", ob)+
+                "加入幫派「" + fname + "」！\n" NOR, users());
 
-        message("channel:rumor", HIM "【帮派】某人：" + aname +
-                "被帮派「" + fname + "」吞并！\n" NOR, users());
+        message("channel:rumor", HIM "【幫派】某人：" + aname +
+                "被幫派「" + fname + "」吞併！\n" NOR, users());
 
         return;
 }
 
-// 查询两个帮派是否为同盟
+// 查詢兩個幫派是否為同盟
 public int bunch_is_league(mixed ob1, mixed ob2)
 {
         string *lea;
@@ -1725,7 +1725,7 @@ public int bunch_is_league(mixed ob1, mixed ob2)
         return 0;
 }
 
-// 增加一个同盟帮派
+// 增加一個同盟幫派
 public int add_league_into_bunch(mixed ob1, mixed ob2)
 {
         string *lea;
@@ -1767,7 +1767,7 @@ public int add_league_into_bunch(mixed ob1, mixed ob2)
         return 1;
 }
 
-// 移除一个同盟帮派
+// 移除一個同盟幫派
 public int remove_league_from_bunch(mixed ob1, mixed ob2)
 {
         string *lea;
@@ -1813,11 +1813,11 @@ public int remove_league_from_bunch(mixed ob1, mixed ob2)
         return 1;
 }
 
-// 宣布战争
+// 宣佈戰爭
 public int announce_war_start(string fname, string bname)
 {
-        message("channel:rumor", HIR "\n\t轰动武林～～惊动万教～～\n\t"
-                HIC + fname + HIR "与" HIM + bname + HIR "的帮派矛盾激化，开始全面开战……\n" NOR, users());
+        message("channel:rumor", HIR "\n\t轟動武林～～驚動萬教～～\n\t"
+                HIC + fname + HIR "與" HIM + bname + HIR "的幫派矛盾激化，開始全面開戰……\n" NOR, users());
 
         set(fname + "/war_target", bname);
         set(bname + "/war_target", fname);
@@ -1827,7 +1827,7 @@ public int announce_war_start(string fname, string bname)
         return 1;
 }
 
-public int war_stop_time(string fname)  // 第一种停止模式-时间到
+public int war_stop_time(string fname)  // 第一種停止模式-時間到
 {
         int kill_1, kill_2, money;
         string bname, wname, lname;
@@ -1852,30 +1852,30 @@ public int war_stop_time(string fname)  // 第一种停止模式-时间到
         }
         else
         {
-                message("channel:rumor", HIR "\n\t轰动武林～～惊动万教～～\n\t"
-                        HIC + fname + HIR "与" HIM + bname + HIR "的帮派对决终于结束……\n\t"
-                        HIC + fname + HIR "总共杀掉" HIM + bname + HIG " " + CHINESE_D->chinese_number(kill_1) + HIR "位帮众，\n\t"
-                        HIM + bname + HIC "总共杀掉" HIC + fname + HIG " " + CHINESE_D->chinese_number(kill_2) + HIR "位帮众，\n\t"
-                        HIR + "双方皆死伤惨重，故以平手作收。\n" NOR, users());
+                message("channel:rumor", HIR "\n\t轟動武林～～驚動萬教～～\n\t"
+                        HIC + fname + HIR "與" HIM + bname + HIR "的幫派對決終於結束……\n\t"
+                        HIC + fname + HIR "總共殺掉" HIM + bname + HIG " " + CHINESE_D->chinese_number(kill_1) + HIR "位幫眾，\n\t"
+                        HIM + bname + HIC "總共殺掉" HIC + fname + HIG " " + CHINESE_D->chinese_number(kill_2) + HIR "位幫眾，\n\t"
+                        HIR + "雙方皆死傷慘重，故以平手作收。\n" NOR, users());
 
                 end_bunch_war(bname, fname, 0);
 
                 return 1;
         }
 
-        message("channel:rumor", HIR "\n\t轰动武林～～惊动万教～～\n\t"
-                HIC + wname + HIR "与" HIM + lname + HIR "的帮派对决终于结束……\n\t"
-                HIC + wname + HIR "总共杀掉" HIM + lname + HIG " " + CHINESE_D->chinese_number(kill_1) + HIR "位帮众，\n\t"
-                HIM + lname + HIC "总共杀掉" HIC + wname + HIG " " + CHINESE_D->chinese_number(kill_2) + HIR "位帮众，\n\t"
-                HIM + lname + HIC "战败，必须赔偿" HIC + wname + HIY " " +
-                CHINESE_D->chinese_number(money) + HIR "两黄金。\n" NOR, users());
+        message("channel:rumor", HIR "\n\t轟動武林～～驚動萬教～～\n\t"
+                HIC + wname + HIR "與" HIM + lname + HIR "的幫派對決終於結束……\n\t"
+                HIC + wname + HIR "總共殺掉" HIM + lname + HIG " " + CHINESE_D->chinese_number(kill_1) + HIR "位幫眾，\n\t"
+                HIM + lname + HIC "總共殺掉" HIC + wname + HIG " " + CHINESE_D->chinese_number(kill_2) + HIR "位幫眾，\n\t"
+                HIM + lname + HIC "戰敗，必須賠償" HIC + wname + HIY " " +
+                CHINESE_D->chinese_number(money) + HIR "兩黃金。\n" NOR, users());
 
                 end_bunch_war(wname, lname, money);
 
                 return 1;
 }
 
-public int war_stop_kill(string fname)   // 第二种停止模式..帮主被作掉......
+public int war_stop_kill(string fname)   // 第二種停止模式..幫主被作掉......
 {
         string bname, master;
         int number, money;
@@ -1885,26 +1885,26 @@ public int war_stop_kill(string fname)   // 第二种停止模式..帮主被作�
         number = query_bunch_info(bname, "war_kill");
         money = number * 1000 + 100000;
 
-        message("channel:rumor", HIC "\t号外!!号外!!轰动武林的" + HIG + bname + HIC "和" HIG + fname + HIC "的帮派对决总于有了结果了!!!!\n"
-                HIG "       " + bname + HIC "杀掉了" HIG + fname + HIC "帮派帮主:" HIG + master + HIC "\n" +
-                "\t一时之间" + HIG + fname + HIC + "因为帮主被做掉，以致军心大乱!!!一路败退!!!\n" + HIC +
-                "\t最后判定::" + HIG + fname + HIC + "必须要付出" + CHINESE_D->chinese_number(money) + "两的赔偿金!!!\n" NOR, users());
+        message("channel:rumor", HIC "\t號外!!號外!!轟動武林的" + HIG + bname + HIC "和" HIG + fname + HIC "的幫派對決總於有了結果了!!!!\n"
+                HIG "       " + bname + HIC "殺掉了" HIG + fname + HIC "幫派幫主:" HIG + master + HIC "\n" +
+                "\t一時之間" + HIG + fname + HIC + "因為幫主被做掉，以致軍心大亂!!!一路敗退!!!\n" + HIC +
+                "\t最後判定::" + HIG + fname + HIC + "必須要付出" + CHINESE_D->chinese_number(money) + "兩的賠償金!!!\n" NOR, users());
 
 
         end_bunch_war(bname, fname, money);
         return 1;
 }
 
-public int war_stop_money(string lname, int money)   // 第三种停止模式..求和......
+public int war_stop_money(string lname, int money)   // 第三種停止模式..求和......
 {
         string wname, master;
 
         wname = query_bunch_info(lname, "war_target");
         master = query_bunch_info(lname, "master");
 
-        message("channel:rumor", HIC "\t号外!!号外!!轰动武林的" + HIG + wname + HIC "和" + HIG + lname + HIC + "的帮派对决总于有了结果了!!!!\n" + HIG +
-         "   " + wname + HIC + "愿接受" + HIG + lname + HIC + "的帮主" + HIG + master + HIC + "求和!!!双方同意结束战斗状态!!!\n" + HIC +
-         "\t最后" + HIG + lname + HIC + "愿给予" + HIG + wname + HIC + "共" + CHINESE_D->chinese_number(money) + "两的求和金!!!\n" NOR, users());
+        message("channel:rumor", HIC "\t號外!!號外!!轟動武林的" + HIG + wname + HIC "和" + HIG + lname + HIC + "的幫派對決總於有了結果了!!!!\n" + HIG +
+         "   " + wname + HIC + "願接受" + HIG + lname + HIC + "的幫主" + HIG + master + HIC + "求和!!!雙方同意結束戰鬥狀態!!!\n" + HIC +
+         "\t最後" + HIG + lname + HIC + "願給予" + HIG + wname + HIC + "共" + CHINESE_D->chinese_number(money) + "兩的求和金!!!\n" NOR, users());
 
         end_bunch_war(wname, lname, money);
 
@@ -1936,7 +1936,7 @@ public int end_bunch_war(string wname, string lname, int gold)
         return 1;
 }
 
-// 增加帮派荣誉点
+// 增加幫派榮譽點
 void add_bunch_honors(string bname, int honors)
 {
         addn(bname + "/honors", honors);
@@ -1948,7 +1948,7 @@ int query_bunch_honors(string bname)
         return query(bname + "/honors");
 }
 
-// 外部调用高效练功
+// 外部調用高效練功
 int query_bunch_efficient(string bname, string arg)
 {
         int t;

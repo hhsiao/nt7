@@ -4,8 +4,8 @@ void create()
 {
         set("short", "山路");
         set("long", @LONG
-一条山路蜿蜒在山间。向西望去，可以见到大雪山的银色的雪顶
-在熠熠生辉。
+一條山路蜿蜒在山間。向西望去，可以見到大雪山的銀色的雪頂
+在熠熠生輝。
 LONG );
         set("exits", ([
                 "east" : __DIR__"sroad1",

@@ -1,8 +1,8 @@
-//                标准描述长度示例                                   |
-// 幻境内人物  杀戮型 （并且会携带玩家必须寻找的宝物）
-// by naihe  2002-10-27  于茂名
-// naihe 05-9-4 15:43 优化一下，同时增加2个类型
-// naihe 05-9-5 11:02 再次优化
+//                標準描述長度示例                                   |
+// 幻境內人物  殺戮型 （並且會攜帶玩家必須尋找的寶物）
+// by naihe  2002-10-27  於茂名
+// naihe 05-9-4 15:43 優化一下，同時增加2個類型
+// naihe 05-9-5 11:02 再次優化
 
 #include <ansi.h>
 
@@ -13,165 +13,165 @@ inherit NPC;
 #include "hj_settings/get_hj_dir.h"
 #include "hj_settings/hj_msg.h"
 
-#define     NPC_NORMAL_SIZE         6       // 普通NPC的范围，从 0~ SIZE-1
-#define     NPC_ZUREN_INDEX         5       // 族人NPC的索引号
-#define     NPC_ZUZHANG_INDEX       6       // 族长NPC的索引号
-#define     NPC_YL_WUSHI_INDEX      10      // 幽灵 -- 武士
-#define     NPC_YL_CIKE_INDEX       7       // 幽灵 -- 刺客
-#define     NPC_YL_SHASHEN_INDEX    8       // 幽灵 -- 杀神
-#define     NPC_YL_YINSHI_INDEX     9       // 幽灵 -- 隐士
+#define     NPC_NORMAL_SIZE         6       // 普通NPC的範圍，從 0~ SIZE-1
+#define     NPC_ZUREN_INDEX         5       // 族人NPC的索引號
+#define     NPC_ZUZHANG_INDEX       6       // 族長NPC的索引號
+#define     NPC_YL_WUSHI_INDEX      10      // 幽靈 -- 武士
+#define     NPC_YL_CIKE_INDEX       7       // 幽靈 -- 刺客
+#define     NPC_YL_SHASHEN_INDEX    8       // 幽靈 -- 殺神
+#define     NPC_YL_YINSHI_INDEX     9       // 幽靈 -- 隱士
 
 void checking();
 void npc_dead_reward();
 void npc_dead_reward_wushi();
 void npc_dead_reward_sp( int total_reward );
 
-// 第一个参数指定“族”， 第二个参数指定级别。
+// 第一個參數指定“族”， 第二個參數指定級別。
 varargs void setme( int npc_class, int npc_level )
 {
     int std_power, std_busy, std_hpmax;
     mapping *npc_info, *npc_info2, info;
     string id, *class_list;
     int i;
-    // npc 标准信息 -----------------------------------------------------
+    // npc 標準信息 -----------------------------------------------------
     npc_info2 = ({
-        ([ "name":"小头领",
+        ([ "name":"小頭領",
             "id":({ "tou ling", "ling", }),
             "auto_kill": 1,
-            "peaceful": (5+random(15)), // 越大越不爱主动攻击
+            "peaceful": (5+random(15)), // 越大越不愛主動攻擊
         ]),
         ([ "name":"力士",
             "id":({ "li shi", "shi", }),
             "auto_kill": 1,
-            "peaceful": (5+random(15)), // 越大越不爱主动攻击
+            "peaceful": (5+random(15)), // 越大越不愛主動攻擊
         ]),
-        ([ "name":"壮汉",
+        ([ "name":"壯漢",
             "id":({ "zhuang han", "han", }),
             "auto_kill": 1,
-            "peaceful": (5+random(15)), // 越大越不爱主动攻击
+            "peaceful": (5+random(15)), // 越大越不愛主動攻擊
         ]),
-        ([ "name":"凶徒",
+        ([ "name":"兇徒",
             "id":({ "xiong tu", "tu", }),
             "auto_kill": 1,
-            "peaceful": (5+random(15)), // 越大越不爱主动攻击
+            "peaceful": (5+random(15)), // 越大越不愛主動攻擊
         ]),
-        ([ "name":"法师",
+        ([ "name":"法師",
             "id":({ "fa shi", "shi", }),
             "auto_kill": 1,
-            "hit_suck": 1,  // 攻击会吸取 hp
-            "peaceful": (5+random(15)), // 越大越不爱主动攻击
+            "hit_suck": 1,  // 攻擊會吸取 hp
+            "peaceful": (5+random(15)), // 越大越不愛主動攻擊
         ]),
         ([ "name":"族人",
             "id":({ "zu ren", "ren", }),
             "auto_kill": 1,
-            "peaceful": (5+random(15)), // 越大越不爱主动攻击
+            "peaceful": (5+random(15)), // 越大越不愛主動攻擊
         ]),
-        ([ "name":HIY"族长",
+        ([ "name":HIY"族長",
             "id":({ "zu zhang", "zhang", }),
             "auto_kill": 1,
-            "peaceful": (5+random(15)), // 越大越不爱主动攻击
+            "peaceful": (5+random(15)), // 越大越不愛主動攻擊
         ]),
-        ([ "special_name": HIB"幽灵族"HIY"刺客"NOR,
-            "special_long" : "这是一个幽灵族的刺客，看起来身手敏捷，矫健过人。\n",
+        ([ "special_name": HIB"幽靈族"HIY"刺客"NOR,
+            "special_long" : "這是一個幽靈族的刺客，看起來身手敏捷，矯健過人。\n",
             "id":({ "youling cike", "cike", }),
             "auto_kill": 1,
-            "peaceful": 3, // 越大越不爱主动攻击
-            //"hit_busy": 1, // 攻击会造成忙时
-            "dead_reward_score" : 150,    // NPC死亡时会给予奖励
-            "max_busy_limit" : 3,  // 本NPC最大只能接受的 busy time，超过时会强制恢复自由
-            "del_msg" : "$N忽地发出一阵凄厉长啸，随后「嘭」地一声消失不见了。\n",
+            "peaceful": 3, // 越大越不愛主動攻擊
+            //"hit_busy": 1, // 攻擊會造成忙時
+            "dead_reward_score" : 150,    // NPC死亡時會給予獎勵
+            "max_busy_limit" : 3,  // 本NPC最大隻能接受的 busy time，超過時會強制恢復自由
+            "del_msg" : "$N忽地發出一陣淒厲長嘯，隨後「嘭」地一聲消失不見了。\n",
         ]),
 
-        ([ "special_name": HIB"幽灵族"HIR"杀神"NOR,
-            "special_long" : "这是一个幽灵族的杀神，全身散发惊人的杀气！\n",
+        ([ "special_name": HIB"幽靈族"HIR"殺神"NOR,
+            "special_long" : "這是一個幽靈族的殺神，全身散發驚人的殺氣！\n",
             "id":({ "youling shashen", "shashen", }),
             "auto_kill": 1,
-            "peaceful": 3, // 越大越不爱主动攻击
-            "hit_busy": 1, // 攻击会造成忙时
-            "dead_reward_score" : 1500,    // NPC死亡时会给予奖励
-            "del_msg" : "$N忽地发出一阵凄厉长啸，随后「嘭」地一声消失不见了。\n",
+            "peaceful": 3, // 越大越不愛主動攻擊
+            "hit_busy": 1, // 攻擊會造成忙時
+            "dead_reward_score" : 1500,    // NPC死亡時會給予獎勵
+            "del_msg" : "$N忽地發出一陣淒厲長嘯，隨後「嘭」地一聲消失不見了。\n",
         ]),
-        ([ "special_name":HIB"幽灵族"HIM"隐士"NOR,
-            "special_long" : "这是一个幽灵族的隐士，全身散发着一股莫名的压迫之气，让人不敢靠近。\n",
+        ([ "special_name":HIB"幽靈族"HIM"隱士"NOR,
+            "special_long" : "這是一個幽靈族的隱士，全身散發著一股莫名的壓迫之氣，讓人不敢靠近。\n",
             "id":({ "youling yinshi", "yinshi", }),
-            "hit_busy": 1, // 攻击会造成忙时
-            "dead_reward_score" : 800,    // NPC死亡时会给予奖励
-            "del_msg" : "$N忽地发出一阵凄厉长啸，随后「嘭」地一声消失不见了。\n",
+            "hit_busy": 1, // 攻擊會造成忙時
+            "dead_reward_score" : 800,    // NPC死亡時會給予獎勵
+            "del_msg" : "$N忽地發出一陣淒厲長嘯，隨後「嘭」地一聲消失不見了。\n",
         ]),
-        ([ "special_name": HIB"幽灵族武士"NOR,
-            "special_long" : "这是一个幽灵族的武士，阴森诡异。\n",
+        ([ "special_name": HIB"幽靈族武士"NOR,
+            "special_long" : "這是一個幽靈族的武士，陰森詭異。\n",
             "id":({ "youling wushi", "wushi", "shi", }),
-            "hit_busy": 1, // 攻击会造成忙时
-            "del_msg" : "$N忽然发出一阵刺耳的枭叫声，瞬时间身影朦胧，消失不见了！\n",
+            "hit_busy": 1, // 攻擊會造成忙時
+            "del_msg" : "$N忽然發出一陣刺耳的梟叫聲，瞬時間身影朦朧，消失不見了！\n",
         ]),
     });
-    // npc 战斗相关信息 -----------------------------------------------------
+    // npc 戰鬥相關信息 -----------------------------------------------------
     std_power = 15 + random( 6 );
     std_busy = 3 + random( 6 );
     std_hpmax = 50 + random( 251 );
     npc_info = ({
-        ([ "power": std_power * 2,  "busy": std_busy,    "hpmax": 400+random(201) ]),  // 小头领    0
+        ([ "power": std_power * 2,  "busy": std_busy,    "hpmax": 400+random(201) ]),  // 小頭領    0
         ([ "power": std_power *3/2, "busy": std_busy,    "hpmax": std_hpmax       ]),  // 力士      1
-        ([ "power": std_power,      "busy": std_busy,    "hpmax": 300+random(201) ]),  // 壮汉      2
-        ([ "power": std_power,      "busy": 2+random(3), "hpmax": std_hpmax       ]),  // 凶徒      3
-        ([ "power": std_power,      "busy": 2+random(2), "hpmax": 80+random(71)   ]),  // 法师      4
+        ([ "power": std_power,      "busy": std_busy,    "hpmax": 300+random(201) ]),  // 壯漢      2
+        ([ "power": std_power,      "busy": 2+random(3), "hpmax": std_hpmax       ]),  // 兇徒      3
+        ([ "power": std_power,      "busy": 2+random(2), "hpmax": 80+random(71)   ]),  // 法師      4
         ([ "power": std_power,      "busy": std_busy,    "hpmax": std_hpmax       ]),  // 族人      5
-        ([ "power": std_power * 3,  "busy": 3+random(4), "hpmax": 800+random(701) ]),  // 族长      6
-        ([ "power": std_power / 2,  "busy": 1,           "hpmax": 1500+random(501) ]), // 幽灵刺客  7
-        ([ "power": std_power * 2,  "busy": 1+random(2), "hpmax": 8000+random(3001) ]),// 幽灵杀神  8
-        ([ "power": std_power * 3,  "busy": 2+random(3), "hpmax": 3000+random(1001) ]),// 幽灵隐士  9
-        ([ "power": 10+random(21),  "busy": 2+random(2), "hpmax": 400+random(201) ]),  // 幽灵武士  10
+        ([ "power": std_power * 3,  "busy": 3+random(4), "hpmax": 800+random(701) ]),  // 族長      6
+        ([ "power": std_power / 2,  "busy": 1,           "hpmax": 1500+random(501) ]), // 幽靈刺客  7
+        ([ "power": std_power * 2,  "busy": 1+random(2), "hpmax": 8000+random(3001) ]),// 幽靈殺神  8
+        ([ "power": std_power * 3,  "busy": 2+random(3), "hpmax": 3000+random(1001) ]),// 幽靈隱士  9
+        ([ "power": 10+random(21),  "busy": 2+random(2), "hpmax": 400+random(201) ]),  // 幽靈武士  10
     });
-    // 更新此处设置时，需要计算正确的值，并更新 help 文件。
+    // 更新此處設置時，需要計算正確的值，並更新 help 文件。
     // ---------------------------------------------------------------------------
     class_list = ({
-        YEL"蛮野族",
+        YEL"蠻野族",
         YEL"猛力族",
         YEL"矮妖族",
         YEL"山怪族",
         YEL"巨人族",
     });
     i = sizeof( npc_info2 );
-    if( npc_class == 88 )  // 指定“族”为任务NPC  (仅由 hj_room1.c 里调用)
+    if( npc_class == 88 )  // 指定“族”為任務NPC  (僅由 hj_room1.c 裡調用)
     {
         npc_class = -1;
-        npc_level = NPC_YL_WUSHI_INDEX;    // 则指定为 幽灵武士
+        npc_level = NPC_YL_WUSHI_INDEX;    // 則指定為 幽靈武士
         set("job_npc", 1 );
     }
-    else if( npc_class == 99 ) // 指定“族”为随机
+    else if( npc_class == 99 ) // 指定“族”為隨機
     {
-        npc_class = random(5);  // 那么就随机
+        npc_class = random(5);  // 那麼就隨機
     }
-    else if( npc_class < 0 || npc_class > 4 )   // 数据错误的话
+    else if( npc_class < 0 || npc_class > 4 )   // 數據錯誤的話
     {
-        npc_class = random(5);  // 那么也随机
+        npc_class = random(5);  // 那麼也隨機
     }
-    // ok. 选择  lv
-    if( npc_class != -1 )  // 不是指定任务NPC的话，才继续处理
+    // ok. 選擇  lv
+    if( npc_class != -1 )  // 不是指定任務NPC的話，才繼續處理
     {
-        // 省略参数或有误时，随机出现
+        // 省略參數或有誤時，隨機出現
         if( npc_level < 1 || npc_level > i )
         {
-            npc_level = random( NPC_NORMAL_SIZE );    // 随机获得一个“正常类型NPC”
+            npc_level = random( NPC_NORMAL_SIZE );    // 隨機獲得一個“正常類型NPC”
             if( !query("take_gem_npc") && random( 300 ) == 88 )
-                npc_level = NPC_YL_SHASHEN_INDEX;     // 很小机率出现杀神
+                npc_level = NPC_YL_SHASHEN_INDEX;     // 很小機率出現殺神
             else if( !query("take_gem_npc") && random(200) == 88 )
-                npc_level = NPC_YL_YINSHI_INDEX;      // 较小机率出现隐士
+                npc_level = NPC_YL_YINSHI_INDEX;      // 較小機率出現隱士
             else if( !query("take_gem_npc") && random(100) == 88 )
-                npc_level = NPC_YL_CIKE_INDEX;        // 普通机率出现刺客
+                npc_level = NPC_YL_CIKE_INDEX;        // 普通機率出現刺客
             else if( random(20) == 8 )
-                npc_level = NPC_ZUZHANG_INDEX;        // 较容易出现各族族长
+                npc_level = NPC_ZUZHANG_INDEX;        // 較容易出現各族族長
         }
         else
-            npc_level --;  // 否则为指定的减1 (传入1时意思是数组的0号)
+            npc_level --;  // 否則為指定的減1 (傳入1時意思是數組的0號)
     }
     // 防止意外
     if( npc_level < 0 || npc_level > sizeof(npc_info2) )
     {
-        npc_level = NPC_ZUREN_INDEX;  // 发现数据有误时，强制改为族人
+        npc_level = NPC_ZUREN_INDEX;  // 發現數據有誤時，強制改為族人
         delete( "job_npc" );
     }
-    // 设置基本名字、ID及描述。
+    // 設置基本名字、ID及描述。
     info = npc_info2[ npc_level ];
     if( info["special_name"] )
     {
@@ -187,7 +187,7 @@ varargs void setme( int npc_class, int npc_level )
     }
     else
     {
-        set( "long", "这是一个"+class_list[ npc_class ]+NOR"的族民，十分好战，可以说是凶残成性。\n");
+        set( "long", "這是一個"+class_list[ npc_class ]+NOR"的族民，十分好戰，可以說是兇殘成性。\n");
     }
     set("auto_kill", info[ "auto_kill" ] );
     set("peaceful", info[ "peaceful"] );
@@ -201,9 +201,9 @@ varargs void setme( int npc_class, int npc_level )
     set( "npc_level", npc_level );
 
     set("hj_game/npc","kill");
-    // 设置战斗相关的数值。
+    // 設置戰鬥相關的數值。
     info = npc_info[ npc_level ];
-    // 如果是带宝 npc ，并且又不是族长，那么设置为小头领的能力(外表看起来仍是族人、力士之类)。
+    // 如果是帶寶 npc ，並且又不是族長，那麼設置為小頭領的能力(外表看起來仍是族人、力士之類)。
     if( query("id") != "zu zhang" && query("take_gem_npc") )
         info = npc_info[ 0 ];
     set( "mepower", info[ "power" ] );
@@ -211,39 +211,39 @@ varargs void setme( int npc_class, int npc_level )
     set_temp( "hj_hp_max", info[ "hpmax" ] );
     set_temp( "hj_hp",     info[ "hpmax" ] );
     set( "attack_busy", 0 );
-    set("msg","只听得一阵响声传来，旁边走过来一个面目狰狞的家伙！\n");
+    set("msg","只聽得一陣響聲傳來，旁邊走過來一個面目猙獰的傢伙！\n");
     set("gender","男性");
     set("age",30+random(30));
     set("no_refresh",1);
     set("life_remain", query("delete_time_max") );
-    // 非持宝者时，族长停留时间延长一倍。杀神、隐士更长。
+    // 非持寶者時，族長停留時間延長一倍。殺神、隱士更長。
     id = query("id");
     if( !query("take_gem_npc") )
     {
         if( id == "zu zhang" )
             set("life_remain", query("delete_time_max") * 2 );
-        else if( query("dead_reward_score" ) )  // 如果是有奖励积分的类型，则使之存活时间加长
-            set("life_remain", query("delete_time_max") * 8 );  // 为了维持更久
+        else if( query("dead_reward_score" ) )  // 如果是有獎勵積分的類型，則使之存活時間加長
+            set("life_remain", query("delete_time_max") * 8 );  // 為了維持更久
     }
-    // 强制删除 auto kill 标记。
+    // 強制刪除 auto kill 標記。
     if( query( "take_gem_npc" ) || id == "youling wushi" || id == "youling yinshi" )
         delete( "auto_kill" );
     remove_call_out("checking");
     remove_call_out("delete_me");
     call_out("checking", 3 );
     if( id == "youling yinshi" || id == "youling shashen" )
-        hj_shout( HIM"〖幻境传闻〗听说"+query("name")+HIM"在幻境密林中出现了！\n"NOR );
+        hj_shout( HIM"〖幻境傳聞〗聽說"+query("name")+HIM"在幻境密林中出現了！\n"NOR );
 }
 
 void create()
 {
     set("delete_time_max",300+random(180) );
-    // 每个NPC出场时间最多 8 分钟(若是玩家宝物目标，则以 fyld_npc.h 里设置为准。
+    // 每個NPC出場時間最多 8 分鐘(若是玩家寶物目標，則以 fyld_npc.h 裡設置為準。
     setme( 99 );
     setup();
 }
 
-// 自毁程序
+// 自毀程序
 void delete_me()
 {
     object ob = this_object();
@@ -258,8 +258,8 @@ void delete_me()
     if( stringp( query("del_msg") ) )
         message_vision( query("del_msg"), ob );
     else
-        message_vision( "只听得一声怪叫，$N「嘭」地一声消失不见了。\n", ob);
-    // 这两个特别的 NPC 要通告一下。幽灵刺客不必通告；幽灵武士是 JOB NPC，也不必。
+        message_vision( "只聽得一聲怪叫，$N「嘭」地一聲消失不見了。\n", ob);
+    // 這兩個特別的 NPC 要通告一下。幽靈刺客不必通告；幽靈武士是 JOB NPC，也不必。
     if( query("id") == "youling yinshi" || query("id") == "youling shashen" )
     {
         if( query("hp") < 1 )
@@ -269,18 +269,18 @@ void delete_me()
                 object who;
                 who = find_player( query("killme_by") );
                 if( objectp(who) && environment(who) == environment(ob) )
-                    hj_shout(HIM"〖幻境传闻〗听说"+query("name")+HIM"被"+query("name", who)+HIM"杀死了！\n"NOR);
+                    hj_shout(HIM"〖幻境傳聞〗聽說"+query("name")+HIM"被"+query("name", who)+HIM"殺死了！\n"NOR);
                 else
-                    hj_shout( HIM"〖幻境传闻〗听说"+query("name")+HIM"被杀死了！\n"NOR );
+                    hj_shout( HIM"〖幻境傳聞〗聽說"+query("name")+HIM"被殺死了！\n"NOR );
             }
         }
         else
-            hj_shout( HIM"〖幻境传闻〗听说"+query("name")+HIM"离开了幻境密林。\n"NOR );
+            hj_shout( HIM"〖幻境傳聞〗聽說"+query("name")+HIM"離開了幻境密林。\n"NOR );
     }
     destruct(this_object());
 }
 
-// “心跳”检测
+// “心跳”檢測
 void checking()
 {
     object ob,*inv,temp,my_host,qxd;
@@ -304,13 +304,13 @@ void checking()
             return;
         }
     }
-    // 死亡时，进行奖励。
+    // 死亡時，進行獎勵。
     if( query_temp("hj_hp") < 1 )
     {
         npc_dead_reward();
         return;
     }
-    // 否则时间到了，主动离开。没有任何奖励。
+    // 否則時間到了，主動離開。沒有任何獎勵。
     if( query("life_remain") < 1 )
     {
         remove_call_out("delete_me");
@@ -318,14 +318,14 @@ void checking()
         return;
     }
     ob = this_object();
-    // 如果设置忙时限制，并且现在的忙时比限制的要高，那么强制恢复
+    // 如果設置忙時限制，並且現在的忙時比限制的要高，那麼強制恢復
     if( (ppp=query("max_busy_limit")) > 0 && ppp < query_busy() )
     {
         start_busy( ppp );
-        message_vision( "\n$N忽地使劲一挣，身体似乎恢复了自由！\n\n", ob );
+        message_vision( "\n$N忽地使勁一掙，身體似乎恢復了自由！\n\n", ob );
     }
-    // 本NPC仍在生，下面开始进入攻击程序。
-    // 攻击等待时间仍未到，或偶尔得到小几率的随机数，跳过。
+    // 本NPC仍在生，下面開始進入攻擊程序。
+    // 攻擊等待時間仍未到，或偶爾得到小几率的隨機數，跳過。
     addn("attack_busy", -1 );
     if( query("attack_busy") < 0 )
         set("attack_busy", 0 );
@@ -336,52 +336,52 @@ void checking()
         call_out("checking",1 );
         return;
     }
-    // 好，开始攻击
-    // 如果有 killme_by 标记，即攻击该人
+    // 好，開始攻擊
+    // 如果有 killme_by 標記，即攻擊該人
     id = query("id");
     if( query("killme_by") )
     {
         target = present( query("killme_by"), environment(ob) );
-        // 目标不在本地了，进入空闲状态
+        // 目標不在本地了，進入空閒狀態
         if(!target)
         {
             delete("killme_by");
             delete("start_kill_msg");
-            set_leader( 0 );  // 停止跟随
+            set_leader( 0 );  // 停止跟隨
         }
-        // 目标存在本地，打！
+        // 目標存在本地，打！
         else 
         {
-            // 如果其不携带神人令以及临时离开器，立刻实行跟随，并且开打！
+            // 如果其不攜帶神人令以及臨時離開器，立刻實行跟隨，並且開打！
             if( !present("shenren ling",target) && !present( "hj temp leave obj", target ) )
             {
                 set_leader( target );
-                // 如果是第一轮开打，来个通知
+                // 如果是第一輪開打，來個通知
                 if( !query("start_kill_msg") )
                 {
                     set("start_kill_msg", 1);
-                    message_vision( HIR"\n看来$n"HIR"想要杀死$N"HIR"！\n\n"NOR, target, this_object() );
+                    message_vision( HIR"\n看來$n"HIR"想要殺死$N"HIR"！\n\n"NOR, target, this_object() );
                 }
-                // 设置攻击等待时间
+                // 設置攻擊等待時間
                 set("attack_busy", query("att_busy") );
-                // 调用攻击函数。
+                // 調用攻擊函數。
                 call_out( "att_target",1, target );
             }
         }
     }
-    // 否则，可能进行主动攻击。
-    else if( query("auto_kill") )   // 看此 npc 是否会自动 kill
+    // 否則，可能進行主動攻擊。
+    else if( query("auto_kill") )   // 看此 npc 是否會自動 kill
     {
         inv = all_inventory(environment(ob));
         ppp = query( "peaceful" );
         if( ppp < 2 )
             ppp = 2;
-        // 逐个过滤
+        // 逐個過濾
         for( i=sizeof(inv)-1; i>=0; i-- )
         {
-            if( random(ppp) )  // 和平度高的就不理这个东西(不管它是不是能打的东西)
+            if( random(ppp) )  // 和平度高的就不理這個東西(不管它是不是能打的東西)
                 continue;
-            // 对其执行判定，准备开打
+            // 對其執行判定，準備開打
             temp = inv[i];
             if( !temp->is_character()
                || query("hj_game/npc", temp )
@@ -389,32 +389,32 @@ void checking()
                || query_temp("huanjing", temp) != "start"
             )
                 continue;
-            // 无灯者不打（打了也白打）
+            // 無燈者不打（打了也白打）
             if(!(qxd = present("qixing deng",temp)) )
                 continue;
-            // 携带神人令、或携带临时离开器(临时离开游戏)者，不会被攻击。
+            // 攜帶神人令、或攜帶臨時離開器(臨時離開遊戲)者，不會被攻擊。
             if( present("shenren ling",temp) || present( "hj temp leave obj", temp ) )
                 continue;
-            // 还有4个以上的灯亮着时，族长不会主动进行攻击。
+            // 還有4個以上的燈亮著時，族長不會主動進行攻擊。
             if( id == "zu zhang" && query("last_deng", qxd)>4 )
                 continue;
-            // 还有6个以上的灯亮着时，小头领不会主动进行攻击。
+            // 還有6個以上的燈亮著時，小頭領不會主動進行攻擊。
             if( id == "tou ling" && query("last_deng", qxd)>6 )
                 continue;
-            // 那么，开始攻击目标！
+            // 那麼，開始攻擊目標！
             set_leader( temp );
             set("killme_by",query("id", temp));
-            message_vision( HIR"\n看来$n"HIR"想要杀死$N"HIR"！\n\n"NOR,
+            message_vision( HIR"\n看來$n"HIR"想要殺死$N"HIR"！\n\n"NOR,
                     temp, this_object() );
             set("start_kill_msg", 1);
             set("attack_busy", query("att_busy") );
             call_out("att_target",1, temp );
             break;
-            // 测试用，请小心    tell_object(find_player("naihe"),"抽不中 kill "+temp->query("id")+" .\n");
+            // 測試用，請小心    tell_object(find_player("naihe"),"抽不中 kill "+temp->query("id")+" .\n");
         }
     }
-    i = 0;  // 作为是否 random_move 的标记
-    // 幽灵武士、或者带有特殊奖励的NPC，不要到处乱走
+    i = 0;  // 作為是否 random_move 的標記
+    // 幽靈武士、或者帶有特殊獎勵的NPC，不要到處亂走
     if( id == "youling wushi" || query( "dead_reward_score" ) )
     {
         if( !random(50) )
@@ -448,59 +448,59 @@ void att_target( object target )
     {
         delete("killme_by");
         delete("start_kill_msg");
-        set_leader( 0 );  // 停止跟随
+        set_leader( 0 );  // 停止跟隨
         return;
     }
     switch( random(12) )
     {
-    case 0 .. 3 : temp_msg=NOR+CYN"狠狠地挥出一拳，把$N"NOR+CYN"打个正中！";break;
-    case 4 .. 7 : temp_msg=NOR+CYN"狠狠地踢出一脚，$N"NOR+CYN"躲闪不及，吃个正着！"; break;
+    case 0 .. 3 : temp_msg=NOR+CYN"狠狠地揮出一拳，把$N"NOR+CYN"打個正中！";break;
+    case 4 .. 7 : temp_msg=NOR+CYN"狠狠地踢出一腳，$N"NOR+CYN"躲閃不及，吃個正著！"; break;
 
-    case 8: temp_msg=NOR+CYN"口中「嗬嗬」怪叫，双手乱挥，却也让$N"NOR+CYN"中了招！";
+    case 8: temp_msg=NOR+CYN"口中「嗬嗬」怪叫，雙手亂揮，卻也讓$N"NOR+CYN"中了招！";
         power -= ( power /3 ); break;
-    case 9:    temp_msg=NOR+CYN"手脚乱挥，完全不成章法，却也让$N"NOR+CYN"中了招！";
+    case 9:    temp_msg=NOR+CYN"手腳亂揮，完全不成章法，卻也讓$N"NOR+CYN"中了招！";
         power -= ( power /3 ); break;
-    case 10:temp_msg=NOR+CYN"使尽了力气向着$N"NOR+CYN"一撞，把$N"NOR+CYN"撞得飞了开去！";
+    case 10:temp_msg=NOR+CYN"使盡了力氣向著$N"NOR+CYN"一撞，把$N"NOR+CYN"撞得飛了開去！";
         power += ( power / 2 ); break;
-    case 11: temp_msg=NOR+CYN"向着$N"NOR+CYN"一抓！$N"NOR+CYN"闪身躲过，只受了点轻伤。";
+    case 11: temp_msg=NOR+CYN"向著$N"NOR+CYN"一抓！$N"NOR+CYN"閃身躲過，只受了點輕傷。";
         power = power / 5 + random( power / 5 );
         if( power < 1 ) power = 1;
         break;
     }
-    // 法师攻击的描述亦不相同。
+    // 法師攻擊的描述亦不相同。
     if( (id=query("id")) == "fa shi" )
     {
         power = query("mepower") * 4 / 5 + random( query("mepower") / 5 ) + 1;
-        message_vision( sprintf( HIY"\n$n"HIY"对着$N"HIY"指手划脚地施着法，$N"HIY
-            + "竟觉全身气息倾泄而出！结果造成 "HIR"%d"HIY" 点的伤害。\n"NOR, power ),
+        message_vision( sprintf( HIY"\n$n"HIY"對著$N"HIY"指手劃腳地施著法，$N"HIY
+            + "竟覺全身氣息傾洩而出！結果造成 "HIR"%d"HIY" 點的傷害。\n"NOR, power ),
             target, this_object()
         );
     }
     else
-        message_vision( sprintf( CYN"\n$n%s"NOR+CYN"结果造成 "HIR"%d"NOR+CYN" 点的伤害。\n"NOR,
+        message_vision( sprintf( CYN"\n$n%s"NOR+CYN"結果造成 "HIR"%d"NOR+CYN" 點的傷害。\n"NOR,
             temp_msg, power), target, this_object()
         );
     addn_temp("hj_hp", -power, target);
-    // 幽灵族会让对方增加忙时！！！
+    // 幽靈族會讓對方增加忙時！！！
     if( query( "hit_busy" ) )
     {
-        // 夺魂之技特殊技能体现之一，有效抵抗来自NPC的夺魂类攻击的忙时效果
+        // 奪魂之技特殊技能體現之一，有效抵抗來自NPC的奪魂類攻擊的忙時效果
         if( !query_temp("hj_special/sh", target) && target->query_busy()<3 && !random(5) )
         {
             target->start_busy( target->query_busy() + 5 );
-            message_vision( HIB"$N"HIB"只觉得一阵麻木之感如电般传遍全身，顿时动弹不得！\n"NOR, target );
+            message_vision( HIB"$N"HIB"只覺得一陣麻木之感如電般傳遍全身，頓時動彈不得！\n"NOR, target );
         }
     }
-    // 各族的法师会吸取对方的 hp.
+    // 各族的法師會吸取對方的 hp.
     if( query( "hit_suck" ) )
     {
         if( !random(2) && query_temp("hj_hp") < (query_temp("hj_hp_max") *9 / 10 ) )
         {
-            message_vision( "只见$n大吸了一口从$N身上所泄漏的真气！$n的气息恢复了许多。\n", target, this_object() );
+            message_vision( "只見$n大吸了一口從$N身上所洩漏的真氣！$n的氣息恢復了許多。\n", target, this_object() );
             addn_temp("hj_hp", power * 2 + random( power * 2 ) );
         }
     }
-    // 取消怪物攻击时减少分数的设置
+    // 取消怪物攻擊時減少分數的設置
     //    target->addn_temp("hj_score",-random(power/3) );
     //    if( target->query_temp("hj_score") < 1 )
     //    target->set_temp("hj_score", 1);
@@ -516,35 +516,35 @@ void hj_get_attack( object ob )
 }
 
 // =================================================================
-// ========================== NPC 死亡奖励 =========================
+// ========================== NPC 死亡獎勵 =========================
 // =================================================================
 void npc_dead_reward()
 {
     string id = query("id");
     object temp, me, ob = this_object();
 
-    // 本物件无 env 或 hp 还有(错误的调用), 无任何奖励。
+    // 本物件無 env 或 hp 還有(錯誤的調用), 無任何獎勵。
     if( !environment(ob) || query_temp("hj_hp") > 0 )
     {
         destruct( ob );
         return;
     }
-    // 给一点点小的概率，让NPC可能额外的携带宝物。
+    // 給一點點小的概率，讓NPC可能額外的攜帶寶物。
     if( random(200) == 88 )
         set("take_gem_npc", "yes" );
-    // 如果是持宝NPC，绝对掉下宝物。
+    // 如果是持寶NPC，絕對掉下寶物。
     if( query("take_gem_npc") =="yes" )
     {
         temp = new(__DIR__"hj_obj_gem");
-        temp -> setme( query("npc_class") );    // 如果 class 超出允许范围，则会随机设置宝物
+        temp -> setme( query("npc_class") );    // 如果 class 超出允許範圍，則會隨機設置寶物
     }
-    // 否则如果是族长，掉下本族的权杖。加入随机数，否则JOB变得相当的容易了。
+    // 否則如果是族長，掉下本族的權杖。加入隨機數，否則JOB變得相當的容易了。
     else if( id == "zu zhang" && random(3) )
     {
         temp = new( __DIR__"hj_obj_gem_qz" );
-        temp -> setme( query("npc_class") );    // 如果 class 超出允许范围，则会随机设置权杖
+        temp -> setme( query("npc_class") );    // 如果 class 超出允許範圍，則會隨機設置權杖
     }
-    // 否则如果不是幽灵武士、并且不是有特殊奖励的，就有机会掉下技能石或果品或购物宝石。
+    // 否則如果不是幽靈武士、並且不是有特殊獎勵的，就有機會掉下技能石或果品或購物寶石。
     else if( !random(3) && id != "youling wushi" && !query("dead_reward_score") )
     {
         if( random(3) )
@@ -559,13 +559,13 @@ void npc_dead_reward()
         message_vision("$N身上突然掉下一"+query("unit", temp)+"$n！\n",ob,temp);
         temp->move(environment(ob));
     }
-    // 进行特殊的奖励。幽灵武士是任务NPC，特别奖励
+    // 進行特殊的獎勵。幽靈武士是任務NPC，特別獎勵
     if( id == "youling wushi" )
         npc_dead_reward_wushi();
-    // 否则，如果有“奖励积分”的设置，则使用预定的方式奖励积分。
+    // 否則，如果有“獎勵積分”的設置，則使用預定的方式獎勵積分。
     else if( query("dead_reward_score") )
         npc_dead_reward_sp( query("dead_reward_score") );
-    // 给杀死本NPC的玩家加个记录
+    // 給殺死本NPC的玩家加個記錄
     if( stringp( query( "killme_by" ) ) )
     {
         me = find_player( query("killme_by") );
@@ -578,11 +578,11 @@ void npc_dead_reward()
 // =================================================================    
 
 
-// 幽灵武士死亡后给予奖励。
-// (1) query("job_master_obj")  object 型，JOB是属于此人的
-// (2) query("job_award_score") int 型，奖励的得分
-// (3) query("job_award_skills") int 型，奖励的技能
-// query("killme_by")  最后一击
+// 幽靈武士死亡後給予獎勵。
+// (1) query("job_master_obj")  object 型，JOB是屬於此人的
+// (2) query("job_award_score") int 型，獎勵的得分
+// (3) query("job_award_skills") int 型，獎勵的技能
+// query("killme_by")  最後一擊
 void npc_dead_reward_wushi()
 {
     object me, ob = this_object();
@@ -602,41 +602,41 @@ void npc_dead_reward_wushi()
     )
         return;
 
-    // 所有条件OK，开始奖励玩家
-    message_vision(CYN"$N"NOR+CYN"消灭了被自己放出来的幽灵族武士，心中大慰。\n"NOR, me);
-    // 先奖励得分
+    // 所有條件OK，開始獎勵玩家
+    message_vision(CYN"$N"NOR+CYN"消滅了被自己放出來的幽靈族武士，心中大慰。\n"NOR, me);
+    // 先獎勵得分
     addn_temp("hj_score", query("job_award_score"), me);
-    tell_object( me, HIR"游戏提示：你的得分增加了 "+ query("job_award_score")+ " 点！\n"NOR);
-    // 再奖励技能，如果有的话
+    tell_object( me, HIR"遊戲提示：你的得分增加了 "+ query("job_award_score")+ " 點！\n"NOR);
+    // 再獎勵技能，如果有的話
     if( query("job_award_skills") )
     {
         sks=query_temp("hj_game_skills", me);
         if( sizeof( sks ) )
         {
             sks_list = keys( sks );
-            // 获取了随机的技能 ID
+            // 獲取了隨機的技能 ID
             sks_id = sks_list[ random(sizeof(sks_list)) ];
-            // 还得数据无误才行
+            // 還得數據無誤才行
             if( query_temp("hj_game_damages/"+sks_id, me) )
             {
                 addn_temp("hj_game_damages/"+sks_id, query("job_award_skills"), me);
-                tell_object( me, sprintf( HIR"游戏提示：你的「%s」提升了 %d 级！\n"NOR,
+                tell_object( me, sprintf( HIR"遊戲提示：你的「%s」提升了 %d 級！\n"NOR,
                     query_temp("hj_game_skills/"+sks_id, me),
                     query("job_award_skills"))
                 );
                 if( query_temp("hj_game_damages/"+sks_id, me)>99 )
                 {
                     set_temp("hj_game_damages/"+sks_id, 99, me);
-                    tell_object( me, HIR"该技能已经达到上限了。\n"NOR );
+                    tell_object( me, HIR"該技能已經達到上限了。\n"NOR );
                 }
             }
         }
     }
-    // 如果有力量奖励的话
+    // 如果有力量獎勵的話
     if( query("job_award_power") > 0 )
     {
         addn_temp("hj_game_mepower", query("job_award_power"), me);
-        tell_object( me, sprintf( HIR"游戏提示：你的力量增强了 %d 点！\n"NOR,
+        tell_object( me, sprintf( HIR"遊戲提示：你的力量增強了 %d 點！\n"NOR,
             query("job_award_power"))
         );
     }
@@ -645,7 +645,7 @@ void npc_dead_reward_wushi()
 // =================================================================
 
 
-// 特殊的奖励。主要是给 youling shashen 或 youling yinshi 或 youling cike 使用。
+// 特殊的獎勵。主要是給 youling shashen 或 youling yinshi 或 youling cike 使用。
 void npc_dead_reward_sp( int total_reward )
 {
     mixed ls;
@@ -678,22 +678,22 @@ void npc_dead_reward_sp( int total_reward )
            || !query("room_mark", environment(usr) )
         )
             continue;
-        tell_object( usr, HIG"\n你" + (ls[id] >= total_hit ? "独" : "合众人之")
-            + "力杀死了"+query("name")+HIG"，感到自身修为大有长进。\n"NOR );
+        tell_object( usr, HIG"\n你" + (ls[id] >= total_hit ? "獨" : "合眾人之")
+            + "力殺死了"+query("name")+HIG"，感到自身修為大有長進。\n"NOR );
         percent = ls[id] * 100 / total_hit;
         reward = total_reward / 100 * percent;
-        // 不在同一地方时，得分减半。
+        // 不在同一地方時，得分減半。
         if( environment(usr) != environment(ob) )
             reward /= 2;
         if( reward < 1 )
             reward = 1;
-        tell_object( usr, HIR"游戏提示：你的得分增加了 "+reward+" 点！\n"NOR);
+        tell_object( usr, HIR"遊戲提示：你的得分增加了 "+reward+" 點！\n"NOR);
         addn_temp("hj_score", reward, usr);
         if( query("killme_by") == query("id", usr) )
         {
-            tell_object( usr, HIG"杀死"+query("name")+HIG"的最后一击是你造成的！你得到了更多的奖励。\n"NOR );
+            tell_object( usr, HIG"殺死"+query("name")+HIG"的最後一擊是你造成的！你得到了更多的獎勵。\n"NOR );
             reward = total_reward / 10;
-            tell_object( usr, HIR"游戏提示：你的得分增加了 "+reward+" 点！\n"NOR);
+            tell_object( usr, HIR"遊戲提示：你的得分增加了 "+reward+" 點！\n"NOR);
             addn_temp("hj_score", reward, usr);
         }
     }

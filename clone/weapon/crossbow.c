@@ -12,11 +12,11 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("unit", "张");
-                set("long", "一张弩，打造得极为精致，具有极好的准确度。\n");
+                set("unit", "張");
+                set("long", "一張弩，打造得極為精緻，具有極好的準確度。\n");
                 set("value", 250000);
-                set("power", 250000);   // 攻击威力
-                set("accuracy", 180);   // 准确度150%
+                set("power", 250000);   // 攻擊威力
+                set("accuracy", 180);   // 準確度150%
         }
         setup();
 }

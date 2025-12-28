@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "油条铺");
+        set("short", "油條鋪");
         set("long", @LONG
-这家烧饼油条铺是新开张的。铺面不大，正中央摆了一个大炸锅
-和一个烤炉。
+這家燒餅油條鋪是新開張的。鋪面不大，正中央擺了一個大炸鍋
+和一個烤爐。
 LONG );
         set("outdoors", "foshan");
         set("exits", ([

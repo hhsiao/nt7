@@ -3,11 +3,11 @@ inherit F_VENDOR;
 
 void create()
 {
-        set_name("卖花少女", ({ "shao nv", "nv", "shao" }) );
+        set_name("賣花少女", ({ "shao nv", "nv", "shao" }) );
         set("gender", "女性" );
         set("age", 15);
         set("long",
-              "一个鲜花店卖花的小女孩。\n");
+              "一個鮮花店賣花的小女孩。\n");
         set("shen_type", 1);
         set("combat_exp", 10000);
        set("str", 17);

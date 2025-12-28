@@ -9,7 +9,7 @@ void create()
         object ob;
         set_name("幽冥道人", ({ "youming daoren", "youming", "daoren" }));
         set("gender", "男性");
-        set("nickname", HIG "岭南" NOR);
+        set("nickname", HIG "嶺南" NOR);
         set("age", 62);
         set("attitude", "peaceful");
         set("shen_type", 1);
@@ -47,7 +47,7 @@ void create()
         prepare_skill("finger", "youming-zhi");
 
         set("inquiry", ([
-               "幽冥指" : "这正是贫道的绝学，阁下为何知晓？\n",
+               "幽冥指" : "這正是貧道的絕學，閣下為何知曉？\n",
         ]));
 
         set("chat_chance_combat", 120);

@@ -3,9 +3,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short", RED "浴血残阳" NOR);
-        set("long", HIR "                夕     阳\n" + NOR + RED +
-                "已将整个绝顶染成血红色，你仿佛已嗅到一股血腥之气。" + NOR + "\n ");
+        set("short", RED "浴血殘陽" NOR);
+        set("long", HIR "                夕     陽\n" + NOR + RED +
+                "已將整個絕頂染成血紅色，你彷彿已嗅到一股血腥之氣。" + NOR + "\n ");
         set("exits", ([ /* sizeof() == 1 */
         ]));
         set("no_magic", 1);
@@ -24,7 +24,7 @@ void init()
 
 int discmds() 
 { 
-        tell_object(this_player(), "比武是光明正大，不许作弊！\n");  
+        tell_object(this_player(), "比武是光明正大，不許作弊！\n");  
         return 1;  
 } 
 

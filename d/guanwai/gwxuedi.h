@@ -27,7 +27,7 @@ void do_cold(object me, int scale, int con)
                 con = con / 2 + random(con);
         }
         damage=35-(con+query_temp("apply/warm", me)+query_temp("warm"));
-        if( query("born", me) == "关外人氏")damage-=25;
+        if( query("born", me) == "關外人氏")damage-=25;
         if (damage < 0) damage = 0;
         if (hour <= 6 || hour >= 18) damage += damage / 2;
         if (hour <= 4 || hour >= 22) damage += damage / 2;
@@ -35,25 +35,25 @@ void do_cold(object me, int scale, int con)
         damage *= scale;
         if (damage) me->receive_damage("qi", damage);
         if (damage > 80)
-                msg = HIB "一股刺骨的寒风吹过，你只觉得浑身"
-                      "的血液都快被冻住了！\n" NOR;
+                msg = HIB "一股刺骨的寒風吹過，你只覺得渾身"
+                      "的血液都快被凍住了！\n" NOR;
         else if (damage > 60)
-                msg = HIB "一股刺骨的寒风吹过，你只觉得浑身"
+                msg = HIB "一股刺骨的寒風吹過，你只覺得渾身"
                       "非常僵硬！\n" NOR;
         else if (damage > 40)
-                msg = HIB "一股刺骨的寒风吹过，你只觉得冷气"
-                      "透过衣衫钻了进来，浑身没有半点热气！\n" NOR;
+                msg = HIB "一股刺骨的寒風吹過，你只覺得冷氣"
+                      "透過衣衫鑽了進來，渾身沒有半點熱氣！\n" NOR;
         else if (damage > 20)
-                msg = HIB "一股刺骨的寒风吹过，你只觉得人都"
+                msg = HIB "一股刺骨的寒風吹過，你只覺得人都"
                       "要麻木了！\n" NOR;
         else if (damage > 10)
-                msg = HIB "一股刺骨的寒风吹过，你只觉得天气"
+                msg = HIB "一股刺骨的寒風吹過，你只覺得天氣"
                       "非常的冷！\n" NOR;
         else if (damage > 0)
-                msg = HIB "一股刺骨的寒风吹过，你感觉到有点"
+                msg = HIB "一股刺骨的寒風吹過，你感覺到有點"
                       "冷！\n" NOR;
         else
-                msg = HIC "一股刺骨的寒风吹过，可是你身上还"
+                msg = HIC "一股刺骨的寒風吹過，可是你身上還"
                       "是挺暖和的。\n" NOR;
 
         if( query("qi", me)<50 && damage>10 )

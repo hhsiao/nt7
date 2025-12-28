@@ -6,8 +6,8 @@ inherit F_AUTOLOAD;
 
 void create()
 {
-        set_name(HIC"魔法师袍"NOR, ({ "magic robe", "robe" }) );
-        set("long", HIC"这是一件古怪的长袍，无论谁披上它都会有一种神奇的魔力附身。\n"NOR);
+        set_name(HIC"魔法師袍"NOR, ({ "magic robe", "robe" }) );
+        set("long", HIC"這是一件古怪的長袍，無論誰披上它都會有一種神奇的魔力附身。\n"NOR);
         set_weight(3000);
         set("unit", "件");
         set("value", 25000000);

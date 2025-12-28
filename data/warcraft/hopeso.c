@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;32m洪安通万岁[2;37;0m[2;37;0m", ({"horse"}));        
+        set_name("[1;32m洪安通萬歲[2;37;0m[2;37;0m", ({"horse"}));        
         set("gender", "男性");                
-        set("long", "$HIG$洪安通万岁[2;37;0m
-它是希望的魔幻兽。
+        set("long", "$HIG$洪安通萬歲[2;37;0m
+它是希望的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

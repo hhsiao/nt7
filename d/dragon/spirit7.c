@@ -4,8 +4,8 @@ void create()
 {
         set("short", "深潭");
         set("long",
-"[1;32m周围一片黑暗，大概已经深入地底了吧。藉着苔藓发出的幽\n"
-"幽磷光，可以看到前方不远处有一个深潭(tan)，寒气逼人。\n"
+"[1;32m周圍一片黑暗，大概已經深入地底了吧。藉著苔蘚發出的幽\n"
+"幽磷光，可以看到前方不遠處有一個深潭(tan)，寒氣逼人。\n"
 );
         set("exits", ([ 
        "eastup" : __DIR__"spirit6",
@@ -31,11 +31,11 @@ int do_look(string arg)
         if(!arg || arg != "深潭" && arg != "tan" ) return 0;
         switch ( random (2)) {
                 case 0:
-tell_object(me,"潭边长满了苔藓，还是不要靠（ａｐｐｒｏａｃｈ）的太近。\n"); 
+tell_object(me,"潭邊長滿了苔蘚，還是不要靠（ａｐｐｒｏａｃｈ）的太近。\n"); 
                 break;
                 case 1:
-message_vision("$N探头向潭里望去。 \n", me); 
-tell_object(me,"黑不隆咚的潭水深不见底。 \n");
+message_vision("$N探頭向潭裡望去。 \n", me); 
+tell_object(me,"黑不隆咚的潭水深不見底。 \n");
                 break;
         }
 
@@ -50,12 +50,12 @@ int do_approach(string arg)
         if(!arg || arg != "深潭" && arg != "tan" ) return 0;
         switch ( random (3)) {
                 case 0:
-message_vision("$N走近深潭探头向里望去。 \n", me); 
-tell_object(me,"潭水深不见底，不过你似乎可以听到底下流水的声音。 \n");
+message_vision("$N走近深潭探頭向裡望去。 \n", me); 
+tell_object(me,"潭水深不見底，不過你似乎可以聽到底下流水的聲音。 \n");
                 break;
                 case 1:
-message_vision("$N走近深潭探头向里望去。哎呀！一不小心掉了进去！\n", me); 
-message_vision("$N的头撞在潭壁上，一下子昏了过去！\n", me); 
+message_vision("$N走近深潭探頭向裡望去。哎呀！一不小心掉了進去！\n", me); 
+message_vision("$N的頭撞在潭壁上，一下子昏了過去！\n", me); 
                 call_out("be_saved",8);
                 me->unconcious();
                 room = find_object(__DIR__"spirit10");
@@ -63,7 +63,7 @@ message_vision("$N的头撞在潭壁上，一下子昏了过去！\n", me);
                 me->move(room);
                 break;
                 case 2:
-message_vision("$N走近深潭探头向里望去。哎呀！一不小心掉了进去！\n", me);
+message_vision("$N走近深潭探頭向裡望去。哎呀！一不小心掉了進去！\n", me);
               room = find_object(__DIR__"underwater");
                 if(!objectp(room)) room=load_object(__DIR__"underwater");
                 me->move(room);
@@ -80,7 +80,7 @@ int be_saved()
             me->remove_call_out("revive");
             me->revive();
             me->reincarnate();
-message_vision("$N慢慢清醒过来，发现自己在一间小屋中！\n", me); 
-message_vision("一个美丽的精灵族女子看见$N恢复了知觉，关切地走了过来！\n", me);
+message_vision("$N慢慢清醒過來，發現自己在一間小屋中！\n", me); 
+message_vision("一個美麗的精靈族女子看見$N恢復了知覺，關切地走了過來！\n", me);
            return 1;
 }

@@ -5,10 +5,10 @@
 inherit ROOM;
 void create()
 {
-	set("short", "阳关大道");
+	set("short", "陽關大道");
 	set("long", @LONG
-一条笔直的大路，向着西方蔓延着，看来是通向遥远的边疆的。
-可惜前方好象还在修路，行人纷纷折返。
+一條筆直的大路，向著西方蔓延著，看來是通向遙遠的邊疆的。
+可惜前方好象還在修路，行人紛紛折返。
 LONG	);
 	set("exits", ([ 
   "west" : "/d/moon/zz1",

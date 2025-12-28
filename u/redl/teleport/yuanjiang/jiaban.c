@@ -7,13 +7,13 @@ void create()
 {
         set("short", "金船甲板");
         set("long", @LONG
-这是广成金船上的甲板，舷梯下面就是黑漆漆的船舱。
+這是廣成金船上的甲板，舷梯下面就是黑漆漆的船艙。
 LONG );
                 set("exits/down"  , __FILE__);
                 set("exits/wiz"  , __DIR__"chuancenter");
 
         set("objects", ([ 
-//              "/clone/fam/max/zaohua" : (!random(90) ? 1 : 0),//具有nflee的npc出发点
+//              "/clone/fam/max/zaohua" : (!random(90) ? 1 : 0),//具有nflee的npc出發點
         ])); 
                 set("no_rideto", 1);
                 set("no_flyto", 1);
@@ -29,7 +29,7 @@ int clean_up() { return 1;}
 
 int discmds() 
 { 
-        tell_object(this_player(), "你不能在这里毛手毛脚。\n");  
+        tell_object(this_player(), "你不能在這裡毛手毛腳。\n");  
         return -1;  
 } 
 
@@ -52,7 +52,7 @@ void init()
         if (query("level", this_player()) < 200)
                 xqkf++;
         set_temp("jinchuan/iesc", xqkf, this_player());
-        tell_object(this_player(), NOR"你获得了"+chinese_number(xqkf)+"张小乾坤符，在普通船舱里可以(esc)使用它。\n你在这里只有３０秒的思考和准备时间。\n"NOR); 
+        tell_object(this_player(), NOR"你獲得了"+chinese_number(xqkf)+"張小乾坤符，在普通船艙裡可以(esc)使用它。\n你在這裡只有３０秒的思考和準備時間。\n"NOR); 
         call_out("valid_leave", 30, this_player(), "down");
         this_player()->start_busy(2);
 }
@@ -64,9 +64,9 @@ int valid_leave(object me, string dir)
         if (dir=="wiz" && wiz_level(me) >= 3) {
                 return ::valid_leave(me, dir);
         }
-    tell_object(me, NOR"你一脚踩空...\n"NOR); 
+    tell_object(me, NOR"你一腳踩空...\n"NOR); 
         me->move(get_object(__DIR__"chuan" + (string)random(50)));
-    tell_object(me, NOR"你从舷梯上滚落，跌到一个未知的船舱里。\n"NOR); 
+    tell_object(me, NOR"你從舷梯上滾落，跌到一個未知的船艙裡。\n"NOR); 
     return 1;
 }
 

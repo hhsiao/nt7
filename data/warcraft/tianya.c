@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[5m[1;32m小毛驴[2;37;0m[2;37;0m", ({"sleepbag"}));        
+        set_name("[5m[1;32m小毛驢[2;37;0m[2;37;0m", ({"sleepbag"}));        
         set("gender", "男性");                
-        set("long", "小毛驴[2;37;0m
-它是天涯的魔幻兽。
+        set("long", "小毛驢[2;37;0m
+它是天涯的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

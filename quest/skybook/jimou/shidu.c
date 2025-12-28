@@ -20,21 +20,21 @@ void main(object ob, string who)
 	p_name=CHAR_D->get_char(ob->query_primary_id(),"name");
 	where = TROOP_D->get_troop_area(p_id);
 	if(!(p_skill=CHAR_D->get_char(ob->query_primary_id(),"skills")["shidu"]))
-        {       write("你不会施毒之计。\n");
+        {       write("你不會施毒之計。\n");
                 return;}
 	if( !p_id){
-                write("只有身在军中才能施毒。\n");
+                write("只有身在軍中才能施毒。\n");
                 return;
         }	
 	// In the furture, We have to consider theplayer's ablility
 	// add the exp of this jimou, reduce mp, etc.
 	if ( !e_id || TROOP_D->get_troop_area(e_id)!=where)
-		{ write("对方不在此战场上。\n");
+		{ write("對方不在此戰場上。\n");
 			return;
 		}
 	
 	if (TROOP_D->get_troop_side(e_id) ==TROOP_D->get_troop_side(p_id))
-                {write ("不可向己方部队施用此计。\n");
+                {write ("不可向己方部隊施用此計。\n");
                         return;
                 }
 p_skill=CHAR_D->get_char(ob->query_primary_id(),"skills")["shidu"];
@@ -45,16 +45,16 @@ p_skill=CHAR_D->get_char(ob->query_primary_id(),"skills")["shidu"];
                 y2 = TROOP_D->get_troop_position(e_id)[1];
 
                 if( (x-x2)*(x-x2)+(y-y2)*(y-y2) > 9 ){
-			write("你离敌人太远无法施计。\n");
+			write("你離敵人太遠無法施計。\n");
 			return;}
                 tell(deep_inventory(TROOP_D->find_troop(e_id)),
-	"士兵一阵喧哗，原来是"+p_name+"对你的部队使用施毒之计。\n",
+	"士兵一陣喧譁，原來是"+p_name+"對你的部隊使用施毒之計。\n",
                         MSG_INDENT);
                 // In future, we have to consider effects of the
                 // ablility of general, zhenxing, dixing, etc.
                 // Now the damage depends only on the No of bowman
 	ob->simple_action(SG_SKILL_D->query_use("shidu"));
-	ob->start_busy(10, "你正忙于施毒呢。");
+	ob->start_busy(10, "你正忙於施毒呢。");
 	load_object("/daemons/cast_d.c")->reg_player(ob->query_primary_id(), "shidu");	
 	ob->award_exp(ob->query_sk_level("sk_zhimou")/2+random(20) ,"shidu");
 	call_out("show_result", 5+random(5), ob, who, p_skill, p_id, e_id);
@@ -79,12 +79,12 @@ e_skill = e_skill + 1.5*CHAR_D->get_skill(who,"chenzhuo");
         ob->stop_busy();	
 	if(kill>50)
 	{	tell(deep_inventory(TROOP_D->find_troop(e_id)),
-                "士兵纷纷倒下，显然中了很深的毒。\n",
+                "士兵紛紛倒下，顯然中了很深的毒。\n",
                         MSG_INDENT);
 		mora = random (-20) -10;
 		mora1 = random (6) +2;
 		tell(deep_inventory(TROOP_D->find_troop(p_id)),
-                "计策完全成功，敌人中了很深的毒。\n",
+                "計策完全成功，敵人中了很深的毒。\n",
                         MSG_INDENT);
 		ob->simple_action(SG_SKILL_D->query_succ("shidu"));
 	} 
@@ -92,43 +92,43 @@ e_skill = e_skill + 1.5*CHAR_D->get_skill(who,"chenzhuo");
 	{     if(kill>20)
 		{
 	tell(deep_inventory(TROOP_D->find_troop(e_id)),
-        	"士兵面色发青，显然中了毒。\n",
+        	"士兵面色發青，顯然中了毒。\n",
                         MSG_INDENT);	
 		mora = random (-10) - 5;
 		mora1 = random (3) + 1;
 	tell(deep_inventory(TROOP_D->find_troop(p_id)),
-                "计策大成功，敌方中了毒。\n",
+                "計策大成功，敵方中了毒。\n",
                         MSG_INDENT);	
 	ob->simple_action(SG_SKILL_D->query_succ("shidu"));
 		}
 	      else if( kill>5)
 		{
 		tell(deep_inventory(TROOP_D->find_troop(e_id)),
-        	"士兵多有不适，应该是中了毒。\n",
+        	"士兵多有不適，應該是中了毒。\n",
                         MSG_INDENT);
 		mora = random(-5) - 1;
 		mora1 = 1;
 		tell(deep_inventory(TROOP_D->find_troop(p_id)),
-                "计策成功，敌人中了毒。\n",
+                "計策成功，敵人中了毒。\n",
                         MSG_INDENT);
 	ob->simple_action(SG_SKILL_D->query_succ("shidu"));
 		}	
 	      else 
 		{
 		tell(deep_inventory(TROOP_D->find_troop(e_id)),
-        	"士兵成功破解敌人施毒。\n",
+        	"士兵成功破解敵人施毒。\n",
                         MSG_INDENT);
 		mora = random(8) + 3;
 		mora1 = random(-8) - 3;
 		ob->simple_action(SG_SKILL_D->query_fail("shidu"));
 		tell(deep_inventory(TROOP_D->find_troop(p_id)),
-                "计策失败，我军蒙受损失。\n",
+                "計策失敗，我軍蒙受損失。\n",
                         MSG_INDENT);
 	  	damage= 100 + random (100);
         	WARAI_D->kill_troop(p_id,damage);
 		WARAI_D->war_inf(TROOP_D->get_troops(p_id,"task_id"),
-TROOP_D->find_troop(p_id)->query_id()[1]+"使用施毒之计失败，被敌人乘机歼
-灭"+chinese_number(damage)+"人。","b");
+TROOP_D->find_troop(p_id)->query_id()[1]+"使用施毒之計失敗，被敵人乘機殲
+滅"+chinese_number(damage)+"人。","b");
 		WARAI_D->clear_empty_troop(({p_id}));
 		
 		}
@@ -141,7 +141,7 @@ TROOP_D->find_troop(p_id)->query_id()[1]+"使用施毒之计失败，被敌人�
 kill = (kill/1.7)*6;
 "/daemons/condition_d.c"->apply_condition(e_id,"poison",kill,damage);
  WARAI_D->war_inf(TROOP_D->get_troops(p_id,"task_id"),
-TROOP_D->find_troop(p_id)->query_id()[1]+"使用施毒之计，令"+
+TROOP_D->find_troop(p_id)->query_id()[1]+"使用施毒之計，令"+
 TROOP_D->find_troop(e_id)->query_id()[1]+"陷入中毒之中。","b");
 	}
 	return;

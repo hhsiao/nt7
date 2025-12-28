@@ -7,8 +7,8 @@ int ask_naogui();
 void create()
 {
         set_name("裘千丈", ({ "qiu qianzhang", "qiu", "qianzhang", "zhang" }));
-        set("long", "这是一个白须老头，身穿黄葛短衫，足穿麻鞋，右\n"
-                    "手挥着一把大蒲扇。满脸的油滑无赖的表情。\n");
+        set("long", "這是一個白鬚老頭，身穿黃葛短衫，足穿麻鞋，右\n"
+                    "手揮著一把大蒲扇。滿臉的油滑無賴的表情。\n");
 
         set("gender", "男性");
         set("age", 60);
@@ -52,11 +52,11 @@ void create()
         prepare_skill("strike", "tongbi-zhang");
 
         set("no_teach", ([
-                "tie-zhang" : "嘿嘿嘿，这玩意不厉害，我的通臂六合掌才是武林绝"
-                              "学，你还是用心练这个吧。",
+                "tie-zhang" : "嘿嘿嘿，這玩意不厲害，我的通臂六合掌才是武林絕"
+                              "學，你還是用心練這個吧。",
         ]));
 
-        create_family("铁掌帮", 15, "弟子");
+        create_family("鐵掌幫", 15, "弟子");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -68,9 +68,9 @@ void create()
 
 
         set("inquiry", ([
-                "name" : "记得先父曾给我起过一个名，叫甚么‘千丈’。我念着不好听，也就难得用它。\n",
-                "here" : "这里就是铁掌帮的总坛所在，你如没事，不要四处乱走，免招杀身之祸！！！\n",
-                "闹鬼" : (: ask_naogui :),
+                "name" : "記得先父曾給我起過一個名，叫甚麼‘千丈’。我念著不好聽，也就難得用它。\n",
+                "here" : "這裡就是鐵掌幫的總壇所在，你如沒事，不要四處亂走，免招殺身之禍！！！\n",
+                "鬧鬼" : (: ask_naogui :),
         ]));
 
         setup();
@@ -81,10 +81,10 @@ void create()
 
         set("chat_chance", 10);
         set("chat_msg", ({
-                CYN "裘千丈大大咧咧的说道：“铁掌帮上上下下的事情，没有爷爷不"
+                CYN "裘千丈大大咧咧的說道：“鐵掌幫上上下下的事情，沒有爺爺不"
                 "知道的！”\n" NOR,
-                CYN "裘千丈神秘的说道：“一旦内功基础有成，就可以从花草树木"
-                "中采气来提高了！”\n" NOR,
+                CYN "裘千丈神秘的說道：“一旦內功基礎有成，就可以從花草樹木"
+                "中採氣來提高了！”\n" NOR,
         }) );
 }
 
@@ -94,32 +94,32 @@ void attempt_apprentice(object me)
                 return;
 
         if( query("family/family_name", me) && 
-             query("family/family_name", me) == "绝情谷" && 
+             query("family/family_name", me) == "絕情谷" && 
              query("family/master_name", me) == "裘千尺" )
         {
                 command("yi");
-                command("say 我道是谁，原来是三妹的弟子，我们本来就是一家人。");
+                command("say 我道是誰，原來是三妹的弟子，我們本來就是一家人。");
                 command("sigh");
-                command("say 这个事情我做不了主，你还是去找二弟吧。");
-                set("move_party/绝情谷—铁掌帮", 1, me);
+                command("say 這個事情我做不了主，你還是去找二弟吧。");
+                set("move_party/絕情谷—鐵掌幫", 1, me);
                 return;
         }
 
         if( query("shen", me)>0 )
         {
                 command("heng");
-                command("say 他妈的！爷爷我最恨你这样心慈手软的小王八蛋！。");
+                command("say 他媽的！爺爺我最恨你這樣心慈手軟的小王八蛋！。");
                 return;
         }
 
-        command("say 爷爷我武功盖世，你这娃娃好好跟着我学，准没错！");
+        command("say 爺爺我武功蓋世，你這娃娃好好跟著我學，準沒錯！");
         command("recruit "+query("id", me));
 }
 
 int accept_fight(object me)
 {
-        command("say " + RANK_D->query_respect(me) + "怕是活腻了，来来来，让爷爷教训教训你！\n");
-        command("say 啊哟，糟糕，糟糕，这会儿当真不凑巧！你等一会，我肚子痛，要出恭！\n");
+        command("say " + RANK_D->query_respect(me) + "怕是活膩了，來來來，讓爺爺教訓教訓你！\n");
+        command("say 啊喲，糟糕，糟糕，這會兒當真不湊巧！你等一會，我肚子痛，要出恭！\n");
         return 0;
 }
 
@@ -138,10 +138,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -5000, ]));
                 break;
 
-        case "皓月惊空" :
+        case "皓月驚空" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/guyue-chan/jing",
-                           "name"    : "皓月惊空",
+                           "name"    : "皓月驚空",
                            "sk1"     : "guyue-chan",
                            "lv1"     : 80,
                            "force"   : 40,
@@ -149,10 +149,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -8000, ]));
                 break;
 
-        case "龙飞势" :
+        case "龍飛勢" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/feilong-zhang/fei",
-                           "name"    : "龙飞势",
+                           "name"    : "龍飛勢",
                            "sk1"     : "feilong-zhang",
                            "lv1"     : 160,
                            "force"   : 240,
@@ -173,7 +173,7 @@ void unconcious()
 
 int ask_naogui()
 {
-        say( "听一些帮众说，经常听见无名峰上的坟墓中，传出响声！嘿嘿！一定有什么蹊跷在里面！\n");
-        set_temp("marks/闹1", 1, this_player());
+        say( "聽一些幫眾說，經常聽見無名峰上的墳墓中，傳出響聲！嘿嘿！一定有什麼蹊蹺在裡面！\n");
+        set_temp("marks/鬧1", 1, this_player());
         return 1;
 }

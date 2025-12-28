@@ -3,11 +3,11 @@ inherit ROOM;
 
 void create()
 {
-      set("short", "莲花石");
+      set("short", "蓮花石");
         set("long", @LONG
-这是莲花石。此处岩石纹理纵横，形似莲花颜如芙蓉，仿佛萼瓣
-层叠，细蕊欲绽。上有一庵，叫「莲花社」。由此往西上直达洗象池，
-东下左通华严顶，右通九老洞。
+這是蓮花石。此處岩石紋理縱橫，形似蓮花顏如芙蓉，彷彿萼瓣
+層疊，細蕊欲綻。上有一庵，叫「蓮花社」。由此往西上直達洗象池，
+東下左通華嚴頂，右通九老洞。
 LONG );
       set("objects", ([
            CLASS_D("emei") + "/su" : 1,
@@ -40,11 +40,11 @@ int valid_leave(object me, string dir)
                         if (me->can_improve_skill("dodge") && c_skill < 100)
                                 me->improve_skill("dodge", 1 + c_skill / 15);
 
-                        tell_object(me, HIC "你爬上钻天坡，有些累了。\n" NOR);
+                        tell_object(me, HIC "你爬上鑽天坡，有些累了。\n" NOR);
                 } else
                 {
                         set("qi", 0, me);
-                        tell_object(me, HIR "你太累了，再也走不动了。\n" NOR);
+                        tell_object(me, HIR "你太累了，再也走不動了。\n" NOR);
                         return -1;
                 }
       }

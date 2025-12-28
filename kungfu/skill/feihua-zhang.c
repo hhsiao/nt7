@@ -1,17 +1,17 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action": "$N使一招「飞雪式」，一掌直出，袭向$n$l",
+([      "action": "$N使一招「飛雪式」，一掌直出，襲向$n$l",
         "force" : 60,
         "dodge" : 20,
         "parry" : 20,
         "attack": 15,
         "damage": 20,
         "lvl"   : 0,
-        "skill_name" : "飞雪式",
-        "damage_type": "瘀伤"
+        "skill_name" : "飛雪式",
+        "damage_type": "瘀傷"
 ]),
-([      "action": "$N左右双掌齐出，一招「落花式」，掌风呼呼，将$n笼罩",
+([      "action": "$N左右雙掌齊出，一招「落花式」，掌風呼呼，將$n籠罩",
         "force" : 85,
         "dodge" : 25,
         "parry" : 25,
@@ -19,17 +19,17 @@ mapping *action = ({
         "damage": 43,
         "lvl"   : 20,
         "skill_name" : "落花式",
-        "damage_type":  "瘀伤"
+        "damage_type":  "瘀傷"
 ]),
-([      "action": "$N两手虎口相对，往内一圈，一招「千变万化」往$n的$l拍出",
+([      "action": "$N兩手虎口相對，往內一圈，一招「千變萬化」往$n的$l拍出",
         "force" : 155,
         "dodge" : 31,
         "parry" : 33,
         "attack": 21,
         "damage": 68,
         "lvl"   : 40,
-        "skill_name" : "千变万化",
-        "damage_type":  "瘀伤"
+        "skill_name" : "千變萬化",
+        "damage_type":  "瘀傷"
 ]),
 });
 
@@ -43,19 +43,19 @@ int valid_combine(string combo)
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练飞花掌法必须空手。\n");
+                return notify_fail("練飛花掌法必須空手。\n");
 
         if ((int)me->query_skill("force") < 30)
-                return notify_fail("你的内功火候不够，无法学飞花掌法。\n");
+                return notify_fail("你的內功火候不夠，無法學飛花掌法。\n");
 
         if( query("max_neili", me)<100 )
-                return notify_fail("你的内力太弱，无法练飞花掌法。\n");
+                return notify_fail("你的內力太弱，無法練飛花掌法。\n");
 
         if ((int)me->query_skill("strike", 1) < 20)
-                return notify_fail("你的基本掌法火候太浅。\n");
+                return notify_fail("你的基本掌法火候太淺。\n");
 
         if ((int)me->query_skill("strike", 1) < (int)me->query_skill("feihua-zhang", 1))
-                return notify_fail("你的基本掌法水平有限，无法领会更高深的飞花掌法。\n");
+                return notify_fail("你的基本掌法水平有限，無法領會更高深的飛花掌法。\n");
 
         return 1;
 }
@@ -80,10 +80,10 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me)
 {
         if( query("qi", me)<80 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
 
         if( query("neili", me)<80 )
-                return notify_fail("你的内力不够练飞花掌法。\n");
+                return notify_fail("你的內力不夠練飛花掌法。\n");
 
         me->receive_damage("qi", 55);
         addn("neili", -45, me);

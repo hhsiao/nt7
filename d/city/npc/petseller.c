@@ -10,10 +10,10 @@ void create()
         set("gender", "女性" );
         set("age", 22);
         set("long",@LONG
-翩翩姓张，后嫁给一小土财主，财主过世后就开使每天背一个小筐卖宠物。你要
-喜欢宠物的话，不妨也养(yang)一只玩玩。
+翩翩姓張，後嫁給一小土財主，財主過世後就開使每天背一個小筐賣寵物。你要
+喜歡寵物的話，不妨也養(yang)一隻玩玩。
 LONG );
-        set("title",HIW"宠物小贩"NOR);
+        set("title",HIW"寵物小販"NOR);
         set("combat_exp", 5);
         set("chat_chance", 15);
         set("attitude", "friendly");
@@ -38,12 +38,12 @@ void greeting(object ob)
         if( !ob || environment(ob) != environment() ) return;
         switch( random(5) ) {
                 case 0:
-                        say( "翩翩说道：这位" + RANK_D->query_respect(ob)
-                                + "，要买小猫小狗么？\n");
+                        say( "翩翩說道：這位" + RANK_D->query_respect(ob)
+                                + "，要買小貓小狗麼？\n");
                         break;
                 case 1:
-                        say( "翩翩说道：这位" + RANK_D->query_respect(ob)
-                                + "，你太穷酸了，我不卖给你。\n");
+                        say( "翩翩說道：這位" + RANK_D->query_respect(ob)
+                                + "，你太窮酸了，我不賣給你。\n");
                         break;
         }
 }
@@ -63,35 +63,35 @@ int do_yang(string arg)
         {
                 write(@LONG
 指令格式：yang <type> <color> <name> <english name>
-可以养的宠物种类有：
-        小狗：dog       小猫：cat       小猪：pig       小鹰：hawk
-        小猴：monkey    小鸭：duck      小鸡：hen
-宠物可选的颜色有：
-        $RED$ - 红色    $HIR$ - 亮红色  $YEL$ - 土黄色
-        $GRN$ - 绿色    $HIG$ - 亮绿色  $BLU$ - 深蓝色
-        $HIY$ - 黄色    $MAG$ - 浅紫色  $HIM$ - 粉红色
-        $HIB$ - 蓝色    $HIC$ - 天青色  $CYN$ - 蓝绿色
-        $HIW$ - 白色    $WHT$ - 浅灰色  $NOR$ - 正常颜色
-其它与宠物有关的介绍请help pet参考相关的说明。
+可以養的寵物種類有：
+        小狗：dog       小貓：cat       小豬：pig       小鷹：hawk
+        小猴：monkey    小鴨：duck      小雞：hen
+寵物可選的顏色有：
+        $RED$ - 紅色    $HIR$ - 亮紅色  $YEL$ - 土黃色
+        $GRN$ - 綠色    $HIG$ - 亮綠色  $BLU$ - 深藍色
+        $HIY$ - 黃色    $MAG$ - 淺紫色  $HIM$ - 粉紅色
+        $HIB$ - 藍色    $HIC$ - 天青色  $CYN$ - 藍綠色
+        $HIW$ - 白色    $WHT$ - 淺灰色  $NOR$ - 正常顏色
+其它與寵物有關的介紹請help pet參考相關的說明。
 LONG );                
                 return 1;
         }
         if(me->is_busy())
-                return notify_fail("你上一个动作还没有完成。\n");
+                return notify_fail("你上一個動作還沒有完成。\n");
         if(file_size( me->query_save_file() + ".pet.o") > 0)
-                return notify_fail("你已经拥有你心爱的宠物了。\n");
+                return notify_fail("你已經擁有你心愛的寵物了。\n");
         gold = present("gold_money", this_player());
         if(!gold)
-                return notify_fail("你身上没有金子。\n");
+                return notify_fail("你身上沒有金子。\n");
         if((int) gold->query_amount() < 100)
-                return notify_fail("你身上没有那麽多金子。\n");
+                return notify_fail("你身上沒有那麼多金子。\n");
         if( query("score", me)<500 )
-                return notify_fail("你的评价不够。\n");
+                return notify_fail("你的評價不夠。\n");
                 
         if( (ownername != cname) && (stringp(result = NAME_D->invalid_new_name(cname))) )
         {
-                write("对不起，" + result);
-                write(HIR"禁止使用与他人姓名相同或接近的宠物名。并因循RULES中对名字的相关规定。"NOR+"\n");
+                write("對不起，" + result);
+                write(HIR"禁止使用與他人姓名相同或接近的寵物名。並因循RULES中對名字的相關規定。"NOR+"\n");
                 return 1;
         }
             
@@ -117,7 +117,7 @@ LONG );
             ccolor != "$HIW$" 
         )
         return
-                notify_fail("不知你要什么颜色．\n");
+                notify_fail("不知你要什麼顏色．\n");
         cname = ccolor + cname;
         if(ccolor != "$NOR$")
         {
@@ -145,11 +145,11 @@ LONG );
                         set("int", 5+random(10), newpet);
                         break;
                 case "cat":
-                        set("title", "小猫", newpet);
+                        set("title", "小貓", newpet);
                         set("per", 5+random(10), newpet);
                         break;
                 case "pig":
-                        set("title", "小猪", newpet);
+                        set("title", "小豬", newpet);
                         set("str", 5+random(10), newpet);
                         break;
                 case "monkey":
@@ -157,31 +157,31 @@ LONG );
                         set("dex", 5+random(10), newpet);
                         break;
                 case "duck":
-                        set("title", "小鸭", newpet);
+                        set("title", "小鴨", newpet);
                         set("con", 5+random(10), newpet);
                         break;
                 case "hen":
-                        set("title", "小鸡", newpet);
+                        set("title", "小雞", newpet);
                         set("con", 5+random(10), newpet);
                         break;
                 case "hawk":
-                        set("title", "小鹰", newpet);
+                        set("title", "小鷹", newpet);
                         set("dex", 5+random(2), newpet);
                         break;
                 default:
-                        return notify_fail("这里没有你要的东西。\n");
+                        return notify_fail("這裡沒有你要的東西。\n");
         }
         set("owner",query("id",  me), newpet);
         set("possessed", me, newpet);
         set("name", cname, newpet);
         set("id", cid, newpet);
-        set("long", "一只"+ownername+"养的"+query("title", newpet)+"。", newpet);
+        set("long", "一隻"+ownername+"養的"+query("title", newpet)+"。", newpet);
         newpet->save();
         destruct(newpet);
         gold->add_amount(-100);
         addn("score", -500, me);
         me->start_busy(1);
-        command("say 你试着吹一声口哨(whistle)，你的小宝宝就会跑过来的！");
+        command("say 你試著吹一聲口哨(whistle)，你的小寶寶就會跑過來的！");
         seteuid(getuid());
         return 1;
 }
@@ -191,16 +191,16 @@ int check_legal_name(string name)
         int i;
         i = strlen(name);
         if( (strlen(name) < 2) || (strlen(name) > 10 ) ) {
-                write("对不起，中文名字必须是一到五个中文字。\n");
+                write("對不起，中文名字必須是一到五個中文字。\n");
                 return 0;
         }
         while(i--) {
                 if( name[i]<=' ' ) {
-                        write("对不起，中文名字不能用控制字元。\n");
+                        write("對不起，中文名字不能用控制字元。\n");
                         return 0;
                 }
                 if( i%2==0 && !is_chinese(name[i..<0]) ) {
-                        write("对不起，名字必需是中文。\n");
+                        write("對不起，名字必需是中文。\n");
                         return 0;
                 }
         }
@@ -212,7 +212,7 @@ int check_legal_id(string name)
         int i;
         i = strlen(name);
         if( (strlen(name) < 3) || (strlen(name) > 20 ) ) {
-                write("对不起，英文名字必须是三到二十个字。\n");
+                write("對不起，英文名字必須是三到二十個字。\n");
                 return 0;
         }
 

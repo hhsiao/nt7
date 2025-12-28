@@ -7,7 +7,7 @@ void create()
 {
         set("short", HIG"小道"NOR);
         set("long", @LONG
-这里是一条林中小道，寂静得让人害怕。
+這裡是一條林中小道，寂靜得讓人害怕。
 LONG
         );
         set("exits", ([

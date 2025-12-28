@@ -4,20 +4,20 @@ inherit DEMONROOM;
 
 void create()
 {
-        set("short", "长松林");
+        set("short", "長松林");
         set("long",@LONG
-蓬莱仙岛的长松林中生长着许多高大的松树，每当有仙气涌向
-这里的时候，松树上的松鼠便会不停地摇动树枝，松叶也纷纷落下，
-将地上铺得软软的。
+蓬萊仙島的長松林中生長著許多高大的松樹，每當有仙氣湧向
+這裡的時候，松樹上的松鼠便會不停地搖動樹枝，松葉也紛紛落下，
+將地上鋪得軟軟的。
 LONG);
 
         set("exits", ([
                 "north"     : __DIR__"xiuzhenchi",
         ]));
-        set("no_rideto", 1);         // 设置不能骑马到其他地方
-        set("no_flyto", 1);          // 设置不能从起来地方骑马来这里
-        set("no_die", 1);            // 死亡后移动到扁鹊居
-        set("penglai", 1);           // 表示在蓬莱岛
+        set("no_rideto", 1);         // 設置不能騎馬到其他地方
+        set("no_flyto", 1);          // 設置不能從起來地方騎馬來這裡
+        set("no_die", 1);            // 死亡後移動到扁鵲居
+        set("penglai", 1);           // 表示在蓬萊島
 
         set("n_time", 20); 
         set("n_npc", 2); 
@@ -44,14 +44,14 @@ void init ()
                 if( !query("penglai/go_quest/ok", this_player()) )
                 {
                         this_player()->start_busy(3);
-                        tell_object(this_player(), NOR + WHT "你到了此处，四周仙气缭绕令你一时间难以辨别方向。\n" NOR);
+                        tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);
                 }
                 else
                 {
                         if (random(2))
                         {
                                 this_player()->start_busy(1);
-                                tell_object(this_player(), NOR + WHT "你到了此处，四周仙气缭绕令你一时间难以辨别方向。\n" NOR);                
+                                tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);                
                         }
                 }
         }

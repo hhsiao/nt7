@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("齐齐[2;37;0m[2;37;0m", ({"qiqiqi"}));        
+        set_name("齊齊[2;37;0m[2;37;0m", ({"qiqiqi"}));        
         set("gender", "女性");                
-        set("long", "齐齐[2;37;0m
-它是天副的魔幻兽。
+        set("long", "齊齊[2;37;0m
+它是天副的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

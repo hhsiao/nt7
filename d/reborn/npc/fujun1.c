@@ -15,7 +15,7 @@ void create()
 {
         set_name(BLU "泰山府君" NOR, ({ "taishan fujun", "taishan", "fujun" }));
         set("long", BLU "他就是泰山府君。\n" NOR);
-        set("title", HIW "东岳" NOR);
+        set("title", HIW "東嶽" NOR);
         set("gender", "男性");
         set("age", 50);
         set("str", 91);
@@ -53,7 +53,7 @@ void create()
         prepare_skill("unarmed", "kuihua-mogong");
 
         set("inquiry", ([
-                "献祭"  : (: ask_offer : ),
+                "獻祭"  : (: ask_offer : ),
                 "offer" : (: ask_offer : ),
         ]));
 
@@ -110,16 +110,16 @@ int ask_offer()
                 
         if( !objectp( ob = present("contract", me) ) ||
             query("owner", ob) != query("id", me)){
-                tell_object(me, BLU "泰山府君说道：「你还没有去领取阎王契(contract)，我不会接受你的献祭请求。」\n" NOR);
+                tell_object(me, BLU "泰山府君說道：「你還沒有去領取閻王契(contract)，我不會接受你的獻祭請求。」\n" NOR);
                 return 1;
         }       
                 
-        message_vision( BLU "$N" BLU "讶道：「既是身怀阎王契，本府君这便给你一个机会吧。」\n"
-                        BLU "$N" BLU "低头沈吟片刻又道：「转世之事非同小可，成佛成魔一念之间，稍有不慎便跌入十八层地狱永世不得超生。」\n"
-                        BLU "$N" BLU "续道：「你想转世必须先战胜自己的心魔方可！」\n" NOR,
+        message_vision( BLU "$N" BLU "訝道：「既是身懷閻王契，本府君這便給你一個機會吧。」\n"
+                        BLU "$N" BLU "低頭沈吟片刻又道：「轉世之事非同小可，成佛成魔一念之間，稍有不慎便跌入十八層地獄永世不得超生。」\n"
+                        BLU "$N" BLU "續道：「你想轉世必須先戰勝自己的心魔方可！」\n" NOR,
                         this_object(), me );
 
-        tell_object(me, BLU "泰山府君想要你进入幻境去战胜心魔，你是否同意(answer yes/no)？\n" NOR );
+        tell_object(me, BLU "泰山府君想要你進入幻境去戰勝心魔，你是否同意(answer yes/no)？\n" NOR );
         add_action("do_answer", "answer");
 
         return 1;
@@ -134,24 +134,24 @@ int do_answer(string arg)
                 return 0;
                 
         if( arg == "yes" ) {
-                message_vision( BLU "$N" BLU "淡然道：「既然如此，本府君就送你进入幻境，你只有在七分钟时间。\n"
-                                BLU "战胜心魔后回来报告(report)我，我也只等你七分钟。」\n" NOR,
+                message_vision( BLU "$N" BLU "淡然道：「既然如此，本府君就送你進入幻境，你只有在七分鐘時間。\n"
+                                BLU "戰勝心魔後回來報告(report)我，我也只等你七分鐘。」\n" NOR,
                                 this_object(), me );
-                message_vision( HIR "一道红光照着$n，红光退去，发现$n不见了！\n" NOR, this_object(), me );
+                message_vision( HIR "一道紅光照著$n，紅光退去，發現$n不見了！\n" NOR, this_object(), me );
                 room = load_object("/d/reborn/maze/entry");
                 me->move(room);
-                tell_object(me, HIR "你来到幻境。。\n" NOR);
+                tell_object(me, HIR "你來到幻境。。\n" NOR);
                 set_temp("xinmo/to_kill", 1, me);
                 remove_call_out("destroy");
                 call_out("destroy", 430);
         } else if( arg == "no" ) {
-                message_vision( BLU "$N" BLU "不屑道：「" + RANK_D->query_rude(me) + "竟是胆小如鼠！」\n" NOR,
+                message_vision( BLU "$N" BLU "不屑道：「" + RANK_D->query_rude(me) + "竟是膽小如鼠！」\n" NOR,
                                 this_object(), me );
 
                 remove_call_out("destroy");
                 call_out("destroy", 1);
         } else
-                return notify_fail("你要回答什么？\n");
+                return notify_fail("你要回答什麼？\n");
 
         return 1;
 }
@@ -167,13 +167,13 @@ int do_report(string arg)
                 return 0;
 
         if( !query_temp("xinmo/to_kill", me) )
-                return notify_fail(BLU "泰山府君皱眉道：「你想要干什么？」\n" NOR);
+                return notify_fail(BLU "泰山府君皺眉道：「你想要幹什麼？」\n" NOR);
 
         if( !query_temp("xinmo/killed", me) )
-                return notify_fail(BLU "泰山府君皱眉道：「你还没有战胜你的心魔呀！」\n" NOR);
+                return notify_fail(BLU "泰山府君皺眉道：「你還沒有戰勝你的心魔呀！」\n" NOR);
 
-        message_vision( BLU "$N" BLU "笑道：「果然很有诚意，果真是阎王契的有缘人！」\n"
-                        BLU "$N" BLU "又道：「本府君最重内功修为，你必须献祭(offer)一门特殊内功。」\n" NOR,
+        message_vision( BLU "$N" BLU "笑道：「果然很有誠意，果真是閻王契的有緣人！」\n"
+                        BLU "$N" BLU "又道：「本府君最重內功修為，你必須獻祭(offer)一門特殊內功。」\n" NOR,
                         ob, me);
         delete_temp("xinmo", me);
         set_temp("can_offer",query("id",  ob), me);
@@ -190,23 +190,23 @@ void do_broadcast(int index)
         {
         case(0):
                 tell_room(environment(),
-                        BLU "泰山府君点头道：「如此甚好，我这便记载到阎王契上。」\n" NOR);
+                        BLU "泰山府君點頭道：「如此甚好，我這便記載到閻王契上。」\n" NOR);
                 break;
         case(1):
                 tell_room(environment(),
-                        BLU "只见泰山府君喃喃有词，乍时山岚乱动、云间溢出光芒，只见一授案飘然而下，其上文房四宝一应俱全。\n" NOR);
+                        BLU "只見泰山府君喃喃有詞，乍時山嵐亂動、雲間溢出光芒，只見一授案飄然而下，其上文房四寶一應俱全。\n" NOR);
                 break;
         case(2):
                 tell_room(environment(),
-                        BLU "泰山府君提笔挥洒，只见丝丝紫光渗入阎王契上，片刻即成。\n" NOR);
+                        BLU "泰山府君提筆揮灑，只見絲絲紫光滲入閻王契上，片刻即成。\n" NOR);
                 break;
         case(3):
                 tell_room(environment(),
-                        BLU "泰山府君满意道：「这便成了。本府君功成身退，小友多多保重。」\n" NOR);
+                        BLU "泰山府君滿意道：「這便成了。本府君功成身退，小友多多保重。」\n" NOR);
                 break;
         default:
                 tell_room(environment(),
-                        BLU "泰山府君化做一阵清烟消失，转瞬便已飘渺无踪。\n授案化做一阵清烟消失，转瞬便已飘渺无踪。\n" NOR);
+                        BLU "泰山府君化做一陣清煙消失，轉瞬便已飄渺無蹤。\n授案化做一陣清煙消失，轉瞬便已飄渺無蹤。\n" NOR);
 
                 remove_call_out("destroy");
                 destruct(this_object());
@@ -232,31 +232,31 @@ int do_offer(string arg)
 
         if( !objectp( ob = present("contract", me) ) ||
                 query("owner", ob) != query("id", me) )
-                return notify_fail(BLU "泰山府君说道：「你还没有去领取阎王契(contract)，我不会接受你的献祭请求。」\n" NOR);
+                return notify_fail(BLU "泰山府君說道：「你還沒有去領取閻王契(contract)，我不會接受你的獻祭請求。」\n" NOR);
 
         if( query("offer_taishan", ob) )
-                return notify_fail(BLU "泰山府君说道：「你已经在泰山献祭过了，就不用再来献祭吧。」\n" NOR);
+                return notify_fail(BLU "泰山府君說道：「你已經在泰山獻祭過了，就不用再來獻祭吧。」\n" NOR);
                 
         if( !query_temp("can_offer", me) || 
                 query_temp("can_offer", me) != query("id", this_object()) )
-                return notify_fail(BLU "泰山府君皱眉道：「你还是先去完成我的条件再来献祭吧。」\n" NOR);
+                return notify_fail(BLU "泰山府君皺眉道：「你還是先去完成我的條件再來獻祭吧。」\n" NOR);
         
         if( me->query_skillo(skill, 1) < 2000 || level < 2000 )
-                return notify_fail(BLU "泰山府君皱眉道：「这点小玩意你还是拿回家自己玩吧。」\n" NOR);
+                return notify_fail(BLU "泰山府君皺眉道：「這點小玩意你還是拿回家自己玩吧。」\n" NOR);
 
         if( me->query_skillo(skill, 1) < level )
-                return notify_fail(BLU "泰山府君皱眉道：「你这门技能没有这么高的等级。」\n" NOR);
+                return notify_fail(BLU "泰山府君皺眉道：「你這門技能沒有這麼高的等級。」\n" NOR);
                 
         if( me->query_skill_mapped("force") != skill )
-                return notify_fail(BLU "泰山府君皱眉道：「你还是先把这个技能激发到内功上吧。」\n" NOR);
+                return notify_fail(BLU "泰山府君皺眉道：「你還是先把這個技能激發到內功上吧。」\n" NOR);
 
         me->add_skill(skill, -level); 
         delete_temp("can_offer", me);
         set("offer/"+skill, level, me);
         
-        message_vision( HIR "$N" HIR "略一沉思道：「既然如此，为显诚意，我决定献祭" + to_chinese(skill) + level + "级。」\n" NOR, me );
-        tell_object(me, BLU "泰山府君凌空一掏，你忽然觉得自己身上少了什么。\n" NOR);                            
-        msg = HIW + NATURE_D->game_time() + "，" + me->query_idname() + HIW "于泰山献祭" + to_chinese(skill) + level + "级。\n" NOR;
+        message_vision( HIR "$N" HIR "略一沉思道：「既然如此，為顯誠意，我決定獻祭" + to_chinese(skill) + level + "級。」\n" NOR, me );
+        tell_object(me, BLU "泰山府君凌空一掏，你忽然覺得自己身上少了什麼。\n" NOR);                            
+        msg = HIW + NATURE_D->game_time() + "，" + me->query_idname() + HIW "於泰山獻祭" + to_chinese(skill) + level + "級。\n" NOR;
         
         rec=query("offer", ob);
         if( ! rec ) rec = ({});
@@ -270,7 +270,7 @@ int do_offer(string arg)
 
 void destroy()
 {
-        message_vision( BLU "$N化做一阵清烟消失，转瞬便已飘渺无踪。\n" NOR,
+        message_vision( BLU "$N化做一陣清煙消失，轉瞬便已飄渺無蹤。\n" NOR,
                         this_object() );
         destruct(this_object());
         return;

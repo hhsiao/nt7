@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "后厅");
+        set("short", "後廳");
         set("long", @LONG
-这里是商家堡的后厅所在，大厅相当的宽敞明亮，四周的墙
-上悬挂满了各朝名人的真迹。
+這裡是商家堡的後廳所在，大廳相當的寬敞明亮，四周的牆
+上懸掛滿了各朝名人的真跡。
 LONG);
         set("exits", ([
                 "north"  : __DIR__"shang_zoulang1",

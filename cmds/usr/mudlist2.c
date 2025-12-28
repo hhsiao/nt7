@@ -6,8 +6,8 @@
 inherit F_CLEAN_UP;
 
 string help = @HELP
-    列出主要 Mud 即时监测列表。
-    另可由 http://www.muds.cn 随时查阅即时资料
+    列出主要 Mud 即時監測列表。
+    另可由 http://www.muds.cn 隨時查閱即時資料
 
 HELP;
 
@@ -43,7 +43,7 @@ string online_user_record()
         w = ((max_num-min_num)/VER);
         if( w<=0 )
                 w=0.001;
-        str = NOR WHT"↑"HIW"中文 Mud 玩家上线时间趋势图\n"NOR;
+        str = NOR WHT"↑"HIW"中文 Mud 玩家上線時間趨勢圖\n"NOR;
         for(i=0;i<VER;i++)
         {
                 for(j=0;j<HOR;j++)
@@ -86,13 +86,13 @@ int main(object me, string arg)
         string *mudnamesort;
 
         if( !find_object(MUDLIST_D) )
-                return notify_fail("网路精灵并没有被载入。\n");
+                return notify_fail("網路精靈並沒有被載入。\n");
 
         mudlist = MUDLIST_D->query_mudlist();
 
-        msg = HIM"中文 Mud 即时监测列表\n"NOR;
+        msg = HIM"中文 Mud 即時監測列表\n"NOR;
 
-        msg +=HIM"中文名称 - 英文名称                        网路位置                 埠   状态 玩家 最后连线时间\n"NOR;
+        msg +=HIM"中文名稱 - 英文名稱                        網路位置                 埠   狀態 玩家 最後連線時間\n"NOR;
         msg +="----------------------------------------------------------------------------------------------------\n";
 
         mudnamesort = sort_array(keys(mudlist)-({0}), (: mudlist_sort($(mudlist), $1, $2) :)) ;
@@ -109,7 +109,7 @@ int main(object me, string arg)
                 else if( data["MUD_CHINESE_NAME"] || data["MUD_ENGLISH_NAME"] )
                         mudname = data["MUD_CHINESE_NAME"] || data["MUD_ENGLISH_NAME"];
                 else
-                        mudname = "--未知名称--";
+                        mudname = "--未知名稱--";
 
                 allmuders += data["USERS"];
 
@@ -117,18 +117,18 @@ int main(object me, string arg)
                     mudname,
                     ip,
                     port,
-                    (data["CONNECT_FAILED_TIMES"] ? NOR CYN"断线"NOR : HIC"连线"NOR),
+                    (data["CONNECT_FAILED_TIMES"] ? NOR CYN"斷線"NOR : HIC"連線"NOR),
                     HIG+(!data["CONNECT_FAILED_TIMES"] ? (data["USERS_COUNT_PARSE"] ? data["USERS"] : "NA") : "")+NOR,
                     data["LAST_CONTACT_TIME"] ? TIME_D->replace_ctime(data["LAST_CONTACT_TIME"]) : "--/--/---- --:--",
                 );
 
         }
         msg += NOR "----------------------------------------------------------------------------------------------------\n";
-        msg += "* 网页浏览永久位址为 http://www.muds.cn\n";
-        msg += "* 玩家显示 NA 代表系统无法直接查询得到此 Mud 线上玩家数量\n";
-        msg += "* 若您的 Mud 欲加入列表、修改或是不希望在列表出现，请至 muds.cn 7000 与 Lonely 联系\n"NOR;
+        msg += "* 網頁瀏覽永久位址為 http://www.muds.cn\n";
+        msg += "* 玩家顯示 NA 代表系統無法直接查詢得到此 Mud 線上玩家數量\n";
+        msg += "* 若您的 Mud 欲加入列表、修改或是不希望在列表出現，請至 muds.cn 7000 與 Lonely 聯繫\n"NOR;
         msg += "----------------------------------------------------------------------------------------------------\n"NOR;
-        msg += NOR WHT"共有 "HIW+sizeof(mudnamesort)+NOR WHT" 个 Mud，"HIW+allmuders+NOR WHT" 位玩家在列表中\n"NOR;
+        msg += NOR WHT"共有 "HIW+sizeof(mudnamesort)+NOR WHT" 個 Mud，"HIW+allmuders+NOR WHT" 位玩家在列表中\n"NOR;
         msg += "----------------------------------------------------------------------------------------------------\n"NOR;
 
         msg+= online_user_record();

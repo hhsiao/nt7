@@ -9,7 +9,7 @@
 
 inherit F_CLEAN_UP;
 
-#define SYNTAX "指令格式：mudlist [<Mud 名称>|all]\n"
+#define SYNTAX "指令格式：mudlist [<Mud 名稱>|all]\n"
 
 int main(object me, string arg)
 {
@@ -25,7 +25,7 @@ int main(object me, string arg)
         int uc;
 
         if (! find_object(DNS_MASTER))
-                return notify_fail("网络精灵并没有被载入，请先将网路精灵载入。\n");
+                return notify_fail("網絡精靈並沒有被載入，請先將網路精靈載入。\n");
 
         //      Obtain mapping containing mud data
         mud_list = (mapping)DNS_MASTER->query_muds();
@@ -34,7 +34,7 @@ int main(object me, string arg)
         mud_svc = DNS_MASTER->query_svc() + ([ Mud_name() : 0 ]);
 
         if (! mud_list)
-                return notify_fail(LOCAL_MUD_NAME() + "目前并没有跟网路上其他 Mud 取得联系。\n");
+                return notify_fail(LOCAL_MUD_NAME() + "目前並沒有跟網路上其他 Mud 取得聯繫。\n");
 
         // Get list of all mud names within name server
         muds = keys(mud_list) - ({ "DEFAULT" });
@@ -64,12 +64,12 @@ int main(object me, string arg)
 */
 
         if (! sizeof(muds))
-                return notify_fail("目前本站并没有和这个 MUD 取得任何联系。\n");
+                return notify_fail("目前本站並沒有和這個 MUD 取得任何聯繫。\n");
 
         //      Place mudlist into alphabetical format
         muds = sort_array(muds, 1);
 
-        output = WHT BBLU " Mud              中文名称                国际网路位址     端口  人数 \n" NOR
+        output = WHT BBLU " Mud              中文名稱                國際網路位址     端口  人數 \n" NOR
                  "----------------------------------------------------------------------\n";
 
         //      Count for users
@@ -83,14 +83,14 @@ int main(object me, string arg)
                         continue;
 
                 if (! stringp(name = mud_list[mudn]["MUDNAME"]))
-                        name = "未知名称";
+                        name = "未知名稱";
 
                 // filter some ... strange ansi
                 name = replace_string(name, ESC "[0;37;0m", "");
                 name = replace_string(name, ESC "[2;17m", "");
                 name = filter_color(name);
 
-                // 修正长度
+                // 修正長度
                 vis_mudn = filter_color(mudn);
                 if (strlen(vis_mudn) > 20) vis_mudn = vis_mudn[0..19];
                 if (strlen(name) > 20) name = name[0..19];
@@ -108,10 +108,10 @@ int main(object me, string arg)
                                   upper_case(vis_mudn), name,
                                   mud_list[mudn]["HOSTADDRESS"],
                                   mud_list[mudn]["PORT"],
-                                  mud_list[mudn][DNS_NO_CONTACT] > MAX_RETRYS ? "失去联系"
+                                  mud_list[mudn][DNS_NO_CONTACT] > MAX_RETRYS ? "失去聯繫"
                                                                               : mud_list[mudn]["USERS"]);
 
-                // 累计玩家数量
+                // 累計玩家數量
                 if (mud_list[mudn][DNS_NO_CONTACT] <= MAX_RETRYS)
                         uc += atoi(mud_list[mudn]["USERS"]);
         }
@@ -120,7 +120,7 @@ int main(object me, string arg)
         output += "----------------------------------------------------------------------\n";
 
         if (! arg || arg == "sites")
-                output += "本泥潭共有 " CYN + uc + NOR " 位玩家在游戏中。\n";
+                output += "本泥潭共有 " CYN + uc + NOR " 位玩家在遊戲中。\n";
 
         if (objectp(me))
                 me->start_more(output);
@@ -135,12 +135,12 @@ int help()
         write(@HELP
 指令格式 : mudlist <MUD名字> | all | sites
 
-这个指令让你列出目前跟这个 Mud 取得联系中的其他 Mud。
+這個指令讓你列出目前跟這個 Mud 取得聯繫中的其他 Mud。
 
-如果不加参数则列出该 Mud 所有正式分站。
-使用 all 参数表示列出所有的 Mud 游戏。
-使用 sites 参数表示列出该 Mud 的所有分站。
-如果不是以上参数，则列出以 <MUD名字> 开头的站点。
+如果不加參數則列出該 Mud 所有正式分站。
+使用 all 參數表示列出所有的 Mud 遊戲。
+使用 sites 參數表示列出該 Mud 的所有分站。
+如果不是以上參數，則列出以 <MUD名字> 開頭的站點。
 HELP );
         return 1;
 }

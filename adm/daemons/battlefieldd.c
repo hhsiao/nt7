@@ -40,12 +40,12 @@ int sort_user(object ob1, object ob2)
 
 class team
 {
-        int score;      // 积分
-        int win;        // 获胜
-        int lose;       // 失败
-        string name;    // 队伍名称
-        string *member; // 队伍成员
-        string leader;  // 队长
+        int score;      // 積分
+        int win;        // 獲勝
+        int lose;       // 失敗
+        string name;    // 隊伍名稱
+        string *member; // 隊伍成員
+        string leader;  // 隊長
 }
 nosave class team *all = ({});
 nosave class team team1, team2;
@@ -99,39 +99,39 @@ int query_player_number(object player)
         return member_array(player->query_id(1), keys(battle_player)) + 1;
 }
 
-// 设置战役名称
+// 設置戰役名稱
 void set_battle_name(string name)
 {
         battle_name = name;
 }
 
-// 设置队伍名称
+// 設置隊伍名稱
 void set_team_name(string name1, string name2)
 {
         team1->name = name1;
         team2->name = name2;
 }
 
-// 设置队伍入口
+// 設置隊伍入口
 void set_entry_room(string where1, string where2)
 {
         entry1 = where1;
         entry2 = where2;
 }
 
-// 设置报名条件
+// 設置報名條件
 void set_max_level(int level)
 {
         max_level = level;
 }
 
-// 设置奖励比例%
+// 設置獎勵比例%
 void set_bonus_percent(int per)
 {
         percent = per;
 }
 
-// 设置两支帮派
+// 設置兩支幫派
 void set_bunch_team(string name1, string name2)
 {
         bunch_flag = 1;
@@ -180,10 +180,10 @@ void init_player(object me)
                 total += ({ me });
        
         move_to_battle(me);
-        tell_object(me, HIY "你被传送到战场中...。\n");
+        tell_object(me, HIY "你被傳送到戰場中...。\n");
 }
 
-// 参与战争
+// 參與戰爭
 void join_battle(object me)
 {
         string where;
@@ -191,56 +191,56 @@ void join_battle(object me)
         string id = me->query_id(1);
 
         if( battle_start_flag )
-                return tell_object(me, "战场已经开启，报名终止。\n");
+                return tell_object(me, "戰場已經開啟，報名終止。\n");
 
         if( me->is_busy() )
                 return tell_object(me, BUSY_MESSAGE);
 
         if( me->is_fighting() )
-                return tell_object(me, "你目前正在战斗中，还是先处理目前的对手再说吧。\n");
+                return tell_object(me, "你目前正在戰鬥中，還是先處理目前的對手再說吧。\n");
 
         if( me->query_condition("killer") )
-                return tell_object(me, "官府正在通缉你，你还敢在这儿抛头露面？\n");
+                return tell_object(me, "官府正在通緝你，你還敢在這兒拋頭露面？\n");
 
         if( !battle_open_flag )
-                return tell_object(me, "战争没有发出集结，目前无法报名。\n");
+                return tell_object(me, "戰爭沒有發出集結，目前無法報名。\n");
 
         if( me->is_ghost() )
-                return tell_object(me, "等你还阳后，再报名吧。\n");
+                return tell_object(me, "等你還陽後，再報名吧。\n");
 
         if (me->is_in_prison()) 
-                return tell_object(me, "你正在做牢呢，你想干什么？！\n"); 
+                return tell_object(me, "你正在做牢呢，你想幹什麼？！\n"); 
 
         if( query("level", me) < 5 )
-                return tell_object(me, "你这个新鸟就不要参加高难度的战场吧。\n");
+                return tell_object(me, "你這個新鳥就不要參加高難度的戰場吧。\n");
 
         if( query("level", me) > max_level )
-                return tell_object(me, "你就别进去欺负那些新鸟吧。\n");
+                return tell_object(me, "你就別進去欺負那些新鳥吧。\n");
         
         if( bunch_flag )
         {
                 if( !bunchp(me) )
-                        return tell_object(me, "本次战争只能是帮派玩家报名参加。\n");
+                        return tell_object(me, "本次戰爭只能是幫派玩家報名參加。\n");
                 
                 if( me->query_bunch() != team1->name && 
                     me->query_bunch() != team2->name )
-                        return tell_object(me, "本次战争你所在的帮派不能报名参加。\n");
+                        return tell_object(me, "本次戰爭你所在的幫派不能報名參加。\n");
         }
         
         where = base_name(environment(me));
         if( sscanf(where, "/d/newbie/%s") )
-                return tell_object(me, "你还没有正式闯到江湖呢，不能参加报名！\n");
+                return tell_object(me, "你還沒有正式闖到江湖呢，不能參加報名！\n");
 
         if( !undefinedp(battle_player[id]) )
         {
                 if( !battle_start_flag )
-                        return tell_object(me, "你已经报名参与这次的战争，请耐心等候召集。\n");
+                        return tell_object(me, "你已經報名參與這次的戰爭，請耐心等候召集。\n");
 
                 if( inside_battlefield(me) )
-                        return tell_object(me, "你已经在战场中，快点杀敌吧。\n");
+                        return tell_object(me, "你已經在戰場中，快點殺敵吧。\n");
 
                 if( !query_temp("battle_rejoin", me) )
-                        return tell_object(me, "你必须使用战争勋章方可重新进入战场。\n");
+                        return tell_object(me, "你必須使用戰爭勳章方可重新進入戰場。\n");
 
                 delete_temp("battle_rejoin", me);
                 set_temp("battle/leave_room", where, me);
@@ -249,42 +249,42 @@ void join_battle(object me)
         }
 
         if( member_array(query_ip_number(me), ip_number) != -1 )
-                return tell_object(me, "你所在的IP已经报名过了!\n");
+                return tell_object(me, "你所在的IP已經報名過了!\n");
 
         ip_number += ({ query_ip_number(me) });
         battle_player[id] = allocate_mapping(0);
 
         CHANNEL_D->channel_broadcast("war", "目前共有 "+sizeof(battle_player)+
-                                            " 位玩家报名参与「"+battle_name+HIR"」");
+                                            " 位玩家報名參與「"+battle_name+HIR"」");
 }
 
-// 取消参与战争
+// 取消參與戰爭
 void cancel_battle(object me)
 {
         string id = me->query_id(1);
 
         if( undefinedp(battle_player[id]) )
-                return tell_object(me, "你原本就没有报名参与这次的战争。\n");
+                return tell_object(me, "你原本就沒有報名參與這次的戰爭。\n");
 
         if( battle_start_flag )
-                return tell_object(me, "这次的战争已经开始，你无法取消，可用quit指令逃离战场。\n");
+                return tell_object(me, "這次的戰爭已經開始，你無法取消，可用quit指令逃離戰場。\n");
 
         map_delete(battle_player, id);
         ip_number -= ({ query_ip_number(me) });
 
-        addn("honors", -100, me); // 扣减荣誉
+        addn("honors", -100, me); // 扣減榮譽
         if( query("honors", me) < 0 );
                 set("honors", 0, me);
 
         CHANNEL_D->channel_broadcast("war", "目前共有 "+sizeof(battle_player)+
-                                            " 位玩家报名参与「"+battle_name+HIR"」");
+                                            " 位玩家報名參與「"+battle_name+HIR"」");
 }
 
 int check_quit(object me)
 {
-        CHANNEL_D->channel_broadcast("war", HIR"战"NOR RED"场"HIR"：玩家" + me->name(1) +"在「"+battle_name+HIR"」中临阵脱逃，溜走了。"NOR);
+        CHANNEL_D->channel_broadcast("war", HIR"戰"NOR RED"場"HIR"：玩家" + me->name(1) +"在「"+battle_name+HIR"」中臨陣脫逃，溜走了。"NOR);
 
-        addn("honors", -500, me); // 扣减荣誉
+        addn("honors", -500, me); // 扣減榮譽
         if( query("honors", me)<0);
                 set("honors", 0, me);
 
@@ -293,9 +293,9 @@ int check_quit(object me)
         if( arrayp(ip_number) )
                 ip_number -= ({ query_ip_number(me) });
 
-        tell_object(me, "你一口气逃出了战场。\n");
+        tell_object(me, "你一口氣逃出了戰場。\n");
         restore_status(me);
-        message("vision", "只见" + me->name() + "慌里慌张的跑了过来。\n",
+        message("vision", "只見" + me->name() + "慌里慌張的跑了過來。\n",
                 environment(me), ({ me }));
 
         return 1;
@@ -368,10 +368,10 @@ int check_out(object me)
         my["qi"] = 1;
         my["jing"] = 1;
 
-        tell_object(me, HIR "\n你觉得眼前一阵模糊...这下完了！\n" NOR);
+        tell_object(me, HIR "\n你覺得眼前一陣模糊...這下完了！\n" NOR);
         if( ob = me->query_last_damage_from() )
         {
-                msg = me->name(1) + "惨遭" + ob->name(1) + "的毒手，被无情ＰＫ。";
+                msg = me->name(1) + "慘遭" + ob->name(1) + "的毒手，被無情ＰＫ。";
                 if( userp(ob) )
                 {
                         if( userp(me) )
@@ -395,17 +395,17 @@ int check_out(object me)
                         }
                 }
         } else
-                 msg = me->name(1) + "运气不佳，本领有限、已经惨遭ＰＫ。";
+                 msg = me->name(1) + "運氣不佳，本領有限、已經慘遭ＰＫ。";
 
         message("vision", msg, environment(me), ({ me }));
 
         restore_status(me);
         total -= ({ me });
 
-        message("vision", "一个黑影倏的窜了出来，随即就是“啪”的"
-                "一声，就见" + me->name() +"摔倒了地上，一副半死不"
-                "活的样子。\n", environment(me), ({ me }));
-        tell_object(me, "半昏半迷中，你觉得被人拎了起来，又"
+        message("vision", "一個黑影倏的竄了出來，隨即就是“啪”的"
+                "一聲，就見" + me->name() +"摔倒了地上，一副半死不"
+                "活的樣子。\n", environment(me), ({ me }));
+        tell_object(me, "半昏半迷中，你覺得被人拎了起來，又"
                 "重重的摔倒了地上。\n");
 
         if( !living(me) )
@@ -434,12 +434,12 @@ void start_battle()
                 bunch_flag = 0;
                 battle_open_flag = 0;
                 battle_start_time = 0;
-                CHANNEL_D->channel_broadcast("war", "报名参与「"+battle_name+HIR"」战役的玩家不足 5 人，取消本次战役。");
+                CHANNEL_D->channel_broadcast("war", "報名參與「"+battle_name+HIR"」戰役的玩家不足 5 人，取消本次戰役。");
                 return;
         }
 
-        CHANNEL_D->channel_broadcast("war", "「"+battle_name+HIR"」开始出征！共计 "+sizeof(battle_player)+
-                                            " 位玩家参与「"+battle_name+HIR"」，计时 "+(BATTLE_TIME/60)+" 分钟结束");
+        CHANNEL_D->channel_broadcast("war", "「"+battle_name+HIR"」開始出征！共計 "+sizeof(battle_player)+
+                                            " 位玩家參與「"+battle_name+HIR"」，計時 "+(BATTLE_TIME/60)+" 分鐘結束");
 
         foreach(string id, mapping data in battle_player)
         {
@@ -450,7 +450,7 @@ void start_battle()
 
                 if( query_temp("running", player)  )
                 {
-                        tell(player, pnoun(2, player)+"正在飞行中，无法加入战场。\n");
+                        tell(player, pnoun(2, player)+"正在飛行中，無法加入戰場。\n");
                         unavailable_players |= ({ player });
                         continue;
                 }
@@ -463,7 +463,7 @@ void start_battle()
         team1->member = ({});
         team2->member = ({});
         
-        // 如果是两支帮派作战，则按帮派分配阵营
+        // 如果是兩支幫派作戰，則按幫派分配陣營
         if( bunch_flag )
         {
                 obs = filter_array(all_player, (: query("bunch/bunch_name", $1) == team1->name :));
@@ -472,7 +472,7 @@ void start_battle()
                         team1->member += ({ ob->query_id(1) });
                         set_temp("battle/team_name", team1->name, ob);
                         set_temp("battle/entrance", entry1, ob);
-                        where = base_name(environment(ob)); // 记录玩家所在位置
+                        where = base_name(environment(ob)); // 記錄玩家所在位置
                         set_temp("battle/leave_room", where, ob);
                         init_player(ob);
                 }
@@ -482,14 +482,14 @@ void start_battle()
                         team2->member += ({ ob->query_id(1) });
                         set_temp("battle/team_name", team2->name, ob);
                         set_temp("battle/entrance", entry2, ob);
-                        where = base_name(environment(ob)); // 记录玩家所在位置
+                        where = base_name(environment(ob)); // 記錄玩家所在位置
                         set_temp("battle/leave_room", where, ob);
                         init_player(ob);
                 }
         }
         else
         {
-                // 开始分配队伍阵营        
+                // 開始分配隊伍陣營        
                 all_player = sort_array(all_player, (: sort_user :));
 
                 for( i=0; i<sizeof(all_player); i++ )
@@ -516,7 +516,7 @@ void start_battle()
                                 set_temp("battle/entrance", entry2, all_player[i]);
                         }
 
-                        where = base_name(environment(all_player[i])); // 记录玩家所在位置
+                        where = base_name(environment(all_player[i])); // 記錄玩家所在位置
                         set_temp("battle/leave_room", where, all_player[i]);
 
                         init_player(all_player[i]);
@@ -527,7 +527,7 @@ void start_battle()
         battle_time_countdown = BATTLE_TIME;
 }
 
-// 某战场开始接受报名 TIME_D 调用
+// 某戰場開始接受報名 TIME_D 調用
 void start_join(string name)
 {
         object ob;
@@ -542,9 +542,9 @@ void start_join(string name)
 
         team1 = new(class team);
         team2 = new(class team);
-        ob->init_battle(); // 设置队伍的名称，队伍的入口，战场的名称以及初始化战场其他设置等
-        CHANNEL_D->channel_broadcast("war", HIY"荣耀"NOR YEL"之战"HIR"发出战争集结，即将在 "+(BATTLE_JOIN_TIME/60)+
-                                            " 分钟后发动「"+battle_name+HIR"」，请使用 battle 指令加入战役。");
+        ob->init_battle(); // 設置隊伍的名稱，隊伍的入口，戰場的名稱以及初始化戰場其他設置等
+        CHANNEL_D->channel_broadcast("war", HIY"榮耀"NOR YEL"之戰"HIR"發出戰爭集結，即將在 "+(BATTLE_JOIN_TIME/60)+
+                                            " 分鐘後發動「"+battle_name+HIR"」，請使用 battle 指令加入戰役。");
 
         ip_number = allocate(0);
         total = allocate(0);
@@ -665,7 +665,7 @@ void stop_battle()
                 //ob->remove_all_killer();
                 ob->remove_all_enemy(1);
                 restore_status(ob);
-                tell_object(ob, "「"+battle_name+"」结束，你被传离战场...\n");
+                tell_object(ob, "「"+battle_name+"」結束，你被傳離戰場...\n");
         }
 
         ip_number = allocate(0);
@@ -676,8 +676,8 @@ void stop_battle()
         battle_time_countdown = 0;        
 
         CHANNEL_D->channel_broadcast("war", WHT"————————————————————————————————"NOR);
-        CHANNEL_D->channel_broadcast("war", HIR"战"NOR RED"争"HIR"：「"+battle_name+HIR"」终于渐渐平息..."NOR);
-        CHANNEL_D->channel_broadcast("war", HIR"战"NOR RED"争"HIR"：正在统计战绩..."NOR);
+        CHANNEL_D->channel_broadcast("war", HIR"戰"NOR RED"爭"HIR"：「"+battle_name+HIR"」終於漸漸平息..."NOR);
+        CHANNEL_D->channel_broadcast("war", HIR"戰"NOR RED"爭"HIR"：正在統計戰績..."NOR);
         CHANNEL_D->channel_broadcast("war", WHT"————————————————————————————————"NOR);
 
 
@@ -727,7 +727,7 @@ void calculate_score()
 
                 score = get_player_score(id);
 
-                CHANNEL_D->channel_broadcast("war", HIR"战"NOR RED"争"HIR"："+(++rank)+"."+name+HIR"的"+player->query_idname()+HIR"共击杀 "+battle_player[id]["killplayer"]+" 位玩家，战绩结算为 "+NUMBER_D->number_symbol(score)+(battle_player[id]["bonus"]>0 ? "("NOR CYN"+"HIC+battle_player[id]["bonus"]+HIR")":"")+" 分"NOR);
+                CHANNEL_D->channel_broadcast("war", HIR"戰"NOR RED"爭"HIR"："+(++rank)+"."+name+HIR"的"+player->query_idname()+HIR"共擊殺 "+battle_player[id]["killplayer"]+" 位玩家，戰績結算為 "+NUMBER_D->number_symbol(score)+(battle_player[id]["bonus"]>0 ? "("NOR CYN"+"HIC+battle_player[id]["bonus"]+HIR")":"")+" 分"NOR);
 
                 //addn("battle/score", score, player);
                 addn("honors", score, player);
@@ -764,7 +764,7 @@ void calculate_score()
                                 insigne = new("/clone/tongren/tongren1");
                         else
                                 insigne = new("/clone/tongren/tongren2");
-                        tell_object(player, "你获得 "+insigne_count+" 个"+insigne->name()+"。\n");
+                        tell_object(player, "你獲得 "+insigne_count+" 個"+insigne->name()+"。\n");
                         insigne->set_amount(insigne_count);
                         insigne->move(player);
                 }
@@ -774,7 +774,7 @@ void calculate_score()
 
         if( team1->win )
         {
-                msg = team1->name + "胜" + team2->name;
+                msg = team1->name + "勝" + team2->name;
                 member = team1->member;
                 for( i=0; i<sizeof(member); i++)
                 {
@@ -788,7 +788,7 @@ void calculate_score()
         }
         else if( team2->win )
         {
-                msg = team1->name + "负" + team2->name;
+                msg = team1->name + "負" + team2->name;
                 member = team2->member;
                 for( i=0; i<sizeof(member); i++)
                 {
@@ -802,7 +802,7 @@ void calculate_score()
         }
         else if( team1->score > team2->score )
         {
-                msg = team1->name + "胜" + team2->name;
+                msg = team1->name + "勝" + team2->name;
                 member = team1->member;
                 for( i=0; i<sizeof(member); i++)
                 {
@@ -816,7 +816,7 @@ void calculate_score()
         }
         else if( team1->score < team2->score )
         {
-                msg = team1->name + "负" + team2->name;
+                msg = team1->name + "負" + team2->name;
                 member = team2->member;
                 for( i=0; i<sizeof(member); i++)
                 {
@@ -856,7 +856,7 @@ void calculate_score()
 
         msg += "\n";
 
-        CHANNEL_D->channel_broadcast("war", HIR"战"NOR RED"争"HIR"："+msg+NOR);
+        CHANNEL_D->channel_broadcast("war", HIR"戰"NOR RED"爭"HIR"："+msg+NOR);
 
         bunch_flag = 0;
         all = allocate(0);
@@ -872,9 +872,9 @@ string do_score()
         object ob;
 
         desc = HIY"
-※※※※※※※※※※※※※※※※【当前战场成绩】※※※※※※※※※※※※※※※※
+※※※※※※※※※※※※※※※※【當前戰場成績】※※※※※※※※※※※※※※※※
 ________________________________________________________________________________
-队别  队名     积分  成员                                \n" NOR;
+隊別  隊名     積分  成員                                \n" NOR;
 
         n = sizeof(all);
         if( n > 1 )
@@ -932,8 +932,8 @@ void heart_beat()
                         case 600:
                         case 900:
                         case 1200:
-                                CHANNEL_D->channel_broadcast("war", HIY"荣耀"NOR YEL"之战"HIR"发出战争集结，即将在 "+(battle_start_time/60)+
-                                                                    " 分钟后发动「"+battle_name+HIR"」，请使用 battle 指令加入战役。");
+                                CHANNEL_D->channel_broadcast("war", HIY"榮耀"NOR YEL"之戰"HIR"發出戰爭集結，即將在 "+(battle_start_time/60)+
+                                                                    " 分鐘後發動「"+battle_name+HIR"」，請使用 battle 指令加入戰役。");
                                 break;
                 }
 
@@ -953,7 +953,7 @@ void heart_beat()
                 auto_check();
 
         if( battle_time_countdown == 60 || battle_time_countdown == 180 )
-                CHANNEL_D->channel_broadcast("war", HIR"战"NOR RED"争"HIR"：「"+battle_name+HIR"」即将在 "+(battle_time_countdown/60)+" 分钟后结束..."NOR);
+                CHANNEL_D->channel_broadcast("war", HIR"戰"NOR RED"爭"HIR"：「"+battle_name+HIR"」即將在 "+(battle_time_countdown/60)+" 分鐘後結束..."NOR);
 }
 
 void restore_status(object me)
@@ -1010,7 +1010,7 @@ int remove()
         {
                 object player;
 
-                CHANNEL_D->channel_broadcast("war", HIR"战"NOR RED"争"HIR"：系统更新，重置「"+battle_name+HIR"」"NOR);
+                CHANNEL_D->channel_broadcast("war", HIR"戰"NOR RED"爭"HIR"：系統更新，重置「"+battle_name+HIR"」"NOR);
 
                 foreach(string id in keys(battle_player))
                 {
@@ -1034,7 +1034,7 @@ void create()
         names = get_dir(BATTLE_FIELD_DIR+ "*.c");
         names = map_array(names, (: $1[0..<3] :));
 
-        // 析构所有的战场
+        // 析構所有的戰場
         foreach (string name in names)
         {
                 if (objectp(ob = find_object(BATTLE_FIELD_DIR + name)))
@@ -1047,5 +1047,5 @@ void create()
 
 string query_name()
 {
-        return "战场系统(BATTLEFIELD_D)";
+        return "戰場系統(BATTLEFIELD_D)";
 }

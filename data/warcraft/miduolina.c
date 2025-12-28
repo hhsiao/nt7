@@ -7,7 +7,7 @@ void setup()
         set_name("多林麒麟一[2;37;0m[2;37;0m", ({"duolina"}));        
         set("gender", "男性");                
         set("long", "多林麒麟一[2;37;0m
-它是米多一的魔幻兽。
+它是米多一的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

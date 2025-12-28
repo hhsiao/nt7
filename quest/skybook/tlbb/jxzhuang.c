@@ -4,18 +4,18 @@
 
 #include <ansi.h>
 inherit ROOM;
-#define QUESTDIR3 "quest/天龙八部/萧峰身世篇/"
+#define QUESTDIR3 "quest/天龍八部/蕭峰身世篇/"
 
 void create()
 {
-        set("short", "聚贤庄大门");
+        set("short", "聚賢莊大門");
         set("long",
-"你走到一座高宅大院的门口，大门开着，门前左右有两个石狮子，四五级\n"
-"青石台阶上是两扇钉满铜钉的大门。看得出这里是一大户人家的住所。门口正\n"
-"中央高悬着一块黑底金字的大匾，匾上写有三个大字："YEL"【聚贤庄】"NOR"。\n"
+"你走到一座高宅大院的門口，大門開著，門前左右有兩個石獅子，四五級\n"
+"青石臺階上是兩扇釘滿銅釘的大門。看得出這裡是一大戶人家的住所。門口正\n"
+"中央高懸著一塊黑底金字的大匾，匾上寫有三個大字："YEL"【聚賢莊】"NOR"。\n"
         );
 		set("quest",1);
-		set("outdoors", "南阳");
+		set("outdoors", "南陽");
 		set("exits", ([
 			"southwest" : __DIR__"xiaolu3",
 				"north" : __DIR__"dating",
@@ -35,7 +35,7 @@ void init()
 		&& !me->query_temp(QUESTDIR3+"kill")
 		&& !me->query(QUESTDIR3+"over")){
 			me->start_busy(2);
-			//玩家离开这里，离开算失败
+			//玩家離開這裡，離開算失敗
 			obj=new(__DIR__"npc/guanjia");
 			if(!present("guan jia",this_object()))
 				obj->move(this_object());
@@ -51,20 +51,20 @@ int valid_leave(object me, string dir)
        room = load_object(__DIR__"dating");
 
    if(room && room->query("busy")&& dir == "north" )
-     return notify_fail(HIR"你发现聚贤庄内似乎传来激烈的打斗之声，还是走为上策！\n"NOR);
+     return notify_fail(HIR"你發現聚賢莊內似乎傳來激烈的打鬥之聲，還是走為上策！\n"NOR);
    
    if (me->query(QUESTDIR3+"start") 
          && !me->query(QUESTDIR3+"over") 
          && dir == "north" 
          && present("guan jia", environment(me)))
-     return notify_fail(HIR"管家冷笑一声道：这位"+RANK_D->query_respect(me) +"请回，这里不欢迎你！\n"NOR);
+     return notify_fail(HIR"管家冷笑一聲道：這位"+RANK_D->query_respect(me) +"請回，這裡不歡迎你！\n"NOR);
      if (me->query(QUESTDIR3+"start") 
          && !me->query(QUESTDIR3+"over") 
          && dir == "north" 
          && present("jia ding", environment(me)))
-     return notify_fail(HIG"家丁冷笑一声道：这位"+RANK_D->query_respect(me) +"请回，这里不欢迎你！\n"NOR);
+     return notify_fail(HIG"家丁冷笑一聲道：這位"+RANK_D->query_respect(me) +"請回，這裡不歡迎你！\n"NOR);
 
      if(dir == "north" &&(me->query_condition("killer")||	sizeof(filter_array(deep_inventory(me), (: userp :)))))
-		 return notify_fail(HIY"突然从里面传来一阵冷笑道：这位"+RANK_D->query_respect(me) +"请回，这里不欢迎你！\n"NOR);
+		 return notify_fail(HIY"突然從裡面傳來一陣冷笑道：這位"+RANK_D->query_respect(me) +"請回，這裡不歡迎你！\n"NOR);
      return ::valid_leave(me, dir);
 }

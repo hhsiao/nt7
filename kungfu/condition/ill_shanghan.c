@@ -13,17 +13,17 @@ int update_condition(object me, int duration)
 {
         if( duration < 1 ) return 0;
 
-        message("vision", HIG + me->name() + "冷不丁打了个冷战，头"
-		          "昏沉沉的，好象是得伤寒病了。\n" NOR,
+        message("vision", HIG + me->name() + "冷不丁打了個冷戰，頭"
+		          "昏沉沉的，好象是得傷寒病了。\n" NOR,
                 environment(me), me);
 
         if( !living(me) && query("qi", me) < 3 ) {
-                set_temp("die_reason", "伤寒发作，不治身亡了", me);
+                set_temp("die_reason", "傷寒發作，不治身亡了", me);
                 me->die();
                 return 0;
         }
         else
-                tell_object(me, HIB "你打了个冷战，头昏沉沉的，好象是得伤寒病了！\n" NOR );
+                tell_object(me, HIB "你打了個冷戰，頭昏沉沉的，好象是得傷寒病了！\n" NOR );
 
         me->receive_wound("qi", 3);
         me->receive_damage("qi", 3);

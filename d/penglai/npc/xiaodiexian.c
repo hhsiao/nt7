@@ -6,7 +6,7 @@ int is_pld_npc(){return 1;}
 void create()
 {
         set_name(HIM "小蝶仙" NOR, ({ "xiao diexian", "xiao", "diexian" }));
-        set("long", HIM "还未完全修炼成人形的小蝶仙。\n" NOR);
+        set("long", HIM "還未完全修煉成人形的小蝶仙。\n" NOR);
 
         set("age", 80);
         set("str", 40);

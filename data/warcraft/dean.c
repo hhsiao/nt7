@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("超牛小鸟[2;37;0m[2;37;0m", ({"deanxiaoniao"}));        
+        set_name("超牛小鳥[2;37;0m[2;37;0m", ({"deanxiaoniao"}));        
         set("gender", "女性");                
-        set("long", "这是迪恩的小鸟[2;37;0m
-它是迪恩的魔幻兽。
+        set("long", "這是迪恩的小鳥[2;37;0m
+它是迪恩的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

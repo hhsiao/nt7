@@ -23,26 +23,26 @@ inherit F_CLEAN_UP;
 #define RECORD_SIZE 	30
 
 string help = @HELP
-   棒球指令，可以查询棒球比赛相关资讯
+   棒球指令，可以查詢棒球比賽相關資訊
 
-   baseball			- 显示目前参赛队伍、战况、球队基本资讯
+   baseball			- 顯示目前參賽隊伍、戰況、球隊基本資訊
 
-   baseball info		- 查询自己所属球员纪录
-   baseball info '玩家ID'	- 查询其他玩家球员纪录
+   baseball info		- 查詢自己所屬球員紀錄
+   baseball info '玩家ID'	- 查詢其他玩家球員紀錄
 
-   baseball listen '玩家ID'	- 收听某位玩家的球队比赛实况
-   baseball listen -d		- 停止收听比赛实况
+   baseball listen '玩家ID'	- 收聽某位玩家的球隊比賽實況
+   baseball listen -d		- 停止收聽比賽實況
 
-   baseball record '种类'	- 查询球员纪录排行(种类包括 home, hit, hit2, hit3, run, k, era, special)
-   baseball record '种类' 年度	- 查询球员纪录排行(某一特定年度)
+   baseball record '種類'	- 查詢球員紀錄排行(種類包括 home, hit, hit2, hit3, run, k, era, special)
+   baseball record '種類' 年度	- 查詢球員紀錄排行(某一特定年度)
 
-   baseball hint '暗号'		- 下达暗号，每场球赛最多使用 6 次暗号
+   baseball hint '暗號'		- 下達暗號，每場球賽最多使用 6 次暗號
 
-   暗号种类如下 :
-   batter 	- 鼓舞目前场上打者，让他在这次上场机会中短暂提升打击威力
-   pitcher 	- 鼓舞目前场上投手，让他与目前打者的对决中短暂提升投球威力
-   bunt		- 打暗号给场上打者，要求其进行触击短打，以掩护垒上跑者推进(不计入暗号次数)
-   walk		- 打暗号给场上投手，要求其敬远四坏保送目前打者(不计入暗号次数)
+   暗號種類如下 :
+   batter 	- 鼓舞目前場上打者，讓他在這次上場機會中短暫提升打擊威力
+   pitcher 	- 鼓舞目前場上投手，讓他與目前打者的對決中短暫提升投球威力
+   bunt		- 打暗號給場上打者，要求其進行觸擊短打，以掩護壘上跑者推進(不計入暗號次數)
+   walk		- 打暗號給場上投手，要求其敬遠四壞保送目前打者(不計入暗號次數)
 HELP;
 
 int main(object me, string arg)
@@ -65,9 +65,9 @@ int main(object me, string arg)
 		int rank = 0;
 		int limit;
 
-		msg = ({ "\n 第 "HIC+year+NOR" 球季目前共有 "HIY+sizeof(season)+NOR" 个参赛球队，目前战绩排名如下：" });
+		msg = ({ "\n 第 "HIC+year+NOR" 球季目前共有 "HIY+sizeof(season)+NOR" 個參賽球隊，目前戰績排名如下：" });
 		msg += ({ WHT"--------------------------------------------------------------------------"NOR });
-		msg += ({ sprintf(HIW" %-4s%-13s%-13s%4s%5s%5s%6s %-12s%s"NOR, "", "球队名称", "老板", "场次", "胜场", "败场", "胜率", "目前对战", "赛况") });
+		msg += ({ sprintf(HIW" %-4s%-13s%-13s%4s%5s%5s%6s %-12s%s"NOR, "", "球隊名稱", "老闆", "場次", "勝場", "敗場", "勝率", "目前對戰", "賽況") });
 		msg += ({ WHT"--------------------------------------------------------------------------"NOR });
 
 		limit = (BASEBALL_D->calculate_max_game_times(year)-10) / 2;
@@ -91,15 +91,15 @@ int main(object me, string arg)
 
 			if( win+lose < limit && sep == 0 )
 			{
-				msg += ({ WHT"-------------------------- "NOR"场次数量条件不足"WHT" ------------------------------"NOR });
+				msg += ({ WHT"-------------------------- "NOR"場次數量條件不足"WHT" ------------------------------"NOR });
 				sep = 1;
 			}
 
 			if( rank == 8 )
-				msg += ({ NOR RED"---------------------------- "HIR"季后赛晋级条件"NOR RED" ------------------------------"NOR });
+				msg += ({ NOR RED"---------------------------- "HIR"季後賽晉級條件"NOR RED" ------------------------------"NOR });
 
 			//else if( rank == 12 )
-			//	msg += ({ NOR RED"---------------------------- "HIR"季后赛晋级条件"NOR RED" ------------------------------"NOR });
+			//	msg += ({ NOR RED"---------------------------- "HIR"季後賽晉級條件"NOR RED" ------------------------------"NOR });
 
 			opponent = BASEBALL_D->query_opponent(id);
 
@@ -112,16 +112,16 @@ int main(object me, string arg)
 						if( member_array(id, BASEBALL_D->query_post_season_eliminate_teams()) != -1 )
 							statustext = RED"淘汰"NOR;
 						else if( member_array(id, BASEBALL_D->query_post_season_team(2)) != -1 )
-							statustext = HIY"晋级"NOR YEL"总冠军赛"NOR;
+							statustext = HIY"晉級"NOR YEL"總冠軍賽"NOR;
 						else if( member_array(id, BASEBALL_D->query_post_season_team(4)) != -1 )
-							statustext = HIG"晋级"NOR GRN"四强赛"NOR;
+							statustext = HIG"晉級"NOR GRN"四強賽"NOR;
 						else if( member_array(id, BASEBALL_D->query_post_season_team(8)) != -1 )
-							statustext = HIC"晋级"NOR CYN"八强赛"NOR;
+							statustext = HIC"晉級"NOR CYN"八強賽"NOR;
 						else
-							statustext = WHT"休赛"NOR;
+							statustext = WHT"休賽"NOR;
 					}
 					else
-						statustext = HIG"配"NOR GRN"对中"NOR;
+						statustext = HIG"配"NOR GRN"對中"NOR;
 					break;
 				}
 				case STATUS_PLAYING:
@@ -139,7 +139,7 @@ int main(object me, string arg)
 				case STATUS_PREPARING:
 				{
 					mapping game = BASEBALL_D->query_game(id);
-					statustext = HIY"准"NOR YEL"备中"NOR+" "+HIY+((PREPARETIME - game[TICK])/60+1)+NOR YEL+"m"NOR;
+					statustext = HIY"準"NOR YEL"備中"NOR+" "+HIY+((PREPARETIME - game[TICK])/60+1)+NOR YEL+"m"NOR;
 					break;
 				}
 			}
@@ -151,24 +151,24 @@ int main(object me, string arg)
 		if( !undefinedp(setup[myid]) )
 		{
 			if( setup[myid]["keepwins"] > 1 )
-				msg += ({ pnoun(2, me)+"的球队最近打出 "HIR+setup[myid]["keepwins"]+NOR" 连胜，士气高昂" });
+				msg += ({ pnoun(2, me)+"的球隊最近打出 "HIR+setup[myid]["keepwins"]+NOR" 連勝，士氣高昂" });
 			if( setup[myid]["keeploses"] > 1 )
-				msg += ({ pnoun(2, me)+"的球队最近苦吞 "HIG+setup[myid]["keeploses"]+NOR" 连败，士气低落" });
+				msg += ({ pnoun(2, me)+"的球隊最近苦吞 "HIG+setup[myid]["keeploses"]+NOR" 連敗，士氣低落" });
 		}
 
 		if( BASEBALL_D->is_in_post_season() )
-			msg += ({ " 目前正在进行第 "HIC+year+NOR" 球季季后赛" });
+			msg += ({ " 目前正在進行第 "HIC+year+NOR" 球季季後賽" });
 		else
 		{
 			int eta = 1282456800 + 604800*year - time();
 
 			if( eta < 0 )
-				msg += ({ " 第 "HIC+year+NOR" 球季季后赛准备中"NOR });
+				msg += ({ " 第 "HIC+year+NOR" 球季季後賽準備中"NOR });
 			else
-				msg += ({ " 距离第 "HIC+year+NOR" 球季季后赛还有 "HIY+(eta/60/60/24)+" 天 "+(eta/60/60%24)+" 小时 "+(eta/60%60)+" 分"NOR });
+				msg += ({ " 距離第 "HIC+year+NOR" 球季季後賽還有 "HIY+(eta/60/60/24)+" 天 "+(eta/60/60%24)+" 小時 "+(eta/60%60)+" 分"NOR });
 		}
 
-		msg += ({ " 查询球员排行纪录 / 收听各球队即时战况 / 下达暗号 - help baseball" });
+		msg += ({ " 查詢球員排行紀錄 / 收聽各球隊即時戰況 / 下達暗號 - help baseball" });
 		msg += ({ WHT"--------------------------------------------------------------------------"NOR });
 		return tell(me, implode(msg, "\n")+"\n");
 	}
@@ -184,18 +184,18 @@ int main(object me, string arg)
 		sscanf(value, "%s %d", value, year);
 
 		if( !mapp(record[year]) )
-			return tell(me, "并没有第 "+year+" 球季的纪录。\n");
+			return tell(me, "並沒有第 "+year+" 球季的紀錄。\n");
 
 		playerrecord = record[year][RECORD_PLAYER];
 
-		msg += ({ " 第 "HIC+year+NOR" 球季所有球员纪录排名如下：" });
+		msg += ({ " 第 "HIC+year+NOR" 球季所有球員紀錄排名如下：" });
 
 		switch(lower_case(value))
 		{
 			case "home":
 			{
 				msg += ({ WHT"--------------------------------------------------------------------------"NOR });
-				msg += ({ HIW" 排名 全垒打王                    球队老板      支数"NOR });
+				msg += ({ HIW" 排名 全壘打王                    球隊老闆      支數"NOR });
 				msg += ({ WHT"--------------------------------------------------------------------------"NOR });
 
 				recordsort = sort_array( filter_array(keys(playerrecord), (: $(playerrecord)[$1]["hit4"] > 0 :)), (: $(playerrecord)[$1]["hit4"] > $(playerrecord)[$2]["hit4"] ? -1 : 1 :) );
@@ -219,7 +219,7 @@ int main(object me, string arg)
 			case "hit":
 			{
 				msg += ({ WHT"--------------------------------------------------------------------------"NOR });
-				msg += ({ HIW" 排名 安打王                      球队老板      支数       打击率"NOR });
+				msg += ({ HIW" 排名 安打王                      球隊老闆      支數       打擊率"NOR });
 				msg += ({ WHT"--------------------------------------------------------------------------"NOR });
 
 				recordsort = sort_array( filter_array(keys(playerrecord), (: $(playerrecord)[$1]["hit"] > 0 :)), (: $(playerrecord)[$1]["hit"] > $(playerrecord)[$2]["hit"] ? -1 : 1 :) );
@@ -243,7 +243,7 @@ int main(object me, string arg)
 			case "hit2":
 			{
 				msg += ({ WHT"--------------------------------------------------------------------------"NOR });
-				msg += ({ HIW" 排名 二垒安打王                  球队老板      支数       打击率"NOR });
+				msg += ({ HIW" 排名 二壘安打王                  球隊老闆      支數       打擊率"NOR });
 				msg += ({ WHT"--------------------------------------------------------------------------"NOR });
 
 				recordsort = sort_array( filter_array(keys(playerrecord), (: $(playerrecord)[$1]["hit2"] > 0 :)), (: $(playerrecord)[$1]["hit2"] > $(playerrecord)[$2]["hit2"] ? -1 : 1 :) );
@@ -267,7 +267,7 @@ int main(object me, string arg)
 			case "hit3":
 			{
 				msg += ({ WHT"--------------------------------------------------------------------------"NOR });
-				msg += ({ HIW" 排名 三垒安打王                  球队老板      支数       打击率"NOR });
+				msg += ({ HIW" 排名 三壘安打王                  球隊老闆      支數       打擊率"NOR });
 				msg += ({ WHT"--------------------------------------------------------------------------"NOR });
 
 				recordsort = sort_array( filter_array(keys(playerrecord), (: $(playerrecord)[$1]["hit3"] > 0 :)), (: $(playerrecord)[$1]["hit3"] > $(playerrecord)[$2]["hit3"] ? -1 : 1 :) );
@@ -291,7 +291,7 @@ int main(object me, string arg)
 			case "run":
 			{
 				msg += ({ WHT"--------------------------------------------------------------------------"NOR });
-				msg += ({ HIW" 排名 打点王                      球队老板      打点"NOR });
+				msg += ({ HIW" 排名 打點王                      球隊老闆      打點"NOR });
 				msg += ({ WHT"--------------------------------------------------------------------------"NOR });
 
 				recordsort = sort_array( filter_array(keys(playerrecord), (: $(playerrecord)[$1]["rbi"] > 0 :)), (: $(playerrecord)[$1]["rbi"] > $(playerrecord)[$2]["rbi"] ? -1 : 1 :) );
@@ -315,7 +315,7 @@ int main(object me, string arg)
 			case "k":
 			{
 				msg += ({ WHT"--------------------------------------------------------------------------"NOR });
-				msg += ({ HIW" 排名 三振王                      球队老板      三振       三振率"NOR });
+				msg += ({ HIW" 排名 三振王                      球隊老闆      三振       三振率"NOR });
 				msg += ({ WHT"--------------------------------------------------------------------------"NOR });
 
 				recordsort = sort_array( filter_array(keys(playerrecord), (: $(playerrecord)[$1]["strikeout"] > 0 :)), (: $(playerrecord)[$1]["strikeout"] > $(playerrecord)[$2]["strikeout"] ? -1 : 1 :) );
@@ -339,7 +339,7 @@ int main(object me, string arg)
 			case "era":
 			{
 				msg += ({ WHT"--------------------------------------------------------------------------"NOR });
-				msg += ({ HIW" 排名 防御率王                    球队老板       局数(>45)     自责分率"NOR });
+				msg += ({ HIW" 排名 防禦率王                    球隊老闆       局數(>45)     自責分率"NOR });
 				msg += ({ WHT"--------------------------------------------------------------------------"NOR });
 
 				recordsort = sort_array( filter_array(keys(playerrecord), (: $(playerrecord)[$1]["out"] > 135 :)), (: to_float($(playerrecord)[$1]["run"])/$(playerrecord)[$1]["out"] > to_float($(playerrecord)[$2]["run"])/$(playerrecord)[$2]["out"] ? 1 : -1 :) );
@@ -365,32 +365,32 @@ int main(object me, string arg)
 				mapping specialrecord = record[year][RECORD_SPECIAL];
 
 				msg += ({ WHT"--------------------------------------------------------------------------"NOR });
-				msg += ({ HIW" 特殊纪录             纪录   达成队伍 / 球员               老板"NOR });
+				msg += ({ HIW" 特殊紀錄             紀錄   達成隊伍 / 球員               老闆"NOR });
 				msg += ({ WHT"--------------------------------------------------------------------------"NOR });
 
 				if( stringp(specialrecord["champion"]) )
 				{
 					mapping setup = BASEBALL_D->query_setup(specialrecord["champion"]);
-					msg += ({ sprintf(NOR YEL" 球季总冠军                  %-30s"HIC"%s"NOR, mapp(setup) ? setup["name"] : specialrecord["champion"], capitalize(specialrecord["champion"])) });
+					msg += ({ sprintf(NOR YEL" 球季總冠軍                  %-30s"HIC"%s"NOR, mapp(setup) ? setup["name"] : specialrecord["champion"], capitalize(specialrecord["champion"])) });
 				}
 
 				if( stringp(specialrecord["2rd"]) )
 				{
 					mapping setup = BASEBALL_D->query_setup(specialrecord["2rd"]);
-					msg += ({ sprintf(NOR YEL" 球季亚军                    %-30s"HIC"%s"NOR, mapp(setup) ? setup["name"] : specialrecord["2rd"], capitalize(specialrecord["2rd"])) });
+					msg += ({ sprintf(NOR YEL" 球季亞軍                    %-30s"HIC"%s"NOR, mapp(setup) ? setup["name"] : specialrecord["2rd"], capitalize(specialrecord["2rd"])) });
 					msg += ({ "" });
 				}
 
 				if( stringp(specialrecord["keepwinsteam"]) )
 				{
 					mapping setup = BASEBALL_D->query_setup(specialrecord["keepwinsteam"]);
-					msg += ({ sprintf(NOR YEL" 最长连胜场次        "HIY"%5d"NOR"   %-30s"HIC"%s"NOR, specialrecord["keepwins"], mapp(setup) ? setup["name"] : specialrecord["keepwinsteam"], capitalize(specialrecord["keepwinsteam"])) });
+					msg += ({ sprintf(NOR YEL" 最長連勝場次        "HIY"%5d"NOR"   %-30s"HIC"%s"NOR, specialrecord["keepwins"], mapp(setup) ? setup["name"] : specialrecord["keepwinsteam"], capitalize(specialrecord["keepwinsteam"])) });
 				}
 
 				if( stringp(specialrecord["keeplosesteam"]) )
 				{
 					mapping setup = BASEBALL_D->query_setup(specialrecord["keeplosesteam"]);
-					msg += ({ sprintf(NOR YEL" 最长连败场次        "HIY"%5d"NOR"   %-30s"HIC"%s"NOR, specialrecord["keeploses"], mapp(setup) ? setup["name"] : specialrecord["keeplosesteam"], capitalize(specialrecord["keeplosesteam"])) });
+					msg += ({ sprintf(NOR YEL" 最長連敗場次        "HIY"%5d"NOR"   %-30s"HIC"%s"NOR, specialrecord["keeploses"], mapp(setup) ? setup["name"] : specialrecord["keeplosesteam"], capitalize(specialrecord["keeplosesteam"])) });
 				}
 
 				if( stringp(specialrecord["maxstrikeoutsplayer"]) )
@@ -400,7 +400,7 @@ int main(object me, string arg)
 					if( file_exists(specialrecord["maxstrikeoutsplayer"]) )
 						player = load_object(specialrecord["maxstrikeoutsplayer"]);
 
-					msg += ({ sprintf(NOR YEL" 单场最多三振次数    "HIY"%5d"NOR"   %-30s"HIC"%s"NOR, specialrecord["maxstrikeouts"], objectp(player) ? player->query_idname() : "已消失", objectp(player) ? capitalize(query("boss", player)) : "") });
+					msg += ({ sprintf(NOR YEL" 單場最多三振次數    "HIY"%5d"NOR"   %-30s"HIC"%s"NOR, specialrecord["maxstrikeouts"], objectp(player) ? player->query_idname() : "已消失", objectp(player) ? capitalize(query("boss", player)) : "") });
 				}
 				if( stringp(specialrecord["maxhomerundistanceplayer"]) )
 				{
@@ -409,33 +409,33 @@ int main(object me, string arg)
 					if( file_exists(specialrecord["maxhomerundistanceplayer"]) )
 						player = load_object(specialrecord["maxhomerundistanceplayer"]);
 
-					msg += ({ sprintf(NOR YEL" 全垒打最长距离      "HIY"%5d"NOR"   %-30s"HIC"%s"NOR, specialrecord["maxhomerundistance"], objectp(player) ? player->query_idname() : "已消失", objectp(player) ? capitalize(query("boss", player)) : "") });
+					msg += ({ sprintf(NOR YEL" 全壘打最長距離      "HIY"%5d"NOR"   %-30s"HIC"%s"NOR, specialrecord["maxhomerundistance"], objectp(player) ? player->query_idname() : "已消失", objectp(player) ? capitalize(query("boss", player)) : "") });
 				}
 				if( stringp(specialrecord["maxhitsteam"]) )
 				{
 					mapping setup = BASEBALL_D->query_setup(specialrecord["maxhitsteam"]);
-					msg += ({ sprintf(NOR YEL" 单场最多安打数      "HIY"%5d"NOR"   %-30s"HIC"%s"NOR, specialrecord["maxhits"], mapp(setup) ? setup["name"] : specialrecord["maxhitsteam"], capitalize(specialrecord["maxhitsteam"])) });
+					msg += ({ sprintf(NOR YEL" 單場最多安打數      "HIY"%5d"NOR"   %-30s"HIC"%s"NOR, specialrecord["maxhits"], mapp(setup) ? setup["name"] : specialrecord["maxhitsteam"], capitalize(specialrecord["maxhitsteam"])) });
 				}
 
 				if( stringp(specialrecord["maxscoresteam"]) )
 				{
 					mapping setup = BASEBALL_D->query_setup(specialrecord["maxscoresteam"]);
-					msg += ({ sprintf(NOR YEL" 单场最多得分数      "HIY"%5d"NOR"   %-30s"HIC"%s"NOR, specialrecord["maxscores"], mapp(setup) ? setup["name"] : specialrecord["maxscoresteam"], capitalize(specialrecord["maxscoresteam"])) });
+					msg += ({ sprintf(NOR YEL" 單場最多得分數      "HIY"%5d"NOR"   %-30s"HIC"%s"NOR, specialrecord["maxscores"], mapp(setup) ? setup["name"] : specialrecord["maxscoresteam"], capitalize(specialrecord["maxscoresteam"])) });
 				}
 
 				if( stringp(specialrecord["maxinningsteam1"]) && stringp(specialrecord["maxinningsteam2"]) )
 				{
-					msg += ({ sprintf(NOR YEL" 延长赛最长局数      "HIY"%5d"NOR"   %-30s"HIC"%s"NOR, specialrecord["maxinnings"]/2+specialrecord["maxinnings"]%2, (mapp(BASEBALL_D->query_setup(specialrecord["maxinningsteam1"])) ? BASEBALL_D->query_setup(specialrecord["maxinningsteam1"])["name"] : specialrecord["maxinningsteam1"])+" & "+(mapp(BASEBALL_D->query_setup(specialrecord["maxinningsteam2"])) ? BASEBALL_D->query_setup(specialrecord["maxinningsteam2"])["name"] : specialrecord["maxinningsteam2"]), capitalize(specialrecord["maxinningsteam1"]) +" & "+capitalize(specialrecord["maxinningsteam2"])) });
+					msg += ({ sprintf(NOR YEL" 延長賽最長局數      "HIY"%5d"NOR"   %-30s"HIC"%s"NOR, specialrecord["maxinnings"]/2+specialrecord["maxinnings"]%2, (mapp(BASEBALL_D->query_setup(specialrecord["maxinningsteam1"])) ? BASEBALL_D->query_setup(specialrecord["maxinningsteam1"])["name"] : specialrecord["maxinningsteam1"])+" & "+(mapp(BASEBALL_D->query_setup(specialrecord["maxinningsteam2"])) ? BASEBALL_D->query_setup(specialrecord["maxinningsteam2"])["name"] : specialrecord["maxinningsteam2"]), capitalize(specialrecord["maxinningsteam1"]) +" & "+capitalize(specialrecord["maxinningsteam2"])) });
 				}
 
 				if( stringp(specialrecord["maxscorediffwin"]) && stringp(specialrecord["maxscoredifflose"]) )
 				{
-					msg += ({ sprintf(NOR YEL" 单场分数最大差距    "HIY"%5d"NOR"   %-30s"HIC"%s"NOR, specialrecord["maxscorediff"], (mapp(BASEBALL_D->query_setup(specialrecord["maxscorediffwin"])) ? BASEBALL_D->query_setup(specialrecord["maxscorediffwin"])["name"] : specialrecord["maxscorediffwin"])+" & "+(mapp(BASEBALL_D->query_setup(specialrecord["maxscoredifflose"])) ? BASEBALL_D->query_setup(specialrecord["maxscoredifflose"])["name"] : specialrecord["maxscoredifflose"]), capitalize(specialrecord["maxscorediffwin"]) +" & "+capitalize(specialrecord["maxscoredifflose"])) });
+					msg += ({ sprintf(NOR YEL" 單場分數最大差距    "HIY"%5d"NOR"   %-30s"HIC"%s"NOR, specialrecord["maxscorediff"], (mapp(BASEBALL_D->query_setup(specialrecord["maxscorediffwin"])) ? BASEBALL_D->query_setup(specialrecord["maxscorediffwin"])["name"] : specialrecord["maxscorediffwin"])+" & "+(mapp(BASEBALL_D->query_setup(specialrecord["maxscoredifflose"])) ? BASEBALL_D->query_setup(specialrecord["maxscoredifflose"])["name"] : specialrecord["maxscoredifflose"]), capitalize(specialrecord["maxscorediffwin"]) +" & "+capitalize(specialrecord["maxscoredifflose"])) });
 				}
 				break;
 			}
 			default:
-				return tell(me, "请输出正确的纪录种类(home, hit, hit2, hit3, run, k, era, special)。\n");
+				return tell(me, "請輸出正確的紀錄種類(home, hit, hit2, hit3, run, k, era, special)。\n");
 		}
 		msg += ({ WHT"--------------------------------------------------------------------------"NOR });
 
@@ -461,14 +461,14 @@ int main(object me, string arg)
 			target = myid;
 
 		if( !BASEBALL_D->exists(target) )
-			return tell(me, "没有 "+target+" 这位玩家，或该玩家并未建立球队。\n");
+			return tell(me, "沒有 "+target+" 這位玩家，或該玩家並未建立球隊。\n");
 
 		setup = BASEBALL_D->query_setup(target);
 
-		text = (target == myid ? pnoun(2, me) : find_player(target) ? find_player(target)->query_idname() : capitalize(target)+" ")+"的球队名称为“"+(setup["name"]||"未命名")+"”队，目前安排的球员守备位置与打击棒次资料如下：\n";
+		text = (target == myid ? pnoun(2, me) : find_player(target) ? find_player(target)->query_idname() : capitalize(target)+" ")+"的球隊名稱為“"+(setup["name"]||"未命名")+"”隊，目前安排的球員守備位置與打擊棒次資料如下：\n";
 
 		text += WHT"--------------------------------------------------------------------------\n"NOR;
-		text += sprintf(HIW"%-4s %-9s%5s%5s%5s%5s%10s%10s %s\n"NOR, "", "守备位置", "自责", "局数", "四坏", "三振", "三振率", "方向", "球员名称" );
+		text += sprintf(HIW"%-4s %-9s%5s%5s%5s%5s%10s%10s %s\n"NOR, "", "守備位置", "自責", "局數", "四壞", "三振", "三振率", "方向", "球員名稱" );
 		text += WHT"--------------------------------------------------------------------------\n"NOR;
 
 		labor = 0;
@@ -490,7 +490,7 @@ int main(object me, string arg)
 			case HANDSIDE_NONE: handsidename = ""; break;
 			case HANDSIDE_LEFTHAND: handsidename = HIC"左"NOR CYN"投"NOR; break;
 			case HANDSIDE_RIGHTHAND: handsidename = HIG"右"NOR GRN"投"NOR; break;
-			case HANDSIDE_TWOHANDS: handsidename = "错误"; break;
+			case HANDSIDE_TWOHANDS: handsidename = "錯誤"; break;
 		}
 
 		out = BASEBALL_D->get_record(RECORD_PLAYER, file, "out", year);
@@ -500,18 +500,18 @@ int main(object me, string arg)
 
 		text += sprintf(" %-3s %-9s"HIG"%5.2f"HIC"%5d"HIM"%5d"HIY"%5d"HIY"%9.2f%%"NOR"%10s %s\n",
 			"",
-			position || WHT"未设定"NOR,
+			position || WHT"未設定"NOR,
 			out > 0 ? run * 9. / (out / 3.): 0.,
 			out / 3,
 			BASEBALL_D->get_record(RECORD_PLAYER, file, "fourball", year),
 			strikeout,
 			bf > 0 ? 100. * strikeout / bf : 0.,
 			handsidename,
-			objectp(labor) ? labor->query_idname() : WHT"未设定"NOR
+			objectp(labor) ? labor->query_idname() : WHT"未設定"NOR
 		);
 
 		text += WHT"\n"NOR;
-		text += sprintf(HIW"%-4s %-9s%5s%5s%5s%5s%5s%5s%5s%5s %s\n"NOR, "棒次", "守备位置", "打率", "安打", "二安", "三安", "全垒", "打点", "保送", "方向", "球员名称");
+		text += sprintf(HIW"%-4s %-9s%5s%5s%5s%5s%5s%5s%5s%5s %s\n"NOR, "棒次", "守備位置", "打率", "安打", "二安", "三安", "全壘", "打點", "保送", "方向", "球員名稱");
 		text += WHT"--------------------------------------------------------------------------\n"NOR;
 
 		for(int i=1;i<10;++i)
@@ -541,7 +541,7 @@ int main(object me, string arg)
 
 			text += sprintf(" %-3s %-9s"HIG"%5.2f"HIC"%5d"HIY"%5d"HIY"%5d"HIY"%5d"HIW"%5d"HIM"%5d"NOR" %4s %s\n",
 				HIG+i+NOR,
-				position || WHT"未设定"NOR,
+				position || WHT"未設定"NOR,
 				BASEBALL_D->get_hit_rate(target, i, year),
 				BASEBALL_D->get_record(RECORD_PLAYER, file, "hit", year),
 				BASEBALL_D->get_record(RECORD_PLAYER, file, "hit2", year),
@@ -550,7 +550,7 @@ int main(object me, string arg)
 				BASEBALL_D->get_record(RECORD_PLAYER, file, "rbi", year),
 				BASEBALL_D->get_record(RECORD_PLAYER, file, "walk", year),
 				handsidename,
-				objectp(labor) ? labor->query_idname() : WHT"未设定"NOR
+				objectp(labor) ? labor->query_idname() : WHT"未設定"NOR
 			);
 		}
 
@@ -560,7 +560,7 @@ int main(object me, string arg)
 			win = BASEBALL_D->get_record(RECORD_TEAM, target, "win", y);
 			lose = BASEBALL_D->get_record(RECORD_TEAM, target, "lose", y);
 
-			text += WHT"第 "HIW+y+NOR WHT" 球季"NOR"季赛胜场数："HIR+win+NOR" / 败场数："HIG+lose+NOR" / 胜率："HIY+sprintf("%.2f", win+lose > 0 ? 100.*win/(win+lose) : 0.)+NOR YEL"%"NOR"\n";
+			text += WHT"第 "HIW+y+NOR WHT" 球季"NOR"季賽勝場數："HIR+win+NOR" / 敗場數："HIG+lose+NOR" / 勝率："HIY+sprintf("%.2f", win+lose > 0 ? 100.*win/(win+lose) : 0.)+NOR YEL"%"NOR"\n";
 		}
 		text += WHT"--------------------------------------------------------------------------\n"NOR;
 		me->more(text);
@@ -572,18 +572,18 @@ int main(object me, string arg)
 		if( arg == "-d" )
 		{
 			BASEBALL_D->set_listener(myid, 0);
-			return tell(me, pnoun(2, me)+"停止收听所有比赛实况。\n");
+			return tell(me, pnoun(2, me)+"停止收聽所有比賽實況。\n");
 		}
 
 		if( !arg || !arg[0] )
-			return tell(me, "请输入正确的指令格式。\n");
+			return tell(me, "請輸入正確的指令格式。\n");
 
 		if( !BASEBALL_D->in_season(arg) )
-			return tell(me, arg+" 并没有球队加入季赛。\n");
+			return tell(me, arg+" 並沒有球隊加入季賽。\n");
 
 		BASEBALL_D->set_listener(myid, arg);
 
-		return tell(me, pnoun(2, me)+"开始收听 "+arg+" 的球队比赛实况。\n");
+		return tell(me, pnoun(2, me)+"開始收聽 "+arg+" 的球隊比賽實況。\n");
 	}
 	else if( sscanf(arg, "hint %s", arg) == 1 )
 	{
@@ -593,12 +593,12 @@ int main(object me, string arg)
 		mapping game;
 
 		if( BASEBALL_D->query_status(myid) != STATUS_PLAYING )
-			return tell(me, pnoun(2, me)+"的球队目前并未进行球赛。\n");
+			return tell(me, pnoun(2, me)+"的球隊目前並未進行球賽。\n");
 
 		setup = BASEBALL_D->query_setup(myid);
 
 		if( setup["hint"] > 0 )
-			return tell(me, pnoun(2, me)+"前一次下达的暗号目前仍然有效，无法重覆下达暗号。\n");
+			return tell(me, pnoun(2, me)+"前一次下達的暗號目前仍然有效，無法重覆下達暗號。\n");
 
 		game = BASEBALL_D->query_game(myid);
 
@@ -609,74 +609,74 @@ int main(object me, string arg)
 			case "batter":
 
 				if( setup["hinttimes"] <= 0 )
-					return tell(me, pnoun(2, me)+"这次球赛的暗号下达次数已达上限。\n");
+					return tell(me, pnoun(2, me)+"這次球賽的暗號下達次數已達上限。\n");
 
 				if( ((game[INNING]%2) > 0 && game[TEAM2] == myid) || ((game[INNING]%2) == 0 && game[TEAM1] == myid) )
 				{
-					tell(me, pnoun(2, me)+"下达暗号鼓舞正在打击的打者，这一轮打席的打击威力短暂提升。\n");
-					BASEBALL_D->add_message(myid, me->query_idname()+"紧张地对着打者比了三个连打者都看不太懂的手势“ "+signal+" ”");
+					tell(me, pnoun(2, me)+"下達暗號鼓舞正在打擊的打者，這一輪打席的打擊威力短暫提升。\n");
+					BASEBALL_D->add_message(myid, me->query_idname()+"緊張地對著打者比了三個連打者都看不太懂的手勢“ "+signal+" ”");
 					setup["hint"] = HINTTYPE_BATTER;
 
 					setup["hinttimes"]--;
 				}
 				else
-					return tell(me, "目前"+pnoun(2, me)+"是防守方，无法对打者下达暗号。\n");
+					return tell(me, "目前"+pnoun(2, me)+"是防守方，無法對打者下達暗號。\n");
 
 				break;
 			case "bunt":
 				if( (game[INNING]%2) > 0 && game[TEAM2] == myid || ((game[INNING]%2) == 0 && game[TEAM1] == myid) )
 				{
-					tell(me, pnoun(2, me)+"下达暗号给正在打击的打者，要求其进行触击短打以掩护垒上跑者推进。\n");
-					BASEBALL_D->add_message(myid, me->query_idname()+"紧张地对着打者比了三个连打者都看不太懂的手势“ "+signal+" ”");
+					tell(me, pnoun(2, me)+"下達暗號給正在打擊的打者，要求其進行觸擊短打以掩護壘上跑者推進。\n");
+					BASEBALL_D->add_message(myid, me->query_idname()+"緊張地對著打者比了三個連打者都看不太懂的手勢“ "+signal+" ”");
 					setup["hint"] = HINTTYPE_BUNT;
 				}
 				else
-					return tell(me, "目前"+pnoun(2, me)+"是防守方，无法对打者下达暗号。\n");
+					return tell(me, "目前"+pnoun(2, me)+"是防守方，無法對打者下達暗號。\n");
 
 				break;
 			case "pitcher":
 
 				if( setup["hinttimes"] <= 0 )
-					return tell(me, pnoun(2, me)+"这次球赛的暗号下达次数已达上限。\n");
+					return tell(me, pnoun(2, me)+"這次球賽的暗號下達次數已達上限。\n");
 
 				if( (game[INNING]%2) == 0 && game[TEAM2] == myid || ((game[INNING]%2) > 0 && game[TEAM1] == myid) )
 				{
-					tell(me, pnoun(2, me)+"下达暗号鼓舞正在投球的投手，面对目前打者的投球威力短暂提升。\n");
-					BASEBALL_D->add_message(myid, me->query_idname()+"紧张地对着投手比了三个连投手都看不太懂的手势“ "+signal+" ”");
+					tell(me, pnoun(2, me)+"下達暗號鼓舞正在投球的投手，面對目前打者的投球威力短暫提升。\n");
+					BASEBALL_D->add_message(myid, me->query_idname()+"緊張地對著投手比了三個連投手都看不太懂的手勢“ "+signal+" ”");
 					setup["hint"] = HINTTYPE_PITCHER;
 
 					setup["hinttimes"]--;
 				}
 				else
-					return tell(me, "目前"+pnoun(2, me)+"是攻击方，无法对投手下达暗号。\n");
+					return tell(me, "目前"+pnoun(2, me)+"是攻擊方，無法對投手下達暗號。\n");
 
 				break;
 			case "walk":
 				if( (game[INNING]%2) == 0 && game[TEAM2] == myid || ((game[INNING]%2) > 0 && game[TEAM1] == myid) )
 				{
-					tell(me, pnoun(2, me)+"下达暗号鼓舞正在投球的投手，要求其敬远四坏保送目前打者。\n");
-					BASEBALL_D->add_message(myid, me->query_idname()+"紧张地对着投手比了三个连投手都看不太懂的手势“ "+signal+" ”");
+					tell(me, pnoun(2, me)+"下達暗號鼓舞正在投球的投手，要求其敬遠四壞保送目前打者。\n");
+					BASEBALL_D->add_message(myid, me->query_idname()+"緊張地對著投手比了三個連投手都看不太懂的手勢“ "+signal+" ”");
 					setup["hint"] = HINTTYPE_WALK;
 				}
 				else
-					return tell(me, "目前"+pnoun(2, me)+"是攻击方，无法对投手下达暗号。\n");
+					return tell(me, "目前"+pnoun(2, me)+"是攻擊方，無法對投手下達暗號。\n");
 
 				break;
 
 			default:
-				return tell(me, "没有 "+arg+" 这种暗号种类。\n");
+				return tell(me, "沒有 "+arg+" 這種暗號種類。\n");
 		}
 
 
 
 		if( setup["hinttimes"] == 0 )
-			tell(me, pnoun(2, me)+"这次球赛的暗号下达次数已达上限。\n");
+			tell(me, pnoun(2, me)+"這次球賽的暗號下達次數已達上限。\n");
 		else
-			tell(me, pnoun(2, me)+"这场球赛剩下 "+setup["hinttimes"]+" 次下达暗号的机会。\n");
+			tell(me, pnoun(2, me)+"這場球賽剩下 "+setup["hinttimes"]+" 次下達暗號的機會。\n");
 
 		BASEBALL_D->set_setup(myid, setup);
 		return;
 	}
 
-	return tell(me, "请输入正确的指令格式(help baseball)。\n");
+	return tell(me, "請輸入正確的指令格式(help baseball)。\n");
 }

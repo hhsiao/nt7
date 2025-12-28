@@ -7,14 +7,14 @@ inherit ARMOR;
 
 void create()
 {
-        set_name(HIY "神" HIW "之" HIM "祝福" NOR YEL "铁甲" NOR, ({"zhufu armor","tiejia","armor"}));
+        set_name(HIY "神" HIW "之" HIM "祝福" NOR YEL "鐵甲" NOR, ({"zhufu armor","tiejia","armor"}));
         set_weight(1000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
                 set("unit", "件");
-                set("long", "一件沉甸甸的铁甲。\n");
+                set("long", "一件沉甸甸的鐵甲。\n");
                 set("value", 3000);
                 set("material", "steel");
                 set("armor_prop/armor", 40);
@@ -23,7 +23,7 @@ void create()
         set("auto_load", 1); 
         set("mod_mark", "A2010");  
         set("mod_level", "M2010");  
-        set("mod_name", HIY"神"HIW"之"HIM"祝福"NOR YEL"套装"NOR); 
+        set("mod_name", HIY"神"HIW"之"HIM"祝福"NOR YEL"套裝"NOR); 
 
         set("enchase", ([ 
                 "flute" : 1,

@@ -38,15 +38,15 @@ void create()
 
 int accept_fight(object ob)
 {
-        command("say 我没有兴趣和你较量，你快滚开。");
+        command("say 我沒有興趣和你較量，你快滾開。");
         return 0;
 }
 
 int accept_hit(object ob)
 {
-        message_vision(HIW "$N" HIW "脸色一变，闪过一道杀气。怒"
-                       "喝道：好一个" + RANK_D->query_rude(ob) +
-                       "，来吧！\n" NOR, this_object());
+        message_vision(HIW "$N" HIW "臉色一變，閃過一道殺氣。怒"
+                       "喝道：好一個" + RANK_D->query_rude(ob) +
+                       "，來吧！\n" NOR, this_object());
         kill_ob(ob);
         return 1;
 }
@@ -61,12 +61,12 @@ int accept_kill(object ob)
 
 int accept_ansuan(object ob)
 {
-        return notify_fail("那人警惕性好高，你难以下手。\n");
+        return notify_fail("那人警惕性好高，你難以下手。\n");
 }
 
 int accept_touxi(object ob)
 {
-        return notify_fail("那人警惕性好高，你难以下手。\n");
+        return notify_fail("那人警惕性好高，你難以下手。\n");
 }
 
 void random_move()
@@ -84,8 +84,8 @@ void remove()
 
         if (! living(this_object()))
         {
-                message_vision("路过两个人，看到昏迷不醒的$N"
-                               "，叹口气，把$P架走了。\n",
+                message_vision("路過兩個人，看到昏迷不醒的$N"
+                               "，嘆口氣，把$P架走了。\n",
                                this_object());
                 return;
         }
@@ -106,35 +106,35 @@ void die(object killer)
         {
                 if (query("shen_type") == 1)
                 {
-                        GIFT_D->delay_bonus(ob, ([ "prompt" : "你又做了件不义之事",
+                        GIFT_D->delay_bonus(ob, ([ "prompt" : "你又做了件不義之事",
                                                    "shen"   : -random(100) - 100,
                                                    "score"  : random(5) + 5,
                                                    "weiwang": random(3) + 2, ]));
 
 /*
-                        CHANNEL_D->do_channel(this_object(), "rumor", "听说" +
+                        CHANNEL_D->do_channel(this_object(), "rumor", "聽說" +
                                               ob->name(1)+"("+query("id", ob)+
                                               ")在" + environment()->short() + HIM
-                                              "杀害了" + name() + "，为朝廷除去一"
+                                              "殺害了" + name() + "，為朝廷除去一"
                                               "心腹之患。" NOR);
 */
                 } else
                 {
-                        GIFT_D->delay_bonus(ob, ([ "prompt" : "你又做了件侠义之事",
+                        GIFT_D->delay_bonus(ob, ([ "prompt" : "你又做了件俠義之事",
                                                    "shen"   : random(100) + 100,
                                                    "score"  : random(5) + 5,
                                                    "weiwang": random(3) + 2, ]));
 
 /*
-                        CHANNEL_D->do_channel(this_object(), "rumor", "听说" +
+                        CHANNEL_D->do_channel(this_object(), "rumor", "聽說" +
                                               ob->name(1)+"("+query("id", ob)+
                                               ")在" + environment()->short() + HIM
-                                              "击毙了" + name() + "，为周围百姓除"
+                                              "擊斃了" + name() + "，為周圍百姓除"
                                               "去了一害。" NOR);
 */
                 }
 
-                // 被列为门派中断的自由任务
+                // 被列為門派中斷的自由任務
                 if( query("quest/freequest", ob)>0 )
                         GIFT_D->delay_freequest_bonus(ob);
         }

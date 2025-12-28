@@ -3,14 +3,14 @@
 inherit TASK;
 void create()
 {
-    set_name( HIW "陈圆圆画像" NOR, ({ "hua xiang" }) );
+    set_name( HIW "陳圓圓畫像" NOR, ({ "hua xiang" }) );
     set_weight(1);
     if( clonep() )
             destruct(this_object());
     else {
-            set("unit", "张");
+            set("unit", "張");
             set("material", "paper");
-            set("long", "这是一张陈圆圆画像。\n");
+            set("long", "這是一張陳圓圓畫像。\n");
           }
     set("owner", "胡逸之");
     setup();

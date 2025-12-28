@@ -2,11 +2,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("戏子", ({ "xi zi", "xi", "zi" }) );
+        set_name("戲子", ({ "xi zi", "xi", "zi" }) );
         set("gender", "男性" );
         set("age", 32);
         set("long",
-              "一个在戏院唱戏的戏子。\n");
+              "一個在戲院唱戲的戲子。\n");
         set("shen_type", -1);
         set("combat_exp", 2501235);
         set("max_qi", 1);

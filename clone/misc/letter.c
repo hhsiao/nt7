@@ -10,7 +10,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "封");
-                set("long", "这是一封信件。\n");
+                set("long", "這是一封信件。\n");
                 set("value", 0);
         }
         setup();

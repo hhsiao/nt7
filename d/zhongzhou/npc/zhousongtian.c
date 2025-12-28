@@ -8,14 +8,14 @@ int redeem(string arg);
 void create()
 {
         set_name("周松天", ({"zhou songtian", "zhou", "songtian"}));
-        set("title", "当铺老板");
+        set("title", "當鋪老闆");
         set("shen_type", 0);
 
         set("gender", "男性");
         set_max_encumbrance(100000000);
         set("age", 35);
         set("str", 100);
-        set("long", "周松天乃中州城内的富豪。\n");
+        set("long", "周松天乃中州城內的富豪。\n");
         set("no_get_from", 1);
 
         set_skill("unarmed", 60);

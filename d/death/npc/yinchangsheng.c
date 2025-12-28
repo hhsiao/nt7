@@ -5,14 +5,14 @@ inherit F_DEALER;
 
 void create()
 {
-        set_name("阴长生", ({ "yin changsheng", "yin", "changsheng" }));
+        set_name("陰長生", ({ "yin changsheng", "yin", "changsheng" }));
         set("title", HIR "冥府地藏王殿前" NOR);
-        set("nickname", HIB "阴王" NOR);
+        set("nickname", HIB "陰王" NOR);
         set("shen_type", 1);
 
         set("gender", "男性");
         set("age", 475);
-        set("long","阴长生本是个落弟秀才，后在丰都山修练成仙，御封「阴王」。\n");
+        set("long","陰長生本是個落弟秀才，後在豐都山修練成仙，御封「陰王」。\n");
 
         set_skill("unarmed", 500);
         set_skill("dodge", 500);

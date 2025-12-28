@@ -6,15 +6,15 @@ inherit BOOK;
 
 void create()
 {
-        set_name(HIY "「九章算术」" NOR, ({ "jiuzhang", "shu" }));
+        set_name(HIY "「九章算術」" NOR, ({ "jiuzhang", "shu" }));
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
                 set("unit", "本");
-                set("long", "这是一本薄薄的小册子，上面写着"
-                            "“九章算术”四个古篆小字。\n");
+                set("long", "這是一本薄薄的小冊子，上面寫著"
+                            "“九章算術”四個古篆小字。\n");
                 set("value", 0);
                 set("material", "paper");
                 set("skill", ([

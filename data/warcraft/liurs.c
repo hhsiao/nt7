@@ -7,7 +7,7 @@ void setup()
         set_name("[1;32m如是[2;37;0m[2;37;0m", ({"liurss"}));        
         set("gender", "男性");                
         set("long", "哈哈[2;37;0m
-它是柳如是的魔幻兽。
+它是柳如是的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

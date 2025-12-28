@@ -1,11 +1,11 @@
-// 大唐双龙传
+// 大唐雙龍傳
 
 inherit NPC;
 
 void create()
 {
   
-  set_name("老学究", ({"lao xuejiu", "xuejiu"}));
+  set_name("老學究", ({"lao xuejiu", "xuejiu"}));
   set("gender", "男性");
   set("combat_exp", 3000);
   set("age", 38);

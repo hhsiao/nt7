@@ -11,25 +11,25 @@ int update_condition(object me, int duration)
         string msg;
         
         if( !living(me) ) {
-                message("vision", me->name() + "痛苦地呻吟了一声。\n", environment(me), me);
+                message("vision", me->name() + "痛苦地呻吟了一聲。\n", environment(me), me);
         }
         else {
-                tell_object(me,HIR"你只觉丹田中一股真气逆行，胸中烦恶欲呕！\n" NOR );
-                message_vision(HIW"$N眼睛中射出异样光芒，口中喃喃自语。\n"NOR,me);
+                tell_object(me,HIR"你只覺丹田中一股真氣逆行，胸中煩惡欲嘔！\n" NOR );
+                message_vision(HIW"$N眼睛中射出異樣光芒，口中喃喃自語。\n"NOR,me);
         }
         
-        set_temp("die_reason", "修炼七伤拳走火入魔死了", me);
+        set_temp("die_reason", "修煉七傷拳走火入魔死了", me);
         me->receive_wound("qi", 1000);
         
         ob = all_inventory(environment(me));
         for(i=0; i<sizeof(ob); i++) {
-                if( query("race", ob[i]) != "人类"
+                if( query("race", ob[i]) != "人類"
                 ||  ob[i]==me || !me->visible(ob[i])) 
                         continue;
-                tell_object(me, "\n"+ob[i]->name()+"对著你喝道：「"
+                tell_object(me, "\n"+ob[i]->name()+"對著你喝道：「"
                         + RANK_D->query_rude(me)+"！今日不是你死就是我活！」\n\n");
                 tell_object(me, HIR "如果你要和" + ob[i]->name()
-                        + "性命相搏，请你也对这个人下一次 kill 指令。\n"NOR);
+                        + "性命相搏，請你也對這個人下一次 kill 指令。\n"NOR);
                 me->want_kill(ob[i]);
                 me->kill_ob(ob[i]);
                 ob[i]->fight_ob(me);

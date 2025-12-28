@@ -3,10 +3,10 @@
 #include <room.h>
 inherit ROOM;
 void create()
-{    set("short", "枯树顶");
+{    set("short", "枯樹頂");
         set("long", @LONG
-这棵树还算高大，可惜已枯死多年。这里四下漆黑，只是远方隐隐
-似有灯光闪耀。你看着脚下的白雾，举棋不定，踌躇不前....
+這棵樹還算高大，可惜已枯死多年。這裡四下漆黑，只是遠方隱隱
+似有燈光閃耀。你看著腳下的白霧，舉棋不定，躊躇不前....
 LONG
         );
        	set("coor/x",-10);
@@ -14,8 +14,8 @@ LONG
 	set("coor/z",10);
         set("no_magic",1);
         set("item_desc", ([
-         "白雾": "看来想越过这团白雾，只能靠施展轻功了。(jump)\n",
-	 "灯光" : "想靠近这隐约的灯光，只好凭运气闯一闯了。(jump)\n",
+         "白霧": "看來想越過這團白霧，只能靠施展輕功了。(jump)\n",
+	 "燈光" : "想靠近這隱約的燈光，只好憑運氣闖一闖了。(jump)\n",
 		        ]) );
 	setup();
 }
@@ -26,7 +26,7 @@ void init()
 }
 int jumpbusy(object me)
 {  object room;
-  message_vision("\n只听一阵衣衫撕裂和树枝折断的声音，然后$N重重地摔到了地上...\n\n",me);  
+  message_vision("\n只聽一陣衣衫撕裂和樹枝折斷的聲音，然後$N重重地摔到了地上...\n\n",me);  
          me->unconcious();
          room = find_object("/d/yuanyue/zz7");
          if(!objectp(room)) room=load_object("/u/moon/zz7");   
@@ -36,7 +36,7 @@ int jumpbusy(object me)
 
 int jumpbusya(object me)
 {  object room;
- message_vision("\n$N突然发觉内力不济，心中暗叫不妙,身形已向下急坠!\n\n",me);
+ message_vision("\n$N突然發覺內力不濟，心中暗叫不妙,身形已向下急墜!\n\n",me);
          room = find_object("/d/yuanyue/zz2");
          if(!objectp(room)) room=load_object("/u/moon/zz2");
          me->move(room);
@@ -46,7 +46,7 @@ int jumpbusya(object me)
 
 int jumpbusyb(object me)
 {  object room;
-   write("\n你顺利地飞越了脚下的浓浓白雾,轻轻的落在一大片草地上...\n\n" );
+   write("\n你順利地飛越了腳下的濃濃白霧,輕輕的落在一大片草地上...\n\n" );
          room = find_object("/n/moon/caodi");
          if(!objectp(room)) room=load_object("/u/moon/caodi");
          me->move(room);
@@ -62,18 +62,18 @@ int do_jump(string arg)
         aa = me->query_skill("move",1);
         bb = me->query("force");
         if( !arg || arg=="" ) 
-        return notify_fail("你想向哪个地方跳？\n");
-        if( arg=="out" || arg=="灯光") 
+        return notify_fail("你想向哪個地方跳？\n");
+        if( arg=="out" || arg=="燈光") 
  {    
          if(aa < 30)
-     {  message_vision("\n$N横下心来，闭上眼睛，猛地向外跳了出去....\n",me); 
+     {  message_vision("\n$N橫下心來，閉上眼睛，猛地向外跳了出去....\n",me); 
         me->start_busy(1);
         call_out("jumpbusy",1,me);
         me->stop_busy();
         return 1;
       }
          else 
-message_vision("\n$N展开身形，御风而起，勇敢地向无边的黑暗掠去......\n",me);
+message_vision("\n$N展開身形，御風而起，勇敢地向無邊的黑暗掠去......\n",me);
         
 	if( bb < 200 )
       {  me->start_busy(1);
@@ -88,6 +88,6 @@ else
  	 return 1;						
       }
  }
-	write("你想向哪个地方跳？\n");
+	write("你想向哪個地方跳？\n");
 }
 

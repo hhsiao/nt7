@@ -11,28 +11,28 @@ int exert(object me, object target)
         object weapon;
 
         if (target != me)
-                return notify_fail("你只能用六道轮回剑来提升自己的战斗力。\n");
+                return notify_fail("你只能用六道輪迴劍來提升自己的戰鬥力。\n");
 
         if( query_temp("sword", me) )
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         if (me->query_skill_mapped("sword") != "lunhui-sword")
-                return notify_fail("你还没有激发六道轮回剑为剑法，无法运功。\n");
+                return notify_fail("你還沒有激發六道輪迴劍為劍法，無法運功。\n");
                 
         if( !objectp(weapon=query_temp("weapon", me)) )
-                return notify_fail("你还没有装备上你的宝剑，无法运功。\n");
+                return notify_fail("你還沒有裝備上你的寶劍，無法運功。\n");
                 
         skill = me->query_skill("force");
         
         if( query("neili", me)<3000 )
-                return notify_fail("你内力不足，无法运功。\n");
+                return notify_fail("你內力不足，無法運功。\n");
                 
         addn("neiil", -3000, me);
         
-        message_combatd(NOR + CYN "$N轻转手中" + weapon->name() + NOR + CYN "，顷刻间，只见" + weapon->name() + 
-                        NOR + CYN "被一道吞吐不定的青芒所笼罩，甚是奇异！\n\n" NOR, me);
+        message_combatd(NOR + CYN "$N輕轉手中" + weapon->name() + NOR + CYN "，頃刻間，只見" + weapon->name() + 
+                        NOR + CYN "被一道吞吐不定的青芒所籠罩，甚是奇異！\n\n" NOR, me);
 
-        // 打通BREAKUP后的效果增加20%
+        // 打通BREAKUP後的效果增加20%
         if( query("breakup", me))skill=skill+skill*2/10;
 
         addn_temp("apply/damage", skill/4, me);
@@ -57,7 +57,7 @@ void remove_effect(object me, int amount)
                 addn_temp("apply/sword", -amount/8, me);
 
                 delete_temp("sword", me);
-                tell_object(me, HIW "你的六道轮回剑「轮回剑气」运行完毕，将内力收回丹田。\n" NOR);
+                tell_object(me, HIW "你的六道輪迴劍「輪迴劍氣」運行完畢，將內力收回丹田。\n" NOR);
         }
 
 

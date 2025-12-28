@@ -8,9 +8,9 @@ int permit_pass(object me, string dir);
 
 void create()
 {
-        set_name("唐刚", ({ "tang gang", "tang", "gang"}));
+        set_name("唐剛", ({ "tang gang", "tang", "gang"}));
         set("nickname", HIR "嫡系死士" NOR); 
-        set("long", "这是嫡系死士之一，一身的功夫却是不凡。\n");
+        set("long", "這是嫡系死士之一，一身的功夫卻是不凡。\n");
         set("gender", "男性");
         set("age", 55);
         set("class", "tangmen");
@@ -56,7 +56,7 @@ void create()
         
         prepare_skill("hand", "boyun-suowu");
 
-        create_family("唐门世家", 3, "弟子");
+        create_family("唐門世家", 3, "弟子");
         
         set("chat_chance_combat", 20);
         set("chat_msg_combat", ({
@@ -91,35 +91,35 @@ int permit_pass(object me, string dir)
                 
         if( !query("family", me) )
         {
-                message_vision("$N对$n道：要学艺的话到镇上找唐柔？！\n", this_object(), me);
-                return notify_fail("唐刚不想让你过去。\n"); 
+                message_vision("$N對$n道：要學藝的話到鎮上找唐柔？！\n", this_object(), me);
+                return notify_fail("唐剛不想讓你過去。\n"); 
         }
         
-        notify_fail("看来" + name() + "不打算让你过去。\n");
+        notify_fail("看來" + name() + "不打算讓你過去。\n");
 
         inv = all_inventory(me);
         for (i = 0; i < sizeof(inv); i++)
         {
                 if (! userp(inv[i])) continue;
-                if( query("family/family_name", inv[i]) != "唐门世家" )
+                if( query("family/family_name", inv[i]) != "唐門世家" )
                 {
-                        message_vision("$N对$n喝道：你背的是谁？还不快快放下！\n",
+                        message_vision("$N對$n喝道：你背的是誰？還不快快放下！\n",
                                        this_object(), me);
                         return 0;
                 }
         }
 
         if( query("family/family_name", me) && 
-            query("family/family_name", me) != "唐门世家" )
+            query("family/family_name", me) != "唐門世家" )
         {
-                message_vision("$N对$n道：对不起，不是我们唐门世家的人"
-                               "请勿入唐门。\n", this_object(), me);
+                message_vision("$N對$n道：對不起，不是我們唐門世家的人"
+                               "請勿入唐門。\n", this_object(), me);
                 return 0;
         }
         
         if( !query("tangmen/upshan", me) )
         {
-                message_vision("$N对$n道：对不起，你的武功还没有练到家，不可进唐门的！\n",
+                message_vision("$N對$n道：對不起，你的武功還沒有練到家，不可進唐門的！\n",
                                this_object(), me);
                 return 0;
         }              

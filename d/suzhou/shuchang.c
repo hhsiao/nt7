@@ -5,16 +5,16 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "书场");
+        set("short", "書場");
         set("long", @LONG
-你走进书场，看见里面热热闹闹的，场子里都是听书的，场子前面
-有一位说书先生，他看上去四五十岁，手中拿着一块响板，正在聚精会
-神地说着评书--《杨家将》。你也逐渐被评书的内容所吸引，场中的人
-们不时的发出惊叹和喝彩声，时不时将铜板抛了上去。
+你走進書場，看見裡面熱熱鬧鬧的，場子裡都是聽書的，場子前面
+有一位說書先生，他看上去四五十歲，手中拿著一塊響板，正在聚精會
+神地說著評書--《楊家將》。你也逐漸被評書的內容所吸引，場中的人
+們不時的發出驚歎和喝彩聲，時不時將銅板拋了上去。
 LONG );
         set("outdoors", "suzhou");
         set("item_desc", ([
-                "door" : "这是一扇通往后堂的小木门。\n"
+                "door" : "這是一扇通往後堂的小木門。\n"
         ]));
         set("exits", ([
                 "south" : __DIR__"xidajie2",
@@ -23,7 +23,7 @@ LONG );
         set("objects", ([
                 __DIR__"npc/gongzi": 1,
         ]));
-        create_door("enter", "小门", "out", DOOR_CLOSED);
+        create_door("enter", "小門", "out", DOOR_CLOSED);
 	set("coor/x", 1090);
 	set("coor/y", -1050);
 	set("coor/z", 0);

@@ -3,7 +3,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return WHT "捕风捉影" NOR; }
+string name() { return WHT "捕風捉影" NOR; }
 
 inherit F_SSERVER;
 
@@ -16,28 +16,28 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if ((int)me->query_skill("qingyun-shou", 1) < 50)
-                return notify_fail("你的青云手不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你的青雲手不夠嫻熟，難以施展" + name() + "。\n");
 
         if ((int)me->query_skill("force") < 100)
-                return notify_fail("你的内功修为不够，难以施展" + name() + "。\n");
+                return notify_fail("你的內功修為不夠，難以施展" + name() + "。\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你现在真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你現在真氣不夠，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("hand") != "qingyun-shou")
-                return notify_fail("你没有激发青云手，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發青雲手，難以施展" + name() + "。\n");
 
         if (me->query_skill_prepared("hand") != "qingyun-shou")
-                return notify_fail("你现在没有准备使用青云手，难以施展" + name() + "。\n");
+                return notify_fail("你現在沒有準備使用青雲手，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = WHT "$N" WHT "划身错步，单手拂过，手影虚虚实实，难辨真伪，完"
-              "全笼罩$n" WHT "。\n" NOR;
+        msg = WHT "$N" WHT "劃身錯步，單手拂過，手影虛虛實實，難辨真偽，完"
+              "全籠罩$n" WHT "。\n" NOR;
 
         ap = attack_power(me, "hand");
         dp = defense_power(target, "dodge");
@@ -48,14 +48,14 @@ int perform(object me, object target)
                 damage = damage_power(me, "hand");
                 addn("neili", -150, me);
                 msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 55,
-                                           HIR "$p" HIR "一时辨别不清虚实，被$P"
-                                           HIR "手影划过气门，气血翻滚，几乎窒息。\n" NOR);
+                                           HIR "$p" HIR "一時辨別不清虛實，被$P"
+                                           HIR "手影劃過氣門，氣血翻滾，幾乎窒息。\n" NOR);
         } else
         {
                 me->start_busy(3);
                 addn("neili", -100, me);
-                msg += CYN "可是$p" CYN "识破了$P"
-                       CYN "这一招，斜斜一跃避开。\n" NOR;
+                msg += CYN "可是$p" CYN "識破了$P"
+                       CYN "這一招，斜斜一躍避開。\n" NOR;
         }
         message_combatd(msg, me, target);
 

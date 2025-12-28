@@ -1,6 +1,6 @@
 // This is player's own perform (Write by Lonely@nt2)
 // Create by 枯枝(Kuzhi) at Wed May 27 01:56:35 2015
-// 魔动九天(modong)
+// 魔動九天(modong)
 #include <ansi.h>
 #include <combat.h>
 
@@ -8,7 +8,7 @@ inherit F_SSERVER;
 
 int is_player_perform() { return 1; }
 
-string name() { return HIW "魔动九天" NOR; }
+string name() { return HIW "魔動九天" NOR; }
 
 string *weapon_sk = ({
         "sword", "blade", "staff", "whip", "club", "hammer", "axe"
@@ -29,7 +29,7 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if (me->is_busy()) return notify_fail(BUSY_MESSAGE);
 
@@ -37,7 +37,7 @@ int perform(object me, object target)
         {
                 if( !objectp(weapon=query_temp("weapon", me) )
                     || query("skill_type", weapon) != "finger" )
-                        return notify_fail("你所使用的武器不对，难以施展" + name() + "。\n");
+                        return notify_fail("你所使用的武器不對，難以施展" + name() + "。\n");
         } else
         {
                 if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
@@ -45,21 +45,21 @@ int perform(object me, object target)
         }
 
         if ((int)me->query_skill("moxin-finger", 1) < 400)
-                return notify_fail("你" + to_chinese("moxin-finger") + "不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你" + to_chinese("moxin-finger") + "不夠嫻熟，難以施展" + name() + "。\n");
 
         if (member_array("finger", weapon_sk) == -1)
         {
                 if (me->query_skill_prepared("finger") != "moxin-finger")
-                        return notify_fail("你没有准备" + to_chinese("moxin-finger") + "，难以施展" + name() + "。\n");
+                        return notify_fail("你沒有準備" + to_chinese("moxin-finger") + "，難以施展" + name() + "。\n");
         }
 
         if( query("neili", me)<300 )
-                return notify_fail("你现在的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N飞跃半空，掐指而立，只见狂暴无涛的魔气，从虚空中转瞬生成，上抵云霄，下贯海渊。一时间整个天地，万物都已黯然失色，仅仅余下无穷霹雳电芒闪耀交错，仿佛已化为雷电肆虐的宇宙，涌向$n。。" + "\n" + NOR;
+        msg = HIW "$N飛躍半空，掐指而立，只見狂暴無濤的魔氣，從虛空中轉瞬生成，上抵雲霄，下貫海淵。一時間整個天地，萬物都已黯然失色，僅僅餘下無窮霹靂電芒閃耀交錯，彷彿已化為雷電肆虐的宇宙，湧向$n。。" + "\n" + NOR;
 
         ap = attack_power(me, "finger");
         dp = defense_power(target, "dodge");
@@ -67,13 +67,13 @@ int perform(object me, object target)
 
         if (ap * 2 / 3 + random(ap) > dp)
         {
-                msg += HIM "只见$n一声惨叫，魔气在$n的体内肆虐，鲜血从$n口耳眼鼻中汹涌喷出！" + "\n" NOR;
+                msg += HIM "只見$n一聲慘叫，魔氣在$n的體內肆虐，鮮血從$n口耳眼鼻中洶湧噴出！" + "\n" NOR;
                 count = ap / 5;
                 addn_temp("apply/attack", count, me);
                 addn_temp("apply/damage", count, me);
         } else
         {
-                msg += NOR + CYN "$p见势不妙，沉身闷喝，体内真气流转抵抗$P的这记杀招，引导魔气从脚底泄入地底，尘土飞扬中，地上裂开了无数道大口子！" + "\n" NOR;
+                msg += NOR + CYN "$p見勢不妙，沉身悶喝，體內真氣流轉抵抗$P的這記殺招，引導魔氣從腳底洩入地底，塵土飛揚中，地上裂開了無數道大口子！" + "\n" NOR;
                 count = 0;
         }
 

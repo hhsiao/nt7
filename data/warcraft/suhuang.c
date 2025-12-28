@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("青龙[2;37;0m[2;37;0m", ({"dargon"}));        
+        set_name("青龍[2;37;0m[2;37;0m", ({"dargon"}));        
         set("gender", "男性");                
-        set("long", "一条青龙[2;37;0m
-它是苏黄的魔幻兽。
+        set("long", "一條青龍[2;37;0m
+它是蘇黃的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "suhuang");
-        set("owner_name", "苏黄");
+        set("owner_name", "蘇黃");
         set_temp("owner", "suhuang");
-        set_temp("owner_name", "苏黄");
+        set_temp("owner_name", "蘇黃");
         ::setup();
 }

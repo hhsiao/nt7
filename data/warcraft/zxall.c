@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("奔龟[2;37;0m[2;37;0m", ({"bengui"}));        
+        set_name("奔龜[2;37;0m[2;37;0m", ({"bengui"}));        
         set("gender", "女性");                
-        set("long", "奔龟[2;37;0m
-它是舞丹的魔幻兽。
+        set("long", "奔龜[2;37;0m
+它是舞丹的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

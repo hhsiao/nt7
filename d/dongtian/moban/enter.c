@@ -6,28 +6,28 @@ inherit ROOM;
 #define STEP_RND 1000
 #define COSTS2 ({4,3,2,1,0,-1,-2,-3,-4})
 #define EXITS2 ({"north","south","west","east","northwest","northeast","southwest","southeast"})
-#define SHORTZHEN ({HIB + "幻阵" + NOR, HIM + "迷阵" + NOR, HIG + "陷阵" + NOR, HIR + "杀阵" + NOR, HIY + "绝阵" + NOR, BRED + HIC + "劫阵" + NOR})
+#define SHORTZHEN ({HIB + "幻陣" + NOR, HIM + "迷陣" + NOR, HIG + "陷陣" + NOR, HIR + "殺陣" + NOR, HIY + "絕陣" + NOR, BRED + HIC + "劫陣" + NOR})
 
 mapping default_dirs = ([
         "north":        "北方",
         "south":        "南方",
-        "east":         "东方",
+        "east":         "東方",
         "west":         "西方",
-        "northup":      "北边",
-        "southup":      "南边",
-        "eastup":       "东边",
-        "westup":       "西边",
-        "northdown":    "北边",
-        "southdown":    "南边",
-        "eastdown":     "东边",
-        "westdown":     "西边",
-        "northeast":    "东北",
+        "northup":      "北邊",
+        "southup":      "南邊",
+        "eastup":       "東邊",
+        "westup":       "西邊",
+        "northdown":    "北邊",
+        "southdown":    "南邊",
+        "eastdown":     "東邊",
+        "westdown":     "西邊",
+        "northeast":    "東北",
         "northwest":    "西北",
-        "southeast":    "东南",
+        "southeast":    "東南",
         "southwest":    "西南",
         "up":           "上面",
         "down":         "下面",
-        "enter":        "里面",
+        "enter":        "裡面",
         "out":          "外面",
 ]);
 
@@ -39,7 +39,7 @@ string load_name()
 int save_name(string arg)
 {
         if (!arg || arg=="") 
-                return notify_fail(NOR"没有arg来指定洞天名！\n"NOR);
+                return notify_fail(NOR"沒有arg來指定洞天名！\n"NOR);
         write_file(__DIR__"name.o", arg, 1);
         reload_object(this_object());
         return 1;
@@ -49,7 +49,7 @@ int clean_up() { return 1;}
 
 string dtname = load_name();
 
-int reload_me()//1分钟
+int reload_me()//1分鐘
 {
         int lifetime = 0, level = 0, pro = 0;
         lifetime = __DIR__"data.c"->do_load("guarder_lifetime");
@@ -87,7 +87,7 @@ int create_exit2()
                 else {
                         set("exits/out", outroom);
                         set("exits/dongtian", base_name(this_object()), room);
-                        tell_room(this_object(), NOR HIB "只见空间扭曲，" + dtname + "洞天的大阵门户发生了变化。\n" NOR);
+                        tell_room(this_object(), NOR HIB "只見空間扭曲，" + dtname + "洞天的大陣門戶發生了變化。\n" NOR);
                         log_file("static/dongtian", "  -[" + dtname + "]-> " + outroom + "\n");
                 }
 
@@ -120,12 +120,12 @@ void create()
 {
                 reload_me();
         set("long",@LONG
-这里是洞天前的护山大阵，阵法分为幻迷陷杀绝劫，各个高深莫测。
-不知有多少贪图仙府遗珍的江湖儿女，就在此地落得个万劫不复。
+這裡是洞天前的護山大陣，陣法分為幻迷陷殺絕劫，各個高深莫測。
+不知有多少貪圖仙府遺珍的江湖兒女，就在此地落得個萬劫不復。
 LONG);
 
                 set("no_sleep_room",1);
-                //set("no_magic", 1);//准许招武器
+                //set("no_magic", 1);//准許招武器
                 set("no_rideto", 1);
                 set("no_flyto", 1);
                 set("no_drift", 1);
@@ -153,7 +153,7 @@ void backup_exit()
         delete("exits/" + exn);
         exn = default_dirs[exn];
         zhen = SHORTZHEN[query("zhen_type")];
-        tell_room(this_object(), NOR + zhen + NOR + (random(2) ? "急速旋转" : "景象变幻") + (random(2) ? "中" : "之间") + exn + "的" + (random(2) ? "路" : "出口") + (random(2) ? "消失" : "不见") + "了。\n" + NOR);
+        tell_room(this_object(), NOR + zhen + NOR + (random(2) ? "急速旋轉" : "景象變幻") + (random(2) ? "中" : "之間") + exn + "的" + (random(2) ? "路" : "出口") + (random(2) ? "消失" : "不見") + "了。\n" + NOR);
 }
 
 void restore_exit()
@@ -172,7 +172,7 @@ void restore_exit()
         delete("exits_b/" + exn);
         exn = default_dirs[exn];
         zhen = SHORTZHEN[query("zhen_type")];
-        tell_room(this_object(), NOR + zhen + NOR + (random(2) ? "急速旋转" : "景象变幻") + (random(2) ? "中" : "之间") + exn + "的" + (random(2) ? "方向" : "通道") + (random(2) ? "出现" : "连通") + "了。\n" + NOR);
+        tell_room(this_object(), NOR + zhen + NOR + (random(2) ? "急速旋轉" : "景象變幻") + (random(2) ? "中" : "之間") + exn + "的" + (random(2) ? "方向" : "通道") + (random(2) ? "出現" : "連通") + "了。\n" + NOR);
 }
 
 void heart_beat()
@@ -181,7 +181,7 @@ void heart_beat()
         
         if ( stringp(query("exits/out", me)) && objectp(oroom = get_object(query("exits/out", me))) ) {
                 set("exits/dongtian", base_name(me), oroom);
-                tell_room(oroom, NOR HIG "只见空间扭曲，通往" + dtname + "洞天的阵门隐隐约约现出来(go dongtian)。\n" NOR);
+                tell_room(oroom, NOR HIG "只見空間扭曲，通往" + dtname + "洞天的陣門隱隱約約現出來(go dongtian)。\n" NOR);
         }
         
         if (!random(11 - query("zhen_type"))) {
@@ -195,7 +195,7 @@ void heart_beat()
 
 int discmds() 
 { 
-        tell_object(this_player(), "这里不允许你这样做。\n");  
+        tell_object(this_player(), "這裡不允許你這樣做。\n");  
         return 1;  
 } 
 
@@ -211,10 +211,10 @@ int do_sav(string arg)
         int val;
         
         if (!arg || arg=="") 
-                return notify_fail(NOR"没有指定arg:key val！\n"NOR);
+                return notify_fail(NOR"沒有指定arg:key val！\n"NOR);
         
         if (sscanf(arg, "%s %d", key, val)!=2) 
-                return notify_fail(NOR"没有指定arg:key val！\n"NOR);
+                return notify_fail(NOR"沒有指定arg:key val！\n"NOR);
                 
         return __DIR__"data.c"->do_save(key, val);
 }
@@ -259,18 +259,18 @@ int dest_ling(object me, int rnd)
         if (!ob || !objectp(ob))
                 return 0;
                 
-        msg = NOR "\n$N轻轻一晃手里的$n..\n" NOR;
+        msg = NOR "\n$N輕輕一晃手裡的$n..\n" NOR;
         message_vision(append_color(msg, CYN), me, ob);
         if (!rnd) {
-                msg = NOR "$N手里的$n喀喇一声碎裂散掉了...\n\n" NOR;
+                msg = NOR "$N手裡的$n喀喇一聲碎裂散掉了...\n\n" NOR;
                 message_vision(append_color(msg, HIY), me, ob);
                 destruct(ob);
                 delete_temp("dongtian/dongtian_ling", me);
                 return 0;
         }
         else {
-                msg = NOR "浓雾里传来" + (random(2)? "一片" : "几声") + (random(2)? "尖叫" : "惨嚎") + 
-                        "，诡秘的" + (random(2)? "傀儡" : "机关") + "人" + (random(2)? "兵器" : "盔甲") + (random(2)? "扔了一地" : "到处都是") + "。\n\n" NOR;
+                msg = NOR "濃霧裡傳來" + (random(2)? "一片" : "幾聲") + (random(2)? "尖叫" : "慘嚎") + 
+                        "，詭秘的" + (random(2)? "傀儡" : "機關") + "人" + (random(2)? "兵器" : "盔甲") + (random(2)? "扔了一地" : "到處都是") + "。\n\n" NOR;
                 message_vision(append_color(msg, CYN), me, ob);
                 me->start_busy(1);
         }
@@ -283,7 +283,7 @@ void init()
         object ling = query_temp("dongtian/dongtian_ling", me);
         
         if ((playerp(me)) && 
-                (!query("load_dt_time") || query("load_dt_time")+60 < time())) {//没有读取过，或者读取时间超过了一分钟
+                (!query("load_dt_time") || query("load_dt_time")+60 < time())) {//沒有讀取過，或者讀取時間超過了一分鐘
                         set("load_dt_time", time());
                         reload_me();
         }
@@ -296,13 +296,13 @@ void init()
         
         if( me->query_condition("killer") ) {
                         me->move(query("exits/out"));
-                tell_object(me, NOR"你正在被通缉，不敢亵渎洞天！\n"NOR);
+                tell_object(me, NOR"你正在被通緝，不敢褻瀆洞天！\n"NOR);
                 return;
         }
         
         if( me->is_ghost() ) {
                         me->move(query("exits/out"));
-                tell_object(me, NOR"等你还了阳再说吧。\n"NOR);
+                tell_object(me, NOR"等你還了陽再說吧。\n"NOR);
                 return;
         }
         
@@ -312,7 +312,7 @@ void init()
                 set_temp("dongtian/zhen/enter_times", time());
         } else {
                 if ( (time() - query_temp("dongtian/zhen/enter_times")) > 1800 && !random(30) ) {
-                        tell_object(me, NOR"你走得头昏眼花，晕沉沉地一头撞出了阵外。\n"NOR);
+                        tell_object(me, NOR"你走得頭昏眼花，暈沉沉地一頭撞出了陣外。\n"NOR);
                         me->command("go out");
                 }
         }
@@ -322,27 +322,27 @@ void init()
                                                                 "quit", "home", "exit", "recall", "ansuan", "touxi", 
                                                                 "surrender", "chatroom", "rideto", "stab", 
                                                                 "team", "kill", "hit", "guard", "ride", "array", "battle", "accept",
-                }));  //不准主动下kill，防止使用大米引怪来协助获取经验
+                }));  //不準主動下kill，防止使用大米引怪來協助獲取經驗
                 
-                if (__DIR__"guangchang.c"->owner_level(me)) {//已经是洞天的主人或者结义之一了的话,set 0
+                if (__DIR__"guangchang.c"->owner_level(me)) {//已經是洞天的主人或者結義之一了的話,set 0
                         set_temp("dongtian/zhen/costs", 0, me);
                 }
 
         if ( ling && objectp(ling) && query_temp("dongtian/zhen/last", me) > query_temp("dongtian/zhen/nextc", me) ) {//有令牌的接近提示
-                write (NOR "你" + (random(2)? "握着" : "手里") + "的洞天仙府令" + (random(2)? "越来越热" : "烫手得很") + "..\n" NOR);
+                write (NOR "你" + (random(2)? "握著" : "手裡") + "的洞天仙府令" + (random(2)? "越來越熱" : "燙手得很") + "..\n" NOR);
         }
         
         if (query_temp("dongtian/zhen/costs", me)==0) {
                 //if (wiz_level(me) > 5) write (HIG ">>test 恭喜!\n" NOR);
-                write (HIG + (random(2)? "蓦" : "忽")  + (random(2)? "然" : "地") + (random(2)? "你" : "只见") + "眼前一" + (random(2)? "亮" : "闪") + 
-                                "，大阵透出" + (random(2)? "一" : "几") + (random(2)? "丝" : "线") + "光芒，似乎看到了阵眼(enter)!\n" NOR);
-                /*//有令牌自动busy，方便进去
+                write (HIG + (random(2)? "驀" : "忽")  + (random(2)? "然" : "地") + (random(2)? "你" : "只見") + "眼前一" + (random(2)? "亮" : "閃") + 
+                                "，大陣透出" + (random(2)? "一" : "幾") + (random(2)? "絲" : "線") + "光芒，似乎看到了陣眼(enter)!\n" NOR);
+                /*//有令牌自動busy，方便進去
                 if ( ling && objectp(ling) ) {
-                        write (NOR "你兴奋得望着里面，用力地捏着洞天仙府令忘记了移动。\n" NOR);
+                        write (NOR "你興奮得望著裡面，用力地捏著洞天仙府令忘記了移動。\n" NOR);
                         me->start_busy(5);
                 }*/
                 me->stop_busy();
-                me->command("go enter");//避免内贼先在此解除结义，再进去break
+                me->command("go enter");//避免內賊先在此解除結義，再進去break
         }
 
 
@@ -358,7 +358,7 @@ int valid_leave(object me, string dir)
         int countp;
         
         if (me->is_fighting())
-                return notify_fail(NOR"你还是先解决目前的敌人吧！\n"NOR);
+                return notify_fail(NOR"你還是先解決目前的敵人吧！\n"NOR);
                 
         if (!playerp(me)) {
                 if (query("exits/out")) me->move(query("exits/out"));
@@ -366,7 +366,7 @@ int valid_leave(object me, string dir)
         }
 
                 if (query("exits/" + dir)) room = get_object(query("exits/" + dir));
-                if (room && objectp(room) && query("max_carry_user", room)) {//限制人数
+                if (room && objectp(room) && query("max_carry_user", room)) {//限制人數
                         inv = all_inventory(room);
                         if( sizeof(inv) > 0 ) {
                 foreach( object ob3 in inv ) {
@@ -376,17 +376,17 @@ int valid_leave(object me, string dir)
 
                 if(query("max_carry_user", room) < countp + 1 && wiz_level(me) < 5) {
                                 me->start_busy(1+random(2));
-                                return notify_fail(NOR"你发现对面的人太多了，你挤不过去。\n"NOR);
+                                return notify_fail(NOR"你發現對面的人太多了，你擠不過去。\n"NOR);
                 }
                 }
 
-        if (undefinedp(cost)) {//非迷宫出口
-                if (dir=="enter") {//如果是enter，并且query 0，方可入
+        if (undefinedp(cost)) {//非迷宮出口
+                if (dir=="enter") {//如果是enter，並且query 0，方可入
                         if (query_temp("dongtian/zhen/costs", me)!=0) {
                                 me->start_busy(1+random(2));
-                                return notify_fail(NOR + dtname + "的府门看着似在眼前，却咫尺天涯，你始终无法靠近。\n"NOR);
+                                return notify_fail(NOR + dtname + "的府門看著似在眼前，卻咫尺天涯，你始終無法靠近。\n"NOR);
                         }
-                        msg = YEL "\n$N" + (random(2)? "冷静" : "沉着") + "地" + (random(2)? "移步" : "轻轻") + "往阵眼走去" + (random(2)? ".." : "...") + "\n\n" NOR;
+                        msg = YEL "\n$N" + (random(2)? "冷靜" : "沉著") + "地" + (random(2)? "移步" : "輕輕") + "往陣眼走去" + (random(2)? ".." : "...") + "\n\n" NOR;
                         message_vision(append_color(msg, YEL), me);
                 }
                 delete_temp("dongtian/zhen", me);
@@ -418,7 +418,7 @@ int valid_leave(object me, string dir)
                         if (npci > 9) npci = 9;
                         pow = 11 - npci;
                         if (nextc < 20) pow = 0;
-                        message_vision(CYN "青烟弥漫中，现出" + chinese_number(npci) + "个影子将$N团团围住...\n" NOR, me);
+                        message_vision(CYN "青煙瀰漫中，現出" + chinese_number(npci) + "個影子將$N團團圍住...\n" NOR, me);
                         while (npci--) {
                                 ob = new(__DIR__"npc/guarder");
                                 set("guarder_level", guarderlevel, ob);
@@ -439,7 +439,7 @@ int valid_leave(object me, string dir)
                         ob->stop_busy();
                                 ob->kill_ob(me);
                 }
-                return notify_fail(CYN"你被傀儡人挡住了去路。\n"NOR);
+                return notify_fail(CYN"你被傀儡人擋住了去路。\n"NOR);
                 
                 }
         }
@@ -448,37 +448,37 @@ int valid_leave(object me, string dir)
         iskill += (int)me->query_skill("qimen-wuxing", 1) /3;
 
                 if (random(iskill) > (900-query("int",me)*5)) {
-                        msg = NOR "你默数奇门阵法口诀，感觉步伐" NOR;
+                        msg = NOR "你默數奇門陣法口訣，感覺步伐" NOR;
                         if (abs(cost)>3) msg += "太大。\n";
-                        else if (abs(cost)>2) msg += "较大。\n";
-                        else if (abs(cost)>1) msg += "适中。\n";
-                        else if (abs(cost)>0) msg += "谨慎。\n";
-                        else msg += "错乱。\n";
+                        else if (abs(cost)>2) msg += "較大。\n";
+                        else if (abs(cost)>1) msg += "適中。\n";
+                        else if (abs(cost)>0) msg += "謹慎。\n";
+                        else msg += "錯亂。\n";
                         write (NOR + msg + NOR);
                 }
         
                 if (nextc<20) {
-                        if (random(iskill) > 1000 -query("int",me)*10) write (NOR "你掐指一算，洞天入口当在二十步之内..\n" NOR);
+                        if (random(iskill) > 1000 -query("int",me)*10) write (NOR "你掐指一算，洞天入口當在二十步之內..\n" NOR);
                 }
                 else if (nextc<50) {
-                        if (random(iskill) > 800 -query("int",me)*8) write (NOR "你掐指一算，洞天入口当在五十步之内..\n" NOR);
+                        if (random(iskill) > 800 -query("int",me)*8) write (NOR "你掐指一算，洞天入口當在五十步之內..\n" NOR);
                 }
                 else if (nextc<100) {
-                        if (random(iskill) > 600 -query("int",me)*6) write (NOR "你掐指一算，洞天入口当在一百步之内..\n" NOR);
+                        if (random(iskill) > 600 -query("int",me)*6) write (NOR "你掐指一算，洞天入口當在一百步之內..\n" NOR);
                 }
                 else if (nextc<200) {
-                        if (random(iskill) > 400 -query("int",me)*4) write (NOR "你掐指一算，洞天入口当在两百步之内..\n" NOR);
+                        if (random(iskill) > 400 -query("int",me)*4) write (NOR "你掐指一算，洞天入口當在兩百步之內..\n" NOR);
                 }
                 else if (nextc<300) {
-                        if (random(iskill) > 300 -query("int",me)*2) write (NOR "你掐指一算，洞天入口当在三百步之内..\n" NOR);
+                        if (random(iskill) > 300 -query("int",me)*2) write (NOR "你掐指一算，洞天入口當在三百步之內..\n" NOR);
                 }
                 else if (nextc<400) {
-                        if (random(iskill) > 200) write (NOR "你掐指一算，洞天入口当在四百步之内..\n" NOR);
+                        if (random(iskill) > 200) write (NOR "你掐指一算，洞天入口當在四百步之內..\n" NOR);
                 }
                 else if (nextc<500) {
-                        if (random(iskill) > 100) write (NOR "你掐指一算，洞天入口当在五百步之内..\n" NOR);
-                } else if ((nextc % 100) < 5) {//加入此段只为降低难度...
-                        if (random(5)) write (NOR "你在一棵树上看到前人刻下的数字：ｘｘ百米..\n" NOR);
+                        if (random(iskill) > 100) write (NOR "你掐指一算，洞天入口當在五百步之內..\n" NOR);
+                } else if ((nextc % 100) < 5) {//加入此段只為降低難度...
+                        if (random(5)) write (NOR "你在一棵樹上看到前人刻下的數字：ｘｘ百米..\n" NOR);
                         if (query_temp("dongtian/zhen/treeflag", me)) {
                                 if (query_temp("dongtian/zhen/treeflag", me) >= nextc) {
                                         me->command("tanqi");

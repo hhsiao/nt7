@@ -35,19 +35,19 @@ int main(object me, string arg)
         {
                 if (me && ! is_root(me))
                 {
-                        write("只有管理员才能使用 -R 参数。\n");
+                        write("只有管理員才能使用 -R 參數。\n");
                         return 1;
                 }
 
                 if (strsrch(dir, "*") != -1)
                 {
-                        write("为了安全起见，使用 -R 的参数的时候不能使用通配符。\n");
+                        write("為了安全起見，使用 -R 的參數的時候不能使用通配符。\n");
                         return 1;
                 }
 
                 if (dir == "/")
                 {
-                        write("你不能删除根目录。\n");
+                        write("你不能刪除根目錄。\n");
                         return 1;
                 }
 
@@ -63,16 +63,16 @@ int main(object me, string arg)
         {
                 grant = SECURITY_D->query_site_privilege("edit");
                 if( !grant && !sscanf(file, "/u/%*s") )
-                        return notify_fail("你只能删除你自己的目录下文件。\n");
+                        return notify_fail("你只能刪除你自己的目錄下文件。\n");
                         
                 if( grant != "all" && !sscanf(file, "/%s/%*s", grant) )
-                        return notify_fail("你只能删除你自己目录下以及" + grant + "目录下文件。\n");
+                        return notify_fail("你只能刪除你自己目錄下以及" + grant + "目錄下文件。\n");
         }
         flist = get_dir(file);
         if (arrayp(flist)) flist -= ({ ".", ".." });
         if (! arrayp(flist) || ! sizeof(flist))
         {
-                write("没有这个文件。\n");
+                write("沒有這個文件。\n");
                 return 1;
         }
 
@@ -84,7 +84,7 @@ int main(object me, string arg)
         }
 
         if (rm_dir)
-                message_system(HIR "删除目录中，请稍候..." NOR),
+                message_system(HIR "刪除目錄中，請稍候..." NOR),
 
         count = 0;
         for (i = 0; i < sizeof(flist); i++)
@@ -93,9 +93,9 @@ int main(object me, string arg)
         }
 
         if (count)
-                write(HIY "总共有" + count + "个文件被成功删除。\n" NOR);
+                write(HIY "總共有" + count + "個文件被成功刪除。\n" NOR);
         else
-                write("没有删除任何文件。\n");
+                write("沒有刪除任何文件。\n");
         return 1;
 }
 
@@ -104,7 +104,7 @@ protected int rm_item(string file, int rm_dir, object me)
         switch (file_size(file))
         {
         case -1:
-                write("没有这个文件。\n");
+                write("沒有這個文件。\n");
                 return 0;
 
         case -2:
@@ -112,10 +112,10 @@ protected int rm_item(string file, int rm_dir, object me)
                         return rm_dir(file);
 
                 if (rmdir(file))
-                        write("成功的删除了目录(" + file + ").\n");
+                        write("成功的刪除了目錄(" + file + ").\n");
                 else
-                        write("你没有删除该目录的权限或者试图删除一个"
-                              "非空的目录(" + file + ")。\n");
+                        write("你沒有刪除該目錄的權限或者試圖刪除一個"
+                              "非空的目錄(" + file + ")。\n");
                 return 0;
                 
         default:
@@ -126,7 +126,7 @@ protected int rm_item(string file, int rm_dir, object me)
                 if (! SECURITY_D->valid_read(file, me, "ls"))
                         return 0;
 
-                write("你没有删除(" + file + ")的权限。\n");
+                write("你沒有刪除(" + file + ")的權限。\n");
                 return 1;
         }
 }
@@ -161,7 +161,7 @@ int rm_dir(string dir)
                         count += rm_dir(dir + file[i][0]);
         }
 
-        write (HIC "删除目录(" + dir + ")。\n" NOR);
+        write (HIC "刪除目錄(" + dir + ")。\n" NOR);
         rmdir(dir);
         return count;
 }
@@ -169,10 +169,10 @@ int rm_dir(string dir)
 int help(object me)
 {
         write(@HELP
-指令格式 : rm [-R] 档案名
+指令格式 : rm [-R] 檔案名
  
-此指令可让你删除某个档案或目录。如果使用了-R参数，可以删除非空的目
-录，使用该参数务必要小心，以免删除错路径。
+此指令可讓你刪除某個檔案或目錄。如果使用了-R參數，可以刪除非空的目
+錄，使用該參數務必要小心，以免刪除錯路徑。
 
 see also: cp, mv
 HELP );

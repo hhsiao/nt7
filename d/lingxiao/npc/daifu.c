@@ -3,11 +3,11 @@ inherit F_DEALER;
 
 void create()
 {
-        set_name("阎大夫", ({ "yan daifu", "yan", "daifu" }));
+        set_name("閻大夫", ({ "yan daifu", "yan", "daifu" }));
         set("str", 20);
         set("gender", "男性");
         set("age", 18);
-        set("long", "阎大夫是凌宵城中的医生，声得称赞。\n");
+        set("long", "閻大夫是凌宵城中的醫生，聲得稱讚。\n");
         set("combat_exp", 250);
         set("attitude", "friendly");
         set("vendor_goods", ({

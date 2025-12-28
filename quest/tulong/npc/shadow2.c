@@ -5,12 +5,12 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("欧阳锋--影", ({ "ouyang feng-shadow", "shadow" }));
-        set("long", "他是白驼山庄主，号称“西毒”的欧阳锋。\n"
-                   +"由于习练「九阴真经」走火入魔，已变得精\n"
-                   +"神错乱，整日披头散发。不过，看来也不是\n"
+        set_name("歐陽鋒--影", ({ "ouyang feng-shadow", "shadow" }));
+        set("long", "他是白駝山莊主，號稱“西毒”的歐陽鋒。\n"
+                   +"由於習練「九陰真經」走火入魔，已變得精\n"
+                   +"神錯亂，整日披頭散髮。不過，看來也不是\n"
                    +"真人呢。\n");
-        set("title", "白驼山庄主");
+        set("title", "白駝山莊主");
         set("gender", "男性");
         set("age", 53);
         set("nickname", HIR "西毒" NOR);
@@ -62,7 +62,7 @@ void create()
                 (: perform_action, "staff.shoot" :), 
                 (: perform_action, "staff.shoot" :),         }) );
 
-        create_family("白驼山派",1, "开山祖师");
+        create_family("白駝山派",1, "開山祖師");
         setup();
     carry_object("/clone/weapon/gangzhang")->wield();
         carry_object("/clone/misc/cloth")->wear();
@@ -73,7 +73,7 @@ int accept_fight(object ob)
         ob=this_player();   
         if( !query("fighter", ob)){
         command("heihei");
-        command("say 好，就让我超度你吧！\n");
+        command("say 好，就讓我超度你吧！\n");
         set("fighter", 1, ob);
         set_temp("m_success/幻影", 1, ob);
         remove_call_out("kill_ob");
@@ -81,12 +81,12 @@ int accept_fight(object ob)
         return 1;
         }
         else
-        write(query("name", ob)+"，你已经上过场了！\n");
+        write(query("name", ob)+"，你已經上過場了！\n");
      }
 void die()
 {
         object ob;
-        message_vision("\n$N一晃，变为一缕轻烟消失了。\n", this_object());
+        message_vision("\n$N一晃，變為一縷輕煙消失了。\n", this_object());
         ob = new("/quest/tulong/npc/shadow3");
         ob->move(environment(this_object()));
         destruct(this_object());

@@ -7,10 +7,10 @@ inherit BOSS;
 void create()
 {
         object ob;
-        set_name("东方不败", ({"dongfang bubai", "dongfang", "bubai", "dong"}));
-        set("long", "他就是日月神教教主。据传武功天下第一，因此大号就是「东方不败」。\n");
+        set_name("東方不敗", ({"dongfang bubai", "dongfang", "bubai", "dong"}));
+        set("long", "他就是日月神教教主。據傳武功天下第一，因此大號就是「東方不敗」。\n");
         set("nickname", HIY "武功天下第一" NOR );
-        set("gender", "无性");
+        set("gender", "無性");
         set("class", "eunach");
         set("attitude", "peaceful");
         set("age", 40);
@@ -90,13 +90,13 @@ void create()
         ]));
 
         set("drops", ([
-                "RA&RANDOM40"    :       100,   // 低级普通装备
-                "RA&RANDOM40"    :       100,   // 低级普通装备
-                "RA&RANDOM40"    :       100,   // 低级普通装备
-                "RA&RANDOM40"    :       100,   // 低级普通装备
-                "RA&RANDOM40"    :       100,   // 低级普通装备
-                "RA&RANDOM50"    :       100,   // 低级普通装备
-                "RA&RANDOM50"    :       40,    // 低级普通装备
+                "RA&RANDOM40"    :       100,   // 低級普通裝備
+                "RA&RANDOM40"    :       100,   // 低級普通裝備
+                "RA&RANDOM40"    :       100,   // 低級普通裝備
+                "RA&RANDOM40"    :       100,   // 低級普通裝備
+                "RA&RANDOM40"    :       100,   // 低級普通裝備
+                "RA&RANDOM50"    :       100,   // 低級普通裝備
+                "RA&RANDOM50"    :       40,    // 低級普通裝備
                 "FI&/clone/tessera/rune21" :   30,
                 "FI&/clone/tessera/rune22" :   30,
                 "FI&/clone/goods/sun"   :   50,
@@ -146,7 +146,7 @@ mixed hit_ob(object me, object ob, int damage_bouns)
         wound=20000+random(20000)-query_temp("apply/armor", me);
         if (wound < 1)wound = 1;
         me->receive_wound("qi", wound, ob);
-        return HIY "$N" HIY "怒喝一声，奋力反抗，竟逼得$n" HIY "手忙脚乱。\n" NOR;
+        return HIY "$N" HIY "怒喝一聲，奮力反抗，竟逼得$n" HIY "手忙腳亂。\n" NOR;
 }
 
 void heart_beat()

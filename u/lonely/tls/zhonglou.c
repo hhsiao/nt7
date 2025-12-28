@@ -4,12 +4,12 @@ int do_knock(string arg);
 
 void create()
 {
-	set("short", "钟楼");
+	set("short", "鐘樓");
 	set("long", @LONG
-这是一座砖木结构的小楼，飞檐翘翎，檐角上挂满了一串串小铜铃，随风
-叮叮作响。墙上镂空雕绘着无数佛陀们的坐像。一个个形态维肖。楼内高悬者
-一个大钟(zhong)，看样子不下上千斤，钟身上铸有金刚经文，这钟一旦敲响，
-在大理城内都可闻见。
+這是一座磚木結構的小樓，飛簷翹翎，簷角上掛滿了一串串小銅鈴，隨風
+叮叮作響。牆上鏤空雕繪著無數佛陀們的坐像。一個個形態維肖。樓內高懸者
+一個大鐘(zhong)，看樣子不下上千斤，鐘身上鑄有金剛經文，這鐘一旦敲響，
+在大理城內都可聞見。
 LONG
         );
 
@@ -20,14 +20,14 @@ LONG
 	]));
 
 	set("item_desc",([
-		"zhong"		:	"这口钟很大，每天都有人来敲(qiao)的",
+		"zhong"		:	"這口鐘很大，每天都有人來敲(qiao)的",
 	]));
 
 	set("objects",([
 		__DIR__"npc/guest" : 1,
 	]));
 
-	set("outdoors", "天龙寺");
+	set("outdoors", "天龍寺");
 	setup();
 }
 
@@ -47,26 +47,26 @@ int do_knock(string arg)
 	local = localtime(time() * 60);
 	            
 	if (me->is_busy()) {
-		write("你现在正忙着呢!\n");
+		write("你現在正忙著呢!\n");
 		return 1;
 	}
 
 	if (me->is_fighting()) {
-		write("你正在战斗中,无法专心干活!\n");
+		write("你正在戰鬥中,無法專心幹活!\n");
 		return 1;
 	}
           
 	if (!( present("zhong chui", this_player())))
-		return notify_fail("你试了下，显然用手是撞不响钟的。\n");
+		return notify_fail("你試了下，顯然用手是撞不響鐘的。\n");
 
 	if ( !arg || arg != "zhong" ) {
-		write("你要撞什么？\n");
+		write("你要撞什麼？\n");
 		return 1;
 	}
         
 	if (local[2] < 6 || local[2] >= 21) {
-		message_vision("『咣……』的一声,一个小和尚突然外面跑过来说：“现在是休息时间，请毋敲钟！”\n"+
-				"小和尚见$N放下钟锤，打了个哈乞，走了出去。\n",me);
+		message_vision("『咣……』的一聲,一個小和尚突然外面跑過來說：“現在是休息時間，請毋敲鐘！”\n"+
+				"小和尚見$N放下鍾錘，打了個哈乞，走了出去。\n",me);
 		return 1;
 	}
 
@@ -74,26 +74,26 @@ int do_knock(string arg)
 	costq = (int)me->query("str")/2;
 
 	if ((int)me->query("jingli") < costj || (int)me->query("qi") < costq) {
-		message_vision("钟声一响，$N被巨大的轰鸣声震的昏了过去。\n",me);
+		message_vision("鐘聲一響，$N被巨大的轟鳴聲震的昏了過去。\n",me);
 		me->unconcious();
 		return 1;
 	}
 	if ((int)me->query_skill("force",1) < 30 ) {
-		message_vision("『咣……』的一声，$N被震的昏了过去。\n",me);
+		message_vision("『咣……』的一聲，$N被震的昏了過去。\n",me);
 		me->unconcious();
 		return 1;
 	}          
 	me->receive_damage("jingli", costj);
 	me->add("qi", -costq);       
 
-	message_vision("$N敲了一下大钟，『咣……』声音传遍整个寺庙。\n", me);
+	message_vision("$N敲了一下大鐘，『咣……』聲音傳遍整個寺廟。\n", me);
 		
 	if ((int)me->query_skill("force", 1) < 101 ) {
-		write("钟声震得你眼前发晕，你深吸了一口气，暗运内功抵挡。\n");
+		write("鐘聲震得你眼前發暈，你深吸了一口氣，暗運內功抵擋。\n");
 		me->improve_skill("force", (int)me->query_int()/2);
 	}
 	else {
-		write("钟声响起，你不由的心中暗起肃穆之心。\n");
+		write("鐘聲響起，你不由的心中暗起肅穆之心。\n");
 	}
 	return 1;
 }

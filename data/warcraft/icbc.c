@@ -4,12 +4,12 @@
 
 void setup()
 {
-        set_name("[32m中国工行[2;37;0m[2;37;0m", ({"icbca"}));        
+        set_name("[32m中國工行[2;37;0m[2;37;0m", ({"icbca"}));        
         set("gender", "男性");                
         set("long", "第三方[2;37;0m
-它是江非的魔幻兽。
+它是江非的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "icbc");
         set("owner_name", "江非");

@@ -1,6 +1,6 @@
 //rune17.c
 
-// Lum 卢姆
+// Lum 盧姆
 
 #include <ansi.h>
 
@@ -16,8 +16,8 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", "符文：元载孔升符，可以放入凹槽物品。\n");
-                set("unit", "个");
+                set("long", "符文：元載孔升符，可以放入凹槽物品。\n");
+                set("unit", "個");
                 set("enchase/SN", 17);
                 set("enchase/type", "all");
                 set("enchase/consistence", 100); 

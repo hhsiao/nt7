@@ -23,9 +23,9 @@ int do_eat(string arg)
 {
         object me = this_player();
 
-        if(!id(arg)) return notify_fail("你要吃什么？\n");
+        if(!id(arg)) return notify_fail("你要吃什麼？\n");
         if( me->is_busy() )
-                return notify_fail("别急，慢慢吃，小心别噎着了。\n");
+                return notify_fail("別急，慢慢吃，小心別噎著了。\n");
         message_vision("$N吃下一粒" + name() + "。\n", me);
 
         if (((int)me->query_condition("xx_poison") > 0) ||

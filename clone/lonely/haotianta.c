@@ -12,11 +12,11 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("unit", "个");
-                set("long", HIM "这是一个拥有吸星换月之力的宝塔，不时地从中投射出\n"
-                                "奇异的光芒。\n"                                
-                                "当你打通十二重天达到天外天后，能借用该塔之力进入来世。\n" 
-                                "*可用之神力进入轮回司中（use haotian ta）。\n"NOR);
+                set("unit", "個");
+                set("long", HIM "這是一個擁有吸星換月之力的寶塔，不時地從中投射出\n"
+                                "奇異的光芒。\n"                                
+                                "當你打通十二重天達到天外天后，能借用該塔之力進入來世。\n" 
+                                "*可用之神力進入輪迴司中（use haotian ta）。\n"NOR);
 
         }
         setup();
@@ -39,10 +39,10 @@ int do_use(string arg)
                  return notify_fail("你正忙呢！\n");
         
         if( !query("outdoors", environment(me)) )
-                 return notify_fail("你得先到户外去。\n");
+                 return notify_fail("你得先到戶外去。\n");
                  
-        message_sort(HIM + "\n$N" HIM "祭起手中的昊天塔，猛然间，七色光芒自昊天塔中射"
-                     "出，将$N卷了进去。\n" NOR, me);
+        message_sort(HIM + "\n$N" HIM "祭起手中的昊天塔，猛然間，七色光芒自昊天塔中射"
+                     "出，將$N捲了進去。\n" NOR, me);
                 
         me->move("/kungfu/class/sky/lunhuisi");
         set("startroom", "/kungfu/class/sky/lunhuisi", me);

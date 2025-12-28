@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[47;1m[1;34m星云锁涟[2;37;0m[2;37;0m", ({"foyuan"}));        
+        set_name("[47;1m[1;34m星雲鎖漣[2;37;0m[2;37;0m", ({"foyuan"}));        
         set("gender", "男性");                
         set("long", "  [2;37;0m
-它是超女的魔幻兽。
+它是超女的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

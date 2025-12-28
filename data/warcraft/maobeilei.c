@@ -7,7 +7,7 @@ void setup()
         set_name("[5m[35m童年[2;37;0m[2;37;0m", ({"childhood"}));        
         set("gender", "女性");                
         set("long", "$BLINK$$MAG$童年[2;37;0m
-它是毛蓓蕾的魔幻兽。
+它是毛蓓蕾的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

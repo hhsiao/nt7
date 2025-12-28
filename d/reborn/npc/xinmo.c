@@ -8,7 +8,7 @@ void create()
         set_name(HIM "心魔" NOR, ({ "xinmo" }));
         set("gender", "男性" );
         set("age", 30 + random(30));
-        set("long", "如梦如幻无法让人看的清楚的一个人。");
+        set("long", "如夢如幻無法讓人看的清楚的一個人。");
         set("attitude", "friendly");
         set_temp("apply/armor", 30);
         set_temp("apply/damage", 20);

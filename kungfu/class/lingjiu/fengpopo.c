@@ -10,13 +10,13 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("冯婆婆", ({ "feng popo", "feng", "popo" }));
+        set_name("馮婆婆", ({ "feng popo", "feng", "popo" }));
         set("long",
-            "她是"+HIC"「灵鹫宫」"NOR+"九天九部中玄天部的首领.\n"+
-            "她跟随童姥多年, 出生入死,饱经风霜。\n");
+            "她是"+HIC"「靈鷲宮」"NOR+"九天九部中玄天部的首領.\n"+
+            "她跟隨童姥多年, 出生入死,飽經風霜。\n");
         
-        set("title", "缥缈缝灵鹫宫");
-        set("nickname", HIC "玄天部首领" NOR);
+        set("title", "縹緲縫靈鷲宮");
+        set("nickname", HIC "玄天部首領" NOR);
         set("gender", "女性");
         set("age", 60);
         set("shen_type",0);
@@ -62,7 +62,7 @@ void create()
         prepare_skill("strike","liuyang-zhang");
         prepare_skill("hand","zhemei-shou");
         
-        create_family("灵鹫宫", 2, "首领");
+        create_family("靈鷲宮", 2, "首領");
 
         set("chat_chance_combat", 50);
         set("chat_msg_combat", ({
@@ -96,18 +96,18 @@ void init()
         
         if (interactive(ob) 
          && !query("no_fight", environment(ob) )
-         && ((fam=query("family", ob)) && fam["family_name"] != "灵鹫宫") )
+         && ((fam=query("family", ob)) && fam["family_name"] != "靈鷲宮") )
         {
                 if( !query_temp("warned", ob) )
                 {
-                        command("say 尊主有令：外人不得进入灵鹫宫，速速离开！");
+                        command("say 尊主有令：外人不得進入靈鷲宮，速速離開！");
                         set_temp("warned", 1, ob);
                 } else 
                 if( query_temp("stay", ob)<5 )
                         addn_temp("stay", 1, ob);
                 else 
                 {
-                        command("say 大胆狂徒，竟敢擅闯灵鹫宫！！！\n");
+                        command("say 大膽狂徒，竟敢擅闖靈鷲宮！！！\n");
                         remove_call_out("kill_ob");
                         call_out("kill_ob", 1, ob); 
                 }
@@ -121,14 +121,14 @@ void attempt_apprentice(object ob)
                 
         if( query("gender", ob) == "女性" )
         {
-                message_vision("冯婆婆垂目沉思片刻, 说道：“好吧, 我就收下你了。”\n",ob);
+                message_vision("馮婆婆垂目沉思片刻, 說道：“好吧, 我就收下你了。”\n",ob);
                 command("recruit "+query("id", ob));
                 if( query("class", ob) != "dancer" )
                         set("class", "dancer", ob);
                 return;
         } else
         {
-                message_vision("冯婆婆瞪着你看了半天,说道：“本宫只收女弟子！”\n",ob);
+                message_vision("馮婆婆瞪著你看了半天,說道：“本宮只收女弟子！”\n",ob);
                 return;
         }
 }

@@ -10,13 +10,13 @@ string ask_me();
 
 void create()
 {
-        set_name("白龟寿", ({ "bai guishou", "bai", "guishou", }));
+        set_name("白龜壽", ({ "bai guishou", "bai", "guishou", }));
         set("long",
-        "他是一位两鬓斑白的老者，身穿一件白布长袍。\n"
-        "他脸上总是浮现出可亲的微笑，但有时又透出一丝狡谲。\n"
+        "他是一位兩鬢斑白的老者，身穿一件白布長袍。\n"
+        "他臉上總是浮現出可親的微笑，但有時又透出一絲狡譎。\n"
         );
 
-            set("title",HIG "明教" BLU "玄武坛" NOR "坛主");
+            set("title",HIG "明教" BLU "玄武壇" NOR "壇主");
 
         set("gender", "男性");
         set("attitude", "friendly");
@@ -55,7 +55,7 @@ void create()
         map_skill("sword", "damo-jian");
 
         prepare_skill("finger", "nianhua-zhi");
-        create_family("明教", 4, "玄武坛坛主");
+        create_family("明教", 4, "玄武壇壇主");
         set("inquiry", ([
                 "明教" :    (: ask_me :),
         ]));
@@ -71,7 +71,7 @@ void init()
 
 string ask_me()
 {
-        return "你想加入我明教(join mingjiao)吗？";
+        return "你想加入我明教(join mingjiao)嗎？";
 }
 
 #include "tanzhu.h"

@@ -3,7 +3,7 @@
 inherit THROWING;
 void create()
 {
-        set_name("青莲子", ({ "qing lianzi", "lianzi" }) );
+        set_name("青蓮子", ({ "qing lianzi", "lianzi" }) );
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
@@ -13,7 +13,7 @@ void create()
                 set("base_weight",20);
                 set("base_value", 80);
                 set("material", "stone");
-                set("long", "一粒长的象莲子一样的圆石头。\n");
+                set("long", "一粒長的象蓮子一樣的圓石頭。\n");
                 
         }
        set_amount(25);

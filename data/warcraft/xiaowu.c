@@ -6,8 +6,8 @@ void setup()
 {
         set_name("火舞[2;37;0m[2;37;0m", ({"huowu"}));        
         set("gender", "女性");                
-        set("long", "一只萌萌[2;37;0m
-它是小舞的魔幻兽。
+        set("long", "一隻萌萌[2;37;0m
+它是小舞的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

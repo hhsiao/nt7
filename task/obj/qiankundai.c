@@ -7,10 +7,10 @@ void create()
         if( clonep() ) 
                 destruct(this_object()); 
         else { 
-                set("unit", "个"); 
+                set("unit", "個"); 
                 set("material", "paper"); 
-                set("long", "一个普普通通甚至有些破旧不堪的布袋，知道究竟有何用的人少之甚少。\n"); 
+                set("long", "一個普普通通甚至有些破舊不堪的布袋，知道究竟有何用的人少之甚少。\n"); 
         } 
-        set("owner", "说不得"); 
+        set("owner", "說不得"); 
         setup(); 
 } 

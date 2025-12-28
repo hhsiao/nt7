@@ -1,7 +1,7 @@
 // Copyright (C) 2005, by Lonely. All rights reserved.
 // This software can not be used, copied, or modified 
 // in any form without the written permission from authors.
-// dictd.c 字典精灵
+// dictd.c 字典精靈
 
 #include <ansi.h>
 #include <net/socket.h>  
@@ -16,8 +16,8 @@ int clean_up() { return 1; }
 void create() 
 { 
         seteuid(ROOT_UID); 
-        set("channel_id", "字典精灵"); 
-        CHANNEL_D->do_channel(this_object(), "sys", "字典精灵已经启动。"); 
+        set("channel_id", "字典精靈"); 
+        CHANNEL_D->do_channel(this_object(), "sys", "字典精靈已經啟動。"); 
 } 
 
 void translate(object user, string sentence, string language)
@@ -31,7 +31,7 @@ void translate(object user, string sentence, string language)
 
         if( fd < 0 )
         {
-                tell_object(user, HIR "翻译失败, 请稍后在试。\n" NOR); 
+                tell_object(user, HIR "翻譯失敗, 請稍後在試。\n" NOR); 
                 return;
         }
 
@@ -40,7 +40,7 @@ void translate(object user, string sentence, string language)
 
         if( err != EESUCCESS )
         {
-                tell_object(user, HIR "翻译失败, 请稍后在试。\n" NOR);
+                tell_object(user, HIR "翻譯失敗, 請稍後在試。\n" NOR);
                 return;
         }     
 
@@ -87,14 +87,14 @@ void get_translated(int fd)
 
         if( sscanf(socket_info[fd]["translate"], "%*s<textarea name=utrans %*s>%s</textarea></td>%*s", translate) != 4 )
         {
-                tell_object(socket_info[fd]["user"], HIR "翻译失败：\n" NOR + socket_info[fd]["sentence"] + "\n");
-                tell_object(socket_info[fd]["user"], HIR "翻译失败：\n" NOR + socket_info[fd]["translate"] + "\n");
+                tell_object(socket_info[fd]["user"], HIR "翻譯失敗：\n" NOR + socket_info[fd]["sentence"] + "\n");
+                tell_object(socket_info[fd]["user"], HIR "翻譯失敗：\n" NOR + socket_info[fd]["translate"] + "\n");
                 return ;
         }
 
         translate = replace_string(translate, "_LINE_", "\n");
 
-        translate = sprintf(HIC "您查询的为 : %s "NOR"\n%s\n" HIR "%s\n\n" NOR, 
+        translate = sprintf(HIC "您查詢的為 : %s "NOR"\n%s\n" HIR "%s\n\n" NOR, 
                             socket_info[fd]["sentence"], repeat_string("=", 50), translate);
 
 

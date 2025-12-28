@@ -3,7 +3,7 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIW "「葵花剑谱」" NOR, ({ "kuihua jianpu", "kuihua", "jianpu"}));
+        set_name(HIW "「葵花劍譜」" NOR, ({ "kuihua jianpu", "kuihua", "jianpu"}));
         set_weight(500);
         /*if (clonep())
                set_default_object(__FILE__); 
@@ -11,8 +11,8 @@ void create()
                 set("unit", "本");
                 set("material", "paper");
                 set("no_sell", 1);
-                set("long", HIW "\n这是一本用薄纸写成的书，封皮上写有「葵花剑"
-                            "谱」四\n字。你可以试着读读(read)看。\n\n" NOR, );
+                set("long", HIW "\n這是一本用薄紙寫成的書，封皮上寫有「葵花劍"
+                            "譜」四\n字。你可以試著讀讀(read)看。\n\n" NOR, );
         }
 }
 
@@ -32,74 +32,74 @@ int do_du(string arg)
 
         if (! arg)
         {
-                write("研读葵花剑谱指令格式：read <技能> from <葵花剑谱>\n");
+                write("研讀葵花劍譜指令格式：read <技能> from <葵花劍譜>\n");
                 return 1;
         }
 
         if (sscanf(arg, "%s from %s", skill, book) != 2)
         {
-                write("研读葵花剑谱指令格式：read <技能> from <葵花剑谱>\n");
+                write("研讀葵花劍譜指令格式：read <技能> from <葵花劍譜>\n");
                 return 1;
         }
 
         if (me->is_busy())
         {
-                write("你现在正忙着呢。\n");
+                write("你現在正忙著呢。\n");
                 return 1;
         }
 
         if (me->is_fighting())
         {
-                write("你无法在战斗中专心下来研读新知！\n");
+                write("你無法在戰鬥中專心下來研讀新知！\n");
                 return 1;
         }
 
         if( query("no_fight", where )
             && query("doing", me) != "scheme" )
         {
-                write("你无法在这里静下心来研读葵花剑谱。\n");
+                write("你無法在這裡靜下心來研讀葵花劍譜。\n");
                 return 1;
         }
 
         if (! me->query_skill("literate", 1))
         {
-                write("你是个文盲，先学点文化(literate)吧。\n");
+                write("你是個文盲，先學點文化(literate)吧。\n");
                 return 1;
         }
 
         if (! id(book))
         {
-                write("这里没有这本书。\n");
+                write("這裡沒有這本書。\n");
                 return 1;
         }
 
-        if (skill != "辟邪劍影" && skill != "辟邪剑影")
+        if (skill != "辟邪劍影" && skill != "辟邪劍影")
         {
-                write("葵花剑谱上并没有记载你打算研究的内容。\n" NOR);
+                write("葵花劍譜上並沒有記載你打算研究的內容。\n" NOR);
                 return 1;
         }
 
         if (me->query_skill("pixie-jian", 1) < 1000)
         {
-                write("你辟邪剑法修为不足，无法领悟到其中奥妙。\n");
+                write("你辟邪劍法修為不足，無法領悟到其中奧妙。\n");
                 return 1;
         }
         
         if (me->query_skill("dodge", 1) < 1000)
         {
-                write("你基本轻功修为不足，无法领悟到其中奥妙。\n");
+                write("你基本輕功修為不足，無法領悟到其中奧妙。\n");
                 return 1;
         }
                 
         if( !query("yuanshen_level", me) )
         {
-                write("你未修炼成元神，无法领悟其中奥妙。\n");
+                write("你未修煉成元神，無法領悟其中奧妙。\n");
                 return 1;                
         }
         
         if( query("combat_exp", me)<10000000 )
         {
-                write("你的实战经验不足，再怎么读也没用。\n");
+                write("你的實戰經驗不足，再怎麼讀也沒用。\n");
                 return 1;
         }
 
@@ -107,11 +107,11 @@ int do_du(string arg)
             || query("qi", me)<100
             || query("neili", me)<200 )
         {
-                write("你现在过于疲倦，无法专心下来研读新知。\n");
+                write("你現在過於疲倦，無法專心下來研讀新知。\n");
                 return 1;
         }
 
-        write(HIW "你学会了「" HIG "辟邪劍影" HIW "」。\n" NOR);
+        write(HIW "你學會了「" HIG "辟邪劍影" HIW "」。\n" NOR);
         set("can_perform/pixie-jian/jian", 1, me);
         destruct(this_object());
         return 1;

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("小鸡鸡[2;37;0m[2;37;0m", ({"mixx"}));        
+        set_name("小雞雞[2;37;0m[2;37;0m", ({"mixx"}));        
         set("gender", "女性");                
-        set("long", "切割后掉下来的鸡鸡[2;37;0m
-它是影刃的魔幻兽。
+        set("long", "切割後掉下來的雞雞[2;37;0m
+它是影刃的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

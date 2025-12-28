@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("小马[2;37;0m[2;37;0m", ({"xiaoma"}));        
+        set_name("小馬[2;37;0m[2;37;0m", ({"xiaoma"}));        
         set("gender", "男性");                
-        set("long", "小马[2;37;0m
-它是华默默的魔幻兽。
+        set("long", "小馬[2;37;0m
+它是華默默的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "hxxc");
-        set("owner_name", "华默默");
+        set("owner_name", "華默默");
         set_temp("owner", "hxxc");
-        set_temp("owner_name", "华默默");
+        set_temp("owner_name", "華默默");
         ::setup();
 }

@@ -1,4 +1,4 @@
-//yaofang.c                四川唐门—药房
+//yaofang.c                四川唐門—藥房
 
 #include <ansi.h>
 #include <room.h>
@@ -9,12 +9,12 @@ int do_putin(object me, object obj);
 
 void create()
 {
-        set("short", "制药房");
+        set("short", "製藥房");
         set("long",
-"这里是唐门的炼药房。屋中没有什么摆设，只是靠墙摆着三个木架，\n"
-"架子上摆满了药瓶药罐，屋子正中用上好的青石垒成了一个灶台一个怕有\n"
-"千斤重的紫铜药炉重重的压在上面，让人奇怪的是两丈见方的屋子里竟没\n"
-"有一个窗户。\n"
+"這裡是唐門的煉藥房。屋中沒有什麼擺設，只是靠牆擺著三個木架，\n"
+"架子上擺滿了藥瓶藥罐，屋子正中用上好的青石壘成了一個灶臺一個怕有\n"
+"千斤重的紫銅藥爐重重的壓在上面，讓人奇怪的是兩丈見方的屋子裡竟沒\n"
+"有一個窗戶。\n"
 );
         set("exits", ([
                         "southeast" : __DIR__"houroad2",
@@ -44,18 +44,18 @@ int do_put(string arg)
 
         if( sscanf(arg, "%s in yaolu", item) == 1 );
         else 
-                return notify_fail("你要放什么东西？\n");
+                return notify_fail("你要放什麼東西？\n");
 
         if(sscanf(item, "%d %s", amount, item)==2)
         {
                 if( !objectp(obj = present(item, me)) )        
-                        return notify_fail("你身上没有这样东西。\n");
+                        return notify_fail("你身上沒有這樣東西。\n");
                 if( !obj->query_amount() )        
-                        return notify_fail( obj->name() + "不能被分开给人。\n");
+                        return notify_fail( obj->name() + "不能被分開給人。\n");
                 if( amount < 1 )
-                        return notify_fail("东西的数量至少是一个。\n");
+                        return notify_fail("東西的數量至少是一個。\n");
                 if( amount > obj->query_amount() ) 
-                        return notify_fail("你没有那么多的" + obj->name() + "。\n");
+                        return notify_fail("你沒有那麼多的" + obj->name() + "。\n");
                 else 
                         if( amount == (int)obj->query_amount() )
                                 return do_putin(me, obj2);
@@ -86,7 +86,7 @@ int do_put(string arg)
         }
 
         if(!objectp(obj = present(item, me)))
-                return notify_fail("你身上没有这样东西。\n");
+                return notify_fail("你身上沒有這樣東西。\n");
         return do_putin(me, obj);
 }
 
@@ -95,7 +95,7 @@ int do_putin(object me, object obj)
         string tar, targ;
         int tarm;
         string *duwu = ({
-                "","蜈蚣","毒蝎子","竹叶青","金环蛇","蝮蛇","千年毒王",
+                "","蜈蚣","毒蠍子","竹葉青","金環蛇","蝮蛇","千年毒王",
         });
 
         tar=query("name", obj);
@@ -106,16 +106,16 @@ int do_putin(object me, object obj)
 
         if( !query_temp("duyao", me) )
         {
-                message_vision("唐毒一伸手打落了$N手上的" + obj->name() + "，叫到：“什么东西就往药炉里放。”\n", me);
+                message_vision("唐毒一伸手打落了$N手上的" + obj->name() + "，叫到：“什麼東西就往藥爐裡放。”\n", me);
                 obj->move(this_object());
                 return 1;
         }        
 
         if ( (tar == targ) && objectp(obj) )
         {
-                message_vision("$N拿出" + obj->name() + "放进药炉。\n", me);
+                message_vision("$N拿出" + obj->name() + "放進藥爐。\n", me);
                 destruct(obj);
-                message_vision("唐毒对着$N点了点头，说到：“好，你干的很好，快去休息吧。”\n", me);
+                message_vision("唐毒對著$N點了點頭，說到：“好，你乾的很好，快去休息吧。”\n", me);
                 delete_temp("tangmen", me);
                 delete_temp("duyao", me);
                 addn("combat_exp", 150+random(150), me);
@@ -124,7 +124,7 @@ int do_putin(object me, object obj)
         }
         else
         {
-                message_vision("唐毒一伸手打落了$N手上的" + obj->name() + "，叫到：“什么东西就往药炉里放。”\n快去找" + targ+ "回来！\n", me);
+                message_vision("唐毒一伸手打落了$N手上的" + obj->name() + "，叫到：“什麼東西就往藥爐裡放。”\n快去找" + targ+ "回來！\n", me);
                 obj->move(this_object());
 //                destruct(obj);
                 return 1;

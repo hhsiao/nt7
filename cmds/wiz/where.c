@@ -17,7 +17,7 @@ int main(object me, string str)
                 return 0;
 
         if (! str)
-                return notify_fail("指令格式：where <人物或档名>\n"); 
+                return notify_fail("指令格式：where <人物或檔名>\n"); 
 
         ob = find_player(str);
         if (! ob) ob = find_living(str);
@@ -28,20 +28,20 @@ int main(object me, string str)
         }
 
         if (! ob)
-                return notify_fail("没有找到这个物品。\n");
+                return notify_fail("沒有找到這個物品。\n");
 
         where = environment(ob);
         if (! where)
-                return notify_fail("这个人不知道在那里耶...\n");
+                return notify_fail("這個人不知道在那裡耶...\n");
 
         /*
-        write(sprintf("%s(%s)现在在%s(%s).\n",
+        write(sprintf("%s(%s)現在在%s(%s).\n",
                 (string)ob->name(1),
                 query("id", ob),
                 (string)where->short(),
                 (string)file_name(where)));
         */
-        printf(YEL"\n你拿出水晶球，往里一看，哦！%s(%s)现在在...\n\n"NOR,
+        printf(YEL"\n你拿出水晶球，往裡一看，哦！%s(%s)現在在...\n\n"NOR,
                 (string)ob->name(1),
                 query("id", ob));
         LOOK_CMD->look_room(me, where);
@@ -53,7 +53,7 @@ int help(object me)
         write(@HELP
 指令格式: where <人物ID>
 
-这个指令是用来得知人物目前所在的位置.
+這個指令是用來得知人物目前所在的位置.
 
 HELP );
         return 1;

@@ -17,7 +17,7 @@ void create()
         else*/
         {
                 set("long", "符文：太安皇崖符，可以放入凹槽物品。\n");
-                set("unit", "个");
+                set("unit", "個");
                 set("enchase/SN", 18);
                 set("enchase/type", "all");
                 set("enchase/consistence", 100); 

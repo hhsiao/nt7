@@ -10,16 +10,16 @@ int main(object me, string arg)
         function f; 
         int r;
 
-        return notify_fail("该功能已经关闭。\n");
+        return notify_fail("該功能已經關閉。\n");
         if (! arg)
-                return notify_fail("你要触摸什么物品？\n");
+                return notify_fail("你要觸摸什麼物品？\n");
 
         if (! objectp(obj = present(arg, me)) &&
             ! objectp(obj = present(arg, environment(me))))
-                return notify_fail("你身上没有这样东西，附近也没有。\n");
+                return notify_fail("你身上沒有這樣東西，附近也沒有。\n");
 
         if (obj->is_character())
-                return notify_fail("你别乱动" + obj->name() + "了。\n");
+                return notify_fail("你別亂動" + obj->name() + "了。\n");
 
         f = query_temp("override/touch", me);
         if (functionp(f)) 
@@ -33,9 +33,9 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式 : touch <物品名称>
+指令格式 : touch <物品名稱>
  
-这个指令可以让你抚摸某样东西，尝试发挥它的特殊能力。
+這個指令可以讓你撫摸某樣東西，嘗試發揮它的特殊能力。
  
 HELP );
         return 1;

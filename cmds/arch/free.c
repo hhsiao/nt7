@@ -13,7 +13,7 @@ int main(object me, string arg)
         int time;
 
         if (! arg)
-                return notify_fail("你要把谁带出地狱？\n");
+                return notify_fail("你要把誰帶出地獄？\n");
 
         time = 0;
         if (sscanf(arg, "%s %s", arg, tstr) == 2)
@@ -33,13 +33,13 @@ int main(object me, string arg)
 
         ob = find_player(arg);
         if (! ob && wiz_level(me) < 1)
-                return notify_fail("没有这个玩家。\n");
+                return notify_fail("沒有這個玩家。\n");
 
         if (! ob)
         {
                 ob = UPDATE_D->global_find_player(arg);
                 if (! objectp(ob))
-                        return notify_fail("没有这个玩家。\n");
+                        return notify_fail("沒有這個玩家。\n");
 
                 ob->move(environment(me));
         }
@@ -47,22 +47,22 @@ int main(object me, string arg)
         if (! ob || ! me->visible(ob))
         {
                 UPDATE_D->global_destruct_player(ob);
-                return notify_fail("没有这个玩家。\n");
+                return notify_fail("沒有這個玩家。\n");
         }
 
         if (! ob->is_in_prison())
         {
                 UPDATE_D->global_destruct_player(ob);
-                return notify_fail("这个玩家现在没有被禁闭。\n");
+                return notify_fail("這個玩家現在沒有被禁閉。\n");
         }
 
         if (! SECURITY_D->valid_grant(me, "(arch)"))
         {
                 if (! objectp(card = present("help card", me)))
-                        return notify_fail("你没有权利把人放出来。\n");
+                        return notify_fail("你沒有權利把人放出來。\n");
 
-                message_vision("$N摸出一张卡片，拼命念叨：太上老君救命啊，" +
-                               ob->name(1) + "真是无辜啊！\n", me);
+                message_vision("$N摸出一張卡片，拼命唸叨：太上老君救命啊，" +
+                               ob->name(1) + "真是無辜啊！\n", me);
                 destruct(card);
         }
 
@@ -74,10 +74,10 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式 : free <玩家ID> [ <时间> ]
+指令格式 : free <玩家ID> [ <時間> ]
  
-这个指令可以让你把被禁闭的玩家释放出来。时间以分钟为单位，可
-以用 h 表示小时，d 表示天。
+這個指令可以讓你把被禁閉的玩家釋放出來。時間以分鐘為單位，可
+以用 h 表示小時，d 表示天。
 
 see also : throw
  

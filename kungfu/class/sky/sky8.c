@@ -8,12 +8,12 @@ void create()
 
                 八         重         天
 
-    这里一片天际，茫茫云海，四周不见任何事物。远方一重云彩从
-地面升起，架起了一座云梯(yunti)，似乎连接上层的天际…………
+    這裡一片天際，茫茫雲海，四周不見任何事物。遠方一重雲彩從
+地面升起，架起了一座雲梯(yunti)，似乎連接上層的天際…………
 
 LONG NOR );
         set("item_desc", ([
-                "yunti" : HIW "\n一蓬白色的云彩拔地而起，连接上层的天际。\n" NOR,
+                "yunti" : HIW "\n一蓬白色的雲彩拔地而起，連接上層的天際。\n" NOR,
 ]));
         set("sleep_room", 1);
         set("objects", ([
@@ -50,11 +50,11 @@ int do_move(string arg)
                   || objectp(present("li bai", environment(me))))
                   && me->query("sky12/floor") < 9)
                 {
-                        write(CYN "只见一个人影突然晃动，挡在你面前。\n" NOR);
+                        write(CYN "只見一個人影突然晃動，擋在你面前。\n" NOR);
                         return 1;
                 }
-                message_vision(HIW "\n$N" HIW "顺着云梯轻轻一"
-                               "纵，身体便随着气流飘了上去……\n"
+                message_vision(HIW "\n$N" HIW "順著雲梯輕輕一"
+                               "縱，身體便隨著氣流飄了上去……\n"
                                NOR, this_player());
                 me->move("/kungfu/class/sky/sky9"); 
                 return 1;

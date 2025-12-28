@@ -1,7 +1,7 @@
 // This program is a part of NT MudLIB
 // kurong.c
 
-// 六脉神剑载体
+// 六脈神劍載體
 
 #include <ansi.h>
 
@@ -26,12 +26,12 @@ string* names = ({
 
 void create()
 {
-        set_name("枯荣大师", ({ "kurong", "ku"}) );
+        set_name("枯榮大師", ({ "kurong", "ku"}) );
         set("gender", "男性" );
-        set("title", "天龙寺第十六代僧人");
+        set("title", "天龍寺第十六代僧人");
         set("class", "bonze");
         set("long", @LONG
-他的面壁而坐，看不见面貌。
+他的面壁而坐，看不見面貌。
 LONG );
         set("age", 95);
         set("shen_type", 1);
@@ -71,9 +71,9 @@ LONG );
         prepare_skill("finger","sun-finger");
 
         set("inquiry" ,([
-                "六脉神剑" : (: ask_me :),
-                "六脉神剑谱" : (: ask_me :),
-                "六脉神剑剑谱" : (: ask_me :),
+                "六脈神劍" : (: ask_me :),
+                "六脈神劍譜" : (: ask_me :),
+                "六脈神劍劍譜" : (: ask_me :),
         ]));
         create_family("大理段家", 14, "高僧");
 
@@ -95,8 +95,8 @@ int remove_killer(object ob)
         env = environment();
         if( query("exits", env))return 1;
 
-        message_vision("$N叹了一口气，道：出家人岂能滥杀无"
-                       "辜？然而降妖除魔，也是无法。\n",
+        message_vision("$N嘆了一口氣，道：出家人豈能濫殺無"
+                       "辜？然而降妖除魔，也是無法。\n",
                        this_object());
 
         open_exit();
@@ -106,33 +106,33 @@ int remove_killer(object ob)
 int recognize_apprentice(object ob, string skill)
 {
         if( query("shen", ob)<-5000 )
-                command("say 你虽魔性太重，但是佛门广大，老衲奉劝施主以后还是多多向善。");
+                command("say 你雖魔性太重，但是佛門廣大，老衲奉勸施主以後還是多多向善。");
 
         if (skill == "literate")
         {
-                command("say 抱歉，想学文化请去找教书先生。");
+                command("say 抱歉，想學文化請去找教書先生。");
                 return -1;
         }
 
         if (! query_skill(skill, 1))
         {
-                command("say 嘿嘿，老僧不会，你另请高明吧。");
+                command("say 嘿嘿，老僧不會，你另請高明吧。");
                 return -1;
         }
 
         if (skill != "lamaism" && skill != "buddhism")
         {
-                command("say 做人不要一味凶猛好杀，尽学一些"
-                        "杀伤人命的武技。");
+                command("say 做人不要一味兇猛好殺，盡學一些"
+                        "殺傷人命的武技。");
                 return -1;
         }
 
-        if( query_temp("mark/枯荣", ob) )
+        if( query_temp("mark/枯榮", ob) )
                 return 1;
 
         command("nod");
-        command("say 好，我就和你谈谈一些佛法方面的体会。");
-        set_temp("mark/枯荣", 1, ob);
+        command("say 好，我就和你談談一些佛法方面的體會。");
+        set_temp("mark/枯榮", 1, ob);
         return 1;
 }
 
@@ -143,28 +143,28 @@ int ask_me()
         me = this_player();
         if( query("born_family", me) != "段氏皇族" )
         {
-                message_vision("$N冷笑一声道：" +
+                message_vision("$N冷笑一聲道：" +
                                RANK_D->query_respect(this_player()) +
-                               "打听我们天龙寺镇寺之宝干什么？\n",
+                               "打聽我們天龍寺鎮寺之寶幹什麼？\n",
                                this_object());
                 return 1;
         }
 
-        message_vision("$N淡然对$n道：你虽然是皇族之人，但是也不"
-                       "得染指六脉神剑剑谱。\n", this_object(), me);
+        message_vision("$N淡然對$n道：你雖然是皇族之人，但是也不"
+                       "得染指六脈神劍劍譜。\n", this_object(), me);
         return 1;
 }
 
 int accept_fight(object ob)
 {
-        command("say 我没有兴趣陪你打架。");
+        command("say 我沒有興趣陪你打架。");
         return 0;
 }
 
 int accept_hit(object ob)
 {
         command("heng");
-        command("command 你要找死么？");
+        command("command 你要找死麼？");
         start_fight(ob);
         return 1;
 }
@@ -172,7 +172,7 @@ int accept_hit(object ob)
 int accept_kill(object ob)
 {
         command("haha");
-        command("say 来的好！咱们就较量一番！");
+        command("say 來的好！咱們就較量一番！");
         start_fight(ob);
         return 1;
 }
@@ -196,13 +196,13 @@ void start_fight(object me)
         if (is_fighting())
         {
                 command("chat哈哈！"+query("name", me)+
-                        "你这" + RANK_D->query_rude(me) +
-                        "也来添乱？");
+                        "你這" + RANK_D->query_rude(me) +
+                        "也來添亂？");
         } else
         {
-                command("chat哼！好你个"+query("name", me)+
-                        "，既然要挑我们天龙寺的百年威名，那"
-                        "就来吧！");
+                command("chat哼！好你個"+query("name", me)+
+                        "，既然要挑我們天龍寺的百年威名，那"
+                        "就來吧！");
         }
 
         obs = ({ });
@@ -223,9 +223,9 @@ void start_fight(object me)
         }
 
         if (msg)
-                command("say " + msg + "，大家一起把这贼子杀了！");
+                command("say " + msg + "，大家一起把這賊子殺了！");
         else
-                command("say 也罢，就由老僧我来超度你吧！");
+                command("say 也罷，就由老僧我來超度你吧！");
 
         obs->kill_ob(me);
         kill_ob(me);
@@ -249,11 +249,11 @@ varargs void die(object killer)
         {
                 ob = new(SIX_BOOK);
                 ob->move(this_object(), 1);
-                CHANNEL_D->do_channel(this_object(), "rumor", "听说" +
+                CHANNEL_D->do_channel(this_object(), "rumor", "聽說" +
                         (objectp(killer) ? killer->name(1) : "某人") +
-                        "闯入天龙寺，力战众僧，夺走六脉神剑谱。");
+                        "闖入天龍寺，力戰眾僧，奪走六脈神劍譜。");
         } else
-                CHANNEL_D->do_channel(this_object(), "chat", "天哪！想不到我枯荣饱遭凌辱，天龙威名尽丧我手！");
+                CHANNEL_D->do_channel(this_object(), "chat", "天哪！想不到我枯榮飽遭凌辱，天龍威名盡喪我手！");
 
         open_exit();
         ::die(killer);
@@ -271,13 +271,13 @@ void close_exit()
         if( !query("exits", here) )
                 return;
 
-        message_vision("$N劈空一掌，登时将大门闭上。\n", this_object());
+        message_vision("$N劈空一掌，登時將大門閉上。\n", this_object());
         delete("exits", here);
 
         if (room)
         {
                 message("vision", "忽然“砰”的一下" +
-                        query("short", room)+"的大门闭上了。\n",room);
+                        query("short", room)+"的大門閉上了。\n",room);
                 delete("exits/south", room);
         }
 }
@@ -294,13 +294,13 @@ void open_exit()
         if( query("exits", here) )
                 return;
 
-        message("vision", "大门“吱呀吱呀”的打开了。\n", here);
+        message("vision", "大門“吱呀吱呀”的打開了。\n", here);
         set("exits/north", "/d/tianlongsi/banruotai", here);
 
         if (room)
         {
                 message("vision","忽然"+query("short", room)+
-                        "的大门“吱呀吱呀”的打开了。\n", room);
+                        "的大門“吱呀吱呀”的打開了。\n", room);
                 set("exits/south", "/d/tianlongsi/munitang", room);
         }
 }

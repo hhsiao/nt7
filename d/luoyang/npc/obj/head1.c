@@ -10,7 +10,7 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "个");
+                set("unit", "個");
                 set("value", 250000);
                 set("material", "leather");
                 set("armor_prop/armor", 80);

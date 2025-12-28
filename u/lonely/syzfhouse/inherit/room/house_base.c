@@ -1,4 +1,4 @@
-// /inherit/room/house_base.c 建房地块继承文件
+// /inherit/room/house_base.c 建房地塊繼承文件
 // By Alf, Last Update 2003.0712
 
 #include <ansi.h>

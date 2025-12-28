@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("靓仔[2;37;0m[2;37;0m", ({"ioi"}));        
+        set_name("靚仔[2;37;0m[2;37;0m", ({"ioi"}));        
         set("gender", "男性");                
-        set("long", "靓[2;37;0m
-它是蟾蜍的魔幻兽。
+        set("long", "靚[2;37;0m
+它是蟾蜍的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

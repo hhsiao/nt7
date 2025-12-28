@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("宠物[2;37;0m[2;37;0m", ({"cws"}));        
+        set_name("寵物[2;37;0m[2;37;0m", ({"cws"}));        
         set("gender", "女性");                
         set("long", "dx[2;37;0m
-它是搏叫的魔幻兽。
+它是搏叫的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

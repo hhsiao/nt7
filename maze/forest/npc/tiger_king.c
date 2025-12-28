@@ -8,10 +8,10 @@ void create()
         string *names = ({"虎妖"});
         set_name( names[random(sizeof(names))], ({ "tiger king","tiger"}));
         set("vendetta_mark","tiger");
-        set("race", "野兽");
+        set("race", "野獸");
         set("gender", "雄性");
         set("age", 1000);
-        set("long", "这是一只修炼成妖的虎精怪。\n");
+        set("long", "這是一隻修煉成妖的虎精怪。\n");
 
         set("str", 80);
         set("cor", 120);
@@ -29,7 +29,7 @@ void create()
                 (: do_attack() :),
         }) );
 
-        set("limbs", ({ "头部", "身体", "前脚", "後脚", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體", "前腳", "後腳", "尾巴" }) );
         set("verbs", ({ "bite", "claw" }) );
         set("combat_exp", 600000);
         set("bellicosity", 5 );
@@ -50,15 +50,15 @@ void do_attack() {
         if (!enemies || sizeof(enemies)==0)
                         return;
         enemy = enemies[random(sizeof(enemies))];
-        msg = HIW"\n$N眉心张开第三只眼，聚起一道白光射向$n！\n"NOR;
+        msg = HIW"\n$N眉心張開第三隻眼，聚起一道白光射向$n！\n"NOR;
         message_combatd(msg,this_object(),enemy);
         if( random(query("combat_exp"))*6>query("combat_exp", enemy)){
-                        msg = HIW"$n躲闪不及，被白光罩住！\n"NOR;
+                        msg = HIW"$n躲閃不及，被白光罩住！\n"NOR;
                         message_combatd(msg,this_object(),enemy);
                         enemy->receive_damage("qi",50+random(50));
                         COMBAT_D->report_status(enemy);
         } else {
-                        msg = HIW"但是被$n躲开了。\n"NOR;
+                        msg = HIW"但是被$n躲開了。\n"NOR;
                         message_combatd(msg,this_object(),enemy);
         }
 
@@ -67,6 +67,6 @@ void do_attack() {
 
 varargs void start_busy(mixed new_busy, mixed new_interrupt)
 {
-        message_vision(HIY"\n$N突然发出一声响彻山林的怒吼，你顿时大惊失色！\n"NOR,this_object());
+        message_vision(HIY"\n$N突然發出一聲響徹山林的怒吼，你頓時大驚失色！\n"NOR,this_object());
         ::start_busy(1);
 }

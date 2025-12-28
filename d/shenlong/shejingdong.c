@@ -7,9 +7,9 @@ void create()
 {
         set("short", "蛇精洞");
         set("long",@LONG
-此处乃蛇精洞，洞内幽深恐怖，四处可见黑色的骸骨，周围尽是
-毒蛇，洞顶不时地滴下发臭的液体，置身此地，心中有一种莫名的恐
-惧，据说，九头蛇精就藏在此洞深处。
+此處乃蛇精洞，洞內幽深恐怖，四處可見黑色的骸骨，周圍盡是
+毒蛇，洞頂不時地滴下發臭的液體，置身此地，心中有一種莫名的恐
+懼，據說，九頭蛇精就藏在此洞深處。
 
 LONG);
 
@@ -25,23 +25,23 @@ LONG);
 
 }
 
-// 检查今天是否已经参加过蛇精战
+// 檢查今天是否已經參加過蛇精戰
 void init()
 {
         object me = this_player();
 
-        // 24小时只能参加一次
+        // 24小時只能參加一次
         if (time() - query("boss/shejing", me) < 2 * 3600 && userp(me) && !wizardp(me)  || query("schedule", me) || query("doing", me) == "trigger")
         {
-                tell_object(me, HIG "\n对不起，你参加蛇精对抗战间隔时不足2小时(也不准计划练功请你取消计划及所有触发)。\n");
-                tell_object(me, HIC "你距离上次参加蛇精对抗战间隔： " + HIY +
-                                  sprintf("%d", (time() - query("boss/shejing", me)) / 3600) + HIC " 小时。\n\n" NOR);
+                tell_object(me, HIG "\n對不起，你參加蛇精對抗戰間隔時不足2小時(也不準計劃練功請你取消計劃及所有觸發)。\n");
+                tell_object(me, HIC "你距離上次參加蛇精對抗戰間隔： " + HIY +
+                                  sprintf("%d", (time() - query("boss/shejing", me)) / 3600) + HIC " 小時。\n\n" NOR);
                 me->move(__DIR__"shedong4.8");
                 return;
         }
 
-        // 设置参加时间
-        tell_object(me, HIG "\n你进入蛇精洞准备参加对抗蛇精战斗，请不要离开，否则2小时内无法再次进入。\n" NOR);
+        // 設置參加時間
+        tell_object(me, HIG "\n你進入蛇精洞準備參加對抗蛇精戰鬥，請不要離開，否則2小時內無法再次進入。\n" NOR);
         set("boss/shejing", time(), me);
 
         me->save();
@@ -56,7 +56,7 @@ void start_move()
 
         ob = all_inventory(this_object());
 
-        // 清出清场标志
+        // 清出清場標誌
         delete("doing");
 
         if (! sizeof(ob))return;
@@ -78,8 +78,8 @@ void start_move()
         return;
 }
 
-// 来自蛇精文件的呼叫，当蛇精死亡后延迟将所有房间内的ID
-// 移动到蛇精洞外，如delay_time = 0 则不延迟
+// 來自蛇精文件的呼叫，當蛇精死亡後延遲將所有房間內的ID
+// 移動到蛇精洞外，如delay_time = 0 則不延遲
 void move_all_player_out(int delay_time)
 {
         if (! delay_time)

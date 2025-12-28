@@ -29,7 +29,7 @@ int do_effect(object me)
                         me->clear_condition("sha_poison");
 
                 me->start_busy(2);
-                tell_object(me, HIC "你感到内息一畅，体内的毒素开始慢慢消退。\n" NOR);
+                tell_object(me, HIC "你感到內息一暢，體內的毒素開始慢慢消退。\n" NOR);
         }
         destruct(this_object());
         return 1;

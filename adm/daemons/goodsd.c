@@ -144,21 +144,21 @@ string chinese_type(string type)
         switch(type)
         {
         case "object"   : return HIC "物品" NOR;
-        case "pill"     : return HIM "丹药" NOR;
+        case "pill"     : return HIM "丹藥" NOR;
         case "special"  : return HIG "先天技能" NOR;
         case "special2" : return HIB "元神技能" NOR;
-        case "special3" : return HIM "图腾技能" NOR;
+        case "special3" : return HIM "圖騰技能" NOR;
         case "story"    : return WHT "故事" NOR;
-        case "enchase"  : return HIW "镶嵌" NOR;
+        case "enchase"  : return HIW "鑲嵌" NOR;
         case "symbol"   : return YEL "神符" NOR;
-        case "medal"    : return HIY "勋章" NOR;
-        case "card"     : return HIY "会员卡" NOR;
-        case "gold"     : return HIY "黄金" NOR;
-        case "prop"     : return HIY "装备" NOR;
-        case "module"   : return HIG "套装" NOR;
+        case "medal"    : return HIY "勳章" NOR;
+        case "card"     : return HIY "會員卡" NOR;
+        case "gold"     : return HIY "黃金" NOR;
+        case "prop"     : return HIY "裝備" NOR;
+        case "module"   : return HIG "套裝" NOR;
         case "element"  : return HIG "元素" NOR;
-        case "package"  : return HIR "礼包" NOR;
-        case "srv"      : return HIM "服务" NOR;
+        case "package"  : return HIR "禮包" NOR;
+        case "srv"      : return HIM "服務" NOR;
         case "other"    : return HIR "其他" NOR;
         default         : return HIR "未知" NOR;
         }
@@ -171,7 +171,7 @@ void log_buyinfo(object ob, class goods item)
         buyinfo = MEMBER_D->db_query_member(ob, "buyinfo");
         if(!buyinfo)buyinfo="";
          if(strlen(buyinfo)>8192) buyinfo="";
- buyinfo += sprintf("%s(%s)于%s花费 %d $NT购买物品 %s 1。\n",
+ buyinfo += sprintf("%s(%s)於%s花費 %d $NT購買物品 %s 1。\n",
                            ob->name(1),
                            query("id", ob),
                            TIME_D->replace_ctime(time()),
@@ -185,7 +185,7 @@ void log_buyinfo(object ob, class goods item)
         MEMBER_D->db_set_member(ob, "last_buyob", item->name);
         MEMBER_D->db_set_member(ob, "last_buyvalue", item->value);
         
-        // 商品销售统计
+        // 商品銷售統計
         DB_D->set_data("ntstore/buylist/" + item->name, DB_D->query_data("ntstore/buylist/" + item->name) + 1);
         return;
 }
@@ -194,8 +194,8 @@ public varargs int show_goods(object me, string arg)
 {
         class goods item;
         string msg, str, level;
-        mapping buy_list;       // 热门商品显示使用
-        string *str_buy_list;   // 热门商品显示
+        mapping buy_list;       // 熱門商品顯示使用
+        string *str_buy_list;   // 熱門商品顯示
         string *key;
         int vip;
         int len = 0;
@@ -204,32 +204,32 @@ public varargs int show_goods(object me, string arg)
         int store_rate = query_rate();
 
         if( !sizeof(all_goods) ) {
-                tell_object(me, sprintf("目前%s没有可以卖的东西。\n", query("name")));
+                tell_object(me, sprintf("目前%s沒有可以賣的東西。\n", query("name")));
                 return 1;
         }
         
         vip = MEMBER_D->db_query_member(me, "vip");
         if( vip == 3 )
         {
-                level = "钻石会员";
+                level = "鑽石會員";
                 str = "8折";
         }
         else if( vip == 2 )
         {
-                level = "黄金会员";
+                level = "黃金會員";
                 str = "8.5折";
         }
         else if( vip == 1 )
         {
-                level = "白银会员";
+                level = "白銀會員";
                 str = "9折";
         }
         
         if( !arg ) arg = "all";
 
-        msg  = sprintf("%s目前出售以下货物：\n\n" NOR, query("name"));
+        msg  = sprintf("%s目前出售以下貨物：\n\n" NOR, query("name"));
         msg += sprintf(HIW "%-6s%-16s%-16s%-11s%-10s%s\n" NOR,
-                      "编号", "名称", "代号", "价格($NT)", "种类", "功能简要");
+                      "編號", "名稱", "代號", "價格($NT)", "種類", "功能簡要");
         msg += HIG "------------------------------------------------------------------------------------------\n\n" NOR;
         foreach( item in all_goods ) {
                 if( item->type == arg || arg == "all"  )
@@ -248,15 +248,15 @@ public varargs int show_goods(object me, string arg)
         }
 
         msg += "\n";
-        msg += HIG "请认真阅读有关说明，购买前请考虑清楚， 如无差错，恕不退货！\n" NOR;
-        msg += HIG "有关王者商城的说明及购买王者币($NT)的方式，请输入指令 help ntstore 查看。\n" NOR;
+        msg += HIG "請認真閱讀有關說明，購買前請考慮清楚， 如無差錯，恕不退貨！\n" NOR;
+        msg += HIG "有關王者商城的說明及購買王者幣($NT)的方式，請輸入指令 help ntstore 查看。\n" NOR;
         msg += HIG "------------------------------------------------------------------------------------------\n" NOR;
         
         buy_list = DB_D->query_data("ntstore/buylist");
         if( sizeof(buy_list) > 3 )
         {
                 str_buy_list = DB_D->sort_mapping(buy_list, 0);
-                msg += HIG "热门商品：" HIR + str_buy_list[0] + "、" + str_buy_list[1] + "、" + str_buy_list[2] + "、" + str_buy_list[3] + "\n" NOR;
+                msg += HIG "熱門商品：" HIR + str_buy_list[0] + "、" + str_buy_list[1] + "、" + str_buy_list[2] + "、" + str_buy_list[3] + "\n" NOR;
         }
 
         if( sizeof(actions) > 0 )
@@ -266,24 +266,24 @@ public varargs int show_goods(object me, string arg)
                 
         if( sizeof(sp_items) > 0 )
         {
-                msg += HIW "特价商品：";
+                msg += HIW "特價商品：";
                 key = keys(sp_items);
                 for( i=0;i<sizeof(key);i++ )
                 {
-                        msg += HIG + key[i] + "、特价" + sp_items[key[i]] + "，";
+                        msg += HIG + key[i] + "、特價" + sp_items[key[i]] + "，";
                 }
                 msg += "\n" NOR;
         }
 
         //if( rate < 100 )
         if( store_rate )
-                msg += HIY "当前促销活动：所有商品销售扣率 " + store_rate + "%，把握机会哦。\n" NOR;
+                msg += HIY "當前促銷活動：所有商品銷售扣率 " + store_rate + "%，把握機會哦。\n" NOR;
         if( vip > 0 )
-                msg += HIY "您目前会员等级为 " + level + " ，所有物品购买价享受" + str + "。\n" NOR;
+                msg += HIY "您目前會員等級為 " + level + " ，所有物品購買價享受" + str + "。\n" NOR;
         me->start_more(msg);
         return 1;
 }
-// 购买指定元素
+// 購買指定元素
 void get_element_id(string arg, object ob, int value, int num, class goods item)
 {
         mapping props;
@@ -297,7 +297,7 @@ void get_element_id(string arg, object ob, int value, int num, class goods item)
 
         if( !arg )
         {
-                write(HIG "请输入你需要购买的元素ID或者名字（如add_skill或提升技能）或退出(q)，元素编号请退出后help element 查询 ：" NOR);
+                write(HIG "請輸入你需要購買的元素ID或者名字（如add_skill或提升技能）或退出(q)，元素編號請退出後help element 查詢 ：" NOR);
                 input_to("get_element_id", ob, value, num, item);
                 return;
         }
@@ -326,14 +326,14 @@ void get_element_id(string arg, object ob, int value, int num, class goods item)
                 obj->set_name(my_name, ({my_id, "element"})); 
                 if( !MEMBER_D->player_pay(ob, value) )
                 {
-                        write("\n购买物品失败，请与本站ADMIN联系！\n");
+                        write("\n購買物品失敗，請與本站ADMIN聯繫！\n");
                         destruct(obj);
                         return;
                 }
                 obj->move(ob, 1); 
                 log_buyinfo(ob, item);
-                write(HIG "\n购买成功， 您的购买记录已写入文件，请使用 " HIR "member show buyinfo " HIG " 查询！ \n" NOR);
-                write(HIC "您总共花费了 " HIY + value + HIC + " $NT, 祝您好运！\n" NOR);
+                write(HIG "\n購買成功， 您的購買記錄已寫入文件，請使用 " HIR "member show buyinfo " HIG " 查詢！ \n" NOR);
+                write(HIC "您總共花費了 " HIY + value + HIC + " $NT, 祝您好運！\n" NOR);
                 return;
         } 
         else
@@ -353,23 +353,23 @@ void get_element_id(string arg, object ob, int value, int num, class goods item)
                                 obj->set_name(my_name, ({my_id, "element"})); 
                                 if( !MEMBER_D->player_pay(ob, value) )
                                 {
-                                        write("\n购买物品失败，请与本站ADMIN联系！\n");
+                                        write("\n購買物品失敗，請與本站ADMIN聯繫！\n");
                                         destruct(obj);
                                         return;
                                 }
                                 obj->move(ob, 1); 
                                 log_buyinfo(ob, item);
-                                write(HIG "\n购买成功， 您的购买记录已写入文件，请使用 " HIR "member show buyinfo " HIG " 查询！ \n" NOR);
-                                write(HIC "您总共花费了 " HIY + value + HIC + " $NT, 祝您好运！\n" NOR);
+                                write(HIG "\n購買成功， 您的購買記錄已寫入文件，請使用 " HIR "member show buyinfo " HIG " 查詢！ \n" NOR);
+                                write(HIC "您總共花費了 " HIY + value + HIC + " $NT, 祝您好運！\n" NOR);
                                 return;
                         }
                 }       
         }
-        write("没有这个元素，请help element核查后再试！\n");
+        write("沒有這個元素，請help element核查後再試！\n");
         return;
 }  
         
-// 购买指定铜人
+// 購買指定銅人
 void get_tongren_id(string arg, object ob, int value, class goods item)
 {
         object obj;
@@ -379,7 +379,7 @@ void get_tongren_id(string arg, object ob, int value, class goods item)
 
         if( !arg )
         {
-                write(HIG "\n请输入你需要购买的铜人编号（如b4,m5）或退出(q)，铜人编号请退出后使用指令 jingmai bh 查询 ：" NOR);
+                write(HIG "\n請輸入你需要購買的銅人編號（如b4,m5）或退出(q)，銅人編號請退出後使用指令 jingmai bh 查詢 ：" NOR);
                 input_to("get_tongren_id", ob, value, item);
                 return;
         }
@@ -391,8 +391,8 @@ void get_tongren_id(string arg, object ob, int value, class goods item)
 
         if( file_size(file) < 0 )
         {
-                write(HIR "\n你输入的铜人编号有误，请重新输入！\n" NOR);
-                write(HIG "\n请输入你需要购买的铜人编号（如b4,m5）或退出(q)，铜人编号请退出后使用指令 jingmai bh 查询 ：" NOR);
+                write(HIR "\n你輸入的銅人編號有誤，請重新輸入！\n" NOR);
+                write(HIG "\n請輸入你需要購買的銅人編號（如b4,m5）或退出(q)，銅人編號請退出後使用指令 jingmai bh 查詢 ：" NOR);
                 input_to("get_tongren_id", ob, value, item);
                 return;
         }
@@ -400,13 +400,13 @@ void get_tongren_id(string arg, object ob, int value, class goods item)
         obj = new(file);
         if( !objectp(obj) )
         {
-                write("\n复制物品失败，请与本站ADMIN联系！\n");
+                write("\n複製物品失敗，請與本站ADMIN聯繫！\n");
                 return;
         }
 
         if( !MEMBER_D->player_pay(ob, value) )
         {
-                write("\n购买物品失败，请与本站ADMIN联系！\n");
+                write("\n購買物品失敗，請與本站ADMIN聯繫！\n");
                 destruct(obj);
                 return;
         }
@@ -414,12 +414,12 @@ void get_tongren_id(string arg, object ob, int value, class goods item)
         obj->move(ob, 1);
 
         log_buyinfo(ob, item);
-        write(HIG "\n购买成功， 您的购买记录已写入文件，请使用 " HIR "member show buyinfo " HIG " 查询！ \n" NOR);
-        write(HIC "您总共花费了 " HIY + value + HIC + " $NT, 祝您好运！\n" NOR);
+        write(HIG "\n購買成功， 您的購買記錄已寫入文件，請使用 " HIR "member show buyinfo " HIG " 查詢！ \n" NOR);
+        write(HIC "您總共花費了 " HIY + value + HIC + " $NT, 祝您好運！\n" NOR);
         return;
 }
 
-// 购买指定图腾碎片
+// 購買指定圖騰碎片
 void get_tuteng_id(string arg, object ob, int value, class goods item)
 {
         object obj;
@@ -429,7 +429,7 @@ void get_tuteng_id(string arg, object ob, int value, class goods item)
 
         if( !arg )
         {
-                write(HIG "\n请输入你需要购买的图腾碎片编号（如suipian11,suipian21）或退出(q)，图腾碎片编号请退出后使用指令 help tuteng 查询 ：" NOR);
+                write(HIG "\n請輸入你需要購買的圖騰碎片編號（如suipian11,suipian21）或退出(q)，圖騰碎片編號請退出後使用指令 help tuteng 查詢 ：" NOR);
                 input_to("get_tuteng_id", ob, value, item);
                 return;
         }
@@ -441,8 +441,8 @@ void get_tuteng_id(string arg, object ob, int value, class goods item)
 
         if( file_size(file) < 0 )
         {
-                write(HIR "\n你输入的图腾碎片编号有误，请重新输入！\n" NOR);
-                write(HIG "\n请输入你需要购买的图腾碎片编号（如suipian11,suipian21）或退出(q)，图腾碎片编号请退出后使用指令 help tuteng 查询 ：" NOR);
+                write(HIR "\n你輸入的圖騰碎片編號有誤，請重新輸入！\n" NOR);
+                write(HIG "\n請輸入你需要購買的圖騰碎片編號（如suipian11,suipian21）或退出(q)，圖騰碎片編號請退出後使用指令 help tuteng 查詢 ：" NOR);
                 input_to("get_tuteng_id", ob, value, item);
                 return;
         }
@@ -450,13 +450,13 @@ void get_tuteng_id(string arg, object ob, int value, class goods item)
         obj = new(file);
         if( !objectp(obj) )
         {
-                write("\n复制物品失败，请与本站ADMIN联系！\n");
+                write("\n複製物品失敗，請與本站ADMIN聯繫！\n");
                 return;
         }
 
         if( !MEMBER_D->player_pay(ob, value) )
         {
-                write("\n购买物品失败，请与本站ADMIN联系！\n");
+                write("\n購買物品失敗，請與本站ADMIN聯繫！\n");
                 destruct(obj);
                 return;
         }
@@ -464,8 +464,8 @@ void get_tuteng_id(string arg, object ob, int value, class goods item)
         obj->move(ob, 1);
 
         log_buyinfo(ob, item);
-        write(HIG "\n购买成功， 您的购买记录已写入文件，请使用 " HIR "member show buyinfo " HIG " 查询！ \n" NOR);
-        write(HIC "您总共花费了 " HIY + value + HIC + " $NT, 祝您好运！\n" NOR);
+        write(HIG "\n購買成功， 您的購買記錄已寫入文件，請使用 " HIR "member show buyinfo " HIG " 查詢！ \n" NOR);
+        write(HIC "您總共花費了 " HIY + value + HIC + " $NT, 祝您好運！\n" NOR);
         return;
 }
 
@@ -481,17 +481,17 @@ public int buy_goods(object ob, string arg)
 
         n = sizeof(all_goods);
         if( !n ) {
-                write(sprintf("目前%s没有可以卖的东西。\n", query("name")));
+                write(sprintf("目前%s沒有可以賣的東西。\n", query("name")));
                 return 1;
         }
 
         if( !MEMBER_D->is_member(ob) ) {
-                write("你还没有冲值，有关冲值方式，请输入指令 help store 查看。\n");
+                write("你還沒有衝值，有關衝值方式，請輸入指令 help store 查看。\n");
                 return 1;
         }
 
         if( !query("born", ob) ) {
-                write("你还没有出生呢！\n");
+                write("你還沒有出生呢！\n");
                 return 1;
         }
 
@@ -503,13 +503,13 @@ public int buy_goods(object ob, string arg)
         }
 
         if( i >= n ) {
-                write(HIR "你想买什么？ 请使用 store show all 查询。\n" NOR);
+                write(HIR "你想買什麼？ 請使用 store show all 查詢。\n" NOR);
                 return 1;
 
         }
 
         if( all_goods[i]->type == "manual" ) {
-                write("对不起，该服务必须由 admin 手动实现，请及时与 admin 联系！\n");
+                write("對不起，該服務必須由 admin 手動實現，請及時與 admin 聯繫！\n");
                 return 1;
         }
 
@@ -531,7 +531,7 @@ public int buy_goods(object ob, string arg)
 
         if( value < 1 ) value = 1;
         if( money < value) {
-                write("对不起，您的王者币($NT)数量不够！\n");
+                write("對不起，您的王者幣($NT)數量不夠！\n");
                 return 1;
         }
 
@@ -540,12 +540,12 @@ public int buy_goods(object ob, string arg)
         case "module":
                 item = new(all_goods[i]->file);
                 if( !objectp(item) ) {
-                        write("复制物品失败，请与本站ADMIN联系！\n");
+                        write("複製物品失敗，請與本站ADMIN聯繫！\n");
                         return 1;
                 }
 
                 if( !MEMBER_D->player_pay(ob, value) ) {
-                        write("购买物品失败，请与本站ADMIN联系！\n");
+                        write("購買物品失敗，請與本站ADMIN聯繫！\n");
                         destruct(item);
                         return 1;
                 }
@@ -553,7 +553,7 @@ public int buy_goods(object ob, string arg)
                 {
                 case "xt-armor7" :
                         item = new("/clone/goods/xingtian_armor");
-                        item->start_borrowing(7200); // 2个小时使用权限
+                        item->start_borrowing(7200); // 2個小時使用權限
                         item->move(ob, 1);
                         item = new("/clone/goods/xingtian_cloth");
                         item->start_borrowing(7200);
@@ -582,13 +582,13 @@ public int buy_goods(object ob, string arg)
                 }        
 
                 log_buyinfo(ob, all_goods[i]);
-                write(HIG "购买成功， 您的购买记录已写入文件，请使用 " HIR "member show buyinfo " HIG " 查询！ \n" NOR);
-                write(HIC "您总共花费了 " HIY + value + HIC + " $NT, 祝您好运！\n" NOR);
+                write(HIG "購買成功， 您的購買記錄已寫入文件，請使用 " HIR "member show buyinfo " HIG " 查詢！ \n" NOR);
+                write(HIC "您總共花費了 " HIY + value + HIC + " $NT, 祝您好運！\n" NOR);
                 return 1;
                 
         case "package":
                 if( !MEMBER_D->player_pay(ob, value) ) {
-                        write("购买物品失败，请与本站ADMIN联系！\n");
+                        write("購買物品失敗，請與本站ADMIN聯繫！\n");
                         return 1;
                 }
 
@@ -830,8 +830,8 @@ public int buy_goods(object ob, string arg)
 
                 //log_buyinfo(ob, items[0], value);
                 log_buyinfo(ob, all_goods[i]);
-                write(HIG "购买成功， 您的购买记录已写入文件，请使用 " HIR "member show buyinfo " HIG " 查询！ \n" NOR);
-                write(HIC "您总共花费了 " HIY + value + HIC + " $NT, 祝您好运！\n" NOR);
+                write(HIG "購買成功， 您的購買記錄已寫入文件，請使用 " HIR "member show buyinfo " HIG " 查詢！ \n" NOR);
+                write(HIC "您總共花費了 " HIY + value + HIC + " $NT, 祝您好運！\n" NOR);
                 return 1;
 
         case "object":
@@ -842,12 +842,12 @@ public int buy_goods(object ob, string arg)
                 which = all_goods[i]->id;
                 item = new(all_goods[i]->file);
                 if( !objectp(item) ) {
-                        write("复制物品失败，请与本站ADMIN联系！\n");
+                        write("複製物品失敗，請與本站ADMIN聯繫！\n");
                         return 1;
                 }
 
                 if( !MEMBER_D->player_pay(ob, value) ) {
-                        write("购买物品失败，请与本站ADMIN联系！\n");
+                        write("購買物品失敗，請與本站ADMIN聯繫！\n");
                         destruct(item);
                         return 1;
                 }
@@ -872,12 +872,12 @@ public int buy_goods(object ob, string arg)
 
                 item->move(ob, 1);
                 log_buyinfo(ob, all_goods[i]);
-                write(HIG "购买成功， 您的购买记录已写入文件，请使用 " HIR "member show buyinfo " HIG " 查询！ \n" NOR);
-                write(HIC "您总共花费了 " HIY + value + HIC + " $NT, 祝您好运！\n" NOR);
+                write(HIG "購買成功， 您的購買記錄已寫入文件，請使用 " HIR "member show buyinfo " HIG " 查詢！ \n" NOR);
+                write(HIC "您總共花費了 " HIY + value + HIC + " $NT, 祝您好運！\n" NOR);
                 return 1;
         case "srv":
                 if( !MEMBER_D->player_pay(ob, value) ) {
-                        write("购买物品失败，请与本站ADMIN联系！\n");
+                        write("購買物品失敗，請與本站ADMIN聯繫！\n");
                         return 1;
                 }
 
@@ -930,23 +930,23 @@ public int buy_goods(object ob, string arg)
                         break;  
                  case "qiankunqi" :  
                         addn("qiankunqipan/limit_guest", 1, ob);  
-                        write("你获得了一颗白棋子。\n"); 
-                        if (query("qiankunqipan/limit_guest", ob) == 4) write("你获得了一颗本命黑棋子。\n"); 
+                        write("你獲得了一顆白棋子。\n"); 
+                        if (query("qiankunqipan/limit_guest", ob) == 4) write("你獲得了一顆本命黑棋子。\n"); 
                         break;  
 
                      case "mgenital" :  
                              if (query("gender", ob) == "男性") {
-                                write("你已经是男人了，不信你摸摸..\n"); 
+                                write("你已經是男人了，不信你摸摸..\n"); 
                                 return 1;
                              }
                              if (query("class", ob) == "eunach" ||
-                                query("gender", ob) == "无性") {
-                                CHANNEL_D->channel_broadcast("rumor", "听说" + query("name", ob) + "接上了小丁丁，重振雄风，再战江湖。\n" + NOR); 
+                                query("gender", ob) == "無性") {
+                                CHANNEL_D->channel_broadcast("rumor", "聽說" + query("name", ob) + "接上了小丁丁，重振雄風，再戰江湖。\n" + NOR); 
                                 SKILLS_D->remove_id_from_abandon(ob, "pixie-jian"); 
                                 ob->delete_skill("pixie-jian"); 
                                 ob->reset_action();
                              } else {
-                                CHANNEL_D->channel_broadcast("rumor", "听说" + query("name", ob) + "安装了一根大家伙，想去怡红院玩玩。\n" + NOR); 
+                                CHANNEL_D->channel_broadcast("rumor", "聽說" + query("name", ob) + "安裝了一根大傢伙，想去怡紅院玩玩。\n" + NOR); 
                                 SKILLS_D->remove_id_from_abandon(ob, "mingyu-gong"); 
                                 ob->delete_skill("mingyu-gong"); 
                                 ob->reset_action(); 
@@ -957,14 +957,14 @@ public int buy_goods(object ob, string arg)
                              break;  
                      case "fgenital" :  
                              if (query("gender", ob) != "男性") {
-                                write("你没有jj，无从割弃！\n"); 
+                                write("你沒有jj，無從割棄！\n"); 
                                 return 1;
                              }
                              if (query("gender", ob) == "女性") {
-                                write("你已经是女人了，不信你抠抠..\n"); 
+                                write("你已經是女人了，不信你摳摳..\n"); 
                                 return 1;
                              }
-                                 CHANNEL_D->channel_broadcast("rumor", "听说" + query("name", ob) + "去了趟泰国，是不是想先给兄弟们爽爽呢？\n" + NOR); 
+                                 CHANNEL_D->channel_broadcast("rumor", "聽說" + query("name", ob) + "去了趟泰國，是不是想先給兄弟們爽爽呢？\n" + NOR); 
                              set("gender", "女性", ob);  
                              delete("couple/couple_id", ob);  
                              delete("couple/child_id", ob);  
@@ -972,30 +972,30 @@ public int buy_goods(object ob, string arg)
                 }
 
                 log_buyinfo(ob, all_goods[i]);
-                write(HIG "购买成功， 您的购买记录已写入文件，请使用 " HIR "member show buyinfo " HIG " 查询！ \n" NOR);
-                write(HIC "您总共花费了 " HIY + value + HIC + " $NT, 祝您好运！\n" NOR);
+                write(HIG "購買成功， 您的購買記錄已寫入文件，請使用 " HIR "member show buyinfo " HIG " 查詢！ \n" NOR);
+                write(HIC "您總共花費了 " HIY + value + HIC + " $NT, 祝您好運！\n" NOR);
                 return 1;
                 
         case "element":
                 switch( all_goods[i]->id )
                 {
                 case "element2" :
-                        write(HIG "请输入你需要购买的元素ID或者名字（如add_skill或提升技能）或退出(q)，元素编号请退出后help element 查询 ：" NOR);
+                        write(HIG "請輸入你需要購買的元素ID或者名字（如add_skill或提升技能）或退出(q)，元素編號請退出後help element 查詢 ：" NOR);
                                 input_to("get_element_id", ob, value, 2, all_goods[i]);
                         return 1;
                         break;
                 case "element3" :
-                        write(HIG "请输入你需要购买的元素ID或者名字（如add_skill或提升技能）或退出(q)，元素编号请退出后help element 查询 ：" NOR);
+                        write(HIG "請輸入你需要購買的元素ID或者名字（如add_skill或提升技能）或退出(q)，元素編號請退出後help element 查詢 ：" NOR);
                                 input_to("get_element_id", ob, value, 3, all_goods[i]);
                         return 1;
                         break;
                 case "element5" :
-                        write(HIG "请输入你需要购买的元素ID或者名字（如add_skill或提升技能）或退出(q)，元素编号请退出后help element 查询 ：" NOR);
+                        write(HIG "請輸入你需要購買的元素ID或者名字（如add_skill或提升技能）或退出(q)，元素編號請退出後help element 查詢 ：" NOR);
                                 input_to("get_element_id", ob, value, 5, all_goods[i]);
                         return 1;
                         break;
                 case "element10":
-                        write(HIG "请输入你需要购买的元素ID或者名字（如add_skill或提升技能）或退出(q)，元素编号请退出后help element 查询 ：" NOR);
+                        write(HIG "請輸入你需要購買的元素ID或者名字（如add_skill或提升技能）或退出(q)，元素編號請退出後help element 查詢 ：" NOR);
                                 input_to("get_element_id", ob, value, 10, all_goods[i]);
                         return 1;
                         break;
@@ -1008,57 +1008,57 @@ public int buy_goods(object ob, string arg)
                 switch( all_goods[i]->id )
                 {
                 case "tongren" :
-                        write(HIG "请输入你需要购买的铜人编号（如b4,m5）或退出(q)，铜人编号请退出后使用指令 jingmai bh 查询 ：" NOR);
+                        write(HIG "請輸入你需要購買的銅人編號（如b4,m5）或退出(q)，銅人編號請退出後使用指令 jingmai bh 查詢 ：" NOR);
                                 input_to("get_tongren_id", ob, value, all_goods[i]);
                         return 1;
                         break;
                 case "tuteng" :
-                        write(HIG "请输入你需要购买的图腾碎片编号（如suipian11,suipian21）或退出(q)，图腾碎片编号请退出后使用指令 help tuteng 查询 ：" NOR);
+                        write(HIG "請輸入你需要購買的圖騰碎片編號（如suipian11,suipian21）或退出(q)，圖騰碎片編號請退出後使用指令 help tuteng 查詢 ：" NOR);
                                 input_to("get_tuteng_id", ob, value, all_goods[i]);
                         return 1;
                         break;
                 case "addpot" :
                         if( !MEMBER_D->player_pay(ob, value) ) {
-                                write("购买失败，请与本站ADMIN联系！\n");
+                                write("購買失敗，請與本站ADMIN聯繫！\n");
                                 return 1;
                         }
                         addn("add_pot_limit", 100000000, ob);
                         log_buyinfo(ob, all_goods[i]);
-                        write(HIG "购买成功， 您的购买记录已写入文件，请使用 " HIR "member show buyinfo " HIG " 查询！ \n" NOR);
-                        write(HIC "您总共花费了 " HIY + value + HIC + " $NT, 祝您好运！\n" NOR);
+                        write(HIG "購買成功， 您的購買記錄已寫入文件，請使用 " HIR "member show buyinfo " HIG " 查詢！ \n" NOR);
+                        write(HIC "您總共花費了 " HIY + value + HIC + " $NT, 祝您好運！\n" NOR);
                         return 1;
                         break;
                 case "addmar" :
                         if( !MEMBER_D->player_pay(ob, value) ) {
-                                write("购买失败，请与本站ADMIN联系！\n");
+                                write("購買失敗，請與本站ADMIN聯繫！\n");
                                 return 1;
                         }
                         addn("add_mar_limit", 100000000, ob);
                         log_buyinfo(ob, all_goods[i]);
-                        write(HIG "购买成功， 您的购买记录已写入文件，请使用 " HIR "member show buyinfo " HIG " 查询！ \n" NOR);
-                        write(HIC "您总共花费了 " HIY + value + HIC + " $NT, 祝您好运！\n" NOR);
+                        write(HIG "購買成功， 您的購買記錄已寫入文件，請使用 " HIR "member show buyinfo " HIG " 查詢！ \n" NOR);
+                        write(HIC "您總共花費了 " HIY + value + HIC + " $NT, 祝您好運！\n" NOR);
                         return 1;
                         break;
                 case "cleardie" :
                         if( !MEMBER_D->player_pay(ob, value) ) {
-                                write("购买失败，请与本站ADMIN联系！\n");
+                                write("購買失敗，請與本站ADMIN聯繫！\n");
                                 return 1;
                         }
                         delete("combat/last_die", ob);
                         delete("combat/dietimes", ob);
                         log_buyinfo(ob, all_goods[i]);
-                        write(HIG "购买成功， 您的购买记录已写入文件，请使用 " HIR "member show buyinfo " HIG " 查询！ \n" NOR);
-                        write(HIC "您总共花费了 " HIY + value + HIC + " $NT, 祝您好运！\n" NOR);
+                        write(HIG "購買成功， 您的購買記錄已寫入文件，請使用 " HIR "member show buyinfo " HIG " 查詢！ \n" NOR);
+                        write(HIC "您總共花費了 " HIY + value + HIC + " $NT, 祝您好運！\n" NOR);
                         return 1;
                 case "washgift" :
                         if( !MEMBER_D->player_pay(ob, value) ) {
-                                write("购买失败，请与本站ADMIN联系！\n");
+                                write("購買失敗，請與本站ADMIN聯繫！\n");
                                 return 1;
                         }
                         delete("gift/washed", ob);
                         log_buyinfo(ob, all_goods[i]);
-                        write(HIG "购买成功， 您的购买记录已写入文件，请使用 " HIR "member show buyinfo " HIG " 查询！ \n" NOR);
-                        write(HIC "您总共花费了 " HIY + value + HIC + " $NT, 祝您好运！\n" NOR);
+                        write(HIG "購買成功， 您的購買記錄已寫入文件，請使用 " HIR "member show buyinfo " HIG " 查詢！ \n" NOR);
+                        write(HIC "您總共花費了 " HIY + value + HIC + " $NT, 祝您好運！\n" NOR);
                         return 1;
                 default :
                         break;
@@ -1071,12 +1071,12 @@ public int buy_goods(object ob, string arg)
                 &&  arg  != "seasoncard"
                 &&  arg != "yearcard"
                 &&  arg != "forevercard" ) {
-                        write("没有这种类型的会员卡！\n");
+                        write("沒有這種類型的會員卡！\n");
                         return 0;
                 }
 
                 if( !MEMBER_D->player_pay(ob, value) ) {
-                        write("购买魔卡失败，请与本站ADMIN联系！\n");
+                        write("購買魔卡失敗，請與本站ADMIN聯繫！\n");
                         return 1;
                 }
 
@@ -1093,61 +1093,61 @@ public int buy_goods(object ob, string arg)
                         MEMBER_D->db_fee_member(ob, 365, 1);
 
                 log_buyinfo(ob, all_goods[i]);
-                write(HIG "购买成功 ， 您的购买记录已写入文件，请使用 " HIR "member show buyinfo " HIG " 查询！ \n" NOR);
-                write(HIC "您总共花费了 " HIY + value + HIC + " $NT, 祝您好运！\n" NOR);
+                write(HIG "購買成功 ， 您的購買記錄已寫入文件，請使用 " HIR "member show buyinfo " HIG " 查詢！ \n" NOR);
+                write(HIC "您總共花費了 " HIY + value + HIC + " $NT, 祝您好運！\n" NOR);
                 return 1;
 
         case "story":
                 if( query("gift/"+all_goods[i]->id, ob)){
-                        write("您已经中过或购买过该故事了！\n");
+                        write("您已經中過或購買過該故事了！\n");
                         return 0;
                 }
                 if( !MEMBER_D->player_pay(ob, value) ) {
-                        write("购买故事失败，请与本站ADMIN联系！\n");
+                        write("購買故事失敗，請與本站ADMIN聯繫！\n");
                         return 0;
                 }
                 addn("gift/"+all_goods[i]->id, 1, ob);
                 addn(all_goods[i]->file, 1, ob);
                 log_buyinfo(ob, all_goods[i]);
 
-                write(HIG "购买成功 ， 您的购买记录已写入文件，请使用 " HIR "member show buyinfo " HIG " 查询！ \n" NOR);
-                write(HIC "您总共花费了 " HIY + value + HIC + " $NT, 祝您好运！\n" NOR);
+                write(HIG "購買成功 ， 您的購買記錄已寫入文件，請使用 " HIR "member show buyinfo " HIG " 查詢！ \n" NOR);
+                write(HIC "您總共花費了 " HIY + value + HIC + " $NT, 祝您好運！\n" NOR);
                 return 1;
 
         case "gold" :
                 if( !MEMBER_D->player_pay(ob, value) ) {
-                        write("购买黄金失败，请与本站ADMIN联系！\n");
+                        write("購買黃金失敗，請與本站ADMIN聯繫！\n");
                         return 1;
                 }
 
                 addn("balance", 100000000, ob);
                 log_buyinfo(ob, all_goods[i]);
-                write(HIG "购买成功 ， 您的购买记录已写入文件，请使用 " HIR "member show buyinfo " HIG " 查询！ \n" NOR);
-                write(HIC "您总共花费了 " HIY + value + HIC + " $NT, 祝您好运！\n" NOR);
+                write(HIG "購買成功 ， 您的購買記錄已寫入文件，請使用 " HIR "member show buyinfo " HIG " 查詢！ \n" NOR);
+                write(HIC "您總共花費了 " HIY + value + HIC + " $NT, 祝您好運！\n" NOR);
                 return 1;
 
         case "special":
                 specials=keys(query("special_skill", ob));
 
                 if( member_array(all_goods[i]->id, specials) != -1 ) {
-                        write("对不起，您已经有这个特殊技能了！\n");
+                        write("對不起，您已經有這個特殊技能了！\n");
                         return 0;
                 }
 
                 if( sizeof(specials) >= 10 && !query("quest_tuteng/end", ob) ) {
-                        write("对不起，一个帐号最多只能拥有十个特殊技能！\n");
+                        write("對不起，一個帳號最多隻能擁有十個特殊技能！\n");
                         return 0;
                 }
 
                 if( !MEMBER_D->player_pay(ob, value) ) {
-                        write("购买先天技能失败，请与本站ADMIN联系！\n");
+                        write("購買先天技能失敗，請與本站ADMIN聯繫！\n");
                         return 0;
                 }
 
                 set("special_skill/"+all_goods[i]->id, 1, ob);
                 log_buyinfo(ob, all_goods[i]);
-                write(HIG "购买成功， 您的购买记录已写入文件，请使用 " HIR "member show buyinfo " HIG " 查询！ \n" NOR);
-                write(HIC "您总共花费了 " HIY + value + HIC + " $NT, 祝您好运！\n" NOR);
+                write(HIG "購買成功， 您的購買記錄已寫入文件，請使用 " HIR "member show buyinfo " HIG " 查詢！ \n" NOR);
+                write(HIC "您總共花費了 " HIY + value + HIC + " $NT, 祝您好運！\n" NOR);
                 return 1;
 
         case "special2":
@@ -1160,23 +1160,23 @@ public int buy_goods(object ob, string arg)
                 if( query("yuanshen_level", ob)){
                         if( sizeof(specials) > 0 ) {
                                 if( member_array(all_goods[i]->id, specials) != -1 ) {
-                                        write("对不起，您已经有这个奇遇技能了！\n");
+                                        write("對不起，您已經有這個奇遇技能了！\n");
                                         return 1;
                                 }
                         }
 
                         if( !MEMBER_D->player_pay(ob, value) ) {
-                                write("购买奇遇技能失败，请与本站ADMIN联系！\n");
+                                write("購買奇遇技能失敗，請與本站ADMIN聯繫！\n");
                                 return 0;
                         }
 
                         set("special_skill/"+all_goods[i]->id, 1, ob);
                         log_buyinfo(ob, all_goods[i]);
-                        write(HIG "购买成功， 您的购买记录已写入文件，请使用 " HIR "member show buyinfo " HIG " 查询！ \n" NOR);
-                        write(HIC "您总共花费了 " HIY + value + HIC + " $NT, 祝您好运！\n" NOR);
+                        write(HIG "購買成功， 您的購買記錄已寫入文件，請使用 " HIR "member show buyinfo " HIG " 查詢！ \n" NOR);
+                        write(HIC "您總共花費了 " HIY + value + HIC + " $NT, 祝您好運！\n" NOR);
                         return 1;
                 } else {
-                        write("你目前条件还无法购买奇遇技能！请谅解！\n");
+                        write("你目前條件還無法購買奇遇技能！請諒解！\n");
                         return 0;
                 }
 
@@ -1189,13 +1189,13 @@ public int buy_goods(object ob, string arg)
                 if( !query("quest_tuteng/end2", ob)){
                         if( sizeof(specials) > 0 ) {
                                 if( member_array(all_goods[i]->id, specials) != -1 ) {
-                                        write("对不起，您已经有这个图腾特技了！\n");
+                                        write("對不起，您已經有這個圖騰特技了！\n");
                                         return 1;
                                 }
                         }
 
                         if( !MEMBER_D->player_pay(ob, value) ) {
-                                write("购买图腾特技失败，请与本站ADMIN联系！\n");
+                                write("購買圖騰特技失敗，請與本站ADMIN聯繫！\n");
                                 return 0;
                         }
                         
@@ -1211,15 +1211,15 @@ public int buy_goods(object ob, string arg)
                         set("special_skill/"+all_goods[i]->id, 1, ob);
                         set("quest_tuteng/end2", 1, ob);
                         log_buyinfo(ob, all_goods[i]);
-                        write(HIG "购买成功， 您的购买记录已写入文件，请使用 " HIR "member show buyinfo " HIG " 查询！ \n" NOR);
-                        write(HIC "您总共花费了 " HIY + value + HIC + " $NT, 祝您好运！\n" NOR);
+                        write(HIG "購買成功， 您的購買記錄已寫入文件，請使用 " HIR "member show buyinfo " HIG " 查詢！ \n" NOR);
+                        write(HIC "您總共花費了 " HIY + value + HIC + " $NT, 祝您好運！\n" NOR);
                         return 1;
                 } else {
-                        write("对不起，你不能再购买此类技能（图腾特技）了（最多可购买1个）！\n");
+                        write("對不起，你不能再購買此類技能（圖騰特技）了（最多可購買1個）！\n");
                         return 0;
                 }
         default:
-                write("无效物品种类！\n");
+                write("無效物品種類！\n");
                 return 0;
         }
 }
@@ -1230,13 +1230,13 @@ public int do_look(object me, string arg)
         object item;
 
         if( me->is_busy() ) {
-                write("你正在忙着呢！\n");
+                write("你正在忙著呢！\n");
                 return 1;
         }
 
         n = sizeof(all_goods);
         if( !n ) {
-                write(sprintf("目前%s没有可以卖的东西。\n", query("name")));
+                write(sprintf("目前%s沒有可以賣的東西。\n", query("name")));
                 return 1;
         }
 
@@ -1249,28 +1249,28 @@ public int do_look(object me, string arg)
         }
 
         if( i >= n ) {
-                write("你想看什么？\n");
+                write("你想看什麼？\n");
                 return 1;
         }
 
         if( all_goods[i]->type != "object" &&
             all_goods[i]->type != "pill" ) {
                 write(HIM + all_goods[i]->name+"("+all_goods[i]->id +")\n" NOR);
-                write(HIC "功能简要：" + all_goods[i]->desc + "\n" NOR);
-                write(HIY "价格：" + all_goods[i]->value + " $NT\n\n" NOR);
+                write(HIC "功能簡要：" + all_goods[i]->desc + "\n" NOR);
+                write(HIY "價格：" + all_goods[i]->value + " $NT\n\n" NOR);
                 return 1;
         }
 
         catch(call_other(all_goods[i]->file, "???"));
         item = find_object(all_goods[i]->file);
         if( !objectp(item) ) {
-                write("出售的物品属性查看出错，请与ADMIN联系！\n");
+                write("出售的物品屬性查看出錯，請與ADMIN聯繫！\n");
                 return 1;
         }
 
         LOOK_CMD->look_item(me, item);
-        write(HIC "功能简要：" + all_goods[i]->desc + "\n" NOR);
-        write(HIY "价格：" + all_goods[i]->value + " $NT\n\n" NOR);
+        write(HIC "功能簡要：" + all_goods[i]->desc + "\n" NOR);
+        write(HIY "價格：" + all_goods[i]->value + " $NT\n\n" NOR);
 
         return 1;
 }

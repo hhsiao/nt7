@@ -7,8 +7,8 @@ void create()
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "条");
-                set("long", "土红色筷子般粗细的蚯蚓。 \n");
+                set("unit", "條");
+                set("long", "土紅色筷子般粗細的蚯蚓。 \n");
                 set("value", 1);
         }
 }

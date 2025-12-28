@@ -3,12 +3,12 @@ inherit ROOM;
 
 void create()
 {
-        set("short","韦府大门");
+        set("short","韋府大門");
         set("long", @LONG
-这里便是当朝第一宠臣，被康熙帝御封为『一等鹿鼎公』的韦公
-爷的居宅。来到这里，一座富丽堂皇的高大建筑出现在你的眼前，大
-门两侧是两头高大的石狮子。门上横着一块大匾，上面是大学士索额
-图亲笔提写的『鹿鼎公府』四个金笔大字。门前站着个韦府的侍卫。
+這裡便是當朝第一寵臣，被康熙帝御封為『一等鹿鼎公』的韋公
+爺的居宅。來到這裡，一座富麗堂皇的高大建築出現在你的眼前，大
+門兩側是兩頭高大的石獅子。門上橫著一塊大匾，上面是大學士索額
+圖親筆提寫的『鹿鼎公府』四個金筆大字。門前站著個韋府的侍衛。
 LONG );
         set("exits", ([
                 "west" : "/d/beijing/weifu_zoulang1",
@@ -26,6 +26,6 @@ LONG );
 int valid_leave(object me, string dir)
 {
         if (objectp(present("li lishi", environment(me))) && dir == "west")
-                return notify_fail("李力世喝道：别乱逛，公爷今天不见客。\n\n");
+                return notify_fail("李力世喝道：別亂逛，公爺今天不見客。\n\n");
         return ::valid_leave(me, dir);
 }

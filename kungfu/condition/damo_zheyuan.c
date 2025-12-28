@@ -6,23 +6,23 @@ inherit "/inherit/condition/damo";
 
 string name() { return "damo_zheyuan"; }
 
-string chinese_name() { return "折元之扰"; }
+string chinese_name() { return "折元之擾"; }
 
 string update_msg_others()
 {
-        return HIM "$N" HIM "脸色忽然大变，黄豆般大的汗珠顺"
-               "着脸庞涔涔而下。\n" NOR;
+        return HIM "$N" HIM "臉色忽然大變，黃豆般大的汗珠順"
+               "著臉龐涔涔而下。\n" NOR;
 }
 
 string update_msg_self()
 {
-        return HIR "丹田处一阵火起，忽又变得冰凉，想必是受到"
-               "达摩折元剑的干扰。\n" NOR;
+        return HIR "丹田處一陣火起，忽又變得冰涼，想必是受到"
+               "達摩折元劍的干擾。\n" NOR;
 }
 
 string die_reason()
 {
-        return "真元崩溃而亡了";
+        return "真元崩潰而亡了";
 }
 
 int neili_damage(object me, mapping cnd)

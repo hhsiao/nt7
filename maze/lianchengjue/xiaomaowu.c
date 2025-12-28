@@ -6,7 +6,7 @@ inherit ROOM;
 void create()
 {
         set("short", HIG + "小茅屋" + NOR);
-        set("long", "这里是湘南农村的一处农家小院，一个简陋的茅屋前摆放着一个石桌。\n");
+        set("long", "這裡是湘南農村的一處農家小院，一個簡陋的茅屋前擺放著一個石桌。\n");
         
         set("no_bid", 1);
         set("no_magic", 1);

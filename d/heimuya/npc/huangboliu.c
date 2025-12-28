@@ -5,12 +5,12 @@ inherit F_UNIQUE;
 #include <ansi.h>;
 void create()
 {
-        set_name("黄伯流", ({ "huang boliu","huang","boliu"}) );
+        set_name("黃伯流", ({ "huang boliu","huang","boliu"}) );
         set("gender", "男性" );
-        set("title", "日月神教风雷堂香主");
-        set("nickname", HIW"银髯蛟"NOR);
+        set("title", "日月神教風雷堂香主");
+        set("nickname", HIW"銀髯蛟"NOR);
         set("age", 85);
-        set("long", "一部白须，直垂至胸，身材魁梧之极。\n");
+        set("long", "一部白鬚，直垂至胸，身材魁梧之極。\n");
         set("attitude", "friendly");
         set("shen_type", 1);
 
@@ -39,7 +39,7 @@ void create()
         map_skill("parry", "changquan");
         map_skill("unarmed", "changquan");
 
-        create_family("日月神教",2,"弟子 风雷堂香主");
+        create_family("日月神教",2,"弟子 風雷堂香主");
 
         setup();
         carry_object("/clone/misc/cloth")->wear();

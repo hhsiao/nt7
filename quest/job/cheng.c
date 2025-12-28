@@ -1,10 +1,10 @@
-// cheng.c 程药发
+// cheng.c 程藥發
 #include <ansi.h>
 inherit NPC;
 
 int ask_job();
 int ask_fail();
-string *yz_east = ({//这里定义强盗的可能产生地
+string *yz_east = ({//這裡定義強盜的可能產生地
         "/d/taishan/yidao1",
         "/d/quanzhou/qzroad1",
         "/d/quanzhou/qzroad4",
@@ -19,7 +19,7 @@ string *yz_east = ({//这里定义强盗的可能产生地
         "/d/huanghe/xueguan",
         });
 
-string *yz_south = ({//这里定义强盗的可能产生地
+string *yz_south = ({//這裡定義強盜的可能產生地
         "/d/wudang/wdroad4",
         "/d/fuzhou/fzroad6",
         "/d/henshan/hsroad1",
@@ -34,7 +34,7 @@ string *yz_south = ({//这里定义强盗的可能产生地
         "/d/xiaoyao/shulin2",
         });
 
-string *yz_north = ({//这里定义强盗的可能产生地
+string *yz_north = ({//這裡定義強盜的可能產生地
         "/d/shaolin/hanshui1",
         "/d/shaolin/jiulou2",
         "/d/shaolin/shijie1",
@@ -47,7 +47,7 @@ string *yz_north = ({//这里定义强盗的可能产生地
         "/d/city2/zhuang9",
         });
 
-string *yz_west = ({//这里定义强盗的可能产生地
+string *yz_west = ({//這裡定義強盜的可能產生地
         "/d/xiangyang/northgate2",
         "/d/xiangyang/hutong2",
         "/d/xiangyang/westjie3",
@@ -66,13 +66,13 @@ string *yz_west = ({//这里定义强盗的可能产生地
 
 void create()
 {
-        set_name("程药发", ({ "cheng yaofa", "cheng" }));
+        set_name("程藥發", ({ "cheng yaofa", "cheng" }));
         set("title", "知府");
         set("gender", "男性");
         set("age", 43);
         set("str", 20);
         set("dex", 20);
-        set("long", "他就是程药发，现任知府。\n");
+        set("long", "他就是程藥發，現任知府。\n");
         set("combat_exp", 3000000);
         set("shen", 0);
         set("attitude", "heroism");
@@ -87,8 +87,8 @@ void create()
         set("max_neili", 500);
         set("inquiry", ([
                 "job" : (:ask_job():),
-                "任务" : (: ask_job() :),
-                "失败" : (: ask_fail() :),
+                "任務" : (: ask_job() :),
+                "失敗" : (: ask_fail() :),
           ])),
 
         set("env/important", 1);    
@@ -108,12 +108,12 @@ int ask_job()
         skl = me->query_skills();
 
         if (me->query("combat_exp") < 100000){
-                command("say " + RANK_D->query_respect(me) + "你的本事还没有到家呢，恐怕此去路途险恶，你还不能胜任！\n");
+                command("say " + RANK_D->query_respect(me) + "你的本事還沒有到家呢，恐怕此去路途險惡，你還不能勝任！\n");
                 return 1;
         }
 
         if ( !skl ) {
-                tell_object(me, "你去学一些本事先吧！\n");
+                tell_object(me, "你去學一些本事先吧！\n");
                 return 1;
                 }
         sname  = sort_array( keys(skl), (: strcmp :) );
@@ -124,26 +124,26 @@ int ask_job()
         if (skill < 80) skill = 80;
        
         if (me->query("combat_exp") > 1000000) {
-                command("say " + RANK_D->query_respect(me) + "乃是国之栋梁，我小小县令，岂敢劳您大架！");
+                command("say " + RANK_D->query_respect(me) + "乃是國之棟樑，我小小縣令，豈敢勞您大架！");
                 return 1;
         }
         if (me->query("kill_qiangdao") == 1) {
                 command("kick " + me->query("id"));
-                command("say 我不是给了你任务了吗？");
+                command("say 我不是給了你任務了嗎？");
                 return 1;
                 }
         else {
                 command("nod" + me->query("id"));
-                command("say " + RANK_D->query_respect(me) + "能为江山社稷着想，真是太好了。");
+                command("say " + RANK_D->query_respect(me) + "能為江山社稷著想，真是太好了。");
                 me->set("kill_qiangdao", 1);
-                me->set("quest3/quest_type", "杀");
-                me->set("quest3/quest", "强盗");
+                me->set("quest3/quest_type", "殺");
+                me->set("quest3/quest", "強盜");
                 me->set("task_time", time() + 300);
                 switch(random(3)) {
                 case 0 :
                         ob = new(__DIR__"qiangdao");
-                        ob->set("long", "他是明教弃徒，专靠打劫营生，长了一脸横肉，让人望而生畏。\n"
-                        "他是" + me->query("name") + "(" + me->query("id") + ")" + "的目标。\n");
+                        ob->set("long", "他是明教棄徒，專靠打劫營生，長了一臉橫肉，讓人望而生畏。\n"
+                        "他是" + me->query("name") + "(" + me->query("id") + ")" + "的目標。\n");
                         ob->set_skill("jiuyang-shengong", skill);
                         ob->set_skill("blade", skill);
                         ob->set_skill("strike", skill);
@@ -161,8 +161,8 @@ int ask_job()
 
                 default : 
                         ob = new(__DIR__"qiangdao");                   
-                        ob->set("long", "他是星宿弟子，常常下山打劫，尖尖的下巴上挂着几屡胡须，一看就知道他是个邪魔外道之辈。\n"
-                        "他是" + me->query("name") + "(" + me->query("id") + ")" + "的目标。\n");
+                        ob->set("long", "他是星宿弟子，常常下山打劫，尖尖的下巴上掛著幾屢鬍鬚，一看就知道他是個邪魔外道之輩。\n"
+                        "他是" + me->query("name") + "(" + me->query("id") + ")" + "的目標。\n");
                         ob->set_skill("zhaixinggong", random(skill));
                         ob->set_skill("huagong-dafa", random(skill));
                         ob->set_skill("chousui-zhang", random(skill));
@@ -183,25 +183,25 @@ int ask_job()
                                 place = yz_east[random(sizeof(yz_east))];
                                 ob->move(place);
                                 me->set("quest3/place", place);
-                                command("whisper " + me->query("id") + " 有一个强盗在扬州城东为非作歹，你去降服他。");                           
+                                command("whisper " + me->query("id") + " 有一個強盜在揚州城東為非作歹，你去降服他。");                           
                                 break;
                         case 1 :
                                 place = yz_south[random(sizeof(yz_south))];
                                 ob->move(place);
                                 me->set("quest3/place", place);
-                                command("whisper " + me->query("id") + " 有一个强盗在扬州城南为非作歹，你去降服他。");                           
+                                command("whisper " + me->query("id") + " 有一個強盜在揚州城南為非作歹，你去降服他。");                           
                                 break;
                         case 2 :
                                 place = yz_north[random(sizeof(yz_north))];
                                 ob->move(place);
                                 me->set("quest3/place", place);
-                                command("whisper " + me->query("id") + " 有一个强盗在扬州城北为非作歹，你去降服他。");                           
+                                command("whisper " + me->query("id") + " 有一個強盜在揚州城北為非作歹，你去降服他。");                           
                                 break;
                         default :
                                 place = yz_west[random(sizeof(yz_west))];
                                 ob->move(place);
                                 me->set("quest3/place", place);
-                                command("whisper " + me->query("id") + " 有一个强盗在扬州城西为非作歹，你去降服他。");                           
+                                command("whisper " + me->query("id") + " 有一個強盜在揚州城西為非作歹，你去降服他。");                           
                 }               
                 ob->set_temp("owner/id",me->query("id"));
                 ob->set("combat_exp", me->query("combat_exp"));
@@ -226,8 +226,8 @@ int ask_fail()
         
         if (me->query("kill_qiangdao") == 1) {
                 command("haha");
-                command("say 你这身手也敢来惩奸除恶，都怪老夫当初看错了人。");
-                command("chat " + me->query("name") + "狂妄自大，致使强盗危害一方。来人啦，杖责三十，逐出堂外！");
+                command("say 你這身手也敢來懲奸除惡，都怪老夫當初看錯了人。");
+                command("chat " + me->query("name") + "狂妄自大，致使強盜危害一方。來人啦，杖責三十，逐出堂外！");
                 me->move("/d/city/yamen");
                 me->add("qi",-300);
                 call_out("delete", 300);

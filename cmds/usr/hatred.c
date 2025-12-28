@@ -4,7 +4,7 @@
 
 inherit F_CLEAN_UP;
 
-// 为所有的仇恨对象排序：降序
+// 為所有的仇恨對象排序：降序
 int sort_hatred(string id1, string id2, mapping hatred)
 {
         mixed *d1, *d2;
@@ -38,38 +38,38 @@ int main(object me, string arg)
         {
                 fam = FAMILY_D->query_family_name(arg);
                 if (strlen(fam) < 2 || fam[0] < 160)
-                        // 如果不是中文名字，则意味着没有还确定门派
+                        // 如果不是中文名字，則意味著沒有還確定門派
                         fam = 0;
 
                 if (! stringp(fam) && objectp(ob = find_player(arg)))
                 {
-                        // 没有 arg 这个门派，查看是否有该玩家
+                        // 沒有 arg 這個門派，查看是否有該玩家
                         fam=query("family/family_name", ob);
                         if (! stringp(fam))
                                 return notify_fail(ob->name(1) +
-                                                   "现在没有加入任何门派。\n");
+                                                   "現在沒有加入任何門派。\n");
                 }
 
                 if (! stringp(fam))
-                        return notify_fail("没有这个玩家，不能查阅相关的门派。\n");
+                        return notify_fail("沒有這個玩家，不能查閱相關的門派。\n");
         }
 
         if (! fam)
         {
                 // select my family
                 if( !stringp(fam=query("family/family_name", me)) )
-                        return notify_fail("你现在还没有加入一个门派呢。\n");
+                        return notify_fail("你現在還沒有加入一個門派呢。\n");
         }
 
         hatred = FAMILY_D->query_family_hatred(fam);
         if (! mapp(hatred) || ! sizeof(hatred))
-                return notify_fail(fam + "现在没有什么仇人。\n");
+                return notify_fail(fam + "現在沒有什麼仇人。\n");
 
         ids = keys(hatred) - ({ 0 });
         ids = sort_array(ids, (: sort_hatred :), hatred);
 
         count = 0;
-        msg = WHT "目前" + fam + "在江湖上的仇敌都有\n" NOR
+        msg = WHT "目前" + fam + "在江湖上的仇敵都有\n" NOR
               HIY "--------------------------------\n" NOR;
         for (i = 0; i < sizeof(ids) && count < 30; i++)
         {
@@ -85,7 +85,7 @@ int main(object me, string arg)
 
         msg += HIY "--------------------------------\n" NOR;
         if (i < sizeof(ids))
-                msg += WHT "江湖上的敌人太多，难以尽数。\n" NOR;
+                msg += WHT "江湖上的敵人太多，難以盡數。\n" NOR;
         else
                 msg += WHT "目前一共是" + chinese_number(i) +
                        "人。\n" NOR;
@@ -98,8 +98,8 @@ int help(object me)
            write(@HELP
 指令格式: hatred
 
-查看目前你所处的门派的痛恨对象。巫师可以查看任何门派的痛恨对
-象，只需在指令中指明相关的门派或是门派中的玩家。
+查看目前你所處的門派的痛恨對象。巫師可以查看任何門派的痛恨對
+象，只需在指令中指明相關的門派或是門派中的玩家。
 HELP );
            return 1;
 }

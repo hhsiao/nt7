@@ -9,8 +9,8 @@ int permit_recruit(object ob)
         if( query("detach/魔教", ob) || 
             query("betrayer/times", ob) )
         {
-                command("say 哈哈！想来想去都是我们魔教好吧！"); 
-                //message_vision("$N大怒道：我魔教岂能由你要来便来，要走便走？\n",me);
+                command("say 哈哈！想來想去都是我們魔教好吧！"); 
+                //message_vision("$N大怒道：我魔教豈能由你要來便來，要走便走？\n",me);
                 return 1;
         }
 

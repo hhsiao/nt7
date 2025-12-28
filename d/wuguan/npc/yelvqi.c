@@ -1,15 +1,15 @@
 #include <ansi.h>
 
 inherit NPC;
-string *names = ({"打扫马房", "锯木头", "劈柴", "浇菜地", "锄草" });
+string *names = ({"打掃馬房", "鋸木頭", "劈柴", "澆菜地", "鋤草" });
 string ask_job();
 
 void create()
 {
-        set_name("耶律齐", ({ "yelv qi", "yelv", "qi" }));
+        set_name("耶律齊", ({ "yelv qi", "yelv", "qi" }));
         set("title", "全真教第二代弟子");
-        set("nickname", HIY "丐帮帮主" NOR);
-        set("long", "耶律齐是郭靖和黄蓉的大女婿，郭芙的丈夫。\n");
+        set("nickname", HIY "丐幫幫主" NOR);
+        set("long", "耶律齊是郭靖和黃蓉的大女婿，郭芙的丈夫。\n");
         set("gender", "男性");
         set("age", 35);
         set("str", 35);
@@ -88,8 +88,8 @@ void init()
            && query("combat_exp", ob)<50000 )
 	{
        		command("nod"+query("id", ob));
-        	command("say 现在郭府内正缺人手，你可以找我领工作(" HIY
-               		"ask yelv qi about 工作" NOR + CYN ")来做。" NOR);
+        	command("say 現在郭府內正缺人手，你可以找我領工作(" HIY
+               		"ask yelv qi about 工作" NOR + CYN ")來做。" NOR);
 	}
         add_action("do_task", "fuming");
 }
@@ -105,17 +105,17 @@ string ask_job()
         target = names[random(sizeof(names))];
 
         if( query_temp("job_name", ob) )
-		return "你不是已经领了工作吗？还不快去做。";
+		return "你不是已經領了工作嗎？還不快去做。";
 
         if( query("combat_exp", ob) >= 100000 )
-             	return "你功夫已经足够闯荡江湖，这里没有什么适合你的工作了。";
+             	return "你功夫已經足夠闖蕩江湖，這裡沒有什麼適合你的工作了。";
 
         if( query("mark/guofu_out", ob) )
-             	return "你不是已经外出闯荡了吗，怎么又回来了？";
+             	return "你不是已經外出闖蕩了嗎，怎麼又回來了？";
 
         set_temp("job_name", target, ob);
         //ob->apply_condition("wuguan_job", random(3) + 4);
-        return "…嗯…你先到物品房领工具，然后去后院「" HIY + target + NOR
+        return "…嗯…你先到物品房領工具，然後去後院「" HIY + target + NOR
                + CYN "」吧。\n" NOR;
 }
 
@@ -135,32 +135,32 @@ int do_task(string arg)
 */
 
         if( !query_temp("job_name", ob) )
-		return notify_fail(CYN "耶律齐皱眉道：我没给你工作，怎"
-                                   "么跑来覆命了？\n" NOR);
+		return notify_fail(CYN "耶律齊皺眉道：我沒給你工作，怎"
+                                   "麼跑來覆命了？\n" NOR);
 
         if( !(query_temp("mark/劈完了", ob )
-            || query_temp("mark/浇完了", ob )
-            || query_temp("mark/锄完了", ob )
-            || query_temp("mark/锯完了", ob )
-            || query_temp("mark/扫完了", ob )
+            || query_temp("mark/澆完了", ob )
+            || query_temp("mark/鋤完了", ob )
+            || query_temp("mark/鋸完了", ob )
+            || query_temp("mark/掃完了", ob )
             || query_temp("mark/挑完了", ob)) )
-                return notify_fail(CYN "耶律齐皱眉道：我让你干的事都干"
-                                   "完了吗？\n" NOR);
+                return notify_fail(CYN "耶律齊皺眉道：我讓你乾的事都幹"
+                                   "完了嗎？\n" NOR);
 
         if (interactive(ob)
         && (int)ob->query_condition("wuguan_job"))
 	{
               command("hmm"+query("id", ob));
-              return notify_fail(CYN "耶律齐皱眉道：怎么这么快，是不是"
-                                 "没做完啊，吩咐你回来了吗？\n" NOR);
+              return notify_fail(CYN "耶律齊皺眉道：怎麼這麼快，是不是"
+                                 "沒做完啊，吩咐你回來了嗎？\n" NOR);
         }
 
-        if( !query_temp("mark/还了", ob) )
-		return notify_fail(CYN "耶律齐道：…嗯…你还是先把工具"
-                                   "还了""再说吧（将工具还给武修文 give 工具ID to wu xiuwen )。\n" NOR);
+        if( !query_temp("mark/還了", ob) )
+		return notify_fail(CYN "耶律齊道：…嗯…你還是先把工具"
+                                   "還了""再說吧（將工具還給武修文 give 工具ID to wu xiuwen )。\n" NOR);
 
         command("smile"+query("id", ob));
-        command("say 干得不错，这是给你的奖赏。");
+        command("say 幹得不錯，這是給你的獎賞。");
 
         obj = new("/clone/money/silver");
         obj->set_amount(1 + random(2));
@@ -173,8 +173,8 @@ int do_task(string arg)
         addn("combat_exp", exp, ob);
         ob->improve_potential(pot);
 
-        tell_object(ob, HIC "你获得了" + chinese_number(exp) + "点"
-                        "经验和" + chinese_number(pot) + "点潜能。"
+        tell_object(ob, HIC "你獲得了" + chinese_number(exp) + "點"
+                        "經驗和" + chinese_number(pot) + "點潛能。"
                         "\n" NOR);
         delete_temp("job_name", ob);
         delete_temp("mark", ob);

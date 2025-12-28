@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("地图精[2;37;0m[2;37;0m", ({"maphere"}));        
+        set_name("地圖精[2;37;0m[2;37;0m", ({"maphere"}));        
         set("gender", "男性");                
         set("long", "23456[2;37;0m
-它是出云五的魔幻兽。
+它是出雲五的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");
         set("owner", "xzre");
-        set("owner_name", "出云五");
+        set("owner_name", "出雲五");
         set_temp("owner", "xzre");
-        set_temp("owner_name", "出云五");
+        set_temp("owner_name", "出雲五");
         ::setup();
 }

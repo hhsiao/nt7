@@ -4,10 +4,10 @@ inherit NPC;
 void do_summon();
 void create()
 {
-        string *names = ({"幽灵狼王"});
+        string *names = ({"幽靈狼王"});
         set_name( names[random(sizeof(names))], ({ "wolf king","wolf"}));
         set("vendetta_mark","wolf");
-        set("race", "野兽");
+        set("race", "野獸");
         set("gender", "雄性");
         set("age", 1000);
         set("long", "\n");
@@ -27,7 +27,7 @@ void create()
                                 (: do_summon() :),
                     }) );
 
-        set("limbs", ({ "头部", "身体", "前脚", "後脚", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體", "前腳", "後腳", "尾巴" }) );
         set("verbs", ({ "bite", "claw" }) );
         set("combat_exp", 400000);
         set("bellicosity", 5 );
@@ -44,7 +44,7 @@ mixed hit_ob(object me, object victim, int damage_bonus)
 {
         victim->receive_damage("qi",60+random(60), me);
         victim->receive_wound("qi",30+random(30), me);
-        message_combatd(HIW"\n$N"+HIW"锋利的爪子在$n"+HIW"身上留下一道血淋淋的伤口！"NOR,me,victim);
+        message_combatd(HIW"\n$N"+HIW"鋒利的爪子在$n"+HIW"身上留下一道血淋淋的傷口！"NOR,me,victim);
         return;
 }
 
@@ -52,7 +52,7 @@ void do_summon() {
         object wolf,me,enemy,enemies;
         me = this_object();
 
-        message_vision(HIB "\n$N仰天狼嚎“呜～嗷～～，呜～嗷”，顿时漫山遍野群狼齐哮。\n" NOR, me);
+        message_vision(HIB "\n$N仰天狼嚎“嗚～嗷～～，嗚～嗷”，頓時漫山遍野群狼齊哮。\n" NOR, me);
         seteuid(getuid());
         enemies = me->query_enemy();
         if( !sizeof(enemies) ) return;
@@ -63,7 +63,7 @@ void do_summon() {
                 wolf->kill_ob(enemy);
                 enemy->kill_ob(wolf);
         }
-        message_vision( "\n\n$N恶狠狠地扑了上来。\n" , wolf);
+        message_vision( "\n\n$N惡狠狠地撲了上來。\n" , wolf);
         call_out("leave", 20+random(10), wolf);
         start_busy(2);
 }

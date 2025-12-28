@@ -5,8 +5,8 @@ void create()
 {
        set("short","西域大戈壁");
        set("long", @LONG
-这是西域的大戈壁，要走出这里并非易事。不远处尘土沙粒铺天盖
-地般吹来，看来要起风暴了。
+這是西域的大戈壁，要走出這裡並非易事。不遠處塵土沙粒鋪天蓋
+地般吹來，看來要起風暴了。
 LONG);
         set("exits", ([
                 "north" : __DIR__"gebi2",
@@ -24,13 +24,13 @@ void init()
        object me = this_player();
        switch(random(4)) {
        case 0 : set_temp("gc_n",1, me); 
-       tell_object(me,"直觉告诉你：往北走有一片绿洲。\n");break;
+       tell_object(me,"直覺告訴你：往北走有一片綠洲。\n");break;
        case 1 : set_temp("gc_s",1, me); 
-       tell_object(me,"直觉告诉你：往南走有一片绿洲。\n");break;
+       tell_object(me,"直覺告訴你：往南走有一片綠洲。\n");break;
        case 2 : set_temp("gc_e",1, me); 
-       tell_object(me,"直觉告诉你：往东走有一片绿洲。\n");break;
+       tell_object(me,"直覺告訴你：往東走有一片綠洲。\n");break;
        case 3 : set_temp("gc_w",1, me); 
-       tell_object(me,"直觉告诉你：往西走有一片绿洲。\n");break;
+       tell_object(me,"直覺告訴你：往西走有一片綠洲。\n");break;
        }       
        if(me->query_skill("dodge", 1) <= 150) 
             addn("jing", -15, me);

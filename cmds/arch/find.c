@@ -3,10 +3,10 @@
 
 #include <ansi.h>
 
-// ENABLE_BAR 模式针对类 hell 的 MUD，它提供了 process_bar()
-// 这个 simul_efun 和 attack_system(),detach_system() 这两个
-// 定义在 USER_OB 的函数，并且利用 ANSI 控制符对提示符有了一
-// 些改进。开启时定义为 1 即可。
+// ENABLE_BAR 模式針對類 hell 的 MUD，它提供了 process_bar()
+// 這個 simul_efun 和 attack_system(),detach_system() 這兩個
+// 定義在 USER_OB 的函數，並且利用 ANSI 控制符對提示符有了一
+// 些改進。開啟時定義為 1 即可。
 #define ENABLE_BAR      1
 
 inherit F_CLEAN_UP;
@@ -24,20 +24,20 @@ int main(object me, string arg)
         string file, dir, flag;
         int raw;
 
-        // 权限检查，需要安全系统支持
+        // 權限檢查，需要安全系統支持
         if (! SECURITY_D->valid_grant(me, "(arch)"))
                 return 0;
 
         if (! arg)
-                return notify_fail("指令格式：find <文件名|内容> in <目录名|文件名> [-c]\n");
+                return notify_fail("指令格式：find <文件名|內容> in <目錄名|文件名> [-c]\n");
 
         if (sscanf(arg, "%s in %s %s", file, dir, flag) != 3)
         {
                 if (sscanf(arg, "%s in %s", file, dir) != 2)
-                        notify_fail("指令格式：find <文件名|内容> in <目录名|文件名> [-c]\n");
+                        notify_fail("指令格式：find <文件名|內容> in <目錄名|文件名> [-c]\n");
         }
 
-        // 如果是查找包含内容模式
+        // 如果是查找包含內容模式
         if (flag == "-c") raw = 1;
 
         dir=resolve_path(query("cwd", me),dir);
@@ -53,14 +53,14 @@ int main(object me, string arg)
 
         if (file_size(dir) == -2 && dir[strlen(dir) - 1] != '/') dir += "/";
         if (file_size(dir) != -2)
-                return notify_fail(dir + " 并不是一个目录。\n");
+                return notify_fail(dir + " 並不是一個目錄。\n");
 
-        // 给一点提示，因为玩家可能会过于迟滞
-        message_system("系统进行数据处理中，请耐心等候...");
+        // 給一點提示，因為玩家可能會過於遲滯
+        message_system("系統進行數據處理中，請耐心等候...");
 
 #if ENABLE_BAR
-        write(HIR "\n现在系统正在搜索 " + dir + " 目录，稍后汇报。\n\n" NOR
-              HIW "进度：" + process_bar(0) + "\n");
+        write(HIR "\n現在系統正在搜索 " + dir + " 目錄，稍後彙報。\n\n" NOR
+              HIW "進度：" + process_bar(0) + "\n");
         if (me)
         {
                 me->attach_system();
@@ -77,14 +77,14 @@ void search_dir(object me, string file, string dir, int raw)
         string *flist, *result;
         string info, file_info, size;
 
-        // 获得所有的深层目录文件列表
+        // 獲得所有的深層目錄文件列表
         flist = deep_file_list(dir);
 
         if (! arrayp(flist) || ! sizeof(flist))
         {
-                message_system("系统数据处理完毕，请继续游戏。\n" ESC + "[K");
-                info = HIR "文件搜索完毕：\n\n" NOR ESC + "[K"
-                       HIR "目录 " + dir + " 下并没有可供查找的文件。" NOR;
+                message_system("系統數據處理完畢，請繼續遊戲。\n" ESC + "[K");
+                info = HIR "文件搜索完畢：\n\n" NOR ESC + "[K"
+                       HIR "目錄 " + dir + " 下並沒有可供查找的文件。" NOR;
 
                 message("system", info, me);
 #if ENABLE_BAR
@@ -99,11 +99,11 @@ void search_dir(object me, string file, string dir, int raw)
         me->detach_system();
 #endif
 
-        message_system("系统数据处理完毕，请继续游戏。\n" ESC + "[K");
+        message_system("系統數據處理完畢，請繼續遊戲。\n" ESC + "[K");
 
         if (! sizeof(result))
-                info = HIR "文件搜索完毕：\n" + ESC + "[K" + "\n" NOR ESC + "[K"
-                       HIR "目录 " + dir + " 下没有找到任何符合要求的文件。\n" NOR
+                info = HIR "文件搜索完畢：\n" + ESC + "[K" + "\n" NOR ESC + "[K"
+                       HIR "目錄 " + dir + " 下沒有找到任何符合要求的文件。\n" NOR
                        ESC + "[K";
 
         else
@@ -119,9 +119,9 @@ void search_dir(object me, string file, string dir, int raw)
                                              CHINESE_D->chinese_time(9, ctime(stat(result[i])[1])), );
                 }
 
-                info = HIR "文件搜索完毕：\n" + ESC + "[K" + "\n" NOR ESC + "[K" +
+                info = HIR "文件搜索完畢：\n" + ESC + "[K" + "\n" NOR ESC + "[K" +
                        file_info + NOR + ESC + "[K"
-                       HIR "\n一共找到 " + sizeof(result) + " 个文件。" + ESC + "[K" + NOR
+                       HIR "\n一共找到 " + sizeof(result) + " 個文件。" + ESC + "[K" + NOR
                        ESC + "[K\n" + ESC + "[K";
         }
 
@@ -163,7 +163,7 @@ string *search_file(string file, string *flist, object me, int raw)
                 if (eval_cost() < 10000) set_eval_limit(0);
 #if ENABLE_BAR
                 message("system", NOR ESC + "[1A" + ESC + "[256D"
-                                  HIG "进度：" + process_bar((i + 1) * 100 / sizeof(flist)) +
+                                  HIG "進度：" + process_bar((i + 1) * 100 / sizeof(flist)) +
                                   "\n" + ESC + "[K", me);
 #endif
                 if (raw == 0)
@@ -184,7 +184,7 @@ string *search_file(string file, string *flist, object me, int raw)
                 }
                 else
                 {
-                        // 如果文件本身都没有这个要找的字符串长
+                        // 如果文件本身都沒有這個要找的字符串長
                         if (file_size(flist[i]) < strlen(file))
                                 continue;
 
@@ -214,19 +214,19 @@ void search_in_file(object me, string word, string file)
                 log_file("readfile", sprintf("%s\n", file));
         if (! text = read_file(file))
         {
-                write(HIR "\n文件 " + file + " 打开失败，可能是因为文件过大。\n" NOR);
+                write(HIR "\n文件 " + file + " 打開失敗，可能是因為文件過大。\n" NOR);
                 return;
         }
 
         if (strsrch(text, word) == -1)
         {
-                write(HIR "\n文件 " + file + " 内部并无包含“" HIW + word +
+                write(HIR "\n文件 " + file + " 內部並無包含“" HIW + word +
                       HIR "”字符串。\n" NOR);
                 return;
         }
 
         lines = explode(text, "\n");
-        info = HIR "正在文件 " + file + " 中查找包含 " + word + "\n字符串的内容：\n\n" NOR;
+        info = HIR "正在文件 " + file + " 中查找包含 " + word + "\n字符串的內容：\n\n" NOR;
 
         line = sizeof(lines);
         for (i = 0; i < line; i++)
@@ -236,7 +236,7 @@ void search_in_file(object me, string word, string file)
 
                 if (num > -1)
                 {
-                        info += WHT "在第 " + (i + 1) + " 行的第 " + (num + 1) + " 字节处"
+                        info += WHT "在第 " + (i + 1) + " 行的第 " + (num + 1) + " 字節處"
                                 "找到指定字符。\n" NOR;
 
                         info += CYN "............\n" NOR;
@@ -248,7 +248,7 @@ void search_in_file(object me, string word, string file)
                         count++;
                 }
         }
-        info += HIR "查询完毕，一共找到 " + count + " 个符合的内容。" NOR;
+        info += HIR "查詢完畢，一共找到 " + count + " 個符合的內容。" NOR;
 
         me->start_more(info);
         return;
@@ -257,12 +257,12 @@ void search_in_file(object me, string word, string file)
 int help(object me)
 {
         write(@HELP
-指令格式: find <文件名|内容> in <目录名|文件名> [-c]
+指令格式: find <文件名|內容> in <目錄名|文件名> [-c]
 
-查找目录及其子目录下所有包含指定文件名的文件和目录。查找结果返
-回的格式为：<文件名> <文件大小> <上一次修改时间>。
-如果加上了 -c 参数则表示查找在指定目录下包含指定内容的文件。
-如果指定的位置是一个文件名，则表示在那个文件中查找包含指定内容
+查找目錄及其子目錄下所有包含指定文件名的文件和目錄。查找結果返
+回的格式為：<文件名> <文件大小> <上一次修改時間>。
+如果加上了 -c 參數則表示查找在指定目錄下包含指定內容的文件。
+如果指定的位置是一個文件名，則表示在那個文件中查找包含指定內容
 的行。
 HELP );
         return 1;

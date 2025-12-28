@@ -14,8 +14,8 @@ int  is_stay_in_room()  { return 1; }
 void create()
 {
         set_name("田伯光", ({ "tian boguang", "tian", "boguang" }));
-        set("nickname", HIM "万里独行" NOR);
-        set("long", "田伯光为江湖中臭名昭彰的采花贼，一手快刀绝技，天下无双。轻功在武林中也是一等的。\n");
+        set("nickname", HIM "萬里獨行" NOR);
+        set("long", "田伯光為江湖中臭名昭彰的採花賊，一手快刀絕技，天下無雙。輕功在武林中也是一等的。\n");
         set("gender", "男性");
         set("age", 35);
         set("attitude", "peaceful");
@@ -83,8 +83,8 @@ void create()
         ]));
 
         set("drops", ([
-                "RA&RANDOM10"    :       100,   // 低级普通装备
-                "RA&RANDOM20"    :       40,    // 低级普通装备
+                "RA&RANDOM10"    :       100,   // 低級普通裝備
+                "RA&RANDOM20"    :       40,    // 低級普通裝備
                 "FI&/clone/goods/enchant-scroll" :   20,
                 "FI&/clone/book/kuangfeng-book"  :   20,
                 "FI&/clone/goods/sun"    :   20,
@@ -107,15 +107,15 @@ void create()
 
 int accept_fight(object ob)
 {
-        command("say 我可没兴趣陪你玩，快给我滚开。");
+        command("say 我可沒興趣陪你玩，快給我滾開。");
         return 0;
 }
 
 int accept_hit(object ob)
 {
-        message_vision(HIW "$N" HIW "脸色一变，闪过一道杀气。怒"
-                       "喝道：好一个" + RANK_D->query_rude(ob) +
-                       "，来吧！\n" NOR, this_object());
+        message_vision(HIW "$N" HIW "臉色一變，閃過一道殺氣。怒"
+                       "喝道：好一個" + RANK_D->query_rude(ob) +
+                       "，來吧！\n" NOR, this_object());
         kill_ob(ob);
         return 1;
 }
@@ -130,12 +130,12 @@ int accept_kill(object ob)
 
 int accept_ansuan(object ob)
 {
-        return notify_fail("那人警惕性好高，你难以下手。\n");
+        return notify_fail("那人警惕性好高，你難以下手。\n");
 }
 
 int accept_touxi(object ob)
 {
-        return notify_fail("那人警惕性好高，你难以下手。\n");
+        return notify_fail("那人警惕性好高，你難以下手。\n");
 }
 
 void kill_ob(object me)
@@ -192,7 +192,7 @@ int fast_attack(object me, object ob)
         delete_temp("attack_pending", me);
         num = random(3) + 5;
 
-        message_vision("田伯光大喊一声，使出其快刀绝技疯狂般向$N连劈了" + chinese_number(num) + "刀。\n", ob);
+        message_vision("田伯光大喊一聲，使出其快刀絕技瘋狂般向$N連劈了" + chinese_number(num) + "刀。\n", ob);
 
         for (i = 1; i < num + 1; i++)
         {
@@ -207,15 +207,15 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->start_busy(5 + random(6));
         me->receive_wound("qi", 200 + random(100), ob);
-        return HIY "$N" HIY "大喝一声，拼死反抗，竟逼得$n" HIY "手忙脚乱。\n" NOR;
+        return HIY "$N" HIY "大喝一聲，拼死反抗，竟逼得$n" HIY "手忙腳亂。\n" NOR;
 }
 
 void death_msg()
 {
         command("chat* heng");
-       	command("chat 今日真是冤家路窄，你爷爷我还有事，不奉陪了 ……");
-	CHANNEL_D->channel_broadcast("rumor", "听说" + name() + HIM "被江湖人"
-			                     "士追杀，但却奋力拼杀，突出重围，死里逃生。" NOR);
+       	command("chat 今日真是冤家路窄，你爺爺我還有事，不奉陪了 ……");
+	CHANNEL_D->channel_broadcast("rumor", "聽說" + name() + HIM "被江湖人"
+			                     "士追殺，但卻奮力拼殺，突出重圍，死裡逃生。" NOR);
 }
 
 void random_move()
@@ -227,8 +227,8 @@ void random_move()
                 env = environment(this_object());
                 message_vision("$N急急忙忙的走了。\n", this_object());
 
-                CHANNEL_D->channel_broadcast("news", HIG "听说" + HIW +
-                        env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一带出现的" +
+                CHANNEL_D->channel_broadcast("news", HIG "聽說" + HIW +
+                        env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一帶出現的" +
                         HIR + this_object()->short() + HIG "消失了。\n" NOR);
 
                 destruct(this_object());

@@ -3,13 +3,13 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "客栈");
+        set("short", "客棧");
         set("long", @LONG
-这是一家价简陋客栈，店铺虽然不大，生意却不错，许多
-过往的人都喜欢选择这里落脚，因为这里的店主识得一些江湖
-中人，所以很少有人会来此闹事。店中的小二忙前忙后不停的
-招呼着客人，就连店主也是满脸笑容的陪着说好话。让人觉的
-有归家的感觉一般。
+這是一家價簡陋客棧，店鋪雖然不大，生意卻不錯，許多
+過往的人都喜歡選擇這裡落腳，因為這裡的店主識得一些江湖
+中人，所以很少有人會來此鬧事。店中的小二忙前忙後不停的
+招呼著客人，就連店主也是滿臉笑容的陪著說好話。讓人覺的
+有歸家的感覺一般。
 LONG);
         set("no_fight", 1);
         set("valid_startroom", 1);
@@ -33,7 +33,7 @@ int valid_leave(object me, string dir)
 {
 
         if (! me->query_temp("rent_paid") && dir == "westup" )
-        return notify_fail(CYN "元财对你赔笑道：这位客官，请先这里"
-                           "付了钱再上楼住店。\n" NOR);
+        return notify_fail(CYN "元財對你賠笑道：這位客官，請先這裡"
+                           "付了錢再上樓住店。\n" NOR);
         return ::valid_leave(me, dir);
 }

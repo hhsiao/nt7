@@ -1,4 +1,4 @@
-// zhulin.c 盘龙居竹林
+// zhulin.c 盤龍居竹林
 
 //** inherit PRIVATE_ROOM;
 inherit ROOM;                                   /* EXAMPLE */
@@ -7,12 +7,12 @@ void create()
 {
         set("short", "竹林");
         set("long", @LONG
-这里种着好大一片竹林，非常幽静。风一起就听竹叶沙沙的响。
+這裡種著好大一片竹林，非常幽靜。風一起就聽竹葉沙沙的響。
 LONG );
 
-        set("default_long", "这里种着好大一片竹林，非常幽静。风一起就" /* EXAMPLE */
-                            "听竹叶沙沙的响，有时ROOM_OWNER就去听涛阁" /* EXAMPLE */
-                            "默听竹浪涛声，参悟武功。");               /* EXAMPLE */
+        set("default_long", "這裡種著好大一片竹林，非常幽靜。風一起就" /* EXAMPLE */
+                            "聽竹葉沙沙的響，有時ROOM_OWNER就去聽濤閣" /* EXAMPLE */
+                            "默聽竹浪濤聲，參悟武功。");               /* EXAMPLE */
                                                                        /* EXAMPLE */
 
         set("exits", ([

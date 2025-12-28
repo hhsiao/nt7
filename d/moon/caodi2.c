@@ -9,9 +9,9 @@ void create()
 {
 	set("short", "幽香湖");
 	set("long", @LONG
-这是一个碧清的小湖，湖边盛开着各式各样的奇花异草。
-一阵幽风袭面而来，顿觉四周清香暗涌。北面是陡峭的山崖，
-刚才所见的灯光似乎就来自这座山上。
+這是一個碧清的小湖，湖邊盛開著各式各樣的奇花異草。
+一陣幽風襲面而來，頓覺四周清香暗湧。北面是陡峭的山崖，
+剛才所見的燈光似乎就來自這座山上。
 LONG
 	);
 	set("exits", ([ 
@@ -49,17 +49,17 @@ int do_fillwater(string arg)
                                 "remaining": 15,
                                 "drunk_apply": 6,
                         ]) );
-                        write("你从幽香湖里装满了水！ \n");
+                        write("你從幽香湖裡裝滿了水！ \n");
                         return 1;
                    }
                 }
                 if (can_fillwater ==0) {
-                        write("你没有装水的东西啊....\n");
+                        write("你沒有裝水的東西啊....\n");
                         return 1;
                 }
         }
         else {
-                write("你要往什么东西里灌水？\n");
+                write("你要往什麼東西里灌水？\n");
         }
         return 1;
 }

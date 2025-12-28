@@ -4,11 +4,11 @@ inherit NPC;
 
 void create()
 {
-        set_name(HIY "谢逊" NOR, ({"xie xun", "xie", "xun", }));
-        set("title", HIR "发狂的金毛狮王" NOR);
+        set_name(HIY "謝遜" NOR, ({"xie xun", "xie", "xun", }));
+        set("title", HIR "發狂的金毛獅王" NOR);
         set("long",
-        "他是一位身材魁伟异常的的老者，身穿一件白布长袍。\n"
-        "他满头黄发，威风凛凛，真如天神一般，只是两只眼睛并不睁开。\n"
+        "他是一位身材魁偉異常的的老者，身穿一件白布長袍。\n"
+        "他滿頭黃髮，威風凜凜，真如天神一般，只是兩隻眼睛並不睜開。\n"
         );
 
         set("gender", "男性");
@@ -70,8 +70,8 @@ void create()
         set_temp("apply/unarmed_damage", 50000); 
         set_temp("apply/damage", 50000); 
         set_temp("apply/armor", 50000);
-        set_temp("apply/qy", 80);  // 气运
-        set_temp("apply/fy", 80);  // 福缘
+        set_temp("apply/qy", 80);  // 氣運
+        set_temp("apply/fy", 80);  // 福緣
         
         setup();
         carry_object("/d/mingjiao/obj/baipao")->wear();
@@ -100,7 +100,7 @@ void heart_beat()
         if (query("neili") < 1 && random(50) == 1)                                              
                 set("neili", query("max_neili"));
         
-        // 如果不在帮战期间则消失
+        // 如果不在幫戰期間則消失
         if (! BUNCH_D->is_battle_start() )destruct(this_object());
 
         ::heart_beat();
@@ -119,7 +119,7 @@ void unconcious()
 
 void die(object killer)
 {
-        object dob;             // 打晕这个NPC的人
+        object dob;             // 打暈這個NPC的人
         object env;
         object ob;
         
@@ -128,11 +128,11 @@ void die(object killer)
                 return;
         }
 
-        // 找到杀了我(NPC)或是打晕我的人
+        // 找到殺了我(NPC)或是打暈我的人
         if (! objectp(dob = killer))
                 dob = query_last_damage_from();
 
-        // 如果杀我的人属于某帮派则设置该帮派具有抢先进入密道
+        // 如果殺我的人屬於某幫派則設置該幫派具有搶先進入密道
         if (dob && userp(dob))
         {
                 if (! objectp(env = find_object("/maze/binghuodao/jitan")))
@@ -144,7 +144,7 @@ void die(object killer)
                 }
         }
 
-        message_vision(HIY "$N" HIY "大叫道：“贼老天，贼老天啊，为何这样对我！”\n" NOR, 
+        message_vision(HIY "$N" HIY "大叫道：“賊老天，賊老天啊，為何這樣對我！”\n" NOR, 
                        this_object());
 
         destruct(this_object());

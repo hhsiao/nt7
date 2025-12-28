@@ -5,7 +5,7 @@ inherit F_MASTER;
 inherit NPC;
 #include <ansi.h>
 
-#define QUESTDIR3 "quest/雪山飞狐/解药篇/"
+#define QUESTDIR3 "quest/雪山飛狐/解藥篇/"
 
 string ask_jindi();
 int ask_jieyao();
@@ -17,11 +17,11 @@ void giveyaofang(object me);
 
 void create()
 {
-       set_name("程灵素", ({ "cheng lingsu", "cheng" }));
-       set("nickname", "药师");
+       set_name("程靈素", ({ "cheng lingsu", "cheng" }));
+       set("nickname", "藥師");
        set("long",
-               "她就是药师程灵素。\n"
-               "年纪已仅有二十来岁，但是各种药理极为精通。\n");
+               "她就是藥師程靈素。\n"
+               "年紀已僅有二十來歲，但是各種藥理極為精通。\n");
         set("gender", "女性");
        set("age", 21);
        set("attitude", "friendly");
@@ -60,14 +60,14 @@ void create()
 
        set("inquiry", ([
                 "五毒教" : (: ask_jindi :),
-                "解药" : (: ask_jieyao :),
-                "药方" : (: ask_yaofang :),
-                "治疗" : (: ask_jieyao :),
+                "解藥" : (: ask_jieyao :),
+                "藥方" : (: ask_yaofang :),
+                "治療" : (: ask_jieyao :),
                 "七星海棠" : (: ask_qixinghaitang :),
                 "胡斐" : (: ask_hufei :),
                 "禁地" : (: ask_jindi :),
-                "苗人凤" : "苗大侠武功高强，倒是其次，多年来兴侠仗义尤其佩服！\n",
-                "胡一道" : "辽东大侠胡一刀！\n",
+                "苗人鳳" : "苗大俠武功高強，倒是其次，多年來興俠仗義尤其佩服！\n",
+                "胡一道" : "遼東大俠胡一刀！\n",
        ]));
        setup();
        carry_object("/clone/armor/cloth")->wear();
@@ -86,24 +86,24 @@ string ask_jindi()
 
         exp=(int)applicant->query("combat_exp",1);
         if(exp<90000)
-        return "你就这点功夫，恐怕连五毒教的山也上不去，等几年在说吧！\n";
+        return "你就這點功夫，恐怕連五毒教的山也上不去，等幾年在說吧！\n";
 
         if (  present("jiuxuebiyun dan", this_player()) )
-        return "我已经给过你了，为何还要向我要？此药很难炼制，不要太贪心！\n";
+        return "我已經給過你了，為何還要向我要？此藥很難煉製，不要太貪心！\n";
 
         if( applicant->query("wudu_jiedu") ){
         ob = new(__DIR__"obj/jxdan1");
         ob->move(applicant);
-        message_vision("$N获得一颗九雪碧云丹。\n",this_player());
+        message_vision("$N獲得一顆九雪碧雲丹。\n",this_player());
 
-        return "你上次答应我的事情还没做，怎麽又来要？ 程灵素皱了皱眉，
-冷冷的说到：“丹到还有一颗，你要就拿去吧。\n";
+        return "你上次答應我的事情還沒做，怎麼又來要？ 程靈素皺了皺眉，
+冷冷的說到：“丹到還有一顆，你要就拿去吧。\n";
         }
 
          applicant->set_temp("marks/程",1);
-         return "五毒教的禁地种满了各种奇花异草，其中大部分具有巨毒，如果一旦随着
-空气吸入体中，必将中毒而死。如果你想去五毒教，我这里有颗丹药可抵制其毒。你如能
-进去帮我寻得雪蛛，我愿将此药赠于你，你考虑一下，是否答应(yes)或者不答应(no)我。\n";
+         return "五毒教的禁地種滿了各種奇花異草，其中大部分具有巨毒，如果一旦隨著
+空氣吸入體中，必將中毒而死。如果你想去五毒教，我這裡有顆丹藥可抵制其毒。你如能
+進去幫我尋得雪蛛，我願將此藥贈於你，你考慮一下，是否答應(yes)或者不答應(no)我。\n";
 
 
 }
@@ -119,15 +119,15 @@ int do_yes()
    ob->set("wudu_jiedu", 1);
    ob->delete_temp("marks/程");
    jxdan->move(this_player());
-   message_vision("$N获得一颗九雪碧云丹。\n",this_player());
-   message_vision("$N对你微微一笑，说道：祝你此行顺利。另外希望你能言而有信。\n",me, this_object());
+   message_vision("$N獲得一顆九雪碧雲丹。\n",this_player());
+   message_vision("$N對你微微一笑，說道：祝你此行順利。另外希望你能言而有信。\n",me, this_object());
    return 1;
 }
 int do_no()
 {
    object me = this_player();
    if(!me->query_temp("marks/程")) return 0;
-   message_vision("程灵素无奈的一笑，说到，既然你不能答应我的要求，丹药自然不能给你。\n",me);
+   message_vision("程靈素無奈的一笑，說到，既然你不能答應我的要求，丹藥自然不能給你。\n",me);
    me->delete_temp("marks/程");
 
    return 1;
@@ -137,7 +137,7 @@ int accept_object(object who, object ob,object me)
 	 if(who->query_condition("killer"))
 	 {
 	   command("shake "+who->query("id"));
-     command("say 你目前被官府通缉，我如何敢受"+ob->name()+"！");
+     command("say 你目前被官府通緝，我如何敢受"+ob->name()+"！");
 	   return 0;
 	 }
 	 if(ob->query("id")=="qixing haitang" )
@@ -146,7 +146,7 @@ int accept_object(object who, object ob,object me)
      if(who->query_temp(QUESTDIR3+"qixinghaitang") && who->query(QUESTDIR3+"start")&& ob->query("owner")==who->query("id"))
      {
      	command("nod "+(string)who->query("id"));
-     	command("say 就是它！但是要想制造解药，还需要一种东西，它就生长在五毒教，一种蓝色的药花。");
+     	command("say 就是它！但是要想製造解藥，還需要一種東西，它就生長在五毒教，一種藍色的藥花。");
      	who->set_temp(QUESTDIR3+"jieyao2",1);
      	who->delete_temp(QUESTDIR3+"qixinghaitang");
      }
@@ -158,9 +158,9 @@ int accept_object(object who, object ob,object me)
      if(who->query_temp(QUESTDIR3+"jieyao2") && who->query(QUESTDIR3+"start")&& ob->query("owner")==who->query("id"))
      {
      	command("nod "+(string)who->query("id"));
-     	command("say 就是它！稍微等我一下，我马上就好。\n");
-     	tell_object(who,HIC"程灵素开始制起解药，从程序上看，只要药物齐全，似乎不是很复杂。\n\n"NOR);
-	    tell_room(environment(who),HIC"\n程灵素转过身，似乎开始制造解药。\n"NOR, ({ who }));
+     	command("say 就是它！稍微等我一下，我馬上就好。\n");
+     	tell_object(who,HIC"程靈素開始制起解藥，從程序上看，只要藥物齊全，似乎不是很複雜。\n\n"NOR);
+	    tell_room(environment(who),HIC"\n程靈素轉過身，似乎開始製造解藥。\n"NOR, ({ who }));
      	who->set_temp(QUESTDIR3+"getjieyao",1);
      	who->delete_temp(QUESTDIR3+"jieyao2");
      	who->start_busy(4);
@@ -172,7 +172,7 @@ int accept_object(object who, object ob,object me)
    else if (ob->query("id") == "xue zhu" )
    {
    	 command("thank " + who->query("id"));
-     command("say 你果然言而有信，下次你要再去五毒教来找我吧。\n");
+     command("say 你果然言而有信，下次你要再去五毒教來找我吧。\n");
      who->delete("wudu_jiedu");
    }
    else
@@ -197,15 +197,15 @@ void giveyaofang(object me)
       if(!me->query_temp(QUESTDIR3+"getjieyao")) return;
 	    if(environment(me)!=environment(this_object()))
  	    {
- 	    	command("say 人呢？难道不要解药了？");
+ 	    	command("say 人呢？難道不要解藥了？");
        	me->delete_temp(QUESTDIR3+"getjieyao");
  	    	return;
  	    }
      	command("nod "+(string)me->query("id"));
-     	command("say 等着急了吧。这是药方，你可以使用内屋那个药炉制作。");
+     	command("say 等著急了吧。這是藥方，你可以使用內屋那個藥爐製作。");
       obj->move(me);
-      tell_object(me,HIC"程灵素给你一份"+HBCYN"药方"NOR+HIC"。\n"NOR);
-            tell_room(environment(me),HIC"\n程灵素交给"+me->query("name")+"一张纸。\n"NOR, ({ me }));
+      tell_object(me,HIC"程靈素給你一份"+HBCYN"藥方"NOR+HIC"。\n"NOR);
+            tell_room(environment(me),HIC"\n程靈素交給"+me->query("name")+"一張紙。\n"NOR, ({ me }));
   	  if(!present("qixing haitang",me))
   	  {
   		  obj=new("/d/miaojiang/npc/obj/qixinghaitang");
@@ -213,7 +213,7 @@ void giveyaofang(object me)
   		  obj->set("no_sell",1);
   		  obj->set("no_drop",1);
   		  obj->move(me);
-        tell_object(me,HIC"程灵素给你一份"+HBCYN"七星海棠"NOR+HIC"。\n"NOR);
+        tell_object(me,HIC"程靈素給你一份"+HBCYN"七星海棠"NOR+HIC"。\n"NOR);
   	  }
   	  if(!present("lanse yaohua",me))
   	  {
@@ -222,7 +222,7 @@ void giveyaofang(object me)
   		  obj->set("no_sell",1);
   		  obj->set("no_drop",1);
   		  obj->move(me);
-        tell_object(me,HIC"程灵素给你一朵"+HBCYN"蓝色药花"NOR+HIC"。\n"NOR);
+        tell_object(me,HIC"程靈素給你一朵"+HBCYN"藍色藥花"NOR+HIC"。\n"NOR);
   	  }
   	  if(!present("ren shen",me))
   	  {
@@ -231,7 +231,7 @@ void giveyaofang(object me)
   		  obj->set("no_sell",1);
   		  obj->set("no_drop",1);
   		  obj->move(me);
-        tell_object(me,HIC"程灵素给你一棵"+HBCYN"人参"NOR+HIC"。\n"NOR);
+        tell_object(me,HIC"程靈素給你一棵"+HBCYN"人參"NOR+HIC"。\n"NOR);
   	  }
   	  if(!present("jinyin hua",me))
   	  {
@@ -240,7 +240,7 @@ void giveyaofang(object me)
   		  obj->set("no_sell",1);
   		  obj->set("no_drop",1);
   		  obj->move(me);
-        tell_object(me,HIC"程灵素给你一棵"+HBCYN"金银花"NOR+HIC"。\n"NOR);
+        tell_object(me,HIC"程靈素給你一棵"+HBCYN"金銀花"NOR+HIC"。\n"NOR);
   	  }
   	  if(!present("zang honghua",me))
   	  {
@@ -249,7 +249,7 @@ void giveyaofang(object me)
   		  obj->set("no_sell",1);
   		  obj->set("no_drop",1);
   		  obj->move(me);
-        tell_object(me,HIC"程灵素给你一朵"+HBCYN"藏红花"NOR+HIC"。\n"NOR);
+        tell_object(me,HIC"程靈素給你一朵"+HBCYN"藏紅花"NOR+HIC"。\n"NOR);
   	  }
       return;
 }
@@ -260,7 +260,7 @@ int ask_yaofang()
   if(me->query(QUESTDIR3+"over"))
   {
 	  command("nod "+me->query("id"));
-	  command("say 七星海棠，可称谓天下第一奇草，本身剧毒无比。用这种办法治疗苗大侠也是无奈之举。");
+	  command("say 七星海棠，可稱謂天下第一奇草，本身劇毒無比。用這種辦法治療苗大俠也是無奈之舉。");
 	  return 1;
   }
   if(me->query(QUESTDIR3+"start")
@@ -273,7 +273,7 @@ int ask_yaofang()
   		  obj->set("no_sell",1);
   		  obj->set("no_drop",1);
   		  obj->move(me);
-        tell_object(me,HIC"程灵素给你一份"+HBCYN"七星海棠"NOR+HIC"。\n"NOR);
+        tell_object(me,HIC"程靈素給你一份"+HBCYN"七星海棠"NOR+HIC"。\n"NOR);
   	  }
   	  if(!present("lanse yaohua",me))
   	  {
@@ -282,7 +282,7 @@ int ask_yaofang()
   		  obj->set("no_sell",1);
   		  obj->set("no_drop",1);
   		  obj->move(me);
-        tell_object(me,HIC"程灵素给你一朵"+HBCYN"蓝色药花"NOR+HIC"。\n"NOR);
+        tell_object(me,HIC"程靈素給你一朵"+HBCYN"藍色藥花"NOR+HIC"。\n"NOR);
   	  }
   	  if(!present("ren shen",me))
   	  {
@@ -291,7 +291,7 @@ int ask_yaofang()
   		  obj->set("no_sell",1);
   		  obj->set("no_drop",1);
   		  obj->move(me);
-        tell_object(me,HIC"程灵素给你一棵"+HBCYN"人参"NOR+HIC"。\n"NOR);
+        tell_object(me,HIC"程靈素給你一棵"+HBCYN"人參"NOR+HIC"。\n"NOR);
   	  }
   	  if(!present("jinyin hua",me))
   	  {
@@ -300,7 +300,7 @@ int ask_yaofang()
   		  obj->set("no_sell",1);
   		  obj->set("no_drop",1);
   		  obj->move(me);
-        tell_object(me,HIC"程灵素给你一棵"+HBCYN"金银花"NOR+HIC"。\n"NOR);
+        tell_object(me,HIC"程靈素給你一棵"+HBCYN"金銀花"NOR+HIC"。\n"NOR);
   	  }
   	  if(!present("zang honghua",me))
   	  {
@@ -309,24 +309,24 @@ int ask_yaofang()
   		  obj->set("no_sell",1);
   		  obj->set("no_drop",1);
   		  obj->move(me);
-        tell_object(me,HIC"程灵素给你一朵"+HBCYN"藏红花"NOR+HIC"。\n"NOR);
+        tell_object(me,HIC"程靈素給你一朵"+HBCYN"藏紅花"NOR+HIC"。\n"NOR);
   	  }
 
   	if(!present("yao fang",me))
   	{
   		obj=new("/d/miaojiang/npc/obj/yaofang");
   		obj->move(me);
-      tell_object(me,HIC"程灵素给你一份"+HBCYN"药方"NOR+HIC"。\n"NOR);
-     	command("say 不要再丢了。");
+      tell_object(me,HIC"程靈素給你一份"+HBCYN"藥方"NOR+HIC"。\n"NOR);
+     	command("say 不要再丟了。");
   	}
   	else
   	{
       command("sigh "+me->query("id"));
-	    command("say 七星海棠，可称谓天下第一奇草，本身剧毒无比。用这种办法治疗苗大侠也是无奈之举。");
+	    command("say 七星海棠，可稱謂天下第一奇草，本身劇毒無比。用這種辦法治療苗大俠也是無奈之舉。");
 	  }
 	  return 1;
   }
-  command("say 七星海棠，可称谓天下第一奇草，本身剧毒无比。");
+  command("say 七星海棠，可稱謂天下第一奇草，本身劇毒無比。");
 	return 1;
 }
 int ask_jieyao()
@@ -336,40 +336,40 @@ int ask_jieyao()
   if(me->query(QUESTDIR3+"over"))
   {
 	  command("nod "+me->query("id"));
-	  command("say 我想也应该有效地治好苗大侠的病。");
+	  command("say 我想也應該有效地治好苗大俠的病。");
 	  return 1;
   }
   if(me->query(QUESTDIR3+"start")&& me->query_temp(QUESTDIR3+"getjieyao"))
   {
 	  command("nod "+me->query("id"));
-	  command("say 赶快给苗大侠治疗去吧。");
+	  command("say 趕快給苗大俠治療去吧。");
 	  return 1;
   }
   if(me->query(QUESTDIR3+"start")&& me->query_temp(QUESTDIR3+"jieyao2"))
   {
 	  command("nod "+me->query("id"));
-	  command("say 除了七星海棠，还需要五毒教一种蓝色药花，我们一起找找看。");
+	  command("say 除了七星海棠，還需要五毒教一種藍色藥花，我們一起找找看。");
 	  return 1;
   }
   if(me->query(QUESTDIR3+"start")&& me->query_temp(QUESTDIR3+"qixinghaitang"))
   {
 	  command("nod "+me->query("id"));
-	  command("say 快把七星海棠给我。");
+	  command("say 快把七星海棠給我。");
 	  return 1;
   }
   if(me->query(QUESTDIR3+"start")&& me->query_temp(QUESTDIR3+"jieyao1"))
   {
 	  command("nod "+me->query("id"));
-	  command("say 七星海棠正是这主药之一，可惜被阎基和石万嗔抢走了。你赶快去找回来吧。");
+	  command("say 七星海棠正是這主藥之一，可惜被閻基和石萬嗔搶走了。你趕快去找回來吧。");
 	  return 1;
   }
   if(me->query(QUESTDIR3+"start"))
   {
-    tell_object(me,HIC"你着急地将苗大侠病情和症状转告给程灵素，应该是断肠草之毒。\n"NOR);
-    tell_room(environment(me),HIC"\n"+me->query("name")+"很着急地和程灵素说了些什么。\n"NOR, ({ me }));
+    tell_object(me,HIC"你著急地將苗大俠病情和症狀轉告給程靈素，應該是斷腸草之毒。\n"NOR);
+    tell_room(environment(me),HIC"\n"+me->query("name")+"很著急地和程靈素說了些什麼。\n"NOR, ({ me }));
 	  command("nod "+me->query("id"));
-	  command("say 苗大侠也是我敬佩的人，我自当尽力。你说这种毒药的确很凶猛，虽然不是立刻毙命，但是必须使用一种奇草。");
-	  command("say 就是剧毒的七星海棠，当年我师傅种植了三棵，只有一颗成熟，可惜被阎基和石万嗔抢走了。你赶快去找回来吧。\n");
+	  command("say 苗大俠也是我敬佩的人，我自當盡力。你說這種毒藥的確很兇猛，雖然不是立刻斃命，但是必須使用一種奇草。");
+	  command("say 就是劇毒的七星海棠，當年我師傅種植了三棵，只有一顆成熟，可惜被閻基和石萬嗔搶走了。你趕快去找回來吧。\n");
 	  me->set_temp(QUESTDIR3+"jieyao1",1);
 	  return 1;
   }
@@ -384,7 +384,7 @@ int ask_qixinghaitang()
   if(me->query(QUESTDIR3+"over"))
   {
 	  command("nod "+me->query("id"));
-	  command("say 七星海棠，可称谓天下第一奇草，本身剧毒无比。用这种办法治疗苗大侠也是无奈之举。");
+	  command("say 七星海棠，可稱謂天下第一奇草，本身劇毒無比。用這種辦法治療苗大俠也是無奈之舉。");
 	  return 1;
   }
   if(me->query(QUESTDIR3+"start")
@@ -395,14 +395,14 @@ int ask_qixinghaitang()
       )
   {
 	  command("sigh "+me->query("id"));
-	  command("say 七星海棠，可称谓天下第一奇草，本身剧毒无比。用这种办法治疗苗大侠也是无奈之举。");
+	  command("say 七星海棠，可稱謂天下第一奇草，本身劇毒無比。用這種辦法治療苗大俠也是無奈之舉。");
 	  return 1;
   }
-  command("say 七星海棠，可称谓天下第一奇草，本身剧毒无比。");
+  command("say 七星海棠，可稱謂天下第一奇草，本身劇毒無比。");
 	return 1;
 }
 int ask_hufei()
 {
-  message_vision(HIC"$N沉默很久道：我不认识这个人......\n"NOR,this_object());
+  message_vision(HIC"$N沉默很久道：我不認識這個人......\n"NOR,this_object());
 	return 1;
 }

@@ -1,16 +1,16 @@
-// cheng.c 程药发
+// cheng.c 程藥發
 
 inherit NPC;
 
 void create()
 {
-        set_name("程药发", ({ "cheng yaofa", "cheng" }));
-        set("title", "扬州知府");
+        set_name("程藥發", ({ "cheng yaofa", "cheng" }));
+        set("title", "揚州知府");
         set("gender", "男性");
         set("age", 43);
         set("str", 20);
         set("dex", 20);
-        set("long", "他就是程药发，扬州现任知府。\n");
+        set("long", "他就是程藥發，揚州現任知府。\n");
         set("combat_exp", 30000);
         set("shen_type", 0);
         set("attitude", "heroism");

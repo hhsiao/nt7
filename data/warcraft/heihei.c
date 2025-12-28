@@ -7,7 +7,7 @@ void setup()
         set_name("[1;33m跟班[2;37;0m[2;37;0m", ({"genban"}));        
         set("gender", "男性");                
         set("long", "黑黑的跟班[2;37;0m
-它是黑黑的魔幻兽。
+它是黑黑的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

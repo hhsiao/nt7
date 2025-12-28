@@ -5,13 +5,13 @@ inherit ITEM;
 
 void create()
 {
-        set_name("喷火筒", ({ "huo qiang", "qiang", "gun" }) );
+        set_name("噴火筒", ({ "huo qiang", "qiang", "gun" }) );
         set_weight(4000);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "这是一把喷火筒，颜色黑中透紫，是用乌金炼出的
-精铁打造而成。后边还连着一个铁箱。\n"
+                set("long", "這是一把噴火筒，顏色黑中透紫，是用烏金煉出的
+精鐵打造而成。後邊還連著一個鐵箱。\n"
 );
                 set("unit", "把");
                 set("bullet", 5);
@@ -31,21 +31,21 @@ int do_load()
         object me=this_player();
 
         if (me->query_skill_mapped("throwing") != "wuxing-jueji")
-                return notify_fail("你没有激发五行绝技作为暗器，不会使用精妙的喷火筒！\n");
+                return notify_fail("你沒有激發五行絕技作為暗器，不會使用精妙的噴火筒！\n");
 
         if (me->query_skill("wuxing-jueji",1) < 120)
-                return notify_fail("你五行绝技太差了点，不会使用精妙的喷火筒！\n");
+                return notify_fail("你五行絕技太差了點，不會使用精妙的噴火筒！\n");
 
         if( me->is_busy() )
-                return notify_fail("你正忙着呢。\n");
+                return notify_fail("你正忙著呢。\n");
 
         if (query_temp("loaded"))
-                return notify_fail("石油已经装好了。\n");
+                return notify_fail("石油已經裝好了。\n");
 
         if (query("bullet") <= 0)
-                return notify_fail("石油已经用尽了。\n");
+                return notify_fail("石油已經用盡了。\n");
 
-        message_vision("$N给喷火筒里上了一些石油。\n",me);
+        message_vision("$N給噴火筒裡上了一些石油。\n",me);
         set_temp("loaded",1);
         me->start_busy(3+random(3));
         
@@ -58,30 +58,30 @@ int do_aim(string target)
         object me=this_player();
 
         if (me->query_skill_mapped("throwing") != "wuxing-jueji")
-                return notify_fail("你没有激发五行绝技作为暗器，不会使用精妙的喷火筒！\n");
+                return notify_fail("你沒有激發五行絕技作為暗器，不會使用精妙的噴火筒！\n");
 
         if (me->query_skill("wuxing-jueji",1) < 120)
-                return notify_fail("你五行绝技太差了点，不会使用精妙的喷火筒！\n");
+                return notify_fail("你五行絕技太差了點，不會使用精妙的噴火筒！\n");
 
         if( me->is_busy() )
-                return notify_fail("你正忙着呢。\n");
+                return notify_fail("你正忙著呢。\n");
 
         if( !target)
-                return notify_fail("你想射谁？\n");
+                return notify_fail("你想射誰？\n");
 
         if(!objectp(ob = present(target, environment(me))))
-                return notify_fail("这里没有这个人。\n");
+                return notify_fail("這裡沒有這個人。\n");
 
         if( query("no_fight", environment(me)) )
-                return notify_fail("这里不能攻击别人。\n");
+                return notify_fail("這裡不能攻擊別人。\n");
 
         if( !ob->is_character() || ob->is_corpse() )
-                return notify_fail("看清楚一点，那并不是活物。\n");
+                return notify_fail("看清楚一點，那並不是活物。\n");
 
         if( !query_temp("loaded"))
-                return notify_fail("你还没装石油呢。\n");
+                return notify_fail("你還沒裝石油呢。\n");
 
-        message_vision(HIW"$N将喷火筒对准了$n。\n"NOR,me,ob);
+        message_vision(HIW"$N將噴火筒對準了$n。\n"NOR,me,ob);
 
         set_temp("aimed",target);
         me->start_busy(3+random(3));
@@ -96,27 +96,27 @@ int do_fire()
         object me=this_player();
 
         if (me->query_skill_mapped("throwing") != "wuxing-jueji")
-                return notify_fail("你没有激发五行绝技作为暗器，不会使用精妙的喷火筒！\n");
+                return notify_fail("你沒有激發五行絕技作為暗器，不會使用精妙的噴火筒！\n");
 
         if (me->query_skill("wuxing-jueji",1) < 120)
-                return notify_fail("你五行绝技太差了点，不会使用精妙的喷火筒！\n");
+                return notify_fail("你五行絕技太差了點，不會使用精妙的噴火筒！\n");
 
         if( me->is_busy() )
-                return notify_fail("你正忙着呢。\n");
+                return notify_fail("你正忙著呢。\n");
 
         if( query("no_fight", environment(me)) )
-                return notify_fail("这里不能攻击别人。\n");
+                return notify_fail("這裡不能攻擊別人。\n");
 
         if (!(target=query_temp("aimed")) )
-                return notify_fail("你先瞄准了再开火。\n");
+                return notify_fail("你先瞄準了再開火。\n");
 
         if (!objectp(ob = present(target,environment(me))))
-                return notify_fail("你的目标已经离开了。\n");
+                return notify_fail("你的目標已經離開了。\n");
 
         if( !ob->is_character() || ob->is_corpse() )
-                return notify_fail("你的目标已经死了。\n");
+                return notify_fail("你的目標已經死了。\n");
 
-        message_vision(HIY"$N嘿嘿一声奸笑，扣动机关，一条火焰向$n直喷过去。\n"NOR,me,ob);
+        message_vision(HIY"$N嘿嘿一聲奸笑，扣動機關，一條火焰向$n直噴過去。\n"NOR,me,ob);
         
         addn("bullet",-1);
         remove_call_out("shoot_target");
@@ -133,22 +133,22 @@ int shoot_target(object me, string target)
         int damage;
 
         if (!objectp(ob = present(target,environment(me))))
-                return notify_fail("一阵浓烟过去，好象什么也没打着。\n");
+                return notify_fail("一陣濃煙過去，好象什麼也沒打著。\n");
 
         if( !ob->is_character() || ob->is_corpse() )
-                return notify_fail(target+"已经死了。\n");
+                return notify_fail(target+"已經死了。\n");
 
         if( query("combat_exp", me)<random(query("combat_exp", ob)*2) )
         {
-                message_vision(HIY"$N只觉一股热浪扑面而来，忙使一招野驴打滚，狼狈万分的躲了开去！\n"NOR,ob);
+                message_vision(HIY"$N只覺一股熱浪撲面而來，忙使一招野驢打滾，狼狽萬分的躲了開去！\n"NOR,ob);
         }
         else
         {
                 limbs=query("limbs", ob);
-                message_vision(HIR"一股烧焦的气味传来，只见$N的"+
-                                limbs[random(sizeof(limbs))]+"已被火焰喷中，"+
-                                "顷刻间皮破肉烂，变成焦炭模样。"+
-                                "$N立时跌倒，狂叫悲呼。\n"NOR,ob);
+                message_vision(HIR"一股燒焦的氣味傳來，只見$N的"+
+                                limbs[random(sizeof(limbs))]+"已被火焰噴中，"+
+                                "頃刻間皮破肉爛，變成焦炭模樣。"+
+                                "$N立時跌倒，狂叫悲呼。\n"NOR,ob);
                 damage=query("max_qi", me)+query("max_qi", ob);
                 damage=random(damage/2);
                 ob->receive_wound("qi",random(damage/2),me);

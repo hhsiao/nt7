@@ -6,8 +6,8 @@ void setup()
 {
         set_name("舞海虎[2;37;0m[2;37;0m", ({"ccgg"}));        
         set("gender", "男性");                
-        set("long", "没得[2;37;0m
-它是小云的魔幻兽。
+        set("long", "沒得[2;37;0m
+它是小云的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

@@ -2,27 +2,27 @@
 
 inherit NPC;
 
-#define PLACE "dl"     //长安
+#define PLACE "dl"     //長安
 #define TYPE  "bad"    //白道
-#define WAIT_TIME 60    //完成不了任务的反省时间
+#define WAIT_TIME 60    //完成不了任務的反省時間
 
 mapping bunch_bad = ([
-        "bunch_name" : "小刀会",
+        "bunch_name" : "小刀會",
         "id"   : "xdh",
         "place": "dl",
-        "boss" : "龙五",
+        "boss" : "龍五",
         "place_name" : "大理",
         "type" : "bad",
 ]);
 
 void create()
 {
-        set_name("龙五", ({ "long wu", "long" }));
+        set_name("龍五", ({ "long wu", "long" }));
         set("gender", "男性");
         set("age", 29);
-        set("long", "他就是本地的地头蛇组织" + bunch_bad["bunch_name"] + "的头子。\n");
-        set("nickname",HIY"穷凶恶极"NOR);
-        set("title","小刀会大理分舵头子");
+        set("long", "他就是本地的地頭蛇組織" + bunch_bad["bunch_name"] + "的頭子。\n");
+        set("nickname",HIY"窮兇惡極"NOR);
+        set("title","小刀會大理分舵頭子");
         set("per",20);
         set("combat_exp", 1000000);
         set("shen_type", -1);

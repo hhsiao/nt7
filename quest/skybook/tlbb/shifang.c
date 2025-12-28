@@ -3,17 +3,17 @@
 
 #include <ansi.h>
 inherit ROOM;
-#define QUESTDIR3 "quest/天龙八部/萧峰身世篇/"
-#define QUESTDIR5 "quest/天龙八部/复兴天下篇/"
+#define QUESTDIR3 "quest/天龍八部/蕭峰身世篇/"
+#define QUESTDIR5 "quest/天龍八部/復興天下篇/"
 void create()
 {
     set("short", BLU"石坊"NOR);
     set("long", 
-"一个巨大的牌坊横架在两片山壁之间，牌坊正上方刻着六个斗大的金字：\n"
-"\n\t\t\t『"HIY"天下第一名刹"NOR"』\n\n"+
-"字迹有些剥落，看上去年代颇为久远了。前方是一偏很大的广场，站满了前来\n"+
-"进香的香客和一些江湖上的豪士。象征着少林寺的山门殿，就矗立在广场的另\n"+
-"一侧。\n"
+"一個巨大的牌坊橫架在兩片山壁之間，牌坊正上方刻著六個斗大的金字：\n"
+"\n\t\t\t『"HIY"天下第一名剎"NOR"』\n\n"+
+"字跡有些剝落，看上去年代頗為久遠了。前方是一偏很大的廣場，站滿了前來\n"+
+"進香的香客和一些江湖上的豪士。象徵著少林寺的山門殿，就矗立在廣場的另\n"+
+"一側。\n"
     );
 
 	set("exits", ([
@@ -38,10 +38,10 @@ int valid_leave(object me, string dir)
 {
   if(dir == "south" && me->query(QUESTDIR3+"bad") && me->query_temp(QUESTDIR5+"zhangxing") && !me->query_temp(QUESTDIR5+"zhenfa"))
   {
-   tell_object(me,HIC"\n你刚要准备离开少林寺。突然一南一北两个人影飞奔而来，竟然是少林无名僧和曾经一战的丐帮萧峰。\n"NOR); 
+   tell_object(me,HIC"\n你剛要準備離開少林寺。突然一南一北兩個人影飛奔而來，竟然是少林無名僧和曾經一戰的丐幫蕭峰。\n"NOR); 
    me->move("/d/shaolin/shifang_copy");
-   log_file("quest/TLBB", sprintf("%s(%s)复兴天下最后一战开始。经验：%d。\n", me->name(1),me->query("id"), me->query("combat_exp")) );
-   return notify_fail(HIR"看来这一战，实在难免了。\n"NOR);
+   log_file("quest/TLBB", sprintf("%s(%s)復興天下最後一戰開始。經驗：%d。\n", me->name(1),me->query("id"), me->query("combat_exp")) );
+   return notify_fail(HIR"看來這一戰，實在難免了。\n"NOR);
   }
 	return ::valid_leave(me, dir);
 }

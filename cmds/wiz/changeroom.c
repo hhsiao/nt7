@@ -12,7 +12,7 @@ int main(object me, string arg)
                 return 0;
 
         if (! arg || sscanf(arg, "%s %s", str, i) != 2)
-                return notify_fail("指令格式：changeroom 属性 值\n");
+                return notify_fail("指令格式：changeroom 屬性 值\n");
         do_one_room(environment(me), str, i);
         return 1;
 }
@@ -41,23 +41,23 @@ int do_one_room(object room, string arg, string i)
 int  help(object  me)
 {
 write(@HELP
-指令格式  :  changeroom 属性 值
+指令格式  :  changeroom 屬性 值
 
-修改房间属性的指令。
+修改房間屬性的指令。
 
-如果房间原本已经有该属性，请确认set("属性",值);之前为Tab
-输入的空格，否则先删除原有属性再使用本命令。
+如果房間原本已經有該屬性，請確認set("屬性",值);之前為Tab
+輸入的空格，否則先刪除原有屬性再使用本命令。
 
-使用本命令后必须update here刷新，否则在该房间再次使用时
-会造成该房间有两个set("属性",值)，原因不必累述。
+使用本命令後必須update here刷新，否則在該房間再次使用時
+會造成該房間有兩個set("屬性",值)，原因不必累述。
 
-如果值是一个字符串则要加上引号，即changeroom 属性 "值"
-例如outdoors的属性可以这样使用：
+如果值是一個字符串則要加上引號，即changeroom 屬性 "值"
+例如outdoors的屬性可以這樣使用：
 
         changeroom outdoors "city"  
 
-就会在房间的setup();上面加一句set("outdoors", "city");
-即把房间的outdoors属性改为city。
+就會在房間的setup();上面加一句set("outdoors", "city");
+即把房間的outdoors屬性改為city。
 
 HELP
         );

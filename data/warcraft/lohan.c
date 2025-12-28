@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;32m蛟[34m龙[2;37;0m[2;37;0m[2;37;0m", ({"gdragon"}));        
+        set_name("[1;32m蛟[34m龍[2;37;0m[2;37;0m[2;37;0m", ({"gdragon"}));        
         set("gender", "男性");                
-        set("long", "我的小宠物 ^_^[2;37;0m
-它是不倒翁的魔幻兽。
+        set("long", "我的小寵物 ^_^[2;37;0m
+它是不倒翁的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

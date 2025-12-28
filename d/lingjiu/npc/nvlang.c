@@ -8,8 +8,8 @@ void create()
 {
         set_name("蒙面女郎", ({ "nv lang", "nv"}));
         set("long",
-            "这是个身材娇好的女郎, 轻纱遮面,\n"
-            "一双秀目中透出一丝杀气。\n"
+            "這是個身材嬌好的女郎, 輕紗遮面,\n"
+            "一雙秀目中透出一絲殺氣。\n"
            );
         set("gender", "女性");
         set("age", 20);
@@ -57,7 +57,7 @@ void create()
         set_temp("apply/armor", 150);
         set_temp("apply/defense", 150);
 
-        create_family("灵鹫宫",3,"弟子");
+        create_family("靈鷲宮",3,"弟子");
         setup();
 
         carry_object("/d/lingjiu/obj/qingyi")->wear();

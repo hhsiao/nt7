@@ -3,12 +3,12 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "大漠风沙");
+        set("short", "大漠風沙");
         set("long", @LONG
-你处在酷热如烘炉的沙漠中，热的令人连气都透不出。除
-了满耳呼呼的风声什么也听不见。除了满眼滚滚的飞沙什么也
-看不见；天地间仿佛只剩下你一个人。你脚下缓缓而动的流沙
-给你如履薄冰的感觉。
+你處在酷熱如烘爐的沙漠中，熱的令人連氣都透不出。除
+了滿耳呼呼的風聲什麼也聽不見。除了滿眼滾滾的飛沙什麼也
+看不見；天地間彷彿只剩下你一個人。你腳下緩緩而動的流沙
+給你如履薄冰的感覺。
 LONG);
         set("outdoors", "gaochang");
         set("exits", ([
@@ -35,7 +35,7 @@ int kill_user(object me)
 
         if (! present("tu ying", this_object()))
         {
-                    message("vision", HIR "\n突然间，只见一个黑影从天"
+                    message("vision", HIR "\n突然間，只見一個黑影從天"
                                   "而降。\n" NOR, this_object());
 
                 ob = new("clone/quarry/ying");
@@ -51,15 +51,15 @@ int valid_leave(object me, string dir)
 
         if (userp(me) && current_water == 0)
         {
-                write(HIY "你已经感到快不行了，冥冥中觉得有人把你"
-                      "抬到龙门客栈。\n" NOR);
+                write(HIY "你已經感到快不行了，冥冥中覺得有人把你"
+                      "抬到龍門客棧。\n" NOR);
                 me->unconcious();
                 me->move(__DIR__"longmen");
         } else
 
         if (current_water > 0 && current_water < 20)
         {
-               write(HIR "你过度缺水，渴得眼冒金星。\n" NOR);
+               write(HIR "你過度缺水，渴得眼冒金星。\n" NOR);
                set("water", 0, me);
         }
 

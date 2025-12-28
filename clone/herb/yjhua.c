@@ -6,7 +6,7 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", NOR + YEL "洋金花是常见的中药药材。\n" NOR);
+                set("long", NOR + YEL "洋金花是常見的中藥藥材。\n" NOR);
                 set("base_unit", "朵");
                 set("base_value", 400);
                 set("base_weight", 20);

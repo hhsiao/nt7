@@ -3,8 +3,8 @@ inherit NPC;
 
 void create()
 {
-        set_name("萧湘子", ({ "xiao xiangzi", "xiao" }));
-        set("long", "萧湘先生被称为当世第二大文学家，肚子里的墨水比海还要深。\n");
+        set_name("蕭湘子", ({ "xiao xiangzi", "xiao" }));
+        set("long", "蕭湘先生被稱為當世第二大文學家，肚子裡的墨水比海還要深。\n");
         set("gender", "男性");
         set("age", 45);
 
@@ -24,10 +24,10 @@ void create()
 
         set("chat_chance", 3);
         set("chat_msg", ({
-                CYN "萧湘子说道：普天之下，莫非王土；率土之滨，莫非王臣。\n" NOR,
-                CYN "萧湘子说道：出家人，小过损益焉；无妄大过，未济咸困之。\n" NOR,
-                CYN "萧湘子说道：大学之道，在明明德。在亲民，在止于至善。 \n" NOR,
-                CYN "萧湘子说道：格物致知，诚意正心，修身齐家，治国平天下。\n" NOR,
+                CYN "蕭湘子說道：普天之下，莫非王土；率土之濱，莫非王臣。\n" NOR,
+                CYN "蕭湘子說道：出家人，小過損益焉；無妄大過，未濟鹹困之。\n" NOR,
+                CYN "蕭湘子說道：大學之道，在明明德。在親民，在止於至善。 \n" NOR,
+                CYN "蕭湘子說道：格物致知，誠意正心，修身齊家，治國平天下。\n" NOR,
         }) );
         carry_object("/clone/misc/cloth")->wear();
 }

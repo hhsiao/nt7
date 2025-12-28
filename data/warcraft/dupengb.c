@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("龟龟[2;37;0m[2;37;0m", ({"budai"}));        
+        set_name("龜龜[2;37;0m[2;37;0m", ({"budai"}));        
         set("gender", "男性");                
         set("long", "sdf[2;37;0m
-它是努吧的魔幻兽。
+它是努吧的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

@@ -5,10 +5,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "桥上");
+        set("short", "橋上");
         set("long", @LONG
-小桥上，朱栏低垂，垂柳下，少女轻笑。小溪缓缓流过，几尾金
-色鲤鱼越水而出。
+小橋上，朱欄低垂，垂柳下，少女輕笑。小溪緩緩流過，幾尾金
+色鯉魚越水而出。
 LONG );
         set("exits", ([ /* sizeof() == 4 */
                 "east" : __DIR__"gu1",

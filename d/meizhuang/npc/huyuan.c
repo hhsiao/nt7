@@ -4,7 +4,7 @@ inherit NPC;
 
 void create()
 {
-        set_name("护院", ({ "hu yuan", "yuan", }));
+        set_name("護院", ({ "hu yuan", "yuan", }));
 
         set("gender", "男性");
         set("attitude", "friendly");

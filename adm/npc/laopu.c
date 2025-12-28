@@ -1,4 +1,4 @@
-// laopu.c 扫地老仆
+// laopu.c 掃地老僕
 
 #include "/d/room/roomnpc/roomnpc.h"
 
@@ -69,10 +69,10 @@ int save()
 
 void create()
 {
-        set_name("扫地老仆", ({"lao pu", "saodi laopu"}) );
+        set_name("掃地老僕", ({"lao pu", "saodi laopu"}) );
         set("gender", "男性" );
         set("age", 50 + random(20));
-        set("long", "这是一个扫地的老仆人，不过看上去似乎身怀绝技。\n");
+        set("long", "這是一個掃地的老僕人，不過看上去似乎身懷絕技。\n");
         set("attitude", "friendly");
 
         set("max_qi", 4000);
@@ -155,7 +155,7 @@ int accept_object(object who, object ob)
 
         if (is_owner(who))
         {
-                message_vision(name() + "对$N施了一礼。\n", who);
+                message_vision(name() + "對$N施了一禮。\n", who);
                 destruct(ob);
                 return 1;
         }
@@ -166,8 +166,8 @@ int accept_hit(object ob)
 {
         if (is_owner(ob))
         {
-                message_vision("$N愁眉苦脸的对$n道：“可不要和我开这"
-                               "种玩笑！”\n", this_object(), ob);
+                message_vision("$N愁眉苦臉的對$n道：“可不要和我開這"
+                               "種玩笑！”\n", this_object(), ob);
                 return 0;
         }
 
@@ -175,7 +175,7 @@ int accept_hit(object ob)
         command("yun shield");
 
         if (query("can_hujiu") && query("owner"))
-                CHANNEL_D->do_channel( this_object(), "chat", query("owner") + "快来啊，有人攻打到大门口来啦！");
+                CHANNEL_D->do_channel( this_object(), "chat", query("owner") + "快來啊，有人攻打到大門口來啦！");
 
         return ::accept_hit(ob);
 }
@@ -184,7 +184,7 @@ int accept_fight(object ob)
 {
         if (is_owner(ob))
         {
-                message_vision("$N吓了一跳，慌忙对$n道：“小的不敢，小"
+                message_vision("$N嚇了一跳，慌忙對$n道：“小的不敢，小"
                                "的不敢！”\n", this_object(), ob);
                 return 0;
         }
@@ -193,7 +193,7 @@ int accept_fight(object ob)
         command("yun shield");
 
         if (query("can_hujiu") && query("owner"))
-                CHANNEL_D->do_channel( this_object(), "chat", query("owner") + "快来啊，有人攻打到大门口来啦！");
+                CHANNEL_D->do_channel( this_object(), "chat", query("owner") + "快來啊，有人攻打到大門口來啦！");
 
         return ::accept_fight(ob);
 }
@@ -202,9 +202,9 @@ int accept_kill(object ob)
 {
         if (is_owner(ob))
         {
-                message_vision("$N一声长叹，道：“既然主人不留我了，罢"
-                               "罢罢！合则留，不合则去！我走了。”\n"
-                               "说罢，老人丢下扫把，飘然而去。\n",
+                message_vision("$N一聲長嘆，道：“既然主人不留我了，罷"
+                               "罷罷！合則留，不合則去！我走了。”\n"
+                               "說罷，老人丟下掃把，飄然而去。\n",
                                this_object(), ob);
                 destruct(this_object());
                 return 0;
@@ -214,7 +214,7 @@ int accept_kill(object ob)
         command("yun shield");
 
         if (query("can_hujiu") && query("owner"))
-                CHANNEL_D->do_channel( this_object(), "chat", query("owner") + "快来啊，有人攻打到大门口来啦！");
+                CHANNEL_D->do_channel( this_object(), "chat", query("owner") + "快來啊，有人攻打到大門口來啦！");
 
         return ::accept_kill(ob);
 }

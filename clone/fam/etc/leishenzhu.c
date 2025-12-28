@@ -8,8 +8,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIM "一颗圆形的神珠，透射出绚目的光芒。\n" NOR);
-                set("unit", "颗");
+                set("long", HIM "一顆圓形的神珠，透射出絢目的光芒。\n" NOR);
+                set("unit", "顆");
                 set("value", 9000);
                 set("can_be_enchased", 1);
                 set("magic/type", "lighting");

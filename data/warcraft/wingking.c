@@ -6,8 +6,8 @@ void setup()
 {
         set_name("三[2;37;0m[2;37;0m", ({"wolf"}));        
         set("gender", "女性");                
-        set("long", "如狼却又如狗的动物[2;37;0m
-它是玖流的魔幻兽。
+        set("long", "如狼卻又如狗的動物[2;37;0m
+它是玖流的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

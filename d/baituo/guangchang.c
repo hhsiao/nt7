@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "广场");
+        set("short", "廣場");
         set("long", @LONG
-这里是一块不小的广场，上面堆着农家晒的谷物。北上是白驼山
-庄。东面有间小农舍，西边有块菜地，南方是一座小桥。
+這裡是一塊不小的廣場，上面堆著農家曬的穀物。北上是白駝山
+莊。東面有間小農舍，西邊有塊菜地，南方是一座小橋。
 LONG );
         set("outdoors", "baituo");
         set("exits", ([

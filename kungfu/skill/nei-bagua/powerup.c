@@ -1,4 +1,4 @@
-// powerup.c 内八卦神功加力
+// powerup.c 內八卦神功加力
 
 #include <ansi.h>
 
@@ -11,19 +11,19 @@ int exert(object me, object target)
         int skill;
 
         if (target != me)
-                return notify_fail("你只能用内八卦神功来提升自己的战斗力。\n");
+                return notify_fail("你只能用內八卦神功來提升自己的戰鬥力。\n");
 
         if( query("neili", me)<150 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if( query_temp("powerup", me) )
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
         addn("neili", -100, me);
         me->receive_damage("qi", 0);
-        message_combatd(HIY "$N" HIY "凝神聚气，运起内八卦神功，真气顿时灌满"
-                        "全身，衣衫欲裂，气势磅礴。\n" NOR, me);
+        message_combatd(HIY "$N" HIY "凝神聚氣，運起內八卦神功，真氣頓時灌滿"
+                        "全身，衣衫欲裂，氣勢磅礴。\n" NOR, me);
 
         addn_temp("apply/attack", skill/3, me);
         addn_temp("apply/defense", skill/3, me);
@@ -47,6 +47,6 @@ void remove_effect(object me, int amount)
                 addn_temp("apply/defense", -(amount/3), me);
                 addn_temp("apply/parry", -(amount/6), me);
                 delete_temp("powerup", me);
-                tell_object(me, "你的内八卦神功运行完毕，将内力收回丹田。\n");
+                tell_object(me, "你的內八卦神功運行完畢，將內力收回丹田。\n");
         }
 }

@@ -5,11 +5,11 @@ inherit F_GUARDER;
 
 void create()
 {
-        set_name("燕万鹏", ({"yan wanpeng", "yan", "wanpeng"}));
+        set_name("燕萬鵬", ({"yan wanpeng", "yan", "wanpeng"}));
         set("gender", "男性");
         set("age", 20);
-        set("long", "他是凌霄城第六代弟子燕万鹏。第六代弟子中，为\n"
-                    "人数他最为梗直，素有铁面之称，所以在此镇狱。\n");
+        set("long", "他是凌霄城第六代弟子燕萬鵬。第六代弟子中，為\n"
+                    "人數他最為梗直，素有鐵面之稱，所以在此鎮獄。\n");
         set("age", 24);
         set("attitude", "peaceful");
 
@@ -56,11 +56,11 @@ void create()
         }));
 
         set("guarder", ([
-                "refuse_other": CYN "$N" CYN "对$n" CYN "喝道："
-                                "阁下请止步，下面乃我凌宵宫的禁"
-                                "地，外人不得入内！" NOR,
-                "refuse_carry": CYN "$N" CYN "对$n" CYN "喝道：你"
-                                "背上背的是什么人？快给我放下来"
+                "refuse_other": CYN "$N" CYN "對$n" CYN "喝道："
+                                "閣下請止步，下面乃我凌宵宮的禁"
+                                "地，外人不得入內！" NOR,
+                "refuse_carry": CYN "$N" CYN "對$n" CYN "喝道：你"
+                                "背上背的是什麼人？快給我放下來"
                                 "！" NOR,
         ]));
 
@@ -81,5 +81,5 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        command("say 我有要事在身，你去找我其它师兄弟们好了。");
+        command("say 我有要事在身，你去找我其它師兄弟們好了。");
 }

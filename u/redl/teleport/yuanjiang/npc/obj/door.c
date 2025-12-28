@@ -5,13 +5,13 @@ inherit ITEM;
 
 void create() 
 { 
-              set_name(NOR HIY "金船" HIC"舱门"NOR, ({"door", "cang men"}) ); 
+              set_name(NOR HIY "金船" HIC"艙門"NOR, ({"door", "cang men"}) ); 
               if( clonep() ) {
                       destruct(this_object());
               }
               else { 
                         set_weight(100000000000);
-                set("long", NOR "这是金船里的暗门，不知道通往哪里。上面有个圆环状的机关，摸摸(touch)试试？\n" NOR);
+                set("long", NOR "這是金船裡的暗門，不知道通往哪裡。上面有個圓環狀的機關，摸摸(touch)試試？\n" NOR);
                 set("unit", "道");
                 set("value", 1);
                 set("no_uget", 1);
@@ -55,7 +55,7 @@ int do_touch()
                 who->start_busy(1);     
                 
         if (query("neili", who)<1000000) {
-                tell_object(who, NOR "你内力不足。\n" NOR); 
+                tell_object(who, NOR "你內力不足。\n" NOR); 
                 return 1;
         }
         if (query("jingli", who)<500000) {
@@ -63,7 +63,7 @@ int do_touch()
                 return 1;
         }
         
-        message_vision(NOR CYN "$N运转真气到手上，用力去旋扭舱门上的圆环。\n" NOR, who); 
+        message_vision(NOR CYN "$N運轉真氣到手上，用力去旋扭艙門上的圓環。\n" NOR, who); 
         addn("neili", -100000, who);
         addn("jingli", -50000, who);
         addn("touch_num", 1, me);
@@ -72,16 +72,16 @@ int do_touch()
                         set("tele_num", i, me);
         tele_num = query("tele_num", me);
         if (tele_num>0) {
-                message_vision(NOR HIW "$N" HIW "上金光闪闪地显出一个字：“" + NOR YEL + ({"","癸","壬","辛","庚","己","戊","丁","丙","乙","甲"})[tele_num] + HIW "”。" + ((!random(5)) ? (NOR + " (push)?"):"") + "\n" NOR, me); 
+                message_vision(NOR HIW "$N" HIW "上金光閃閃地顯出一個字：“" + NOR YEL + ({"","癸","壬","辛","庚","己","戊","丁","丙","乙","甲"})[tele_num] + HIW "”。" + ((!random(5)) ? (NOR + " (push)?"):"") + "\n" NOR, me); 
                 if ( !random(200) && (random(who->query_kar())>20) && ((tele_num -1 ) > query("drop_num/fu", me))) {
                         addn("drop_num/fu", 1, me);
-                        message_vision(NOR HIW "$N" HIW "duang地掉出一件东西...\n" NOR, me); 
+                        message_vision(NOR HIW "$N" HIW "duang地掉出一件東西...\n" NOR, me); 
                                         fu = new("/u/redl/teleport/npc/obj/qkfz");
                                         fu->move(environment(me));                      
                 }
                 
         } else {
-                tell_object(who, NOR "圆环抖了一下，似乎加把劲可以一直推下去。\n" NOR); 
+                tell_object(who, NOR "圓環抖了一下，似乎加把勁可以一直推下去。\n" NOR); 
         }
         
         attackers = query("attackers");
@@ -102,10 +102,10 @@ int do_push()
         
         tele_num = query("tele_num", me);
         if (tele_num<1) {
-                tell_object(who, NOR "你推了推舱门，可是什么反应也没有。\n" NOR); 
+                tell_object(who, NOR "你推了推艙門，可是什麼反應也沒有。\n" NOR); 
                 return 1;
         }
-        message_vision(NOR HIC"\n$N" NOR HIC "使劲一撞" "$n" HIC "滚到了一个不知名的去处。\n\n" NOR, who, me); 
+        message_vision(NOR HIC"\n$N" NOR HIC "使勁一撞" "$n" HIC "滾到了一個不知名的去處。\n\n" NOR, who, me); 
         who->move(get_object("/u/redl/teleport/yuanjiang/chuan7" + (string)tele_num));
         return 1;
 }

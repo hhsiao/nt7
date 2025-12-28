@@ -1,9 +1,9 @@
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练"+SKILL_CH_NAME+"必须空手。\n");
+                return notify_fail("練"+SKILL_CH_NAME+"必須空手。\n");
         if( query("max_neili", me)<50 )
-                return notify_fail("你的内力太弱，无法练"+SKILL_CH_NAME+"。\n");
+                return notify_fail("你的內力太弱，無法練"+SKILL_CH_NAME+"。\n");
         return 1;
 }
 
@@ -49,9 +49,9 @@ int query_effect_parry(object attacker, object me)
 int practice_skill(object me)
 {
         if( query("qi", me)<25 )
-                return notify_fail("你的体力不够了，休息一下再练吧。\n");
+                return notify_fail("你的體力不夠了，休息一下再練吧。\n");
         if( query("neili", me)<3 )
-                return notify_fail("你的内力不够了，休息一下再练吧。\n");
+                return notify_fail("你的內力不夠了，休息一下再練吧。\n");
         me->receive_damage("qi", 25);
         addn("neili", -3, me);
         return 1;
@@ -65,7 +65,7 @@ mixed hit_ob(object me, object victim, int damage)
         if (random(damage) > victim->query_str()) 
         {
                 result = ([ "damage" : damage ]);
-                result += ([ "msg" : HIW "你听到「喀嚓」一声轻响，已被$N所发杀气挫伤，$n顿时血冒三丈！！！\n" NOR ]);
+                result += ([ "msg" : HIW "你聽到「喀嚓」一聲輕響，已被$N所發殺氣挫傷，$n頓時血冒三丈！！！\n" NOR ]);
 
                 return result;
         }

@@ -4,8 +4,8 @@ inherit "/inherit/char/punisher";
 
 void create()
 {
-        set_name("无毒隐士", ({ "yin shi", "yin", "shi" }));
-        set("long",  "他就是无毒派的高手，据说长年隐藏于山中。\n");
+        set_name("無毒隱士", ({ "yin shi", "yin", "shi" }));
+        set("long",  "他就是無毒派的高手，據說長年隱藏於山中。\n");
         set("gender", "男性");
         set("age", 55);
         set("attitude", "peaceful");
@@ -64,7 +64,7 @@ void create()
 
         prepare_skill("strike", "tianchan-zhang");
 
-        create_family("五毒教", 0, "隐士");
+        create_family("五毒教", 0, "隱士");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({

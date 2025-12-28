@@ -2,65 +2,65 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action" : "$N手中$w一转，回身一剑，刺向$n$l，正是一招「万紫千红」",
+([      "action" : "$N手中$w一轉，回身一劍，刺向$n$l，正是一招「萬紫千紅」",
         "force"  : 90,
         "dodge"  : 21,
         "parry"  : 25,
         "attack" : 10,
         "damage" : 22,
         "lvl"    : 0,
-        "damage_type" : "刺伤",
-        "skill_name"  : "万紫千红",
+        "damage_type" : "刺傷",
+        "skill_name"  : "萬紫千紅",
 ]),
-([      "action" :  "只见$N身法陡然加快，施展出「风雨交加」，剑风荡漾，$w瞬间已至$n$l",
+([      "action" :  "只見$N身法陡然加快，施展出「風雨交加」，劍風盪漾，$w瞬間已至$n$l",
         "force"  : 100,
         "dodge"  : 24,
         "parry"  : 28,
         "attack" : 12,
         "damage" : 25,
         "lvl"    : 25,
-        "damage_type" : "刺伤",
-        "skill_name"  : "风雨交加",
+        "damage_type" : "刺傷",
+        "skill_name"  : "風雨交加",
 ]),
-([      "action" : "$N纵身跃起，使出一招「晴空万里」，陡见$w从半空直指$N$l",
+([      "action" : "$N縱身躍起，使出一招「晴空萬里」，陡見$w從半空直指$N$l",
         "force"  : 120,
         "dodge"  : 25,
         "parry"  : 31,
         "attack" : 13,
         "damage" : 38,
         "lvl"    : 50,
-        "damage_type" : "刺伤",
-        "skill_name"  : "晴空万里",
+        "damage_type" : "刺傷",
+        "skill_name"  : "晴空萬里",
 ]),
-([      "action" : "$N腾空而起，一招「狂风暴雨」来势又准又快，手中$w已到$n$l",
+([      "action" : "$N騰空而起，一招「狂風暴雨」來勢又準又快，手中$w已到$n$l",
         "force"  : 140, 
         "dodge"  : 25,
         "parry"  : 35,
         "attack" : 15,
         "damage" : 50,
         "lvl"    : 75,
-        "damage_type" : "刺伤",
-        "skill_name"  : "狂风暴雨",
+        "damage_type" : "刺傷",
+        "skill_name"  : "狂風暴雨",
 ]),
-([      "action" : "$N剑峰忽转，一剑笔直地向$n$l刺来，内劲十足，正是一招「雨过天晴」",
+([      "action" : "$N劍峰忽轉，一劍筆直地向$n$l刺來，內勁十足，正是一招「雨過天晴」",
         "force"  : 160,
         "dodge"  : 27,
         "parry"  : 38,
         "attack" : 18,
         "damage" : 63,
         "lvl"    : 100,
-        "damage_type" : "刺伤",
-        "skill_name"  : "雨过天晴",
+        "damage_type" : "刺傷",
+        "skill_name"  : "雨過天晴",
 ]),
-([      "action" : "$N手中$w猛然回撤，紧接着一剑，气势磅礴，剑气纵横，正是「电闪雷鸣」",
+([      "action" : "$N手中$w猛然回撤，緊接著一劍，氣勢磅礴，劍氣縱橫，正是「電閃雷鳴」",
         "force"  : 180,
         "dodge"  : 30,
         "parry"  : 40,
         "attack" : 20,
         "damage" : 80,
         "lvl"    : 120,
-        "damage_type" : "刺伤",
-        "skill_name"  : "电闪雷鸣",
+        "damage_type" : "刺傷",
+        "skill_name"  : "電閃雷鳴",
 ]),
 });
 
@@ -70,19 +70,19 @@ int valid_learn(object me)
 
         if( !(ob=query_temp("weapon", me) )
             || query("skill_type", ob) != "sword" )
-                return notify_fail("你必须先找一把剑才能练剑法。\n");
+                return notify_fail("你必須先找一把劍才能練劍法。\n");
 
         if( query("max_neili", me)<800 )
-                return notify_fail("你的内力修为不够，无法学习紫雷剑法。\n");
+                return notify_fail("你的內力修為不夠，無法學習紫雷劍法。\n");
 
         if ((int)me->query_skill("force") < 120)
-                return notify_fail("你的内功火候太浅，无法学习紫雷剑法。\n");
+                return notify_fail("你的內功火候太淺，無法學習紫雷劍法。\n");
 
         if ((int)me->query_skill("sword", 1) < 100)
-                return notify_fail("你的基本剑法火候不够，无法学习紫雷剑法。\n");
+                return notify_fail("你的基本劍法火候不夠，無法學習紫雷劍法。\n");
 
         if (me->query_skill("sword", 1) < me->query_skill("zilei-jian", 1))
-                return notify_fail("你的基本剑法火候有限，无法领会更高深的紫雷剑法。\n");
+                return notify_fail("你的基本劍法火候有限，無法領會更高深的紫雷劍法。\n");
 
         return 1;
 }
@@ -116,13 +116,13 @@ int practice_skill(object me)
 
        if( !objectp(weapon=query_temp("weapon", me) )
            || query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
        if( query("neili", me)<60 )
-                   return notify_fail("你的内力不足，没有办法练习紫雷剑法。\n");
+                   return notify_fail("你的內力不足，沒有辦法練習紫雷劍法。\n");
 
        if( query("qi", me)<65 )
-                   return notify_fail("你的体力不够练紫雷剑法。\n");
+                   return notify_fail("你的體力不夠練紫雷劍法。\n");
 
        me->receive_damage("qi", 40);
        addn("neili", -50, me);

@@ -1,4 +1,4 @@
-// /d/yixing/obj/caili.c  彩礼
+// /d/yixing/obj/caili.c  彩禮
 // Last Modified by Lonely on Jul. 12 2002
 
 
@@ -10,17 +10,17 @@ inherit ITEM;
 
 void create()
 {
-        set_name(RED"彩礼"NOR, ({ "caili" }));
+        set_name(RED"彩禮"NOR, ({ "caili" }));
         set("weight", 20);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
                 set("long",
-"这是一份包装精制的彩礼，里面一定装着贵重的东西。\n");
+"這是一份包裝精製的彩禮，裡面一定裝著貴重的東西。\n");
                 set("unit", "份");
                 set("value", 30);
-                set("no_drop", "这样东西不能离开你。\n");
-                set("no_get", "这样东西不能离开那儿。\n");            
+                set("no_drop", "這樣東西不能離開你。\n");
+                set("no_get", "這樣東西不能離開那兒。\n");            
         }
 
         setup();
@@ -48,7 +48,7 @@ void do_check()
         if( !living(owner)
         ||  owner->query_leader() 
          || query_temp("cursed", owner)){
-                tell_object(owner, HIR"\n你忽然有一种不祥的感觉。\n"NOR);
+                tell_object(owner, HIR"\n你忽然有一種不祥的感覺。\n"NOR);
                 destruct(this_object());
                 return;
         }
@@ -70,7 +70,7 @@ int do_go(string arg)
         int ap, dp;
 
         if( me->is_busy() ) {
-                write("你正忙着。\n");
+                write("你正忙著。\n");
                 return 1;
         } 
 
@@ -85,7 +85,7 @@ int do_go(string arg)
                                 return 0;
 
                         me->start_busy(1);
-                        message_vision("$N对$n喝道：" + RANK_D->query_rude(me) + "把东西留下！！！\n", ob, me);
+                        message_vision("$N對$n喝道：" + RANK_D->query_rude(me) + "把東西留下！！！\n", ob, me);
                         if( !ob->is_fighting(me) )
                                 ob->kill_ob(me);
                         return 1;
@@ -93,9 +93,9 @@ int do_go(string arg)
         }
 
         if( random(4) ) {
-                me->receive_damage("jing", 30 + random(30), 1,"力尽而死");
-                me->receive_damage("qi", 30 + random(30), 1,"力尽而死");
-                tell_object(me,"你走了一会儿，有点累了。\n");
+                me->receive_damage("jing", 30 + random(30), 1,"力盡而死");
+                me->receive_damage("qi", 30 + random(30), 1,"力盡而死");
+                tell_object(me,"你走了一會兒，有點累了。\n");
                 return 0;
         }
 
@@ -106,9 +106,9 @@ int do_go(string arg)
 
         ob->move(room);
         message("vision",
-                query("title", ob)+ob->name()+"走了过来。\n",
+                query("title", ob)+ob->name()+"走了過來。\n",
                 environment(ob), ({ob}));
-        message_vision(HIR"\n"+query("title", ob)+ob->name()+"对$N喝道："+RANK_D->query_rude(me)+"把东西留下！！！\n"NOR,me);
+        message_vision(HIR"\n"+query("title", ob)+ob->name()+"對$N喝道："+RANK_D->query_rude(me)+"把東西留下！！！\n"NOR,me);
         ob->kill_ob(me);
         me->start_busy(1);
         return 1; 
@@ -121,12 +121,12 @@ int do_visit(string arg)
         mapping job;
 
         if( me->is_busy() || me->is_fighting() ) {
-                write("你正忙着。\n");
+                write("你正忙著。\n");
                 return 1;
         }
 
         if( !arg ) {
-                write("你要拜访谁？\n");
+                write("你要拜訪誰？\n");
                 return 1;
         }
 
@@ -138,42 +138,42 @@ int do_visit(string arg)
    // the following is very important to avoid players cheating
         room = environment(me);
         if( base_name(room) != job["file"] ) {
-                write("你还没到目的地呢。\n");
+                write("你還沒到目的地呢。\n");
                 return 1;
         }
 
         if( !(ob = present(arg, room)) ) {
-                write("这儿没有你要拜访的人。\n");
+                write("這兒沒有你要拜訪的人。\n");
                 return 1;
         }
 
         if( query("name", ob) != job["name"]){
-                write("你拜访错人了。\n");
+                write("你拜訪錯人了。\n");
                 return 1;
         }
 
         if( !living(ob) ) {
-                write("你还是等此人醒来再说吧。\n");
+                write("你還是等此人醒來再說吧。\n");
                 return 1;
         }
 
         if( ob->is_busy() || ob->is_fighting() ) { 
-                write("此人正忙着。\n");
+                write("此人正忙著。\n");
                 return 1;
         }
 
-        message_vision("$N向$n躬身作了个揖，郎声说道：弊帮帮主差" + RANK_D->query_self_rude(me) + "送一份大礼给" + RANK_D->query_respect(ob) + "。\n", me, ob);
-        message_vision("$N将" + name() + "双手奉给$n。\n", me, ob);
+        message_vision("$N向$n躬身作了個揖，郎聲說道：弊幫幫主差" + RANK_D->query_self_rude(me) + "送一份大禮給" + RANK_D->query_respect(ob) + "。\n", me, ob);
+        message_vision("$N將" + name() + "雙手奉給$n。\n", me, ob);
         move(ob);
         remove_call_out("do_destroy");
         call_out("do_destroy", 1, this_object());
 
-        message_vision("$N还了一个礼，说道：" + RANK_D->query_respect(me) + "辛苦了。回去后代我向你帮主问个安。\n", ob);
+        message_vision("$N還了一個禮，說道：" + RANK_D->query_respect(me) + "辛苦了。回去後代我向你幫主問個安。\n", ob);
 
         bonus=job["bonus"]*400000/(200000+query("combat_exp", me));
         record = bonus + random(bonus);
         addn("combat_exp", record, me);
-        write_file("/log/test/BangJob",sprintf("%-10s于%-20s时因送礼得%-5s经验点\n",query("name", me),ctime(time()),chinese_number(record)));
+        write_file("/log/test/BangJob",sprintf("%-10s於%-20s時因送禮得%-5s經驗點\n",query("name", me),ctime(time()),chinese_number(record)));
 
         bonus /= 4;
         addn("shen", -bonus, me);
@@ -198,15 +198,15 @@ int do_giveup()
 
         if( ob = present("bang zhong", environment(this_player())) ) {
                 if( base_name(ob) == BANGZHONG2 && living(ob) ) {
-                message_vision("$N满含失望地长叹一声，说道：既然如此，也就罢了！\n", this_player());
-                message_vision("$N将彩礼送给$n。\n", this_player(), ob);
+                message_vision("$N滿含失望地長嘆一聲，說道：既然如此，也就罷了！\n", this_player());
+                message_vision("$N將彩禮送給$n。\n", this_player(), ob);
                 message("vision",
-                ob->name() + "说道：算你识时务，我就饶你一命。说完便扬长而去。\n",
+                ob->name() + "說道：算你識時務，我就饒你一命。說完便揚長而去。\n",
                 environment(ob), ({ob}));
                 destruct(ob);
                 destruct(this_object());
                 return 1;
                 }
         }
-        return notify_fail("又没人抢劫，你干嘛？\n");
+        return notify_fail("又沒人搶劫，你幹嘛？\n");
 }

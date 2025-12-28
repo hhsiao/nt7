@@ -1,4 +1,4 @@
-// cow.c 大黄牛
+// cow.c 大黃牛
 
 #include <command.h>
 #include <dbase.h>
@@ -9,8 +9,8 @@ inherit NPC;
 
 void create()
 {
-        set_name(HIW"大黄牛"NOR, ({ "cow" }));
-        set("long","一头大黄牛。\n");
+        set_name(HIW"大黃牛"NOR, ({ "cow" }));
+        set("long","一頭大黃牛。\n");
         set("race", "家畜");
         set("age", 5);
         set("int", 30);
@@ -23,7 +23,7 @@ void create()
         set("combat_exp",50000);
         set("attitude", "peaceful");
 
-        set("limbs", ({ "头部", "腹部", "尾巴","后腿","前腿" }) );
+        set("limbs", ({ "頭部", "腹部", "尾巴","後腿","前腿" }) );
         set("verbs", ({ "bite","hoof" }) );
         set_temp("apply/attack", 50);
         set_temp("apply/armor", 15);

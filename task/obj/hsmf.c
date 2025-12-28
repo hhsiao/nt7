@@ -11,6 +11,6 @@ void create()
             set("material", "paper");
             set("long", "五香花生秘方。\n");
           }
-    set("owner", "阿庆嫂");
+    set("owner", "阿慶嫂");
     setup();
 }

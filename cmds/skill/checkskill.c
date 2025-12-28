@@ -35,32 +35,32 @@ string *valid_types = ({
         "cooking",
 });
 
-// 查询技能的特性
+// 查詢技能的特性
 
-// 键名代表呼叫此技能的函数名，须返回一个非 0 的结果
-// 才会有输出。对应名代表输出的结果。
+// 鍵名代表呼叫此技能的函數名，須返回一個非 0 的結果
+// 才會有輸出。對應名代表輸出的結果。
 
-// $N 表示输出查询结果， $C 表示输出查询结果的中文，
-// $S 表示排版后的查询结果。
+// $N 表示輸出查詢結果， $C 表示輸出查詢結果的中文，
+// $S 表示排版後的查詢結果。
 mapping skill_features = ([
         "type"              : "$C技能",
-        "double_attack"     : "快速攻击",
-        "main_skill"        : "主技能为$C",
+        "double_attack"     : "快速攻擊",
+        "main_skill"        : "主技能為$C",
         "query_description" : "$S",
 ]);
 
-// 这里是为了按顺序显示
+// 這裡是為了按順序顯示
 string *features = ({ "type", "double_attack", "main_skill", "query_description",  });
 
-// 开头的内容，为了保持对齐而设定
+// 開頭的內容，為了保持對齊而設定
 #define PREFIX_STR      "\t      "
-// 每行的长度
+// 每行的長度
 #define LINE_LEN        40
-// 表示合并使用的字符
+// 表示合併使用的字符
 #define COMBINE_STR     "，"
-// 表示并列使用的字符
+// 表示並列使用的字符
 #define APPOSE_STR      " - "
-// 水平线
+// 水平線
 #define HORIZONTAL_STR  HIC "----------------------------"\
                         "------------------------------\n" NOR
 
@@ -69,21 +69,21 @@ string skill_combines(object sk);
 string skill_enables(object sk);
 
 mapping valid_type = ([
-        "unarmed":      "拳脚", "medical":      "医术",
+        "unarmed":      "拳腳", "medical":      "醫術",
         "claw":         "爪功", "cuff":         "拳功",
         "finger":       "指功", "strike":       "掌功",
         "hand":         "手功", "leg":          "腿功",
-        "sword":        "剑法", "blade":        "刀法",
-        "dagger":       "短兵", "brush":        "笔法",
-        "spear":        "枪法", "hook":         "钩法",
+        "sword":        "劍法", "blade":        "刀法",
+        "dagger":       "短兵", "brush":        "筆法",
+        "spear":        "槍法", "hook":         "鉤法",
         "stick":        "棒法", "staff":        "杖法",
         "club" :        "棍法", "throwing":     "暗器",
         "whip":         "鞭法", "axe":          "斧法",
-        "hammer":       "锤法", "force":        "内功",
-        "dodge":        "轻功", "parry":        "招架",
-        "poison":       "毒技", "cooking":      "厨艺",
-        "chuixiao-jifa":"吹萧", "guzheng-jifa": "古筝",
-        "tanqin-jifa":  "弹琴",
+        "hammer":       "錘法", "force":        "內功",
+        "dodge":        "輕功", "parry":        "招架",
+        "poison":       "毒技", "cooking":      "廚藝",
+        "chuixiao-jifa":"吹蕭", "guzheng-jifa": "古箏",
+        "tanqin-jifa":  "彈琴",
 ]);
 
 int main(object me, string arg)
@@ -104,30 +104,30 @@ int main(object me, string arg)
         seteuid(getuid());
 
         if (! arg)
-                return notify_fail("指令格式：checkskill <技能名称> | <技能中文名>\n");
+                return notify_fail("指令格式：checkskill <技能名稱> | <技能中文名>\n");
 
         if (! stringp(file = SKILL_D(arg)) || file_size(file + ".c") <= 0)
         {
                 // 英文的找不到？那就找中文名
                 if (! stringp(arg = CHINESE_D->find_skill(arg)))
-                        return notify_fail("没有这种技能存在。\n");
+                        return notify_fail("沒有這種技能存在。\n");
 
                 write("Original: " + arg + "\n");
-                // 根据中文名找到了英文名，看看是否真的有此技能
+                // 根據中文名找到了英文名，看看是否真的有此技能
                 if (! stringp(file = SKILL_D(arg)) || file_size(file + ".c") <= 0)
-                        return notify_fail("没有这种技能存在。\n");
+                        return notify_fail("沒有這種技能存在。\n");
         }
 
-        msg = WHT + to_chinese(arg) + "(" + arg + ")的详细属性如下：\n" NOR;
+        msg = WHT + to_chinese(arg) + "(" + arg + ")的詳細屬性如下：\n" NOR;
         msg += HORIZONTAL_STR;
-        msg += CYN + "  技能名称：  " WHT + to_chinese(arg) + "(" + arg + ")\n" + NOR;
+        msg += CYN + "  技能名稱：  " WHT + to_chinese(arg) + "(" + arg + ")\n" + NOR;
 
         is_force = 0;
 
         if (SKILL_D(arg)->valid_enable("force"))
                 is_force = 1;
 
-        // 获取技能特性列表
+        // 獲取技能特性列表
         feature_list = ({ });
         foreach (feature in features)
         {
@@ -144,7 +144,7 @@ int main(object me, string arg)
                                 {
                                         prefix = strlen(implode(feature_list, COMBINE_STR)) +
                                                  strlen(COMBINE_STR);
-                                        // 求取每行的余数
+                                        // 求取每行的餘數
                                         prefix %= LINE_LEN;
                                         temp = replace_string(temp, "$S",
                                                               sort_result((string)value, prefix));
@@ -164,7 +164,7 @@ int main(object me, string arg)
 
         if (combo != "")
         {
-                msg += CYN "\n  技能互备：  " WHT + combo + "\n" NOR;
+                msg += CYN "\n  技能互備：  " WHT + combo + "\n" NOR;
         }
 
         enable = skill_enables(sk);
@@ -176,14 +176,14 @@ int main(object me, string arg)
 
         if (member_array(arg, valid_types) != -1)
         {
-                msg += CYN "\n  技能所属：  " WHT "基本技能\n" NOR;
+                msg += CYN "\n  技能所屬：  " WHT "基本技能\n" NOR;
                 msg += HORIZONTAL_STR;
                 write(msg);
                 return 1;
         }
 
         /*
-        // 暂时限制玩家不能查看自己没有的武功的绝招
+        // 暫時限制玩家不能查看自己沒有的武功的絕招
         if (! wizardp(me) && me->query_skill(arg) <= 0)
         {
                 msg += HORIZONTAL_STR;
@@ -208,7 +208,7 @@ int main(object me, string arg)
                 msg += NOR;
         }
 
-        // 查询技能的 pfm 情况
+        // 查詢技能的 pfm 情況
         msg1 = "";
         perform = 0;
         dir = file;
@@ -246,18 +246,18 @@ int main(object me, string arg)
 
                         if (msg1 != "")
                         {
-                                msg += CYN "\n  技能绝招：  " NOR;
+                                msg += CYN "\n  技能絕招：  " NOR;
                                 msg += msg1;
                                 msg += "\n";
                         }
                 }
         }
 
-        // 查询内功的 exert 情况
+        // 查詢內功的 exert 情況
         if (! is_force)
         {
                 msg += HORIZONTAL_STR;
-                if (perform) msg += WHT "共有" + chinese_number(perform) + "项绝招。\n" NOR;
+                if (perform) msg += WHT "共有" + chinese_number(perform) + "項絕招。\n" NOR;
                 write(msg);
                 return 1;
         }
@@ -301,7 +301,7 @@ int main(object me, string arg)
 
         if (msg1 != "")
         {
-                msg += CYN "\n  内功功能：  " NOR;
+                msg += CYN "\n  內功功能：  " NOR;
                 msg += msg1;
                 msg += "\n";
         }
@@ -310,13 +310,13 @@ int main(object me, string arg)
 
         if (perform)
         {
-                msg += WHT "共有" + chinese_number(perform) + "项技能绝招";
+                msg += WHT "共有" + chinese_number(perform) + "項技能絕招";
                 if (exert)
-                        msg += "，" + chinese_number(exert) + "项内功功能。\n" NOR;
+                        msg += "，" + chinese_number(exert) + "項內功功能。\n" NOR;
                 else msg += "。\n" NOR;
         } else
         if (exert)
-                msg += WHT "共有" + chinese_number(exert) + "项内功功能。\n" NOR;
+                msg += WHT "共有" + chinese_number(exert) + "項內功功能。\n" NOR;
 
         write(msg);
         return 1;
@@ -434,19 +434,19 @@ string input_file(string file)
 int help(object me)
 {
         write(@HELP
-指令格式：checkskill <技能名称> | <技能中文名>
+指令格式：checkskill <技能名稱> | <技能中文名>
 
-这个指令让你检查指定的某种技能或技能（技能名称可输入中
-文名）。如果你是巫师，或者本身具备这项技能，则会显示出
-该技能的绝招及作为内功的特殊功能。同时，你还可以查到技
-能相关的一些特性，比如技能的类型、是否双倍攻击速度、主
-技能是什么等等，若这个技能内定义了相关的描述的话，你还
-可以查到关于这个技能的一些掌故。
+這個指令讓你檢查指定的某種技能或技能（技能名稱可輸入中
+文名）。如果你是巫師，或者本身具備這項技能，則會顯示出
+該技能的絕招及作為內功的特殊功能。同時，你還可以查到技
+能相關的一些特性，比如技能的類型、是否雙倍攻擊速度、主
+技能是什麼等等，若這個技能內定義了相關的描述的話，你還
+可以查到關於這個技能的一些掌故。
 
-另外，如果这个技能是一个可被演练合并的技能，则可以显示
-出需用哪些技能来进行演练。
+另外，如果這個技能是一個可被演練合併的技能，則可以顯示
+出需用哪些技能來進行演練。
 
-相关指令：skills
+相關指令：skills
 
 HELP);
         return 1;

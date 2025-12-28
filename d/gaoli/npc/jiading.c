@@ -1,4 +1,4 @@
-// 大唐双龙传
+// 大唐雙龍傳
  
 // jiading.c
 
@@ -7,7 +7,7 @@ inherit NPC;
 void create()
 {
   set_name("家丁", ({"jia ding", "jia","ding"}));
-  set("long","一个普通的家丁。\n");
+  set("long","一個普通的家丁。\n");
   set("gender", "男性");
   set("age", 14);
   set("attitude", "friendly");

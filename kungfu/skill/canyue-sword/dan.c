@@ -19,24 +19,24 @@ int perform(object me, object target)
         }
         
         if (! target || ! me->is_fighting(target))
-                return notify_fail("「亡月」只能对战斗中的对手使用。\n");
+                return notify_fail("「亡月」只能對戰鬥中的對手使用。\n");
  
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "sword" )
-                return notify_fail("运用「亡月」手中必须有剑！\n");
+                return notify_fail("運用「亡月」手中必須有劍！\n");
 
         if ((int)me->query_skill("canyue-sword", 1) < 200)
-                return notify_fail("你的残月剑法不够娴熟，不会使用「亡月」。\n");
+                return notify_fail("你的殘月劍法不夠嫻熟，不會使用「亡月」。\n");
                                 
         if ((int)me->query_skill("force") < 300)
-                return notify_fail("你的内功修为不够高。\n");
+                return notify_fail("你的內功修為不夠高。\n");
                         
         if( query("neili", me)<800 )
-                return notify_fail("你现在内力太弱，不能使用「亡月」。\n");
+                return notify_fail("你現在內力太弱，不能使用「亡月」。\n");
                         
-        msg = WHT "\n$N" WHT "剑尖忽然起了奇异的震动。剑尖本来是斜斜指向$n" WHT "，震动一起，万物忽然间全都静止。\n"
-              "就连周围的空气，都彷佛也已停顿。\n" WHT "没有任何言语可以形容这种情况，只有一个字，一个很简单的字...\n\n"
-              HIR "死！ \n\n" HIB "流水乾枯，变化穷尽，生命终结，万物灭亡！\n\n" NOR; 
+        msg = WHT "\n$N" WHT "劍尖忽然起了奇異的震動。劍尖本來是斜斜指向$n" WHT "，震動一起，萬物忽然間全都靜止。\n"
+              "就連周圍的空氣，都彷佛也已停頓。\n" WHT "沒有任何言語可以形容這種情況，只有一個字，一個很簡單的字...\n\n"
+              HIR "死！ \n\n" HIB "流水乾枯，變化窮盡，生命終結，萬物滅亡！\n\n" NOR; 
 
         ap = me->query_skill("sword") + me->query_skill("force");
         ap+=query("jiali", me);
@@ -56,7 +56,7 @@ int perform(object me, object target)
         {
                 addn("neili", -damage/2, me);
 
-                msg += HIR "$N" HIR "手中的" + weapon->name() + HIR "似乎苏醒过来，$n的生命却在逐渐流逝，一切已无法再改变。 \n" NOR;
+                msg += HIR "$N" HIR "手中的" + weapon->name() + HIR "似乎甦醒過來，$n的生命卻在逐漸流逝，一切已無法再改變。 \n" NOR;
                 
                 target->receive_damage("qi",damage,me);
                 target->receive_wound("qi",damage/2 + random(damage/2),me);
@@ -68,8 +68,8 @@ int perform(object me, object target)
                
         } else 
         {
-                msg += HIR "$N" HIR "一剑失去目标，忽然觉得灵魂仿佛被抽入" + weapon->name() + RED "再也无法控制！"
-                       + weapon->name() + HIR "差点脱手而出！\n" NOR; 
+                msg += HIR "$N" HIR "一劍失去目標，忽然覺得靈魂彷彿被抽入" + weapon->name() + RED "再也無法控制！"
+                       + weapon->name() + HIR "差點脫手而出！\n" NOR; 
 
                 addn("neili", -100, me);
                 me->start_busy(3);

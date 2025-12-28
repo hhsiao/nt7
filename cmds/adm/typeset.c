@@ -1,7 +1,7 @@
 // typeset.c
 // Write by Lonely
 // Rewrite by zjpwxh@sjpl
-// 修正了显示效果，增加自动判定特殊房间
+// 修正了顯示效果，增加自動判定特殊房間
 #include <ansi.h>
 inherit F_CLEAN_UP;
 int to_format(object me, string dir, int n);
@@ -28,14 +28,14 @@ int main(object me, string arg)
           dir += "/";
          
     if (file_size(dir) != -2)
-          return notify_fail(dir + " 并不是一个目录。\n");
+          return notify_fail(dir + " 並不是一個目錄。\n");
          
     if (dir[0..2] != "/d/" && dir[0..2] != "/u/")
-          return notify_fail("为确保安全，只允许更改/d/和/u/目录下面的房间描述。\n");          
-    write(HIW "系统批量档案处理中，请耐心等候...\n" NOR);
+          return notify_fail("為確保安全，只允許更改/d/和/u/目錄下面的房間描述。\n");          
+    write(HIW "系統批量檔案處理中，請耐心等候...\n" NOR);
     to_format(me, dir, n);
    
-    write(HIW "\n系统批量档案处理完毕！\n" NOR );
+    write(HIW "\n系統批量檔案處理完畢！\n" NOR );
    
     return 1;
 }
@@ -50,13 +50,13 @@ int to_format(object me, string dir, int n)
     {
         if (file_size(dir) == -2)
           {
-              write("\n"HIC + dir + "这个目录是空的。\n"NOR);
+              write("\n"HIC + dir + "這個目錄是空的。\n"NOR);
                 log_file("empty_dir", dir + "\n");
         }
         return 1;
     }
    
-    write(HIC "\n现在系统正在批处理 " + HIW+dir+NOR + HIC " 目录房间描述...\n" + HIG "进度：" + process_bar(100) + "\n");
+    write(HIC "\n現在系統正在批處理 " + HIW+dir+NOR + HIC " 目錄房間描述...\n" + HIG "進度：" + process_bar(100) + "\n");
    
     num = 0;
     eff = 0;
@@ -80,10 +80,10 @@ int to_format(object me, string dir, int n)
                   continue;
               if ( !do_format(dir + filename, n) )
                   return 0;
-              write( ESC+"[1A"+ESC+"[200D" + HIG "进度：" + process_bar((num + 1) * 100 / eff ) +"\n" );
+              write( ESC+"[1A"+ESC+"[200D" + HIG "進度：" + process_bar((num + 1) * 100 / eff ) +"\n" );
         }
     }
-    write(HIG"目录： " + HIW+dir + HIC" 下共有 " + HIR+num+NOR + HIC" 个房间描述整理成功！\n" NOR);
+    write(HIG"目錄： " + HIW+dir + HIC" 下共有 " + HIR+num+NOR + HIC" 個房間描述整理成功！\n" NOR);
                    
     i = sizeof(file);
     while (i--)
@@ -165,7 +165,7 @@ int do_format(string file, int n)
     }
     if (! begin1 || ! begin2)
     {    
-          log_file("typeset", sprintf("ROOM %s 的描述没有被成功定位！\n", file));
+          log_file("typeset", sprintf("ROOM %s 的描述沒有被成功定位！\n", file));
           return 0;
     }
         str1 = "     set\(\"long\", @LONG\n";
@@ -185,9 +185,9 @@ int do_format(string file, int n)
 int help(object me)
 {
     write(@HELP
-指令格式 : typeset <目录名> <字数>
-这个指令可以将某个目录下所有的房间的长描述自动排版成每行
-为指定数目的汉字，当然第一行是少二个汉字的。
+指令格式 : typeset <目錄名> <字數>
+這個指令可以將某個目錄下所有的房間的長描述自動排版成每行
+為指定數目的漢字，當然第一行是少二個漢字的。
 HELP );
     return 1;
 }

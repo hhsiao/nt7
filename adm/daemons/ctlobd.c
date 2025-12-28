@@ -51,7 +51,7 @@ void delete_from_mud(string file)
         else
         {
                 n = (int)mud_save_obj[file];
-                if( !n )  /* 应该不会出现这种情况 */
+                if( !n )  /* 應該不會出現這種情況 */
                         return;
                 n--;
                 if( n<=0 )

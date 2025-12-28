@@ -5,7 +5,7 @@ inherit THROWING;
 
 void create()
 {
-        set_name(WHT "黑血神针" NOR, ({ "heixue shenzhen", "heixue", "shenzhen", "zhen" }) );
+        set_name(WHT "黑血神針" NOR, ({ "heixue shenzhen", "heixue", "shenzhen", "zhen" }) );
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
@@ -15,7 +15,7 @@ void create()
                 set("base_weight", 200);
                 set("base_value", 0);
                 set("material", "iron");
-                set("long", WHT "这是一些暗灰色的细长金针，长约寸许。\n" NOR);
+                set("long", WHT "這是一些暗灰色的細長金針，長約寸許。\n" NOR);
         }
         set_amount(50);
         init_throwing(50);

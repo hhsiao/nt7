@@ -15,8 +15,8 @@ int main(object me, string arg)
         env = environment(me);
         if (! arg)
         {
-                write("你自言自语不知道在说些什么。\n");
-                message("sound", me->name() + "自言自语不知道在说些什么。\n",
+                write("你自言自語不知道在說些什麼。\n");
+                message("sound", me->name() + "自言自語不知道在說些什麼。\n",
                         env, me);
                 return 1;
         }
@@ -29,25 +29,25 @@ int main(object me, string arg)
                         return 1;
                 }
 
-                write("这个地方不能讲话。\n");
+                write("這個地方不能講話。\n");
                 return 1;
         }
 
         if( query("doing", me) == "scheme" )
         {
                 if( query("jing", me)<100 )
-                        return notify_fail("你现在的精神不济，等一会儿吧。\n");
+                        return notify_fail("你現在的精神不濟，等一會兒吧。\n");
                 addn("jing", -50, me);
         }
 
-        write(CYN "你说道：" + arg + "\n" NOR);
-        message("sound", CYN + me->name() + "[" + capitalize(query("id", me))+ "]" + CYN "说道：" +  arg + "\n" NOR,
+        write(CYN "你說道：" + arg + "\n" NOR);
+        message("sound", CYN + me->name() + "[" + capitalize(query("id", me))+ "]" + CYN "說道：" +  arg + "\n" NOR,
                 env, me);
 
         // The mudlib interface of say
         all_inventory(env)->relay_say(me, arg);
-        me->add_msg_log("say", "你说道: "HIG+arg+NOR"\n");
-        (all_inventory(env)-({ me }))->add_msg_log("say", me->query_idname()+"说道: "HIG+arg+NOR"\n");
+        me->add_msg_log("say", "你說道: "HIG+arg+NOR"\n");
+        (all_inventory(env)-({ me }))->add_msg_log("say", me->query_idname()+"說道: "HIG+arg+NOR"\n");
 
         me->ban_say(1);
 
@@ -57,12 +57,12 @@ int main(object me, string arg)
 int help (object me)
 {
         write(@HELP
-指令格式: say <讯息>
+指令格式: say <訊息>
  
-说话，所有跟你在同一个房间的人都会听到你说的话。如果你设置了
-auto_say参数，那么系统会自动的将你输入的非命令和表情动词作为
-你讲的话处理。如果你设置了pure_say参数，那么除非你输入用 '/'
-字符打头的命令，否则系统都将当作你说的话来处理。
+說話，所有跟你在同一個房間的人都會聽到你說的話。如果你設置了
+auto_say參數，那麼系統會自動的將你輸入的非命令和表情動詞作為
+你講的話處理。如果你設置了pure_say參數，那麼除非你輸入用 '/'
+字符打頭的命令，否則系統都將當作你說的話來處理。
  
 注: 本指令可用 ' 取代.
  

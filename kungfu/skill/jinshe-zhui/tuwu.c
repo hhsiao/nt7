@@ -15,27 +15,27 @@ int perform(object me, object target)
 
         if( !target) target = offensive_target(me);
         if( !target || ! me->is_fighting(target))
-                return notify_fail("金蛇吐雾只能在战斗中使用。\n");
+                return notify_fail("金蛇吐霧只能在戰鬥中使用。\n");
 
         if( !objectp(weapon=query_temp("handing", me)) || 
             // (string)weapon->query("id") != "jinshe zhui" ||
             weapon->query_amount() < 1)
-                // return notify_fail("你手里没拿金蛇锥，不能使用绝招！\n");
-                return notify_fail("你手里没拿金蛇锥或其他暗器，不能使用绝招！\n");
+                // return notify_fail("你手裡沒拿金蛇錐，不能使用絕招！\n");
+                return notify_fail("你手裡沒拿金蛇錐或其他暗器，不能使用絕招！\n");
 
         if( (skill = me->query_skill("jinshe-zhui", 1)) < 100 )
-                return notify_fail("你的金蛇锥法不够娴熟，不会使用金蛇吐雾。\n");
+                return notify_fail("你的金蛇錐法不夠嫻熟，不會使用金蛇吐霧。\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你内力不够了。\n");
+                return notify_fail("你內力不夠了。\n");
 
         if( BUFF_D->check_buff(target, "jinshezhui_tuwu") )
-                return notify_fail("对方已经这样了，你就不必了吧。\n");
+                return notify_fail("對方已經這樣了，你就不必了吧。\n");
 
         weapon->add_amount(-1);
 
-        msg = HIY "$N" HIY "一声轻啸，身形微动，手中金蛇锥竟然向上飞"
-              "起绕了个圈，随而迅速袭向$n" HIY "的面前。\n" NOR;
+        msg = HIY "$N" HIY "一聲輕嘯，身形微動，手中金蛇錐竟然向上飛"
+              "起繞了個圈，隨而迅速襲向$n" HIY "的面前。\n" NOR;
 
         ap = attack_power(me, "strike");
         dp = defense_power(target, "dodge");
@@ -47,10 +47,10 @@ int perform(object me, object target)
                 target->receive_damage("qi", damage, me);
                 target->receive_wound("qi", damage / 3, me);
         
-                msg += HIM "只听一阵狂风扫叶般的声响中，$N" HIM "手中的"
-                       "金蛇锥闪出夺目的光芒，闪耀得$n" HIM "眼冒金花，"
-                       "\n除了眼前一重重的雾气外，$n" HIM
-                       "啥也看不见了！\n" NOR;
+                msg += HIM "只聽一陣狂風掃葉般的聲響中，$N" HIM "手中的"
+                       "金蛇錐閃出奪目的光芒，閃耀得$n" HIM "眼冒金花，"
+                       "\n除了眼前一重重的霧氣外，$n" HIM
+                       "啥也看不見了！\n" NOR;
                 message_combatd(msg, me, target);
                 set_temp("jinshe/tuwu", 1, target);
                 set_temp("block_msg/all", 1, target);
@@ -59,18 +59,18 @@ int perform(object me, object target)
 	                "target":target,
 	                "type":"jinshezhui_tuwu",
 	                "attr": "curse",
-	                "name":"金蛇锥法·金蛇吐雾",
+	                "name":"金蛇錐法·金蛇吐霧",
 	                "time":skill/100,
 	                "buff_msg":"",
-	                "disa_msg" :"$N抹了抹满脸的" HIR "鲜血" NOR "，终于睁开了眼。\n",
+	                "disa_msg" :"$N抹了抹滿臉的" HIR "鮮血" NOR "，終於睜開了眼。\n",
 	                "disa_type":1,
                         "block_msg":"all",
                 ]);
                 BUFF_D->buffup(buff);
         } else
         {
-                msg += CYN "$n" CYN "心中暗暗一惊，急忙后"
-                       "退，闪开了这枚金蛇锥。\n" NOR;
+                msg += CYN "$n" CYN "心中暗暗一驚，急忙後"
+                       "退，閃開了這枚金蛇錐。\n" NOR;
                 message_combatd(msg, me, target);
         }
         

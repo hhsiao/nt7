@@ -9,11 +9,11 @@ int main(object me, string arg)
         int i;
         int count;
 
-        if( !arg ) return notify_fail("你要放下什么？\n");
+        if( !arg ) return notify_fail("你要放下什麼？\n");
 
         if( me->is_busy() ) return notify_fail(BUSY_MESSAGE);
         if( !objectp(ob = present(arg, me)) )
-                return notify_fail("你身上没有这样东西。\n");
+                return notify_fail("你身上沒有這樣東西。\n");
 
         if( query("equipped", ob) != "wielded"){
                 inv = all_inventory(me);
@@ -30,7 +30,7 @@ int main(object me, string arg)
                 }
 
                 if( !count )
-                        return notify_fail("你并没有装备这样东西作为武器。\n");
+                        return notify_fail("你並沒有裝備這樣東西作為武器。\n");
         }
 
         if( ob->unequip() ) {
@@ -47,7 +47,7 @@ int help(object me)
   write(@HELP
 指令格式 : unwield <物品名>
  
-这个指令让你放下手中的武器。
+這個指令讓你放下手中的武器。
  
 HELP
     );

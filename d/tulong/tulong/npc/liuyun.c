@@ -10,14 +10,14 @@ inherit F_GUARDER;
 void create()
 {
         object ob;
-        set_name("流云使", ({ "liuyun shi", "liuyun", "shi" }));
+        set_name("流雲使", ({ "liuyun shi", "liuyun", "shi" }));
         set("long", @LONG
-这是一个四十多岁的中年男子，装束奇异，不
-像普通的中土人士。这便是波斯明教总教教主
-座下排名三百七十四的流云使。
+這是一個四十多歲的中年男子，裝束奇異，不
+像普通的中土人士。這便是波斯明教總教教主
+座下排名三百七十四的流雲使。
 LONG);
-        set("title", "波斯总教教主座下");
-        set("nickname", HIG "云风月三使" NOR);
+        set("title", "波斯總教教主座下");
+        set("nickname", HIG "雲風月三使" NOR);
         set("gender", "男性");
         set("age", 43);
         set("attitude", "friendly");
@@ -60,7 +60,7 @@ LONG);
         prepare_skill("strike", "yinfeng-dao");
         prepare_skill("finger", "tougu-zhen");
 
-        create_family("波斯明教总舵", 32, "弟子");
+        create_family("波斯明教總舵", 32, "弟子");
 
         set("coagents", ({
                 ([ "startroom" : "/d/tulong/tulong/haian",

@@ -5,15 +5,15 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIR"圣诞贺卡"NOR, ({"christmas card", "card"}));
+        set_name(HIR"聖誕賀卡"NOR, ({"christmas card", "card"}));
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "张");
+                set("unit", "張");
                 set("long",
-"这是一张"HIR"圣诞贺卡"NOR"，送给每位在圣诞节进入侠客行一百
-的玩家。你可以打开(dakai)来看看，记住自己的编号。
-新年钟声敲响的时候，等待着我们的抽奖礼品。\n");
+"這是一張"HIR"聖誕賀卡"NOR"，送給每位在聖誕節進入俠客行一百
+的玩家。你可以打開(dakai)來看看，記住自己的編號。
+新年鐘聲敲響的時候，等待著我們的抽獎禮品。\n");
                 set("value", 0);
                 set_weight(10);
         }
@@ -33,23 +33,23 @@ int do_dakai(string arg)
         {
                 tell_object(me,
 HIW"\n"+
-"     ┏---------------- "HIR"圣诞快乐"HIW" ----------------┓\n"+
+"     ┏---------------- "HIR"聖誕快樂"HIW" ----------------┓\n"+
 "     ┃  ┌-------- Merry  Christmas --------┐  ┃\n"+
 "     ┃  │                                  │  ┃\n"+
 "     ┃  │                                  │  ┃\n");
                 if( strlen(query("name", me)) == 2)tell_object(me,
-HIW"┃│亲爱的"+query("name", me)+"：│┃\n");
+HIW"┃│親愛的"+query("name", me)+"：│┃\n");
                 if( strlen(query("name", me)) == 4)tell_object(me,
-HIW"┃│亲爱的"+query("name", me)+"：│┃\n");
+HIW"┃│親愛的"+query("name", me)+"：│┃\n");
                 if( strlen(query("name", me)) == 6)tell_object(me,
-HIW"┃│亲爱的"+query("name", me)+"：│┃\n");
+HIW"┃│親愛的"+query("name", me)+"：│┃\n");
                 if( strlen(query("name", me)) == 8)tell_object(me,
-HIW"┃│亲爱的"+query("name", me)+"：│┃\n");
+HIW"┃│親愛的"+query("name", me)+"：│┃\n");
                 if( strlen(query("name", me)) == 10)tell_object(me,
-HIW"┃│亲爱的"+query("name", me)+"：│┃\n");
+HIW"┃│親愛的"+query("name", me)+"：│┃\n");
         tell_object(me,
-HIW"     ┃  │      愿您和您的家人在主的祝福    │  ┃\n"+
-"     ┃  │  下，快乐、平安！                │  ┃\n"+
+HIW"     ┃  │      願您和您的家人在主的祝福    │  ┃\n"+
+"     ┃  │  下，快樂、平安！                │  ┃\n"+
 "     ┃  │                                  │  ┃\n"+
 "     ┃  │             *  *"HIR"r"HIW"*  *            │  ┃\n"+
 "     ┃  │          * *"HIR"a"HIW"* "HIG"^"HIY"Y"HIG"^"HIW" *"HIR"i"HIW"* *         │  ┃\n"+
@@ -65,10 +65,10 @@ HIW"     ┃  │      愿您和您的家人在主的祝福    │  ┃\n"+
 "     ┃  │                "GRN"/|\\"HIW"               │  ┃\n"+
 "     ┃  │               "GRN"/\\\\/\\"HIW"              │  ┃\n"+
 "     ┃  │                                  │  ┃\n"+
-"     ┃  │                  "RED"侠客行一百恭贺"HIW"  │  ┃\n"+
+"     ┃  │                  "RED"俠客行一百恭賀"HIW"  │  ┃\n"+
 HIW"     ┃  └----------------------------------┘  ┃\n"+
 "     ┗------------------------------------------┛\n"+
-"\n"HIY+"卡编号："+query("giftcard", me)+
+"\n"HIY+"卡編號："+query("giftcard", me)+
 "\n"NOR);
         }
         return 1;
@@ -81,8 +81,8 @@ int do_chaikai(string arg)
         int col;
         if (arg == "card")
         {
-                message_vision("$N充满憧憬地拆开了圣诞卡，突然如魔术般，出现
-一个礼品盒！\n", me);
+                message_vision("$N充滿憧憬地拆開了聖誕卡，突然如魔術般，出現
+一個禮品盒！\n", me);
                 box = new(__DIR__"giftbox");
                 newcard = new(__DIR__"newcard");
                 newcard->move(me);

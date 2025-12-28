@@ -30,7 +30,7 @@ void create()
 int do_effect(object me)
 {
         addn("shenzhou/pts", 40, me);
-        message_vision(HIG "$N服下了一些幸福散，所有忿怨顷刻一笔勾销! \n" NOR, me); 
+        message_vision(HIG "$N服下了一些幸福散，所有忿怨頃刻一筆勾銷! \n" NOR, me); 
 
         destruct(this_object());
         return 1;

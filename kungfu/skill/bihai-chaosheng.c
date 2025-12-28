@@ -9,10 +9,10 @@ int valid_enable(string usage) { return usage == "chuixiao-jifa"; }
 int valid_learn(object me)
 {
         if (me->query_skill("chuixiao-jifa", 1) < 100)
-                return notify_fail("你的吹萧技法水平不够，还是先练好再说吧！\n");
+                return notify_fail("你的吹蕭技法水平不夠，還是先練好再說吧！\n");
 
         if (me->query_skill("chuixiao-jifa", 1) < me->query_skill("bihai-chaosheng", 1))
-                return notify_fail("你的吹萧技法水平有限，无法领会更精妙的碧海潮生曲。\n");
+                return notify_fail("你的吹蕭技法水平有限，無法領會更精妙的碧海潮生曲。\n");
 
         return 1;
 }
@@ -23,13 +23,13 @@ int practice_skill(object me)
 
         if( !objectp(ob=query_temp("handing", me)) || 
             ! ob->valid_as_xiao())
-                return notify_fail("不拿根箫在手上，你怎么练习？\n");
+                return notify_fail("不拿根簫在手上，你怎麼練習？\n");
 
         if( query("jing", me)<80 )
-                return notify_fail("你的精神不够好，没法练习了。\n");
+                return notify_fail("你的精神不夠好，沒法練習了。\n");
 
         if( query("qi", me)<30 )
-                return notify_fail("你现在口干舌燥，实在是太累了。\n");
+                return notify_fail("你現在口乾舌燥，實在是太累了。\n");
 
         me->receive_damage("jing", 45);
         me->receive_damage("qi", 20);
@@ -62,7 +62,7 @@ void do_effect(object me)
                 if (! obs[i]->is_character() || obs[i] == me || ! living(obs[i]))
                         continue;
 
-                // 被死亡保护的玩家不受伤害
+                // 被死亡保護的玩家不受傷害
                 if ((int)obs[i]->query_condition("die_guard"))
                         continue;
                 if (userp(obs[i]) && !obs[i]->die_protect(me)) 
@@ -73,14 +73,14 @@ void do_effect(object me)
 
                 if (lvl + random(lvl) < obs[i]->query_skill("force"))
                 {
-                        tell_object(obs[i], HIM "你听了心中不禁微微一动，发现这曲子颇有奥妙之处。\n" NOR);
+                        tell_object(obs[i], HIM "你聽了心中不禁微微一動，發現這曲子頗有奧妙之處。\n" NOR);
                         continue;
                 }
 
                 damage=query("max_neili", me)-query("max_neili", obs[i]);
                 if (damage < 500)
                 {
-                        tell_object(obs[i], HIM "你忽然觉得一阵迷乱，连忙运了一口气，才清醒过来。\n" NOR);
+                        tell_object(obs[i], HIM "你忽然覺得一陣迷亂，連忙運了一口氣，才清醒過來。\n" NOR);
                         continue;
                 }
 
@@ -91,6 +91,6 @@ void do_effect(object me)
                 obs[i]->receive_damage("jing", damage, me);
                 obs[i]->receive_wound("jing", damage / 3, me);
                 
-                tell_object(obs[i], HIM "你只觉得心迷神乱，忍不住要翩翩起舞……\n" NOR);
+                tell_object(obs[i], HIM "你只覺得心迷神亂，忍不住要翩翩起舞……\n" NOR);
         }
 }

@@ -6,11 +6,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short","华山书房");
+        set("short","華山書房");
         set("long", @LONG
-这里是华山派的书房，靠墙是一排书架，里面堆着乱七八糟的一
-大堆书，最近老有人上山寻事，都很久没人整理书房了，要找啥书都
-很麻烦。右侧有张书桌，桌上四宝俱备。
+這裡是華山派的書房，靠牆是一排書架，裡面堆著亂七八糟的一
+大堆書，最近老有人上山尋事，都很久沒人整理書房了，要找啥書都
+很麻煩。右側有張書桌，桌上四寶俱備。
 LONG );
         set("exits",([
                 "north" : __DIR__"garden",
@@ -35,12 +35,12 @@ int do_zhengli()
         if ((query("book_count") > 0) && (random(5) == 3))
         {
                 message_vision(HIY "$N" HIY "辛辛苦苦整理了好半天，居然在"
-                               "破杂物堆里发现了一本书。\n"NOR,me);
+                               "破雜物堆裡發現了一本書。\n"NOR,me);
                 ob=new("/clone/book/sword_book2");
                 ob->move(me);
                 addn("book_count", -1);
         } else
-                message_vision(HIY "$N" HIY "辛辛苦苦整理了好半天，啥都没"
+                message_vision(HIY "$N" HIY "辛辛苦苦整理了好半天，啥都沒"
                                "找到，真是白忙了。\n"NOR,me);
         return 1;
 }

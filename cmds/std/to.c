@@ -45,10 +45,10 @@ int main(object me, string arg)
 
 /*
         if (! SECURITY_D->valid_grant(me, "(immortal)")) 
-                return notify_fail("鉴于玩家利用此指令干扰别人机器人，现封闭这个指令。\n");
+                return notify_fail("鑑於玩家利用此指令干擾別人機器人，現封閉這個指令。\n");
 */
         if (!wizardp(me) && ! MEMBER_D->is_valid_member(me))
-                return notify_fail("对不起，本指令只开放给会员使用。\n");
+                return notify_fail("對不起，本指令只開放給會員使用。\n");
 
         if (sscanf(arg, "%s %s", verb, opp) != 2)
         {
@@ -57,10 +57,10 @@ int main(object me, string arg)
         }
 
         if (! valid_verb[verb])
-                return notify_fail("对不起，不能使用这种方式发布信息。\n");
+                return notify_fail("對不起，不能使用這種方式發佈信息。\n");
 
         if ((valid_verb[verb] & NEED_OPP) && ! opp)
-                return notify_fail("你必须指明对象才能发出信息。\n");
+                return notify_fail("你必須指明對象才能發出信息。\n");
 
         me->edit(bind((: call_other, __FILE__, "done", me, verb, opp :), me));
         return 1;
@@ -86,7 +86,7 @@ void done(object me, string verb, string opp, string msg)
         m = strlen(msg);
         if (m > 8192 || m > 256 && (att & LIMIT_LONG))
         {
-                tell_object(me, "你弄得这么长干什么啊？\n");
+                tell_object(me, "你弄得這麼長幹什麼啊？\n");
                 return;
         }
 
@@ -102,7 +102,7 @@ void done(object me, string verb, string opp, string msg)
                 addn("jing", -n, me);
         } else
         {
-                tell_object(me, "你目前的内力和精不允许你这么做。\n");
+                tell_object(me, "你目前的內力和精不允許你這麼做。\n");
                 return;
         }
 
@@ -133,10 +133,10 @@ int help(object me)
         write(@HELP
 指令格式： to say | tell | chat | rumor ... [sb]
 
-这个指令让你发布信息的时候可以发布多行，但是使用耳语
-(whisper)方式。 玩家发布的信息会在每行前面自动加上一
-个空格。对于tell命令，必须指定对象。另外注意的是：一
-次可以贴的行数受玩家内力和精的限制。
+這個指令讓你發佈信息的時候可以發佈多行，但是使用耳語
+(whisper)方式。 玩家發佈的信息會在每行前面自動加上一
+個空格。對於tell命令，必須指定對象。另外注意的是：一
+次可以貼的行數受玩家內力和精的限制。
 HELP );
         return 1;
 }

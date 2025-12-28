@@ -5,7 +5,7 @@
 
 inherit F_SSERVER;
 
-string name() { return HIM "赤心连环决" NOR; }
+string name() { return HIM "赤心連環決" NOR; }
 
 int perform(object me, object target)
 {
@@ -17,46 +17,46 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(name() + "只能空手施展。\n");
 
         if ((level = me->query_skill("chilian-shenzhang", 1)) < 100)
-                return notify_fail("你赤练神掌不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你赤練神掌不夠嫻熟，難以施展" + name() + "。\n");
 
         if (me->query_skill_prepared("strike") != "chilian-shenzhang")
-                return notify_fail("你没有准备赤练神掌，难以施展" + name() + "。\n");
+                return notify_fail("你沒有準備赤練神掌，難以施展" + name() + "。\n");
 
         if (me->query_skill("force") < 100)
-                return notify_fail("你的内功修为不够，难以施展" + name() + "。\n");
+                return notify_fail("你的內功修為不夠，難以施展" + name() + "。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你现在的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         ap = attack_power(me, "strike");
         dp = defense_power(target, "parry");
 
-        msg = HIC "$N" HIC "暗运内功，但见$N" HIC "双掌微微呈显"
-              "赤色，陡然连续反转，\n使出一招「" HIM "赤心连环决" HIC
-              "」，掌风凌厉，将$n" HIC "笼罩在双掌之中。\n" NOR;
+        msg = HIC "$N" HIC "暗運內功，但見$N" HIC "雙掌微微呈顯"
+              "赤色，陡然連續反轉，\n使出一招「" HIM "赤心連環決" HIC
+              "」，掌風凌厲，將$n" HIC "籠罩在雙掌之中。\n" NOR;
 
         message_combatd(msg, me, target);
 
         ap *= 2;
         if (ap / 2 + random(ap) > dp)
         {
-                msg = HIR "$n" HIR "心中一惊，却被$N" HIR "掌"
-                      "风所困，顿时阵脚大乱。\n" NOR;
+                msg = HIR "$n" HIR "心中一驚，卻被$N" HIR "掌"
+                      "風所困，頓時陣腳大亂。\n" NOR;
                 v = level;
         } else
         {
                 v = 0;
-                msg = HIY "$n" HIY "看清$N" HIY "这几招的来路，但"
-                      "内劲所至，掌风犀利，也只得小心抵挡。\n" NOR;
+                msg = HIY "$n" HIY "看清$N" HIY "這幾招的來路，但"
+                      "內勁所至，掌風犀利，也只得小心抵擋。\n" NOR;
         }
         message_combatd(msg, me, target);
 

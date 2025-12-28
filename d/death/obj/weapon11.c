@@ -6,7 +6,7 @@ inherit HAMMER;
 
 void create()
 {
-        set_name(HIY"天罗锤"NOR, ({ "tianluo chui", "chui", "tianluo", "hammer" }) );
+        set_name(HIY"天羅錘"NOR, ({ "tianluo chui", "chui", "tianluo", "hammer" }) );
         set_weight(18000);
         /*if( clonep() )
                 set_default_object(__FILE__);

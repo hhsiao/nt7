@@ -4,10 +4,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("捡破烂的", ({ "jian polan" }));
+        set_name("撿破爛的", ({ "jian polan" }));
 
         set("long", @LONG
-这个人不但自己捡破烂，身上也穿得破烂不堪。
+這個人不但自己撿破爛，身上也穿得破爛不堪。
 LONG
         );
 
@@ -29,9 +29,9 @@ LONG
         set("chat_chance", 10);
         set("chat_msg", ({
                 (: command, "get all" :),
-                "捡破烂的喃喃道：怎么这些人那么没公德心，随便乱扔东西。\n",
-                "捡破烂的嘴里嘟哝著，不知道说些什麽。\n",
-                "捡破烂的伸手捉住了身上的虱子，一脚踩得扁扁的。 \n",
+                "撿破爛的喃喃道：怎麼這些人那麼沒公德心，隨便亂扔東西。\n",
+                "撿破爛的嘴裡嘟噥著，不知道說些什麼。\n",
+                "撿破爛的伸手捉住了身上的蝨子，一腳踩得扁扁的。 \n",
                 (: command, "get all" :),
                 (: command, "get all" :),
                 (: command, "get all" :),
@@ -56,12 +56,12 @@ LONG
 int accept_object(object me, object obj)
 {
         command("smile");
-        command("say 多谢这位" + RANK_D->query_respect(me) + "！");
+        command("say 多謝這位" + RANK_D->query_respect(me) + "！");
         return 1;
 }
 
 int accept_fight(object me)
 {
-        command("say " + RANK_D->query_respect(me) + "饶命！小的这就离开！\n");
+        command("say " + RANK_D->query_respect(me) + "饒命！小的這就離開！\n");
         return 0;
 }

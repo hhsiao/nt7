@@ -15,21 +15,21 @@ int main(object me, string arg)
 
         ob = FUBEN_D->query_maze_mainobj(me);
 
-        if (! ob) return notify_fail("你当前地点没有可以显示的副本任务。\n");
+        if (! ob) return notify_fail("你當前地點沒有可以顯示的副本任務。\n");
 
         if( !query("quest/quest_name", ob) )
-                return notify_fail("你目前还没有领取任何副本任务。\n");
+                return notify_fail("你目前還沒有領取任何副本任務。\n");
 
         to_kill=query("quest/to_kill", ob);
         killed=query("quest/killed", ob);
         to_find=query("quest/to_find", ob);
         finded=query("quest/finded", ob);
 
-        write("任务名称: "+query("quest/quest_name", ob)+"\n");
-        write("任务描述: "+query("quest/quest_desc", ob)+"\n");
+        write("任務名稱: "+query("quest/quest_name", ob)+"\n");
+        write("任務描述: "+query("quest/quest_desc", ob)+"\n");
         if (mapp(to_kill) && sizeof(to_kill))
         {
-                write("杀敌任务进程: \n");
+                write("殺敵任務進程: \n");
                 msg = "";
                 tk = keys(to_kill);
                 for (i=0;i<sizeof(tk);i++)
@@ -43,7 +43,7 @@ int main(object me, string arg)
         }
         if (mapp(to_find) && sizeof(to_find))
         {
-                write("寻物任务进程: \n");
+                write("尋物任務進程: \n");
                 msg = "";
                 tf = keys(to_find);
                 for (i=0;i<sizeof(tf);i++)
@@ -56,7 +56,7 @@ int main(object me, string arg)
                 write(msg);
         }
         if (n = ob->query_remove_time()-time())
-                 write("副本将在"+CHINESE_D->chinese_period(n)+"后消失。\n");
+                 write("副本將在"+CHINESE_D->chinese_period(n)+"後消失。\n");
 
         return 1;
 }

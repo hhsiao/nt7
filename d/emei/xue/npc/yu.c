@@ -1,6 +1,6 @@
 // This program is a part of NT MudLIB
 // redl 2014
-// 余英男
+// 餘英男
 
 #include <ansi.h>
 
@@ -14,56 +14,56 @@ int get_helpkill()
         object me = this_player(), ob = this_object();
 
                 if (time() - query("jldong/killshu_time", me) < 600) {
-                        message_vision(CYN + query("name") + NOR + CYN + "愤怒地对$N说道：几分钟前才见你杀害我的同门姐妹，贼子，拿命来！\n"+ NOR, me); 
+                        message_vision(CYN + query("name") + NOR + CYN + "憤怒地對$N說道：幾分鐘前才見你殺害我的同門姐妹，賊子，拿命來！\n"+ NOR, me); 
                         ob->kill_ob(me);
                         if (!me->is_busy()) me->start_busy(3);
                 return 1;
                 }
                 
                 if (ob->is_fighting() || ob->is_busy()) {
-                tell_object(me,CYN + query("name") + NOR + CYN + "慢悠悠地对你说道：没见我正在忙吗？\n"+ NOR); 
+                tell_object(me,CYN + query("name") + NOR + CYN + "慢悠悠地對你說道：沒見我正在忙嗎？\n"+ NOR); 
                 return 1;
                 }
         
         if( query("shen", me) < 2000000){
-                        tell_object(me,CYN + query("name") + NOR + CYN + "傲慢地说：你非我大峨眉的正道人士...\n"+ NOR); 
+                        tell_object(me,CYN + query("name") + NOR + CYN + "傲慢地說：你非我大峨眉的正道人士...\n"+ NOR); 
                 return 1;
         }      
 
         if( query("level", me) < 50){
-                        tell_object(me,CYN + query("name") + NOR + CYN + "面孔扭曲地说：就阁下这小身板也想配？...\n"+ NOR); 
+                        tell_object(me,CYN + query("name") + NOR + CYN + "面孔扭曲地說：就閣下這小身板也想配？...\n"+ NOR); 
                 return 1;
         }      
 
         if( !query_temp("xue/xin/killed", me) ){
-                        tell_object(me,CYN + query("name") + NOR + CYN + "悄悄对你说：你去除掉辛辰子，我就将这齐师姐的秘法传授与你。\n"+ NOR); 
+                        tell_object(me,CYN + query("name") + NOR + CYN + "悄悄對你說：你去除掉辛辰子，我就將這齊師姐的秘法傳授與你。\n"+ NOR); 
                 return 1;
         }      
 
                 if( query("can_perform/yitian-jian/zhen", me) ) {
-                        tell_object(me,CYN + query("name") + NOR + CYN + "悄悄对你说：这招我不是已经教过你了吗？自己下去多练吧！\n"+ NOR); 
+                        tell_object(me,CYN + query("name") + NOR + CYN + "悄悄對你說：這招我不是已經教過你了嗎？自己下去多練吧！\n"+ NOR); 
                         return 1;
                 }
                 if( query("family/family_name", me) != "峨嵋派" ) {
-                        tell_object(me,CYN + query("name") + NOR + CYN + "悄悄对你说：你是哪里来的？快给我滚开！\n"+ NOR); 
+                        tell_object(me,CYN + query("name") + NOR + CYN + "悄悄對你說：你是哪裡來的？快給我滾開！\n"+ NOR); 
                         return 1;
                 }
                 if( me->query_skill("yitian-jian", 1) < 300 ) {
-                        tell_object(me,CYN + query("name") + NOR + CYN + "悄悄对你说：你连倚天剑法都没学好，还谈什么九天伏魔剑阵？\n"+ NOR); 
+                        tell_object(me,CYN + query("name") + NOR + CYN + "悄悄對你說：你連倚天劍法都沒學好，還談什麼九天伏魔劍陣？\n"+ NOR); 
                         return 1;
                 }
                 if( query("family/gongji", me)< 1000000 ) {
-                        tell_object(me,CYN + query("name") + NOR + CYN + "悄悄对你说：你在本派中无所作为，这一招我暂时还不能传你。\n"+ NOR); 
+                        tell_object(me,CYN + query("name") + NOR + CYN + "悄悄對你說：你在本派中無所作為，這一招我暫時還不能傳你。\n"+ NOR); 
                         return 1;
                 }
 
       
-             message_sort(HIY "\n$n" HIY "微微点了点头，不露半点声色，将$N" HIY 
-                          "招至跟前，在耳边秘密的说了些什么。$N" HIY "听后会心的" 
-                          "一笑，似乎明白了什么。\n\n" NOR, me, this_object()); 
+             message_sort(HIY "\n$n" HIY "微微點了點頭，不露半點聲色，將$N" HIY 
+                          "招至跟前，在耳邊秘密的說了些什麼。$N" HIY "聽後會心的" 
+                          "一笑，似乎明白了什麼。\n\n" NOR, me, this_object()); 
       
-             command("say 以后对那些妖人不要手软，一上来就用这招！"); 
-             tell_object(me, HIC "你学会了「九天伏魔剑阵」。\n" NOR); 
+             command("say 以後對那些妖人不要手軟，一上來就用這招！"); 
+             tell_object(me, HIC "你學會了「九天伏魔劍陣」。\n" NOR); 
              if (me->can_improve_skill("sword")) 
                      me->improve_skill("sword", 1500000); 
              if (me->can_improve_skill("yitian-jian")) 
@@ -81,7 +81,7 @@ int accept_object(object me, object obj)
         object sword, ob = this_object();
 
                 if (ob->is_fighting() || ob->is_busy()) {
-                tell_object(me,CYN + query("name") + NOR + CYN + "慢悠悠地对你说道：没见我正在忙吗？\n"+ NOR); 
+                tell_object(me,CYN + query("name") + NOR + CYN + "慢悠悠地對你說道：沒見我正在忙嗎？\n"+ NOR); 
                 return 1;
                 }
         
@@ -90,25 +90,25 @@ int accept_object(object me, object obj)
          case "no name":
                 if (base_name(obj) == "/clone/goods/noname") {
                         if (query("give_sword")) {
-                                tell_object(me,CYN + query("name") + NOR + CYN + "慢悠悠地对你说道：我已经收到有缘人的赠予了。\n"+ NOR); 
+                                tell_object(me,CYN + query("name") + NOR + CYN + "慢悠悠地對你說道：我已經收到有緣人的贈予了。\n"+ NOR); 
                                 return 0;
                         }
                         sword = query("my_sword");
                         if (!sword) {
-                                tell_object(me,CYN + query("name") + NOR + CYN + "慢悠悠地对你说道：我给不了你什么。\n"+ NOR); 
+                                tell_object(me,CYN + query("name") + NOR + CYN + "慢悠悠地對你說道：我給不了你什麼。\n"+ NOR); 
                                 return 0;
                         }
                         sword->unequip();
                         if (sword->move(me)) {
                                 set("give_sword", 1);
                                 set("owner_ob", me, sword);
-                                message_vision(CYN + query("name") + NOR + CYN + "接过$N的无名之物，递还了一个剑匣子作为答谢。\n"+ NOR, me); 
+                                message_vision(CYN + query("name") + NOR + CYN + "接過$N的無名之物，遞還了一個劍匣子作為答謝。\n"+ NOR, me); 
                                 return 1;
                         }
-                        tell_object(me,CYN + query("name") + NOR + CYN + "慢悠悠地对你说道：我给不了你什么。\n"+ NOR); 
+                        tell_object(me,CYN + query("name") + NOR + CYN + "慢悠悠地對你說道：我給不了你什麼。\n"+ NOR); 
                         return 0;
                 } else {
-                        tell_object(me,CYN + query("name") + NOR + CYN + "慢悠悠地对你说道：这个东西是高仿的吗？\n"+ NOR); 
+                        tell_object(me,CYN + query("name") + NOR + CYN + "慢悠悠地對你說道：這個東西是高仿的嗎？\n"+ NOR); 
                         return 0;
                 }
          default:
@@ -119,9 +119,9 @@ int accept_object(object me, object obj)
 
 void create()
 {
-        set_name(CYN "余英男" NOR, ({ "yu yingnan", "yu", "yingnan" }) );
-        set("title", HIG "蜀山" HIC "剑侠" NOR);
-        set("long", HIR "这是传说中的蜀山第三代精英弟子，此来是为了除魔修炼，顺带寻访无名之物铸剑。\n" NOR);
+        set_name(CYN "餘英男" NOR, ({ "yu yingnan", "yu", "yingnan" }) );
+        set("title", HIG "蜀山" HIC "劍俠" NOR);
+        set("long", HIR "這是傳說中的蜀山第三代精英弟子，此來是為了除魔修煉，順帶尋訪無名之物鑄劍。\n" NOR);
 
         set("gender", "女性");
         set("age", 25);
@@ -178,9 +178,9 @@ void create()
         set_skill("jingluo-xue", 5000);
         set_skill("qimen-wuxing", 1000);
 
-        set("no_nuoyi", 1); // 不被挪移影响
-        set("yuanshen", 1); //无招
-        set("lonely-sword/nothing", 1); //无招
+        set("no_nuoyi", 1); // 不被挪移影響
+        set("yuanshen", 1); //無招
+        set("lonely-sword/nothing", 1); //無招
         set("yinyang-shiertian/shier", 12);
         set("yinyang-shiertian/yinyang", 12);
         set("yinyang-shiertian/qiankun", 12);
@@ -215,7 +215,7 @@ void create()
                 (: command("kill xixue bianfu") :),
                 (: command("kill xixue bianfu") :),
                 (: command("kill xixue bianfu") :),
-                (: command("say 如果我有充足的天师符，对上那老魔时倒也稳当了许多。") :),
+                (: command("say 如果我有充足的天師符，對上那老魔時倒也穩當了許多。") :),
          }));*/
 
         // yun perform
@@ -239,10 +239,10 @@ void create()
               //(: command("kill xixue bianfu " + (string)(random(9)+1)) :),
         }));
 
-        set("my_life", 3); // 当气血低于10%的时候补满一次，设置该参数为0
+        set("my_life", 3); // 當氣血低於10%的時候補滿一次，設置該參數為0
 
         //set("auto_perform", 1);
-        //set("end_time", 60);  // 必须战斗不少于60秒后死亡
+        //set("end_time", 60);  // 必須戰鬥不少於60秒後死亡
         set("rewards", ([
                 "exp"   : 500000,
                 "pot"   : 250000,
@@ -264,7 +264,7 @@ void create()
         set_temp("apply/add_poison", 60);
 
         set("inquiry", ([
-                "九天伏魔剑阵" : (: get_helpkill :),
+                "九天伏魔劍陣" : (: get_helpkill :),
         ]));
 
         set("n_flee", 7200);
@@ -305,8 +305,8 @@ void heart_beat()
 {
                 object sword, me = this_object();
         if( query("n_flee") < 1 ){
-                        message_vision(CYN + query("name") + NOR + CYN + "仰天长叹：看来此番魔道气数未尽，罢了，罢了...\n"+ NOR + 
-                                                                                query("name") + NOR + YEL + "说完掐了个剑诀，紧抿嘴皮用力顿足，乘着一道剑光冲天而去。\n" + NOR, me); 
+                        message_vision(CYN + query("name") + NOR + CYN + "仰天長嘆：看來此番魔道氣數未盡，罷了，罷了...\n"+ NOR + 
+                                                                                query("name") + NOR + YEL + "說完掐了個劍訣，緊抿嘴皮用力頓足，乘著一道劍光沖天而去。\n" + NOR, me); 
                                 destruct(this_object());                                                                            
                 return;
         }      
@@ -319,7 +319,7 @@ void heart_beat()
                     if (this_object()->is_fighting() && !random(100)) {
                         command("unwield lihuo jian");
                         command("drop lihuo jian");
-                        command("perform finger.zhuan");//call die()绝杀一次
+                        command("perform finger.zhuan");//call die()絕殺一次
                     }
         }
                 if (!this_object()->is_fighting() && !random(10)) {
@@ -328,7 +328,7 @@ void heart_beat()
                         me->stop_busy();
             command("yun powerup");
             me->stop_busy();
-                        full_self(); // 补满气血
+                        full_self(); // 補滿氣血
                 }
         return ::heart_beat();
 }
@@ -363,7 +363,7 @@ int accept_kill(object me)
 
 void new_life()
 {
-        full_self(); // 补满气血
+        full_self(); // 補滿氣血
                 del_busy();
         delete_temp("no_perform");
         delete_temp("no_exert");
@@ -374,7 +374,7 @@ void new_life()
         addn_temp("apply/armor", query_temp("apply/armor") * 2);
 
         addn("my_life", -1);
-        message_vision(HIG "\n$N" HIG "娇呼一声燃起天师符，瞬间神光四湛！\n\n" NOR, this_object());
+        message_vision(HIG "\n$N" HIG "嬌呼一聲燃起天師符，瞬間神光四湛！\n\n" NOR, this_object());
         return;
 }
 
@@ -420,14 +420,14 @@ void die(object killer)
         if( !objectp(killer) ) killer = this_object()->query_last_damage_from();
         if( !objectp(killer) ) killer = query_temp("last_damage_from");
 
-        // 如果还未重生，则重生一次
+        // 如果還未重生，則重生一次
         if (query("my_life"))
         {
                 new_life();
                 return;
         }
 
-        if( time() < query_temp("end_time") ) // 时间没有到，死亡不了
+        if( time() < query_temp("end_time") ) // 時間沒有到，死亡不了
         {
                 addn("jing", query("max_jing") / 10);
                 if( query("jing") > query("max_jing") ) set("jing", query("max_jing"));
@@ -437,23 +437,23 @@ void die(object killer)
                 if( query("qi") > query("max_qi") ) set("qi", query("max_qi"));
                 addn("eff_qi", query("max_qi") / 10);
                 if( query("eff_qi") > query("max_qi") ) set("eff_qi", query("max_qi"));
-                //message_vision(HIR "\n$N" HIR "大喝一声，运用秘法，气血有所回升！\n\n" NOR, this_object());
+                //message_vision(HIR "\n$N" HIR "大喝一聲，運用秘法，氣血有所回升！\n\n" NOR, this_object());
                 return;
         }
 
 /*              if (new(__DIR__"obj/tnmjian")->move(killer, 1)) {
-                message_vision(HIR "叮~~一声，从$N" HIR "身上掉出一个剑匣子，$n" HIR
-                                   "赶紧拣起来揣到怀里。\n" NOR, this_object(), killer);
+                message_vision(HIR "叮~~一聲，從$N" HIR "身上掉出一個劍匣子，$n" HIR
+                                   "趕緊揀起來揣到懷裡。\n" NOR, this_object(), killer);
                         set("jldong/killshu_time", time() , killer);
         }*/
-        message_vision(CYN + query("name") + NOR + CYN + "捂住嘴角的" + NOR + HIR + "鲜血" + NOR + CYN + "道：看来此番魔道气数未尽，罢了，罢了...\n"+ NOR + 
-                        query("name") + NOR + YEL + "说完掐了个剑诀，紧抿嘴皮用力顿足，乘着一道剑光冲天而去。\n" + NOR, this_object()); 
+        message_vision(CYN + query("name") + NOR + CYN + "捂住嘴角的" + NOR + HIR + "鮮血" + NOR + CYN + "道：看來此番魔道氣數未盡，罷了，罷了...\n"+ NOR + 
+                        query("name") + NOR + YEL + "說完掐了個劍訣，緊抿嘴皮用力頓足，乘著一道劍光沖天而去。\n" + NOR, this_object()); 
 
                         sword = query("my_sword");
                         if (killer && sword && !query("give_sword")) {
                                 set("give_sword", 1);
                                 set("owner_ob", killer, sword);
-                                tell_object(killer, NOR + "你发现空中落下一个小小的剑匣子，赶紧捡了起来..\n"+ NOR); 
+                                tell_object(killer, NOR + "你發現空中落下一個小小的劍匣子，趕緊撿了起來..\n"+ NOR); 
                                 sword->reset_wield();
                         }
 
@@ -475,7 +475,7 @@ varargs void unconcious(object defeater)
         return;
 }
 
-/*// 不会被busy
+/*// 不會被busy
 varargs void start_busy(mixed new_busy, mixed new_interrupt)
 {
         return;

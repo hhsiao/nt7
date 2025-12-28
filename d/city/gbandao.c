@@ -1,4 +1,4 @@
-// gbandao.c 练功房
+// gbandao.c 練功房
 // by aji
 #include <room.h>
 
@@ -10,8 +10,8 @@ void create()
 {
         set("short", "暗道");
         set("long", @LONG
-一条狭窄的地下秘密通道，笔直的朝东面延伸。通道的尽头有明
-亮的光线透进来。
+一條狹窄的地下秘密通道，筆直的朝東面延伸。通道的盡頭有明
+亮的光線透進來。
 LONG );
         set("exits", ([
 		"east" : "/d/city/gbxiaowu",
@@ -21,7 +21,7 @@ LONG );
 		CLASS_D("gaibang") + "/jian" : 1
 	]));
 //	set("no_clean_up", 0);
-	create_door("out", "小门", "enter", DOOR_CLOSED);
+	create_door("out", "小門", "enter", DOOR_CLOSED);
 
 	set("coor/x", 40);
 	set("coor/y", 40);
@@ -34,8 +34,8 @@ int valid_leave(object me, string dir)
         mapping myfam;
         myfam=query("family", me);
 
-        if ((!myfam || myfam["family_name"] != "丐帮") && dir == "east" &&
+        if ((!myfam || myfam["family_name"] != "丐幫") && dir == "east" &&
                 objectp(present("jian zhanglao", environment(me))))
-                return notify_fail("简长老一把揪住你的衣领说：“慢着！”\n");
+                return notify_fail("簡長老一把揪住你的衣領說：“慢著！”\n");
         return ::valid_leave(me, dir);
 }

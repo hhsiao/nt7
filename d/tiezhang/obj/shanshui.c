@@ -6,14 +6,14 @@ int do_jiao(string arg);
 
 void create()
 {
-        set_name("山水画", ({ "shanshui hua", "shanshui", "hua" }) );
+        set_name("山水畫", ({ "shanshui hua", "shanshui", "hua" }) );
         set("long","
-只见画中是一座陡峭突兀的高山，共有五座山峰，中间一峰尤高，笔立指天，耸入云表，
-山侧生着一排松树，松梢积雪，树身尽皆向南弯曲，想见北风之烈。峰西独有一棵老松，
-却是挺然直起，巍巍秀拔，树下朱笔画着一个迎风舞剑的将军。这人面目难见，但衣袂飘
-举，资形脱俗。全幅画都是水墨山水，独此人殷红如火，更加显得卓然不群。画上并无书
-款，只题着一首诗云：“经年尘土满征衣，特特寻芳上翠微，好山好水看不足，马蹄催趁
-月明归。”
+只見畫中是一座陡峭突兀的高山，共有五座山峰，中間一峰尤高，筆立指天，聳入雲表，
+山側生著一排松樹，松梢積雪，樹身盡皆向南彎曲，想見北風之烈。峰西獨有一棵老松，
+卻是挺然直起，巍巍秀拔，樹下硃筆畫著一個迎風舞劍的將軍。這人面目難見，但衣袂飄
+舉，資形脫俗。全幅畫都是水墨山水，獨此人殷紅如火，更加顯得卓然不群。畫上並無書
+款，只題著一首詩云：“經年塵土滿征衣，特特尋芳上翠微，好山好水看不足，馬蹄催趁
+月明歸。”
 ");
         set_weight(10);
         /*if( clonep() )
@@ -41,19 +41,19 @@ int do_jiao(string arg)
         for (i = 0; i < sizeof(inv); i++) {
                 if( mapp(query("liquid", inv[i]))){
                         if( (remaining=query("liquid/remaining", inv[i]))>0){
-                                write("你从"+query("name", inv[i])+"里倒出些"+query("liquid/name", inv[i])+"来，涂在画上。\n");
-                                write("忽见画的右下角依稀露出几行字迹：“..穆遗书，..铁掌..，中....峰，第二..节。”\n");
+                                write("你從"+query("name", inv[i])+"裡倒出些"+query("liquid/name", inv[i])+"來，塗在畫上。\n");
+                                write("忽見畫的右下角依稀露出幾行字跡：“..穆遺書，..鐵掌..，中....峰，第二..節。”\n");
                                 set_temp("wumu_shanshui", 1, me);
                                 remaining--;
                                 set("liquid/remaining", remaining, inv[i]);
                                 return 1;
                         }
                         else {
-                                write("你的"+query("name", inv[i])+"已经空了，再也挤不出一滴"+query("liquid/name", inv[i])+"了！\n");
+                                write("你的"+query("name", inv[i])+"已經空了，再也擠不出一滴"+query("liquid/name", inv[i])+"了！\n");
                                 return 1;
                         }
                 }
         }
-        write("你的身上没有带盛水的器具！\n");
+        write("你的身上沒有帶盛水的器具！\n");
         return 1;
 }

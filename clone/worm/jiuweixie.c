@@ -3,9 +3,9 @@ inherit WORM;
 
 void create()
 {
-        set_name(WHT "九尾蝎" NOR, ({ "jiuwei xie", "jiuwei", "xie" }));
-        set("long", WHT "这是一只丈来长，有九只尾蛰的大蝎子。\n" NOR);
-        set("race", "野兽");
+        set_name(WHT "九尾蠍" NOR, ({ "jiuwei xie", "jiuwei", "xie" }));
+        set("long", WHT "這是一隻丈來長，有九隻尾蟄的大蠍子。\n" NOR);
+        set("race", "野獸");
         set("age", random(10));
         set("attitude", "peaceful");
 
@@ -14,7 +14,7 @@ void create()
 
         set("str", 30);
         set("con", 30);
-        set("limbs", ({ "头部", "身体", "尾巴" }));
+        set("limbs", ({ "頭部", "身體", "尾巴" }));
         set("verbs", ({ "bite" }));
 
         set("worm_poison", ([

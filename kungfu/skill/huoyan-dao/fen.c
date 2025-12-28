@@ -21,24 +21,24 @@ int perform(object me)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("「焚身」只能对战斗中的对手使用。\n");
+                return notify_fail("「焚身」只能對戰鬥中的對手使用。\n");
 
         skill = me->query_skill("huoyan-dao", 1);
 
         if (skill < 120)
-                return notify_fail("你的火焰刀等级不够，还不能使出「焚身」！\n");
+                return notify_fail("你的火焰刀等級不夠，還不能使出「焚身」！\n");
 
         if (me->query_skill("force") < 120)
-                return notify_fail("你的内功火候不够，不能使用这样绝技。\n");
+                return notify_fail("你的內功火候不夠，不能使用這樣絕技。\n");
 
         if( query("neili", me)<400 )
-                return notify_fail("你的内力不够，无法运功！\n");
+                return notify_fail("你的內力不夠，無法運功！\n");
 
         if (! living(target))
-              return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+              return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIR "$N" HIR "聚气于掌，使出一招「焚身」，无形刀气向$n"
-              HIR "的胸口击去。\n"NOR;
+        msg = HIR "$N" HIR "聚氣於掌，使出一招「焚身」，無形刀氣向$n"
+              HIR "的胸口擊去。\n"NOR;
 
         ap = attack_power(me, "force");
         dp = defense_power(target, "force");
@@ -48,15 +48,15 @@ int perform(object me)
                 addn("neili", -300, me);
                 damage = damage_power(me, "force");
                 msg += COMBAT_D->do_damage(me, target, REMOTE_ATTACK, damage, 50,
-                                           HIR "$p" HIR "强运内力试图抵抗，然而无法掌握$P"
-                                           HIR "内力的变化，结果被$P"
-                                           HIR "的无形刀气重创在胸口！\n" NOR);
+                                           HIR "$p" HIR "強運內力試圖抵抗，然而無法掌握$P"
+                                           HIR "內力的變化，結果被$P"
+                                           HIR "的無形刀氣重創在胸口！\n" NOR);
                 me->start_busy(2);
 
         } else
         {
-                msg += HIC "却见$p" HIC "不慌不忙，轻轻一闪，躲过了$P"
-                       HIC "的必杀一击！\n" NOR;
+                msg += HIC "卻見$p" HIC "不慌不忙，輕輕一閃，躲過了$P"
+                       HIC "的必殺一擊！\n" NOR;
                 addn("neili", -150, me);
                 me->start_busy(3);
         }

@@ -23,35 +23,35 @@ int query_neili_improve(object me)
 }
 
 mapping *action = ({
-([        "action" : "$N高举手中$w,使出一招"RED"「磨牙吮血」"NOR"，一刀斜劈$n的$l",
+([        "action" : "$N高舉手中$w,使出一招"RED"「磨牙吮血」"NOR"，一刀斜劈$n的$l",
         "skill_name" : "磨牙吮血",
         "lvl" : 0,
 ]),
-([        "action" : "$N就地一滚，使一招"HIR"「刺血满地」"NOR"，手中$w卷向$n的大腿",
-        "skill_name" : "刺血满地",
+([        "action" : "$N就地一滾，使一招"HIR"「刺血滿地」"NOR"，手中$w卷向$n的大腿",
+        "skill_name" : "刺血滿地",
         "lvl" : 8,
 ]),
-([        "action" : "$N足尖一点，使出"RED"「血海茫茫」"NOR"，刀锋自上而下直插$n的$l",
+([        "action" : "$N足尖一點，使出"RED"「血海茫茫」"NOR"，刀鋒自上而下直插$n的$l",
         "skill_name" : "血海茫茫",
         "lvl" : 16,
 ]),
-([        "action" : "$N使出一招"HIR"「呕心沥血」"NOR"，将$w舞得如白雾一般压向$n",
-        "skill_name" : "呕心沥血",
+([        "action" : "$N使出一招"HIR"「嘔心瀝血」"NOR"，將$w舞得如白霧一般壓向$n",
+        "skill_name" : "嘔心瀝血",
         "lvl" : 24,
 ]),
-([        "action" : "$N低吼一声，使出"RED"「血口喷人」"NOR"，举$w直劈$n的$l",
-        "skill_name" : "血口喷人",
+([        "action" : "$N低吼一聲，使出"RED"「血口噴人」"NOR"，舉$w直劈$n的$l",
+        "skill_name" : "血口噴人",
         "lvl" : 32,
 ]),
-([        "action" : "$N使出"HIR"「血迹斑斑」"NOR"，飞身斜刺，忽然反手一刀横斩$n的腰部",
-        "skill_name" : "血迹斑斑",
+([        "action" : "$N使出"HIR"「血跡斑斑」"NOR"，飛身斜刺，忽然反手一刀橫斬$n的腰部",
+        "skill_name" : "血跡斑斑",
         "lvl" : 40,
 ]),
-([        "action" : "$N使一式"RED"「以血还血」"NOR"，挥刀直指$n的胸口",
-        "skill_name" : "以血还血",
+([        "action" : "$N使一式"RED"「以血還血」"NOR"，揮刀直指$n的胸口",
+        "skill_name" : "以血還血",
         "lvl" : 48,
 ]),
-([        "action" : "$N刀锋虚点，使出一招"HIR"「血流满面」"NOR"，转身举$w横劈$n的面门",
+([        "action" : "$N刀鋒虛點，使出一招"HIR"「血流滿面」"NOR"，轉身舉$w橫劈$n的面門",
         "skill_name" : "血流漫面",
         "lvl" : 56,
 ]),
@@ -62,20 +62,20 @@ int valid_combine(string combo) { return combo=="mingwang-jian"; }
 int valid_learn(object me)
 {
         if( query("character", me) == "光明磊落" )
-                return notify_fail("你心中暗道：这血刀大法邪气太重，甚过诡异，莫"
-                                   "不是专门设来害人的？\n");
+                return notify_fail("你心中暗道：這血刀大法邪氣太重，甚過詭異，莫"
+                                   "不是專門設來害人的？\n");
 
         if( query("max_neili", me)<500 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if ((int)me->query_skill("force") < 100)
-                return notify_fail("你的内功火候太浅。\n");
+                return notify_fail("你的內功火候太淺。\n");
 
         if ((int)me->query_skill("blade", 1) < 80)
-                return notify_fail("你的基本刀法火候不够，无法修习血刀刀法。\n");
+                return notify_fail("你的基本刀法火候不夠，無法修習血刀刀法。\n");
 
         if ((int)me->query_skill("blade", 1) < (int)me->query_skill("xuedao-daofa", 1))
-                return notify_fail("你的基本刀法水平有限，无法修习更加高深的血刀刀法。\n");
+                return notify_fail("你的基本刀法水平有限，無法修習更加高深的血刀刀法。\n");
 
         return 1;
 }
@@ -86,13 +86,13 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "blade" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if( query("qi", me)<70 )
-                return notify_fail("你的体力不够，练不了血刀刀法。\n");
+                return notify_fail("你的體力不夠，練不了血刀刀法。\n");
 
         if( query("neili", me)<70 )
-                return notify_fail("你的内力不够，练不了血刀刀法。\n");
+                return notify_fail("你的內力不夠，練不了血刀刀法。\n");
 
         me->receive_damage("qi", 60);
         addn("neili", -63, me);
@@ -122,17 +122,17 @@ mapping query_action(object me, object weapon)
         for(i = ttl; i > 0; i--)
                 if(lvl > action[i-1]["lvl"])
                 {
-                        seq = i; /* 获得招数序号上限 */
+                        seq = i; /* 獲得招數序號上限 */
                         break;
                 }
-        seq = random(seq);       /* 选择出手招数序号 */
+        seq = random(seq);       /* 選擇出手招數序號 */
         return ([
                 "action"      : action[seq]["action"],
                 "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
                 "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
                 "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
                 "damage"      : m_e1 + (m_e2 - m_e1) * seq / ttl,
-                "damage_type" : random(2) ? "割伤" : "擦伤",
+                "damage_type" : random(2) ? "割傷" : "擦傷",
         ]);
 }
 
@@ -143,8 +143,8 @@ mixed hit_ob(object me, object victim, int damage)
         if (random(damage) > victim->query_str()/10)
         {
                 result = ([ "damage": damage ]);
-                result += (["msg" : HIW "$N邪气大发，顿时光芒大胜。挥着大刀向着$n身上挥来，$n" BLINK +
-                                    HIR "鲜血" NOR + HIW "狂喷而出！\n" NOR ]);
+                result += (["msg" : HIW "$N邪氣大發，頓時光芒大勝。揮著大刀向著$n身上揮來，$n" BLINK +
+                                    HIR "鮮血" NOR + HIW "狂噴而出！\n" NOR ]);
                 return result;
         }
 }
@@ -163,11 +163,11 @@ int help(object me)
         write(HIR"\n血刀："NOR"\n");
         write(@HELP
 
-    血刀是藏边血刀门血刀老祖所传功夫。为雪山寺旁门功夫。
+    血刀是藏邊血刀門血刀老祖所傳功夫。為雪山寺旁門功夫。
 
-        学习要求：
-                龙象般若功或小无相功20级
-                内力50
+        學習要求：
+                龍象般若功或小無相功20級
+                內力50
 HELP
         );
         return 1;

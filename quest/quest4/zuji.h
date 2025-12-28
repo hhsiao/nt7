@@ -23,15 +23,15 @@ void zuji_begin(int num)
      }
 
      zuji_times++;
-        message("story", HIY "【武林传奇】" NOR + WHT +
-                         (random(2) ? "只听得的的马蹄之声，一队契丹武士手执长矛"
-                                    : "只见一队契丹武士挥舞着长矛，指指点点，") +
-                         "来到了雁门关外。\n" + NOR, listeners);
-     message("channel:rumor", MAG"【故事传闻】只听得的的马蹄之声，一队契丹武士挥舞着长矛，身背弓箭，指指点点，来到了雁门关外。\n"
-        "带头大哥道：虽然这些契丹人看似来狩猎的，但不能马虎，一个也留不得！\n"
-        "众人的暗器便射了出去，钢镖、袖箭、飞刀、铁锥……每件都喂了剧毒。\n"
-        "只听得众辽人啊啊呼叫，乱成一团，一大半都摔下马来。\n"
-        "众人一拥而上。刀剑齐施！\n"NOR,users());
+        message("story", HIY "【武林傳奇】" NOR + WHT +
+                         (random(2) ? "只聽得的的馬蹄之聲，一隊契丹武士手執長矛"
+                                    : "只見一隊契丹武士揮舞著長矛，指指點點，") +
+                         "來到了雁門關外。\n" + NOR, listeners);
+     message("channel:rumor", MAG"【故事傳聞】只聽得的的馬蹄之聲，一隊契丹武士揮舞著長矛，身背弓箭，指指點點，來到了雁門關外。\n"
+        "帶頭大哥道：雖然這些契丹人看似來狩獵的，但不能馬虎，一個也留不得！\n"
+        "眾人的暗器便射了出去，鋼鏢、袖箭、飛刀、鐵錐……每件都餵了劇毒。\n"
+        "只聽得眾遼人啊啊呼叫，亂成一團，一大半都摔下馬來。\n"
+        "眾人一擁而上。刀劍齊施！\n"NOR,users());
      for(n=0;n<num;n++)
      {
           killer=new("/quest/zuji/qidanb");
@@ -58,11 +58,11 @@ void zuji_new(int num)
      {
 */
           zuji_times=1;
-   message("channel:rumor",MAG"【故事传闻】雁门关外，只见这时，马蹄声又响起来，辽人当先的马匹奔近。\n"
-       "只见这些契丹武士身上都披皮裘，或拿长矛，或提弯刀，或弯弓搭箭，或停猎鹰，高歌而来。\n"
-       "带头大哥一声长啸，就是他们了！众人的暗器便射了出去，钢镖、袖箭、飞刀、铁锥……每件都喂了剧毒。\n"
-       "只听得众辽人啊啊呼叫，乱成一团，一大半都摔下马来。\n"
-       "众人一拥而上。刀剑齐施！\n"NOR,users());
+   message("channel:rumor",MAG"【故事傳聞】雁門關外，只見這時，馬蹄聲又響起來，遼人當先的馬匹奔近。\n"
+       "只見這些契丹武士身上都披皮裘，或拿長矛，或提彎刀，或彎弓搭箭，或停獵鷹，高歌而來。\n"
+       "帶頭大哥一聲長嘯，就是他們了！眾人的暗器便射了出去，鋼鏢、袖箭、飛刀、鐵錐……每件都餵了劇毒。\n"
+       "只聽得眾遼人啊啊呼叫，亂成一團，一大半都摔下馬來。\n"
+       "眾人一擁而上。刀劍齊施！\n"NOR,users());
 
      for(n=0;n<num;n++)
      {
@@ -78,8 +78,8 @@ void zuji_new(int num)
 
 void zuji_continue(int num)
 {
-          message("channel:rumor", HIR"【故事传闻】经过一段时间的殊死"
-            +HIR"搏斗，将这剩下几人尽数杀了，没一个活口逃走。！\n"NOR,users()); 
+          message("channel:rumor", HIR"【故事傳聞】經過一段時間的殊死"
+            +HIR"搏鬥，將這剩下幾人盡數殺了，沒一個活口逃走。！\n"NOR,users()); 
           remove_call_out("zuji_over");
           call_out("zuji_over",30,num);
 }
@@ -87,17 +87,17 @@ void zuji_over(int num)
 {
      object killer,killer1;
      int n;
-   message("channel:rumor",MAG"【故事传闻】只听得马蹄声音，西北角又有两骑马驰来，马上是男女二人。\n"
-        "这两人见到那一十九名武士死在地下，那男子立时神色十分凶猛，向众人大声喝问。\n"
-        "辽人：$*@!@#$%^&*！\n"
-        "铁塔方大雄举起一条镔铁棍，喝道：兀那辽狗，纳下命来！挥棍便向那契丹男子打了过去。\n"
-        "那辽人右臂伸出，折断方大雄右臂关节，将他的身子挑了起来，连人带棍，一起摔在道旁。\n"
-        "辽人：#$%^&*$*@!@！\n"
-        "当下六七人一拥而上，向那辽人攻了过去。另外四五人则向那少妇攻击。\n"
-        "那少妇被人一剑便斩断一条手臂，抱着的婴儿跌下地来，跟着便被一刀砍去了半边脑袋。\n"
-        "只听得那辽人眼睛登时红了，脸上神色可怖之极，暴喝一声，冲向敌阵。\n"
+   message("channel:rumor",MAG"【故事傳聞】只聽得馬蹄聲音，西北角又有兩騎馬馳來，馬上是男女二人。\n"
+        "這兩人見到那一十九名武士死在地下，那男子立時神色十分兇猛，向眾人大聲喝問。\n"
+        "遼人：$*@!@#$%^&*！\n"
+        "鐵塔方大雄舉起一條鑌鐵棍，喝道：兀那遼狗，納下命來！揮棍便向那契丹男子打了過去。\n"
+        "那遼人右臂伸出，折斷方大雄右臂關節，將他的身子挑了起來，連人帶棍，一起摔在道旁。\n"
+        "遼人：#$%^&*$*@!@！\n"
+        "當下六七人一擁而上，向那遼人攻了過去。另外四五人則向那少婦攻擊。\n"
+        "那少婦被人一劍便斬斷一條手臂，抱著的嬰兒跌下地來，跟著便被一刀砍去了半邊腦袋。\n"
+        "只聽得那遼人眼睛登時紅了，臉上神色可怖之極，暴喝一聲，衝向敵陣。\n"
         ".........\n"
-        NOR+HIY"夕阳如血，雁关门外朔风呼号.........\n"NOR,users());
+        NOR+HIY"夕陽如血，雁關門外朔風呼號.........\n"NOR,users());
 /*
      for(n=0;n<num;n++)
      {
@@ -128,13 +128,13 @@ void zuji_close()
       ulist[k]->add("combat_exp",20000);
       ulist[k]->add("potential",5000);
       ulist[k]->add("weiwang",20);
-           tell_object(ulist[k],HIW"你获得了"+HIR+chinese_number(20000) 
-           +HIW"点经验和"+HIR+chinese_number(5000)+HIW"点潜能奖励和"+HIR+chinese_number(20)+HIW"点威望！！\n"NOR);   
+           tell_object(ulist[k],HIW"你獲得了"+HIR+chinese_number(20000) 
+           +HIW"點經驗和"+HIR+chinese_number(5000)+HIW"點潛能獎勵和"+HIR+chinese_number(20)+HIW"點威望！！\n"NOR);   
    }
 
-  message("channel:rumor",MAG"【故事传闻】只听得当的一声，那辽人掷下短刀，俯身抱起他妻子的尸身和儿子，走到崖边，\n"
-       "涌身便往深谷中跳了下去。忽然间“哇哇”两声婴儿的啼哭，从乱石谷中传了上来，跟着黑黝黝一件物事从\n"
-       "谷中飞上，拍的一声轻音，正好跌在汪帮主身上。婴儿啼哭之声一直不止，正是那个婴儿。\n"NOR,users());
+  message("channel:rumor",MAG"【故事傳聞】只聽得當的一聲，那遼人擲下短刀，俯身抱起他妻子的屍身和兒子，走到崖邊，\n"
+       "湧身便往深谷中跳了下去。忽然間“哇哇”兩聲嬰兒的啼哭，從亂石谷中傳了上來，跟著黑黝黝一件物事從\n"
+       "谷中飛上，拍的一聲輕音，正好跌在汪幫主身上。嬰兒啼哭之聲一直不止，正是那個嬰兒。\n"NOR,users());
 
    zuji_times=0;
    killer_rate=6;
@@ -175,12 +175,12 @@ void remove_enemy()
                         if (enemys[i]->is_fighting())
                         {
                                 enemys[i]->remove_all_killer();
-                                tell_room(environment(enemys[i]), HIW "只见" + enemys[i]->name()
-                                        + "突然面色一变，迅速攻出几招，跳出战圈转身逃了。\n");
+                                tell_room(environment(enemys[i]), HIW "只見" + enemys[i]->name()
+                                        + "突然面色一變，迅速攻出幾招，跳出戰圈轉身逃了。\n");
                         }
                         else {
-                                tell_room(environment(enemys[i]), HIW "只见" + enemys[i]->name()
-                                        + "掐值一算，突然脸色大变，急急忙忙地逃走了。\n");
+                                tell_room(environment(enemys[i]), HIW "只見" + enemys[i]->name()
+                                        + "掐值一算，突然臉色大變，急急忙忙地逃走了。\n");
                         }
                         destruct(enemys[i]);
                 }

@@ -5,15 +5,15 @@ inherit NPC;
 void create()
 {
         set_name("小蜜蜂", ({ "little bee", "bee"}) );
-        set("race", "昆虫");
-        set("subrace", "飞虫");
+        set("race", "昆蟲");
+        set("subrace", "飛蟲");
         set("age", 2);
-        set("long", "一只飞来飞去的小蜜蜂。\n");
+        set("long", "一隻飛來飛去的小蜜蜂。\n");
         
         set("str", 30);
         set("dex", 40);
 
-        set("limbs", ({ "头部", "身体", "翅膀", "尾刺" }) );
+        set("limbs", ({ "頭部", "身體", "翅膀", "尾刺" }) );
         set("verbs", ({ "bite", "poke" }) );
 
         set_temp("apply/attack", 10);
@@ -22,7 +22,7 @@ void create()
         set("chat_chance", 2);
         set("chat_msg", ({
                 (: this_object(), "random_move" :),
-        "小蜜蜂嗡嗡嗡飞过来，在你头上转了一圈，有飞走了。\n",
+        "小蜜蜂嗡嗡嗡飛過來，在你頭上轉了一圈，有飛走了。\n",
          }) );
 
         setup();

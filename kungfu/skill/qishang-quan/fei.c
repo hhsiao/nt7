@@ -1,12 +1,12 @@
 // This program is a part of NITAN MudLIB
-// fei.c 魂魄飞扬
+// fei.c 魂魄飛揚
 
 #include <ansi.h>
 #include <combat.h>
 
 inherit F_SSERVER;
 
-string name() { return HIR "魂魄飞扬" NOR; }
+string name() { return HIR "魂魄飛揚" NOR; }
 
 int perform(object me, object target)
 {
@@ -22,29 +22,29 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if ((int)me->query_skill("qishang-quan", 1) < 160)
-                return notify_fail("你的七伤拳不够娴熟，无法施展" + name() + "。\n");
+                return notify_fail("你的七傷拳不夠嫻熟，無法施展" + name() + "。\n");
 
         if ((int)me->query_skill("force", 1) < 160)
-                return notify_fail("你的内功修为还不够，无法施展" + name() + "\n");
+                return notify_fail("你的內功修為還不夠，無法施展" + name() + "\n");
 
         if (query("max_neili", me) < 2200)
-                return notify_fail("你内力修为不足，无法施展" + name() + "\n");
+                return notify_fail("你內力修為不足，無法施展" + name() + "\n");
 
         if ((int)query("neili", me) < 350)
-                return notify_fail("你现在真气不够，无法施展" + name() + "。\n");
+                return notify_fail("你現在真氣不夠，無法施展" + name() + "。\n");
 
         if (me->query_skill_prepared("cuff") != "qishang-quan")
-                return notify_fail("你没有准备使用七伤拳，无法施展" + name() + "。\n");
+                return notify_fail("你沒有準備使用七傷拳，無法施展" + name() + "。\n");
 
         if (! living(target))
-              return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+              return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIY "\n$N" HIY "深吸一口起，将真气运于双拳之上，施出绝招「" HIR "魂魄飞扬" HIY
-              "」，右拳平平一拳直出，\n但见普通一拳之中蕴涵了无穷的力量，拳未到风先至，猛然"
-              "间袭向$n" HIY "。\n" NOR;
+        msg = HIY "\n$N" HIY "深吸一口起，將真氣運於雙拳之上，施出絕招「" HIR "魂魄飛揚" HIY
+              "」，右拳平平一拳直出，\n但見普通一拳之中蘊涵了無窮的力量，拳未到風先至，猛然"
+              "間襲向$n" HIY "。\n" NOR;
 
         ap = attack_power(me, "cuff") +
              me->query_skill("force");
@@ -59,13 +59,13 @@ int perform(object me, object target)
 
                 addn("neili", -320, me);
                 msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 120,
-                                           HIR "只听“砰”地一声，$N" HIR "一拳正好打中$n" HIR "胸"
-                                           "口，$n" HIR "怪叫一声，吐出一口淤血！\n" NOR);
+                                           HIR "只聽“砰”地一聲，$N" HIR "一拳正好打中$n" HIR "胸"
+                                           "口，$n" HIR "怪叫一聲，吐出一口淤血！\n" NOR);
                 me->start_busy(2);
         } else
         {
-                msg += HIC "可是$p" HIC "奋力招架，硬生生的挡开了$P"
-                       HIC "这一招。\n"NOR;
+                msg += HIC "可是$p" HIC "奮力招架，硬生生的擋開了$P"
+                       HIC "這一招。\n"NOR;
                 addn("neili", -180, me);
                 me->start_busy(3);
         }

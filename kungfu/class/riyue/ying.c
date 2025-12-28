@@ -10,12 +10,12 @@ void create()
 {
         object ob;
         set_name("任盈盈", ({ "ren yingying", "ren", "yingying", "ying"}));
-        set("nickname", HIW "圣姑" NOR );
+        set("nickname", HIW "聖姑" NOR );
         set("title", "日月神教");
         set("long", @LONG
-这就是日月神教教主任我行之女，教中被人称
-作「圣姑」的任盈盈。只见她青衫小袖，明艳
-不可方物，却是颦眉微皱，似乎不高兴。
+這就是日月神教教主任我行之女，教中被人稱
+作「聖姑」的任盈盈。只見她青衫小袖，明豔
+不可方物，卻是顰眉微皺，似乎不高興。
 LONG);
         set("gender", "女性" );
         set("class", "scholar");
@@ -65,15 +65,15 @@ LONG);
         prepare_skill("strike", "qingmang-zhang");
 
         set("no_teach", ([
-                "tianhuan-shenjue" : "这门内功我都没学好，怎么教你呀。",
+                "tianhuan-shenjue" : "這門內功我都沒學好，怎麼教你呀。",
         ]));
 
-        create_family("日月神教", 14, "圣姑");
+        create_family("日月神教", 14, "聖姑");
 
         set("inquiry", ([
-                "天蝎藏针" : "这招你去让桑三娘教你吧。",
-                "令狐冲"   : "……他…他现在……唉……",
-                "鱼肠剑"   : "这是我的随身物品，你打听这个干嘛？",
+                "天蠍藏針" : "這招你去讓桑三娘教你吧。",
+                "令狐沖"   : "……他…他現在……唉……",
+                "魚腸劍"   : "這是我的隨身物品，你打聽這個幹嘛？",
         ]));
 
         set("chat_chance_combat", 120);
@@ -114,18 +114,18 @@ void attempt_apprentice(object ob)
         if( query("shen", ob)>0 )
         {
                 command("heng");
-                command("say 我日月神教从来不和正派人士结交，你还是走吧。");
+                command("say 我日月神教從來不和正派人士結交，你還是走吧。");
                 return;
         }
 
         if( query("gender", ob) != "女性" )
         {
-                command("say 你还是去找教内的其他人吧。");
+                command("say 你還是去找教內的其他人吧。");
                 return;
         }
 
         command("sigh");
-        command("say 那你以后就跟着我吧。");
+        command("say 那你以後就跟著我吧。");
         command("recruit "+query("id", ob));
         return;
 }

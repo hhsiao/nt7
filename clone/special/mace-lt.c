@@ -4,26 +4,26 @@
 #include <weapon.h>
 
 #define ADMIN   "???"
-#define PARTY   "聊天帮"
+#define PARTY   "聊天幫"
 
 inherit STAFF;
 
 void create()
 {
-        set_name(HIG + PARTY + "权杖" NOR, ({ "mace" }) );
+        set_name(HIG + PARTY + "權杖" NOR, ({ "mace" }) );
         set_weight(30);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIG "一根晶莹剔透的权杖，好像是丐帮的玉竹杖哦！\n"
-                                "你仔细一看，不是，原来是冒牌货，是" + PARTY + "的权杖。\n"
-                                "帮主通过它发号司令，邀请(author)他人入帮或是开除(expell)不听话的人。\n" NOR);
+                set("long", HIG "一根晶瑩剔透的權杖，好像是丐幫的玉竹杖哦！\n"
+                                "你仔細一看，不是，原來是冒牌貨，是" + PARTY + "的權杖。\n"
+                                "幫主通過它發號司令，邀請(author)他人入幫或是開除(expell)不聽話的人。\n" NOR);
                 set("value", 1);
-                set("no_sell", "这是什么垃圾？\n");
+                set("no_sell", "這是什麼垃圾？\n");
                 set("unit", "根");
-                set("wield_msg", HIG "$N" HIG "亮出一个晶莹剔透的小棍棍，神气"
-                                 "活现的喝道：“还不拜见...本...帮主？”\n" NOR);
-                set("unwield_msg", HIG "$N" HIG "鬼鬼祟祟的把权杖收好。\n" NOR);
+                set("wield_msg", HIG "$N" HIG "亮出一個晶瑩剔透的小棍棍，神氣"
+                                 "活現的喝道：“還不拜見...本...幫主？”\n" NOR);
+                set("unwield_msg", HIG "$N" HIG "鬼鬼祟祟的把權杖收好。\n" NOR);
         }
 
         set("admin", ADMIN);
@@ -49,26 +49,26 @@ int do_owner(string arg)
 
         me = this_player();
         if (wiz_level(me) < wiz_level("(wizard)"))
-                return notify_fail("必须是 (wizard) 以上的巫师才能授权。\n");
+                return notify_fail("必須是 (wizard) 以上的巫師才能授權。\n");
 
         if (! arg || ! objectp(ob = present(arg, environment(me))))
-                return notify_fail("你要把这" + name() + "赠给谁？\n");
+                return notify_fail("你要把這" + name() + "贈給誰？\n");
 
         if (ob == me)
-                return notify_fail("你脑潮啊？\n");
+                return notify_fail("你腦潮啊？\n");
 
         if (! playerp(ob))
-                return notify_fail("你只能把权杖赠给玩家。\n");
+                return notify_fail("你只能把權杖贈給玩家。\n");
 
         if (ob->query("party/party_name") &&
             ob->query("party/party_name") != PARTY)
-                return notify_fail(ob->name(1) + "已经入了其它帮派，不合适接受这" + name() + "。\n");
+                return notify_fail(ob->name(1) + "已經入了其它幫派，不合適接受這" + name() + "。\n");
 
-        message_vision("$N指了指" + name() + "，道：这" + name() +
-                       "我就赠给帮主" + ob->name(1) + "了。\n", me);
+        message_vision("$N指了指" + name() + "，道：這" + name() +
+                       "我就贈給幫主" + ob->name(1) + "了。\n", me);
         ob->set("party/party_name", PARTY);
         set("admin", ob->query("id"));
-        message_vision("$N将" + name() + "交给了$n。\n", me, ob);
+        message_vision("$N將" + name() + "交給了$n。\n", me, ob);
         move(ob, 1);
         return 1;
 }
@@ -80,38 +80,38 @@ int do_author(string arg)
 
         me = this_player();
         if (me->query("id") != query("admin") && me->query("couple/id") != query("admin"))
-                return notify_fail("你不是" + PARTY + "帮主或帮主夫人，没人听你的。\n");
+                return notify_fail("你不是" + PARTY + "幫主或幫主夫人，沒人聽你的。\n");
 
         if (me->query("party/party_name") != PARTY)
-                return notify_fail("你自己都不是" + PARTY + "的人，怎么收别人？\n");
+                return notify_fail("你自己都不是" + PARTY + "的人，怎麼收別人？\n");
 
         if (! arg || ! objectp(ob = present(arg, environment(me))))
-                return notify_fail("你要邀请谁加入" + PARTY + "？\n");
+                return notify_fail("你要邀請誰加入" + PARTY + "？\n");
 
         if (! playerp(ob))
-                return notify_fail("你只能邀请玩家加入发呆帮。\n");
+                return notify_fail("你只能邀請玩家加入發呆幫。\n");
 
         if (ob == me)
-                return notify_fail("你脑潮啊？\n");
+                return notify_fail("你腦潮啊？\n");
 
         if (ob->query("combat_exp") >= 50000)
-                return notify_fail("此人经验太高，不宜进入" + PARTY + "。\n");
+                return notify_fail("此人經驗太高，不宜進入" + PARTY + "。\n");
 
         if (ob->query("party/party_name"))
         {
                 if (ob->query("party/party_name") == PARTY)
-                        return notify_fail("人家已经是" + PARTY + "的人了。\n");
+                        return notify_fail("人家已經是" + PARTY + "的人了。\n");
 
-                return notify_fail("人家已经入了其他帮会了，不能加入你的" + PARTY + "了。\n");
+                return notify_fail("人家已經入了其他幫會了，不能加入你的" + PARTY + "了。\n");
         }
 
         if (me->query_temp("author") == ob)
-                return notify_fail("你已经邀请人家了，可是别人还没有答应。\n");
+                return notify_fail("你已經邀請人家了，可是別人還沒有答應。\n");
 
         if (! living(ob))
-                return notify_fail("看样子人家没法听见你说什么了。\n");
+                return notify_fail("看樣子人家沒法聽見你說什麼了。\n");
 
-        message_vision("$N高举权杖，问道：“" + ob->name(1) + "，你可愿意入我" +
+        message_vision("$N高舉權杖，問道：“" + ob->name(1) + "，你可願意入我" +
                        PARTY + "？”\n", me);
         ob->set_temp("pending/answer/" + me->query("id") + "/right",
                      (: call_other, __FILE__, "do_right", ob, me :));
@@ -129,48 +129,48 @@ int do_expell(string arg)
 
         me = this_player();
         if (me->query("id") != query("admin") && me->query("couple/id") != query("admin"))
-                return notify_fail("你不是" + PARTY + "帮主或帮主夫人，没人听你的。\n");
+                return notify_fail("你不是" + PARTY + "幫主或幫主夫人，沒人聽你的。\n");
 
         if (! arg || ! objectp(ob = present(arg, environment(me))))
-                return notify_fail("你要邀请谁加入" + PARTY + "？\n");
+                return notify_fail("你要邀請誰加入" + PARTY + "？\n");
 
         if (! playerp(ob))
-                return notify_fail("你只能邀请玩家加入发呆帮。\n");
+                return notify_fail("你只能邀請玩家加入發呆幫。\n");
 
         if (ob == me)
-                return notify_fail("你脑潮啊？\n");
+                return notify_fail("你腦潮啊？\n");
 
         if (ob->query("party/party_name") != PARTY)
-                return notify_fail("人家不是你" + PARTY + "的人，懒得理你。\n");
+                return notify_fail("人家不是你" + PARTY + "的人，懶得理你。\n");
 
-        message_vision("$N哼了一声，喝道：“" + ob->name(1) +
-                       "！你屡犯帮规，今日革你出帮，滚吧！”\n", me);
+        message_vision("$N哼了一聲，喝道：“" + ob->name(1) +
+                       "！你屢犯幫規，今日革你出幫，滾吧！”\n", me);
         ob->delete("party");
 
         CHANNEL_D->do_channel(this_object(), "rumor",
-                              "听说" + ob->name(1) + "被" + me->name(1) +
-                              "开除出" + PARTY + "了。");
+                              "聽說" + ob->name(1) + "被" + me->name(1) +
+                              "開除出" + PARTY + "了。");
         return 1;
 }
 
 int do_right(object me, object ob)
 {
         if (! ob || environment(ob) != environment(me))
-                return notify_fail("可惜啊，人家已经不在这儿了。\n");
+                return notify_fail("可惜啊，人家已經不在這兒了。\n");
 
         if (! living(ob))
-                return notify_fail("人家现在听不到你说的话，还是算了吧。\n");
+                return notify_fail("人家現在聽不到你說的話，還是算了吧。\n");
 
         if (ob->query_temp("pending/author") != me)
-                return notify_fail("人家现在已经不打算收你了。\n");
+                return notify_fail("人家現在已經不打算收你了。\n");
 
         ob->delete_temp("pending/author");
 
-        message_vision("$N拼命点头，像小鸡啄米一样，忙道：“好！好！好！”\n", me);
+        message_vision("$N拼命點頭，像小雞啄米一樣，忙道：“好！好！好！”\n", me);
 
         me->set("party/party_name", PARTY);
         CHANNEL_D->do_channel(this_object(), "rumor",
-                              "听说" + ob->name(1) + "收" + me->name(1) +
+                              "聽說" + ob->name(1) + "收" + me->name(1) +
                               "入了" + PARTY + "。");
         return 1;
 }
@@ -178,18 +178,18 @@ int do_right(object me, object ob)
 int do_refuse(object me, object ob)
 {
         if (! ob || environment(ob) != environment(me))
-                return notify_fail("可惜啊，人家已经不在这儿了。\n");
+                return notify_fail("可惜啊，人家已經不在這兒了。\n");
 
         if (! living(ob))
-                return notify_fail("人家现在听不到你说的话，还是算了吧。\n");
+                return notify_fail("人家現在聽不到你說的話，還是算了吧。\n");
 
         if (ob->query_temp("pending/author") != me)
-                return notify_fail("人家现在已经不打算收你了。\n");
+                return notify_fail("人家現在已經不打算收你了。\n");
 
         ob->delete_temp("pending/author");
-        message_vision("$N一脚把$n踢开，喝道：“滚！一边玩去！”\n",
+        message_vision("$N一腳把$n踢開，喝道：“滾！一邊玩去！”\n",
                        me, ob);
-        tell_object(ob, "看来人家对你的" + PARTY + "没什么兴趣。\n");
+        tell_object(ob, "看來人家對你的" + PARTY + "沒什麼興趣。\n");
 
         return 1;
 }

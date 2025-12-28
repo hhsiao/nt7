@@ -4,9 +4,9 @@ inherit NPC;
 
 void create()
 {
-        set_name("门卫", ({ "men wei", "wei"}));
+        set_name("門衛", ({ "men wei", "wei"}));
         set("long", 
-        "他是唐门世家的门卫，对保护唐门世家可谓忠贞不二。\n");
+        "他是唐門世家的門衛，對保護唐門世家可謂忠貞不二。\n");
         set("gender", "男性");
         set("age", 35);
         set("attitude", "peaceful");
@@ -24,7 +24,7 @@ void create()
         set_skill("sword", 500);
         set_skill("blade", 300);    
         set_skill("strike", 300);
-        create_family("唐门世家", 10, "家丁");
+        create_family("唐門世家", 10, "家丁");
 
         setup();
         carry_object("/clone/misc/cloth")->wear();

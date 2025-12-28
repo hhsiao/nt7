@@ -3,10 +3,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("江洋大盗",({ "jiangyang dadao","dadao" }) );
-        set("title",HIB"专杀官府"NOR);
+        set_name("江洋大盜",({ "jiangyang dadao","dadao" }) );
+        set("title",HIB"專殺官府"NOR);
         set("gender", "男性" );
-        set("long","这是一伙土匪大盗，专门与官府作对，实在不好惹。\n");  
+        set("long","這是一夥土匪大盜，專門與官府作對，實在不好惹。\n");  
 
         set("int", 30);
         set("str", 25);
@@ -71,7 +71,7 @@ void set_from_me(object me)
                 }) );
         }
         if( count_gt(exp, 6000000) )
-                set("family/family_name","武当派");
+                set("family/family_name","武當派");
 }
 
 void init()
@@ -106,12 +106,12 @@ varargs void die(object killer)
 {
         object ob=this_object();
 
-        message_vision(HIR"江阳大盗大呼一声：点子硬，快撤！转眼间一伙人马消失得"
-                 +"无影无踪！\n"NOR,ob);    
+        message_vision(HIR"江陽大盜大呼一聲：點子硬，快撤！轉眼間一夥人馬消失得"
+                 +"無影無蹤！\n"NOR,ob);    
         remove_call_out("check_me"); 
         if( !killer ) killer = query_last_damage_from(); 
         if( killer )
-                GIFT_D->delay_war_bonus(killer, ([ "prompt" : "因杀死大盗", "exp" : 50, "pot" : 20, "mar" : 5, "gold" : 1 ])); 
+                GIFT_D->delay_war_bonus(killer, ([ "prompt" : "因殺死大盜", "exp" : 50, "pot" : 20, "mar" : 5, "gold" : 1 ])); 
         destruct(ob);
         return;
 }

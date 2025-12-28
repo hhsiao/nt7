@@ -11,11 +11,11 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", HIY"炎黄风雨十年纪念套装之：八卦天乾冠\n" NOR);
-                set("unit", "顶");
+                set("long", HIY"炎黃風雨十年紀念套裝之：八卦天乾冠\n" NOR);
+                set("unit", "頂");
                 set("value", 100);
                 set("armor_prop/int", 10);
-                set("armor_prop/T_bagua", 1); // 套装计数标志
+                set("armor_prop/T_bagua", 1); // 套裝計數標誌
         }
         setup();
 }

@@ -6,8 +6,8 @@ inherit MEDAL;
 
 void create()
 {
-        set_name(HIR "盗墓"HIY"勋章" NOR, ({ "daomu xunzhang", "daomu", "xunzhang" }));
-        set("long", HIG "盗墓勋章，非常珍贵，可免疫秦皇陵墓里怪物的busy特技。\n" NOR);
+        set_name(HIR "盜墓"HIY"勳章" NOR, ({ "daomu xunzhang", "daomu", "xunzhang" }));
+        set("long", HIG "盜墓勳章，非常珍貴，可免疫秦皇陵墓裡怪物的busy特技。\n" NOR);
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
@@ -18,7 +18,7 @@ void create()
                 set("material", "bronze");
                 set("armor_prop/damage", 200);
                 set("armor_prop/daomu", 1);
-                set("special/desc", HIR "佩带后可免疫秦皇陵墓里怪物的busy特技。" NOR);
+                set("special/desc", HIR "佩帶後可免疫秦皇陵墓裡怪物的busy特技。" NOR);
                 set("armor_prop/con", 6);
                 set("armor_prop/dex", 6);
                 set("armor_prop/str", 6);

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m老龟[2;37;0m[2;37;0m", ({"wuwu"}));        
+        set_name("[1;31m老龜[2;37;0m[2;37;0m", ({"wuwu"}));        
         set("gender", "男性");                
-        set("long", "老龟[2;37;0m
-它是八路的魔幻兽。
+        set("long", "老龜[2;37;0m
+它是八路的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

@@ -10,8 +10,8 @@ void create()
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "丛");
-                set("long", "一丛不知名的野花，静静地绽放。\n");
+                set("unit", "叢");
+                set("long", "一叢不知名的野花，靜靜地綻放。\n");
                 set("value", 1);
         }
         

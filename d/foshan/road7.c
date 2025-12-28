@@ -4,8 +4,8 @@ void create()
 {
         set("short", "小道");
         set("long", @LONG
-这里是一条林间小道，在树丛中蜿蜒。东面是岭南重镇佛山，西
-边通向广西。
+這裡是一條林間小道，在樹叢中蜿蜒。東面是嶺南重鎮佛山，西
+邊通向廣西。
 LONG );
         set("objects", ([
                    __DIR__"obj/shuzhi": 1,

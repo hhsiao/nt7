@@ -7,9 +7,9 @@ void setup()
         set_name("大雅[2;37;0m[2;37;0m", ({"pifengblong"}));        
         set("gender", "男性");                
         set("long", "大欲[2;37;0m
-它是麒麟衣的魔幻兽。
+它是麒麟衣的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "pifengb");
         set("owner_name", "麒麟衣");

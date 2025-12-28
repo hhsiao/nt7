@@ -4,7 +4,7 @@ void create()
 {
         set("short", "大雪山口");
         set("long", @LONG
-这儿遍地冰雪，你眼前白皑皑的一片。
+這兒遍地冰雪，你眼前白皚皚的一片。
 LONG );
         set("exits", ([
                 "eastdown"  : __DIR__"sroad4",

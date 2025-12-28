@@ -7,8 +7,8 @@ inherit F_DEALER;
 
 void create()
 {
-        set_name("冷郁然" , ({ "leng yuran", "leng" }) );
-        set("rank_info/zhiye","玉店老板");
+        set_name("冷鬱然" , ({ "leng yuran", "leng" }) );
+        set("rank_info/zhiye","玉店老闆");
         set("gender", "男性" );
         set("age",45);
         set("combat_exp", 1500000);
@@ -43,6 +43,6 @@ void init()
 void greeting(object ob)
 {
         if (environment(ob)==environment())
-        message_vision("玉店老板对$P笑脸相迎：请随便看看。\n",ob);
+        message_vision("玉店老闆對$P笑臉相迎：請隨便看看。\n",ob);
         return;
 }

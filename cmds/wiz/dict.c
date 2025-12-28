@@ -23,14 +23,14 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-即时翻译指令
+即時翻譯指令
 
-利用 Google Translate 作即时 Mud 翻译
+利用 Google Translate 作即時 Mud 翻譯
 
-目前可翻译语言为
+目前可翻譯語言為
 
-指令格式：dict <中文> to en      - 中文翻译为英文
-          dict <英文> to zh-CN   - 英文翻译为中文
+指令格式：dict <中文> to en      - 中文翻譯為英文
+          dict <英文> to zh-CN   - 英文翻譯為中文
 
 HELP
         );

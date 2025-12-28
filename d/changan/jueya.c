@@ -4,10 +4,10 @@ inherit ROOM;
 
 void create()
 {
-    set("short", "绝崖");
+    set("short", "絕崖");
     set("long",@LONG
-眼前一片空旷，脚下是一个深不见底的悬崖，稍一迈步，崖边的
-碎岩就纷纷落了下去，久久都没听到回音。
+眼前一片空曠，腳下是一個深不見底的懸崖，稍一邁步，崖邊的
+碎巖就紛紛落了下去，久久都沒聽到迴音。
 LONG
         );
         set("outdoors","changan");

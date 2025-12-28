@@ -73,31 +73,31 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)<2000 )
         {
-                command("say 你非侠义之辈，岂能入我衡山剑派？");
+                command("say 你非俠義之輩，豈能入我衡山劍派？");
                 return;
         }
 
         if( query("combat_exp", ob)<20000 )
         {
-                command("say 你现在经验尚浅，还是多在江湖上走走吧。");
+                command("say 你現在經驗尚淺，還是多在江湖上走走吧。");
                 return;
         }
 
         if ((int)ob->query_skill("henshan-jian", 1) < 30)
         {
                 command("hmm");
-                command("say 你衡山剑法练成这样，平时都干什么去了？");
+                command("say 你衡山劍法練成這樣，平時都幹什麼去了？");
                 return;
         }
 
         if ((int)ob->query_skill("force") < 80)
         {
-                command("say 你的内功心法太差，又能跟我学什么？");
+                command("say 你的內功心法太差，又能跟我學什麼？");
                 return;
         }
 
         command("nod");
-        command("say 我收下你便是，日后可别惹我生气。");
+        command("say 我收下你便是，日後可別惹我生氣。");
         command("recruit "+query("id", ob));
 }
 
@@ -105,10 +105,10 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "峰连碧罗" :
+        case "峰連碧羅" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/biluo-zhang/lian",
-                           "name"    : "峰连碧罗",
+                           "name"    : "峰連碧羅",
                            "sk1"     : "biluo-zhang",
                            "lv1"     : 100,
                            "force"   : 120,

@@ -13,14 +13,14 @@ int ask_game();
 
 void create()
 {
-        set_name("黄蓉", ({"huang rong", "huang", "rong"}));
-        set("title", "东海桃花岛主之女");
-        set("nickname", HIY "丐帮前任帮主" NOR);
+        set_name("黃蓉", ({"huang rong", "huang", "rong"}));
+        set("title", "東海桃花島主之女");
+        set("nickname", HIY "丐幫前任幫主" NOR);
         set("gender", "女性");
         set("age", 28);
-        set("long", "这便是桃花岛岛主的独生女儿。由于岛主夫人\n"
-                    "早死，岛主对这个女儿备加疼爱。她生性跳脱\n"
-                    "飞扬，喜欢四处乱跑。\n");
+        set("long", "這便是桃花島島主的獨生女兒。由於島主夫人\n"
+                    "早死，島主對這個女兒備加疼愛。她生性跳脫\n"
+                    "飛揚，喜歡四處亂跑。\n");
         set("attitude", "peaceful");
         set("class", "scholar");
         set("str", 28);
@@ -74,12 +74,12 @@ void create()
         prepare_skill("hand", "lanhua-shou");
         prepare_skill("strike", "xiaoyaoyou");
 
-        create_family("桃花岛", 2, "爱女");
+        create_family("桃花島", 2, "愛女");
 
         set("inquiry", ([
-                "九阴真经经义" : (: ask_jiuyin :),
-                "游戏"   : (: ask_game :),
-                "叫化鸡" : (: ask_chicken :),
+                "九陰真經經義" : (: ask_jiuyin :),
+                "遊戲"   : (: ask_game :),
+                "叫化雞" : (: ask_chicken :),
 
         ]) );
 
@@ -105,20 +105,20 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        command("say 现在国难当头，我哪里有时间收徒啊。");
+        command("say 現在國難當頭，我哪裡有時間收徒啊。");
         return;
 }
 
 string ask_chicken()
 {
-        if( query_temp("marks/鸡", this_player()) )
-                return "你这个人怎么这么烦？老说车轱辘话！\n";
+        if( query_temp("marks/雞", this_player()) )
+                return "你這個人怎麼這麼煩？老說車軲轆話！\n";
         else
         {
-                say("蓉儿神往地说：叫化鸡可是杭州著名特产，我爹当年费了好大的劲才搞到了制作\n"
-                    "它的秘方。你问它来干什么？\n");
+                say("蓉兒神往地說：叫化雞可是杭州著名特產，我爹當年費了好大的勁才搞到了製作\n"
+                    "它的秘方。你問它來幹什麼？\n");
 
-                set_temp("marks/鸡", 1, this_player());
+                set_temp("marks/雞", 1, this_player());
 
                 return "你可以出去了。\n";
         }
@@ -127,34 +127,34 @@ int ask_jiuyin()
 {
         object me = this_player();
 
-        if( query("family/family_name", me) == "白驼山派" && !query("reserve", me )
+        if( query("family/family_name", me) == "白駝山派" && !query("reserve", me )
                  && query("family/master_id", me) == "ouyang feng" )
         {
                 if( query("combat_exp", me)>500000 && present("mask_jiuyin",me) )
                 {
                         destruct( present("mask_jiuyin", me) );
-                        message_vision(HIY "黄蓉眼中闪过一丝狡黠的神色：“你想知道真经的解释么？好吧，我说给你听便是。”\n", me);
-                        message_vision("说罢，接过$N手中的经书，轻轻念了起来：\n", me);
-                        message_vision("“「忽不尔，肯星多得，斯根六补」这是「善用观相，运作十二种息」的意思。\n", me);
-                        message_vision("「吉尔文花思，哈虎」嗯....这个该作「能愈诸患，渐入神通」解...”\n", me);
-                        message_vision(HIG "$N大为兴奋，忙凝神倾听，内息早于不知不觉中按照黄蓉所解之法四处游走......\n", me);
-                        message_vision("$N的神智渐渐迷糊起来，忽而抓耳挠腮，忽而侧头苦思，种种怪状，令人不解。\n", me);
-                        message_vision("突然间，$N反手啪啪啪连打自己三个耳光，双手撑地，倒立了起来，全身真气逆游乱走 \n"NOR, me);
+                        message_vision(HIY "黃蓉眼中閃過一絲狡黠的神色：“你想知道真經的解釋麼？好吧，我說給你聽便是。”\n", me);
+                        message_vision("說罷，接過$N手中的經書，輕輕唸了起來：\n", me);
+                        message_vision("“「忽不爾，肯星多得，斯根六補」這是「善用觀相，運作十二種息」的意思。\n", me);
+                        message_vision("「吉爾文花思，哈虎」嗯....這個該作「能愈諸患，漸入神通」解...”\n", me);
+                        message_vision(HIG "$N大為興奮，忙凝神傾聽，內息早於不知不覺中按照黃蓉所解之法四處遊走......\n", me);
+                        message_vision("$N的神智漸漸迷糊起來，忽而抓耳撓腮，忽而側頭苦思，種種怪狀，令人不解。\n", me);
+                        message_vision("突然間，$N反手啪啪啪連打自己三個耳光，雙手撐地，倒立了起來，全身真氣逆遊亂走 \n"NOR, me);
                         if (random(5) == 3)
                         {
-                                tell_object(me,"过了半晌，你只觉得全身经脉运行方式大为异常，略一提气，发现阴维，阳维，阴峤， \n");
-                                tell_object(me,"阳峤四脉颇有逆行之势，不由得又惊又喜。\n");
+                                tell_object(me,"過了半晌，你只覺得全身經脈運行方式大為異常，略一提氣，發現陰維，陽維，陰嶠， \n");
+                                tell_object(me,"陽嶠四脈頗有逆行之勢，不由得又驚又喜。\n");
                                 set("reserve", 1, me);
                                 addn("eff_jing", -100, me);
                                 addn("max_neili", -2, me);
                         } else {
-                                tell_object(me,"过了半晌，你心中一团乱麻，浑身乏力，头痛欲裂。一声嘶吼，晕了过去...\n");
+                                tell_object(me,"過了半晌，你心中一團亂麻，渾身乏力，頭痛欲裂。一聲嘶吼，暈了過去...\n");
                                 addn("eff_jing", -100, me);
                                 addn("max_neili", -2, me);
                                 me->unconcious();
                         }
                         return 1;
-                } else  return notify_fail("黄蓉白了你一眼：“就你这点微末道行，想学九阴真经？也不怕被人笑掉大牙么？”\n");
+                } else  return notify_fail("黃蓉白了你一眼：“就你這點微末道行，想學九陰真經？也不怕被人笑掉大牙麼？”\n");
         } else return 0;
 }
 
@@ -164,18 +164,18 @@ int ask_game()
         object ob = this_object();
 
         if( query_temp("match_game/playing", me)){
-                write("你已经在玩游戏了。\n");
+                write("你已經在玩遊戲了。\n");
                 return 1;
         }
 /*if( query_temp("match_game/lost", me)){
-                message_vision( "$n仰起头不屑的对$N说道：你太笨了，我才不跟你玩呢。\n", me, ob );
+                message_vision( "$n仰起頭不屑的對$N說道：你太笨了，我才不跟你玩呢。\n", me, ob );
                 return 1;
         }*/
         if( query_temp("match_game/win", me)){
-                message_vision( "$n点了点头道：好吧！上次侥幸让你赢了，这回你就没这么好运气了。\n", me, ob );
+                message_vision( "$n點了點頭道：好吧！上次僥倖讓你贏了，這回你就沒這麼好運氣了。\n", me, ob );
                 delete_temp("match_game/win", me);
         }
         else
-                message_vision( "$n眉头一扬，对$N说到：好啊，看看你到底有多聪明。\n", me, ob );
+                message_vision( "$n眉頭一揚，對$N說到：好啊，看看你到底有多聰明。\n", me, ob );
         return play_game(me,ob);
 }

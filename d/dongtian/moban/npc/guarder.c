@@ -4,7 +4,7 @@
 #include <ansi.h>
 inherit NPC;
 
-#define COPYNPC "/d/kaifeng/linggt/npc/boss"    //复制来源于
+#define COPYNPC "/d/kaifeng/linggt/npc/boss"    //複製來源於
 #define BONUS_EXP 5000
 
 void sp_attack();
@@ -34,7 +34,7 @@ int do_copyskill();
 void create()
 {
         set_name(YEL "傀儡兵" NOR, ({ "kuilei bing", "kui lei", "kuilei", "bing" }));
-        set("long", NOR "这货生前像是个武林高手，不知道被谁制作成了傀儡僵尸。\n" NOR);
+        set("long", NOR "這貨生前像是個武林高手，不知道被誰製作成了傀儡殭屍。\n" NOR);
         set("attitude", "aggressive");
         set("str", 1);
         set("con", 1);
@@ -67,7 +67,7 @@ void create()
 
                 set("auto_perform", 1);
 
-        set("death_msg", NOR "\n$N" + (random(2)? "咔嚓" : "噗通") + (random(2)? "一声" : "一头") + "栽倒，" + (random(2)? "散成碎片" : "摔得粉碎") + (random(2)? "。。" : "。。。") + "\n" NOR);
+        set("death_msg", NOR "\n$N" + (random(2)? "咔嚓" : "噗通") + (random(2)? "一聲" : "一頭") + "栽倒，" + (random(2)? "散成碎片" : "摔得粉碎") + (random(2)? "。。" : "。。。") + "\n" NOR);
         set_heart_beat(2);
         setup();
 }
@@ -88,7 +88,7 @@ int check_weapon(int chance)
         {
                 weapon = new(wname);
                 weapon->move(me); 
-                str = sprintf("%s" HIY "虚空一抓，突然%s" HIY "出现在他的手中。\n" NOR,
+                str = sprintf("%s" HIY "虛空一抓，突然%s" HIY "出現在他的手中。\n" NOR,
                                        query("name", me),
                                        query("name", weapon));
                         tell_room(environment(me), str, me);
@@ -112,10 +112,10 @@ int do_copyskill()
         
         if (query("copied")) return 1;
         
-        tlv += 40 + random(11);//灵感塔50层以下水准的大米休想参与争夺洞天
-        ob = new(COPYNPC);//复制灵感塔囚徒
+        tlv += 40 + random(11);//靈感塔50層以下水準的大米休想參與爭奪洞天
+        ob = new(COPYNPC);//複製靈感塔囚徒
         ob->setlv(tlv, -1, -1);
-        set("title", CYN + chinese_number(tlv - 39) + "级" + NOR);
+        set("title", CYN + chinese_number(tlv - 39) + "級" + NOR);
         me = this_object();
         if (mapp(skill_status = me->query_skills()))
         {
@@ -289,7 +289,7 @@ void sp_attack()
         if( enemy && !enemy->is_busy() && !random(15) && query_temp("spa_time") < time() && query_temp("spa_time", enemy) < time()) {
                         set_temp("spa_time", time() + 30);
                         set_temp("spa_time", time() + 30, enemy);
-                msg = NOR + HIK + "\n$N" + NOR + HIK + (random(2)? "奋勇" : "疯狂") + "地" + (random(2)? "扑上去" : "近身") + "死死抱住$n" + NOR + HIK + "的" + (random(2)? "胳膊" : "脖子") + "不放。\n" NOR;
+                msg = NOR + HIK + "\n$N" + NOR + HIK + (random(2)? "奮勇" : "瘋狂") + "地" + (random(2)? "撲上去" : "近身") + "死死抱住$n" + NOR + HIK + "的" + (random(2)? "胳膊" : "脖子") + "不放。\n" NOR;
                 message_vision(append_color(msg, HIK),this_object(),enemy);
                 enemy->start_busy(3+random(3));
                 return;
@@ -321,7 +321,7 @@ varargs void die()
                 message_vision(append_color(query("death_msg"),CYN), this_object());
                         if (!query("is_shadow", this_object())) {
                                 if (killer && objectp(killer) && environment(killer)==environment(this_object())) GIFT_D->delay_bonus(killer, 
-                                        ([ "exp" : BONUS_EXP, "pot" : BONUS_EXP/3, "mar" : BONUS_EXP/6, "prompt" : "你在洞天击退" + name() + "之后"]));
+                                        ([ "exp" : BONUS_EXP, "pot" : BONUS_EXP/3, "mar" : BONUS_EXP/6, "prompt" : "你在洞天擊退" + name() + "之後"]));
                         }
                                         
                 destruct(this_object());

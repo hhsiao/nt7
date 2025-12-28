@@ -4,9 +4,9 @@ void create()
 {
         set("short", "桃林");
         set("long",
-"[1;32m这是片茂密的桃林(peachtree)，林中芳草鲜美，落英缤纷，\n"
-"一层淡淡的薄雾，混合着青青的草香，弥漫在空气之中。偶尔的一两声鸟\n"
-"鸣，愈发地显出幽静来。这里的小路已被落花铺满，早已辨不出痕迹来。\n"
+"[1;32m這是片茂密的桃林(peachtree)，林中芳草鮮美，落英繽紛，\n"
+"一層淡淡的薄霧，混合著青青的草香，瀰漫在空氣之中。偶爾的一兩聲鳥\n"
+"鳴，愈發地顯出幽靜來。這裡的小路已被落花鋪滿，早已辨不出痕跡來。\n"
 "[2;37;0m\n"
 );
         set("exits", ([ /* sizeof() == 4 */
@@ -14,8 +14,8 @@ void create()
 ]));
 
         set("item_desc", ([
-            "桃树": "粉云彩霞般的桃花，热热闹闹地开满了枝头。\n",
-            "peach tree": "粉云彩霞般的桃花，热热闹闹地开满了枝头，让人忍不住想摘(pick)一枝桃枝(taozhi)下来。\n",
+            "桃樹": "粉雲彩霞般的桃花，熱熱鬧鬧地開滿了枝頭。\n",
+            "peach tree": "粉雲彩霞般的桃花，熱熱鬧鬧地開滿了枝頭，讓人忍不住想摘(pick)一枝桃枝(taozhi)下來。\n",
         ]) );
 
         set("no_magic", 1);
@@ -35,13 +35,13 @@ int do_pick(string arg)
         where=environment(me); 
    if(!arg || arg != "taozhi" && arg != "桃枝") return 0;       
    if( query_temp("marks/taozhi", where)){
-      tell_object(me, "\n再摘桃树就秃了! \n");  
+      tell_object(me, "\n再摘桃樹就禿了! \n");  
       return 1;
    }    
    zhi = new("/quest/tulong/obj/taozhi");
    zhi->move(me);
    set_temp("marks/taozhi", 1, where);
-   message_vision("\n$N伸手摘了一枝桃花下来。\n", me);
+   message_vision("\n$N伸手摘了一枝桃花下來。\n", me);
         
    return 1;    
 }

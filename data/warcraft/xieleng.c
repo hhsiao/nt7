@@ -7,7 +7,7 @@ void setup()
         set_name("叮叮[2;37;0m[2;37;0m", ({"dingding"}));        
         set("gender", "男性");                
         set("long", "叮叮[2;37;0m
-它是冷邪的魔幻兽。
+它是冷邪的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

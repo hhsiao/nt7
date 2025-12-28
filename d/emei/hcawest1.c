@@ -2,9 +2,9 @@ inherit ROOM;
 
 void create()
 {
-      set("short", "华藏庵西廊");
+      set("short", "華藏庵西廊");
         set("long", @LONG
-这里是峨嵋华藏庵西廊。走廊往南通往禅房，东通往广场。
+這裡是峨嵋華藏庵西廊。走廊往南通往禪房，東通往廣場。
 LONG );
       set("outdoors", "emei");
       set("exits", ([

@@ -1,13 +1,13 @@
-// chongling-jian perform hebi 双剑合璧
+// chongling-jian perform hebi 雙劍合璧
 
 #include <ansi.h>
-#define ME  "你现在不能使用双剑合璧。\n"
-#define TAR  "对方现在不能使用双剑合璧。\n"
+#define ME  "你現在不能使用雙劍合璧。\n"
+#define TAR  "對方現在不能使用雙劍合璧。\n"
 
 int check_fight(object me, object target, int amount);
 private int remove_effect(object me, object target, int amount);
 
-string name() { return "双剑和璧"; }
+string name() { return "雙劍和璧"; }
 
 int perform(object me, object target)
 {
@@ -16,7 +16,7 @@ int perform(object me, object target)
         object wep1, wep2;
         wep1=query_temp("weapon", me);
 
-        if (! target || target == me) return notify_fail("你要和谁双剑合璧？\n");
+        if (! target || target == me) return notify_fail("你要和誰雙劍合璧？\n");
 
         if( query_temp("hebi", me))return notify_fail(ME);
         if( query_temp("hebi", target))return notify_fail(TAR);
@@ -24,8 +24,8 @@ int perform(object me, object target)
         if( query("jing", target)<200)return notify_fail(TAR);
         if( query("neili", me)<1000)return notify_fail(ME);
         if( query("neili", target)<1000)return notify_fail(TAR);
-        if (! me->is_fighting()) return notify_fail("双剑合璧只能在战斗中使用。\n");
-        if (me->is_fighting(target)) return notify_fail("你正在和对方打架，使用双剑合璧干什么？\n");
+        if (! me->is_fighting()) return notify_fail("雙劍合璧只能在戰鬥中使用。\n");
+        if (me->is_fighting(target)) return notify_fail("你正在和對方打架，使用雙劍合璧幹什麼？\n");
 
         if ((int)me->query_skill("liangyi-dao", 1) < 140)
                 return notify_fail(ME);
@@ -38,7 +38,7 @@ int perform(object me, object target)
         enemy = me->query_enemy();
         i = sizeof(enemy);
         while (i--) if (target->is_fighting(enemy[i])) break;
-        if (i < 0) return notify_fail(target->name() + "并没有和你的对手在交战。\n");
+        if (i < 0) return notify_fail(target->name() + "並沒有和你的對手在交戰。\n");
 
         if ((int)target->query_skill("chongling-jian", 1) < 140)
                 return notify_fail(TAR);
@@ -50,7 +50,7 @@ int perform(object me, object target)
         ||  target->query_skill_mapped("sword") != "chongling-jian")
                 return notify_fail(TAR);
 
-        message_combatd(HIY "\n$N反手舞了个剑花，$n登时会意，两人同时从两侧欺上，威力顿时陡增。\n" NOR, me, target);
+        message_combatd(HIY "\n$N反手舞了個劍花，$n登時會意，兩人同時從兩側欺上，威力頓時陡增。\n" NOR, me, target);
         set_temp("hebi", 1, me);
         set_temp("hebi", 1, target);
         me->receive_damage("jing", 100);
@@ -71,7 +71,7 @@ int perform(object me, object target)
 
         if( query("couple/id", me) == query("id", target) )
         {
-                message_combatd(HIY "\n$N和$n各自会意，$n一个侧身，$N手中$w" + HIY "迅捷无比地刺上一剑。\n" NOR, me, target);
+                message_combatd(HIY "\n$N和$n各自會意，$n一個側身，$N手中$w" + HIY "迅捷無比地刺上一劍。\n" NOR, me, target);
                 COMBAT_D->do_attack(me,enemy[i],query_temp("weapon", me),1);
                 target->start_busy(1+random(6));
         }
@@ -99,7 +99,7 @@ int check_fight(object me, object target, int amount)
 private int remove_effect(object me, object target, int amount)
 {
         if (living(me) && ! me->is_ghost() && living(target) && ! target->is_ghost())
-        message_combatd(HIY "\n$N和$n双剑合璧用完，灵犀互通，相视一笑，各自收招。\n" NOR, me, target);
+        message_combatd(HIY "\n$N和$n雙劍合璧用完，靈犀互通，相視一笑，各自收招。\n" NOR, me, target);
 
         addn_temp("apply/dex", -amount, me);
         addn_temp("apply/str", -amount, me);

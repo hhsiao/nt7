@@ -11,8 +11,8 @@ string ask_me();
 
 void create()
 {
-        set_name("上官银票", ({ "cash" }));
-        set("long", "他就是金钱帮帮主。\n");
+        set_name("上官銀票", ({ "cash" }));
+        set("long", "他就是金錢幫幫主。\n");
         set("gender", "男性");
         set("age", 61);
         set("attitude", "peaceful");
@@ -31,7 +31,7 @@ void create()
         set("score", 70000);
 
         set_skill("idle-force", 500);
-        create_family("金钱帮", 1, "帮主");
+        create_family("金錢幫", 1, "幫主");
 
         setup();
         carry_object("/clone/weapon/changjian")->wield();

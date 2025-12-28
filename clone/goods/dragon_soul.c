@@ -4,14 +4,14 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIR "龙晶" NOR, ({ "dragon soul" }) );
+        set_name(HIR "龍晶" NOR, ({ "dragon soul" }) );
         set_weight(1);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-                set("long","这是龙的内丹，鸡蛋大小，如火焰般赤红。用法：reset\n");
-                set("unit", "颗");
+                set("long","這是龍的內丹，雞蛋大小，如火焰般赤紅。用法：reset\n");
+                set("unit", "顆");
                 set("value", 50000);
                 set("no_drop", 1);
         }
@@ -33,7 +33,7 @@ int do_reset()
         if( !query("ability1", ob) && !query("ability2", ob) )
         {
                 addn("max_neili", -50, ob);
-                message_vision(HIR "$N试图吸纳龙晶，但身体承受不了，结果适得其反，受到内力反噬！\n" NOR, ob);
+                message_vision(HIR "$N試圖吸納龍晶，但身體承受不了，結果適得其反，受到內力反噬！\n" NOR, ob);
                 destruct(this_object());                 
                 return 1;
         }
@@ -48,7 +48,7 @@ int do_reset()
                 delete("use_dragon_soul", ob);
                 addn("reset_ability", 1, ob);
 
-                message_vision(HIY "$N运劲吸纳龙晶，只见$N面色赤红如火，体内真气源源而生，能力点（ability）重置。\n" NOR, ob);
+                message_vision(HIY "$N運勁吸納龍晶，只見$N面色赤紅如火，體內真氣源源而生，能力點（ability）重置。\n" NOR, ob);
                 
                 delete("ability1", ob);
                 delete("ability2", ob);
@@ -60,7 +60,7 @@ int do_reset()
                 destruct(this_object());                 
                 return 1;
         }
-        message_vision(HIY "$N运劲吸纳龙晶，只见$N面色赤红如火，体内真气源源而生，但似乎吸纳龙晶的能量不足以让能力点（ability）重置。\n" NOR, ob);
+        message_vision(HIY "$N運勁吸納龍晶，只見$N面色赤紅如火，體內真氣源源而生，但似乎吸納龍晶的能量不足以讓能力點（ability）重置。\n" NOR, ob);
         destruct(this_object());
         return 1;
 }

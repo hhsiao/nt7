@@ -12,7 +12,7 @@ int main(object me, string arg)
 {
         if( !wizardp(me) && time()-query_temp("last_news", me)<3 )
         {
-                write("系统气喘嘘地叹道：慢慢来 ....\n");  
+                write("系統氣喘噓地嘆道：慢慢來 ....\n");  
                 return 1;
         }
 
@@ -23,8 +23,8 @@ int main(object me, string arg)
         if (! arg || arg == "" || arg == "all")
         {
                 NEWS_D->show_news(me, (arg != "all") ? 1 : 0);
-                write(HIC "阅读新闻指令格式：" HIY "news " NOR "<" HIY "new" NOR "|" HIY "next" NOR "|" HIY "新闻编号" NOR ">\n"
-                      HIC "搜索新闻指令格式：" HIG "news search " NOR "<" HIG "title" NOR "|" HIG "author" NOR "|" HIG "document" NOR "> <" HIM "关键字" NOR "|" HIM "关键词" NOR ">\n");
+                write(HIC "閱讀新聞指令格式：" HIY "news " NOR "<" HIY "new" NOR "|" HIY "next" NOR "|" HIY "新聞編號" NOR ">\n"
+                      HIC "搜索新聞指令格式：" HIG "news search " NOR "<" HIG "title" NOR "|" HIG "author" NOR "|" HIG "document" NOR "> <" HIM "關鍵字" NOR "|" HIM "關鍵詞" NOR ">\n");
                 return 1;
         }
 
@@ -43,37 +43,37 @@ int main(object me, string arg)
         if (sscanf(arg, "search %s", arg) || sscanf(arg, "find %s", arg))
         {
                 NEWS_D->do_search(me, arg);
-                write(HIC "阅读新闻指令格式：" HIY "news " NOR "<" HIY "new" NOR "|" HIY "next" NOR "|" HIY "新闻编号" NOR ">\n"
-                      HIC "搜索新闻指令格式：" HIG "news search " NOR "<" HIG "title" NOR "|" HIG "author" NOR "|" HIG "document" NOR "> <" HIM "关键字" NOR "|" HIM "关键词" NOR ">\n");
+                write(HIC "閱讀新聞指令格式：" HIY "news " NOR "<" HIY "new" NOR "|" HIY "next" NOR "|" HIY "新聞編號" NOR ">\n"
+                      HIC "搜索新聞指令格式：" HIG "news search " NOR "<" HIG "title" NOR "|" HIG "author" NOR "|" HIG "document" NOR "> <" HIM "關鍵字" NOR "|" HIM "關鍵詞" NOR ">\n");
                 return 1;
         }
 
         NEWS_D->do_read(me, arg);
-        write(HIC "阅读新闻指令格式：" HIY "news " NOR "<" HIY "new" NOR "|" HIY "next" NOR "|" HIY "新闻编号" NOR ">\n"
-              HIC "搜索新闻指令格式：" HIG "news search " NOR "<" HIG "title" NOR "|" HIG "author" NOR "|" HIG "document" NOR "> <" HIM "关键字" NOR "|" HIM "关键词" NOR ">\n");
+        write(HIC "閱讀新聞指令格式：" HIY "news " NOR "<" HIY "new" NOR "|" HIY "next" NOR "|" HIY "新聞編號" NOR ">\n"
+              HIC "搜索新聞指令格式：" HIG "news search " NOR "<" HIG "title" NOR "|" HIG "author" NOR "|" HIG "document" NOR "> <" HIM "關鍵字" NOR "|" HIM "關鍵詞" NOR ">\n");
         return 1;
 }
 
 int help(object me)
 {
         write(@HELP
-指令格式 : news [next] | [<新闻编号>] | new | all
-           news search <title|author|document> <关键字|关键词>
+指令格式 : news [next] | [<新聞編號>] | new | all
+           news search <title|author|document> <關鍵字|關鍵詞>
 
-这条指令让你你可以阅读游戏中的新闻。所有的更新和消息都是通过
-新闻发布的。
+這條指令讓你你可以閱讀遊戲中的新聞。所有的更新和消息都是通過
+新聞發佈的。
 
-使用 new 参数可以让你阅读还没有读过的新闻。
-使用 all 参数可以让你查看系统目前所有的新闻。
-使用 search 参数可以让你查找系统目前符合搜索条件的新闻。
-     search <title|author|document> <关键字|关键词>
-     根据标题、作者、内容搜索包含指定关键字或者关键词的新闻。
-     比如：news search title 转世系统 ----将返回所有标题中包
-           含“转世系统”的新闻。
+使用 new 參數可以讓你閱讀還沒有讀過的新聞。
+使用 all 參數可以讓你查看系統目前所有的新聞。
+使用 search 參數可以讓你查找系統目前符合搜索條件的新聞。
+     search <title|author|document> <關鍵字|關鍵詞>
+     根據標題、作者、內容搜索包含指定關鍵字或者關鍵詞的新聞。
+     比如：news search title 轉世系統 ----將返回所有標題中包
+           含“轉世系統”的新聞。
 
 
-总站的巫师可以通过news post <标题>来发布新闻。news discard来
-删除新闻。
+總站的巫師可以通過news post <標題>來發布新聞。news discard來
+刪除新聞。
 HELP );
     return 1;
 }

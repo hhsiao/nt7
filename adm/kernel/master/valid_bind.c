@@ -1,21 +1,21 @@
 // This program is a part of NT MudLIB
 
 /*
-名称：
-        valid_bind - 判断一个指定的函式指标 (function pointer) 是否能结合
-                     (bind) 到一个物件上。
-语法：
+名稱：
+        valid_bind - 判斷一個指定的函式指標 (function pointer) 是否能結合
+                     (bind) 到一個物件上。
+語法：
         int valid_bind( object doer, object owner, object victim );
 
-        整数 valid_bind( 物件 作用者, 物件 拥有者, 物件 受害者 );
+        整數 valid_bind( 物件 作用者, 物件 擁有者, 物件 受害者 );
 用法：
-        当 doer 尝试使用 bind() 外部函式结合 owner 对 victim 物件的函式指
-        标，会呼叫此函式。如果此函式传回 0，就禁止结合。
-参考：
+        當 doer 嘗試使用 bind() 外部函式結合 owner 對 victim 物件的函式指
+        標，會呼叫此函式。如果此函式傳回 0，就禁止結合。
+參考：
         bind
 作者：
         Tim Hollebeek  Beek@ZorkMUD, Lima Bean, IdeaExchange, and elsewhere
-翻译：
+翻譯：
         spock@muds.net          2000.May.21.    v22 版
 */
 

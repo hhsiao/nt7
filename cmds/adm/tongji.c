@@ -15,16 +15,16 @@ int main(object me, string str)
                 return 0;                      
 
         if (! str)
-                return notify_fail("你要统计什么技能？\n");
+                return notify_fail("你要統計什麼技能？\n");
 
         if (file_size("/kungfu/skill/" + str + ".c") == -1)
-                return notify_fail("没有这个技能存在！\n");                
+                return notify_fail("沒有這個技能存在！\n");                
 
         // users = all_interactive();
         users = users();
 
         j = 0;
-        write(HIW "\n以下为本 MUD 中掌握 " + HIM + CHINESE_D->chinese(str) + HIW + " 的在线玩家。\n" NOR);
+        write(HIW "\n以下為本 MUD 中掌握 " + HIM + CHINESE_D->chinese(str) + HIW + " 的在線玩家。\n" NOR);
         write(HIY "-------------------------------------------------------------------------\n" NOR);
 
         players = ({});
@@ -34,7 +34,7 @@ int main(object me, string str)
                 {
                         players += ({ player });
 /*
-                        write(sprintf(HIC "%-21s年龄：%-10d所属门派：%-16s等级：%-10d\n" NOR,
+                        write(sprintf(HIC "%-21s年齡：%-10d所屬門派：%-16s等級：%-10d\n" NOR,
                                       player->name()+"("+query("id", player)+")",
                                       query("age", player),
                                       query("family/family_name", player),
@@ -50,7 +50,7 @@ int main(object me, string str)
         {
                 if (player->query_skill(str, 1))
                 {
-                        write(sprintf(HIC "%-21s年龄：%-10d所属门派：%-16s等级：%-10d\n" NOR,
+                        write(sprintf(HIC "%-21s年齡：%-10d所屬門派：%-16s等級：%-10d\n" NOR,
                                       player->name()+"("+query("id", player)+")",
                                       query("age", player),
                                       query("family/family_name", player),
@@ -59,7 +59,7 @@ int main(object me, string str)
                 }
          
         }
-        write(HIW "\n总共 " HIR + j + HIW " 位玩家掌握" + HIM + CHINESE_D->chinese(str) + "\n" NOR);
+        write(HIW "\n總共 " HIR + j + HIW " 位玩家掌握" + HIM + CHINESE_D->chinese(str) + "\n" NOR);
         write(HIY "-------------------------------------------------------------------------\n" NOR);
 
         return 1;

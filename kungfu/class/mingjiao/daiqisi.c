@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// dai.c 黛绮丝
+// dai.c 黛綺絲
 
 #include <ansi.h>
 #include "mingjiao.h"
@@ -11,12 +11,12 @@ string ask_fan();
 
 void create()
 {
-        set_name("黛绮丝",({"dai qisi","dai","qisi"}));
-        set("title", HIG "明教" MAG "紫衫龙王" NOR);
+        set_name("黛綺絲",({"dai qisi","dai","qisi"}));
+        set("title", HIG "明教" MAG "紫衫龍王" NOR);
         set("gender","女性");
-        set("long",  "她是明教的四大护法之一的紫衫龙王。\n"+
-                     "她身材苗条，是当年明教的第一美女，\n"+
-                     "虽年事已高，仍不资色仍不减当年。\n");
+        set("long",  "她是明教的四大護法之一的紫衫龍王。\n"+
+                     "她身材苗條，是當年明教的第一美女，\n"+
+                     "雖年事已高，仍不資色仍不減當年。\n");
         set("age", 45);
         set("attitude", "peaceful");
         set("shen", -10000);
@@ -62,12 +62,12 @@ void create()
         }) );
 
         set("inquiry", ([
-                "谢逊"   : (: ask_fan :),
-                "屠龙刀" : (: ask_fan :),
-                "冰火岛" : (: ask_fan :),
+                "謝遜"   : (: ask_fan :),
+                "屠龍刀" : (: ask_fan :),
+                "冰火島" : (: ask_fan :),
         ]) );
 
-        create_family("明教", 35, "护法法王");
+        create_family("明教", 35, "護法法王");
         set("master_ob",4);
         setup();
 
@@ -85,50 +85,50 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)<5000 )
         {
-                command("say 你行侠仗义的事做得还不够，还是请回吧。");
+                command("say 你行俠仗義的事做得還不夠，還是請回吧。");
                 return;
         }
 
         if (! fam || fam["family_name"] != "明教")
         {
-                command("say "+RANK_D->query_respect(ob) + "与本派素无来往，不知此话从何谈起？");
+                command("say "+RANK_D->query_respect(ob) + "與本派素無來往，不知此話從何談起？");
                 return;
         }
 
         /*
         if( query("gender", ob) != "女性"){
-                command("say "+RANK_D->query_respect(ob)+"还是回去吧，老身只收女弟子。");
+                command("say "+RANK_D->query_respect(ob)+"還是回去吧，老身只收女弟子。");
                 return;
         }
 
         if ((int)ob->query_skill("shenghuo-shengong", 1) < 100)
         {
-                command("say 要学更为高深的武功，必须有高深的内功修为。");
-                command("say " + RANK_D->query_respect(ob) + "是否还应该在圣火神功上多下点功夫？");
+                command("say 要學更為高深的武功，必須有高深的內功修為。");
+                command("say " + RANK_D->query_respect(ob) + "是否還應該在聖火神功上多下點功夫？");
                 return;
         }
         */
 
         if ((int)ob->query_int() < 28)
         {
-                command("say 想学我的金花暗器，必须能够眼观四方，耳听八方。");
-                command("say 在身体悟性方面，"+RANK_D->query_respect(ob)+"是否还嫌差了点？");
+                command("say 想學我的金花暗器，必須能夠眼觀四方，耳聽八方。");
+                command("say 在身體悟性方面，"+RANK_D->query_respect(ob)+"是否還嫌差了點？");
                 return;
         }
-        command("say 嗯，看你还是个学武的料，老身我就收下你吧！");
-        command("say 多谢明尊敝佑，让我明教又得一良材，为康扶正义，把我明教发扬光大吧。");
+        command("say 嗯，看你還是個學武的料，老身我就收下你吧！");
+        command("say 多謝明尊敝佑，讓我明教又得一良材，為康扶正義，把我明教發揚光大吧。");
         command("recruit "+query("id", ob));
-        set("title",query("title",  this_object())+"属下教众", ob);
+        set("title",query("title",  this_object())+"屬下教眾", ob);
 }
 
 int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "大海捞针" :
+        case "大海撈針" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/yinhu-zhang/lao",
-                           "name"    : "大海捞针",
+                           "name"    : "大海撈針",
                            "sk1"     : "yinhu-zhang",
                            "lv1"     : 100,
                            "force"   : 260,
@@ -136,10 +136,10 @@ int accept_ask(object me, string topic)
                            "gongxian": 750,
                            "shen"    : 70000, ]));
                 break;
-        case "天外飞花" :
+        case "天外飛花" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/duoming-jinhua/fei",
-                           "name"    : "天外飞花",
+                           "name"    : "天外飛花",
                            "sk1"     : "duoming-jinhua",
                            "lv1"     : 140,
                            "neili"   : 2000,
@@ -160,13 +160,13 @@ string ask_fan()
 
         if( !(fam=query("family", me)) || fam["family_name"] != "明教" )
                 return RANK_D->query_respect(me) +
-                "与本派素无来往，不知此话从何谈起？";
+                "與本派素無來往，不知此話從何談起？";
 
         addn("fan",-1);
         ob = new("/d/binghuo/obj/fan");
         ob->move(me);
-        message_vision("$N获得一面帆布。\n",me);
+        message_vision("$N獲得一面帆布。\n",me);
 
-        return "好吧，海上艰险，给你一块帆布，你自己去找谢三哥吧。";
+        return "好吧，海上艱險，給你一塊帆布，你自己去找謝三哥吧。";
 
 }

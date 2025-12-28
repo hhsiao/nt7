@@ -1,14 +1,14 @@
-// 小径 xiaojing.c
+// 小徑 xiaojing.c
  
 #include <ansi.h>
 inherit ROOM;
 
 void create() 
 { 
-        set("short", "小径");
+        set("short", "小徑");
         set("long", @LONG
-你走了一阵，突然发现几只蝴蝶向前飞去，你心里不由一喜，向
-着蝴蝶飞的方向走了过去。
+你走了一陣，突然發現幾隻蝴蝶向前飛去，你心裡不由一喜，向
+著蝴蝶飛的方向走了過去。
 LONG );
 
         set("outdoors", "蝴蝶谷");

@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "小径");
+        set("short", "小徑");
         set("long", @LONG
-这是绝情谷大厅通往后花园的一条必经之路。道路两旁花
-草丛生，花香宜人。
+這是絕情谷大廳通往後花園的一條必經之路。道路兩旁花
+草叢生，花香宜人。
 LONG);
         set("exits", ([
                "east"   : __DIR__"huayuan",

@@ -14,7 +14,7 @@ string zm_apply()
         object ob = this_player();
         if (query("gender", ob) != "男性" || query("class", ob) != "bonze")
         {
-                return "本派掌门弟子均为出家和尚！";
+                return "本派掌門弟子均為出家和尚！";
         }       
         return ::zm_apply();
 }

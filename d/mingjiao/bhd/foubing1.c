@@ -6,21 +6,21 @@ void create()
 {
 	set("short",HIW"冰山"NOR);
         set("long", @LONG
-这是一块很大浮动冰山，是由万年玄冰组成。由于前面的冰山受
-到火山之热，不断的熔化，而产生吸力，把许多浮基不断的吸进，所
-以冰山是不断的靠近火山。
+這是一塊很大浮動冰山，是由萬年玄冰組成。由於前面的冰山受
+到火山之熱，不斷的熔化，而產生吸力，把許多浮基不斷的吸進，所
+以冰山是不斷的靠近火山。
 LONG );
         set("no_fight", 1);
         set("no_get_from", 1); 
         set("no_sleep_room", 1); 
-	set("outdoors","极北");
+	set("outdoors","極北");
 	setup();
 }
 
 void run(object ob)
 {
        if(objectp(present(ob, this_object()))){
-  	  write(HIW"\n冰山缓缓的向北飘去。\n\n"NOR);
+  	  write(HIW"\n冰山緩緩的向北飄去。\n\n"NOR);
        	  ob->move(__DIR__"foubing2");
        }
 }

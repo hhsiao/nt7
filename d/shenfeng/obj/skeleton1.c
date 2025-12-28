@@ -11,9 +11,9 @@ void create()
                 set_default_object(__FILE__);
             else*/ {
                 set("unit", "具");
-                set("long", "这副骸骨已经躺在这里很久了。\n");
+                set("long", "這副骸骨已經躺在這裡很久了。\n");
                 set("value", 1);
-                set("no_get", "这东西一碰就散，还是别拣吧！\n");
+                set("no_get", "這東西一碰就散，還是別揀吧！\n");
             }
 }
 
@@ -36,11 +36,11 @@ int do_move(string arg)
         if (! environment(ob))
         {
                 ob->move(environment(me));
-                message_vision(HIC "\n$N" HIC "小心翼翼地将骸骨移开，发现下"
-                               "面豁然藏有一卷竹简。\n" NOR, me);
+                message_vision(HIC "\n$N" HIC "小心翼翼地將骸骨移開，發現下"
+                               "面豁然藏有一卷竹簡。\n" NOR, me);
                 return 1;
         } else
-                message_vision(HIY "$N" HIY "小心翼翼地将骸骨移开，可是什么"
-                               "也没发现。\n" NOR, me);
+                message_vision(HIY "$N" HIY "小心翼翼地將骸骨移開，可是什麼"
+                               "也沒發現。\n" NOR, me);
         return 1;
 }

@@ -1,10 +1,10 @@
-// po.c 独孤九剑
+// po.c 獨孤九劍
 
 #include <ansi.h>
 
 inherit F_SSERVER;
 
-string name() { return HIW "破众式" NOR; }
+string name() { return HIW "破眾式" NOR; }
 
 int perform(object me, object target)
 {
@@ -22,17 +22,17 @@ int perform(object me, object target)
         skill = me->query_skill("lonely-sword", 1);
 
         if (! me->is_fighting(target))
-                return notify_fail("独孤九剑只能对战斗中的对手使用。\n");
+                return notify_fail("獨孤九劍只能對戰鬥中的對手使用。\n");
 
         if (skill < 50)
-                return notify_fail("你的独孤九剑等级不够，练好了再来！\n");
+                return notify_fail("你的獨孤九劍等級不夠，練好了再來！\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
        if (! living(target))
-              return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+              return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         weapon2=query_temp("weapon", target);
         prepare = target->query_skill_prepare();
@@ -57,15 +57,15 @@ int perform(object me, object target)
 
         if (ap / 2 + random(ap) > dp)
         {
-                msg = HIC "$N" HIC "随意挥洒手中的" + weapon->name() + HIC
-                      "，招招从出其不意的方位直指$n" HIC +
-                      //to_chinese(type)[4..<1] + "中的破绽。\n" NOR;
-                      "的破绽。\n" NOR;
+                msg = HIC "$N" HIC "隨意揮灑手中的" + weapon->name() + HIC
+                      "，招招從出其不意的方位直指$n" HIC +
+                      //to_chinese(type)[4..<1] + "中的破綻。\n" NOR;
+                      "的破綻。\n" NOR;
                 n = 3 + random(5);
                 if (ap / 2 + random(ap) > dp)
                 {
-                        msg += HIY "$n" HIY "大吃一惊，慌乱之下破绽迭出，$N" HIY "唰唰连攻" +
-                               chinese_number(n) + "剑！\n" NOR;
+                        msg += HIY "$n" HIY "大吃一驚，慌亂之下破綻迭出，$N" HIY "唰唰連攻" +
+                               chinese_number(n) + "劍！\n" NOR;
                         message_combatd(msg, me, target);
                         me->start_busy(1 + random(n));
                         while (n-- && me->is_fighting(target))
@@ -77,24 +77,24 @@ int perform(object me, object target)
 
                         if (weapon2 && random(ap) > dp && type != "pin")
                         {
-                                msg = HIW "\n$n" HIW "觉得眼前眼花缭乱，手中的" + weapon2->name() +
-                                      HIW "一时竟然拿捏不住，脱手而出！\n" NOR;
+                                msg = HIW "\n$n" HIW "覺得眼前眼花繚亂，手中的" + weapon2->name() +
+                                      HIW "一時竟然拿捏不住，脫手而出！\n" NOR;
                                 weapon2->move(environment(me));
                         } else
                         {
-                                msg = HIY "\n$n略得空隙喘息，一时间却也无力反击。\n" NOR;
+                                msg = HIY "\n$n略得空隙喘息，一時間卻也無力反擊。\n" NOR;
                         }
                 } else
                 {
-                        msg += HIY "$n" HIY "连忙抵挡，一时间不禁手忙脚乱，无暇反击。\n" NOR;
+                        msg += HIY "$n" HIY "連忙抵擋，一時間不禁手忙腳亂，無暇反擊。\n" NOR;
                         me->start_busy(1);
                         if (! target->is_busy())
                         target->start_busy(1 + random(skill / 20));
                 }
         } else
         {
-                msg = HIC "$N" HIC "拿着手中的" + weapon->name() + HIC "，东戳西指，"
-                      "不过$n" HIC "防守的异常严密，$N" HIC "一时竟然无法找到破绽。\n" NOR;
+                msg = HIC "$N" HIC "拿著手中的" + weapon->name() + HIC "，東戳西指，"
+                      "不過$n" HIC "防守的異常嚴密，$N" HIC "一時竟然無法找到破綻。\n" NOR;
                 me->start_busy(3 + random(2));
                 if (! target->is_busy())
                 target->start_busy(1);

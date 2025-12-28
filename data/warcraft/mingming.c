@@ -7,7 +7,7 @@ void setup()
         set_name("命名[2;37;0m[2;37;0m", ({"min"}));        
         set("gender", "男性");                
         set("long", "命名[2;37;0m
-它是明明的魔幻兽。
+它是明明的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

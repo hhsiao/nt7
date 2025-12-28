@@ -3,7 +3,7 @@ inherit NPC;
 
 void create()
 {
-        set_name("护塔僧", ({ "huta seng","seng"}) );
+        set_name("護塔僧", ({ "huta seng","seng"}) );
         set("gender", "男性" );
         set("class", "bonze");
         set("age", 33);

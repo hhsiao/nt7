@@ -7,8 +7,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "个");
-         set("long", "一只用麻布织成的袋子，好像将东西放在里面。\n");
+                set("unit", "個");
+         set("long", "一隻用麻布織成的袋子，好像將東西放在裡面。\n");
                 set("value", 100);
                 set("no_give", 1);
                          }

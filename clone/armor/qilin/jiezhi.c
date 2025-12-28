@@ -12,7 +12,7 @@ void create()
         else*/
         {
                 set("unit", "枚");
-                set("long", HIR "由火麒麟的精魄幻化而成的戒指，闪动着火焰的光芒，令人神往。\n" NOR);
+                set("long", HIR "由火麒麟的精魄幻化而成的戒指，閃動著火焰的光芒，令人神往。\n" NOR);
                 set("value", 20000000);
                 set("material", "gold");
                 set("armor_prop/dex", 20);

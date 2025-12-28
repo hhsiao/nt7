@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("火鸡[2;37;0m[2;37;0m", ({"kent"}));        
+        set_name("火雞[2;37;0m[2;37;0m", ({"kent"}));        
         set("gender", "男性");                
-        set("long", "一只鸟？鸟一只？[2;37;0m
-它是藤藤菜的魔幻兽。
+        set("long", "一隻鳥？鳥一隻？[2;37;0m
+它是藤藤菜的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

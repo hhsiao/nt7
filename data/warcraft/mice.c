@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("小猪猪[2;37;0m[2;37;0m", ({"littlemouse"}));        
+        set_name("小豬豬[2;37;0m[2;37;0m", ({"littlemouse"}));        
         set("gender", "女性");                
-        set("long", "一头傻乎乎的小乳猪。[2;37;0m
-它是小耗子的魔幻兽。
+        set("long", "一頭傻乎乎的小乳豬。[2;37;0m
+它是小耗子的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

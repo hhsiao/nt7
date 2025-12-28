@@ -9,8 +9,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一味极其珍贵的药材，鹿茸。\n");
-                set("unit", "块");
+                set("long", "一味極其珍貴的藥材，鹿茸。\n");
+                set("unit", "塊");
                 set("value", 1500);
         }
 }

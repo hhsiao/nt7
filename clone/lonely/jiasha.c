@@ -6,21 +6,21 @@ inherit ARMOR;
 
 void create()
 {
-        set_name(HIR "龙象袈裟" NOR, ({ "longxiang jiasha", "longxiang", "jiasha" }));
+        set_name(HIR "龍象袈裟" NOR, ({ "longxiang jiasha", "longxiang", "jiasha" }));
         set_weight(8000);
         if (clonep())
                 destruct(this_object());
         else {
                 set("unit", "件");
-                set("long", HIR "这是一件陈旧的袈裟，通体血红，印有龙象纹样。着"
-                            "手处坚韧\n无比，想必是由金刚丝混及雪蚕丝编织而成。"
-                            "更有传闻说密宗\n神功龙象般若功便是记载于这件袈裟之"
+                set("long", HIR "這是一件陳舊的袈裟，通體血紅，印有龍象紋樣。著"
+                            "手處堅韌\n無比，想必是由金剛絲混及雪蠶絲編織而成。"
+                            "更有傳聞說密宗\n神功龍象般若功便是記載於這件袈裟之"
                             "上。\n" NOR);
                 set("value", 100000);
-                set("no_sell", "我…我的天…蒙古国师的衣服你也敢拿来卖？");
+                set("no_sell", "我…我的天…蒙古國師的衣服你也敢拿來賣？");
                 set("material", "cloth");
-                set("wear_msg", HIY "$N" HIY "展开$n" HIY "，霎时金波流转，罡气"
-                                "笼罩全身。\n" NOR);
+                set("wear_msg", HIY "$N" HIY "展開$n" HIY "，霎時金波流轉，罡氣"
+                                "籠罩全身。\n" NOR);
                 set("armor_prop/armor", 200);
                 set("skill", ([
                         "name" : "longxiang-gong",
@@ -31,8 +31,8 @@ void create()
                         "min_skill"    : 210,
                         "need"         : ([ "sanscrit" : 200 ]),
                 ]));
-                // 初始抵挡次数设定为十三，装备后可以抵挡十三道任何攻击。
-                // 以后每注入一次内力可以多抵挡一次攻击，最多可为十三次。
+                // 初始抵擋次數設定為十三，裝備後可以抵擋十三道任何攻擊。
+                // 以後每注入一次內力可以多抵擋一次攻擊，最多可為十三次。
                 set("force", 13);
                 set("stable", 100);
         }
@@ -49,40 +49,40 @@ int do_force(string arg)
         object me = this_player();
 
         if (! arg || ! id(arg))
-                return notify_fail("你打算往哪里注入内力？\n");
+                return notify_fail("你打算往哪裡注入內力？\n");
 
         if (me->is_fighting())
-                return notify_fail("你现在正在打架，哪有时间忙这个？\n"); 
+                return notify_fail("你現在正在打架，哪有時間忙這個？\n"); 
 
         if (me->is_busy())
-                return notify_fail("你现在正忙着呢。\n"); 
+                return notify_fail("你現在正忙著呢。\n"); 
 
         if (query("equipped"))
-                return notify_fail("你必须先将" + name() + "脱下。\n");
+                return notify_fail("你必須先將" + name() + "脫下。\n");
 
         if ((int)me->query_skill("longxiang-gong", 1) < 280)
-                return notify_fail("你龙象般若功修为不够，难以将真气注入袈裟。\n");
+                return notify_fail("你龍象般若功修為不夠，難以將真氣注入袈裟。\n");
 
         if (me->query_skill_mapped("force") != "longxiang-gong")
-                return notify_fail("你没有激发龙象般若功，难以将真气注入袈裟。\n");
+                return notify_fail("你沒有激發龍象般若功，難以將真氣注入袈裟。\n");
 
         if( query("max_neili", me)<6000 )
-                return notify_fail("你目前的内力修为不够，难以将真气注入袈裟。\n");
+                return notify_fail("你目前的內力修為不夠，難以將真氣注入袈裟。\n");
 
         if( query("neili", me)<query("max_neili", me) )
-                return notify_fail("你目前的内力尚不饱满，难以将真气注入袈裟。\n");
+                return notify_fail("你目前的內力尚不飽滿，難以將真氣注入袈裟。\n");
 
         if (query("force") >= 13)
-                return notify_fail("现在袈裟已然膨胀，无法再容纳更多的内力。\n");
+                return notify_fail("現在袈裟已然膨脹，無法再容納更多的內力。\n");
 
         set("neili", 0, me);
         addn("max_neili", -5, me);
         me->start_busy(5);
         addn("force", 1);
-        message_sort(HIY "\n$N" HIY "微一凝神，默默运聚龙象般若功劲力，双掌紧"
-                     "紧压住" + name() + HIY "两侧。过得片刻" + name() + HIY
-                     "竟然渐渐膨起，似乎已将内力尽数纳入其中。$N" HIY "见状赶"
-                     "忙收回双掌，脸色变了变，真气有所衰竭。\n\n" NOR, me);
+        message_sort(HIY "\n$N" HIY "微一凝神，默默運聚龍象般若功勁力，雙掌緊"
+                     "緊壓住" + name() + HIY "兩側。過得片刻" + name() + HIY
+                     "竟然漸漸膨起，似乎已將內力盡數納入其中。$N" HIY "見狀趕"
+                     "忙收回雙掌，臉色變了變，真氣有所衰竭。\n\n" NOR, me);
         return 1;
 }
 
@@ -93,12 +93,12 @@ mixed valid_damage(object ob, object me, int damage)
         {
                 addn("force", -1);
                 return ([ "damage" : -damage,
-                          "msg" : HIY "霎时只见" + name() + HIY "上一道光华闪"
-                                  "过，竟然将$N" HIY "这一招化于无形。\n" NOR ]);
+                          "msg" : HIY "霎時只見" + name() + HIY "上一道光華閃"
+                                  "過，竟然將$N" HIY "這一招化於無形。\n" NOR ]);
         }
 }
 
-// 进行保存数据的接口函数
+// 進行保存數據的接口函數
 mixed save_dbase_data()
 {
         mapping data;
@@ -108,7 +108,7 @@ mixed save_dbase_data()
         return data;
 }
 
-// 接受存盘数据的接口函数
+// 接受存盤數據的接口函數
 int receive_dbase_data(mixed data)
 {
         if (! mapp(data))

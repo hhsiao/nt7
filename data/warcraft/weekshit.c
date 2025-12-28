@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("异形[2;37;0m[2;37;0m", ({"shit"}));        
+        set_name("異形[2;37;0m[2;37;0m", ({"shit"}));        
         set("gender", "男性");                
-        set("long", "异形[2;37;0m
-它是周道的魔幻兽。
+        set("long", "異形[2;37;0m
+它是周道的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

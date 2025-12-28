@@ -1,4 +1,4 @@
-// kuihua 葵花太监
+// kuihua 葵花太監
 
 #include <ansi.h>
 
@@ -6,11 +6,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("葵花太监", ({ "kuihua taijian", "kuihua", "taijian" }) );
-        set("title", HIR "大宗师" NOR);
+        set_name("葵花太監", ({ "kuihua taijian", "kuihua", "taijian" }) );
+        set("title", HIR "大宗師" NOR);
         set("gender", "男性");
         set("age", 39);
-        set("long", "此人脸型瘦削，满是阴骛，不知是喜是怒。\n");
+        set("long", "此人臉型瘦削，滿是陰騖，不知是喜是怒。\n");
         set("attitude", "peaceful");
         set("str", 31);
         set("int", 39);
@@ -48,7 +48,7 @@ void create()
         set("opinion/ultra",  1);
         set("opinion/master", 1);
 
-        set("rank_info/self", "本宫");
+        set("rank_info/self", "本宮");
 
         set("chat_chance_combat", 100);
         set("chat_msg_combat", ({
@@ -117,7 +117,7 @@ void die()
                          if (arrayp(ob->query_team()))
                          {
                                  command("heng");
-                                 command("say 胜之不武！");
+                                 command("say 勝之不武！");
                                  set("qi", 400000);
                                  set("jing", 200000);
                                  set("eff_qi", 400000);
@@ -146,7 +146,7 @@ void die()
         return;
 }
 
-// 气血小于1000则死亡，避免他人协助帮忙转世
+// 氣血小於1000則死亡，避免他人協助幫忙轉世
 void heart_beat()
 {
         if (this_object()->query("qi") < 1000 || this_object()->query("eff_qi") < 1000)

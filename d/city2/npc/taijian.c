@@ -2,11 +2,11 @@
 inherit NPC;
 void create()
 {
-        set_name("太监", ({ "tai jian", "gonggong"}));
-        set("gender", "无性");
+        set_name("太監", ({ "tai jian", "gonggong"}));
+        set("gender", "無性");
         set("age", random(20) + 20);
 
-        set("long","这是一个京城皇宫中的一名太监，负责为皇帝传送奏本。\n");
+        set("long","這是一個京城皇宮中的一名太監，負責為皇帝傳送奏本。\n");
         set("combat_exp", 80000);
         set("attitude", "peaceful");
         set("max_qi", 3000);

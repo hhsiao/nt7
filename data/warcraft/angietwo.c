@@ -6,8 +6,8 @@ void setup()
 {
         set_name("安琪[2;37;0m[2;37;0m", ({"angie"}));        
         set("gender", "男性");                
-        set("long", "快乐的小安琪[2;37;0m
-它是小菜刀的魔幻兽。
+        set("long", "快樂的小安琪[2;37;0m
+它是小菜刀的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

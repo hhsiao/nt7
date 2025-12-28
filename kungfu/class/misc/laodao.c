@@ -7,7 +7,7 @@ inherit "/inherit/char/punisher";
 void create()
 {
         set_name("老道", ({ "lao dao", "dao" }));
-        set("long",  "他看上去仙风道骨，相貌不俗。\n");
+        set("long",  "他看上去仙風道骨，相貌不俗。\n");
         set("gender", "男性");
         set("age", 64);
         set("attitude", "peaceful");
@@ -53,7 +53,7 @@ void create()
         prepare_skill("finger","sun-finger");
         prepare_skill("strike","haotian-zhang");
 
-        create_family("全真教", 0, "前辈");
+        create_family("全真教", 0, "前輩");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({

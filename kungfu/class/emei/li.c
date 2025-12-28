@@ -11,8 +11,8 @@ mixed ask_back();
 void create()
 {
         set_name("李明霞", ({ "li mingxia", "li", "mingxia"}));
-        set("long", "她是峨嵋派的第四代俗家弟子，平时经常掌管一些"
-                    "入门弟子的杂事。\n");
+        set("long", "她是峨嵋派的第四代俗家弟子，平時經常掌管一些"
+                    "入門弟子的雜事。\n");
         set("gender", "女性");
         set("age", 23);
         set("attitude", "peaceful");
@@ -98,24 +98,24 @@ mixed ask_back()
         me = this_player();
 
         if (find_object(query("startroom")) != environment())
-                return "别什么都问我，我不知道！";
+                return "別什麼都問我，我不知道！";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "你不是长脚了吗？难道上山还要我来抬你？";
+                return "你不是長腳了嗎？難道上山還要我來抬你？";
 
         if( query("age", me) >= 118 )
-                return "我说你呀，年纪这么大了还要我带你上山么？";
+                return "我說你呀，年紀這麼大了還要我帶你上山麼？";
 
-        command("say 好吧，看在同门的分上，我就带你上山吧。");
+        command("say 好吧，看在同門的分上，我就帶你上山吧。");
 
-        message_vision(HIC "$N" HIC "拉着$n" HIC "的手向山顶上走去。\n\n" NOR,
+        message_vision(HIC "$N" HIC "拉著$n" HIC "的手向山頂上走去。\n\n" NOR,
                        this_object(), me);
-        tell_object(me, HIY "你觉得省力多了，毫不费劲的就上了金顶。\n" NOR);
+        tell_object(me, HIY "你覺得省力多了，毫不費勁的就上了金頂。\n" NOR);
 
         me->move("/d/emei/jinding");
 
-        message("vision", HIC + name() + HIC "一手拉着" + me->name() +
-                          HIC "快步的向山上走去，一会儿就不见影子了。\n" NOR,
+        message("vision", HIC + name() + HIC "一手拉著" + me->name() +
+                          HIC "快步的向山上走去，一會兒就不見影子了。\n" NOR,
                           environment());
         move("/d/emei/jinding");
         me->start_busy();
@@ -136,9 +136,9 @@ void back_to_startroom()
         if (find_object(startroom) == environment())
                 return;
 
-        message_vision(HIC "$N" HIC "头也不回的急急忙忙走了。\n" NOR,
+        message_vision(HIC "$N" HIC "頭也不回的急急忙忙走了。\n" NOR,
                        this_object());
         move(startroom);
-        message_vision(HIC "$N" HIC "大步流星的赶了过来。\n" NOR,
+        message_vision(HIC "$N" HIC "大步流星的趕了過來。\n" NOR,
                        this_object());
 }

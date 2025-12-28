@@ -1,4 +1,4 @@
-// miao.c 苗人凤
+// miao.c 苗人鳳
 
 #include <ansi.h>;
 
@@ -10,13 +10,13 @@ string ask_hujia_book();
 
 void create()
 {
-        set_name("苗人凤", ({ "miao renfeng", "miao" }));
+        set_name("苗人鳳", ({ "miao renfeng", "miao" }));
         set("gender", "男性");
         set("nickname", YEL "金面佛" NOR);
         set("age", 37);
         set("long", @LONG
-他看上去脸色透黄，似乎蒙了一层淡淡的金纸。身材高大魁梧，确
-是全然不修篇幅，令人称奇。
+他看上去臉色透黃，似乎蒙了一層淡淡的金紙。身材高大魁梧，確
+是全然不修篇幅，令人稱奇。
 LONG );
         set("attitude", "peaceful");
         set("str", 32);
@@ -53,7 +53,7 @@ LONG );
 
         set("inquiry", ([
                 "胡一刀": (: ask_me :),
-                "打遍天下无敌手" : "这话说说而已，岂能当真？",
+                "打遍天下無敵手" : "這話說說而已，豈能當真？",
         ]));
 
         setup();
@@ -66,30 +66,30 @@ string ask_me()
         object ob, me;
 
         me = this_player();
-        if( query("family/family_name", me) != "关外胡家" )
-                return "这人真是一条汉子！可惜啊可惜！\n";
+        if( query("family/family_name", me) != "關外胡家" )
+                return "這人真是一條漢子！可惜啊可惜！\n";
 
-        return "当年不幸中了奸人毒计伤了他，令人遗憾终生！你既然是"
-               "胡家的后人，可对我苗家剑法感兴趣？";
+        return "當年不幸中了奸人毒計傷了他，令人遺憾終生！你既然是"
+               "胡家的後人，可對我苗家劍法感興趣？";
 }
 
 int recognize_apprentice(object ob, string skill)
 {
-        if( query("family/family_name", ob) != "关外胡家" )
+        if( query("family/family_name", ob) != "關外胡家" )
         {
-                command("say 你这算是什么意思？要是比划就放马过来！");
+                command("say 你這算是什麼意思？要是比劃就放馬過來！");
                 return -1;
         }
 
         if (skill != "miaojia-jian" && skill != "sword")
         {
-                command("say 我只传你剑法，你如果不感兴趣就不要浪费时间了。");
+                command("say 我只傳你劍法，你如果不感興趣就不要浪費時間了。");
                 return -1;
         }
 
         if( !query_temp("can_learn/miao", ob) )
         {
-                command("say 好！你既然感兴趣，那就要看仔细了！");
+                command("say 好！你既然感興趣，那就要看仔細了！");
                 set_temp("can_learn/huyizhi", 1, ob);
         }
 

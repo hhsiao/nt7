@@ -6,8 +6,8 @@ inherit MEDAL;
 
 void create()
 {
-        set_name(HIY "英雄勋章" NOR, ({ "hero medal", "hero", "xunzhang", "medal" }));
-        set("long", HIR "杀倭寇活动第三名奖励勋章，乃英雄的象征。\n" NOR);
+        set_name(HIY "英雄勳章" NOR, ({ "hero medal", "hero", "xunzhang", "medal" }));
+        set("long", HIR "殺倭寇活動第三名獎勵勳章，乃英雄的象徵。\n" NOR);
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);

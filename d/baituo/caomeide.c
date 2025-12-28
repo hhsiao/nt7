@@ -4,8 +4,8 @@ void create()
 {
         set("short", "草莓地");
         set("long", @LONG
-这里是白驼山庄后面的一块草莓地，鲜红的草莓散落在绿草中，
-让人感到非常美妙惬意。
+這裡是白駝山莊後面的一塊草莓地，鮮紅的草莓散落在綠草中，
+讓人感到非常美妙愜意。
 LONG );
         set("exits", ([
                 "northeast" : __DIR__"shulin1",

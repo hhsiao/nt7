@@ -1,5 +1,5 @@
 // taskd.c
-// 应该加上随即生成boss，杀死后获取物品
+// 應該加上隨即生成boss，殺死後獲取物品
 
 #define TEXT2_D         "/adm/daemons/text2d"
 #define TASK_DIR        "/task/"
@@ -87,7 +87,7 @@ int clean_up() { return 1; }
 void create()
 {
         seteuid(getuid());
-        set("channel_id", "使命精灵");
+        set("channel_id", "使命精靈");
         get_object("/d/city/dangpu");
         init_task();
 }
@@ -149,7 +149,7 @@ void init_task()
 
         /************************************************
          message("system", "==========================================\n"
-                           "            使命任务分配完毕              \n"
+                           "            使命任務分配完畢              \n"
                            "==========================================\n",
                            filter_array(users(),(:!query("env/no_task", $1):)));
         ************************************************/
@@ -160,7 +160,7 @@ void init_task()
 
 void delay_init_task()
 {
-        message("system", HIW "【使命】使命任务将于三分钟后重新分配。\n" NOR,
+        message("system", HIW "【使命】使命任務將於三分鐘後重新分配。\n" NOR,
                 //filter_array(users(),(:!query("env/no_task", $1):)));
                 users());
         remove_call_out("init_task");
@@ -198,13 +198,13 @@ void alloc_task(string arg, int i)
 
         foreach (inv in invs)
                 if (((inv->is_character() && ! userp(inv) &&
-                    query("race", inv) != "野兽" &&
+                    query("race", inv) != "野獸" &&
                     !query_temp("quest_ob", inv) &&
                     ! inv->is_stay_in_room() &&
                     ! inv->is_vendor() &&
                     ! inv->is_master()) || inv->is_container()) &&
                     ! inv->is_walker() &&
-                    function_exists("random_move", inv) != base_name(inv) && // 不能移动的npc
+                    function_exists("random_move", inv) != base_name(inv) && // 不能移動的npc
                     !sizeof(filter_array(all_inventory(inv),(:query("task_ob", $1):))) )
                         target += ({ inv }); // target is npc or container
 
@@ -234,7 +234,7 @@ void alloc_task(string arg, int i)
         {
                 mapping data;
 
-                // 测试使用
+                // 測試使用
                 set_temp("where", base_name(target_ob), task_ob);
                 data = ([ base_name(task_ob) : 2000000 ]);
                 set_temp("search_objects", data, target_ob);
@@ -243,7 +243,7 @@ void alloc_task(string arg, int i)
                 delete_temp("override/accept_object", task_ob);
                 task_ob->delete_override("die");
                 task_ob->move(target_ob, 1);
-                // 测试使用
+                // 測試使用
                 set_temp("where", file_name(target_ob), task_ob);
         }
 
@@ -279,7 +279,7 @@ void reg_info(string arg, object env, int i)
                 if( query_temp("override/accept_object", task_status[i]["env"]) )
                         return;
 
-                if( query("race", task_status[i]["env"]) == "野兽" )
+                if( query("race", task_status[i]["env"]) == "野獸" )
                         return;
 
                 set("inquiry/"+filter_color(task_status[i]["name"]),
@@ -302,7 +302,7 @@ string task_list()
         mapping task_info;
 
         if (! sizeof(task_status))
-                return "目前还没有任何使命被系统分配。\n";
+                return "目前還沒有任何使命被系統分配。\n";
 
         foreach (task_info in task_status) {
                 tmp = sprintf("%2s%s的『%s』(%s)", task_info["flag"] ?
@@ -319,11 +319,11 @@ string task_list()
 string locate_ob(object me, string arg)
 {
         string *altitude =({
-                "高处", "地方", "低处"
+                "高處", "地方", "低處"
         });
         string *directions=({
-                "周围","北方", "南方", "东方","西方",
-                "东北方","西北方","东南方","西南方"
+                "周圍","北方", "南方", "東方","西方",
+                "東北方","西北方","東南方","西南方"
         });
 
         int dis, x_sub, y_sub, z_sub, task_size = sizeof(task_status) - BIG_TASK_N;
@@ -337,11 +337,11 @@ string locate_ob(object me, string arg)
                         call_other(TASK_OB_DIR + obj_info["file"], "???");
                         ob = find_object(TASK_OB_DIR + obj_info["file"]);
                         if (obj_info["flag"])
-                                return "『" + obj_info["name"] + "』已经物归原主了，你还找什么？\n";
+                                return "『" + obj_info["name"] + "』已經物歸原主了，你還找什麼？\n";
 
                         /*
                         if( objectp(ob) && query("geter", ob) && playerp(environment(ob)) )
-                                return "『" + obj_info["name"] + "』已经有人拿到了，你还找什么？\n";
+                                return "『" + obj_info["name"] + "』已經有人拿到了，你還找什麼？\n";
                         */
                         if (! objectp(env = environment(ob)))
                                env = obj_info["env"];
@@ -356,7 +356,7 @@ string locate_ob(object me, string arg)
                         city = LOOK_CMD->locate(base_name(room));
                         coor_there=query("coor", room);
                         if (! coor_there)
-                                return "『" + obj_info["name"] + "』在一个方位无法确定的区域，无法搜寻。\n";
+                                return "『" + obj_info["name"] + "』在一個方位無法確定的區域，無法搜尋。\n";
 
                         x_sub = coor_there["x"] - coor_here["x"];
                         y_sub = coor_there["y"] - coor_here["y"];
@@ -435,7 +435,7 @@ string display_locate(int dist, string alti, string dire, string city)
         string output;
 
         switch(dire) {
-                case "周围" :
+                case "周圍" :
                         msg[0] = color + (random(3) == 0 ? "↖" : (random(2) == 0 ? "＼" : "\\\\")) + (random(3) == 0 ? "∧" : (random(2) == 0 ? "↑" : "∴")) + (random(3) == 0 ? "↗" : (random(2) == 0 ? "／" : "//")) + NOR;
                         msg[1] = color + (random(3) == 0 ? "←" : (random(2) == 0 ? "〓" : "==")) + symbol[random(8) + 24] + (random(3) == 0 ? "→" : (random(2) == 0 ? "〓" : "==")) + NOR;
                         msg[2] = color + (random(3) == 0 ? "↙" : (random(2) == 0 ? "／" : "//")) + (random(3) == 0 ? "∨" : (random(2) == 0 ? "↓" : "∵")) + (random(3) == 0 ? "↘" : (random(2) == 0 ? "＼" : "\\")) + NOR;
@@ -450,7 +450,7 @@ string display_locate(int dist, string alti, string dire, string city)
                         msg[1] = msg[0];
                         msg[2] = "  " + color + symbol[random(3) + 3] + NOR + "  ";
                         break;
-                case "东方":
+                case "東方":
                         msg[0] = "      ";
                         msg[1] = random(10) < 2 ? (random(2) == 0 ? "==" : "〓") : symbol[random(8) + 24];
                         msg[1] = color + msg[1] + msg[1] + NOR + symbol[random(3) + 9];
@@ -462,7 +462,7 @@ string display_locate(int dist, string alti, string dire, string city)
                         msg[1] = color + symbol[random(3) + 6] + msg[1] + msg[1] + NOR;
                         msg[2] = msg[0];
                         break;
-                case "东北方":
+                case "東北方":
                         msg[0] = "   " + color + (random(4) == 0 ? symbol[12] : symbol[random(3)]) + NOR + " ";
                         msg[1] = color + (random(10) < 2 ? (random(2) == 0 ? "//" : "／") : symbol[random(8) + 24]) + NOR;
                         msg[2] = " " + msg[1] + "   ";
@@ -474,7 +474,7 @@ string display_locate(int dist, string alti, string dire, string city)
                         msg[2] = "   " + msg[1] + " ";
                         msg[1] = "  " + msg[1] + "  ";
                         break;
-                case "东南方":
+                case "東南方":
                         msg[0] = color + (random(10) < 2 ? (random(2) == 0 ? "\\\\" : "＼") : symbol[random(8) + 24]) + NOR;
                         msg[1] = "  " + msg[0] + "  ";
                         msg[0] = " " + msg[0] + "   ";
@@ -494,21 +494,21 @@ string display_locate(int dist, string alti, string dire, string city)
                 {
                 case 5:
                 case 4:
-                output = HIW "所在区域：" + city + "\n----------------\n\n\n" NOR + alti + "\n" + TEXT2_D->display(dire, 12, "@@", "__") + "\n\n" NOR + n_color + "距离指数：" +
+                output = HIW "所在區域：" + city + "\n----------------\n\n\n" NOR + alti + "\n" + TEXT2_D->display(dire, 12, "@@", "__") + "\n\n" NOR + n_color + "距離指數：" +
                         sprintf(NOR + color + "%'--'" + (48-dist) + "s" + NOR + n_color + "%'--'" + dist + "s%d\n" NOR, "", "", dist);
                         break;
                 case 3:
                 case 2:
-                output = HIW "所在区域：" + city + "\n----------------\n\n\n" NOR + alti + "\n" + TEXT2_D->display(dire, 14, "@@", "__") + "\n\n" NOR + n_color + "距离指数：" +
+                output = HIW "所在區域：" + city + "\n----------------\n\n\n" NOR + alti + "\n" + TEXT2_D->display(dire, 14, "@@", "__") + "\n\n" NOR + n_color + "距離指數：" +
                         sprintf(NOR + color + "%'--'" + (48-dist) + "s" + NOR + n_color + "%'--'" + dist + "s%d\n" NOR, "", "", dist);
                         break;
                 case 1:
                 case 0:
-                output = HIW "所在区域：" + city + "\n----------------\n\n\n" NOR + alti + "\n" + TEXT2_D->display(dire, 16, "@@", "__") + "\n\n" NOR + n_color + "距离指数：" +
+                output = HIW "所在區域：" + city + "\n----------------\n\n\n" NOR + alti + "\n" + TEXT2_D->display(dire, 16, "@@", "__") + "\n\n" NOR + n_color + "距離指數：" +
                         sprintf(NOR + color + "%'--'" + (48-dist) + "s" + NOR + n_color + "%'--'" + dist + "s%d\n" NOR, "", "", dist);
                         break;
                 default:
-                output = HIW "所在区域：" + city + "\n----------------\n\n\n" NOR + alti + "\n" + TEXT2_D->display(dire, 12, "", "__") + "\n\n" NOR + n_color + "距离指数：" +
+                output = HIW "所在區域：" + city + "\n----------------\n\n\n" NOR + alti + "\n" + TEXT2_D->display(dire, 12, "", "__") + "\n\n" NOR + n_color + "距離指數：" +
                         sprintf(NOR + color + "%'--'" + (48-dist) + "s" + NOR + n_color + "%'--'" + dist + "s%d\n" NOR, "", "", dist);
                         break;
                 }
@@ -516,17 +516,17 @@ string display_locate(int dist, string alti, string dire, string city)
         }
 
         i = random(4) + 2;
-        // 下面是干扰因素
+        // 下面是干擾因素
         /**********************************************************/
         msg[0] = filter_symb(fill_f, 0) + sprintf("%" + i + "s", " ") + msg[0] + "   " + filter_symb(fill_b, 0);
         msg[1] = filter_symb(fill_f, 2) + sprintf("%" + i + "s", " ") + msg[1] + "   " + filter_symb(fill_b, 2);
         msg[2] = filter_symb(fill_f, 1) + sprintf("%" + i + "s", " ") + msg[2] + "   " + filter_symb(fill_b, 1);
-        if (alti == "高处") msg[0] += " " + colors[random(sizeof(colors))] + alti + NOR;
-        if (alti == "低处") msg[2] += " " + colors[random(sizeof(colors))] + alti + NOR;
-        output = HIW "所在区域：" + city + "\n----------------\n\n\n" NOR + msg[0] + "\n" + msg[1] + "\n" + msg[2] + "\n" NOR + n_color + "距离指数：" +
+        if (alti == "高處") msg[0] += " " + colors[random(sizeof(colors))] + alti + NOR;
+        if (alti == "低處") msg[2] += " " + colors[random(sizeof(colors))] + alti + NOR;
+        output = HIW "所在區域：" + city + "\n----------------\n\n\n" NOR + msg[0] + "\n" + msg[1] + "\n" + msg[2] + "\n" NOR + n_color + "距離指數：" +
                 //sprintf(color + "%'□'" + dist + "s" + n_color + "%'■'" + (48-dist) + "s%d\n" NOR, "", "", dist);
                 sprintf(NOR + color + "%'--'" + (48-dist) + "s" + NOR + n_color + "%'--'" + dist + "s%d\n" NOR, "", "", dist);
-        //output = HIW "----------------\n\n" NOR + msg[0] + "\n" + msg[1] + "\n" + msg[2] + "\n" NOR + n_color + "距离指数：" +
+        //output = HIW "----------------\n\n" NOR + msg[0] + "\n" + msg[1] + "\n" + msg[2] + "\n" NOR + n_color + "距離指數：" +
                 //sprintf(color + "%'--'" + dist + "s" + n_color + "%'--'" + (48-dist) + "s\n" NOR, "", "");
         return output;
 
@@ -535,9 +535,9 @@ string display_locate(int dist, string alti, string dire, string city)
         msg[0] = sprintf("%" + i + "s", " ") + msg[0];
         msg[1] = sprintf("%" + i + "s", " ") + msg[1];
         msg[2] = sprintf("%" + i + "s", " ") + msg[2];
-        if(alti == "高处") msg[0] += " " + colors[random(sizeof(colors))] + alti + NOR;
-        if(alti == "低处") msg[2] += " " + colors[random(sizeof(colors))] + alti + NOR;
-        return implode(msg, "\n") + sprintf("\n距离指数：%d\n", dist);
+        if(alti == "高處") msg[0] += " " + colors[random(sizeof(colors))] + alti + NOR;
+        if(alti == "低處") msg[2] += " " + colors[random(sizeof(colors))] + alti + NOR;
+        return implode(msg, "\n") + sprintf("\n距離指數：%d\n", dist);
         **********************************************************/
 }
 
@@ -554,14 +554,14 @@ string ask_for_task(object me, string arg)
         if (type = query_temp("task/" + query("id", who), me))
         switch(type) {
                 case "sell" :
-                        msg = "不是说了吗，要的话一两黄金卖你。";
+                        msg = "不是說了嗎，要的話一兩黃金賣你。";
                         break;
                 case "draw" :
-                        msg =  RANK_D->query_respect(who) + "如果已经画好了" +
-                                query("task/draw", who)+"的风景图就请尽快给"+RANK_D->query_self(me)+"吧！";
+                        msg =  RANK_D->query_respect(who) + "如果已經畫好了" +
+                                query("task/draw", who)+"的風景圖就請儘快給"+RANK_D->query_self(me)+"吧！";
                         break;
                 case "find" :
-                        msg="告诉过你了，拿"+query("task/find", who)+"来换。";
+                        msg="告訴過你了，拿"+query("task/find", who)+"來換。";
                         break;
         }
         else
@@ -579,23 +579,23 @@ string ask_for_task(object me, string arg)
                 }
                 switch (random(3)) {
                 case 0 :
-                        msg = "这位" + RANK_D->query_respect(who) + "如果愿意出一两黄金的话，" +
-                                RANK_D->query_self(me) + "愿意把" + arg + "卖给" +
+                        msg = "這位" + RANK_D->query_respect(who) + "如果願意出一兩黃金的話，" +
+                                RANK_D->query_self(me) + "願意把" + arg + "賣給" +
                                 RANK_D->query_respect(who) + "。";
                         set_temp("task/"+query("id", who), "sell", me);
                         break;
                 case 1 :
                         where = explode(read_file(QUEST_LIST + "place"), "\n")[random(sizeof(explode(read_file(QUEST_LIST + "place"), "\n")))];
                         msg = RANK_D->query_self(me) + "非常想得到一幅" + where[0..strsrch(where, "/")-1] +
-                                where[strsrch(where, "/")+1..] + "风景图，如果" + RANK_D->query_respect(who) +
-                                "能画一幅来，" + RANK_D->query_self(me) + "愿将" + arg + "赠与" +
+                                where[strsrch(where, "/")+1..] + "風景圖，如果" + RANK_D->query_respect(who) +
+                                "能畫一幅來，" + RANK_D->query_self(me) + "願將" + arg + "贈與" +
                                 RANK_D->query_respect(who) + "。";
                         set_temp("task/"+query("id", who), "draw", me);
                         set("task/draw", where[strsrch(where,"/")+1..], who);
                         break;
                 case 2 :
                         find = explode(read_file(QUEST_LIST + "find"), "\n")[random(sizeof(explode(read_file(QUEST_LIST + "find"), "\n")))];
-                        msg = RANK_D->query_self(me) + "这" + arg + "只换不卖，要换得话，拿" + find + "来。";
+                        msg = RANK_D->query_self(me) + "這" + arg + "只換不賣，要換得話，拿" + find + "來。";
                         set_temp("task/"+query("id", who), "find", me);
                         set("task/find", find, who);
                         break;
@@ -619,58 +619,58 @@ int accept_object(object who, object me, object obj)
         if (type == "draw") {
                 if( query("id", obj) != "paper" || !query("draw/info", obj) ||
                     (objectp(query("draw/info", obj)) && filter_color((query("draw/info", obj))->short()) != query("task/draw", me)) ||
-                    query("draw/content", obj) == "上面乱七八糟的看不出画的是什么。\n"){
-                        message_vision(CYN"$N"CYN"皱了皱眉道：我要的是"+query("task/draw", me)+
-                        "的风景图，你这是什么东西？\n",
+                    query("draw/content", obj) == "上面亂七八糟的看不出畫的是什麼。\n"){
+                        message_vision(CYN"$N"CYN"皺了皺眉道：我要的是"+query("task/draw", me)+
+                        "的風景圖，你這是什麼東西？\n",
                         who);
                         return 0;
                 } else {
-                        if( query("draw/content", obj)[8..9] == "虽"){
-                                msg = "画的虽然不怎么样，但";
+                        if( query("draw/content", obj)[8..9] == "雖"){
+                                msg = "畫的雖然不怎麼樣，但";
                                 gift = 6000;
                         } else {
-                                msg = "画的栩栩如生，正";
+                                msg = "畫的栩栩如生，正";
                                 gift = 1200;
                         }
-                        message_vision(CYN "$N" CYN "点了点头道：" + msg + "是我要的东西。\n", who);
-                        msg="通过替"+query("name", who)+"画"+query("task/draw", me)+"风景的过程，";
+                        message_vision(CYN "$N" CYN "點了點頭道：" + msg + "是我要的東西。\n", who);
+                        msg="通過替"+query("name", who)+"畫"+query("task/draw", me)+"風景的過程，";
                 }
         } else
         if (type == "find") {
                 if( filter_color(query("name", obj)) != query("task/find", me)){
-                        message_vision(CYN "$N" CYN "看了一眼$n道：" + RANK_D->query_respect(me) + "你弄错了吧，我要的是" +
+                        message_vision(CYN "$N" CYN "看了一眼$n道：" + RANK_D->query_respect(me) + "你弄錯了吧，我要的是" +
                                 query("task/find", me)+"，不是$n！\n",who,obj);
                         return 0;
                 } else {
-                        message_vision(CYN "$N" CYN "仔细看了看$n道：不错，不错，我要的就是这个。\n", who, obj);
-                        msg="通过为"+query("name", who)+"寻找"+query("task/find", me)+"的过程，";
+                        message_vision(CYN "$N" CYN "仔細看了看$n道：不錯，不錯，我要的就是這個。\n", who, obj);
+                        msg="通過為"+query("name", who)+"尋找"+query("task/find", me)+"的過程，";
                         gift = 8000;
                 }
         } else {
                 if( query("money_id", obj) != "gold" || obj->query_amount()<1){
-                        message_vision(CYN "$N" CYN "大声道：说了一两黄金就是一两黄金，分毫都不能含糊。\n", who);
+                        message_vision(CYN "$N" CYN "大聲道：說了一兩黃金就是一兩黃金，分毫都不能含糊。\n", who);
                         return 0;
                 } else {
                         if (obj->query_amount() > 1)
-                                message_vision(CYN "$N" CYN "笑嘻嘻道：" + RANK_D->query_respect(me) + "既然愿意多给，" + RANK_D->query_sele(who) + "岂有不收之理。\n", who);
+                                message_vision(CYN "$N" CYN "笑嘻嘻道：" + RANK_D->query_respect(me) + "既然願意多給，" + RANK_D->query_sele(who) + "豈有不收之理。\n", who);
                         else
-                                message_vision(CYN "$N" CYN "正色道：嗯，分文不差，就是这个数。\n", who);
+                                message_vision(CYN "$N" CYN "正色道：嗯，分文不差，就是這個數。\n", who);
                         msg = 0;
                 }
         }
 
-        message_vision("$n接过了$N的" + obj->short() + "。\n", me, who);
+        message_vision("$n接過了$N的" + obj->short() + "。\n", me, who);
         destruct(obj);
         if( sizeof(filter_array(all_inventory(who),(:query("task_ob", $1):))) )
                 obj=filter_array(all_inventory(who),(:query("task_ob", $1):))[0];
         if (objectp(obj)) {
-                message_vision("$N拿出" + obj->short() + "给$n。\n", who, me);
+                message_vision("$N拿出" + obj->short() + "給$n。\n", who, me);
                 obj->move(me, 1);
                 delete("inquiry/"+filter_color(query("name", obj)), who);
                 delete_temp("override/accept_object", who);
                 who->delete_override("die");
         } else
-                message_vision(CYN "$N" CYN "尴尬的笑道：这位" + RANK_D->query_respect(me) + "实在是对不住，那个东西已经被别人取走了。\n");
+                message_vision(CYN "$N" CYN "尷尬的笑道：這位" + RANK_D->query_respect(me) + "實在是對不住，那個東西已經被別人取走了。\n");
 
         delete_temp("task/"+query("id", me), who);
         delete("task/draw", me);
@@ -724,7 +724,7 @@ int task_reward(object me, object who, object ob)
         if( query("task/total_count", me) >= 200 &&
             query("task/which_day", me) == td )
         {
-                tell_object(me, WHT "你今天已经完成TASK任务超过每日规定的限制了。\n" NOR);
+                tell_object(me, WHT "你今天已經完成TASK任務超過每日規定的限制了。\n" NOR);
                 destruct(ob);
                 return 1;
         }
@@ -732,7 +732,7 @@ int task_reward(object me, object who, object ob)
 /*
         if( query("reborn/times", me) )
         {
-                tell_object(me, WHT "转世玩家无法通过做TASK任务获得奖励。\n" NOR);
+                tell_object(me, WHT "轉世玩家無法通過做TASK任務獲得獎勵。\n" NOR);
                 destruct(ob);
                 return 1;
         }
@@ -773,7 +773,7 @@ int task_reward(object me, object who, object ob)
         if( query("geter", ob) == me->name(1) )
                 exp = (exp + task_count)*10;
 
-        if( query_temp("task", ob) == 2 )//这个task是由storyd产生的剧情task,所以奖励高一些,提高娱乐性吧
+        if( query_temp("task", ob) == 2 )//這個task是由storyd產生的劇情task,所以獎勵高一些,提高娛樂性吧
                 exp *= 30;
 
         if( query("big_task", ob) ) exp*=10;
@@ -801,7 +801,7 @@ int task_reward(object me, object who, object ob)
         addn("weiwang", weiwang, me);
         */
 
-        msg = WHT "通过为" + filter_color(who->name()) + "寻回" + filter_color(ob->name()) + "的过程" NOR;
+        msg = WHT "通過為" + filter_color(who->name()) + "尋回" + filter_color(ob->name()) + "的過程" NOR;
         GIFT_D->delay_bonus(me, ([
                 "promot"  : msg,
                 "exp"     : exp,
@@ -850,13 +850,13 @@ int task_reward(object me, object who, object ob)
                 gift_ob = new(gift);
                 gift_ob->move(me, 1);
                 message_vision(CYN "$N" CYN "微笑道：" + RANK_D->query_self(who) +
-                        "这里有一"+(stringp(query("base_unit", gift_ob))?
+                        "這裡有一"+(stringp(query("base_unit", gift_ob))?
                         query("base_unit", gift_ob):
                         query("unit", gift_ob))+query("name", gift_ob)+CYN+
-                        "赠给" + RANK_D->query_respect(me) + "以表谢意。\n", who);
+                        "贈給" + RANK_D->query_respect(me) + "以表謝意。\n", who);
         }
         /*
-        log_file("static/task", sprintf("%s %s将%s交给%s得到%s点潜能。\n",
+        log_file("static/task", sprintf("%s %s將%s交給%s得到%s點潛能。\n",
                 log_time(), me->name(), filter_color(ob->name()),
                 filter_color(who->name()), chinese_number(pot)));
         */

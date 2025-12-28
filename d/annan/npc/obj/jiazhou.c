@@ -4,12 +4,12 @@ inherit ARMOR;
 
 void create()
 {
-   set_name(HIB"安南军藤甲"NOR, ({ "armor"}) );
+   set_name(HIB"安南軍藤甲"NOR, ({ "armor"}) );
    set_weight(4000);
    /*if( clonep() )
      set_default_object(__FILE__);
    else*/ {
-     set("material", "铁");
+     set("material", "鐵");
      set("unit", "件");
      set("value",2000);
      set("armor_prop/armor",65);

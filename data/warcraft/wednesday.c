@@ -7,7 +7,7 @@ void setup()
         set_name("[1;32m一[1;31m日[5m[1;36m三天[2;37;0m[2;37;0m[2;37;0m", ({"wed"}));        
         set("gender", "女性");                
         set("long", "$HIG$一$HIR$日$BLINK$$HIC$三天$NOR$[2;37;0m
-它是星期三的魔幻兽。
+它是星期三的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

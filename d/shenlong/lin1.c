@@ -4,9 +4,9 @@ void create()
 {
         set("short", "灌木林");
         set("long",@LONG
-这是一片灌木林。你没有想到这样一个孤岛上竟有这样大一片灌
-木林(bush)，不由感到非常吃惊。前面根本没有路，四周的密林中长
-满了杂草。
+這是一片灌木林。你沒有想到這樣一個孤島上竟有這樣大一片灌
+木林(bush)，不由感到非常吃驚。前面根本沒有路，四周的密林中長
+滿了雜草。
 LONG);
 
 	set("exits", ([
@@ -15,7 +15,7 @@ LONG);
 	]));
 
 	set("item_desc", ([
-	    "bush" : "这片灌木林太深了,要想过去恐怕只有砍出一条路了(kan)。\n",
+	    "bush" : "這片灌木林太深了,要想過去恐怕只有砍出一條路了(kan)。\n",
 	]));
 		
 		set("n_time", 30); 
@@ -38,7 +38,7 @@ int do_kan(string arg)
         object me;
 
         if (arg != "bush")
-                return notify_fail("你要砍什么？\n" ) ;
+                return notify_fail("你要砍什麼？\n" ) ;
 
         me = this_player();
 	if( !objectp(weapon=query_temp("weapon", me)) )
@@ -46,20 +46,20 @@ int do_kan(string arg)
 
         if( query("skill_type", weapon) != "blade" && 
             query("skill_type", weapon) != "sword" )
-                return notify_fail(weapon->name() + "也能用来砍东西？\n");
+                return notify_fail(weapon->name() + "也能用來砍東西？\n");
 
-	message_vision("$N抽出兵刃，对着灌木丛就是一阵乱砍。\n", me);
+	message_vision("$N抽出兵刃，對著灌木叢就是一陣亂砍。\n", me);
 
         if( query("neili", me)>100 )
         {
                 set("exits/north", __DIR__"lin2");
-                message_vision("$N累得气喘吁吁,终于砍出一条小路。\n", me);
+                message_vision("$N累得氣喘吁吁,終於砍出一條小路。\n", me);
                 addn("neili", -50, me);
                 remove_call_out("close");
                 call_out("close", 20);
 	} else	
 	{
-                message_vision("$N累得气喘吁吁,也没砍开一条路来。\n", me);
+                message_vision("$N累得氣喘吁吁,也沒砍開一條路來。\n", me);
                 set("neili", 0, me);
 	}
         return 1;
@@ -67,7 +67,7 @@ int do_kan(string arg)
 
 void close()
 {
-        message("vision", "灌木丛渐渐合拢起来,终于又恢复了原状。\n",
+        message("vision", "灌木叢漸漸合攏起來,終於又恢復了原狀。\n",
                 this_object());
         delete("exits/north");
 }

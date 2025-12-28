@@ -3,7 +3,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return HIW "剑轮岚转" NOR; }
+string name() { return HIW "劍輪嵐轉" NOR; }
 
 inherit F_SSERVER;
 
@@ -18,26 +18,26 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对，难以施展" + name() + "。\n");
+                return notify_fail("你使用的武器不對，難以施展" + name() + "。\n");
 
         if ((int)me->query_skill("taiji-jian", 1) < 160)
-                return notify_fail("你的太极剑法不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你的太極劍法不夠嫻熟，難以施展" + name() + "。\n");
 
         if( query("neili", me)<250 )
-                return notify_fail("你的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你的真氣不夠，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("sword") != "taiji-jian")
-                return notify_fail("你没有激发太极剑法，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發太極劍法，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N" HIW "一声清啸，手中" + weapon->name() +
-              HIW "龙吟不定，化出一个个圆圈，把$n" HIW "圈在当"
+        msg = HIW "$N" HIW "一聲清嘯，手中" + weapon->name() +
+              HIW "龍吟不定，化出一個個圓圈，把$n" HIW "圈在當"
               "中。\n" NOR;
 
         ap = attack_power(me, "sword");
@@ -46,15 +46,15 @@ int perform(object me, object target)
         attack_time = 5;
         if (ap / 2 + random(ap*4/3) > dp)
         {
-                msg += HIY "结果$p" HIY "被$P" HIY
-                       "攻了个措手不及，连连后退不暇！\n" NOR;
+                msg += HIY "結果$p" HIY "被$P" HIY
+                       "攻了個措手不及，連連後退不暇！\n" NOR;
                 count = ap / 10;
 
                 attack_time += random(ap / 45);
         } else
         {
-                msg += HIC "$n" HIC "见$N" HIC "这几剑并无破绽"
-                       "，不敢大意，小心应付。\n" NOR;
+                msg += HIC "$n" HIC "見$N" HIC "這幾劍並無破綻"
+                       "，不敢大意，小心應付。\n" NOR;
                 count = 0;
         }
 

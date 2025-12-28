@@ -4,8 +4,8 @@ void create()
 {
         set("short", "密道");
         set("long", @LONG
-你的眼前是一条用汉白玉铺成的台阶，一直向下延伸，两边的墙
-壁都是花岗岩，墙上隔十来步就有一盏油灯，使你能看清周围。
+你的眼前是一條用漢白玉鋪成的臺階，一直向下延伸，兩邊的牆
+壁都是花崗岩，牆上隔十來步就有一盞油燈，使你能看清周圍。
 LONG );
         set("exits", ([
                 "up" : __DIR__"huayuan",
@@ -21,9 +21,9 @@ LONG );
 int valid_leave(object me, string dir)
 {
         if (  (dir == "northdown")
-            && (query("family/family_name", me) != "灵鹫宫" )
+            && (query("family/family_name", me) != "靈鷲宮" )
            && objectp(present("nv lang", environment(me))) )
          return notify_fail
-                ("蒙面女郎伸手拦住你，说道：“对不起，本门重地，请回！”\n");
+                ("蒙面女郎伸手攔住你，說道：“對不起，本門重地，請回！”\n");
         return ::valid_leave(me, dir);
 }

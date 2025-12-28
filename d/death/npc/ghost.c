@@ -3,9 +3,9 @@ inherit NPC;
 void create()
 {
         set_name("亡魂", ({ "ghost" }) );
-        set("long", HIB "\n\n一个死者的魂魄。\n" NOR);
+        set("long", HIB "\n\n一個死者的魂魄。\n" NOR);
         set("attitude", "peaceful");
-        set("title", HIB "(鬼气)" NOR);
+        set("title", HIB "(鬼氣)" NOR);
 
         setup();
 }

@@ -9,12 +9,12 @@ void check_friend();
 
 void create()
 {
-        set_name(HIG "苗人凤" NOR, ({ "miao renfeng"}) );
+        set_name(HIG "苗人鳳" NOR, ({ "miao renfeng"}) );
         set("title", HIY "金面佛" NOR);
-        set("long", HIR "他就是号称打遍天下无敌手的「金面佛」苗人\n"
-                        "凤。只见他脸色透黄，似乎蒙上了一层淡淡的\n"
-                        "金纸。他身材高大魁梧，四肢修长，却是全然\n"
-                        "不修篇幅，令人称奇。\n" NOR);
+        set("long", HIR "他就是號稱打遍天下無敵手的「金面佛」苗人\n"
+                        "鳳。只見他臉色透黃，似乎蒙上了一層淡淡的\n"
+                        "金紙。他身材高大魁梧，四肢修長，卻是全然\n"
+                        "不修篇幅，令人稱奇。\n" NOR);
 
         set("gender", "男性");
         set("age", 39);
@@ -30,8 +30,8 @@ void create()
 	set_temp("apply/unarmed_damage", 100000);
 	set_temp("apply/damage", 100000);
 	set_temp("apply/armor", 60000);
-	set_temp("apply/qy", 50);  // 气运
-	set_temp("apply/fy", 50);  // 福缘
+	set_temp("apply/qy", 50);  // 氣運
+	set_temp("apply/fy", 50);  // 福緣
 
 	set("reborn/times", 1);
 
@@ -75,7 +75,7 @@ void create()
 
         set_skill("jingluo-xue", 4000);
 
- 	set("no_nuoyi", 1); // 不被挪移影响
+ 	set("no_nuoyi", 1); // 不被挪移影響
 
         map_skill("parry", "qiankun-danuoyi");
         map_skill("force", "yinyang-shiertian");
@@ -98,7 +98,7 @@ void create()
               //
               (: command("perform sword.ben twice") :),
               (: command("perform sword.ben and sword.tian") :),
-              // 阴阳12t
+              // 陰陽12t
               (: command("perform finger.tian twice") :),
               (: command("perform finger.zhen and finger.jiu") :),
 
@@ -111,10 +111,10 @@ void create()
 
 	}));
 
-	set("my_life", 1); // 当气血低于10%的时候补满一次，设置该参数为0
+	set("my_life", 1); // 當氣血低於10%的時候補滿一次，設置該參數為0
 
         //set("auto_perform", 1);
-        //set("end_time", 1800);  // 必须战斗不少于1800秒后死亡
+        //set("end_time", 1800);  // 必須戰鬥不少於1800秒後死亡
         set("rewards", ([
                 "exp"   : 150000,
                 "pot"   : 50000,
@@ -163,7 +163,7 @@ void heart_beat()
 
 	if (random(2) == 1)check_weapon();
 
-	// 检查同伴的状态
+	// 檢查同伴的狀態
 	check_friend();
 
 	return ::heart_beat();
@@ -185,14 +185,14 @@ void check_friend()
 	me->clean_up_enemy();
 	ob->clean_up_enemy();
 
-	// 我和同伴不能自相残杀
+	// 我和同伴不能自相殘殺
 	me->remove_enemy(ob);
 	me->remove_killer(ob);
 	ob->remove_enemy(me);
 	ob->remove_killer(me);
 
-	// 如果未在战斗中，查看同伴是否在战斗中，如果在的话
-	// 主动攻击同伴的敌人
+	// 如果未在戰鬥中，查看同伴是否在戰鬥中，如果在的話
+	// 主動攻擊同伴的敵人
 	if (! me->is_fighting() && ob->is_fighting())
 	{
 		ob->clean_up_enemy();
@@ -201,7 +201,7 @@ void check_friend()
 		if (me->is_busy())me->interrupt_busy(me);
 		if (sizeof(obs))
 		{
-			message_vision(HIG "\n$N" HIG "大叫一声：“胡兄，人凤来助你！”\n\n" NOR, me);
+			message_vision(HIG "\n$N" HIG "大叫一聲：“胡兄，人鳳來助你！”\n\n" NOR, me);
 			for(i = 0; i < sizeof(obs); i ++)
 			{
 				me->kill_ob(obs[i]);
@@ -209,7 +209,7 @@ void check_friend()
 		}
 	}
 
-	// 如果同伴的HP小于20%,且我的HP大于60%则保护对方
+	// 如果同伴的HP小於20%,且我的HP大於60%則保護對方
 	if( query("eff_qi", ob) <= query("max_qi", ob)/10 && 
        query("eff_qi", me) >= query("max_qi", me)/5*3 )
 	{
@@ -220,14 +220,14 @@ void check_friend()
 	}
 }
 
-// 检查武器
+// 檢查武器
 void check_weapon()
 {
 	object me, ob;
 
 	me = this_object();
 
-	// 同时补充内力
+	// 同時補充內力
 	set("neili", query("max_neili"));
 
 	if (me->is_busy())me->interrupt_busy(me, 1000);
@@ -308,7 +308,7 @@ void new_life()
 {
         object me = this_object();
 
-        full_self(); // 补满气血
+        full_self(); // 補滿氣血
 
         delete_temp("no_perform");
         delete_temp("no_exert");
@@ -321,11 +321,11 @@ void new_life()
         set_temp("apply/unarmed_damage", 150000);
         set_temp("apply/damage", 150000);
         set_temp("apply/armor", 100000);
-        set_temp("apply/qy", 70);  // 气运
-        set_temp("apply/fy", 70);  // 福缘
+        set_temp("apply/qy", 70);  // 氣運
+        set_temp("apply/fy", 70);  // 福緣
         delete("my_life", me);
 
-        message_vision(HIG "\n$N" HIG "大喝一声，目光顿时充满杀意！\n\n" NOR, me);
+        message_vision(HIG "\n$N" HIG "大喝一聲，目光頓時充滿殺意！\n\n" NOR, me);
 
         return;
 }
@@ -357,14 +357,14 @@ varargs void die(object killer)
                 return;
         }
 
-        // 如果还未重生，则重生一次
+        // 如果還未重生，則重生一次
         if (query("my_life"))
         {
                 new_life();
                 return;
         }
 
-        if( time() < query_temp("end_time") ) // 时间没有到，死亡不了
+        if( time() < query_temp("end_time") ) // 時間沒有到，死亡不了
         {
                 addn("jing", query("max_jing") / 10);
                 if( query("jing") > query("max_jing") ) set("jing", query("max_jing"));
@@ -374,14 +374,14 @@ varargs void die(object killer)
                 if( query("qi") > query("max_qi") ) set("qi", query("max_qi"));
                 addn("eff_qi", query("max_qi") / 10);
                 if( query("eff_qi") > query("max_qi") ) set("eff_qi", query("max_qi"));
-                message_vision(HIR "\n$N" HIR "大喝一声，运用秘法，气血有所回升！\n\n" NOR, this_object());
+                message_vision(HIR "\n$N" HIR "大喝一聲，運用秘法，氣血有所回升！\n\n" NOR, this_object());
                 return;
         }
 
         if( !objectp(present("hu yidao", environment(this_object()))) )
                 set("clear_fuben", 1);
 
-        message_vision(HIR "\n$N" HIR "长叹一声，消失在山林之中 ……\n\n" NOR, this_object());
+        message_vision(HIR "\n$N" HIR "長嘆一聲，消失在山林之中 ……\n\n" NOR, this_object());
 
         return ::die(killer);
 }

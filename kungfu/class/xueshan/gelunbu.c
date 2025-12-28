@@ -9,12 +9,12 @@ string ask_fashi();
 string ask_for_join();
 void create()
 {
-        set_name("葛伦布", ({ "ge lunbu", "ge", "lunbu" }));
+        set_name("葛倫布", ({ "ge lunbu", "ge", "lunbu" }));
         set("long", @LONG
-葛伦布是雪山寺护寺僧兵的头领。同时向本寺
-第子传授武功。身穿一件黑色袈裟，头带僧帽。
+葛倫布是雪山寺護寺僧兵的頭領。同時向本寺
+第子傳授武功。身穿一件黑色袈裟，頭帶僧帽。
 LONG);
-        set("title", "雪山寺僧兵头领");
+        set("title", "雪山寺僧兵頭領");
         set("gender", "男性");
         set("class", "bonze");
         set("age", 30);
@@ -74,7 +74,7 @@ LONG);
         set("inquiry",([
                 "剃度" : (: ask_for_join :),
                 "出家" : (: ask_for_join :),
-                "准备法事" : (: ask_fashi :),
+                "準備法事" : (: ask_fashi :),
                 "法事" : (: ask_fashi :),
         ]));
 
@@ -84,12 +84,12 @@ LONG);
         }));
 
         set("guarder", ([
-                "refuse_other": CYN "$N" CYN "对$n" CYN "冷喝道："
-                                "你给我站住！我们雪山寺岂是由得外"
-                                "人随便走动地方？" NOR,
-                "refuse_carry": CYN "$N" CYN "对$n" CYN "喝道：你"
-                                "背上背的是什么人？还不快给我放下"
-                                "来！" NOR,
+                "refuse_other": CYN "$N" CYN "對$n" CYN "冷喝道："
+                                "你給我站住！我們雪山寺豈是由得外"
+                                "人隨便走動地方？" NOR,
+                "refuse_carry": CYN "$N" CYN "對$n" CYN "喝道：你"
+                                "背上背的是什麼人？還不快給我放下"
+                                "來！" NOR,
         ]));
 
         set("master_ob", 1);
@@ -108,16 +108,16 @@ void attempt_apprentice(object ob)
 
         if( query("gender", ob) != "男性" )
         {
-                command("say 修习密宗内功需要纯阳之体。");
-                command("say 这位" + RANK_D->query_respect(ob) + "还是请"
+                command("say 修習密宗內功需要純陽之體。");
+                command("say 這位" + RANK_D->query_respect(ob) + "還是請"
                         "回吧！");
                 return;
         }
 
-        command("say 既然你有心习武，我就传你一些武功吧！");
+        command("say 既然你有心習武，我就傳你一些武功吧！");
         if( query("class", ob) != "bonze" )
         {
-                command("say 若你打算入寺修行上层武功，却非得先" HIY "剃"
+                command("say 若你打算入寺修行上層武功，卻非得先" HIY "剃"
                         "度" NOR + CYN "不可。" NOR);
                 set("title", "雪山派俗家弟子", ob);
         }
@@ -139,20 +139,20 @@ void greeting(object ob)
 {
         int bonus, exp_bonus;
 
-//      if( environment(ob)->query("short") == "雪山祭坛" )
+//      if( environment(ob)->query("short") == "雪山祭壇" )
         if( !query_temp("作法事", ob))return ;
         {
-                message_vision("葛伦布急急忙忙吩咐小喇嘛们往祭坛里填柴，倒酥油。\n\n", ob);
-                message_vision(HIR"$N点燃了祭坛中的木柴与酥油，熊熊烈火冲天而起。\n", ob);
-                message_vision(HIB"一丝魂魄升出祭坛，冉冉而起。魂魄受$N佛法感召，徘徊不去。\n", ob);
-                message_vision(RED"$N端起颅钵吸进一口水，「噗」的一声猛地朝那熊熊火焰喷将过去。\n", ob);
-                message_vision(HIC"$N盘腿打坐，神光内蕴，口中念念有辞，渐渐有一丝魂魄在$N面前凝聚成形。\n", ob);
-                message_vision(HIG"魂魄越聚越多，竟然呈出人形！$N手指人形，口念真言，指引往生之路。\n", ob);
-                message_vision(HIW"$N手持法铃，边走变摇，高声诵读密传经咒。突然大喝一声。声似雷霆。\n", ob);
-                message_vision(HIY"大院里光芒四起，一声巨响过后，又恢复了平静。超度完毕。\n"NOR, ob);
+                message_vision("葛倫布急急忙忙吩咐小喇嘛們往祭壇裡填柴，倒酥油。\n\n", ob);
+                message_vision(HIR"$N點燃了祭壇中的木柴與酥油，熊熊烈火沖天而起。\n", ob);
+                message_vision(HIB"一絲魂魄升出祭壇，冉冉而起。魂魄受$N佛法感召，徘徊不去。\n", ob);
+                message_vision(RED"$N端起顱缽吸進一口水，「噗」的一聲猛地朝那熊熊火焰噴將過去。\n", ob);
+                message_vision(HIC"$N盤腿打坐，神光內蘊，口中念念有辭，漸漸有一絲魂魄在$N面前凝聚成形。\n", ob);
+                message_vision(HIG"魂魄越聚越多，竟然呈出人形！$N手指人形，口唸真言，指引往生之路。\n", ob);
+                message_vision(HIW"$N手持法鈴，邊走變搖，高聲誦讀密傳經咒。突然大喝一聲。聲似雷霆。\n", ob);
+                message_vision(HIY"大院裡光芒四起，一聲巨響過後，又恢復了平靜。超度完畢。\n"NOR, ob);
                 if( query_temp("作法事", ob)>query("combat_exp", ob) )
                 {
-                        //〖 超度对象的经验高过你，才能有所收益。对象若是玩家，收益十倍计。〗
+                        //〖 超度對象的經驗高過你，才能有所收益。對象若是玩家，收益十倍計。〗
 //                      bonus=(ob->query_temp("作法事") - ob->query("combat_exp")) * ob->query_skill("lamaism",1) / 200;
                         bonus= ob->query_skill("lamaism",1) / 4;
                         exp_bonus=query("combat_exp", ob)*2*bonus/10000;
@@ -163,7 +163,7 @@ void greeting(object ob)
                                 addn("combat_exp", exp_bonus/10, ob);
                 }
                 else
-                        message_vision(HIR"\n$N不知道哪里找了个菜鸟煞有介事地来超度，看来是白忙了。\n"NOR, ob);
+                        message_vision(HIR"\n$N不知道哪裡找了個菜鳥煞有介事地來超度，看來是白忙了。\n"NOR, ob);
                 delete_temp("作法事", ob);
         }
 }
@@ -173,14 +173,14 @@ string ask_fashi()
         mapping fam;
         object ob = this_player();
 
-        if( query("short", environment(this_object())) != "雪山寺山门" )
-                return "这里正在做法事，你没看见麽？";
+        if( query("short", environment(this_object())) != "雪山寺山門" )
+                return "這裡正在做法事，你沒看見麼？";
         if( !(fam=query("family", ob)) || fam["family_name"] != "密宗" )
-                return "你是那里跳出来的毛虫，也能做个屁法事？";
+                return "你是那裡跳出來的毛蟲，也能做個屁法事？";
         if ( ob->query_skill("lamaism",1) < 30)
-                return "你的密宗心法还早得很呢，没法让你开坛做法事。";
+                return "你的密宗心法還早得很呢，沒法讓你開壇做法事。";
         set_temp("法事", 1, ob);
-        return "这位上人是要给哪位施主做法事呀？";
+        return "這位上人是要給哪位施主做法事呀？";
 }
 
 int accept_object(object who, object ob)
@@ -188,19 +188,19 @@ int accept_object(object who, object ob)
 //      object myenv;
         if( query("money_id", ob) && ob->value() >= 100 )
         {
-                message_vision("葛伦布笑着对$N说：好！这位"+RANK_D->query_respect(who) + "要见活佛就请进吧。\n", who);
+                message_vision("葛倫布笑著對$N說：好！這位"+RANK_D->query_respect(who) + "要見活佛就請進吧。\n", who);
                 set_temp("marks/xueshangate", 1, this_player());
                 return 1;
         }
         if( !query_temp("法事", who) )
         {
-                message_vision("葛伦布笑着对$N说：这种臭东西给我有什么用，您还是自己留着吧！\n", who);
+                message_vision("葛倫布笑著對$N說：這種臭東西給我有什麼用，您還是自己留著吧！\n", who);
                 return 0 ;
         }
         delete_temp("法事", who);
         if( query("id", ob) == "corpse" )
         {
-                message_vision("葛伦布笑着对$N说：那我们去祭坛吧！\n", who);
+                message_vision("葛倫布笑著對$N說：那我們去祭壇吧！\n", who);
                 set_temp("作法事",query("combat_exp",  ob), who);
                 if( query("userp", ob) )
                         set_temp("玩家法事", 1, who);
@@ -208,12 +208,12 @@ int accept_object(object who, object ob)
 //              command("go north");
 //              command("go west");
 //              command("go south");
-                message_vision("葛伦布往北方离开。\n", who);
+                message_vision("葛倫布往北方離開。\n", who);
                 this_object()->move("/d/xueshan/jitan");
                 return 1;
         }
         else
-                message_vision("葛伦布对$N说：这种东西还能做法事？直接埋了省事。\n", who);
+                message_vision("葛倫布對$N說：這種東西還能做法事？直接埋了省事。\n", who);
         return 0;
 }
 
@@ -224,14 +224,14 @@ string ask_for_join()
         me = this_player();
 
         if( query("class", me) == "bonze" )
-                return "你已经是出家人了，还跟我罗嗦些什么？";
+                return "你已經是出家人了，還跟我羅嗦些什麼？";
 
         if( query("gender", me) != "男性" )
-                return "我们雪山寺历来只收男徒，你还是走吧。";
+                return "我們雪山寺歷來只收男徒，你還是走吧。";
 
         set_temp("pending/join_bonze", 1, me);
 
-        return "甚好，甚好！你若真心皈依我佛，请跪下(kneel)受戒。";
+        return "甚好，甚好！你若真心皈依我佛，請跪下(kneel)受戒。";
 }
 
 int do_kneel()
@@ -241,17 +241,17 @@ int do_kneel()
         if( !query_temp("pending/join_bonze", me) )
                 return 0;
 
-        message_vision(HIC "\n$N" HIC "你双手合十，恭恭敬敬地跪了下来。\n\n"
-                       NOR + CYN "$n" CYN "看着$N" CYN "说道：好吧，以后你就"
+        message_vision(HIC "\n$N" HIC "你雙手合十，恭恭敬敬地跪了下來。\n\n"
+                       NOR + CYN "$n" CYN "看著$N" CYN "說道：好吧，以後你就"
                        "在本寺修行吧。\n\n" HIY "$n" HIY "伸出手掌，在$N" HIY
-                       "头顶轻轻地摩挲了几下，随即便将$N" HIY "的头发尽数剃"
+                       "頭頂輕輕地摩挲了幾下，隨即便將$N" HIY "的頭髮盡數剃"
                        "去。\n\n" NOR, me, this_object());
 
         set("class", "bonze", me);
         set("title", "雪山寺喇嘛", me);
 
         command("nod");
-        command("say 既然出了家，就得一心向佛，再不能还俗。");
+        command("say 既然出了家，就得一心向佛，再不能還俗。");
 
         return 1;
 }

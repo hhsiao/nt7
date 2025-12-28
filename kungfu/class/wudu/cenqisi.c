@@ -9,11 +9,11 @@ void create()
         set_name("岑其斯", ({ "cen qisi", "cen", "qisi" }));
         set("nickname", HIR "五毒秀士" NOR);
         set("long", @LONG
-他就是五毒教的右护法，人称五毒秀士的岑其斯。
-经常装扮成一个白衣秀士的模样，没事总爱附庸风
+他就是五毒教的右護法，人稱五毒秀士的岑其斯。
+經常裝扮成一個白衣秀士的模樣，沒事總愛附庸風
 雅。
 LONG);
-        set("title","五毒教护法");
+        set("title","五毒教護法");
         set("gender", "男性");
         set("age", 38);
         set("attitude", "friendly");
@@ -57,7 +57,7 @@ LONG);
         prepare_skill("strike", "tianchan-zhang");
         prepare_skill("claw", "wusheng-zhao");
 
-        create_family("五毒教", 12, "护法");
+        create_family("五毒教", 12, "護法");
 
         setup();
 
@@ -74,23 +74,23 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)>-5000 )
         {
-                command("say 做我五毒教弟子必须心狠手辣。");
+                command("say 做我五毒教弟子必須心狠手辣。");
                 return;
         }
         if ((int)ob->query_skill("wudu-shengong", 1) < 40)
         {
-                command("say 你的五毒心法还学的不够啊。");
+                command("say 你的五毒心法還學的不夠啊。");
                 return;
         }
         if ((int)ob->query_skill("wudu-qishu", 1) < 30)
         {
-                command("say 我五毒教弟子以毒杀人，修习毒技是首要的。");
-                command("say 你是否还应该多多钻研本门的绝学？");
+                command("say 我五毒教弟子以毒殺人，修習毒技是首要的。");
+                command("say 你是否還應該多多鑽研本門的絕學？");
                 return;
         }
 
        command("nod");
-       command("say 不错，不错。");
+       command("say 不錯，不錯。");
        command("recruit "+query("id", ob));
        return;
 }

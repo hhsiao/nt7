@@ -1,5 +1,5 @@
 // This program is a part of NITAN MudLIB
-// linghu.c 令狐冲
+// linghu.c 令狐沖
 
 #include <ansi.h>
 #include "qizong.h"
@@ -16,10 +16,10 @@ mixed learn_chongling();
 
 void create()
 {
-        set_name("令狐冲", ({ "linghu chong", "linghu", "chong" }));
-        set("nickname", "大师兄");
-        set("long", "他身材较瘦，长的浓眉阔眼，气宇暄昂，在同门中排行老大，\n"
-                    "是华山派年轻一代中的顶尖好手。\n");
+        set_name("令狐沖", ({ "linghu chong", "linghu", "chong" }));
+        set("nickname", "大師兄");
+        set("long", "他身材較瘦，長的濃眉闊眼，氣宇暄昂，在同門中排行老大，\n"
+                    "是華山派年輕一代中的頂尖好手。\n");
         set("gender", "男性");
         set("age", 28);
         set("attitude", "peaceful");
@@ -84,24 +84,24 @@ void create()
                 (: exert_function, "recover" :),
         }) );
 
-        create_family("华山派", 14, "弟子");
+        create_family("華山派", 14, "弟子");
 
         set("inquiry", ([
-                "风清扬" : "唉，已经很久没有见到他老人家了。你问这干嘛？",
-                "任盈盈" : "你真有她的消息吗，说罢，以见他神情激动，好象眼睛红红的！\n",
-                "清心普善咒" : "这可是盈盈交给我的...",
-                "笑傲江湖"   : "这是曲洋长老和刘正风师叔留下来的...唉！",
-                "琴谱"       : (: ask_me :),
-                "冲灵剑法"   : (: learn_chongling :),
-                "宝剑"       : (: ask_ylj3 :),
-                // "墨纹玄铁"   : (: ask_ylj2 :),
-                // "遇见尼姑，逢赌必输" : (: ask_ylj1 :),
+                "風清揚" : "唉，已經很久沒有見到他老人家了。你問這幹嘛？",
+                "任盈盈" : "你真有她的消息嗎，說罷，以見他神情激動，好象眼睛紅紅的！\n",
+                "清心普善咒" : "這可是盈盈交給我的...",
+                "笑傲江湖"   : "這是曲洋長老和劉正風師叔留下來的...唉！",
+                "琴譜"       : (: ask_me :),
+                "衝靈劍法"   : (: learn_chongling :),
+                "寶劍"       : (: ask_ylj3 :),
+                // "墨紋玄鐵"   : (: ask_ylj2 :),
+                // "遇見尼姑，逢賭必輸" : (: ask_ylj1 :),
         ]));
 
         set("no_teach", ([
-                "yijinjing"    : "此乃少林秘传，蒙方正大师传授，我不能擅自教你。",
-                "lonely-sword" : "风老先生传我九剑的时候我立下誓言不得私"
-                                 "自传授，你还是学习其他武功吧！",
+                "yijinjing"    : "此乃少林秘傳，蒙方正大師傳授，我不能擅自教你。",
+                "lonely-sword" : "風老先生傳我九劍的時候我立下誓言不得私"
+                                 "自傳授，你還是學習其他武功吧！",
         ]));
 
         set("music_book", 1);
@@ -118,7 +118,7 @@ int recognize_apprentice(object me, string skill)
             skill != "xiaoao-jianghu" &&
             skill != "qingxin-pushan")
         {
-                command("say 对不起...我不能传授你这些，你要是想学点操琴技术还差不多。");
+                command("say 對不起...我不能傳授你這些，你要是想學點操琴技術還差不多。");
                 return -1;
         }
 
@@ -126,8 +126,8 @@ int recognize_apprentice(object me, string skill)
                 return 1;
 
         set_temp("can_learn/linghu/"+skill, 1, me);
-        command("say 好吧，你既然对" + to_chinese(skill) +
-                "有兴趣，我就教你一点。");
+        command("say 好吧，你既然對" + to_chinese(skill) +
+                "有興趣，我就教你一點。");
 
         return 1;
 }
@@ -137,23 +137,23 @@ void attempt_apprentice(object ob)
         if (! permit_recruit(ob))
                 return;
 
-        if( query("family/family_name", ob) == "华山剑宗" )
+        if( query("family/family_name", ob) == "華山劍宗" )
         {
-                command("say 你是剑宗的啊？我可不好收你，我师傅不同意的！");
+                command("say 你是劍宗的啊？我可不好收你，我師傅不同意的！");
                 return;
         }
 
         if( query("shen", ob)<0 )
         {
-                command("say 我华山派乃是堂堂名门正派，对弟子要求极严。");
+                command("say 我華山派乃是堂堂名門正派，對弟子要求極嚴。");
                 command("say 在德行方面，" + RANK_D->query_respect(ob) +
-                        "是否还做得不够？");
+                        "是否還做得不夠？");
                 return;
         }
 
         if ((int)ob->query_int() < 25)
         {
-                command("say 依我看" + RANK_D->query_respect(ob) + "的资质似乎不适合学我华山派武功？");
+                command("say 依我看" + RANK_D->query_respect(ob) + "的資質似乎不適合學我華山派武功？");
                 return;
         }
 
@@ -172,11 +172,11 @@ mixed ask_me()
 
         me = this_player();
         if (query("music_book") < 1)
-                return "我的琴谱已经借出去了。\n";
+                return "我的琴譜已經借出去了。\n";
 
         ob = new("/clone/book/qin");
         ob->move(me, 1);
-        message_vision("$n把琴谱给了$N，道：你拿去好好学习吧。\n",
+        message_vision("$n把琴譜給了$N，道：你拿去好好學習吧。\n",
                        me, this_object());
         set("music_book", 0);
         return 1;
@@ -200,20 +200,20 @@ mixed learn_chongling()
         int lv = me->query_skill("huashan-sword", 1);
 
         if (me->query_skill("chongling-jian"))
-               return "你不是已经会了吗？\n";
+               return "你不是已經會了嗎？\n";
 
-        if( query("family/family_name", me) != "华山派" )
-               return "你说什么，我不明白！\n";
+        if( query("family/family_name", me) != "華山派" )
+               return "你說什麼，我不明白！\n";
 
         if (lv < 100)
-               return "你冲灵剑法修为不够，我还不能传你这招！\n";
-        message_vision(HIW "$N" HIW "说道：“这套剑法是我和小师妹练剑的时候突发奇想"
-                       "创出来的，乃是从华山剑法中演化出来！你可看好了！”说完将「冲"
-                       "灵剑法」冲头到尾地给$n" HIW "演示了一遍！\n" NOR,
+               return "你衝靈劍法修為不夠，我還不能傳你這招！\n";
+        message_vision(HIW "$N" HIW "說道：“這套劍法是我和小師妹練劍的時候突發奇想"
+                       "創出來的，乃是從華山劍法中演化出來！你可看好了！”說完將「衝"
+                       "靈劍法」衝頭到尾地給$n" HIW "演示了一遍！\n" NOR,
                        this_object(), me);
 
         command("haha");
-        tell_object(me, HIG "你学会了「冲灵剑法」！\n" NOR);
+        tell_object(me, HIG "你學會了「衝靈劍法」！\n" NOR);
 
         if( !query("have_ask_chongling", me)){
         if (me->can_improve_skill("sword"))
@@ -224,7 +224,7 @@ mixed learn_chongling()
         set("have_ask_chongling", 1, me);
         }
 
-        command("say 领会了多少就看你华山剑法的修为了，剩下的就靠你自己下去练习！");
+        command("say 領會了多少就看你華山劍法的修為了，剩下的就靠你自己下去練習！");
 
         me->set_skill("chongling-jian", lv / 10);
 
@@ -246,13 +246,13 @@ int accept_object(object who, object ob)
                 return 0;
 
         if (! present(ob, who))
-                return notify_fail("你没有这件东西。\n");
+                return notify_fail("你沒有這件東西。\n");
 
         if( query("name", ob) != "信" &&
             query("id", ob) != "qingxin" )
-                return notify_fail("令狐冲不需要这件东西。\n");
+                return notify_fail("令狐沖不需要這件東西。\n");
 
-        say("令狐冲双手捧着任盈盈的信，泪如雨下，这块白虎堂令牌你拿去还给盈盈，告诉她我就去找她!");
+        say("令狐沖雙手捧著任盈盈的信，淚如雨下，這塊白虎堂令牌你拿去還給盈盈，告訴她我就去找她!");
         obn = new("/d/heimuya/npc/obj/card2");
         obn->set_amount(1);
         obn->move(who);
@@ -268,10 +268,10 @@ string ask_ylj1()
         command("haha"+query("id", me));
         set_temp("ylj/step1", 1, me);
 
-        return sort_string("兄台也知道这件事？这是当初兄弟我为救恒山派的仪琳师妹，向采"
-                           "花大盗田伯光开的玩笑，事后恒山的定静师伯不但没怪我，还送我"
-                           "了一块世间已绝迹的墨纹玄铁，要我用它铸成一把绝世宝剑，行侠"
-                           "处恶，笑傲江湖.....\n", 64, 3);
+        return sort_string("兄臺也知道這件事？這是當初兄弟我為救恆山派的儀琳師妹，向採"
+                           "花大盜田伯光開的玩笑，事後恆山的定靜師伯不但沒怪我，還送我"
+                           "了一塊世間已絕跡的墨紋玄鐵，要我用它鑄成一把絕世寶劍，行俠"
+                           "處惡，笑傲江湖.....\n", 64, 3);
 }
 
 string ask_ylj2()
@@ -280,12 +280,12 @@ string ask_ylj2()
 
         me = this_player();
         if( !query_temp("ylj/step1", me) )
-                return "这可是个天大的秘密。\n";
+                return "這可是個天大的秘密。\n";
 
         set_temp("ylj/step2", 1, me);
         delete_temp("ylj/step1", me);
 
-        return "说来这墨纹玄铁也是一个宝物，我一直找不到铸剑名师，不想浪费了这块玄铁...。\n";
+        return "說來這墨紋玄鐵也是一個寶物，我一直找不到鑄劍名師，不想浪費了這塊玄鐵...。\n";
 }
 
 string ask_ylj3()
@@ -294,7 +294,7 @@ string ask_ylj3()
 
         me = this_player();
         if( !query_temp("ylj/step2", me) )
-                return "这可是个天大的秘密。\n";
+                return "這可是個天大的秘密。\n";
 
         delete_temp("ylj/step2", me);
         command("look"+query("id", me));
@@ -304,8 +304,8 @@ string ask_ylj3()
                 obj = new(__DIR__"obj/xuantie");
                 obj->move(me);
                 // me->set_temp("ylj/step3", 1);
-                return "看兄台一身正气，这块玄铁就送与兄台，望兄台能找到铸\n"
-                       "剑名师，铸成宝剑，行侠江湖，也不枉费定静师伯的一翻苦心.....\n";
+                return "看兄臺一身正氣，這塊玄鐵就送與兄臺，望兄臺能找到鑄\n"
+                       "劍名師，鑄成寶劍，行俠江湖，也不枉費定靜師伯的一翻苦心.....\n";
         }
-        return "这可是个天大的秘密。\n";
+        return "這可是個天大的秘密。\n";
 }

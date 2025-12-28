@@ -14,7 +14,7 @@ void create()
 {
         set("short", "灌木林");
         set("long",@LONG
-这是一片灌木林。走了不远，你就可以看得见前面的空地了。
+這是一片灌木林。走了不遠，你就可以看得見前面的空地了。
 LONG);
 	set("exits", ([
 		"north" : __DIR__"kongdi",

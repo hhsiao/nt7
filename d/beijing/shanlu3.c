@@ -4,8 +4,8 @@ void create()
 {
         set("short", "山路");
         set("long", @LONG
-这里是山中的一片丛林，灌木中夹杂着一些野花，被高大的树木
-遮住了阳光。一块巨大的石头倚树而卧。
+這裡是山中的一片叢林，灌木中夾雜著一些野花，被高大的樹木
+遮住了陽光。一塊巨大的石頭倚樹而臥。
 LONG );
         set("exits", ([
                 "eastdown" : "/d/beijing/shanlu2",
@@ -28,12 +28,12 @@ string long()
                 return sort_string(msg, 70, 4);
 
         if (! ob->is_fighting())
-                msg += "有一个黄衫人靠在石上，痴痴的望着远方，一动不动"
-                       "的，也不知道他在这里究竟待了多久。";
+                msg += "有一個黃衫人靠在石上，痴痴的望著遠方，一動不動"
+                       "的，也不知道他在這裡究竟待了多久。";
         else
-                msg += "只见一黄衫人身形诡秘，进退疾若闪电，正在与" +
+                msg += "只見一黃衫人身形詭秘，進退疾若閃電，正在與" +
                        (ob->is_fighting(this_player()) ? "你" : "人") +
-                       "激战。";
+                       "激戰。";
 
         return sort_string(msg, 70, 4);
 }

@@ -5,7 +5,7 @@
 inherit THROWING;
 void create()
 {
-        set_name("梅花针", ({ "meihua zhen", "zhen" }) );
+        set_name("梅花針", ({ "meihua zhen", "zhen" }) );
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
@@ -15,7 +15,7 @@ void create()
                 set("base_weight", 100);
                 set("base_value", 200);
                 set("material", "steel");
-                set("long", "一根细若牛毛的针。\n");
+                set("long", "一根細若牛毛的針。\n");
                                 
         }
        set_amount(50);

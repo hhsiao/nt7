@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("玛莎拉蒂[2;37;0m[2;37;0m", ({"mashaladi"}));        
+        set_name("瑪莎拉蒂[2;37;0m[2;37;0m", ({"mashaladi"}));        
         set("gender", "男性");                
-        set("long", "玛莎拉蒂[2;37;0m
-它是埃辛摩卡的魔幻兽。
+        set("long", "瑪莎拉蒂[2;37;0m
+它是埃辛摩卡的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

@@ -1,10 +1,10 @@
 // paper.c
 //
-// 纸张可以用来作画，画好以后可以作为autoload物品载入。
+// 紙張可以用來作畫，畫好以後可以作為autoload物品載入。
 // 保存的必要信息：
-// draw/type    图画的类型
-// draw/content 图画的描述
-// draw/info    图画的附加信息
+// draw/type    圖畫的類型
+// draw/content 圖畫的描述
+// draw/info    圖畫的附加信息
 
 #include <ansi.h>
 #include <command.h>
@@ -13,14 +13,14 @@ inherit ITEM;
 
 void create()
 {
-        set_name("纸张", ({"paper", "paper of drawing"}));
+        set_name("紙張", ({"paper", "paper of drawing"}));
         set_weight(10);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "张");
-                set("long", "这是一张普普通通的白纸，上面什么也没有。"
-                            "如果你愿意可以画(draw)点东西在上面。\n");
+                set("unit", "張");
+                set("long", "這是一張普普通通的白紙，上面什麼也沒有。"
+                            "如果你願意可以畫(draw)點東西在上面。\n");
                 set("material", "paper");
                 set("can_draw", 1);
         }
@@ -39,107 +39,107 @@ int do_draw(string arg)
         int lvl;
 
         if (! arg)
-                return notify_fail("你想画什么？如果要画这里的风景，"
+                return notify_fail("你想畫什麼？如果要畫這裡的風景，"
                                    "可以draw here。\n");
 
         me = this_player();
         lvl = me->query_skill("drawing", 1);
         if (arg != "here" && ! objectp(ob = present(arg, environment(me))))
-                return notify_fail("这里没有你想要画的东西。\n");
+                return notify_fail("這裡沒有你想要畫的東西。\n");
 
         if (query("draw"))
-                return notify_fail("这张纸已经画了东西，如果想再画需要"
+                return notify_fail("這張紙已經畫了東西，如果想再畫需要"
                                    "先抹去(clear)。\n");
 
-        message("vision", me->name() + "拿出一支笔，在纸上不知"
-                "道画了些什么。\n", environment(me), ({ me }));
+        message("vision", me->name() + "拿出一支筆，在紙上不知"
+                "道畫了些什麼。\n", environment(me), ({ me }));
 
         if (arg == "here")
         {
-                tell_object(me, "你拿出一支笔，仔细的临摹这里的风景。\n");
+                tell_object(me, "你拿出一支筆，仔細的臨摹這裡的風景。\n");
                 if (lvl < 30)
                 {
-                        tell_object(me, "可是你的画画技巧实在是太差了，"
-                                        "无从落笔，只好胡乱涂抹一阵。\n");
-                        set("draw/content", "上面乱七八糟的看不出画的是"
-                                            "什么。\n");
+                        tell_object(me, "可是你的畫畫技巧實在是太差了，"
+                                        "無從落筆，只好胡亂塗抹一陣。\n");
+                        set("draw/content", "上面亂七八糟的看不出畫的是"
+                                            "什麼。\n");
                         set("draw/info", "unknow");
                 } else
                 if (lvl < 80)
                 {
-                        tell_object(me, "虽然你的画画技巧不怎么样，但是"
-                                        "好在学过一点，勉强画得。\n");
-                        set("draw/content", "上面画的虽然有些凌乱，但是"
-                            "还能看得出是" + environment(me)->short() +
-                            "的风景。\n");
+                        tell_object(me, "雖然你的畫畫技巧不怎麼樣，但是"
+                                        "好在學過一點，勉強畫得。\n");
+                        set("draw/content", "上面畫的雖然有些凌亂，但是"
+                            "還能看得出是" + environment(me)->short() +
+                            "的風景。\n");
                         set("draw/info", base_name(environment(me)));
                 } else
                 {
-                        tell_object(me, "你随意挥洒，风景登时飘然跃在纸"
+                        tell_object(me, "你隨意揮灑，風景登時飄然躍在紙"
                                         "上。\n");
-                        set("draw/content", "上面画的是" + environment(me)->short() +
-                            "的风景，极为传神，宛若亲临。\n");
+                        set("draw/content", "上面畫的是" + environment(me)->short() +
+                            "的風景，極為傳神，宛若親臨。\n");
                         set("draw/info", base_name(environment(me)));
                 }                
 
-                set("draw/type", "风景");
+                set("draw/type", "風景");
         } else
         if (ob->is_character())
         {
                 if (ob != me)
                 {
                         message("vision", me->name() + "不住的打量" + ob->name() +
-                                "，手下不知道在画些什么东西。\n",
+                                "，手下不知道在畫些什麼東西。\n",
                                 me, ob);
-                        tell_object(me, "你拿出一支笔，仔细的临摹" + ob->name() + "。\n");
+                        tell_object(me, "你拿出一支筆，仔細的臨摹" + ob->name() + "。\n");
                 } else
                 {
                         command("consider");
-                        tell_object(me, "你拿出一支笔，仔细的按照记忆中的样子描绘自己。\n");
+                        tell_object(me, "你拿出一支筆，仔細的按照記憶中的樣子描繪自己。\n");
                 }
                 if (lvl < 30)
                 {
-                        tell_object(me, "可是你的画画技巧实在是太差了，"
-                                        "无从落笔，只好胡乱涂抹一阵。\n");
-                        set("draw/content", "上面乱七八糟的看不出画的是"
-                                            "什么。\n");
+                        tell_object(me, "可是你的畫畫技巧實在是太差了，"
+                                        "無從落筆，只好胡亂塗抹一陣。\n");
+                        set("draw/content", "上面亂七八糟的看不出畫的是"
+                                            "什麼。\n");
                         set("draw/info", "unknow");
                 } else
                 if (lvl < 80)
                 {
-                        tell_object(me, "虽然你的画画技巧不怎么样，但是"
-                                        "好在学过一点，勉强画得。\n");
-                        set("draw/content", "上面画的虽然有些凌乱，但是"
-                            "还能看得出是" + ob->name() + "，有点神似。\n");
+                        tell_object(me, "雖然你的畫畫技巧不怎麼樣，但是"
+                                        "好在學過一點，勉強畫得。\n");
+                        set("draw/content", "上面畫的雖然有些凌亂，但是"
+                            "還能看得出是" + ob->name() + "，有點神似。\n");
                         set("draw/info",query("id", ob));
                 } else
                 {
                         string msg;
                         object cloth;
 
-                        tell_object(me, "你随意挥洒，" + ob->name() +
-                                        "登时飘然跃在纸上。\n");
-                        msg = "摊看纸来，";
+                        tell_object(me, "你隨意揮灑，" + ob->name() +
+                                        "登時飄然躍在紙上。\n");
+                        msg = "攤看紙來，";
                         if (userp(ob))
                         {
                                 cloth=query_temp("armor/cloth", ob);
                                 if( query("gender", ob) == "女性" )
                                 {
                                         if (cloth)
-                                                msg += "只见上面一名女子身着" + cloth->name() + "，";
+                                                msg += "只見上面一名女子身著" + cloth->name() + "，";
                                         else
-                                                msg += "只见上面一名女子一丝不挂、未着寸缕，";
+                                                msg += "只見上面一名女子一絲不掛、未著寸縷，";
                                 } else
                                 {
                                         if (cloth)
-                                                msg += "只见上面一名男子身着" + cloth->name() + "，";
+                                                msg += "只見上面一名男子身著" + cloth->name() + "，";
                                         else
-                                                msg += "只见上面一名男子坦胸露乳，赤身裸体，";
+                                                msg += "只見上面一名男子坦胸露乳，赤身裸體，";
                                 }
                                 msg += LOOK_CMD->description(ob);
                         }
-                        msg += "原来上面画的是" + ob->name() +
-                            "，果然传神之至，庶几破纸而出。\n";
+                        msg += "原來上面畫的是" + ob->name() +
+                            "，果然傳神之至，庶幾破紙而出。\n";
                         set("draw/content", msg);
                         set("draw/info",query("id", ob));
                 }                
@@ -147,31 +147,31 @@ int do_draw(string arg)
                 set("draw/type", "人物");
         } else
         {
-                tell_object(me, "你拿出一支笔，仔细的临摹" + ob->name() + "。\n");
+                tell_object(me, "你拿出一支筆，仔細的臨摹" + ob->name() + "。\n");
                 if (lvl < 30)
                 {
-                        tell_object(me, "可是你的画画技巧实在是太差了，"
-                                        "无从落笔，只好胡乱涂抹一阵。\n");
-                        set("draw/content", "上面乱七八糟的看不出画的是"
-                                            "什么。\n");
+                        tell_object(me, "可是你的畫畫技巧實在是太差了，"
+                                        "無從落筆，只好胡亂塗抹一陣。\n");
+                        set("draw/content", "上面亂七八糟的看不出畫的是"
+                                            "什麼。\n");
                         set("draw/info", "unknow");
                 } else
                 if (lvl < 80)
                 {
-                        tell_object(me, "虽然你的画画技巧不怎么样，但是"
-                                        "好在学过一点，勉强画得。\n");
-                        set("draw/content", "上面画的虽然有些凌乱，但是"
-                            "还能看得出是" + ob->name() + "，有点神似。\n");
+                        tell_object(me, "雖然你的畫畫技巧不怎麼樣，但是"
+                                        "好在學過一點，勉強畫得。\n");
+                        set("draw/content", "上面畫的雖然有些凌亂，但是"
+                            "還能看得出是" + ob->name() + "，有點神似。\n");
                         set("draw/info",query("id", ob));
                 } else
                 {
                         string msg;
                         object cloth;
 
-                        tell_object(me, "你随意挥洒，" + me->name() +
-                                        "登时飘然跃在纸上。\n");
-                        msg = "上面画的是" + ob->name() +
-                            "，逼真之极。\n";
+                        tell_object(me, "你隨意揮灑，" + me->name() +
+                                        "登時飄然躍在紙上。\n");
+                        msg = "上面畫的是" + ob->name() +
+                            "，逼真之極。\n";
                         set("draw/content", msg);
                         set("draw/info",query("id", ob));
                 }                
@@ -190,15 +190,15 @@ int do_clear(string arg)
         object me = this_player();
 
         if (! arg || ! id(arg))
-                return notify_fail("你要擦干净什么东西？\n");
+                return notify_fail("你要擦乾淨什麼東西？\n");
 
         if (! query("draw/type"))
         {
-                write ("上面干干净净的什么也没有，不用再擦了。\n");
+                write ("上面乾乾淨淨的什麼也沒有，不用再擦了。\n");
                 return 1;
         }
 
-        message_vision("$N轻轻的将纸插抹干净。\n", me);
+        message_vision("$N輕輕的將紙插抹乾淨。\n", me);
         delete("draw");
         delete("no_sell");
         delete("value");

@@ -4,15 +4,15 @@ inherit BOOK;
 
 void create()
 {
-        set_name( "旋风扫叶腿心法", ({ "xin fa","book", "fa" }));
+        set_name( "旋風掃葉腿心法", ({ "xin fa","book", "fa" }));
         set_weight(200);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-                set("unit", "张");
+                set("unit", "張");
                 set("long", "
-一张薄纸，上面密密麻麻写满了蝇头小楷，旁边似乎有些批注。\n");
+一張薄紙，上面密密麻麻寫滿了蠅頭小楷，旁邊似乎有些批註。\n");
                 set("value", 200);
                 set("material", "paper");
                 set("skill", ([

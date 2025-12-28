@@ -2,12 +2,12 @@
 inherit NPC;
 
 string *degree_desc = ({
-       HIR "总督" NOR,
+       HIR "總督" NOR,
        MAG "兵部侍郎" NOR,
-       MAG "兵部尚书" NOR,
-       HIB "镇北节度使" NOR,
-       HIB "征讨大将军" NOR,
-       HIW "兵马大元帅" NOR,
+       MAG "兵部尚書" NOR,
+       HIB "鎮北節度使" NOR,
+       HIB "征討大將軍" NOR,
+       HIW "兵馬大元帥" NOR,
 });
 string clear_degree(string arg);
 string ask_chubing(object me);
@@ -16,11 +16,11 @@ int add_degree(object ob, int lv);
 
 void create()
 {
-        set_name("刘公公", ({"liu gonggong", "liu"}));
-        set("gender", "无性");
+        set_name("劉公公", ({"liu gonggong", "liu"}));
+        set("gender", "無性");
         set("age", random(20) + 20);
 
-        set("long", "这是一个京城皇宫中的一名太监，负责为皇帝传送奏本。\n");
+        set("long", "這是一個京城皇宮中的一名太監，負責為皇帝傳送奏本。\n");
         set("combat_exp", 800000);
         set("attitude", "peaceful");
         set("max_qi", 3000);
@@ -45,7 +45,7 @@ int ask_degree()
         if( query_temp("degree_jungong", ob) )
         {
                 command("say 大人稍安勿躁，"
-                        + "咱家已经启奏圣上了，还是先耐心恭候圣上旨意吧！\n");
+                        + "咱家已經啟奏聖上了，還是先耐心恭候聖上旨意吧！\n");
                 return 1;
         }
 
@@ -55,18 +55,18 @@ int ask_degree()
 
         if (lv > (sizeof(degree_desc) + 8))
         {
-                command("say 大人已经官居极品，位高权重，该多考虑些"
-                        + "为国家社稷出力才是！\n");
+                command("say 大人已經官居極品，位高權重，該多考慮些"
+                        + "為國家社稷出力才是！\n");
                 return 1;
         }
 
         if( lv <= query("degree_jungong", ob) || query("degree_jungong", ob)<8 )
         {
-                command("say 要获得更高的策封，大人所立军功好象不够啊！\n");
+                command("say 要獲得更高的策封，大人所立軍功好象不夠啊！\n");
                 return 1;
         }
 
-        command("say 大人请稍候，咱家这就立刻禀报圣上，为大人请封！\n");
+        command("say 大人請稍候，咱家這就立刻稟報聖上，為大人請封！\n");
 
         //  remove_call_out("add_degree");
         call_out("add_degree", 10, ob, lv);
@@ -89,9 +89,9 @@ int add_degree(object ob, int lv)
                 + "......\n"NOR,
                 users());
 
-        message("channel:rumor", MAG"【大宋京城】"HIY"奉天承命，皇帝诏曰："
+        message("channel:rumor", MAG"【大宋京城】"HIY"奉天承命，皇帝詔曰："
                 +"策封"+old_degree+""+HIW+query("name", ob )
-                + HIY" 为大宋 "NOR + degree + HIY"，钦此！\n"NOR,
+                + HIY" 為大宋 "NOR + degree + HIY"，欽此！\n"NOR,
                 users());
         delete_temp("degree_jungong", ob);
 
@@ -116,20 +116,20 @@ int add_degree(object ob, int lv)
 string clear_degree(string arg)
 {
         if ((strsrch(arg, HIR "提督" NOR) >= 0)
-        ||  (strsrch(arg, HIR "总督" NOR) >= 0)
+        ||  (strsrch(arg, HIR "總督" NOR) >= 0)
         ||  (strsrch(arg, MAG "兵部侍郎" NOR) >= 0)
-        ||  (strsrch(arg, MAG "兵部尚书" NOR) >= 0)
-        ||  (strsrch(arg, HIB "镇北节度使" NOR) >= 0)
-        ||  (strsrch(arg, HIB "征讨大将军" NOR) >= 0)
-        ||  (strsrch(arg, HIW "兵马大元帅" NOR) >= 0)
+        ||  (strsrch(arg, MAG "兵部尚書" NOR) >= 0)
+        ||  (strsrch(arg, HIB "鎮北節度使" NOR) >= 0)
+        ||  (strsrch(arg, HIB "征討大將軍" NOR) >= 0)
+        ||  (strsrch(arg, HIW "兵馬大元帥" NOR) >= 0)
         ||  (strsrch(arg, HIM " ☆ " NOR) >= 0))
         {
-                arg = replace_string(arg, HIR "总督" NOR, "");
+                arg = replace_string(arg, HIR "總督" NOR, "");
                 arg = replace_string(arg, MAG "兵部侍郎" NOR, "");
-                arg = replace_string(arg, MAG "兵部尚书" NOR, "");
-                arg = replace_string(arg, HIB "镇北节度使" NOR, "");
-                arg = replace_string(arg, HIB "征讨大将军" NOR, "");
-                arg = replace_string(arg, HIW "兵马大元帅" NOR, "");
+                arg = replace_string(arg, MAG "兵部尚書" NOR, "");
+                arg = replace_string(arg, HIB "鎮北節度使" NOR, "");
+                arg = replace_string(arg, HIB "征討大將軍" NOR, "");
+                arg = replace_string(arg, HIW "兵馬大元帥" NOR, "");
                 arg = replace_string(arg, HIR "提督" NOR, "");
                 arg = replace_string(arg, HIM " ☆ " NOR, "");
                 arg = replace_string(arg, HIM "☆" NOR, "");

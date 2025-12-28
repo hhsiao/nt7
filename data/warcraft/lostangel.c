@@ -7,7 +7,7 @@ void setup()
         set_name("塞斯[2;37;0m[2;37;0m", ({"sess"}));        
         set("gender", "男性");                
         set("long", "天使[2;37;0m
-它是天使之城的魔幻兽。
+它是天使之城的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

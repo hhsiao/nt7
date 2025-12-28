@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("呜呜[2;37;0m[2;37;0m", ({"wwu"}));        
+        set_name("嗚嗚[2;37;0m[2;37;0m", ({"wwu"}));        
         set("gender", "女性");                
-        set("long", "呜呜[2;37;0m
-它是阿舞的魔幻兽。
+        set("long", "嗚嗚[2;37;0m
+它是阿舞的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

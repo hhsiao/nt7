@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m三足乌[2;37;0m[2;37;0m", ({"niao"}));        
+        set_name("[1;31m三足烏[2;37;0m[2;37;0m", ({"niao"}));        
         set("gender", "女性");                
-        set("long", "传说中生活在太阳中的神鸟[2;37;0m
-它是周毒通的魔幻兽。
+        set("long", "傳說中生活在太陽中的神鳥[2;37;0m
+它是周毒通的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

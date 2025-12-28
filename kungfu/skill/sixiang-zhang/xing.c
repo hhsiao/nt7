@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define XING "「" HIW "星罗棋布" NOR "」"
+#define XING "「" HIW "星羅棋佈" NOR "」"
 
 inherit F_SSERVER;
  
@@ -12,7 +12,7 @@ int perform(object me)
         int skill, ap, dp, damage;
 
         if( userp(me) && !query("can_perform/sixiang-zhang/xing", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target)
         {
@@ -21,7 +21,7 @@ int perform(object me)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(XING "只能对战斗中的对手使用。\n");
+                return notify_fail(XING "只能對戰鬥中的對手使用。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(XING "只能空手施展。\n");
@@ -29,22 +29,22 @@ int perform(object me)
         skill = me->query_skill("sixiang-zhang", 1);
 
         if (skill < 60)
-                return notify_fail("你的四象掌法等级不够，难以施展" XING "。\n");
+                return notify_fail("你的四象掌法等級不夠，難以施展" XING "。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你的真气不够，难以施展" XING "。\n");
+                return notify_fail("你的真氣不夠，難以施展" XING "。\n");
  
         if (me->query_skill_mapped("strike") != "sixiang-zhang")
-                return notify_fail("你没有激发四象掌法，难以施展" XING "。\n");
+                return notify_fail("你沒有激發四象掌法，難以施展" XING "。\n");
 
         if (me->query_skill_prepared("strike") != "sixiang-zhang")
-                return notify_fail("你现在没有准备使用四象掌法，无法使用" XING "。\n");
+                return notify_fail("你現在沒有準備使用四象掌法，無法使用" XING "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N" HIW "一声清啸，双掌纷飞贯出，掌影重重叠叠，虚实难"
-              "辨，全全笼罩$n" HIW "全身。\n" NOR;
+        msg = HIW "$N" HIW "一聲清嘯，雙掌紛飛貫出，掌影重重疊疊，虛實難"
+              "辨，全全籠罩$n" HIW "全身。\n" NOR;
 
         ap = me->query_skill("strike");
         dp = target->query_skill("parry");
@@ -53,8 +53,8 @@ int perform(object me)
                 addn("neili", -80, me);
                 damage = ap / 3 + random(ap / 3);
                 msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 10,
-                                           HIR "$n" HIR "一时无法勘破这玄奇的掌法"
-                                           "，接连中了数招，身陷其中，无法自拔。\n"
+                                           HIR "$n" HIR "一時無法勘破這玄奇的掌法"
+                                           "，接連中了數招，身陷其中，無法自拔。\n"
                                            NOR);
                 me->start_busy(2);
                 if (ap / 2 + random(ap) > dp && ! target->is_busy())
@@ -62,7 +62,7 @@ int perform(object me)
         } else
         {
                 msg += CYN "可是$p" CYN "的看破了$P" CYN
-                       "的掌法，巧妙的拆招，没露半点破绽"
+                       "的掌法，巧妙的拆招，沒露半點破綻"
                        "。\n" NOR;
                 addn("neili", -50, me);
                 me->start_busy(3);

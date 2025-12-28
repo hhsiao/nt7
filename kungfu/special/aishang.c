@@ -3,7 +3,7 @@
 
 int is_scborn() { return 1; }
 
-string name() { return HIC "剑灵之哀伤" NOR; }
+string name() { return HIC "劍靈之哀傷" NOR; }
 
 int perform(object me, string skill, string arg)
 {
@@ -12,7 +12,7 @@ int perform(object me, string skill, string arg)
         string msg;
         
         if( query_temp("special2/aishang", me) )
-                return notify_fail("你已经处于极度的哀伤当中了，稍后再施展吧。\n");
+                return notify_fail("你已經處於極度的哀傷當中了，稍後再施展吧。\n");
         
         set_temp("special2/aishang", 1, me);
         
@@ -27,9 +27,9 @@ int perform(object me, string skill, string arg)
         addn_temp("apply/dodge", sk, me);
         addn_temp("apply/force", sk, me);
 
-        msg = HIY "$N" HIY "轻抚「剑灵之哀伤」，刹那间，浑身散发出淡蓝色的光芒，一直蓝色的蝴蝶从$N" HIY "身体内升起，不断煽动着翅膀。"
-              "蝴蝶渐渐地化作一个仙子的模样，凝视着$N" HIY "身上的「剑灵之哀伤」，慢慢地滴下眼泪 …… $N" HIY "不由自主地一阵哀伤，似"
-              "乎在此刻与剑灵合为一体！\n" NOR;
+        msg = HIY "$N" HIY "輕撫「劍靈之哀傷」，剎那間，渾身散發出淡藍色的光芒，一直藍色的蝴蝶從$N" HIY "身體內升起，不斷煽動著翅膀。"
+              "蝴蝶漸漸地化作一個仙子的模樣，凝視著$N" HIY "身上的「劍靈之哀傷」，慢慢地滴下眼淚 …… $N" HIY "不由自主地一陣哀傷，似"
+              "乎在此刻與劍靈合為一體！\n" NOR;
         message_vision(sort_msg(msg), me) ;
         
         me->start_call_out( (: call_other, __FILE__, "remove_effect", me, armor, damage, sk :), 600);   
@@ -50,6 +50,6 @@ void remove_effect(object me, int armor, int damage, int skill)
                 addn_temp("apply/dodge", -1*skill, me);
                 addn_temp("apply/force", -1*skill, me);
                 delete_temp("special2/aishang", me);
-                tell_object(me, HIG "你剑灵之哀伤施展完毕。\n" NOR);
+                tell_object(me, HIG "你劍靈之哀傷施展完畢。\n" NOR);
         }
 }

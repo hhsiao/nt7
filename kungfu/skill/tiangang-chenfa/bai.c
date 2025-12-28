@@ -12,34 +12,34 @@ int perform(object me, object target)
         object weapon;
 
         if( userp(me) && !query("can_perform/tiangang-chenfa/bai", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(BAI "只能对战斗中的对手使用。\n");
+                return notify_fail(BAI "只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "whip" )
-                return notify_fail("你使用的武器不对，难以施展" BAI "。\n");
+                return notify_fail("你使用的武器不對，難以施展" BAI "。\n");
 
         if ((int)me->query_skill("tiangang-chenfa", 1) < 120)
-                return notify_fail("你天罡尘法不够娴熟，难以施展" BAI "。\n");
+                return notify_fail("你天罡塵法不夠嫻熟，難以施展" BAI "。\n");
 
         if( query("max_neili", me)<1500 )
-                return notify_fail("你的内力修为不足，难以施展" BAI "。\n");
+                return notify_fail("你的內力修為不足，難以施展" BAI "。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你现在真气不够，难以施展" BAI "。\n");
+                return notify_fail("你現在真氣不夠，難以施展" BAI "。\n");
 
         if (me->query_skill_mapped("whip") != "tiangang-chenfa")
-                return notify_fail("你没有激发天罡尘法，难以施展" BAI "。\n");
+                return notify_fail("你沒有激發天罡塵法，難以施展" BAI "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg=HIY"但见$N"HIY"手中"+query("name", weapon)+HIY"窜动不"
-              "已，接连变幻了数种招式，分袭$n" HIY "各处要害。\n";
+        msg=HIY"但見$N"HIY"手中"+query("name", weapon)+HIY"竄動不"
+              "已，接連變幻了數種招式，分襲$n" HIY "各處要害。\n";
 
         ap = me->query_skill("whip");
         dp = target->query_skill("parry");
@@ -51,15 +51,15 @@ int perform(object me, object target)
                 damage = damage / 2 + random(damage * 2 / 3);
 
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 50,
-                                           HIR "$n" HIR "急忙躲闪，却发现$N" HIR
+                                           HIR "$n" HIR "急忙躲閃，卻發現$N" HIR
                                            "的" + weapon->name() + HIR "已然拂中"
-                                           "胸前要穴，顿感气血上涌，难受之极。\n" NOR);
+                                           "胸前要穴，頓感氣血上湧，難受之極。\n" NOR);
                 addn("neili", -180, me);
         } else
         {
                 me->start_busy(3);
                 msg += CYN "可是$p" CYN "看破了$P"
-                       CYN "招中虚实，当即纵身而起，躲避开来。\n" NOR;
+                       CYN "招中虛實，當即縱身而起，躲避開來。\n" NOR;
         }
         message_combatd(msg, me, target);
         return 1;

@@ -6,7 +6,7 @@ void create()
         set("gender", "女性" );
         set("age", 32);
         set("long",
-              "一个千姿百媚的妓女。\n");
+              "一個千姿百媚的妓女。\n");
         set("shen_type", 1);
         set("combat_exp", 10000);
         set("str", 17);
@@ -18,7 +18,7 @@ void create()
         set_skill("unarmed",20);
         set("chat_chance", 1);
         set("chat_msg", ({
-                "妓女朝着你抛了个媚眼。\n",
+                "妓女朝著你拋了個媚眼。\n",
         }) );       
 
         setup();

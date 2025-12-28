@@ -9,8 +9,8 @@ void create()
         else {
                 set("unit", "本");
                 set("material", "paper");
-                set("long", "这是一本笑傲江湖曲。\n");
+                set("long", "這是一本笑傲江湖曲。\n");
         }
-        set("owner", "令狐冲");
+        set("owner", "令狐沖");
         setup();
 }  

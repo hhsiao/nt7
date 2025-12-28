@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// jian.c 简长老
+// jian.c 簡長老
 
 #include <ansi.h>
 #include "gaibang.h"
@@ -16,14 +16,14 @@ mixed ask_me();
 
 void create()
 {
-        set_name("简长老", ({ "jian zhanglao", "jian", "zhanglao" }));
+        set_name("簡長老", ({ "jian zhanglao", "jian", "zhanglao" }));
         set("long", @LONG
-简长老是丐邦的执法长老，代帮主执掌法刀以
-及青竹令等。他向来嫉恶如仇，弟子中有谁犯
-过，出手决不容情。
+簡長老是丐邦的執法長老，代幫主執掌法刀以
+及青竹令等。他向來嫉惡如仇，弟子中有誰犯
+過，出手決不容情。
 LONG);
-        set("nickname", HIR "执法长老" NOR);
-        set("title", "丐帮九袋长老");
+        set("nickname", HIR "執法長老" NOR);
+        set("title", "丐幫九袋長老");
         set("gender", "男性");
         set("age", 50);
         set("attitude", "peaceful");
@@ -75,7 +75,7 @@ LONG);
 
         prepare_skill("hand", "shexing-diaoshou");
 
-        create_family("丐帮", 18, "九袋长老");
+        create_family("丐幫", 18, "九袋長老");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -109,7 +109,7 @@ void init()
         &&  file_name(environment(this_object())) == "/d/gaibang/gbandao")
         {
                 myfam=query("family", ob);
-                if ((! myfam || myfam["family_name"] != "丐帮") &&
+                if ((! myfam || myfam["family_name"] != "丐幫") &&
                         (! wizardp(ob))) {
                         remove_call_out("saying");
                         call_out("saying", 2, ob);
@@ -122,10 +122,10 @@ void saying(object ob)
         if (! ob || environment(ob) != environment())
                 return;
 
-        message_sort("\n\n$n看了$N一眼，冷冷地说到：“洪帮主他老人家说我不该"
-                     "随意责打丐帮弟子，你又不属我丐帮，我打你总可以吧？”"
-                     "说完右腿一抬，$N顺势应了一招青城派的「屁股向后，平沙落雁式」"
-                     "－－叭叽\n\n", ob, this_object());
+        message_sort("\n\n$n看了$N一眼，冷冷地說到：“洪幫主他老人家說我不該"
+                     "隨意責打丐幫弟子，你又不屬我丐幫，我打你總可以吧？”"
+                     "說完右腿一抬，$N順勢應了一招青城派的「屁股向後，平沙落雁式」"
+                     "－－叭嘰\n\n", ob, this_object());
         remove_call_out("kicking");
         call_out("kicking", 1, ob);
 
@@ -137,14 +137,14 @@ void kicking(object ob)
                 return;
 
         ob->move("/d/gaibang/pomiao");
-        message("vision","只听“嘭”地一声，紧接着"+query("name", ob)+
-                "从小门里飞了出来，屁股上有一个清楚的鞋印。\n", environment(ob), ob);
+        message("vision","只聽“嘭”地一聲，緊接著"+query("name", ob)+
+                "從小門裡飛了出來，屁股上有一個清楚的鞋印。\n", environment(ob), ob);
 }
 
 void attempt_apprentice(object ob)
 {
         command("hmm");
-        command("say 老夫不收徒弟，你还是请回吧。");
+        command("say 老夫不收徒弟，你還是請回吧。");
 }
 
 mixed ask_me()
@@ -155,15 +155,15 @@ mixed ask_me()
         me = this_player();
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "阁下与本帮素无来往，不知此话从何谈起？";
+                return "閣下與本幫素無來往，不知此話從何談起？";
 
         if( query("combat_exp", me)<10000 )
-                return "嘿嘿，你就这点本事也好意思来要青竹令？";
+                return "嘿嘿，你就這點本事也好意思來要青竹令？";
 
         lvl=query("family/beggarlvl", me);
 
         if (lvl >= 9)
-                return "你已经是本帮长老了，又何去跟后辈们计较。";
+                return "你已經是本幫長老了，又何去跟後輩們計較。";
 
         if (lvl <= 0)
                 gx = 100;
@@ -171,13 +171,13 @@ mixed ask_me()
                 gx = lvl * 100 + 200;
 
         if( query("family/gongji", me)<gx )
-                return "你为本帮效力不够，暂时不能给你升袋。";
+                return "你為本幫效力不夠，暫時不能給你升袋。";
 
         if (present("qingzhu ling", me))
-                return "你身上不是已经有青竹令了吗？";
+                return "你身上不是已經有青竹令了嗎？";
 
         if( time()-query_temp("have_ling", me)<100 )
-                return "我不是刚刚才给了你一面吗？稍微等会吧。";
+                return "我不是剛剛才給了你一面嗎？稍微等會吧。";
 
         ob = new(LING);
         ob->move(this_object());
@@ -185,7 +185,7 @@ mixed ask_me()
           command("give qingzhu ling to "+query("id", me));
         set_temp("have_ling", time(), me);
 
-        return "凭这面青竹令，你可自由向你的同门大师兄挑战。";
+        return "憑這面青竹令，你可自由向你的同門大師兄挑戰。";
 }
 
 int accept_object(object ob, object obj)
@@ -200,19 +200,19 @@ int accept_object(object ob, object obj)
 
         if (base_name(obj) != POBU)
         {
-                command("say 你给我这种东西干什么？");
+                command("say 你給我這種東西幹什麼？");
                 return 0;
         }
 
         if( query("owner", obj) != ob->name() )
         {
-                command("say 你这快破布是从哪里偷来的？");
+                command("say 你這快破布是從哪裡偷來的？");
                 return 0;
         }
 
         if( query_temp("have_cloth", ob)<1 )
         {
-                command("say 你真的挑胜了么？我怎么就没听说？");
+                command("say 你真的挑勝了麼？我怎麼就沒聽說？");
                 return 0;
         }
 
@@ -220,7 +220,7 @@ int accept_object(object ob, object obj)
 
         if (lvl >= 9)
         {
-                command("say 你已经是本帮长老了，还想当帮主？");
+                command("say 你已經是本幫長老了，還想當幫主？");
                 return 0;
         }
 
@@ -231,7 +231,7 @@ int accept_object(object ob, object obj)
 
         if( query("family/gongji", ob)<gx )
         {
-                command("say 这个…你为本帮效力不够，暂时不能给你升袋。");
+                command("say 這個…你為本幫效力不夠，暫時不能給你升袋。");
                 return 0;
         }
 
@@ -240,11 +240,11 @@ int accept_object(object ob, object obj)
         delete_temp("have_cloth", ob);
         delete_temp("newtitle", ob);
 
-        message_vision(HIY "\n$N" HIY "接过了破布，然后将其钉"
-                       "在$n" HIY "的破衣服上，俨然一个新口袋"
+        message_vision(HIY "\n$N" HIY "接過了破布，然後將其釘"
+                       "在$n" HIY "的破衣服上，儼然一個新口袋"
                        "。\n\n" NOR, me, ob);
         command("nod");
-        command("say 既然升袋，就当牢记帮规，为民除害！");
+        command("say 既然升袋，就當牢記幫規，為民除害！");
 
         lvl = lvl + 1;
         exp = lvl * 600 + random(lvl * 400);
@@ -258,13 +258,13 @@ int accept_object(object ob, object obj)
         addn("weiwang", ww, ob);
         addn("family/gongji", -gx, ob);
 
-        msg = HIC "\n通过升袋的经历，你获得了" +
-              chinese_number(exp) + "点经验、" +
-              chinese_number(pot) + "点潜能、" +
-              chinese_number(sc) + "点江湖阅历以及" +
-              chinese_number(ww) + "点江湖威望，同时"
-              "消耗了" + chinese_number(gx) + "点门"
-              "派贡献，武学得到了精进。\n\n" NOR;
+        msg = HIC "\n通過升袋的經歷，你獲得了" +
+              chinese_number(exp) + "點經驗、" +
+              chinese_number(pot) + "點潛能、" +
+              chinese_number(sc) + "點江湖閱歷以及" +
+              chinese_number(ww) + "點江湖威望，同時"
+              "消耗了" + chinese_number(gx) + "點門"
+              "派貢獻，武學得到了精進。\n\n" NOR;
 
         tell_object(ob, sort_string(msg, 54));
         ob->improve_skill("martial-cognize", 1500000);

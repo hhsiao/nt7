@@ -4,14 +4,14 @@ inherit ROOM;
 string look_door();
 void create()
 {
-        set("short", HIR "秦陵内宫东门" NOR);
+        set("short", HIR "秦陵內宮東門" NOR);
         set("long", @LONG
-通道两侧，自东向西依次排列着狮、獬、骆驼、象、麒麟和马六
-种石雕巨兽，各有两对四座，共十二对二十四座，造型生动，栩栩如
-生，使你像来到了传说的仙界。在淡淡的月照下，众石兽或蹲或立，
-不畏风霜雨雪，前面通向秦陵内宫，但是被一个巨大的石门（door）
-封住了，，石门上却插着四把形状奇特火炬（huoju）。 细看石门周
-围，只见有四个像是人工开凿小山洞。
+通道兩側，自東向西依次排列著獅、獬、駱駝、象、麒麟和馬六
+種石雕巨獸，各有兩對四座，共十二對二十四座，造型生動，栩栩如
+生，使你像來到了傳說的仙界。在淡淡的月照下，眾石獸或蹲或立，
+不畏風霜雨雪，前面通向秦陵內宮，但是被一個巨大的石門（door）
+封住了，，石門上卻插著四把形狀奇特火炬（huoju）。 細看石門周
+圍，只見有四個像是人工開鑿小山洞。
 LONG );
         set("maze", 1);
         set("no_magic", 1);
@@ -19,7 +19,7 @@ LONG );
         set("no_clean_up", 1);
         set("item_desc", ([
                "door"   : (: look_door :),
-               "huoju"  : HIR "这些火炬看来很奇怪，似乎连接着什么机关！\n" NOR,
+               "huoju"  : HIR "這些火炬看來很奇怪，似乎連接著什麼機關！\n" NOR,
         ]));
 
         set("exits", ([
@@ -60,27 +60,27 @@ string look_door()
         ob = FUBEN_D->query_maze_mainobj(me);
 
         if (! objectp(ob))
-               return "TSR 物件出错，请与巫师联系！\n";
+               return "TSR 物件出錯，請與巫師聯繫！\n";
 
         opened=query("lock/opened", ob);
 
         if (opened == "" || ! stringp(opened))
-               return "只见石门紧闭，上面插着四把火炬（huoju），但都熄灭了！\n";
+               return "只見石門緊閉，上面插著四把火炬（huoju），但都熄滅了！\n";
 
         if( TIME_D->realtime_digital_clock()[0..3] != "凌晨" )
-               return "只见石门紧闭，上面插着四把火炬（huoju），但都熄灭了！\n";
+               return "只見石門緊閉，上面插著四把火炬（huoju），但都熄滅了！\n";
 
         if( query("lock/unlocked", ob) && sizeof(opened) == 4 )
-               return NOR + WHT "\n只见石门陷入地下，四把火炬烧得正旺！一个入口露了出来。\n" NOR;
+               return NOR + WHT "\n只見石門陷入地下，四把火炬燒得正旺！一個入口露了出來。\n" NOR;
 
-        msg = HIC "只见石门紧闭，第";
+        msg = HIC "只見石門緊閉，第";
         for (n = 0; n < sizeof(opened); n ++)
         {
               temp = opened[n..n];
               msg += change_num[temp];
               if (n < sizeof(opened) - 1)msg += "、" ;
         }
-        msg += "把火炬燃烧着！\n" NOR;
+        msg += "把火炬燃燒著！\n" NOR;
 
         return msg;
 

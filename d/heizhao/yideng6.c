@@ -11,8 +11,8 @@ void create()
 {
         set("short", "巨石下");
         set("long", @LONG
-你呆呆地使出全力顶起巨石，生怕一松手砸死了自己，农夫冷冷
-地站在一旁袖手旁观，一点相助的意思也没有。
+你呆呆地使出全力頂起巨石，生怕一鬆手砸死了自己，農夫冷冷
+地站在一旁袖手旁觀，一點相助的意思也沒有。
 LONG );
         set("invalid_startroom", 1);
         set("no_fight", "1");
@@ -43,9 +43,9 @@ void dropjingli(object me, int losejl)
       if (!me || environment(me) != environment()) 
               return; 
         if (environment(me)==find_object("/d/heizhao/yideng6.c")) {
-                message_vision("$N托得久了，只觉得两臂发麻，眼前一阵金星乱冒！\n",me);
+                message_vision("$N託得久了，只覺得兩臂發麻，眼前一陣金星亂冒！\n",me);
                       losejl = 10+random(40);
-                set_temp("die_reason", "精力透支过度而死了", me);
+                set_temp("die_reason", "精力透支過度而死了", me);
                 addn("jing", -losejl, me);
                 return;
         }
@@ -56,7 +56,7 @@ void moveout(object me)
       if (!me || environment(me) != environment())  
               return;  
         if (environment(me)==find_object("/d/heizhao/yideng6.c")) {
-                message_vision("$N眼前一阵发黑，终于坚持不住了，手一松，“轰隆”！ ... ...\n",me);
+                message_vision("$N眼前一陣發黑，終於堅持不住了，手一鬆，“轟隆”！ ... ...\n",me);
                 me->unconcious();
                 me->move("/d/heizhao/shanlu9.c");
                 return;
@@ -65,7 +65,7 @@ void moveout(object me)
 
 int do_exert(string arg)
 {
-        tell_object(this_player(), "你正托着大石头呢，怎么运气？！\n");
+        tell_object(this_player(), "你正託著大石頭呢，怎麼運氣？！\n");
         return 1;
 }
 
@@ -74,9 +74,9 @@ int do_pian(string arg)
         object me;
         me=this_player();
         if (arg=="nong" || arg=="wu santong" || arg=="farmer" || arg=="wu") {
-                message_vision("$N情急生智，大喊道：“大叔，我怀里有一封洪老爷子给段皇爷的信！”\n",me);
-                message_vision("“你来暂托一下，待我取出给你。”\n",me);
-                message_vision("等到农夫托起大石，$N身形一纵，从他身边掠过，冲向后山！\n\n",me);
+                message_vision("$N情急生智，大喊道：“大叔，我懷裡有一封洪老爺子給段皇爺的信！”\n",me);
+                message_vision("“你來暫託一下，待我取出給你。”\n",me);
+                message_vision("等到農夫托起大石，$N身形一縱，從他身邊掠過，衝向後山！\n\n",me);
                 me->move("/d/heizhao/yideng7.c");
                 return 1;
         }

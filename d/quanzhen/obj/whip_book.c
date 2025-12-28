@@ -4,14 +4,14 @@ inherit ITEM;
 
 void create()
 {
-        set_name("丹阳鞭法谱", ({ "whip book", "book" }));
+        set_name("丹陽鞭法譜", ({ "whip book", "book" }));
         set_weight(600);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "本");
                 set("long",
-                        "「丹阳鞭法谱 -- 上卷」\n");
+                        "「丹陽鞭法譜 -- 上卷」\n");
                 set("value", 200);
                 set("material", "paper");
                 set("skill", ([

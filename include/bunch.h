@@ -1,13 +1,13 @@
 // banghui.h
-// 帮会定义文件
+// 幫會定義文件
 
-// 房间长描述限定
+// 房間長描述限定
 protected nosave int room_desc_l = 52, room_desc_h = 6;
 
-// 房间最大出口数
+// 房間最大出口數
 protected nosave int max_exits = 5;
 
-// 每个房间最多定义的 action 数目
+// 每個房間最多定義的 action 數目
 protected nosave int max_action_per_room = 2;
 
 protected nosave mapping r_dir = ([

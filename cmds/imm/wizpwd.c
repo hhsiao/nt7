@@ -18,7 +18,7 @@ int main(object me, string arg)
         if( !ob ) return 0;
         while(ob && ob->is_character())ob=query_temp("link_ob", ob);
 
-        write("为了安全起见，请先输入您原来的密码：");
+        write("為了安全起見，請先輸入您原來的密碼：");
         input_to("get_old_pass", 1, ob);
         return 1;
 }
@@ -32,17 +32,17 @@ protected void get_old_pass(string pass, object ob)
         if( query("wizpwd", ob) )
         {
             if(crypt(pass, old_pass)!=old_pass ) {
-                write("密码错误！\n");
+                write("密碼錯誤！\n");
                 return;
             }
         }
-        write("请输入新的密码：");
+        write("請輸入新的密碼：");
         input_to("get_new_pass", 1, ob );
 }
 
 protected void get_new_pass(string pass, object ob)
 {
-        write("\n请再输入一次新的密码：");
+        write("\n請再輸入一次新的密碼：");
         input_to("confirm_new_pass", 1, ob, crypt(pass,0));
 }
 
@@ -50,18 +50,18 @@ protected void confirm_new_pass(string pass, object ob, string new_pass)
 {
         write("\n");
         if( crypt(pass, new_pass)!=new_pass ) {
-                write("对不起，您输入的密码并不相同，继续使用原来的密码。\n");
+                write("對不起，您輸入的密碼並不相同，繼續使用原來的密碼。\n");
                 return;
         }
         seteuid(getuid());
         if( !set("wizpwd",new_pass,ob) ){
-                write("密码变更失败！\n");
+                write("密碼變更失敗！\n");
                 return;
         }
          
         set("wizpwd", new_pass, ob);
         ob->save();
-        write("密码变更成功。\n");
+        write("密碼變更成功。\n");
 }
 
 int help(object me)
@@ -69,7 +69,7 @@ int help(object me)
         write(@HELP
 指令格式 : passwd
  
-这个指令可以修改wiz的第二重密码。
+這個指令可以修改wiz的第二重密碼。
  
 HELP
         );

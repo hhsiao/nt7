@@ -5,8 +5,8 @@ int is_pld_npc(){return 1;}
 
 void create()
 {
-        set_name(HIY "大财神" NOR, ({ "da caishen", "da", "caishen" }));
-        set("long", HIY "这是仙界的大财神，据说专门打理仙界和人间的一切帐务。\n" NOR);
+        set_name(HIY "大財神" NOR, ({ "da caishen", "da", "caishen" }));
+        set("long", HIY "這是仙界的大財神，據說專門打理仙界和人間的一切帳務。\n" NOR);
 
         set("age", 9000);
         set("str", 80);

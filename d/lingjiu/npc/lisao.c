@@ -8,7 +8,7 @@ void create()
 {
     set_name("李嫂", ({ "li sao", "li", "sao" }));
         set("long",
-            "她是 [灵鹫宫] 的厨师.\n");
+            "她是 [靈鷲宮] 的廚師.\n");
         set("gender", "女性");
         set("age", 30);
         set("shen_type",1);
@@ -51,7 +51,7 @@ void create()
         prepare_skill("hand", "zhemei-shou");
         prepare_skill("strike","liuyang-zhang");
 
-        create_family("灵鹫宫",3,"弟子");
+        create_family("靈鷲宮",3,"弟子");
         setup();
         carry_object("/d/lingjiu/obj/qingyi")->wear();
             carry_object("/d/lingjiu/obj/doupeng")->wear();

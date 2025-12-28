@@ -9,14 +9,14 @@ void greeting(object me);
 
 void create()
 {
-	set_name("郭啸天", ({ "guo xiaotian", "guo", "xiaotian" }) );
+	set_name("郭嘯天", ({ "guo xiaotian", "guo", "xiaotian" }) );
 	set("gender", "男性" );
-	set("title", HIC"大侠"NOR);
+	set("title", HIC"大俠"NOR);
 	set("nickname", HIC"北俠郭靖之父"NOR);
 	set("age", 28);
 	set("long",
-                "他身材魁梧，浓眉大眼。\n"
-                "他是梁山泊好汉地佑星赛仁贵郭盛的后代。\n");
+                "他身材魁梧，濃眉大眼。\n"
+                "他是梁山泊好漢地佑星賽仁貴郭盛的後代。\n");
 	set("str", 25);
 	set("dex", 25);
 	set("con", 25);
@@ -48,17 +48,17 @@ void create()
 
         set("inquiry", ([
                 "救援": (: ask_jiuyuan :),
-		"杨铁心": "他是我义弟。",
-                "李萍" : "她是我浑家。",
-                "郭靖" : "这是一个道人给我未出世的儿女取的名字。",
-                "杨康" : "这是我义弟杨铁心的骨肉。",
+		"楊鐵心": "他是我義弟。",
+                "李萍" : "她是我渾家。",
+                "郭靖" : "這是一個道人給我未出世的兒女取的名字。",
+                "楊康" : "這是我義弟楊鐵心的骨肉。",
                 "包惜弱" : "她是我弟媳。",
 
 	]));
 	set("chat_chance", 10);
         set("chat_msg", ({
-		"村里不怎么的出现大批金兵，这到底是发生了什么事情、、、\n",
-		"内子和弟媳快要生了，这节骨眼上怎么会发生这种事情呢、、、\n",
+		"村裡不怎麼的出現大批金兵，這到底是發生了什麼事情、、、\n",
+		"內子和弟媳快要生了，這節骨眼上怎麼會發生這種事情呢、、、\n",
         }) );
         setup();
         carry_object("/clone/cloth/cloth.c")->wear();
@@ -72,41 +72,41 @@ int ask_jiuyuan()
 	if( query(QUESTDIR+"start",me) )
         {
                 command("beg1 "+query("id",me));
-		command("say 这位"+RANK_D->query_respect(this_player())+"，快去救我义弟啊，要不他顶不住了？");
+		command("say 這位"+RANK_D->query_respect(this_player())+"，快去救我義弟啊，要不他頂不住了？");
 	        return 1;
         } 
 	if( query(QUESTDIR+"over",me) )
         {
 	        command("beg1 "+me->query("id"));
-		command("say 多谢这位"+RANK_D->query_respect(this_player())+"出手救我义弟呀？");		
+		command("say 多謝這位"+RANK_D->query_respect(this_player())+"出手救我義弟呀？");		
 	        return 1;
         } 
         if(  query("combat_exp",me) < 2000000 )
         {
 	        command("hmm "+ query("id",me));
-		command("say 以你当前的经验恐怕还不能帮忙救援我义弟，还是抓紧去练功去吧。\n");
+		command("say 以你當前的經驗恐怕還不能幫忙救援我義弟，還是抓緊去練功去吧。\n");
        	        return 1;
         }  	
         if( query(QUESTDIR+"time",me) && time()- query(QUESTDIR+"time",me)<86400)
 	{
 	        command("shake "+ query("id",me));
-	        command("say 今天先帮到这里吧，明天吧。");
+	        command("say 今天先幫到這裡吧，明天吧。");
 	        return 1;
         }
         if( query(QUESTDIR+"combat_exp",me) && query("combat_exp",me)-query(QUESTDIR+"combat_exp",me)<100000)
 	{
 	        command("look "+query("id",me));
-	        command("say 以你当前的经验恐怕还是无法帮忙，还是抓紧去练功去吧。");
+	        command("say 以你當前的經驗恐怕還是無法幫忙，還是抓緊去練功去吧。");
 	        return 1;
         }
         if( !query(QUESTDIR+"over",me) )
         {
-	        set(QUESTDIR+"风雪惊变/start", 1, me);
+	        set(QUESTDIR+"風雪驚變/start", 1, me);
 	        set(QUESTDIR+"time",time(),me);
                 set(QUESTDIR+"combat_exp",query("combat_exp",me),me);
 	        command("cry "+query("id",me));
-	        command("say 昨日我和义弟救援一位被金兵追杀的道士，没想到今日却来有金兵来抓我们，\n"+
-		       "这位大侠请赶快去我义弟家解救我义弟杨铁心吧，我准备下武器随后就到。");
+	        command("say 昨日我和義弟救援一位被金兵追殺的道士，沒想到今日卻來有金兵來抓我們，\n"+
+		       "這位大俠請趕快去我義弟家解救我義弟楊鐵心吧，我準備下武器隨後就到。");
 	        return 1;
         }
 }

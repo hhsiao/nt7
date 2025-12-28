@@ -6,10 +6,10 @@ void create ()
 {
         set ("short", "博彩店");
         set("long", @LONG
-这里是提供彩票服务的博彩娱乐场所。墙上挂着曾开出过的历史
-号码。店内人声鼎沸，人们相互交流着下次的中奖号码。有人脸上挂
-着浅笑，也有人面目通红，激动不已。喜欢博彩的玩家在这里可以向
-店老板询问。
+這裡是提供彩票服務的博彩娛樂場所。牆上掛著曾開出過的歷史
+號碼。店內人聲鼎沸，人們相互交流著下次的中獎號碼。有人臉上掛
+著淺笑，也有人面目通紅，激動不已。喜歡博彩的玩家在這裡可以向
+店老闆詢問。
 LONG );
         set("exits",  ([
                 "south" : "/d/city/daxiao",
@@ -35,10 +35,10 @@ int do_getnum()
 {
         object me = this_player();
         int i, n;
-        string num = "机选号码：";
+        string num = "機選號碼：";
 
         if (me->is_busy())
-              return notify_fail("你正在分析号码。\n");
+              return notify_fail("你正在分析號碼。\n");
 
         for (i = 0; i < 5; i++)
         {

@@ -9,7 +9,7 @@ void create()
         else {
                 set("unit", "把");
                 set("material", "gold");
-                set("long", "这是一把金刀。\n");
+                set("long", "這是一把金刀。\n");
         }
         set("owner", "郭靖");
         setup();

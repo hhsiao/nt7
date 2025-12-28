@@ -10,26 +10,26 @@ int perform(object me, object target)
 		object weapon;
 
 		if (me->query("class") != "moon")
-			return notify_fail("只有皓月宫的弟子才能施展『七星伴月』。\n");
+			return notify_fail("只有皓月宮的弟子才能施展『七星伴月』。\n");
 
 		extra = me->query_skill("starrain",1);
 		if (extra <100)
-			return notify_fail("『七星伴月』需要至少100级的寒星雨觞。\n");
+			return notify_fail("『七星伴月』需要至少100級的寒星雨觴。\n");
 
 		if( !target ) target = offensive_target(me);
 		if( !target
 		||	!target->is_character()
 		||	!me->is_fighting(target) )
-			return notify_fail("『七星伴月』只能对战斗中的对手使用。\n");
+			return notify_fail("『七星伴月』只能對戰鬥中的對手使用。\n");
 
 		// We don't use mod since we want it to be workable on tough NPCs. but we need a timer to limit its repeatability.
 
 		duration = me->query("timer/pfm/starrain_sp")+ 20 - time();
 		if (duration > 0)
-			return notify_fail("『红藕香残』、『七星伴月』和『连天衰草』每２０秒钟只能使用一次（还需等待"+duration+"秒）\n");
+			return notify_fail("『紅藕香殘』、『七星伴月』和『連天衰草』每２０秒鐘只能使用一次（還需等待"+duration+"秒）\n");
 
 		if (ANNIE_D->check_buff(target,"healshield"))
-       		return notify_fail("对方已经受到了相似的影响。\n");
+       		return notify_fail("對方已經受到了相似的影響。\n");
 
 		weapon = me->query_temp("weapon");
 		count = weapon->query_amount();
@@ -41,7 +41,7 @@ int perform(object me, object target)
 
 		me->set("timer/pfm/starrain_sp",time());
 
-		msg = WHT"$N"NOR+WHT"一扬手，打出星星点点，星星四散，仿佛几缕销魂、几抹相思，但迅即转为杀气。\n";
+		msg = WHT"$N"NOR+WHT"一揚手，打出星星點點，星星四散，彷彿幾縷銷魂、幾抹相思，但迅即轉為殺氣。\n";
 		message_vision(msg,me,target);
 
 		level = me->query("annie/starrain_qixingbanyue");
@@ -58,26 +58,26 @@ int perform(object me, object target)
 
 		if (!COMBAT_D->do_busy_attack( me, target, "starrain/yanzihuishi","step", 200, 10))
 		{
-			msg = YEL "$N"NOR+YEL"大笑数声，"+ name+ NOR YEL"四散落地。\n"NOR;
+			msg = YEL "$N"NOR+YEL"大笑數聲，"+ name+ NOR YEL"四散落地。\n"NOR;
 			message_vision(msg,target);
 		}
 		else
 		{
-			msg = HIR+BLK"似有暗力牵引，"+name+HIR BLK"众星拱月般在$N"HIR BLK"身畔流动。\n"NOR;
+			msg = HIR+BLK"似有暗力牽引，"+name+HIR BLK"眾星拱月般在$N"HIR BLK"身畔流動。\n"NOR;
 			buff =
 			([
 				"caster":me,
 				"who":target,
 				"type":"healshield",
 				"att":	"curse",
-				"name":"寒星雨觞·七星伴月",
+				"name":"寒星雨觴·七星伴月",
 				"time":  10,
 				"buff_msg":msg,
-				"disa_msg":WHT"$N周围的"+name+ NOR WHT"余力已尽，散落而下。\n"NOR,
+				"disa_msg":WHT"$N周圍的"+name+ NOR WHT"餘力已盡，散落而下。\n"NOR,
 				"disa_type": 1,
 				"shield_type":"kee",
 				"shield_amount": amount,
-				"shield_desc": HIR BLK"$n"HIR BLK"心头一颤，气血浮动不止。\n"NOR,
+				"shield_desc": HIR BLK"$n"HIR BLK"心頭一顫，氣血浮動不止。\n"NOR,
 			]);
 			ANNIE_D->buffup(buff);
 		}

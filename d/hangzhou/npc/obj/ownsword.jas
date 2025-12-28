@@ -1,4 +1,4 @@
-// ownsword.c 宝剑
+// ownsword.c 寶劍
 #include <weapon.h>
 #include <ansi.h>
 
@@ -12,19 +12,19 @@ void create()
         i=me->query_skill("sword", 1)/2+20;
         if (i>=120)
         i=120;
-        set_name("剑", ({ "ownsword" }));
+        set_name("劍", ({ "ownsword" }));
         set_weight(5000);
-        set("no_drop","剑在人在,剑亡人亡！\n\n");
+        set("no_drop","劍在人在,劍亡人亡！\n\n");
         set("no_get",1);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "口");
-                set("long", "一代名铸剑师欧冶子亲手为你锻铸的宝剑。\n");
+                set("long", "一代名鑄劍師歐冶子親手為你鍛鑄的寶劍。\n");
                 set("value", 1000);
                 set("material", "steel");
-                set("wield_msg", "$N「唰」的一声抽出一口$n握在手中。\n");
-                set("unwield_msg", "$N将手中的$n插回剑鞘。\n");
+                set("wield_msg", "$N「唰」的一聲抽出一口$n握在手中。\n");
+                set("unwield_msg", "$N將手中的$n插回劍鞘。\n");
         }
         init_sword(i);
         setup();
@@ -42,15 +42,15 @@ int do_put(string arg)
         return 0;
         else
         {
-            tell_object(me,"剑在人在,剑亡人亡！你不想活了？\n");
+            tell_object(me,"劍在人在,劍亡人亡！你不想活了？\n");
        }
 }
 
 void owner_is_killed()
 {
         object me = this_player();
-        write(HIY"只见眼前金光一闪...好象是.....\n"NOR);
-        write("人在剑在,人亡剑亡。\n");
+        write(HIY"只見眼前金光一閃...好象是.....\n"NOR);
+        write("人在劍在,人亡劍亡。\n");
         query_temp("done_s", me);
         delete_temp("done_s", me);
         destruct(this_object());

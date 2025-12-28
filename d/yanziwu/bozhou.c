@@ -4,11 +4,11 @@ inherit RIVER;
 
 void create()
 {
-        set("short", "泊舟坞");
+        set("short", "泊舟塢");
         set("long", @LONG
-此处一片芦苇，茭白丛中现出一座船坞，大小船只依次排开。菱
-花荷叶丛中条条水道 (river)四通八达，由此可乘船离开燕子坞。湖
-面系着尾小舟。北面远远望过去有个梯子。
+此處一片蘆葦，茭白叢中現出一座船塢，大小船隻依次排開。菱
+花荷葉叢中條條水道 (river)四通八達，由此可乘船離開燕子塢。湖
+面繫著尾小舟。北面遠遠望過去有個梯子。
 LONG );
         //set("arrive_room", "/d/yanziwu/hupan");
         set("to", __DIR__"hupan");

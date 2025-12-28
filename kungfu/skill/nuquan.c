@@ -3,45 +3,45 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action": "$N双目赤红，身带冲天杀气，招数缓慢凝重，一招「天地无光」似有千钧之力，缓缓朝$n的$l处拍去",
+([      "action": "$N雙目赤紅，身帶沖天殺氣，招數緩慢凝重，一招「天地無光」似有千鈞之力，緩緩朝$n的$l處拍去",
         "force" : 130,
         "dodge" : -20,
         "parry" : -20,
         "attack": 15,
         "damage": 20,
         "lvl"   : 0,
-        "skill_name" : "天地无光",
-        "damage_type": "瘀伤"
+        "skill_name" : "天地無光",
+        "damage_type": "瘀傷"
 ]),
-([      "action": "$N一声长啸．一招「毁天灭地」,一拳击出，有遇天开天，遇地破地之威攻向$n",
+([      "action": "$N一聲長嘯．一招「毀天滅地」,一拳擊出，有遇天開天，遇地破地之威攻向$n",
         "force" : 185,
         "dodge" : -25,
         "parry" : -25,
         "attack": 17,
         "damage": 43,
         "lvl"   : 20,
-        "skill_name" : "毁天灭地",
-        "damage_type":  "瘀伤"
+        "skill_name" : "毀天滅地",
+        "damage_type":  "瘀傷"
 ]),
-([      "action": "$N的手掌不断变换，一招「狂战四野」幻化出数个形状各异的掌形，顿时重重压力攻向$n！",
+([      "action": "$N的手掌不斷變換，一招「狂戰四野」幻化出數個形狀各異的掌形，頓時重重壓力攻向$n！",
         "force" : 220,
         "dodge" : -31,
         "parry" : -33,
         "attack": 21,
         "damage": 68,
         "lvl"   : 40,
-        "skill_name" : "狂战四野",
-        "damage_type":  "内伤"
+        "skill_name" : "狂戰四野",
+        "damage_type":  "內傷"
 ]),
-([      "action": "$N立定身行，一招「同归洪荒」，右拳再猛地挥出，这一拳之威仿佛充满天地急速攻向$n！",
+([      "action": "$N立定身行，一招「同歸洪荒」，右拳再猛地揮出，這一拳之威彷彿充滿天地急速攻向$n！",
         "force" : 260,
         "dodge" : -71,
         "parry" : -83,
         "attack": 71,
         "damage": 88,
         "lvl"   : 90,
-        "skill_name" : "同归洪荒",
-        "damage_type":  "内伤"
+        "skill_name" : "同歸洪荒",
+        "damage_type":  "內傷"
 ]),
 });
 
@@ -50,19 +50,19 @@ int valid_enable(string usage) { return usage == "cuff" || usage == "parry"; }
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练怒拳必须空手。\n");
+                return notify_fail("練怒拳必須空手。\n");
 
         if ((int)me->query_skill("force") < 20)
-                return notify_fail("你的内功火候不够，无法学怒拳。\n");
+                return notify_fail("你的內功火候不夠，無法學怒拳。\n");
 
         if( query("max_neili", me)<100 )
-                return notify_fail("你的内力太弱，无法练怒拳。\n");
+                return notify_fail("你的內力太弱，無法練怒拳。\n");
 
         if ((int)me->query_skill("cuff", 1) < 20)
-                return notify_fail("你的基本拳法火候太浅。\n");
+                return notify_fail("你的基本拳法火候太淺。\n");
 
         if ((int)me->query_skill("cuff", 1) < (int)me->query_skill("nuquan", 1))
-                return notify_fail("你的基本拳法水平有限，无法领会更高深的怒拳。\n");
+                return notify_fail("你的基本拳法水平有限，無法領會更高深的怒拳。\n");
 
         return 1;
 }
@@ -87,10 +87,10 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me)
 {
         if( query("qi", me)<80 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
 
         if( query("neili", me)<80 )
-                return notify_fail("你的内力不够练怒拳。\n");
+                return notify_fail("你的內力不夠練怒拳。\n");
 
         me->receive_damage("qi", 55);
         addn("neili", -45, me);

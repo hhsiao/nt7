@@ -9,8 +9,8 @@ void create ()
 {
         set("short", HIB "幽冥殿" NOR   );
         set("long", HIB @LONG
-这里便是名闻天下，令人提起心惊胆寒的阎幽冥殿。人死后都会在
-这里受到应有的处置。正前一张大桌。正前坐着十殿阎罗。
+這裡便是名聞天下，令人提起心驚膽寒的閻幽冥殿。人死後都會在
+這裡受到應有的處置。正前一張大桌。正前坐著十殿閻羅。
 
 LONG NOR);
         set("exits", ([ /* sizeof() == 1 */
@@ -40,10 +40,10 @@ int valid_leave(object me, string dir)
         me = this_player();
         if (dir == "north")
         {
-                if( !wizardp(me) && !query("hell_quest/锁阳丹", me) && 
-                    !query("over_quest/hell_quest/锁阳丹", me) )
-                        return notify_fail(CYN "十殿阎罗看了你一眼，喝道：你还不滚"
-                                           "回去还阳，来这里凑什么热闹！\n" NOR);
+                if( !wizardp(me) && !query("hell_quest/鎖陽丹", me) && 
+                    !query("over_quest/hell_quest/鎖陽丹", me) )
+                        return notify_fail(CYN "十殿閻羅看了你一眼，喝道：你還不滾"
+                                           "回去還陽，來這裡湊什麼熱鬧！\n" NOR);
         }
         return ::valid_leave(me, dir);
 }

@@ -6,15 +6,15 @@ inherit ROOM;
 
 void create()
 {
-	set("short", "兵营");
+	set("short", "兵營");
         set("long", @LONG
-这里是兵营，密密麻麻到处都是官兵，有的在武将的指挥下列队
-操练，有的独自在练功，有的坐着、躺着正在休息。南墙下坐着主帅，
-不动声色地寻视着四周。看到你进来，他们全都悄悄的向你包围了过
-来，形势看来不太妙。南边有一扇门(men)。
+這裡是兵營，密密麻麻到處都是官兵，有的在武將的指揮下列隊
+操練，有的獨自在練功，有的坐著、躺著正在休息。南牆下坐著主帥，
+不動聲色地尋視著四周。看到你進來，他們全都悄悄的向你包圍了過
+來，形勢看來不太妙。南邊有一扇門(men)。
 LONG );
 	set("item_desc", ([
-		"men" : "这是一扇极厚的铁门。\n",
+		"men" : "這是一扇極厚的鐵門。\n",
 	]));
 	set("exits", ([
 		"south" : "/d/city/bingqiku",
@@ -26,7 +26,7 @@ LONG );
 		"/d/city/npc/bing" : 2,
 	]));
 //	set("no_clean_up", 0);
-	create_door("south", "铁门", "north", DOOR_CLOSED);
+	create_door("south", "鐵門", "north", DOOR_CLOSED);
 	set("coor/x", -10);
 	set("coor/y", -20);
 	set("coor/z", 0);
@@ -36,6 +36,6 @@ int valid_leave(object me, string dir)
 {
 	if (!wizardp(me) && objectp(present("guan bing", environment(me))) && 
 		dir == "south")
-		return notify_fail("官兵拦住了你的去路。\n");
+		return notify_fail("官兵攔住了你的去路。\n");
 	return ::valid_leave(me, dir);
 }

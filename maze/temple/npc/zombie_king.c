@@ -7,8 +7,8 @@ void create()
 {
         set_name( "千年老粽子", ({ "zombie king" }));
         set("vendetta_mark","zombie");
-        set("long", "千年红毛老粽子啊，看起来好可怕。。。\n");
-        set("title", HIB "(鬼气)" NOR);
+        set("long", "千年紅毛老粽子啊，看起來好可怕。。。\n");
+        set("title", HIB "(鬼氣)" NOR);
 
         set("str", 50);
         set("con", 120);
@@ -44,7 +44,7 @@ void create()
         }) );
 
         set("bellicosity", 5 );
-        set("death_msg",RED"\n$N化作了一滩血水。\n\n"NOR);
+        set("death_msg",RED"\n$N化作了一灘血水。\n\n"NOR);
         set("clear_fuben", 1);
 
         set("auto_perform", 1);
@@ -57,10 +57,10 @@ void create()
         set_temp("apply/add_busy", 15);
 
         set("drops", ([
-                "RA&EPIL50"    :       120,   // 中级普通装备
-                "RA&EPIL60"    :       100,   // 中级普通装备
-                "RA&EPIL60"    :       80,   // 中级普通装备
-                "RA&EPIL70"    :       70,   // 中级普通装备
+                "RA&EPIL50"    :       120,   // 中級普通裝備
+                "RA&EPIL60"    :       100,   // 中級普通裝備
+                "RA&EPIL60"    :       80,   // 中級普通裝備
+                "RA&EPIL70"    :       70,   // 中級普通裝備
                 "FI&/clone/goods/sun" : 40, 
                 "FI&/clone/goods/moon" : 40, 
                 "FI&/clone/tessera/rune27" : 20, 
@@ -128,7 +128,7 @@ void do_summon()
         obs = all_inventory(environment(me));
         obs=filter_array(obs,(:query("id", $1) == "lord zombie":));
         if( sizeof(obs) > 3 ) return;
-        message_vision(HIM "\n$N嗬嗬干嚎，周围的僵尸王应声而来。\n" NOR, me);
+        message_vision(HIM "\n$N嗬嗬乾嚎，周圍的殭屍王應聲而來。\n" NOR, me);
         zombie = new(__DIR__"zombie_lord");
         zombie->move(environment(me));
         enemies = me->query_enemy();
@@ -137,7 +137,7 @@ void do_summon()
                 zombie->kill_ob(enemy);
                 enemy->kill_ob(zombie);
         }
-        message_vision( "\n\n$N恶狠狠地扑了上来。\n" , zombie);
+        message_vision( "\n\n$N惡狠狠地撲了上來。\n" , zombie);
         call_out("leave",30+random(10),zombie);
         if( !this_object()->is_busy() )
                 this_object()->start_busy(3);

@@ -6,7 +6,7 @@ void create()
 {
         set("short", "石室");
         set("long", @LONG
-这是一间宽敞的石室，只见四周空旷无比，不远处有一块形状奇
+這是一間寬敞的石室，只見四周空曠無比，不遠處有一塊形狀奇
 特的石桌（desk）。
 LONG );
         set("maze", 1);
@@ -15,7 +15,7 @@ LONG );
         set("no_clean_up", 1);
         set("room_id", "number/lockroom1");
         set("item_desc", ([
-                "desk" : NOR + WHT "一张形状奇特的石桌，似乎连接着什么机关！\n" NOR,
+                "desk" : NOR + WHT "一張形狀奇特的石桌，似乎連接著什麼機關！\n" NOR,
         ]));
         setup();
 }

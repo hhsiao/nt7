@@ -31,9 +31,9 @@ void incoming_request(mapping info)
         if (VERSION_D->is_release_server() &&
             info["MUDLIB"] == MUDLIB_NAME)
         {
-                // 本地服务器接受到了自称为同LIB的MUD信息
+                // 本地服務器接受到了自稱為同LIB的MUD信息
                 if (! query(info["HOSTADDRESS"] + " " + info["PORT"], get_object(CONFIG_D)))
-                        // 这个不是经过总站授权的MUD，丢弃
+                        // 這個不是經過總站授權的MUD，丟棄
                         return 0;
         }
 

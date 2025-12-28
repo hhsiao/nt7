@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return HIW "风雨交加" NOR; }
+string name() { return HIW "風雨交加" NOR; }
 
 inherit F_SSERVER;
 
@@ -16,29 +16,29 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me) )
             || query("skill_type", weapon) != "blade" )
-                return notify_fail("你所使用的武器不对，难以施展" + name() + "。\n");
+                return notify_fail("你所使用的武器不對，難以施展" + name() + "。\n");
 
         if ((int)me->query_skill("longcheng-shendao", 1) < 120)
-                return notify_fail("你的龙城神刀不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你的龍城神刀不夠嫻熟，難以施展" + name() + "。\n");
 
         if ((int)me->query_skill("force", 1) < 150)
-                return notify_fail("你的内功修为不足，难以施展" + name() + "。\n");
+                return notify_fail("你的內功修為不足，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("blade") != "longcheng-shendao")
-                return notify_fail("你没有激发龙城神刀，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發龍城神刀，難以施展" + name() + "。\n");
 
         if( query("neili", me)<270 )
-                return notify_fail("你目前的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你目前的真氣不夠，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIC "$N" HIC "大喝一声，施出绝招「" HIW "风雨交加" HIC "」手"
-              "中的" + weapon->name() + HIC "如雨点\n一般向$n" HIC "打去，$n" HIC
+        msg = HIC "$N" HIC "大喝一聲，施出絕招「" HIW "風雨交加" HIC "」手"
+              "中的" + weapon->name() + HIC "如雨點\n一般向$n" HIC "打去，$n" HIC
               "如同小舟一般在刀雨中漂泊不定。\n" NOR;
         
         skill = me->query_skill("longcheng-shendao", 1);
@@ -56,12 +56,12 @@ int perform(object me, object target)
 
         if (ap / 2 + random(ap) > dp)
         {
-                msg += HIY "这阵刀势变化莫测，$n" HIY "顿时觉得眼花缭乱，无法抵挡。\n" NOR;
+                msg += HIY "這陣刀勢變化莫測，$n" HIY "頓時覺得眼花繚亂，無法抵擋。\n" NOR;
                 count = skill / 3;
                 addn_temp("apply/attack", count, me);
         } else
         {
-                msg += HIC "$n" HIC "不禁心中凛然，不敢有半点小觑，使出浑身解数抵挡。\n" NOR;
+                msg += HIC "$n" HIC "不禁心中凜然，不敢有半點小覷，使出渾身解數抵擋。\n" NOR;
                 count = 0;
         }
 

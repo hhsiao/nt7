@@ -8,7 +8,7 @@ void create()
         set_name("店小二", ({ "xiao er", "xiao", "waiter" }) );
         set("gender", "男性" );
         set("age", 22);
-        set("long", "这位店小二正笑咪咪地忙著，还不时拿起挂在脖子上的抹布擦脸。\n");
+        set("long", "這位店小二正笑咪咪地忙著，還不時拿起掛在脖子上的抹布擦臉。\n");
         set("combat_exp", 100);
         set("attitude", "friendly");
         set("rank_info/respect", "小二哥");
@@ -36,12 +36,12 @@ void greeting(object ob)
         switch( random(2) )
         {
         case 0:
-                say( CYN "店小二笑咪咪地说道：这位" + RANK_D->query_respect(ob)
-                   + CYN + "，进来喝杯茶，歇歇腿吧。\n" NOR);
+                say( CYN "店小二笑咪咪地說道：這位" + RANK_D->query_respect(ob)
+                   + CYN + "，進來喝杯茶，歇歇腿吧。\n" NOR);
                 break;
         case 1:
-                say( CYN "店小二用脖子上的毛巾抹了抹手，说道：这位" + RANK_D->query_respect(ob)
-                   + CYN + "，请进请进。\n" NOR);
+                say( CYN "店小二用脖子上的毛巾抹了抹手，說道：這位" + RANK_D->query_respect(ob)
+                   + CYN + "，請進請進。\n" NOR);
                 break;
         }
 }
@@ -51,7 +51,7 @@ int accept_object(object me, object ob)
 
         if( query("money_id", ob) && ob->value() >= 1000 )
         {
-                tell_object(me, CYN "小二一哈腰，说道：多谢您老，客官请上楼歇息。\n" NOR);
+                tell_object(me, CYN "小二一哈腰，說道：多謝您老，客官請上樓歇息。\n" NOR);
                 set_temp("rent_paid", 1, me);
                 return 1;
         }
@@ -62,7 +62,7 @@ int accept_object(object me, object ob)
                 command("say 好！好！");
                 break;
         case 1:
-                command("say 不需要的东西全给我！");
+                command("say 不需要的東西全給我！");
                 break;
         }
 
@@ -96,13 +96,13 @@ void heart_beat()
 
                         if( query("id", ob) == "corpse" )
                                 message_vision(HIC "\n$N" HIC "站起身，把$n" HIC "拎到"
-                                               "门外，然后又若无其事地走了回来。\n\n"
+                                               "門外，然後又若無其事地走了回來。\n\n"
                                                NOR, this_object(), ob);
-                        else if( query("race", ob) != "野兽" )
-                                message_vision(CYN "\n$N" CYN "对$n" CYN "满脸歉然地说"
-                                               "道：对不住，小店已经满座了。\n" HIC "$n"
-                                               HIC "听后一愣，摇了摇头，骂骂咧咧地转身"
-                                               "离去。\n" NOR, this_object(), ob);
+                        else if( query("race", ob) != "野獸" )
+                                message_vision(CYN "\n$N" CYN "對$n" CYN "滿臉歉然地說"
+                                               "道：對不住，小店已經滿座了。\n" HIC "$n"
+                                               HIC "聽後一愣，搖了搖頭，罵罵咧咧地轉身"
+                                               "離去。\n" NOR, this_object(), ob);
                         ob->move("/d/quanzhou/northroad1");
                 }
         }
@@ -127,15 +127,15 @@ int do_drop(string arg)
                 if( query_temp("static/drop_npc", me)>1 && 
                     query("combat_exp", me) >= 50000 )
                 {
-                        message_vision(CYN "\n$N" CYN "大怒道：好你个" + RANK_D->query_rude(ob)
-                                       + CYN "，还敢来添乱？\n" NOR + HIC "说罢$N" HIC "一声大"
-                                       "叫，北丑顿时冲了出来，飞起两脚，将$n" HIC "和" + ob->name()
+                        message_vision(CYN "\n$N" CYN "大怒道：好你個" + RANK_D->query_rude(ob)
+                                       + CYN "，還敢來添亂？\n" NOR + HIC "說罷$N" HIC "一聲大"
+                                       "叫，北醜頓時衝了出來，飛起兩腳，將$n" HIC "和" + ob->name()
                                        + HIC "一起踢了出去。\n\n" NOR, this_object(), me);
 
                         ob->move("/d/quanzhou/northroad1");
                         me->move("/d/quanzhou/northroad1");
-                        message("vision", HIC "只听客店处砰叮咣啷一阵轰响，便见" + me->name()
-                                          + HIC "和" + ob->name() + HIC "一起飞了出来。\n"
+                        message("vision", HIC "只聽客店處砰叮咣啷一陣轟響，便見" + me->name()
+                                          + HIC "和" + ob->name() + HIC "一起飛了出來。\n"
                                           NOR, environment(me), me);
 
                         me->receive_damage("qi", 1);
@@ -144,15 +144,15 @@ int do_drop(string arg)
                         return 1;
                 }
 
-                message_vision(CYN "\n$N" CYN "怒道：晦气，晦气！这里又不是棺材店，你搬个要死"
-                               "的人进来干嘛？\n" NOR + HIC "说罢$N" HIC "一招手，顿时来了一群"
-                               "彪形大汉，将$n" HIC "和" + ob->name() + HIC "一起赶了出去。\n\n"
+                message_vision(CYN "\n$N" CYN "怒道：晦氣，晦氣！這裡又不是棺材店，你搬個要死"
+                               "的人進來幹嘛？\n" NOR + HIC "說罷$N" HIC "一招手，頓時來了一群"
+                               "彪形大漢，將$n" HIC "和" + ob->name() + HIC "一起趕了出去。\n\n"
                                NOR, this_object(), me);
 
                 ob->move("/d/quanzhou/northroad1");
                 me->move("/d/quanzhou/northroad1");
-                message("vision", HIC "只听客店处传来一阵轰闹声，" + me->name() + HIC "被人赶"
-                                  "了出来，随后半死不活的" + ob->name() + HIC "也被扔了出来。"
+                message("vision", HIC "只聽客店處傳來一陣轟鬧聲，" + me->name() + HIC "被人趕"
+                                  "了出來，隨後半死不活的" + ob->name() + HIC "也被扔了出來。"
                                   "\n" NOR, environment(me), me);
                 me->receive_damage("qi", 1);
                 return 1;
@@ -179,7 +179,7 @@ int do_drop(string arg)
                         command("say 糟蹋啊，作孽啊！");
                         break;
                 case 2:
-                        command("say 败家子，败家子！");
+                        command("say 敗家子，敗家子！");
                         break;
                 default:
                         command("heihei");

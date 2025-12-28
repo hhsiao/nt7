@@ -15,31 +15,31 @@ int perform(object me, object target)
         int count, count1, cnt, skill;
 
         if (! me->is_fighting())
-                return notify_fail("「八仙醉打」只能在战斗中使用。\n");
+                return notify_fail("「八仙醉打」只能在戰鬥中使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "club" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if( BUFF_D->check_buff(me, "zg_zuida") )
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         if( query_temp("powerup", me) )
-                return notify_fail("你已经运起内功加力了，没有更多的内力使用八仙醉打。\n");
+                return notify_fail("你已經運起內功加力了，沒有更多的內力使用八仙醉打。\n");
 
         if ((int)me->query_str() < 25)
-                return notify_fail("你现在的臂力不够，目前不能使用此绝技！\n");
+                return notify_fail("你現在的臂力不夠，目前不能使用此絕技！\n");
 
         if ((int)me->query_skill("force") < 150)
-                return notify_fail("你的内功火候不够，难以施展此项绝技！\n");
+                return notify_fail("你的內功火候不夠，難以施展此項絕技！\n");
 
         if ((int)me->query_skill("club") < 100)
-                return notify_fail("你的棍法修为不够，不会使用此项绝技！\n");
+                return notify_fail("你的棍法修為不夠，不會使用此項絕技！\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你的真气不足！\n");
+                return notify_fail("你的真氣不足！\n");
 
-        msg = HIY "$N" HIY "使出少林醉棍的绝技「八仙醉打」，臂"
+        msg = HIY "$N" HIY "使出少林醉棍的絕技「八仙醉打」，臂"
               "力陡然增加, 身法陡然加快！\n" NOR;
 
         skill = me->query_skill("zui-gun",1);
@@ -62,7 +62,7 @@ int perform(object me, object target)
                 "time"  : skill/3,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : "你的八仙醉打运行完毕，将内力收回丹田。\n",
+                "disa_msg" : "你的八仙醉打運行完畢，將內力收回丹田。\n",
                         
         ]);
         BUFF_D->buffup(buff);

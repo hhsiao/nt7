@@ -5,12 +5,12 @@ inherit NPC;
 
 void create()
 {
-        set_name("完颜洪烈", ({"wanyan honglie", "honglie", "wanyan"}));
+        set_name("完顏洪烈", ({"wanyan honglie", "honglie", "wanyan"}));
         set("gender", "男性");
-        set("title", HIY"大金国赵王爷"NOR);
+        set("title", HIY"大金國趙王爺"NOR);
         set("age", 31);
         set("class", "officer");
-        set("long", "[1;31m他看起来受了很重的伤，看上去快要不行了。[0m\n");
+        set("long", "[1;31m他看起來受了很重的傷，看上去快要不行了。[0m\n");
         set("attitude", "friendly");
         set("shen_type", -1);
         set("str", 26);

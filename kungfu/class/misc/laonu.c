@@ -7,7 +7,7 @@ inherit "/inherit/char/punisher";
 void create()
 {
         set_name("老奴", ({ "lao nu", "laonu" }));
-        set("long",  "他看上去白发苍苍，一副仆人打扮，弱不经风的样子。\n");
+        set("long",  "他看上去白髮蒼蒼，一副僕人打扮，弱不經風的樣子。\n");
         set("gender", "男性");
         set("age", 72);
         set("attitude", "peaceful");
@@ -57,7 +57,7 @@ void create()
         prepare_skill("finger", "shedu-qiqiao");
         prepare_skill("cuff", "lingshe-quan");
 
-        create_family("欧阳世家", 0, "老奴");
+        create_family("歐陽世家", 0, "老奴");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({

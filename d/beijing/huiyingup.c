@@ -4,10 +4,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "汇英酒楼二楼");
+        set("short", "匯英酒樓二樓");
         set("long", @LONG
-酒楼里桌椅洁净。座中客人衣饰豪奢，十九是富商大贾。这里可
-以俯瞰整个紫禁城的全景。
+酒樓裡桌椅潔淨。座中客人衣飾豪奢，十九是富商大賈。這裡可
+以俯瞰整個紫禁城的全景。
 LONG );
         set("exits", ([
                 "down" : "/d/beijing/huiying",

@@ -63,12 +63,12 @@ string user_list(object *ob, int flag)
         int i;
 
         if (! ob || ! sizeof(ob))
-                return "没有任何符合条件的玩家。\n";
+                return "沒有任何符合條件的玩家。\n";
         me = this_player();
         admin = me->is_admin() || (SECURITY_D->query_site_privilege("finger") == "enable");
         msg = "————————————————————————"
               "—————————\n" +
-              BBLU WHT "姓名          帐号          年龄          发呆   连线             \n" NOR +
+              BBLU WHT "姓名          帳號          年齡          發呆   連線             \n" NOR +
               "————————————————————————"
               "—————————\n";
         for(i = 0; i < sizeof(ob); i++)
@@ -81,7 +81,7 @@ string user_list(object *ob, int flag)
                         ob[i]->name(flag),NOR,query("id", ob[i]),
                         age_string(query("mud_age", ob[i])),
                         (interactive(ob[i])?((query_idle(ob[i]) >= 120)?HIG:NOR):query("doing", ob[i]) == "closed"?HIY:HIR),
-                        (interactive(ob[i])?(query_idle(ob[i])+"s"):query("doing", ob[i]) == "closed"?"闭关":(query("doing", ob[i]) == "scheme"?"计划":"断线")),ipname);
+                        (interactive(ob[i])?(query_idle(ob[i])+"s"):query("doing", ob[i]) == "closed"?"閉關":(query("doing", ob[i]) == "scheme"?"計劃":"斷線")),ipname);
         }
 
         msg += "————————————————————————"
@@ -108,11 +108,11 @@ varargs string finger_all(int idle)
                         if (me && ! me->visible(ob[i])) continue;
                         msg = sprintf("%s%-14s%-14s%-14s\n",
                                 msg,query("name", ob[i]),query("id", ob[i]),
-                                (interactive(ob[i]) ? (query_idle(ob[i]) + "s") : HIR "断线中" NOR));
+                                (interactive(ob[i]) ? (query_idle(ob[i]) + "s") : HIR "斷線中" NOR));
                 }
                 return "◎ " + MUD_NAME + "\n" +
                        "——————————————————\n"
-                       + "姓名          帐号          发呆\n" +
+                       + "姓名          帳號          發呆\n" +
                        "——————————————————\n"
                        + msg +
                        "——————————————————\n";
@@ -149,10 +149,10 @@ varargs string finger_all(int idle)
                 lcnt = sizeof(login_ob);
 
                 msg = WHT "◎ " + MUD_NAME + "\n" NOR + user_list(ob, 1) +
-                      sprintf("%d个在线玩家来自%d个不同的地点，"
-                              "%s玩家进入游戏中。\n\n",
+                      sprintf("%d個在線玩家來自%d個不同的地點，"
+                              "%s玩家進入遊戲中。\n\n",
                               pcnt, sizeof(counter),
-                              lcnt ? (string) lcnt + "个" : "目前没有");
+                              lcnt ? (string) lcnt + "個" : "目前沒有");
                 return msg;
         }
 }
@@ -199,7 +199,7 @@ varargs string finger_user(string name, mixed me)
         if (! ob->restore())
         {
                 destruct(ob);
-                return "没有这个玩家。\n";
+                return "沒有這個玩家。\n";
         }
 
         if (objectp(body = find_player(name)) && getuid(body) == name)
@@ -214,7 +214,7 @@ varargs string finger_user(string name, mixed me)
                 {
                         destruct(ob);
                         destruct(body);
-                        return "没有这个玩家。\n";
+                        return "沒有這個玩家。\n";
                 }
                 public_flag=query("env/public", body)?1:0;
                 cname=query("name", body);
@@ -228,12 +228,12 @@ varargs string finger_user(string name, mixed me)
 
         if (wiz_level(me) < 2)  // player finger
         {
-                msg =  sprintf("英文代号：\t%s\n姓    名：\t%s\n权限等级：\t%s\n"
-                        "电子邮件地址：\t%s\n上次连线：\t%s\n",
+                msg =  sprintf("英文代號：\t%s\n姓    名：\t%s\n權限等級：\t%s\n"
+                        "電子郵件地址：\t%s\n上次連線：\t%s\n",
                         query("id", ob),
                         cname,
                         SECURITY_D->get_status(name),
-                        (public_flag) ? email : "不告诉你",
+                        (public_flag) ? email : "不告訴你",
                         ctime(query("last_on", ob)));
 
                 if (objectp(body = find_player(name)) &&
@@ -241,14 +241,14 @@ varargs string finger_user(string name, mixed me)
                     MESSAGE_D->visible(me, body))
                 {
                         if (interactive(body))
-                                msg += sprintf("\n%s目前正在连线中。\n", cname);
+                                msg += sprintf("\n%s目前正在連線中。\n", cname);
                         else
-                                msg += sprintf("\n%s目前断线中。\n", cname);
+                                msg += sprintf("\n%s目前斷線中。\n", cname);
                 }
         } else          // wizard finger
         {
-                msg =  sprintf("英文代号：\t%s\n姓    名：\t%s\n权限等级：\t%s\n"
-                        "电子邮件地址：\t%s\n上次连线地址：\t%s( %s )\n",
+                msg =  sprintf("英文代號：\t%s\n姓    名：\t%s\n權限等級：\t%s\n"
+                        "電子郵件地址：\t%s\n上次連線地址：\t%s( %s )\n",
                         query("id", ob),
                         cname,
                         SECURITY_D->get_status(name),
@@ -279,15 +279,15 @@ varargs string finger_user(string name, mixed me)
                                         {
                                                 where = ret[0];
                                                 addr = ret[1];
-                                                msg += sprintf("\n%s目前正在从 %s (%s，%s) 连线中", cname,
+                                                msg += sprintf("\n%s目前正在從 %s (%s，%s) 連線中", cname,
                                                                query_ip_number(body), where,addr);
                                         } else
 #endif
-                                                msg += sprintf("\n%s目前正在从 %s 连线中", cname,
+                                                msg += sprintf("\n%s目前正在從 %s 連線中", cname,
                                                                query_ip_number(body));
                                         if (same > 1)
                                         {
-                                                msg += sprintf("，该地址一共有 %d 位使用者。\n", same);
+                                                msg += sprintf("，該地址一共有 %d 位使用者。\n", same);
                                                 if (previous_object() != find_object(MESSAGE_D))
                                                         // I won't return the list if this is
                                                         // called from a chat user
@@ -295,12 +295,12 @@ varargs string finger_user(string name, mixed me)
                                         } else
                                                 msg += "。\n";
                                 } else
-                                        msg += sprintf("\n%s目前正在连线中。\n", cname);
+                                        msg += sprintf("\n%s目前正在連線中。\n", cname);
                         } else
-                                msg += sprintf("\n%s目前断线中。\n", cname);
+                                msg += sprintf("\n%s目前斷線中。\n", cname);
 
                         if (body->name() != body->name(1))
-                                msg += sprintf("该玩家目前以%s身份行动。\n", body->name());
+                                msg += sprintf("該玩家目前以%s身份行動。\n", body->name());
                 }
         }
 
@@ -317,24 +317,24 @@ varargs string finger_user(string name, mixed me)
         if (flag && MESSAGE_D->visible(me, name))
         {
                 if ((int)res[0] == 3)
-                        msg += sprintf("%s的数据目前正在漫游中。。\n", cname);
+                        msg += sprintf("%s的數據目前正在漫遊中。。\n", cname);
                 else
                 {
                         where = res[1];
                         if (stringp(where) && where != LOCAL_STATION)
                         {
                                 if ((int)res[0] == 2)
-                                        msg += sprintf("\n%s目前正在%s站点闭关中。\n",
+                                        msg += sprintf("\n%s目前正在%s站點閉關中。\n",
                                                        cname, ! undefinedp(stations[where]) ? stations[where] : "其他",
                                                        ! undefinedp(stations[where]) ? stations[where] : "其他");
                                 else
                                 if ((int)res[0] == 1)
-                                        msg += sprintf("\n%s目前正在%s站点连线中。\n",
+                                        msg += sprintf("\n%s目前正在%s站點連線中。\n",
                                                        cname, ! undefinedp(stations[where]) ? stations[where] : "其他",
                                                        ! undefinedp(stations[where]) ? stations[where] : "其他");
                                 else
                                 if ((int)res[0] == 0)
-                                        msg += sprintf("\n%s目前正在%s站点，但没有连线进入游戏。\n",
+                                        msg += sprintf("\n%s目前正在%s站點，但沒有連線進入遊戲。\n",
                                                        cname, ! undefinedp(stations[where]) ? stations[where] : "其他",
                                                        ! undefinedp(stations[where]) ? stations[where] : "其他");
                         }
@@ -358,7 +358,7 @@ string get_killer()
         if (msg == "")
                 return "本城治安良好。\n";
         else
-                return "现在本城正在缉拿以下人犯：\n\n" + msg;
+                return "現在本城正在緝拿以下人犯：\n\n" + msg;
 }
 
 varargs string remote_finger_user(string name, int chinese_flag)
@@ -374,7 +374,7 @@ varargs string remote_finger_user(string name, int chinese_flag)
         if (! ob->restore())
         {
                 destruct(ob);
-                return chinese_flag ? "没有这个玩家。\n" : "No such user.\n";
+                return chinese_flag ? "沒有這個玩家。\n" : "No such user.\n";
         }
 
         if (objectp(body = find_player(name)) && getuid(body) == name)
@@ -389,7 +389,7 @@ varargs string remote_finger_user(string name, int chinese_flag)
                 {
                         destruct(ob);
                         destruct(body);
-                        return "没有这个玩家。\n";
+                        return "沒有這個玩家。\n";
                 }
                 public_flag=query("env/public", body)?1:0;
                 cname=query("name", body);
@@ -398,11 +398,11 @@ varargs string remote_finger_user(string name, int chinese_flag)
         }
 
         if (! public_flag)
-                email = "不告诉你";
+                email = "不告訴你";
 
         if (chinese_flag)
-                msg = sprintf("英文代号：\t%s\n姓    名：\t%s\n权限等级：\t%s\n"
-                              "电子邮件地址：\t%s\n上次连线：\t%s\n",
+                msg = sprintf("英文代號：\t%s\n姓    名：\t%s\n權限等級：\t%s\n"
+                              "電子郵件地址：\t%s\n上次連線：\t%s\n",
                               query("id", ob),
                               SECURITY_D->get_status(name),
                               cname, email,
@@ -417,7 +417,7 @@ varargs string remote_finger_user(string name, int chinese_flag)
             !query("env/invisible", body) )
         {
                 if (chinese_flag)
-                        msg += "\n" + cname + "目前正在连线中。\n";
+                        msg += "\n" + cname + "目前正在連線中。\n";
                 else
                         msg += "\n" + capitalize(name) + " is currently connected.\n";
         }

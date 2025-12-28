@@ -9,8 +9,8 @@ inherit PRIVATE_ROOM;
 void create()
 {
         set("short", RED "磨刀堂" NOR);
-        set ("long", "这里是磨刀堂主人红莲老祖练功的地方。\n"
-        "    这里提供的指令有重置(reset)、绝招(pfset)。\n");
+        set ("long", "這裡是磨刀堂主人紅蓮老祖練功的地方。\n"
+        "    這裡提供的指令有重置(reset)、絕招(pfset)。\n");
         set("exits", ([
                 "east"   : "/d/wizard/debug_room",
                 "west"  : __DIR__"modaotang1",
@@ -56,17 +56,17 @@ int do_reset()
         new("/clone/goods/zhufu_waist")->move(this_object());
         new("/clone/goods/zhufu_whip")->move(this_object());
         new("/clone/goods/zhufu_wrists")->move(this_object());
-        message_vision(YEL "$N重置了这里。\n" NOR, this_player());
+        message_vision(YEL "$N重置了這裡。\n" NOR, this_player());
         return 1;
 }
 
 int do_pfset(string arg)
 {
                 string sk, pf;
-        if (! arg) return notify_fail("正确格式：pfset 技能id名 绝招id名\n");
-        if (sscanf(arg, "%s %s", sk, pf) != 2) return notify_fail("正确格式：pfset 技能id名 绝招id名\n");
+        if (! arg) return notify_fail("正確格式：pfset 技能id名 絕招id名\n");
+        if (sscanf(arg, "%s %s", sk, pf) != 2) return notify_fail("正確格式：pfset 技能id名 絕招id名\n");
                 set("can_perform/"+ sk +"/" + pf, 1, this_player()); 
-                message_vision(YEL "$N设置了" + sk + "的新绝招" + pf + "。\n" NOR, this_player());
+                message_vision(YEL "$N設置了" + sk + "的新絕招" + pf + "。\n" NOR, this_player());
                 return 1;
 }
 
@@ -74,7 +74,7 @@ int init()
 { 
                 object me = this_player();
                 if (playerp(me) && !wizardp(me)) {
-                        message_vision(YEL "一阵狂风将$N吹往东方。\n" NOR, me);
+                        message_vision(YEL "一陣狂風將$N吹往東方。\n" NOR, me);
                         me->move("/d/wizard/debug_room");
                         return 1;
                 }

@@ -3,12 +3,12 @@
 inherit NPC;
 void create()
 {
-        set_name("铜驼", ({ "tongtuo"}) );
+        set_name("銅駝", ({ "tongtuo"}) );
         set("gender", "男性" );
-        set("title", "圆月山庄");
-        set("nickname", HIR"大护法"NOR);
+        set("title", "圓月山莊");
+        set("nickname", HIR"大護法"NOR);
         set("age", 42);
-        set("long", "铜驼是圆月山庄庄主丁鹏手下四大护法之一。\n");
+        set("long", "銅駝是圓月山莊莊主丁鵬手下四大護法之一。\n");
         set("combat_exp", 600000+random(400000));
         set("attitude", "friendly");
         set_skill("unarmed", 150);

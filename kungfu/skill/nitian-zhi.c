@@ -1,6 +1,6 @@
-//      炎黄-玩家自创武功系统
+//      炎黃-玩家自創武功系統
 //      Made at 2004-03-05 00:44:35 by Rcwiz
-//      /kungfu/skill/nitian-zhi.c  含情脉脉指
+//      /kungfu/skill/nitian-zhi.c  含情脈脈指
 
 inherit SKILL;
 #include <ansi.h>
@@ -8,9 +8,9 @@ inherit SKILL;
 #define PMSKILLS_D        "/adm/daemons/pmskillsd"
 
 string *parry_msg = ({
-HIG "我爱你个叉~~~!\n" NOR,
-HIG "我爱你个叉叉~~~!\n" NOR,
-HIG "我爱你个叉叉叉~~~!\n" NOR,
+HIG "我愛你個叉~~~!\n" NOR,
+HIG "我愛你個叉叉~~~!\n" NOR,
+HIG "我愛你個叉叉叉~~~!\n" NOR,
 });
 
 string query_parry_msg(object weapon)
@@ -23,14 +23,14 @@ string who_make(){ return "lala"; }
 
 //####actions start####
 mapping *action = ({
-([        "action"     :  "我爱你~~~!",
+([        "action"     :  "我愛你~~~!",
           "force"      :  320,
           "attack"     :  100,
           "parry"      :  64,
           "dodge"      :  60,
           "damage"     :  294,
-          "skill_name" :  "含情脉脉",
-          "damage_type":  "刺伤",
+          "skill_name" :  "含情脈脈",
+          "damage_type":  "刺傷",
 ])
 });
 //####actions end####
@@ -66,9 +66,9 @@ int valid_learn(object me)
         object ob;
         if( query_temp("weapon", me )
          || query("secondary_weapon", me) )
-                return notify_fail("你必须空手练习。\n");
+                return notify_fail("你必須空手練習。\n");
         if (me->query_skill("finger", 1) < me->query_skill("nitian-zhi", 1))
-                return notify_fail("你的基本指法火候有限，无法领会更高深的含情脉脉指。\n");
+                return notify_fail("你的基本指法火候有限，無法領會更高深的含情脈脈指。\n");
         return 1;
 }
 
@@ -98,7 +98,7 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         victim->receive_wound("qi",damage_bonus/2+damage_bonus*PMSKILLS_D->get_point2(query("pmskills/point", me))*2,me);
         addn("neili", -50, me);
 
-        return HIR "$n说道:好爽啊!\n" NOR;
+        return HIR "$n說道:好爽啊!\n" NOR;
 }
 
 mixed valid_damage(object ob, object me, int damage, object weapon)
@@ -124,13 +124,13 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
                 switch (random(3))
                 {
                 case 0:
-                   result += (["msg" : HIC "$n躲过了$N的诱惑\n" NOR]);
+                   result += (["msg" : HIC "$n躲過了$N的誘惑\n" NOR]);
                 break;
                 case 1:
-                   result += (["msg" : HIC "$n躲过了$N的诱惑\n" NOR]);
+                   result += (["msg" : HIC "$n躲過了$N的誘惑\n" NOR]);
                 break;
                 default:
-                   result += (["msg" : HIC "$n躲过了$N的诱惑\n" NOR]);
+                   result += (["msg" : HIC "$n躲過了$N的誘惑\n" NOR]);
                 break;
                 }
                 return result;
@@ -140,7 +140,7 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
 
 int practice_skill(object me)
 {
-        if( !query("scborn", me))return notify_fail("自创武学只能用学(learn)的来提升等级。\n");
+        if( !query("scborn", me))return notify_fail("自創武學只能用學(learn)的來提升等級。\n");
 }
 
 int difficult_level(){ return 2000;}

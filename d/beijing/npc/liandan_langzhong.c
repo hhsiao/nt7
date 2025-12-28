@@ -5,7 +5,7 @@ void create()
 {
         set_name("毒郎中", ({ "du langzhong", "langzhong" }));
         set("long", 
-                "一个面目凶神恶刹的中年人，现在在到处收集毒药。\n");
+                "一個面目凶神惡剎的中年人，現在在到處收集毒藥。\n");
         set("gender", "男性");
         set("age", 50);
         set("attitude", "peaceful");
@@ -39,7 +39,7 @@ void create()
         map_skill("blade", "ruyi-dao");
         */
 
-        set("title","五毒教教众");
+        set("title","五毒教教眾");
         setup();
         carry_object("/d/beijing/npc/obj/cloth1")->wear();
         carry_object("/d/beijing/npc/obj/blade2")->wield();
@@ -55,7 +55,7 @@ void init()
         ob = this_player();
 
         command("grin");
-        command("say 嘿嘿，今天真不巧，让你遇见了本爷，本爷今天要财要命！\n");
+        command("say 嘿嘿，今天真不巧，讓你遇見了本爺，本爺今天要財要命！\n");
         remove_call_out("kill_ob");
         call_out("kill_ob", 1, ob); 
 }

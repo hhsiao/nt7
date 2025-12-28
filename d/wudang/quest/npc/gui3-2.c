@@ -4,18 +4,18 @@
 #include <ansi.h>
 inherit NPC;
 
-string comeon = HIW"忽然间一道白影闪过，你正惊疑，小腿一紧，已被裹尸布缠住。\n"NOR; 
+string comeon = HIW"忽然間一道白影閃過，你正驚疑，小腿一緊，已被裹屍布纏住。\n"NOR; 
 
 string *stya = ({ 
-HIB"$N眼前一花，脖子已被裹尸布紧紧勒住，顿感气息不畅，双眼发黑。\n"NOR, 
-HIB"$N腿上的裹尸布被一股怪力一拉，立足不稳，向前扑倒在地。\n"NOR, 
-HIB"只听噗嗤一声，$N觉得身上已被十指戳入，不禁面色惨白。\n"NOR, 
-HIB"$N脚下被裹尸布一绊，仰天摔倒。\n"NOR
+HIB"$N眼前一花，脖子已被裹屍布緊緊勒住，頓感氣息不暢，雙眼發黑。\n"NOR, 
+HIB"$N腿上的裹屍布被一股怪力一拉，立足不穩，向前撲倒在地。\n"NOR, 
+HIB"只聽噗嗤一聲，$N覺得身上已被十指戳入，不禁面色慘白。\n"NOR, 
+HIB"$N腳下被裹屍布一絆，仰天摔倒。\n"NOR
 }); 
 
 string *styb = ({ 
-HIC"$N对$n喝道：“何处妖魔，来此作孽？本道爷今日要将你变成死鬼！”\n"NOR,
-HIW"$N挥动手中的"HIM"桃木剑"HIW"，道道剑光将裹尸布震成碎片，漫天飞舞。\n"NOR
+HIC"$N對$n喝道：“何處妖魔，來此作孽？本道爺今日要將你變成死鬼！”\n"NOR,
+HIW"$N揮動手中的"HIM"桃木劍"HIW"，道道劍光將裹屍布震成碎片，漫天飛舞。\n"NOR
 });
 
 void check_time();
@@ -28,11 +28,11 @@ void create()
     set("age", 200);
     set("per", 15);
     set("long",
-        "一种人死后尸体不腐而变成的鬼魂。身上缠满了裹尸布，十分可怖。\n");
+        "一種人死後屍體不腐而變成的鬼魂。身上纏滿了裹屍布，十分可怖。\n");
     set("combat_exp", 100000);
     set("shen_type", -1);
     set("attitude", "peaceful");
-    set("limbs", ({ "牙齿", "手爪" }) );
+    set("limbs", ({ "牙齒", "手爪" }) );
     set("verbs", ({ "bite", "claw" }) );
     set("env/invisible", 1);
     set("water", 200);

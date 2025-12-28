@@ -7,11 +7,11 @@ inherit F_GUARDER;
 
 void create()
 {
-        set_name("蒋四根", ({ "jiang sigen", "jiang", "sigen" }));
-        set("title", "红花会十三当家");
-        set("nickname", YEL "铜头鳄鱼" NOR);
-        set("long", "铜头鳄鱼蒋四根在会中坐第十三把交椅，兵器\n"
-                    "是铁桨。\n");
+        set_name("蔣四根", ({ "jiang sigen", "jiang", "sigen" }));
+        set("title", "紅花會十三當家");
+        set("nickname", YEL "銅頭鱷魚" NOR);
+        set("long", "銅頭鱷魚蔣四根在會中坐第十三把交椅，兵器\n"
+                    "是鐵槳。\n");
         set("gender", "男性");
         set("age", 28);
         set("attitude", "peaceful");
@@ -58,14 +58,14 @@ void create()
         }));
 
         set("guarder", ([
-                "refuse_other": CYN "$N" CYN "对$n" CYN "冷喝道："
-                                "你给我站住！我们红花会岂是由得外"
-                                "人随便走动地方？" NOR,
-                "refuse_carry": CYN "$N" CYN "对$n" CYN "喝道：你"
-                                "背上背的是什么人？给我放下来！" NOR,
+                "refuse_other": CYN "$N" CYN "對$n" CYN "冷喝道："
+                                "你給我站住！我們紅花會豈是由得外"
+                                "人隨便走動地方？" NOR,
+                "refuse_carry": CYN "$N" CYN "對$n" CYN "喝道：你"
+                                "背上背的是什麼人？給我放下來！" NOR,
         ]));
 
-        create_family("红花会", 4, "二当家");
+        create_family("紅花會", 4, "二當家");
 
         set("chat_chance_combat", 100);
         set("chat_msg_combat", ({
@@ -86,7 +86,7 @@ void attempt_apprentice(object me)
 
         if( query("shen", me)<-1000 )
         {
-                command("say 我红花会不收不义之人，你还是走吧。");
+                command("say 我紅花會不收不義之人，你還是走吧。");
                 return;
         }
 
@@ -110,8 +110,8 @@ void hit_ob(object ob)
 
         if (guard1 && ! guard1->is_fighting())
         {
-                message_vision (HIW "\n杨成协大怒，喝道：居然欺到我们红花会"
-                                "头上来了，大家并肩子上！\n\n" NOR, guard1);
+                message_vision (HIW "\n楊成協大怒，喝道：居然欺到我們紅花會"
+                                "頭上來了，大家併肩子上！\n\n" NOR, guard1);
                 guard1->kill_ob(ob);
         }
 
@@ -143,8 +143,8 @@ void kill_ob(object ob)
 
         if (guard1 && ! guard1->is_fighting())
         {
-                message_vision (HIW "\n杨成协大怒，喝道：居然欺到我们红花会"
-                                "头上来了，大家并肩子上！\n\n" NOR, guard1);
+                message_vision (HIW "\n楊成協大怒，喝道：居然欺到我們紅花會"
+                                "頭上來了，大家併肩子上！\n\n" NOR, guard1);
                 guard1->kill_ob(ob);
         }
 

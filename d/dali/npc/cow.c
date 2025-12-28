@@ -5,7 +5,7 @@ inherit NPC;
 void create()
 {
         set_name("水牛", ({ "shui niu", "niu" }));
-        set("long","一头南方山区常见的水牛，是耕作的主力，也用来拉车载物。由于水草茂盛，长得十分肥壮。\n");
+        set("long","一頭南方山區常見的水牛，是耕作的主力，也用來拉車載物。由於水草茂盛，長得十分肥壯。\n");
         set("race", "家畜");
         set("age", 5);
         set("int", 30);
@@ -17,7 +17,7 @@ void create()
         set("combat_exp",50000);
         set("attitude", "peaceful");
 
-        set("limbs", ({ "头部", "腹部", "尾巴","后腿","前腿" }) );
+        set("limbs", ({ "頭部", "腹部", "尾巴","後腿","前腿" }) );
         set("verbs", ({ "bite","hoof" }) );
         set_temp("apply/attack", 50);
         set_temp("apply/armor", 15);

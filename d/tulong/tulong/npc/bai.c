@@ -2,16 +2,16 @@
 inherit NPC;
 void create()
 {
-        set_name("白龟寿", ({ "bai guishou", "bai", "guishou"}) );
-        set("long", "一个五十来岁的老者，秃着头顶，一身结实的肌肉。\n");
+        set_name("白龜壽", ({ "bai guishou", "bai", "guishou"}) );
+        set("long", "一個五十來歲的老者，禿著頭頂，一身結實的肌肉。\n");
         set("attitude", "heroism");
-        set("title", "天鹰教");
-        set("nickname", HIW "玄武坛坛主" NOR);
+        set("title", "天鷹教");
+        set("nickname", HIW "玄武壇壇主" NOR);
         set("combat_exp", 500000);
         set("age", 50);
         set("chat_chance_combat", 2);
         set("chat_msg_combat", ({
-                "白龟寿喝道：无耻小贼，竟敢打屠龙刀的主意？\n",
+                "白龜壽喝道：無恥小賊，竟敢打屠龍刀的主意？\n",
         }) );
         set_skill("force", 100+random(60));
         set_skill("hunyuan-yiqi", 100+random(60));

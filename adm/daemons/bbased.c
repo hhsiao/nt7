@@ -1,4 +1,4 @@
-// bag_based.c 乾坤戒指的数据库
+// bag_based.c 乾坤戒指的數據庫
 
 #include <ansi.h>
 
@@ -8,17 +8,17 @@ inherit F_DBASE;
 
 #include "/adm/etc/database.h"
 
-// 保存数据的映射变量
+// 保存數據的映射變量
 mapping save_dbase;
 
-// 调用函数announec_all_save_object时候的标志
+// 調用函數announec_all_save_object時候的標誌
 #define ONLY_SAVE               0
 #define DESTRUCT_OBJECT         1
 nosave  int save_flag = ONLY_SAVE;
 
 public int announce_all_save_object(int destruct_flag);
 
-// 提供给外部的函数
+// 提供給外部的函數
 mixed   query_data();
 int     set_data(mixed data);
 mixed   query_object_data(object ob);
@@ -40,7 +40,7 @@ void create()
         SCHEDULE_D->set_event(300, 1, this_object(), "announce_all_save_object", ONLY_SAVE);
 }
 
-// 数据库对象析构函数
+// 數據庫對象析構函數
 int remove(string euid)
 {
         if( previous_object() != find_object(SIMUL_EFUN_OB) || !is_root(euid) )
@@ -51,14 +51,14 @@ int remove(string euid)
         return 1;
 }
 
-// MUD将要停止运行
+// MUD將要停止運行
 void mud_shutdown()
 {
         save_flag = DESTRUCT_OBJECT;
         destruct(this_object());
 }
 
-// 通知所有的需要保存数据的对象
+// 通知所有的需要保存數據的對象
 public int announce_all_save_object(int destruct_flag)
 {
         object ob;
@@ -69,15 +69,15 @@ public int announce_all_save_object(int destruct_flag)
                 e = keys(save_dbase);
         else
                 e = ({ });
-        // 通知所有的存盘对象保存数据
+        // 通知所有的存盤對象保存數據
         for( i = 0; i < sizeof(e); i++ )
         {
                 if( !stringp(e[i]) )
-                        // 不应该不是字符串
+                        // 不應該不是字符串
                         map_delete(save_dbase, e[i]);
                 else if( objectp(ob = find_object(e[i])) )
                 {
-                        // 找到了存盘的对象，通知它们
+                        // 找到了存盤的對象，通知它們
                         if( destruct_flag == DESTRUCT_OBJECT )
                                 catch(destruct(ob));
                         else
@@ -89,7 +89,7 @@ public int announce_all_save_object(int destruct_flag)
         return 1;
 }
 
-// 清理所有对象
+// 清理所有對象
 int cleanup_all_save_object(int raw)
 {
         object ob;
@@ -101,11 +101,11 @@ int cleanup_all_save_object(int raw)
         else
                 return 1;
 
-        // 通知所有的存盘对象保存数据
+        // 通知所有的存盤對象保存數據
         for( i = 0; i < sizeof(e); i++ )
         {
                 if( !stringp(e[i]) )
-                        // 不应该不是字符串
+                        // 不應該不是字符串
                         map_delete(save_dbase, e[i]);
                 else if( file_size(e[i] + ".c") < 0 )
                 {
@@ -122,7 +122,7 @@ int cleanup_all_save_object(int raw)
         return 1;
 }
 
-// 心跳函数，自动保存所有的数据
+// 心跳函數，自動保存所有的數據
 protected int heart_beat()
 {
         set_heart_beat(450 + random(30));
@@ -131,19 +131,19 @@ protected int heart_beat()
 
 string query_save_file() { return DATA_DIR + "bbased"; }
 
-// 某个物件读取自己的记录
+// 某個物件讀取自己的記錄
 mixed query_data()
 {
         return query_object_data(previous_object());
 }
 
-// 某个物件保存自己的记录
+// 某個物件保存自己的記錄
 int set_data(mixed data)
 {
         return set_object_data(previous_object(), data);
 }
 
-// 读取某个对象的记录
+// 讀取某個對象的記錄
 mixed query_object_data(mixed ob)
 {
         string index;
@@ -151,7 +151,7 @@ mixed query_object_data(mixed ob)
 
         if( !ob ) return 0;
 
-        // 只有ROOT或对象自己才可以保存或读取数据
+        // 只有ROOT或對象自己才可以保存或讀取數據
         if( !is_root(previous_object()) &&
             previous_object() != ob ) return 0;
 
@@ -168,14 +168,14 @@ mixed query_object_data(mixed ob)
         return save_dbase[index];
 }
 
-// 保存某个对象的记录
+// 保存某個對象的記錄
 int set_object_data(mixed ob, mixed data)
 {
         string index;
 
         if( !ob ) return 0;
 
-        // 只有ROOT或对象自己才可以保存或读取数据
+        // 只有ROOT或對象自己才可以保存或讀取數據
         if( !is_root(previous_object()) &&
             previous_object() != ob ) return 0;
 
@@ -199,27 +199,27 @@ int set_object_data(mixed ob, mixed data)
         return 1;
 }
 
-// 读取所有对象的记录
+// 讀取所有對象的記錄
 mapping query_save_dbase()
 {
         return save_dbase;
 }
 
-// 查阅保存了数据的所有对象
+// 查閱保存了數據的所有對象
 string *query_saved_object()
 {
         return keys(save_dbase);
 }
 
-// 清除一个对象
+// 清除一個對象
 int clear_object(mixed ob)
 {
         string index;
         object xob;
 
-        // 由于一个对象在清除前一般会保存自己的数据，所以一旦数据受到
-        // 损伤需要恢复对象为原始状态的时候就必须先清除对象本身，然后
-        // 清空它的数据。
+        // 由於一個對象在清除前一般會保存自己的數據，所以一旦數據受到
+        // 損傷需要恢復對象為原始狀態的時候就必須先清除對象本身，然後
+        // 清空它的數據。
 
         if( !ob ) return 0;
 

@@ -7,18 +7,18 @@ int do_jump(string arg);
 
 void create()
 {
-        set("short", "听鱼石");
+        set("short", "聽魚石");
         set("long", @LONG
-这里已接近碧波池的中心，一块形如卧狮的大石立于水畔，侧面有两
-个大篆--“听鱼”。大概因为经常有人使用，石面已经十分光滑。池中白
-莲盛放，清香阵阵，莲叶田田。你在石上坐了下来，一阵微风拂过，池中
-荷叶倏倏作响，几尾金色锦鲤戏于荷间。北面池中央有一间重檐六角亭(t
-ing)，可是似乎无路通向此亭。
+這裡已接近碧波池的中心，一塊形如臥獅的大石立於水畔，側面有兩
+個大篆--“聽魚”。大概因為經常有人使用，石面已經十分光滑。池中白
+蓮盛放，清香陣陣，蓮葉田田。你在石上坐了下來，一陣微風拂過，池中
+荷葉倏倏作響，幾尾金色錦鯉戲於荷間。北面池中央有一間重簷六角亭(t
+ing)，可是似乎無路通向此亭。
 LONG );
 
         set("item_desc", ([
-                "ting" : "亭上一匾，依稀可以看出上有“试剑亭”三字。\n"
-                         "你看看距离不算太远，应该可以用轻功飞掠(fly)过去。\n",
+                "ting" : "亭上一匾，依稀可以看出上有“試劍亭”三字。\n"
+                         "你看看距離不算太遠，應該可以用輕功飛掠(fly)過去。\n",
         ]));
         /*        
         set("objects", ([
@@ -49,17 +49,17 @@ int do_jump(string arg)
         object me = this_player();
 
         if ( !arg || arg != "ting" )
-                return notify_fail( "什么？\n");
+                return notify_fail( "什麼？\n");
 
-        message_vision("$N纵身往试剑亭跳去。\n", me);
+        message_vision("$N縱身往試劍亭跳去。\n", me);
         if ( me->query_skill("dodge",1) <= 50 ) {
-                message_vision("$N一个不留神，“噗嗵”一声掉进水里，吃了一嘴烂泥。\n", me);
-                message_vision("$N落汤鸡似的从池子里爬起来，满足的抹了抹嘴。\n", me);
+                message_vision("$N一個不留神，“噗嗵”一聲掉進水裡，吃了一嘴爛泥。\n", me);
+                message_vision("$N落湯雞似的從池子裡爬起來，滿足的抹了抹嘴。\n", me);
         }
 
         if ( me->query_skill("dodge",1) > 50 ) {
                 me->move(__DIR__"shijian");
-                message("vision", me->name() + "纵身由听鱼石跳了过来。\n",environment(me), ({me}) );
+                message("vision", me->name() + "縱身由聽魚石跳了過來。\n",environment(me), ({me}) );
         }
 
         return 1;

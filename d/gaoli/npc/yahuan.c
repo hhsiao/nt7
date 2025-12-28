@@ -1,11 +1,11 @@
-// 大唐双龙传
+// 大唐雙龍傳
 
 inherit NPC;
 
 void create()
 {
   set_name("丫鬟", ({"ya huan","huan"}));
-  set("long","这是一位丫鬟。\n");
+  set("long","這是一位丫鬟。\n");
   set("gender", "女性");
   set("combat_exp", 3000);
   set("age", 18);
@@ -40,10 +40,10 @@ void welcome(object ob)
    
    switch(random(2)){
     case 0:
-     command("say 奴家这厢有礼了！");
+     command("say 奴家這廂有禮了！");
      break;
     case 1:
-     command("say 据说老爷要把我纳做小妾，不知道是真是假。");
+     command("say 據說老爺要把我納做小妾，不知道是真是假。");
    }
    
 }

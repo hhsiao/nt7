@@ -3,19 +3,19 @@ inherit F_LIQUID;
 #include <ansi.h> 
 void create()
 {
-        set_name(HIG"酒坛"NOR, ({"jiutan"}));
+        set_name(HIG"酒罈"NOR, ({"jiutan"}));
         set_weight(700);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一个青瓷酒摊，花纹精细，里面想来装的也是美酒。\n");
-                set("unit", "个");
+                set("long", "一個青瓷酒攤，花紋精細，裡面想來裝的也是美酒。\n");
+                set("unit", "個");
                 set("value", 100);
                 set("max_liquid", 10);
         } 
         set("liquid", ([
                 "type": "alcohol",
-                "name": "竹叶青",
+                "name": "竹葉青",
                 "remaining": 1500,
                 "drunk_apply": 6,
         ]) );

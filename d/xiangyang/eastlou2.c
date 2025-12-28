@@ -2,11 +2,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "城东箭楼");
+        set("short", "城東箭樓");
         set("long", @LONG
-这是东城头的箭楼，里面布满了一排的垛口，一排大宋的箭手们
-正警惕地监视着城外的一举一动，随时准备给前来偷袭的蒙古兵以迎
-头痛击。
+這是東城頭的箭樓，裡面佈滿了一排的垛口，一排大宋的箭手們
+正警惕地監視著城外的一舉一動，隨時準備給前來偷襲的蒙古兵以迎
+頭痛擊。
 LONG );
         set("indoors", "xiangyang");
         set("no_clean_up", 0);
@@ -26,6 +26,6 @@ LONG );
 int valid_leave(object me, string dir)
 {
         if (dir == "east" )
-        return notify_fail("冲出去做什么，送死啊？\n");
+        return notify_fail("衝出去做什麼，送死啊？\n");
         return ::valid_leave(me,dir);
 }

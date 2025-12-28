@@ -4,7 +4,7 @@ int edit(function callback, string text)
 {
         if( !text ) text = "";
 
-        write("结束离开用 '.'，取消输入用 '~q'，使用内建列编辑器用 '~e'。\n");
+        write("結束離開用 '.'，取消輸入用 '~q'，使用內建列編輯器用 '~e'。\n");
         write("—————————————————————————————\n");
         write(text);
 
@@ -25,7 +25,7 @@ void input_line(string line, string text, function callback)
                 (*callback)(text);
                 return;
         } else if( line == "~q" ) {
-                write("输入取消。\n");
+                write("輸入取消。\n");
                 return;
         } else if( line == "~e" ) {
         } else

@@ -15,14 +15,14 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "把");
-                set("long", RED"一柄长长的缅刀，刀身不住颤动，宛如活蛇一般。引光望去，刀刃上一片暗
-红之色。\n" NOR);
+                set("long", RED"一柄長長的緬刀，刀身不住顫動，宛如活蛇一般。引光望去，刀刃上一片暗
+紅之色。\n" NOR);
                 set("value", 7000000);
                 set("material", "steel");
                 set("rigidity", 200);
                 set("replica_ob","/d/shaolin/obj/jiedao");
-                set("wield_msg", RED "只听「唰」的一声，血刀脱鞘飞出，$N手中似是握住一条赤蛇泛着红光，弥漫着一片血气。\n" NOR);
-                set("unwield_msg", RED " 蛇进刀鞘。\n" NOR);
+                set("wield_msg", RED "只聽「唰」的一聲，血刀脫鞘飛出，$N手中似是握住一條赤蛇泛著紅光，瀰漫著一片血氣。\n" NOR);
+                set("unwield_msg", RED " 蛇進刀鞘。\n" NOR);
                 set("clone_ob", "/clone/weapon/xuedao");
         }
 //      ::create();
@@ -44,7 +44,7 @@ int do_lian(string arg)
 
         if( !objectp(weapon=query_temp("weapon", me) )
          || query("skill_type", weapon) != "blade" )
-        return notify_fail( "你使用的武器不对。\n");
+        return notify_fail( "你使用的武器不對。\n");
 
         if ( weapon != this_object() ) return 0;
         
@@ -68,9 +68,9 @@ int do_lian(string arg)
         if( me->query_skill("xuedao-daofa",1) > 200 ) 
         me->receive_damage("jingli", 15);
         me->receive_damage("qi", 5);
-                tell_object(me,"你的血刀刀法进步了！\n", me);
+                tell_object(me,"你的血刀刀法進步了！\n", me);
         return 1;
         }
         else
-        return notify_fail("血刀寒气逼人，你练得没什么进展。\n");
+        return notify_fail("血刀寒氣逼人，你練得沒什麼進展。\n");
 }

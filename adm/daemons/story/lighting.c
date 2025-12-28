@@ -1,19 +1,19 @@
-// story:lighting 电击
+// story:lighting 電擊
 
 #include <ansi.h>
 
 mixed random_gift();
 
 nosave mixed *story = ({
-        "电母：这...这是啥？",
-        "雷公：怎么了你？",
-        "电母杏目圆睁：岂有此理！快说，你背地里都瞒着我干些什么？",
-        "雷公：变态！",
-        "电母：你...",
+        "電母：這...這是啥？",
+        "雷公：怎麼了你？",
+        "電母杏目圓睜：豈有此理！快說，你背地裡都瞞著我幹些什麼？",
+        "雷公：變態！",
+        "電母：你...",
         "...",
         "嘿...",
         "哎呦...",
-        "噼哑！！！！！！！！！！！～～～～～",
+        "噼啞！！！！！！！！！！！～～～～～",
         (: random_gift :),
 });
 
@@ -22,7 +22,7 @@ void create()
         seteuid(getuid());
 }
 
-string prompt() { return HIR "【神话】" NOR; }
+string prompt() { return HIR "【神話】" NOR; }
 
 mixed query_story_message(int step)
 {
@@ -47,7 +47,7 @@ mixed random_gift()
         
         if( query("gift/lighting", ob) || random(5) )
         {
-                msg = HIR + ob->name(1) + "一声惨叫，软软的倒了下去。" NOR;
+                msg = HIR + ob->name(1) + "一聲慘叫，軟軟的倒了下去。" NOR;
                 if( query("combat_exp", ob)<1000000 || 
                     query("qi", ob)<1000 )
                         ob->unconcious();
@@ -60,7 +60,7 @@ mixed random_gift()
                 }
         } else
         {
-                msg = HIC "霎那间" + ob->name(1) + "浑身火花四射，犹如天神一般，神威凛凛。" NOR;
+                msg = HIC "霎那間" + ob->name(1) + "渾身火花四射，猶如天神一般，神威凜凜。" NOR;
                 addn("con", 1, ob);
                 addn("gift/lighting", 1, ob);
         }

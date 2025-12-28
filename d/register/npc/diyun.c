@@ -1,11 +1,11 @@
-// diyun 狄云
+// diyun 狄雲
 
 inherit NPC;
 
 void create()
 {
-        set_name("狄云", ({ "di yun", "diyun"}));
-        set("long", "他英武刚正，有一股豪迈之气。\n");
+        set_name("狄雲", ({ "di yun", "diyun"}));
+        set("long", "他英武剛正，有一股豪邁之氣。\n");
         set("gender", "男性");
         set("age", 25);
         set("attitude", "peaceful");

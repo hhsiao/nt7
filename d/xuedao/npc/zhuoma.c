@@ -6,7 +6,7 @@ inherit KNOWER;
 
 void create()
 {
-        set_name("卓玛", ({ "zhuo ma", "zhuo", "ma" }));
+        set_name("卓瑪", ({ "zhuo ma", "zhuo", "ma" }));
         set("long", "她是一位藏族女同胞。\n");
         set("gender", "女性");
         set("age", 25);
@@ -51,6 +51,6 @@ void greeting(object ob)
 {
         if (! ob) return;
 
-        say (CYN "卓玛合什为礼，说道：阿弭佗佛！" +
-             RANK_D->query_respect(ob) + CYN "，贫尼这厢有礼了。\n" NOR);
+        say (CYN "卓瑪合什為禮，說道：阿弭佗佛！" +
+             RANK_D->query_respect(ob) + CYN "，貧尼這廂有禮了。\n" NOR);
 }

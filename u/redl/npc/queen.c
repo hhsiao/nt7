@@ -7,11 +7,11 @@ inherit NPC;
 void create()
 {
         set_name("小侍女" , ({ "shi nv", "girl", "queen" }) );
-        set("title", HIY"化乐大殿"NOR);
-        //set("nickname", HIM "化乐天女" NOR);
+        set("title", HIY"化樂大殿"NOR);
+        //set("nickname", HIM "化樂天女" NOR);
         set("gender", "女性");
         set("age", 21);
-        set("long", "这是一个低调却高傲的女人，偶尔也头晕犯脾气。\n");
+        set("long", "這是一個低調卻高傲的女人，偶爾也頭暈犯脾氣。\n");
         set("attitude", "friendly");
         set("str", 21);
         set("con", 19);
@@ -36,9 +36,9 @@ void create()
 
                 set("inquiry", ([
                // "玉清散"   : (: ask_makesan :),
-                "茶"     : "你安心坐下吧，多坐几次就有茶喝了。\n"+NOR,
-                "redl"     : "那是奴婢的男主人，爱喝酒，比较二。\n"+NOR,
-                "gigi"     : "那是奴婢的女主人，聪明漂亮，敏捷无双。\n"+NOR,
+                "茶"     : "你安心坐下吧，多坐幾次就有茶喝了。\n"+NOR,
+                "redl"     : "那是奴婢的男主人，愛喝酒，比較二。\n"+NOR,
+                "gigi"     : "那是奴婢的女主人，聰明漂亮，敏捷無雙。\n"+NOR,
         ]));
 
         setup();
@@ -78,7 +78,7 @@ void init()
         if (playerp(me)) {
                 if (!query_temp("has_healredlroom", me)){
                         set_temp("has_healredlroom", 1, me);
-                        message_vision(YEL "$N微微颔首浅笑，顿时$n如沐春风一般精神了。\n" NOR, this_object(), me);
+                        message_vision(YEL "$N微微頷首淺笑，頓時$n如沐春風一般精神了。\n" NOR, this_object(), me);
                         fullnow(me);
                 }
                 if ( is_owner(me) ){
@@ -95,7 +95,7 @@ int do_expel(string arg)
         
         me = this_player();
         if ( !is_owner(me) ){
-                tell_object(me, NOR"你无法行使驱逐权！\n"NOR);
+                tell_object(me, NOR"你無法行使驅逐權！\n"NOR);
                 return 1;
         }
         
@@ -109,11 +109,11 @@ int do_expel(string arg)
                         sscanf(base_name(where), "/data/room/redl/%*s") ||
                         sscanf(base_name(where), "/u/gigi/%*s") ||
                         sscanf(base_name(where), "/data/room/gigi/%*s")) {
-                                message_vision(YEL "$N打了个响指，屏风后涌出四个傀儡武士手持长长的斧钺枪戟，\n"
-                                                                   "  把$n高高地叉在上面，齐喝一声“咄...” 用力往石阶掼了下去。\n" NOR, this_object(), ob);
+                                message_vision(YEL "$N打了個響指，屏風後湧出四個傀儡武士手持長長的斧鉞槍戟，\n"
+                                                                   "  把$n高高地叉在上面，齊喝一聲“咄...” 用力往石階摜了下去。\n" NOR, this_object(), ob);
                                 delete_temp("can_enterredlroom", ob);
                                 ob->move("/u/redl/private_room/dating");
-                                message_vision(YEL "$N从石阶上骨碌骨碌滚下来，摔了个七荤八素，躺在地上无法动弹！\n" NOR, ob);
+                                message_vision(YEL "$N從石階上骨碌骨碌滾下來，摔了個七葷八素，躺在地上無法動彈！\n" NOR, ob);
                                 ob->start_busy(30);
                         }
                 }
@@ -122,16 +122,16 @@ int do_expel(string arg)
         
         ob = find_player(arg);
         if (!ob || !objectp(ob) || !playerp(ob)) {
-                tell_object(me, "你没有发现有这玩家。\n");
+                tell_object(me, "你沒有發現有這玩家。\n");
                 return 1;
         }
 
-        //等于summ，区别是无法获得通向大殿的资格
-        message_vision(YEL "$N打了个响指，屏风后涌出四个傀儡武士手持长长的斧钺枪戟，\n"
-                                        "  把$n高高地叉在上面，齐喝一声“咄...” 用力往石阶掼了下去。\n" NOR, this_object(), ob);
+        //等於summ，區別是無法獲得通向大殿的資格
+        message_vision(YEL "$N打了個響指，屏風後湧出四個傀儡武士手持長長的斧鉞槍戟，\n"
+                                        "  把$n高高地叉在上面，齊喝一聲“咄...” 用力往石階摜了下去。\n" NOR, this_object(), ob);
         delete_temp("can_enterredlroom", ob);
         ob->move("/u/redl/private_room/dating");
-        message_vision(YEL "$N从石阶上骨碌骨碌滚下来，摔了个七荤八素，躺在地上无法动弹！\n" NOR, ob);
+        message_vision(YEL "$N從石階上骨碌骨碌滾下來，摔了個七葷八素，躺在地上無法動彈！\n" NOR, ob);
         ob->start_busy(30);
         return 1;
 }
@@ -141,7 +141,7 @@ int do_sm(string arg)
         object me, ob;
         me = this_player();
         if ( !is_owner(me) ){
-                tell_object(me, NOR"你无法行使调教权！\n"NOR);
+                tell_object(me, NOR"你無法行使調教權！\n"NOR);
                 return 1;
         }
         if (!arg || arg=="") {
@@ -150,13 +150,13 @@ int do_sm(string arg)
         }
         ob = find_player(arg);
         if (!ob || !objectp(ob) || !playerp(ob)) {
-                tell_object(me, "你没有发现有这玩家。\n");
+                tell_object(me, "你沒有發現有這玩家。\n");
                 return 1;
         }
 
         this_object()->command("remove all");
-        message_vision(YEL "$N露出里穿的一套黑色PU镂空胸衣、黑色PU紧身短裙、黑色蕾丝吊袜带，\n"
-                                           "  再迅速摸出一顶珊瑚恶魔犄角戴好，紧接着抽出黑色长皮鞭对着$n嘿嘿一笑……\n" NOR, this_object(), ob);
+        message_vision(YEL "$N露出裡穿的一套黑色PU鏤空胸衣、黑色PU緊身短裙、黑色蕾絲吊襪帶，\n"
+                                           "  再迅速摸出一頂珊瑚惡魔犄角戴好，緊接著抽出黑色長皮鞭對著$n嘿嘿一笑……\n" NOR, this_object(), ob);
         for(int i = 16; i > 0; i--) {
                 int rnd = random(7);
                 switch(rnd)
@@ -174,7 +174,7 @@ int do_sm(string arg)
                                 this_object()->command("candle " + query("id", ob));
                 break;
                         case 6:
-                                this_object()->command("kiss " + query("id", ob) + " 伤口");
+                                this_object()->command("kiss " + query("id", ob) + " 傷口");
                 break;
         }
         }
@@ -186,7 +186,7 @@ int do_sm(string arg)
 
 int do_cpat()
 {
-        message_vision(YEL "$n" NOR YEL "轻轻拍了拍$N" NOR YEL "的脑袋，$N" NOR YEL "“喵呜~”就地一滚变成了只小猫咪。\n" NOR, this_object(), this_player());
+        message_vision(YEL "$n" NOR YEL "輕輕拍了拍$N" NOR YEL "的腦袋，$N" NOR YEL "“喵嗚~”就地一滾變成了只小貓咪。\n" NOR, this_object(), this_player());
         new(__DIR__"lcat")->move(environment(this_object()));
         destruct(this_object());
         return 1;

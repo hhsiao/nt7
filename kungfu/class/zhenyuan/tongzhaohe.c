@@ -10,9 +10,9 @@ inherit F_GUARDER;
 void create()
 {
         set_name("童兆和", ({ "tong zhaohe", "tong", "zhaohe"}));
-          set("long", "此人相貌猥琐，身材瘦削，一副有气没力的样子。"
-                    "是镇远镖局里赫赫有名的混混。\n");
-        set("title", "镇远镖局镖师");
+          set("long", "此人相貌猥瑣，身材瘦削，一副有氣沒力的樣子。"
+                    "是鎮遠鏢局裡赫赫有名的混混。\n");
+        set("title", "鎮遠鏢局鏢師");
           set("gender", "男性");
           set("age", 35);
         set("class", "fighter");
@@ -59,14 +59,14 @@ void create()
         }));
 
         set("guarder", ([
-                "refuse_other": CYN "$N" CYN "对$n" CYN "皱眉道："
-                                "喂！你这倒是往哪里走啊？" NOR,
-                "refuse_carry": CYN "$N" CYN "对$n" CYN "嬉皮笑脸"
-                                "地道：你背上背的是个啥？扔下来给"
+                "refuse_other": CYN "$N" CYN "對$n" CYN "皺眉道："
+                                "喂！你這倒是往哪裡走啊？" NOR,
+                "refuse_carry": CYN "$N" CYN "對$n" CYN "嬉皮笑臉"
+                                "地道：你背上背的是個啥？扔下來給"
                                 "咱瞧瞧。" NOR,
         ]));
 
-          create_family("八卦门", 3, "弟子");
+          create_family("八卦門", 3, "弟子");
           setup();
 
         carry_object("/clone/weapon/gangdao")->wield();
@@ -79,7 +79,7 @@ void attempt_apprentice(object me)
                 return;
 
         command("@@");
-        command("say 居然有人拜我为师？念在你有心，我就收下你好了。");
+        command("say 居然有人拜我為師？念在你有心，我就收下你好了。");
         command("recruit "+query("id", me));
         if( query("class", me) != "fighter" )
                 set("class", "fighter", me);

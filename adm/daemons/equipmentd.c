@@ -11,113 +11,113 @@ inherit F_DBASE;
 #define EQUIP_DIR       "/inherit/template/"
 #define EQUIP_LIST      CONFIG_DIR "equiplist/"
 
-// 兵器有 2件，分为兵器和空手兵器(hand, finger)
+// 兵器有 2件，分為兵器和空手兵器(hand, finger)
 // 防具有 head, armor, cloth, pants, boots, waist, wrists, surcoat 8件
-// 饰品有 charm, ring, neck 3件
-// 7个防具7孔，2个兵器9孔，3个饰品3孔
+// 飾品有 charm, ring, neck 3件
+// 7個防具7孔，2個兵器9孔，3個飾品3孔
 /*
 
-淑女剑（小龙女）增加玉女剑法武功伤害
-君子剑（小龙女）增加全真剑法武功伤害
-玉箫（黄药师）增加玉箫剑法武功伤害
-软猬甲（黄药师）护甲，面对敌人空手伤害几率卸掉并反伤敌人一半伤害
-逍遥神仙环（无崖子）增加六阳掌折梅手武功伤害
-真武剑（张三丰）增加太极剑武功伤害，持有者必须正神
-琥珀神环（慕容博）增加参合指武功伤害
-冷月宝刀（胡斐）增加刀剑归真武功伤害
-闯王军刀（胡斐）增加刀剑归真武功伤害
-黑索（渡厄、渡劫、渡难）增加日月鞭法武功伤害
-锦澜袈裟（渡劫）护甲，增加有效招架
-神草结（渡难）靴子，增加有效轻功
-血刀（血刀老祖）增加血刀刀法武功伤害
-日月金轮（金轮法王）增加日月轮法武功伤害
-龙象袈裟（金轮法王）护甲，可注入(force)龙象之力抵御伤害
-玉竹杖（洪七公）增加打狗棒法武功伤害
-葵花针（东方不败）增加葵花魔功辟邪剑法武功伤害
-圣火令（张无忌）增加圣火令法武功伤害
+淑女劍（小龍女）增加玉女劍法武功傷害
+君子劍（小龍女）增加全真劍法武功傷害
+玉簫（黃藥師）增加玉簫劍法武功傷害
+軟蝟甲（黃藥師）護甲，面對敵人空手傷害幾率卸掉並反傷敵人一半傷害
+逍遙神仙環（無崖子）增加六陽掌折梅手武功傷害
+真武劍（張三丰）增加太極劍武功傷害，持有者必須正神
+琥珀神環（慕容博）增加參合指武功傷害
+冷月寶刀（胡斐）增加刀劍歸真武功傷害
+闖王軍刀（胡斐）增加刀劍歸真武功傷害
+黑索（渡厄、渡劫、渡難）增加日月鞭法武功傷害
+錦瀾袈裟（渡劫）護甲，增加有效招架
+神草結（渡難）靴子，增加有效輕功
+血刀（血刀老祖）增加血刀刀法武功傷害
+日月金輪（金輪法王）增加日月輪法武功傷害
+龍象袈裟（金輪法王）護甲，可注入(force)龍象之力抵禦傷害
+玉竹杖（洪七公）增加打狗棒法武功傷害
+葵花針（東方不敗）增加葵花魔功辟邪劍法武功傷害
+聖火令（張無忌）增加聖火令法武功傷害
 
-急速就是增加出招的几率 暴击是双倍伤害几率 格挡是减免30%伤害几率。命中是无视闪避招架的几率 精通是perform伤害加成
-还有 5行可以是 急速 暴击 格挡（减免伤害） 精通  命中
-金木水火土，攻击，治疗，buff, 攻击， 防御
-火代表眩晕 水代表招式变慢 金代表持续伤害命中 木代表致盲
+急速就是增加出招的幾率 暴擊是雙倍傷害幾率 格擋是減免30%傷害幾率。命中是無視閃避招架的幾率 精通是perform傷害加成
+還有 5行可以是 急速 暴擊 格擋（減免傷害） 精通  命中
+金木水火土，攻擊，治療，buff, 攻擊， 防禦
+火代表眩暈 水代表招式變慢 金代表持續傷害命中 木代表致盲
 
-a 物理攻击类
+a 物理攻擊類
 增加attack（固定）
-增加伤害（随机）
-b  物理防御
-增加气血抗性（固定）
-增加额外气血和护甲（随机）
-增加气血恢复（随机）
-c 魔法攻击
+增加傷害（隨機）
+b  物理防禦
+增加氣血抗性（固定）
+增加額外氣血和護甲（隨機）
+增加氣血恢復（隨機）
+c 魔法攻擊
 增加attack（固定）
-增加魔法伤害（随机）
-d 魔法防御
+增加魔法傷害（隨機）
+d 魔法防禦
 增加 魔法抗性（固定）
-增加额外心神和精力（随机）
-f 治疗输出
-增加疗伤比例（固定）
-增加法力、灵力（随机）
-增加法力 灵力恢复（随机）
-g 对友方的增强buff
-增加buff 持续时间（固定）
-增加队伍群伤（随机）
-增加队伍群抗（随机）
-h 对怪物的debuff
-增加buff 持续时间（固定）
-减少怪物抗性（随机）
+增加額外心神和精力（隨機）
+f 治療輸出
+增加療傷比例（固定）
+增加法力、靈力（隨機）
+增加法力 靈力恢復（隨機）
+g 對友方的增強buff
+增加buff 持續時間（固定）
+增加隊伍群傷（隨機）
+增加隊伍群抗（隨機）
+h 對怪物的debuff
+增加buff 持續時間（固定）
+減少怪物抗性（隨機）
 */
 
-// 所有属性
+// 所有屬性
 mapping all_props = ([
-        "consistence"   : "耐久度",     // 基本属性
-        "damage"        : "兵器伤害力", // 基本属性
-        "unarmed_damage": "空手伤害力", // 基本属性
-        "armor"         : "保护力",     // 基本属性
+        "consistence"   : "耐久度",     // 基本屬性
+        "damage"        : "兵器傷害力", // 基本屬性
+        "unarmed_damage": "空手傷害力", // 基本屬性
+        "armor"         : "保護力",     // 基本屬性
 
         "str"           : "臂力",       // weapon/armor/rings \attribute.c
         "int"           : "悟性",       // weapon/armor/rings \attribute.c
         "con"           : "根骨",       // weapon/armor/rings \attribute.c
         "dex"           : "身法",       // weapon/armor/rings \attribute.c
-        "kar"           : "福缘",       // weapon/armor/rings \attribute.c
+        "kar"           : "福緣",       // weapon/armor/rings \attribute.c
         "per"           : "容貌",       // weapon/armor/rings \attribute.c
 
-        "max_neili"     : "内力最大值", // weapon/armor/rings \user.c
-        "max_qi"        : "气血最大值", // weapon/armor/rings \user.c
+        "max_neili"     : "內力最大值", // weapon/armor/rings \user.c
+        "max_qi"        : "氣血最大值", // weapon/armor/rings \user.c
         "max_jingli"    : "精力最大值", // weapon/armor/rings \user.c
-        "max_jing"      : "精气最大值", // weapon/armor/rings \user.c
-        "max_potential" : "潜能上限",   // weapon/armor/rings \user.c
-        "max_experience": "体会上限",   // weapon/armor/rings \user.c
+        "max_jing"      : "精氣最大值", // weapon/armor/rings \user.c
+        "max_potential" : "潛能上限",   // weapon/armor/rings \user.c
+        "max_experience": "體會上限",   // weapon/armor/rings \user.c
 
-        "sword"         : "剑法",       // weapon \combatd.c
+        "sword"         : "劍法",       // weapon \combatd.c
         "blade"         : "刀法",       // weapon \combatd.c
         "club"          : "棍法",       // weapon \combatd.c
-        "hammer"        : "锤法",       // weapon \combatd.c
+        "hammer"        : "錘法",       // weapon \combatd.c
         "staff"         : "杖法",       // weapon \combatd.c
         "whip"          : "鞭法",       // weapon \combatd.c
-        "unarmed"       : "拳脚",       // weapon \combatd.c
+        "unarmed"       : "拳腳",       // weapon \combatd.c
         "strike"        : "掌法",       // weapon \combatd.c
         "cuff"          : "拳法",       // weapon \combatd.c
         "hand"          : "手法",       // weapon \combatd.c
         "finger"        : "指法",       // weapon \combatd.c
         "claw"          : "爪法",       // weapon \combatd.c
 
-        "attack"        : "攻击",       // weapon \combatd.c
+        "attack"        : "攻擊",       // weapon \combatd.c
         "parry"         : "招架",       // armor  \combatd.c
-        "dodge"         : "躲闪",       // armor  \combatd.c
-        "defense"       : "防御",       // armor  \combatd.c
+        "dodge"         : "躲閃",       // armor  \combatd.c
+        "defense"       : "防禦",       // armor  \combatd.c
 
-        "neili_recover" : "内力恢复",   // armor/rings 战斗中每秒恢复 \char.c/damage.c
-        "qi_recover"    : "生命恢复",   // armor/rings 战斗中每秒恢复 \char.c/damage.c
-        "jing_recover"  : "精气恢复",   // armor/rings 战斗中每秒恢复 \char.c/damage.c
+        "neili_recover" : "內力恢復",   // armor/rings 戰鬥中每秒恢復 \char.c/damage.c
+        "qi_recover"    : "生命恢復",   // armor/rings 戰鬥中每秒恢復 \char.c/damage.c
+        "jing_recover"  : "精氣恢復",   // armor/rings 戰鬥中每秒恢復 \char.c/damage.c
 
-        // 火焰伤害，冷冻伤害，闪电伤害，毒素伤害，抗火，抗寒，抗闪电，抗毒
-        "add_poison"    : "毒伤害",     // weapon \itemd.c
-        "add_magic"     : "魔伤害",     // weapon \itemd.c
-        "add_metal"     : "金伤害",     // weapon \itemd.c
-        "add_wood"      : "木伤害",     // weapon \itemd.c
-        "add_water"     : "水伤害",     // weapon \itemd.c
-        "add_fire"      : "火伤害",     // weapon \itemd.c
-        "add_earth"     : "土伤害",     // weapon \itemd.c
+        // 火焰傷害，冷凍傷害，閃電傷害，毒素傷害，抗火，抗寒，抗閃電，抗毒
+        "add_poison"    : "毒傷害",     // weapon \itemd.c
+        "add_magic"     : "魔傷害",     // weapon \itemd.c
+        "add_metal"     : "金傷害",     // weapon \itemd.c
+        "add_wood"      : "木傷害",     // weapon \itemd.c
+        "add_water"     : "水傷害",     // weapon \itemd.c
+        "add_fire"      : "火傷害",     // weapon \itemd.c
+        "add_earth"     : "土傷害",     // weapon \itemd.c
         "reduce_magic"  : "抗魔",       // armor  \itemd.c
         "reduce_metal"  : "抗金",       // armor  \itemd.c
         "reduce_wood"   : "抗木",       // armor  \itemd.c
@@ -128,130 +128,130 @@ mapping all_props = ([
         "avoid_poison"  : "百毒不侵",   // armor/rings \itemd.c/condition.c
 
         "research_effect"       : "研究效果",   // weapon/armor/rings \cmds
-        "practice_effect"       : "练习效果",   // weapon/armor/rings \cmds
-        "study_effect"          : "读书效果",   // weapon/armor/rings \cmds
-        "learn_effect"          : "学习效果",   // weapon/armor/rings \cmds
+        "practice_effect"       : "練習效果",   // weapon/armor/rings \cmds
+        "study_effect"          : "讀書效果",   // weapon/armor/rings \cmds
+        "learn_effect"          : "學習效果",   // weapon/armor/rings \cmds
         "derive_effect"         : "汲取效果",   // weapon/armor/rings \cmds
-        "research_times"        : "研究次数",   // weapon/armor/rings \cmds
-        "learn_times"           : "学习次数",   // weapon/armor/rings \cmds
-        "practice_times"        : "练习次数",   // weapon/armor/rings \cmds
-        "study_times"           : "读书次数",   // weapon/armor/rings \cmds
+        "research_times"        : "研究次數",   // weapon/armor/rings \cmds
+        "learn_times"           : "學習次數",   // weapon/armor/rings \cmds
+        "practice_times"        : "練習次數",   // weapon/armor/rings \cmds
+        "study_times"           : "讀書次數",   // weapon/armor/rings \cmds
         "derive_times"          : "汲取消耗",   // weapon/armor/rings \cmds
-        // 以上都是基本属性
+        // 以上都是基本屬性
 
-        "magic_find"    : "寻宝率(MF值)",       // weapon/rings \equipmentd.c
+        "magic_find"    : "尋寶率(MF值)",       // weapon/rings \equipmentd.c
 
-        "leech_neili"   : "偷取内力",           // weapon 命中偷取内力几率：命中敌人时按伤害值的10%比率回复内力 \damage.c/itemd.c
-        "leech_qi"      : "偷取生命",           // weapon 命中偷取生命几率：命中敌人时按伤害值的10%比率回复生命 \damage.c/itemd.c
+        "leech_neili"   : "偷取內力",           // weapon 命中偷取內力幾率：命中敵人時按傷害值的10%比率回覆內力 \damage.c/itemd.c
+        "leech_qi"      : "偷取生命",           // weapon 命中偷取生命幾率：命中敵人時按傷害值的10%比率回覆生命 \damage.c/itemd.c
 
-        "ap_power"      : "绝招命中",         // weapon/rings  \skillsd.c
-        "dp_power"      : "绝招防御",         // armor         \skillsd.c
-        "da_power"      : "绝招伤害",         // weapon/rings  \skillsd.c
+        "ap_power"      : "絕招命中",         // weapon/rings  \skillsd.c
+        "dp_power"      : "絕招防禦",         // armor         \skillsd.c
+        "da_power"      : "絕招傷害",         // weapon/rings  \skillsd.c
 
         //"ignores_parry":
-        "avoid_parry"   : "忽视目标招架",       // rune \combatd.c
-        "avoid_dodge"   : "忽视目标躲闪",       // rune \combatd.c
-        "avoid_force"   : "忽视内功防御",       // rune \combatd.c
-        "avoid_attack"  : "忽视目标特攻",       // rune \combatd.c
+        "avoid_parry"   : "忽視目標招架",       // rune \combatd.c
+        "avoid_dodge"   : "忽視目標躲閃",       // rune \combatd.c
+        "avoid_force"   : "忽視內功防禦",       // rune \combatd.c
+        "avoid_attack"  : "忽視目標特攻",       // rune \combatd.c
 
-        //"critcal"       : "暴击",               // weapon/rings \combatd.c 增加杀气：加一点杀气，暴击（双倍伤害）的概率增加1%
-        "through_armor" : "穿透破甲",           // weapon       \combatd.c 穿透破甲-攻击时无视目标防具的保护力through_armor
+        //"critcal"       : "暴擊",               // weapon/rings \combatd.c 增加殺氣：加一點殺氣，暴擊（雙倍傷害）的概率增加1%
+        "through_armor" : "穿透破甲",           // weapon       \combatd.c 穿透破甲-攻擊時無視目標防具的保護力through_armor
 
-        "double_damage" : "双倍伤害",           // weapon/rings \combatd.c
+        "double_damage" : "雙倍傷害",           // weapon/rings \combatd.c
 
-        "qi_abs_neili"  : "伤转内力",           // rings 30%的机会受损的生命x%转换为内力 \damage.c
+        "qi_abs_neili"  : "傷轉內力",           // rings 30%的機會受損的生命x%轉換為內力 \damage.c
 
-        "add_reward"    : "获取额外奖励",       // weapon/rings \giftd.c
+        "add_reward"    : "獲取額外獎勵",       // weapon/rings \giftd.c
         /*
-        "add_exp"       : "获取额外经验",       // weapon/rings \giftd.c
-        "add_pot"       : "获取额外潜能",       // weapon/rings \giftd.c
-        "add_mar"       : "获取额外体会",       // weapon/rings \giftd.c
+        "add_exp"       : "獲取額外經驗",       // weapon/rings \giftd.c
+        "add_pot"       : "獲取額外潛能",       // weapon/rings \giftd.c
+        "add_mar"       : "獲取額外體會",       // weapon/rings \giftd.c
         */
 
-        "add_blind"     : "致盲",                       // weapon 终极兵器 致盲-让对手失明 \damage.c/itemd.c
-        "add_freeze"    : "冰冻",                       // weapon 终极兵器 冰冻-迟缓，减缓对方攻击，攻击pfm速度降低，无任何防御，无躲闪，无招架，就是挨打 \damage/itemd.c/combatd.c/cmds
-        "add_forget"    : "遗忘",                       // weapon 终极防具 遗忘-使对方忘记所有技能的绝招add_oblivion
-        "add_weak"      : "虚弱",                       // weapon 终极兵器
-        "add_busy"      : "忙乱",                       // weapon 终极兵器
+        "add_blind"     : "致盲",                       // weapon 終極兵器 致盲-讓對手失明 \damage.c/itemd.c
+        "add_freeze"    : "冰凍",                       // weapon 終極兵器 冰凍-遲緩，減緩對方攻擊，攻擊pfm速度降低，無任何防禦，無躲閃，無招架，就是捱打 \damage/itemd.c/combatd.c/cmds
+        "add_forget"    : "遺忘",                       // weapon 終極防具 遺忘-使對方忘記所有技能的絕招add_oblivion
+        "add_weak"      : "虛弱",                       // weapon 終極兵器
+        "add_busy"      : "忙亂",                       // weapon 終極兵器
 
 
-        "avoid_blind"   : "忽视致盲",                   // armor/rings 终极防具
-        "avoid_freeze"  : "忽视冰冻",                   // armor/rings 终极防具
-        "avoid_forget"  : "忽视遗忘",                   // armor/rings 终极兵器
+        "avoid_blind"   : "忽視致盲",                   // armor/rings 終極防具
+        "avoid_freeze"  : "忽視冰凍",                   // armor/rings 終極防具
+        "avoid_forget"  : "忽視遺忘",                   // armor/rings 終極兵器
         //add_oblivion
 
-        "avoid_weak"    : "忽视虚弱",                   // armor/rings 终极防具
-        "avoid_busy"    : "忽视忙乱",                   // armor/rings 终极防具
-        "reduce_busy"   : "化解忙乱",                   // armor/rings 终极防具
-        "avoid_fear"    : "忽视恐惧",                   // armor/rings 终极防具
+        "avoid_weak"    : "忽視虛弱",                   // armor/rings 終極防具
+        "avoid_busy"    : "忽視忙亂",                   // armor/rings 終極防具
+        "reduce_busy"   : "化解忙亂",                   // armor/rings 終極防具
+        "avoid_fear"    : "忽視恐懼",                   // armor/rings 終極防具
 
-        "fatal_blow"    : "致命一击",                   // weapon 终极兵器 必杀率-拥有20%的几率损伤目标的生命x%
+        "fatal_blow"    : "致命一擊",                   // weapon 終極兵器 必殺率-擁有20%的幾率損傷目標的生命x%
 
 
-        "add_skill"     : "提升技能",                   // weapon/rings 终极兵器
-        "add_damage"    : "追加伤害",                   // weapon 终极兵器
-        "reduce_damage" : "化解伤害",                   // armor 终极防具
-        "full_self"     : "战神附体",                   // armor 终极防具 战神附体-气血内力自动恢复  远古装备
-        "avoid_die"     : "浴血重生",                   // armor/ring 凤凰涅槃，浴血重生，忽视死亡   远古装备
-        "counter_damage": "伤害反射",                   // armor 终极防具 伤害反射，受到伤害时30%几率的伤害x%反射给对方
+        "add_skill"     : "提升技能",                   // weapon/rings 終極兵器
+        "add_damage"    : "追加傷害",                   // weapon 終極兵器
+        "reduce_damage" : "化解傷害",                   // armor 終極防具
+        "full_self"     : "戰神附體",                   // armor 終極防具 戰神附體-氣血內力自動恢復  遠古裝備
+        "avoid_die"     : "浴血重生",                   // armor/ring 鳳凰涅槃，浴血重生，忽視死亡   遠古裝備
+        "counter_damage": "傷害反射",                   // armor 終極防具 傷害反射，受到傷害時30%幾率的傷害x%反射給對方
 ]);
 
 mapping value_2_props = ([
-        "consistence"   : "耐久度",     // 基本属性           a
-        "damage"        : "兵器伤害力", // 基本属性           a
-        "unarmed_damage": "空手伤害力", // 基本属性           a
-        "armor"         : "保护力",     // 基本属性           a
+        "consistence"   : "耐久度",     // 基本屬性           a
+        "damage"        : "兵器傷害力", // 基本屬性           a
+        "unarmed_damage": "空手傷害力", // 基本屬性           a
+        "armor"         : "保護力",     // 基本屬性           a
 
         "str"           : "臂力",       // weapon/armor/rings a
         "int"           : "悟性",       // weapon/armor/rings a
         "con"           : "根骨",       // weapon/armor/rings a
         "dex"           : "身法",       // weapon/armor/rings a
-        "kar"           : "福缘",       // weapon/armor/rings a
+        "kar"           : "福緣",       // weapon/armor/rings a
         "per"           : "容貌",       // rings              a
 
         "max_jingli"    : "精力最大值", // weapon/armor/rings a
-        "max_jing"      : "精气最大值", // weapon/armor/rings a
-        "max_potential" : "潜能上限",   // weapon/armor/rings a
-        "max_experience": "体会上限",   // weapon/armor/rings a
+        "max_jing"      : "精氣最大值", // weapon/armor/rings a
+        "max_potential" : "潛能上限",   // weapon/armor/rings a
+        "max_experience": "體會上限",   // weapon/armor/rings a
 
-        "sword"         : "剑法",       // weapon             a
+        "sword"         : "劍法",       // weapon             a
         "blade"         : "刀法",       // weapon             a
         "club"          : "棍法",       // weapon             a
-        "hammer"        : "锤法",       // weapon             a
+        "hammer"        : "錘法",       // weapon             a
         "staff"         : "杖法",       // weapon             a
         "whip"          : "鞭法",       // weapon             a
-        "unarmed"       : "拳脚",       // weapon             a
+        "unarmed"       : "拳腳",       // weapon             a
         "strike"        : "掌法",       // weapon             a
         "cuff"          : "拳法",       // weapon             a
         "hand"          : "手法",       // weapon             a
         "finger"        : "指法",       // weapon             a
         "claw"          : "爪法",       // weapon             a
 
-        "attack"        : "攻击",       // weapon             a
+        "attack"        : "攻擊",       // weapon             a
         "parry"         : "招架",       // armor              a
-        "dodge"         : "躲闪",       // armor              a
-        "defense"       : "防御",       // armor              a
+        "dodge"         : "躲閃",       // armor              a
+        "defense"       : "防禦",       // armor              a
 
-        "research_times": "研究次数",   // weapon/armor/rings a
-        "learn_times"   : "学习次数",   // weapon/armor/rings a
-        "practice_times": "练习次数",   // weapon/armor/rings a
-        "study_times"   : "读书次数",   // weapon/armor/rings a
+        "research_times": "研究次數",   // weapon/armor/rings a
+        "learn_times"   : "學習次數",   // weapon/armor/rings a
+        "practice_times": "練習次數",   // weapon/armor/rings a
+        "study_times"   : "讀書次數",   // weapon/armor/rings a
 ]);
 
 mapping value_3_props = ([
-        "max_neili"     : "内力最大值", // weapon/armor/rings b
-        "max_qi"        : "气血最大值", // weapon/armor/rings b
-        "neili_recover" : "内力恢复",   // armor/rings        b
-        "qi_recover"    : "生命恢复",   // armor/rings        b
-        "jing_recover"  : "精气恢复",   // armor/rings        b
+        "max_neili"     : "內力最大值", // weapon/armor/rings b
+        "max_qi"        : "氣血最大值", // weapon/armor/rings b
+        "neili_recover" : "內力恢復",   // armor/rings        b
+        "qi_recover"    : "生命恢復",   // armor/rings        b
+        "jing_recover"  : "精氣恢復",   // armor/rings        b
 
-        "add_poison"    : "毒伤害",     // weapon                           b
-        "add_magic"     : "魔伤害",
-        "add_metal"     : "金伤害",     // weapon                           b
-        "add_wood"      : "木伤害",     // weapon                           b
-        "add_water"     : "水伤害",     // weapon                           b
-        "add_fire"      : "火伤害",     // weapon                           b
-        "add_earth"     : "土伤害",     // weapon                           b
+        "add_poison"    : "毒傷害",     // weapon                           b
+        "add_magic"     : "魔傷害",
+        "add_metal"     : "金傷害",     // weapon                           b
+        "add_wood"      : "木傷害",     // weapon                           b
+        "add_water"     : "水傷害",     // weapon                           b
+        "add_fire"      : "火傷害",     // weapon                           b
+        "add_earth"     : "土傷害",     // weapon                           b
         "reduce_magic"  : "抗魔",       // armor
         "reduce_metal"  : "抗金",       // armor                            b
         "reduce_wood"   : "抗木",       // armor                            b
@@ -262,60 +262,60 @@ mapping value_3_props = ([
         "avoid_poison"  : "百毒不侵",   // armor/rings                      b
 
         "research_effect"       : "研究效果",   // weapon/armor/rings       b
-        "practice_effect"       : "练习效果",   // weapon/armor/rings       b
-        "study_effect"          : "读书效果",   // weapon/armor/rings       b
-        "learn_effect"          : "学习效果",   // weapon/armor/rings       b
+        "practice_effect"       : "練習效果",   // weapon/armor/rings       b
+        "study_effect"          : "讀書效果",   // weapon/armor/rings       b
+        "learn_effect"          : "學習效果",   // weapon/armor/rings       b
         "derive_effect"         : "汲取效果",   // weapon/armor/rings       b
         "derive_times"          : "汲取消耗",   // weapon/armor/rings       b
 ]);
 
 mapping value_5_props = ([
-        "magic_find"    : "寻宝率(MF值)",       // weapon/rings             c
-        "ap_power"      : "绝招攻击力",         // weapon/rings             c
-        "dp_power"      : "绝招防御力",         // armor                    c
-        "da_power"      : "绝招伤害力",         // weapon/rings             c
-        "avoid_parry"   : "攻击无视目标招架",   // weapon/rings             c
-        "avoid_dodge"   : "攻击无视目标躲闪",   // weapon/rings             c
-        "avoid_force"   : "攻击无视内功防御",   // weapon/rings             c
-        "avoid_attack"  : "无视目标特殊攻击",   // armor                    c
-        "leech_neili"   : "偷取内力",           // weapon 命中偷取内力几率：命中敌人时按伤害值的10%率回复内力   c
-        "leech_qi"      : "偷取生命",           // weapon 命中偷取生命几率：命中敌人时按伤害值的10%比率回复生命 c
-        "double_damage" : "双倍伤害",           // weapon/rings 增加杀气：加一点杀气，暴击（双倍伤害）的概率增加1%  c
-        "through_armor" : "穿透破甲",           // weapon/rings 穿透破甲-攻击时无视目标防具的保护力through_armor        c
-        "qi_abs_neili"  : "伤转内力",           // rings 30%的机会受损的生命x%转换为内力  c
+        "magic_find"    : "尋寶率(MF值)",       // weapon/rings             c
+        "ap_power"      : "絕招攻擊力",         // weapon/rings             c
+        "dp_power"      : "絕招防禦力",         // armor                    c
+        "da_power"      : "絕招傷害力",         // weapon/rings             c
+        "avoid_parry"   : "攻擊無視目標招架",   // weapon/rings             c
+        "avoid_dodge"   : "攻擊無視目標躲閃",   // weapon/rings             c
+        "avoid_force"   : "攻擊無視內功防禦",   // weapon/rings             c
+        "avoid_attack"  : "無視目標特殊攻擊",   // armor                    c
+        "leech_neili"   : "偷取內力",           // weapon 命中偷取內力幾率：命中敵人時按傷害值的10%率回覆內力   c
+        "leech_qi"      : "偷取生命",           // weapon 命中偷取生命幾率：命中敵人時按傷害值的10%比率回覆生命 c
+        "double_damage" : "雙倍傷害",           // weapon/rings 增加殺氣：加一點殺氣，暴擊（雙倍傷害）的概率增加1%  c
+        "through_armor" : "穿透破甲",           // weapon/rings 穿透破甲-攻擊時無視目標防具的保護力through_armor        c
+        "qi_abs_neili"  : "傷轉內力",           // rings 30%的機會受損的生命x%轉換為內力  c
 
-        "add_blind"     : "致盲",               // weapon 终极兵器 致盲-让对手失明 c
-        "avoid_blind"   : "忽视致盲",           // armor/rings 终极防具            c
+        "add_blind"     : "致盲",               // weapon 終極兵器 致盲-讓對手失明 c
+        "avoid_blind"   : "忽視致盲",           // armor/rings 終極防具            c
 ]);
 
 mapping value_10_props = ([
-        "add_freeze"    : "冰冻",                       // weapon 终极兵器 冰冻-迟缓，减缓对方攻击，攻击pfm速度降低，无任何防御，无躲闪，无招架，就是挨打 d
-        "add_forget"    : "遗忘",                       // weapon 终极防具 遗忘-使对方忘记所有技能的绝招add_oblivion    d
-        "add_weak"      : "虚弱",                       // weapon 终极兵器 让对手攻防伤害减半，包括绝招                 d
-        "add_busy"      : "忙乱",                       // weapon 终极兵器                                              d
+        "add_freeze"    : "冰凍",                       // weapon 終極兵器 冰凍-遲緩，減緩對方攻擊，攻擊pfm速度降低，無任何防禦，無躲閃，無招架，就是捱打 d
+        "add_forget"    : "遺忘",                       // weapon 終極防具 遺忘-使對方忘記所有技能的絕招add_oblivion    d
+        "add_weak"      : "虛弱",                       // weapon 終極兵器 讓對手攻防傷害減半，包括絕招                 d
+        "add_busy"      : "忙亂",                       // weapon 終極兵器                                              d
 
-        "avoid_freeze"  : "忽视冰冻",                   // armor/rings 终极防具 d
-        //"avoid_fear"    : "忽视恐惧",                   // armor/rings 终极防具 d
-        "avoid_forget"  : "忽视遗忘",                   // armor/rings 终极兵器 d
-        "avoid_weak"    : "忽视虚弱",                   // armor/rings 终极防具 d
-        "avoid_busy"    : "忽视忙乱",                   // armor/rings 终极防具 d
-        "reduce_busy"   : "化解忙乱",                   // armor/rings 终极防具 d
+        "avoid_freeze"  : "忽視冰凍",                   // armor/rings 終極防具 d
+        //"avoid_fear"    : "忽視恐懼",                   // armor/rings 終極防具 d
+        "avoid_forget"  : "忽視遺忘",                   // armor/rings 終極兵器 d
+        "avoid_weak"    : "忽視虛弱",                   // armor/rings 終極防具 d
+        "avoid_busy"    : "忽視忙亂",                   // armor/rings 終極防具 d
+        "reduce_busy"   : "化解忙亂",                   // armor/rings 終極防具 d
 
-        "fatal_blow"    : "致命一击",                   // weapon 终极兵器 必杀率-拥有20%的几率损伤目标的生命x%     d                                    d
-        "add_skill"     : "提升技能",                   // weapon/rings 终极兵器                                    d
-        "add_damage"    : "追加伤害",                   // weapon 终极兵器                                          d
-        "reduce_damage" : "化解伤害",                   // armor 终极防具                                           d
-        "full_self"     : "战神附体",                   // armor 终极防具 战神附体-气血内力自动恢复                 d
-        "avoid_die"     : "浴血重生",                   // armor/ring 凤凰涅槃，浴血重生，忽视死亡                  d
-        "counter_damage": "伤害反射",                   // armor 终极防具 伤害反射受到伤害时30%几率的伤害x%反射给对方 d
+        "fatal_blow"    : "致命一擊",                   // weapon 終極兵器 必殺率-擁有20%的幾率損傷目標的生命x%     d                                    d
+        "add_skill"     : "提升技能",                   // weapon/rings 終極兵器                                    d
+        "add_damage"    : "追加傷害",                   // weapon 終極兵器                                          d
+        "reduce_damage" : "化解傷害",                   // armor 終極防具                                           d
+        "full_self"     : "戰神附體",                   // armor 終極防具 戰神附體-氣血內力自動恢復                 d
+        "avoid_die"     : "浴血重生",                   // armor/ring 鳳凰涅槃，浴血重生，忽視死亡                  d
+        "counter_damage": "傷害反射",                   // armor 終極防具 傷害反射受到傷害時30%幾率的傷害x%反射給對方 d
 ]);
 
 
 
-// 宝石分为4个等级，碎片，完好1，稀有1+1，神之1+2
-// 一个固定的属性(金木水火土)+1-2个随机属性
+// 寶石分為4個等級，碎片，完好1，稀有1+1，神之1+2
+// 一個固定的屬性(金木水火土)+1-2個隨機屬性
 
-// 百分比的属性
+// 百分比的屬性
 string *percent_props = ({
         "gold_find", "magic_find", "add_magic", "add_metal", "add_wood", "add_water", "add_fire", "add_earth",
         "add_poison", "reduce_magic", "reduce_metal", "reduce_fire", "reduce_wood", "reduce_water", "reduce_earth",
@@ -379,7 +379,7 @@ mapping prop_values = ([
         "avoid_fear,avoid_forget,avoid_weak,avoid_busy,avoid_die,full_self,counter_damage,reduce_damage": ({ 1, 2, 3, 4 }),
 ]);
 
-// 属性强化值1-9星
+// 屬性強化值1-9星
 mapping steady_values = ([
         "damage,unarmed_damage"       : ({ 4600,6600,9600,13600,18600,24600,31600,39600,50000 }),
         "armor"         : ({ 2200,2900,3700,4600,5600,7700,8900,10200,11500 }),
@@ -431,11 +431,11 @@ mapping steady_values = ([
         "counter_damage": ({ 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, }),
 ]);
 
-// 装备的品级有6级，前2个品级属性没有特殊，从稀有（第三个）品级开始有特殊属性
-// 宝石的等级有3级，宝石的属性应该和装备前2个品级的属性一样
-// qlvl1只有基本属性，qlvl2才有宝石属性，qlvl3拥有宝石属性，qlvl4拥有史诗属性，qlvl5拥有传说属性，qlvl6拥有神奇属性
+// 裝備的品級有6級，前2個品級屬性沒有特殊，從稀有（第三個）品級開始有特殊屬性
+// 寶石的等級有3級，寶石的屬性應該和裝備前2個品級的屬性一樣
+// qlvl1只有基本屬性，qlvl2才有寶石屬性，qlvl3擁有寶石屬性，qlvl4擁有史詩屬性，qlvl5擁有傳說屬性，qlvl6擁有神奇屬性
 mixed weapon_props = ({
-        ({ "damage", "int", "str", "con", "dex", "kar", "attack", /*"skill",*/ // skill特殊处理
+        ({ "damage", "int", "str", "con", "dex", "kar", "attack", /*"skill",*/ // skill特殊處理
            "magic_find", "add_poison",
            "research_times", "learn_times", "practice_times", "derive_times",
            "study_times", "research_effect", "learn_effect", "practice_effect",
@@ -447,7 +447,7 @@ mixed weapon_props = ({
         }),
         ({ "research_effect", "practice_effect", "study_effect", "learn_effect", "derive_effect",
            "attack", "ap_power", "da_power", "avoid_parry", "avoid_dodge",
-           "avoid_force", "through_armor", /*"skill",*/ // skill特殊处理
+           "avoid_force", "through_armor", /*"skill",*/ // skill特殊處理
            "leech_qi", "leech_neili",
         }),
         ({ "through_armor", "double_damage",
@@ -483,7 +483,7 @@ mixed armor_props = ({
         }),
 });
 
-// 项链amulet、戒指ring、护身符属性charm
+// 項鍊amulet、戒指ring、護身符屬性charm
 mixed ring_props = ({
         ({ "per", "max_neili", "max_qi", "max_jing", "max_jingli", "max_potential",
            "max_experience", "neili_recover", "jing_recover", "qi_recover",
@@ -512,18 +512,18 @@ string *rare_props = ({
         "add_freeze", "add_weak", "add_forget", "add_busy", "fatal_blow", "add_damage",
 });
 
-// 套化的兵器属性
+// 套化的兵器屬性
 string *suit_weapon_props = ({
         "double_damage", "avoid_forget", "add_damage", "add_skill", "fatal_blow", "add_busy", "add_weak",
         "add_freeze",
 
 });
-// 套化的防具属性
+// 套化的防具屬性
 string *suit_armor_props = ({
         "reduce_busy", "avoid_busy", "avoid_weak", "avoid_die",
         "counter_damage", "avoid_forget", "full_self", "reduce_damage", "research_effect",
 });
-// 套化的护身符属性
+// 套化的護身符屬性
 string *suit_ring_props = ({
         "magic_find", "avoid_die",
         "full_self", "avoid_busy", "avoid_forget", "research_effect",
@@ -532,11 +532,11 @@ string *suit_ring_props = ({
 void create()
 {
         seteuid(getuid());
-        set("name", "装备精灵");
+        set("name", "裝備精靈");
         set("id", "equipmentd");
 }
 
-// 为属性名称匹配中文
+// 為屬性名稱匹配中文
 varargs string chinese(string prop, mixed value)
 {
         string desc;
@@ -570,7 +570,7 @@ varargs string chinese(string prop, mixed value)
         return desc;
 }
 
-// 获取装备部件的属性
+// 獲取裝備部件的屬性
 varargs mixed query_prop_value(string prop, int ilvl, int s)
 {
         int i, j, flag;
@@ -581,7 +581,7 @@ varargs mixed query_prop_value(string prop, int ilvl, int s)
         string *temp_str;
 
         flag = 0;
-        if( s ) data = copy(steady_values); // 强化属性
+        if( s ) data = copy(steady_values); // 強化屬性
         else data = copy(prop_values);
         ks = keys(data);
         for( i=0; i<sizeof(ks); i++ ) {
@@ -609,7 +609,7 @@ varargs mixed query_prop_value(string prop, int ilvl, int s)
         return value[random(sizeof(value))];
 }
 
-// 装备绿化时候获得的属性
+// 裝備綠化時候獲得的屬性
 mapping apply_ultimate_prop(object ob, string type, int ilvl)
 {
         string *props;
@@ -635,8 +635,8 @@ mapping apply_ultimate_prop(object ob, string type, int ilvl)
         else
         if( type == "rings"
         ||  type == "charm"
-        ||  type == "myheart"   // 护身符·左
-        ||  type == "myheart2"  // 护身符·右
+        ||  type == "myheart"   // 護身符·左
+        ||  type == "myheart2"  // 護身符·右
         ||  type == "neck" )
                 props = suit_ring_props;
         else
@@ -658,7 +658,7 @@ mapping apply_ultimate_prop(object ob, string type, int ilvl)
         return apply;
 }
 
-// 生成宝石属性
+// 生成寶石屬性
 varargs mapping apply_gem_prop(string type, int ilvl, int n)
 {
         string *props;
@@ -679,12 +679,12 @@ varargs mapping apply_gem_prop(string type, int ilvl, int n)
         ||  type == "throwing"
         ||  type == "hands"
         ||  type == "finger" )
-                props = weapon_props[0]; // 获取对应的品质属性
+                props = weapon_props[0]; // 獲取對應的品質屬性
         else
         if( type == "rings"
         ||  type == "charm"
-        ||  type == "myheart"   // 护身符·左
-        ||  type == "myheart2"  // 护身符·右
+        ||  type == "myheart"   // 護身符·左
+        ||  type == "myheart2"  // 護身符·右
         ||  type == "neck" )
                 props = ring_props[0];
         else
@@ -730,7 +730,7 @@ varargs mapping apply_gem_prop(string type, int ilvl, int n)
         return apply;
 }
 
-// 设置装备属性
+// 設置裝備屬性
 mapping apply_props(string type, int ilvl, int n)
 {
         mapping applied_prop;
@@ -744,7 +744,7 @@ mapping apply_props(string type, int ilvl, int n)
         insert = ({});
 
         if( !n ) return data;
-        for( i=1; i<=n; i++ ) // 凹槽数
+        for( i=1; i<=n; i++ ) // 凹槽數
         {
                 enchase_prop = copy(apply_gem_prop(type, ilvl));
                 apply = keys(enchase_prop);
@@ -814,7 +814,7 @@ protected mapping trans_data(string mark)
                 temp_status["insert"] = temp_map2;
         }
 
-        // 开始解析
+        // 開始解析
         while (sscanf(mark, "%*s<%s>%s</%s>%s", key, temp_str, key, mark) > 3)
         {
                 temp_map = ([ ]);
@@ -883,7 +883,7 @@ protected mapping trans_data(string mark)
         return temp_status;
 }
 
-// 创造一个固定物件，根据序号
+// 創造一個固定物件，根據序號
 varargs mixed create_object(string num, int level)
 {
         string *list;
@@ -959,7 +959,7 @@ varargs mixed create_object(string num, int level)
                 this_file = read_file(filename);
         }
 
-        // 解析序号对应的字符串
+        // 解析序號對應的字符串
         if( sscanf(this_file, "%*s<"+num+">%s</"+num+">%*s", mark) ) {
                 sscanf(mark, "%*s<type>%s</type>%s", type, mark);
                 filename = EQUIP_DIR + type;
@@ -972,18 +972,18 @@ varargs mixed create_object(string num, int level)
 
                 ob = TEMPLATE_D->create_object(filename, temp_status["id"], temp_status, 0, temp_function);
                 set("mod_mark", num, ob);
-                set("can_sign", 1, ob); // 装备签名
+                set("can_sign", 1, ob); // 裝備簽名
                 if( temp_status["mod_level"] )
                         set("mod_level", temp_status["mod_level"], ob);
 
                 return ob;
         } else {
-                CHANNEL_D->do_channel(this_object(),"sys", "创造一个错误的物件。");
+                CHANNEL_D->do_channel(this_object(),"sys", "創造一個錯誤的物件。");
                 return 0;
         }
 }
 
-// 创造一个固定套装部件，根据序号
+// 創造一個固定套裝部件，根據序號
 varargs object create_module(string num, int level)
 {
         string mark, part, str, rec;
@@ -1024,7 +1024,7 @@ varargs object create_module(string num, int level)
 
                 this_file = read_file(filename);
         }
-        //解析序号对应的字符串
+        //解析序號對應的字符串
         if( sscanf(this_file, "%*s<"+num+">%s</"+num+">%*s", mark) )
         {
                 sscanf(mark, "%*s<type>%s</type>%s", type, mark);
@@ -1038,18 +1038,18 @@ varargs object create_module(string num, int level)
 
                 ob = TEMPLATE_D->create_object(filename, temp_status["id"], temp_status, 0, temp_function);
                 set("mod_mark", num, ob);
-                //set("can_sign", 1, ob); // 装备签名
+                //set("can_sign", 1, ob); // 裝備簽名
                 //if( temp_status["mod_level"] )
                 //        set("mod_level", temp_status["mod_level"], ob);
 
                 return ob;
         } else {
-                CHANNEL_D->do_channel(this_object(), "sys", "创造一个套装部件错误。");
+                CHANNEL_D->do_channel(this_object(), "sys", "創造一個套裝部件錯誤。");
                 return 0;
         }
 }
 
-// 创造一个动态的物件
+// 創造一個動態的物件
 public varargs object create_dynamic(string obj_type, int ilvl, int mf, int flag)
 {
         mapping temp_status, all_list, data;
@@ -1073,17 +1073,17 @@ public varargs object create_dynamic(string obj_type, int ilvl, int mf, int flag
         if( !ilvl || ilvl < 1 )
                 return 0;
 
-        if( !obj_type || obj_type == "" ) { // 随机生成装备种类或宝石
+        if( !obj_type || obj_type == "" ) { // 隨機生成裝備種類或寶石
                 rate = random(100);
                 if( rate < 35 ) obj_type = "weapon";
                 else if( rate < 90 ) obj_type = "armor";
-                //暂时取消饰品的掉落
+                //暫時取消飾品的掉落
                 //else if( rate < 90 ) obj_type = "rings";
                 else obj_type = "gem";
                 flag = 0;
         }
 
-        if( flag ) { // 指定的兵器类型、防具类型或宝石类型
+        if( flag ) { // 指定的兵器類型、防具類型或寶石類型
                 if( flag == 1 ) {
                         if( member_array(obj_type, weapon_type) != -1 )
                                 base_type = "weapon";
@@ -1093,7 +1093,7 @@ public varargs object create_dynamic(string obj_type, int ilvl, int mf, int flag
                                 base_type = "rings";
                         else    base_type = "gem";
                 } else {
-                        // 系统固定的名称和ID的装备
+                        // 系統固定的名稱和ID的裝備
                         all_list = type_list[obj_type];
                         all_id = values(all_list);
                         id = all_id[random(sizeof(all_id))];
@@ -1101,10 +1101,10 @@ public varargs object create_dynamic(string obj_type, int ilvl, int mf, int flag
         } else {
                 base_type = obj_type;
                 types = all_type[obj_type];
-                obj_type = types[random(sizeof(types))]; // 随机一种
+                obj_type = types[random(sizeof(types))]; // 隨機一種
         }
 
-        if( flag && flag > 1 ) // 用模型文件，需要检查写法
+        if( flag && flag > 1 ) // 用模型文件，需要檢查寫法
                 filename = sprintf("%s%s/%s.c", TEMPLATE_DIR, base_type, obj_type);
         else
                 filename = sprintf("%s%s/%s.c", EQUIP_DIR, base_type, obj_type);
@@ -1119,19 +1119,19 @@ public varargs object create_dynamic(string obj_type, int ilvl, int mf, int flag
         else data["int"] = ilvl*2 + random(ilvl);
 
         data["level"] = ilvl;
-        temp_status["require"] = copy(data); // 设置装备要求
+        temp_status["require"] = copy(data); // 設置裝備要求
         */
 
-        if( base_type != "gem" ) // 掉落装备，非宝石
+        if( base_type != "gem" ) // 掉落裝備，非寶石
         {
-                // 凹槽数量：普通0、精制1、珍稀2、史诗3、传说4、神器5
-                // 武器6孔，防具4孔，护身符3孔，盾牌4孔
+                // 凹槽數量：普通0、精製1、珍稀2、史詩3、傳說4、神器5
+                // 武器6孔，防具4孔，護身符3孔，盾牌4孔
 
                 if( mf < 2 ) mf = 2;
 
-                uf = mf*10/(mf+10);  // 传说品级
-                sf = mf*30/(mf+30);  // 史诗品级
-                rf = mf*500/(mf+500);  // 珍稀品级
+                uf = mf*10/(mf+10);  // 傳說品級
+                sf = mf*30/(mf+30);  // 史詩品級
+                rf = mf*500/(mf+500);  // 珍稀品級
 
                 rate = random(100);
                 /*
@@ -1141,21 +1141,21 @@ public varargs object create_dynamic(string obj_type, int ilvl, int mf, int flag
                 if( mf >= 600 )
                 {
                         if( base_type == "weapon" || obj_type == "hands" || obj_type == "finger" )
-                                n = 5;       // 凹槽数量
+                                n = 5;       // 凹槽數量
                         else if( base_type == "armor" )
                                 n = 3;
-                        else // 护身符
+                        else // 護身符
                                 n = 3;
                         qlvl = 6;
-                        color = HBRED+HIW; // 神话
+                        color = HBRED+HIW; // 神話
                 } else
                 if( mf >= 500 )
                 {
                         if( base_type == "weapon" || obj_type == "hands" || obj_type == "finger" )
-                                n = 4;       // 凹槽数量
+                                n = 4;       // 凹槽數量
                         else if( base_type == "armor" )
                                 n = 3;
-                        else // 护身符
+                        else // 護身符
                                 n = 3;
                         if( (mf >= 540 && random(300) == 1) || random(1000) == 1 )
                         {
@@ -1166,7 +1166,7 @@ public varargs object create_dynamic(string obj_type, int ilvl, int mf, int flag
                         else
                         {
                                 qlvl = 5;
-                                color = HIY; // 传说以上
+                                color = HIY; // 傳說以上
                         }
                 } else
                 if( mf >= 400 )
@@ -1183,7 +1183,7 @@ public varargs object create_dynamic(string obj_type, int ilvl, int mf, int flag
                         else
                         {
                                 qlvl = 4;
-                                color = HIM; // 史诗
+                                color = HIM; // 史詩
                         }
                 } else
                 if( mf >= 300 )
@@ -1203,19 +1203,19 @@ public varargs object create_dynamic(string obj_type, int ilvl, int mf, int flag
                 if( rate < uf && !random(100) )
                 {
                         if( base_type == "weapon" || obj_type == "hands" || obj_type == "finger" )
-                                n = 4;       // 凹槽数量
+                                n = 4;       // 凹槽數量
                         else if( base_type == "armor" )
                                 n = 3;
-                        else // 护身符
+                        else // 護身符
                                 n = 3;
                         qlvl = 5;
-                        color = HIY; // 传说
+                        color = HIY; // 傳說
                 } else
                 if( rate < sf && !random(50) )
                 {
                         n = 3;
                         qlvl = 4;
-                        color = HIM; // 史诗
+                        color = HIM; // 史詩
                 } else
                 if( rate < rf )
                 {
@@ -1228,7 +1228,7 @@ public varargs object create_dynamic(string obj_type, int ilvl, int mf, int flag
                 {
                         n = 1;
                         qlvl = 2;
-                        color = HIB; // 精制
+                        color = HIB; // 精製
                 }
                 else
                 {
@@ -1238,7 +1238,7 @@ public varargs object create_dynamic(string obj_type, int ilvl, int mf, int flag
                 }
                 data = ([]);
                 if( n > 1 )
-                        n = random(n); // 随机凹槽数
+                        n = random(n); // 隨機凹槽數
                 if( n > 0 )
                 {
                         data = apply_props(obj_type, ilvl/10, n);
@@ -1246,8 +1246,8 @@ public varargs object create_dynamic(string obj_type, int ilvl, int mf, int flag
                         data["used"] = n;
                         insert = data["insert"];
                         map_delete(data, "insert");
-                        temp_status["enchase"] = copy(data); // 设置装备属性 buff/enchase ?
-                        temp_status["insert"] = insert;      // 插槽宝石属性
+                        temp_status["enchase"] = copy(data); // 設置裝備屬性 buff/enchase ?
+                        temp_status["insert"] = insert;      // 插槽寶石屬性
                 }
                 if( qlvl > 5 ) // 神器
                 {
@@ -1288,7 +1288,7 @@ public varargs object create_dynamic(string obj_type, int ilvl, int mf, int flag
                         else
                                 applied_prop[prop] += query_prop_value(prop, ilvl/10);
                 } else {
-                if( qlvl > 4 ) // 传说
+                if( qlvl > 4 ) // 傳說
                 {
                         if( base_type == "weapon" || obj_type == "hands" || obj_type == "finger" )
                                 props = weapon_props[2];
@@ -1303,7 +1303,7 @@ public varargs object create_dynamic(string obj_type, int ilvl, int mf, int flag
                         else
                                 applied_prop[prop] += query_prop_value(prop, ilvl/10);
                 }
-                if( qlvl > 3 ) // 史诗
+                if( qlvl > 3 ) // 史詩
                 {
                         if( base_type == "weapon" || obj_type == "hands" || obj_type == "finger" )
                                 props = weapon_props[1];
@@ -1337,7 +1337,7 @@ public varargs object create_dynamic(string obj_type, int ilvl, int mf, int flag
 
                 if( base_type == "weapon" )
                 {
-                        temp_status["weapon_prop"] = ([ "damage" : (ilvl+15)*qlvl*10 ]); // 基本属性-伤害
+                        temp_status["weapon_prop"] = ([ "damage" : (ilvl+15)*qlvl*10 ]); // 基本屬性-傷害
                         if( applied_prop )
                                 temp_status["weapon_prop"] += applied_prop;
                 }
@@ -1353,12 +1353,12 @@ public varargs object create_dynamic(string obj_type, int ilvl, int mf, int flag
                         }
                         else
                         {
-                                temp_status["armor_prop"] = ([ "armor" : (ilvl+15)*qlvl*2 ]); // 基本属性-保护
+                                temp_status["armor_prop"] = ([ "armor" : (ilvl+15)*qlvl*2 ]); // 基本屬性-保護
                                 if( applied_prop )
                                         temp_status["armor_prop"] += applied_prop;
                         }
                 }
-                else // 护身符
+                else // 護身符
                 {
                         temp_status["armor_prop"] = ([ "armor" : 10 ]);
                         if( applied_prop )
@@ -1366,16 +1366,16 @@ public varargs object create_dynamic(string obj_type, int ilvl, int mf, int flag
                 }
 
                 ob = TEMPLATE_D->create_object(filename, obj_type, temp_status);
-                set("quality_level", qlvl, ob); // 品质
-                set("can_sign", 1, ob); // 装备签名
-                set("auto_load", 1, ob); // 下线不掉
+                set("quality_level", qlvl, ob); // 品質
+                set("can_sign", 1, ob); // 裝備簽名
+                set("auto_load", 1, ob); // 下線不掉
                 if( color )
-                        ob->set_color(color); // 设置颜色,x_name中已经处理颜色了？
+                        ob->set_color(color); // 設置顏色,x_name中已經處理顏色了？
         }
-        else // 掉落宝石
+        else // 掉落寶石
         {
-                // 宝石分为4个等级，碎片，完好1，稀有1+1，神之1+2，宝石拥有兵器和防具以及饰品3种属性？
-                // 掉落未鉴定的宝石代替
+                // 寶石分為4個等級，碎片，完好1，稀有1+1，神之1+2，寶石擁有兵器和防具以及飾品3種屬性？
+                // 掉落未鑑定的寶石代替
                 if( ilvl <= 20 )
                         filename = "/clone/tessera/"+gems1[random(sizeof(gems1))];
                 else if( ilvl <= 40 )
@@ -1432,7 +1432,7 @@ public varargs void killer_reward(object killer, object victim, mapping drops)
                 value = drops[ks[i]];
                 value += value * mf/100;
 
-                // 掉落几率公式
+                // 掉落幾率公式
                 if( team_size >= 5 )
                         value = value * 220 / 100;
                 else if( team_size == 4 )
@@ -1446,31 +1446,31 @@ public varargs void killer_reward(object killer, object victim, mapping drops)
                         rand = random(score);
                         if( rand < value) {
                                 str = key[0..1];
-                                // 掉落阵列关键字以 F I 起头表示为掉落某个物品
+                                // 掉落陣列關鍵字以 F I 起頭表示為掉落某個物品
                                 if( str == "FI" ) {
                                         if( sscanf(key, "FI&%s", ob_file) )
                                                 ob = new(ob_file);
 
                                 }
-                                // 掉落阵列关键字以 N U 起头表示为掉落某个序号的物品
+                                // 掉落陣列關鍵字以 N U 起頭表示為掉落某個序號的物品
                                 else if( str == "NU" ) {
                                         if(  sscanf(key, "NU&%s", ob_num) )
                                                 ob = create_object(ob_num);
 
                                 }
-                                // 掉落阵列关键字以 T Y 起头表示为掉落某个类型的物品
+                                // 掉落陣列關鍵字以 T Y 起頭表示為掉落某個類型的物品
                                 else if( str == "TY" ) {
                                         if(  sscanf(key, "TY&%s%d", ob_typ, level) == 2 )
                                                 ob = create_dynamic(ob_typ, level, mf);
 
                                 }
-                                // 掉落阵列关键字以 M O 起头表示为掉落某个序号的套装部件
+                                // 掉落陣列關鍵字以 M O 起頭表示為掉落某個序號的套裝部件
                                 else if( str == "MO" ) {
                                         if( sscanf(key, "MO&%s", ob_num) )
                                                 ob = create_module(ob_num);
 
                                 }
-                                // 掉落阵列关键字以 R A 起头表示为掉落某类品质的的随机物品或者随机的某级装备
+                                // 掉落陣列關鍵字以 R A 起頭表示為掉落某類品質的的隨機物品或者隨機的某級裝備
                                 else if( str == "RA" ) {
                                         if( sscanf(key, "RA&%s%d", ob_quality, level) == 2 ) {
                                                 switch (ob_quality)
@@ -1502,33 +1502,33 @@ public varargs void killer_reward(object killer, object victim, mapping drops)
                                         }
                                 }
                                 if( objectp(ob) ) {
-                                        // HIW+treasure_level+NOR" 级"HIC"稀"NOR CYN"有"NOR"物品
+                                        // HIW+treasure_level+NOR" 級"HIC"稀"NOR CYN"有"NOR"物品
 /*
                                         if( query("quality_level", ob) == 3 ) // 珍稀
                                                 CHANNEL_D->channel_broadcast("news",
-                                                        query("name", killer) + "杀死" + victim->name() + NOR YEL"，从其身上掉出一"+query("unit", ob)+HIR" 珍"NOR RED"稀"HIW"级 "NOR YEL+ob->name()+YEL"。\n"NOR);
-                                        else if( query("quality_level", ob) == 4 ) // 史诗
-                                        if( query("quality_level", ob) == 4 ) // 史诗
+                                                        query("name", killer) + "殺死" + victim->name() + NOR YEL"，從其身上掉出一"+query("unit", ob)+HIR" 珍"NOR RED"稀"HIW"級 "NOR YEL+ob->name()+YEL"。\n"NOR);
+                                        else if( query("quality_level", ob) == 4 ) // 史詩
+                                        if( query("quality_level", ob) == 4 ) // 史詩
                                                 CHANNEL_D->channel_broadcast("news",
-                                                        query("name", killer) + "杀死" + victim->name() + NOR YEL"，从其身上掉出一"+query("unit", ob)+HIM" 史"NOR MAG"诗"HIW"级 "NOR YEL+ob->name()+YEL"。\n"NOR);
-                                        if( query("quality_level", ob) == 5 ) // 传说
+                                                        query("name", killer) + "殺死" + victim->name() + NOR YEL"，從其身上掉出一"+query("unit", ob)+HIM" 史"NOR MAG"詩"HIW"級 "NOR YEL+ob->name()+YEL"。\n"NOR);
+                                        if( query("quality_level", ob) == 5 ) // 傳說
                                                CHANNEL_D->channel_broadcast("ad",
-                                                       query("name", killer) + "杀死" + victim->name() + NOR HIK"，从其身上掉出一"+query("unit", ob)+HIY" 传"NOR YEL"说"HIW"级 "NOR HIK+ob->name()+HIK"。\n"NOR);
-                                                       //query("name", killer) + "杀死" + victim->name() + NOR YEL"，从其身上掉出一"+query("unit", ob)+HIY" 传"NOR YEL"说"HIW"级 "NOR YEL+ob->name()+YEL"。\n"NOR);
+                                                       query("name", killer) + "殺死" + victim->name() + NOR HIK"，從其身上掉出一"+query("unit", ob)+HIY" 傳"NOR YEL"說"HIW"級 "NOR HIK+ob->name()+HIK"。\n"NOR);
+                                                       //query("name", killer) + "殺死" + victim->name() + NOR YEL"，從其身上掉出一"+query("unit", ob)+HIY" 傳"NOR YEL"說"HIW"級 "NOR YEL+ob->name()+YEL"。\n"NOR);
                                         else
 */
                                         if( query("quality_level", ob) == 6 ) // 神器
                                         {
                                                 CHANNEL_D->channel_broadcast("news",
-                                                        //query("name", killer) + "杀死" + victim->name() + NOR YEL"，从其尸体上捡起了一"+query("unit", ob)+HIY" 神"NOR YEL"器"HIW"级 "NOR YEL+ob->name()+YEL"。\n"NOR);
-                                                        query("name", killer) + "杀死" + victim->name() + NOR YEL"，从其身上掉出一"+query("unit", ob)+" "+HBRED+HIW"神器"NOR+HIW"级 "NOR YEL+ob->name()+YEL"。\n"NOR);
+                                                        //query("name", killer) + "殺死" + victim->name() + NOR YEL"，從其屍體上撿起了一"+query("unit", ob)+HIY" 神"NOR YEL"器"HIW"級 "NOR YEL+ob->name()+YEL"。\n"NOR);
+                                                        query("name", killer) + "殺死" + victim->name() + NOR YEL"，從其身上掉出一"+query("unit", ob)+" "+HBRED+HIW"神器"NOR+HIW"級 "NOR YEL+ob->name()+YEL"。\n"NOR);
                                                 log_file("myth", sprintf("%s have get a %s(%s) of myth equip at %s.\n",killer->query_idname(),query("name",ob),query("id",ob),TIME_D->replace_ctime(time())));
                                         }
 
-                                        message_vision(HIC "当~~一声，从$N" HIC "身上掉出" + ob->name() + NOR + HIC "，落在地上。\n" NOR, victim);
+                                        message_vision(HIC "當~~一聲，從$N" HIC "身上掉出" + ob->name() + NOR + HIC "，落在地上。\n" NOR, victim);
                                         if( query("quality_level", ob) > 2 ) {
                                                 set("who_get/id", query("id", killer), ob);
-                                                set("who_get/time", time() + 10, ob); // 10秒内别人都不能捡取
+                                                set("who_get/time", time() + 10, ob); // 10秒內別人都不能撿取
                                         }
                                         ob->move(where);
                                 }
@@ -1542,15 +1542,15 @@ public varargs void killer_reward(object killer, object victim, mapping drops)
                 ob = new("/clone/money/gold");
                 ob->set_amount(random(20)+20);
                 ob->move(where);
-                message_vision(HIC "叮~~一声，从$N" HIC "身上掉出" + ob->name() + NOR + HIC "，落在地上。\n" NOR, victim);
+                message_vision(HIC "叮~~一聲，從$N" HIC "身上掉出" + ob->name() + NOR + HIC "，落在地上。\n" NOR, victim);
         }
         */
 
-        // 特殊活动爆物品，统一调用giftd接口
+        // 特殊活動爆物品，統一調用giftd接口
         //GIFT_D->boss_drops(this_object());
 
         return;
 }
 
-// 特殊活动爆物品
+// 特殊活動爆物品
 void festival_drops(object me);

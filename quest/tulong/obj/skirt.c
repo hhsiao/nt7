@@ -7,7 +7,7 @@ void create()
 {
    set_name(YEL "七色霓裳" NOR, ({ "color skirt","skirt" }) );
    set_weight(20);
-                set("long", "取彩虹七色，集天地灵气，夜辰妙手织成。 \n");
+                set("long", "取彩虹七色，集天地靈氣，夜辰妙手織成。 \n");
      set("material", "silk");
      set("unit", "件");
      set("armor_prop/armor",50 ); 
@@ -29,7 +29,7 @@ void init()
                     }
        me = this_player();
        if (!geteuid(me)||geteuid(me)!="night")  {
-       tell_object(me,"七色霓裳化为一道眩目的光华，消失在了空气中。\n");  
+       tell_object(me,"七色霓裳化為一道眩目的光華，消失在了空氣中。\n");  
                  destruct(ob);
                     } 
       return;

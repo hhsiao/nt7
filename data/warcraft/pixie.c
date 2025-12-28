@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m充血大龟头[2;37;0m[2;37;0m", ({"xuanwu"}));        
+        set_name("[1;31m充血大龜頭[2;37;0m[2;37;0m", ({"xuanwu"}));        
         set("gender", "男性");                
         set("long", "  [2;37;0m
-它是辟邪的魔幻兽。
+它是辟邪的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

@@ -25,7 +25,7 @@ int do_lianxi(string arg)
         me=this_player();
         i=(int)me->query_skill("zhenjiu-shu",1);
 
-        if( query("family/family_name", me) != "药王谷" || me->query_skill("zhenjiu-shu",1) >= 100 )
+        if( query("family/family_name", me) != "藥王谷" || me->query_skill("zhenjiu-shu",1) >= 100 )
         {       
                 return notify_fail("你不能使用布娃娃！\n");
         }
@@ -34,12 +34,12 @@ int do_lianxi(string arg)
                 return notify_fail("指令格式：lianxi <ID> \n");
 
         if( me->is_fighting() || me->is_busy() )
-                return notify_fail("你正忙着呢！\n");
+                return notify_fail("你正忙著呢！\n");
 
         if( query("jing", me) <= i )
-                return notify_fail("你太累了，休息一会儿吧！\n");
+                return notify_fail("你太累了，休息一會兒吧！\n");
 
-        message_vision ("$N拿起一支银针，在布娃娃身上照着经络图，比划着！\n", me);
+        message_vision ("$N拿起一支銀針，在布娃娃身上照著經絡圖，比劃著！\n", me);
         me->improve_skill("zhenjiu-shu", (i/3));
         addn("jing", -i, me);
         me->start_busy(1);

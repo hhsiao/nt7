@@ -3,13 +3,13 @@ inherit NPC;
 
 void create()
 {
-   set_name("武将",({ "wu jiang","jiang","wu" }) );
+   set_name("武將",({ "wu jiang","jiang","wu" }) );
    set("gender", "男性" );
    set("age", 32);
-   set("long", "这是守卫高丽的武将，看起来十分威风。\n");
+   set("long", "這是守衛高麗的武將，看起來十分威風。\n");
        
    set("combat_exp",800000);
-   set("guard","高丽");
+   set("guard","高麗");
    set("attitude", "peaceful");
    
         set("str", 30);

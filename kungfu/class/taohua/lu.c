@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// lu.c 陆乘风
+// lu.c 陸乘風
 
 #include <ansi.h>
 #include "taohua.h"
@@ -16,12 +16,12 @@ int    ask_xfsy();
 
 void create()
 {
-        set_name( "陆乘风" ,({ "lu chengfeng", "lu", "chengfeng" }));
+        set_name( "陸乘風" ,({ "lu chengfeng", "lu", "chengfeng" }));
         set("gender", "男性");
-        set("nickname", HIC "归云庄主" NOR);
+        set("nickname", HIC "歸雲莊主" NOR);
         set("age", 52);
-        set("long", "陆乘风是黄药师的第四个徒弟。他的鬓角已微见白发，但\n"
-                    "身材魁梧，双眼有神。\n");
+        set("long", "陸乘風是黃藥師的第四個徒弟。他的鬢角已微見白髮，但\n"
+                    "身材魁梧，雙眼有神。\n");
         set("attitude", "friendly");
         set("class", "scholar");
         set("str", 24);
@@ -70,7 +70,7 @@ void create()
         prepare_skill("unarmed", "xuanfeng-tui");
         prepare_skill("strike", "luoying-shenzhang");
 
-        create_family("桃花岛", 2, "弟子");
+        create_family("桃花島", 2, "弟子");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -82,21 +82,21 @@ void create()
         }));
 
         set("inquiry", ([
-                "东邪"   : "家师人称东邪！呵呵。",
-                "西毒"   : "欧阳锋是与家师并世齐名的高手，人称老毒物。",
-                "南帝"   : "听家师说段王爷现在出家当了和尚，法名一灯。",
-                "北丐"   : "北丐洪七公是丐帮帮主，现在扬州城外。",
-                "黄蓉"   : "她是师父的爱女。",
-                "梅超风" :"这贼婆娘害得我好苦。她不要脸偷汉，那也罢了，干吗要偷师父的《九阴真经》？",
-                "陈玄风" :"他和梅超风都是师门叛徒，有何好说？这两人害得我好苦！我半身不遂，就是拜受这两人之赐。",
-                "曲灵风" :"灵风师兄专于武技，不过育有一女，不知如今下落如何？",
-                "冯默风" :"你可持桃花本门信物前往寻找默风，冯师弟天性淡泊，但外和内刚，恐怕需用非常手段才能逼他表露身份．．．",
-                "黄药师" : "当年师父一怒之下，将我们师兄弟四人一齐震断脚筋，逐出桃花岛。",
-                "桃花岛" : (: ask_me :),
+                "東邪"   : "家師人稱東邪！呵呵。",
+                "西毒"   : "歐陽鋒是與家師並世齊名的高手，人稱老毒物。",
+                "南帝"   : "聽家師說段王爺現在出家當了和尚，法名一燈。",
+                "北丐"   : "北丐洪七公是丐幫幫主，現在揚州城外。",
+                "黃蓉"   : "她是師父的愛女。",
+                "梅超風" :"這賊婆娘害得我好苦。她不要臉偷漢，那也罷了，幹嗎要偷師父的《九陰真經》？",
+                "陳玄風" :"他和梅超風都是師門叛徒，有何好說？這兩人害得我好苦！我半身不遂，就是拜受這兩人之賜。",
+                "曲靈風" :"靈風師兄專於武技，不過育有一女，不知如今下落如何？",
+                "馮默風" :"你可持桃花本門信物前往尋找默風，馮師弟天性淡泊，但外和內剛，恐怕需用非常手段才能逼他表露身份．．．",
+                "黃藥師" : "當年師父一怒之下，將我們師兄弟四人一齊震斷腳筋，逐出桃花島。",
+                "桃花島" : (: ask_me :),
                 "巨浪滔天" : (: ask_skill1 :),
-                "狂风绝技" : (: ask_skill2 :),
-                "风雷四神剑" : (: ask_skill3 :),
-                "旋风扫叶腿" : (: ask_xfsy :),
+                "狂風絕技" : (: ask_skill2 :),
+                "風雷四神劍" : (: ask_skill3 :),
+                "旋風掃葉腿" : (: ask_xfsy :),
         ]));
         set("master_ob", 4);
         setup();
@@ -120,29 +120,29 @@ void attempt_apprentice(object ob)
         {
                 if (master != name())
                 {
-                        command("say 家师不是让你拜" + master + "的吗？你怎么来"
-                                "找我来了？");
+                        command("say 家師不是讓你拜" + master + "的嗎？你怎麼來"
+                                "找我來了？");
                         return;
                 }
 
-                command("say 好吧，既然家师有令，我就收下你了，不过要好好遵守桃"
-                        "花岛的规矩。");
+                command("say 好吧，既然家師有令，我就收下你了，不過要好好遵守桃"
+                        "花島的規矩。");
                 command("recruit "+query("id", ob));
                 delete_temp("taohua/master", ob);
                 return;
         }
 
         command("shake");
-        command("say 我可不敢擅自收徒，你还是找家师黄岛主吧！");
+        command("say 我可不敢擅自收徒，你還是找家師黃島主吧！");
         */
         if( query_temp("pending/recite", ob) )
         {
-                command("say 你粗鄙不文，见识浅薄，本庄主怎会收你？");
+                command("say 你粗鄙不文，見識淺薄，本莊主怎會收你？");
                 return;
         } else
         {
-                command("say 一位异人曾在本庄花厅留诗半阙，如果你能补全，也不枉来归云庄一遭");
-                message_vision("陆庄主凝视着$N，说道：快把你的下阙大声朗诵(recite)出来吧。\n",
+                command("say 一位異人曾在本莊花廳留詩半闕，如果你能補全，也不枉來歸雲莊一遭");
+                message_vision("陸莊主凝視著$N，說道：快把你的下闕大聲朗誦(recite)出來吧。\n",
                                this_player());
                 set_temp("pending/recite", 1, ob);
         }
@@ -156,34 +156,34 @@ int do_recite(string arg)
                 return 0;
 
         if (! arg)
-                return notify_fail("你说什么？\n");
+                return notify_fail("你說什麼？\n");
 
         set_temp("pending/recite", 0, this_player());
 
-        message_vision("$N大声说道：" + arg + "\n", this_player());
+        message_vision("$N大聲說道：" + arg + "\n", this_player());
 
-        if (arg == "无人争晓渡残月下寒沙")
+        if (arg == "無人爭曉渡殘月下寒沙")
         {
                 command("smile");
                 if( query("gender", this_player()) == "男性" )
-                        ttt = "门生";
+                        ttt = "門生";
                 else
                 if( query("gender", this_player()) == "女性" )
                         ttt = "青衣";
                 else
                 {
                         command("sigh");
-                        command("say " + "卿本佳人，奈何自宫，本庄与东厂概无关联，你去吧！");
+                        command("say " + "卿本佳人，奈何自宮，本莊與東廠概無關聯，你去吧！");
                         return 0;
                 }
                 command("say " + "好！好！" + RANK_D->query_respect(this_player()) +
-                        "果然博闻强记。敝人就收你做个" + ttt +"吧。");
+                        "果然博聞強記。敝人就收你做個" + ttt +"吧。");
 
                 command("recruit "+query("id", this_player()));
-                set("title", "归云庄"+ttt, this_player());
+                set("title", "歸雲莊"+ttt, this_player());
         } else
         {
-                command("say 你这白丁，待在这里，没的脏了我的屋子！");
+                command("say 你這白丁，待在這裡，沒的髒了我的屋子！");
         }
         return 1;
 }
@@ -194,27 +194,27 @@ string ask_me()
         object ob;
 
         if( !(fam=query("family", this_player())) || 
-                fam["family_name"] !="桃花岛")
+                fam["family_name"] !="桃花島")
                 return RANK_D->query_respect(this_player()) +
-                       "与敝庄素无来往，不知此话从何谈起？";
+                       "與敝莊素無來往，不知此話從何談起？";
 
         if (query("bagua_count") < 1)
-                return "今天我太累了，有什么事明天再说吧。";
+                return "今天我太累了，有什麼事明天再說吧。";
 
         if( present("tie bagua",this_player()) || query_temp("get_bagua", this_player()) )
-                return "现在你可以上桃花岛试一试，看有没有福份见到我师傅。";
+                return "現在你可以上桃花島試一試，看有沒有福份見到我師傅。";
 
         if (this_player()->query_skill("qimen-wuxing", 1) < 60 ||
         this_player()->query_skill("bibo-shengong", 1) < 60)
-                return "桃花岛上机关重重，你功夫不够，还是不去为妙。";
+                return "桃花島上機關重重，你功夫不夠，還是不去為妙。";
 
         addn("bagua_count", -1);
         ob = new("/d/taohua/obj/bagua");
         ob->move(this_player());
         set_temp("get_bagua", 1, this_player());
 
-        message_vision("陆乘风递给$N一块铁八卦。\n", this_player());
-        return "上岛之后千万小心，万事靠自己，我也帮不上什么忙了。";
+        message_vision("陸乘風遞給$N一塊鐵八卦。\n", this_player());
+        return "上島之後千萬小心，萬事靠自己，我也幫不上什麼忙了。";
 }
 /*
 mixed ask_skill1()
@@ -224,31 +224,31 @@ mixed ask_skill1()
         me = this_player();
 
         if( query("can_perform/pikong-zhang/dai", me) )
-                return "这一招我不是已经教过你了吗？";
+                return "這一招我不是已經教過你了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "你不是我们桃花岛的人，问这个干嘛？";
+                return "你不是我們桃花島的人，問這個幹嘛？";
 
         if (me->query_skill("pikong-zhang", 1) < 1)
-                return "你连劈空掌都没学，还谈什么绝招可言？";
+                return "你連劈空掌都沒學，還談什麼絕招可言？";
 
         if( query("family/gongji", me)<80 )
-                return "师父吩咐过，不传功给无功劳的弟子。";
+                return "師父吩咐過，不傳功給無功勞的弟子。";
 
         if (me->query_skill("force") < 120)
-                return "你的内功修为不够，还是多锻炼锻炼吧。";
+                return "你的內功修為不夠，還是多鍛鍊鍛鍊吧。";
 
         if (me->query_skill("pikong-zhang", 1) < 80)
-                return "你的劈空掌还不够熟练，练高了再来找我。";
+                return "你的劈空掌還不夠熟練，練高了再來找我。";
 
-        message_sort(HIY "\n$n" HIY "对着$N" HIY "点了点头，说道：“我给你演示"
-                     "一遍，可看仔细了！”话音刚落，顿时只见$n" HIY "双掌交叠云"
-                     "贯而出，激荡出无数圈劲气，一环环向$N" HIY "斫去，招数当真"
-                     "精奇无比。\n\n" NOR, me, this_object());
+        message_sort(HIY "\n$n" HIY "對著$N" HIY "點了點頭，說道：“我給你演示"
+                     "一遍，可看仔細了！”話音剛落，頓時只見$n" HIY "雙掌交疊雲"
+                     "貫而出，激盪出無數圈勁氣，一環環向$N" HIY "斫去，招數當真"
+                     "精奇無比。\n\n" NOR, me, this_object());
 
         command("smile");
-        command("say 招式便是如此，你自己下去体会吧。");
-        tell_object(me, HIC "你学会了「披星戴月」。\n" NOR);
+        command("say 招式便是如此，你自己下去體會吧。");
+        tell_object(me, HIC "你學會了「披星戴月」。\n" NOR);
         if (me->can_improve_skill("strike"))
                 me->improve_skill("strike", 1500000);
         if (me->can_improve_skill("pikong-zhang"))
@@ -268,31 +268,31 @@ mixed ask_skill1()
         me = this_player();
 
         if( query("can_perform/canglang-bian/lang", me) )
-                return "这一招我不是已经教过你了吗？";
+                return "這一招我不是已經教過你了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "你不是我们桃花岛的人，问这个干嘛？";
+                return "你不是我們桃花島的人，問這個幹嘛？";
 
         if (me->query_skill("canglang-bian", 1) < 1)
-                return "你连沧浪鞭法都没学，还谈什么绝招可言？";
+                return "你連滄浪鞭法都沒學，還談什麼絕招可言？";
 
         if( query("family/gongji", me)<200 )
-                return "师父吩咐过，不传功给无功劳的弟子。";
+                return "師父吩咐過，不傳功給無功勞的弟子。";
 
         if (me->query_skill("force") < 120)
-                return "你的内功修为不够，还是多锻炼锻炼吧。";
+                return "你的內功修為不夠，還是多鍛鍊鍛鍊吧。";
 
         if (me->query_skill("canglang-bian", 1) < 80)
-                return "你的沧浪鞭法还不够熟练，练高了再来找我。";
+                return "你的滄浪鞭法還不夠熟練，練高了再來找我。";
 
-        message_sort(HIY "\n$n" HIY "对着$N" HIY "点了点头，说道：“我给你演示"
-                     "一遍，可看仔细了！”话音刚落，顿时只见$n" HIY "手中长鞭"
-                     "如巨浪连绵无穷无尽攻向虚空，真精奇无比。\n\n" NOR, me,
+        message_sort(HIY "\n$n" HIY "對著$N" HIY "點了點頭，說道：“我給你演示"
+                     "一遍，可看仔細了！”話音剛落，頓時只見$n" HIY "手中長鞭"
+                     "如巨浪連綿無窮無盡攻向虛空，真精奇無比。\n\n" NOR, me,
                      this_object());
 
         command("smile");
-        command("say 招式便是如此，你自己下去体会吧。");
-        tell_object(me, HIC "你学会了「巨浪滔天」。\n" NOR);
+        command("say 招式便是如此，你自己下去體會吧。");
+        tell_object(me, HIC "你學會了「巨浪滔天」。\n" NOR);
         if (me->can_improve_skill("whip"))
                 me->improve_skill("whip", 1500000);
         if (me->can_improve_skill("canglang-bian"))
@@ -311,32 +311,32 @@ mixed ask_skill2()
         me = this_player();
 
         if( query("can_perform/xuanfeng-tui/kuang", me) )
-                return "这一招我不是已经教过你了吗？";
+                return "這一招我不是已經教過你了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "你不是我们桃花岛的人，问这个干嘛？";
+                return "你不是我們桃花島的人，問這個幹嘛？";
 
         if (me->query_skill("xuanfeng-tui", 1) < 1)
-                return "你连旋风扫叶腿都没学，还谈什么绝招可言？";
+                return "你連旋風掃葉腿都沒學，還談什麼絕招可言？";
 
         if( query("family/gongji", me)<300 )
-                return "师父吩咐过，不传功给无功劳的弟子。";
+                return "師父吩咐過，不傳功給無功勞的弟子。";
 
         if (me->query_skill("force") < 150)
-                return "你的内功修为不够，还是多锻炼锻炼吧。";
+                return "你的內功修為不夠，還是多鍛鍊鍛鍊吧。";
 
         if (me->query_skill("xuanfeng-tui", 1) < 100)
-                return "你的旋风扫叶腿还不够熟练，练高了再来。";
+                return "你的旋風掃葉腿還不夠熟練，練高了再來。";
 
-        message_sort(HIY "\n$n" HIY "点了点头，喝道：“看好了！”便在$n" HIY
-                     "话音落下的一瞬间，早已拔地而起，陡然使出旋风扫叶腿狂风"
-                     "绝技，身法变得飘忽不定，足带风尘，掌携万钧。招式连贯气"
-                     "势恢弘，劲风只袭得$N" HIY "面庞隐隐生疼。\n\n" NOR, me,
+        message_sort(HIY "\n$n" HIY "點了點頭，喝道：“看好了！”便在$n" HIY
+                     "話音落下的一瞬間，早已拔地而起，陡然使出旋風掃葉腿狂風"
+                     "絕技，身法變得飄忽不定，足帶風塵，掌攜萬鈞。招式連貫氣"
+                     "勢恢弘，勁風只襲得$N" HIY "面龐隱隱生疼。\n\n" NOR, me,
                      this_object());
 
         command("haha");
-        command("say 下去后可要勤加练习，莫辜负了恩师的一番栽培。");
-        tell_object(me, HIC "你学会了「狂风绝技」。\n" NOR);
+        command("say 下去後可要勤加練習，莫辜負了恩師的一番栽培。");
+        tell_object(me, HIC "你學會了「狂風絕技」。\n" NOR);
         if (me->can_improve_skill("unarmed"))
                 me->improve_skill("unarmed", 1500000);
         if (me->can_improve_skill("strike"))
@@ -357,32 +357,32 @@ mixed ask_skill3()
         me = this_player();
 
         if( query("can_perform/luoying-shenjian/fenglei", me) )
-                return "这一招我不是已经教过你了吗？";
+                return "這一招我不是已經教過你了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "你不是我们桃花岛的人，问这个干嘛？";
+                return "你不是我們桃花島的人，問這個幹嘛？";
 
         if (me->query_skill("luoying-shenjian", 1) < 1)
-                return "你连落英神剑都没学，还谈什么绝招可言？";
+                return "你連落英神劍都沒學，還談什麼絕招可言？";
 
         if( query("family/gongji", me)<300 )
-                return "师父吩咐过，不传功给无功劳的弟子。";
+                return "師父吩咐過，不傳功給無功勞的弟子。";
 
         if (me->query_skill("force") < 150)
-                return "你的内功修为不够，还是多锻炼锻炼吧。";
+                return "你的內功修為不夠，還是多鍛鍊鍛鍊吧。";
 
         if (me->query_skill("luoying-shenjian", 1) < 100)
-                return "你的落英神剑还不够熟练，练高了再来。";
+                return "你的落英神劍還不夠熟練，練高了再來。";
 
-        message_sort(HIY "\n$n" HIY "点了点头，喝道：“看好了！”便在$n" HIY
-                     "话音落下的一瞬间，早已拔地而起，陡然使出「风雷四神剑」"
-                     "绝技，高声长吟：“桃花影里飞神剑”，如风如雷般的发出数剑! "
-                     "气势恢弘，劲风只袭得$N" HIY "面庞隐隐生疼。\n\n" NOR, me,
+        message_sort(HIY "\n$n" HIY "點了點頭，喝道：“看好了！”便在$n" HIY
+                     "話音落下的一瞬間，早已拔地而起，陡然使出「風雷四神劍」"
+                     "絕技，高聲長吟：“桃花影裡飛神劍”，如風如雷般的發出數劍! "
+                     "氣勢恢弘，勁風只襲得$N" HIY "面龐隱隱生疼。\n\n" NOR, me,
                      this_object());
 
         command("haha");
-        command("say 下去后可要勤加练习，莫辜负了恩师的一番栽培。");
-        tell_object(me, HIC "你学会了「风雷四神剑」。\n" NOR);
+        command("say 下去後可要勤加練習，莫辜負了恩師的一番栽培。");
+        tell_object(me, HIC "你學會了「風雷四神劍」。\n" NOR);
         if (me->can_improve_skill("force")) 
                 me->improve_skill("force", 1500000); 
         if (me->can_improve_skill("sword"))
@@ -399,9 +399,9 @@ mixed ask_skill3()
 }
 int accept_kill(object me)
 {
-        if( query("family/family_name", me) == "桃花岛" )
+        if( query("family/family_name", me) == "桃花島" )
         {
-                command("say 你我本是同门，如何要加害于我！\n");
+                command("say 你我本是同門，如何要加害於我！\n");
                 set("th_killer", 1, me);
                 kill_ob(me);
                 return 1;
@@ -418,16 +418,16 @@ int accept_object(object me, object obj)
 int accept_obj(object me, object obj)
 {
         if (! me || ! obj) return 0;
-        if( query("name", obj) == "旋风扫叶腿" )
+        if( query("name", obj) == "旋風掃葉腿" )
         {
                 command("ah");
-                message_vision(CYN "$N双手颤抖的展开薄纸，仔仔细细的读了起来。\n", this_object());
-                message_vision(CYN "$N一边读，一边热泪盈眶！\n", this_object());
+                message_vision(CYN "$N雙手顫抖的展開薄紙，仔仔細細的讀了起來。\n", this_object());
+                message_vision(CYN "$N一邊讀，一邊熱淚盈眶！\n", this_object());
                 command("cry");
-                command("say 多谢"+ RANK_D->query_respect(me) +"了。\n");
+                command("say 多謝"+ RANK_D->query_respect(me) +"了。\n");
                 set("xfsy_xinfa_reading", 1);
                 set("xfsy_xinfa_accept", 1);
-                if( query("family/family_name", me) == "桃花岛" )
+                if( query("family/family_name", me) == "桃花島" )
                         set("help_chengfeng", 1, me);
         }
         call_out("finish_reading", 100 + random(50), obj);
@@ -447,22 +447,22 @@ int ask_xfsy()
         me = this_player();
         if (query("xfsy_xinfa_reading"))
         {
-                command("say 对不住，我还没读完恩师所传心法．");
+                command("say 對不住，我還沒讀完恩師所傳心法．");
                 return 1;
         }
 
-        if( query("family/family_name", me) == "桃花岛"
+        if( query("family/family_name", me) == "桃花島"
         &&  query("xfsy_xinfa_accept"))
         {
                 obj = new("/d/taohua/obj/xfsy_xinfa2");
                 obj->move(me);
-                command("say 这套心法我做了一些注解，"+RANK_D->query_respect(me) +
-                        "可拿回去自行参悟。");
+                command("say 這套心法我做了一些註解，"+RANK_D->query_respect(me) +
+                        "可拿回去自行參悟。");
 
-                message_vision("$N递给$n一张薄纸。\n",this_object(),me);
+                message_vision("$N遞給$n一張薄紙。\n",this_object(),me);
                 delete("xfsy_xinfa_accept");
         } else
-                command("say 旋风扫叶腿心法已不在我这里。");
+                command("say 旋風掃葉腿心法已不在我這裡。");
 
         return 1;
 }

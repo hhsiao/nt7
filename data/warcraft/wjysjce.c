@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("座机[2;37;0m[2;37;0m", ({"zuoji"}));        
+        set_name("座機[2;37;0m[2;37;0m", ({"zuoji"}));        
         set("gender", "男性");                
-        set("long", "座机[2;37;0m
-它是啊以的魔幻兽。
+        set("long", "座機[2;37;0m
+它是啊以的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

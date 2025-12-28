@@ -14,12 +14,12 @@ void set_attrib();
 
 void create()
 {
-        set_name(HIG "结婚戒指" NOR, ({ "wedding ring", "ring" }) );
+        set_name(HIG "結婚戒指" NOR, ({ "wedding ring", "ring" }) );
         set_weight(100);
         set("material", "gold");
         set("unit", "只");
         set("value", 50000);
-        set("no_sell", "这你也要卖？不如把你自己卖了！");
+        set("no_sell", "這你也要賣？不如把你自己賣了！");
         set("armor_prop/armor", 20);
         set("armor_prop/unarmed", 5);
         set("armor_prop/hand", 5);
@@ -28,7 +28,7 @@ void create()
         set("armor_prop/cuff", 5);
         set("armor_prop/unarmed_damage", 8);
         set("wear_msg", (: do_wear :));
-        set("remove_msg", HIG "$N" HIG "把$n" HIG "脱了下来。\n" );
+        set("remove_msg", HIG "$N" HIG "把$n" HIG "脫了下來。\n" );
         if (! check_clone()) return 0;
 
         set("stable", 0);
@@ -45,7 +45,7 @@ void set_attrib()
         int tname;
         string desc;
 
-        // 计算对容貌的影响
+        // 計算對容貌的影響
         lvl = query("enchase/lvl");
         per = query("enchase/point") * lvl / 10000;
         set("armor_prop/per", per);
@@ -57,19 +57,19 @@ void set_attrib()
         {
                 if (lvl >= 300)
                 {
-                        desc += HIG "上面镶嵌着" + tname + HIG
-                                "，巧夺天工，美得异乎寻常，让" + name() +
-                                HIG "越发显得精致。\n" NOR;
+                        desc += HIG "上面鑲嵌著" + tname + HIG
+                                "，巧奪天工，美得異乎尋常，讓" + name() +
+                                HIG "越發顯得精緻。\n" NOR;
                 } else
                 if (lvl >= 200)
                 {
-                        desc += HIG "上面镶嵌着" + tname + HIG
-                                "，几乎没有瑕疵，可谓人间罕见的珍品。\n" NOR;
+                        desc += HIG "上面鑲嵌著" + tname + HIG
+                                "，幾乎沒有瑕疵，可謂人間罕見的珍品。\n" NOR;
                 } else
                 {
-                        desc += HIG "上面镶嵌着" + tname + HIG
-                                "，衬托出" + name() + HIG +
-                                "的不俗，只是有些少瑕疵显得美中不足。\n" NOR;
+                        desc += HIG "上面鑲嵌著" + tname + HIG
+                                "，襯托出" + name() + HIG +
+                                "的不俗，只是有些少瑕疵顯得美中不足。\n" NOR;
                 }
                 set("long", desc);
         }
@@ -88,42 +88,42 @@ string do_wear()
 
         if( query("gender", me) == "女性" )
         {
-                msg = HIG "$N" HIG "轻巧巧的戴上了一个$n"
-                      HIG "，璨然一笑，映的宝光四射，直令得花儿也憔悴了。\n" NOR;
+                msg = HIG "$N" HIG "輕巧巧的戴上了一個$n"
+                      HIG "，璨然一笑，映的寶光四射，直令得花兒也憔悴了。\n" NOR;
                 if (stringp(tname))
                 {
                         if (point >= 150)
-                                msg += HIG "只见" + tname + HIG "闪过"
+                                msg += HIG "只見" + tname + HIG "閃過"
                                        "一道光芒，映射得$N" HIG "有若"
-                                       "仙子落凡，令人心弛神摇。\n" NOR;
+                                       "仙子落凡，令人心弛神搖。\n" NOR;
                         else
                         if (point >= 100)
-                                msg += HIG "只见" + tname + HIG "闪闪"
-                                       "发光，衬托得$N" HIG "说不出的"
-                                       "娇媚。\n" NOR;
+                                msg += HIG "只見" + tname + HIG "閃閃"
+                                       "發光，襯托得$N" HIG "說不出的"
+                                       "嬌媚。\n" NOR;
                         else
-                                msg += HIG "只见" + tname + HIG "闪了"
-                                       "一下，照亮了$N" HIG "隽秀的容颜"
+                                msg += HIG "只見" + tname + HIG "閃了"
+                                       "一下，照亮了$N" HIG "雋秀的容顏"
                                        "。\n" NOR;
                 }
         } else
         {
-                msg = HIG "$N" HIG "戴上了一个$n"
-                      HIG "，当下意气风发，神完气足。\n" NOR;
+                msg = HIG "$N" HIG "戴上了一個$n"
+                      HIG "，當下意氣風發，神完氣足。\n" NOR;
                 if (stringp(tname))
                 {
                         if (point >= 150)
-                                msg += HIG "只见" + tname + HIG "闪过"
+                                msg += HIG "只見" + tname + HIG "閃過"
                                        "一道光芒，映射得$N" HIG "如同"
                                        "天神降世，令人目瞪口呆。\n" NOR;
                         else
                         if (point >= 100)
-                                msg += HIG "只见" + tname + HIG "闪闪"
-                                       "发光，让$N" HIG "越发显得挺拔"
-                                       "神气。\n" NOR;
+                                msg += HIG "只見" + tname + HIG "閃閃"
+                                       "發光，讓$N" HIG "越發顯得挺拔"
+                                       "神氣。\n" NOR;
                         else
-                                msg += HIG "只见" + tname + HIG "闪了"
-                                       "一下，照亮了$N" HIG "的脸庞。\n" NOR;
+                                msg += HIG "只見" + tname + HIG "閃了"
+                                       "一下，照亮了$N" HIG "的臉龐。\n" NOR;
                 }
         }
         return msg;
@@ -136,14 +136,14 @@ int receive_summon(object me)
 
         if ((env = environment()) && env == me)
         {
-                write(name() + "不就在你身上嘛？你召唤个什么劲？\n");
+                write(name() + "不就在你身上嘛？你召喚個什麼勁？\n");
                 return 1;
         }
 
         if (env == environment(me))
         {
-                message_vision(HIG "只见地上的" + name() +
-                               HIG "化作一道光芒，飞跃至$N" HIW
+                message_vision(HIG "只見地上的" + name() +
+                               HIG "化作一道光芒，飛躍至$N" HIW
                                "的掌中！\n\n" NOR, me);
         } else
         {
@@ -158,12 +158,12 @@ int receive_summon(object me)
                         if (interactive(env = environment()))
                         {
                                 tell_object(env, HIM + name() +
-                                                 HIM "忽然离你而去了！\n" NOR);
+                                                 HIM "忽然離你而去了！\n" NOR);
                         }
                 }
 
-                message_vision(HIG "一道光芒划过，只见$N"
-                               HIG "掌中多了一个$n" HIG "！\n\n" NOR,
+                message_vision(HIG "一道光芒劃過，只見$N"
+                               HIG "掌中多了一個$n" HIG "！\n\n" NOR,
                                me, this_object());
         }
 
@@ -178,7 +178,7 @@ int receive_summon(object me)
         return 1;
 }
 
-// 镶嵌
+// 鑲嵌
 int do_enchase(object me, object tessera)
 {
         object item;
@@ -186,34 +186,34 @@ int do_enchase(object me, object tessera)
 
         item = this_object();
         if( stringp(query("enchase/name", item)) )
-                return notify_fail("现在" + item->name() + "上面"
-                                   "已经镶嵌了物品了。\n");
+                return notify_fail("現在" + item->name() + "上面"
+                                   "已經鑲嵌了物品了。\n");
 
         if (tessera->query_wight() > 100)
-                return notify_fail("这件物品也太重了，你怎么镶嵌上去啊？\n");
+                return notify_fail("這件物品也太重了，你怎麼鑲嵌上去啊？\n");
 
         if (query("equipped"))
-                return notify_fail("你现在正戴着它呢，怎么镶嵌呢？先脱下来吧。\n");
+                return notify_fail("你現在正戴著它呢，怎麼鑲嵌呢？先脫下來吧。\n");
 
         if( !query("can_be_enchased", tessera) )
-                return notify_fail("天啊，你还没有这手艺把" +
-                                   tessera->name() + "镶嵌上去。\n");
+                return notify_fail("天啊，你還沒有這手藝把" +
+                                   tessera->name() + "鑲嵌上去。\n");
 
         if ((lvl = me->query_skill("certosina", 1)) < 100)
-                return notify_fail("你的镶嵌技术不到，无法完"
-                                   "成这么精细活儿。\n");
+                return notify_fail("你的鑲嵌技術不到，無法完"
+                                   "成這麼精細活兒。\n");
 
-        message_vision("只听“喀啦”一声，$N已经把" + tessera->name() +
-                       "规规举举的镶嵌到了$n上面。\n", me, item);
+        message_vision("只聽“喀啦”一聲，$N已經把" + tessera->name() +
+                       "規規舉舉的鑲嵌到了$n上面。\n", me, item);
         if (lvl >= 300)
-                message_vision("一时间，你只觉得$N宝气顿生，尊华"
-                               "无比，实在是人间神品，没有半点瑕疵。\n", item);
+                message_vision("一時間，你只覺得$N寶氣頓生，尊華"
+                               "無比，實在是人間神品，沒有半點瑕疵。\n", item);
         else
         if (lvl >= 200)
-                message_vision("只见$N宝气四射，变得越发妍美，庶"
-                               "几没有半点缺憾。\n", item);
+                message_vision("只見$N寶氣四射，變得越發妍美，庶"
+                               "幾沒有半點缺憾。\n", item);
         else
-                message_vision("只见$N顿时平添几分丽色，虽然有"
+                message_vision("只見$N頓時平添幾分麗色，雖然有"
                                "些小小缺憾，也是瑕不掩瑜。\n", item);
         set("enchase/name", tessera->name());
         set("enchase/point",query("magic/power", tessera));
@@ -225,7 +225,7 @@ int do_enchase(object me, object tessera)
         return 1;
 }
 
-// 进行保存数据的接口函数
+// 進行保存數據的接口函數
 mixed save_dbase_data()
 {
         mapping data;
@@ -242,7 +242,7 @@ mixed save_dbase_data()
         return data;
 }
 
-// 接受存盘数据的接口函数
+// 接受存盤數據的接口函數
 int receive_dbase_data(mixed data)
 {
         if (! mapp(data))

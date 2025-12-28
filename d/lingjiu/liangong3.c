@@ -2,15 +2,15 @@ inherit ROOM;
 
 void create()
 {
-          set("short", "戏凤阁三楼");
+          set("short", "戲鳳閣三樓");
         set("long", @LONG
-这里是三楼，人比楼下的少多了，只听见楼下隐隐约约的传来阵
-阵娇咤，不那么真切。
+這裡是三樓，人比樓下的少多了，只聽見樓下隱隱約約的傳來陣
+陣嬌吒，不那麼真切。
 LONG );
           set("exits",([
                       "down" : __DIR__"liangong2",
           ]));
-          set("for_family", "灵鹫宫");
+          set("for_family", "靈鷲宮");
           setup();
           replace_program(ROOM);
 }

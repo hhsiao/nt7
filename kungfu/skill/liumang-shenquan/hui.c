@@ -13,15 +13,15 @@ int perform(object me, object target)
         if( !target) target = offensive_target(me);
 
         if( !target || !target->is_character() || !me->is_fighting(target))
-                return notify_fail("你只能在战斗中使用这一绝招。\n");
+                return notify_fail("你只能在戰鬥中使用這一絕招。\n");
 
         if( (int)me->query_skill("liumang-shenquan", 1) < 80)
-                return notify_fail("你的流氓神拳还不够纯熟，无法使出这一绝招。\n");
+                return notify_fail("你的流氓神拳還不夠純熟，無法使出這一絕招。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你的内力修为还不够高。\n");
+                return notify_fail("你的內力修為還不夠高。\n");
 
-        msg = HIG"$N深深吸了口气，气运丹田，陡然间张嘴一声狂喝：\n"NOR;
+        msg = HIG"$N深深吸了口氣，氣運丹田，陡然間張嘴一聲狂喝：\n"NOR;
         msg += HIC"
 I@@L      @@@@       I@@@ ezz,_zzzzzz_     @@@L     I@@I       zzzL  @@@' Izzz  
 `@@@_I--zz@@~~-----  I@@@ I@@I     I@@I    `~~~ ezz_a@@bzz_,   `~~~,I@@@ I~~~'  
@@ -33,7 +33,7 @@ I@@L I@@@_____@@@L   @@@  I@@M~~@@@@~~     I@@P I@@ I@@II@@I ~~~~@@@@~~~-@@@~~~~
 I@@@  I@@ I@@ @@@ .  @@@  I@@I  I@@I  _    I@@I '~~'I@@I~~'  ~~~~~~~~@@@@~~~~~~~
 I@@I  a@@ I@@ @@@_%  ~-@bz`@@@zz-I@@zd~    I@@I     I@@I        I-z_z@@@P       \n"NOR;
 
-        msg += HIY"\n跟着拳随声至，势如急风骤雨一般，迳直击往$n的胸腹要害！！！\n"NOR;  
+        msg += HIY"\n跟著拳隨聲至，勢如急風驟雨一般，逕直擊往$n的胸腹要害！！！\n"NOR;  
 
         ap = attack_power(me, "unarmed");
         dp = defense_power(target, "dodge");
@@ -50,12 +50,12 @@ I@@I  a@@ I@@ @@@_%  ~-@bz`@@@zz-I@@zd~    I@@I     I@@I        I-z_z@@@P       
                 target->receive_damage("qi", damage);
                 target->receive_wound("qi", damage/2);
                 addn("neili", -200, me);
-                msg += HIR"$n耳际如遭雷殛，懵然不知闪避，被$N这招重重击实，不由得长声惨呼！\n"NOR;
+                msg += HIR"$n耳際如遭雷殛，懵然不知閃避，被$N這招重重擊實，不由得長聲慘呼！\n"NOR;
         }
 
         else
         {
-                msg += YEL"$n急忙作势斜扑，一个就地十八滚，狼狈万状的躲开了$N这招。\n"NOR;
+                msg += YEL"$n急忙作勢斜撲，一個就地十八滾，狼狽萬狀的躲開了$N這招。\n"NOR;
                 me->start_busy(1);
         }
 

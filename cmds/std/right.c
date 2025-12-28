@@ -11,9 +11,9 @@ int main(object me, string arg)
         seteuid(getuid());
 
         if (! arg)
-                return notify_fail("你要答应谁？\n");
+                return notify_fail("你要答應誰？\n");
 
-        notify_fail("这人没有向你提出什么要求啊？\n");
+        notify_fail("這人沒有向你提出什麼要求啊？\n");
         if (! functionp(f = query_temp("pending/answer/" + arg + "/right", me)))
                 return 0;
 

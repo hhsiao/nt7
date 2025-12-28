@@ -1,4 +1,4 @@
-// six-fingers.c 六脉神剑
+// six-fingers.c 六脈神劍
 // Last Modified by sir 10.22.2001
 
 #include <ansi.h>;
@@ -9,212 +9,212 @@ string martialtype() { return "skill"; }
 //string main_skill() { return "yinyang-shiertian"; }
 
 mapping *action = ({
-([      "name":   "少商剑",
-        "action": "$N双手拇指同时捺出，嗤嗤两声急响，「" HIW "少商剑" NOR "」有如石破"
-                  "天惊、风雨大至",
+([      "name":   "少商劍",
+        "action": "$N雙手拇指同時捺出，嗤嗤兩聲急響，「" HIW "少商劍" NOR "」有如石破"
+                  "天驚、風雨大至",
         "force" : 460,
         "attack": 140,
         "dodge" : 90,
         "parry" : 90,
         "damage": 260,
         "lvl"   : 0,
-        "weapon" : HIW "少商剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon" : HIW "少商劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "name":   "少商剑",
-        "action": "$N大拇指一按，嗤嗤两指，劲道使得甚巧，「" HIW "少商剑" NOR "」剑气"
-                  "如怒潮般涌至",
+([      "name":   "少商劍",
+        "action": "$N大拇指一按，嗤嗤兩指，勁道使得甚巧，「" HIW "少商劍" NOR "」劍氣"
+                  "如怒潮般湧至",
         "force" : 460,
         "attack": 140,
         "dodge" : 90,
         "parry" : 90,
         "damage": 260,
         "lvl"   : 10,
-        "weapon" : HIW "少商剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon" : HIW "少商劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "name":   "少商剑",
-        "action": "$N大拇指连挥，「" HIW "少商剑" NOR "」便如是一幅泼墨山水，纵横倚斜"
-                  "，剑路雄劲",
+([      "name":   "少商劍",
+        "action": "$N大拇指連揮，「" HIW "少商劍" NOR "」便如是一幅潑墨山水，縱橫倚斜"
+                  "，劍路雄勁",
         "force" : 460,
         "attack": 140,
         "dodge" : 90,
         "parry" : 90,
         "damage": 260,
         "lvl"   : 20,
-        "weapon" : HIW "少商剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon" : HIW "少商劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "name":   "少商剑",
-        "action": "$N双手拇指同时捺出，「" HIW "少商剑" NOR "」大开大阖，气派宏伟，每"
-                  "一剑都有风雨大至之势",
+([      "name":   "少商劍",
+        "action": "$N雙手拇指同時捺出，「" HIW "少商劍" NOR "」大開大闔，氣派宏偉，每"
+                  "一劍都有風雨大至之勢",
         "force" : 460,
         "attack": 140,
         "dodge" : 90,
         "parry" : 90,
         "damage": 260,
         "lvl"   : 30,
-        "weapon" : HIW "少商剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon" : HIW "少商劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "name":   "商阳剑",
-        "action": "$N食指连动，手腕园转，「" HIW "商阳剑" NOR "」一剑又一剑的刺出，轻"
-                  "灵迅速，剑气纵横",
+([      "name":   "商陽劍",
+        "action": "$N食指連動，手腕園轉，「" HIW "商陽劍" NOR "」一劍又一劍的刺出，輕"
+                  "靈迅速，劍氣縱橫",
         "force" : 440,
         "attack": 145,
         "dodge" : 110,
         "parry" : 95,
         "damage": 280,
         "lvl"   : 40,
-        "weapon" : HIW "商阳剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon" : HIW "商陽劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "name":   "商阳剑",
-        "action": "$N变招奇速，右手食指疾从袖底穿出，「" HIW "商阳剑" NOR "」登时幻出"
-                  "无数指影",
+([      "name":   "商陽劍",
+        "action": "$N變招奇速，右手食指疾從袖底穿出，「" HIW "商陽劍" NOR "」登時幻出"
+                  "無數指影",
         "force" : 440,
         "attack": 145,
         "dodge" : 110,
         "parry" : 95,
         "damage": 280,
         "lvl"   : 50,
-        "weapon" : HIW "商阳剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon" : HIW "商陽劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "name":   "商阳剑",
-        "action": "$N拇指一屈，食指随即点出，嗤嗤两声急响，变成商阳剑法，「" HIW "商"
-                  "阳剑" NOR "」激射刺出",
+([      "name":   "商陽劍",
+        "action": "$N拇指一屈，食指隨即點出，嗤嗤兩聲急響，變成商陽劍法，「" HIW "商"
+                  "陽劍" NOR "」激射刺出",
         "force" : 440,
         "attack": 145,
         "dodge" : 110,
         "parry" : 95,
         "damage": 280,
         "lvl"   : 60,
-        "weapon" : HIW "商阳剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon" : HIW "商陽劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "name":   "商阳剑",
-        "action": "$N以食指急运「" HIW "商阳剑" NOR "」之无形剑气，却不过是手指在数寸"
-                  "范围内一点一戳",
+([      "name":   "商陽劍",
+        "action": "$N以食指急運「" HIW "商陽劍" NOR "」之無形劍氣，卻不過是手指在數寸"
+                  "範圍內一點一戳",
         "force" : 480,
         "attack": 145,
         "dodge" : 110,
         "parry" : 95,
         "damage": 280,
         "lvl"   : 70,
-        "weapon" : HIW "商阳剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon" : HIW "商陽劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "name":   "中冲剑",
-        "action": "$N右手中指一竖，「" HIW "中冲剑" NOR "」向前刺出。真气鼓荡，嗤然声"
-                  "响，无形剑气直指$n",
+([      "name":   "中衝劍",
+        "action": "$N右手中指一豎，「" HIW "中衝劍" NOR "」向前刺出。真氣鼓盪，嗤然聲"
+                  "響，無形劍氣直指$n",
         "force" : 560,
         "attack": 155,
         "dodge" : 10,
         "parry" : 70,
         "damage": 220,
         "lvl"   : 80,
-        "weapon" : HIW "中冲剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon" : HIW "中衝劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "name":   "中冲剑",
-        "action": "$N将中指向上一刺，「" HIW "中冲剑" NOR "」拔地而起，接着手指向下一"
-                  "划，剑气如利刀般砍出",
+([      "name":   "中衝劍",
+        "action": "$N將中指向上一刺，「" HIW "中衝劍" NOR "」拔地而起，接著手指向下一"
+                  "劃，劍氣如利刀般砍出",
         "force" : 560,
         "attack": 145,
         "dodge" : 10,
         "parry" : 70,
         "damage": 220,
         "lvl"   : 90,
-        "weapon" : HIW "中冲剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon" : HIW "中衝劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "name":   "中冲剑",
-        "action": "电光火石之间，$N猛然翻掌，右手陡然探出，中指「" HIW "中冲剑" NOR
-                  "」向$n一竖",
+([      "name":   "中衝劍",
+        "action": "電光火石之間，$N猛然翻掌，右手陡然探出，中指「" HIW "中衝劍" NOR
+                  "」向$n一豎",
         "force" : 560,
         "attack": 135,
         "dodge" : 10,
         "parry" : 70,
         "damage": 220,
         "lvl"   : 100,
-        "weapon" : HIW "中冲剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon" : HIW "中衝劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "name":   "关冲剑",
-        "action": "$N右手无名指伸出，「" HIW "关冲剑" NOR "」剑路拙滞古朴，一股雄浑无"
-                  "比的内力鼓荡而出",
+([      "name":   "關衝劍",
+        "action": "$N右手無名指伸出，「" HIW "關衝劍" NOR "」劍路拙滯古樸，一股雄渾無"
+                  "比的內力鼓盪而出",
         "force" : 530,
         "attack": 140,
         "dodge" : 100,
         "parry" : 95,
         "damage": 280,
         "lvl"   : 110,
-        "weapon" : HIW "关冲剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon" : HIW "關衝劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "name":   "关冲剑",
-        "action": "$N俯身斜倚，无名指「" HIW "关冲剑" NOR "」弹射而出，指尖已对准$n发"
-                  "出了一缕强烈的劲风",
+([      "name":   "關衝劍",
+        "action": "$N俯身斜倚，無名指「" HIW "關衝劍" NOR "」彈射而出，指尖已對準$n發"
+                  "出了一縷強烈的勁風",
         "force" : 530,
         "attack": 140,
         "dodge" : 100,
         "parry" : 95,
         "damage": 280,
         "lvl"   : 120,
-        "weapon" : HIW "关冲剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon" : HIW "關衝劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "name":   "关冲剑",
-        "action": "$N无名指轻轻一挥，「嗤啦」一声，拙滞古朴的「" HIW "关冲剑" NOR "」"
-                  "剑气向$n直射而出",
+([      "name":   "關衝劍",
+        "action": "$N無名指輕輕一揮，「嗤啦」一聲，拙滯古樸的「" HIW "關衝劍" NOR "」"
+                  "劍氣向$n直射而出",
         "force" : 530,
         "attack": 140,
         "dodge" : 100,
         "parry" : 95,
         "damage": 280,
         "lvl"   : 130,
-        "weapon" : HIW "关冲剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon" : HIW "關衝劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "name":   "少泽剑",
-        "action": "$N左手小指一伸，一条气流从少冲穴中激射而出，「" HIW "少泽剑" NOR
-                  "」出手入风，指向$n",
+([      "name":   "少澤劍",
+        "action": "$N左手小指一伸，一條氣流從少衝穴中激射而出，「" HIW "少澤劍" NOR
+                  "」出手入風，指向$n",
         "force" : 500,
         "attack": 160,
         "dodge" : 95,
         "parry" : 92,
         "damage": 270,
         "lvl"   : 140,
-        "weapon" : HIW "少泽剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon" : HIW "少澤劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "name":   "少泽剑",
-        "action": "忽见$N左手小指一伸，一条气流从$P少冲穴中激射而出，一股「" HIW "少"
-                  "泽剑" NOR "」登时射向$n",
+([      "name":   "少澤劍",
+        "action": "忽見$N左手小指一伸，一條氣流從$P少衝穴中激射而出，一股「" HIW "少"
+                  "澤劍" NOR "」登時射向$n",
         "force" : 500,
         "attack": 160,
         "dodge" : 95,
         "parry" : 92,
         "damage": 270,
         "lvl"   : 150,
-        "weapon" : HIW "少泽剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon" : HIW "少澤劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "name":   "少冲剑",
-        "action": "$N右手小指伸出，真气自少冲穴激荡而出，「" HIW "少冲剑" NOR "」横生"
-                  "奇变，飕的刺向$n",
+([      "name":   "少衝劍",
+        "action": "$N右手小指伸出，真氣自少衝穴激盪而出，「" HIW "少衝劍" NOR "」橫生"
+                  "奇變，颼的刺向$n",
         "force" : 480,
         "attack": 150,
         "dodge" : 90,
         "parry" : 95,
         "damage": 240,
         "lvl"   : 160,
-        "weapon" : HIW "少冲剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon" : HIW "少衝劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "name":   "少冲剑",
-        "action": "$N掌托于胸前，伸出右小指，一招「" HIW "少冲剑" NOR "」缓缓地点向$n"
+([      "name":   "少衝劍",
+        "action": "$N掌託於胸前，伸出右小指，一招「" HIW "少衝劍" NOR "」緩緩地點向$n"
                   "的周身大穴",
         "force" : 530,
         "attack": 170,
@@ -222,44 +222,44 @@ mapping *action = ({
         "parry" : 95,
         "damage": 260,
         "lvl"   : 170,
-        "weapon" : HIW "少冲剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon" : HIW "少衝劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "name":   "少冲剑",
-        "action": "$N小指一弹，「" HIW "少冲剑" NOR "」化式「分花拂柳」，剑势如同柳絮"
-                  "一般，飘而不乱",
+([      "name":   "少衝劍",
+        "action": "$N小指一彈，「" HIW "少衝劍" NOR "」化式「分花拂柳」，劍勢如同柳絮"
+                  "一般，飄而不亂",
         "force" : 430,
         "attack": 180,
         "dodge" : 90,
         "parry" : 95,
         "damage": 280,
         "lvl"   : 180,
-        "weapon" : HIW "少冲剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon" : HIW "少衝劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "name":   "少冲剑",
-        "action": "$N一招「" HIW "少冲剑" NOR "」，剑气回转无定形，竟从左侧绕了过来，"
-                  "点向$n",
+([      "name":   "少衝劍",
+        "action": "$N一招「" HIW "少衝劍" NOR "」，劍氣迴轉無定形，竟從左側繞了過來，"
+                  "點向$n",
         "force" : 530,
         "attack": 180,
         "dodge" : 90,
         "parry" : 95,
         "damage": 240,
         "lvl"   : 190,
-        "weapon" : HIW "少冲剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon" : HIW "少衝劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "name":   "少冲剑",
-        "action": "$N右手小指一挥，一招「" HIW "少冲剑" NOR "」点点刺刺破空刺出，宛如"
-                  "雕花刺画一般",
+([      "name":   "少衝劍",
+        "action": "$N右手小指一揮，一招「" HIW "少衝劍" NOR "」點點刺刺破空刺出，宛如"
+                  "雕花刺畫一般",
         "force" : 530,
         "attack": 180,
         "dodge" : 90,
         "parry" : 95,
         "damage": 280,
         "lvl"   : 200,
-        "weapon" : HIW "少冲剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon" : HIW "少衝劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
 });
 
@@ -282,75 +282,75 @@ int get_finish(object me)
         if( (!query("family/family_name", me) ||
             query("family/family_name", me) != "段氏皇族") )
         {
-                tell_object(me, "你研究了一会儿，只觉的不是段氏皇族的根本无法理解其中奥妙\n");
+                tell_object(me, "你研究了一會兒，只覺的不是段氏皇族的根本無法理解其中奧妙\n");
                 return 0;
         }
 
         if( query("int", me)<32 || me->query_int()<44 )
         {
-                tell_object(me, "你演练完毕，只感六种剑法毫无牵连，看来依你的悟性，无"
-                                "法将其合一。\n");
+                tell_object(me, "你演練完畢，只感六種劍法毫無牽連，看來依你的悟性，無"
+                                "法將其合一。\n");
                 return 0;
         }
 
         if( query("con", me)<26 || me->query_con()<39 )
         {
-                tell_object(me, "你演练完毕，只觉全身真气乱窜，眼冒金星，两耳轰鸣，好"
-                                "不容易才控制下来。\n");
+                tell_object(me, "你演練完畢，只覺全身真氣亂竄，眼冒金星，兩耳轟鳴，好"
+                                "不容易才控制下來。\n");
                 return 0;
         }
 
-        if( query("gender", me) == "无性" )
+        if( query("gender", me) == "無性" )
         {
-                tell_object(me, "你无根无性，阴阳不调，难以演练六脉神剑。\n");
+                tell_object(me, "你無根無性，陰陽不調，難以演練六脈神劍。\n");
                 return 0;
         }
 
         if (me->query_skill("literate", 1) < 200)
         {
-                tell_object(me, "你觉得六脉神剑极其深奥，看来多研究一下学问可能更有帮"
+                tell_object(me, "你覺得六脈神劍極其深奧，看來多研究一下學問可能更有幫"
                                 "助。\n");
                 return 0;
         }
 
         if (me->query_skill("lamaism", 1) < 200)
         {
-                tell_object(me, "你演练完毕，发现如果通晓密宗心法应该更有帮助。\n");
+                tell_object(me, "你演練完畢，發現如果通曉密宗心法應該更有幫助。\n");
                 return 0;
         }
 
         if (me->query_skill("buddhism", 1) < 200)
         {
-                tell_object(me, "你演练完毕，发现如果通晓禅宗心法应该更有帮助。\n");
+                tell_object(me, "你演練完畢，發現如果通曉禪宗心法應該更有幫助。\n");
                 return 0;
         }
 
         if ((int)me->query_skill("force") < 300)
         {
-                tell_object(me, "你演练完毕，几乎虚脱，自己的内功水平看来还有待提高。\n");
+                tell_object(me, "你演練完畢，幾乎虛脫，自己的內功水平看來還有待提高。\n");
                 return 0;
         }
 
         if( query("max_neili", me)<5000 )
         {
-                tell_object(me, "你演练完毕，丹田提不起半点力来，看来应该继续锻炼内力。\n");
+                tell_object(me, "你演練完畢，丹田提不起半點力來，看來應該繼續鍛鍊內力。\n");
                 return 0;
         }
 
         if ((int)me->query_skill("martial-cognize", 1) < 100)
         {
-                tell_object(me, "你演练完毕，发现如果武学修养更上一层因该更有所帮助。\n");
+                tell_object(me, "你演練完畢，發現如果武學修養更上一層因該更有所幫助。\n");
                 return 0;
         }
 
         if (random(10) < 5)
         {
-                tell_object(me, "你对六脉神剑的奥妙颇有领悟，或许再演练一次就能够融会贯通。\n");
+                tell_object(me, "你對六脈神劍的奧妙頗有領悟，或許再演練一次就能夠融會貫通。\n");
                 return 0;
         }
 
-        tell_object(me, HIY "一阵凡尘往事涌上心头，你几欲放声长叹。眼前不断闪现出六脉"
-                            "剑法，\n霎那间，你终于通晓六脉神剑。\n" NOR);
+        tell_object(me, HIY "一陣凡塵往事湧上心頭，你幾欲放聲長嘆。眼前不斷閃現出六脈"
+                            "劍法，\n霎那間，你終於通曉六脈神劍。\n" NOR);
 
         return 1;
 }
@@ -364,39 +364,39 @@ int valid_enable(string usage) { return usage=="finger" || usage=="parry"; }
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练六脉神剑必须空手。\n");
+                return notify_fail("練六脈神劍必須空手。\n");
 
         if( (!query("family/family_name", me) ||
             query("family/family_name", me) != "段氏皇族") &&
             (!query("yuanshen_level", me) || member_array("段氏皇族", query("reborn/fams", me)) == -1))
-                return notify_fail("你研究了一会儿，只觉的不是段氏皇族的根本无法理解其中奥妙\n");
+                return notify_fail("你研究了一會兒，只覺的不是段氏皇族的根本無法理解其中奧妙\n");
 
         if( query("int", me)<32 )
-                return notify_fail("你研究了半天，只感六种剑法毫无牵连，无法再作研究。\n");
+                return notify_fail("你研究了半天，只感六種劍法毫無牽連，無法再作研究。\n");
 
         if( query("con", me)<26 )
-                return notify_fail("你研究了一会儿，只觉得眼前金星乱冒，太阳穴突突的跳。\n");
+                return notify_fail("你研究了一會兒，只覺得眼前金星亂冒，太陽穴突突的跳。\n");
 
         if (me->query_skill("literate", 1) < 120)
-                return notify_fail("你觉得六脉神剑极其深奥，不是你这种学问水平所能研究的。\n");
+                return notify_fail("你覺得六脈神劍極其深奧，不是你這種學問水平所能研究的。\n");
 
         if (me->query_skill("lamaism", 1) < 120)
-                return notify_fail("你发现这里面有很多奥妙都和密宗心法有关，难以理解。\n");
+                return notify_fail("你發現這裡面有很多奧妙都和密宗心法有關，難以理解。\n");
 
         if (me->query_skill("buddhism", 1) < 120)
-                return notify_fail("你发现这里面有很多奥妙都和禅宗心法有关，难以理解。\n");
+                return notify_fail("你發現這裡面有很多奧妙都和禪宗心法有關，難以理解。\n");
 
         if( query("max_neili", me)<1200 )
-                return notify_fail("你的内力太弱，无法学六脉神剑。\n");
+                return notify_fail("你的內力太弱，無法學六脈神劍。\n");
 
         if ((int)me->query_skill("finger", 1) < 120)
-                return notify_fail("你的基本指法火候不够。\n");
+                return notify_fail("你的基本指法火候不夠。\n");
 
         if ((int)me->query_skill("force", 1) < (int)me->query_skill("six-finger", 1) + 10)
-                return notify_fail("你的现在必须先提高你基本内功的水平。\n");
+                return notify_fail("你的現在必須先提高你基本內功的水平。\n");
 
         if ((int)me->query_skill("finger", 1) < (int)me->query_skill("six-finger", 1) + 10)
-                return notify_fail("你的现在必须先提高你基本指法的水平。\n");
+                return notify_fail("你的現在必須先提高你基本指法的水平。\n");
 
         return 1;
 }
@@ -407,13 +407,13 @@ int practice_skill(object me)
         int i,skill,damage,cost;
         cost=40;
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("你的必须空手才能练习。\n");
+                return notify_fail("你的必須空手才能練習。\n");
         if( query("qi", me)<160 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
         if( query("neili", me)<160 )
-                return notify_fail("你的内力不够练六脉神剑。\n");
+                return notify_fail("你的內力不夠練六脈神劍。\n");
         if( skill>100 && query("shen", me)<1 )
-                return notify_fail("这种武功当得行侠义事。\n");
+                return notify_fail("這種武功當得行俠義事。\n");
         if ((int)me->query_skill("six-finger", 1)>150) cost=80;
         if ((int)me->query_skill("six-finger", 1)>250) cost=150;
         me->receive_damage("qi", cost);
@@ -436,7 +436,7 @@ mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time)
         else
                 attack_time = (int)(me->query_skill("six-finger", 1) / 25);
 
-        // 放宽NPC的攻击力度
+        // 放寬NPC的攻擊力度
         if (userp(me) && attack_time > 6)
                 attack_time = 6;
 
@@ -452,9 +452,9 @@ mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time)
         && me->query_skill("jingluo-xue", 1) >= 200)
         {
                 if( !query_temp("six-finger/hit_msg", me) )
-                        message_combatd(HIW "\n霎时间$N" HIW "只觉思绪狂涌，六脉剑谱中"
-                                       "的六路剑法交替展现，登时十指纷弹，此去彼来，连"
-                                       "绵无尽。\n" NOR, me, victim);
+                        message_combatd(HIW "\n霎時間$N" HIW "只覺思緒狂湧，六脈劍譜中"
+                                       "的六路劍法交替展現，登時十指紛彈，此去彼來，連"
+                                       "綿無盡。\n" NOR, me, victim);
 
                 me->start_busy(1);
 
@@ -479,11 +479,11 @@ mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time)
         {
                 addn("neili", -50, me);
                 victim->receive_wound("qi", damage_bonus, me);
-                return random(2) ? HIR "你听到「嗤啦」一声轻响，脸上竟飞溅到了一些血滴"
+                return random(2) ? HIR "你聽到「嗤啦」一聲輕響，臉上竟飛濺到了一些血滴"
                                    "！\n" NOR:
 
-                                   HIR "你只听「噗嗤」一声轻响，一股血柱至$n" HIR "身上"
-                                   "溅出！\n" NOR;
+                                   HIR "你只聽「噗嗤」一聲輕響，一股血柱至$n" HIR "身上"
+                                   "濺出！\n" NOR;
         }
         return 1;
 }
@@ -521,13 +521,13 @@ mapping query_action(object me, object weapon)
         {
                 addn("neili", -50, me);
                 return ([
-                        "action" : "$N忽然觉得剑谱中的六路剑法一一涌向心头，十指纷弹，此去彼来，连绵无尽。剑气纵横，尘烟四起，\n"
-                        "六路剑法回转运使，$n顿时心神大乱，但觉全身几处刺痛，几股鲜血从身上标出。忍痛抬头一看，一柱剑气迎面又到\n",
+                        "action" : "$N忽然覺得劍譜中的六路劍法一一湧向心頭，十指紛彈，此去彼來，連綿無盡。劍氣縱橫，塵煙四起，\n"
+                        "六路劍法迴轉運使，$n頓時心神大亂，但覺全身幾處刺痛，幾股鮮血從身上標出。忍痛抬頭一看，一柱劍氣迎面又到\n",
                         "dodge": -50,
                         "parry": -50,
                         "damage": 800,
                         "force": 800,
-                        "damage_type": "刺伤"]);
+                        "damage_type": "刺傷"]);
         }
         else
         {
@@ -535,30 +535,30 @@ mapping query_action(object me, object weapon)
                 {
                         addn("neili", -200, me);
                         return ([
-                                "action": HIC "$N" HIC "忽然觉得剑谱中的六路剑法一一涌向心头，十指纷弹，此去彼来，连绵无尽。\n" NOR
-                                "顿时只见四处剑气纵横，尘烟四起，六路剑法回转运使，$n顿时心神大乱，但觉全身几处刺\n"
-                                "痛，几股" HIR "鲜血" NOR "从身上标出。忍痛抬头一看，一柱剑气迎面又到",
+                                "action": HIC "$N" HIC "忽然覺得劍譜中的六路劍法一一湧向心頭，十指紛彈，此去彼來，連綿無盡。\n" NOR
+                                "頓時只見四處劍氣縱橫，塵煙四起，六路劍法迴轉運使，$n頓時心神大亂，但覺全身幾處刺\n"
+                                "痛，幾股" HIR "鮮血" NOR "從身上標出。忍痛抬頭一看，一柱劍氣迎面又到",
                                 "attack": 140,
                                 "dodge" : -150,
                                 "parry" : -120,
                                 "damage": 1000,
                                 "force" : 1000,
-                                "damage_type": "刺伤"]);
+                                "damage_type": "刺傷"]);
                 }
                 lvl = (int)me->query_skill("six-finger", 1);
                 for(i = ttl; i > 0; i--)
                         if(lvl > action[i-1]["lvl"])
                         {
-                                seq = i; /* 获得招数序号上限 */
+                                seq = i; /* 獲得招數序號上限 */
                                 break;
                         }
-                seq = random(seq);       /* 选择出手招数序号 */
+                seq = random(seq);       /* 選擇出手招數序號 */
                 return ([
                         "action"      : action[seq]["action"],
                         "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
                         "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
                         "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
-                        "damage_type" : random(2) ? "内伤" : "刺伤",
+                        "damage_type" : random(2) ? "內傷" : "刺傷",
                 ]);
         }
 }
@@ -568,13 +568,13 @@ string query_parry_msg(object victim_weapon)
         switch (random(4))
         {
         case 0:
-                return "$n随意挥洒，道道剑气纵横交错，宛若天网，$N唯有望洋兴叹，徒呼奈何。\n";
+                return "$n隨意揮灑，道道劍氣縱橫交錯，宛若天網，$N唯有望洋興嘆，徒呼奈何。\n";
         case 1:
-                return "$n不闪不避，一招中冲剑直袭$N的胸前大穴，迫得$N只有回身自救。\n";
+                return "$n不閃不避，一招中衝劍直襲$N的胸前大穴，迫得$N只有回身自救。\n";
         case 2:
-                return "$n六剑连出，剑气回荡，直割得$N眉毛削落，脸面生通，再也不能前进半分！\n";
+                return "$n六劍連出，劍氣迴盪，直割得$N眉毛削落，臉面生通，再也不能前進半分！\n";
         default:
-                return "$n一声长笑，无形剑气四处散开，将$N层层裹住，惟有勉强支撑。才约略摆脱了$n的反击。\n";
+                return "$n一聲長笑，無形劍氣四處散開，將$N層層裹住，惟有勉強支撐。才約略擺脫了$n的反擊。\n";
         }
 }
 
@@ -598,8 +598,8 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
                 result = ([ "damage": -damage ]);
 
 
-                result += (["msg" : HIC "$n" HIC "危急之时，心中一乱，随手一指，一道剑气凌锐的直奔$N而去。\n"
-                                    HIC "$N" HIC "见这招来势凶狠，不得不收招自守，纵身避开。\n" NOR]);
+                result += (["msg" : HIC "$n" HIC "危急之時，心中一亂，隨手一指，一道劍氣凌銳的直奔$N而去。\n"
+                                    HIC "$N" HIC "見這招來勢兇狠，不得不收招自守，縱身避開。\n" NOR]);
 
                 return result;
         }
@@ -640,7 +640,7 @@ void skill_improved(object me)
         if( lvl >= 180 && 
             !query("can_perform/six-finger/qi", me) )  
         { 
-                tell_object(me, HIC "你通晓了六脉神剑「" HIR "无形剑气" HIC "」的奥秘。\n" NOR);     
+                tell_object(me, HIC "你通曉了六脈神劍「" HIR "無形劍氣" HIC "」的奧秘。\n" NOR);     
                 set("can_perform/six-finger/qi", 1, me); 
                 me->improve_skill("martial-cognize", 1500000);   
                 me->improve_skill("martial-cognize", 1500000);   
@@ -650,7 +650,7 @@ void skill_improved(object me)
         if( lvl >= 200 && 
             !query("can_perform/six-finger/gz", me) )  
         { 
-                tell_object(me, HIC "你通晓了六脉神剑「" HIR "六脉归宗" HIC "」的奥秘。\n" NOR);     
+                tell_object(me, HIC "你通曉了六脈神劍「" HIR "六脈歸宗" HIC "」的奧秘。\n" NOR);     
                 set("can_perform/six-finger/gz", 1, me); 
                 me->improve_skill("martial-cognize", 1500000);   
                 me->improve_skill("martial-cognize", 1500000);   
@@ -660,7 +660,7 @@ void skill_improved(object me)
         if( lvl >= 220 && 
             !query("can_perform/six-finger/shen", me) )  
         { 
-                tell_object(me, HIC "你通晓了六脉神剑「" HIR "六脉惊神" HIC "」的奥秘。\n" NOR);     
+                tell_object(me, HIC "你通曉了六脈神劍「" HIR "六脈驚神" HIC "」的奧秘。\n" NOR);     
                 set("can_perform/six-finger/shen", 1, me); 
                 me->improve_skill("martial-cognize", 1500000);   
                 me->improve_skill("martial-cognize", 1500000);   
@@ -670,7 +670,7 @@ void skill_improved(object me)
         if( lvl >= 240 && 
             !query("can_perform/six-finger/six", me) )  
         { 
-                tell_object(me, HIC "你通晓了六脉神剑「" HIR "六脉剑气" HIC "」的奥秘。\n" NOR);     
+                tell_object(me, HIC "你通曉了六脈神劍「" HIR "六脈劍氣" HIC "」的奧秘。\n" NOR);     
                 set("can_perform/six-finger/six", 1, me); 
                 me->improve_skill("martial-cognize", 1500000);   
                 me->improve_skill("martial-cognize", 1500000);   
@@ -680,7 +680,7 @@ void skill_improved(object me)
         if( lvl >= 260 && 
             !query("can_perform/six-finger/zong", me) )  
         { 
-                tell_object(me, HIC "你通晓了六脉神剑「" HIR "纵横天下" HIC "」的奥秘。\n" NOR);     
+                tell_object(me, HIC "你通曉了六脈神劍「" HIR "縱橫天下" HIC "」的奧秘。\n" NOR);     
                 set("can_perform/six-finger/zong", 1, me); 
                 me->improve_skill("martial-cognize", 1500000);   
                 me->improve_skill("martial-cognize", 1500000);   
@@ -690,7 +690,7 @@ void skill_improved(object me)
         if( lvl >= 800 && query("yuanshen_level", me) &&
             !query("can_perform/six-finger/tian", me) )  
         { 
-                tell_object(me, HIC "你通晓了六脉神剑「" HIR "天脉神剑" HIC "」的奥秘。\n" NOR);     
+                tell_object(me, HIC "你通曉了六脈神劍「" HIR "天脈神劍" HIC "」的奧秘。\n" NOR);     
                 set("can_perform/six-finger/tian", 1, me); 
                 me->improve_skill("martial-cognize", 1500000);   
                 me->improve_skill("martial-cognize", 1500000);   
@@ -706,16 +706,16 @@ int power_point(object me) { return 1.0; }
 
 int help(object me)
 {
-        write(HIC"\n六脉神剑："NOR"\n");
+        write(HIC"\n六脈神劍："NOR"\n");
         write(@HELP
 
-    六脉神剑是大理段氏不传之秘。天龙寺为大理武学之根本，此
-技即为天龙镇寺之宝，俗家弟子无法窥其堂奥。六脉神剑并非普通
-剑法，而是以无上内力运指作剑，伤敌于无形，亦即“气剑”。
+    六脈神劍是大理段氏不傳之秘。天龍寺為大理武學之根本，此
+技即為天龍鎮寺之寶，俗家弟子無法窺其堂奧。六脈神劍並非普通
+劍法，而是以無上內力運指作劍，傷敵於無形，亦即“氣劍”。
 
-        学习要求：
-                枯荣禅功120级
-                内力1200
+        學習要求：
+                枯榮禪功120級
+                內力1200
 HELP
         );
         return 1;

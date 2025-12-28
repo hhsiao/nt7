@@ -4,15 +4,15 @@ inherit COMBINED_ITEM;
 
 void create()
 {
-        set_name(HIC"战"NOR CYN"争"HIC"勋"NOR CYN"章"NOR, ({ "battle insigne"}) );
-        set_temp("status", HIG"传"NOR GRN"奇");
+        set_name(HIC"戰"NOR CYN"爭"HIC"勳"NOR CYN"章"NOR, ({ "battle insigne"}) );
+        set_temp("status", HIG"傳"NOR GRN"奇");
 
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", "从战争中获得的战争勋章，可以用来兑换稀有的物品，也可以\n"
-                            "使用(use)它重新进入战场。\n");
+                set("long", "從戰爭中獲得的戰爭勳章，可以用來兌換稀有的物品，也可以\n"
+                            "使用(use)它重新進入戰場。\n");
                 set("unit", "堆");
                 set("base_unit", "枚");
                 set("base_value", 100);
@@ -37,16 +37,16 @@ int do_use(string arg)
         me = this_player();
 
         if( !BATTLEFIELD_D->is_battle_open() && !BATTLEFIELD2_D->is_battle_start() )
-                return notify_fail("战斗还没有开始报名。\n");
+                return notify_fail("戰鬥還沒有開始報名。\n");
 
         if( !BATTLEFIELD_D->is_battle_start() && !BATTLEFIELD2_D->is_battle_start() )
-                return notify_fail("战斗还没有开始。\n");
+                return notify_fail("戰鬥還沒有開始。\n");
         
         if( !BATTLEFIELD_D->in_battle(me) && !BATTLEFIELD2_D->in_battle(me) )
-                return notify_fail("你可以使用battle join来参加战斗。\n");        
+                return notify_fail("你可以使用battle join來參加戰鬥。\n");        
                 
         if( BATTLEFIELD_D->inside_battlefield(me) || BATTLEFIELD2_D->inside_battlefield(me) )
-                return notify_fail("你已经在战场中了，为荣誉而战吧。\n");
+                return notify_fail("你已經在戰場中了，為榮譽而戰吧。\n");
 
         if( BATTLEFIELD_D->in_battle(me) ) BATTLEFIELD_D->init_player(me);
         else BATTLEFIELD2_D->init_player(me);

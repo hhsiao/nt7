@@ -1,10 +1,10 @@
-// Inherit: snake.c 蛇类
+// Inherit: snake.c 蛇類
 // Update by Vin for Heros.cn
-// 设置毒蛇毒性level和毒液的量remain/maximum，毒蛇每次咬中对
-// 方，都会将perhit 指明的毒量注入到对方的体内，每过一段时间
-// 毒蛇会自动恢复supply 量的毒液。level将和武功的force做比较。
-// 设置level时候应该参考内功等级。毒量和中毒UPDATE_CONDITION
-// 的次数成正比，设置毒量的时候应该参考气和精。
+// 設置毒蛇毒性level和毒液的量remain/maximum，毒蛇每次咬中對
+// 方，都會將perhit 指明的毒量注入到對方的體內，每過一段時間
+// 毒蛇會自動恢復supply 量的毒液。level將和武功的force做比較。
+// 設置level時候應該參考內功等級。毒量和中毒UPDATE_CONDITION
+// 的次數成正比，設置毒量的時候應該參考氣和精。
 
 #include <ansi.h>
 inherit NPC;
@@ -18,9 +18,9 @@ void setup()
 {
         mapping p;
 
-        set("race", "蛇类");
-        set("unit", "条");
-        set("limbs", ({ "头部", "身体", "七寸", "尾巴" }));
+        set("race", "蛇類");
+        set("unit", "條");
+        set("limbs", ({ "頭部", "身體", "七寸", "尾巴" }));
         set("verbs", ({ "bite" }));
         set("attitude", "aggressive");
 
@@ -50,7 +50,7 @@ void init()
         if (! interactive(me = this_player()))
                 return;
 
-        // 自动攻击蛇毒奇巧等级不高的玩家
+        // 自動攻擊蛇毒奇巧等級不高的玩家
         if (! present("xiong huang", this_player()) &&
             query_temp("owner") != query("id", me) &&
             (int)me->query_skill("shedu-qiqiao", 1) < 100)
@@ -93,24 +93,24 @@ mixed hit_ob(object me, object ob, int damage)
         {
                 if (query("qi", ob) < 150)
                 {
-                        msg = HIR "你觉得伤口有些发麻，连忙运功化解，但"
-                              "是一时体力不支，难以施为。\n" NOR;
+                        msg = HIR "你覺得傷口有些發麻，連忙運功化解，但"
+                              "是一時體力不支，難以施為。\n" NOR;
                 } else
                 if (query("jing", ob) < 60)
                 {
-                        msg = HIR "你觉得伤口有些发麻，连忙运功化解，但"
-                              "是一时精神不济，难以施为。\n" NOR;
+                        msg = HIR "你覺得傷口有些發麻，連忙運功化解，但"
+                              "是一時精神不濟，難以施為。\n" NOR;
                 } else
                 if (query("neili", ob) < damage / 5 + 50)
                 {
-                        msg = HIR "你觉得伤口有些发麻，连忙运功化解，但"
-                              "是一时内力不足，难以施为。\n" NOR;
+                        msg = HIR "你覺得傷口有些發麻，連忙運功化解，但"
+                              "是一時內力不足，難以施為。\n" NOR;
                 } else
                 {
                         addn("neili", -damage/5, ob);
                         ob->receive_damage("qi", 20);
                         ob->receive_damage("jing", 10);
-                        return HIM "你觉得被咬中的地方有些发麻，连忙运功"
+                        return HIM "你覺得被咬中的地方有些發麻，連忙運功"
                                "化解毒性。\n" NOR;
                 }
         }
@@ -120,7 +120,7 @@ mixed hit_ob(object me, object ob, int damage)
                                        "id"    : "nature poison",
                                        "duration" : dur, ])))
         {
-                msg += HIR "$n" HIR "脸色一变，只觉被咬中的地方一阵麻木。\n" NOR;
+                msg += HIR "$n" HIR "臉色一變，只覺被咬中的地方一陣麻木。\n" NOR;
         }
         return msg;
 }
@@ -132,17 +132,17 @@ void die(object killer)
         int power, skill;
         string msg;
 
-        message_vision(HIR "\n只见$N" HIR "卷着身子在地上扑腾了"
-                       "几下，死了。\n\n" NOR, ob);
+        message_vision(HIR "\n只見$N" HIR "卷著身子在地上撲騰了"
+                       "幾下，死了。\n\n" NOR, ob);
 
         if (objectp(me = killer)
            || objectp(me = query_last_damage_from()))
         {
-                // 如果为自己的猎物，则奖励之
+                // 如果為自己的獵物，則獎勵之
                 if (query("owner", ob) == query("id", me)
                    && query("combat_exp", me) <= 500000)
                 {
-                        // 根据猎物设定的参数来给予奖励
+                        // 根據獵物設定的參數來給予獎勵
                         power = query("power", ob);
 
                         if (power < 5)
@@ -151,26 +151,26 @@ void die(object killer)
                         if (power > 500)
                                 power = 500;
 
-                        GIFT_D->delay_bonus(me, ([ "prompt" : "通过这次猎取" + ob->name() +
-                                                              HIG "的经历",
+                        GIFT_D->delay_bonus(me, ([ "prompt" : "通過這次獵取" + ob->name() +
+                                                              HIG "的經歷",
                                                    "exp"    : random(power) + power,
                                                    "pot"    : random(power / 3) + power / 3,
                                                    "score"  : random(power / 4), ]));
                 }
                 skill = me->query_skill("hunting", 1);
 
-                // 获得物品
+                // 獲得物品
                 if (query("item1") && random(skill) > 10)
                 {
                         item = new(query("item1"));
                         item->move(me, 1);
 
-                        msg = HIC "你仔细翻寻" + ob->name() +
-                              HIC "的尸体，从上面割下了一" +
+                        msg = HIC "你仔細翻尋" + ob->name() +
+                              HIC "的屍體，從上面割下了一" +
                               query("base_unit", item) +
                               item->name() + HIC;
 
-                        // 一定几率获得高级物品
+                        // 一定幾率獲得高級物品
                         if (query("item3") && random(skill) > 60
                            && random(5) > 3)
                         {

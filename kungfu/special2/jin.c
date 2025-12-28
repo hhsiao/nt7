@@ -14,9 +14,9 @@ int perform(object me, string skill)
         int i;
 
         if ((int)me->query_temp("special2/jin"))
-                return notify_fail("你神魔金身之术已在施展中了。\n");
+                return notify_fail("你神魔金身之術已在施展中了。\n");
 
-        message_vision(HIY "$N" HIY "施展出神魔金身之术，刹那间全身真气迸发，犹如蚩尤再现，威猛无比！\n" NOR, me);
+        message_vision(HIY "$N" HIY "施展出神魔金身之術，剎那間全身真氣迸發，猶如蚩尤再現，威猛無比！\n" NOR, me);
 
         i = me->query_skill("force");
 
@@ -40,7 +40,7 @@ void remove_effect(object me, int amount)
                 me->add_temp("apply/armor", -amount);
                 me->delete_temp("special2/jin");
                 me->add_temp("apply/parry", -200);
-                tell_object(me, "你神魔金身之术已施展完毕。\n");
+                tell_object(me, "你神魔金身之術已施展完畢。\n");
         }
         
 }

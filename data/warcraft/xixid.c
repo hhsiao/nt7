@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("第飞翔[2;37;0m[2;37;0m", ({"xixiddd"}));        
+        set_name("第飛翔[2;37;0m[2;37;0m", ({"xixiddd"}));        
         set("gender", "女性");                
-        set("long", "自由的飞翔[2;37;0m
-它是喜第的魔幻兽。
+        set("long", "自由的飛翔[2;37;0m
+它是喜第的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

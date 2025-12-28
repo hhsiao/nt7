@@ -4,15 +4,15 @@ int big_blowing();
 int hurting();
 void create()
 {
-        set_name(HIR"烈火孽龙"NOR, ({ "dragon lord", "dragon" }) );
+        set_name(HIR"烈火孽龍"NOR, ({ "dragon lord", "dragon" }) );
         set("vendetta_mark","dragon");
-        set("race", "野兽");
+        set("race", "野獸");
         set("gender", "雄性");
         set("age", 200);
 
         set("long",
-"这是一条全身赤红，吸天地之间的火气而长大的孽龙！
-它全身散发着赤红色的火焰\n");
+"這是一條全身赤紅，吸天地之間的火氣而長大的孽龍！
+它全身散發著赤紅色的火焰\n");
 
         set("str", 100+random(20));
         set("con", 52);
@@ -26,7 +26,7 @@ void create()
         set("neili", 100000);
         set("max_neili", 100000);
         set("attitude", "aggressive");
-        set("limbs", ({ "头部", "身体", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體", "尾巴" }) );
         set("verbs", ({ "bite", "claw" }) );
         set("chat_chance_combat",80);
         set("chat_msg_combat", ({
@@ -44,7 +44,7 @@ void create()
 int big_blowing()
 {
         remove_call_out("hurting");
-        message_vision( HIR "\n\n$N"HIR"深深地吸入一口火气，全身转为鲜红的火色，整个龙腹胀大了几倍！！\n\n"NOR,
+        message_vision( HIR "\n\n$N"HIR"深深地吸入一口火氣，全身轉為鮮紅的火色，整個龍腹脹大了幾倍！！\n\n"NOR,
         this_object());
         hurting();
         start_busy(3+random(2));
@@ -55,7 +55,7 @@ int hurting()
         int dam;
         object *inv;
 
-        message_vision( HIR "\n\n$N"+HIR"吐出一股炽可焚金的火焰．．整个天地似乎都被燃烧着！！！\n\n",this_object());
+        message_vision( HIR "\n\n$N"+HIR"吐出一股熾可焚金的火焰．．整個天地似乎都被燃燒著！！！\n\n",this_object());
         inv = all_inventory(environment(this_object()));
         for(i=sizeof(inv)-1; i>=0; i--)
         if( living(inv[i]))

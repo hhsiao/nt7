@@ -5,14 +5,14 @@ inherit F_FOOD;
 
 void create()
 {
-        set_name("异果", ({ "yiguo"}) );
+        set_name("異果", ({ "yiguo"}) );
         set_weight(50);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
                 set("prep", "on");
-                set("unit", "个");
-                set("long", "一种你从未见过的奇异果子。\n");
+                set("unit", "個");
+                set("long", "一種你從未見過的奇異果子。\n");
                 set("value", 1);
                 set("food_remaining", 1);
                 set("food_supply", 16);
@@ -31,8 +31,8 @@ int do_eat(string arg)
 
         my = me->query_entire_dbase(); 
 
-        if(arg=="yiguo"||arg=="异果") {
-                message_vision("$N感到快美异常，仿佛吃了什么灵丹妙药！！\n", me);
+        if(arg=="yiguo"||arg=="異果") {
+                message_vision("$N感到快美異常，彷彿吃了什麼靈丹妙藥！！\n", me);
                 set("food", me->max_food_capacity(), me);
                 set("water", me->max_water_capacity(), me);
                 my["jing"]     = my["max_jing"];

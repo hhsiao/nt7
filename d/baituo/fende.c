@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "坟地");
+        set("short", "墳地");
         set("long", @LONG
-这里是一片荒凉阴森的荒坟地，时不时传来几声乌鸦的叫声。有
-位中年妇女正在这里吊丧，哭泣个不停。
+這裡是一片荒涼陰森的荒墳地，時不時傳來幾聲烏鴉的叫聲。有
+位中年婦女正在這裡弔喪，哭泣個不停。
 LONG );
         set("outdoors", "baituo");
 

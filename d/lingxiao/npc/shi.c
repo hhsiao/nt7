@@ -4,11 +4,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("时万年", ({"shi wannian", "shi", "wannian"}));
+        set_name("時萬年", ({"shi wannian", "shi", "wannian"}));
         set("gender", "男性");
-        set("long", "他是凌霄城第六代弟子时万年，乃是继白万剑、封\n"
-                    "万里后武功最高、剑法最精的弟子。此时他在此守\n"
-                    "卫监狱。\n");
+        set("long", "他是凌霄城第六代弟子時萬年，乃是繼白萬劍、封\n"
+                    "萬里後武功最高、劍法最精的弟子。此時他在此守\n"
+                    "衛監獄。\n");
         set("age", 24);
         set("attitude", "peaceful");
 
@@ -26,8 +26,8 @@ void create()
 
         set("chat_chance", 8);
         set("chat_msg", ({
-                CYN "时万年恨恨说道：老疯子不知道又怎么了，把自己关在里面弄死不肯出来。\n" NOR,
-                       CYN "时万年把剑一弹，傲然道：有我守在这，谁都别想把老疯子放出来。\n" NOR,
+                CYN "時萬年恨恨說道：老瘋子不知道又怎麼了，把自己關在裡面弄死不肯出來。\n" NOR,
+                       CYN "時萬年把劍一彈，傲然道：有我守在這，誰都別想把老瘋子放出來。\n" NOR,
         }) );
 
         set_skill("force", 160);
@@ -72,7 +72,7 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        command("say 我不收徒，你去找我其它师兄好了。");
+        command("say 我不收徒，你去找我其它師兄好了。");
 }
 
 void init()
@@ -85,16 +85,16 @@ void init()
               if( query("family/family_name", ob) != "凌霄城" )
         {
                 command("heng");
-                command("say 你居然敢闯入本派禁地，受死吧！\n");
+                command("say 你居然敢闖入本派禁地，受死吧！\n");
                 remove_call_out("kill_ob");
                 call_out("kill_ob", 1, ob); 
         } else
         if( query("family/master_name", ob) == "白自在" )
         {
-                command("say 师兄回来了，快去见师祖吧，不过小心点……没准他又犯病了。");
+                command("say 師兄回來了，快去見師祖吧，不過小心點……沒準他又犯病了。");
         } else
-        if( query("family/master_name", ob) == "白万剑" )
+        if( query("family/master_name", ob) == "白萬劍" )
         {
-                command("say 你是白师哥的弟子吧，老爷子就在里面，他的病越来越不得了啦。");
+                command("say 你是白師哥的弟子吧，老爺子就在裡面，他的病越來越不得了啦。");
         }
 }

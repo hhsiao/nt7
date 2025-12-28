@@ -7,11 +7,11 @@ inherit ROOM;
 
 void create()
 { 
-        set("short", HIG"树林"NOR);
+        set("short", HIG"樹林"NOR);
         set("long", @LONG
-忽然景色一转，前面变成了一片幽深的树林。你看看了看四周，
-觉得周围有些地方不太对头，但是却说上不上来。树林里面似乎有些
-声音传来。到底该怎么办呢？你不由踌躇起来。
+忽然景色一轉，前面變成了一片幽深的樹林。你看看了看四周，
+覺得周圍有些地方不太對頭，但是卻說上不上來。樹林裡面似乎有些
+聲音傳來。到底該怎麼辦呢？你不由躊躇起來。
 LONG );
         set("outdoors", "yangzhou");
         set("exits", ([
@@ -35,7 +35,7 @@ int valid_leave(object me, string dir)
 {
         int total_steps;
 
-        if( query("bunch/bunch_name", me) == "小刀会" )
+        if( query("bunch/bunch_name", me) == "小刀會" )
         {
                 total_steps = 1; 
         } else
@@ -52,7 +52,7 @@ int valid_leave(object me, string dir)
         {
                 me->move("/d/city/xdhzb");
                 delete_temp("shulin/steps", me);
-                write("你终于到了小刀会。\n");
+                write("你終於到了小刀會。\n");
                 return -1;
         }  
 

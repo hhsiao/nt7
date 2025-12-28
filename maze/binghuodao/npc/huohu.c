@@ -4,7 +4,7 @@ inherit __DIR__"bhd_npc.c";
 void create()
 {
         set_name(HIR "火狐" NOR, ({ "huo hu", "huo", "hu" }));
-        set("long", HIR "火狐是经过数万年时间，在冰火岛火山每次喷发后便汲取其中巨大的能量进化而成。\n" NOR);
+        set("long", HIR "火狐是經過數萬年時間，在冰火島火山每次噴發後便汲取其中巨大的能量進化而成。\n" NOR);
 
         set("age", 99999);
         set("str",121);
@@ -41,7 +41,7 @@ void create()
 
 void init()
 {
-        // 随机攻击玩家
+        // 隨機攻擊玩家
         if (userp(this_player()) && random(2) == 1)
         {
                 kill_ob(this_player());

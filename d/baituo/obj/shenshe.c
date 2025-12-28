@@ -7,9 +7,9 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一条有识路能力的神蛇，可以把主人带到白"
-                            "驼山。(键入home即可)\n");
-                set("unit", "条");
+                set("long", "一條有識路能力的神蛇，可以把主人帶到白"
+                            "駝山。(鍵入home即可)\n");
+                set("unit", "條");
                 set("value", 0);
         }
 }
@@ -28,13 +28,13 @@ int do_home()
         env = environment(me);
 
         if (env->short() != "大沙漠")
-                return notify_fail("使用引路神蛇必须在西域沙漠。\n");
+                return notify_fail("使用引路神蛇必須在西域沙漠。\n");
 
-        if( query("family/family_name", me) != "欧阳世家" )
-                return notify_fail("你挠挠脑袋，不知道怎么使用「引路神蛇」。\n");
+        if( query("family/family_name", me) != "歐陽世家" )
+                return notify_fail("你撓撓腦袋，不知道怎麼使用「引路神蛇」。\n");
 
-        message_vision("$N从怀中掏出「引路神蛇」，口里不知念了些什么，\n"
-                       "就见「引路神蛇」吐吐芯子，摇头摆尾地把$N往白驼山带去～～～\n",me);
+        message_vision("$N從懷中掏出「引路神蛇」，口裡不知唸了些什麼，\n"
+                       "就見「引路神蛇」吐吐芯子，搖頭擺尾地把$N往白駝山帶去～～～\n",me);
         me->move("/d/baituo/damen");
         return 1;
 }

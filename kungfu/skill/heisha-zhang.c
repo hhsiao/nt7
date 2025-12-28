@@ -7,27 +7,27 @@ string type() { return "martial"; }
 string martialtype() { return "skill"; }
 
 mapping *action = ({
-([        "action" : "$N一式"HIB"「无常抖索」"NOR"，双手陡地一挥，已到$n的$l边上",
+([        "action" : "$N一式"HIB"「無常抖索」"NOR"，雙手陡地一揮，已到$n的$l邊上",
         "lvl"    : 0,
-        "skill_name"  : "无常抖索"
+        "skill_name"  : "無常抖索"
 ]),
-([        "action" : "$N身形一转，一式"BLU"「小鬼扶腰」"NOR"，左掌斜侧，右掌虚托，封向$n的腰部",
+([        "action" : "$N身形一轉，一式"BLU"「小鬼扶腰」"NOR"，左掌斜側，右掌虛託，封向$n的腰部",
         "lvl"    : 20,
         "skill_name"  : "小鬼扶腰"
 ]),
-([        "action" : "$N使一式"HIB"「夜叉破浪」"NOR"，身形前冲，双掌向前带着风声，尽力拍出，直取$n的$l",
+([        "action" : "$N使一式"HIB"「夜叉破浪」"NOR"，身形前衝，雙掌向前帶著風聲，盡力拍出，直取$n的$l",
         "lvl"    : 40,
         "skill_name"  : "夜叉破浪"
 ]),
-([        "action" : "$N一式"BLU"「酆都冲沙」"NOR"，左右两掌往$n周身不绝连拍，虚实不定",
+([        "action" : "$N一式"BLU"「酆都衝沙」"NOR"，左右兩掌往$n周身不絕連拍，虛實不定",
         "lvl"    : 60,
-        "skill_name"  : "酆都冲沙"
+        "skill_name"  : "酆都衝沙"
 ]),
-([        "action" : "$N左掌作势侧过，右掌顺势拍下，一式"BLU"「油锤灌顶」"NOR"，猛劈$n的头部",
+([        "action" : "$N左掌作勢側過，右掌順勢拍下，一式"BLU"「油錘灌頂」"NOR"，猛劈$n的頭部",
         "lvl"    : 80,
-        "skill_name"  : "油锤灌顶"
+        "skill_name"  : "油錘灌頂"
 ]),
-([        "action" : "$N突然身形一顿，掌为腿先，掌腿相扣，正是"HIB"「沸鼎熬渣」"NOR"",
+([        "action" : "$N突然身形一頓，掌為腿先，掌腿相扣，正是"HIB"「沸鼎熬渣」"NOR"",
         "lvl"    : 100,
         "skill_name"  : "沸鼎熬渣"
 ]),
@@ -38,16 +38,16 @@ int valid_enable(string usage) { return usage=="strike" || usage=="parry" ; }
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练黑砂掌必须空手。\n");
+                return notify_fail("練黑砂掌必須空手。\n");
 
         if ((int)me->query_skill("force") < 30)
-                return notify_fail("你的内功火候不够，无法练习黑砂掌。\n");
+                return notify_fail("你的內功火候不夠，無法練習黑砂掌。\n");
 
         if( query("max_neili", me)<500 )
-                return notify_fail("你的内力太弱，无法练习黑砂掌。\n");
+                return notify_fail("你的內力太弱，無法練習黑砂掌。\n");
 
         if ((int)me->query_skill("strike", 1) < (int)me->query_skill("heisha-zhang", 1))
-                return notify_fail("你的基本掌法水平有限，无法领会更高深的黑砂掌。\n");
+                return notify_fail("你的基本掌法水平有限，無法領會更高深的黑砂掌。\n");
 
         return 1;
 }
@@ -55,9 +55,9 @@ int valid_learn(object me)
 int practice_skill(object me)
 {
         if( query("qi", me)<30 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
         if( query("neili", me)<40 )
-                return notify_fail("你的内力不够练黑砂掌。\n");
+                return notify_fail("你的內力不夠練黑砂掌。\n");
         me->receive_damage("qi", 25);
         addn("neili", -10, me);
         return 1;
@@ -78,7 +78,7 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
                    "id":query("id", me),
                    "duration" : lvl / 50 + random(lvl / 20) ])))
         {
-                return WHT "$n" WHT "忽然感到一股莫名的恶心，全身瘫软，嘴皮乌紫。\n" NOR;
+                return WHT "$n" WHT "忽然感到一股莫名的噁心，全身癱軟，嘴皮烏紫。\n" NOR;
         }
 }
 
@@ -104,16 +104,16 @@ mapping query_action(object me, object weapon)
         for(i = ttl; i > 0; i--)
                 if(lvl > action[i-1]["lvl"])
                 {
-                        seq = i; /* 获得招数序号上限 */
+                        seq = i; /* 獲得招數序號上限 */
                         break;
                 }
-        seq = random(seq);       /* 选择出手招数序号 */
+        seq = random(seq);       /* 選擇出手招數序號 */
         return ([
                 "action"      : action[seq]["action"],
                 "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
                 "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
                 "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
-                "damage_type" : random(2) ? "内伤" : "瘀伤",
+                "damage_type" : random(2) ? "內傷" : "瘀傷",
         ]);
 }
 int learn_bonus() { return 30; }
@@ -126,11 +126,11 @@ int help(object me)
         write(HIC"\n黑砂掌："NOR"\n");
         write(@HELP
 
-    黑砂掌是川西黑白无常常氏二杰的独门掌法。掌中蕴毒，无常夺命。
+    黑砂掌是川西黑白無常常氏二傑的獨門掌法。掌中蘊毒，無常奪命。
 
-        学习要求：
-                红花神功10级
-                内力修为20
+        學習要求：
+                紅花神功10級
+                內力修為20
 HELP
         );
         return 1;

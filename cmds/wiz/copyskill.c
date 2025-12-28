@@ -26,21 +26,21 @@ int main(object me, string arg)
         if (sscanf(arg, "%s to %s", arg, target) == 2)
         {
                 if (! objectp(tob = present(target, environment(me))))
-                        return notify_fail("你眼前没有 " + target + " 这个人。\n");
+                        return notify_fail("你眼前沒有 " + target + " 這個人。\n");
         } else
                 tob = me;
 
         if (wiz_level(me) <= wiz_level(tob) && me != tob)
-                return notify_fail("你只能给权限比自己低的人复制武功。\n");
+                return notify_fail("你只能給權限比自己低的人複製武功。\n");
 
         if (arg == "me")
                 ob = me;
         else
         if (! objectp(ob = present(arg, environment(me))))
-                return notify_fail("你眼前没有 " + arg + " 这个人。\n");
+                return notify_fail("你眼前沒有 " + arg + " 這個人。\n");
 
         if (! is_root(me) && playerp(tob) && ! wizardp(tob))
-                return notify_fail("只有天神才能给普通玩家复制武功。\n");
+                return notify_fail("只有天神才能給普通玩家複製武功。\n");
 
         if (! me->is_admin())
         {
@@ -48,21 +48,21 @@ int main(object me, string arg)
                 {
                 case "me":
                         if (tob != me)
-                                return notify_fail("你只能给自己复制武功。\n");
+                                return notify_fail("你只能給自己複製武功。\n");
                 case "wizard":
                         if (wiz_level(tob) < 1)
-                                return notify_fail("你只能给巫师复制武功。\n");
+                                return notify_fail("你只能給巫師複製武功。\n");
 
                 case "all":
                         break;
 
                 default:
-                        return notify_fail("你不能复制武功。\n");
+                        return notify_fail("你不能複製武功。\n");
                 }
         }
 
         if (ob == tob)
-                return notify_fail("不需要复制吧。\n");
+                return notify_fail("不需要複製吧。\n");
 
         if (me != tob)
                 log_file("static/copyskill", sprintf("%s %s copy %s(%s)'s skill to %s(%s).\n",
@@ -71,7 +71,7 @@ int main(object me, string arg)
                                                      tob->name(1), query("id", tob)));
 
         copy_skill(tob, ob);
-        message_vision(HIM + me->name(1) + HIM "口中念念有词，只见一道红光笼罩了$N"
+        message_vision(HIM + me->name(1) + HIM "口中唸唸有詞，只見一道紅光籠罩了$N"
                        HIM "和$n" HIM "。\n" NOR, tob, ob);
         return 1;
 }
@@ -193,11 +193,11 @@ protected int copy_skill(object me, object ob)
 int help()
 {
         write(@TEXT
-指令格式：copyskill <对象> [to <目的对象>]
+指令格式：copyskill <對象> [to <目的對象>]
 
-这个指令让你复制对象的战斗经验和所有的武功技能。
+這個指令讓你複製對象的戰鬥經驗和所有的武功技能。
 
-该命令在可以被授权使用的信息包括：me、wizard、all。
+該命令在可以被授權使用的信息包括：me、wizard、all。
 TEXT );
         return 1 ;
 }

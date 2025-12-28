@@ -12,42 +12,42 @@ int qk_layer(object me);
 //string main_skill() { return "yinyang-shiertian"; }
 
 string *parry_msg = ({
-        HIY"$N一招击在$n身上，却被$n暗运乾坤大挪移，将内力尽数移入地下。\n"NOR,
-        HIW"$n轻轻一带，$N发现自己招数回击过来，吓得往后倒退几步。\n"NOR,
-        HIC"$n手臂回转，在$N手肘下轻轻一推，$N招数落空。\n"NOR,
-        HIG"$n右手伸出，在$N手腕上轻轻一拉，$N收势不住，直往前扑去。\n"NOR,
-        MAG"$n身形不动，$N一招击下，有如石沉大海，不觉呆住了。\n"NOR,
-        HIM"$n左牵右引，$N如身处漩流，连续转了好几个圈。\n"NOR,
-        GRN"$n双手回圈，$N只觉得前面好象有一堵墙，再也攻不进去。\n"NOR,
-        HIY"$n轻轻一转，$N一招击在地上，只打得尘土飞扬。\n"NOR,
+        HIY"$N一招擊在$n身上，卻被$n暗運乾坤大挪移，將內力盡數移入地下。\n"NOR,
+        HIW"$n輕輕一帶，$N發現自己招數回擊過來，嚇得往後倒退幾步。\n"NOR,
+        HIC"$n手臂迴轉，在$N手肘下輕輕一推，$N招數落空。\n"NOR,
+        HIG"$n右手伸出，在$N手腕上輕輕一拉，$N收勢不住，直往前撲去。\n"NOR,
+        MAG"$n身形不動，$N一招擊下，有如石沉大海，不覺呆住了。\n"NOR,
+        HIM"$n左牽右引，$N如身處漩流，連續轉了好幾個圈。\n"NOR,
+        GRN"$n雙手迴圈，$N只覺得前面好象有一堵牆，再也攻不進去。\n"NOR,
+        HIY"$n輕輕一轉，$N一招擊在地上，只打得塵土飛揚。\n"NOR,
 });
 mapping *action = ({
-([      "action": "$n轻轻一转，一招击在地上，只打得尘土飞扬。",
+([      "action": "$n輕輕一轉，一招擊在地上，只打得塵土飛揚。",
         "force" : 350,
         "attack": 90,
         "dodge" : -90,
         "parry" : -90,
         "damage": 100,
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
 });
 string *pfail_msg = ({
-        "$n暗运乾坤大挪移，试图将内力尽数移入地下，然而$N早已勘破其中奥妙，内力变化莫测。\n",
-        "$n轻轻一带，$N发现自己招数回击过来，急忙变招，身转如意，反让$n防不胜防。\n",
-        "$n手臂回转，在$N手肘下轻轻一推，然而$N招数忽的一变，并未落空。\n",
-        "$n右手伸出，在$N手腕上轻轻一拉，$N收势不住，顺势变招扑前直击。\n",
-        "$n左牵右引，$N如身处漩流，顺势变招，圆转如意，随心所欲。\n",
-        "$n双手回圈，$N只觉得前面好象有一堵墙，猛然警醒，聚力于一点，力攻对方。\n",
+        "$n暗運乾坤大挪移，試圖將內力盡數移入地下，然而$N早已勘破其中奧妙，內力變化莫測。\n",
+        "$n輕輕一帶，$N發現自己招數回擊過來，急忙變招，身轉如意，反讓$n防不勝防。\n",
+        "$n手臂迴轉，在$N手肘下輕輕一推，然而$N招數忽的一變，並未落空。\n",
+        "$n右手伸出，在$N手腕上輕輕一拉，$N收勢不住，順勢變招撲前直擊。\n",
+        "$n左牽右引，$N如身處漩流，順勢變招，圓轉如意，隨心所欲。\n",
+        "$n雙手迴圈，$N只覺得前面好象有一堵牆，猛然警醒，聚力於一點，力攻對方。\n",
 });
 string *dodge_msg = ({
-        "$N一招击在$n身上，却被$n暗运乾坤大挪移，将内力尽数移入地下。\n",
-        "$n轻轻一带，$N发现自己招数回击过来，吓得往后倒退几步。\n",
-        "$n手臂回转，在$N手肘下轻轻一推，$N招数落空。\n",
-        "$n右手伸出，在$N手腕上轻轻一拉，$N收势不住，直往前扑去。\n",
-        "$n身形不动，$N一招击下，有如石沉大海，不觉呆住了。\n",
-        "$n左牵右引，$N如身处漩流，连续转了好几个圈。\n",
-        "$n双手回圈，$N只觉得前面好象有一堵墙，再也攻不进去。\n",
-        "$n轻轻一转，$N一招击在地上，只打得尘土飞扬。\n",
+        "$N一招擊在$n身上，卻被$n暗運乾坤大挪移，將內力盡數移入地下。\n",
+        "$n輕輕一帶，$N發現自己招數回擊過來，嚇得往後倒退幾步。\n",
+        "$n手臂迴轉，在$N手肘下輕輕一推，$N招數落空。\n",
+        "$n右手伸出，在$N手腕上輕輕一拉，$N收勢不住，直往前撲去。\n",
+        "$n身形不動，$N一招擊下，有如石沉大海，不覺呆住了。\n",
+        "$n左牽右引，$N如身處漩流，連續轉了好幾個圈。\n",
+        "$n雙手迴圈，$N只覺得前面好象有一堵牆，再也攻不進去。\n",
+        "$n輕輕一轉，$N一招擊在地上，只打得塵土飛揚。\n",
 });
 
 int valid_enable(string usage)
@@ -76,10 +76,10 @@ int valid_research(object me)
 
         if (query("int", me) < 34 &&
                 me->query_skill("qiankun-danuoyi", 1) >= canlvl )
-                return notify_fail(HIG "你觉得更深层次的乾坤大挪移实在是深奥无比，全然无法理解。\n" NOR);
+                return notify_fail(HIG "你覺得更深層次的乾坤大挪移實在是深奧無比，全然無法理解。\n" NOR);
 
         if (me->query_skill("qiankun-danuoyi", 1) < 310)
-                return notify_fail(HIG "你对乾坤大挪移的认识还不足以自行研究提高！\n" NOR);
+                return notify_fail(HIG "你對乾坤大挪移的認識還不足以自行研究提高！\n" NOR);
 
         return 1;
 }
@@ -90,35 +90,35 @@ int valid_learn(object me)
 
         if( (!me->query_family() ||
             me->query_family() != "明教") && (!query("reborn/times", me) || member_array("明教", query("reborn/fams", me)) == -1) )
-                return notify_fail("你不是明教中人，无法修习！\n");
+                return notify_fail("你不是明教中人，無法修習！\n");
 
-        if (query("gender", me) == "无性" &&
+        if (query("gender", me) == "無性" &&
             me->query_skill("qiankun-danuoyi", 1) >= 50)
-                return notify_fail("你试图按照心法修炼大挪移，却"
-                                   "觉得心中一阵迷茫，难以继续。\n");
+                return notify_fail("你試圖按照心法修煉大挪移，卻"
+                                   "覺得心中一陣迷茫，難以繼續。\n");
 
         if (me->query_condition("qiankun-except"))
-                return notify_fail("你现在体内若冰、四肢皆寒、面赤"
-                                   "如火，无法继续修炼神功。\n");
+                return notify_fail("你現在體內若冰、四肢皆寒、面赤"
+                                   "如火，無法繼續修煉神功。\n");
 
         layer = (int)me->query_skill("qiankun-danuoyi", 1) / 50;
         if (layer > 7) layer = 7;
 
         if (query("int", me) < 27 + layer)
-                return notify_fail("你觉得第" + chinese_number(layer) +
-                                   "层乾坤大挪移实在是深奥无比，全然无法理解。\n");
+                return notify_fail("你覺得第" + chinese_number(layer) +
+                                   "層乾坤大挪移實在是深奧無比，全然無法理解。\n");
 
         if ((int)query("max_neili", me) < 6000)
-                return notify_fail("你的内力修为太差，无法修炼乾坤大挪移。\n");
+                return notify_fail("你的內力修為太差，無法修煉乾坤大挪移。\n");
 
         if ((int)me->query_skill("force") < 450)
-                return notify_fail("你的内功火候不够，无法修炼乾坤大挪移。\n");
+                return notify_fail("你的內功火候不夠，無法修煉乾坤大挪移。\n");
 
         if ((int)me->query_skill("parry", 1) < (int)me->query_skill("qiankun-danuoyi", 1))
-                return notify_fail("你的基本招架火候有限，无法体会更高深的乾坤大挪移。\n");
+                return notify_fail("你的基本招架火候有限，無法體會更高深的乾坤大挪移。\n");
 
         if ((int)me->query_skill("force", 1) < (int)me->query_skill("qiankun-danuoyi", 1))
-                return notify_fail("你的基本内功火候有限，无法体会更高深的乾坤大挪移。\n");
+                return notify_fail("你的基本內功火候有限，無法體會更高深的乾坤大挪移。\n");
 
         return 1;
 }
@@ -146,7 +146,7 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
         ap = attack_power(ob,"force") + mp;
         dp = defense_power(me,"parry");
         
-                //计算乾坤大挪移的层数
+                //計算乾坤大挪移的層數
                 ap+= ap*qk_layer(me)/10; 
                 
         // 挪移乾坤效果
@@ -195,10 +195,10 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
                 else
                         na = ob->query_skill_mapped("unarmed");
 
-                msg = HIM "\n$N" HIM "一招攻出，却见$n" HIM "迎身而"
-                      "上，冷笑道：「区区" + CHINESE_D->chinese(na) +
-                      HIM "，能奈我何？」\n$n" HIM "当即运起乾坤大挪"
-                      "移第七层心法，企图挪移$N" HIM "的攻势。\n\n" NOR;
+                msg = HIM "\n$N" HIM "一招攻出，卻見$n" HIM "迎身而"
+                      "上，冷笑道：「區區" + CHINESE_D->chinese(na) +
+                      HIM "，能奈我何？」\n$n" HIM "當即運起乾坤大挪"
+                      "移第七層心法，企圖挪移$N" HIM "的攻勢。\n\n" NOR;
                                           
                 set_temp("nuoyi/"+vid, 1, me);
                 me->start_call_out((: call_other, __FILE__, "nuoyi",
@@ -243,38 +243,38 @@ void skill_improved(object me)
 
         if (! layer)
         {
-                tell_object(me, HIM "你潜心修炼乾坤大挪"
+                tell_object(me, HIM "你潛心修煉乾坤大挪"
                             "移心法，若有所悟。\n" NOR);
         } else
         if ((lvl % 50) == 0)
         {
-                tell_object(me, HIM "你修炼成了第" + chinese_number(layer) +
-                            "层的乾坤大挪移心法。\n" NOR);
+                tell_object(me, HIM "你修煉成了第" + chinese_number(layer) +
+                            "層的乾坤大挪移心法。\n" NOR);
         } else
-                tell_object(me, HIM "你对第" + chinese_number(layer) +
-                            "层的乾坤大挪移心法又加深了一层了解。\n" NOR);
+                tell_object(me, HIM "你對第" + chinese_number(layer) +
+                            "層的乾坤大挪移心法又加深了一層瞭解。\n" NOR);
 
         if( query("special_skill/nopoison", me) ) return;
         if (lvl > me->query_skill("force") * 2 / 3)
         {
                 if (lvl < me->query_skill("force") * 2 / 3 + 10)
                 {
-                        tell_object(me, HIG "你觉得内息一阵紊乱，丹田时冷时"
-                                        "热，不由得大吃一惊。\n心想莫非是走"
-                                        "火入魔？丹田越来越是寒冷，极为难受"
+                        tell_object(me, HIG "你覺得內息一陣紊亂，丹田時冷時"
+                                        "熱，不由得大吃一驚。\n心想莫非是走"
+                                        "火入魔？丹田越來越是寒冷，極為難受"
                                         "。\n" NOR);
 
-                        message("vision", HIG + me->name() + HIG "的脸色忽红"
-                                          "忽绿，变得不停，只是浑身颤抖，似"
+                        message("vision", HIG + me->name() + HIG "的臉色忽紅"
+                                          "忽綠，變得不停，只是渾身顫抖，似"
                                           "乎十分痛苦。\n" NOR,
                                           environment(me), ({ me }));
                         return;
                 }
-                tell_object(me, HIB "你忽然觉得丹田腾起一阵寒意，霎时间四肢"
-                                "百赅一起变得寒冷无比，忍不住大声呻吟。\n" NOR);
+                tell_object(me, HIB "你忽然覺得丹田騰起一陣寒意，霎時間四肢"
+                                "百賅一起變得寒冷無比，忍不住大聲呻吟。\n" NOR);
 
-                message("vision", HIB + me->name() + HIB "忽然一抖，脸色忽然"
-                                  "变得惨白，隐然笼罩了一股绿气，呻吟不止。"
+                message("vision", HIB + me->name() + HIB "忽然一抖，臉色忽然"
+                                  "變得慘白，隱然籠罩了一股綠氣，呻吟不止。"
                                   "\n" NOR, environment(me), ({ me }));
         } else
 
@@ -282,15 +282,15 @@ void skill_improved(object me)
         {
                 if ((lvl * 20 + 4000) < query("max_neili", me) + 200)
                 {
-                        tell_object(me, HIR "你试着运转了一下内息，一时觉得内"
-                              "力不济，看来还是不要贸然修炼大挪移神功。\n" NOR);
+                        tell_object(me, HIR "你試著運轉了一下內息，一時覺得內"
+                              "力不濟，看來還是不要貿然修煉大挪移神功。\n" NOR);
                         return;
                 }
 
-                tell_object(me, HIR "你试着运转了一下内息，忽然觉得一口气"
-                      "竟然转不过来，顿时心中绞痛，接连吐了几口鲜血。\n" NOR);
-                message("vision", HIR + me->name() + HIR "脸色忽然"
-                        "一变，呕出几口鲜血，触目惊心。\n" NOR,
+                tell_object(me, HIR "你試著運轉了一下內息，忽然覺得一口氣"
+                      "竟然轉不過來，頓時心中絞痛，接連吐了幾口鮮血。\n" NOR);
+                message("vision", HIR + me->name() + HIR "臉色忽然"
+                        "一變，嘔出幾口鮮血，觸目驚心。\n" NOR,
                         environment(me), ({ me }));
         } else
                 return;
@@ -314,9 +314,9 @@ void nuoyi(object ob, object me, int damage,string vid)
                         }
 
         set_temp("nuoyi/"+vid, 0, me);
-        msg = HIM "\n$N" HIM "乾坤大挪移第七层心法施展出来，顿将先前所积蓄"
-              "的十余道力量归并为一掌，朝$n" HIM "疾拍而出，这便如一座大湖"
-              "在山洪爆发时储满了洪水却突然崩决，洪水急冲而出一般。\n" NOR;
+        msg = HIM "\n$N" HIM "乾坤大挪移第七層心法施展出來，頓將先前所積蓄"
+              "的十餘道力量歸併為一掌，朝$n" HIM "疾拍而出，這便如一座大湖"
+              "在山洪爆發時儲滿了洪水卻突然崩決，洪水急衝而出一般。\n" NOR;
                           
         jy = me->query_skill("jiuyang-shengong",1);
                 qk = me->query_skill("qiankun-danuoyi",1);
@@ -329,7 +329,7 @@ void nuoyi(object ob, object me, int damage,string vid)
         dp = defense_power(ob, "force");
         ap+= ap*fmsk/100*5/100;
         // me->start_busy(2);
-        delta = ABILITY_D->check_ability(me, "power-qkdny-nuozhuan"); // 门派ab
+        delta = ABILITY_D->check_ability(me, "power-qkdny-nuozhuan"); // 門派ab
         if( delta ) 
                 {
                     ap += ap*delta/100;
@@ -339,14 +339,14 @@ void nuoyi(object ob, object me, int damage,string vid)
         if (dp / 2 + random(dp) < ap)
         {
                 msg += COMBAT_D->do_damage(me, ob, flagremote, damage, 200+fmsk/10,
-                                           HIR "只听$n" HIR "一声惨叫，将$N"
-                                           HIR "返回的力道受了个十足，全身喀"
-                                           "嚓喀嚓一阵脆响，腕骨、臂骨、肩骨"
-                                           "、肋骨竟然一齐折断。\n" NOR);
+                                           HIR "只聽$n" HIR "一聲慘叫，將$N"
+                                           HIR "返回的力道受了個十足，全身喀"
+                                           "嚓喀嚓一陣脆響，腕骨、臂骨、肩骨"
+                                           "、肋骨竟然一齊折斷。\n" NOR);
         } else
         {
-                msg += HIC "$n" HIC "眼见$P来势汹涌，不敢"
-                       "大意，施出浑身解数化解开来。\n" NOR;
+                msg += HIC "$n" HIC "眼見$P來勢洶湧，不敢"
+                       "大意，施出渾身解數化解開來。\n" NOR;
         }
  
         message_sort(msg, me, ob);
@@ -354,7 +354,7 @@ void nuoyi(object ob, object me, int damage,string vid)
 
 int practice_skill(object me)
 {
-        return notify_fail("乾坤大挪移只能通过读<<乾坤大挪移心法>>提高。\n");
+        return notify_fail("乾坤大挪移只能通過讀<<乾坤大挪移心法>>提高。\n");
 }
 int qk_layer(object me)
 {
@@ -401,24 +401,24 @@ int help(object me)
         write(HIC"\n乾坤大挪移："NOR"\n");
         write(@HELP
 
-    “乾坤大挪移”是明教历代相传一门最厉害的武功，是明教的
-护教神功。为波斯大盗山中老人所创，专门讲述运气使力的法门。
-中原会用的人甚少，自明教三十三代教主阳顶天死后，几乎失传，
-但后来张无忌一番奇遇，以其深厚的内功一朝而成。乾坤大挪移只
-作招架和轻功用，不具攻击。其威力之所在是可以把别人的招数尽
-数还于对方。
-    乾坤大挪移神功的主旨，乃在颠倒一刚一柔、一阴一阳的乾坤
-二气，脸上现出青红之色，便是体内血液沉降、真气变换之象。练
-至第六层时，全身都能忽红忽青，但到第七层时，阴阳二气转换于
-不知不觉之间，外形上便半点也瞧不出表征了。其根本道理也并不
-如何奥妙，只不过先求激发自身潜力，然后牵引挪移敌劲，但其中
-变化神奇，却是匪夷所思。
+    “乾坤大挪移”是明教歷代相傳一門最厲害的武功，是明教的
+護教神功。為波斯大盜山中老人所創，專門講述運氣使力的法門。
+中原會用的人甚少，自明教三十三代教主陽頂天死後，幾乎失傳，
+但後來張無忌一番奇遇，以其深厚的內功一朝而成。乾坤大挪移只
+作招架和輕功用，不具攻擊。其威力之所在是可以把別人的招數盡
+數還於對方。
+    乾坤大挪移神功的主旨，乃在顛倒一剛一柔、一陰一陽的乾坤
+二氣，臉上現出青紅之色，便是體內血液沉降、真氣變換之象。練
+至第六層時，全身都能忽紅忽青，但到第七層時，陰陽二氣轉換於
+不知不覺之間，外形上便半點也瞧不出表徵了。其根本道理也並不
+如何奧妙，只不過先求激發自身潛力，然後牽引挪移敵勁，但其中
+變化神奇，卻是匪夷所思。
 
-        学习要求：
-                基本内功100级并不得低于乾坤大挪移的级别
-                九阳神功不得低于乾坤大挪移的级别
-                内力1500并不得低于乾坤大挪移的级别的15倍
-                太监无法领悟100级以上的乾坤大挪移
+        學習要求：
+                基本內功100級並不得低於乾坤大挪移的級別
+                九陽神功不得低於乾坤大挪移的級別
+                內力1500並不得低於乾坤大挪移的級別的15倍
+                太監無法領悟100級以上的乾坤大挪移
 HELP
         );
         return 1;

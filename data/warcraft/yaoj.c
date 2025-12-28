@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("魔幻兽[2;37;0m[2;37;0m", ({"yaojs"}));        
+        set_name("魔幻獸[2;37;0m[2;37;0m", ({"yaojs"}));        
         set("gender", "女性");                
-        set("long", "我的魔幻兽[2;37;0m
-它是是份的魔幻兽。
+        set("long", "我的魔幻獸[2;37;0m
+它是是份的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

@@ -4,11 +4,11 @@ inherit "/maze/necropolis/necropolis_npc";
 
 void create()
 {
-        string *names = ({ "幽灵" }); 
+        string *names = ({ "幽靈" }); 
         set_name( names[random(sizeof(names))], ({ "ghost"}));
         set("vendetta_mark", "ghost");
-        set("long", "这是个若隐若现的幽灵。\n");
-        set("title", HIB "(鬼气)" NOR); 
+        set("long", "這是個若隱若現的幽靈。\n");
+        set("title", HIB "(鬼氣)" NOR); 
 
         set("str", 50);
         set("con", 120);
@@ -23,7 +23,7 @@ void create()
         //set("shen_type", -1);        
         //set("chat_chance", 2);
         //set("chat_msg", ({
-        //      "骷髅空洞的眼眶里闪烁着可怕的荧光。\n"
+        //      "骷髏空洞的眼眶裡閃爍著可怕的熒光。\n"
         //}) ); 
 
         //set("chat_chance_combat", 50);
@@ -31,15 +31,15 @@ void create()
         //      (: do_stun() :),
         //}) ); 
         set("self_go_msg",1);
-        set("arrive_msg","幽灵飘了过来。");
-        set("leave_msg","幽灵飘走了。");
+        set("arrive_msg","幽靈飄了過來。");
+        set("leave_msg","幽靈飄走了。");
         set("chat_chance", 1);
         set("chat_msg", ({
                 (: random_move :)
         }) );  
         set("combat_exp", 100000000);
         set("bellicosity", 5 );
-        set("death_msg",BLU"\n$N消失不见了。\n\n"NOR);
+        set("death_msg",BLU"\n$N消失不見了。\n\n"NOR);
         set_skill("force", 30);
         set_skill("dodge", 30);
         set_skill("unarmed", 30);

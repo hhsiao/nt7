@@ -9,12 +9,12 @@ string look_hua();
 
 void create()
 {
-        set("short", "剑室");
+        set("short", "劍室");
         set("long", @LONG
-只见室中的壁上、桌上、架上、摆满了各类兵刃，式样繁
-多，十之八九都是古剑，或长逾七尺，或短仅数寸，有的铁斑
-驳，有的寒光逼人，直看得人眼光撩乱。不远处的墙壁上挂着
-有一副古画(hua)。
+只見室中的壁上、桌上、架上、擺滿了各類兵刃，式樣繁
+多，十之八九都是古劍，或長逾七尺，或短僅數寸，有的鐵斑
+駁，有的寒光逼人，直看得人眼光撩亂。不遠處的牆壁上掛著
+有一副古畫(hua)。
 LONG);
         set("item_desc", ([
                "hua" : ( : look_hua :),
@@ -37,9 +37,9 @@ string look_hua()
               ob = load_object(__DIR__"jianshi");
 
       if( !query_temp("marks/拉", ob) )
-              return HIW "古画已经破旧不堪，画中一对男女各持一柄无锋之剑。\n" NOR;
+              return HIW "古畫已經破舊不堪，畫中一對男女各持一柄無鋒之劍。\n" NOR;
 
-      msg = HIY "画已被人撕破。" NOR;
+      msg = HIY "畫已被人撕破。" NOR;
 
       junzi = find_object(JUNZI);
       shunv = find_object(SHUNV);
@@ -50,16 +50,16 @@ string look_hua()
 
       if (! environment(junzi) && ! environment(shunv))    
       { 
-              msg += HIY "但见画后有二柄无锋之剑，看上去像是一对。\n" NOR;
+              msg += HIY "但見畫後有二柄無鋒之劍，看上去像是一對。\n" NOR;
               return msg;          
       } else
       if (! environment(junzi) || ! environment(shunv))
       {
-              msg += HIY "但见画后有一柄铁口斑驳，寒光逼人的宝剑。\n" NOR;
+              msg += HIY "但見畫後有一柄鐵口斑駁，寒光逼人的寶劍。\n" NOR;
               return msg;
       }
 
-      msg += HIY "画后空空如也，什么都没有。\n" NOR;
+      msg += HIY "畫後空空如也，什麼都沒有。\n" NOR;
       return msg;
 }
 
@@ -75,18 +75,18 @@ int do_pull(string arg)
         object ob;
 
         if (! arg || arg != "hua")
-                return notify_fail("你要做什么？\n");
+                return notify_fail("你要做什麼？\n");
 
         if (! ob = find_object(__DIR__"jianshi"))
                 ob = load_object(__DIR__"jianshi");
 
         if( query_temp("marks/拉", ob) )
         {
-                write("画已经被拉破了。\n");
+                write("畫已經被拉破了。\n");
                 return 1;
         }
 
-        message_vision(HIG "只听见“咔嚓”一声，$N " HIG "将墙上的画"
+        message_vision(HIG "只聽見“咔嚓”一聲，$N " HIG "將牆上的畫"
                        "拉破了。\n" NOR, me);
         set_temp("marks/拉", 1, ob);
 
@@ -104,11 +104,11 @@ int do_pick(string arg)
                 ob = load_object(__DIR__"jianshi");
 
         if (! arg || (arg != "junzi jian" && arg != "shunv jian" ))
-                return notify_fail("你要拿什么？\n");
+                return notify_fail("你要拿什麼？\n");
         
         if( query_temp("marks/君", ob) && query_temp("marks/女", ob )
              || !query_temp("marks/拉", ob) )
-                return notify_fail("你要拿什么？\n");
+                return notify_fail("你要拿什麼？\n");
 
         junzi = find_object(JUNZI);
         shunv = find_object(SHUNV);
@@ -121,21 +121,21 @@ int do_pick(string arg)
                  if (! environment(junzi))
                  {
                          junzi->move(me, 1);
-                         message_vision(HIC "$N" HIC "将墙上的「君子剑」"
-                                        "取了下来。\n" NOR, me);
+                         message_vision(HIC "$N" HIC "將牆上的「君子劍」"
+                                        "取了下來。\n" NOR, me);
                          return 1;
                  } else
-                         return notify_fail(NOR + YEL "君子剑已被拿走。\n" NOR);
+                         return notify_fail(NOR + YEL "君子劍已被拿走。\n" NOR);
         }   
 
         if (! environment(shunv))
         {
                 shunv->move(me, 1);
-                message_vision(HIC "$N" HIC "将墙上的「淑女剑」"
-                               "取了下来。\n" NOR, me);
+                message_vision(HIC "$N" HIC "將牆上的「淑女劍」"
+                               "取了下來。\n" NOR, me);
                 return 1;
         } else
-                return notify_fail(NOR + YEL "淑女剑已被拿走。\n" NOR);        
+                return notify_fail(NOR + YEL "淑女劍已被拿走。\n" NOR);        
 
         return 1;
 }

@@ -9,7 +9,7 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", RED "一束神兽朱雀的羽毛，不知道有什么用。\n" NOR);
+                set("long", RED "一束神獸朱雀的羽毛，不知道有什麼用。\n" NOR);
                 set("unit", "束");
                 set("value", 1000);
         }

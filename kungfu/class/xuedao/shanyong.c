@@ -16,7 +16,7 @@ void create()
 {
         set_name("善勇", ({ "shan yong", "shan", "yong" }));
         set("long", @LONG
-一个胖胖的西藏僧人，面带笑容，却常干笑里藏刀的事。
+一個胖胖的西藏僧人，面帶笑容，卻常乾笑裡藏刀的事。
 LONG);
         set("gender", "男性");
         set("age", 35);
@@ -103,15 +103,15 @@ void attempt_apprentice(object ob)
 
         if( query("gender", ob) != "男性" )
         {
-                command("say 公公别开玩笑了，还是赶快回宫去伺候皇上吧。\n");
+                command("say 公公別開玩笑了，還是趕快回宮去伺候皇上吧。\n");
                 return;
         }
 
         if( query("class", ob) != "bonze" )
         {
                 set_temp("pending/join_bonze", 1, ob);
-                command("say 你不是出家人，我们血刀门是不会收留的。如果你"
-                        "决定要出家，就跪下吧(" HIY "kneel" NOR + CYN ")。" NOR);
+                command("say 你不是出家人，我們血刀門是不會收留的。如果你"
+                        "決定要出家，就跪下吧(" HIY "kneel" NOR + CYN ")。" NOR);
                 return;
         }
 
@@ -125,16 +125,16 @@ string ask_for_join()
         me = this_player();
 
         if( query("class", me) == "bonze" )
-                return "阿弥陀佛！你我同是出家人，何故跟贫僧开这等玩笑？\n";
+                return "阿彌陀佛！你我同是出家人，何故跟貧僧開這等玩笑？\n";
 
         if( query("gender", me) == "女性" )
-                return "施主若真心向佛，真是可喜可贺，可惜本寺不收女徒。\n";
+                return "施主若真心向佛，真是可喜可賀，可惜本寺不收女徒。\n";
 
         if( query("gender", me) != "男性" )
-                return "公公别开玩笑了，还是赶快回宫去伺候皇上吧。\n";
+                return "公公別開玩笑了，還是趕快回宮去伺候皇上吧。\n";
 
         set_temp("pending/join_bonze", 1, me);
-        return "阿弥陀佛！善哉！善哉！施主若真心皈依我佛，请跪下(kneel)受戒。\n";
+        return "阿彌陀佛！善哉！善哉！施主若真心皈依我佛，請跪下(kneel)受戒。\n";
 }
 
 int do_kneel()
@@ -142,11 +142,11 @@ int do_kneel()
         object me = this_player();
 
         if( !query_temp("pending/join_bonze", me) )
-                return notify_fail("你跪了半点，结果没人理你。\n");
+                return notify_fail("你跪了半點，結果沒人理你。\n");
 
-        message_vision(HIY "$N" HIY "双手合十，恭恭敬敬地跪了下来。\n\n"
-                       "$n" HIY "伸出手掌，在$N" HIY "头顶轻轻地摩挲了几"
-                       "下，将$N" HIY "的头发尽数剃去。\n\n" NOR, me,
+        message_vision(HIY "$N" HIY "雙手合十，恭恭敬敬地跪了下來。\n\n"
+                       "$n" HIY "伸出手掌，在$N" HIY "頭頂輕輕地摩挲了幾"
+                       "下，將$N" HIY "的頭髮盡數剃去。\n\n" NOR, me,
                        this_object());
 
         command("ke");

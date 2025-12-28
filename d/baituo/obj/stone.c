@@ -7,13 +7,13 @@
 inherit HAMMER;
 
 string* names = ({
-        "鹅卵石","石块","大石头",
+        "鵝卵石","石塊","大石頭",
 });
 
 string* longs = ({
-        "这是一块不太大的鹅卵石。\n",
-        "这是一块有着棱角的石块。\n",
-        "这是一块沉甸甸的大石头。\n",
+        "這是一塊不太大的鵝卵石。\n",
+        "這是一塊有著稜角的石塊。\n",
+        "這是一塊沉甸甸的大石頭。\n",
 });
 
 void create()
@@ -26,8 +26,8 @@ void create()
        set_default_object(__FILE__);
     else*/ {
        set("long", longs[i]);
-        set("unit","块");
-        set("wield_msg","$N搬起一块石头准备战斗。\n");
+        set("unit","塊");
+        set("wield_msg","$N搬起一塊石頭準備戰鬥。\n");
         set("material", "stone");
     }
     init_hammer(i+1);
@@ -44,13 +44,13 @@ int do_break(string arg)
         object obj, me;
 
         if (!arg || (arg != "stone" && arg != "shikuai"))
-                return notify_fail("什么？\n");
+                return notify_fail("什麼？\n");
 
         me = this_player();
         if( query("neili", me)<500 )
-                return notify_fail("你功力不足，不能击石成粉！\n");
-        message_vision(HIW"$N气沉丹田，运足真气，向石头击去！\n"NOR,me); 
-        write(HIW"只听得“嘭”的一声，石头被击成碎块！\n"NOR);
+                return notify_fail("你功力不足，不能擊石成粉！\n");
+        message_vision(HIW"$N氣沉丹田，運足真氣，向石頭擊去！\n"NOR,me); 
+        write(HIW"只聽得“嘭”的一聲，石頭被擊成碎塊！\n"NOR);
         obj = new("/d/taohua/obj/shizi2");
         obj->move(me);
         addn("neili", -(100+random(100)), me);

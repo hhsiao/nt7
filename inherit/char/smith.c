@@ -33,7 +33,7 @@ void init()
         add_action("do_cuihuo", "cuihuo");
         add_action("do_repair", "repair");
         add_action("do_repair", "xiuli");
-        add_action("do_epurate", "tilian");     // 提炼、精炼矿
+        add_action("do_epurate", "tilian");     // 提煉、精煉礦
         add_action("do_ronghe", "ronghe");
 }
 
@@ -41,9 +41,9 @@ void setup()
 {
         set("inquiry/job",    (: ask_me :));
         set("inquiry/工作",   (: ask_me :));
-        set("inquiry/repair", "你想要修(repair)点什么？");
-        set("inquiry/修理",   "你想要修(repair)点什么？");
-        set("inquiry/鉴定",   (: identify_mine_stone :));
+        set("inquiry/repair", "你想要修(repair)點什麼？");
+        set("inquiry/修理",   "你想要修(repair)點什麼？");
+        set("inquiry/鑑定",   (: identify_mine_stone :));
 
         ::setup();
 }
@@ -53,33 +53,33 @@ string ask_me()
         object me = this_player();
 
         if (query("combat_exp", me) > 150000)
-                return "让您老干这个未免屈尊了吧？";
+                return "讓您老幹這個未免屈尊了吧？";
 
         if (query("qi", me) < 50)
-                return "你还是歇会儿吧！要是出了人命我可承担不起。";
+                return "你還是歇會兒吧！要是出了人命我可承擔不起。";
 
         if (query_temp("smith/gu", me))
-                return "让你鼓风箱，你怎么还磨蹭(gu)？";
+                return "讓你鼓風箱，你怎麼還磨蹭(gu)？";
 
         if (query_temp("smith/dapi", me))
-                return "叫你打的坯你打了没有(dapi)？";
+                return "叫你打的坯你打了沒有(dapi)？";
 
         if (query_temp("smith/cuihuo", me))
-                return "干活怎么尽偷懒？快给我淬火去(cuihuo)！";
+                return "幹活怎麼盡偷懶？快給我淬火去(cuihuo)！";
 
         switch(random(3))
         {
         case 0:
                 set_temp("smith/gu", 1, me);
-                return "好！你帮我鼓一会儿风箱(gu)。";
+                return "好！你幫我鼓一會兒風箱(gu)。";
 
         case 1:
                 set_temp("smith/dapi", 1, me);
-                return "这样吧，你帮我打一下坯吧(dapi)！";
+                return "這樣吧，你幫我打一下坯吧(dapi)！";
 
         case 2:
                 set_temp("smith/cuihuo", 1, me);
-                return "去帮我把这些刚出炉的淬一下火(cuihuo)。";
+                return "去幫我把這些剛出爐的淬一下火(cuihuo)。";
         }
 }
 
@@ -88,17 +88,17 @@ int do_gu(string arg)
         object me = this_player();
 
         if (me->is_busy())
-                return notify_fail("你现在正忙。\n");
+                return notify_fail("你現在正忙。\n");
 
         if (!query_temp("smith/gu", me))
         {
-                message_vision("$n刚偷偷的拉起鼓风机，鼓了几阵风。"
-                               "就听见$N对$n大喝道：滚开，乱搞什么。\n",
+                message_vision("$n剛偷偷的拉起鼓風機，鼓了幾陣風。"
+                               "就聽見$N對$n大喝道：滾開，亂搞什麼。\n",
                                this_object(), me);
                 return 1;
         }
 
-        message_vision("$n拉起鼓风机拼命鼓了起来，$N看了点了点头。\n",
+        message_vision("$n拉起鼓風機拼命鼓了起來，$N看了點了點頭。\n",
                        this_object(), me);
         reward(me);
         return 1;
@@ -109,18 +109,18 @@ int do_dapi(string arg)
         object me = this_player();
 
         if (me->is_busy())
-                return notify_fail("你现在正忙。\n");
+                return notify_fail("你現在正忙。\n");
 
         if (!query_temp("smith/dapi", me))
         {
-                message_vision("$n拿起几块生铁，在手里掂了掂。"
-                               "就听见$N对$n大喝道：放下，乱搞什么。\n",
+                message_vision("$n拿起幾塊生鐵，在手裡掂了掂。"
+                               "就聽見$N對$n大喝道：放下，亂搞什麼。\n",
                                this_object(), me);
                 return 1;
         }
 
-        message_vision("$n拿着锤子对刚出炉的火热的生铁用力敲打着，"
-                        "$N“嗯”了一声，看上去有些满意。\n",
+        message_vision("$n拿著錘子對剛出爐的火熱的生鐵用力敲打著，"
+                        "$N“嗯”了一聲，看上去有些滿意。\n",
                        this_object(), me);
         reward(me);
         return 1;
@@ -131,18 +131,18 @@ int do_cuihuo(string arg)
         object me = this_player();
 
         if (me->is_busy())
-                return notify_fail("你现在正忙。\n");
+                return notify_fail("你現在正忙。\n");
 
         if (!query_temp("smith/cuihuo", me))
         {
-                message_vision("$n刚抄起一个打造好的坯子，"
-                               "就听见$N对$n大喝道：放下，别给我搞坏了。\n",
+                message_vision("$n剛抄起一個打造好的坯子，"
+                               "就聽見$N對$n大喝道：放下，別給我搞壞了。\n",
                                this_object(), me);
                 return 1;
         }
 
-        message_vision("$N用铁钳抄起一块火红的坯子，伸进了水"
-                       "池，“哧”的一声轻烟四冒。\n",
+        message_vision("$N用鐵鉗抄起一塊火紅的坯子，伸進了水"
+                       "池，“哧”的一聲輕煙四冒。\n",
                        me);
         reward(me);
         return 1;
@@ -161,14 +161,14 @@ void reward(object me)
         coin = new("/clone/money/silver");
         coin->set_amount(1 + random(2));
         coin->move(this_object());
-        message_vision("$N对$n道：这是给你的工钱。\n",
+        message_vision("$N對$n道：這是給你的工錢。\n",
                        this_object(), me);
         command("give coin to " + query("id", me));
         if (! query("zhufu_mod/armor", me) && random(10) == 1)
         {
                 ob = new("/clone/goods/zhufu_armor");
                 //ob->move(this_object());
-                message_vision("$N对$n嘿嘿一笑，道：干得不赖，有点意思，这个神之祝福护甲就算是我送给你的礼物吧。\n",
+                message_vision("$N對$n嘿嘿一笑，道：幹得不賴，有點意思，這個神之祝福護甲就算是我送給你的禮物吧。\n",
                                this_object(), me);
                 ob->move(me, 1);
                 //command("give zhufu armor to " + query("id", me));
@@ -199,21 +199,21 @@ int do_repair(string arg)
 
         me = this_player();
         if (! objectp(ob = present(arg, me)))
-                return notify_fail("你身上好像没有这样东西。\n");
+                return notify_fail("你身上好像沒有這樣東西。\n");
 
         if (undefinedp(consistence = query("consistence", ob)))
-                return notify_fail(ob->name() + "似乎不需要在这里修理吧？\n");
+                return notify_fail(ob->name() + "似乎不需要在這裡修理吧？\n");
 
         if (undefinedp(max = query("max_consistence", ob)))
                 max = 100;
 
         if (consistence == max)
-                return notify_fail(ob->name() + "现在完好无损，修理做什么？\n");
+                return notify_fail(ob->name() + "現在完好無損，修理做什麼？\n");
 
         if (! undefinedp(msg = query("no_repair", ob)))
         {
                 if (stringp(msg))
-                        write(name() + "道：这我可修理不了。\n");
+                        write(name() + "道：這我可修理不了。\n");
                 else
                         write(name() + "道：" + msg);
                 return 1;
@@ -223,19 +223,19 @@ int do_repair(string arg)
             repair["item"] == ob)
         {
                 if (me->is_busy())
-                        return notify_fail("你现在正忙着呢！\n");
+                        return notify_fail("你現在正忙著呢！\n");
 
-                notify_fail("你先带够了钱再说。\n");
+                notify_fail("你先帶夠了錢再說。\n");
                 if (MONEY_D->player_pay(me, repair["cost"]) != 1)
                         return 0;
 
-                message_vision("$n把" + ob->name() + "递给了$N。只见$N"
-                               "拿起工具，东敲西补，将" + ob->name() +
+                message_vision("$n把" + ob->name() + "遞給了$N。只見$N"
+                               "拿起工具，東敲西補，將" + ob->name() +
                                "好好修了修。\n", this_object(), me);
                 set("consistence", max, ob);
-                message_vision("$N道：“好了！”随手把" + ob->name() +
-                               "还给了$n，$n看了看，满意的掏出了一些钱"
-                               "付了帐。\n", this_object(), me);
+                message_vision("$N道：“好了！”隨手把" + ob->name() +
+                               "還給了$n，$n看了看，滿意的掏出了一些錢"
+                               "付了帳。\n", this_object(), me);
                 me->start_busy(1 + random(max - consistence) / 20);
                 delete_temp("pending/repair", me);
                 return 1;
@@ -254,7 +254,7 @@ int do_repair(string arg)
             ob->item_owner() == query("id", me))
         {
                 cost /= 2;
-                msg += "$n道：“呦，是您啊，不好意思，打个五折，就" +
+                msg += "$n道：“呦，是您啊，不好意思，打個五折，就" +
                        MONEY_D->price_str(cost) + "吧！”\n";
         } else
         if (me->query_skill("higgling", 1) >= 30 && cost >= 50)
@@ -263,23 +263,23 @@ int do_repair(string arg)
                 switch (random(5))
                 {
                 case 0:
-                        msg += "$n道：“大哥，看在我常年照顾你生意份上，还不给点折扣？”\n";
+                        msg += "$n道：“大哥，看在我常年照顧你生意份上，還不給點折扣？”\n";
                         break;
 
                 case 1:
-                        msg += "$n道：“你们大老板可是我的熟人啊，这个，这个...”\n";
+                        msg += "$n道：“你們大老闆可是我的熟人啊，這個，這個...”\n";
                         break;
 
                 case 2:
-                        msg += "$n道：“这位大哥好，您最近生意这么好... 给点折扣如何？”\n";
+                        msg += "$n道：“這位大哥好，您最近生意這麼好... 給點折扣如何？”\n";
                         break;
 
                 case 3:
-                        msg += "$n道：“太贵了，我实在没这么多了，便宜点，便宜点就好。”\n";
+                        msg += "$n道：“太貴了，我實在沒這麼多了，便宜點，便宜點就好。”\n";
                         break;
 
                 case 4:
-                        msg += "$n道：“我急修，这样吧，下次我一定给足，这次您就行个好，便宜点吧。”\n";
+                        msg += "$n道：“我急修，這樣吧，下次我一定給足，這次您就行個好，便宜點吧。”\n";
                         break;
                 }
 
@@ -287,13 +287,13 @@ int do_repair(string arg)
                         cost = cost / 100 * 100;
                 else
                         cost = cost / 10 * 10;
-                msg += "$N耸耸肩道：“算了，算了，那就" +
+                msg += "$N聳聳肩道：“算了，算了，那就" +
                        MONEY_D->price_str(cost) +
                       "好了。”\n";
         }
 
         message_vision(msg, this_object(), me);
-        tell_object(me, YEL "如果你的确想修理这件物品，请再输入一次这条命令。\n" NOR);
+        tell_object(me, YEL "如果你的確想修理這件物品，請再輸入一次這條命令。\n" NOR);
         set_temp("pending/repair/item", ob, me);
         set_temp("pending/repair/cost", cost, me);
         return 1;
@@ -307,10 +307,10 @@ string identify_mine_stone(object who)
                 return 0;
 
         if(!sizeof(inv = filter_array(all_inventory(who), (: $1->is_mine_stone() && !$1->query_check() :))))
-                return "你身上没有需要鉴定的矿石。\n";
+                return "你身上沒有需要鑑定的礦石。\n";
 
         inv->set_check_flag(1);
-        return sprintf("都鉴定好了%s。\n",!random(3)?"，没什么值钱的东西":"");
+        return sprintf("都鑑定好了%s。\n",!random(3)?"，沒什麼值錢的東西":"");
 }
 
 int do_epurate(string arg)
@@ -320,12 +320,12 @@ int do_epurate(string arg)
         int ew, value, rtn;
 
         if(this_object()->is_busy())
-                return notify_fail(sprintf("%s说道：等会儿，正忙着呢。\n", name()));
+                return notify_fail(sprintf("%s說道：等會兒，正忙著呢。\n", name()));
 
         if(!arg || !objectp(ob = present(arg, me)))
-                return notify_fail("你要提炼什么？\n");
+                return notify_fail("你要提煉什麼？\n");
 
-        if(ob->is_mine_stone())         // 提炼矿石
+        if(ob->is_mine_stone())         // 提煉礦石
         {
                 if(!ob->query_check())
                         ob->set_check_flag(1);
@@ -333,13 +333,13 @@ int do_epurate(string arg)
                 if( !(mcs = ob->query_mine_class())
                 ||  !(cmcs = MINE_D->chinese_mine_class(mcs))
                 ||  (member_array(mcs, can_epurate) == -1) )
-                        return notify_fail(sprintf("%s摇摇头说道：这里不含任何矿物成份。\n", name()));
+                        return notify_fail(sprintf("%s搖搖頭說道：這裡不含任何礦物成份。\n", name()));
 
                 if( (ew = ob->query_eff_weight()) < 1 )
-                        return notify_fail(sprintf("%s摇摇头说道：这里含的%s太少了，没法提炼。\n", name(), cmcs));
+                        return notify_fail(sprintf("%s搖搖頭說道：這裡含的%s太少了，沒法提煉。\n", name(), cmcs));
 
                 if(!objectp(tg = MINE_D->query_mine_class_up_ob(mcs)))
-                        return notify_fail(sprintf("%s摇摇头说道：这块矿石没法提炼。\n", name()));
+                        return notify_fail(sprintf("%s搖搖頭說道：這塊礦石沒法提煉。\n", name()));
 
                 value = MINE_D->query_mine_class_value(tg->query_mine_class()) * ew * 3 / 10;
                 if(value < 1)
@@ -348,17 +348,17 @@ int do_epurate(string arg)
                 if(!(rtn=MONEY_D->player_pay(me,value)) || (rtn == 2))
                 {
                         destruct(tg);
-                        return notify_fail(sprintf("%s说道：提炼这块矿石里的%s需要%s。\n",
+                        return notify_fail(sprintf("%s說道：提煉這塊礦石裡的%s需要%s。\n",
                                 this_object()->name(), cmcs, MONEY_D->money_str(value)));
                 }
 
-                message_vision("$N朝着$n点点头说道：等一会儿。\n", this_object(), me);
+                message_vision("$N朝著$n點點頭說道：等一會兒。\n", this_object(), me);
 
                 call_out("epurate_it", 1+random(2), me, ob, tg);
                 return 1;
         }
 
-        else if(ob->is_iron_class_res())        // 精炼
+        else if(ob->is_iron_class_res())        // 精煉
         {
                 int upq;
 
@@ -366,14 +366,14 @@ int do_epurate(string arg)
                 ||  !(cmcs = MINE_D->chinese_mine_class(mcs))
                 ||  (member_array(mcs, can_epurate) == -1)
                 ||  !(upq = MINE_D->query_mine_class_up_quantity(mcs)) )
-                        return notify_fail(sprintf("%s摇摇头说道：这东西没法再精炼了。\n", this_object()->name()));
+                        return notify_fail(sprintf("%s搖搖頭說道：這東西沒法再精煉了。\n", this_object()->name()));
 
                 if( (ew = ob->query_weight()/100) < upq )
-                        return notify_fail(sprintf("%s摇摇头说道：对%s精炼至少需要 %d 两，这块%s不够。\n",
+                        return notify_fail(sprintf("%s搖搖頭說道：對%s精煉至少需要 %d 兩，這塊%s不夠。\n",
                                 this_object()->name(),cmcs, upq, cmcs));
 
                 if(!objectp(tg = MINE_D->query_mine_class_up_ob(mcs)))
-                        return notify_fail(sprintf("%s摇摇头说道：我这没法对%s进行精炼了。\n", this_object()->name(), cmcs));
+                        return notify_fail(sprintf("%s搖搖頭說道：我這沒法對%s進行精煉了。\n", this_object()->name(), cmcs));
 
                 ew /= upq;
                 value = (MINE_D->query_mine_class_value(tg->query_mine_class()) -
@@ -385,7 +385,7 @@ int do_epurate(string arg)
                 if(!(rtn=MONEY_D->player_pay(me,value)) || (rtn == 2))
                 {
                         destruct(tg);
-                        return notify_fail(sprintf("%s说道：对这块%s进行精炼需要%s。\n",
+                        return notify_fail(sprintf("%s說道：對這塊%s進行精煉需要%s。\n",
                                 name(), cmcs, MONEY_D->money_str(value)));
                 }
 
@@ -394,16 +394,16 @@ int do_epurate(string arg)
                 if(!tg->move(me) && !tg->move(environment()))
                 {
                         destruct(tg);
-                        return notify_fail("异常超重，向巫师报告吧。\n");
+                        return notify_fail("異常超重，向巫師報告吧。\n");
                 }
 
                 rong_he(me, tg);
-                write(sprintf("%s点点头说道：好了，拿去吧。\n", name()));
+                write(sprintf("%s點點頭說道：好了，拿去吧。\n", name()));
                 return 1;
         }
 
         else
-                return notify_fail(sprintf("%s摇摇头说道：这东西没法提炼。\n", name()));
+                return notify_fail(sprintf("%s搖搖頭說道：這東西沒法提煉。\n", name()));
 }
 
 protected void epurate_it(object me, object ob, object tg)
@@ -431,7 +431,7 @@ protected void epurate_it(object me, object ob, object tg)
                 destruct(tg);
 
         rong_he(me, tg);
-        message_vision("$N朝着$n点点头说道：提炼好了，拿去吧。\n", this_object(), me);
+        message_vision("$N朝著$n點點頭說道：提煉好了，拿去吧。\n", this_object(), me);
 }
 
 int do_ronghe(string arg)
@@ -442,10 +442,10 @@ int do_ronghe(string arg)
         || !sizeof(arg)
         || !objectp(ob = present(arg, me))
         || !ob->is_iron_class_res() )
-                return notify_fail("你要熔合什么？\n");
+                return notify_fail("你要熔合什麼？\n");
 
         rong_he(me, ob);
-        write(sprintf("%s点点头说道：好了。\n", name()));
+        write(sprintf("%s點點頭說道：好了。\n", name()));
         return 1;
 }
 

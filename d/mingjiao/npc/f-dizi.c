@@ -1,12 +1,12 @@
 inherit NPC;
 string *first_name = ({
- "赵","何","谢","李","苏","吴","郑","文","张","陈", "刘","林","樊" }); 
+ "趙","何","謝","李","蘇","吳","鄭","文","張","陳", "劉","林","樊" }); 
 string *name_words = ({ 
-"可","小","灵","燕","若","花","蓉","若","云","翠","丽","馨","云","香",
-"凝","美","香","兰","玉","环",});
+"可","小","靈","燕","若","花","蓉","若","雲","翠","麗","馨","雲","香",
+"凝","美","香","蘭","玉","環",});
 string *color_title = ({
-"青带女教众","红带女教众","白带女教众","蓝带女教众","紫带女教众","绿带女教众",
-"黄带女教众","金带女教众","银带女教众","黑带女教众", });
+"青帶女教眾","紅帶女教眾","白帶女教眾","藍帶女教眾","紫帶女教眾","綠帶女教眾",
+"黃帶女教眾","金帶女教眾","銀帶女教眾","黑帶女教眾", });
 void create()
 {
         string name;
@@ -16,7 +16,7 @@ void create()
         name += name_words[random(sizeof(name_words))];
         set_name(name, ({"nu jiaozhong", "jiaozhong", "nu"}));
         set("title", color_title[random(sizeof(color_title))]);
-        set("long","这是一名"+query("title", this_object())+"，她正在专心致志地练习功夫。\n");
+        set("long","這是一名"+query("title", this_object())+"，她正在專心致志地練習功夫。\n");
         set("gender", "女性" );
         set("age", 15+random(20));
         set("attitude", "peaceful");
@@ -43,10 +43,10 @@ void create()
         prepare_skill("strike", "hanbing-mianzhang");
         set("shen_type", 0);
         set("inquiry", ([
-                "name": "奴家叫做"+this_object()->name()+"，从十五岁起便投在这里学艺。",
-                "rumors": "听说故教主一身浑厚的内力都是得自昆仑山的一次奇遇。",
-                "here": "这里是明教总坛，你没事还是不要随便乱转的好。",
-                "明教": "问什么问，不懂用help mingjiao吗？！",
+                "name": "奴家叫做"+this_object()->name()+"，從十五歲起便投在這裡學藝。",
+                "rumors": "聽說故教主一身渾厚的內力都是得自崑崙山的一次奇遇。",
+                "here": "這裡是明教總壇，你沒事還是不要隨便亂轉的好。",
+                "明教": "問什麼問，不懂用help mingjiao嗎？！",
         ]));
         setup();
         carry_object("/d/mingjiao/obj/black-cloth")->wear();

@@ -1,5 +1,5 @@
 // /d/gaoli/xuanwumen
-// Room in 高丽
+// Room in 高麗
 #include <ansi.h>
 inherit ROOM;
 
@@ -7,11 +7,11 @@ inherit ROOM;
 void create()
 
 {
-set("short", "鸭绿江南岸");
+set("short", "鴨綠江南岸");
 
         set("long", @LONG
-这里是鸭绿江的南岸。从这里乘船北上，就可以到中原的北方了。
-这里停泊着几艘小船，看远处还有小船要靠近岸来。
+這裡是鴨綠江的南岸。從這裡乘船北上，就可以到中原的北方了。
+這裡停泊著幾艘小船，看遠處還有小船要靠近岸來。
 LONG
         );
         

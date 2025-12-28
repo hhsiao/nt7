@@ -4,8 +4,8 @@ void create()
 {
         set("short", "山路");
         set("long", @LONG
-这里是白驼山庄广场西边的一条小路，寻常百姓平时都是经过这
-条小路上山。
+這裡是白駝山莊廣場西邊的一條小路，尋常百姓平時都是經過這
+條小路上山。
 LONG );
         set("exits", ([
                 "north" : __DIR__"shanlu1",

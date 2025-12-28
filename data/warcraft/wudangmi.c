@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("武当猛虎[2;37;0m[2;37;0m", ({"wudangtiger"}));        
+        set_name("武當猛虎[2;37;0m[2;37;0m", ({"wudangtiger"}));        
         set("gender", "男性");                
-        set("long", "武当猛虎[2;37;0m
-它是捂江米的魔幻兽。
+        set("long", "武當猛虎[2;37;0m
+它是捂江米的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

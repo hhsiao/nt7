@@ -1,15 +1,15 @@
-// 该物件用于记录A-F房间开锁状态和随机分配房间参数
-// 该文件常驻内存直到系统关闭
+// 該物件用於記錄A-F房間開鎖狀態和隨機分配房間參數
+// 該文件常駐內存直到系統關閉
 
 inherit ITEM;
 #include <ansi.h>
 
-public string openlock(string lock); // 外部调用开锁函数
-public void init_data(string arg); // 初始化物件数据
+public string openlock(string lock); // 外部調用開鎖函數
+public void init_data(string arg); // 初始化物件數據
 private string get_result(string str1, string str2);
 
 mapping unlock = ([
-// 对应房间可开启锁的序列
+// 對應房間可開啟鎖的序列
 
         "A" : "1345",
         "B" : "236",
@@ -21,7 +21,7 @@ mapping unlock = ([
 
 void create()
 {
-        set_name("独孤九剑解迷管理物件", ({ "tsr_dugu-jiujian" }) );
+        set_name("獨孤九劍解迷管理物件", ({ "tsr_dugu-jiujian" }) );
         set_weight(1);
         set("no_clean_up", 1);
         
@@ -39,9 +39,9 @@ public void init_data(string arg)
          int ran_num;
          object s;
 
-         // 随机分配房间参数，每次reboot后顺序都不一样
-         // 初试化个房间数据，各个房间数据统一交该物件管理，便于统一
-         // 增加了解迷的难度
+         // 隨機分配房間參數，每次reboot後順序都不一樣
+         // 初試化個房間數據，各個房間數據統一交該物件管理，便於統一
+         // 增加了解迷的難度
          ran_num = random(6);
          set("number/lockroom1", rn[ran_num]);
  
@@ -64,15 +64,15 @@ public void init_data(string arg)
          rn -= ({ rn[ran_num] });
          set("number/lockroom6", rn[0]);
             
-         set("lock/unlocked", 0); // 所有锁是否解开
-         set("lock/opened", ""); // 已经打开的锁序列
+         set("lock/unlocked", 0); // 所有鎖是否解開
+         set("lock/opened", ""); // 已經打開的鎖序列
   
          if (arg == "enter")
          {
                  if (! s = find_object("/d/huashan/s"))
                            s = load_object("/d/huashan/s");
 
-                 tell_room(s, HIG "只听得轰隆隆几声，石门升起将山洞封住了。\n" NOR);
+                 tell_room(s, HIG "只聽得轟隆隆幾聲，石門升起將山洞封住了。\n" NOR);
                  delete("exits/enter", s);
          }
 
@@ -80,7 +80,7 @@ public void init_data(string arg)
 
 }
 
-// 外部调用此函数传递参数lock为: "A"-"F"    
+// 外部調用此函數傳遞參數lock為: "A"-"F"    
 public string openlock(string lock)
 {       
         string opened, str_want_open;
@@ -112,8 +112,8 @@ public string openlock(string lock)
 
              set("exits/enter", __DIR__"x", s);
 
-             tell_room(s, HIG "只听得轰隆隆几声，石门已陷入地下，露出了山洞的入口。\n" NOR);
-             call_out("init_data", 180 + random(10), "enter"); // 二分钟后重新初始化所有数据
+             tell_room(s, HIG "只聽得轟隆隆幾聲，石門已陷入地下，露出了山洞的入口。\n" NOR);
+             call_out("init_data", 180 + random(10), "enter"); // 二分鐘後重新初始化所有數據
              return "UNLOCKED";
         }
         set("lock/opened", result);

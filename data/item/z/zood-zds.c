@@ -11,8 +11,8 @@ void create()
 	set_name("[1;32m辣手[2;37;0m", ({ "zds" }));
 	set_weight(2700);
 	set("item_make", 1);
-	set("unit", "双");
-	set("long", "这是由[1;35m神铁[2;37;0m炼制而成的一双铁掌。
+	set("unit", "雙");
+	set("long", "這是由[1;35m神鐵[2;37;0m煉製而成的一雙鐵掌。
 ");
 	set("makeinfo", "[1;31m
 生肖兔(zood)[1;31m 出品
@@ -23,8 +23,8 @@ void create()
 	set("material", "magic stone");
 	set("material_file", "/d/item/obj/butian");
 	set("quality_level", 4);
-	set("wear_msg", "[33m$N[33m装备[33m$n[33m。[2;37;0m\n");
-	set("remove_msg", "[33m$N[33m脱下了[33m$n[33m。[2;37;0m\n");
+	set("wear_msg", "[33m$N[33m裝備[33m$n[33m。[2;37;0m\n");
+	set("remove_msg", "[33m$N[33m脫下了[33m$n[33m。[2;37;0m\n");
 	if( !check_clone() ) return;
 	restore();
 	set("armor_prop/unarmed_damage", apply_damage());

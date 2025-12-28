@@ -5,17 +5,17 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIY "高级清师令" NOR, ({ "qingshi ling2", "qingshi", "ling2" }) );
+        set_name(HIY "高級清師令" NOR, ({ "qingshi ling2", "qingshi", "ling2" }) );
         set_weight(100);
 
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", HIG "可使用他用来无损脱离师门一次，必须脱离前使用(use ling2)才有效。\n" NOR);
+                set("long", HIG "可使用他用來無損脫離師門一次，必須脫離前使用(use ling2)才有效。\n" NOR);
                 set("value", 1);
                 set("no_sell", 1);
-                set("unit", "块");
+                set("unit", "塊");
                 set("auto_load", 1);
         }
 
@@ -36,8 +36,8 @@ int do_qingshi(string arg)
 
         addn("skill_expell_penalty_tsl", 1, me);
 
-        write(HIM "高级清师令使用成功，你增加了一次可以无损脱师的机会！\n" NOR);
-        write(HIG "高级清师令化作一缕青烟逐渐消失了！\n" NOR);
+        write(HIM "高級清師令使用成功，你增加了一次可以無損脫師的機會！\n" NOR);
+        write(HIG "高級清師令化作一縷青煙逐漸消失了！\n" NOR);
         me->save();
         destruct(this_object());
 

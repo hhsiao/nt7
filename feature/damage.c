@@ -31,13 +31,13 @@ int query_freeze() { return freeze; }
 int clear_weak()
 {
         if( weak )
-                tell_object(this_object(), HIG"\n你感觉身体状态慢慢的复原了。。。\n\n" NOR);
+                tell_object(this_object(), HIG"\n你感覺身體狀態慢慢的復原了。。。\n\n" NOR);
         weak = 0;
 }
 int clear_freeze()
 {
         if( freeze )
-                tell_object(this_object(), HIY"\n你感觉身体冻结状态逐渐恢复正常了。。。\n\n" NOR);
+                tell_object(this_object(), HIY"\n你感覺身體凍結狀態逐漸恢復正常了。。。\n\n" NOR);
         freeze = 0;
 }
 
@@ -63,9 +63,9 @@ varargs int set_weak(int n, int flag)
                 if( n > 1 ) n -= random(n);
         if( intp(n) && (n >= 0) ) {
                 if( !flag && weak && !n )
-                        tell_object(this_object(), HIG "\n你感觉身体状态慢慢的复原了。。。\n\n" NOR);
+                        tell_object(this_object(), HIG "\n你感覺身體狀態慢慢的復原了。。。\n\n" NOR);
                 else if( !flag && !weak && n )
-                        tell_object(this_object(), RED "\n你感觉身体非常的虚弱，一点力气也使不出来了。。。\n\n" NOR);
+                        tell_object(this_object(), RED "\n你感覺身體非常的虛弱，一點力氣也使不出來了。。。\n\n" NOR);
 
                 if( !n ) {
                         weak = n;
@@ -89,9 +89,9 @@ varargs int set_freeze(int n, int flag)
 
         if( intp(n) && (n >= 0) ) {
                 if( !flag && freeze && !n )
-                        tell_object(this_object(), HIG "\n你感觉身体冻结状态逐渐恢复正常了。。。\n\n" NOR);
+                        tell_object(this_object(), HIG "\n你感覺身體凍結狀態逐漸恢復正常了。。。\n\n" NOR);
                 else if( !flag && !freeze && n )
-                        tell_object(this_object(), RED "\n你只觉四肢僵硬，身体开始凝冻，行动迟缓，动作困难，像一个冰人似的。。。\n\n" NOR);
+                        tell_object(this_object(), RED "\n你只覺四肢僵硬，身體開始凝凍，行動遲緩，動作困難，像一個冰人似的。。。\n\n" NOR);
 
                 if( !n ) {
                         freeze = n;
@@ -112,9 +112,9 @@ varargs int receive_damage(string type, int damage, object who)
         int a, r;
         object *bugs, jcg;
 
-        if( damage < 0 ) error("F_DAMAGE: 伤害值为负值。\n");
+        if( damage < 0 ) error("F_DAMAGE: 傷害值為負值。\n");
         if( type!="jing" && type!="qi" )
-                error("F_DAMAGE: 伤害种类错误( 只能是 jing, qi 其中之一 )。\n");
+                error("F_DAMAGE: 傷害種類錯誤( 只能是 jing, qi 其中之一 )。\n");
 
         if( query("master_ob", this_object()) == 5 ) return 0;
         if (query("family/family_name", this_object())=="五毒教" && this_object()->is_fighting()) {
@@ -125,7 +125,7 @@ varargs int receive_damage(string type, int damage, object who)
                         foreach (jcg in bugs) {
                                 if (!living(jcg)) continue;
                                 if (random(100)<(35-ABILITY_D->check_ability(this_object(), "chance-bdjcg-protect"))) continue;
-                                message_vision(HIR "\n$N扇动六只金翅，瞬移挡在$n的前面承受了攻击！\n", jcg, this_object());
+                                message_vision(HIR "\n$N扇動六隻金翅，瞬移擋在$n的前面承受了攻擊！\n", jcg, this_object());
                                 jcg->receive_damage(type, damage, who);
                                 return 0;
                         }
@@ -140,7 +140,7 @@ varargs int receive_damage(string type, int damage, object who)
                 a = query_temp("buffup/backfire_amount",this_object());
                 if( a < 0 ) a = 0;
                 if( a > 100 ) a = 100;
-                who->receive_damage(type,damage / 100 * a, this_object()); // 防止负值
+                who->receive_damage(type,damage / 100 * a, this_object()); // 防止負值
                 delete_temp("bonus/backfire_damage", who);
                 message_vision(query_temp("buffup/backfire_msg"),this_object(),who);
         }
@@ -151,7 +151,7 @@ varargs int receive_damage(string type, int damage, object who)
                         last_damage_from = who;
                         set_temp("last_damage_from", who);
                 }
-                // 装备系统附加属性
+                // 裝備系統附加屬性
                 if( n = who->query_all_buff("add_damage") )
                 {
                         n = n * (100 - query("reborn/times")*10)/100;
@@ -162,9 +162,9 @@ varargs int receive_damage(string type, int damage, object who)
                         this_object()->affect_by("bingcan_poison",
                                 ([ "level" : 8000,
                                    "id":query("id", who),
-                                   "name" : "冰蚕寒毒",
+                                   "name" : "冰蠶寒毒",
                                    "duration" : 200 ]));
-                        tell_object(this_object(), HIG "你中了冰蚕寒功的冰蚕寒毒。\n");
+                        tell_object(this_object(), HIG "你中了冰蠶寒功的冰蠶寒毒。\n");
                 }
                 if( playerp(who) && playerp(this_object()) &&
                     this_object()->is_fighting(who) ) {
@@ -194,7 +194,7 @@ varargs int receive_damage(string type, int damage, object who)
                         if( random(100) < n ) set_freeze(5, 0);
                 }
 
-                // 仇恨系统
+                // 仇恨系統
                 if( !userp(this_object()) ) {
                         add_hatred(who, damage);
                 }
@@ -210,13 +210,13 @@ varargs int receive_damage(string type, int damage, object who)
                 r = 0;
         if( r ) return 0;
 
-        // 受损的生命转换为内力
+        // 受損的生命轉換為內力
         if( random(100) < 30 && (n = this_object()->query_all_buff("qi_abs_neili")) )
         {
                 addn("neili", damage * n / 100);
                 if( query("neili") > query("max_neili") )
                         set("neili", query("max_neili"));
-                message_vision(HIR "\n突然间，$N全身蓝光爆现，受损的气血转换为内力！\n", this_object());
+                message_vision(HIR "\n突然間，$N全身藍光爆現，受損的氣血轉換為內力！\n", this_object());
         }
 
         val = (int)query(type) - damage;
@@ -233,9 +233,9 @@ varargs int receive_wound(string type, int damage, object who)
         int a;
         object *bugs, jcg;
 
-        if( damage < 0 ) error("F_DAMAGE: 伤害值为负值。\n");
+        if( damage < 0 ) error("F_DAMAGE: 傷害值為負值。\n");
         if( type!="jing" && type!="qi" )
-                error("F_DAMAGE: 伤害种类错误( 只能是 jing, qi 其中之一 )。\n");
+                error("F_DAMAGE: 傷害種類錯誤( 只能是 jing, qi 其中之一 )。\n");
 
         if( query("master_ob", this_object()) == 5 ) return 0;
         if (query("family/family_name", this_object())=="五毒教" && this_object()->is_fighting()) {
@@ -246,7 +246,7 @@ varargs int receive_wound(string type, int damage, object who)
                         foreach (jcg in bugs) {
                                 if (!living(jcg)) continue;
                                 if (random(100)<(35-ABILITY_D->check_ability(this_object(), "chance-bdjcg-protect"))) continue;
-                                message_vision(HIR "\n$N扇动六只金翅，瞬移挡在$n的前面承受了攻击！\n", jcg, this_object());
+                                message_vision(HIR "\n$N扇動六隻金翅，瞬移擋在$n的前面承受了攻擊！\n", jcg, this_object());
                                 jcg->receive_wound(type, damage, who);
                                 return 0;
                         }
@@ -260,7 +260,7 @@ varargs int receive_wound(string type, int damage, object who)
                 a = query_temp("buffup/backfire_amount",this_object());
                 if( a < 0 ) a = 0;
                 if( a > 100 ) a = 100;
-                who->receive_wound(type,damage/100 * a, this_object()); // 防止负值
+                who->receive_wound(type,damage/100 * a, this_object()); // 防止負值
                 delete_temp("bonus/backfire_damage",who);
                 if( !query_temp("bonus/backfire_msg") )
                         message_vision(query_temp("buffup/backfire_msg"),this_object(),who);
@@ -301,7 +301,7 @@ varargs int receive_wound(string type, int damage, object who)
                         if( random(100) < n ) set_weak(5, 0);
                 }
 
-                // 仇恨系统
+                // 仇恨系統
                 if( !userp(this_object()) ) {
                         add_hatred(who, damage);
                 }
@@ -325,9 +325,9 @@ int receive_heal(string type, int heal)
 {
         int val;
 
-        if( heal < 0 ) error("F_DAMAGE: 恢复值为负值。\n");
+        if( heal < 0 ) error("F_DAMAGE: 恢復值為負值。\n");
         if( type!="jing" && type!="qi" )
-                error("F_DAMAGE: 恢复种类错误( 只能是 jing, qi 其中之一 )。\n");
+                error("F_DAMAGE: 恢復種類錯誤( 只能是 jing, qi 其中之一 )。\n");
 
         if( BUFF_D->check_buff(this_object(),"cursedflesh") > 0 )
                 return receive_damage(type,heal,BUFF_D->get_buff_caster(this_object(),"cursedflesh"));
@@ -342,9 +342,9 @@ int receive_curing(string type, int heal)
 {
         int max, val;
 
-        if( heal < 0 ) error("F_DAMAGE: 恢复值为负值。\n");
+        if( heal < 0 ) error("F_DAMAGE: 恢復值為負值。\n");
         if( type!="jing" && type!="qi" )
-                error("F_DAMAGE: 恢复种类错误( 只能是 jing, qi 其中之一 )。\n");
+                error("F_DAMAGE: 恢復種類錯誤( 只能是 jing, qi 其中之一 )。\n");
 
         if( BUFF_D->check_buff(this_object(),"cursedflesh") > 0)
                 return receive_wound(type,heal,BUFF_D->get_buff_caster(this_object(),"cursedflesh"));
@@ -366,9 +366,9 @@ varargs int receive_full(string type, int heal, object who)
         int num, i;
         object *enemy;
 
-        if( heal < 0 ) error("F_DAMAGE: 恢复值为负值。\n");
+        if( heal < 0 ) error("F_DAMAGE: 恢復值為負值。\n");
         if( type!="jing" && type!="qie" )
-                error("F_DAMAGE: 恢复种类错误( 只能是 jing, qi 其中之一 )。\n");
+                error("F_DAMAGE: 恢復種類錯誤( 只能是 jing, qi 其中之一 )。\n");
 
         if( BUFF_D->check_buff(this_object(),"cursedflesh") > 0)
         {
@@ -376,7 +376,7 @@ varargs int receive_full(string type, int heal, object who)
                 return receive_wound(type,heal,BUFF_D->get_buff_caster(this_object(),"cursedflesh"));
         }
 
-        // 仇恨系统
+        // 仇恨系統
         if( objectp(who) )
         {
                 enemy = this_object()->query_enemy();
@@ -495,7 +495,7 @@ varargs void unconcious(object defeater)
         defeated_by_who = last_damage_name;
         if( defeated_by = last_damage_from ) {
                 object *dp;
-                // 如果此人有主，则算主人打晕的
+                // 如果此人有主，則算主人打暈的
                 if( objectp(query_temp("owner", defeated_by)) ) {
                         defeated_by = query_temp("owner", defeated_by);
                         defeated_by_who = defeated_by->name(1);
@@ -507,7 +507,7 @@ varargs void unconcious(object defeater)
                 if( query("qi") < 0 || query("jing") < 0 )
                         COMBAT_D->winner_reward(defeated_by, me);
 
-                // 如果对方有意杀害我，则我愤怒，并且对方累积杀气。
+                // 如果對方有意殺害我，則我憤怒，並且對方累積殺氣。
                 if( playerp(me) && defeated_by->is_want_kill(query("id")) ) {
                         defeated_by->record_dp(me);
                         me->craze_of_defeated(query("id", defeated_by));
@@ -520,13 +520,13 @@ varargs void unconcious(object defeater)
         }
         me->remove_all_enemy(0);
         me->clear_written();
-        message("system", HIR "\n你的眼前一黑，接著什么也不知道了....\n\n" NOR,
+        message("system", HIR "\n你的眼前一黑，接著什麼也不知道了....\n\n" NOR,
                 me);
         me->disable_player(" <昏迷不醒>");
         delete_temp("sleeped");
         if( objectp(riding = query_temp("is_riding")) ) {
                 object follower;
-                message_vision("$N一头从$n上面栽了下来！\n",
+                message_vision("$N一頭從$n上面栽了下來！\n",
                               me, riding);
                 delete_temp("is_riding");
                 delete_temp("is_rided_by", riding);
@@ -536,7 +536,7 @@ varargs void unconcious(object defeater)
                 {
                         delete_temp("is_riding_follow", follower);
                         delete_temp("is_rided_follow", riding);
-                        message_vision("$N从$n上飞身跳下。\n", follower, riding);
+                        message_vision("$N從$n上飛身跳下。\n", follower, riding);
                 }
         }
         set("jing", 0);
@@ -577,8 +577,8 @@ varargs void revive(int quiet)
                 defeated_by = 0;
                 defeated_by_who = 0;
                 COMBAT_D->announce(this_object(), "revive");
-                message("vision", HIY "\n慢慢地你终于又有了知觉....\n\n" NOR, me);
-                // 不能把 npc 搬进安全区。
+                message("vision", HIY "\n慢慢地你終於又有了知覺....\n\n" NOR, me);
+                // 不能把 npc 搬進安全區。
                 if( !userp(this_object()) && query("no_fight", env) &&
                     stringp(room = query("startroom")) && base_name(env) != room ) {
                         ob = find_object(room);
@@ -620,8 +620,8 @@ varargs void die(object killer)
         delete_temp("sleeped");
         delete("last_sleep");
 
-        // 朱雀重生效果 50%几率 瞬间爆发恢复气血精力到60%
-        // 如超过60%则不恢复
+        // 朱雀重生效果 50%幾率 瞬間爆發恢復氣血精力到60%
+        // 如超過60%則不恢復
         if( query("special_skill/zhuque", me) && random(10) < 5)
         {
                 if( query("qi", me) < query("max_qi", me) * 3 / 5)
@@ -632,7 +632,7 @@ varargs void die(object killer)
                 if( query("jingli", me) < query("max_jingli", me) * 3 / 5)
                         set("jingli", query("max_jingli", me) * 3 / 5, me);
 
-                message_vision(HIR "\n突然间，$N身后红光爆现，犹如传说中的凤凰般美妙！\n" NOR, me);
+                message_vision(HIR "\n突然間，$N身後紅光爆現，猶如傳說中的鳳凰般美妙！\n" NOR, me);
                 return;
         }
 
@@ -662,7 +662,7 @@ varargs void die(object killer)
                 set("jing",query("max_jing"));
 
                 time = 600;
-                //time -= ABILITY_D->check_ability(me, "avoid_die", 2); // talent减cd
+                //time -= ABILITY_D->check_ability(me, "avoid_die", 2); // talent減cd
                 if( me->query_viplevel() > 7 ) time -= 480;
                 if( me->query_viplevel() > 8 ) time -= 60;
                 buff = ([
@@ -673,13 +673,13 @@ varargs void die(object killer)
                         "attr"   : "curse",
                         "name"   : "浴血重生·重生",
                         "time"   : time,
-                        "buff_msg" : "浴血重生消耗心神太甚，还需等待"+time+"秒方可再次触发。\n",
+                        "buff_msg" : "浴血重生消耗心神太甚，還需等待"+time+"秒方可再次觸發。\n",
                         "buff_type": 1,
                         "disa_msg" : "",
                         "disa_type": 0,
                 ]);
 
-                message_vision(HIY "\n突然间，$N全身散发出一阵金光，如同浴血重生一般。\n" NOR, me);
+                message_vision(HIY "\n突然間，$N全身散發出一陣金光，如同浴血重生一般。\n" NOR, me);
                 COMBAT_D->report_status(this_object());
                 if( playerp(me) && !query_temp("special_skill/immortal") )
                         BUFF_D->buffup(buff);
@@ -704,12 +704,12 @@ varargs void die(object killer)
                 }
                 if( query("penglai", env) )
                 {
-                        tell_object(me, HIG "死亡保护：一阵仙气将你魂魄护住，带你回到了扁鹊居。\n" NOR);
+                        tell_object(me, HIG "死亡保護：一陣仙氣將你魂魄護住，帶你回到了扁鵲居。\n" NOR);
                         me->move("/d/penglai/bianqueju");
                 }
                 else
                 {
-                        tell_object(me, HIG "死亡保护：一阵红光将你魂魄护住，带你回到了武庙。\n" NOR);
+                        tell_object(me, HIG "死亡保護：一陣紅光將你魂魄護住，帶你回到了武廟。\n" NOR);
                         me->move("/d/city/wumiao");
                 }
                 unconcious();
@@ -745,7 +745,7 @@ varargs void die(object killer)
                 COMBAT_D->winner_reward(killer, me);
         if( objectp(riding = query_temp("is_riding")) ) {
                 object follower;
-                message_vision("$N一头从$n上面栽了下来！\n",
+                message_vision("$N一頭從$n上面栽了下來！\n",
                                me, riding);
                 delete_temp("is_riding");
                 delete_temp("is_rided_by", riding);
@@ -754,7 +754,7 @@ varargs void die(object killer)
                 {
                         delete_temp("is_riding_follow", follower);
                         delete_temp("is_rided_follow", riding);
-                        message_vision("$N从$n上飞身跳下。\n", follower, riding);
+                        message_vision("$N從$n上飛身跳下。\n", follower, riding);
                 }
         }
         // Check how am I to die
@@ -765,11 +765,11 @@ varargs void die(object killer)
                     (dob_name != killer_name || dob != killer) ) {
                         if( dob && playerp(dob) && dob->is_want_kill(query("id")) ) {
                                 if( !dob->query_condition("killer") ) {
-                                        follow_msg = "听说官府发下海捕文书，缉拿杀人肇事凶手" +
+                                        follow_msg = "聽說官府發下海捕文書，緝拿殺人肇事兇手" +
                                                      dob->name(1) + "。";
                                         dob->apply_condition("killer", 500);
                                 } else {
-                                        follow_msg = "听说官府加紧捉拿累犯重案的肇事暴徒" +
+                                        follow_msg = "聽說官府加緊捉拿累犯重案的肇事暴徒" +
                                                      dob->name(1) + "。";
                                         dob->apply_condition("killer", 800 +
                                                      (int)dob->query_condition("killer"));
@@ -778,12 +778,12 @@ varargs void die(object killer)
                         }
                         // set the die reason
                         set_temp("die_reason", "被" +
-                                 dob_name + "打晕以后，被" +
-                                 (dob_name == killer_name ? "另一个" : "") +
-                                 killer_name + "趁机杀掉了");
+                                 dob_name + "打暈以後，被" +
+                                 (dob_name == killer_name ? "另一個" : "") +
+                                 killer_name + "趁機殺掉了");
                 } else if( playerp(me) && killer_name && !killer ) {
                         set_temp("die_reason", "被" + killer_name +
-                                               HIM "杀害了");
+                                               HIM "殺害了");
                 }
         }
         if( COMBAT_D->player_escape(killer, this_object()) ) {
@@ -908,7 +908,7 @@ int heal_up()
         // For Business.
         if( playerp(me) )
         {
-                // 战神附体
+                // 戰神附體
                 n = me->query_all_buff("full_self");
                 //if( n > 90 ) n = 90;
                 time = query_temp("last_full_self", me);
@@ -921,7 +921,7 @@ int heal_up()
                 if( full_flag && !me->is_busy() && n > random(300) && random(10) < 5 )
                 {
                         time = query_temp("last_success_full", me);
-                        if( real_time() - time < 120 )  // 间隔1分钟内
+                        if( real_time() - time < 120 )  // 間隔1分鐘內
                         {
                                 if( query("qi", me) < query("max_qi", me) * 90 / 100 )
                                 {
@@ -942,7 +942,7 @@ int heal_up()
                                         if( query("neili") > query("max_neili") ) set("neili",query("max_qi", me), me);
                                 }
                         }
-                        else if( real_time() - time < 180 )  // 间隔2分钟内
+                        else if( real_time() - time < 180 )  // 間隔2分鐘內
                         {
                                 if( query("qi", me) < query("max_qi", me) * 90 / 100 )
                                 {
@@ -963,7 +963,7 @@ int heal_up()
                                         if( query("neili") > query("max_neili") ) set("neili",query("max_qi", me), me);
                                 }
                         }
-                        else if( real_time() - time < 240 )  // 间隔3分钟内
+                        else if( real_time() - time < 240 )  // 間隔3分鐘內
                         {
                                 if( query("qi", me) < query("max_qi", me) * 90 / 100 )
                                 {
@@ -984,7 +984,7 @@ int heal_up()
                                         if( query("neili") > query("max_neili") ) set("neili",query("max_qi", me), me);
                                 }
                         }
-                        else if( real_time() - time < 300 )  // 间隔4分钟内
+                        else if( real_time() - time < 300 )  // 間隔4分鐘內
                         {
                                 if( query("qi", me) < query("max_qi", me) * 90 / 100 )
                                 {
@@ -1026,7 +1026,7 @@ int heal_up()
                         if( flag )
                         {
                                 set_temp("last_success_full", real_time(), me);
-                                tell_object(me, HIR "你全身红光爆现，犹如战神附体般恢复了气血和内力！\n" NOR);
+                                tell_object(me, HIR "你全身紅光爆現，猶如戰神附體般恢復了氣血和內力！\n" NOR);
 
                         }
                 }
@@ -1036,7 +1036,7 @@ int heal_up()
                         if( query("neili") < query("max_neili") * 70 / 100 )
                         {
                                 set("neili", query("max_neili"));
-                                tell_object(me, HIC "你先天功运转，顿时真气流动生生不息，用之不歇。\n" NOR);
+                                tell_object(me, HIC "你先天功運轉，頓時真氣流動生生不息，用之不歇。\n" NOR);
                         }
                 }
 
@@ -1054,7 +1054,7 @@ int heal_up()
                                 if( query("eff_qi") > query("max_qi") ) set("eff_qi",query("max_qi", me), me);
                                 addn("qi", count, me);
                                 if( query("qi") > query("max_qi") ) set("qi",query("max_qi", me), me);
-                                tell_object(me, HIC "你体内阴阳太极运转，顿时化阴阳鱼之力治愈自身受伤血气。\n" NOR);
+                                tell_object(me, HIC "你體內陰陽太極運轉，頓時化陰陽魚之力治癒自身受傷血氣。\n" NOR);
                         }
                 }
                 me->update_all_wares();
@@ -1084,7 +1084,7 @@ int heal_up()
                 if( (guard = query_temp("guardfor")) &&
                     (!objectp(guard) || ! guard->is_character()) ) {
                         if( my["jing"] * 100 / my["max_jing"] < 50 ) {
-                                tell_object(me, "你觉得太累了，需要放松放松了。\n");
+                                tell_object(me, "你覺得太累了，需要放鬆放鬆了。\n");
                                 command("guard cancel");
                                 return update_flag;
                         }
@@ -1092,16 +1092,16 @@ int heal_up()
                         my["jing"] -= 30 + random(20);
                         switch (random(8))
                         {
-                        case 0: message_vision("$N紧张的盯着四周来往的行人。\n", me);
+                        case 0: message_vision("$N緊張的盯著四周來往的行人。\n", me);
                                 break;
 
-                        case 1: message_vision("$N打了个哈欠，随即振作精神继续观察附近情况。\n", me);
+                        case 1: message_vision("$N打了個哈欠，隨即振作精神繼續觀察附近情況。\n", me);
                                 break;
 
-                        case 2: message_vision("$N左瞅瞅，右看看，不放过一个可疑的人物。\n", me);
+                        case 2: message_vision("$N左瞅瞅，右看看，不放過一個可疑的人物。\n", me);
                                 break;
 
-                        case 3: message_vision("$N打起精神细细的观察周围。\n", me);
+                        case 3: message_vision("$N打起精神細細的觀察周圍。\n", me);
                                 break;
                         }
                         update_flag++;
@@ -1115,7 +1115,7 @@ int heal_up()
                         my["jing"] = my["eff_jing"];
                         if( my["eff_jing"] < my["max_jing"] ) {
                                 my["eff_jing"] ++;
-                                // 装备系统附加属性
+                                // 裝備系統附加屬性
                                 if( q = me->query_all_buff("jing_recover") ) {
                                         my["eff_jing"] += q;
                                 }
@@ -1131,7 +1131,7 @@ int heal_up()
                         my["qi"] = my["eff_qi"];
                         if( my["eff_qi"] < my["max_qi"] ) {
                                 my["eff_qi"] ++;
-                                // 装备系统
+                                // 裝備系統
                                 if( q = me->query_all_buff("qi_recover") ) {
                                         my["eff_qi"] += q;
                                 }
@@ -1153,7 +1153,7 @@ int heal_up()
                 if( my["max_neili"] && my["neili"] < my["max_neili"] ) {
                         t = my["con"] * 2 + (int)me->query_skill("force") / 3;
                         my["neili"] += t;
-                        // 装备系统
+                        // 裝備系統
                         if( q = me->query_all_buff("neili_recover") ) {
                                         my["neili"] += q;
                         }
@@ -1212,7 +1212,7 @@ object query_max_hatred()
         }
 }
 
-// 查询某一对手的仇恨
+// 查詢某一對手的仇恨
 int query_hatred(object enemy)
 {
         if (mapp(hatred_list))
@@ -1259,7 +1259,7 @@ mapping query_combine_damage_list()
         for( i=0;i<n;i++ )
         {
                 if( !objectp(a[i]) ) continue;
-                if( b[i] ) continue; // 队伍中成员统计过
+                if( b[i] ) continue; // 隊伍中成員統計過
 
                 list[a[i]] = hatred_list[a[i]];
 

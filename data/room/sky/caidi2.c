@@ -5,11 +5,11 @@
 
 void create()
 {
-        set("short", "海南岛菜地");
+        set("short", "海南島菜地");
 	set ("long", @LONG
-这片菜园子几畦地里种了一些时鲜蔬菜。另外有几个木桩搭起的
-菜架子，供一些爬藤的蔬菜生长，不过你举目看去，老大的一片菜园
-子，居然疏疏落落的没有几棵菜。 
+這片菜園子幾畦地裡種了一些時鮮蔬菜。另外有幾個木樁搭起的
+菜架子，供一些爬藤的蔬菜生長，不過你舉目看去，老大的一片菜園
+子，居然疏疏落落的沒有幾棵菜。 
 LONG );
 
         set("exits", ([
@@ -19,9 +19,9 @@ LONG );
         set("no_sleep_room", 1);
         setup();
 
-        set("room_owner", "灭下");
-        set("room_name", "海南岛");
+        set("room_owner", "滅下");
+        set("room_name", "海南島");
         set("room_id", "sky");
         set("room_owner_id", "sky");
-        set("room_position", "南海之滨");
+        set("room_position", "南海之濱");
 }

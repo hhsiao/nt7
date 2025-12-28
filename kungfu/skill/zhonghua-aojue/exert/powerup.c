@@ -9,20 +9,20 @@ int exert(object me, object target)
         int skill;
 
         if (target != me)
-                return notify_fail("你只能用中华傲决来提升自己的战斗力。\n");
+                return notify_fail("你只能用中華傲決來提升自己的戰鬥力。\n");
 
         if( query("neili", me)<100 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if( query_temp("powerup", me) )
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
         addn("neili", -100, me);
         me->receive_damage("qi", 0);
 
-        message_combatd(HIR "$N" HIR "凝神息气，运起中华傲决"
-                        "真气，只见一股劲气澎湃而出。\n" NOR, me);
+        message_combatd(HIR "$N" HIR "凝神息氣，運起中華傲決"
+                        "真氣，只見一股勁氣澎湃而出。\n" NOR, me);
 
         addn_temp("apply/attack", skill/2, me);
         addn_temp("apply/dodge", skill/2, me);
@@ -45,6 +45,6 @@ void remove_effect(object me, int amount)
                 addn_temp("apply/dodge", -amount, me);
                 addn_temp("apply/parry", -amount, me);
                 delete_temp("powerup", me);
-                tell_object(me, "你的中华傲决运行完毕，将内力收回丹田。\n");
+                tell_object(me, "你的中華傲決運行完畢，將內力收回丹田。\n");
         }
 }

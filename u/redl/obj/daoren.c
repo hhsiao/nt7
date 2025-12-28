@@ -8,15 +8,15 @@ int clean_up() { return 1;}
 
 void create()
 {
-        set_name(NOR "无名道人" NOR, ({"dao ren"}));
-                set("long",  NOR "原来这是具早就坐化的尸骨，手结千钧血心印，衣襟上绣着朵小红花。\n" NOR);
+        set_name(NOR "無名道人" NOR, ({"dao ren"}));
+                set("long",  NOR "原來這是具早就坐化的屍骨，手結千鈞血心印，衣襟上繡著朵小紅花。\n" NOR);
                 set("weight", 1000000000);
                 set("unit", "具");
-                set("no_store", "这是对死者的大不敬！\n"); 
-                set("no_steal", "这是对死者的大不敬！\n"); 
-                set("no_beg", "这是对死者的大不敬！\n"); 
-                set("no_get", "这是对死者的大不敬！\n"); 
-                set("no_uget", "这是对死者的大不敬！\n"); 
+                set("no_store", "這是對死者的大不敬！\n"); 
+                set("no_steal", "這是對死者的大不敬！\n"); 
+                set("no_beg", "這是對死者的大不敬！\n"); 
+                set("no_get", "這是對死者的大不敬！\n"); 
+                set("no_uget", "這是對死者的大不敬！\n"); 
         setup();
 }
 
@@ -39,14 +39,14 @@ int do_action(string arg)
                         call_out("do_look", 2, me);
                 } else if (action=="kneel" && arg=="dao ren") {
                         if(me->is_busy()) {
-                                tell_object(me, NOR "你态度过于随便，怎么也跪不下去。\n" NOR);
+                                tell_object(me, NOR "你態度過於隨便，怎麼也跪不下去。\n" NOR);
                                 me->start_busy(3+ random(2));
                                 return 1;
                         }
                         me->start_busy(2);
                         if (!query_temp("has_kneelredl", me)) set_temp("has_kneelredl", 0, me);
                         addn_temp("has_kneelredl", 1, me);
-                        message_vision(NOR "$N恭谨地向$n" NOR "磕了"+chinese_number(query_temp("has_kneelredl", me))+"个响头。\n" NOR, me, this_object());
+                        message_vision(NOR "$N恭謹地向$n" NOR "磕了"+chinese_number(query_temp("has_kneelredl", me))+"個響頭。\n" NOR, me, this_object());
                         return 1;
                 } // else if (arg=="dao ren") {
 //                      me->command(action + " " + query("id", me));
@@ -65,24 +65,24 @@ int do_look(object me)
                 query("id", me) != "redl" && query("couple/couple_id", me) != "redl" && 
                 (query("get_time", environment())>time() - 5400) 
                 ) {
-                        message_vision(YEL "在$N的凝目注视下，$n" YEL "的遗骸瞬间塌化成尘，随风就飘散到九天外去了。\n" NOR, me, this_object());
+                        message_vision(YEL "在$N的凝目注視下，$n" YEL "的遺骸瞬間塌化成塵，隨風就飄散到九天外去了。\n" NOR, me, this_object());
                         destruct(this_object());
                         return 1;
                 }
         
         if (ki > 10) ki = 10;
         
-        message_vision(YEL "在$N的凝目注视下，$n" YEL "的遗骸瞬间塌化成尘，随风就飘散到九天外去了。\n" NOR, me, this_object());
+        message_vision(YEL "在$N的凝目注視下，$n" YEL "的遺骸瞬間塌化成塵，隨風就飄散到九天外去了。\n" NOR, me, this_object());
 
         if (!query_temp("has_getrune", me) && !random(5)) 
                 if (ki > 2) {
                 set_temp("has_getrune", 1, me);
                 i = (11 - ki);
                 for(int i2 = i; i2 > 0; i2--) { new("/clone/tessera/rune" + to_string(20 + ki))->move(me);      }
-                tell_object(me, HIG "你感觉手心里多了点东西，连忙定睛一看，原来是" + chinese_number(i) + "个符文(rune" + to_string(20 + ki) + ")。\n" NOR);
+                tell_object(me, HIG "你感覺手心裡多了點東西，連忙定睛一看，原來是" + chinese_number(i) + "個符文(rune" + to_string(20 + ki) + ")。\n" NOR);
                 addn("redl/gethomerune", 1, me);
                 if (query("redl/gethomerune", me)>2)
-                        tell_object(me, YEL "你隐隐约约听到一个声音在你脑海里响起：不要再回来了，不可对人说你是我徒弟。\n" NOR);
+                        tell_object(me, YEL "你隱隱約約聽到一個聲音在你腦海裡響起：不要再回來了，不可對人說你是我徒弟。\n" NOR);
         }
         
         if (!random(4)) new(__DIR__"mbox")->move(environment());

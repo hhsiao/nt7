@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("初级坑[2;37;0m[2;37;0m", ({"cjk"}));        
+        set_name("初級坑[2;37;0m[2;37;0m", ({"cjk"}));        
         set("gender", "女性");                
         set("long", "finish[2;37;0m
-它是周丹壹的魔幻兽。
+它是周丹壹的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

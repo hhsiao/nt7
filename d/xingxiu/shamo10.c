@@ -11,7 +11,7 @@ int valid_leave(object me, string dir)
                 if( addn_temp("out_shamo",-1, me) <= -3 )
                 {
                         me->move("/d/baituo/gebi");
-                        write("你累得半死，终於走出了沙漠。\n");
+                        write("你累得半死，終於走出了沙漠。\n");
                         return -1;
                 }
         }

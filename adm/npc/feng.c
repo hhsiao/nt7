@@ -1,15 +1,15 @@
-// 本程序用于店铺拍卖，由WIZLELVEL权限以上的巫师来启动
-// 在启动拍卖之前，首先请用cshshop指令初始化所有店铺状态
-// 启动进程有两种方式：巫师手工操作、系统自动运行
+// 本程序用於店鋪拍賣，由WIZLELVEL權限以上的巫師來啟動
+// 在啟動拍賣之前，首先請用cshshop指令初始化所有店鋪狀態
+// 啟動進程有兩種方式：巫師手工操作、系統自動運行
 
-// 如果是启动了手工操作，在主持巫师发生如下状况，自动进程将接管拍卖：
-// 主持巫师离开拍卖场
-// 主持巫师退线
-// 主持巫师不进行任何拍卖操作超过规定时间
-// 主持巫师断线
-// 主持巫师昏迷或者死亡
+// 如果是啟動了手工操作，在主持巫師發生如下狀況，自動進程將接管拍賣：
+// 主持巫師離開拍賣場
+// 主持巫師退線
+// 主持巫師不進行任何拍賣操作超過規定時間
+// 主持巫師斷線
+// 主持巫師昏迷或者死亡
 
-// 拍卖过程中本NPC物件的更新不会导致拍卖进程的中断，比如update,dest & clone
+// 拍賣過程中本NPC物件的更新不會導致拍賣進程的中斷，比如update,dest & clone
 
 #include <ansi.h>
 #include <getconfig.h>
@@ -17,42 +17,42 @@
 inherit NPC;
 inherit F_SAVE;
 
-#define WIZLEVEL 3 //  能够启动和执行拍卖的巫师等级
-#define DISTANCE 8 //  拍卖中间隔的时间（秒）
-#define DELAY 30   //  拍卖中主持巫师没有进行任何动作的等待时间（秒）
-                   //  超过这个时间，自动进程接管拍卖
+#define WIZLEVEL 3 //  能夠啟動和執行拍賣的巫師等級
+#define DISTANCE 8 //  拍賣中間隔的時間（秒）
+#define DELAY 30   //  拍賣中主持巫師沒有進行任何動作的等待時間（秒）
+                   //  超過這個時間，自動進程接管拍賣
 
 string query_save_file();
-int do_start(string arg);                // 启动拍卖，不使用arg参数表示启动手工进程
-int do_auction(string arg);                // 指定拍卖的当前店铺
-int begin_auction();                        // 等待玩家竞投的守护程序
-int stop_auction();                        // 结束当前店铺的拍卖
-int do_jupai(string arg);                // 玩家竞投中断
-int go_jupai();                                // 玩家竞投的守护程序
-int do_qiao();                                // 巫师宣价以及落棰
-int do_auctionlist();                        // 查询拍卖店铺列表
-int do_ban(string arg);                        // 取消|恢复 玩家拍卖资格
-int finish_auction(string arg);                // 结束拍卖
-void heart_beat();                        // 心跳线，手工拍卖守护进程
-object check_operator();                // 检查主持巫师状态函数
-int do_autoauction();                        // 将手工进程转为自动进程
-int last_time = 0;                        // 最后一次手工操作的时间
-object operator;                        // 本变量记录拍卖主持者
+int do_start(string arg);                // 啟動拍賣，不使用arg參數表示啟動手工進程
+int do_auction(string arg);                // 指定拍賣的當前店鋪
+int begin_auction();                        // 等待玩家競投的守護程序
+int stop_auction();                        // 結束當前店鋪的拍賣
+int do_jupai(string arg);                // 玩家競投中斷
+int go_jupai();                                // 玩家競投的守護程序
+int do_qiao();                                // 巫師宣價以及落棰
+int do_auctionlist();                        // 查詢拍賣店鋪列表
+int do_ban(string arg);                        // 取消|恢復 玩家拍賣資格
+int finish_auction(string arg);                // 結束拍賣
+void heart_beat();                        // 心跳線，手工拍賣守護進程
+object check_operator();                // 檢查主持巫師狀態函數
+int do_autoauction();                        // 將手工進程轉為自動進程
+int last_time = 0;                        // 最後一次手工操作的時間
+object operator;                        // 本變量記錄拍賣主持者
 
 void create()
 {
         seteuid(getuid());
         restore();
 
-        set_name("凤天南", ({ "feng tiannan", "feng", "tiannan" }));
+        set_name("鳳天南", ({ "feng tiannan", "feng", "tiannan" }));
         set("long", @LONG
-他就是佛山五虎门掌门人凤天南，当年凭一套
-五虎棍法名震江湖。虽然为武林人士，但却是
-富甲一方。全天下各处都有他的产业。
+他就是佛山五虎門掌門人鳳天南，當年憑一套
+五虎棍法名震江湖。雖然為武林人士，但卻是
+富甲一方。全天下各處都有他的產業。
 LONG);
-        set("title", "佛山五虎门掌门人");
+        set("title", "佛山五虎門掌門人");
         set("nickname", HIY "南霸天" NOR);
-        set("channel_id","凤天南");
+        set("channel_id","鳳天南");
         set("gender", "男性");
         set("age", 45);
         set("combat_exp", 800000);
@@ -78,8 +78,8 @@ LONG);
         if (! clonep(this_object()))
         {
                 move("/d/foshan/pmc");
-                message_vision(CYN "\n$N" CYN "走了过来，看了看周"
-                               "围，阴笑两声。\n" NOR, this_object());
+                message_vision(CYN "\n$N" CYN "走了過來，看了看周"
+                               "圍，陰笑兩聲。\n" NOR, this_object());
                 set("startroom", "/d/foshan/pmc");
         }
 
@@ -105,7 +105,7 @@ void init()
         add_action("do_jupai", "jupai");
 }
 
-//  存盘文档
+//  存盤文檔
 string query_save_file()
 {
         return "/data/npc/feng";
@@ -125,12 +125,12 @@ int do_start(string arg)
         ob = this_object();
 
         if( query("auction_start", ob) && !query("auction_end", ob) )
-                return notify_fail("现在正在拍卖中，无法重新开始。\n");
+                return notify_fail("現在正在拍賣中，無法重新開始。\n");
 
         if (! SHOP_D->is_inited())
         {
-                msg = "店铺尚未全部初始化，请在进行拍卖之前将所有"
-                      "店铺初始化。\n";
+                msg = "店鋪尚未全部初始化，請在進行拍賣之前將所有"
+                      "店鋪初始化。\n";
                 write(msg);
                 return 1;
         } else
@@ -146,16 +146,16 @@ int do_start(string arg)
                 remove_call_out("finish_auction");
 
                 all_shop = SHOP_D->query_shop();
-                msg = HIC "成功初始化拍卖程序，待拍卖店铺列表： \n" NOR;
+                msg = HIC "成功初始化拍賣程序，待拍賣店鋪列表： \n" NOR;
                 msg += HIC "--------------------------------------\n" NOR;
                 for (i = 0;i < sizeof(all_shop);i++)
                 {
                         shop_list += ({ all_shop[i]["id"] });
                         begin_shop[all_shop[i]["id"]] = all_shop[i]["price"];
-                        msg += sprintf(HIY "%-20s" HIW "\t%d两黄金\n" NOR,all_shop[i]["id"],all_shop[i]["price"]);
+                        msg += sprintf(HIY "%-20s" HIW "\t%d兩黃金\n" NOR,all_shop[i]["id"],all_shop[i]["price"]);
                 }
                 msg += HIC "--------------------------------------\n" NOR;
-                msg += WHT "总共有" + chinese_number(sizeof(all_shop)) + "家店铺。\n" NOR;
+                msg += WHT "總共有" + chinese_number(sizeof(all_shop)) + "家店鋪。\n" NOR;
 
                 delete("owner", ob);
                 delete("shop_list", ob);
@@ -175,47 +175,47 @@ int do_start(string arg)
 
                 if (arg)
                 {
-                        CHANNEL_D->do_channel(ob, "sys", "店铺拍卖系统由" + me->name(1) +
-                                                  "成功启动。运行模式：自动。");
+                        CHANNEL_D->do_channel(ob, "sys", "店鋪拍賣系統由" + me->name(1) +
+                                                  "成功啟動。運行模式：自動。");
 
-                        // 拍卖设置为自动运行
+                        // 拍賣設置為自動運行
                         set("operator", "fengtiannan", ob);
 
-                        msg += HIR "您选择了通过" HIW "自动运行" HIR "的方式来启"
-                               "动拍卖进程。\n\n" NOR;
+                        msg += HIR "您選擇了通過" HIW "自動運行" HIR "的方式來啟"
+                               "動拍賣進程。\n\n" NOR;
                         write(msg);
 
-                        message_vision(CYN "$N" CYN "哈哈大笑道：既然各位都准备好"
-                                       "了，那么咱们就开始拍卖吧。\n" NOR, ob);
+                        message_vision(CYN "$N" CYN "哈哈大笑道：既然各位都準備好"
+                                       "了，那麼咱們就開始拍賣吧。\n" NOR, ob);
                         operator = ob;
                         ob->save();
                         call_out("do_auction", 0, "automatic");
                 } else
                 {
-                        CHANNEL_D->do_channel(ob, "sys", "店铺拍卖系统由" + me->name(1) +
-                                                  "成功启动，运行模式：人工。");
+                        CHANNEL_D->do_channel(ob, "sys", "店鋪拍賣系統由" + me->name(1) +
+                                                  "成功啟動，運行模式：人工。");
 
-                        // 拍卖设置为手工运行
+                        // 拍賣設置為手工運行
                         set("operator",query("id",  me), ob);
 
-                        msg += HIR "您选择了通过" HIW "人工操作" HIR "的方式来启"
-                               "动拍卖进程。\n\n" NOR;
-                        msg += WHT "拍卖的指令为(" HIY "auction <店铺ID>" NOR +
+                        msg += HIR "您選擇了通過" HIW "人工操作" HIR "的方式來啟"
+                               "動拍賣進程。\n\n" NOR;
+                        msg += WHT "拍賣的指令為(" HIY "auction <店鋪ID>" NOR +
                                WHT ")。\n" NOR;
                         msg += WHT "您可以用(" HIY "auto" NOR + WHT ")指令"
-                               "来将拍卖进程转成自动运行。\n" NOR;
+                               "來將拍賣進程轉成自動運行。\n" NOR;
                         write(msg);
 
-                        message_vision(CYN "$N" CYN "擦了擦汗，赔笑道：这次的拍卖"
-                                       "由$n" CYN "亲自主持。\n" NOR, ob, me);
-                        message_vision(HIC "$N" HIC "干笑两声，将手中的锤子郑重交"
-                                       "给$n" HIC "。\n" NOR, ob, me);
+                        message_vision(CYN "$N" CYN "擦了擦汗，賠笑道：這次的拍賣"
+                                       "由$n" CYN "親自主持。\n" NOR, ob, me);
+                        message_vision(HIC "$N" HIC "乾笑兩聲，將手中的錘子鄭重交"
+                                       "給$n" HIC "。\n" NOR, ob, me);
                         operator = me;
 
-                        // 记录该次操作时间
+                        // 記錄該次操作時間
                         last_time = time();
 
-                        // 启动手工拍卖守护进程
+                        // 啟動手工拍賣守護進程
                         set_heart_beat(1);
                         ob->save();
                 }
@@ -233,20 +233,20 @@ int do_auction(string arg)
         int i, now_price;
 
         if (! query("auction_start") || query("auction_end"))
-                return notify_fail("现在并没有在进行拍卖。\n");
+                return notify_fail("現在並沒有在進行拍賣。\n");
 
         if (! arg)
-                return notify_fail("指令格式：auction <店铺ID>\n");
+                return notify_fail("指令格式：auction <店鋪ID>\n");
 
         if (query("now_shop"))
-                return notify_fail("现在正在进行" + query("now_shop") +
-                                   "店铺的拍卖，您别着急。\n");
+                return notify_fail("現在正在進行" + query("now_shop") +
+                                   "店鋪的拍賣，您彆著急。\n");
 
         ob = this_object();
 
         if (ob != operator && this_player() != operator)
-                return notify_fail("现在的拍卖正在由" + operator->name(1) +
-                                   "主持进行中。\n");
+                return notify_fail("現在的拍賣正在由" + operator->name(1) +
+                                   "主持進行中。\n");
 
         remove_call_out("do_auction");
         remove_call_out("finish_auction");
@@ -255,56 +255,56 @@ int do_auction(string arg)
         shop_list = query("shop_list");
         begin_shop = query("begin_shop");
 
-        //  非自动的
+        //  非自動的
         if (ob != operator)
         {
-                // 已经全部拍卖完毕了
+                // 已經全部拍賣完畢了
                 if (sizeof(shop_list) < 1)
                 {
                         set("can_finish", 1);
                         save();
-                        return notify_fail(WHT "所有店铺都已经拍卖结束了，您现"
-                                           "在可以结束(" HIY "finish" NOR + WHT
-                                           ")拍卖了。\n" NOR);
+                        return notify_fail(WHT "所有店鋪都已經拍賣結束了，您現"
+                                           "在可以結束(" HIY "finish" NOR + WHT
+                                           ")拍賣了。\n" NOR);
                 }
 
-                //  提交的参数错误，重新显示所有待拍卖店铺列表
+                //  提交的參數錯誤，重新顯示所有待拍賣店鋪列表
                 if (! begin_shop[arg])
                 {
-                        msg = HIR "对不起，您所提交的店铺并不存在。\n\n" NOR;
-                        msg += WHT "等待拍卖的店铺列表： \n" NOR;
+                        msg = HIR "對不起，您所提交的店鋪並不存在。\n\n" NOR;
+                        msg += WHT "等待拍賣的店鋪列表： \n" NOR;
                         msg += HIC "--------------------------------------\n" NOR;
                         shop_key = keys(begin_shop);
 
                         for (i = 0; i < sizeof(shop_key); i++)
-                                msg += sprintf(HIW "%-20s" HIY "\t%d两黄金\n" NOR,
+                                msg += sprintf(HIW "%-20s" HIY "\t%d兩黃金\n" NOR,
                                                shop_key[i],
                                                begin_shop[shop_key[i]]);
 
                         msg += HIC "--------------------------------------\n" NOR;
-                        msg += WHT "总共有" + chinese_number(sizeof(shop_key)) +
-                               "家店铺可以拍卖。\n\n";
+                        msg += WHT "總共有" + chinese_number(sizeof(shop_key)) +
+                               "家店鋪可以拍賣。\n\n";
                         write(msg);
                         return 1;
                 }
-                // 当前拍卖店铺
+                // 當前拍賣店鋪
                 now_shop = arg;
-        } else        // 自动拍卖
+        } else        // 自動拍賣
         {
-                // 全部店铺都已经拍卖完毕
+                // 全部店鋪都已經拍賣完畢
                 if (sizeof(shop_list) < 1)
                 {
                         set("can_finish", 1, ob);
                         ob->save();
-                        // 调用结束拍卖程序
+                        // 調用結束拍賣程序
                         call_out("finish_auction", 0, "automatic");
                         return 1;
                 }
-                // 当前拍卖店铺
+                // 當前拍賣店鋪
                 now_shop = shop_list[random(sizeof(shop_list))];
         }
 
-        // 从待拍店铺中删除当前拍卖店铺
+        // 從待拍店鋪中刪除當前拍賣店鋪
         shop_list -= ({ now_shop });
         now_price = query("begin_shop/" + now_shop);
         set("wait_jupai", 1, ob);
@@ -314,18 +314,18 @@ int do_auction(string arg)
         set("now_price", now_price, ob);
         ob->save();
 
-        CHANNEL_D->do_channel(ob, "sys", "现在开始拍卖" + now_shop + "店铺。");
+        CHANNEL_D->do_channel(ob, "sys", "現在開始拍賣" + now_shop + "店鋪。");
 
-        message_vision(HIW "\n$N" HIW "大声道：现在开始拍卖『" HIC +
-                       now_shop + HIC "店铺" HIW "』底价为" +
-                       chinese_number(now_price) + "两黄金，有意者请"
-                       "举牌。\n" NOR, operator);
+        message_vision(HIW "\n$N" HIW "大聲道：現在開始拍賣『" HIC +
+                       now_shop + HIC "店鋪" HIW "』底價為" +
+                       chinese_number(now_price) + "兩黃金，有意者請"
+                       "舉牌。\n" NOR, operator);
 
-        // 自动拍卖
+        // 自動拍賣
         if (ob == operator)
                 call_out("begin_auction", DISTANCE);
         else
-                // 记录该次操作的时间
+                // 記錄該次操作的時間
                 last_time = time();
 
         return 1;
@@ -341,7 +341,7 @@ int begin_auction()
 
         m=query("wait_jupai", ob);
 
-        // 已经有人开始举牌
+        // 已經有人開始舉牌
         if (! m)
                 return 1;
 
@@ -359,29 +359,29 @@ int begin_auction()
         {
         case 0:
 
-                message_vision(CYN "\n$N" CYN "接着道：正在开始拍卖" HIC +
-                               now_shop + NOR + CYN "店铺。报价为" YEL +
-                               chinese_number(now_price) + "两黄金"
+                message_vision(CYN "\n$N" CYN "接著道：正在開始拍賣" HIC +
+                               now_shop + NOR + CYN "店鋪。報價為" YEL +
+                               chinese_number(now_price) + "兩黃金"
                                CYN "第" + chinese_number(m) + "次。\n" NOR,
                                operator);
                 break;
 
         case 1:
-                message_vision(CYN "\n$N" CYN "看了看周围大声道：现在"
-                               YEL + chinese_number(now_price) + "两黄金"
+                message_vision(CYN "\n$N" CYN "看了看周圍大聲道：現在"
+                               YEL + chinese_number(now_price) + "兩黃金"
                                CYN "第" + chinese_number(m) + "次，"
-                               YEL + chinese_number(now_price) + "两黄金"
-                               CYN "第" + chinese_number(m) + "次。拍卖" +
-                               HIC + now_shop + NOR + CYN "店铺。\n" NOR,
+                               YEL + chinese_number(now_price) + "兩黃金"
+                               CYN "第" + chinese_number(m) + "次。拍賣" +
+                               HIC + now_shop + NOR + CYN "店鋪。\n" NOR,
                                operator);
                 break;
 
         default:
-                message_vision(CYN "\n$N" CYN "干咳两声，大声道：现在为"
-                               YEL + chinese_number(now_price) + "两黄金"
-                               CYN "第" + chinese_number(m) + "次，拍卖" +
-                               HIC + now_shop + NOR + CYN "店铺，欲购"
-                               "者从速。\n" NOR, operator);
+                message_vision(CYN "\n$N" CYN "乾咳兩聲，大聲道：現在為"
+                               YEL + chinese_number(now_price) + "兩黃金"
+                               CYN "第" + chinese_number(m) + "次，拍賣" +
+                               HIC + now_shop + NOR + CYN "店鋪，欲購"
+                               "者從速。\n" NOR, operator);
                 break;
         }
 
@@ -389,40 +389,40 @@ int begin_auction()
         {
         case 0:
 
-                message_vision(CYN "$N" CYN "环顾了一下四周，接着说道：请有"
-                               "意者举牌(" HIY "jupai" NOR + CYN ")。\n" NOR,
+                message_vision(CYN "$N" CYN "環顧了一下四周，接著說道：請有"
+                               "意者舉牌(" HIY "jupai" NOR + CYN ")。\n" NOR,
                                operator);
                 break;
 
         case 1:
-                message_vision(CYN "$N" CYN "皱了皱眉头，说道：有人愿意购买"
-                               "么？请即时举牌(" HIY "jupai" NOR + CYN ")。\n"
+                message_vision(CYN "$N" CYN "皺了皺眉頭，說道：有人願意購買"
+                               "麼？請即時舉牌(" HIY "jupai" NOR + CYN ")。\n"
                                NOR, operator);
                 break;
 
         case 2:
-                message_vision(CYN "$N" CYN "微笑道：各位考虑好了么？有人愿"
-                               "意购举牌(" HIY "jupai" NOR + CYN ")出价么？\n"
+                message_vision(CYN "$N" CYN "微笑道：各位考慮好了麼？有人願"
+                               "意購舉牌(" HIY "jupai" NOR + CYN ")出價麼？\n"
                                NOR, operator);
                 break;
 
         default:
-                message_vision(CYN "$N" CYN "清了清嗓子，继续说道：拍卖正在"
-                               "进行，请各位举牌(" HIY "jupai" NOR + CYN ")示"
+                message_vision(CYN "$N" CYN "清了清嗓子，繼續說道：拍賣正在"
+                               "進行，請各位舉牌(" HIY "jupai" NOR + CYN ")示"
                                "意。\n" NOR, operator);
                 break;
         }
 
-        // 自动拍卖
+        // 自動拍賣
         if (operator == ob)
         {
                 if (! (m >= 3))
                         call_out("begin_auction",DISTANCE);
                 else
                         call_out("stop_auction",DISTANCE);
-        // 手工拍卖
+        // 手工拍賣
         } else
-                // 记录最后一次操作的时间
+                // 記錄最後一次操作的時間
                 last_time = time();
 }
 
@@ -457,11 +457,11 @@ int stop_auction()
 
         if (query("wait_jupai"))
         {
-                message_vision(BEEP + HIY "\n$N" HIY "举起手中的小木棰用"
-                               "力的一敲，只听得『当』的一声巨响。\n" NOR,
+                message_vision(BEEP + HIY "\n$N" HIY "舉起手中的小木棰用"
+                               "力的一敲，只聽得『當』的一聲巨響。\n" NOR,
                                operator);
-                message_vision(HIY "$N" HIY "大声宣布道：现在" HIC + now_shop +
-                               HIY "店铺的所有权拍卖流标了。\n" NOR,
+                message_vision(HIY "$N" HIY "大聲宣佈道：現在" HIC + now_shop +
+                               HIY "店鋪的所有權拍賣流標了。\n" NOR,
                                operator);
 
                 end_shop[now_shop] = 0;
@@ -470,10 +470,10 @@ int stop_auction()
                 set("end_shop", end_shop, ob);
                 ob->save();
 
-                // 自动拍卖
+                // 自動拍賣
                 if (operator == ob)
                 {
-                        // 所有店铺拍卖结束
+                        // 所有店鋪拍賣結束
                         if (sizeof(shop_list) < 1)
                         {
                                 set("can_finish", 1);
@@ -484,62 +484,62 @@ int stop_auction()
                         call_out("do_auction", 1, "automatic");
                 } else
                 {
-                        // 所有店铺拍卖结束
+                        // 所有店鋪拍賣結束
                         if (sizeof(shop_list) < 1)
                         {
                                 set("can_finish", 1);
                                 save();
-                                tell_object(operator, WHT "所有店铺都已经拍卖结"
-                                            "束，您现在可以结束(" HIY "finish"
-                                            NOR + WHT ")拍卖。\n"NOR);
+                                tell_object(operator, WHT "所有店鋪都已經拍賣結"
+                                            "束，您現在可以結束(" HIY "finish"
+                                            NOR + WHT ")拍賣。\n"NOR);
                                 return 1;
                         }
 
-                        msg += HIC "等待拍卖的店铺列表： \n" NOR;
+                        msg += HIC "等待拍賣的店鋪列表： \n" NOR;
                         msg += HIC "≡" HIY "----------------------------" HIC "≡\n" NOR;
                         shop_key = keys(begin_shop);
 
                         for (i = 0; i < sizeof(shop_key); i++)
-                                msg += sprintf(CYN "%-20s" WHT "\t%d两黄金\n" NOR,
+                                msg += sprintf(CYN "%-20s" WHT "\t%d兩黃金\n" NOR,
                                                shop_key[i],
                                                begin_shop[shop_key[i]]);
 
                         msg += HIC "≡" HIY "----------------------------" HIC "≡\n" NOR;
-                        msg += HIC "总共有" HIY + chinese_number(sizeof(shop_key)) + HIC
-                               "家店铺可以拍卖。\n\n";
+                        msg += HIC "總共有" HIY + chinese_number(sizeof(shop_key)) + HIC
+                               "家店鋪可以拍賣。\n\n";
 
                         tell_object(operator, msg);
-                        // 记录该次操作时间
+                        // 記錄該次操作時間
                         last_time = time();
                 }
                 return 1;
         } else
         {
-                //  首先检查当前竞投店铺的玩家是否在线，或者是否在投标后赶回
-                //  钱庄取走了存款如果该玩家数据异常，则该店铺重新归入待拍店
-                //  铺数组，并且取消该玩家的拍卖资格。
+                //  首先檢查當前競投店鋪的玩家是否在線，或者是否在投標後趕回
+                //  錢莊取走了存款如果該玩家數據異常，則該店鋪重新歸入待拍店
+                //  鋪數組，並且取消該玩家的拍賣資格。
 
                 the_owner = find_player(temp_owner);
 
                 if (! objectp(the_owner)
                     || query("balance", the_owner)<(now_price*10000) )
                 {
-                        // 取消该玩家的拍卖资格
+                        // 取消該玩家的拍賣資格
                         do_ban(temp_owner + " 1");
                         begin_shop[now_shop] = 2000;
                         set("begin_shop", begin_shop, ob);
 
-                        message_vision(HIY "$N" HIY "冷笑一声道：居然敢跟我玩？" +
-                                       temp_owner + HIY "数据异常，取消拍卖资格"
+                        message_vision(HIY "$N" HIY "冷笑一聲道：居然敢跟我玩？" +
+                                       temp_owner + HIY "數據異常，取消拍賣資格"
                                        "。\n\n" NOR, operator);
 
-                        CHANNEL_D->do_channel(ob, "sys", "由于" + temp_owner +
-                                                  "数据异常，取消该玩家的拍卖资"
-                                                  "格！" + now_shop + "店铺"
-                                                  "重新归入待拍卖列表！");
+                        CHANNEL_D->do_channel(ob, "sys", "由於" + temp_owner +
+                                                  "數據異常，取消該玩家的拍賣資"
+                                                  "格！" + now_shop + "店鋪"
+                                                  "重新歸入待拍賣列表！");
                 } else
                 {
-                        // 记录店铺历史数据
+                        // 記錄店鋪歷史數據
                         record = ([]);
                         shop_record = query(now_shop);
 
@@ -562,28 +562,28 @@ int stop_auction()
                         set("end_shop", end_shop, ob);
                         SHOP_D->change_owner(operator, now_shop, temp_owner);
 
-                        message_vision(BEEP + HIY "\n$N" HIY "举起手中的小木棰用"
-                                       "力的一敲，只听得『当』的一声巨响。\n" NOR,
+                        message_vision(BEEP + HIY "\n$N" HIY "舉起手中的小木棰用"
+                                       "力的一敲，只聽得『當』的一聲巨響。\n" NOR,
                                        operator);
-                        message_vision(HIY "$N" HIY "大声宣布道：成交！恭喜" +
+                        message_vision(HIY "$N" HIY "大聲宣佈道：成交！恭喜" +
                                        the_owner->name() + HIY "以" NOR + YEL +
-                                       chinese_number(now_price) +"两黄金" HIY
-                                       "的价格获得了" HIC + now_shop + HIY
-                                       "店铺的所有权。\n" NOR, operator);
+                                       chinese_number(now_price) +"兩黃金" HIY
+                                       "的價格獲得了" HIC + now_shop + HIY
+                                       "店鋪的所有權。\n" NOR, operator);
 
-                        shout(HIY "【商界传闻】" NOR + WHT + operator->name() +
+                        shout(HIY "【商界傳聞】" NOR + WHT + operator->name() +
                               WHT"["+query("id", operator)+WHT"]：恭喜"+
-                              the_owner->name() + NOR + WHT "获得了" + now_shop +
-                              NOR + WHT "店铺的所有权。\n" NOR);
+                              the_owner->name() + NOR + WHT "獲得了" + now_shop +
+                              NOR + WHT "店鋪的所有權。\n" NOR);
 
-                        CHANNEL_D->do_channel(ob, "sys", temp_owner + "获得了" +
-                                                  now_shop + "店铺的所有权。"
-                                                  "最终出价" + chinese_number(now_price) +
-                                                  "两黄金！");
+                        CHANNEL_D->do_channel(ob, "sys", temp_owner + "獲得了" +
+                                                  now_shop + "店鋪的所有權。"
+                                                  "最終出價" + chinese_number(now_price) +
+                                                  "兩黃金！");
 
                         tell_object(the_owner, HIC + BLINK "\n恭喜您以" +
                                                chinese_number(now_price) +
-                                               "两黄金的价格获得店铺的所有权。\n" NOR);
+                                               "兩黃金的價格獲得店鋪的所有權。\n" NOR);
                 }
                 delete("on_jupai", ob);
                 delete("now_shop", ob);
@@ -591,10 +591,10 @@ int stop_auction()
                 delete("temp_owner", ob);
                 ob->save();
 
-                // 自动拍卖
+                // 自動拍賣
                 if (operator == ob)
                 {
-                        // 所有店铺拍卖结束
+                        // 所有店鋪拍賣結束
                         if (sizeof(shop_list) < 1)
                         {
                                 set("can_finish", 1);
@@ -604,33 +604,33 @@ int stop_auction()
                                 call_out("do_auction", 1, "automatic");
                 } else
                 {
-                        // 所有店铺拍卖结束
+                        // 所有店鋪拍賣結束
                         if (sizeof(shop_list) < 1)
                         {
                                 set("can_finish", 1);
                                 save();
-                                tell_object(operator, WHT "所有店铺都已经拍卖结束了，您现"
-                                                      "在可以结束(" HIY "finish" NOR + WHT
-                                                      ")拍卖了。\n"NOR);
+                                tell_object(operator, WHT "所有店鋪都已經拍賣結束了，您現"
+                                                      "在可以結束(" HIY "finish" NOR + WHT
+                                                      ")拍賣了。\n"NOR);
                                 return 1;
                         }
 
-                        msg += WHT "等待拍卖的店铺列表： \n" NOR;
+                        msg += WHT "等待拍賣的店鋪列表： \n" NOR;
                         msg += HIC "--------------------------------------\n" NOR;
                         shop_key = keys(begin_shop);
 
                         for (i = 0; i < sizeof(shop_key); i++)
-                                msg += sprintf(HIW "%-20s" HIY "\t%d两黄金\n" NOR,
+                                msg += sprintf(HIW "%-20s" HIY "\t%d兩黃金\n" NOR,
                                                shop_key[i],
                                                begin_shop[shop_key[i]]);
 
                         msg += HIC "--------------------------------------\n" NOR;
-                        msg += WHT "总共有" + chinese_number(sizeof(shop_key)) +
-                               "家店铺可以拍卖。\n\n";
+                        msg += WHT "總共有" + chinese_number(sizeof(shop_key)) +
+                               "家店鋪可以拍賣。\n\n";
 
                         tell_object(operator,msg);
 
-                        // 记录该次操作时间
+                        // 記錄該次操作時間
                         last_time = time();
                 }
                 return 1;
@@ -647,26 +647,26 @@ int do_jupai(string arg)
         buyer = this_player();
 
         if (! query("auction_start"))
-                return notify_fail("现在拍卖还没有开始，不必心急。\n");
+                return notify_fail("現在拍賣還沒有開始，不必心急。\n");
 
-        //  手工拍卖，检查执行巫师是否还在，如果不在则进程转为自动
+        //  手工拍賣，檢查執行巫師是否還在，如果不在則進程轉為自動
         if (operator != ob)
                 operator = check_operator();
 
         if (! query("now_shop"))
-               return notify_fail(operator->name(1) + "还没有宣布"
-                                  "要拍卖哪家店铺，你急个啥？\n");
+               return notify_fail(operator->name(1) + "還沒有宣佈"
+                                  "要拍賣哪家店鋪，你急個啥？\n");
 
         if (arrayp(query("owner"))
             && member_array(query("id", buyer),query("owner")) != -1 )
-                return notify_fail("你已经购买到了店铺，就别太心黑了。\n");
+                return notify_fail("你已經購買到了店鋪，就別太心黑了。\n");
 
         if (arrayp(query("ban"))
             && member_array(query("id", buyer),query("ban")) != -1 )
-                return notify_fail("你已经给取消了拍卖资格，老实点吧。\n");
+                return notify_fail("你已經給取消了拍賣資格，老實點吧。\n");
 
         if( query("id", buyer) == query("temp_owner") )
-                return notify_fail("当前的价格本来就是你所竞投的。\n");
+                return notify_fail("當前的價格本來就是你所競投的。\n");
 
         now_shop = query("now_shop");
         now_price = query("now_price");
@@ -678,11 +678,11 @@ int do_jupai(string arg)
                 if (! (sscanf(arg, "%d", money) == 1)
                    || money < 30
                    || money > 10000)
-                        return notify_fail("你打算加价多少两(30-10000)黄金？\n");
+                        return notify_fail("你打算加價多少兩(30-10000)黃金？\n");
 
         if( query("balance", buyer)<(money+now_price)*10000 )
-                return notify_fail("你帐户里的钱并不足" +
-                                   chinese_number(money+now_price) + "两黄金。\n");
+                return notify_fail("你帳戶裡的錢並不足" +
+                                   chinese_number(money+now_price) + "兩黃金。\n");
 
         remove_call_out("begin_auction");
         remove_call_out("go_jupai");
@@ -696,40 +696,40 @@ int do_jupai(string arg)
         delete("wait_jupai", ob);
         ob->save();
 
-        tell_object(buyer, HIC "你举了举手中的牌子，示意加价" +
-                           chinese_number(money) + "两黄金。\n" NOR);
+        tell_object(buyer, HIC "你舉了舉手中的牌子，示意加價" +
+                           chinese_number(money) + "兩黃金。\n" NOR);
 
-        message_vision(HIW "\n$N" HIW "大笑道：好！现在" + buyer->name() +
-                       HIW "出价" NOR + YEL + chinese_number(now_price) +
-                       "两黄金" HIW "，各位请继续出价。\n" NOR, operator);
+        message_vision(HIW "\n$N" HIW "大笑道：好！現在" + buyer->name() +
+                       HIW "出價" NOR + YEL + chinese_number(now_price) +
+                       "兩黃金" HIW "，各位請繼續出價。\n" NOR, operator);
 
         switch (random(3))
         {
         case 0:
 
-                message_vision(CYN "$N" CYN "环顾了一下四周，接着说"
-                               "道：有意者可继续举牌(" HIY "jupai" NOR +
-                               CYN ")认购。\n" NOR, operator);
+                message_vision(CYN "$N" CYN "環顧了一下四周，接著說"
+                               "道：有意者可繼續舉牌(" HIY "jupai" NOR +
+                               CYN ")認購。\n" NOR, operator);
                 break;
 
         case 1:
-                message_vision(CYN "$N" CYN "微笑道：有人愿继续拼价"
-                               "么？请有意者继续举牌(" HIY "jupai" NOR +
-                               CYN ")出价。\n" NOR, operator);
+                message_vision(CYN "$N" CYN "微笑道：有人願繼續拼價"
+                               "麼？請有意者繼續舉牌(" HIY "jupai" NOR +
+                               CYN ")出價。\n" NOR, operator);
                 break;
 
         default:
-                message_vision(CYN "$N" CYN "清了清嗓子，接着道：拍"
-                               "卖正在进行，请各位继续举牌(" HIY "jupai"
+                message_vision(CYN "$N" CYN "清了清嗓子，接著道：拍"
+                               "賣正在進行，請各位繼續舉牌(" HIY "jupai"
                                NOR + CYN ")示意。\n" NOR, operator);
                 break;
         }
 
-        // 自动拍卖
+        // 自動拍賣
         if (operator == ob)
                 call_out("go_jupai", DISTANCE);
         else
-                // 记录当前操作时间
+                // 記錄當前操作時間
                 last_time = time();
 
         return 1;
@@ -758,26 +758,26 @@ int go_jupai()
         {
         case 0:
 
-                message_vision(CYN "\n$N" CYN "接着道：现在正在拍卖" HIC +
-                               now_shop + NOR + CYN "店铺。报价为" + YEL +
-                               chinese_number(now_price) + "两黄金" CYN "第" +
+                message_vision(CYN "\n$N" CYN "接著道：現在正在拍賣" HIC +
+                               now_shop + NOR + CYN "店鋪。報價為" + YEL +
+                               chinese_number(now_price) + "兩黃金" CYN "第" +
                                chinese_number(m) + "次。\n" NOR, operator);
                 break;
 
         case 1:
-                message_vision(CYN "\n$N" CYN "环顾四周大声道：现在报价为"
-                               YEL + chinese_number(now_price) + "两黄金"
-                               CYN "第" + chinese_number(m) + "次，拍卖" +
-                               HIC + now_shop + NOR + CYN "店铺。\n" NOR,
+                message_vision(CYN "\n$N" CYN "環顧四周大聲道：現在報價為"
+                               YEL + chinese_number(now_price) + "兩黃金"
+                               CYN "第" + chinese_number(m) + "次，拍賣" +
+                               HIC + now_shop + NOR + CYN "店鋪。\n" NOR,
                                operator);
                 break;
 
         default:
-                message_vision(CYN "\n$N" CYN "干咳两声，大声道：现在为"
-                               YEL + chinese_number(now_price) + "两黄金"
-                               CYN "第" + chinese_number(m) + "次，拍卖" +
-                               HIC + now_shop + NOR + CYN "店铺，欲购"
-                               "者从速。\n" NOR, operator);
+                message_vision(CYN "\n$N" CYN "乾咳兩聲，大聲道：現在為"
+                               YEL + chinese_number(now_price) + "兩黃金"
+                               CYN "第" + chinese_number(m) + "次，拍賣" +
+                               HIC + now_shop + NOR + CYN "店鋪，欲購"
+                               "者從速。\n" NOR, operator);
                 break;
         }
 
@@ -785,34 +785,34 @@ int go_jupai()
         {
         case 0:
 
-                message_vision(CYN "$N" CYN "环顾了一下四周，接着说"
-                               "道：有意者可继续举牌(" HIY "jupai" NOR +
-                               CYN ")认购。\n" NOR, operator);
+                message_vision(CYN "$N" CYN "環顧了一下四周，接著說"
+                               "道：有意者可繼續舉牌(" HIY "jupai" NOR +
+                               CYN ")認購。\n" NOR, operator);
                 break;
 
         case 1:
-                message_vision(CYN "$N" CYN "微笑道：有人愿继续拼价"
-                               "么？请有意者继续举牌(" HIY "jupai" NOR +
-                               CYN ")出价。\n" NOR, operator);
+                message_vision(CYN "$N" CYN "微笑道：有人願繼續拼價"
+                               "麼？請有意者繼續舉牌(" HIY "jupai" NOR +
+                               CYN ")出價。\n" NOR, operator);
                 break;
 
         default:
-                message_vision(CYN "$N" CYN "清了清嗓子，接着道：拍"
-                               "卖正在进行，请各位继续举牌(" HIY "jupai"
+                message_vision(CYN "$N" CYN "清了清嗓子，接著道：拍"
+                               "賣正在進行，請各位繼續舉牌(" HIY "jupai"
                                NOR + CYN ")示意。\n" NOR, operator);
                 break;
         }
 
-        // 自动拍卖
+        // 自動拍賣
         if (operator == ob)
         {
                 if (! (m >= 3))
                         call_out("go_jupai", DISTANCE);
                 else
                         call_out("stop_auction", DISTANCE);
-        // 手工拍卖
+        // 手工拍賣
         } else
-                // 记录最后一次操作的时间
+                // 記錄最後一次操作的時間
                 last_time = time();
 
         return 1;
@@ -827,12 +827,12 @@ int do_qiao()
         me = this_player();
 
         if (! query("auction_start"))
-                return notify_fail(WHT "现在拍卖进程还没有启动，您可用("
-                                   HIY "start" NOR + WHT ")指令来启动拍"
-                                   "卖进程。\n" NOR);
+                return notify_fail(WHT "現在拍賣進程還沒有啟動，您可用("
+                                   HIY "start" NOR + WHT ")指令來啟動拍"
+                                   "賣進程。\n" NOR);
 
         if (operator != me)
-                return notify_fail("现在拍卖进程正由" + operator->name(1) +
+                return notify_fail("現在拍賣進程正由" + operator->name(1) +
                                    "主持中，您就看看吧。\n");
 
         remove_call_out("do_auction");
@@ -840,7 +840,7 @@ int do_qiao()
         remove_call_out("stop_auction");
         remove_call_out("go_jupai");
 
-        // 已经宣布所拍店铺，等待举牌中
+        // 已經宣佈所拍店鋪，等待舉牌中
         if (m = query("wait_jupai"))
         {
                 if (! (m >= 3))
@@ -855,7 +855,7 @@ int do_qiao()
                 else
                         call_out("stop_auction", 0);
         } else
-                return notify_fail("您准备继续宣布拍卖哪个店铺？\n");
+                return notify_fail("您準備繼續宣佈拍賣哪個店鋪？\n");
 
         return 1;
 }
@@ -875,27 +875,27 @@ int do_auctionlist()
         end_shop = query("end_shop");
 
         if (query("auction_start"))
-                msg += HIC "现在正在拍卖之中。\n" NOR;
+                msg += HIC "現在正在拍賣之中。\n" NOR;
         else
-                msg += HIC "现在并没有在拍卖店铺。\n" NOR;
+                msg += HIC "現在並沒有在拍賣店鋪。\n" NOR;
 
         msg += HIC "--------------------------------------\n" NOR;
 
         if (now_shop)
         {
-                msg += sprintf(HIY "当前拍卖店铺：\n" HIW "%-20s"
-                               HIY "\t%d两黄金\n" NOR,
+                msg += sprintf(HIY "當前拍賣店鋪：\n" HIW "%-20s"
+                               HIY "\t%d兩黃金\n" NOR,
                                now_shop, now_price);
                 msg += HIC "--------------------------------------\n" NOR;
         }
 
         if (mapp(begin_shop) && sizeof(begin_shop) > 0)
         {
-                msg += WHT "待拍卖店铺列表： \n" NOR;
+                msg += WHT "待拍賣店鋪列表： \n" NOR;
                 shop_key = keys(begin_shop);
 
                 for (i = 0; i < sizeof(shop_key); i++)
-                        msg += sprintf(HIW "%-20s" HIY "\t%d两黄金\n" NOR,
+                        msg += sprintf(HIW "%-20s" HIY "\t%d兩黃金\n" NOR,
                                        shop_key[i],
                                        begin_shop[shop_key[i]]);
 
@@ -904,11 +904,11 @@ int do_auctionlist()
 
         if (mapp(end_shop) && sizeof(end_shop) > 0)
         {
-                msg += HIR "已被拍卖店铺列表： \n" NOR;
+                msg += HIR "已被拍賣店鋪列表： \n" NOR;
                 shop_key = keys(end_shop);
 
                 for (i = 0; i < sizeof(shop_key); i++)
-                        msg += sprintf(HIW "%-20s" HIY "\t%d两黄金\n" NOR,
+                        msg += sprintf(HIW "%-20s" HIY "\t%d兩黃金\n" NOR,
                                        shop_key[i],
                                        end_shop[shop_key[i]]);
 
@@ -932,20 +932,20 @@ int do_ban(string arg)
         if (! arg)
         {
                 if (sizeof(ban) < 1)
-                        return notify_fail("现在没有玩家给取消拍卖资格。\n");
+                        return notify_fail("現在沒有玩家給取消拍賣資格。\n");
 
-                msg = HIC "取消拍卖资格的玩家列表：\n" NOR;
+                msg = HIC "取消拍賣資格的玩家列表：\n" NOR;
                 msg += HIC "------------------------------------\n" NOR;
 
                 for (i = 0; i < sizeof(ban); i++)
                         msg += HIY + ban[i] + "\n" + NOR;
 
                 msg += HIC "------------------------------------\n" NOR;
-                msg += WHT "总共" + sizeof(ban) + "位玩家给取消拍卖资格。\n" NOR;
+                msg += WHT "總共" + sizeof(ban) + "位玩家給取消拍賣資格。\n" NOR;
 
                 msg += HIC "\n指令格式：ban [id] [1|0]\n"
-                       "其中参数id缺省表示查询，如果参数为1或是"
-                       "缺省表示添加，为0表示删除。\n" NOR;
+                       "其中參數id缺省表示查詢，如果參數為1或是"
+                       "缺省表示添加，為0表示刪除。\n" NOR;
 
                 tell_object(this_player(), msg);
                 return 1;
@@ -983,14 +983,14 @@ int finish_auction(string arg)
                 me = this_player();
 
                 if (! query("auction_start"))
-                        return notify_fail("拍卖进程并没有启动。\n");
+                        return notify_fail("拍賣進程並沒有啟動。\n");
 
                 if (! query("can_finish"))
-                        return notify_fail("现在拍卖正在进行之中，无法中止。\n");
+                        return notify_fail("現在拍賣正在進行之中，無法中止。\n");
 
                 if (operator != me)
-                        return notify_fail("现在是" + operator->name(1) + "主持"
-                                           "店铺拍卖，您就别操心了。\n");
+                        return notify_fail("現在是" + operator->name(1) + "主持"
+                                           "店鋪拍賣，您就別操心了。\n");
         }
 
         remove_call_out("finish_auction");
@@ -1008,30 +1008,30 @@ int finish_auction(string arg)
         delete("owner", ob);
         ob->save();
 
-        message_vision(CYN "\n$N" CYN "满意的点了点头，道：本次店铺拍卖圆"
-                       "满结束。\n" NOR, operator);
+        message_vision(CYN "\n$N" CYN "滿意的點了點頭，道：本次店鋪拍賣圓"
+                       "滿結束。\n" NOR, operator);
 
-        CHANNEL_D->do_channel(ob, "sys", "店铺拍卖完毕。" + operator->name(1) +
-                                  "结束了拍卖进程！");
+        CHANNEL_D->do_channel(ob, "sys", "店鋪拍賣完畢。" + operator->name(1) +
+                                  "結束了拍賣進程！");
 
         if (operator == ob)
         {
                 SHOP_D->open_all(operator);
-                message_vision(CYN "$N" CYN "笑道：现在所有拍出店铺全部"
-                               "开放，大家忙去吧。\n" NOR, operator);
+                message_vision(CYN "$N" CYN "笑道：現在所有拍出店鋪全部"
+                               "開放，大家忙去吧。\n" NOR, operator);
         } else
-                tell_object(operator, WHT "您现在可以用(" HIY "shop open"
-                                      NOR + WHT ")指令开放店铺。\n" NOR);
+                tell_object(operator, WHT "您現在可以用(" HIY "shop open"
+                                      NOR + WHT ")指令開放店鋪。\n" NOR);
 
-        shout(HIY "【商界传闻】" NOR + WHT + operator->name() + WHT "[" +
-              query("id", operator)+WHT"]：拍卖大会到此结束，各位可用"
-              "(" HIY "shop" NOR + WHT ")查看各家店铺详情。\n" NOR);
+        shout(HIY "【商界傳聞】" NOR + WHT + operator->name() + WHT "[" +
+              query("id", operator)+WHT"]：拍賣大會到此結束，各位可用"
+              "(" HIY "shop" NOR + WHT ")查看各家店鋪詳情。\n" NOR);
 
         return 1;
 }
 
-// 心跳线 -- 用于检查启动拍卖进程的巫师是否状态正常
-// 如果状态不正常，则转为自动运行模式，并且关闭心跳线
+// 心跳線 -- 用於檢查啟動拍賣進程的巫師是否狀態正常
+// 如果狀態不正常，則轉為自動運行模式，並且關閉心跳線
 void heart_beat()
 {
         int m;
@@ -1063,11 +1063,11 @@ void heart_beat()
                 set_heart_beat(0);
                 operator = this_object();
 
-                command("say 这个…嗯…看来他有点别的事情要忙，接下来"
-                        "就我来代替吧。");
+                command("say 這個…嗯…看來他有點別的事情要忙，接下來"
+                        "就我來代替吧。");
 
-                CHANNEL_D->do_channel(ob, "sys", "由于" + the_operator +
-                                          "状态异常，现在拍卖进程转入自动模式！");
+                CHANNEL_D->do_channel(ob, "sys", "由於" + the_operator +
+                                          "狀態異常，現在拍賣進程轉入自動模式！");
                 set("operator", "feng tiannan");
                 save();
 
@@ -1118,21 +1118,21 @@ int do_autoauction()
         me = this_player();
 
         if (! query("auction_start"))
-                return notify_fail("拍卖进程并没有启动，怎么自动化？\n");
+                return notify_fail("拍賣進程並沒有啟動，怎麼自動化？\n");
 
         if (operator != me)
-                return notify_fail("现在拍卖并不是你在主持。\n");
+                return notify_fail("現在拍賣並不是你在主持。\n");
 
         operator = this_object();
         set_heart_beat(0);
 
-        message_vision(CYN "$N" CYN "招手将$n" CYN "叫上来，说道：我"
-                       "有点其它事，这里就你来处理吧。\n" NOR, me, ob);
-        message_vision(CYN "$N" CYN "连忙朝$n" CYN "赔笑道：您老人家"
-                       "忙您的，这里就交给我吧。\n" NOR, ob, me);
+        message_vision(CYN "$N" CYN "招手將$n" CYN "叫上來，說道：我"
+                       "有點其它事，這裡就你來處理吧。\n" NOR, me, ob);
+        message_vision(CYN "$N" CYN "連忙朝$n" CYN "賠笑道：您老人家"
+                       "忙您的，這裡就交給我吧。\n" NOR, ob, me);
 
-        CHANNEL_D->do_channel(ob,"sys",query("id", me)+"将拍卖进"
-                                  "程转入自动模式！");
+        CHANNEL_D->do_channel(ob,"sys",query("id", me)+"將拍賣進"
+                                  "程轉入自動模式！");
         set("operator", "feng tiannan");
         save();
 

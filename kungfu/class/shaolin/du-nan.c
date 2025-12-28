@@ -13,12 +13,12 @@ mixed ask_cao();
 void create()
 {
         object ob1, ob2;
-        set_name("渡难", ({ "du nan", "nan" }) );
-        set("title", "少林长老");
+        set_name("渡難", ({ "du nan", "nan" }) );
+        set("title", "少林長老");
         set("gender", "男性");
         set("age", 90);
         set("long",
-                "这是一个面颊深陷，瘦骨零丁的老僧，他脸色漆黑，象是生铁铸成。\n");
+                "這是一個面頰深陷，瘦骨零丁的老僧，他臉色漆黑，象是生鐵鑄成。\n");
 
         set("attitude", "peaceful");
         set("class", "bonze");
@@ -72,7 +72,7 @@ void create()
 
         set("inquiry", ([
                 "菩提子"     : (: ask_me :),
-                "神草结"     : (: ask_cao :),
+                "神草結"     : (: ask_cao :),
         ]));
 
         set("count", 0);
@@ -114,7 +114,7 @@ mixed ask_me()
 
         if( !query_temp("valid_in_fumoquan", this_player()) )
         {
-                command("say 大胆鼠辈，乳臭未干，竟敢偷入金刚伏魔圈，且让老衲来超度与你！");
+                command("say 大膽鼠輩，乳臭未乾，竟敢偷入金剛伏魔圈，且讓老衲來超度與你！");
                 kill_ob(this_player());
                 return 1;
         }
@@ -126,28 +126,28 @@ mixed ask_me()
         }
 
         if (uptime() < 1800)
-                return "菩提子乃天地之灵物，制炼艰难无比，我现在可没有。";
+                return "菩提子乃天地之靈物，制煉艱難無比，我現在可沒有。";
 
         if ( present("puti zi", this_player()) )
                 return RANK_D->query_respect(this_player()) +
-                "菩提子只有一颗，而且就在你身上，真是贪得无餍！";
+                "菩提子只有一顆，而且就在你身上，真是貪得無饜！";
 
         if ( present("puti zi", environment()) )
                 return RANK_D->query_respect(this_player()) +
-                "菩提子只有一颗，而且就在这里任你取走，真是贪得无餍！";
+                "菩提子只有一顆，而且就在這裡任你取走，真是貪得無饜！";
 
         if (query("count") < 1)
-                return "菩提子乃天地之灵物，采集艰难无比，我这里现在可没有。";
+                return "菩提子乃天地之靈物，採集艱難無比，我這裡現在可沒有。";
 
         ob = new("/d/shaolin/obj/puti-zi");
         ob->move(this_player());
 
         addn("count", -1);
 
-        message_vision("\n渡难惨然一笑，接着长叹一声，从树洞里取出个白玉磁瓶，倒出菩提子递给$N。\n\n", this_player());
+        message_vision("\n渡難慘然一笑，接著長嘆一聲，從樹洞裡取出個白玉磁瓶，倒出菩提子遞給$N。\n\n", this_player());
 
-        return "我等昔年于佛祖座前发下宏愿，每十年遍访名山大川，历尽艰险，\n" +
-               "方采得数颗菩提子，君乃有缘人，能得此造化奇物，望好自为之！";
+        return "我等昔年於佛祖座前發下宏願，每十年遍訪名山大川，歷盡艱險，\n" +
+               "方採得數顆菩提子，君乃有緣人，能得此造化奇物，望好自為之！";
 }
 
 mixed ask_cao()
@@ -160,7 +160,7 @@ mixed ask_cao()
 
         if( !query_temp("valid_in_fumoquan", me) )
         {
-                command("say 大胆鼠辈，竟敢偷入金刚伏魔圈，且让老衲来超度与你！");
+                command("say 大膽鼠輩，竟敢偷入金剛伏魔圈，且讓老衲來超度與你！");
                 kill_ob(me);
                 return 1;
         }
@@ -172,7 +172,7 @@ mixed ask_cao()
         }
 
         if( query("combat_exp", me)<1000000 )
-                return "你这点微末本事，打听达摩祖师留下的利器作甚？";
+                return "你這點微末本事，打聽達摩祖師留下的利器作甚？";
 
         ob = find_object(CAOJIE);
         if (! ob) ob = load_object(CAOJIE);
@@ -186,17 +186,17 @@ mixed ask_cao()
         }
 
         if (owner == me)
-                return "东西不已经给你了么？你还打算怎的？";
+                return "東西不已經給你了麼？你還打算怎的？";
 
         if (owner == environment(me))
         {
                 command("sneer");
                 command("get"+query("id", ob));
-                return "百年来还没人敢愚弄老衲，滚开！";
+                return "百年來還沒人敢愚弄老衲，滾開！";
         }
 
         if (objectp(owner) && owner != this_object())
-                return "此时神草结并不在老衲手中。";
+                return "此時神草結並不在老衲手中。";
 
         ob->move(this_object());
 
@@ -209,16 +209,16 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "历练" :
-        case "历炼" :
-        case "锻炼" :
+        case "歷練" :
+        case "歷煉" :
+        case "鍛鍊" :
                 return QUEST_D->accept_ask(this_object(), me, topic);
                 break;
 
-        case "伤字诀" :
+        case "傷字訣" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/riyue-bian/shang",
-                           "name"    : "伤字诀",
+                           "name"    : "傷字訣",
                            "sk1"     : "riyue-bian",
                            "lv1"     : 100,
                            "sk2"     : "force",

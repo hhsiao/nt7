@@ -10,7 +10,7 @@ inherit F_CLEAN_UP;
 #define STORAGE_D "/adm/daemons/storaged.c"
 #endif
 
-// 启动的时间
+// 啟動的時間
 int start_reboot = 0;
 int last_notice = 0;
 
@@ -43,18 +43,18 @@ int main(object me, string arg)
 
                 if (! is_root(me))
                 {
-                        write("你没有权限强制停止" + LOCAL_MUD_NAME() + "。\n");
+                        write("你沒有權限強制停止" + LOCAL_MUD_NAME() + "。\n");
                         return 1;
                 }
 
-                message_system(str + "强行启动了" + LOCAL_MUD_NAME() + "。");
+                message_system(str + "強行啟動了" + LOCAL_MUD_NAME() + "。");
                 shutdown(0);
                 return 1;
         }
 
         if (wiz_level(me) < 4)
         {
-                write("你没有权限重新启动" + LOCAL_MUD_NAME() + "。\n");
+                write("你沒有權限重新啟動" + LOCAL_MUD_NAME() + "。\n");
                 return 1;
         }
 
@@ -64,7 +64,7 @@ int main(object me, string arg)
                 {
                         if (arg != "cancel")
                         {
-                                write("参数错误，请查看帮助。\n");
+                                write("參數錯誤，請查看幫助。\n");
                                 return 1;
                         }
 
@@ -72,27 +72,27 @@ int main(object me, string arg)
                         {
                                 start_reboot = 0;
                                 remove_call_out("heart_beat_times");
-                                message_system(str + "取消了启动，游戏继续进行。");
+                                message_system(str + "取消了啟動，遊戲繼續進行。");
                                 write("Ok.\n");
                                 return 1;
                         }
 
-                        write("现在MUD正在正常的运行。\n");
+                        write("現在MUD正在正常的運行。\n");
                         return 1;
                 }
-                message_system(str + "重新启动了" + LOCAL_MUD_NAME() + "。");
+                message_system(str + "重新啟動了" + LOCAL_MUD_NAME() + "。");
                 reboot_mud();
         }
 
         if (n < 1)
         {
-                write("没有这么短的时间，你不如选择 soon 立刻启动。\n");
+                write("沒有這麼短的時間，你不如選擇 soon 立刻啟動。\n");
                 return 1;
         }
 
         if (n > 10)
         {
-                write("这么久？你还是等一会儿再启动吧。\n");
+                write("這麼久？你還是等一會兒再啟動吧。\n");
                 return 1;
         }
 
@@ -100,8 +100,8 @@ int main(object me, string arg)
         last_notice = time();
         call_out_walltime("heart_beat_times", 1);
         
-        message_system(str + "决定在" + chinese_number(n) +
-                       "分钟以后重新启动" + LOCAL_MUD_NAME() + "。");
+        message_system(str + "決定在" + chinese_number(n) +
+                       "分鐘以後重新啟動" + LOCAL_MUD_NAME() + "。");
         return 1;
 }
 
@@ -110,7 +110,7 @@ void aboot()
         start_reboot = time() + 600; 
         last_notice = time(); 
         call_out_walltime("heart_beat_times", 1); 
-        message_system("系统精灵决定在10分钟以后重新启动" + LOCAL_MUD_NAME() + "。"); 
+        message_system("系統精靈決定在10分鐘以後重新啟動" + LOCAL_MUD_NAME() + "。"); 
 }
 
 protected void heart_beat_times()
@@ -150,7 +150,7 @@ protected void heart_beat_times()
                 return;
         }
 
-        if (n >= 60) str = chinese_number(n / 60) + "分钟"; else
+        if (n >= 60) str = chinese_number(n / 60) + "分鐘"; else
                      str = "";
         if (n % 60) str += chinese_number(n % 60) + "秒";
 
@@ -160,17 +160,17 @@ protected void heart_beat_times()
                 if (n == 20)
                         set_config(__RC_HEARTBEAT_INTERVAL_MSEC__, 10000);
                         
-                message_system(LOCAL_MUD_NAME() + "将在" +
-                               str + "以后重新启动，请抓紧时间退出游戏以便档案得到保存。");
+                message_system(LOCAL_MUD_NAME() + "將在" +
+                               str + "以後重新啟動，請抓緊時間退出遊戲以便檔案得到保存。");
                 last_notice = time();
         }
 }
 
 protected void reboot_mud()
 {
-        message_system("游戏重新启动，请稍候一分钟再 login 。\n");
+        message_system("遊戲重新啟動，請稍候一分鐘再 login 。\n");
 
-        // 保存所有的守护进程的数据
+        // 保存所有的守護進程的數據
         reset_eval_cost();
         if (find_object(DBASE_D))    DBASE_D->mud_shutdown();
         reset_eval_cost();
@@ -191,13 +191,13 @@ int help (object me)
         write(@HELP
 指令格式: shutdown [-f] | soon | after <n> | cancel
 
-重新起动游戏。如果采用 -f 参数，则系统强制启动，而不保存任何
-进度，这是供系统出错时使用的。如果使用了参数soon，则系统将立
-刻重新启动，而使用 after n 则系统将在 n 分钟以后重新启动。
+重新起動遊戲。如果採用 -f 參數，則系統強制啟動，而不保存任何
+進度，這是供系統出錯時使用的。如果使用了參數soon，則系統將立
+刻重新啟動，而使用 after n 則系統將在 n 分鐘以後重新啟動。
 
-使用了 -f 参数则 soon 和 after 无效。
+使用了 -f 參數則 soon 和 after 無效。
 
-如果使用了 after 参数，可以使用 cancel 参数中止启动的过程。
+如果使用了 after 參數，可以使用 cancel 參數中止啟動的過程。
 
 HELP );
         return 1;

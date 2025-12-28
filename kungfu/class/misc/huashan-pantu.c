@@ -10,12 +10,12 @@ void death_msg();
 
 void create()
 {
-	set_name(HIC "华山叛徒" NOR, ({ "huashan pantu", "huashan", "pantu" }) );
-	set("title", HIY "华山派" NOR);
+	set_name(HIC "華山叛徒" NOR, ({ "huashan pantu", "huashan", "pantu" }) );
+	set("title", HIY "華山派" NOR);
 	set("gender", "男性");
 	set("age", 28);
 	set("long", @LONG
-此人乃华山派弟子，由于偷学紫霞神功触犯了门规，被华山派逐出师门。
+此人乃華山派弟子，由於偷學紫霞神功觸犯了門規，被華山派逐出師門。
 LONG );
 	set("combat_exp", 600000);
 	set("shen_type", 0);
@@ -32,7 +32,7 @@ LONG );
 
 	set("no_clean_up", 1);
 
-	//set("no_nuoyi", 1); // 不被挪移影响
+	//set("no_nuoyi", 1); // 不被挪移影響
 
         set("str", 25);
         set("int", 25);
@@ -84,8 +84,8 @@ LONG );
         ]));
 
         set("drops", ([
-                "RA&RANDOM10"    :       100,   // 低级普通装备
-                "RA&RANDOM20"    :       40,    // 低级普通装备
+                "RA&RANDOM10"    :       100,   // 低級普通裝備
+                "RA&RANDOM20"    :       40,    // 低級普通裝備
                 "FI&/clone/goods/enchant-scroll" :   20,
                 "FI&/clone/goods/sun"    :   20,
                 "FI&/clone/goods/moon"   :   20,
@@ -126,7 +126,7 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
 	ob->start_busy(3 + random(6));
 	me->receive_wound("qi", 100 + random(100), ob);
-        return HIY "$N" HIY "大喝一声，拼命反抗，竟逼得$n" HIY "手忙脚乱。\n" NOR;
+        return HIY "$N" HIY "大喝一聲，拼命反抗，竟逼得$n" HIY "手忙腳亂。\n" NOR;
 }
 
 void heart_beat()
@@ -146,7 +146,7 @@ void random_move()
                 env = environment(this_object());
                 message_vision("$N急急忙忙的走了。\n", this_object());
 
-                CHANNEL_D->channel_broadcast("news", HIG "听说" + HIW + env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一带出现的" +
+                CHANNEL_D->channel_broadcast("news", HIG "聽說" + HIW + env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一帶出現的" +
                         HIR + this_object()->short() + HIG "消失了。\n" NOR);
 
                 destruct(this_object());
@@ -157,8 +157,8 @@ void random_move()
 
 void death_msg()
 {
-        command("mess 不想我竟不容于天下武林，今日遭此一劫，悔恨终身 ...");
-	CHANNEL_D->channel_broadcast("mess", "听说" + name() + HIM "被江湖人士所杀。" NOR);
+        command("mess 不想我竟不容於天下武林，今日遭此一劫，悔恨終身 ...");
+	CHANNEL_D->channel_broadcast("mess", "聽說" + name() + HIM "被江湖人士所殺。" NOR);
 }
 
 varargs void die(object killer) 
@@ -171,7 +171,7 @@ varargs void die(object killer)
                 return;
         }
 
-        if( time() < query_temp("end_time") ) // 时间没有到，死亡不了
+        if( time() < query_temp("end_time") ) // 時間沒有到，死亡不了
         {
                 addn("jing", query("max_jing") / 10);
                 if( query("jing") > query("max_jing") ) set("jing", query("max_jing"));
@@ -181,14 +181,14 @@ varargs void die(object killer)
                 if( query("qi") > query("max_qi") ) set("qi", query("max_qi"));
                 addn("eff_qi", query("max_qi") / 10);
                 if( query("eff_qi") > query("max_qi") ) set("eff_qi", query("max_qi"));
-                message_vision(HIR "\n$N" HIR "大喝一声，运用秘法，气血有所回升！\n\n" NOR, this_object());
+                message_vision(HIR "\n$N" HIR "大喝一聲，運用秘法，氣血有所回升！\n\n" NOR, this_object());
                 return;
         }
 
         if (! objectp(killer))
                 killer = query_last_damage_from();
 
-        if( objectp(killer) && query("family/family_name", killer) == "华山派")
+        if( objectp(killer) && query("family/family_name", killer) == "華山派")
                 set("rewards/gongxian", 300);
 
         return ::die();

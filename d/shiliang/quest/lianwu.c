@@ -6,9 +6,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short",HIG "练武场" NOR);
+        set("short",HIG "練武場" NOR);
         set("long", @LONG
-这是温家堡的练武场，一块空荡荡的场地。
+這是溫家堡的練武場，一塊空蕩蕩的場地。
 LONG);
         set("exits", ([ 
                 "out" : "/d/shiliang/gate",
@@ -47,11 +47,11 @@ void init()
 int valid_leave(object me, string dir)
 {
         if (me->is_fighting())
-                return notify_fail(RED"\n温家五老大声喝道：哪里走。一把拦住你，你竟然无法离开。\n"NOR);
+                return notify_fail(RED"\n溫家五老大聲喝道：哪裡走。一把攔住你，你竟然無法離開。\n"NOR);
         if (present("heiyi ren",this_object()))
-                return notify_fail(RED"\n温家五老大声喝道：哪里走。一把拦住你，你竟然无法离开。\n"NOR);
+                return notify_fail(RED"\n溫家五老大聲喝道：哪裡走。一把攔住你，你竟然無法離開。\n"NOR);
         if(me->query_condition("killer")) 
-                return notify_fail(RED"\n怎么进来的？？这里等wiz吧。\n"NOR);
+                return notify_fail(RED"\n怎麼進來的？？這裡等wiz吧。\n"NOR);
         if( query_temp(QUESTJINSHE+"kill", me )
             && query_temp(QUESTJINSHE+"have_kill", me)){
                 delete_temp(QUESTJINSHE+"start_kill", me);

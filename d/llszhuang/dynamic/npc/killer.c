@@ -13,7 +13,7 @@ void create()
         set("gender", "男性" );
         set("age", 30 + random(30));
         set_name(BLU "蒙面人" NOR, ({"figure", "mengmian ren", "ren"}));
-        set("long", "这个人头上戴著蒙面头罩，八成准备干什麽坏事。\n");
+        set("long", "這個人頭上戴著蒙面頭罩，八成準備幹什麼壞事。\n");
         set("attitude", "friendly");
         set("scale", 150);
         set("chat_chance_combat", 120);
@@ -63,14 +63,14 @@ void kill_ob(object ob)
         if (! is_busy())
                 exert_function("powerup");
 
-        message_vision(HIB "$n对$N，喝道: “什么人如此大胆，"+
-                           "竟敢擅闯柳绿山庄？！\n" NOR, ob, this_object());
+        message_vision(HIB "$n對$N，喝道: “什麼人如此大膽，"+
+                           "竟敢擅闖柳綠山莊？！\n" NOR, ob, this_object());
         ::kill_ob(ob);
 }
 
 void unconcious()
 {
-        message_vision(HIR "$N大叫一声：好厉害！然后地板突然翻起，$N钻了进去不见了。\n",
+        message_vision(HIR "$N大叫一聲：好厲害！然後地板突然翻起，$N鑽了進去不見了。\n",
                        this_object());
         destruct(this_object());
         return ;

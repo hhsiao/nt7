@@ -13,11 +13,11 @@ void create()
 {
         set_name("封弓影", ({ "feng gongying", "feng", "gongying", }));
         set("long",
-        "他是一个阴郁的瘦子，身穿一件白布长袍。\n"
-        "他脸上阴沉沉的，看来心胸必不开阔。\n"
+        "他是一個陰鬱的瘦子，身穿一件白布長袍。\n"
+        "他臉上陰沉沉的，看來心胸必不開闊。\n"
         );
 
-    set("title","明教神蛇坛坛主");
+    set("title","明教神蛇壇壇主");
 
         set("gender", "男性");
         set("attitude", "friendly");
@@ -56,7 +56,7 @@ void create()
         map_skill("sword", "damo-jian");
         prepare_skill("finger", "nianhua-zhi");
 
-        create_family("明教", 4, "神蛇坛坛主");
+        create_family("明教", 4, "神蛇壇壇主");
 
         set("inquiry", ([
                 "明教" :    (: ask_me :),
@@ -73,7 +73,7 @@ void init()
 
 string ask_me()
 {
-        return "你想加入我明教(join mingjiao)吗？";
+        return "你想加入我明教(join mingjiao)嗎？";
 }
 
 #include "tanzhu.h"

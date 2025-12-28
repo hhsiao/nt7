@@ -1,15 +1,15 @@
-// baiyunwan.c 白云熊胆丸
+// baiyunwan.c 白雲熊膽丸
 
 inherit ITEM;
 
 void create()
 {
-        set_name("白云熊胆丸", ({"baiyunxiudan wan", "wan"}));
+        set_name("白雲熊膽丸", ({"baiyunxiudan wan", "wan"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "颗");
-                set("long", "这是一颗武林人士梦寐以求的疗伤圣药。\n");
+                set("unit", "顆");
+                set("long", "這是一顆武林人士夢寐以求的療傷聖藥。\n");
                 set("value", 50000);
                 set("only_do_effect", 1);
         }
@@ -20,7 +20,7 @@ int do_effect(object me)
 {
         me->receive_curing("qi", 800);
         me->receive_curing("jing", 400);
-        message_vision("$N吃下一颗白云熊胆丸，只觉精气上升，气色大好。\n", me);
+        message_vision("$N吃下一顆白雲熊膽丸，只覺精氣上升，氣色大好。\n", me);
         destruct(this_object());
         return 1;
 }

@@ -8,10 +8,10 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("谢副舵主", ({"xie duozhu", "xie", "duozhu"}));
+        set_name("謝副舵主", ({"xie duozhu", "xie", "duozhu"}));
         set("gender", "男性");
-        set("nickname", HIG"大义分舵"HIY"副舵主"NOR);
-        set("title", "丐帮八袋弟子");
+        set("nickname", HIG"大義分舵"HIY"副舵主"NOR);
+        set("title", "丐幫八袋弟子");
         set("age", 25);
         set("attitude", "peaceful");
         set("class", "beggar");
@@ -52,10 +52,10 @@ void create()
         map_skill("staff", "fengmo-zhang");
         map_skill("dodge", "xiaoyaoyou");
 
-        //set("party/party_name", HIC"丐帮"NOR);
-        //set("party/rank", HIG"大义分舵"HIY"七袋副舵主"NOR);
+        //set("party/party_name", HIC"丐幫"NOR);
+        //set("party/rank", HIG"大義分舵"HIY"七袋副舵主"NOR);
         //set("party/level", 7);
-        create_family("丐帮", 19, "弟子");
+        create_family("丐幫", 19, "弟子");
 
         setup();
 
@@ -66,5 +66,5 @@ void create()
 void attempt_apprentice(object ob)
 {
         command("hmm");
-        command("say 走开，我不收徒。");
+        command("say 走開，我不收徒。");
 }

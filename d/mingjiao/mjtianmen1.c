@@ -6,10 +6,10 @@ inherit ROOM;
 
 void create()
 {
-    set("short", "门口");
+    set("short", "門口");
         set("long", @LONG
-前面就是明教的『天字门』了，这里是明教中男弟子修炼的地方，
-从门口看进去，汗衫扬臭，木桌流酒。此处不允女人随意进入。
+前面就是明教的『天字門』了，這裡是明教中男弟子修煉的地方，
+從門口看進去，汗衫揚臭，木桌流酒。此處不允女人隨意進入。
 LONG );
     set("exits", ([
         "enter" : __DIR__"nanshe",
@@ -25,6 +25,6 @@ int valid_leave(object me, string dir)
 //  mapping myfam;
     me = this_player();
     if( (query("gender", me) != "男性") && (dir == "enter") )
-      return notify_fail("请你自重，以免不测！\n");
+      return notify_fail("請你自重，以免不測！\n");
     else  return 1;
 }

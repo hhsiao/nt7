@@ -13,8 +13,8 @@ void create()
 {
         set_name("辛然", ({ "xin ran", "xin", "ran", }));
         set("long",
-        "他是一位高大魁伟的中年男子，身穿一件白布长袍。\n"
-        "他天生神力，手中的两头狼牙棒有万夫不当之勇，真是一条威风凛凛的汉子。\n"
+        "他是一位高大魁偉的中年男子，身穿一件白布長袍。\n"
+        "他天生神力，手中的兩頭狼牙棒有萬夫不當之勇，真是一條威風凜凜的漢子。\n"
         );
 
         set("title", HIG "明教" HIR "烈火旗" NOR "掌旗使");
@@ -65,13 +65,13 @@ void create()
         prepare_skill("strike", "guangming-zhang");
 
         create_family("明教", 37, "烈火旗掌旗使");
-        set("inherit_title",HIG"明教"NOR"烈火旗教众"NOR);
+        set("inherit_title",HIG"明教"NOR"烈火旗教眾"NOR);
 
         set("inquiry", ([
-                "name" : "在下就是明教烈火旗掌旗使辛然，不知阁下有何指教。",
-                "任务" : (: ask_job :),
+                "name" : "在下就是明教烈火旗掌旗使辛然，不知閣下有何指教。",
+                "任務" : (: ask_job :),
                 "job"  : (: ask_job :),
-                "放弃" : (: ask_abandon :),
+                "放棄" : (: ask_abandon :),
                 "abandon" : (: ask_abandon :),
         ]));
 
@@ -89,13 +89,13 @@ string ask_job()
 //   object ling;
 
     if( !(fam=query("family", this_player())) || fam["family_name"] != "明教" )
-        return "这位"+RANK_D->query_respect(player)+"并非我教弟兄，那敢在下那敢分派阁下什么任务呢。\n";
+        return "這位"+RANK_D->query_respect(player)+"並非我教弟兄，那敢在下那敢分派閣下什麼任務呢。\n";
 
         if( query("combat_exp", player)>400000 )
-                 return "这位"+RANK_D->query_respect(player)+"实战经验已经颇高，岂敢劳烦大架。\n";
+                 return "這位"+RANK_D->query_respect(player)+"實戰經驗已經頗高，豈敢勞煩大架。\n";
 
         if (fam["generation"] <37)
-                 return "这位"+RANK_D->query_respect(player)+"在我明教中地位颇高，岂敢劳烦大架。\n";
+                 return "這位"+RANK_D->query_respect(player)+"在我明教中地位頗高，豈敢勞煩大架。\n";
 
         if( query("mingjiao/job", player) )
                 return judge_jobmsg(player,0);
@@ -104,9 +104,9 @@ string ask_job()
 
         set("mingjiao/job", "huo_zaoqiang", player);
 
-        return "我烈火旗在教内负责各种武器的制造，最近需要加紧制造火枪，你去\n"
-                "后山上找些硝磺，再去锐金旗要些精铁，然后到火房打造火枪。\n"
-                "火枪威力巨大，乃我教抵御敌人的重要武器，你定要小心在意。\n";
+        return "我烈火旗在教內負責各種武器的製造，最近需要加緊製造火槍，你去\n"
+                "後山上找些硝磺，再去銳金旗要些精鐵，然後到火房打造火槍。\n"
+                "火槍威力巨大，乃我教抵禦敵人的重要武器，你定要小心在意。\n";
 
 
 

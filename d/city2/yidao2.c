@@ -4,11 +4,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "城外驿道");
+        set("short", "城外驛道");
         set("long", @LONG
-这里是通往大宋京城的驿道，由于连年来战火不止，显得格外地
-荒凉，不时有来往的马匹飞奔而过，溅起一土尘烟，沿途不时有土匪
-大盗出现，还是少作停留的好。
+這裡是通往大宋京城的驛道，由於連年來戰火不止，顯得格外地
+荒涼，不時有來往的馬匹飛奔而過，濺起一土塵煙，沿途不時有土匪
+大盜出現，還是少作停留的好。
 LONG );
         set("outdoors", "xiangyang");
         set("no_fly", 1);
@@ -30,7 +30,7 @@ void init()
         if (! me->is_busy())
                 me->start_busy(random(2));
 
-        tell_object(me,YEL"你快马加鞭，一路飞驰在驿道上......\n"NOR);
+        tell_object(me,YEL"你快馬加鞭，一路飛馳在驛道上......\n"NOR);
 }
 
 int valid_leave(object me,string dir)
@@ -59,10 +59,10 @@ int valid_leave(object me,string dir)
                 dadao->move(environment(me));
                 dadao->kill_ob(me);
                 me->kill_ob(dadao);
-                return notify_fail("忽然从路边丛林中杀出一路人马！\n");
+                return notify_fail("忽然從路邊叢林中殺出一路人馬！\n");
         } else
         if(flag)
-                return notify_fail("江阳大盗挡住了你的去路。\n");
+                return notify_fail("江陽大盜擋住了你的去路。\n");
         */
 
         if( dir == "east" )
@@ -74,7 +74,7 @@ int valid_leave(object me,string dir)
         {
                 me->move(__DIR__"yidao3");
                 delete_temp("yidao", me);
-                tell_object(me,YEL"一路风尘仆仆之后，汴梁已经近在眼前了......\n"NOR);
+                tell_object(me,YEL"一路風塵僕僕之後，汴梁已經近在眼前了......\n"NOR);
                 return -1;
         } 
 
@@ -82,14 +82,14 @@ int valid_leave(object me,string dir)
         {
                 me->move(__DIR__"yidao1");
                 delete_temp("yidao", me);
-                tell_object(me,YEL"一路风尘仆仆之后，襄阳已经近在眼前了......\n"NOR); 
+                tell_object(me,YEL"一路風塵僕僕之後，襄陽已經近在眼前了......\n"NOR); 
                 return -1;
         }
         
         if (! me->is_busy())
                 me->start_busy(random(2));
 
-        tell_object(me,YEL"你快马加鞭，一路飞驰在驿道上......\n"NOR);
+        tell_object(me,YEL"你快馬加鞭，一路飛馳在驛道上......\n"NOR);
         return -1;
         
         return ::valid_leave(me,dir);

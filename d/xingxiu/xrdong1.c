@@ -7,8 +7,8 @@ void create()
 {
         set("short", "仙人洞");
         set("long", @LONG
-这个洞高七尺，里面光线暗淡，你看不清是否洞里有任何器物，
-只有洞口堆着半尺来高的山羊粪。
+這個洞高七尺，裡面光線暗淡，你看不清是否洞裡有任何器物，
+只有洞口堆著半尺來高的山羊糞。
 LONG );
         set("exits", ([
                 "down" : "/d/xingxiu/xrdong",
@@ -33,8 +33,8 @@ int do_use(string arg)
         if( arg=="fire" ) {
              write(
 
-"你点燃了火折，发现西面石壁上有一道裂缝，似乎可以钻(zuan)出去。\n");
-        set_temp("marks/钻", 1, this_player());
+"你點燃了火折，發現西面石壁上有一道裂縫，似乎可以鑽(zuan)出去。\n");
+        set_temp("marks/鑽", 1, this_player());
              return 1;
        }
 }
@@ -43,19 +43,19 @@ int do_zuan(string arg)
 {
         object me = this_player();
         
-        if( query_temp("marks/钻", me)){
+        if( query_temp("marks/鑽", me)){
 
         message("vision", me->name() +
-"滋溜一下不知从什么地方钻出去了。\n",
+"滋溜一下不知從什麼地方鑽出去了。\n",
                     environment(me), ({me}) );
             me->move("/d/xingxiu/icecave1");
-            message("vision", me->name() + "从石缝里钻了出来。\n",
+            message("vision", me->name() + "從石縫裡鑽了出來。\n",
                     environment(me), ({me}) );
-            delete_temp("marks/钻", this_player());
+            delete_temp("marks/鑽", this_player());
         return 1;
         }
         else {
-            write("你想往哪儿钻?!\n");
+            write("你想往哪兒鑽?!\n");
             return 1;
         }
 }

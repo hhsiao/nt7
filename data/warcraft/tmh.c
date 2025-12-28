@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;37m轮椅[2;37;0m[2;37;0m", ({"qilin"}));        
+        set_name("[1;37m輪椅[2;37;0m[2;37;0m", ({"qilin"}));        
         set("gender", "男性");                
-        set("long", "$HIW$轮椅[2;37;0m
-它是唐棉花的魔幻兽。
+        set("long", "$HIW$輪椅[2;37;0m
+它是唐棉花的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

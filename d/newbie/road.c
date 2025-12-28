@@ -2,9 +2,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "村间小路");
+        set("short", "村間小路");
         set("long", @LONG
-这是一条向东的青石大道，两边是一排排的乡间小屋。
+這是一條向東的青石大道，兩邊是一排排的鄉間小屋。
 LONG);
 
         set("exits", ([

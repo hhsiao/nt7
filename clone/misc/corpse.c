@@ -20,14 +20,14 @@ string query_idname()
 
 void create()
 {
-        set_name("无名尸体", ({ "corpse" }));
+        set_name("無名屍體", ({ "corpse" }));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
                 set("default_clone", "/clone/misc/part");
                 set("parts", ([
-                        "left arm" : ({ 0, "条", "左臂", "手臂", "arm",
+                        "left arm" : ({ 0, "條", "左臂", "手臂", "arm",
                                         ([ "left hand": "hand" ]),
                                         "剁下", 0 }),
                         "left hand": ({ 1, "只", "左手", "手掌", "hand",
@@ -43,11 +43,11 @@ void create()
                                                   0, 0, 0 }),
                         "left middle finger" : ({ 2, "根", "左手中指", "中指", "middle finger",
                                                   0, 0, 0 }),
-                        "left ring finger"   : ({ 2, "根", "左手无名指", "无名指", "ring finger",
+                        "left ring finger"   : ({ 2, "根", "左手無名指", "無名指", "ring finger",
                                                   0, 0, 0 }),
                         "left little finger" : ({ 2, "根", "左手小指", "小指", "little finger",
                                                   0, 0, 0 }),
-                        "right arm" : ({ 0, "条", "右臂", "手臂", "arm",
+                        "right arm" : ({ 0, "條", "右臂", "手臂", "arm",
                                         ([ "right hand": "hand" ]),
                                         "剁下", 0 }),
                         "right hand": ({ 1, "只", "右手", "手掌", "hand",
@@ -63,27 +63,27 @@ void create()
                                                    0, 0, 0 }),
                         "right middle finger" : ({ 2, "根", "右手中指", "中指", "middle finger",
                                                    0, 0, 0 }),
-                        "right ring finger"   : ({ 2, "根", "右手无名指", "无名指", "ring finger",
+                        "right ring finger"   : ({ 2, "根", "右手無名指", "無名指", "ring finger",
                                                    0, 0, 0 }),
                         "right little finger" : ({ 2, "根", "右手小指", "小指", "little finger",
                                                    0, 0, 0 }),
-                        "left leg" : ({ 0, "条", "左腿", "人腿", "leg",
+                        "left leg" : ({ 0, "條", "左腿", "人腿", "leg",
                                         ([ "left foot": "foot" ]),
                                          "剁下", 0 }),
-                        "left foot": ({ 1, "只", "左脚", "人脚", "foot",
+                        "left foot": ({ 1, "只", "左腳", "人腳", "foot",
                                         ([ "left toes"        : "toes", ]),
                                         "剁下", 0 }),
-                        "left toes": ({ 2, "根", "左脚趾", "脚趾", "toes",
+                        "left toes": ({ 2, "根", "左腳趾", "腳趾", "toes",
                                                        0, 0, 0 }),
-                        "right leg" : ({ 0, "条", "右腿", "人腿", "leg",
+                        "right leg" : ({ 0, "條", "右腿", "人腿", "leg",
                                         ([ "right foot": "foot" ]),
                                          "剁下", 0 }),
-                        "right foot": ({ 1, "只", "右脚", "人脚", "foot",
+                        "right foot": ({ 1, "只", "右腳", "人腳", "foot",
                                         ([ "right toes"        : "toes", ]),
                                         "剁下", 0 }),
-                        "right toes": ({ 2, "根", "右脚趾", "脚趾", "toes",
+                        "right toes": ({ 2, "根", "右腳趾", "腳趾", "toes",
                                                        0, 0, 0 }),
-                        "head"      : ({ 0, "颗", "头", "人头", "head",
+                        "head"      : ({ 0, "顆", "頭", "人頭", "head",
                                         ([ "left eye"  : "left eye",
                                            "right eye" : "right eye",
                                            "nose"      : "nose",
@@ -102,9 +102,9 @@ void create()
                                          0, 0, 0, }),
                         "nose"      : ({ 1, "只", "鼻子", "鼻子", "nose",
                                          0, 0, 0, }),
-                        "hair"      : ({ 1, "束", "头发", "头发", 0,
+                        "hair"      : ({ 1, "束", "頭髮", "頭髮", 0,
                                          0, 0, "/clone/misc/hair", }),
-                        "tongue"    : ({ 1, "条", "舌头", "舌头", 0,
+                        "tongue"    : ({ 1, "條", "舌頭", "舌頭", 0,
                                          0, 0, 0, }),
                         "genitals"  : ({ 1, "根", "生殖器", 0, 0,
                                          0, 0, 0, }),
@@ -114,7 +114,7 @@ void create()
                 set("main_part_level", 0);
         }
         
-        set("long", "这是一具无名尸体。\n");
+        set("long", "這是一具無名屍體。\n");
         decayed = 0;
         if( clonep(this_object()) ) call_out("decay", 45, 1);
         //if( clonep(this_object()) ) set_reset(this_object(), 60);
@@ -140,35 +140,35 @@ void decay(int phase)
         {
         case 1:
                 set("owner_id", "unknow");
-                msg =  name(1) + "开始腐烂了，发出一股难闻的恶臭。\n";
+                msg =  name(1) + "開始腐爛了，發出一股難聞的惡臭。\n";
                 delete("victim_name");
                 delete("owner_id");
                 switch (query("gender"))
                 {
                 case "男性":
-                        set_name("腐烂的男尸", ({ "corpse", "尸体" }));
+                        set_name("腐爛的男屍", ({ "corpse", "屍體" }));
                         break;
 
                 case "女性":
-                        set_name("腐烂的女尸", ({ "corpse", "尸体" }));
+                        set_name("腐爛的女屍", ({ "corpse", "屍體" }));
                         break;
 
                 default:
-                        set_name("腐烂的尸体", ({ "corpse", "尸体" }));
+                        set_name("腐爛的屍體", ({ "corpse", "屍體" }));
                 }
-                set("long",        "这具尸体显然已经躺在这里有一段时间了，正散发著一股腐尸的味道。\n");
+                set("long",        "這具屍體顯然已經躺在這裡有一段時間了，正散發著一股腐屍的味道。\n");
                 call_out("decay", 15, phase + 1);
                 break;
         case 2:
                 delete("parts");
-                msg = name(1) + "被风吹乾了，变成一具骸骨。\n";
+                msg = name(1) + "被風吹乾了，變成一具骸骨。\n";
                 set_name("枯乾的骸骨", ({ "skeleton", "骸骨" }) );
-                set("long", "这副骸骨已经躺在这里很久了。\n");
+                set("long", "這副骸骨已經躺在這裡很久了。\n");
                 call_out("decay", 5, phase + 1);
                 //set_reset(this_object(), 15);
                 break;
         case 3:
-                msg = "一阵风吹过，把" + name(1) + "化成骨灰吹散了。\n";
+                msg = "一陣風吹過，把" + name(1) + "化成骨灰吹散了。\n";
                 /*
                 if( env )
                         all_inventory(this_object())->move(env);
@@ -206,7 +206,7 @@ int do_cut(object me, string arg)
                 return 1;
 
         delete_temp("handing");
-        message("vision", "“啪啦”一声，" + ob->name() + "掉了下来。\n",
+        message("vision", "“啪啦”一聲，" + ob->name() + "掉了下來。\n",
                           environment());
         ob->move(environment());
         return 1;
@@ -219,10 +219,10 @@ int make_corpse(object victim, object killer)
         object aob, dob;
         object *inv;
 
-        set_name(victim->name(1) + "的尸体", ({ "corpse" }));
+        set_name(victim->name(1) + "的屍體", ({ "corpse" }));
         set("long", victim->long()
                 +"然而，"+gender_pronoun(query("gender", victim) )
-                + "已经死了，只剩下一具尸体静静地躺在这里。\n");
+                + "已經死了，只剩下一具屍體靜靜地躺在這裡。\n");
         set("class",query("class", victim));
         set("age",query("age", victim));
         set("combat_exp",query("combat_exp", victim));
@@ -241,7 +241,7 @@ int make_corpse(object victim, object killer)
                 set("is_player", userp(victim));
                 set("defeated_by", dob = victim->query_defeated_by());
                 set("defeated_by_who", victim->query_defeated_by_who());
-                // 任务npc被cut head后尸体消失
+                // 任務npc被cut head後屍體消失
                 if( victim->is_stay_in_room() )
                         set_temp("quest_corpse", 1);
                 if (objectp(killer))
@@ -250,15 +250,15 @@ int make_corpse(object victim, object killer)
                         set("who_get/id",query("id", killer));
                         set("who_get/time", time() + 5);
                 }
-                // 这是为了帮手设计的
+                // 這是為了幫手設計的
                 if (! objectp(dob)) dob = killer;
                 if (objectp(dob) &&
                     objectp(aob=query_temp("quest/assist", dob)) )
                 {
-                        // 我正在帮助某人(aob)，如果某人的确想杀
-                        // 死该人的话，则我记录之。
+                        // 我正在幫助某人(aob)，如果某人的確想殺
+                        // 死該人的話，則我記錄之。
                         if( aob->is_killing(query("id", victim)) )
-                                // 记录此人帮助的对象
+                                // 記錄此人幫助的對象
                                 set("assist", aob);
                 }
         } else
@@ -268,23 +268,23 @@ int make_corpse(object victim, object killer)
         }
  
         if( query("class", victim) == "bonze" )
-                set("no_cut/hair", "它没有头发啊，等它再长出来好像来不及了。\n");
+                set("no_cut/hair", "它沒有頭髮啊，等它再長出來好像來不及了。\n");
 
         switch(query("gender", victim) )
         {
         case "女性":
-                set("no_cut/genitals", "看清楚了，这可是一具女尸");
+                set("no_cut/genitals", "看清楚了，這可是一具女屍");
                 break;
 
         case "男性":
                 break;
 
-        case "无性":
-                set("no_cut/genitals", "看清楚了，这位生前就已经做过"
-                                       "手术了，你不必再操心了。\n");
+        case "無性":
+                set("no_cut/genitals", "看清楚了，這位生前就已經做過"
+                                       "手術了，你不必再操心了。\n");
                 break;
         default:
-                set("no_cut/genitals", "看清楚了，这不是人的尸体。\n");
+                set("no_cut/genitals", "看清楚了，這不是人的屍體。\n");
                 break;
         }
 

@@ -3,8 +3,8 @@ void create()
 {
         set("short", "碎石路" );
         set("long", @LONG
-这是一条由碎石铺成的路，虽然有些颠簸，却很宽阔，再往南去
-就是长江了。
+這是一條由碎石鋪成的路，雖然有些顛簸，卻很寬闊，再往南去
+就是長江了。
 LONG );
         set("exits", ([
                   "north" :__DIR__"jznanmen",

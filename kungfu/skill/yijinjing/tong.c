@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// shield.c 易筋经 一气通八脉
+// shield.c 易筋經 一氣通八脈
 
 #include <ansi.h>
 
@@ -11,32 +11,32 @@ int exert(object me, object target)
 
 
         if( query("family/family_name", me) != "少林派" )
-                return notify_fail("你不是少林弟子，无法使用易筋经绝技。\n");
+                return notify_fail("你不是少林弟子，無法使用易筋經絕技。\n");
 
         if( target != me )
-                return notify_fail("你只能用易筋经来激发一气通八脉 \n");
+                return notify_fail("你只能用易筋經來激發一氣通八脈 \n");
 
         if( (skill = (int)me->query_skill("yijinjing", 1)) < 100 )
-                return notify_fail("你的易筋经等级不够。\n");
+                return notify_fail("你的易筋經等級不夠。\n");
 
         if( query("eff_qi", me)*100/query("max_qi", me)>80 )
-                return notify_fail("你伤势很轻，无法激励易筋经至高绝学。\n");
+                return notify_fail("你傷勢很輕，無法激勵易筋經至高絕學。\n");
 
         if( query("eff_qi", me)*100/query("max_qi", me)<10 )
-                return notify_fail("你内伤太重，无法激励易筋经至高绝学。\n");
+                return notify_fail("你內傷太重，無法激勵易筋經至高絕學。\n");
 
         if( query("neili", me)<skill*5 || query("max_neili", me)<500 )
-                return notify_fail("你的真气不够。\n");
+                return notify_fail("你的真氣不夠。\n");
 
         addn("neili", -skill*5, me);
         me->receive_damage("qi", 0);
 
-        message_combatd(HIM "$N" HIM "默念易筋经的口诀: "
-                            "元气,气存于内,放于外。"
-                            "易筋,孕怀于息,舒于支....\n"
-                        HIW "一股详和的白色罡气自头顶迅速"
-                        HIW "游遍" HIW "$N" HIW "的奇经八脉！\n"
-                        HIR "你的内伤刹那间大为好转！！\n" NOR, me);
+        message_combatd(HIM "$N" HIM "默唸易筋經的口訣: "
+                            "元氣,氣存於內,放於外。"
+                            "易筋,孕懷於息,舒於支....\n"
+                        HIW "一股詳和的白色罡氣自頭頂迅速"
+                        HIW "遊遍" HIW "$N" HIW "的奇經八脈！\n"
+                        HIR "你的內傷剎那間大為好轉！！\n" NOR, me);
 
         addn("max_neili", -skill/5, me);
 

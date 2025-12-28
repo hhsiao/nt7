@@ -9,8 +9,8 @@ void create()
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "这是一块硝磺石，是制作火枪和火药的必须品。\n");
-                set("unit", "块");
+                set("long", "這是一塊硝磺石，是製作火槍和火藥的必須品。\n");
+                set("unit", "塊");
 //                                set("no_drop",1);
 
         }

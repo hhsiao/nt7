@@ -4,9 +4,9 @@ void create()
 {
         set("short", "洞道"); 
         set("long", @LONG
-山洞极窄，须膝行而爬，若一不小心，就不免被洞中的石壁撞的
-头破血流，洞中潮湿阴暗，腥臭难闻，一阵阵的恶臭扑面而来，你不
-禁头晕目眩，难受异常。
+山洞極窄，須膝行而爬，若一不小心，就不免被洞中的石壁撞的
+頭破血流，洞中潮溼陰暗，腥臭難聞，一陣陣的惡臭撲面而來，你不
+禁頭暈目眩，難受異常。
 LONG );
         set("indoors", "wansong");
         set("type","mountain");
@@ -25,7 +25,7 @@ int valid_leave(object me, string dir)
         
         if( userp(me) && !query_temp("fugui_liquan", me) && dir == "north" )
         {
-        message_vision( HIC "一阵阵的恶臭扑面而来，$N不禁头晕目眩,难受异常。\n\n"NOR,me);
+        message_vision( HIC "一陣陣的惡臭撲面而來，$N不禁頭暈目眩,難受異常。\n\n"NOR,me);
                 // me->unconcious();
                 return 0;
         } else

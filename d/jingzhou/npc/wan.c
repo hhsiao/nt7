@@ -1,17 +1,17 @@
-// wan 万震山
+// wan 萬震山
 
 inherit NPC;
 
 void create()
 {
-        set_name("万震山", ({ "wan zhenshan", "wan" }));
-        set("title", "万门大当家");
+        set_name("萬震山", ({ "wan zhenshan", "wan" }));
+        set("title", "萬門大當家");
         set("gender", "男性");
         
         set("age", 50);
         set("str", 25);
         set("dex", 28);
-        set("long", "他就是万震山，荆州万门的老大。\n");
+        set("long", "他就是萬震山，荊州萬門的老大。\n");
         set("combat_exp", 35000);
         set("shen_type", 0);
         set("attitude", "heroism");

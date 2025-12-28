@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("电单车[2;37;0m[2;37;0m", ({"qilin"}));        
+        set_name("電單車[2;37;0m[2;37;0m", ({"qilin"}));        
         set("gender", "男性");                
-        set("long", "新能源电单车，无需充电日行千里。[2;37;0m
-它是小偷的魔幻兽。
+        set("long", "新能源電單車，無需充電日行千里。[2;37;0m
+它是小偷的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

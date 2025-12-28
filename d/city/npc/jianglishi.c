@@ -1,4 +1,4 @@
-//jianglishi 泥潭奖励使
+//jianglishi 泥潭獎勵使
 //smallbear 03.10.26
 
 #include <ansi.h>
@@ -11,16 +11,16 @@ int do_lingqu(string arg);
 
 void create()
 {
-        set_name("奖励使", ({ "jiangli shi", "shi", "jiangli" }));
+        set_name("獎勵使", ({ "jiangli shi", "shi", "jiangli" }));
         set("nickname", HIY "泥潭" NOR);
-        set("long", "他就是泥潭奖励使，如果你对泥潭有贡献的话，可以到他这里领取奖励。\n");
+        set("long", "他就是泥潭獎勵使，如果你對泥潭有貢獻的話，可以到他這裡領取獎勵。\n");
         set("gender", "男性");
         set("age", 20);
         set("per", 30);
         set("attitude", "peaceful");
         set("inquiry", ([
-                "贡献度"   : (: ask_gongxian :),
-                "奖励" : (: ask_jiangli :),
+                "貢獻度"   : (: ask_gongxian :),
+                "獎勵" : (: ask_jiangli :),
         ]));
 
         setup();
@@ -43,10 +43,10 @@ mixed ask_gongxian()
          gx=query("hx_gongxian", me);
 
         if( !query("hx_gongxian", me) )
-                return "“你好象还没有为泥潭作出贡献哦，要加油。”";
+                return "“你好象還沒有為泥潭作出貢獻哦，要加油。”";
 
         if( query("hx_gongxian", me)>0 )
-                  write (WHT"奖励使对你笑了笑，说道：“干得好！你现在已经有"+chinese_number(gx)+"点贡献度了，要继续努力哦。”\n"NOR);
+                  write (WHT"獎勵使對你笑了笑，說道：“幹得好！你現在已經有"+chinese_number(gx)+"點貢獻度了，要繼續努力哦。”\n"NOR);
         return 1;
 }
 
@@ -57,10 +57,10 @@ mixed ask_jiangli()
          me = this_player();
         
         if( !query("hx_gongxian", me) )
-                return "“你还没有贡献度呢，就来问奖励？”";
+                return "“你還沒有貢獻度呢，就來問獎勵？”";
 
         if( query("hx_gongxian", me)>0 )
-                return "“你是来拿奖励的吗？看一下 help gongxian，然后找我领取吧。”";
+                return "“你是來拿獎勵的嗎？看一下 help gongxian，然後找我領取吧。”";
 
          return 1;
 }
@@ -71,22 +71,22 @@ int do_lingqu(string arg)
          me = this_player();
 
         if( !query("hx_gongxian", me) )
-                return notify_fail("你目前没有贡献度，不能领取奖励。\n");
+                return notify_fail("你目前沒有貢獻度，不能領取獎勵。\n");
 
          if ( ! arg || arg == "" )
-                return notify_fail("你想领取什么呢？\n");
+                return notify_fail("你想領取什麼呢？\n");
 
-         if ( arg != "菩提子" && arg != "补天石" && arg != "冰蚕丝" && arg != "仙丹" && arg != "神力丸"
-&& arg != "洗髓丹" && arg != "火红仙丹" && arg != "天香玉露" && arg != "九转金丹" && arg != "玄黄紫清丹"
-&& arg != "玛瑙残片" && arg != "翡翠残片" && arg != "钻石残片" && arg != "水晶残片" )
-                return notify_fail("奖励使看了你一眼：“我这里可没有你想要的，决定了再来找我吧。”\n");
+         if ( arg != "菩提子" && arg != "補天石" && arg != "冰蠶絲" && arg != "仙丹" && arg != "神力丸"
+&& arg != "洗髓丹" && arg != "火紅仙丹" && arg != "天香玉露" && arg != "九轉金丹" && arg != "玄黃紫清丹"
+&& arg != "瑪瑙殘片" && arg != "翡翠殘片" && arg != "鑽石殘片" && arg != "水晶殘片" )
+                return notify_fail("獎勵使看了你一眼：“我這裡可沒有你想要的，決定了再來找我吧。”\n");
 
-         if ( arg == "补天石")
+         if ( arg == "補天石")
                  {
                          if( query("hx_gongxian", me)<1 )
-                                  return notify_fail("你的贡献度不够了，再多多努力吧。\n");
+                                  return notify_fail("你的貢獻度不夠了，再多多努力吧。\n");
                         
-                         write(WHT"奖励使微微点了点头，拿出一块补天石交了给你。\n"NOR); 
+                         write(WHT"獎勵使微微點了點頭，拿出一塊補天石交了給你。\n"NOR); 
                                     addn("hx_gongxian", -1, me);
                                     bts = new("/d/item/obj/butian"); 
                                     bts->move(this_player());
@@ -94,12 +94,12 @@ int do_lingqu(string arg)
                          
                  }
 
-         if ( arg == "冰蚕丝")
+         if ( arg == "冰蠶絲")
                  {
                          if( query("hx_gongxian", me)<1 )
-                                  return notify_fail("你的贡献度不够了，再多多努力吧。\n");
+                                  return notify_fail("你的貢獻度不夠了，再多多努力吧。\n");
 
-                         write(WHT"奖励使微微点了点头，拿出一束冰蚕丝交了给你。\n"NOR); 
+                         write(WHT"獎勵使微微點了點頭，拿出一束冰蠶絲交了給你。\n"NOR); 
                                     addn("hx_gongxian", -1, me);
                                     bcs = new("/d/item/obj/tiancs"); 
                                     bcs->move(this_player());
@@ -110,9 +110,9 @@ int do_lingqu(string arg)
          if ( arg == "菩提子")
                  {
                          if( query("hx_gongxian", me)<2 )
-                                  return notify_fail("你的贡献度不够了，再多多努力吧。\n");
+                                  return notify_fail("你的貢獻度不夠了，再多多努力吧。\n");
 
-                         write(WHT"奖励使微微点了点头，拿出一颗菩提子交了给你。\n"NOR); 
+                         write(WHT"獎勵使微微點了點頭，拿出一顆菩提子交了給你。\n"NOR); 
                                     addn("hx_gongxian", -2, me);
                                     ptz = new("/d/shaolin/obj/puti-zi"); 
                                     ptz->move(this_player());
@@ -123,9 +123,9 @@ int do_lingqu(string arg)
          if ( arg == "仙丹")
                  {
                          if( query("hx_gongxian", me)<4 )
-                                  return notify_fail("你的贡献度不够了，再多多努力吧。\n");
+                                  return notify_fail("你的貢獻度不夠了，再多多努力吧。\n");
 
-                         write(WHT"奖励使微微点了点头，拿出一颗仙丹交了给你。\n"NOR); 
+                         write(WHT"獎勵使微微點了點頭，拿出一顆仙丹交了給你。\n"NOR); 
                                     addn("hx_gongxian", -4, me);
                                     xd = new("/clone/gift/xiandan"); 
                                     xd->move(this_player());
@@ -136,9 +136,9 @@ int do_lingqu(string arg)
          if ( arg == "神力丸")
                  {
                          if( query("hx_gongxian", me)<4 )
-                                  return notify_fail("你的贡献度不够了，再多多努力吧。\n");
+                                  return notify_fail("你的貢獻度不夠了，再多多努力吧。\n");
 
-                         write(WHT"奖励使微微点了点头，拿出一颗神力丸交了给你。\n"NOR); 
+                         write(WHT"獎勵使微微點了點頭，拿出一顆神力丸交了給你。\n"NOR); 
                                     addn("hx_gongxian", -4, me);
                                     slw = new("/clone/gift/shenliwan"); 
                                     slw->move(this_player());
@@ -149,9 +149,9 @@ int do_lingqu(string arg)
          if ( arg == "洗髓丹")
                  {
                          if( query("hx_gongxian", me)<4 )
-                                  return notify_fail("你的贡献度不够了，再多多努力吧。\n");
+                                  return notify_fail("你的貢獻度不夠了，再多多努力吧。\n");
 
-                         write(WHT"奖励使微微点了点头，拿出一颗洗髓丹交了给你。\n"NOR); 
+                         write(WHT"獎勵使微微點了點頭，拿出一顆洗髓丹交了給你。\n"NOR); 
                                     addn("hx_gongxian", -4, me);
                                     xsd = new("/clone/gift/xisuidan"); 
                                     xsd->move(this_player());
@@ -159,12 +159,12 @@ int do_lingqu(string arg)
                                    
                  }
 
-         if ( arg == "火红仙丹")
+         if ( arg == "火紅仙丹")
                  {
                          if( query("hx_gongxian", me)<4 )
-                                  return notify_fail("你的贡献度不够了，再多多努力吧。\n");
+                                  return notify_fail("你的貢獻度不夠了，再多多努力吧。\n");
 
-                         write(WHT"奖励使微微点了点头，拿出一颗火红仙丹交了给你。\n"NOR); 
+                         write(WHT"獎勵使微微點了點頭，拿出一顆火紅仙丹交了給你。\n"NOR); 
                                     addn("hx_gongxian", -4, me);
                                     hhxd = new("/clone/gift/unknowdan"); 
                                     hhxd->move(this_player());
@@ -175,9 +175,9 @@ int do_lingqu(string arg)
          if ( arg == "天香玉露")
                  {
                          if( query("hx_gongxian", me)<4 )
-                                  return notify_fail("你的贡献度不够了，再多多努力吧。\n");
+                                  return notify_fail("你的貢獻度不夠了，再多多努力吧。\n");
 
-                         write(WHT"奖励使微微点了点头，拿出一滴天香玉露交了给你。\n"NOR); 
+                         write(WHT"獎勵使微微點了點頭，拿出一滴天香玉露交了給你。\n"NOR); 
                                     addn("hx_gongxian", -3, me);
                                     txyl = new("/clone/gift/tianxiang"); 
                                     txyl->move(this_player());
@@ -185,12 +185,12 @@ int do_lingqu(string arg)
                                    
                  }
 
-         if ( arg == "九转金丹")
+         if ( arg == "九轉金丹")
                  {
                          if( query("hx_gongxian", me)<6 )
-                                  return notify_fail("你的贡献度不够了，再多多努力吧。\n");
+                                  return notify_fail("你的貢獻度不夠了，再多多努力吧。\n");
 
-                         write(WHT"奖励使微微点了点头，拿出一颗九转金丹交了给你。\n"NOR); 
+                         write(WHT"獎勵使微微點了點頭，拿出一顆九轉金丹交了給你。\n"NOR); 
                                     addn("hx_gongxian", -6, me);
                                     jzjd = new("/clone/gift/jiuzhuan"); 
                                     jzjd->move(this_player());
@@ -198,12 +198,12 @@ int do_lingqu(string arg)
                                    
                  }
 
-         if ( arg == "玛瑙残片")
+         if ( arg == "瑪瑙殘片")
                  {
                          if( query("hx_gongxian", me)<8 )
-                                  return notify_fail("你的贡献度不够了，再多多努力吧。\n");
+                                  return notify_fail("你的貢獻度不夠了，再多多努力吧。\n");
 
-                         write(WHT"奖励使微微点了点头，拿出一片玛瑙残片交了给你。\n"NOR); 
+                         write(WHT"獎勵使微微點了點頭，拿出一片瑪瑙殘片交了給你。\n"NOR); 
                                     addn("hx_gongxian", -8, me);
                                     mn = new("/clone/gift/cagate"); 
                                     mn->move(this_player());
@@ -211,12 +211,12 @@ int do_lingqu(string arg)
                                    
                  }
 
-         if ( arg == "翡翠残片")
+         if ( arg == "翡翠殘片")
                  {
                          if( query("hx_gongxian", me)<8 )
-                                  return notify_fail("你的贡献度不够了，再多多努力吧。\n");
+                                  return notify_fail("你的貢獻度不夠了，再多多努力吧。\n");
 
-                         write(WHT"奖励使微微点了点头，拿出一片翡翠残片交了给你。\n"NOR); 
+                         write(WHT"獎勵使微微點了點頭，拿出一片翡翠殘片交了給你。\n"NOR); 
                                     addn("hx_gongxian", -8, me);
                                     fc = new("/clone/gift/cjade"); 
                                     fc->move(this_player());
@@ -224,35 +224,35 @@ int do_lingqu(string arg)
                                    
                  }
 
-         if ( arg == "钻石残片")
+         if ( arg == "鑽石殘片")
                  {
                          if( query("hx_gongxian", me)<8 )
-                                  return notify_fail("你的贡献度不够了，再多多努力吧。\n");
+                                  return notify_fail("你的貢獻度不夠了，再多多努力吧。\n");
 
-                         write(WHT"奖励使微微点了点头，拿出一片钻石残片交了给你。\n"NOR); 
+                         write(WHT"獎勵使微微點了點頭，拿出一片鑽石殘片交了給你。\n"NOR); 
                                     addn("hx_gongxian", -8, me);
                                     zs = new("/clone/gift/cdiamond"); 
                                     zs->move(this_player());
                                     return 1;
                 }
                  
-         if ( arg == "水晶残片")
+         if ( arg == "水晶殘片")
                 {
                          if( query("hx_gongxian", me)<8 )
-                                  return notify_fail("你的贡献度不够了，再多多努力吧。\n");
-                         write(WHT"奖励使微微点了点头，拿出一片水晶残片交了给你。\n"NOR);
+                                  return notify_fail("你的貢獻度不夠了，再多多努力吧。\n");
+                         write(WHT"獎勵使微微點了點頭，拿出一片水晶殘片交了給你。\n"NOR);
                                     addn("hx_gongxian", -8, me);
                                     sj = new("/clone/gift/ccrystal");
                                     sj->move(this_player());
                                     return 1;
                 }
                                
-         if ( arg == "玄黄紫清丹")
+         if ( arg == "玄黃紫清丹")
                 {
                          if( query("hx_gongxian", me)<10 )
-                                  return notify_fail("你的贡献度不够了，再多多努力吧。\n");
+                                  return notify_fail("你的貢獻度不夠了，再多多努力吧。\n");
 
-                         write(WHT"奖励使微微点了点头，拿出一颗玄黄紫清丹交了给你。\n"NOR);
+                         write(WHT"獎勵使微微點了點頭，拿出一顆玄黃紫清丹交了給你。\n"NOR);
                                     addn("hx_gongxian", -10, me);
                                     xhd = new("/clone/gift/xuanhuang");
                                     xhd->move(this_player());

@@ -1,4 +1,4 @@
-// xian.c  云龙三现
+// xian.c  雲龍三現
 
 #include <ansi.h>
 #include <combat.h>
@@ -14,22 +14,22 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("云龙三现只能对战斗中的对手使用。\n");
+                return notify_fail("雲龍三現只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
                 
         if ((int)me->query_skill("yunlong-jian", 1) < 50)
-                return notify_fail("你的云龙剑法不够娴熟，不会使用「云龙三现」。\n");
+                return notify_fail("你的雲龍劍法不夠嫻熟，不會使用「雲龍三現」。\n");
                                 
         if ((int)me->query_skill("force") < 120)
-                return notify_fail("你的内功火候不够，不能使用「云龙三现」。\n");
+                return notify_fail("你的內功火候不夠，不能使用「雲龍三現」。\n");
                         
         if( query("neili", me)<300 )
-                return notify_fail("你现在真气不够，不能使用「云龙三现」。\n");
+                return notify_fail("你現在真氣不夠，不能使用「雲龍三現」。\n");
                         
-        msg = HIM "$N" HIM "微微一笑，猛吸一口气，以气驭剑攻击虚虚实实的攻向$n"
+        msg = HIM "$N" HIM "微微一笑，猛吸一口氣，以氣馭劍攻擊虛虛實實的攻向$n"
               HIM "！\n" NOR;
 
         ap = attack_power(me, "sword");
@@ -42,15 +42,15 @@ int perform(object me, object target)
 
                 addn("neili", -180, me);
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 50,
-                                           HIR "只见$N" HIR "手中剑光幻作一条金龙，腾空而"
-                                           "起倏的罩向$n" HIR "，\n$p" HIR "只觉一股大力"
-                                           "铺天盖地般压来，登时眼前一花，两耳轰鸣，哇的"
-                                           "喷出一口鲜血！！\n" NOR);
+                                           HIR "只見$N" HIR "手中劍光幻作一條金龍，騰空而"
+                                           "起倏的罩向$n" HIR "，\n$p" HIR "只覺一股大力"
+                                           "鋪天蓋地般壓來，登時眼前一花，兩耳轟鳴，哇的"
+                                           "噴出一口鮮血！！\n" NOR);
                 me->start_busy(2);
         } else
         {
-                msg += CYN "可是$p" CYN "猛地向前一跃，跳出了$P"
-                       CYN "的攻击范围。\n"NOR;
+                msg += CYN "可是$p" CYN "猛地向前一躍，跳出了$P"
+                       CYN "的攻擊範圍。\n"NOR;
                 addn("neili", -100, me);
                 me->start_busy(4);
         }

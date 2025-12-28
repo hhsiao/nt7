@@ -7,9 +7,9 @@ inherit F_DEALER;
 
 void create()
 {
-        set_name("马五德", ({ "ma wude", "ma" }));
-        set("title","金牛武馆馆长");
-        set("long", "马老爷子是武馆的缔造者，辛苦一辈子了，仍勇于提携后生。\n");
+        set_name("馬五德", ({ "ma wude", "ma" }));
+        set("title","金牛武館館長");
+        set("long", "馬老爺子是武館的締造者，辛苦一輩子了，仍勇於提攜後生。\n");
         set("gender", "男性");
         set("age", 65);
 

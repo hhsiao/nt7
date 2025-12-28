@@ -9,11 +9,11 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "柄");
-                set("long", "这是一柄奇门兵器，好似一只大剪刀。\n");
+                set("long", "這是一柄奇門兵器，好似一隻大剪刀。\n");
                 set("value", 10000);
                 set("material", "steel");
-                set("wield_msg", "$N「唰」的一声掏出一柄$n握在手中。\n");
-                set("unwield_msg", "$N将手中的$n挂在腰间。\n");
+                set("wield_msg", "$N「唰」的一聲掏出一柄$n握在手中。\n");
+                set("unwield_msg", "$N將手中的$n掛在腰間。\n");
         }
         init_sword(70);
         setup();

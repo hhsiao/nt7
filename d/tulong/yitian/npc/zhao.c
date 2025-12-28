@@ -5,11 +5,11 @@ inherit F_UNIQUE;
 
 void create()
 {
-        set_name("赵敏", ({ "zhao min", "min", "zhao"}));
-        set("title", HIY "大元绍敏郡主" NOR);
+        set_name("趙敏", ({ "zhao min", "min", "zhao"}));
+        set("title", HIY "大元紹敏郡主" NOR);
         set("long",
-"她脸泛红霞，容色丽都。十分美丽之中，更带着三分英气，三分豪态，同
-时雍容华贵，自有一副端严之姿，令人肃然起敬，不敢逼视。\n");
+"她臉泛紅霞，容色麗都。十分美麗之中，更帶著三分英氣，三分豪態，同
+時雍容華貴，自有一副端嚴之姿，令人肅然起敬，不敢逼視。\n");
         set("gender", "女性");
         set("age", 15);
         set("attitude", "peaceful");
@@ -47,8 +47,8 @@ void create()
         map_skill("unarmed", "changquan");
 
         set("inquiry", ([
-            "张无忌" :  "张公子远在昆仑，不知他近来可好？秋冷春寒，可有寒衣？\n",
-            "倚天剑" :  "倚天为天下神兵，怎么，你想要？\n",
+            "張無忌" :  "張公子遠在崑崙，不知他近來可好？秋冷春寒，可有寒衣？\n",
+            "倚天劍" :  "倚天為天下神兵，怎麼，你想要？\n",
         ]));
 
         setup();
@@ -76,7 +76,7 @@ int do_yun(string arg)
         obj=this_object();
         if (arg == "roar" )
         {
-                message_vision(CYN "\n赵敏喝道：无耻贼子，在我这儿由不得你猖狂！\n" NOR,
+                message_vision(CYN "\n趙敏喝道：無恥賊子，在我這兒由不得你猖狂！\n" NOR,
                                    obj);
                 return 1;
         }
@@ -98,11 +98,11 @@ int do_get(string arg)
         obj=this_object();
         if(where == "shelf")
         {
-                message_vision(CYN "\n赵敏喝道：无耻贼子，休得无理！\n" NOR,
+                message_vision(CYN "\n趙敏喝道：無恥賊子，休得無理！\n" NOR,
                                    obj);
 
-                message_vision(CYN "\n赵敏轻声哼了声，道：要想得到倚天剑也可以，但是首先"
-                                   "得比赢(bi)我的手下！\n" NOR,
+                message_vision(CYN "\n趙敏輕聲哼了聲，道：要想得到倚天劍也可以，但是首先"
+                                   "得比贏(bi)我的手下！\n" NOR,
                                    obj);
                 return 1;
         }
@@ -111,13 +111,13 @@ int do_get(string arg)
 
 int accept_fight(object who)
 {
-        command("say 欺负一个弱小女子算什么，要比和我的手下比(bi)。");
+        command("say 欺負一個弱小女子算什麼，要比和我的手下比(bi)。");
         return 0;
 }
 
 int accept_hit(object who)
 {
-        command("say 欺负一个弱小女子算什么，要比和我的手下比(bi)。");
+        command("say 欺負一個弱小女子算什麼，要比和我的手下比(bi)。");
         return 0;
 }
 
@@ -131,29 +131,29 @@ int accept_kill(object who)
                 obs = filter_array(obs, (: query("id", $1) == "a da" :));
                 if (sizeof(obs) > 0) 
                 { 
-                                        command("say 欺负一个弱小女子算什么，要比和我的手下比(bi)。"); 
-                                        return notify_fail("刹那间你觉得无从下手。\n"); 
+                                        command("say 欺負一個弱小女子算什麼，要比和我的手下比(bi)。"); 
+                                        return notify_fail("剎那間你覺得無從下手。\n"); 
                 } 
         } 
         me = this_player();
         command("laugh " + query("id", me));
-        command("say 笑死我了，原来你的来意是这个呀。");
-        tell_object(me, NOR CYN "赵敏从头饰上摘下一支珠花，轻轻一掷，恰好插在你的臀瓣中间..\n" NOR);
-        command("say 你带这个回去凑数，骗骗窗户外那笨女人就行了。");
+        command("say 笑死我了，原來你的來意是這個呀。");
+        tell_object(me, NOR CYN "趙敏從頭飾上摘下一支珠花，輕輕一擲，恰好插在你的臀瓣中間..\n" NOR);
+        command("say 你帶這個回去湊數，騙騙窗戶外那笨女人就行了。");
         command("xixi");
-        tell_object(me, NOR YEL "语毕，赵敏纵身一跃从窗户上跳出去，消失不见了。\n" NOR);
+        tell_object(me, NOR YEL "語畢，趙敏縱身一躍從窗戶上跳出去，消失不見了。\n" NOR);
         addn_temp("marks/kill_zhaomin", 1, me);
         destruct(this_object());
         return 0;
 /*
-        command("say 欺负一个弱小女子算什么，要比和我的手下比(bi)。");
-        return notify_fail("刹那间你觉得无从下手。\n");
+        command("say 欺負一個弱小女子算什麼，要比和我的手下比(bi)。");
+        return notify_fail("剎那間你覺得無從下手。\n");
 */
 }
 
 int accept_ansuan(object who)
 {
-        return notify_fail("你刚想暗算，可是只见楼上人影晃动，根本看不清楚。\n");
+        return notify_fail("你剛想暗算，可是隻見樓上人影晃動，根本看不清楚。\n");
 }
 
 void receive_damage(string type, int n)
@@ -174,14 +174,14 @@ void greeting(object ob)
         if( !userp(ob))
         return;
 
-        message_vision( HIW "$N一上楼来，只见一位明艳少女正座中堂，脸泛红霞，容色丽都。十分美丽\n"+
-                            "之中，更带着三分英气，三分豪态，同时雍容华贵，自有一副端严之致，令\n"+
-                            "人肃然起敬，不敢逼视。少女身旁地站着几人，衣着各异，但从几人的神态\n"+
-                            "和气度看来，无一不是武林高手。中堂摆着一个名贵的红木制剑架，剑架上\n"+
-                            "横放着一柄长剑，长剑的剑鞘上赫然写着“" NOR+HIY "倚天" NOR+HIW "”二字。\n" NOR,
+        message_vision( HIW "$N一上樓來，只見一位明豔少女正座中堂，臉泛紅霞，容色麗都。十分美麗\n"+
+                            "之中，更帶著三分英氣，三分豪態，同時雍容華貴，自有一副端嚴之致，令\n"+
+                            "人肅然起敬，不敢逼視。少女身旁地站著幾人，衣著各異，但從幾人的神態\n"+
+                            "和氣度看來，無一不是武林高手。中堂擺著一個名貴的紅木製劍架，劍架上\n"+
+                            "橫放著一柄長劍，長劍的劍鞘上赫然寫著“" NOR+HIY "倚天" NOR+HIW "”二字。\n" NOR,
                             ob,this_object());
 
         command("yi");
-        command("say 哼，今天来我这里添乱的人还真不少！");
+        command("say 哼，今天來我這裡添亂的人還真不少！");
 }
 

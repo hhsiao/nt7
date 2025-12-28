@@ -5,15 +5,15 @@ inherit ITEM;
 
 void create() 
 { 
-              set_name(NOR"随机播放器"NOR, ({"rplayer"}) ); 
+              set_name(NOR"隨機播放器"NOR, ({"rplayer"}) ); 
               set_weight(1); 
               if( clonep() ) {
                       set_default_object(__FILE__); 
                               call_out("reborn", 1);
                       }
               else { 
-                      set("long", "    这是一个随机播放文选的设备，使用指令是(rr)。\n");  
-                      set("unit", "个"); 
+                      set("long", "    這是一個隨機播放文選的設備，使用指令是(rr)。\n");  
+                      set("unit", "個"); 
                       set("value", 10000);
               } 
               setup(); 
@@ -33,7 +33,7 @@ void init()
 void rr2(object me)
 {
                         if (!query_temp("rr")) return;
-                message_vision(YEL "$N正在阅读文选。\n" NOR, me);
+                message_vision(YEL "$N正在閱讀文選。\n" NOR, me);
                 switch (random(2)) //2010、2005、2008、2012、2011
                 {
                         case 0:
@@ -70,11 +70,11 @@ int do_rr()
                 object me = this_player();
                 if (query_temp("rr")) {
                         delete_temp("rr");
-                        message_vision(YEL "$N已经阅读完毕。\n" NOR, me);
+                        message_vision(YEL "$N已經閱讀完畢。\n" NOR, me);
                 }
                         else {
                                 set_temp("rr", 1);
-                                message_vision(YEL "$N正在阅读文选。\n" NOR, me);
+                                message_vision(YEL "$N正在閱讀文選。\n" NOR, me);
                                 do_flood(me);
                                 call_out("rr2", 4, me);
                         }

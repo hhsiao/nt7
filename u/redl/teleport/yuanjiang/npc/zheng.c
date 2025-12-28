@@ -5,49 +5,49 @@ inherit NPC;
 
 int get_help()
 {
-        write( CYN + query("name") + CYN + "说道：金船里遗留有广成子当年所练的金丹，有几率提高智慧和修为。\n"+ NOR); 
+        write( CYN + query("name") + CYN + "說道：金船裡遺留有廣成子當年所練的金丹，有幾率提高智慧和修為。\n"+ NOR); 
         return 1;
 }
 
 int get_help2()
 {
-        write( CYN + query("name") + CYN + "说道：金蛛乃太古异种，力大无比。如果你有金蛛给我，可以单独和你合作。\n"+ NOR); 
+        write( CYN + query("name") + CYN + "說道：金蛛乃太古異種，力大無比。如果你有金蛛給我，可以單獨和你合作。\n"+ NOR); 
         return 1;
 }
 
 int get_help3()
 {
-        write( CYN + query("name") + CYN + "说道：天字舱分为“癸壬辛庚己戊丁丙乙甲”十个，持续touch舱门可以从癸推动到甲，舱门前不会自动PK，可以考虑合力加快。\n"+ NOR); 
+        write( CYN + query("name") + CYN + "說道：天字艙分為“癸壬辛庚己戊丁丙乙甲”十個，持續touch艙門可以從癸推動到甲，艙門前不會自動PK，可以考慮合力加快。\n"+ NOR); 
         return 1;
 }
 
 int get_help4()
 {
-        write( CYN + query("name") + CYN + "说道：金船地图巨大，用maphere -m比单纯的maphere要望得远些，有特殊出口处必定是舱门所在。\n"+ NOR); 
+        write( CYN + query("name") + CYN + "說道：金船地圖巨大，用maphere -m比單純的maphere要望得遠些，有特殊出口處必定是艙門所在。\n"+ NOR); 
         return 1;
 }
 
 int get_help5()
 {
-        write( CYN + query("name") + CYN + "说道：元磁力是修炼元磁道术的必需材料，在金船里使用xi指令可以获得元磁力，在天字十个舱里尤其丰富。\n"+ NOR); 
+        write( CYN + query("name") + CYN + "說道：元磁力是修煉元磁道術的必需材料，在金船裡使用xi指令可以獲得元磁力，在天字十個艙裡尤其豐富。\n"+ NOR); 
         return 1;
 }
 
 int get_help6()
 {
-        write( CYN + query("name") + CYN + "说道：元磁道术是各种能激发在taoism上的特殊道家武学。比如玄离刀罡可以使你用绝招时多出两招，小心晓月禅师擅长此道。\n"+ NOR); 
+        write( CYN + query("name") + CYN + "說道：元磁道術是各種能激發在taoism上的特殊道家武學。比如玄離刀罡可以使你用絕招時多出兩招，小心曉月禪師擅長此道。\n"+ NOR); 
         return 1;
 }
 
 int get_help7()
 {
-        write( CYN + query("name") + CYN + "说道：铁箱里的小元磁力爆炸是单独计算的，能清零你受到的金船大元磁力累积伤害，打开它是件好事。\n"+ NOR); 
+        write( CYN + query("name") + CYN + "說道：鐵箱裡的小元磁力爆炸是單獨計算的，能清零你受到的金船大元磁力累積傷害，打開它是件好事。\n"+ NOR); 
         return 1;
 }
 
 int get_help8()
 {
-        write( CYN + query("name") + CYN + "说道：仙隐符叶让别的玩家和水鬼，都很难发现有你存在的踪迹，但小心跌倒哦。\n"+ NOR); 
+        write( CYN + query("name") + CYN + "說道：仙隱符葉讓別的玩家和水鬼，都很難發現有你存在的蹤跡，但小心跌倒哦。\n"+ NOR); 
         return 1;
 }
 
@@ -58,63 +58,63 @@ int get_reward()
         me = this_player();
         
         if(me->is_busy()) {
-                        write(NOR "你正忙着呢。\n" NOR);
+                        write(NOR "你正忙著呢。\n" NOR);
                         return 1;
         }
         me->start_busy(1);
 
         if( query("online_time", me) < 86400 * 7){
-                tell_object(me,CYN + query("name") + CYN + "说道：你在线年龄都没有超过一周，是小号吧？\n"+ NOR); 
+                tell_object(me,CYN + query("name") + CYN + "說道：你在線年齡都沒有超過一週，是小號吧？\n"+ NOR); 
                 return 1;
         }      
         
         amount = query("combat_exp", me);
         if( amount < 1000000000){
-                tell_object(me,CYN + query("name") + CYN + "说道：你这点点经验进去能干什么？\n"+ NOR); 
+                tell_object(me,CYN + query("name") + CYN + "說道：你這點點經驗進去能幹什麼？\n"+ NOR); 
                 return 1;
         }
         
-        if( objectp(query_temp("is_riding", me)) ){//飞行法阵已经限制了背玩家进来，以及很多意外的情况
-                tell_object(me,CYN + query("name") + CYN + "说道：下马先？\n"+ NOR); 
+        if( objectp(query_temp("is_riding", me)) ){//飛行法陣已經限制了背玩家進來，以及很多意外的情況
+                tell_object(me,CYN + query("name") + CYN + "說道：下馬先？\n"+ NOR); 
                 return 1;
         }      
         
         if( query("weiwang", me) < 1000000){
-                tell_object(me,CYN + query("name") + CYN + "说道：你的威望太低了，我只和成名人物合作。\n"+ NOR); 
+                tell_object(me,CYN + query("name") + CYN + "說道：你的威望太低了，我只和成名人物合作。\n"+ NOR); 
                 return 1;
         }
     
         room = environment(this_object());
         if (query("blv", room) < 9){
-                tell_object(me,CYN + query("name") + CYN + "说道：你来得太晚了，打捞已经开始。\n"+ NOR); 
+                tell_object(me,CYN + query("name") + CYN + "說道：你來得太晚了，打撈已經開始。\n"+ NOR); 
                 return 1;
         }
         
       if( query("gcjinchuan_time", me) >= query("gcjinchuan_time", room) ) 
         {
-                tell_object(me,CYN + query("name") + "说道：你进出地过于频繁了！\n"+ NOR); 
+                tell_object(me,CYN + query("name") + "說道：你進出地過於頻繁了！\n"+ NOR); 
                 return 1;
        }
         //DEBUG_CHANNEL("player gcjinchuan_time：" + (string)query("gcjinchuan_time", me));
         //DEBUG_CHANNEL("room gcjinchuan_time：" + (string)query("gcjinchuan_time", room));
         
                 addn("weiwang", -30000, me);
-                tell_object(me, NOR "你被扣除三万点江湖威望。\n"+ NOR); 
-                message_vision(append_color(NOR + CYN + query("name") + CYN + "一挥衣袖，$N" + NOR + CYN + "奋起跳上了元江宝船。\n" + NOR, CYN), me);
+                tell_object(me, NOR "你被扣除三萬點江湖威望。\n"+ NOR); 
+                message_vision(append_color(NOR + CYN + query("name") + CYN + "一揮衣袖，$N" + NOR + CYN + "奮起跳上了元江寶船。\n" + NOR, CYN), me);
                 set("gcjinchuan_time", query("gcjinchuan_time", room), me);
                 me->move(get_object("/u/redl/teleport/yuanjiang/jiaban"));
-                CHANNEL_D->channel_broadcast("rumor", "听说" + query("name", me) + "已经赶赴元江的广成金船夺宝。\n");
+                CHANNEL_D->channel_broadcast("rumor", "聽說" + query("name", me) + "已經趕赴元江的廣成金船奪寶。\n");
         return 1;
 }      
 
 void create()
 {
-        set_name( "郑颠仙" , ({ "zheng dianxian", "zheng" }));
+        set_name( "鄭顛仙" , ({ "zheng dianxian", "zheng" }));
         set("long", @LONG
-此乃大熊岭苦竹庵主人，元江夺宝的倡议者。
+此乃大熊嶺苦竹庵主人，元江奪寶的倡議者。
 LONG);
         set("gender", "女性" );
-        set("title", NOR HIC "大颠上人" NOR);
+        set("title", NOR HIC "大顛上人" NOR);
         set("age", 45);
         set("level", 200);
         set("attitude", "friendly");
@@ -132,17 +132,17 @@ LONG);
         set("combat_exp", 120000000000);
 
         set("inquiry", ([
-                "广成金丹" : (: get_help :),
-                "广成金船" : (: get_reward :),
+                "廣成金丹" : (: get_help :),
+                "廣成金船" : (: get_reward :),
                 "boat" : (: get_reward :),
                 "金蛛" : (: get_help2 :),
-                "天字舱" : (: get_help3 :),
-                "地图" : (: get_help4 :),
+                "天字艙" : (: get_help3 :),
+                "地圖" : (: get_help4 :),
                 "元磁力" : (: get_help5 :),
-                "元磁道术" : (: get_help6 :),
-                "铁箱" : (: get_help7 :),
+                "元磁道術" : (: get_help6 :),
+                "鐵箱" : (: get_help7 :),
                 "box" : (: get_help7 :),
-                "仙隐符叶" : (: get_help8 :),
+                "仙隱符葉" : (: get_help8 :),
                 "leaf" : (: get_help8 :),
         ]));
 
@@ -158,7 +158,7 @@ int push_down(object me)
         if (!environment(me)) return 1;
         if (environment(me)!=environment(this_object())) return 1;
         
-        message_vision(append_color(NOR + CYN + query("name") + CYN + "一挥衣袖，$N" + NOR + CYN + "狼狈地往外面退去。\n" + NOR, CYN), me);
+        message_vision(append_color(NOR + CYN + query("name") + CYN + "一揮衣袖，$N" + NOR + CYN + "狼狽地往外面退去。\n" + NOR, CYN), me);
         me->move(query("exits/out", environment(this_object())));
         return 1;
 }
@@ -186,38 +186,38 @@ int accept_object(object me, object obj)
                 me->start_busy(2);
                 
         if (!query("is jin zhu", obj)){
-                tell_object(me, NOR CYN + query("name") + CYN + "摇头对你说道：我只需要金蛛。\n" NOR); 
+                tell_object(me, NOR CYN + query("name") + CYN + "搖頭對你說道：我只需要金蛛。\n" NOR); 
                 return 0;
     }
 
 /*        if( query("online_time", me) < 86400 * 2){
-                tell_object(me,CYN + query("name") + CYN + "说道：你在线年龄都没有超过两天，是小号吧？\n"+ NOR); 
+                tell_object(me,CYN + query("name") + CYN + "說道：你在線年齡都沒有超過兩天，是小號吧？\n"+ NOR); 
                 return 0;
         }      */
         
        t = TIME_D->analyse_time(TIME_D->query_real_time());
        if (t[1]>=19 && t[1]<21)
         {
-                tell_object(me, NOR CYN + query("name") + "摇头道：１９～２１点之间不允许私人打捞。\n"+ NOR); 
+                tell_object(me, NOR CYN + query("name") + "搖頭道：１９～２１點之間不允許私人打撈。\n"+ NOR); 
                 return 0;
        }
 
         room = environment(this_object());
         if (query("blv", room)){
-                tell_object(me, NOR CYN + query("name") + CYN + "说道：你来得太晚了，打捞已经开始。\n"+ NOR); 
+                tell_object(me, NOR CYN + query("name") + CYN + "說道：你來得太晚了，打撈已經開始。\n"+ NOR); 
                 return 0;
         }
         
-      if( query("gcjinchuan_time", room) && //等于重启后第一次用金蛛进去的玩家不受这个CD限制
+      if( query("gcjinchuan_time", room) && //等於重啟後第一次用金蛛進去的玩家不受這個CD限制
         query("gcjinchuan_time", me) >= query("gcjinchuan_time", room) ) 
         {
-                tell_object(me, NOR CYN + query("name") + "说道：你进出地过于频繁了！\n"+ NOR); 
+                tell_object(me, NOR CYN + query("name") + "說道：你進出地過於頻繁了！\n"+ NOR); 
                 return 0;
        }
        
-        tell_object(me, NOR CYN + query("name") + CYN + "点头对你说道：请稍带片刻。\n" NOR); 
+        tell_object(me, NOR CYN + query("name") + CYN + "點頭對你說道：請稍帶片刻。\n" NOR); 
 
-                message_vision(append_color(NOR + CYN + query("name") + CYN + "一挥衣袖，$N" + NOR + CYN + "奋起跳上了元江宝船。\n" + NOR, CYN), me);
+                message_vision(append_color(NOR + CYN + query("name") + CYN + "一揮衣袖，$N" + NOR + CYN + "奮起跳上了元江寶船。\n" + NOR, CYN), me);
                 set("gcjinchuan_time", query("gcjinchuan_time", room), me);
                 me->move(get_object("/u/redl/teleport/yuanjiang/jiaban"));
         

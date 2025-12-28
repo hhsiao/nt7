@@ -2,10 +2,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("老雇工", ({ "lao gugong","lao"}) );
+        set_name("老僱工", ({ "lao gugong","lao"}) );
         set("gender", "男性" );
         set("age", 50);
-        set("long", "年迈的外地讨生活人。\n");
+        set("long", "年邁的外地討生活人。\n");
         set("attitude", "friendly");
         set("combat_exp", 5000);
         set("shen_type", 1);

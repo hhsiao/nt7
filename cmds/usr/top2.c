@@ -4,19 +4,19 @@
 
 inherit F_CLEAN_UP;
 
-// 逆序排列(从高到低)
+// 逆序排列(從高到低)
 int sort_family(string f1, string f2, mapping fame)
 {
         return fame[f2] - fame[f1];
 }
 
-// 逆序排列(从高到低)
+// 逆序排列(從高到低)
 int sort_league(string f1, string f2, mapping fame)
 {
         return fame[f2] - fame[f1];
 }
 
-// 逆序排列(从高到低)
+// 逆序排列(從高到低)
 int sort_bunch(string f1, string f2, mapping fame)
 {
         return fame[f2] - fame[f1];
@@ -32,7 +32,7 @@ int main(object me, string arg)
         // 防止 flood add by ken@NT
         cur_time = time();
         if( cur_time-query_temp("last_who", me)<1){
-              return notify_fail("系统气喘嘘地叹道：慢慢来 ....\n");
+              return notify_fail("系統氣喘噓地嘆道：慢慢來 ....\n");
         }
         set_temp("last_who", cur_time, me);
 
@@ -44,7 +44,7 @@ int main(object me, string arg)
                 fam = keys(fame) - ({ 0 });
                 fam = sort_array(fam, (: sort_family :), fame);
 
-                msg = WHT "目前江湖上所有名门大派的声望状况\n" NOR
+                msg = WHT "目前江湖上所有名門大派的聲望狀況\n" NOR
                       HIY "--------------------------------\n" NOR;
                 for (i = 0; i < sizeof(fam); i++)
                 {
@@ -57,7 +57,7 @@ int main(object me, string arg)
                 }
 
                 msg += HIY "--------------------------------\n" NOR
-                       WHT "一共是" + chinese_number(i) + "个门派。\n" NOR;
+                       WHT "一共是" + chinese_number(i) + "個門派。\n" NOR;
         } else
         if (arg == "league")
         {
@@ -66,12 +66,12 @@ int main(object me, string arg)
 
                 fam = keys(fame) - ({ 0 });
                 if (sizeof(fam) < 1)
-                        return notify_fail("目前江湖上没有什么"
-                                           "有名的结义同盟。\n");
+                        return notify_fail("目前江湖上沒有什麼"
+                                           "有名的結義同盟。\n");
 
                 fam = sort_array(fam, (: sort_league :), fame);
 
-                msg = WHT "目前江湖上著名结义同盟的声望状况\n" NOR
+                msg = WHT "目前江湖上著名結義同盟的聲望狀況\n" NOR
                       HIY "--------------------------------\n" NOR;
                 for (i = 0; i < sizeof(fam) && i < 30; i++)
                 {
@@ -84,7 +84,7 @@ int main(object me, string arg)
                 }
 
                 msg += HIY "--------------------------------\n" NOR
-                       WHT "列出了" + chinese_number(i) + "个结义同盟。\n" NOR;
+                       WHT "列出了" + chinese_number(i) + "個結義同盟。\n" NOR;
         } else
         if (arg == "bunch")
         {
@@ -93,12 +93,12 @@ int main(object me, string arg)
 
                 fam = keys(fame) - ({ 0 });
                 if (sizeof(fam) < 1)
-                        return notify_fail("目前江湖上没有什么"
-                                           "有名的帮派。\n");
+                        return notify_fail("目前江湖上沒有什麼"
+                                           "有名的幫派。\n");
 
                 fam = sort_array(fam, (: sort_bunch :), fame);
 
-                msg = WHT "目前江湖上著名玩家帮派的声望状况\n" NOR
+                msg = WHT "目前江湖上著名玩家幫派的聲望狀況\n" NOR
                       HIY "--------------------------------\n" NOR;
                 for (i = 0; i < sizeof(fam) && i < 30; i++)
                 {
@@ -111,9 +111,9 @@ int main(object me, string arg)
                 }
 
                 msg += HIY "--------------------------------\n" NOR
-                       WHT "列出了" + chinese_number(i) + "个帮派。\n" NOR;
+                       WHT "列出了" + chinese_number(i) + "個幫派。\n" NOR;
         } else
-                return notify_fail("你要看什么排行榜？\n");
+                return notify_fail("你要看什麼排行榜？\n");
 
         write(msg);
         return 1;
@@ -124,7 +124,7 @@ int help(object me)
         write(@HELP
 指令格式: top [family | league | bunch]
 
-查看目前江湖上大门派或是著名结义同盟或是帮派的排名状况和相比去年变化
+查看目前江湖上大門派或是著名結義同盟或是幫派的排名狀況和相比去年變化
 的程度。
 HELP );
         return 1;

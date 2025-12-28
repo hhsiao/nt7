@@ -7,9 +7,9 @@ int give_anqi();
 
 void create()
 {
-        set_name("唐镖", ({ "tang biao", "tang", "biao"}));
+        set_name("唐鏢", ({ "tang biao", "tang", "biao"}));
         set("long", 
-"唐门中所有的绝门镖法，他都会用。\n");        
+"唐門中所有的絕門鏢法，他都會用。\n");        
         set("gender", "男性");
         set("gender", "男性");
         set("age", 32);
@@ -60,7 +60,7 @@ void create()
         set_temp("apply/unarmed_damage", 100);  
         set_temp("apply/armor", 200);  
         
-        create_family("唐门世家", 2, "弟子");
+        create_family("唐門世家", 2, "弟子");
 
         set("inquiry", ([
                 "job" : ( : give_job  : ),
@@ -82,7 +82,7 @@ int give_job()
         int coun;
 
         string *tar = ({
-                "","铁矿石",
+                "","鐵礦石",
         });
 
         me = this_player();
@@ -90,17 +90,17 @@ int give_job()
 
         if( !environment() || base_name(environment()) != query("startroom") )
         {
-                say("唐镖说道:“我现在没心情给你派活，等我回制镖房再说吧！”\n");
+                say("唐鏢說道:“我現在沒心情給你派活，等我回制鏢房再說吧！”\n");
                 return 0;
         }
 
         if( !query_temp("tangmen/biao", me) )
-                command("say “这里没有活能给你干，你听谁说的？”");
+                command("say “這裡沒有活能給你幹，你聽誰說的？”");
         else
         {
                 if( query_temp("biao", me) )
                 {
-                        command("say “你还没有完成刚才给你的任务呢！”");
+                        command("say “你還沒有完成剛才給你的任務呢！”");
                         return 1;
                 }
                 coun = 1 + random(sizeof(tar));
@@ -108,7 +108,7 @@ int give_job()
                         coun = ( sizeof(tar) - 1 );
                 targ = tar[coun];
                 printf("%d/%d\n",coun,sizeof(tar));
-                say("唐镖说道:“我这里上好的" + targ + "不多了，你去后山给我找一些来吧！”\n");
+                say("唐鏢說道:“我這裡上好的" + targ + "不多了，你去後山給我找一些來吧！”\n");
                 set_temp("biao", coun, me);
         }
         return 1;
@@ -119,13 +119,13 @@ int give_anqi()
         object me = this_player();
         object ob;
         
-        if( query("family/family_name", me) != "唐门世家" )
+        if( query("family/family_name", me) != "唐門世家" )
         {
-                command("say 你不是我唐门中人，我无法给你七子刚镖！\n");
+                command("say 你不是我唐門中人，我無法給你七子剛鏢！\n");
                 return 1;
         } else
         {
-                command("say 此七子刚镖威力无穷，配合唐门奇毒使用的话，效果更好！\n");
+                command("say 此七子剛鏢威力無窮，配合唐門奇毒使用的話，效果更好！\n");
                 ob = new("/kungfu/class/tangmen/obj/biao");
 //                ob->move(this_object());
 //                command("give qizi gangbiao to"+query("id", me));
@@ -137,7 +137,7 @@ int give_anqi()
 
 int accept_object(object who, object ob)
 {
-        command("say 要是找到了，就放到储藏室去吧！给我干什么?");
-        write("唐镖冲着你不耐烦的挥了挥手，低着头接着研究暗器图谱。\n");
+        command("say 要是找到了，就放到儲藏室去吧！給我幹什麼?");
+        write("唐鏢衝著你不耐煩的揮了揮手，低著頭接著研究暗器圖譜。\n");
         return 0;
 }

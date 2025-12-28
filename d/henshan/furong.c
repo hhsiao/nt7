@@ -4,8 +4,8 @@ void create()
 {
        set("short","芙蓉洞外");
         set("long", @LONG
-只见此处有一个小洞，洞口狭小，只能容一人通过。洞中却射出
-一缕阳光。
+只見此處有一個小洞，洞口狹小，只能容一人通過。洞中卻射出
+一縷陽光。
 LONG );
        set("exits",([
               "enter":__DIR__"furong1",

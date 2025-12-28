@@ -2,16 +2,16 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "修行场");
+        set("short", "修行場");
         set("long", @LONG
-这里是桃花岛弹指山庄修行的场所，大部分的桃花岛弟子
-武功有了一定的根基以后就在这里苦修，领悟上乘武学。
+這裡是桃花島彈指山莊修行的場所，大部分的桃花島弟子
+武功有了一定的根基以後就在這裡苦修，領悟上乘武學。
 LONG);
         set("exits", ([
                 "north" : __DIR__"houyuan",
         ]));
         set("outdoors", "taohua");
-        set("for_family", "桃花岛");
+        set("for_family", "桃花島");
         setup();
         replace_program(ROOM);
 }

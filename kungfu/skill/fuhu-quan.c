@@ -1,65 +1,65 @@
 // /lungfu/skill/fuhu-quan
 // by dubei
-// 罗汉伏虎拳
+// 羅漢伏虎拳
 
 inherit SHAOLIN_SKILL;
 
 mapping *action = ({
-([      "action" : "$N并举双拳，使出一招「灌顶」，当头砸向$n的$l  ",
-        "skill_name" : "灌顶",
+([      "action" : "$N並舉雙拳，使出一招「灌頂」，當頭砸向$n的$l  ",
+        "skill_name" : "灌頂",
         "force" : 80,
         "dodge" : 5,
         "lvl" : 0,
-        "damage_type" : "瘀伤",
+        "damage_type" : "瘀傷",
 ]),
-([      "action" : "$N使出一招「解苦」，身形一低，左手护顶，右手一拳击向$n的裆部  ",
+([      "action" : "$N使出一招「解苦」，身形一低，左手護頂，右手一拳擊向$n的襠部  ",
         "skill_name" : "解苦",
         "force" : 60,
         "dodge" : -5,
         "lvl" : 10,
-        "damage_type" : "瘀伤",
+        "damage_type" : "瘀傷",
 ]),
-([      "action" : "$N使出一招「颦眉」，左拳虚击$n的前胸，一错身，右拳横扫$n的太阳穴  ",
-        "skill_name" : "颦眉",
+([      "action" : "$N使出一招「顰眉」，左拳虛擊$n的前胸，一錯身，右拳橫掃$n的太陽穴  ",
+        "skill_name" : "顰眉",
         "force" : 80,
         "dodge" : 10,
         "lvl" : 20,
-        "damage_type" : "瘀伤",
+        "damage_type" : "瘀傷",
 ]),
-([      "action" : "$N神形怪异，使一招「嗔恚」，双拳上下击向$n的$l  ",
+([      "action" : "$N神形怪異，使一招「嗔恚」，雙拳上下擊向$n的$l  ",
         "skill_name" : "嗔恚",
         "force" : 100,
         "dodge" : 5,
         "lvl" : 40,
-        "damage_type" : "瘀伤",
+        "damage_type" : "瘀傷",
 ]),
-([      "action" : "$N使出一招「静寂」，双拳交错，缓缓击出，劲气直指$n的$l  ",
-        "skill_name" : "静寂",
+([      "action" : "$N使出一招「靜寂」，雙拳交錯，緩緩擊出，勁氣直指$n的$l  ",
+        "skill_name" : "靜寂",
         "force" : 120,
         "dodge" : -5,
         "lvl" : 50,
-        "damage_type" : "瘀伤",
+        "damage_type" : "瘀傷",
 ]),
-([      "action" : "$N微微一笑，使出一式「妙音」，双拳前后击出，直取$n的左胸  ",
+([      "action" : "$N微微一笑，使出一式「妙音」，雙拳前後擊出，直取$n的左胸  ",
         "skill_name" : "妙音",
         "force" : 150,
         "dodge" : 10,
         "lvl" : 60,
-        "damage_type" : "瘀伤",
+        "damage_type" : "瘀傷",
 ]),
-([      "action" : "$N使出一招「明心」，全身疾转，双拳横扫$n的$l  ",
+([      "action" : "$N使出一招「明心」，全身疾轉，雙拳橫掃$n的$l  ",
         "skill_name" : "明心",
         "force" : 270,
         "dodge" : 20,
         "lvl" : 80,
-        "damage_type" : "瘀伤",
+        "damage_type" : "瘀傷",
 ]),
-([      "action" : "$N飞身一跃，使出一招「制胜」，一拳猛击$n咽喉  ",
-        "skill_name" : "制胜",
+([      "action" : "$N飛身一躍，使出一招「制勝」，一拳猛擊$n咽喉  ",
+        "skill_name" : "制勝",
         "force" : 260,
         "dodge" : 5,
         "lvl" : 100,
-        "damage_type" : "瘀伤",
+        "damage_type" : "瘀傷",
 ]),
 });
 
@@ -68,14 +68,14 @@ int valid_enable(string usage) { return usage == "cuff" || usage == "parry"; }
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练罗汉伏虎拳必须空手。\n");
+                return notify_fail("練羅漢伏虎拳必須空手。\n");
     else if( query("max_neili", me)<1000 )
-                return notify_fail("你的内力不够练罗汉伏虎拳。\n");
+                return notify_fail("你的內力不夠練羅漢伏虎拳。\n");
     if ((int)me->query_skill("hunyuan-yiqi", 1) < 100 )
-                      return notify_fail("你的心意气混元功还不够，还不能练罗汉伏虎拳。\n");
+                      return notify_fail("你的心意氣混元功還不夠，還不能練羅漢伏虎拳。\n");
  
         if ((int)me->query_skill("cuff", 1) < (int)me->query_skill("fuhu-quan", 1))
-                      return notify_fail("你的基本拳法火候，还不能练罗汉伏虎拳。\n");
+                      return notify_fail("你的基本拳法火候，還不能練羅漢伏虎拳。\n");
           return 1;
 }
  int valid_combine(string combo)
@@ -107,11 +107,11 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me)
 {
             if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练罗汉伏虎拳必须空手。\n");
+                return notify_fail("練羅漢伏虎拳必須空手。\n");
          if( query("jingli", me)<30 )
-                 return notify_fail("你的体力太低了。\n");
+                 return notify_fail("你的體力太低了。\n");
          if( query("neili", me)<20 )
-                 return notify_fail("你的内力不够练罗汉伏虎拳。\n");
+                 return notify_fail("你的內力不夠練羅漢伏虎拳。\n");
          addn("jingli", -25, me);
          addn("neili", -5, me);
          return 1;

@@ -1,41 +1,41 @@
-// wenjia-quan 温家拳 (npc 功夫)
+// wenjia-quan 溫家拳 (npc 功夫)
 
 inherit SKILL;
 
 mapping *action = ({
-([     "action" : "$N一式「兔戏苍鹰」，侧身挥拳，带着呼呼的风声打向$n的$l",
+([     "action" : "$N一式「兔戲蒼鷹」，側身揮拳，帶著呼呼的風聲打向$n的$l",
        "force" : 180,
         "dodge" : 20,
         "parry" : 50,
        "lvl" : 0,       
-       "damage_type" : "内伤"
+       "damage_type" : "內傷"
 ]),
-([     "action" : "$N左拳虚握，右拳快如闪电般打向$n的$l，正是一招「飞流直泻」",
+([     "action" : "$N左拳虛握，右拳快如閃電般打向$n的$l，正是一招「飛流直瀉」",
        "force" : 205,
         "dodge" : 20,
        "lvl" : 0,
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
-([     "action" : "$N使招「风雨归人」，双拳交错，忽又分开，引内劲打向$n的$l",
+([     "action" : "$N使招「風雨歸人」，雙拳交錯，忽又分開，引內勁打向$n的$l",
        "force" : 340,
         "dodge" : 10,
         "parry" : 25,
        "lvl" : 10,
-        "damage_type" : "内伤"
+        "damage_type" : "內傷"
 ]),
-([     "action" : "$N双拳犹如狂风骤雨般打向$n，拳影闪烁，已将$n团团围住",
+([     "action" : "$N雙拳猶如狂風驟雨般打向$n，拳影閃爍，已將$n團團圍住",
        "force" : 380,
         "dodge" : 5,
         "parry" : 30,
        "lvl" : 10,
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
-([     "action" : "$N纵身越起直落在$n身后，双脚落地后双拳向后挥出，打向$n的后心。",
+([     "action" : "$N縱身越起直落在$n身後，雙腳落地後雙拳向後揮出，打向$n的後心。",
        "force" : 390,
         "dodge" : 10,
         "parry" : 35,
        "lvl" : 30,
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
 });
 
@@ -44,10 +44,10 @@ int valid_enable(string usage) { return usage=="cuff" || usage=="parry"; }
 int valid_learn(object me)
 {
        if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-               return notify_fail("温家拳拳必须空手。\n");
+               return notify_fail("溫家拳拳必須空手。\n");
       
        if( query("max_neili", me)<100 )
-               return notify_fail("你的内力太弱，无法练功。\n");
+               return notify_fail("你的內力太弱，無法練功。\n");
        return 1;
 }
 
@@ -71,9 +71,9 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me)
 {
        if( query("jingli", me)<30 )
-               return notify_fail("你的体力太低了。\n");
+               return notify_fail("你的體力太低了。\n");
        if( query("neili", me)<20 )
-               return notify_fail("你的内力不够练温家拳。\n");
+               return notify_fail("你的內力不夠練溫家拳。\n");
        me->receive_damage("jingli", 30);
        addn("neili", -10, me);
        return 1;

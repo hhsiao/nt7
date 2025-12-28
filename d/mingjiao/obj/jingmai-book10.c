@@ -3,7 +3,7 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIW"子午针灸经"NOR, ({ "jingmai book", "book", "shu" }) );
+        set_name(HIW"子午針灸經"NOR, ({ "jingmai book", "book", "shu" }) );
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {

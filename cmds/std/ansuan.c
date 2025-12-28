@@ -25,48 +25,48 @@ mapping default_where = ([
 ]);
 
 mapping default_dirs = ([
-        "north":        "北边",
-        "south":        "南边",
-        "east":         "东边",
-        "west":         "西边",
-        "northup":      "北边",
-        "southup":      "南边",
-        "eastup":       "东边",
-        "westup":       "西边",
-        "northdown":    "北边",
-        "southdown":    "南边",
-        "eastdown":     "东边",
-        "westdown":     "西边",
-        "northeast":    "东北",
+        "north":        "北邊",
+        "south":        "南邊",
+        "east":         "東邊",
+        "west":         "西邊",
+        "northup":      "北邊",
+        "southup":      "南邊",
+        "eastup":       "東邊",
+        "westup":       "西邊",
+        "northdown":    "北邊",
+        "southdown":    "南邊",
+        "eastdown":     "東邊",
+        "westdown":     "西邊",
+        "northeast":    "東北",
         "northwest":    "西北",
-        "southeast":    "东南",
+        "southeast":    "東南",
         "southwest":    "西南",
         "up":           "上面",
         "down":         "下面",
-        "enter":        "里面",
+        "enter":        "裡面",
         "out":          "外面",
 ]);
 
 mapping default_undirs = ([
-        "south":        "北边",
-        "north":        "南边",
-        "west":         "东边",
-        "east":         "西边",
-        "southup":      "北边",
-        "northup":      "南边",
-        "westup":       "东边",
-        "eastup":       "西边",
-        "southdown":    "北边",
-        "northdown":    "南边",
-        "westdown":     "东边",
-        "eastdown":     "西边",
-        "southwest":    "东北",
+        "south":        "北邊",
+        "north":        "南邊",
+        "west":         "東邊",
+        "east":         "西邊",
+        "southup":      "北邊",
+        "northup":      "南邊",
+        "westup":       "東邊",
+        "eastup":       "西邊",
+        "southdown":    "北邊",
+        "northdown":    "南邊",
+        "westdown":     "東邊",
+        "eastdown":     "西邊",
+        "southwest":    "東北",
         "southeast":    "西北",
-        "northwest":    "东南",
+        "northwest":    "東南",
         "northeast":    "西南",
         "down":         "上面",
         "up":           "下面",
-        "out":          "里面",
+        "out":          "裡面",
         "enter":        "外面",
 ]);
 
@@ -94,7 +94,7 @@ int main(object me, string arg)
                 where = where_temp;
 
         if( !mapp(exits=query("exits", env)) || undefinedp(exits[where]) )
-                return notify_fail("没有这个方向。\n");
+                return notify_fail("沒有這個方向。\n");
 
         if (! objectp(env = find_object(exits[where])))
         {
@@ -103,48 +103,48 @@ int main(object me, string arg)
         }
 
         if( query("no_fight", env) )
-                return notify_fail("那里禁止战斗。\n");
+                return notify_fail("那裡禁止戰鬥。\n");
 
         if (! objectp(target = present(who, env)))
-                return notify_fail("这个方向没有此人。\n");
+                return notify_fail("這個方向沒有此人。\n");
 
         if (! target->is_character())
-                return notify_fail("看清楚一点，那并不是生物。\n");
+                return notify_fail("看清楚一點，那並不是生物。\n");
 
         if (target->query_competitor())
-                return notify_fail("人家正在和别人比武，你要是暗算人家"
-                                   "也未免太无耻了吧？\n");
+                return notify_fail("人家正在和別人比武，你要是暗算人家"
+                                   "也未免太無恥了吧？\n");
 
         if( me->is_busy() || query("doing", me) )
-                return notify_fail("你的动作还没有完成，不能暗算别人。\n");
+                return notify_fail("你的動作還沒有完成，不能暗算別人。\n");
 
         if (me->is_fighting())
-                return notify_fail("你正忙着战斗呢，还有心思暗算别人？\n");
+                return notify_fail("你正忙著戰鬥呢，還有心思暗算別人？\n");
 
         if( !query("can_speak", target) )
-                return notify_fail("你这人真有意思，连" + target->name() +
+                return notify_fail("你這人真有意思，連" + target->name() +
                                    "也想暗算。\n");
 
         if (! living(target))
-                return notify_fail(target->name() + "都已经这样了，你还用得着暗算吗？\n");
+                return notify_fail(target->name() + "都已經這樣了，你還用得著暗算嗎？\n");
 
         if( query("jing", me)<100 )
-                return notify_fail("你无法集中精力，暗算不了别人。\n");
+                return notify_fail("你無法集中精力，暗算不了別人。\n");
 
         if( query_temp("guarded", target) )
-                return notify_fail(target->name() + "附近有帮手，不方便下手暗算。\n");
+                return notify_fail(target->name() + "附近有幫手，不方便下手暗算。\n");
 
-        notify_fail("你无法过去暗算别人。\n");
+        notify_fail("你無法過去暗算別人。\n");
         if (! (int)old_env->valid_leave(me, where))
                 return 0;
 
         if (environment(me) != old_env)
         {
-                write("你昏了头，不知道走到了什么地方。\n");
+                write("你昏了頭，不知道走到了什麼地方。\n");
                 return 1;
         }
 
-        notify_fail("你没有办法暗算人家。\n");
+        notify_fail("你沒有辦法暗算人家。\n");
         if (! target->accept_ansuan(me))
                 return 0;
 
@@ -164,10 +164,10 @@ int main(object me, string arg)
         else
                 gen = "人影";
 
-        write( CYN"你摒息静气，纵身而起，向" + dir + "的" + target->name() + "扑去！\n"NOR);
-        message("vision", CYN"\n一条" + gen + "忽然向" + dir + "扑去，转眼间又回到原处！\n\n"NOR, environment(me), me);
-        tell_object(target, CYN"\n一条" + gen + "忽然从" + undir + "向你扑来！\n\n"NOR);
-        message("vision", CYN"\n一条" + gen + "忽然从" + undir + "向" + target->name() + "扑来！\n\n"NOR, environment(target), target);
+        write( CYN"你摒息靜氣，縱身而起，向" + dir + "的" + target->name() + "撲去！\n"NOR);
+        message("vision", CYN"\n一條" + gen + "忽然向" + dir + "撲去，轉眼間又回到原處！\n\n"NOR, environment(me), me);
+        tell_object(target, CYN"\n一條" + gen + "忽然從" + undir + "向你撲來！\n\n"NOR);
+        message("vision", CYN"\n一條" + gen + "忽然從" + undir + "向" + target->name() + "撲來！\n\n"NOR, environment(target), target);
 
         count = me->query_str();
 
@@ -184,12 +184,12 @@ int main(object me, string arg)
         if( random(query("combat_exp", me))>query("combat_exp", target)/2 && 
             ! target->is_guarder())
         {
-                message_vision(CYN"$N一时没有防范，被$n攻了个措手不及！\n" NOR, target, me);
+                message_vision(CYN"$N一時沒有防範，被$n攻了個措手不及！\n" NOR, target, me);
                 if (! target->is_busy())
                         target->start_busy(random(4) + 2);
         } else
         {
-                message_vision(CYN "$N经验丰富，不及细看，立刻向$n反击！\n" NOR, target, me);
+                message_vision(CYN "$N經驗豐富，不及細看，立刻向$n反擊！\n" NOR, target, me);
                 COMBAT_D->do_attack(target,me,query_temp("weapon", target));
         }
 
@@ -203,10 +203,10 @@ int main(object me, string arg)
                 delete_temp("apply/short", me);
                 delete_temp("apply/long", me);
 
-                tell_object(target, CYN "你一定神，原来是" + me->name() +
+                tell_object(target, CYN "你一定神，原來是" + me->name() +
                                     "在暗算我！\n" NOR);
-                write(CYN "不好，被" + target->name() + "发觉了！\n" NOR);
-                message_vision(CYN "$N喝道：$n！你敢暗算我，我跟你没完！\n"
+                write(CYN "不好，被" + target->name() + "發覺了！\n" NOR);
+                message_vision(CYN "$N喝道：$n！你敢暗算我，我跟你沒完！\n"
                                NOR, target, me);
                 if (! target->is_killing(me))
                         target->kill_ob(me);
@@ -215,9 +215,9 @@ int main(object me, string arg)
                 me->start_busy(3);
         } else
         {
-                message("vision", CYN "\n" + gen + "转瞬不见！\n\n" NOR,
+                message("vision", CYN "\n" + gen + "轉瞬不見！\n\n" NOR,
                                   environment(target), me);
-                tell_object(me, CYN"\n你立刻退回原处！\n\n"NOR);
+                tell_object(me, CYN"\n你立刻退回原處！\n\n"NOR);
 
                 me->move(old_env);
 
@@ -226,12 +226,12 @@ int main(object me, string arg)
                 delete_temp("apply/short", me);
                 delete_temp("apply/long", me);
 
-                tell_object(target, CYN "你一定神，可是什么都没看见。\n" NOR);
-                message("vision", CYN + target->name() + "一脸惶恐，竟"
-                                  "不知道谁在暗算他！\n" NOR,
+                tell_object(target, CYN "你一定神，可是什麼都沒看見。\n" NOR);
+                message("vision", CYN + target->name() + "一臉惶恐，竟"
+                                  "不知道誰在暗算他！\n" NOR,
                                   environment(target), target);
-                write(CYN "哈哈，" + target->name() + "居然没看出来。\n" NOR);
-                write(CYN "你搓了搓手，一脸无辜的样子。\n" NOR);
+                write(CYN "哈哈，" + target->name() + "居然沒看出來。\n" NOR);
+                write(CYN "你搓了搓手，一臉無辜的樣子。\n" NOR);
         }
 
         if (! me->is_busy())
@@ -246,8 +246,8 @@ int help(object me)
         write(@HELP
 指令格式 : ansuan <人物> at <方向>
 
-这个指令让你暗算位于<方向>的<人物>。
-如果暗算成功，则敌人发现不了你。否则...:)
+這個指令讓你暗算位於<方向>的<人物>。
+如果暗算成功，則敵人發現不了你。否則...:)
 HELP );
         return 1;
 }

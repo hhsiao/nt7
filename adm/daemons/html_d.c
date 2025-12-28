@@ -22,7 +22,7 @@ string WHITE_HEADER = @LONG
 <body bgcolor="#ffffff" text="#55555" link="#666688" vlink="#666688">
 <table width=80% align=center>
   <tr>
-    <td align=center style='font-familiy:verdana;font-size:15px;color:#555;'>本页面由MUD系统自动建置，更新时间为 %^UPDATETIME%^</td>
+    <td align=center style='font-familiy:verdana;font-size:15px;color:#555;'>本頁面由MUD系統自動建置，更新時間為 %^UPDATETIME%^</td>
   </tr>
 </table>
 <hr width=80% align=center><p>
@@ -47,7 +47,7 @@ string BLACK_HEADER = @LONG
 <body bgcolor="#000000" text="#bbbbbb" link="#666688" vlink="#666688">
 <table width=80% align=center>
   <tr>
-    <td align=center style='font-familiy:verdana;font-size:15px;color:#bbb;'>本页面由MUD系统自动建置，更新时间为 %^UPDATETIME%^</td>
+    <td align=center style='font-familiy:verdana;font-size:15px;color:#bbb;'>本頁面由MUD系統自動建置，更新時間為 %^UPDATETIME%^</td>
   </tr>
 </table>
 <hr width=80% align=center><p>
@@ -61,7 +61,7 @@ string WHITE_FOOTER = @LONG
 <p><hr width=80% align=center>
 <table width=80% align=center>
   <tr>
-    <td align=center><font face=verdana size=2 color=555555>Copyright &copy;2000-%^YEAR%^ <a href="http://www.muds.cn"><font color=111111><u>Revival World</u></a> <font color=555555> All Rights Reserved. ( 京ICP备13044009号-1 ) </font></td>
+    <td align=center><font face=verdana size=2 color=555555>Copyright &copy;2000-%^YEAR%^ <a href="http://www.muds.cn"><font color=111111><u>Revival World</u></a> <font color=555555> All Rights Reserved. ( 京ICP備13044009號-1 ) </font></td>
 
   </tr>
 </table>
@@ -77,7 +77,7 @@ string BLACK_FOOTER = @LONG
 <p><hr width=80% align=center>
 <table width=80% align=center>
   <tr>
-    <td align=center><font face=verdana size=2 color=bbbbbb>Copyright &copy;2000-%^YEAR%^ <a href="http://www.muds.cn"><font color=fffff><u>Revival World</u></a> <font color=bbbbbb> All Rights Reserved. ( 京ICP备13044009号-1 ) </font></td>
+    <td align=center><font face=verdana size=2 color=bbbbbb>Copyright &copy;2000-%^YEAR%^ <a href="http://www.muds.cn"><font color=fffff><u>Revival World</u></a> <font color=bbbbbb> All Rights Reserved. ( 京ICP備13044009號-1 ) </font></td>
 
   </tr>
 </table>
@@ -198,9 +198,9 @@ void make_html(string content, mapping index)
 	string text;
 	string bgcolor = index["bgcolor"] || "white";
 	int fontsize = index["fontsize"] || 12;
-	string fontface = index["fontface"] || "新宋体";
+	string fontface = index["fontface"] || "新宋體";
 	string filename = index["filename"] || "/www/tmp.html";
-	string title = index["title"] || "无标题";
+	string title = index["title"] || "無標題";
 	int refresh = index["refresh"];
 	
 
@@ -255,23 +255,23 @@ void create_mudlist_html()
         muds = MUDLIST_D->query_mudlist();
         
         text  = "<DIV style='BORDER-BOTTOM: #aaa 3px double; WIDTH: 200px; COLOR: #333; FONT-SIZE: 16px'><IMG src='muds/mudlist/subtitle.gif'>文字MUD</DIV><BR>";
-        text += "<P>　以下列出目前大陆大部份已知的<ACRONYM title=泥巴游戏>MUD</ACRONYM>"; 
-        text += "的即时列表，并侦测连线状况与线上玩家人数供各位参考，若您想推荐某个文字MUD站台，请登录游戏 mud123.com 7000 与 Lonely 联系。</P>";
-        text += "<UL><LI class=level1><DIV class=li>若您的网页浏览器支持 JavaScript ，按栏位可依选择排序。</DIV></LI>";
-        text += "<LI class=level1><DIV class=li>上线人数 N/A 为系统无从得知此间 <ACRONYM title=泥巴游戏>MUD</ACRONYM> 之人数。</DIV></LI>";
-        text += "<LI class=level1><DIV class=li>本站官方论坛为 <a href='http://www.mudbuilder.com' class='urlextern' title='http://www.mudbuilder.com'>mudbuilder.com</a>，官方游戏 mud123.com 7000。</DIV></LI></UL><P>";
+        text += "<P>　以下列出目前大陸大部份已知的<ACRONYM title=泥巴游戲>MUD</ACRONYM>"; 
+        text += "的即時列表，並偵測連線狀況與線上玩家人數供各位參考，若您想推薦某個文字MUD站臺，請登錄遊戲 mud123.com 7000 與 Lonely 聯繫。</P>";
+        text += "<UL><LI class=level1><DIV class=li>若您的網頁瀏覽器支持 JavaScript ，按欄位可依選擇排序。</DIV></LI>";
+        text += "<LI class=level1><DIV class=li>上線人數 N/A 為系統無從得知此間 <ACRONYM title=泥巴游戲>MUD</ACRONYM> 之人數。</DIV></LI>";
+        text += "<LI class=level1><DIV class=li>本站官方論壇為 <a href='http://www.mudbuilder.com' class='urlextern' title='http://www.mudbuilder.com'>mudbuilder.com</a>，官方遊戲 mud123.com 7000。</DIV></LI></UL><P>";
         text += "<SCRIPT language=javascript type=text/javascript src='muds/mudlist/sorttable.js'></SCRIPT></P><P>";
         
         text += "<TABLE style='BORDER-BOTTOM: #aaa 3px double; BORDER-LEFT: #aaa 3px double; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; WIDTH: 100%; PADDING-RIGHT: 3px; FONT-SIZE: 13px; BORDER-TOP: #aaa 3px double; BORDER-RIGHT: #aaa 3px double; PADDING-TOP: 3px' border=0 cellSpacing=0 cellPadding=0>";
-        text += "<TBODY><TR><TD><TABLE width='100%'><TBODY><TR><TD width='50%'>目前共有" +sizeof(muds)+ "个泥巴</TD><TD width='50%' align=right>最近更新时间："+TIME_D->replace_ctime(time())+"</TD></TR></TBODY></TABLE>";
+        text += "<TBODY><TR><TD><TABLE width='100%'><TBODY><TR><TD width='50%'>目前共有" +sizeof(muds)+ "個泥巴</TD><TD width='50%' align=right>最近更新時間："+TIME_D->replace_ctime(time())+"</TD></TR></TBODY></TABLE>";
         text += "<TABLE style='WIDTH: 100%; FONT-SIZE: 13px; BORDER-TOP: #555 1px solid' id=mudlist class=sortable border=0 cellSpacing=0>";
         text += "<TBODY><TR>";
-        text += "<TD style='BORDER-BOTTOM: #555 1px solid; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; PADDING-TOP: 3px' bgColor=#efefdf>泥巴名称</TD>";
-        text += "<TD style='BORDER-BOTTOM: #555 1px solid; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; PADDING-TOP: 3px' bgColor=#efefdf>网络位置</TD>";
-        text += "<TD style='BORDER-BOTTOM: #555 1px solid; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; PADDING-TOP: 3px' bgColor=#efefdf align=center>连接埠</TD>";
-        text += "<TD style='BORDER-BOTTOM: #555 1px solid; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; PADDING-TOP: 3px' bgColor=#efefdf align=center>目前状态</TD>";
-        text += "<TD style='BORDER-BOTTOM: #555 1px solid; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; PADDING-TOP: 3px' bgColor=#efefdf align=center>线上人數</TD>";
-        text += "<TD style='BORDER-BOTTOM: #555 1px solid; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; PADDING-TOP: 3px' bgColor=#efefdf align=center>最后接触时间</TD></TR>"; 
+        text += "<TD style='BORDER-BOTTOM: #555 1px solid; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; PADDING-TOP: 3px' bgColor=#efefdf>泥巴名稱</TD>";
+        text += "<TD style='BORDER-BOTTOM: #555 1px solid; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; PADDING-TOP: 3px' bgColor=#efefdf>網絡位置</TD>";
+        text += "<TD style='BORDER-BOTTOM: #555 1px solid; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; PADDING-TOP: 3px' bgColor=#efefdf align=center>連接埠</TD>";
+        text += "<TD style='BORDER-BOTTOM: #555 1px solid; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; PADDING-TOP: 3px' bgColor=#efefdf align=center>目前狀態</TD>";
+        text += "<TD style='BORDER-BOTTOM: #555 1px solid; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; PADDING-TOP: 3px' bgColor=#efefdf align=center>線上人數</TD>";
+        text += "<TD style='BORDER-BOTTOM: #555 1px solid; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; PADDING-TOP: 3px' bgColor=#efefdf align=center>最後接觸時間</TD></TR>"; 
         
         mudnamesort = sort_array(keys(muds)-({0}), (: mudlist_sort($(muds), $1, $2) :)) ;
         foreach(ipport in mudnamesort)
@@ -299,7 +299,7 @@ void create_mudlist_html()
                 else
                         lasttime = "";
                 
-                cname = data["MUD_CHINESE_NAME"]||"--未知名称--";
+                cname = data["MUD_CHINESE_NAME"]||"--未知名稱--";
                 ename = data["MUD_ENGLISH_NAME"]||"--Unknown--";
                 
                 i++;
@@ -319,8 +319,8 @@ void create_mudlist_html()
         }
         text += "</TBODY></TABLE></TD></TR></TBODY></TABLE></P><!-- SECTION [1-3357] -->";
 
-        text += "<A name='文字MUD玩家分布状况'></A>";
-        text += "<DIV style='BORDER-BOTTOM: #aaa 3px double; WIDTH: 200px; COLOR: #333; FONT-SIZE: 16px'><IMG src='muds/mudlist/subtitle.gif'>文字MUD玩家分布状况</DIV><BR>";
+        text += "<A name='文字MUD玩家分佈狀況'></A>";
+        text += "<DIV style='BORDER-BOTTOM: #aaa 3px double; WIDTH: 200px; COLOR: #333; FONT-SIZE: 16px'><IMG src='muds/mudlist/subtitle.gif'>文字MUD玩家分佈狀況</DIV><BR>";
         text += "<P><CENTER><IMG src='http://chart.apis.google.com/chart?cht=p3&amp;chd=t:";
         //text += "<P><CENTER><IMG src='http://chart.apis.google.com/chart?cht=p3&chd=t:";
 
@@ -342,12 +342,12 @@ void create_mudlist_html()
         text += "&amp;chtt=China Mud Players&amp;chco=ff0000,ffff00,00ff00,00ffff,0000ff,ff00ff,ffffff,000000'></CENTER>";
         //text += "&chtt=China Mud Players&chco=ff0000,ffff00,00ff00,00ffff,0000ff,ff00ff,ffffff,000000'></CENTER>";
             
-        text += "</P><!-- SECTION [3358-4159] --><A name=文字MUD玩家即时统计></A>";
-        text += "<DIV style='BORDER-BOTTOM: #aaa 3px double; WIDTH: 200px; COLOR: #333; FONT-SIZE: 16px'><IMG src='muds/mudlist/subtitle.gif'>文字MUD玩家即时统计</DIV><BR>";
+        text += "</P><!-- SECTION [3358-4159] --><A name=文字MUD玩家即時統計></A>";
+        text += "<DIV style='BORDER-BOTTOM: #aaa 3px double; WIDTH: 200px; COLOR: #333; FONT-SIZE: 16px'><IMG src='muds/mudlist/subtitle.gif'>文字MUD玩家即時統計</DIV><BR>";
         text += "<P><CENTER><A href='http://www.muds.cn/muds/mudlist/0_total_count/0_total_count.html' target=_blank><IMG border=0 src='muds/mudlist/0_total_count/0_total_count-day.png'> </A></CENTER>";
         text += "</P><!-- SECTION [4160-] --></TD></TR>";
     
-        make_html(text, (["filename":"/www/mudlist.html", "title":"MUD-文字MUD-MUD游戏", "fontsize":18, "fontface":"宋体"]));
+        make_html(text, (["filename":"/www/mudlist.html", "title":"MUD-文字MUD-MUD遊戲", "fontsize":18, "fontface":"宋體"]));
 }
 
 void create_html()
@@ -395,5 +395,5 @@ void create()
 
 string query_name()
 {
-	return "HTML 系统(HTML_D)";
+	return "HTML 系統(HTML_D)";
 }

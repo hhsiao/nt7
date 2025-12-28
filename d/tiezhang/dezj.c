@@ -3,13 +3,13 @@ inherit ROOM;
 
 void create()
 {
-        set("short", WHT "第二指节" NOR );
+        set("short", WHT "第二指節" NOR );
         set("long", @LONG
-这里已到了中指峰的半山腰了，由于铁掌山排列得象手指一样，每座山
-峰又再分为三截，就如手指的指节一般，因此这里又正是位于第二指节的位
-置。这里离峰顶已近，透过淡淡的云雾，似已可以看到山路的尽头了。左前
-方二十于丈处，黑黝黝的似有一个洞穴(dong)，洞口砌以玉石，修建得极是
-齐整。
+這裡已到了中指峰的半山腰了，由於鐵掌山排列得象手指一樣，每座山
+峰又再分為三截，就如手指的指節一般，因此這裡又正是位於第二指節的位
+置。這裡離峰頂已近，透過淡淡的雲霧，似已可以看到山路的盡頭了。左前
+方二十於丈處，黑黝黝的似有一個洞穴(dong)，洞口砌以玉石，修建得極是
+齊整。
 LONG    );
         set("exits", ([
                 "south" : __DIR__"sslin-5",
@@ -21,7 +21,7 @@ LONG    );
 ]));
 
         set("item_desc", ([ 
-                "dong" : WHT "一个黑黝黝的山洞。黑暗中偶尔有几点磷光闪过。\n" NOR,
+                "dong" : WHT "一個黑黝黝的山洞。黑暗中偶爾有幾點磷光閃過。\n" NOR,
 ]));
         set("no_clean_up", 0);
         set("outdoors", "tiezhang");
@@ -31,7 +31,7 @@ LONG    );
 int valid_leave(object me, string dir)
 {        
         if (dir == "enter" && objectp(present("mayi zhanglao", environment(me))))
-           return notify_fail(CYN "麻衣长老喝道：此乃铁掌帮禁地，任何人不得入内，否则有死无生！\n" NOR);
+           return notify_fail(CYN "麻衣長老喝道：此乃鐵掌幫禁地，任何人不得入內，否則有死無生！\n" NOR);
                 
         return ::valid_leave(me, dir);
 }

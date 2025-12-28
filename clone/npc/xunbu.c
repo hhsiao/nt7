@@ -9,11 +9,11 @@ void do_chat();
 void create()
 {
         NPC_D->generate_cn_name(this_object());
-        set("title", HIR "六扇门内巡捕" NOR);
+        set("title", HIR "六扇門內巡捕" NOR);
         set("gender", "男性");
         set("age", 43);
         set("long", @LONG
-这是一个巡捕，身体强壮，看上去武功不错。
+這是一個巡捕，身體強壯，看上去武功不錯。
 LONG );
         set("combat_exp", 600000);
         set("attitude", "heroism");
@@ -70,7 +70,7 @@ int do_halt()
 
         if (this_player() == query_temp("catch_ob"))
         {
-                write(CYN + name() + "骂道：“跑什么跑？你跑到哪里也跑不掉！”\n" NOR);
+                write(CYN + name() + "罵道：“跑什麼跑？你跑到哪裡也跑不掉！”\n" NOR);
                 return 1;
         }
 
@@ -84,25 +84,25 @@ void do_chat()
         switch (random(20))
         {
         case 0:
-                msg = CYN "$N东看看，西瞅瞅，似乎在找什么人。\n" NOR;
+                msg = CYN "$N東看看，西瞅瞅，似乎在找什麼人。\n" NOR;
                 break;
         case 1:
-                msg = CYN "$N无聊得打了个哈欠，一副没精打采的样子。\n" NOR;
+                msg = CYN "$N無聊得打了個哈欠，一副沒精打采的樣子。\n" NOR;
                 break;
         case 2:
-                msg = CYN "$N“嗯”了一声，也不知道究竟听到了什么。\n" NOR;
+                msg = CYN "$N“嗯”了一聲，也不知道究竟聽到了什麼。\n" NOR;
                 break;
         case 3:
-                msg = CYN "$N“啊秋”一声打了个喷嚏，好像是着凉了。\n" NOR;
+                msg = CYN "$N“啊秋”一聲打了個噴嚏，好像是著涼了。\n" NOR;
                 break;
         case 4:
-                msg = CYN "$N看了看四周，道：“有没有看到什么可疑人物？”\n" NOR;
+                msg = CYN "$N看了看四周，道：“有沒有看到什麼可疑人物？”\n" NOR;
                 break;
         case 5:
-                msg = CYN "$N嘿嘿干笑了几声，道：“犯了案马上自首，否则罪加一等。”\n" NOR;
+                msg = CYN "$N嘿嘿乾笑了幾聲，道：“犯了案馬上自首，否則罪加一等。”\n" NOR;
                 break;
         case 6:
-                msg = CYN "$N哼了一声道：“知情不报，罪与犯同。”\n" NOR;
+                msg = CYN "$N哼了一聲道：“知情不報，罪與犯同。”\n" NOR;
                 break;
         default:
                 random_move();
@@ -120,8 +120,8 @@ void fight_ob(object ob)
 
         if (ob != query_temp("catch_ob"))
         {
-                message_vision(CYN "$N对$n" CYN "怒喝道：“大胆！居然敢攻"
-                               "击官差？找死么？”\n" NOR,
+                message_vision(CYN "$N對$n" CYN "怒喝道：“大膽！居然敢攻"
+                               "擊官差？找死麼？”\n" NOR,
                                this_object(), ob);
         }
 
@@ -132,7 +132,7 @@ void fight_ob(object ob)
 
 int accept_fight(object ob)
 {
-        message_vision(CYN "$N摇摇头，对$n" CYN "道：“我可没兴趣”。\n" NOR,
+        message_vision(CYN "$N搖搖頭，對$n" CYN "道：“我可沒興趣”。\n" NOR,
                        this_object(), ob);
         return 0;
 }
@@ -172,7 +172,7 @@ void init()
 void catch_ob(object ob)
 {
         remove_enemy(ob);
-        message_vision(HIY "$N把铁索往$n" HIY "头上一套，然后拖起$n"
+        message_vision(HIY "$N把鐵索往$n" HIY "頭上一套，然後拖起$n"
                        HIY "，冷笑道：“跟我走吧！”\n" NOR,
                        this_object(), ob);
         ob->move(this_object());
@@ -180,25 +180,25 @@ void catch_ob(object ob)
         {
                 // Am I in fighting now ?
                 message_vision(CYN "$N冷冷道：“我先要先回去交"
-                               "差了，改日再收拾你们几个！”\n" NOR,
+                               "差了，改日再收拾你們幾個！”\n" NOR,
                                this_object());
         }
 
         if (base_name(environment()) != "/d/changan/baihu1")
         {
                 set_temp("old_position", base_name(environment()));
-                message_vision(HIR "$N轻声哼了一声，拖着$n" HIR
-                               "转身离去。\n" NOR, this_object(), ob);
+                message_vision(HIR "$N輕聲哼了一聲，拖著$n" HIR
+                               "轉身離去。\n" NOR, this_object(), ob);
                 move("/d/changan/baihu1");
                 remove_call_out("return_back");
                 call_out("return_back", 1);
         }
 
-        message_vision(HIW "$N拖着$n" HIW "走了过来，几个狱卒迎了上"
-                       "来，把$n" HIW "押进大牢去了。\n" NOR, this_object(), ob);
-        CHANNEL_D->do_channel(this_object(), "rumor", "听说" +
+        message_vision(HIW "$N拖著$n" HIW "走了過來，幾個獄卒迎了上"
+                       "來，把$n" HIW "押進大牢去了。\n" NOR, this_object(), ob);
+        CHANNEL_D->do_channel(this_object(), "rumor", "聽說" +
                             ob->name(1) + HIM "被巡捕" + name() +
-                            "缉拿归案，押入大牢。");
+                            "緝拿歸案，押入大牢。");
         ob->get_into_prison(0, "/d/changan/prison", 360);
         ob->clear_condition("killer");
         ob->remove_killer(this_object());
@@ -226,9 +226,9 @@ void catch_killer(object ob)
             random((int)ob->query_skill("pretending")) > 50)
                 return;
 
-        message_vision(HIY "$N盯着$n" HIY "看了一会儿，突然喝道：“你不"
-                       "就是在逃的" + ob->name(1) + HIY "吗？今天撞到我"
-                       "的手里，不要想再跑了！”\n" NOR, this_object(), ob);
+        message_vision(HIY "$N盯著$n" HIY "看了一會兒，突然喝道：“你不"
+                       "就是在逃的" + ob->name(1) + HIY "嗎？今天撞到我"
+                       "的手裡，不要想再跑了！”\n" NOR, this_object(), ob);
         set_temp("catch_ob", ob);
         kill_ob(ob);                       
 }
@@ -241,10 +241,10 @@ void return_back()
         if (! stringp(query_temp("old_position")))
                 return;
 
-        message_vision(CYN "$N打了个哈欠，喃喃自语了几声后走开了。\n" NOR,
+        message_vision(CYN "$N打了個哈欠，喃喃自語了幾聲後走開了。\n" NOR,
                        this_object());
         move(query_temp("old_position"));
-        message_vision(CYN "$N懒洋洋的走了过来。\n" NOR, this_object());
+        message_vision(CYN "$N懶洋洋的走了過來。\n" NOR, this_object());
         delete_temp("old_position");
 }
 
@@ -273,7 +273,7 @@ void scan()
                 if (time() - query_temp("born_time") > 900 &&
                     ! is_fighting() && living(this_object()))
                 {
-                        message_vision(CYN "$N左顾右盼，悻悻的走了。\n" NOR,
+                        message_vision(CYN "$N左顧右盼，悻悻的走了。\n" NOR,
                                        this_object());
                         destruct(this_object());
                 }
@@ -283,7 +283,7 @@ void scan()
         if (environment(ob) != environment() ||
             query("no_fight", environment(ob)) )
         {
-                message_vision(CYN "$N悻悻道：“哼，岂有此理。”\n" NOR,
+                message_vision(CYN "$N悻悻道：“哼，豈有此理。”\n" NOR,
                                this_object());
                 delete_temp("catch_ob");
                 return;

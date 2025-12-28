@@ -7,7 +7,7 @@ string long()
         string msg; 
         
         msg = query("long"); 
-        msg += "这是冒险游戏(avg)的如意乾坤袋。
+        msg += "這是冒險遊戲(avg)的如意乾坤袋。
 ";
         msg += extra_long();
         

@@ -4,8 +4,8 @@ inherit "/inherit/char/punisher";
 
 void create()
 {
-        set_name("绝情谷隐士", ({ "yin shi", "yin", "shi" }));
-        set("long",  "他就是绝情谷的高手，据说长年隐藏于山中。\n");
+        set_name("絕情谷隱士", ({ "yin shi", "yin", "shi" }));
+        set("long",  "他就是絕情谷的高手，據說長年隱藏於山中。\n");
         set("gender", "男性");
         set("age", 55);
         set("attitude", "peaceful");
@@ -57,7 +57,7 @@ void create()
 
         prepare_skill("strike", "jueqing-zhang");
 
-        create_family("绝情谷", 0, "隐士");
+        create_family("絕情谷", 0, "隱士");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({

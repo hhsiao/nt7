@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("色无可厚非[2;37;0m[2;37;0m", ({"qilinb"}));        
+        set_name("色無可厚非[2;37;0m[2;37;0m", ({"qilinb"}));        
         set("gender", "女性");                
         set("long", "  [2;37;0m
-它是雪乙的魔幻兽。
+它是雪乙的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

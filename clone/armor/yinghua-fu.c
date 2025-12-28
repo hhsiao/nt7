@@ -5,15 +5,15 @@ inherit MYHEART2;
 
 void create()
 {
-        set_name(HIM "樱花符" NOR, ({ "yinghua fu", "yinghua", "fu" }) );
+        set_name(HIM "櫻花符" NOR, ({ "yinghua fu", "yinghua", "fu" }) );
         set_weight(1);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
                 set("material", "paper");
-                set("unit", "张");
-                set("long", HIM "一张粉红色的灵符，上面绘有扶桑樱花的图画。\n" NOR);
+                set("unit", "張");
+                set("long", HIM "一張粉紅色的靈符，上面繪有扶桑櫻花的圖畫。\n" NOR);
                 set("value", 1000000);
                 set("limit", ([
                         "exp"    :   2000000,

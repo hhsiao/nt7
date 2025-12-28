@@ -1,93 +1,93 @@
 // This program is a part of NITAN MudLIB
 
 mapping region_names = ([
-        "register" : "混沌届",
-        "baituo"   : "西域白驼山",
+        "register" : "混沌屆",
+        "baituo"   : "西域白駝山",
         "beijing"  : "北京城",
-        "changan"  : "长安城",
-	"changbai" : "关外长白山",
-        "changcheng" : "长城",
-        "city"     : "扬州城",
+        "changan"  : "長安城",
+	"changbai" : "關外長白山",
+        "changcheng" : "長城",
+        "city"     : "揚州城",
         "city2"    : "北京城",
         "city3"    : "成都城",
         "chengdu"  : "成都城",
-        "dali"     : "云南大理城",
-	"death"    : "地狱",
+        "dali"     : "雲南大理城",
+	"death"    : "地獄",
         "emei"     : "四川峨嵋",
-        "foshan"   : "广东佛山",
+        "foshan"   : "廣東佛山",
         "fuzhou"   : "福建福州",
         "gaochang"  : "高昌",
-        "gaibang"  : "丐帮所在地",
-        "guanwai"  : "关外境内",
-        "guiyun"   : "归云庄",
-        "nanyang" : "南阳城",
-        "yanziwu" : "燕子坞",
+        "gaibang"  : "丐幫所在地",
+        "guanwai"  : "關外境內",
+        "guiyun"   : "歸雲莊",
+        "nanyang" : "南陽城",
+        "yanziwu" : "燕子塢",
         "xuanminggu" : "玄冥谷",
         "ruzhou" : "汝州城",
-        "gumu"     : "古墓派境内",
-        "hanzhong"   : "汉中镇",
+        "gumu"     : "古墓派境內",
+        "hanzhong"   : "漢中鎮",
         "hangzhou" : "杭州城",
-        "heimuya"  : "黑木崖境内",
-        "hengshan" : "恒山境内",
-        "henshan"  : "衡山境内",
-        "huanggon" : "皇宫",
-        "huanghe"  : "黄河边",
-        "huashan"  : "华山境内",
+        "heimuya"  : "黑木崖境內",
+        "hengshan" : "恆山境內",
+        "henshan"  : "衡山境內",
+        "huanggon" : "皇宮",
+        "huanghe"  : "黃河邊",
+        "huashan"  : "華山境內",
         "hudie"    : "蝴蝶谷",
-        "jinshe"   : "华山金蛇洞",
-        "jingzhou" : "荆州境内",
-        "jianzhong": "剑冢",
-        "lingjiu"  : "灵鹫宫境内",
-        "lingzhou" : "灵州城",
-        "luoyang"  : "洛阳境内",
-        "lanzhou"  : "兰州境内",
-        "jueqing" : "绝情谷",
-        "jiaxing" : "嘉兴",
-        "kunlun"  : "昆仑",
-        "kaifeng"  : "开封境内",
-        "kunming"  : "昆明境内",
-        "meizhuang": "梅庄",
-        "mingjiao" : "明教境内",
-        "pk"           : "屠人场",
-        "qingcheng": "青城山境内",
-        "quanzhen" : "全真派境内",
-        "shaolin"  : "少林寺境内",
-        "shenlong" : "神龙岛境内",
-        "songshan" : "嵩山境内",
-        "suzhou"   : "苏州城",
-        "taishan"  : "泰山境内",
-        "taohua"   : "桃花岛境内",
-        "tianlongsi": "天龙寺境内",
-        "tulong"   : "万安寺或者王盘山岛",
-        "village"  : "华山村",
-        "wanjiegu" : "万劫谷",
+        "jinshe"   : "華山金蛇洞",
+        "jingzhou" : "荊州境內",
+        "jianzhong": "劍冢",
+        "lingjiu"  : "靈鷲宮境內",
+        "lingzhou" : "靈州城",
+        "luoyang"  : "洛陽境內",
+        "lanzhou"  : "蘭州境內",
+        "jueqing" : "絕情谷",
+        "jiaxing" : "嘉興",
+        "kunlun"  : "崑崙",
+        "kaifeng"  : "開封境內",
+        "kunming"  : "昆明境內",
+        "meizhuang": "梅莊",
+        "mingjiao" : "明教境內",
+        "pk"           : "屠人場",
+        "qingcheng": "青城山境內",
+        "quanzhen" : "全真派境內",
+        "shaolin"  : "少林寺境內",
+        "shenlong" : "神龍島境內",
+        "songshan" : "嵩山境內",
+        "suzhou"   : "蘇州城",
+        "taishan"  : "泰山境內",
+        "taohua"   : "桃花島境內",
+        "tianlongsi": "天龍寺境內",
+        "tulong"   : "萬安寺或者王盤山島",
+        "village"  : "華山村",
+        "wanjiegu" : "萬劫谷",
         "wizard"   : "仙界",
-        "wudang"   : "武当山境内",
-        "wuxi"     : "无锡",
-        "xiakedao" : "侠客岛境内",
-        "xiangyang": "襄阳城",
-        "lingxiao" : "凌霄城境内",
-        "xiaoyao"  : "逍遥派境内",
-        "xingxiu"  : "星宿派境内",
+        "wudang"   : "武當山境內",
+        "wuxi"     : "無錫",
+        "xiakedao" : "俠客島境內",
+        "xiangyang": "襄陽城",
+        "lingxiao" : "凌霄城境內",
+        "xiaoyao"  : "逍遙派境內",
+        "xingxiu"  : "星宿派境內",
         "dragon"   : "西域",
-        "xuedao"   : "血刀门境内",
+        "xuedao"   : "血刀門境內",
         "xueshan"  : "雪山寺",
-        "yangziwu" : "燕子钨",
-        "yuanyue" : "圆月山庄",
-        "zhongzhou": "中州境内",
-        "tangmen"  : "四川唐门境内",
+        "yangziwu" : "燕子鎢",
+        "yuanyue" : "圓月山莊",
+        "zhongzhou": "中州境內",
+        "tangmen"  : "四川唐門境內",
         "wudu"    : "五毒教",
         "quanzhou"   : "泉州",
         "yanping" : "延平城",
-        "yubifeng"   : "玉笔山",
-        "shiliang"   : "温家庄",
+        "yubifeng"   : "玉筆山",
+        "shiliang"   : "溫家莊",
         "mobei"    : "蒙古",
         "newbie"  : "古村",
 ]);
 
 mapping place = ([
         "city"     : ({ 
-                "扬州郊外", ({ 
+                "揚州郊外", ({ 
                         "/d/city/jiaowai1",
                         "/d/city/jiaowai2",
                         "/d/city/jiaowai3",
@@ -103,7 +103,7 @@ mapping place = ([
                         "/d/city/jiaowai13"
                  }),}),
         "guiyun"   : ({ 
-                "太湖一带", ({ 
+                "太湖一帶", ({ 
                         "/d/guiyun/shulin1",
                         "/d/guiyun/shulin2",
                         "/d/guiyun/shulin3",
@@ -114,7 +114,7 @@ mapping place = ([
                         "/d/guiyun/tiandi"
                  }),}),
         "huanghe"   : ({ 
-                "黄河一带", ({ 
+                "黃河一帶", ({ 
                         "/d/huanghe/caodi1",
                         "/d/huanghe/caodi2",
                         "/d/huanghe/shulin1",
@@ -158,7 +158,7 @@ mapping place = ([
                  }),}),
 
         "guanwai"   : ({
-                "长白山上", ({ 
+                "長白山上", ({ 
                         "/d/guanwai/milin1",
                         "/d/guanwai/milin2",
                         "/d/guanwai/milin3",
@@ -277,7 +277,7 @@ mapping place = ([
 
 
         "foshan"   : ({
-                "佛山一带", ({ 
+                "佛山一帶", ({ 
                         "/d/foshan/nanling",
                     "/d/foshan/road1",
                     "/d/foshan/road2",
@@ -295,7 +295,7 @@ mapping place = ([
                     "/d/foshan/road14"
                  }),}),
         "fuzhou"   : ({
-                "福州一带", ({ "/d/fuzhou/fzroad1",
+                "福州一帶", ({ "/d/fuzhou/fzroad1",
                     "/d/fuzhou/fzroad2",
                     "/d/fuzhou/fzroad3",
                     "/d/fuzhou/fzroad4",
@@ -322,7 +322,7 @@ mapping place = ([
                     "/d/fuzhou/yushan"
                  }),}),
         "hengshan"  : ({
-                "恒山一带", ({ "/d/hengshan/cuiping1",
+                "恆山一帶", ({ "/d/hengshan/cuiping1",
                     "/d/hengshan/cuiping2",
                     "/d/hengshan/cuipinggu1",
                     "/d/hengshan/cuipinggu2",
@@ -340,7 +340,7 @@ mapping place = ([
                     "/d/hengshan/zhanqiao"
                  }),}),
         "hengshan"   : ({
-                "衡山一带", ({ "/d/henshan/banshan",
+                "衡山一帶", ({ "/d/henshan/banshan",
                     "/d/henshan/chidifeng",
                     "/d/henshan/denggaotai",
                     "/d/henshan/heishatan",
@@ -383,7 +383,7 @@ mapping place = ([
 
 
         "huashan" :  ({
-                "华山一带", ({ "/d/huashan/baichi",
+                "華山一帶", ({ "/d/huashan/baichi",
                     "/d/huashan/canglong",
                     "/d/huashan/chaopath1",
                     "/d/huashan/chaopath2",
@@ -446,7 +446,7 @@ mapping place = ([
                       "/d/qingcheng/zushidian"
                  }),}),
         "lingzhou" : ({ 
-                "灵州一带", ({ "/d/lingzhou/chiling",
+                "靈州一帶", ({ "/d/lingzhou/chiling",
                     "/d/lingzhou/dalu",
                     "/d/lingzhou/deling",
                     "/d/lingzhou/gongling",
@@ -467,7 +467,7 @@ mapping place = ([
                  }),}),
 
         "quanzhen"   : ({
-                "终南山一带", ({ "/d/quanzhen/baishulin1",
+                "終南山一帶", ({ "/d/quanzhen/baishulin1",
                     "/d/quanzhen/baishulin2",
                     "/d/quanzhen/baishulin3",
                     "/d/quanzhen/baishulin4",
@@ -497,7 +497,7 @@ mapping place = ([
                     "/d/quanzhen/xiaomiao",
                  }),}),
         "gumu"   : ({
-                "终南山一带", ({
+                "終南山一帶", ({
                     "/d/gumu/baimatang",
                     "/d/gumu/baoziyan",
                     "/d/gumu/caodi",
@@ -550,7 +550,7 @@ mapping place = ([
                  }),}),
 
         "songshan"  : ({
-                "嵩山一带", ({ "/d/songshan/chaotian",
+                "嵩山一帶", ({ "/d/songshan/chaotian",
                     "/d/songshan/chongsheng",
                     "/d/songshan/fengchantai",
                     "/d/songshan/luyanpubu",
@@ -566,7 +566,7 @@ mapping place = ([
                     "/d/songshan/tianzhongge"
                  }),}),
         "taishan" :  ({
-                "泰山一带", ({ "/d/taishan/baihe",
+                "泰山一帶", ({ "/d/taishan/baihe",
                     "/d/taishan/baozang",
                     "/d/taishan/beitian",
                     "/d/taishan/daizong",
@@ -591,7 +591,7 @@ mapping place = ([
                     "/d/taishan/zhangren"
                  }),}),
         "xueshan" : ({
-                "雪山脚下", ({ "/d/xueshan/caoyuan",
+                "雪山腳下", ({ "/d/xueshan/caoyuan",
                     "/d/xueshan/caoyuan1",
                     "/d/xueshan/hubian1",
                     "/d/xueshan/hubian2",

@@ -1,6 +1,6 @@
-// dhammer.c (单手锤)
+// dhammer.c (單手錘)
 // 自造物品 (by Find.)
-// 没有安全问题但太麻烦
+// 沒有安全問題但太麻煩
 
 #include <mine_def.h>
 #include <weapon.h>
@@ -112,12 +112,12 @@ protected void create(class weapon_args arg)
 
         else
         {
-                set_name("六角锤", ({ "six hammer" }) );
+                set_name("六角錘", ({ "six hammer" }) );
                 set_weight(10000);
-                set("long", "这是一把六角铜锤，沉甸甸的。\n");
+                set("long", "這是一把六角銅錘，沉甸甸的。\n");
                 set("value", 600);
                 set("material", "iron");
-                set("wield_msg", "$N拿出一把$n，试了试重量，然後握在手中。\n");
+                set("wield_msg", "$N拿出一把$n，試了試重量，然後握在手中。\n");
                 set("unwield_msg", "$N放下手中的$n。\n");
                 init_hammer(25);
         }

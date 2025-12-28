@@ -10,8 +10,8 @@ void create()
         if (clonep())
                 set_default_object(__FILE__);
         else {
-                set("long", "这是一颗玉清丸，据说是沈芝毓从武当玉清散提纯出来的增强秘药。\n");
-                set("base_unit", "颗");
+                set("long", "這是一顆玉清丸，據說是沈芝毓從武當玉清散提純出來的增強秘藥。\n");
+                set("base_unit", "顆");
                 set("base_value", 150000000);
                 set("base_weight", 800);
                 set("only_do_effect", 1);
@@ -24,11 +24,11 @@ int do_effect(object me)
 {
                 if( query("max_jingli", me)>=me->query_current_jingli_limit() )
                 {
-                        return notify_fail(YEL + "你很想再吃一颗..直觉却告诉你不会再有啥效果了...\n" + NOR); 
+                        return notify_fail(YEL + "你很想再吃一顆..直覺卻告訴你不會再有啥效果了...\n" + NOR); 
                 }
                 
-        message_vision(YEL "$N" YEL "吃下一颗" + name() +
-                       YEL "，内息急转大小周天，感觉精气发生了一些变化。\n", me);
+        message_vision(YEL "$N" YEL "吃下一顆" + name() +
+                       YEL "，內息急轉大小周天，感覺精氣發生了一些變化。\n", me);
 
         addn("max_jingli", 6000+random(500), me);
         if( query("max_jingli", me)>me->query_current_jingli_limit() )

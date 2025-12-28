@@ -11,24 +11,24 @@ int perform(object me, object target)
         mapping data, buff;
         
         if (! me->is_fighting())
-                return notify_fail("你只能在战斗种使用诸天化身步。\n");
+                return notify_fail("你只能在戰鬥種使用諸天化身步。\n");
 
         if ((int)me->query_skill("linji-zhuang", 1) < 100)
-                return notify_fail("你的临济十二庄还不够火候，使不出诸天化身步。\n");  
+                return notify_fail("你的臨濟十二莊還不夠火候，使不出諸天化身步。\n");  
 
         if ((int)me->query_skill("anying-fuxiang", 1) < 100)
-                return notify_fail("你的暗影浮香还不够火候，使不出诸天化身步。\n");  
+                return notify_fail("你的暗影浮香還不夠火候，使不出諸天化身步。\n");  
 
         if( query("jing", me)<500 )
-                return notify_fail("你现在精不够。\n");
+                return notify_fail("你現在精不夠。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你现在内力不够。\n");
+                return notify_fail("你現在內力不夠。\n");
 
         if( BUFF_D->check_buff(me,"dodgeup") )
-                return notify_fail("你已经在运用类似的武功了。\n");
+                return notify_fail("你已經在運用類似的武功了。\n");
 
-        msg = HBYEL "$N使出暗影浮香的诸天化身步，身手登时更加灵巧！\n\n" NOR; 
+        msg = HBYEL "$N使出暗影浮香的諸天化身步，身手登時更加靈巧！\n\n" NOR; 
 
         addn("neili", -200+random(100), me);
         me->recieve_damage("jing", 50);
@@ -44,11 +44,11 @@ int perform(object me, object target)
                 "target": me,
                 "type"  : "dodgeup",
                 "attr"  : "bless",
-                "name"  : "暗影浮香·诸天化身步",
+                "name"  : "暗影浮香·諸天化身步",
                 "time"  : me->query_skill("force") / 3,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : "你停止了诸天化身步，深深的吸了口气。\n",                        
+                "disa_msg" : "你停止了諸天化身步，深深的吸了口氣。\n",                        
         ]);
         BUFF_D->buffup(buff);
         return 1;

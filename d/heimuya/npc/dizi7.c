@@ -5,7 +5,7 @@ inherit NPC;
 void create()
 {
         set_name("青旗弟子", ({ "qingqi dizi", "qingqi", "dizi" }));
-        set("long", "这是日月神教的青旗弟子。\n");
+        set("long", "這是日月神教的青旗弟子。\n");
         set("gender", "女性");
         set("attitude", "peaceful");
 
@@ -54,5 +54,5 @@ void greeting(object ob)
 {
         if (! ob || environment(ob) != environment()) return;
 
-        say(CYN "青旗弟子高声呼喊道：日月神教，文成武德。千秋万载，一统江湖。\n" NOR);
+        say(CYN "青旗弟子高聲呼喊道：日月神教，文成武德。千秋萬載，一統江湖。\n" NOR);
 }

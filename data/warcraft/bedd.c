@@ -7,7 +7,7 @@ void setup()
         set_name("魔幻[2;37;0m[2;37;0m", ({"qilinid"}));        
         set("gender", "女性");                
         set("long", "魔[2;37;0m
-它是波恩弟弟的魔幻兽。
+它是波恩弟弟的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

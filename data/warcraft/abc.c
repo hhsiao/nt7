@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("搅屎棍[2;37;0m[2;37;0m", ({"iiip"}));        
+        set_name("攪屎棍[2;37;0m[2;37;0m", ({"iiip"}));        
         set("gender", "女性");                
         set("long", "(⊙o⊙)哦[2;37;0m
-它是美妙美的魔幻兽。
+它是美妙美的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

@@ -9,8 +9,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIW "这是一块晶莹剔透的玉石，光华亮泽，触手冰凉。\n" NOR);
-                set("unit", "块");
+                set("long", HIW "這是一塊晶瑩剔透的玉石，光華亮澤，觸手冰涼。\n" NOR);
+                set("unit", "塊");
                 set("value", 10000);
                 set("item_origin", 1);
                 set("material_attrib", "stone");

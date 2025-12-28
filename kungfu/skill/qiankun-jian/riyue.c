@@ -20,33 +20,33 @@ int perform(object me, object target)
         }
 
         if( userp(me) && !query("can_perform/qiankun-jian/riyue", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(RIYUE "只能对战斗中的对手使用。\n");
+                return notify_fail(RIYUE "只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
               query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对，难以施展" RIYUE "。\n");
+                return notify_fail("你使用的武器不對，難以施展" RIYUE "。\n");
 
         if (me->query_skill("force") < 220)
-                return notify_fail("你的内功的修为不够，难以施展" RIYUE "。\n");
+                return notify_fail("你的內功的修為不夠，難以施展" RIYUE "。\n");
 
         if (me->query_skill("qiankun-jian", 1) < 150)
-                return notify_fail("你的乾坤神剑修为不够，难以施展" RIYUE "。\n");
+                return notify_fail("你的乾坤神劍修為不夠，難以施展" RIYUE "。\n");
 
         if( query("neili", me)<400 )
-                return notify_fail("你的真气不够，难以施展" RIYUE "。\n");
+                return notify_fail("你的真氣不夠，難以施展" RIYUE "。\n");
 
         if (me->query_skill_mapped("sword") != "qiankun-jian")
-                return notify_fail("你没有激发乾坤神剑，难以施展" RIYUE "。\n");
+                return notify_fail("你沒有激發乾坤神劍，難以施展" RIYUE "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIY "只见$N" HIY "手中" + weapon->name() + HIY
-              "一颤，将乾坤剑法连环施出，顿时幻出无数剑影，"
-              "铺天盖地向$n" HIY "席卷而去！\n" NOR;
+        msg = HIY "只見$N" HIY "手中" + weapon->name() + HIY
+              "一顫，將乾坤劍法連環施出，頓時幻出無數劍影，"
+              "鋪天蓋地向$n" HIY "席捲而去！\n" NOR;
 
         ap = me->query_skill("sword");
         dp = target->query_skill("parry");
@@ -54,15 +54,15 @@ int perform(object me, object target)
 
         if (ap / 2 + random(ap * 2) > dp)
         {
-                msg += HIR "$n" HIR "只觉剑影重重，登时眼花缭"
-                       "乱，被攻了个措手不及，疲于奔命。\n" NOR;
+                msg += HIR "$n" HIR "只覺劍影重重，登時眼花繚"
+                       "亂，被攻了個措手不及，疲於奔命。\n" NOR;
                 count = ap / 10;
                 addn_temp("apply/attack", count, me);
                 attack_time += random(ap / 45);
         } else
         {
-                msg += HIC "$n" HIC "见$N" HIC "剑招汹涌，气"
-                       "势恢弘，急忙凝神聚气，小心应付。\n"
+                msg += HIC "$n" HIC "見$N" HIC "劍招洶湧，氣"
+                       "勢恢弘，急忙凝神聚氣，小心應付。\n"
                        NOR;
                 count = 0;
         }

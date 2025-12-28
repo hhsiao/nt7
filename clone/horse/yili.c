@@ -3,8 +3,8 @@ inherit "/clone/horse/horse.c";
 
 void create()
 {
-        set_name(HIC "伊犁马" NOR, ({ "yili ma"}));
-        set("long", HIC "此马产自新疆伊犁，乃乌孙马的后代，脚力甚好，有“天马”之称。\n" NOR);
+        set_name(HIC "伊犁馬" NOR, ({ "yili ma"}));
+        set("long", HIC "此馬產自新疆伊犁，乃烏孫馬的後代，腳力甚好，有“天馬”之稱。\n" NOR);
 
         set("tili", 2000);
         set("max_tili", 2000);

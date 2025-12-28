@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;37m冰灵[2;37;0m[2;37;0m", ({"ices"}));        
+        set_name("[1;37m冰靈[2;37;0m[2;37;0m", ({"ices"}));        
         set("gender", "女性");                
-        set("long", "冰灵[2;37;0m
-它是冰心的魔幻兽。
+        set("long", "冰靈[2;37;0m
+它是冰心的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

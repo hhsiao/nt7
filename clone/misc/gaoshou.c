@@ -6,7 +6,7 @@ inherit NPC;
 #define GAOSHOU_DIR "/data/gaoshou/"
 
 void init_npc();
-int is_c_file(string arg);                //判断arg是否*.c文件格式
+int is_c_file(string arg);                //判斷arg是否*.c文件格式
 string do_perform(string perform_skill);
 string auto_perform();
 
@@ -72,8 +72,8 @@ void init_npc()
                         weapon = find_object(weapon_file);
                         if (! weapon || ! weapon->receive_summon(me))
                         {
-                               message_vision(HIM "$N" HIM "扬起手来，口中念念有"
-                                       "词。\n然而什么也没有发生 :)\n", me);
+                               message_vision(HIM "$N" HIM "揚起手來，口中念念有"
+                                       "詞。\n然而什麼也沒有發生 :)\n", me);
                         } else
                                set("value", 0, weapon);
                 }
@@ -152,7 +152,7 @@ void kill_ob(object ob)
         return ::kill_ob(ob);
 }
               
-int is_c_file(string arg)                //判断arg是否*.c文件格式
+int is_c_file(string arg)                //判斷arg是否*.c文件格式
 {
         int l;
         l = strlen(arg);
@@ -162,7 +162,7 @@ int is_c_file(string arg)                //判断arg是否*.c文件格式
 }
 
 //      auto_perform()
-//      自动出绝招
+//      自動出絕招
 string do_perform(string perform_skill)
 {
         int l;
@@ -170,22 +170,22 @@ string do_perform(string perform_skill)
         string file;
         mixed *all_file;
 
-        if (! stringp(dir = SKILL_D(perform_skill) + "/") || file_size(dir) != -2)        //这个武功没有绝招
+        if (! stringp(dir = SKILL_D(perform_skill) + "/") || file_size(dir) != -2)        //這個武功沒有絕招
         return "VOID";
 
-        if (file_size(dir + "perform/") == -2)        //这个武功有一个perform/子目录
+        if (file_size(dir + "perform/") == -2)        //這個武功有一個perform/子目錄
                 dir += "perform/";
 
         all_file = get_dir(dir);
 
-        if (!sizeof(all_file))        //这个武功没有绝招
+        if (!sizeof(all_file))        //這個武功沒有絕招
                 return "VOID";
 
         all_file = filter_array(all_file,(: is_c_file :));        //取出*.c文件
-        if (!sizeof(all_file))        //这个武功没有绝招
+        if (!sizeof(all_file))        //這個武功沒有絕招
                 return "VOID";
 
-        file = all_file[random(sizeof(all_file))];        //随机抽取武功的绝招
+        file = all_file[random(sizeof(all_file))];        //隨機抽取武功的絕招
         l = strlen(file);
         file = dir + file[0..l-3];
         return file;
@@ -218,10 +218,10 @@ string auto_perform()
         can_auto_perform = 0;
         if (askill)
         { 
-                perform_skill_1 = askill;        //第一种pfm;
+                perform_skill_1 = askill;        //第一種pfm;
                 can_auto_perform = 1;
         }
-        //如果没有装备兵器，而且又有空手武功bei了，那么取第一种bei的空手武功的绝招为第二种pfm;
+        //如果沒有裝備兵器，而且又有空手武功bei了，那麼取第一種bei的空手武功的絕招為第二種pfm;
         if (!weapon && prepare && sizeof(prepare) > 1) 
                 perform_skill_2 = me->query_skill_mapped((keys(prepare))[1]); 
 
@@ -230,7 +230,7 @@ string auto_perform()
                 return do_perform(perform_skill_1);
         else if (can_auto_perform == 2)
         {
-                //随机选择两种PFM
+                //隨機選擇兩種PFM
                 if (random(2))
                         the_perform_skill = perform_skill_1;
                 else

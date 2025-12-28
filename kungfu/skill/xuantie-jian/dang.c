@@ -1,12 +1,12 @@
 // This program is a part of NITAN MudLIB
-// 力荡群魔
+// 力蕩群魔
 
 #include <ansi.h>
 #include <combat.h>
 
 inherit F_SSERVER;
 
-string name() { return RED"力荡群魔"NOR; }
+string name() { return RED"力蕩群魔"NOR; }
 
 int perform(object me, object target)
 {
@@ -20,34 +20,34 @@ int perform(object me, object target)
         ||  ! target->is_character()
         ||  ! me->is_fighting(target))
                 return notify_fail(
-                        "「"RED"力荡群魔"NOR"」只能对战斗中的对手使用。\n");
+                        "「"RED"力蕩群魔"NOR"」只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me) )
          || query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if (target->is_busy())
-                return notify_fail(target->name() + "目前正自顾不暇，加紧攻击吧ⅵ\n");
+                return notify_fail(target->name() + "目前正自顧不暇，加緊攻擊吧ⅵ\n");
 
         if((int)me->query_skill("xuantie-jian", 1) < 120)
                 return notify_fail(
-                        "你的玄铁剑法不够娴熟，不会使用「"RED"力荡群魔"NOR"」。\n");
+                        "你的玄鐵劍法不夠嫻熟，不會使用「"RED"力蕩群魔"NOR"」。\n");
 
         if ((int)me->query_skill("surge-force", 1) < 120
         &&  (int)me->query_skill("surge-force", 1) < 120)
                 return notify_fail(
-                        "你的古墓内功修为太浅，不会使用「"RED"力荡群魔"NOR"」。\n");
+                        "你的古墓內功修為太淺，不會使用「"RED"力蕩群魔"NOR"」。\n");
 
         if (me->query_str() < 40)
                 return notify_fail(
-                        "你的臂力不够，使用「"RED"力荡群魔"NOR"」过于艰难。\n");
+                        "你的臂力不夠，使用「"RED"力蕩群魔"NOR"」過於艱難。\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你的内力不够！\n");
+                return notify_fail("你的內力不夠！\n");
 
-        msg=HIB"骤然间，$N手中"NOR+query("name", weapon)+HIB"发出一阵轰鸣，带着隆隆"+
-              "的风雷之声，挟雷霆万均之势，\n一式「"NOR+BLINK+RED"力荡群魔"NOR+HIB"」，" +
-              "手中"NOR+query("name", weapon)+HIB"朝$n当头直压下去！\n";
+        msg=HIB"驟然間，$N手中"NOR+query("name", weapon)+HIB"發出一陣轟鳴，帶著隆隆"+
+              "的風雷之聲，挾雷霆萬均之勢，\n一式「"NOR+BLINK+RED"力蕩群魔"NOR+HIB"」，" +
+              "手中"NOR+query("name", weapon)+HIB"朝$n當頭直壓下去！\n";
 
         ap = attack_power(me, "sword") + me->query_str()*10;
         dp = defense_power(target, "parry") + target->query_str()*10;
@@ -66,7 +66,7 @@ int perform(object me, object target)
                 damage*=2;
                 addn("neili", -200, me);
 
-                pmsg = HIR "$n无力招架，登时被$N这记重招压得气血翻腾，禁不住「哇」地吐出一口鲜血！\n" NOR;
+                pmsg = HIR "$n無力招架，登時被$N這記重招壓得氣血翻騰，禁不住「哇」地吐出一口鮮血！\n" NOR;
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, adp, pmsg);
                 me->start_busy(1);
                 if( !target->is_busy() )
@@ -74,7 +74,7 @@ int perform(object me, object target)
         } else
         {
                 addn("neili", -100, me);
-                msg += HIW"$p连忙全力一挡，「砰」地一声巨响，$P这记重招居然被$p接了下来！\n" NOR;
+                msg += HIW"$p連忙全力一擋，「砰」地一聲巨響，$P這記重招居然被$p接了下來！\n" NOR;
                 me->start_busy(2);
         }
 

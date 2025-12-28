@@ -32,22 +32,22 @@ int main(object me, string arg)
         int t = time();
         int vip_level;
 
-        if( !where ) return notify_fail("你周围环境出现问题，请联系巫师解决。\n");
+        if( !where ) return notify_fail("你周圍環境出現問題，請聯繫巫師解決。\n");
         if( query("pigging", where) )
-                return notify_fail("你还是专心拱猪吧！\n");
+                return notify_fail("你還是專心拱豬吧！\n");
 
         if (me->is_busy())
-                return notify_fail("你现在正忙着呢。\n");
+                return notify_fail("你現在正忙著呢。\n");
 
         if( t == query_temp("time/research", me) )
-                return notify_fail("你刚刚才研究过（如果你要连续研究，可以指明"
-                                   "研究的次数）。\n");
+                return notify_fail("你剛剛才研究過（如果你要連續研究，可以指明"
+                                   "研究的次數）。\n");
 
         if( query("no_fight", where) && query("doing", me) != "scheme" )
-                return notify_fail("这里太纷杂，你没法作研究。\n");
+                return notify_fail("這裡太紛雜，你沒法作研究。\n");
 
         if (! arg)
-                return notify_fail("research|yanjiu <技能> <次数>\n");
+                return notify_fail("research|yanjiu <技能> <次數>\n");
 
         if (sscanf(arg, "%s %d", skill, times) != 2)
         {
@@ -58,7 +58,7 @@ int main(object me, string arg)
         c=200+me->query_all_buff("research_times");
         if( query("special_skill/clever", me) ) 
                 c += 50;
-        // 转世技能增加研究次数
+        // 轉世技能增加研究次數
         if( query("special_skill/wisdom", me) )
                 c += 800;
         if( query("special_skill/musha", me) )
@@ -67,7 +67,7 @@ int main(object me, string arg)
         if( me->query_skill("huitong-tianxia", 1) > 500 )
                 c += c * 20 / 100 + 10;
 
-	// 奇筋异骨提高研究次数2倍
+	// 奇筋異骨提高研究次數2倍
         if( query("special_skill/qijin", me) )
                 c *= 2;
 
@@ -81,38 +81,38 @@ int main(object me, string arg)
                 c *= n;
 
         if (times < 1 || times > c)
-                return notify_fail("研究次数最少一次，最多也不能超过" + chinese_number(c) + "次。\n");
+                return notify_fail("研究次數最少一次，最多也不能超過" + chinese_number(c) + "次。\n");
 
         if (me->is_fighting())
-                return notify_fail("临阵磨枪？来不及啦。\n");
+                return notify_fail("臨陣磨槍？來不及啦。\n");
 
         if (! (lvl = me->query_skill(skill, 1)))
-                return notify_fail("这项技能你还不会，研究什么？\n");
+                return notify_fail("這項技能你還不會，研究什麼？\n");
 
         if ((string) SKILL_D(skill)->type() == "knowledge")
-                return notify_fail(to_chinese(skill) + "只能靠你学习才能提高的。\n");
+                return notify_fail(to_chinese(skill) + "只能靠你學習才能提高的。\n");
 
         if (lvl < 180)
-                return notify_fail("你对" + to_chinese(skill) + "的掌握程度还"
+                return notify_fail("你對" + to_chinese(skill) + "的掌握程度還"
                                    "未到研究的程度。\n");
 
-        notify_fail("依你目前的能力，没有办法研究这种技能。\n");
+        notify_fail("依你目前的能力，沒有辦法研究這種技能。\n");
 
         if (! SKILL_D(skill)->valid_learn(me)
            || ! SKILL_D(skill)->valid_research(me))
-                // 不能学习或是不能研究
+                // 不能學習或是不能研究
                 return 0;
 
         if (! XUE_CMD->can_learn(me, skill))
                 return 0;
 
         if( (query("potential", me)-query("learned_points", me))<times )
-                return notify_fail("你的潜能不够研究这么多次了。\n");
+                return notify_fail("你的潛能不夠研究這麼多次了。\n");
 
         // Lookup skills for relation skills
 
-        write(HIG "你开始研究" + chinese_number(times) + "次有关「" +
-              to_chinese(skill) + HIG "」的奥秘。\n" NOR);
+        write(HIG "你開始研究" + chinese_number(times) + "次有關「" +
+              to_chinese(skill) + HIG "」的奧秘。\n" NOR);
         message("vision", me->name() + "在冥神思索。\n", where, ({ me }));
 
         // calculate the basic effect
@@ -198,11 +198,11 @@ int main(object me, string arg)
                 improve+=lvl/50+query("int", me)/3;
 
         improve+=improve*query("research_improve", where)/100;
-        // 喝过腊八粥就能提升研究的速度
+        // 喝過臘八粥就能提升研究的速度
         if( query("gift/labazhou", me) )
                 improve += improve * (10 + random(5)) / 100;
 
-        // 套装提升研究的速度
+        // 套裝提升研究的速度
         if( intp(r=me->query_all_buff("research_effect")) )
         {
                 if( r > 20000 ) r = 2000;
@@ -210,21 +210,21 @@ int main(object me, string arg)
                 improve += improve * r / 100;
         }
 
-        // 转世技能六阴鬼脉提升内功技能的研究速度
+        // 轉世技能六陰鬼脈提升內功技能的研究速度
         if( query("special_skill/ghost", me) && SKILL_D(skill)->valid_enable("force") )
                 improve += improve * 50 / 100;
 
         if( query("special_skill/wisdom", me) )
                 improve += improve * 50 / 100;
 
-        // 转世技能群邪辟易提升研究效果
+        // 轉世技能群邪辟易提升研究效果
         if( query("special_skill/nopoison", me) )
                 improve += improve * 50 / 100;
 
         if( query("special_skill/musha", me) )
                 improve += improve * 50 / 100;
 
-        // 踏雪无痕提高轻功研究速度50%
+        // 踏雪無痕提高輕功研究速度50%
         if( query("special_skill/taxue", me) && is_dodge_skill )
                 improve += improve / 2;
         
@@ -252,7 +252,7 @@ int main(object me, string arg)
         if( query("time_reward/study", me) )
                 improve += improve * 25 / 100;
         
-        // 帮派荣誉点
+        // 幫派榮譽點
         if( me->query_bunch() && BUNCH_D->query_bunch_efficient(me->query_bunch(), "yanjiu") )
                 improve += improve * 20 / 100;
 
@@ -267,12 +267,12 @@ int main(object me, string arg)
         jing_cost=1000/query("int", me);
 
         if( query("eff_jing", me)<jing_cost )
-                return notify_fail("你觉得你精力不济，实在没有办法进行研究。\n");
+                return notify_fail("你覺得你精力不濟，實在沒有辦法進行研究。\n");
 
         if (! me->can_improve_skill(skill))
         {
-                write("也许是缺乏实战经验，你感到难以继续研究" +
-                      to_chinese(skill) + "的问题了。\n");
+                write("也許是缺乏實戰經驗，你感到難以繼續研究" +
+                      to_chinese(skill) + "的問題了。\n");
                 return 1;
         }
 
@@ -302,7 +302,7 @@ int main(object me, string arg)
                         t4 = t1 + t3;
                         if (t4 == 0)
                         {
-                                write("你今天太累了，结果什么也没有研究成。\n");
+                                write("你今天太累了，結果什麼也沒有研究成。\n");
                                 return 1;
                         }
 
@@ -320,7 +320,7 @@ int main(object me, string arg)
                 SKILL_D("force/regenerate")->exert(me, me);
 
         addn("learned_points", t4, me);
-	// 奇筋异骨在研究完后补10%潜能
+	// 奇筋異骨在研究完後補10%潛能
 	if( query("special_skill/qijin", me) && t4 > 10)
                 addn("potential", t4 / 10, me);
 
@@ -328,17 +328,17 @@ int main(object me, string arg)
 
         skill_name = SKILL_D(skill)->query_skill_name(lvl);
         if (skill_name)
-                write(sprintf(HIM "你研究了一会，对「%s」这一"
-                              "招似乎想通了些什么。\n" NOR,
+                write(sprintf(HIM "你研究了一會，對「%s」這一"
+                              "招似乎想通了些什麼。\n" NOR,
                               skill_name));
         else
-                write(sprintf(HIM "你研究了一会，似乎对「%s」"
-                              "有些新的领悟。\n" NOR,
+                write(sprintf(HIM "你研究了一會，似乎對「%s」"
+                              "有些新的領悟。\n" NOR,
                               to_chinese(skill)));
 
         if (t4 > 0 && t4 < times)
-                write("你觉得太累了，研究了" + chinese_number(t4) +
-                      "次后只好停下来休息。\n");
+                write("你覺得太累了，研究了" + chinese_number(t4) +
+                      "次後只好停下來休息。\n");
 
         return 1;
 }
@@ -367,15 +367,15 @@ int *query_scale(string skill)
 int help(object me)
 {
         write(@HELP
-指令格式：research | yanjiu <技能> <次数>
+指令格式：research | yanjiu <技能> <次數>
 
-这个指令可以让你研究一种技能的疑难问题，当你师傅这项技能的级
-别不如你的时候，可以通过研究自己来提高，进度的速度要和你对这
-项技能的掌握程度和相关技能的熟悉情况相关，当然悟性也会起的一
-定的作用，但是关键还是看技能的水平。一般来说相关的技能越多越
-好，研究起来可能会事半功倍，如果会得太少，可能恰恰相反。
+這個指令可以讓你研究一種技能的疑難問題，當你師傅這項技能的級
+別不如你的時候，可以通過研究自己來提高，進度的速度要和你對這
+項技能的掌握程度和相關技能的熟悉情況相關，當然悟性也會起的一
+定的作用，但是關鍵還是看技能的水平。一般來說相關的技能越多越
+好，研究起來可能會事半功倍，如果會得太少，可能恰恰相反。
 
-其他相关指令：apprentice, practice, skills, study, learn
+其他相關指令：apprentice, practice, skills, study, learn
 HELP);
         return 1;
 }

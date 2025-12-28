@@ -1,5 +1,5 @@
 // black_iron.c
-// 玄铁
+// 玄鐵
 
 #include <mine_def.h>
 
@@ -31,14 +31,14 @@ int set_sum(int n)
 
 void create(int arg)
 {
-        set_name("玄铁", ({ "black iron ingot" }) );
+        set_name("玄鐵", ({ "black iron ingot" }) );
         set_weight(1000);
 
         if(intp(arg) && (arg > 0))
                 sum = arg;
 
         set("value", evaluate((: query_mine_value :),this_object()) );
-        set("unit", "块");
+        set("unit", "塊");
         set("long", evaluate((: query_long :), this_object()));
 }
 
@@ -50,19 +50,19 @@ int query_mine_value()
 string query_selling_msg()
 {
         if(sum < 1)
-                return "一钱不值";
+                return "一錢不值";
         else
-                return sprintf("%d 两重", sum);
+                return sprintf("%d 兩重", sum);
 }
 
 string query_long()
 {
-        string l = "这是一块玄铁，";
+        string l = "這是一塊玄鐵，";
 
         if(sum < 1)
-                l += "看起来\n一钱不值。\n";
+                l += "看起來\n一錢不值。\n";
         else
-                l += sprintf("大约\n有 %d 钱重。\n", sum);
+                l += sprintf("大約\n有 %d 錢重。\n", sum);
 
         return l;
 }

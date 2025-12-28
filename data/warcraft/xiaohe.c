@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("河内蛟龙[2;37;0m[2;37;0m", ({"huansl"}));        
+        set_name("河內蛟龍[2;37;0m[2;37;0m", ({"huansl"}));        
         set("gender", "女性");                
-        set("long", "河内蛟龙[2;37;0m
-它是有条小河的魔幻兽。
+        set("long", "河內蛟龍[2;37;0m
+它是有條小河的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "xiaohe");
-        set("owner_name", "有条小河");
+        set("owner_name", "有條小河");
         set_temp("owner", "xiaohe");
-        set_temp("owner_name", "有条小河");
+        set_temp("owner_name", "有條小河");
         ::setup();
 }

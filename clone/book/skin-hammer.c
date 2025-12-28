@@ -1,18 +1,18 @@
 //
-//  羊皮书
+//  羊皮書
 
 inherit BOOK;
 
 void create()
 {
-        set_name( "羊皮卷轴", ({ "skin" }));
+        set_name( "羊皮卷軸", ({ "skin" }));
         set_weight(200);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
                 set("unit", "本");
-                set("long", "这是一张羊皮质地的卷轴，上面画着一些古怪的符号。\n");
+                set("long", "這是一張羊皮質地的卷軸，上面畫著一些古怪的符號。\n");
                 set("material", "paper");
                 set("skill", ([
                         "name": "hammer",        // name of the skill

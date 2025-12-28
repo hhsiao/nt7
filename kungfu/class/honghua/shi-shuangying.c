@@ -6,19 +6,19 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("石双英", ({ "shi shuangying", "shi", "shuangying" }));
-        set("title", "红花会十二当家");
-        set("nickname", HIR "鬼见愁" NOR);
-        set("long", "鬼见愁石双英在会中坐第十二把交椅，执掌刑\n"
-                    "堂，铁面无私，心狠手辣，犯了规条的就是逃\n"
-                    "到天涯海角，他也必派人抓来处刑，原来依据\n"
-                    "红花会规条，会中兄弟犯了大罪，若是一时胡\n"
-                    "涂，此后诚心悔悟，可在开香堂执法之前，自\n"
-                    "行用尖刀在大腿上连戳三刀，这三刀须对穿而\n"
-                    "过，即所谓“三刀六洞”，然后向该管舵主和\n"
-                    "执法香主求恕，有望从轻发落，但若真正罪重\n"
-                    "出自不能饶恕。是以红花会数万兄弟，提到鬼\n"
-                    "见愁时无不悚然。\n");
+        set_name("石雙英", ({ "shi shuangying", "shi", "shuangying" }));
+        set("title", "紅花會十二當家");
+        set("nickname", HIR "鬼見愁" NOR);
+        set("long", "鬼見愁石雙英在會中坐第十二把交椅，執掌刑\n"
+                    "堂，鐵面無私，心狠手辣，犯了規條的就是逃\n"
+                    "到天涯海角，他也必派人抓來處刑，原來依據\n"
+                    "紅花會規條，會中兄弟犯了大罪，若是一時胡\n"
+                    "塗，此後誠心悔悟，可在開香堂執法之前，自\n"
+                    "行用尖刀在大腿上連戳三刀，這三刀須對穿而\n"
+                    "過，即所謂“三刀六洞”，然後向該管舵主和\n"
+                    "執法香主求恕，有望從輕發落，但若真正罪重\n"
+                    "出自不能饒恕。是以紅花會數萬兄弟，提到鬼\n"
+                    "見愁時無不悚然。\n");
         set("gender", "男性");
         set("age", 28);
         set("attitude", "peaceful");
@@ -59,7 +59,7 @@ void create()
 
         prepare_skill("unarmed", "changquan");
 
-        create_family("红花会", 4, "当家");
+        create_family("紅花會", 4, "當家");
 
         set("chat_chance_combat", 100);
         set("chat_msg_combat", ({
@@ -75,5 +75,5 @@ void create()
 void attempt_apprentice(object ob)
 {
         command("hmm");
-        command("say 你不收徒，你找其余当家的吧。");
+        command("say 你不收徒，你找其餘當家的吧。");
 }

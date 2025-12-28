@@ -13,8 +13,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一个用来装水的木桶。\n");
-                set("unit", "个");
+                set("long", "一個用來裝水的木桶。\n");
+                set("unit", "個");
                 set("amount", 0);
                 set("no_drop",1);
         }
@@ -28,16 +28,16 @@ string extra_long()
         switch(query("amount"))
         {
                 case 0: 
-                        str="里面什么也没有。\n";
+                        str="裡面什麼也沒有。\n";
                         break;
                 case 1:
-                        str="里面有少许的冰水。\n";
+                        str="裡面有少許的冰水。\n";
                         break;
                 case 2:
-                        str="里面的冰水快满了。\n";
+                        str="裡面的冰水快滿了。\n";
                         break;
                 case 3:
-                        str="里面装满了冰水。\n";
+                        str="裡面裝滿了冰水。\n";
                         break;
         }
         
@@ -61,22 +61,22 @@ int do_fill(string arg)
         if (arg!="tong"&& arg!="bucket") return 0;
 
         if (me->is_busy()||me->is_fighting())
-                return notify_fail("你正忙着呢！\n");
+                return notify_fail("你正忙著呢！\n");
 
         if( query("short", environment(me)) != "碧水寒潭" )
-                return notify_fail("这里没有冷水。\n");
+                return notify_fail("這裡沒有冷水。\n");
 
         if (query("amount") >= max_volume)
-                return notify_fail("木桶已经装满水了。\n");
+                return notify_fail("木桶已經裝滿水了。\n");
 
         if( query("jing", me)<50 || query("qi", me)<50 )
-                return notify_fail("你已经精疲力竭了。\n");
+                return notify_fail("你已經精疲力竭了。\n");
 
-        message_vision("$N小心翼翼地从碧水寒潭里舀了些冰水上来。\n",me);
+        message_vision("$N小心翼翼地從碧水寒潭裡舀了些冰水上來。\n",me);
         addn("amount",1);
         if ( random(me->query_con()) > 20)
         {
-                message_vision("一股寒气从潭底直冒上来，冻得$N打了个哆嗦！\n",me);
+                message_vision("一股寒氣從潭底直冒上來，凍得$N打了個哆嗦！\n",me);
                 me->receive_damage("qi",random(10) + 5);
         }
         addn("qi", -30, me);
@@ -98,22 +98,22 @@ int do_pour(string arg)
                 return 0;
 
         if (me->is_busy() || me->is_fighting() )
-                return notify_fail("你正忙着呢。\n");
+                return notify_fail("你正忙著呢。\n");
 
         if ((item != "水" && item!="water") || (target!="水缸" && target!="gang"))
-                return notify_fail("你要将什么东西倒进哪里？\n");
+                return notify_fail("你要將什麼東西倒進哪裡？\n");
 
         if (!(gang=present("shui gang",environment(me))))
-                return notify_fail("这里没有水缸。\n");
+                return notify_fail("這裡沒有水缸。\n");
         
         if (!(amount = query("amount")))
-                return notify_fail("木桶里什么都没有。\n");
+                return notify_fail("木桶裡什麼都沒有。\n");
 
-        message_vision("$N把木桶里的水全部倒进大水缸里。\n",me);
+        message_vision("$N把木桶裡的水全部倒進大水缸裡。\n",me);
         set("amount",0);
         addn("amount", amount, gang);
         addn_temp("water_amount", amount, me);
         if( query_temp("water_amount", me) >= 15 )
-                tell_object(me,HIG"你扶着酸痛的腰，心里想应该可以回去交差了吧？\n"NOR);
+                tell_object(me,HIG"你扶著痠痛的腰，心裡想應該可以回去交差了吧？\n"NOR);
         return 1;
 }

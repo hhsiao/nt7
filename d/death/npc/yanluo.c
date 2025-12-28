@@ -8,11 +8,11 @@ mixed ask_reborn();
 
 void create()
 {
-        set_name("十殿阎罗", ({ "shidian yanluo", "shidian", "yanluo", "shi", "yan"}));
-        set("long", "一位面如锅底，须若钢针，身穿红袍的大汉。\n"
-                    "这就是阴间的十殿阎罗。\n");
+        set_name("十殿閻羅", ({ "shidian yanluo", "shidian", "yanluo", "shi", "yan"}));
+        set("long", "一位面如鍋底，須若鋼針，身穿紅袍的大漢。\n"
+                    "這就是陰間的十殿閻羅。\n");
         set("title", HIR "冥府地藏王殿前" NOR);
-        set("nickname", HIY "阴司总管" NOR);
+        set("nickname", HIY "陰司總管" NOR);
         set("gender", "男性");
         set("age", 3000);
         set("attitude", "friendly");
@@ -57,56 +57,56 @@ void create()
 
         set("chat_chance", 1);
         set("chat_msg",({
-                CYN "十殿阎罗深深的叹了口气。\n" NOR,
-                CYN "十殿阎罗叹道：玄武甲壳和朱雀羽毛还好点，可是青龙胆和白虎骨难弄啊……\n" NOR,
-                CYN "十殿阎罗叹道：武甲、朱羽、龙胆还有虎骨，这可真难办啊。\n" NOR,
-                CYN "十殿阎罗叹道：期限就要到了，地藏老大要我炼制的锁阳丹原料还没备齐，这可如何是好啊。\n" NOR,
-                CYN "十殿阎罗叹道：地藏老大的任务可真是要命啊。\n" NOR,
-                CYN "十殿阎罗抱怨道：平白无故的要什么锁阳丹，老大也真是的。\n" NOR,
+                CYN "十殿閻羅深深的嘆了口氣。\n" NOR,
+                CYN "十殿閻羅嘆道：玄武甲殼和朱雀羽毛還好點，可是青龍膽和白虎骨難弄啊……\n" NOR,
+                CYN "十殿閻羅嘆道：武甲、朱羽、龍膽還有虎骨，這可真難辦啊。\n" NOR,
+                CYN "十殿閻羅嘆道：期限就要到了，地藏老大要我煉製的鎖陽丹原料還沒備齊，這可如何是好啊。\n" NOR,
+                CYN "十殿閻羅嘆道：地藏老大的任務可真是要命啊。\n" NOR,
+                CYN "十殿閻羅抱怨道：平白無故的要什麼鎖陽丹，老大也真是的。\n" NOR,
         }));
 
         set("inquiry", ([
-                "锁阳丹"   : (: ask_quest :),
-                "炼制"     : (: ask_quest :),
-                "炼丹"     : (: ask_quest :),
-                "任务"     : (: ask_quest :),
+                "鎖陽丹"   : (: ask_quest :),
+                "煉製"     : (: ask_quest :),
+                "煉丹"     : (: ask_quest :),
+                "任務"     : (: ask_quest :),
                 "交差"     : (: ask_quest :),
                 "期限"     : (: ask_quest :),
                 "原料"     : (: ask_quest :),
-                "药引"     : (: ask_quest :),
-                "转世"     : (: ask_reborn :),
+                "藥引"     : (: ask_quest :),
+                "轉世"     : (: ask_reborn :),
                 "重生"     : (: ask_reborn :),
-                "转生"     : (: ask_reborn :),
-                "转世重生" : (: ask_reborn :),
-                "地藏王"   : "他是这里的老大，没人惹得起他。",
-                "龙胆"     : "龙胆就是神兽青龙的胆，凡人吃了可以平增功力，我也正需要一个来炼丹。",
-                "青龙胆"   : "龙胆就是神兽青龙的胆，凡人吃了可以平增功力，我也正需要一个来炼丹。",
-                "虎骨"     : "我正需要一根白虎的骨头来炼锁阳丹，怎么，你有么？",
-                "白虎骨"   : "我正需要一根白虎的骨头来炼锁阳丹，怎么，你有么？",
-                "朱雀羽毛" : "那东西本身是没什么用的，可却是我制作锁阳丹的原料。",
-                "朱羽"     : "那东西本身是没什么用的，可却是我制作锁阳丹的原料。",
-                "玄武甲壳" : "那壳用来铸盔甲倒是挺好，可难弄啊！我找了好久都没找到。",
-                "武甲"     : "玄武甲壳用来铸盔甲倒是挺好，可难弄啊！我找了好久都没找到。",
-                "甲壳"     : "玄武甲壳用来铸盔甲倒是挺好，可难弄啊！我找了好久都没找到。",
-                "青龙"     : "神兽青龙有时候会在碧水寒潭出没，不过我去捉时却没见到。",
-                "碧水寒潭" : "碧水寒潭就在奈河桥下面，你站在桥上往下跳就到了，不过你下去最好带上「地阴血脉」。",
-                "地阴血脉" : "这东西可以在地府轮回司里寻找到。…嗯…要决是‘三三逢缘’。",
-                "白虎"     : "那大虫就栖息在寂灭司后面的黑森林里，我派了好几个手下去捉它，结果全都挂了。",
-                "黑森林"   : "黑森林里全是阴雾，除非有「指南车」，要不根本没法辨认方向。",
-                "指南车"   : "那是黄帝流传下来的法宝之一，后来流落到了这里，不过我没见过。",
-                "寂灭司"   : "寂灭司就在阎罗殿的东边。",
-                "轮回司"   : "轮回司就在阎罗殿的东边。",
-                "阎罗殿"   : "这个你也问我？你是笨死的啊？",
-                "朱雀"     : "有人在阴阳塔顶见到过神兽朱雀，不过听说那扁毛畜生不落无宝之地，要寻它身上必须要带有宝物。",
-                "宝物"     : "地府有个神石名曰「七色璎珞」，倒是个不得多见的宝物。",
-                "七色璎珞" : "听传闻，这东西好象是落在了秦广王的手里。",
-                "秦广王"   : "他和我一样，也是阴间十王之一。",
-                "阴阳塔"   : "就是西边的那座塔，是地府里最高的建筑，平时由马面看守。",
-                "马面"     : "和看守奈河桥的牛头一样，是地府的守卫。",
-                "玄武"     : "那臭乌龟整年躲在血池地狱里吃死人肉，怎么弄都不出来。",
-                "死人肉"   : "我操，这个你也问我？你去称两斤吃吃看就知道了。",
-                "血池地狱" : "血池地狱就在阎罗殿的北边，你要下去必须得穿上「麒麟靴」。",
-                "麒麟靴"   : "那是地藏王的东西，我也只瞧见过一次。",
+                "轉生"     : (: ask_reborn :),
+                "轉世重生" : (: ask_reborn :),
+                "地藏王"   : "他是這裡的老大，沒人惹得起他。",
+                "龍膽"     : "龍膽就是神獸青龍的膽，凡人吃了可以平增功力，我也正需要一個來煉丹。",
+                "青龍膽"   : "龍膽就是神獸青龍的膽，凡人吃了可以平增功力，我也正需要一個來煉丹。",
+                "虎骨"     : "我正需要一根白虎的骨頭來煉鎖陽丹，怎麼，你有麼？",
+                "白虎骨"   : "我正需要一根白虎的骨頭來煉鎖陽丹，怎麼，你有麼？",
+                "朱雀羽毛" : "那東西本身是沒什麼用的，可卻是我製作鎖陽丹的原料。",
+                "朱羽"     : "那東西本身是沒什麼用的，可卻是我製作鎖陽丹的原料。",
+                "玄武甲殼" : "那殼用來鑄盔甲倒是挺好，可難弄啊！我找了好久都沒找到。",
+                "武甲"     : "玄武甲殼用來鑄盔甲倒是挺好，可難弄啊！我找了好久都沒找到。",
+                "甲殼"     : "玄武甲殼用來鑄盔甲倒是挺好，可難弄啊！我找了好久都沒找到。",
+                "青龍"     : "神獸青龍有時候會在碧水寒潭出沒，不過我去捉時卻沒見到。",
+                "碧水寒潭" : "碧水寒潭就在奈河橋下面，你站在橋上往下跳就到了，不過你下去最好帶上「地陰血脈」。",
+                "地陰血脈" : "這東西可以在地府輪迴司裡尋找到。…嗯…要決是‘三三逢緣’。",
+                "白虎"     : "那大蟲就棲息在寂滅司後面的黑森林裡，我派了好幾個手下去捉它，結果全都掛了。",
+                "黑森林"   : "黑森林裡全是陰霧，除非有「指南車」，要不根本沒法辨認方向。",
+                "指南車"   : "那是黃帝流傳下來的法寶之一，後來流落到了這裡，不過我沒見過。",
+                "寂滅司"   : "寂滅司就在閻羅殿的東邊。",
+                "輪迴司"   : "輪迴司就在閻羅殿的東邊。",
+                "閻羅殿"   : "這個你也問我？你是笨死的啊？",
+                "朱雀"     : "有人在陰陽塔頂見到過神獸朱雀，不過聽說那扁毛畜生不落無寶之地，要尋它身上必須要帶有寶物。",
+                "寶物"     : "地府有個神石名曰「七色瓔珞」，倒是個不得多見的寶物。",
+                "七色瓔珞" : "聽傳聞，這東西好象是落在了秦廣王的手裡。",
+                "秦廣王"   : "他和我一樣，也是陰間十王之一。",
+                "陰陽塔"   : "就是西邊的那座塔，是地府裡最高的建築，平時由馬面看守。",
+                "馬面"     : "和看守奈河橋的牛頭一樣，是地府的守衛。",
+                "玄武"     : "那臭烏龜整年躲在血池地獄裡吃死人肉，怎麼弄都不出來。",
+                "死人肉"   : "我操，這個你也問我？你去稱兩斤吃吃看就知道了。",
+                "血池地獄" : "血池地獄就在閻羅殿的北邊，你要下去必須得穿上「麒麟靴」。",
+                "麒麟靴"   : "那是地藏王的東西，我也只瞧見過一次。",
         ]));
 
         set("chat_chance_combat", 100);
@@ -121,7 +121,7 @@ void create()
         }) );
 
         set("count", 1);
-        create_family("阴司", 0, "总管");
+        create_family("陰司", 0, "總管");
 
         setup();
         carry_object(__DIR__"obj/cloth2")->wear();
@@ -134,34 +134,34 @@ mixed ask_quest()
         me = this_player();
 
         if( query_temp("to_answer", me) )
-                return "你这人怎么这么罗嗦，到底干还是不干啊？";
+                return "你這人怎麼這麼羅嗦，到底幹還是不幹啊？";
 
-        if( query("over_quest/hell_quest/锁阳丹", me) )
-                return "上次的事情真是多谢谢你了。";
+        if( query("over_quest/hell_quest/鎖陽丹", me) )
+                return "上次的事情真是多謝謝你了。";
 
-        if( query("hell_quest/锁阳丹", me) )
-                return "我要的原料你都备齐了吗？你这人怎么这么罗嗦？";
+        if( query("hell_quest/鎖陽丹", me) )
+                return "我要的原料你都備齊了嗎？你這人怎麼這麼羅嗦？";
 
         if( !me->is_ghost() && !wizardp(me) && !query("reborn_offer", me) )
-                return "咦？阳人怎么到这里来了？";
+                return "咦？陽人怎麼到這裡來了？";
 
         /*
         if (query("over") > 1)
-                return "东西我都已经准备好了，不需要你的帮忙了。";
+                return "東西我都已經準備好了，不需要你的幫忙了。";
 
         if (query("count") < 1)
-                return "够了，我已经派人做去了。";
+                return "夠了，我已經派人做去了。";
         */
 
         if( query("combat_exp", me)<2000000000 )
-                return "……唉……你能力太低了，是帮不了我的。";
+                return "……唉……你能力太低了，是幫不了我的。";
 
-        message_vision(HIC "\n十殿阎罗仔细的打量了$N" HIC "好一阵。\n" NOR, me);
-        command("say 不错，不错。");
-        command("whisper"+query("id", me)+"你是刚从阳间来的吧？看你的样子似乎"
-                "武功不坏，能够帮我个忙吗？地藏\n王限我在今年内为他炼制锁阳丹，炼制这"
-                "锁阳丹的千魂和万魄我已经准备齐了，可是尚差龙胆、虎骨、朱\n羽和玄武甲"
-                "壳来做药引，你能帮我去弄吗？事成之后自然有你的好处。");
+        message_vision(HIC "\n十殿閻羅仔細的打量了$N" HIC "好一陣。\n" NOR, me);
+        command("say 不錯，不錯。");
+        command("whisper"+query("id", me)+"你是剛從陽間來的吧？看你的樣子似乎"
+                "武功不壞，能夠幫我個忙嗎？地藏\n王限我在今年內為他煉製鎖陽丹，煉製這"
+                "鎖陽丹的千魂和萬魄我已經準備齊了，可是尚差龍膽、虎骨、朱\n羽和玄武甲"
+                "殼來做藥引，你能幫我去弄嗎？事成之後自然有你的好處。");
 
         remove_call_out("answer");
         call_out("answer", 0, me);
@@ -172,7 +172,7 @@ mixed ask_quest()
 
 void answer(object me)
 {
-        tell_object(me, HIR "\n你愿意接受(accept)十殿阎罗的请求吗？\n" NOR);
+        tell_object(me, HIR "\n你願意接受(accept)十殿閻羅的請求嗎？\n" NOR);
 }
 
 int do_accept()
@@ -180,14 +180,14 @@ int do_accept()
         object me = this_player();
         if( query_temp("to_answer", me) )
         {
-                tell_object(me, HIR "\n你决定帮助十殿阎罗寻找锁阳丹的"
-                                "四种原料。\n" NOR);
-                message_vision( CYN "\n十殿阎罗「哈哈哈」大笑几声。\n"
+                tell_object(me, HIR "\n你決定幫助十殿閻羅尋找鎖陽丹的"
+                                "四種原料。\n" NOR);
+                message_vision( CYN "\n十殿閻羅「哈哈哈」大笑幾聲。\n"
                                 NOR, me);
-                message_vision( CYN "十殿阎罗对$N" CYN "说道：那老夫就"
-                                "多谢谢你了。\n"NOR, me);
-                set("hell_quest/锁阳丹", 1, me);
-                set("wang_get/龙胆", 1, me);
+                message_vision( CYN "十殿閻羅對$N" CYN "說道：那老夫就"
+                                "多謝謝你了。\n"NOR, me);
+                set("hell_quest/鎖陽丹", 1, me);
+                set("wang_get/龍膽", 1, me);
                 set("wang_get/虎骨", 1, me);
                 set("wang_get/朱羽", 1, me);
                 set("wang_get/武甲", 1, me);
@@ -201,11 +201,11 @@ int do_accept()
 
 int give_gold(object me)
 {
-        message_vision(HIW "\n十殿阎罗随手一挥，登时变出一大堆金子，递"
-                       "给$N" HIW "。\n"NOR, me);
-        message_vision(CYN "十殿阎罗说道：你阳间的武器在这里召唤不回"
-                       "来，这里的黄金足够你购买武具。\n"NOR, me);
-        tell_object(me, HIC "\n你获得了一千两" NOR + YEL "黄金" NOR +
+        message_vision(HIW "\n十殿閻羅隨手一揮，登時變出一大堆金子，遞"
+                       "給$N" HIW "。\n"NOR, me);
+        message_vision(CYN "十殿閻羅說道：你陽間的武器在這裡召喚不回"
+                       "來，這裡的黃金足夠你購買武具。\n"NOR, me);
+        tell_object(me, HIC "\n你獲得了一千兩" NOR + YEL "黃金" NOR +
                         HIC "。\n" NOR);
         MONEY_D->pay_player(me, 10000000);
         return 1;
@@ -223,27 +223,27 @@ int accept_object(object me, object ob)
 
         if( !me || environment(me) != environment() ) return 0;
         if ( !objectp(ob) ) return 0;
-        if ( !present(ob, me) ) return notify_fail("你没有这件东西。\n");
+        if ( !present(ob, me) ) return notify_fail("你沒有這件東西。\n");
 
          if( query("id", ob) != "long dan"
          && query("id", ob) != "hu gu"
      && query("id", ob) != "zhu yu"
      && query("id", ob) != "xuanwu jiake" )
         {
-                message_vision(CYN "十殿阎罗摇了摇头，道：你给我这个干什么？\n" NOR, me);
+                message_vision(CYN "十殿閻羅搖了搖頭，道：你給我這個幹什麼？\n" NOR, me);
                         return 0;
         }
 
-        if( query("over_quest/hell_quest/锁阳丹", me) )
+        if( query("over_quest/hell_quest/鎖陽丹", me) )
         {
-                message_vision(CYN "十殿阎罗对$N" CYN "笑道：你已经替我备齐所有的原料"
-                               "了，这个还是你留着自己用吧。\n" NOR, me);
+                message_vision(CYN "十殿閻羅對$N" CYN "笑道：你已經替我備齊所有的原料"
+                               "了，這個還是你留著自己用吧。\n" NOR, me);
                         return 0;
         }
 
-        if( !query("hell_quest/锁阳丹", me) )
+        if( !query("hell_quest/鎖陽丹", me) )
         {
-                message_vision(CYN "十殿阎罗道：无功不受禄，这个你还是自己留着吧。\n"
+                message_vision(CYN "十殿閻羅道：無功不受祿，這個你還是自己留著吧。\n"
                                NOR, me);
                         return 0;
         }
@@ -254,10 +254,10 @@ int accept_object(object me, object ob)
                    && query("over_quest/hell_quest/原料/朱羽", me )
                    && query("over_quest/hell_quest/原料/武甲", me) )
                 {
-                        message_vision(HIW "十殿阎罗见是龙胆，大喜道：“这下四种原料都"
-                                       "已备齐，终于可以开始炼制老大要的锁阳丹了！多"
-                                       "亏有你的\n帮助啊，这个是以前我从蓬莱仙山得来"
-                                       "的宝物，留着也没用，就当是酬劳好了。”\n"
+                        message_vision(HIW "十殿閻羅見是龍膽，大喜道：“這下四種原料都"
+                                       "已備齊，終於可以開始煉製老大要的鎖陽丹了！多"
+                                       "虧有你的\n幫助啊，這個是以前我從蓬萊仙山得來"
+                                       "的寶物，留著也沒用，就當是酬勞好了。”\n"
                                        NOR, me);
 
                         addn("combat_exp", exp, me);
@@ -267,19 +267,19 @@ int accept_object(object me, object ob)
                         if( query("potential", me)>me->query_potential_limit() )
                                 set("potential", me->query_potential_limit(), me);
                         */
-                        tell_object(me, HIR "\n你成功的为十殿阎罗备齐了锁阳丹原料。\n"
+                        tell_object(me, HIR "\n你成功的為十殿閻羅備齊了鎖陽丹原料。\n"
                                         NOR);
 
-                        tell_object(me, HIC "\n你获得了一块" NOR + HIW "寰宇天晶" NOR +
+                        tell_object(me, HIC "\n你獲得了一塊" NOR + HIW "寰宇天晶" NOR +
                                         HIC "。\n"
                                         NOR);
 
-                        tell_object(me, HIC "你获得了" + chinese_number(exp) + "点"
-                                        "经验、" + chinese_number(pot) + "点潜能以"
-                                        "及" + chinese_number(mp) + "点灵慧。\n" NOR);
+                        tell_object(me, HIC "你獲得了" + chinese_number(exp) + "點"
+                                        "經驗、" + chinese_number(pot) + "點潛能以"
+                                        "及" + chinese_number(mp) + "點靈慧。\n" NOR);
 
-                        set("over_quest/hell_quest/锁阳丹", 1, me);
-                        delete("hell_quest/锁阳丹", me);
+                        set("over_quest/hell_quest/鎖陽丹", 1, me);
+                        delete("hell_quest/鎖陽丹", me);
                         delete("over_quest/hell_quest/原料/虎骨", me);
                         delete("over_quest/hell_quest/原料/朱羽", me);
                         delete("over_quest/hell_quest/原料/武甲", me);
@@ -290,18 +290,18 @@ int accept_object(object me, object ob)
                         return 1;
                 }
            else {
-                        if( query("over_quest/hell_quest/原料/龙胆", me) )
+                        if( query("over_quest/hell_quest/原料/龍膽", me) )
                         {
-                                message_vision( HIY "十殿阎罗见是龙胆，对$N" HIY "摇"
-                                                "头道：龙胆你已经给过我了，你还是快去"
-                                                "寻找其它原料吧。\n" NOR, me);
+                                message_vision( HIY "十殿閻羅見是龍膽，對$N" HIY "搖"
+                                                "頭道：龍膽你已經給過我了，你還是快去"
+                                                "尋找其它原料吧。\n" NOR, me);
                                 return 0;
                         }
                    else {
-                                message("vision", HIY "十殿阎罗看见龙胆，大喜道：太好"
-                                                  "了，这青龙胆到底还是让我得到了。\n"
+                                message("vision", HIY "十殿閻羅看見龍膽，大喜道：太好"
+                                                  "了，這青龍膽到底還是讓我得到了。\n"
                                                   NOR, environment(me));
-                                set("over_quest/hell_quest/原料/龙胆", 1, me);
+                                set("over_quest/hell_quest/原料/龍膽", 1, me);
                                 destruct(ob);
                                 return 1;
                         }
@@ -310,14 +310,14 @@ int accept_object(object me, object ob)
 
          if( query("id", ob) == "hu gu" )
         {
-                if( query("over_quest/hell_quest/原料/龙胆", me )
+                if( query("over_quest/hell_quest/原料/龍膽", me )
                    && query("over_quest/hell_quest/原料/朱羽", me )
                    && query("over_quest/hell_quest/原料/武甲", me) )
                 {
-                        message_vision(HIW "十殿阎罗见是虎骨，大喜道：“这下四种原料都"
-                                       "已备齐，终于可以开始炼制老大要的锁阳丹了！多"
-                                       "亏有你的\n帮助啊，这个是以前我从蓬莱仙山得来"
-                                       "的宝物，留着也没用，就当是酬劳好了。”\n"
+                        message_vision(HIW "十殿閻羅見是虎骨，大喜道：“這下四種原料都"
+                                       "已備齊，終於可以開始煉製老大要的鎖陽丹了！多"
+                                       "虧有你的\n幫助啊，這個是以前我從蓬萊仙山得來"
+                                       "的寶物，留著也沒用，就當是酬勞好了。”\n"
                                        NOR, me);
 
                         addn("combat_exp", exp, me);
@@ -327,20 +327,20 @@ int accept_object(object me, object ob)
                         if( query("potential", me)>me->query_potential_limit() )
                                 set("potential", me->query_potential_limit(), me);
                         */
-                        tell_object(me, HIR "\n你成功的为十殿阎罗备齐了锁阳丹原料。\n"
+                        tell_object(me, HIR "\n你成功的為十殿閻羅備齊了鎖陽丹原料。\n"
                                         NOR);
 
-                        tell_object(me, HIC "\n你获得了一块" NOR + HIW "寰宇天晶" NOR +
+                        tell_object(me, HIC "\n你獲得了一塊" NOR + HIW "寰宇天晶" NOR +
                                         HIC "。\n"
                                         NOR);
 
-                        tell_object(me, HIC "你获得了" + chinese_number(exp) + "点"
-                                        "经验、" + chinese_number(pot) + "点潜能以"
-                                        "及" + chinese_number(mp) + "点灵慧。\n" NOR);
+                        tell_object(me, HIC "你獲得了" + chinese_number(exp) + "點"
+                                        "經驗、" + chinese_number(pot) + "點潛能以"
+                                        "及" + chinese_number(mp) + "點靈慧。\n" NOR);
 
-                        set("over_quest/hell_quest/锁阳丹", 1, me);
-                        delete("hell_quest/锁阳丹", me);
-                        delete("over_quest/hell_quest/原料/龙胆", me);
+                        set("over_quest/hell_quest/鎖陽丹", 1, me);
+                        delete("hell_quest/鎖陽丹", me);
+                        delete("over_quest/hell_quest/原料/龍膽", me);
                         delete("over_quest/hell_quest/原料/朱羽", me);
                         delete("over_quest/hell_quest/原料/武甲", me);
                         obn = new("/d/death/obj/tianjing");
@@ -352,15 +352,15 @@ int accept_object(object me, object ob)
            else {
                         if( query("over_quest/hell_quest/原料/虎骨", me) )
                         {
-                                message_vision( HIY "十殿阎罗见是虎骨，对$N" HIY "摇"
-                                                "头道：虎骨你已经给过我了，你还是快去"
-                                                "寻找其它原料吧。\n" NOR, me);
+                                message_vision( HIY "十殿閻羅見是虎骨，對$N" HIY "搖"
+                                                "頭道：虎骨你已經給過我了，你還是快去"
+                                                "尋找其它原料吧。\n" NOR, me);
                                 return 0;
                         }
                    else {
-                                message("vision", HIY "十殿阎罗见是虎骨，大喜道：太好"
-                                                  "了，那白虎再厉害还不是得乖乖的把骨"
-                                                  "头送上来。\n"
+                                message("vision", HIY "十殿閻羅見是虎骨，大喜道：太好"
+                                                  "了，那白虎再厲害還不是得乖乖的把骨"
+                                                  "頭送上來。\n"
                                                   NOR, environment(me));
                                 set("over_quest/hell_quest/原料/虎骨", 1, me);
                                 destruct(ob);
@@ -372,13 +372,13 @@ int accept_object(object me, object ob)
      if( query("id", ob) == "zhu yu" )
         {
                 if( query("over_quest/hell_quest/原料/虎骨", me )
-                   && query("over_quest/hell_quest/原料/龙胆", me )
+                   && query("over_quest/hell_quest/原料/龍膽", me )
                    && query("over_quest/hell_quest/原料/武甲", me) )
                 {
-                        message_vision(HIW "十殿阎罗见是朱羽，大喜道：“这下四种原料都"
-                                       "已备齐，终于可以开始炼制老大要的锁阳丹了！多"
-                                       "亏有你的\n帮助啊，这个是以前我从蓬莱仙山得来"
-                                       "的宝物，留着也没用，就当是酬劳好了。”\n"
+                        message_vision(HIW "十殿閻羅見是朱羽，大喜道：“這下四種原料都"
+                                       "已備齊，終於可以開始煉製老大要的鎖陽丹了！多"
+                                       "虧有你的\n幫助啊，這個是以前我從蓬萊仙山得來"
+                                       "的寶物，留著也沒用，就當是酬勞好了。”\n"
                                        NOR, me);
 
                         addn("combat_exp", exp, me);
@@ -388,21 +388,21 @@ int accept_object(object me, object ob)
                         if( query("potential", me)>me->query_potential_limit() )
                                 set("potential", me->query_potential_limit(), me);
                         */
-                        tell_object(me, HIR "\n你成功的为十殿阎罗备齐了锁阳丹原料。\n"
+                        tell_object(me, HIR "\n你成功的為十殿閻羅備齊了鎖陽丹原料。\n"
                                         NOR);
 
-                        tell_object(me, HIC "\n你获得了一块" NOR + HIW "寰宇天晶" NOR +
+                        tell_object(me, HIC "\n你獲得了一塊" NOR + HIW "寰宇天晶" NOR +
                                         HIC "。\n"
                                         NOR);
 
-                        tell_object(me, HIC "你获得了" + chinese_number(exp) + "点"
-                                        "经验、" + chinese_number(pot) + "点潜能以"
-                                        "及" + chinese_number(mp) + "点灵慧。\n" NOR);
+                        tell_object(me, HIC "你獲得了" + chinese_number(exp) + "點"
+                                        "經驗、" + chinese_number(pot) + "點潛能以"
+                                        "及" + chinese_number(mp) + "點靈慧。\n" NOR);
 
-                        set("over_quest/hell_quest/锁阳丹", 1, me);
-                        delete("hell_quest/锁阳丹", me);
+                        set("over_quest/hell_quest/鎖陽丹", 1, me);
+                        delete("hell_quest/鎖陽丹", me);
                         delete("over_quest/hell_quest/原料/虎骨", me);
-                        delete("over_quest/hell_quest/原料/龙胆", me);
+                        delete("over_quest/hell_quest/原料/龍膽", me);
                         delete("over_quest/hell_quest/原料/武甲", me);
                         obn = new("/d/death/obj/tianjing");
                         obn->move(me);
@@ -413,14 +413,14 @@ int accept_object(object me, object ob)
            else {
                         if( query("over_quest/hell_quest/原料/朱羽", me) )
                         {
-                                message_vision( HIY "十殿阎罗见是朱羽，对$N" HIY "摇"
-                                                "头道：朱羽你已经给过我了，你还是快去"
-                                                "寻找其它原料吧。\n" NOR, me);
+                                message_vision( HIY "十殿閻羅見是朱羽，對$N" HIY "搖"
+                                                "頭道：朱羽你已經給過我了，你還是快去"
+                                                "尋找其它原料吧。\n" NOR, me);
                                 return 0;
                         }
                    else {
-                                message("vision", HIY "十殿阎罗看见朱羽，大喜道：不错，"
-                                                  "不错。这的确是朱雀羽毛，真是谢谢你了。\n"
+                                message("vision", HIY "十殿閻羅看見朱羽，大喜道：不錯，"
+                                                  "不錯。這的確是朱雀羽毛，真是謝謝你了。\n"
                                                   NOR, environment(me));
                                 set("over_quest/hell_quest/原料/朱羽", 1, me);
                                 destruct(ob);
@@ -432,13 +432,13 @@ int accept_object(object me, object ob)
       if( query("id", ob) == "xuanwu jiake" )
         {
                 if( query("over_quest/hell_quest/原料/虎骨", me )
-                   && query("over_quest/hell_quest/原料/龙胆", me )
+                   && query("over_quest/hell_quest/原料/龍膽", me )
                    && query("over_quest/hell_quest/原料/朱羽", me) )
                 {
-                        message_vision(HIW "十殿阎罗见是玄武甲壳，大喜道：“这下四种"
-                                       "原料都已备齐，终于可以开始炼制老大要的锁阳丹"
-                                       "了！多亏有\n你的帮助啊，这个是以前我从蓬莱仙"
-                                       "山得来的宝物，留着也没用，就当是酬劳好了。”\n"
+                        message_vision(HIW "十殿閻羅見是玄武甲殼，大喜道：“這下四種"
+                                       "原料都已備齊，終於可以開始煉製老大要的鎖陽丹"
+                                       "了！多虧有\n你的幫助啊，這個是以前我從蓬萊仙"
+                                       "山得來的寶物，留著也沒用，就當是酬勞好了。”\n"
                                        NOR, me);
 
                         addn("combat_exp", exp, me);
@@ -448,21 +448,21 @@ int accept_object(object me, object ob)
                         if( query("potential", me)>me->query_potential_limit() )
                                 set("potential", me->query_potential_limit(), me);
                         */
-                        tell_object(me, HIR "\n你成功的为十殿阎罗备齐了锁阳丹原料。\n"
+                        tell_object(me, HIR "\n你成功的為十殿閻羅備齊了鎖陽丹原料。\n"
                                         NOR);
 
-                        tell_object(me, HIC "\n你获得了一块" NOR + HIW "寰宇天晶" NOR +
+                        tell_object(me, HIC "\n你獲得了一塊" NOR + HIW "寰宇天晶" NOR +
                                         HIC "。\n"
                                         NOR);
 
-                        tell_object(me, HIC "你获得了" + chinese_number(exp) + "点"
-                                        "经验、" + chinese_number(pot) + "点潜能以"
-                                        "及" + chinese_number(mp) + "点灵慧。\n" NOR);
+                        tell_object(me, HIC "你獲得了" + chinese_number(exp) + "點"
+                                        "經驗、" + chinese_number(pot) + "點潛能以"
+                                        "及" + chinese_number(mp) + "點靈慧。\n" NOR);
 
-                        set("over_quest/hell_quest/锁阳丹", 1, me);
-                        delete("hell_quest/锁阳丹", me);
+                        set("over_quest/hell_quest/鎖陽丹", 1, me);
+                        delete("hell_quest/鎖陽丹", me);
                         delete("over_quest/hell_quest/原料/虎骨", me);
-                        delete("over_quest/hell_quest/原料/龙胆", me);
+                        delete("over_quest/hell_quest/原料/龍膽", me);
                         delete("over_quest/hell_quest/原料/朱羽", me);
                         obn = new("/d/death/obj/tianjing");
                         obn->move(me);
@@ -473,14 +473,14 @@ int accept_object(object me, object ob)
            else {
                         if( query("over_quest/hell_quest/原料/武甲", me) )
                         {
-                                message_vision( HIY "十殿阎罗见是玄武甲壳，对$N" HIY "摇"
-                                                "头道：这东西你已经给过我了，你还是快去"
-                                                "寻找其它原料吧。\n" NOR, me);
+                                message_vision( HIY "十殿閻羅見是玄武甲殼，對$N" HIY "搖"
+                                                "頭道：這東西你已經給過我了，你還是快去"
+                                                "尋找其它原料吧。\n" NOR, me);
                                 return 0;
                         }
                    else {
-                                message("vision", HIY "十殿阎罗看见玄武甲壳，大喜道：好！"
-                                                  "太好了，那臭乌龟被你干掉了吧？\n"
+                                message("vision", HIY "十殿閻羅看見玄武甲殼，大喜道：好！"
+                                                  "太好了，那臭烏龜被你幹掉了吧？\n"
                                                   NOR, environment(me));
                                 set("over_quest/hell_quest/原料/武甲", 1, me);
                                 destruct(ob);
@@ -501,7 +501,7 @@ mixed ask_reborn()
         /*
         if( query("reborn/times", who) )
         {
-                message_vision("$N对$n一拱手，道：你已经转世轮回过了，我看就不用了吧！\n",
+                message_vision("$N對$n一拱手，道：你已經轉世輪迴過了，我看就不用了吧！\n",
                                this_object(), who);
                 return 1;
         }
@@ -509,7 +509,7 @@ mixed ask_reborn()
 
         if( query("reborn_lunhui", who) )
         {
-                message_vision("$N对$n一拱手，道：你已经挑战过六道守卫佛了，我送你找地藏王吧！\n",
+                message_vision("$N對$n一拱手，道：你已經挑戰過六道守衛佛了，我送你找地藏王吧！\n",
                                this_object(), who);
                 who->move("/d/death/yanluodian");
                 return 1;
@@ -517,14 +517,14 @@ mixed ask_reborn()
 
         if( !query("reborn_offer", who) || query("reborn_offer", who) != "finish" )
         {
-              message_vision("$N对$n一拱手，道：我没有收到你的阎王契，你是否并没有完成五岳献祭的契约？\n",
+              message_vision("$N對$n一拱手，道：我沒有收到你的閻王契，你是否並沒有完成五嶽獻祭的契約？\n",
                                this_object(), who);
                 return 1;
         }
 
-        if( !query("over_quest/hell_quest/锁阳丹", who) )
+        if( !query("over_quest/hell_quest/鎖陽丹", who) )
         {
-                message_vision("$N对$n一拱手，道：你先帮我找到锁阳丹的药引，才能得到转世的机缘。\n",
+                message_vision("$N對$n一拱手，道：你先幫我找到鎖陽丹的藥引，才能得到轉世的機緣。\n",
                                this_object(), who);
                 return 1;
         }
@@ -532,35 +532,35 @@ mixed ask_reborn()
         all = deep_inventory(who);
         foreach( object user in all )
                 if( userp(user) )
-                        return notify_fail("你先把你身上背着的人放下来再说。\n");
+                        return notify_fail("你先把你身上揹著的人放下來再說。\n");
 
-        message_vision("$N双手拍了一下，$n脚下突然陷了下去。。。\n",
+        message_vision("$N雙手拍了一下，$n腳下突然陷了下去。。。\n",
                        this_object(), who);
 
         switch(random(6))
         {
         case 0:
-                tell_object(who, BLU "\n你觉得自己不断下降，周围景物如彩蝶翻飞，不可注目。\n" NOR);
+                tell_object(who, BLU "\n你覺得自己不斷下降，周圍景物如彩蝶翻飛，不可注目。\n" NOR);
                 who->move("/d/death/liudaolunhui/tiandao");
                 break;
         case 1:
-                tell_object(who, BLU "\n你觉得自己不断下降。\n" NOR);
+                tell_object(who, BLU "\n你覺得自己不斷下降。\n" NOR);
                 who->move("/d/death/liudaolunhui/chushengdao");
                 break;
         case 2:
-                tell_object(who, BLU "\n你觉得自己不断下降，天地似乎没了界限。。。\n" NOR);
+                tell_object(who, BLU "\n你覺得自己不斷下降，天地似乎沒了界限。。。\n" NOR);
                 who->move("/d/death/liudaolunhui/eguidao");
                 break;
         case 3:
-                tell_object(who, BLU "\n你觉得自己不断下降，周围一切都在旋转。。。\n" NOR);
+                tell_object(who, BLU "\n你覺得自己不斷下降，周圍一切都在旋轉。。。\n" NOR);
                 who->move("/d/death/liudaolunhui/rendao");
                 break;
         case 4:
-                tell_object(who, BLU "\n你觉得自己不断下降，下降，似乎落向了无尽的深渊。\n" NOR);
+                tell_object(who, BLU "\n你覺得自己不斷下降，下降，似乎落向了無盡的深淵。\n" NOR);
                 who->move("/d/death/liudaolunhui/diyudao");
                 break;
         default:
-                tell_object(who, BLU "\n你觉得自己不断下降，坠向无尽的黑暗。。。\n" NOR);
+                tell_object(who, BLU "\n你覺得自己不斷下降，墜向無盡的黑暗。。。\n" NOR);
                 who->move("/d/death/liudaolunhui/xiuluodao");
                 break;
         }
@@ -569,6 +569,6 @@ mixed ask_reborn()
 
 void attempt_apprentice(object ob)
 {
-        command("say 这里再怎么说也是侠客行底层改过来的，要拜地府玩西游记去。 ");
+        command("say 這裡再怎麼說也是俠客行底層改過來的，要拜地府玩西遊記去。 ");
         return;
 }

@@ -12,14 +12,14 @@ void start_borrowing()
 
 void create()
 {
-        set_name(CYN "真丝" HIY "宝甲" NOR,  ({ "bao jia", "jia", "armor" }));
+        set_name(CYN "真絲" HIY "寶甲" NOR,  ({ "bao jia", "jia", "armor" }));
         set_weight(6000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "件");
-                set("long", "一见黑黝黝的甲，毫不起眼。\n");
-                set("no_sell", "这样东西能值钱么。\n");
+                set("long", "一見黑黝黝的甲，毫不起眼。\n");
+                set("no_sell", "這樣東西能值錢麼。\n");
                 set("value", 100000);
                 set("material", "silk");
                 set("armor_prop/armor", 200);
@@ -58,11 +58,11 @@ void return_to_aobai()
                      call_out("return_to_aobai", 1); 
                      return; 
              } 
-             //是否应该执行unwield
-             message_vision("忽然$N觉得身上少了件什么东西似的。\n", me); 
+             //是否應該執行unwield
+             message_vision("忽然$N覺得身上少了件什麼東西似的。\n", me); 
      } else 
      { 
-             message("vision", "忽然一个人走了过来，捡起"+name()+"，叹了口气，摇摇头走了。\n", me); 
+             message("vision", "忽然一個人走了過來，撿起"+name()+"，嘆了口氣，搖搖頭走了。\n", me); 
      } 
 
         move("/clone/misc/void");

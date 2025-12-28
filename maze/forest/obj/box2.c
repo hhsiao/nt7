@@ -21,13 +21,13 @@ string *ob_list = ({
 void create()
 {
         object good;
-        set_name(HIC"宝箱"NOR, ({"box"}) );
+        set_name(HIC"寶箱"NOR, ({"box"}) );
         set_weight(300);
         set("no_get", 1);
  
         set_max_encumbrance(80000000);
-        set("unit", "个");
-        set("long", "一个散发着神秘光芒的宝箱。\n");
+        set("unit", "個");
+        set("long", "一個散發著神秘光芒的寶箱。\n");
         set("closed", 1);
         set("value", 2000);
  
@@ -64,9 +64,9 @@ int do_open(string arg)
                                  
         if (!is_closed())
         {
-                return notify_fail("宝箱已经打开了。 \n");
+                return notify_fail("寶箱已經打開了。 \n");
         }
-        message_vision("$N将宝箱打开。 \n", me);
+        message_vision("$N將寶箱打開。 \n", me);
         set("closed", 0, this_object());
         if( random(10) < 7 )
         {

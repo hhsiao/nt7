@@ -2,12 +2,12 @@
 inherit NPC;
 void create()
 {
-        set_name("钹僧", ({ "bo seng", "bo", "seng"}) );
-        set("long", "一个秃顶和尚，裸露着上身，肌肉结实。\n"
-                    "这便是汝阳王手下的十八金刚之一。\n");
+        set_name("鈸僧", ({ "bo seng", "bo", "seng"}) );
+        set("long", "一個禿頂和尚，裸露著上身，肌肉結實。\n"
+                    "這便是汝陽王手下的十八金剛之一。\n");
         set("attitude", "heroism");
-        set("title", "汝阳王座下十八金刚");
-        set("nickname", HIY "四钹金刚" NOR);
+        set("title", "汝陽王座下十八金剛");
+        set("nickname", HIY "四鈸金剛" NOR);
         set("age", 30);
         set("shen_type", -1);
 
@@ -66,7 +66,7 @@ void init()
         ob = this_player();
 
         command("yi");
-        command("say 是谁那么大胆，居然敢在汝阳王眼皮下撒野！");
+        command("say 是誰那麼大膽，居然敢在汝陽王眼皮下撒野！");
         remove_call_out("kill_ob");
         call_out("kill_ob", 1, ob); 
 }

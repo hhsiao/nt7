@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("阿斯顿[2;37;0m[2;37;0m", ({"opod"}));        
+        set_name("阿斯頓[2;37;0m[2;37;0m", ({"opod"}));        
         set("gender", "男性");                
-        set("long", "阿斯顿[2;37;0m
-它是聊天的魔幻兽。
+        set("long", "阿斯頓[2;37;0m
+它是聊天的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

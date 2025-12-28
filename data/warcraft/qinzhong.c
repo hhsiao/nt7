@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("阿斯顿[2;37;0m[2;37;0m", ({"asd"}));        
+        set_name("阿斯頓[2;37;0m[2;37;0m", ({"asd"}));        
         set("gender", "男性");                
         set("long", "啊[2;37;0m
-它是秦仲海的魔幻兽。
+它是秦仲海的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

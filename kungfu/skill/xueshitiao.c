@@ -1,14 +1,14 @@
-// xueshitiao.c 雪狮跳
+// xueshitiao.c 雪獅跳
 
 inherit SKILL;
 
 string *dodge_msg = ({
-        "$n一式「冰消雪融」，一下滑到丈外开去，把$N攻势化於无形。\n",
-        "$n使出「金狮狂舞」，一个筋斗从$N头上一翻而过，$N打$n不着。\n",
-        "$n脚步虚踩，忽左而右，使出「雪入黄河」从$N的腋下穿到$P身後。\n",
-        "$n微笑中後退两步，身子一顿，一式「飞雪藏形」躲过$N这一击。\n",
-        "$n掉转身子，轻轻一跃，一式「狮子摇头」轻描淡写地化开$N这一招。\n",
-        "$n身子向上一纵，使出一式「踏雪无痕」跃起数尺，飘然落到一旁。\n",
+        "$n一式「冰消雪融」，一下滑到丈外開去，把$N攻勢化於無形。\n",
+        "$n使出「金獅狂舞」，一個筋斗從$N頭上一翻而過，$N打$n不著。\n",
+        "$n腳步虛踩，忽左而右，使出「雪入黃河」從$N的腋下穿到$P身後。\n",
+        "$n微笑中後退兩步，身子一頓，一式「飛雪藏形」躲過$N這一擊。\n",
+        "$n掉轉身子，輕輕一躍，一式「獅子搖頭」輕描淡寫地化開$N這一招。\n",
+        "$n身子向上一縱，使出一式「踏雪無痕」躍起數尺，飄然落到一旁。\n",
 });
 
 int valid_enable(string usage) { return usage == "dodge"; }
@@ -23,9 +23,9 @@ string query_dodge_msg(string limb)
 int practice_skill(object me)
 {
         if( query("qi", me)<30 )
-                return notify_fail("你的体力太差了，不能练雪狮跳。\n");
+                return notify_fail("你的體力太差了，不能練雪獅跳。\n");
         if( query("neili", me)<20 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
         me->receive_damage("qi", 20);
         addn("neili", -10, me);
         return 1;

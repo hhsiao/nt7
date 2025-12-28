@@ -2,9 +2,9 @@
 inherit ROOM;
 void create()
 {
-        set("short",CYN"接 天 楼"NOR);
+        set("short",CYN"接 天 樓"NOR);
         set("long",
-"这是接天楼的第三层，渐行渐高，窗外的风景不住变幻。\n"
+"這是接天樓的第三層，漸行漸高，窗外的風景不住變幻。\n"
 );
 
         set("exits", ([ /* sizeof() == 2 */

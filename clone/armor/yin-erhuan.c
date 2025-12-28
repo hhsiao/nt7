@@ -5,7 +5,7 @@ inherit EARRING;
 
 void create()
 {
-        set_name(NOR + WHT "银耳环" NOR, ({ "yin erhuan", "yin", "erhuan" }));
+        set_name(NOR + WHT "銀耳環" NOR, ({ "yin erhuan", "yin", "erhuan" }));
         set_weight(100);
         /*if (clonep())
                 set_default_object(__FILE__);
@@ -16,7 +16,7 @@ void create()
                 set("material", "silver");
                 set("armor_prop/armor", 1);
                 set("limit", ([
-                        "sex" : 1, // 1 为女性
+                        "sex" : 1, // 1 為女性
                 ]));
         }
         setup();

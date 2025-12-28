@@ -1,13 +1,13 @@
 // /d/gaoli/xingguan
-// Room in 高丽
+// Room in 高麗
 inherit ROOM;
 void create()        
 {
-        set("short", "内堂");
+        set("short", "內堂");
         set("long", @LONG
-这里是武士行馆的内堂，梁间有一块匾，上写着一个大大的「武」
-字，堂上布置肃穆，两壁悬着长剑，腰刀。地下没有桌椅，地上放着几
-个蒲团。
+這裡是武士行館的內堂，梁間有一塊匾，上寫著一個大大的「武」
+字，堂上佈置肅穆，兩壁懸著長劍，腰刀。地下沒有桌椅，地上放著幾
+個蒲團。
 LONG);
 set("exits", ([
                 "out":__DIR__"xingguan"

@@ -7,13 +7,13 @@ int do_open(string arg);
 
 void create()
 {
-        set("short", "凌霄内门");
+        set("short", "凌霄內門");
         set("long", 
-"这里是凌霄城的城门。本来凌霄城少有外敌入侵，但由于地
-处西域，隆冬之际常有饿狼前来侵袭，故修筑此大城以做为抵挡。
-向城内望去，只见人头攘攘，很是繁华，想不到在这西域雪山绝
-顶，却有着一个如此去处。内门前那张厚厚的吊桥(bridge)正紧
-紧关闭着。如果想要进入的话，必须要请人开(open)才行。
+"這裡是凌霄城的城門。本來凌霄城少有外敵入侵，但由於地
+處西域，隆冬之際常有餓狼前來侵襲，故修築此大城以做為抵擋。
+向城內望去，只見人頭攘攘，很是繁華，想不到在這西域雪山絕
+頂，卻有著一個如此去處。內門前那張厚厚的吊橋(bridge)正緊
+緊關閉著。如果想要進入的話，必須要請人開(open)才行。
 \n");
 
         set("outdoors", "lingxiao");
@@ -27,7 +27,7 @@ void create()
                 __DIR__"npc/dizi" : 3,
         ]));
         set("item_desc", ([
-                "bridge" : WHT "\n这是一张极大的吊桥，乃是凌霄城的一道防线。\n" NOR,
+                "bridge" : WHT "\n這是一張極大的吊橋，乃是凌霄城的一道防線。\n" NOR,
         ]) );
         setup();
 } 
@@ -47,24 +47,24 @@ void close_bridge()
         if (objectp(room))
         {
                 delete("exits/south");
-                message("vision", HIY "几位凌霄弟子上前把吊桥关了起来。\n"
+                message("vision", HIY "幾位凌霄弟子上前把吊橋關了起來。\n"
                                   NOR, this_object());
                 delete("exits/north", room);
-                message("vision", HIY "只听“嘎嘎嘎嘎”几声，吊桥又被关了"
-                                  "起来。\n" NOR, room);
+                message("vision", HIY "只聽“嘎嘎嘎嘎”幾聲，吊橋又被關了"
+                                  "起來。\n" NOR, room);
         }
 }
 
 int do_close(string arg)
 {
         if (! query("exits/south"))
-                return notify_fail("吊桥已经是关着的了。\n");
+                return notify_fail("吊橋已經是關著的了。\n");
 
         if (!arg || (arg != "bridge" && arg != "south"))
-                return notify_fail("你要关什么？\n");
+                return notify_fail("你要關什麼？\n");
 
-        message_vision(HIY "$N" HIY "朝凌霄弟子招了一下手，几位弟子点了点"
-                       "头，上前将吊桥吊了上去。\n" NOR, this_player());
+        message_vision(HIY "$N" HIY "朝凌霄弟子招了一下手，幾位弟子點了點"
+                       "頭，上前將吊橋吊了上去。\n" NOR, this_player());
 
         remove_call_out("close_bridge");
         call_out("close_bridge", 2);
@@ -77,19 +77,19 @@ int do_open(string arg)
         object room;
 
         if (query("exits/south"))
-                return notify_fail("吊桥已经放下来了。\n");
+                return notify_fail("吊橋已經放下來了。\n");
 
         if (! arg || (arg != "bridge" && arg != "south"))
-                return notify_fail("你要开什么？\n");
+                return notify_fail("你要開什麼？\n");
 
         if (! ( room = find_object(__DIR__"shanya")) )
                 room = load_object(__DIR__"shanya");
         if (objectp(room))
         {
                 set("exits/south", __DIR__"shanya");
-                message_vision(HIY "$N" HIY "让凌霄弟子把吊桥放了下来。\n" NOR, this_player());
+                message_vision(HIY "$N" HIY "讓凌霄弟子把吊橋放了下來。\n" NOR, this_player());
                 set("exits/north", __FILE__, room);
-                message("vision", HIY "只听“嘎嘎嘎嘎”几声，吊桥被放了下来。\n" NOR, room);
+                message("vision", HIY "只聽“嘎嘎嘎嘎”幾聲，吊橋被放了下來。\n" NOR, room);
                 remove_call_out("close_bridge");
                 call_out("close_bridge", 10);
         }
@@ -114,8 +114,8 @@ int valid_leave(object me, string dir)
                           query("equipped", inv[i]) )
 
                 if (objectp(present("wen wanfu", environment(me))))
-                            return notify_fail(CYN "闻万夫身形一展，挡住你道：凌霄城历年"
-                                           "来的规矩，外人入城不得佩带兵刃。\n");
+                            return notify_fail(CYN "聞萬夫身形一展，擋住你道：凌霄城歷年"
+                                           "來的規矩，外人入城不得佩帶兵刃。\n");
             }
             return ::valid_leave(me, dir);
 }

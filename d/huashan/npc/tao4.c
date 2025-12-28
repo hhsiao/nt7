@@ -1,18 +1,18 @@
 // Copyright (C) 2003, by Lonely. All rights reserved.
 // This software can not be used, copied, or modified 
 // in any form without the written permission from authors.
-// tao4.c 桃叶仙
+// tao4.c 桃葉仙
 
 inherit NPC;
 string ask_me();
 
 void create()
 {
-        set_name("桃叶仙", ({ "tao yexian", "tao", "yexian" }));
-        set("nickname", "桃谷六仙不知是老四还是老三");
+        set_name("桃葉仙", ({ "tao yexian", "tao", "yexian" }));
+        set("nickname", "桃谷六仙不知是老四還是老三");
         set("long", 
-"桃叶仙与桃枝仙不知谁是老三，谁是老四。但他常说自己是老三，\n"
-"和桃枝仙常常为此争论。\n");
+"桃葉仙與桃枝仙不知誰是老三，誰是老四。但他常說自己是老三，\n"
+"和桃枝仙常常為此爭論。\n");
         set("gender", "男性");
         set("age", 50);
         set("attitude", "peaceful");
@@ -47,15 +47,15 @@ void create()
         set("chat_chance", 5);
 
         set("chat_msg", ({
-                "桃叶仙对着桃枝仙吼道：我才是老三，你是老四。\n",
-                "桃叶仙说道：我们父母本来记得谁是老三谁是老三，后来却忘了。\n",
+                "桃葉仙對著桃枝仙吼道：我才是老三，你是老四。\n",
+                "桃葉仙說道：我們父母本來記得誰是老三誰是老三，後來卻忘了。\n",
         }) );
 
         set("inquiry", ([
-                "令狐冲"     : "令狐兄是我的好朋友，常说咱们六兄弟是江湖中的英雄好汉。\n",
-                "风清扬"     : (: ask_me :),
-                "风前辈"     : (: ask_me :),
-                "风清扬前辈" : (: ask_me :),
+                "令狐沖"     : "令狐兄是我的好朋友，常說咱們六兄弟是江湖中的英雄好漢。\n",
+                "風清揚"     : (: ask_me :),
+                "風前輩"     : (: ask_me :),
+                "風清揚前輩" : (: ask_me :),
         ]));
 
         setup();

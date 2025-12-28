@@ -5,7 +5,7 @@ inherit SWORD;
 
 void create()
 {
-        set_name(HIB "青鲨嗜" NOR, ({ "qingsha jian", "qingsha", "jian", "sword" }) );
+        set_name(HIB "青鯊嗜" NOR, ({ "qingsha jian", "qingsha", "jian", "sword" }) );
         set_weight(4000);
         /*if( clonep() )
                 set_default_object(__FILE__);

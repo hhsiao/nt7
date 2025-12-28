@@ -1,11 +1,11 @@
-// NPC :gan_guanghao.c 干光豪
+// NPC :gan_guanghao.c 幹光豪
 // By River 98/12
 inherit NPC;
 #include <ansi.h>
 void create()
 {
-        set_name("干光豪", ({ "gan guanghao", "gan", "guanghao"}));
-        set("title","无量剑东宗弟子");              
+        set_name("幹光豪", ({ "gan guanghao", "gan", "guanghao"}));
+        set("title","無量劍東宗弟子");              
         set("gender", "男性" );
         set("age", 36);
         set("str", 27);
@@ -13,7 +13,7 @@ void create()
         set("dex", 26);
         set("int", 25);
         set("per", 15);
-        set("no_get","干光豪对你来说太重了。\n");
+        set("no_get","幹光豪對你來說太重了。\n");
    	set("attitude", "aggressive");
 
         set("max_qi", 1000);
@@ -24,7 +24,7 @@ void create()
         set("max_neili", 1000);      
         set("unique", 1);
         
-        set("long","他是无量剑东宗的弟子。\n");
+        set("long","他是無量劍東宗的弟子。\n");
         set("combat_exp", 200000);
         set("shen", -800); 
 
@@ -58,5 +58,5 @@ void init()
 
 void greeting(object ob)
 {        
-        command("say "+RANK_D->query_rude(ob)+"，竟敢坏我好事，拿命来吧！");
+        command("say "+RANK_D->query_rude(ob)+"，竟敢壞我好事，拿命來吧！");
 }

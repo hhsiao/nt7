@@ -4,10 +4,10 @@
 inherit ROOM;
 void create()
 {
-        set("short","厨房");
+        set("short","廚房");
         set("long", @LONG
-这是镇南王府的厨房，中央有个大桌子，周围则放着几个圆凳，
-这里是段家弟子用餐的地方。
+這是鎮南王府的廚房，中央有個大桌子，周圍則放著幾個圓凳，
+這裡是段家弟子用餐的地方。
 LONG );
         set("objects", ([
             "/d/dali/obj/xueli"       : 4,

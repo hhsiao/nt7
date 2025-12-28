@@ -16,15 +16,15 @@ int main(object me, string arg)
         object ob;
 
         if (! arg)
-                return notify_fail("你要对谁耳语些什么？\n");
+                return notify_fail("你要對誰耳語些什麼？\n");
 
         if (sscanf(arg, "%s about %s", dest, msg) != 2)
                 if (sscanf(arg, "%s %s", dest, msg) != 2)
-                        return notify_fail("你要对谁耳语些什么？\n");
+                        return notify_fail("你要對誰耳語些什麼？\n");
 
         ob = present(dest, environment(me));
         if (! ob || ! ob->is_character())
-                return notify_fail("你要对谁耳语？\n");
+                return notify_fail("你要對誰耳語？\n");
 
         if (me->ban_say(1))
                 return 0;
@@ -32,24 +32,24 @@ int main(object me, string arg)
         if( query("doing", me) == "scheme" )
         {
                 if( query("jing", me)<100 )
-                        return notify_fail("你现在的精神不济，等一会儿吧。\n");
+                        return notify_fail("你現在的精神不濟，等一會兒吧。\n");
                 addn("jing", -50, me);
         }
 
-        write(WHT "你在" + ob->name() + WHT "的耳边悄声说道：" +
+        write(WHT "你在" + ob->name() + WHT "的耳邊悄聲說道：" +
               msg + "\n" NOR);
         tell_room(environment(me), me->name() + "在" + ob->name()
-                + "耳边小声地说了些话。\n", ({ me, ob }));
+                + "耳邊小聲地說了些話。\n", ({ me, ob }));
         if (! userp(ob)) 
         {
               r = 0;
-              if( query("bunch_quest", me) && query("bunch_quest/type", me) == "传口信" )
+              if( query("bunch_quest", me) && query("bunch_quest/type", me) == "傳口信" )
                       r = reply_whisper(me, ob, msg);
               if (! r)
-                      if( (query("quest_dg", me) && query("quest_dg", me)["type"] == "传") || 
-                          (query("quest_kh", me) && query("quest_kh", me)["type"] == "传") || 
-                          (query("quest_hs", me) && query("quest_hs", me)["type"] == "传") || 
-                          (query("quest_sn", me) && query("quest_sn", me)["type"] == "传") )
+                      if( (query("quest_dg", me) && query("quest_dg", me)["type"] == "傳") || 
+                          (query("quest_kh", me) && query("quest_kh", me)["type"] == "傳") || 
+                          (query("quest_hs", me) && query("quest_hs", me)["type"] == "傳") || 
+                          (query("quest_sn", me) && query("quest_sn", me)["type"] == "傳") )
                               r = ultra_whisper(me, ob, msg);
 
               if (! r)
@@ -57,7 +57,7 @@ int main(object me, string arg)
        }
         else
                 tell_object(ob, WHT + me->name() +
-                                WHT "在你的耳边悄声说道：" + msg + "\n" NOR);
+                                WHT "在你的耳邊悄聲說道：" + msg + "\n" NOR);
         return 1;
 }
 
@@ -72,19 +72,19 @@ int reply_whisper(object me, object who, string msg)
 
         bunch_quest=query("bunch_quest", me);
 
-        //传错人了
+        //傳錯人了
         if (bunch_quest["target"] != base_name(who))
                 return 0;
 
-        //传错话了
+        //傳錯話了
         if (msg != bunch_quest["send_msg"])
                 return 0;
 
-        message_sort("$N面色凝重，一边听着一边对$n使劲的点头：“这位" +
+        message_sort("$N面色凝重，一邊聽著一邊對$n使勁的點頭：“這位" +
                      RANK_D->query_respect(me) +
-                     "，多谢你把话带到！”\n", who, me);
+                     "，多謝你把話帶到！”\n", who, me);
 
-        // 奖励
+        // 獎勵
         addn("total_hatred", -2, me);
         if (query("total_hatred", me) < 0) set("total_hatred",0, me);
 
@@ -99,8 +99,8 @@ int reply_whisper(object me, object who, string msg)
                "pot" : pot,
                "score" : score,
                "weiwang" : weiwang,
-               "prompt": "在把口信传给" + who->name() +
-                         HIG "的过程中，经过锻炼" ]);
+               "prompt": "在把口信傳給" + who->name() +
+                         HIG "的過程中，經過鍛鍊" ]);
 
         GIFT_D->delay_bonus(me, b);
 
@@ -126,18 +126,18 @@ int ultra_whisper(object me, object who, string msg)
         mixed money = 0;
 
         quest=query("quest_dg", me);
-        the_quest = "独孤求败";
-        if (!quest || quest["type"] != "传")
+        the_quest = "獨孤求敗";
+        if (!quest || quest["type"] != "傳")
         {
                 quest=query("quest_kh", me);
-                the_quest = "葵花太监";
+                the_quest = "葵花太監";
         }
-        if (!quest || quest["type"] != "传")
+        if (!quest || quest["type"] != "傳")
         {
                 quest=query("quest_hs", me);
-                the_quest = "黄裳";
+                the_quest = "黃裳";
         }
-        if (!quest || quest["type"] != "传")
+        if (!quest || quest["type"] != "傳")
         {
                 quest=query("quest_sn", me);
                 the_quest = "南海神尼";
@@ -147,26 +147,26 @@ int ultra_whisper(object me, object who, string msg)
 
         if (userp(who)) return 0;
 
-        //传错人了
+        //傳錯人了
         if (quest["name"] != who->name(1))
                 return 0;
 
-        //传错话了
+        //傳錯話了
         if (msg != quest["answer"])
                 return 0;
 
-        message_sort("$N面色凝重，一边听着一边对$n使劲的点头：“这位" +
+        message_sort("$N面色凝重，一邊聽著一邊對$n使勁的點頭：“這位" +
                      RANK_D->query_respect(me) +
-                     "，多谢你把口令带到！”\n", who, me);
+                     "，多謝你把口令帶到！”\n", who, me);
 
-        // 奖励
+        // 獎勵
         level = quest["level"]+1;
-        if (the_quest == "独孤求败")
+        if (the_quest == "獨孤求敗")
         {
                 if( (i=query("questdg_times", me))<8)i=15-i;
                 else i = 1;
         }
-        if (the_quest == "葵花太监")
+        if (the_quest == "葵花太監")
         {
                 if( (i=query("questkh_times", me))<15)i=15-i;
                 else i = 1;
@@ -176,7 +176,7 @@ int ultra_whisper(object me, object who, string msg)
                 if( (i=query("questsn_times", me))<15)i=15-i;
                 else i = 1;
         }
-        if (the_quest == "黄裳")
+        if (the_quest == "黃裳")
         {
                 if( (i=query("quesths_times", me))<15)i=15-i;
                 else i = 1;
@@ -193,7 +193,7 @@ int ultra_whisper(object me, object who, string msg)
         GIFT_D->bonus(me, ([ "exp" : exp, "pot" : pot, "mar" : mar,
                               "weiwang" : weiwang, "score" : score ]), 1);
 
-        if (the_quest == "独孤求败")
+        if (the_quest == "獨孤求敗")
         {
                 addn("questdg_times", 1, me);
                 quest_count=query("questdg_times", me)%500;
@@ -219,7 +219,7 @@ int ultra_whisper(object me, object who, string msg)
 #endif
                 delete("quest_dg", me);
         }
-        if (the_quest == "葵花太监")
+        if (the_quest == "葵花太監")
         {
                 addn("questkh_times", 1, me);
                 quest_count=query("questkh_times", me)%500;
@@ -244,7 +244,7 @@ int ultra_whisper(object me, object who, string msg)
 #endif
                 delete("quest_kh", me);
         }
-        if (the_quest == "黄裳")
+        if (the_quest == "黃裳")
         {
                 addn("quesths_times", 1, me);
                 quest_count=query("quesths_times", me)%500;
@@ -345,7 +345,7 @@ protected void special_bonus(object me, mixed arg)
         else
                 ob = new(ob_list[random(sizeof(ob_list))]);
         ob->move(me, 1);
-        tell_object(me,HIM"你获得了一"+query("unit", ob)+ob->name()+
+        tell_object(me,HIM"你獲得了一"+query("unit", ob)+ob->name()+
                         HIM "。\n" NOR);
 }
 
@@ -367,16 +367,16 @@ void money_bonus(object me, mixed arg)
 
         ob->move(me,1);
 
-        tell_object(me,HIM"你获得了一"+query("unit", ob)+ob->name()+
+        tell_object(me,HIM"你獲得了一"+query("unit", ob)+ob->name()+
                         HIM "。\n" NOR);
 }
 
 int help(object me)
 {
         write( @TEXT
-指令格式：whisper <某人> about <讯息>
+指令格式：whisper <某人> about <訊息>
 
-这个指令可以用来和同一房间中的人耳语，包括 NPC 在内。
+這個指令可以用來和同一房間中的人耳語，包括 NPC 在內。
 其中的about可以省略。
 TEXT );
         return 1;

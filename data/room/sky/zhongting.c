@@ -9,10 +9,10 @@ void create()
 {
         object ob;
 
-        set("short", "海南岛中庭");
+        set("short", "海南島中庭");
 	set ("long", @LONG
-这是海南岛之腰：中庭，两旁便是客人居住的厢房，后面通往后
-花园和主人居所，前面则是议事厅，一直通往大院。 
+這是海南島之腰：中庭，兩旁便是客人居住的廂房，後面通往後
+花園和主人居所，前面則是議事廳，一直通往大院。 
 LONG );
 
         set("exits", ([
@@ -28,8 +28,8 @@ LONG );
                 "/adm/npc/shouwei" : 1,
         ]));
 
-        create_door("east", "木门", "west", DOOR_CLOSED);
-        create_door("west", "木门", "east", DOOR_CLOSED);
+        create_door("east", "木門", "west", DOOR_CLOSED);
+        create_door("west", "木門", "east", DOOR_CLOSED);
 
         set("no_sleep_room", 1);
         setup();
@@ -46,11 +46,11 @@ LONG );
                    "id"        : "shou wei 1" ]),
         }));
 
-        set("room_owner", "灭下");
-        set("room_name", "海南岛");
+        set("room_owner", "滅下");
+        set("room_name", "海南島");
         set("room_id", "sky");
         set("room_owner_id", "sky");
-        set("room_position", "南海之滨");
+        set("room_position", "南海之濱");
 }
 
 int valid_leave(object me, string dir)
@@ -63,25 +63,25 @@ int valid_leave(object me, string dir)
 
         if (ob->is_owner(me))
         {
-                message_vision("$N弯腰对$n道：“请进！”\n", ob, me);
+                message_vision("$N彎腰對$n道：“請進！”\n", ob, me);
                 return ::valid_leave(me, dir);
         }
 
         if (ob->is_owner_permit(me))
         {
-                message_vision("$N对$n道：“即然是主人的朋友，但进无妨。”\n",
+                message_vision("$N對$n道：“即然是主人的朋友，但進無妨。”\n",
                                ob, me);
                 return ::valid_leave(me, dir);
         }
 
         if (present(query("room_owner_id") + " pass", me))
         {
-                message_vision("$N对$n道：“即然有主人的手谕，就请进吧。”\n",
+                message_vision("$N對$n道：“即然有主人的手諭，就請進吧。”\n",
                                ob, me);
                 return ::valid_leave(me, dir);
         }
 
-        message_vision("$N伸手拦住$n，道：“对不起，没有" +
-                       query("room_owner") + "的手谕，不可擅自闯入！”\n", ob, me);
+        message_vision("$N伸手攔住$n，道：“對不起，沒有" +
+                       query("room_owner") + "的手諭，不可擅自闖入！”\n", ob, me);
         return 0;
 }

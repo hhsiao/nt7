@@ -11,15 +11,15 @@ int big_blowing();
 
 void create()
 {
-        set_name(HIC "神圣巨龙" NOR, ({ "god dragon king", "dragon king", "god", "dragon" }) );
-        set("title", HIY "龙族至尊" NOR);
+        set_name(HIC "神聖巨龍" NOR, ({ "god dragon king", "dragon king", "god", "dragon" }) );
+        set("title", HIY "龍族至尊" NOR);
         set("gender", "男性");
         set("age", 8888);
         set("long", @LONG
-这是一只全身泛着蓝光的神龙，长年居住于圣湖之底，乃龙中只王。
-圣龙乃龙中王，自有盘古神的时候就有了圣龙，千万年来，圣龙游梭
-于天、地、神三界，众生百态尽收眼底。
-圣龙不受任何挪移、致命一击、致晕攻击、忙乱的效果影响。
+這是一隻全身泛著藍光的神龍，長年居住於聖湖之底，乃龍中只王。
+聖龍乃龍中王，自有盤古神的時候就有了聖龍，千萬年來，聖龍游梭
+於天、地、神三界，眾生百態盡收眼底。
+聖龍不受任何挪移、致命一擊、致暈攻擊、忙亂的效果影響。
 LONG );
         set("combat_exp", 5000000000);
         set("shen_type", 0);
@@ -35,7 +35,7 @@ LONG );
         set("max_jingli", 150000000);
         set("level", 100);
 
-        set("no_nuoyi", 1); // 不被挪移影响
+        set("no_nuoyi", 1); // 不被挪移影響
 
         set("str", 200);
         set("int", 100);
@@ -73,8 +73,8 @@ LONG );
         ]));
 
         set("drops", ([
-                "RA&RANDOM20"    :       100,   // 低级普通装备
-                "RA&RANDOM30"    :       40,    // 低级普通装备
+                "RA&RANDOM20"    :       100,   // 低級普通裝備
+                "RA&RANDOM30"    :       40,    // 低級普通裝備
                 "FI&/clone/armor/fenghuang-chai2"           :           20,
                 "FI&/clone/armor/haizhi-xin2"               :           20,
                 "FI&/clone/armor/hong-feihun2"              :           15,
@@ -156,8 +156,8 @@ void init()
 
 int big_blowing()
 {
-        message_vision(HIB "$N" HIB "深深地吸入一口气，全身发出耀眼的金色，"
-                       "整个龙腹胀大了几倍！！\n" NOR, this_object());
+        message_vision(HIB "$N" HIB "深深地吸入一口氣，全身發出耀眼的金色，"
+                       "整個龍腹脹大了幾倍！！\n" NOR, this_object());
 
         remove_call_out("hurting");
         call_out("hurting", random(2) + 1);
@@ -169,7 +169,7 @@ int hurting()
         int dam, i , num;
         object *inv;
 
-        message_vision(HIB "$N" HIB "喷出一团巨大的火球．．．．．．整个天地都被火球吞没！！！\n" NOR,
+        message_vision(HIB "$N" HIB "噴出一團巨大的火球．．．．．．整個天地都被火球吞沒！！！\n" NOR,
                        this_object());
 
         inv = all_inventory(environment(this_object()));
@@ -198,7 +198,7 @@ int hurting()
 
 int accept_fight(object ob)
 {
-        message_vision("$N一声龙啸，扑了过来。\n",
+        message_vision("$N一聲龍嘯，撲了過來。\n",
                        this_object(), ob);
         kill_ob(ob);
         return -1;
@@ -218,7 +218,7 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->start_busy(5 + random(5));
         me->receive_wound("qi", 25000 + random(30000), ob);
-        return HIY "$N" HIY "周围雾气缭绕，直逼得$n" HIY "头晕目眩。\n" NOR;
+        return HIY "$N" HIY "周圍霧氣繚繞，直逼得$n" HIY "頭暈目眩。\n" NOR;
 }
 
 void heart_beat()
@@ -231,19 +231,19 @@ void heart_beat()
 
 void death_msg()
 {
-        command("chat 人间居然有如此厉害的角色，看来我龙族在人间无立身之地了！");
-        message_vision("$N长啸一声，响彻天地，然后身体慢慢变得透明，消失在圣湖之中。\n", this_object());
+        command("chat 人間居然有如此厲害的角色，看來我龍族在人間無立身之地了！");
+        message_vision("$N長嘯一聲，響徹天地，然後身體慢慢變得透明，消失在聖湖之中。\n", this_object());
         CHANNEL_D->do_channel(this_object(), "rumor",
-                        "听说" + name() + HIM "在人间受辱后，回到了圣湖，从此不再出没人间。" NOR);
+                        "聽說" + name() + HIM "在人間受辱後，回到了聖湖，從此不再出沒人間。" NOR);
 }
 
 void random_move()
 {
         if (time() - query_temp("born_time") > 1800)
         {
-                message_vision("$N长啸一声，响彻天地，然后身体慢慢变得透明，消失在圣湖之中。\n", this_object());
+                message_vision("$N長嘯一聲，響徹天地，然後身體慢慢變得透明，消失在聖湖之中。\n", this_object());
                 CHANNEL_D->do_channel(this_object(), "rumor",
-                        "听说" + name() + HIM "在人间走了一遭后，百无聊奈，又返回了圣湖。" NOR);
+                        "聽說" + name() + HIM "在人間走了一遭後，百無聊奈，又返回了聖湖。" NOR);
                 destruct(this_object());
                 return;
         }

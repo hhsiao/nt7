@@ -1,4 +1,4 @@
-// fake-tao.c 猕猴桃干
+// fake-tao.c 獼猴桃幹
 
 #include <ansi.h>
 
@@ -11,10 +11,10 @@ void init()
         object where = environment();
         if (!wizardp(this_player())) 
         {
-        set("no_get","你手里一松"+query("name", this_object())+"从指间滑落！\n");
-        set("no_give","这么珍贵的药，哪能随便给人？\n");
-        set("no_drop","这么宝贵的药，扔了多可惜呀！\n");
-        set("no_sell","凡人哪里知道"+query("name", this_object())+"的价值？还是自己留着吧。\n");
+        set("no_get","你手裡一鬆"+query("name", this_object())+"從指間滑落！\n");
+        set("no_give","這麼珍貴的藥，哪能隨便給人？\n");
+        set("no_drop","這麼寶貴的藥，扔了多可惜呀！\n");
+        set("no_sell","凡人哪裡知道"+query("name", this_object())+"的價值？還是自己留著吧。\n");
         if( !query("my_owner", me) && interactive(who) )
         set("my_owner",query("id",  who), me);
    
@@ -38,22 +38,22 @@ void init()
 }
 void destruct_me(object where, object me)
 {
-        message_vision("千面怪鬼鬼祟祟地拿起$n撒脚就跑,快追!\n",where,me);
+        message_vision("千面怪鬼鬼祟祟地拿起$n撒腳就跑,快追!\n",where,me);
         destruct (me);
 }
 
 void create()
 {
-        set_name(YEL"普通药材"NOR, ({"putong yaocai","yaocai"}));
+        set_name(YEL"普通藥材"NOR, ({"putong yaocai","yaocai"}));
         set_weight(20);
         /*if (clonep())
         set_default_object(__FILE__);
         else*/ {
         set("unit", "株");
-        set("long", "一株普通药材，如果炼成丹药有强身健体延年益寿的功效。\n");
-        set("canoe",1); // 身份鉴定,防止假药材
+        set("long", "一株普通藥材，如果煉成丹藥有強身健體延年益壽的功效。\n");
+        set("canoe",1); // 身份鑑定,防止假藥材
         set("value", 0);
-        set("drug_type", "补品");
+        set("drug_type", "補品");
         }
   
         setup();

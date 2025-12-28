@@ -9,7 +9,7 @@ int is_arrow() { return 1; }
 
 void create()
 {
-        set_name(HIC "凤尾箭" NOR, ({ "fengwei jian", "arrow" }) );
+        set_name(HIC "鳳尾箭" NOR, ({ "fengwei jian", "arrow" }) );
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
@@ -20,10 +20,10 @@ void create()
                 set("base_value", 0);
                 set("wound_percent", 100); 
                 set("material", "iron");
-                set("long", "这是凤尾箭，可以连珠箭发，势道十分凶猛。\n");
+                set("long", "這是鳳尾箭，可以連珠箭發，勢道十分兇猛。\n");
         }
         set_amount(20);
         init_throwing(300); 
-        set("no_wield", "这不是用来装备的。\n"); 
+        set("no_wield", "這不是用來裝備的。\n"); 
         setup();
 }

@@ -20,11 +20,11 @@ int do_effect(object me)
         my = me->query_entire_dbase();
 
         if( me->is_busy() )
-                return notify_fail("急什么，小心别噎着了。\n");
+                return notify_fail("急什麼，小心別噎著了。\n");
 
         me->set_temp("last_eat/dan(full)", time());
 
-        message_vision(HIY "$N" HIY "吃下一粒天霞神丹，再也感觉不到任何疲惫。\n" NOR, me);
+        message_vision(HIY "$N" HIY "吃下一粒天霞神丹，再也感覺不到任何疲憊。\n" NOR, me);
         me->set("jingli",me->query("max_jingli"));
         me->set("neili",me->query("max_neili"));
         me->set("jing",me->query("max_jing"));

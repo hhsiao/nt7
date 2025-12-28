@@ -4,11 +4,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "后殿");
+        set("short", "後殿");
         set("long", @LONG
-这里是万安寺的后殿，非常的宽敞明亮，佛像前摆着一个供桌，桌上的香炉
-中插着几柱香，地上摆着一些蒲团。右首处一个木制阶梯，可以通向万安寺的寺
-楼。
+這裡是萬安寺的後殿，非常的寬敞明亮，佛像前擺著一個供桌，桌上的香爐
+中插著幾柱香，地上擺著一些蒲團。右首處一個木製階梯，可以通向萬安寺的寺
+樓。
 LONG );
         set("exits", ([
             "south"  : "/d/tulong/yitian/was_zoulang3",
@@ -23,10 +23,10 @@ LONG );
 int valid_leave(object me, string dir)
 {
         if (dir == "up" && objectp(present("dao seng", environment(me))))
-           return notify_fail(CYN "刀僧齐声喝道：哪里走？滚下来！\n" NOR);
+           return notify_fail(CYN "刀僧齊聲喝道：哪裡走？滾下來！\n" NOR);
 
         if (dir == "south" && objectp(present("dao seng", environment(me))))
-           return notify_fail(CYN "刀僧齐声喝道：哪里逃？纳命来！\n" NOR);
+           return notify_fail(CYN "刀僧齊聲喝道：哪裡逃？納命來！\n" NOR);
 
         return ::valid_leave(me, dir);
 }

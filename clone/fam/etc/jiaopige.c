@@ -8,8 +8,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", NOR + MAG "一张巨大蛟皮，呈紫黑色，坚硬无比。\n" NOR);
-                set("unit", "张");
+                set("long", NOR + MAG "一張巨大蛟皮，呈紫黑色，堅硬無比。\n" NOR);
+                set("unit", "張");
                 set("value", 1000000);
         }
         setup();

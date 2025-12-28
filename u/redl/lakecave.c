@@ -8,8 +8,8 @@ void create()
 {
         set("short", "山洞");
         set("long", 
-"这是山腹里一片很宽阔的地方，顶高七八丈，方圆四五十丈。洞的正\n"
-"中央有一座传送阵("CYN"enter"NOR")，阵旁台上有张蒲团，结跏趺坐着一个道人。\n"
+"這是山腹裡一片很寬闊的地方，頂高七八丈，方圓四五十丈。洞的正\n"
+"中央有一座傳送陣("CYN"enter"NOR")，陣旁臺上有張蒲團，結跏趺坐著一個道人。\n"
 );
 
          set("exits",([ /* sizeof() == 1 */
@@ -30,12 +30,12 @@ void create()
 int valid_leave(object me, string dir)
 {
                 if (objectp(present("dao ren", this_object()))) {
-                tell_object(me, NOR "你幻听到“哼..”的一声，眼前一阵模糊，竟未能离开原地半步。\n" NOR);
+                tell_object(me, NOR "你幻聽到“哼..”的一聲，眼前一陣模糊，竟未能離開原地半步。\n" NOR);
                 return -1;
                 }
         if (dir == "enter" && playerp(me)) {
-                tell_object(me, YEL "你振了振衣袖，强作镇定地跨进了传送阵。\n" NOR
-                                                HIY "空间乱流不停地撕裂扭曲，转眼到了随风石。\n" NOR);
+                tell_object(me, YEL "你振了振衣袖，強作鎮定地跨進了傳送陣。\n" NOR
+                                                HIY "空間亂流不停地撕裂扭曲，轉眼到了隨風石。\n" NOR);
         }
 
         return ::valid_leave(me, dir);

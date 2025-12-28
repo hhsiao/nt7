@@ -3,13 +3,13 @@ inherit ROOM;
  
 void create()
 {
-        set("short", RED "【地阴通道】" NOR);
+        set("short", RED "【地陰通道】" NOR);
        set("long", RED @LONG
 
-                    地     阴     通     道
+                    地     陰     通     道
 
-    一条由阴司向下延伸的阶梯，不知道通往何方，阶梯深不见底，仿
-佛永远没有止境一般。
+    一條由陰司向下延伸的階梯，不知道通往何方，階梯深不見底，仿
+佛永遠沒有止境一般。
 
 LONG NOR );
         set("exits", ([
@@ -38,8 +38,8 @@ int valid_leave(object me, string dir)
                 }
            else {
                         set_temp("long_road", i, me);
-                        return notify_fail( RED "\n你向下走着这深不见底的阶梯……"
-                                            "只觉阶梯似乎在无限延伸，永远到达不了尽头"
+                        return notify_fail( RED "\n你向下走著這深不見底的階梯……"
+                                            "只覺階梯似乎在無限延伸，永遠到達不了盡頭"
                                             "一般。\n" NOR);
                 }
         }

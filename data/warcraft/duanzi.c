@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("唠叨的麒麟[2;37;0m[2;37;0m", ({"duanziride"}));        
+        set_name("嘮叨的麒麟[2;37;0m[2;37;0m", ({"duanziride"}));        
         set("gender", "男性");                
-        set("long", "唠叨的麒麟[2;37;0m
-它是段子的魔幻兽。
+        set("long", "嘮叨的麒麟[2;37;0m
+它是段子的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

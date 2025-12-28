@@ -5,7 +5,7 @@
 
 inherit F_CLEAN_UP;
 
-// 检查方式（手工检查则设置成为 EXAMINE_ALL）
+// 檢查方式（手工檢查則設置成為 EXAMINE_ALL）
 #define        EXAMINE_ALL        0
 #define        EXAMINE_LOGINED        1
 
@@ -39,14 +39,14 @@ int main(object me, string arg)
         {
                 string r;
                 r = examine_player(arg, copy_user, EXAMINE_ALL, 0);
-                if (! r) r = sprintf("这位玩家(%s)的数据没有异常。\n", arg);
-                write("检查结果：" + r);
+                if (! r) r = sprintf("這位玩家(%s)的數據沒有異常。\n", arg);
+                write("檢查結果：" + r);
                 return 1;
         }
 
-        message_system("系统进行数据处理中，请耐心等候...\n");
-        write(HIG "现在系统将检查所有玩家，稍后汇报。\n"
-              HIG "进度：" + process_bar(0) + "\n");
+        message_system("系統進行數據處理中，請耐心等候...\n");
+        write(HIG "現在系統將檢查所有玩家，稍後彙報。\n"
+              HIG "進度：" + process_bar(0) + "\n");
         if (me)
         {
                 me->attach_system();
@@ -98,13 +98,13 @@ void search_dir(object me, int type)
                 }
                 total += j;
                 message("system", ESC + "[1A" + ESC + "[256D"
-                                  HIG "进度：" + process_bar((i + 1) * 100 / sizeof(dir)) +
-                                  "\n" + (me ? HIR "执行中" NOR "> " : ""),
+                                  HIG "進度：" + process_bar((i + 1) * 100 / sizeof(dir)) +
+                                  "\n" + (me ? HIR "執行中" NOR "> " : ""),
                                   me ? me : filter_array(all_interactive(), (: wizardp :)));
         }
 
-        info = HIC "\n检查所有 " HIY + total +
-               HIC " 玩家的结果如下：\n" NOR WHT;
+        info = HIC "\n檢查所有 " HIY + total +
+               HIC " 玩家的結果如下：\n" NOR WHT;
         for (i = 0; i < sizeof(result); i++)
         {
                 info += result[i];
@@ -117,10 +117,10 @@ void search_dir(object me, int type)
         }
 
         if (! count)
-                info += HIC "没有任何的玩家数据可能异样。\n" NOR;
+                info += HIC "沒有任何的玩家數據可能異樣。\n" NOR;
         else
                 info += HIG "共有 " + to_chinese(count) +
-                        " 位玩家数据可能异常。\n\n" NOR;
+                        " 位玩家數據可能異常。\n\n" NOR;
         info += HIY "There are total " + total_gold + " golds.\n\n" NOR;
 
         log_file("examine", filter_color(info));
@@ -140,7 +140,7 @@ protected string fname(object ob)
         s2=query("purename", ob);
         if (! s1) s1= "";
         if (s2) s1 += s2;
-        if (s1 == "") s1 = "无名";
+        if (s1 == "") s1 = "無名";
         return s1;
 }
 
@@ -169,14 +169,14 @@ protected string examine_player(string name, int copy_user, int type, int last_t
                                   name + __SAVE_EXTENSION__);
         
                         if (! arrayp(st) || sizeof(st) < 3)
-                                // 可能没有这个文件
-                                return sprintf(WHT "无法查阅玩家(%s)的的登录信息。\n" NOR, name);
+                                // 可能沒有這個文件
+                                return sprintf(WHT "無法查閱玩家(%s)的的登錄信息。\n" NOR, name);
         
-                        // 取最后访问 login_ob 的时间
+                        // 取最後訪問 login_ob 的時間
                         last_touched = st[1];
                 }
 
-                // 计算没有上线的时间
+                // 計算沒有上線的時間
                 day = (time() - last_touched) / 86400;
 
                 if (day >= 90 && ! objectp(find_player(name)))
@@ -184,7 +184,7 @@ protected string examine_player(string name, int copy_user, int type, int last_t
                         remove_flag = 0;
                 else
                 if (day >= 1)
-                        // 这个文件最近没有访问过
+                        // 這個文件最近沒有訪問過
                         return 0;
         }
 
@@ -194,7 +194,7 @@ protected string examine_player(string name, int copy_user, int type, int last_t
         if (! login_ob->restore())
         {
                 destruct(login_ob);
-                return sprintf(WHT "没有玩家(%s)。\n" NOR, name);
+                return sprintf(WHT "沒有玩家(%s)。\n" NOR, name);
         }
 
         if( query("id", login_ob) != name )
@@ -202,7 +202,7 @@ protected string examine_player(string name, int copy_user, int type, int last_t
                 string id;
                 id=query("id", login_ob);
                 destruct(login_ob);
-                return sprintf(HIR "玩家(%s)的ID(%s)不正确。\n" NOR, name, id);
+                return sprintf(HIR "玩家(%s)的ID(%s)不正確。\n" NOR, name, id);
         }
 
         if (! objectp(user_ob = find_player(name)))
@@ -212,14 +212,14 @@ protected string examine_player(string name, int copy_user, int type, int last_t
                 if (! user_ob)
                 {
                         destruct(login_ob);
-                        return sprintf(HIR "无法生成玩家(%s)。\n" NOR, name);
+                        return sprintf(HIR "無法生成玩家(%s)。\n" NOR, name);
                 }
 
                 if (! user_ob->restore())
                 {
                         destruct(login_ob);
                         destruct(user_ob);
-                        return sprintf(HIR "无法读取玩家档案(%s)。\n" NOR, name);
+                        return sprintf(HIR "無法讀取玩家檔案(%s)。\n" NOR, name);
                 }
         } else
                 online = 1;
@@ -228,15 +228,15 @@ protected string examine_player(string name, int copy_user, int type, int last_t
         {
                 if( ultrap(user_ob) || query("immortal", user_ob) )
                 {
-                        // 永久保留的玩家：从新保存 login_ob，
-                        // 刷新该人物的最后访问时间。
+                        // 永久保留的玩家：從新保存 login_ob，
+                        // 刷新該人物的最後訪問時間。
                         login_ob->save();
                         destruct(login_ob);
                         destruct(user_ob);
                         return 0;
                 }
 
-                // 删除该玩家
+                // 刪除該玩家
                 destruct(login_ob);
                 destruct(user_ob);
                 log_file("static/purge",
@@ -255,7 +255,7 @@ protected string examine_player(string name, int copy_user, int type, int last_t
                                  name,
                                  query("name", user_ob),
                                  (interactive(user_ob) ? HIC : HIR),
-                                 (interactive(user_ob) ? query_ip_number(user_ob) : "断线中"),
+                                 (interactive(user_ob) ? query_ip_number(user_ob) : "斷線中"),
                                  NOR,
                                  result);
                 else
@@ -268,7 +268,7 @@ protected string examine_player(string name, int copy_user, int type, int last_t
                                  ctime(query("last_on", login_ob))[20..24],
                                  NOR,
                                  result,
-                                 (user_ob->is_in_prison() ? HIR "(狱中)" NOR : ""));
+                                 (user_ob->is_in_prison() ? HIR "(獄中)" NOR : ""));
         }
 
         destruct(login_ob);
@@ -279,7 +279,7 @@ protected string examine_player(string name, int copy_user, int type, int last_t
                 {
                         me = this_player();
                         // I should login it
-                        message_vision("$N口中念念有词，将$n变了出来。\n",
+                        message_vision("$N口中唸唸有詞，將$n變了出來。\n",
                                        me, user_ob);
                         catch(user_ob->setup());
                         catch(user_ob->restore_autoload());
@@ -295,7 +295,7 @@ protected string examine_player(string name, int copy_user, int type, int last_t
                 {
                         // login user? oh, I needn't do it because the
                         // user is online now.
-                        write("玩家目前正在线上。\n");
+                        write("玩家目前正在線上。\n");
                 }
         }
 
@@ -316,9 +316,9 @@ protected string is_illegal(object ob, int update)
                 return 0;
 
 #if 0
-        if( query("family/family_name", ob) != "华山派" && 
+        if( query("family/family_name", ob) != "華山派" && 
             ob->query_skill("hunyuan-zhang", 1))
-                return "拥有混元掌技能";
+                return "擁有混元掌技能";
 #endif
         if( query_temp("user_setup", ob) )
                 gold = MONEY_D->player_carry(ob);
@@ -371,7 +371,7 @@ protected string is_illegal(object ob, int update)
             ! intp(lex["potential"]) ||
             ! intp(lex["experience"]) ||
             ! intp(lex["time"]))
-                return HIR "数据类型错误" NOR;
+                return HIR "數據類型錯誤" NOR;
 
         age = my["mud_age"] / 86400 / 6;
         exp = my["combat_exp"];
@@ -398,28 +398,28 @@ protected string is_illegal(object ob, int update)
         total_gold += gold;
 
         if (gold > 20000)
-                return HIY "拥有 " + gold + " 两黄金" NOR;
+                return HIY "擁有 " + gold + " 兩黃金" NOR;
 
         if (exp < 1000000 && gold >= 10000)
-                return HIC "经验 1M 以内拥有 " + gold + " 两黄金" NOR;
+                return HIC "經驗 1M 以內擁有 " + gold + " 兩黃金" NOR;
 
         if (exp > 10000 && dt > 60)
         {
                 if ((sp = dexp * 60 / dt) > 9000)
-                        return HIR "平均经验速度太快(" + sp + "/分钟:" + dt / 60 + "分钟)" NOR;
+                        return HIR "平均經驗速度太快(" + sp + "/分鐘:" + dt / 60 + "分鐘)" NOR;
 
                 if ((sp = dpot * 60 / dt) > 2000)
-                        return HIR "平均潜能速度太快(" + sp + "/分钟:" + dt / 60 + "分钟)" NOR;
+                        return HIR "平均潛能速度太快(" + sp + "/分鐘:" + dt / 60 + "分鐘)" NOR;
 
                 if ((sp = dmar * 60 / dt) > 1000)
-                        return HIR "平均体会速度太快(" + sp + "/分钟:" + dt / 60 + "分钟)" NOR;
+                        return HIR "平均體會速度太快(" + sp + "/分鐘:" + dt / 60 + "分鐘)" NOR;
 
                 if (dage > dt + 60)
-                        return HIR "连线时间超过系统间隔时间(" + ((dage - dt) / 60) + "分钟)。" NOR;
+                        return HIR "連線時間超過系統間隔時間(" + ((dage - dt) / 60) + "分鐘)。" NOR;
         }
 
         if (gold >= 10000 && age < 1)
-                return HIC "14岁拥有 " + gold + " 两黄金" NOR;
+                return HIC "14歲擁有 " + gold + " 兩黃金" NOR;
 
         return 0;
 }
@@ -429,16 +429,16 @@ int  help(object  me)
 write(@HELP
 指令格式：examine [-u] <玩家ID> | -all
 
-查找玩家，判断数据是否正常。如果使用了[-u]参数，则除了检查玩
-家，还会将不在线上玩家复制出来，以供详细查阅。
+查找玩家，判斷數據是否正常。如果使用了[-u]參數，則除了檢查玩
+家，還會將不在線上玩家複製出來，以供詳細查閱。
 
-判断依据：
-1. 超过 20000 两黄金。
-2. 经验 1M 以内超过 3000 两黄金。
-3. 平均经验速度超过 (90/m)。
-4. 平均潜能速度超过 (20/m)。
-5. 平均体会速度超过 (10/m)。
-6. 14岁金钱超过 100 两黄金。
+判斷依據：
+1. 超過 20000 兩黃金。
+2. 經驗 1M 以內超過 3000 兩黃金。
+3. 平均經驗速度超過 (90/m)。
+4. 平均潛能速度超過 (20/m)。
+5. 平均體會速度超過 (10/m)。
+6. 14歲金錢超過 100 兩黃金。
 
 HELP
     );

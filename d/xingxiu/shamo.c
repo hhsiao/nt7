@@ -6,8 +6,8 @@ void create()
 {
        set("short","大沙漠");
         set("long", @LONG
-这是一片一望无际的大沙漠。你一进来就迷失了方向。看来要走
-出这块沙漠并非易事。
+這是一片一望無際的大沙漠。你一進來就迷失了方向。看來要走
+出這塊沙漠並非易事。
 LONG );
         set("exits", ([
                 "east" : __FILE__,
@@ -17,7 +17,7 @@ LONG );
         ]));
 
         set("outdoors", "xiyu");
-        set("no_map", "这里的地形令人困惑，你无从下手绘制地图。\n");
+        set("no_map", "這裡的地形令人困惑，你無從下手繪製地圖。\n");
 
         setup();
 }
@@ -47,7 +47,7 @@ int valid_leave(object me, string dir)
 
                 if( query("qi", me)<qi || query("jing", me)<jing )
                 {
-                        write("你已经感到不行了，冥冥中你觉得有人把你抬到天山脚下。\n");
+                        write("你已經感到不行了，冥冥中你覺得有人把你抬到天山腳下。\n");
                         me->move(__DIR__"shanjiao");
                         me->unconcious();
                         return -1;
@@ -62,15 +62,15 @@ int valid_leave(object me, string dir)
         switch (random(3))
         {
         case 0:
-                write("你顶着风沙走啊走，还是没有走出沙漠。\n");
+                write("你頂著風沙走啊走，還是沒有走出沙漠。\n");
                 break;
 
         case 1:
-                write("你望着漫天遍野的黄沙，叹了口气，无精打采的走着。\n");
+                write("你望著漫天遍野的黃沙，嘆了口氣，無精打采的走著。\n");
                 break;
 
         case 2:
-                write("你一步步的往前挪着，早已分不出方向。\n");
+                write("你一步步的往前挪著，早已分不出方向。\n");
                 break;
         }
         return -1;

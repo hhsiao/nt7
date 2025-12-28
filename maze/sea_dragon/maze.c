@@ -8,82 +8,82 @@ inherit VRM_SERVER;
 
 void create()
 {
-        // 迷宫房间所继承的物件的档案名称。
+        // 迷宮房間所繼承的物件的檔案名稱。
         set_inherit_room( ROOM );
 
         set_lonely_create(1);
-        // 迷宫进入要求最低等级。
+        // 迷宮進入要求最低等級。
 
-        // 迷宫进入要求最高等级。
+        // 迷宮進入要求最高等級。
 
-        // 迷宫房间存在的时间。
+        // 迷宮房間存在的時間。
         set_remove_time(1800);
 
-        //迷宫房间里的怪物。
+        //迷宮房間裡的怪物。
         set_maze_npcs(__DIR__"npc/beast");
 
-        // 迷宫中的怪物出现可能性
+        // 迷宮中的怪物出現可能性
         set_npcs_rate(50);
 
-        //迷宫房间里的BOSS。
+        //迷宮房間裡的BOSS。
         set_exit_npcs(__DIR__"npc/dragon");
 
-        //迷宫的单边长
+        //迷宮的單邊長
         set_maze_long(10);
 
-        //入口方向(出口在对面)
+        //入口方向(出口在對面)
         set_entry_dir("north");
 
-        //入口与区域的连接方向
+        //入口與區域的連接方向
         set_link_entry_dir("north");
 
-        //入口与区域的连接档案名
+        //入口與區域的連接檔案名
         set_link_entry_room("/d/xiakedao/haibin");
 
-        //出口与区域的连接方向
+        //出口與區域的連接方向
         set_link_exit_dir("south");
 
-        //出口与区域的连接档案名
+        //出口與區域的連接檔案名
         set_link_exit_room("/d/xiakedao/haibin");
 
-        //入口房间短描述
-        set_entry_short("海底迷宫");
+        //入口房間短描述
+        set_entry_short("海底迷宮");
 
-        //入口房间描述
+        //入口房間描述
         set_entry_desc(@LONG
-这里水色变的浑浊起来，周围已看不大清楚了。偶有暗流袭来，卷
-起阵阵的泥流。四处长着些高高的海草，密密麻麻把头上遮的一丝
-光芒也没有了。
+這裡水色變的渾濁起來，周圍已看不大清楚了。偶有暗流襲來，卷
+起陣陣的泥流。四處長著些高高的海草，密密麻麻把頭上遮的一絲
+光芒也沒有了。
 LONG
 );
 
-        //BOSS房间短描述
+        //BOSS房間短描述
         set_exit_short("海之角");
 
-        //BOSS房间描述
+        //BOSS房間描述
         set_exit_desc(HIB"
 
-这里就是海的尽头了。。。。。。
+這裡就是海的盡頭了。。。。。。
 "NOR);
 
-        //迷宫房间的短描述
-        set_maze_room_short("海底迷宫");
+        //迷宮房間的短描述
+        set_maze_room_short("海底迷宮");
 
-        //迷宫房间的描述，如果有多条描述，制造每个房
-        //间的时候会从中随机选择一个。
+        //迷宮房間的描述，如果有多條描述，製造每個房
+        //間的時候會從中隨機選擇一個。
         set_maze_room_desc(@LONG
-这里水色变的浑浊起来，周围已看不大清楚了。偶有暗流袭来，卷
-起阵阵的泥流。四处长着些高高的海草，密密麻麻把头上遮的一丝
-光芒也没有了。
+這裡水色變的渾濁起來，周圍已看不大清楚了。偶有暗流襲來，卷
+起陣陣的泥流。四處長著些高高的海草，密密麻麻把頭上遮的一絲
+光芒也沒有了。
 LONG
 );
 
-        //以下是入口坐标
+        //以下是入口座標
         set_link_entry_room_x(ENTER_ROOM_X);
         set_link_entry_room_y(ENTER_ROOM_Y);
         set_link_entry_room_z(ENTER_ROOM_Z);
         
-        // 迷宫房间是否为户外房间？
+        // 迷宮房間是否為戶外房間？
         //set_outdoors(1);
 }
 

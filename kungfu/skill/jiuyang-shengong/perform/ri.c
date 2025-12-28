@@ -7,7 +7,7 @@
 
 inherit F_SSERVER;
 
-string name() { return HIW "魔光日无极" NOR; }
+string name() { return HIW "魔光日無極" NOR; }
 
 int perform(object me, object target)
 {
@@ -25,39 +25,39 @@ int perform(object me, object target)
 
         me->clean_up_enemy();
         if (! me->is_fighting())
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if (query_temp("weapon", me) || query_temp("secondary_weapon", me))
                 return notify_fail(name() + "只能空手施展。\n");
 
         if (query("max_neili", me) < 8000)
-                return notify_fail("你的内力的修为不够，现在无法使用" + name() + "。\n");
+                return notify_fail("你的內力的修為不夠，現在無法使用" + name() + "。\n");
 
         if (me->query_skill("jiuyang-shengong", 1) < 250)
-                return notify_fail("你的九阳神功还不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你的九陽神功還不夠嫻熟，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("unarmed") != "jiuyang-shengong")
-                return notify_fail("你现在没有激发九阳神功为拳脚，难以施展" + name() + "。\n");
+                return notify_fail("你現在沒有激發九陽神功為拳腳，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("force") != "jiuyang-shengong")
-                return notify_fail("你现在没有激发九阳神功为内功，难以施展" + name() + "。\n");
+                return notify_fail("你現在沒有激發九陽神功為內功，難以施展" + name() + "。\n");
 
         if (me->query_skill_prepared("unarmed") != "jiuyang-shengong")
-                return notify_fail("你现在没有准备使用九阳神功，难以施展" + name() + "。\n");
+                return notify_fail("你現在沒有準備使用九陽神功，難以施展" + name() + "。\n");
 
         if ((int)query("neili", me) < 2000)
-                return notify_fail("你的真气不够，无法运用" + name() + "。\n");
+                return notify_fail("你的真氣不夠，無法運用" + name() + "。\n");
         
         if( userp(me) ) 
         {
                 if( (time = BUFF_D->get_buff_overtime(me, "jysg_ri")) > 0 )
-                        return notify_fail(MAG"魔光日无极消耗心神太甚，还需等待"+time+"秒。\n"NOR);
+                        return notify_fail(MAG"魔光日無極消耗心神太甚，還需等待"+time+"秒。\n"NOR);
         }
         
-        msg = HIY "只见$N" HIY "双目微闭，单手托天。掌心顿时腾起一个无比刺眼的"
-              "气团，正是奥\n义「" NOR + HIW "魔光日无极" NOR + HIY "」。霎时"
-              "金光万道，尘沙四起，空气炽热，几欲沸腾。$N" HIY "\n随即收拢掌心"
-              "，气团爆裂开来，向四周电射而出，光芒足以和日月争辉。\n\n" NOR;
+        msg = HIY "只見$N" HIY "雙目微閉，單手託天。掌心頓時騰起一個無比刺眼的"
+              "氣團，正是奧\n義「" NOR + HIW "魔光日無極" NOR + HIY "」。霎時"
+              "金光萬道，塵沙四起，空氣熾熱，幾欲沸騰。$N" HIY "\n隨即收攏掌心"
+              "，氣團爆裂開來，向四周電射而出，光芒足以和日月爭輝。\n\n" NOR;
 
         message_combatd(msg, me);
 
@@ -65,7 +65,7 @@ int perform(object me, object target)
 
         ap = attack_power(me, "unarmed") + me->query_con()*10;
         
-        delta = ABILITY_D->check_ability(me, "ap_power-jysg-ri"); // 门派ab
+        delta = ABILITY_D->check_ability(me, "ap_power-jysg-ri"); // 門派ab
         if( delta ) ap += ap*delta/100;
         
         damage = attack_power(me, "force");
@@ -74,7 +74,7 @@ int perform(object me, object target)
         damage *= 3;
         damage+= random(damage);
                         
-        delta = ABILITY_D->check_ability(me, "da_power-jysg-ri"); // 门派ab
+        delta = ABILITY_D->check_ability(me, "da_power-jysg-ri"); // 門派ab
         if( delta ) damage += damage*delta/100;
         
         obs = me->query_enemy();
@@ -87,17 +87,17 @@ int perform(object me, object target)
                         switch (random(2))
                         {
                         case 0:
-                                tell_object(obs[i], HIR "你只觉眼前金光万道，周围空气几欲沸"
-                                                    "腾，光芒便如利箭一般透体而入。\n" NOR);
+                                tell_object(obs[i], HIR "你只覺眼前金光萬道，周圍空氣幾欲沸"
+                                                    "騰，光芒便如利箭一般透體而入。\n" NOR);
                                 break;
 
                         default:
-                                tell_object(obs[i], HIR "你只觉眼前金光万道，周围空气几欲沸"
-                                                    "腾，光芒便如千万细针一齐扎入身体般。\n"
+                                tell_object(obs[i], HIR "你只覺眼前金光萬道，周圍空氣幾欲沸"
+                                                    "騰，光芒便如千萬細針一齊扎入身體般。\n"
                                                     NOR);
                                 break;
                         }
-                        if( obs[i]->query_family() == "星宿派" || obs[i]->query_family() == "逍遥派" )
+                        if( obs[i]->query_family() == "星宿派" || obs[i]->query_family() == "逍遙派" )
                         {         
                                 obs[i]->receive_damage("qi", damage*3, me);
                                 obs[i]->receive_wound("qi", damage*3, me);
@@ -119,40 +119,40 @@ int perform(object me, object target)
                         switch (random(5))
                         {
                         case 0:
-                                msg = HIR "只听" + obs[i]->name() +
-                                      HIR "一声惨嚎，接连退了数步，“"
-                                      "哇”的呕出一大口鲜血。\n" NOR;
+                                msg = HIR "只聽" + obs[i]->name() +
+                                      HIR "一聲慘嚎，接連退了數步，“"
+                                      "哇”的嘔出一大口鮮血。\n" NOR;
                                 msg += "( " + obs[i]->name() + eff_status_msg(p) + " )\n\n";
                                 break;
 
                         case 1:
-                                msg = HIR "只见" + obs[i]->name() +
-                                      HIR "向后飞出丈远，重重的跌落在"
-                                      "地上，衣衫烧焦，再也没力气站起"
+                                msg = HIR "只見" + obs[i]->name() +
+                                      HIR "向後飛出丈遠，重重的跌落在"
+                                      "地上，衣衫燒焦，再也沒力氣站起"
                                       "。\n" NOR;
                                 msg += "( " + obs[i]->name() + eff_status_msg(p) + " )\n\n";
                                 break;
 
                         case 2:
-                                msg = HIR "只见" + obs[i]->name() +
-                                      HIR "跌跌撞撞向后连退数步，伏倒"
-                                      "在地。须眉、衣衫都发出一股焦臭"
+                                msg = HIR "只見" + obs[i]->name() +
+                                      HIR "跌跌撞撞向後連退數步，伏倒"
+                                      "在地。鬚眉、衣衫都發出一股焦臭"
                                       "。\n" NOR;
                                 msg += "( " + obs[i]->name() + eff_status_msg(p) + " )\n\n";
                                 break;
 
                         case 3:
-                                msg = HIR "光芒闪过，" + obs[i]->name() +
-                                      HIR "却是呆立当场，动也不动，七"
-                                      "窍流血，神情扭曲，煞是恐怖。\n" NOR;
+                                msg = HIR "光芒閃過，" + obs[i]->name() +
+                                      HIR "卻是呆立當場，動也不動，七"
+                                      "竅流血，神情扭曲，煞是恐怖。\n" NOR;
                                 msg += "( " + obs[i]->name() + eff_status_msg(p) + " )\n\n";
                                 break;
 
                         default:
                                 msg = HIR + obs[i]->name() +
-                                      HIR "急忙抽身后退，可只见眼前光"
-                                      "芒暴涨，一闪而过。全身已多了数"
-                                      "个伤口，鲜血飞溅。\n" NOR;
+                                      HIR "急忙抽身後退，可只見眼前光"
+                                      "芒暴漲，一閃而過。全身已多了數"
+                                      "個傷口，鮮血飛濺。\n" NOR;
                                 msg += "( " + obs[i]->name() + eff_status_msg(p) + " )\n\n";
                                 break;
                         }
@@ -163,21 +163,21 @@ int perform(object me, object target)
                         flag = 1;
                 } else
                 {
-                        tell_object(obs[i], HIY "你只觉眼前金光万道，周围空气几"
-                                            "欲沸腾，大惊之下连忙急运内功，抵御"
-                                            "开来。\n" NOR);
+                        tell_object(obs[i], HIY "你只覺眼前金光萬道，周圍空氣幾"
+                                            "欲沸騰，大驚之下連忙急運內功，抵禦"
+                                            "開來。\n" NOR);
                 }
                 if (query("neili", obs[i]) < 0)
                         set("neili", 0, obs[i]);
         }
 
         if (! flag)
-                message_combatd(HIY "只见光芒顿敛，却没有任何人被$N"
-                               HIY "这招击中。\n\n" NOR, me, 0, obs);
+                message_combatd(HIY "只見光芒頓斂，卻沒有任何人被$N"
+                               HIY "這招擊中。\n\n" NOR, me, 0, obs);
         
         time  = 40;
-        time -= ABILITY_D->check_ability(me, "cd-jysg-ri"); // ab门派减cd
-        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent减cd
+        time -= ABILITY_D->check_ability(me, "cd-jysg-ri"); // ab門派減cd
+        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd
                 
         buff = ([
                 "caster" : me,
@@ -185,9 +185,9 @@ int perform(object me, object target)
                 "type"   : "cooldown",
                 "type2"  : "jysg_ri",
                 "attr"   : "curse",
-                "name"   : "九阳神功·魔光日无极",
+                "name"   : "九陽神功·魔光日無極",
                 "time"   : time,
-                "buff_msg" : "魔光日无极消耗心神太甚，还需等待"+time+"秒方可再次施展。\n",
+                "buff_msg" : "魔光日無極消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : "",
                 "disa_type": 0,
         ]);

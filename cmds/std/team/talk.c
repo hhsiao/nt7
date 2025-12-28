@@ -11,9 +11,9 @@ int main(object me, string arg)
         if (! arg) arg = "...";
 
         if (! pointerp(t = me->query_team()))
-                return notify_fail("你现在并没有和别人组成队伍。\n");
+                return notify_fail("你現在並沒有和別人組成隊伍。\n");
 
-        message("team", CYN "【队伍会话】" + me->name(1) +
+        message("team", CYN "【隊伍會話】" + me->name(1) +
                 "：" + arg + "\n" NOR, t);
         return 1;
 }

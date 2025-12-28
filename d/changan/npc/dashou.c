@@ -7,9 +7,9 @@ inherit NPC;
 void create()
 {
         set_name("打手", ({ "da shou" }) );
-        set("title",MAG "护花使者" NOR);
+        set("title",MAG "護花使者" NOR);
         set("age", random(25)+15);
-        set("long", "一个为群玉楼效力，正在看门的打手\n");
+        set("long", "一個為群玉樓效力，正在看門的打手\n");
         set("per",15);
         set("combat_exp", 100000);
         set("no_arrest",1);
@@ -45,8 +45,8 @@ int do_killing(string arg)
                 name = (string)victim->name();
                 if ((string)name == "打手")
                 {
-                        message_vision("$N道：敢到来群玉楼闹事，我"
-                                       "看你活得不耐烦了。\n",
+                        message_vision("$N道：敢到來群玉樓鬧事，我"
+                                       "看你活得不耐煩了。\n",
                                        this_object());
                         this_object()->kill_ob(player);
                         player->kill_ob(this_object());

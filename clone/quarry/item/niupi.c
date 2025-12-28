@@ -8,8 +8,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", NOR + YEL "牛的皮毛，革质坚韧，但却甚为粗糙。\n" NOR);
-                set("base_unit", "张");
+                set("long", NOR + YEL "牛的皮毛，革質堅韌，但卻甚為粗糙。\n" NOR);
+                set("base_unit", "張");
                 set("base_value", 800);
                 set("base_weight", 400);
         }

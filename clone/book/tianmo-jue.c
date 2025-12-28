@@ -8,14 +8,14 @@ inherit BOOK;
 
 void create()
 {
-        set_name(HIR"天魔诀"NOR, ({ "tianmo jue", "book" }));
+        set_name(HIR"天魔訣"NOR, ({ "tianmo jue", "book" }));
         set_weight(600);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
                 set("unit", "本");
-                set("long",HIR"天    魔    诀。\n"NOR);
+                set("long",HIR"天    魔    訣。\n"NOR);
                 set("value", 200);
                 set("material", "paper");
                 set("skill", ([

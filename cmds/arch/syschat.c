@@ -4,18 +4,18 @@ inherit F_CLEAN_UP;
 int main(object me, string arg)
 {
        if (! SECURITY_D->valid_grant(me, "(arch)"))
-                return notify_fail("ARCH以上的巫师才可以发布系统提示。\n");
-        if (!arg) return notify_fail("你想要大叫什么?\n");
+                return notify_fail("ARCH以上的巫師才可以發佈系統提示。\n");
+        if (!arg) return notify_fail("你想要大叫什麼?\n");
                                 message_system(arg);
         return 1;
 }
 int help(object me)
 {
   write(@HELP
-指令格式 : syschat <讯息>
+指令格式 : syschat <訊息>
  
-这个指令让你将 <讯息> 传送出去, 所有正在游戏中的人都
-会听见你的话.
+這個指令讓你將 <訊息> 傳送出去, 所有正在遊戲中的人都
+會聽見你的話.
  
 HELP
     );

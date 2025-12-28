@@ -10,11 +10,11 @@ int perform(object me, string skill, string arg)
 	int add_dam;
 
         if (me->query_temp("special/guiying"))
-                return notify_fail("鬼影流星技能已经在施展中了。\n");
+                return notify_fail("鬼影流星技能已經在施展中了。\n");
 
-        if (me->is_busy())return notify_fail("等你忙完再说吧！\n");
+        if (me->is_busy())return notify_fail("等你忙完再說吧！\n");
 
-        message_vision(HIY "$N" HIY "凝神闭气，将数股真气同时催动，沿各处经脉运转一个周天，刹时身法变得飘逸无比 ……\n" NOR, me);
+        message_vision(HIY "$N" HIY "凝神閉氣，將數股真氣同時催動，沿各處經脈運轉一個周天，剎時身法變得飄逸無比 ……\n" NOR, me);
  
         me->start_busy(1);
 
@@ -33,7 +33,7 @@ void remove_effect(object me, int add_dam)
         {
 		me->add_temp("apply/dodge", -1 * add_dam);
 	        me->delete_temp("special/guiying");
-	        tell_object(me, "你鬼影流星技施展完毕。\n");
+	        tell_object(me, "你鬼影流星技施展完畢。\n");
         }
 }
 

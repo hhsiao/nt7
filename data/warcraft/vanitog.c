@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;36m穷奇熊[2;37;0m[2;37;0m", ({"gaze"}));        
+        set_name("[1;36m窮奇熊[2;37;0m[2;37;0m", ({"gaze"}));        
         set("gender", "男性");                
         set("long", "桶桶熊[2;37;0m
-它是酒吞的魔幻兽。
+它是酒吞的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

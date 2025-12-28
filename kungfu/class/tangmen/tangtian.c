@@ -10,7 +10,7 @@ int give_job();
 void create()
 {
         set_name("唐甜", ({ "tang tian", "tang", "tian"}));
-        set("long", "唐门中三代弟子的代表人，名列唐门一流高手之中，在武林是也隐然为一方之雄。。\n");
+        set("long", "唐門中三代弟子的代表人，名列唐門一流高手之中，在武林是也隱然為一方之雄。。\n");
         set("gender", "女性");
         set("age", 25);
         set("class", "tangmen");
@@ -61,7 +61,7 @@ void create()
 
         prepare_skill("hand", "boyun-suowu");
 
-        create_family("唐门世家", 3, "弟子");
+        create_family("唐門世家", 3, "弟子");
 
         set("inquiry", ([
                 "job" : ( : give_job  : ),
@@ -93,40 +93,40 @@ int give_job()
 
         me = this_player();
 
-        if( query("family/family_name", me) != "唐门世家" )
+        if( query("family/family_name", me) != "唐門世家" )
         {
-                command("say “你是什么人，为什么会在这里！”\n");
+                command("say “你是什麼人，為什麼會在這裡！”\n");
                 return 1;
         }
 
         if( !environment() || base_name(environment()) != query("startroom") )
         {
-                say("唐甜说道:“我现在没心情给你派活，等我回莲云阁再说吧！”\n");
+                say("唐甜說道:“我現在沒心情給你派活，等我回蓮雲閣再說吧！”\n");
                 return 0;
         }
 
         if( query_temp("tangmen/yao", me) || query_temp("tangmen/biao", me) || query_temp("tangmen/duyao", me) )
-                command("say “你已经有任务在身了，还要什么任务？”\n");
+                command("say “你已經有任務在身了，還要什麼任務？”\n");
         else
         {
                 if( query("combat_exp", me) <= 20000 )
                 {
-                        command("say “恩...好象制药房正缺人手！你去问问吧！”\n");
+                        command("say “恩...好象製藥房正缺人手！你去問問吧！”\n");
                         set_temp("tangmen/yao", 1, me);
                 }
                 else if( query("combat_exp", me) <= 50000 )
                 {
-                        command("say “恩...好象制镖房正缺人手！你去问问吧！”\n");
+                        command("say “恩...好象制鏢房正缺人手！你去問問吧！”\n");
                         set_temp("tangmen/biao", 1, me);
                 }
                 else if( query("combat_exp", me) <= 100000 )
                 {
-                        command("say “恩...好象制毒房正缺人手！你去问问吧！”\n");
+                        command("say “恩...好象製毒房正缺人手！你去問問吧！”\n");
                         set_temp("tangmen/du", 1, me);
                 }
                 else
                 {
-                        command("say “你已经有一些武功根基了，可以去外面磨练磨练了！”\n");
+                        command("say “你已經有一些武功根基了，可以去外面磨練磨練了！”\n");
                 }
         }
         return 1;
@@ -137,25 +137,25 @@ void attempt_apprentice(object ob)
         if (! permit_recruit(ob))
                 return;
 
-        if( query("family/family_name", ob) != "唐门世家" )
+        if( query("family/family_name", ob) != "唐門世家" )
         {
-                command("say “我四川唐门乃是武林世家，你已是武林中人，我不能收你为徒！”\n");
+                command("say “我四川唐門乃是武林世家，你已是武林中人，我不能收你為徒！”\n");
                 return;
         }
         if( query("combat_exp", ob)<500000 )
         {
-                command("say “你的经验太少，不能练好的功夫的！”\n");
+                command("say “你的經驗太少，不能練好的功夫的！”\n");
                 return;
         }
 
         if ( ob->query_skill("biyun-xinfa", 1) < 80 && ob->query_skill("tangmen-throwing", 1) < 80 )
         {
-                command("say “你的心法和暗器不太熟练，要加油啊！”\n");
+                command("say “你的心法和暗器不太熟練，要加油啊！”\n");
                 return;
         }
 
 
-        command("say “好吧，从今天起你就是唐甜的弟子了。”\n");
+        command("say “好吧，從今天起你就是唐甜的弟子了。”\n");
         command("recruit "+query("id", ob));
 }
 

@@ -7,7 +7,7 @@ void setup()
         set_name("考拉[2;37;0m[2;37;0m", ({"myfy"}));        
         set("gender", "女性");                
         set("long", "考拉[2;37;0m
-它是嘎嘎耐肥的魔幻兽。
+它是嘎嘎耐肥的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

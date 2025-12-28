@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short",  "小西门" );
+        set("short",  "小西門" );
         set("long", @LONG
-这里是昆明的西城门，俗称小西门，来来往往各色人出出
-进进，有游客，有做买卖的，也不乏些江湖人士。
+這裡是昆明的西城門，俗稱小西門，來來往往各色人出出
+進進，有遊客，有做買賣的，也不乏些江湖人士。
 LONG);
         set("outdoors", "kunming");
 

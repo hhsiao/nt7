@@ -3,10 +3,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "藏经楼");
+        set("short", "藏經樓");
         set("long", @LONG
-这里是报国寺藏经楼。阁楼上密密麻麻排了好多书架，架上摆满
-了经书。有两个身穿白衣的小师太正在一角静静地读着经书。
+這裡是報國寺藏經樓。閣樓上密密麻麻排了好多書架，架上擺滿
+了經書。有兩個身穿白衣的小師太正在一角靜靜地讀著經書。
 LONG );
         set("objects", ([
                 CLASS_D("emei") + "/daoming" : 1,
@@ -26,8 +26,8 @@ int valid_leave(object me, string dir)
         if (dir == "south"
            && present("shu", me)
            && objectp(present("dao ming", environment(me))))
-                return notify_fail(CYN "道明小师父见你想把经书拿走，上前轻"
-                                   "声说道：本阁经书恕不外借。\n" NOR);
+                return notify_fail(CYN "道明小師父見你想把經書拿走，上前輕"
+                                   "聲說道：本閣經書恕不外借。\n" NOR);
 
         return ::valid_leave(me, dir);
 }

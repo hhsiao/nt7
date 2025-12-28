@@ -5,7 +5,7 @@ inherit SWORD;
 
 void create()
 {
-        set_name(HIW "九仪天尊剑" NOR, ({ "tianzun jian", "tianzun", "jian", "sword" }) );
+        set_name(HIW "九儀天尊劍" NOR, ({ "tianzun jian", "tianzun", "jian", "sword" }) );
         set_weight(4000);
         /*if( clonep() )
                 set_default_object(__FILE__);
@@ -13,8 +13,8 @@ void create()
                 set("unit", "柄");
                 set("value", 4500000);
                 set("material", "steel");
-                set("long", HIW "\n九仪天尊剑乃九穹七狱神兵之一。\n" NOR);
-                set("wield_msg", HIR "$N轻轻抖出$n" HIR "，刹时雷声轰鸣，一股杀气直聂九霄。\n" );
+                set("long", HIW "\n九儀天尊劍乃九穹七獄神兵之一。\n" NOR);
+                set("wield_msg", HIR "$N輕輕抖出$n" HIR "，剎時雷聲轟鳴，一股殺氣直聶九霄。\n" );
         }
         init_sword(230);
         setup();

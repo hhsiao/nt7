@@ -5,13 +5,13 @@
 inherit HEAD;
 void create()
 {
-        set_name(HIG"菩提叶"NOR, ({ "bodhi leaf", "head" }) );
+        set_name(HIG"菩提葉"NOR, ({ "bodhi leaf", "head" }) );
         set_weight(100);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "片");
-                 set("long","这是一片碧绿色的"+HIG"菩提叶"NOR+"，叶片色泽鲜亮且圆润饱满，\n似有清雅香气传来，令人忘却烦忧。\n"); 
+                 set("long","這是一片碧綠色的"+HIG"菩提葉"NOR+"，葉片色澤鮮亮且圓潤飽滿，\n似有清雅香氣傳來，令人忘卻煩憂。\n"); 
                 set("value",0);
                 set("material", "cloth");
                 set("armor_prop/armor", 1);

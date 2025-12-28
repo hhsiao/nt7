@@ -7,29 +7,29 @@ int accept_object(object me, object obj)
 {
         if (this_object()->is_busy())
         {
-                tell_object(me, CYN + name() + "皱眉对你说道：没见我正忙着吗？ \n" + NOR); 
+                tell_object(me, CYN + name() + "皺眉對你說道：沒見我正忙著嗎？ \n" + NOR); 
                 return 0;
         }
         if (!query("money_id", obj))
         {
-                tell_object(me, CYN + name() + "皱眉对你说道：我只收「钱」！ \n" + NOR); 
+                tell_object(me, CYN + name() + "皺眉對你說道：我只收「錢」！ \n" + NOR); 
                 return 0;
         }
         
         if (obj->value() < 100000000)
         {
-                tell_object(me, CYN + name() + "皱眉对你说道：找回秘籍，一次一万！\n" + NOR); 
+                tell_object(me, CYN + name() + "皺眉對你說道：找回秘籍，一次一萬！\n" + NOR); 
                 return 0;
         }
         if (me->is_busy())
         {
-                tell_object(me, CYN + name() + "皱眉对你说道：先把你的事儿忙完再说好不？ \n" + NOR); 
+                tell_object(me, CYN + name() + "皺眉對你說道：先把你的事兒忙完再說好不？ \n" + NOR); 
                 return 0;
         }
         else 
                 me->start_busy(3);
 
-        this_object()->command("say 有钱就是好办事！");
+        this_object()->command("say 有錢就是好辦事！");
         this_object()->command("pat " + query("id", me));       
         addn_temp("invent/paid", obj->value(), me);
         destruct(obj); 
@@ -50,15 +50,15 @@ int ask_skill()
         
         if( !invent_skills || !mapp(invent_skills) || !sizeof(invent_skills))
         {
-                tell_object(me,CYN + query("name") + "瞪了你一眼说：你还没有自创武功吧？\n"+ NOR); 
+                tell_object(me,CYN + query("name") + "瞪了你一眼說：你還沒有自創武功吧？\n"+ NOR); 
                 return 1;
         }      
         if( query_temp("invent/gived_"+query("id",me),ob)){
-                tell_object(me,CYN + query("name") + "嘿嘿一笑：下次重启再来要吧！\n"+ NOR); 
+                tell_object(me,CYN + query("name") + "嘿嘿一笑：下次重啟再來要吧！\n"+ NOR); 
                 return 1;
         }   
         if( ! query_temp("invent/paid",me)){
-                tell_object(me,CYN + query("name") + "满脸堆笑地说：有钱能使鬼推磨，先交钱吧，一次一万，不二价！\n"+ NOR); 
+                tell_object(me,CYN + query("name") + "滿臉堆笑地說：有錢能使鬼推磨，先交錢吧，一次一萬，不二價！\n"+ NOR); 
                 return 1;
         }
     
@@ -69,9 +69,9 @@ int ask_skill()
             book = invent_skills[invent[i]];
             obj = get_object("/data/book/" + book);
             obj->move(me);
-            message_vision(MAG"$N默念口诀，无数的星光从四面八方飞来，渐渐聚集，凝结！\n"NOR,ob);
-            message_vision(MAG"突然间，霞光一闪，$N手中多了一本"+obj->name()+NOR+MAG+"！\n"NOR,ob);         
-            message_vision("$N拿出"HIW+HBRED+obj->name()+NOR"秘籍交给$n!\n",ob,me);
+            message_vision(MAG"$N默唸口訣，無數的星光從四面八方飛來，漸漸聚集，凝結！\n"NOR,ob);
+            message_vision(MAG"突然間，霞光一閃，$N手中多了一本"+obj->name()+NOR+MAG+"！\n"NOR,ob);         
+            message_vision("$N拿出"HIW+HBRED+obj->name()+NOR"秘籍交給$n!\n",ob,me);
          }
         ob->command("sweat");
         set_temp("invent/paid",0,me);
@@ -83,10 +83,10 @@ int ask_skill()
 void create()
 {
         set_name("泥潭使者", ({ "nitan shizhe", "shizhe", "shi" }));
-        set("nickname", HIW"天神仆从"NOR);
+        set("nickname", HIW"天神僕從"NOR);
 
         set("long", @LONG
-这是泥潭公共NPC，天神派遣下来为玩家提供各种服务的使者。
+這是泥潭公共NPC，天神派遣下來為玩家提供各種服務的使者。
 LONG);
         set("gender", "男性" );
         set("age", 30);
@@ -104,7 +104,7 @@ LONG);
         set("dex", 20);
         set("combat_exp", 1200000);
         set("inquiry", ([
-                "自创武功" : (: ask_skill :),
+                "自創武功" : (: ask_skill :),
                 "武功秘籍" : (: ask_skill :),
         ]));
 

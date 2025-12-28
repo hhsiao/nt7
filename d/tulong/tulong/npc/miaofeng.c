@@ -10,14 +10,14 @@ inherit F_COAGENT;
 void create()
 {
         object ob;
-        set_name("妙风使", ({ "miaofeng shi", "miaofeng", "shi" }));
+        set_name("妙風使", ({ "miaofeng shi", "miaofeng", "shi" }));
         set("long", @LONG
-这是一个三十多岁的中年美妇，装束奇异，不
-同普通的中土人士。这便是波斯明教总教教主
-座下的妙风使。
+這是一個三十多歲的中年美婦，裝束奇異，不
+同普通的中土人士。這便是波斯明教總教教主
+座下的妙風使。
 LONG);
-        set("title", "波斯总教教主座下");
-        set("nickname", HIG "云风月三使" NOR);
+        set("title", "波斯總教教主座下");
+        set("nickname", HIG "雲風月三使" NOR);
         set("gender", "女性");
         set("age", 33);
         set("attitude", "friendly");
@@ -60,7 +60,7 @@ LONG);
         prepare_skill("strike", "yinfeng-dao");
         prepare_skill("finger", "tougu-zhen");
 
-        create_family("波斯明教总舵", 32, "弟子");
+        create_family("波斯明教總舵", 32, "弟子");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({

@@ -2,10 +2,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("城门督察", ({ "du cha", "du", "cha" }));
+        set_name("城門督察", ({ "du cha", "du", "cha" }));
         set("long",
-                "一个身材高大、满脸横肉的督察，城门便是由\n"
-              "他负责监守。\n");
+                "一個身材高大、滿臉橫肉的督察，城門便是由\n"
+              "他負責監守。\n");
         set("gender", "男性");
         set("age", 42);
         set("attitude", "heroism");

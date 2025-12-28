@@ -117,9 +117,9 @@ int main(object me, string arg)
         item->move(ob, 1);
   addn("flowers/amount",10,ob);
         tell_object(ob, "\a", 0); 
-  tell_object(ob, HIY"一阵祥风拂面而来，你得到天神"+query("id",me)+"的馈赠！\n"NOR); 
-  tell_object(ob, HIY"一阵祥风拂面而来，你得到十朵鲜花，输入flowers查看。\n"NOR); 
-  tell_object(ob, HIY"一阵祥风拂面而来，你行囊里多了些东西，输入i查看。\n"NOR); 
+  tell_object(ob, HIY"一陣祥風拂面而來，你得到天神"+query("id",me)+"的饋贈！\n"NOR); 
+  tell_object(ob, HIY"一陣祥風拂面而來，你得到十朵鮮花，輸入flowers查看。\n"NOR); 
+  tell_object(ob, HIY"一陣祥風拂面而來，你行囊裡多了些東西，輸入i查看。\n"NOR); 
         write("ok.\n");
         return 1;
 }

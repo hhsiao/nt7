@@ -5,13 +5,13 @@ inherit ITEM;
 
 void create()
 {
-        set_name( "易经《说卦篇》", ({ "jing", "yi jing" }));
+        set_name( "易經《說卦篇》", ({ "jing", "yi jing" }));
         set_weight(200);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "本");
-                set("long", "这是一册易经。\n");
+                set("long", "這是一冊易經。\n");
                 set("value", 4000);
                 set("material", "paper");
                 set("skill", ([

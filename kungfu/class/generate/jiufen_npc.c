@@ -8,45 +8,45 @@ string jiufen_name = "";
 string quest_ob = "";
 
 string *say_msg = ({
-"$N冲着$n愤怒的说：赶紧把我的obj_name还给我，否则对你不客气！",
-"$N指着$n的鼻子对大家说：你们来评评道理，这个臭贼去年拿走了我的obj_name，到现在还不还给我！",
-"“碰”的一声，却是一张板凳给$N踹了老高，又落在$n的身边，空气中浓浓的火药味。",
-"$N死命的盯着$n，脚开始微微颤抖，似乎随时都会踹出去。",
-"$N咬咬牙，把手插进裤兜，似乎要掏出把什么东西来，看到$n冷冷的目光，却又空手抽了出来。",
-"$N越说越激动：obj_name是我当初最好朋友留下的唯一遗物，给$n骗走后至今未归还给我。",
-"$N咬牙切齿的看着$n，当初说好是借一个星期，现在过了一年了怎不见你还给我？",
-"$N满脸不屑的看着$n，你真是一个大骗子！",
-"$N怒火冲天的吼：就算是弄丢了你也得给我找回来！吐沫星子喷了$n满脸。",
-"$N一屁股坐地上，撒赖似的对着$n哼哼：不把东西还给我，以后我就吃你的喝你的用你的。",
-"$N眼睛瞪得和香炉一样大：$n你这个骗子，我不把你扁得满脸冒血，你就不知道花儿~为什么,那!样!红!!!~~",
-"只见$N一个箭步，“啪....啪....啪”转眼间已经在$n的屁股上留下十几个脚印。",
-"$N冲$n的鼻梁狠狠的打了一拳，然后$n眼泪哗啦哗啦流了一脸盆。",
-"$N看着$n的满脸的奸笑愤声暗骂道：“他奶奶的！！！”",
-"$N打了$n一记响亮的耳光。",
+"$N衝著$n憤怒的說：趕緊把我的obj_name還給我，否則對你不客氣！",
+"$N指著$n的鼻子對大家說：你們來評評道理，這個臭賊去年拿走了我的obj_name，到現在還不還給我！",
+"“碰”的一聲，卻是一張板凳給$N踹了老高，又落在$n的身邊，空氣中濃濃的火藥味。",
+"$N死命的盯著$n，腳開始微微顫抖，似乎隨時都會踹出去。",
+"$N咬咬牙，把手插進褲兜，似乎要掏出把什麼東西來，看到$n冷冷的目光，卻又空手抽了出來。",
+"$N越說越激動：obj_name是我當初最好朋友留下的唯一遺物，給$n騙走後至今未歸還給我。",
+"$N咬牙切齒的看著$n，當初說好是借一個星期，現在過了一年了怎不見你還給我？",
+"$N滿臉不屑的看著$n，你真是一個大騙子！",
+"$N怒火沖天的吼：就算是弄丟了你也得給我找回來！吐沫星子噴了$n滿臉。",
+"$N一屁股坐地上，撒賴似的對著$n哼哼：不把東西還給我，以後我就吃你的喝你的用你的。",
+"$N眼睛瞪得和香爐一樣大：$n你這個騙子，我不把你扁得滿臉冒血，你就不知道花兒~為什麼,那!樣!紅!!!~~",
+"只見$N一個箭步，“啪....啪....啪”轉眼間已經在$n的屁股上留下十幾個腳印。",
+"$N衝$n的鼻樑狠狠的打了一拳，然後$n眼淚嘩啦嘩啦流了一臉盆。",
+"$N看著$n的滿臉的奸笑憤聲暗罵道：“他奶奶的！！！”",
+"$N打了$n一記響亮的耳光。",
 "$N真想$n去死。",
-"$N对$n正色道：“直娘贼，你可不要自寻死路！”",
-"$N对着$n阴阴的笑：你不把obj_name还给我，你就别想有好日子过！",
+"$N對$n正色道：“直娘賊，你可不要自尋死路！”",
+"$N對著$n陰陰的笑：你不把obj_name還給我，你就別想有好日子過！",
 });
 
 string *reply_msg = ({
-"$N冲着$n故作茫然地说：你说什么obj_name啊？我怎么听不懂哦？",
-"$N指着$n的鼻子对大家说：你看看他这种穷酸样，会是一个有obj_name的人么？",
-"“碰”的一声，却是一张板凳给$N踹了老高，又落在$n的身边，空气中浓浓的火药味。",
-"$N冷冷的盯着$n的脚，生怕它突然踹过来。",
-"$N的火气也越来越大：$n你口口声声说是我好朋友，不就是一个破烂obj_name，也值得你这样？",
-"$N越说越激动：obj_name本来就是我父亲给$n的，现在回到我手里也是很正常的嘛。",
-"$N咬牙切齿的看着$n，就你这态度，还想我把obj_name还给你？做梦去吧！",
-"$N满脸不屑的看着$n，对付你这种猪头猪脑的土包子，还用讲什么道理？",
-"$N怒火冲天的吼：$n你给我听着，别说我现在没有obj_name，就算有也不会给了你！",
-"$N看着$n突然嘻嘻的笑：你急啊，你叫啊，我就是不给你，你能怎的？吃了我？",
-"$N眼睛瞪得和香炉一样大：$n你这个臭小子，我不把你扁得满脸冒血，你就不知道花儿~为什么,那!样!红!!!~~",
-"只见$N一个箭步，“啪....啪....啪”转眼间已经在$n的屁股上留下十几个脚印。",
-"$N冲$n的鼻梁狠狠的打了一拳，然后$n眼泪哗啦哗啦流了一脸盆。",
-"$N看着$n的怒气冲天的样子，突然哈哈一笑，翘起二郎腿慢慢的喝香茶。",
-"$N打了$n一记响亮的耳光。",
+"$N衝著$n故作茫然地說：你說什麼obj_name啊？我怎麼聽不懂哦？",
+"$N指著$n的鼻子對大家說：你看看他這種窮酸樣，會是一個有obj_name的人麼？",
+"“碰”的一聲，卻是一張板凳給$N踹了老高，又落在$n的身邊，空氣中濃濃的火藥味。",
+"$N冷冷的盯著$n的腳，生怕它突然踹過來。",
+"$N的火氣也越來越大：$n你口口聲聲說是我好朋友，不就是一個破爛obj_name，也值得你這樣？",
+"$N越說越激動：obj_name本來就是我父親給$n的，現在回到我手裡也是很正常的嘛。",
+"$N咬牙切齒的看著$n，就你這態度，還想我把obj_name還給你？做夢去吧！",
+"$N滿臉不屑的看著$n，對付你這種豬頭豬腦的土包子，還用講什麼道理？",
+"$N怒火沖天的吼：$n你給我聽著，別說我現在沒有obj_name，就算有也不會給了你！",
+"$N看著$n突然嘻嘻的笑：你急啊，你叫啊，我就是不給你，你能怎的？吃了我？",
+"$N眼睛瞪得和香爐一樣大：$n你這個臭小子，我不把你扁得滿臉冒血，你就不知道花兒~為什麼,那!樣!紅!!!~~",
+"只見$N一個箭步，“啪....啪....啪”轉眼間已經在$n的屁股上留下十幾個腳印。",
+"$N衝$n的鼻樑狠狠的打了一拳，然後$n眼淚嘩啦嘩啦流了一臉盆。",
+"$N看著$n的怒氣沖天的樣子，突然哈哈一笑，翹起二郎腿慢慢的喝香茶。",
+"$N打了$n一記響亮的耳光。",
 "$N真想$n去死。",
-"$N对$n正色道：“直娘贼，你可不要自寻死路！”",
-"$N对着$n阴阴的笑：想我把obj_name还给你，除非跪下来给我磕三个响头！",
+"$N對$n正色道：“直娘賊，你可不要自尋死路！”",
+"$N對著$n陰陰的笑：想我把obj_name還給你，除非跪下來給我磕三個響頭！",
 });
 
 void set_quest_ob(string arg);
@@ -64,9 +64,9 @@ void create()
         set("gender",query("gender"));
         set("age", 30 + random(30));
         if (arrayp(query("from")) && sizeof(query("from")))
-                set("long",query("from")[random(sizeof(query("form")))] + "\n据说这次重入江湖乃是因为跟人有了纠纷。\n");
+                set("long",query("from")[random(sizeof(query("form")))] + "\n據說這次重入江湖乃是因為跟人有了糾紛。\n");
         else
-                set("long","据说这次重入江湖乃是因为跟人有了纠纷\n");
+                set("long","據說這次重入江湖乃是因為跟人有了糾紛\n");
 
 
         set("attitude", "friendly");
@@ -76,7 +76,7 @@ void create()
         set_temp("apply/damage", 50);
         set_temp("born_time", time());
         set("inquiry", ([
-                 "调解" : (: ask_me :),
+                 "調解" : (: ask_me :),
          ]) );
         set_heart_beat(10);
 }
@@ -96,33 +96,33 @@ void set_jiufen_object(object ob)
 
 int accept_fight(object ob)
 {
-        command("say 你我之间又没什么纠纷，凑啥热闹！");
-        return notify_fail("你满脸羞愧，取消了跟" + this_object()->name() + "比试的念头！\n");
+        command("say 你我之間又沒什麼糾紛，湊啥熱鬧！");
+        return notify_fail("你滿臉羞愧，取消了跟" + this_object()->name() + "比試的念頭！\n");
 }
 
 int accept_kill(object ob)
 {
-        command("say 怎么说？你也来欺负我？");
+        command("say 怎麼說？你也來欺負我？");
         command("cry");
-        return notify_fail("刹那间你只觉得下不了手。\n"); 
+        return notify_fail("剎那間你只覺得下不了手。\n"); 
 }
 
 int accept_hit(object ob)
 {
-        command("say 怎么说？你也来欺负我？");
+        command("say 怎麼說？你也來欺負我？");
         command("cry");
         return 0;
 }
 
 int accept_touxi(object ob)
 {
-        tell_object(ob,"你刚想偷袭，突然发现" + this_object()->name() + "防备很严谨。\n"); 
+        tell_object(ob,"你剛想偷襲，突然發現" + this_object()->name() + "防備很嚴謹。\n"); 
         return 1;
 }
 
 int accept_ansuan(object who) 
 {
-        return notify_fail("你刚想暗算，可是发现" + this_object()->name() + "非常小心谨慎，让你无从下手。\n"); 
+        return notify_fail("你剛想暗算，可是發現" + this_object()->name() + "非常小心謹慎，讓你無從下手。\n"); 
 } 
 
 void heart_beat()
@@ -132,7 +132,7 @@ void heart_beat()
 
         if (time() - query_temp("born_time") > 900)
         {
-                message_vision("$N哭闹了半天，感觉没什么意思，讪讪的走了。\n", this_object());
+                message_vision("$N哭鬧了半天，感覺沒什麼意思，訕訕的走了。\n", this_object());
                 destruct_me();
                 return;
         }
@@ -143,16 +143,16 @@ void heart_beat()
            !environment(jiufen_object) ||
            environment(this_object()) != environment(jiufen_object))
         {
-                message_vision("$N哼了一声，恨恨的骂道：这个缩头乌龟，今天我暂且先走了，下次再来！\n", this_object());
+                message_vision("$N哼了一聲，恨恨的罵道：這個縮頭烏龜，今天我暫且先走了，下次再來！\n", this_object());
                 destruct_me();
                 return;
         }
 
-       //如果已经开始调节纠纷，则停止吵架
+       //如果已經開始調節糾紛，則停止吵架
        if (query_temp("on_tiaojie")) 
        {
-              message_vision("$N对着$n哼了一声。\n",this_object(),jiufen_object);
-              message_vision("$n恼怒的瞪着$N，看上去正在强忍着心头的怒气。\n",this_object(),jiufen_object);
+              message_vision("$N對著$n哼了一聲。\n",this_object(),jiufen_object);
+              message_vision("$n惱怒的瞪著$N，看上去正在強忍著心頭的怒氣。\n",this_object(),jiufen_object);
               return;
        }
 
@@ -167,7 +167,7 @@ void heart_beat()
 
 void destruct_me()
 {
-       message_vision("$N转身离开了。\n",this_object());
+       message_vision("$N轉身離開了。\n",this_object());
        destruct(this_object());
        return;
 }
@@ -182,14 +182,14 @@ int accept_object(object who,object ob)
                 return 0;
 
        if( !query("bunch_quest", who) || 
-           query("bunch_quest/type", who) != "调解纠纷" || 
+           query("bunch_quest/type", who) != "調解糾紛" || 
            query("bunch_quest/ob", who) != this_object() )
-               return notify_fail("你小子送我这个东西干什么？蒙我？\n");
+               return notify_fail("你小子送我這個東西幹什麼？蒙我？\n");
 
        if( query("name", ob) != quest_ob )
        {
                command("angry");
-               command("say TNND,拿这个破玩意来糊弄我？我要的是" + quest_ob + "，找不到就别来充老大！");
+               command("say TNND,拿這個破玩意來糊弄我？我要的是" + quest_ob + "，找不到就別來充老大！");
                return 0;
        }
 
@@ -204,13 +204,13 @@ int accept_object(object who,object ob)
        command("wa"+query("id", who));
        command("leyun"+query("id", who));
        command("spank"+query("id", who));
-       command("say 既然这位" + RANK_D->query_respect(who) + "如此仗义，那我也没话好说了，兄弟这次先告辞了，后会有期！");
+       command("say 既然這位" + RANK_D->query_respect(who) + "如此仗義，那我也沒話好說了，兄弟這次先告辭了，後會有期！");
 
        b = ([ "exp" : exp,
                "pot" : pot,
                "score" : score,
                "weiwang" : weiwang,
-               "prompt": "在帮助" + jiufen_name + HIG "调解纠纷的过程中，经过锻炼"
+               "prompt": "在幫助" + jiufen_name + HIG "調解糾紛的過程中，經過鍛鍊"
            ]);
 
        QUEST_D->delay_bonus(who, b);
@@ -226,10 +226,10 @@ string ask_me()
        object who;
        who = this_player();
        if( !query("bunch_quest", who) || 
-           query("bunch_quest/type", who) != "调解纠纷" || 
+           query("bunch_quest/type", who) != "調解糾紛" || 
            query("bunch_quest/ob", who) != this_object() )
-               return "你是谁？在一边JJYY的烦不烦，给我滚远点，这里没你的事！";
+               return "你是誰？在一邊JJYY的煩不煩，給我滾遠點，這裡沒你的事！";
        
        set_temp("on_tiaojie", 1, this_object());
-       return "调解？用什么来调解？莫非你还能帮我把" + quest_ob + "找回来啊！";
+       return "調解？用什麼來調解？莫非你還能幫我把" + quest_ob + "找回來啊！";
 }

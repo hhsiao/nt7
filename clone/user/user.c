@@ -16,28 +16,28 @@ inherit F_BUSINESS;
 #define PROTECT_AGE     14
 #endif
 
-// 死亡保护
+// 死亡保護
 protected int die_protect(object ob);
 protected void cancle_die_protect(object ob);
 
 // 分站使用
-nosave int admin_flag = 0;              // 是否是特殊的管理员？
+nosave int admin_flag = 0;              // 是否是特殊的管理員？
 
-// 数据是否完整？
-nosave int user_cracked = 0;            // RESTORE 时检查数据并设置该标志
+// 數據是否完整？
+nosave int user_cracked = 0;            // RESTORE 時檢查數據並設置該標誌
 
-nosave int net_dead;                    // 标志：是否断开了连接
-nosave int last_age_set = 0;            // 上一次更新AGE的时间
-nosave int user_say = 0;                // 一定时间以内玩家做的say-action
-nosave int user_command = 0;            // 一定时间以内玩家发送的命令
-nosave int attach_flag = 0;             // 是否正在和系统联络
-int        at_time = 0;                 // 在什么时间计算的
-int        ban_to = 0;                  // 在什么时间解禁玩家
-string     ban_say_msg = "";            // 禁止说话的消息
+nosave int net_dead;                    // 標誌：是否斷開了連接
+nosave int last_age_set = 0;            // 上一次更新AGE的時間
+nosave int user_say = 0;                // 一定時間以內玩家做的say-action
+nosave int user_command = 0;            // 一定時間以內玩家發送的命令
+nosave int attach_flag = 0;             // 是否正在和系統聯絡
+int        at_time = 0;                 // 在什麼時間計算的
+int        ban_to = 0;                  // 在什麼時間解禁玩家
+string     ban_say_msg = "";            // 禁止說話的消息
 
-nosave string my_defeater_id;           // 上一次打晕你的人ID
-nosave string my_killer_id;             // 上一次杀你的人的ID
-nosave int    craze = 0;                // 愤怒
+nosave string my_defeater_id;           // 上一次打暈你的人ID
+nosave string my_killer_id;             // 上一次殺你的人的ID
+nosave int    craze = 0;                // 憤怒
 
 // globals variables
 string  prison = 0;
@@ -90,8 +90,8 @@ int set_USER(mapping data)
         return 1;
 }
 
-// 判断是否具有管理权限：如果是版本发布站点或是通过 PASSWD
-// 命令设置过，则具有管理权限。具有该权限的巫师可是使用诸如
+// 判斷是否具有管理權限：如果是版本發佈站點或是通過 PASSWD
+// 命令設置過，則具有管理權限。具有該權限的巫師可是使用諸如
 // clone、call、log、smash、copyskill等命令。
 int is_admin()  { return /*VERSION_D->is_release_server() ||*/ admin_flag == 21 || getuid() == "lonely" || getuid() == "redl"; }
 int set_admin() { if( is_root(previous_object()) ) admin_flag = 21; }
@@ -105,13 +105,13 @@ void create()
 void terminal_type(string term_type)
 {
         set_temp("terminal_type", term_type);
-        message("system", "终端机型态设定为 "+term_type+"。\n", this_object());
+        message("system", "終端機型態設定為 "+term_type+"。\n", this_object());
 }
 
 void window_size(int width, int height)
 {
         set_temp("window_size", ({width, height}));
-        message("system", "终端窗口大小设置为 " + width + " × " + height + "。\n", this_object());
+        message("system", "終端窗口大小設置為 " + width + " × " + height + "。\n", this_object());
 }
 
 void reset()
@@ -150,7 +150,7 @@ string query_save_file()
         if( !stringp(id) ) return 0;
         return sprintf(DATA_DIR "user/%c/%s", id[0], id);
 }
-// 服务类
+// 服務類
 int quest_letter_srv() { return (int)query("srv/quest_letter") > time(); }
 int quit_save_srv() { return (int)query("srv/quit_save") > time(); }
 int start_room_srv() { return (int)query("srv/start_room") > time(); }
@@ -192,10 +192,10 @@ varargs mixed set(string idx, mixed para, object ob)
                         old_lvl = query("level", ob);
                         if( !old_lvl || old_lvl < 1 ) old_lvl = 1;
 
-                        // 等级封印
+                        // 等級封印
                         if( !UPDATE_D->can_improve_level(old_lvl) &&
                             para > to_int(pow(old_lvl, 3.0)*10000) ) {
-                                //tell_object(ob, HIR "由于你处于等级封印中，你的实战经验无法提升！\n" NOR);
+                                //tell_object(ob, HIR "由於你處於等級封印中，你的實戰經驗無法提升！\n" NOR);
                                 return;
                         }
 
@@ -218,7 +218,7 @@ varargs mixed set(string idx, mixed para, object ob)
                                         set("yuanshen_level", 1, ob);
                                         set("yuanshen/attack", 100, ob);
                                         set("yuanshen/defense", 100, ob);
-                                        tell_object(ob, HIR "你冲破了瓶颈，元婴成长为元神，你可以修炼元神了！\n");
+                                        tell_object(ob, HIR "你衝破了瓶頸，元嬰成長為元神，你可以修煉元神了！\n");
                                 }
 
                                 addn("ability", 4 * n, ob);
@@ -226,12 +226,12 @@ varargs mixed set(string idx, mixed para, object ob)
                                 addn("potential", 200 * n, ob);
                                 addn("magic_points", 20 * n, ob);
 
-                                tell_object(ob, HIY "只见一道红光飞进你的体内，你的人物等级提升了！\n" +
-                                        "此次升级，你获得了" + chinese_number(4 * n) +
-                                        "点能力点、" + chinese_number(200 * n) +
-                                        "点潜能、" + chinese_number(20 * n) +
-                                        "点实战体会、" + chinese_number(20 * n) +
-                                        "点灵慧！\n" NOR);
+                                tell_object(ob, HIY "只見一道紅光飛進你的體內，你的人物等級提升了！\n" +
+                                        "此次升級，你獲得了" + chinese_number(4 * n) +
+                                        "點能力點、" + chinese_number(200 * n) +
+                                        "點潛能、" + chinese_number(20 * n) +
+                                        "點實戰體會、" + chinese_number(20 * n) +
+                                        "點靈慧！\n" NOR);
 
                                 //UPDATE_D->improve_valid_level(ob, now_lvl);
                         }
@@ -264,20 +264,20 @@ varargs mixed set(string idx, mixed para, object ob)
                                 //addn("yuanshen/damage", n, ob);
                                 //addn("yuanshen/armor", n, ob);
 
-                                tell_object(ob, HIY "只见一道红光飞进你的体内，你的元神等级提升了！\n" NOR);
+                                tell_object(ob, HIY "只見一道紅光飛進你的體內，你的元神等級提升了！\n" NOR);
 
                                 if( now_lvl % 10 == 0 )
                                 {
-                                        message_vision(HIY "突然天空出现一道玄光与$N" HIY "身泛起的红光相接，$N" HIY "全体通红！\n" NOR, ob);
+                                        message_vision(HIY "突然天空出現一道玄光與$N" HIY "身泛起的紅光相接，$N" HIY "全體通紅！\n" NOR, ob);
                                         n = now_lvl / 10;
                                         s = old_lvl / 10;
                                         for( i=s+1;i<=n;i++ ) {
                                                 switch( i ) {
-                                                        //case 0 : tell_object(ob, HIY "你的元神等级提升到真元境界！\n" NOR);break;
+                                                        //case 0 : tell_object(ob, HIY "你的元神等級提升到真元境界！\n" NOR);break;
                                                         case 1 :
-                                                                addn("energy", 1, ob);tell_object(ob, HIY "你的元神等级提升到引魂境界！\n" NOR);break;
+                                                                addn("energy", 1, ob);tell_object(ob, HIY "你的元神等級提升到引魂境界！\n" NOR);break;
                                                         case 2 :
-                                                                addn("energy", 2, ob);tell_object(ob, HIY "你的元神等级提升到元罡境界！\n" NOR);break;
+                                                                addn("energy", 2, ob);tell_object(ob, HIY "你的元神等級提升到元罡境界！\n" NOR);break;
                                                         case 3 :
                                                                 addn("int", 2, ob);
                                                                 addn("str", 2, ob);
@@ -288,31 +288,31 @@ varargs mixed set(string idx, mixed para, object ob)
                                                                 addn("ys/con", 2, ob);
                                                                 addn("ys/dex", 2, ob);
                                                                 addn("energy", 2, ob);
-                                                                tell_object(ob, HIY "你的元神等级提升到阴阳境界！\n" NOR);
-                                                                tell_object(ob, HIR "你的各项先天天赋都提高了２点！\n" NOR);
+                                                                tell_object(ob, HIY "你的元神等級提升到陰陽境界！\n" NOR);
+                                                                tell_object(ob, HIR "你的各項先天天賦都提高了２點！\n" NOR);
                                                                 break;
                                                         case 4 :
-                                                                addn("energy", 3, ob);tell_object(ob, HIY "你的元神等级提升到神丹境界！\n" NOR);break;
+                                                                addn("energy", 3, ob);tell_object(ob, HIY "你的元神等級提升到神丹境界！\n" NOR);break;
                                                         case 5 :
-                                                                addn("energy", 3, ob);tell_object(ob, HIY "你的元神等级提升到神婴境界！\n" NOR);break;
+                                                                addn("energy", 3, ob);tell_object(ob, HIY "你的元神等級提升到神嬰境界！\n" NOR);break;
                                                         case 6 :
                                                                 addn("energy", 4, ob);
                                                                 set("yuanshen/avoid_weak", 10, ob);
                                                                 set("yuanshen/research_effect", 100, ob);
-                                                                tell_object(ob, HIY "你的元神等级提升到神通境界！\n" NOR);
-                                                                tell_object(ob, HIY "你抵抗虚弱的能力提高了１０点！\n" NOR);
-                                                                tell_object(ob, HIY "你对武功的研究效率提高了１００％！\n" NOR);
+                                                                tell_object(ob, HIY "你的元神等級提升到神通境界！\n" NOR);
+                                                                tell_object(ob, HIY "你抵抗虛弱的能力提高了１０點！\n" NOR);
+                                                                tell_object(ob, HIY "你對武功的研究效率提高了１００％！\n" NOR);
                                                                 break;
                                                         case 7 :
-                                                                addn("energy", 4, ob);tell_object(ob, HIY "你的元神等级提升到渡虚境界！\n" NOR);break;
+                                                                addn("energy", 4, ob);tell_object(ob, HIY "你的元神等級提升到渡虛境界！\n" NOR);break;
                                                         case 8 :
-                                                                addn("energy", 5, ob);tell_object(ob, HIY "你的元神等级提升到神劫境界！\n" NOR);break;
+                                                                addn("energy", 5, ob);tell_object(ob, HIY "你的元神等級提升到神劫境界！\n" NOR);break;
                                                         case 9 :
                                                                 addn("energy", 5, ob);
                                                                 set("yuanshen/immortal", 5, ob);
                                                                 //set("yuanshen/reduce_damage", 50, ob);
-                                                                tell_object(ob, HIY "你的元神等级提升到不灭境界！\n" NOR);
-                                                                tell_object(ob, HIY "你的元神终于修炼成盘古真身神功！\n" NOR);
+                                                                tell_object(ob, HIY "你的元神等級提升到不滅境界！\n" NOR);
+                                                                tell_object(ob, HIY "你的元神終於修煉成盤古真身神功！\n" NOR);
 
                                                                 my = ob->query_entire_dbase();
                                                                 spc_data = ([ "hermit" : 1 ]);
@@ -321,7 +321,7 @@ varargs mixed set(string idx, mixed para, object ob)
                                                                 spc_data += ([ skill : 1 ]);
                                                                 */
                                                                 files = reborn_skill;
-                                                                files -= keys(my["special_skill"]); // 去除转世技能重叠的bug
+                                                                files -= keys(my["special_skill"]); // 去除轉世技能重疊的bug
                                                                 if( sizeof(files) > 0 )
                                                                 {
                                                                         skill = files[random(sizeof(files))];
@@ -334,11 +334,11 @@ varargs mixed set(string idx, mixed para, object ob)
                                                                         }
                                                                 }
                                                                 my["special_skill"] += spc_data;
-                                                                tell_object(ob, HIY "由于元神修炼到不灭境界，你成功的激活了血脉力量及先天技能！\n" NOR);
+                                                                tell_object(ob, HIY "由於元神修煉到不滅境界，你成功的激活了血脈力量及先天技能！\n" NOR);
                                                                 break;
                                                         default:
                                                                 addn("yuanshen/immortal", 1, ob);
-                                                                tell_object(ob, HIY "你的盘古真身神功触发几率提升了１点！\n" NOR);
+                                                                tell_object(ob, HIY "你的盤古真身神功觸發幾率提升了１點！\n" NOR);
                                                                 break;
                                                 }
                                         }
@@ -412,7 +412,7 @@ int save()
 
         /*
         if( user_cracked )
-                // 数据不完整，不能保存
+                // 數據不完整，不能保存
                 return 1;
         */
 
@@ -466,7 +466,7 @@ int restore()
                 /*
                 if( stringp(sec_id = query("sec_id")) ) {
                         if( crypt(calc_sec_id(1), sec_id) != sec_id ) {
-                                // 数据不完整
+                                // 數據不完整
                                 log_file("static/user",
                                          sprintf("%s %s's data my be corrupt.\n",
                                                  log_time(), getuid()));
@@ -482,7 +482,7 @@ int restore()
                 }
                 */
 
-                // 数据完整
+                // 數據完整
                 user_cracked = 0;
         }
         if( !query("on_time") )
@@ -510,7 +510,7 @@ void update_age()
                 // time too long
                 delta = 100;
 
-        // 离线练功时间
+        // 離線練功時間
         if( !interactive(this_object()) && query("doing") )
                 addn("offline_time", delta);
         else
@@ -521,7 +521,7 @@ void update_age()
             !query("env/halt_age") ) {
                 // Update age
                 addn("mud_age", delta);
-                if( query("monfee") < time() ) // 月费控制，非月费用户才在这里扣点
+                if( query("monfee") < time() ) // 月費控制，非月費用戶才在這裡扣點
                         addn("on_time", delta);
                 if( time_to_leave )
                         time_to_leave -= delta;
@@ -550,7 +550,7 @@ void update_age()
         }
         if( query("age") < 18 && !query("no_newbie") ) set("newbie", 1);
 
-        // 八荒六合唯我独尊功
+        // 八荒六合唯我獨尊功
         if( query_skill_mapped("force") == "bahuang-gong" ) {
                 if( age >= 60 ) {
                         set("mud_age", 1382400);
@@ -569,7 +569,7 @@ void update_age()
         if( query_skill("fanlao-huantong", 1) >= 500 && query("age") > 25 )
                 set("age", 25);
 
-        //设置生日状态
+        //設置生日狀態
         if( (int)query("mud_age") % 86400 < 240 )
                 set("on_birthday", 1);
         else
@@ -601,8 +601,8 @@ void user_dump(int type)
         {
         case DUMP_NET_DEAD:
                 if( environment() ) {
-                            tell_room(environment(this_object()), query("name", this_object()) + "断线超过 " +
-                                  NET_DEAD_TIMEOUT / 60 + " 分钟，自动退出这个世界。\n");
+                            tell_room(environment(this_object()), query("name", this_object()) + "斷線超過 " +
+                                  NET_DEAD_TIMEOUT / 60 + " 分鐘，自動退出這個世界。\n");
                 }
                 catch(command("quit"));
                 if( this_object() && !query("doing") ) {
@@ -613,18 +613,18 @@ void user_dump(int type)
 
         case DUMP_IDLE:
                 if( query_temp("learned_idle_force") ) {
-                        message_vision("$N狂笑三声，道：我终于明白了！\n",
+                        message_vision("$N狂笑三聲，道：我終於明白了！\n",
                                        this_object());
-                        tell_object(this_object(), "你经过长时间的发"
-                                    "呆，终于对发呆神功的理解又深了一层！\n");
+                        tell_object(this_object(), "你經過長時間的發"
+                                    "呆，終於對發呆神功的理解又深了一層！\n");
                         improve_skill("idle-force", 360000);
                         delete_temp("learned_idle_force");
                 } else
-                        tell_object(this_object(), "对不起，您已经发呆超过 " +
-                                    IDLE_TIMEOUT / 60 + " 分钟了，请下次再来。\n");
+                        tell_object(this_object(), "對不起，您已經發呆超過 " +
+                                    IDLE_TIMEOUT / 60 + " 分鐘了，請下次再來。\n");
                 if( environment() ) {
-                             if (query("env/invisible") < 10) tell_room(environment(), "一阵风吹来，将发呆中的" + query("name") +
-                                   "化为一堆飞灰，消失了。\n", ({this_object()}));
+                             if (query("env/invisible") < 10) tell_room(environment(), "一陣風吹來，將發呆中的" + query("name") +
+                                   "化為一堆飛灰，消失了。\n", ({this_object()}));
                 }
                 command("quit");
                 if( this_object() && !query("doing") ) {
@@ -661,15 +661,15 @@ protected void net_dead()
         net_dead = 1;
         if( userp(this_object()) && !query("doing") ) {
                 call_out("user_dump", NET_DEAD_TIMEOUT, DUMP_NET_DEAD);
-                tell_room(environment(this_object()), query("name", this_object()) + "断线了。\n", this_object());
+                tell_room(environment(this_object()), query("name", this_object()) + "斷線了。\n", this_object());
                 set_temp("net_dead_time", time());
-                // CHANNEL_D->do_channel(this_object(), "sys", "断线了。");
-                // 副本里断线不取消战斗状态
+                // CHANNEL_D->do_channel(this_object(), "sys", "斷線了。");
+                // 副本里斷線不取消戰鬥狀態
                 if( environment() && base_name(environment())[0..1] != "/f" && !this_object()->query_condition("killer") && !query("no_protect", environment()) )
                 remove_all_enemy(1);
         } else {
                 if( environment() )
-                        message("vision", name() + "离线了。\n",
+                        message("vision", name() + "離線了。\n",
                                 environment(), ({ this_object() }));
         }
 }
@@ -680,7 +680,7 @@ void reconnect()
         set_heart_beat(1);
         net_dead = 0;
         remove_call_out("user_dump");
-        tell_object(this_object(), "重新连线完毕。\n");
+        tell_object(this_object(), "重新連線完畢。\n");
 }
 
 // skill variable & function
@@ -735,15 +735,15 @@ int query_neili_limit()
 
         fam = query("family/family_name");
         if( query("class") == "bonze" &&
-            (fam == "雪山寺" || fam == "少林派" || fam == "峨嵋派" || fam == "血刀门" || fam == "密宗") )
+            (fam == "雪山寺" || fam == "少林派" || fam == "峨嵋派" || fam == "血刀門" || fam == "密宗") )
                 neili_limit += neili_limit / 10;
 
-        // 天地幽然提高内力上限
+        // 天地幽然提高內力上限
         if (query("special_skill/youran"))
         {
                 neili_limit = neili_limit + query("lhpoint/special/youran") * 300;
         }
-        // 侠骨丹心同样提高内力上限，不过略比天地悠然低，约80%
+        // 俠骨丹心同樣提高內力上限，不過略比天地悠然低，約80%
         if (query("special_skill/xiagu"))
         {
                 neili_limit = neili_limit + query("lhpoint/special/youran") * 240;
@@ -752,11 +752,11 @@ int query_neili_limit()
         if (query("special_skill/diwang"))
                 neili_limit = neili_limit + neili_limit * 2 / 10;
 
-        // 逆转乾坤提升5000点内力
+        // 逆轉乾坤提升5000點內力
         if (query("special_skill/nizhuan"))
                 neili_limit += 5000;
 
-        // 天生奇骨增加5%内力上限
+        // 天生奇骨增加5%內力上限
         if (query("special_skill/qigu"))
                 neili_limit = neili_limit + neili_limit / 20;
 
@@ -769,7 +769,7 @@ int query_neili_limit()
         if( times = (int)query("reborn/times") )
                 neili_limit = neili_limit + times*neili_limit / 2;
 
-        // 转世技能增加内力上限
+        // 轉世技能增加內力上限
         if( query("special_skill/ghost") )
                 neili_limit += neili_limit * 50 / 100;
 
@@ -811,21 +811,21 @@ int query_current_neili_limit()
 
         fam = query("family/family_name");
         if( query("class") == "bonze" &&
-            (fam == "雪山寺" || fam == "少林派" || fam == "峨嵋派" || fam == "血刀门" || fam == "密宗") )
+            (fam == "雪山寺" || fam == "少林派" || fam == "峨嵋派" || fam == "血刀門" || fam == "密宗") )
                 neili += neili / 10;
 
-        // 天地幽然提高内力上限
+        // 天地幽然提高內力上限
         if (query("special_skill/youran"))
         {
                 neili += query("lhpoint/special/youran") * 300;
         }
-        // 侠骨丹心同样提高内力上限，不过略比天地悠然低，约80%
+        // 俠骨丹心同樣提高內力上限，不過略比天地悠然低，約80%
         if (query("special_skill/xiagu"))
         {
                 neili = neili + query("lhpoint/special/youran") * 240;
         }
 
-        // 六阴鬼脉提高内力上限30%
+        // 六陰鬼脈提高內力上限30%
         if (query("special_skill/guimai"))
         {
                 neili = neili + neili * 3 / 10;
@@ -835,11 +835,11 @@ int query_current_neili_limit()
         if (query("special_skill/diwang"))
                 neili = neili + neili * 2 / 10;
 
-        // 逆转乾坤提升500点内力
+        // 逆轉乾坤提升500點內力
         if (query("special_skill/nizhuan"))
                 neili += 500;
 
-        // 天生奇骨增加5%内力上限
+        // 天生奇骨增加5%內力上限
         if (query("special_skill/qigu"))
                 neili = neili + neili / 20;
 
@@ -852,7 +852,7 @@ int query_current_neili_limit()
         if( times = (int)query("reborn/times") )
                 neili += times * neili / 2;
 
-        // 转世技能增加内力上限
+        // 轉世技能增加內力上限
         if( query("special_skill/ghost") )
                 neili += neili * 50 / 100;
 
@@ -878,18 +878,18 @@ int query_jingli_limit()
         if( query("reborn/times") && query_skill_mapped("force") == "xiantian-gong" )
                 limit += limit * 30 / 100;
 
-        // 侠骨丹心提高精力上限
+        // 俠骨丹心提高精力上限
         if (query("special_skill/xiagu"))
         {
                 limit += query("lhpoint/special/xiagu") * 400;
         }
-        // 天地悠然同样提高精力上限，只是比侠骨丹心略低，约50%
+        // 天地悠然同樣提高精力上限，只是比俠骨丹心略低，約50%
         if (query("special_skill/youran"))
         {
                 limit += query("lhpoint/special/xiagu") * 200;
         }
 
-        // 逆转乾坤提升500点精力
+        // 逆轉乾坤提升500點精力
         if (query("special_skill/nizhuan"))
                 limit += 500;
 
@@ -1034,12 +1034,12 @@ int accept_fight(object ob)
         if( query_temp("pending/fight") == ob )
                 return 1;
 
-        tell_object(this_object(), YEL "如果你愿意和对方进行比试，请你也对" +
+        tell_object(this_object(), YEL "如果你願意和對方進行比試，請你也對" +
                     ob->name() + "("+ (string)query("id", ob)+")"+
                     "下一次 fight 指令。\n" NOR);
 
-        tell_object(ob, YEL "由于对方是由玩家控制的人物，你必须等对方同意才" +
-              "能进行比试。\n" NOR);
+        tell_object(ob, YEL "由於對方是由玩家控制的人物，你必須等對方同意才" +
+              "能進行比試。\n" NOR);
 
         return 0;
 }
@@ -1049,7 +1049,7 @@ int accept_hit(object ob)
         if( !die_protect(ob) )
                 return 0;
 
-        message_vision("$N大喝道：" + ob->name() + "，你要干什么？\n",
+        message_vision("$N大喝道：" + ob->name() + "，你要幹什麼？\n",
                        this_object(), ob);
         return 1;
 }
@@ -1063,7 +1063,7 @@ int accept_kill(object ob)
                 return -1;
 
         tell_object(this_object(), HIR "如果你要和" + ob->name() +
-                "性命相搏，请你也对这个人("+query("id", ob)+
+                "性命相搏，請你也對這個人("+query("id", ob)+
                 ")下一次 kill 指令。\n" NOR);
         return 1;
 }
@@ -1073,7 +1073,7 @@ int accept_ansuan(object who)
         if( !die_protect(who) )
                 return 0;
 
-        command(random(2) ? "say 嗯！怎么..." : "say 啊！不好！");
+        command(random(2) ? "say 嗯！怎麼..." : "say 啊！不好！");
         return 1;
 }
 
@@ -1085,14 +1085,14 @@ int accept_touxi(object who)
         switch (random(2))
         {
         case 0:
-                message_vision("$N大吃一惊，叫道：“好你个" +
-                               RANK_D->query_rude(who) + "！真不要脸！”\n",
+                message_vision("$N大吃一驚，叫道：“好你個" +
+                               RANK_D->query_rude(who) + "！真不要臉！”\n",
                                this_object(), who);
                 break;
 
         default:
-                message_vision("$N仓皇之间，不及说话，只得接下$n"
-                               "这一招。\n", this_object(), who);
+                message_vision("$N倉皇之間，不及說話，只得接下$n"
+                               "這一招。\n", this_object(), who);
                 break;
         }
 
@@ -1117,11 +1117,11 @@ int die_protect(object ob)
         object env;
         object me = this_object();
 
-        // 只有玩家之间才有死亡保护
+        // 只有玩家之間才有死亡保護
         if( !userp(me) || !userp(ob) )
                 return 1;
 
-        // 在比武场所不考虑死亡保护
+        // 在比武場所不考慮死亡保護
         if( query_temp("in_pkd") )
                 return 1;
 
@@ -1130,41 +1130,41 @@ int die_protect(object ob)
             query("no_death", env) )
                 return 1;
 
-        // 去除攻击者的死亡保护信息
+        // 去除攻擊者的死亡保護信息
         if( userp(me) )
                 cancle_die_protect(ob);
 
         if( query("NO_PK") )
         {
-                message_vision("$N是江湖隐士，$n不能进行攻击。\n",
+                message_vision("$N是江湖隱士，$n不能進行攻擊。\n",
                                me, ob);
                 return 0;
         }
 
         if( query("NO_PK", ob) )
         {
-                message_vision("$n是江湖隐士，不能对$N进行攻击。\n",
+                message_vision("$n是江湖隱士，不能對$N進行攻擊。\n",
                                me, ob);
                 return 0;
         }
 
         if( objectp(WAR_D->query_marshal()) && this_object() == WAR_D->query_marshal() )
         {
-                message_vision("$N是王朝战争主帅，$n不能进行攻击。\n",
+                message_vision("$N是王朝戰爭主帥，$n不能進行攻擊。\n",
                                me, ob);
                 return 0;
         }
 
         if( query("newbie") )
         {
-                message_vision("$N处于新手保护时期，$n不能进行攻击。\n",
+                message_vision("$N處於新手保護時期，$n不能進行攻擊。\n",
                                me, ob);
                 return 0;
         }
 
-        // 被攻击者处于保护时期，本攻击失败
+        // 被攻擊者處於保護時期，本攻擊失敗
         if( query("die_protect/last_dead") + query("die_protect/duration") > time() ) {
-                message_vision("$N处于被保护时期，$n不能进行攻击。\n",
+                message_vision("$N處於被保護時期，$n不能進行攻擊。\n",
                                me, ob);
                 return 0;
         }
@@ -1220,14 +1220,14 @@ int ban_say(int raw)
                 return 0;
 
         if( is_in_prison() ) {
-                notify_fail("你省省吧，好好做你的牢，少折腾。\n");
+                notify_fail("你省省吧，好好做你的牢，少折騰。\n");
                 return 1;
         }
 
         t = time() & 0xFFFFFFFE;
         if( ban_to > t ) {
-                notify_fail(ban_say_msg + "，请于" +
-                            appromix_time(ban_to - t) + "以后再尝试。\n");
+                notify_fail(ban_say_msg + "，請於" +
+                            appromix_time(ban_to - t) + "以後再嘗試。\n");
                 return 1;
         }
 
@@ -1242,13 +1242,13 @@ int ban_say(int raw)
                 user_say++;
 
         if( user_say > MAX_SAY_ONE_SECTION ) {
-                ban_say_until(BAN_SAY_PERIOD, "系统禁止你送出信息");
+                ban_say_until(BAN_SAY_PERIOD, "系統禁止你送出信息");
                 /*
                 CHANNEL_D->do_channel(find_object(MASTER_OB), "rumor",
-                        "听说" + query("name") + "因为太罗嗦，被人堵住了嘴。");
+                        "聽說" + query("name") + "因為太羅嗦，被人堵住了嘴。");
                 */
-                notify_fail(HIR "由于你发布的信息太多，因此系统暂时"
-                            "禁止你发出信息。\n" NOR);
+                notify_fail(HIR "由於你發佈的信息太多，因此係統暫時"
+                            "禁止你發出信息。\n" NOR);
                 return 1;
         }
 
@@ -1266,7 +1266,7 @@ void permit_say(int n)
                 ban_to -= n;
 
         if( ban_to <= time() )
-                tell_object(this_object(), "你可以继续发布信息了！\n");
+                tell_object(this_object(), "你可以繼續發佈信息了！\n");
 }
 
 // thow the person into prison
@@ -1282,8 +1282,8 @@ void get_into_prison(object ob, string p, int time)
                 time_to_leave += time * 60;
                 if( ob && time )
                         CHANNEL_D->do_channel(find_object(MASTER_OB), "rumor",
-                                "听说" + query("name") + "的刑期被" +
-                                query("name", ob)+"加长了"+
+                                "聽說" + query("name") + "的刑期被" +
+                                query("name", ob)+"加長了"+
                                 appromix_time(time * 60) + "。");
                 return;
         }
@@ -1292,13 +1292,13 @@ void get_into_prison(object ob, string p, int time)
                 p->catch_back(me);
                 set("startroom", prison, me);
                 me->move(prison);
-                message_vision("“啪”的一声，$N狠狠的摔倒了地上。\n", me);
+                message_vision("“啪”的一聲，$N狠狠的摔倒了地上。\n", me);
                 // if( living(me)) me->unconcious();
                 if( living(me) )
                         me->enable_player();
 
                 CHANNEL_D->do_channel(find_object(MASTER_OB), "rumor",
-                        "听说" + query("name") + "越狱潜逃，结果被抓"
+                        "聽說" + query("name") + "越獄潛逃，結果被抓"
                         "回去了。");
 
                 save();
@@ -1309,8 +1309,8 @@ void get_into_prison(object ob, string p, int time)
 
         if( ob ) {
                 CHANNEL_D->do_channel(find_object(MASTER_OB), "rumor",
-                        "听说" + query("name") + "被" + query("name", ob)+
-                        "送进了" + p->short() + HIM "，禁闭" +
+                        "聽說" + query("name") + "被" + query("name", ob)+
+                        "送進了" + p->short() + HIM "，禁閉" +
                         appromix_time(time * 60) + "。");
         }
 
@@ -1320,7 +1320,7 @@ void get_into_prison(object ob, string p, int time)
         time_to_leave += time * 60;
         save();
 
-        message_vision("“啪”的一声，$N重重的摔倒了地上。\n", me);
+        message_vision("“啪”的一聲，$N重重的摔倒了地上。\n", me);
         set("jing", 1, me);
         set("eff_jing", 1, me);
         set("qi", 1, me);
@@ -1343,8 +1343,8 @@ void leave_prison(object ob, int time)
                 time_to_leave -= time * 60;
                 if( time_to_leave > 0 ) {
                         CHANNEL_D->do_channel(find_object(MASTER_OB), "rumor",
-                                "听说" + query("name") + "的刑期被" +
-                                query("name", ob)+"缩短了"+
+                                "聽說" + query("name") + "的刑期被" +
+                                query("name", ob)+"縮短了"+
                                 appromix_time(time * 60) + "。");
                         return;
                 }
@@ -1365,18 +1365,18 @@ void leave_prison(object ob, int time)
 
         if( ob )
                 CHANNEL_D->do_channel(find_object(MASTER_OB), "rumor",
-                        "听说" + query("name") + "被" + ob->name() +
-                        "提前释放了。");
+                        "聽說" + query("name") + "被" + ob->name() +
+                        "提前釋放了。");
         else
                 CHANNEL_D->do_channel(find_object(MASTER_OB), "rumor",
-                        "听说" + query("name") + "已经刑满释放了。");
+                        "聽說" + query("name") + "已經刑滿釋放了。");
 }
 
 /*
 varargs void die(object killer)
 {
         if( prison ) {
-                set_temp("die_reason", "惨死在监狱中");
+                set_temp("die_reason", "慘死在監獄中");
                 clear_condition(0);
                 receive_damage("qi", 0);
                 prison = 0;
@@ -1444,10 +1444,10 @@ string command_verb()
 #define CRAZE_LIMIT_2   5000    // for 心狠手辣
 #define CRAZE_LIMIT_3   2000
 
-// 愤怒气息
+// 憤怒氣息
 int query_craze() { return craze; }
 
-// 最大的愤怒气息
+// 最大的憤怒氣息
 int query_max_craze()
 {
         switch (query("character"))
@@ -1463,26 +1463,26 @@ int query_max_craze()
         }
 }
 
-// 现在是否处于最愤怒的状态
+// 現在是否處於最憤怒的狀態
 int is_most_craze()
 {
         return (craze > 0) && (craze >= query_max_craze());
 }
 
-// 因为被打倒而震怒
+// 因為被打倒而震怒
 void craze_of_defeated(string defeater_id)
 {
         my_defeater_id = defeater_id;
 }
 
-// 因为被击毙而震怒
+// 因為被擊斃而震怒
 void craze_of_die(string killer_id)
 {
         my_killer_id = killer_id;
         craze = query_max_craze();
 }
 
-// 愤怒的攻击对手后调用这个函数清除对象
+// 憤怒的攻擊對手後調用這個函數清除對象
 void craze_defeated(string enemy_id)
 {
         if( enemy_id == my_defeater_id )
@@ -1502,7 +1502,7 @@ int is_hating(string enemy_id)
         return 0;
 }
 
-// 提升愤怒，返回提升的有效值
+// 提升憤怒，返回提升的有效值
 int improve_craze(int amount)
 {
         int limit;
@@ -1519,7 +1519,7 @@ int improve_craze(int amount)
         return amount;
 }
 
-// 消耗愤怒，返回消耗的有效值
+// 消耗憤怒，返回消耗的有效值
 int cost_craze(int n)
 {
         if( n < 0 )
@@ -1534,14 +1534,14 @@ int cost_craze(int n)
 }
 
 /*
-// 编辑文件
+// 編輯文件
 void edit_file(string file)
 {
         ed(file);
 }
 */
 
-// 是否是结拜兄弟？
+// 是否是結拜兄弟？
 int is_brother(mixed ob)
 {
         string id;
@@ -1554,11 +1554,11 @@ int is_brother(mixed ob)
         else
                 return 0;
 
-        // 是否是普通结拜兄弟
+        // 是否是普通結拜兄弟
         if( query("brothers/" + id) )
                 return 1;
 
-        // 是否是结盟的兄弟
+        // 是否是結盟的兄弟
         return 0;
 }
 
@@ -1572,7 +1572,7 @@ int query_vipscore()
         return query("vip/score");
 }
 
-// 计算完整性数据和
+// 計算完整性數據和
 string calc_sec_id(int raw)
 {
         mapping my;
@@ -1584,7 +1584,7 @@ string calc_sec_id(int raw)
 
         sum = 0;
 
-        // 累计所有的数据
+        // 累計所有的數據
         if( mapp(my = query_entire_dbase()) ) {
                 foreach (key in keys(my) - ({ "sec_id" })) {
                         sum += sizeof(key);
@@ -1595,7 +1595,7 @@ string calc_sec_id(int raw)
                 }
         }
 
-        // 累计所有的武功技能
+        // 累計所有的武功技能
         // if( mapp(my = query_skills()))
         if( mapp(my = query_skillc()) ) {
                 foreach (key in keys(my) ) {
@@ -1607,10 +1607,10 @@ string calc_sec_id(int raw)
                 }
         }
 
-        // 因动态装备在载入前后涉及到字符转换的问题，累计结果会不一样
-        // 故取消累计所有携带的物品
+        // 因動態裝備在載入前後涉及到字符轉換的問題，累計結果會不一樣
+        // 故取消累計所有攜帶的物品
         /*
-        // 累计所有携带的物品
+        // 累計所有攜帶的物品
         if( arrayp(list = query_autoload_info()) ) {
                 foreach (key in list) {
                         sum += sizeof(key);
@@ -1620,7 +1620,7 @@ string calc_sec_id(int raw)
         }
         */
 
-        // 转化成字符串
+        // 轉化成字符串
         str = sprintf("%d", sum);
         // str[0] = (sum % 26) + 'a';
 
@@ -1639,9 +1639,9 @@ string query_info()
 
         if( query("chblk_on") ) {
                 if( stringp(query("chblk_by")) )
-                        msg += "频道已经被 " + query("chblk_by") + " 关闭。\n";
+                        msg += "頻道已經被 " + query("chblk_by") + " 關閉。\n";
                 else
-                        msg += "频道被关闭中。\n";
+                        msg += "頻道被關閉中。\n";
         }
 
         dexp = query("combat_exp") - query("last_examine/combat_exp");
@@ -1653,12 +1653,12 @@ string query_info()
         if( dquest < 0 ) dquest += 1000;
 
         if( dt > 60 ) {
-                msg += sprintf("自上次检查 %s 以来：\n"
-                               "连线时间增加了 %s。\n"
-                               "师门任务完成了 %d 个。\n"
-                               "平均每分钟获得经验速度：%d\n"
-                               "平均每分钟获得潜能速度：%d\n"
-                               "平均每分钟获得体会速度：%d\n",
+                msg += sprintf("自上次檢查 %s 以來：\n"
+                               "連線時間增加了 %s。\n"
+                               "師門任務完成了 %d 個。\n"
+                               "平均每分鐘獲得經驗速度：%d\n"
+                               "平均每分鐘獲得潛能速度：%d\n"
+                               "平均每分鐘獲得體會速度：%d\n",
                                appromix_time(dt),
                                appromix_time(dage),
                                dquest,
@@ -1678,7 +1678,7 @@ void guest_count()
 
 protected void do_guest_leave()
 {
-        tell_object(this_object(), "\n您参观时间已到，如您需要注册正式账号，请使用其它 ID 进入游戏。\n\n");
+        tell_object(this_object(), "\n您參觀時間已到，如您需要註冊正式賬號，請使用其它 ID 進入遊戲。\n\n");
         command("quit");
 }
 

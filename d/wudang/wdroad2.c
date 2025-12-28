@@ -4,8 +4,8 @@ void create()
 {
         set("short", "青石大道");
         set("long", @LONG
-你走在一条青石大道上，北边隐约可见到扬州城的南城墙。
-此处往东南望去，可以看到一个市镇。
+你走在一條青石大道上，北邊隱約可見到揚州城的南城牆。
+此處往東南望去，可以看到一個市鎮。
 LONG);
         set("outdoors", "sanbuguan");
         set("exits", ([

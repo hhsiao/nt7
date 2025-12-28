@@ -2,15 +2,15 @@
 
 inherit NPC;
 
-string lookdesc = "她一身清淡白衣，如风拂玉树，雪裹琼苞，兼之生性清冷，真乃仙子。\n";
+string lookdesc = "她一身清淡白衣，如風拂玉樹，雪裹瓊苞，兼之生性清冷，真乃仙子。\n";
 
 void create()
 {
-        set_name(HIM "蓝蝶仙子" NOR, ({ "landie xianzi", "landie", "xianzi"}));
+        set_name(HIM "藍蝶仙子" NOR, ({ "landie xianzi", "landie", "xianzi"}));
         set("title", HIC "崆峒仙境" NOR);
         set("gender", "女性");
         set("age", 22);
-        set("long", lookdesc); // 初始化时会重新设置lookdesc可以显示那个玩家能够对我造成伤害
+        set("long", lookdesc); // 初始化時會重新設置lookdesc可以顯示那個玩家能夠對我造成傷害
         set("attitude", "friendly");
         set("str", 21);
         set("int", 40);
@@ -19,7 +19,7 @@ void create()
         set("per", 30);
         set("shen_type", 1);
         set("scborn/ok", 1);
-        set("no_nuoyi", 1); // 不被挪移影响
+        set("no_nuoyi", 1); // 不被挪移影響
         set("qi", 5000000);
         set("max_qi", 5000000);
 
@@ -81,7 +81,7 @@ void create()
                 (: perform_action, "whip.feng twice" :),
         }) );
 
-        set("jianling-summon",1); // 不会被剑灵DAMAGE_ALL伤害
+        set("jianling-summon",1); // 不會被劍靈DAMAGE_ALL傷害
         
         setup();
 
@@ -96,7 +96,7 @@ void init_me(object jianling, object wanjia)
         set("mytarget", wanjia);
         set("env", environment(jianling));
         
-        set("long", lookdesc + HIR "目前只有" + HIY + wanjia->name() +  HIR "能够对其造成伤害！\n");
+        set("long", lookdesc + HIR "目前只有" + HIY + wanjia->name() +  HIR "能夠對其造成傷害！\n");
 }
 
 int accept_fight(object ob)
@@ -121,18 +121,18 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->start_busy(12 + random(12));
         me->receive_wound("qi", 200000 + random(90000), ob);
-        return HIY "$N" HIY "娇喝一声，奋力攻击，竟逼得$n" HIY "手忙脚乱。\n" NOR;
+        return HIY "$N" HIY "嬌喝一聲，奮力攻擊，竟逼得$n" HIY "手忙腳亂。\n" NOR;
 }
 
 
 int receive_damage(string type, int damage, object who)
 {
-        // 只有指定目标才能对我造成伤害
+        // 只有指定目標才能對我造成傷害
         if (! who)return 0;
         
         if ( who != query("mytarget"))
         {
-                message_vision(HIG "$N" HIG "看透了$n" HIG "的攻势，竟丝毫无伤！\n" NOR, this_object(), who);
+                message_vision(HIG "$N" HIG "看透了$n" HIG "的攻勢，竟絲毫無傷！\n" NOR, this_object(), who);
                 return 0;
         }
 }
@@ -164,7 +164,7 @@ void unconcious()
 void die(object killer)
 {
 
-        message_vision(HIC "只见一道光芒从$N" HIC "体内升起，$N" HIC "竟化作一缕蓝蝶飞走了！\n" NOR, this_object());
+        message_vision(HIC "只見一道光芒從$N" HIC "體內升起，$N" HIC "竟化作一縷藍蝶飛走了！\n" NOR, this_object());
                                         
         command("chat* tlbb " + query("id"));                           
         destruct(this_object());
@@ -176,12 +176,12 @@ void remove()
 {
         object dob;
         
-        dob = query("jianling");// 获取对应的剑灵OB
+        dob = query("jianling");// 獲取對應的劍靈OB
         
         if (! objectp(dob))return;
         
-        delete("mylandie", dob);//通知剑灵，蓝蝶消失了
-        set("last_summon_landie", time(), dob);//通知剑灵，蓝蝶消失时间
+        delete("mylandie", dob);//通知劍靈，藍蝶消失了
+        set("last_summon_landie", time(), dob);//通知劍靈，藍蝶消失時間
         
         return;
 }

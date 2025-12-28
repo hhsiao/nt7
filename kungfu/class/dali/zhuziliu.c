@@ -10,7 +10,7 @@ void create()
         set("gender", "男性" );
         set("age", 48);
         set("long",
-                "这是一个中年书生，手里拿了一本旧书，正读得摇头晃脑的。 \n");
+                "這是一箇中年書生，手裡拿了一本舊書，正讀得搖頭晃腦的。 \n");
         set("str", 25);
         set("dex", 20);
         set("con", 17);
@@ -24,15 +24,15 @@ void create()
 
         set("attitude", "peaceful");
         set("inquiry", ([
-                "段皇爷" : "他以经死了。",
-                "让路" :  "路我是不让的，你要敢跳，我就戳你一指。",
+                "段皇爺" : "他以經死了。",
+                "讓路" :  "路我是不讓的，你要敢跳，我就戳你一指。",
                 ]) );
 
         setup();
 
         set("chat_chance", 20);
         set("chat_msg", ({
-                "朱子柳问道：是樵夫放你们上来的么？他有什么信物给你们带上来？\n",
+                "朱子柳問道：是樵夫放你們上來的麼？他有什麼信物給你們帶上來？\n",
         }) );
 }
 
@@ -46,70 +46,70 @@ int accept_object(object who, object ob)
 {
         object me=this_object();
 
-        if( query("name", ob) == "锈铁斧"
+        if( query("name", ob) == "鏽鐵斧"
                  && query("material", ob) == "steel"){
 
                 remove_call_out("destroying");
                 call_out("destroying", 1, ob);
 
                 if( query("visited", me)>3){
-                        write("朱子柳摇头道：对不住，我师傅今天和师叔出去游山了，阁下改天再来吧。\n");
+                        write("朱子柳搖頭道：對不住，我師傅今天和師叔出去遊山了，閣下改天再來吧。\n");
                         return 1;
                 }
                 addn("visited", 1, me);
 
                 if( query_temp("marks/子柳", who)){
-                        write("朱子柳笑眯眯的说：答不出来就好好去读读书嘛。\n");
+                        write("朱子柳笑眯眯的說：答不出來就好好去讀讀書嘛。\n");
                         return 1;
                 }
                 else {
-                        write("朱子柳抬头看了你一眼："+"这位"+RANK_D->query_respect(who) + "也懂诗词？\n");
-                        write("朱子柳摇头晃脑的吟道：\n");
+                        write("朱子柳抬頭看了你一眼："+"這位"+RANK_D->query_respect(who) + "也懂詩詞？\n");
+                        write("朱子柳搖頭晃腦的吟道：\n");
                         switch(random(7)) {
                         case 0:
-                                write("抽刀断水水更流，举杯销愁愁更愁。\n");
-                                write("人生在世不称意，明朝散发弄□□。\n");
+                                write("抽刀斷水水更流，舉杯銷愁愁更愁。\n");
+                                write("人生在世不稱意，明朝散發弄□□。\n");
                                 set_temp("marks/子柳", 1, who);
                                 break;
                         case 1:
-                                write("郑公粉绘随长夜，曹霸丹青已白头。\n");
-                                write("天下何曾有山水，人间不解重□□。 \n");
+                                write("鄭公粉繪隨長夜，曹霸丹青已白頭。\n");
+                                write("天下何曾有山水，人間不解重□□。 \n");
                                 set_temp("marks/子柳", 2, who);
                                 break;
                         case 2:
-                                write("锦瑟无端五十弦，一弦一柱思华年。\n");
-                                write("庄生晓梦迷蝴蝶，望帝春心托杜鹃。\n");
-                                write("沧海明珠应有泪，蓝天日暖玉生烟。\n");
-                                write("此情可待成追忆，□□□□□□□。\n");
+                                write("錦瑟無端五十弦，一弦一柱思華年。\n");
+                                write("莊生曉夢迷蝴蝶，望帝春心託杜鵑。\n");
+                                write("滄海明珠應有淚，藍天日暖玉生煙。\n");
+                                write("此情可待成追憶，□□□□□□□。\n");
                                 set_temp("marks/子柳", 3, who);
                                 break;
                         case 3:
-                                write("白骨露於野，千里无鸡鸣。 \n");
-                                write("生民百遗一，念之断□□。  \n");
+                                write("白骨露於野，千里無雞鳴。 \n");
+                                write("生民百遺一，念之斷□□。  \n");
                                 set_temp("marks/子柳", 4, who);
                                 break;
                         case 4:
-                                write("梳洗罢，独倚望江楼。过尽千帆皆不是，\n");
-                                write("斜晖脉脉水□□，肠断白苹洲！ \n");
+                                write("梳洗罷，獨倚望江樓。過盡千帆皆不是，\n");
+                                write("斜暉脈脈水□□，腸斷白蘋洲！ \n");
                                 set_temp("marks/子柳", 5, who);
                                 break;
                         case 5:
-                                write("墙里秋千墙外道，墙外行人，墙里佳人笑。 \n");
-                                write("笑渐不闻声渐悄，□□□□□□□ \n");
+                                write("牆裡鞦韆牆外道，牆外行人，牆裡佳人笑。 \n");
+                                write("笑漸不聞聲漸悄，□□□□□□□ \n");
                                 set_temp("marks/子柳", 6, who);
                                 break;
                         case 6:
-                                write("恨春去，不与人期，弄月色， \n");
-                                write("空遗满地□□□  \n");
+                                write("恨春去，不與人期，弄月色， \n");
+                                write("空遺滿地□□□  \n");
                                 set_temp("marks/子柳", 7, who);
                                 break;
                         case 7:
-                                write("前不见古人，后不见来者， \n");
+                                write("前不見古人，後不見來者， \n");
                                 write("□□□□□□□□□□□□ \n");
                                 set_temp("marks/子柳", 8, who);
                                 break;
                         }
-                        message_vision("朱子柳笑眯眯的问道：我不记得了，你能告诉我么？\n", who);
+                        message_vision("朱子柳笑眯眯的問道：我不記得了，你能告訴我麼？\n", who);
                         return 1;
                 }
         }
@@ -129,36 +129,36 @@ int do_answer(string arg)
     riddle=query_temp("marks/子柳", this_player());
 
     if (!riddle) {
-                write("我又不是你师傅，你用不着回答我。\n");
+                write("我又不是你師傅，你用不著回答我。\n");
                 return 1;
         }
     if( !arg || arg=="" ) {
-                write("想好谜底再回答。\n");
+                write("想好謎底再回答。\n");
                 return 1;
         }
 
-    message("vision", me->name() + "朗声回答。\n", environment(me), ({me}) );
+    message("vision", me->name() + "朗聲回答。\n", environment(me), ({me}) );
         switch (arg) {
         case "扁舟": soln=1; break;
-        case "骅骝" : soln=2; break;
-        case "只是当时已枉然" : soln=3; break;
-        case "人肠" : soln=4; break;
+        case "驊騮" : soln=2; break;
+        case "只是當時已枉然" : soln=3; break;
+        case "人腸" : soln=4; break;
         case "悠悠" : soln=5; break;
-        case "多情却被无情恼" : soln=6; break;
+        case "多情卻被無情惱" : soln=6; break;
         case "梨花雪": soln=7; break;
-        case "念天地之悠悠独伧然而涕下" : soln=8; break;
+        case "念天地之悠悠獨傖然而涕下" : soln=8; break;
         default :
-                say("朱子柳冷笑道，你扫过盲了么。\n"+me->name()+"急忙退下山去。\n");
+                say("朱子柳冷笑道，你掃過盲了麼。\n"+me->name()+"急忙退下山去。\n");
                 me->move("/d/heizhao/shanlu9");
                 return 1;
         }
 
         if (riddle==soln) {
                 delete_temp("marks/子柳", this_player());
-                say ("朱子柳一鞠到地，对" + me->name() + "说道：高明，高明。佩服，佩服\n");
-                write ("朱子柳移开三尺，你从他身边一跃而过，上山而去。 \n");
+                say ("朱子柳一鞠到地，對" + me->name() + "說道：高明，高明。佩服，佩服\n");
+                write ("朱子柳移開三尺，你從他身邊一躍而過，上山而去。 \n");
                 me->move("/d/heizhao/yideng8");
         }
-        else write (" 不对！！\n");
+        else write (" 不對！！\n");
         return 1;
 }

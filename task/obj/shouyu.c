@@ -2,15 +2,15 @@
 inherit TASK;
 void create()
 {
-        set_name(HIG"方丈手谕"NOR,({ "shouyu" }) );
+        set_name(HIG"方丈手諭"NOR,({ "shouyu" }) );
         set_weight(100);
         if( clonep() )
                 destruct(this_object());
         else {
-                set("unit", "纸");
+                set("unit", "紙");
                 set("material", "paper");
-                set("long", "这是一张空白的方丈专用手谕笺。\n");
+                set("long", "這是一張空白的方丈專用手諭箋。\n");
         }
-        set("owner", "玄慈大师");
+        set("owner", "玄慈大師");
         setup();
 }  

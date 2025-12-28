@@ -19,7 +19,7 @@ int valid_learn(object me)
 
 int practice_skill(object me)
 {
-        return notify_fail("素心决只能用学(learn)来增加熟练度。\n");
+        return notify_fail("素心決只能用學(learn)來增加熟練度。\n");
 }
 
 string exert_function_file(string func)

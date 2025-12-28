@@ -1,10 +1,10 @@
-// 圣火普照
+// 聖火普照
 
 #include <ansi.h>
 
 inherit F_SSERVER;
 
-string name() { return "圣火普照"; }
+string name() { return "聖火普照"; }
 
 int perform(object me, object target)
 {
@@ -15,29 +15,29 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("你只能对战斗中的对手施展圣火普照。\n");
+                return notify_fail("你只能對戰鬥中的對手施展聖火普照。\n");
 
         if (query_temp("weapon", me))
                 return notify_fail("你只有空手才能使用光明神掌。\n");
 
         if (!(me->query_skill_mapped("strike") == "guangming-zhang"))
-                return notify_fail("你并没有激发光明神掌，如何用圣火普照？\n");
+                return notify_fail("你並沒有激發光明神掌，如何用聖火普照？\n");
 
         if (!(me->query_skill_prepared("strike") == "guangming-zhang"))
-                return notify_fail("你并没有准备光明神掌，如何用圣火普照？\n");
+                return notify_fail("你並沒有準備光明神掌，如何用聖火普照？\n");
 
         if ((int)me->query_skill("guangming-zhang", 1) < 80)
-                return notify_fail("你的光明神掌火候不够。\n");
+                return notify_fail("你的光明神掌火候不夠。\n");
 
         if ((int)query("max_neili", me) < 500)
-                return notify_fail("你的内力修为不足，无法用内力施展圣火普照。\n");
+                return notify_fail("你的內力修為不足，無法用內力施展聖火普照。\n");
 
         if ((int)query("neili", me) < 200)
-                return notify_fail("你现在内息不足，无法用内力施展圣火普照      。\n");
+                return notify_fail("你現在內息不足，無法用內力施展聖火普照      。\n");
 
-        msg = HIR "只见$N" HIR "面色端庄，无喜无怒，无慈无悲，口中喃喃不绝，浑身红光大盛！\n\n"
-              "$N" HIR "双掌缓缓抬起，两团耀眼的血色光芒笼罩着手掌，看起来诡异绝伦！\n\n"
-              "猛然间，$N" HIR "吐气长啸，双掌迅猛推出，红色光芒带着滚滚热浪将$n整个包围起来！\n\n"NOR;
+        msg = HIR "只見$N" HIR "面色端莊，無喜無怒，無慈無悲，口中喃喃不絕，渾身紅光大盛！\n\n"
+              "$N" HIR "雙掌緩緩抬起，兩團耀眼的血色光芒籠罩著手掌，看起來詭異絕倫！\n\n"
+              "猛然間，$N" HIR "吐氣長嘯，雙掌迅猛推出，紅色光芒帶著滾滾熱浪將$n整個包圍起來！\n\n"NOR;
 
         addn("neili", -50, me);
 
@@ -49,12 +49,12 @@ int perform(object me, object target)
 
         if (ap < dp)
         {
-                msg += HIY "$n" HIY "屏气凝神，不受满眼红芒的困扰"
-                       "，身形急闪，挣脱了$N" HIY "这烈焰滔天的可怕一掌。\n\n";
+                msg += HIY "$n" HIY "屏氣凝神，不受滿眼紅芒的困擾"
+                       "，身形急閃，掙脫了$N" HIY "這烈焰滔天的可怕一掌。\n\n";
         } else
         {
-                msg += HIR "$n" HIR "只觉得眼前红光一片，再也看不到$N的身形，"
-                               "大惊失色下，火浪已经席卷而止，接着胸口给重重印上一掌，不由鲜血狂喷！\n\n" NOR;
+                msg += HIR "$n" HIR "只覺得眼前紅光一片，再也看不到$N的身形，"
+                               "大驚失色下，火浪已經席捲而止，接著胸口給重重印上一掌，不由鮮血狂噴！\n\n" NOR;
                         target->receive_damage("qi", damage, me );
                         target->receive_wound("qi", damage/2, me);
                         if (! target->is_busy())

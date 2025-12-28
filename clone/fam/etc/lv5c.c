@@ -8,8 +8,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                 set("long", YEL "埋藏于极地中心的乌炭，可炼化世间万物。\n" NOR);
-                set("unit", "块");
+                 set("long", YEL "埋藏於極地中心的烏炭，可煉化世間萬物。\n" NOR);
+                set("unit", "塊");
                 set("value", 15000);
         }
         setup();

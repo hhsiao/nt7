@@ -4,11 +4,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("赵敏", ({ "zhao min", "min", "zhao"}));
-        set("title", HIY "大元绍敏郡主" NOR);
+        set_name("趙敏", ({ "zhao min", "min", "zhao"}));
+        set("title", HIY "大元紹敏郡主" NOR);
         set("long",
-"她脸泛红霞，容色丽都。十分美丽之中，更带着三分英气，三分豪态，同
-时雍容华贵，自有一副端严之姿，令人肃然起敬，不敢逼视。\n");
+"她臉泛紅霞，容色麗都。十分美麗之中，更帶著三分英氣，三分豪態，同
+時雍容華貴，自有一副端嚴之姿，令人肅然起敬，不敢逼視。\n");
         set("gender", "女性");
         set("age", 15);
         set("attitude", "peaceful");
@@ -46,8 +46,8 @@ void create()
         map_skill("unarmed", "changquan");
 
         set("inquiry", ([
-            "张无忌" :  "张公子远在昆仑，不知他近来可好？秋冷春寒，可有寒衣？\n",
-            "倚天剑" :  "倚天为天下神兵，怎么，你想要？\n",
+            "張無忌" :  "張公子遠在崑崙，不知他近來可好？秋冷春寒，可有寒衣？\n",
+            "倚天劍" :  "倚天為天下神兵，怎麼，你想要？\n",
         ]));
 
         setup();

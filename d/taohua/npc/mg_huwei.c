@@ -4,8 +4,8 @@ inherit NPC;
 
 void create()
 {
-        set_name("护卫", ({ "hu wei", "wei" }));
-        set("long", "一个神情剽悍的蒙古大汉，是军中将官的随从，均是熟习武艺之辈。\n");
+        set_name("護衛", ({ "hu wei", "wei" }));
+        set("long", "一個神情剽悍的蒙古大漢，是軍中將官的隨從，均是熟習武藝之輩。\n");
         set("gender", "男性");
         set("age", 25);
         set("attitude", "heroism");
@@ -45,7 +45,7 @@ void leave(object ob)
         object me = this_object();
 
         if(!ob){
-        message_vision("$N匆匆忙忙地离开了。\n"NOR,me);
+        message_vision("$N匆匆忙忙地離開了。\n"NOR,me);
         destruct(me);
         }
         else {
@@ -55,7 +55,7 @@ void leave(object ob)
 }
 int accept_fight(object me)
 {
-        command("say 领教个屁，看本大爷宰了你！\n");
+        command("say 領教個屁，看本大爺宰了你！\n");
         kill_ob(me);
         return 1;
 }

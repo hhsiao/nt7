@@ -11,17 +11,17 @@ void init()
 }
 void create()
 {
-        set_name(HIW"补阴丸"NOR, ({"buyin wan","wan"}));
+        set_name(HIW"補陰丸"NOR, ({"buyin wan","wan"}));
         set_weight(5);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ 
         {
                 set("unit", "粒");
-                set("long","这是一粒补阴丸，滋补阴柔之气有奇效，不过常人服食恐有异常 。\n");
+                set("long","這是一粒補陰丸，滋補陰柔之氣有奇效，不過常人服食恐有異常 。\n");
                 set("value", 0);
                 set("no_sell", 1);
-                set("no_drop","这样东西不能离开你。\n");
+                set("no_drop","這樣東西不能離開你。\n");
                 set("value", 2000);
                 set("medicine", 1);
 
@@ -38,10 +38,10 @@ int do_eat(string arg)
         skill=me->query_skill("pixie-jian", 1);
 
         if (!id(arg))
-        return notify_fail("你要吃什么？\n");
+        return notify_fail("你要吃什麼？\n");
         if(skill<200)
         {
-        message_vision(HIR"$N吃下一粒补阴丸，只觉得浑身一阵冰凉，一股阴寒之气之丹田串向全身，刹那间心神失首，经脉受损!\n"NOR, this_player());
+        message_vision(HIR"$N吃下一粒補陰丸，只覺得渾身一陣冰涼，一股陰寒之氣之丹田串向全身，剎那間心神失首，經脈受損!\n"NOR, this_player());
         if( query("max_jingli", me)>50 )
         {
         addn("eff_jingli", -20, me);
@@ -64,8 +64,8 @@ int do_eat(string arg)
                         if( query("pixie/buyin-wan/lvl", me) >= skill && query("pixie/buyin-wan/lvl", me)>0 )
 
                         {
-                                message_vision(HIG"$N吃下一粒补阴丸，只觉得浑身一阵冰凉，一股阴寒之气之丹田串向全身，刹那间阳气锐减，阴气陡增。\n"NOR, this_player());
-                                message_vision(HIR"不料以前的药力似乎并未消失，连续服用效果适的其反。$N刹那间心神失首，经脉受损。\n"NOR, this_player());
+                                message_vision(HIG"$N吃下一粒補陰丸，只覺得渾身一陣冰涼，一股陰寒之氣之丹田串向全身，剎那間陽氣銳減，陰氣陡增。\n"NOR, this_player());
+                                message_vision(HIR"不料以前的藥力似乎並未消失，連續服用效果適的其反。$N剎那間心神失首，經脈受損。\n"NOR, this_player());
         if( query("max_jingli", me)>50 )
         {
         addn("eff_jingli", -20, me);
@@ -76,7 +76,7 @@ int do_eat(string arg)
                         else
                         {
                         
-                                message_vision(HIG"$N吃下一粒补阴丸，只觉得浑身一阵冰凉，一股阴寒之气之丹田串向全身，刹那间阳气锐减，阴气陡增。\n"NOR, this_player());
+                                message_vision(HIG"$N吃下一粒補陰丸，只覺得渾身一陣冰涼，一股陰寒之氣之丹田串向全身，剎那間陽氣銳減，陰氣陡增。\n"NOR, this_player());
                                 addn("eff_jingli", 5+random(2), me);
                                 addn("max_jingli", 5+random(2), me);
                                 set("pixie/buyin-wan/lvl", skill, me);
@@ -85,8 +85,8 @@ int do_eat(string arg)
                 }
                 else
                 {
-                message_vision(HIG"$N吃下一粒补阴丸，只觉得浑身一阵冰凉，一股阴寒之气之丹田串向全身，刹那间阳气锐减，阴气陡增。\n"NOR, this_player());
-                message_vision(HIR"不料此药剂量与你身体不符，刹那间$N心神失首，经脉受损。\n"NOR, this_player());
+                message_vision(HIG"$N吃下一粒補陰丸，只覺得渾身一陣冰涼，一股陰寒之氣之丹田串向全身，剎那間陽氣銳減，陰氣陡增。\n"NOR, this_player());
+                message_vision(HIR"不料此藥劑量與你身體不符，剎那間$N心神失首，經脈受損。\n"NOR, this_player());
                 addn("max_jingli", -20, me);
                 me->unconcious();
         

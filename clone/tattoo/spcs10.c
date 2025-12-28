@@ -8,9 +8,9 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", NOR + WHT "这是一块羊皮碎片，上面绘有残缺不全"
-                            "的冥皇炼狱纹样。\n" NOR);
-                set("unit", "块");
+                set("long", NOR + WHT "這是一塊羊皮碎片，上面繪有殘缺不全"
+                            "的冥皇煉獄紋樣。\n" NOR);
+                set("unit", "塊");
                 set("value", 10);
                 set("material", "paper");
         }

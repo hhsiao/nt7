@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("无[2;37;0m[2;37;0m", ({"gyill"}));        
+        set_name("無[2;37;0m[2;37;0m", ({"gyill"}));        
         set("gender", "男性");                
         set("long", "nick $RED$卡迪拉克[2;37;0m
-它是眼兄的魔幻兽。
+它是眼兄的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

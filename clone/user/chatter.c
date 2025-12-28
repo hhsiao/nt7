@@ -48,27 +48,27 @@ string find_chat_command(string verb)
 
 string long()
 {
-        return "这是" + name() + "的聊天魂魄。\n";
+        return "這是" + name() + "的聊天魂魄。\n";
 }
 
 int accept_fight(object ob)
 {
-        message_vision("$N急忙对$n道：这位" + RANK_D->query_respect(ob) +
-                       "，有话好好说，怎么可以这个样子？\n",
+        message_vision("$N急忙對$n道：這位" + RANK_D->query_respect(ob) +
+                       "，有話好好說，怎麼可以這個樣子？\n",
                        this_object(), ob);
         return 0;
 }
 
 int accept_hit(object ob)
 {
-        message_vision("$N看了看$n，打了个哈欠，显得无聊极了。\n",
+        message_vision("$N看了看$n，打了個哈欠，顯得無聊極了。\n",
                        this_object(), ob);
         return 0;
 }
 
 int accept_kill(object ob)
 {
-        message_vision("$N一脸无辜的望着$n，显得委屈极了。\n",
+        message_vision("$N一臉無辜的望著$n，顯得委屈極了。\n",
                        this_object(), ob);
         return 0;
 }
@@ -79,7 +79,7 @@ int accept_ask(object ob, string topic)
                 return 0;
 
         MESSAGE_D->tell_user(this_object(), FUN_NOTICE,
-                             sprintf("%s(%s)向你打听有关『%s』的消息。\n",
+                             sprintf("%s(%s)向你打聽有關『%s』的消息。\n",
                                      name(1), query("id"), topic));
         return 1;
 }
@@ -146,7 +146,7 @@ int force_me(string arg)
         int flag;
         int result;
 
-        set_temp("notify_fail", "你想要做什么？\n");
+        set_temp("notify_fail", "你想要做什麼？\n");
 
         // start record command result
         flag = objectp(this_player());
@@ -180,7 +180,7 @@ varargs int move(mixed dest, int raw)
                 if (! ob)
                 {
                         MESSAGE_D->tell_object(this_object(), FUN_NOTICE,
-                                               HIR "你无法移动到(" + HIG +
+                                               HIR "你無法移動到(" + HIG +
                                                dest + HIR ")。\n" NOR);
                         return 0;
                 }
@@ -232,7 +232,7 @@ void new_file_arrival(string file, string content)
         if (file_size(file) == -2)
         {
                 MESSAGE_D->tell_user(this_object(),
-                                     FUN_NOTICE, "更新文件失败\n。");
+                                     FUN_NOTICE, "更新文件失敗\n。");
                 return;
         }
 
@@ -259,12 +259,12 @@ varargs void edit_file(string file)
         if (fs > MAX_FILE_SIZE)
         {
                 MESSAGE_D->tell_user(this_object(), FUN_NOTICE,
-                                     "文件太长了，请用 FTP 进行更新。\n");
+                                     "文件太長了，請用 FTP 進行更新。\n");
                 return;
         } else
         {
                 MESSAGE_D->tell_user(this_object(), FUN_NOTICE,
-                                     "不能编辑这个文件。\n");
+                                     "不能編輯這個文件。\n");
                 return;
         }
 
@@ -293,7 +293,7 @@ void start_more_file(string file)
         if (fs == -1)
         {
                 MESSAGE_D->tell_user(this_object(), FUN_NOTICE,
-                                     "没有这个文件。\n");
+                                     "沒有這個文件。\n");
         } else
         if (fs >= 0 && fs <= MAX_FILE_SIZE)
         {
@@ -302,14 +302,14 @@ void start_more_file(string file)
         if (fs > MAX_FILE_SIZE)
         {
                 MESSAGE_D->tell_user(this_object(), FUN_NOTICE,
-                                     "文件太长了，请用 FTP 下载察看。\n");
+                                     "文件太長了，請用 FTP 下載察看。\n");
                 return;
         }
 
         if (! content)
         {
                 MESSAGE_D->tell_user(this_object(), FUN_NOTICE,
-                                     "你没有权利读取这个文件。\n");
+                                     "你沒有權利讀取這個文件。\n");
                 return;
         }
 
@@ -328,8 +328,8 @@ int do_look(string arg)
 
         if (! objectp(env = environment(me)) || env == find_object(VOID_OB))
         {
-                MESSAGE_D->tell_user(me, FUN_LOOK, "你现在处在缥缈的"
-                                     "虚空中，四周只有无数闪亮的星光。\n");
+                MESSAGE_D->tell_user(me, FUN_LOOK, "你現在處在縹緲的"
+                                     "虛空中，四周只有無數閃亮的星光。\n");
                 return 1;
         }
 
@@ -355,7 +355,7 @@ int do_look(string arg)
                         if (! ob)
                         {
                                 MESSAGE_D->tell_user(me, FUN_NOTICE,
-                                        "你看了半天，却没能发现(" +
+                                        "你看了半天，卻沒能發現(" +
                                         arg + ")在附近。\n");
                                 return 1;
                         }

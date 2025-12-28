@@ -3,7 +3,7 @@
 inherit TASK;
 void create()
 {
-        set_name(HIR"彩霞披风"NOR, ({ "cxpifeng" }) );
+        set_name(HIR"彩霞披風"NOR, ({ "cxpifeng" }) );
         set_weight(3000);
         if( clonep() )
             destruct(this_object());

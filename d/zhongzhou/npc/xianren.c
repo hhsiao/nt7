@@ -2,11 +2,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("闲人", ({ "xian ren", "xian", "ren" }) );
+        set_name("閒人", ({ "xian ren", "xian", "ren" }) );
         set("gender", "男性" );
         set("age", 32);
         set("long",
-              "一个在街上闲逛的游人。\n");
+              "一個在街上閒逛的遊人。\n");
         set("shen_type", 1);
         set("combat_exp", 10000);
         set("str", 17);
@@ -18,7 +18,7 @@ void create()
         set_skill("unarmed",20);
         set("chat_chance", 1);
         set("chat_msg", ({
-                "闲人低声嘀咕了一声。\n",
+                "閒人低聲嘀咕了一聲。\n",
         }) );
 
         setup();

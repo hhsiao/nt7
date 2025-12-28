@@ -7,9 +7,9 @@ void create()
 {
         set_name(HIC "人道佛" NOR, ({ "rendao fo", "rendao", "fo" }) );
         set("gender", "男性");
-        set("title", HIW "人道守护者" NOR);
+        set("title", HIW "人道守護者" NOR);
         set("age", 200);
-        set("long", HIC "守卫六道中的人道的佛。\n\n" NOR);
+        set("long", HIC "守衛六道中的人道的佛。\n\n" NOR);
 
         set("age", 50);
         set("str", 91);
@@ -94,7 +94,7 @@ void fight_ob(object ob)
         if (is_fighting(ob))
                 return;
 
-        message_vision(HIW "$N" HIW "冷哼一声，一股云气自身后"
+        message_vision(HIW "$N" HIW "冷哼一聲，一股雲氣自身後"
                        "升起，似真似幻。\n" NOR, this_object(), ob);
                                                       
         ::fight_ob(ob);
@@ -109,8 +109,8 @@ mixed hit_ob(object me, object ob, int damage_bouns)
         if (damage < 0) damage = 0;
         ob->receive_wound("qi", damage, me);
         set("neili",query("max_neili",  me), me);
-        return HIB "$N" HIB "“吼”的一声吐出一团烈火，登时令$n"
-               HIB "犹如进入烈火地狱。\n" NOR;
+        return HIB "$N" HIB "“吼”的一聲吐出一團烈火，登時令$n"
+               HIB "猶如進入烈火地獄。\n" NOR;
 }
 
 void win()
@@ -119,8 +119,8 @@ void win()
         if (! objectp(ob = query_competitor()))
                 return;
 
-        message_vision(HIB "$N看了看$n，嘿嘿笑道：“你知道你打不败我意味着什么吗？"
-                       "就意味着死亡！哈哈！！！”\n" NOR,
+        message_vision(HIB "$N看了看$n，嘿嘿笑道：“你知道你打不敗我意味著什麼嗎？"
+                       "就意味著死亡！哈哈！！！”\n" NOR,
                        this_object(), ob);
                        
         call_out("ob_die", 1, ob);  
@@ -130,7 +130,7 @@ void win()
 void ob_die(object me)
 {
         me->move("/d/death/youmingjie");   
-        set_temp("die_reason", "被人道佛给活活杀死了", me);
+        set_temp("die_reason", "被人道佛給活活殺死了", me);
         me->die();       
 }
 
@@ -140,9 +140,9 @@ void lost()
         if (! objectp(ob = query_competitor()))
                 return;
 
-        message_vision( HIB "$N哎呀一声，对$n怒道：“这次算你侥幸，下次可没有这么便宜了！”\n" NOR,
+        message_vision( HIB "$N哎呀一聲，對$n怒道：“這次算你僥倖，下次可沒有這麼便宜了！”\n" NOR,
                         this_object(), ob );
-        message_vision( HIB "$N说完随手一挥，一道强风包围你，你发现来到了阎罗殿！\n" NOR, 
+        message_vision( HIB "$N說完隨手一揮，一道強風包圍你，你發現來到了閻羅殿！\n" NOR, 
                         this_object(), ob );
                      
         set("reborn_lunhui", "rendao", ob);

@@ -13,7 +13,7 @@ void init()
 
 void create()
 {
-        set_name(WHT "千蛛万毒手秘芨" NOR, ({ "qianzhu miji", "miji", "book"}));
+        set_name(WHT "千蛛萬毒手秘芨" NOR, ({ "qianzhu miji", "miji", "book"}));
         set_weight(500);
         /*if( clonep() )
                 set_default_object(__FILE__);
@@ -22,7 +22,7 @@ void create()
                 set("material", "paper");
                 set("no_sell", 1);
                 set("long", WHT
-        "这是失传已久的千蛛万毒手秘芨下半部，你可以从中研究一些千蛛万毒手的绝招。\n\n" NOR, );
+        "這是失傳已久的千蛛萬毒手秘芨下半部，你可以從中研究一些千蛛萬毒手的絕招。\n\n" NOR, );
         }
 }
 
@@ -34,7 +34,7 @@ int do_du(string arg)
 
         if( arg == "miji" || arg == "qianzhu miji" || arg == "book" )
         {
-                write(HIY "\n秘芨里记载了不少千蛛万毒手的绝招窍门，你可以试着研究研究。\n" NOR);
+                write(HIY "\n秘芨裡記載了不少千蛛萬毒手的絕招竅門，你可以試著研究研究。\n" NOR);
                 return 1;
         }
 }
@@ -49,16 +49,16 @@ int do_yanjiu(string arg)
 
         if(! arg)
         {
-                write("研究千蛛万毒手秘芨指令格式：\n"
-                      "research|yanjiu <绝技> from <千蛛万毒手秘芨>\n");
+                write("研究千蛛萬毒手秘芨指令格式：\n"
+                      "research|yanjiu <絕技> from <千蛛萬毒手秘芨>\n");
                 return 1;
         }
         if(arg == "suck"  || arg == "wan"  
         || arg == "zhugu" || arg == "miji" 
         || arg == "book"  || arg == "qianzhu miji" )
         {
-                write("研究千蛛万毒手秘芨指令格式：\n"
-                      "research|yanjiu <绝技> from <千蛛万毒手秘芨>\n");
+                write("研究千蛛萬毒手秘芨指令格式：\n"
+                      "research|yanjiu <絕技> from <千蛛萬毒手秘芨>\n");
                 return 1;
         }
 
@@ -67,25 +67,25 @@ int do_yanjiu(string arg)
 
         if( me->is_busy())
         {
-                write("你现在正忙着呢。\n");
+                write("你現在正忙著呢。\n");
                 return 1;
         }
 
         if( me->is_fighting())
         {
-                write("你无法在战斗中专心下来研读新知！\n");
+                write("你無法在戰鬥中專心下來研讀新知！\n");
                 return 1;
         }
 
         if( ! me->query_skill("literate", 1) )
         {
-                write("你是个文盲，先学点文化(literate)吧。\n");
+                write("你是個文盲，先學點文化(literate)吧。\n");
                 return 1;
         }
 
         if (! id(book))
         {
-                write("这里没有这本书。\n");
+                write("這裡沒有這本書。\n");
                 return 1;
         }
 
@@ -93,15 +93,15 @@ int do_yanjiu(string arg)
           && skill != "zhugu"  
           && skill != "wan" )
         {
-                write(WHT "你可以从千蛛万毒手秘芨里研究到吸毒练功法"
-                      "门（suck）、蛛蛊决（zhugu）以及万蛊噬天绝"
+                write(WHT "你可以從千蛛萬毒手秘芨裡研究到吸毒練功法"
+                      "門（suck）、蛛蠱決（zhugu）以及萬蠱噬天絕"
                       "技（wan）。\n\n" NOR,);
                 return 1;
         }
 
         if( query("jing", me)<50 || query("qi", me)<50 )
         {
-                write("你现在过于疲倦，无法专心研读。\n");
+                write("你現在過於疲倦，無法專心研讀。\n");
                 return 1;
         }
 
@@ -109,18 +109,18 @@ int do_yanjiu(string arg)
         {
                 if( query("can_perform/qianzhu-wandushou/suck", me) )
                 {
-                        write("你已经学会了千蛛万毒手练毒的窍门。\n");
+                        write("你已經學會了千蛛萬毒手練毒的竅門。\n");
                         return 1;
                 }
 
                 if( query("potential", me)<1 )
                 {
-                        write("你研读了一会儿，觉得有点迷糊，看来是自己的潜能不够了。\n");
+                        write("你研讀了一會兒，覺得有點迷糊，看來是自己的潛能不夠了。\n");
                         return 1;
                 }
 
-                message("vision", me->name() + "正专心地研读千蛛万毒手秘芨。\n", environment(me), me);
-                tell_object(me, "\n你仔细的研读千蛛万毒手秘芨吸毒练功这一章节。\n");
+                message("vision", me->name() + "正專心地研讀千蛛萬毒手秘芨。\n", environment(me), me);
+                tell_object(me, "\n你仔細的研讀千蛛萬毒手秘芨吸毒練功這一章節。\n");
                 me->receive_damage("qi", 30);
                 me->receive_damage("jing", 30);
                 addn("potential", -1, me);
@@ -134,18 +134,18 @@ int do_yanjiu(string arg)
         {
                 if( query("can_perform/qianzhu-wandushou/zhugu", me) )
                 {
-                        write("你已经学会了「蛛蛊决」这一招。\n");
+                        write("你已經學會了「蛛蠱決」這一招。\n");
                         return 1;
                 }
 
                 if( query("potential", me)<1 )
                 {
-                        write("你研读了一会儿，觉得有点迷糊，看来是自己的潜能不够了。\n");
+                        write("你研讀了一會兒，覺得有點迷糊，看來是自己的潛能不夠了。\n");
                         return 1;
                 }
 
-                message("vision", me->name() + "正专心地研读千蛛万毒手秘芨。\n", environment(me), me);
-                tell_object(me, "\n你仔细的研读千蛛万毒手秘芨蛛蛊决这一章节。\n");
+                message("vision", me->name() + "正專心地研讀千蛛萬毒手秘芨。\n", environment(me), me);
+                tell_object(me, "\n你仔細的研讀千蛛萬毒手秘芨蛛蠱決這一章節。\n");
                 me->receive_damage("qi", 30);
                 me->receive_damage("jing", 30);
                 addn("potential", -1, me);
@@ -159,18 +159,18 @@ int do_yanjiu(string arg)
         {
                 if( query("can_perform/qianzhu-wandushou/wan", me) )
                 {
-                        write("你已经学会了「万蛊噬天」这一招。\n");
+                        write("你已經學會了「萬蠱噬天」這一招。\n");
                         return 1;
                 }
 
                 if( query("potential", me)<1 )
                 {
-                        write("你研读了一会儿，觉得有点迷糊，看来是自己的潜能不够了。\n");
+                        write("你研讀了一會兒，覺得有點迷糊，看來是自己的潛能不夠了。\n");
                         return 1;
                 }
 
-                message("vision", me->name() + "正专心地研读千蛛万毒手秘芨。\n", environment(me), me);
-                tell_object(me, "\n你仔细的研读千蛛万毒手秘芨万蛊噬天这一章节。\n");
+                message("vision", me->name() + "正專心地研讀千蛛萬毒手秘芨。\n", environment(me), me);
+                tell_object(me, "\n你仔細的研讀千蛛萬毒手秘芨萬蠱噬天這一章節。\n");
                 me->receive_damage("qi", 30);
                 me->receive_damage("jing", 30);
                 addn("potential", -1, me);
@@ -185,45 +185,45 @@ int suck(object me)
 {
         if( (int)me->query_skill("qianzhu-wandushou", 1) < 100)
         {
-                write(HIC "你研读了半天，发现自己对千蛛万毒手领悟不够，无法学会练毒的窍门。\n" NOR);
+                write(HIC "你研讀了半天，發現自己對千蛛萬毒手領悟不夠，無法學會練毒的竅門。\n" NOR);
                 return 1;
         }
 
         if( (int)me->query_skill("hand", 1) < 100)
         {
-                write(HIC "你研读了半天，发现自己对基本手法领悟不够，无法学会练毒的窍门。\n" NOR);
+                write(HIC "你研讀了半天，發現自己對基本手法領悟不夠，無法學會練毒的竅門。\n" NOR);
                 return 1;
         }
 
         if( (int)me->query_skill("poison", 1) < 100)
         {
-                write(HIC "你研读了半天，发现自己对基本毒技领悟不够，无法学会练毒的窍门。\n" NOR);
+                write(HIC "你研讀了半天，發現自己對基本毒技領悟不夠，無法學會練毒的竅門。\n" NOR);
                 return 1;
         }
 
         if( (int)me->query_skill("force") < 150)
         {
-                write(HIC "你研读了半天，发现自己的内功火候太浅，无法学会练毒的窍门。\n" NOR);
+                write(HIC "你研讀了半天，發現自己的內功火候太淺，無法學會練毒的竅門。\n" NOR);
                 return 1;
         }
 
         if( query("max_neili", me)<1000 )
         {
-                write(HIC "你研读了半天，发现自己的内力修为太浅，无法学会练毒的窍门。\n" NOR);
+                write(HIC "你研讀了半天，發現自己的內力修為太淺，無法學會練毒的竅門。\n" NOR);
                 return 1;
         }
 
         if (random(100) > 5)
         {
-                write(HIY "你对吸毒练功似有所悟，但还是不够深刻，看来还需继续研读才行。\n" NOR);
+                write(HIY "你對吸毒練功似有所悟，但還是不夠深刻，看來還需繼續研讀才行。\n" NOR);
                 return 1;
         }
    else { 
                 me->improve_skill("qianzhu-wandushou", 5000000);
                 me->improve_skill("poison", 5000000);
                 set("can_perform/qianzhu-wandushou/suck", 1, me);
-                tell_object(me, HIC "你学会了如何运用千蛛万毒手吸毒练功。\n" NOR);
-                write(HIW "\n你仔细研读千蛛万毒手秘芨，终于领悟了吸毒练功的窍门所在。\n" NOR);
+                tell_object(me, HIC "你學會了如何運用千蛛萬毒手吸毒練功。\n" NOR);
+                write(HIW "\n你仔細研讀千蛛萬毒手秘芨，終於領悟了吸毒練功的竅門所在。\n" NOR);
                 return 1;
         }
 }
@@ -232,45 +232,45 @@ int zhugu(object me)
 {
         if( (int)me->query_skill("qianzhu-wandushou", 1) < 130)
         {
-                write(HIC "你研读了半天，发现自己对千蛛万毒手领悟不够，无法学会蛛蛊决。\n" NOR);
+                write(HIC "你研讀了半天，發現自己對千蛛萬毒手領悟不夠，無法學會蛛蠱決。\n" NOR);
                 return 1;
         }
 
         if( (int)me->query_skill("hand", 1) < 130)
         {
-                write(HIC "你研读了半天，发现自己对基本手法领悟不够，无法学会蛛蛊决。\n" NOR);
+                write(HIC "你研讀了半天，發現自己對基本手法領悟不夠，無法學會蛛蠱決。\n" NOR);
                 return 1;
         }
 
         if( (int)me->query_skill("poison", 1) < 130)
         {
-                write(HIC "你研读了半天，发现自己对基本毒技领悟不够，无法学会蛛蛊决。\n" NOR);
+                write(HIC "你研讀了半天，發現自己對基本毒技領悟不夠，無法學會蛛蠱決。\n" NOR);
                 return 1;
         }
 
         if( (int)me->query_skill("force") < 200)
         {
-                write(HIC "你研读了半天，发现自己的内功火候太浅，无法学会蛛蛊决。\n" NOR);
+                write(HIC "你研讀了半天，發現自己的內功火候太淺，無法學會蛛蠱決。\n" NOR);
                 return 1;
         }
 
         if( query("max_neili", me)<1500 )
         {
-                write(HIC "你研读了半天，发现自己的内力修为太浅，无法学会蛛蛊决。\n" NOR);
+                write(HIC "你研讀了半天，發現自己的內力修為太淺，無法學會蛛蠱決。\n" NOR);
                 return 1;
         }
 
         if (random(150) > 5)
         {
-                write(HIY "你对蛛蛊决似有所悟，但还是不够深刻，看来还需继续研读才行。\n" NOR);
+                write(HIY "你對蛛蠱決似有所悟，但還是不夠深刻，看來還需繼續研讀才行。\n" NOR);
                 return 1;
         }
    else { 
                 me->improve_skill("qianzhu-wandushou", 5000000);
                 me->improve_skill("poison", 5000000);
                 set("can_perform/qianzhu-wandushou/zhugu", 1, me);
-                tell_object(me, HIC "你学会了「蛛蛊决」这一招。\n" NOR);
-                write(HIW "\n你仔细研读千蛛万毒手秘芨，终于领悟了蛛蛊决的窍门所在。\n" NOR);
+                tell_object(me, HIC "你學會了「蛛蠱決」這一招。\n" NOR);
+                write(HIW "\n你仔細研讀千蛛萬毒手秘芨，終於領悟了蛛蠱決的竅門所在。\n" NOR);
                 return 1;
         }
 }
@@ -279,45 +279,45 @@ int wan(object me)
 {
         if( (int)me->query_skill("qianzhu-wandushou", 1) < 220)
         {
-                write(HIC "你研读了半天，发现自己对千蛛万毒手领悟不够，无法学会万蛊噬天。\n" NOR);
+                write(HIC "你研讀了半天，發現自己對千蛛萬毒手領悟不夠，無法學會萬蠱噬天。\n" NOR);
                 return 1;
         }
 
         if( (int)me->query_skill("hand", 1) < 220)
         {
-                write(HIC "你研读了半天，发现自己对基本手法领悟不够，无法学会万蛊噬天。\n" NOR);
+                write(HIC "你研讀了半天，發現自己對基本手法領悟不夠，無法學會萬蠱噬天。\n" NOR);
                 return 1;
         }
 
         if( (int)me->query_skill("poison", 1) < 200)
         {
-                write(HIC "你研读了半天，发现自己对基本毒技领悟不够，无法学会万蛊噬天。\n" NOR);
+                write(HIC "你研讀了半天，發現自己對基本毒技領悟不夠，無法學會萬蠱噬天。\n" NOR);
                 return 1;
         }
 
         if( (int)me->query_skill("force") < 300)
         {
-                write(HIC "你研读了半天，发现自己的内功火候太浅，无法学会万蛊噬天。\n" NOR);
+                write(HIC "你研讀了半天，發現自己的內功火候太淺，無法學會萬蠱噬天。\n" NOR);
                 return 1;
         }
 
         if( query("max_neili", me)<3500 )
         {
-                write(HIC "你研读了半天，发现自己的内力修为太浅，无法学会万蛊噬天。\n" NOR);
+                write(HIC "你研讀了半天，發現自己的內力修為太淺，無法學會萬蠱噬天。\n" NOR);
                 return 1;
         }
 
         if (random(200) > 5)
         {
-                write(HIY "你对万蛊噬天似有所悟，但还是不够深刻，看来还需继续研读才行。\n" NOR);
+                write(HIY "你對萬蠱噬天似有所悟，但還是不夠深刻，看來還需繼續研讀才行。\n" NOR);
                 return 1;
         }
    else { 
                 me->improve_skill("qianzhu-wandushou", 5000000);
                 me->improve_skill("poison", 5000000);
                 set("can_perform/qianzhu-wandushou/wan", 1, me);
-                tell_object(me, HIC "你学会了「万蛊噬天」这一招。\n" NOR);
-                write(HIW "\n你仔细研读千蛛万毒手秘芨，终于领悟了万蛊噬天的窍门所在。\n" NOR);
+                tell_object(me, HIC "你學會了「萬蠱噬天」這一招。\n" NOR);
+                write(HIW "\n你仔細研讀千蛛萬毒手秘芨，終於領悟了萬蠱噬天的竅門所在。\n" NOR);
                 return 1;
         }
 }

@@ -11,23 +11,23 @@ int exert(object me, object target)
         int level = me->query_skill("linji-zhuang", 1);
         int range ;
 
-        if (level < 180) return notify_fail("你的临济十二庄修为还不够。\n");
+        if (level < 180) return notify_fail("你的臨濟十二莊修為還不夠。\n");
 
         if( query("max_neili", me)<15*level )
-                return notify_fail("你的内力还不够强。\n");
+                return notify_fail("你的內力還不夠強。\n");
 
         if( query("neili", me)<15*level )
-                return notify_fail("你的真气不够。\n");
+                return notify_fail("你的真氣不夠。\n");
 
     if (query_temp("emei_youming_exert_time", me) > time()) 
-                return notify_fail("你六分钟内才运聚过幽冥桩。\n"); 
+                return notify_fail("你六分鐘內才運聚過幽冥樁。\n"); 
 
     set_temp("emei_youming_exert_time", time() + 360, me);
 
 
-        write(HIY "你凝聚幽冥二气，口宣佛号: 阿弥陀佛！一股极细密极悠长的内力从心而发, 直上云霄！\n" NOR);
+        write(HIY "你凝聚幽冥二氣，口宣佛號: 阿彌陀佛！一股極細密極悠長的內力從心而發, 直上雲霄！\n" NOR);
         message("vision",
-                HIY + "只见" + me->name() + "凝聚幽冥二气，低眉垂首, 口宣佛号: 阿弥陀佛! 语音虽低却憾人心肺!\n",
+                HIY + "只見" + me->name() + "凝聚幽冥二氣，低眉垂首, 口宣佛號: 阿彌陀佛! 語音雖低卻憾人心肺!\n",
                 environment(me), me);
 
         addn("neili", -15*level, me);
@@ -60,14 +60,14 @@ void hitself(object me, object *bad_guys, int degree)
         {/*success to let this player hit-self*/
         switch (degree) {
         case 1:   // lightest
-            message_vision("$n想起自己所做的种种恶行, 羞惭得两腮发红, 提手便照自己打去。\n",
+            message_vision("$n想起自己所做的種種惡行, 羞慚得兩腮發紅, 提手便照自己打去。\n",
                 killer, killer);
               addn_temp("apply/defense", -200, killer);
               addn_temp("apply/dodge", -200, killer);
               addn_temp("apply/parry", -200, killer);
             break;
         case 2:   // medium
-            message_vision("$n想起自己过去杀人如麻, 心中一凛, 不禁双手打颤, 缓缓向自己灵台打下。\n",
+            message_vision("$n想起自己過去殺人如麻, 心中一凜, 不禁雙手打顫, 緩緩向自己靈臺打下。\n",
                 killer, killer);
               addn_temp("apply/defense", -200, killer);
               addn_temp("apply/dodge", -200, killer);
@@ -77,7 +77,7 @@ void hitself(object me, object *bad_guys, int degree)
             COMBAT_D->do_attack(killer,killer,query_temp("weapon", killer));
             break;
         case 3:   // hardest
-            message_vision("$n仰天叹道: 便似我这等孽障, 活在人间作甚！当下回手往自己死穴猛击！\n",
+            message_vision("$n仰天嘆道: 便似我這等孽障, 活在人間作甚！當下回手往自己死穴猛擊！\n",
                 killer, killer);
               addn_temp("apply/defense", -200, killer);
               addn_temp("apply/dodge", -200, killer);
@@ -120,8 +120,8 @@ void hitself(object me, object *bad_guys, int degree)
 //                /*not in same room*/
 //                killer->move(room);
         if (present(me,environment(killer))) {
-message_vision(HIR"$N冲着$n破口大骂：就凭你这样的货色也敢在我面前指手划脚，还不给我滚得远远的！\n"NOR,killer,me);
-//        tell_object(me,HIR"你的正气不够压制对方,反而激怒对手!"NOR);
+message_vision(HIR"$N衝著$n破口大罵：就憑你這樣的貨色也敢在我面前指手劃腳，還不給我滾得遠遠的！\n"NOR,killer,me);
+//        tell_object(me,HIR"你的正氣不夠壓制對方,反而激怒對手!"NOR);
         me->start_busy(1+random(1));
 //        if( !killer->is_killing(me) ) killer->kill_ob(me);
         COMBAT_D->do_attack(killer,me,query_temp("weapon", killer));
@@ -214,15 +214,15 @@ int visit_room(string room_path, mapping t_info, mapping r_info, mapping data)
             dist_msg = "";
             dist_msg2 = "";
             if (dist > 10) {
-                dist_msg="极遥远处";
-                dist_msg2="虽然声音极远极轻, 却令";
+                dist_msg="極遙遠處";
+                dist_msg2="雖然聲音極遠極輕, 卻令";
             }else if (dist > 5) {
-                dist_msg="远处";
-                dist_msg2="虽然声音不大, 却令";
+                dist_msg="遠處";
+                dist_msg2="雖然聲音不大, 卻令";
             }
             message("vision",
-                HIY+"只听"+dist_msg+me->name()+"口中佛号不绝传来, 其意大慈大悲, 通幽冥, 越生死, 浑不似人间所有。\n"+
-                dist_msg2+"众人听的都呆住了, 不自觉地停手罢斗。\n"+NOR,
+                HIY+"只聽"+dist_msg+me->name()+"口中佛號不絕傳來, 其意大慈大悲, 通幽冥, 越生死, 渾不似人間所有。\n"+
+                dist_msg2+"眾人聽的都呆住了, 不自覺地停手罷鬥。\n"+NOR,
                 room, me);
             if (bad_guys) {
                 if (dist < range/7) {

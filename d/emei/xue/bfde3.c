@@ -6,10 +6,10 @@ void create()
 {
         set("short", "九老洞");
         set("long", @LONG
-这是九老洞里的秘密隧道，深窈无比，神秘难测。你一走进来，
-便发觉洞中叉叉洞多如迷宫，怪异莫测，似乎黝黑无底。洞里隐隐传
-来鸡犬鼓乐之声，令人惊异间，忽有蝙蝠群涌而至扑熄火炬。还是快
-快离开吧。
+這是九老洞裡的秘密隧道，深窈無比，神秘難測。你一走進來，
+便發覺洞中叉叉洞多如迷宮，怪異莫測，似乎黝黑無底。洞裡隱隱傳
+來雞犬鼓樂之聲，令人驚異間，忽有蝙蝠群湧而至撲熄火炬。還是快
+快離開吧。
 LONG );
         /*set("objects", ([
              __DIR__"npc/bianfu1" : 10,
@@ -70,7 +70,7 @@ void heart_beat()
                                 my["eff_jing"] -= itmp; 
                                 if (my["jing"] > my["eff_jing"]) my["jing"] = my["eff_jing"];
                                 
-                                tell_object(enemy, BGRN + HIR + "蝙蝠喷出一口浓烟，你中毒了。\n" + NOR);
+                                tell_object(enemy, BGRN + HIR + "蝙蝠噴出一口濃煙，你中毒了。\n" + NOR);
                                 if (my["jing"] < 1 || my["qi"] < 1) {
                                         my["qi"] = my["eff_qi"] = -1;
                                         my["jing"] = my["eff_jing"] = -1;

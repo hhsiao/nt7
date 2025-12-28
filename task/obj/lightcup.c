@@ -7,12 +7,12 @@ void create()
         if( clonep() )
             destruct(this_object());
         else {
-        set("long", "一个盛满了鲜红如血的葡萄美酒的夜光杯。\n");
-                set("unit", "个");
+        set("long", "一個盛滿了鮮紅如血的葡萄美酒的夜光杯。\n");
+                set("unit", "個");
         set("value", 0);
         set("max_liquid", 10);
         } 
-        set("owner","华赫艮");
+        set("owner","華赫艮");
         set("liquid", ([
         "type": "alcohol",
         "name": "葡萄美酒",

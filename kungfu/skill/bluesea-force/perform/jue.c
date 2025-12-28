@@ -1,4 +1,4 @@
-// jue.c 绝仙决
+// jue.c 絕仙決
  
 #include <ansi.h>
 #include <combat.h>
@@ -18,18 +18,18 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("绝仙决只能对战斗中的对手使用。\n");
+                return notify_fail("絕仙決只能對戰鬥中的對手使用。\n");
  
         if (me->query_skill("bluesea-force", 1) < 120)
-                return notify_fail("你的南海玄功还不够娴熟，不能使用绝仙决！\n");
+                return notify_fail("你的南海玄功還不夠嫻熟，不能使用絕仙決！\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你的内力不够，不能使用绝仙决！\n");
+                return notify_fail("你的內力不夠，不能使用絕仙決！\n");
  
        if (! living(target))
-              return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+              return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIC "$N" HIC "哈哈大笑，一掌挥出，变化出满天掌影，封住了$n"
+        msg = HIC "$N" HIC "哈哈大笑，一掌揮出，變化出滿天掌影，封住了$n"
               HIC "所有的退路！\n" NOR;
  
         ap=attack_power(me,"force")+query("con", me)*20;
@@ -40,15 +40,15 @@ int perform(object me, object target)
         if (ap / 2 + random(ap) < dp)
         {
                 msg += HIG "然而$n" HIG "看破了$N" HIG
-                       "的掌势，不慌不忙的躲过了这一击！\n" NOR;
+                       "的掌勢，不慌不忙的躲過了這一擊！\n" NOR;
         } else
         {
                 addn("neili", -75, me);
                 damage = damage_power(me, "force");
                 msg += COMBAT_D->do_damage(me, target, REMOTE_ATTACK, damage, 100,
-                                           HIR "$n" HIR "竭力腾挪躲闪，却听“啪”的"
-                                           "一声被$P" HIR "结结实实的打在了胸前，登"
-                                           "时吐血不止！\n" NOR);
+                                           HIR "$n" HIR "竭力騰挪躲閃，卻聽“啪”的"
+                                           "一聲被$P" HIR "結結實實的打在了胸前，登"
+                                           "時吐血不止！\n" NOR);
         }
 
         message_combatd(msg, me, target);

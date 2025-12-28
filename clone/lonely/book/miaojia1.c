@@ -4,14 +4,14 @@ inherit ITEM;
 
 void create()
 {
-        set_name(YEL "「苗家剑谱」上册" NOR, ({ "miaojia jianpu", "miaojia", "jianpu", "pu", "book" }));
+        set_name(YEL "「苗家劍譜」上冊" NOR, ({ "miaojia jianpu", "miaojia", "jianpu", "pu", "book" }));
         set_weight(500);
         if (clonep())
                 destruct(this_object());
         else {
                 set("unit", "本");
-                set("long", YEL "这是一本薄薄的书册，书皮已然发黄，封"
-                            "面上写着「苗家剑谱」四个字。\n" NOR);
+                set("long", YEL "這是一本薄薄的書冊，書皮已然發黃，封"
+                            "面上寫著「苗家劍譜」四個字。\n" NOR);
                 set("value", 1);
                 set("no_sell", "…苗…苗家…金面佛他老人家我可得罪不起。");
                 set("material", "paper");

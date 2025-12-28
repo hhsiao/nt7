@@ -11,10 +11,10 @@ int valid_enable(string usage) { return usage == "guzheng-jifa"; }
 int valid_learn(object me)
 {
         if (me->query_skill("guzheng-jifa", 1) < 100)
-                return notify_fail("你的古筝技法水平不够，还是先练好再说吧！\n");
+                return notify_fail("你的古箏技法水平不夠，還是先練好再說吧！\n");
 
         if (me->query_skill("guzheng-jifa", 1) < me->query_skill("wushe-qu", 1))
-                return notify_fail("你的古筝技法水平有限，无法领会更精妙的舞蛇曲。\n");
+                return notify_fail("你的古箏技法水平有限，無法領會更精妙的舞蛇曲。\n");
 
         return 1;
 }
@@ -25,13 +25,13 @@ int practice_skill(object me)
 
         if( !objectp(ob=query_temp("handing", me)) || 
             ! ob->valid_as_zheng())
-                return notify_fail("不拿出筝来，你怎么练习？\n");
+                return notify_fail("不拿出箏來，你怎麼練習？\n");
 
         if( query("jing", me)<80 )
-                return notify_fail("你的精神不够好，没法练习了。\n");
+                return notify_fail("你的精神不夠好，沒法練習了。\n");
 
         if( query("qi", me)<30 )
-                return notify_fail("你现在实在是太疲惫了。\n");
+                return notify_fail("你現在實在是太疲憊了。\n");
 
         me->receive_damage("jing", 25);
         me->receive_damage("qi", 15);
@@ -57,14 +57,14 @@ void do_effect(object me)
 
         if (lvl < 50)
         {
-                write(HIC "你满头大汗的弹了半天，好像没有什么作用。\n" NOR);
+                write(HIC "你滿頭大汗的彈了半天，好像沒有什麼作用。\n" NOR);
                 return;
         }
 
         if( query("neili", me)<50 )
         {
                 set("neili", 0, me);
-                write(HIC "你隐隐觉得内力有些不济。\n" NOR);
+                write(HIC "你隱隱覺得內力有些不濟。\n" NOR);
                 return;
         }
 
@@ -72,11 +72,11 @@ void do_effect(object me)
 
         if( !mapp(query("quarrys", env)) )
         {
-                write(HIY "你弹了半天，但是没有一条蛇出来。\n" NOR);
+                write(HIY "你彈了半天，但是沒有一條蛇出來。\n" NOR);
                 return;
         }
 
-        // 调用该地图的蛇类
+        // 調用該地圖的蛇類
         rs=query("quarrys", env);
 
         st = keys(rs);
@@ -92,7 +92,7 @@ void do_effect(object me)
 
         if (! sum)
         {
-                write(HIY "你弹了半天，但是似乎没有什么蛇出来。\n" NOR);
+                write(HIY "你彈了半天，但是似乎沒有什麼蛇出來。\n" NOR);
                 return;
         }
 
@@ -106,14 +106,14 @@ void do_effect(object me)
 
                         if (! objectp(snake) || ! snake->is_snake())
                         {
-                                write(HIY "你弹了半天，但是似乎没有什么蛇出来。\n" NOR);
+                                write(HIY "你彈了半天，但是似乎沒有什麼蛇出來。\n" NOR);
                                 return;
                         }
 
                         snake->add("snake_poison/level"+random(lvl/5));
                         snake->move(env);
-                        write(HIR "你弹了一曲，只听一阵嗤嗤做响，一条" +
-                              snake->name() + HIR "从草丛中窜了出来。\n" NOR);
+                        write(HIR "你彈了一曲，只聽一陣嗤嗤做響，一條" +
+                              snake->name() + HIR "從草叢中竄了出來。\n" NOR);
                         return;
                 }
                 sum -= rs[st[i]];

@@ -16,15 +16,15 @@ int main(object me, string arg)
         string reply_out;
 
         if (! arg || arg == "")
-                return notify_fail("你要回答什么？\n");
+                return notify_fail("你要回答什麼？\n");
 
         if( !stringp(target=query_temp("reply", me)) )
-                return notify_fail("刚才没有人和你说过话。\n");
+                return notify_fail("剛才沒有人和你說過話。\n");
 
         if (sscanf(target, "%s@%s", target, mud) == 2)
         {
                 GTELL->send_gtell(lower_case(mud), lower_case(target), me, arg);
-                write("网路讯息已送出，可能要稍候才能得到回应。\n");
+                write("網路訊息已送出，可能要稍候才能得到回應。\n");
                 return 1;
         }
 
@@ -33,7 +33,7 @@ int main(object me, string arg)
         {
                 if (MESSAGE_D->send_msg_to(me, target, arg))
                         return 1;
-                return notify_fail("刚才和你说话的人现在已经离开游戏了。\n");
+                return notify_fail("剛才和你說話的人現在已經離開遊戲了。\n");
         }
 
         no_tell=query("env/no_tell", obj);
@@ -42,14 +42,14 @@ int main(object me, string arg)
         {
                 can_tell=query("env/can_tell", obj);
                 if( !is_sub(query("id", me),can_tell) )
-                        return notify_fail("这个人不想听你罗嗦啦。\n");
+                        return notify_fail("這個人不想聽你羅嗦啦。\n");
         }
 
         if (playerp(obj) && obj->is_net_dead())
-                return notify_fail("这个人现在不在线上，听不到你的话。\n");
+                return notify_fail("這個人現在不在線上，聽不到你的話。\n");
 
         if (! living(obj))
-                return notify_fail("这人现在恐怕听不到你说的话了...\n");
+                return notify_fail("這人現在恐怕聽不到你說的話了...\n");
 
         reply_out = sprintf(HIG "%s回答你：%s\n" NOR,
                             me->name(1)+HIG"("+query("id", me)+")",arg);
@@ -64,11 +64,11 @@ int main(object me, string arg)
         obj->add_msg_log("reply", sprintf("%s回答你："HIG"%s"NOR"\n" NOR,me->query_idname(), arg));
         if (query_idle(obj) >= 120)
                 write(YEL "可是" + obj->name(1) +
-                      YEL "已经在猪圈中发呆有" + chinese_number(query_idle(obj) / 60) +
-                      "分钟了，恐怕没法听到你的话。\n");
+                      YEL "已經在豬圈中發呆有" + chinese_number(query_idle(obj) / 60) +
+                      "分鐘了，恐怕沒法聽到你的話。\n");
 
-        // 如果选择的不是全阻塞(2)，则自动忽略这条信息，显示
-        // 下一条信息。
+        // 如果選擇的不是全阻塞(2)，則自動忽略這條信息，顯示
+        // 下一條信息。
         if( query("env/jam_talk", me) != 2 )
                 SKIP_CMD->main(me, "");
 
@@ -78,13 +78,13 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式：reply <讯息>
+指令格式：reply <訊息>
 
-你可以用这个指令和刚才用 tell 和你说话的使用者说话。在多人和
-你交谈的时候，这个命令通常不会那么好用，因为有可能在你 reply
-的时候又有人向你发送信息而导致你应答错误，在这种情况下你可以
-设置参数jam_talk，选择阻塞式交谈。当你的提示符 >  的颜色变成
-绿色的时候，意味你现在正收到其他人发送给你的交谈信息。
+你可以用這個指令和剛才用 tell 和你說話的使用者說話。在多人和
+你交談的時候，這個命令通常不會那麼好用，因為有可能在你 reply
+的時候又有人向你發送信息而導致你應答錯誤，在這種情況下你可以
+設置參數jam_talk，選擇阻塞式交談。當你的提示符 >  的顏色變成
+綠色的時候，意味你現在正收到其他人發送給你的交談信息。
 
 see also : tell、skip
 HELP );

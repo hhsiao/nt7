@@ -2,12 +2,12 @@
 
 void create()
 {
-        set_name("三品龙丹", ({ "dragon soul", "herb_drug3" }) );
+        set_name("三品龍丹", ({ "dragon soul", "herb_drug3" }) );
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("long","这是龙的内丹，鸡蛋大小，如火焰般赤红。用法：boost\n");
-                set("base_unit", "颗");
+                set("long","這是龍的內丹，雞蛋大小，如火焰般赤紅。用法：boost\n");
+                set("base_unit", "顆");
                 set("base_value", 50000);
                 set("base_weight", 5);
         }

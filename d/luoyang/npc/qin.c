@@ -3,11 +3,11 @@ inherit F_DEALER;
 
 void create()
 {
-        set_name("秦掌柜", ({ "qin zhanggui", "qin", "zhanggui" }) );
+        set_name("秦掌櫃", ({ "qin zhanggui", "qin", "zhanggui" }) );
         set("gender", "男性" );
-        set("title", "洛阳唐三彩" );
+        set("title", "洛陽唐三彩" );
         set("age", 32);
-        set("long", "洛阳唐三彩的老板，他这里所出的瓷器闻名全国。\n");
+        set("long", "洛陽唐三彩的老闆，他這裡所出的瓷器聞名全國。\n");
         set("shen_type", 1);
         set("combat_exp", 10000);
         set("str", 17);

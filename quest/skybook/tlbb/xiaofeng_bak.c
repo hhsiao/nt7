@@ -5,12 +5,12 @@ inherit F_MASTER;
 #include <ansi.h>
 inherit NPC;
 
-#define QUESTDIR "quest/天龙八部/"
-#define QUESTDIR1 "quest/天龙八部/凌波微步篇/"
-#define QUESTDIR2 "quest/天龙八部/天龙营救篇/"
-#define QUESTDIR3 "quest/天龙八部/萧峰身世篇/"
-#define QUESTDIR4 "quest/天龙八部/大辽救援篇/"
-#define QUESTDIR5 "quest/天龙八部/复兴天下篇/"
+#define QUESTDIR "quest/天龍八部/"
+#define QUESTDIR1 "quest/天龍八部/凌波微步篇/"
+#define QUESTDIR2 "quest/天龍八部/天龍營救篇/"
+#define QUESTDIR3 "quest/天龍八部/蕭峰身世篇/"
+#define QUESTDIR4 "quest/天龍八部/大遼救援篇/"
+#define QUESTDIR5 "quest/天龍八部/復興天下篇/"
 
 int ask_truth();
 int ask_yintui();
@@ -19,14 +19,14 @@ void greeting(object me);
 void xiaofeng_guiyin(object me);
 void create()
 {
-	set_name("萧峰", ({"xiao feng", "xiao", "feng"}));
+	set_name("蕭峰", ({"xiao feng", "xiao", "feng"}));
 	set("gender", "男性");
-	set("title",HIB"奇侠"NOR);
+	set("title",HIB"奇俠"NOR);
 	set("age", 58);
 	set("long", 
-		"他就是丐帮前任帮主萧峰。\n"
-		"他身高六尺有余，体格十分魁梧，长有一张线条粗旷、十\n"
-		"分男性化的脸庞，双目如电，炯炯有神。\n");
+		"他就是丐幫前任幫主蕭峰。\n"
+		"他身高六尺有餘，體格十分魁梧，長有一張線條粗曠、十\n"
+		"分男性化的臉龐，雙目如電，炯炯有神。\n");
 	set("attitude", "peaceful");
 	
 	set("str", 30);
@@ -77,29 +77,29 @@ void create()
           (: perform_action, "strike.xiao" :),
   }));
   set("inquiry", ([
-		"段誉" : random(2)?"那是我二弟。\n":"我二弟一身内力震古烁今，六脉神剑更是天下无双。\n",
-		"虚竹" : random(2)?"那是我三弟。\n":"我三弟现为缥缈宫宫主，只怕现在更是西夏国的驸马爷了。\n",
+		"段譽" : random(2)?"那是我二弟。\n":"我二弟一身內力震古爍今，六脈神劍更是天下無雙。\n",
+		"虛竹" : random(2)?"那是我三弟。\n":"我三弟現為縹緲宮宮主，只怕現在更是西夏國的駙馬爺了。\n",
 		"真相" : (: ask_truth :),
-		"萧远山" : (: ask_father :),
-		"拜师" : "嗯....，我注定一声漂泊，还是算了吧。\n",
-		"丐帮" : "丐帮是我家，我家在丐帮。",
-		"丐帮" : "我一身武功出自少林，也算是半个少林弟子。",
-		"天龙寺" : "天龙寺是大理段家武学的最高之地。",
-		"洪七公" : "恩，听说下一辈中也是他为人最为侠义，武功最高。",
-		"阿朱" : "......怕是这一生我唯一的牵挂了。",
-		"阿紫" : "恩，不提也罢，丁老怪的弟子，那个不是心狠手辣。",
-		"阿碧" : "阿朱的妹妹，听说和慕容公子在一起。",
-		"天龙寺" : "天龙寺是大理段家武学的最高之地。",
-		"降龙十八掌" : "这是我行走江湖的吃饭的东西，哈哈。",
-		"打狗棒" : "丐帮帮主之外不传之武功，确实精妙无比。",
-		"归隐" : (: ask_yintui :),
-		"隐退" : (: ask_yintui :),
+		"蕭遠山" : (: ask_father :),
+		"拜師" : "嗯....，我註定一聲漂泊，還是算了吧。\n",
+		"丐幫" : "丐幫是我家，我家在丐幫。",
+		"丐幫" : "我一身武功出自少林，也算是半個少林弟子。",
+		"天龍寺" : "天龍寺是大理段家武學的最高之地。",
+		"洪七公" : "恩，聽說下一輩中也是他為人最為俠義，武功最高。",
+		"阿朱" : "......怕是這一生我唯一的牽掛了。",
+		"阿紫" : "恩，不提也罷，丁老怪的弟子，那個不是心狠手辣。",
+		"阿碧" : "阿朱的妹妹，聽說和慕容公子在一起。",
+		"天龍寺" : "天龍寺是大理段家武學的最高之地。",
+		"降龍十八掌" : "這是我行走江湖的吃飯的東西，哈哈。",
+		"打狗棒" : "丐幫幫主之外不傳之武功，確實精妙無比。",
+		"歸隱" : (: ask_yintui :),
+		"隱退" : (: ask_yintui :),
 		"洗手" : (: ask_yintui :),
-		"隐退江湖" : (: ask_yintui :),
-		"归隐江湖" : (: ask_yintui :),
-		"慕容复" : "慕容公子确是其江南文采，诗琴书画无所不精，武功更是冠绝天下。",
-		"慕容博" : "我听说是，姑苏慕容不出的杰才，可惜英年早逝。",
-		"六脉神剑" : "天龙寺最高绝学。恐怕天下唯我二弟这身内力才能使得。",
+		"隱退江湖" : (: ask_yintui :),
+		"歸隱江湖" : (: ask_yintui :),
+		"慕容復" : "慕容公子確是其江南文采，詩琴書畫無所不精，武功更是冠絕天下。",
+		"慕容博" : "我聽說是，姑蘇慕容不出的傑才，可惜英年早逝。",
+		"六脈神劍" : "天龍寺最高絕學。恐怕天下唯我二弟這身內力才能使得。",
     ]));
 
 	setup();
@@ -118,9 +118,9 @@ void init()
 	    this_object()->set("qi", this_object()->query("max_qi"));
 	    this_object()->set("eff_qi", this_object()->query("max_qi"));
 	    this_object()->set("neili", this_object()->query("max_neili")*2);
-      tell_object(me,CYN"你惊讶地「啊！」了一声。\n"NOR);    
-      message_vision(HIW"$N长长地舒了一口气，伤势看来基本全部恢复了。"NOR,this_object());                    
-      tell_object(me,HIC"\n你没有料道，萧峰竟然恢复如此之迅速，果然是功夫了得。\n"NOR);  
+      tell_object(me,CYN"你驚訝地「啊！」了一聲。\n"NOR);    
+      message_vision(HIW"$N長長地舒了一口氣，傷勢看來基本全部恢復了。"NOR,this_object());                    
+      tell_object(me,HIC"\n你沒有料道，蕭峰竟然恢復如此之迅速，果然是功夫了得。\n"NOR);  
       command("thank "+me->query("id"));
       //remove_call_out("greeting");
 		  call_out("greeting",2,me);
@@ -128,18 +128,18 @@ void init()
 	 	if(!me->query_condition("killer")&& me->query(QUESTDIR4+"start") && me->query_temp(QUESTDIR4+"breakmen") && !me->query(QUESTDIR4+"over"))
     {
     	command("ah "+me->query("id"));
-    	command("say 没想到，又是大侠舍命相救。"); 
+    	command("say 沒想到，又是大俠捨命相救。"); 
     	command("thank "+me->query("id"));
       me->start_busy(2);
-		  tell_object(me,HIC"\n你上前说道，“我们还是赶快离开此地，只怕这次为了营救你，江湖中人已全部出动，无论丐帮、少林、大理、\n"
-		                      "还是远在西域的缥缈七十二宫。”\n"NOR);
+		  tell_object(me,HIC"\n你上前說道，“我們還是趕快離開此地，只怕這次為了營救你，江湖中人已全部出動，無論丐幫、少林、大理、\n"
+		                      "還是遠在西域的縹緲七十二宮。”\n"NOR);
 		  command("sigh");
-		  command("say 好，我们这就赶快一起闯出去。");
+		  command("say 好，我們這就趕快一起闖出去。");
       if (!(room = find_object("/d/xingxiu/silk3")))
           room = load_object("/d/xingxiu/silk3");
       if(!room)
       { 
-      	tell_object(me,HIR"\n赶快找wiz吧，竟然房间不存在!!!\n");
+      	tell_object(me,HIR"\n趕快找wiz吧，竟然房間不存在!!!\n");
       }
       else
       {
@@ -164,9 +164,9 @@ void init()
    		  me->move(room);
    		  this_object()->move(room);
    		  "/cmds/std/look.c"->look_room(me, room); 
-        tell_object(me,HIG"\n你们边打边退，一路奔波，连续走过好几个地方，才来到一个断崖边。也巧，这里正是当年萧峰双亲双亡的地方。\n"NOR);
-        message_vision(HIW"$N长长地舒了一口气。\n"NOR,this_object());
-   		  command("whisper "+me->query("id")+" 也算终于脱险了，我与中原武林之间的恩恩怨怨叶一笔勾销。");
+        tell_object(me,HIG"\n你們邊打邊退，一路奔波，連續走過好幾個地方，才來到一個斷崖邊。也巧，這裡正是當年蕭峰雙親雙亡的地方。\n"NOR);
+        message_vision(HIW"$N長長地舒了一口氣。\n"NOR,this_object());
+   		  command("whisper "+me->query("id")+" 也算終於脫險了，我與中原武林之間的恩恩怨怨葉一筆勾銷。");
    		  command("chat* thank "+me->query("id"));
    		  command("wave "+me->query("id"));
    		  command("chat* byebye");
@@ -174,8 +174,8 @@ void init()
 		    me->add("combat_exp",me->query_skill("force"));
 		    me->add("shen",me->query_skill("force")*5);
 		    me->add("mana",me->query_skill("force")/2);
-        tell_object(me,HIY"\n你于"+NATURE_D->game_time()+"终于将萧峰从大辽解救出来，获得"+(int)me->query_skill("force")/2+"点最大内力、"+(int)me->query_skill("force")+"点经验和"+(int)me->query_skill("force")/2+"点声望。\n\n");
-        log_file("quest/TLBB", sprintf("%s(%s) 终于将萧峰从大辽解救出来，时间 %s。获得%d点最大内力，%d点经验，%d点声望。\n", me->name(1),me->query("id"), ctime(time()),me->query_skill("force")/2,me->query_skill("force"),me->query_skill("force")/2) );
+        tell_object(me,HIY"\n你於"+NATURE_D->game_time()+"終於將蕭峰從大遼解救出來，獲得"+(int)me->query_skill("force")/2+"點最大內力、"+(int)me->query_skill("force")+"點經驗和"+(int)me->query_skill("force")/2+"點聲望。\n\n");
+        log_file("quest/TLBB", sprintf("%s(%s) 終於將蕭峰從大遼解救出來，時間 %s。獲得%d點最大內力，%d點經驗，%d點聲望。\n", me->name(1),me->query("id"), ctime(time()),me->query_skill("force")/2,me->query_skill("force"),me->query_skill("force")/2) );
                     destruct(this_object());
                     return;
  	    }
@@ -188,9 +188,9 @@ void greeting(object me)
 	if(!me) return;
   if(environment(this_object())!=environment(me)) 
   {
-    command("chat "+me->name()+"怎么如此邋遢，竟然无端走开？");
+    command("chat "+me->name()+"怎麼如此邋遢，竟然無端走開？");
     command("chat* heng "+me->query("id"));
-    tell_object(me,HIG"\n你这种情况竟然临阵逃脱，实在违背侠义之情。你的江湖威望大幅下降。\n"NOR); 
+    tell_object(me,HIG"\n你這種情況竟然臨陣逃脫，實在違背俠義之情。你的江湖威望大幅下降。\n"NOR); 
     me->delete_temp(QUESTDIR3+"kill");
     me->delete_temp(QUESTDIR3+"lookcliff");
     me->delete(QUESTDIR3+"start");
@@ -201,18 +201,18 @@ void greeting(object me)
 	if(me->query(QUESTDIR3+"start") && me->query_temp(QUESTDIR3+"lookcliff")&& !me->query(QUESTDIR3+"over"))
   {
     command("thank "+me->query("id"));
-    command("say 再次感谢大侠救命之恩。");
-    tell_object(me,HIG"\n\n你走过去看了看萧峰，还是将你看到的告诉了萧峰：智光大师所道的山壁上如今正中一大片尽是斧凿的印痕，\n"
-                          "显而易见，是有人故意将留下的字迹削去了。\n"NOR);
-	  tell_room(environment(me),HIG"\n"+me->name()+"走到萧峰跟前，低声说了些什么。\n"NOR, ({ me }));
+    command("say 再次感謝大俠救命之恩。");
+    tell_object(me,HIG"\n\n你走過去看了看蕭峰，還是將你看到的告訴了蕭峰：智光大師所道的山壁上如今正中一大片盡是斧鑿的印痕，\n"
+                          "顯而易見，是有人故意將留下的字跡削去了。\n"NOR);
+	  tell_room(environment(me),HIG"\n"+me->name()+"走到蕭峰跟前，低聲說了些什麼。\n"NOR, ({ me }));
     command("ah");
-    message_vision(HIW"$N突然悲笑起来，喃喃道：“看来我真是契丹人，我真的不是汉人。”\n"NOR,this_object());
+    message_vision(HIW"$N突然悲笑起來，喃喃道：“看來我真是契丹人，我真的不是漢人。”\n"NOR,this_object());
     command("say");
-    message_vision(HIC"$N神色渐渐有些不正常，似乎已经有些发狂。\n"NOR,this_object());
-    tell_object(me,HIW"\n突然之间，你脑子闪过两个念头。一个因为这萧峰已确是契丹人，他若公开反对大宋，只怕朝廷不知多少人因此\n"
-                        "丧命，而且此时你趁他意乱伤神之际，正是扬你威名的大好时机；可是一个侠义之心告诉你，如此确似小人行为\n"
-                        "一般不堪，这契丹人中也有好人坏人，也可以行侠仗义，何必执著于身份。\n"NOR);
-    tell_object(me,HIR"\n一时间，你是劝其归隐（ask xiao about 归隐），还是为武林除害（kill xiao）？你一时委实难以决定。\n"NOR);
+    message_vision(HIC"$N神色漸漸有些不正常，似乎已經有些發狂。\n"NOR,this_object());
+    tell_object(me,HIW"\n突然之間，你腦子閃過兩個念頭。一個因為這蕭峰已確是契丹人，他若公開反對大宋，只怕朝廷不知多少人因此\n"
+                        "喪命，而且此時你趁他意亂傷神之際，正是揚你威名的大好時機；可是一個俠義之心告訴你，如此確似小人行為\n"
+                        "一般不堪，這契丹人中也有好人壞人，也可以行俠仗義，何必執著於身份。\n"NOR);
+    tell_object(me,HIR"\n一時間，你是勸其歸隱（ask xiao about 歸隱），還是為武林除害（kill xiao）？你一時委實難以決定。\n"NOR);
     me->set(QUESTDIR3+"over",1);
     me->start_busy(3);
 	}
@@ -223,13 +223,13 @@ int ask_father()
     me=this_player();
     if(me->query(QUESTDIR4+"over"))
     {
-    	command("say 萧远山，正是我父亲。现已被少林高僧收为弟子。");
+    	command("say 蕭遠山，正是我父親。現已被少林高僧收為弟子。");
 		  return 1;
 	  }
     if(me->query(QUESTDIR3+"over"))
     {
     	command("heng");
-    	command("say 萧远山，正是我父亲。此仇不能不报。");
+    	command("say 蕭遠山，正是我父親。此仇不能不報。");
 		  return 1;
 	  }
     if(!me->query(QUESTDIR3+"over"))
@@ -246,46 +246,46 @@ int ask_truth()
     me=this_player();
     if(me->query(QUESTDIR4+"over"))
     {
-    	command("say 一切都已经过去，就重新开始吧。");
+    	command("say 一切都已經過去，就重新開始吧。");
 		  return 1;
 	  }
     if(me->query(QUESTDIR3+"over"))
     {
     	command("heng");
-    	command("say 此等大仇不能不报。");
+    	command("say 此等大仇不能不報。");
 		  return 1;
 	  }
     if(!me->query(QUESTDIR3+"start"))
     {
     	command("? "+me->query("id"));
-    	command("say 拜托，情节还没开始，不要clone我好不。");
+    	command("say 拜託，情節還沒開始，不要clone我好不。");
     	command("heng "+me->query("id"));
 		  return 1;
 	  }
 	  if(me->query_condition("killer"))
 	  {
 	  	command("heng");
-	  	command("say 你还是处理好和官府的关系吧。");
+	  	command("say 你還是處理好和官府的關係吧。");
 	  	return 1;
 	  }
     if(me->query(QUESTDIR3+"start")&&!me->query_temp(QUESTDIR3+"help"))
     {
     	command("? "+me->query("id"));
-    	command("say 这么快你能找到我？BUG啊，靠，说：谁在帮你？");
+    	command("say 這麼快你能找到我？BUG啊，靠，說：誰在幫你？");
 		  return 1;
 	  }
     if(me->query(QUESTDIR3+"start")&&me->query_temp(QUESTDIR3+"help")&&!me->query_temp(QUESTDIR3+"askxiao"))
     {
-    	message_vision(HIY"$N听过$n的询问，顿时似乎苍老了很多。\n"NOR,this_object(),me);
-    	command("say 我也不知道具体原委，这些日子以来，生不得安宁，朋友东分西裂，养父、师傅都无端被害。");
+    	message_vision(HIY"$N聽過$n的詢問，頓時似乎蒼老了很多。\n"NOR,this_object(),me);
+    	command("say 我也不知道具體原委，這些日子以來，生不得安寧，朋友東分西裂，養父、師傅都無端被害。");
     	command("sigh");
-    	command("say 我受伤未能远行，还请这位大侠去一次颂摩崖，那里据说有一块刻字记载当年事迹。");
+    	command("say 我受傷未能遠行，還請這位大俠去一次頌摩崖，那裡據說有一塊刻字記載當年事蹟。");
     	command("thank "+me->query("id"));
     	me->set_temp(QUESTDIR3+"askxiao",1);
 		  return 1;
 	  }
     command("thank "+me->query("id"));
-    command("say 一切有劳大侠了。");
+    command("say 一切有勞大俠了。");
 		return 1;
 }
 int ask_yintui()
@@ -294,13 +294,13 @@ int ask_yintui()
     me=this_player();
     if(me->query(QUESTDIR4+"over"))
     {
-    	command("say 一切都已经过去，就重新开始吧。");
+    	command("say 一切都已經過去，就重新開始吧。");
 		  return 1;
 	  }
     if(me->query(QUESTDIR3+"good"))
     {
     	command("sigh");
-    	command("say 也罢，天下何处不留人。这江湖中事我也不涉了，我既是契丹人，也该回我大辽。");
+    	command("say 也罷，天下何處不留人。這江湖中事我也不涉了，我既是契丹人，也該回我大遼。");
     	command("bye");
    		destruct(this_object());
 		  return 1;
@@ -308,19 +308,19 @@ int ask_yintui()
 	  if(me->query_condition("killer"))
 	  {
 	  	command("heng");
-	  	command("say 你还是处理好和官府的关系吧。");
+	  	command("say 你還是處理好和官府的關係吧。");
 	  	return 1;
 	  }
     if(!me->query(QUESTDIR3+"good") && me->query(QUESTDIR3+"over")&& !me->query(QUESTDIR3+"bad"))
     {
-    	tell_object(me,HIW"你见萧峰呆呆发蒙，知道他正为这契丹人的身份伤神，却听萧峰越来越暴躁，大声号叫：“我不是汉人，我不是汉人！\n"
-    	                  "我是契丹胡虏，我是契丹胡虏！”提起手来，一掌掌往山壁上劈去，壁上石屑四溅。乔峰心中郁怒难伸，仍是一掌掌的\n"
-    	                  "劈去，似要将这一个多月来所受的种种委屈，都要向这块石壁发泄，到得后来，手掌出血，一个个血手印拍上石壁，他\n"
+    	tell_object(me,HIW"你見蕭峰呆呆發矇，知道他正為這契丹人的身份傷神，卻聽蕭峰越來越暴躁，大聲號叫：“我不是漢人，我不是漢人！\n"
+    	                  "我是契丹胡虜，我是契丹胡虜！”提起手來，一掌掌往山壁上劈去，壁上石屑四濺。喬峰心中鬱怒難伸，仍是一掌掌的\n"
+    	                  "劈去，似要將這一個多月來所受的種種委屈，都要向這塊石壁發洩，到得後來，手掌出血，一個個血手印拍上石壁，他\n"
     	                  "兀自不停。\n\n"NOR);
-    	message_vision(HIY"$N渐渐发起狂来，神色却是越来越是悲痛。\n"NOR,this_object());
-    	tell_object(me,HIW"你知道似萧峰这等武功若不及时劝说，这等悲愤只怕内功大有损伤，当即哈哈大笑一声。果然，萧峰怒视于你。你且自\n"
-    	                  "顾说道：“大丈夫提得起、放得下，汉人中有好人坏人，契丹人中，自然也有好人坏人。你生为契丹人又当如何，只要\n"
-    	                  "行侠仗义，这天下还不是要去要来”。\n\n"NOR);          	 
+    	message_vision(HIY"$N漸漸發起狂來，神色卻是越來越是悲痛。\n"NOR,this_object());
+    	tell_object(me,HIW"你知道似蕭峰這等武功若不及時勸說，這等悲憤只怕內功大有損傷，當即哈哈大笑一聲。果然，蕭峰怒視於你。你且自\n"
+    	                  "顧說道：“大丈夫提得起、放得下，漢人中有好人壞人，契丹人中，自然也有好人壞人。你生為契丹人又當如何，只要\n"
+    	                  "行俠仗義，這天下還不是要去要來”。\n\n"NOR);          	 
     	command("ah "+me->query("id"));
     	command("consider");
     	remove_call_out("xiaofeng_guiyin");
@@ -341,9 +341,9 @@ void xiaofeng_guiyin(object me)
 	if(!me) return;
   if(environment(this_object())!=environment(me)) 
   {
-    command("chat "+me->name()+"怎么如此邋遢，竟然无端走开？");
+    command("chat "+me->name()+"怎麼如此邋遢，竟然無端走開？");
     command("chat* heng "+me->query("id"));
-    tell_object(me,HIG"\n你这种情况竟然临阵逃脱，实在违背侠义之情。你的江湖威望大幅下降。\n"NOR); 
+    tell_object(me,HIG"\n你這種情況竟然臨陣逃脫，實在違背俠義之情。你的江湖威望大幅下降。\n"NOR); 
     me->delete_temp(QUESTDIR3+"kill");
     me->delete_temp(QUESTDIR3+"lookcliff");
     me->delete(QUESTDIR3+"start");
@@ -355,15 +355,15 @@ void xiaofeng_guiyin(object me)
   if(!me->query(QUESTDIR3+"good") && me->query(QUESTDIR3+"over")&& !me->query(QUESTDIR3+"bad"))
   {
     command("nod "+me->query("id"));
-    tell_object(me,HIG"\n却见萧峰脸色大见缓和，以萧峰原本的大智慧，也定能明白这其中的道理。你也放下心来。\n"NOR);
-    command("say 也罢，我这就回我大辽，做我自己，还自行侠仗义，怎能这般自甘消沉。");
+    tell_object(me,HIG"\n卻見蕭峰臉色大見緩和，以蕭峰原本的大智慧，也定能明白這其中的道理。你也放下心來。\n"NOR);
+    command("say 也罷，我這就回我大遼，做我自己，還自行俠仗義，怎能這般自甘消沉。");
     command("thank "+me->query("id"));
     command("bye");                     
     me->set(QUESTDIR3+"good",1);
 		me->add("mana",me->query_skill("force")/2);
 		me->add("shen",me->query_skill("force")*5);
-    tell_object(me,HIY"\n\n你于"+NATURE_D->game_time()+"选择劝说萧峰归隐江湖，也算功德无量，获得"+(int)me->query_skill("force")/2+"点声望的奖励。\n\n");
-    log_file("quest/TLBB", sprintf("%s(%s) 选择劝说萧峰归隐江湖，时间 %s。获得%d点声望。\n", me->name(1),me->query("id"), ctime(time()),me->query_skill("force")/2) );
+    tell_object(me,HIY"\n\n你於"+NATURE_D->game_time()+"選擇勸說蕭峰歸隱江湖，也算功德無量，獲得"+(int)me->query_skill("force")/2+"點聲望的獎勵。\n\n");
+    log_file("quest/TLBB", sprintf("%s(%s) 選擇勸說蕭峰歸隱江湖，時間 %s。獲得%d點聲望。\n", me->name(1),me->query("id"), ctime(time()),me->query_skill("force")/2) );
 	  destruct(this_object());
 	}
 }
@@ -378,11 +378,11 @@ void die()
 	{
  	  me->set(QUESTDIR3+"bad",1);
  	  command("chat* heng");
-    command("chat 好好，"+me->name()+"竟然趁我不注意偷袭我，等我武功恢复之日，当是中原武林血洗之时！");
+    command("chat 好好，"+me->name()+"竟然趁我不注意偷襲我，等我武功恢復之日，當是中原武林血洗之時！");
 		me->add("max_neili",me->query_skill("force")/2);
 		me->add("shen",-me->query_skill("force")*5);
-    tell_object(me,HIY"\n\n你于"+NATURE_D->game_time()+"选择为武林除害，击败萧峰，获得"+(int)me->query_skill("force")/2+"点内力的奖励。\n\n");
-    log_file("quest/TLBB", sprintf("%s(%s) 选择击败萧峰，时间 %s。获得%d点内力。\n", me->name(1),me->query("id"), ctime(time()),me->query_skill("force")/2) );
+    tell_object(me,HIY"\n\n你於"+NATURE_D->game_time()+"選擇為武林除害，擊敗蕭峰，獲得"+(int)me->query_skill("force")/2+"點內力的獎勵。\n\n");
+    log_file("quest/TLBB", sprintf("%s(%s) 選擇擊敗蕭峰，時間 %s。獲得%d點內力。\n", me->name(1),me->query("id"), ctime(time()),me->query_skill("force")/2) );
 	  destruct(this_object());
   }
   else if(this_object()->query("no_death"))
@@ -395,7 +395,7 @@ void die()
   ob->set("jingli", 15000);
 	ob->set("jing", 15000);
   command("heng");
-  message_vision(HIR "\n$N微一凝神，运起混天气功，全身骨节发出一阵爆豆般的声响。\n" NOR, ob);
+  message_vision(HIR "\n$N微一凝神，運起混天氣功，全身骨節發出一陣爆豆般的聲響。\n" NOR, ob);
 	}
    ::die();
 }

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[35m紫骝马[2;37;0m[2;37;0m", ({"myma"}));        
+        set_name("[35m紫騮馬[2;37;0m[2;37;0m", ({"myma"}));        
         set("gender", "男性");                
-        set("long", "一只紫骝马[2;37;0m
-它是紫旗的魔幻兽。
+        set("long", "一隻紫騮馬[2;37;0m
+它是紫旗的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

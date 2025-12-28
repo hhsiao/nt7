@@ -1,10 +1,10 @@
-// 倚天剑法
+// 倚天劍法
 
 inherit SKILL;
 #include <ansi.h>
 
 mapping *action = ({
-([      "action": "$N剑尖剑芒暴长，一招「倚天寒芒」，手中$w大开大阖，剑芒直刺$n的$l",
+([      "action": "$N劍尖劍芒暴長，一招「倚天寒芒」，手中$w大開大闔，劍芒直刺$n的$l",
         "force" : 250,
         "attack": 150,
         "dodge" : 50,
@@ -12,9 +12,9 @@ mapping *action = ({
         "damage": 51,
         "lvl"   : 0,
         "skill_name" : "倚天寒芒",
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action": "$N剑芒吞吐，单手$w一招「翻江倒海」，剑势曼妙，剑光直逼向$n的$l",
+([      "action": "$N劍芒吞吐，單手$w一招「翻江倒海」，劍勢曼妙，劍光直逼向$n的$l",
         "force" : 270,
         "attack": 180,
         "dodge" : 60,
@@ -22,19 +22,19 @@ mapping *action = ({
         "damage": 78,
         "lvl"  : 30,
         "skill_name" : "翻江倒海",
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action": "$N一式「神剑佛威」，屈腕云剑，剑光如彩碟纷飞，幻出点点星光飘向$n",
+([      "action": "$N一式「神劍佛威」，屈腕雲劍，劍光如彩碟紛飛，幻出點點星光飄向$n",
         "force" : 280,
         "attack": 220,
         "dodge" : 80,
         "parry" : 80,
         "damage": 147,
         "lvl"   : 50,
-        "skill_name" : "神剑佛威",
-        "damage_type" : "刺伤"
+        "skill_name" : "神劍佛威",
+        "damage_type" : "刺傷"
 ]),
-([      "action": "$N挥剑分击，剑势自胸前跃出，$w一式「群邪辟易」，毫无留恋之势，刺向$n",
+([      "action": "$N揮劍分擊，劍勢自胸前躍出，$w一式「群邪辟易」，毫無留戀之勢，刺向$n",
         "force" : 290,
         "attack": 231,
         "dodge" : 81,
@@ -42,35 +42,35 @@ mapping *action = ({
         "damage": 155,
         "lvl"   : 80,
         "skill_name" : "群邪辟易",
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action": "$N左手剑指划转，腰部一扭，右手$w一记「荡妖除魔」自下而上刺向$n的$l",
+([      "action": "$N左手劍指劃轉，腰部一扭，右手$w一記「蕩妖除魔」自下而上刺向$n的$l",
         "force" : 300,
         "attack": 275,
         "dodge" : 95,
         "parry" : 95,
         "damage": 193,
         "lvl"   : 150,
-        "skill_name" : "荡妖除魔",
-        "damage_type" : "刺伤"
+        "skill_name" : "蕩妖除魔",
+        "damage_type" : "刺傷"
 ]),
-(["action": HIR "$N脸色凝重凝重，缓缓举起$w"NOR""HIR"，突然跃起身剑合一，使出一招“倚天不出”，\n手中$w"NOR""HIR"由下至上划出一条美丽的弧线刺向$n的$l" NOR,
+(["action": HIR "$N臉色凝重凝重，緩緩舉起$w"NOR""HIR"，突然躍起身劍合一，使出一招“倚天不出”，\n手中$w"NOR""HIR"由下至上劃出一條美麗的弧線刺向$n的$l" NOR,
          "damage": 250,
          "attack": 300,
          "dodge": 100,
          "parry": 100,
          "lvl": 150,
-         "damage_type": "刺伤",
+         "damage_type": "刺傷",
          "skill_name": "倚天不出",
 ]),
-(["action": HIY "$N反身跃起，双手握剑举至头顶使出倚天剑法奥义“谁与争锋”，这看似简简单单的一剑，\n而厚重的剑气直奔$n的$l而去"NOR,
+(["action": HIY "$N反身躍起，雙手握劍舉至頭頂使出倚天劍法奧義“誰與爭鋒”，這看似簡簡單單的一劍，\n而厚重的劍氣直奔$n的$l而去"NOR,
          "damage": 300,
          "attack": 350,
          "dodge": 120,
          "parry": 120,
          "lvl": 220,
-         "damage_type": "刺伤",
-         "skill_name": "谁与争锋",
+         "damage_type": "刺傷",
+         "skill_name": "誰與爭鋒",
 ])
 });
 
@@ -82,27 +82,27 @@ int valid_enable(string usage)
 int valid_learn(object me)
 {
         if( query("character", me) == "心狠手辣" ||
-            query("character", me) == "阴险奸诈" ||
-            query("character", me) == "狡黠多变" )
-                return notify_fail("以你的性格不适合修炼此剑术。\n");
+            query("character", me) == "陰險奸詐" ||
+            query("character", me) == "狡黠多變" )
+                return notify_fail("以你的性格不適合修煉此劍術。\n");
 
         if( query("int", me)<33 )
-                return notify_fail("以你的资质永远也学不会倚天剑法。\n");
+                return notify_fail("以你的資質永遠也學不會倚天劍法。\n");
 
         if( query("con", me)<28 )
-                return notify_fail("以你根骨不适合修炼倚天剑法。\n");
+                return notify_fail("以你根骨不適合修煉倚天劍法。\n");
 
         if( query("max_neili", me)<250 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if ((int)me->query_skill("force", 1) < 50)
-                return notify_fail("你的内功火候太浅。\n");
+                return notify_fail("你的內功火候太淺。\n");
 
         if ((int)me->query_skill("sword", 1) < 50)
-                return notify_fail("你的基本剑法火候太浅。\n");
+                return notify_fail("你的基本劍法火候太淺。\n");
 
         if (me->query_skill("sword", 1) < me->query_skill("yitian-jian"))
-                return notify_fail("你的基本剑法水平有限，无法领会更高深的倚天剑法。\n");
+                return notify_fail("你的基本劍法水平有限，無法領會更高深的倚天劍法。\n");
 
         return 1;
 }
@@ -130,13 +130,13 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if( query("qi", me)<50 )
-                return notify_fail("你的体力不够练倚天剑法。\n");
+                return notify_fail("你的體力不夠練倚天劍法。\n");
 
         if( query("neili", me)<60 )
-                return notify_fail("你的内力不够练倚天剑法。\n");
+                return notify_fail("你的內力不夠練倚天劍法。\n");
 
         me->receive_damage("qi", 50);
         addn("neili", -60, me);
@@ -152,21 +152,21 @@ mixed hit_ob(object me, object victim, int damage_bonus)
          {
                 victim->receive_damage("qi", damage_bonus+me->query_skill("yitian-jian"), me);
                 victim->receive_damage("jing", (damage_bonus+me->query_skill("yitian-jian")) / 2, me);
-                return WHT "$N有了倚天剑，顿时剑光大胜，剑气之声连连呼啸而过，$n"
-                       WHT "$n只觉气血翻腾，“哇”的吐出一口鲜血。\n" NOR;
+                return WHT "$N有了倚天劍，頓時劍光大勝，劍氣之聲連連呼嘯而過，$n"
+                       WHT "$n只覺氣血翻騰，“哇”的吐出一口鮮血。\n" NOR;
          }
 
          if (damage_bonus < 100)
          {
                  result =  ([ "damage" : damage_bonus / 2]);
-                 result += (["msg" : "$n"NOR""HIR"只觉一阵清风拂过，只见"NOR"$n"HIR"的嘴角竟露出一丝血色！\n" NOR]);
+                 result += (["msg" : "$n"NOR""HIR"只覺一陣清風拂過，只見"NOR"$n"HIR"的嘴角竟露出一絲血色！\n" NOR]);
                  return result;
          }
 
          if (damage_bonus > 100)
          {
                  result =  ([ "damage" : damage_bonus ]);
-                 result += (["msg" : "$n"NOR""MAG"只觉一阵清风拂过，只见"NOR"$n"MAG"血冒三丈，已被$N的剑气所伤！\n" NOR]);
+                 result += (["msg" : "$n"NOR""MAG"只覺一陣清風拂過，只見"NOR"$n"MAG"血冒三丈，已被$N的劍氣所傷！\n" NOR]);
                  return result;
          }
 }

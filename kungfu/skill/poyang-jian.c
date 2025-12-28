@@ -3,23 +3,23 @@ inherit SKILL;
 int is_pbsk() { return 1; }
 
 mapping *action = ({
-([      "action":"$N使一式「力破天下」，手中$w由左至右横扫向向$n的$l",
+([      "action":"$N使一式「力破天下」，手中$w由左至右橫掃向向$n的$l",
         "force" : 126,
         "parry" : 3,
         "dodge" : 5,
         "damage": 21,
         "lvl"   : 0,
         "skill_name" : "力破天下",
-        "damage_type":  "割伤"
+        "damage_type":  "割傷"
 ]),
-([      "action":"$N踏上一步，「寒魄式」，手中$w盘旋飞舞出一道金光劈向$n的$l",
+([      "action":"$N踏上一步，「寒魄式」，手中$w盤旋飛舞出一道金光劈向$n的$l",
         "force" : 149,
         "parry" : 13,
         "dodge" : 10,
         "damage": 25,
         "lvl"   : 30,
         "skill_name" : "寒魄式",
-        "damage_type":  "割伤"
+        "damage_type":  "割傷"
 ]),
 ([      "action":"$N手中$w一抖，一招「天降式」，斜斜反腕撩出，攻向$n的$l",
         "force" : 167,
@@ -28,70 +28,70 @@ mapping *action = ({
         "damage": 31,
         "lvl"   : 50,
         "skill_name" : "天降式",
-        "damage_type":  "割伤"
+        "damage_type":  "割傷"
 ]),
-([      "action":"$N手中$w连绕数个大圈，一式「龙舞九天」，一道光飞向$n的$l",
+([      "action":"$N手中$w連繞數個大圈，一式「龍舞九天」，一道光飛向$n的$l",
         "force" : 187,
         "parry" : 23,
         "dodge" : 19,
         "damage": 45,
         "lvl"   : 70,
-        "skill_name" : "龙舞九天",
-        "damage_type":  "刺伤"
+        "skill_name" : "龍舞九天",
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N手中$w斜指苍天，一式「天罡式」，对准$n的$l斜斜击出",
+([      "action":"$N手中$w斜指蒼天，一式「天罡式」，對準$n的$l斜斜擊出",
         "force" : 197,
         "parry" : 31,
         "dodge" : 27,
         "damage": 56,
         "lvl"   : 90,
         "skill_name" : "天罡式",
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N一式「冷兵出鞘」，$w飞斩盘旋，如疾电般射向$n的胸口",
+([      "action":"$N一式「冷兵出鞘」，$w飛斬盤旋，如疾電般射向$n的胸口",
         "force" : 218,
         "parry" : 49,
         "dodge" : 35,
         "damage": 63,
         "lvl"   : 110,
         "skill_name" : "冷兵出鞘",
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N手中$w一沉，一式「破光式」，无声无息地滑向$n的$l",
+([      "action":"$N手中$w一沉，一式「破光式」，無聲無息地滑向$n的$l",
         "force" : 239,
         "parry" : 52,
         "dodge" : 45,
         "damage": 72,
         "lvl"   : 130,
         "skill_name" : "破光式",
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N手中$w斜指苍天，剑芒吞吐，一式「天孤冷月式」，对准$n的$l斜斜击出",
+([      "action":"$N手中$w斜指蒼天，劍芒吞吐，一式「天孤冷月式」，對準$n的$l斜斜擊出",
         "force" : 257,
         "parry" : 55,
         "dodge" : 51,
         "damage": 88,
         "lvl"   : 150,
         "skill_name" : "天孤冷月式",
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N左指凌空虚点，右手$w逼出丈许雪亮光芒，一式「剑气纵横」刺向$n的咽喉",
+([      "action":"$N左指凌空虛點，右手$w逼出丈許雪亮光芒，一式「劍氣縱橫」刺向$n的咽喉",
         "force" : 282,
         "parry" : 63,
         "dodge" : 55,
         "damage": 105,
         "lvl"   : 170,
-        "skill_name" : "剑气纵横",
-        "damage_type":  "刺伤"
+        "skill_name" : "劍氣縱橫",
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N合掌跌坐，一式「破阳无极」，$w自怀中跃出，如疾电般射向$n的胸口",
+([      "action":"$N合掌跌坐，一式「破陽無極」，$w自懷中躍出，如疾電般射向$n的胸口",
         "force" : 335,
         "parry" : 76,
         "dodge" : 55,
         "damage": 122,
         "lvl"   : 190,
-        "skill_name" : "破阳无极",
-        "damage_type":  "刺伤"
+        "skill_name" : "破陽無極",
+        "damage_type":  "刺傷"
 ])
 });
 
@@ -107,22 +107,22 @@ int valid_learn(object me)
 
         if( !objectp(weapon=query_temp("weapon", me) )
             || query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if (me->query_skill("force") < 150)
-                return notify_fail("你的内功火候不够，不能学习破阳冷光剑。\n");
+                return notify_fail("你的內功火候不夠，不能學習破陽冷光劍。\n");
 
         if( query("max_neili", me)<1800 )
-                return notify_fail("你的内力修为不够，不能学习破阳冷光剑。\n");
+                return notify_fail("你的內力修為不夠，不能學習破陽冷光劍。\n");
 
         if (me->query_skill("sword", 1) < 100)
-                return notify_fail("你的基本剑法火候不够，不能学习破阳冷光剑。\n");
+                return notify_fail("你的基本劍法火候不夠，不能學習破陽冷光劍。\n");
 
         if ((int)me->query_skill("sword", 1) < lv)
-                return notify_fail("你的基本剑法水平有限，无法领会更高深的破阳冷光剑。\n");
+                return notify_fail("你的基本劍法水平有限，無法領會更高深的破陽冷光劍。\n");
 
         if ((int)me->query_skill("sword", 1) < lv)
-                return notify_fail("你的基本刀剑水平有限，无法领会更高深的破阳冷光剑。\n");
+                return notify_fail("你的基本刀劍水平有限，無法領會更高深的破陽冷光劍。\n");
 
         return 1;
 }
@@ -150,13 +150,13 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me) )
             || query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if( query("qi", me)<100 )
-                return notify_fail("你的体力不够练破阳冷光剑。\n");
+                return notify_fail("你的體力不夠練破陽冷光劍。\n");
 
         if( query("neili", me)<130 )
-                return notify_fail("你的内力不够练破阳冷光剑。\n");
+                return notify_fail("你的內力不夠練破陽冷光劍。\n");
 
         me->receive_damage("qi", 80);
         addn("neili", -100, me);
@@ -177,7 +177,7 @@ void skill_improved(object me)
         if( lvl > 120 &&
             !query("can_perform/poyang-jian/xian", me) ) 
         {
-                tell_object(me, WHT "你通晓了破阳冷光剑「" HIY "神光再现" WHT "」的奥秘。\n" NOR);    
+                tell_object(me, WHT "你通曉了破陽冷光劍「" HIY "神光再現" WHT "」的奧秘。\n" NOR);    
                 set("can_perform/poyang-jian/xian", 1, me);
                 me->improve_skill("martial-cognize", 1500000);  
                 me->improve_skill("martial-cognize", 1500000);  
@@ -187,7 +187,7 @@ void skill_improved(object me)
         if( lvl > 180 &&
             !query("can_perform/poyang-jian/long", me) ) 
         {
-                tell_object(me, WHT "你通晓了破阳冷光剑「" HIC "天外玉龙" WHT "」的奥秘。\n" NOR);    
+                tell_object(me, WHT "你通曉了破陽冷光劍「" HIC "天外玉龍" WHT "」的奧秘。\n" NOR);    
                 set("can_perform/poyang-jian/long", 1, me);
                 me->improve_skill("martial-cognize", 1500000);  
                 me->improve_skill("martial-cognize", 1500000); 

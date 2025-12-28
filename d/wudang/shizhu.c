@@ -5,10 +5,10 @@ void create()
 {
         set("short", "石柱");
         set("long", @LONG
-这是南岩宫前的一根石柱，雕成龙形，自峭壁上横出，犹如飞龙
-在天。龙首刻一香炉，在此上香称为「上龙头香」，是香客的最大心
-愿。石柱仅粗如屋梁，旁无扶栏，前有白云缭绕，下有万丈深渊，稍
-一失足，即尸骨无存。
+這是南巖宮前的一根石柱，雕成龍形，自峭壁上橫出，猶如飛龍
+在天。龍首刻一香爐，在此上香稱為「上龍頭香」，是香客的最大心
+願。石柱僅粗如屋樑，旁無扶欄，前有白雲繚繞，下有萬丈深淵，稍
+一失足，即屍骨無存。
 LONG );
         set("exits", ([
                 "northup" : __DIR__"nanyanfeng",
@@ -33,22 +33,22 @@ int do_mianbi(string arg)
 
         if (! arg)
         {
-                message_vision("$N面对着石柱趺坐静思良久，白"
-                               "忙一场，一无所获。\n",ob);
+                message_vision("$N面對著石柱趺坐靜思良久，白"
+                               "忙一場，一無所獲。\n",ob);
                 return 1;
         }
 
         if ((int)ob->query_skill("literate", 1) < 100)
         {
-                message_vision("$N面对着石柱上满面蝌蚪文，没"
-                               "一个字认识。\n",ob);
+                message_vision("$N面對著石柱上滿面蝌蚪文，沒"
+                               "一個字認識。\n",ob);
                 return 1;
         }
 
         if ((int)ob->query_skill("taoism", 1) < 100)
         {
-                message_vision("$N对石柱上每一个字都认识，就"
-                               "是不知道说的是什么。\n",ob);
+                message_vision("$N對石柱上每一個字都認識，就"
+                               "是不知道說的是什麼。\n",ob);
                 return 1;
         }
 
@@ -59,40 +59,40 @@ int do_mianbi(string arg)
                 if ((int)ob->query_skill(arg, 1) < 100)
                 {
                         message_vision("$N的" + to_chinese(arg) +
-                                       "显然太低，无法领悟石柱内容。\n",ob);
+                                       "顯然太低，無法領悟石柱內容。\n",ob);
                         return 1;
                 }
 
                 if ((int)ob->query_skill(arg, 1) > 180)
                 {
                         message_vision("$N的" + to_chinese(arg) +
-                                       "已经没必要读石柱内容了。\n", ob);
+                                       "已經沒必要讀石柱內容了。\n", ob);
                         return 1;
                 }
 
                 if (! ob->can_improve_skill(arg))
                 {
-                        message_vision("$N的实战经验不足，无法"
-                                       "领悟石柱内容。\n", ob);
+                        message_vision("$N的實戰經驗不足，無法"
+                                       "領悟石柱內容。\n", ob);
                         return 1;
                 }
 
                 if( query("jing", ob)<150 )
                 {
-                        message_vision("$N太累了，现在无法领"
-                                       "悟石柱内容。\n", ob);
+                        message_vision("$N太累了，現在無法領"
+                                       "悟石柱內容。\n", ob);
                         return 1;
                 }
                 ob->improve_skill(arg,1+random(query("int", ob)));
                 addn("jing", -100-random(50), ob);
-                message_vision(HIY "$N" HIY "面对着石柱趺坐静思，过得良"
+                message_vision(HIY "$N" HIY "面對著石柱趺坐靜思，過得良"
                                "久，似有所悟。\n" NOR, ob);
-                write(HIC "你对「" + to_chinese(arg) + HIC "」有了新的理"
+                write(HIC "你對「" + to_chinese(arg) + HIC "」有了新的理"
                       "解。\n" NOR);
                 return 1;
         } else 
 
-        message_vision(HIY "$N" HIY "面对着石柱趺坐静思良久，但似乎没什"
-                       "么启发。\n" NOR, ob);
+        message_vision(HIY "$N" HIY "面對著石柱趺坐靜思良久，但似乎沒什"
+                       "麼啟發。\n" NOR, ob);
         return 1;
 }

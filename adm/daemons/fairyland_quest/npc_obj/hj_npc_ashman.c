@@ -1,6 +1,6 @@
-//                标准描述长度示例                                   |
-// 清道夫，四处拣取垃圾
-// by naihe  2002-10-23  于茂名
+//                標準描述長度示例                                   |
+// 清道夫，四處揀取垃圾
+// by naihe  2002-10-23  於茂名
 
 #include <ansi.h>
 
@@ -9,16 +9,16 @@ inherit NPC;
 #include "hj_settings/room_amount_hj.h"
 
 int begin=1,move_time=3,temp=1;
-string out_msg="$N忽地从旁边的树木林中钻去，不见了。\n";
-string help_msg=CYN"$N"NOR+CYN"歇斯底里般叫道：“来人啦！救命啦！有人要杀人啦！”\n"NOR;
-string xixi_msg=CYN"$N"NOR+CYN"「嘻嘻嘻」傻笑了几声。\n"NOR;
+string out_msg="$N忽地從旁邊的樹木林中鑽去，不見了。\n";
+string help_msg=CYN"$N"NOR+CYN"歇斯底里般叫道：“來人啦！救命啦！有人要殺人啦！”\n"NOR;
+string xixi_msg=CYN"$N"NOR+CYN"「嘻嘻嘻」傻笑了幾聲。\n"NOR;
 
 int steal_times;
 
 void create()
 {
     set_name("小矮人",({"ai ren","ren"}));
-    set("long","这是一个小矮人，模样丑陋。\n");
+    set("long","這是一個小矮人，模樣醜陋。\n");
     set("gender","男性");
     set("age",55);
     set("per",14);
@@ -26,7 +26,7 @@ void create()
     set("no_refresh",1);
 
     set("hj_game/npc","ashman");
-    set("msg","只听得一阵树叶拨拉之声，一个"+query("name", this_object())+"从旁边林子里钻了出来。\n");
+    set("msg","只聽得一陣樹葉撥拉之聲，一個"+query("name", this_object())+"從旁邊林子裡鑽了出來。\n");
 
     set_temp("hj_hp_max",100+random(101));
     set_temp("hj_hp",query_temp("hj_hp_max"));
@@ -46,7 +46,7 @@ void init()
     }
 }
 
-// 受到攻击时引发一些行为
+// 受到攻擊時引發一些行為
 void hj_get_attack( object attacker )
 {
     remove_call_out("checking");
@@ -65,7 +65,7 @@ void checking()
     {
         remove_call_out("delete_me");
         inv = all_inventory(ob);
-        out_msg="$N惨叫一声，整个身体夸张地扭曲起来，随即消失不见了。\n";
+        out_msg="$N慘叫一聲，整個身體誇張地扭曲起來，隨即消失不見了。\n";
         if(inv || sizeof(inv) > 0)
         {
             for(i=0;i<sizeof(inv);i++)
@@ -100,7 +100,7 @@ void normal()
     move_time=3;
     temp=1;
     delete("killme_by");
-    message_vision("$N神色紧张地四处张望着，一副惊魂未定的样子。\n",this_object());
+    message_vision("$N神色緊張地四處張望著，一副驚魂未定的樣子。\n",this_object());
 }
 
 void delete_me()
@@ -109,7 +109,7 @@ void delete_me()
     if( objectp( (env=environment(ob)) ) )
     {
         message_vision(out_msg, ob );
-        // naihe 05-9-7 9:29 矮人偷东西偶尔可能掉些回来。也算是给点机会给玩家！
+        // naihe 05-9-7 9:29 矮人偷東西偶爾可能掉些回來。也算是給點機會給玩家！
         if( sizeof( (inv=all_inventory( ob )) ) > 0 )
         {
             foreach( t in inv )
@@ -125,8 +125,8 @@ void delete_me()
     destruct(this_object());
 }
 
-// naihe 05-8-29 10:13 加入真正清垃圾的函数……
-// 以前脑子发晕，搞个 get all 还要全部 hj obj 配合，靠。
+// naihe 05-8-29 10:13 加入真正清垃圾的函數……
+// 以前腦子發暈，搞個 get all 還要全部 hj obj 配合，靠。
 void do_real_get_all()
 {
     object *inv, ob, env;
@@ -143,14 +143,14 @@ void do_real_get_all()
     }
 }
 
-void get_all()      // 加入随机偷取玩家东西的函数 by naihe 10:52 02-10-30
+void get_all()      // 加入隨機偷取玩家東西的函數 by naihe 10:52 02-10-30
 {
     object *all_here,*inv, env, ob = this_object();
     int i,iii,amount;
     string steal="no";
 
     if( !(env=environment(ob)) || query_temp("hj_hp") < 1 ) return;
-    // 准备去死了的矮人不能再偷东西   fix by naihe 03-01-22
+    // 準備去死了的矮人不能再偷東西   fix by naihe 03-01-22
 
     if(random(2) == 1)
     {
@@ -164,8 +164,8 @@ void get_all()      // 加入随机偷取玩家东西的函数 by naihe 10:52 02
         }
     }
 
-    // 或者其在忙时中，不得偷东西
-    if( is_busy() || steal_times >= 3 )  // 每个 小矮人 最多也就偷取 3 个物品
+    // 或者其在忙時中，不得偷東西
+    if( is_busy() || steal_times >= 3 )  // 每個 小矮人 最多也就偷取 3 個物品
     {
         remove_call_out("get_all");
         call_out("get_all",5,ob);
@@ -178,7 +178,7 @@ void get_all()      // 加入随机偷取玩家东西的函数 by naihe 10:52 02
         if( query("hj_game/npc", all_here[i] )
          || !query_temp("hj_hp", all_here[i] )
          || query_temp("huanjing", all_here[i]) != "start"
-        || present( "hj temp leave obj", all_here[i] )      // 临时离开游戏者，不偷取
+        || present( "hj temp leave obj", all_here[i] )      // 臨時離開遊戲者，不偷取
         )
             continue;
 
@@ -189,14 +189,14 @@ void get_all()      // 加入随机偷取玩家东西的函数 by naihe 10:52 02
         {
             if( query("hj_game/obj", inv[iii]))amount++;
         }
-        if( amount > 20 )  // 当玩家携带了的幻境内物品超过此数字，将会被随机偷取掉一件。
+        if( amount > 20 )  // 當玩家攜帶了的幻境內物品超過此數字，將會被隨機偷取掉一件。
         {
             for(iii=0;iii<sizeof(inv);iii++)
             {
                 if( random(10) == 1 && query("id", inv[iii]) != "qixing deng" && 
                    query("hj_game/obj", inv[iii]) )
                 {
-                    message_vision(sprintf("$N身上带着的一%s%s似乎被谁偷偷摸走了！\n",query("unit", inv[iii]),query("name", inv[iii])),all_here[i]);
+                    message_vision(sprintf("$N身上帶著的一%s%s似乎被誰偷偷摸走了！\n",query("unit", inv[iii]),query("name", inv[iii])),all_here[i]);
                     inv[iii]->move(ob);
                     steal="yes";
                     steal_times++;

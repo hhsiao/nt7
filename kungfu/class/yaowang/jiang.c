@@ -7,10 +7,10 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("姜铁山", ({ "jiang tieshan", "jiang", "tieshan" }));
+        set_name("姜鐵山", ({ "jiang tieshan", "jiang", "tieshan" }));
         set("nickname", HIC "二弟子" NOR);
         set("long",@LONG
-药王谷第二代弟子姜铁山。
+藥王谷第二代弟子姜鐵山。
 LONG );
 
         set("gender", "男性");
@@ -68,7 +68,7 @@ LONG );
 
         prepare_skill("hand", "jiuqu-zhegufa");
 
-        create_family("药王谷", 2, "弟子");
+        create_family("藥王谷", 2, "弟子");
         set("class", "bonze");
 
         set("chat_chance_combat", 80);
@@ -88,7 +88,7 @@ LONG );
         setup();
 
         set("inquiry", ([
-                "七星海棠" : "七星海棠乃天下第一毒，无药可治！",
+                "七星海棠" : "七星海棠乃天下第一毒，無藥可治！",
          ]) );
 
         carry_object("/clone/cloth/cloth")->wear();
@@ -101,19 +101,19 @@ void attempt_apprentice(object ob)
 
         if( query("combat_exp", ob)<20000 )
         {
-                command("say 你现在经验尚浅，领会不了什么，还是先去增长点经验吧。");
+                command("say 你現在經驗尚淺，領會不了什麼，還是先去增長點經驗吧。");
                 return;
         }
 
         if ((int)ob->query_skill("medical", 1) < 20)
         {
-                command("say 你先去小铁那儿学些基本医术吧。");
+                command("say 你先去小鐵那兒學些基本醫術吧。");
                 return;
         }
 
 
         command("pat"+query("id", ob));
-        command("say 不错，不错！既然你如此有心，我就收下你这个徒弟。");
+        command("say 不錯，不錯！既然你如此有心，我就收下你這個徒弟。");
         command("recruit "+query("id", ob));
         if( query("class", ob) != "bonze" )
                 set("class", "bonze", ob);

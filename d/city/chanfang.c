@@ -4,9 +4,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short",HIW"扬州产房"NOR);
+        set("short",HIW"揚州產房"NOR);
         set("long", @LONG
-这是一间专门为孕妇准备的产房，你的妻子要生Baby就赶快来哟。
+這是一間專門為孕婦準備的產房，你的妻子要生Baby就趕快來喲。
 LONG );
         set("no_fight",1);
         set("no_sleep_room",1);

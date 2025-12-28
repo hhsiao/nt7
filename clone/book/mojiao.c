@@ -7,15 +7,15 @@ inherit MEDICAL_BOOK;
 
 void create()
 {
-        set_name(HIG "魔教医术" NOR, ({ "mojiao medical", "medical" }));
+        set_name(HIG "魔教醫術" NOR, ({ "mojiao medical", "medical" }));
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
                 set("unit", "本");
-                set("long", "这是一本泛黄的书籍，上面用古篆书"
-                            "写着“魔教医术”几个字。\n",
+                set("long", "這是一本泛黃的書籍，上面用古篆書"
+                            "寫著“魔教醫術”幾個字。\n",
 
                 );
                 set("material", "paper");
@@ -29,7 +29,7 @@ void create()
                 ]));
 
                 set("can_make", ([
-                        "tianmo" : 280,           // 天魔圣血膏
+                        "tianmo" : 280,           // 天魔聖血膏
                 ]));
         }
         setup();

@@ -2,10 +2,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("西厂官兵", ({ "guan bing", "bing" }));
+        set_name("西廠官兵", ({ "guan bing", "bing" }));
         set("age", 22);
         set("gender", "男性");
-        set("long", "西厂官兵是经过特殊训练的，没事最好别去招惹。\n");
+        set("long", "西廠官兵是經過特殊訓練的，沒事最好別去招惹。\n");
         set("attitude", "peaceful");
 
         set("str", 25);
@@ -25,7 +25,7 @@ void create()
 
        set("chat_chance_combat", 10);
         set("chat_msg_combat", ({
-                "西厂官兵喝道：大胆刁民，京城之中，竟敢造反不成？\n",
+                "西廠官兵喝道：大膽刁民，京城之中，竟敢造反不成？\n",
         }));
         setup();
         carry_object("/d/beijing/npc/obj/sword4")->wield();
@@ -45,7 +45,7 @@ void init()
 
 int accept_fight(object me)
 {
-        command("say 大爷我正想找人杀呐，今天算你倒霉。\n");
+        command("say 大爺我正想找人殺吶，今天算你倒黴。\n");
         me->apply_condition("killer", 500);
         kill_ob(me);
         return 1;

@@ -5,7 +5,7 @@ void create()
         set_name("樵夫", ({ "qiao fu", "qiao", "fu" }));
         set("gender", "男性" );
         set("age", 33);
-        set("long", "这是一个很健壮的樵夫。\n");
+        set("long", "這是一個很健壯的樵夫。\n");
         set("shen_type", 1);
         set("combat_exp", 800);
         set("str", 22);

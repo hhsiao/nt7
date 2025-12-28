@@ -160,20 +160,20 @@ void kill_ob(object ob)
         guarded = query_temp("guarded", ob);
         if( !guarded ) guarded = ({ });
         if( member_array(me, guarded) != -1 ) {
-                tell_object(ob, HIR "不能杀你要保护的人！\n" NOR);
+                tell_object(ob, HIR "不能殺你要保護的人！\n" NOR);
                 return;
         }
 
         if( query_temp("owner") == ob || query_temp("owner") == query("id", ob) ) {
-                tell_object(me, HIR "不能对你的主人下毒手。\n" NOR);
+                tell_object(me, HIR "不能對你的主人下毒手。\n" NOR);
                 return;
         }
 
         if( !arrayp(killer) ) killer = ({ });
         if( member_array(query("id", ob), killer)==-1 ) {
                 killer += ({ query("id", ob) });
-                tell_object(ob, HIR "看起来" + this_object()->name() +
-                                HIR "想杀死你！\n" NOR);
+                tell_object(ob, HIR "看起來" + this_object()->name() +
+                                HIR "想殺死你！\n" NOR);
         }
 
         foreach( gob in guarded ) {
@@ -188,46 +188,46 @@ void kill_ob(object ob)
                         continue;
 
                 tell_object(gob, HIR + ob->name(1) +
-                            "受到攻击，你挺身而出，加入战团！\n" NOR);
+                            "受到攻擊，你挺身而出，加入戰團！\n" NOR);
                 switch( random(8) )
                 {
                 case 0:
-                        message_vision(HIW "$N" HIW "一言不发，对$n"
-                                       HIW "发动了攻击。\n" NOR, gob, me);
+                        message_vision(HIW "$N" HIW "一言不發，對$n"
+                                       HIW "發動了攻擊。\n" NOR, gob, me);
                         break;
                 case 1:
-                        message_vision(HIW "$N" HIW "一声怒吼，冲上前"
-                                       "去，看来是要和$n" HIW "拼命。\n" NOR,
+                        message_vision(HIW "$N" HIW "一聲怒吼，衝上前"
+                                       "去，看來是要和$n" HIW "拼命。\n" NOR,
                                        gob, me);
                         break;
                 case 2:
-                        message_vision(HIW "$N" HIW "冷笑了一声，道："
-                                       "“接招吧！”说罢就对$n" HIW
-                                       "发动了攻击。\n" NOR, gob, me);
+                        message_vision(HIW "$N" HIW "冷笑了一聲，道："
+                                       "“接招吧！”說罷就對$n" HIW
+                                       "發動了攻擊。\n" NOR, gob, me);
                         break;
                 case 3:
-                        message_vision(HIW "$N" HIW "迈上一步，挡在前"
-                                       "面，开始和$n" HIW "进行殊死搏"
-                                       "斗！\n" NOR, gob, me);
+                        message_vision(HIW "$N" HIW "邁上一步，擋在前"
+                                       "面，開始和$n" HIW "進行殊死搏"
+                                       "鬥！\n" NOR, gob, me);
                         break;
                 case 4:
-                        message_vision(HIW "$N" HIW "双臂一振，脸如寒水，"
-                                       "已经向$n" HIW "接连发出数招！\n"
+                        message_vision(HIW "$N" HIW "雙臂一振，臉如寒水，"
+                                       "已經向$n" HIW "接連發出數招！\n"
                                        NOR, gob, me);
                         break;
                 case 5:
-                        message_vision(HIW "$N" HIW "深吸一口气，一招"
+                        message_vision(HIW "$N" HIW "深吸一口氣，一招"
                                        "直指$n" HIW "的要害，竟然是要"
                                        "取人的性命！\n" NOR, gob, me);
                         break;
                 case 6:
-                        message_vision(HIW "紧接着$N" HIW "已经攻上！"
-                                       "招招进逼$n" HIW "，毫无容情余"
+                        message_vision(HIW "緊接著$N" HIW "已經攻上！"
+                                       "招招進逼$n" HIW "，毫無容情餘"
                                        "地！\n" NOR, gob, me);
                         break;
                 default:
-                        message_vision(HIW "$N" HIW "飞也似的扑上前来"
-                                       "，开始进攻$n" HIW "。\n" NOR, gob, me);
+                        message_vision(HIW "$N" HIW "飛也似的撲上前來"
+                                       "，開始進攻$n" HIW "。\n" NOR, gob, me);
                         break;
                 }
 
@@ -270,7 +270,7 @@ void want_kill(object ob)
                 set("no_newbie", 1);
                 if( query("newbie") ) {
                         delete("newbie");
-                        tell_object(me, BLINK + HIR "\n由于你主动攻击其他玩家，所以取消对你的新手保护！\n\n" NOR);
+                        tell_object(me, BLINK + HIR "\n由於你主動攻擊其他玩家，所以取消對你的新手保護！\n\n" NOR);
                 }
         }
 }
@@ -292,7 +292,7 @@ void clean_up_enemy()
 
 // This function checks if the current opponent is available or
 // select a new one.
-// BOSS仇恨系统
+// BOSS仇恨系統
 object select_opponent()
 {
         object *enemy_selected, *enemy_weak, prefered, *enemy;
@@ -306,9 +306,9 @@ object select_opponent()
 
         if( !userp(this_object()) )
         {
-                // 第一步先选出快死的 --〉make sure you die :D
-                // 第二个选择是冒犯你最多的-->max_hatred guy
-                // 实在不行就随便选了
+                // 第一步先選出快死的 --〉make sure you die :D
+                // 第二個選擇是冒犯你最多的-->max_hatred guy
+                // 實在不行就隨便選了
                 enemy_weak = filter_array(enemy, (: query("qi", $1) < query("max_qi", $1)/10
                                         && userp($1) :));
                 if( sizeof(enemy_weak) >= 1 )
@@ -341,10 +341,10 @@ int remove_enemy(object ob)
         me = this_object();
 
         enemy -= ({ ob });
-        // BOSS解除战斗则恢复状态
+        // BOSS解除戰鬥則恢復狀態
         if( !sizeof(enemy) && me->is_boss() )
                 me->full_self();
-        // 解除绝招组合效果
+        // 解除絕招組合效果
         if( !sizeof(enemy) )
                 delete_temp("last_perform", me);
 

@@ -20,9 +20,9 @@ void destruct_ob(object me)
 void create()
 {
         seteuid(getuid());
-        set("name", "离线指令");
+        set("name", "離線指令");
         set("id", "quit");
-        set("channel_id", "离线精灵");
+        set("channel_id", "離線精靈");
 }
 
 int main(object me, string arg)
@@ -34,36 +34,36 @@ int main(object me, string arg)
         object *users;
 
         if (LOGIN_D->get_madlock())
-                return notify_fail("时空已经封闭，没有人能够退出这个时空了。\n");
+                return notify_fail("時空已經封閉，沒有人能夠退出這個時空了。\n");
 
         if( me->is_busy() && !query("doing", me) )
-                return notify_fail("你现在正忙着做其他事，不能退出游戏！\n");
+                return notify_fail("你現在正忙著做其他事，不能退出遊戲！\n");
 
         if (me->is_fighting())
-                return notify_fail("你现在正在打架，怎么能说走就走？\n");
+                return notify_fail("你現在正在打架，怎麼能說走就走？\n");
 
         if (me->query_competitor())
-                return notify_fail("好家伙，你正在和人比武，怎么能开溜？\n");
+                return notify_fail("好傢伙，你正在和人比武，怎麼能開溜？\n");
 
         if (me->dps_count() > 0)
-                return notify_fail("好家伙，你打晕了别人就想开溜？\n");
+                return notify_fail("好傢伙，你打暈了別人就想開溜？\n");
 
         if (me->query_condition("killer"))
-                return notify_fail("好家伙，你杀了人就别想开溜！\n");
+                return notify_fail("好傢伙，你殺了人就別想開溜！\n");
 
         if( time()-query("combat/pktime", me)<28800 )
-                return notify_fail("好家伙，你杀了人就别想开溜！\n");
+                return notify_fail("好傢伙，你殺了人就別想開溜！\n");
 
         if (me->over_encumbranced())
-                return notify_fail("你身上背的东西太多了，无法离开这个世界。\n");
+                return notify_fail("你身上背的東西太多了，無法離開這個世界。\n");
 
         if (me->run_override("quit"))
                 return 1;
 
         if( time()-query("birthday", me)<1800 && !query("reborn", me) )
         {
-                write(HIG "\n你的账号是新建的，本站规定新建账号必须连续在线半小时才能被有效保\n"
-                          "留，退出该游戏将删除你的账号，你确定要放弃该帐号而退出吗？（" HIR "y" HIG "/" HIY "n" HIG "）\n" NOR);
+                write(HIG "\n你的賬號是新建的，本站規定新建賬號必須連續在線半小時才能被有效保\n"
+                          "留，退出該遊戲將刪除你的賬號，你確定要放棄該帳號而退出嗎？（" HIR "y" HIG "/" HIY "n" HIG "）\n" NOR);
                 input_to((: confirm :), me);
                 return 1;
         }
@@ -100,16 +100,16 @@ int main(object me, string arg)
                 if (! interactive(me))
                         return 1;
 
-                write("你暂时离线，人物不退出...\n");
-                message("vision", me->name() + "离线了。\n",
+                write("你暫時離線，人物不退出...\n");
+                message("vision", me->name() + "離線了。\n",
                                   environment(me), ({ me }));
                 me->save();
                 link_ob = new(LOGIN_OB);
                 exec(link_ob, me);
                 destruct(link_ob);
 #ifdef DB_SAVE
-                DATABASE_D->db_set_player(query("id", me),"online",2);//离线练功
-                DATABASE_D->db_set_user(query("id", me),"online",2);//离线练功
+                DATABASE_D->db_set_player(query("id", me),"online",2);//離線練功
+                DATABASE_D->db_set_user(query("id", me),"online",2);//離線練功
 #endif
                 return 1;
         }
@@ -134,10 +134,10 @@ int main(object me, string arg)
                         if( !inv[i]->query_autoload() && !query("equipped", inv[i]) )
                                         flag += DROP_CMD->do_drop(me, inv[i], 1);
                 if (flag)
-                        message("vision", me->name() + "将身上的东西都丢了下来。\n",
+                        message("vision", me->name() + "將身上的東西都丟了下來。\n",
                                 environment(me), ({ me }));
         }
-#else  // 如果不丢物品则必须判断某些物品是必须摧毁的
+#else  // 如果不丟物品則必須判斷某些物品是必須摧毀的
 */
 #ifdef NO_QUIT_DROP
         inv = all_inventory(me);
@@ -145,7 +145,7 @@ int main(object me, string arg)
                 if (userp(inv[i]) || inv[i]->query_unique() ||
                     query("maze_item", inv[i]) || 
                     (! clonep(inv[i]) &&
-                    ! sscanf(base_name(inv[i]), "/data/%*s/%*s"))) // 如果成立表示此物品是非 /data 目录下的原件
+                    ! sscanf(base_name(inv[i]), "/data/%*s/%*s"))) // 如果成立表示此物品是非 /data 目錄下的原件
                 {
                         if( query("equipped", inv[i]) )
                                 inv[i]->unequip();
@@ -160,16 +160,16 @@ int main(object me, string arg)
         for (i = 0; i < sizeof(inv); i++)
                if( inv[i]->is_cruise_ob() )
                        destruct(inv[i]);
-        // write("欢迎下次再来！\n");
+        // write("歡迎下次再來！\n");
         color_cat(QUITMSG);
         if (environment(me) && me->query("env/invisible") < 10)
         {
-                         message("vision", me->name() + "离开游戏。\n", 
+                         message("vision", me->name() + "離開遊戲。\n", 
                         environment(me), ({ me }));
         }
 
         CHANNEL_D->do_channel(this_object(), "sys",
-                me->name()+"("+query("id", me)+")离开游戏了。");
+                me->name()+"("+query("id", me)+")離開遊戲了。");
 
 
         log_file("stat", sprintf("%-8s %-10s %-18s %-18s %-15s.\n",
@@ -203,15 +203,15 @@ int force_quit(object me)
 
         if (previous_object() != me ||
             ! playerp(me))
-                return notify_fail("你不能摧毁这个对象。\n");
+                return notify_fail("你不能摧毀這個對象。\n");
 
         seteuid(getuid());
 
         if (me->query_condition("killer"))
-                return notify_fail("好家伙，杀了人就别想开溜！\n");
+                return notify_fail("好傢伙，殺了人就別想開溜！\n");
 
         if( time()-query("combat/pktime", me)<28800 )
-                return notify_fail("好家伙，你杀了人就别想开溜！\n");
+                return notify_fail("好傢伙，你殺了人就別想開溜！\n");
 
         if( time() - query("birthday", me) < 1800 && !query("reborn", me) )
         {
@@ -240,7 +240,7 @@ int force_quit(object me)
         message("system", REM2(me), users);
 
 #ifdef DB_SAVE
-             DATABASE_D->db_set_player(query("id", me),"online",0);//离线练功
+             DATABASE_D->db_set_player(query("id", me),"online",0);//離線練功
 #endif
         destruct(me);
         return 1;
@@ -258,7 +258,7 @@ int confirm(string yn, object me)
                                     log_time(), log_id(me),
                                     query_ip_number(me)));
 
-                write(HIW "您选择了放弃该账号退出泥潭，档案被删除。。。。。。\n" NOR);
+                write(HIW "您選擇了放棄該賬號退出泥潭，檔案被刪除。。。。。。\n" NOR);
 
                 users=filter_array(users(),(:query_temp("tomud", $1):));
                 message("system", REM2(me), users);
@@ -267,7 +267,7 @@ int confirm(string yn, object me)
                 return 1;
         } else
         {
-                write(HIG "您选择了放弃退出(quit)，继续游戏。\n" NOR);
+                write(HIG "您選擇了放棄退出(quit)，繼續遊戲。\n" NOR);
                 return 1;
         }
 }
@@ -277,7 +277,7 @@ int help(object me)
         write(@HELP
 指令格式 : quit | exit
 
-当你(你)想暂时离开时, 可利用此一指令。
+當你(你)想暫時離開時, 可利用此一指令。
 HELP );
     return 1;
 }

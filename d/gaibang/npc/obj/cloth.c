@@ -9,7 +9,7 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", WHT "这是一件满是油腻的破布衣。\n" NOR);
+                set("long", WHT "這是一件滿是油膩的破布衣。\n" NOR);
                 set("unit", "件");
                 set("material", "cloth");
                 set("armor_prop/armor", 1);

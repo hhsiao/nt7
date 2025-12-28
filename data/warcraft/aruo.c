@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("小马[2;37;0m[2;37;0m", ({"xiaoma"}));        
+        set_name("小馬[2;37;0m[2;37;0m", ({"xiaoma"}));        
         set("gender", "男性");                
-        set("long", "一匹小马[2;37;0m
-它是阿若的魔幻兽。
+        set("long", "一匹小馬[2;37;0m
+它是阿若的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

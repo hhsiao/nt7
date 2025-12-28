@@ -2,19 +2,19 @@
 
 #include <ansi.h>
 inherit ROOM;
-#define QUESTDIR3 "quest/天龙八部/萧峰身世篇/"
+#define QUESTDIR3 "quest/天龍八部/蕭峰身世篇/"
 
 void create()
 {
-	set("short", "断崖");
+	set("short", "斷崖");
 	set("long", @LONG
-前面是一处十分陡峭的断崖，险峻异常，难以爬越。这里离黄河不远，黄
-河流淌到这里，河床宽阔。黄色的河水在静静地向东流去，使人忘记它发
-洪水时的狂威。
+前面是一處十分陡峭的斷崖，險峻異常，難以爬越。這裡離黃河不遠，黃
+河流淌到這裡，河床寬闊。黃色的河水在靜靜地向東流去，使人忘記它發
+洪水時的狂威。
 LONG
 	);
            set("quest",1);
-	set("outdoors", "黄河");
+	set("outdoors", "黃河");
 	set("exits", ([
 		"north" : __DIR__"yidao4",
 	]));
@@ -49,10 +49,10 @@ int valid_leave(object me, string dir)
    object obj;
    if(obj=present("xiao feng", environment(me)))
    {
-	   message_vision(HIY"\n$N点了点头道：“$n既然要走了，我也离开这里了，我先找一个地方疗伤再说。”\n" NOR, obj,me); 
-       message_vision(HIY"\n$N微一凝神，运起混天气功，全身骨节发出一阵爆豆般的声响！\n" NOR, obj); 
-	   message_vision(HIY"\n$N向$n招了招手，道：“等我伤势痊愈，我就会去找你的。”\n" NOR, obj,me); 
-	   message_vision(HIY"\n$N跳下断崖，一转眼不见踪影了。\n" NOR, obj); 
+	   message_vision(HIY"\n$N點了點頭道：“$n既然要走了，我也離開這裡了，我先找一個地方療傷再說。”\n" NOR, obj,me); 
+       message_vision(HIY"\n$N微一凝神，運起混天氣功，全身骨節發出一陣爆豆般的聲響！\n" NOR, obj); 
+	   message_vision(HIY"\n$N向$n招了招手，道：“等我傷勢痊癒，我就會去找你的。”\n" NOR, obj,me); 
+	   message_vision(HIY"\n$N跳下斷崖，一轉眼不見蹤影了。\n" NOR, obj); 
        destruct(obj);
    }
    return ::valid_leave(me, dir);

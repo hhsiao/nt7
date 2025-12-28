@@ -1,4 +1,4 @@
-// yu.c 以气驭剑
+// yu.c 以氣馭劍
 // by Lonely
 
 #include <ansi.h>
@@ -15,25 +15,25 @@ int perform(object me, object target)
         if( !target ) target = offensive_target(me);
 
         if( !target || !target->is_character() || !me->is_fighting(target) )
-                return notify_fail("以气驭剑绝技只能对战斗中的对手使用。\n");
+                return notify_fail("以氣馭劍絕技只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me) )
          || query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
                 
         if( (int)me->query_skill("yunlong-jian", 1) < 50 )
-                return notify_fail("你的云龙剑法不够娴熟，不会使用「以气驭剑」。\n");
+                return notify_fail("你的雲龍劍法不夠嫻熟，不會使用「以氣馭劍」。\n");
                                 
         if( (int)me->query_skill("yunlong-shengong", 1) < 50 )
-                return notify_fail("你的云龙神功不够高，不能用来反震伤敌。\n");
+                return notify_fail("你的雲龍神功不夠高，不能用來反震傷敵。\n");
                         
         if( query("neili", me)<500 )
-                return notify_fail("你现在内力太弱，不能使用「以气驭剑」。\n");
+                return notify_fail("你現在內力太弱，不能使用「以氣馭劍」。\n");
                 
         if( target->is_busy() )
-                return notify_fail(target->name() + "目前正自顾不暇，放胆攻击吧ⅵ\n");
+                return notify_fail(target->name() + "目前正自顧不暇，放膽攻擊吧ⅵ\n");
         
-        msg = HIC "$N微微一笑，猛吸一口气,欲使出以气驭剑绝技攻击$n。\n"NOR;
+        msg = HIC "$N微微一笑，猛吸一口氣,欲使出以氣馭劍絕技攻擊$n。\n"NOR;
         
         ap = attack_power(me, "sword");
         dp = defense_power(target, "dodge");
@@ -43,12 +43,12 @@ int perform(object me, object target)
                 damage = damage_power(me, "sword");
                 
                 addn("neili", 400, me);
-                pmsg = HIR"只见$N手中剑光幻作一条金龙,腾空而起,倏的罩向$n,\n$n只觉一股大力铺天盖地般压来,登时眼前一花，两耳轰鸣,哇的喷出一口鲜血！！\n"NOR;
+                pmsg = HIR"只見$N手中劍光幻作一條金龍,騰空而起,倏的罩向$n,\n$n只覺一股大力鋪天蓋地般壓來,登時眼前一花，兩耳轟鳴,哇的噴出一口鮮血！！\n"NOR;
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 50, pmsg);
                 me->start_busy(2);
         } else 
         {
-                msg += CYN"可是$p猛地向前一跃,跳出了$P的攻击范围。\n"NOR;
+                msg += CYN"可是$p猛地向前一躍,跳出了$P的攻擊範圍。\n"NOR;
                 addn("neili", -100, me);
                 me->start_busy(3);
         }

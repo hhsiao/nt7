@@ -9,7 +9,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "包");
-                set("long", HIW "这是一瓶白色的剧毒粉末，可杀人于无形。\n" NOR);
+                set("long", HIW "這是一瓶白色的劇毒粉末，可殺人於無形。\n" NOR);
                 set("value", 50000);
                 set("poison_type", "yaowang_poison");
                 set("can_pour", 1);
@@ -29,8 +29,8 @@ void create()
 
 int do_effect(object me)
 {
-        message_vision("$N一仰脖，将七星海棠粉倒入了嘴中。\n", me);
-        set_temp("die_reason", "吃了七星海棠粉去见黑白无常了", me);
+        message_vision("$N一仰脖，將七星海棠粉倒入了嘴中。\n", me);
+        set_temp("die_reason", "吃了七星海棠粉去見黑白無常了", me);
         me->die();
         destruct(this_object());
         return 1;

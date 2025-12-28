@@ -16,7 +16,7 @@ string zm_apply()
 /*
         if (query("gender", ob) != "女性")
         {
-                return "本派只有女子才能接任掌门弟子一职！";
+                return "本派只有女子才能接任掌門弟子一職！";
         }
 */
         return ::zm_apply();

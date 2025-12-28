@@ -7,10 +7,10 @@ inherit F_MASTER;
 void create()
 {
         set_name("高升泰", ({ "gao shengtai", "gao" }));
-        set("title", "大理国宰相");
-        set("nickname", HIR "善阐侯" NOR);
+        set("title", "大理國宰相");
+        set("nickname", HIR "善闡侯" NOR);
         set("long", @LONG
-大理国侯爷，这是位宽袍大袖的中年男子，三缕长
+大理國侯爺，這是位寬袍大袖的中年男子，三縷長
 髯，形貌高雅。
 LONG);
         set("gender", "男性");
@@ -54,7 +54,7 @@ LONG);
         prepare_skill("cuff", "jinyu-quan");
         prepare_skill("strike", "wuluo-zhang");
 
-        create_family("段氏皇族", 15, "善阐侯");
+        create_family("段氏皇族", 15, "善闡侯");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -80,6 +80,6 @@ void attempt_apprentice(object ob)
                 return;
 
         command("haha");
-        command("say 世子殿下何需如此，有事吩咐在下一声便是。");
+        command("say 世子殿下何需如此，有事吩咐在下一聲便是。");
         return;
 }

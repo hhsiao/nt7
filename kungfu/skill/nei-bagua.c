@@ -19,22 +19,22 @@ int query_neili_improve(object me)
 
 int valid_learn(object me)
 {
-        if( query("gender", me) == "无性" && 
+        if( query("gender", me) == "無性" && 
             (int)me->query_skill("nei-bagua", 1) > 49)
-                return notify_fail("你无根无性，阴阳难调，无法学习更高深的内八卦。\n");
+                return notify_fail("你無根無性，陰陽難調，無法學習更高深的內八卦。\n");
 
         if ((int)me->query_skill("force", 1) < 80)
-                return notify_fail("你的基本内功火候还不够。\n");
+                return notify_fail("你的基本內功火候還不夠。\n");
 
         if ((int)me->query_skill("wai-bagua", 1) < 100)
-                return notify_fail("你的外八卦功夫火候还不够。\n");
+                return notify_fail("你的外八卦功夫火候還不夠。\n");
 
         return ::valid_learn(me);
 }
 
 int practice_skill(object me)
 {
-        return notify_fail("内八卦只能用学(learn)的来增加熟练度。\n");
+        return notify_fail("內八卦只能用學(learn)的來增加熟練度。\n");
 }
 
 string exert_function_file(string func)

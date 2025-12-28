@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m烧鸡[2;37;0m[2;37;0m", ({"yiyayo"}));        
+        set_name("[1;31m燒雞[2;37;0m[2;37;0m", ({"yiyayo"}));        
         set("gender", "男性");                
         set("long", "dfa[2;37;0m
-它是米大菜偷的魔幻兽。
+它是米大菜偷的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

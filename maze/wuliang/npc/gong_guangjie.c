@@ -1,10 +1,10 @@
-// NPC :gong_guangjie.c 龚光杰
+// NPC :gong_guangjie.c 龔光傑
 // By River 98/12
 inherit NPC;
 void create()
 {
-        set_name("龚光杰", ({ "gong guangjie", "gong", "guangjie"}));
-        set("title","无量剑东宗弟子");              
+        set_name("龔光傑", ({ "gong guangjie", "gong", "guangjie"}));
+        set("title","無量劍東宗弟子");              
         set("gender", "男性" );
         set("age", 36);
         set("str", 27);
@@ -22,7 +22,7 @@ void create()
         set("max_neili", 1000);      
         set("unique", 1);
         
-        set("long","他是无量剑东宗的弟子。\n");
+        set("long","他是無量劍東宗的弟子。\n");
         set("combat_exp", 200000);
         set("shen", 800); 
 

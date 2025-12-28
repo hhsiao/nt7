@@ -10,10 +10,10 @@ void greeting();
 void create()
 {
         seteuid(getuid());
-        set_name(HIR"圣诞老人"NOR, ({ "shengdan laoren","santa","laoren"}) );
+        set_name(HIR"聖誕老人"NOR, ({ "shengdan laoren","santa","laoren"}) );
         set("gender", "男性" );
         set("age", 63);
-        set("long", HIR"一位红光满面，笑呵呵的白胡子老爷爷。\n"NOR);
+        set("long", HIR"一位紅光滿面，笑呵呵的白鬍子老爺爺。\n"NOR);
         set("attitude", "peaceful");
 
         set("str", 25);
@@ -44,18 +44,18 @@ void create()
 
         set("chat_chance", 20);
         set("chat_msg", ({
-                "圣诞老人笑呵呵说道: 圣诞快乐！快乐！~~\n",
-                "圣诞老人快活地唱道: 叮叮铛，叮叮铛，铃儿响叮铛~~\n",
-                "圣诞老人笑呵呵说道: 想要礼物吗？我就是神派来送圣诞礼物的。 \n",
-                "圣诞老人笑道: 只要是乖孩子，就有圣诞礼物。 \n",
+                "聖誕老人笑呵呵說道: 聖誕快樂！快樂！~~\n",
+                "聖誕老人快活地唱道: 叮叮鐺，叮叮鐺，鈴兒響叮鐺~~\n",
+                "聖誕老人笑呵呵說道: 想要禮物嗎？我就是神派來送聖誕禮物的。 \n",
+                "聖誕老人笑道: 只要是乖孩子，就有聖誕禮物。 \n",
                 (: random_move :),
                 (: greeting :),
         }) );
 
         set("inquiry", ([
                                          "gift" : (: ask_gift :),
-                                         "圣诞礼物" : (: ask_gift:),
-                                         "礼物" : (: ask_gift:),
+                                         "聖誕禮物" : (: ask_gift:),
+                                         "禮物" : (: ask_gift:),
                                   ]) );
 
 
@@ -85,7 +85,7 @@ string ask_gift()
 
         if( ppl->query_condition("santa") )
         {
-                message_vision("$N对着$n笑道：你才拿到礼物，就又想要啦？\n",santa,ppl);
+                message_vision("$N對著$n笑道：你才拿到禮物，就又想要啦？\n",santa,ppl);
                 random_move();
                 return "呵呵呵\n";
         }
@@ -93,7 +93,7 @@ string ask_gift()
         if( query("combat_exp", ppl)<300 )
         {
                 random_move();
-                return "DUMMY是不需要礼物的:)";
+                return "DUMMY是不需要禮物的:)";
         }
 
         seteuid(getuid());
@@ -137,14 +137,14 @@ string ask_gift()
         if( query("env/no_accept", ppl) )
         {
                 command("hmm");
-                command("say "+ppl->name()+"不想接受任何东西？");
+                command("say "+ppl->name()+"不想接受任何東西？");
         }
         else
                 command("give"+query("id", ob)+"to"+query("id", ppl));
 
         ppl->apply_condition( "santa",20+random(10) );
 
-        return "祝你圣诞快乐！快乐！~~\n";
+        return "祝你聖誕快樂！快樂！~~\n";
 }
 
 void destroy_me(object me)
@@ -156,26 +156,26 @@ void greeting()
 {
         object me = this_object();
 
-        command("say 祝你圣诞快乐！快乐~~\n");
+        command("say 祝你聖誕快樂！快樂~~\n");
 
         if( strsrch(base_name(environment()), "/d/city/") == -1 )
         {
-                message_vision(HIY"$N"+HIY"乘坐风车凌空飞去，转眼就不见了.\n"NOR,me);
+                message_vision(HIY"$N"+HIY"乘坐風車凌空飛去，轉眼就不見了.\n"NOR,me);
                 me->move("d/city/wumiao");
-                message_vision(HIG"只听空中一阵铃铛声响，$N"+HIG"乘坐风车凌空飞来.\n"NOR,me);
+                message_vision(HIG"只聽空中一陣鈴鐺聲響，$N"+HIG"乘坐風車凌空飛來.\n"NOR,me);
         }
 
         if( strsrch(ctime(time()), "Dec 25") == -1 )
         {
-                message_vision(HIY"$N"+HIY"凄婉地说：圣诞节结束了，我也该回天堂了.\n"NOR,me);
+                message_vision(HIY"$N"+HIY"悽婉地說：聖誕節結束了，我也該回天堂了.\n"NOR,me);
                 command("goodbye");
-                message_vision(HIY"$N"+HIY"乘坐风车凌空飞去，转眼就不见了.\n"NOR,me);
+                message_vision(HIY"$N"+HIY"乘坐風車凌空飛去，轉眼就不見了.\n"NOR,me);
                 call_out("destroy_me",1,me);
         }
 
         if( random(150) == 0 )
         {
-                message_vision(HIY"$N"+HIY"乘坐风车凌空飞去，转眼就不见了.\n"NOR,me);
+                message_vision(HIY"$N"+HIY"乘坐風車凌空飛去，轉眼就不見了.\n"NOR,me);
                 call_out("destroy_me",1,me);
         }
 }
@@ -184,7 +184,7 @@ int accept_object(object me, object obj)
 {
         if( query("money_id", obj) && obj->value() >= 1){
                          command("smile");
-                         command("say 多谢啦 ! 你好心必有好报的 !");
+                         command("say 多謝啦 ! 你好心必有好報的 !");
         }
 
         return 0;
@@ -192,7 +192,7 @@ int accept_object(object me, object obj)
 
 int accept_fight(object me)
 {
-        command("say " + RANK_D->query_respect(me) + "，老头子我是不打架的:)ⅵ\n");
+        command("say " + RANK_D->query_respect(me) + "，老頭子我是不打架的:)ⅵ\n");
         return 0;
 }
 
@@ -202,7 +202,7 @@ int accept_kill(object victim)
                   object player = this_player();
                   int flag;
 
-                  command("say " + RANK_D->query_respect(player) + "，怎么这么凶？不该不该呀！\n");
+                  command("say " + RANK_D->query_respect(player) + "，怎麼這麼兇？不該不該呀！\n");
                   command("benger "+query("id", player));
                   if( query("env/immortal", player) )
                                 flag=1;

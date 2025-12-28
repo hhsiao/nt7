@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[33m[5m佛印莲台[2;37;0m[2;37;0m[2;37;0m", ({"liantai"}));        
+        set_name("[33m[5m佛印蓮臺[2;37;0m[2;37;0m[2;37;0m", ({"liantai"}));        
         set("gender", "男性");                
-        set("long", "佛印莲台[2;37;0m
-它是佛心的魔幻兽。
+        set("long", "佛印蓮臺[2;37;0m
+它是佛心的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

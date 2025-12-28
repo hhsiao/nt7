@@ -8,9 +8,9 @@ int is_chat_room() { return 1; }
 
 void create()
 {
-      set("short","化乐天");
+      set("short","化樂天");
         set("long", @LONG
-许君八千岁，念我八百年，自是一昼夜，乐变化五天。
+許君八千歲，念我八百年，自是一晝夜，樂變化五天。
 LONG );
 
         set("exits", ([ /* sizeof() == 1 */

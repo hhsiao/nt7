@@ -1,5 +1,5 @@
 // inherit object: quest.c
-// 所有玩家任务继承此对象
+// 所有玩家任務繼承此對象
 
 #include <quest.h>
 
@@ -7,12 +7,12 @@ inherit F_DBASE;
 
 mixed quest_name;
 
-nosave int destructing;         // 析构对象时候的标志
-nosave string status;           // 任务对象的状态
+nosave int destructing;         // 析構對象時候的標誌
+nosave string status;           // 任務對象的狀態
 
 int is_quest() { return clonep(this_object()); }
 
-// 任务的名字
+// 任務的名字
 varargs string name()
 {
         if( stringp(quest_name) )
@@ -21,110 +21,110 @@ varargs string name()
         if( functionp(quest_name) )
                 return evaluate(quest_name);
 
-        return "未名任务";
+        return "未名任務";
 }
 
-// 设置名字
+// 設置名字
 void set_name(string name)
 {
         quest_name = name;
 }
 
-// 该任务消息灵通人士(knower)对某人(who)而言的介绍
+// 該任務消息靈通人士(knower)對某人(who)而言的介紹
 varargs string query_introduce(object knower, object who)
 {
-        // 缺省是没有介绍的 - 能够被散布的应该必须有介绍。
+        // 缺省是沒有介紹的 - 能夠被散佈的應該必須有介紹。
         return 0;
 }
 
-// 该任务是否能被消息灵通人士(knower)所知晓
+// 該任務是否能被消息靈通人士(knower)所知曉
 varargs int can_know_by(object knower)
 {
-        // 缺省是可以知晓的
+        // 缺省是可以知曉的
         return 1;
 }
 
-// 该任务是否能被消息灵通人士(knower)广为散布
+// 該任務是否能被消息靈通人士(knower)廣為散佈
 varargs int can_rumor_by(object knower)
 {
-        // 缺省只要该人知道就可以散布
-        // 必须引用this_object()，因为can_know_by() 一般会被
-        // 具体的任务对象重载，如果不引用this_object()就调用
-        // 不了重载的函数。
+        // 缺省只要該人知道就可以散佈
+        // 必須引用this_object()，因為can_know_by() 一般會被
+        // 具體的任務對象重載，如果不引用this_object()就調用
+        // 不了重載的函數。
         return this_object()->can_know_by(knower);
 }
 
-// 任务的初始化
+// 任務的初始化
 void setup()
 {
         if( !this_object()->is_quest() )
                 return;
 
-        // 这是一个任务
+        // 這是一個任務
         status = QUEST_CREATE;
         set("start_time", time());
         QUEST_D->add_quest(this_object());
 }
 
-// 任务的析构函数。
-// 如果是首先析构这个任务对象，则destructing这个标识必然为零，
-// 那么我就设置标识，然后尝试调用取消任务的重载函数。 这样在
-// 取消任务的函数中调用析构函数就不会再次执行。
+// 任務的析構函數。
+// 如果是首先析構這個任務對象，則destructing這個標識必然為零，
+// 那麼我就設置標識，然後嘗試調用取消任務的重載函數。 這樣在
+// 取消任務的函數中調用析構函數就不會再次執行。
 void remove()
 {
         if( !destructing && this_object()->is_quest() ) {
                 destructing = 1;
 
-                // 在析构前取消任务
+                // 在析構前取消任務
                 this_object()->cancel_quest();
         }
 }
 
-// 结束任务的函数
-// 直接调用析构函数
+// 結束任務的函數
+// 直接調用析構函數
 void cancel_quest()
 {
-        // 设置结束时间
+        // 設置結束時間
         set("finish_time", time());
 
-        // 从QUEST_D中去掉有关这个对象的信息
+        // 從QUEST_D中去掉有關這個對象的信息
         QUEST_D->remove_all_information(this_object());
 
-        // 如果没有析构这个任务，则设置标识，然后析构这个任务
+        // 如果沒有析構這個任務，則設置標識，然後析構這個任務
         if( !destructing ) {
                 destructing = 1;
                 destruct(this_object());
         }
 }
 
-// 查询任务状态
+// 查詢任務狀態
 string query_status()
 {
         return status;
 }
 
-// 任务改变状态
+// 任務改變狀態
 void change_status(string new_state)
 {
         if( status == new_state )
-                // 状态没有变化
+                // 狀態沒有變化
                 return;
 
         status = new_state;
         if( status == QUEST_FINISH ) {
-                // 迁移到结束状态？析构对象。
+                // 遷移到結束狀態？析構對象。
                 destruct(this_object());
         }
 }
 
-// 在QUEST_D那里登记一条消息
+// 在QUEST_D那裡登記一條消息
 void set_information(string key, mixed info)
 {
         QUEST_D->set_information(this_object(), key, info);
 }
 
-// 在QUEST_D那里登记自己的消息
+// 在QUEST_D那裡登記自己的消息
 void register_information()
 {
-        // 必须登记一定的信息才可以
+        // 必須登記一定的信息才可以
 }

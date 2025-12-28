@@ -12,12 +12,12 @@ inherit F_DBASE;
 #define GAOSHOU_DIR     "/data/gaoshou/"
 #define TEMP_OBJ        "/clone/misc/temp_gaoshou"
 
-nosave object challenger = 0;  // 挑战者
-nosave object competitor = 0;  // 被挑战着
+nosave object challenger = 0;  // 挑戰者
+nosave object competitor = 0;  // 被挑戰著
 
 // 返回值 1 -- 可以上去
 // 返回值 2 -- 正在比武
-// 返回值 3 -- 还没开放
+// 返回值 3 -- 還沒開放
 nosave int state = 1;
 nosave int times = 3;
 nosave int top_num = 10;
@@ -61,8 +61,8 @@ int clean_up() { return 1; }
 void create()
 {
         seteuid(ROOT_UID);
-        set("channel_id", "比武精灵");
-        CHANNEL_D->do_channel( this_object(), "sys", "演武系统已经启动。");     
+        set("channel_id", "比武精靈");
+        CHANNEL_D->do_channel( this_object(), "sys", "演武系統已經啟動。");     
         get_tops();
 }
 
@@ -72,7 +72,7 @@ void remove(string euid)
                 return;
       
         if (state = 2 && sizeof(total) > 0) 
-                error("比武精灵：目前还有玩家正在挑战十大高手，你不能摧毁比武精灵。\n"); 
+                error("比武精靈：目前還有玩家正在挑戰十大高手，你不能摧毀比武精靈。\n"); 
 }
 
 protected void heart_beat()
@@ -162,21 +162,21 @@ int check_out(object me)
                 my["jing"] = 1;
                 my["jingli"] = 1;
 
-                tell_object(me, HIR "\n你觉得眼前一阵模糊...这下完了！\n" NOR);
+                tell_object(me, HIR "\n你覺得眼前一陣模糊...這下完了！\n" NOR);
                 if (ob = me->query_last_damage_from())
                 {
-                        msg = "听说" + me->name(1) + HIY "惨遭" + ob->name(1) + HIY "的毒手，被一脚踢下擂台。";
+                        msg = "聽說" + me->name(1) + HIY "慘遭" + ob->name(1) + HIY "的毒手，被一腳踢下擂臺。";
                 } else
-                        msg = "听说" + me->name(1) + HIY "运气不佳，本领有限、已经败下擂台。";
+                        msg = "聽說" + me->name(1) + HIY "運氣不佳，本領有限、已經敗下擂臺。";
                 message_competition(msg);
 
                 restore_status(me);
                 total -= ({ me });
                 me->move(ENTRY_ROOM);
-                message("vision", "一个黑影倏的窜了出来，随即就是“啪”的"
-                        "一声，就见" + me->name() +"摔倒了地上，一副半死不"
-                        "活的样子。\n", environment(me), ({ me }));
-                tell_object(me, "半昏半迷中，你觉得被人拎了起来，又"
+                message("vision", "一個黑影倏的竄了出來，隨即就是“啪”的"
+                        "一聲，就見" + me->name() +"摔倒了地上，一副半死不"
+                        "活的樣子。\n", environment(me), ({ me }));
+                tell_object(me, "半昏半迷中，你覺得被人拎了起來，又"
                         "重重的摔倒了地上。\n");
                 if (! living(me))
                         me->revive();
@@ -185,10 +185,10 @@ int check_out(object me)
                 return 1;
         } else
         {
-                message_vision(NOR "\n$N膝盖一软，单膝着地，又强撑着站起身来，口中却喷出一口" 
-                        HIR "鲜血" NOR "，黯然转身离去！\n\n" NOR, me); 
+                message_vision(NOR "\n$N膝蓋一軟，單膝著地，又強撐著站起身來，口中卻噴出一口" 
+                        HIR "鮮血" NOR "，黯然轉身離去！\n\n" NOR, me); 
                 msg = HIY "恭喜" + NOR + HIR + challenger->name(1) + NOR + 
-                      HIY "比武战胜" + NOR + HIR + me->name(1) + NOR +  
+                      HIY "比武戰勝" + NOR + HIR + me->name(1) + NOR +  
                       HIY "！！\n" NOR;
                 message_competition(msg);    
                               
@@ -201,16 +201,16 @@ int check_out(object me)
 
 int check_quit(object me)
 {
-        message_competition("听说" + me->name(1) +
-                            "临阵脱逃，溜走了。");
+        message_competition("聽說" + me->name(1) +
+                            "臨陣脫逃，溜走了。");
         restore_status(me);
         if (arrayp(total))
                 total -= ({ me });
-        tell_object(me, "你决定弃权，逃了下去。\n");
+        tell_object(me, "你決定棄權，逃了下去。\n");
 
         // continue run quit function
         me->move(ENTRY_ROOM);
-        message("vision", "只见" + me->name() + "脸色非常难看的跑了下来。\n",
+        message("vision", "只見" + me->name() + "臉色非常難看的跑了下來。\n",
                 environment(me), ({ me }));
         return 1;
 }
@@ -220,29 +220,29 @@ int join_competition(object ob)
         mixed exp;
 
         if (state = 2 && sizeof(total) > 0) 
-                return notify_fail("现在擂台正在举行比武，你还是等会吧。\n");
+                return notify_fail("現在擂臺正在舉行比武，你還是等會吧。\n");
 
         if (state == 3)
-                return notify_fail("擂台现在已经关闭了，你跑来干什么？\n");
+                return notify_fail("擂臺現在已經關閉了，你跑來幹什麼？\n");
         
         if( time()-query_temp("competed", ob)<500 )
-                return notify_fail("你刚打过擂台不久，你还是等会再来吧。\n");
+                return notify_fail("你剛打過擂臺不久，你還是等會再來吧。\n");
                 
         exp=query("combat_exp", ob);
         if (exp < 100000)
-                return notify_fail("你还是算了吧，你这点经验就别进去现眼了。\n");
+                return notify_fail("你還是算了吧，你這點經驗就別進去現眼了。\n");
 
         if (ob->query_condition("killer", 1))
-                return notify_fail("你正在被官府通缉，所以不能参加比武。\n");
+                return notify_fail("你正在被官府通緝，所以不能參加比武。\n");
 
         if (! get_tops())
-                return notify_fail("对不起，擂台上比武排名记录有错误，请联系巫师。\n");
+                return notify_fail("對不起，擂臺上比武排名記錄有錯誤，請聯繫巫師。\n");
 
         if (ob->query_condition())
-                return notify_fail("你现在状态不佳，还是别进去了。\n");
+                return notify_fail("你現在狀態不佳，還是別進去了。\n");
 
         if( query("id", ob) == tops[0]["id"] )
-                return notify_fail("你已经是天下第一了，还是别进去了。\n");
+                return notify_fail("你已經是天下第一了，還是別進去了。\n");
 
         if (! arrayp(total))
                 total = ({ ob });
@@ -250,8 +250,8 @@ int join_competition(object ob)
         if (member_array(ob, total) == -1)
                 total += ({ ob });                
                
-        message_competition((ultrap(ob) ? "大宗师" : "") +
-                            ob->name(1) + "上擂台挑战十大高手，大伙儿为他加油啊！。");
+        message_competition((ultrap(ob) ? "大宗師" : "") +
+                            ob->name(1) + "上擂臺挑戰十大高手，大夥兒為他加油啊！。");
 
         init_player(ob);
         // set_heart_beat(1);
@@ -274,9 +274,9 @@ protected void init_player(object me)
 
         me->move(FIGHT_ROOM);
         if (userp(me))
-                message_vision(HIW "$N飞身跳上擂台，周围响起一片叫好声。\n\n", me);
+                message_vision(HIW "$N飛身跳上擂臺，周圍響起一片叫好聲。\n\n", me);
         else        
-                message_vision(HIW "只听的一声锣响，$N从后台大步走了出来，环顾一下四方。\n\n", me); 
+                message_vision(HIW "只聽的一聲鑼響，$N從後臺大步走了出來，環顧一下四方。\n\n", me); 
         set("backup/condition", me->query_condition(), me);
         me->clear_condition();
 }
@@ -390,8 +390,8 @@ protected int do_competition(object ob1, object ob2)
                         } else
                         {
                                 times = 3;
-                                tell_room(room, HIY "\t-------  开     始  -------\n\n" NOR);
-                                message_vision(HIW "\n$N对着$n冷哼一声：既然不要命，那就放马过来吧！\n", ob2, ob1);
+                                tell_room(room, HIY "\t-------  開     始  -------\n\n" NOR);
+                                message_vision(HIW "\n$N對著$n冷哼一聲：既然不要命，那就放馬過來吧！\n", ob2, ob1);
                         } 
                 }
                 
@@ -430,8 +430,8 @@ protected int finish_competition()
         {               
                 restore_status(challenger);
                 challenger->move(ENTRY_ROOM);
-                message_vision(HIW "$N哈哈一笑，轻身飘下了擂台。\n" NOR, challenger);
-                msg = HIY + challenger->name(1) + "打败所有高手，大笑着飞身飘下擂台！\n" NOR;
+                message_vision(HIW "$N哈哈一笑，輕身飄下了擂臺。\n" NOR, challenger);
+                msg = HIY + challenger->name(1) + "打敗所有高手，大笑著飛身飄下擂臺！\n" NOR;
                 message_competition(msg);    
         }
         
@@ -440,7 +440,7 @@ protected int finish_competition()
         /*
         if (mingci != 0)
         {
-                msg = HIY + challenger->name(1) + "被几个大汉抬下了擂台！\n" NOR;
+                msg = HIY + challenger->name(1) + "被幾個大漢抬下了擂臺！\n" NOR;
                 message_competition(msg);    
         }
         */
@@ -470,7 +470,7 @@ protected int finish_competition()
 
         if (old_mingci == 9)
         {
-                //删除老天下第十的资料
+                //刪除老天下第十的資料
                 temp_file = GAOSHOU_DIR + "npc/" + tops[9]["id"] + ".o";
                 if (file_size(temp_file) >= 0)
                         rm(temp_file);
@@ -494,13 +494,13 @@ protected int finish_competition()
                 if (i == mingci)
                 {
                         tops[i] = tmp_top;
-                        //复制玩家档案
+                        //複製玩家檔案
                         cp(from_file, to_file);
 
-                        //修改新的档案属性
+                        //修改新的檔案屬性
                         temp_ob = new(TEMP_OBJ);
                         temp_ob->delete_status();
-                        //复制武器
+                        //複製武器
                         if( objectp(weapon=query_temp("weapon", challenger)) && 
                             (! weapon->is_no_clone() ||
                              weapon->is_item_make()))
@@ -536,7 +536,7 @@ protected int finish_competition()
                                 } else carry_ob += ({ to_file });
                         }
 
-                        //复制防具
+                        //複製防具
                         for (j = 0;j<sizeof(armor_type);j++)
                         {
                                 if( objectp(armor=query_temp("armor/"+armor_type[j], challenger)) )
@@ -568,8 +568,8 @@ protected int finish_competition()
         }
         save_tops();
         msg = HIY "恭喜" + challenger->name(1) +
-              HIY "荣登" + HIG + "天下第" + chinese_number(mingci + 1) +
-              NOR + HIY + "的宝座！\n" NOR;
+              HIY "榮登" + HIG + "天下第" + chinese_number(mingci + 1) +
+              NOR + HIY + "的寶座！\n" NOR;
         message_competition(msg);    
         get_tops();
         restore_competition();
@@ -603,7 +603,7 @@ int get_tops()
                 {
                         top = ([ ]);
                         top["id"] = "test";
-                        top["title"] = "「巫师测试人物」测试(test)";
+                        top["title"] = "「巫師測試人物」測試(test)";
                         tops += ([ i : top ]);       
                 }
                 return 1;
@@ -645,5 +645,5 @@ int save_tops()
 protected void message_competition(string msg)
 {
         return;
-        message("sys", HIY "【演武大厅】" + msg + "\n" NOR, users());
+        message("sys", HIY "【演武大廳】" + msg + "\n" NOR, users());
 }

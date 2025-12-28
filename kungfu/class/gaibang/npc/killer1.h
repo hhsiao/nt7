@@ -39,7 +39,7 @@ void init()
                 if( !query_temp("zuji_target", me))set_temp("zuji_target", t_name, me);
                 if( !query_temp("skill_set", me) )
                 {
-                        command("say 小子，乖乖把密函交出来吧！！！\n");
+                        command("say 小子，乖乖把密函交出來吧！！！\n");
                         remove_call_out("dest");
                         call_out("dest",300);
                         remove_call_out("do_clone");
@@ -47,7 +47,7 @@ void init()
                 }
                 else
                 {
-                        command("say 想跑，还不给我交出来！！！\n");
+                        command("say 想跑，還不給我交出來！！！\n");
                         me->set_leader(ob);
                         remove_call_out("dest");
                         call_out("dest",300);
@@ -183,7 +183,7 @@ int do_kill(object me, object dest)
         if( objectp(dest) && present(dest, environment(me))
                   && !query("no_fight", environment(me)) )
         {
-                message_vision(HIR "$N对$n说道："+RANK_D->query_rude(dest)+"，想往哪里跑！\n" NOR, me, dest);
+                message_vision(HIR "$N對$n說道："+RANK_D->query_rude(dest)+"，想往哪裡跑！\n" NOR, me, dest);
                 me->set_leader(dest);
                 me->kill_ob(dest);
                 dest->fight_ob(me);
@@ -256,8 +256,8 @@ void dest()
         ob = this_player();
         me = this_object();
 
-        write(query("name", me)+"道：这次算你命大！\n",me);
-        write(query("name", me)+"匆匆离开。\n",me);
+        write(query("name", me)+"道：這次算你命大！\n",me);
+        write(query("name", me)+"匆匆離開。\n",me);
 
         destruct(this_object());
 }
@@ -268,8 +268,8 @@ void dest2()
         ob = this_player();
         me = this_object();
 
-        write(query("name", me)+"道：你躲得过初一躲不过十五，我们还会来的！\n",me);
-        write(query("name", me)+"匆匆离开。\n",me);
+        write(query("name", me)+"道：你躲得過初一躲不過十五，我們還會來的！\n",me);
+        write(query("name", me)+"匆匆離開。\n",me);
         delete_temp("songxin_zuji", ob);
 
         destruct(this_object());
@@ -279,7 +279,7 @@ void dest3()
         object me;
         me = this_object();
 
-        write(query("name", me)+"大笑道：完成任务了！\n",me);
-        write(query("name", me)+"匆匆离开。\n",me);
+        write(query("name", me)+"大笑道：完成任務了！\n",me);
+        write(query("name", me)+"匆匆離開。\n",me);
         destruct(this_object());
 }

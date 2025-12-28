@@ -19,7 +19,7 @@ int main(object me, string arg)
         ob = find_player(arg);
         if (!ob)
         {
-                write ("咦... 没有这个人呀?\n");
+                write ("咦... 沒有這個人呀?\n");
                 return 1;
         }
 
@@ -36,10 +36,10 @@ int help(object me)
 write(@HELP
 指令格式 : finduser <某人>
 
-找到某人的内存中的对象，并显示他的标识和有效标识。这是一条用来排
-除故障的调试命令。
+找到某人的內存中的對象，並顯示他的標識和有效標識。這是一條用來排
+除故障的調試命令。
 
-相关命令：call
+相關命令：call
 
 HELP
     );

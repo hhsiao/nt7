@@ -10,12 +10,12 @@ void create()
         else*/
         {
                 set("unit", "本");
-                set("long","这是一本意形步步法。\n");
+                set("long","這是一本意形步步法。\n");
                 set("value", 5000);
                 set("material", "paper");
                 set("skill", ([
                         "name": "yixingbu",  //name of the skill
-						"family_name": "神龙教",
+						"family_name": "神龍教",
                         "exp_required": 10000 , //minimum combat experience required
                         "jing_cost": 20+random(30),// jing cost every time study this
                         "difficulty":        20,        // the base int to learn this skill

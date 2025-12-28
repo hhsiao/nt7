@@ -9,17 +9,17 @@ int big_blowing();
 
 void create()
 {
-        set_name( HIB "镇海神龙" NOR, ({ "sea dragon king", "dragon king", "dragon" }) );
-        set("long", HIB "这是一条全身碧绿，吸大海之间的精华而长大"
-                    "的神龙！它全身散发着碧绿色的光芒！\n\n" NOR);
+        set_name( HIB "鎮海神龍" NOR, ({ "sea dragon king", "dragon king", "dragon" }) );
+        set("long", HIB "這是一條全身碧綠，吸大海之間的精華而長大"
+                    "的神龍！它全身散發著碧綠色的光芒！\n\n" NOR);
 
-        set("race", "野兽");
+        set("race", "野獸");
         set("gender", "雄性");
         set("age", 200);
         set("no_get", 1);
         set("shen_type", 0);
         set("attitude", "aggressive");
-        set("limbs", ({ "头部", "身体", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體", "尾巴" }) );
         set("verbs", ({ "bite", "claw" }) );
 
         set("dex",100);
@@ -46,8 +46,8 @@ void create()
 
         set("chat_chance", 5);
         set("chat_msg", ({
-                HIB "海底打来一个巨浪！差点把你卷走！\n" NOR,
-                HIB "镇海神龙突然吐出一颗湛蓝的珠子，又卷了回去！\n" NOR,
+                HIB "海底打來一個巨浪！差點把你捲走！\n" NOR,
+                HIB "鎮海神龍突然吐出一顆湛藍的珠子，又捲了回去！\n" NOR,
         }));
 
         set("chat_chance_combat", 100);
@@ -71,11 +71,11 @@ void create()
                 "gold"  : 100,
                 "weiwang"   : 1000,
         ]));
-        // 物品奖励
+        // 物品獎勵
         // set("killer_reward", killer_reward("sea_dragon"));
         set("drops", ([
-                "RA&RANDOM20"    :       100,  // 低级普通装备
-                "RA&RANDOM80"    :       30,   // 中级普通装备
+                "RA&RANDOM20"    :       100,  // 低級普通裝備
+                "RA&RANDOM80"    :       30,   // 中級普通裝備
                 "FI&/clone/fam/skpaper/finger1" :   50,
                 "FI&/clone/fam/skpaper/hand1"   :   50,
                 "FI&/clone/fam/skpaper/claw1"   :   50,
@@ -114,8 +114,8 @@ varargs void start_busy(mixed new_busy, mixed new_interrupt)
 
 int big_blowing()
 {
-        message_vision(HIB "$N" HIB "从海水里深深地吸入一口气，全身发出耀眼"
-                       "的蓝色，整个龙腹胀大了几倍！！\n" NOR, this_object());
+        message_vision(HIB "$N" HIB "從海水裡深深地吸入一口氣，全身發出耀眼"
+                       "的藍色，整個龍腹脹大了幾倍！！\n" NOR, this_object());
 
         remove_call_out("hurting");
         call_out("hurting", random(2) + 1);
@@ -127,7 +127,7 @@ int hurting()
         int dam, i , num;
         object *inv;
 
-        message_vision(HIB "$N" HIB "吐出一股巨大的海浪．．．．．．整个天地似乎都被吞没！！！\n" NOR,
+        message_vision(HIB "$N" HIB "吐出一股巨大的海浪．．．．．．整個天地似乎都被吞沒！！！\n" NOR,
                        this_object());
 
         inv = all_inventory(environment(this_object()));
@@ -167,6 +167,6 @@ mixed hit_ob(object me, object ob, int damage_bouns)
         ob->receive_damage("qi", damage, me);
         ob->receive_wound("qi", damage, me);
         set("neili",query("max_neili",  me), me);
-        return HIB "$N" HIB "“哈”的一声吐出一口寒气，登时令$n"
-               HIB "全身几乎冻僵。\n" NOR;
+        return HIB "$N" HIB "“哈”的一聲吐出一口寒氣，登時令$n"
+               HIB "全身幾乎凍僵。\n" NOR;
 }

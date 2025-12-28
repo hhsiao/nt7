@@ -4,8 +4,8 @@ int ask_me();
 
 void create()
 {
-        set_name("凌霜华", ({ "ling shuanghua", "ling", "shuanghua" }));
-        set("long", "她长得清秀脱俗，真是人淡如菊。\n");
+        set_name("凌霜華", ({ "ling shuanghua", "ling", "shuanghua" }));
+        set("long", "她長得清秀脫俗，真是人淡如菊。\n");
         set("gender", "女性");
         set("age", 18);
 
@@ -43,16 +43,16 @@ void init()
 void greeting(object me)
 {
         command("fu"+query("id", me));
-        command("say 这位"+RANK_D->query_respect(me)+"是来"+
+        command("say 這位"+RANK_D->query_respect(me)+"是來"+
                 "看菊花的吧？");
-        command("say 不知道爹爹在花园里种了什么，人一进去就会被熏死的，"+
-                "你还是请回吧。");
+        command("say 不知道爹爹在花園裡種了什麼，人一進去就會被燻死的，"+
+                "你還是請回吧。");
 }
 
         
 int accept_kill(object me)
 {
-        command("say 丁大哥救命啊！" + me->name() + "这个" + RANK_D->query_rude(me) + "要强暴我！\n");
+        command("say 丁大哥救命啊！" + me->name() + "這個" + RANK_D->query_rude(me) + "要強暴我！\n");
         kill_ob(me);
         return 1;
 }
@@ -61,11 +61,11 @@ int ask_me()
 {
         object who=this_player();
         if( query_temp("jinboxunhua", who)){
-                command("say 我不是告诉你了吗？你记性也太那个了。");
+                command("say 我不是告訴你了嗎？你記性也太那個了。");
                 return 1;
         }
-        command("say 啊！你是丁大哥的朋友啊！家父在花园里中了剧毒的金波旬花，"
-                + "你进去后屏住呼吸就可以了。");
+        command("say 啊！你是丁大哥的朋友啊！家父在花園裡中了劇毒的金波旬花，"
+                + "你進去後屏住呼吸就可以了。");
         set_temp("jinboxunhua", 1, who);
         return 1;
 }

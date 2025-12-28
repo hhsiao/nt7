@@ -3,14 +3,14 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIG "碧水融华" NOR, ({"bishui ronghua" }));
+        set_name(HIG "碧水融華" NOR, ({"bishui ronghua" }));
         set_weight(2000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "颗");
+                set("unit", "顆");
                 set("value", 500000);
-                set("enchase/name", "碧水融华");
+                set("enchase/name", "碧水融華");
                 set("enchase/point", 120);
                 set("enchase/type", "wrists");
                                 set("enchase/cur_firm", 90);

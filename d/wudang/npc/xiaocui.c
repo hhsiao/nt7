@@ -5,7 +5,7 @@ void create()
         set_name("小翠", ({"xiao cui", "xiao", "cui"}) );
         set("gender", "女性" );
         set("age", 12+random(6));
-        set("long", "这是个年龄不大的小姑娘，便过去加茶倒水。\n");
+        set("long", "這是個年齡不大的小姑娘，便過去加茶倒水。\n");
         set("attitude", "friendly");
         set("shen_type", 1);
         set("class", "taoist");
@@ -32,7 +32,7 @@ void create()
         set_temp("apply/defense", 15);
         set_temp("apply/damage", 3);
 
-        create_family("武当派", 5, "茶童");
+        create_family("武當派", 5, "茶童");
 
         setup();
         carry_object("/d/wudang/obj/greenrobe")->wear();

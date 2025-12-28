@@ -2,9 +2,9 @@ inherit DEMONROOM;
 
 void create()
 {
-        set("short", "东京");
+        set("short", "東京");
         set("long",@LONG
-深切哀悼在9·18事变中牺牲的烈士，为我们的英雄报仇吧！
+深切哀悼在9·18事變中犧牲的烈士，為我們的英雄報仇吧！
 LONG);
 
 	set("exits", ([

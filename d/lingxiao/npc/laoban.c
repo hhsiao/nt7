@@ -7,15 +7,15 @@ int redeem(string arg);
 
 void create()
 {
-        set_name("陈朝奉", ({ "chen chaofeng", "chen", "chaofeng" }));
-        set("title", "当铺老板");
+        set_name("陳朝奉", ({ "chen chaofeng", "chen", "chaofeng" }));
+        set("title", "當鋪老闆");
         set("shen_type", 0);
 
         set("gender", "男性");
         set_max_encumbrance(100000000);
         set("age", 35);
         set("str", 100);
-        set("long", "陈朝奉是水晶当的老板，据说为人还不错。\n");
+        set("long", "陳朝奉是水晶當的老闆，據說為人還不錯。\n");
         set("no_get_from", 1);
 
         set_skill("unarmed", 60);

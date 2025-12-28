@@ -20,37 +20,37 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "staff" )
-                return notify_fail("你必须手持一把杖才能施展" + name() + "！\n");
+                return notify_fail("你必須手持一把杖才能施展" + name() + "！\n");
 
         if ((int)me->query_skill("force") < 150)
-                return notify_fail("你的内功火候不够，难以施展" + name() + "！\n");
+                return notify_fail("你的內功火候不夠，難以施展" + name() + "！\n");
 
         if( query("neili", me)<100 )
-                return notify_fail("你的真气不够，无法施展" + name() + "！\n");
+                return notify_fail("你的真氣不夠，無法施展" + name() + "！\n");
 
         if ((lvl = (int)me->query_skill("lingshe-zhangfa", 1)) < 120)
-                return notify_fail("你的灵蛇杖法还不到家，无法使用" + name() + "！\n");
+                return notify_fail("你的靈蛇杖法還不到家，無法使用" + name() + "！\n");
 
         if (me->query_skill_mapped("staff") != "lingshe-zhangfa")
-                return notify_fail("你没有激发灵蛇杖法，无法使用" + name() + "！\n");
+                return notify_fail("你沒有激發靈蛇杖法，無法使用" + name() + "！\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N" HIW "大喝一声，扑身上前，手中的" + weapon->name() +
-              HIW "化作万道光芒，一齐射向$n" HIW "！\n" NOR;
+        msg = HIW "$N" HIW "大喝一聲，撲身上前，手中的" + weapon->name() +
+              HIW "化作萬道光芒，一齊射向$n" HIW "！\n" NOR;
 
         ap = attack_power(me, "staff");
         dp = defense_power(target, "parry");
 
         if (ap / 2 + random(ap) > dp)
         {
-                msg += HIY "$n" HIY "见$N" HIY "把" + weapon->name() +
-                       HIY "使得活灵活现，犹如真物一般，实在是难以抵挡，只有后退。\n" NOR;
+                msg += HIY "$n" HIY "見$N" HIY "把" + weapon->name() +
+                       HIY "使得活靈活現，猶如真物一般，實在是難以抵擋，只有後退。\n" NOR;
                 count = lvl / 3;
                 addn_temp("apply/attack", count, me);
         } else

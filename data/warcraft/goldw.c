@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;37m废物[2;37;0m[2;37;0m", ({"jiji"}));        
+        set_name("[1;37m廢物[2;37;0m[2;37;0m", ({"jiji"}));        
         set("gender", "女性");                
         set("long", "a [2;37;0m
-它是金卡的魔幻兽。
+它是金卡的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

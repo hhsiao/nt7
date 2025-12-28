@@ -1,4 +1,4 @@
-// tianshi.c 李天师
+// tianshi.c 李天師
 // Modified by haiyan
 
 #include <ansi.h>
@@ -10,9 +10,9 @@ int accept_object(object me, object ob);
 
 void create()
 {
-        set_name("李天师", ({ "li tianshi", "li", "tianshi" }));
-        set("long", "这是一位仙风道骨的法师，身上的道袍上画着一些驱魔符号。\n");
-        set("nickname", HIY"镇妖真人"NOR);
+        set_name("李天師", ({ "li tianshi", "li", "tianshi" }));
+        set("long", "這是一位仙風道骨的法師，身上的道袍上畫著一些驅魔符號。\n");
+        set("nickname", HIY"鎮妖真人"NOR);
         set("gender", "男性");
         set("age", 30);
         set("attitude", "peaceful");
@@ -50,9 +50,9 @@ void create()
         set("inquiry", ([
                 "job"   : (: ask_ghost :),
                 "捉鬼"  : (: ask_ghost :),
-                "失败"  : (: ask_fail :),
+                "失敗"  : (: ask_fail :),
                 "fail"  : (: ask_fail :),
-                "桃木剑": "桃木剑是捉鬼的必备之物，自己去做一把好了。",
+                "桃木劍": "桃木劍是捉鬼的必備之物，自己去做一把好了。",
         ]));
 
         setup();
@@ -70,23 +70,23 @@ mixed ask_ghost()
       int dam;
       me = this_player();
 
-      if( query("family/family_name", me) != "武当派" && 
+      if( query("family/family_name", me) != "武當派" && 
           query("family/family_name", me) != "全真教" )
-           return "这位" + RANK_D->query_respect(me) + "也有捉鬼的本事吗？";
+           return "這位" + RANK_D->query_respect(me) + "也有捉鬼的本事嗎？";
 
       if (me->query_skill("taoism", 1) < 50)
-           return "还是算了吧！你这点道行只怕给鬼捉了。";
+           return "還是算了吧！你這點道行只怕給鬼捉了。";
 
       if( query("combat_exp", me)>400000 )
-           return "你身手那么高，这种小事怎么敢劳你动手！";
+           return "你身手那麼高，這種小事怎麼敢勞你動手！";
 
       if( query_temp("gui/shougui", me) )
-           return "刚才不是让你去捉鬼了嘛？怎么又回来了？";
+           return "剛才不是讓你去捉鬼了嘛？怎麼又回來了？";
 
       kp = keys(dirs);
       p = kp[random(sizeof(kp))];
       room = dirs[p][random(sizeof(dirs[p]))];
-      if( wizardp(me) )  tell_object(me,sprintf("<鬼出现在 %s 地点>\n",room));
+      if( wizardp(me) )  tell_object(me,sprintf("<鬼出現在 %s 地點>\n",room));
 
       dam = me->query_skill("taoism", 1) + random(10) - random(10);
       ghost = new(gui[random(sizeof(gui))] );
@@ -96,17 +96,17 @@ mixed ask_ghost()
       set_temp("damage", dam*2/5, ghost);
       ghost->set_skill("claw", dam);
 
-      tell_object(me, this_object()->name() + "对你道：据说最近" +
-                  p + "常有" + ghost->name() + "出没，附近居民"
+      tell_object(me, this_object()->name() + "對你道：據說最近" +
+                  p + "常有" + ghost->name() + "出沒，附近居民"
                   "深受其害。你去把它收了吧。\n");
-      message("vision", this_object()->name() + "在" + me->name() + "耳边吩咐着什么，" +
-              me->name() + "一边听，一边不住地点头。\n", environment(me), me);
+      message("vision", this_object()->name() + "在" + me->name() + "耳邊吩咐著什麼，" +
+              me->name() + "一邊聽，一邊不住地點頭。\n", environment(me), me);
       ob = new("/d/wudang/quest/obj/fuzhi");
       ob->move(this_object());
       command("give fu zhi to "+query("id", me));
-      tell_object(me, this_object()->name() + "继续道：" + ob->name() +
-                  "可以让鬼魂现身，可别弄丢了。\n");
-      message_vision("$n对$N说道：快动身吧，多加小心。\n", me, this_object());
+      tell_object(me, this_object()->name() + "繼續道：" + ob->name() +
+                  "可以讓鬼魂現身，可別弄丟了。\n");
+      message_vision("$n對$N說道：快動身吧，多加小心。\n", me, this_object());
       set_temp("gui/shougui", 1, me);
       return 1;
 }
@@ -116,7 +116,7 @@ string ask_fail()
       object me = this_player();
 
       if( !query_temp("gui/shougui", me) )
-           return "我没有给你什么任务啊？";
+           return "我沒有給你什麼任務啊？";
 
       if (present("fu zhi", me))
           destruct(present("fu zhi", me));
@@ -126,7 +126,7 @@ string ask_fail()
       addn("weiwang", -random(20), me);
       if( query("weiwang", me)<0)set("weiwang", 0, me);
       tell_object(me, HIR"你的江湖威望降低了！\n"NOR);
-      return "你不能干，我只好请别人去了！";
+      return "你不能幹，我只好請別人去了！";
 }
 
 
@@ -135,13 +135,13 @@ int accept_object(object me, object ob)
     int base, exp, pot;
     if( !me || environment(me) != environment() ) return 0;
     if ( !objectp(ob) ) return 0;
-    if ( !present(ob, me) ) return notify_fail("你身上没有这样东西。");
+    if ( !present(ob, me) ) return notify_fail("你身上沒有這樣東西。");
     if( query("id", ob) == "fuzhi" )
     {
          if( !query_temp("gui/finish", me) )
          {
              command("sneer"+query("id", me));
-             command("say 想蒙骗本天师吗？");
+             command("say 想矇騙本天師嗎？");
              addn("weiwang", -random(50), me);
              if( query("weiwang", me)<0)set("weiwang", 0, me);
              tell_object(me, HIR"你的威望降低了！\n"NOR);
@@ -152,10 +152,10 @@ int accept_object(object me, object ob)
          exp = base + random(base/2);
          pot = exp/3 + random(exp/3);
          if( query("potential", me) >= me->query_potential_limit())pot=1;
-         message_vision("$n对$N点了点头：不错，不错。\n", me, this_object());
-         tell_object(me, HIG "通过这次煅炼，你获得了" + chinese_number(exp) +
-                     "点经验和" + chinese_number(pot) + "点潜能。\n" NOR);
-         tell_object(me, HIC"你对道学心法有了新的领悟！\n"NOR);
+         message_vision("$n對$N點了點頭：不錯，不錯。\n", me, this_object());
+         tell_object(me, HIG "通過這次煅煉，你獲得了" + chinese_number(exp) +
+                     "點經驗和" + chinese_number(pot) + "點潛能。\n" NOR);
+         tell_object(me, HIC"你對道學心法有了新的領悟！\n"NOR);
          me->improve_skill("taoism", me->query_int()*2);
          addn("combat_exp", exp, me);
          addn("shen", exp/2+random(exp/2), me);
@@ -168,7 +168,7 @@ int accept_object(object me, object ob)
     }
     else
     {
-        command("say 你给我这种东西干什么？");
+        command("say 你給我這種東西幹什麼？");
         return 0;
     }
 }

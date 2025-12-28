@@ -10,17 +10,17 @@ inherit F_QUESTER;
 
 void create()
 {
-        set_name("石万嗔", ({ "shi wanchen", "shi", "wanchen" }));
-        set("nickname", HIR "毒手神枭" NOR);
+        set_name("石萬嗔", ({ "shi wanchen", "shi", "wanchen" }));
+        set("nickname", HIR "毒手神梟" NOR);
         set("long",@LONG
-这是一位身着朴素的老者，双目失明，他便是号称
-「毒手神枭」的石万嗔。数次和无嗔斗法，每一回
-均是屈居下风。在最后一次斗毒之际，石万嗔终于
-被“断肠草”熏瞎了双目，逃往缅甸野人山。但在
-野人山中花了数十年功夫，不但解除了“断肠草”
-的毒性，而且练出了更多毒药。
+這是一位身著樸素的老者，雙目失明，他便是號稱
+「毒手神梟」的石萬嗔。數次和無嗔鬥法，每一回
+均是屈居下風。在最後一次鬥毒之際，石萬嗔終於
+被“斷腸草”燻瞎了雙目，逃往緬甸野人山。但在
+野人山中花了數十年功夫，不但解除了“斷腸草”
+的毒性，而且練出了更多毒藥。
 LONG );
-        set("title", HIG "药王门掌门" NOR);
+        set("title", HIG "藥王門掌門" NOR);
         set("gender", "男性");
         set("age", 68);
         set("attitude", "friendly");
@@ -77,7 +77,7 @@ LONG );
 
         prepare_skill("hand", "jiuqu-zhegufa");
 
-        create_family("药王谷", 1, "掌门");
+        create_family("藥王谷", 1, "掌門");
         set("class", "bonze");
 
         set("chat_chance_combat", 80);
@@ -97,9 +97,9 @@ LONG );
         setup();
 
         set("inquiry", ([
-                "七星海棠" : "七星海棠乃天下第一毒，无药可治！但据说程灵素哪个小丫头到是有点办法。",
-                "碧蚕毒蛊" : "碧蚕毒蛊乃苗人的三大蛊毒之一，无药可治！",
-                "苗人凤"   : "呵呵，当年他和胡一刀比武，就是用的我的毒陷害的。",
+                "七星海棠" : "七星海棠乃天下第一毒，無藥可治！但據說程靈素哪個小丫頭到是有點辦法。",
+                "碧蠶毒蠱" : "碧蠶毒蠱乃苗人的三大蠱毒之一，無藥可治！",
+                "苗人鳳"   : "呵呵，當年他和胡一刀比武，就是用的我的毒陷害的。",
          ]) );
 
         carry_object("/clone/cloth/cloth")->wear();
@@ -112,56 +112,56 @@ void attempt_apprentice(object ob)
         
         if( query("character", ob) == "光明磊落" )
         {
-                command("say 你性格不适合学毒，我不能收你。");
+                command("say 你性格不適合學毒，我不能收你。");
                 return;
         }
         if( query("shen", ob)>-100000 )
         {
-                command("say 欲习我毒技医术，必须心狠手辣。");
+                command("say 欲習我毒技醫術，必須心狠手辣。");
                 return;
         }
         
         if( query("combat_exp", ob)<300000 )
         {
-                command("say 你现在经验尚浅，领会不了什么，还是先去增长点经验吧。");
+                command("say 你現在經驗尚淺，領會不了什麼，還是先去增長點經驗吧。");
                 return;
         }
         if( !query_temp("yaowang_give", ob) )
         {
-                command("say 你先把本门的《药王神篇》找来给我!");
+                command("say 你先把本門的《藥王神篇》找來給我!");
                 return;
         }
 
         if ((int)ob->query_skill("yaogu-xinfa", 1) < 100)
         {
-                command("say 你本门的心法还学的不够啊。");
+                command("say 你本門的心法還學的不夠啊。");
                 return;
         }
 
         if ((int)ob->query_skill("literate", 1) < 120)
         {
-                command("say 你连最基本的学问都没学好，我如何传授你高深的毒技医术。");
+                command("say 你連最基本的學問都沒學好，我如何傳授你高深的毒技醫術。");
                 return;
         }
 
         if ((int)ob->query_skill("yaowang-miaoshu", 1) < 120)
         {
-                command("say 你先把药王妙术钻研透彻了再来找我吧。");
+                command("say 你先把藥王妙術鑽研透徹了再來找我吧。");
                 return;
         }
 
         if ((int)ob->query_skill("dispel-poison", 1) < 120)
         {
-                command("say 你的妙手驱毒研究透彻了吗？");
+                command("say 你的妙手驅毒研究透徹了嗎？");
                 return;
         }
 
         command("pat"+query("id", ob));
-        command("say 不错，不错！既然你如此有心，老夫就收下你这个徒弟。");
-        command("say “本门中人不能放蛊，又有九种没解药的毒药决计不能使用”的规矩在我这儿就取消了!");
-        command("say 凡是对己不利者直接用毒，越毒越好!");
+        command("say 不錯，不錯！既然你如此有心，老夫就收下你這個徒弟。");
+        command("say “本門中人不能放蠱，又有九種沒解藥的毒藥決計不能使用”的規矩在我這兒就取消了!");
+        command("say 凡是對己不利者直接用毒，越毒越好!");
         command("recruit "+query("id", ob));
-        set("title", "毒手神枭亲传弟子", ob);
+        set("title", "毒手神梟親傳弟子", ob);
         return;
 }
 
@@ -174,13 +174,13 @@ int accept_object(object me, object ob)
 
         if (base_name(ob) != SHENPIAN)
         {
-                command("say 你给我这种东西干什么？");
+                command("say 你給我這種東西幹什麼？");
                 return 0;
         }
 
         if( query("family/master_id", me) != query("id") )
         {
-                command("say 多谢这位" + RANK_D->query_respect(me) + "将本门宝物交给我。");
+                command("say 多謝這位" + RANK_D->query_respect(me) + "將本門寶物交給我。");
                 set_temp("yaowang_give", 1, me);
         }
         else

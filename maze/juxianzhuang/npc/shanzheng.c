@@ -1,4 +1,4 @@
-// shanzheng.c 单正
+// shanzheng.c 單正
 
 #include <ansi.h>
 
@@ -6,14 +6,14 @@ inherit NPC;
 
 void create()
 {
-        set_name("单正", ({ "shan zheng", "shan" }));
+        set_name("單正", ({ "shan zheng", "shan" }));
 
         set("gender", "男性");
         set("age", 62);
-        set("long", "他体态魁梧，相貌威严，长的一副童颜鹤发。\n");
+        set("long", "他體態魁梧，相貌威嚴，長的一副童顏鶴髮。\n");
         set("attitude", "peaceful");
 
-        set("nickname", HIR "铁面判官" NOR);
+        set("nickname", HIR "鐵面判官" NOR);
 
         set("str", 35);
         set("int", 36);

@@ -1,4 +1,4 @@
-// 守卫任务 NPC。
+// 守衛任務 NPC。
 
 #include <ansi.h>
 
@@ -15,8 +15,8 @@ void move_enemy(object enemy, string family);
 void create()
 {
         NPC_D->generate_cn_name(this_object());
-        set("long", "这人是前来攻打" + query("is_attacking")?query("is_attacking") : "别的门派"
-                + "的一名" + query("family/family_name")?query("family/family_name") : "未知门派" +"弟子。\n");
+        set("long", "這人是前來攻打" + query("is_attacking")?query("is_attacking") : "別的門派"
+                + "的一名" + query("family/family_name")?query("family/family_name") : "未知門派" +"弟子。\n");
 
         set("combat_exp", 100000 + random(500000));
         set("attitude", "peaceful");
@@ -63,16 +63,16 @@ void greeting(object me)
             me->query_family() == query("is_attacking") &&
             !query_temp("defend_quest/finish", me) )
         {
-                // 这里的描写似乎需要调整（正派说这种话不合身份）
+                // 這裡的描寫似乎需要調整（正派說這種話不合身份）
                 command("grin");
-                message_sort(HIW "只见$N" HIW "狞笑着对$n" HIW "道：“嘿嘿，不知死活的" +
-                        RANK_D->query_rude(me) +"，竟然敢和我们" + this_object()->query_family() +"做对？！"
-                        "看我来教训教训你！”\n", this_object(), me );
+                message_sort(HIW "只見$N" HIW "獰笑著對$n" HIW "道：“嘿嘿，不知死活的" +
+                        RANK_D->query_rude(me) +"，竟然敢和我們" + this_object()->query_family() +"做對？！"
+                        "看我來教訓教訓你！”\n", this_object(), me );
                         
                 kill_ob(me);
                 return;
         }
-        message_vision(HIW "$N" HIW "冷冷地扫了$n" HIW "一眼。\n", this_object(), me );
+        message_vision(HIW "$N" HIW "冷冷地掃了$n" HIW "一眼。\n", this_object(), me );
 }
 
 void kill_ob(object me)
@@ -83,7 +83,7 @@ void kill_ob(object me)
                 return ::kill_ob(me);
         else
         {
-                // 复制状态，需要调整。
+                // 複製狀態，需要調整。
                 NPC_D->set_from_me(ob, me, 100 + random(20));
                 NPC_D->init_npc_skill(ob, NPC_D->check_level(me) + (1 + random(2)));
                 ::kill_ob(me);
@@ -91,7 +91,7 @@ void kill_ob(object me)
         }
 }
 
-// 如果接受了贿赂
+// 如果接受了賄賂
 int do_nod(string arg)
 {
         object me = this_player();
@@ -110,15 +110,15 @@ int do_nod(string arg)
                 {
                         amount=query_temp("defend_quest/waiting", me);
 
-                        message_sort(HIW "只见$N" HIW "长笑三声：“哈哈哈，识时务者为俊杰，" +
-                                     RANK_D->query_respect(me) + "果然是明白人，嘿嘿，这区区" +
-                                     chinese_number(amount) + "两白银就归你了，哈哈。”\n\n" NOR,
+                        message_sort(HIW "只見$N" HIW "長笑三聲：“哈哈哈，識時務者為俊傑，" +
+                                     RANK_D->query_respect(me) + "果然是明白人，嘿嘿，這區區" +
+                                     chinese_number(amount) + "兩白銀就歸你了，哈哈。”\n\n" NOR,
                                      ob, me);
 
                         MONEY_D->pay_player(me, amount * 100);
                         set_temp("defend_quest/accepted", 1, me);
-                        tell_object(me, HIR + ob->name() + "递给了你" + chinese_number(amount) + 
-                                        "两白银以后，吐出一口鲜血，扬长而去。\n" NOR );
+                        tell_object(me, HIR + ob->name() + "遞給了你" + chinese_number(amount) + 
+                                        "兩白銀以後，吐出一口鮮血，揚長而去。\n" NOR );
                         return 1;
                 }
                 else return  0;
@@ -132,8 +132,8 @@ void die()
         string *pills, pill;
         int amount = 300 + random(300);
         string *condition = ({
-                "气喘吁吁，就要不支", "头重脚轻，马上就倒", 
-                "呕血成升，眼冒金星", "伤痕累累，无力招架", 
+                "氣喘吁吁，就要不支", "頭重腳輕，馬上就倒", 
+                "嘔血成升，眼冒金星", "傷痕累累，無力招架", 
         });
 
         if (objectp(me = ob->query_last_damage_from()) 
@@ -145,13 +145,13 @@ void die()
                 switch (random(15)) 
                 {
                         case 1: {
-                                message_sort(HIR "眼见$N" HIR + condition[random(sizeof(condition))]
-                                                +"，突然$N大喝一声，急退几步，\n“扑通”给$n跪了下来。"
+                                message_sort(HIR "眼見$N" HIR + condition[random(sizeof(condition))]
+                                                +"，突然$N大喝一聲，急退幾步，\n“撲通”給$n跪了下來。"
                                                 "\n" NOR, ob, me);
-                                tell_object(me, HIW + ob->name()+"突然从怀里掏出一堆白花花的银子，小声"
-                                                "对你道：“这位" + RANK_D->query_respect(me) + "，\n你"
-                                                "就网开一面（nod）如何，这" + chinese_number(amount) +
-                                                "两白银就归你了！”\n" NOR);
+                                tell_object(me, HIW + ob->name()+"突然從懷裡掏出一堆白花花的銀子，小聲"
+                                                "對你道：“這位" + RANK_D->query_respect(me) + "，\n你"
+                                                "就網開一面（nod）如何，這" + chinese_number(amount) +
+                                                "兩白銀就歸你了！”\n" NOR);
                                 ob->clean_up_enemy();
                                 ob->remove_all_enemy(0);
                                 ob->clear_condition(0);
@@ -161,7 +161,7 @@ void die()
                                 return;
                         }
                         default: {
-                                // 奖励
+                                // 獎勵
                                 if( query("family/family_name", me) == query("is_attacking", ob) )
                                         addn_temp("defend_quest/killed", 1, me);
                                 
@@ -199,7 +199,7 @@ void leave_here()
         return;
 }
 
-// 送走敌人（在 ENEMY 的 chat_msg 中也有呼叫）
+// 送走敵人（在 ENEMY 的 chat_msg 中也有呼叫）
 void move_enemy(object enemy, string family)
 {
         string *places = familys[family]["place"];
@@ -208,14 +208,14 @@ void move_enemy(object enemy, string family)
 
         if (objectp(room = environment(enemy)))
         {
-                tell_room(room, enemy->name() + "一闪身就不见了。\n");
+                tell_room(room, enemy->name() + "一閃身就不見了。\n");
         }
 #ifdef DEBUG        
         CHANNEL_D->do_channel(this_object(), "sys",
                 sprintf("%s : %O", enemy->short(), place)); 
 #endif
         enemy->move(place);
-        tell_room(place, "只见一名" + enemy->query_family() + "弟子不知什么时候钻了出来。\n");
+        tell_room(place, "只見一名" + enemy->query_family() + "弟子不知什麼時候鑽了出來。\n");
 
         return;
 }

@@ -6,11 +6,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("李春来", ({"li chunlai", "li", "chunlai"}));
+        set_name("李春來", ({"li chunlai", "li", "chunlai"}));
         set("gender", "男性");
         set("age", 35);
-        set("long", "这是位武艺精强的丐帮五袋弟子。\n");
-        set("title", "丐帮五袋弟子");
+        set("long", "這是位武藝精強的丐幫五袋弟子。\n");
+        set("title", "丐幫五袋弟子");
         set("attitude", "peaceful");
         set("class", "beggar");
          set("beggarlvl", 7);
@@ -50,10 +50,10 @@ void create()
         map_skill("parry", "suohou-hand");
         map_skill("dodge", "xiaoyaoyou");
 
-        //set("party/party_name", HIC"丐帮"NOR);
+        //set("party/party_name", HIC"丐幫"NOR);
         //set("party/rank", GRN"大智分舵"HIY"五袋弟子"NOR);
         //set("party/level", 5);
-        create_family("丐帮", 20, "弟子");
+        create_family("丐幫", 20, "弟子");
         setup();
 
         carry_object(WEAPON_DIR"gangdao")->wield();

@@ -116,9 +116,9 @@ int main(object me, string arg)
  
         if (! arg || arg == "")
         {
-                msg = "你目前设定的环境变数有：\n";
+                msg = "你目前設定的環境變數有：\n";
                 if (! mapp(env) || ! sizeof(env))
-                        msg = "你目前没有设定任何环境变数。\n";
+                        msg = "你目前沒有設定任何環境變數。\n";
                 else
                 {
                         terms = sort_array(keys(env), 1);
@@ -146,7 +146,7 @@ int main(object me, string arg)
  
         opt_add = 0;
         opt_del = 0;
-        // mysql里无法保存\n
+        // mysql裡無法保存\n
         arg = replace_string(arg, "\"", "~");
         arg = replace_string(arg, "\\", "");
         if (sscanf(arg, "%s -a %s", term, data) == 2 ||
@@ -164,24 +164,24 @@ int main(object me, string arg)
                 term = arg;
                 if (term_map[term] & STRING_TERM ||
                     term_map[term] & NUMBER_TERM)
-                        return notify_fail("你必须指明这个参数的内"
-                                           "容，否则请用 unset 取消这个参数。\n");
+                        return notify_fail("你必須指明這個參數的內"
+                                           "容，否則請用 unset 取消這個參數。\n");
                 else
                         data = "YES";
         }
  
         if (data == "")
-                return notify_fail("设定的参数值不能为空。\n");
+                return notify_fail("設定的參數值不能為空。\n");
 
         if (term_map[term] & NUMBER_TERM)
         {
                 sscanf(data, "%d", data);
                 if (! intp(data)) data = 0;
                 if ((term_map[term] & NON_ZERO) && ! data)
-                        return notify_fail("这个参数值不能设置为零。\n");
+                        return notify_fail("這個參數值不能設置為零。\n");
 
                 if ((term_map[term] & NON_NEG) && data < 0)
-                        return notify_fail("这个参数值不能设置为负数。\n");
+                        return notify_fail("這個參數值不能設置為負數。\n");
         } else
         if (term_map[term] & STRING_TERM &&
             term_map[term] & ENABLE_COLOR)
@@ -194,18 +194,18 @@ int main(object me, string arg)
         if (term && term != "")
         {
                 if (mapp(env) && undefinedp(env[term]) && sizeof(env) >= MAX_ENV_VARS)
-                        return notify_fail("你设的环境变数太多了，请先用 unset 删掉几个吧。\n");
+                        return notify_fail("你設的環境變數太多了，請先用 unset 刪掉幾個吧。\n");
 
                 if (undefinedp(term_map[term]))
-                        return notify_fail("你只能设定规定的参数，请参见help settings。\n");
+                        return notify_fail("你只能設定規定的參數，請參見help settings。\n");
 
                 if ((wiz_level(me) < 2) && (term_map[term] & WIZ_ONLY))
-                        return notify_fail("只有巫师能用这个设定。\n");
+                        return notify_fail("只有巫師能用這個設定。\n");
 
                 if (term_map[term] & LIST_TERM)
                 {
                         if (! stringp(data) || data == "YES")
-                                return notify_fail("列表参数只能以字符串为取值。\n");
+                                return notify_fail("列表參數只能以字符串為取值。\n");
 
                         ks = explode(data, ",") - ({ "" });
                         bs = ({ });
@@ -220,19 +220,19 @@ int main(object me, string arg)
                 if (opt_add || opt_del)
                 {
                         if (! (term_map[term] & LIST_TERM))
-                                return notify_fail("这个参数不具有列表属性，不"
-                                                   "能使用-a或则是-d参数。\n");
+                                return notify_fail("這個參數不具有列表屬性，不"
+                                                   "能使用-a或則是-d參數。\n");
                         if (opt_add)
                                 data=add_sub(data,query("env/"+term, me));
                         else
                                 data=remove_sub(data,query("env/"+term, me));
                         if (strlen(data) > 256)
-                                return notify_fail("参数取值太长了。\n");
+                                return notify_fail("參數取值太長了。\n");
 
                         if (! data)
                         {
                                 delete("env/"+term, me);
-                                write("取消环境参数：" + term + "\n");
+                                write("取消環境參數：" + term + "\n");
                                 return 1;
                         }
                 }
@@ -247,11 +247,11 @@ int main(object me, string arg)
                                 if (d[ks[k]] == data) break;
                         if (k >= sizeof(ks))
                         {
-                                write("该项参数不能设置成该值，请参见help settings。\n");
+                                write("該項參數不能設置成該值，請參見help settings。\n");
                                 return 1;
                         }
                         set("env/"+term, data, me);
-                        write(sprintf("设定环境变数：%s = %O\n", term, ks[k]));
+                        write(sprintf("設定環境變數：%s = %O\n", term, ks[k]));
                         return 1;
                 } else
                 if (stringp(data) && ! (term_map[term] & LIST_TERM) &&
@@ -259,7 +259,7 @@ int main(object me, string arg)
                         sscanf(data, "%d", data);
 
                 set("env/"+term, data, me);
-                write(sprintf("设定环境变数：%s = %O\n", term, data));
+                write(sprintf("設定環境變數：%s = %O\n", term, data));
                 return 1;
         }
         return help();
@@ -268,25 +268,25 @@ int main(object me, string arg)
 int help()
 {
         write(@TEXT
-指令格式：set <变数名> -a | -d [<参数>]
+指令格式：set <變數名> -a | -d [<參數>]
  
-这个指令让你设定一些环境变数，不加参数时会显示你目前设定的环境变数，不指定
-变数值，则内定值为 "YES"。如果使用了-a参数，表示将参数加入到原有的参数中，
-如果使用了-d参数则表示将参数从原有的参数中去掉。只有具有多值属性的参数才能
-使用这两个参数。
+這個指令讓你設定一些環境變數，不加參數時會顯示你目前設定的環境變數，不指定
+變數值，則內定值為 "YES"。如果使用了-a參數，表示將參數加入到原有的參數中，
+如果使用了-d參數則表示將參數從原有的參數中去掉。只有具有多值屬性的參數才能
+使用這兩個參數。
 
-比如no_tell参数，可以设定为不收听test和work的讲话：
+比如no_tell參數，可以設定為不收聽test和work的講話：
 set no_tell test,work
 
-如果这时候你不希望收听nothing的讲话，则可以：
+如果這時候你不希望收聽nothing的講話，則可以：
 set no_tell -a nothing  也可以：set no_tell test,work,nothing
 
-如果这时候你希望收听test的讲话，则可以：
+如果這時候你希望收聽test的講話，則可以：
 set no_tell -d test     也可以：set no_tell work,nothing
 
-取消变数设定请用 unset 指令。
+取消變數設定請用 unset 指令。
 
-至於有哪些环境变数可以设定，请见 help settings。
+至於有哪些環境變數可以設定，請見 help settings。
 TEXT
         );
         return 1;

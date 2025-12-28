@@ -31,7 +31,7 @@ int main(object me, string arg)
         if (file_size(dir) > 0)
         { 
                 if (! do_format(me, dir, len))
-                        write(HIY "ROOM " + dir + " 的描述整理失败，详情请查看LOG记录。\n" NOR); 
+                        write(HIY "ROOM " + dir + " 的描述整理失敗，詳情請查看LOG記錄。\n" NOR); 
                 else
                         write("ok.\n");     
                 return 1;
@@ -41,15 +41,15 @@ int main(object me, string arg)
                 dir += "/";
 
         if (file_size(dir) != -2) 
-                return notify_fail(dir + " 并不是一个目录。\n");
+                return notify_fail(dir + " 並不是一個目錄。\n");
                 
         if (dir[0..2] != "/d/" && dir[0..2] != "/u/")
-                return notify_fail("为确保安全，只允许更改/d/和/u/目录下面的房间描述。\n");                
+                return notify_fail("為確保安全，只允許更改/d/和/u/目錄下面的房間描述。\n");                
 
-        message_system("系统批量档案处理中，请耐心等候...");                                                                    
+        message_system("系統批量檔案處理中，請耐心等候...");                                                                    
 
-        write(HIG "\n现在系统正在批处理 " + dir + " 目录房间描述，稍后汇报。\n" 
-              HIG "进度：" + process_bar(0) + "\n"); 
+        write(HIG "\n現在系統正在批處理 " + dir + " 目錄房間描述，稍後彙報。\n" 
+              HIG "進度：" + process_bar(0) + "\n"); 
                             
         if (me)
         {
@@ -71,12 +71,12 @@ int to_format(object me, string dir, int len)
                      
         if (! arrayp(flist) || ! sizeof(flist))
         {
-                message_system("系统批量档案处理完毕，请继续游戏。\n" ESC + "[K");  
+                message_system("系統批量檔案處理完畢，請繼續遊戲。\n" ESC + "[K");  
                 
                 if (me)
                         me->detach_system();
 
-                write(HIG "目录 " + dir + " 下并没有可供修改的文件\n" NOR); 
+                write(HIG "目錄 " + dir + " 下並沒有可供修改的文件\n" NOR); 
                 return 1;
         }
         
@@ -85,13 +85,13 @@ int to_format(object me, string dir, int len)
         if (me)
                 me->detach_system();
                 
-        message_system("系统批量档案处理完毕，请继续游戏。\n" ESC + "[K");  
+        message_system("系統批量檔案處理完畢，請繼續遊戲。\n" ESC + "[K");  
         
         if (! sizeof(result))
-                write(HIG "目录 " + dir + " 下所有房间描述整理成功。\n" NOR); 
+                write(HIG "目錄 " + dir + " 下所有房間描述整理成功。\n" NOR); 
         else
         {       
-                write(HIG "尚有 " + sizeof(result) + " 个文件整理失败，文件列表如下\n" NOR);           
+                write(HIG "尚有 " + sizeof(result) + " 個文件整理失敗，文件列表如下\n" NOR);           
                 for (i = 0; i < sizeof(result); i++)
                 {
                         if (eval_cost() < 100) set_eval_limit(0);
@@ -119,8 +119,8 @@ string *do_format(object me, mixed flist, int len)
         {
                 reset_eval_cost();
                 message("system", ESC + "[1A" + ESC + "[256D"
-                                  HIG "进度：" + process_bar((i + 1) * 100 / sizeof(flist)) +
-                                   "\n" + (me ? HIR "执行中" NOR "> " : ""),
+                                  HIG "進度：" + process_bar((i + 1) * 100 / sizeof(flist)) +
+                                   "\n" + (me ? HIR "執行中" NOR "> " : ""),
                                    me ? me : filter_array(all_interactive(), (: wizardp :))); 
                 
                 if (! is_c_file(flist[i])) 
@@ -233,10 +233,10 @@ string *deep_file_list(string dir)
 int help(object me) 
 {
         write(@HELP 
-指令格式 : typeset | pb <目录名> <字数>
+指令格式 : typeset | pb <目錄名> <字數>
 
-这个指令可以将某个目录下所有的房间的长描述自动排版成每行为指
-定数目的汉字，当然第一行是少二个汉字的。
+這個指令可以將某個目錄下所有的房間的長描述自動排版成每行為指
+定數目的漢字，當然第一行是少二個漢字的。
 HELP ); 
         return 1; 
 }

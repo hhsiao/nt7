@@ -3,14 +3,14 @@ inherit BOOK;
 
 void create()
 {
-        set_name(YEL "「外台秘要」" NOR, ({ "medical book6", "medical", "book6" }));
+        set_name(YEL "「外臺秘要」" NOR, ({ "medical book6", "medical", "book6" }));
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
                 set("unit", "本");
-                set("long", YEL "王焘所著的医学宝典，介绍了各种疑难杂症的治疗方法。\n" NOR);
+                set("long", YEL "王燾所著的醫學寶典，介紹了各種疑難雜症的治療方法。\n" NOR);
                 set("value", 5000);
                 set("material", "paper");
                 set("skill",

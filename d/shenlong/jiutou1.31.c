@@ -4,9 +4,9 @@ inherit DEMONROOM;
 
 void create()
 {
-        set("short", "九头蛇领地");
+        set("short", "九頭蛇領地");
         set("long",@LONG
-这是九头蛇的领地，周围尽是潮湿阴深的湿地，恐怖之极。
+這是九頭蛇的領地，周圍盡是潮溼陰深的溼地，恐怖之極。
 LONG);
 
 
@@ -16,8 +16,8 @@ LONG);
 		"out"    : __DIR__"haitan",
 		
 	]));
-        	set("no_rideto", 1);         // 设置不能骑马到其他地方
-       		set("no_flyto", 1);          // 设置不能从起来地方骑马来这里
+        	set("no_rideto", 1);         // 設置不能騎馬到其他地方
+       		set("no_flyto", 1);          // 設置不能從起來地方騎馬來這裡
 		set("n_time", 30);
 		set("n_npc",1); 
 		set("n_max_npc", 2);
@@ -27,7 +27,7 @@ LONG);
 }
 
 
-// 判断玩家是否付费，未付费则不能进入
+// 判斷玩家是否付費，未付費則不能進入
 void init()
 {
 	object me = this_player();
@@ -43,20 +43,20 @@ void init()
 	
 	if( !query("service/jiutoushe", me) )
 	{
-		tell_object(me, HIR "\n对不起，你没有进入九头蛇领地的特权，不能进入！\n\n" NOR);
+		tell_object(me, HIR "\n對不起，你沒有進入九頭蛇領地的特權，不能進入！\n\n" NOR);
 		me->move(__DIR__"haitan");
 	}
 
-	// 把背起的用户放下来
+	// 把背起的用戶放下來
         inv = deep_inventory(me);
         for (i = 0; i < sizeof(inv); i++)
         {
                 if (! playerp(inv[i])) continue;
 
-                // 被人背起的用户
+                // 被人揹起的用戶
                 inv[i]->move(__DIR__"haitan");                
         }	
 	
-	// 允许进入
+	// 允許進入
 	return;
 }

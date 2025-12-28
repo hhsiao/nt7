@@ -14,41 +14,41 @@ int query_neili_improve(object me)
 }
 
 mapping *action = ({
-([      "action" : "$N提运五斗米神功，呼的扑向$n，待至跟前，陡然一拳击向$n面门",
+([      "action" : "$N提運五斗米神功，呼的撲向$n，待至跟前，陡然一拳擊向$n面門",
         "dodge"  : 31,
         "force"  : 323,
         "attack" : 89,
         "parry"  : 34,
         "damage" : 58,
         "lvl"    : 0,
-        "damage_type": "内伤" 
+        "damage_type": "內傷" 
 ]), 
-([      "action" : "$N丝毫不动声色，右掌平伸，左掌运起五斗米神功的劲力，呼的一声拍向$n",
+([      "action" : "$N絲毫不動聲色，右掌平伸，左掌運起五斗米神功的勁力，呼的一聲拍向$n",
         "dodge"  : 43,
         "force"  : 362,
         "attack" : 103,
         "parry"  : 47,
         "damage" : 63,
         "lvl"    : 160,
-        "damage_type": "内伤"
+        "damage_type": "內傷"
 ]), 
-([      "action" : "$N身形微微一展，一双手掌便似渗出血一般，双掌齐施，猛拍$n前胸",
+([      "action" : "$N身形微微一展，一雙手掌便似滲出血一般，雙掌齊施，猛拍$n前胸",
         "dodge"  : 48,
         "force"  : 413,
         "attack" : 122,
         "parry"  : 51,
         "damage" : 75,
         "lvl"    : 180,
-        "damage_type": "内伤"
+        "damage_type": "內傷"
 ]),
-([      "action" : "$N一声呼啸，双掌回收，凌空划出一个圆圈，顿时一股热浪直涌$n而出",
+([      "action" : "$N一聲呼嘯，雙掌回收，凌空劃出一個圓圈，頓時一股熱浪直湧$n而出",
         "dodge"  : 41,
         "force"  : 451,
         "attack" : 113,
         "parry"  : 47,
         "damage" : 83,
         "lvl"    : 200,
-        "damage_type": "内伤"
+        "damage_type": "內傷"
 ]), 
 });
 
@@ -65,35 +65,35 @@ int valid_enable(string usage)
 
 int valid_learn(object me)
 {
-        if( query("character", me) != "心狠手辣" && query("character", me) != "国士无双" )
-                return notify_fail("你暗想这五斗米神功损人不利己，修来何用？\n");
+        if( query("character", me) != "心狠手辣" && query("character", me) != "國士無雙" )
+                return notify_fail("你暗想這五斗米神功損人不利己，修來何用？\n");
 
         if( query("con", me)<24 )
-                return notify_fail("你按照法门运转了下内息，忽然只觉丹田一阵搅疼。\n");
+                return notify_fail("你按照法門運轉了下內息，忽然只覺丹田一陣攪疼。\n");
 
 /*
-        因考虑五斗米神功的反噬情况，无玄门正宗的内功不能修炼高，所以暂
-        时设为可以与辟邪剑法所共存的内功，如有不妥再作改正。
+        因考慮五斗米神功的反噬情況，無玄門正宗的內功不能修煉高，所以暫
+        時設為可以與辟邪劍法所共存的內功，如有不妥再作改正。
 
-        if( query("gender", me) == "无性" && query("wudoumi-shengong",1, me)>29 )
-                return notify_fail("你无根无性，阴阳不调，难以领会高深的五斗米神功。\n");
+        if( query("gender", me) == "無性" && query("wudoumi-shengong",1, me)>29 )
+                return notify_fail("你無根無性，陰陽不調，難以領會高深的五斗米神功。\n");
 */
 
         if ((int)me->query_skill("force", 1) < 50)
-                return notify_fail("你的基本内功火候不足，不能学五斗米神功。\n");
+                return notify_fail("你的基本內功火候不足，不能學五斗米神功。\n");
 
         if ((int)me->query_skill("unarmed", 1) < 50)
-                return notify_fail("你的基本拳脚火候不足，不能学五斗米神功。\n");
+                return notify_fail("你的基本拳腳火候不足，不能學五斗米神功。\n");
 
         if( query("max_neili", me)<500 )
-                return notify_fail("你的内力修为不足，不能学五斗米神功。\n");
+                return notify_fail("你的內力修為不足，不能學五斗米神功。\n");
 
         if (me->query_skill("force", 1) < me->query_skill("wudoumi-shengong", 1))
-                return notify_fail("你的基本内功水平不够，难以锻炼更深厚的五斗米神功。\n");
+                return notify_fail("你的基本內功水平不夠，難以鍛鍊更深厚的五斗米神功。\n");
 
         if( query("can_perform/wudoumi-shengong/gui", me )
            && me->query_skill("unarmed", 1) < me->query_skill("wudoumi-shengong", 1))
-                return notify_fail("你的基本拳脚水平不够，难以锻炼更深厚的五斗米神功。\n");
+                return notify_fail("你的基本拳腳水平不夠，難以鍛鍊更深厚的五斗米神功。\n");
 
         return ::valid_learn(me);
 }
@@ -109,7 +109,7 @@ mapping query_action(object me, object weapon)
 
 int practice_skill(object me)
 {
-        return notify_fail("五斗米神功只能用学(learn)的来增加熟练度。\n");
+        return notify_fail("五斗米神功只能用學(learn)的來增加熟練度。\n");
 }
 
 void check_count(object me)

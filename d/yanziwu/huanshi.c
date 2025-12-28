@@ -3,7 +3,7 @@
 inherit ROOM;
 #include <ansi.h>
 
-// 演练参合指必须的三种少林指法
+// 演練參合指必須的三種少林指法
 #define BOOK1 "/clone/lonely/book/tianzhuzhi"
 #define BOOK2 "/clone/lonely/book/duoluoyezhi"
 #define BOOK3 "/clone/lonely/book/xiuluozhi"
@@ -14,10 +14,10 @@ int can_creat_book = 0, ran;
 
 void create()
 {
-        set("short", "还施水阁");
+        set("short", "還施水閣");
         set("long", @LONG
-阁中满是书架(jia)， 架上摆着许多颇古旧的书籍，架上均贴有
-标签(sign)。这就是慕容世家历经数代才收集积累而成的武学宝库。
+閣中滿是書架(jia)， 架上擺著許多頗古舊的書籍，架上均貼有
+標籤(sign)。這就是慕容世家歷經數代才收集積累而成的武學寶庫。
 LONG );
         set("exits", ([
             "out": __DIR__"lanyue",
@@ -31,15 +31,15 @@ LONG );
         ]));
         
         set("item_desc",([
-            "sign" : HIR "缺大理段氏六脉神剑，丐帮降龙十八掌、打狗棍法…\n" NOR,
-              "jia"  : HIC "上面放着各种武学书籍，却发现没什么有价值的秘籍。\n" NOR,
+            "sign" : HIR "缺大理段氏六脈神劍，丐幫降龍十八掌、打狗棍法…\n" NOR,
+              "jia"  : HIC "上面放著各種武學書籍，卻發現沒什麼有價值的秘籍。\n" NOR,
         ]));
         
-        // 每次更新时随机选出一种可以产生的秘籍，并等待判断 ...
+        // 每次更新時隨機選出一種可以產生的秘籍，並等待判斷 ...
         ran = random(sizeof(books));
 
-        // 每次更新有1/5的几率可以随机产生出一种秘籍，
-        // 则产生特定秘籍的几率为1/15，并等待判断 ...
+        // 每次更新有1/5的幾率可以隨機產生出一種秘籍，
+        // 則產生特定秘籍的幾率為1/15，並等待判斷 ...
         if (random(5) == 0)can_creat_book = 1;
 
         setup();
@@ -58,7 +58,7 @@ int do_move(string arg)
         me = this_player();
         
         if (! arg || arg != "jia")
-                 return notify_fail("你要干什么？\n");
+                 return notify_fail("你要幹什麼？\n");
      
         if (! book = find_object(books[ran]))
                   book = load_object(books[ran]);
@@ -66,27 +66,27 @@ int do_move(string arg)
         if (! here = find_object(__FILE__))
                   here = load_object(__FILE__);
 
-        // 更新前已有人取得过秘籍，只有更新后才可能第二次产生秘籍
+        // 更新前已有人取得過秘籍，只有更新後才可能第二次產生秘籍
         if( query("marks/move", here) || !can_creat_book )
-                  return notify_fail(HIC "你轻轻地将书架推了开，但什么也没发现。\n" NOR);
+                  return notify_fail(HIC "你輕輕地將書架推了開，但什麼也沒發現。\n" NOR);
 
-        message_vision(HIC "$N" HIC "轻轻地将书架推了开…\n" NOR, me);
+        message_vision(HIC "$N" HIC "輕輕地將書架推了開…\n" NOR, me);
 
         if (! environment(book))
         {     
-                  tell_object(me, HIY "啪~~地一声，一本书掉在了地上，你赶紧将它收了"
-                              "起来。\n" NOR);
+                  tell_object(me, HIY "啪~~地一聲，一本書掉在了地上，你趕緊將它收了"
+                              "起來。\n" NOR);
      
                   book->move(me);
      
                   set("marks/move", 1, here);
         }
-        else return notify_fail(HIG "结果你什么都没发现！\n");
+        else return notify_fail(HIG "結果你什麼都沒發現！\n");
 
         return 1;
 }
 
-// 保证只有每次更新后才会有机会出现秘籍
+// 保證只有每次更新後才會有機會出現秘籍
 void reset()
 {
        object here;

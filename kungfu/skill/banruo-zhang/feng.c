@@ -14,16 +14,16 @@ int perform(object me)
         mapping buff, data;
 
         if( (int)me->query_skill("banruo-zhang", 1) < 60 )
-                return notify_fail("你的般若掌法不够娴熟，不会使用「封魔」。\n");
+                return notify_fail("你的般若掌法不夠嫻熟，不會使用「封魔」。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你的真气不够，无法使用「封魔」。\n");
+                return notify_fail("你的真氣不夠，無法使用「封魔」。\n");
 
         if( BUFF_D->check_buff(me,"brz_feng") )
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("banruo-zhang", 1);
-        msg = HIG "$N" HIG "使出般若掌「封魔」式，双掌翻飞将周身护住。\n" NOR;
+        msg = HIG "$N" HIG "使出般若掌「封魔」式，雙掌翻飛將周身護住。\n" NOR;
         
         data = ([
                 "attack" : -skill/4,
@@ -39,7 +39,7 @@ int perform(object me)
 	        "time"  : skill/4,
 	        "buff_data": data,	
 	        "buff_msg" : msg,
-	        "disa_msg" : "你的般若掌「封魔」运行完毕，将内力收回丹田。\n",
+	        "disa_msg" : "你的般若掌「封魔」運行完畢，將內力收回丹田。\n",
         ]);
          BUFF_D->buffup(buff); 
 

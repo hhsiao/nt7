@@ -12,10 +12,10 @@ inherit NPC;
 
 
 mapping wushi_names = ([
-        1 : "云中鹤",
-        2 : "岳老三",
-        3 : "叶二娘",
-        4 : "段延庆",
+        1 : "雲中鶴",
+        2 : "嶽老三",
+        3 : "葉二孃",
+        4 : "段延慶",
 ]);
 
 mapping id_names = ([
@@ -26,15 +26,15 @@ mapping id_names = ([
 ]);
 
 mapping nick_names = ([
-        1 : "穷凶极恶",
-        2 : "凶神恶煞",
-        3 : "无恶不作",
-        4 : "恶贯满盈",
+        1 : "窮兇極惡",
+        2 : "凶神惡煞",
+        3 : "無惡不作",
+        4 : "惡貫滿盈",
 ]);
 
-mixed es_die(object me) //超时自毁
+mixed es_die(object me) //超時自毀
 {
-        message_vision("$N"+NOR+YEL+"猛打一个激灵，鬼鬼祟祟地往路边树林里一跳，突然消失不见了...\n"NOR, me);
+        message_vision("$N"+NOR+YEL+"猛打一個激靈，鬼鬼祟祟地往路邊樹林裡一跳，突然消失不見了...\n"NOR, me);
         destruct(me);
 }
 
@@ -53,8 +53,8 @@ void create()
         set_name(HIR + wushi_names[lv] + NOR, ({ id_names[lv], "e ren" }));
         set("nickname", HIY +nick_names[lv]+ NOR);
         set("long", 
-"西夏国有个讲武馆，叫做一品堂，是该国国王所立，堂中招聘武功高强之士，优礼供养。\n"
-"这是一品堂中的一品高手四大恶人之一，据说受赫连大将军带领，此来不知道对中原有什么图谋......\n"
+"西夏國有個講武館，叫做一品堂，是該國國王所立，堂中招聘武功高強之士，優禮供養。\n"
+"這是一品堂中的一品高手四大惡人之一，據說受赫連大將軍帶領，此來不知道對中原有什麼圖謀......\n"
         );
         
         set("age", 40);
@@ -89,7 +89,7 @@ void create()
         set_temp("apply/damage", 200 + (lv*50));
         set_temp("apply/armor", 200 + (lv*50));
 
-                //比同品武士高500级sk
+                //比同品武士高500級sk
                 ntmp = to_int(500 + WU2345_SKILL_LV + (lv-1) * WU2345_SKILL_INCREASE);
         
         if (!random(3))
@@ -228,7 +228,7 @@ void create()
                         break;
         }
         
-        call_out("es_die", 120 + random(60), this_object());//避免主id抢太多大米的
+        call_out("es_die", 120 + random(60), this_object());//避免主id搶太多大米的
 }
 
 int accept_fight(object ob)
@@ -260,11 +260,11 @@ void init()
 void die(object killer)
 {
          int showexp;
-        object dob;             // 打晕这个NPC的人
-        int n;                  // 可以奖励的人的数目
-        int exp;                // 需要瓜分的经验
-        int pot;                // 需要瓜分的潜能
-        object *t;              // 杀死我的人的队伍列表
+        object dob;             // 打暈這個NPC的人
+        int n;                  // 可以獎勵的人的數目
+        int exp;                // 需要瓜分的經驗
+        int pot;                // 需要瓜分的潛能
+        object *t;              // 殺死我的人的隊伍列表
         object tob;
         int i;
                 object *inv;
@@ -273,7 +273,7 @@ void die(object killer)
                 string s_gift, *key_s_gift;
                 int gift_point;
 
-        // 定义奖励物品列表
+        // 定義獎勵物品列表
                 mixed oblist;
                 
                 object env;
@@ -281,10 +281,10 @@ void die(object killer)
                 oblist = query("oblist");
 
 
-                // 通知当前房间，以便计算刷新
+                // 通知當前房間，以便計算刷新
                 env = environment(this_object());
                 env->npc_die(this_object());
-        // 找到杀了我(NPC)或是打晕我的人
+        // 找到殺了我(NPC)或是打暈我的人
         if (! objectp(dob = killer))
                 dob = query_last_damage_from();
 
@@ -294,11 +294,11 @@ void die(object killer)
                                 return;
                 }
 
-                //移动惩罚消弱
+                //移動懲罰消弱
                 addn_temp("xzz/ntrip2", -1, dob);
                 addn_temp("xzz/nkill2", 1, dob);
 
-                message_vision(NOR"$N轻轻一挥手，割下$n的项上首级。\n"NOR, dob, this_object());
+                message_vision(NOR"$N輕輕一揮手，割下$n的項上首級。\n"NOR, dob, this_object());
                 new(__DIR__"obj/head")->move(dob); 
 
         t = dob->query_team();
@@ -331,7 +331,7 @@ void die(object killer)
                 showexp = exp;                
                                 
                                 CHANNEL_D->channel_broadcast(CHANL_NAME, 
-                                        query("name", dob) + "于无锡杏子林击杀"+HIY+"「一品堂高手」"+HIR+query_temp("rename")+NOR+YEL+"，获得"+chinese_number(get_show_giftexp(dob, showexp))+"点经验奖励。"
+                                        query("name", dob) + "於無錫杏子林擊殺"+HIY+"「一品堂高手」"+HIR+query_temp("rename")+NOR+YEL+"，獲得"+chinese_number(get_show_giftexp(dob, showexp))+"點經驗獎勵。"
                                         );
 
                                 exp = invert_reborngiftd(dob, exp);
@@ -356,7 +356,7 @@ void die(object killer)
                                                                    addn("xingzilin/eren",1,tob);addn("xingzilin/exp",exp,tob);GIFT_D->delay_bonus(tob,
                                                                           ([ "exp"      : exp + ((tob == dob) ? exp / 10 : 0),
                                                                                  "pot"      : pot + ((tob == dob) ? pot / 10 : 0),
-                                                                                 "prompt"   : "你的队伍杀死" + name() + "之后"]));
+                                                                                 "prompt"   : "你的隊伍殺死" + name() + "之後"]));
 
                                                  }
                                         }
@@ -366,7 +366,7 @@ void die(object killer)
                                                                    addn("xingzilin/eren",1,dob);addn("xingzilin/exp",exp,dob);GIFT_D->delay_bonus(dob,
                                                                           ([ "exp"      : exp,
                                                                                  "pot"      : pot,
-                                                                                 "prompt"   : "你在杀死" + name() + "之后"]));
+                                                                                 "prompt"   : "你在殺死" + name() + "之後"]));
                                 }
 
         }

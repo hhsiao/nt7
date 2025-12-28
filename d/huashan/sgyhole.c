@@ -6,9 +6,9 @@ void create()
 {
         set("short", "山洞");
         set("long", @LONG
-这是一个毫不起眼的山洞，但是里面的石壁上却画满了五岳剑派
-所有已经失传的精妙绝招。花岗岩石壁(wall)上很多小人，全是用利
-器刻制，想见当初运力之人内力十分深厚。
+這是一個毫不起眼的山洞，但是裡面的石壁上卻畫滿了五嶽劍派
+所有已經失傳的精妙絕招。花崗岩石壁(wall)上很多小人，全是用利
+器刻制，想見當初運力之人內力十分深厚。
 LONG );
         set("exits", ([ /* sizeof() == 4 */
             "southup"   : __DIR__"zhandao",
@@ -42,36 +42,36 @@ int do_mianbi()
 
         ob = this_player();
 
-        if (ob->is_busy()) return notify_fail("你正忙着呢！\n");
+        if (ob->is_busy()) return notify_fail("你正忙著呢！\n");
         c_skill = (int)ob->query_skill("sword", 1);
         if (c_skill < 20)
         {
-                message_vision("$N对剑法的了解显然太低，无"
-                               "法领悟石壁内容。\n", ob);
+                message_vision("$N對劍法的瞭解顯然太低，無"
+                               "法領悟石壁內容。\n", ob);
                 return 1; 
         }
 
         if (! ob->can_improve_skill("sword"))
         {
-                message_vision("$N的实战经验不足，无法领悟"
-                               "石壁内容。\n", ob);
+                message_vision("$N的實戰經驗不足，無法領悟"
+                               "石壁內容。\n", ob);
                 return 1; 
         }
 
         if( query("jing", ob)<20 )
         {
-                message_vision("$N太累了，现在无法领悟石壁内容。\n",ob);
+                message_vision("$N太累了，現在無法領悟石壁內容。\n",ob);
                 return 1; 
         }
 
         if (c_skill >= 100)
         {
-                message_vision("$N觉得石壁内容太肤浅了。\n", ob);
+                message_vision("$N覺得石壁內容太膚淺了。\n", ob);
                 return 1;
         }
 
-        message_vision("$N面对着石壁趺坐静思，良久，对基本"
-                       "剑法似有所悟。\n", ob);
+        message_vision("$N面對著石壁趺坐靜思，良久，對基本"
+                       "劍法似有所悟。\n", ob);
         ob->improve_skill("sword",1+random(query("int", ob)));
         ob->receive_damage("jing", 15);
         ob->start_busy(random(1));

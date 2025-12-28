@@ -1,4 +1,4 @@
-// c_doc.c 制作帮派文件
+// c_doc.c 製作幫派文件
 
 void doc_edit( string str );
 int main( object me )
@@ -20,9 +20,9 @@ void doc_edit( string str )
 int help( object me )
 {
         write( "
-        c_doc: 帮主编写帮派文件。
-        可在文件里编写帮规, 帮派历史, 等资料。
-        玩家 help <帮派中文名称> 即可阅读帮派文件。
+        c_doc: 幫主編寫幫派文件。
+        可在文件裡編寫幫規, 幫派歷史, 等資料。
+        玩家 help <幫派中文名稱> 即可閱讀幫派文件。
 
 ");
         return 1;

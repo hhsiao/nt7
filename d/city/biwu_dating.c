@@ -6,12 +6,12 @@ int do_look(string arg);
 
 void create()
 {
-    set("short", HIY"演武大厅"NOR);
+    set("short", HIY"演武大廳"NOR);
         set("long", @LONG
-这是一个宽敞的大房间，靠北墙搭着一个巨大的擂台(leitai)，
-擂台后被一块布帘遮挡的密密实实，但是一股浓厚的杀气仍然从布帘
-后散发出来，弥漫在空气里，直钻入你内心。在东面墙上，悬挂着偌
-大的一个大匾(dabian)。
+這是一個寬敞的大房間，靠北牆搭著一個巨大的擂臺(leitai)，
+擂臺後被一塊布簾遮擋的密密實實，但是一股濃厚的殺氣仍然從布簾
+後散發出來，瀰漫在空氣裡，直鑽入你內心。在東面牆上，懸掛著偌
+大的一個大匾(dabian)。
 LONG );
 
     set("no_fight",1);
@@ -20,7 +20,7 @@ LONG );
     set("biwu_room",1);
 
     set("item_desc",([
-            "leitai" : "一个四四方方的大擂台，你可以跳(jump)上去。\n",
+            "leitai" : "一個四四方方的大擂臺，你可以跳(jump)上去。\n",
     ]));
 
     set("exits", ([
@@ -53,7 +53,7 @@ int do_no()
     me = this_player();
     if (wizardp(me)) return 0;
 
-    tell_object(me,"在这里你想干什么？\n");
+    tell_object(me,"在這裡你想幹什麼？\n");
     return 1;
 }
 
@@ -86,13 +86,13 @@ int do_jump(string arg)
 
     if (arg != "leitai")
     {
-            tell_object(me,"你要往哪里跳啊？\n");
+            tell_object(me,"你要往哪裡跳啊？\n");
             return 1;
     }
 
     if (wizardp(me))
     {
-            tell_object(me,"你是巫师啊，就别来跟玩家争什么第一第二了！\n");
+            tell_object(me,"你是巫師啊，就別來跟玩家爭什麼第一第二了！\n");
             return 1;
     }
 

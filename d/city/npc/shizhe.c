@@ -6,10 +6,10 @@ string ask_me();
 void create()
 {
         set_name(HIR+LOCAL_MUD_NAME()+NOR, ({ "shizhe" }) );
-        set("nickname", HIR"挑战极限"NOR);
+        set("nickname", HIR"挑戰極限"NOR);
         set("gender", "男性" );
         set("age", 18);
-        set("long", YEL"这位是〖"+LOCAL_MUD_NAME()+"〗的使者，向他打听“礼物”，他会带给您想不到的惊喜。\n"NOR);
+        set("long", YEL"這位是〖"+LOCAL_MUD_NAME()+"〗的使者，向他打聽“禮物”，他會帶給您想不到的驚喜。\n"NOR);
         set("shen_type", 1);
         set("combat_exp", 1000000);
         set("str", 30);
@@ -24,7 +24,7 @@ void create()
         set("score", 100000);
 
         set("inquiry", ([
-                         "礼物" : (: ask_me :)
+                         "禮物" : (: ask_me :)
         ]));
         setup();
 }
@@ -44,8 +44,8 @@ void init()
 void greeting(object ob)
 {
    if( !ob || environment(ob) != environment() ) return;
-   command("whisper"+query("id", ob)+""HIW"欢迎光临"+HIR+"(askshizheabout礼物)"+NOR+HIW+"，小的助您行走江湖．"NOR);
-   command("es " + HIR"『"+HIY+LOCAL_MUD_NAME()+HIR+"』"NOR+WHT"欢迎您的光临,"+HIR"ip:"NOR+WHT+RELEASE_SERVER()+NOR+HIR"port:"NOR+WHT+LOCAL_PORT()+NOR);
+   command("whisper"+query("id", ob)+""HIW"歡迎光臨"+HIR+"(askshizheabout禮物)"+NOR+HIW+"，小的助您行走江湖．"NOR);
+   command("es " + HIR"『"+HIY+LOCAL_MUD_NAME()+HIR+"』"NOR+WHT"歡迎您的光臨,"+HIR"ip:"NOR+WHT+RELEASE_SERVER()+NOR+HIR"port:"NOR+WHT+LOCAL_PORT()+NOR);
 }
 
 string ask_me()
@@ -54,12 +54,12 @@ string ask_me()
         mapping fam; 
         
          if( query("comeworld", me) )
-                return "呵呵～这就是您的不是了！小的已经对您施过法力了！";
+                return "呵呵～這就是您的不是了！小的已經對您施過法力了！";
          else{
                 set("comeworld", 1, me);
                 addn("potential", 1000, me);
                 addn("food", 10000, me);
                 addn("water", 10000, me);
-                return "礼物清单: 潜能: 1000,食物和饮水各: 10000。" ;
+                return "禮物清單: 潛能: 1000,食物和飲水各: 10000。" ;
              }
 }

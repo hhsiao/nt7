@@ -3,7 +3,7 @@
 inherit ARMOR;
 void create()
 {
-        set_name(HIC"铠甲"NOR, ({ "kai jia","jia" }) );   
+        set_name(HIC"鎧甲"NOR, ({ "kai jia","jia" }) );   
         set_weight(20000);
         /*if( clonep() )
                 set_default_object(__FILE__);

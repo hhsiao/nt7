@@ -3,7 +3,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return MAG "幽冥剑气" NOR; }
+string name() { return MAG "幽冥劍氣" NOR; }
 
 inherit F_SSERVER;
 
@@ -17,31 +17,31 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( objectp(query_temp("weapon", me)) )
-                return notify_fail("你必须空手才能使用" + name() + "。\n");
+                return notify_fail("你必須空手才能使用" + name() + "。\n");
 
         if ((int)me->query_skill("canhe-zhi", 1) < 120)
-                return notify_fail("你的参合指修为有限，难以施展" + name() + "。\n");
+                return notify_fail("你的參合指修為有限，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("finger") != "canhe-zhi")
-                return notify_fail("你没有激发参合指，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發參合指，難以施展" + name() + "。\n");
 
         if (me->query_skill_prepared("finger") != "canhe-zhi")
-                return notify_fail("你现在没有准备使用参合指，难以施展" + name() + "。\n");
+                return notify_fail("你現在沒有準備使用參合指，難以施展" + name() + "。\n");
 
         if( query("max_neili", me)<2500 )
-                return notify_fail("你的内力修为不足，难以施展" + name() + "。\n");
+                return notify_fail("你的內力修為不足，難以施展" + name() + "。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你的真氣不夠，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "只见$N" HIW "身形一展，身法陡然变得诡异无比，聚力于指悄然点"
-              "出，数股剑气直袭$n" HIW "要穴而去。\n" NOR;
+        msg = HIW "只見$N" HIW "身形一展，身法陡然變得詭異無比，聚力於指悄然點"
+              "出，數股劍氣直襲$n" HIW "要穴而去。\n" NOR;
 
         message_combatd(msg, me, target);
 

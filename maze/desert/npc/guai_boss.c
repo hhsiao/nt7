@@ -4,11 +4,11 @@ inherit BOSS;
 
 void create()
 {
-        set_name(HIY"贼盗头领"NOR, ({"zeidao touling", "touling", "zeidao"}) );
-        set("title", HIY "绿林豪杰" NOR);
+        set_name(HIY"賊盜頭領"NOR, ({"zeidao touling", "touling", "zeidao"}) );
+        set("title", HIY "綠林豪傑" NOR);
         set("gender", "男性" );
         set("age", random(30)+20);
-        set("long", "无尽大漠边缘活动的贼盗小头目，占着一身武艺经常领着一帮小喽罗抢劫过往行人。\n");
+        set("long", "無盡大漠邊緣活動的賊盜小頭目，佔著一身武藝經常領著一幫小嘍羅搶劫過往行人。\n");
         set("attitude", "aggressive");
         set("class", "lvlin");
         set("str", 30);
@@ -39,7 +39,7 @@ void create()
         map_skill("parry", "jiuyin-baiguzhao");
         map_skill("blade", "wuhu-duanmendao");
         map_skill("dodge", "tiyunzong");
-        create_family("绿林暴风盟", 3, "弟子");
+        create_family("綠林暴風盟", 3, "弟子");
         set("auto_perform", 1); 
 
         set("drops", ([

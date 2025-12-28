@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("星飞[2;37;0m[2;37;0m", ({"xingaa"}));        
+        set_name("星飛[2;37;0m[2;37;0m", ({"xingaa"}));        
         set("gender", "男性");                
-        set("long", "星飞[2;37;0m
-它是星空的魔幻兽。
+        set("long", "星飛[2;37;0m
+它是星空的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

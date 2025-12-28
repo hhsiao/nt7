@@ -7,7 +7,7 @@ void create()
         set_name("官兵", ({ "guan bing", "bing" }));
         set("age", 18 + random(10));
         set("gender", "男性");
-        set("long","正在守城的官兵，千万不要招惹他们，否则可能会有杀身之祸。\n");
+        set("long","正在守城的官兵，千萬不要招惹他們，否則可能會有殺身之禍。\n");
         set("attitude", "peaceful");
         set("shen_type", 1);
         set("str", 20);
@@ -41,7 +41,7 @@ void init()
 
 int accept_fight(object me)
 {
-        message_vision("小兵对$N喝道：大胆刁民，竟敢攻击朝廷命官？\n", me);
+        message_vision("小兵對$N喝道：大膽刁民，竟敢攻擊朝廷命官？\n", me);
         kill_ob(me);
         return 1;
 }

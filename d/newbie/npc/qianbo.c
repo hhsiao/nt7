@@ -4,11 +4,11 @@ inherit F_DEALER;
 
 void create()
 {
-        set_name("钱伯", ({ "qian bo", "qian", "bo" }));
-        set("nickname", HIM "见利忘义" NOR);
-        set("title", "杂货铺老板");
+        set_name("錢伯", ({ "qian bo", "qian", "bo" }));
+        set("nickname", HIM "見利忘義" NOR);
+        set("title", "雜貨鋪老闆");
         set("long", @LONG
-一个胖胖的老板，卖一些普通的物品。可使用 list 查看可购买的物品。
+一個胖胖的老闆，賣一些普通的物品。可使用 list 查看可購買的物品。
 LONG);
         set("gender", "男性");
         set("age", 44);
@@ -55,8 +55,8 @@ void greeting(object ob)
 {
         if( !ob || environment(ob) != environment() ) return;
 
-        say(CYN "钱伯笑着说道：这位" + RANK_D->query_respect(ob)+ "你需"
-            "买些什么，请随便看（输入指令 list 查看）。\n" NOR);
+        say(CYN "錢伯笑著說道：這位" + RANK_D->query_respect(ob)+ "你需"
+            "買些什麼，請隨便看（輸入指令 list 查看）。\n" NOR);
 
         return;
 }

@@ -4,12 +4,12 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIR "续命丸" NOR, ({"xuming wan", "xuming", "wan"}));
+        set_name(HIR "續命丸" NOR, ({"xuming wan", "xuming", "wan"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "颗");
-                set("long", HIR "一颗黑色的药丸。恢复2000点气血和最大气血。\n" NOR);
+                set("unit", "顆");
+                set("long", HIR "一顆黑色的藥丸。恢復2000點氣血和最大氣血。\n" NOR);
                 set("value", 50000);
                 set("only_do_effect", 1);
         }
@@ -21,12 +21,12 @@ int do_effect(object me)
 {
         if (time() - me->query_temp("last_eat_p1") < 600)
         {
-                write("你刚吃过药，药力还没有完全吸收。\n");
+                write("你剛吃過藥，藥力還沒有完全吸收。\n");
                 return 1;
         }
         me->set_temp("last_eat_p1", time());
 
-        message_vision(HIR "$N" HIR "吃下一颗续命丸，只觉舒泰之极！\n" NOR, me);
+        message_vision(HIR "$N" HIR "吃下一顆續命丸，只覺舒泰之極！\n" NOR, me);
 
         if (me->query("max_qi") - me->query("eff_qi") <= 2000)
         {

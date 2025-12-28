@@ -24,13 +24,13 @@ int main(object me, string arg)
 
         total=query("information", get_object(QUEST_D));
         if (! mapp(total))
-                return notify_fail("当前系统没有任何任务。\n");
+                return notify_fail("當前系統沒有任何任務。\n");
 
         obs = keys(total);
         obs = filter_array(obs, (: objectp($1) :));
 
         if (! sizeof(obs))
-                return notify_fail("当前系统没有任何任务。\n");
+                return notify_fail("當前系統沒有任何任務。\n");
 
         if (arg)
         {
@@ -41,19 +41,19 @@ int main(object me, string arg)
                         obs = filter_array(obs, (: $1->name() == $(arg) :));
                         if (! sizeof(obs))
                         {
-                                write("目前系统中不存在 " + arg +
-                                      " 这个任务。\n");
+                                write("目前系統中不存在 " + arg +
+                                      " 這個任務。\n");
                                 return 1;
                         }
                         qob = obs[0];
                 }
 
-                write(sprintf("有关任务 " + qob->name() + " 的情报信息：\n%O\n",
+                write(sprintf("有關任務 " + qob->name() + " 的情報信息：\n%O\n",
                               total[qob]));
                 return 1;
         }
 
-        str = WHT "任务名称              执行时间    状  态    任务对象对应的系统OBJECT\n" NOR
+        str = WHT "任務名稱              執行時間    狀  態    任務對象對應的系統OBJECT\n" NOR
               HIW "--------------------------------------------------------------------\n" NOR;
         foreach (qob in obs)
         {
@@ -64,7 +64,7 @@ int main(object me, string arg)
                                file_name(qob));
         }
         str += HIW "--------------------------------------------------------------------\n" NOR
-               WHT "系统目前共有 " CYN + sizeof(obs) + WHT " 个任务。\n" NOR;
+               WHT "系統目前共有 " CYN + sizeof(obs) + WHT " 個任務。\n" NOR;
 
         me->start_more(str);
 
@@ -74,9 +74,9 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式 : qinfo [<任务名称>]
+指令格式 : qinfo [<任務名稱>]
 
-此指令可查看当前系统有的任务。
+此指令可查看當前系統有的任務。
 HELP );
         return 1;
 }

@@ -12,11 +12,11 @@ inherit F_QUESTER;
 void create()
 {
         set_name("左全", ({"zuo quan", "zuo", "quan"}));
-        set("title", "丐帮七袋弟子");
+        set("title", "丐幫七袋弟子");
         set("gender", "男性");
         set("age", 35);
         set("long",
-                "这是位豪爽大方的丐帮七袋弟子，看来是个北地豪杰。\n");
+                "這是位豪爽大方的丐幫七袋弟子，看來是個北地豪傑。\n");
         set("attitude", "peaceful");
         set("class", "beggar");
 
@@ -65,7 +65,7 @@ void create()
 
         prepare_skill("hand", "shexing-diaoshou");
 
-        create_family("丐帮", 19, "弟子");
+        create_family("丐幫", 19, "弟子");
 
         set_temp("apply/damage", 100);
         set_temp("apply/unarmed_damage", 100);
@@ -87,11 +87,11 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)<0 )
         {
-                command("say 你身为丐帮弟子，竟然不做好事？");
+                command("say 你身為丐幫弟子，竟然不做好事？");
                 return;
         }
         command("nod");
-        command("say 你拜我为师，可要做好吃苦的准备，好好做个丐帮弟子！");
+        command("say 你拜我為師，可要做好吃苦的準備，好好做個丐幫弟子！");
         command("recruit "+query("id", ob));
 
         if( query("class", ob) != "beggar" )

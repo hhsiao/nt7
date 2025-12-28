@@ -5,21 +5,21 @@ string long();
 
 void create()
 {
-        set_name(NOR + WHT "剑典残篇" NOR, ({ "jiandian canpian", "jiandian", "canpian" }));
+        set_name(NOR + WHT "劍典殘篇" NOR, ({ "jiandian canpian", "jiandian", "canpian" }));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "张");
-                set("long", "这是一张残缺不全的书页。\n" NOR);
+                set("unit", "張");
+                set("long", "這是一張殘缺不全的書頁。\n" NOR);
                 set("value", 30);
-                set("no_sell", "什么世道，就一张破纸头也拿来卖钱？");
+                set("no_sell", "什麼世道，就一張破紙頭也拿來賣錢？");
                 set("material", "paper");
-                set("skill_name", "基本剑法");      // 研究技能的名称
-                set("skill_type", "sword");         // 研究技能的种类
-                set("power_point", 30000);          // 增加技能的点数
-                set("need_exp", 300000);            // 研究所需的最低经验
-                set("min_lvl", 100);                // 研究所需的最低等级
-                set("max_lvl", 300);                // 能够研究的最高等级
+                set("skill_name", "基本劍法");      // 研究技能的名稱
+                set("skill_type", "sword");         // 研究技能的種類
+                set("power_point", 30000);          // 增加技能的點數
+                set("need_exp", 300000);            // 研究所需的最低經驗
+                set("min_lvl", 100);                // 研究所需的最低等級
+                set("max_lvl", 300);                // 能夠研究的最高等級
         }
         setup();
 }
@@ -35,13 +35,13 @@ string long()
 
         if (query("power_point"))
         {
-                msg = WHT "这是一张" + name() + NOR + WHT "，看样子"
-                      "已经颇有年时了。页片上用隶体密密麻麻写满了蝇"
-                      "头小字，似乎都和" + query("skill_name") +
-                      "有关，你可以试着读读(read)看，也许对武学能够"
-                      "有所帮助。";
+                msg = WHT "這是一張" + name() + NOR + WHT "，看樣子"
+                      "已經頗有年時了。頁片上用隸體密密麻麻寫滿了蠅"
+                      "頭小字，似乎都和" + query("skill_name") +
+                      "有關，你可以試著讀讀(read)看，也許對武學能夠"
+                      "有所幫助。";
         } else
-                msg = "这是一张残缺不全的书页，可字迹已无法辨清了。";
+                msg = "這是一張殘缺不全的書頁，可字跡已無法辨清了。";
 
         return sort_string(msg, 54);
 }
@@ -55,36 +55,36 @@ int do_read(string arg)
         string booksk=query("skill_type", this_object());
 
         if (me->is_busy())
-                return notify_fail("你现在正在忙。\n");
+                return notify_fail("你現在正在忙。\n");
 
         if (me->is_fighting())
-                return notify_fail("战斗中无法研读新知。\n");
+                return notify_fail("戰鬥中無法研讀新知。\n");
 
         if (arg && id(arg))
         {
                 if( query("combat_exp", me)<query("need_exp") )
-                        return notify_fail("你觉得残页上记载的东西太过深奥，凭自"
-                                           "己的武学似乎难以参详。\n");
+                        return notify_fail("你覺得殘頁上記載的東西太過深奧，憑自"
+                                           "己的武學似乎難以參詳。\n");
 
                 if (me->query_skill(booksk, 1) < query("min_lvl"))
-                        return notify_fail("你觉得自己对这项技能的了解尚过浅薄，"
-                                           "一时无法参详透彻。\n");
+                        return notify_fail("你覺得自己對這項技能的瞭解尚過淺薄，"
+                                           "一時無法參詳透徹。\n");
 
                 if (me->query_skill(booksk, 1) >= query("max_lvl"))
-                        return notify_fail("你觉得残页上记载的东西太过浅显，无法"
-                                           "从中获得任何帮助。\n");
+                        return notify_fail("你覺得殘頁上記載的東西太過淺顯，無法"
+                                           "從中獲得任何幫助。\n");
 
                 if (! me->can_improve_skill(booksk))
-                        return notify_fail("你参详了半天，发觉似乎是由于自身经验"
-                                           "不足的缘故，很多东西无法理解。\n");
+                        return notify_fail("你參詳了半天，發覺似乎是由於自身經驗"
+                                           "不足的緣故，很多東西無法理解。\n");
 
-                message_vision(HIW "$N" HIW "聚精会神地阅读「" NOR + na + HIW
-                               "」上所记载的东西，似乎有所收获。\n" NOR, me);
+                message_vision(HIW "$N" HIW "聚精會神地閱讀「" NOR + na + HIW
+                               "」上所記載的東西，似乎有所收穫。\n" NOR, me);
 
                 if (me->can_improve_skill(booksk))
                         me->improve_skill(booksk, query("power_point"));
 
-                tell_object(me, HIY "你只觉以前存在的诸多疑问豁然开朗，对「" +
+                tell_object(me, HIY "你只覺以前存在的諸多疑問豁然開朗，對「" +
                                 query("skill_name") + "」有了新的感悟。\n" NOR);
 
                 me->start_busy(random(20) + 20);

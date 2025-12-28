@@ -1,57 +1,57 @@
-// 无名剑法
+// 無名劍法
 
 #include <ansi.h>
 inherit SKILL;
 int is_pbsk() { return 1; }
 
 mapping *action = ({
-([      "action":HIB"\n$N默念 ≈幽≈,剑气纵横直直指向$n的$l"NOR,
+([      "action":HIB"\n$N默唸 ≈幽≈,劍氣縱橫直直指向$n的$l"NOR,
         "force" : 160,
         "lvl" : 0,
-"skill_name" : "★幽★字诀",
-        "damage_type":        "刺伤"
+"skill_name" : "★幽★字訣",
+        "damage_type":        "刺傷"
 ]),
-([      "action":HIR"\n$N默念 ≈恨≈,剑气纵横直直指向$n的$l"NOR,
+([      "action":HIR"\n$N默唸 ≈恨≈,劍氣縱橫直直指向$n的$l"NOR,
         "force" : 240,
         "lvl" : 50,
-"skill_name" : "★恨★字诀",
-        "damage_type":        "刺伤"
+"skill_name" : "★恨★字訣",
+        "damage_type":        "刺傷"
 ]),
-([      "action":HIY"\n$N默念 ≈怨≈,剑气纵横直直指向$n的$l"NOR,
+([      "action":HIY"\n$N默唸 ≈怨≈,劍氣縱橫直直指向$n的$l"NOR,
         "force" : 280,
         "lvl" : 75,
-"skill_name" : "★怨★字诀",
-        "damage_type":        "刺伤"
+"skill_name" : "★怨★字訣",
+        "damage_type":        "刺傷"
 ]),
-([      "action":HIM"\n$N默念 ≈爱≈,剑气纵横直直指向$n的$l"NOR,
+([      "action":HIM"\n$N默唸 ≈愛≈,劍氣縱橫直直指向$n的$l"NOR,
         "force" : 320,
         "lvl" : 120,
-"skill_name" : "★爱★字诀",
-        "damage_type":        "刺伤"
+"skill_name" : "★愛★字訣",
+        "damage_type":        "刺傷"
 ]),
-([      "action":HIC"\n$N默念 ≈思≈,剑气纵横直直指向$n的$l"NOR,
+([      "action":HIC"\n$N默唸 ≈思≈,劍氣縱橫直直指向$n的$l"NOR,
         "force" : 380,
         "lvl" : 230,
-"skill_name" : "★思★字诀",
-        "damage_type":        "刺伤"
+"skill_name" : "★思★字訣",
+        "damage_type":        "刺傷"
 ]),
-([      "action":HIG"\n$N默念 ≈情≈,剑气纵横直直指向$n的$l"NOR,
+([      "action":HIG"\n$N默唸 ≈情≈,劍氣縱橫直直指向$n的$l"NOR,
         "force" : 420,
         "lvl" : 250,
-"skill_name" : "★情★字诀",
-        "damage_type":        "刺伤"
+"skill_name" : "★情★字訣",
+        "damage_type":        "刺傷"
 ]),
-([      "action":CYN"\n$N默念 ≈恩≈,剑气纵横直直指向$n的$l"NOR,
+([      "action":CYN"\n$N默唸 ≈恩≈,劍氣縱橫直直指向$n的$l"NOR,
         "force" : 450,
         "lvl" : 330,
-"skill_name" : "★恩★字诀",
-        "damage_type":        "刺伤"
+"skill_name" : "★恩★字訣",
+        "damage_type":        "刺傷"
 ]),
-([      "action":HIR"\n$N默念 ≈仇≈,剑气纵横直直指向$n的$l"NOR,
+([      "action":HIR"\n$N默唸 ≈仇≈,劍氣縱橫直直指向$n的$l"NOR,
         "force" : 480,
         "lvl" : 380,
-"skill_name" : "★仇★字诀",
-        "damage_type":        "内伤"
+"skill_name" : "★仇★字訣",
+        "damage_type":        "內傷"
 ]),
 });
 
@@ -60,11 +60,11 @@ int valid_enable(string usage) { return usage == "sword" || usage == "parry"; }
 int valid_learn(object me)
 {
         if( query("max_neili", me)<100 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 //           if ((int)me->query_skill("wudu-shengong", 1) < 20)
-//                  return notify_fail("你的五毒神功火候太浅。\n");
+//                  return notify_fail("你的五毒神功火候太淺。\n");
         if ((int)me->query_skill("force", 1) < 20)
-                return notify_fail("你的基本内功火候太浅。\n");
+                return notify_fail("你的基本內功火候太淺。\n");
         return 1;
 }
 
@@ -96,15 +96,15 @@ int practice_skill(object me)
 {
         object weapon;
 
-        return notify_fail("无名剑法博大精深，无法靠着普通的练习提升。\n");
+        return notify_fail("無名劍法博大精深，無法靠著普通的練習提升。\n");
 
         if( !objectp(weapon=query_temp("weapon", me) )
          || query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
         if((int)me->query_skill("wuming-jianfa",1) < 300)
-                return notify_fail("你试着练习无名剑法,但是没有任何进步。\n");
+                return notify_fail("你試著練習無名劍法,但是沒有任何進步。\n");
         if( query("qi", me)<40 )
-                return notify_fail("你的体力不够练无名剑法。\n");
+                return notify_fail("你的體力不夠練無名劍法。\n");
         me->receive_damage("qi", 20);
         return 1;
 }
@@ -137,7 +137,7 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
                         victim->query_condition("chanchu_poison"));
                         break;
         }
-        return HIR "$n只觉得伤处一阵发麻，似乎中毒了。\n" NOR;
+        return HIR "$n只覺得傷處一陣發麻，似乎中毒了。\n" NOR;
 */
    }
 string perform_action_file(string action)
@@ -157,12 +157,12 @@ void skill_improved(object me)
         {
                 if( me->add("can_perform/wuming-jianfa/moming",random(i))<100 )
                 {
-                        tell_object(me, HIC "你对无名剑法「" HIW "剑动莫名"
-                                        HIC "」有了新的领悟。\n" NOR);
+                        tell_object(me, HIC "你對無名劍法「" HIW "劍動莫名"
+                                        HIC "」有了新的領悟。\n" NOR);
                 } else
                 {
-                        tell_object(me, HIC "你通晓了无名剑法「" HIW "剑"
-                                        "动莫名" HIC "」的奥秘。\n" NOR);
+                        tell_object(me, HIC "你通曉了無名劍法「" HIW "劍"
+                                        "動莫名" HIC "」的奧秘。\n" NOR);
                         me->improve_skill("martial-cognize", 1500000);
                         me->improve_skill("martial-cognize", 1500000);
                         me->improve_skill("martial-cognize", 1500000);

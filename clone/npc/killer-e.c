@@ -1,11 +1,11 @@
-// Killer-e.c ,No greeting, 桃花岛功夫, 东门
+// Killer-e.c ,No greeting, 桃花島功夫, 東門
 inherit NPC;
 
 void create()
 {
-        set_name("杀手", ({"killer"}));
+        set_name("殺手", ({"killer"}));
         set("long",
-        "这是一个身材高大的江湖人，两臂粗壮，膀阔腰圆，看起来似乎不怀好意。\n"
+        "這是一個身材高大的江湖人，兩臂粗壯，膀闊腰圓，看起來似乎不懷好意。\n"
         );
 
         set("gender", "男性");
@@ -51,8 +51,8 @@ void create()
 
         set("chat_chance", 20);
         set("chat_msg", ({
-                "杀手说道: 这次看那些玩家们往哪儿跑。\n",
-                "杀手说道: 杀! 杀! 杀!!!。\n",
+                "殺手說道: 這次看那些玩家們往哪兒跑。\n",
+                "殺手說道: 殺! 殺! 殺!!!。\n",
                 (: random_move :)
         }) );
 
@@ -81,7 +81,7 @@ void greeting(object ob)
         if (interactive(ob))
 //        && !environment(ob)->query("no_fight"))
         {
-                command("say 你这家伙不要跑，让大爷我宰了你！！！\n");
+                command("say 你這傢伙不要跑，讓大爺我宰了你！！！\n");
                 me->set_leader(ob);
                 remove_call_out("kill_ob");
                 call_out("kill_ob", 1, ob); 

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("老黄牛[2;37;0m[2;37;0m", ({"minerride"}));        
+        set_name("老黃牛[2;37;0m[2;37;0m", ({"minerride"}));        
         set("gender", "男性");                
-        set("long", "老黄牛[2;37;0m
-它是牛八的魔幻兽。
+        set("long", "老黃牛[2;37;0m
+它是牛八的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

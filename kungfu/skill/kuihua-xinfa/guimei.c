@@ -11,18 +11,18 @@ int exert(object me, object target)
         int skill = me->query_skill("force"); 
 
         if( BUFF_D->check_buff(me, "khxf_guimei") )
-                return notify_fail("你已经在运用鬼魅身法了吧？\n");
+                return notify_fail("你已經在運用鬼魅身法了吧？\n");
 
         if( (int)me->query_skill("kuihua-xinfa", 1) < 100 )
-                return notify_fail(HIY "你的葵花心法修为不够。\n" NOR);
+                return notify_fail(HIY "你的葵花心法修為不夠。\n" NOR);
         
         if( (int)me->query_skill("pixie-jian", 1) < 120 )
-                return notify_fail(HIY "你的辟邪剑法不够熟练。\n" NOR);
+                return notify_fail(HIY "你的辟邪劍法不夠熟練。\n" NOR);
 
         if( query("neili", me)<200 )
-                return notify_fail(HIY "你现在真气不足。\n" NOR);
+                return notify_fail(HIY "你現在真氣不足。\n" NOR);
 
-        msg = HIC"但见$N的身形如鬼如魅，飘忽来去，直似轻烟。衣袖带风，却不发出半点声息。\n"NOR;
+        msg = HIC"但見$N的身形如鬼如魅，飄忽來去，直似輕煙。衣袖帶風，卻不發出半點聲息。\n"NOR;
 
         addn("neili", -200, me);
         
@@ -39,7 +39,7 @@ int exert(object me, object target)
                 "time"  : skill/4,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : HIR "你觉得一股浊气沉下丹田，你的鬼魅身法收功了！\n" NOR,
+                "disa_msg" : HIR "你覺得一股濁氣沉下丹田，你的鬼魅身法收功了！\n" NOR,
                         
         ]);
         BUFF_D->buffup(buff);

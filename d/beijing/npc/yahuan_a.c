@@ -2,10 +2,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("鳌府丫鬟", ({ "ya huan", "ya", "huan"}));
+        set_name("鰲府丫鬟", ({ "ya huan", "ya", "huan"}));
         set("gender", "女性" );
         set("age", 12);
-        set("long", "一个十多岁的小姑娘，她是鳌拜府的丫鬟\n");
+        set("long", "一個十多歲的小姑娘，她是鰲拜府的丫鬟\n");
         set("shen_type", 1);
         set("combat_exp", 2000);
         set("str", 17);

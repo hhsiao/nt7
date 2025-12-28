@@ -105,7 +105,7 @@ varargs void message_vision(string msg, object me, object you)
         message("vision", str1, me);
         if( !environment(me) ) return;
         message("vision", str3, all_inventory(environment(me)), ({ me, you }));
-        if( query("fight_room", environment(me)) ) // 擂台比武直播
+        if( query("fight_room", environment(me)) ) // 擂臺比武直播
                 environment(me)->relay_message(str3);
 }
 
@@ -230,7 +230,7 @@ varargs void message_combatd(string msg, object me, object you, string damage_in
                                 message("tell_object", str2, you);
                 }
         }
-        // 擂台比武直播
+        // 擂臺比武直播
         if( query("fight_room", environment(me)) ) {
                 str3f = msg;
                 str3d = (string)damage_info;
@@ -350,7 +350,7 @@ void message(mixed arg, string message, mixed target, mixed exclude)
 
 void message_system(string message)
 {
-        message("system", HIW "\n【系统】" + message + "\n" NOR,
+        message("system", HIW "\n【系統】" + message + "\n" NOR,
                 all_interactive(), 0);
 }
 
@@ -377,7 +377,7 @@ string query_fail_msg()
 }
 
 
-// 统一代名词转换之讯息发送函式
+// 統一代名詞轉換之訊息發送函式
 varargs void msg(string msg, object me, object you, int onlooker, string classes, object *exclude, mapping translate)
 {
         string my_msg, your_msg;
@@ -385,44 +385,44 @@ varargs void msg(string msg, object me, object you, int onlooker, string classes
 
         if( !msg || !objectp(me) ) return;
 
-        // 取得 Me 物件资料
+        // 取得 Me 物件資料
 
-       my_idname = me->query_idname() || "无名称";
+       my_idname = me->query_idname() || "無名稱";
 
 
-        // 额外输入关键字之转换, 即除了 $ME 与 $YOU 以外之转换
+        // 額外輸入關鍵字之轉換, 即除了 $ME 與 $YOU 以外之轉換
         if( mapp(translate) )
                 foreach(string pattern, string replace in translate)
                 msg = replace_string(msg, pattern, replace);
 
-        // Me 讯息之第二人称转换
+        // Me 訊息之第二人稱轉換
         my_msg = replace_string(msg, "$ME", pnoun(2, me));
 
-        // 若有对象物件 you, 则对 you 作讯息处理
+        // 若有對象物件 you, 則對 you 作訊息處理
         if( objectp(you) )
         {
-                your_idname = you->query_idname() || "无名称";
+                your_idname = you->query_idname() || "無名稱";
 
-                // Me 讯息之第三人称转换
+                // Me 訊息之第三人稱轉換
                 my_msg = replace_string(my_msg, "$YOU", your_idname, 1);
                 my_msg = replace_string(my_msg, "$YOU", pnoun(3, you));
 
-                // You 讯息之第二人称转换
+                // You 訊息之第二人稱轉換
                 your_msg = replace_string(msg, "$ME", my_idname, 1);
                 your_msg = replace_string(your_msg, "$ME", pnoun(3, me));
                 your_msg = replace_string(your_msg, "$YOU", pnoun(2, you));
 
 
-                // 对物件 you 送出讯息
+                // 對物件 you 送出訊息
                 if( !arrayp(exclude) || member_array(you, exclude) == -1 )
                         tell(you, your_msg, classes);
         }
 
-        // 对物件 Me 送出讯息
+        // 對物件 Me 送出訊息
         if( !arrayp(exclude) || member_array(me, exclude) == -1 )
                 tell(me, my_msg, classes);
 
-        // 若有 onlooker(旁观者) 参数, 则对与 me 或 you 同一环境中的生物发出讯息
+        // 若有 onlooker(旁觀者) 參數, 則對與 me 或 you 同一環境中的生物發出訊息
         if( onlooker )
         {
                 string onlookers_msg;
@@ -448,7 +448,7 @@ varargs void msg(string msg, object me, object you, int onlooker, string classes
                 if( objectp(you) ) 
                         onlookers_msg = replace_string(onlookers_msg, "$YOU", your_idname);
 
-                // 对所有旁观者物件送出讯息
+                // 對所有旁觀者物件送出訊息
                 tell(onlookers, onlookers_msg, classes);
         }
 }

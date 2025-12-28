@@ -7,7 +7,7 @@ void setup()
         set_name("菲尼克斯[2;37;0m[2;37;0m", ({"asd"}));        
         set("gender", "男性");                
         set("long", "菲尼克斯[2;37;0m
-它是唐缺的魔幻兽。
+它是唐缺的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

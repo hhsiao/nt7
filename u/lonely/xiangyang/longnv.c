@@ -6,12 +6,12 @@ void create()
 {
         object ob;
 
-        set_name("小龙女", ({ "xiao longnv", "xiao", "longnv" }));
+        set_name("小龍女", ({ "xiao longnv", "xiao", "longnv" }));
         set("gender", "女性");
         set("age", 22);
         set("long", @LONG
-她一生爱穿白衣，当真如风拂玉树，雪裹琼苞，
-兼之生性清冷，实当得起“冷浸溶溶月”的形
+她一生愛穿白衣，當真如風拂玉樹，雪裹瓊苞，
+兼之生性清冷，實當得起“冷浸溶溶月”的形
 容。
 LONG);
         set("attitude", "friendly");
@@ -109,7 +109,7 @@ void unconcious()
 
 void die_msg()
 {
-        command("chat 过儿 ……");
+        command("chat 過兒 ……");
         destruct(this_object());
 }
 

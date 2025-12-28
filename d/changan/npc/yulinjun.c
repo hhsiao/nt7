@@ -6,11 +6,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("御林军", ({ "yulin jun", "jun", "guard" }) );
+        set_name("御林軍", ({ "yulin jun", "jun", "guard" }) );
         set("gender", "男性");
         set("age", 25);
         set("long",
-                "这是位守护皇城的御林军武士，身披战甲，手执钢刀。他双目精光炯炯，警惕地巡视着四周的情形。\n");
+                "這是位守護皇城的御林軍武士，身披戰甲，手執鋼刀。他雙目精光炯炯，警惕地巡視著四周的情形。\n");
         set("combat_exp", 160000);
         set("attitude", "heroism");
         set("str", 25);
@@ -44,8 +44,8 @@ void init()
 
 int accept_fight(object me)
 {
-        message_vision("御林军士对$N大喝一声：你活得不"
-                       "耐烦了？皇宫前你也敢胡闹！\n", me);
+        message_vision("御林軍士對$N大喝一聲：你活得不"
+                       "耐煩了？皇宮前你也敢胡鬧！\n", me);
         kill_ob(me);
         return 1;
 }

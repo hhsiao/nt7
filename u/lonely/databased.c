@@ -1,24 +1,24 @@
 // databased.c
-// Create by 发现号(Find@TX).
+// Create by 發現號(Find@TX).
 // Updated by Lonely@NT
 
-// databased.c 提供的外部函数：
+// databased.c 提供的外部函數：
 //
-// 通用语句：
-//   mixed *db_fetch_row()        - 为查找一行
-//   mixed  db_query()            - 为执行语句
+// 通用語句：
+//   mixed *db_fetch_row()        - 為查找一行
+//   mixed  db_query()            - 為執行語句
 //   mixed *db_all_query()        - 查找所有行
 //   mixed  db_crypt()            - 加密字符串
-//   string query_db_status()     - 数据库状态
+//   string query_db_status()     - 數據庫狀態
 
-// 用户管理：
-//   int db_find_user()           - 查询 ID 是否存在
-//   int db_create_user()         - 创建新的用户
-//   int db_remove_user()         - 删除用户档案
-//   int db_set_user()            - 设定用户属性
-//   int db_add_user()            - 增加用户属性
-//   int db_query_user()          - 查询用户属性
-//   int db_count_user()          - 计算用户数量
+// 用戶管理：
+//   int db_find_user()           - 查詢 ID 是否存在
+//   int db_create_user()         - 創建新的用戶
+//   int db_remove_user()         - 刪除用戶檔案
+//   int db_set_user()            - 設定用戶屬性
+//   int db_add_user()            - 增加用戶屬性
+//   int db_query_user()          - 查詢用戶屬性
+//   int db_count_user()          - 計算用戶數量
 
 #ifdef DB_SAVE
 
@@ -48,7 +48,7 @@ public void broadcast(string sql);
 string *do_sql(string);
 int do_sqlexec(string sql);
 
-// db_save_all() 时这里的好几个字段应该从 DBASE 里分离出来单独存储
+// db_save_all() 時這裡的好幾個字段應該從 DBASE 裡分離出來單獨存儲
 nosave string *cols = ({
         "id", "name", "surname", "purename", "password", "ad_password",
         "birthday", "online", "on_time", "fee_time", "save_time", "f_mail",
@@ -57,7 +57,7 @@ nosave string *cols = ({
         "f_condition", "f_attack", "f_skill", "f_alias", "f_user", "f_business",
 });
 
-// 确定用户返回数据时是否校验数据和 临时举措
+// 確定用戶返回數據時是否校驗數據和 臨時舉措
 int crc_status() { return crc_status; }
 int clean_up() { return 1; }
 
@@ -108,10 +108,10 @@ protected void connect_to_database()
 
         n = db_connect(DB_HOST, DATABASE, DB_USER);
 
-        if( intp(n) && (n > 0) )  // 连接成功
+        if( intp(n) && (n > 0) )  // 連接成功
         {
                 db_handle = n;
-                chat("已经与MySQL数据库建立连接！连接号是：" + n);
+                chat("已經與MySQL數據庫建立連接！連接號是：" + n);
                 return;
         }
         else
@@ -172,7 +172,7 @@ protected int valid_caller()
 #endif
 }
 
-// 不能增加记录，只能修改已经有的记录里存在字段的合适值
+// 不能增加記錄，只能修改已經有的記錄裡存在字段的合適值
 int db_remove_player(string id)
 {
         int db;
@@ -184,13 +184,13 @@ int db_remove_player(string id)
 
         if( !db_handle )
         {
-                chat("数据库失去连接。");
+                chat("數據庫失去連接。");
                 return 0;
         }
         db = db_handle;
 
         sql = "delete from users where id='" + id + "'";
-        chat("执行删除语句！" + sql);
+        chat("執行刪除語句！" + sql);
         ret = db_exec(db, sql);
         if( !intp(ret) )
         {
@@ -201,7 +201,7 @@ int db_remove_player(string id)
         return ret;
 }
 
-// 不能增加记录，只能修改已经有的记录里存在字段的合适值
+// 不能增加記錄，只能修改已經有的記錄裡存在字段的合適值
 int db_set_player(string id, string prop, mixed value)
 {
         int db;
@@ -217,7 +217,7 @@ int db_set_player(string id, string prop, mixed value)
 
         if( !db_handle )
         {
-                chat("数据库失去连接。");
+                chat("數據庫失去連接。");
                 return 0;
         }
         db = db_handle;
@@ -226,7 +226,7 @@ int db_set_player(string id, string prop, mixed value)
             !stringp(value) || sizeof(value) < 2 ) )
                 return 0;
 
-        // 对于不同类型的属性应该有不同的设置手段，分整型，MAPP，数组
+        // 對於不同類型的屬性應該有不同的設置手段，分整型，MAPP，數組
         if( intp(value) )
                 sql = "update users set " + prop + "=" + value + " where id = '" + id + "'";
         else if( mapp(value) || arrayp(value) )
@@ -235,7 +235,7 @@ int db_set_player(string id, string prop, mixed value)
                 sql = "update users set " + prop + "=" + DB_STR(value) + " where id = '" + id + "'";
         else
         {
-                chat("数据库函数db_set的参数value类型不可识别！");
+                chat("數據庫函數db_set的參數value類型不可識別！");
                 return 0;
         }
         
@@ -265,7 +265,7 @@ mixed db_query_player(string id, string prop)
 
         if( !db_handle )
         {
-                chat("数据库失去连接。");
+                chat("數據庫失去連接。");
                 return 0;
         }
         db = db_handle;
@@ -282,7 +282,7 @@ mixed db_query_player(string id, string prop)
         if( ret < 1 ) return 0;
                 
         res = db_fetch(db, 1);
-        chat("查询" + id + "的" + prop + "属性字段值。返回：" + save_variable(res[0]));
+        chat("查詢" + id + "的" + prop + "屬性字段值。返回：" + save_variable(res[0]));
         return res[0];
 }
 
@@ -302,19 +302,19 @@ int db_new_player(object ob, object user)
         if( !stringp(my["id"])   || (my["id"] == "") ||
             !stringp(my["name"]) || (my["name"] == "") )
         {
-                chat("存储字段ID或NAME为空，拒绝存储。");
+                chat("存儲字段ID或NAME為空，拒絕存儲。");
                 return -1;
         }
 
         if( !db_handle )
         {
-                chat("数据库失去连接。");
+                chat("數據庫失去連接。");
                 return -1;
         }
         db = db_handle;
 
-        // 不判断数据库里是否已经有该项记录
-        // fee_time不在这里做修改，故不存储了
+        // 不判斷數據庫裡是否已經有該項記錄
+        // fee_time不在這裡做修改，故不存儲了
         sql = "insert into users set id = '" + my["id"] + "',";
         sql += "name = " + DB_STR(my["name"]) + ", surname = " +
                DB_STR(myob["surname"]) + ", purename = " +
@@ -325,12 +325,12 @@ int db_new_player(object ob, object user)
         sql += ", login_dbase = " + DB_STR(save_variable(myob));
         sql += ", f_dbase = " + DB_STR(save_variable(my));
 
-        chat("请求数据库创建帐号！\n");
+        chat("請求數據庫創建帳號！\n");
         ret = db_exec(db, sql);
 
         if( !intp(ret) )
         {
-                chat("数据库存储失败!!!");
+                chat("數據庫存儲失敗!!!");
                 log_error(sprintf("db_new_player(%s).db_exec", my["id"]), ret);
                 return -1;
         }
@@ -352,13 +352,13 @@ int db_restore_all(object user)
         if( !mapp(my) || !stringp(my["id"]) || (my["id"] == "") ||
             !stringp(my["name"]) || (my["name"] == "") )
         {
-                chat("存储字段ID或NAME为空，拒绝存储。");
+                chat("存儲字段ID或NAME為空，拒絕存儲。");
                 return -1;
         }
 
         if( !db_handle )
         {
-                chat("数据库失去连接。");
+                chat("數據庫失去連接。");
                 return -1;
         }
         db = db_handle;
@@ -370,7 +370,7 @@ int db_restore_all(object user)
 
         if( !intp(ret) )
         {
-                chat("数据库存储失败!!!");
+                chat("數據庫存儲失敗!!!");
                 log_error(sprintf("db_restore_all(%s).db_exec",my["id"]),ret);
                 return -1;
         }
@@ -433,19 +433,19 @@ int db_save_all(object user)
         if( !stringp(my["id"])   || (my["id"] == "") ||
             !stringp(my["name"]) || (my["name"] == "") )
         {
-                chat("存储字段ID或NAME为空，拒绝存储。");
+                chat("存儲字段ID或NAME為空，拒絕存儲。");
                 return -1;
         }
 
         if( !db_handle )
         {
-                chat("数据库失去连接。");
+                chat("數據庫失去連接。");
                 return -1;
         }
         db = db_handle;
 
-        // 不判断数据库里是否已经有该项记录
-        // fee_time不在这里做修改，故不存储了
+        // 不判斷數據庫裡是否已經有該項記錄
+        // fee_time不在這裡做修改，故不存儲了
         sql = "update users set ";
         sql += "name = " + DB_STR(my["name"]);
 
@@ -457,12 +457,12 @@ int db_save_all(object user)
                         sql += ", ad_password = " + DB_STR(myob["ad_password"]);
                 sql += ", login_dbase = " + DB_STR(save_variable(myob));
         }
-        if( my["on_time"] > 0 ) // 认为已经挪移到on_time计费了
+        if( my["on_time"] > 0 ) // 認為已經挪移到on_time計費了
                 sql += ", online = 1, on_time = " + my["on_time"] + ", save_time = now()";
         else
         {
                 sql += ", online = 1, on_time = " + my["mud_age"] + ", save_time = now()";
-                // my["on_time"] = my["mud_age"]; 因为要重新计算sec_id，所以这里不能这样做
+                // my["on_time"] = my["mud_age"]; 因為要重新計算sec_id，所以這裡不能這樣做
         }
         sql += ", char_idname = " + DB_STR(save_variable(user->query_IDNAME()));
         sql += ", f_autoload = " + DB_STR(save_variable(user->query_autoload_info()));
@@ -479,7 +479,7 @@ int db_save_all(object user)
         ret = db_exec(db, sql);
         if( !intp(ret) )
         {
-                chat("数据库存储失败!!!" + sql);
+                chat("數據庫存儲失敗!!!" + sql);
                 log_error(sprintf("db_save_all(%s).db_exec", my["id"]), ret);
                 return -1;
         }
@@ -495,7 +495,7 @@ string *do_sql(string sql)
 
         if( !db_handle )
         {
-                chat("数据库失去连接。");
+                chat("數據庫失去連接。");
                 return 0;
         }
         db = db_handle;
@@ -522,7 +522,7 @@ int do_sqlexec(string sql)
 
         if( !db_handle )
         {
-                chat("数据库失去连接。");
+                chat("數據庫失去連接。");
                 return -2;
         }
         db = db_handle;
@@ -543,7 +543,7 @@ mixed *do_sqls(string sql)
 
         if( !db_handle )
         {
-                chat("数据库失去连接。");
+                chat("數據庫失去連接。");
                 return 0;
         }
         db = db_handle;
@@ -569,7 +569,7 @@ mixed *do_sqls(string sql)
         return res;
 }
 
-// 查询 ID 是否存在
+// 查詢 ID 是否存在
 int db_find_user(string key, mixed data)
 {
         int db;
@@ -602,7 +602,7 @@ int db_find_user(string key, mixed data)
         return ret;
 }
 
-// 创建新的用户
+// 創建新的用戶
 int db_create_user(string id)
 {
         int db;
@@ -629,7 +629,7 @@ int db_create_user(string id)
         return ret;
 }
 
-// 删除用户
+// 刪除用戶
 int db_remove_user(string id)
 {
         int db;
@@ -656,7 +656,7 @@ int db_remove_user(string id)
         return ret;
 }
 
-// 设定用户属性
+// 設定用戶屬性
 int db_set_user(string id, string key, mixed data)
 {
         int db;
@@ -690,7 +690,7 @@ int db_set_user(string id, string key, mixed data)
         return ret;
 }
 
-// 增加用户属性点
+// 增加用戶屬性點
 int db_add_user(string id, string key, int num)
 {
         int db;
@@ -720,7 +720,7 @@ int db_add_user(string id, string key, int num)
         return ret;
 }
 
-// 查询用户属性
+// 查詢用戶屬性
 mixed db_query_user(string id, string key)
 {
         int db;
@@ -753,7 +753,7 @@ mixed db_query_user(string id, string key)
         return res[0];
 }
 
-// 加密函数
+// 加密函數
 mixed db_crypt(string passwd)
 {
         int db;
@@ -812,7 +812,7 @@ varargs mixed *db_fetch_row(string sql, int row)
         return ret;
 }
 
-// 执行 SQL 指令
+// 執行 SQL 指令
 varargs mixed do_exec(string sql)
 {
         int db;
@@ -831,7 +831,7 @@ varargs mixed do_exec(string sql)
         return ret;
 }
 
-// 执行语句
+// 執行語句
 mixed db_query(string sql)
 {
         int db;
@@ -880,7 +880,7 @@ mixed *db_all_query(string sql)
         return ret;
 }
 
-// 计算玩家数量
+// 計算玩家數量
 int db_count_user()
 {
         int db;
@@ -926,7 +926,7 @@ int db_remove_item(string id)
         db = db_handle;
 
         sql = "delete from items where id='" + id + "'";
-        chat("执行删除语句！" + sql);
+        chat("執行刪除語句！" + sql);
         ret = db_exec(db, sql);
         if( !intp(ret) )
         {
@@ -968,7 +968,7 @@ mixed db_restore_item(mixed ob)
 
         if( !intp(ret) )
         {
-                chat("数据库存储失败!!!");
+                chat("數據庫存儲失敗!!!");
                 log_error(sprintf("db_restore_item(%s).db_exec", index), ret);
                 return 0;
         }
@@ -1014,7 +1014,7 @@ mixed db_restore_skill(mixed ob)
 
         if( !intp(ret) )
         {
-                chat("数据库存储失败!!!");
+                chat("數據庫存儲失敗!!!");
                 log_error(sprintf("db_restore_item(%s).db_exec", index), ret);
                 return 0;
         }
@@ -1059,7 +1059,7 @@ int db_create_item(mixed ob, mixed data)
         ret = db_exec(db, sql);
         if( !intp(ret) )
         {
-                chat("数据库存储失败!!!" + sql);
+                chat("數據庫存儲失敗!!!" + sql);
                 log_error(sprintf("db_create_item(%s).db_exec", index), ret);
                 return -1;
         }
@@ -1104,7 +1104,7 @@ int db_save_item(mixed ob, mixed data)
         ret = db_exec(db, sql);
         if( !intp(ret) )
         {
-                chat("数据库存储失败!!!" + sql);
+                chat("數據庫存儲失敗!!!" + sql);
                 log_error(sprintf("db_save_item(%s).db_exec", index), ret);
                 return -1;
         }
@@ -1141,7 +1141,7 @@ int db_save_skill(mixed ob, mixed data)
         ret = db_exec(db, sql);
         if( !intp(ret) )
         {
-                chat("数据库存储失败!!!" + sql);
+                chat("數據庫存儲失敗!!!" + sql);
                 log_error(sprintf("db_save_item(%s).db_exec", index), ret);
                 return -1;
         }
@@ -1174,7 +1174,7 @@ void do_broadcast()
 		if( sizeof(one->quest) )
 		{
 			n = db_connect(one->host, DATABASE, one->user);
-			if( intp(n) && (n > 0) ) // 连接成功
+			if( intp(n) && (n > 0) ) // 連接成功
 			{
 				foreach( string sql,int num in one->quest )
 				{
@@ -1205,7 +1205,7 @@ void do_broadcast()
 
 string query_name()
 {
-        return "MySQL数据库(DATABASE_D)";
+        return "MySQL數據庫(DATABASE_D)";
 }
 
 #endif

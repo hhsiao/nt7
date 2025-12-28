@@ -1,7 +1,7 @@
 // Copyright (C) 2003, by Lonely. All rights reserved.
 // This software can not be used, copied, or modified 
 // in any form without the written permission from authors.
-// gongji.c 公鸡
+// gongji.c 公雞
 
 inherit ITEM;
 inherit F_FOOD;
@@ -14,12 +14,12 @@ int do_clean(string);
 
 void create()
 {
-        set_name("公鸡", ({"gong ji", "ji", "chicken"}));
+        set_name("公雞", ({"gong ji", "ji", "chicken"}));
         set_weight(3000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一只肥大的公鸡。\n");
+                set("long", "一隻肥大的公雞。\n");
                 set("unit", "只");
                 set("value", 50);
                 set("food_remaining", 2);
@@ -43,7 +43,7 @@ void init()
         add_action("do_clean", "bo");
 }
 
-// step1 剖公鸡
+// step1 剖公雞
 int do_cut(string arg)
 {
         object ji = this_object(), me = this_player();
@@ -52,30 +52,30 @@ int do_cut(string arg)
         if ( !arg || arg == "") return 0;
         
         if (me->query_skill("cooking", 1) < 100)
-                return notify_fail("你的基本厨艺太低了。\n");
+                return notify_fail("你的基本廚藝太低了。\n");
 
-        if ( arg == "公鸡" || arg == "chicken" ) {
+        if ( arg == "公雞" || arg == "chicken" ) {
 
                 if ( objectp(weapon) 
                  && (query("skill_type", weapon) != "sword"
                  || query("skill_type", weapon) != "blade")){
-                        message_vision("$N用"+query("name", weapon)+"剖开"+query("name", ji)+"肚子。\n",me);
+                        message_vision("$N用"+query("name", weapon)+"剖開"+query("name", ji)+"肚子。\n",me);
                         set("step", 1, ji);
-                        set("long", "一只剖开肚子的大公鸡。\n", ji);
+                        set("long", "一隻剖開肚子的大公雞。\n", ji);
                         return 1;
                 }
 
                 else {
-                        message_vision( "$N用手扯开一只大公鸡。\n", me);
+                        message_vision( "$N用手扯開一隻大公雞。\n", me);
                         set("fake", 1, ji);
                         return 1;
                 } 
         }
-        tell_object( me, "你要切什么？\n");
+        tell_object( me, "你要切什麼？\n");
         return 1;
 }
 
-// step2 洗内脏
+// step2 洗內臟
 
 int do_wash(string arg)
 {
@@ -83,16 +83,16 @@ int do_wash(string arg)
 
         if ( !arg || arg == "") return 0;
 
-        if ( arg == "公鸡" || arg == "chicken" || arg == "内脏" || arg == "intestine" ) {
-                message_vision("$N将"+query("name", ji)+"内脏洗剥干净。\n",me);
-                set("long", "一只肚子剖开，内脏洗干净的大公鸡。\n", ji);
+        if ( arg == "公雞" || arg == "chicken" || arg == "內臟" || arg == "intestine" ) {
+                message_vision("$N將"+query("name", ji)+"內臟洗剝乾淨。\n",me);
+                set("long", "一隻肚子剖開，內臟洗乾淨的大公雞。\n", ji);
 
                 if( query("step", ji) != 1 )
                         set("fake", 1, ji);
                 else set("step", 2, ji);
                 return 1;
         }
-        tell_object( me, "你要洗什么？\n");
+        tell_object( me, "你要洗什麼？\n");
         return 1;
 }
 
@@ -103,19 +103,19 @@ int do_wrap(string arg)
 
         if ( !arg || arg == "") return 0;
 
-        if ( arg == "公鸡" || arg == "chicken" || arg == "泥" || arg == "mud" ) {
+        if ( arg == "公雞" || arg == "chicken" || arg == "泥" || arg == "mud" ) {
                 set("mud", 1, ji);
 
                 if (!objectp(ni)) {
-                        message_vision("$N用水和了一团泥裹在"+query("name", ji)+"外。\n",me);
+                        message_vision("$N用水和了一團泥裹在"+query("name", ji)+"外。\n",me);
                         set("fake", 1, ji);
                 }
                 else {
-                        message_vision("$N取出身上的湿泥，裹在"+query("name", ji)+"外。\n",me);
+                        message_vision("$N取出身上的溼泥，裹在"+query("name", ji)+"外。\n",me);
                         destruct(ni);
                 }
                         
-                set("long", "一只裹在湿泥里的公鸡。\n", ji);
+                set("long", "一隻裹在溼泥裡的公雞。\n", ji);
 
                 if( query("step", ji) != 2 )
                         set("fake", 1, ji);
@@ -124,11 +124,11 @@ int do_wrap(string arg)
                 return 1;
         }
 
-        tell_object( me, "你要裹什么？\n");
+        tell_object( me, "你要裹什麼？\n");
         return 1;
 }
 
-// step4 烤鸡
+// step4 烤雞
 int do_bake(string arg)
 {
         object ji = this_object(), fire, me = this_player();
@@ -136,15 +136,15 @@ int do_bake(string arg)
 
         if ( !arg || arg == "") return 0;
 
-        if ( arg == "公鸡" || arg == "chicken" ) {
+        if ( arg == "公雞" || arg == "chicken" ) {
                 if ( !objectp(present("fire", me)) ) {
-                        tell_object( me, "你身上没有火折，生不了火。\n");
+                        tell_object( me, "你身上沒有火折，生不了火。\n");
                         return 1;
                 } 
  
                 else {
                         fire = present("fire", me);
-                        message_vision("$N生火烤起"+query("name", ji)+"来。\n",me);
+                        message_vision("$N生火烤起"+query("name", ji)+"來。\n",me);
                         if( query("step", ji) != 3 )
                                 set("fake", 1, ji);
                         else set("step", 4, ji);
@@ -154,7 +154,7 @@ int do_bake(string arg)
                         return 1;
                 }
         }
-        tell_object( me, "你要烤什么？\n");
+        tell_object( me, "你要烤什麼？\n");
         return 1;
 }
 
@@ -165,21 +165,21 @@ int cooking(object me, object ji, int cook_time)
 //      message_vision( cook_time + "\n", me);
         if ( cook_time == 25 ) {
                 if( !query("mud", ji)){
-                        message_vision( "烤得一会儿，鸡中透出香甜。\n", me);
-                        set("long", "一只烤得香甜的公鸡。\n", ji);
+                        message_vision( "烤得一會兒，雞中透出香甜。\n", me);
+                        set("long", "一隻烤得香甜的公雞。\n", ji);
                 }
                 else {
-                        message_vision( "烤得一会儿，泥中透出香甜，湿泥渐渐干透。\n", me);
-                        set("long", "一只裹着干泥，烤得香甜的公鸡。\n", ji);
+                        message_vision( "烤得一會兒，泥中透出香甜，溼泥漸漸乾透。\n", me);
+                        set("long", "一隻裹著幹泥，烤得香甜的公雞。\n", ji);
                 }
         }
 
         if ( cook_time == 50 ) {
-                message_vision( "再烤得一会儿，你似乎嗅到什麽东西烤糊了。\n", me);
+                message_vision( "再烤得一會兒，你似乎嗅到什麼東西烤糊了。\n", me);
                 if( !query("mud", ji) )
-                        set("long", "一只烤糊了的公鸡。\n", ji);
+                        set("long", "一隻烤糊了的公雞。\n", ji);
                 else
-                        set("long", "一只裹着干泥，烤糊了的公鸡。\n", ji);
+                        set("long", "一隻裹著幹泥，烤糊了的公雞。\n", ji);
         }
 
         if ( cook_time < 50) {
@@ -191,7 +191,7 @@ int cooking(object me, object ji, int cook_time)
         return 1;
 }
 
-// step6 剥干泥 
+// step6 剝幹泥 
 int do_clean(string arg)
 {
         object ji = this_object(), me = this_player();
@@ -200,18 +200,18 @@ int do_clean(string arg)
         if ( !arg || arg == "") return 0;
 
         if( !query("mud", ji)) {
-                if ( arg == "鸡毛" || arg == "hair" ) {
-                        message_vision( "$N剥去鸡毛。\n", me);
+                if ( arg == "雞毛" || arg == "hair" ) {
+                        message_vision( "$N剝去雞毛。\n", me);
                         ob->move(me);
                         set("fake", 1, ob);
                         return 1;
                 }
-                tell_object(me, "你要剥什么？\n");
+                tell_object(me, "你要剝什麼？\n");
                 return 1;
         }
                         
-        if ( arg == "干泥" || arg == "mud" ) {
-                message_vision( "$N剥去干泥，鸡毛随泥而落。\n", me);
+        if ( arg == "幹泥" || arg == "mud" ) {
+                message_vision( "$N剝去幹泥，雞毛隨泥而落。\n", me);
                 ob->move(me);
 
                 if( query("step", ji) != 4 )
@@ -227,6 +227,6 @@ int do_clean(string arg)
                 destruct(ji);
                 return 1;
         }
-        tell_object( me, "你要剥什么？\n");
+        tell_object( me, "你要剝什麼？\n");
         return 1;
 }

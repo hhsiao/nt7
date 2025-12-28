@@ -1,4 +1,4 @@
-//chufang.c                四川唐门—厨房
+//chufang.c                四川唐門—廚房
 
 #include <ansi.h>
 #include <room.h>
@@ -6,11 +6,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "厨房");
+        set("short", "廚房");
         set("long",
-"这里是莲藕小筑中的厨房。屋子中摆着七、八张桌子，一些唐门弟子\n"
-"围坐在桌旁一边开怀畅饮，一边谈论着江湖上的一些恩恩怨怨，你应该可\n"
-"以向厨师点菜(serve)。\n"
+"這裡是蓮藕小築中的廚房。屋子中擺著七、八張桌子，一些唐門弟子\n"
+"圍坐在桌旁一邊開懷暢飲，一邊談論著江湖上的一些恩恩怨怨，你應該可\n"
+"以向廚師點菜(serve)。\n"
 );
         set("exits", ([
                         "east" : __DIR__"chaifang",
@@ -33,26 +33,26 @@ int do_serve()
 
          if( (present("rou", ob)) && (present("tang", ob)) )
         {
-                message_vision(HIC "\n厨师冲着你大叫着：“先吃完了再要。\n" NOR, ob);
+                message_vision(HIC "\n廚師衝著你大叫著：“先吃完了再要。\n" NOR, ob);
                 return 1;
         }
         else
         {
                 if ( (present("rou", ob)) )
                 {
-                        message_vision(HIC "\n厨师将一碗冬瓜汤放在$N面前，嘴里嘟囔着：“有吃的还要！”。\n" NOR, ob);
+                        message_vision(HIC "\n廚師將一碗冬瓜湯放在$N面前，嘴裡嘟囔著：“有吃的還要！”。\n" NOR, ob);
                         water->move(ob);
                         return 1;
                 };
                 if ( (present("tang", ob)) )
                 {
-                        message_vision(HIC "\n厨师将一盘酱牛肉放在$N面前，嘴里嘟囔着：“有喝的还要！”。\n" NOR, ob);
+                        message_vision(HIC "\n廚師將一盤醬牛肉放在$N面前，嘴裡嘟囔著：“有喝的還要！”。\n" NOR, ob);
                         food->move(ob);
                         return 1;
                 }
                 else
                 {
-                        message_vision(HIC "\n厨师将一盘酱牛肉、一碗冬瓜汤放在$N面前。\n" NOR, ob);
+                        message_vision(HIC "\n廚師將一盤醬牛肉、一碗冬瓜湯放在$N面前。\n" NOR, ob);
                         food->move(ob);
                         water->move(ob);
                         return 1;

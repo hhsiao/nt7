@@ -7,7 +7,7 @@ void create()
 { 
         set("short", "山路");
         set("long", @LONG
-这是一条弯弯曲曲的山路，不知通向何方。
+這是一條彎彎曲曲的山路，不知通向何方。
 LONG );
 
         set("outdoors", "蝴蝶谷");

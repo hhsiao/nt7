@@ -3,14 +3,14 @@ inherit NPC;
 
 void create()
 {
-        set_name("菜园管事", ({ "caiyuan guanshi", "guanshi" }) );
+        set_name("菜園管事", ({ "caiyuan guanshi", "guanshi" }) );
         set("gender", "男性" );
         set("age", 50);
-        set("long", "他是菜园管事，专管菜园里大小杂事！\n");
+        set("long", "他是菜園管事，專管菜園裡大小雜事！\n");
         set("combat_exp", 2500);
         set("attitude", "friendly");
         set("inquiry", ([
-        	"浇水" : "你就在这老老实实给我浇水，没有我的满意，你别想回去覆命！",
+        	"澆水" : "你就在這老老實實給我澆水，沒有我的滿意，你別想回去覆命！",
         ]) );
         setup();
 
@@ -32,19 +32,19 @@ void greeting(object ob)
 {
         if (! ob || environment(ob) != environment()) return;
          
-        if( query_temp("job_name", ob) != "浇菜地")return ;
+        if( query_temp("job_name", ob) != "澆菜地")return ;
 
         if (! (present("shui piao", ob)))
         {
         	command("hmm"+query("id", ob));
-        	command("say 你还没领工具吧，去东物品房找武爷要了再来。\n");
+        	command("say 你還沒領工具吧，去東物品房找武爺要了再來。\n");
         	return;
         }
 
-        if( !(query_temp("job_name", ob) != "浇菜地") )
+        if( !(query_temp("job_name", ob) != "澆菜地") )
         {
         	command("nod"+query("id", ob));
-                command("say 是耶律大爷吩咐你来的吧？那你就在这浇水(" HIY
+                command("say 是耶律大爺吩咐你來的吧？那你就在這澆水(" HIY
                         "jiao shui" NOR + CYN ")好了。\n" NOR);
         }
 }

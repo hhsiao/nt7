@@ -8,21 +8,21 @@ inherit MEDICAL_BOOK;
 
 void create()
 {
-        set_name(HIY "炼丹笔记" NOR, ({ "liandan biji", "biji" }));
+        set_name(HIY "煉丹筆記" NOR, ({ "liandan biji", "biji" }));
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "本");
-                set("long", "这是一本誊写的小本，上面用小篆书写着“炼丹笔记”几个字。\n");
+                set("long", "這是一本謄寫的小本，上面用小篆書寫著“煉丹筆記”幾個字。\n");
                 set("material", "paper");
                 set("dynamic_quest", 1);
-                set("no_sell", "这样东西不能离开你。\n");
-                set("no_put", "这样东西不能放在那儿。\n");
-                set("no_store", "这样东西不能放在那儿。\n");
-                set("no_get", "这样东西不能离开那儿。\n");
-                set("no_steal", "这样东西不能离开那儿。\n");
-                set("no_beg", "这样东西不能离开那儿。\n");
+                set("no_sell", "這樣東西不能離開你。\n");
+                set("no_put", "這樣東西不能放在那兒。\n");
+                set("no_store", "這樣東西不能放在那兒。\n");
+                set("no_get", "這樣東西不能離開那兒。\n");
+                set("no_steal", "這樣東西不能離開那兒。\n");
+                set("no_beg", "這樣東西不能離開那兒。\n");
                 set("base_value", 0);
                 set("skill", ([
                         "name": "liandan-shu",
@@ -33,11 +33,11 @@ void create()
                 ]));
 
                 set("can_make", ([
-                        "shujing"  : 50,        // 舒筋活络丹
-                        "dieda"    : 50,        // 跌打伤愈膏
-                        "jiedu"    : 100,       // 牛黄解毒丸
+                        "shujing"  : 50,        // 舒筋活絡丹
+                        "dieda"    : 50,        // 跌打傷愈膏
+                        "jiedu"    : 100,       // 牛黃解毒丸
                         "yuzhen"   : 250,       // 玉真散
-                        "yuling"   : 250,       // 玉灵散
+                        "yuling"   : 250,       // 玉靈散
                         "yuqing"   : 300,       // 玉清散
                 ]));
         }

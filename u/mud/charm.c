@@ -10,7 +10,7 @@ int do_ep();
 int movetome(object me)
 {
         this_object()->move(me);
-        tell_object(me, name() + NOR + "突然一动跳到你的身上。\n" + NOR);
+        tell_object(me, name() + NOR + "突然一動跳到你的身上。\n" + NOR);
         return 1;
 }
 
@@ -27,11 +27,11 @@ string long()
 void create()
 {
         
-        set_name(HIG"测试精灵" NOR, ({ "test ring","ring","charm"}));
+        set_name(HIG"測試精靈" NOR, ({ "test ring","ring","charm"}));
         set_weight(100);
         set("unit", "串");
 
-                set("long", HIG "这是mud用来测试武功的道具。如有玩家得到，请速交给巫师，不然重罚！\n" NOR);
+                set("long", HIG "這是mud用來測試武功的道具。如有玩家得到，請速交給巫師，不然重罰！\n" NOR);
                 set("value", 1);
                 set("material", "gold");
                 set("no_sell", 1);
@@ -69,7 +69,7 @@ void create()
 //              set("armor_prop/magic_find", 20);
 //              set("armor_prop/max_neili", 500000); 
 //              set("armor_prop/max_jingli", 500000); 
-                set("quality_level", 6);//装饰
+                set("quality_level", 6);//裝飾
 
                 setup();
 
@@ -95,34 +95,34 @@ int do_suit(string arg)
         int i, suitlvl, skill, temp;
         object me = this_player();
         /*
-        并额外附加套装特技 星辰之力(stars)。施展(special stars <项目>)
-        后可提升下列某项状态 50% ，并持续 10 分钟。
-        无视攻击、无视躲闪、无视招架、无视内功、抗毒效果、毒素伤害
-        虚弱对手、解封绝招、绝招伤害、绝招命中、双倍伤害、
-        化解伤害、抵抗虚弱、封存绝招、绝招防御、研究效果、汲取效果
+        並額外附加套裝特技 星辰之力(stars)。施展(special stars <項目>)
+        後可提升下列某項狀態 50% ，並持續 10 分鐘。
+        無視攻擊、無視躲閃、無視招架、無視內功、抗毒效果、毒素傷害
+        虛弱對手、解封絕招、絕招傷害、絕招命中、雙倍傷害、
+        化解傷害、抵抗虛弱、封存絕招、絕招防禦、研究效果、汲取效果
         */
             if(!wizardp(me) && query("id",me)!="mud") 
             return notify_fail("你不是它的主人！\n");
                 
             if(!arg || arg=="") 
-            return notify_fail("你要干什么！\n");
+            return notify_fail("你要幹什麼！\n");
                 
         if( arg == "sun" ) // 增加命中
         {                   
                 if( BUFF_D->check_buff(me, "powerofsun") )
-                        return notify_fail("你现在正在运用此类特技中，请稍后再使用。\n");
+                        return notify_fail("你現在正在運用此類特技中，請稍後再使用。\n");
         
              //   if( query("neili", me) < 1000000 )
-             //           return notify_fail("你的内力不足，无法施展套装绝技。\n");
+             //           return notify_fail("你的內力不足，無法施展套裝絕技。\n");
                 
             //    if( query("neili", me) < query("max_neili", me) )
-            //            return notify_fail("你的剩余内力不足，无法施展套装绝技。\n");
+            //            return notify_fail("你的剩餘內力不足，無法施展套裝絕技。\n");
                 
                 if( query("neili", me) > 2 * query("max_neili", me) ) set("neili", 2 * query("max_neili", me), me);
                 skill = query("neili", me) / 10000;
              //   set("neili", 0, me);
         
-                msg = HIC "$N" HIC "一声长吟，只见太阳之力源源不尽被吸进全身装备，刹那间流光异彩，将其笼罩！\n" NOR;
+                msg = HIC "$N" HIC "一聲長吟，只見太陽之力源源不盡被吸進全身裝備，剎那間流光異彩，將其籠罩！\n" NOR;
                 
                 data = ([]);
                 map_status = me->query_skill_map();
@@ -148,11 +148,11 @@ int do_suit(string arg)
                         "target": me,
                         "type"  : "powerofsun",
                         "attr"  : "bless",
-                        "name"  : "套装特技·太阳之力",
+                        "name"  : "套裝特技·太陽之力",
                         "time"  : skill,
                         "buff_data": data,      
                         "buff_msg" : msg,
-                        "disa_msg" : "你的套装特技·太阳之力运行完毕，将内力收回丹田。\n",                      
+                        "disa_msg" : "你的套裝特技·太陽之力運行完畢，將內力收回丹田。\n",                      
                 ]);
 
                 BUFF_D->buffup(buff);
@@ -160,22 +160,22 @@ int do_suit(string arg)
                 return 1;
         }
 
-        else if( arg == "moon" )  // 增加伤害
+        else if( arg == "moon" )  // 增加傷害
         {
                 if( BUFF_D->check_buff(me, "powerofmoon") )
-                        return notify_fail("你现在正在运用此类特技中，请稍后再使用。\n");
+                        return notify_fail("你現在正在運用此類特技中，請稍後再使用。\n");
 
             //    if( query("neili", me) < 1000000 )
-            //            return notify_fail("你的内力不足，无法施展套装绝技。\n");
+            //            return notify_fail("你的內力不足，無法施展套裝絕技。\n");
                 
             //    if( query("neili", me) < query("max_neili", me) )
-            //            return notify_fail("你的剩余内力不足，无法施展套装绝技。\n");
+            //            return notify_fail("你的剩餘內力不足，無法施展套裝絕技。\n");
                 
                 if( query("neili", me) > 2 * query("max_neili", me) ) set("neili", 2 * query("max_neili", me), me);
                 skill = query("neili", me) / 10000;
              //   set("neili", 0, me);
                 
-                msg = HIR "$N举头望天，悠然一声长叹，刹那间月亮之力源源不尽被吸进全身装备，全身被红色的光芒包裹，杀气骤现！\n" NOR;
+                msg = HIR "$N舉頭望天，悠然一聲長嘆，剎那間月亮之力源源不盡被吸進全身裝備，全身被紅色的光芒包裹，殺氣驟現！\n" NOR;
                 
                 data = ([]);
                 map_status = me->query_skill_map();
@@ -201,11 +201,11 @@ int do_suit(string arg)
                         "target": me,
                         "type"  : "powerofmoon",
                         "attr"  : "bless",
-                        "name"  : "套装特技·月亮之力",
+                        "name"  : "套裝特技·月亮之力",
                         "time"  : skill,
                         "buff_data": data,      
                         "buff_msg" : msg,
-                        "disa_msg" : "你的套装特技·月亮之力运行完毕，将内力收回丹田。\n",                      
+                        "disa_msg" : "你的套裝特技·月亮之力運行完畢，將內力收回丹田。\n",                      
                 ]);
 
                 BUFF_D->buffup(buff);
@@ -216,19 +216,19 @@ int do_suit(string arg)
         else if( arg == "star" )
         {
                 if( BUFF_D->check_buff(me, "powerofstar") )
-                        return notify_fail("你现在正在运用此类特技中，请稍后再使用。\n");
+                        return notify_fail("你現在正在運用此類特技中，請稍後再使用。\n");
 
              //   if( query("neili", me) < 1000000 )
-             //           return notify_fail("你的内力不足，无法施展套装绝技。\n");
+             //           return notify_fail("你的內力不足，無法施展套裝絕技。\n");
                 
              //   if( query("neili", me) < query("max_neili", me) )
-             //           return notify_fail("你的剩余内力不足，无法施展套装绝技。\n");
+             //           return notify_fail("你的剩餘內力不足，無法施展套裝絕技。\n");
                 
                 if( query("neili", me) > 2 * query("max_neili", me) ) set("neili", 2 * query("max_neili", me), me);
                 skill = query("neili", me) / 10000;
 
             //    set("neili", 0, me);               
-                msg = HIR "$N长啸一声，顿时星辰之力源源不尽被吸进全身装备，所过之处泛出红色血芒，令人心胆具寒。\n" NOR;
+                msg = HIR "$N長嘯一聲，頓時星辰之力源源不盡被吸進全身裝備，所過之處泛出紅色血芒，令人心膽具寒。\n" NOR;
                    
                 data =
                 ([
@@ -250,11 +250,11 @@ int do_suit(string arg)
                         "target": me,
                         "type"  : "powerofstar",
                         "attr"  : "bless",
-                        "name"  : "套装特技·星辰之力",
+                        "name"  : "套裝特技·星辰之力",
                         "time"  : skill,
                         "buff_data": data,      
                         "buff_msg" : msg,
-                        "disa_msg" : "你的套装特技·星辰之力运行完毕，将内力收回丹田。\n",                      
+                        "disa_msg" : "你的套裝特技·星辰之力運行完畢，將內力收回丹田。\n",                      
                 ]);
 
                 BUFF_D->buffup(buff);

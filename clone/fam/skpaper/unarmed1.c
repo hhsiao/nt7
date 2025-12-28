@@ -4,16 +4,16 @@ inherit __DIR__"skpaper";
 
 void create()
 {
-        set_name(NOR + WHT "拳典残篇" NOR, ({ "quandian canpian1", "quandian", "canpian1" }));
+        set_name(NOR + WHT "拳典殘篇" NOR, ({ "quandian canpian1", "quandian", "canpian1" }));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "张");
-                set("long", "这是一张残缺不全的书页。\n" NOR);
+                set("unit", "張");
+                set("long", "這是一張殘缺不全的書頁。\n" NOR);
                 set("value", 30);
-                set("no_sell", "什么世道，就一张破纸头也拿来卖钱？");
+                set("no_sell", "什麼世道，就一張破紙頭也拿來賣錢？");
                 set("material", "paper");
-                set("skill_name", "基本拳脚");
+                set("skill_name", "基本拳腳");
                 set("skill_type", "unarmed");
                 set("power_point", 30000);
                 set("need_exp", 300000);

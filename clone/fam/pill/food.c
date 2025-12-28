@@ -3,12 +3,12 @@ inherit COMBINED_ITEM;
 
 void create()
 {
-        set_name(NOR + WHT "干粮" NOR, ({ "gan liang", "gan", "liang" }));
+        set_name(NOR + WHT "乾糧" NOR, ({ "gan liang", "gan", "liang" }));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", NOR + WHT "这是一块便于携带的干粮。\n" NOR);
-                set("base_unit", "块");
+                set("long", NOR + WHT "這是一塊便於攜帶的乾糧。\n" NOR);
+                set("base_unit", "塊");
                 set("base_value", 50);
                 set("base_weight", 10);
                 set("only_do_effect", 1);
@@ -21,11 +21,11 @@ int do_effect(object me)
 {
         if( query("food", me) >= me->max_food_capacity() )
         {
-                write("你已经吃太饱了，再也塞不下任何东西了。\n");
+                write("你已經吃太飽了，再也塞不下任何東西了。\n");
                 return 1;
         }
 
-        message_vision("$N摸出一块" + name() + "啃了几口。\n" NOR, me);
+        message_vision("$N摸出一塊" + name() + "啃了幾口。\n" NOR, me);
         addn("food", 3000, me);
 
         add_amount(-1);

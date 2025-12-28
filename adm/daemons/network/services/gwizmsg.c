@@ -35,7 +35,7 @@ void send_msg(string channel, string id, string name, string msg, int emoted)
         if( !this_player()                // Prevent from being called by ourself.
         ||        !ACCESS_CHECK(previous_object())) return;
 #ifdef DEBUG
-        set("channel_id", "网际巫师频道精灵");
+        set("channel_id", "網際巫師頻道精靈");
         CHANNEL_D->do_channel(this_object(), "sys", "prepare to send gwizmsg");
 #endif
         muds = (mapping)DNS_MASTER->query_muds();
@@ -70,7 +70,7 @@ void incoming_request(mapping info)
         string tmsg;
 
 #ifdef DEBUG
-        set("channel_id", "网际巫师频道精灵");
+        set("channel_id", "網際巫師頻道精靈");
         CHANNEL_D->do_channel(this_object(), "sys", "gwizmsg received from " + info["NAME"]);
 #endif
         if(!ACCESS_CHECK(previous_object())) return;

@@ -1,13 +1,13 @@
-// Room in 高丽
+// Room in 高麗
 #include <ansi.h>
 inherit ROOM;
 
 void create()
 {
-        set("short","渔船");
+        set("short","漁船");
         set("long", @LONG
-渔船都连在一齐，而且都几乎是一模一样的，看得你头晕眼花。忽
-然一个暗浪涌来，你一个不稳，‘啊。。。’，你几乎掉下了海去。
+漁船都連在一齊，而且都幾乎是一模一樣的，看得你頭暈眼花。忽
+然一個暗浪湧來，你一個不穩，‘啊。。。’，你幾乎掉下了海去。
 LONG
         );
         set("exits", ([

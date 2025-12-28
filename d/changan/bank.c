@@ -6,24 +6,24 @@ inherit ROOM;
 
 void create ()
 {
-        set ("short", "四海钱庄");
+        set ("short", "四海錢莊");
         set("long", @LONG
-这是长安城的一家老字号钱庄，老板是山西人，这家钱庄从他的
-祖先来到这里时就开始办起，一直传到他的手里。钱庄的信誉非常好，
-而且在全国各地都开了分店。它发行的银票通行全国。钱庄的门口挂
-有一块牌子(paizi)。
+這是長安城的一家老字號錢莊，老闆是山西人，這家錢莊從他的
+祖先來到這裡時就開始辦起，一直傳到他的手裡。錢莊的信譽非常好，
+而且在全國各地都開了分店。它發行的銀票通行全國。錢莊的門口掛
+有一塊牌子(paizi)。
 LONG );
         set("item_desc", ([
                 "paizi": 
-HIG"本钱庄提供的服务有：\n"NOR
+HIG"本錢莊提供的服務有：\n"NOR
 HIC"--------------------------------\n"NOR
-HIG"check(chazhang)        查帐\n"NOR 
+HIG"check(chazhang)        查帳\n"NOR 
 HIC"--------------------------------\n"NOR
 HIG"deposit(cun)           存款\n"NOR
 HIC"--------------------------------\n"NOR
 HIG"withdraw(qu)           取款\n"NOR
 HIC"--------------------------------\n"NOR
-HIG"convert(duihuan)       兑换钱币\n"NOR
+HIG"convert(duihuan)       兌換錢幣\n"NOR
 HIC"--------------------------------\n"NOR
 
         ]) );

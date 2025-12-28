@@ -8,7 +8,7 @@ inherit POISON;
 
 string name() { return "huadu_poison"; }
 
-string chinese_name() { return "星宿虫毒"; }
+string chinese_name() { return "星宿蟲毒"; }
 string *query_valid_force() 
 { 
         return ({
@@ -22,10 +22,10 @@ string *query_valid_force()
 
 string update_msg_others()
 {
-        return HIM "$N" HIB "的目光散乱，神色异常，脸上泛出一层黑气。\n" NOR;
+        return HIM "$N" HIB "的目光散亂，神色異常，臉上泛出一層黑氣。\n" NOR;
 }
 
 string update_msg_self()
 {
-        return HIR "你忽然肺腑一阵剧痛，你体内的星宿虫毒发作了，你觉的这次毒力来的更凶猛！\n" NOR;
+        return HIR "你忽然肺腑一陣劇痛，你體內的星宿蟲毒發作了，你覺的這次毒力來的更兇猛！\n" NOR;
 }

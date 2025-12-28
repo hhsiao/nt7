@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;35m门堪九雀[2;37;0m[2;37;0m", ({"won"}));        
+        set_name("[1;35m門堪九雀[2;37;0m[2;37;0m", ({"won"}));        
         set("gender", "男性");                
-        set("long", "门堪九雀!!1[2;37;0m
-它是夜依伍的魔幻兽。
+        set("long", "門堪九雀!!1[2;37;0m
+它是夜依伍的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

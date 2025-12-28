@@ -5,11 +5,11 @@ int is_chat_room() { return 1; }
 
 void create()
 {
-        set("short", HIY "【新手导师工作室】" NOR);
+        set("short", HIY "【新手導師工作室】" NOR);
         set("long", @LONG
-这里是新手导师工作的地方，地上散落着各种纸片，留言版上
-写满着工作记录。
-请将工作情况post到留言版，巫师会定期查询。
+這裡是新手導師工作的地方，地上散落著各種紙片，留言版上
+寫滿著工作記錄。
+請將工作情況post到留言版，巫師會定期查詢。
 LONG
 );
 

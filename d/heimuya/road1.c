@@ -1,14 +1,14 @@
-//road1.c 黄土路
+//road1.c 黃土路
 // by Xiang
 
 inherit ROOM;
 
 void create()
 {
-        set("short", "乱石坡");
+        set("short", "亂石坡");
         set("long", @LONG
-这是一处乱石怪异的小山岗，向东北是通往平定州的小路。据说
-前方经常有野兽出没，不可久留。
+這是一處亂石怪異的小山崗，向東北是通往平定州的小路。據說
+前方經常有野獸出沒，不可久留。
 LONG );
         set("outdoors", "heimuya");
         set("exits", ([

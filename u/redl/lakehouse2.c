@@ -6,11 +6,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "木屋内");
+        set("short", "木屋內");
         set("long", 
-"这是间看上去十分舒适的大屋子，室内古朴的家俱和恰当的陈设，显\n"
-"出曾有人幸福生活过的痕迹。明亮的窗户外只见几片枯叶飞过，忽闻寒鸦\n"
-"从屋顶外传来呱啊地一声惊叹。\n"
+"這是間看上去十分舒適的大屋子，室內古樸的傢俱和恰當的陳設，顯\n"
+"出曾有人幸福生活過的痕跡。明亮的窗戶外只見幾片枯葉飛過，忽聞寒鴉\n"
+"從屋頂外傳來呱啊地一聲驚歎。\n"
 );
          set("exits",([ /* sizeof() == 1 */
                  "out" : __DIR__"lakehouse",
@@ -35,7 +35,7 @@ void init()
         object me = this_player();
         if ( query("id", me) != "redl" && query("couple/couple_id", me) != "redl" )
         {
-                        message_vision(YEL "一股微风吹过，把$N吹到了室外。\n" NOR, me);
+                        message_vision(YEL "一股微風吹過，把$N吹到了室外。\n" NOR, me);
                         me->move(__DIR__"lakehouse");
                         return;
         }

@@ -2,9 +2,9 @@ inherit ROOM;
 
 void create()
 {
-      set("short", "二天门");
+      set("short", "二天門");
         set("long", @LONG
-这里是「二天门」，金光灿灿的金顶就在眼前了。
+這裡是「二天門」，金光燦燦的金頂就在眼前了。
 LONG );
       set("exits", ([
           "northdown": __DIR__"toutiangate",

@@ -1,4 +1,4 @@
-// roar.c 圣火狮子吼
+// roar.c 聖火獅子吼
 
 #include <ansi.h>
 
@@ -10,10 +10,10 @@ int exert(object me, object target)
         int i, skill, damage;
 
         if( (int)query("neili", me) < 600 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if( query("no_fight", environment(me)) )
-                return notify_fail("在这里不能攻击他人。\n");
+                return notify_fail("在這裡不能攻擊他人。\n");
 
         skill = me->query_skill("force");
 
@@ -22,7 +22,7 @@ int exert(object me, object target)
 
         me->start_busy(5);
         message_combatd(
-                HIY "$N深深地吸一囗气，真力迸发，发出一声惊天动地的巨吼ⅵ\n" NOR, me);
+                HIY "$N深深地吸一囗氣，真力迸發，發出一聲驚天動地的巨吼ⅵ\n" NOR, me);
 
         ob = all_inventory(environment(me));
         for (i = 0; i < sizeof(ob); i++)
@@ -44,7 +44,7 @@ int exert(object me, object target)
                         ob[i]->receive_damage("jing", damage * 2, me);
                         if( (int)query("neili", ob[i]) < skill * 2 )
                                 ob[i]->receive_wound("jing", damage, me);
-                        tell_object(ob[i], "你觉得眼前一阵金星乱冒，耳朵痛得像是要裂开一样ⅵ\n");
+                        tell_object(ob[i], "你覺得眼前一陣金星亂冒，耳朵痛得像是要裂開一樣ⅵ\n");
                 }
 
         }

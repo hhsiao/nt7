@@ -12,18 +12,18 @@ mapping data = ([]);
 
 void create()
 {
-        set("short", HIY "祭台" NOR);
+        set("short", HIY "祭臺" NOR);
         set("long",@LONG
-你站在祭台上，感觉脚下异常冰冷。祭台上杂乱不堪，正
-中插着一面祭旗（jiqi），上面似乎已经染满了鲜血。这里似
-乎发生过激烈的打斗，不知道是为了争夺什么。你不由思绪万
-千，“尘归尘，土归土 …… 世人究竟为了哪般？”
+你站在祭臺上，感覺腳下異常冰冷。祭臺上雜亂不堪，正
+中插著一面祭旗（jiqi），上面似乎已經染滿了鮮血。這裡似
+乎發生過激烈的打鬥，不知道是為了爭奪什麼。你不由思緒萬
+千，“塵歸塵，土歸土 …… 世人究竟為了哪般？”
 LONG);
 
-        set("no_rideto", 1);         // 设置不能骑马到其他地方
-        set("no_flyto", 1);          // 设置不能从起来地方骑马来这里
+        set("no_rideto", 1);         // 設置不能騎馬到其他地方
+        set("no_flyto", 1);          // 設置不能從起來地方騎馬來這裡
         set("no_magic", 1);
-        set("binghuo", 1);           // 表示在冰火岛
+        set("binghuo", 1);           // 表示在冰火島
         
         set("no_die", 1);
 
@@ -52,10 +52,10 @@ string show_jiqi()
         string  team_name;
         
         if( !sizeof(data) )
-                return HIG "现在还没有帮派夺取祭旗，赶紧夺取(duoqu jiqi)吧。\n" NOR;
+                return HIG "現在還沒有幫派奪取祭旗，趕緊奪取(duoqu jiqi)吧。\n" NOR;
 
-        str = HIG "现在祭旗夺取的情况如下：\n" NOR;
-        str += sprintf(HIC "%-20s%-20s\n" NOR, "帮派", "夺旗时长");
+        str = HIG "現在祭旗奪取的情況如下：\n" NOR;
+        str += sprintf(HIC "%-20s%-20s\n" NOR, "幫派", "奪旗時長");
         str += HIC "-------------------------------\n" NOR;
         key = keys(data);
         
@@ -66,12 +66,12 @@ string show_jiqi()
         if( objectp(ob = query("jiqi_owner")) )
         {
                 team_name = query("bunch/bunch_name", ob);
-                str += HIC "现在祭旗正被" HIY +"【" + team_name + "】的" + ob->name() +
-                       HIY "(" + query("id", ob) + ")" HIC + "夺取中！\n" NOR;
+                str += HIC "現在祭旗正被" HIY +"【" + team_name + "】的" + ob->name() +
+                       HIY "(" + query("id", ob) + ")" HIC + "奪取中！\n" NOR;
         }
         else
         {
-                str += HIG "现在祭旗没有被夺取，赶紧夺取（duoqu jiqi）吧！\n" NOR;
+                str += HIG "現在祭旗沒有被奪取，趕緊奪取（duoqu jiqi）吧！\n" NOR;
         }
         return str;
 }
@@ -81,7 +81,7 @@ void init()
         add_action("do_duoqu", "duoqu");
 }
 
-// 夺取旗帜
+// 奪取旗幟
 int do_duoqu(string arg)
 {
         object me = this_player();
@@ -89,63 +89,63 @@ int do_duoqu(string arg)
         string team_name;
 
         if( !arg || arg != "jiqi" )
-                return notify_fail("你要夺取什么？\n");
+                return notify_fail("你要奪取什麼？\n");
 
         if( time() - query_temp("last_do_duoqu", me) < 10 )
-                return notify_fail("你距离上次夺旗尝试时间不足10秒，不能连续尝试！\n");
+                return notify_fail("你距離上次奪旗嘗試時間不足10秒，不能連續嘗試！\n");
 
-        // 有人夺取时不能夺取
+        // 有人奪取時不能奪取
         if( objectp(ob = query("jiqi_owner")) )
         {
                 me->set_temp("last_do_duoqu", time());
-                return notify_fail(HIR "祭旗正被" + HIY + ob->name() + HIY "(" + query("id", ob) + ")" HIR "夺取中！\n" NOR);
+                return notify_fail(HIR "祭旗正被" + HIY + ob->name() + HIY "(" + query("id", ob) + ")" HIR "奪取中！\n" NOR);
         }
         
-        // 无帮派人士不能夺取
+        // 無幫派人士不能奪取
         if( !query("bunch/bunch_name", me) )
         {
                 me->move("/d/city/wumiao");
-                tell_object(me, "你还是先加个帮派吧！\n");
+                tell_object(me, "你還是先加個幫派吧！\n");
                 return 1;
         }
 
         if( query_temp("apply/name", me) )
         {
-                tell_object(me, "你还是取下你的面具吧！\n");
+                tell_object(me, "你還是取下你的面具吧！\n");
                 return 1;
         }
         
         if( !query_temp("in_pkd", me) )
         {
-                tell_object(me, "你没有正式报名帮派争夺战，不能夺取祭旗！\n");
+                tell_object(me, "你沒有正式報名幫派爭奪戰，不能奪取祭旗！\n");
                 return 1;
         }
 
         if( query_temp("apply/shade_vision", me) )
-                return notify_fail(HIG "你处于隐身状态，不能夺取祭旗！\n" NOR);
+                return notify_fail(HIG "你處於隱身狀態，不能奪取祭旗！\n" NOR);
 
-        // 非帮战期间不能夺取
+        // 非幫戰期間不能奪取
         if (! BUNCH_D->is_battle_start() && ! TEST_FLAG)
-                return notify_fail("现在不处于帮战期间，你夺取祭旗干什么！\n");
+                return notify_fail("現在不處於幫戰期間，你奪取祭旗幹什麼！\n");
         
-        // 夺取
+        // 奪取
         set("jiqi_owner", me);
         team_name = query("bunch/bunch_name", me);
         if( !undefinedp(data[team_name]) )
         {
-                write(HIG "你夺取了祭旗，你的队伍总共夺取祭旗时间为：" HIY + time_period(data[team_name]) + HIG "。\n" NOR);
-                tell_room(this_object(), HIG + me->name() + HIG "夺取了祭旗，其所在帮派【" + team_name +
-                          "】总共夺取祭旗时间为：" HIY + time_period(data[team_name]) + HIG "。\n" NOR, ({ me }));
+                write(HIG "你奪取了祭旗，你的隊伍總共奪取祭旗時間為：" HIY + time_period(data[team_name]) + HIG "。\n" NOR);
+                tell_room(this_object(), HIG + me->name() + HIG "奪取了祭旗，其所在幫派【" + team_name +
+                          "】總共奪取祭旗時間為：" HIY + time_period(data[team_name]) + HIG "。\n" NOR, ({ me }));
         }
         else
         {
-                write(HIG "你夺取了祭旗，开始统计记时。。。\n" NOR);
-                tell_room(this_object(), HIG + me->name() + HIG "夺取了祭旗，其所在帮派【" + team_name + "】。\n" NOR, ({ me }));
+                write(HIG "你奪取了祭旗，開始統計記時。。。\n" NOR);
+                tell_room(this_object(), HIG + me->name() + HIG "奪取了祭旗，其所在幫派【" + team_name + "】。\n" NOR, ({ me }));
         }
         
         // CHANNEL_D通告
-        CHANNEL_D->channel_broadcast("war",HIG+me->name()+HIG"成功夺取祭旗，其所在帮派【"+query("bunch/bunch_name", me)+
-                                     "】暂时取得祭旗控制权。\n" NOR);
+        CHANNEL_D->channel_broadcast("war",HIG+me->name()+HIG"成功奪取祭旗，其所在幫派【"+query("bunch/bunch_name", me)+
+                                     "】暫時取得祭旗控制權。\n" NOR);
 
         return 1;
 }
@@ -160,7 +160,7 @@ void heart_beat()
 
         reset_eval_cost();
         
-        // 非帮战期间，清除之前的记录
+        // 非幫戰期間，清除之前的記錄
         if( !BUNCH_D->is_battle_start() && !TEST_FLAG )
         {
                 if (query("jiqi_owner"))delete("jiqi_owner");
@@ -179,7 +179,7 @@ void heart_beat()
         if( query_temp("apply/name", me) )
         {
                 me->move("/d/city/wumiao");    
-                tell_object(me, "你还是取下你的面具吧！\n");
+                tell_object(me, "你還是取下你的面具吧！\n");
                 delete("jiqi_owner");
                 return;
         }
@@ -187,18 +187,18 @@ void heart_beat()
         if( query_temp("apply/shade_vision", me) )
         {
                 me->move("/d/city/wumiao");    
-                tell_object(me, "你还是消除隐身状态再来吧！\n");
+                tell_object(me, "你還是消除隱身狀態再來吧！\n");
                 delete("jiqi_owner");
                 return;
         }
         
-        BUNCH_D->add_bonus_score(me, 1);  // 提高个人帮派贡献度
+        BUNCH_D->add_bonus_score(me, 1);  // 提高個人幫派貢獻度
         
-        // 无帮派
+        // 無幫派
         team_name=query("bunch/bunch_name", me);
         if (! team_name)return;
 
-        // 累计夺旗时间
+        // 累計奪旗時間
         if( undefinedp(data[team_name]) )
                 data[team_name] = 1;
         else
@@ -215,7 +215,7 @@ void heart_beat()
         if( time >= 540 )
         {
                 if( !(time % 10) )
-                        CHANNEL_D->channel_broadcast("war", HIR"帮派【"+team_name+HIR"】总共夺取"+query("short")+"祭旗时间为：" HIY +time_period(time) + HIR "，即将获得最终胜利..."NOR);
+                        CHANNEL_D->channel_broadcast("war", HIR"幫派【"+team_name+HIR"】總共奪取"+query("short")+"祭旗時間為：" HIY +time_period(time) + HIR "，即將獲得最終勝利..."NOR);
         }
         return;
 }       

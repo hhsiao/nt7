@@ -4,7 +4,7 @@ inherit BOOK;
 
 void create()
 {
-        set_name("手法入门", ({ "hand book", "book" }));
+        set_name("手法入門", ({ "hand book", "book" }));
         set_weight(600);
         /*if (clonep())
                 set_default_object(__FILE__);
@@ -12,7 +12,7 @@ void create()
         {
                 set("unit", "本");
                 set("long",
-"封面上写著「手法入门）」\n");
+"封面上寫著「手法入門）」\n");
                 set("value", 200);
                 set("material", "paper");
                 set("skill", ([

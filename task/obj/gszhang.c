@@ -9,8 +9,8 @@ void create()
     else {
             set("unit", "根");
             set("material", "wood");
-            set("long", "一根顶部有条怪蛇的蛇杖，蛇头处有机关，咬起人来厉害无比！\n");
+            set("long", "一根頂部有條怪蛇的蛇杖，蛇頭處有機關，咬起人來厲害無比！\n");
           }
-    set("owner", "欧阳锋");
+    set("owner", "歐陽鋒");
     setup();
 }

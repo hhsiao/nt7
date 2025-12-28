@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// xu.c 静虚师太
+// xu.c 靜虛師太
 
 #include <command.h>
 #include <ansi.h>
@@ -13,9 +13,9 @@ int liandan();
 void create()
 {
 
-        set_name("静虚师太", ({ "jingxu shitai","jingxu","shitai"}));
+        set_name("靜虛師太", ({ "jingxu shitai","jingxu","shitai"}));
         set("long",
-          "她是峨嵋派二师姐，峨嵋门下多年，一套峨嵋掌法名动江湖。。\n");
+          "她是峨嵋派二師姐，峨嵋門下多年，一套峨嵋掌法名動江湖。。\n");
         set("gender", "女性");
         set("age", 43);
         set("attitude", "peaceful");
@@ -25,9 +25,9 @@ void create()
         set("inquiry",([
                 "剃度"  : (: ask_for_join :),
                 "出家"  : (: ask_for_join :),
-                "配药"  : ( : peiyao :),
-                "霹雳弹": ( : liandan : ),
-                "还俗"  : "峨嵋弟子，不能还俗。你找掌门师太吧。",
+                "配藥"  : ( : peiyao :),
+                "霹靂彈": ( : liandan : ),
+                "還俗"  : "峨嵋弟子，不能還俗。你找掌門師太吧。",
         ]));
 
         set("str", 30);
@@ -93,54 +93,54 @@ int do_nod(string arg)
                 return 0;
 
         command("smile");
-        command("say 我讲个故事你听：\n");
+        command("say 我講個故事你聽：\n");
 
-        message("vision", "静虚师太对着"+me->name()+"讲了几句话。\n",
+        message("vision", "靜虛師太對著"+me->name()+"講了幾句話。\n",
                         environment(me), ({me}) );
 
         switch(random(2)) {
                 case 0:
-                write("静虚师太说：大承和尚曾住在峨嵋山。
-            有个僧人问他：什么是胜峰？　大承说；直耸烟岚。
-            僧人又问：向上事（即脱俗之事）如何？　他答：立地三尺五。
-            僧人又问：什么是佛法？　他就说：兴义门前咚咚鼓。
-            那僧说：这我不懂。　大承和尚是怎样回答他的呢？\n\n");
+                write("靜虛師太說：大承和尚曾住在峨嵋山。
+            有個僧人問他：什麼是勝峰？　大承說；直聳煙嵐。
+            僧人又問：向上事（即脫俗之事）如何？　他答：立地三尺五。
+            僧人又問：什麼是佛法？　他就說：興義門前咚咚鼓。
+            那僧說：這我不懂。　大承和尚是怎樣回答他的呢？\n\n");
 
                 if ((int)me->query_skill("mahayana", 1) > 50 + random(8)) {
-                        write("你想起在一部经书里读到过这个故事。\n");
-                        write("你说：朝打三千，暮打八百。\n\n");
-                        message("vision", me->name()+"想了一下，跟静虚师太说了几句话。\n",
+                        write("你想起在一部經書裡讀到過這個故事。\n");
+                        write("你說：朝打三千，暮打八百。\n\n");
+                        message("vision", me->name()+"想了一下，跟靜虛師太說了幾句話。\n",
                                 environment(me), ({me}) );
 
-                        command("say 阿弥陀佛，善哉！善哉！好吧，我就收下你了。");
-                        command("say 希望你能以慈悲之心，以智慧之力，努力行善，济度众生。\n");
+                        command("say 阿彌陀佛，善哉！善哉！好吧，我就收下你了。");
+                        command("say 希望你能以慈悲之心，以智慧之力，努力行善，濟度眾生。\n");
                         command("recruit "+query("id", me));
                 }
                 else {
-                        write("你想了许久，也解不明白其中的禅理。\n");
-                        command("say 阿弥陀佛，你多学些佛法后再来找我吧。\n");
+                        write("你想了許久，也解不明白其中的禪理。\n");
+                        command("say 阿彌陀佛，你多學些佛法後再來找我吧。\n");
                 }
                 break;
 
                 case 1:
-                write("静虚师太说：慧真广悟曾在峨嵋山出家。
-            慧真广悟开堂那天，有个僧人出来问：什么是佛法大意？
-            慧真广悟说：日出方知天下朗，无油哪点佛前灯？
-            僧人又问：什么是双峰境？　慧真广悟是怎样回答他的呢？\n\n");
+                write("靜虛師太說：慧真廣悟曾在峨嵋山出家。
+            慧真廣悟開堂那天，有個僧人出來問：什麼是佛法大意？
+            慧真廣悟說：日出方知天下朗，無油哪點佛前燈？
+            僧人又問：什麼是雙峰境？　慧真廣悟是怎樣回答他的呢？\n\n");
 
                 if ((int)me->query_skill("mahayana", 1) > 50 + random(8)) {
-                        write("你想起在一部经书里读到过这个典故。\n");
-                        write("你答道：夜听水流庵后竹，昼起看云面前山。\n\n");
-                        message("vision", me->name()+"想了一下，跟静虚师太说了几句话。\n",
+                        write("你想起在一部經書裡讀到過這個典故。\n");
+                        write("你答道：夜聽水流庵後竹，晝起看雲面前山。\n\n");
+                        message("vision", me->name()+"想了一下，跟靜虛師太說了幾句話。\n",
                                 environment(me), ({me}) );
 
-                        command("say 阿弥陀佛，善哉！善哉！好吧，我就收下你了。");
-                        command("say 希望你能以慈悲之心，以智慧之力，努力行善，济度众生。\n");
+                        command("say 阿彌陀佛，善哉！善哉！好吧，我就收下你了。");
+                        command("say 希望你能以慈悲之心，以智慧之力，努力行善，濟度眾生。\n");
                         command("recruit "+query("id", me));
                 }
                 else {
-                        write("你想了许久，也解不明白其中的禅理。\n");
-                        command("say 阿弥陀佛，你多学些佛法后在来找我吧。\n");
+                        write("你想了許久，也解不明白其中的禪理。\n");
+                        command("say 阿彌陀佛，你多學些佛法後在來找我吧。\n");
                 }
                        break;
         }
@@ -153,9 +153,9 @@ void attempt_apprentice(object ob)
         if (! permit_recruit(ob))
                 return;
 
-        command("say 阿弥陀佛，善哉！善哉！在本庵修行，我要先考考你的佛法。");
+        command("say 阿彌陀佛，善哉！善哉！在本庵修行，我要先考考你的佛法。");
         set_temp("pending/kao", 1, ob);
-        command("say 你要准备好了，就告诉(nod)我吧。\n");
+        command("say 你要準備好了，就告訴(nod)我吧。\n");
         add_action("do_nod", "nod");
         return;
 }
@@ -168,7 +168,7 @@ int peiyao()
 
         if(!objectp(present("caoyao 3",me)))
         {
-                command("say 你的身上没有那么多草药。");
+                command("say 你的身上沒有那麼多草藥。");
                 return 1;
         }
         for(i=0;i<3;i++)
@@ -177,10 +177,10 @@ int peiyao()
                 destruct(obj);
         }
         command("smile");
-        command("say 好吧，我就给你配药了。");
+        command("say 好吧，我就給你配藥了。");
         obj=new("/d/emei/obj/zhongyao");
         obj->move(me);
-        message_vision("静慈师太给$N一包中药。\n",me);
+        message_vision("靜慈師太給$N一包中藥。\n",me);
         return 1;
 }
 int liandan()
@@ -191,15 +191,15 @@ int liandan()
         int i;
         if(!objectp(present("liuhuang",me)))
         {
-                command("say 你的身上没有炼制霹雳弹用的硫磺。");
+                command("say 你的身上沒有煉製霹靂彈用的硫磺。");
                 return 1;
         }
         obj=present("liuhuang",me);
         destruct(obj);
         command("smile");
-        command("say 好吧，我就给你炼制一粒霹雳弹。");
+        command("say 好吧，我就給你煉製一粒霹靂彈。");
         obj=new("/d/emei/obj/pilidan");
         obj->move(me);
-        message_vision("静慈师太给$N一粒霹雳弹。\n",me);
+        message_vision("靜慈師太給$N一粒霹靂彈。\n",me);
         return 1;
 }

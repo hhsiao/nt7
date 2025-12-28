@@ -3,11 +3,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "山侧"NOR);
+        set("short", "山側"NOR);
         set("long", @LONG
-这里就是「大宋」军营驻扎地了，远远地可以看见一面大旗，上面书着一个
-斗大的隶书「宋」字，再走近些就到军营了，寻常人还是不要靠近的好，省得被
-当成细作捉起来。
+這裡就是「大宋」軍營駐紮地了，遠遠地可以看見一面大旗，上面書著一個
+斗大的隸書「宋」字，再走近些就到軍營了，尋常人還是不要靠近的好，省得被
+當成細作捉起來。
 LONG
 );
         set("defence",120);
@@ -43,14 +43,14 @@ int do_repair()
       object room=this_object(),me=this_player();
 
       if( me->is_busy() )
-      return notify_fail("你正忙着呢！\n");
+      return notify_fail("你正忙著呢！\n");
 
       if( room->query("defence") > 120 )
-      return notify_fail("山侧的防御工事已经修理好了！\n");
+      return notify_fail("山側的防禦工事已經修理好了！\n");
       else
       {
        message_vision(
-       HIW"$N带着一支队伍紧张地抢修着山侧的防御工事！\n"NOR,me);
+       HIW"$N帶著一支隊伍緊張地搶修著山側的防禦工事！\n"NOR,me);
        room->add("defence",random(me->query_temp("jun_quest/group")));
        me->start_busy(2+random(2));
        return 1;
@@ -62,18 +62,18 @@ int do_break()
       object room=this_object(),me=this_player();
 
       if( me->is_busy() )        
-      return notify_fail("你正忙着呢！\n");
+      return notify_fail("你正忙著呢！\n");
 
       if( room->query("defence") < 1 )
       {
        room->set("defence",0); 
-       write("山侧的的防御已经被击破了，快冲进去啊！\n");
+       write("山側的的防禦已經被擊破了，快衝進去啊！\n");
        return 1; 
       }
       else
       {
        message_vision(
-       HIY"$N带着一支攻城队伍正加紧攻击着山侧的防御工事！\n"NOR,me);
+       HIY"$N帶著一支攻城隊伍正加緊攻擊著山側的防禦工事！\n"NOR,me);
        room->add("defence",-random(me->query_temp("jun_quest/group")));
        me->start_busy(2+random(2));
        return 1;

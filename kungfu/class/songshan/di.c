@@ -78,11 +78,11 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)<0 )
         {
-                command("say 你这人不做好事，我嵩山派可容你不得。");
+                command("say 你這人不做好事，我嵩山派可容你不得。");
                 return;
         }
 
-        command("say 既然如此，那你以后就跟着我吧。");
+        command("say 既然如此，那你以後就跟著我吧。");
         command("recruit "+query("id", ob));
 }
 
@@ -90,10 +90,10 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "千斤锤" :
+        case "千斤錘" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/songshan-quan/chui",
-                           "name"    : "千斤锤",
+                           "name"    : "千斤錘",
                            "sk1"     : "songshan-quan",
                            "lv1"     : 30,
                            "force"   : 30,
@@ -112,10 +112,10 @@ int accept_ask(object me, string topic)
                            "shen"    : 2000, ]));
                 break;
 
-        case "如梦如幻" :
+        case "如夢如幻" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/henshan-quan/lan",
-                           "name"    : "如梦如幻",
+                           "name"    : "如夢如幻",
                            "sk1"     : "henshan-quan",
                            "lv1"     : 40,
                            "gongxian": 80,

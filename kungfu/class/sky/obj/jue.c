@@ -2,13 +2,13 @@
 inherit ITEM;
 void create()
 {
-        set_name(HIW "长生决" NOR, ({ "changsheng jue", "book", "jue" }));
+        set_name(HIW "長生決" NOR, ({ "changsheng jue", "book", "jue" }));
         set_weight(50);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "本");
-                set("long", "这便是四大奇书之一的长生决，传说可以修炼至高无上的武学。\n");
+                set("long", "這便是四大奇書之一的長生決，傳說可以修煉至高無上的武學。\n");
                 set("value", 300);
                 set("material", "paper");
                 set("skill", ([

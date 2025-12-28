@@ -6,13 +6,13 @@ inherit HEAD;
 
 void create()
 {
-	set_name("[1;32m文曲星头盔[2;37;0m", ({ "wisdom head" }));
+	set_name("[1;32m文曲星頭盔[2;37;0m", ({ "wisdom head" }));
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-	set("long", "蕴含了文曲星的精元和无上智慧(神)。
+	set("long", "蘊含了文曲星的精元和無上智慧(神)。
 ");
 	set("unit", "件");
 	set("value", 2000000);
@@ -24,7 +24,7 @@ void create()
 	set("auto_load", 1);
 	set("mod_mark", "A2003");
 	set("mod_level", "M2000");
-	set("mod_name", "[42;1m文曲星学习套装(神)[2;37;0m");
+	set("mod_name", "[42;1m文曲星學習套裝(神)[2;37;0m");
 	set("enchase", ([ /* sizeof() == 3 */
   "flute" : 2,
   "used" : 2,
@@ -97,7 +97,7 @@ int receive_summon(object me)
         return ITEM_D->receive_summon(me, this_object());
 }
 
-// 隐藏物品
+// 隱藏物品
 int hide_anywhere(object me)
 {
         return ITEM_D->hide_anywhere(me, this_object());

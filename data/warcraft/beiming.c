@@ -7,7 +7,7 @@ void setup()
         set_name("[1;32m玉[2;37;0m[2;37;0m[2;37;0m", ({"jade"}));        
         set("gender", "女性");                
         set("long", "呵呵[2;37;0m
-它是北冥的魔幻兽。
+它是北冥的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

@@ -3,14 +3,14 @@
 // by Find.
 
 nosave string *human_limbs = ({
-        "头部",        "颈部",        "胸口",        "后心",        "左肩",        "右肩",        "左臂",
-        "右臂",        "左手",        "右手",        "腰间",        "小腹",        "左腿",        "右腿",
-        "左脚",        "右脚",
+        "頭部",        "頸部",        "胸口",        "後心",        "左肩",        "右肩",        "左臂",
+        "右臂",        "左手",        "右手",        "腰間",        "小腹",        "左腿",        "右腿",
+        "左腳",        "右腳",
 });
 
 nosave mapping current_damage = ([]);
 
-// 部位受伤
+// 部位受傷
 int receive_limbs_wound(string limb, int damage)
 {
         if(!stringp(limb)
@@ -44,7 +44,7 @@ int receive_limb_curing(string limb, int heal)
         if(current_damage[limb] <= heal)
         {
                 map_delete(current_damage, limb);
-                tell_object(this_object(),sprintf("\n你%s上的伤口慢慢的愈合了。\n\n",limb));
+                tell_object(this_object(),sprintf("\n你%s上的傷口慢慢的癒合了。\n\n",limb));
         }
         else
                 current_damage[limb] -= heal;
@@ -78,7 +78,7 @@ void update_all_limb_damage()
                 if((--current_damage[l]) <= 0)
                 {
                         map_delete(current_damage, l);
-                        tell_object(this_object(),sprintf("\n你%s上的伤口慢慢的愈合了。\n\n",l));
+                        tell_object(this_object(),sprintf("\n你%s上的傷口慢慢的癒合了。\n\n",l));
                 }
         }
 }

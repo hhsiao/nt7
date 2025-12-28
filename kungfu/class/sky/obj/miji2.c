@@ -2,13 +2,13 @@
 inherit ITEM;
 void create()
 {
-        set_name(HIC "四季剑法" NOR, ({ "jianfa miji", "book", "miji" }));
+        set_name(HIC "四季劍法" NOR, ({ "jianfa miji", "book", "miji" }));
         set_weight(50);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "本");
-                set("long", "这是一本薄薄的小册，上面记载了四季剑法的奥决。\n");
+                set("long", "這是一本薄薄的小冊，上面記載了四季劍法的奧決。\n");
                 set("value", 30);
                 set("material", "paper");
                 set("skill", ([

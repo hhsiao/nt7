@@ -2,22 +2,22 @@
 
 int permit_recruit(object ob)
 {
-        command("say 暂不开放！");
+        command("say 暫不開放！");
         return 0;
-        if( query("detach/云龙门", ob) || query("betrayer/云龙门", ob) )
+        if( query("detach/雲龍門", ob) || query("betrayer/雲龍門", ob) )
         {
-                command("say 你当年既然离开云龙门们，就不必回来了！");
+                command("say 你當年既然離開雲龍門們，就不必回來了！");
                 return 0;
         }
 
         if( query("betrayer/times", ob) )
         {
-                command("say 我们云龙门反清复明，最讲信义，你走吧！");
+                command("say 我們雲龍門反清復明，最講信義，你走吧！");
                 return 0;
         }
 
         if( query("family/family_name", ob) && 
-            query("family/family_name", ob) != "云龙门" )
+            query("family/family_name", ob) != "雲龍門" )
         {
                 command("sigh");
                 command("shake");

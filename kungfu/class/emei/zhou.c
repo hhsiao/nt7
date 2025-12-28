@@ -11,27 +11,27 @@ mixed ask_skill2();
 void create()
 {
         set_name("周芷若", ({ "zhou zhiruo","zhiruo","zhou"}));
-        set("long", "她是峨嵋派的第四代掌门弟子。只见她一张\n"
-                    "脸秀丽绝俗。身着一身淡黄衣裳。略显清减\n"
-                    "的巧笑中带了些许无奈。\n");
+        set("long", "她是峨嵋派的第四代掌門弟子。只見她一張\n"
+                    "臉秀麗絕俗。身著一身淡黃衣裳。略顯清減\n"
+                    "的巧笑中帶了些許無奈。\n");
         set("gender", "女性");
         set("age", 20);
         set("attitude", "peaceful");
         set("shen_type", 1);
 
         set("inquiry",([
-                "剃度"     : "找我剃度？不对吧。",
-                "出家"     : "要出家找我的师姐们去。",
-                "还俗"     : "无聊。还俗也找我！",
-                "张无忌"   : "这个狠心短命的家伙，我再也不要见他！",
-                "赵敏"     : "谁能帮我杀这个贱婢子十次八次泄恨？",
-                "倚天剑"   : "倚天不出，谁与争锋？唉！",
-                "屠龙刀"   : "你想武林称雄？别做梦了。",
-                "灭绝师太" : "师父待我恩重如山，我今生难以回报。",
-                "九阴真经" : "那是什么东西？我这可是第一次听说。",
-                "天诛龙蛟诀" : (: ask_skill1 :),
-                "夺命连环爪" : (: ask_skill2 :),
-                "峨眉九阳功" : (: ask_skill3 :), 
+                "剃度"     : "找我剃度？不對吧。",
+                "出家"     : "要出家找我的師姐們去。",
+                "還俗"     : "無聊。還俗也找我！",
+                "張無忌"   : "這個狠心短命的傢伙，我再也不要見他！",
+                "趙敏"     : "誰能幫我殺這個賤婢子十次八次洩恨？",
+                "倚天劍"   : "倚天不出，誰與爭鋒？唉！",
+                "屠龍刀"   : "你想武林稱雄？別做夢了。",
+                "滅絕師太" : "師父待我恩重如山，我今生難以回報。",
+                "九陰真經" : "那是什麼東西？我這可是第一次聽說。",
+                "天誅龍蛟訣" : (: ask_skill1 :),
+                "奪命連環爪" : (: ask_skill2 :),
+                "峨眉九陽功" : (: ask_skill3 :), 
         ]));
 
         set("str", 22);
@@ -50,7 +50,7 @@ void create()
 
         set_skill("force", 260);
         set_skill("emei-xinfa", 260);
-        set_skill("yijin-duangu", 260);      // 易筋锻骨
+        set_skill("yijin-duangu", 260);      // 易筋鍛骨
         set_skill("linji-zhuang", 200);
         set_skill("dodge", 260);
         set_skill("shexing-lifan", 260);     // 蛇行狸翻
@@ -64,9 +64,9 @@ void create()
         // set_skill("sixiang-zhang", 180);
         set_skill("cuixin-zhang", 260);      // 催心掌
         set_skill("claw", 260);
-        set_skill("jiuyin-baiguzhao", 260);  // 九阴白骨爪
+        set_skill("jiuyin-baiguzhao", 260);  // 九陰白骨爪
         set_skill("whip", 260);
-        set_skill("yinlong-bian", 260);      // 银龙鞭法
+        set_skill("yinlong-bian", 260);      // 銀龍鞭法
         set_skill("sword", 180);
         set_skill("emei-jian", 180);
         set_skill("yitian-jian", 180);
@@ -92,25 +92,25 @@ void create()
         prepare_skill("strike", "cuixin-zhang");
         prepare_skill("claw", "jiuyin-baiguzhao");
 
-        create_family("峨嵋派", 4, "掌门弟子");
+        create_family("峨嵋派", 4, "掌門弟子");
 
         set("no_teach", ([
-                "linji-zhuang"     : "想学临济十二庄找我师父去。",
-                "shexing-lifan"    : "蛇行狸翻？这也是种武功吗？听名字倒是蛮有意思的。",
-                "yijin-duangu"     : "你说的那是什么啊？我这可是头一次听说。",
-                "cuixin-zhang"     : "催心掌？听名字怪吓人的，这样的武功我可不会。",
-                //"jiuyin-baiguzhao" : "九阴白骨爪？这是什么武功啊？光听名字我就毛骨悚然。",
-                "yinlong-bian"     : "我只会剑法和刀法，鞭法师父从来没教过我。",
-                "yitian-jian"      : "这门功夫是家师独门绝学需找她亲自传授。",
+                "linji-zhuang"     : "想學臨濟十二莊找我師父去。",
+                "shexing-lifan"    : "蛇行狸翻？這也是種武功嗎？聽名字倒是蠻有意思的。",
+                "yijin-duangu"     : "你說的那是什麼啊？我這可是頭一次聽說。",
+                "cuixin-zhang"     : "催心掌？聽名字怪嚇人的，這樣的武功我可不會。",
+                //"jiuyin-baiguzhao" : "九陰白骨爪？這是什麼武功啊？光聽名字我就毛骨悚然。",
+                "yinlong-bian"     : "我只會劍法和刀法，鞭法師父從來沒教過我。",
+                "yitian-jian"      : "這門功夫是家師獨門絕學需找她親自傳授。",
         ]));
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
-                (: perform_action, "claw.duo" :),       // 夺命连环
-                (: perform_action, "claw.jie" :),       // 九阴刹神抓
-                (: perform_action, "strike.cuixin" :),  // 催心破元诀
-                (: perform_action, "whip.jiao" :),      // 天诛龙蛟诀
-                (: perform_action, "dodge.guiyuan" :),  // 九阴归元劲
+                (: perform_action, "claw.duo" :),       // 奪命連環
+                (: perform_action, "claw.jie" :),       // 九陰剎神抓
+                (: perform_action, "strike.cuixin" :),  // 催心破元訣
+                (: perform_action, "whip.jiao" :),      // 天誅龍蛟訣
+                (: perform_action, "dodge.guiyuan" :),  // 九陰歸元勁
                 (: perform_action, "sword.yitian" :),
                 (: perform_action, "sword.fumo" :),
                 (: exert_function, "recover" :),
@@ -128,23 +128,23 @@ mixed ask_skill1()
 {
         object me = this_player();
         if( query("can_perform/yinlong-bian/zhu", me) )
-               return "这招我不是已经教过你了吗？自己下去多练吧！";
+               return "這招我不是已經教過你了嗎？自己下去多練吧！";
 
         if( query("family/family_name", me) != query("family/family_name") )
-               return "你是哪里来的？快给我滚开！";
+               return "你是哪裡來的？快給我滾開！";
 
         if (me->query_skill("yinlong-bian", 1) <130 )
-               return "你的银龙鞭法练的还不够纯熟，无发领悟此精妙绝技！";
+               return "你的銀龍鞭法練的還不夠純熟，無發領悟此精妙絕技！";
 
         if (me->query_skill("yinlong-bian", 1) < 1)
-               return "你连银龙鞭法都没学，还谈什么绝招可言？";
+               return "你連銀龍鞭法都沒學，還談什麼絕招可言？";
 
-        command("say 看好了，以后对那些妖人不要手软，一上来就用这招！");
+        command("say 看好了，以後對那些妖人不要手軟，一上來就用這招！");
         command("grin");
-        message_vision(HIG "周芷若抽出鞭子，随意挥舞着，将银龙鞭法奥义展现无疑。\n不一会儿，周芷若已是大汗淋漓。\n" NOR,me);
-        command("say 这就是银龙鞭法的「天诛龙蛟诀」了，你要认真领悟其奥妙。");
+        message_vision(HIG "周芷若抽出鞭子，隨意揮舞著，將銀龍鞭法奧義展現無疑。\n不一會兒，周芷若已是大汗淋漓。\n" NOR,me);
+        command("say 這就是銀龍鞭法的「天誅龍蛟訣」了，你要認真領悟其奧妙。");
         command("hehe");
-        tell_object(me, HIC "你学会了「天诛龙蛟诀」。\n" NOR);
+        tell_object(me, HIC "你學會了「天誅龍蛟訣」。\n" NOR);
         if (me->can_improve_skill("whip"))
                me->improve_skill("whip", 1500000);
         if (me->can_improve_skill("yinlong-bian"))
@@ -157,17 +157,17 @@ mixed ask_skill2()
 {
         object me = this_player();
         if( query("can_perform/jiuyin-baiguzhao/duo", me) )
-               return "这招我不是已经教过你了吗？自己下去多练吧！";
+               return "這招我不是已經教過你了嗎？自己下去多練吧！";
 
         //if (me->query("family/family_name") != query("family/family_name"))
-               //return "你是哪里来的？快给我滚开！";
+               //return "你是哪裡來的？快給我滾開！";
 
         if (me->query_skill("jiuyin-baiguzhao", 1) <120 )
-               return "你的九阴白骨爪练的还不够纯熟，无发领悟此精妙绝技！";
+               return "你的九陰白骨爪練的還不夠純熟，無發領悟此精妙絕技！";
 
-         command("say 看好了，以后对那些妖人不要手软，一上来就用这招！");
+         command("say 看好了，以後對那些妖人不要手軟，一上來就用這招！");
          command("grin");
-       tell_object(me, HIC "你学会了「夺命连环爪」。\n" NOR);
+       tell_object(me, HIC "你學會了「奪命連環爪」。\n" NOR);
         if (me->can_improve_skill("jiuyin-baiguzhao"))
                me->improve_skill("jiuyin-baiguzhao", 1500000);
         set("can_perform/jiuyin-baiguzhao/duo", 1, me);
@@ -179,17 +179,17 @@ mixed ask_skill3()//by redl
 {
         object me = this_player();
         if (query_temp("marks/kill_zhaomin", me) < 10)
-               return "我凭什么要帮你呢？";
+               return "我憑什麼要幫你呢？";
         if( query("family/family_name", me) != query("family/family_name") ) 
-               return "你是哪里来的？快给我滚开！"; 
+               return "你是哪裡來的？快給我滾開！"; 
 
         delete_temp("marks/kill_zhaomin", me);
          command("nod");
         
         me->set_skill("emei-jiuyang", 30); 
         me->improve_skill("emei-jiuyang", 5000); 
-              command("say 下去好好练习你的飘雪穿云掌和九阴白骨爪吧。"); 
-              tell_object(me, NOR HIY "你领悟到周芷若传授的峨眉绝学相互之间的微妙了。\n" NOR); 
+              command("say 下去好好練習你的飄雪穿雲掌和九陰白骨爪吧。"); 
+              tell_object(me, NOR HIY "你領悟到周芷若傳授的峨眉絕學相互之間的微妙了。\n" NOR); 
         return 1;
 }
 
@@ -200,18 +200,18 @@ void attempt_apprentice(object ob)
 
         if ((int)ob->query_int() < 45)
         {
-                command("say 这位" + RANK_D->query_respect(ob) + "恐怕资质差了一点。");
-                command("say 不过尚大有潜力，还是先回去磨练磨练。");
+                command("say 這位" + RANK_D->query_respect(ob) + "恐怕資質差了一點。");
+                command("say 不過尚大有潛力，還是先回去磨練磨練。");
                 return;
         }
 
         if( !query_temp("marks/宋夫人", ob) )
         {
-                command("say "+query("name", this_player())+"你没事就可以走了。\n\n");
+                command("say "+query("name", this_player())+"你沒事就可以走了。\n\n");
                 return;
         }
 
         delete_temp("marks/宋夫人", ob);
-        command("say "+query("name", ob)+"看你这么可怜，勉为其难收下你吧。\n");
+        command("say "+query("name", ob)+"看你這麼可憐，勉為其難收下你吧。\n");
         command("recruit "+query("id", ob));
 }

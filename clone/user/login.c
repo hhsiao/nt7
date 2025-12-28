@@ -9,7 +9,7 @@ inherit F_SAVE;
 void create()
 {
         dbase = allocate_mapping(0);
-        // 复制对象必须调用 LOGON 函数或者是设置连接身体
+        // 複製對象必須調用 LOGON 函數或者是設置連接身體
         // if (clonep()) call_out("time_out", 0);
 }
 
@@ -45,7 +45,7 @@ void time_out()
                 return;
         }
         if( interactive(this_object()) )
-                write("\n您花在连线进入手续的时间太久了，下次想好再来吧。\n");
+                write("\n您花在連線進入手續的時間太久了，下次想好再來吧。\n");
         destruct(this_object());
 }
 

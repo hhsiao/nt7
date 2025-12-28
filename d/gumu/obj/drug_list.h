@@ -4,7 +4,7 @@
 
 mapping *drug_list = ({
         ([
-                "name": "金蜜散",  //木香,山菊,蝉蜕,牛黄
+                "name": "金蜜散",  //木香,山菊,蟬蛻,牛黃
                 "level": 60,
                 "file": "jinmisan",
                 "time": 10,
@@ -13,7 +13,7 @@ mapping *drug_list = ({
                 "n": 2,
         ]),
         ([
-                "name": "玉蜂针毒",  //柴胡,葵花粉,玉蜂毒
+                "name": "玉蜂針毒",  //柴胡,葵花粉,玉蜂毒
                 "level": 90,
                 "file": "yufeng-zhen",
                 "time": 20,
@@ -22,7 +22,7 @@ mapping *drug_list = ({
                 "n": -39,
         ]),
         ([
-                "name": "古墓玉浆",  //升麻,土茯苓,何首乌,雪莲子,玉蜂王浆
+                "name": "古墓玉漿",  //升麻,土茯苓,何首烏,雪蓮子,玉蜂王漿
                 "level": 120,
                 "file": "yujiang",
                 "time": 30,
@@ -31,7 +31,7 @@ mapping *drug_list = ({
                 "n": 72,
         ]),
         ([
-                "name": "古墓圣浆", //木香,土茯苓,人参,鲨胆,黄连,古墓玉浆
+                "name": "古墓聖漿", //木香,土茯苓,人參,鯊膽,黃連,古墓玉漿
                 "level": 150,
                 "file": "shengyao",
                 "time": 40,
@@ -41,15 +41,15 @@ mapping *drug_list = ({
         ])
 });
 /*
-古墓圣药列表
-60         金蜜散        =        山菊 + 木香 + 蝉蜕 + 牛黄
-90        玉蜂针        =        柴胡 + 葵花粉 + 玉蜂毒 + 金针
-120        古墓玉浆=        升麻 + 土茯苓 + 何首乌 + 雪莲子 + 玉蜂王浆
-150        古墓圣药=        木香 + 土茯苓 + 人参 + 鲨胆 + 黄连 + 古墓玉浆
+古墓聖藥列表
+60         金蜜散        =        山菊 + 木香 + 蟬蛻 + 牛黃
+90        玉蜂針        =        柴胡 + 葵花粉 + 玉蜂毒 + 金針
+120        古墓玉漿=        升麻 + 土茯苓 + 何首烏 + 雪蓮子 + 玉蜂王漿
+150        古墓聖藥=        木香 + 土茯苓 + 人參 + 鯊膽 + 黃連 + 古墓玉漿
 
-古墓药材列表
+古墓藥材列表
 *木香，*柴胡，*升麻，*山菊，*土茯苓
-*蝉蜕，*何首乌，*黄连/雄黄，*牛黄，*鲨胆，*人参，*雪莲子，*葵花粉
+*蟬蛻，*何首烏，*黃連/雄黃，*牛黃，*鯊膽，*人參，*雪蓮子，*葵花粉
 
 土茯苓        30        20        40        tufuling
 升麻        1        1        2        shengma
@@ -59,25 +59,25 @@ mapping *drug_list = ({
 name        cure_s        cure_d        cure_n        herb
 巴豆        -1        2        0        badou
 葵花粉        0        -40        40        kuihua
-防风        0        0        5        fangfeng
+防風        0        0        5        fangfeng
 生地        0        0        15        shengdi
 穿山甲        0        0        30        chuanshanjia
-金银花        0        1        0        jy-hua
-荷叶        0        3        0        heye
+金銀花        0        1        0        jy-hua
+荷葉        0        3        0        heye
 菊梗        0        5        0        jugeng
-黄连        0        20        0        huanglian
-雄黄        0        20        0        xionghuang
-牛黄        0        30        0        niuhuang
-鲨胆        0        52        10        shadan
-蝉蜕        3        0        0        chantui
+黃連        0        20        0        huanglian
+雄黃        0        20        0        xionghuang
+牛黃        0        30        0        niuhuang
+鯊膽        0        52        10        shadan
+蟬蛻        3        0        0        chantui
 枸枳子        5        0        0        gouzhizi
 田七        5        30        0        tianqi
-川贝        10        0        0        chuanbei
-雪莲子        20        30        40        xuelianzi
-藏红花        30        0        0        zanghonghua
-熊胆        30        0        45        xiongdan
+川貝        10        0        0        chuanbei
+雪蓮子        20        30        40        xuelianzi
+藏紅花        30        0        0        zanghonghua
+熊膽        30        0        45        xiongdan
 豹胎        30        0        72        baotai
 茯苓        40        0        53        fuling
-何首乌        80        0        10        heshouwu
-人参        100        0        0        renshen
+何首烏        80        0        10        heshouwu
+人參        100        0        0        renshen
 */

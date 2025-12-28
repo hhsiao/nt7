@@ -8,29 +8,29 @@ inherit POISON;
 
 string name() { return "freezing"; }
 
-string chinese_name() { return "寒冰真气"; }
+string chinese_name() { return "寒冰真氣"; }
 
 string update_msg_others()
 {
-        return HIW "$N" HIW "脸色铁青，四肢僵硬，全身上下竟笼"
-               "罩了一层寒霜。\n" NOR;
+        return HIW "$N" HIW "臉色鐵青，四肢僵硬，全身上下竟籠"
+               "罩了一層寒霜。\n" NOR;
 }
 
 string update_msg_self()
 {
-        return HIW "你只觉全身冰冷无比，四肢百骸难受之极，如堕"
-               "冰狱。\n" NOR;
+        return HIW "你只覺全身冰冷無比，四肢百骸難受之極，如墮"
+               "冰獄。\n" NOR;
 }
 
 string die_msg_others()
 {
-        return HIW "$N" HIW "僵硬的身子在地上扑腾了几下，就再"
-               "没半点动静了。\n" NOR;
+        return HIW "$N" HIW "僵硬的身子在地上撲騰了幾下，就再"
+               "沒半點動靜了。\n" NOR;
 }
 
 string die_reason()
 {
-        return "被寒冰真气活活冻死了";
+        return "被寒冰真氣活活凍死了";
 }
 
 

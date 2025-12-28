@@ -3,11 +3,11 @@ inherit ROOM;
 int do_pick(string arg);
 void create()
 {
-       set("short", "柳绿山庄");
+       set("short", "柳綠山莊");
         set("long",
-"这是庄院的石阶，石阶呈现出一种奇异的死灰色。石阶旁边是一座假\n"
-"山，假山石缝里面插着一把钢拐，直至没柄。钢拐旁边斜倚着一具骷髅，\n"
-"骷髅上的白发是银灰色的。\n"
+"這是莊院的石階，石階呈現出一種奇異的死灰色。石階旁邊是一座假\n"
+"山，假山石縫裡面插著一把鋼拐，直至沒柄。鋼拐旁邊斜倚著一具骷髏，\n"
+"骷髏上的白髮是銀灰色的。\n"
 );
         set("no_magic", "1");
 
@@ -17,7 +17,7 @@ void create()
         ]));
 
         set("item_desc", ([
-                "钢拐": "这是一把精光闪闪的钢拐，虽已历经多年风雨，上面却毫无锈?踈n",
+                "鋼拐": "這是一把精光閃閃的鋼拐，雖已歷經多年風雨，上面卻毫無鏽?踈n",
         ]) );
 
         set("have_weapon",1);
@@ -35,10 +35,10 @@ int do_pick(string arg)
 
         me = this_player();
 
-        if( !arg || arg != "钢拐" )
+        if( !arg || arg != "鋼拐" )
                 return 0;
         if( query("have_weapon") != 1 )
-                return notify_fail("钢拐已经被拔走了。\n");
+                return notify_fail("鋼拐已經被拔走了。\n");
 
         i=query("neili", me);
         if( random(i)<2000 )
@@ -46,12 +46,12 @@ int do_pick(string arg)
                 i -= 200;
                 if( i<1 ) i = 1;
                 set("neili", i, me);
-                return notify_fail("你使出吃奶的力气狠命摇晃着钢拐，可钢拐纹丝不
-动。\n");
+                return notify_fail("你使出吃奶的力氣狠命搖晃著鋼拐，可鋼拐紋絲不
+動。\n");
         }
         addn("neili", -1000, me);
-        message_vision("$N运足内力，把钢拐从假山石缝中拔了出来。\n可是...\n"+BLU
-"忽然一阵阴风吹起...还..我..命..来...\n"NOR,me);
+        message_vision("$N運足內力，把鋼拐從假山石縫中拔了出來。\n可是...\n"+BLU
+"忽然一陣陰風吹起...還..我..命..來...\n"NOR,me);
         set("have_weapon",0);
         killer = new(__DIR__"npc/wraith");
         killer->move(this_object());

@@ -15,22 +15,22 @@ int main(object me, string arg)
                 return 0;
 
         if (! arg)
-                return notify_fail("你要踢谁？\n");
+                return notify_fail("你要踢誰？\n");
 
         ob = LOGIN_D->find_body(arg);
         ob = MESSAGE_D->find_user(arg);
         if (! ob || ! me->visible(ob))
-                return notify_fail("咦... 有这个人吗?\n");
+                return notify_fail("咦... 有這個人嗎?\n");
 
         if (! userp(ob) && base_name(ob) != USER_OB &&
             ! ob->is_chatter())
                 return notify_fail("你只能把玩家踢出去。\n");
 
         if (ob == me)
-                return notify_fail("你的大脑是不是进了水？\n");
+                return notify_fail("你的大腦是不是進了水？\n");
 
         if (wiz_level(me) < wiz_level(ob))
-                return notify_fail("“当啷”的一声，你踢到铁板。\n");
+                return notify_fail("“噹啷”的一聲，你踢到鐵板。\n");
 
         this_object()->kickout_player(me, ob);
         return 1;

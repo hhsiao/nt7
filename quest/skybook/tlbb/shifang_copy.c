@@ -1,22 +1,22 @@
 //tangfeng@SJ 2004
-//类似擂台的功能
+//類似擂臺的功能
 // /d/shaolin/shifang_copy.c
-// 复兴天下最后一战，没有死亡危险，但难度很大
+// 復興天下最後一戰，沒有死亡危險，但難度很大
 
 #include <ansi.h>
 inherit ROOM;
-#define QUESTDIR3 "quest/天龙八部/萧峰身世篇/"
-#define QUESTDIR5 "quest/天龙八部/复兴天下篇/"
+#define QUESTDIR3 "quest/天龍八部/蕭峰身世篇/"
+#define QUESTDIR5 "quest/天龍八部/復興天下篇/"
 
 void create()
 {
     set("short", BLU"石坊"NOR);
     set("long", 
-"一个巨大的牌坊横架在两片山壁之间，牌坊正上方刻着六个斗大的金字：\n"
-"\n\t\t\t『"HIY"天下第一名刹"NOR"』\n\n"+
-"字迹有些剥落，看上去年代颇为久远了。前方是一偏很大的广场，站满了前来\n"+
-"进香的香客和一些江湖上的豪士。象征着少林寺的山门殿，就矗立在广场的另\n"+
-"一侧。\n"
+"一個巨大的牌坊橫架在兩片山壁之間，牌坊正上方刻著六個斗大的金字：\n"
+"\n\t\t\t『"HIY"天下第一名剎"NOR"』\n\n"+
+"字跡有些剝落，看上去年代頗為久遠了。前方是一偏很大的廣場，站滿了前來\n"+
+"進香的香客和一些江湖上的豪士。象徵著少林寺的山門殿，就矗立在廣場的另\n"+
+"一側。\n"
     );
 
 	set("exits", ([
@@ -38,7 +38,7 @@ void init()
 	if (!userp(me)) return;
   if(!me->query(QUESTDIR3+"bad") || !me->query_temp(QUESTDIR5+"zhangxing")||me->query_temp(QUESTDIR5+"zhenfa")||ob->query("busy"))
   {
-   if(wizardp(me)) tell_object(me,HIR"测试。\n");
+   if(wizardp(me)) tell_object(me,HIR"測試。\n");
   	me->move("/d/shaolin/shifang");
     return;
   }
@@ -90,12 +90,12 @@ void check(object me)
 		remove_call_out("check");
 		if((ob=present("xiao feng",this_object())))
 		{
-	  	 message_vision(HIW"\n$N冷笑一声，一脸高傲的神态道：“有谁敢小看丐帮绝技。”\n"NOR, ob);
+	  	 message_vision(HIW"\n$N冷笑一聲，一臉高傲的神態道：“有誰敢小看丐幫絕技。”\n"NOR, ob);
        destruct(ob);
     }
 		if((ob=present("wuming laoseng",this_object())))
 		{
-	  	 message_vision(HIW"\n$N缓缓地道了声佛号。\n"NOR, ob);
+	  	 message_vision(HIW"\n$N緩緩地道了聲佛號。\n"NOR, ob);
        destruct(ob);
     }
     if(userp(me))
@@ -104,13 +104,13 @@ void check(object me)
     	{
        	me->remove_all_killer();   	
     		me->reincarnate();
-	  	  message_vision(HIW"\n突然一道神光笼罩着$N，$N的精气神竟然全部恢复了！\n"NOR, me);
+	  	  message_vision(HIW"\n突然一道神光籠罩著$N，$N的精氣神竟然全部恢復了！\n"NOR, me);
         me->move("/d/shaolin/shifang");
-    		tell_object(me,HIR"\n还是乖乖呆在少林潜修佛法算了！\n"NOR);
-    		message_vision("$N急急忙忙地来到了"+environment(me)->query("short")+"。\n", me);
+    		tell_object(me,HIR"\n還是乖乖呆在少林潛修佛法算了！\n"NOR);
+    		message_vision("$N急急忙忙地來到了"+environment(me)->query("short")+"。\n", me);
     	}
    	  me->delete_temp(QUESTDIR5+"zhenfa");
-      log_file("quest/TLBB", sprintf("%s(%s)复兴天下最后一战失败。经验：%d。\n", me->name(1),me->query("id"), me->query("combat_exp")) );                  
+      log_file("quest/TLBB", sprintf("%s(%s)復興天下最後一戰失敗。經驗：%d。\n", me->name(1),me->query("id"), me->query("combat_exp")) );                  
     }
    	remove_call_out("busy_pass");
     this_object()->delete("busy");
@@ -122,17 +122,17 @@ void check(object me)
 		  me->remove_all_killer(); 
 
     	me->reincarnate();
-	  	message_vision(HIW"\n突然一道神光笼罩着$N，$N的精气神竟然全部恢复了！\n\n"NOR, me);
+	  	message_vision(HIW"\n突然一道神光籠罩著$N，$N的精氣神竟然全部恢復了！\n\n"NOR, me);
 		me->move("/d/shaolin/shifang");
-		message_vision("$N急急忙忙地来到了"+environment(me)->query("short")+"。\n", me);
+		message_vision("$N急急忙忙地來到了"+environment(me)->query("short")+"。\n", me);
 		me->set_temp(QUESTDIR5+"zhenfa",1);
 		this_object()->delete("busy");
-		log_file("quest/TLBB", sprintf("%s(%s)复兴天下最后一战成功。经验：%d。\n", me->name(1),me->query("id"), me->query("combat_exp")) );                  
+		log_file("quest/TLBB", sprintf("%s(%s)復興天下最後一戰成功。經驗：%d。\n", me->name(1),me->query("id"), me->query("combat_exp")) );                  
     	return;
 	}
   call_out("check",1,me);
 }
 int valid_leave(object me, string dir)
 {
-   return notify_fail(HIR"你无法离开这里。\n"NOR);
+   return notify_fail(HIR"你無法離開這裡。\n"NOR);
 }

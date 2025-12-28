@@ -30,7 +30,7 @@ int main(object me, string arg)
 
                 me->start_more(color_filter(MAP_D->show_map(environment(me)))); 
                 return 1;
-                return notify_fail("格式：map here | rumor | view | all | <地点> | <珍闻>。\n");
+                return notify_fail("格式：map here | rumor | view | all | <地點> | <珍聞>。\n");
         }
 
         if (arg == "rumor")
@@ -41,50 +41,50 @@ int main(object me, string arg)
 
         if( !query("out_family", me) )
         {
-                write("你现在还没有从师傅那里领到地图册。\n");
+                write("你現在還沒有從師傅那裡領到地圖冊。\n");
                 return 1;
         }
 
-        // 查阅当前的环境
+        // 查閱當前的環境
         env = environment(me);
         name = env->short();
         if( !stringp(here=query("outdoors", env)) )
         {
-                write("只有在户外才有必要绘制地图。\n");
+                write("只有在戶外才有必要繪製地圖。\n");
                 return 1;
         }
 
         if (! stringp(name) || clonep(env))
         {
-                write("这里是一处神秘的地方，你无法判断它的方位。\n");
+                write("這裡是一處神秘的地方，你無法判斷它的方位。\n");
                 return 1;
         }
 
         if( query("map_all", me) )
         {
-                write("你已经获得了地图全集，没有必要再绘制地图了。\n");
+                write("你已經獲得了地圖全集，沒有必要再繪製地圖了。\n");
                 return 1;
         }
 
         if (me->is_busy())
         {
-                write("你现在正忙，没有时间绘制地图。\n");
+                write("你現在正忙，沒有時間繪製地圖。\n");
                 return 1;
         }
 
-        // 查阅已经绘制过的地图
+        // 查閱已經繪製過的地圖
         mapped=query("map/"+here, me);
         if (! arrayp(mapped)) mapped = ({ });
         if (member_array(name, mapped) != -1)
         {
-                write("你已经绘制过这附近的地图了，没有必要"
-                      "再重复了。\n");
+                write("你已經繪製過這附近的地圖了，沒有必要"
+                      "再重複了。\n");
                 return 1;
         }
 
         if (! MAP_D->been_known(here))
         {
-                write("你觉得这里没什么好画的。\n");
+                write("你覺得這裡沒什麼好畫的。\n");
                 return 1;
         }
 
@@ -94,13 +94,13 @@ int main(object me, string arg)
                 if (stringp(prompt))
                         write(prompt);
                 else
-                        write("你看了半天，也没有弄清楚附近的地形。\n");
+                        write("你看了半天，也沒有弄清楚附近的地形。\n");
                 return 1;
         }
 
         if( query("jing", me)<50 )
         {
-                write("你的精神不佳，无法集中全神贯注的绘制地图。\n");
+                write("你的精神不佳，無法集中全神貫注的繪製地圖。\n");
                 return 1;
         }
 
@@ -109,20 +109,20 @@ int main(object me, string arg)
 
         if ((lvl = me->query_skill("drawing", 1)) < 30)
         {
-                write("你在纸上涂抹了一会儿，连自己都看不出是什么东西。\n");
+                write("你在紙上塗抹了一會兒，連自己都看不出是什麼東西。\n");
                 return 1;
         }
 
-        message("vision", me->name() + "抬头看了看四周，埋头"
-                "仔仔细细的绘制着什么。\n", environment(me), ({ me }));
-        tell_object(me, "你精心的绘制了" + name + "附近的地形。\n");
+        message("vision", me->name() + "抬頭看了看四周，埋頭"
+                "仔仔細細的繪製著什麼。\n", environment(me), ({ me }));
+        tell_object(me, "你精心的繪製了" + name + "附近的地形。\n");
 
         mapped += ({ name });
         set("map/"+here, mapped, me);
 
         me->start_busy(1 + random(3));
 
-        // 计算奖励
+        // 計算獎勵
         if (lvl > 200)
                 lvl = (lvl - 200) / 4 + 150;
         else
@@ -138,15 +138,15 @@ int main(object me, string arg)
         if (pot >= pot_limit)
                 pot = pot_limit;
 
-        msg = "你获得了" + chinese_number(exp) + "点经验";
+        msg = "你獲得了" + chinese_number(exp) + "點經驗";
         if (pot > 0)
-                msg += "和" + chinese_number(pot) + "点潜能";
+                msg += "和" + chinese_number(pot) + "點潛能";
 
         if (score)
-                msg += "，通过体验，你累积了" + chinese_number(score) +
-                       "点江湖阅历";
+                msg += "，通過體驗，你累積了" + chinese_number(score) +
+                       "點江湖閱歷";
 
-        // 奖励生效
+        // 獎勵生效
         write(HIC + msg + "。\n" NOR);
         addn("combat_exp", exp, me);
         addn("potential", pot, me);
@@ -155,7 +155,7 @@ int main(object me, string arg)
         return 1;
 }
 
-// 查看已经绘制部分的地图
+// 查看已經繪製部分的地圖
 int map_view(object me, string arg)
 {
         mapping mapped;
@@ -170,44 +170,44 @@ int map_view(object me, string arg)
         if (file_size("/doc/map/" + arg) > 0 &&
             stringp(map = read_file("/doc/map/" + arg)))
         {
-                //map = MAP_D->make_color(map);   // 容易造成乱码
+                //map = MAP_D->make_color(map);   // 容易造成亂碼
                 me->start_more(color_filter(map));
                 return 1;
         }
 
         if( !query("out_family", me) )
         {
-                write("你还没有出门历练，开始绘制地图呢。\n");
+                write("你還沒有出門歷練，開始繪製地圖呢。\n");
                 return 1;
         }
 
         mapped=query("map", me);
         if( !query("map_all", me) && !mapp(mapped) )
         {
-                write("你还没有绘制任何一个地方的地图。\n");
+                write("你還沒有繪製任何一個地方的地圖。\n");
                 return 1;
         }
 
         if (me->is_busy())
         {
-                write("你现在正忙，没法查看地图。\n");
+                write("你現在正忙，沒法查看地圖。\n");
                 return 1;
         }
 
-        message_vision("$N拿出一本东西，哗啦哗啦的"
-                       "翻开看了起来。\n", me);
+        message_vision("$N拿出一本東西，嘩啦嘩啦的"
+                       "翻開看了起來。\n", me);
         me->start_busy(1);
 
-        // 察看是否阅读记载
+        // 察看是否閱讀記載
         if( mapp(rumor=query("rumor", me)) && 
             member_array(arg, keys(rumor)) != -1)
         {
-                write("你翻到地图册的后面，仔细阅读有关『" + arg +
-                      "』的记载。\n" WHT + rumor[arg]->query_detail(arg) + NOR);
+                write("你翻到地圖冊的後面，仔細閱讀有關『" + arg +
+                      "』的記載。\n" WHT + rumor[arg]->query_detail(arg) + NOR);
                 return 1;
         }
 
-        // 是否是察看本地地图？
+        // 是否是察看本地地圖？
         if( arg == "view" || query("map_all", me) )
         {
                 write(MAP_D->marked_map(environment(me)));
@@ -215,16 +215,16 @@ int map_view(object me, string arg)
                 return 1;
         }
 
-        // 判断是否是中文地图名字
+        // 判斷是否是中文地圖名字
         foreach (key in keys(mapped))
                 if (MAP_D->query_map_short(key) == arg)
                 {
-                        // 是中文名字，转换成英文ID
+                        // 是中文名字，轉換成英文ID
                         arg = key;
                         break;
                 }
 
-        // 查找这方面的地图
+        // 查找這方面的地圖
         if (arrayp(shorts = mapped[arg]))
         {
                 result = MAP_D->query_maps(arg);
@@ -237,22 +237,22 @@ int map_view(object me, string arg)
                 }
                 result = replace_string(result, "@R", WHT);
                 result = replace_string(result, "@N", NOR);
-                me->start_more(MAP_D->query_map_short(arg) + "的地图信息：\n" + result);
+                me->start_more(MAP_D->query_map_short(arg) + "的地圖信息：\n" + result);
                 me->start_busy(2);
                 return 1;
         }
 
         if (arg != "all")
         {
-                write("你的地图册中并没有有关 " + arg + " 的信息啊！\n");
+                write("你的地圖冊中並沒有有關 " + arg + " 的信息啊！\n");
                 return 1;
         }
 
         outdoors=query("outdoors", environment(me));
         if (stringp(outdoors))
-                result = "你现在身处" + MAP_D->query_map_short(outdoors) + "境内。\n";
+                result = "你現在身處" + MAP_D->query_map_short(outdoors) + "境內。\n";
 
-        result = "目前你已经绘制了以下这些地方的地图：\n";
+        result = "目前你已經繪製了以下這些地方的地圖：\n";
         foreach (key in keys(mapped))
                 result += MAP_D->query_map_short(key) + "("
                           HIY + key + NOR ")\n";
@@ -267,11 +267,11 @@ int map_rumor(object me, string arg)
 
         if( !mapp(rumor=query("rumor", me)) )
         {
-                write("你现在并没有记录任何传闻趣事。\n");
+                write("你現在並沒有記錄任何傳聞趣事。\n");
                 return 1;
         }
 
-        msg = "你目前记载了有关" + implode(keys(rumor), "、") + "的传闻。\n";
+        msg = "你目前記載了有關" + implode(keys(rumor), "、") + "的傳聞。\n";
         msg = sort_string(msg, 60);
         write(msg);
         return 1;
@@ -280,19 +280,19 @@ int map_rumor(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式 : map here | rumor | all | map | view | <地点> | <珍闻>
+指令格式 : map here | rumor | all | map | view | <地點> | <珍聞>
 
-如果你身上有了地图册，就可以使用这条命令绘制附近的地图。当然
-你必须是在户外，并且具备有一定的绘画技巧才可以。绘制地图可以
-增加你的经验、潜能并积累江湖阅历。
+如果你身上有了地圖冊，就可以使用這條命令繪製附近的地圖。當然
+你必須是在戶外，並且具備有一定的繪畫技巧才可以。繪製地圖可以
+增加你的經驗、潛能並積累江湖閱歷。
 
-使用 map all 可以查看你现在已经绘制了哪些地方的地图， 而如果
-指名了具体的地方，则可以查看该地点的地图绘制情况。
+使用 map all 可以查看你現在已經繪製了哪些地方的地圖， 而如果
+指名了具體的地方，則可以查看該地點的地圖繪製情況。
 
-如果你在户外，则可以使用 map view 命令查看你所在的地点。
+如果你在戶外，則可以使用 map view 命令查看你所在的地點。
 
-map rumor 可以查阅你目前记录的各地珍闻，使用 map <珍闻> 则可
-以查看具体内容。
+map rumor 可以查閱你目前記錄的各地珍聞，使用 map <珍聞> 則可
+以查看具體內容。
 HELP );
     return 1;
 }

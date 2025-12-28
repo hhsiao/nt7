@@ -7,9 +7,9 @@ inherit F_DEALER;
 
 void create()
 {
-        set_name("龙铨", ({ "long quan", "long" }));
-        set("title","金牛武馆教习");
-        set("long", "龙老爷子在武馆也干了好多年头了，仍老当益壮。\n");
+        set_name("龍銓", ({ "long quan", "long" }));
+        set("title","金牛武館教習");
+        set("long", "龍老爺子在武館也幹了好多年頭了，仍老當益壯。\n");
         set("gender", "男性");
         set("age", 60);
 

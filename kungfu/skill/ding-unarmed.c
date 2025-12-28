@@ -1,10 +1,10 @@
-// ding-unarmed.c 一横一勾拳
+// ding-unarmed.c 一橫一勾拳
 
 inherit SKILL;
 int is_pbsk() { return 1; }
 
 string *action_msg = ({
-        "$N左手轻轻一抹，向$n的$l拍去",
+        "$N左手輕輕一抹，向$n的$l拍去",
         "$N右手一提，插向$n的$l",
 });
 
@@ -23,16 +23,16 @@ mapping query_action(object me, object weapon)
                 "attack": 30 + random(10), 
                 "dodge" : 30 + random(10), 
                 "parry" : 30 + random(10), 
-                "damage_type" : random(2)?"内伤":"瘀伤", 
+                "damage_type" : random(2)?"內傷":"瘀傷", 
         ]); 
 }
 
 int practice_skill(object me)
 {
         if( query("qi", me)<40 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
         if( query("neili", me)<40 )
-                return notify_fail("你的内力不够练一横一勾拳。\n");
+                return notify_fail("你的內力不夠練一橫一勾拳。\n");
         me->receive_damage("qi", 30);
         addn("neili", -30, me);
         return 1;

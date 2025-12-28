@@ -1,12 +1,12 @@
 inherit NPC;
 void create()
 {
-        set_name("叶开", ({ "ye kai" ,"ye" ,"kai"}) );
+        set_name("葉開", ({ "ye kai" ,"ye" ,"kai"}) );
         set("gender", "男性");
         set("age", 24);
-        set("long","一个眼睛大大的青年人，手指细长，皮肤白腻。\n"); 
-        set("title", "风云一刀第三代人杰");
-        set("nickname", "不带刀的人");
+        set("long","一個眼睛大大的青年人，手指細長，皮膚白膩。\n"); 
+        set("title", "風雲一刀第三代人傑");
+        set("nickname", "不帶刀的人");
 	set("attitude", "friendly");
         set("combat_exp", 10000000);
         set("eff_gin", 100000);
@@ -31,10 +31,10 @@ void create()
 	set("score" , 200000);
         set("chat_chance", 3);
         set("chat_msg", ({
-                "叶开叹口气，呆呆地望着鞋底的大洞。\n",
-		"叶开道：我从来都是救人的，从不害人。\n"
+                "葉開嘆口氣，呆呆地望著鞋底的大洞。\n",
+		"葉開道：我從來都是救人的，從不害人。\n"
         }) );
-        create_family("风云一刀", 3, "人杰");
+        create_family("風雲一刀", 3, "人傑");
         set_skill("literate", 200);
         set_skill("dodge", 200);
         set_skill("force", 40);
@@ -67,7 +67,7 @@ void die()
         if(owner=me->query("possessed")) {
                 me = owner;
         } 
-        me->set_temp("wanma/叶开_ma",1);
+        me->set_temp("wanma/葉開_ma",1);
         ::die();
 }  
 void heart_beat()

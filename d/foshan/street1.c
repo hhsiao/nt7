@@ -2,9 +2,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "西镇街");
+        set("short", "西鎮街");
         set("long", @LONG
-佛山镇街道平整。西面是镇西门，北面有一座北帝庙，建构宏伟，
+佛山鎮街道平整。西面是鎮西門，北面有一座北帝廟，建構宏偉，
 好大一座神祠。
 LONG );
         set("objects", ([

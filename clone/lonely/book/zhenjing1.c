@@ -3,7 +3,7 @@ inherit ITEM;
 
 void create()
 {
-        set_name(WHT "「九阴真经」上册" NOR, ({ "zhenjing shangce", "shangce", "zhenjing", "jing"}));
+        set_name(WHT "「九陰真經」上冊" NOR, ({ "zhenjing shangce", "shangce", "zhenjing", "jing"}));
         set_weight(500);
         if (clonep())
                 destruct(this_object());
@@ -11,10 +11,10 @@ void create()
                 set("unit", "本");
                 set("material", "paper");
                 set("no_sell", 1);
-                set("long", WHT "\n这是一本用薄纸写成的书，封皮上写有「九阴真经」上\n"
-                            "册六字。书皮泛黄，看来已经保存很久了。真经中记载\n"
-                            "有大伏魔拳、易筋锻骨和蛇行狸翻等绝技，你可以试着\n"
-                            "读读(read)看。\n\n" NOR, );
+                set("long", WHT "\n這是一本用薄紙寫成的書，封皮上寫有「九陰真經」上\n"
+                            "冊六字。書皮泛黃，看來已經保存很久了。真經中記載\n"
+                            "有大伏魔拳、易筋鍛骨和蛇行狸翻等絕技，你可以試著\n"
+                            "讀讀(read)看。\n\n" NOR, );
         }
 }
 
@@ -34,64 +34,64 @@ int do_du(string arg)
 
         if (! arg)
         {
-                write("研读九阴真经指令格式：read <技能> from <九阴真经>\n");
+                write("研讀九陰真經指令格式：read <技能> from <九陰真經>\n");
                 return 1;
         }
 
         if (sscanf(arg, "%s from %s", skill, book) != 2)
         {
-                write("研读九阴真经指令格式：read <技能> from <九阴真经>\n");
+                write("研讀九陰真經指令格式：read <技能> from <九陰真經>\n");
                 return 1;
         }
 
         if (me->is_busy())
         {
-                write("你现在正忙着呢。\n");
+                write("你現在正忙著呢。\n");
                 return 1;
         }
 
         if (me->is_fighting())
         {
-                write("你无法在战斗中专心下来研读新知！\n");
+                write("你無法在戰鬥中專心下來研讀新知！\n");
                 return 1;
         }
 
         if( query("no_fight", where )
             && query("doing", me) != "scheme" )
         {
-                write("你无法在这里静下心来研读真经。\n");
+                write("你無法在這裡靜下心來研讀真經。\n");
                 return 1;
         }
 
         if (! me->query_skill("literate", 1))
         {
-                write("你是个文盲，先学点文化(literate)吧。\n");
+                write("你是個文盲，先學點文化(literate)吧。\n");
                 return 1;
         }
 
         if (! id(book))
         {
-                write("这里没有这本书。\n");
+                write("這裡沒有這本書。\n");
                 return 1;
         }
 
-        if (skill != "yijin-duangu" && skill != "易筋锻骨"
+        if (skill != "yijin-duangu" && skill != "易筋鍛骨"
            && skill != "shexing-lifan" && skill != "蛇行狸翻"
            && skill != "dafumo-quan" && skill != "大伏魔拳")
         {
-                write("真经上并没有记载你打算研究的内容。\n" NOR);
+                write("真經上並沒有記載你打算研究的內容。\n" NOR);
                 return 1;
         }
 
         if (me->query_skill("sanscrit", 1) < 200)
         {
-                write("你的梵文水平太低，无法看懂真经里所记载的内容。\n");        
+                write("你的梵文水平太低，無法看懂真經裡所記載的內容。\n");        
                 return 1;
         }
 
         if( query("combat_exp", me) < 800000 )
         {
-                write("你的实战经验不足，再怎么读也没用。\n");
+                write("你的實戰經驗不足，再怎麼讀也沒用。\n");
                 return 1;
         }
 
@@ -99,11 +99,11 @@ int do_du(string arg)
             || query("qi", me)<100
             || query("neili", me)<200 )
         {
-                write("你现在过于疲倦，无法专心下来研读新知。\n");
+                write("你現在過於疲倦，無法專心下來研讀新知。\n");
                 return 1;
         }
 
-        if (skill == "yijin-duangu" || skill == "易筋锻骨")
+        if (skill == "yijin-duangu" || skill == "易筋鍛骨")
                 skill = "yijin-duangu";
         else
 
@@ -119,7 +119,7 @@ int do_du(string arg)
 
         if (! me->can_improve_skill(skill))
                {
-                       write("你的实战经验不足，再怎么读也没用。\n");
+                       write("你的實戰經驗不足，再怎麼讀也沒用。\n");
                        return 1;
                }
 
@@ -127,11 +127,11 @@ int do_du(string arg)
 
         if (lv >= 180)
         {
-                write("你研读了一会儿，但是发现上面所说的对你而言都太浅了。\n");
+                write("你研讀了一會兒，但是發現上面所說的對你而言都太淺了。\n");
                 return 1;
         }
 
-        // 天赋聪颖增加研读速度
+        // 天賦聰穎增加研讀速度
         if( query("special_skill/clever", me) )
                 me->improve_skill(skill,query("int", me)+5);
         else
@@ -140,8 +140,8 @@ int do_du(string arg)
         me->receive_damage("qi", random(50) + 30);
         me->receive_damage("jing", random(50) + 30);
         addn("neili", -lv, me);
-        message("vision", me->name() + "正专心地研读九阴真经。\n",
+        message("vision", me->name() + "正專心地研讀九陰真經。\n",
                           environment(me), me);
-        write("你仔细研读九阴真经，颇有心得。\n");
+        write("你仔細研讀九陰真經，頗有心得。\n");
         return 1;
 }

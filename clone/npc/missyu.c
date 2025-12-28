@@ -26,18 +26,18 @@ int restore()
 
 void create()
 {
-        set_name("于小姐", ({ "miss yu", "miss", "yu" }));
+        set_name("於小姐", ({ "miss yu", "miss", "yu" }));
         set("gender", "女性");
         set("age", 20);
-        set("title", HIG "武林大会" NOR);
-        set("nickname", HIY "筹备处秘书" NOR);
+        set("title", HIG "武林大會" NOR);
+        set("nickname", HIY "籌備處秘書" NOR);
         set("str", 25);
         set("con", 25);
         set("spi", 25);
         set("dex", 25);
         set("int", 25);
         set("per", 30);
-        set("long", "她是一个很精明能干的人。\n");
+        set("long", "她是一個很精明能幹的人。\n");
         set("combat_exp", 1000000);
         set("class", "fighter");
         set("attitude", "herosim");
@@ -47,7 +47,7 @@ void create()
         set("giftwx", 300);
 
         set("inquiry", ([
-                "彩票" : "彩票十两白银一张。",
+                "彩票" : "彩票十兩白銀一張。",
         ]));
 
         restore();
@@ -94,7 +94,7 @@ int do_start()
         int times;
 
         if (query("start_baoming"))
-                return notify_fail(HIY "报名进程已经开放了。\n" NOR);
+                return notify_fail(HIY "報名進程已經開放了。\n" NOR);
 
         set("start_baoming", 1);
         set("y_start", 1);
@@ -105,10 +105,10 @@ int do_start()
         set("bisai_times", times);
         set("wizard",query("id", me));
         save();
-        tell_object(me, HIY "报名进程启动成功，现在开放报名。\n" NOR);
-        message("vision", HIW "【武林盛会】" + this_object()->name() +
-                "：好消息！华夏第" + chinese_number(times) + "届武林大会即将召开，" +
-                "各路武林高手踊跃报名，竞夺武林五绝！\n" NOR,
+        tell_object(me, HIY "報名進程啟動成功，現在開放報名。\n" NOR);
+        message("vision", HIW "【武林盛會】" + this_object()->name() +
+                "：好消息！華夏第" + chinese_number(times) + "屆武林大會即將召開，" +
+                "各路武林高手踴躍報名，競奪武林五絕！\n" NOR,
                  all_interactive());
         return 1;
 }
@@ -121,9 +121,9 @@ int do_end()
         set("caipiao", 1);
         set("cp_time", time());
         save();
-        message("vision", HIW "【武林盛会】" + this_object()->name() +
-                "：华夏第" + chinese_number(n) + "届武林大会报名已" +
-                "经结束，有奖竞猜活动正式开始！发财良机，不容错失！\n" NOR,
+        message("vision", HIW "【武林盛會】" + this_object()->name() +
+                "：華夏第" + chinese_number(n) + "屆武林大會報名已" +
+                "經結束，有獎競猜活動正式開始！發財良機，不容錯失！\n" NOR,
                  all_interactive());
         return 1;       
 }
@@ -138,8 +138,8 @@ int do_stopcai()
         delete("cp_time");
         delete("c_time");
         save();
-        message("vision", HIW "【武林盛会】" + this_object()->name() +
-                "：华夏第" + chinese_number(n) + "届武林大会正式召开。\n" NOR,
+        message("vision", HIW "【武林盛會】" + this_object()->name() +
+                "：華夏第" + chinese_number(n) + "屆武林大會正式召開。\n" NOR,
                  all_interactive());
         return 1;
 }
@@ -156,24 +156,24 @@ int do_finish()
         string *par, msg = "";
 
         if (! query("y_start"))
-               return notify_fail(HIY "比武大会进程并没有启动。\n" NOR);
+               return notify_fail(HIY "比武大會進程並沒有啟動。\n" NOR);
 
         if( query("wizard") != query("id", this_player()) )
-               return notify_fail(HIY "只能由主持比武大会的巫师才能结束。\n" NOR);
+               return notify_fail(HIY "只能由主持比武大會的巫師才能結束。\n" NOR);
 
         winner=query("winner", this_player());
         if (! mapp(winner))
-              return notify_fail(HIY "你还没有名次数据，不能结束！\n" NOR);
+              return notify_fail(HIY "你還沒有名次數據，不能結束！\n" NOR);
 
         tell_object(this_player(), HIY "第" + chinese_number(n) +
-                    "届比赛宣布结束。\n" NOR);
+                    "屆比賽宣佈結束。\n" NOR);
 
         caipiao = query("xuancp");
         if (! mapp(caipiao))
         {
-              tell_object(this_player(), HIY "没有人参加竞猜活动。\n" NOR);
-              message("vision", HIW "【武林盛会】" + this_object()->name() +
-                      "：本届比武大会没有人参加彩票竞猜活动。\n" NOR,
+              tell_object(this_player(), HIY "沒有人參加競猜活動。\n" NOR);
+              message("vision", HIW "【武林盛會】" + this_object()->name() +
+                      "：本屆比武大會沒有人參加彩票競猜活動。\n" NOR,
                       all_interactive());
 
               over();
@@ -220,19 +220,19 @@ int do_finish()
             }
         }
 
-        message("vision", HIW "【武林盛会】" + this_object()->name() +
-                "：华夏第" + chinese_number(n) + "届武林大会共收到有效彩票" +
-                chinese_number(sizeof(player)) + "张。\n" NOR, all_interactive());
-        message("vision", HIW "【武林盛会】" + this_object()->name() +
-                "：其中，有序玩法" + chinese_number(yx) + "张，无序玩法" +
-                chinese_number(wx) + "张。\n" NOR, all_interactive());
+        message("vision", HIW "【武林盛會】" + this_object()->name() +
+                "：華夏第" + chinese_number(n) + "屆武林大會共收到有效彩票" +
+                chinese_number(sizeof(player)) + "張。\n" NOR, all_interactive());
+        message("vision", HIW "【武林盛會】" + this_object()->name() +
+                "：其中，有序玩法" + chinese_number(yx) + "張，無序玩法" +
+                chinese_number(wx) + "張。\n" NOR, all_interactive());
 
         if (sizeof(cpyxwin) == 0 && sizeof(cpwxwin) == 0)
         {
-                message("vision", HIW "【武林盛会】" + this_object()->name() +
-                "：本届彩票竞猜无人中奖，奖池金共" +
+                message("vision", HIW "【武林盛會】" + this_object()->name() +
+                "：本屆彩票競猜無人中獎，獎池金共" +
                 chinese_number(query("giftyx") + query("giftwx")) +
-                "两黄金均滚入下届。\n" NOR, all_interactive());
+                "兩黃金均滾入下屆。\n" NOR, all_interactive());
                 addn("giftyx", 300);
                 if (query("giftyx") > 2000)   set("giftyx", 2000);
                 addn("giftwx", 300);
@@ -243,19 +243,19 @@ int do_finish()
 
         if (sizeof(cpyxwin) == 0 && sizeof(cpwxwin) != 0)
         {
-                message("vision", HIW "【武林盛会】" + this_object()->name() +
-                "：有序玩法无人中奖，奖池金" + chinese_number(query("giftyx")) +
-                "两黄金滚入下届。\n" NOR, all_interactive());
+                message("vision", HIW "【武林盛會】" + this_object()->name() +
+                "：有序玩法無人中獎，獎池金" + chinese_number(query("giftyx")) +
+                "兩黃金滾入下屆。\n" NOR, all_interactive());
                 addn("giftyx", 300);
                 if (query("giftyx") > 2000)   set("giftyx", 2000);
 
                 sp = query("giftwx") / sizeof(cpwxwin);
                 if (sp < 1)  sp = 1;
 
-                message("vision", HIW "【武林盛会】" + this_object()->name() +
-                "：无序玩法共有" + chinese_number(sizeof(cpwxwin)) +
-                "人中奖，单注奖金" + chinese_number(sp) + "两黄金，已存" +
-                "入中奖人帐号。\n" NOR, all_interactive());
+                message("vision", HIW "【武林盛會】" + this_object()->name() +
+                "：無序玩法共有" + chinese_number(sizeof(cpwxwin)) +
+                "人中獎，單注獎金" + chinese_number(sp) + "兩黃金，已存" +
+                "入中獎人帳號。\n" NOR, all_interactive());
 
                 for (i = 0; i < sizeof(cpwxwin); i++)
                 {
@@ -263,9 +263,9 @@ int do_finish()
                       if (objectp(ob))
                       {
                           addn("balance", sp*10000, ob);
-                          command("tell"+query("id", ob)+"恭喜中奖！"+
-                                  "您的奖金" + chinese_number(sp) + "两黄金已存入"
-                                  "您的帐号了。");
+                          command("tell"+query("id", ob)+"恭喜中獎！"+
+                                  "您的獎金" + chinese_number(sp) + "兩黃金已存入"
+                                  "您的帳號了。");
                       }
                 }
                 over();
@@ -274,9 +274,9 @@ int do_finish()
 
         if (sizeof(cpyxwin) != 0 && sizeof(cpwxwin) == 0)
         {
-                message("vision", HIW "【武林盛会】" + this_object()->name() +
-                "：无序玩法无人中奖，奖池金" + chinese_number(query("giftwx")) +
-                "两黄金滚入下届。\n" NOR, all_interactive());
+                message("vision", HIW "【武林盛會】" + this_object()->name() +
+                "：無序玩法無人中獎，獎池金" + chinese_number(query("giftwx")) +
+                "兩黃金滾入下屆。\n" NOR, all_interactive());
                 addn("giftwx", 300);
                 if (query("giftwx") > 2000)   set("giftwx", 2000);
 
@@ -289,19 +289,19 @@ int do_finish()
                       if (objectp(ob))
                       {
                            addn("balance", sp*10000, ob);
-                           command("tell"+query("id", ob)+"恭喜中奖！"+
-                                   "您的奖金" + chinese_number(sp) + "两黄金" +
-                                   "已存入您的帐号了。");
+                           command("tell"+query("id", ob)+"恭喜中獎！"+
+                                   "您的獎金" + chinese_number(sp) + "兩黃金" +
+                                   "已存入您的帳號了。");
                            msg+=query("name", ob)+"("+query("id", ob)+")"+",";
                       }  else   msg += cpyxwin[i] + ",";
                 }
 
-                message("vision", HIW "【武林盛会】" + this_object()->name() +
-                        "：有序玩法中奖人名单：" + msg[0..strlen(msg)-2] + "。\n" NOR,
+                message("vision", HIW "【武林盛會】" + this_object()->name() +
+                        "：有序玩法中獎人名單：" + msg[0..strlen(msg)-2] + "。\n" NOR,
                         all_interactive());
-                message("vision", HIW "【武林盛会】" + this_object()->name() +
-                        "：单注奖金" + chinese_number(sp) + "两黄金，已存入中奖人" +
-                        "帐号，恭喜！\n" NOR, all_interactive());
+                message("vision", HIW "【武林盛會】" + this_object()->name() +
+                        "：單注獎金" + chinese_number(sp) + "兩黃金，已存入中獎人" +
+                        "帳號，恭喜！\n" NOR, all_interactive());
                 over();
                 return 1;
         }
@@ -309,10 +309,10 @@ int do_finish()
         sp = query("giftwx") / sizeof(cpwxwin);
         if (sp < 1)  sp = 1;
 
-        message("vision", HIW "【武林盛会】" + this_object()->name() +
-                "：无序玩法共有" + chinese_number(sizeof(cpwxwin)) +
-                "人中奖，单注奖金" + chinese_number(sp) + "两黄金，已存" +
-                "入中奖人帐号。\n" NOR, all_interactive());
+        message("vision", HIW "【武林盛會】" + this_object()->name() +
+                "：無序玩法共有" + chinese_number(sizeof(cpwxwin)) +
+                "人中獎，單注獎金" + chinese_number(sp) + "兩黃金，已存" +
+                "入中獎人帳號。\n" NOR, all_interactive());
 
         for (i = 0; i < sizeof(cpwxwin); i++)
         {
@@ -320,9 +320,9 @@ int do_finish()
               if (objectp(ob))
               {
                    addn("balance", sp*10000, ob);
-                   command("tell"+query("id", ob)+"恭喜中奖！"+
-                           "您的奖金" + chinese_number(sp) + "两黄金" +
-                           "已存入您的帐号了。");
+                   command("tell"+query("id", ob)+"恭喜中獎！"+
+                           "您的獎金" + chinese_number(sp) + "兩黃金" +
+                           "已存入您的帳號了。");
               }
         }
 
@@ -335,19 +335,19 @@ int do_finish()
               if (objectp(ob))
               {
                     addn("balance", sp*10000, ob);
-                    command("tell"+query("id", ob)+"恭喜中奖！"+
-                            "您的奖金" + chinese_number(sp) + "两黄金" +
-                            "已存入您的帐号了。");
+                    command("tell"+query("id", ob)+"恭喜中獎！"+
+                            "您的獎金" + chinese_number(sp) + "兩黃金" +
+                            "已存入您的帳號了。");
                     msg+=query("name", ob)+"("+query("id", ob)+")"+",";
               }  else   msg += cpyxwin[i] + ",";
         }
 
-        message("vision", HIW "【武林盛会】" + this_object()->name() +
-                "：有序玩法中奖人名单：" + msg[0..strlen(msg)-2] + "。\n" NOR,
+        message("vision", HIW "【武林盛會】" + this_object()->name() +
+                "：有序玩法中獎人名單：" + msg[0..strlen(msg)-2] + "。\n" NOR,
                 all_interactive());
-        message("vision", HIW "【武林盛会】" + this_object()->name() +
-                "：单注奖金" + chinese_number(sp) + "两黄金，已存入中奖人" +
-                "帐号，恭喜！\n" NOR, all_interactive());
+        message("vision", HIW "【武林盛會】" + this_object()->name() +
+                "：單注獎金" + chinese_number(sp) + "兩黃金，已存入中獎人" +
+                "帳號，恭喜！\n" NOR, all_interactive());
         over();
         return 1;
 }
@@ -360,31 +360,31 @@ int do_baoming(string arg)
         mapping baoming_list;
 
         if( query("combat_exp", me)<500000 )
-             return notify_fail("于小姐白了你一眼：就你这两下子，去搬个凳子坐在擂台下看看算了。\n");
+             return notify_fail("於小姐白了你一眼：就你這兩下子，去搬個凳子坐在擂臺下看看算了。\n");
 
         if (! query("start_baoming"))
         {
              if (query("caipiao"))
              {
-                   command("say 这位" + RANK_D->query_respect(me) +
-                           "你来晚了，报名时间已过，不如买张彩票玩玩吧。");
+                   command("say 這位" + RANK_D->query_respect(me) +
+                           "你來晚了，報名時間已過，不如買張彩票玩玩吧。");
                    return 1;
              }
              if (query("caipiao_end"))
              {
-                   command("say 比武大会已经开始，你只有等下次再来了。");
+                   command("say 比武大會已經開始，你只有等下次再來了。");
                    return 1;
              }
-             command("say 这位" + RANK_D->query_respect(me) +
-                     "别着急呀，还没有到武林大会召开的时间呢。");
+             command("say 這位" + RANK_D->query_respect(me) +
+                     "彆著急呀，還沒有到武林大會召開的時間呢。");
              return 1;
         }
 
         if (! arg || sscanf(arg, "%d %d", mca, mcb) != 2)
         {
-             msg = "指令格式：baoming <欲参赛的名次一> <欲参赛的名次二>\n";
-             msg += "说明：每个ID可以参加两个名次的角逐。\n例如：你想参加";
-             msg += "第一名和第三名的比赛，则打入 baoming 1 3\n";
+             msg = "指令格式：baoming <欲參賽的名次一> <欲參賽的名次二>\n";
+             msg += "說明：每個ID可以參加兩個名次的角逐。\n例如：你想參加";
+             msg += "第一名和第三名的比賽，則打入 baoming 1 3\n";
              me->start_more(msg);
              return 1;
         }
@@ -392,15 +392,15 @@ int do_baoming(string arg)
         if (mca < 1 || mca > 5 || mcb < 1 || mcb > 5)
         {
              command("?"+query("id", me));
-             command("say 你到底要参加第几名的比赛呀？");
+             command("say 你到底要參加第幾名的比賽呀？");
              return 1;
         }
 
         if (query("baoming") &&
             member_array(query("id", me),keys(query("baoming"))) != -1 )
         {
-             command("say 这位" + RANK_D->query_respect(me) +
-                     "，你已经报过名了，快去准备准备吧。");
+             command("say 這位" + RANK_D->query_respect(me) +
+                     "，你已經報過名了，快去準備準備吧。");
              return 1;
         }
 
@@ -410,8 +410,8 @@ int do_baoming(string arg)
         baoming_list+=([query("id", me):({mca,mcb,ipn})]);
         set("baoming", baoming_list);
         save();
-        tell_object(me, HIY "您报名参加第" + chinese_number(mca) +
-                    "名和第" + chinese_number(mcb) + "名的比赛，祝你成功！\n"NOR);
+        tell_object(me, HIY "您報名參加第" + chinese_number(mca) +
+                    "名和第" + chinese_number(mcb) + "名的比賽，祝你成功！\n"NOR);
         return 1;
 }
 
@@ -434,37 +434,37 @@ int accept_object(object me, object ob)
                          {
                               if (bm[xs[i]][2] == query_ip_number(me))
                               {
-                                   tell_object(me, "于小姐对你道：你的IP" +
-                                       "有人参加比赛，你不能参与竞猜。\n");
+                                   tell_object(me, "於小姐對你道：你的IP" +
+                                       "有人參加比賽，你不能參與競猜。\n");
                                    return 0;
                               }
                          }
                          piao = new(__DIR__"obj/piao");
                          set("baoming", query("baoming"), piao);
                          piao->move(me);
-                         message_vision("于小姐撕下一张彩票递给$N。\n", me);
+                         message_vision("於小姐撕下一張彩票遞給$N。\n", me);
                          destruct(ob);
                          return 1;
                    } else
                    {
-                         command("say 才给这么点钱？你也太穷酸了吧。");
+                         command("say 才給這麼點錢？你也太窮酸了吧。");
                          return 0;
                    }
               }
 
               if (query("start_baoming"))
               {
-                   command("say 现在正在报名中，等报名结束才能卖彩票。");
+                   command("say 現在正在報名中，等報名結束才能賣彩票。");
                    return 0;
               }
 
               if (query("caipiao_end"))
               {
-                   command("say 比武大会已经开始了，你等下次吧。");
+                   command("say 比武大會已經開始了，你等下次吧。");
                    return 0;
               }
 
-              command("say 现在不出售彩票，等比武大会开始报完名后再来买吧。");
+              command("say 現在不出售彩票，等比武大會開始報完名後再來買吧。");
               return 0;
         }
 
@@ -472,22 +472,22 @@ int accept_object(object me, object ob)
         {
               if( !query("done", ob) )
               {
-                    command("say 这张彩票什么也没填，填好了再给我吧。");
+                    command("say 這張彩票什麼也沒填，填好了再給我吧。");
                     return 0;
               }
 
               if (query("caipiao_end"))
               {
-                    command("say 比武大会已经开始，你这张彩票作废了。");
-                    message_vision("$N接过$n的彩票几下撕成了碎片。\n", this_object(), me);
+                    command("say 比武大會已經開始，你這張彩票作廢了。");
+                    message_vision("$N接過$n的彩票幾下撕成了碎片。\n", this_object(), me);
                     destruct(ob);
                     return 1;
               }
 
               if (! query("caipiao"))
               {
-                    command("say 你这张彩票已经过期作废了。");
-                    message_vision("$N接过$n的彩票几下撕成了碎片。\n", this_object(), me);
+                    command("say 你這張彩票已經過期作廢了。");
+                    message_vision("$N接過$n的彩票幾下撕成了碎片。\n", this_object(), me);
                     destruct(ob);
                     return 1;
               }
@@ -498,8 +498,8 @@ int accept_object(object me, object ob)
               {
                    if (bm[xs[i]][2] == query_ip_number(me))
                    {
-                        tell_object(me, "于小姐对你道：你的IP" +
-                                    "有人参加比赛，你不能参与竞猜。\n");
+                        tell_object(me, "於小姐對你道：你的IP" +
+                                    "有人參加比賽，你不能參與競猜。\n");
                         return 0;
                    }
               }
@@ -510,7 +510,7 @@ int accept_object(object me, object ob)
                    cai = query("xuancp");
                    if( member_array(query("id", me),keys(cai)) != -1 )
                    {
-                         tell_object(me, "你已经投过注了。\n");
+                         tell_object(me, "你已經投過注了。\n");
                          return 0;
                    }
               }
@@ -518,7 +518,7 @@ int accept_object(object me, object ob)
               set("xuancp", cai);
               save();
               destruct(ob);
-              command("say 祝你好运！");
+              command("say 祝你好運！");
               return 1;
         }
         return 0;
@@ -532,12 +532,12 @@ int do_chakan()
 
         bm = query("baoming");
         if (! mapp(bm))
-             return notify_fail(HIY "现在没有人报名。\n" NOR);
+             return notify_fail(HIY "現在沒有人報名。\n" NOR);
 
         rs = keys(bm);
         for (i = 1; i <= 5; i++)
         {
-             msg += "参加第" + chinese_number(i) + "名比赛的有：\n";
+             msg += "參加第" + chinese_number(i) + "名比賽的有：\n";
              for (j = 0; j < sizeof(rs); j++)
              {
                   if (bm[rs[j]][0] == i || bm[rs[j]][1] == i)
@@ -552,12 +552,12 @@ int do_chakan()
 int over()
 {
         int n = query("bisai_times");
-        message("vision", HIW "【武林盛会】" + this_object()->name() +
-                "：下届有序玩法奖池金为：" + chinese_number(query("giftyx")) +
-                "两黄金；无序玩法奖池金为：" + chinese_number(query("giftwx")) +
-                "两黄金。\n" NOR, all_interactive());
-        message("vision", HIW "【武林盛会】" + this_object()->name() +
-                "：热烈祝贺华夏第" + chinese_number(n) + "届武林大会圆满结束"
+        message("vision", HIW "【武林盛會】" + this_object()->name() +
+                "：下屆有序玩法獎池金為：" + chinese_number(query("giftyx")) +
+                "兩黃金；無序玩法獎池金為：" + chinese_number(query("giftwx")) +
+                "兩黃金。\n" NOR, all_interactive());
+        message("vision", HIW "【武林盛會】" + this_object()->name() +
+                "：熱烈祝賀華夏第" + chinese_number(n) + "屆武林大會圓滿結束"
                 "。\n" NOR, all_interactive());
         set("caipiao", 0);
         set("y_start", 0);
@@ -582,9 +582,9 @@ void check_time()
               {
                     if (query("bm_time") && (time() - query("bm_time") < 82800))
                     {
-                        message("vision", HIW "【武林盛会】" + this_object()->name() +
-                        "：华夏第" + chinese_number(n) + "届武林大会即将召开，" +
-                        "各路武林高手已开始踊跃报名，竞夺武林五绝！\n" NOR,
+                        message("vision", HIW "【武林盛會】" + this_object()->name() +
+                        "：華夏第" + chinese_number(n) + "屆武林大會即將召開，" +
+                        "各路武林高手已開始踴躍報名，競奪武林五絕！\n" NOR,
                         all_interactive());
                     }  else
                     if (query("bm_time") && (time() - query("bm_time") >= 82800) &&
@@ -594,11 +594,11 @@ void check_time()
                         if (tm >= 300)  tm /= 60;
                         else tm = 5;
 
-                        message("vision", HIW "【武林盛会】" +
+                        message("vision", HIW "【武林盛會】" +
                                 this_object()->name() + "：距第" +
-                                chinese_number(n) + "届武林大会报" +
-                                "名结束时间还剩" + chinese_number(tm) +
-                                "分钟！\n" NOR, all_interactive());
+                                chinese_number(n) + "屆武林大會報" +
+                                "名結束時間還剩" + chinese_number(tm) +
+                                "分鐘！\n" NOR, all_interactive());
                     }  else   do_end();
 
                     set("c_time", time());
@@ -611,16 +611,16 @@ void check_time()
                     if (query("cp_time") && (time() - query("cp_time") < 5400))
                     {
                         if (random(3) > 0)
-                            message("vision", HIW "【武林盛会】" + this_object()->name() +
-                            "：华夏第" + chinese_number(n) + "届武林大会报名已" +
-                            "经结束，有奖竞猜活动正在举行！发财良机，不容错失！\n" NOR,
+                            message("vision", HIW "【武林盛會】" + this_object()->name() +
+                            "：華夏第" + chinese_number(n) + "屆武林大會報名已" +
+                            "經結束，有獎競猜活動正在舉行！發財良機，不容錯失！\n" NOR,
                             all_interactive());
                         else
-                            message("vision", HIW "【武林盛会】" + this_object()->name() +
-                                    "：本届武林大会奖池金额为：有序玩法" +
+                            message("vision", HIW "【武林盛會】" + this_object()->name() +
+                                    "：本屆武林大會獎池金額為：有序玩法" +
                                     chinese_number(query("giftyx")) +
-                                    "两黄金；无序玩法" + chinese_number(query("giftyx")) +
-                                    "两黄金。\n" NOR, all_interactive());
+                                    "兩黃金；無序玩法" + chinese_number(query("giftyx")) +
+                                    "兩黃金。\n" NOR, all_interactive());
                     }  else
                     if (query("cp_time") && (time() - query("cp_time") >= 5400) &&
                        (time() - query("cp_time") < 7200))
@@ -629,11 +629,11 @@ void check_time()
                         if (tm >= 300)   tm /= 60;
                         else  tm = 5;
 
-                        message("vision", HIW "【武林盛会】" +
-                                this_object()->name() + "：还有" +
-                                chinese_number(tm) + "分钟，第" +
-                                chinese_number(n) + "届武林大会将" +
-                                "正式召开！\n" NOR, all_interactive());
+                        message("vision", HIW "【武林盛會】" +
+                                this_object()->name() + "：還有" +
+                                chinese_number(tm) + "分鐘，第" +
+                                chinese_number(n) + "屆武林大會將" +
+                                "正式召開！\n" NOR, all_interactive());
                     }  else   do_stopcai();
 
                     set("c_time", time());

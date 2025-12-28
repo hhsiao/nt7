@@ -33,17 +33,17 @@ string chinese_name() { return "毒"; }
 
 string update_msg_others()
 {
-        return HIG "$N" HIG "痛苦的呻吟了一声。\n" NOR;
+        return HIG "$N" HIG "痛苦的呻吟了一聲。\n" NOR;
 }
 
 string update_msg_self()
 {
-        return HIG "你中的$?" HIG "发作了。\n" NOR;
+        return HIG "你中的$?" HIG "發作了。\n" NOR;
 }
 
 string die_msg_others()
 {
-        return RED "$N" RED "嘶哑着叫了两声，就不再喘气了。\n" NOR;
+        return RED "$N" RED "嘶啞著叫了兩聲，就不再喘氣了。\n" NOR;
 }
 
 mapping mixed_poison(mapping p1, mapping p2)
@@ -102,7 +102,7 @@ mapping mixed_poison(mapping p1, mapping p2)
         {
                 // two poison mixed
                 if (p["level"] >= 100)
-                        p["name"] = "剧毒";
+                        p["name"] = "劇毒";
                 else
                         p["name"] = "毒";
         } else
@@ -149,7 +149,7 @@ int dispel(object me, object ob, mapping cnd)
         pos = cnd["name"];
         if (query("neili", me) < 200)
         {
-                tell_object(me, "你内力不足，无法驱散" + pos + "。\n");
+                tell_object(me, "你內力不足，無法驅散" + pos + "。\n");
                 return -1;
         }
 
@@ -179,17 +179,17 @@ int dispel(object me, object ob, mapping cnd)
         {
                 if (me == ob)
                 {
-                        tell_object(me, MAG "你运用内功驱散" + pos +
-                                    "，然而似乎没有半点效果。\n" NOR);
+                        tell_object(me, MAG "你運用內功驅散" + pos +
+                                    "，然而似乎沒有半點效果。\n" NOR);
                         me->start_busy(1);
                         return -1;
                 } else
                 {
-                        tell_object(me, MAG "你运用内功帮助" + ob->name() +
-                                    "驱散" + pos + "，然而似乎没有半点效果。"
+                        tell_object(me, MAG "你運用內功幫助" + ob->name() +
+                                    "驅散" + pos + "，然而似乎沒有半點效果。"
                                     "\n" NOR);
-                        tell_object(ob, MAG + me->name() + "将内力缓缓的输"
-                                    "入你的体力，你觉得一阵恶心，几欲呕吐。"
+                        tell_object(ob, MAG + me->name() + "將內力緩緩的輸"
+                                    "入你的體力，你覺得一陣噁心，幾欲嘔吐。"
                                     "\n" NOR);
                         me->start_busy(1);
                         if (! ob->is_busy())
@@ -207,8 +207,8 @@ int dispel(object me, object ob, mapping cnd)
         {
                 if (cnd["id"] == query("id", me))
                 {
-                        tell_object(me, WHT "你运用内功，将" + pos +
-                                    "尽数驱散。\n" NOR);
+                        tell_object(me, WHT "你運用內功，將" + pos +
+                                    "盡數驅散。\n" NOR);
                         addn("neili", -100, me);
                         cnd["remain"] = 0;
                         me->start_busy(1);
@@ -223,11 +223,11 @@ int dispel(object me, object ob, mapping cnd)
                                 dis = cnd["remain"];
                                 cost_neili = cnd["remain"] * 2 * (cnd["level"] + 1) /
                                              power;
-                                tell_object(me, WHT "你运用内功，将" + pos +
-                                            "尽数驱散。\n" NOR);
+                                tell_object(me, WHT "你運用內功，將" + pos +
+                                            "盡數驅散。\n" NOR);
                         } else
                         {
-                                tell_object(me, WHT "你运用内功，驱散了一些" + pos +
+                                tell_object(me, WHT "你運用內功，驅散了一些" + pos +
                                             "。\n" NOR);
                         }
                         cnd["remain"] -= dis;
@@ -240,8 +240,8 @@ int dispel(object me, object ob, mapping cnd)
         {
                 if (cnd["id"] == query("id", me))
                 {
-                        tell_object(me, WHT "你运用内功，帮助" + ob->name() +
-                                    "将" + pos + "尽数驱散。\n" NOR);
+                        tell_object(me, WHT "你運用內功，幫助" + ob->name() +
+                                    "將" + pos + "盡數驅散。\n" NOR);
                         addn("neili", -150, me);
                         cnd["remain"] = 0;
                         me->start_busy(2);
@@ -258,12 +258,12 @@ int dispel(object me, object ob, mapping cnd)
                                 dis = cnd["remain"];
                                 cost_neili = cnd["remain"] * 4 * (cnd["level"] + 1) /
                                              power;
-                                tell_object(me, WHT "你运用内功，帮助" + ob->name() +
-                                            "将" + pos + "尽数驱散。\n" NOR);
+                                tell_object(me, WHT "你運用內功，幫助" + ob->name() +
+                                            "將" + pos + "盡數驅散。\n" NOR);
                         } else
                         {
-                                tell_object(me, WHT "你运用内功，帮助" + ob->name() +
-                                            "驱散了一些" + pos + "。\n" NOR);
+                                tell_object(me, WHT "你運用內功，幫助" + ob->name() +
+                                            "驅散了一些" + pos + "。\n" NOR);
                         }
                         cnd["remain"] -= dis;
                         if (cnd["remain"] < 0)
@@ -325,9 +325,9 @@ int qi_damage(object me, mapping cnd)
 string die_reason(string name)
 {
         if (! name || name == "毒")
-                return "毒发身亡了";
+                return "毒發身亡了";
         else
-                return name + HIM "发作身亡了";
+                return name + HIM "發作身亡了";
 }
 
 int update_condition(object me, mapping cnd)
@@ -347,8 +347,8 @@ int update_condition(object me, mapping cnd)
                 addn_temp("nopoison", -1, me);
                 if (query_temp("nopoison", me) < 1)
                         delete_temp("nopoison", me);
-                tell_object(me, HIG "你只觉的身体剧痛，看来是毒性发作了，正在一筹莫展之际，腹中一阵清凉，传遍全身，顿觉身体恢复了常态。\n"
-                                HIC "这才想起是刚才服用的朱睛冰蟾起了效用，不过传说这奇物只能抵消十次毒性，目前还剩"+chinese_number(query_temp("nopoison", me))+"次。\n" NOR);
+                tell_object(me, HIG "你只覺的身體劇痛，看來是毒性發作了，正在一籌莫展之際，腹中一陣清涼，傳遍全身，頓覺身體恢復了常態。\n"
+                                HIC "這才想起是剛才服用的朱睛冰蟾起了效用，不過傳說這奇物只能抵消十次毒性，目前還剩"+chinese_number(query_temp("nopoison", me))+"次。\n" NOR);
                 return 0;
         }
         
@@ -394,7 +394,7 @@ int update_condition(object me, mapping cnd)
         if (cnd["id"] == "nature poison" || improve == -1 ||
             cnd["level"] / 2 + random(cnd["level"]) < (int)me->query_skill("force") + improve)
         {
-                // 抗毒能力发挥作用
+                // 抗毒能力發揮作用
                 if (improve == -1)
                         cnd["remain"] = 0;
                 else
@@ -402,12 +402,12 @@ int update_condition(object me, mapping cnd)
 
                 if (cnd["remain"] <= cnd["level"])
                 {
-                        message("vision", HIM + me->name() + "长长的吁"
-                                "了一口气，看起来神色好多了。\n" NOR,
+                        message("vision", HIM + me->name() + "長長的籲"
+                                "了一口氣，看起來神色好多了。\n" NOR,
                                 environment(me), ({ me }));
-                        tell_object(me, HIM "你觉得身上的" + cnd["name"] +
-                                    HIM "不住的消退，感觉上好多了，不"
-                                    "禁长长的吁了一口气。\n" NOR);
+                        tell_object(me, HIM "你覺得身上的" + cnd["name"] +
+                                    HIM "不住的消退，感覺上好多了，不"
+                                    "禁長長的吁了一口氣。\n" NOR);
                         return 0;
                 }
 

@@ -7,9 +7,9 @@ void create()
 {
         object ob;
 
-        set("short", "水果摊左卫舍");
+        set("short", "水果攤左衛舍");
 	set ("long", @LONG
-这里是左卫舍，是看护水果摊大门的家丁放哨的地方。 
+這裡是左衛舍，是看護水果攤大門的家丁放哨的地方。 
 LONG );
 
         set("exits", ([
@@ -48,7 +48,7 @@ LONG );
         }));
 
         set("room_owner", "西瓜");
-        set("room_name", "水果摊");
+        set("room_name", "水果攤");
         set("room_id", "sgt");
         set("room_owner_id", "xigua");
         set("room_position", "碎石小道");

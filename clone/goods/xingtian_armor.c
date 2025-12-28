@@ -6,27 +6,27 @@ inherit ARMOR;
 
 void create()
 {
-        set_name(HBGRN "刑天战甲" NOR, ({ "xingtian armor", "armor" }));
+        set_name(HBGRN "刑天戰甲" NOR, ({ "xingtian armor", "armor" }));
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
                 set("unit", "柄");
-                set("long", HIY "这便是刑天曾经使用的战甲，遍体血光冲天。\n"
-                            HIY + name() + HIY "的等级：上古神品  LV10\n" NOR);
+                set("long", HIY "這便是刑天曾經使用的戰甲，遍體血光沖天。\n"
+                            HIY + name() + HIY "的等級：上古神品  LV10\n" NOR);
                 set("value", 3000); 
-                set("no_sell", "这样东西不能卖。\n");
+                set("no_sell", "這樣東西不能賣。\n");
                 set("material", "tian jing");
                 set("no_pawn", 1);
-                set("no_store", 1); // 不能用干降符文upd
+                set("no_store", 1); // 不能用幹降符文upd
                 set("no_save", 1); // quit不保存
                 set("armor_prop/armor", 10000);
         }     
 
         set("mod_mark", "A2030");
         set("mod_level", "M2030");
-        set("mod_name", HBRED "刑天套装" NOR);
+        set("mod_name", HBRED "刑天套裝" NOR);
 
         set("quality_level", 3);
         
@@ -58,12 +58,12 @@ void return_to_back()
                         return; 
                 } 
 
-                tell_object(me, HIR"\n一条人影从你眼前一闪而过：" +
-                            "“时间已到，老夫取回" NOR + name() + HIR
-                            "，就此谢过，咱们后会有期！”\n\n"NOR);
+                tell_object(me, HIR"\n一條人影從你眼前一閃而過：" +
+                            "“時間已到，老夫取回" NOR + name() + HIR
+                            "，就此謝過，咱們後會有期！”\n\n"NOR);
         } else 
         { 
-                message("vision", "忽然一个人走了过来，捡起"+name()+"，叹了口气，摇摇头走了。\n", me); 
+                message("vision", "忽然一個人走了過來，撿起"+name()+"，嘆了口氣，搖搖頭走了。\n", me); 
         } 
 
         destruct(this_object());

@@ -8,7 +8,7 @@ void create()
 {
         set_name("天山童姥", ({ "tonglao", "lao" }));
         set("long", @LONG
-她看上去只是一个小小的孩童，可是相貌已然极老。
+她看上去只是一個小小的孩童，可是相貌已然極老。
 LONG );
         set("gender", "女性");
         set("age", 96);
@@ -57,7 +57,7 @@ LONG );
                 (: exert_function, "recover" :),
         }));
 
-        create_family("灵鹫宫", 0, "主人");
+        create_family("靈鷲宮", 0, "主人");
         setup();
         carry_object("/d/lingjiu/obj/changpao")->wear();
 }

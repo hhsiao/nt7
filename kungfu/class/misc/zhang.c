@@ -6,15 +6,15 @@ inherit NPC;
 
 void create()
 {
-        set_name("张召重", ({ "zhang zhaozhong", "zhang", "zhaozhong" }) );
-        set("title", "御林军骁骑营佐领");
+        set_name("張召重", ({ "zhang zhaozhong", "zhang", "zhaozhong" }) );
+        set("title", "御林軍驍騎營佐領");
         set("nickname", HIR "火手判官" NOR);
         set("gender", "男性");
         set("age", 43);
         set("long", @LONG
-张召重人称“火手判官”，身材魁梧，留一丛短胡子。江湖盛言“宁
-挨一枪，莫遇一张”就是指他了。他热衷功名利禄，投身朝廷，此人
-办事卖力，这些年来更是青云直上。
+張召重人稱“火手判官”，身材魁梧，留一叢短鬍子。江湖盛言“寧
+挨一槍，莫遇一張”就是指他了。他熱衷功名利祿，投身朝廷，此人
+辦事賣力，這些年來更是青雲直上。
 LONG );
         set("combat_exp", 1800000);
         set("shen_type", -1);
@@ -50,7 +50,7 @@ LONG );
 
         set("no_teach/yinyang-shiertian", 1);
 
-        create_family("武当派", 13, "弟子");
+        create_family("武當派", 13, "弟子");
         setup();
 
         set_max_encumbrance(2000000000);
@@ -74,7 +74,7 @@ int do_halt()
 
         if (this_player() == query_temp("catch_ob"))
         {
-                write(name() + "喝道：“你还想在我面前逃走吗？"
+                write(name() + "喝道：“你還想在我面前逃走嗎？"
                       "乖乖的束手就擒吧！”\n");
                 return 1;
         }
@@ -89,7 +89,7 @@ void fight_ob(object ob)
 
         if (ob != query_temp("catch_ob"))
         {
-                message_vision("$N对$n大喝道：大胆！居然敢攻击官差？找死么？\n",
+                message_vision("$N對$n大喝道：大膽！居然敢攻擊官差？找死麼？\n",
                                this_object(), ob);
                 if (! ob->is_busy())
                         ob->start_busy(2);
@@ -102,7 +102,7 @@ void fight_ob(object ob)
 
 int accept_fight(object ob)
 {
-        message_vision("$N冷冷的对$n道：“我有公干，你少来惹事！”。\n",
+        message_vision("$N冷冷的對$n道：“我有公幹，你少來惹事！”。\n",
                        this_object(), ob);
         return 0;
 }
@@ -121,24 +121,24 @@ void start_catch(object ob)
 {
         set_temp("catch_ob", ob);
         move(environment(ob));
-        message_vision("$N走了过来，看到$n，冷笑了一声。\n", this_object(), ob);
-        command("chat " + ob->name(1) + "你为非作歹，官府已经下"
-                "了海捕文书，你就乖乖的跟我回去吧！");
+        message_vision("$N走了過來，看到$n，冷笑了一聲。\n", this_object(), ob);
+        command("chat " + ob->name(1) + "你為非作歹，官府已經下"
+                "了海捕文書，你就乖乖的跟我回去吧！");
         command("follow"+query("id", ob));
 
         if( query("no_fight", environment(ob)) )
         {
-                tell_object(ob, "你看到" + name() + "，不由大吃一惊，慌忙转身逃走。\n");
+                tell_object(ob, "你看到" + name() + "，不由大吃一驚，慌忙轉身逃走。\n");
                 message("vision", ob->name() + "看到" + name() +
-                        "，脸色大变，慌里慌张的转身逃走。\n" +
-                        name() + "冷笑一声，喝道：“那里走？”，紧随其后追了上去。\n",
+                        "，臉色大變，慌里慌張的轉身逃走。\n" +
+                        name() + "冷笑一聲，喝道：“那裡走？”，緊隨其後追了上去。\n",
                         environment(ob), ({ ob }));
                 ob->move("/d/city/guangchang");
                 move("/d/city/guangchang");
-                tell_object(ob, HIR "...这...这是哪里？好熟悉啊？"
-                            "你心底一横，转过身来，喝道：“不是鱼死，就是网破，来吧！”。\n" NOR);
-                message("vision", ob->name() + "慌慌张张的跑了过来，只见有一人"
-                        "紧随其后而来。\n", environment(ob), ({ ob }));
+                tell_object(ob, HIR "...這...這是哪裡？好熟悉啊？"
+                            "你心底一橫，轉過身來，喝道：“不是魚死，就是網破，來吧！”。\n" NOR);
+                message("vision", ob->name() + "慌慌張張的跑了過來，只見有一人"
+                        "緊隨其後而來。\n", environment(ob), ({ ob }));
         }
 
         command("yun powerup");
@@ -148,21 +148,21 @@ void start_catch(object ob)
 void catch_ob(object ob)
 {
         remove_enemy(ob);
-        message_vision("$N伸手把$n提拎了起来，喝道：“走吧！”\n",
+        message_vision("$N伸手把$n提拎了起來，喝道：“走吧！”\n",
                        this_object(), ob);
         ob->move(this_object());
         if (is_fighting())
         {
                 // Am I in fighting now ?
                 message_vision("$N冷冷道：“今天我要先回去交"
-                               "差，你们几个我改日再收拾！”\n",
+                               "差，你們幾個我改日再收拾！”\n",
                                this_object());
         }
-        message_vision("$N拎着$n转身离去。\n", this_object(), ob);
+        message_vision("$N拎著$n轉身離去。\n", this_object(), ob);
 
-        CHANNEL_D->do_channel(this_object(), "rumor", "听说" +
-                            ob->name(1) + HIM "因为妄杀无辜，现已被"
-                            "火手判官张召重缉拿归案，押入大牢。");
+        CHANNEL_D->do_channel(this_object(), "rumor", "聽說" +
+                            ob->name(1) + HIM "因為妄殺無辜，現已被"
+                            "火手判官張召重緝拿歸案，押入大牢。");
         ob->get_into_prison(0, "/d/changan/prison", 30);
         delete("combat/need_catch", ob);
         ob->clear_condition("killer");
@@ -191,9 +191,9 @@ void unconcious()
 
 void die()
 {
-        command("chat 天哪！我" + name() + "忠心耿耿，可是...不是我没用，而是敌人太强大了。");
-        message_vision(HIM "$N" HIM "狂吐几口鲜血，扔下一个烟雾弹，"
-                       HIM "借着混乱逃走了。\n", this_object());
+        command("chat 天哪！我" + name() + "忠心耿耿，可是...不是我沒用，而是敵人太強大了。");
+        message_vision(HIM "$N" HIM "狂吐幾口鮮血，扔下一個煙霧彈，"
+                       HIM "藉著混亂逃走了。\n", this_object());
         destruct(this_object());
 }
 
@@ -211,7 +211,7 @@ void scan()
             environment(ob) != environment() ||
             query("no_fight", environment(ob)) )
         {
-                message_vision("$N收住招式，悻悻道：“哼”，随即转身离去。\n",
+                message_vision("$N收住招式，悻悻道：“哼”，隨即轉身離去。\n",
                                this_object());
                 destruct(this_object());
                 return;

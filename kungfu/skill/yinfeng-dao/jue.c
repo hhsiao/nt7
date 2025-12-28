@@ -3,7 +3,7 @@
 
 inherit F_SSERVER;
 
-string name() { return HIR "绝杀" NOR; }
+string name() { return HIR "絕殺" NOR; }
 
 string final(object me, object targer, int lvl);
 
@@ -17,28 +17,28 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能在战斗中使用。\n");
+                return notify_fail(name() + "只能在戰鬥中使用。\n");
 
         if ((int)me->query_skill("yinfeng-dao", 1) < 140)
-                return notify_fail("你的阴风刀还不够娴熟，无法施展" + name() + "绝技！\n");
+                return notify_fail("你的陰風刀還不夠嫻熟，無法施展" + name() + "絕技！\n");
 
         if ((int)me->query_skill("force") < 260)
-                return notify_fail("你内功火候不够，难以施展" + name() + "绝技！\n");
+                return notify_fail("你內功火候不夠，難以施展" + name() + "絕技！\n");
 
         if ((int)query("max_neili", me) < 2400)
-                return notify_fail("你的真气不够，无法施展" + name() + "绝技！！\n");
+                return notify_fail("你的真氣不夠，無法施展" + name() + "絕技！！\n");
 
         if ((int)query("neili", me) < 400)
-                return notify_fail("你的真气不够，无法施展" + name() + "绝技！！\n");
+                return notify_fail("你的真氣不夠，無法施展" + name() + "絕技！！\n");
 
         if (me->query_skill_mapped("strike") != "yinfeng-dao")
-                return notify_fail("你没有激发阴风刀，无法使用" + name() + "绝技！\n");
+                return notify_fail("你沒有激發陰風刀，無法使用" + name() + "絕技！\n");
 
        if (! living(target))
-              return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+              return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N" HIW "使出阴风刀「" HIR "绝 杀" HIW"」绝技，掌劲幻出一片片切骨寒"
-              "气如飓风般裹向$n全身！\n" NOR;
+        msg = HIW "$N" HIW "使出陰風刀「" HIR "絕 殺" HIW"」絕技，掌勁幻出一片片切骨寒"
+              "氣如颶風般裹向$n全身！\n" NOR;
 
         lvl = me->query_skill("yinfeng-dao", 1);
 
@@ -56,7 +56,7 @@ int perform(object me, object target)
                 me->start_busy(1);
         } else
         {
-                msg += CYN "可是$n急忙退闪，连消带打躲开了这一击。\n" NOR;
+                msg += CYN "可是$n急忙退閃，連消帶打躲開了這一擊。\n" NOR;
                 me->start_busy(3);
                 addn("neili", -150, me);
         }
@@ -72,5 +72,5 @@ string final(object me, object target, int lvl)
                           "id"       : query("id", me),
                           "duration" : lvl / 50 + random(lvl / 20) ]));
 
-       return HIR "结果只听$n一声惨嚎，全身几处要穴同时被阴风寒劲砍中，疼若刮骨，鲜血狂泄而出！\n" NOR;
+       return HIR "結果只聽$n一聲慘嚎，全身幾處要穴同時被陰風寒勁砍中，疼若刮骨，鮮血狂洩而出！\n" NOR;
 }

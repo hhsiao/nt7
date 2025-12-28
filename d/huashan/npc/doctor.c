@@ -11,7 +11,7 @@ void create()
         set("gender", "男性");
         set("age", 30);
         set("long",
-                "仙医能治各种疑难杂症,端的是手到病除.\n");
+                "仙醫能治各種疑難雜症,端的是手到病除.\n");
         set("attitude", "peaceful");
 
         set("str", 26);
@@ -20,7 +20,7 @@ void create()
         set("dex", 30);
 
         set("inquiry", ([
-                "自宫": "哦....你要自宫?没问题,包你无痛!(accept zigong)?\n",
+                "自宮": "哦....你要自宮?沒問題,包你無痛!(accept zigong)?\n",
         ]) );
         setup();
         carry_object("/clone/cloth/cloth")->wear();
@@ -42,18 +42,18 @@ int  do_accept(string arg){
       if( query("gender", me) != "男性" )
       {
          CHANNEL_D->do_channel(this_object(), "chat",
-                sprintf("%s想自宫可惜办不到,哈哈..\n",query("name", me)));
+                sprintf("%s想自宮可惜辦不到,哈哈..\n",query("name", me)));
          return 0;
       }
-      CHANNEL_D->do_channel(this_object(), "chat", sprintf( "%s 自宫练辟邪剑法啦! \n",
+      CHANNEL_D->do_channel(this_object(), "chat", sprintf( "%s 自宮練辟邪劍法啦! \n",
         me->name(1)));
-        set("marks/自宫", 1, me);
-        set("gender", "无性", me);
+        set("marks/自宮", 1, me);
+        set("gender", "無性", me);
       return 1;
 }
 
 int accept_fight(object me)
 {
-        command("say 我怎么能打得过您？\n");
+        command("say 我怎麼能打得過您？\n");
         return 0;
 }

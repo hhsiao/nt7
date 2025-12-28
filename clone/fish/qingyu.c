@@ -1,4 +1,4 @@
-// qingyu.c 青鱼
+// qingyu.c 青魚
 
 inherit ITEM;
 
@@ -7,13 +7,13 @@ inherit ITEM;
 
 void create()
 {
-        set_name("青鱼", ({ "qingyu", "qing yu" }) );
+        set_name("青魚", ({ "qingyu", "qing yu" }) );
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", "一条不安分的青鱼。\n");
-                set("unit", "条");
+                set("long", "一條不安分的青魚。\n");
+                set("unit", "條");
         }
 
         setup();

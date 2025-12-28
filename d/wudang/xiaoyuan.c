@@ -3,11 +3,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "后山小院");
+        set("short", "後山小院");
         set("long", @LONG
-这里是武当后山的一座小院，布置简简单单，仅除了一床一桌、
-一椅、一蒲团，再也没有别的什物。比较引人注目的是墙上挂着一把
-剑。这里就是武当开山祖师张三丰的练功所在。
+這裡是武當後山的一座小院，佈置簡簡單單，僅除了一床一桌、
+一椅、一蒲團，再也沒有別的什物。比較引人注目的是牆上掛著一把
+劍。這裡就是武當開山祖師張三丰的練功所在。
 LONG );
         set("exits", ([
                 "north" : __DIR__"xiaolu2",
@@ -17,7 +17,7 @@ LONG );
                 CLASS_D("wudang") + "/zhang" : 1,
         ]));
 
-        create_door("north", "竹门", "south", DOOR_CLOSED);
+        create_door("north", "竹門", "south", DOOR_CLOSED);
         set("coor/x", -370);
         set("coor/y", -340);
         set("coor/z", 90);

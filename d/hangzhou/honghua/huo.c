@@ -9,13 +9,13 @@ void create()
 {
         set_name("霍青桐", ({ "huo qingtong", "huo", "qingtong" }));
         set("long", @LONG
-这女郎秀美中透着一股英气，光采照人，当真
-丽若春梅绽雪，神如秋蕙披霜，两颊融融，霞
-映澄塘，双目晶晶，月射寒江。腰插匕首，长
-辨垂肩，鹅黄衫子，头戴金丝绣的小帽，帽边
-插了根长长的翠绿羽毛，革履青马，旖旎如画。
+這女郎秀美中透著一股英氣，光采照人，當真
+麗若春梅綻雪，神如秋蕙披霜，兩頰融融，霞
+映澄塘，雙目晶晶，月射寒江。腰插匕首，長
+辨垂肩，鵝黃衫子，頭戴金絲繡的小帽，帽邊
+插了根長長的翠綠羽毛，革履青馬，旖旎如畫。
 LONG);
-        set("nickname", HIG "翠羽黄衫" NOR);
+        set("nickname", HIG "翠羽黃衫" NOR);
         set("gender", "女性");
         set("class", "swordsman");
         set("age", 18);
@@ -61,7 +61,7 @@ LONG);
         prepare_skill("hand", "yunlong-shou");
         prepare_skill("claw", "yunlong-zhua");
 
-        create_family("天山派", 16, "传人");
+        create_family("天山派", 16, "傳人");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -71,7 +71,7 @@ LONG);
         }));
 
         set("inquiry", ([
-                "海市蜃楼" : (: ask_skill1 :),
+                "海市蜃樓" : (: ask_skill1 :),
         ]));
 
         set_temp("apply/damage", 100);
@@ -90,23 +90,23 @@ mixed ask_skill1()
 
         me = this_player();
         if( query("can_perform/sanfen-jianshu/haishi", me) )
-                return "咦？你不是已经会了吗？";
+                return "咦？你不是已經會了嗎？";
 
         if( !query("story/sanfenjian", me) )
-                return "你这是什么意思？";
+                return "你這是什麼意思？";
 
         if (me->query_skill("sanfen-jianshu", 1) < 150)
-                return "你的三分剑术还不到家，要多练练！";
+                return "你的三分劍術還不到家，要多練練！";
 
-        message_vision(HIY "$n" HIY "点了点头，拔出手中" NOR +
-                       HIC "短剑" NOR + HIY "，突然圈转，一"
-                       "招之中另蕴涵三招，招式繁复狠辣，剑"
-                       "招虚虚\n实实，正是三分剑术的独得之秘"
-                       "——「海市蜃楼」。\n" NOR,
+        message_vision(HIY "$n" HIY "點了點頭，拔出手中" NOR +
+                       HIC "短劍" NOR + HIY "，突然圈轉，一"
+                       "招之中另蘊涵三招，招式繁複狠辣，劍"
+                       "招虛虛\n實實，正是三分劍術的獨得之秘"
+                       "——「海市蜃樓」。\n" NOR,
                        me, this_object());
         command("nod");
         command("say 你可明白了？");
-        tell_object(me, HIC "你学会了「海市蜃楼」。\n" NOR);
+        tell_object(me, HIC "你學會了「海市蜃樓」。\n" NOR);
         if (me->can_improve_skill("sword"))
                 me->improve_skill("sword", 350000);
         set("can_perform/sanfen-jianshu/haishi", 1, me);
@@ -117,15 +117,15 @@ int recognize_apprentice(object me, string skill)
 {
         if (skill != "muslim")
         {
-                command("say 找你师父去，别来烦我。");
+                command("say 找你師父去，別來煩我。");
                 return -1;
         }
 
         if( !query_temp("can_learn/huoqingtong", me) )
         {
                 command("sigh");
-                command("say 我就教你一些回文，假如你哪时见到"
-                        "红…唉，还是算了吧。");
+                command("say 我就教你一些迴文，假如你哪時見到"
+                        "紅…唉，還是算了吧。");
                 set_temp("can_learn/huoqingtong", 1, me);
         }
 

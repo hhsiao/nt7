@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("马儿跑[2;37;0m[2;37;0m", ({"maerpao"}));        
+        set_name("馬兒跑[2;37;0m[2;37;0m", ({"maerpao"}));        
         set("gender", "男性");                
-        set("long", "马儿跑[2;37;0m
-它是皇太后的魔幻兽。
+        set("long", "馬兒跑[2;37;0m
+它是皇太后的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

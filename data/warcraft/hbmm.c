@@ -6,8 +6,8 @@ void setup()
 {
         set_name("[1;31m朱雀[2;37;0m[2;37;0m", ({"zhuque"}));        
         set("gender", "女性");                
-        set("long", "这是互博美眉的坐骑——朱雀。[2;37;0m
-它是互博美眉的魔幻兽。
+        set("long", "這是互博美眉的坐騎——朱雀。[2;37;0m
+它是互博美眉的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("舞之精灵[2;37;0m[2;37;0m", ({"cathrine"}));        
+        set_name("舞之精靈[2;37;0m[2;37;0m", ({"cathrine"}));        
         set("gender", "男性");                
-        set("long", "舞之精灵[2;37;0m
-它是北之舞的魔幻兽。
+        set("long", "舞之精靈[2;37;0m
+它是北之舞的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

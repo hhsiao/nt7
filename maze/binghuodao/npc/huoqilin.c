@@ -4,7 +4,7 @@ inherit __DIR__"bhd_npc.c";
 void create()
 {
         set_name(HIR "火焰麒麟" NOR, ({ "huoyan qilin", "huoyan", "qilin" }));
-        set("long", HIR "一只浑身吞吐着火焰的巨兽，不停地嚎叫着。\n" NOR);
+        set("long", HIR "一隻渾身吞吐著火焰的巨獸，不停地嚎叫著。\n" NOR);
 
         set("age", 99999);
         set("str",500);
@@ -42,7 +42,7 @@ void create()
 
 void init()
 {
-        // 随机攻击玩家
+        // 隨機攻擊玩家
         if (userp(this_player()) && random(2) == 1)
         {
                 kill_ob(this_player());

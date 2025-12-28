@@ -19,11 +19,11 @@ int main(object me, string arg)
 int help()
 {
         write(@TEXT
-指令格式：unset <变数名>
+指令格式：unset <變數名>
 
-这个指令让你删除环境变数的设定。
+這個指令讓你刪除環境變數的設定。
 
-修改变数设定请用 unset 指令。
+修改變數設定請用 unset 指令。
 TEXT
         );
         return 1;

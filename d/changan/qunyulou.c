@@ -8,16 +8,16 @@ int check_container(object ob);
 
 void create()
 {
-        set("short", "群玉楼");
+        set("short", "群玉樓");
         set("long", 
-"群玉楼是长安城首屈一指的大妓院。这里不是普通人能来的地方，如果你不\n" 
-"是富甲一方的财主，如果你不是雄霸一方的帮主掌门，如果你不是王公贵族，就\n" 
-"连进这个门也别想。楼中雇的打手便有四名在这儿守着，不是有头有脸的见了这\n" 
-"阵仗早就绕开了去。大门贴着告示(gaoshi)一张，又高挂两幅长联：\n" 
-HIR"             销"HIG"              春\n\n"NOR
+"群玉樓是長安城首屈一指的大妓院。這裡不是普通人能來的地方，如果你不\n" 
+"是富甲一方的財主，如果你不是雄霸一方的幫主掌門，如果你不是王公貴族，就\n" 
+"連進這個門也別想。樓中僱的打手便有四名在這兒守著，不是有頭有臉的見了這\n" 
+"陣仗早就繞開了去。大門貼著告示(gaoshi)一張，又高掛兩幅長聯：\n" 
+HIR"             銷"HIG"              春\n\n"NOR
 HIR"             魂"HIG"              色\n\n"NOR
-HIR"             蚀"HIG"              无\n\n"NOR
-HIR"             骨"HIG"              边\n"NOR          
+HIR"             蝕"HIG"              無\n\n"NOR
+HIR"             骨"HIG"              邊\n"NOR          
         );
         set("exits", ([ /* sizeof() == 2 */
                 "north" : "/d/changan/qixiang4",
@@ -25,9 +25,9 @@ HIR"             骨"HIG"              边\n"NOR
         ]));
         set("item_desc", ([
                 "gaoshi": HIY @TEXT
-规定:
-１．不可以带武器上楼。
-２．不许闹事，否则后果自负。
+規定:
+１．不可以帶武器上樓。
+２．不許鬧事，否則後果自負。
 TEXT NOR
         ]) );
         set("objects", ([
@@ -55,15 +55,15 @@ int valid_leave(object me, string dir)
 
                 if( query("gender", me) == "女性" )
                         return notify_fail(ob->name() +
-                               "一把抓住了你，说道:“这里不是女人"
-                               "该来的地方，你别进去。”\n");
+                               "一把抓住了你，說道:“這裡不是女人"
+                               "該來的地方，你別進去。”\n");
                 inv = all_inventory(me);
                 for(i = 0; i < sizeof(inv); i++)
                 {
                         if( query("weapon_prop", inv[i]) )
                                 return notify_fail(ob->name() +
-                                                   "一把抓住了你，说道：“咱们这里是有"
-                                                   "规矩的地方，不准带武器进入。”\n");
+                                                   "一把抓住了你，說道：“咱們這裡是有"
+                                                   "規矩的地方，不準帶武器進入。”\n");
                 }
         }
         return 1;

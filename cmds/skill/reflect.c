@@ -1,6 +1,6 @@
 // reflect.c
-// 冥思指令获取少量经验和潜能
-// 会员专用指令 Create by Rcwiz for HERO.CD
+// 冥思指令獲取少量經驗和潛能
+// 會員專用指令 Create by Rcwiz for HERO.CD
 
 #include <ansi.h>
 #define MEMBER_D     "/adm/daemons/memberd"
@@ -13,7 +13,7 @@ void end_reflect(object me)
 
          if( query_temp("reflect", me) )
          {
-               message_vision(HIY "$N" HIY "冥思完毕，缓缓地睁开眼睛，似乎若有所悟！\n" NOR, me);
+               message_vision(HIY "$N" HIY "冥思完畢，緩緩地睜開眼睛，似乎若有所悟！\n" NOR, me);
  
                delete_temp("reflect", me);
 
@@ -33,8 +33,8 @@ void end_reflect(object me)
                addn("combat_exp", exp, me);
                addn("potential", pot, me);
 
-               write(HIG "通过这次冥思，你获得了" HIC + chinese_number(exp) + HIG 
-                     "点实战经验和" HIC + chinese_number(pot) + HIG "点潜能。\n");
+               write(HIG "通過這次冥思，你獲得了" HIC + chinese_number(exp) + HIG 
+                     "點實戰經驗和" HIC + chinese_number(pot) + HIG "點潛能。\n");
 
          }
 
@@ -48,7 +48,7 @@ int main(object me)
 
 
          if (me->is_busy() || me->is_fighting())
-                 return notify_fail("等你忙完再说吧！\n");
+                 return notify_fail("等你忙完再說吧！\n");
 
          if( query_temp("reflect", me) )
                  return notify_fail("你正在冥思。\n");
@@ -57,13 +57,13 @@ int main(object me)
                  return 0;
 
          if( !query("doing", me) )
-                 return notify_fail("只有计划时才能冥思。\n");
+                 return notify_fail("只有計劃時才能冥思。\n");
 
          if( query("combat_exp", me)<1000000 )
-                  return notify_fail("你实战经验，无法冥思。\n");
+                  return notify_fail("你實戰經驗，無法冥思。\n");
 
          if (me->query_skill("martial-cognize", 1) < 160)
-                  return notify_fail("你武学修养不足，无法冥思。\n");
+                  return notify_fail("你武學修養不足，無法冥思。\n");
  
 
          set_temp("reflect", 1, me);
@@ -73,7 +73,7 @@ int main(object me)
          me->start_call_out((: call_other, __FILE__,
                              "end_reflect", me:), 28 + random(6));
 
-         message_vision(HIY "$N" HIY "盘膝而坐，闭目冥思 ……\n" NOR, me);
+         message_vision(HIY "$N" HIY "盤膝而坐，閉目冥思 ……\n" NOR, me);
 
          return 1;
 }
@@ -83,8 +83,8 @@ int help(object me)
   write(@HELP
 指令格式 : reflect
 
-该指令可以在计划时使用以提高少量经验和潜能。
-该指令只限会员使用。
+該指令可以在計劃時使用以提高少量經驗和潛能。
+該指令只限會員使用。
 
 HELP
 );

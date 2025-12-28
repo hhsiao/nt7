@@ -4,14 +4,14 @@ inherit ROOM;
 
 void create()
 {
-        set("short", HIR "【 地 阴 】" NOR);
+        set("short", HIR "【 地 陰 】" NOR);
         set("long", HIR @LONG
 
-                       地            阴
+                       地            陰
 
-    这里便是阴间的最深处「地阴」，你面前是一个无底深渊，深渊内
-侧悬浮着一块血红色的巨大晶体(jingti)，时明时暗，散发出暗淡的血
-红色光芒，投射着丝丝热量。也许这就传说中的「地阴血脉」吧。
+    這裡便是陰間的最深處「地陰」，你面前是一個無底深淵，深淵內
+側懸浮著一塊血紅色的巨大晶體(jingti)，時明時暗，散發出暗淡的血
+紅色光芒，投射著絲絲熱量。也許這就傳說中的「地陰血脈」吧。
 
 LONG NOR );
         set("exits", ([
@@ -19,8 +19,8 @@ LONG NOR );
         ]) );
 
         set("item_desc", ([
-                "jingti" : RED "一块血红色的巨大晶体，发出血色光"
-                           "芒，你忍不住想敲(qiao)一块下来。\n" NOR,
+                "jingti" : RED "一塊血紅色的巨大晶體，發出血色光"
+                           "芒，你忍不住想敲(qiao)一塊下來。\n" NOR,
         ]));
 
         set("no_sleep_room", 1);
@@ -39,19 +39,19 @@ int do_qiao(string arg)
         object me = this_player();
         object ob;
 
-        if( (!arg) || !((arg == "jingti") || (arg == "晶体")))
-                return notify_fail("你要敲什么？\n");
+        if( (!arg) || !((arg == "jingti") || (arg == "晶體")))
+                return notify_fail("你要敲什麼？\n");
 
-        message_vision(HIW "\n$N" HIW "一跃而起，飞身一掌劈在血红色晶体一侧。\n" NOR, me);
+        message_vision(HIW "\n$N" HIW "一躍而起，飛身一掌劈在血紅色晶體一側。\n" NOR, me);
 
         if( query("not_xuemai") || query("combat_exp", me)<1500000 )
         {
-                message("vission", HIY "可是晶体只是轻微的晃动了一下，再没其它反应。\n" NOR, me);
+                message("vission", HIY "可是晶體只是輕微的晃動了一下，再沒其它反應。\n" NOR, me);
                 return 1;
         }
         ob = new(__DIR__"obj/diyin");
         ob->move( environment(me) );
-        message_vision(HIR "只见晶体受震，「喀嚓」一声，一小块晶体碎片落在了地上。\n" NOR, me);
+        message_vision(HIR "只見晶體受震，「喀嚓」一聲，一小塊晶體碎片落在了地上。\n" NOR, me);
         set("not_xuemai", 1);
         remove_call_out("regenerate");
         call_out("regenerate", 86400);

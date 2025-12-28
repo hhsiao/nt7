@@ -1,6 +1,6 @@
 // This is player's own perform (Write by Lonely@nt2)
 // Create by 文人(Dlf) at Sun May 17 23:49:04 2015
-// 龙凤呈祥(xiang)
+// 龍鳳呈祥(xiang)
 #include <ansi.h>
 #include <combat.h>
 
@@ -8,7 +8,7 @@ inherit F_SSERVER;
 
 int is_player_perform() { return 1; }
 
-string name() { return HIW "龙凤呈祥" NOR; }
+string name() { return HIW "龍鳳呈祥" NOR; }
 
 string *weapon_sk = ({
         "sword", "blade", "staff", "whip", "club", "hammer", "axe"
@@ -30,14 +30,14 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if (member_array("sword", weapon_sk) != -1)
         {
                 attack = WEAPON_ATTACK;
                 if( !objectp(weapon=query_temp("weapon", me) )
                     || query("skill_type", weapon) != "sword" )
-                        return notify_fail("你所使用的武器不对，难以施展" + name() + "。\n");
+                        return notify_fail("你所使用的武器不對，難以施展" + name() + "。\n");
         } else
         {
                 attack = UNARMED_ATTACK;
@@ -46,21 +46,21 @@ int perform(object me, object target)
         }
 
         if ((int)me->query_skill("longfeng-sword", 1) < 400)
-                return notify_fail("你" + to_chinese("longfeng-sword") + "不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你" + to_chinese("longfeng-sword") + "不夠嫻熟，難以施展" + name() + "。\n");
 
         if (member_array("sword", weapon_sk) == -1)
         {
                 if (me->query_skill_prepared("sword") != "longfeng-sword")
-                        return notify_fail("你没有准备" + to_chinese("longfeng-sword") + "，难以施展" + name() + "。\n");
+                        return notify_fail("你沒有準備" + to_chinese("longfeng-sword") + "，難以施展" + name() + "。\n");
         }
 
         if( query("neili", me)<500 )
-                return notify_fail("你现在的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N$HIW$身影慢慢的浮现在$n$HIW$面前，只见$N$HIW$洒出无数晶莹剔透的$围绕在$n$HIW$周围。刀光剑影的世界霎时间沉寂在这柔和的雪光之中，好一记温柔缠绵的$$HIM$纵情山水间，挥洒天地情!" + "\n" + NOR;
+        msg = HIW "$N$HIW$身影慢慢的浮現在$n$HIW$面前，只見$N$HIW$灑出無數晶瑩剔透的$圍繞在$n$HIW$周圍。刀光劍影的世界霎時間沉寂在這柔和的雪光之中，好一記溫柔纏綿的$$HIM$縱情山水間，揮灑天地情!" + "\n" + NOR;
 
         ap = attack_power(me, "sword");
         dp = defense_power(target, "parry");
@@ -68,7 +68,7 @@ int perform(object me, object target)
         if (ap / 2 + random(ap) > dp)
         {
                 damage = damage_power(me, "sword")*7;
-                msg += COMBAT_D->do_damage(me, target, attack, damage, 380, HIM "$n$HIW$顿时沉寂在这梦一般的景象之中，如痴如醉中被雪玲珑击中了!$n$HIW$完全陷入龙凤呈祥的威力之中无法自拔。$n看着剑光从前心穿过" + "\n" NOR);
+                msg += COMBAT_D->do_damage(me, target, attack, damage, 380, HIM "$n$HIW$頓時沉寂在這夢一般的景象之中，如痴如醉中被雪玲瓏擊中了!$n$HIW$完全陷入龍鳳呈祥的威力之中無法自拔。$n看著劍光從前心穿過" + "\n" NOR);
                 addn("neili", -200, me);
 
                 /*
@@ -77,22 +77,22 @@ int perform(object me, object target)
                 */
         } else
         {
-                msg += NOR + CYN "可$n$HIY$并没有被这绚丽的雪景所吸引,依然屹立在雪花飞舞的幻景中！" + "\n" NOR;
+                msg += NOR + CYN "可$n$HIY$並沒有被這絢麗的雪景所吸引,依然屹立在雪花飛舞的幻景中！" + "\n" NOR;
                 addn("neili", -100, me);
         }
 
         message_sort(msg, me, target);
 
-        msg = HIW "$N" HIW "余势未尽，招式陡然变得凌厉无比，一转念间已然攻出数招。\n" NOR;
+        msg = HIW "$N" HIW "餘勢未盡，招式陡然變得凌厲無比，一轉念間已然攻出數招。\n" NOR;
         if (ap / 2 + random(ap) > dp)
         {
                 count = ap / 20;
-                msg += HIR "$n" HIR "见$P" HIR "来势迅猛之极，一时不知该如"
-                       "何作出抵挡，竟呆立当场。\n" NOR;
+                msg += HIR "$n" HIR "見$P" HIR "來勢迅猛之極，一時不知該如"
+                       "何作出抵擋，竟呆立當場。\n" NOR;
         } else
         {
-                msg += HIY "$n" HIY "见$p" HIY "来势迅猛之极，甚难防备，连"
-                       "忙振作精神，小心抵挡。\n" NOR;
+                msg += HIY "$n" HIY "見$p" HIY "來勢迅猛之極，甚難防備，連"
+                       "忙振作精神，小心抵擋。\n" NOR;
                 count = 0;
         }
 

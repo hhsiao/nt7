@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define LONG "「" HIC "天外玉龙" NOR "」"
+#define LONG "「" HIC "天外玉龍" NOR "」"
 
 inherit F_SSERVER;
 
@@ -16,38 +16,38 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(LONG "只能对战斗中的对手使用。\n");
+                return notify_fail(LONG "只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me) )
             || query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对，难以施展" LONG "。\n");
+                return notify_fail("你使用的武器不對，難以施展" LONG "。\n");
 
         if (me->query_skill("force") < 200)
-                return notify_fail("你的内功的修为不够，难以施展" LONG "。\n");
+                return notify_fail("你的內功的修為不夠，難以施展" LONG "。\n");
 
         if (me->query_skill("poyang-jian", 1) < 180)
-                return notify_fail("你的破阳冷光剑修为不够，难以施展" LONG "。\n");
+                return notify_fail("你的破陽冷光劍修為不夠，難以施展" LONG "。\n");
 
         if ((int)me->query_skill("dodge") < 200)
-                return notify_fail("你的轻功火候不够，难以施展" LONG "。\n"); 
+                return notify_fail("你的輕功火候不夠，難以施展" LONG "。\n"); 
 
         if( query("max_neili", me)<2700 )
-                return notify_fail("你的内力修为不足，难以施展" LONG "。\n");
+                return notify_fail("你的內力修為不足，難以施展" LONG "。\n");
 
         if( query("neili", me)<350 )
-                return notify_fail("你的真气不够，难以施展" LONG "。\n");
+                return notify_fail("你的真氣不夠，難以施展" LONG "。\n");
 
         if (me->query_skill_mapped("sword") != "poyang-jian")
-                return notify_fail("你没有激发破阳冷光剑，难以施展" LONG "。\n");
+                return notify_fail("你沒有激發破陽冷光劍，難以施展" LONG "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
         
         if( !query("real_perform/poyang-jian/long", me) )
         {
-                msg = HIY "\n只见$N" HIY "手中" + weapon->name() + HIY
-                      "横扫而出，施出绝招「" HIC "天外玉龙" HIY "」，"
-                      "剑势纵横，犹如一条长龙蜿蜒而出，刺向$n\n" HIY "。" NOR;
+                msg = HIY "\n只見$N" HIY "手中" + weapon->name() + HIY
+                      "橫掃而出，施出絕招「" HIC "天外玉龍" HIY "」，"
+                      "劍勢縱橫，猶如一條長龍蜿蜒而出，刺向$n\n" HIY "。" NOR;
                
                 neili = 220;
                 hit_point = 55;
@@ -56,10 +56,10 @@ int perform(object me, object target)
 
         else
         {
-                msg = HIW "\n但见$N" HIW "手中" + weapon->name() + HIW 
-                      "自半空中横过，剑身似曲似直，便如一件活物一般，正"
-                      "是破阳冷光剑的精髓「" HIY "天外玉龙" HIW "」，一"
-                      "柄死剑被$N" HIW "使得如灵蛇，如神龙，猛然剑刺向$n\n" 
+                msg = HIW "\n但見$N" HIW "手中" + weapon->name() + HIW 
+                      "自半空中橫過，劍身似曲似直，便如一件活物一般，正"
+                      "是破陽冷光劍的精髓「" HIY "天外玉龍" HIW "」，一"
+                      "柄死劍被$N" HIW "使得如靈蛇，如神龍，猛然劍刺向$n\n" 
                       HIW "。" NOR;
 
                 neili = 300;
@@ -78,15 +78,15 @@ int perform(object me, object target)
                 addn("neili", -neili, me);
                 me->start_busy(time);
                 msg = COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, hit_point,
-                                           HIR "$n" HIR "见此招来势凶猛， 阻挡不"
-                                           "及， 顿时被" + weapon->name() + HIR 
-                                           "所伤，苦不堪言。\n" NOR);
+                                           HIR "$n" HIR "見此招來勢兇猛， 阻擋不"
+                                           "及， 頓時被" + weapon->name() + HIR 
+                                           "所傷，苦不堪言。\n" NOR);
         } else
         {
                 addn("neili", -150, me);
                 me->start_busy(1 + random(2));
-                msg = CYN "可却见" CYN "$n" CYN "猛的拔地而起，避开了"
-                      CYN "$N" CYN "来势凶猛的一招。\n" NOR;
+                msg = CYN "可卻見" CYN "$n" CYN "猛的拔地而起，避開了"
+                      CYN "$N" CYN "來勢兇猛的一招。\n" NOR;
         }
         message_vision(msg, me, target);
 

@@ -1,13 +1,13 @@
-// huatuo.c 华陀二世
+// huatuo.c 華陀二世
 
 inherit BUNCHER;
 
 void create()
 {
-        set_name("华陀二世", ({ "huatuo ershi", "huatuo", "ershi", "hua", "tuo" }));
-        set("title", "药铺老板");
+        set_name("華陀二世", ({ "huatuo ershi", "huatuo", "ershi", "hua", "tuo" }));
+        set("title", "藥鋪老闆");
         set("gender", "男性");
-        set("long", "他就是医术高超的华陀后裔。可是他性格古怪，不是什么人都医的。\n");
+        set("long", "他就是醫術高超的華陀後裔。可是他性格古怪，不是什麼人都醫的。\n");
         set("age", 65);
         set("int", 30);
         

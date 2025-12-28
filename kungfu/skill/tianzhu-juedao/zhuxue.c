@@ -1,7 +1,7 @@
 /*
-由于劈断对方武器的功能是这个perform最大的威力，但为了保持独孤九剑在
-这一方面的第一地位，特地对发挥这一威力的条件，在程序中做了如下限制
-希望以后的巫师不要更改这些设定，毕竟在weapon武功中，不能超越lonely-sword的地位。
+由於劈斷對方武器的功能是這個perform最大的威力，但為了保持獨孤九劍在
+這一方面的第一地位，特地對發揮這一威力的條件，在程序中做了如下限制
+希望以後的巫師不要更改這些設定，畢竟在weapon武功中，不能超越lonely-sword的地位。
 */
 
 #include <ansi.h>
@@ -24,26 +24,26 @@ int perform(object me)
 
 
         if( !(me->is_fighting() ))
-            return notify_fail("「"+HIR"融雪逐日"NOR+"」只能对战斗中的对手使用。\n");
+            return notify_fail("「"+HIR"融雪逐日"NOR+"」只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me) )
          || query("skill_type", weapon) != "blade" )
-            return notify_fail("你使用的武器不对。\n");
+            return notify_fail("你使用的武器不對。\n");
 
         if (me->query_skill("buddhism",1) < 220)
-                return notify_fail("你佛法修为不足，不能使用「"+HIR"融雪逐日"NOR+"」！\n");
+                return notify_fail("你佛法修為不足，不能使用「"+HIR"融雪逐日"NOR+"」！\n");
 
         if( skill < 150)
-            return notify_fail("你的天竺绝刀等级不够, 不能使用「"+HIR"融雪逐日"NOR+"」！\n");
+            return notify_fail("你的天竺絕刀等級不夠, 不能使用「"+HIR"融雪逐日"NOR+"」！\n");
         if(me->query_skill("shaolin-xinfa",1)<150)
-            return notify_fail("你的少林心法等级不够, 不能使用「"+HIR"融雪逐日"NOR+"」！\n");
+            return notify_fail("你的少林心法等級不夠, 不能使用「"+HIR"融雪逐日"NOR+"」！\n");
  
         if( query("neili", me)<400 )
-            return notify_fail("你的内力不够，无法运用「"+HIR"融雪逐日"NOR+"」！\n");
+            return notify_fail("你的內力不夠，無法運用「"+HIR"融雪逐日"NOR+"」！\n");
 
-        msg = HIY "$N纵身跃起,使出"+HIR"「融雪逐日」"NOR+""+HIY"，挥舞"NOR""+weapon->name()+ 
-              NOR+HIY"从半空中挥刀直劈下来，\n刀锋离地尚有数尺，地下已是尘沙飞扬，败草落叶被"
-              "刀风激得团团而舞，\n将$n逃遁退避的空隙封的严严实实。\n"NOR;
+        msg = HIY "$N縱身躍起,使出"+HIR"「融雪逐日」"NOR+""+HIY"，揮舞"NOR""+weapon->name()+ 
+              NOR+HIY"從半空中揮刀直劈下來，\n刀鋒離地尚有數尺，地下已是塵沙飛揚，敗草落葉被"
+              "刀風激得團團而舞，\n將$n逃遁退避的空隙封的嚴嚴實實。\n"NOR;
         message_vision(msg, me, target);
 
         ap = random(me->query_skill("blade") + skill);
@@ -57,9 +57,9 @@ int perform(object me)
             if(userp(me))
                  addn("neili", -250, me);
             msg = COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 60, 
-                                       HIC"$n避无可避,只觉一股刚猛之极的劲风扑面而来，使人直欲窒息。\n"
-                                       "$n极力后退隔挡，却只见"NOR""+weapon->name()+""HIC"刀光一闪，"
-                                       "毫不停息，一刀正中面门。\n"NOR); 
+                                       HIC"$n避無可避,只覺一股剛猛之極的勁風撲面而來，使人直欲窒息。\n"
+                                       "$n極力後退隔擋，卻只見"NOR""+weapon->name()+""HIC"刀光一閃，"
+                                       "毫不停息，一刀正中面門。\n"NOR); 
 
             me->start_busy(2+random(2)); 
 
@@ -84,19 +84,19 @@ int perform(object me)
                           if( query("weapon_prop", inv[equip]) && (query("equipped", inv[equip]) == "wielded") )
 
                           {
-                                 msg += HIW "$N力道未尽，手中刀势不绝，连带$n手上"NOR+
-                                 query("name", inv[equip])+HIW"一起劈断。\n只听当的一"
-                                 "声，$n手上的"NOR+query("name", inv[equip])+HIW"已"
-                                 "被劈成两半，掉在了地上！\n"NOR;
+                                 msg += HIW "$N力道未盡，手中刀勢不絕，連帶$n手上"NOR+
+                                 query("name", inv[equip])+HIW"一起劈斷。\n只聽當的一"
+                                 "聲，$n手上的"NOR+query("name", inv[equip])+HIW"已"
+                                 "被劈成兩半，掉在了地上！\n"NOR;
                                   message_vision(msg, me,target);
 
                                   inv[equip]->unwield();
                                   inv[equip]->reset_action();
                                   inv[equip]->move(environment(target));
-                                  set("name", "断掉的"+query("name", inv[equip]), inv[equip]);
+                                  set("name", "斷掉的"+query("name", inv[equip]), inv[equip]);
                                   set("value", 0, inv[equip]);
                                   set("weapon_prop", 0, inv[equip]);
-                                  set("long", "一把破烂武器，从中断开，破口整齐，看来是被高手一刀劈开的。\n", inv[equip]);
+                                  set("long", "一把破爛武器，從中斷開，破口整齊，看來是被高手一刀劈開的。\n", inv[equip]);
                         }
                 }
 
@@ -107,7 +107,7 @@ int perform(object me)
         {
             if(userp(me))
                  addn("neili", -100, me);
-            msg = HIW"可是$n轻轻往旁边一闪,闭过了$N这必杀的一刀。\n"NOR;
+            msg = HIW"可是$n輕輕往旁邊一閃,閉過了$N這必殺的一刀。\n"NOR;
             me->start_busy(2+random(2));
         }
         message_combatd(msg, me, target);

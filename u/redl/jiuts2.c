@@ -4,9 +4,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "九头蛇领地");
+        set("short", "九頭蛇領地");
         set("long",@LONG
-这是九头蛇的领地，周围尽是潮湿阴深的湿地，恐怖之极。(scheme、research)
+這是九頭蛇的領地，周圍盡是潮溼陰深的溼地，恐怖之極。(scheme、research)
 LONG);
 
 

@@ -4,10 +4,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "戏院后台");
+        set("short", "戲院後臺");
         set("long", @LONG
-这里是长安戏院的后台，后台不大，却打扫得很干净。几个戏子
-正在后台化妆，看见你来了，都用很奇怪的眼神盯着你。
+這裡是長安戲院的後臺，後臺不大，卻打掃得很乾淨。幾個戲子
+正在後臺化妝，看見你來了，都用很奇怪的眼神盯著你。
 LONG );
         set("exits", ([
                 "south" : __DIR__"xiyuan",
@@ -31,8 +31,8 @@ int valid_leave(object me, string dir)
         if (dir == "south")
         {
                 message_vision(
-                        "\n$N一曲唱罢，一揖作礼，身子平飞，从台上跃出，双手兀自\n"+
-                        "抱拳向观众行礼，姿态美妙，众人齐声喝采。\n", me);
+                        "\n$N一曲唱罷，一揖作禮，身子平飛，從臺上躍出，雙手兀自\n"+
+                        "抱拳向觀眾行禮，姿態美妙，眾人齊聲喝采。\n", me);
                         
                 i=query("meili", me);
                 if (i < 20) 

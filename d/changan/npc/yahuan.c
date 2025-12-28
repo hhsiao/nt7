@@ -4,8 +4,8 @@ inherit NPC;
 
 void create()
 {
-        set_name("丫环", ({"yahuan"}));
-        set("long","一个小丫环，正在打扫房间．\n");
+        set_name("丫環", ({"yahuan"}));
+        set("long","一個小丫環，正在打掃房間．\n");
         set("gender", "女性");
         set("age", 16);
         set("attitude", "friendly");

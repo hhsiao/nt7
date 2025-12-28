@@ -9,11 +9,11 @@ int update_condition(object me, int duration)
 {
         if (duration < 1) return 0;
         if( !living(me) ) {
-                message("vision", me->name() + "痛苦地哼了一声。\n", environment(me), me);
+                message("vision", me->name() + "痛苦地哼了一聲。\n", environment(me), me);
         }
         else {
-                tell_object(me, HIB "忽然一阵刺骨的奇寒袭来，你中的冰蚕剧毒发作了！\n" NOR );
-                message("vision", me->name() + "的身子突然晃了两晃，牙关格格地响了起来。\n",
+                tell_object(me, HIB "忽然一陣刺骨的奇寒襲來，你中的冰蠶劇毒發作了！\n" NOR );
+                message("vision", me->name() + "的身子突然晃了兩晃，牙關格格地響了起來。\n",
                         environment(me), me);
         }
         if( objectp(query("poisoner", me))){
@@ -27,7 +27,7 @@ int update_condition(object me, int duration)
 
         if( query("qi", me)<1 || query("jing", me)<1 )
         {
-                set_temp("die_reason", "冰蚕剧毒攻心死了", me);
+                set_temp("die_reason", "冰蠶劇毒攻心死了", me);
                 me->die();
                 return 0;
         }

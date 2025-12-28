@@ -7,7 +7,7 @@ void setup()
         set_name("朱雀[2;37;0m[2;37;0m", ({"cbookpet"}));        
         set("gender", "男性");                
         set("long", "朱雀[2;37;0m
-它是墨三的魔幻兽。
+它是墨三的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

@@ -6,28 +6,28 @@
 inherit ITEM;
 inherit F_SAVE;
 
-#define NOTICE                  RED" 曾经沧海难为水，除去巫山不是云" NOR
+#define NOTICE                  RED" 曾經滄海難為水，除去巫山不是雲" NOR
 
-// 最多容纳 100 个贴子
+// 最多容納 100 個貼子
 #define MAX_PLAN                3000
 
-// 假如贴子超过了 MAX_PLAN，删掉前 20 个
+// 假如貼子超過了 MAX_PLAN，刪掉前 20 個
 #define DEL_TO                  20
 
-// 是否保存所有原来的贴子，是则设为0，否则设为 1
+// 是否保存所有原來的貼子，是則設為0，否則設為 1
 #define SAVE_ALL_OLD_PLAN       0
 
-// 如果需要显示整理情况（很长很长），请：
+// 如果需要顯示整理情況（很長很長），請：
 #define DEBUG                   1
 
-// 最大的标题长度
+// 最大的標題長度
 #define MAX_TITLE_LEN           30
 
-// 发表文章需要的能力
+// 發表文章需要的能力
 #define NEED_EXP                10000
 #define NEED_AGE                15
 
-// 返回note[num]的内容和回文内容
+// 返回note[num]的內容和迴文內容
 string content(mapping *notes, int num);
 string makeup_space(string s, int max);
 
@@ -80,7 +80,7 @@ string short()
 
         notes = query("notes");
         if( !pointerp(notes) || !sizeof(notes) )
-                return ::short() + " [ 没有任何贴子 ]";
+                return ::short() + " [ 沒有任何貼子 ]";
 
         if( this_player() )
         {
@@ -90,10 +90,10 @@ string short()
                         if( notes[i]["time"] <= last_read_time ) break;
         }
         if( unread )
-                return sprintf( HIC "%s" NOR " [ " HIW "%d" NOR " 个贴子，" HIR "%d" NOR " 篇未读 ]",
+                return sprintf( HIC "%s" NOR " [ " HIW "%d" NOR " 個貼子，" HIR "%d" NOR " 篇未讀 ]",
                                 ::short(), sizeof(notes), unread);
         else
-                return sprintf("%s [ " HIW "%d" NOR " 个贴子 ]", ::short(), sizeof(notes));
+                return sprintf("%s [ " HIW "%d" NOR " 個貼子 ]", ::short(), sizeof(notes));
 }
 
 string long()
@@ -108,9 +108,9 @@ string long()
 
         notes = query("notes");
         if( !pointerp(notes) || !sizeof(notes) )
-                return msg + "\n留言版的使用方法请见 help board。\n" ;
+                return msg + "\n留言版的使用方法請見 help board。\n" ;
 
-        msg += (query("banzhu") ? ("这个版的的版主是 " WHT + query("banzhu") + NOR "。\n") : "") +
+        msg += (query("banzhu") ? ("這個版的的版主是 " WHT + query("banzhu") + NOR "。\n") : "") +
                "───────────────────────────────────\n";
 
         last_time_read = query("board_last_read/" + (string)query("board_id"), this_player());
@@ -138,16 +138,16 @@ int do_from(string arg)
         if( msg[<1] != '\n' )
                 msg += "\n";
         if( !pointerp(notes) || !sizeof(notes) )
-                return notify_fail(msg + "\n留言版的使用方法请见 help board。\n");
+                return notify_fail(msg + "\n留言版的使用方法請見 help board。\n");
 
         if( !arg ) i = 0;
         else i = atoi(arg) - 1;
 
         if( i < 0 ) i = 0;
         if( i > sizeof(notes) )
-                return notify_fail(msg + "\n留言版的使用方法请见 help board。\n");
+                return notify_fail(msg + "\n留言版的使用方法請見 help board。\n");
 
-        msg += (query("banzhu") ? ("这个版的的版主是 " WHT + query("banzhu") + NOR "。\n") : "") +
+        msg += (query("banzhu") ? ("這個版的的版主是 " WHT + query("banzhu") + NOR "。\n") : "") +
                "───────────────────────────────────\n";
         last_time_read = query("board_last_read/" + (string)query("board_id"), this_player());
 
@@ -182,7 +182,7 @@ void done_post(object me, mapping note, int n, string text)
 
         if( strlen(text) > 64 * 2048 )
         {
-                tell_object(me, "你的留言太长了，请略去一些不必要的。\n");
+                tell_object(me, "你的留言太長了，請略去一些不必要的。\n");
                 return;
         }
 
@@ -190,13 +190,13 @@ void done_post(object me, mapping note, int n, string text)
         i = sizeof(lines);
         if( i > 2000 )
         {
-                tell_object(me, "你的留言太长了，请略去一些不必要的。\n");
+                tell_object(me, "你的留言太長了，請略去一些不必要的。\n");
                 return;
         }
 
         if( i > 20 && strlen(text) / i < 10 )
         {
-                tell_object(me, "你的留言中短句太多了，请调整一下以便他人阅读。\n");
+                tell_object(me, "你的留言中短句太多了，請調整一下以便他人閱讀。\n");
                 return;
         }
 
@@ -205,7 +205,7 @@ void done_post(object me, mapping note, int n, string text)
                 // scan all lines
                 if( strlen(lines[i]) > 200 )
                 {
-                        tell_object(me, "你留言中有些行太长了，请分行以便他人阅读。\n");
+                        tell_object(me, "你留言中有些行太長了，請分行以便他人閱讀。\n");
                         return;
                 }
         }
@@ -257,14 +257,14 @@ void done_post(object me, mapping note, int n, string text)
         }
 
         set("notes", notes);
-        tell_object(me, HIW "新贴子完成。\n" NOR);
+        tell_object(me, HIW "新貼子完成。\n" NOR);
         save();
 
         if( sizeof(query("notes")) > MAX_PLAN )
         {
-                // DEL_TO 以前的贴子将保存到 /data/board/这里的board_id 文件中
-                // 删除目前 board 里的 DEL_TO 以前的贴子
-                // 需对mark文章保留
+                // DEL_TO 以前的貼子將保存到 /data/board/這裡的board_id 文件中
+                // 刪除目前 board 裡的 DEL_TO 以前的貼子
+                // 需對mark文章保留
                 i = 0;
                 j = 0;
                 while (i<sizeof(notes))
@@ -285,7 +285,7 @@ void done_post(object me, mapping note, int n, string text)
                 notes -= ({ 0 });
                 set("notes", notes);
                 save();
-                tell_object(me, HIR"……整理完毕，删除 "HIW+(DEL_TO+1)+HIR" 号以前的贴子。\n"NOR);
+                tell_object(me, HIR"……整理完畢，刪除 "HIW+(DEL_TO+1)+HIR" 號以前的貼子。\n"NOR);
         }
         return;
 }
@@ -310,7 +310,7 @@ int do_post(string arg, int n)
 
         if( stringp(holded = query("hold")) &&
             strsrch(holded, "*"+query("id", me)+"*") >= 0 && !wizardp(me) )
-                return notify_fail("你在本版的权限已经被封了。\n");
+                return notify_fail("你在本版的權限已經被封了。\n");
 
         family = query("poster_family");
         fam = query("family", me);
@@ -321,27 +321,27 @@ int do_post(string arg, int n)
         if( stringp(family )
                 && (int)SECURITY_D->check_wiz_level(me, "(immortal)") < 0
                 && (!mapp(fam) || fam["family_name"] != family) )
-                return notify_fail("非本派弟子不得向本板乱涂乱写。\n");
+                return notify_fail("非本派弟子不得向本板亂塗亂寫。\n");
 
         if( query("avoid_flood")
                 && query("combat_exp", me) < NEED_EXP
                 && query("age", me) < NEED_AGE )
-                return notify_fail("你暂时还没有权力在这里发表文章，需要 " WHT +
-                                   NEED_EXP + NOR " 点经验值或者 " WHT + NEED_AGE + NOR " 岁的年龄。\n");
+                return notify_fail("你暫時還沒有權力在這裡發表文章，需要 " WHT +
+                                   NEED_EXP + NOR " 點經驗值或者 " WHT + NEED_AGE + NOR " 歲的年齡。\n");
 
-        if( !arg ) return notify_fail("新贴子请指定一个标题。\n");
+        if( !arg ) return notify_fail("新貼子請指定一個標題。\n");
 
         if( sscanf(arg, "%s with %d", arg, n) != 2 )
                 n = 0;
 
         if( replace_string(arg, " ", "") == "")
-                arg = "无标题";
+                arg = "無標題";
         /*
         else
                 arg = trans_color(arg, 3);
         */
         if( strlen(arg) > MAX_TITLE_LEN )
-                return notify_fail("这个标题太长了，请换一个简洁一点的。\n");
+                return notify_fail("這個標題太長了，請換一個簡潔一點的。\n");
 
         note = allocate_mapping(5);
         note["title"] = arg;
@@ -382,7 +382,7 @@ int do_followup(string arg)
 
         if( stringp(holded = query("hold")) &&
             strsrch(holded, "*"+query("id", me)+"*") >= 0 && !wizardp(me) )
-                return notify_fail("你在本版的权限已经被封了。\n");
+                return notify_fail("你在本版的權限已經被封了。\n");
 
         family = query("poster_family");
         fam = query("family", me);
@@ -393,33 +393,33 @@ int do_followup(string arg)
         if( stringp(family)
                 && (int)SECURITY_D->check_wiz_level(me, "(immortal)") < 0
                 && (!mapp(fam) || fam["family_name"] != family) )
-                return notify_fail("非本派弟子不得向本板乱涂乱写。\n");
+                return notify_fail("非本派弟子不得向本板亂塗亂寫。\n");
 
         if( query("avoid_flood")
                 && query("combat_exp", me) < NEED_EXP
                 && query("age", me) < NEED_AGE )
-                return notify_fail("你暂时还没有权力在这里发表文章，需要 " WHT +
-                                   NEED_EXP + NOR " 点经验值或者 " WHT + NEED_AGE + NOR " 岁的年龄。\n");
+                return notify_fail("你暫時還沒有權力在這裡發表文章，需要 " WHT +
+                                   NEED_EXP + NOR " 點經驗值或者 " WHT + NEED_AGE + NOR " 歲的年齡。\n");
 
         if( !arg )
-                return notify_fail("请输入欲回复的文章编号或 last 回复最后一篇文章。\n");
+                return notify_fail("請輸入欲回覆的文章編號或 last 回覆最後一篇文章。\n");
 
         notes = query("notes");
 
         if( arg == "last" ) num = sizeof(notes);
         else
         if( sscanf(arg, "%d %s", num, title) < 1 )
-                return notify_fail("请输入欲回复的文章编号。\n");
+                return notify_fail("請輸入欲回覆的文章編號。\n");
 
         if( sscanf(arg, "%d %s with %d", num, title, n) != 3
                 && sscanf(arg, "%d with %d", num, n) != 2 )
                 n = 0;
 
         if( !arrayp(notes) || num < 1 || num > sizeof(notes) )
-                return notify_fail("没有这张留言。\n");
+                return notify_fail("沒有這張留言。\n");
 
         if( title && strlen(title) > MAX_TITLE_LEN )
-                return notify_fail("这个标题太长了，请换一个简洁一点的。\n");
+                return notify_fail("這個標題太長了，請換一個簡潔一點的。\n");
 
         num--;
         file = notes[num]["msg"];
@@ -433,13 +433,13 @@ int do_followup(string arg)
         }
 
         if( msg[0..5] == "[36m>" )
-                msg = "[36m> ◎" + notes[num]["author"] + " 在 " + TIME_D->replace_ctime(notes[num]["time"]) + " 留下这篇留言：\n" + msg;
+                msg = "[36m> ◎" + notes[num]["author"] + " 在 " + TIME_D->replace_ctime(notes[num]["time"]) + " 留下這篇留言：\n" + msg;
 
-        msg += "\n◎" + me->query_idname() + " 在 " + TIME_D->replace_ctime(notes[num]["time"]) + " 留下这篇留言：\n";
+        msg += "\n◎" + me->query_idname() + " 在 " + TIME_D->replace_ctime(notes[num]["time"]) + " 留下這篇留言：\n";
 
         note = allocate_mapping(5);
         if( !title )
-                title = (notes[num]["title"][0..5] != "回复：" ? "回复：" : "") + notes[num]["title"];
+                title = (notes[num]["title"][0..5] != "回覆：" ? "回覆：" : "") + notes[num]["title"];
 
         note["title"] = title;
         if( noname_board )
@@ -473,7 +473,7 @@ int do_read(string arg)
         private_board = query("private_board");
 
         if( arc && !wizardp(me) )
-                return notify_fail("巫师内部交流不得窥视。\n");
+                return notify_fail("巫師內部交流不得窺視。\n");
 
         family = query("poster_family");
         fam = query("family", me);
@@ -483,30 +483,30 @@ int do_read(string arg)
         if( stringp(family)
                 && !wizardp(me)
                 && (!mapp(fam) || fam["family_name"] != family) )
-                return notify_fail("非本派弟子不得窥视本派内部交流。\n");
+                return notify_fail("非本派弟子不得窺視本派內部交流。\n");
 
         if( !pointerp(notes) || !sizeof(notes) )
-                return notify_fail("板子上目前没有任何贴子。\n");
+                return notify_fail("板子上目前沒有任何貼子。\n");
 
-        if( !arg ) return notify_fail("指令格式：read <贴子编号>|new|next|old\n");
+        if( !arg ) return notify_fail("指令格式：read <貼子編號>|new|next|old\n");
 
-        // 显示以前备份的旧贴子
+        // 顯示以前備份的舊貼子
         if( arg == "old" )
         {
                 file = DATA_DIR + "board/" + query("board_id") + ".old";
                 if( file_size(file) <= 0 )
-                        return notify_fail("对不起，目前本版没有保存的旧贴。\n");
+                        return notify_fail("對不起，目前本版沒有保存的舊貼。\n");
                 else
                 {
                         if( private_board && !wizardp(me) )
-                                return notify_fail("对不起，由于旧贴涉及到一些个人隐私，故不开放阅读。\n");
+                                return notify_fail("對不起，由於舊貼涉及到一些個人隱私，故不開放閱讀。\n");
 
                         msg = read_file(file);
                         me->start_more(msg);
                         return 1;
                 }
         }
-        // 显示未读的贴子
+        // 顯示未讀的貼子
         if( arg == "new" || arg == "next" )
         {
                 if( !intp(last_read_time) || undefinedp(last_read_time) )
@@ -526,20 +526,20 @@ int do_read(string arg)
 
         } else
         if( !sscanf(arg, "%d", num) )
-                return notify_fail("你要读第几个贴子？\n");
+                return notify_fail("你要讀第幾個貼子？\n");
 
         if( num < 1 || num > sizeof(notes) )
-                return notify_fail("没有这个贴子。\n");
+                return notify_fail("沒有這個貼子。\n");
         num--;
 
         if( !wizardp(me) && private_board && strcmp(query("id", me), notes[num]["owner"]) )
-                return notify_fail("这个帖子不是你留的，所以你不能阅读。\n");
+                return notify_fail("這個帖子不是你留的，所以你不能閱讀。\n");
 
         msg = sprintf(  CYN "----------------------------------------------------------------------\n"
-                        BWHT BLU " 标 题 " BBLU WHT " %-62s\n"
+                        BWHT BLU " 標 題 " BBLU WHT " %-62s\n"
                         BWHT BLU " 作 者 " BBLU WHT " %-19s   ╭====================================╮\n"
-                        BWHT BLU " 篇 数 " BBLU WHT " %-11d           ║"HIR"请文明使用，否则"HIY"你"HIR"或"HIY"帖子"HIR"可能会被删除"NOR BBLU WHT"║\n"
-                        BWHT BLU " 时 间 " BBLU WHT " %-19s   ╰====================================╯\n" NOR
+                        BWHT BLU " 篇 數 " BBLU WHT " %-11d           ║"HIR"請文明使用，否則"HIY"你"HIR"或"HIY"帖子"HIR"可能會被刪除"NOR BBLU WHT"║\n"
+                        BWHT BLU " 時 間 " BBLU WHT " %-19s   ╰====================================╯\n" NOR
                         CYN "----------------------------------------------------------------------\n\n" NOR "%s\n",
                         notes[num]["title"], notes[num]["author"] + "(" + notes[num]["owner"] + ")", num + 1, TIME_D->replace_ctime(notes[num]["time"]),
                         notes[num]["msg"]);
@@ -570,10 +570,10 @@ int do_banzhu(string arg)
                 return notify_fail("指令格式： banzhu +|- <版主id>\n");
 
         if( !wizardp(this_player(1)) && query("owner_id") != query("id", this_player()) )
-                return notify_fail("你不是巫师，不可以任命版主。\n");
+                return notify_fail("你不是巫師，不可以任命版主。\n");
 
         if( !stringp(arg) || strlen(arg) < 3 )
-                return notify_fail("没有这个人。\n");
+                return notify_fail("沒有這個人。\n");
 
         if( opt == "+" )
         {
@@ -582,19 +582,19 @@ int do_banzhu(string arg)
 
                 set("banzhu", arg);
                 save();
-                write("任命 " HIY + arg + NOR " 为" + name() + "版主成功。\n");
+                write("任命 " HIY + arg + NOR " 為" + name() + "版主成功。\n");
         }
         else
         {
                 if( !query("banzhu") )
-                        return notify_fail("目前没有版主，不需要撤换。\n");
+                        return notify_fail("目前沒有版主，不需要撤換。\n");
 
                 if( query("banzhu") != arg )
-                        return notify_fail("目前的版主不是 " + arg + "，不能撤换。\n");
+                        return notify_fail("目前的版主不是 " + arg + "，不能撤換。\n");
 
                 delete("banzhu");
                 save();
-                write("撤换 " HIY + arg + NOR " " + name() + "版主职位成功。\n");
+                write("撤換 " HIY + arg + NOR " " + name() + "版主職位成功。\n");
         }
         return 1;
 }
@@ -609,11 +609,11 @@ int do_hold(string arg)
                 return notify_fail("指令格式： hold +|- <id>\n");
 
         if( !stringp(arg) || strlen(arg) < 3 )
-                return notify_fail("没有这个人。\n");
+                return notify_fail("沒有這個人。\n");
 
         if( !wizardp(this_player(1)) &&
             query("banzhu") != query("id", this_player(1)) )
-                return notify_fail("你不是版主，不可以封玩家权限。\n");
+                return notify_fail("你不是版主，不可以封玩家權限。\n");
 
         if( !query("hold") ) holded = "0";
         else holded = query("hold");
@@ -621,25 +621,25 @@ int do_hold(string arg)
         if( opt == "+" )
         {
                 if( strsrch(holded, "*"+arg+"*") >= 0 )
-                        return notify_fail(arg + "已经被封，不需要再费劲了。\n");
+                        return notify_fail(arg + "已經被封，不需要再費勁了。\n");
 
                 set("hold", query("hold")+"*"+arg+"*");
                 save();
-                write("封杀 "HIY + arg + NOR" 权限成功。\n");
+                write("封殺 "HIY + arg + NOR" 權限成功。\n");
         }
         else
         {
                 if( holded == "0" )
-                        return notify_fail("目前没封过人，不需要解封。\n");
+                        return notify_fail("目前沒封過人，不需要解封。\n");
 
                 if( !strsrch(holded, "*"+arg+"*") >= 0 )
-                        return notify_fail(arg+"没被封权限，不需要解封。\n");
+                        return notify_fail(arg+"沒被封權限，不需要解封。\n");
 
                 holded = replace_string(holded, "*"+arg+"*", "");
 
                 set("hold", holded);
                 save();
-                write("解封 "HIY+arg+NOR" 权限成功。\n");
+                write("解封 "HIY+arg+NOR" 權限成功。\n");
         }
         return 1;
 }
@@ -650,11 +650,11 @@ int do_discard(string arg)
         int num;
 
         if( !arg || sscanf(arg, "%d", num) != 1 )
-                return notify_fail("指令格式：delete <贴子编号>\n");
+                return notify_fail("指令格式：delete <貼子編號>\n");
 
         notes = query("notes");
         if( !arrayp(notes)|| num < 1 || num > sizeof(notes) )
-                return notify_fail("没有这张贴子。\n");
+                return notify_fail("沒有這張貼子。\n");
 
         else
         {
@@ -662,11 +662,11 @@ int do_discard(string arg)
                 if( notes[num]["owner"] != (string)query("id", this_player(1))
                         && query("banzhu") != query("id", this_player(1))
                         && wiz_level(this_player(1)) < 6)
-                        return notify_fail("这个贴子不是你写的，你又不是版主。\n");
+                        return notify_fail("這個貼子不是你寫的，你又不是版主。\n");
 
                 notes = notes[0..num-1] + notes[num+1..sizeof(notes)-1];
                 set("notes", notes);
-                write("删除第 " + (num + 1) + " 号贴子....Ok。\n");
+                write("刪除第 " + (num + 1) + " 號貼子....Ok。\n");
                 save();
                 return 1;
         }
@@ -678,26 +678,26 @@ int do_mark(string arg)
         int num;
 
         if( !arg || sscanf(arg, "%d",num) != 1 )
-                return notify_fail("指令格式：mark <贴子编号>\n");
+                return notify_fail("指令格式：mark <貼子編號>\n");
 
         notes = query("notes");
         if( !arrayp(notes)|| num <1 || num > sizeof(notes) )
-                return notify_fail("没有这张贴子。\n");
+                return notify_fail("沒有這張貼子。\n");
 
         num--;
         if( query("banzhu") != query("id", this_player(1)) &&
             !wizardp(this_player(1)) )
-                return notify_fail("你不是版主，无法保留文章。\n");
+                return notify_fail("你不是版主，無法保留文章。\n");
 
         if( notes[num]["mark"] == "M" )
         {
                 notes[num]["mark"] = " ";
-                write("去除第 " + (num+1) + " 号贴子的保留标志成功。\n");
+                write("去除第 " + (num+1) + " 號貼子的保留標誌成功。\n");
         }
         else
         {
                 notes[num]["mark"] = "M";
-                write("保留第 " + (num+1) + " 号贴子成功。\n");
+                write("保留第 " + (num+1) + " 號貼子成功。\n");
         }
         save();
         return 1;
@@ -753,28 +753,28 @@ int do_search(string arg)
         notes = query("notes");
         if( !pointerp(notes) || !sizeof(notes) )
         {
-                tell_object(me, "目前没有任何帖子。\n");
+                tell_object(me, "目前沒有任何帖子。\n");
                 return 1;
         }
 
         if( !arg )
         {
-                tell_object(me, "你想搜索那一条帖子？\n");
+                tell_object(me, "你想搜索那一條帖子？\n");
                 return 1;
         }
 
         if( sscanf(arg, "%s %s", topic, arg) != 2 )
         {
-                tell_object(me, "你只能搜索标题(title)、作者(author)、内容(document)。\n");
+                tell_object(me, "你只能搜索標題(title)、作者(author)、內容(document)。\n");
                 return 1;
         } else
         {
-                if( topic == "title" ) note = "标题";
+                if( topic == "title" ) note = "標題";
                 else if( topic == "author" ) note = "作者";
-                else if( topic == "document" ) note = "内容";
+                else if( topic == "document" ) note = "內容";
                 else
                 {
-                        tell_object(me, "你只能搜索标题(title)、作者(author)、内容(document)。\n");
+                        tell_object(me, "你只能搜索標題(title)、作者(author)、內容(document)。\n");
                         return 1;
                 }
         }
@@ -782,7 +782,7 @@ int do_search(string arg)
         last_time_read = query("board_last_read/" + (string)query("board_id"), this_player());
         i = sizeof(notes);
 
-        msg = sprintf("根据 " HIY "%s" NOR " 搜索 " HIY "%s" NOR " 得到如下符合条件帖子：\n"
+        msg = sprintf("根據 " HIY "%s" NOR " 搜索 " HIY "%s" NOR " 得到如下符合條件帖子：\n"
                       "───────────────────────────────────\n" NOR,
                       arg, note);
 
@@ -810,12 +810,12 @@ int do_search(string arg)
 
         if( j == 0 )
         {
-                tell_object(me, "根据 " HIY + arg + NOR " 搜索 " HIY + note + NOR " 没有找到符合条件的帖子。\n");
+                tell_object(me, "根據 " HIY + arg + NOR " 搜索 " HIY + note + NOR " 沒有找到符合條件的帖子。\n");
                 return 1;
         }
 
         if( j > 19 )
-                msg += "由于搜索到的结果太多，因此只显示二十条留言，请使用更明确的关键字|词。\n";
+                msg += "由於搜索到的結果太多，因此只顯示二十條留言，請使用更明確的關鍵字|詞。\n";
 
         me->start_more(msg);
         return 1;

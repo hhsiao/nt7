@@ -3,18 +3,18 @@ inherit ROOM;
 
 void create()
 {
-    set("short", "大厅");
+    set("short", "大廳");
     set("long", 
-"这里是桃花山庄的正厅。整个大厅十分宽阔。厅中更挂满\n"
-"了各种名家的书法真迹。但最为显眼的却是正中挂的一幅对联：\n\n"
+"這裡是桃花山莊的正廳。整個大廳十分寬闊。廳中更掛滿\n"
+"了各種名家的書法真跡。但最為顯眼的卻是正中掛的一幅對聯：\n\n"
 HIC "           ※※※※※※※※※※※※※※※\n"
 "           ※                          ※\n"
-"           ※   " HIW "桃 花 影 落 飞 神 剑" HIC  "   ※\n"
+"           ※   " HIW "桃 花 影 落 飛 神 劍" HIC  "   ※\n"
 "           ※                          ※\n"
-"           ※   " HIW "碧 海 潮 生 按 玉 箫" HIC  "   ※\n"
+"           ※   " HIW "碧 海 潮 生 按 玉 簫" HIC  "   ※\n"
 "           ※                          ※\n"
 "           ※※※※※※※※※※※※※※※\n\n" NOR
-"其字体遒劲挺拔，气势宏伟之极，想必应是出自黄药师的手笔。\n"
+"其字體遒勁挺拔，氣勢宏偉之極，想必應是出自黃藥師的手筆。\n"
 );
         set("exits", ([
             "north" : __DIR__"qianyuan",
@@ -23,7 +23,7 @@ HIC "           ※※※※※※※※※※※※※※※\n"
             "west"  : __DIR__"wofang" ,
         ]));
         set("objects", ([
-            //"/kungfu/class/taohua/huang" : 1, // 已经取消该区域
+            //"/kungfu/class/taohua/huang" : 1, // 已經取消該區域
         ]) );    
         set("valid_startroom", 1);
         set("no_beg", "1");

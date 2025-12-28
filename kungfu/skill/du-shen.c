@@ -1,6 +1,6 @@
 // This program is a part of NITAN MudLIB 
 // redl 2013/11
-// 赌神
+// 賭神
 
 inherit SKILL;
 

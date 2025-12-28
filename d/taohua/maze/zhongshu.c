@@ -9,12 +9,12 @@ void create()
 {
         object ob;
 
-        set("short", "石阵中枢");
+        set("short", "石陣中樞");
         set("long", @LONG
-这是桃花岛石阵中枢所在地，四壁(wall)上绘着二十八星宿图，地上
-密密麻麻刻着诸般卦象。地上一个太极图(tu)，周围分别环绕先天八卦与
-后天八卦，外圈则是推演而出的六十四卦。一缕天光悄然注下，映得室中
-忽明忽暗，似乎万籁俱寂，又似乎诸声杂陈，动静之间，不可琢磨。
+這是桃花島石陣中樞所在地，四壁(wall)上繪著二十八星宿圖，地上
+密密麻麻刻著諸般卦象。地上一個太極圖(tu)，周圍分別環繞先天八卦與
+後天八卦，外圈則是推演而出的六十四卦。一縷天光悄然注下，映得室中
+忽明忽暗，似乎萬籟俱寂，又似乎諸聲雜陳，動靜之間，不可琢磨。
 LONG );
 
         set("exits", ([
@@ -25,12 +25,12 @@ LONG );
         ]));
         set("no_fight", 1);
         set("item_desc", ([
-                "tu" : "太极图上阴(yin)鱼与阳(yang)鱼分列左右。\n",
+                "tu" : "太極圖上陰(yin)魚與陽(yang)魚分列左右。\n",
                 "wall" :
-"青龙七宿：角木蛟、亢金龙、氐土貉、房月狐、心日兔、尾火虎、箕水豹\n"
-"白虎七宿：奎木狼、娄金狗、胃土雉、昂日鸡、毕月鸟、觜火猴、参水猿\n"
-"朱雀七宿：井木犴、鬼金羊、柳土獐、星日马、张月鹿、翼水蛇、轸火蚓\n"
-"玄武七宿：斗木獬、牛金羊、女土蝠、虚日鼠、危月燕、室火猪、壁水＜犭俞＞\n",
+"青龍七宿：角木蛟、亢金龍、氐土貉、房月狐、心日兔、尾火虎、箕水豹\n"
+"白虎七宿：奎木狼、婁金狗、胃土雉、昂日雞、畢月鳥、觜火猴、參水猿\n"
+"朱雀七宿：井木犴、鬼金羊、柳土獐、星日馬、張月鹿、翼水蛇、軫火蚓\n"
+"玄武七宿：斗木獬、牛金羊、女土蝠、虛日鼠、危月燕、室火豬、壁水＜犭俞＞\n",
         ]));
 
 
@@ -57,23 +57,23 @@ int do_thinking()
         if (me->query_skill("qimen-wuxing", 1) < 170 &&
             ! present("he tu", me) && ! present("luo shu", me))
         {
-                tell_object(me, MAG "你只觉气血翻涌，无数异像怪声向你袭来！\n" NOR);
+                tell_object(me, MAG "你只覺氣血翻湧，無數異像怪聲向你襲來！\n" NOR);
                 me->unconcious();
                 return 1;
         }
 
         if( !query("taohua_maze", me) )
         {
-                tell_object(me, MAG "你只觉气血翻涌，无数异像怪声向你袭来！\n" NOR);
+                tell_object(me, MAG "你只覺氣血翻湧，無數異像怪聲向你襲來！\n" NOR);
                 me->unconcious();
                 return 1;
         }
 
         if( query("jing", me)<100 )
-                return notify_fail("你现在精神不佳，无法定下心来思考！\n");
+                return notify_fail("你現在精神不佳，無法定下心來思考！\n");
 
         if( query("potential", me) <= query("learned_points", me)+2 )
-                return notify_fail("你的潜能不足，无法领悟基本武功！\n");
+                return notify_fail("你的潛能不足，無法領悟基本武功！\n");
 
         me->receive_damage("jing", random(qmdj));
 
@@ -81,21 +81,21 @@ int do_thinking()
         {
                 addn("potential", -2, me);
                 me->improve_skill("qimen-wuxing", qmdj / 2 + random(qmdj * 2));
-                tell_object(me, "只觉脑中豁然开朗，你对奇门遁甲的领悟又进了一层！\n");
+                tell_object(me, "只覺腦中豁然開朗，你對奇門遁甲的領悟又進了一層！\n");
         } else
         if (random(10) == 0)
         {
                 addn("potential", -1, me);
                 me->improve_skill("qimen-wuxing", qmdj / 5 + random(qmdj * 2));
-                tell_object(me, "你冥思苦想，对奇门遁甲渐渐加深一层体会！\n");
+                tell_object(me, "你冥思苦想，對奇門遁甲漸漸加深一層體會！\n");
         } else
         if (random(2) == 0)
         {
                 me->improve_skill("qimen-wuxing", qmdj / 10 + random(qmdj / 2));
-                tell_object(me, "你坐立不安，潜心苦思奇门遁甲上的难解之处。\n");
+                tell_object(me, "你坐立不安，潛心苦思奇門遁甲上的難解之處。\n");
         } else
         {
-                tell_object(me, "你坐立不安，潜心苦思奇门遁甲上的难解之处。\n");
+                tell_object(me, "你坐立不安，潛心苦思奇門遁甲上的難解之處。\n");
         }
 
         return 1;
@@ -111,30 +111,30 @@ int do_sit(string arg)
         if (! arg || arg != "yin") return 0;
 
         if( query_temp("sitted", me) )
-                return notify_fail("你已经坐在上面了！\n");
+                return notify_fail("你已經坐在上面了！\n");
 
         if( query_temp("standed", me) )
-                return notify_fail("你已经站在上面了！\n");
+                return notify_fail("你已經站在上面了！\n");
 
         if (query("yin"))
         {
-                write(query("yin")->name() + "已经坐在上面了！\n");
-                tell_object(query("yin"),"看起来"+query("name", me)+"也想坐上来。\n");
+                write(query("yin")->name() + "已經坐在上面了！\n");
+                tell_object(query("yin"),"看起來"+query("name", me)+"也想坐上來。\n");
                 return 1;
         }
 
         if (arg == "yin")
         {
-                message_vision("$N盘膝坐上左面阴鱼图。\n", me);
+                message_vision("$N盤膝坐上左面陰魚圖。\n", me);
 
                 if (me->query_skill("qimen-wuxing", 1) < 150 &&
                     ! present("he tu", me) && ! present("luo shu", me))
                 {
-                        tell_object(me, MAG "你只觉气血翻涌，无数异像怪声向你袭来！\n"NOR);
+                        tell_object(me, MAG "你只覺氣血翻湧，無數異像怪聲向你襲來！\n"NOR);
                         me->unconcious();
                         return 1;
                 }
-                message_vision(HIG "$N眼观鼻，鼻观心，由制心止自体真止，顷刻之间已神游物外。\n" NOR, me);
+                message_vision(HIG "$N眼觀鼻，鼻觀心，由制心止自體真止，頃刻之間已神遊物外。\n" NOR, me);
                 set_temp("sitted", 1, me);
                 set("yin", me);
                 return 1;
@@ -152,29 +152,29 @@ int do_stand(string arg)
         if( !arg || arg!="yang" ) return 0;
 
         if( query_temp("standed", me) )
-                return notify_fail("你已经站在上面了！\n");
+                return notify_fail("你已經站在上面了！\n");
 
         if( query_temp("sitted", me) )
-                return notify_fail("你已经坐在上面了！\n");
+                return notify_fail("你已經坐在上面了！\n");
 
         if( query("yang" )){
-                write(query("yang")->name()+"已经站在上面了！\n");
-                tell_object(query("yang"),"看起来"+query("name", me)+"也想站上来。\n");
+                write(query("yang")->name()+"已經站在上面了！\n");
+                tell_object(query("yang"),"看起來"+query("name", me)+"也想站上來。\n");
                 return 1;
         }
 
         if( arg == "yang" )
         {
-                message_vision("$N缓步站上右面的阳鱼图。\n", me);
+                message_vision("$N緩步站上右面的陽魚圖。\n", me);
 
                 if ( me->query_skill("qimen-wuxing", 1) < 150 &&
                         ! present("he tu", me) && !present("luo shu", me) )
                 {
-                        tell_object(me, MAG "你只觉气血翻涌，无数异像怪声向你袭来！\n" NOR);
+                        tell_object(me, MAG "你只覺氣血翻湧，無數異像怪聲向你襲來！\n" NOR);
                         me->unconcious();
                         return 1;
                 }
-                message_vision(HIY "$N足下虚步先后天八卦方位，自先天而后天，片刻间已万物不萦于怀。\n" NOR,me);
+                message_vision(HIY "$N足下虛步先後天八卦方位，自先天而後天，片刻間已萬物不縈於懷。\n" NOR,me);
                 set_temp("standed", 1, me);
                 set("yang", me);
                 return 1;
@@ -191,14 +191,14 @@ int do_leave()
         {
                 delete_temp("sitted", me);
                 delete("yin");
-                message_vision("$N长吁一口气，收摄心神，站起身来。\n",me);
+                message_vision("$N長吁一口氣，收攝心神，站起身來。\n",me);
         }
 
         if( query_temp("standed", me) )
         {
                 delete_temp("standed", me);
                 delete("yang");
-                message_vision("$N调息片刻，停住步伐，看上去有点疲倦。\n",me);
+                message_vision("$N調息片刻，停住步伐，看上去有點疲倦。\n",me);
         }
 
         return 1;
@@ -207,7 +207,7 @@ int do_leave()
 int valid_leave(object me, string dir)
 {
         if( query_temp("sitted", me) || query_temp("standed", me) )
-                return notify_fail("你周天搬运未毕，起身恐受内伤！\n");
+                return notify_fail("你周天搬運未畢，起身恐受內傷！\n");
         return ::valid_leave(me, dir);
 }
 
@@ -223,40 +223,40 @@ int do_understand(string arg)
                 return 0;
 
         if (! query("yin") || ! query("yang"))
-                return notify_fail("你还需要一位同伴协助运功。\n");
+                return notify_fail("你還需要一位同伴協助運功。\n");
 
         if (! arg)
-                return notify_fail("你要研究何种基本武技？");
+                return notify_fail("你要研究何種基本武技？");
 
         if (arg == "force")
-                return notify_fail("你不能自行修炼基本内功！\n");
+                return notify_fail("你不能自行修煉基本內功！\n");
 
         if (me->is_busy())
-                return notify_fail("你现在正忙着呢。\n");
+                return notify_fail("你現在正忙著呢。\n");
 
         if (me->is_fighting())
-                return notify_fail("你已经在战斗中了，学一点实战经验吧。\n");
+                return notify_fail("你已經在戰鬥中了，學一點實戰經驗吧。\n");
 
         if (! stringp(skillname = me->query_skill_mapped(arg)))
-                return notify_fail("你必须有特殊武功方能与基本武技参照领悟！\n");
+                return notify_fail("你必須有特殊武功方能與基本武技參照領悟！\n");
 
         skill_basic = me->query_skill(arg, 1);
         skill_special = me->query_skill(skillname, 1);
 
         if( skill_special < 1 )
-                return notify_fail("你对这方面的技能还是一窍不通，最好从先从基本学起。\n");
+                return notify_fail("你對這方面的技能還是一竅不通，最好從先從基本學起。\n");
 
         if( skill_basic > skill_special )
-                return notify_fail("你" + to_chinese(skillname) + "功力不够，无法继续领悟" + to_chinese(arg) + "！\n");
+                return notify_fail("你" + to_chinese(skillname) + "功力不夠，無法繼續領悟" + to_chinese(arg) + "！\n");
 
         if( skill_basic < 1 )
-                return notify_fail("你好像还没有学过这项基本技能吧？ 最好先去请教别人。\n");
+                return notify_fail("你好像還沒有學過這項基本技能吧？ 最好先去請教別人。\n");
 
         if( query("jing", me)<100 )
-                return notify_fail("你现在精神不佳，无法定下心来思考！\n");
+                return notify_fail("你現在精神不佳，無法定下心來思考！\n");
 
         if( query("potential", me) <= query("learned_points", me)+2 )
-                return notify_fail("你的潜能不足，无法领悟基本武功！\n");
+                return notify_fail("你的潛能不足，無法領悟基本武功！\n");
 
         me->receive_damage("jing", random(skill_basic));
 
@@ -264,35 +264,35 @@ int do_understand(string arg)
         {
                 addn("potential", -2, me);
                 me->improve_skill(arg, skill_special + random(skill_special * 2));
-                tell_object(me, "只觉脑中豁然开朗，你对" + to_chinese(arg) + "的领悟又进了一层！\n" );
+                tell_object(me, "只覺腦中豁然開朗，你對" + to_chinese(arg) + "的領悟又進了一層！\n" );
         }
         else if(random(10) == 0) {
                 addn("potential", -1, me);
                 me->improve_skill(arg, skill_special/2 + random(skill_special/1));
-                tell_object(me, "你冥思苦想，对" + to_chinese(arg) + "渐渐加深一层体会！\n" );
+                tell_object(me, "你冥思苦想，對" + to_chinese(arg) + "漸漸加深一層體會！\n" );
         }
         else if(random(5) == 0) {
                 me->improve_skill(arg, skill_special/4 + random(skill_special/2));
-                tell_object(me, "你拿手比划着，似乎对" + to_chinese(arg) + "中的几个招数有所体会。\n" );
+                tell_object(me, "你拿手比劃著，似乎對" + to_chinese(arg) + "中的幾個招數有所體會。\n" );
         }
         else if(random(2) == 0) {
                 me->improve_skill(arg, skill_special/8 + random(skill_special/4));
-                tell_object(me, "你坐立不安，潜心苦思" + to_chinese(arg) + "上的难解之处。\n" );
+                tell_object(me, "你坐立不安，潛心苦思" + to_chinese(arg) + "上的難解之處。\n" );
         }
         else if(random(5) == 0) {
-                tell_object(me, "你心中说不出的烦燥，对" + to_chinese(arg) + "始终不得一解。\n" );
+                tell_object(me, "你心中說不出的煩燥，對" + to_chinese(arg) + "始終不得一解。\n" );
         }
         else if(random(10) == 0) {
                 me->improve_skill(arg, - (skill_special/10 + random(skill_special/5)));
-                tell_object(me, "你只觉得体内真气乱窜，" + to_chinese(arg) + "中的招式象走马灯一般在面前显现！\n" );
+                tell_object(me, "你只覺得體內真氣亂竄，" + to_chinese(arg) + "中的招式象走馬燈一般在面前顯現！\n" );
         }
         else if(random(20) == 0) {
                 me->improve_skill(arg, - (skill_special/6 + random(skill_special/3)));
-                tell_object(me, "你的大脑中一片空白。对" + to_chinese(arg) + "是越想越糊涂。\n" );
+                tell_object(me, "你的大腦中一片空白。對" + to_chinese(arg) + "是越想越糊塗。\n" );
         }
         else
         {
-                tell_object(me, "你坐立不安，潜心苦思" + to_chinese(arg) + "上的难解之处。\n" );
+                tell_object(me, "你坐立不安，潛心苦思" + to_chinese(arg) + "上的難解之處。\n" );
         }
 
         return 1;

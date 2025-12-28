@@ -1,24 +1,24 @@
 // This program is a part of NT MudLIB
 
 /*
-名称：
+名稱：
 
-       valid_hide - 允许或禁止一个物件具有匿踪 (hide) 及看到匿踪物件的能力。
-语法：
+       valid_hide - 允許或禁止一個物件具有匿蹤 (hide) 及看到匿蹤物件的能力。
+語法：
         int valid_hide( object ob );
 
-        整数 valid_hide( 物件 物件 );
+        整數 valid_hide( 物件 物件 );
 用法：
-        在主宰物件中 (master.c) 加上 valid_hide 可以让物件具有自我匿踪和看
-        到其他匿踪物件的能力。当一个物件使用 set_hide() 函式以进入匿踪状态
-        时，此物件就当成 valid_hide() 的唯一参数呼叫此函式。允许此物件匿踪
-        时应传回 1，反之则传回 0。当一个物件想看到匿踪状态的物件时，也以同
-        样的方式呼叫此函式。
-参考：
+        在主宰物件中 (master.c) 加上 valid_hide 可以讓物件具有自我匿蹤和看
+        到其他匿蹤物件的能力。當一個物件使用 set_hide() 函式以進入匿蹤狀態
+        時，此物件就當成 valid_hide() 的唯一參數呼叫此函式。允許此物件匿蹤
+        時應傳回 1，反之則傳回 0。當一個物件想看到匿蹤狀態的物件時，也以同
+        樣的方式呼叫此函式。
+參考：
         set_hide
 作者：
         Tim Hollebeek  Beek@ZorkMUD, Lima Bean, IdeaExchange, and elsewhere
-翻译：
+翻譯：
         spock@muds.net          2000.May.21.    v22 版
 */
 

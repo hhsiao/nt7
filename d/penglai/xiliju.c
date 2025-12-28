@@ -4,20 +4,20 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "西篱居");
+        set("short", "西籬居");
         set("long",@LONG
-这里似乎是一处居所，不远处有一处茅屋，四周用篱笆围住。  
-放眼远望，山影起伏，雾气阵阵，令人无限遐思。     
+這裡似乎是一處居所，不遠處有一處茅屋，四周用籬笆圍住。  
+放眼遠望，山影起伏，霧氣陣陣，令人無限遐思。     
 LONG);
 
         set("exits", ([
                 "northeast"        : __DIR__"caijuyuan2",
                 "southeast"        : __DIR__"caijuyuan3",
         ]));
-        set("no_rideto", 1);         // 设置不能骑马到其他地方
-        set("no_flyto", 1);          // 设置不能从起来地方骑马来这里
-        set("no_die", 1);            // 死亡后移动到扁鹊居
-        set("penglai", 1);           // 表示在蓬莱岛
+        set("no_rideto", 1);         // 設置不能騎馬到其他地方
+        set("no_flyto", 1);          // 設置不能從起來地方騎馬來這裡
+        set("no_die", 1);            // 死亡後移動到扁鵲居
+        set("penglai", 1);           // 表示在蓬萊島
 
         set("region", "penglai");
         setup();
@@ -30,14 +30,14 @@ void init ()
                 if( !query("penglai/go_quest/ok", this_player()) )
                 {
                         this_player()->start_busy(3);
-                        tell_object(this_player(), NOR + WHT "你到了此处，四周仙气缭绕令你一时间难以辨别方向。\n" NOR);
+                        tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);
                 }
                 else
                 {
                         if (random(2))
                         {
                                 this_player()->start_busy(1);
-                                tell_object(this_player(), NOR + WHT "你到了此处，四周仙气缭绕令你一时间难以辨别方向。\n" NOR);                
+                                tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);                
                         }
                 }
         }

@@ -15,7 +15,7 @@ int do_look(string arg)
 
         if( time()-query_temp("last_look_paizi", this_player())<2 )
         {
-                tell_object(this_player(),"别挤，大家都要看！你刚看过了，等一下再看吧！\n");
+                tell_object(this_player(),"別擠，大家都要看！你剛看過了，等一下再看吧！\n");
                 return 1;
         }
 
@@ -25,21 +25,21 @@ int do_look(string arg)
         bunch_quest = sort_array(bunch_quest,(: sort_by_id :));
 
         msg = HIC "----------------------------------------------------------------------------\n"NOR;
-        msg += WHT BBLU "                                  追杀令                                    \n"NOR;
+        msg += WHT BBLU "                                  追殺令                                    \n"NOR;
         msg += HIC "----------------------------------------------------------------------------\n"NOR;
-        msg += sprintf(HIR"%-10s%-50s%-10s%s\n"NOR,"编号","任务","难度","奖励");
+        msg += sprintf(HIR"%-10s%-50s%-10s%s\n"NOR,"編號","任務","難度","獎勵");
         if (sizeof(bunch_zs))
                 for (i=0;i<sizeof(bunch_zs);i++)
                         msg += sprintf("%-10s%-50s%-10s%s\n",
                                           bunch_zs[i]["id"],
-                                          "追杀"+bunch_zs[i]["name"],
+                                          "追殺"+bunch_zs[i]["name"],
                                           bunch_zs[i]["difficult"],
                                           bunch_zs[i]["reward"],
                                       );
         msg += HIC "----------------------------------------------------------------------------\n"NOR;
-        msg += WHT BBLU "                                  任务表                                    \n"NOR;
+        msg += WHT BBLU "                                  任務表                                    \n"NOR;
         msg += HIC "----------------------------------------------------------------------------\n"NOR;
-        msg += sprintf(HIR"%-10s%-50s%-10s%s\n"NOR,"编号","任务","难度","奖励");
+        msg += sprintf(HIR"%-10s%-50s%-10s%s\n"NOR,"編號","任務","難度","獎勵");
         if (sizeof(bunch_quest))
                 for (i=0;i<sizeof(bunch_quest);i++)
                 {
@@ -52,8 +52,8 @@ int do_look(string arg)
                                       );
                 }
         msg += HIC "----------------------------------------------------------------------------\n"NOR;
-        msg += HIC "请用type <编号>查看每个任务的具体情况。\n"NOR;
-        msg += HIC "请用choose <编号>选择你要完成的任务，放弃任务用giveup指令。\n"NOR;
+        msg += HIC "請用type <編號>查看每個任務的具體情況。\n"NOR;
+        msg += HIC "請用choose <編號>選擇你要完成的任務，放棄任務用giveup指令。\n"NOR;
 
         set_temp("last_look_paizi", time(), this_player());
         this_player()->start_more(msg);
@@ -67,13 +67,13 @@ int do_type(string arg)
 
         if (!wizardp(this_player()) &&  
             (bad_bunch(this_player()) || query("shen", this_player())<0) )
-                return notify_fail("你一个黑道人士到这里来查什么任务？\n");
+                return notify_fail("你一個黑道人士到這裡來查什麼任務？\n");
 
         if (!wizardp(this_player()) && ! good_bunch(this_player()))
-                return notify_fail("你先加入白道联盟，才可以查看白道的任务。\n");
+                return notify_fail("你先加入白道聯盟，才可以查看白道的任務。\n");
 
         if (!arg) 
-                return notify_fail("你想查看哪条任务的详细信息？指令：type <编号>\n");
+                return notify_fail("你想查看哪條任務的詳細信息？指令：type <編號>\n");
 
         bunch_quest = PARTY_QUEST_D->query_zhuisha_quest(TYPE, arg);
 
@@ -81,18 +81,18 @@ int do_type(string arg)
                 bunch_quest = PARTY_QUEST_D->query_city_quest(PLACE,TYPE, arg);
 
         if (!bunch_quest)
-                return notify_fail("你所查询的编号为"+arg+"的任务并不存在。\n");
+                return notify_fail("你所查詢的編號為"+arg+"的任務並不存在。\n");
         
 /*      if (bunch_quest["id"] == "xc" && !bunch_quest["enable"]) 
-                return notify_fail("今天已经有弟兄去巡城了，你等改天吧。\n");
+                return notify_fail("今天已經有弟兄去巡城了，你等改天吧。\n");
 */
         msg = HIC "\n----------------------------------------------------------------------------\n"NOR;
-        msg += "任务编号：" + bunch_quest["id"] + "\n";
-        msg += "任务类型：" + bunch_quest["type"] + "\n";
-        msg += "任务名称：" + bunch_quest["name"] + "\n";
-        msg += "任务难度：" + bunch_quest["difficult"] + "\n";
-        msg += "任务奖励：" + bunch_quest["reward"] + "\n";
-        msg += "任务信息: \n" + bunch_quest["msg"] + "\n";
+        msg += "任務編號：" + bunch_quest["id"] + "\n";
+        msg += "任務類型：" + bunch_quest["type"] + "\n";
+        msg += "任務名稱：" + bunch_quest["name"] + "\n";
+        msg += "任務難度：" + bunch_quest["difficult"] + "\n";
+        msg += "任務獎勵：" + bunch_quest["reward"] + "\n";
+        msg += "任務信息: \n" + bunch_quest["msg"] + "\n";
         msg += HIC "----------------------------------------------------------------------------\n"NOR;
         this_player()->start_more(msg);
         return 1;

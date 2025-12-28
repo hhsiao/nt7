@@ -1,5 +1,5 @@
 // This is player's own perform (Write by Lonely@nt2)
-// Create by 风林火山(Lxer) at Sun May 17 06:51:05 2015
+// Create by 風林火山(Lxer) at Sun May 17 06:51:05 2015
 // 徐如林(lian)
 #include <ansi.h>
 #include <combat.h>
@@ -29,7 +29,7 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if (me->is_busy()) return notify_fail(BUSY_MESSAGE);
 
@@ -37,7 +37,7 @@ int perform(object me, object target)
         {
                 if( !objectp(weapon=query_temp("weapon", me) )
                     || query("skill_type", weapon) != "sword" )
-                        return notify_fail("你所使用的武器不对，难以施展" + name() + "。\n");
+                        return notify_fail("你所使用的武器不對，難以施展" + name() + "。\n");
         } else
         {
                 if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
@@ -45,21 +45,21 @@ int perform(object me, object target)
         }
 
         if ((int)me->query_skill("lxer-sword", 1) < 400)
-                return notify_fail("你" + to_chinese("lxer-sword") + "不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你" + to_chinese("lxer-sword") + "不夠嫻熟，難以施展" + name() + "。\n");
 
         if (member_array("sword", weapon_sk) == -1)
         {
                 if (me->query_skill_prepared("sword") != "lxer-sword")
-                        return notify_fail("你没有准备" + to_chinese("lxer-sword") + "，难以施展" + name() + "。\n");
+                        return notify_fail("你沒有準備" + to_chinese("lxer-sword") + "，難以施展" + name() + "。\n");
         }
 
         if( query("neili", me)<300 )
-                return notify_fail("你现在的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N手中武器寒气逼人，剑体撕裂空气，片片雪花飘落，剑未至气先及，$n眉毛都蒙上了薄薄白霜！" + "\n" + NOR;
+        msg = HIW "$N手中武器寒氣逼人，劍體撕裂空氣，片片雪花飄落，劍未至氣先及，$n眉毛都蒙上了薄薄白霜！" + "\n" + NOR;
 
         ap = attack_power(me, "sword");
         dp = defense_power(target, "dodge");
@@ -67,13 +67,13 @@ int perform(object me, object target)
 
         if (ap * 2 / 3 + random(ap) > dp)
         {
-                msg += HIM "只见$n一声惨叫，胸口给劈开一个巨大的口子，鲜血汹涌喷出！" + "\n" NOR;
+                msg += HIM "只見$n一聲慘叫，胸口給劈開一個巨大的口子，鮮血洶湧噴出！" + "\n" NOR;
                 count = ap / 5;
                 addn_temp("apply/attack", count, me);
                 addn_temp("apply/damage", count, me);
         } else
         {
-                msg += NOR + CYN "$p见势不妙，抽身急退，险险避过$P的这记杀招，尘土飞扬中，地上裂开了一道大口子！" + "\n" NOR;
+                msg += NOR + CYN "$p見勢不妙，抽身急退，險險避過$P的這記殺招，塵土飛揚中，地上裂開了一道大口子！" + "\n" NOR;
                 count = 0;
         }
 

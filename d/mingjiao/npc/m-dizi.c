@@ -1,12 +1,12 @@
 inherit NPC;
 string *first_name = ({
-"赵","钱","孙","李","周","吴","郑","王","张","陈", "刘","林" }); 
+"趙","錢","孫","李","周","吳","鄭","王","張","陳", "劉","林" }); 
 string *name_words = ({
-"顺","昌","振","发","财","俊","彦","良","志","忠", "孝","雄","益","添","金",
-"辉","长","盛","胜","进","安","福","同","满", "富","万","龙","隆","祥","栋","国","亿","寿","杨" });
+"順","昌","振","發","財","俊","彥","良","志","忠", "孝","雄","益","添","金",
+"輝","長","盛","勝","進","安","福","同","滿", "富","萬","龍","隆","祥","棟","國","億","壽","楊" });
 string *color_title = ({
-"青带男教众","红带男教众","白带男教众","蓝带男教众","紫带男教众","绿带男教众",
-"黄带男教众","金带男教众","银带男教众","黑带男教众", });
+"青帶男教眾","紅帶男教眾","白帶男教眾","藍帶男教眾","紫帶男教眾","綠帶男教眾",
+"黃帶男教眾","金帶男教眾","銀帶男教眾","黑帶男教眾", });
 
 void create()
 {
@@ -17,7 +17,7 @@ void create()
         name += name_words[random(sizeof(name_words))];
         set_name(name, ({"nan jiaozhong", "jiaozhong", "nan"}) );
         set("title", color_title[random(sizeof(color_title))]);
-        set("long","这是一名"+query("title", this_object())+"，他正在专心致志地练习功夫。\n");
+        set("long","這是一名"+query("title", this_object())+"，他正在專心致志地練習功夫。\n");
         set("gender", "男性" );
         set("age", 16+random(20));
         set("attitude", "peaceful");
@@ -43,10 +43,10 @@ void create()
         map_skill("hand", "sougu-yingzhua");
         prepare_skill("hand", "sougu-yingzhua");
         set("inquiry", ([
-                "name": "在下明尊座下末进弟子，从十六岁起便投在这里学艺。",
-                "rumors": "听说故教主一身浑厚的内力都是得自昆仑山的一次奇遇。",
-                "here": "这里是明教总坛，你没事还是不要随便乱转的好。",
-                "明教": "问什么问，不懂用help mingjiao吗？！",
+                "name": "在下明尊座下末進弟子，從十六歲起便投在這裡學藝。",
+                "rumors": "聽說故教主一身渾厚的內力都是得自崑崙山的一次奇遇。",
+                "here": "這裡是明教總壇，你沒事還是不要隨便亂轉的好。",
+                "明教": "問什麼問，不懂用help mingjiao嗎？！",
         ]));
         setup();
         carry_object("/d/mingjiao/obj/black-cloth")->wear();

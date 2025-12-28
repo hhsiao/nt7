@@ -5,9 +5,9 @@ void create()
 {
         set("short", "深潭");
         set("long", @LONG
-四周黑蒙蒙，什么都看不清。潭水发着恶臭，偶尔还会触及一两
-根不知是人是兽的枯骨，让你全身直起鸡皮疙瘩。你漂浮在水中，无
-助至极。情急之下唯有四处张望。
+四周黑濛濛，什麼都看不清。潭水發著惡臭，偶爾還會觸及一兩
+根不知是人是獸的枯骨，讓你全身直起雞皮疙瘩。你漂浮在水中，無
+助至極。情急之下唯有四處張望。
 LONG );
         set("no_sleep_room",1);
         set("objects", ([
@@ -26,8 +26,8 @@ int do_wang()
 {
             object ob = this_player();
 
-            message_vision(HIC "\n$N" HIC "极目四望，发现还是有出路的，于"
-                       "是求生试探之心大动。\n"NOR, ob);
+            message_vision(HIC "\n$N" HIC "極目四望，發現還是有出路的，於"
+                       "是求生試探之心大動。\n"NOR, ob);
 
             switch (random(4))
             {

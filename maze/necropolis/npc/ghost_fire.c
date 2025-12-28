@@ -8,8 +8,8 @@ void create()
         // set_name( names[random(sizeof(names))], ({ "ghost fire","ghost"}));
         set_name( names[random(sizeof(names))], ({ "ghost fire" }));
         set("vendetta_mark","ghost");
-        set("long", "这是个若隐若现的幽灵。\n");
-        set("title", HIB "(鬼气)" NOR); 
+        set("long", "這是個若隱若現的幽靈。\n");
+        set("title", HIB "(鬼氣)" NOR); 
 
         set("str", 50);
         set("con", 120);
@@ -24,16 +24,16 @@ void create()
         //set("shen_type", -1);        
         //set("chat_chance", 2);
         //set("chat_msg", ({
-        //               "骷髅空洞的眼眶里闪烁着可怕的荧光。\n"
+        //               "骷髏空洞的眼眶裡閃爍著可怕的熒光。\n"
         //}) ); 
-        set("death_msg",BLU"\n$N消失不见了。\n\n"NOR);
+        set("death_msg",BLU"\n$N消失不見了。\n\n"NOR);
         set("chat_chance_combat", 100);
         set("chat_msg_combat", ({
                 (: do_fire() :),
         }) ); 
         set("self_go_msg",1);
-        set("arrive_msg","幽冥之火飘了过来。");
-        set("leave_msg","幽冥之火飘走了。");
+        set("arrive_msg","幽冥之火飄了過來。");
+        set("leave_msg","幽冥之火飄走了。");
         set("chat_chance", 1);
         set("chat_msg", ({
                 (: random_move :)
@@ -73,10 +73,10 @@ void do_fire() {
         enemies = query_enemy();
         if(!enemies || sizeof(enemies)==0)
                 return;
-        message_vision(HIB"$N突然消失，同时无数幽幽的蓝火仿佛受到召唤从地下升腾而起， \n$N周围顿时变成了恐怖的人间炼狱。 \n"NOR, this_object()); 
+        message_vision(HIB"$N突然消失，同時無數幽幽的藍火彷彿受到召喚從地下升騰而起， \n$N周圍頓時變成了恐怖的人間煉獄。 \n"NOR, this_object()); 
         foreach(enemy in enemies) {
                 if(enemy) {
-                        message_vision(HIC "\n一条条蠕动的蓝火如蟒蛇般缠上了$N。\n"NOR, enemy, this_object()); 
+                        message_vision(HIC "\n一條條蠕動的藍火如蟒蛇般纏上了$N。\n"NOR, enemy, this_object()); 
                         enemy->receive_damage("jing",2000+random(1000),this_object());
                         COMBAT_D->report_status(enemy);
                 }

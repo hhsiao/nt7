@@ -34,7 +34,7 @@ int main(object me, string arg)
                 //if (GTELL->send_gtell(mud, target, me, msg))
                 if( INTERMUD2_D->send_gtell(mud, port, me->query_id(1), me->query_name(1), target, msg))
                 {
-                        write("网路讯息已送出，可能要稍候才能得到回应。\n");
+                        write("網路訊息已送出，可能要稍候才能得到回應。\n");
                         return 1;
                 }
         }
@@ -44,7 +44,7 @@ int main(object me, string arg)
         {
                 if (MESSAGE_D->send_msg_to(me, target, msg))
                         return 1;
-                return notify_fail("这个用户没有登录，你无法和他交谈。\n");
+                return notify_fail("這個用戶沒有登錄，你無法和他交談。\n");
         }
 
         my_id=query("id", me);
@@ -54,45 +54,45 @@ int main(object me, string arg)
         {
                 can_tell=query("env/can_tell", obj);
                 if (! is_sub(my_id, can_tell))
-                        return notify_fail("这个人不想听你罗嗦啦。\n");
+                        return notify_fail("這個人不想聽你羅嗦啦。\n");
         }
 
-        obj->add_msg_log("tell", me->query_idname()+"告诉你："HIY+msg+NOR+"\n");
-        me->add_msg_log("tell", "你告诉"+obj->query_idname()+"："HIY+msg+NOR+"\n");
+        obj->add_msg_log("tell", me->query_idname()+"告訴你："HIY+msg+NOR+"\n");
+        me->add_msg_log("tell", "你告訴"+obj->query_idname()+"："HIY+msg+NOR+"\n");
 
         if (! interactive(obj) || obj->is_net_dead())
-                return notify_fail("此人现在不在线上，听不到你的话。\n");
+                return notify_fail("此人現在不在線上，聽不到你的話。\n");
 
         if (! living(obj))
-                return notify_fail("这人现在恐怕听不到你说的话了...\n");
+                return notify_fail("這人現在恐怕聽不到你說的話了...\n");
 
         if (me->ban_say(1))
                 return 0;
 
         if (obj == me)
         {
-                message_vision("$N喃喃自语。\n", me);
+                message_vision("$N喃喃自語。\n", me);
                 return 1;
         }
 
-        tell_out = sprintf(HIG "%s告诉你：%s\n" NOR,
+        tell_out = sprintf(HIG "%s告訴你：%s\n" NOR,
                            me->name(1) + HIG + "(" +
                            capitalize(my_id) + ")", msg);
 
         if (! notice_user(me->name(1), my_id, obj, tell_out))
                 return 1;
 
-        write(sprintf(HIG "你告诉%s(%s)：%s\n" NOR,
+        write(sprintf(HIG "你告訴%s(%s)：%s\n" NOR,
                       obj->name(1) + HIG,
                       capitalize(query("id", obj)),msg));
 
         if (query("env/reply_msg", obj) && query("env/auto_reply", obj))
-                write(YEL + obj->name(1) + "给你的留言是：" + query("env/reply_msg", obj) + "\n" NOR);
+                write(YEL + obj->name(1) + "給你的留言是：" + query("env/reply_msg", obj) + "\n" NOR);
         else
         if (query_idle(obj) >= 120)
                 write(YEL "可是" + obj->name(1) +
-                      YEL "已经在猪圈中发呆有" + chinese_number(query_idle(obj) / 60) +
-                      "分钟了，恐怕没法立刻回答你。\n");
+                      YEL "已經在豬圈中發呆有" + chinese_number(query_idle(obj) / 60) +
+                      "分鐘了，恐怕沒法立刻回答你。\n");
 
         return 1;
 }
@@ -110,7 +110,7 @@ string remote_tell(string cname, string from, string mud, string to, string msg,
         if (ob = MESSAGE_D->find_user(to))
         {
                 if( query("env/invisible", ob) )
-                        return "这个人现在不在线上。";
+                        return "這個人現在不在線上。";
 
                 fromid = lower_case(from + "@" + mud);
                 no_tell=query("env/no_tell", ob);
@@ -120,35 +120,35 @@ string remote_tell(string cname, string from, string mud, string to, string msg,
                 {
                         can_tell=query("env/can_tell", ob);
                         if (! is_sub(fromid, can_tell))
-                                return "这个人不想听你罗嗦啦。";
+                                return "這個人不想聽你羅嗦啦。";
                 }
 
                 fromid = capitalize(from) + "@" + upper_case(mud);
                 msg = replace_string(msg, "\n", "");
                 if (cname)
-                        tell_out = sprintf(HIG "%s(%s)告诉你：%s\n" NOR,
+                        tell_out = sprintf(HIG "%s(%s)告訴你：%s\n" NOR,
                                            cname, fromid, msg);
                 else
                 {
                         cname = "未知";
-                        tell_out = sprintf(HIG "%s 告诉你：%s\n" NOR,
+                        tell_out = sprintf(HIG "%s 告訴你：%s\n" NOR,
                                            fromid, msg);
                 }
 
                 to = capitalize(to);
                 if (! notice_user(cname, fromid, ob, tell_out))
-                        msg = sprintf(HIG "你的话没有送到%s(%s@%s)的耳边。\n" NOR,
+                        msg = sprintf(HIG "你的話沒有送到%s(%s@%s)的耳邊。\n" NOR,
                                       ob->name(1), to, upper_case(INTERMUD_MUD_NAME));
                 else
-                        msg = sprintf(HIG "你告诉%s(%s@%s)：%s" NOR, ob->name(1), to,
+                        msg = sprintf(HIG "你告訴%s(%s@%s)：%s" NOR, ob->name(1), to,
                                       upper_case(INTERMUD_MUD_NAME), msg);
                 return msg;
 
         } else
-                return "这个人现在不在线上。";
+                return "這個人現在不在線上。";
 }
 
-// 将消息送给对方
+// 將消息送給對方
 int notice_user(string my_name, string my_id, object obj, string tell_out)
 {
         int i;
@@ -158,12 +158,12 @@ int notice_user(string my_name, string my_id, object obj, string tell_out)
 
         if( query("env/jam_talk", obj) )
         {
-                // 阻塞式交谈
+                // 阻塞式交談
                 info = ({ my_name, my_id, tell_out });
                 list=query_temp("tell_list", obj);
                 if (! arrayp(list) || sizeof(list) < 1)
                 {
-                        // 对方没有阻塞消息，直接通知对方
+                        // 對方沒有阻塞消息，直接通知對方
                         tell_object(obj, tell_out);
                         set_temp("reply", my_id, obj);
                         list = ({ info });
@@ -171,52 +171,52 @@ int notice_user(string my_name, string my_id, object obj, string tell_out)
                 if (arrayp(list[0]) && sizeof(list[0]) >= 3 &&
                     list[0][1] == my_id)
                 {
-                        // 对方阻塞的正是和我交谈的信息，所以
-                        // 这条信息就没有必要延迟发送了
+                        // 對方阻塞的正是和我交談的信息，所以
+                        // 這條信息就沒有必要延遲發送了
                         tell_object(obj, tell_out);
                 } else
                 {
-                        // 遍历所有的历史信息，查看是否已经有
-                        // 交谈的记录了
+                        // 遍歷所有的歷史信息，查看是否已經有
+                        // 交談的記錄了
                         for (i = 1; i < sizeof(list); i++)
                         {
                                 piece = list[i];
                                 if (! arrayp(piece) || sizeof(piece) < 3 ||
                                     ! stringp(piece[2]))
                                 {
-                                        // 这条历史记录不合法
+                                        // 這條歷史記錄不合法
                                         list[i] = 0;
                                         continue;
                                 }
 
                                 if (piece[1] == my_id)
                                 {
-                                        // 找到了和对方以前交谈的信息
+                                        // 找到了和對方以前交談的信息
                                         if (strlen(piece[2]) > 32768)
                                         {
-                                                // 历史信息已经过了32K了
-                                                write("你已经说了好多话了，先等别人听完吧。\n");        
+                                                // 歷史信息已經過了32K了
+                                                write("你已經說了好多話了，先等別人聽完吧。\n");        
                                                 return 0;
                                         }
 
-                                        // 记录这次交谈的信息
+                                        // 記錄這次交談的信息
                                         piece[2] += tell_out;
                                         info = 0;
                                 }
                         }
                         list -= ({ 0 });
 
-                        // 这个人还有没有听完的话呢
+                        // 這個人還有沒有聽完的話呢
                         if (arrayp(info))
                         {
                                 if (sizeof(list) > 12)
                                 {
-                                        write(obj->name(1) + "耳边已经有太多"
-                                              "的话了，你还是等会儿再说吧。\n");
+                                        write(obj->name(1) + "耳邊已經有太多"
+                                              "的話了，你還是等會兒再說吧。\n");
                                         return 0;
                                 }
 
-                                // 记录这句话
+                                // 記錄這句話
                                 list += ({ info });
                                 if (! in_input(obj))
                                         obj->write_prompt();
@@ -236,12 +236,12 @@ int notice_user(string my_name, string my_id, object obj, string tell_out)
 int help(object me)
 {
         write(@HELP
-指令格式：tell <某人> <讯息>
+指令格式：tell <某人> <訊息>
 
-你可以用这个指令和其他地方的使用者说话。如果对方选择阻塞式交
-谈，那么他可能不会立刻听到你说的话。
+你可以用這個指令和其他地方的使用者說話。如果對方選擇阻塞式交
+談，那麼他可能不會立刻聽到你說的話。
 
-其他相关指令：reply、skip
+其他相關指令：reply、skip
 HELP );
         return 1;
 }

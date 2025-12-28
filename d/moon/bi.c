@@ -7,8 +7,8 @@ void create()
 {
 	set("short", "假山");
 	set("long", @LONG
- 刚进庄门，一座高大的假山就挡住了你的视线。虽看不见庄内的情形，
-但耳中却听得不远处隐隐传来人声。
+ 剛進莊門，一座高大的假山就擋住了你的視線。雖看不見莊內的情形，
+但耳中卻聽得不遠處隱隱傳來人聲。
 LONG	);
 set("exits", ([ 
   "south" : __DIR__"door",
@@ -32,7 +32,7 @@ int do_around(string arg)
         object me;
         if(!arg || arg=="")
         {
-                write("你要转过什么？\n");
+                write("你要轉過什麼？\n");
                 return 1;
         }
         if( arg == "jiashan" || arg == "假山" )
@@ -41,11 +41,11 @@ int do_around(string arg)
         room = find_object("/n/moon/fgaden");
         if(!objectp(room)) room=load_object("/u/moon/fgaden");
        
-        message_vision("\n$N在假山中东一转，西一转，眼前突然现出一片辉煌。\n\n",me); 
+        message_vision("\n$N在假山中東一轉，西一轉，眼前突然現出一片輝煌。\n\n",me); 
         me->move(room); 
         return 1;
         }
         else
-         write("你要转过什么？\n");
+         write("你要轉過什麼？\n");
                 return 1;
 }

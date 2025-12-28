@@ -21,50 +21,50 @@ int main(object me, string arg)
         where = environment(me);
 
         if( query("pigging", where) )
-                return notify_fail("你还是专心拱猪吧！\n");
+                return notify_fail("你還是專心拱豬吧！\n");
 
         if (! ultrap(me))
-                return notify_fail("你还没有到大宗师的境界，还是好好学习锻炼吧。\n");
+                return notify_fail("你還沒有到大宗師的境界，還是好好學習鍛鍊吧。\n");
 
         if (wizardp(me))
-                return notify_fail("巫师闭什么关？\n");
+                return notify_fail("巫師閉什麼關？\n");
 
         if( !query("no_fight", where) )
-                return notify_fail("在这里闭关？不太安全吧？\n");
+                return notify_fail("在這裡閉關？不太安全吧？\n");
 
         if( !query("sleep_room", where) )
-                return notify_fail("你得找一个能够休息的地方闭关。\n");
+                return notify_fail("你得找一個能夠休息的地方閉關。\n");
 
         if( where->is_chat_room() )
-                return notify_fail("在这里闭关？不太安全吧？\n");
+                return notify_fail("在這裡閉關？不太安全吧？\n");
 
         if (me->is_busy())
-                return notify_fail("你现在正忙着呢。\n");
+                return notify_fail("你現在正忙著呢。\n");
 
         if( query("potential", me)-query("learned_points", me)<10000 )
-                return notify_fail("你的潜能不够，没法闭关修行。\n");
+                return notify_fail("你的潛能不夠，沒法閉關修行。\n");
 
         if( query("qi", me)*100/query("max_qi", me)<90 )
-                return notify_fail("你现在的气太少了，无法静心闭关。\n");
+                return notify_fail("你現在的氣太少了，無法靜心閉關。\n");
 
         if( query("jing", me)*100/query("max_jing", me)<90 )
-                return notify_fail("你现在的精太少了，无法静心闭关。\n");
+                return notify_fail("你現在的精太少了，無法靜心閉關。\n");
 
         if( query("max_neili", me)<4000 )
-                return notify_fail("你觉得内力颇有不足，看来目前还难以"
-                                   "进行长时间的闭关修炼。\n");
+                return notify_fail("你覺得內力頗有不足，看來目前還難以"
+                                   "進行長時間的閉關修煉。\n");
 
         if( query("neili", me)*100/query("max_neili", me)<90 )
-                return notify_fail("你现在的内力太少了，无法静心闭关。\n");
+                return notify_fail("你現在的內力太少了，無法靜心閉關。\n");
 
-        message_vision("$N盘膝坐下，开始冥神运功，闭关修行。\n", me);
+        message_vision("$N盤膝坐下，開始冥神運功，閉關修行。\n", me);
         set("startroom", base_name(where), me);
         set("doing", "closed", me);
         CLOSE_D->user_closed(me, "closed");
         me->start_busy(bind((:call_other, __FILE__, "closing" :), me),
                        bind((:call_other, __FILE__, "halt_closing" :), me));
         CHANNEL_D->do_channel(this_object(), "rumor",
-                              sprintf("大宗师%s(%s)开始闭关修行。",
+                              sprintf("大宗師%s(%s)開始閉關修行。",
                               me->name(1),query("id", me)));
 
         return 1;
@@ -75,7 +75,7 @@ int continue_closing(object me)
         me->start_busy(bind((:call_other, __FILE__, "closing" :), me),
                        bind((:call_other, __FILE__, "halt_closing" :), me));
         CLOSE_D->user_closed(me);
-        tell_object(me, HIR "\n你继续闭关...\n" NOR);
+        tell_object(me, HIR "\n你繼續閉關...\n" NOR);
         return 1;
 }
 
@@ -120,11 +120,11 @@ int closing(object me)
         pot=query("potential", me);
         if( pot <= query("learned_points", me) )
         {
-                tell_object(me, "你的潜能耗尽了。\n");
-                message_vision("$N睁开双目，缓缓吐了一口气，站了起来。\n", me);
+                tell_object(me, "你的潛能耗盡了。\n");
+                message_vision("$N睜開雙目，緩緩吐了一口氣，站了起來。\n", me);
                 CLOSE_D->user_opened(me);
                 CHANNEL_D->do_channel(this_object(), "rumor",
-                                      sprintf("听说%s(%s)闭关功德圆满。",
+                                      sprintf("聽說%s(%s)閉關功德圓滿。",
                                       me->name(1),query("id", me)));
                 if (! interactive(me))
                 {
@@ -160,18 +160,18 @@ int closing(object me)
                 set("learned_points", pot, me);
 
         if (random(10) == 0)
-                tell_object(me, "闭关修炼中...\n");
+                tell_object(me, "閉關修煉中...\n");
 
         if ((random(100) < 3) && me->can_improve_neili())
         {
-                tell_object(me, HIR "你对内功有所领悟，感到内力进步了！\n" NOR);
+                tell_object(me, HIR "你對內功有所領悟，感到內力進步了！\n" NOR);
                 addn("improve/neili", 1, me);
                 me->improve_neili(10 + random(20));
         }
 
         if ((random(100) < 3) && me->can_improve_jingli())
         {
-                tell_object(me, HIM "你对神通有所领悟，感到精力进步了！\n" NOR);
+                tell_object(me, HIM "你對神通有所領悟，感到精力進步了！\n" NOR);
                 addn("improve/jingli", 1, me);
                 me->improve_jingli(5 + random(10));
         }
@@ -186,7 +186,7 @@ int closing(object me)
         if (r = sizeof(ks))
         {
                 r = random(r);
-                tell_object(me, HIY "你对" + to_chinese(ks[r]) + "有所感悟。\n" NOR);
+                tell_object(me, HIY "你對" + to_chinese(ks[r]) + "有所感悟。\n" NOR);
                 me->improve_skill(ks[r], 5000 + random(1000));
         }
 
@@ -196,12 +196,12 @@ int closing(object me)
 int halt_closing(object me)
 {
         CLOSE_D->user_opened(me);
-        tell_object(me, "你中止了闭关。\n");
-        message_vision(HIY "$N" HIY "大喝一声，睁开眼来，一股气流登时"
-                       "将众人迫退四步。\n\n" NOR, me);
+        tell_object(me, "你中止了閉關。\n");
+        message_vision(HIY "$N" HIY "大喝一聲，睜開眼來，一股氣流登時"
+                       "將眾人迫退四步。\n\n" NOR, me);
         // addn("potential", (query("learned_points", me) - query("potential", me)) / 2);
-        CHANNEL_D->do_channel(this_object(), "rumor", "听说" + me->name(1) +
-                              "闭关中途突然复出。");
+        CHANNEL_D->do_channel(this_object(), "rumor", "聽說" + me->name(1) +
+                              "閉關中途突然復出。");
         return 1;
 }
 
@@ -218,10 +218,10 @@ int help(object me)
         write(@HELP
 指令格式 : closed
 
-闭关修行，只有你到了大宗师的境界以后才能够闭关修行。要求必须在
-一个安全并且可以休息的地方才能闭关，闭关前需要有一万点潜能，闭
-关开始以后，玩家离线以后其角色将仍然在线修行，直到玩家中止闭关
-(halt)或是潜能耗尽。期间内玩家的经验、技能、内力将会提升。
+閉關修行，只有你到了大宗師的境界以後才能夠閉關修行。要求必須在
+一個安全並且可以休息的地方才能閉關，閉關前需要有一萬點潛能，閉
+關開始以後，玩家離線以後其角色將仍然在線修行，直到玩家中止閉關
+(halt)或是潛能耗盡。期間內玩家的經驗、技能、內力將會提升。
 
 HELP );
         return 1;

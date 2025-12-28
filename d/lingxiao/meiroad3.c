@@ -5,10 +5,10 @@ void create()
 {
         set("short","梅道");
         set("long",@LONG
-这里种满了绿梅。站在这里，似乎看到了在凌霄城永远不
-可能看到的春天一样。一阵微风吹来，在绿梅的海洋中荡起阵
-阵涟漪，同时将那股浸人心脾的素香，送到每个人的心中。东
-边就是凌霄城的观景胜地戏梅亭了。
+這裡種滿了綠梅。站在這裡，似乎看到了在凌霄城永遠不
+可能看到的春天一樣。一陣微風吹來，在綠梅的海洋中蕩起陣
+陣漣漪，同時將那股浸人心脾的素香，送到每個人的心中。東
+邊就是凌霄城的觀景勝地戲梅亭了。
 LONG);
         set("outdoors", "lingxiao");
         set("exits", ([
@@ -34,15 +34,15 @@ int do_pick(string arg)
         if (arg == "mei hua" || arg == "meihua")
         {
                 if (query("count") < -5)
-                        return notify_fail("这里的梅花已经被摘光了。\n");
+                        return notify_fail("這裡的梅花已經被摘光了。\n");
 
                 ob = new(__DIR__"obj/mei");
                 ob->move(me, 1);
                 addn("count", -1);
 
-                message_vision("$N从路旁的树上摘了一朵" +
+                message_vision("$N從路旁的樹上摘了一朵" +
                                query("name", ob)+"。\n",me);
                 return 1;
         } else
-                return notify_fail("你要摘什么？\n");
+                return notify_fail("你要摘什麼？\n");
 }

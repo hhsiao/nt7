@@ -1,10 +1,10 @@
-// NPC :zhong_ling.c 钟灵 
+// NPC :zhong_ling.c 鍾靈 
 // By River 98/12
 inherit NPC;
 void create()
 {
-        set_name("钟灵", ({ "zhong ling", "zhong", "ling"}));
-        set("title","万劫谷谷主女儿");        
+        set_name("鍾靈", ({ "zhong ling", "zhong", "ling"}));
+        set("title","萬劫谷谷主女兒");        
         set("gender", "女性" );
         set("age", 16);
         set("str", 17);
@@ -22,7 +22,7 @@ void create()
         set("max_neili", 800);      
         set("unique", 1);
         
-        set("long","这少女约莫十六七岁年纪，一身青衫，笑靥如花。\n");
+        set("long","這少女約莫十六七歲年紀，一身青衫，笑靨如花。\n");
         set("combat_exp", 100000);
         set("shen", 500); 
 

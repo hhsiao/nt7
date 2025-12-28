@@ -4,15 +4,15 @@ inherit NPC;
 void create()
 {
         set_name(YEL"梅花鹿"NOR, ({ "meihua lu", "lu" }) );
-        set("race", "野兽");
+        set("race", "野獸");
         set("age", 2);
-        set("long", "一只可爱的梅花鹿，它的血是大补之物。\n");
+        set("long", "一隻可愛的梅花鹿，它的血是大補之物。\n");
         set("attitude", "peaceful");
  
         set("str", 30);
         set("cor", 26);
 
-        set("limbs", ({ "头部", "身体", "爪子", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體", "爪子", "尾巴" }) );
         set("verbs", ({ "bite" }) );
  
         set("combat_exp", 3000);
@@ -29,7 +29,7 @@ void create()
 void die()
 {
         object ob1, ob2, ob3;
-        message_vision(HIR"$N两腿一蹬，$N死了。\n"NOR, this_object());
+        message_vision(HIR"$N兩腿一蹬，$N死了。\n"NOR, this_object());
         
         if(random(10)>8)
         {

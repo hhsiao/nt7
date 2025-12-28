@@ -1,4 +1,4 @@
-// 自造装备的套装效果
+// 自造裝備的套裝效果
 
 <1>
 <mod_name>$HIC$大道$NOR$</mod_name>
@@ -43,7 +43,7 @@ reduce_damage:6
 </2>
 
 <3>
-<mod_name>$HIM$鸿钧$NOR$</mod_name>
+<mod_name>$HIM$鴻鈞$NOR$</mod_name>
 <bas>5</bas>
 <num>9</num>
 <bas_prop>

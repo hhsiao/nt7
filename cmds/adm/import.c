@@ -22,7 +22,7 @@ int main(object me, string arg)
 
         lines = file_lines(IP_FILE);
 
-        write(HIR "正在转换...\n\n" NOR);
+        write(HIR "正在轉換...\n\n" NOR);
         for (i = 1; i <= lines; i++)
         {
                 line = read_file(IP_FILE, i, 1);
@@ -31,7 +31,7 @@ int main(object me, string arg)
 
                 if (i % 100) reset_eval_cost();
         }
-        write(HIR "\n一共转换了 " + (i - 1) + " 条 IP 数据。\n" NOR);
+        write(HIR "\n一共轉換了 " + (i - 1) + " 條 IP 數據。\n" NOR);
 
         return 1;
 }
@@ -60,7 +60,7 @@ int help()
         write(@TEXT
 指令格式: import
 
-导入 IP 数据文件。
+導入 IP 數據文件。
 TEXT);
         return 1;
 }

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m小马驹[2;37;0m[2;37;0m", ({"bmw"}));        
+        set_name("[1;31m小馬駒[2;37;0m[2;37;0m", ({"bmw"}));        
         set("gender", "男性");                
-        set("long", "$小马驹[2;37;0m
-它是莫沫沫的魔幻兽。
+        set("long", "$小馬駒[2;37;0m
+它是莫沫沫的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

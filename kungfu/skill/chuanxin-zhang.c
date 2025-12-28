@@ -2,7 +2,7 @@
 inherit SKILL;
 
 mapping *action = ({
-([  "action": "$N使出一招「破山刀」，运掌如飞，招招直打$n的$l",
+([  "action": "$N使出一招「破山刀」，運掌如飛，招招直打$n的$l",
     "force" : 60,
     "attack": 25,
     "dodge" : 10,
@@ -10,9 +10,9 @@ mapping *action = ({
     "damage": 15,
     "lvl"   : 0,
     "skill_name" : "破山刀" ,
-    "damage_type" : "瘀伤"
+    "damage_type" : "瘀傷"
 ]),
-([  "action": "$N使出一招「碎石手」，双掌急运内力，带着凛冽的掌风直拍$n的$l",
+([  "action": "$N使出一招「碎石手」，雙掌急運內力，帶著凜冽的掌風直拍$n的$l",
     "force" : 80,
     "attack": 55,
     "dodge" : 15,
@@ -20,19 +20,19 @@ mapping *action = ({
     "damage": 25,
     "lvl"   : 20,
     "skill_name" : "碎石手" ,
-    "damage_type" : "瘀伤"
+    "damage_type" : "瘀傷"
 ]),
-([  "action": "$N惨然一声长啸，一招「摄魄掌」，双掌猛然击下，直扑$n的要脉",
+([  "action": "$N慘然一聲長嘯，一招「攝魄掌」，雙掌猛然擊下，直撲$n的要脈",
     "force" : 100,
     "attack": 45,
     "dodge" : 20,
     "parry" : 18,
     "damage": 50,
     "lvl"   : 40,
-    "skill_name" : "摄魄掌" ,
-    "damage_type" : "瘀伤"
+    "skill_name" : "攝魄掌" ,
+    "damage_type" : "瘀傷"
 ]),
-([  "action": "$N骨骼暴响，双臂忽然暴长数尺，一招「追魂掌」直直攻向$n的$l",
+([  "action": "$N骨骼暴響，雙臂忽然暴長數尺，一招「追魂掌」直直攻向$n的$l",
     "force" : 130,
     "attack": 40,
     "dodge" : 20,
@@ -40,17 +40,17 @@ mapping *action = ({
     "damage": 65,
     "lvl"   : 80,
     "skill_name" : "追魂掌" ,
-    "damage_type" : "瘀伤"
+    "damage_type" : "瘀傷"
 ]),
-([  "action": "$N施展出一招「撩阴掌」，双掌缤纷拍出，陡然间双掌已至$n跟前",
+([  "action": "$N施展出一招「撩陰掌」，雙掌繽紛拍出，陡然間雙掌已至$n跟前",
     "force" : 150,
     "attack": 61,
     "dodge" : 32,
     "parry" : 35,
     "damage": 80,
     "lvl"   : 120,
-    "skill_name" : "撩阴掌" ,
-    "damage_type" : "瘀伤"
+    "skill_name" : "撩陰掌" ,
+    "damage_type" : "瘀傷"
 ]),
 });
 
@@ -67,16 +67,16 @@ int valid_combine(string combo)
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-            return notify_fail("练穿心掌必须空手。\n");
+            return notify_fail("練穿心掌必須空手。\n");
 
         if( query("max_neili", me)<200 )
-            return notify_fail("你的内力修为太浅，无法练习穿心掌。\n");
+            return notify_fail("你的內力修為太淺，無法練習穿心掌。\n");
 
         if ((int)me->query_skill("strike", 1) < 30)
-            return notify_fail("你的基本掌法太差，无法领会穿心掌。\n");
+            return notify_fail("你的基本掌法太差，無法領會穿心掌。\n");
 
         if ((int)me->query_skill("strike", 1) < (int)me->query_skill("chuanxin-zhang", 1))
-            return notify_fail("你的基本掌法火候不够，无法领会更高深的穿心掌。\n");
+            return notify_fail("你的基本掌法火候不夠，無法領會更高深的穿心掌。\n");
 
         return 1;
 }
@@ -101,10 +101,10 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me)
 {
         if( query("qi", me)<80 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
 
         if( query("neili", me)<80 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         me->receive_damage("qi", 45);
         addn("neili", -48, me);

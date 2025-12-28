@@ -1,27 +1,27 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action" : "$N将内劲贯住指尖，携带着丝丝阴风一击凌空射向$n的$l",
+([      "action" : "$N將內勁貫住指尖，攜帶著絲絲陰風一擊凌空射向$n的$l",
         "force" : 140,
         "attack": 25,
         "dodge" : -15,
         "parry" : -15,
         "damage": 10,
         "lvl"   : 0,
-        "skill_name" : "丝丝阴风",
-        "damage_type" : "刺伤"
+        "skill_name" : "絲絲陰風",
+        "damage_type" : "刺傷"
 ]),
-([      "action" : "$N表情麻木，陡的跃身而起，右手食指带着极寒之气直射$n的$l",
+([      "action" : "$N表情麻木，陡的躍身而起，右手食指帶著極寒之氣直射$n的$l",
         "force" : 180,
         "attack": 40,
         "dodge" : -20,
         "parry" : -15,
         "damage": 25,
         "lvl"   : 30,
-        "skill_name" : "极寒之气",
-        "damage_type" : "刺伤"
+        "skill_name" : "極寒之氣",
+        "damage_type" : "刺傷"
 ]),
-([      "action" : "$N怪叫一声，顿在半空翻个筋斗，将要落下之时，突然对准$n的$l处“飕”的一指射出",
+([      "action" : "$N怪叫一聲，頓在半空翻個筋斗，將要落下之時，突然對準$n的$l處“颼”的一指射出",
         "force" : 220,
         "attack": 50,
         "dodge" : -20,
@@ -29,10 +29,10 @@ mapping *action = ({
         "damage": 38,
         "lvl"   : 60,
         "skill_name" : "一指射出",
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action" : "$N提气游走，不露身色绕至$n身后，猛的对准$n$l一指射出，$n刚要回挡，却发"
-                   "\n现此招乃是需招，$N至寒的一指已点向$n的后心",
+([      "action" : "$N提氣遊走，不露身色繞至$n身後，猛的對準$n$l一指射出，$n剛要回擋，卻發"
+                   "\n現此招乃是需招，$N至寒的一指已點向$n的後心",
         "force" : 280,
         "attack": 80,
         "dodge" : -80,
@@ -40,9 +40,9 @@ mapping *action = ({
         "damage": 55,
         "lvl"   : 80,
         "skill_name" : "乃是需招",
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action" : "$N向后疾退数尺，猛的又奔至$n跟前，左手食指快若疾电般点向$n的$l",
+([      "action" : "$N向後疾退數尺，猛的又奔至$n跟前，左手食指快若疾電般點向$n的$l",
         "force" : 360,
         "attack": 140,
         "dodge" : -45,
@@ -50,7 +50,7 @@ mapping *action = ({
         "damage": 80,
         "lvl"   : 100,
         "skill_name" : "亡命冰原",
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
 });
 
@@ -61,19 +61,19 @@ int valid_combine(string combo) { return combo=="yinfeng-dao"; }
 int valid_learn(object me)
 {
         if (query_temp("weapon", me) || query_temp("secondary_weapon", me))
-                return notify_fail("练透骨针必须空手。\n");
+                return notify_fail("練透骨針必須空手。\n");
 
         if ((int)me->query_skill("force") < 200)
-                return notify_fail("你的内功火候不够，无法练习透骨针。\n");
+                return notify_fail("你的內功火候不夠，無法練習透骨針。\n");
 
         if ((int)query("max_neili", me) < 1400)
-                return notify_fail("你的内力太弱，无法练习透骨针。\n");
+                return notify_fail("你的內力太弱，無法練習透骨針。\n");
 
         if ((int)me->query_skill("finger", 1) < 100)
-                return notify_fail("你的基本指法火候不够，无法练习透骨针。\n");
+                return notify_fail("你的基本指法火候不夠，無法練習透骨針。\n");
 
         if ((int)me->query_skill("finger", 1) < (int)me->query_skill("tougu-zhen", 1))
-                return notify_fail("你的基本指法水平有限，无法领会更高深的透骨针。\n");
+                return notify_fail("你的基本指法水平有限，無法領會更高深的透骨針。\n");
 
         return 1;
 }
@@ -98,10 +98,10 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me)
 {
         if ((int)query("qi", me) < 100)
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
 
         if ((int)query("neili", me) < 100)
-                return notify_fail("你的内力不够练透骨针。\n");
+                return notify_fail("你的內力不夠練透骨針。\n");
 
         me->receive_damage("qi", 80);
         addn("neili", -80, me);
@@ -124,7 +124,7 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
                                  "id"    : query("id", me),
                                  "duration" : lvl / 100 + random(lvl / 10) ])))
         {
-                return "$n只感到从伤口处传来一阵切骨之痛，看来是受了对方透骨针内劲的干扰。\n";
+                return "$n只感到從傷口處傳來一陣切骨之痛，看來是受了對方透骨針內勁的干擾。\n";
         }
 }
 

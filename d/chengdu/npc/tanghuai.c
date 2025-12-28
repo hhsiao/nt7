@@ -10,14 +10,14 @@ int redeem(string arg);
 void create()
 {
         set_name("唐槐", ({ "tang huai", "tang" }));
-        set("title", "兵器铺老板");
+        set("title", "兵器鋪老闆");
         set("shen_type", 0);
 
         set("gender", "男性");
         set_max_encumbrance(100000000);
         set("age", 35);
         set("long",
-                "据说唐槐是四川唐家的后代。\n");
+                "據說唐槐是四川唐家的後代。\n");
         set("no_get_from", 1);
 
         set_skill("unarmed", 60);

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;37m保时捷[2;37;0m[2;37;0m", ({"xsuckjj"}));        
+        set_name("[1;37m保時捷[2;37;0m[2;37;0m", ({"xsuckjj"}));        
         set("gender", "女性");                
-        set("long", "运输工具[2;37;0m
-它是娘子的魔幻兽。
+        set("long", "運輸工具[2;37;0m
+它是娘子的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

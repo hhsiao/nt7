@@ -6,7 +6,7 @@
 #define LIBRARY_PATH    "/home/lonely/nitan"
 #define DATA_PATH       "/data/daemon/mrtg.o"
 
-//MRTG 设定档(由主机定期执行此设定档)
+//MRTG 設定檔(由主機定期執行此設定檔)
 #define MRTGCONF        "/data/daemon/mrtg/mrtg.conf"
 
 mapping mrtglist = allocate_mapping(0);
@@ -37,14 +37,14 @@ ShortLegend[memory]: &nbsp;&nbsp;
 Unscaled[memory]: ymwd
 LegendI[memory]: &nbsp; Memory Actv: &nbsp;
 LegendO[memory]: &nbsp; Memory Free: &nbsp;
-Legend1[memory]: Memory  状态&nbsp&nbsp---&nbsp&nbsp程式使用中
-Legend2[memory]: Memory  状态&nbsp&nbsp---&nbsp&nbsp尚未使用
+Legend1[memory]: Memory  狀態&nbsp&nbsp---&nbsp&nbsp程式使用中
+Legend2[memory]: Memory  狀態&nbsp&nbsp---&nbsp&nbsp尚未使用
 Title[memory]: Lonely' server Memory USAGE Monitor
-PageTop[memory]: <H1>主机 Memory 使用率监测</H1>
+PageTop[memory]: <H1>主機 Memory 使用率監測</H1>
  */
  
 //
-// 建立 MRTG 设定档(由主机定期执行此设定档)
+// 建立 MRTG 設定檔(由主機定期執行此設定檔)
 //
 int generate_mrtg_conf()
 {
@@ -64,7 +64,7 @@ int generate_mrtg_conf()
                 
                 name=replace_string(name," ","_");
                 
-                // 标准格式
+                // 標準格式
                 output+= "Directory[" + name +"]: "+ data["Directory"] + "\n";
                 
                 if( undefinedp(data["Options"]) )
@@ -117,7 +117,7 @@ int save()
         return save_object(DATA_PATH);  
 }
 
-// 增加 MRTG 资料
+// 增加 MRTG 資料
 int addmrtg(string name, mapping info)
 {
         if( !undefinedp(info) )
@@ -168,7 +168,7 @@ int removemrtg(string name)
 } 
 
 //
-// 移除预设的 MRTG
+// 移除預設的 MRTG
 //
 void remove_default_mrtg()
 {
@@ -180,7 +180,7 @@ void remove_default_mrtg()
 }
 
 //
-// 加入预设的 MRTG
+// 加入預設的 MRTG
 //
 void add_default_mrtg()
 {
@@ -195,8 +195,8 @@ void add_default_mrtg()
                 "LegendO":      "&nbsp; netflow out &nbsp;",
                 "Legend1":      "流入流量&nbsp&nbsp---&nbsp&nbsp",
                 "Legend2":      "流出流量&nbsp&nbsp---&nbsp&nbsp",
-                "Title":        "NT 流量监控",
-                "PageTop":      "<H1>NT 流量监控</H1>",
+                "Title":        "NT 流量監控",
+                "PageTop":      "<H1>NT 流量監控</H1>",
                 "YLegend":      "NT netflow monitor",
                 "SetEnv":       "MRTG_INT_IP=\""MUD_IP"\" MRTG_INT_DESCR=\"eth0\"",
                 //"ShortLegend":        " %",
@@ -211,10 +211,10 @@ void add_default_mrtg()
                 "AbsMax":       "5000",
                 "LegendI":      "&nbsp; CPU load &nbsp;",
                 "LegendO":      "&nbsp; MEM load &nbsp;",
-                "Legend1":      "CPU 状态&nbsp&nbsp---&nbsp&nbsp",
-                "Legend2":      "MEM 状态&nbsp&nbsp---&nbsp&nbsp",
-                "Title":        "NT MUD 负载",
-                "PageTop":      "<H1>NT MUD 负载 %</H1>",
+                "Legend1":      "CPU 狀態&nbsp&nbsp---&nbsp&nbsp",
+                "Legend2":      "MEM 狀態&nbsp&nbsp---&nbsp&nbsp",
+                "Title":        "NT MUD 負載",
+                "PageTop":      "<H1>NT MUD 負載 %</H1>",
                 "YLegend":      "MudOS CPU/MEM load percentage graph",
                 "ShortLegend":  " %",
         ]));
@@ -227,8 +227,8 @@ void add_default_mrtg()
                 "AbsMax":       "1073676288",
                 "LegendI":      "&nbsp; Data Usage: &nbsp;",
                 "LegendO":      "&nbsp; Total Usage:  &nbsp;",
-                "Legend1":      "Memory 状态&nbsp&nbsp---&nbsp&nbsp一分钟平均值",
-                "Legend2":      "Memory 状态&nbsp&nbsp---&nbsp&nbsp五分钟平均值",
+                "Legend1":      "Memory 狀態&nbsp&nbsp---&nbsp&nbsp一分鐘平均值",
+                "Legend2":      "Memory 狀態&nbsp&nbsp---&nbsp&nbsp五分鐘平均值",
                 "Title":        "NT Mud Memory USAGE Monitor",
                 "PageTop":      "<H1>Memory Monitor For Mudos (NT) </H1>",
                 "YLegend":      "MudOS MEM(kb)",
@@ -245,8 +245,8 @@ void add_default_mrtg()
                 "AbsMax":       "2073676288",
                 "LegendI":      "&nbsp; Memory Actv: &nbsp;",
                 "LegendO":      "&nbsp; Memory Free: &nbsp;",
-                "Legend1":      "Memory 状态&nbsp&nbsp---&nbsp&nbsp一分钟平均值",
-                "Legend2":      "Memory 状态&nbsp&nbsp---&nbsp&nbsp五分钟平均值",
+                "Legend1":      "Memory 狀態&nbsp&nbsp---&nbsp&nbsp一分鐘平均值",
+                "Legend2":      "Memory 狀態&nbsp&nbsp---&nbsp&nbsp五分鐘平均值",
                 "Title":        "NT server Memory USAGE Monitor",
                 "PageTop":      "<H1>.. Memory .....</H1>",
                 "YLegend":      "memory usage(kb)",
@@ -261,10 +261,10 @@ void add_default_mrtg()
                 "AbsMax":       "5000",
                 "LegendI":      "&nbsp; CPU load &nbsp;",
                 "LegendO":      "&nbsp; CPU load &nbsp;",
-                "Legend1":      "CPU 状态&nbsp&nbsp---&nbsp&nbsp一分钟平均值",
-                "Legend2":      "CPU 状态&nbsp&nbsp---&nbsp&nbsp五分钟平均值",
-                "Title":        "主机 CPU 负载",
-                "PageTop":      "<H1>主机 CPU 负载 (%)</H1>",
+                "Legend1":      "CPU 狀態&nbsp&nbsp---&nbsp&nbsp一分鐘平均值",
+                "Legend2":      "CPU 狀態&nbsp&nbsp---&nbsp&nbsp五分鐘平均值",
+                "Title":        "主機 CPU 負載",
+                "PageTop":      "<H1>主機 CPU 負載 (%)</H1>",
                 "YLegend":      "CPU Utilization",
                 "ShortLegend":  " %",
                 
@@ -283,13 +283,13 @@ void create()
 {
         if( !restore_object(DATA_PATH) )
         {
-                // 加入预设项目
+                // 加入預設項目
                 add_default_mrtg();
                 
-                // 取得 MNLMUDLIST_D 目前资料 
+                // 取得 MNLMUDLIST_D 目前資料 
                 MUDLIST_D->update_mrtg_data();
                 
-                // 建立设定档
+                // 建立設定檔
                 generate_mrtg_conf();
 
                 save();       
@@ -297,5 +297,5 @@ void create()
 }
 string query_name()
 {
-        return "MRTG 系统(MRTG_D)";
+        return "MRTG 系統(MRTG_D)";
 }

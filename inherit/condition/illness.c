@@ -20,31 +20,31 @@ int dispel(object me, object ob, int duration)
         {
                 if (me == ob)
                 {
-                        tell_object(me, "你的内功火候尚有欠缺，无法驱除" + cname +"。\n");
+                        tell_object(me, "你的內功火候尚有欠缺，無法驅除" + cname +"。\n");
                         return -1;
                 } else
                 {
-                        tell_object(me, "你的内功火候尚有欠缺，无法帮助" + ob->name() + "驱除" + cname + "。\n");
+                        tell_object(me, "你的內功火候尚有欠缺，無法幫助" + ob->name() + "驅除" + cname + "。\n");
                         return -1;
                 }
         }
 
         if (query("neili", me) < need_neili)
         {
-                tell_object(me, "你的内力现在不足，无法施展以驱除" + cname + "。\n");
+                tell_object(me, "你的內力現在不足，無法施展以驅除" + cname + "。\n");
                 return -1;
         }
         addn("neili", -need_neili, me);
 
         if (me == ob)
         {
-                tell_object(me, "调息以后，你舒服多了，感觉" + cname + "被消除了。\n");
+                tell_object(me, "調息以後，你舒服多了，感覺" + cname + "被消除了。\n");
         } else
         {
-                tell_object(me, "你将内力缓缓的输入到" + ob->name() + "经脉，" +
+                tell_object(me, "你將內力緩緩的輸入到" + ob->name() + "經脈，" +
                             ob->name() + "精神一振。\n");
-                tell_object(ob, "你觉得" + me->name() +
-                            "将内力输入你的奇经八脉，你舒服多了，感觉" + cname + "被消除了。\n");
+                tell_object(ob, "你覺得" + me->name() +
+                            "將內力輸入你的奇經八脈，你舒服多了，感覺" + cname + "被消除了。\n");
         }
 
         ob->clear_condition(this_object()->name());

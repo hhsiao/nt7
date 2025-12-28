@@ -11,7 +11,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "座");
-                set("long", "一片茂密的花草丛。\n");
+                set("long", "一片茂密的花草叢。\n");
                 set("value", 1);
         }
 }

@@ -59,8 +59,8 @@ void debug_info(string arg)
 void create()
 {
         seteuid(getuid());
-        set("channel_id", "邮件精灵");
-        write("邮件系统已经启动。\n");
+        set("channel_id", "郵件精靈");
+        write("郵件系統已經啟動。\n");
 }
 
 int clean_up()
@@ -79,7 +79,7 @@ int queue_mail(object me, string mail_from, string mail_to, string topic, string
         int next_next;
 
         if (strlen(data) > 65536)
-                return notify_fail("你不能发送大于64K的邮件。\n");
+                return notify_fail("你不能發送大於64K的郵件。\n");
 
         log_file("mail", sprintf("%s %s try to send mail <%s> Size:%d\n",
                                  log_time(),(me?query("id", me):"SYSTEM"),
@@ -88,14 +88,14 @@ int queue_mail(object me, string mail_from, string mail_to, string topic, string
         // allocate a new mail buffer
         next_next = (next_mail + 1) % MAX_MAIL_IN_QUEUE;
         if (next_next == queue_pointer)
-                return notify_fail("邮件队列已满，现在无法发送邮件。\n");
+                return notify_fail("郵件隊列已滿，現在無法發送郵件。\n");
 
         // queue this mail
         if (! mail_from || sscanf(mail_from, "%*s@%*s") != 2)
                 mail_from = "lonely-21@163.com";
 
         if (! mail_to || sscanf(mail_to, "%*s@%*s") != 2)
-                return notify_fail("无法向这个地址发送邮件。\n");
+                return notify_fail("無法向這個地址發送郵件。\n");
 
         mail_queue[next_mail] = allocate(5);
         mail_queue[next_mail][MAIL_FROM] = mail_from;
@@ -157,7 +157,7 @@ private int trans_64_to_int(int b64)
     return 0;
 }
 
-// BASE64编码
+// BASE64編碼
 string encode64(mixed src)
 {
         int temp;
@@ -169,14 +169,14 @@ string encode64(mixed src)
         if (! stringp(src) && ! bufferp(src))
                 error("encode64: expect buffer or string.\n");
 
-        // 编码长度一定是3的倍数
+        // 編碼長度一定是3的倍數
         len = sizeof(src);
         while (len % 0x3) len++;
         buf = allocate_buffer(len);
         dst = allocate_buffer(len / 3 * 4);
         write_buffer(buf, 0, src);
 
-        // 开始编码
+        // 開始編碼
         ret = "";
         i = 0;
         k = 0;
@@ -202,8 +202,8 @@ private int send_mail()
 
         mail = mail_queue[queue_pointer];
 
-        CHANNEL_D->do_channel(this_object(), "sys", "邮件系统尝试向<" +
-                              mail[MAIL_RECEIVER] + ">发送邮件。");
+        CHANNEL_D->do_channel(this_object(), "sys", "郵件系統嘗試向<" +
+                              mail[MAIL_RECEIVER] + ">發送郵件。");
         socket = socket_create(STREAM, "in_read_callback", "in_close_callback");
         if (socket < 0)
         {
@@ -237,17 +237,17 @@ private void read_callback(int fd, mixed message)
 
         mail = mail_queue[queue_pointer];
 
-        // SMTP客户端自动机
+        // SMTP客戶端自動機
         switch (status)
         {
         default:
                 return;
 
             case STATUS_CONNECT_OK:
-                // 连接成功
+                // 連接成功
                     if (sscanf(message, "220%*s"))
                     {
-                        // 发送HELO命令
+                        // 發送HELO命令
                             status = STATUS_HELO_OK;
                             write_message(fd, "HELO " + "smtp");
                             return;
@@ -255,20 +255,20 @@ private void read_callback(int fd, mixed message)
                     break;
 
             case STATUS_HELO_OK:
-                // 成功接收到HELO命令的响应
+                // 成功接收到HELO命令的響應
                     if (sscanf(message, "250%*s"))
                     {
                             /*
                         if( query("smtpauthuser", CONFIG_D) )
                         {
-                                // 配置为需要认证：发送认证命令
+                                // 配置為需要認證：發送認證命令
                                 status = STATUS_START_AUTH;
                                 write_message(fd, "AUTH LOGIN");
                                 return;
                         }
                         */
 
-                        // 配置为不需要认证，发送MAILFROM命令
+                        // 配置為不需要認證，發送MAILFROM命令
                             status = STATUS_MAIL_FROM_OK;
                         write_message(fd, "MAIL FROM:<" + mail[MAIL_FROM] + ">");
                             return;
@@ -276,10 +276,10 @@ private void read_callback(int fd, mixed message)
                 break;
 
         case STATUS_START_AUTH:
-                // 成功接收到AUTH命令的响应
+                // 成功接收到AUTH命令的響應
                 if (sscanf(message, "334%*s"))
                 {
-                        // 发送用户名
+                        // 發送用戶名
                         status = STATUS_USERNAME_SENT;
                         write_message(fd, encode64("lonely"));
                         return;
@@ -287,10 +287,10 @@ private void read_callback(int fd, mixed message)
                 break;
 
         case STATUS_USERNAME_SENT:
-                // 成功接收到发送用户名的响应
+                // 成功接收到發送用戶名的響應
                 if (sscanf(message, "334%*s"))
                 {
-                        // 发送口令
+                        // 發送口令
                         status = STATUS_PASSWORD_SENT;
                         write_message(fd, encode64("921121"));
                         return;
@@ -298,10 +298,10 @@ private void read_callback(int fd, mixed message)
                 break;
 
         case STATUS_PASSWORD_SENT:
-                // 成功接收到发送口令的响应
+                // 成功接收到發送口令的響應
                 if (sscanf(message, "235%*s"))
                 {
-                        // 发送MAILFROM命令
+                        // 發送MAILFROM命令
                         status = STATUS_MAIL_FROM_OK;
                         write_message(fd, "MAIL FROM:<" + mail[MAIL_FROM] + ">");
                             return;
@@ -309,10 +309,10 @@ private void read_callback(int fd, mixed message)
                 break;
 
             case STATUS_MAIL_FROM_OK:
-                // 成功接收到MAILFROM命令的响应
+                // 成功接收到MAILFROM命令的響應
                     if (sscanf(message, "250%*s"))
                     {
-                        // 发送RCPTTO命令
+                        // 發送RCPTTO命令
                             status = STATUS_RCPT_TO_OK;
                         write_message(fd, "RCPT TO:<" + mail[MAIL_RECEIVER] + ">");
                             return;
@@ -320,10 +320,10 @@ private void read_callback(int fd, mixed message)
                     break;
 
             case STATUS_RCPT_TO_OK:
-                // 成功接收到RCPTTO命令的响应
+                // 成功接收到RCPTTO命令的響應
                     if (sscanf(message, "250%*s"))
                     {
-                        // 发送DATA命令
+                        // 發送DATA命令
                             status = STATUS_DATA_OK;
                         write_message(fd, "DATA");
                             return;
@@ -331,10 +331,10 @@ private void read_callback(int fd, mixed message)
                     break;
 
             case STATUS_DATA_OK:
-                // 成功接收到DATA命令的响应
+                // 成功接收到DATA命令的響應
                     if (sscanf(message, "354%*s"))
                     {
-                        // 发送数据
+                        // 發送數據
                             status = STATUS_DATA_SENT;
                         write_message(fd, "Subject: " + mail[MAIL_TOPIC]);
                         write_message(fd, mail[MAIL_DATA] + "\r\n.");
@@ -343,16 +343,16 @@ private void read_callback(int fd, mixed message)
                     break;
 
         case STATUS_DATA_SENT:
-                // 成功接收到发送数据的响应
+                // 成功接收到發送數據的響應
                 write_message(fd, "QUIT");
                     if (sscanf(message, "451%*s"))
                             log_file("mail", sprintf("%s Smtp Server error: %s.\n",
                                          log_time(), SMTP_SERVER));
                     else
                 {
-                        CHANNEL_D->do_channel(this_object(), "sys", "成功的发送了寄给<" +
+                        CHANNEL_D->do_channel(this_object(), "sys", "成功的發送了寄給<" +
                                               mail[MAIL_RECEIVER] +
-                                              ">的邮件。");
+                                              ">的郵件。");
                         // I will remove the mail in socket close call back fun
                         status = STATUS_FINISH;
                         return;
@@ -360,7 +360,7 @@ private void read_callback(int fd, mixed message)
                     break;
         }
 
-        // 发送过程中产生了错误
+        // 發送過程中產生了錯誤
         if (++(mail[MAIL_ERROR]) >= MAX_RETRY_COUNT)
         {
                 log_file("mail", sprintf("%s Can not send mail <%s> to %s.\n",

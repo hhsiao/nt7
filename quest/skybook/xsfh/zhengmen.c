@@ -2,16 +2,16 @@
 
 inherit ROOM;
 #include <ansi.h>
-#define QUESTDIR2 "quest/雪山飞狐/复仇篇/"
+#define QUESTDIR2 "quest/雪山飛狐/復仇篇/"
 
 void create()
 {
-	set("short", GRN "苗家庄门口" NOR);
+	set("short", GRN "苗家莊門口" NOR);
 	set("long",@long
-这里是苗家庄的大门，两扇黑漆漆的大门敞开着，门口正中央高悬着一块
-金色横匾“苗家庄”，台阶两旁立着两个石狮，只是门街冷清，颇为凄凉。
+這裡是苗家莊的大門，兩扇黑漆漆的大門敞開著，門口正中央高懸著一塊
+金色橫匾“苗家莊”，臺階兩旁立著兩個石獅，只是門街冷清，頗為淒涼。
 long);
-  set("outdoors", "兰州");
+  set("outdoors", "蘭州");
 	set("exits",([
 		"east" : __DIR__"sroad1",
 		"west" : __DIR__"qianting",
@@ -23,9 +23,9 @@ long);
 int valid_leave(object me, string dir)
 {
     if (dir == "west" && !me->query(QUESTDIR2+"start")&& !me->query(QUESTDIR2+"over"))
-          return notify_fail(RED"苗家庄早已经封闭，无法进去。\n"NOR);
+          return notify_fail(RED"苗家莊早已經封閉，無法進去。\n"NOR);
         if(dir == "west" &&me->query_condition("killer"))
-   		          return notify_fail(RED"苗家庄早已经封闭，无法进去。\n"NOR);
+   		          return notify_fail(RED"苗家莊早已經封閉，無法進去。\n"NOR);
     return ::valid_leave(me, dir);
 }
 
@@ -41,11 +41,11 @@ void init()
      &&!me->query_temp(QUESTDIR2+"kill")
      &&!me->query_temp(QUESTDIR2+"huyidao"))
   {
-     tell_object(me,YEL"突然你听到苗家庄内好像有他人，只听一个声音朗声道：“金面佛苗大侠在家么？有朋友远道来访。”\n"NOR);
-     tell_object(me,YEL"只听屋中一人说道：“是哪一位朋友？恕苗人凤眼生，素不相识。”这话声只觉又是苍凉，又是醇厚。\n"NOR);
+     tell_object(me,YEL"突然你聽到苗家莊內好像有他人，只聽一個聲音朗聲道：“金面佛苗大俠在家麼？有朋友遠道來訪。”\n"NOR);
+     tell_object(me,YEL"只聽屋中一人說道：“是哪一位朋友？恕苗人鳳眼生，素不相識。”這話聲只覺又是蒼涼，又是醇厚。\n"NOR);
      remove_call_out("goqianting");
      call_out("goqianting", 3, me);
-     write(CYN"\n你不由感到十分好奇，你停了下来，静静倾听。\n"NOR);
+     write(CYN"\n你不由感到十分好奇，你停了下來，靜靜傾聽。\n"NOR);
   }
   else
   {
@@ -62,34 +62,34 @@ void greeting(object me)
    if(!present(me,this_object())) return;
    if(me->query(QUESTDIR2+"start")) return;
    shen = me->query("shen");
-  if(shen <0) tell_object(me,HIR"只听门内一个深沉浑厚的声音传来：看你一身邪气，还请离开！\n"NOR);
-     else tell_object(me,HIR"只听门内一个深沉浑厚的声音传来：这位少侠，还请离开！\n"NOR);
+  if(shen <0) tell_object(me,HIR"只聽門內一個深沉渾厚的聲音傳來：看你一身邪氣，還請離開！\n"NOR);
+     else tell_object(me,HIR"只聽門內一個深沉渾厚的聲音傳來：這位少俠，還請離開！\n"NOR);
 }
 void goqianting(object me)
 {
   if(!me) return;
   if(!present(me,this_object()))
   {
-      tell_object(me,HIY"你擅自离开苗家庄，错过了精彩的一幕。\n"NOR);
-        log_file("quest/FEIHU", sprintf("%s(%s)初进苗家庄，却擅自离开，失败。经验%d。\n", me->name(1),me->query("id"), me->query("combat_exp")) );
+      tell_object(me,HIY"你擅自離開苗家莊，錯過了精彩的一幕。\n"NOR);
+        log_file("quest/FEIHU", sprintf("%s(%s)初進苗家莊，卻擅自離開，失敗。經驗%d。\n", me->name(1),me->query("id"), me->query("combat_exp")) );
      me->delete_temp(QUESTDIR2+"answer");
     return;
 }
 
-     tell_object(me,YEL"\n你听到“锺氏兄弟”、“书信”，好像是旧识，又好像是讨债来的，却听不清楚具体在说什么，你不由好奇心起。\n"NOR);
-	   tell_room(environment(me), YEL+me->name()+"紧了紧随身物品，紧跟着长袖飘飘，飞身跃过高墙！\n" NOR, ({me}));
-           tell_object(me,RED"你一提内息，使出「一苇渡江」轻功，一翻身，越过高墙，这一手轻功当真落地无声，确实了得。\n"NOR);
-        log_file("quest/FEIHU", sprintf("%s(%s)初进苗家庄。经验%d。\n", me->name(1),me->query("id"), me->query("combat_exp")) );
+     tell_object(me,YEL"\n你聽到“鍾氏兄弟”、“書信”，好像是舊識，又好像是討債來的，卻聽不清楚具體在說什麼，你不由好奇心起。\n"NOR);
+	   tell_room(environment(me), YEL+me->name()+"緊了緊隨身物品，緊跟著長袖飄飄，飛身躍過高牆！\n" NOR, ({me}));
+           tell_object(me,RED"你一提內息，使出「一葦渡江」輕功，一翻身，越過高牆，這一手輕功當真落地無聲，確實了得。\n"NOR);
+        log_file("quest/FEIHU", sprintf("%s(%s)初進苗家莊。經驗%d。\n", me->name(1),me->query("id"), me->query("combat_exp")) );
 	   me->move(__DIR__"qianting");
 }
 int do_save()
 {
-	write("这里不准存盘！\n");
+	write("這裡不準存盤！\n");
 	return 1;
 }
 int do_quit()
 {
-	write("这里不准退出！\n");
+	write("這裡不準退出！\n");
 	return 1;
 }
 

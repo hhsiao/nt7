@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define WAN "「" HIR "万剑焚云" NOR "」"
+#define WAN "「" HIR "萬劍焚雲" NOR "」"
 
 inherit F_SSERVER;
 
@@ -18,32 +18,32 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(WAN "只能在战斗中对对手使用。\n");
+                return notify_fail(WAN "只能在戰鬥中對對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me) )
             || query("skill_type", weapon) != "sword" )
-                return notify_fail("你所使用的武器不对，难以施展" WAN "。\n");
+                return notify_fail("你所使用的武器不對，難以施展" WAN "。\n");
 
         if ((int)me->query_skill("zhurong-jian", 1) < 160)
-                return notify_fail("你祝融剑法不够娴熟，难以施展" WAN "。\n");
+                return notify_fail("你祝融劍法不夠嫻熟，難以施展" WAN "。\n");
 
         if (me->query_skill_mapped("sword") != "zhurong-jian")
-                return notify_fail("你没有激发祝融剑法，难以施展" WAN "。\n");
+                return notify_fail("你沒有激發祝融劍法，難以施展" WAN "。\n");
 
         if ((int)me->query_skill("force") < 220)
-                return notify_fail("你的内功火候不够，难以施展" WAN "。\n");
+                return notify_fail("你的內功火候不夠，難以施展" WAN "。\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你现在的真气不够，难以施展" WAN "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" WAN "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         wn = weapon->name();
                             
-        msg = HIM "\n$N" HIM "剑招突变，将真气注入剑身，剑体顿时变得通红，一式「"
-              HIR "万剑焚云" HIM "」使出，霎时呼啸声大作，手中" + wn + HIM "化做"
-              "千万柄利刃，笼罩$n" HIM "周身。" NOR; 
+        msg = HIM "\n$N" HIM "劍招突變，將真氣注入劍身，劍體頓時變得通紅，一式「"
+              HIR "萬劍焚雲" HIM "」使出，霎時呼嘯聲大作，手中" + wn + HIM "化做"
+              "千萬柄利刃，籠罩$n" HIM "周身。" NOR; 
 
         message_sort(msg, me, target);
 
@@ -60,8 +60,8 @@ int perform(object me, object target)
                 addn("neili", -200, me);
         } else
         {
-                 msg = CYN "$n" CYN "眼剑" +wn + CYN"已至，强自镇定，"
-                      "侧身躲过，但对$N" CYN "这招仍是心有余悸。\n" NOR;
+                 msg = CYN "$n" CYN "眼劍" +wn + CYN"已至，強自鎮定，"
+                      "側身躲過，但對$N" CYN "這招仍是心有餘悸。\n" NOR;
 
                        me->start_busy(4);
                  addn("neili", -100, me);
@@ -83,8 +83,8 @@ string final(object me, object target, int damage)
                    "id":query("id", me),
                    "duration" : lvl / 50 + random(lvl / 20) ]));
 
-        return  HIR "只见$N" HIR "这一招疾如电、猛如火，$n"
-                HIR "心中惊疑不定，电光火石间，已被$N" HIR
-                "划中" + chinese_number(n) + "剑，剑伤处嗤"
-                "嗤作响，鲜血从外衣渗出。\n" NOR;
+        return  HIR "只見$N" HIR "這一招疾如電、猛如火，$n"
+                HIR "心中驚疑不定，電光火石間，已被$N" HIR
+                "劃中" + chinese_number(n) + "劍，劍傷處嗤"
+                "嗤作響，鮮血從外衣滲出。\n" NOR;
 }

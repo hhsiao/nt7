@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("火鸟[2;37;0m[2;37;0m", ({"niao"}));        
+        set_name("火鳥[2;37;0m[2;37;0m", ({"niao"}));        
         set("gender", "女性");                
-        set("long", "一只小火鸟[2;37;0m
-它是毒公子的魔幻兽。
+        set("long", "一隻小火鳥[2;37;0m
+它是毒公子的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

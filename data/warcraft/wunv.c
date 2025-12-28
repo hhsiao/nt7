@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("保时捷[2;37;0m[2;37;0m", ({"bsj"}));        
+        set_name("保時捷[2;37;0m[2;37;0m", ({"bsj"}));        
         set("gender", "男性");                
-        set("long", "好车[2;37;0m
-它是舞女的魔幻兽。
+        set("long", "好車[2;37;0m
+它是舞女的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

@@ -4,12 +4,12 @@ inherit COMBINED_ITEM;
 
 void create()
 {
-        set_name("农具", ({ "farm tool", "nong ju", "tool" }));
+        set_name("農具", ({ "farm tool", "nong ju", "tool" }));
         /*if(clonep())
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", "这是一副木制的农具。\n");
+                set("long", "這是一副木製的農具。\n");
                 set("base_unit", "副");
                 set("base_weight", 8000);
                 set("no_sell", 1);

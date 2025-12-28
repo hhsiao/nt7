@@ -1,4 +1,4 @@
-// 侦察
+// 偵察
 #include <mudlib.h>
 #include <daemons.h>
 #include <ansi.h>
@@ -22,19 +22,19 @@ void main(object ob)
 	p_name=this_body()->query_id()[0];
 
         if( !(CHAR_D->get_char(p_name,"skills")) ){       
-		write("你不会侦察之计。\n");
+		write("你不會偵察之計。\n");
                 return;
 	}
 	if( !p_skill=CHAR_D->get_char(p_name,"skills")["scout"] ){       
-		write("你不会侦察之计。\n");
+		write("你不會偵察之計。\n");
                 return;
         }
 	if( !p_id){
-		write("只有身在军中才能使用侦察。\n");
+		write("只有身在軍中才能使用偵察。\n");
 		return;
 	};
 	if( ob->query_cur_mp()<60 ){
-                write("你精神不足，不能使用这种计谋！\n");
+                write("你精神不足，不能使用這種計謀！\n");
 		return;
 	}
 
@@ -48,9 +48,9 @@ void main(object ob)
 	if( !sizeof(troops) ) return;
 
 	disp=
-"以下是你部队方圆"+chinese_number(size)+"之内的部队情况。\n";
+"以下是你部隊方圓"+chinese_number(size)+"之內的部隊情況。\n";
 	disp+=
-"部队　　　　　代号     主将　　 大将数　兵数　 兵种    位置　状态\n";
+"部隊　　　　　代號     主將　　 大將數　兵數　 兵種    位置　狀態\n";
 	disp+=
 "〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓\n";
 
@@ -95,11 +95,11 @@ string get_conds(int t)
 	cond = keys(conds);
 	for (i=0; i< sizeof(cond);i++){
 		if (cond[i]=="hide")
-			conditions +=" 隐藏 ";
+			conditions +=" 隱藏 ";
 		if (cond[i]=="poison")
 			conditions +=" 中毒 ";
 		if (cond[i]=="confuse")
-			conditions +=" 混乱 ";
+			conditions +=" 混亂 ";
 	}
 	return conditions;
 }	

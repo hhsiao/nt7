@@ -4,14 +4,14 @@ inherit NPC;
 
 void create()
 {
-            set_name("一灯大师", ({ "yideng dashi", "yideng", "dashi" }));
+            set_name("一燈大師", ({ "yideng dashi", "yideng", "dashi" }));
             set("long", @LONG
-一灯大师乃江湖中人称“东邪西毒，南帝北丐”中
-的南帝段皇爷，当年凭着段氏“一阳指”而独步武
-林，罕逢敌手。但却在中年时因一段悲情而出家为
-僧，之后大彻大悟，成为一位得道高僧。
+一燈大師乃江湖中人稱“東邪西毒，南帝北丐”中
+的南帝段皇爺，當年憑著段氏“一陽指”而獨步武
+林，罕逢敵手。但卻在中年時因一段悲情而出家為
+僧，之後大徹大悟，成為一位得道高僧。
 LONG );
-            set("title", "大理国退位皇帝");
+            set("title", "大理國退位皇帝");
             set("nickname", HIY "南帝" NOR);
             set("gender", "男性");
             set("age", 71);
@@ -67,7 +67,7 @@ LONG );
 
         prepare_skill("finger", "sun-finger");
 
-        create_family("段氏皇族", 11, "传人");
+        create_family("段氏皇族", 11, "傳人");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -152,7 +152,7 @@ void die()
         return;
 }
 
-// 气血小于1000则死亡，避免他人协助帮忙转世
+// 氣血小於1000則死亡，避免他人協助幫忙轉世
 void heart_beat()
 {
         if (this_object()->query("qi") < 1000 || this_object()->query("eff_qi") < 1000)

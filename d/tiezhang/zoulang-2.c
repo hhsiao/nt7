@@ -6,7 +6,7 @@ void create()
 {
         set("short", "走廊");
         set("long", @LONG
-你走在一条走廊上，北面似乎有翻书的哗哗声。
+你走在一條走廊上，北面似乎有翻書的嘩嘩聲。
 LONG        );
         set("exits", ([ /* sizeof() == 2 */
   "west" : __DIR__"zoulang-3",

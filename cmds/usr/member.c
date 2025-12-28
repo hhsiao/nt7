@@ -17,12 +17,12 @@ int main(object me, string arg)
 
         if( time()-query_temp("last_member", me)<3 && 
             arg != "?" && ! wizardp(me))
-                return notify_fail("系统忙，请稍后再试！\n");
+                return notify_fail("系統忙，請稍後再試！\n");
 
         if (arg != "?" && ! wizardp(me))
                 set_temp("last_member", time(), me);
 
-        // 仅允许非会员使用member ?, member ??, member stats, member show goods指令
+        // 僅允許非會員使用member ?, member ??, member stats, member show goods指令
         if( !MEMBER_D->is_member(query("id", me)) )
         {
                 if (! arg)return help(me);
@@ -90,7 +90,7 @@ int main(object me, string arg)
         case "buy":
                 if (! GOODS_D->buy_goods(me, str2))
                 {
-                        write("购买失败！\n");
+                        write("購買失敗！\n");
                         return 1;
                 }
                 write("Successful!\n");
@@ -103,14 +103,14 @@ int main(object me, string arg)
                 me_id=query("id", me);
 
                 if (me_id == tar_id)
-                        return notify_fail("你白痴啊，给自己转帐！\n");
+                        return notify_fail("你白痴啊，給自己轉帳！\n");
 
                 if (amount < 1 || amount > 100000)
-                        return notify_fail("每次转帐的单位必须在 1 至 100000 之间！\n");
+                        return notify_fail("每次轉帳的單位必須在 1 至 100000 之間！\n");
 
                 if (! MEMBER_D->db_transfer_member(me_id, tar_id, amount))
                 {
-                        write("转帐失败！\n");
+                        write("轉帳失敗！\n");
                         return 1;
                 }
                 write("Successful!\n");
@@ -123,13 +123,13 @@ int main(object me, string arg)
                 if (sscanf(str2, "%s %s", tar_id, info) != 2)
                         tar_id = str2;
 
-                // 检查对方是否为会员
+                // 檢查對方是否為會員
                 if (! MEMBER_D->is_member(tar_id))
-                        return notify_fail("目标为非会员，无法查询！\n");
+                        return notify_fail("目標為非會員，無法查詢！\n");
 
                 tar = UPDATE_D->global_find_player(tar_id);
                 if (! objectp(tar))
-                        return notify_fail("没有这个玩家！\n");
+                        return notify_fail("沒有這個玩家！\n");
 
                 if( !info ) info = "info";
                 MEMBER_D->show_member_info(tar, info);
@@ -144,7 +144,7 @@ int main(object me, string arg)
 
                 if (! MEMBER_D->db_remove_member(str2))
                 {
-                        write("删除会员失败！\n");
+                        write("刪除會員失敗！\n");
                         return 1;
                 }
                 write("OK.\n");
@@ -161,19 +161,19 @@ int help (object me)
 {
         write(WHT "——————————————————————————————————
 
-" HIM "输入指令： member show info                     显示会员系统面板界面
-输入指令： member show payinfo                  显示历史充值交费信息
-输入指令： member show buyinfo                  显示历史购买物品信息
-输入指令： member show zhuaninfo                显示历史转帐记录信息
-输入指令： member show goods                    显示王者商店出售物品
-输入指令： member check <id>                    巫师指令检查会员信息
-输入指令： member stats                         列出所有会员名单信息
-输入指令： member zhuan <amount> to <id>        转帐王者币给其他的ID
+" HIM "輸入指令： member show info                     顯示會員系統面板界面
+輸入指令： member show payinfo                  顯示歷史充值交費信息
+輸入指令： member show buyinfo                  顯示歷史購買物品信息
+輸入指令： member show zhuaninfo                顯示歷史轉帳記錄信息
+輸入指令： member show goods                    顯示王者商店出售物品
+輸入指令： member check <id>                    巫師指令檢查會員信息
+輸入指令： member stats                         列出所有會員名單信息
+輸入指令： member zhuan <amount> to <id>        轉帳王者幣給其他的ID
 
 " WHT "——————————————————————————————————
-" HIC "淘宝冲值链接地址:
+" HIC "淘寶衝值鏈接地址:
 " HIR "http://shop61698067.taobao.com\n
-" HIG "相关参考文件：help ntstore, help member\n" NOR);
+" HIG "相關參考文件：help ntstore, help member\n" NOR);
 
         return 1;
 }

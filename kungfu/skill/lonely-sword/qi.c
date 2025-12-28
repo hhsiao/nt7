@@ -3,7 +3,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return HIW "破气式" NOR; }
+string name() { return HIW "破氣式" NOR; }
 
 inherit F_SSERVER;
 
@@ -22,27 +22,27 @@ int perform(object me, object target)
         skill = me->query_skill("lonely-sword", 1);
 
         if (! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if (skill < 120)
-                return notify_fail("你独孤九剑等级不够，无法施展" + name() + "。\n");
+                return notify_fail("你獨孤九劍等級不夠，無法施展" + name() + "。\n");
 
         if( !objectp(weapon=query_temp("weapon", me) )
             || query("skill_type", weapon) != "sword" )
-                return notify_fail("你所使用的武器不对，无法施展" + name() + "。\n");
+                return notify_fail("你所使用的武器不對，無法施展" + name() + "。\n");
 
         if (me->query_skill_mapped("sword") != "lonely-sword")
-                return notify_fail("你没有激发独孤九剑，无法施展" + name() + "。\n");
+                return notify_fail("你沒有激發獨孤九劍，無法施展" + name() + "。\n");
 
 
         if (query_temp("no_exert", target))
-                return notify_fail("对方现在已经无法控制真气，放胆攻击吧。\n");
+                return notify_fail("對方現在已經無法控制真氣，放膽攻擊吧。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N" HIW "施出独孤九剑「破气式」，手中" + weapon->name() +
-              HIW "中攻直进，遥指$n" HIW "的气海要穴。\n" NOR;
+        msg = HIW "$N" HIW "施出獨孤九劍「破氣式」，手中" + weapon->name() +
+              HIW "中攻直進，遙指$n" HIW "的氣海要穴。\n" NOR;
 
         ap = attack_power(me, "sword");
         dp = defense_power(target, "dodge");
@@ -58,8 +58,8 @@ int perform(object me, object target)
                 me->start_busy(2);
         } else
         {
-                msg += CYN "可$n" CYN "深知$N" CYN "这招的厉"
-                       "害，当即向后横移数尺，躲闪开来。\n" NOR;
+                msg += CYN "可$n" CYN "深知$N" CYN "這招的厲"
+                       "害，當即向後橫移數尺，躲閃開來。\n" NOR;
                 me->start_busy(3);
         }
         message_combatd(msg, me, target);
@@ -77,16 +77,16 @@ string final(object me, object target, int ap)
                         "target":target,
                         "type":"no_exert",
                         "attr":"curse",
-                        "name":"独孤九剑·破气",
+                        "name":"獨孤九劍·破氣",
                         "time": 300,
                         "buff_data":"no_exert",
                         "buff_msg": "",
-                        "warn_msg": HIC "$N" HIC "深深吸入一口气，脸色由白转红，看起来好多了。\n" NOR,
-                        "disa_msg": HIY "你感到被扰乱的真气慢慢平静了下来。\n" NOR,
+                        "warn_msg": HIC "$N" HIC "深深吸入一口氣，臉色由白轉紅，看起來好多了。\n" NOR,
+                        "disa_msg": HIY "你感到被擾亂的真氣慢慢平靜了下來。\n" NOR,
                 ]);
         
         BUFF_D->buffup(buff);
         
-        return  HIR "$n" HIR "被$N" HIR "一剑划过气门，登感一阵"
-                "锥心的刺痛，全身真气源源而泻！\n" NOR;
+        return  HIR "$n" HIR "被$N" HIR "一劍劃過氣門，登感一陣"
+                "錐心的刺痛，全身真氣源源而瀉！\n" NOR;
 }

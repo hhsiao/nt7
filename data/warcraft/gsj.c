@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("勇气宝宝[2;37;0m[2;37;0m", ({"jinhu"}));        
+        set_name("勇氣寶寶[2;37;0m[2;37;0m", ({"jinhu"}));        
         set("gender", "男性");                
-        set("long", "勇气宝宝[2;37;0m
-它是敦皇的魔幻兽。
+        set("long", "勇氣寶寶[2;37;0m
+它是敦皇的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

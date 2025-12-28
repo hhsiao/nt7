@@ -1,10 +1,10 @@
-// fengyun. 风起云涌
+// fengyun. 風起雲湧
 
 #include <ansi.h>
 
 inherit F_SSERVER;
 
-string name() { return "风起云涌"; }
+string name() { return "風起雲湧"; }
 int perform(object me, object target)
 {
         string msg;
@@ -20,20 +20,20 @@ int perform(object me, object target)
         }
 
         if (! me->is_fighting(target))
-                return notify_fail("「风起云涌」只能对战斗中的对手使用。\n");
+                return notify_fail("「風起雲湧」只能對戰鬥中的對手使用。\n");
 
         if( query_temp("weapon", me) )
-                return notify_fail("你只有空手才能使用「风起云涌」。\n");
+                return notify_fail("你只有空手才能使用「風起雲湧」。\n");
 
         skill = me->query_skill("fengyun-bianhuan", 1);
 
         if (skill < 150)
-                return notify_fail("你的风云变幻修为太低，现在不能使用「风起云涌」！\n");
+                return notify_fail("你的風雲變幻修為太低，現在不能使用「風起雲湧」！\n");
 
         if( query("neili", me)<100 )
-                return notify_fail("你的真气不够，无法使出「风起云涌」！\n");
+                return notify_fail("你的真氣不夠，無法使出「風起雲湧」！\n");
 
-        msg = HIW "$N" HIW "双拳一错，幻化出一圈圈似有若无，虚实难分的拳影，"
+        msg = HIW "$N" HIW "雙拳一錯，幻化出一圈圈似有若無，虛實難分的拳影，"
               HIW "，猱身向$n" HIW "打出。\n" NOR;
 
         message_combatd(msg, me, target);

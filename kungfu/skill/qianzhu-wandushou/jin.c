@@ -4,7 +4,7 @@
 #include <combat.h>
 
 inherit F_SSERVER;
-string name() { return YEL "百毒金蚕蛊" NOR; }
+string name() { return YEL "百毒金蠶蠱" NOR; }
 
 int perform(object me, object target)
 {
@@ -19,27 +19,27 @@ int perform(object me, object target)
         int canlv = query("can_perform/qianzhu-wandushou/jin", me);
         
         if (me->query_skill_prepared("hand") != "qianzhu-wandushou")
-                return notify_fail("你没有准备使用千蛛万毒手，无法召唤百毒金蚕蛊。\n");
+                return notify_fail("你沒有準備使用千蛛萬毒手，無法召喚百毒金蠶蠱。\n");
 
         skill = me->query_skill("qianzhu-wandushou", 1);
 
         if (skill < 650)
-                return notify_fail("你的千蛛万毒手修为有限，无法召唤百毒金蚕蛊。\n");
+                return notify_fail("你的千蛛萬毒手修為有限，無法召喚百毒金蠶蠱。\n");
 
         if (me->query_skill("force") < 380)
-                return notify_fail("你的内功火候不够，难以召唤百毒金蚕蛊。\n");
+                return notify_fail("你的內功火候不夠，難以召喚百毒金蠶蠱。\n");
 
         if( query("max_neili", me)<20000 )
-                return notify_fail("你的内力修为没有达到那个境界，无法运转内力召唤百毒金蚕蛊。\n");
+                return notify_fail("你的內力修為沒有達到那個境界，無法運轉內力召喚百毒金蠶蠱。\n");
 
         if( query("neili", me)<3000 )
-                return notify_fail("你的真气不够，现在无法召唤百毒金蚕蛊。\n");
+                return notify_fail("你的真氣不夠，現在無法召喚百毒金蠶蠱。\n");
 
         if( query_temp("weapon", me) )
-                return notify_fail("你必须是空手才能召唤百毒金蚕蛊。\n");
+                return notify_fail("你必須是空手才能召喚百毒金蠶蠱。\n");
 
                 if( (cdtime = BUFF_D->get_buff_overtime(me, "wdaq_bdjcg")) > 0 )
-                return notify_fail(MAG"百毒金蚕蛊消耗心神太甚，还需等待"+cdtime+"秒。\n"NOR);
+                return notify_fail(MAG"百毒金蠶蠱消耗心神太甚，還需等待"+cdtime+"秒。\n"NOR);
                 
         maxnum = 1 + ABILITY_D->check_ability(me, "max-bdjcg-summon") / 10;
         bugs = query_temp("bugs/bdjcg", me);
@@ -49,15 +49,15 @@ int perform(object me, object target)
                 bugs = filter_array(bugs, (: $1 && objectp($1) :));
         cnum = sizeof(bugs);
         if( cnum >= maxnum )
-                return notify_fail("你召唤百毒金蚕蛊群数量已经达到上限。\n");
+                return notify_fail("你召喚百毒金蠶蠱群數量已經達到上限。\n");
 
                 target = new("/d/wudu/npc/jincangu");
                 bugs += ({target});
                 set_temp("bugs/bdjcg", bugs, me);
 
-        msg = NOR HIC "\n$N" NOR HIC "伸出手指往自己的眉心一点，只见印堂间现出一个小孔，\n其间有金色的小虫"
-              "源源不断地飞出来，正是百蛮山豢养的" HIB "百毒" NOR YEL "金蚕蛊" NOR HIC 
-              "。\n中途$n" NOR HIC "转头对冲主人就是一啃，$N" NOR HIC "全身精血一衰。\n" NOR;
+        msg = NOR HIC "\n$N" NOR HIC "伸出手指往自己的眉心一點，只見印堂間現出一個小孔，\n其間有金色的小蟲"
+              "源源不斷地飛出來，正是百蠻山豢養的" HIB "百毒" NOR YEL "金蠶蠱" NOR HIC 
+              "。\n中途$n" NOR HIC "轉頭對沖主人就是一啃，$N" NOR HIC "全身精血一衰。\n" NOR;
                 
                 message_vision(msg, me, target);
                 set("jing", query("jing", me)/2, me);
@@ -109,9 +109,9 @@ int perform(object me, object target)
                 "type"   : "cooldown",
                 "type2"  : "wdaq_bdjcg",
                 "attr"   : "curse",
-                "name"   : "千蛛万毒手·百毒金蚕蛊",
+                "name"   : "千蛛萬毒手·百毒金蠶蠱",
                 "time"   : time,
-                "buff_msg" : "百毒金蚕蛊消耗心神太甚，还需等待"+time+"秒方可再次施展。\n",
+                "buff_msg" : "百毒金蠶蠱消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : "",
                 "disa_type": 0,
                 ]);

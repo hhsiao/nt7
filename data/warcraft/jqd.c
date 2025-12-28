@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("脏麒麟[2;37;0m[2;37;0m", ({"jql"}));        
+        set_name("髒麒麟[2;37;0m[2;37;0m", ({"jql"}));        
         set("gender", "男性");                
-        set("long", "脏麒麟[2;37;0m
-它是拾荒折的魔幻兽。
+        set("long", "髒麒麟[2;37;0m
+它是拾荒折的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

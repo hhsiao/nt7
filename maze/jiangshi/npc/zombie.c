@@ -4,10 +4,10 @@ inherit BOSS;
 void do_bite();
 void create()
 {
-        set_name("僵尸", ({ "zombie" }));
+        set_name("殭屍", ({ "zombie" }));
         set("vendetta_mark","zombie");
-        set("long", "这是一个腐烂的僵尸。\n");
-        set("title", HIB "(鬼气)" NOR);
+        set("long", "這是一個腐爛的殭屍。\n");
+        set("title", HIB "(鬼氣)" NOR);
 
         set("str", 50);
         set("con", 120);
@@ -27,7 +27,7 @@ void create()
         }) );
         set("combat_exp", 100000000);
         set("bellicosity", 5 );
-        set("death_msg", RED"\n$N化作了一滩血水。\n\n"NOR);
+        set("death_msg", RED"\n$N化作了一灘血水。\n\n"NOR);
         set("rewards", ([ 
                 "exp"   : 20000, 
                 "pot"   : 20000, 
@@ -70,7 +70,7 @@ void do_bite()
                 return;
         enemy = enemies[random(sizeof(enemies))];
         if( !userp(enemy) ) return;
-        message_vision(RED"$N露出森森的白牙，扑向$n！\n"NOR,this_object(), enemy);
+        message_vision(RED"$N露出森森的白牙，撲向$n！\n"NOR,this_object(), enemy);
         message_vision(HIR"$N咬住$n脖子猛吸血！\n"NOR,this_object(),enemy);
         enemy->receive_damage("qi",200+random(200),this_object());
         msg = "( $n" +

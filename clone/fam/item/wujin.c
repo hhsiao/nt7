@@ -4,18 +4,18 @@ inherit ITEM;
 
 void create()
 {
-        set_name(NOR + YEL "乌金矿" NOR, ({"wujin kuang", "wujin", "kuang"}));
+        set_name(NOR + YEL "烏金礦" NOR, ({"wujin kuang", "wujin", "kuang"}));
         set_weight(1800);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", YEL "这是一块极为罕见的乌金矿石，坚如玄铁，珍贵无比。\n" NOR);
-                set("unit", "块");
+                set("long", YEL "這是一塊極為罕見的烏金礦石，堅如玄鐵，珍貴無比。\n" NOR);
+                set("unit", "塊");
                 set("value", 8000);
                 set("item_origin", 1);
                 set("material_attrib", "stone");
-                set("material_name", NOR + YEL "乌金矿" NOR);
-                set("can_make", ({ "剑", "刀", "锤", "短兵", "箫" }));
+                set("material_name", NOR + YEL "烏金礦" NOR);
+                set("can_make", ({ "劍", "刀", "錘", "短兵", "簫" }));
                 set("power_point", 50);
         }
 }

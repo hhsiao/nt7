@@ -7,12 +7,12 @@ void create()
 {
         set_name("李白", ({ "li bai", "li", "bai"}));
         set("long", @LONG
-这便是唐朝第一大诗人李太白，只见他须垂三
-尺，面如冠玉，双目炯炯有神。一手持青铜爵，
-一手持长剑，正在独饮。
+這便是唐朝第一大詩人李太白，只見他須垂三
+尺，面如冠玉，雙目炯炯有神。一手持青銅爵，
+一手持長劍，正在獨飲。
 LONG);
-        set("title", "唐朝大诗人");
-        set("nickname", HIW "诗仙" NOR);
+        set("title", "唐朝大詩人");
+        set("nickname", HIW "詩仙" NOR);
         set("gender", "男性");
         set("age", 37);
         set("attitude", "friendly");

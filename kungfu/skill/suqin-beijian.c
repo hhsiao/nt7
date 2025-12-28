@@ -3,45 +3,45 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action" : "$N纵身跃起手中$w轻挥，一招「礼贤下士」，斩向$n后颈",
+([      "action" : "$N縱身躍起手中$w輕揮，一招「禮賢下士」，斬向$n後頸",
         "force"  : 60,
         "attack" : 35,
         "parry"  : 10,
         "dodge"  : 30,
         "damage" : 17,
         "lvl"    : 0,
-        "skill_name" : "礼贤下士",
-        "damage_type" : "刺伤"
+        "skill_name" : "禮賢下士",
+        "damage_type" : "刺傷"
 ]),
-([      "action" : "$N手中$w连话三个弧形，一招「完壁归赵」，向$n的右臂齐肩斩落",
+([      "action" : "$N手中$w連話三個弧形，一招「完壁歸趙」，向$n的右臂齊肩斬落",
         "force"  : 71,
         "attack" : 45,
         "parry"  : 22,
         "dodge"  : 45,
         "damage" : 24,
         "lvl"    : 20,
-        "skill_name" : "完壁归赵",
-        "damage_type" : "刺伤"
+        "skill_name" : "完壁歸趙",
+        "damage_type" : "刺傷"
 ]),
-([      "action" : "$N轻吁一声，飞身一跃而起，一招「卧薪尝胆」，连续向$n刺出数剑",
+([      "action" : "$N輕籲一聲，飛身一躍而起，一招「臥薪嚐膽」，連續向$n刺出數劍",
         "force"  : 82,
         "attack" : 51,
         "parry"  : 18,
         "dodge"  : 53,
         "damage" : 33,
         "lvl"    : 40,
-        "skill_name" : "卧薪尝胆",
-        "damage_type" : "刺伤"
+        "skill_name" : "臥薪嚐膽",
+        "damage_type" : "刺傷"
 ]),
-([      "action" : "$N仰天长啸，斜行向前，一招「五岳为轻」，$w横削直击，击向$n的$l",
+([      "action" : "$N仰天長嘯，斜行向前，一招「五嶽為輕」，$w橫削直擊，擊向$n的$l",
         "force"  : 112,
         "attack" : 58,
         "parry"  : 20,
         "dodge"  : 52,
         "damage" : 45,
         "lvl"    : 60,
-        "skill_name" : "五岳为轻",
-        "damage_type" : "割伤"
+        "skill_name" : "五嶽為輕",
+        "damage_type" : "割傷"
 ]),
 });
 
@@ -50,13 +50,13 @@ int valid_enable(string usage) { return usage == "sword" || usage == "parry"; }
 int valid_learn(object me)
 {
         if( query("max_neili", me)<100 )
-                return notify_fail("你的内力不够，无法修习苏秦背剑。\n");
+                return notify_fail("你的內力不夠，無法修習蘇秦背劍。\n");
 
         if ((int)me->query_skill("sword", 1) < 10)
-                return notify_fail("你的基本剑法火候太浅，无法修习苏秦背剑。\n");
+                return notify_fail("你的基本劍法火候太淺，無法修習蘇秦背劍。\n");
 
         if ((int)me->query_skill("sword", 1) < (int)me->query_skill("suqin-beijian", 1))
-                return notify_fail("你的基本剑法水平有限，无法领会更高深的苏秦背剑。\n");
+                return notify_fail("你的基本劍法水平有限，無法領會更高深的蘇秦背劍。\n");
 
         return 1;
 }
@@ -85,13 +85,13 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if( query("qi", me)<40 )
-                return notify_fail("你的体力不够练苏秦背剑。\n");
+                return notify_fail("你的體力不夠練蘇秦背劍。\n");
 
         if( query("neili", me)<30 )
-                return notify_fail("你的内力不够练苏秦背剑。\n");
+                return notify_fail("你的內力不夠練蘇秦背劍。\n");
 
         me->receive_damage("qi", 33);
         addn("neili", -26, me);

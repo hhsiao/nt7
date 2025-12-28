@@ -3,10 +3,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", HIW "【通天门】" NOR);
+        set("short", HIW "【通天門】" NOR);
         set("long", HIW @LONG
-你来到这里，发现这里茫茫一片云海。眼前一座宏伟的敞开的大
-门，大门的柱子旁依偎着一位男子，似乎对你的到来毫不在意。
+你來到這裡，發現這裡茫茫一片雲海。眼前一座宏偉的敞開的大
+門，大門的柱子旁依偎著一位男子，似乎對你的到來毫不在意。
 LONG NOR );
         set("exits", ([
                 "enter" : __DIR__"sky1",
@@ -26,13 +26,13 @@ int valid_leave(object me, string dir)
         if ( dir == "enter" && objectp(present("li xunhuan", environment(me)))
              && me->query("sky12/floor") < 1)
         {
-                write(HIG "李寻欢说道：要进入天界得先过我这关！\n" NOR);
-                return notify_fail("李寻欢挡住了你的去路。\n");
+                write(HIG "李尋歡說道：要進入天界得先過我這關！\n" NOR);
+                return notify_fail("李尋歡擋住了你的去路。\n");
         }
 
-        tell_object(me,  HIW "\n你进入了十二重天之第一重天……\n" NOR);
+        tell_object(me,  HIW "\n你進入了十二重天之第一重天……\n" NOR);
 
-        CHANNEL_D->do_channel(this_object(), "rumor", HIM "听说" + me->name() + HIM + "闯入天界第一重天。\n\n" NOR);
+        CHANNEL_D->do_channel(this_object(), "rumor", HIM "聽說" + me->name() + HIM + "闖入天界第一重天。\n\n" NOR);
 
         return ::valid_leave(me, dir);
 }
@@ -42,7 +42,7 @@ void init()
         
         if (! me->query("sky12/tianmen") && userp(me))
         {
-                tell_object(me, HIG "李寻欢对你说道：你没有使用过东皇钟，是怎么到天界来的，哼！\n" NOR);
+                tell_object(me, HIG "李尋歡對你說道：你沒有使用過東皇鍾，是怎麼到天界來的，哼！\n" NOR);
 
                 me->delete("sky12");
                 me->save();

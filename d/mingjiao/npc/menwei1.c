@@ -6,11 +6,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("大汉", ({ "da han","han" }) );
+        set_name("大漢", ({ "da han","han" }) );
         set("gender", "男性" );
 
         set("age", 35);
-        set("long", "明教的守门武士，是烈火旗属下。\n");
+        set("long", "明教的守門武士，是烈火旗屬下。\n");
         set("shen_type",1);
         set("combat_exp", 20000);
 

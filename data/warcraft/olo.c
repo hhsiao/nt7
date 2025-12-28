@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("小红[2;37;0m[2;37;0m", ({"save"}));        
+        set_name("小紅[2;37;0m[2;37;0m", ({"save"}));        
         set("gender", "女性");                
-        set("long", "小红[2;37;0m
-它是太极蛋的魔幻兽。
+        set("long", "小紅[2;37;0m
+它是太極蛋的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");
         set("owner", "olo");
-        set("owner_name", "太极蛋");
+        set("owner_name", "太極蛋");
         set_temp("owner", "olo");
-        set_temp("owner_name", "太极蛋");
+        set_temp("owner_name", "太極蛋");
         ::setup();
 }

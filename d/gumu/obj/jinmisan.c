@@ -9,7 +9,7 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "这是一包金蜜散，据说可以解玉蜂针毒。\n");                
+                set("long", "這是一包金蜜散，據說可以解玉蜂針毒。\n");                
                 set("base_unit", "包");
                 set("base_value", 8000);
                 set("base_weight", 80);
@@ -34,13 +34,13 @@ int do_effect(object me)
 {
         if (! me->query_condition("yufengdu"))
         {
-                tell_object(me,"你并没有中蜂毒啊！\n");
+                tell_object(me,"你並沒有中蜂毒啊！\n");
                 return 1;
         }
 
         me->clear_condition("yufengdu");
-        message_vision(HIY "$N服下了一包金蜜散。苦中带甜，甜中带苦，一股香气沁人心脾。\n"NOR,me);
-        tell_object(me,HIY "你感觉体内的蜂毒已慢慢消去。\n" NOR, me);
+        message_vision(HIY "$N服下了一包金蜜散。苦中帶甜，甜中帶苦，一股香氣沁人心脾。\n"NOR,me);
+        tell_object(me,HIY "你感覺體內的蜂毒已慢慢消去。\n" NOR, me);
 
         destruct(this_object());
         return 1;

@@ -24,10 +24,10 @@ string *lonelysword = ({
 
 void create()
 {
-        set_name("高处不胜寒", ({ "gaochu bushenghan" }));
-        set("title", HIY "王者麾下灭天骑士团" NOR "破天王");
-        set("nickname",HIR "天地交征" NOR);
-        set("long", "别惹！你惹不起！\n" );
+        set_name("高處不勝寒", ({ "gaochu bushenghan" }));
+        set("title", HIY "王者麾下滅天騎士團" NOR "破天王");
+        set("nickname",HIR "天地交徵" NOR);
+        set("long", "別惹！你惹不起！\n" );
         set("gender", "男性");
         set("age", 30);
 
@@ -84,7 +84,7 @@ void create()
         set("can_perform/jiuyin-baiguzhao/shenzhao",1);
         set("can_perform/lonely-sword", lonelysword);
 
-        create_family("泥潭", 1, "创世神将");
+        create_family("泥潭", 1, "創世神將");
 
         setup();
         carry_object("/clone/misc/cloth")->wear();

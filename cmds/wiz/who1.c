@@ -26,7 +26,7 @@ int main(object me, string str)
         ob_list = sort_array(ob_list, "sort_user");
         ob_list = wiz_ob + ob_list;
 
-        str = HIG "线  上  玩  家              精          气         神      内力       经验值  潜能\n" NOR
+        str = HIG "線  上  玩  家              精          氣         神      內力       經驗值  潛能\n" NOR
               WHT "—————————————————————————————————————————\n" NOR;
         i = 0;
         foreach (ob in ob_list)
@@ -54,7 +54,7 @@ int main(object me, string str)
         }
 
         str += WHT "—————————————————————————————————————————\n" NOR +
-               sprintf("%s共有 %d 位使用者连线中。\n", LOCAL_MUD_NAME(), sizeof(ob_list));
+               sprintf("%s共有 %d 位使用者連線中。\n", LOCAL_MUD_NAME(), sizeof(ob_list));
 
         me->start_more(str);
         return 1;
@@ -76,7 +76,7 @@ int help(object me)
         write(@HELP
 指令格式：who1
 
-玩家信息查询列表1。
+玩家信息查詢列表1。
 HELP );
         return 1;
 }

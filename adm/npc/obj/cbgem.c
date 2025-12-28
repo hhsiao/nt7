@@ -10,18 +10,18 @@ void do_reset()
 
 void create()
 {
-        set_name(HIR "宝石合成器" NOR, ({ "hc gem" }) );
+        set_name(HIR "寶石合成器" NOR, ({ "hc gem" }) );
         set_weight(3000);
 
         set("long", HIR @LONG
-这是一个可以用来快速合成升级宝石的神器，你需要将准备合成的材料放在身上就可以了。
+這是一個可以用來快速合成升級寶石的神器，你需要將準備合成的材料放在身上就可以了。
 
-合成宝石    hc <宝石> -<f|m> 例如：hc diamond -f，表示将要合成身上所有的diamond类宝石到flawless级别
-                                   hc diamond -m，表示将要合成身上所有的diamond类宝石到magic级别
+合成寶石    hc <寶石> -<f|m> 例如：hc diamond -f，表示將要合成身上所有的diamond類寶石到flawless級別
+                                   hc diamond -m，表示將要合成身上所有的diamond類寶石到magic級別
 
 LONG NOR );
         set("value", 200000);
-        set("unit", "台");
+        set("unit", "臺");
         set("no_get", 1);
 
         setup();
@@ -44,17 +44,17 @@ int do_cb(string arg)
         
         me = this_player();
                 
-        if( me->is_busy() ) return notify_fail("你正忙着呢！\n"); 
-        if( query_temp("do_busy") ) return notify_fail("宝石合成器气喘嘘地叹道：慢慢来 ....\n");  
+        if( me->is_busy() ) return notify_fail("你正忙著呢！\n"); 
+        if( query_temp("do_busy") ) return notify_fail("寶石合成器氣喘噓地嘆道：慢慢來 ....\n");  
 
         if( !arg || sscanf(arg, "%s -%s", name, a) != 2) 
-        	return notify_fail("你想要合成什么？格式:hc topaz -f\n"); 
+        	return notify_fail("你想要合成什麼？格式:hc topaz -f\n"); 
         
         if( member_array(name, names) == -1 ) 
-                return notify_fail("你想要合成什么？格式:hc topaz -f\n");  
+                return notify_fail("你想要合成什麼？格式:hc topaz -f\n");  
                 	
         if( a != "f" && a != "m" )
-        	return notify_fail("你想要合成到什么级别 -f 或 -m ？\n");  
+        	return notify_fail("你想要合成到什麼級別 -f 或 -m ？\n");  
         
         set_temp("do_busy", 1);
  	remove_call_out("do_reset");
@@ -117,12 +117,12 @@ int do_cb(string arg)
 	}
         
         if( flag < 1 ) {
-                write(HIG "你没有准备足够的宝石合成所需材料。\n");
+                write(HIG "你沒有準備足夠的寶石合成所需材料。\n");
                 me->start_busy(1);
                 return -1;
         }
                 
-        write(HIR "只见宝石合成器发出一道红光从你身上扫过，你发现身上的宝石似乎发生了某些变化。\n");          
+        write(HIR "只見寶石合成器發出一道紅光從你身上掃過，你發現身上的寶石似乎發生了某些變化。\n");          
         me->start_busy(1);
         return 1;        
 }

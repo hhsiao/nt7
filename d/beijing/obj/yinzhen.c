@@ -5,7 +5,7 @@ inherit THROWING;
 
 void create()
 {
-        set_name(HIW "银针" NOR, ({ "yin zhen" , "yin", "zhen" }) );
+        set_name(HIW "銀針" NOR, ({ "yin zhen" , "yin", "zhen" }) );
         set_weight(200);
 
         /*if( clonep() )
@@ -13,10 +13,10 @@ void create()
         else*/
         {
                 set("unit", "枚");
-                set("long", HIW "这是一枚三寸长的银针，细而柔韧，多为医家"
-                            "刺穴疗伤之用。能运用这种银针的医者多为旷世\n"
-                            "神医，并有深厚的内功。你可以试着用它来针灸"
-                            "(zhenjiu)疗伤。\n" NOR);
+                set("long", HIW "這是一枚三寸長的銀針，細而柔韌，多為醫家"
+                            "刺穴療傷之用。能運用這種銀針的醫者多為曠世\n"
+                            "神醫，並有深厚的內功。你可以試著用它來針灸"
+                            "(zhenjiu)療傷。\n" NOR);
                 set("value", 0);              
                 set("yingdu", 50);
                 set("base_unit", "枚");
@@ -45,19 +45,19 @@ int do_heal(string arg)
 
         me = this_player();
         if (me->query_skill("zhenjiu-shu", 1) < 1 )
-                return notify_fail("你针灸术都没学，去杀人啊？\n");
+                return notify_fail("你針灸術都沒學，去殺人啊？\n");
 
         if( this_object() != query_temp("handing", me) )
-                return notify_fail("你必须把银针拿在手里才能针灸。\n");
+                return notify_fail("你必須把銀針拿在手裡才能針灸。\n");
 
         if (! arg || ! objectp(ob = present(arg, environment(me))))
-                return notify_fail("你想对谁施行针灸术？\n");
+                return notify_fail("你想對誰施行針灸術？\n");
 
         if( !ob->is_character() || query("not_living", ob) )
                 return notify_fail("看清楚了，那不是活人！\n"); 
 
         if (! living(ob))
-                return notify_fail("你还是等他醒了之后再治疗吧。\n");
+                return notify_fail("你還是等他醒了之後再治療吧。\n");
 
         if( query("no_zhenjiu", ob) )
                 return notify_fail("人家不想接受你的好意。\n");
@@ -68,11 +68,11 @@ int do_heal(string arg)
         {
                 if (me->query_skill("zhenjiu-shu", 1) < 60)
                 {
-                        message_vision( HIY "$N" HIY "正想给$n" HIY "疗伤，可$n"
-                                        HIY "望着$N" HIY "那不停颤抖的双手，脸上"
+                        message_vision( HIY "$N" HIY "正想給$n" HIY "療傷，可$n"
+                                        HIY "望著$N" HIY "那不停顫抖的雙手，臉上"
                                         "露出害怕的神色。\n" NOR + CYN "$n" CYN
-                                        "皱了皱眉头，对$N" CYN "说道：你那点手艺"
-                                        "还是算了吧。\n", me, ob);
+                                        "皺了皺眉頭，對$N" CYN "說道：你那點手藝"
+                                        "還是算了吧。\n", me, ob);
                         return 1;
                 }
         } else
@@ -82,41 +82,41 @@ int do_heal(string arg)
                         if( !is_sub(query("id", me),query("env/can_accept", ob)) )
                         {
                                 // user refuse to accept
-                                return notify_fail("人家现在不想接受你的好意。\n");
+                                return notify_fail("人家現在不想接受你的好意。\n");
                         }
                         flag = 1;
                 }
         }
 
         if (me->is_busy())
-                return notify_fail("你现在正忙着呢。\n");
+                return notify_fail("你現在正忙著呢。\n");
 
         if (me->is_fighting() || ob->is_fighting())
-                return notify_fail("战斗中还想疗伤，你找死啊？\n");
+                return notify_fail("戰鬥中還想療傷，你找死啊？\n");
 
         if( ob->is_killing(query("id", me)) )
-                return notify_fail("人家不会给你这个机会的。\n");
+                return notify_fail("人家不會給你這個機會的。\n");
 
         if (ob->query_skill("force") >= 150)
-                return notify_fail("人家内功深厚，不指望你替他疗伤。\n");
+                return notify_fail("人家內功深厚，不指望你替他療傷。\n");
 
         if( (query("max_qi", ob)*5/100>query("eff_qi", ob)) )
-                return notify_fail("现在此人受伤过重，施行针灸太危险了！\n");   
+                return notify_fail("現在此人受傷過重，施行針灸太危險了！\n");   
 
         if( query("max_qi", ob) == query("eff_qi", ob) )
         {
                 if(me != ob)
-                        return notify_fail("这人并没有受伤！\n");
+                        return notify_fail("這人並沒有受傷！\n");
                 else
-                        message_vision(HIW "$N" HIW "决定用自己来做试验，来提高自己"
-                                       "针灸术的水平。\n" NOR, me);
+                        message_vision(HIW "$N" HIW "決定用自己來做試驗，來提高自己"
+                                       "針灸術的水平。\n" NOR, me);
         }
 
         if( query("neili", me)<80 )
-                return notify_fail("你的内力不足，无法使用针灸术为人疗伤！\n");
+                return notify_fail("你的內力不足，無法使用針灸術為人療傷！\n");
 
         if( query("jing", me)<50 )
-                return notify_fail("你的精不足，无法集中精力！\n");
+                return notify_fail("你的精不足，無法集中精力！\n");
 
         if( time()-query_temp("last/zhenjiu", ob)<60 )
                 return flag = 1;
@@ -127,12 +127,12 @@ int do_heal(string arg)
         addn("jing", -30, me);
         me->start_busy(1 + random(1));
         me->improve_skill("zhenjiu-shu", 5 + random(30));
-        tell_object(me, HIC "在实践过程中你的「针灸术」提高了！\n" NOR);
+        tell_object(me, HIC "在實踐過程中你的「針灸術」提高了！\n" NOR);
 
         if (me == ob) s = "$N";
                  else s = "$n";
 
-        msg = HIW "$N" HIW "手捏银针，小心翼翼地向" + s + HIW "的穴道刺去，\n" NOR;
+        msg = HIW "$N" HIW "手捏銀針，小心翼翼地向" + s + HIW "的穴道刺去，\n" NOR;
 
         if (random(120) > (int)me->query_skill("zhenjiu-shu", 1))
         {
@@ -140,24 +140,24 @@ int do_heal(string arg)
                 i=query("max_qi", ob)*10/damage;
 
                 if (i > 100)
-                        msg += CYN "可是$N" CYN "用力稍偏，没刺中穴道，" + s +
-                               CYN "脸上露出一丝难过的神情。" NOR;
+                        msg += CYN "可是$N" CYN "用力稍偏，沒刺中穴道，" + s +
+                               CYN "臉上露出一絲難過的神情。" NOR;
                 else
                 {
                         if (i > 40)
-                                msg += RED "但是$N" RED "用力过猛，竟然刺出了"
-                                "血，这可是针灸中的大忌！" NOR;
+                                msg += RED "但是$N" RED "用力過猛，竟然刺出了"
+                                "血，這可是針灸中的大忌！" NOR;
                         else
-                                msg += RED "$N" RED "刺了下去才发现刺错了穴道，"
-                                + s + RED "「哇」的喷出了一口鲜血！" NOR;
+                                msg += RED "$N" RED "刺了下去才發現刺錯了穴道，"
+                                + s + RED "「哇」的噴出了一口鮮血！" NOR;
                 }
 
                 ob->receive_wound("qi", damage);                
                 damage = i;
         } else
         {
-                msg += HIW "$N" HIW "的银针准确无误的刺入穴道，随着银针的缓缓转"
-                       "动，" + s + HIW "长长的出了一口气，脸色好看多了。\n" NOR;
+                msg += HIW "$N" HIW "的銀針準確無誤的刺入穴道，隨著銀針的緩緩轉"
+                       "動，" + s + HIW "長長的出了一口氣，臉色好看多了。\n" NOR;
 
                 damage = -1;
 
@@ -195,10 +195,10 @@ int do_heal(string arg)
                         if (playerp(ob))
                         {
                                 if (me == ob)
-                                        message_vision(HIR "好险啊！$N" HIR "差一点把自己扎"
+                                        message_vision(HIR "好險啊！$N" HIR "差一點把自己扎"
                                                        "死。\n" NOR, me);
                                 else
-                                        message_vision(HIR "好险啊！$N" HIR "差一点把$n" HIR
+                                        message_vision(HIR "好險啊！$N" HIR "差一點把$n" HIR
                                                        "扎死。\n", me,ob);
                         }
                 } else
@@ -208,14 +208,14 @@ int do_heal(string arg)
                                 if (random(damage) < 40)
                                 {
                                         message_vision(HIR "$N" HIR "痛得「哇哇」大叫不止，"
-                                                       "怒道：居然敢下毒手，你想杀死我啊！\n" NOR, ob);
+                                                       "怒道：居然敢下毒手，你想殺死我啊！\n" NOR, ob);
 
                                         ob->kill_ob(me);
                                         me->fight_ob(ob);
                                 } else
                                 {
-                                        message_vision(HIR "$N" HIR "「哇」的大叫一声，不"
-                                                       "满地道：好痛啊！下次你可千万当心点"
+                                        message_vision(HIR "$N" HIR "「哇」的大叫一聲，不"
+                                                       "滿地道：好痛啊！下次你可千萬當心點"
                                                        "！\n",ob);
                                 }
                         }

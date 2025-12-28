@@ -3,13 +3,13 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIR "暗杀名单" NOR, ({"ansha mingdan", "ansha", "mingdan"}));
+        set_name(HIR "暗殺名單" NOR, ({"ansha mingdan", "ansha", "mingdan"}));
         set_weight(2000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "份");
-                set("long", HIR "这是一份写有朝廷要员名字的暗杀名单。\n"  NOR);
+                set("long", HIR "這是一份寫有朝廷要員名字的暗殺名單。\n"  NOR);
 
                 set("value", 500000);
         }

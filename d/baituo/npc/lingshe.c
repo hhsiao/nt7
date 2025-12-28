@@ -1,22 +1,22 @@
 // Copyright (C) 2003, by Lonely. All rights reserved.
 // This software can not be used, copied, or modified 
 // in any form without the written permission from authors.
-// lingshe 西域灵蛇
+// lingshe 西域靈蛇
 
 #include <ansi.h>
 inherit SNAKE;
 
 void create()
 {
-        set_name("灵蛇", ({ "ling she", "she", "snake" }) );
-        set("race", "野兽");
+        set_name("靈蛇", ({ "ling she", "she", "snake" }) );
+        set("race", "野獸");
         set("age", 4);
-        set("long", "一条银光闪闪的小蛇，产于西域，极为罕见。\n");
+        set("long", "一條銀光閃閃的小蛇，產於西域，極為罕見。\n");
         set("attitude", "peaceful");
 
-        set("msg_fail", "$n冲$N嘶地一吐舌头");
-        set("msg_succ", "$n嘶嘶做响，蛇头随着$N的手动了起来");
-        set("msg_trained","$n悄无声息地游到$N的脚下不动了");
+        set("msg_fail", "$n衝$N嘶地一吐舌頭");
+        set("msg_succ", "$n嘶嘶做響，蛇頭隨著$N的手動了起來");
+        set("msg_trained","$n悄無聲息地游到$N的腳下不動了");
         set("auto_follow",0);
         set("wildness", 90);
 
@@ -40,7 +40,7 @@ void init()
         ::init();
         add_action("convert","bian");
         if (interactive(ob = this_player()) &&
-            query("family/family_name", ob) != "欧阳世家" && 
+            query("family/family_name", ob) != "歐陽世家" && 
                 ! present("xiong huang", environment(ob))) {
                         remove_call_out("kill_ob");
                         call_out("kill_ob", 1, ob); 
@@ -49,7 +49,7 @@ void init()
 
 void unconcious()
 {        
-        write("灵蛇嗦地一下逃掉了。\n");
+        write("靈蛇嗦地一下逃掉了。\n");
         destruct(this_object());
 }
 void die()
@@ -74,13 +74,13 @@ int convert(string arg)
         object ob;
 
         if (arg != "ling she") return 0;
-        if( query("family/family_name", me) != "欧阳世家" )
-                return notify_fail("你不能化蛇为杖。\n");
+        if( query("family/family_name", me) != "歐陽世家" )
+                return notify_fail("你不能化蛇為杖。\n");
         if (me->query_skill("training",1) < 70 + random(70)) {
                 kill_ob(me);
                 return 1;
         }
-        message_vision("$N左手按住灵蛇的头，右手轻抚其七寸，口中念念有词，片刻间将蛇化为一根蛇杖。\n",
+        message_vision("$N左手按住靈蛇的頭，右手輕撫其七寸，口中唸唸有詞，片刻間將蛇化為一根蛇杖。\n",
                 me,);
                 ob = new("/d/baituo/obj/lingshezhang");
         ob->move(environment(this_object()));

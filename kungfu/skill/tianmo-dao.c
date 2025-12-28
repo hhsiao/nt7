@@ -4,7 +4,7 @@
 inherit SKILL; 
 
 mapping *action = ({
-([      "action":"$N高高跃起，一式「刀劈乾坤」，向$n$l一劈！",
+([      "action":"$N高高躍起，一式「刀劈乾坤」，向$n$l一劈！",
         "force" :60,
         "attack":18,
         "dodge" :30,
@@ -12,19 +12,19 @@ mapping *action = ({
         "damage":25,
         "lvl"   :0,
         "skill_name" :"刀劈乾坤",
-        "damage_type":"劈伤"
+        "damage_type":"劈傷"
 ]),
-([      "action":"只见$N倒提$w，身形急冲，就在与$n错身之际，突然使出「昙花一现」从$n后脑斜劈而下。",
+([      "action":"只見$N倒提$w，身形急衝，就在與$n錯身之際，突然使出「曇花一現」從$n後腦斜劈而下。",
         "force" :80,
         "attack":25,
         "dodge" :50,
         "parry" :35,
         "damage":30,
         "lvl"   :30,
-        "skill_name" :"昙花一现",
-        "damage_type":"劈伤"
+        "skill_name" :"曇花一現",
+        "damage_type":"劈傷"
 ]),
-([      "action":"$N一式「星河欲曙天」，手中$w化做一道刀光, 似银河倒泻般挥向$n$l。",
+([      "action":"$N一式「星河欲曙天」，手中$w化做一道刀光, 似銀河倒瀉般揮向$n$l。",
         "force" :95,
         "attack":38,
         "dodge" :70,
@@ -32,37 +32,37 @@ mapping *action = ({
         "damage":50,
         "lvl"   :60,
         "skill_name" :"星河欲曙天",
-        "damage_type":"砍伤"
+        "damage_type":"砍傷"
 ]),
-([      "action":"$N眼神恍惚，手中$w飘摇不定，一招「边风飘摇」斜斜的砍向$n的$l。",
+([      "action":"$N眼神恍惚，手中$w飄搖不定，一招「邊風飄搖」斜斜的砍向$n的$l。",
         "force" :110,
         "attack":45,
         "dodge" :90,
         "parry" :75,
         "damage":70,
         "lvl"   :90,
-        "skill_name" :"边风飘摇",
-        "damage_type":"砍伤"
+        "skill_name" :"邊風飄搖",
+        "damage_type":"砍傷"
 ]),
-([      "action":"$N狂喝一声，使出一招「绝域苍茫」，双手紧握$w带着逼人的杀气，刺向$n的$l。",
+([      "action":"$N狂喝一聲，使出一招「絕域蒼茫」，雙手緊握$w帶著逼人的殺氣，刺向$n的$l。",
         "force" :130,
         "attack":62,
         "dodge" :110,
         "parry" :95,
         "damage":85,
         "lvl"   :120,
-        "skill_name" :"绝域苍茫",
-        "damage_type":"刺伤"
+        "skill_name" :"絕域蒼茫",
+        "damage_type":"刺傷"
 ]),
-([      "action":"$N斜身飞起，一招「乘风破浪」，带出一片刀光卷向$n的$l。",
+([      "action":"$N斜身飛起，一招「乘風破浪」，帶出一片刀光卷向$n的$l。",
         "force" :160,
         "attack":80,
         "dodge" :110,
         "parry" :102,
         "damage":100,
         "lvl"   :150,
-        "skill_name" :"乘风破浪",
-        "damage_type":"劈伤"
+        "skill_name" :"乘風破浪",
+        "damage_type":"劈傷"
 ]),
 });
 
@@ -74,19 +74,19 @@ int valid_learn(object me)
 
      if( !objectp(weapon=query_temp("weapon", me)) || 
         query("skill_type", weapon) != "blade" )
-         return notify_fail("你必须手里拿着刀才能练刀法。\n");
+         return notify_fail("你必須手裡拿著刀才能練刀法。\n");
 
      if ((int)me->query_skill("riyue-xinfa", 1) < 100)
-         return notify_fail("你的内功心法火候太浅，不能学天魔刀法。\n");
+         return notify_fail("你的內功心法火候太淺，不能學天魔刀法。\n");
 
      if ((int)me->query_skill("blade", 1) < 100)
-         return notify_fail("你的基本刀法火候不够。\n");
+         return notify_fail("你的基本刀法火候不夠。\n");
 
      if( query("max_neili", me)<350 )
-         return notify_fail("你的内力太低，无法学天魔刀法。\n");
+         return notify_fail("你的內力太低，無法學天魔刀法。\n");
 
      if ((int)me->query_skill("blade", 1) < (int)me->query_skill("tianmo-dao", 1))
-         return notify_fail("你的基本刀法水平有限，无法领会更高深的天魔刀法。\n");
+         return notify_fail("你的基本刀法水平有限，無法領會更高深的天魔刀法。\n");
 
      return 1;
 }
@@ -114,13 +114,13 @@ int practice_skill(object me)
 
      if( !objectp(weapon=query_temp("weapon", me)) || 
         query("skill_type", weapon) != "blade" )
-         return notify_fail("你必须手里拿着刀才能练天魔刀法。\n");
+         return notify_fail("你必須手裡拿著刀才能練天魔刀法。\n");
 
      if( query("qi", me)<100 )
-            return notify_fail("你的体力不够练天魔刀法。\n");
+            return notify_fail("你的體力不夠練天魔刀法。\n");
 
      if( query("neili", me)<90 )
-            return notify_fail("你的内力不够练天魔刀法。\n");
+            return notify_fail("你的內力不夠練天魔刀法。\n");
 
      me->receive_damage("qi", 70);
      addn("neili", -75, me);

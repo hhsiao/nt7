@@ -17,7 +17,7 @@ void create()
         else*/
         {
                 set("long", "符文：玉清清微符，可以放入凹槽物品。\n");
-                set("unit", "个");
+                set("unit", "個");
                 set("enchase/SN", 35);
                 set("enchase/type", "all");
                 set("enchase/consistence", 100);

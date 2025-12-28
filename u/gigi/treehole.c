@@ -7,10 +7,10 @@ inherit CREATE_CHAT_ROOM;
 
 void create()
 {
-        set("short", "树洞");
+        set("short", "樹洞");
         set("long", @LONG
-此处漆黑一片，伸手不见五指，树洞入口曲折，一丝光亮也透不进来。
-尽管如此，你却一点也不害怕，且感到自己的思绪前所未有的通透。
+此處漆黑一片，伸手不見五指，樹洞入口曲折，一絲光亮也透不進來。
+儘管如此，你卻一點也不害怕，且感到自己的思緒前所未有的通透。
 LONG );
 
         set("exits", ([ /* sizeof() == 1 */
@@ -29,7 +29,7 @@ LONG );
 int valid_leave(object me, string dir)
 {
         if (dir == "north" && ! wizardp(me))
-                return notify_fail("那里只有巫师才能进去。\n");
+                return notify_fail("那裡只有巫師才能進去。\n");
 
         return ::valid_leave(me, dir);
 }

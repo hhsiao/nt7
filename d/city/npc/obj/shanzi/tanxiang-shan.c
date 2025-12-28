@@ -11,12 +11,12 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "把");
-                set("long", NOR + YEL "这是一把由紫檀木刻制的"
+                set("long", NOR + YEL "這是一把由紫檀木刻制的"
                             "香木扇，芬芳馥郁。\n" NOR);
                 set("value", 3000);
                 set("material", "wood");
-                set("wield_msg", "$N拿起一把$n握在手里。\n");
-                set("unwield_msg", "$N合上$n，收回怀里。\n");
+                set("wield_msg", "$N拿起一把$n握在手裡。\n");
+                set("unwield_msg", "$N合上$n，收回懷裡。\n");
         }
         init_dagger(15);
         setup();

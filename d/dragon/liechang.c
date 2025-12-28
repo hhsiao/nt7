@@ -4,10 +4,10 @@ void create()
 {
         set("short", "山谷");
         set("long",
-"[1;32m此处有些稀疏的树木，眼前矗立着一座千层叠翠、万里点苍\n"
-"的山峰，围成一处幽谷，中有一泓清潭，泉水从峰间奔流而下，喷珠泄玉，\n"
-"直入清潭，还有几只小精灵正在潭边飞舞。此处空气清凉湿润，沁人心肺，\n"
-"四周却看不见任何明显的出路，看来，你只好四处转转(around)看了。\n"
+"[1;32m此處有些稀疏的樹木，眼前矗立著一座千層疊翠、萬里點蒼\n"
+"的山峰，圍成一處幽谷，中有一泓清潭，泉水從峰間奔流而下，噴珠洩玉，\n"
+"直入清潭，還有幾隻小精靈正在潭邊飛舞。此處空氣清涼溼潤，沁人心肺，\n"
+"四周卻看不見任何明顯的出路，看來，你只好四處轉轉(around)看了。\n"
 ); 
         set("exits", ([
         ]) );
@@ -35,14 +35,14 @@ int do_around(string arg)
    me = this_player(); 
    if (random(20)<10)
    { 
-   tell_object(me, "你转来转去，也没找到出口，你迷了路！！\n\n");
+   tell_object(me, "你轉來轉去，也沒找到出口，你迷了路！！\n\n");
    room = find_object(__DIR__"spirit0");
    if(!objectp(room)) room=load_object(__DIR__"spirit0");
    me->move(room);
    return 1;
    }
    else  
-   tell_object(me, "你发现西边似乎有条路(west)。\n\n");
+   tell_object(me, "你發現西邊似乎有條路(west)。\n\n");
    return 1;
 }
  
@@ -51,7 +51,7 @@ int do_west(string arg)
         object me;
         object room;
         me = this_player();
-        message_vision("$N往西边的树林走去 . \n", me);
+        message_vision("$N往西邊的樹林走去 . \n", me);
 
         room = load_object(__DIR__"spirit3");
         if(room) me->move(room);

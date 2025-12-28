@@ -13,9 +13,9 @@ void create()
 {
         set_name("唐方", ({ "tang fang", "tang" }));
         set("long", 
-"唐方身材娇小，长的极为清秀，又带几分英气，清劲多于柔弱。\n"
-"她是唐门长房宗主唐尧舜之女，唐大之妹，后又得唐老太太亲授衣钵，在唐门地位颇高。\n"
-"她面容苍白，神情憔悴，清丽的面庞仿佛还带着泪痕。\n");                
+"唐方身材嬌小，長的極為清秀，又帶幾分英氣，清勁多於柔弱。\n"
+"她是唐門長房宗主唐堯舜之女，唐大之妹，後又得唐老太太親授衣缽，在唐門地位頗高。\n"
+"她面容蒼白，神情憔悴，清麗的面龐彷彿還帶著淚痕。\n");                
         set("gender", "女性");
         set("age", 20);
         set("class", "tangmen");
@@ -64,14 +64,14 @@ void create()
 
         prepare_skill("hand", "boyun-suowu");
                 
-        create_family("唐门世家", 3, "弟子");
+        create_family("唐門世家", 3, "弟子");
         
         set("chat_chance" , 20);
         set("chat_msg", ({
-                "我的萧哥哥到哪儿去，到现在还不来看我！\n",
-                "唐方幽幽叹口气，轻轻按住琴弦，出神得看着远方的湖面。\n",
-                "唐方漫不经心地拨弄了几下琴弦，自言自语道：也不知道萧郎现在是生是死....。\n",
-                "唐方轻轻吹了一下渺渺升起的檀香，两行清泪缓缓流下面颊。 \n",                
+                "我的蕭哥哥到哪兒去，到現在還不來看我！\n",
+                "唐方幽幽嘆口氣，輕輕按住琴絃，出神得看著遠方的湖面。\n",
+                "唐方漫不經心地撥弄了幾下琴絃，自言自語道：也不知道蕭郎現在是生是死....。\n",
+                "唐方輕輕吹了一下渺渺升起的檀香，兩行清淚緩緩流下面頰。 \n",                
                 ( : command("shy") : ),
                 ( : command("sigh") : ),
                 ( : command("drop qianqian") : ),
@@ -92,9 +92,9 @@ void create()
         }) );
 
         set("inquiry", ([
-                "千千结" : "问问老太太去啊！\n",
-                "千千"   : "问问老太太去啊！\n",
-                "萧郎" : (: ask_me :),
+                "千千結" : "問問老太太去啊！\n",
+                "千千"   : "問問老太太去啊！\n",
+                "蕭郎" : (: ask_me :),
         ]) );                 
 
         set("master_ob", 2);
@@ -112,28 +112,28 @@ void attempt_apprentice(object ob)
         if (! permit_recruit(ob))  
                 return;
 
-        if( query("family/family_name", ob) != "唐门世家" )
+        if( query("family/family_name", ob) != "唐門世家" )
         {
-                command("say “我四川唐门乃是武林世家，你已是武林中人，我不能收你为徒！”\n");
+                command("say “我四川唐門乃是武林世家，你已是武林中人，我不能收你為徒！”\n");
                 return;
         }
                                         
         if ((int)ob->query_skill("biyun-xinfa", 1) < 80) {
-                command("say 唐门虽然以暗器为主，但还是要辅以内力。"); 
+                command("say 唐門雖然以暗器為主，但還是要輔以內力。"); 
                 command("say " + RANK_D->query_respect(ob) + 
-                        "是否还应该在碧云心法上多下点功夫？");
+                        "是否還應該在碧雲心法上多下點功夫？");
                 return;
         }
 
         if ( ob->query_skill("biyun-xinfa", 1) < 80 && ob->query_skill("tangmen-throwing", 1) < 80 )
         {
-                command("say “你的心法和暗器不太熟练，要加油啊！”\n");
+                command("say “你的心法和暗器不太熟練，要加油啊！”\n");
                 return;
         }                                   
         if( query("int", ob)<28){
-                command("say 唐门历来注重弟子的文学修为。");
-                command("say 本派功夫要能熟练运用，必须能体会其中所含深远意境，悟性差了是不行的。");
-                command("say " + RANK_D->query_respect(ob) + "的悟性还大有潜力可挖，还是请回吧。");
+                command("say 唐門歷來注重弟子的文學修為。");
+                command("say 本派功夫要能熟練運用，必須能體會其中所含深遠意境，悟性差了是不行的。");
+                command("say " + RANK_D->query_respect(ob) + "的悟性還大有潛力可挖，還是請回吧。");
                 return;
         }
         command("say 好吧，我就收下你吧...");
@@ -144,15 +144,15 @@ string ask_me()
         object me;
         me = this_player();
         
-        if( query_temp("marks/萧", me) )
+        if( query_temp("marks/蕭", me) )
         {
-                return "算了吧，看来你也不知道萧郎的消息，你走吧。\n";
+                return "算了吧，看來你也不知道蕭郎的消息，你走吧。\n";
         }
         command("ah"+query("id", this_player()));
-        command("say 你知道萧郎吗！？自从他上次大闹唐门后就失去了消息。\n");
+        command("say 你知道蕭郎嗎！？自從他上次大鬧唐門後就失去了消息。\n");
         command("sigh");
-        set_temp("marks/萧", 1, this_player());
-        return "老太太为这事非常生气，再也不许我见他了。\n";
+        set_temp("marks/蕭", 1, this_player());
+        return "老太太為這事非常生氣，再也不許我見他了。\n";
            
 
 }
@@ -167,14 +167,14 @@ int accept_object(object who, object ob)
                 if(!query("yl_trigger")) 
                 {
                         say(
-"唐方说道：这不是萧郎的玉佩吗？太谢谢你了，虽然没有见到萧郎，\n"
-"能见到他的信物,我已经很欣慰了。\n"
-"唐方悠悠地叹了一口气：这里有一本暗器总诀，就算是给你的酬谢吧。\n"
-"唐方把"+query("name", book)+"交给了"+query("name", who)+"。\n");
+"唐方說道：這不是蕭郎的玉佩嗎？太謝謝你了，雖然沒有見到蕭郎，\n"
+"能見到他的信物,我已經很欣慰了。\n"
+"唐方悠悠地嘆了一口氣：這裡有一本暗器總訣，就算是給你的酬謝吧。\n"
+"唐方把"+query("name", book)+"交給了"+query("name", who)+"。\n");
                         book->move(who);
                         set("yl_trigger", 1);
                 }
-                else say("唐方杏目圆睁，说道：你这个人怎么这样讨厌啊。\n");
+                else say("唐方杏目圓睜，說道：你這個人怎麼這樣討厭啊。\n");
                 call_out("destroy", 1, ob);
                 return 1;
         }

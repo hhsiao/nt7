@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m一亿[2;37;0m[2;37;0m", ({"yua"}));        
+        set_name("[1;31m一億[2;37;0m[2;37;0m", ({"yua"}));        
         set("gender", "男性");                
-        set("long", "就是人民币[2;37;0m
-它是空密的魔幻兽。
+        set("long", "就是人民幣[2;37;0m
+它是空密的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

@@ -7,7 +7,7 @@ void setup()
         set_name("牛蹄[2;37;0m[2;37;0m", ({"sleepbag"}));        
         set("gender", "男性");                
         set("long", "牛蹄[2;37;0m
-它是生肖牛的魔幻兽。
+它是生肖牛的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

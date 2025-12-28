@@ -23,9 +23,9 @@ string *all_knowledge = ({
 
 void create()
 {
-    set_name("荣荣", ({ "rong rong", "rong" }));
+    set_name("榮榮", ({ "rong rong", "rong" }));
     set("nickname", HIG "ask rong about test" NOR);
-    set("title", HIY "测试引导员" NOR);
+    set("title", HIY "測試引導員" NOR);
     set("gender", "男性");
     set("shen", 0);
     set("age", 20);
@@ -34,7 +34,7 @@ void create()
     set("wiz_tester", 1);
     set("combat_exp", 10000000);
     set("attitude", "friendly");
-    set("long", "这个人看上去永远是一副没有睡醒的样子。\n");
+    set("long", "這個人看上去永遠是一副沒有睡醒的樣子。\n");
 
     setup();
     carry_object("/clone/misc/cloth")->wear();
@@ -56,8 +56,8 @@ private void greeting(object me)
 {
     if(!me || environment(me) != environment())
         return;
-    tell_object(me, this_object()->name(1) + "向你嘻皮笑脸的道：“这位"
-                    + RANK_D->query_respect(me) + "也来参加测试("
+    tell_object(me, this_object()->name(1) + "向你嘻皮笑臉的道：“這位"
+                    + RANK_D->query_respect(me) + "也來參加測試("
                     HIY "ask rong about test" NOR")吧？！”\n");
 }
 
@@ -89,25 +89,25 @@ private int ask_test(object me, object ob)
     me = this_player();
     ob = this_object();
 
-    message("vision", ob->name(1) + "在" + me->name() + "耳边小声的"
-                      "说了几句话。\n", environment(me), ({ me, ob }));
-    tell_object(me, ob->name(1) + "干咳了两声，装腔作势的说道：\n");
+    message("vision", ob->name(1) + "在" + me->name() + "耳邊小聲的"
+                      "說了幾句話。\n", environment(me), ({ me, ob }));
+    tell_object(me, ob->name(1) + "乾咳了兩聲，裝腔作勢的說道：\n");
     tell_object(me, HIW@TEXT
 
-请按照下列关键字来向测试引导员进行查询：
+請按照下列關鍵字來向測試引導員進行查詢：
 
-    test  ：获取测试引导员帮助信息
-    money ：获取供测试用的钱庄存款
-    skill ：查询可供选择的武功技能
+    test  ：獲取測試引導員幫助信息
+    money ：獲取供測試用的錢莊存款
+    skill ：查詢可供選擇的武功技能
 
-    指令格式：ask rong about <关键字>
+    指令格式：ask rong about <關鍵字>
 
 
-    如果想更换供测试用的技能，请使用setskill指令
+    如果想更換供測試用的技能，請使用setskill指令
 
-    指令格式：setskill <你的ID> use <技能名称>
+    指令格式：setskill <你的ID> use <技能名稱>
 
-    注意：更换技能将先会删除你身上原有的所有技能
+    注意：更換技能將先會刪除你身上原有的所有技能
 
 TEXT NOR);
     return 1;
@@ -120,34 +120,34 @@ private int ask_money(object me, object ob)
 
     if(wizardp(me))
     {
-        message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                       "耳边小声说了几句话。\n", environment(me),
+        message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                       "耳邊小聲說了幾句話。\n", environment(me),
                                                  ({ me, ob }));
-        tell_object(me, YEL + ob->name(1) + "摇头道：你不是巫师吗？"
+        tell_object(me, YEL + ob->name(1) + "搖頭道：你不是巫師嗎？"
                                             "自己call就行了。\n" NOR);
         return 1;
     }
 
     if(time() - me->query("set_skill/money") < time_limit)
     {
-        message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                       "耳边小声说了几句话。\n", environment(me),
+        message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                       "耳邊小聲說了幾句話。\n", environment(me),
                                                  ({ me, ob }));
-        tell_object(me, YEL + ob->name(1) + "摇头道：不要太贪心，前后两次"
-                                            "获取测试用的金钱之间必须间隔"
+        tell_object(me, YEL + ob->name(1) + "搖頭道：不要太貪心，前後兩次"
+                                            "獲取測試用的金錢之間必須間隔"
                                             + chinese_number(time_limit/60) +
-                                            "分钟以上。\n" NOR);
+                                            "分鐘以上。\n" NOR);
         return 1;
     }
 
     me->set("set_skill/money", time());
     me->set("bank/gold", gold_limit);
-    message("vision", ob->name(1) + "点了点头，在" + me->name() +
-                       "耳边小声说了几句话。\n", environment(me),
+    message("vision", ob->name(1) + "點了點頭，在" + me->name() +
+                       "耳邊小聲說了幾句話。\n", environment(me),
                                                  ({ me, ob }));
-    tell_object(me, HIC + ob->name(1) + "点头道：供测试用的金钱"
-                    HIY + chinese_number(gold_limit) + "两黄金"
-                    HIC "已经打到你的钱庄帐户上了。\n" NOR);
+    tell_object(me, HIC + ob->name(1) + "點頭道：供測試用的金錢"
+                    HIY + chinese_number(gold_limit) + "兩黃金"
+                    HIC "已經打到你的錢莊帳戶上了。\n" NOR);
     return 1;
 }
 
@@ -158,9 +158,9 @@ private int ask_faction(object me, object ob)
     me = this_player();
     ob = this_object();
 
-    message("vision", ob->name(1) + "在" + me->name() + "耳边小声的"
-                      "说了几句话。\n", environment(me), ({ me, ob }));
-    tell_object(me, ob->name(1) + "干咳了两声，装腔作势的说道：\n");
+    message("vision", ob->name(1) + "在" + me->name() + "耳邊小聲的"
+                      "說了幾句話。\n", environment(me), ({ me, ob }));
+    tell_object(me, ob->name(1) + "乾咳了兩聲，裝腔作勢的說道：\n");
 
     topic = me->query_temp("last_ask/topic");
     if(me->query_temp("ask_all_faction"))
@@ -186,9 +186,9 @@ private int ask_all_faction(object me, object ob)
 
     me->set_temp("ask_all_faction", 1);
     ask_faction(me, ob);
-    tell_object(me, HIC + ob->name(1) + "悄声道：可用某项技能的名称"
-                                        "作为关键字向我查询，以获取"
-                                        "进一步的信息。\n" NOR);
+    tell_object(me, HIC + ob->name(1) + "悄聲道：可用某項技能的名稱"
+                                        "作為關鍵字向我查詢，以獲取"
+                                        "進一步的信息。\n" NOR);
     return 1;
 }
 
@@ -203,42 +203,42 @@ private int setskills(string arg, object me, object ob)
 
     if(!arg || sscanf(arg, "%s use %s", who, skill) != 2)
         return notify_fail(HIW "指令格式：setskill <你的ID> "
-                               "use <技能名称>\n" NOR);
+                               "use <技能名稱>\n" NOR);
 
     obj = present(who, environment(me));
     if(!objectp(obj))
-        return notify_fail(YEL + ob->name(1) + "疑惑的道：你要设定"
-                                               "谁的技能？\n" NOR);
+        return notify_fail(YEL + ob->name(1) + "疑惑的道：你要設定"
+                                               "誰的技能？\n" NOR);
 
     if(obj != me)
-        return notify_fail(YEL + ob->name(1) + "摇头道：你只能更换"
-                                               "自己的测试用技能。\n" NOR);
+        return notify_fail(YEL + ob->name(1) + "搖頭道：你只能更換"
+                                               "自己的測試用技能。\n" NOR);
 
     if(wizardp(me))
     {
-        message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                       "耳边小声说了几句话。\n", environment(me),
+        message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                       "耳邊小聲說了幾句話。\n", environment(me),
                                                  ({ me, ob }));
-        tell_object(me, YEL + ob->name(1) + "摇头道：你不是巫师吗？"
+        tell_object(me, YEL + ob->name(1) + "搖頭道：你不是巫師嗎？"
                                             "自己call就行了。\n" NOR);
         return 1;
     }
 
     if(time() - me->query("set_skill/time") < time_limit)
     {
-        message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                       "耳边小声说了几句话。\n", environment(me),
+        message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                       "耳邊小聲說了幾句話。\n", environment(me),
                                                  ({ me, ob }));
-        tell_object(me, YEL + ob->name(1) + "摇头道：不要太频繁，前后两次"
-                                            "更换测试用的技能之间必须间隔"
+        tell_object(me, YEL + ob->name(1) + "搖頭道：不要太頻繁，前後兩次"
+                                            "更換測試用的技能之間必須間隔"
                                             + chinese_number(time_limit/60) +
-                                            "分钟以上。\n" NOR);
+                                            "分鐘以上。\n" NOR);
         return 1;
     }
 
     if(me->query("generation_skill/name") == skill)
-        return notify_fail(YEL + ob->name(1) + "摇头道：你当前使用的技能正是「"
-                               + skill + "」，无须重复设定。\n" NOR);
+        return notify_fail(YEL + ob->name(1) + "搖頭道：你當前使用的技能正是「"
+                               + skill + "」，無須重複設定。\n" NOR);
 
     me->set("str", 30);
     me->set("int", 10);
@@ -260,22 +260,22 @@ private int setskills(string arg, object me, object ob)
     {
         me->set("set_skill/owner", "TEST_D");
         me->set("set_skill/time", time());
-        message("vision", ob->name(1) + "点了点头，在" + me->name() +
-                           "耳边小声说了几句话。\n", environment(me),
+        message("vision", ob->name(1) + "點了點頭，在" + me->name() +
+                           "耳邊小聲說了幾句話。\n", environment(me),
                                                      ({ me, ob }));
-        tell_object(me, HIC + ob->name(1) + "点头道：你供测试用的技能被设定为『"
-                        HIW + skill + HIC "』，等级为"
+        tell_object(me, HIC + ob->name(1) + "點頭道：你供測試用的技能被設定為『"
+                        HIW + skill + HIC "』，等級為"
                         HIY + chinese_number(level_limit) +
-                        HIC "级。\n" NOR);
+                        HIC "級。\n" NOR);
         return 1;
     }
     else
     {
-        message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                       "耳边小声说了几句话。\n", environment(me),
+        message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                       "耳邊小聲說了幾句話。\n", environment(me),
                                                  ({ me, ob }));
-        tell_object(me, YEL + ob->name(1) + "疑惑的道：你是不是搞错了啊，有『"
-                                          + skill + "』这种技能可选吗？\n" NOR);
+        tell_object(me, YEL + ob->name(1) + "疑惑的道：你是不是搞錯了啊，有『"
+                                          + skill + "』這種技能可選嗎？\n" NOR);
         return 1;
     }
 }

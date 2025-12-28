@@ -3,13 +3,13 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "东长安街");
+        set("short", "東長安街");
         set("long", @LONG
-热闹的东长安大街是紫禁城的交通要道，宽阔的青石大道向东西
-两头延伸，路边有个狗洞(dong)，几只懒狗正在那里探头。街道上行
-人不断，繁华的盛世景象不言而喻。在这里可以远远望见西边那一堵
-堵高大厚实的古城墙，便是著名的天安门广场了。北面是京城最为繁
-华热闹的王府井大街。
+熱鬧的東長安大街是紫禁城的交通要道，寬闊的青石大道向東西
+兩頭延伸，路邊有個狗洞(dong)，幾隻懶狗正在那裡探頭。街道上行
+人不斷，繁華的盛世景象不言而喻。在這裡可以遠遠望見西邊那一堵
+堵高大厚實的古城牆，便是著名的天安門廣場了。北面是京城最為繁
+華熱鬧的王府井大街。
 LONG );
        set("exits", ([
                 "east" : "/d/beijing/caroad_e2",
@@ -43,17 +43,17 @@ int do_enter(string arg)
         if( !arg || arg=="" ) return 0;
         if( arg=="dong" )
         {
-           if( (fam=query("family", me)) && fam["family_name"] == "丐帮" )
+           if( (fam=query("family", me)) && fam["family_name"] == "丐幫" )
            {
                message("vision",
-                        me->name() + "运起丐帮缩骨功，一弯腰往狗洞里钻了进去。",
+                        me->name() + "運起丐幫縮骨功，一彎腰往狗洞裡鑽了進去。",
                         environment(me), ({me}) );
                me->move("/d/gaibang/underbj");
                message("vision",
-                        me->name() + "从洞里走了进来。\n",
+                        me->name() + "從洞裡走了進來。\n",
                         environment(me), ({me}) );
                         return 1;
            }
-           else  return notify_fail("这么小的洞，你钻得进去吗？\n");
+           else  return notify_fail("這麼小的洞，你鑽得進去嗎？\n");
        }
 }

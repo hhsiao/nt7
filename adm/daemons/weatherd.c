@@ -1,6 +1,6 @@
-// 天气预报精灵
-// 从网络上抓取信息，预报天气
-// 本例子为抓取来自："202.106.184.193"的天气预报信息。
+// 天氣預報精靈
+// 從網絡上抓取信息，預報天氣
+// 本例子為抓取來自："202.106.184.193"的天氣預報信息。
 
 #include <runtime_config.h>
 #include <getconfig.h>
@@ -24,7 +24,7 @@ string smsg;
 
 void create()
 {
-      set("channel_id", "网际精灵");
+      set("channel_id", "網際精靈");
       seteuid(getuid());
       //check_time();
 }
@@ -33,7 +33,7 @@ void local_input(string str)
 {
         if (str == "CLOSE")
         {
-                write("用户断开了连接。\n");
+                write("用戶斷開了連接。\n");
                 destruct(this_object());
                 return;
         }
@@ -46,7 +46,7 @@ void local_input(string str)
                 if (find_call_out("send_to_remote") == -1)
                         send_to_remote();
         } else
-                write("你输入的太多了...\n");
+                write("你輸入的太多了...\n");
 }
 
 int check_time()
@@ -72,7 +72,7 @@ int check_time()
 
        if (ret != EESUCCESS)
        {
-             write("网络连接错误！\n");
+             write("網絡連接錯誤！\n");
              socket_close(fd);
              return 1;
        }
@@ -115,19 +115,19 @@ void send_to_remote()
                 return;
 
         case EEWOULDBLOCK:
-                // 发送数据阻塞
+                // 發送數據阻塞
                 call_out("send_to_remote", 1);
                 return;
 
         default:
-                // 发送失败
+                // 發送失敗
                 return;
         }
 }
 
 void close()
 {        
-        // 超时关闭连接
+        // 超時關閉連接
         socket_close(fd);
  
         write("OK CLOSED!\n");

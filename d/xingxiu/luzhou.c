@@ -4,10 +4,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "沙漠绿洲");
+        set("short", "沙漠綠洲");
         set("long", @LONG
-在沙漠的尽头出现了一个绿洲。灌木丛中有一眼坎儿井。井台上有一个木杯
-专供口渴的行人喝水。井边是一块瓜地。
+在沙漠的盡頭出現了一個綠洲。灌木叢中有一眼坎兒井。井臺上有一個木杯
+專供口渴的行人喝水。井邊是一塊瓜地。
 LONG );
         set("resource/water", 1);
 
@@ -24,7 +24,7 @@ LONG );
         ]));
 
         set("outdoors", "xiyu");
-        set("no_map", "这里的地形令人迷惑，无法绘制地图。\n");
+        set("no_map", "這裡的地形令人迷惑，無法繪製地圖。\n");
 
         setup();
 }
@@ -41,7 +41,7 @@ int do_drink(string arg)
         object me;
 
         if (arg != "water")
-                return notify_fail("你要喝什么?\n");
+                return notify_fail("你要喝什麼?\n");
 
         me = this_player();
         current_water=query("water", me);
@@ -49,11 +49,11 @@ int do_drink(string arg)
         if (current_water<max_water)
         {
                 set("water", current_water+30, me);
-                message("vision", me->name()+"趴在坎儿井的井台上用木杯舀了一杯水喝。\n",
+                message("vision", me->name()+"趴在坎兒井的井臺上用木杯舀了一杯水喝。\n",
                         environment(me), ({me}) );
-                write("你喝了一口井中从天山上流淌下来的雪水，简直比蜜还甜。\n");
+                write("你喝了一口井中從天山上流淌下來的雪水，簡直比蜜還甜。\n");
         } else
-                write("逮着不要钱的水就这么喝，至于吗？\n");
+                write("逮著不要錢的水就這麼喝，至於嗎？\n");
 
         return 1;
 }

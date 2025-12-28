@@ -4,7 +4,7 @@
 #include <combat.h>
 
 inherit F_SSERVER;
-string name() { return "魔气血杀"; }
+string name() { return "魔氣血殺"; }
 
 int perform(object me, object target)
 {
@@ -20,34 +20,34 @@ int perform(object me, object target)
         if( !target
         ||      !target->is_character()
         ||      !me->is_fighting(target) )
-                return notify_fail("『魔气血杀』只能对战斗中的对手使用。\n");
+                return notify_fail("『魔氣血殺』只能對戰鬥中的對手使用。\n");
 
         if( me->query_skill("mingyu-gong", 1) < 500 )
                 return notify_fail("你的明玉功功力不足。 \n");
 
         if( me->query_skill("force", 1) < 500 )
-                return notify_fail("你的内功不够好。 \n");
+                return notify_fail("你的內功不夠好。 \n");
 
         if( query("neili", me)<1000 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if (me->query_skill_mapped("force") != "mingyu-gong")
-                return notify_fail("你现在没有激发明玉功为内功，难以施展『魔气血杀』。\n");
+                return notify_fail("你現在沒有激發明玉功為內功，難以施展『魔氣血殺』。\n");
 
-        msg = HIY "$N自残己身，以血气转换成杀气。\n
-            ……$N身上发出一股强大的杀气……\n
-    ■$N身上杀气逐渐地聚集在双手,在双手上形成两团魔气■\n
-            $N倏地大喝一声－－魔 气 血 杀－－\n\n" NOR;
+        msg = HIY "$N自殘己身，以血氣轉換成殺氣。\n
+            ……$N身上發出一股強大的殺氣……\n
+    ■$N身上殺氣逐漸地聚集在雙手,在雙手上形成兩團魔氣■\n
+            $N倏地大喝一聲－－魔 氣 血 殺－－\n\n" NOR;
 
         ap = attack_power(me, "force");
         dp = defense_power(target, "force");
 
         if (ap / 2 + random(ap) > dp)
         {
-                msg += HIR BLINK "$N突然喉头一动～～　只见$N口中喷出一道血柱往$n射去～～\n
-此乃魔气杀之
-            最终杀招 『魔 血 气 杀』\n\n
-$n遭到前所未有的打击,但$N也受伤不轻。\n" NOR;
+                msg += HIR BLINK "$N突然喉頭一動～～　只見$N口中噴出一道血柱往$n射去～～\n
+此乃魔氣殺之
+            最終殺招 『魔 血 氣 殺』\n\n
+$n遭到前所未有的打擊,但$N也受傷不輕。\n" NOR;
 
                 damage = damage_power(me, "force");
                 damage+= query("jiali", me);
@@ -66,13 +66,13 @@ $n遭到前所未有的打击,但$N也受伤不轻。\n" NOR;
         }
         else if( random(4) > 2 )
         {
-                msg += HIR BLINK"$N真气所转换的杀气不够大,对敌人毫无影响。\n" NOR;
+                msg += HIR BLINK"$N真氣所轉換的殺氣不夠大,對敵人毫無影響。\n" NOR;
                 me->receive_wound("qi",query("qi", me)*1/100);
                 addn("neili", -200, me);
         }
         else
         {
-                msg += HIR BLINK"$n受到强大的杀气伤害，动弹不得。\n" NOR;
+                msg += HIR BLINK"$n受到強大的殺氣傷害，動彈不得。\n" NOR;
                 me->receive_wound("qi",query("qi", me)*5/100);
                 target->receive_damage("qi", (int)me->query_skill("mingyu-gong", 1), me);
                 if (! target->is_busy())

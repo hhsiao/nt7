@@ -7,16 +7,16 @@ inherit NPC;
 void create()
 {
         int i;
-        set_name("东瀛武官", ({ "dongying wuguan", "dongyin", "wuguan", "guan" }));
+        set_name("東瀛武官", ({ "dongying wuguan", "dongyin", "wuguan", "guan" }));
         set("gender", "男性");
-        set("long", "　　来自于东瀛的武官，带领着一群武士烧杀劫略无恶不作。\n");
+        set("long", "　　來自於東瀛的武官，帶領著一群武士燒殺劫略無惡不作。\n");
         set("age", random(38) + 10);
         set("str", 22 + random(10));
         set("int", 22 + random(10));
         set("con", 22 + random(10));
         set("dex", 22 + random(10));
         create_family("武士道", 3, "武官");
-        //shifu("东瀛忍者");
+        //shifu("東瀛忍者");
         if (random(10)>6)i=60+random(30);
         else i=50-random(20);
         set("chat_chance_combat", i);
@@ -42,7 +42,7 @@ void init()
         ob = this_object();
 
         if( interactive(me=this_player()) && query_temp("japan/job", me)){
-                message_vision(HIR "$N对$n说道：「グイス，プタ！」\n" NOR, ob, me);
+                message_vision(HIR "$N對$n說道：「グイス，プタ！」\n" NOR, ob, me);
                 ob->kill_ob(me);
                 me->fight_ob(ob);
                 me->start_busy(1);
@@ -81,7 +81,7 @@ void dest()
 
         if ( !me ) return;
 
-        message_vision("$N急急忙忙离开了。\n", me);
+        message_vision("$N急急忙忙離開了。\n", me);
         destruct(me);
 }
 
@@ -100,11 +100,11 @@ void die()
                 pot = reward["pot_reward"];
                 addn("combat_exp", exp, me);
                 addn("potential", pot, me);
-                tell_object(me, MAG"杀敌有功，你获得了" + exp + "点实战经验，" + pot + "点潜能。\n"NOR);
+                tell_object(me, MAG"殺敵有功，你獲得了" + exp + "點實戰經驗，" + pot + "點潛能。\n"NOR);
                 set_temp("japan/kill", 1, me);
         }
         corpse = new(CORPSE_OB);
-        corpse->set_name( victim->name(1) + "的尸体", ({ "corpse" }) );
+        corpse->set_name( victim->name(1) + "的屍體", ({ "corpse" }) );
         set("age",query("age",  victim), corpse);
         set("gender",query("gender",  victim), corpse);
         set("victim_name", victim->name(1), corpse);
@@ -136,7 +136,7 @@ void die()
                 else inv[i]->move(corpse);
         }
         if ( obj ) obj->move(corpse);
-        set("long", victim->long(1) + "然而，" + gender_pronoun(query("gender", victim)) + "已经死了，只剩下一具尸体静静地躺在这里。\n", corpse);
+        set("long", victim->long(1) + "然而，" + gender_pronoun(query("gender", victim)) + "已經死了，只剩下一具屍體靜靜地躺在這裡。\n", corpse);
         corpse->move(environment(victim));
         destruct(victim);
 }

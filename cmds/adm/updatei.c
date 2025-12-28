@@ -31,7 +31,7 @@ int main(object me, string arg)
         seteuid(geteuid(me));
 
         if (! arg)
-                   return notify_fail("你必须指明想编辑的继承的根档案路径名。\n");
+                   return notify_fail("你必須指明想編輯的繼承的根檔案路徑名。\n");
 
         file = 0;
         opt_compile = 0;
@@ -61,7 +61,7 @@ int main(object me, string arg)
 
         if (! sscanf(file, "%*s.c")) file += ".c"; 
         if (file_size(file) < 0)
-                return notify_fail("没有 " + file + " 这个档案。\n");
+                return notify_fail("沒有 " + file + " 這個檔案。\n");
         set("cwf", file, me);
 
         obs = filter_array(objects(), (: inherits($(file), $1) &&
@@ -71,13 +71,13 @@ int main(object me, string arg)
         obs -= ({ find_object(VOID_OB), find_object(TEMP_OB) });
         if (sizeof(obs) > 1024 && ! opt_force)
         {
-                write("一共有 " + sizeof(obs) + " 个物件牵涉"
-                      "在内，如果你决定编译，请指明-f参数。\n");
+                write("一共有 " + sizeof(obs) + " 個物件牽涉"
+                      "在內，如果你決定編譯，請指明-f參數。\n");
                 return 1;
         }
 
         if (sizeof(obs) > 100 && opt_compile)
-                message_system("重新编译所有继承档案，请稍候...");
+                message_system("重新編譯所有繼承檔案，請稍候...");
 
         base = ({ file });
         count = 0;
@@ -86,11 +86,11 @@ int main(object me, string arg)
         while (sizeof(base))
         {
                 if (! level)
-                        write(HIG "编译根文件：" + file + "，总共 " +
-                              sizeof(obs) + " 个继承文件。\n" NOR);
+                        write(HIG "編譯根文件：" + file + "，總共 " +
+                              sizeof(obs) + " 個繼承文件。\n" NOR);
                 else
-                        write(sprintf(WHT "编译第 %d 次继承的 %d 个"
-                                      "文件，还剩 %d 个文件。\n" NOR,
+                        write(sprintf(WHT "編譯第 %d 次繼承的 %d 個"
+                                      "文件，還剩 %d 個文件。\n" NOR,
                                       level, sizeof(base), sizeof(obs)));
                 temp = ({ });
                 for (i = 0; i < sizeof(base); i++)
@@ -100,7 +100,7 @@ int main(object me, string arg)
                         {
                                 object *moves;
 
-                                if (opt_detail) write("编译" + base[i] + ":");
+                                if (opt_detail) write("編譯" + base[i] + ":");
 
                                 moves = 0;
                                 if (ob = find_object(base[i]))
@@ -123,7 +123,7 @@ int main(object me, string arg)
                 
                                 if (catch(ob = load_object(base[i])))
                                 {
-                                        write(HIR "\n编译遇到错误中止。\n" NOR);
+                                        write(HIR "\n編譯遇到錯誤中止。\n" NOR);
                                         return 1;
                                 }
 
@@ -142,7 +142,7 @@ int main(object me, string arg)
                         } else
                         {
                                 if (opt_detail)
-                                        write("需要编译" + base[i] + "。\n");
+                                        write("需要編譯" + base[i] + "。\n");
                         }
                         count++;
         
@@ -162,10 +162,10 @@ int main(object me, string arg)
         }
 
         if (count > 0)
-                write(HIC "总共有" + HIW + count + HIC "个档案" +
-                      (opt_compile ? "被成功编译！\n" NOR : "需要编译。\n" NOR));
+                write(HIC "總共有" + HIW + count + HIC "個檔案" +
+                      (opt_compile ? "被成功編譯！\n" NOR : "需要編譯。\n" NOR));
         else
-                write(HIC "没有编译任何档案需要编译。\n" NOR);
+                write(HIC "沒有編譯任何檔案需要編譯。\n" NOR);
 
         return 1;
 }
@@ -173,17 +173,17 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式 : updatei <档案名> [-c] [-d] [-f]
+指令格式 : updatei <檔案名> [-c] [-d] [-f]
  
-这个指令可以更新某个档案和所有继承该档案的物件，不过那些复制
-出来的物件不会更新。比如你编译了/feature/message，则继承该文
-件的/inherit/char/char和间接继承的/inherit/char/npc 都会被重
-新编译。如果一个物件是玩家对象，则不会被编译。
+這個指令可以更新某個檔案和所有繼承該檔案的物件，不過那些複製
+出來的物件不會更新。比如你編譯了/feature/message，則繼承該文
+件的/inherit/char/char和間接繼承的/inherit/char/npc 都會被重
+新編譯。如果一個物件是玩家對象，則不會被編譯。
 
-如果不指明参数-c，则系统只是列出需要编译那些档案。如果指明了
-参数-c，则编译范围在1024 个文件内,如果指明了参数-d，则采用详
-细模式列出所有需要编译的档案。如果指明了-f则编译所有对象，否
-则超过了1024个文件系统就不会进行编译。
+如果不指明參數-c，則系統只是列出需要編譯那些檔案。如果指明瞭
+參數-c，則編譯範圍在1024 個文件內,如果指明瞭參數-d，則採用詳
+細模式列出所有需要編譯的檔案。如果指明瞭-f則編譯所有對象，否
+則超過了1024個文件系統就不會進行編譯。
 HELP );
     return 1;
 }

@@ -12,12 +12,12 @@ int clean_up() { return 1;}
 
 void create()
 {
-        set("short", "珍宝阁");
+        set("short", "珍寶閣");
         set("long", 
-"这就是珍宝阁的所在，一栋九色的楼层拔地而起，赤橙黄绿青蓝紫为前\n"
-"七层，然后为黑色一层，白色的顶层为最高，上面高悬一颗碧水珠，光彩夺\n"
-"目，人们一到珍宝阁十丈之内，立刻如沐春风，清爽无比，在珍宝阁各路珍\n"
-"稀的宝物让人眼花缭乱，价值也是动人心魄。\n"
+"這就是珍寶閣的所在，一棟九色的樓層拔地而起，赤橙黃綠青藍紫為前\n"
+"七層，然後為黑色一層，白色的頂層為最高，上面高懸一顆碧水珠，光彩奪\n"
+"目，人們一到珍寶閣十丈之內，立刻如沐春風，清爽無比，在珍寶閣各路珍\n"
+"稀的寶物讓人眼花繚亂，價值也是動人心魄。\n"
 );
                 //set("outdoors", "yangzhou");
                 set("exits",([ /* sizeof() == 1 */
@@ -37,20 +37,20 @@ void create()
         setup();
 }
 
-void init_encounter(object me)//阵图进入调用
+void init_encounter(object me)//陣圖進入調用
 {
         if (query("dongtian/encounter/SN1", me) && query("dongtian/encounter/SN1", me) < (ENCRND + 1)) return;
         set("dongtian/encounter/SN1", random(ENCRND) + 1, me);
 }
 
-void add_encounter()//阵图定时调用
+void add_encounter()//陣圖定時調用
 {
         if (query("encounter/ntime") > time() || query("encounter/amount") >= ENCNUM) return;
         if (query("hold_time", get_object(__DIR__"guangchang.c")) < 2) return;//是npc的洞天
         set("encounter/ntime", time() + DELAY_T + random(DELAY_T / 2));
         addn("encounter/amount", 1);
         if (query("encounter/amount") >= ENCNUM) {
-                CHANNEL_D->channel_broadcast("dt", NOR + HIW + "远望" + NOR + HIC + __DIR__"guangchang.c"->load_name() + NOR + HIW + "洞天的" + query("short") + "方向，宝光充盈气冲云霄。\n" + NOR);
+                CHANNEL_D->channel_broadcast("dt", NOR + HIW + "遠望" + NOR + HIC + __DIR__"guangchang.c"->load_name() + NOR + HIW + "洞天的" + query("short") + "方向，寶光充盈氣衝雲霄。\n" + NOR);
         }
 }
 
@@ -79,7 +79,7 @@ void init()
                 delete("dongtian/encounter/SN1", me);
                 init_encounter(me);
                 
-                //奖励
+                //獎勵
                 rnd = random(560);
                 if (rnd < 1)
                         ob = new("/u/redl/obj/fanghuamu");
@@ -108,7 +108,7 @@ void init()
         } 
         else
         {
-                me->start_busy(5 + random(6));//等待被主人抓贼
+                me->start_busy(5 + random(6));//等待被主人抓賊
                         set("who_get/id", query("id", me), ob);
                         set("who_get/time", time() + 90, ob);
                         obname = query("colorname", ob);
@@ -121,17 +121,17 @@ void init()
                         giftobs += ({obname});
 /*                      //if (rnd < 270) {//通知主人方
                                 if (objectp(room = get_object(__DIR__"houdian"))) {
-                                        tell_room(room, NOR + HIG + "魔像：" + query("name", me) + NOR + HIG + "在本洞天发现了" + obname + NOR + HIG + "。\n" + NOR);
+                                        tell_room(room, NOR + HIG + "魔像：" + query("name", me) + NOR + HIG + "在本洞天發現了" + obname + NOR + HIG + "。\n" + NOR);
                                 }
                                 room = get_object(__DIR__"dadian");
                                 if (objectp(room)) {
-                                        tell_room(room, NOR + HIG + "魔像：" + query("name", me) + NOR + HIG + "在本洞天发现了" + obname + NOR + HIG + "。\n" + NOR);
+                                        tell_room(room, NOR + HIG + "魔像：" + query("name", me) + NOR + HIG + "在本洞天發現了" + obname + NOR + HIG + "。\n" + NOR);
                                 }
                         //}*/
         }
       }
         if(giftobs && sizeof(giftobs)) 
-                CHANNEL_D->channel_broadcast("dt", sort_msg(NOR + HIW + "传说有人在" + NOR + HIC + __DIR__"guangchang.c"->load_name() + NOR + HIW + "洞天的" + query("short") + "发现了" + implode(giftobs, NOR + HIW + "、" + NOR + HIW) + NOR + HIW + "。\n" + NOR, 64));
+                CHANNEL_D->channel_broadcast("dt", sort_msg(NOR + HIW + "傳說有人在" + NOR + HIC + __DIR__"guangchang.c"->load_name() + NOR + HIW + "洞天的" + query("short") + "發現了" + implode(giftobs, NOR + HIW + "、" + NOR + HIW) + NOR + HIW + "。\n" + NOR, 64));
         }
         
         ::init();

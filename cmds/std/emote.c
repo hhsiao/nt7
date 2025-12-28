@@ -22,22 +22,22 @@ int main(object me, string str)
                         return 1;
                 }
 
-                write("这个地方不能乱做动作。\n");
+                write("這個地方不能亂做動作。\n");
                 return 1;
         }
 
         if( query("doing", me) == "scheme" )
         {
                 if( query("jing", me)<100 )
-                        return notify_fail("你现在的精神不济，等一会儿吧。\n");
+                        return notify_fail("你現在的精神不濟，等一會兒吧。\n");
                 addn("jing", -50, me);
         }
 
         if (! str)
         {
-                write(CYN"你看起来表情丰富。\n"NOR);
+                write(CYN"你看起來表情豐富。\n"NOR);
                 tell_room(env, CYN + (string)me->name()+
-                          "看起来表情丰富。\n" + NOR, me);
+                          "看起來表情豐富。\n" + NOR, me);
                 return 1;
         }
 
@@ -51,19 +51,19 @@ int main(object me, string str)
 int help(object me)
 {
         write(@HELP
-指令格式: emote <动作词>
+指令格式: emote <動作詞>
 
-这个指令可以让你表达一个系统没有预设的动作词, 系统会将你所输入
-的文字加上你的姓名後显示给所有在同一个地方的生物看。为了避免造
-成困扰, 玩家所输入的词句前面会加上 ~ 以供区别。
+這個指令可以讓你表達一個系統沒有預設的動作詞, 系統會將你所輸入
+的文字加上你的姓名後顯示給所有在同一個地方的生物看。為了避免造
+成困擾, 玩家所輸入的詞句前面會加上 ~ 以供區別。
 
-范例: emote 坐了下来。
-你会看见: 你坐了下来。
-其他人会看到: ~包子坐了下来。
+範例: emote 坐了下來。
+你會看見: 你坐了下來。
+其他人會看到: ~包子坐了下來。
 
 其中, 包子就是你的名字.
 
-相关指令: semote
+相關指令: semote
 HELP );
         return 1;
 }

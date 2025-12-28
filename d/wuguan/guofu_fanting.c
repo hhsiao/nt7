@@ -3,10 +3,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "饭厅");
+        set("short", "飯廳");
         set("long", @LONG
-这里是武馆内用餐的地方。屋里布置很简单, 只摆着几张
-桌椅几个人在一声不响地吃着。一个厨子在不停的忙碌着，你
+這裡是武館內用餐的地方。屋裡佈置很簡單, 只擺著幾張
+桌椅幾個人在一聲不響地吃著。一個廚子在不停的忙碌著，你
 可以向他要(serve)食物和水。
 LONG);
         set("exits", ([
@@ -26,11 +26,11 @@ int valid_leave(object me, string dir)
            && present("chu shi", environment(me)))
 	{
 	        if (present("tea", me))
-              		return notify_fail(CYN "厨师拦住你道：你还是先把茶"
+              		return notify_fail(CYN "廚師攔住你道：你還是先把茶"
                                            "喝完再走吧。\n" NOR);
 
 	        if (present("rice", me))
-              		return notify_fail(CYN "厨师拦住你道：你还是先把饭"
+              		return notify_fail(CYN "廚師攔住你道：你還是先把飯"
                                            "吃完再走吧。\n" NOR);
 
         }

@@ -1,4 +1,4 @@
-// xiao.c 箫
+// xiao.c 簫
 
 int play_xiao(string arg)
 {

@@ -1,5 +1,5 @@
 // This program is a part of NITAN MudLIB
-// yue-wife.c 岳夫人
+// yue-wife.c 嶽夫人
 
 inherit NPC;
 inherit F_MASTER;
@@ -9,13 +9,13 @@ inherit F_QUESTER;
 
 void create()
 {
-        set_name("宁中则", ({ "ning zhongze", "ning", "zhongzhe", "yue wife" }) );
-        set("nickname", "淑女剑");
+        set_name("甯中則", ({ "ning zhongze", "ning", "zhongzhe", "yue wife" }) );
+        set("nickname", "淑女劍");
         set("gender", "女性");
         set("class", "swordsman");
         set("age", 50);
-        set("long", "岳夫人原姓宁，闺名宁中则，"
-                    "是岳不群的师妹，也是他的妻子。\n");
+        set("long", "嶽夫人原姓寧，閨名甯中則，"
+                    "是嶽不群的師妹，也是他的妻子。\n");
         set("attitude", "peaceful");
         set("shen_type", 1);
 
@@ -72,7 +72,7 @@ void create()
         set_temp("apply/unarmed_damage", 150);
         set_temp("apply/armor", 600);
 
-        create_family("华山派", 13, "掌门夫人");
+        create_family("華山派", 13, "掌門夫人");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -94,11 +94,11 @@ void attempt_apprentice(object ob)
 {
         if( query("apprentice_available") ) {
                 if( find_call_out("do_recruit") != -1 )
-                        command("say 慢著，一个一个来。");
+                        command("say 慢著，一個一個來。");
                 else
                         call_out("do_recruit", 2, ob);
         } else {
-                command("say 今天好累哟。");
+                command("say 今天好累喲。");
         }
 }
 
@@ -109,29 +109,29 @@ void do_recruit(object ob)
 
         if( query("gender", ob) != "女性" )
         {
-                command("say 这位" + RANK_D->query_respect(ob) + "你还是找我师哥去吧.");
+                command("say 這位" + RANK_D->query_respect(ob) + "你還是找我師哥去吧.");
                 return;
         }
 
         if( query("shen", ob)<20000 )
         {
-                command("say 你行侠仗义的事还做得不够，我还不能收你！");
+                command("say 你行俠仗義的事還做得不夠，我還不能收你！");
                 return;
         }
 
         if (ob->query_skill("huashan-neigong", 1) < 140)
         {
-                command("say 我华山派以修气为主，你连本门内功都还不熟练，我不能收你！");
+                command("say 我華山派以修氣為主，你連本門內功都還不熟練，我不能收你！");
                 return;
         }
 
         if (ob->query_skill("huashan-sword", 1) < 140)
         {
-                command("say 你华山剑法还不够熟练，下去多练习练习再来找我吧！");
+                command("say 你華山劍法還不夠熟練，下去多練習練習再來找我吧！");
                 return;
         }
 
-        command("say 微笑道：好，好，只要你用心学，他日必有成就。");
+        command("say 微笑道：好，好，只要你用心學，他日必有成就。");
         command("recruit "+query("id", ob));
 }
 
@@ -151,16 +151,16 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "历练" :
-        case "历炼" :
-        case "锻炼" :
+        case "歷練" :
+        case "歷煉" :
+        case "鍛鍊" :
                 return QUEST_D->accept_ask(this_object(), me, topic);
                 break;
 
-        case "宁氏一剑" :
+        case "寧氏一劍" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/yunu-sword/ning",
-                           "name"    : "宁氏一剑",
+                           "name"    : "寧氏一劍",
                            "sk1"     : "yunu-sword",
                            "lv1"     : 100,
                            "sk2"     : "force",
@@ -171,10 +171,10 @@ int accept_ask(object me, string topic)
                            "shen"    : 30000, ]));
                 break;
 
-        case "无双无对" :
+        case "無雙無對" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/yunu-sword/wushuang",
-                           "name"    : "无双无对",
+                           "name"    : "無雙無對",
                            "sk1"     : "yunu-sword",
                            "lv1"     : 100,
                            "sk2"     : "force",

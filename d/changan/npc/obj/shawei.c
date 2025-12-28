@@ -6,7 +6,7 @@ inherit STAFF;
 
 void create()
 {
-        set_name("杀威棒", ({"shawei bang", "bang"}));
+        set_name("殺威棒", ({"shawei bang", "bang"}));
         set_weight(3000);
         /*if (clonep())
                 set_default_object(__FILE__);

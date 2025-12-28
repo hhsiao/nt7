@@ -6,14 +6,14 @@ inherit CREATE_CHAT_ROOM;
 
 void create()
 {
-        set("short", "鸿福楼");
+        set("short", "鴻福樓");
         set("long", @LONG
-这是泉州城中字号最老的客栈蒹酒楼，生意非常兴隆。许多江湖人
-物在这里高谈阔论，所以这里是个打听到情报的好地方。墙上挂着一个
-牌子(paizi)。北面是一间马厩。
+這是泉州城中字號最老的客棧蒹酒樓，生意非常興隆。許多江湖人
+物在這裡高談闊論，所以這裡是個打聽到情報的好地方。牆上掛著一個
+牌子(paizi)。北面是一間馬廄。
 LONG );
         set("item_desc", ([
-                "paizi" : "楼上雅房，每夜五十两白银。\n",
+                "paizi" : "樓上雅房，每夜五十兩白銀。\n",
         ]));
         set("exits", ([
                 "west"   : __DIR__"northroad1",
@@ -42,10 +42,10 @@ void init()
 int valid_leave(object me, string dir)
 {
         if( !query_temp("rent_paid", me) && dir == "up" )
-                return notify_fail("店小二一下挡在楼梯前，白眼一翻：怎麽着，想白住啊！\n");
+                return notify_fail("店小二一下擋在樓梯前，白眼一翻：怎麼著，想白住啊！\n");
 
         if( query_temp("rent_paid", me) && dir == "west" )
-                return notify_fail("店小二跑到门边拦住：客官已经付了银子，怎麽不住店就走了呢！\n旁人还以为小店伺候不周呢！\n");
+                return notify_fail("店小二跑到門邊攔住：客官已經付了銀子，怎麼不住店就走了呢！\n旁人還以為小店伺候不周呢！\n");
 
         return ::valid_leave(me, dir);
 }

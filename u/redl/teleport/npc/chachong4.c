@@ -52,14 +52,14 @@ int do_store()
 {
         string s = sprintf("/temp/qroom/%s", query("owner_id"));
         if (!sizeof(get_dir(s))) mkdir(s);
-        save_object(query_save_file());//mapping没法save
+        save_object(query_save_file());//mapping沒法save
         return 1;
 }
 
 void create()
 {
-        set_name(NOR "茶宠" NOR, ({ "cha chong", "cha", "chong", "cc" }));
-        set("title", CYN "茶宠" NOR);
+        set_name(NOR "茶寵" NOR, ({ "cha chong", "cha", "chong", "cc" }));
+        set("title", CYN "茶寵" NOR);
         set("attitude", "aggressive");
         set("str", 1);
         set("con", 1);
@@ -75,8 +75,8 @@ void create()
         set("level", 1);
         set("combat_exp", 1);
         set("auto_perform", 1);
-        set("death_msg", NOR "\n$N化作一道水蒸气不见了。\n" NOR);
-        set("init_msg", NOR "\n$N随着一片水雾出现在你面前...\n" NOR);
+        set("death_msg", NOR "\n$N化作一道水蒸氣不見了。\n" NOR);
+        set("init_msg", NOR "\n$N隨著一片水霧出現在你面前...\n" NOR);
         setup();
 }
 
@@ -100,8 +100,8 @@ int do_copy(object ob, object own, int idx)
         set_temp("owner", own);
         set("idx", idx);
         scale += -( idx * 2 );
-        //set("title", CYN +own->name()+"的"+chinese_number(idx)+"号茶宠" + NOR);
-        set("title", NOR CYN +chinese_number(idx)+"号茶宠" + NOR);
+        //set("title", CYN +own->name()+"的"+chinese_number(idx)+"號茶寵" + NOR);
+        set("title", NOR CYN +chinese_number(idx)+"號茶寵" + NOR);
         set_name(NOR + ob->name()+ NOR, ({ "cha chong", "cha", "chong", "cc" }));
         tmp = ob->query_entire_temp_dbase(); 
         apply = tmp["apply"]; 
@@ -375,7 +375,7 @@ int do_helpkill(object own, object me)
         object room, ene, *enemies;
         room = environment(own);
         if (!room) return 1;
-        tell_room(room, NOR YEL "地上突然冒出枚黑棋子，慢慢涨大，" + name() + NOR YEL  "从里面走出来后，黑棋子又沉入地下。\n" NOR);
+        tell_room(room, NOR YEL "地上突然冒出枚黑棋子，慢慢漲大，" + name() + NOR YEL  "從裡面走出來後，黑棋子又沉入地下。\n" NOR);
         me->move(room);
         me->full_self();
         me->auto_exert(me);

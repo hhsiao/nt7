@@ -5,10 +5,10 @@ inherit ROOM;
 
 void create()
 {
-	set("short", "荆棘林");
+	set("short", "荊棘林");
 	set("long", @LONG
-你信步而行，举步踏到的尽是矮树长草，这里没有路,每走一步，荆棘都
-钩刺到小腿,划破你的身体。
+你信步而行，舉步踏到的盡是矮樹長草，這裡沒有路,每走一步，荊棘都
+鉤刺到小腿,劃破你的身體。
 LONG
 	);
         set("outdoors", "大理");
@@ -32,7 +32,7 @@ void init()
        object me = this_player();
        if( random(query("kar", me))<15
         && me->query_con() < 30){
-       set_temp("last_damage_from", "在森林里筋疲力尽累", me);
+       set_temp("last_damage_from", "在森林裡筋疲力盡累", me);
          addn("qi", -50, me);
          addn("jingli", -10, me);
          me->receive_wound("jing", 20);

@@ -8,11 +8,11 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("仪琳", ({ "yi lin", "lin" }) );
+        set_name("儀琳", ({ "yi lin", "lin" }) );
         set("long",
-        "她就是定逸师太的最小的徒弟，也是恒山派最小的弟子。她一双大眼，\n"
-        "清澄明澈，犹如两泓清泉，一张俏脸秀丽绝俗，不带半分人间烟火气，\n"
-        "只是看起来有几分忧郁，有些消瘦。\n");
+        "她就是定逸師太的最小的徒弟，也是恆山派最小的弟子。她一雙大眼，\n"
+        "清澄明澈，猶如兩泓清泉，一張俏臉秀麗絕俗，不帶半分人間煙火氣，\n"
+        "只是看起來有幾分憂鬱，有些消瘦。\n");
         set("gender", "女性");
         set("class", "bonze");
         set("age", 16);
@@ -62,7 +62,7 @@ void create()
                 (: exert_function, "recover" :),
         }) );
 
-        create_family("恒山派", 14, "弟子");
+        create_family("恆山派", 14, "弟子");
         setup();
 
         carry_object("/clone/weapon/changjian")->wield();
@@ -74,22 +74,22 @@ void attempt_apprentice(object ob)
         if (! permit_recruit(ob))
                 return;
 
-        if( query("combat_exp", ob)>10000 && query("family/family_name", ob) != "恒山派" )
+        if( query("combat_exp", ob)>10000 && query("family/family_name", ob) != "恆山派" )
         {
-                command("say 我恒山派注重清修，对弟子要求能忍受寂寞。");
-                command("say 在江湖阅历方面，" + RANK_D->query_respect(ob) +
-                        "经历丰富，是否能在恒山修道？");
+                command("say 我恆山派注重清修，對弟子要求能忍受寂寞。");
+                command("say 在江湖閱歷方面，" + RANK_D->query_respect(ob) +
+                        "經歷豐富，是否能在恆山修道？");
                 return;
         }
         if( query("shen", ob)<0){
-                command("say 我恒山乃是堂堂五岳剑派之一，对弟子要求极严。");
+                command("say 我恆山乃是堂堂五嶽劍派之一，對弟子要求極嚴。");
                 command("say 在德行方面，" + RANK_D->query_respect(ob) +
-                        "是否还做得不够？");
+                        "是否還做得不夠？");
                 return;
         }
         if( query("gender", ob) != "女性" )
         {
-                command("say 我恒山只收女徒。");
+                command("say 我恆山只收女徒。");
                 return;
         }
         command("say 好吧，我就收下你了。");

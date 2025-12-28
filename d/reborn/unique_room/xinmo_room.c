@@ -5,9 +5,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short", HIM "心魔深处" NOR);
+        set("short", HIM "心魔深處" NOR);
         set("long", @LONG
-幻境里到处是迷雾弥漫，周边的景物似有似无，虚无缥缈。
+幻境裡到處是迷霧瀰漫，周邊的景物似有似無，虛無縹緲。
 LONG );
 
         set("maze", 1);

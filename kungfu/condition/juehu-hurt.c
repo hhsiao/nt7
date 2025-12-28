@@ -11,12 +11,12 @@ int update_condition(object me, int duration)
         if (random(10) >= 3)
         {
                 if (! living(me))
-                        message("vision", me->name() + "浑身一阵哆嗦，冷得牙齿[咯咯]响。\n", 
+                        message("vision", me->name() + "渾身一陣哆嗦，冷得牙齒[咯咯]響。\n", 
                                 environment(me), me);
                 else
                 {
-                        tell_object(me, HIB "你忽然感到体内精元流泄，头昏沉沉的。\n" NOR );
-                        message("vision", me->name() + "突然两腿发软，两手抱成一团，冷得直发抖。\n",
+                        tell_object(me, HIB "你忽然感到體內精元流洩，頭昏沉沉的。\n" NOR );
+                        message("vision", me->name() + "突然兩腿發軟，兩手抱成一團，冷得直髮抖。\n",
                                 environment(me), me);
                 }
                 

@@ -1,6 +1,6 @@
 // This is player's own perform (Write by Lonely@nt2)
-// Create by 龙凤(Longfeng) at Thu Jul 23 18:51:29 2015
-// 凤舞九天(feng)
+// Create by 龍鳳(Longfeng) at Thu Jul 23 18:51:29 2015
+// 鳳舞九天(feng)
 #include <ansi.h>
 #include <combat.h>
 
@@ -8,7 +8,7 @@ inherit F_SSERVER;
 
 int is_player_perform() { return 1; }
 
-string name() { return HIW "凤舞九天" NOR; }
+string name() { return HIW "鳳舞九天" NOR; }
 
 string *weapon_sk = ({
         "sword", "blade", "staff", "whip", "club", "hammer", "axe"
@@ -29,7 +29,7 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if (me->is_busy()) return notify_fail(BUSY_MESSAGE);
 
@@ -37,7 +37,7 @@ int perform(object me, object target)
         {
                 if( !objectp(weapon=query_temp("weapon", me) )
                     || query("skill_type", weapon) != "sword" )
-                        return notify_fail("你所使用的武器不对，难以施展" + name() + "。\n");
+                        return notify_fail("你所使用的武器不對，難以施展" + name() + "。\n");
         } else
         {
                 if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
@@ -45,21 +45,21 @@ int perform(object me, object target)
         }
 
         if ((int)me->query_skill("longf-sword", 1) < 400)
-                return notify_fail("你" + to_chinese("longf-sword") + "不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你" + to_chinese("longf-sword") + "不夠嫻熟，難以施展" + name() + "。\n");
 
         if (member_array("sword", weapon_sk) == -1)
         {
                 if (me->query_skill_prepared("sword") != "longf-sword")
-                        return notify_fail("你没有准备" + to_chinese("longf-sword") + "，难以施展" + name() + "。\n");
+                        return notify_fail("你沒有準備" + to_chinese("longf-sword") + "，難以施展" + name() + "。\n");
         }
 
         if( query("neili", me)<300 )
-                return notify_fail("你现在的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N口中默念：「凤舞九天」心神沉入十二重天境界，连空间似乎也扭曲了起来。$n大惊失色，仿佛已身在异界！" + "\n" + NOR;
+        msg = HIW "$N口中默唸：「鳳舞九天」心神沉入十二重天境界，連空間似乎也扭曲了起來。$n大驚失色，彷彿已身在異界！" + "\n" + NOR;
 
         ap = attack_power(me, "sword");
         dp = defense_power(target, "dodge");
@@ -67,13 +67,13 @@ int perform(object me, object target)
 
         if (ap * 2 / 3 + random(ap) > dp)
         {
-                msg += HIM "只见$n一声惨叫，胸口给劈开一个巨大的口子，鲜血汹涌喷出！又被$N强大的力道击飞了出去。" + "\n" NOR;
+                msg += HIM "只見$n一聲慘叫，胸口給劈開一個巨大的口子，鮮血洶湧噴出！又被$N強大的力道擊飛了出去。" + "\n" NOR;
                 count = ap / 5;
                 addn_temp("apply/attack", count, me);
                 addn_temp("apply/damage", count, me);
         } else
         {
-                msg += NOR + CYN "$n面对$N这排山倒海攻势，完全无法抵挡，唯有退后几步，凝神应对。" + "\n" NOR;
+                msg += NOR + CYN "$n面對$N這排山倒海攻勢，完全無法抵擋，唯有退後幾步，凝神應對。" + "\n" NOR;
                 count = 0;
         }
 

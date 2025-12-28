@@ -37,10 +37,10 @@ int accept_fight(object ob)
                 return 1;
 
         if (ob->is_fightint())
-                return notify_fail("人家正在比武呢，你这么出手不太妥当吧！\n");
+                return notify_fail("人家正在比武呢，你這麼出手不太妥當吧！\n");
 
         if (query("finished"))
-                return notify_fail("人家刚比完武，你上去打算干什么？\n");
+                return notify_fail("人家剛比完武，你上去打算幹什麼？\n");
 
         return ACCEPT_CMD->main(ob);
 }
@@ -58,15 +58,15 @@ int accept_kill(object ob)
         if (is_killing(query("id", ob)))
                 return 1;
 
-        return notify_fail("我看这种丢中原武林脸的事情你还是别作了。\n");
+        return notify_fail("我看這種丟中原武林臉的事情你還是別作了。\n");
 }
 
 int accept_touxi(object ob)
 {
         if (is_killing(query("id", ob)))
-                return notify_fail("你们正在交手呢，偷袭什么？");
+                return notify_fail("你們正在交手呢，偷襲什麼？");
 
-        return notify_fail("我看这种丢中原武林脸的事情你还是别作了。\n");
+        return notify_fail("我看這種丟中原武林臉的事情你還是別作了。\n");
 }
 
 void lost()
@@ -84,10 +84,10 @@ void lost()
 
         story->stop_story();
         msg = query("chat_lost");
-        if (! msg) msg = "岂有此理！怎么... 怎么可能会这样？";
+        if (! msg) msg = "豈有此理！怎麼... 怎麼可能會這樣？";
         command("chat " + msg);
         CHANNEL_D->do_channel(this_object(), "rumor",
-                "听说" + ob->name() + "打败了" + name() + "，捍卫了中原武林的尊严。");
+                "聽說" + ob->name() + "打敗了" + name() + "，捍衛了中原武林的尊嚴。");
         scorei = random(200) + 10;
         weiwangi = random(400) + 10;
         expi = random(NPC_D->check_level(this_object()) * 1000) + 10;
@@ -96,8 +96,8 @@ void lost()
         addn("weiwang", weiwangi, ob);
         addn("combat_exp", expi, ob);
         addn("potential", poti, ob);
-        tell_object(ob, sprintf(HIG "你获得了%s点经验、%s点潜能，并增"
-                                "加了%s点威望、%s点江湖阅历。\n" NOR,
+        tell_object(ob, sprintf(HIG "你獲得了%s點經驗、%s點潛能，並增"
+                                "加了%s點威望、%s點江湖閱歷。\n" NOR,
                         chinese_number(expi),
                         chinese_number(poti),
                         chinese_number(weiwangi),
@@ -123,10 +123,10 @@ void win()
         addn("weiwang", -query("weiwang", ob)/25, ob);
         command("chat* haha");
         msg = query("chat_win");
-        if (! msg) msg = "中原武林，不堪一击！";
+        if (! msg) msg = "中原武林，不堪一擊！";
         command("chat " + msg);
         CHANNEL_D->do_channel(this_object(), "rumor",
-                "听说" + ob->name() + "输给了" + name() + "，丢尽了中原武林的脸面。");
+                "聽說" + ob->name() + "輸給了" + name() + "，丟盡了中原武林的臉面。");
         set("finished", 1);
         call_out("destruct", 0, this_object());
         ::win();

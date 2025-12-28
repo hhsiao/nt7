@@ -4,12 +4,12 @@
 
 void setup()
 {
-        set_name("驴[2;37;0m[2;37;0m", ({"gyill"}));        
+        set_name("驢[2;37;0m[2;37;0m", ({"gyill"}));        
         set("gender", "男性");                
-        set("long", "无[2;37;0m
-它是眼二二的魔幻兽。
+        set("long", "無[2;37;0m
+它是眼二二的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "cihb");
         set("owner_name", "眼二二");

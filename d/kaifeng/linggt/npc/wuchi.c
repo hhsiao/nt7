@@ -8,8 +8,8 @@ void sp_attack();
 void create()
 {
         set_name(HIR "武痴" NOR, ({ "wu chi", "wu", "chi" }));
-        set("long", NOR "这人练武练成疯魔，曾是杨小邪最大的对手，据说怎么打也打不死。\n" NOR);
-        set("title", HIB "疯子" NOR);
+        set("long", NOR "這人練武練成瘋魔，曾是楊小邪最大的對手，據說怎麼打也打不死。\n" NOR);
+        set("title", HIB "瘋子" NOR);
         set("attitude", "aggressive");
         set("str", 1);
         set("con", 1);
@@ -38,17 +38,17 @@ void create()
 
                 set("auto_perform", 1);
 
-        set("death_msg", NOR "\n$N噗通一头栽倒在地上，死了！\n\n躺着的$N突然鲤鱼打挺跳起来，嘴里“哈哈哈...” \n$N狂笑着往上一层塔逃窜而去。。。\n\n" NOR);
-        set("flee_msg", NOR "\n$N突然摇手，嘴里“哈哈哈...” \n$N狂笑着往上一层塔逃窜而去。。。\n\n" NOR);
+        set("death_msg", NOR "\n$N噗通一頭栽倒在地上，死了！\n\n躺著的$N突然鯉魚打挺跳起來，嘴裡“哈哈哈...” \n$N狂笑著往上一層塔逃竄而去。。。\n\n" NOR);
+        set("flee_msg", NOR "\n$N突然搖手，嘴裡“哈哈哈...” \n$N狂笑著往上一層塔逃竄而去。。。\n\n" NOR);
 
         setup();
 }
 
 int do_setdrops(int i)
 {
-        //神器不可太低，那完全无意义，毕竟24小时才有一次闯塔，
-        //而到300层也就15次mf神器的机会，凑齐一套很难
-        if (i >= 150) {//150层+，传说、神器
+        //神器不可太低，那完全無意義，畢竟24小時才有一次闖塔，
+        //而到300層也就15次mf神器的機會，湊齊一套很難
+        if (i >= 150) {//150層+，傳說、神器
                 i = i / 50 - 2;
                 if (i > 2) i = 2;
         set("drops", ([
@@ -59,7 +59,7 @@ int do_setdrops(int i)
                 "RA&MYTH60" : i, 
         ]));
         } 
-        else {//150层-，史诗、传说
+        else {//150層-，史詩、傳說
         set("drops", ([
                 "RA&EPIL60" : 21, 
                                 "FI&/clone/medicine/tianxin"   : 27,
@@ -268,7 +268,7 @@ void sp_attack()
                 return;
         enemy = enemies[random(sizeof(enemies))];
         if( !enemy->is_busy() && !random(4) ) {
-                msg = HIK "\n$N往前疾冲，突然一个踉跄摔倒在地上，却恰好滑出去抱住了$n的双脚。\n" NOR;
+                msg = HIK "\n$N往前疾衝，突然一個踉蹌摔倒在地上，卻恰好滑出去抱住了$n的雙腳。\n" NOR;
                 message_vision(append_color(msg, HIK),this_object(),enemy);
                 enemy->start_busy(4+random(3));
                 return;
@@ -276,8 +276,8 @@ void sp_attack()
         
         i = random(100);
         if (i < 1) {
-                        msg = HIK "\n$N埋头缩身，钻进$n的胯下，翻身伸出中指冲准上方狠狠一戳。\n  「千年杀」...\n" NOR;
-                        msg+= HIK "$n张大嘴剧烈颤抖，如被雷击散了全身经脉，软若无骨地重重倒下。\n" NOR;
+                        msg = HIK "\n$N埋頭縮身，鑽進$n的胯下，翻身伸出中指衝準上方狠狠一戳。\n  「千年殺」...\n" NOR;
+                        msg+= HIK "$n張大嘴劇烈顫抖，如被雷擊散了全身經脈，軟若無骨地重重倒下。\n" NOR;
                     message_vision(append_color(msg, HIK),this_object(),enemy);
                     enemy->receive_damage("qi", query("max_qi", enemy)*2, this_object());
                     enemy->receive_wound("qi", query("max_qi", enemy)*2, this_object());
@@ -288,8 +288,8 @@ void sp_attack()
         }
         else if (i < 6) {
                         if( objectp(weapon=query_temp("weapon", enemy)) ) {
-                                msg = HIK "\n$N一个转身，猫腰转进$n的腋下，用食指贴着$n的胳肢窝轻轻一挠。\n" NOR;
-                                msg+= HIK "顿时$n手臂酥麻麻地，再也握不住手中的兵刃，“噹啷”一声掉落在地上。\n" NOR;
+                                msg = HIK "\n$N一個轉身，貓腰轉進$n的腋下，用食指貼著$n的胳肢窩輕輕一撓。\n" NOR;
+                                msg+= HIK "頓時$n手臂酥麻麻地，再也握不住手中的兵刃，“噹啷”一聲掉落在地上。\n" NOR;
                             message_vision(append_color(msg, HIK),this_object(),enemy);
                                 weapon->move(environment());
                                 if( !enemy->is_busy() ) enemy->start_busy(2);
@@ -301,11 +301,11 @@ void sp_attack()
             
                 switch( random(2) ){
                     case 0: 
-                            msg = HIK "\n$N扬手“啪啪啪……”给了自己几个耳光，$n看得一愣，不防却中了一记撩阴脚。\n" NOR;
+                            msg = HIK "\n$N揚手“啪啪啪……”給了自己幾個耳光，$n看得一愣，不防卻中了一記撩陰腳。\n" NOR;
                         message_vision(append_color(msg, HIK),this_object(),enemy);
                                 break;
                         case 1: 
-                                msg = HIK "\n$N轻轻地往上方一飘，闪开攻势后一把搂住$n的脖子，狠狠地就咬了一口。\n" NOR;
+                                msg = HIK "\n$N輕輕地往上方一飄，閃開攻勢後一把摟住$n的脖子，狠狠地就咬了一口。\n" NOR;
                         message_vision(append_color(msg, HIK),this_object(),enemy);
                                 break;
                 }

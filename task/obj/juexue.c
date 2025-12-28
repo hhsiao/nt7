@@ -2,7 +2,7 @@
 inherit TASK; 
 void create()  
 {
-    set_name(MAG"武林绝学"NOR, ({ "wulin juexue" }) );  
+    set_name(MAG"武林絕學"NOR, ({ "wulin juexue" }) );  
     set_weight(10);  
         set_weight(10);  
          if( clonep() )  
@@ -10,8 +10,8 @@ void create()
    else {  
              set("unit", "本");  
              set("material", "book");
-             set("long", "一本武林绝学。\n");  
+             set("long", "一本武林絕學。\n");  
       } 
-      set("owner", "北丑");  
+      set("owner", "北醜");  
       setup(); 
 }

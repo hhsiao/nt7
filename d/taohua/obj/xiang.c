@@ -3,17 +3,17 @@ inherit ITEM;
 
 void create()
 {
-        set_name("布阵箱", ({ "buzhen xiang", "buzhen", "xiang" }));
+        set_name("佈陣箱", ({ "buzhen xiang", "buzhen", "xiang" }));
         set_weight(4000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", NOR + WHT "这是一个颇为陈旧的墨漆木箱，箱中"
-                            "装有各种各样\n的道具，大非寻常。可以用来布"
-                            "阵(" HIW "array" NOR + WHT ")惑敌。\n" NOR);
-                set("unit", "个");
+                set("long", NOR + WHT "這是一個頗為陳舊的墨漆木箱，箱中"
+                            "裝有各種各樣\n的道具，大非尋常。可以用來布"
+                            "陣(" HIW "array" NOR + WHT ")惑敵。\n" NOR);
+                set("unit", "個");
                 set("value", 5000);
-                set("no_sell", "嘿，这破箱子也能卖钱？\n");
+                set("no_sell", "嘿，這破箱子也能賣錢？\n");
                 set("count", 5);
                 set("material", "wood");
         }
@@ -38,7 +38,7 @@ int do_array(string arg)
         if (me->is_busy()
             || query_temp("pending/exercising", me )
             || query_temp("exit_blocked", me) )
-                return notify_fail("你现在正忙着呢。\n");
+                return notify_fail("你現在正忙著呢。\n");
 
         env = environment(me);
         exit=query("exits", env);
@@ -46,54 +46,54 @@ int do_array(string arg)
         skill = (int)me->query_skill("qimen-wuxing", 1);
 
         if (skill < 1)
-                return notify_fail("你把布阵箱翻来覆去摆弄了半天，却"
+                return notify_fail("你把佈陣箱翻來覆去擺弄了半天，卻"
                                    "不知如何下手。\n");
 
         if (query("count") < 1)
-                return notify_fail("布阵箱中的物件已经用完了。\n");
+                return notify_fail("佈陣箱中的物件已經用完了。\n");
 
         if (skill < 120)
-                return notify_fail("你对奇门五行的研究不够，尚且无法"
-                                   "布阵。\n");
+                return notify_fail("你對奇門五行的研究不夠，尚且無法"
+                                   "佈陣。\n");
 
         if (! env)
-                return notify_fail("这里无法布阵。\n");
+                return notify_fail("這裡無法佈陣。\n");
 
         if (wiz_level(me) < 3
             && (query("no_fight", env )
             || query("sleep_room", env )
             || query("skybook", env )
             || query("no_sleep_room", env)) )
-                return notify_fail("这里不是你嚣张的地方。\n");
+                return notify_fail("這裡不是你囂張的地方。\n");
 
         if( wiz_level(me)<3 && !query("outdoors", env) )
-                return notify_fail("室内空间过于狭小，难以布阵。\n");
+                return notify_fail("室內空間過於狹小，難以佈陣。\n");
 
         if( query("th_buzhen", env) )
-                return notify_fail("这里已经布有奇门阵法。\n");
+                return notify_fail("這裡已經布有奇門陣法。\n");
 
         if( query("max_jingli", me)<800 )
-                return notify_fail("你的精力修为不足，难以布阵。\n");
+                return notify_fail("你的精力修為不足，難以佈陣。\n");
 
         if( query("jingli", me)<500 )
-                return notify_fail("你目前的精力不足，难以布阵。\n");
+                return notify_fail("你目前的精力不足，難以佈陣。\n");
 
         if( query("jing", me)<300 )
-                return notify_fail("你目前的精气不足，难以布阵。\n");
+                return notify_fail("你目前的精氣不足，難以佈陣。\n");
 
         addn("count", -1);
         me->receive_damage("jing", 200);
         addn("jingli", -300, me);
         me->start_busy(5);
 
-        message_sort(HIG "\n$N" HIG "微微一笑，蓦地摆出" NOR + WHT "布阵箱"
-                     HIG "，随后身形急转，飘舞不定，在四周迅速布下奇门阵法"
-                     "。霎时烟尘四起，砂石乱飞，声势煞为惊人。不一刻，又见"
-                     "$N" HIG "收势凝形负手而立，四下里从寂静中隐隐透出一股"
-                     "肃杀之气。\n\n" NOR, me);
+        message_sort(HIG "\n$N" HIG "微微一笑，驀地擺出" NOR + WHT "佈陣箱"
+                     HIG "，隨後身形急轉，飄舞不定，在四周迅速佈下奇門陣法"
+                     "。霎時煙塵四起，砂石亂飛，聲勢煞為驚人。不一刻，又見"
+                     "$N" HIG "收勢凝形負手而立，四下裡從寂靜中隱隱透出一股"
+                     "肅殺之氣。\n\n" NOR, me);
 
-        desc=query("long", env)+HIM"\n却见此处景况非常诡异，紫色雾气弥"
-               "漫于空中，透出森森鬼气。\n\n" NOR;
+        desc=query("long", env)+HIM"\n卻見此處景況非常詭異，紫色霧氣彌"
+               "漫於空中，透出森森鬼氣。\n\n" NOR;
 
         set("org_desc",query("long",  env), env);
         set("org_exits",query("exits",  env), env);
@@ -160,6 +160,6 @@ void remove_effect(object env)
         delete("th_pozhen", env);
         delete("th_zhen_owner", env);
 
-        tell_object(env, HIM "\n突然间紫雾朝周围散去，四面景致"
-                         "猛然一变。\n\n" NOR);
+        tell_object(env, HIM "\n突然間紫霧朝周圍散去，四面景緻"
+                         "猛然一變。\n\n" NOR);
 }

@@ -1,10 +1,10 @@
-// ailao.c 哀牢山剑意
+// ailao.c 哀牢山劍意
 
 #include <ansi.h>
 
 inherit F_SSERVER;
 
-string name() { return "哀牢山剑意"; }
+string name() { return "哀牢山劍意"; }
 
 int perform(object me, object target)
 {
@@ -16,29 +16,29 @@ int perform(object me, object target)
         if (!target
                 || !target->is_character()
                 || !me->is_fighting(target))
-                return notify_fail("你不在战斗中！\n");
+                return notify_fail("你不在戰鬥中！\n");
 
         weapon=query_temp("weapon", me);
         if( !objectp(weapon) || query("skill_type", weapon) != "sword" )
-                return notify_fail("你手中无剑，如何使得出哀牢山剑意？\n");
+                return notify_fail("你手中無劍，如何使得出哀牢山劍意？\n");
 
         if (me->query_skill("kurong-changong", 1)<150)
-                return notify_fail("你的内功火候未到，无法驾驭哀牢山剑意！\n");
+                return notify_fail("你的內功火候未到，無法駕馭哀牢山劍意！\n");
 
         if (me->query_skill("sword", 1) < 150)
-                return notify_fail("你剑法修为不够，无法施展哀牢山剑意！\n");
+                return notify_fail("你劍法修為不夠，無法施展哀牢山劍意！\n");
 
         if (me->query_skill("duanjia-jian",1)<150)
-                return notify_fail("你段家剑修为不够，无法施展哀牢山剑意！\n");
+                return notify_fail("你段家劍修為不夠，無法施展哀牢山劍意！\n");
 
         if( me->query_skill_mapped("force") != "kurong-changong")
-                return notify_fail("你所用的内功与哀牢山剑意气路相悖！\n");
+                return notify_fail("你所用的內功與哀牢山劍意氣路相悖！\n");
 
         if( query("neili", me) <= 500 )
-                return notify_fail("你的内力不够使用哀牢山剑意！\n");
+                return notify_fail("你的內力不夠使用哀牢山劍意！\n");
 
-        message_vision(HIR "\n突然间$N剑法突变，剑气纵横，上六剑，下六剑，前六剑，后六剑，左六剑，\n\n"NOR, me, target);
-        message_vision(HIR "\n右六剑，施展哀牢山剑意对$n虚虚实实连刺了三十六剑！\n\n" NOR, me, target);
+        message_vision(HIR "\n突然間$N劍法突變，劍氣縱橫，上六劍，下六劍，前六劍，後六劍，左六劍，\n\n"NOR, me, target);
+        message_vision(HIR "\n右六劍，施展哀牢山劍意對$n虛虛實實連刺了三十六劍！\n\n" NOR, me, target);
 
         if( query("combat_exp", me)*10/query("combat_exp", target)<12 )
                 a=3;

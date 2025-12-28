@@ -1,4 +1,4 @@
-// 上古十大神器之 昆仑镜
+// 上古十大神器之 崑崙鏡
 // Create by Rcwiz for Hero.cn 2003/09
 
 #include <ansi.h>
@@ -7,7 +7,7 @@ inherit ITEM;
 
 int is_magic_item() { return 1; }
 
-// 可穿梭的地点
+// 可穿梭的地點
 mapping place = ([
         "beijing"   : "/d/beijing/majiu",
         "yangzhou"  : "/d/city/majiu",
@@ -41,16 +41,16 @@ mapping place = ([
 
 void create()
 {
-        set_name(HIW "昆仑镜" NOR, ({ "kunlun jing", "kunlun", "jing" }) );
+        set_name(HIW "崑崙鏡" NOR, ({ "kunlun jing", "kunlun", "jing" }) );
         set_weight(100);
         if (clonep())
                 set_default_object(__FILE__);
         else
         {
                 set("unit", "面");
-                set("long", HIW "这是一面通体银光的镜子，据说拥有穿梭时空的能力。\n"                               
-                                "可借用其穿梭(trans)到各大城市马厩，可以输入 trans 查看\n"
-                                "可穿梭的地点，使用 trans ? 查看使用次数。\n" NOR);                
+                set("long", HIW "這是一面通體銀光的鏡子，據說擁有穿梭時空的能力。\n"                               
+                                "可借用其穿梭(trans)到各大城市馬廄，可以輸入 trans 查看\n"
+                                "可穿梭的地點，使用 trans ? 查看使用次數。\n" NOR);                
 
         }
 
@@ -75,7 +75,7 @@ int do_trans(string arg)
         places = keys(place);
         if (! arg)
         {
-              write(HIC "你可以穿梭到以下地点：\n");
+              write(HIC "你可以穿梭到以下地點：\n");
               for (i = 0; i < sizeof(places); i ++)
                       write(places[i] + "\n");
               
@@ -83,26 +83,26 @@ int do_trans(string arg)
         }
         if (arg == "?")
         {
-                 write(HIG "使用次数 " + this_object()->query("count") + "/30\n" NOR);
+                 write(HIG "使用次數 " + this_object()->query("count") + "/30\n" NOR);
                  return 1;
         }
         if (me->is_fighting() || me->is_busy())
                  return notify_fail("你正忙呢！\n");
                          
         if (member_array(arg, places) == -1)
-                 return notify_fail("看清楚，没有你要到的地方。\n");                
+                 return notify_fail("看清楚，沒有你要到的地方。\n");                
 
-        message_sort(HIW "\n$N" HIW "挥舞着手中的昆仑镜，刹那间光华万道，$N" HIW "借"
-                         "着万道光芒消失在天际 ……\n" NOR, me);
+        message_sort(HIW "\n$N" HIW "揮舞著手中的崑崙鏡，剎那間光華萬道，$N" HIW "借"
+                         "著萬道光芒消失在天際 ……\n" NOR, me);
 
-        write(HIG "你从天而下，落在了地上。\n" NOR);
+        write(HIG "你從天而下，落在了地上。\n" NOR);
         
         me->move(place[arg]);        
         me->start_busy(2);
         this_object()->add("count", 1);
         if (this_object()->query("count") >= 30)
         {
-                write(HIW "只听得一阵清脆的破碎声，昆仑镜已经损坏了！\n" NOR);
+                write(HIW "只聽得一陣清脆的破碎聲，崑崙鏡已經損壞了！\n" NOR);
                 destruct(this_object());                                
         }
         

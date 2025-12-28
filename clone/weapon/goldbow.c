@@ -6,18 +6,18 @@ inherit __DIR__"bow";
 
 void create()
 {
-        set_name(HIY "点金盘龙弓" NOR, ({ "panlong gong", "gong", "panlong", "bow" }));
+        set_name(HIY "點金盤龍弓" NOR, ({ "panlong gong", "gong", "panlong", "bow" }));
         set_weight(5000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-                set("unit", "张");
-                set("long", HIY "这是一张金铜所铸，盘龙雕纹，制作非常精细的长弓。\n" NOR);
-                set("no_sell", "我的天…郡王府的东西你也敢拿来卖？");
+                set("unit", "張");
+                set("long", HIY "這是一張金銅所鑄，盤龍雕紋，製作非常精細的長弓。\n" NOR);
+                set("no_sell", "我的天…郡王府的東西你也敢拿來賣？");
                 set("value", 80000);
-                set("power", 250000);   // 攻击威力
-                set("accuracy", 120);   // 准确度120%
+                set("power", 250000);   // 攻擊威力
+                set("accuracy", 120);   // 準確度120%
         }
         setup();
 }

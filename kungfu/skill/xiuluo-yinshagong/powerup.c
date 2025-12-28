@@ -1,4 +1,4 @@
-// powerup.c 修罗阴煞功加力
+// powerup.c 修羅陰煞功加力
 
 #include <ansi.h>
 
@@ -11,20 +11,20 @@ int exert(object me, object target)
         int skill;
 
         if (target != me)
-                return notify_fail("你只能用修罗阴煞功提升自己的战斗力。\n");
+                return notify_fail("你只能用修羅陰煞功提升自己的戰鬥力。\n");
 
         if( query("neili", me)<100 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if( BUFF_D->check_buff(me, "powerup") ) 
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
         addn("neili", -100, me);
         me->receive_damage("qi", 0);
 
-        msg = WHT "$N" WHT "运起修罗阴煞功，头顶黑气蒸腾，全身肌"
-                        "肤坟起黑色的鳞甲，双目凶光四射！\n" NOR;
+        msg = WHT "$N" WHT "運起修羅陰煞功，頭頂黑氣蒸騰，全身肌"
+                        "膚墳起黑色的鱗甲，雙目兇光四射！\n" NOR;
 
         data = ([
                 "attack" : skill/3,
@@ -36,11 +36,11 @@ int exert(object me, object target)
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "修罗阴煞功·战神",
+                "name"  : "修羅陰煞功·戰神",
                 "time"  : skill,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : "你的修罗阴煞功运行完毕，将内力收回丹田。\n",
+                "disa_msg" : "你的修羅陰煞功運行完畢，將內力收回丹田。\n",
                         
         ]);
         BUFF_D->buffup(buff);

@@ -7,7 +7,7 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("鲁连荣", ({ "lu lianrong", "lu", "lianrong" }));
+        set_name("魯連榮", ({ "lu lianrong", "lu", "lianrong" }));
         set("gender", "男性" );
         set("nickname", HIY "金眼雕" NOR);
         set("class", "swordman");
@@ -52,7 +52,7 @@ void create()
         prepare_skill("cuff", "henshan-quan");
         prepare_skill("strike", "biluo-zhang");
 
-        set("no_teach/zhenyue-jue", "这门内功我也是刚练不久，生疏得紧。");
+        set("no_teach/zhenyue-jue", "這門內功我也是剛練不久，生疏得緊。");
 
         create_family("衡山派", 14, "弟子");
 
@@ -77,32 +77,32 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)<5000 )
         {
-                command("say 我衡山剑派乃是堂堂名门正派，对弟子要求严格。");
-                command("say 你在这侠义与德行方面是否还做得不够？");
+                command("say 我衡山劍派乃是堂堂名門正派，對弟子要求嚴格。");
+                command("say 你在這俠義與德行方面是否還做得不夠？");
                 return;
         }
 
         if( query("combat_exp", ob)<50000 )
         {
-                command("say 你现在经验尚浅，还是多在江湖上走走吧。");
+                command("say 你現在經驗尚淺，還是多在江湖上走走吧。");
                 return;
         }
 
         if ((int)ob->query_skill("henshan-jian", 1) < 50)
         {
-                command("say 我衡山乃五岳剑派之一，最为重视剑法。");
-                command("say 你的衡山剑法还不够熟练，下去练练再来吧。");
+                command("say 我衡山乃五嶽劍派之一，最為重視劍法。");
+                command("say 你的衡山劍法還不夠熟練，下去練練再來吧。");
                 return;
         }
 
         if ((int)ob->query_skill("force") < 100)
         {
-                command("say 我衡山剑派虽善用剑，但内功却是御剑之本。");
-                command("say 你是否还应该在内功心法上多下点功夫？");
+                command("say 我衡山劍派雖善用劍，但內功卻是御劍之本。");
+                command("say 你是否還應該在內功心法上多下點功夫？");
                 return;
         }
 
-        command("say 好吧，我就收下你。以后一定要更加努力。");
+        command("say 好吧，我就收下你。以後一定要更加努力。");
         command("recruit "+query("id", ob));
 }
 
@@ -110,27 +110,27 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "幻剑式" :
+        case "幻劍式" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/henshan-jian/huan",
-                           "name"    : "幻剑式",
+                           "name"    : "幻劍式",
                            "sk1"     : "henshan-jian",
-                           "msg1"    : "$N点了点头，喝道：“看清楚了"
-                                       "。”话音刚落，便见$N突将体内"
-                                       "真气运于剑身，身法陡然加快，"
-                                       "手中长剑剑随人动如梦如幻，竟"
-                                       "似无数利刃一齐袭出一般，招式"
-                                       "甚为巧妙。",
+                           "msg1"    : "$N點了點頭，喝道：“看清楚了"
+                                       "。”話音剛落，便見$N突將體內"
+                                       "真氣運於劍身，身法陡然加快，"
+                                       "手中長劍劍隨人動如夢如幻，竟"
+                                       "似無數利刃一齊襲出一般，招式"
+                                       "甚為巧妙。",
                            "lv1"     : 60,
                            "force"   : 80,
                            "gongxian": 50,
                            "shen"    : 2000, ]));
                 break;
 
-        case "烟云锁身" :
+        case "煙雲鎖身" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/tianzhu-jian/suo",
-                           "name"    : "烟云锁身",
+                           "name"    : "煙雲鎖身",
                            "sk1"     : "tianzhu-jian",
                            "lv1"     : 120,
                            "force"   : 150,

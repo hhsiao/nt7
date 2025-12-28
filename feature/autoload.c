@@ -1,7 +1,7 @@
 // autoload.c
 // From ES2
 // Modified by Xiang for XKX (12/15/95)
-// Modified by Lonely@NITAN (16/05/2009) 解决多个同一物品存储时候叠放问题
+// Modified by Lonely@NITAN (16/05/2009) 解決多個同一物品存儲時候疊放問題
 
 string *autoload;
 void clean_up_autoload() { autoload = 0; }
@@ -79,9 +79,9 @@ void restore_autoload()
                         if( file && sscanf(file, "/data/%*s/%s", temp) ) {
                                 if (has_dropped) continue;
                                 has_dropped++;
-                                write("你发现有些东西已经没有用了，随手就扔掉了。\n");
+                                write("你發現有些東西已經沒有用了，隨手就扔掉了。\n");
                         } else
-                                write("你觉得似乎失落了什么重要的东西，最好通知一下巫师。\n");
+                                write("你覺得似乎失落了什麼重要的東西，最好通知一下巫師。\n");
                         log_file("autoload", sprintf("Fail to autoload %s of %s, error %s(%s)\n",
                                  file, query("name", this_object()),
                                  query("id", this_object()),

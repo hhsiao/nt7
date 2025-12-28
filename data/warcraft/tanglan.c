@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m梦[2;37;0m[2;37;0m", ({"meng"}));        
+        set_name("[1;31m夢[2;37;0m[2;37;0m", ({"meng"}));        
         set("gender", "女性");                
-        set("long", "这是就是梦。[2;37;0m
-它是唐雪的魔幻兽。
+        set("long", "這是就是夢。[2;37;0m
+它是唐雪的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

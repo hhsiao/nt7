@@ -10,13 +10,13 @@ string do_unwield();
 
 void create() 
 { 
-     set_name(HIG "绿玉杖" NOR, ({ "lvyu zhang", "stick", "lvyu" })); 
+     set_name(HIG "綠玉杖" NOR, ({ "lvyu zhang", "stick", "lvyu" })); 
      set_weight(1500); 
      if (clonep()) 
              destruct(this_object()); 
      else { 
              set("long", @LONG 
-这是一根晶莹碧绿的竹棒，乃是丐帮历代帮主的唯一信物。 
+這是一根晶瑩碧綠的竹棒，乃是丐幫歷代幫主的唯一信物。 
 LONG ); 
              set("unit", "根"); 
              set("value", 800000); 
@@ -37,7 +37,7 @@ string do_wield()
 
      addn_temp("apply/attack", me->query_skill("dagou-bang")/4, me);
      addn_temp("apply/defense", me->query_skill("parry")/4, me);
-     return HIG "$N手腕一抖，不知何时，手上已经多了一根晶莹剃透的竹棒。\n" NOR;  
+     return HIG "$N手腕一抖，不知何時，手上已經多了一根晶瑩剃透的竹棒。\n" NOR;  
 } 
 
 string do_unwield() 
@@ -47,7 +47,7 @@ string do_unwield()
 
      addn_temp("apply/attack",-me->query_skill("dagou-bang")/4, me);
      addn_temp("apply/defense",-me->query_skill("parry")/4, me);
-     return HIG "$N微微一笑，手一缩，手中竹棒已不见踪影。\n" NOR;
+     return HIG "$N微微一笑，手一縮，手中竹棒已不見蹤影。\n" NOR;
 } 
 
 mixed hit_ob(object me, object victim, int damage_bonus) 
@@ -65,9 +65,9 @@ mixed hit_ob(object me, object victim, int damage_bonus)
      case 0: 
              if (! victim->is_busy()) 
                      victim->start_busy(me->query_skill("staff") / 10 + 2); 
-             return HIC "$N跨前一步，手中的" NOR+HIG "绿玉杖" NOR+HIC "幻化成无数圆圈，" 
-                    "竹棒有如铺天盖地般压向$n，直逼\n" 
-                    "得$n手忙脚乱，禁不住连连倒退。\n" NOR; 
+             return HIC "$N跨前一步，手中的" NOR+HIG "綠玉杖" NOR+HIC "幻化成無數圓圈，" 
+                    "竹棒有如鋪天蓋地般壓向$n，直逼\n" 
+                    "得$n手忙腳亂，禁不住連連倒退。\n" NOR; 
 
      case 1: 
              n = me->query_skill("staff"); 
@@ -77,10 +77,10 @@ mixed hit_ob(object me, object victim, int damage_bonus)
              n /= 2; 
              victim->receive_damage("jing", n, me); 
              victim->receive_wound("jing", n / 2, me); 
-             return random(2) ? HIG "$N一声长啸，手中的绿玉杖化作一到青芒，“唰”的扫" 
-                                HIG "过$n。\n" NOR: 
-                                HIG "$N突然大声喝道：“鼠辈，哪里跑？”手中绿玉杖忽地" 
-                                HIG "一抖，$n登时觉得眼前一花。\n" NOR; 
+             return random(2) ? HIG "$N一聲長嘯，手中的綠玉杖化作一到青芒，“唰”的掃" 
+                                HIG "過$n。\n" NOR: 
+                                HIG "$N突然大聲喝道：“鼠輩，哪裡跑？”手中綠玉杖忽地" 
+                                HIG "一抖，$n登時覺得眼前一花。\n" NOR; 
      } 
 
      // double effect 
@@ -112,14 +112,14 @@ void return_to_hong()
                      return; 
              } 
 
-             message_vision("忽然一个丐帮弟子走了过来，看到$N，忙招呼道：“洪帮主让" 
-                            "我来找你拿回绿玉杖，你现在不用了么？”\n" 
+             message_vision("忽然一個丐幫弟子走了過來，看到$N，忙招呼道：“洪幫主讓" 
+                            "我來找你拿回綠玉杖，你現在不用了麼？”\n" 
                             "$N道：“好了，好了，你就拿回去吧。”\n" 
-                            "$N将绿玉杖交给丐帮弟子带走了。\n", me); 
+                            "$N將綠玉杖交給丐幫弟子帶走了。\n", me); 
      } else 
      { 
-             message("vision", "忽然一个丐帮弟子走了过来，捡起绿玉杖，叹了口" 
-                               "气，摇摇头走了。\n", me); 
+             message("vision", "忽然一個丐幫弟子走了過來，撿起綠玉杖，嘆了口" 
+                               "氣，搖搖頭走了。\n", me); 
      } 
 
      destruct(this_object()); 

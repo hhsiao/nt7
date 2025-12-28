@@ -7,7 +7,7 @@ void setup()
         set_name("大狼狗[2;37;0m[2;37;0m", ({"langou"}));        
         set("gender", "女性");                
         set("long", "大[2;37;0m
-它是杯酒的魔幻兽。
+它是杯酒的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

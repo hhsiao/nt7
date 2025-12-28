@@ -11,17 +11,17 @@ void create()
                 set("unit", "本");
                 set("material", "paper");
                 set("no_sell", 1);
-                set("long", HIG "\n这是一本用薄纸写成的书，封皮上写有「霸刀」二字。\n"
-                            "你可以试着读读(read)看。\n\n" NOR, );
+                set("long", HIG "\n這是一本用薄紙寫成的書，封皮上寫有「霸刀」二字。\n"
+                            "你可以試著讀讀(read)看。\n\n" NOR, );
         }
         
         remove_call_out("check_environment");
         call_out("check_environment", 3);
 }
 
-// 检查这本书
-// 1、书必须在玩家身上
-// 2、玩家必须在碧水寒潭内，一旦离开碧水寒潭则消失
+// 檢查這本書
+// 1、書必須在玩家身上
+// 2、玩家必須在碧水寒潭內，一旦離開碧水寒潭則消失
 void check_environment()
 {
         object pob, eob;
@@ -57,7 +57,7 @@ void check_environment()
         
         if( !query("is_hantan", eob) )
         {
-                tell_object(pob, HIG "你离开了碧水寒潭，《霸刀》叮~~地一声掉在地上，消失了！\n" NOR);
+                tell_object(pob, HIG "你離開了碧水寒潭，《霸刀》叮~~地一聲掉在地上，消失了！\n" NOR);
                 destruct(this_object());
                 return;
         }
@@ -77,134 +77,134 @@ int do_du(string arg)
         
         if (! arg)
         {
-                write("你要读什么？\n");
+                write("你要讀什麼？\n");
                 return 1;
         }
 
         if (me->is_fighting())
         {
-                write("你无法在战斗中专心下来研读新知！\n");
+                write("你無法在戰鬥中專心下來研讀新知！\n");
                 return 1;
         }
 
         if( query("no_fight", where )
             && query("doing", me) != "scheme" )
         {
-                write("你无法在这里静下心来研读霸刀。\n");
+                write("你無法在這裡靜下心來研讀霸刀。\n");
                 return 1;
         }
 
         if (query("reborn/times", me) < 3)
         {
-                write("你还没有经历轮回转世呢，无法修炼霸刀。\n");
+                write("你還沒有經歷輪迴轉世呢，無法修煉霸刀。\n");
                 return 1;
         }
         
         if( query("str", me)<38 )
         {
-                write("你先天臂力不足，无法修炼霸刀。\n");
+                write("你先天臂力不足，無法修煉霸刀。\n");
                 return 1;
         }
 
         if( query("con", me)<38 )
         {
-                write("你先天臂力不足，无法修炼霸刀。\n");
+                write("你先天臂力不足，無法修煉霸刀。\n");
                 return 1;
         }
 
         if( me->query_skill("sword",1) && query("reborn/times", me) < 3 )
         {
-                write("你所学的杂学太多了，无法专心研习霸刀。\n");
+                write("你所學的雜學太多了，無法專心研習霸刀。\n");
                 return 1;
         }
 
         if( me->query_skill("club",1) && query("reborn/times", me) < 3 )
         {
-                write("你所学的杂学太多了，无法专心研习霸刀。\n");
+                write("你所學的雜學太多了，無法專心研習霸刀。\n");
                 return 1;
         }
                 
         if( me->query_skill("staff",1) && query("reborn/times", me) < 3 )
         {
-                write("你所学的杂学太多了，无法专心研习霸刀。\n");
+                write("你所學的雜學太多了，無法專心研習霸刀。\n");
                 return 1;
         }
                 
         if( me->query_skill("whip",1) && query("reborn/times", me) < 3 )
         {
-                write("你所学的杂学太多了，无法专心研习霸刀。\n");
+                write("你所學的雜學太多了，無法專心研習霸刀。\n");
                 return 1;
         }
                 
         if( me->query_skill("dagger",1) && query("reborn/times", me) < 3 )
         {
-                write("你所学的杂学太多了，无法专心研习霸刀。\n");
+                write("你所學的雜學太多了，無法專心研習霸刀。\n");
                 return 1;
         }
                 
         if( me->query_skill("hammer",1) && query("reborn/times", me) < 3 )
         {
-                write("你所学的杂学太多了，无法专心研习霸刀。\n");
+                write("你所學的雜學太多了，無法專心研習霸刀。\n");
                 return 1;
         }
                                                           
         if( query("max_neili", me)<20000 )
         {
-                write("你的内力修为不足。\n");
+                write("你的內力修為不足。\n");
                 return 1;
         }
 
         if ((int)me->query_skill("force", 1) < 500)
         {
-                write("你的内功火候太浅。\n");
+                write("你的內功火候太淺。\n");
                 return 1;
         }
 
         if ((int)me->query_skill("martial-cognize", 1) < 500)
         {
-                write("你的武学修养不足。\n");
+                write("你的武學修養不足。\n");
                 return 1;
         }
                 
         if ((int)me->query_skill("blade", 1) < 700)
         {
-                write("你的基本刀法火候不够，无法学习霸刀。\n");
+                write("你的基本刀法火候不夠，無法學習霸刀。\n");
                 return 1;
         }
                 
         if (! me->query_skill("literate", 1))
         {
-                write("你是个文盲，先学点文化(literate)吧。\n");
+                write("你是個文盲，先學點文化(literate)吧。\n");
                 return 1;
         }
 
         if (me->query_skill("sanscrit", 1) < 200)
         {
-                write("你的梵文水平太低，无法看懂书里所记载的内容。\n");        
+                write("你的梵文水平太低，無法看懂書裡所記載的內容。\n");        
                 return 1;
         }
         
         if (! id(arg))
         {
-                write("这里没有这本书。\n");
+                write("這裡沒有這本書。\n");
                 return 1;
         }
 
         if( me->query_skill("yinyang-shiertian",1) && query("reborn/times", me) < 4 )
         {
-                write("你体内的阴阳真气无法与霸刀相兼容。\n");
+                write("你體內的陰陽真氣無法與霸刀相兼容。\n");
                 return 1;
         }
         
         if( me->query_skill("lunhui-sword",1) && query("reborn/times", me) < 4 )
         {
-                write("你体内的六道轮回真气无法与霸刀相兼容。\n");
+                write("你體內的六道輪迴真氣無法與霸刀相兼容。\n");
                 return 1;
         }
                 
         if( query("combat_exp", me)<30000000 )
         {
-                write("你的实战经验不足，再怎么读也没用。\n");
+                write("你的實戰經驗不足，再怎麼讀也沒用。\n");
                 return 1;
         }
 
@@ -212,32 +212,32 @@ int do_du(string arg)
             || query("qi", me)<100
             || query("neili", me)<200 )
         {
-                write("你现在过于疲倦，无法专心下来研读新知。\n");
+                write("你現在過於疲倦，無法專心下來研讀新知。\n");
                 return 1;
         }
         
-        msg = HIG "$N" HIG "翻看《霸刀》，仔细研究上面所记载的武学，霎那间若有所悟……\n" NOR;
-        msg += HIG "$N" HIG "以手做刀，左劈右砍，忽而眉头金锁，忽而闭目沉思。\n" NOR;
-        msg += HIG "$N" HIG "长叹一声，感慨万千，似乎明白了什么 ……\n" NOR; 
+        msg = HIG "$N" HIG "翻看《霸刀》，仔細研究上面所記載的武學，霎那間若有所悟……\n" NOR;
+        msg += HIG "$N" HIG "以手做刀，左劈右砍，忽而眉頭金鎖，忽而閉目沉思。\n" NOR;
+        msg += HIG "$N" HIG "長嘆一聲，感慨萬千，似乎明白了什麼 ……\n" NOR; 
         message_vision(msg, me); 
 
         if (me->query_skill("badao", 1) < 180)
         {                        
-                write(HIW "你对「" HIG "霸刀" HIW "」有了新的领悟。\n" NOR);
-                // 第一次学习
+                write(HIW "你對「" HIG "霸刀" HIW "」有了新的領悟。\n" NOR);
+                // 第一次學習
                 if (! me->query_skill("badao", 1))
                 {
                         /*
-                        // 轮回点
+                        // 輪迴點
                         if( query("scborn/cur_lunhui_point", me)<7 && !query("thborn/ok", me) )
                         {
-                                write("你轮回点不足，无法领悟霸刀。\n");
+                                write("你輪迴點不足，無法領悟霸刀。\n");
                                 return 1;
                         }    
                         if( !query("thborn/ok", me) )
                         {
                                 addn("scborn/cur_lunhui_point", -7, me);
-                                write(HIG "\n恭喜你学会了霸刀，消耗轮回点 7 点，请勿将霸刀放弃为0级后再重新学习，否则需要重新消耗轮回点。\n" NOR);
+                                write(HIG "\n恭喜你學會了霸刀，消耗輪迴點 7 點，請勿將霸刀放棄為0級後再重新學習，否則需要重新消耗輪迴點。\n" NOR);
                         }
                         */
                         me->set_skill("badao", 40 + random(21));
@@ -250,7 +250,7 @@ int do_du(string arg)
         }
         else
         {
-                write(HIR "你霸刀级别已经无法再通过研读秘籍来提升了。\n" NOR);
+                write(HIR "你霸刀級別已經無法再通過研讀秘籍來提升了。\n" NOR);
                 return 1;
         }
 

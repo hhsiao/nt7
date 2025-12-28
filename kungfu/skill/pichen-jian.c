@@ -1,55 +1,55 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action": "$N剑尖剑芒暴长，一招「碧漾剑」，手中$w大开大阖，剑芒直刺$n的$l",
+([      "action": "$N劍尖劍芒暴長，一招「碧漾劍」，手中$w大開大闔，劍芒直刺$n的$l",
         "force" : 98,
         "attack": 13,
         "dodge" : 2,
         "parry" : 3,
         "damage": 41,
         "lvl"   : 0,
-        "skill_name"  : "碧漾剑",
-        "damage_type" : "刺伤"
+        "skill_name"  : "碧漾劍",
+        "damage_type" : "刺傷"
 ]),
-([      "action": "$N剑芒吞吐，单手$w一招「傲寒剑」，剑势曼妙，剑光直逼向$n的$l",
+([      "action": "$N劍芒吞吐，單手$w一招「傲寒劍」，劍勢曼妙，劍光直逼向$n的$l",
         "force" : 132,
         "attack": 19,
         "dodge" : 3,
         "parry" : 4,
         "damage": 58,
         "lvl"  : 30,
-        "skill_name"  : "傲寒剑",
-        "damage_type" : "刺伤"
+        "skill_name"  : "傲寒劍",
+        "damage_type" : "刺傷"
 ]),
-([      "action": "$N一式「刺骨剑」，屈腕云剑，剑光如彩碟纷飞，幻出点点星光飘向$n",
+([      "action": "$N一式「刺骨劍」，屈腕雲劍，劍光如彩碟紛飛，幻出點點星光飄向$n",
         "force" : 163,
         "attack": 23,
         "dodge" : 9,
         "parry" : 10,
         "damage": 77,
         "lvl"   : 60,
-        "skill_name"  : "刺骨剑",
-        "damage_type" : "刺伤"
+        "skill_name"  : "刺骨劍",
+        "damage_type" : "刺傷"
 ]),
-([      "action": "$N挥剑分击，剑势自胸前跃出，$w一式「惊神剑」，毫无留恋之势，刺向$n",
+([      "action": "$N揮劍分擊，劍勢自胸前躍出，$w一式「驚神劍」，毫無留戀之勢，刺向$n",
         "force" : 190,
         "attack": 31,
         "dodge" : 11,
         "parry" : 13,
         "damage": 85,
         "lvl"   : 100,
-        "skill_name"  : "惊神剑",
-        "damage_type" : "刺伤"
+        "skill_name"  : "驚神劍",
+        "damage_type" : "刺傷"
 ]),
-([      "action": "$N左手剑指划转，腰部一扭，右手$w一记「辟尘剑」自下而上刺向$n的$l",
+([      "action": "$N左手劍指劃轉，腰部一扭，右手$w一記「闢塵劍」自下而上刺向$n的$l",
         "force" : 225,
         "attack": 35,
         "dodge" : 5,
         "parry" : 7,
         "damage": 93,
         "lvl"   : 150,
-        "skill_name"  : "辟尘剑",
-        "damage_type" : "刺伤"
+        "skill_name"  : "闢塵劍",
+        "damage_type" : "刺傷"
 ]),
 });
 
@@ -61,16 +61,16 @@ int valid_enable(string usage)
 int valid_learn(object me)
 {
         if( query("max_neili", me)<1000 )
-                return notify_fail("你的内力修为不足。\n");
+                return notify_fail("你的內力修為不足。\n");
 
         if ((int)me->query_skill("force", 1) < 100)
-                return notify_fail("你的内功火候太浅。\n");
+                return notify_fail("你的內功火候太淺。\n");
 
         if ((int)me->query_skill("sword", 1) < 80)
-                return notify_fail("你的基本剑法火候太浅。\n");
+                return notify_fail("你的基本劍法火候太淺。\n");
 
         if (me->query_skill("sword", 1) < me->query_skill("pichen-jian", 1))
-                return notify_fail("你的基本剑法水平有限，无法领会更高深的辟尘剑法。\n");
+                return notify_fail("你的基本劍法水平有限，無法領會更高深的闢塵劍法。\n");
 
         return 1;
 }
@@ -100,13 +100,13 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if( query("qi", me)<60 )
-                return notify_fail("你的体力不够练辟尘剑法。\n");
+                return notify_fail("你的體力不夠練闢塵劍法。\n");
 
         if( query("neili", me)<60 )
-                return notify_fail("你的内力不够练辟尘剑法。\n");
+                return notify_fail("你的內力不夠練闢塵劍法。\n");
 
         me->receive_damage("qi", 50);
         addn("neili", -55, me);

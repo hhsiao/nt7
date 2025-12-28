@@ -6,13 +6,13 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "青龙外门");
+        set("short", "青龍外門");
         set("long", @LONG
-这里是襄阳城的东城门，只见城门上方刻着『青龙门』三个大字。
-城门高三丈，宽约二丈有余，尺许厚的城门上镶满了拳头般大小的柳
-钉。门洞长约四丈，大约每隔两个时辰就换官兵把守。近年来蒙古屡
-次侵犯襄阳城，故这儿把守相当严密，城内一些官兵们正在盘查要离
-襄阳城的人。
+這裡是襄陽城的東城門，只見城門上方刻著『青龍門』三個大字。
+城門高三丈，寬約二丈有餘，尺許厚的城門上鑲滿了拳頭般大小的柳
+釘。門洞長約四丈，大約每隔兩個時辰就換官兵把守。近年來蒙古屢
+次侵犯襄陽城，故這兒把守相當嚴密，城內一些官兵們正在盤查要離
+襄陽城的人。
 LONG );
         set("outdoors", "xiangyang");
 
@@ -35,7 +35,7 @@ int valid_leave(object me,string dir)
 {
        if( dir == "east" && !wizardp(me) 
             && !query_temp("warquest", me) )
-       return notify_fail("军营重地，闲杂人等，不得入内！\n");
+       return notify_fail("軍營重地，閒雜人等，不得入內！\n");
 
        return ::valid_leave(me,dir);
 }

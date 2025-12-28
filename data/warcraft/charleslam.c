@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("独角兽[2;37;0m[2;37;0m", ({"unicorn"}));        
+        set_name("獨角獸[2;37;0m[2;37;0m", ({"unicorn"}));        
         set("gender", "男性");                
-        set("long", "这是一只独角兽[2;37;0m
-它是布朗的魔幻兽。
+        set("long", "這是一隻獨角獸[2;37;0m
+它是布朗的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

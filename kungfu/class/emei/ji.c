@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// ji.c 纪晓芙
+// ji.c 紀曉芙
 
 #include "emei.h"
 
@@ -9,10 +9,10 @@ int ask_jian();
 
 void create()
 {
-        set_name("纪晓芙", ({ "ji xiaofu","ji","xiaofu"}));
+        set_name("紀曉芙", ({ "ji xiaofu","ji","xiaofu"}));
         set("long",
-                "她是峨嵋派的第四代俗家弟子。偏心偏听的灭绝抛弃她，\n"
-                "她独自在这里苦度光阴。\n");
+                "她是峨嵋派的第四代俗家弟子。偏心偏聽的滅絕拋棄她，\n"
+                "她獨自在這裡苦度光陰。\n");
         set("gender", "女性");
         set("age", 22);
         set("attitude", "peaceful");
@@ -26,11 +26,11 @@ void create()
         set("dex", 30);
         set("per", 30);
         set("inquiry",([
-                "倚天剑"  : (:ask_jian:),
-                "屠龙刀"  : "这里没有屠龙刀。倚天剑倒是有一柄。",
-                "杨不悔"  : "我的女儿啊。她在哪里？你知道么？",
-                "杨逍"    : "我这辈子是不指望见到他了。",
-                "灭绝"    : "师父就是太偏心。",
+                "倚天劍"  : (:ask_jian:),
+                "屠龍刀"  : "這裡沒有屠龍刀。倚天劍倒是有一柄。",
+                "楊不悔"  : "我的女兒啊。她在哪裡？你知道麼？",
+                "楊逍"    : "我這輩子是不指望見到他了。",
+                "滅絕"    : "師父就是太偏心。",
         ]));
 
         set("max_qi", 1000);
@@ -87,8 +87,8 @@ int ask_jian()
         ob = this_player();
         set("marks/ji", 0, ob);
         set("marks/skysword", 1, ob);
-        say( "纪晓芙微微叹了口气：“倚天剑就在舍身崖下。\n");
-        tell_object(ob, "纪晓芙所完这句话，飘然跃下舍身崖去。衣袂飘动，白云荡处，伤感顿生。\n");
+        say( "紀曉芙微微嘆了口氣：“倚天劍就在捨身崖下。\n");
+        tell_object(ob, "紀曉芙所完這句話，飄然躍下捨身崖去。衣袂飄動，白雲蕩處，傷感頓生。\n");
         call_out("goway", 2);
         return 1;
 }

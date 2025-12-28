@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("马[2;37;0m[2;37;0m", ({"jkw"}));        
+        set_name("馬[2;37;0m[2;37;0m", ({"jkw"}));        
         set("gender", "男性");                
-        set("long", "马[2;37;0m
-它是万里无云的魔幻兽。
+        set("long", "馬[2;37;0m
+它是萬里無雲的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");
         set("owner", "sangtelaqi");
-        set("owner_name", "万里无云");
+        set("owner_name", "萬里無雲");
         set_temp("owner", "sangtelaqi");
-        set_temp("owner_name", "万里无云");
+        set_temp("owner_name", "萬里無雲");
         ::setup();
 }

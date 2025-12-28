@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "林间道");
+        set("short", "林間道");
         set("long", @LONG
-这里是一条林间小道，在树丛中蜿蜒。岭南山林茂密，多产毒虫，
-所以路人经过此地都是非常的小心。
+這裡是一條林間小道，在樹叢中蜿蜒。嶺南山林茂密，多產毒蟲，
+所以路人經過此地都是非常的小心。
 LONG );
         set("objects", ([
                    __DIR__"obj/hua2": 1,

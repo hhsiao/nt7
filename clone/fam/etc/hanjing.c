@@ -9,8 +9,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIW "寒气笼罩在四周，令人不敢接近，乃天界极寒之圣物，拥有着神奇的力量。\n" NOR);
-                set("unit", "块");
+                set("long", HIW "寒氣籠罩在四周，令人不敢接近，乃天界極寒之聖物，擁有著神奇的力量。\n" NOR);
+                set("unit", "塊");
                 set("value", 12000);
                 set("can_be_enchased", 1);
                 set("enchase/type", "all");

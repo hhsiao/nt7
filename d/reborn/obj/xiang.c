@@ -12,7 +12,7 @@ void create()
         } else {
                 set("value", 10);
                 set("unit", "支");
-                set("long", MAG "这是一支召神香，传说可以在五岳祭坛那里召唤神仙出现。\n" NOR);
+                set("long", MAG "這是一支召神香，傳說可以在五嶽祭壇那裡召喚神仙出現。\n" NOR);
         }
         setup();
 }
@@ -26,7 +26,7 @@ void start_borrowing()
 void destroy()
 {
         if (environment())
-                message("visoin", RED "召神香渐渐的熄灭了，只留下了一点灰烬。\n" NOR,
+                message("visoin", RED "召神香漸漸的熄滅了，只留下了一點灰燼。\n" NOR,
                         environment());
         destruct(this_object());
 }

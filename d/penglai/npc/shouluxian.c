@@ -9,7 +9,7 @@ void create()
 {
         set_name(HIY "守路仙人" NOR, ({ "shoulu xian", "shoulu", "xian" }));
 
-        set("long", HIY "这是守护南山路口的仙人，要进入南山非得守路仙人的指引不可。\n" NOR);
+        set("long", HIY "這是守護南山路口的仙人，要進入南山非得守路仙人的指引不可。\n" NOR);
 
         set("gender", "男性");
         set("age", 9999);
@@ -42,9 +42,9 @@ void create()
         map_skill("unarmed", "yinyang-shiertian");
         
         set("inquiry", ([
-		"蓬莱仙岛"               :   "这不是你该来的地方，我看你还是快走吧。\n",
-		"南山入口"               :   "呵呵，如果你能给我一瓶青梅酒，我便指引你入口所在。\n",
-		"青梅酒"                 :   "你不知道么，这岛上仙人都爱喝，不过酿制方法只有酒剑仙知道，哈哈　……",
+		"蓬萊仙島"               :   "這不是你該來的地方，我看你還是快走吧。\n",
+		"南山入口"               :   "呵呵，如果你能給我一瓶青梅酒，我便指引你入口所在。\n",
+		"青梅酒"                 :   "你不知道麼，這島上仙人都愛喝，不過釀製方法只有酒劍仙知道，哈哈　……",
         ]));
         
         set("chat_chance_combat", 120);
@@ -62,7 +62,7 @@ void init()
 	object me = this_player();
 	
 	if (objectp(present("penglai qingmeijiu", me)))
-		command("say 好香~~，是谁的青梅酒快快拿出来让本仙人品尝品尝。");
+		command("say 好香~~，是誰的青梅酒快快拿出來讓本仙人品嚐品嚐。");
 }
 
 void unconcious()
@@ -83,20 +83,20 @@ int accept_object(object me, object obj)
 	    base_name(obj) == "/d/penglai/obj/qingmeijiu")
 	{
 		command("wa");
-		message_vision(HIC "$N" HIC "接过" + obj->name() + HIC "，一口便喝了个精光 ……\n" NOR, this_object());
+		message_vision(HIC "$N" HIC "接過" + obj->name() + HIC "，一口便喝了個精光 ……\n" NOR, this_object());
 		command("haha");
-		command("say 好，实在是好~~~~");
-		command("say 既然你解了本仙人的酒瘾，进入南山的方法我自然会教给你 ……");
-		message_vision("\n$N" NOR "对着$n" NOR "窃窃私语，似乎在传授什么口诀。\n\n" NOR, this_object(), me);
-		tell_object(me, HIG "守路仙人在你耳边说道：#%&$#%@%&%$&#$%@#@$\n" NOR);
-		command("say 你可记好了，这入山的方法就在这里面。");
+		command("say 好，實在是好~~~~");
+		command("say 既然你解了本仙人的酒癮，進入南山的方法我自然會教給你 ……");
+		message_vision("\n$N" NOR "對著$n" NOR "竊竊私語，似乎在傳授什麼口訣。\n\n" NOR, this_object(), me);
+		tell_object(me, HIG "守路仙人在你耳邊說道：#%&$#%@%&%$&#$%@#@$\n" NOR);
+		command("say 你可記好了，這入山的方法就在這裡面。");
 set("penglai/nanshan_quest/ok", 1, 		me);
 		destruct(obj);
 		return 1;
 	}
 	else
 	{
-		command("say 本仙人只要青梅酒，其他什么都不要。");
+		command("say 本仙人只要青梅酒，其他什麼都不要。");
 		return 0;
 	}	
 

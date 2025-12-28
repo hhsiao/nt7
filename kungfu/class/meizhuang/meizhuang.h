@@ -2,26 +2,26 @@
 
 int permit_recruit(object ob)
 {
-        command("say 梅庄暂不开放！");
+        command("say 梅莊暫不開放！");
         return 0;
-        if( query("detach/梅庄", ob) || query("betrayer/梅庄", ob) )
+        if( query("detach/梅莊", ob) || query("betrayer/梅莊", ob) )
         {
-                command("say 你当年既然已经离开本庄，现在何必又要回来？");
+                command("say 你當年既然已經離開本莊，現在何必又要回來？");
                 return 0;
         }
 
         if( query("betrayer/times", ob) )
         {
-                command("say 我梅庄虽小，但是也不会接纳你这样的背信弃义之徒！");
+                command("say 我梅莊雖小，但是也不會接納你這樣的背信棄義之徒！");
                 return 0;
         }
 
         if( query("family/family_name", ob) && 
-            query("family/family_name", ob) != "梅庄" && 
+            query("family/family_name", ob) != "梅莊" && 
             query("family/family_name", ob) != "日月神教" && 
-            query("family/master_name", ob) != "东方不败" )
+            query("family/master_name", ob) != "東方不敗" )
         {
-                command("say 你既然已经有了名师指点，还来我们梅庄干嘛？");
+                command("say 你既然已經有了名師指點，還來我們梅莊幹嘛？");
                 return 0;
         }
 

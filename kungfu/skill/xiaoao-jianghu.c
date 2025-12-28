@@ -11,11 +11,11 @@ int valid_learn(object me)
 {
         if (me->query_skill("tanqin-jifa", 1) < 50 &&
             me->query_skill("chuixiao-jifa", 1) < 50)
-                return notify_fail("你的吹萧和弹琴的技法水平都太差，还是先练好再说吧！\n");
+                return notify_fail("你的吹蕭和彈琴的技法水平都太差，還是先練好再說吧！\n");
 
         if (me->query_skill("tanqin-jifa", 1) < me->query_skill("qingxin-pushan", 1) &&
             me->query_skill("cuhixiao-jifa", 1) < me->query_skill("qingxin-pushan", 1))
-                return notify_fail("在掌握更娴熟的吹萧技法或弹琴技法之前，你无法领会更精妙的笑傲江湖曲。\n");
+                return notify_fail("在掌握更嫻熟的吹蕭技法或彈琴技法之前，你無法領會更精妙的笑傲江湖曲。\n");
 
         return 1;
 }
@@ -27,13 +27,13 @@ int practice_skill(object me)
         if( !objectp(ob=query_temp("handing", me)) || 
             ! ob->valid_as_qin() &&
             ! ob->valid_as_xiao())
-                return notify_fail("你手上即没有箫，也没有琴，怎么练习？\n");
+                return notify_fail("你手上即沒有簫，也沒有琴，怎麼練習？\n");
 
         if( query("jing", me)<100 )
-                return notify_fail("你的精神不够好，没法练习了。\n");
+                return notify_fail("你的精神不夠好，沒法練習了。\n");
 
         if( query("qi", me)<50 )
-                return notify_fail("你现在实在是太累了，练不动了。\n");
+                return notify_fail("你現在實在是太累了，練不動了。\n");
 
         me->receive_damage("jing", 60);
         me->receive_damage("qi", 40);
@@ -84,11 +84,11 @@ void do_effect(object me)
                         set_temp(type, time(), ob);
                         set_temp("xajh/player",query("id",  me), ob);
                         set_temp("xajh/player_name", me->name(), ob);
-                        message("visoin", HIG "你听了" + me->name() +
-                                HIG "的曲子，觉得非常的慷慨豪迈。\n" NOR, ob);
+                        message("visoin", HIG "你聽了" + me->name() +
+                                HIG "的曲子，覺得非常的慷慨豪邁。\n" NOR, ob);
                 } else
                 {
-                        // 双人合奏
+                        // 雙人合奏
                         amount = lvl;
                         if (amount > ob->query_skill("force"))
                                 amount = ob->query_skill("force");
@@ -100,9 +100,9 @@ void do_effect(object me)
                         set_temp("xajh/powerup", 1, ob);
                 
                         call_out("remove_effect", lvl / 2, ob, amount);
-                        message("vision", HIG "你听了" + me->name() +
+                        message("vision", HIG "你聽了" + me->name() +
                                 HIG"和"+query_temp("xajh/player_name", ob)+
-                                "合奏的笑傲江湖，只觉得心潮澎湃，充满了力量。\n" NOR, ob);
+                                "合奏的笑傲江湖，只覺得心潮澎湃，充滿了力量。\n" NOR, ob);
                         delete_temp("xajh/player", ob);
                         delete_temp("xajh/player_name", ob);
                 }
@@ -118,6 +118,6 @@ void remove_effect(object me, int amount)
                 addn_temp("apply/attack", -amount, me);
                 addn_temp("apply/dodge", -amount, me);
                 delete_temp("xajh/powerup", me);
-                tell_object(me, "你的心情渐渐的平息下来。\n");
+                tell_object(me, "你的心情漸漸的平息下來。\n");
         }
 }

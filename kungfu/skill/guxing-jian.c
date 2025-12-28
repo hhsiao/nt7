@@ -2,43 +2,43 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action" :  "$N手中$w快速猛刺，连连逼迫向$n",
+([      "action" :  "$N手中$w快速猛刺，連連逼迫向$n",
         "force"  :  80,
         "dodge"  :  28,
         "damage" :  20,
         "lvl"    :  0,
-        "damage_type":  "刺伤",
+        "damage_type":  "刺傷",
 ]),
-([      "action" :  "$N手中$w横向一扫，一式「神龙摆尾」，剑光闪过，刹那间$w已到$n$l",
+([      "action" :  "$N手中$w橫向一掃，一式「神龍擺尾」，劍光閃過，剎那間$w已到$n$l",
         "force"  :  90,
         "dodge"  :  24,
         "damage" :  25,
         "lvl"    :  30,
-        "damage_type":  "砍伤",
+        "damage_type":  "砍傷",
 ]),
 ([     
-        "action" :  "剑光不定，$N忽地反转剑身，一式「昙花一现」，猛然间$w刺向$n$l",
+        "action" :  "劍光不定，$N忽地反轉劍身，一式「曇花一現」，猛然間$w刺向$n$l",
         "force"  :  100,
         "dodge"  :  24,
         "damage" :  30,
         "lvl"    :  60,
-        "damage_type":  "刺伤",
+        "damage_type":  "刺傷",
 ]),
 ([      
-        "action" :  "$N不进反退，一式「逆水行舟」，$w倒握于手中，却斜身一剑指向$n",
+        "action" :  "$N不進反退，一式「逆水行舟」，$w倒握於手中，卻斜身一劍指向$n",
         "force"  :  120, 
         "dodge"  :  30,
         "damage" :  35,
         "lvl"    :  90,
-        "damage_type":  "刺伤",
+        "damage_type":  "刺傷",
 ]),
 ([      
-        "action" : "$N飞身跃起，手中$w一横，一式「横扫千军」，力道非凡，袭向$n$l",
+        "action" : "$N飛身躍起，手中$w一橫，一式「橫掃千軍」，力道非凡，襲向$n$l",
         "force"  :  140,
         "dodge"  :  40,
         "damage" :  40,
         "lvl"    :  120,
-        "damage_type":  "刺伤",
+        "damage_type":  "刺傷",
 ]),
 });
 
@@ -48,19 +48,19 @@ int valid_learn(object me)
 
             if( !(ob=query_temp("weapon", me) )
             || query("skill_type", ob) != "sword" )
-                return notify_fail("你必须先找一把剑才能练剑法。\n");
+                return notify_fail("你必須先找一把劍才能練劍法。\n");
 
             if( query("max_neili", me)<400 )
-                return notify_fail("你目前的内力修为不够，没有办法练孤星剑法。\n");
+                return notify_fail("你目前的內力修為不夠，沒有辦法練孤星劍法。\n");
 
             if (me->query_skill("force") < 100)
-                return notify_fail("你的内功修为不够，没有办法练孤星剑法。\n");
+                return notify_fail("你的內功修為不夠，沒有辦法練孤星劍法。\n");
 
             if (me->query_skill("sword", 1) < 80)
-                return notify_fail("你的基本剑法火候太浅，没有办法练孤星剑法。\n");
+                return notify_fail("你的基本劍法火候太淺，沒有辦法練孤星劍法。\n");
 
             if (me->query_skill("sword", 1) < me->query_skill("guxing-jian", 1))
-                return notify_fail("你的基本剑法火候有限，无法领会更高深的孤星剑法。\n");
+                return notify_fail("你的基本劍法火候有限，無法領會更高深的孤星劍法。\n");
 
             return 1;
 }
@@ -95,13 +95,13 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me) )
             || query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if( query("neili", me)<40 )
-                       return notify_fail("你的内力不足，没有办法练习孤星剑法。\n");
+                       return notify_fail("你的內力不足，沒有辦法練習孤星劍法。\n");
 
         if( query("qi", me)<50 )
-                return notify_fail("你的体力不够练孤星剑法。\n");
+                return notify_fail("你的體力不夠練孤星劍法。\n");
 
         me->receive_damage("qi", 45);
         addn("neili", -35, me);

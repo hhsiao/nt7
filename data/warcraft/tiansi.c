@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("药箱[2;37;0m[2;37;0m", ({"yaoxiang"}));        
+        set_name("藥箱[2;37;0m[2;37;0m", ({"yaoxiang"}));        
         set("gender", "男性");                
-        set("long", "一药箱[2;37;0m
-它是璋天是的魔幻兽。
+        set("long", "一藥箱[2;37;0m
+它是璋天是的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

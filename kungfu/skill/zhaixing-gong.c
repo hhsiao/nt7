@@ -4,10 +4,10 @@
 inherit SKILL;
 
 string *dodge_msg = ({
-    "$n一个「天外摘星」，跃起数尺，躲过了$N这一招。\n",
-    "$n身形向后一纵，使出一招「飘然出尘」，避过了$N的攻击。\n",
-    "$n使出「天狼涉水」，恰好躲过了$N的攻势。\n",
-    "$n一招「织女穿梭」，姿态美妙地躲了开去。\n"
+    "$n一個「天外摘星」，躍起數尺，躲過了$N這一招。\n",
+    "$n身形向後一縱，使出一招「飄然出塵」，避過了$N的攻擊。\n",
+    "$n使出「天狼涉水」，恰好躲過了$N的攻勢。\n",
+    "$n一招「織女穿梭」，姿態美妙地躲了開去。\n"
 });
 
 int valid_enable(string usage)
@@ -25,7 +25,7 @@ string query_dodge_msg(string limb)
 int practice_skill(object me)
 {
     if( query("qi", me)<50 )
-        return notify_fail("你的体力太差了，不能练摘星功。\n");
+        return notify_fail("你的體力太差了，不能練摘星功。\n");
 
     me->receive_damage("qi", 40);
     return 1;

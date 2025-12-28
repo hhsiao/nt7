@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define LUAN "「" HIM "乱剑覆花" NOR "」"
+#define LUAN "「" HIM "亂劍覆花" NOR "」"
 
 inherit F_SSERVER;
 
@@ -17,34 +17,34 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(LUAN "只能在战斗中对对手使用。\n");
+                return notify_fail(LUAN "只能在戰鬥中對對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me) )
             || query("skill_type", weapon) != "sword" )
-                return notify_fail("你所使用的武器不对，难以施展" LUAN "。\n");
+                return notify_fail("你所使用的武器不對，難以施展" LUAN "。\n");
 
         if ((int)me->query_skill("furong-jian", 1) < 100)
-                return notify_fail("你芙蓉剑法不够娴熟，难以施展" LUAN "。\n");
+                return notify_fail("你芙蓉劍法不夠嫻熟，難以施展" LUAN "。\n");
 
         if (me->query_skill_mapped("sword") != "furong-jian")
-                return notify_fail("你没有激发芙蓉剑法，难以施展" LUAN "。\n");
+                return notify_fail("你沒有激發芙蓉劍法，難以施展" LUAN "。\n");
 
         if ((int)me->query_skill("force") < 120)
-                return notify_fail("你的内功火候不够，难以施展" LUAN "。\n");
+                return notify_fail("你的內功火候不夠，難以施展" LUAN "。\n");
 
         if ((int)me->query_skill("dodge") < 120)
-                return notify_fail("你的轻功火候不够，难以施展" LUAN "。\n");
+                return notify_fail("你的輕功火候不夠，難以施展" LUAN "。\n");
 
         if( query("neili", me)<100 )
-                return notify_fail("你现在的真气不够，难以施展" LUAN "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" LUAN "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         wn = weapon->name();
 
-        msg = HIM "\n$N" HIM "轻啸一声，腾空而起，" + wn + "在空中挽出一个剑"
-              HIM "花，顷刻间剑花四散，洋洋洒洒。\n犹如无数花瓣从半空洒向$n"
+        msg = HIM "\n$N" HIM "輕嘯一聲，騰空而起，" + wn + "在空中挽出一個劍"
+              HIM "花，頃刻間劍花四散，洋洋灑灑。\n猶如無數花瓣從半空灑向$n"
               HIM "全身。" NOR;
 
         message_sort(msg, me, target);
@@ -57,15 +57,15 @@ int perform(object me, object target)
                  damage = damage_power(me, "sword");
 
                  msg = COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 60,
-                                           HIR "$n" HIR "只见无数剑花袭来，将自己包围"
-                                           "住，正犹豫间，$n" HIR "已被" + wn + HIR 
-                                           "刺得皮开肉绽。\n" NOR);
+                                           HIR "$n" HIR "只見無數劍花襲來，將自己包圍"
+                                           "住，正猶豫間，$n" HIR "已被" + wn + HIR 
+                                           "刺得皮開肉綻。\n" NOR);
                  me->start_busy(2);
                  addn("neili", -100, me);
         } else
         {
-                 msg = CYN "然而$n" CYN "看出其中的破绽，侧身一跳"
-                      "已然躲过$N" CYN "这一剑。\n" NOR;
+                 msg = CYN "然而$n" CYN "看出其中的破綻，側身一跳"
+                      "已然躲過$N" CYN "這一劍。\n" NOR;
 
                  me->start_busy(3);
                  addn("neili", -100, me);

@@ -4,14 +4,14 @@ inherit TRANS_ROOM;
 void create()
 {
 mapping map_short = ([
-         "nanyang"       : "南阳",
-         "suzhou"        : "苏州",
-         "luoyang"       : "洛阳",
+         "nanyang"       : "南陽",
+         "suzhou"        : "蘇州",
+         "luoyang"       : "洛陽",
          "beijing"       : "北京",
-         "xiangyang"     : "襄阳",
-         "kaifeng"       : "开封",
-         "changan"       : "长安",
-         "yangzhou"      : "扬州",
+         "xiangyang"     : "襄陽",
+         "kaifeng"       : "開封",
+         "changan"       : "長安",
+         "yangzhou"      : "揚州",
 ]);
 
 mapping trans_pay = ([
@@ -25,13 +25,13 @@ mapping trans_pay = ([
          "yangzhou"      : 80,
 ]);
 
-      set("short", "马厩");
+      set("short", "馬廄");
       set("long", @LONG
-这里是中州城英豪酒楼后的马厩，常年供应新鲜草料。中
-州城自古乃军事要地，民风淳朴，马夫们会把马牵到马厩好生
-照看，将它们喂饱饮足，再洗刷得干乾净净，一直伺候到客人
-上路。马厩雨檐下的烂木柱上钉着一块破木牌 (paizi)。马厩
-中堆放著几堆草料，正中有一口泔槽。
+這裡是中州城英豪酒樓後的馬廄，常年供應新鮮草料。中
+州城自古乃軍事要地，民風淳樸，馬伕們會把馬牽到馬廄好生
+照看，將它們餵飽飲足，再洗刷得幹乾淨淨，一直伺候到客人
+上路。馬廄雨簷下的爛木柱上釘著一塊破木牌 (paizi)。馬廄
+中堆放著幾堆草料，正中有一口泔槽。
 LONG);
       set("outdoors", "zhongzhou");
       set("no_fight", 1);

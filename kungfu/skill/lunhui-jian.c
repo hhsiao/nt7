@@ -1,17 +1,17 @@
 inherit SHAOLIN_SKILL;
 
 mapping *action = ({
-([      "action": "$N使一式「人间道」，手中$w嗡嗡微振，幻成一条疾光刺向$n的$l",
+([      "action": "$N使一式「人間道」，手中$w嗡嗡微振，幻成一條疾光刺向$n的$l",
         "force" : 190,
         "attack": 130,
         "dodge" : 110,
         "parry" : 115,
         "damage": 115,
         "lvl"   : 0,
-        "skill_name" : "人间道",
-        "damage_type": "刺伤"
+        "skill_name" : "人間道",
+        "damage_type": "刺傷"
 ]),
-([      "action": "$N错步上前，使出「畜生道」，剑意若有若无，$w淡淡地向$n的$l挥去",
+([      "action": "$N錯步上前，使出「畜生道」，劍意若有若無，$w淡淡地向$n的$l揮去",
         "force" : 240,
         "attack": 150,
         "dodge" : 115,
@@ -19,57 +19,57 @@ mapping *action = ({
         "damage": 130,
         "lvl"   : 40,
         "skill_name" : "畜生道",
-        "damage_type": "割伤"
+        "damage_type": "割傷"
 ]),
-([      "action": "$N一式「饿鬼道」，纵身飘开数尺，运发剑气，手中$w遥摇指向$n的$l",
+([      "action": "$N一式「餓鬼道」，縱身飄開數尺，運發劍氣，手中$w遙搖指向$n的$l",
         "force" : 260,
         "attack": 160,
         "dodge" : 125,
         "parry" : 128,
         "damage": 140,
         "lvl"   : 80,
-        "skill_name" : "饿鬼道",
-        "damage_type": "割伤"
+        "skill_name" : "餓鬼道",
+        "damage_type": "割傷"
 ]),
-([      "action": "$N纵身轻轻跃起，一式「修罗道」，剑光如轮疾转，霍霍斩向$n的$l",
+([      "action": "$N縱身輕輕躍起，一式「修羅道」，劍光如輪疾轉，霍霍斬向$n的$l",
         "force" : 280,
         "attack": 170,
         "dodge" : 120,
         "parry" : 135,
         "damage": 155,
         "lvl"   : 120,
-        "skill_name" : "修罗道",
-        "damage_type": "割伤"
+        "skill_name" : "修羅道",
+        "damage_type": "割傷"
 ]),
-([      "action": "$N手中$w中宫直进，一式「地狱道」，无声无息地对准$n的$l刺出一剑",
+([      "action": "$N手中$w中宮直進，一式「地獄道」，無聲無息地對準$n的$l刺出一劍",
         "force" : 320,
         "attack": 180,
         "dodge" : 125,
         "parry" : 142,
         "damage": 160,
         "lvl"   : 160,
-        "skill_name" : "地狱道",
-        "damage_type": "刺伤"
+        "skill_name" : "地獄道",
+        "damage_type": "刺傷"
 ]),
-([      "action": "$N手中$w斜指苍天，剑芒吞吐，一式「天极道」，对准$n的$l斜斜击出",
+([      "action": "$N手中$w斜指蒼天，劍芒吞吐，一式「天極道」，對準$n的$l斜斜擊出",
         "force" : 360,
         "attack": 185,
         "dodge" : 125,
         "parry" : 151,
         "damage": 170,
         "lvl"   : 200,
-        "skill_name" : "天极道",
-        "damage_type": "刺伤"
+        "skill_name" : "天極道",
+        "damage_type": "刺傷"
 ]),
-([      "action": "$N左指凌空虚点，右手$w逼出丈许雪亮剑芒，一式「六道轮回」翻转向$n",
+([      "action": "$N左指凌空虛點，右手$w逼出丈許雪亮劍芒，一式「六道輪迴」翻轉向$n",
         "force" : 390,
         "attack": 190,
         "dodge" : 130,
         "parry" : 159,
         "damage": 175,
         "lvl"   : 240,
-        "skill_name" : "六道轮回",
-        "damage_type": "刺伤"
+        "skill_name" : "六道輪迴",
+        "damage_type": "刺傷"
 ]),
 });
 
@@ -81,16 +81,16 @@ int valid_enable(string usage)
 int valid_learn(object me)
 {
         if( query("max_neili", me)<5000 )
-                return notify_fail("你的内力修为不够，难以修炼释迦轮回剑。\n");
+                return notify_fail("你的內力修為不夠，難以修煉釋迦輪迴劍。\n");
 
         if ((int)me->query_skill("force") < 350)
-                return notify_fail("你的内功火候太浅，难以修炼释迦轮回剑。\n");
+                return notify_fail("你的內功火候太淺，難以修煉釋迦輪迴劍。\n");
 
         if ((int)me->query_skill("sword", 1) < 250)
-                return notify_fail("你的剑法根基不足，难以修炼释迦轮回剑。\n");
+                return notify_fail("你的劍法根基不足，難以修煉釋迦輪迴劍。\n");
 
         if ((int)me->query_skill("sword", 1) < (int)me->query_skill("lunhui-jian", 1))
-                return notify_fail("你的基本剑法水平有限，无法领会更高深的释迦轮回剑。\n");
+                return notify_fail("你的基本劍法水平有限，無法領會更高深的釋迦輪迴劍。\n");
 
         return 1;
 }
@@ -118,13 +118,13 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me) )
             || query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if( query("qi", me)<120 )
-                return notify_fail("你的体力不够练释迦轮回剑。\n");
+                return notify_fail("你的體力不夠練釋迦輪迴劍。\n");
 
         if( query("neili", me)<150 )
-                return notify_fail("你的内力不够练释迦轮回剑。\n");
+                return notify_fail("你的內力不夠練釋迦輪迴劍。\n");
 
         me->receive_damage("qi", 100);
         addn("neili", -120, me);

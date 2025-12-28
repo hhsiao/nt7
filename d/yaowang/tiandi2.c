@@ -5,8 +5,8 @@ void create()
 {
         set("short", "田地");
         set("long", @LONG
-这是药王谷用来种植草药的田地，你可以拿草药种籽在这里种植草药(zhong)。
-等草药种成了就可以挖(dig)起来。
+這是藥王谷用來種植草藥的田地，你可以拿草藥種籽在這裡種植草藥(zhong)。
+等草藥種成了就可以挖(dig)起來。
 LONG );
         set("no_clean_up", 1);
         set("yaotian",1);
@@ -29,20 +29,20 @@ int do_dig(string arg)
         object ob, me;
         me = this_player();
 
-        if( query("family/family_name", me) != "药王谷"
+        if( query("family/family_name", me) != "藥王谷"
                 || me->query_skill("medical",1) < 60 )
-                return notify_fail("你不会种植草药！更不会挖草药！\n");
+                return notify_fail("你不會種植草藥！更不會挖草藥！\n");
 
         if(me->is_fighting() && me->is_busy())
-                return notify_fail("你很忙，没时间。\n");
+                return notify_fail("你很忙，沒時間。\n");
 
         if( !arg || !ob = present(arg, environment(me)) )
-                return notify_fail("指令格式：dig <草药ID> \n");
+                return notify_fail("指令格式：dig <草藥ID> \n");
 
         if( query("owner", ob) != query("id", me) )
-                return notify_fail("这个东西好象不是你的啊？？\n"); 
+                return notify_fail("這個東西好象不是你的啊？？\n"); 
 
-        message_vision("$N轻轻将$n挖了起来。\n", me, ob);
+        message_vision("$N輕輕將$n挖了起來。\n", me, ob);
 
         delete("no_get", ob);
         ob->move(me);
@@ -52,5 +52,5 @@ int do_dig(string arg)
 
 int do_work()
 {
-        return notify_fail("这里不能使用这个指令！\n");
+        return notify_fail("這裡不能使用這個指令！\n");
 }

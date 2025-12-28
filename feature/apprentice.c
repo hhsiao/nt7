@@ -37,7 +37,7 @@ void assign_apprentice(string title, int privs)
                         set("title", family["family_name"] + family["title"]);
                         break;
                 case 1:
-                        set("title", family["family_name"] + "开山祖师");
+                        set("title", family["family_name"] + "開山祖師");
                         break;
                 default:
                         set("title", sprintf("%s第%s代%s", family["family_name"],
@@ -71,7 +71,7 @@ int recruit_apprentice(object ob)
         if( !mapp(my_family = query("family")) )
                 return 0;
 
-        // 这里处理判师的bug
+        // 這裡處理判師的bug
         family_name = query("family/family_name", ob);
         if( family_name && family_name != my_family["family_name"] )
         {
@@ -100,19 +100,19 @@ int recruit_apprentice(object ob)
         family["enter_time"]  = time();
 
         /*
-        if( family["family_name"] == "欧阳世家" ) {
+        if( family["family_name"] == "歐陽世家" ) {
                 if( query("can_not_change", ob) && !query("old_surname", ob) )
                         set("old_surname", query("surname", ob), ob);
-                set("surname", "欧阳", ob);
-                set("born_family", "欧阳世家", ob);
+                set("surname", "歐陽", ob);
+                set("born_family", "歐陽世家", ob);
                 ob->set_name();
         }
 
-        if( family["family_name"] == "关外胡家" ) {
+        if( family["family_name"] == "關外胡家" ) {
                  if( query("can_not_change", ob) && !query("old_surname", ob) )
                         set("old_surname", query("surname", ob), ob);
                 set("surname", "胡", ob);
-                set("born_family", "关外胡家", ob);
+                set("born_family", "關外胡家", ob);
                 ob->set_name();
         }
 
@@ -133,7 +133,7 @@ int recruit_apprentice(object ob)
         }
         */
 
-        // 拜师后不再可以通过北京文庙修改性格
+        // 拜師後不再可以通過北京文廟修改性格
         if( !query("can_not_change", ob) && family["family_name"] != "古村" )
                 set("can_not_change", 1, ob);
 
@@ -148,8 +148,8 @@ int recruit_apprentice(object ob)
                 set("family", family, ob);
                 return 1;
         } else
-        if( query("born_family") != "没有" )
-                family["title"] = "传人";
+        if( query("born_family") != "沒有" )
+                family["title"] = "傳人";
         else
                 family["title"] = "弟子";
 

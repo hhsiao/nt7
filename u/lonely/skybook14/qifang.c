@@ -78,7 +78,7 @@ void create()
 void attempt_apprentice(object ob)
 {
         command("xixi");
-        command("say 你这空心菜，没头没脑的，还是去跟师傅磕头吧！");
+        command("say 你這空心菜，沒頭沒腦的，還是去跟師傅磕頭吧！");
         
         return;
 }
@@ -90,10 +90,10 @@ void die(object killer)
         
         if (userp(killer) && environment(killer) == environment(this_object())) 
         {
-                tell_object(HIY "你将戚芳手中长剑震落，看上去是你胜了半招！\n" NOR);
+                tell_object(HIY "你將戚芳手中長劍震落，看上去是你勝了半招！\n" NOR);
                 
                 command("heng");
-                command("say 师哥欺负我，不跟你练剑了！");
+                command("say 師哥欺負我，不跟你練劍了！");
 
                 return;
         }
@@ -122,18 +122,18 @@ int accept_fight(object ob)
 {
         if (is_fighting())
         {
-                message_vision(CYN "$N" CYN "对$n" CYN "叫道：你先别急\n" NOR,
+                message_vision(CYN "$N" CYN "對$n" CYN "叫道：你先別急\n" NOR,
                                this_object(), ob);
                 return -1;
         }
 
-        if (ob->query("skybook14/连城诀/任务编号") != 10)
+        if (ob->query("skybook14/連城訣/任務編號") != 10)
         {
-                command("say 芳儿现在没空，师哥你还是去和师傅切磋吧。");
+                command("say 芳兒現在沒空，師哥你還是去和師傅切磋吧。");
                 return -1;
         }
         
-        message_vision(HIW "$N" HIW "笑道：师哥，看剑 ……\n" NOR, this_object(), ob);
+        message_vision(HIW "$N" HIW "笑道：師哥，看劍 ……\n" NOR, this_object(), ob);
 
         competition_with(ob);
         return -1;
@@ -145,7 +145,7 @@ void win()
         if (! objectp(ob = query_competitor()))
                 return;
 
-        message_vision(CYN "$N" CYN "看了看$n" CYN "，嘻嘻笑道：师哥承让了！\n" NOR, this_object(), ob);
+        message_vision(CYN "$N" CYN "看了看$n" CYN "，嘻嘻笑道：師哥承讓了！\n" NOR, this_object(), ob);
         ::win();
 }
 
@@ -156,11 +156,11 @@ void lost()
         if (! objectp(ob = query_competitor()))
                 return;
 
-        if (ob->query("skybook14/连城诀/任务编号") != 10)return;
+        if (ob->query("skybook14/連城訣/任務編號") != 10)return;
 
-        ob->set("skybook14/连城诀/任务状态", 1);
+        ob->set("skybook14/連城訣/任務狀態", 1);
 
-        tell_object(ob, HIC "\n任务完成，输入 skybook start 连城诀 可继续任务。\n" NOR);
+        tell_object(ob, HIC "\n任務完成，輸入 skybook start 連城訣 可繼續任務。\n" NOR);
 
         ::lost();
 }

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;37m双拐[2;37;0m[2;37;0m", ({"gooo"}));        
+        set_name("[1;37m雙柺[2;37;0m[2;37;0m", ({"gooo"}));        
         set("gender", "男性");                
-        set("long", "$HIW$双拐[2;37;0m
-它是渡心的魔幻兽。
+        set("long", "$HIW$雙柺[2;37;0m
+它是渡心的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

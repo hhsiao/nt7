@@ -12,7 +12,7 @@ void create()
         set("gender", "男性");
         set("age", 58);
         set("long", @LONG
-这是一个满脸杀气的恶魔，两眼直露凶光。
+這是一個滿臉殺氣的惡魔，兩眼直露兇光。
 LONG );
         set("combat_exp", 500000000);
         set("shen_type", 0);
@@ -50,8 +50,8 @@ void fight_ob(object ob)
         if (is_fighting(ob))
                 return;
 
-        message_vision(HIR "$N" HIR "怒吼一声，两眼中"
-                       "凶光毕露。\n" NOR, this_object(), ob);
+        message_vision(HIR "$N" HIR "怒吼一聲，兩眼中"
+                       "兇光畢露。\n" NOR, this_object(), ob);
 
         ::fight_ob(ob);
         if( !is_killing(query("id", ob)) )
@@ -60,7 +60,7 @@ void fight_ob(object ob)
 
 int accept_fight(object ob)
 {
-        message_vision("$N一阵狂叫，猛然扑了上来。\n",
+        message_vision("$N一陣狂叫，猛然撲了上來。\n",
                        this_object(), ob);
         kill_ob(ob);
         return -1;
@@ -80,8 +80,8 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->receive_wound("qi", 10000 + random(10000), me);
         set("neili",query("max_neili",  me), me);
-        return HIR "$N" HIR "身上腾起一股火焰，登时逼得$n"
-               HIR "退后几步，闷哼一声。\n" NOR;
+        return HIR "$N" HIR "身上騰起一股火焰，登時逼得$n"
+               HIR "退後幾步，悶哼一聲。\n" NOR;
 }
 
 varargs void die(object killer)

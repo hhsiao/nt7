@@ -4,8 +4,8 @@ void create()
 {
         set("short", "牟尼堂");
         set("long", @LONG
-这是高僧们的静修之处。整堂全以松木制成，板门木柱，木料均
-不去皮，天然质朴，和一路行来金碧辉煌的殿堂截然不同。
+這是高僧們的靜修之處。整堂全以松木製成，板門木柱，木料均
+不去皮，天然質樸，和一路行來金碧輝煌的殿堂截然不同。
 LONG );
         set("exits", ([
                 "north": __DIR__"banruotai",
@@ -31,8 +31,8 @@ string long()
         if (mapp(query("exits")))
                 return query("long");
 
-        return query("long") + "    现在室内剑气纵横，你来"
-               "我往，杀个不停。\n";
+        return query("long") + "    現在室內劍氣縱橫，你來"
+               "我往，殺個不停。\n";
 }
 
 int do_quit()
@@ -42,7 +42,7 @@ int do_quit()
         me = this_player();
         if (! mapp(query("exits")))
         {
-                write("现在没有出路，你无法离开。\n");
+                write("現在沒有出路，你無法離開。\n");
                 return 1;
         }
 

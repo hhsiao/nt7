@@ -3,9 +3,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short", HIY"聚灵法阵"NOR);
+        set("short", HIY"聚靈法陣"NOR);
         set("long", @LONG
-聚灵法阵！
+聚靈法陣！
 LONG);
         
         set("maze", 1);

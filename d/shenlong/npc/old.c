@@ -7,10 +7,10 @@ inherit NPC;
 void create()
 {
 	set_name("老者", ({"old man", "old", "man"}));
-	set("title",HIY "神龙教" NOR "老者");
+	set("title",HIY "神龍教" NOR "老者");
 	set("long", @LONG
-这是一个神龙教老者，太阳穴高耸，两眼炯炯有神，显然武功甚高。
-然而神色郁郁，对一帮年轻男女颇为有礼，似乎害怕什么，样子十分可怜。
+這是一個神龍教老者，太陽穴高聳，兩眼炯炯有神，顯然武功甚高。
+然而神色鬱郁，對一幫年輕男女頗為有禮，似乎害怕什麼，樣子十分可憐。
 LONG );
 	set("gender", "男性");
 	set("attitude", "peaceful");

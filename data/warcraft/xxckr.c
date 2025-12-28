@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;37m天猫[2;37;0m[2;37;0m", ({"tianmao"}));        
+        set_name("[1;37m天貓[2;37;0m[2;37;0m", ({"tianmao"}));        
         set("gender", "女性");                
-        set("long", "$HIW$天猫[2;37;0m
-它是楚星的魔幻兽。
+        set("long", "$HIW$天貓[2;37;0m
+它是楚星的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

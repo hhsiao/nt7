@@ -1,5 +1,5 @@
 // huashan-sword.c
-// 气宗,重force
+// 氣宗,重force
 
 #include <ansi.h>
 inherit SKILL;
@@ -7,28 +7,28 @@ string type() { return "martial"; }
 string martialtype() { return "skill"; }
 
 mapping *action = ({
-([        "skill_name" : "有凤来仪",
-        "action": "$N使一招"HIM"「有凤来仪」"NOR"，手中$w剑光暴长，向$n的$l刺去",
+([        "skill_name" : "有鳳來儀",
+        "action": "$N使一招"HIM"「有鳳來儀」"NOR"，手中$w劍光暴長，向$n的$l刺去",
         "lvl" : 0
 ]),
-([        "skill_name" :"无边落木",
-        "action": "$N剑随身转，一招"GRN"「无边落木」"NOR"罩向$n的$l",
+([        "skill_name" :"無邊落木",
+        "action": "$N劍隨身轉，一招"GRN"「無邊落木」"NOR"罩向$n的$l",
         "lvl" : 10
 ]),
-([        "skill_name" :"鸿飞冥冥",
-        "action": "$N舞动$w，一招"BLU"「鸿飞冥冥」"NOR"挟著无数剑光刺向$n的$l",
+([        "skill_name" :"鴻飛冥冥",
+        "action": "$N舞動$w，一招"BLU"「鴻飛冥冥」"NOR"挾著無數劍光刺向$n的$l",
         "lvl" : 20
 ]),
 ([        "skill_name" :"平沙落雁",
-        "action": "$N手中$w龙吟一声，祭出"HIY"「平沙落雁」"NOR"往$n的$l刺出数剑",
+        "action": "$N手中$w龍吟一聲，祭出"HIY"「平沙落雁」"NOR"往$n的$l刺出數劍",
         "lvl" : 30
 ]),
-([        "skill_name" :"金玉满堂",
-        "action": "$N手中$w剑光暴长，一招"RED"「金玉满堂」"NOR"往$n$l刺去",
+([        "skill_name" :"金玉滿堂",
+        "action": "$N手中$w劍光暴長，一招"RED"「金玉滿堂」"NOR"往$n$l刺去",
         "lvl" : 40
 ]),
-([        "skill_name" :"白虹贯日",
-        "action": "$N手中$w化成一道光弧，直指$n$l，一招"HIW"「白虹贯日」"NOR"发出虎哮龙吟刺去",
+([        "skill_name" :"白虹貫日",
+        "action": "$N手中$w化成一道光弧，直指$n$l，一招"HIW"「白虹貫日」"NOR"發出虎哮龍吟刺去",
         "lvl" : 50
 ]),
 });
@@ -38,21 +38,21 @@ int valid_learn(object me)
 {
         object ob;
 
-        if( !me->query_family() || (me->query_family() != "华山派" && me->query_family() != "华山剑宗") )
-                return notify_fail("你发现你没有华山派的心法，无法领会华山剑法。\n");
+        if( !me->query_family() || (me->query_family() != "華山派" && me->query_family() != "華山劍宗") )
+                return notify_fail("你發現你沒有華山派的心法，無法領會華山劍法。\n");
         if( query("max_neili", me)<50 )
-                return notify_fail("你的内力不够，没有办法练华山剑法。\n");
+                return notify_fail("你的內力不夠，沒有辦法練華山劍法。\n");
         if( !(ob=query_temp("weapon", me)) || query("skill_type", ob) != "sword" )
-                return notify_fail("你必须先找一把剑才能练剑法。\n");
+                return notify_fail("你必須先找一把劍才能練劍法。\n");
         if (me->query_skill("sword", 1) < me->query_skill("huashan-sword", 1))
-                return notify_fail("你的基本剑法火候有限，无法领会更高深的华山剑法。\n");
+                return notify_fail("你的基本劍法火候有限，無法領會更高深的華山劍法。\n");
 
         return 1;
 }
 int practice_skill(object me)
 {
         if( query("qi", me)<40 || query("neili", me)<30 )
-                return notify_fail("你内力或气不够，没有办法练习华山剑法。\n");
+                return notify_fail("你內力或氣不夠，沒有辦法練習華山劍法。\n");
         me->receive_damage("qi", 35);
         addn("neili", -20, me);
         return 1;
@@ -81,17 +81,17 @@ mapping query_action(object me, object weapon)
         for(i = ttl; i > 0; i--)
                 if(lvl > action[i-1]["lvl"])
                 {
-                        seq = i; /* 获得招数序号上限 */
+                        seq = i; /* 獲得招數序號上限 */
                         break;
                 }
-        seq = random(seq);       /* 选择出手招数序号 */
+        seq = random(seq);       /* 選擇出手招數序號 */
         return ([
                 "action"      : action[seq]["action"],
                 "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
                 "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
                 "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
                 "damage"      : m_e1 + (m_e2 - m_e1) * seq / ttl,
-                "damage_type" : random(2) ? "割伤" : "刺伤",
+                "damage_type" : random(2) ? "割傷" : "刺傷",
         ]);
 }
 int learn_bonus() { return 20; }
@@ -111,7 +111,7 @@ mixed hit_ob(object me, object victim, int damage)
         if (random(damage / 2) > 50)
         {
                 result = ([ "damage": damage ]);
-                result += (["msg" : HIR "只见紫光闪过，$n鮮血四濺，被$N" HIR "剑上的紫霞神功所伤！\n" NOR]);
+                result += (["msg" : HIR "只見紫光閃過，$n鮮血四濺，被$N" HIR "劍上的紫霞神功所傷！\n" NOR]);
                 return result;
         }
 }
@@ -122,14 +122,14 @@ string perform_action_file(string action)
 }
 int help(object me)
 {
-        write(HIC"\n华山剑法："NOR"\n");
+        write(HIC"\n華山劍法："NOR"\n");
         write(@HELP
 
-    华山剑法为华山气宗剑法。
+    華山劍法為華山氣宗劍法。
 
-        学习要求：
+        學習要求：
                 紫霞神功
-                内力50
+                內力50
 HELP
         );
         return 1;

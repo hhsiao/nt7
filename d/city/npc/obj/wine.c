@@ -10,7 +10,7 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "这是一个普普通通的酒杯。\n");
+                set("long", "這是一個普普通通的酒杯。\n");
                 set("unit", "杯");
                 set("value", 100);
                 set("max_liquid", 5);

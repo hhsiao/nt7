@@ -10,16 +10,16 @@ mapping query_quesths()
                 quesths = QUESTHS_D("7find")->query_quesths();
         else
         quesths = QUESTHS_D("7kill")->query_quesths();
-        if (quesths["type"] == "寻") 
+        if (quesths["type"] == "尋") 
         {
                 if (random(5) == 3)
                 {
                         quesths["type"] = "送";
-                        quesths["name"] = "回执";
+                        quesths["name"] = "回執";
                 } else 
                 if (random(5) == 2)
                 {
-                        quesths["type"] = "征";
+                        quesths["type"] = "徵";
                 }
         } 
         return quesths;

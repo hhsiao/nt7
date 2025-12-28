@@ -5,9 +5,9 @@
 
 inherit EARRING;
 
-#define TIME_INTERVAL 10        //BONUS_DELAY必须是这里的整数倍，且大于640
+#define TIME_INTERVAL 10        //BONUS_DELAY必須是這裡的整數倍，且大於640
 #define BONUS_DELAY 2160        //一天40次
-#define BONUS_EXP 750000        //每次奖励exp
+#define BONUS_EXP 750000        //每次獎勵exp
 
 
 void jieguozi()
@@ -18,7 +18,7 @@ void jieguozi()
                 if ( objectp(own) && playerp(own) && (query("id", own) == query("me_id")) && query("equipped") == "worn" ) {
                         i -= TIME_INTERVAL;
                         if (i<1) {
-                                tell_object(own, NOR + YEL + "只见" + HIG + "七宝妙树·耳环" + NOR + YEL + "上，花瓣零落，露出几枚晶莹透绿的果实。\n$N伸手轻轻摘下果实，得到了七种珍宝！\n" + NOR);
+                                tell_object(own, NOR + YEL + "只見" + HIG + "七寶妙樹·耳環" + NOR + YEL + "上，花瓣零落，露出幾枚晶瑩透綠的果實。\n$N伸手輕輕摘下果實，得到了七種珍寶！\n" + NOR);
                                 new("/clone/tessera/fdiamond")->move(own);
                                 new("/clone/tessera/femerald")->move(own);
                                 new("/clone/tessera/fsapphire")->move(own);
@@ -28,12 +28,12 @@ void jieguozi()
                         new("/clone/gift/xuanhuang")->move(own);
                 }
                                 new("/clone/medicine/yuqingwan")->move(own);
-                                call_other(GIFT_D, "bonus", own, ([ "exp":BONUS_EXP, "pot":BONUS_EXP/4, "mar":BONUS_EXP/8, "prompt":"你在七宝妙树下参悟了大道法则之后"]));
+                                call_other(GIFT_D, "bonus", own, ([ "exp":BONUS_EXP, "pot":BONUS_EXP/4, "mar":BONUS_EXP/8, "prompt":"你在七寶妙樹下參悟了大道法則之後"]));
                         }
-                        else if (i==30) tell_object(own, NOR + YEL + "你看见" + HIG + "七宝妙树·耳环" + NOR + YEL + "上，菩提花开始渐渐凋谢……\n" + NOR);
-                        else if (i==120) tell_object(own, NOR + YEL + "你看见" + HIG + "七宝妙树·耳环" + NOR + YEL + "上，花苞慢慢长大，变成了艳丽的红莲花。\n" + NOR);
-                        else if (i==360) tell_object(own, NOR + YEL + "你看见" + HIG + "七宝妙树·耳环" + NOR + YEL + "上，嫩黄色的花骨朵长出来了。\n" + NOR);
-                        else if (i==640) tell_object(own, NOR + YEL + "你看见" + HIG + "七宝妙树·耳环" + NOR + YEL + "上，悄悄钻出了一点嫩黄色。\n" + NOR);
+                        else if (i==30) tell_object(own, NOR + YEL + "你看見" + HIG + "七寶妙樹·耳環" + NOR + YEL + "上，菩提花開始漸漸凋謝……\n" + NOR);
+                        else if (i==120) tell_object(own, NOR + YEL + "你看見" + HIG + "七寶妙樹·耳環" + NOR + YEL + "上，花苞慢慢長大，變成了豔麗的紅蓮花。\n" + NOR);
+                        else if (i==360) tell_object(own, NOR + YEL + "你看見" + HIG + "七寶妙樹·耳環" + NOR + YEL + "上，嫩黃色的花骨朵長出來了。\n" + NOR);
+                        else if (i==640) tell_object(own, NOR + YEL + "你看見" + HIG + "七寶妙樹·耳環" + NOR + YEL + "上，悄悄鑽出了一點嫩黃色。\n" + NOR);
                         if (i<1) set("guozi_step", BONUS_DELAY);
                                 else set("guozi_step", i);
                 }
@@ -41,16 +41,16 @@ void jieguozi()
         call_out("jieguozi", TIME_INTERVAL);
 
         if (  objectp(own) && query("me_id") ) 
-                if (query("id", own) != query("me_id")) destruct(this_object());//非主人身上时
-                else if (!query("env/invisible_item", own)) destruct(this_object());//主人没有设置隐藏时
+                if (query("id", own) != query("me_id")) destruct(this_object());//非主人身上時
+                else if (!query("env/invisible_item", own)) destruct(this_object());//主人沒有設置隱藏時
 }
 
 void create()
 {
-        set_name(HIR "紫金花耳环" NOR, ({ "zijinhua erhuan3", "qibao miaoshu", "qibao", "erhuan" }));
+        set_name(HIR "紫金花耳環" NOR, ({ "zijinhua erhuan3", "qibao miaoshu", "qibao", "erhuan" }));
         set_weight(100);
                 set("unit", "枚");
-                set("long", HIG "七宝妙树·耳环，这是用老祖证道的菩提树枝所制，象征着如海的智慧。\n" NOR);
+                set("long", HIG "七寶妙樹·耳環，這是用老祖證道的菩提樹枝所制，象徵著如海的智慧。\n" NOR);
                 set("value", 500000000);
                 set("material", "gold");
                 set("armor_prop/str", 100);
@@ -107,16 +107,16 @@ int wear()
 {
         object me = this_player();
         if (query("id", me) != query("me_id")) {
-                tell_object(me, NOR + "你不能佩戴这种特殊物品！\n" + NOR);//不许普通玩家非法穿戴变态属性的物品
+                tell_object(me, NOR + "你不能佩戴這種特殊物品！\n" + NOR);//不許普通玩家非法穿戴變態屬性的物品
                 return -1;
         }
         if (::wear()) {
-                //message_vision(YEL + "$N轻轻捻起一枚" + NOR + query("name") + NOR + YEL + "戴在耳垂上。\n" + NOR, me);
+                //message_vision(YEL + "$N輕輕捻起一枚" + NOR + query("name") + NOR + YEL + "戴在耳垂上。\n" + NOR, me);
                 return 1;
         }
 }
 
-int do_name(string arg)//授权
+int do_name(string arg)//授權
 {
         object me;
         me = this_player();
@@ -125,7 +125,7 @@ int do_name(string arg)//授权
         
                 me = find_player(arg);
                 if (!me || !objectp(me) || !playerp(me)) {
-                        write("你目前没有发现这玩家在线。\n");
+                        write("你目前沒有發現這玩家在線。\n");
                         return 1;
                 }        
         
@@ -136,8 +136,8 @@ int do_name(string arg)//授权
                 set("auto_load", 1); 
         set("env/invisible_item", 1, me);
         this_object()->move(me);
-        tell_object(me, "你获得了特殊装备七宝妙树，look erhuan\n不要丢弃或者展示给他人，否则它会消失。\n");
-        write("七宝妙树被设为" + arg + "专用的！\n");
+        tell_object(me, "你獲得了特殊裝備七寶妙樹，look erhuan\n不要丟棄或者展示給他人，否則它會消失。\n");
+        write("七寶妙樹被設為" + arg + "專用的！\n");
         return 1;
 }
 

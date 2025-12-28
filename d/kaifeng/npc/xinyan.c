@@ -3,9 +3,9 @@ inherit NPC;
 
 void create()
 {
-        set_name("心砚", ({ "xin yan", "yan", "xin" }));
-        set("title", "陈家洛书僮");
-        set("long", "他是红花会总舵主陈家洛的贴身书僮。\n");
+        set_name("心硯", ({ "xin yan", "yan", "xin" }));
+        set("title", "陳家洛書僮");
+        set("long", "他是紅花會總舵主陳家洛的貼身書僮。\n");
         set("gender", "男性");
         set("class", "scholar");
         set("age", 15);

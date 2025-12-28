@@ -1,4 +1,4 @@
-// reserve.c 蛤蟆功经脉倒转
+// reserve.c 蛤蟆功經脈倒轉
 
 #include <ansi.h>
 
@@ -15,17 +15,17 @@ int exert(object me, object target)
         int n;
 
         if ((int)me->query_skill("hamagong", 1) < 120)
-                return notify_fail("你的蛤蟆功不够娴熟，不会经脉倒转。\n");
+                return notify_fail("你的蛤蟆功不夠嫻熟，不會經脈倒轉。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你现在的真气不够。\n");
+                return notify_fail("你現在的真氣不夠。\n");
 
         if( query_temp("reverse", me) )
-                return notify_fail("你已经倒转经脉了。\n");
+                return notify_fail("你已經倒轉經脈了。\n");
 
         skill = me->query_skill("hamagong", 1);
-        msg = HIB "$N" HIB "忽地双手撑地倒立，逆运经脉，顿时"
-              "内息暗生，防御力大增。\n" NOR;
+        msg = HIB "$N" HIB "忽地雙手撐地倒立，逆運經脈，頓時"
+              "內息暗生，防禦力大增。\n" NOR;
         message_combatd(msg, me);
 
         delta = ABILITY_D->check_ability(me, "powerup-hmg-reserve");
@@ -55,7 +55,7 @@ void show_effect(object me, int n)
 
         if( query("neili", me)<200 )
         {
-              write(HIG "你逆运经脉，内力耗尽，猛然间气血上涌，你感觉自己内力受到了损伤。\n" NOR);
+              write(HIG "你逆運經脈，內力耗盡，猛然間氣血上湧，你感覺自己內力受到了損傷。\n" NOR);
               addn("max_neili", -1, me);
               set("neili", 0, me);
               delete_temp("hmg_dzjm", me);

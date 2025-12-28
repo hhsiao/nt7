@@ -8,8 +8,8 @@ void create()
         // set_name( names[random(sizeof(names))], ({ "skeleton lich","skeleton"}));
         set_name( names[random(sizeof(names))], ({ "skeleton lich" }));
         set("vendetta_mark","skeleton");
-        set("long", "这是一只骨头架子。\n");
-        set("title", HIB "(鬼气)" NOR); 
+        set("long", "這是一隻骨頭架子。\n");
+        set("title", HIB "(鬼氣)" NOR); 
 
         set("str", 50);
         set("con", 120);
@@ -24,10 +24,10 @@ void create()
 /*
         set("chat_chance", 1);
         set("chat_msg", ({
-                "骷髅空洞的眼眶里闪烁着可怕的荧光。\n"
+                "骷髏空洞的眼眶裡閃爍著可怕的熒光。\n"
         }) ); 
 */
-        set("death_msg",BLU"\n$N散成了一堆碎骨头。\n\n"NOR);
+        set("death_msg",BLU"\n$N散成了一堆碎骨頭。\n\n"NOR);
         set("chat_chance_combat", 100);
         set("chat_msg_combat", ({
                 (: do_bone_spirit() :),
@@ -60,7 +60,7 @@ int is_undead() {
 void do_bone_spirit() {
         object *enemies,enemy;
         int i,no_busy;
-        message_vision(BLU"\n$N沙哑的声音念诵着咒语，周身凝聚了一个个散发着死亡气息的光球！\n\n"NOR,this_object());
+        message_vision(BLU"\n$N沙啞的聲音唸誦著咒語，周身凝聚了一個個散發著死亡氣息的光球！\n\n"NOR,this_object());
         enemies = query_enemy();
         foreach(enemy in enemies) {
                 if(!enemy)
@@ -73,18 +73,18 @@ void do_bone_spirit() {
                 switch (i)
                 {
                 case(0):
-                        message_vision(RED"一个红色光球击中$N爆炸开来！\n"NOR,enemy);
+                        message_vision(RED"一個紅色光球擊中$N爆炸開來！\n"NOR,enemy);
                         enemy->receive_damage("qi",4000+random(4000),this_object());
                         COMBAT_D->report_status(enemy);
                         break;
                 case(1):
-                        message_vision(GRN"一个绿色光球围绕$N转了一圈！\n"NOR,enemy);
-                        message_vision(GRN"$N神志变得模糊起来......\n"NOR,enemy);
+                        message_vision(GRN"一個綠色光球圍繞$N轉了一圈！\n"NOR,enemy);
+                        message_vision(GRN"$N神志變得模糊起來......\n"NOR,enemy);
                         if(!enemy->is_busy())
                                 enemy->start_busy(3);
                         break;
                 case(2):
-                        message_vision(BLU"一个黑色光球悄无声息的湮灭在$N的眉心处！"NOR,enemy);
+                        message_vision(BLU"一個黑色光球悄無聲息的湮滅在$N的眉心處！"NOR,enemy);
                         enemy->unconcious();
                         break;
                 }

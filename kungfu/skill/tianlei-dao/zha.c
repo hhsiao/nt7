@@ -17,31 +17,31 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能在战斗中对对手使用。\n");
+                return notify_fail(name() + "只能在戰鬥中對對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me) )
             || query("skill_type", weapon) != "blade" )
-                return notify_fail("你所使用的武器不对，难以施展" + name() + "。\n");
+                return notify_fail("你所使用的武器不對，難以施展" + name() + "。\n");
 
         if ((int)me->query_skill("tianlei-dao", 1) < 150)
-                return notify_fail("你天雷绝刀不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你天雷絕刀不夠嫻熟，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("blade") != "tianlei-dao")
-                return notify_fail("你没有激发天雷绝刀，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發天雷絕刀，難以施展" + name() + "。\n");
 
         if ((int)me->query_skill("force") < 180)
-                return notify_fail("你的内功火候不够，难以施展" + name() + "。\n");
+                return notify_fail("你的內功火候不夠，難以施展" + name() + "。\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你现在的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         wn = weapon->name();
 
-        msg = HIW "\n$N" HIW "一声怒喝，内劲瀑涨，施展出绝招「" HIY "春雷炸空" HIW
-              "」手中\n" + wn + HIW "出神般的挥舞而出，威力惊人，有如神助一般。" NOR;
+        msg = HIW "\n$N" HIW "一聲怒喝，內勁瀑漲，施展出絕招「" HIY "春雷炸空" HIW
+              "」手中\n" + wn + HIW "出神般的揮舞而出，威力驚人，有如神助一般。" NOR;
 
         message_combatd(msg, me, target);
 
@@ -52,15 +52,15 @@ int perform(object me, object target)
         {
                 damage = damage_power(me, "blade");
                 msg = COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 65,
-                                          HIR "$n" HIR "见$N" HIR "来势凶猛，刀"
-                                          "光闪烁，惊骇间肩膀已中一刀，一股鲜血"
-                                          "喷涌而出。\n" NOR);
+                                          HIR "$n" HIR "見$N" HIR "來勢兇猛，刀"
+                                          "光閃爍，驚駭間肩膀已中一刀，一股鮮血"
+                                          "噴湧而出。\n" NOR);
                 me->start_busy(2 + random(2));
                 addn("neili", -240, me);
         } else
         {
-                msg = CYN "然而$n" CYN "以快制快，侧身"
-                      "一跳，躲过这招。\n" NOR;
+                msg = CYN "然而$n" CYN "以快制快，側身"
+                      "一跳，躲過這招。\n" NOR;
 
                 me->start_busy(2);
                 addn("neili", -180, me);

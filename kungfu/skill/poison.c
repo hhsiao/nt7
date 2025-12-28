@@ -16,8 +16,8 @@ int power_point(object me) { return 1; }
 int valid_learn(object me)
 {
         if( query("character", me) == "光明磊落" && 
-            query("family/family_name", me) != "关外胡家" )
-                return notify_fail("你心中暗想：我行事光明磊落，学什么毒技！\n");
+            query("family/family_name", me) != "關外胡家" )
+                return notify_fail("你心中暗想：我行事光明磊落，學什麼毒技！\n");
 
         return 1;
 }
@@ -31,14 +31,14 @@ void skill_improved(object me)
                 (me->query_skill("poison",1) == 90) ||
                 (me->query_skill("poison",1) >= 100))
         {
-                tell_object(me, "你体内的毒质开始反噬自身了，得找人散毒了。\n");
+                tell_object(me, "你體內的毒質開始反噬自身了，得找人散毒了。\n");
                 me->apply_condition("poison_sandu",1000);
         }
 }
 */
 int practice_skill(object me)
 {
-        return notify_fail("基本毒技只能靠学习来提高。\n");
+        return notify_fail("基本毒技只能靠學習來提高。\n");
 }
 int help(object me)
 {
@@ -46,11 +46,11 @@ int help(object me)
         write(@HELP
 
     星宿弟子下毒必具武功，下毒的效果和基本毒技的高低有很大
-的关系。当体内毒素反噬自身时，得找人散毒。
+的關係。當體內毒素反噬自身時，得找人散毒。
 
-        学习要求：
-                名门正派的心法不能学
-                非星宿派弟子不能学
+        學習要求：
+                名門正派的心法不能學
+                非星宿派弟子不能學
 HELP
         );
         return 1;

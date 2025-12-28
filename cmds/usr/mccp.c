@@ -10,10 +10,10 @@ int main(object me, string arg)
         user = filter_array(users(), (: interactive($1) :));
         mccp = filter_array(user, (: compressedp($1) :));
         
-        write(sprintf("你的 MCCP 状态为：" HIR "%s\n" NOR, compressedp(me) ? "ON" : "OFF"));
-        write(sprintf("现在共 " HIC "%d" NOR "/%d 个使用者开启 MCCP。\n", sizeof(mccp), sizeof(user)));
+        write(sprintf("你的 MCCP 狀態為：" HIR "%s\n" NOR, compressedp(me) ? "ON" : "OFF"));
+        write(sprintf("現在共 " HIC "%d" NOR "/%d 個使用者開啟 MCCP。\n", sizeof(mccp), sizeof(user)));
 #else
-        write("驱动程序目前不支持网路传输压缩功能。\n");
+        write("驅動程序目前不支持網路傳輸壓縮功能。\n");
 #endif
         return 1;
 }
@@ -21,9 +21,9 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令说明:
-    检查玩家的程式是否有启动 MCCP(Mud Client Compression Protocol)功能
-此功能可以加速网路传输速度
+指令說明:
+    檢查玩家的程式是否有啟動 MCCP(Mud Client Compression Protocol)功能
+此功能可以加速網路傳輸速度
 
 HELP );
     return 1;

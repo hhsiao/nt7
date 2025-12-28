@@ -86,7 +86,7 @@ int valid_learn_level(object me)
 void skill_improved(object me) {}
 
 int practice_level() { return 100; }
-// 自己练隐含级别
+// 自己練隱含級別
 
 //
 // exert_function()
@@ -108,7 +108,7 @@ int exert_function(object me, string arg)
         if( sscanf(arg, "%s %s", func, target)==2 ) {
                 target_ob = present(target, environment(me));
                 if( !target_ob )
-                        return notify_fail("这里没有 " + target + "。\n");
+                        return notify_fail("這裡沒有 " + target + "。\n");
         } else {
                 func = arg;
                 target_ob = me;
@@ -134,7 +134,7 @@ int perform_action(object me, string arg)
         if( sscanf(arg, "%s %s", action, target) == 2 ) {
                 target_ob = present(target, environment(me));
                 if( !target_ob )
-                        return notify_fail("这里没有" + target + "。\n");
+                        return notify_fail("這裡沒有" + target + "。\n");
         } else {
                 action = arg;
         }
@@ -156,7 +156,7 @@ int perform_action(object me, string arg)
                 if( lock > 60) lock = 60;
                 if( me != target_ob && random(100) >= avoid && random(100) < lock )
                         return notify_fail(HIC BWHT + target_ob->name() +
-                                "全身突然发出一道耀眼的光芒，你突然心中一乱，顿时遗忘了绝招如何使用。\n" NOR);
+                                "全身突然發出一道耀眼的光芒，你突然心中一亂，頓時遺忘了絕招如何使用。\n" NOR);
         }
 /*
         if( base_name(ob) != SKILL_D("six-finger") &&
@@ -173,16 +173,16 @@ int perform_action(object me, string arg)
                                 if( target_ob->query_skill_mapped("parry") == "qiankun-danuoyi" )
                                         tell_object(all_inventory(environment(me)),
                                                 sprintf(HIG+query("name", target_ob)+
-                                                        "施展出绝技—— 「" NOR + BLINK + HIR +
+                                                        "施展出絕技—— 「" NOR + BLINK + HIR +
                                                         "乾坤大挪移" NOR + HIG "」\n" +
-                                                        "竟将" + me->name(1) + "的成名绝技尽数挪移于" +
+                                                        "竟將" + me->name(1) + "的成名絕技盡數挪移於" +
                                                         me->name(1) + "自身！！！\n" NOR));
                                 else
                                         tell_object(all_inventory(environment(me)),
                                                 sprintf(HIG+query("name", target_ob)+
-                                                        "施展出姑苏慕容家传绝技—— 「" NOR + BLINK + HIR +
-                                                        "以彼之道 * * * 还施彼身" NOR + HIG "」\n" +
-                                                        "竟将" + me->name(1) + "的成名绝技尽数返施于" +
+                                                        "施展出姑蘇慕容家傳絕技—— 「" NOR + BLINK + HIR +
+                                                        "以彼之道 * * * 還施彼身" NOR + HIG "」\n" +
+                                                        "竟將" + me->name(1) + "的成名絕技盡數返施於" +
                                                         me->name(1) + "自身！！！\n" NOR));
 
                                 addn("neili", -300, target_ob);
@@ -191,7 +191,7 @@ int perform_action(object me, string arg)
                 }
         }
 */
-        // 绝招组合特效判断部分
+        // 絕招組合特效判斷部分
         res = (int)call_other(file, "perform", me, target_ob);
 /*
         if( res > 0 )
@@ -235,10 +235,10 @@ int NewRandom(int n, int base, int d)
         return n;
 }
 
-// 特殊招式(由combatd.c调用)
+// 特殊招式(由combatd.c調用)
 void do_interlink(object me, object victim) { return; }
 
-// 以下是魔法系技能调用
+// 以下是魔法系技能調用
 int is_reinpose(object me, object target) { return 0; }
 
 int reinpose(object me, object target, int damage) { return damage; }
@@ -247,7 +247,7 @@ int cast_spell(object me, string spell, object target)
 {
         string file;
 
-        notify_fail("你所选用的咒文系中没有这种咒文。\n");
+        notify_fail("你所選用的咒文系中沒有這種咒文。\n");
         if( !stringp(file = (string)this_object()->cast_spell_file(spell))
         ||      file_size(file + ".c") <= 0 ) {
                 file = "/kungfu/magicpool/" + spell;
@@ -264,7 +264,7 @@ int conjure_magic(object me, string spell, object target)
 {
         string file;
 
-        notify_fail("你所选用的法术系中没有这种法术。\n");
+        notify_fail("你所選用的法術系中沒有這種法術。\n");
 
         if( !stringp(file = (string)this_object()->conjure_magic_file(spell))
         ||      file_size(file + ".c") <= 0 )

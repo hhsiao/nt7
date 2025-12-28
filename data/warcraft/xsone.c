@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;37m拱地小猪[2;37;0m[2;37;0m", ({"xsxs"}));        
+        set_name("[1;37m拱地小豬[2;37;0m[2;37;0m", ({"xsxs"}));        
         set("gender", "男性");                
-        set("long", "拱地小猪[2;37;0m
-它是三把手的魔幻兽。
+        set("long", "拱地小豬[2;37;0m
+它是三把手的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

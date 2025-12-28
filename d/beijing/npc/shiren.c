@@ -2,7 +2,7 @@ inherit NPC;
 
 void create()
 {
-        set_name("诗人", ({ "shi ren", "shi", "ren" }) );
+        set_name("詩人", ({ "shi ren", "shi", "ren" }) );
         set("gender", "男性" );
         set("age", 43);
 

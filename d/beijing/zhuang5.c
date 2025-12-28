@@ -4,10 +4,10 @@ inherit ROOM;
 
 void create()
 {
-    set("short", "庄府大厅");
+    set("short", "莊府大廳");
         set("long", @LONG
-这是一间大厅，通往各个房间。东边的屋里有女子啼哭之声隐隐
-传来。
+這是一間大廳，通往各個房間。東邊的屋裡有女子啼哭之聲隱隱
+傳來。
 LONG );
     set("exits", ([
         "east" : "/d/beijing/zhuang6",

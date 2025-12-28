@@ -4,10 +4,10 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIY "赏善" HIR "罚恶" NOR "令" NOR,({ "shangfa ling", "ling" }) );
+        set_name(HIY "賞善" HIR "罰惡" NOR "令" NOR,({ "shangfa ling", "ling" }) );
         set_weight(1000);
         set("long", @LONG
-这是一面用黄铜所铸的铜牌，正面刻着“赏善”，背面刻着“罚恶”。
+這是一面用黃銅所鑄的銅牌，正面刻著“賞善”，背面刻著“罰惡”。
 LONG );
                 set("unit", "面");
                 set("value", 0);

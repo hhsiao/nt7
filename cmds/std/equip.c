@@ -20,9 +20,9 @@ int main(object me, string arg)
                 object *equipments = me->query_equipment_objects();
 
                 if( !sizeof(equipments) )
-                        return tell(me, pnoun(2, me)+"目前身上没有任何装备。\n");
+                        return tell(me, pnoun(2, me)+"目前身上沒有任何裝備。\n");
 
-                msg = pnoun(2, me)+"目前身上的装备如下：\n";
+                msg = pnoun(2, me)+"目前身上的裝備如下：\n";
 
                 foreach(ob in me->query_equipment_objects())
                         //msg += "．"HIW"["NOR+me->query_equipping_part(ob)+HIW"] "+ob->query_idname()+"\n"NOR;
@@ -43,23 +43,23 @@ int main(object me, string arg)
         if( sscanf(arg, "-s %d", num) == 1 )
         {
                 if( num < 1 || num > 5 )
-                        return tell(me, "最多只能设定 5 组套装。\n");
+                        return tell(me, "最多隻能設定 5 組套裝。\n");
 
                 set("equipment_set/"+num, map(me->query_equipment_objects(), (: base_name($1) :)), me);
                 me->save();
 
-                tell(me, pnoun(2, me)+"将目前的装备设定为第 "+num+" 号套装。\n");
+                tell(me, pnoun(2, me)+"將目前的裝備設定為第 "+num+" 號套裝。\n");
                 return 1;
         }
         else if( sscanf(arg, "-d %d", num) == 1 )
         {
                 if( !query("equipment_set/"+num, me) )
-                        return notify_fail(pnoun(2, me)+"原本并没有设定第 "+num+" 号套装。\n");
+                        return notify_fail(pnoun(2, me)+"原本並沒有設定第 "+num+" 號套裝。\n");
 
                 delete("equipment_set/"+num, me);
                 me->save();
 
-                tell(me, pnoun(2, me)+"将第 "+num+" 号套装设定删除。\n");
+                tell(me, pnoun(2, me)+"將第 "+num+" 號套裝設定刪除。\n");
                 return 1;
         }
         else if( sscanf(arg, "-l %d", num) == 1 )
@@ -68,9 +68,9 @@ int main(object me, string arg)
                 string *equipment_set = query("equipment_set/"+num, me);
 
                 if( !arrayp(equipment_set) )
-                        return notify_fail(pnoun(2, me)+"原本并没有设定第 "+num+" 号套装。\n");
+                        return notify_fail(pnoun(2, me)+"原本並沒有設定第 "+num+" 號套裝。\n");
 
-                msg = pnoun(2, me)+"所设定的 "+num+" 号套装如下：\n";
+                msg = pnoun(2, me)+"所設定的 "+num+" 號套裝如下：\n";
 
                 foreach(string basename in equipment_set)
                 {
@@ -88,10 +88,10 @@ int main(object me, string arg)
                 string *equipment_set = query("equipment_set/"+num, me);
 
                 if( time() - query_temp("last_equip", me) < 10 )
-                        return notify_fail("系统气喘嘘地叹道：请稍后再使用equip换装。\n");
+                        return notify_fail("系統氣喘噓地嘆道：請稍後再使用equip換裝。\n");
 
                 if( !arrayp(equipment_set) )
-                        return notify_fail(pnoun(2, me)+"并没有设定第 "+num+" 号套装。\n");
+                        return notify_fail(pnoun(2, me)+"並沒有設定第 "+num+" 號套裝。\n");
 
                 obs = all_inventory(me);
                 obs = filter_array(obs, (: $1->is_equipment() :));
@@ -103,7 +103,7 @@ int main(object me, string arg)
                         {
                                 me->unequip(ob, ref status);
 
-                                //      msg("$ME卸除了装备在「"+me->query_equipping_part(ob)+"」部位上的"+ob->query_idname()+"。\n", me, 0, 1);
+                                //      msg("$ME卸除了裝備在「"+me->query_equipping_part(ob)+"」部位上的"+ob->query_idname()+"。\n", me, 0, 1);
                         }
                 }
                 */
@@ -118,23 +118,23 @@ int main(object me, string arg)
                         equipment_set = equipment_set[0..index-1] + equipment_set[index+1..];
 
                         if( me->equip(ob, ref status) )
-                                msg("$ME将"+ob->query_idname()+"装备在「"+me->query_equipping_part(ob)+"」的部位上。\n", me, 0, 1);
+                                msg("$ME將"+ob->query_idname()+"裝備在「"+me->query_equipping_part(ob)+"」的部位上。\n", me, 0, 1);
                         else
                         {
                                 switch(status)
                                 {
-                                        // 1: 此物件不是装备
-                                        // 2: 无法装备在此物件上
-                                        // 3: 不知此物件该装备在何处
-                                        // 4: 已经有同种类的装备
-                                        // 5: 已经装备在其他的部位上
+                                        // 1: 此物件不是裝備
+                                        // 2: 無法裝備在此物件上
+                                        // 3: 不知此物件該裝備在何處
+                                        // 4: 已經有同種類的裝備
+                                        // 5: 已經裝備在其他的部位上
 
-                                        case 1: tell(me, ob->query_idname()+"无法用来装备。\n"); break;
-                                        case 2: tell(me, pnoun(2, me)+"似乎没有足够的能力来装备这个物品。\n"); break;
-                                        case 3: tell(me, pnoun(2, me)+"不了解"+ob->query_idname()+"该装备在何处。\n"); break;
-                                        case 4: tell(me, pnoun(2, me)+"身上该部位上已经装备着其他物品。\n"); break;
-                                        case 5: tell(me, ob->query_idname()+"已经装备在其他的部位上了。\n"); break;
-                                        default: error("装备物品发生错误。\n"); break;
+                                        case 1: tell(me, ob->query_idname()+"無法用來裝備。\n"); break;
+                                        case 2: tell(me, pnoun(2, me)+"似乎沒有足夠的能力來裝備這個物品。\n"); break;
+                                        case 3: tell(me, pnoun(2, me)+"不瞭解"+ob->query_idname()+"該裝備在何處。\n"); break;
+                                        case 4: tell(me, pnoun(2, me)+"身上該部位上已經裝備著其他物品。\n"); break;
+                                        case 5: tell(me, ob->query_idname()+"已經裝備在其他的部位上了。\n"); break;
+                                        default: error("裝備物品發生錯誤。\n"); break;
                                 }
                         }
                 }
@@ -150,9 +150,9 @@ int main(object me, string arg)
                         if( !ob->is_equipment() ) continue;
                         if( query_temp("no_wear", ob) ) continue;
                         if( me->is_equipping_object(ob) )
-                                tell(me, pnoun(2, me)+"已经将"+ob->query_idname()+"装备在「"+me->query_equipping_part(ob)+"」的部位上了。\n");
+                                tell(me, pnoun(2, me)+"已經將"+ob->query_idname()+"裝備在「"+me->query_equipping_part(ob)+"」的部位上了。\n");
                         if( me->equip(ob, ref status) )
-                                msg("$ME将"+ob->query_idname()+"装备在「"+me->query_equipping_part(ob)+"」的部位上。\n", me, 0, 1);
+                                msg("$ME將"+ob->query_idname()+"裝備在「"+me->query_equipping_part(ob)+"」的部位上。\n", me, 0, 1);
                 }
 
                 return 1;
@@ -165,38 +165,38 @@ int main(object me, string arg)
                         equip_from_environment = 1;
                 }
                 else
-                        return notify_fail("这附近并没有 "+arg+" 这个物品。\n");
+                        return notify_fail("這附近並沒有 "+arg+" 這個物品。\n");
         }
 
         if( query_temp("no_wear", ob) )
         {
-                return notify_fail("还是试试别的吧！\n");
+                return notify_fail("還是試試別的吧！\n");
         }
 
         if( me->is_equipping_object(ob) )
-                return notify_fail(pnoun(2, me)+"已经将"+ob->query_idname()+"装备在「"+me->query_equipping_part(ob)+"」的部位上了。\n");
+                return notify_fail(pnoun(2, me)+"已經將"+ob->query_idname()+"裝備在「"+me->query_equipping_part(ob)+"」的部位上了。\n");
 
         if( !me->equip(ob, ref status) )
         {
                 switch(status)
                 {
-                        // 1: 此物件不是装备
-                        // 2: 无法装备在此物件上
-                        // 3: 不知此物件该装备在何处
-                        // 4: 已经有同种类的装备
-                        // 5: 已经装备在其他的部位上
+                        // 1: 此物件不是裝備
+                        // 2: 無法裝備在此物件上
+                        // 3: 不知此物件該裝備在何處
+                        // 4: 已經有同種類的裝備
+                        // 5: 已經裝備在其他的部位上
 
-                        case 1: return notify_fail(ob->query_idname()+"无法用来装备。\n"); break;
-                        case 2: return notify_fail(pnoun(2, me)+"似乎没有足够的能力来装备这个物品。\n"); break;
-                        case 3: return notify_fail(pnoun(2, me)+"不了解"+ob->query_idname()+"该装备在何处。\n"); break;
-                        case 4: return notify_fail(pnoun(2, me)+"身上该部位已经装备着其他物品。\n"); break;
-                        case 5: return notify_fail(ob->query_idname()+"已经装备在其他的部位上了。\n"); break;
-                        default: error("装备物品发生错误。\n"); break;
+                        case 1: return notify_fail(ob->query_idname()+"無法用來裝備。\n"); break;
+                        case 2: return notify_fail(pnoun(2, me)+"似乎沒有足夠的能力來裝備這個物品。\n"); break;
+                        case 3: return notify_fail(pnoun(2, me)+"不瞭解"+ob->query_idname()+"該裝備在何處。\n"); break;
+                        case 4: return notify_fail(pnoun(2, me)+"身上該部位已經裝備著其他物品。\n"); break;
+                        case 5: return notify_fail(ob->query_idname()+"已經裝備在其他的部位上了。\n"); break;
+                        default: error("裝備物品發生錯誤。\n"); break;
                 }
         }
         else
         {
-                msg("$ME将"+ob->query_idname()+"装备在「"+me->query_equipping_part(ob)+"」的部位上。\n", me, 0, 1);
+                msg("$ME將"+ob->query_idname()+"裝備在「"+me->query_equipping_part(ob)+"」的部位上。\n", me, 0, 1);
 
                 if( equip_from_environment )
                         ob->move(me, 1);
@@ -207,14 +207,14 @@ int main(object me, string arg)
 int help(object me)
 {
         string help = @HELP
-    装备物品的指令，无论是武器、防具、装饰品、团体武装都
-是利用此指令进行装备动作。
+    裝備物品的指令，無論是武器、防具、裝飾品、團體武裝都
+是利用此指令進行裝備動作。
 
-equip '物品'            - 装备某项物品
-equip -s 2              - 将目前身上装备之所有物品设定为 2 号套装
-equip -d 2              - 删除 2 号套装设定
-equip -l 2              - 查询 2 号套装设定
-equip 2                 - 将身上装备换装为 2 号套装
+equip '物品'            - 裝備某項物品
+equip -s 2              - 將目前身上裝備之所有物品設定為 2 號套裝
+equip -d 2              - 刪除 2 號套裝設定
+equip -l 2              - 查詢 2 號套裝設定
+equip 2                 - 將身上裝備換裝為 2 號套裝
 HELP;
         write(help);
         return 1;

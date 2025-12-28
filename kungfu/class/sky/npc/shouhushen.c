@@ -5,11 +5,11 @@ inherit NPC;
 void create()
 {
         set_name(HIR "望天涯" NOR, ({ "wang tianya", "wang", "tianya", "rcwiz"}));
-        set("title", HIY "二转守护天神" NOR);
+        set("title", HIY "二轉守護天神" NOR);
         set("gender", "男性");
         set("age", 28);
         set("long", @LONG
-望天涯乃二转关口守护大神，击败他便可以打通二转之门了，加油吧！
+望天涯乃二轉關口守護大神，擊敗他便可以打通二轉之門了，加油吧！
 LONG);
         set("attitude", "friendly");
         set("str", 100);
@@ -19,7 +19,7 @@ LONG);
         set("per", 30);
         set("shen_type", 0);
 
-        set("no_nuoyi", 1); // 不被挪移影响
+        set("no_nuoyi", 1); // 不被挪移影響
         
         set("qi", 200000000);
         set("max_qi", 200000000);
@@ -109,7 +109,7 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->start_busy(5 + random(6));
         me->receive_wound("qi", 8500 + random(5600), ob);
-        return HIY "$N" HIY "微微一笑，招随意转，竟逼得$n" HIY "手忙脚乱。\n" NOR;
+        return HIY "$N" HIY "微微一笑，招隨意轉，竟逼得$n" HIY "手忙腳亂。\n" NOR;
 }
 
 void heart_beat()
@@ -145,7 +145,7 @@ void die(object killer)
         myroom = this_object()->query("myroom");
         myroom->set("exits", ([ "up" : "/kungfu/class/sky/sky2zhuan" ]));
         
-        message_vision(HIR "一阵光芒闪过：通往天外桃源之门已经开启！\n" NOR, this_object());
+        message_vision(HIR "一陣光芒閃過：通往天外桃源之門已經開啟！\n" NOR, this_object());
         destruct(this_object());
 
         return;

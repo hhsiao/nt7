@@ -5,11 +5,11 @@ inherit F_DEALER;
 
 void create()
 {
-        set_name("小伙计", ({"huo ji"}));
+        set_name("小夥計", ({"huo ji"}));
         set("age", 18);
         set("gender", "男性");
-        set("long","包子铺的伙计，懒洋洋的看着你。\n");
-        set("shop_title", "包子铺伙计");
+        set("long","包子鋪的夥計，懶洋洋的看著你。\n");
+        set("shop_title", "包子鋪夥計");
         set("attitude", "friendly");
         set("combat_exp", 10000);
         set("shen_type", 1);
@@ -31,7 +31,7 @@ void create()
 
 int accept_fight(object me)
 {
-        command("say 这位大侠，小人那敢跟您动手啊！\n");
+        command("say 這位大俠，小人那敢跟您動手啊！\n");
         return 0;
 }
 
@@ -54,6 +54,6 @@ void greeting(object ob)
         if (! ob || ! visible(ob) || environment(ob) != environment())
                 return;
 
-        say(name()+"带理不理地说道：这位" +RANK_D->query_respect(ob) +
-            "，进来吃几个包子吧。\n");
+        say(name()+"帶理不理地說道：這位" +RANK_D->query_respect(ob) +
+            "，進來吃幾個包子吧。\n");
 }

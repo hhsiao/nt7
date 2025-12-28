@@ -11,17 +11,17 @@ mapping bunch_bad = ([
 	"bunch_name" : "紫禁城",
 	"id" : "zjc",
 	"place" : "yz",
-	"boss" : "眼总",
-	"place_name" : "扬州城",
+	"boss" : "眼總",
+	"place_name" : "揚州城",
 	"type"  : "bad",
 	]);
 
 void create()
 {
-        set_name("任务使者", ({ "quester" }));
+        set_name("任務使者", ({ "quester" }));
         set("gender", "男性");
         set("age", 23);
-        set("long", "他是一个长得很英俊的男子，看上去风流倜傥。\n");
+        set("long", "他是一個長得很英俊的男子，看上去風流倜儻。\n");
         set("bunch/bunch_name", bunch_bad["bunch_name"]);
         set("shen_type", -1);
         set("per", 29);

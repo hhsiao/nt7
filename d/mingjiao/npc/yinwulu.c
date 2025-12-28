@@ -7,13 +7,13 @@ inherit F_UNIQUE;
 
 void create()
 {
-        set_name("殷无禄", ({ "yin wulu", "yin", "wulu", }));
+        set_name("殷無祿", ({ "yin wulu", "yin", "wulu", }));
         set("long",
-        "他是一位老者，身穿一件白布长袍。\n"
-        "他是白眉鹰王殷天正的仆从。一双怪眼正恶狠狠地瞪着你呢！\n"
+        "他是一位老者，身穿一件白布長袍。\n"
+        "他是白眉鷹王殷天正的僕從。一雙怪眼正惡狠狠地瞪著你呢！\n"
         );
 
-        set("title", HIG "明教" HIC "天市堂" NOR "属下");
+        set("title", HIG "明教" HIC "天市堂" NOR "屬下");
         set("gender", "男性");
         set("attitude", "friendly");
         set("class", "fighter");
@@ -48,7 +48,7 @@ void create()
         map_skill("parry", "jingang-quan");
 
         prepare_skill("cuff", "jingang-quan");
-        create_family("明教", 4, "天市堂属下");
+        create_family("明教", 4, "天市堂屬下");
 
         setup();
 

@@ -1,4 +1,4 @@
-//nzlange3.c                四川唐门—碎石小路
+//nzlange3.c                四川唐門—碎石小路
 
 #include <ansi.h>
 #include <room.h>
@@ -8,8 +8,8 @@ void create()
 {
         set("short", "碎石小路");
         set("long",
-"这是一条碎石铺就的小路。一些唐门的弟子往来穿梭，这里还真是很\n"
-"热闹。这里向\n"
+"這是一條碎石鋪就的小路。一些唐門的弟子往來穿梭，這裡還真是很\n"
+"熱鬧。這裡向\n"
 );
         set("exits", ([
                         "west"  : __DIR__"nzlange2",

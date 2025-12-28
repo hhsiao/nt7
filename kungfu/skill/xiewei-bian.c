@@ -3,45 +3,45 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action": "$N单手一扬，一招「天蝎爪」，手中$w抖得笔直，直点$n的双眼",
+([      "action": "$N單手一揚，一招「天蠍爪」，手中$w抖得筆直，直點$n的雙眼",
         "force" : 100,
         "dodge" : 12,
         "parry" : 10,
         "damage": 5,
         "lvl"   : 0,
-        "damage_type": "刺伤"
+        "damage_type": "刺傷"
 ]),
-([      "action": "$N力贯鞭梢，一招「蝎尾钩」，手中$w舞出满天鞭影，横扫$n腰间",
+([      "action": "$N力貫鞭梢，一招「蠍尾鉤」，手中$w舞出滿天鞭影，橫掃$n腰間",
         "force" : 130,
         "dodge" : 17,
         "parry" : 15,
         "damage": 10,
         "lvl"   : 20,
-        "damage_type": "劈伤"
+        "damage_type": "劈傷"
 ]),
-([      "action": "$N运气于腕，一招「毒蝎蚀月」，手中$w向一根铜棍般直击$n胸部",
+([      "action": "$N運氣於腕，一招「毒蠍蝕月」，手中$w向一根銅棍般直擊$n胸部",
         "force" : 150,
         "dodge" : 21,
         "parry" : 19,
         "damage": 13,
         "lvl"   : 40,
-        "damage_type": "内伤"
+        "damage_type": "內傷"
 ]),
-([      "action": "$N单臂一挥，一招「蛇游蝎行」，手中$w直击向$n腰肋",
+([      "action": "$N單臂一揮，一招「蛇遊蠍行」，手中$w直擊向$n腰肋",
         "force" : 175,
         "dodge" : 32,
         "parry" : 27,
         "damage": 18,
         "lvl"   : 60,
-        "damage_type": "劈伤"
+        "damage_type": "劈傷"
 ]),
-([      "action": "$N高高跃起，一招「天蝎藏针」，手中$w笔直向$n当头刺下",
+([      "action": "$N高高躍起，一招「天蠍藏針」，手中$w筆直向$n當頭刺下",
         "force" : 225,
         "dodge" : 42,
         "parry" : 37,
         "damage": 35,
         "lvl"   : 80,
-        "damage_type": "刺伤"
+        "damage_type": "刺傷"
 ]),
 });
 
@@ -53,19 +53,19 @@ int valid_learn(object me)
 
         if( !objectp(weapon=query_temp("weapon", me) )
          || query("skill_type", weapon) != "whip" )
-                return notify_fail("你必须先找一条鞭子才能练习蝎尾鞭。\n");
+                return notify_fail("你必須先找一條鞭子才能練習蠍尾鞭。\n");
 
         if( query("max_neili", me)<400 )
-                return notify_fail("你的内力不足，没有办法练习蝎尾鞭。\n");
+                return notify_fail("你的內力不足，沒有辦法練習蠍尾鞭。\n");
 
         if ((int)me->query_skill("force") < 80)
-                return notify_fail("你的内功火候太浅。\n");
+                return notify_fail("你的內功火候太淺。\n");
 
         if ((int)me->query_skill("whip", 1) < 20)
-                return notify_fail("你的基本鞭法火候太浅。\n");
+                return notify_fail("你的基本鞭法火候太淺。\n");
 
         if ((int)me->query_skill("whip", 1) < (int)me->query_skill("xiewei-bian", 1))
-                return notify_fail("你的基本鞭法水平有限，无法领会更高深的蝎尾鞭。\n");
+                return notify_fail("你的基本鞭法水平有限，無法領會更高深的蠍尾鞭。\n");
 
         return 1;
 }
@@ -93,13 +93,13 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me) )
          || query("skill_type", weapon) != "whip" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if( query("qi", me)<60 )
-                return notify_fail("你的体力不够练蝎尾鞭。\n");
+                return notify_fail("你的體力不夠練蠍尾鞭。\n");
 
         if( query("neili", me)<60 )
-                return notify_fail("你的内力不够练蝎尾鞭。\n");
+                return notify_fail("你的內力不夠練蠍尾鞭。\n");
 
         me->receive_damage("qi", 50);
         addn("neili", -50, me);

@@ -29,16 +29,16 @@ int main(object me, string arg)
         if( arg == "levelup" )
         {
                 level = me->query_viplevel();
-                if( sizeof(vip_levelup) <= level ) return notify_fail("已达到最高等级！\n");
+                if( sizeof(vip_levelup) <= level ) return notify_fail("已達到最高等級！\n");
                 
                 score = vip_levelup["vip" + sprintf("%d", level+1)];
                 if( me->query_vipscore() < score )
-                        return notify_fail("成长值不足，可通过充值商城币或特殊活动期间直接购买道具增加成长值！\n");
+                        return notify_fail("成長值不足，可通過充值商城幣或特殊活動期間直接購買道具增加成長值！\n");
                            
                 addn("vip/score", -1 * score, me);   
                 addn("vip/level", 1, me);
                 
-                log_file("vip_uplevel", "玩家 " + me->query_idname() + " 升级为VIP" + sprintf("%d", me->query_viplevel()) + " at " + ctime(time()) + "\n");
+                log_file("vip_uplevel", "玩家 " + me->query_idname() + " 升級為VIP" + sprintf("%d", me->query_viplevel()) + " at " + ctime(time()) + "\n");
 
                 update_viplevel(me, level+1);
                 
@@ -53,7 +53,7 @@ int main(object me, string arg)
                 ob = UPDATE_D->global_find_player(arg); 
                 
                 if( !objectp(ob) ) 
-                        return notify_fail("没有找到玩家：" + arg + "\n");    
+                        return notify_fail("沒有找到玩家：" + arg + "\n");    
                          
                 help(ob);
                 
@@ -69,16 +69,16 @@ int main(object me, string arg)
                 ob = UPDATE_D->global_find_player(arg); 
                 
                 if( !objectp(ob) ) 
-                        return notify_fail("没有找到玩家：" + arg + "\n");    
+                        return notify_fail("沒有找到玩家：" + arg + "\n");    
                 
                 if( n < -10000 || n > 10000 )
-                        return notify_fail("输入金额须为-10000-10000之间。\n");
+                        return notify_fail("輸入金額須為-10000-10000之間。\n");
                         
                 addn("vip/score", n, ob);
                 
-                log_file("vip_upscore", me->query_idname()+" 添加玩家 " + ob->query_idname() + " 成长值：" + sprintf("%d", n) + " at " + ctime(time()) + "\n");
+                log_file("vip_upscore", me->query_idname()+" 添加玩家 " + ob->query_idname() + " 成長值：" + sprintf("%d", n) + " at " + ctime(time()) + "\n");
                 
-                write("添加玩家 " + ob->query_idname() + " 成长值：" + sprintf("%d", n) + "\n");
+                write("添加玩家 " + ob->query_idname() + " 成長值：" + sprintf("%d", n) + "\n");
                 
                 UPDATE_D->global_destruct_player(ob, 1);
                 return 1;
@@ -94,10 +94,10 @@ int update_viplevel(object me, int level)
 
         /*
         CHANNEL_D->channel_broadcast("news", HIG "恭喜" HIG + me->query_idname() + 
-                HIG "VIP等级提升到" HIM + "VIP" + sprintf("%d", level) + HIG "。\n" NOR);
+                HIG "VIP等級提升到" HIM + "VIP" + sprintf("%d", level) + HIG "。\n" NOR);
         */
         
-        write(HIG "\n恭喜你升级为" HIM "VIP" + sprintf("%d", level) + HIG "，VIP福利请参见 help myvip\n" NOR);
+        write(HIG "\n恭喜你升級為" HIM "VIP" + sprintf("%d", level) + HIG "，VIP福利請參見 help myvip\n" NOR);
         
         switch(level)
         {   
@@ -117,13 +117,13 @@ int update_viplevel(object me, int level)
                 set("vip/up3", 1, me);
                 ob1 = new("/clone/goods/luck_charm");
                 ob1->move(me, 1);
-                write(HIC "获得" + ob1->name() + HIC "x1\n" NOR);     
+                write(HIC "獲得" + ob1->name() + HIC "x1\n" NOR);     
                 ob1 = new("/clone/goods/luck_neck");
                 ob1->move(me, 1);
-                write(HIC "获得" + ob1->name() + HIC "x1\n" NOR);     
+                write(HIC "獲得" + ob1->name() + HIC "x1\n" NOR);     
                 ob1 = new("/clone/goods/luck_ring");
                 ob1->move(me, 1);
-                write(HIC "获得" + ob1->name() + HIC "x1\n" NOR);     
+                write(HIC "獲得" + ob1->name() + HIC "x1\n" NOR);     
                 break;
         case 4:
                 addn("energy", 3, me);
@@ -131,23 +131,23 @@ int update_viplevel(object me, int level)
                 set("vip/up4", 1, me);
                 ob1 = new("/clone/armor/zhanyao-xunzhang"); 
                 ob1->move(me, 1);
-                write(HIC "获得" + ob1->name() + HIC "x1\n" NOR);               
+                write(HIC "獲得" + ob1->name() + HIC "x1\n" NOR);               
                 
                 ob2 = new("/clone/medal/vip_xunzhang"); 
                 ob2->move(me, 1);
-                write(HIC "获得" + ob2->name() + HIC "x1\n" NOR);               
+                write(HIC "獲得" + ob2->name() + HIC "x1\n" NOR);               
                 
                 ob2 = new("/clone/medal/diamond_xunzhang"); 
                 ob2->move(me, 1);
-                write(HIC "获得" + ob2->name() + HIC "x1\n" NOR);               
+                write(HIC "獲得" + ob2->name() + HIC "x1\n" NOR);               
                 
                 ob3 = new("/clone/medal/yongshi_xunzhang"); 
                 ob3->move(me, 1);
-                write(HIC "获得" + ob3->name() + HIC "x1\n" NOR);       
+                write(HIC "獲得" + ob3->name() + HIC "x1\n" NOR);       
                 
                 ob4 = new("/clone/medal/daomu_xunzhang"); 
                 ob4->move(me, 1);
-                write(HIC "获得" + ob4->name() + HIC "x1\n" NOR);
+                write(HIC "獲得" + ob4->name() + HIC "x1\n" NOR);
                 break;
         case 5:
                 addn("energy", 3, me);
@@ -157,7 +157,7 @@ int update_viplevel(object me, int level)
                 addn("str", 5, me);
                 addn("con", 5, me);
                 addn("dex", 5, me);
-                write(HIC "先天悟性，臂力，身法和根骨分别各永久增加5点！\n" NOR);
+                write(HIC "先天悟性，臂力，身法和根骨分別各永久增加5點！\n" NOR);
                 break;
         case 6:
                 addn("energy", 3, me);
@@ -171,14 +171,14 @@ int update_viplevel(object me, int level)
                 break;  
         case 8:
                 set("vip/up8", 1, me);
-                write(HIM "拥有玄武护体神技。\n" NOR);
-                write(HIY "拥有战神无敌神技。\n" NOR);
-                write(HIR "浴血重生CD时间减少480秒。\n" NOR);
+                write(HIM "擁有玄武護體神技。\n" NOR);
+                write(HIY "擁有戰神無敵神技。\n" NOR);
+                write(HIR "浴血重生CD時間減少480秒。\n" NOR);
                 break;
         case 9:
                 set("vip/up9", 1, me);
-                write(HIR "浴血重生CD时间减少540秒。\n" NOR);
-                write(HIR "你的VIP等级达到至尊级别。\n" NOR);
+                write(HIR "浴血重生CD時間減少540秒。\n" NOR);
+                write(HIR "你的VIP等級達到至尊級別。\n" NOR);
                 break;
         
         }
@@ -194,23 +194,23 @@ int help(object me)
         
         level = me->query_viplevel();
         
-        str = HIY "\n==----------------VIP系统----------------==\n" NOR;
-        str += "VIP 等  级：" + sprintf("%d", level) + "\n";
-        str += "VIP 成长值：" + sprintf("%d", me->query_vipscore()) + "\n";
+        str = HIY "\n==----------------VIP系統----------------==\n" NOR;
+        str += "VIP 等  級：" + sprintf("%d", level) + "\n";
+        str += "VIP 成長值：" + sprintf("%d", me->query_vipscore()) + "\n";
         
         if( sizeof(vip_levelup) < level )
         {
-                str += "升级 所需：0\n";
+                str += "升級 所需：0\n";
         }
         else
         {
-                str += "升级需消耗：" + sprintf("%d 点成长值", vip_levelup["vip" + sprintf("%d", level+1)]) + "\n";
+                str += "升級需消耗：" + sprintf("%d 點成長值", vip_levelup["vip" + sprintf("%d", level+1)]) + "\n";
         }
         
         str += HIY "==---------------------------------------==\n" NOR;
-        str += HIC "指令：vip levelup 可升级VIP等级\n" NOR;
-        str += HIG "每充值或直接购买1RMB可获得1点VIP成长值。\n" NOR;
-        str += HIG "VIP相关福利请参见 help myvip\n" NOR;
+        str += HIC "指令：vip levelup 可升級VIP等級\n" NOR;
+        str += HIG "每充值或直接購買1RMB可獲得1點VIP成長值。\n" NOR;
+        str += HIG "VIP相關福利請參見 help myvip\n" NOR;
  
         write(str);
         return 1;

@@ -7,7 +7,7 @@ void setup()
         set_name("咳[2;37;0m[2;37;0m", ({"kei"}));        
         set("gender", "男性");                
         set("long", "咳[2;37;0m
-它是凌霄的魔幻兽。
+它是凌霄的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

@@ -3,10 +3,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "汇英酒楼");
+        set("short", "匯英酒樓");
         set("long", @LONG
-汇英酒楼里桌椅洁净，座中客人衣饰豪奢，十九都是富商
-大贾。这里可以俯瞰整个紫禁城的全景。
+匯英酒樓裡桌椅潔淨，座中客人衣飾豪奢，十九都是富商
+大賈。這裡可以俯瞰整個紫禁城的全景。
 LONG);
         set("exits", ([
                 "down" : "/d/beijing/huiying",
@@ -47,11 +47,11 @@ void check()
         if (! npc1 || ! npc2)
                 return 0;
 
-        message_vision(CYN "$N" CYN "打了个哈欠，说道：时间不"
-                       "早了，我们回去吧。\n$n" CYN "点了点头"
-                       "道：甚好，我们这就走吧。\n\n" HIY "说"
-                       "罢便见几人一齐站起，护着$N" HIY "离开"
-                       "了酒楼。\n\n" NOR, npc1, npc2);
+        message_vision(CYN "$N" CYN "打了個哈欠，說道：時間不"
+                       "早了，我們回去吧。\n$n" CYN "點了點頭"
+                       "道：甚好，我們這就走吧。\n\n" HIY "說"
+                       "罷便見幾人一齊站起，護著$N" HIY "離開"
+                       "了酒樓。\n\n" NOR, npc1, npc2);
 
         if (objectp(npc1))
                 destruct(npc1);

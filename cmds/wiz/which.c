@@ -14,7 +14,7 @@ int main(object me, string arg)
         file = me->find_command(arg);
         
         if (! file)
-                write("没有找到 " + arg + " 这个命令。\n");
+                write("沒有找到 " + arg + " 這個命令。\n");
         else
                 write(file + "\n" );
         return 1;
@@ -23,7 +23,7 @@ int help()
 {
         write(@TEXT
 指令格式：which <命令>
-这个指令可以找到某个命令在什么目录。
+這個指令可以找到某個命令在什麼目錄。
 TEXT
         );
         return 1;

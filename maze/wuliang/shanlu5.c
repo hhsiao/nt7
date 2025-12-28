@@ -4,11 +4,11 @@
 inherit ROOM;
 void create()
 {
-        set("short", "无量山路");
+        set("short", "無量山路");
 	set("long", @LONG
-你正走在一条崎岖不平的路上,四周是阴森森的原始老林,不时传来一阵阵
-的野兽叫声, 头顶有一些不知名的小鸟在跳来跳去。东边一条山路向上延伸，
-不知道通向哪里。
+你正走在一條崎嶇不平的路上,四周是陰森森的原始老林,不時傳來一陣陣
+的野獸叫聲, 頭頂有一些不知名的小鳥在跳來跳去。東邊一條山路向上延伸，
+不知道通向哪裡。
 LONG
 	);
 	set("exits", ([ /* sizeof() == 1 */
@@ -31,7 +31,7 @@ int valid_leave(object me, string dir)
           return 0;
           }       
         if( query_temp("ride_horse", me) )
-        return notify_fail("上山不宜骑马。\n");
+        return notify_fail("上山不宜騎馬。\n");
         }
         return ::valid_leave(me, dir);
 }

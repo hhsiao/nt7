@@ -1,6 +1,6 @@
 // blade.c
 // 自造物品 (by Find.)
-// 没有安全问题但太麻烦
+// 沒有安全問題但太麻煩
 
 #include <mine_def.h>
 #include <weapon.h>
@@ -112,13 +112,13 @@ protected void create(class weapon_args arg)
 
         else
         {
-                set_name("单刀", ({ "blade" }) );
+                set_name("單刀", ({ "blade" }) );
                 set_weight(5000);
                 set("value", 500);
                 set("material", "iron");
-                set("long", "这是一寻常的单刀，份量大约六、七斤重。\n");
+                set("long", "這是一尋常的單刀，份量大約六、七斤重。\n");
                 set("wield_msg", "$N抽出一把明晃晃的$n握在手中。\n");
-                set("unequip_msg", "$N将手中的$n插入腰间的刀鞘。\n");
+                set("unequip_msg", "$N將手中的$n插入腰間的刀鞘。\n");
                 init_blade(25);
         }
 

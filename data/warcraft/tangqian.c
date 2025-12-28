@@ -7,7 +7,7 @@ void setup()
         set_name("[1;37m小小希[2;37;0m[2;37;0m", ({"xxx"}));        
         set("gender", "女性");                
         set("long", "小小希[2;37;0m
-它是唐倩的魔幻兽。
+它是唐倩的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

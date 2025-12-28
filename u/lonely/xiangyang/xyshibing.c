@@ -9,16 +9,16 @@ int  is_stay_in_room()  { return 1; }
 
 void create()
 {
-        set_name(HIC "襄阳守军" NOR, ({"xiangyang shoujun", "shoujun" }));
+        set_name(HIC "襄陽守軍" NOR, ({"xiangyang shoujun", "shoujun" }));
         set("gender", "男性");
         set("age", 20 + random(20));
-        set("long", "这是一位襄阳的士兵，长年与蒙古人作战！");
+        set("long", "這是一位襄陽的士兵，長年與蒙古人作戰！");
         set("chat_chance", 120);
         set("chat_msg", ({ (: random_move :) }));
         
         set("no_get", 1);
 
-        // 襄阳士兵标志
+        // 襄陽士兵標誌
         set("xybing", 1);
 
         set_temp("apply/armor", 1000);
@@ -45,7 +45,7 @@ void create()
                 
         set_temp("born_time", time());
 
-        set_temp("dest_now", 0); // 撤退标记 0 为不撤退继续战斗
+        set_temp("dest_now", 0); // 撤退標記 0 為不撤退繼續戰鬥
 
         setup();
 
@@ -57,7 +57,7 @@ void create()
 
 int accept_fight(object ob)
 {
-        command("say 我可没兴趣陪你玩，快给我滚开。");
+        command("say 我可沒興趣陪你玩，快給我滾開。");
         return 0;
 }
 
@@ -68,12 +68,12 @@ int accept_hit(object ob)
 
 int accept_ansuan(object ob)
 {
-        return notify_fail("那人警惕性好高，你难以下手。\n");
+        return notify_fail("那人警惕性好高，你難以下手。\n");
 }
 
 int accept_touxi(object ob)
 {
-        return notify_fail("那人警惕性好高，你难以下手。\n");
+        return notify_fail("那人警惕性好高，你難以下手。\n");
 }
 
 void die()
@@ -90,14 +90,14 @@ void heart_beat()
         object env;
         string route;
         
-        // 接受调动
+        // 接受調動
         if (XYWAR_D->is_moved())
         {
                 env = environment(this_object());
                 
                 if (! objectp(env))return ::heart_beat();
                 
-                // 已经到了则不调动
+                // 已經到了則不調動
                 if (base_name(env) == XYWAR_D->xy_soldier_poision("env"))
                         return ::heart_beat();
                         
@@ -129,7 +129,7 @@ void random_move()
                 return;
         }
 
-        // 检查襄阳保卫战是否结束
+        // 檢查襄陽保衛戰是否結束
         if (XYWAR_D->dest_status() == 1)
         {
                 set_temp("dest_now", 1);
@@ -141,7 +141,7 @@ void random_move()
                 set_temp("dest_now", 1);
         }
 */
-        // 守护方位
+        // 守護方位
         route = query("route");
         
         if (stringp(route))command("guard " + route);
@@ -154,13 +154,13 @@ void init()
         if (! living(me) || me->query_temp("apply/invisible"))
                  return;
 
-        // 襄阳兵不相互战斗
+        // 襄陽兵不相互戰鬥
         if (! me->query("mgbing"))return;                        
 
         if (playerp(me))return;
 
-        // 延迟一定时间攻击
-        // 为了设置fighting标记也更真实
+        // 延遲一定時間攻擊
+        // 為了設置fighting標記也更真實
         call_out("do_kill", 1 + random(3), me);
         if (playerp(me))me->set("env/combatd",4);
 }
@@ -172,10 +172,10 @@ void do_kill(object me)
         if (! living(me) || me->query_temp("apply/invisible"))
                  return;
 
-        // 并不是每个对象都攻击，这样做是为了节约系统资源和更为真实
+        // 並不是每個對象都攻擊，這樣做是為了節約系統資源和更為真實
         if (me->is_fighting() && random(3) == 1)return;
 
-        // 只能同时攻击一个人
+        // 只能同時攻擊一個人
         if (this_object()->is_fighting())return;
 
         if (! "/cmds/std/kill"->main(this_object(), me->query("id")))

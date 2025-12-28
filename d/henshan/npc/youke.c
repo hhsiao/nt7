@@ -2,10 +2,10 @@ inherit NPC;
 
 void create()
 {
-    set_name("游客", ({ "you ke","ke","you"}));
+    set_name("遊客", ({ "you ke","ke","you"}));
     set("gender", "男性");
     set("age", 25);
-    set("long", "这是来衡山旅游的游客。\n");
+    set("long", "這是來衡山旅遊的遊客。\n");
     set("combat_exp", 2000);
     set("attitude", "friendly");
     setup();

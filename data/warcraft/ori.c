@@ -7,7 +7,7 @@ void setup()
         set_name("[1;33m天魔麒麟[2;37;0m[2;37;0m", ({"xixi"}));        
         set("gender", "女性");                
         set("long", "天魔麒麟[2;37;0m
-它是元始天魔的魔幻兽。
+它是元始天魔的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

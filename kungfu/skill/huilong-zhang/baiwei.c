@@ -19,26 +19,26 @@ int perform(object me, object target)
         if (userp(me) 
         && me->query_skill("huilong-zhang", 1) <120
          && !query("can_perform/huilong-zhang/baiwei", me) )
-                return notify_fail("你还不会使用「神龙摆尾」。\n");            
+                return notify_fail("你還不會使用「神龍擺尾」。\n");            
         
         if( !target ) target = offensive_target(me);
 
         if( !target || !me->is_fighting(target) )
-                return notify_fail("「神龙摆尾」只能在战斗中对对手使用。\n");
+                return notify_fail("「神龍擺尾」只能在戰鬥中對對手使用。\n");
 
         if( !objectp(query_temp("weapon", me) || query("skill_type", weapon) != "staff") )
-                return notify_fail("使用「神龙摆尾」时双手应该持杖！\n");
+                return notify_fail("使用「神龍擺尾」時雙手應該持杖！\n");
 
         if( (int)me->query_skill("huilong-zhang", 1) < 80 )
-                return notify_fail("你的回龙杖不够娴熟，不会使用「神龙摆尾」。\n");
+                return notify_fail("你的回龍杖不夠嫻熟，不會使用「神龍擺尾」。\n");
 
         if( (int)me->query_skill("shaolin-xinfa", 1) < 80 )
-                return notify_fail("你的内功等级不够，不能使用「神龙摆尾」。\n");
+                return notify_fail("你的內功等級不夠，不能使用「神龍擺尾」。\n");
      
         if( query("neili", me)<600 )
-                return notify_fail("你现在内力太弱，不能使用「神龙摆尾」。\n");
+                return notify_fail("你現在內力太弱，不能使用「神龍擺尾」。\n");
 
-        msg = HIY "$N长啸一声，将内力聚于手中钢杖，突然一个转身，手中钢杖点向$n！\n" NOR;
+        msg = HIY "$N長嘯一聲，將內力聚於手中鋼杖，突然一個轉身，手中鋼杖點向$n！\n" NOR;
 
         message_vision(msg, me, target); 
 

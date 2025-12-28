@@ -3,7 +3,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return HIR "九曦混阳" NOR; }
+string name() { return HIR "九曦混陽" NOR; }
 
 inherit F_SSERVER;
 
@@ -21,34 +21,34 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if (query_temp("weapon", me) || query_temp("secondary_weapon", me))
                 return notify_fail(name() + "只能空手施展。\n");
 
         if (query("max_neili", me) < 6000)
-                return notify_fail("你的内力的修为不够，现在无法使用" + name() + "。\n");
+                return notify_fail("你的內力的修為不夠，現在無法使用" + name() + "。\n");
 
         if (me->query_skill("jiuyang-shengong", 1) < 200)
-                return notify_fail("你的九阳神功还不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你的九陽神功還不夠嫻熟，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("unarmed") != "jiuyang-shengong")
-                return notify_fail("你现在没有激发九阳神功为拳脚，难以施展" + name() + "。\n");
+                return notify_fail("你現在沒有激發九陽神功為拳腳，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("force") != "jiuyang-shengong")
-                return notify_fail("你现在没有激发九阳神功为内功，难以施展" + name() + "。\n");
+                return notify_fail("你現在沒有激發九陽神功為內功，難以施展" + name() + "。\n");
 
         if (me->query_skill_prepared("unarmed") != "jiuyang-shengong")
-                return notify_fail("你现在没有准备使用九阳神功，难以施展" + name() + "。\n");
+                return notify_fail("你現在沒有準備使用九陽神功，難以施展" + name() + "。\n");
 
         if ((int)query("neili", me) < 500)
-                return notify_fail("你的真气不够，无法运用" + name() + "。\n");
+                return notify_fail("你的真氣不夠，無法運用" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIR "$N" HIR "大喝一声，顿时一股浩荡无比的真气至体内迸发，双掌"
-              "猛然翻滚，朝$n" HIR "闪电般拍去。\n" NOR;
+        msg = HIR "$N" HIR "大喝一聲，頓時一股浩蕩無比的真氣至體內迸發，雙掌"
+              "猛然翻滾，朝$n" HIR "閃電般拍去。\n" NOR;
 
         ap = attack_power(me, "unarmed") + me->query_con()*10;
         dp = defense_power(target, "parry") + target->query_con()*10;
@@ -56,12 +56,12 @@ int perform(object me, object target)
         if (ap / 2 + random(ap) > dp)
         {
                 count = ap / 9;
-                msg += HIR "$n" HIR "只觉周围空气炽热无比，又见无数气团向"
-                       "自己袭来，顿感头晕目眩，不知该如何抵挡。\n" NOR;
+                msg += HIR "$n" HIR "只覺周圍空氣熾熱無比，又見無數氣團向"
+                       "自己襲來，頓感頭暈目眩，不知該如何抵擋。\n" NOR;
         } else
         {
-                msg += HIY "$n" HIY "只见$N" HIY "无数气团向自己袭来，连"
-                       "忙强振精神，勉强抵挡。\n" NOR;
+                msg += HIY "$n" HIY "只見$N" HIY "無數氣團向自己襲來，連"
+                       "忙強振精神，勉強抵擋。\n" NOR;
                 count = 0;
         }
 

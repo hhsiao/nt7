@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "粮仓");
+        set("short", "糧倉");
         set("long", @LONG
-这里就是荆州粮仓了，地上堆着许多麻袋，大概装的是包谷大米
-之类的粮食。
+這裡就是荊州糧倉了，地上堆著許多麻袋，大概裝的是包穀大米
+之類的糧食。
 LONG );
         set("exits", ([
                 "west" : __DIR__"lcmen",

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("可口可乐[2;37;0m[2;37;0m", ({"cokee"}));        
+        set_name("可口可樂[2;37;0m[2;37;0m", ({"cokee"}));        
         set("gender", "男性");                
-        set("long", "可口可乐[2;37;0m
-它是逍地的魔幻兽。
+        set("long", "可口可樂[2;37;0m
+它是逍地的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

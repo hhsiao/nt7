@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;33m间条小猫[2;37;0m[2;37;0m", ({"ttiger"}));        
+        set_name("[1;33m間條小貓[2;37;0m[2;37;0m", ({"ttiger"}));        
         set("gender", "女性");                
         set("long", "HAHAHA[2;37;0m
-它是影月的魔幻兽。
+它是影月的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

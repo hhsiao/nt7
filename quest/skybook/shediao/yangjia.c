@@ -3,19 +3,19 @@
 
 inherit ROOM;
 #include <ansi.h>
-#define QUESTDIR "quest/射雕英雄传/风雪惊变/"
+#define QUESTDIR "quest/射鵰英雄傳/風雪驚變/"
 void create()
 {
-	set("short", "杨家小屋");
+	set("short", "楊家小屋");
 	set("long", @LONG
-这是一座十分清爽的民房，家具摆设一应俱全，只是都附着一层灰土。屋
-子中间是一张小桌，桌上的杯碗还都没有撤去，看来主人去的很匆忙。墙上挂
-着一杆短柄生了锈的铁枪(Tieqiang)。
+這是一座十分清爽的民房，傢俱擺設一應俱全，只是都附著一層灰土。屋
+子中間是一張小桌，桌上的杯碗還都沒有撤去，看來主人去的很匆忙。牆上掛
+著一杆短柄生了鏽的鐵槍(Tieqiang)。
 LONG
 	);
 
 	set("item_desc", ([
-		"tieqiang" : "一杆用旧了的铁枪，看起来原来应该有一对的，不知为何只剩了一杆。\n",
+		"tieqiang" : "一杆用舊了的鐵槍，看起來原來應該有一對的，不知為何只剩了一杆。\n",
 	]) );
 
 	set("exits", ([
@@ -36,10 +36,10 @@ void init()
 		  &&!me->query_temp(QUESTDIR+"have_kill")
      &&!me->query_temp(QUESTDIR+"kill"))
   {
-     tell_object(me,HIC"杨铁心怒气填膺，开门走出，大声喝道：“我就是杨铁心！你们干甚么？”两名兵丁吓了一跳，丢下火把转身退开。”\n" 
-                       "火光中一名武官拍马走近，叫道：“好，你是杨铁心，跟我见官去。拿下了！”四五名兵丁一拥而上。杨铁心倒转枪来，\n"NOR+
-                    RED"一招“白虹经天”，把三名兵丁扫倒在地，又是一招“春雷震怒”，枪柄跳起一兵，惯入了人堆，喝道：“要拿人，先得说说我犯了甚么罪。”\n"NOR); 
-     message_vision(HIR"\n金兵突然看见$N你冲进来，全体一愣，突然一个金兵甲说道：“敢挡大爷捉拿要犯，给我杀了。”\n"NOR, me);
+     tell_object(me,HIC"楊鐵心怒氣填膺，開門走出，大聲喝道：“我就是楊鐵心！你們幹甚麼？”兩名兵丁嚇了一跳，丟下火把轉身退開。”\n" 
+                       "火光中一名武官拍馬走近，叫道：“好，你是楊鐵心，跟我見官去。拿下了！”四五名兵丁一擁而上。楊鐵心倒轉槍來，\n"NOR+
+                    RED"一招“白虹經天”，把三名兵丁掃倒在地，又是一招“春雷震怒”，槍柄跳起一兵，慣入了人堆，喝道：“要拿人，先得說說我犯了甚麼罪。”\n"NOR); 
+     message_vision(HIR"\n金兵突然看見$N你衝進來，全體一愣，突然一個金兵甲說道：“敢擋大爺捉拿要犯，給我殺了。”\n"NOR, me);
      obj=new(__DIR__"npc/jinbing");
      obj->set("kill_id",me->query("id"));
      obj->move(environment(me));      
@@ -66,18 +66,18 @@ void killme(object me)
      obj=new(__DIR__"npc/jinbing");
      obj->set("kill_id",me->query("id"));
      obj->move(environment(me)); 
-     tell_object(me,HIG"\n\n你只感觉这金兵甲行事为何如此卑鄙，居然不分青红皂白杀人，不由火气暴涨，立刻对金兵发动攻击。\n"NOR); 
+     tell_object(me,HIG"\n\n你只感覺這金兵甲行事為何如此卑鄙，居然不分青紅皂白殺人，不由火氣暴漲，立刻對金兵發動攻擊。\n"NOR); 
      obj->unconcious();
   }  
 }
 int valid_leave(object me, string dir)
 {
        if (me->is_fighting())
-                return notify_fail(RED"\n金兵大声喝道：哪里走。一把拦住你，你竟然无法离开。\n"NOR);
+                return notify_fail(RED"\n金兵大聲喝道：哪裡走。一把攔住你，你竟然無法離開。\n"NOR);
        if (present("jin bing",this_object()))
-                return notify_fail(RED"\n金兵大声喝道：哪里走。一把拦住你，你竟然无法离开。\n"NOR);
+                return notify_fail(RED"\n金兵大聲喝道：哪裡走。一把攔住你，你竟然無法離開。\n"NOR);
    		if(me->query_condition("killer")) 
-   		          return notify_fail(RED"\n怎么进来的？？这里等wiz吧。\n"NOR);
+   		          return notify_fail(RED"\n怎麼進來的？？這裡等wiz吧。\n"NOR);
         return ::valid_leave(me, dir);
 }
 

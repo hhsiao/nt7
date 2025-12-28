@@ -16,7 +16,7 @@ int main(object me, string arg)
                 return 0; 
 
         if( !me->is_admin() )
-                return notify_fail("你不能使用该命令。\n"); 
+                return notify_fail("你不能使用該命令。\n"); 
 
         if( !arg )
                 return notify_fail("指令格式: eval <LPC 命令>\n");
@@ -25,7 +25,7 @@ int main(object me, string arg)
         filename=user_path(query("id", me));
 
         if( get_dir(filename) == 0 )
-                        return notify_fail("你没有私人工作目录，不能使用此指令！\n");
+                        return notify_fail("你沒有私人工作目錄，不能使用此指令！\n");
 
         filename+=("eval_"+query("id", me)+".c");
 
@@ -64,7 +64,7 @@ EndText
         cost -= eval_cost();
         if (!err)
         {
-                        write(sprintf("传回值为: %O\n执行指令数：%d\n执行成功\。\n", ret,cost));
+                        write(sprintf("傳回值為: %O\n執行指令數：%d\n執行成功\。\n", ret,cost));
                 rm(filename);
                 if( ret=find_object(filename) ) destruct(ret);
                 set("channel_id", sprintf("%s(%s)", me->name(),
@@ -72,7 +72,7 @@ EndText
                 CHANNEL_D->do_channel(this_object(), "sys",
                         sprintf("eval %s", arg));
         }
-        else write("执行失败！\n");
+        else write("執行失敗！\n");
         return 1;
 }
 
@@ -94,11 +94,11 @@ string doith(string arg) {
                         if(strlen(inp[i])==j+1) {
                                 if(sizeof(inp) == i+1) {
                                         if (cnt>0)
-                                                write("!!!!!! 你多写了 "+cnt+"一个左括号「(」。!!!!!!\n");
+                                                write("!!!!!! 你多寫了 "+cnt+"一個左括號「(」。!!!!!!\n");
                                         else if(cnt<0)
-                                                write("!!!!!! 你多写了 "+(-cnt)+ "一个右括号「)」。!!!!!!\n");
+                                                write("!!!!!! 你多寫了 "+(-cnt)+ "一個右括號「)」。!!!!!!\n");
                                         else if(poq)
-                                                write("!!!!!! 字串不正常结束 !!!\n");
+                                                write("!!!!!! 字串不正常結束 !!!\n");
                                         // error or no error we return here at the end
                                         return "\t"+implode(inp, ";\n\t");
                                                                         }
@@ -115,7 +115,7 @@ int help(object me)
 write(@HELP
 指令格式 : eval <LPC 命令>
 
-执行指定的 LPC 命令。
+執行指定的 LPC 命令。
 
 例如：evalthis_player()->set("test",({"test_data"}) )
 

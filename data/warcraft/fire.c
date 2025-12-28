@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;33m灵书妙探[2;37;0m[2;37;0m", ({"castle"}));        
+        set_name("[1;33m靈書妙探[2;37;0m[2;37;0m", ({"castle"}));        
         set("gender", "男性");                
-        set("long", "灵书妙探[2;37;0m
-它是冰火之歌的魔幻兽。
+        set("long", "靈書妙探[2;37;0m
+它是冰火之歌的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

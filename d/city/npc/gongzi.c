@@ -17,21 +17,21 @@ void create()
         set("cps", 25);
         set("int", 25);
         set("long",
-        "这是个眉清目秀的青年公子，但精神颓废，一身酒气熏人，想必是在酒色场中淘空了身子。\n" );
+        "這是個眉清目秀的青年公子，但精神頹廢，一身酒氣熏人，想必是在酒色場中淘空了身子。\n" );
 
         set("combat_exp", 20000);
         set("attitude", "heroism");
         set("chat_chance", 15);
         set("chat_msg", ({
-                "公子说道: 哈哈，终于得到"HIR"鬼三"NOR"的传家宝了，! \n",
+                "公子說道: 哈哈，終於得到"HIR"鬼三"NOR"的傳家寶了，! \n",
                 (: random_move :)
         }) );
 
         set("chat_chance_combat", 15);
         set("chat_msg_combat", ({
-                "公子说道: 你当真吃了豹子胆啦 ? 你知道我是谁 ! \n",
-                "公子忽然发出一剑，招数精奇，但剑到中途却又急忙收招。\n",
-                "公子说道: 快离开我 ! 我不能打架了 !....\n"
+                "公子說道: 你當真吃了豹子膽啦 ? 你知道我是誰 ! \n",
+                "公子忽然發出一劍，招數精奇，但劍到中途卻又急忙收招。\n",
+                "公子說道: 快離開我 ! 我不能打架了 !....\n"
         }) );
 
         set("inquiry", ([
@@ -61,12 +61,12 @@ string ask_me(object who)
                 {
                         kill_ob(who);
                         who->fight_ob(this_object());
-                        return "知道我秘密的人都得死，纳命来吧！\n";
+                        return "知道我秘密的人都得死，納命來吧！\n";
                 }
         }
 
         if ((random(10) < 5) || is_fighting())
-                return "这个......\n";
+                return "這個......\n";
 
         set_temp("apply/attack",  50);
         set_temp("apply/defense", 50);
@@ -74,7 +74,7 @@ string ask_me(object who)
 
 
         message("vision",
-                HIY "落魄公子眼中突然放出兽性的光芒，怒声说道，好小了,既然你是鬼三派来的,就去死吧？！\n"NOR,
+                HIY "落魄公子眼中突然放出獸性的光芒，怒聲說道，好小了,既然你是鬼三派來的,就去死吧？！\n"NOR,
                 environment(), this_object());
 
         set("title", HIB"鬼手"NOR);

@@ -12,9 +12,9 @@ void create()
 {
         set("short", "蛇谷");
         set("long", @LONG
-蛇谷是欧阳世家中最险恶的密境，栖息了无数毒蛇，因而得名。
-此处便是进入欧阳世家蛇谷的要冲，巨大而狭长的山口，便像是张大
-了的蛇口。谷前十数丈内的土地寸草不生，
+蛇谷是歐陽世家中最險惡的密境，棲息了無數毒蛇，因而得名。
+此處便是進入歐陽世家蛇谷的要衝，巨大而狹長的山口，便像是張大
+了的蛇口。谷前十數丈內的土地寸草不生，
 LONG );
 
         set("exits", ([ 
@@ -24,8 +24,8 @@ LONG );
 
         set("item_desc", ([
                 "mist" : (: look_mist :),
-                "雾"   : (: look_mist :),
-                "红雾" : (: look_mist :),
+                "霧"   : (: look_mist :),
+                "紅霧" : (: look_mist :),
         ]));
 
         set("defense", 1);
@@ -45,13 +45,13 @@ string long()
         
         if( query("defense") )
                 msg  += 
-"土里冒出阵阵红雾(mist)，弥漫整个谷口，气氛相当诡异。山谷"
-"的外围却是碧草如茵，偶尔有些胆大的牧民在此放牧。谷底是一条人马踩出来的"
+"土裡冒出陣陣紅霧(mist)，瀰漫整個谷口，氣氛相當詭異。山谷"
+"的外圍卻是碧草如茵，偶爾有些膽大的牧民在此放牧。谷底是一條人馬踩出來的"
 "小道。";        
                 else 
         msg  += 
-"山谷的外围却是碧草如茵，偶尔有些胆大的牧民在此放牧。谷底"
-"是一条人马踩出来的小道。";
+"山谷的外圍卻是碧草如茵，偶爾有些膽大的牧民在此放牧。谷底"
+"是一條人馬踩出來的小道。";
 
         return sort_string(msg, 64, 4);
 }
@@ -61,13 +61,13 @@ string look_mist()
         string desc;
         if( query("defense") ) 
         {
-                desc =  RED"一片血红色的雾气，不断从土里腾腾冒出，瑰丽之中，又显得十分诡谲。\n"NOR;
-                if( query("family/family_name", this_player()) == "欧阳世家" )
-                desc += "欧阳世家庄在地下建有密窖，欧阳锋将蛇场中的剧毒蛇种养在窖中，\n"
-                        "利用群蛇呼出的毒气做为屏障，以防外敌闯入蛇谷，毁了他捕蛇修炼的重地。\n";
+                desc =  RED"一片血紅色的霧氣，不斷從土裡騰騰冒出，瑰麗之中，又顯得十分詭譎。\n"NOR;
+                if( query("family/family_name", this_player()) == "歐陽世家" )
+                desc += "歐陽世家莊在地下建有密窖，歐陽鋒將蛇場中的劇毒蛇種養在窖中，\n"
+                        "利用群蛇呼出的毒氣做為屏障，以防外敵闖入蛇谷，毀了他捕蛇修煉的重地。\n";
                 return desc;
         }
-        else return "本来弥漫谷口的红雾，现在完全消失了。\n";
+        else return "本來瀰漫谷口的紅霧，現在完全消失了。\n";
 }
 
 int valid_leave(object me, string dir)
@@ -77,15 +77,15 @@ int valid_leave(object me, string dir)
         if (dir == "northdown") 
         {
                 if (me->query_skill("poison",1)<100)
-                        return notify_fail("蛇谷乃剧毒之地，不懂点用毒解毒之术怎敢进入？\n"); 
+                        return notify_fail("蛇谷乃劇毒之地，不懂點用毒解毒之術怎敢進入？\n"); 
                 if( !query("baituo/shegu_permit", me) && query("defense") )
-                        return notify_fail("你看着弥漫谷前的红雾，稍微走近，忽觉腥臭扑鼻，感觉竟有些晕眩。\n看来这是极为厉害的毒雾，难以强行通过。\n");
+                        return notify_fail("你看著瀰漫谷前的紅霧，稍微走近，忽覺腥臭撲鼻，感覺竟有些暈眩。\n看來這是極為厲害的毒霧，難以強行通過。\n");
 
-                if( query("family/family_name", me) == "欧阳世家"
+                if( query("family/family_name", me) == "歐陽世家"
                  && !query("baituo/shegu_permit", me) )
-                        return notify_fail("你想了一想，觉得未经庄主欧阳锋许可，还是别擅闯蛇谷得好。\n");
+                        return notify_fail("你想了一想，覺得未經莊主歐陽鋒許可，還是別擅闖蛇谷得好。\n");
                 if( query("baituo/shegu_permit", me) && query("defense") )
-                        message_vision("$N无视於毒雾，大步走进了蛇谷。\n", me);
+                        message_vision("$N無視於毒霧，大步走進了蛇谷。\n", me);
         }
         return ::valid_leave(me,dir);
 }

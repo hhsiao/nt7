@@ -19,12 +19,12 @@ void create()
 {
         object ob;
 
-        set_name("小龙女", ({ "xiao longnv", "xiao", "longnv" }));
+        set_name("小龍女", ({ "xiao longnv", "xiao", "longnv" }));
         set("gender", "女性");
         set("age", 22);
         set("long", @LONG
-她一生爱穿白衣，当真如风拂玉树，雪裹琼苞，
-兼之生性清冷，实当得起“冷浸溶溶月”的形
+她一生愛穿白衣，當真如風拂玉樹，雪裹瓊苞，
+兼之生性清冷，實當得起“冷浸溶溶月”的形
 容。
 LONG);
         set("attitude", "friendly");
@@ -89,12 +89,12 @@ LONG);
         set("yfzhen_count", 3);
 
         set("inquiry", ([
-                "过儿" : "他就在正厅啊。",
-                "剑"   : (: ask_me :),
-                "玉女剑法" : "玉女剑法和全真剑法合璧，天下无敌！\n",
-                "古墓派" : "我的林祖师爷爷本来和重阳先师是一对璧人，可是...\n",
-                "玉蜂针"   : (: ask_zhen :),
-                "玉女心经秘籍": (: ask_yunv :),
+                "過兒" : "他就在正廳啊。",
+                "劍"   : (: ask_me :),
+                "玉女劍法" : "玉女劍法和全真劍法合璧，天下無敵！\n",
+                "古墓派" : "我的林祖師爺爺本來和重陽先師是一對璧人，可是...\n",
+                "玉蜂針"   : (: ask_zhen :),
+                "玉女心經秘籍": (: ask_yunv :),
         ]));
 
         set_temp("apply/attack", 150);
@@ -141,11 +141,11 @@ void attempt_apprentice(object ob)
 
         if( query("per", ob)<20 )
         {
-                command("say 尊容实在不敢恭维，我看你还是算了吧。\n");
+                command("say 尊容實在不敢恭維，我看你還是算了吧。\n");
                 return;
         }
 
-        command("say 好吧，我就收下你这个徒儿了。\n");
+        command("say 好吧，我就收下你這個徒兒了。\n");
         command("recruit "+query("id", ob));
 }
 
@@ -157,13 +157,13 @@ string ask_yunv()
         if( !(fam=query("family", this_player())) || 
                 fam["family_name"] != "古墓派")
                 return RANK_D->query_respect(this_player()) +
-                "与本派毫无瓜葛，何以问起本派的心经？";
+                "與本派毫無瓜葛，何以問起本派的心經？";
         if (query("book_count") < 1)
-                return "你来晚了，本派的玉女心经已经被人取走了。";
+                return "你來晚了，本派的玉女心經已經被人取走了。";
         addn("book_count", -1);
         ob = new("/clone/book/yunvjing1");
         ob->move(this_player());
-        return "好吧，这本「玉女心经」你拿回去好好研读。";
+        return "好吧，這本「玉女心經」你拿回去好好研讀。";
 }
 
 string ask_zhen()
@@ -175,37 +175,37 @@ string ask_zhen()
         me = this_player();
 
         if( !(fam=query("family", me)) || fam["family_name"] != "古墓派" )
-                return RANK_D->query_respect(me) + "与本派毫无瓜葛，何以问"
+                return RANK_D->query_respect(me) + "與本派毫無瓜葛，何以問"
                 "起本派暗器？\n";
 
         if (me->query_skill("yufeng-zhen", 1) < 100)
-                return RANK_D->query_respect(me) + "的玉蜂针手法火候还不到家"
-                "，拿了玉蜂针也没有什么用。\n";
+                return RANK_D->query_respect(me) + "的玉蜂針手法火候還不到家"
+                "，拿了玉蜂針也沒有什麼用。\n";
 
         if (query("yfzhen_count") < 1)
-                return "你来晚了，我手头的玉蜂针已经发完了。\n";
+                return "你來晚了，我手頭的玉蜂針已經發完了。\n";
 
         addn("yfzhen_count", -1);
 
-        message_vision(HIY "$N拿出一根玉蜂针递给$n。\n" NOR, this_object(), me);
+        message_vision(HIY "$N拿出一根玉蜂針遞給$n。\n" NOR, this_object(), me);
 
         ob = new("/d/gumu/obj/yufeng-zhen");
         ob->move(me, 1);
 
-        return "好吧，这根玉蜂针你先拿去用吧。\n";
+        return "好吧，這根玉蜂針你先拿去用吧。\n";
 }
 
 int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "历练" :
-        case "历炼" :
-        case "锻炼" :
+        case "歷練" :
+        case "歷煉" :
+        case "鍛鍊" :
                 return QUEST_D->accept_ask(this_object(), me, topic);
                 break;
 
-        case "银索金铃" :
+        case "銀索金鈴" :
                 return MASTER_D->give_item(me, this_object(),
                         ([ "item"    : YINSUO,
                            "master"  : 1,
@@ -223,41 +223,41 @@ int accept_ask(object me, string topic)
                            "gongxian": 50, ]));
                 break;
 
-        case "隔空点穴" :
+        case "隔空點穴" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/yinsuo-jinling/dian",
-                           "name"    : "隔空点穴",
+                           "name"    : "隔空點穴",
                            "sk1"     : "yinsuo-jinling",
                            "lv1"     : 70,
                            "force"   : 90,
                            "gongxian": 260, ]));
                 break;
 
-        case "玉女绝情" :
+        case "玉女絕情" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/meinv-quan/jue",
-                           "name"    : "玉女绝情",
+                           "name"    : "玉女絕情",
                            "sk1"     : "meinv-quan",
                            "lv1"     : 35,
                            "dodge"   : 30,
                            "gongxian": 50, ]));
                 break;
 
-        case "无影针" :
+        case "無影針" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/yufeng-zhen/ying",
-                           "name"    : "无影针",
+                           "name"    : "無影針",
                            "sk1"     : "yufeng-zhen",
                            "lv1"     : 90,
                            "force"   : 100,
                            "gongxian": 300, ]));
                 break;
 
-        case "双剑合璧" :
-        case "双剑合壁" :
+        case "雙劍合璧" :
+        case "雙劍合壁" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/yunv-jian/he",
-                           "name"    : "双剑合壁",
+                           "name"    : "雙劍合壁",
                            "sk1"     : "yunv-jian",
                            "lv1"     : 130,
                            "force"   : 120,
@@ -266,20 +266,20 @@ int accept_ask(object me, string topic)
 
                 break;
 
-        case "连环剑术" :
+        case "連環劍術" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/yunv-jian/lian",
-                           "name"    : "连环剑术",
+                           "name"    : "連環劍術",
                            "sk1"     : "yunv-jian",
                            "lv1"     : 130,
                            "gongxian": 660, ]));
 
                 break;
 
-        case "天罗地网" :
+        case "天羅地網" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/tianluo-diwang/wang",
-                           "name"    : "天罗地网",
+                           "name"    : "天羅地網",
                            "sk1"     : "tianluo-diwang",
                            "lv1"     : 130,
                            "sk2"     : "dodge",
@@ -298,13 +298,13 @@ string ask_me()
         object ob;
 
         if (query("count") < 1)
-                return "现在我手头也没有了。";
+                return "現在我手頭也沒有了。";
 
         addn("count", -1);
         //ob=new("/d/gumu/npc/obj/junzijian");
         ob=new(__DIR__"obj/junzijian");
         ob->move(this_player(), 1);
-        return "这柄君子剑就送给你吧。";
+        return "這柄君子劍就送給你吧。";
 }
 
 void reset()

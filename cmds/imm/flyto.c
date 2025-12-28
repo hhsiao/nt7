@@ -14,7 +14,7 @@ int main(object me, string arg)
         if (! SECURITY_D->valid_grant(me, "(immortal)"))
                 return 0;
 
-        if (! arg) return notify_fail("你要飞到哪儿去？\n");
+        if (! arg) return notify_fail("你要飛到哪兒去？\n");
 
         obj = MESSAGE_D->find_user(arg);
         if (! obj) obj = find_living(arg);
@@ -26,7 +26,7 @@ int main(object me, string arg)
                 {
                         if (file_size(arg) >= 0)
                                 return me->move(arg);
-                        return notify_fail("没有这个玩家、生物、或地方。\n");
+                        return notify_fail("沒有這個玩家、生物、或地方。\n");
                 }
         }
 
@@ -34,17 +34,17 @@ int main(object me, string arg)
                        obj = environment(obj);
 
         if (obj == environment(me))
-                return notify_fail("不就在你面前么？乱飞个啥？\n");
+                return notify_fail("不就在你面前麼？亂飛個啥？\n");
 
-        if (! obj) return notify_fail("这个物件没有环境可以 flyto。\n");
-        tell_object(me, "咦，怎么还不起飞呢？……\n");
-        tell_object(me, "呵呵呵呵，飞了飞了！小小巫师飞呀飞……！\n");
+        if (! obj) return notify_fail("這個物件沒有環境可以 flyto。\n");
+        tell_object(me, "咦，怎麼還不起飛呢？……\n");
+        tell_object(me, "呵呵呵呵，飛了飛了！小小巫師飛呀飛……！\n");
         if( !query("env/invisible", me) )
-                message("vision", me->name() + "轻飘飘的飞了起来。\n",
+                message("vision", me->name() + "輕飄飄的飛了起來。\n",
                         environment(me), ({ me }));
-        tell_object(me, "到了？到了！降落喽！！！\n");
+        tell_object(me, "到了？到了！降落嘍！！！\n");
         if( !query("env/invisible", me) )
-                message("vision", me->name() + "从天上慢慢的落了下来。\n", obj);
+                message("vision", me->name() + "從天上慢慢的落了下來。\n", obj);
         me->move(obj);
         return 1;
 }
@@ -52,7 +52,7 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式 : flyto <目标>
+指令格式 : flyto <目標>
 HELP);
             return 1;
 }

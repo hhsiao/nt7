@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define ZHE "「" HIG "只手遮天" NOR "」"
+#define ZHE "「" HIG "隻手遮天" NOR "」"
 
 inherit F_SSERVER;
 
@@ -19,34 +19,34 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(ZHE "只能对战斗中的对手使用。\n");
+                return notify_fail(ZHE "只能對戰鬥中的對手使用。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(ZHE "只能空手施展。\n");
 
         if ((int)me->query_skill("xuanming-shengong", 1) < 150)
-                return notify_fail("你的玄冥神功火候不够，无法施展" ZHE "。\n");
+                return notify_fail("你的玄冥神功火候不夠，無法施展" ZHE "。\n");
 
         if ((int)me->query_skill("xuanming-zhang", 1) < 150)
-                return notify_fail("你的玄冥神掌不够熟练，无法施展" ZHE "。\n");
+                return notify_fail("你的玄冥神掌不夠熟練，無法施展" ZHE "。\n");
 
         if (me->query_skill_mapped("force") != "xuanming-shengong")
-                return notify_fail("你没有激发玄冥神功为内功，无法施展" ZHE "。\n");
+                return notify_fail("你沒有激發玄冥神功為內功，無法施展" ZHE "。\n");
 
         if (me->query_skill_prepared("strike") != "xuanming-zhang")
-                return notify_fail("你没有准备玄冥神掌，无法施展" ZHE "。\n");
+                return notify_fail("你沒有準備玄冥神掌，無法施展" ZHE "。\n");
 
         if( query("max_neili", me)<2000 )
-                return notify_fail("你的内力修为不足，无法施展" ZHE "。\n");
+                return notify_fail("你的內力修為不足，無法施展" ZHE "。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你的真气不够，无法施展" ZHE "。\n");
+                return notify_fail("你的真氣不夠，無法施展" ZHE "。\n");
 
        if (! living(target))
-              return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+              return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "\n$N" HIW "运起玄冥神功，全身浮现出一层紫气，猛然间双掌翻腾不息，施"
-                  "展出绝招「" HIG "只手遮天" HIW "」，携带着万古至毒至寒之气的掌劲"
+        msg = HIW "\n$N" HIW "運起玄冥神功，全身浮現出一層紫氣，猛然間雙掌翻騰不息，施"
+                  "展出絕招「" HIG "隻手遮天" HIW "」，攜帶著萬古至毒至寒之氣的掌勁"
                   "攻向$n" HIW "！\n"NOR;  
 
         lvl = me->query_skill("xuanming-zhang", 1);
@@ -65,9 +65,9 @@ int perform(object me, object target)
                 if( query("max_neili", target)*3/5>query("max_neili", me) )
                 {
                         message_sort(msg, me, target);
-                        message_sort(HIM "$N" HIM "一掌打在$n" HIM "身上，猛然间气血翻腾，一股阴寒之气竟"
-                                     "反噬回来，$N" HIM "抵御不住，寒毒侵入体内。$N" HIM "闷哼一声，一"
-                                     "口淤血吐出，脸色顿时发紫。" NOR, me, target);
+                        message_sort(HIM "$N" HIM "一掌打在$n" HIM "身上，猛然間氣血翻騰，一股陰寒之氣竟"
+                                     "反噬回來，$N" HIM "抵禦不住，寒毒侵入體內。$N" HIM "悶哼一聲，一"
+                                     "口淤血吐出，臉色頓時發紫。" NOR, me, target);
 
                         me->receive_wound("qi",damage+query("jiali", me)+random(query("jiali", me)/2));
 
@@ -89,7 +89,7 @@ int perform(object me, object target)
                                            
         } else
         {
-                msg += HIY "$n" HIY "看见$N" HIY "来势汹涌，急忙提气跃开。\n" NOR;
+                msg += HIY "$n" HIY "看見$N" HIY "來勢洶湧，急忙提氣躍開。\n" NOR;
                 addn("neili", -180, me);
         }
         message_sort(msg, me, target);
@@ -104,6 +104,6 @@ string final(object me, object target, int lvl)
                             "id":query("id", me),
                             "duration" : lvl / 40 + random(lvl / 20) ]));
 
-        return HIR "$n" HIR "只见眼前紫影晃动，突然间胸口一震，已知大势"
-               "不妙，只感胸口处一股寒气升起，尽损三焦六脉。\n" NOR;
+        return HIR "$n" HIR "只見眼前紫影晃動，突然間胸口一震，已知大勢"
+               "不妙，只感胸口處一股寒氣升起，盡損三焦六脈。\n" NOR;
 }

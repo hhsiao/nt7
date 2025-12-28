@@ -3,16 +3,16 @@
 inherit TASK;
 void create()
 {
-    set_name( HIW "铁索白袍" NOR, ({ "tiesuo baipao" }) );
+    set_name( HIW "鐵索白袍" NOR, ({ "tiesuo baipao" }) );
     set_weight(1);
     if( clonep() )
             destruct(this_object());
     else {
             set("unit", "件");
             set("material", "cloth");
-            set("long", "这是一件铁索白袍。\n");
+            set("long", "這是一件鐵索白袍。\n");
           }
-    set("owner", "余沧海");
+    set("owner", "餘滄海");
     setup();
 }
 

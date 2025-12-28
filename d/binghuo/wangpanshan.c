@@ -5,14 +5,14 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "王盘山海滩");
+        set("short", "王盤山海灘");
         set("long", @LONG
-只听得岛上号角之声呜呜吹起，岸边两人各举大旗，挥舞示意。
-只见两面大旗上均绣着一头大鹰，双翅伸展，甚是威武。两面大旗之
-间站着一个老者。只听他朗声说道：“玄武坛白龟寿恭迎贵客。”声
-音漫长，绵绵密密，虽不响亮，却是气韵醇厚。往南是一个山谷。北
-边有个港湾，桅樯高耸，停泊着十来艘大船，想是巨鲸帮、海沙派一
-干人的座船。
+只聽得島上號角之聲嗚嗚吹起，岸邊兩人各舉大旗，揮舞示意。
+只見兩面大旗上均繡著一頭大鷹，雙翅伸展，甚是威武。兩面大旗之
+間站著一個老者。只聽他朗聲說道：“玄武壇白龜壽恭迎貴客。”聲
+音漫長，綿綿密密，雖不響亮，卻是氣韻醇厚。往南是一個山谷。北
+邊有個港灣，桅檣高聳，停泊著十來艘大船，想是巨鯨幫、海沙派一
+幹人的座船。
 LONG );
         set("no_sleep_room",1);
         set("outdoors", "wangpan");
@@ -33,7 +33,7 @@ int valid_leave(object me,string dir)
 {
         object ob;
         if( !query_temp("dao", me) && dir == "south" )
-        return notify_fail("一进了会场就是生死之斗，还是先砸了他们的船(break boat)以防不测。\n");
+        return notify_fail("一進了會場就是生死之鬥，還是先砸了他們的船(break boat)以防不測。\n");
 
         if( query_temp("dao", me) && dir == "south" && ob=present("bai guishou") )
         {
@@ -49,7 +49,7 @@ int valid_leave(object me,string dir)
                 if (objectp(ob)) ob->kill_ob(me);
                 ob=present("jiao zhong 4");
                 if (objectp(ob)) ob->kill_ob(me);
-                return notify_fail("向南的路被白龟寿拦住了。\n");
+                return notify_fail("向南的路被白龜壽攔住了。\n");
         }
         return 1;
 }

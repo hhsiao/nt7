@@ -9,7 +9,7 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一碗热气腾腾的汤面。\n");
+                set("long", "一碗熱氣騰騰的湯麵。\n");
                 set("unit", "碗");
                 set("value", 100);
                 set("remaining", 2);
@@ -23,7 +23,7 @@ void create()
 int do_effect(object me)
 {
         if( query("food", me) >= me->max_food_capacity() )
-                return notify_fail("你已经吃太饱了，再也吃不下了。\n");
+                return notify_fail("你已經吃太飽了，再也吃不下了。\n");
 
         set("value", 0);
         addn("food", query("food_supply"), me);
@@ -35,11 +35,11 @@ int do_effect(object me)
 
         addn("remaining", -1);
         if (query("remaining"))
-                message_vision("$N端起汤面，狼吞虎咽地吃起来。\n", me);
+                message_vision("$N端起湯麵，狼吞虎嚥地吃起來。\n", me);
         else 
         { 
-                message_vision("$N端起碗来，把剩下的面连汤吞了。\n"
-                               "$N将碗往后一扔，抹了抹嘴，赞道：好香！\n", me);
+                message_vision("$N端起碗來，把剩下的面連湯吞了。\n"
+                               "$N將碗往後一扔，抹了抹嘴，讚道：好香！\n", me);
                 destruct(this_object());
         }
 

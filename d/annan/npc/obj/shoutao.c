@@ -9,7 +9,7 @@ void create()
    /*if( clonep() )
      set_default_object(__FILE__);
    else*/ {
-     set("material", "铁");
+     set("material", "鐵");
      set("unit", "枚");
      set("value",3000);
      set("armor_prop/armor",32);

@@ -8,10 +8,10 @@ inherit F_QUESTER;
 
 void create()
 {
-        set_name("狄云", ({ "di yun", "di","yun" }));
+        set_name("狄雲", ({ "di yun", "di","yun" }));
         set("long",
-                "他就是"+HIR"血刀门"NOR+"弟子狄云。\n"
-                "他今年看起来倒满和蔼的。\n");
+                "他就是"+HIR"血刀門"NOR+"弟子狄雲。\n"
+                "他今年看起來倒滿和藹的。\n");
         set("gender", "男性");
         set("age", 30);
         set("attitude", "peaceful");
@@ -71,26 +71,26 @@ void attempt_apprentice(object ob)
         if( query("shen", ob)<100000 )
         {
                 command("sigh");
-                command("say 我已经封门不收弟子了，你请回吧。");
+                command("say 我已經封門不收弟子了，你請回吧。");
                 return;
         }
         if ((int)ob->query_skill("xuehai-mogong", 1) < 120) {
-                command("say 练血刀刀法最重内功心法。");
+                command("say 練血刀刀法最重內功心法。");
                 command("say " + RANK_D->query_respect(ob) +
-                        "是否还应该在血海魔功上多下点功夫？");
+                        "是否還應該在血海魔功上多下點功夫？");
                 return;
 
         }
         if ((int)ob->query_skill("lamaism", 1) < 100) {
-                command("say 入我血刀门，修习密宗心法是首要的。");
-                command("say 这位" + RANK_D->query_respect(ob) +
+                command("say 入我血刀門，修習密宗心法是首要的。");
+                command("say 這位" + RANK_D->query_respect(ob) +
 
 
-                        "是否还应该多多钻研本门的心法？");
+                        "是否還應該多多鑽研本門的心法？");
                 return;
         }
 
-        command("say 好吧，看你还是个人才，血刀门看来得靠你了。");
+        command("say 好吧，看你還是個人才，血刀門看來得靠你了。");
         command("recruit "+query("id", ob));
 }
 
@@ -98,16 +98,16 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "历练" :
-        case "历炼" :
-        case "锻炼" :
+        case "歷練" :
+        case "歷煉" :
+        case "鍛鍊" :
                 return QUEST_D->accept_ask(this_object(), me, topic);
                 break;
 
-        case "无影神拳" :
+        case "無影神拳" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/shenzhaojing/ying",
-                           "name"    : "无影神拳",
+                           "name"    : "無影神拳",
                            "sk1"     : "shenzhaojing",
                            "lv1"     : 100,
                            "sk2"     : "unarmed",
@@ -115,10 +115,10 @@ int accept_ask(object me, string topic)
                            "gongxian": 800, ]));
                 break;
 
-        case "无影拳舞" :
+        case "無影拳舞" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/shenzhaojing/wu",
-                           "name"    : "无影拳舞",
+                           "name"    : "無影拳舞",
                            "sk1"     : "shenzhaojing",
                            "lv1"     : 120,
                            "sk2"     : "unarmed",
@@ -148,10 +148,10 @@ int accept_ask(object me, string topic)
                            "gongxian": 800, ]));
                 break;
 
-        case "去剑势" :
+        case "去劍勢" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/liancheng-jianfa/qujian",
-                           "name"    : "去剑势",
+                           "name"    : "去劍勢",
                            "sk1"     : "liancheng-jianfa",
                            "lv1"     : 120,
                            "sk2"     : "sword",

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;36m青凤[2;37;0m[2;37;0m", ({"jiuwei"}));        
+        set_name("[1;36m青鳳[2;37;0m[2;37;0m", ({"jiuwei"}));        
         set("gender", "女性");                
         set("long", "look[2;37;0m
-它是慕容小白的魔幻兽。
+它是慕容小白的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

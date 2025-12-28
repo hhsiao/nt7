@@ -12,7 +12,7 @@ void create()
         set("gender", "男性");
         set("age", 25);
         set("long",
-                "这个茶小二正忙着给客人送茶，递烟。");
+                "這個茶小二正忙著給客人送茶，遞煙。");
         set("combat_exp", 500);
         set("attitude", "friendly");
                 
@@ -47,12 +47,12 @@ void greeting(object ob)
         switch(random(2))
         {
         case 0 :
-                say (CYN "茶小二热情的说到：这位" + RANK_D->query_respect(ob) +
-                     CYN "，马上给你上茶。\n" NOR);
+                say (CYN "茶小二熱情的說到：這位" + RANK_D->query_respect(ob) +
+                     CYN "，馬上給你上茶。\n" NOR);
                 break;
         case 1 :
-                say (CYN "茶小二说道：这位" + RANK_D->query_respect(ob) + 
-                     CYN "要不要来两口水烟提提神。\n" NOR);
+                say (CYN "茶小二說道：這位" + RANK_D->query_respect(ob) + 
+                     CYN "要不要來兩口水煙提提神。\n" NOR);
                 break;
         }
 }

@@ -5,10 +5,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "练武场");
+        set("short", "練武場");
         set("long", @LONG
-这里是日月神教的练武场，场上立着几个木人，教中众弟子常在
-此处修炼邪功，四周充满着诡秘色彩。
+這裡是日月神教的練武場，場上立著幾個木人，教中眾弟子常在
+此處修煉邪功，四周充滿著詭秘色彩。
 LONG );
         set("exits", ([
             "north"    : __DIR__"midao02",

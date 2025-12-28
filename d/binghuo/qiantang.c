@@ -6,16 +6,16 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "钱塘江畔");
+        set("short", "錢塘江畔");
         set("long", @LONG
-钱塘江到了六和塔下转一个大弯，然后直向东流。该处和府城相
-距不近，塔东三株大柳树下系着一艘扁舟(zhou)。江船张有风帆，船
-头挂着两盏碧纱灯笼。碧纱灯下，一个少女独坐船头，身穿淡绿衫子。
+錢塘江到了六和塔下轉一個大彎，然後直向東流。該處和府城相
+距不近，塔東三株大柳樹下繫著一艘扁舟(zhou)。江船張有風帆，船
+頭掛著兩盞碧紗燈籠。碧紗燈下，一個少女獨坐船頭，身穿淡綠衫子。
 LONG );
         set("outdoors", "wangpan");
         set("no_clean_up", 0);
         set("item_desc", ([
-                "zhou" : "一艘小舟，不妨进去(enter)看看。\n",
+                "zhou" : "一艘小舟，不妨進去(enter)看看。\n",
         ]));
         set("exits", ([
                 "westup" : "/d/hangzhou/qiantang",
@@ -36,11 +36,11 @@ int do_enter(string arg)
         if( arg=="zhou" )
         {
                message("vision",
-                        me->name() + "运起轻功，一纵身上了小舟。",
+                        me->name() + "運起輕功，一縱身上了小舟。",
                         environment(me), ({me}) );
                me->move(__DIR__"zhou");
                message("vision",
-                        me->name() + "从岸上跃上舟来。\n",
+                        me->name() + "從岸上躍上舟來。\n",
                         environment(me), ({me}) );
                         return 1;
         }
@@ -69,16 +69,16 @@ void init()
         {
                 room = get_object("/d/binghuo/wangpanshan");
                 bai = present("bai guishou",room);
-                if (objectp(bai)) tell_object(me, HIC "\n只见岸边上泊满了海船，所有的海船全部标记着天鹰教的标志。\n" NOR);
+                if (objectp(bai)) tell_object(me, HIC "\n只見岸邊上泊滿了海船，所有的海船全部標記著天鷹教的標誌。\n" NOR);
 
                 if (objectp(bai)
                     && !query_temp("broadcast", bai )
                     && query("combat_exp", me)>1000000
                     && query("weiwang", me)>100000 )
                 {
-                        message("vision", HIR"\n【倚天屠龙】" NOR+WHT "白龟寿仰天一声长笑。\n" NOR, all_interactive());
-                        message("vision", HIR"\n【倚天屠龙】" NOR+WHT "白龟寿：我天鹰教得到屠龙宝刀，"
-                                          WHT"今在王盘山岛举行扬刀立威大会。\n" NOR, all_interactive());
+                        message("vision", HIR"\n【倚天屠龍】" NOR+WHT "白龜壽仰天一聲長笑。\n" NOR, all_interactive());
+                        message("vision", HIR"\n【倚天屠龍】" NOR+WHT "白龜壽：我天鷹教得到屠龍寶刀，"
+                                          WHT"今在王盤山島舉行揚刀立威大會。\n" NOR, all_interactive());
                         set_temp("broadcast", 1, bai);
                 }
         }

@@ -7,10 +7,10 @@ inherit BULLETIN_BOARD;
         
        void create() 
        { 
-               set_name(MAG "相思树" NOR, ({ "tree" }) ); 
+               set_name(MAG "相思樹" NOR, ({ "tree" }) ); 
                set("location", "/d/city/swing"); 
                set("board_id", "swing_b"); 
-              set("long", "“相恨不如潮有信，相思始觉海非深。”\n" ); 
+              set("long", "“相恨不如潮有信，相思始覺海非深。”\n" ); 
               setup(); 
               set("capacity", 100); 
               replace_program(BULLETIN_BOARD); 

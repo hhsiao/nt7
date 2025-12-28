@@ -4,8 +4,8 @@ inherit NPC;
 
 void create()
 {
-        set_name("梁自进",({"liang zijin","liang"}));
-        set("long", "梁自进是雪山派掌门人威德先生白自在的师弟。\n");
+        set_name("梁自進",({"liang zijin","liang"}));
+        set("long", "梁自進是雪山派掌門人威德先生白自在的師弟。\n");
         set("gender", "男性");
         set("age", 65);
         set("attitude", "friendly");
@@ -47,7 +47,7 @@ void create()
         prepare_skill("strike", "piaoxu-zhang");
         prepare_skill("cuff", "lingxiao-quan");
 
-        create_family("凌霄城", 5, "前辈");
+        create_family("凌霄城", 5, "前輩");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -68,5 +68,5 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        command("say 老夫不收徒，你去找我那些徒儿吧。");
+        command("say 老夫不收徒，你去找我那些徒兒吧。");
 }

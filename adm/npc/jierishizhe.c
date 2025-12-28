@@ -3,12 +3,12 @@ inherit F_VENDOR;
 int get_reward();
 void create()
 {
-        set_name("节日使者", ({ "jieri shizhe" }) );
+        set_name("節日使者", ({ "jieri shizhe" }) );
         set("gender", "女性" );
         set("age", 14);
         set("title", "如花似玉");
         set("long",
-                "节日使者。。。。你可以问她有关奖励的事情（reward）\n");
+                "節日使者。。。。你可以問她有關獎勵的事情（reward）\n");
         set("combat_exp", 500000);
         set("attitude", "friendly");
         set("per",30);
@@ -36,7 +36,7 @@ void greeting(object ob)
         if( !ob || environment(ob) != environment() ) return;
         switch( random(3) ) {
                 case 0:
-                        message_vision("$N在百忙中抬起头望了$n一眼。\n",this_object(),ob);
+                        message_vision("$N在百忙中抬起頭望了$n一眼。\n",this_object(),ob);
                         break;
         }
 }

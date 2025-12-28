@@ -20,10 +20,10 @@ int main(object me, string arg)
         if (! arg) return help(me);
 
         if( query("no_bid", environment(me)) )
-                return notify_fail("这里禁止参与拍卖，省省吧！\n");
+                return notify_fail("這裡禁止參與拍賣，省省吧！\n");
 
         if (me->is_ghost() || domain_file(base_name(environment(me))) == "death")
-                return notify_fail("都做鬼了，还想参与拍卖？省省吧！\n");
+                return notify_fail("都做鬼了，還想參與拍賣？省省吧！\n");
 
         if (arg == "cancel")
         {
@@ -38,7 +38,7 @@ int main(object me, string arg)
                         write(str);
                         return 1;
                 }
-                return notify_fail("目前没有任何东西正在拍卖。\n");
+                return notify_fail("目前沒有任何東西正在拍賣。\n");
         }
 
         if (sscanf(arg, "accept %s", name) == 1)
@@ -50,11 +50,11 @@ int main(object me, string arg)
         if (sscanf(arg, "%s for %s", name, str) == 2)
         {
                 if (! objectp(ob = present(name, me)))
-                        return notify_fail("你身上没有这个东西。\n");
+                        return notify_fail("你身上沒有這個東西。\n");
 
                 if (! intp(money = to_money(str)) || ! money
                         || money < 0 || money > 100000000)
-                        return notify_fail("输入价格错误。\n");
+                        return notify_fail("輸入價格錯誤。\n");
 
                 AUCTION_D->add_auction(me, ob, money);
                 return 1;
@@ -64,11 +64,11 @@ int main(object me, string arg)
         {
                 if (! intp(money = to_money(str)) || ! money
                         || money < 0 || money > 100000000)
-                        return notify_fail("输入价格错误。\n");
+                        return notify_fail("輸入價格錯誤。\n");
 
                 if (! me->can_afford(money)
                  && query("balance", me)<money )
-                        return notify_fail("你身上和你的银行都没有那么多钱。\n");
+                        return notify_fail("你身上和你的銀行都沒有那麼多錢。\n");
 
                 AUCTION_D->join_auction(me, name, money);
                 return 1;
@@ -120,20 +120,20 @@ int to_money(string str)
 int help(object me)
 {
         write(@HELP
-指令格式 : auction <物品> for <数量> <钱的种类>
-           拍卖出一件物品。
+指令格式 : auction <物品> for <數量> <錢的種類>
+           拍賣出一件物品。
 
-           auction <数量> <钱的种类> to <玩家>
-           参与叫价。
+           auction <數量> <錢的種類> to <玩家>
+           參與叫價。
 
            auction accept <玩家>
-           决定把自己拍卖中的物品拍卖给某人。
+           決定把自己拍賣中的物品拍賣給某人。
 
            auction check
-           察看目前所有正在拍卖的物品。
+           察看目前所有正在拍賣的物品。
 
            auction cancel
-           取消自己物品的拍卖。
+           取消自己物品的拍賣。
 HELP
     );
         return 1;

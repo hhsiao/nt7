@@ -4,14 +4,14 @@ inherit ITEM;
 
 void create()
 {
-	set_name(HIG "兰草" NOR, ({ "penglai lancao" }) );
+	set_name(HIG "蘭草" NOR, ({ "penglai lancao" }) );
 	set_weight(100);
 	/*if( clonep() )
 		set_default_object(__FILE__);
 	else*/ {
 		set("unit", "棵");
 		set("value", 1);
-		set("long", HIY "这是一棵兰草，形状很奇特，似乎在人间未曾见过。\n" NOR);
+		set("long", HIY "這是一棵蘭草，形狀很奇特，似乎在人間未曾見過。\n" NOR);
 	}
 
 	setup();

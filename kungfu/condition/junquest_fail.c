@@ -12,7 +12,7 @@ int update_condition(object me, int duration)
 
         if( duration == 1)
         {
-                tell_object(me, HIR "朝廷招你回去，快回京师接旨吧！！！\n" NOR);
+                tell_object(me, HIR "朝廷招你回去，快回京師接旨吧！！！\n" NOR);
         }
         
         return CND_CONTINUE;      

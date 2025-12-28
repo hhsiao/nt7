@@ -1,4 +1,4 @@
-// music.c 精灵法术
+// music.c 精靈法術
 // Modified by edward
 
 inherit SKILL;

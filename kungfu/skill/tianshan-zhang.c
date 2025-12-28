@@ -6,45 +6,45 @@ string type() { return "martial"; }
 string martialtype() { return "skill"; }
 
 mapping *action = ({
-([        "action": "$N使出一招"HIW"「冰河开冻」"NOR"，手中$w大开大阖扫向$n的$l",
+([        "action": "$N使出一招"HIW"「冰河開凍」"NOR"，手中$w大開大闔掃向$n的$l",
         "lvl" : 1,
-        "skill_name" : "冰河开冻"
+        "skill_name" : "冰河開凍"
 ]),
-([        "action": "$N手中$w阵阵风响，一招"HIC"「山风凛冽」"NOR"向$n的$l攻去",
+([        "action": "$N手中$w陣陣風響，一招"HIC"「山風凜冽」"NOR"向$n的$l攻去",
         "lvl" : 13,
-        "skill_name" :"山风凛冽"
+        "skill_name" :"山風凜冽"
 ]),
-([        "action": "$N举起$w，居高临下使一招"HIW"「天山雪崩」"NOR"砸向$n的$l",
+([        "action": "$N舉起$w，居高臨下使一招"HIW"「天山雪崩」"NOR"砸向$n的$l",
         "lvl" : 30,
         "skill_name" : "天山雪崩"
 ]),
-([        "action": "$N一招"HIR"「残阳照雪」"NOR"，纵身飘开数尺，手中$w砸向$n的$l",
+([        "action": "$N一招"HIR"「殘陽照雪」"NOR"，縱身飄開數尺，手中$w砸向$n的$l",
         "lvl" : 45,
-        "skill_name" : "残阳照雪"
+        "skill_name" : "殘陽照雪"
 ]),
-([        "action": "$N使一招"HIB"「回光幻电」"NOR"，手中$w幻一条疾光点向$n的$l",
+([        "action": "$N使一招"HIB"「回光幻電」"NOR"，手中$w幻一條疾光點向$n的$l",
         "lvl" : 60,
-        "skill_name" : "回光幻电"
+        "skill_name" : "回光幻電"
 ]),
-([        "action": "$N使出的"HIC"「风霜碎影」"NOR"，$w连挥杖影霍霍劈向$n的$l",
+([        "action": "$N使出的"HIC"「風霜碎影」"NOR"，$w連揮杖影霍霍劈向$n的$l",
         "lvl" : 75,
-        "skill_name" : "风霜碎影"
+        "skill_name" : "風霜碎影"
 ]),
-([        "action": "$N的$w凭空一指，一招"BLU"「断石狼烟」"NOR"点向$n的$l",
+([        "action": "$N的$w憑空一指，一招"BLU"「斷石狼煙」"NOR"點向$n的$l",
         "lvl" : 90,
-        "skill_name" : "断石狼烟"
+        "skill_name" : "斷石狼煙"
 ]),
-([        "action": "$N纵身一跃，手中$w一招"MAG"「长空雷隐」"NOR"对准$n的$l扫去",
+([        "action": "$N縱身一躍，手中$w一招"MAG"「長空雷隱」"NOR"對準$n的$l掃去",
         "lvl" : 105,
-        "skill_name" : "长空雷隐"
+        "skill_name" : "長空雷隱"
 ]),
-([        "action": "$N手中$w中宫直进，一式"CYN"「冰谷初虹」"NOR"对准$n的$l点去",
+([        "action": "$N手中$w中宮直進，一式"CYN"「冰谷初虹」"NOR"對準$n的$l點去",
         "lvl" : 120,
         "skill_name" : "冰谷初虹"
 ]),
-([        "action": "$N一招"GRN"「峰回路转」"NOR"，$w左右迂回向$n的$l点去",
+([        "action": "$N一招"GRN"「峰迴路轉」"NOR"，$w左右迂迴向$n的$l點去",
         "lvl" : 145,
-        "skill_name" : "峰回路转"
+        "skill_name" : "峰迴路轉"
 ]),
 });
 
@@ -52,13 +52,13 @@ int valid_enable(string usage) { return usage == "staff" || usage == "parry"; }
 int valid_learn(object me)
 {
         if (me->query_skill("force") < 30)
-                return notify_fail("你的内功火候不够，不能学习天山杖法。\n");
+                return notify_fail("你的內功火候不夠，不能學習天山杖法。\n");
 
         if( query("max_neili", me)<100 )
-                return notify_fail("你的内力不够，不能学习天山杖法。\n");
+                return notify_fail("你的內力不夠，不能學習天山杖法。\n");
 
         if ((int)me->query_skill("staff", 1) < (int)me->query_skill("tianshan-zhang", 1))
-                return notify_fail("你的基本杖法水平有限，无法领会更高深的天山杖法。\n");
+                return notify_fail("你的基本杖法水平有限，無法領會更高深的天山杖法。\n");
 
         return 1;
 }
@@ -68,9 +68,9 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me) )
                  || query("skill_type", weapon) != "staff" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
         if( query("qi", me)<50 || query("neili", me)<30 )
-                return notify_fail("你的内力或气不够练天山杖法。\n");
+                return notify_fail("你的內力或氣不夠練天山杖法。\n");
         me->receive_damage("qi", 40);
         addn("neili", -20, me);
         return 1;
@@ -103,17 +103,17 @@ mapping query_action(object me, object weapon)
         for(i = ttl; i > 0; i--)
                 if(lvl > action[i-1]["lvl"])
                 {
-                        seq = i; /* 获得招数序号上限 */
+                        seq = i; /* 獲得招數序號上限 */
                         break;
                 }
-        seq = random(seq);       /* 选择出手招数序号 */
+        seq = random(seq);       /* 選擇出手招數序號 */
         return ([
                 "action"      : action[seq]["action"],
                 "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
                 "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
                 "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
                 "damage"      : m_e1 + (m_e2 - m_e1) * seq / ttl,
-                "damage_type" : "挫伤",
+                "damage_type" : "挫傷",
         ]);
 }
 int learn_bonus() { return 10; }
@@ -142,7 +142,7 @@ mixed hit_ob(object me, object victim, int damage)
         {
                 if (random(ap + dp) > ap)
                 {
-                        msg=HIW"\n$N一声怒喝，手中"+query("name", weapon)+HIW"舞地风声大作，本以复杂的招数更是难辨。\n"NOR;
+                        msg=HIW"\n$N一聲怒喝，手中"+query("name", weapon)+HIW"舞地風聲大作，本以複雜的招數更是難辨。\n"NOR;
                         if (! victim->is_busy())
                                 victim->start_busy(1);
 
@@ -150,7 +150,7 @@ mixed hit_ob(object me, object victim, int damage)
                 }
                 else if (random(ap + 2 * dp) > ap)
                 {
-                        msg=YEL"\n$N将手中"+query("name", weapon)+YEL"向$n脚下扫去，趁$n躲闪之际，猛地发出一击！\n"NOR;
+                        msg=YEL"\n$N將手中"+query("name", weapon)+YEL"向$n腳下掃去，趁$n躲閃之際，猛地發出一擊！\n"NOR;
                         if (! victim->is_busy())
                         victim->start_busy(1+random(3));
 
@@ -158,7 +158,7 @@ mixed hit_ob(object me, object victim, int damage)
                 }
                 else
                 {
-                        msg = HIR "\n$N陡然杖法一变，风声渐轻，而招数变得诡异莫测，吞吐不定。\n" NOR;
+                        msg = HIR "\n$N陡然杖法一變，風聲漸輕，而招數變得詭異莫測，吞吐不定。\n" NOR;
                         if (! victim->is_busy())
                         victim->start_busy(random(2));
 
@@ -176,9 +176,9 @@ int help(object me)
 
     天山杖法是星宿派器械功夫。
 
-        学习要求：
-                化功大法20级
-                内力80
+        學習要求：
+                化功大法20級
+                內力80
 HELP
         );
         return 1;

@@ -5,29 +5,29 @@
 inherit SHAOLIN_SKILL;
 
 mapping *action = ({
-([     "action": HIG"$N将$w"HIG"抖动成圆，一式「圆转如意」，$w"HIG"已将$n$l缠住"NOR,
+([     "action": HIG"$N將$w"HIG"抖動成圓，一式「圓轉如意」，$w"HIG"已將$n$l纏住"NOR,
        "dodge": 50,
        "damage": 100,
        "force":  300,
        "lvl" : 30,
-       "skill_name" : "圆转如意",
-       "damage_type":  "拉伤"
+       "skill_name" : "圓轉如意",
+       "damage_type":  "拉傷"
 ]),
-([     "action": HIW"$N的$w"HIW"在$n身旁连连进击，忽然一招「佛自西来」从$n$l处倒卷上来"NOR,
+([     "action": HIW"$N的$w"HIW"在$n身旁連連進擊，忽然一招「佛自西來」從$n$l處倒捲上來"NOR,
        "dodge": 50,
        "damage": 150,
        "force": 400,
        "lvl" : 60,
-       "skill_name" : "佛自西来",
-       "damage_type":  "拉伤"
+       "skill_name" : "佛自西來",
+       "damage_type":  "拉傷"
 ]),
-([     "action": HIM"$N运起少林真气，$w"HIM"陡然变成笔直，一式「佛坐莲花」，向$n直刺过去"NOR,
+([     "action": HIM"$N運起少林真氣，$w"HIM"陡然變成筆直，一式「佛坐蓮花」，向$n直刺過去"NOR,
        "dodge": 50,
        "damage": 180,
        "force": 450,
        "lvl" : 90,
-       "skill_name" : "佛坐莲花",
-       "damage_type":  "刺伤"
+       "skill_name" : "佛坐蓮花",
+       "damage_type":  "刺傷"
 ]),
 });
 
@@ -37,14 +37,14 @@ int valid_learn(object me)
 {
        object weapon;
        if( query("max_neili", me)<1500 )
-               return notify_fail("你的内力修为不足，没有办法练大乘佛索。\n");
+               return notify_fail("你的內力修為不足，沒有辦法練大乘佛索。\n");
                
        if ((int)me->query_skill("shaolin-xinfa", 1) < 120)
-               return notify_fail("你的少林心法火候太浅。\n");
+               return notify_fail("你的少林心法火候太淺。\n");
                
        if( !objectp(weapon=query_temp("weapon", me) )
         || query("skill_type", weapon) != "whip" )
-               return notify_fail("你必须先找一条鞭子才能练鞭法。\n");
+               return notify_fail("你必須先找一條鞭子才能練鞭法。\n");
        return 1;
 }
 
@@ -68,9 +68,9 @@ mapping query_action(object me)
 int practice_skill(object me)
 {
        if( query("jingli", me)<100 )
-                return notify_fail("你的体力不够练大乘佛索。\n");
+                return notify_fail("你的體力不夠練大乘佛索。\n");
        if( query("neili", me)<100 )
-                return notify_fail("你的内力不够练大乘佛索。\n");
+                return notify_fail("你的內力不夠練大乘佛索。\n");
        addn("jingli", -20, me);
        addn("neili", -40, me);
        return 1;

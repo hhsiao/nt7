@@ -3,19 +3,19 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "后山山洞");
+        set("short", "後山山洞");
         set("long", @LONG
-这里是全真教开山祖师王重阳真人静修的山洞。洞虽不大但却布
-置得很是雅致，便似大户人家的客厅一样。洞壁上悬挂着副画(hua)，
-桌椅茶几都很精致。
+這裡是全真教開山祖師王重陽真人靜修的山洞。洞雖不大但卻布
+置得很是雅緻，便似大戶人家的客廳一樣。洞壁上懸掛著副畫(hua)，
+桌椅茶几都很精緻。
 LONG );
         set("exits", ([
                 "out" : __DIR__"xiaolu12",
         ]));
         set("item_desc", ([
-                "hua": YEL "\n画中是一个中年道士的背影，看不出什么相"
-                       "貌，画中道人一手\n指着天，画角题着「" HIR "活"
-                       "死人像" NOR + YEL "」几个字。\n" NOR,
+                "hua": YEL "\n畫中是一箇中年道士的背影，看不出什麼相"
+                       "貌，畫中道人一手\n指著天，畫角題著「" HIR "活"
+                       "死人像" NOR + YEL "」幾個字。\n" NOR,
         ]) );
 
         set("objects", ([
@@ -38,16 +38,16 @@ int do_ketou(string arg)
         object paper, me = this_player();
         int level1, level2, level3;
 
-        if (me->is_busy()) return notify_fail("你正在忙着呢。\n");
+        if (me->is_busy()) return notify_fail("你正在忙著呢。\n");
 
-        message_vision("$N恭恭敬敬地在神案前的团蒲上跪了下来，对着神位磕了三个响头。\n", me);
+        message_vision("$N恭恭敬敬地在神案前的團蒲上跪了下來，對著神位磕了三個響頭。\n", me);
         // me->receive_damage("qi", random(30));
         me->start_busy(1);
 
         if( query("qi", me) <= 50 )
-                write("你只觉得脑子有些昏昏沉沉的。\n");
+                write("你只覺得腦子有些昏昏沉沉的。\n");
         if( query("qi", me) <= 30 )
-                write("你觉得天旋地转，似乎马上便要晕去。\n");
+                write("你覺得天旋地轉，似乎馬上便要暈去。\n");
 
         if( !(query("family/family_name", me) == "全真教") )
                 return 1;
@@ -64,10 +64,10 @@ int do_ketou(string arg)
                 addn("paper_count", -1);
                 set_temp("quanzhen/shentong_paper", 1, me);
 
-                message_vision(HIG"$N在团蒲上重重地一磕，团蒲的边上忽然裂了开来，露出一小段丝绢。\n"NOR,me);
-                write("你仔细的将丝绢抽出一看，上面密密麻麻的记载了练功心法，似乎与先天\n");
-                write("功一脉相承，但却更加深奥。\n");
-                message_vision("$N连忙将密笈收好。\n",me);
+                message_vision(HIG"$N在團蒲上重重地一磕，團蒲的邊上忽然裂了開來，露出一小段絲絹。\n"NOR,me);
+                write("你仔細的將絲絹抽出一看，上面密密麻麻的記載了練功心法，似乎與先天\n");
+                write("功一脈相承，但卻更加深奧。\n");
+                message_vision("$N連忙將密笈收好。\n",me);
                 paper->move(me, 1);
         }
 

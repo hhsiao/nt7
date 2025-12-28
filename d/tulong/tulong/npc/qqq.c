@@ -5,19 +5,19 @@ inherit NPC;
 
 void create()
 {
-        set_name("常金鹏", ({ "chang jinpeng", "chang" }) );
-        set("long", "这便是天鹰教朱雀坛的坛主常金鹏。\n"
-                    "五十来岁年纪，脸上手上的肌肉凹凹凸凸、盘根错节。\n");
+        set_name("常金鵬", ({ "chang jinpeng", "chang" }) );
+        set("long", "這便是天鷹教朱雀壇的壇主常金鵬。\n"
+                    "五十來歲年紀，臉上手上的肌肉凹凹凸凸、盤根錯節。\n");
         set("attitude", "heroism");
-        set("title", "天鹰教");
-        set("nickname", HIR "朱雀坛坛主" NOR);
+        set("title", "天鷹教");
+        set("nickname", HIR "朱雀壇壇主" NOR);
         set("combat_exp", 1000000);
         set("age", 52);
         set("str", 100);
         set("chat_chance_combat", 90);
         set("chat_msg_combat", ({
-                "常金鹏喝道：恶贼还不放手？\n",
-                "常金鹏喝道：恶贼不得无礼！\n",
+                "常金鵬喝道：惡賊還不放手？\n",
+                "常金鵬喝道：惡賊不得無禮！\n",
                 (: perform_action, "hammer.poli" :),
         }) );
         set_skill("force", 160+random(50));
@@ -54,7 +54,7 @@ void create()
 
 int accept_ansuan(object who)
 {
-        return notify_fail("你刚想暗算，可是只见会场里黑压压的挤满了人，根本看不清楚。\n");
+        return notify_fail("你剛想暗算，可是隻見會場裡黑壓壓的擠滿了人，根本看不清楚。\n");
 }
 void init()
 {
@@ -83,7 +83,7 @@ void put()
         if (objectp(ob) && objectp(obj2)) 
         {
                 ob->move(obj2);
-                message_vision(HIC "\n$N哈哈一笑，手一挥，将那屠龙宝刀掷进了烈焰冲天的大铁鼎中。\n\n" NOR,
+                message_vision(HIC "\n$N哈哈一笑，手一揮，將那屠龍寶刀擲進了烈焰沖天的大鐵鼎中。\n\n" NOR,
                                    this_object());
         }
         ob = present("tulong blade", this_object());
@@ -99,9 +99,9 @@ int do_get(string arg)
         return 0;
         if(where == "ding")
         {
-                message_vision(CYN "$N对$n大喝一声：大胆！竟敢打宝刀的主意！\n" NOR,
+                message_vision(CYN "$N對$n大喝一聲：大膽！竟敢打寶刀的主意！\n" NOR,
                                obj,this_player());
-                message_vision(CYN "$N对$n喝道：去死吧。\n" NOR,
+                message_vision(CYN "$N對$n喝道：去死吧。\n" NOR,
                                obj,this_player());
                 obj->kill_ob(this_player());
                 this_player()->kill_ob(obj);
@@ -112,7 +112,7 @@ int do_get(string arg)
 int do_bi()
 {
         object obj = this_object();
-        message_vision(CYN "$N对$n大喝一声：比什么比，去死吧！\n" NOR,
+        message_vision(CYN "$N對$n大喝一聲：比什麼比，去死吧！\n" NOR,
                            obj,this_player());
 
         obj->kill_ob(this_player());
@@ -122,7 +122,7 @@ int do_bi()
 int accept_fight(object me)
 {
         object obj = this_object();
-        command("say 他奶奶的，要打架吗？正合老子心意！\n");
+        command("say 他奶奶的，要打架嗎？正合老子心意！\n");
         this_player()->kill_ob(obj);
         kill_ob(me);
         return 1;
@@ -130,7 +130,7 @@ int accept_fight(object me)
 int accept_hit(object me)
 {
         object obj = this_object();
-        command("say 他奶奶的，要打架吗？正合老子心意！\n");
+        command("say 他奶奶的，要打架嗎？正合老子心意！\n");
         this_player()->kill_ob(obj);
         kill_ob(me);
         return 1;
@@ -138,7 +138,7 @@ int accept_hit(object me)
 int accept_kill(object me)
 {
         object obj = this_object();
-        command("say 他奶奶的，要打架吗？正合老子心意！\n");
+        command("say 他奶奶的，要打架嗎？正合老子心意！\n");
         this_player()->kill_ob(obj);
         kill_ob(me);
         return 1;

@@ -1,10 +1,10 @@
-// huashen.c 化身万千
+// huashen.c 化身萬千
 
 #include <ansi.h>
 
 inherit F_SSERVER;
 
-string name() { return "化身万千"; }
+string name() { return "化身萬千"; }
 
 int perform(object me, object target)
 {
@@ -21,21 +21,21 @@ int perform(object me, object target)
         }
 
         if (! me->is_fighting(target))
-                return notify_fail("「化身万千」只能对战斗中的对手使用。\n");
+                return notify_fail("「化身萬千」只能對戰鬥中的對手使用。\n");
 
         if( query_temp("weapon", me) )
-                return notify_fail("你只有空手才能使用「化身万千」。\n");
+                return notify_fail("你只有空手才能使用「化身萬千」。\n");
 
         skill = me->query_skill("tianmo-zhang", 1);
 
         if (skill < 120)
-                return notify_fail("你的天魔掌法修为太低，现在不能使用「化身万千」！\n");
+                return notify_fail("你的天魔掌法修為太低，現在不能使用「化身萬千」！\n");
 
         if( query("neili", me)<100 )
-                return notify_fail("你的真气不够，无法使出「化身万千」！\n");
+                return notify_fail("你的真氣不夠，無法使出「化身萬千」！\n");
 
-        msg = HIC "$N" HIC "突然身形变快，双掌翻飞幻化出无数掌影，一股巨大"
-              HIC "的气浪连绵不断，一层接一层压向$n" HIC "。\n" NOR;
+        msg = HIC "$N" HIC "突然身形變快，雙掌翻飛幻化出無數掌影，一股巨大"
+              HIC "的氣浪連綿不斷，一層接一層壓向$n" HIC "。\n" NOR;
 
         message_combatd(msg, me, target);
         count = skill / 3;

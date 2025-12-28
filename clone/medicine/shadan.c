@@ -3,13 +3,13 @@
 
 void create()
 {
-        set_name(HIW "田七鲨胆丸" NOR, ({"shadan wan", "wan"}));
+        set_name(HIW "田七鯊膽丸" NOR, ({"shadan wan", "wan"}));
         set_weight(50);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIW "集结数中名贵药材炼制而成的丹药，乃是桃花岛的独门奇药。\n" NOR);
-                set("base_unit", "颗");
+                set("long", HIW "集結數中名貴藥材煉製而成的丹藥，乃是桃花島的獨門奇藥。\n" NOR);
+                set("base_unit", "顆");
                 set("base_value", 5000);
                 set("base_weight", 70);
                 set("only_do_effect", 1);
@@ -40,20 +40,20 @@ int do_effect(object me)
 
         if( time()-query_temp("last_eat/wuchang", me)<80 )
         {
-                write("你刚服用过药，需药性发挥完效用以后才能继续服用。\n");
+                write("你剛服用過藥，需藥性發揮完效用以後才能繼續服用。\n");
                 return 1;
         }
 
         if( query("neili", me) >= query("max_neili", me) )
         {
-                write("你现在内力饱满，无需服用田七鲨胆丸。\n");
+                write("你現在內力飽滿，無需服用田七鯊膽丸。\n");
                 return 1;
         }
 
         set_temp("last_eat/wuchang", time(), me);
 
-        message_vision(HIW "$N" HIW "吞下田七鲨胆丸，长呼出一口气，脸色变得红润起来。\n" NOR, me);
-        tell_object(me, HIC "你只觉得真气充沛，似乎有使不完的力气。\n" NOR);
+        message_vision(HIW "$N" HIW "吞下田七鯊膽丸，長呼出一口氣，臉色變得紅潤起來。\n" NOR, me);
+        tell_object(me, HIC "你只覺得真氣充沛，似乎有使不完的力氣。\n" NOR);
 
         my = me->query_entire_dbase();
         my["neili"] = my["max_neili"];

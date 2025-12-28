@@ -9,10 +9,10 @@ void create()
 {
         set("short", "精舍");
         set("long", @LONG
-这座精舍全是以绿色大方竹搭成，屋外攀满青藤，使人一见之下心中
-顿生凉意。周围环以奇花异草，闻之足可忘俗。精舍虽看似粗糙，但细观
-之下，却发觉精舍竟与四周景物浑然天成，如同自然生成的一般，当真是
-巧夺天工，好一片清凉洞天。西面有条小径通向桃花深处，门前有一对白
+這座精舍全是以綠色大方竹搭成，屋外攀滿青藤，使人一見之下心中
+頓生涼意。周圍環以奇花異草，聞之足可忘俗。精舍雖看似粗糙，但細觀
+之下，卻發覺精舍竟與四周景物渾然天成，如同自然生成的一般，當真是
+巧奪天工，好一片清涼洞天。西面有條小徑通向桃花深處，門前有一對白
 雕(diao)。
 LONG );
          set("exits", ([
@@ -22,8 +22,8 @@ LONG );
         ]));
 
         set("item_desc", ([
-                "diao" : "一对白雕正展翅欲飞。如果是桃花岛的弟子，\n"
-                "骑上(mount)就可以飞到中原。\n",
+                "diao" : "一對白雕正展翅欲飛。如果是桃花島的弟子，\n"
+                "騎上(mount)就可以飛到中原。\n",
         ]));
         
          set("objects", ([
@@ -45,12 +45,12 @@ int valid_leave(object me, string dir)
 {
 
         if( (query("family/master_name", me) != "程英" )
-         && (query("family/master_name", me) != "黄药师" )
+         && (query("family/master_name", me) != "黃藥師" )
          && userp(me)
          && (!query_temp("shagu_pass", me) )
         && (dir == "enter")
         && present("sha gu", this_object()) )
-        return notify_fail("\n傻姑傻笑了几声，伸开双手一拦，说到：要进去先陪我玩一会儿吧，\n这里人都不理我，闷死了！\n");
+        return notify_fail("\n傻姑傻笑了幾聲，伸開雙手一攔，說到：要進去先陪我玩一會兒吧，\n這裡人都不理我，悶死了！\n");
         return ::valid_leave(me, dir);
 }
 
@@ -65,23 +65,23 @@ int do_ride(string arg)
         
         myfam=query("family", ob);
 /*
-        if( !myfam || myfam["family_name"] != "桃花岛" || !query("out_family", ob) )
+        if( !myfam || myfam["family_name"] != "桃花島" || !query("out_family", ob) )
         {
-                message_vision("$N一跃身跨上了白雕。只见白雕仰天长唳，突然猛然一颠......\n" +
-                               HIR "结果$N摔了个鼻青脸肿！\n" NOR +
-                               "看来白雕对$N并不感兴趣，它只认识桃花岛的弟子。\n" , ob ) ;
+                message_vision("$N一躍身跨上了白雕。只見白雕仰天長唳，突然猛然一顛......\n" +
+                               HIR "結果$N摔了個鼻青臉腫！\n" NOR +
+                               "看來白雕對$N並不感興趣，它只認識桃花島的弟子。\n" , ob ) ;
                 ob -> receive_damage ("qi", 50) ;
                 ob -> receive_wound  ("qi", 50) ;
                 return 1;
         }
 */
         if( (int)query("sb_ride") ) 
-                return notify_fail("现在白雕正忙着,请过一会再乘坐!\n" ) ;
+                return notify_fail("現在白雕正忙著,請過一會再乘坐!\n" ) ;
         addn("sb_ride", 1) ;
-        message_vision("$N一跃身跨上了白雕。只见白雕仰天长唳，突然展翅高飞。\n\n"
-                       "但看一雕一人身形渐渐缩小，终至不见。\n" , ob );
+        message_vision("$N一躍身跨上了白雕。只見白雕仰天長唳，突然展翅高飛。\n\n"
+                       "但看一雕一人身形漸漸縮小，終至不見。\n" , ob );
         ob->move("/d/taohua/lantian") ;
-        tell_object(ob, CYN  "\n你不断地飞呀飞，万水千山身下飘过 ......\n\n" NOR ) ;
+        tell_object(ob, CYN  "\n你不斷地飛呀飛，萬水千山身下飄過 ......\n\n" NOR ) ;
         call_out("taohua", 2 , ob );
         addn("sb_ride", -1) ;
         return 1 ;
@@ -90,6 +90,6 @@ void taohua( object ob )
 {
         if (base_name(environment(ob)) != "/d/taohua/lantian")
                 return;
-        tell_object(ob, "你终于飞到了中原，白雕落了下来。\n\n"  ) ;
+        tell_object(ob, "你終於飛到了中原，白雕落了下來。\n\n"  ) ;
         ob -> move ("/d/guiyun/dayuan");
 }

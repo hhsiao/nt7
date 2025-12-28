@@ -4,12 +4,12 @@
 
 void setup()
 {
-        set_name("青龙卡[2;37;0m[2;37;0m", ({"kaka"}));        
+        set_name("青龍卡[2;37;0m[2;37;0m", ({"kaka"}));        
         set("gender", "男性");                
-        set("long", "别看我[2;37;0m
-它是卡卡的魔幻兽。
+        set("long", "別看我[2;37;0m
+它是卡卡的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "freshmm");
         set("owner_name", "卡卡");

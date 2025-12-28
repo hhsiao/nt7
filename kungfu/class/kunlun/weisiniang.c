@@ -6,10 +6,10 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("卫四娘", ({"wei siniang", "wei", "siniang"}));
-        set("long", "她昆仑派第五代弟子，容颜俏丽，身材丰满，举\n"
-                    "手投足间带着点挑逗之意。\n");
-        set("nickname", HIY "闪电娘娘" NOR);
+        set_name("衛四娘", ({"wei siniang", "wei", "siniang"}));
+        set("long", "她崑崙派第五代弟子，容顏俏麗，身材豐滿，舉\n"
+                    "手投足間帶著點挑逗之意。\n");
+        set("nickname", HIY "閃電娘娘" NOR);
         set("gender", "女性");
         set("age", 38);
         set("attitude", "heroism");
@@ -43,8 +43,8 @@ void create()
         set_skill("martial-cognize", 120);
 
         set("no_teach", ([
-                "liangyi-shengong"  : "两仪神功需得掌门人亲自传授。",
-                "zhengliangyi-jian"  : "正两仪剑法乃本门神功，需要掌门人亲自传授。",
+                "liangyi-shengong"  : "兩儀神功需得掌門人親自傳授。",
+                "zhengliangyi-jian"  : "正兩儀劍法乃本門神功，需要掌門人親自傳授。",
         ]));
 
         map_skill("force", "liangyi-shengong");
@@ -58,7 +58,7 @@ void create()
         prepare_skill("strike", "kunlun-zhang");
         prepare_skill("cuff", "zhentian-quan");
 
-        create_family("昆仑派", 5, "弟子");
+        create_family("崑崙派", 5, "弟子");
 
         set("chat_chance_combat", 100);
         set("chat_msg_combat", ({
@@ -82,22 +82,22 @@ void attempt_apprentice(object me)
 
         if( query("gender", me) != "女性" )
         {
-                command("say 师傅不准我收男弟子，你去找我师兄去吧。");
+                command("say 師傅不准我收男弟子，你去找我師兄去吧。");
                 return;
         }
 
         if( query("combat_exp", me)<10000 )
         {
-                command("say 你的江湖经验实在太浅，还是锻炼锻炼再说吧。");
+                command("say 你的江湖經驗實在太淺，還是鍛鍊鍛鍊再說吧。");
                 return;
         }
 
         if ((int)me->query_skill("kunlun-xinfa", 1) < 30)
         {
-                command("say 你对本门的内功心法所知尚浅，练习高了再来找我吧。");
+                command("say 你對本門的內功心法所知尚淺，練習高了再來找我吧。");
                 return;
         }
 
-        command("say 既然" + RANK_D->query_respect(me) + "这么努力，我就收下你吧。");
+        command("say 既然" + RANK_D->query_respect(me) + "這麼努力，我就收下你吧。");
         command("recruit "+query("id", me));
 }

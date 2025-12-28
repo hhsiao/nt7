@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("[1;32m凤凰[2;37;0m[2;37;0m", ({"bird"}));        
+        set_name("[1;32m鳳凰[2;37;0m[2;37;0m", ({"bird"}));        
         set("gender", "女性");                
-        set("long", "一只美丽的凤凰[2;37;0m
-它是纳兰潇潇的魔幻兽。
+        set("long", "一隻美麗的鳳凰[2;37;0m
+它是納蘭瀟瀟的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");
         set("owner", "nlxx");
-        set("owner_name", "纳兰潇潇");
+        set("owner_name", "納蘭瀟瀟");
         set_temp("owner", "nlxx");
-        set_temp("owner_name", "纳兰潇潇");
+        set_temp("owner_name", "納蘭瀟瀟");
         ::setup();
 }

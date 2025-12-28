@@ -1,6 +1,6 @@
 // This program is a part of NT MudLIB
 // Written by Lonely@nitan.org
-// realnewsd.c 实时新闻系统
+// realnewsd.c 即時新聞系統
 
 #include <ansi.h>
 #include <net/socket.h>
@@ -31,7 +31,7 @@
 
 #define HTTP_GET_PAGE_REQUEST(_page_, _host_name_) "GET " + _page_ + " HTTP/1.1\r\nAccept: */*\r\nAccept-Language: zh-cn\r\nAccept-Encoding: deflate\r\nAccept-Charset: gb2312\r\nHost: " + _host_name_ + "\r\nConnection: Keep-Alive\r\n\r\n"
 
-#define DEBUG(x) CHANNEL_D->channel_broadcast("nch", "REALNEWS_D 精灵："+(string)x)
+#define DEBUG(x) CHANNEL_D->channel_broadcast("nch", "REALNEWS_D 精靈："+(string)x)
 
 void get_news_list(string url);
 void get_each_news_data(int fd);
@@ -74,12 +74,12 @@ string DN2IP(string host)
 
 public string read_news_list()
 {
-        string list = sprintf("\n%4s%|12s%-48s\n%64'-'s\n", "编号", "类别", "标题", "");
+        string list = sprintf("\n%4s%|12s%-48s\n%64'-'s\n", "編號", "類別", "標題", "");
         string * groups;
         string * titles;
 
         if ( !sizeof(news_list) || !sizeof(news_data) )
-                return "当前没有可读新闻。\n";
+                return "當前沒有可讀新聞。\n";
 
         groups = keys(news_data);
 
@@ -112,13 +112,13 @@ public string read_news(string num)
         mixed data;
 
         if (! sscanf(num[0..0], "%d", group_id))
-                return "新闻编号错误！\n";
+                return "新聞編號錯誤！\n";
 
         if (! sscanf(num[1..], "%d", title_id))
-                return "新闻编号错误！\n";
+                return "新聞編號錯誤！\n";
 
         if (! sizeof(group_ids))
-                return "新闻编号错误！\n";
+                return "新聞編號錯誤！\n";
 
         foreach (string gp, int n in group_ids)
         {
@@ -144,7 +144,7 @@ public string read_news(string num)
         if (undefinedp(news_data[group][title]))
         ***********************************************/
         if (! mb_query(group + "/" + title, news_data))
-                return "新闻编号错误！\n";
+                return "新聞編號錯誤！\n";
 
         data = news_data[group][title];
 
@@ -153,7 +153,7 @@ public string read_news(string num)
                         data[NEWS_URL] + NOR + data[NEWS_DATA];
 
         return "\n" + HIY + sprintf("%|64s", title) + HIW + "\n" +
-                        data[NEWS_URL] + NOR + "\n\n新闻内容没有读取成功,请查看上面网址了解详情.\n\n";
+                        data[NEWS_URL] + NOR + "\n\n新聞內容沒有讀取成功,請查看上面網址瞭解詳情.\n\n";
 
 }
 
@@ -265,12 +265,12 @@ string parse_news_data(string data)
 
 void get_each_news_status(int fd, string msg)
 {
-        // 返回错误的信息
+        // 返回錯誤的信息
         if (fd && !undefinedp(socket_obs[fd]))
-                DEBUG(sprintf("读取单独新闻『%s』线程状况：%s\n",
+                DEBUG(sprintf("讀取單獨新聞『%s』線程狀況：%s\n",
                               socket_obs[fd][TITLE], msg));
         else
-                DEBUG(sprintf("读取单独新闻线程状况：%s\n", msg));
+                DEBUG(sprintf("讀取單獨新聞線程狀況：%s\n", msg));
 }
 
 void get_each_news_rece(int fd, mixed data)
@@ -284,7 +284,7 @@ void get_each_news_rece(int fd, mixed data)
         else
                 news_data["temp"][fd] += data;
         */
-        // 获取主页某一个新闻内容信息放入news_data["temp"]["fd"]中
+        // 獲取主頁某一個新聞內容信息放入news_data["temp"]["fd"]中
 
         mb_set("temp/" + fd, mb_query("temp/" + fd, news_data) + data, news_data);
 }
@@ -309,7 +309,7 @@ void get_each_news_close(int fd)
         foreach (string group in groups)
                 if (! undefinedp(news_data[group][title]))
                 {
-                        // 获取新闻类别名
+                        // 獲取新聞類別名
                         group_name = group;
                         break;
                 }
@@ -328,7 +328,7 @@ void get_each_news_close(int fd)
 
         if (! sizeof(news_html_page) || strsrch(news_html_page, "</html>") < 0)
         {
-                // 获取新闻失败则重新尝试
+                // 獲取新聞失敗則重新嘗試
                 get_each_news_data(fd);
                 socket_close(fd);
                 return;
@@ -337,7 +337,7 @@ void get_each_news_close(int fd)
         news_html_page = parse_news_data(news_html_page);
         news_info += ({ news_html_page });
 
-        // 将新闻内容加到news_data里
+        // 將新聞內容加到news_data裡
         // news_data[group_name][title] = news_info;
         mb_set(group_name + "/" + title, news_info, news_data);
         // map_delete(news_data["temp"], fd);
@@ -357,14 +357,14 @@ void get_each_news_data(int fd)
         int    socket_ob_fd;
         mixed  socket_data;
 
-        if( fd ) // 读取指定fd的news，主要出现在读取不成功时。
+        if( fd ) // 讀取指定fd的news，主要出現在讀取不成功時。
         {
                 socket_data = socket_obs[fd];
 
                 purl = socket_data[PAGE_URL];
                 if( !undefinedp(get_each_news_times[purl]) )
                 {
-                        // 再次读取不成功的话则放弃读取
+                        // 再次讀取不成功的話則放棄讀取
                         map_delete(socket_obs, fd);
                         return;
                 }
@@ -462,9 +462,9 @@ void parse_group_list()
 
 void get_group_list_rece(int fd, mixed data)
 {
-        // 获取主页所有内容信息放入news_data["temp"][group"]中
+        // 獲取主頁所有內容信息放入news_data["temp"][group"]中
         mb_set("temp/group", mb_query("temp/group", news_data) + data, news_data);
-        //DEBUG(sprintf("获取主页所有内容放入news_data[temp][group]信息：%O\n", data));
+        //DEBUG(sprintf("獲取主頁所有內容放入news_data[temp][group]信息：%O\n", data));
 }
 
 void get_group_list_close(int fd)
@@ -500,20 +500,20 @@ void parse_news_list()
         int    socket_ob_fd;
         mixed  socket_data;
 
-        // 将获取的主页内容进行筛选归类存放到news_data[group_name][title]
+        // 將獲取的主頁內容進行篩選歸類存放到news_data[group_name][title]
         // if (! (temp = news_data["temp"]["list"]))
         if (! (temp = mb_query("temp/list", news_data)))
                 return;
 
-        body_part = temp[strsrch(temp, "<!-- 右侧频道内容开始-->")..strsrch(temp, "<!-- 右侧频道内容结束-->")];
+        body_part = temp[strsrch(temp, "<!-- 右側頻道內容開始-->")..strsrch(temp, "<!-- 右側頻道內容結束-->")];
 
         reset_eval_cost();
-        //&nbsp;&nbsp;<a href="http://rss.sina.com.cn/news/marquee/ddt.xml" class="f14"><font color="#000000">国内要闻</font></a></span></td>
+        //&nbsp;&nbsp;<a href="http://rss.sina.com.cn/news/marquee/ddt.xml" class="f14"><font color="#000000">國內要聞</font></a></span></td>
         while(sscanf(body_part, "%*s&nbsp;&nbsp;<a href=\"%s\" class=\"f14\"><font color=\"#000000\">%s</font></a></span></td>%s", a_news_page_url, group_name, body_part) > 2)
         {
                 reset_eval_cost();
 
-                if( group_name != "国内要闻" && group_name != "国际要闻" && group_name != "社会新闻" && group_name != "时政要闻" )
+                if( group_name != "國內要聞" && group_name != "國際要聞" && group_name != "社會新聞" && group_name != "時政要聞" )
                         continue;
                         
                 group_list += ([group_name : a_news_page_url]);
@@ -558,9 +558,9 @@ void get_news_list_rece(int fd, mixed data)
         else
                 news_data["temp"]["list"] += data;
         */
-        // 获取主页所有内容信息放入news_data["temp"]["list"]中
+        // 獲取主頁所有內容信息放入news_data["temp"]["list"]中
         mb_set("temp/list", mb_query("temp/list", news_data) + data, news_data);
-        //DEBUG(sprintf("获取主页所有内容放入news_data[temp][list]信息：%O\n", data));
+        //DEBUG(sprintf("獲取主頁所有內容放入news_data[temp][list]信息：%O\n", data));
 }
 
 void get_news_list_close(int fd)
@@ -620,11 +620,11 @@ void broadcast_news()
                 // broadcast_news();
                 return;
         }
-        CHANNEL_D->channel_broadcast("news", sprintf(WHT "【%s】%s%3s%s%3s(新闻编号%d%2'0'd)\n" NOR,
+        CHANNEL_D->channel_broadcast("news", sprintf(WHT "【%s】%s%3s%s%3s(新聞編號%d%2'0'd)\n" NOR,
                                     news_group, news_title, "", news_data[news_group][news_title][NEWS_TIME], "",
                                     group_ids[news_group], title_ids[news_title]));
         /*
-        message("realnews", sprintf(WHT "【%s】%s%3s%s%3s(新闻编号%d%2'0'd)\n" NOR,
+        message("realnews", sprintf(WHT "【%s】%s%3s%s%3s(新聞編號%d%2'0'd)\n" NOR,
                                     news_group, news_title, "", news_data[news_group][news_title][NEWS_TIME], "",
                                     group_ids[news_group], title_ids[news_title]),
                                     filter_string *(users(), (: !$1->query("env/no_realnews") :)));
@@ -650,5 +650,5 @@ void create()
 
 string query_name()
 {
-        return "真实新闻系统(REALNEWS_D)";
+        return "真實新聞系統(REALNEWS_D)";
 }

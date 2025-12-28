@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "正北门");
+        set("short", "正北門");
         set("long", @LONG
-南岳大庙正北门是大庙的后门，正在衡山山麓。回望大庙，红墙
-黄瓦，金碧辉煌。北面是上山的六小路。
+南嶽大廟正北門是大廟的後門，正在衡山山麓。回望大廟，紅牆
+黃瓦，金碧輝煌。北面是上山的六小路。
 LONG );
         set("exits", ([ 
                 "south"  : __DIR__"houdian",

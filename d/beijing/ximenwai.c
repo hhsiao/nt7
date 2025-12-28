@@ -2,9 +2,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "西门外");
+        set("short", "西門外");
         set("long", @LONG
-这里是北京的西城门外。人来人往，煞是热闹。
+這裡是北京的西城門外。人來人往，煞是熱鬧。
 LONG );
         set("exits", ([
                 "east" : "/d/beijing/xichengmen",

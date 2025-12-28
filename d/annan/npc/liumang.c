@@ -5,7 +5,7 @@ void create()
    set_name("流氓",({ "liu mang","liu","mang" }) );
         set("gender", "男性" );
         set("age", 22);
-   set("long", "这是一个安南城内的流氓。\n");
+   set("long", "這是一個安南城內的流氓。\n");
        
    set("combat_exp", 50000);
    set("str", 23);
@@ -13,8 +13,8 @@ void create()
    set("attitude", "peaceful");
    set("chat_chance",50);
    set("chat_msg",({
-           "流氓说道：这里就是我们说了算！\n",
-           "流氓吐了口吐沫：都给我闪开，看什么看！\n",
+           "流氓說道：這裡就是我們說了算！\n",
+           "流氓吐了口吐沫：都給我閃開，看什麼看！\n",
    }));
    setup();
    carry_object(__DIR__"obj/cloth")->wear();

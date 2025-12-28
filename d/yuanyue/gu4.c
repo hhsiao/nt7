@@ -5,11 +5,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "小径");
+        set("short", "小徑");
         set("long", @LONG
-一条五色彩石小径直通精舍，两旁种满鲜花，五彩缤纷。路边更
-有各种果树，果(yiguo)已熟透,甚为诱人。一扇玉门在阳光下份外可
-爱。
+一條五色彩石小徑直通精舍，兩旁種滿鮮花，五彩繽紛。路邊更
+有各種果樹，果(yiguo)已熟透,甚為誘人。一扇玉門在陽光下份外可
+愛。
 LONG );
         set("exits", ([ /* sizeof() == 4 */
                 "eastup" : __DIR__"gu3",
@@ -17,7 +17,7 @@ LONG );
  
         ]));
         set("outdoors","tieflag");      
-        create_door("westdown","玉门","eastup",DOOR_CLOSED);         
+        create_door("westdown","玉門","eastup",DOOR_CLOSED);         
         set("coor/x",90);
         set("coor/y",10);
         set("coor/z",-10);
@@ -36,14 +36,14 @@ int do_get(string arg)
                 swo=new(__DIR__"obj/yiguo");
                 swo->move(this_player());
                 addn("mark/been_get",1);
-                write("你从树上摘了一个果子。\n" );
+                write("你從樹上摘了一個果子。\n" );
         }
         else
         { 
                 swo=new(__DIR__"obj/yiguo1");
                 swo->move(this_player());
                 addn("mark/been_get",1);
-                write("你从树上摘了一个果子. \n" );
+                write("你從樹上摘了一個果子. \n" );
         }
         
         return 1; 

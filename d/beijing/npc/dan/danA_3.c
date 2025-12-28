@@ -4,7 +4,7 @@ inherit COMBINED_ITEM;
 
 void create()
 {
-        set_name(HIR"补精丹"NOR, ({"bujing dan", "dan"}));
+        set_name(HIR"補精丹"NOR, ({"bujing dan", "dan"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
@@ -22,20 +22,20 @@ int do_effect(object me)
 
         if( time()-query_temp("last_eat/dan(A, me)")<10 )
         {
-                write("你刚服用过药，需药性发挥完效用以后才能继续服用。\n");
+                write("你剛服用過藥，需藥性發揮完效用以後才能繼續服用。\n");
                 return 1;
         }
 
         my = me->query_entire_dbase();
         if (my["jing"] == my["max_jing"])
         {
-                write("你现在精神状态很好，无需服用" + name() + "。\n");
+                write("你現在精神狀態很好，無需服用" + name() + "。\n");
                 return 1;
         }
 
         set_temp("last_eat/dan(A)", time(), me);
 
-        message_vision(HIR "$N吃下一粒补精丹，感到灵台处无比的清净。\n" NOR, me);
+        message_vision(HIR "$N吃下一粒補精丹，感到靈臺處無比的清淨。\n" NOR, me);
         me->receive_curing("jing", 230);
         me->receive_heal("jing", 230);
 

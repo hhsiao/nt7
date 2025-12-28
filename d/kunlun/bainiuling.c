@@ -11,18 +11,18 @@ void delete_done(object me);
 
 void create()
 {
-        set("short", "白牛岭");
+        set("short", "白牛嶺");
         set("long",@long
-这座山岭因终年覆盖白雪，且形状远望犹如一头正在吃草的牛而得
-名。这里寒风呼啸，凛冽刺骨，你不禁打了个寒颤。山顶有一处平地，
-放有一块青色的巨石(stone)。
+這座山嶺因終年覆蓋白雪，且形狀遠望猶如一頭正在吃草的牛而得
+名。這裡寒風呼嘯，凜冽刺骨，你不禁打了個寒顫。山頂有一處平地，
+放有一塊青色的巨石(stone)。
 long);
         set("exits",([
                 "southwest" : __DIR__"fufengshan",
         ]));
         set("no_clean_up", 0);
         set("item_desc", ([
-                "stone" :"这块巨石很大，可以躺下一个人。表面十分平整光滑，似乎常有人摩挲。\n",
+                "stone" :"這塊巨石很大，可以躺下一個人。表面十分平整光滑，似乎常有人摩挲。\n",
         ]));
         set("outdoors", "kunlun");
         set("coor/x", -119970);
@@ -40,16 +40,16 @@ void init()
 int do_wo(string arg)
 {
         if ( !arg || (arg != "stone") )
-        return notify_fail("你要卧在什么上面？\n");
+        return notify_fail("你要臥在什麼上面？\n");
 
         if (this_player()->is_busy())
-                return notify_fail("你正忙着呢。\n");
+                return notify_fail("你正忙著呢。\n");
 
         if( query_temp("marks/wo", this_player()) )
-                return notify_fail("你已经躺在青石上了。\n");
+                return notify_fail("你已經躺在青石上了。\n");
 
         set_temp("marks/wo", 1, this_player());
-        return notify_fail("你侧身躺于青石上，意守丹田，口眼轻闭，双腿自然微曲，全身放松。\n");
+        return notify_fail("你側身躺於青石上，意守丹田，口眼輕閉，雙腿自然微曲，全身放鬆。\n");
 }
 
 int do_breathe()
@@ -57,29 +57,29 @@ int do_breathe()
         object me=this_player();
 
         if( !query_temp("marks/wo", me) )
-                return notify_fail("你深深吸了几口气，只觉得寒气冲进五脏六腑，体内的真气几乎提不起来。\n");
+                return notify_fail("你深深吸了幾口氣，只覺得寒氣衝進五臟六腑，體內的真氣幾乎提不起來。\n");
 
         if (me->is_busy())
-                return notify_fail("你正忙着呢。\n");
+                return notify_fail("你正忙著呢。\n");
 
         if( query_temp("marks/done", me) )
-                return notify_fail("寒风凛冽，你刚运过功，身子正十分虚弱，先好好休息一下吧。\n");
+                return notify_fail("寒風凜冽，你剛運過功，身子正十分虛弱，先好好休息一下吧。\n");
 
         if (me->query_skill("liangyi-shengong", 1) < 120 ) 
-                return notify_fail("你内功基底太弱，不可以随意控制内息。\n");
+                return notify_fail("你內功基底太弱，不可以隨意控制內息。\n");
                 
         if (me->query_skill("liangyi-shengong", 1) > 199 ) 
-                return notify_fail("你的两仪神功已经很强了，无法再通过吐纳来增强功力。\n"); 
+                return notify_fail("你的兩儀神功已經很強了，無法再通過吐納來增強功力。\n"); 
                 
         if (! me->can_improve_skill("liangyi-shengong")) 
-                return notify_fail("你的实战经验不足，无法继续吐纳练功。\n"); 
+                return notify_fail("你的實戰經驗不足，無法繼續吐納練功。\n"); 
 
         if (query("qi", me) < 40 || query("jing", me) < 40) 
-                return notify_fail("你现在已经很疲倦了，休息一下再来吧息。\n"); 
+                return notify_fail("你現在已經很疲倦了，休息一下再來吧息。\n"); 
 
-        message_vision(HIW "\n$N" HIW "集聚体内的两仪真气，深深吸进几口气，又缓缓的将" 
-                       "其呼出\n体外。$N" HIW "只觉得全身透彻清凉心定似水，仿佛已物我" 
-                       "浑然一体。\n\n" NOR, me); 
+        message_vision(HIW "\n$N" HIW "集聚體內的兩儀真氣，深深吸進幾口氣，又緩緩的將" 
+                       "其呼出\n體外。$N" HIW "只覺得全身透徹清涼心定似水，彷彿已物我" 
+                       "渾然一體。\n\n" NOR, me); 
 
         me->receive_damage("jing", random(30));
         me->receive_damage("qi",   random(30));

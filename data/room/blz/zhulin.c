@@ -7,8 +7,8 @@ void create()
 {
         set("short", "竹林");
 	set ("long", @LONG
-这里种着好大一片竹林，非常幽静。风一起就听竹叶沙沙的响，
-有时暴雪就去听涛阁默听竹浪涛声，参悟武功。 
+這裡種著好大一片竹林，非常幽靜。風一起就聽竹葉沙沙的響，
+有時暴雪就去聽濤閣默聽竹浪濤聲，參悟武功。 
 LONG );
 
         set("exits", ([
@@ -21,8 +21,8 @@ LONG );
         setup();
 
         set("room_owner", "暴雪");
-        set("room_name", "逍遥洞");
+        set("room_name", "逍遙洞");
         set("room_id", "blz");
         set("room_owner_id", "blz");
-        set("room_position", "青砖路");
+        set("room_position", "青磚路");
 }

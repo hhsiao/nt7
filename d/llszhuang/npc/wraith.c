@@ -8,7 +8,7 @@ void create()
 {
         set_name("翁四", ({ "wengsi" }) );
         set("long",
-"一个披头散发，浑身是血的厉鬼，正在这里飘来飘去。\n" );
+"一個披頭散髮，渾身是血的厲鬼，正在這裡飄來飄去。\n" );
         set("max_jing", 4000);
         set("max_qi", 4000);                    
         set("max_sen", 4000);
@@ -23,7 +23,7 @@ void create()
         set_skill("dodge", 500);
         set_skill("parry", 500);
         set_skill("sword",500);
-        set_skill("force",800); //防止别人来弹指
+        set_skill("force",800); //防止別人來彈指
         set_skill("hamagong",500);
         set_skill("tiyunzong",500);
         map_skill("sword","pixie-jian");
@@ -34,7 +34,7 @@ void create()
 
         set("chat_chance_combat",5);
         set("chat_msg_combat", ({
-                "还..我..命..来...\n",
+                "還..我..命..來...\n",
         }) );
 
         set("shen_type",-1);

@@ -1,5 +1,5 @@
 /*************
- * 标准当票  *
+ * 標準當票  *
  * by Find.  *
  *************/
 
@@ -7,11 +7,11 @@ inherit ITEM;
 
 class pawn_ob
 {
-        string master;          // 当主 ID
-        string pob_file;        // 当品文件名
-        int time;               // 到期时间
-        string hockshop;        // 当铺文件名
-        string ps_long;         // 当票描述
+        string master;          // 當主 ID
+        string pob_file;        // 當品文件名
+        int time;               // 到期時間
+        string hockshop;        // 當鋪文件名
+        string ps_long;         // 當票描述
 }
 
 protected class pawn_ob this_one;
@@ -19,7 +19,7 @@ protected class pawn_ob this_one;
 string this_long()
 {
         if(!this_one || !this_one->ps_long)
-                return "这是一张空白的当票。\n";
+                return "這是一張空白的當票。\n";
         else
                 return this_one->ps_long;
 }
@@ -41,7 +41,7 @@ void use_this_stamp(mixed *use)
                 this_one->ps_long = use[4];
 }
 
-// 查询函数
+// 查詢函數
 string query_master()
 {
         if(!this_one)
@@ -92,9 +92,9 @@ mixed *query_all_msg()
 
 void create()
 {
-        set_name("当票", ({ "pawn stamp", "stamp" }));
+        set_name("當票", ({ "pawn stamp", "stamp" }));
         set_weight(0);
-        set("unit", "张");
+        set("unit", "張");
         set("long", (: this_long :));
         setup();
 }

@@ -6,8 +6,8 @@ inherit MEDAL;
 
 void create()
 {
-        set_name(HIC "精英青铜勋章" NOR, ({ "jingying bronze medal", "jingying", "xunzhang" }));
-        set("long", HIC "华山论剑精英组第三获得的勋章，非常珍贵，乃强者的象征。\n" NOR);
+        set_name(HIC "精英青銅勳章" NOR, ({ "jingying bronze medal", "jingying", "xunzhang" }));
+        set("long", HIC "華山論劍精英組第三獲得的勳章，非常珍貴，乃強者的象徵。\n" NOR);
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);

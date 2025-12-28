@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("相无可厚非[2;37;0m[2;37;0m", ({"qilina"}));        
+        set_name("相無可厚非[2;37;0m[2;37;0m", ({"qilina"}));        
         set("gender", "男性");                
         set("long", "  [2;37;0m
-它是雪甲的魔幻兽。
+它是雪甲的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

@@ -5,19 +5,19 @@ inherit STAFF;
 
 void create()
 {
-        set_name(HIG "神农锏" NOR,({ "shennong jian", "shennong", "jian", "staff" }) );
+        set_name(HIG "神農鐧" NOR,({ "shennong jian", "shennong", "jian", "staff" }) );
         set_weight(3800);
         if (clonep())
                 destruct(this_object());
         else {
-                set("long", HIG "一柄看似普通的药锄，柄上刻着“神农”二字。\n" NOR);
+                set("long", HIG "一柄看似普通的藥鋤，柄上刻著“神農”二字。\n" NOR);
                 set("unit", "柄");
                 set("value", 800000);
                 set("no_sell", 1);
                 set("material", "steel");
-                set("wield_msg", HIG "$N" HIG "拔出神农锏握在手里，四周空气中"
-                                 "顿时充满浓厚的草药香味。\n" NOR);
-                set("unwield_msg", HIG "$N" HIG "哈哈一笑，将神农锏收回。\n" NOR);
+                set("wield_msg", HIG "$N" HIG "拔出神農鐧握在手裡，四周空氣中"
+                                 "頓時充滿濃厚的草藥香味。\n" NOR);
+                set("unwield_msg", HIG "$N" HIG "哈哈一笑，將神農鐧收回。\n" NOR);
                 set("stable", 100);
         }
         init_staff(130);
@@ -38,16 +38,16 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         case 0:
                 if (! victim->is_busy())
                 victim->start_busy(me->query_skill("staff") / 12 + 2);
-                return HIG "$N" HIG "将手中神农锏急速挥舞转动，一股刺鼻的气味"
-                       "顿时扑面而来，$n" HIG "见状连忙后退！\n" NOR;
+                return HIG "$N" HIG "將手中神農鐧急速揮舞轉動，一股刺鼻的氣味"
+                       "頓時撲面而來，$n" HIG "見狀連忙後退！\n" NOR;
 
         case 1:
                 n = me->query_skill("staff");
                 victim->receive_damage("qi", n * 2 / 3, me);
                 victim->receive_wound("qi", n * 2 / 3, me);
-                return HIG "$N" HIG "身形如鬼魅般飘出，手中神农锏一阵乱舞，犹"
-                       "如千百根相似，$n" HIG "见状不由心生畏惧，只能够勉强作"
-                       "出抵挡！\n" NOR;
+                return HIG "$N" HIG "身形如鬼魅般飄出，手中神農鐧一陣亂舞，猶"
+                       "如千百根相似，$n" HIG "見狀不由心生畏懼，只能夠勉強作"
+                       "出抵擋！\n" NOR;
         }
         return damage_bonus;
 }

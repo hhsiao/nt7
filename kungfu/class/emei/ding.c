@@ -10,7 +10,7 @@ void create()
 {
         set_name("丁敏君", ({ "ding minjun","ding","minjun"}));
         set("long",
-                "她是峨嵋派的第四代俗家弟子。是天下最恶心，无赖的人。\n");
+                "她是峨嵋派的第四代俗家弟子。是天下最噁心，無賴的人。\n");
         set("gender", "女性");
         set("age", 22);
         set("attitude", "peaceful");
@@ -57,8 +57,8 @@ void create()
         map_skill("parry","huifeng-jian");
 
         set("inquiry", ([
-                "出家"     : "你去本山的庵堂里找我静字辈师姐吧。她们在福寿庵、千佛庵、\n万年庵、万行庵和卧云庵修行。\n",
-                "灭绝师太" : "她是本派掌门人，在华藏庵修行。\n",
+                "出家"     : "你去本山的庵堂裡找我靜字輩師姐吧。她們在福壽庵、千佛庵、\n萬年庵、萬行庵和臥雲庵修行。\n",
+                "滅絕師太" : "她是本派掌門人，在華藏庵修行。\n",
         ]));
 
         create_family("峨嵋派", 4, "弟子");
@@ -86,26 +86,26 @@ void init()
 void greeting(object ob)
 {
           if( !ob || environment(ob) != environment() ) return;
-          command("chat"+query("name", ob)+"我好喜欢你啊！\n");
+          command("chat"+query("name", ob)+"我好喜歡你啊！\n");
 }
 int do_hit(string arg)
 {
-          command("chat"+query("name", this_player())+"要非礼我了！\n");
+          command("chat"+query("name", this_player())+"要非禮我了！\n");
           return 1;
 }
 int do_kill(string arg)
 {
-          command("chat"+query("name", this_player())+"这个混蛋要强奸我了！快来人哪！\n");
+          command("chat"+query("name", this_player())+"這個混蛋要強姦我了！快來人哪！\n");
           return 1;
 }
 int accept_fight(object me)
 {
-          command("chat"+query("name", this_player())+"要强奸我了，救命啊！\n");
+          command("chat"+query("name", this_player())+"要強姦我了，救命啊！\n");
           return 0;
 }
 
 void attempt_apprentice(object ob)
 {
-        command ("say 阿弥陀佛！贫尼不收弟子。\n");
+        command ("say 阿彌陀佛！貧尼不收弟子。\n");
         return;
 }

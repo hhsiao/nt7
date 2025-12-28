@@ -6,8 +6,8 @@ inherit NPC;
 
 void create()
 {
-        set_name(HIG "碧海神龙" NOR, ({ "bihao shenlong", "bihai", "shenlong" }) );
-        set("title", HIC "龙族" NOR);
+        set_name(HIG "碧海神龍" NOR, ({ "bihao shenlong", "bihai", "shenlong" }) );
+        set("title", HIC "龍族" NOR);
         set("gender", "男性");
         set("age", 23);
         set("combat_exp", 10000000);
@@ -54,8 +54,8 @@ void fight_ob(object ob)
         if (is_fighting(ob))
                 return;
 
-        message_vision(HIC "$N" HIC "啸叫一声，浑身云气大盛，"
-                       "雾气弥漫。\n" NOR, this_object(), ob);
+        message_vision(HIC "$N" HIC "嘯叫一聲，渾身雲氣大盛，"
+                       "霧氣瀰漫。\n" NOR, this_object(), ob);
 
         ::fight_ob(ob);
         if (! is_killing(ob->query("id")))
@@ -64,7 +64,7 @@ void fight_ob(object ob)
 
 int accept_fight(object ob)
 {
-        message_vision("$N微一摇头，略一摆尾，扫了上来。\n",
+        message_vision("$N微一搖頭，略一擺尾，掃了上來。\n",
                        this_object(), ob);
         kill_ob(ob);
         return -1;
@@ -84,8 +84,8 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->receive_wound("qi", 200 + random(200), me);
 
-        return HIY "$N" HIY "周围烟雾缭绕，光华四射，登时令$n"
-               HIY "心力受损。\n" NOR;
+        return HIY "$N" HIY "周圍煙霧繚繞，光華四射，登時令$n"
+               HIY "心力受損。\n" NOR;
 }
 
 void unconcious()
@@ -97,7 +97,7 @@ void random_move()
 {
         if (! this_object()->is_fighting() && this_object()->query_temp("no_fighting_times") > 1)
         {
-                message_vision(HIC "$N化作一道轻烟，消失了。\n" NOR, this_object());
+                message_vision(HIC "$N化作一道輕煙，消失了。\n" NOR, this_object());
 
                 destruct(this_object());
                 return;

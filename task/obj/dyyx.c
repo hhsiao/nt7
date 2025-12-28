@@ -2,14 +2,14 @@
 inherit TASK;
 void create()
 {
-    set_name( HIW "大燕玉玺" NOR, ({ "dayan yuxi", "yuxi" }) );
+    set_name( HIW "大燕玉璽" NOR, ({ "dayan yuxi", "yuxi" }) );
     set_weight(1);
     if( clonep() )
             destruct(this_object());
     else {
-            set("unit", "个");
+            set("unit", "個");
             set("material", "stone");
-            set("long", "一个玉玺，上面刻着大燕国号，看起来有些年代了。\n");
+            set("long", "一個玉璽，上面刻著大燕國號，看起來有些年代了。\n");
           }
     set("owner", "慕容博");
     setup();

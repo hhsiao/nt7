@@ -8,7 +8,7 @@ int ask_hbd(object me, object ob);
 
 void create()
 {
-        set_name("老汉", ({ "old man", "old", "man" }) );
+        set_name("老漢", ({ "old man", "old", "man" }) );
         set("gender", "男性" );
         set("age", 63);
         set("shen_type", 1);
@@ -32,9 +32,9 @@ int ask_hbd(object me, object ob)
      ob=this_object(); 
      if( query("bunch/bunch_name", me) != "黑白道" && query("shen", me) <= 0 )
      { 
-           command("whisper"+query("id", me)+"兄弟是想加入咱们黑白道的吧！随我来吧！");
-           tell_object(me,HIB"老汉带你到了后院，移开一块石板，你顺着石阶走了下去。\n"NOR);
-           message("vision", me->name() + "带着老汉急急忙忙的走了。\n", 
+           command("whisper"+query("id", me)+"兄弟是想加入咱們黑白道的吧！隨我來吧！");
+           tell_object(me,HIB"老漢帶你到了後院，移開一塊石板，你順著石階走了下去。\n"NOR);
+           message("vision", me->name() + "帶著老漢急急忙忙的走了。\n", 
                               environment(me), ({me}) ); 
            me->move("/d/beijing/hbd_bjzb");
            return 1; 
@@ -45,7 +45,7 @@ int ask_hbd(object me, object ob)
            return 1; 
      } 
 
-     tell_object(me,"老汉说道：“既然是本帮兄弟，就随我来吧！”\n");
+     tell_object(me,"老漢說道：“既然是本幫兄弟，就隨我來吧！”\n");
      me->move("/d/beijing/hbd_bjzb"); 
      return 1; 
 } 

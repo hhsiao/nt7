@@ -7,10 +7,10 @@ inherit CREATE_CHAT_ROOM;
 
 void create()
 {
-        set("short", "大树冠");
+        set("short", "大樹冠");
         set("long", @LONG
-在巨大的树冠下，竟有一方如此清幽之处，微风拨动着青翠的菩提树叶，
-幽香的气息令你心旷神怡，似乎一切尘世烦恼尽数烟消云散。
+在巨大的樹冠下，竟有一方如此清幽之處，微風撥動著青翠的菩提樹葉，
+幽香的氣息令你心曠神怡，似乎一切塵世煩惱盡數煙消雲散。
 LONG );
 
               set("objects", ([ 
@@ -42,7 +42,7 @@ LONG );
                               case 4: 
                               case 5: 
                               case 6: 
-                              tell_room(this_object(), HIK "★○●◎▲"NOR HIR "',',' ','╱　╱☆　　╱★　╱╱○闪　╱╱',闪',' ','╱　╱☆　　╱★　流╱╱星　╱╱" NOR HIK "▲◎●○★\n"NOR); 
+                              tell_room(this_object(), HIK "★○●◎▲"NOR HIR "',',' ','╱　╱☆　　╱★　╱╱○閃　╱╱',閃',' ','╱　╱☆　　╱★　流╱╱星　╱╱" NOR HIK "▲◎●○★\n"NOR); 
                               break; 
                               case 7: 
                               case 8: 

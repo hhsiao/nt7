@@ -9,9 +9,9 @@ void create()
         int skill, nl, lvl;
         int exp;
 
-        set_name("蒙古卫队",({ "menggu weidui", "weidui" }) );
+        set_name("蒙古衛隊",({ "menggu weidui", "weidui" }) );
         set("gender", "男性" );
-        set("long", "这就是此次领兵南侵的负责防卫的蒙古卫队。\n");
+        set("long", "這就是此次領兵南侵的負責防衛的蒙古衛隊。\n");
 
         set("int", 30);
         set("str", 30 + random(20));
@@ -98,7 +98,7 @@ int do_kill(string arg)
 
         if (this_object()->id(arg))
         {
-                write("有没有搞错，那是蒙古兵耶，还不快跑？！\n");
+                write("有沒有搞錯，那是蒙古兵耶，還不快跑？！\n");
                 return 1;
         } else
         if ((sscanf(arg, "%s from %s",what, who) == 2 ||
@@ -106,12 +106,12 @@ int do_kill(string arg)
              sscanf(arg, "%s on %s", what, who) == 2 ||
              sscanf(arg, "%s %s", what, who) == 2) &&
              this_object()->id(who)) {
-                write("有没有搞错，那是蒙古兵耶，还不快跑？！\n");
+                write("有沒有搞錯，那是蒙古兵耶，還不快跑？！\n");
                 return 1;
         } else
         if (arg == "roar" || arg == "hou")
         {
-                write("有没有搞错，那是蒙古兵耶，还不快跑？！\n");
+                write("有沒有搞錯，那是蒙古兵耶，還不快跑？！\n");
                 return 1;
         }
 
@@ -124,11 +124,11 @@ varargs void die(object killer)
         if (objectp(killer) && playerp(killer)) 
         {
                 addn_temp("warquest/reward", 200, killer);
-                GIFT_D->delay_war_bonus(killer, ([ "prompt" : "因歼灭蒙古卫队", "exp" : 1000, "pot" : 400, "mar" : 40, "gold" : 4 ])); 
+                GIFT_D->delay_war_bonus(killer, ([ "prompt" : "因殲滅蒙古衛隊", "exp" : 1000, "pot" : 400, "mar" : 40, "gold" : 4 ])); 
         }
 
-        message_vision("$N率领的蒙古卫队在几经顽抗后，终于被彻底" +
-                        HIR "消灭了" NOR "！\n",
+        message_vision("$N率領的蒙古衛隊在幾經頑抗後，終於被徹底" +
+                        HIR "消滅了" NOR "！\n",
                         this_object());
         
         return ::die();

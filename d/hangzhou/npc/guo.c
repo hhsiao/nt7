@@ -1,17 +1,17 @@
 //Cracked by Roath
-// /d/hangzhou/npc/guo.c   郭啸天
+// /d/hangzhou/npc/guo.c   郭嘯天
 // by aln 2 / 98
 
 inherit NPC;
 
 void create()
 {
-        set_name("郭啸天", ({ "guo xiaotian", "guo" }) );
+        set_name("郭嘯天", ({ "guo xiaotian", "guo" }) );
         set("gender", "男性");
         set("age", 25);
         set("long",
-"他身材魁梧，浓眉大眼。\n"
-"他是梁山泊好汉地佑星赛仁贵郭盛的后代。\n");
+"他身材魁梧，濃眉大眼。\n"
+"他是梁山泊好漢地佑星賽仁貴郭盛的後代。\n");
         set("combat_exp", 160000);
         set("shen_type",  1);
         set("attitude", "friendly");
@@ -42,10 +42,10 @@ void create()
 */
 
         set("inquiry", ([
-                "杨铁心" : "他是我义弟。",
-                "李萍" : "她是我浑家。",
-                "郭靖" : "这是一个道人给我未出世的儿女取的名字。",
-                "杨康" : "这是我义弟杨铁心的骨肉。",
+                "楊鐵心" : "他是我義弟。",
+                "李萍" : "她是我渾家。",
+                "郭靖" : "這是一個道人給我未出世的兒女取的名字。",
+                "楊康" : "這是我義弟楊鐵心的骨肉。",
                 "包惜弱" : "她是我弟媳。",
         ]));
 

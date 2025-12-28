@@ -5,7 +5,7 @@ inherit CLOTH;
 
 void create()
 {
-        set_name( "亮银甲", ({"silverarmor","yinarmor", "yinjia" }) );
+        set_name( "亮銀甲", ({"silverarmor","yinarmor", "yinjia" }) );
         set_weight(30000);
         /*if( clonep() )
                 set_default_object(__FILE__);

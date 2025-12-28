@@ -4,20 +4,20 @@
 inherit BLADE;
 void create()
 {
-        set_name(HIW"蒙古弯刀"NOR, ({ "wan dao","blade" }));
+        set_name(HIW"蒙古彎刀"NOR, ({ "wan dao","blade" }));
         set_weight(12000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "柄");
-                set("long", "这是一柄亮晃晃的钢刀，是蒙古官兵的常备武器。\n");
+                set("long", "這是一柄亮晃晃的鋼刀，是蒙古官兵的常備武器。\n");
                 set("value", 1000);
                 set("rigidity",200);
                 set("no_get",1);
                 set("no_put",1);
                 set("material", "steel");
-                set("wield_msg", "$N「唰」的一声抽出一柄$n握在手中。\n");
-                set("unwield_msg", "$N将手中的$n插回刀鞘。\n");
+                set("wield_msg", "$N「唰」的一聲抽出一柄$n握在手中。\n");
+                set("unwield_msg", "$N將手中的$n插回刀鞘。\n");
         }
         init_blade(400);
         setup();
@@ -37,25 +37,25 @@ mixed hit_ob(object me, object victim, int damage_bonus)
                 {
                         if( query_temp("warquest/group", victim) )
                                   message_vision(
-                                          BLINK+HIM"$N的左翼遭到攻击，损失了部分军队！\n"NOR,victim);
+                                          BLINK+HIM"$N的左翼遭到攻擊，損失了部分軍隊！\n"NOR,victim);
                   }
                 else if( dam < 80 )
                 {
                         if( query_temp("warquest/group", victim) )
                                   message_vision(
-                                              BLINK+HIM"$N的右翼遭到伏击，损失惨重！！\n"NOR,victim);
+                                              BLINK+HIM"$N的右翼遭到伏擊，損失慘重！！\n"NOR,victim);
                 }
                 else if( dam < 120 )
                 {
                         if( query_temp("warquest/group", victim) )
                                   message_vision(
-                                          BLINK+HIM"$N的中军遭到埋伏，损失殆尽！！\n"NOR,victim);
+                                          BLINK+HIM"$N的中軍遭到埋伏，損失殆盡！！\n"NOR,victim);
                 }
                 else  
                 {
                         if( query_temp("warquest/group", victim) )
                                   message_vision(
-                                          BLINK+HIM"$N的全军陷入了敌军的埋伏，存亡已在旦夕！！\n"NOR,victim);  
+                                          BLINK+HIM"$N的全軍陷入了敵軍的埋伏，存亡已在旦夕！！\n"NOR,victim);  
                 }
                 
                 victim->receive_damage("qi",dam, me);

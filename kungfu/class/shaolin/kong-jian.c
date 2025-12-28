@@ -7,9 +7,9 @@ inherit F_GUARDER;
 
 void create()
 {
-        set_name("空见", ({ "kong jian", "kongjian" }));
+        set_name("空見", ({ "kong jian", "kongjian" }));
         set("long",
-                "他是一位须发花白的老僧，身形瘦削，容貌慈和。\n"
+                "他是一位鬚髮花白的老僧，身形瘦削，容貌慈和。\n"
         );
 
         set("nickname", HIR "神僧" NOR);
@@ -61,12 +61,12 @@ void create()
         }));
 
         set("guarder", ([
-                "refuse_other": "$N对$n道：善哉，后殿只有少林弟子才能入内，施主还是请回吧！",
-                "refuse_carry": "$N对$n道：你背上背的是谁？还不快快放下来？",
+                "refuse_other": "$N對$n道：善哉，後殿只有少林弟子才能入內，施主還是請回吧！",
+                "refuse_carry": "$N對$n道：你背上背的是誰？還不快快放下來？",
         ]));
 
         set("inquiry", ([
-                "金刚不坏体" : "我们少林弟子不可轻易杀生，这门武功倒是合适。",
+                "金剛不壞體" : "我們少林弟子不可輕易殺生，這門武功倒是合適。",
         ]));
 
         set("chat_chance_combat", 120);
@@ -86,7 +86,7 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        message_vision("$N双手合十对$n道：善哉善哉，老衲早已不收徒了。\n",
+        message_vision("$N雙手合十對$n道：善哉善哉，老衲早已不收徒了。\n",
                        this_object(), ob);
 }
 
@@ -100,14 +100,14 @@ int recognize_apprentice(object me, string skill)
 
         if (me->query_skill("buddhism", 1) < 250)
         {
-                command("say 唉！你还是好好修习佛法吧，不要耽于武学。");
+                command("say 唉！你還是好好修習佛法吧，不要耽於武學。");
                 return -1;
         }
 
         if( query_temp("can_learn/kongjian/jingang-buhuaiti", me) )
                 return 1;
 
-        command("say 好吧，我就传你我少林派的护体神功，日后普渡众生，却少不了它。");
+        command("say 好吧，我就傳你我少林派的護體神功，日後普渡眾生，卻少不了它。");
         set_temp("can_learn/kongjian/jingang-buhuaiti", 1, me);
         return 1;
 }
@@ -116,10 +116,10 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "金刚不坏" :
+        case "金剛不壞" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/jingang-buhuaiti/protect",
-                           "name"    : "金刚不坏",
+                           "name"    : "金剛不壞",
                            "sk1"     : "jingang-buhuaiti",
                            "lv1"     : 100,
                            "sk2"     : "force",

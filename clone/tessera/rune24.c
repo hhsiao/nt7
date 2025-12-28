@@ -16,8 +16,8 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", "符文：无极昙誓符，可以放入凹槽物品。\n");
-                set("unit", "个");
+                set("long", "符文：無極曇誓符，可以放入凹槽物品。\n");
+                set("unit", "個");
                 set("enchase/SN", 24);
                 set("enchase/type", "all");
                 set("enchase/consistence", 100); 

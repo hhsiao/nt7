@@ -5,10 +5,10 @@
 inherit F_CLEAN_UP;
 
 string help = @HELP
-表情指令编辑器
+表情指令編輯器
 
-edemote '表情指令'	- 编辑表情指令
-edemote -d '表情指令'	- 删除表情指令
+edemote '表情指令'	- 編輯表情指令
+edemote -d '表情指令'	- 刪除表情指令
 
 HELP;
 
@@ -28,7 +28,7 @@ private void setup_emotion(object me, string emotion, mapping modifying_info, in
 
 private string replace_keys(string description)
 {
-	if( !description ) return "尚未设定";
+	if( !description ) return "尚未設定";
 
 	description = replace_string(description, "$ME", 	HIC"你"NOR);
 	description = replace_string(description, "$YOU", 	HIG"某人"NOR);
@@ -38,16 +38,16 @@ private string replace_keys(string description)
 }
 private string emotion_detail_description(string emotion, mixed info)
 {
-	string msg = "---- 表情 "HIY+emotion+NOR+" 之详细叙述如下："+repeat_string("--", 13-(strlen(emotion)/2))+"\n";
+	string msg = "---- 表情 "HIY+emotion+NOR+" 之詳細敘述如下："+repeat_string("--", 13-(strlen(emotion)/2))+"\n";
 
-	msg += NOR WHT"1.无对象无附加文字    ："NOR+replace_keys(info[NONE_ALL])+"\n";
-	msg += NOR WHT"2.无对象有附加文字    ："NOR+replace_keys(info[NONE_ALL_ARG])+"\n";
-	msg += NOR WHT"3.对象为自己无附加文字："NOR+replace_keys(info[ME_ALL])+"\n";
-	msg += NOR WHT"4.对象为自己有附加文字："NOR+replace_keys(info[ME_ALL_ARG])+"\n";
-	msg += NOR WHT"5.对象为某人无附加文字："NOR+replace_keys(info[YOU_ALL])+"\n";
-	msg += NOR WHT"6.对象为某人有附加文字："NOR+replace_keys(info[YOU_ALL_ARG])+"\n";
-	msg += NOR WHT"7.表情注解            ："NOR+(info[NOTE] || "尚未设定")+"\n";
-	msg += NOR WHT"8.使用次数            ："NOR+info[USE]+" 次\n";
+	msg += NOR WHT"1.無對象無附加文字    ："NOR+replace_keys(info[NONE_ALL])+"\n";
+	msg += NOR WHT"2.無對象有附加文字    ："NOR+replace_keys(info[NONE_ALL_ARG])+"\n";
+	msg += NOR WHT"3.對象為自己無附加文字："NOR+replace_keys(info[ME_ALL])+"\n";
+	msg += NOR WHT"4.對象為自己有附加文字："NOR+replace_keys(info[ME_ALL_ARG])+"\n";
+	msg += NOR WHT"5.對象為某人無附加文字："NOR+replace_keys(info[YOU_ALL])+"\n";
+	msg += NOR WHT"6.對象為某人有附加文字："NOR+replace_keys(info[YOU_ALL_ARG])+"\n";
+	msg += NOR WHT"7.表情註解            ："NOR+(info[NOTE] || "尚未設定")+"\n";
+	msg += NOR WHT"8.使用次數            ："NOR+info[USE]+" 次\n";
 	msg += "------------------------------------------------------\n";
 	return msg;
 }
@@ -57,15 +57,15 @@ private void confirm_delete_emotion(object me, string emotion, string arg)
 	if( lower_case(arg) == "y" )
 	{
 		if( EMOTE_D->delete_emotion(emotion) )
-			tell(me, "删除表情指令 "+emotion+" 成功。\n");
+			tell(me, "刪除表情指令 "+emotion+" 成功。\n");
 		else
-			tell(me, "删除失败，请通知巫师处理。\n");
+			tell(me, "刪除失敗，請通知巫師處理。\n");
 
 		return me->finish_input();
 	}
 	else
 	{
-		tell(me, "取消删除。\n");
+		tell(me, "取消刪除。\n");
 		return me->finish_input();
 	}
 }
@@ -82,17 +82,17 @@ private void setup_emotion(object me, string emotion, mapping modifying_info, in
 	switch(arg)
 	{
 		case "cancel":
-			tell(me, "取消输入叙述。\n"+emotion_detail_description(emotion, modifying_info)+"请输入欲设定之项目(设定完毕 save, 取消设定 exit)：\n>");
+			tell(me, "取消輸入敘述。\n"+emotion_detail_description(emotion, modifying_info)+"請輸入欲設定之項目(設定完畢 save, 取消設定 exit)：\n>");
 			input_to( (: choose_option, me, emotion, modifying_info :) );
 			break;
 
 		case ".":
-			// 最佳化叙述
+			// 最佳化敘述
 			if(multi_line_arg[<1..] == "\n") multi_line_arg = multi_line_arg[0..<2];
 			multi_line_arg = kill_repeat_ansi(trim(ansi(multi_line_arg)) + NOR);
 			modifying_info[option-1] = multi_line_arg;
 
-			tell(me, "设定完毕。\n"+emotion_detail_description(emotion, modifying_info)+"请输入欲设定之项目(设定完毕 save, 取消设定 exit)：\n>");
+			tell(me, "設定完畢。\n"+emotion_detail_description(emotion, modifying_info)+"請輸入欲設定之項目(設定完畢 save, 取消設定 exit)：\n>");
 			input_to( (: choose_option, me, emotion, modifying_info :) );
 			break;
 		default:
@@ -111,7 +111,7 @@ private void choose_option(object me, string emotion, mapping modifying_info, st
 		case "save":
 			if( sizeof(modifying_info) != 8 )
 			{
-				tell(me, "必须设定完所有表情叙述才能储存设定。\n请输入欲设定之项目(设定完毕 save, 取消设定 exit)：\n>");
+				tell(me, "必須設定完所有表情敘述才能儲存設定。\n請輸入欲設定之項目(設定完畢 save, 取消設定 exit)：\n>");
 				input_to( (: choose_option, me, emotion, modifying_info :) );
 				return;
 			}
@@ -124,17 +124,17 @@ private void choose_option(object me, string emotion, mapping modifying_info, st
 
 				if( EMOTE_D->set_emotion(emotion, info) )
 				{
-					tell(me, "表情指令 "+emotion+" 设定储存成功。\n");
+					tell(me, "表情指令 "+emotion+" 設定儲存成功。\n");
 				}
 				else
-					tell(me, "表情指令 "+emotion+" 设定储存失败。\n");
+					tell(me, "表情指令 "+emotion+" 設定儲存失敗。\n");
 
 				return me->finish_input();
 			}
 			break;
 
 		case "exit":
-			tell(me, "取消对 "+emotion+" 表情指令的设定。\n");
+			tell(me, "取消對 "+emotion+" 表情指令的設定。\n");
 			return me->finish_input();
 
 		default:break;
@@ -144,17 +144,17 @@ private void choose_option(object me, string emotion, mapping modifying_info, st
 
 	if( option > 8 || option < 1 )
 	{
-		tell(me, "没有这个选项。\n请输入欲设定之项目(设定完毕 save, 取消设定 exit)：\n>");
+		tell(me, "沒有這個選項。\n請輸入欲設定之項目(設定完畢 save, 取消設定 exit)：\n>");
 		input_to( (: choose_option, me, emotion, modifying_info :) );
 	}
 	else if( option == USE+1 )
 	{
-		tell(me, "这个选项无法使用手动设定。\n请输入欲设定之项目(设定完毕 save, 取消设定 exit)：\n>");
+		tell(me, "這個選項無法使用手動設定。\n請輸入欲設定之項目(設定完畢 save, 取消設定 exit)：\n>");
 		input_to( (: choose_option, me, emotion, modifying_info :) );
 	}
 	else
 	{
-		tell(me, "\n按 ENTER 可持续输入多行，输入 '.' 结束，输入 'cancel' 取消。\n请输入标准格式叙述 "HIC"$ME(代表自己) "HIG"$YOU(代表对象) "HIY"$T(代表附加文字)"NOR"：\n>");
+		tell(me, "\n按 ENTER 可持續輸入多行，輸入 '.' 結束，輸入 'cancel' 取消。\n請輸入標準格式敘述 "HIC"$ME(代表自己) "HIG"$YOU(代表對象) "HIY"$T(代表附加文字)"NOR"：\n>");
 		input_to( (: setup_emotion, me, emotion, modifying_info, option, "" :) );
 	}
 }
@@ -169,7 +169,7 @@ int main(object me, string arg)
 
 
 	if( !arg ) {
-		tell(me, pnoun(2, me)+"想要增加或修改哪个表情指令？\n");
+		tell(me, pnoun(2, me)+"想要增加或修改哪個表情指令？\n");
 		return 1;
 	}
 
@@ -178,11 +178,11 @@ int main(object me, string arg)
 	if( sscanf(arg, "-d %s", arg) == 1 )
 	{
 		if( !arrayp(info = EMOTE_D->query_emotion(arg)) ) {
-			tell(me, "没有 "+arg+" 这个表情指令。\n");
+			tell(me, "沒有 "+arg+" 這個表情指令。\n");
 			return 1;
 		}
 
-		tell(me, emotion_detail_description(arg, info)+"确定是否删除 "+arg+" 表情指令(Yes/No)？");
+		tell(me, emotion_detail_description(arg, info)+"確定是否刪除 "+arg+" 表情指令(Yes/No)？");
 		input_to( (: confirm_delete_emotion, me, arg :) );
 		return 1;
 	}
@@ -195,7 +195,7 @@ int main(object me, string arg)
 	else
 	{
 		if( !valid_emote_name(arg) ) {
-			tell(me, "不合法的表情指令名称。\n");
+			tell(me, "不合法的表情指令名稱。\n");
 			return 1;
 		}
 
@@ -203,7 +203,7 @@ int main(object me, string arg)
 		modifying_info[USE] = 0;
 	}
 
-	tell(me, emotion_detail_description(arg, modifying_info)+"请输入欲设定之项目(设定完毕 save, 取消设定 exit)：\n>");
+	tell(me, emotion_detail_description(arg, modifying_info)+"請輸入欲設定之項目(設定完畢 save, 取消設定 exit)：\n>");
 	input_to( (: choose_option, me, arg, modifying_info :) );
 	return 1;
 }

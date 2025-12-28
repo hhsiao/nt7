@@ -6,13 +6,13 @@ inherit NPC;
 
 void create()
 {
-        set_name("苗若兰", ({ "miao ruolan", "miao", "ruolan" }));
+        set_name("苗若蘭", ({ "miao ruolan", "miao", "ruolan" }));
         set("gender", "女性");
-        set("title", "苗人凤千金");
+        set("title", "苗人鳳千金");
         set("age", 17);
         set("long", @LONG
-一位衣着秀丽的少女，长得美丽动人。她就是
-苗人凤之女苗若兰。
+一位衣著秀麗的少女，長得美麗動人。她就是
+苗人鳳之女苗若蘭。
 LONG );
         set("attitude", "peaceful");
         set("str", 12);
@@ -28,9 +28,9 @@ LONG );
         set_skill("literate", 100);
 
         set("inquiry", ([
-                "苗家剑谱" : "剑谱一向是我爹爹收着的，你去问他好了。",
+                "苗家劍譜" : "劍譜一向是我爹爹收著的，你去問他好了。",
                 "胡一刀"   : "胡伯伯是我爹爹一生中最敬佩的人，可是…唉……",
-                "胡斐"     : "你是说胡大哥？…唉…他已经回辽东了。",
+                "胡斐"     : "你是說胡大哥？…唉…他已經回遼東了。",
         ]));
 
         create_family("中原苗家", 7, "千金");
@@ -44,5 +44,5 @@ LONG );
 void attempt_apprentice(object ob)
 {
         command("xixi");
-        command("say 我又不会武功，你拜我作什么？");
+        command("say 我又不會武功，你拜我作什麼？");
 }

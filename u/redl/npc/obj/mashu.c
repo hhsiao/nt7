@@ -12,8 +12,8 @@ void create()
         if (clonep())
                 set_default_object(__FILE__);
         else {
-                set("long", "一个糯米包着红豆沙作成的麻薯，好香啊。\n");
-                set("unit", "个");
+                set("long", "一個糯米包著紅豆沙作成的麻薯，好香啊。\n");
+                set("unit", "個");
                 set("value", 10000);
                 set("food_remaining", 20);
                 set("food_supply", 1);
@@ -23,7 +23,7 @@ void create()
 
 int finish_eat()
 {
-                message_vision(NOR + CYN + "$N" + NOR + CYN + "吃完" + query("name") + NOR + CYN + "，心满意足地咂咂嘴，真的好好吃啊……\n" NOR, this_player());
+                message_vision(NOR + CYN + "$N" + NOR + CYN + "吃完" + query("name") + NOR + CYN + "，心滿意足地咂咂嘴，真的好好吃啊……\n" NOR, this_player());
                 return 0;
 }
 

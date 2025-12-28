@@ -16,7 +16,7 @@ int permit_pass(object ob, string dir)
         if (! living(this_object()))
                 return 1;
 
-        notify_fail("看来" + this_object()->name() + "不打算让你过去。\n");
+        notify_fail("看來" + this_object()->name() + "不打算讓你過去。\n");
 
         if (query("quest_dg", ob) ||
             query("quest_hs", ob) ||
@@ -32,9 +32,9 @@ int permit_pass(object ob, string dir)
                 if (stringp(msg = query("guarder/refuse_home")))
                         message_vision(msg + "\n", this_object(), ob);
                 else
-                        message_vision("$N冷冷的看了看$n，道：你既然已经入了" +
-                                       fam_name + "，还来我们" + my_fam +
-                                       "干什么？\n", this_object(), ob);
+                        message_vision("$N冷冷的看了看$n，道：你既然已經入了" +
+                                       fam_name + "，還來我們" + my_fam +
+                                       "幹什麼？\n", this_object(), ob);
                 return 0;
         }
 
@@ -44,8 +44,8 @@ int permit_pass(object ob, string dir)
                 if (stringp(msg = query("guarder/refuse_other")))
                         message_vision(msg + "\n", this_object(), ob);
                 else
-                        message_vision("$N伸手拦住$n，道：对不起，不是我们" + my_fam +
-                                       "人不得入内！\n", this_object(), ob);
+                        message_vision("$N伸手攔住$n，道：對不起，不是我們" + my_fam +
+                                       "人不得入內！\n", this_object(), ob);
                 return 0;
         }
 
@@ -58,7 +58,7 @@ int permit_pass(object ob, string dir)
                         if (stringp(msg = query("guarder/refuse_carry")))
                                 message_vision(msg + "\n", this_object(), ob);
                         else
-                                message_vision("$N对$n喝道：你背的是谁？还不快快放下！\n",
+                                message_vision("$N對$n喝道：你背的是誰？還不快快放下！\n",
                                                this_object(), ob);
                         return 0;
                 }
@@ -117,8 +117,8 @@ void kill_enemy(object ob)
         if (base_name(environment(me)) != (string)query("startroom", me))
                 return;
 
-        message_vision(random(2) ? HIW "\n$N大声喊道：大家快来帮忙啊！\n\n" NOR :
-                                   HIW "\n$N喝道：不好！有人挑上门来了！\n\n" NOR, me);
+        message_vision(random(2) ? HIW "\n$N大聲喊道：大家快來幫忙啊！\n\n" NOR :
+                                   HIW "\n$N喝道：不好！有人挑上門來了！\n\n" NOR, me);
 
         if (me->is_master() && me->is_killing(query("id", ob)))
                 me->master_accept_kill(ob);
@@ -151,7 +151,7 @@ void kill_enemy(object ob)
         }
 
         if (! flag)
-                message_vision("结果没有一个人出来 :)\n", me);
+                message_vision("結果沒有一個人出來 :)\n", me);
 }
 
 int check_enemy(object ob, string type)
@@ -166,12 +166,12 @@ int check_enemy(object ob, string type)
         {
                 if (type == "fight")
                 {
-                        message_vision("$N对$n摇摇头道：我现在没空。\n\n", me, ob);
+                        message_vision("$N對$n搖搖頭道：我現在沒空。\n\n", me, ob);
                         return 0;
                 } else
                 {
-                        message_vision("$N大喝道，好你个" + RANK_D->query_rude(ob) +
-                                       "，活得不耐烦了！来这里撒野？\n", me, ob);
+                        message_vision("$N大喝道，好你個" + RANK_D->query_rude(ob) +
+                                       "，活得不耐煩了！來這裡撒野？\n", me, ob);
                         me->kill_ob(ob);
                 }
         } else
@@ -179,16 +179,16 @@ int check_enemy(object ob, string type)
         {
         case "hit":
         case "kill":
-                message_vision("$N两眼一瞪，喝道：" + query("name", ob) +
-                               "，你是要造反吗？\n", me, ob);
+                message_vision("$N兩眼一瞪，喝道：" + query("name", ob) +
+                               "，你是要造反嗎？\n", me, ob);
                 me->kill_ob(ob);
                 break;
 
         case "fight":
                 if (ob->is_apprentice_of(me))
-                        message_vision("$N一瞪$n，怒道：你给我好好练功去！\n", me, ob);
+                        message_vision("$N一瞪$n，怒道：你給我好好練功去！\n", me, ob);
                 else
-                        message_vision("$N对$n摇摇头道：找你的师傅比划去。\n\n", me, ob);
+                        message_vision("$N對$n搖搖頭道：找你的師傅比劃去。\n\n", me, ob);
                 return 0;
         }
 

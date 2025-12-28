@@ -4,7 +4,7 @@ void create()
 {
         set("short", "神秘火洞");
         set("long",
-"这是冰火岛上隐藏的一处火洞，洞内热气腾腾，令人窒息。\n"
+"這是冰火島上隱藏的一處火洞，洞內熱氣騰騰，令人窒息。\n"
 );
         set("exits", ([ 
                 "northeast"   : __DIR__"shenghuotan", 

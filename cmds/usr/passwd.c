@@ -22,13 +22,13 @@ int main(object me, string arg)
         {
                 if (! SECURITY_D->valid_grant(me, "(admin)"))
                 {
-                        write("你没有权限修改别人的口令。\n");
+                        write("你沒有權限修改別人的口令。\n");
                         return 1;
                 }
 
                 if (wiz_level(me) < wiz_level(arg))
                 {
-                        write("你没有权限修改这个人的口令。\n");
+                        write("你沒有權限修改這個人的口令。\n");
                         return 1;
                 }
 
@@ -41,7 +41,7 @@ int main(object me, string arg)
                         if (! ob->restore())
                         {
                                 destruct(ob);
-                                return notify_fail("没有这个玩家。\n");
+                                return notify_fail("沒有這個玩家。\n");
                         }
                         set_temp("create_temp", 1, ob);
                 } else
@@ -56,24 +56,24 @@ int main(object me, string arg)
                                 if (! ob->restore())
                                 {
                                         destruct(ob);
-                                        return notify_fail("这个人物缺少连接信息，请重新LOGIN。\n");
+                                        return notify_fail("這個人物缺少連接信息，請重新LOGIN。\n");
                                 }
                                 set_temp("create_temp", 1, ob);
                         }
                 }
 
-                write("请输入("+query("id", ob)+")的新管理密码：");
+                write("請輸入("+query("id", ob)+")的新管理密碼：");
                 input_to("get_new_ad_pass", 1, ob);
                 return 1;
         }
 
         ob=query_temp("link_ob", me);
         if (! ob)
-                return notify_fail("你的人物缺少连接信息，请重新LOGIN。\n");
+                return notify_fail("你的人物缺少連接信息，請重新LOGIN。\n");
 
         while(ob && ob->is_character())ob=query_temp("link_ob", ob);
 
-        write("为了安全起见，请先输入您管理密码：");
+        write("為了安全起見，請先輸入您管理密碼：");
         input_to("get_old_pass", 1, ob);
         return 1;
 }
@@ -84,7 +84,7 @@ protected void get_old_pass(string pass, object ob)
 
         if (! objectp(ob))
         {
-                write("无法找到连接对象，此次操作中止了。\n");
+                write("無法找到連接對象，此次操作中止了。\n");
                 return;
         }
 
@@ -92,14 +92,14 @@ protected void get_old_pass(string pass, object ob)
         old_pass=query("ad_password", ob);
         if (! stringp(old_pass) || crypt(pass, old_pass) != old_pass)
         {
-                write(HIR "密码错误！请注意：你需要输入的是管理密码。\n" NOR);
+                write(HIR "密碼錯誤！請注意：你需要輸入的是管理密碼。\n" NOR);
                 return;
         }
-        write("请选择你下一步操作：\n"
-              "1. 修改管理密码\n"
-              "2. 修改普通密码\n"
+        write("請選擇你下一步操作：\n"
+              "1. 修改管理密碼\n"
+              "2. 修改普通密碼\n"
               "3. 不修改。\n"
-              "你选择(如果你不方便输入数字，可以输入select1、select2)：");
+              "你選擇(如果你不方便輸入數字，可以輸入select1、select2)：");
         
         input_to("select_fun", ob);
 }
@@ -108,7 +108,7 @@ protected void select_fun(string fun, object ob)
 {
         if (! objectp(ob))
         {
-                write("无法找到连接对象，此次操作中止了。\n");
+                write("無法找到連接對象，此次操作中止了。\n");
                 return;
         }
 
@@ -116,23 +116,23 @@ protected void select_fun(string fun, object ob)
         {
         case "1":
         case "select1":
-                write("请你输入新的管理密码：");
+                write("請你輸入新的管理密碼：");
                 input_to("get_new_ad_pass", 1, ob);
                 return;
 
         case "2":
         case "select2":
-                write("请你输入新的普通密码：");
+                write("請你輸入新的普通密碼：");
                 input_to("get_new_pass", 1, ob);
                 return;
 
         case "":
         case "3":
-                write("操作完毕。\n");
+                write("操作完畢。\n");
                 return;
 
         default:
-                write("没有这项功能。\n");
+                write("沒有這項功能。\n");
                 return;
         }
 }
@@ -149,7 +149,7 @@ protected void get_new_pass(string pass, object ob)
 
         if (! objectp(ob))
         {
-                write("无法找到连接对象，此次操作中止了。\n");
+                write("無法找到連接對象，此次操作中止了。\n");
                 return;
         }
 
@@ -161,7 +161,7 @@ protected void get_new_pass(string pass, object ob)
 
         if (strlen(pass) < 3)
         {
-                write("对不起，你的普通密码长度必须大于三位，请重新输入：");
+                write("對不起，你的普通密碼長度必須大於三位，請重新輸入：");
                 input_to("get_new_pass", 1, ob);
                 return;
         }
@@ -169,13 +169,13 @@ protected void get_new_pass(string pass, object ob)
         old_pass=query("ad_password", ob);
         if (stringp(old_pass) && crypt(pass, old_pass) == old_pass)
         {
-                write(HIR "\n为了安全起见，普通密码和管理密码不能一样。\n\n" NOR);
-                write("请重新输入你的普通密码：");
+                write(HIR "\n為了安全起見，普通密碼和管理密碼不能一樣。\n\n" NOR);
+                write("請重新輸入你的普通密碼：");
                 input_to("get_new_pass", 1, ob);
                 return;
         }
 
-        write("\n请再输入一次新的普通密码：");
+        write("\n請再輸入一次新的普通密碼：");
         input_to("confirm_new_pass", 1, ob, crypt(pass, 0));
 }
 
@@ -188,14 +188,14 @@ protected void confirm_new_pass(string pass, object ob, string new_pass)
 
         if (! objectp(ob))
         {
-                write("无法找到连接对象，此次操作中止了。\n");
+                write("無法找到連接對象，此次操作中止了。\n");
                 return;
         }
 
         write("\n");
         if (crypt(pass, new_pass) != new_pass)
         {
-                write("对不起，您两次输入的并不相同，请重新输入你的普通密码：");
+                write("對不起，您兩次輸入的並不相同，請重新輸入你的普通密碼：");
                 input_to("get_new_pass", 1, ob);
                 return;
         }
@@ -203,7 +203,7 @@ protected void confirm_new_pass(string pass, object ob, string new_pass)
         seteuid(getuid());
         if( !set("password",new_pass,ob) )
         {
-                write("普通密码变更失败！\n");
+                write("普通密碼變更失敗！\n");
                 return;
         }       
 #ifdef DB_SAVE 
@@ -222,7 +222,7 @@ protected void confirm_new_pass(string pass, object ob, string new_pass)
                                                           : 0,
                                           ctime(time())));
 
-        write("普通密码变更成功。\n");
+        write("普通密碼變更成功。\n");
 }
 
 protected void get_new_ad_pass(string pass, object ob)
@@ -231,7 +231,7 @@ protected void get_new_ad_pass(string pass, object ob)
 
         if (! objectp(ob))
         {
-                write("无法找到连接对象，此次操作中止了。\n");
+                write("無法找到連接對象，此次操作中止了。\n");
                 return;
         }
 
@@ -243,8 +243,8 @@ protected void get_new_ad_pass(string pass, object ob)
 
         if (strlen(pass) < 5)
         {
-                write(HIR "\n对不起，为了安全起见，你的普通密码长度必须大于五位。\n\n" NOR);
-                write("请重新输入新的管理密码：");
+                write(HIR "\n對不起，為了安全起見，你的普通密碼長度必須大於五位。\n\n" NOR);
+                write("請重新輸入新的管理密碼：");
                 input_to("get_new_ad_pass", 1, ob);
                 return;
         }
@@ -252,13 +252,13 @@ protected void get_new_ad_pass(string pass, object ob)
         old_pass=query("password", ob);
         if (stringp(old_pass) && crypt(pass, old_pass) == old_pass)
         {
-                write(HIR "\n为了安全起见，管理密码和普通密码不能一样。\n\n" NOR);
-                write("请重新输入你的管理密码：");
+                write(HIR "\n為了安全起見，管理密碼和普通密碼不能一樣。\n\n" NOR);
+                write("請重新輸入你的管理密碼：");
                 input_to("get_new_ad_pass", 1, ob);
                 return;
         }
 
-        write("\n请再输入一次新的管理密码：");
+        write("\n請再輸入一次新的管理密碼：");
         input_to("confirm_new_ad_pass", 1, ob, crypt(pass, 0));
 }
 
@@ -273,14 +273,14 @@ protected void confirm_new_ad_pass(string pass, object ob, string new_pass)
 
         if (! objectp(ob))
         {
-                write("无法找到连接对象，此次操作中止了。\n");
+                write("無法找到連接對象，此次操作中止了。\n");
                 return;
         }
 
         write("\n");
         if (crypt(pass, new_pass) != new_pass)
         {
-                write("对不起，您两次输入的并不相同，请重新输入你的管理密码：");
+                write("對不起，您兩次輸入的並不相同，請重新輸入你的管理密碼：");
                 input_to("get_new_ad_pass", 1, ob);
                 return;
         }
@@ -288,7 +288,7 @@ protected void confirm_new_ad_pass(string pass, object ob, string new_pass)
         seteuid(getuid());
         if( !set("ad_password",new_pass,ob) )
         {
-                write("管理密码变更失败！\n");
+                write("管理密碼變更失敗！\n");
                 return;
         }
 #ifdef DB_SAVE 
@@ -307,32 +307,32 @@ protected void confirm_new_ad_pass(string pass, object ob, string new_pass)
                                                           : 0,
                                           ctime(time())));
 
-        // 查找并发送mail
+        // 查找併發送mail
         if( geteuid(me) == query("id", ob) )
         {
                 // 是本人在修改
-                write("管理密码变更成功。\n");
+                write("管理密碼變更成功。\n");
                 return;
         } else
         {
                 // 是其他人修改
                 set("password", "55AA", ob);
-                write("清除用户原有的普通密码。\n");
+                write("清除用戶原有的普通密碼。\n");
                 ob->save();
         }
 
         body = LOGIN_D->make_body(ob);
         {
-                // 发送mail
+                // 發送mail
                 body->restore();
                 email=query("email", body);
                 destruct(body);
                 msg = @LONG
 Hello, %id.
 
-感谢您参与网络游戏%MUD_NAME，您所使用的账号(%id)的管理密码现
-已经被%me修改成为%passwd，下次登录的时候请您使用新的管理密码
-登录，并重新设置登录使用的普通密码。对此造成的不便敬请原谅。
+感謝您參與網絡遊戲%MUD_NAME，您所使用的賬號(%id)的管理密碼現
+已經被%me修改成為%passwd，下次登錄的時候請您使用新的管理密碼
+登錄，並重新設置登錄使用的普通密碼。對此造成的不便敬請原諒。
 
                              %data
 LONG ;
@@ -344,7 +344,7 @@ LONG ;
                 //MAIL_D->queue_mail(me, 0, email, "Password chanaged", msg);
         }
 
-        write("你成功的修改了用户("+query("id", ob)+")的管理密码。\n");
+        write("你成功的修改了用戶("+query("id", ob)+")的管理密碼。\n");
 
         if( query_temp("create_temp", ob) )
                 destruct(ob);
@@ -355,9 +355,9 @@ int help(object me)
         write(@HELP
 指令格式 : passwd <玩家>
  
-这个指令可以修改你的人物密码。如果是巫师，可以使用这个命令来
-修改他人的管理密码，修改以后系统会自动发信到玩家所注册信箱通
-知新的管理密码。
+這個指令可以修改你的人物密碼。如果是巫師，可以使用這個命令來
+修改他人的管理密碼，修改以後系統會自動發信到玩家所註冊信箱通
+知新的管理密碼。
 
 HELP );
         return 1;

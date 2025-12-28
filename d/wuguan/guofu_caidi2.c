@@ -5,9 +5,9 @@ void create()
 {
     	set("short", "菜地");
         set("long", @LONG
-这里是块菜地，菜地旁有几口大缸，里面盛满了水，可是
-菜地看起来都干裂了，几棵菜蔫蔫的长着，看样子是因为缺水
-太多的缘故吧。
+這裡是塊菜地，菜地旁有幾口大缸，裡面盛滿了水，可是
+菜地看起來都乾裂了，幾棵菜蔫蔫的長著，看樣子是因為缺水
+太多的緣故吧。
 LONG);
         set("no_fight", 1);
         set("exits", ([
@@ -31,26 +31,26 @@ int do_jiao(string arg)
 
         me = this_player();
 
-        if( query_temp("mark/浇完了", me) )
-            	return notify_fail(CYN "菜园管事嚷嚷道：喂喂喂，让你去覆命，还留"
-                                   "在这里干嘛？\n" NOR);
+        if( query_temp("mark/澆完了", me) )
+            	return notify_fail(CYN "菜園管事嚷嚷道：喂喂喂，讓你去覆命，還留"
+                                   "在這裡幹嘛？\n" NOR);
 
-        if( query_temp("job_name", me) != "浇菜地" )
-            	return notify_fail(CYN "菜园管事对你喝道：没事你瞎折腾什么？\n" NOR);
+        if( query_temp("job_name", me) != "澆菜地" )
+            	return notify_fail(CYN "菜園管事對你喝道：沒事你瞎折騰什麼？\n" NOR);
 
         if (me->is_busy())
-		return notify_fail("你现在正忙着呢！\n");
+		return notify_fail("你現在正忙著呢！\n");
 
         if (me->is_fighting())
-		return notify_fail("你正在战斗中，无法专心干活！\n");
+		return notify_fail("你正在戰鬥中，無法專心幹活！\n");
 
         if( !objectp(weapon=query_temp("weapon", me) )
             || query("id", weapon) != "shui piao" )
-                return notify_fail(CYN "菜园管事讥笑道：你想用什么来舀水浇呀，用"
-                                   "手吗？\n" NOR);
+                return notify_fail(CYN "菜園管事譏笑道：你想用什麼來舀水澆呀，用"
+                                   "手嗎？\n" NOR);
 
         if (! arg || arg != "shui" )
-		return notify_fail("你要浇什么？\n");
+		return notify_fail("你要澆什麼？\n");
 
         costj=random(query("con", me)/3)+1;
         costq=random(query("str", me)/3)+1;
@@ -58,8 +58,8 @@ int do_jiao(string arg)
         if( query("jing", me)<costj
 	 || query("qi", me)<costq )
 	{
-              	message_vision(HIR "\n$N" HIR "弯腰到大缸里舀水，结果一失足栽进了缸"
-                               "里。\n" NOR, me);
+              	message_vision(HIR "\n$N" HIR "彎腰到大缸裡舀水，結果一失足栽進了缸"
+                               "裡。\n" NOR, me);
               set("water", 600, 	me);
               	me->unconcious();
               	return 1;
@@ -70,25 +70,25 @@ int do_jiao(string arg)
         me->start_busy(1 + random(2));
 
         if (! (int)me->query_condition("wuguan_job")
-            && query_temp("mark/浇", me)>10+(random(10) )
+            && query_temp("mark/澆", me)>10+(random(10) )
            && present("caiyuan guanshi", environment(me)))
 	{
-                set_temp("mark/浇完了", 1, me);
-                message_vision(CYN "\n菜园管事对$N" CYN "说：干的不错，好了，你可"
-                               "以去向耶律大爷覆命(" HIY "fuming" NOR + CYN ")了"
+                set_temp("mark/澆完了", 1, me);
+                message_vision(CYN "\n菜園管事對$N" CYN "說：乾的不錯，好了，你可"
+                               "以去向耶律大爺覆命(" HIY "fuming" NOR + CYN ")了"
                                "。\n" NOR, me);
                 return 1;
         }
 
-        message_vision(HIG "$N" HIG "用瓢从缸里舀起水，在菜地里浇起水来。\n" NOR, me);
-        addn_temp("mark/浇", 1, me);
+        message_vision(HIG "$N" HIG "用瓢從缸裡舀起水，在菜地裡澆起水來。\n" NOR, me);
+        addn_temp("mark/澆", 1, me);
 
         if ((int)me->query_skill("whip", 1) < 50
            && (int)me->query_skill("finger", 1) < 50
            && me->can_improve_skill("whip")
            && me->can_improve_skill("finger"))
 	{
-                write(HIC "你在浇水过程中对鞭法及指法有些体会。\n" NOR);
+                write(HIC "你在澆水過程中對鞭法及指法有些體會。\n" NOR);
                 me->improve_skill("whip",(query("int", me)/6));
                 me->improve_skill("finger",(query("int", me)/6));
         }

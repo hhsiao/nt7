@@ -7,17 +7,17 @@ inherit ITEM;
 
 void create()
 {
-        set_name(NOR HIR"酒神"HIY"礼盒"NOR,({"box"}));
-        set("long", HIY "这是一只华丽的礼品盒子，不同等级的玩家可以获得不同的礼品。你可以让练功号（open box）打开它。\n" NOR HIK "(下线和扔掉会丢失，可以送人，赶快使用)\n" NOR); 
+        set_name(NOR HIR"酒神"HIY"禮盒"NOR,({"box"}));
+        set("long", HIY "這是一隻華麗的禮品盒子，不同等級的玩家可以獲得不同的禮品。你可以讓練功號（open box）打開它。\n" NOR HIK "(下線和扔掉會丟失，可以送人，趕快使用)\n" NOR); 
         set("unit", "些");
-        set("base_unit", "个");
-                //set("no_give","这样东西不能离开你。\n");
-                set("no_sell", "这样东西不能离开你。\n");
-                set("no_put", "这样东西不能放在那儿。\n");
-                set("no_store", "这样东西不能放在那儿。\n");
-                set("no_get", "这样东西不能离开那儿。\n");
-                set("no_steal", "这样东西不能离开那儿。\n");
-                set("no_beg", "这样东西不能离开那儿。\n");
+        set("base_unit", "個");
+                //set("no_give","這樣東西不能離開你。\n");
+                set("no_sell", "這樣東西不能離開你。\n");
+                set("no_put", "這樣東西不能放在那兒。\n");
+                set("no_store", "這樣東西不能放在那兒。\n");
+                set("no_get", "這樣東西不能離開那兒。\n");
+                set("no_steal", "這樣東西不能離開那兒。\n");
+                set("no_beg", "這樣東西不能離開那兒。\n");
                 set("base_value", 0);
                 set("base_weight",1);
 }
@@ -25,13 +25,13 @@ void create()
 int give_ob(object me, object ob)
 {
         ob->move(me, 1);
-        tell_object(me, NOR + query("name") + NOR + "爆炸，你获得了" + query("name", ob) + NOR + "。\n");
+        tell_object(me, NOR + query("name") + NOR + "爆炸，你獲得了" + query("name", ob) + NOR + "。\n");
         return 1;
 }
-int drop_ob(object me, object ob)//不重要的，可能超重的东西扔地上
+int drop_ob(object me, object ob)//不重要的，可能超重的東西扔地上
 {
         ob->move(environment(me));
-        tell_object(me, NOR + query("name") + NOR + "爆炸，你看见地上冒出了" + query("name", ob) + NOR + "。\n");
+        tell_object(me, NOR + query("name") + NOR + "爆炸，你看見地上冒出了" + query("name", ob) + NOR + "。\n");
         return 1;
 }
 
@@ -49,28 +49,28 @@ int do_open(string arg)
                 return 1;
         }
         if( query("doing", me) ) {
-                write(NOR "你现在正在忙于锻炼，不能开礼盒。\n" NOR);
+                write(NOR "你現在正在忙於鍛鍊，不能開禮盒。\n" NOR);
                 return 1; 
         }
         if( !query("no_fight", environment(me)) ) {
-                write(NOR "你必须在安全的地方才能开礼盒。\n" NOR);
+                write(NOR "你必須在安全的地方才能開禮盒。\n" NOR);
                 return 1; 
         }
         if(sizeof(filter_array(all_inventory(environment(me)), (: playerp :))) < 5) {
-                write(NOR "你必须到人多热闹的地方(比如聊天室)去开礼盒。\n" NOR);//炫耀+监督
+                write(NOR "你必須到人多熱鬧的地方(比如聊天室)去開禮盒。\n" NOR);//炫耀+監督
                 return 1; 
         }
         
         me->start_busy(3);
-        message_vision(NOR + CYN + "$N" + NOR + CYN + "抬手打开一个" + query("name") + NOR + 
-                CYN + "，其中冲出青色霞光一卷，$N" + NOR + CYN + "消失了。\n" + NOR, me);
+        message_vision(NOR + CYN + "$N" + NOR + CYN + "抬手打開一個" + query("name") + NOR + 
+                CYN + "，其中衝出青色霞光一卷，$N" + NOR + CYN + "消失了。\n" + NOR, me);
 
         if (!sizeof(get_dir("/temp/qroom"))) mkdir("/temp/qroom"); 
         if (!(load_object(file)))  
                 cp("/u/redl/teleport/qroom.c", file); 
-        me->move(file); //移到独自空间，以免东西掉地上被捡取
+        me->move(file); //移到獨自空間，以免東西掉地上被撿取
         
-                GIFT_D->work_bonus(me, ([ "prompt":"被福地霞光冲刷洗涤之后", "exp" : EXPG, "pot" : EXPG / 6 ]));
+                GIFT_D->work_bonus(me, ([ "prompt":"被福地霞光沖刷洗滌之後", "exp" : EXPG, "pot" : EXPG / 6 ]));
                 give_ob(me, new("/kungfu/class/sky/obj/shenjiu"));
                 give_ob(me, new("/kungfu/class/sky/obj/shenjiu"));
                 give_ob(me, new("/kungfu/class/sky/obj/shenjiu"));

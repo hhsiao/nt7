@@ -5,10 +5,10 @@ inherit F_MASTER;
 
 void create()
 {
-	set_name("了明禅师", ({	"liaoming chanshi", "liaoming", "chanshi"}));
+	set_name("了明禪師", ({	"liaoming chanshi", "liaoming", "chanshi"}));
 	set("long",
-		"他是一位身材削瘦的中年僧人，两臂不甚粗壮。身穿 \n"
-              "一袭灰布镶边袈裟，两眼湛湛有神，似乎有一身武艺。\n"
+		"他是一位身材削瘦的中年僧人，兩臂不甚粗壯。身穿 \n"
+              "一襲灰布鑲邊袈裟，兩眼湛湛有神，似乎有一身武藝。\n"
 	);
 
 	set("nickname", "他心尊者");
@@ -49,10 +49,10 @@ void create()
 	map_skill("parry", "yiyang-zhi");
 	map_skill("finger",  "yiyang-zhi");
 	prepare_skill("finger", "yiyang-zhi");
-	create_family("天龙寺", 14, "弟子");    
+	create_family("天龍寺", 14, "弟子");    
 
 	set("inquiry", ([
-		"药" :  "本寺灵丹妙药不少，最有名的就是天龙丹和雪露丸",
+		"藥" :  "本寺靈丹妙藥不少，最有名的就是天龍丹和雪露丸",
 	]));
 	setup();
         carry_object("/d/tls/obj/jiasha1")->wear();

@@ -13,8 +13,8 @@ int update_condition(object me, int duration)
 {
         if( duration < 1 ) return 0;
 
-        message("vision", HIG + me->name() + "嘶哑着嗓子咳了两声，然后"
-		          "又连续咳了好一阵，看来是病的不轻！\n" NOR,
+        message("vision", HIG + me->name() + "嘶啞著嗓子咳了兩聲，然後"
+		          "又連續咳了好一陣，看來是病的不輕！\n" NOR,
                 environment(me), me);
 
         if( !living(me) && query("qi", me) < 1 ) {
@@ -23,8 +23,8 @@ int update_condition(object me, int duration)
                 return 0;
         }
         else
-                tell_object(me, HIB "你嘶哑着嗓子咳了两声，然后"
-		                "又连续咳了好一阵，看来是病的不轻！\n" NOR );
+                tell_object(me, HIB "你嘶啞著嗓子咳了兩聲，然後"
+		                "又連續咳了好一陣，看來是病的不輕！\n" NOR );
 
         me->receive_wound("qi", 1);
         me->receive_damage("qi", 1);

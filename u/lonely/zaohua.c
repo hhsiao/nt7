@@ -26,9 +26,9 @@ void create()
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIM "一颗紫中泛黄的精致奇丹，具有着神话般的功效，传\n"
-                                "说吃了之后能平增数甲子的功力，乃是练武之人梦寐\n"
-                                "以求的神丹妙药。\n" NOR);
+                set("long", HIM "一顆紫中泛黃的精緻奇丹，具有著神話般的功效，傳\n"
+                                "說吃了之後能平增數甲子的功力，乃是練武之人夢寐\n"
+                                "以求的神丹妙藥。\n" NOR);
                 set("base_value", 1000000);
                 set("base_weight", 100); 
                 set("no_sell", 1);
@@ -53,12 +53,12 @@ int do_effect(object me)
         {
                 me->improve_neili(100000);
                 addn("skybook/item/zaohua", 1, me);
-                message_vision(HIW "$N" HIW "一仰脖，吞下了一颗造化紫箐丹，只见$P"
-                               HIW "浑身一颤，七窍都冒出白烟来。\n" NOR, me);
+                message_vision(HIW "$N" HIW "一仰脖，吞下了一顆造化紫箐丹，只見$P"
+                               HIW "渾身一顫，七竅都冒出白煙來。\n" NOR, me);
         } else
         {
-                message_vision(HIW "$N" HIW "一仰脖，吞下了一颗造化紫箐丹，只见$P"
-                               HIW "浑身一颤，七窍都冒出白烟来。\n" NOR, me);
+                message_vision(HIW "$N" HIW "一仰脖，吞下了一顆造化紫箐丹，只見$P"
+                               HIW "渾身一顫，七竅都冒出白煙來。\n" NOR, me);
 
                 addn("drug_addneili", 100000, me);
 

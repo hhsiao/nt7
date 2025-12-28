@@ -2,13 +2,13 @@
 inherit ITEM;
 void create()
 {
-        set_name(CYN "铁线拳密芨" NOR, ({ "miji", "book" }));
+        set_name(CYN "鐵線拳密芨" NOR, ({ "miji", "book" }));
         set_weight(50);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "本");
-                set("long", "这是一本薄薄的小册，上面记载了不少精妙的拳法。\n");
+                set("long", "這是一本薄薄的小冊，上面記載了不少精妙的拳法。\n");
                 set("value", 0);
                 set("material", "paper");
                 set("skill", ([

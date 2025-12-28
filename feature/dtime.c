@@ -1,7 +1,7 @@
 /****************************
  * dtime.c                  *
- * 控制物件定时出现在房间里 *
- * 定义为： F_DTIME         *
+ * 控制物件定時出現在房間裡 *
+ * 定義為： F_DTIME         *
  *                          *
  * by Find.                 *
  ****************************/
@@ -39,7 +39,7 @@ nomask string query_disappear_msg()
 }
 
 /********************************************
- * 时间设置格式：
+ * 時間設置格式：
  *      mapping time = ([
  *              time_start1 : time_stop1,
  *              time_start2 : time_stop2,
@@ -51,7 +51,7 @@ nomask string query_disappear_msg()
 nomask void set_appear_time(mapping t)
 {
         if( !mapp(t) || !sizeof(t) )
-                error("F_DTIME: 无时间格式设置。\n");
+                error("F_DTIME: 無時間格式設置。\n");
 
         foreach(string start, string stop in t) {
                 class time temp;
@@ -61,7 +61,7 @@ nomask void set_appear_time(mapping t)
 
                 if( !parse_string(start, ref temp->start_day, ref temp->start_sec)
                 ||  !parse_string(stop, ref temp->stop_day, ref temp->stop_sec) )
-                        error("F_DTIME: 时间格式错误。\n");
+                        error("F_DTIME: 時間格式錯誤。\n");
 
                 if( abs(temp->start_day) > abs(temp->stop_day) ) {
                         n = temp->start_day;
@@ -85,7 +85,7 @@ nomask void set_appear_time(mapping t)
 
                 if( ((temp->start_day < 0) && (temp->stop_day >= 0))
                 ||  ((temp->start_day >= 0) && (temp->stop_day < 0)) )
-                        error("F_DTIME: 时间格式错误。\n");
+                        error("F_DTIME: 時間格式錯誤。\n");
 
                 if( temp->stop_sec == 1 )
                         temp->stop_sec = 1440;
@@ -161,7 +161,7 @@ nomask int query_is_valid_time()
         int dm,d,s;
 
         if( !sizeof(dtime) )
-                error("F_DTIME: 无时间格式设置。\n");
+                error("F_DTIME: 無時間格式設置。\n");
 
         dm = this_object()->query_day_in_month();
         d = this_object()->query_day();
@@ -198,7 +198,7 @@ nomask int query_lasting_time()
         int *days_per_month = ({ 31,28,31,30,31,30,31,31,30,31,30,30 });
 
         if( !sizeof(dtime) )
-                error("F_DTIME: 无时间格式设置。\n");
+                error("F_DTIME: 無時間格式設置。\n");
 
         m = this_object()->query_month();
         md = this_object()->query_day_in_month();

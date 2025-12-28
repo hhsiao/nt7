@@ -1,4 +1,4 @@
-//liexingya.c                四川唐门—裂星崖
+//liexingya.c                四川唐門—裂星崖
 
 #include <ansi.h>
 #include <room.h>
@@ -8,16 +8,16 @@ void create()
 {
         set("short", "裂星崖");
         set("long",
-"这里是莲藕小筑后山的裂星崖。据说唐门的开山祖师？？？就是在这\n"
-"里静坐五年，夜观星变，终于悟出了威镇江湖的唐门暗器绝技？？？？，\n"
-"一株万年古松自山崖外长了上来，高耸入云。\n"
+"這裡是蓮藕小築後山的裂星崖。據說唐門的開山祖師？？？就是在這\n"
+"裡靜坐五年，夜觀星變，終於悟出了威鎮江湖的唐門暗器絕技？？？？，\n"
+"一株萬年古松自山崖外長了上來，高聳入雲。\n"
 );
-//？？，一株万年古松(shu)自山崖外长了上来，高耸入云。
+//？？，一株萬年古松(shu)自山崖外長了上來，高聳入雲。
         set("exits", ([
                         "southdown" : __DIR__"shandao5",
         ]));
         set("item_desc", ([
-                "shu" : "这株古松据说是万年前盘古开天时生长而成的。\n",
+                "shu" : "這株古松據說是萬年前盤古開天時生長而成的。\n",
         ]));
         set("area", "tangmen");
         setup();
@@ -38,14 +38,14 @@ int do_climb(string arg)
         {
                 if ( (int)ob->query_skill("dodge", 1) < 21 && (int)ob->query_skill("finger", 1) < 21 )
                 {
-                        tell_object(ob, HIR "你的功夫还不够高，爬上去恐怕会摔死的。\n" NOR, ob);
+                        tell_object(ob, HIR "你的功夫還不夠高，爬上去恐怕會摔死的。\n" NOR, ob);
                         return 1;
                 }
 
-                message_vision(HIC "$N攀着繁茂的树枝一步步爬了上去。\n" NOR, ob);
+                message_vision(HIC "$N攀著繁茂的樹枝一步步爬了上去。\n" NOR, ob);
                 ob->move(__DIR__"shugan1");
                 return 1;
         }
         else
-                return notify_fail("你要向哪里爬？\n");
+                return notify_fail("你要向哪裡爬？\n");
 }

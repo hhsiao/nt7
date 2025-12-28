@@ -13,13 +13,13 @@ int exert(object me, object target)
         object weapon;
 
         if( target != me )
-                return notify_fail("你只能用临济庄提升自己的战斗力。\n");
+                return notify_fail("你只能用臨濟莊提升自己的戰鬥力。\n");
 
         if( (int)query("neili", me) < 100 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if( BUFF_D->check_buff(me, "powerup") ) 
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
 
@@ -29,22 +29,22 @@ int exert(object me, object target)
         if( query("sex", me) ) di = 0; else di = skill * 2;
         if( di > 10000 ) di = 10000;
 
-        msg = MAG "$N" MAG "微一凝神，运起临济庄，一声娇喝，"
-                        "四周的空气仿佛都凝固了！\n" NOR;
+        msg = MAG "$N" MAG "微一凝神，運起臨濟莊，一聲嬌喝，"
+                        "四周的空氣彷彿都凝固了！\n" NOR;
 
         if( objectp(weapon = query_temp("weapon", me)) )
         {
                 if (di >= 95)
-                        message_combatd(HIR "$N" HIR "脸色一沉，运起临济庄神通，霎时间" +
-                                        weapon->name() + HIR "光华四射，漫起无边杀意。\n" NOR, me);
+                        message_combatd(HIR "$N" HIR "臉色一沉，運起臨濟莊神通，霎時間" +
+                                        weapon->name() + HIR "光華四射，漫起無邊殺意。\n" NOR, me);
                 else
                 if (di >= 80)
-                        message_combatd(HIR "$N" HIR "潜运内力，只见" +
-                                        weapon->name() + HIR "闪过一道光华，气势摄人，令人肃穆。\n" NOR, me);
+                        message_combatd(HIR "$N" HIR "潛運內力，只見" +
+                                        weapon->name() + HIR "閃過一道光華，氣勢攝人，令人肅穆。\n" NOR, me);
                 else
                 if (di >= 30)
-                        message_combatd(HIR "$N" HIR "默运内力，就见那" +
-                                        weapon->name() + HIR "隐隐透出一股光芒，闪烁不定。\n" NOR, me);
+                        message_combatd(HIR "$N" HIR "默運內力，就見那" +
+                                        weapon->name() + HIR "隱隱透出一股光芒，閃爍不定。\n" NOR, me);
         }
         
         data = ([
@@ -59,11 +59,11 @@ int exert(object me, object target)
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "临济十二庄·战神",
+                "name"  : "臨濟十二莊·戰神",
                 "time"  : skill,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : "你的临济十二庄运行完毕，将内力收回丹田。\n",
+                "disa_msg" : "你的臨濟十二莊運行完畢，將內力收回丹田。\n",
                         
         ]);
         BUFF_D->buffup(buff);

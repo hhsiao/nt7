@@ -4,8 +4,8 @@ void create()
 {
         set("short", "走廊");
         set("long", @LONG
-这是一条通往万安寺后厅的木制走廊，走廊里静悄悄的，没什么人走动。左
-右两旁是两个侧厅。
+這是一條通往萬安寺後廳的木製走廊，走廊裡靜悄悄的，沒什麼人走動。左
+右兩旁是兩個側廳。
 LONG );
         set("exits", ([
                 "north" : "/d/tulong/yitian/was_zoulang2",

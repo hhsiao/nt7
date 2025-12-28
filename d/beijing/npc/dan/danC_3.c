@@ -4,7 +4,7 @@ inherit COMBINED_ITEM;
 
 void create()
 {
-        set_name(CYN"锁泉丹"NOR, ({"suoquan dan", "dan"}));
+        set_name(CYN"鎖泉丹"NOR, ({"suoquan dan", "dan"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
@@ -23,7 +23,7 @@ int do_effect(object me)
 
         if( time()-query_temp("last_eat/dan(C, me)")<40 )
         {
-                write("你刚服用过药，需药性发挥完效用以后才能继续服用。\n");
+                write("你剛服用過藥，需藥性發揮完效用以後才能繼續服用。\n");
                 return 1;
         }
 
@@ -33,13 +33,13 @@ int do_effect(object me)
 
         if (jl > mj)
         {
-                write("你现在精力修为无需服用" + name() + "。\n");
+                write("你現在精力修為無需服用" + name() + "。\n");
                 return 1;
         }
 
         set_temp("last_eat/dan(C)", time(), me);
 
-        message_vision(CYN "$N吃下一粒锁泉丹，精神随之一震，精力有所提高。\n" NOR, me);
+        message_vision(CYN "$N吃下一粒鎖泉丹，精神隨之一震，精力有所提高。\n" NOR, me);
         addn("jingli", 180, me);
 
         me->start_busy(2);

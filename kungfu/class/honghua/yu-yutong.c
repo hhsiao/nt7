@@ -7,17 +7,17 @@ inherit F_GUARDER;
 
 void create()
 {
-        set_name("余鱼同", ({ "yu yutong", "yu","yutong" }));
-        set("title", "红花会十四当家");
+        set_name("餘魚同", ({ "yu yutong", "yu","yutong" }));
+        set("title", "紅花會十四當家");
         set("nickname", HIY "金笛秀才" NOR);
-        set("long", "一个长身玉立，眉清目秀，风流英俊的书生。\n"
-                    "余鱼同乃江南望族子弟，中过秀才。他父亲\n"
-                    "因和一家豪门争一块坟地，官司打得倾家荡\n"
-                    "产，又被豪门借故陷害，瘐死狱中。余鱼同\n"
-                    "一气出走，得遇机缘，拜马真为师，弃文习\n"
-                    "武，回来把士豪刺死，从此亡命江湖，后来\n"
-                    "入了红花会。他为人机警灵巧，多识各地乡\n"
-                    "谈，在会中任联络四方、刺探讯息之职。\n");
+        set("long", "一個長身玉立，眉清目秀，風流英俊的書生。\n"
+                    "餘魚同乃江南望族子弟，中過秀才。他父親\n"
+                    "因和一家豪門爭一塊墳地，官司打得傾家蕩\n"
+                    "產，又被豪門藉故陷害，瘐死獄中。餘魚同\n"
+                    "一氣出走，得遇機緣，拜馬真為師，棄文習\n"
+                    "武，回來把士豪刺死，從此亡命江湖，後來\n"
+                    "入了紅花會。他為人機警靈巧，多識各地鄉\n"
+                    "談，在會中任聯絡四方、刺探訊息之職。\n");
         set("gender", "男性");
         set("class", "scholar");
         set("age", 20);
@@ -68,13 +68,13 @@ void create()
         }));
 
         set("guarder", ([
-                "refuse_other": CYN "$N" CYN "对$n" CYN "冷喝道："
-                                "阁下请留步，那里下去不得。" NOR,
-                "refuse_carry": CYN "$N" CYN "对$n" CYN "喝道：你"
-                                "居然背人下去，到底是什么意思？" NOR,
+                "refuse_other": CYN "$N" CYN "對$n" CYN "冷喝道："
+                                "閣下請留步，那裡下去不得。" NOR,
+                "refuse_carry": CYN "$N" CYN "對$n" CYN "喝道：你"
+                                "居然揹人下去，到底是什麼意思？" NOR,
         ]));
 
-        create_family("红花会", 4, "当家");
+        create_family("紅花會", 4, "當家");
 
         set("chat_chance_combat", 100);
         set("chat_msg_combat", ({
@@ -98,5 +98,5 @@ void attempt_apprentice(object ob)
                 return;
 
         command("en");
-        command("say 我不收徒，你找其余几位当家的好了。");
+        command("say 我不收徒，你找其餘幾位當家的好了。");
 }

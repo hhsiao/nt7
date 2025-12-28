@@ -1,7 +1,7 @@
 inherit ITEM;
 
 string* titles = ({
-        "无量寿经",
+        "無量壽經",
 });
 
 void create()
@@ -12,7 +12,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "本");
-                set("long", "这是一册佛经。\n");
+                set("long", "這是一冊佛經。\n");
                 set("value", 500);
                 set("material", "paper");
                 set("skill", ([

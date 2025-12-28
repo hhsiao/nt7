@@ -9,7 +9,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "只");
-                set("long", HIB "经唐三彩烧制的碧海青天爵，非常的昂贵。\n" NOR);
+                set("long", HIB "經唐三彩燒製的碧海青天爵，非常的昂貴。\n" NOR);
                 set("value", 1500);
         }
 }

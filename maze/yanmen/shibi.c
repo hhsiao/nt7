@@ -6,9 +6,9 @@ void create()
 {
         set("short", "石壁"NOR);
         set("long", @LONG
-这里快到「大宋」军营驻扎地了，远远地可以看见大营内飞扬的尘土，不
-时有几匹快马飞奔进出，你正欲再看，忽然嗖地一枚冷箭从你头上飞过，还是
-赶快离开的好。
+這裡快到「大宋」軍營駐紮地了，遠遠地可以看見大營內飛揚的塵土，不
+時有幾匹快馬飛奔進出，你正欲再看，忽然嗖地一枚冷箭從你頭上飛過，還是
+趕快離開的好。
 LONG
 );
 
@@ -29,7 +29,7 @@ int valid_leave(object me, string dir)
 {
           if (!userp(me))         return ::valid_leave(me, dir);
         if ( dir == "north" )
-        return notify_fail("带头大哥一下挡在你面前，"+HIW"白眼"NOR+"一翻：在这里呆着，不要轻举乱动！\n");
+        return notify_fail("帶頭大哥一下擋在你面前，"+HIW"白眼"NOR+"一翻：在這裡待著，不要輕舉亂動！\n");
         return 1;
 }
 

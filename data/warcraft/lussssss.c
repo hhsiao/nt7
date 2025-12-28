@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("无敌神兽[2;37;0m[2;37;0m", ({"ljs"}));        
+        set_name("無敵神獸[2;37;0m[2;37;0m", ({"ljs"}));        
         set("gender", "男性");                
-        set("long", "混沌时期的神兽[2;37;0m
-它是了肋骨的魔幻兽。
+        set("long", "混沌時期的神獸[2;37;0m
+它是了肋骨的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

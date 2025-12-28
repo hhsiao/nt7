@@ -11,11 +11,11 @@ mixed ask_me();
 
 void create()
 {
-        set_name("张松溪", ({ "zhang songxi", "zhang" }));
-        set("nickname", "武当四侠");
+        set_name("張松溪", ({ "zhang songxi", "zhang" }));
+        set("nickname", "武當四俠");
         set("long",
-                "他就是张三丰的四弟子张松溪。\n"
-                "他今年四十岁，精明能干，以足智多谋著称。\n");
+                "他就是張三丰的四弟子張松溪。\n"
+                "他今年四十歲，精明能幹，以足智多謀著稱。\n");
         set("gender", "男性");
         set("age", 40);
         set("attitude", "peaceful");
@@ -54,9 +54,9 @@ void create()
         set_skill("literate", 150);
 
         set("no_teach", ([
-                "taiji-shengong" : "要想学习太极神功请向张真人请教。",
-                "taiji-jian"     : "太极剑必须张真人亲传。",
-                "taiji-quan"     : "太极拳必须张真人亲传。",
+                "taiji-shengong" : "要想學習太極神功請向張真人請教。",
+                "taiji-jian"     : "太極劍必須張真人親傳。",
+                "taiji-quan"     : "太極拳必須張真人親傳。",
         ]));
 
         map_skill("force", "taiji-shengong");
@@ -70,11 +70,11 @@ void create()
         prepare_skill("unarmed", "taiji-quan");
         prepare_skill("strike", "wudang-zhang");
 
-        create_family("武当派", 2, "弟子");
+        create_family("武當派", 2, "弟子");
 
         set("inquiry", ([
-                "乱环决": (: ask_me :),
-                "绝招"  : (: ask_me :),
+                "亂環決": (: ask_me :),
+                "絕招"  : (: ask_me :),
         ]));
 
         set("coagents", ({
@@ -103,29 +103,29 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)<6000 )
         {
-                command("say 我武当乃是堂堂名门正派，对弟子要求极严。");
+                command("say 我武當乃是堂堂名門正派，對弟子要求極嚴。");
                 command("say 在德行方面，" + RANK_D->query_respect(ob) +
-                        "是否还做得不够？");
+                        "是否還做得不夠？");
                 return;
         }
 
         if ((int)ob->query_skill("yinyun-ziqi",1) < 60)
         {
-                command("say 我武当派最注重内功心法" + RANK_D->query_respect(ob)+
-                        "是否应该在武当心法上多下点功夫啊?");
+                command("say 我武當派最注重內功心法" + RANK_D->query_respect(ob)+
+                        "是否應該在武當心法上多下點功夫啊?");
                 return;
         }
 
         if ((int)ob->query_skill("taoism", 1) < 60)
         {
-                command("say 习武是为了强身健体，一味的练武是不可取的。");
-                command("say 我看你还需要在修身养性方面多锻炼锻炼，以提"
+                command("say 習武是為了強身健體，一味的練武是不可取的。");
+                command("say 我看你還需要在修身養性方面多鍛鍊鍛鍊，以提"
                         "高你的道德心法。");
                 return;
         }
 
         command("say 好吧，我就收下你了。");
-        command("say 希望你能好好用功，消灭邪魔外道！");
+        command("say 希望你能好好用功，消滅邪魔外道！");
         command("recruit "+query("id", ob));
         if( query("class", ob) != "taoist" )
                 set("class", "taoist", ob);
@@ -137,30 +137,30 @@ mixed ask_me()
 
         me = this_player();
         if( query("can_perform/xuanxu-dao/huan", me) )
-                return "我都教给你了，自己好好多练习吧！";
+                return "我都教給你了，自己好好多練習吧！";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return RANK_D->query_respect(me) + "不是我们武当派的人，何出此言？";
+                return RANK_D->query_respect(me) + "不是我們武當派的人，何出此言？";
 
         if (me->query_skill("xuanxu-dao", 1) < 1)
-                return "你连玄虚刀法都没学，还谈什么绝招可言？";
+                return "你連玄虛刀法都沒學，還談什麼絕招可言？";
 
         if( query("family/gongji", me)<150 )
-                return "你为我武当派效力还不够，这招我先不忙传你。";
+                return "你為我武當派效力還不夠，這招我先不忙傳你。";
 
         if( query("shen", me)<10000 )
-                return "你行侠仗义的事情做的还很不够，我不能传你绝招！";
+                return "你行俠仗義的事情做的還很不夠，我不能傳你絕招！";
 
         if (me->query_skill("xuanxu-dao", 1) < 100)
-                return "你的玄虚刀法还不到家，要多练练！";
+                return "你的玄虛刀法還不到家，要多練練！";
 
-        message_vision(HIY "$n" HIY "点了点头，随手挥舞手中钢刀，画出一"
-                       "个个圆\n圈，每招均是以弧形刺出，弧形收回。刀出成"
-                       "环，环\n环相连，直看得$N" HIY "眼花缭乱。\n" NOR,
+        message_vision(HIY "$n" HIY "點了點頭，隨手揮舞手中鋼刀，畫出一"
+                       "個個圓\n圈，每招均是以弧形刺出，弧形收回。刀出成"
+                       "環，環\n環相連，直看得$N" HIY "眼花繚亂。\n" NOR,
                        me, this_object());
         command("smile");
-        command("say 你可明白了玄虚刀法的要诣？");
-        tell_object(me, HIC "你学会了「乱环决」。\n" NOR);
+        command("say 你可明白了玄虛刀法的要詣？");
+        tell_object(me, HIC "你學會了「亂環決」。\n" NOR);
         if (me->can_improve_skill("blade"))
                 me->improve_skill("blade", 1500000);
         if (me->can_improve_skill("xuanxu-dao"))

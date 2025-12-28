@@ -7,9 +7,9 @@ void setup()
         set_name("金屋[2;37;0m[2;37;0m", ({"jinwu"}));        
         set("gender", "女性");                
         set("long", "亮金金的屋子[2;37;0m
-它是糖果的魔幻兽。
+它是糖果的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "tangguo");
         set("owner_name", "糖果");

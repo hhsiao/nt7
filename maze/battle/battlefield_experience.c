@@ -6,7 +6,7 @@
 inherit CONDITION_MOD;
 
 string id               = "battlefield-experience";
-string name     = HIC"无止尽的"NOR CYN"战争历练"NOR;
+string name     = HIC"無止盡的"NOR CYN"戰爭歷練"NOR;
 string type     = CONDITION_TYPE_POSITIVE;
 int time                = 300;
 int heartbeat   = 0;
@@ -54,7 +54,7 @@ int get_abi_value(int value)
 }
 
 
-// 启动状态时的效果
+// 啟動狀態時的效果
 
 void start_effect(object ob)
 {
@@ -68,13 +68,13 @@ void start_effect(object ob)
         ::start_effect(ob);
 }
 
-// 结束状态时的效果
+// 結束狀態時的效果
 void stop_effect(object ob)
 {
         ::stop_effect(ob);
 }
 
-// 状态进行中的效果
+// 狀態進行中的效果
 void heart_beat_effect(object ob)
 {
 

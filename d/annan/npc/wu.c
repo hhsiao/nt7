@@ -4,8 +4,8 @@ inherit F_BANKER;
 #include <ansi.h>
 void create()
 {
-        set_name("范老板", ({"fan laoban", "wu"}));
-        set("title", "钱庄掌柜");
+        set_name("範老闆", ({"fan laoban", "wu"}));
+        set("title", "錢莊掌櫃");
         set("gender", "男性");
         set("age", 34);
 

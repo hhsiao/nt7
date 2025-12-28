@@ -12,9 +12,9 @@ void check_time();
 void create()
 {
         set_name(HIR "火麒麟" NOR, ({ "huo qilin", "huo", "qilin" }) );
-        set("title", HIY "上古神兽" NOR);
-        set("long", HIR "这是一只传说中的上古神兽—火麒麟，只见它浑身似火，散射着令人窒息的炽热。\n"
-                        "仔细一看，这只火麒麟经过千万年修炼，已经化为人形，威风无比，令人敬畏。\n" NOR);
+        set("title", HIY "上古神獸" NOR);
+        set("long", HIR "這是一隻傳說中的上古神獸—火麒麟，只見它渾身似火，散射著令人窒息的熾熱。\n"
+                        "仔細一看，這隻火麒麟經過千萬年修煉，已經化為人形，威風無比，令人敬畏。\n" NOR);
 
         set("gender", "男性");
         set("age", 999);
@@ -30,8 +30,8 @@ void create()
         set_temp("apply/unarmed_damage", 20000);
         set_temp("apply/damage", 20000);
         set_temp("apply/armor", 20000);
-        set_temp("apply/qy", 20);  // 气运
-        set_temp("apply/fy", 20);  // 福缘
+        set_temp("apply/qy", 20);  // 氣運
+        set_temp("apply/fy", 20);  // 福緣
 
         set("scborn/ok", 1);
 
@@ -73,7 +73,7 @@ void create()
 
         set_skill("jingluo-xue", 2000);
 
-         set("no_nuoyi", 1); // 不被挪移影响
+         set("no_nuoyi", 1); // 不被挪移影響
 
         map_skill("parry", "jiuyang-shengong");
         map_skill("force", "jiuyang-shengong");
@@ -93,13 +93,13 @@ void create()
         // yun perform
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
-              // 太极剑
+              // 太極劍
               (: command("perform sword.sui and sword.chan") :),
               (: command("perform sword.jian and sword.zhuan") :),
               (: command("perform sword.zhenwu and sword.jian") :),
               (: command("perform sword.jian twice") :),
               (: command("perform sword.jian and finger.tian") :),
-              // 六脉神剑
+              // 六脈神劍
               (: command("perform finger.six twice") :),
               (: command("perform finger.qi twice") :),
               (: command("perform finger.zong and finger.tian") :),
@@ -116,7 +116,7 @@ void create()
               (: check_time :),
         }));
 
-        set("my_life", 1); // 当气血低于10%的时候补满一次，设置该参数为0
+        set("my_life", 1); // 當氣血低於10%的時候補滿一次，設置該參數為0
 
         setup();
 
@@ -126,7 +126,7 @@ void create()
         // 武器
         carry_object("/clone/weapon/chi-jian")->wield();
 
-        // 设置地点
+        // 設置地點
         set("startroom", "/d/shenlong/huodong1");
 
 }
@@ -138,7 +138,7 @@ void heart_beat()
         if( !environment(this_object()) )
                 return ::heart_beat();
 
-        // 检查出现时间
+        // 檢查出現時間
         if (random(2))check_time();
 
         if( !objectp(this_object()) ) return;
@@ -149,8 +149,8 @@ void heart_beat()
         return ::heart_beat();
 }
 
-// 检查时间 6 小时后消失
-// 未战斗状态下消失
+// 檢查時間 6 小時後消失
+// 未戰鬥狀態下消失
 void check_time()
 {
         int t;
@@ -168,7 +168,7 @@ void check_time()
 
         if (t > 6 * 3600)
         {
-                message_vision(BLINK + HIG "\n此次对抗火麒麟已经超过6小时，挑战失败！\n" NOR, this_object());
+                message_vision(BLINK + HIG "\n此次對抗火麒麟已經超過6小時，挑戰失敗！\n" NOR, this_object());
                 env = environment(this_object());
                 env->move_all_player_out(1);
                 destruct(this_object());
@@ -178,28 +178,28 @@ void check_time()
         return;
 }
 
-// 检查地点
+// 檢查地點
 void check_environment()
 {        /*
         if (! environment(this_object()))return;
 
         if (base_name(environment(this_object())) != query("startroom"))
         {
-                command("say 咦？我怎么会在这里，有人作弊，有人作弊，巫师快出来！");
+                command("say 咦？我怎麼會在這裡，有人作弊，有人作弊，巫師快出來！");
                 destruct(this_object());
         }
         */
 
 }
 
-// 检查武器
+// 檢查武器
 void check_weapon()
 {
         object me, ob;
 
         me = this_object();
 
-        // 同时补充内力
+        // 同時補充內力
         set("neili", query("max_neili"));
 
         if (me->is_busy())me->interrupt_busy(me, 1000);
@@ -236,10 +236,10 @@ void check_weapon()
                 me->clear_condition();
         }
 
-        // 很小几率恢复气血
+        // 很小几率恢復氣血
         if (random(50) == 1)
         {
-                //log_file("qilin", "成功恢复气血。\n");
+                //log_file("qilin", "成功恢復氣血。\n");
                 if( query("eff_qi", me)<query("max_qi", me)/3)addn("eff_qi",query("max_qi",  me)/5, me);
                 if( query("qi", me)<query("max_qi", me)/3)addn("qi",query("max_qi",  me)/5, me);
         }
@@ -285,7 +285,7 @@ void new_life()
 {
         object me = this_object();
 
-        // 补满气血
+        // 補滿氣血
         set("eff_qi",query("max_qi", me), me);
         set("qi",query("max_qi", me), me);
         set("eff_jing",query("max_jing", me), me);
@@ -303,12 +303,12 @@ void new_life()
         set_temp("apply/unarmed_damage", 20000, me);
         set_temp("apply/damage", 20000, me);
         set_temp("apply/armor", 20000, me);
-        set_temp("apply/qy", 30, me);//气运
-        set_temp("apply/kar", 30, me);//福缘
+        set_temp("apply/qy", 30, me);//氣運
+        set_temp("apply/kar", 30, me);//福緣
 
         delete("my_life", me);
 
-        message_vision(HIG "\n$N" HIG "大叫一声，浑身散发着火红的金光，刹那间，如获重生！\n\n" NOR, me);
+        message_vision(HIG "\n$N" HIG "大叫一聲，渾身散發著火紅的金光，剎那間，如獲重生！\n\n" NOR, me);
 
         return;
 }
@@ -343,17 +343,17 @@ void unconcious()
         die(query_last_damage_from());
 }
 
-// 检查生命
+// 檢查生命
 void check_life()
 {
         object env;
 
-        // 如果life<=1则死亡
+        // 如果life<=1則死亡
         if (1)
         {
-                message_vision(HIR "\n$N" HIR "长啸一声，身体化作一团火球，消失了！\n" NOR, this_object());
+                message_vision(HIR "\n$N" HIR "長嘯一聲，身體化作一團火球，消失了！\n" NOR, this_object());
 
-                message_vision(BLINK + HIY "\n此次对抗火麒麟已经结束，2分钟后清场，请抓紧时间。\n\n" NOR, this_object());
+                message_vision(BLINK + HIY "\n此次對抗火麒麟已經結束，2分鐘後清場，請抓緊時間。\n\n" NOR, this_object());
 
                 env = environment(this_object());
                 env->move_all_player_out(120);
@@ -364,15 +364,15 @@ void check_life()
 
 void die(object killer)
 {
-        object dob;             // 打晕这个NPC的人
-        int n;                  // 可以奖励的人的数目
-        int exp;                // 需要瓜分的经验
-        int pot;                // 需要瓜分的潜能
+        object dob;             // 打暈這個NPC的人
+        int n;                  // 可以獎勵的人的數目
+        int exp;                // 需要瓜分的經驗
+        int pot;                // 需要瓜分的潛能
         int weiwang;            // 需要瓜分的威望
-        int score;              // 需要瓜分的阅历
-        object *t;              // 杀死我的人的队伍列表
+        int score;              // 需要瓜分的閱歷
+        object *t;              // 殺死我的人的隊伍列表
         object tob;
-        int mar;                //  需要瓜分的体会
+        int mar;                //  需要瓜分的體會
         int i;
         string prop, name;
         mapping data;
@@ -384,8 +384,8 @@ void die(object killer)
                 "add_damage", "add_skill" });
 
 
-        // 定义奖励物品列表
-        // 几率  X / 百分之
+        // 定義獎勵物品列表
+        // 幾率  X / 百分之
         mixed oblist = ([
                 "/clone/armor/qilin/jixing"              :              20,
                 "/clone/armor/qilin/jinghua"             :              20,
@@ -405,20 +405,20 @@ void die(object killer)
                 return;
         }
 
-        // 如果还未重生，则重生一次
+        // 如果還未重生，則重生一次
         if (query("my_life"))
         {
                 new_life();
                 return;
         }
 
-        // 找到杀了我(NPC)或是打晕我的人
+        // 找到殺了我(NPC)或是打暈我的人
         if (! objectp(dob = killer))
                 dob = query_last_damage_from();
 
         if (! dob)
         {
-                // 调用生命检查函数
+                // 調用生命檢查函數
                 check_life();
                 return;
         }
@@ -459,7 +459,7 @@ void die(object killer)
                         {
                                 if (objectp(tob) && living(tob))
                                 {
-                                        // 会员奖励再提高10%
+                                        // 會員獎勵再提高10%
                                         /*
                                         if( MEMBER_D->is_valid_member(query("id", tob)) )
                                         {
@@ -470,7 +470,7 @@ void die(object killer)
                                                                      "weiwang"  : weiwang + weiwang * 1 / 10 + ((tob == dob) ? 50000 : 0),
                                                                    "score"    : score + score * 1 / 10 + ((tob == dob) ? 50000 : 0),
                                                                    "mar"      : mar + mar * 1 / 10 + ((tob == dob) ? 50000 : 0),
-                                                                   "prompt"   : "你的队伍杀死" + name() + HIG "之后"]), 999);
+                                                                   "prompt"   : "你的隊伍殺死" + name() + HIG "之後"]), 999);
                                         }
                                         else */
                                         {
@@ -481,7 +481,7 @@ void die(object killer)
                                                                    "weiwang"  : weiwang + ((tob == dob) ? 50000 : 0),
                                                                    "score"    : score + ((tob == dob) ? 50000 : 0),
                                                                    "mar"      : mar + ((tob == dob) ? 50000 : 0),
-                                                                   "prompt"   : "你的队伍杀死" + name() + HIG "之后"]), 100);
+                                                                   "prompt"   : "你的隊伍殺死" + name() + HIG "之後"]), 100);
                                         }
 
                                 }
@@ -498,7 +498,7 @@ void die(object killer)
                                            "weiwang"  : weiwang + weiwang * 3 / 10,
                                            "score"    : score + score * 3 / 10,
                                            "mar"      : mar + mar * 3 / 10,
-                                           "prompt"   : "你在杀死" + name() + HIG "之后"]), 999);
+                                           "prompt"   : "你在殺死" + name() + HIG "之後"]), 999);
                         }
 
                         else */
@@ -509,7 +509,7 @@ void die(object killer)
                                            "weiwang"  : weiwang,
                                            "score"    : score,
                                            "mar"      : mar,
-                                           "prompt"   : "你在杀死" + name() + HIG "之后"]), 100);
+                                           "prompt"   : "你在殺死" + name() + HIG "之後"]), 100);
                        }
                 }
         }
@@ -524,28 +524,28 @@ void die(object killer)
                 gift_ob = new(s_gift);
                 if (objectp(gift_ob))
                 {
-                        message_vision(HIC "当~~一声，从$N" HIC "身上掉出" + gift_ob->name() + HIC "，落在地上。\n" NOR, this_object());
+                        message_vision(HIC "當~~一聲，從$N" HIC "身上掉出" + gift_ob->name() + HIC "，落在地上。\n" NOR, this_object());
                         set("who_get/id", "NONE", gift_ob);
-                        set("who_get/time", time()+30, gift_ob);//30秒内都不能捡取
+                        set("who_get/time", time()+30, gift_ob);//30秒內都不能撿取
                         gift_ob->move(environment(this_object()));
                 }
-                else // 纪录之
+                else // 紀錄之
                 {
                         //log_file("qilin-gift-none", s_gift + "\n");
                 }
         }
 
-        // 20%几率掉出火眼之戒
+        // 20%幾率掉出火眼之戒
         if (random(10) < 2)
         {
                 gift_huoyan = new(huoyan);
                 set("who_get/id", "NONE", gift_huoyan);
-                set("who_get/time", time()+30, gift_huoyan);//30秒内都不能捡取
+                set("who_get/time", time()+30, gift_huoyan);//30秒內都不能撿取
                 gift_huoyan->move(environment(this_object()));
-                message_vision(HIW "叮~~一声，从$N" HIW "身上掉出" + gift_huoyan->name() +
+                message_vision(HIW "叮~~一聲，從$N" HIW "身上掉出" + gift_huoyan->name() +
                                HIW "，落在地上。\n" NOR, this_object());
 
-                //log_file("qilin_gift", "火麒麟于 " + ctime(time()) + " 掉出火眼之戒。\n");
+                //log_file("qilin_gift", "火麒麟於 " + ctime(time()) + " 掉出火眼之戒。\n");
         }
 
         where = environment();
@@ -559,8 +559,8 @@ void die(object killer)
         ob = TEMPLATE_D->create_object("/inherit/template/element/element", prop, data);
         ob->set_name(name, ({prop, "element"}));
         ob->move(where);
-        message_vision(HIC "叮~~一声，从$N" HIC "身上掉出" + ob->name() + NOR + HIC "，落在地上。\n" NOR, this_object());
-        // 检查生命
+        message_vision(HIC "叮~~一聲，從$N" HIC "身上掉出" + ob->name() + NOR + HIC "，落在地上。\n" NOR, this_object());
+        // 檢查生命
         check_life();
 
         return ;

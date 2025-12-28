@@ -6,11 +6,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "明教山门");
+        set("short", "明教山門");
         set("long", @LONG
-一个巨大的天然石桥横跨在两片山壁之间，石桥正上方龙盘凤舞
-刻着两个大字：『明教』。字迹有些剥落，看上去年代久远。两位三
-十来岁的大汉手持钢剑守在山门两侧。
+一個巨大的天然石橋橫跨在兩片山壁之間，石橋正上方龍盤鳳舞
+刻著兩個大字：『明教』。字跡有些剝落，看上去年代久遠。兩位三
+十來歲的大漢手持鋼劍守在山門兩側。
 LONG );
         set("exits", ([
                 "westup" : __DIR__"shanlu1",
@@ -30,16 +30,16 @@ int valid_leave(object me, string dir)
         int i;
 
         if (me->query_family() != "明教" &&
-            me->query_family() != "武当派"  &&
+            me->query_family() != "武當派"  &&
             dir == "westup")
         {
                 inv = all_inventory(me);
                 for(i=sizeof(inv)-1; i>=0; i--)
                         if(query("weapon_prop", inv[i]) && ((string)query("equipped", inv[i])=="wielded"))
                                 if(objectp(present("da han", environment(me))))
-                                        return notify_fail("大汉拦住你说道：这位" +
-                                                RANK_D->query_respect(me) + "请放下兵刃。我教教规严"
-                                                "厉，外客不\n得持兵刃上山。请见谅。\n");
+                                        return notify_fail("大漢攔住你說道：這位" +
+                                                RANK_D->query_respect(me) + "請放下兵刃。我教教規嚴"
+                                                "厲，外客不\n得持兵刃上山。請見諒。\n");
         }
         return ::valid_leave(me, dir);
 }

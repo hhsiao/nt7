@@ -5,8 +5,8 @@ int is_snake(){return 1;}
 
 void create()
 {
-        set_name(HIY "响尾蛇" NOR, ({ "xiangwei she", "xiangwei", "she" }));
-        set("long", RED "这是一条赤黄色的毒蛇，尾巴吃吃作响。\n" NOR);
+        set_name(HIY "響尾蛇" NOR, ({ "xiangwei she", "xiangwei", "she" }));
+        set("long", RED "這是一條赤黃色的毒蛇，尾巴吃吃作響。\n" NOR);
 
         set("age", 90);
         set("str", 135);
@@ -86,24 +86,24 @@ mixed hit_ob(object me, object ob, int damage)
         {
                 if( query("qi", ob)<150 )
                 {
-                        msg = HIR "你觉得伤口有些发麻，连忙运功化解，但"
-                              "是一时体力不支，难以施为。\n" NOR;
+                        msg = HIR "你覺得傷口有些發麻，連忙運功化解，但"
+                              "是一時體力不支，難以施為。\n" NOR;
                 } else
                 if( query("jing", ob)<60 )
                 {
-                        msg = HIR "你觉得伤口有些发麻，连忙运功化解，但"
-                              "是一时精神不济，难以施为。\n" NOR;
+                        msg = HIR "你覺得傷口有些發麻，連忙運功化解，但"
+                              "是一時精神不濟，難以施為。\n" NOR;
                 } else
                 if( query("neili", ob)<damage/5+50 )
                 {
-                        msg = HIR "你觉得伤口有些发麻，连忙运功化解，但"
-                              "是一时内力不足，难以施为。\n" NOR;
+                        msg = HIR "你覺得傷口有些發麻，連忙運功化解，但"
+                              "是一時內力不足，難以施為。\n" NOR;
                 } else
                 {
                         addn("neili", -damage/5, ob);
                         ob->receive_damage("qi", 20);
                         ob->receive_damage("jing", 10);
-                        return HIM "你觉得被咬中的地方有些发麻，连忙运功"
+                        return HIM "你覺得被咬中的地方有些發麻，連忙運功"
                                "化解毒性。\n" NOR;
                 }
         }
@@ -113,7 +113,7 @@ mixed hit_ob(object me, object ob, int damage)
                                        "id"    : "nature poison",
                                        "duration" : dur / 2, ])))
         {
-                msg += HIR "$n" HIR "脸色一变，只觉被咬中的地方一阵麻木。\n" NOR;
+                msg += HIR "$n" HIR "臉色一變，只覺被咬中的地方一陣麻木。\n" NOR;
         }
         return msg;
 }

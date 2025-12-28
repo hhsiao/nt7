@@ -10,13 +10,13 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", HIB "\n一块蓝色的虎魄，无暇的表面射魄出奇幻的光\n"
-                            "泽。其中仿佛蕴藏着无穷的魔力，这便是传说\n"
-                            "中的至宝，凶中之凶的——上古虎魄，相传为\n"
-                            "上古时代，蚩尤所得异物炼制而成。上古神物，\n"
-                            "已经通灵。\n" NOR);
+                set("long", HIB "\n一塊藍色的虎魄，無暇的表面射魄出奇幻的光\n"
+                            "澤。其中彷彿蘊藏著無窮的魔力，這便是傳說\n"
+                            "中的至寶，兇中之兇的——上古虎魄，相傳為\n"
+                            "上古時代，蚩尤所得異物煉製而成。上古神物，\n"
+                            "已經通靈。\n" NOR);
                 set("value", 10000000);
-                set("unit", "块");
+                set("unit", "塊");
                 set("can_be_tessera", 1);
                 set("magic/type", "wood");
                 set("magic/power", 1000);

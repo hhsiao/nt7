@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("保时捷的轿跑[2;37;0m[2;37;0m", ({"panamera"}));        
+        set_name("保時捷的轎跑[2;37;0m[2;37;0m", ({"panamera"}));        
         set("gender", "女性");                
-        set("long", "保时捷轿跑[2;37;0m
-它是聊啥的魔幻兽。
+        set("long", "保時捷轎跑[2;37;0m
+它是聊啥的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

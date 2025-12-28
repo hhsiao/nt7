@@ -3,7 +3,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define PNAME NOR "「" HIC "九天伏魔剑阵" NOR "」" NOR
+#define PNAME NOR "「" HIC "九天伏魔劍陣" NOR "」" NOR
 
 inherit F_SSERVER;
 
@@ -22,43 +22,43 @@ int perform(object me, object target)
         mapping buff;
         
         if( userp(me) && !query("can_perform/yitian-jian/zhen", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(PNAME "只能对战斗中的对手使用。\n");
+                return notify_fail(PNAME "只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对，难以施展" PNAME "。\n");
+                return notify_fail("你使用的武器不對，難以施展" PNAME "。\n");
 
         if ((int)me->query_skill("yitian-jian", 1) < 300)
-                return notify_fail("你的倚天剑法不够娴熟，难以施展" PNAME "。\n");
+                return notify_fail("你的倚天劍法不夠嫻熟，難以施展" PNAME "。\n");
 
         if ((int)me->query_skill("array", 1) < 150)
-                return notify_fail("你的基本阵法不够娴熟，难以施展" PNAME "。\n");
+                return notify_fail("你的基本陣法不夠嫻熟，難以施展" PNAME "。\n");
 
         if ((int)me->query_skill("mahayana", 1) < 600)
-                return notify_fail("你的大乘涅磐功不够娴熟，难以施展" PNAME "。\n");
+                return notify_fail("你的大乘涅磐功不夠嫻熟，難以施展" PNAME "。\n");
 
         if ((int)me->query_skill("jingxin", 1) < 150)//基本只能峨眉弟子施展
-                return notify_fail("你的静心不够娴熟，难以施展" PNAME "。\n");
+                return notify_fail("你的靜心不夠嫻熟，難以施展" PNAME "。\n");
 
         if( query("neili", me)<1500 )
-                return notify_fail("你的真气不够，难以施展" PNAME "。\n");
+                return notify_fail("你的真氣不夠，難以施展" PNAME "。\n");
 
         if (me->query_skill_mapped("sword") != "yitian-jian")
-                return notify_fail("你没有激发倚天剑法，难以施展" PNAME "。\n");
+                return notify_fail("你沒有激發倚天劍法，難以施展" PNAME "。\n");
 
         if (me->query_skill_mapped("force") != "linji-zhuang")
-                return notify_fail("你没有激发临济十二桩，难以施展" PNAME "。\n");
+                return notify_fail("你沒有激發臨濟十二樁，難以施展" PNAME "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         if( (time = BUFF_D->get_buff_overtime(me, "emaq_fumojianzhen")) > 0 )
-                                return notify_fail(MAG"九天伏魔剑阵消耗心神太甚，还需等待"+time+"秒。\n"NOR);
+                                return notify_fail(MAG"九天伏魔劍陣消耗心神太甚，還需等待"+time+"秒。\n"NOR);
 
 
                 allsk = keys(me->query_skills());
@@ -69,8 +69,8 @@ int perform(object me, object target)
                         j = me->query_skill("array") / 150;
                 if (j) {
                         if (j > 9) j = 9; 
-                msg = HIY "\n$N" HIY "运转倚天剑法，将手中的" + weapon->name() + HIY "往地上一掷，“锵”得一声剑鸣，\n只见" +
-                                        weapon->name() + HIY "依照大九天伏魔阵势，分化为" + chinese_number(j) + "道剑光，从四方朝$n" HIY "笼罩而去！\n" NOR;
+                msg = HIY "\n$N" HIY "運轉倚天劍法，將手中的" + weapon->name() + HIY "往地上一擲，“鏘”得一聲劍鳴，\n只見" +
+                                        weapon->name() + HIY "依照大九天伏魔陣勢，分化為" + chinese_number(j) + "道劍光，從四方朝$n" HIY "籠罩而去！\n" NOR;
                         addn("can_perform/yitian-jian/zhen", 1, me);
                 //message_combatd(msg, me, target); 
                 message_vision(msg, me, target);
@@ -117,8 +117,8 @@ int perform(object me, object target)
                                         addn_temp("apply/damage", -damage, me); 
                                         addn_temp("apply/attack", -att, me); 
                                 } else {
-                                                msg = CYN "可是$n" CYN + (random(2) ? "轻轻一跃" : "鼓劲硬抗") + "，" 
-                                        + (random(2) ? "避开了" : "躲过了") + PNAME + HIC + to_chinese(skn) + NOR CYN "的攻击范围。\n"NOR;
+                                                msg = CYN "可是$n" CYN + (random(2) ? "輕輕一躍" : "鼓勁硬抗") + "，" 
+                                        + (random(2) ? "避開了" : "躲過了") + PNAME + HIC + to_chinese(skn) + NOR CYN "的攻擊範圍。\n"NOR;
                                         message_combatd(msg, me, target); 
                                 }
                                 addn("neili", -500, me);
@@ -137,7 +137,7 @@ int perform(object me, object target)
                         me->reset_action();
                         addn_temp("apply/attack", -count, me); 
                                                 if (query("can_perform/yitian-jian/zhen", me) == 5 || (query("can_perform/yitian-jian/zhen", me) & 50) == 0 ) {
-                                                    tell_object(me, HIC "你领悟了"HIY"「九天伏魔剑阵」"HIC"击破特防的诀窍，继续加深熟练度吧。\n" NOR); 
+                                                    tell_object(me, HIC "你領悟了"HIY"「九天伏魔劍陣」"HIC"擊破特防的訣竅，繼續加深熟練度吧。\n" NOR); 
                                                     set("can_perform/yitian-jian/zhen", 30, me);
                                                 if (me->can_improve_skill("sword")) 
                                                         me->improve_skill("sword", 1500000); 
@@ -147,7 +147,7 @@ int perform(object me, object target)
                                         me->improve_skill("sword-cognize", 1500000); 
                                                 }
                 } else {
-                        tell_object(me, NOR "你修为不足，运转" + PNAME + NOR "失败。\n" NOR);
+                        tell_object(me, NOR "你修為不足，運轉" + PNAME + NOR "失敗。\n" NOR);
                         me->start_busy(2);
                         return 1;
                 }
@@ -165,9 +165,9 @@ int perform(object me, object target)
                 "type"   : "cooldown",
                 "type2"  : "emaq_fumojianzhen",
                 "attr"   : "curse",
-                "name"   : "倚天剑法·九天伏魔剑阵",
+                "name"   : "倚天劍法·九天伏魔劍陣",
                 "time"   : time,
-                "buff_msg" : "九天伏魔剑阵消耗心神太甚，还需等待"+time+"秒方可再次施展。\n",
+                "buff_msg" : "九天伏魔劍陣消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : "",
                 "disa_type": 0,
                 ]);
@@ -177,7 +177,7 @@ int perform(object me, object target)
                         weapon->move(environment(me));
                         set("who_get/id", query("id", me), weapon);
                         set("who_get/time", time() + 30, weapon);
-                        msg = HIY "\n" HIY + weapon->name() + HIY "钉在地上哀鸣一声，像在等待$N" + HIY + "的召唤。\n\n" NOR;
+                        msg = HIY "\n" HIY + weapon->name() + HIY "釘在地上哀鳴一聲，像在等待$N" + HIY + "的召喚。\n\n" NOR;
                 message_vision(msg, me);
                 }
                 

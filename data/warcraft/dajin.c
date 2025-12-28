@@ -7,7 +7,7 @@ void setup()
         set_name("打金麒麟[2;37;0m[2;37;0m", ({"dajinqilin"}));        
         set("gender", "女性");                
         set("long", "打金麒麟[2;37;0m
-它是打金娃的魔幻兽。
+它是打金娃的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

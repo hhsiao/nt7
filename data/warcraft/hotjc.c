@@ -6,10 +6,10 @@ void setup()
 {
         set_name("[1;35m七色[2;37;0m[2;37;0m", ({"qiqi"}));        
         set("gender", "男性");                
-        set("long", "$HIC$这是一条七色彩龙，小巧可爱。[2;37;0m
-它是寒月的魔幻兽。
+        set("long", "$HIC$這是一條七色彩龍，小巧可愛。[2;37;0m
+它是寒月的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "hotjc");
         set("owner_name", "寒月");

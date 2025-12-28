@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("爱的[2;37;0m[2;37;0m", ({"mygift"}));        
+        set_name("愛的[2;37;0m[2;37;0m", ({"mygift"}));        
         set("gender", "女性");                
-        set("long", "爱的[2;37;0m
-它是武当师五的魔幻兽。
+        set("long", "愛的[2;37;0m
+它是武當師五的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");
         set("owner", "wdppe");
-        set("owner_name", "武当师五");
+        set("owner_name", "武當師五");
         set_temp("owner", "wdppe");
-        set_temp("owner_name", "武当师五");
+        set_temp("owner_name", "武當師五");
         ::setup();
 }

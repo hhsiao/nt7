@@ -17,7 +17,7 @@ int main(object me, string arg)
         int i;
         
         if(me->is_busy())
-                return notify_fail("什么事都得等你忙完再说吧！\n");
+                return notify_fail("什麼事都得等你忙完再說吧！\n");
 
         if (! arg)
                 return notify_fail("指令格式：buy <物品> from <玩家>\n");
@@ -27,7 +27,7 @@ int main(object me, string arg)
 
         if (sizeof(all_inventory(me)) >= MAX_ITEM_CARRIED)
         {
-                write("你身上的东西太多了，先处理一下再买东西吧。\n");
+                write("你身上的東西太多了，先處理一下再買東西吧。\n");
                 return 1;
         }
 
@@ -35,30 +35,30 @@ int main(object me, string arg)
         env = environment(me);
 
         if (! (obj = find_player(my_id)) || ! (present(query("id", obj), env))) 
-                return notify_fail("这里没有这个商人。\n");
+                return notify_fail("這裡沒有這個商人。\n");
 
         if (obj == me)
-                return notify_fail("问自己买东西？吃饱了撑的？\n");
+                return notify_fail("問自己買東西？吃飽了撐的？\n");
 
         if( !query("is_vendor", obj) )
-                return notify_fail(obj->name(1) + "并不是商人。\n");
+                return notify_fail(obj->name(1) + "並不是商人。\n");
 
         if( !query_temp("on_baitan", obj) )
-                return notify_fail(obj->name(1) + "并没有摆摊。\n");
+                return notify_fail(obj->name(1) + "並沒有擺攤。\n");
 
         if( !(goods=query("vendor_goods", obj)) )
-                return notify_fail(obj->name(1) + "并没有兜售任何货物。\n");
+                return notify_fail(obj->name(1) + "並沒有兜售任何貨物。\n");
 
         if (me->is_busy())
-                return notify_fail("你现在正忙着呢。\n");
+                return notify_fail("你現在正忙著呢。\n");
 
         ob = present(arg, obj);
 
         if (! ob || ! objectp(ob))
-                return notify_fail(obj->name(1) + "并没有兜售这样货物。\n");
+                return notify_fail(obj->name(1) + "並沒有兜售這樣貨物。\n");
 
         if (! goods[base_name(ob)])
-                return notify_fail(obj->name(1) + "并没有兜售这样货物。\n");
+                return notify_fail(obj->name(1) + "並沒有兜售這樣貨物。\n");
 
         value = goods[base_name(ob)];
 
@@ -73,21 +73,21 @@ int main(object me, string arg)
         switch (player_pay(me, obj, value))
         {
         case 0:
-                write(CYN + obj->name(1) + CYN "冷笑一声，骂道：穷"
-                      "光蛋，一边呆着去。\n" NOR);
+                write(CYN + obj->name(1) + CYN "冷笑一聲，罵道：窮"
+                      "光蛋，一邊待著去。\n" NOR);
                 return 1;
         case 2:
-                write(CYN + obj->name(1) + CYN "皱眉道：您还有没有"
-                      "零钱啊？银票我可找不开。\n" NOR);
+                write(CYN + obj->name(1) + CYN "皺眉道：您還有沒有"
+                      "零錢啊？銀票我可找不開。\n" NOR);
                 return 1;
         default:
                 if (ob->query_amount())
                 {
-                        message_vision("$N从$n那里买下了" + ob->short() + "。\n",
+                        message_vision("$N從$n那裡買下了" + ob->short() + "。\n",
                                         me, obj);
                 } else
                 {
-                        message_vision("$N从$n那里买下了一"+query("unit", ob)+
+                        message_vision("$N從$n那裡買下了一"+query("unit", ob)+
                                        query("name", ob)+"。\n",
                                        me, obj);
                 }
@@ -218,9 +218,9 @@ int help (object me)
         write(@HELP
 指令格式: buy <物品> from <玩家>
 
-向一个玩家商人购买商品。
+向一個玩家商人購買商品。
 
-相关指令：list
+相關指令：list
 
 HELP);
         return 1;

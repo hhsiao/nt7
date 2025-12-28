@@ -3,14 +3,14 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "练武场");
+        set("short", "練武場");
         set("long", @LONG
-这是商家堡的练武场，空阔的场地上铺满了细细的黄土，正
-好适合演武。四面有几个商家堡的弟子正在练武。场地边上挂着
-几个大沙袋(shadai)，不知有什么用处。
+這是商家堡的練武場，空闊的場地上鋪滿了細細的黃土，正
+好適合演武。四面有幾個商家堡的弟子正在練武。場地邊上掛著
+幾個大沙袋(shadai)，不知有什麼用處。
 LONG);
         set("item_desc", ([
-                "shadai" : WHT "几个沉重的沙袋，可以试着打打(jida)看。\n" NOR,
+                "shadai" : WHT "幾個沉重的沙袋，可以試著打打(jida)看。\n" NOR,
         ]));
 
         set("exits", ([
@@ -34,27 +34,27 @@ int do_jida(string arg)
         me = this_player();
 
         if (! living(me) || arg != "shadai")
-                return notify_fail("你要击打什么？\n");
+                return notify_fail("你要擊打什麼？\n");
 
         if (me->is_busy())
-                return notify_fail("你现在正忙着。\n");
+                return notify_fail("你現在正忙著。\n");
 
         if( objectp(weapon=query_temp("weapon", me)) )
-                return notify_fail(WHT "你操起手中兵器向沙袋砍去，“哧”的一声沙袋应"
-                                   "声而破，里面的沙流了一地。\n" NOR);
+                return notify_fail(WHT "你操起手中兵器向沙袋砍去，“哧”的一聲沙袋應"
+                                   "聲而破，裡面的沙流了一地。\n" NOR);
 
         if ((int)me->query_skill("cuff", 1) < 30
            || (int)me->query_skill("strike", 1) < 30)
-                return notify_fail("你击打半天，手都打出茧了，可还是什么都没学到，可"
-                                   "能是拳掌等级太低的缘故。\n");
+                return notify_fail("你擊打半天，手都打出繭了，可還是什麼都沒學到，可"
+                                   "能是拳掌等級太低的緣故。\n");
 
         if ((int)me->query_skill("cuff", 1) >= 120
            && (int)me->query_skill("strike", 1) >= 120)
-                return notify_fail("你对着沙袋击打了一会儿，发现这里已经不能再提高什"
-                                   "么了。\n");
+                return notify_fail("你對著沙袋擊打了一會兒，發現這裡已經不能再提高什"
+                                   "麼了。\n");
 
         if( query("qi", me)<40 )
-                return notify_fail("你现在累得胳膊都抬不起来了，先休息一会儿吧。\n");
+                return notify_fail("你現在累得胳膊都抬不起來了，先休息一會兒吧。\n");
 
         me->receive_damage("qi", 30);
 
@@ -67,7 +67,7 @@ int do_jida(string arg)
                 me->improve_skill("strike",query("con", me)*2);
 
         me->start_busy(random(2));
-        message_vision(WHT "\n$N" WHT "站稳马步，一掌一拳对着沙袋打了起来。\n" NOR, me);
-        write(HIC "你在击打过程中领悟了不少「基本拳法」及「基本掌法」的窍门。\n" NOR);
+        message_vision(WHT "\n$N" WHT "站穩馬步，一掌一拳對著沙袋打了起來。\n" NOR, me);
+        write(HIC "你在擊打過程中領悟了不少「基本拳法」及「基本掌法」的竅門。\n" NOR);
         return 1;
 }

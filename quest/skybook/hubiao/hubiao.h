@@ -76,50 +76,50 @@ int do_accept(string arg)
 me->start_busy(1+random(2));
 	if (arg != "quest") return 0;
 //	if ((local[2] < 5 || local[2] > 21) && !wizardp(me)) {
-//		command("say 夜间护镖，实在太过危险，我放心不下。");
+//		command("say 夜間護鏢，實在太過危險，我放心不下。");
 //        	return 1;
 //        }
         if (sizeof(filter_array(children(__DIR__"obj/cart"), (: clonep :))) > 6) {
-		command("say 你来晚了已经有人接下这支镖了。");
+		command("say 你來晚了已經有人接下這支鏢了。");
 		return 1;
 	}
 
 	team = me->query_team();
 	if (sizeof(team) < 2 ){
-		command("say 护镖路途危险，你这么少的人，我可不放心。");
+		command("say 護鏢路途危險，你這麼少的人，我可不放心。");
 		return 1;
 	}
 	else if(sizeof(team) > 4){
-		command("say 护镖路途危险，单靠人多是没用的。");
+		command("say 護鏢路途危險，單靠人多是沒用的。");
 		return 1;
 	}
 	if ( team[0] != me) {
-		command("say 只有队伍首领才能提出接镖。");
+		command("say 只有隊伍首領才能提出接鏢。");
 		return 1;
 	}
 	for (i=0;i<sizeof(team);i++){
 		if (!team[i]){
-			command("say 你的队伍出现了问题，请解散并重新组建。");
+			command("say 你的隊伍出現了問題，請解散並重新組建。");
 			return 1;
 		}
 		if (team[i]->query_temp("protecting")) {
-			command("say 嗯？你的队伍里怎么有如此贪婪之人？");
+			command("say 嗯？你的隊伍裡怎麼有如此貪婪之人？");
 			return 1;
 		}
 
-		if( team[i]->query_temp("quest/busy")) //added by tangfeng 与quest冲突
+		if( team[i]->query_temp("quest/busy")) //added by tangfeng 與quest衝突
 		{
-			command("say 你们有人在解密之中，你们还是先处理好你其他事情再说吧。");
+			command("say 你們有人在解密之中，你們還是先處理好你其他事情再說吧。");
 			return 1;
 		}
 		if (!present(team[i])){
-			command("say 咦？怎么好象人不全啊？"+team[i]->query("name")+"怎么没来？");
+			command("say 咦？怎麼好象人不全啊？"+team[i]->query("name")+"怎麼沒來？");
 			return 1;
 		}
 		if (me == team[i]) continue;
 /*
 		if (!interactive(team[i]) || query_ip_number(team[i]) == query_ip_number(me)) {
-			command("say 你还是将"+team[i]->query("name")+"换成其他人吧。");
+			command("say 你還是將"+team[i]->query("name")+"換成其他人吧。");
 		return 1;
 
 		}
@@ -129,19 +129,19 @@ me->start_busy(1+random(2));
 	maxplayer=team[0];
 	for (i=0;i<sizeof(team);i++){
 		if (team[i]->query("combat_exp") < 500000) {
-			command("say 护镖路途危险，我看这位"+RANK_D->query_respect(me)+"需要一个好搭档！");
+			command("say 護鏢路途危險，我看這位"+RANK_D->query_respect(me)+"需要一個好搭檔！");
 			return 1;
 		}
 		if (team[i]->query("balance") < 1000000 && !wizardp(team[i])) {
-			command("say 护镖是危险的事，我看"+team[i]->query("name")+RANK_D->query_respect(team[i])+"没有赔偿能力。");
+			command("say 護鏢是危險的事，我看"+team[i]->query("name")+RANK_D->query_respect(team[i])+"沒有賠償能力。");
 			return 1;
 		}
-		if (team[i]->query("job_name") == "福州护镖" && !wizardp(team[i])){
-			command("say 一直护镖很辛苦的，我看这位"+team[i]->query("name")+RANK_D->query_respect(team[i])+"还是去歇息片刻吧！");
+		if (team[i]->query("job_name") == "福州護鏢" && !wizardp(team[i])){
+			command("say 一直護鏢很辛苦的，我看這位"+team[i]->query("name")+RANK_D->query_respect(team[i])+"還是去歇息片刻吧！");
 			return 1;
 		}
 		if (team[i]->query_condition("job_busy") && !wizardp(team[i])){
-			command("say 一直护镖很辛苦的，我看这位"+team[i]->query("name")+RANK_D->query_respect(team[i])+"还是去歇息片刻吧！");
+			command("say 一直護鏢很辛苦的，我看這位"+team[i]->query("name")+RANK_D->query_respect(team[i])+"還是去歇息片刻吧！");
 			return 1;
 		}
 		totalexp = totalexp + team[i]->query("combat_exp");
@@ -153,13 +153,13 @@ me->start_busy(1+random(2));
 			minexp=team[i]->query("combat_exp");
 	}
 	if( totalexp < 1500000 || (maxexp-minexp) > 5000000 ){
-		command("say 护镖路途危险，我看诸位队伍随意搭配，似乎无此能力？");
+		command("say 護鏢路途危險，我看諸位隊伍隨意搭配，似乎無此能力？");
 		return 1;
 	}
 
 	teams=sizeof(team);
 
-// 选择护镖目的
+// 選擇護鏢目的
 
 	living = livings();
 	for (i=0;i < sizeof(living);i++){
@@ -169,8 +169,8 @@ me->start_busy(1+random(2));
 			target = living[j];
 			str = environment(target)->query("short");
 			if( str == "武僧堂"
-			 || str == HIR"心禅堂"NOR
-			 || str == "金刚伏魔圈"
+			 || str == HIR"心禪堂"NOR
+			 || str == "金剛伏魔圈"
 			 || str == HIB"戒律院"NOR) continue;
 			if( get_place(base_name(environment(target)))!="" )
 				break;
@@ -179,7 +179,7 @@ me->start_busy(1+random(2));
 
 	place = environment(target);
 	if (!place) {
-		command("say 暂时没有镖需要劳驾"+RANK_D->query_respect(team[0])+"出马。");
+		command("say 暫時沒有鏢需要勞駕"+RANK_D->query_respect(team[0])+"出馬。");
 		return 1;
 	}
 
@@ -203,10 +203,10 @@ me->start_busy(1+random(2));
 
 //	endname = get_place(base_name(place))+place->query("short");
 
-	command("say 请护送这一笔镖银到"+endname+CYN"的"+target->name()+"手中。");
+	command("say 請護送這一筆鏢銀到"+endname+CYN"的"+target->name()+"手中。");
 
 	log_file("job/hubiao",
-		sprintf("%8s%-10s从林震南这里得到护镖任务，共%1s人做，需要送达"HIR"%s"NOR"。\n",
+		sprintf("%8s%-10s從林震南這裡得到護鏢任務，共%1s人做，需要送達"HIR"%s"NOR"。\n",
 			me->name(1),
 			"("+capitalize(me->query("id"))+")",
 			chinese_number(sizeof(team)),
@@ -214,9 +214,9 @@ me->start_busy(1+random(2));
 		), me
 	);
 
-	message_vision("$N将护镖押金"+chinese_number(sizeof(team)*50)+"两黄金交给了镖局。\n", me);
+	message_vision("$N將護鏢押金"+chinese_number(sizeof(team)*50)+"兩黃金交給了鏢局。\n", me);
 
-	say("一队镖车从内院驶出。\n");
+	say("一隊鏢車從內院駛出。\n");
 
 	cart=new(__DIR__"obj/cart");
 	cart->set_temp("teams", teams);
@@ -230,7 +230,7 @@ me->start_busy(1+random(2));
 	if(teams > 0)
 		cart->set_temp("team1",team[0]);
 
-	cart->set("long", cart->query("long")+"这支镖是由福威镖局镖师"+me->query("name")+"负责送到"+HIR+endname+HIY+target->name()+NOR"手上的。\n");
+	cart->set("long", cart->query("long")+"這支鏢是由福威鏢局鏢師"+me->query("name")+"負責送到"+HIR+endname+HIY+target->name()+NOR"手上的。\n");
 	cart->set("teamhead", me->query("name"));
 	cart->set("arrive", endname);
 	cart->set("target", target);
@@ -240,7 +240,7 @@ me->start_busy(1+random(2));
 		team[i]->apply_condition("job_busy", 45);
 		team[i]->add("balance", -500000);
 		team[i]->set_temp("death", team[i]->query("death_count"));
-		//GIFT_D->check_count(team[i],this_object(),"护镖");
+		//GIFT_D->check_count(team[i],this_object(),"護鏢");
 	}
 
 	cart->move(environment());
@@ -257,7 +257,7 @@ me->start_busy(1+random(2));
 
 	ob=new("/clone/money/silver");
 	ob->set_amount(1000+random(100));
-	ob->set("name","镖银");
+	ob->set("name","鏢銀");
 	ob->move(cart);
 
 	ob=new(__DIR__"biaoshi");
@@ -268,7 +268,7 @@ me->start_busy(1+random(2));
 	ob->move(environment());
 	ob->set_temp("protecting", cart);
 
-	me->set_temp("hubiao/where", base_name(environment(target))); //设置目标
+	me->set_temp("hubiao/where", base_name(environment(target))); //設置目標
 	me->set_temp("hubiao/biao_time", uptime());
 	me->set_temp("hubiao/target", target);
 	return 1;
@@ -279,7 +279,7 @@ int test_dart()
 	object ob = this_player();
  
   if ( ob->query_condition("hb_job_busy")){
-               command("say "+RANK_D->query_respect(ob)+"上次护镖辛苦了，还是先休息一下再说吧。");
+               command("say "+RANK_D->query_respect(ob)+"上次護鏢辛苦了，還是先休息一下再說吧。");
 ob->add_busy(1+ random(2));
                return 1;
         }
@@ -289,13 +289,13 @@ ob->add_busy(1+ random(2));
 	 || ob->query_temp("protecting")
 	 || random(100) > 80) {
 ob->add_busy(1+ random(2));
-                command("say 现在没有镖需要劳驾"+RANK_D->query_respect(ob)+"出马。");
+                command("say 現在沒有鏢需要勞駕"+RANK_D->query_respect(ob)+"出馬。");
 		return 1;
 	}
 
 
 
-	command("say 我们福威镖局受人所托，有笔镖银需要送到他处。");
+	command("say 我們福威鏢局受人所託，有筆鏢銀需要送到他處。");
 	do_accept("quest");
 	return 1;
 }

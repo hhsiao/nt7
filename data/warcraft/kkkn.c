@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("小猪[2;37;0m[2;37;0m", ({"kok"}));        
+        set_name("小豬[2;37;0m[2;37;0m", ({"kok"}));        
         set("gender", "男性");                
         set("long", ",,,[2;37;0m
-它是狐肆的魔幻兽。
+它是狐肆的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

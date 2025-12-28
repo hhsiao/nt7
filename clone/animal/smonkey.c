@@ -6,12 +6,12 @@ inherit NPC;
 void create()
 {
         set_name("小猴子", ({ "monkey", "hou", "houzi" }) );
-        set("race", "走兽");
+        set("race", "走獸");
         set("age", 2+random(3));
-        set("long", "一只机灵的小猴子，眼巴巴的看着你，大概想讨些吃的。\n");
+        set("long", "一隻機靈的小猴子，眼巴巴的看著你，大概想討些吃的。\n");
         set("attitude", "peaceful");
 
-        set("limbs", ({ "头部", "身体",  "前腿", "后腿", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體",  "前腿", "後腿", "尾巴" }) );
         set("verbs", ({ "bite", "claw" }) );
 
         set_skill("dodge", 10+random(20));
@@ -25,10 +25,10 @@ void create()
 
         set("chat_chance", 8);
         set("chat_msg", ({
-                "一只小猴子忽然跑过来，向你作了个揖。\n",
-                "一只小猴子叽叽喳喳跑了过来。\n",
-                "小猴子蹦蹦跳跳地跑开了。\n",
-                "小猴子摇摇尾巴跑开了。\n",
+                "一隻小猴子忽然跑過來，向你作了個揖。\n",
+                "一隻小猴子嘰嘰喳喳跑了過來。\n",
+                "小猴子蹦蹦跳跳地跑開了。\n",
+                "小猴子搖搖尾巴跑開了。\n",
         }) );
 }
 
@@ -38,7 +38,7 @@ int accept_object(object me, object obj)
 
         if( query("food_supply", obj) && obj->value() >= 0){
                 command("jump"+query("id", me));
-                say("小猴子三两下便把"+query("name", obj)+"吃得干干净净。\n");
+                say("小猴子三兩下便把"+query("name", obj)+"吃得乾乾淨淨。\n");
 
                 remove_call_out("destroy_it");
                 call_out("destroy_it", 1, obj);
@@ -46,24 +46,24 @@ int accept_object(object me, object obj)
                 if( query("id", obj) != "banana" )
                         return 1;
 
-                message_vision("小猴子拉扯$N的衣服，示意$N跟着它。\n", me);
-                message("vision", me->name() + "随着小猴子走向深山，左拐右拐地一下子便看不见了。\n", environment(me), ({me}));
-                message("vision", "另一只小猴子走了过来。\n", environment(me),({me}));
-                write("你随着小猴子在山里走着，东转西转地搞得你迷失了方向。\n");
-                write("走了良久，小猴子把你带到一片密林前。\n");
-                write("紧接着，小猴子便往野林里跑了。\n");
+                message_vision("小猴子拉扯$N的衣服，示意$N跟著它。\n", me);
+                message("vision", me->name() + "隨著小猴子走向深山，左拐右拐地一下子便看不見了。\n", environment(me), ({me}));
+                message("vision", "另一隻小猴子走了過來。\n", environment(me),({me}));
+                write("你隨著小猴子在山裡走著，東轉西轉地搞得你迷失了方向。\n");
+                write("走了良久，小猴子把你帶到一片密林前。\n");
+                write("緊接著，小猴子便往野林裡跑了。\n");
                 me->move("/d/quanzhou/milin");
-                message("vision", me->name()+"跟着小猴子走了过来。\n", environment(me), ({me}) );
+                message("vision", me->name()+"跟著小猴子走了過來。\n", environment(me), ({me}) );
                 return 1;
         } else {
-                say("小猴子把"+query("name", obj)+"接了过来，玩弄了几下，似乎不懂有什么用。\n");
+                say("小猴子把"+query("name", obj)+"接了過來，玩弄了幾下，似乎不懂有什麼用。\n");
                 command("angry");
                 command("kick"+query("id", me));
                 if( query("money_id", obj)){
                         ob = new(base_name(obj));
                         ob->set_amount((int)obj->query_amount());
                         ob->move(environment(me));
-                        say("小猴子把"+query("name", obj)+"丢到地上。\n");}
+                        say("小猴子把"+query("name", obj)+"丟到地上。\n");}
                 remove_call_out("drop_it");
                 call_out("drop_it", 1);
         }
@@ -90,6 +90,6 @@ void init()
         if( interactive(me) && living(me) )
         {
                 command("look"+query("id", me));
-                message_vision("小猴子神秘地对$N眨了眨眼睛，“吱，吱，吱”叫了几声！\n", me);
+                message_vision("小猴子神秘地對$N眨了眨眼睛，“吱，吱，吱”叫了幾聲！\n", me);
         }
 }

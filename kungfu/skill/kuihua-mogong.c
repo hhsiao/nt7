@@ -6,14 +6,14 @@ inherit FORCE;
 int is_pbsk() { return 1; }
 
 string *dodge_msg = ({
-        "$n微微一动，已然远去，使$N的进攻全然无用。\n",
-        "$n霎时间平移了数步，如鬼如魅，使$N全然无法掌握。\n",
-        "$n忽的一退，闪去天下任何追击。\n",
-        "$n足不离地，腰肢猛摆，居然将$N的进攻全部躲过。\n",
+        "$n微微一動，已然遠去，使$N的進攻全然無用。\n",
+        "$n霎時間平移了數步，如鬼如魅，使$N全然無法掌握。\n",
+        "$n忽的一退，閃去天下任何追擊。\n",
+        "$n足不離地，腰肢猛擺，居然將$N的進攻全部躲過。\n",
 });
 
-string *finger_name = ({ "左手中指", "左手无名指", "左手食指",
-                         "右手中指", "右手无名指", "右手食指", });
+string *finger_name = ({ "左手中指", "左手無名指", "左手食指",
+                         "右手中指", "右手無名指", "右手食指", });
 
 int query_neili_improve(object me)
 {
@@ -24,104 +24,104 @@ int query_neili_improve(object me)
 }
 
 mapping *actionf = ({
-([      "action":"$N倏的近前，身形快极，手指戳向$n的$l",
+([      "action":"$N倏的近前，身形快極，手指戳向$n的$l",
         "force" : 410,
         "attack": 182,
         "dodge" : 215,
         "parry" : 60,
         "damage": 190,
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N扑向前来，身形如同鬼魅，令人难以捉摸，手指忽的刺向$n的$l",
+([      "action":"$N撲向前來，身形如同鬼魅，令人難以捉摸，手指忽的刺向$n的$l",
         "force" : 410,
         "attack": 180,
         "dodge" : 224,
         "parry" : 70,
         "damage": 200,
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N身形一转，手指刺出，直指$n的$l",
+([      "action":"$N身形一轉，手指刺出，直指$n的$l",
         "force" : 430,
         "attack": 175,
         "dodge" : 220,
         "parry" : 50,
         "damage": 210,
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N飘然远去，忽又进前，速度快的不可思议，一指如闪电般刺向$n的$l",
+([      "action":"$N飄然遠去，忽又進前，速度快的不可思議，一指如閃電般刺向$n的$l",
         "force" : 445,
         "attack": 180,
         "dodge" : 255,
         "parry" : 65,
         "damage": 190,
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N身体一晃，突然飞起一脚，踢向$n的$l",
+([      "action":"$N身體一晃，突然飛起一腳，踢向$n的$l",
         "force" : 450,
         "attack": 200,
         "dodge" : 250,
         "parry" : 55,
         "damage": 200,
-        "damage_type":  "瘀伤"
+        "damage_type":  "瘀傷"
 ]),
-([      "action":"$N足下疾走，身形变幻莫测，突然一指插向$n的$l",
+([      "action":"$N足下疾走，身形變幻莫測，突然一指插向$n的$l",
         "force" : 450,
         "attack": 215,
         "dodge" : 285,
         "parry" : 55,
         "damage": 220,
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
 });
 
 mapping *actionw = ({
-([      "action":"$N倏的近前，身形快极，手中的$w戳向$n的$l",
+([      "action":"$N倏的近前，身形快極，手中的$w戳向$n的$l",
         "force" : 460,
         "attack": 200,
         "dodge" : 150,
         "parry" : 40,
         "damage": 300,
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N扑向前来，身形如同鬼魅，令人难以捉摸，手中的$w忽的刺向$n的$l",
+([      "action":"$N撲向前來，身形如同鬼魅，令人難以捉摸，手中的$w忽的刺向$n的$l",
         "force" : 490,
         "attack": 185,
         "dodge" : 160,
         "parry" : 45,
         "damage": 300,
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N身形一转，$w刺出，直指$n的$l",
+([      "action":"$N身形一轉，$w刺出，直指$n的$l",
         "force" : 465,
         "attack": 210,
         "dodge" : 180,
         "parry" : 45,
         "damage": 300,
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N飘然远去，忽又进前，速度快的不可思议，$w如闪电般刺向$n的$l",
+([      "action":"$N飄然遠去，忽又進前，速度快的不可思議，$w如閃電般刺向$n的$l",
         "force" : 480,
         "attack": 190,
         "dodge" : 195,
         "parry" : 55,
         "damage": 300,
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N身体一晃，突然飞起一脚踢向$n的下阴，蓦的又收回，反手$w刺向$n的$l",
+([      "action":"$N身體一晃，突然飛起一腳踢向$n的下陰，驀的又收回，反手$w刺向$n的$l",
         "force" : 500,
         "attack": 220,
         "dodge" : 180,
         "parry" : 57,
         "damage": 300,
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N足下疾走，身形变幻莫测，突然一扬手，$w飞也似的插向$n的$l",
+([      "action":"$N足下疾走，身形變幻莫測，突然一揚手，$w飛也似的插向$n的$l",
         "force" : 520,
         "attack": 260,
         "dodge" : 195,
         "parry" : 50,
         "damage": 300,
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
 });
 
@@ -159,44 +159,44 @@ int valid_learn(object me)
         int i;
 
         if( query("combat_exp", me)<3000000 )
-                return notify_fail("你觉得葵花魔功深奥之极，"
-                                   "凭自己的战斗经验一时间难以领会。\n");
+                return notify_fail("你覺得葵花魔功深奧之極，"
+                                   "憑自己的戰鬥經驗一時間難以領會。\n");
 
         if ((int)me->query_skill("martial-cognize", 1) < 150)
-                return notify_fail("你觉得葵花魔功过于深奥之极，以"
-                                   "自己的武学修养全然无法明白。\n");
+                return notify_fail("你覺得葵花魔功過於深奧之極，以"
+                                   "自己的武學修養全然無法明白。\n");
 
-        if( query("character", me) != "阴险奸诈" && query("character", me) != "国士无双"
+        if( query("character", me) != "陰險奸詐" && query("character", me) != "國士無雙"
             && query("character", me) != "心狠手辣" )
-                return notify_fail("你看了葵花魔功这些阴险毒辣的武功，不"
-                                   "由的心惊肉跳，难以领会。\n");
+                return notify_fail("你看了葵花魔功這些陰險毒辣的武功，不"
+                                   "由的心驚肉跳，難以領會。\n");
 
         if( query("dex", me)<22 && me->query_dex()<61 )
-                return notify_fail("你觉得自己的身法不够灵动，不可能掌握这么飘缈"
+                return notify_fail("你覺得自己的身法不夠靈動，不可能掌握這麼飄緲"
                                    "玄奇的葵花魔功。\n");
 
         /*
         if( query("int", me)<34 )
-                return notify_fail("你觉得自己的先天悟性不够，不可能领悟这么高深"
+                return notify_fail("你覺得自己的先天悟性不夠，不可能領悟這麼高深"
                                    "玄奇的葵花魔功。\n");
         */
 
         level = me->query_skill("kuihua-mogong", 1);
 
         if ((int)me->query_skill("martial-cognize", 1) < level)
-                return notify_fail("你觉得自己的武学修养有限，难以领会更高深的葵花魔功。\n");
+                return notify_fail("你覺得自己的武學修養有限，難以領會更高深的葵花魔功。\n");
 
         for (i = 0; i < sizeof(usage_skills); i++)
                 if (me->query_skill(usage_skills[i], 1) < level)
-                        return notify_fail("你对" + to_chinese(usage_skills[i]) +
-                                           "的理解还不够，无法继续领会更高深的葵花魔功。\n");
+                        return notify_fail("你對" + to_chinese(usage_skills[i]) +
+                                           "的理解還不夠，無法繼續領會更高深的葵花魔功。\n");
 
         return 1;
 }
 
 int practice_skill(object me)
 {
-        return notify_fail("葵花魔功博大精深，无法简单的通过练习进步。\n");
+        return notify_fail("葵花魔功博大精深，無法簡單的通過練習進步。\n");
 }
 
 int difficult_level()
@@ -238,22 +238,22 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
                 switch (random(4))
                 {
                 case 0:
-                        result += (["msg" : HIW "$N" HIW "眼睛一花，$n" HIW "已没了踪"
-                                            "影。突然$n" HIW "从身后拍了一下$N" HIW "的"
-                                            "头，轻轻跃开。\n" NOR]);
+                        result += (["msg" : HIW "$N" HIW "眼睛一花，$n" HIW "已沒了蹤"
+                                            "影。突然$n" HIW "從身後拍了一下$N" HIW "的"
+                                            "頭，輕輕躍開。\n" NOR]);
                         break;
                 case 1:
-                        result += (["msg" : HIW "$N" HIW "眼前一花，似乎见到$n" HIW "身"
-                                            "形一晃，但随即又见$n" HIW "回到原地，却似"
-                                            "从未离开。\n" NOR]);
+                        result += (["msg" : HIW "$N" HIW "眼前一花，似乎見到$n" HIW "身"
+                                            "形一晃，但隨即又見$n" HIW "回到原地，卻似"
+                                            "從未離開。\n" NOR]);
                         break;
                 case 2:
-                        result += (["msg" : HIW "$n" HIW "尖啸一声，忽然身子一转已不见了踪影，$N" HIW
-                                           "只觉耳边风声不断，但随即又见$n" HIW "回到了原地。\n" NOR]);
+                        result += (["msg" : HIW "$n" HIW "尖嘯一聲，忽然身子一轉已不見了蹤影，$N" HIW
+                                           "只覺耳邊風聲不斷，但隨即又見$n" HIW "回到了原地。\n" NOR]);
                         break;
                 default:
-                        result += (["msg" : HIW "忽然间，只见$n" HIW "腰枝一摆，顿时出现无数个"
-                                            "$n" HIW "的影子，$N" HIW "却无法辨别出$n" HIW "的方位。\n" NOR]);
+                        result += (["msg" : HIW "忽然間，只見$n" HIW "腰枝一擺，頓時出現無數個"
+                                            "$n" HIW "的影子，$N" HIW "卻無法辨別出$n" HIW "的方位。\n" NOR]);
                         break;
                 }
                 return result;
@@ -263,23 +263,23 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
                 switch (random(4))
                 {
                 case 0:
-                        result = HIY "$N" HIY "眼睛一花，$n" HIY "已没了踪影"
-                                 "。可是$N" HIY "精通易理，丝毫不为所乱，尽自"
+                        result = HIY "$N" HIY "眼睛一花，$n" HIY "已沒了蹤影"
+                                 "。可是$N" HIY "精通易理，絲毫不為所亂，儘自"
                                  "出招。\n" NOR;
                         break;
                 case 1:
-                        result = HIY "$N" HIY "眼前一花，似乎见到$n" HIY "身"
-                                 "形一晃。$N" HIY "一声冷笑，已瞬间看破招中虚"
-                                 "实。\n" NOR;
+                        result = HIY "$N" HIY "眼前一花，似乎見到$n" HIY "身"
+                                 "形一晃。$N" HIY "一聲冷笑，已瞬間看破招中虛"
+                                 "實。\n" NOR;
                         break;
                 case 2:
-                        result = HIY "$n" HIY "身形飘忽，有如鬼魅，转了几转，"
-                                 "可是$N" HIY "理也不理，连续数招径直攻出。\n"
+                        result = HIY "$n" HIY "身形飄忽，有如鬼魅，轉了幾轉，"
+                                 "可是$N" HIY "理也不理，連續數招徑直攻出。\n"
                                  NOR;
                         break;
                 default:
-                        result = HIY "突然间白影急晃，$n" HIY "身形顿时化分成万千身影，"
-                                 "可是$N" HIY "不假思索，追身攻上，更是巧妙无"
+                        result = HIY "突然間白影急晃，$n" HIY "身形頓時化分成萬千身影，"
+                                 "可是$N" HIY "不假思索，追身攻上，更是巧妙無"
                                  "方。\n" NOR;
                         break;
                 }
@@ -319,10 +319,10 @@ mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time)
            || me->query_skill("kuihua-mogong", 1) < 200)
                 return 0;
 
-        // 避免在使用Pfm时讯息重复
+        // 避免在使用Pfm時訊息重複
         if( !query_temp("kuihua-mogong/hit_msg", me) )
-                message_vision(HIW "\n霎时间只见$N" HIW "身子猛摆，顿时化分为无数身影，" + name +
-                               HIW "宛若流星般分从不同的方位同时刺向$n" HIW "！\n"
+                message_vision(HIW "\n霎時間只見$N" HIW "身子猛擺，頓時化分為無數身影，" + name +
+                               HIW "宛若流星般分從不同的方位同時刺向$n" HIW "！\n"
                                NOR, me, victim);
 
         addn("neili", -attack_time*30, me);

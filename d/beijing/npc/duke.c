@@ -2,11 +2,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("赌客", ({ "du ke", "du", "ke" }) );
+        set_name("賭客", ({ "du ke", "du", "ke" }) );
         set("gender", "男性" );
         set("age", 40);
         set("long",
-              "一个正赌得兴高采烈的赌客。\n");
+              "一個正賭得興高采烈的賭客。\n");
         set("shen_type", 1);
         set("combat_exp", 10000);
         set("str", 17);
@@ -18,7 +18,7 @@ void create()
         set_skill("unarmed",20);
         set("chat_chance", 1);
         set("chat_msg", ({
-                "赌客麻道：他妈的，今天手气怎么那么不顺？\n",
+                "賭客麻道：他媽的，今天手氣怎麼那麼不順？\n",
         }) );       
 
         setup();

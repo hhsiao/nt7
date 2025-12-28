@@ -51,7 +51,7 @@ int is_ultimate()
 
 string chinese_s(mixed arg)
 {
-      if( !stringp(arg) )  return HIW "无";
+      if( !stringp(arg) )  return HIW "無";
       if( arg == "metal" ) return HIY "金";
       if( arg == "wood" )  return HIM "木";
       if( arg == "water" ) return HIB "水";
@@ -60,10 +60,10 @@ string chinese_s(mixed arg)
       if( arg == "cold" )  return HIW "冰";
       if( arg == "fire" )  return HIR "火";
       if( arg == "magic" ) return HIY "魔";
-      if( arg == "lighting" )return HIM "电";
+      if( arg == "lighting" )return HIM "電";
 }
 
-// 武器的主人ID - 通过文件的名字来判断
+// 武器的主人ID - 通過文件的名字來判斷
 string item_owner()
 {
         string owner;
@@ -73,7 +73,7 @@ string item_owner()
         return 0;
 }
 
-// 判断该武器是否被当前某人所持有
+// 判斷該武器是否被當前某人所持有
 int is_not_belong_me(object me)
 {
         string user;
@@ -93,7 +93,7 @@ string query_magic_item()
         return remove_ansi(query("magic/heart"));
 }
 
-// 武器装备的等级
+// 武器裝備的等級
 int weapon_level()
 {
         mapping o;
@@ -114,12 +114,12 @@ int weapon_level()
         if( lvl > MAX_LEVEL ) lvl = MAX_LEVEL;
 
         if( lvl == MAX_LEVEL && query("magic/power") )
-                // 具有魔法属性
+                // 具有魔法屬性
                 lvl = ULTRA_LEVEL;
         return lvl;
 }
 
-// 防御装备的等级
+// 防禦裝備的等級
 int armor_level()
 {
         mapping o;
@@ -133,12 +133,12 @@ int armor_level()
         if( lvl >9 ) lvl = 9;
 
         if( lvl == 9 && query("magic/power") )
-                // 具有魔法属性
+                // 具有魔法屬性
                 lvl = 10;
         return lvl;
 }
 
-// 武器装备的长描述
+// 武器裝備的長描述
 string weapon_long()
 {
         string  n;
@@ -160,56 +160,56 @@ string weapon_long()
 
         if( attack_lvl == ULTRA_LEVEL ) {
                 if( stringp(tessera_name = query("magic/heart")) )
-                        desc += "它上面镶嵌着" + tessera_name + "，充满着灵性和神力。\n";
+                        desc += "它上面鑲嵌著" + tessera_name + "，充滿著靈性和神力。\n";
                 if( stringp(tessera_name = query("magic/tessera")) )
-                        desc += "它上面镶嵌着" + tessera_name + "，闪烁着奇异的光芒。\n";
+                        desc += "它上面鑲嵌著" + tessera_name + "，閃爍著奇異的光芒。\n";
                 if( query("ultimate/121") )
-                        desc += HIY + name() + HIY "的等级：太古神品  LV10\n" NOR;
+                        desc += HIY + name() + HIY "的等級：太古神品  LV10\n" NOR;
                 else
                 if( query("ultimate/105") )
-                        desc += HIY + name() + HIY "的等级：远古神品  LV10\n" NOR;
+                        desc += HIY + name() + HIY "的等級：遠古神品  LV10\n" NOR;
                 else
                 if( query("ultimate/87") )
-                        desc += HIY + name() + HIY "的等级：上古神品  LV10\n" NOR;
+                        desc += HIY + name() + HIY "的等級：上古神品  LV10\n" NOR;
                 else
-                        desc += HIY + name() + HIY "的等级：无上神品  LV10\n" NOR;
+                        desc += HIY + name() + HIY "的等級：無上神品  LV10\n" NOR;
         } else if( lvl ) {
-                desc += HIY + name() + HIY "的等级：" + lvl + "/9\n" NOR;
+                desc += HIY + name() + HIY "的等級：" + lvl + "/9\n" NOR;
 
                 if( query("magic/imbue_ok") )
-                        desc += HIM + name() + HIM "已经充分的浸入了，需要"
-                                  "镶嵌以充分发挥威力。\n" NOR;
+                        desc += HIM + name() + HIM "已經充分的浸入了，需要"
+                                  "鑲嵌以充分發揮威力。\n" NOR;
                 else
                 if( (n = query("magic/imbue")) > 0 )
-                        desc += HIM + name() + HIM "已经运用灵物浸入了" +
-                                  chinese_number(n) + "次，正在激发它的潜能。\n" NOR;
+                        desc += HIM + name() + HIM "已經運用靈物浸入了" +
+                                  chinese_number(n) + "次，正在激發它的潛能。\n" NOR;
         }
   
         if( query_temp("bonus/success_points") ) 
-                desc += HIM "目前该装备强化时可增" + HIY + sprintf("%d", query_temp("bonus/success_points")) + "%"HIM"的成功率（仅一次有效）。\n" NOR; 
+                desc += HIM "目前該裝備強化時可增" + HIY + sprintf("%d", query_temp("bonus/success_points")) + "%"HIM"的成功率（僅一次有效）。\n" NOR; 
         if( query_temp("bonus/avoid_reduce") ) 
-                desc += HIM "目前该装备强化时失败后不会损失强化等级（仅一次有效）！\n" NOR; 
+                desc += HIM "目前該裝備強化時失敗後不會損失強化等級（僅一次有效）！\n" NOR; 
                 
         desc += sprintf(NOR "%s\n" NOR, qianghua_level[query("qianghua/level")]);
         
-        desc += sprintf(HIW "魔力属性 : %s\n" NOR, chinese_s(query("magic/type")));
+        desc += sprintf(HIW "魔力屬性 : %s\n" NOR, chinese_s(query("magic/type")));
         desc += sprintf(HIW "魔 力 值 : %d\n" NOR, (int)query("magic/power"));
         desc += sprintf(HIW "融 合 度 : %d\n" NOR, (int)query("magic/blood"));
         if( this_object()->is_unarmed_weapon() )
-                desc += sprintf(HIW "伤 害 力 : %d\n" NOR, query("armor_prop/unarmed_damage"));
+                desc += sprintf(HIW "傷 害 力 : %d\n" NOR, query("armor_prop/unarmed_damage"));
         else
-                desc += sprintf(HIW "伤 害 力 : %d\n" NOR, query("weapon_prop/damage"));
-        desc += sprintf(HIW "杀 戮 值 : %d\n" NOR, (int)query("combat/PKS"));
-        desc += sprintf(HIW "镶嵌凹槽 : %d\n" NOR, (int)query("enchase/flute"));
-        desc += sprintf(HIW "炼化次数 : %d\n" NOR, (int)query("enchase/wash"));
+                desc += sprintf(HIW "傷 害 力 : %d\n" NOR, query("weapon_prop/damage"));
+        desc += sprintf(HIW "殺 戮 值 : %d\n" NOR, (int)query("combat/PKS"));
+        desc += sprintf(HIW "鑲嵌凹槽 : %d\n" NOR, (int)query("enchase/flute"));
+        desc += sprintf(HIW "煉化次數 : %d\n" NOR, (int)query("enchase/wash"));
         if( query("mod_level") )
-                desc += sprintf(HIC "套装等级 : %s\n" NOR, query("mod_level"));
+                desc += sprintf(HIC "套裝等級 : %s\n" NOR, query("mod_level"));
                                       
         c = query("combat");
         n = query("unit") + name();
         if( !c )
         {
-                result = "这" + n + "显然还没有饮过人血，上面纯洁无暇。\n";
+                result = "這" + n + "顯然還沒有飲過人血，上面純潔無暇。\n";
                 result += desc;
                 return result;
         }
@@ -226,7 +226,7 @@ string weapon_long()
 
         if( c["MKS"] + c["PKS"] < 10 )
         {
-                result = "这" + n + "看来已经用过人血开祭，上面隐现血痕。\n";
+                result = "這" + n + "看來已經用過人血開祭，上面隱現血痕。\n";
                 result += desc;
         }
         
@@ -234,143 +234,143 @@ string weapon_long()
         {
         case 1:
                 if( attack_lvl >= ULTRA_LEVEL )
-                        result = HIY "它看上去平平常常，没有半点特殊，只是"
-                                 "隐隐的让人感到那不凡的气质。\n" NOR;
+                        result = HIY "它看上去平平常常，沒有半點特殊，只是"
+                                 "隱隱的讓人感到那不凡的氣質。\n" NOR;
                 else
                 if( attack_lvl >= MAX_LEVEL )
-                        result = HIY "它看上去让人发自内心无限崇敬，一股"
-                               "皓然正气悠然长存，颇具帝王风范，君临\n"
-                               "天下，威镇诸路凶神恶煞、难道这就是传说中才"
-                               "会出现的诸神之" + name() + HIY "？\n" NOR;
+                        result = HIY "它看上去讓人發自內心無限崇敬，一股"
+                               "皓然正氣悠然長存，頗具帝王風範，君臨\n"
+                               "天下，威鎮諸路凶神惡煞、難道這就是傳說中才"
+                               "會出現的諸神之" + name() + HIY "？\n" NOR;
                 else
                 if( attack_lvl >= LEVEL8 )
-                        result = HIC "一眼望去，你觉得有无数的凶灵在疯狂"
-                               "乱舞，哭天抢地，凄烈之极，似乎要重返\n"
-                               "人间。你忍不住要长叹一声，昔日凶魔，也难逃死劫。\n" NOR;
+                        result = HIC "一眼望去，你覺得有無數的兇靈在瘋狂"
+                               "亂舞，哭天搶地，悽烈之極，似乎要重返\n"
+                               "人間。你忍不住要長嘆一聲，昔日兇魔，也難逃死劫。\n" NOR;
                 else
                 if( attack_lvl >= LEVEL7 )
-                        result = HIC "它上面附着着不知多少凶魂，无数邪派"
-                               "凶魔毙命于下，一股哀气犹然不散，让你\n"
-                               "忍不住打了个冷战。\n" NOR;
+                        result = HIC "它上面附著著不知多少兇魂，無數邪派"
+                               "兇魔斃命於下，一股哀氣猶然不散，讓你\n"
+                               "忍不住打了個冷戰。\n" NOR;
                 else
                 if( attack_lvl >= LEVEL6 )
-                        result = HIR "它看上去令人惊心动魄，这就是名动江湖的" + name() + HIR
-                               "，多少凶煞就此毙命，成就人间正义。\n" NOR;
+                        result = HIR "它看上去令人驚心動魄，這就是名動江湖的" + name() + HIR
+                               "，多少凶煞就此斃命，成就人間正義。\n" NOR;
                 else
                 if( attack_lvl >= LEVEL5 )
-                        result = HIR "它上面隐隐然透出一股血光，多年以来，许多"
-                               "江湖上闻名一时的凶魔都成了" + name() + HIR "下的游魂。\n" NOR;
+                        result = HIR "它上面隱隱然透出一股血光，多年以來，許多"
+                               "江湖上聞名一時的兇魔都成了" + name() + HIR "下的遊魂。\n" NOR;
                 else
                 if( attack_lvl >= LEVEL4 )
-                        result = HIW "这就是江湖上著名的神兵之一：" + name() + HIW
-                               "，穷凶极恶之徒见此物无不心驰神摇。\n" NOR;
+                        result = HIW "這就是江湖上著名的神兵之一：" + name() + HIW
+                               "，窮兇極惡之徒見此物無不心馳神搖。\n" NOR;
                 else
                 if( attack_lvl >= LEVEL3 )
-                        result = HIW "这" + n + HIW "有一股正气散发出来，看来它下面凶魂不少。\n" NOR;
+                        result = HIW "這" + n + HIW "有一股正氣散發出來，看來它下面兇魂不少。\n" NOR;
                 else
                 if( attack_lvl >= LEVEL2 )
-                        result = RED "这" + n + RED "隐然透出一股正气，"
-                               "看来它杀了不少凶恶之徒。\n" NOR;
+                        result = RED "這" + n + RED "隱然透出一股正氣，"
+                               "看來它殺了不少兇惡之徒。\n" NOR;
                 else
                 if( attack_lvl >= LEVEL1 )
-                        result = RED "细观之下，刃口有一丝血痕，想必是它杀人不少"
-                               "，殷血于此吧！\n" NOR;
+                        result = RED "細觀之下，刃口有一絲血痕，想必是它殺人不少"
+                               "，殷血於此吧！\n" NOR;
                 else
-                        result = CYN "看得出这" + n + CYN "曾经杀过不少凶恶之徒。\n" NOR;
+                        result = CYN "看得出這" + n + CYN "曾經殺過不少兇惡之徒。\n" NOR;
                 break;
 
         case -1:
                 if( attack_lvl >= ULTRA_LEVEL )
-                        result = HIR "它看上去平平常常，没有半点特殊，但是"
-                                 "不知为何却总是让人感到有些不安。\n" NOR;
+                        result = HIR "它看上去平平常常，沒有半點特殊，但是"
+                                 "不知為何卻總是讓人感到有些不安。\n" NOR;
                 else
                 if( attack_lvl >= MAX_LEVEL )
-                        result = HIR "它看上去让人打心底泛出阵阵寒意，隐"
-                               "隐然上面似乎附着着无数冤魂，但是全然\n被这" + n + HIR
-                               "上面的杀气所制，难道这就是传说中才会出现的邪神之" + name() + HIR
+                        result = HIR "它看上去讓人打心底泛出陣陣寒意，隱"
+                               "隱然上面似乎附著著無數冤魂，但是全然\n被這" + n + HIR
+                               "上面的殺氣所制，難道這就是傳說中才會出現的邪神之" + name() + HIR
                                "？\n" NOR;
                 else
                 if( attack_lvl >= LEVEL8 )
-                        result = HIC "一眼望去，你觉得有无数的冤魂向你扑"
-                               "来，哭天抢地，凄烈之极，你忍不住打了\n"
-                               "个寒战，不敢再看第二眼。\n" NOR;
+                        result = HIC "一眼望去，你覺得有無數的冤魂向你撲"
+                               "來，哭天搶地，悽烈之極，你忍不住打了\n"
+                               "個寒戰，不敢再看第二眼。\n" NOR;
                 else
                 if( attack_lvl >= LEVEL7 )
-                        result = HIC "它上面附着着不知多少冤魂，无数高手"
-                               "饮恨于下，一股怨气直冲霄汉，让你忍不\n"
-                               "住打了个冷战。\n" NOR;
+                        result = HIC "它上面附著著不知多少冤魂，無數高手"
+                               "飲恨於下，一股怨氣直衝霄漢，讓你忍不\n"
+                               "住打了個冷戰。\n" NOR;
                 else
                 if( attack_lvl >= LEVEL6 )
-                        result = HIW "它看上去令人惊心动魄，这就是名动江湖的" + name() + HIW
-                               "，不知多少英雄就此饮恨。\n" NOR;
+                        result = HIW "它看上去令人驚心動魄，這就是名動江湖的" + name() + HIW
+                               "，不知多少英雄就此飲恨。\n" NOR;
                 else
                 if( attack_lvl >= LEVEL5 )
-                        result = HIW "它上面隐隐然透出一股血光，多年以来，许多"
-                               "江湖上闻名一时的高手都成了" + name() + HIW "下的游魂。\n" NOR;
+                        result = HIW "它上面隱隱然透出一股血光，多年以來，許多"
+                               "江湖上聞名一時的高手都成了" + name() + HIW "下的遊魂。\n" NOR;
                 else
                 if( attack_lvl >= LEVEL4 )
-                        result = HIG "这就是江湖上著名的凶器之一：" + name() + HIG
-                               "，谁曾想那么多仁人义士饮恨于下。\n" NOR;
+                        result = HIG "這就是江湖上著名的兇器之一：" + name() + HIG
+                               "，誰曾想那麼多仁人義士飲恨於下。\n" NOR;
                 else
                 if( attack_lvl >= LEVEL3 )
-                        result = HIG "这" + n + HIG "有一股戾气散发出来，看来它下面游魂不少。\n" NOR;
+                        result = HIG "這" + n + HIG "有一股戾氣散發出來，看來它下面遊魂不少。\n" NOR;
                 else
                 if( attack_lvl >= LEVEL2 )
-                        result = RED "这" + n + RED "隐然透出一股戾气，看来它杀了不少人。\n" NOR;
+                        result = RED "這" + n + RED "隱然透出一股戾氣，看來它殺了不少人。\n" NOR;
                 else
                 if( attack_lvl >= LEVEL1 )
-                        result = RED "细观之下，刃口有一丝血痕，想必是它杀人不少"
-                               "，殷血于此吧！\n" NOR;
+                        result = RED "細觀之下，刃口有一絲血痕，想必是它殺人不少"
+                               "，殷血於此吧！\n" NOR;
                 else
-                        result = CYN "看得出这" + n + CYN "曾经杀过不少侠义之士。\n" NOR;
+                        result = CYN "看得出這" + n + CYN "曾經殺過不少俠義之士。\n" NOR;
                 break;
 
         default:
                 if( attack_lvl >= ULTRA_LEVEL )
-                        result = HIC "它看上去平平常常，没有半点特殊，只是一件"
-                                 "平凡之极的兵器而已。\n" NOR;
+                        result = HIC "它看上去平平常常，沒有半點特殊，只是一件"
+                                 "平凡之極的兵器而已。\n" NOR;
                 else
                 if( attack_lvl >= MAX_LEVEL )
-                        result = HIC "它安然畅意，似乎就要腾空而去，跳出"
-                               "三界，不入五行。世间万物，仿佛俱在它\n"
-                               "霸气所及之处。冤魂不舞、群邪辟易，无不被这" + n + HIC
-                               "上古神兵的霸气所制。\n" NOR;
+                        result = HIC "它安然暢意，似乎就要騰空而去，跳出"
+                               "三界，不入五行。世間萬物，彷彿俱在它\n"
+                               "霸氣所及之處。冤魂不舞、群邪辟易，無不被這" + n + HIC
+                               "上古神兵的霸氣所制。\n" NOR;
                 else
                 if( attack_lvl >= LEVEL8 )
-                        result = HIM "一眼望去，你觉得有无数的游魂向你扑"
-                               "来，哭天抢地，凄烈之极，你顿时觉得它\n"
-                               "沉重无比，几乎拿捏不住。\n" NOR;
+                        result = HIM "一眼望去，你覺得有無數的遊魂向你撲"
+                               "來，哭天搶地，悽烈之極，你頓時覺得它\n"
+                               "沉重無比，幾乎拿捏不住。\n" NOR;
                 else
                 if( attack_lvl >= LEVEL7 )
-                        result = HIM "它上面附着着不知多少游魂，无数正邪"
-                               "高手丧命于下，一股怨气哀愁油然不尽，\n"
-                               "让你忍不住打了个冷战。\n" NOR;
+                        result = HIM "它上面附著著不知多少遊魂，無數正邪"
+                               "高手喪命於下，一股怨氣哀愁油然不盡，\n"
+                               "讓你忍不住打了個冷戰。\n" NOR;
                 else
                 if( attack_lvl >= LEVEL6 )
-                        result = HIR "它看上去令人惊心动魄，这就是名动江湖的" + name() + HIR
-                               "，多少正邪高手都难逃此劫，堕入轮回。\n" NOR;
+                        result = HIR "它看上去令人驚心動魄，這就是名動江湖的" + name() + HIR
+                               "，多少正邪高手都難逃此劫，墮入輪迴。\n" NOR;
                 else
                 if( attack_lvl >= LEVEL5 )
-                        result = HIR "它上面隐隐然透出一股血光，多年以来，许多"
-                               "江湖上闻名一时的高手都成了这" + n + HIR "下的游魂。\n" NOR;
+                        result = HIR "它上面隱隱然透出一股血光，多年以來，許多"
+                               "江湖上聞名一時的高手都成了這" + n + HIR "下的遊魂。\n" NOR;
                 else
                 if( attack_lvl >= LEVEL4 )
-                        result = HIW "这就是江湖上著名的利器之一：" + name() + HIW
-                               "，谁能想到那么多高手饮恨于下。\n" NOR;
+                        result = HIW "這就是江湖上著名的利器之一：" + name() + HIW
+                               "，誰能想到那麼多高手飲恨於下。\n" NOR;
                 else
                 if( attack_lvl >= LEVEL3 )
-                        result = HIW "这" + n + HIW "有一股杀气散发出来，看来它下面游魂不少。\n" NOR;
+                        result = HIW "這" + n + HIW "有一股殺氣散發出來，看來它下面遊魂不少。\n" NOR;
 
                 else
                 if( attack_lvl >= LEVEL2 )
-                        result = RED "这" + n + RED "隐然透出一股杀气，看来它杀了不少人。\n" NOR;
+                        result = RED "這" + n + RED "隱然透出一股殺氣，看來它殺了不少人。\n" NOR;
 
                 else
                 if( attack_lvl >= LEVEL1 )
-                        result = RED "细观之下，刃口有一丝血痕，想必是它杀人不少"
-                               "，殷血于此吧！\n" NOR;
+                        result = RED "細觀之下，刃口有一絲血痕，想必是它殺人不少"
+                               "，殷血於此吧！\n" NOR;
                 else
-                        result = CYN "看得出这" + n + CYN "曾经杀过不少人。\n" NOR;
+                        result = CYN "看得出這" + n + CYN "曾經殺過不少人。\n" NOR;
                 break;
         }
         
@@ -379,7 +379,7 @@ string weapon_long()
         return result;
 }
 
-// 防具装备的长描述
+// 防具裝備的長描述
 string armor_long()
 {
         mapping need;
@@ -392,58 +392,58 @@ string armor_long()
         if( defense_lvl == 10 )
         {
                 if( stringp(tessera_name = query("magic/heart")) )
-                        result += "它上面镶嵌着" + tessera_name + "，充满着灵性和神力。\n";
+                        result += "它上面鑲嵌著" + tessera_name + "，充滿著靈性和神力。\n";
                 if( stringp(tessera_name = query("magic/tessera")) )
-                        result += "它上面镶嵌着" + tessera_name + "，闪烁着奇异的光芒。\n";
+                        result += "它上面鑲嵌著" + tessera_name + "，閃爍著奇異的光芒。\n";
                 if( query("ultimate/87") )
-                        result += HIY + name() + HIY "的等级：远古神品\n" NOR;
+                        result += HIY + name() + HIY "的等級：遠古神品\n" NOR;
                 else
                 if( query("ultimate/69") )
-                        result += HIY + name() + HIY "的等级：上古神品\n" NOR;
+                        result += HIY + name() + HIY "的等級：上古神品\n" NOR;
                 else
-                        result += HIY + name() + HIY "的等级：无上神品\n" NOR;
+                        result += HIY + name() + HIY "的等級：無上神品\n" NOR;
         } else if( defense_lvl ) {
-                result += HIY + name() + HIY "的等级：" + defense_lvl + "/9\n" NOR;
+                result += HIY + name() + HIY "的等級：" + defense_lvl + "/9\n" NOR;
         }
         
         if( query_temp("bonus/success_points") ) 
-                result += HIM "目前该装备强化时可增" + HIY + sprintf("%d", query_temp("bonus/success_points")) + "%"HIM"的成功率（仅一次有效）。\n" NOR; 
+                result += HIM "目前該裝備強化時可增" + HIY + sprintf("%d", query_temp("bonus/success_points")) + "%"HIM"的成功率（僅一次有效）。\n" NOR; 
         if( query_temp("bonus/avoid_reduce") ) 
-                result += HIM "目前该装备强化时失败后不会损失强化等级（仅一次有效）！\n" NOR; 
+                result += HIM "目前該裝備強化時失敗後不會損失強化等級（僅一次有效）！\n" NOR; 
                 
         result += sprintf(NOR "%s\n" NOR, qianghua_level[query("qianghua/level")]);
 
-        result += sprintf(HIW "魔力属性 : %s\n" NOR, chinese_s(query("magic/type")));
-        result += sprintf(HIW "防 护 力 : %d\n" NOR, query("armor_prop/armor"));
-        result += sprintf(HIW "镶嵌凹槽 : %d\n" NOR, (int)query("enchase/flute"));
-        result += sprintf(HIW "炼化次数 : %d\n" NOR, (int)query("enchase/wash"));
+        result += sprintf(HIW "魔力屬性 : %s\n" NOR, chinese_s(query("magic/type")));
+        result += sprintf(HIW "防 護 力 : %d\n" NOR, query("armor_prop/armor"));
+        result += sprintf(HIW "鑲嵌凹槽 : %d\n" NOR, (int)query("enchase/flute"));
+        result += sprintf(HIW "煉化次數 : %d\n" NOR, (int)query("enchase/wash"));
         if( query("mod_level") )
-                result += sprintf(HIC "套装等级 : %s\n" NOR, query("mod_level"));
+                result += sprintf(HIC "套裝等級 : %s\n" NOR, query("mod_level"));
 
         return result;
 }
 
-// 是普通武器装备
+// 是普通武器裝備
 int is_weapon()
 {
         return stringp(query("skill_type"));
 }
 
-// 是空手武器装备
+// 是空手武器裝備
 int is_unarmed_weapon()
 {
         return query("armor_type") == "hands" ||
                query("armor_type") == "finger";
 }
 
-// 道具的签名
+// 道具的簽名
 string query_makeinfo()
 {
         if( query("sp_info") ) return query("sp_info");
         return query("makeinfo");
 }
 
-// 道具的长描述
+// 道具的長描述
 string item_long()
 {
         if( is_weapon() || is_unarmed_weapon() )
@@ -452,7 +452,7 @@ string item_long()
         return armor_long();
 }
 
-// 武器装备的伤害值
+// 武器裝備的傷害值
 int apply_damage()
 {
         int d;
@@ -463,11 +463,11 @@ int apply_damage()
         p += p * query("quality_level") / 10;
         p = ITEM_D->qianghua_effect(this_object(), p); 
         
-        d = attack_lvl * p / MAX_LEVEL + query("bless") * 10; // 乾坤圣水圣化一次增加十点攻击
+        d = attack_lvl * p / MAX_LEVEL + query("bless") * 10; // 乾坤聖水聖化一次增加十點攻擊
         return d + p;
 }
 
-// 防御装备的有效值
+// 防禦裝備的有效值
 int apply_armor()
 {
         int d;
@@ -478,11 +478,11 @@ int apply_armor()
         p += p * query("quality_level") / 10;
         p = ITEM_D->qianghua_effect(this_object(), p); 
         
-        d = defense_lvl * p / 10 + query("bless") * 10; // 乾坤圣水圣化一次增加十点防御
+        d = defense_lvl * p / 10 + query("bless") * 10; // 乾坤聖水聖化一次增加十點防禦
         return d + p;
 }
 
-// 进行保存数据的接口函数
+// 進行保存數據的接口函數
 mixed save_dbase_data()
 {
         mapping data;
@@ -520,7 +520,7 @@ mixed save_dbase_data()
         return data;
 }
 
-// 接受存盘数据的接口函数
+// 接受存盤數據的接口函數
 int receive_dbase_data(mixed data)
 {
         if( !mapp(data) )
@@ -599,7 +599,7 @@ int receive_dbase_data(mixed data)
         return 1;
 }
 
-// 读取存盘的数据
+// 讀取存盤的數據
 int restore()
 {
         int r;
@@ -613,7 +613,7 @@ int restore()
         return r;
 }
 
-// 保存数据
+// 保存數據
 int save()
 {
         int res;
@@ -624,7 +624,7 @@ int save()
         return ::save();
 }
 
-// 9/10级兵器攻击对手
+// 9/10級兵器攻擊對手
 mixed weapon_hit_ob(object me, object victim, int damage_bonus)
 {
         int ap;
@@ -643,37 +643,37 @@ mixed weapon_hit_ob(object me, object victim, int damage_bonus)
         return ITEM_D->weapon_hit_ob(me, victim, this_object(), damage_bonus);
 }
 
-// 以下的函数因为执行的频度并不高，而且具有高度重复的性质，
-// 所以都调用ITEM_D中的执行程序。
+// 以下的函數因為執行的頻度並不高，而且具有高度重複的性質，
+// 所以都調用ITEM_D中的執行程序。
 
-// 杀了人以后的奖励
+// 殺了人以後的獎勵
 void killer_reward(object me, object victim)
 {
         ITEM_D->killer_reward(me, victim, this_object());
 }
 
-// 呼唤物品
+// 呼喚物品
 int receive_summon(object me)
 {
         return ITEM_D->receive_summon(me, this_object());
 }
 
-// 隐藏物品
+// 隱藏物品
 int hide_anywhere(object me)
 {
         return ITEM_D->hide_anywhere(me, this_object());
 }
 
-// 追寻物品
+// 追尋物品
 int receive_miss(object me)
 {
         if( !is_weapon() && !is_unarmed_weapon() ) {
-                write("你无法追寻" + name() + "。\n");
+                write("你無法追尋" + name() + "。\n");
                 return 0;
         }
 
         if( attack_lvl < ULTRA_LEVEL ) {
-                write(name() + "尚未通灵，你难以自如的感应。\n");
+                write(name() + "尚未通靈，你難以自如的感應。\n");
                 return 0;
         }
 
@@ -690,17 +690,17 @@ int do_stab(object me)
 int do_touch(object me)
 {
         if( attack_lvl != ULTRA_LEVEL )
-                return notify_fail("你摸了半天，好像没什么反应。\n");
+                return notify_fail("你摸了半天，好像沒什麼反應。\n");
 
         return ITEM_D->do_touch(me, this_object());
 }
 
-// 装备圣化
+// 裝備聖化
 int do_san(object me)
 {
         if( (is_weapon() || is_unarmed_weapon()) &&
              attack_lvl < MAX_LEVEL )
-                return notify_fail("你的武器等级不到，无法圣化。\n");
+                return notify_fail("你的武器等級不到，無法聖化。\n");
 
         return ITEM_D->do_san(me, this_object());
 }
@@ -711,19 +711,19 @@ int do_imbue(object me, object imbue)
         return ITEM_D->do_imbue(me, this_object(), imbue);
 }
 
-// 镶嵌物品
+// 鑲嵌物品
 int do_enchase(object me, object tessera)
 {
         return ITEM_D->do_enchase(me, this_object(), tessera);
 }
 
-// 装备炼化
+// 裝備煉化
 int do_wash(object me)
 {
         return ITEM_D->do_wash(me, this_object());
 }
 
-// 防具升级
+// 防具升級
 int do_forge(object me) 
 {
         return ITEM_D->do_forge(me, this_object()); 

@@ -6,7 +6,7 @@ void create()
         set_name("李管家", ({ "li guanjia", "li", "guanjia" }));
         set("gender", "男性" );
         set("age", 25);
-        set("long", "这是个和蔼可亲的大管家。\n");
+        set("long", "這是個和藹可親的大管家。\n");
         set("attitude", "friendly");
         set("shen_type", -1);
         set("class", "fighter");
@@ -38,7 +38,7 @@ void create()
         map_skill("parry", "changquan");
         map_skill("unarmed", "changquan");
 
-        create_family("欧阳世家", 0, "管家");
+        create_family("歐陽世家", 0, "管家");
 
         set("coagents", ({
             ([ "startroom" : "/d/baituo/dating",
@@ -51,13 +51,13 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        if( query("born_family", ob) != "欧阳世家" )
+        if( query("born_family", ob) != "歐陽世家" )
         {
                 command("shake");
-                command("say 你是哪里来的？居然敢来白驼山添乱？");
+                command("say 你是哪裡來的？居然敢來白駝山添亂？");
                 return;
         }
 
-        command("say 呵呵，我不收徒，去找欧阳庄主吧。");
+        command("say 呵呵，我不收徒，去找歐陽莊主吧。");
         return;
 }

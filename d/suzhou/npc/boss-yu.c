@@ -3,28 +3,28 @@
 
 inherit NPC;
 
-#define PLACE "sz"     //扬州
+#define PLACE "sz"     //揚州
 #define TYPE  "bad"    //黑道
-#define WAIT_TIME 60    //完成不了任务的反省时间
+#define WAIT_TIME 60    //完成不了任務的反省時間
 
 
 
 mapping bunch_bad = ([
-        "bunch_name" : "修罗门",
+        "bunch_name" : "修羅門",
         "id"   : "xlm",
         "place": "sz",
-        "boss" : "玉罗刹",
-        "place_name": "苏州",
+        "boss" : "玉羅剎",
+        "place_name": "蘇州",
         "type" : "bad",
 ]);
 
 void create()
 {
-        set_name("玉罗刹", ({ "yu luosha", "yu","luosha" }));
+        set_name("玉羅剎", ({ "yu luosha", "yu","luosha" }));
         set("gender", "女性");
         set("age", 28);
-        set("long", "她看起来冷冷的，面部好象僵住了一般，没有一点表情变化。她就是" + bunch_bad["bunch_name"] + "的门主。\n");
-        set("title",HIB"修罗门门主"NOR);
+        set("long", "她看起來冷冷的，面部好象僵住了一般，沒有一點表情變化。她就是" + bunch_bad["bunch_name"] + "的門主。\n");
+        set("title",HIB"修羅門門主"NOR);
         set("per",30);
         set("combat_exp", 1000000);
         set("shen_type", -1);

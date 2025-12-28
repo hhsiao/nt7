@@ -1,5 +1,5 @@
 #include <ansi.h>
-//根类药材
+//根類藥材
 
 inherit ITEM; 
 mapping *ansi= ({
@@ -16,19 +16,19 @@ mapping *ansi= ({
 
 });
 mapping *yao= ({
-([     "name":     "丹参",
+([     "name":     "丹參",
        "id":       "dan shen",
        "yaoxing":  1,
 ]),
-([     "name":     "党参",
+([     "name":     "黨參",
        "id":       "dang shen",
        "yaoxing":  2,
 ]),
-([     "name":     "当归",
+([     "name":     "當歸",
        "id":       "dang gui",
        "yaoxing":  3,
 ]),
-([     "name":     "人参",
+([     "name":     "人參",
        "id":       "ren shen",
        "yaoxing":  4,
 ]),
@@ -40,7 +40,7 @@ mapping *yao= ({
        "id":       "san qi",
        "yaoxing":  6,
 ]),
-([     "name":     "麦冬",
+([     "name":     "麥冬",
        "id":       "mai dong",
        "yaoxing":  7,
 ]),
@@ -75,7 +75,7 @@ void create()
     /*if( clonep() )
     set_default_object(__FILE__);
     else*/ {
-         set("unit", "个");                        
+         set("unit", "個");                        
         }
 
    set("yaoxing",yaoxing);

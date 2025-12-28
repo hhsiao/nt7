@@ -6,19 +6,19 @@ inherit F_DEALER;
 void create()
 {
         set_name("阿芳", ({ "afang", "fang" }));
-        set("title", "茶僚老板");
-        set("nickname", "荆州老姑娘");
+        set("title", "茶僚老闆");
+        set("nickname", "荊州老姑娘");
         set("shen_type", 1);
 
         set("str", 30);
         set("gender", "女性");
         set("age", 20);
-        set("long", "阿芳貌似鲜花，可不知道的原因，迟迟不嫁，惹得爷儿们心痒痒。\n");
+        set("long", "阿芳貌似鮮花，可不知道的原因，遲遲不嫁，惹得爺兒們心癢癢。\n");
         set("combat_exp", 500);
         set("attitude", "friendly");
         set("inquiry", ([
-                "结婚" : "结婚？你有几万两黄金？？筹够了来找我吧。嘻嘻！\n",
-                "生意" : "这个么……。还将就。\n",
+                "結婚" : "結婚？你有幾萬兩黃金？？籌夠了來找我吧。嘻嘻！\n",
+                "生意" : "這個麼……。還將就。\n",
         ]));
         
         set("vendor_goods", ({
@@ -52,12 +52,12 @@ void greeting(object ob)
         switch(random(2))
         {
         case 0 :
-                say(CYN "阿芳笑眯眯地说道：这位" + RANK_D->query_respect(ob)
-                    + CYN + "，快请进来喝杯热茶。\n" NOR);
+                say(CYN "阿芳笑眯眯地說道：這位" + RANK_D->query_respect(ob)
+                    + CYN + "，快請進來喝杯熱茶。\n" NOR);
                 break;
         case 1 :
-                say(CYN "阿芳说道：哟！这位" + RANK_D->query_respect(ob)
-                    + CYN + "您来了啊！\n" NOR);
+                say(CYN "阿芳說道：喲！這位" + RANK_D->query_respect(ob)
+                    + CYN + "您來了啊！\n" NOR);
                 break;
         }
 }

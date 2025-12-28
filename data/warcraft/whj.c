@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("脚趾头[2;37;0m[2;37;0m", ({"iiid"}));        
+        set_name("腳趾頭[2;37;0m[2;37;0m", ({"iiid"}));        
         set("gender", "男性");                
         set("long", "可[2;37;0m
-它是唐四的魔幻兽。
+它是唐四的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

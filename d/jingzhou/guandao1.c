@@ -4,8 +4,8 @@ void create()
 {
         set("short", "官道" );
         set("long", @LONG
-你走在一条大官道上，两旁不时有人从你身边走过，西面通向荆
-州，东边是武昌城的西门。
+你走在一條大官道上，兩旁不時有人從你身邊走過，西面通向荊
+州，東邊是武昌城的西門。
 LONG );
         set("outdoors", "jingzhou");
         set("exits", ([

@@ -32,7 +32,7 @@ int main(object me, string arg)
                 set("enchase/flute", 9, obj); 
                 obj->save();
 
-                tell_object(me, "设置 " + obj->short() + " 等级为 LV10 成功。\n");
+                tell_object(me, "設置 " + obj->short() + " 等級為 LV10 成功。\n");
                 return 1;
         } else
         if (ultimate == "LV69")
@@ -44,7 +44,7 @@ int main(object me, string arg)
                 IDENTIFY_D->identify_ultimate_ob(obj, 1);
                 obj->save();
 
-                tell_object(me, "设置 " + obj->short() + " 等级为 LV69 成功。\n");
+                tell_object(me, "設置 " + obj->short() + " 等級為 LV69 成功。\n");
                 return 1;
         } else
         if (ultimate == "LV87")
@@ -69,7 +69,7 @@ int main(object me, string arg)
                 IDENTIFY_D->identify_ultimate_ob(obj, 1);
                 obj->save();
 
-                tell_object(me, "设置 " + obj->short() + " 等级为 LV87 成功。\n");
+                tell_object(me, "設置 " + obj->short() + " 等級為 LV87 成功。\n");
                 return 1;
         } else
         if (ultimate == "LV105")
@@ -86,7 +86,7 @@ int main(object me, string arg)
                 IDENTIFY_D->identify_ultimate_ob(obj, 1);
                 obj->save();
 
-                tell_object(me, "设置 " + obj->short() + " 等级为 LV105 成功。\n");
+                tell_object(me, "設置 " + obj->short() + " 等級為 LV105 成功。\n");
                 return 1;
         } else
         if (ultimate == "LV121")
@@ -102,7 +102,7 @@ int main(object me, string arg)
                 IDENTIFY_D->identify_ultimate_ob(obj, 1);
                 obj->save();
 
-                tell_object(me, "设置 " + obj->short() + " 等级为 LV105 成功。\n");
+                tell_object(me, "設置 " + obj->short() + " 等級為 LV105 成功。\n");
                 return 1;
-        } else  return notify_fail("等级格式有LV10/LV69/LV87/LV105/LV121，你要设置他为哪个等级？\n");
+        } else  return notify_fail("等級格式有LV10/LV69/LV87/LV105/LV121，你要設置他為哪個等級？\n");
 }

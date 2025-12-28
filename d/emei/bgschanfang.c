@@ -2,9 +2,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "禅房");
+        set("short", "禪房");
         set("long", @LONG
-这儿是保国寺内的一间禅房，布局简单，供寺内和尚诵经修行之
+這兒是保國寺內的一間禪房，佈局簡單，供寺內和尚誦經修行之
 用。
 LONG );
         set("exits", ([

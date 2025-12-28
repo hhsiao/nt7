@@ -1,4 +1,4 @@
-//neiyuan.c                四川唐门—内院
+//neiyuan.c                四川唐門—內院
 
 #include <ansi.h>
 #include <room.h>
@@ -6,11 +6,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "内院");
+        set("short", "內院");
         set("long",
-"这里是莲云阁内院。从这里向北就是唐门的核心唐老太太的寝室据闻\n"
-"外人要见到唐老太太势比登天还难，从这里向东是一间柴房，向西是通向\n"
-"后院的小路。\n"
+"這裡是蓮雲閣內院。從這裡向北就是唐門的核心唐老太太的寢室據聞\n"
+"外人要見到唐老太太勢比登天還難，從這裡向東是一間柴房，向西是通向\n"
+"後院的小路。\n"
 );
         set("exits", ([
                         "south" : __DIR__"nzlang1",
@@ -25,9 +25,9 @@ void create()
 
 int valid_leave(object me, string dir)
 {
-        if( (dir == "north") && (query("family/family_name", me) != "唐门世家") && 
+        if( (dir == "north") && (query("family/family_name", me) != "唐門世家") && 
                 !wizardp(me) && (objectp( present("tang si", environment(me)) ) ))
-                return notify_fail("唐思一伸手，说道：“你不是唐门中人，不能再向前走了！”\n");
+                return notify_fail("唐思一伸手，說道：“你不是唐門中人，不能再向前走了！”\n");
         else
                 return ::valid_leave(me, dir);
 }

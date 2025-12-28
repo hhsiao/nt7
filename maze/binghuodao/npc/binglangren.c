@@ -4,7 +4,7 @@ inherit __DIR__"bhd_npc.c";
 void create()
 {
         set_name(HIW "冰狼人" NOR, ({ "bing langren", "bing", "langren" }));
-        set("long", HIY "已经修炼成人形的冰狼，双眼透出慑人的凶光。\n" NOR);
+        set("long", HIY "已經修煉成人形的冰狼，雙眼透出懾人的兇光。\n" NOR);
 
         set("age", 99999);
         set("str",500);
@@ -42,7 +42,7 @@ void create()
 
 void init()
 {
-        // 随机攻击玩家
+        // 隨機攻擊玩家
         if (userp(this_player()) && random(2) == 1)
         {
                 kill_ob(this_player());

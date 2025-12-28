@@ -1,4 +1,4 @@
-// zheng.c 筝
+// zheng.c 箏
 
 int play_zheng(string arg)
 {

@@ -3,13 +3,13 @@ inherit NPC;
 void do_chan();
 void create()
 {
-        string *names = ({"青蛇","绿蛇","花蛇"});
+        string *names = ({"青蛇","綠蛇","花蛇"});
         set_name( names[random(sizeof(names))], ({ "big snake","snake"}));
         set("vendetta_mark","snake");
-        set("race", "野兽");
+        set("race", "野獸");
         set("gender", "雄性");
         set("age", 20);
-        set("long", "这是一条大蛇。\n");
+        set("long", "這是一條大蛇。\n");
 
         set("str", 40);
         set("cor", 100);
@@ -27,7 +27,7 @@ void create()
         set("chat_msg_combat", ({
                 (: do_chan() :),
         }) );
-        set("limbs", ({ "头部", "身体", "尾巴", "七寸" }) );
+        set("limbs", ({ "頭部", "身體", "尾巴", "七寸" }) );
         set("verbs", ({ "bite" }) );
         set("combat_exp", 200000);
         set("bellicosity", 5 );
@@ -49,7 +49,7 @@ void do_chan() {
         enemy = enemies[random(sizeof(enemies))];
         if (!this_object()->is_fighting(enemy) )
                 return;
-        msg = HIG"\n$N箭射一般扑上来，缠住了$n！\n"NOR;
+        msg = HIG"\n$N箭射一般撲上來，纏住了$n！\n"NOR;
         message_combatd(msg,this_object(),enemy);
         if (! enemy->is_busy())
                 enemy->start_busy(2);

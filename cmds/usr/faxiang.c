@@ -13,16 +13,16 @@ int main(object me, string arg)
          
         if( !stringp(banghui=query("bunch/bunch_name", me) )
          || query("bunch/level", me)<9 )
-                return notify_fail("你无权在帮会内进行发饷。\n");
+                return notify_fail("你無權在幫會內進行發餉。\n");
 
         if (! arg || ! sscanf(arg, "%d", rest_money) || rest_money < 1 
             || rest_money > 10000)
-                return notify_fail("你准备用多少钱(gold)来进行此次发饷？\n");
+                return notify_fail("你準備用多少錢(gold)來進行此次發餉？\n");
 
         rest_money = rest_money * 10000;
 
         if (query(banghui + "/money", get_object(BUNCH_D)) < rest_money + 100000000)
-                return notify_fail("帮中现在没有这么多钱可供调用。\n");
+                return notify_fail("幫中現在沒有這麼多錢可供調用。\n");
         
         addn(banghui+"/money", -rest_money, get_object(BUNCH_D));
         BUNCH_D->save();
@@ -45,8 +45,8 @@ int main(object me, string arg)
                 for (k = 0; k < count; k++)
                 {
                         reward_money=rest_money*(query("bunch/level", bh[k])+1);
-                        tell_object(bh[k], "帮派「" + banghui
-                                    +"」" + "发饷，你的帐上增加了"
+                        tell_object(bh[k], "幫派「" + banghui
+                                    +"」" + "發餉，你的帳上增加了"
                                     + MONEY_D->money_str(reward_money) + "！\n");
 
                         if( query("bunch/quest", bh[k]) >= 4 )
@@ -56,11 +56,11 @@ int main(object me, string arg)
                                 addn("combat_exp", reward, bh[k]);
                                 addn("potential", reward/3, bh[k]);
                                 addn("score", reward/50, bh[k]);
-                                tell_object(bh[k], HIG"由于你积极为帮会振兴"
-                                            + "做贡献，「" + banghui + "」" + "奖励你\n"
-                                            + chinese_number(reward) + "点经验、"
-                                            + chinese_number(reward / 3) + "点潜能和"
-                                            + chinese_number(reward / 50) + "点综合评价！\n"NOR);
+                                tell_object(bh[k], HIG"由於你積極為幫會振興"
+                                            + "做貢獻，「" + banghui + "」" + "獎勵你\n"
+                                            + chinese_number(reward) + "點經驗、"
+                                            + chinese_number(reward / 3) + "點潛能和"
+                                            + chinese_number(reward / 50) + "點綜合評價！\n"NOR);
                                 set("bunch/quest", 0, bh[k]);
                         }    
                         reward_money=query("balance", bh[k])+reward_money;
@@ -78,7 +78,7 @@ int main(object me, string arg)
                 if( query("balance", ulist[k])>2000000000 )
                 {
                         set("balance", 2000000000, ulist[k]);
-                        tell_object(ulist[k], RED "你在钱庄的钱已达到二十万两黄金，快点花吧！\n" NOR);
+                        tell_object(ulist[k], RED "你在錢莊的錢已達到二十萬兩黃金，快點花吧！\n" NOR);
                 }
         }
 
@@ -89,9 +89,9 @@ int help(object me)
 {
         write(@HELP
 
-指令格式：faxiang [黄金数量] 
+指令格式：faxiang [黃金數量] 
 
-用于在本帮内发饷，所有在线帮会成员将获得一定的帮会收入。
+用於在本幫內發餉，所有在線幫會成員將獲得一定的幫會收入。
 
 HELP
         );

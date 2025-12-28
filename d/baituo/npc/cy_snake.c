@@ -1,5 +1,5 @@
 // Code of JHSH
-// cy_snake.c 赤炎(考据：本草纲目)
+// cy_snake.c 赤炎(考據：本草綱目)
 // by maco
 
 #include <ansi.h>
@@ -12,7 +12,7 @@ void create()
 {
         int poison = 10;
         set_name(HIR"赤炎"NOR, ({ "chi yan", "she", "snake" }) );
-        set("long", "这是一条遍体通红的毒蛇，长仅数寸，细小如指。\n宋朝时於陕西清泉初次发现，剧毒无比，听说若是被其咬到，七步必亡。\n");
+        set("long", "這是一條遍體通紅的毒蛇，長僅數寸，細小如指。\n宋朝時於陝西清泉初次發現，劇毒無比，聽說若是被其咬到，七步必亡。\n");
         set("age", 100);
         set("attitude", "aggressive");
 

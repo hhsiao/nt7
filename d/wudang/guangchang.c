@@ -3,11 +3,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "武当广场");
+        set("short", "武當廣場");
         set("long", @LONG
-这是一个由大石板铺成的广场，是武当弟子学习武功和互相切磋
-的地点。周围种满了梧桐树，一到秋天就是满地的落叶。有个年纪轻
-轻的道童正在打扫。南边是灵霄宫三清殿。
+這是一個由大石板鋪成的廣場，是武當弟子學習武功和互相切磋
+的地點。周圍種滿了梧桐樹，一到秋天就是滿地的落葉。有個年紀輕
+輕的道童正在打掃。南邊是靈霄宮三清殿。
 LONG );
 
         set("objects", ([
@@ -44,24 +44,24 @@ int do_float()
         if (me->query_skill("tiyunzong", 1) < 120
            || me->query_skill("dodge", 1) < 120)
         {
-                message_vision("$N跳了跳，原地蹦哒了一会儿。\n", me);
+                message_vision("$N跳了跳，原地蹦噠了一會兒。\n", me);
                 return 1;
         }
 
         if( query("neili", me)<100 )
         {
-                tell_object(me, "你的内力不够，还是休息一下再说吧。\n");
+                tell_object(me, "你的內力不夠，還是休息一下再說吧。\n");
                 return 1;
         }
 
         addn("neili", -70, me);
 
-        message_sort(HIC "\n$N" HIC"深吸一口气，纵声长笑，只"
-                     "见人已飘然而起，态似神仙，晃晃悠悠的落"
-                     "下山去了，笑音犹然未绝。\n\n" NOR, me);
+        message_sort(HIC "\n$N" HIC"深吸一口氣，縱聲長笑，只"
+                     "見人已飄然而起，態似神仙，晃晃悠悠的落"
+                     "下山去了，笑音猶然未絕。\n\n" NOR, me);
         me->move("/d/wudang/wdroad5");
-        tell_object(me, "片刻，你已经落到了山脚下。\n");
-        message("vision", "忽然一阵笑声传来，只见" + me->name() +
-                "飘然落下，有若神仙。\n", environment(me), ({ me }));
+        tell_object(me, "片刻，你已經落到了山腳下。\n");
+        message("vision", "忽然一陣笑聲傳來，只見" + me->name() +
+                "飄然落下，有若神仙。\n", environment(me), ({ me }));
         return 1;
 }

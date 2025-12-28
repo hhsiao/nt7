@@ -1,4 +1,4 @@
-// lvshan.c 淡绿绸衫
+// lvshan.c 淡綠綢衫
 
 #include <armor.h>
 #include <ansi.h>
@@ -6,7 +6,7 @@ inherit CLOTH;
 
 void create()
 {
-        set_name(HIG"淡绿绸衫"NOR, ({ "danlv choushan", "shan" ,"cloth" }) );
+        set_name(HIG"淡綠綢衫"NOR, ({ "danlv choushan", "shan" ,"cloth" }) );
         set_weight(3000);
         if( clonep() )
                 set_default_object(__FILE__);

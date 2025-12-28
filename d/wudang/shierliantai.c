@@ -2,12 +2,12 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "十二莲台");
+        set("short", "十二蓮臺");
         set("long", @LONG
-这里是武当绝顶的十二莲台，台与台之间以曲栏相连，雕刻精美，
-是远眺的最佳所在。站立此台四眺，宛如身在千叶宝莲之上，千峰万
-壑都在脚下。往西可望到七百里外的华山，东望则汉水如练，襄、樊
-一带尽收眼底。
+這裡是武當絕頂的十二蓮臺，臺與臺之間以曲欄相連，雕刻精美，
+是遠眺的最佳所在。站立此臺四眺，宛如身在千葉寶蓮之上，千峰萬
+壑都在腳下。往西可望到七百里外的華山，東望則漢水如練，襄、樊
+一帶盡收眼底。
 LONG );
         set("exits", ([
                 "east" : __DIR__"jinding",
@@ -31,17 +31,17 @@ int do_find()
       object me = this_player();
 
       if( query("jingli", me)<50 )
-            return notify_fail("你找得两眼酸痛，都没有发现什么好东西。\n");
+            return notify_fail("你找得兩眼痠痛，都沒有發現什麼好東西。\n");
 
       addn("jingli", -10, me);
 
       if (!query("honglian"))
-            return notify_fail("你找了半天，什么都没有找到。\n");
+            return notify_fail("你找了半天，什麼都沒有找到。\n");
 
       addn("honglian",-1);
       obj = new("/d/wudang/obj/honglian");
       obj->move(me);
-      tell_object(me,"你找了半天，突然发现一颗红色小草，开着一朵极象莲座的小花。\n");
+      tell_object(me,"你找了半天，突然發現一顆紅色小草，開著一朵極象蓮座的小花。\n");
       return 1;
 }
 

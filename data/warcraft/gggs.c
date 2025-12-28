@@ -7,7 +7,7 @@ void setup()
         set_name("巧[2;37;0m[2;37;0m", ({"qiao"}));        
         set("gender", "女性");                
         set("long", "巧[2;37;0m
-它是吖伍的魔幻兽。
+它是吖伍的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

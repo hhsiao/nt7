@@ -11,7 +11,7 @@ void create()
         else*/
         {
                 set("unit", "本");
-                set("long","此书相传为唐初少林十三棍僧所著\n是一本薄卷，上面有一些人形持棍棒战斗的画页，下面写了许多口诀。\n");
+                set("long","此書相傳為唐初少林十三棍僧所著\n是一本薄卷，上面有一些人形持棍棒戰鬥的畫頁，下面寫了許多口訣。\n");
                 set("treasure", 1);
                 set("value", 200);                set("material", "paper");
                 set("skill", ([

@@ -4,7 +4,7 @@ void create()
 {
         set("short", "密道");
         set("long", @LONG
-这是漆黑的密道，当年白驼山弟子为了直达中原而挖凿的。
+這是漆黑的密道，當年白駝山弟子為了直達中原而挖鑿的。
 LONG );
         set("region", "baituo");
         set("exits" , ([

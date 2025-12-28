@@ -4,12 +4,12 @@
 
 void setup()
 {
-        set_name("马[2;37;0m[2;37;0m", ({"horse"}));        
+        set_name("馬[2;37;0m[2;37;0m", ({"horse"}));        
         set("gender", "男性");                
-        set("long", "一匹马[2;37;0m
-它是木晨的魔幻兽。
+        set("long", "一匹馬[2;37;0m
+它是木晨的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "unable");
         set("owner_name", "木晨");

@@ -4,14 +4,14 @@ inherit ROOM;
 
 void create()
 {
-        set("short", NOR + WHT "【奈河桥】" NOR);
+        set("short", NOR + WHT "【奈河橋】" NOR);
         set("long", NOR + WHT @LONG
 
-                    奈         河         桥
+                    奈         河         橋
 
-    这里就是著名的阴间通道「奈河桥」，你走在这长长的石制拱桥上
-面，许多亡魂正哭哭啼啼地从你身旁擦身而过，桥的另一端站着一个牛
-头人身的守卫，仔细的查看着过往的亡魂。
+    這裡就是著名的陰間通道「奈河橋」，你走在這長長的石制拱橋上
+面，許多亡魂正哭哭啼啼地從你身旁擦身而過，橋的另一端站著一個牛
+頭人身的守衛，仔細的查看著過往的亡魂。
 
 
 LONG NOR );
@@ -25,8 +25,8 @@ LONG NOR );
                 __DIR__"npc/ghost":1,
         ]));
         set("item_desc", ([
-                "north": HIW "\n奈河桥的另一端被烟雾所笼罩，仿佛没有"
-                         "尽头，你什么都看不清。\n" NOR
+                "north": HIW "\n奈河橋的另一端被煙霧所籠罩，彷彿沒有"
+                         "盡頭，你什麼都看不清。\n" NOR
         ]));
 
         set("no_sleep_room", 1);
@@ -42,9 +42,9 @@ int valid_leave(object me, string dir)
         if (dir == "north")
         {
                 if (objectp(present("niu tou", environment(me))) &&
-                    !query("hell_quest/锁阳丹", me) )
-                        return notify_fail(CYN "牛头看了你一眼，喝道：你还不滚"
-                                           "回去还阳，来这里凑什么热闹！\n" NOR);
+                    !query("hell_quest/鎖陽丹", me) )
+                        return notify_fail(CYN "牛頭看了你一眼，喝道：你還不滾"
+                                           "回去還陽，來這裡湊什麼熱鬧！\n" NOR);
         }
         return ::valid_leave(me, dir);
 }

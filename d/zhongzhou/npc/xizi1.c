@@ -6,7 +6,7 @@ void create()
         set("gender", "男性" );
         set("age", 32);
         set("long",
-              "一个在戏院唱戏的戏子。\n");
+              "一個在戲院唱戲的戲子。\n");
         set("shen_type", 1);
         set("combat_exp", 10000);
         set("str", 17);

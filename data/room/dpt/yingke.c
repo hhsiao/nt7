@@ -7,11 +7,11 @@
 
 void create()
 {
-        set("short", "游戏基地迎客厅");
+        set("short", "遊戲基地迎客廳");
 	set ("long", @LONG
-这里是游戏基地的主人多炮塔迎接八方来客的地方。大凡客人来
-拜见多炮塔，少不得在这里寒暄叙话，了尽仰慕之情。东面通往一个
-茶室，是主人陪同客人品尝天下名茶之处。 
+這裡是遊戲基地的主人多炮塔迎接八方來客的地方。大凡客人來
+拜見多炮塔，少不得在這裡寒暄敘話，了盡仰慕之情。東面通往一個
+茶室，是主人陪同客人品嚐天下名茶之處。 
 LONG );
 
         set("exits", ([
@@ -20,7 +20,7 @@ LONG );
                 "east"   : __DIR__"chashi",
         ]));
 
-        create_door("east", "木门", "west", DOOR_CLOSED);
+        create_door("east", "木門", "west", DOOR_CLOSED);
 
         set("objects", ([
                 "/d/room/roomnpc/yahuan" : 2,
@@ -30,8 +30,8 @@ LONG );
         setup();
 
         set("room_owner", "多炮塔");
-        set("room_name", "游戏基地");
+        set("room_name", "遊戲基地");
         set("room_id", "gamebase");
         set("room_owner_id", "dpt");
-        set("room_position", "南海之滨");
+        set("room_position", "南海之濱");
 }

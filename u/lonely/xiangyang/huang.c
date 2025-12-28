@@ -10,13 +10,13 @@ inherit NPC;
 void create()
 {
         object ob;
-        set_name("黄药师", ({"huang yaoshi", "huang", "yaoshi"}));
-        set("title", "东海桃花岛岛主");
-        set("nickname", HIC "东邪" NOR );
+        set_name("黃藥師", ({"huang yaoshi", "huang", "yaoshi"}));
+        set("title", "東海桃花島島主");
+        set("nickname", HIC "東邪" NOR );
         set("gender", "男性");
         set("age", 42);
-        set("long", "他就是桃花岛主。行事好恶全由己心，因此被\n"
-                    "人称作「东邪」。\n");
+        set("long", "他就是桃花島主。行事好惡全由己心，因此被\n"
+                    "人稱作「東邪」。\n");
         set("attitude", "peaceful");
         set("class", "scholar");
         set("str", 40);
@@ -83,7 +83,7 @@ void create()
 
         prepare_skill("finger" , "tanzhi-shentong");
 
-        create_family("桃花岛", 1, "岛主");
+        create_family("桃花島", 1, "島主");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({

@@ -2,14 +2,14 @@
 inherit TASK; 
 void create() 
 { 
-        set_name( HIC "膏药" NOR, ({ "gaoyao" }) ); 
+        set_name( HIC "膏藥" NOR, ({ "gaoyao" }) ); 
         set_weight(2); 
         if( clonep() ) 
                 destruct(this_object()); 
         else { 
-                set("unit", "张"); 
+                set("unit", "張"); 
                 set("material", "paper"); 
-                set("long", "这是一张特制的膏药，弥漫着淡淡的草药气味。\n"); 
+                set("long", "這是一張特製的膏藥，瀰漫著淡淡的草藥氣味。\n"); 
         } 
         set("owner", "徐天川"); 
         setup(); 

@@ -14,11 +14,11 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "根");
-                set("long", HIY"此杵顶呈莲花状，杵身长约两尺，鸭蛋粗细，杵段尖锐锋厉。是密宗喇嘛降妖伏魔的法器。\n"NOR);
+                set("long", HIY"此杵頂呈蓮花狀，杵身長約兩尺，鴨蛋粗細，杵段尖銳鋒厲。是密宗喇嘛降妖伏魔的法器。\n"NOR);
                 set("value", 7000);
                 set("material", "steel");
                 set("rigidity", 4000);
-                set("wield_msg", HIY"一道金光在你眼前一闪，$N操出一根降魔杵，举过头顶，光茫万照。\n"NOR);
+                set("wield_msg", HIY"一道金光在你眼前一閃，$N操出一根降魔杵，舉過頭頂，光茫萬照。\n"NOR);
                 set("unwield_msg", "$N放下手中的$n。\n");
         }
 

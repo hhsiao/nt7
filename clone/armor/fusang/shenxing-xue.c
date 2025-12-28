@@ -11,10 +11,10 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("unit", "双");
-                set("long", HIG "产自扶桑国的宝靴，多为顶级杀手所穿戴，可以增加身法。\n");
+                set("unit", "雙");
+                set("long", HIG "產自扶桑國的寶靴，多為頂級殺手所穿戴，可以增加身法。\n");
                 set("value", 2000000);
-                set("armor_prop/dex", 10); //后天身法+1
+                set("armor_prop/dex", 10); //後天身法+1
                 set("material", "boots");
                 set("limit", ([
                         "exp"  :  9000000,

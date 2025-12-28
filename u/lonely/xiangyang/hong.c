@@ -7,10 +7,10 @@ void create()
         object ob;
         set_name("洪七公", ({ "hong qigong", "hong", "qigong" }));
         set("long", @LONG
-他就是丐帮第十七任帮主，号称九指神丐的洪
-七公老爷子。只见他须眉皆白，周身上下邋遢
-不已，模样甚是龌龊。可是他目光如电，显得
-正义凛然，不怒而自威。
+他就是丐幫第十七任幫主，號稱九指神丐的洪
+七公老爺子。只見他鬚眉皆白，周身上下邋遢
+不已，模樣甚是齷齪。可是他目光如電，顯得
+正義凜然，不怒而自威。
 LONG);
         set("nickname", HIW "北丐" NOR);
         set("gender", "男性");
@@ -75,7 +75,7 @@ LONG);
 
         prepare_skill("strike", "xianglong-zhang");
 
-        create_family("丐帮", 17, "帮主");
+        create_family("丐幫", 17, "幫主");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({

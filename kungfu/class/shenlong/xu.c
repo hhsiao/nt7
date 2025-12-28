@@ -9,12 +9,12 @@ int ask_gao();
 
 void create()
 {
-        set_name("许雪亭", ( { "xu xueting", "xu" }) );
-        set("title", HIY"神龙教"HIG"青龙使"NOR);
-        set("nickname", HIR "热血神龙" NOR);
+        set_name("許雪亭", ( { "xu xueting", "xu" }) );
+        set("title", HIY"神龍教"HIG"青龍使"NOR);
+        set("nickname", HIR "熱血神龍" NOR);
         set("gender", "男性" );
         set("age", 55);
-        set("long", "这是个五十来岁的高瘦汉子，着一袭青衣，昂然挺立。\n");
+        set("long", "這是個五十來歲的高瘦漢子，著一襲青衣，昂然挺立。\n");
 
         set("str", 25);
         set("int", 32);
@@ -52,22 +52,22 @@ void create()
         map_skill("parry", "taiji-jian");
         map_skill("sword", "taiji-jian");
 
-        create_family("神龙教", 0, "长老");
+        create_family("神龍教", 0, "長老");
 
         set("inquiry", ([
                 "百花腹蛇膏" : (: ask_gao :),
-                "神龙教" : "一般人是入不了我神龙教的(join shenlongjiao).\n",
-                "洪安通" : "教主脾气不好,要讨他欢心才好。\n",
-                "教主"   : "教主脾气不好,要讨他欢心才好。\n",
-                "入教"   : "一般人是入不了我神龙教的(join shenlongjiao).\n",
-                "口号"   : "万年不老！永享仙福！寿与天齐！文武仁圣！\n",
+                "神龍教" : "一般人是入不了我神龍教的(join shenlongjiao).\n",
+                "洪安通" : "教主脾氣不好,要討他歡心才好。\n",
+                "教主"   : "教主脾氣不好,要討他歡心才好。\n",
+                "入教"   : "一般人是入不了我神龍教的(join shenlongjiao).\n",
+                "口號"   : "萬年不老！永享仙福！壽與天齊！文武仁聖！\n",
         ]));
 
         set("chat_chance", 1);
         set("chat_msg", ({
-                "许雪亭忽然一拍脑袋，说：对了，可以用百花腹蛇膏！\n",
-                "许雪亭怒道：唉，偌大一个神龙教，都毁在一个娘们手里了！\n",
-                "许雪亭叹口气，说道：唉，不杀了洪安通，谁也活不了。\n",
+                "許雪亭忽然一拍腦袋，說：對了，可以用百花腹蛇膏！\n",
+                "許雪亭怒道：唉，偌大一個神龍教，都毀在一個娘們手裡了！\n",
+                "許雪亭嘆口氣，說道：唉，不殺了洪安通，誰也活不了。\n",
         }) );
         set("coagents", ({
                 ([ "startroom" : "/d/shenlong/dating",
@@ -81,9 +81,9 @@ void create()
 int ask_gao()
 {
         say(
-        "\n许雪亭悄声对你说：这可是本教禁物啊。它一遇鲜血，便生浓香，\n"
-        "我们住在这灵蛇岛上，人人都服惯了雄黄酒，以避毒蛇，这股香气\n"
-        "一碰到雄黄酒，便使人筋骨酥软，不能动弹。对了，你怎么也知道？\n"
+        "\n許雪亭悄聲對你說：這可是本教禁物啊。它一遇鮮血，便生濃香，\n"
+        "我們住在這靈蛇島上，人人都服慣了雄黃酒，以避毒蛇，這股香氣\n"
+        "一碰到雄黃酒，便使人筋骨酥軟，不能動彈。對了，你怎麼也知道？\n"
                 );
         return 1;
 }
@@ -94,23 +94,23 @@ int accept_object(object who, object ob)
 
         if( !who || environment(who) != environment() ) return 0;
         if ( !objectp(ob) ) return 0;
-        if ( !present(ob, who) ) return notify_fail("你没有这件东西。\n");
+        if ( !present(ob, who) ) return notify_fail("你沒有這件東西。\n");
 
         if (is_busy())
         {
-                command("say 慢慢来，急什么！");
+                command("say 慢慢來，急什麼！");
                 return 0;
         }
 
         if( query("id", ob) != "fushe dan"
                  && query("id", ob) != "baixianghua" )
-                    return notify_fail("许雪亭摇头道：如果杀不了洪安通，给我什么也没用啊。。。\n");
+                    return notify_fail("許雪亭搖頭道：如果殺不了洪安通，給我什麼也沒用啊。。。\n");
 
         if( query("id", ob) == "fushe dan" )
                 {
                   if(query_temp("baixianghua"))
                   {
-                  message_vision("\n许雪亭见是腹蛇胆，大喜道：腹蛇胆百香花都有了，百花腹蛇膏练成了！\n",who);
+                  message_vision("\n許雪亭見是腹蛇膽，大喜道：腹蛇膽百香花都有了，百花腹蛇膏練成了！\n",who);
                   obn=new("/d/shenlong/obj/baihua");
                   obn->move(who);
                   delete_temp("fushedan");
@@ -122,12 +122,12 @@ int accept_object(object who, object ob)
                   {
                   if(query_temp("fushedan"))
                   {
-                               message_vision("\n许雪亭见是腹蛇胆，对$N摇头道：腹蛇胆我有了，就差百香花了。\n",who);
+                               message_vision("\n許雪亭見是腹蛇膽，對$N搖頭道：腹蛇膽我有了，就差百香花了。\n",who);
                            return 0;
                   }
                   else
                   {
-                  message("vision","许雪亭看见腹蛇胆，大喜道：有了腹蛇胆，只差百香花了。\n",environment(who));
+                  message("vision","許雪亭看見腹蛇膽，大喜道：有了腹蛇膽，只差百香花了。\n",environment(who));
                   set_temp("fushedan",1);
                   destruct(ob);
                   return 1;
@@ -138,7 +138,7 @@ int accept_object(object who, object ob)
                 {
                   if(query_temp("fushedan"))
                   {
-                  message_vision("\n许雪亭见是百香花，大喜道：腹蛇胆百香花都有了，百花腹蛇膏练成了！\n",who);
+                  message_vision("\n許雪亭見是百香花，大喜道：腹蛇膽百香花都有了，百花腹蛇膏練成了！\n",who);
                   obn=new("/d/shenlong/obj/baihua");
                   obn->move(who);
                   delete_temp("fushedan");
@@ -150,12 +150,12 @@ int accept_object(object who, object ob)
                   {
                   if(query_temp("baixianghua"))
                   {
-                           message_vision("\n许雪亭见是百香花，对$N摇头道：百香花我有了，就差腹蛇胆了。\n",who);
+                           message_vision("\n許雪亭見是百香花，對$N搖頭道：百香花我有了，就差腹蛇膽了。\n",who);
                            return 0;
                   }
                   else
                   {
-                  message("vision","许雪亭看见百香花，大喜道：有了百香花，只差腹蛇胆了。\n",environment(who));
+                  message("vision","許雪亭看見百香花，大喜道：有了百香花，只差腹蛇膽了。\n",environment(who));
                   set_temp("baixianghua",1);
                   destruct(ob);
                   return 1;

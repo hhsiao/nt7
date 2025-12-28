@@ -17,16 +17,16 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("「流氓发恶」只能对战斗中的对手使用。\n");
+                return notify_fail("「流氓發惡」只能對戰鬥中的對手使用。\n");
                 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你现在真气不够，无法使用「流氓发恶」。\n");
+                return notify_fail("你現在真氣不夠，無法使用「流氓發惡」。\n");
 
-        msg = HIY "$N" HIY "突然抽剑待步，左手耍出一个白色气团，叱咤的气团看起来就像一个无极盘旋向$n" HIY "。\n" NOR;
+        msg = HIY "$N" HIY "突然抽劍待步，左手耍出一個白色氣團，叱吒的氣團看起來就像一個無極盤旋向$n" HIY "。\n" NOR;
 
         addn("neili", -50, me);
         ap = me->query_skill("sword", 1) / 2 +
@@ -41,8 +41,8 @@ int perform(object me, object target)
                                            (: final, me, target, damage :));
         } else
         {
-                msg += HIG "可是$p" HIG "看破了$P" HIG "的企图，镇"
-                       "定逾恒，全神应对自如。\n" NOR;
+                msg += HIG "可是$p" HIG "看破了$P" HIG "的企圖，鎮"
+                       "定逾恆，全神應對自如。\n" NOR;
         }
         message_combatd(msg, me, target);
 
@@ -54,6 +54,6 @@ string final(object me, object target, int damage)
         target->receive_damage("jing", damage / 3, me);
         target->receive_wound("jing", damage / 6, me);
         return
-                HIR "$p" HIR "惊慌失措，呆在当场，被$P"
-                HIR "这一掌击中要害！后面随之而来的流氓剑又直刺向胸前，顿时不知如何抵挡！\n" NOR;
+                HIR "$p" HIR "驚慌失措，呆在當場，被$P"
+                HIR "這一掌擊中要害！後面隨之而來的流氓劍又直刺向胸前，頓時不知如何抵擋！\n" NOR;
 }

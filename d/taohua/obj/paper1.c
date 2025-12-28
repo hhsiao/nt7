@@ -4,14 +4,14 @@ inherit ITEM;
 
 void create()
 {
-        set_name("信笺", ({"letter paper", "paper"}));
+        set_name("信箋", ({"letter paper", "paper"}));
         set_weight(100);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "张");
+                set("unit", "張");
                 set("long",
-"乞丐何曾有二妻？邻家焉得许多鸡？当时尚有周天子，何事纷纷说魏齐。\n");
+"乞丐何曾有二妻？鄰家焉得許多雞？當時尚有周天子，何事紛紛說魏齊。\n");
                 set("material", "paper");
         }
 }

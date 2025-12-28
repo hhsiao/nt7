@@ -7,7 +7,7 @@ void setup()
         set_name("如意[2;37;0m[2;37;0m", ({"sleepbag"}));        
         set("gender", "女性");                
         set("long", "如意麒麟[2;37;0m
-它是高封的魔幻兽。
+它是高封的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

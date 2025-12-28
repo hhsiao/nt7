@@ -18,7 +18,7 @@ int main(object me, mapping info)
 
         if (! environment(me) ||
             environment(me) == find_object(VOID_OB))
-                return MESSAGE_D->error_msg("你现在还在缥缈的虚空中，没什么好做的。\n");
+                return MESSAGE_D->error_msg("你現在還在縹緲的虛空中，沒什麼好做的。\n");
 
         // clear the error
         if (! me->force_me(info[ARG]))

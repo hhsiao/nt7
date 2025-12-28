@@ -8,12 +8,12 @@ void create()
 {
         set_name("施令威", ({ "shi lingwei", "shi", "lingwei" }));
         set("long",
-                "他就是隐居江湖数年的五路神施令威，现在在梅庄当管家。\n"
+                "他就是隱居江湖數年的五路神施令威，現在在梅莊當管家。\n"
         );
 
         set("gender", "男性");
         set("nickname", HIR "五路神" NOR);
-        set("title", "梅庄仆从");
+        set("title", "梅莊僕從");
         set("attitude", "friendly");
 
         set("age", 30);
@@ -59,14 +59,14 @@ void create()
         }));
 
         set("guarder", ([
-                "refuse_other": CYN "$N" CYN "对$n" CYN "皱眉道："
-                                "给我站住，前面是大庄主静修之地，"
-                                "任何人不得打扰！" NOR,
-                "refuse_carry": CYN "$N" CYN "对$n" CYN "喝道：你"
-                                "背上背的是什么人？" NOR,
+                "refuse_other": CYN "$N" CYN "對$n" CYN "皺眉道："
+                                "給我站住，前面是大莊主靜修之地，"
+                                "任何人不得打擾！" NOR,
+                "refuse_carry": CYN "$N" CYN "對$n" CYN "喝道：你"
+                                "背上背的是什麼人？" NOR,
         ]));
 
-        create_family("梅庄", 2, "仆从");
+        create_family("梅莊", 2, "僕從");
 
         set("chat_chance_combat", 100);
         set("chat_msg_combat", ({
@@ -87,7 +87,7 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        message_vision(CYN "$N" CYN "摇了摇头，对$n" CYN "道：我"
-                       "不收徒，你若要拜师，去找丁兄好了。\n" NOR,
+        message_vision(CYN "$N" CYN "搖了搖頭，對$n" CYN "道：我"
+                       "不收徒，你若要拜師，去找丁兄好了。\n" NOR,
                        this_object(), ob);
 }

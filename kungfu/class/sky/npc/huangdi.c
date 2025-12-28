@@ -4,8 +4,8 @@ inherit NPC;
 
 void create()
 {
-        set_name(HIY "黄帝" NOR, ({ "huang di", "huang", "di"}));
-        set("long", HIY "    此人身穿黄色龙袍，气宇轩昂，乃远古传说中的炎帝。\n" NOR);
+        set_name(HIY "黃帝" NOR, ({ "huang di", "huang", "di"}));
+        set("long", HIY "    此人身穿黃色龍袍，氣宇軒昂，乃遠古傳說中的炎帝。\n" NOR);
 
         set("gender", "男性");
         set("age", 40);
@@ -82,7 +82,7 @@ void die()
                          if (arrayp(ob->query_team()))
                          {
                                  command("heng");
-                                 command("say 胜之不武！");
+                                 command("say 勝之不武！");
                                  set("qi", 500000);
                                  set("jing", 500000);
                                   set("neili", 35000);
@@ -100,7 +100,7 @@ void die()
              if (ob->query("sky12/floor") == 10)
              {
                       ob->set("sky12/floor", 11);
-                 command("say 后生可畏啊！");
+                 command("say 後生可畏啊！");
              }
         }
 
@@ -116,7 +116,7 @@ void die()
         return;
 }
 
-// 气血小于1000则死亡，避免他人协助帮忙转世
+// 氣血小於1000則死亡，避免他人協助幫忙轉世
 void heart_beat()
 {
         if (this_object()->query("qi") < 1000 || this_object()->query("eff_qi") < 1000)

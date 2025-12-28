@@ -1,4 +1,4 @@
-//数字|汉字 ASCⅡ点阵图   生成程序
+//數字|漢字 ASCⅡ點陣圖   生成程序
 //Smallfish@HUAXIA
 
 #include <ansi.h>
@@ -13,7 +13,7 @@ void create()
         seteuid(getuid());
 }
 
-//数字点阵图生成函数
+//數字點陣圖生成函數
 string make_msg(mapping num)
 {
         int q, q_size, i1 = random(2), i2 = random(2), i3 = random(2), i4 = random(2), i5 = random(2);
@@ -45,7 +45,7 @@ string make_msg(mapping num)
         return msg;
 }
 
-//汉字点阵图生成函数
+//漢字點陣圖生成函數
 string make_chn_msg(mapping num)
 {
         int q, q_size, i1 = random(2), i2 = random(2), i3 = random(2), i4 = random(2);
@@ -57,11 +57,11 @@ string make_chn_msg(mapping num)
         the_point1 = LANGUAGE_D->Get_Point(num["num1"],num["index1"]);
         if (!the_point1)
                 log_file("static/chn_num",
-                        sprintf("这个汉字没有取到点阵：%s，请仔细查看\n",num["num1"]));
+                        sprintf("這個漢字沒有取到點陣：%s，請仔細查看\n",num["num1"]));
         the_point2 = LANGUAGE_D->Get_Point(num["num2"],num["index2"]);
         if (!the_point2)
                 log_file("static/chn_num",
-                        sprintf("这个汉字没有取到点阵：%s，请仔细查看\n",num["num2"]));
+                        sprintf("這個漢字沒有取到點陣：%s，請仔細查看\n",num["num2"]));
 
         the_point1 = trouble(the_point1);
         the_point2 = trouble(the_point2);
@@ -90,7 +90,7 @@ string make_chn_msg(mapping num)
         return msg;
 }
 
-//获取宗师whisper任务
+//獲取宗師whisper任務
 mapping get_question()
 {
         int the_num, i, j, chinese_num;
@@ -116,7 +116,7 @@ mapping get_question()
                 question = make_msg(num);
         } else
         {
-                //两个汉字采用相同的前景和背景可能干扰效果更好一些:)
+                //兩個漢字採用相同的前景和背景可能干擾效果更好一些:)
                 //smallfish@huaxia
                 j = random(sizeof(the_color));
                 for (i = 0;i < 2;i ++)
@@ -141,7 +141,7 @@ mapping get_question()
         return quest;
 }
 
-//汉字点阵图干扰象素添加函数
+//漢字點陣圖干擾象素添加函數
 string *trouble(string *str_point)
 {
         int i,j,random_col,random_line,get_it;
@@ -185,7 +185,7 @@ string *trouble(string *str_point)
         return str_point;
 }
 
-//下面这个函数没有实际作用，只是用于CALL检查汉字表是否有错误
+//下面這個函數沒有實際作用，只是用於CALL檢查漢字表是否有錯誤
 void check_chn()
 {
         int i,j;
@@ -198,7 +198,7 @@ void check_chn()
                 {
                         if (!LANGUAGE_D->Get_Point(line[j..j+1]))
                                 log_file("static/chn_num",
-                                          sprintf("这个汉字没有取到点阵：%s，请仔细查看\n",line[j..j+1]));
+                                          sprintf("這個漢字沒有取到點陣：%s，請仔細查看\n",line[j..j+1]));
                         j+=2;
                 }
         }

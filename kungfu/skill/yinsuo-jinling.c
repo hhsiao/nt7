@@ -3,27 +3,27 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action": "$N端坐不动，一招「对台梳妆」，手中$w抖得笔直，对准$n$l直刺而去",
+([      "action": "$N端坐不動，一招「對臺梳妝」，手中$w抖得筆直，對準$n$l直刺而去",
         "force" : 80,
         "attack": 30,
         "dodge" :-35,
         "parry" :-25,
         "damage": 30,
         "lvl"   : 0,
-        "skill_name" : "对台梳妆",
-        "damage_type": "刺伤"
+        "skill_name" : "對臺梳妝",
+        "damage_type": "刺傷"
 ]),
-([      "action": "$N身形一转，一招「云龙白鹤」，手中$w如矫龙般腾空一卷，猛地向$n劈头打下",
+([      "action": "$N身形一轉，一招「雲龍白鶴」，手中$w如矯龍般騰空一卷，猛地向$n劈頭打下",
         "force" : 130,
         "attack": 38,
         "dodge" :-43,
         "parry" :-27,
         "damage": 45,
         "lvl"   : 40,
-        "skill_name" : "云龙白鹤",
-        "damage_type": "抽伤"
+        "skill_name" : "雲龍白鶴",
+        "damage_type": "抽傷"
 ]),
-([      "action": "$N力贯鞭梢，一招「明月千里」，手中$w舞出满天鞭影，铺天盖地袭向$n全身",
+([      "action": "$N力貫鞭梢，一招「明月千里」，手中$w舞出滿天鞭影，鋪天蓋地襲向$n全身",
         "force" : 160,
         "attack": 45,
         "dodge" :-63,
@@ -31,47 +31,47 @@ mapping *action = ({
         "damage": 61,
         "lvl"   : 80,
         "skill_name" : "明月千里",
-        "damage_type": "抽伤"
+        "damage_type": "抽傷"
 ]),
-([      "action":"$N一声娇喝，一招「映月无声」，手中$w变换莫测，从意想不到的方位扫向$n",
+([      "action":"$N一聲嬌喝，一招「映月無聲」，手中$w變換莫測，從意想不到的方位掃向$n",
         "force" : 180,
         "attack": 50,
         "dodge" :-65,
         "parry" :-33,
         "damage": 68,
         "lvl"   : 120,
-        "skill_name" : "映月无声",
-        "damage_type": "抽伤"
+        "skill_name" : "映月無聲",
+        "damage_type": "抽傷"
 ]),
-([      "action":"$N飞身一跃而起，凌空一招「影玉徵辉」，$w宛如蛟龙通天，携着飕飕破空之声袭向$n",
+([      "action":"$N飛身一躍而起，凌空一招「影玉徵輝」，$w宛如蛟龍通天，攜著颼颼破空之聲襲向$n",
         "force" : 210,
         "attack": 53,
         "dodge" :-76,
         "parry" :-36,
         "damage": 73,
         "lvl"   : 160,
-        "skill_name" : "影玉徵辉",
-        "damage_type": "抽伤"
+        "skill_name" : "影玉徵輝",
+        "damage_type": "抽傷"
 ]),
-([      "action":"$N身形飘逸无定，一招「金光泻地」，手中$w幻出无数鞭影，笼罩$n全身",
+([      "action":"$N身形飄逸無定，一招「金光瀉地」，手中$w幻出無數鞭影，籠罩$n全身",
         "force" : 230,
         "attack": 65,
         "dodge" :-92,
         "parry" :-35,
         "damage": 91,
         "lvl"   : 180,
-        "skill_name":  "金光泻地",
-        "damage_type": "抽伤"
+        "skill_name":  "金光瀉地",
+        "damage_type": "抽傷"
 ]),
-([      "action":"$N身形飘逸无定，一招「蜃楼银沙」，手中$w幻出无数鞭影，笼罩$n全身",
+([      "action":"$N身形飄逸無定，一招「蜃樓銀沙」，手中$w幻出無數鞭影，籠罩$n全身",
         "force" : 251,
         "attack": 66,
         "dodge" :-117,
         "parry" :-40,
         "damage": 120,
         "lvl"   : 200,
-        "skill_name" : "蜃楼银沙",
-        "damage_type": "抽伤"
+        "skill_name" : "蜃樓銀沙",
+        "damage_type": "抽傷"
 ]),
 });
 
@@ -85,26 +85,26 @@ int valid_learn(object me)
         object weapon;
 
         if( query("gender", me) != "女性" )
-                return notify_fail("银索金铃只有女性能练。\n");
+                return notify_fail("銀索金鈴只有女性能練。\n");
 
         if ((int)me->query_dex()  < 40)
-                return notify_fail("你的后天身法不够，无法练银索金铃。\n");
+                return notify_fail("你的後天身法不夠，無法練銀索金鈴。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "whip" )
-                return notify_fail("你必须先找一条鞭子才能练银索金铃。\n");
+                return notify_fail("你必須先找一條鞭子才能練銀索金鈴。\n");
 
         if( query("max_neili", me)<500 )
-                return notify_fail("你的内力不足，没有办法练银索金铃。\n");
+                return notify_fail("你的內力不足，沒有辦法練銀索金鈴。\n");
 
         if ((int)me->query_skill("force") < 100)
-                return notify_fail("你的内功火候太浅，没有办法练银索金铃。\n");
+                return notify_fail("你的內功火候太淺，沒有辦法練銀索金鈴。\n");
 
         if ((int)me->query_skill("whip", 1) < 30)
-                return notify_fail("你的基本鞭法火候太浅，没有办法练银索金铃。\n");
+                return notify_fail("你的基本鞭法火候太淺，沒有辦法練銀索金鈴。\n");
 
         if ((int)me->query_skill("whip", 1) < (int)me->query_skill("yinsuo-jinling", 1))
-                return notify_fail("你的基本鞭法水平还不够，无法领会更高深的银索金铃。\n");
+                return notify_fail("你的基本鞭法水平還不夠，無法領會更高深的銀索金鈴。\n");
 
         return 1;
 }
@@ -132,13 +132,13 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "whip" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if( query("qi", me)<50 )
-                return notify_fail("你的体力不够练银索金铃。\n");
+                return notify_fail("你的體力不夠練銀索金鈴。\n");
 
         if( query("neili", me)<60 )
-                return notify_fail("你的内力不够练银索金铃。\n");
+                return notify_fail("你的內力不夠練銀索金鈴。\n");
 
         me->receive_damage("qi", 45);
         addn("neili", -55, me);
@@ -150,7 +150,7 @@ void skill_improved(object me)
        int level = (int)me->query_skill("yinsuo-jinling", 1);
        if(level>1800 && !query("can_perform/yinsuo-jinling/chan",me))
        {
-          tell_object(me,HIY"你通晓了银索金铃「" HIR "缠字诀" HIY "」的奥秘。\n"NOR);
+          tell_object(me,HIY"你通曉了銀索金鈴「" HIR "纏字訣" HIY "」的奧秘。\n"NOR);
           set("can_perform/yinsuo-jinling/chan",1,me);
         }
 }
@@ -170,15 +170,15 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
              && (query_temp("weapon", victim) )
             && random(10) > 7)
         {
-                message_combatd(HIW "只见$N挥舞" + weap1->name() + "，转出无数个大小圈子，以阴柔之劲缠住了$n的" + weap->name() + "！\n" NOR,
+                message_combatd(HIW "只見$N揮舞" + weap1->name() + "，轉出無數個大小圈子，以陰柔之勁纏住了$n的" + weap->name() + "！\n" NOR,
                                 me, victim  );
                 if (! victim->is_busy())
                         victim->start_busy(1);
 
                 if (random(me->query_str() + me->query_dex()) > victim->query_str() + me->query_dex())
                 {
-                        message_combatd(HIY "\n$N气运手臂用力一拽，" + weap->name() + "却无法从" + weap1->name() +
-                                        "的缠绕中脱开，情急之下只好放弃了手中的" + weap->name() + "。\n" NOR, victim );
+                        message_combatd(HIY "\n$N氣運手臂用力一拽，" + weap->name() + "卻無法從" + weap1->name() +
+                                        "的纏繞中脫開，情急之下只好放棄了手中的" + weap->name() + "。\n" NOR, victim );
                         weap->unequip();
                         weap->move(environment(me));
                         victim->reset_action();
@@ -186,8 +186,8 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
 
                 else
                 {
-                        message_combatd(HIY "\n$N暗运巧劲，" + weap->name() + "顺着方向快速旋转数下，解开了" + weap1->name() +
-                                        "的缠绕。\n" NOR, victim );
+                        message_combatd(HIY "\n$N暗運巧勁，" + weap->name() + "順著方向快速旋轉數下，解開了" + weap1->name() +
+                                        "的纏繞。\n" NOR, victim );
                         addn("neili", -50, victim);
                 }
 

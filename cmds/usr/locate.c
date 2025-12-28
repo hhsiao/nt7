@@ -314,16 +314,16 @@ int main(object me, string str)
         z0=query("coor/z", room);
    
         if( !x0 && !y0 && !z0 && base_name(room) != "/d/city/guangchang" ) 
-                return notify_fail(WHT "这个地方不能使用locate指令，只有在有task发布的地区才可以使用！\n" NOR);
+                return notify_fail(WHT "這個地方不能使用locate指令，只有在有task發佈的地區才可以使用！\n" NOR);
 
         if( !wizardp(me) && time() - query_temp("last_locate", me) < 1 )
-                return notify_fail("系统气喘嘘地叹道：慢慢来 ....\n");  
+                return notify_fail("系統氣喘噓地嘆道：慢慢來 ....\n");  
                 
         if( !str ) 
                 return notify_fail("指令格式: locate <物品>\n");
 
         if( query("qi", me)<30 )
-                return notify_fail("你的气不足以查寻位置。\n");
+                return notify_fail("你的氣不足以查尋位置。\n");
                 
         set_temp("last_locate", time(), me);
         if( sscanf(str, "answer %s", str) == 1 && sizeof(str) > 0 )
@@ -331,14 +331,14 @@ int main(object me, string str)
                 if( str == "giveup" )
                 {
                         if( query("balance", me) < 5000000 )
-                                return notify_fail("你的存款不足500两黄金，无法取消本次验证码。\n");
+                                return notify_fail("你的存款不足500兩黃金，無法取消本次驗證碼。\n");
                         
                         addn("balance", -5000000, me);
                      //   MYSQL_SCHEDULE_D->delete_captcha(me->query_id(1));
                         delete_temp("task_captcha_code", me);
                         delete_temp("task_captcha_str", me);
                         delete_temp("task_captcha_time", me);
-                        write("本次验证码取消成功。\n");
+                        write("本次驗證碼取消成功。\n");
                         return 1;
                 }
                 if( str == query_temp("task_captcha_code", me) )
@@ -350,20 +350,20 @@ int main(object me, string str)
                         me->receive_damage("qi", 20);
                         output = TASK_D->locate_ob(me, str);
                         if( output == "" )
-                                return notify_fail("确定不了" + str + "的大概位置。\n");
+                                return notify_fail("確定不了" + str + "的大概位置。\n");
                         
                         write(output);
                         return 1;
                 }
                 else
-                        return notify_fail("验证码输入错误。\n");
+                        return notify_fail("驗證碼輸入錯誤。\n");
         }
 
         if( query_temp("task_captcha_code", me) )
         {
-                write("\n输入「locate answer 验证码」以获得物品位置。\n"NOR);
+                write("\n輸入「locate answer 驗證碼」以獲得物品位置。\n"NOR);
                 return 1;
-           //     write(HIY"\n请至以下网页输入你的ID，取得"+pnoun(2, me)+"的验证码：\n\n"NOR"http://www.muds.cn/php/test.html\n\n取得验证码后输入「locate answer 验证码」以获得物品位置。\n"NOR);
+           //     write(HIY"\n請至以下網頁輸入你的ID，取得"+pnoun(2, me)+"的驗證碼：\n\n"NOR"http://www.muds.cn/php/test.html\n\n取得驗證碼後輸入「locate answer 驗證碼」以獲得物品位置。\n"NOR);
                 return 1;
         }
 
@@ -384,8 +384,8 @@ int main(object me, string str)
                         set_temp("task_captcha_str", str, me);
                         set_temp("task_captcha_time", time(), me);
                         write(alle[0]);
-			   write("\n请输入以上校验码：");
-                    //    write(HIY"\n建立新的TASK验证码...请至以下网页输入你的ID，取得"+pnoun(2, me)+"的验证码：\n\n"NOR"http://www.muds.cn/php/test.html\n\n取得验证码后输入「locate answer 验证码」以获得物品位置。\n"NOR);
+			   write("\n請輸入以上校驗碼：");
+                    //    write(HIY"\n建立新的TASK驗證碼...請至以下網頁輸入你的ID，取得"+pnoun(2, me)+"的驗證碼：\n\n"NOR"http://www.muds.cn/php/test.html\n\n取得驗證碼後輸入「locate answer 驗證碼」以獲得物品位置。\n"NOR);
                         return 1;
                 }
                 else if( r < 20 )
@@ -397,9 +397,9 @@ int main(object me, string str)
                         set_temp("task_captcha_code", code, me);
                         set_temp("task_captcha_str", str, me);
                         set_temp("task_captcha_time", time(), me);
-                        write("\n验证码为：\n\n"NOR);
+                        write("\n驗證碼為：\n\n"NOR);
                         write(question["question"]);
-                        write("\n输入「locate answer 验证码」以获得物品位置。\n"NOR);
+                        write("\n輸入「locate answer 驗證碼」以獲得物品位置。\n"NOR);
                         return 1;
                 }
         }
@@ -410,7 +410,7 @@ int main(object me, string str)
         // output = QUESTNPC_D->locate_obj(me, str);
         
         if( output == "" )
-                return notify_fail("确定不了" + str + "的大概位置。\n");
+                return notify_fail("確定不了" + str + "的大概位置。\n");
         
         write(output);
         return 1;
@@ -432,8 +432,8 @@ int help(object me)
 {
         write(@HELP
 指令格式: locate <物品> 
-这个指令是用来得知使命物品的大概位置。
-朝廷官员还可以用此指令查寻人物的大概位置。 
+這個指令是用來得知使命物品的大概位置。
+朝廷官員還可以用此指令查尋人物的大概位置。 
 HELP
         );
         return 1;

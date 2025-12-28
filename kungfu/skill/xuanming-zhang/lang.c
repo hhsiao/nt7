@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define LANG "「" HIM "惊涛骇浪" NOR "」"
+#define LANG "「" HIM "驚濤駭浪" NOR "」"
 
 inherit F_SSERVER;
 
@@ -18,34 +18,34 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(LANG "只能对战斗中的对手使用。\n");
+                return notify_fail(LANG "只能對戰鬥中的對手使用。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(LANG "只能空手施展。\n");
 
         if ((int)me->query_skill("xuanming-shengong", 1) < 220)
-                return notify_fail("你的玄冥神功火候不够，无法施展" LANG "。\n");
+                return notify_fail("你的玄冥神功火候不夠，無法施展" LANG "。\n");
 
         if ((int)me->query_skill("xuanming-zhang", 1) < 220)
-                return notify_fail("你的玄冥神掌不够熟练，无法施展" LANG "。\n");
+                return notify_fail("你的玄冥神掌不夠熟練，無法施展" LANG "。\n");
 
         if( query("max_neili", me)<800 )
-                return notify_fail("你的内力修为不足，无法施展" LANG "。\n");
+                return notify_fail("你的內力修為不足，無法施展" LANG "。\n");
 
         if (me->query_skill_mapped("force") != "xuanming-shengong")
-                return notify_fail("你没有激发玄冥神功为内功，无法施展" LANG "。\n");
+                return notify_fail("你沒有激發玄冥神功為內功，無法施展" LANG "。\n");
 
         if (me->query_skill_prepared("strike") != "xuanming-zhang")
-                return notify_fail("你没有准备玄冥神掌，无法施展" LANG "。\n");
+                return notify_fail("你沒有準備玄冥神掌，無法施展" LANG "。\n");
 
         if( query("neili", me)<800 )
-                return notify_fail("你的真气不够，无法施展" LANG "。\n");
+                return notify_fail("你的真氣不夠，無法施展" LANG "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "\n$N" HIW "默运玄冥神功，展出绝招「" HIM "惊涛骇浪" HIW "」，猛然间欺身"
-              "向前，双掌齐出，掌风阴寒无比，掌未到，风先至，瞬息间双掌已拍向$n" HIW "！\n"NOR;  
+        msg = HIW "\n$N" HIW "默運玄冥神功，展出絕招「" HIM "驚濤駭浪" HIW "」，猛然間欺身"
+              "向前，雙掌齊出，掌風陰寒無比，掌未到，風先至，瞬息間雙掌已拍向$n" HIW "！\n"NOR;  
 
         lvl = me->query_skill("xuanming-zhang", 1);
 
@@ -56,7 +56,7 @@ int perform(object me, object target)
 
         // 第一掌
 
-        msg += HIM "\n$N" HIM "右掌向内一转，忽又向前，猛然间直袭$n" HIM "面门。\n" NOR;
+        msg += HIM "\n$N" HIM "右掌向內一轉，忽又向前，猛然間直襲$n" HIM "面門。\n" NOR;
         if (ap / 2 + random(ap) > dp)
         { 
                 damage = damage_power(me, "strike");
@@ -67,13 +67,13 @@ int perform(object me, object target)
                                            
         } else
         {
-                msg += HIY "$n" HIY "看见$N" HIY "来势汹涌，急忙提气跃开。\n" NOR;
+                msg += HIY "$n" HIY "看見$N" HIY "來勢洶湧，急忙提氣躍開。\n" NOR;
                 addn("neili", -180, me);
         }
         message_sort(msg, me, target);
          
         // 第二掌
-        msg = HIM "\n$N" HIM "长舒一口气，左掌紧跟而出，风到掌到，正拍向$n" HIM "胸口。\n" NOR;
+        msg = HIM "\n$N" HIM "長舒一口氣，左掌緊跟而出，風到掌到，正拍向$n" HIM "胸口。\n" NOR;
         dp = defense_power(target, "parry") + target->query_skill("dodge");
         if (ap / 2 + random(ap) > dp)
         { 
@@ -85,7 +85,7 @@ int perform(object me, object target)
                                            
         } else
         {
-                msg += HIY "$n" HIY "看见$N" HIY "来势汹涌，急忙提气跃开。\n" NOR;
+                msg += HIY "$n" HIY "看見$N" HIY "來勢洶湧，急忙提氣躍開。\n" NOR;
                 addn("neili", -180, me);
         }
         message_sort(msg, me, target);
@@ -100,8 +100,8 @@ string final1(object me, object target, int lvl)
                             "id":query("id", me),
                             "duration" : lvl / 40 + random(lvl / 20) ]));
 
-        return HIR "$n" HIR "正欲闪躲，却见$N" HIR "突然绕到$p" HIR "身后，$n" HIR "心中一"
-                   "惊，背后中掌，顿觉脊梁处一股寒气升起，尽损三焦六脉。\n" NOR;
+        return HIR "$n" HIR "正欲閃躲，卻見$N" HIR "突然繞到$p" HIR "身後，$n" HIR "心中一"
+                   "驚，背後中掌，頓覺脊樑處一股寒氣升起，盡損三焦六脈。\n" NOR;
 
 }
 
@@ -112,7 +112,7 @@ string final2(object me, object target, int lvl)
                             "id":query("id", me),
                             "duration" : lvl / 40 + random(lvl / 20) ]));
 
-        return HIR "$n" HIR "但见$N" HIR "右掌已攻出，正欲反击。突然间胸口一震，不禁暗暗"
-               "叫苦，顿感胸口处一股寒气升起，尽损三焦六脉。\n" NOR;
+        return HIR "$n" HIR "但見$N" HIR "右掌已攻出，正欲反擊。突然間胸口一震，不禁暗暗"
+               "叫苦，頓感胸口處一股寒氣升起，盡損三焦六脈。\n" NOR;
 
 }

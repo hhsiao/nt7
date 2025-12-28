@@ -3,7 +3,7 @@
 inherit NPC;
 string *first_name = ({ "天", "天空"});
 string *first_id = ({ "tian", "sky"});
-string *name_words = ({ "巨灵", "怪"});
+string *name_words = ({ "巨靈", "怪"});
 string *id_words = ({ "juling", "guai"});
 int combatpower();
 
@@ -50,8 +50,8 @@ void create()
         set_temp("apply/armor", 2000+random(2000));        
 
         set("drops", ([
-                "RA&RANDOM70"                                    :       40,  // 低级普通装备
-                "RA&RANDOM80"                                    :       30,  // 中级普通装备
+                "RA&RANDOM70"                                    :       40,  // 低級普通裝備
+                "RA&RANDOM80"                                    :       30,  // 中級普通裝備
         ]));
 
         set_weight(500000);
@@ -79,8 +79,8 @@ mixed hit_ob(object me, object ob, int damage_bouns)
         if (damage < 0) damage = 0;
         ob->receive_wound("qi", damage, me);
         set("neili",query("max_neili",  me), me);
-        return HIC "$N" HIC "“呼”的一声吹出一阵狂风，登时令$n"
-               HIC "浑身犹如刀割一般。\n" NOR;
+        return HIC "$N" HIC "“呼”的一聲吹出一陣狂風，登時令$n"
+               HIC "渾身猶如刀割一般。\n" NOR;
 }
 
 void unconcious()

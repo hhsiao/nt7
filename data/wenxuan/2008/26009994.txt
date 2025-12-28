@@ -1,4 +1,4 @@
-subject : 走出少林监狱的路径
+subject : 走出少林監獄的路徑
 author_name : 薇大呆
 author_id : vivi
 time : 1206624217

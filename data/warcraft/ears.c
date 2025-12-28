@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[32m星云锁莲[2;37;0m[2;37;0m", ({"fuyvan"}));        
+        set_name("[32m星雲鎖蓮[2;37;0m[2;37;0m", ({"fuyvan"}));        
         set("gender", "男性");                
-        set("long", "兽合一[2;37;0m
-它是一耳屎的魔幻兽。
+        set("long", "獸合一[2;37;0m
+它是一耳屎的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

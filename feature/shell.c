@@ -73,7 +73,7 @@ mixed evaluate_shell(string arg, int novalue)
         me = this_object();
         // poet added restriction for > (wizard)
         if( novalue && (wiz_level(me) < 5) )
-                return notify_fail("权限拒绝。\n");
+                return notify_fail("權限拒絕。\n");
 
         // +2 for the function name and object 'me'
         var = allocate(MAX_VAR_COUNT + 2);
@@ -131,9 +131,9 @@ mixed evaluate_shell(string arg, int novalue)
         // check if the user has the privilege to write the file
         if( !write_file(file, content, 1) ) {
                 if( novalue )
-                        return notify_fail("写文件出错！\n");
+                        return notify_fail("寫文件出錯！\n");
                 else
-                        return "Notify fail: 写文件出错！";
+                        return "Notify fail: 寫文件出錯！";
         }
 
         // fill in environment vars as parameter.
@@ -148,9 +148,9 @@ mixed evaluate_shell(string arg, int novalue)
                 rm(file);
                 
                 if ( novalue )
-                        return notify_fail("程序编译失败！\n");
+                        return notify_fail("程序編譯失敗！\n");
                 else
-                        return "Notify fail: 程序编译失败！";
+                        return "Notify fail: 程序編譯失敗！";
         }
 
 /*

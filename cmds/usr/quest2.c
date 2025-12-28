@@ -11,12 +11,12 @@ int main(object me, string arg)
         string name, npc;
 
         if( query("ultra_count", me) )
-                write(sprintf("南贤交给你的宗师任务，你已经连续完成了 %d 个。\n",
+                write(sprintf("南賢交給你的宗師任務，你已經連續完成了 %d 個。\n",
                               query("ultra_count", me)));
 
         if( !query("ultraquest/npc1", me) )
         {
-                write("你现在没有领任何任务！\n");
+                write("你現在沒有領任何任務！\n");
                 return 1;
         }
 
@@ -49,12 +49,12 @@ int main(object me, string arg)
         {
                 if( query("ultraquest/id", me) )
                 {
-                        write("你现在的任务是去杀了幕后黑手"+query("ultraquest/name", me)+"("+
-                              query("ultraquest/id", me)+")，提他的人头给南贤。\n");
+                        write("你現在的任務是去殺了幕後黑手"+query("ultraquest/name", me)+"("+
+                              query("ultraquest/id", me)+")，提他的人頭給南賢。\n");
                         return 1;
                 }
-                write("你现在的任务是去寻找线索知情人" + name + "(" + npc + ")。\n" +
-                      "听说他前段日子在"+query("ultraquest/place", me)+"出现过。\n");
+                write("你現在的任務是去尋找線索知情人" + name + "(" + npc + ")。\n" +
+                      "聽說他前段日子在"+query("ultraquest/place", me)+"出現過。\n");
                 return 1;
         } else
         {
@@ -62,57 +62,57 @@ int main(object me, string arg)
                 {
                 case "kill":
                         write(name + "(" + npc + ")吩咐你去割下" HIR +
-                              q["name"] + "(" + q["id"] + ")" + NOR "的人头，回来交差。\n");
+                              q["name"] + "(" + q["id"] + ")" + NOR "的人頭，回來交差。\n");
                         return 1;
 
                 case "give":
                         write(name + "(" + npc + ")吩咐你去把包裹送到" HIR +
-                              q["name"] + "(" + q["id"] + ")" + NOR "的手里，回来交差。\n");
+                              q["name"] + "(" + q["id"] + ")" + NOR "的手裡，回來交差。\n");
                         return 1;
 
                 case "send":
                         write(name + "(" + npc + ")吩咐你去把信送到" HIR +
-                              q["name"] + "(" + q["id"] + ")" + NOR "的手里，回来交差。\n");
+                              q["name"] + "(" + q["id"] + ")" + NOR "的手裡，回來交差。\n");
                         return 1;
 
                 case "guard":
-                        write(name + "(" + npc + ")吩咐你留在他那里保护他。\n");
+                        write(name + "(" + npc + ")吩咐你留在他那裡保護他。\n");
                         return 1;
 
                 case "mathematics":
-                        write(name + "(" + npc + ")吩咐你和他比试演算。\n");
+                        write(name + "(" + npc + ")吩咐你和他比試演算。\n");
                         return 1;
 
                 case "literate":
-                        write(name + "(" + npc + ")吩咐你和他比试诗词。\n");
+                        write(name + "(" + npc + ")吩咐你和他比試詩詞。\n");
                         return 1;
 
                 case "chess":
-                        write(name + "(" + npc + ")吩咐你和他比试棋技。\n");
+                        write(name + "(" + npc + ")吩咐你和他比試棋技。\n");
                         return 1;
 
                 case "calligraphy":
-                        write(name + "(" + npc + ")吩咐你帮他写好书法。\n");
+                        write(name + "(" + npc + ")吩咐你幫他寫好書法。\n");
                         return 1;
 
                 case "drawing":
-                        write(name + "(" + npc + ")吩咐你帮他绘画。\n");
+                        write(name + "(" + npc + ")吩咐你幫他繪畫。\n");
                         return 1;
 
                 case "medical":
-                        write(name + "(" + npc + ")吩咐你帮他治病。\n");
+                        write(name + "(" + npc + ")吩咐你幫他治病。\n");
                         return 1;
                 }
         }
 
-        write("你现在没有领任何任务！\n");
+        write("你現在沒有領任何任務！\n");
         return 1;
 }
 
 int help(object me)
 {
         write(@HELP
-指令格式 : quest2 显示出你当前的宗师任务。
+指令格式 : quest2 顯示出你當前的宗師任務。
 HELP );
         return 1;
 }

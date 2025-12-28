@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("地图精[2;37;0m[2;37;0m", ({"maphere"}));        
+        set_name("地圖精[2;37;0m[2;37;0m", ({"maphere"}));        
         set("gender", "女性");                
         set("long", "1341324[2;37;0m
-它是小兵戊的魔幻兽。
+它是小兵戊的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

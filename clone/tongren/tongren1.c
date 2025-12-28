@@ -5,15 +5,15 @@
 int query_tongren() { return 1; }
 void create()
 {
-        set_name(YEL "无名小铜人" NOR, ({ "wuming tongren", "wuming", "tongren" }));
+        set_name(YEL "無名小銅人" NOR, ({ "wuming tongren", "wuming", "tongren" }));
         set_weight(50);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "堆");
-                set("base_unit", "个"); 
-                set("long", YEL "这是一个破旧的铜人，上面绘制了一些图案，但是已经无法辩识。\n" NOR);
-                //set("long", NOR + YEL "这里是一个冲穴铜人，上面刻有经络穴位图，可习得经络学。\n" NOR);
+                set("base_unit", "個"); 
+                set("long", YEL "這是一個破舊的銅人，上面繪製了一些圖案，但是已經無法辯識。\n" NOR);
+                //set("long", NOR + YEL "這裡是一個衝穴銅人，上面刻有經絡穴位圖，可習得經絡學。\n" NOR);
                 set("value", 10000);
                 set("material", "steal");
                 set("no_identify", 1);

@@ -4,8 +4,8 @@ inherit NPC;
 
 void create()
 {
-        set_name("净明", ({"jing ming", "monk" }));
-        set("title","宝象寺长老");
+        set_name("淨明", ({"jing ming", "monk" }));
+        set("title","寶象寺長老");
         set("gender", "男性");
         set("age", 80);
         set("attitude", "friendly");
@@ -31,8 +31,8 @@ void create()
 
 int accept_fight(object me)
 {
-        command("say 这位"+ RANK_D->query_respect(me) +
-                "你我无冤无仇，这样又是何必呢？");
+        command("say 這位"+ RANK_D->query_respect(me) +
+                "你我無冤無仇，這樣又是何必呢？");
         
         return 0;
 }

@@ -8,11 +8,11 @@ void check_weapon();
 
 void create()
 {
-        set_name("独孤求败", ({ "dugu qiubai", "dugu" }) );
-        set("title", HIC "大宗师" NOR);
+        set_name("獨孤求敗", ({ "dugu qiubai", "dugu" }) );
+        set("title", HIC "大宗師" NOR);
         set("gender", "男性");
         set("age", 48);
-        set("long", "此人诚恳敦厚，眉目菱角分明，气宇轩昂。\n");
+        set("long", "此人誠懇敦厚，眉目菱角分明，氣宇軒昂。\n");
         set("attitude", "peaceful");
         set("str", 38);
         set("int", 39);
@@ -145,7 +145,7 @@ void die()
                          if (arrayp(ob->query_team()))
                          {
                                  command("heng");
-                                 command("say 胜之不武！");
+                                 command("say 勝之不武！");
                                  set("qi", 500000);
                                  set("jing", 500000);
                                  set("eff_qi", 500000);
@@ -163,7 +163,7 @@ void die()
              if (ob->query("sky12/floor") == 7)
              {
                       ob->set("sky12/floor", 8);
-                 command("say 阁下请便吧！");
+                 command("say 閣下請便吧！");
              }
         }
 
@@ -182,7 +182,7 @@ void die()
 
 
 
-// 气血小于1000则死亡，避免他人协助帮忙转世
+// 氣血小於1000則死亡，避免他人協助幫忙轉世
 void heart_beat()
 {
         if (this_object()->query("qi") < 1000 || this_object()->query("eff_qi") < 1000)

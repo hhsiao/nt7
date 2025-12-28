@@ -12,8 +12,8 @@ void create()
         else*/
         {
                 set("material", "gold");
-                set("unit", "顶");
-                set("long", HIR "这是一顶充满智慧之光的头冠，佩带后可使冥思奖励加倍。\n" NOR);
+                set("unit", "頂");
+                set("long", HIR "這是一頂充滿智慧之光的頭冠，佩帶後可使冥思獎勵加倍。\n" NOR);
                 set("value", 350000);
                 set("armor_prop/int", 6);
                 set("armor_prop/reflect2", 1);

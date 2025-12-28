@@ -3,13 +3,13 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "荆州衙门");
+        set("short", "荊州衙門");
         set("long", @LONG
-一座大厦，朱红的大门，门上钉着碗口大的铜钉，门外两盏大灯笼，
-一盏写着“荆州府正堂”，另一盏写着“凌府”。这里是荆州衙门大门
-所在，衙门的两扇朱木大门紧紧关闭着。『肃静』『回避』的牌子分放
-两头石狮子的旁边。前面有一个大鼓，显然是供小民鸣冤用的。几名衙
-役在门前巡逻。
+一座大廈，硃紅的大門，門上釘著碗口大的銅釘，門外兩盞大燈籠，
+一盞寫著“荊州府正堂”，另一盞寫著“凌府”。這裡是荊州衙門大門
+所在，衙門的兩扇朱木大門緊緊關閉著。『肅靜』『迴避』的牌子分放
+兩頭石獅子的旁邊。前面有一個大鼓，顯然是供小民鳴冤用的。幾名衙
+役在門前巡邏。
 LONG );
         set("region", "jingzhou");
         set("exits", ([
@@ -31,6 +31,6 @@ int valid_leave(object me, string dir)
 {
         if (dir == "south" &&
            objectp(present("ya yi", environment(me))))
-                return notify_fail(CYN "衙役齐声喝道：威……武……\n" NOR);
+                return notify_fail(CYN "衙役齊聲喝道：威……武……\n" NOR);
         return ::valid_leave(me, dir);
 }

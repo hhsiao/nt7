@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;37m大鹏鸟[2;37;0m[2;37;0m", ({"peng"}));        
+        set_name("[1;37m大鵬鳥[2;37;0m[2;37;0m", ({"peng"}));        
         set("gender", "男性");                
-        set("long", "好大的鸟[2;37;0m
-它是郭大路的魔幻兽。
+        set("long", "好大的鳥[2;37;0m
+它是郭大路的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

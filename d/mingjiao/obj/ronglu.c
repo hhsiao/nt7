@@ -1,5 +1,5 @@
 // Code of JHSH
-// ronglu.c 熔炉
+// ronglu.c 熔爐
 
 #include <ansi.h>
 inherit ITEM;
@@ -10,12 +10,12 @@ int check_busy(object me);
 
 void create()
 {
-        set_name(HIR"熔炉"NOR, ({ "rong lu", "lu" }) );
+        set_name(HIR"熔爐"NOR, ({ "rong lu", "lu" }) );
         set_weight(9000);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "这是座大熔炉，里面烈火燃烧，是用来打造火枪的。\n");
+                set("long", "這是座大熔爐，裡面烈火燃燒，是用來打造火槍的。\n");
                 set("unit", "座");
                 set("value", 1);
                 set("no_get", 1);
@@ -37,23 +37,23 @@ int do_fang(string arg)
         ob = this_object();
         
         if( me->is_busy() || query_temp("pending/job_busy", me) )
-                return notify_fail("你正忙着呢。\n");
+                return notify_fail("你正忙著呢。\n");
 
         if (!arg || sscanf(arg, "%s in %s", item, target) != 2 )
-            return notify_fail("你要将什么东西放进哪里？\n");
+            return notify_fail("你要將什麼東西放進哪裡？\n");
 
-        if (item != "精铁" || target != "熔炉")
-                return notify_fail("你要将什么东西放进哪里？\n");
+        if (item != "精鐵" || target != "熔爐")
+                return notify_fail("你要將什麼東西放進哪裡？\n");
 
         if ( !jingtie=present("jing tie",me) )
-                return notify_fail("你身上并没有精铁。\n");
+                return notify_fail("你身上並沒有精鐵。\n");
 
         if (query_temp("in_use"))
-                return notify_fail("这个火炉已经有人在用了！\n");
+                return notify_fail("這個火爐已經有人在用了！\n");
 
-        message_vision("$N把一"+query("unit", jingtie)+query("name", jingtie)+"放进熔炉。\n",me);
+        message_vision("$N把一"+query("unit", jingtie)+query("name", jingtie)+"放進熔爐。\n",me);
         destruct(jingtie);
-        message_vision(HIR"$N放进燃料，拉起风箱，顷刻间就生起一炉熊熊大火！\n"NOR,me);
+        message_vision(HIR"$N放進燃料，拉起風箱，頃刻間就生起一爐熊熊大火！\n"NOR,me);
         
         set_temp("in_use",1);
         set_temp("pending/job_busy", 1, me);
@@ -69,10 +69,10 @@ int do_fang(string arg)
 void burning(object me, int stage)
 {
         string *burning_msg=({
-                HIC"炉火由红慢慢变青。\n"NOR,
-                HIW"炉火由青渐渐转白。\n"NOR,
-                HIW"精铁"+HIR"已经开始溶化了。\n"NOR,
-                HIW"精铁"+HIR"已经全部溶化了，可以倒进模子了。\n"NOR,
+                HIC"爐火由紅慢慢變青。\n"NOR,
+                HIW"爐火由青漸漸轉白。\n"NOR,
+                HIW"精鐵"+HIR"已經開始溶化了。\n"NOR,
+                HIW"精鐵"+HIR"已經全部溶化了，可以倒進模子了。\n"NOR,
         });
 
         message_vision(burning_msg[stage],me);
@@ -100,27 +100,27 @@ int do_pour(string arg)
 
 
         if( me->is_busy() || query_temp("pending/job_busy", me) )
-                return notify_fail("你正忙着呢。\n");
+                return notify_fail("你正忙著呢。\n");
 
         if (!arg || sscanf(arg, "%s in %s", item, target) != 2 )
-            return notify_fail("你要将什么东西倒进哪里？\n");
+            return notify_fail("你要將什麼東西倒進哪裡？\n");
 
-        if (item != "铁水" || target != "火枪模子")
-                return notify_fail("你要将什么东西放进哪里？\n");
+        if (item != "鐵水" || target != "火槍模子")
+                return notify_fail("你要將什麼東西放進哪裡？\n");
 
         if (!present("huoqiang muzi",environment(this_object())) )
-                return notify_fail("这里没有火枪模子。\n");
+                return notify_fail("這裡沒有火槍模子。\n");
 
         if( !query_temp("pouring", me) )
-                return notify_fail("好象还没轮到你吧。\n");
+                return notify_fail("好象還沒輪到你吧。\n");
 
         if( query("jing", me)<100 || query("qi", me)<100 )
-                return notify_fail(RED"你已经精疲力竭了！\n"NOR);
+                return notify_fail(RED"你已經精疲力竭了！\n"NOR);
 
-        message_vision("$N用土勺把溶化的铁水小心翼翼的从炉子里盛出来，慢慢的倒进火枪模子里。\n",me);
+        message_vision("$N用土勺把溶化的鐵水小心翼翼的從爐子裡盛出來，慢慢的倒進火槍模子裡。\n",me);
         if (random(10) > 3)
         {
-                message_vision("糟糕！$N一不小心，几滴铁水溅到了脚上，痛得$N哇哇大叫!\n",me);
+                message_vision("糟糕！$N一不小心，幾滴鐵水濺到了腳上，痛得$N哇哇大叫!\n",me);
                 me->receive_wound("qi",100);
                 busy_time=3;
         }
@@ -144,27 +144,27 @@ int add_xiaohuang(string arg)
         object me=this_player();
 
         if( me->is_busy() || query_temp("pending/job_busy", me) )
-                return notify_fail("你正忙着呢。\n");
+                return notify_fail("你正忙著呢。\n");
 
         if (!arg || sscanf(arg, "%s in %s", item, target) != 2 )
-            return notify_fail("你要将什么东西放进哪里？\n");
+            return notify_fail("你要將什麼東西放進哪裡？\n");
 
-        if (item != "硝磺" || target != "火枪模子")
-                return notify_fail("你要将什么东西放进哪里？\n");
+        if (item != "硝磺" || target != "火槍模子")
+                return notify_fail("你要將什麼東西放進哪裡？\n");
 
         if (!(xiaohuang=present("xiaohuang shi",me)) )
-                return notify_fail("你身上并没有硝磺石。\n");
+                return notify_fail("你身上並沒有硝磺石。\n");
 
         if (!present("huoqiang muzi",environment(this_object())) )
-                return notify_fail("这里没有火枪模子。\n");
+                return notify_fail("這裡沒有火槍模子。\n");
 
         if( !query_temp("pouring", me) )
-                return notify_fail("好象还没轮到你吧。\n");
+                return notify_fail("好象還沒輪到你吧。\n");
 
         if( query("qi", me)<50 || query("jing", me)<50 )
-                return notify_fail(RED"你已经精疲力竭了！\n"NOR);
+                return notify_fail(RED"你已經精疲力竭了！\n"NOR);
 
-        message_vision("$N往火枪模子里添了一些硝磺。\n",me);
+        message_vision("$N往火槍模子裡添了一些硝磺。\n",me);
         destruct(xiaohuang);
 
         addn("jing", -30, me);
@@ -182,8 +182,8 @@ void job_done(object me)
 {
         object huoqiang;
 
-        message_vision("$N揭开模子，看来铁水已经凝固。$N浇上一盆冷水，"+
-                        "只听哧哧声响，一阵刺鼻的浓烟过后，火枪已经制成。\n",me);
+        message_vision("$N揭開模子，看來鐵水已經凝固。$N澆上一盆冷水，"+
+                        "只聽哧哧聲響，一陣刺鼻的濃煙過後，火槍已經制成。\n",me);
         huoqiang=new(OBJ_PATH"/huoqiang");
         huoqiang->move(me);
         remove_action("add_xiaohuang","add");

@@ -4,8 +4,8 @@ void create()
 {
         set("short", "竹林");
         set("long", @LONG
-这里是青竹林，常有蛇出没。南边是蒿草丛。北边有一个大岩洞，
-从里面传出一阵嘶嘶的声音。
+這裡是青竹林，常有蛇出沒。南邊是蒿草叢。北邊有一個大巖洞，
+從裡面傳出一陣嘶嘶的聲音。
 LONG );
         set("outdoors", "baituo");
         set("exits",([

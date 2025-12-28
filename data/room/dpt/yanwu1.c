@@ -5,10 +5,10 @@
 
 void create()
 {
-        set("short", "游戏基地演武厅");
+        set("short", "遊戲基地演武廳");
 	set ("long", @LONG
-这是游戏基地的演武厅，有时有些江湖朋友来会，想一试身手，
-就在这里比武较量。 
+這是遊戲基地的演武廳，有時有些江湖朋友來會，想一試身手，
+就在這裡比武較量。 
 LONG );
 
         set("exits", ([
@@ -25,8 +25,8 @@ LONG );
         setup();
 
         set("room_owner", "多炮塔");
-        set("room_name", "游戏基地");
+        set("room_name", "遊戲基地");
         set("room_id", "gamebase");
         set("room_owner_id", "dpt");
-        set("room_position", "南海之滨");
+        set("room_position", "南海之濱");
 }

@@ -7,8 +7,8 @@ inherit F_DEALER;
 
 void create()
 {
-        set_name("陈有德", ({ "chen youde", "chen" }));
-        set("long", "陈有德是扬州武馆馆长。\n");
+        set_name("陳有德", ({ "chen youde", "chen" }));
+        set("long", "陳有德是揚州武館館長。\n");
         set("gender", "男性");
         set("age", 45);
         set_skill("dodge", 80);
@@ -63,20 +63,20 @@ int accept_object(object who, object ob)
 {
         if( query("combat_exp", who) >= 3500 )
         {
-                message_vision("陈有德望着$N说：你的武功应该"
-                               "历练江湖才能再长进，不能埋没在这里了。\n", who);
+                message_vision("陳有德望著$N說：你的武功應該"
+                               "歷練江湖才能再長進，不能埋沒在這裡了。\n", who);
                 return 0;
         }
 
         if( query("money_id", ob) && ob->value() >= 500 )
         {
                 set_temp("marks/yangzhou_paied", 1, who);
-                message_vision("陈有德对$N说：好！这位" + RANK_D->query_respect(who) +
-                               "想学什么呢？\n" , who);
+                message_vision("陳有德對$N說：好！這位" + RANK_D->query_respect(who) +
+                               "想學什麼呢？\n" , who);
                 return 1;
         } else
-                message_vision("陈有德皱眉对$N说：钱我不在乎"
-                               "。可你也给的也太少了点儿吧？\n", who);
+                message_vision("陳有德皺眉對$N說：錢我不在乎"
+                               "。可你也給的也太少了點兒吧？\n", who);
         return 0;
 }
 

@@ -16,8 +16,8 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", "符文：耀明宗飘符，可以放入凹槽物品。\n");
-                set("unit", "个");
+                set("long", "符文：耀明宗飄符，可以放入凹槽物品。\n");
+                set("unit", "個");
                 set("enchase/SN", 11);
                 set("enchase/type", "all");
                 set("enchase/consistence", 100); 

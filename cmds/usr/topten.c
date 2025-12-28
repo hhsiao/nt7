@@ -12,18 +12,18 @@ int main(object me, string arg)
 
         seteuid(geteuid(me));
         if (!arg||arg=="")
-                  return notify_fail("指令格式 : topten 排行类型
-目前的排行类型有：\n
+                  return notify_fail("指令格式 : topten 排行類型
+目前的排行類型有：\n
         【"+LOCAL_MUD_NAME()+"】十大高手排行榜（gaoshou）
-        【"+LOCAL_MUD_NAME()+"】十大新锐排行榜（xinrui）
-        【"+LOCAL_MUD_NAME()+"】十大经验排行榜（exp）
+        【"+LOCAL_MUD_NAME()+"】十大新銳排行榜（xinrui）
+        【"+LOCAL_MUD_NAME()+"】十大經驗排行榜（exp）
         【"+LOCAL_MUD_NAME()+"】十大富翁排行榜（richman）
-        【"+LOCAL_MUD_NAME()+"】十大内力排行榜（neili）
+        【"+LOCAL_MUD_NAME()+"】十大內力排行榜（neili）
         【"+LOCAL_MUD_NAME()+"】十大精力排行榜（jingli）
         【"+LOCAL_MUD_NAME()+"】十大文豪排行榜（dushu）\n");
 
         if( time()-query_temp("last_topten", me)<1 )
-              return notify_fail("系统气喘嘘地叹道：慢慢来 ....\n");  
+              return notify_fail("系統氣喘噓地嘆道：慢慢來 ....\n");  
 
         if( !wizardp(me) )
         set_temp("last_topten", time(), me);
@@ -33,12 +33,12 @@ int main(object me, string arg)
               type="xinrui";
         else if(arg=="exp")
         {
-              // if (!wizardp(me)) return notify_fail("你无权查看这个项目。\n");
+              // if (!wizardp(me)) return notify_fail("你無權查看這個項目。\n");
               type="exp";
         }
         else if(arg=="richman"||arg=="rich")
         {
-              // if (!wizardp(me)) return notify_fail("你无权查看这个项目。\n");
+              // if (!wizardp(me)) return notify_fail("你無權查看這個項目。\n");
               type="rich";
         }
         else if(arg=="neili")
@@ -65,12 +65,12 @@ int main(object me, string arg)
         } else if (type == "xinrui")
         {
                 paiming = XINRUI_D->query_tops();
-                str = HIC "      *          旭       日       东       升          *\n"NOR;
+                str = HIC "      *          旭       日       東       升          *\n"NOR;
                 str += HIC "-------------------------------------------------------------\n";
                 str += "\n";
                 for (i = 0;i < sizeof(paiming);i++)
                 {
-                        str += HIY + "   【第" + chinese_number(i+1) + "新锐】 " + NOR + 
+                        str += HIY + "   【第" + chinese_number(i+1) + "新銳】 " + NOR + 
                                paiming[i]["title"] + "\n";
                         str += "\n";
                 }
@@ -83,13 +83,13 @@ int main(object me, string arg)
 int help(object me)
 {
 write(@HELP
-指令格式 : topten 排行类型
-目前的排行类型有:
+指令格式 : topten 排行類型
+目前的排行類型有:
 gaoshou  十大高手
-xinrui   十大新锐
-exp      十大经验[巫师查看]
-richman  十大富翁[巫师查看]
-neili    十大内力
+xinrui   十大新銳
+exp      十大經驗[巫師查看]
+richman  十大富翁[巫師查看]
+neili    十大內力
 jingli   十大精力
 dushu    十大文采
 HELP

@@ -1,6 +1,6 @@
 // spear.c
 // 自造物品 (by Find.)
-// 没有安全问题但太麻烦
+// 沒有安全問題但太麻煩
 
 #include <mine_def.h>
 #include <weapon.h>
@@ -112,12 +112,12 @@ protected void create(class weapon_args arg)
 
         else
         {
-                set_name( "长枪", ({ "spear" }) );
+                set_name( "長槍", ({ "spear" }) );
                 set_weight(6000);
-                set("long", "一枝银色两丈多的长枪。\n");
+                set("long", "一枝銀色兩丈多的長槍。\n");
                 set("value", 500);
                 set("material", "iron");
-                set("wield_msg", "$N拿起一枝$n，握在手中当作武器。\n");
+                set("wield_msg", "$N拿起一枝$n，握在手中當作武器。\n");
                 set("unwield_msg", "$N放下手中的$n。\n");  
                 init_fork(25);
         }

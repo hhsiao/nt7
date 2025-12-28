@@ -5,10 +5,10 @@ void create()
 {
         set_name(GRN "大青蛙" NOR, ({ "frog" }));
         set("age", 7);
-        set("long", GRN "这是一只黑丝大青蛙，长在深不见日的水潭\n"
-                    "里，全身恶臭，肥肥壮壮，一对血红的眼睛\n十分"
-                    "恶心，你真想杀了它。\n");
-        set("limbs", ({ "蛙前爪", "蛙后抓", "蛙嘴" }) );
+        set("long", GRN "這是一隻黑絲大青蛙，長在深不見日的水潭\n"
+                    "裡，全身惡臭，肥肥壯壯，一對血紅的眼睛\n十分"
+                    "噁心，你真想殺了它。\n");
+        set("limbs", ({ "蛙前爪", "蛙後抓", "蛙嘴" }) );
         set("verbs", ({ "bite", "claw" }) );
         set("combat_exp", 50);
         set("shen_type", -1);

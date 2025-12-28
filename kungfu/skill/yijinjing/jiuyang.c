@@ -12,24 +12,24 @@ int exert(object me, object target)
         mapping buff, data;
 
         if( !query("can_exert/yijinjing/jiuyang", me) )
-                return notify_fail("你还没有领悟过少林九阳真气呢！\n");
+                return notify_fail("你還沒有領悟過少林九陽真氣呢！\n");
 
         if ((int)me->query_skill("yijinjing", 1) < 140)
-                return notify_fail("你的易筋经修为如此之浅还想运用九阳真气？\n");
+                return notify_fail("你的易筋經修為如此之淺還想運用九陽真氣？\n");
 
         if( query("max_neili", me)<1500 )
-                return notify_fail("你的内力修为太差，多多打坐吧。\n");
+                return notify_fail("你的內力修為太差，多多打坐吧。\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你的真气不够。\n");
+                return notify_fail("你的真氣不夠。\n");
 
         if( /*BUFF_D->check_buff(me, "powerup")
                 || BUFF_D->check_buff(me,"dodgeup")
                 || */BUFF_D->check_buff(me,"atkup") )
-                return notify_fail("你已经在运用类似的武功了。\n");
+                return notify_fail("你已經在運用類似的武功了。\n");
 
         
-        msg = HIR"\n$N潜运少林九阳神功，体内真气澎湃不息，全身佛光流动，宝相庄严！\n" NOR;
+        msg = HIR"\n$N潛運少林九陽神功，體內真氣澎湃不息，全身佛光流動，寶相莊嚴！\n" NOR;
         
         skill = me->query_skill("yijinjing",1);
         addn("neili", -300, me);
@@ -45,11 +45,11 @@ int exert(object me, object target)
                 "target": me,
                 "type"  : "atkup",
                 "attr"  : "bless",
-                "name"  : "易筋经·九阳真气",
+                "name"  : "易筋經·九陽真氣",
                 "time"  : skill,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : "你将九阳真气收回丹田，面露慈祥笑容。\n",                  
+                "disa_msg" : "你將九陽真氣收回丹田，面露慈祥笑容。\n",                  
         ]);      
         BUFF_D->buffup(buff);
         if( me->is_fighting() ) me->start_busy(2);

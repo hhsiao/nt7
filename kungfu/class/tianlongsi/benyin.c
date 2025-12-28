@@ -12,8 +12,8 @@ void create()
 {
         set_name("本因", ({ "ben yin","yin"}) );
         set("gender", "男性" );
-        set("title", "天龙寺第十七代住持");
-        set("long", "一个神情潇洒的僧人，他是天龙寺住持方丈。\n");
+        set("title", "天龍寺第十七代住持");
+        set("long", "一個神情瀟灑的僧人，他是天龍寺住持方丈。\n");
         set("class", "bonze");
         set("age", 43);
         set("shen_type", 1);
@@ -53,8 +53,8 @@ void create()
         prepare_skill("finger","sun-finger");
         set("inquiry" ,([
                 "舍利子"     : (: ask_me() :),
-                "六脉神剑谱" : "哼！\n",
-                "六脉神剑"   :  "哼！\n",
+                "六脈神劍譜" : "哼！\n",
+                "六脈神劍"   :  "哼！\n",
         ]));
 
         create_family("大理段家", 15, "高僧");
@@ -69,7 +69,7 @@ string ask_me()
         if( query_temp("marks/ask_temp0", me) )
         {
                 set_temp("marks/ask_temp1", 1, me);
-                return "“那是本寺的镇寺之宝，多年以前不慎丢失。施主如能找回此物，\n         老衲必有重谢。”\n";
+                return "“那是本寺的鎮寺之寶，多年以前不慎丟失。施主如能找回此物，\n         老衲必有重謝。”\n";
         }
         else
                 return "“施主不可妄言。”\n";
@@ -79,7 +79,7 @@ int accept_object(object who, object ob)
 {
         if( query("id", ob) == "jinhe" )
         {
-                message_vision("本因大喜道：“多谢施主！施主若是有缘人，请到牟尼堂取本寺之宝。\n", who);
+                message_vision("本因大喜道：“多謝施主！施主若是有緣人，請到牟尼堂取本寺之寶。\n", who);
                 set_temp("marks/find_temp", 1, who);
                 who->move("/d/tianlongsi/banruotai");
                 return 1;

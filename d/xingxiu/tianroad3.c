@@ -10,15 +10,15 @@ void create()
 {
         set("short", "天山山路");
         set("long", @LONG
-这里是天山东麓，山风从山上吹来，你冷得瑟瑟发抖。路边是一片
-草原。西面一条深涧(valley)挡住了上山的路。
+這裡是天山東麓，山風從山上吹來，你冷得瑟瑟發抖。路邊是一片
+草原。西面一條深澗(valley)擋住了上山的路。
 LONG );
         set("exits", ([
                 "northup"  : __DIR__"xxroad4",
                 "eastdown" : __DIR__"xxh",
         ]));
         set("item_desc", ([
-                "valley" : "深涧有三丈多宽，不知道能不能跳(jump)过去。\n"
+                "valley" : "深澗有三丈多寬，不知道能不能跳(jump)過去。\n"
         ]) );
         set("objects", ([
                 CLASS_D("xingxiu")+"/azi" : 1
@@ -45,19 +45,19 @@ int do_jump(string arg)
         if( arg=="valley" )
         {
 /*                if (present("horse", me)) { */
-                if( query_temp("marks/骑", me) )
+                if( query_temp("marks/騎", me) )
                 {
-                        message("vision", me->name() + "猛地一提缰绳，胯下的伊犁马一声长嘶越过了深涧。\n", environment(me), ({me}) );
-                        write("你猛地一提缰绳，胯下的伊犁马一声长嘶越过了深涧。\n");
+                        message("vision", me->name() + "猛地一提韁繩，胯下的伊犁馬一聲長嘶越過了深澗。\n", environment(me), ({me}) );
+                        write("你猛地一提韁繩，胯下的伊犁馬一聲長嘶越過了深澗。\n");
                         me->move("/d/xingxiu/tianroad4");
-                        message("vision","只听得唏溜溜一声马嘶，" + me->name() + "从深涧的那端纵马跳了过来，好似当年马跳\n檀溪的玄德公。\n", environment(me), ({me}) );
-                        write( "只听得唏溜溜一声马嘶，你从深涧的那端纵马跳了过来，真是酷呆了。\n你乐得从马背上滚了下来。\n");
-                        set_temp("marks/骑", 0, me);
+                        message("vision","只聽得唏溜溜一聲馬嘶，" + me->name() + "從深澗的那端縱馬跳了過來，好似當年馬跳\n檀溪的玄德公。\n", environment(me), ({me}) );
+                        write( "只聽得唏溜溜一聲馬嘶，你從深澗的那端縱馬跳了過來，真是酷呆了。\n你樂得從馬背上滾了下來。\n");
+                        set_temp("marks/騎", 0, me);
                         return 1;
                 }
                 else
                 {
-                        write("你试了试，发现深涧的那边比这边高，非是人力可以跳上去的。\n");
+                        write("你試了試，發現深澗的那邊比這邊高，非是人力可以跳上去的。\n");
                         return 1;
                 }
         }
@@ -71,7 +71,7 @@ int do_jump(string arg)
         if (! arg || arg != "valley")
                 return notify_fail("你要往哪跳？\n");
 
-        message_vision(HIY "\n$N" HIY "豫了一下，鼓气勇气，朝着对面的山崖跳了过"
+        message_vision(HIY "\n$N" HIY "豫了一下，鼓氣勇氣，朝著對面的山崖跳了過"
                        "去。\n\n" NOR, me);
 
         if ((int)me->query_skill("dodge", 1) < 100 )
@@ -79,14 +79,14 @@ int do_jump(string arg)
                 me->move(__DIR__"shanjiao");
                 me->receive_wound("qi", 300);
                 me->unconcious();
-                message("vision", HIR "\n突然听得「砰」的一声，只见一个人从上面"
-                                  "的山峰上坠了下来，真是壮观。\n" NOR,
+                message("vision", HIR "\n突然聽得「砰」的一聲，只見一個人從上面"
+                                  "的山峰上墜了下來，真是壯觀。\n" NOR,
                                   environment(me), ({me}));
         } else
         {
                 me->move(__DIR__"tianroad4");
-                message("vision", HIY "\n只见" + me->name() + HIY "从对面的山崖"
-                                  "上跳了过来。\n" NOR, environment(me), ({me}));
+                message("vision", HIY "\n只見" + me->name() + HIY "從對面的山崖"
+                                  "上跳了過來。\n" NOR, environment(me), ({me}));
         }
         return 1;
 }

@@ -1,5 +1,5 @@
 // This program is a part of NITAN MudLIB
-// /adm/daemons/x_questd.c 宗师口讯任务守护进程
+// /adm/daemons/x_questd.c 宗師口訊任務守護進程
 
 #define ANTI_ROBOT      "/kungfu/class/ultra/robot"
 
@@ -11,17 +11,17 @@ public int query_quest(object me, object ob)
     object maze_target;
     object maze_object;
 
-    temp = X_PointD->get_question();    //由守护程序产生点阵任务
+    temp = X_PointD->get_question();    //由守護程序產生點陣任務
     // temp =  ANTI_ROBOT->get_question();
     question = temp["question"];
     answer = temp["answer"];
 
-    message("vision", sprintf("%s小声的对%s吩咐着什么，%s一边听，"
-                              "一边不住的点头。\n",
+    message("vision", sprintf("%s小聲的對%s吩咐著什麼，%s一邊聽，"
+                              "一邊不住的點頭。\n",
                                 ob->name(1), me->name(), me->name()),
                                 environment(me), ({ me }));
 
-    npc = new(CLASS_D("generate") + "/player_npc.c");   //生成收讯人
+    npc = new(CLASS_D("generate") + "/player_npc.c");   //生成收訊人
     FUBEN_D->clear_fuben("ultra",query("id", me));
     maze_object=get_object("/f/ultra/"+query("id", me)+"/maze");
     maze_object->set_maze_boss(npc);
@@ -32,8 +32,8 @@ public int query_quest(object me, object ob)
     set_temp("quester",query("id",  me), npc);
     set("ultra_whisper",query("id",  me), npc);
 
-    msg = sprintf("\n%s对你说道：你赶紧走一趟，将这个口讯传送"
-                  "(whisper)给%s，据说他正在一个迷宫中，不得延误：\n",
+    msg = sprintf("\n%s對你說道：你趕緊走一趟，將這個口訊傳送"
+                  "(whisper)給%s，據說他正在一個迷宮中，不得延誤：\n",
                     ob->name(1), npc->name(1));
     msg += question;
 
@@ -44,7 +44,7 @@ public int query_quest(object me, object ob)
     quest["name"] = npc->name(1);
     quest["id"]=query("id", npc);
     quest["answer"] = answer;
-    quest["type"] = "传";
+    quest["type"] = "傳";
     switch(query("id", ob) )
     {
         case "dugu qiubai":

@@ -1,4 +1,4 @@
-// 玩家任务：judge.c
+// 玩家任務：judge.c
 
 #include <ansi.h>
 #include <quest.h>
@@ -17,15 +17,15 @@ inherit QUEST_OB;
 string ask_1_for_2();
 string ask_2_for_1();
 
-// 任务对象创建
+// 任務對象創建
 void create()
 {
         setup();
 }
 
-// 启动一个任务
-// 输入一个物品进行寻找，自动生成两个人物和两个地点，其中杀
-// 了第一个人即可获得该物品，然后交给第二个人领取奖励。
+// 啟動一個任務
+// 輸入一個物品進行尋找，自動生成兩個人物和兩個地點，其中殺
+// 了第一個人即可獲得該物品，然後交給第二個人領取獎勵。
 void init_quest()
 {
         string name;
@@ -33,21 +33,21 @@ void init_quest()
         object npc1, npc2;
         mapping my;
 
-        // 产生两个随机地点
+        // 產生兩個隨機地點
         place = NPC_D->random_place(({ "西域" }));
 
-        // 产生两个随机人物
+        // 產生兩個隨機人物
         npc1 = new(CLASS_D("generate") + "/questnpc");
         npc2 = new(CLASS_D("generate") + "/questnpc");
 
         set_temp("quest_ob", this_object(), npc1);
         set_temp("quest_ob", this_object(), npc2);
 
-        // 生成任务的名字
+        // 生成任務的名字
         name = npc1->name(1) + "和" + npc2->name(1) + "的事";
         set_name(name);
 
-        // 记录这些人物、地点和物品信息
+        // 記錄這些人物、地點和物品信息
         my = query_entire_dbase();
 
         NPC1 = npc1;
@@ -58,7 +58,7 @@ void init_quest()
         NPC1_ID=query("id", npc1);
         NPC2_ID=query("id", npc2);
 
-        // 人物出现
+        // 人物出現
         NPC_D->place_npc(npc1, 0, ({ place }));
         npc2->move(environment(npc1));
         delete("chat_chance", npc1);
@@ -66,7 +66,7 @@ void init_quest()
         delete("chat_chance", npc2);
         delete("chat_msg", npc2);
 
-        // 设置对话信息
+        // 設置對話信息
         npc1->set("inquiry",([
                 NPC1_NAME : "那就是鄙人我了！",
                 NPC1_ID   : "那就是鄙人我了！",
@@ -76,20 +76,20 @@ void init_quest()
         npc2->set("inquiry",([
                 NPC1_NAME : (: ask_2_for_1 :),
                 NPC1_ID   : (: ask_2_for_1 :),
-                NPC2_NAME : "正是区区，有何贵干？",
-                NPC2_ID   : "正是区区，有何贵干？" ]));
+                NPC2_NAME : "正是區區，有何貴幹？",
+                NPC2_ID   : "正是區區，有何貴幹？" ]));
 
-        // 切换到正常状态
+        // 切換到正常狀態
         change_status(QUEST_READY);
 
-        // 设置任务最长存活时间：15分钟
+        // 設置任務最長存活時間：15分鐘
         set("live_time", 600);
 
-        // 登记谣言消息
+        // 登記謠言消息
         register_information();
 }
 
-// 任务终止
+// 任務終止
 void cancel_quest()
 {
         mapping my = query_entire_dbase();
@@ -104,88 +104,88 @@ void cancel_quest()
         if (objectp(NPC2))
                 destruct(NPC2);
 
-        // 任务消亡
+        // 任務消亡
         ::cancel_quest();
 }
 
-// 询问NPC1有关NPC2的事情
+// 詢問NPC1有關NPC2的事情
 string ask_1_for_2()
 {
         mapping my = query_entire_dbase();
 
         if (! objectp(NPC2))
-                return "天啊，他...他怎么这就...我也没想这样啊！";
+                return "天啊，他...他怎麼這就...我也沒想這樣啊！";
 
         if (! environment(NPC2))
-                return NPC2->name() + "这" + RANK_D->query_rude(NPC) +
-                       "不知道溜到哪里去了。";
+                return NPC2->name() + "這" + RANK_D->query_rude(NPC) +
+                       "不知道溜到哪裡去了。";
 
         switch (random(3))
         {
         case 0:
-                return "这混蛋，简直就是不可理喻。";
+                return "這混蛋，簡直就是不可理喻。";
         case 1:
-                return "碰到他，我算是到了十八辈子的霉，不，十九辈子！";
+                return "碰到他，我算是到了十八輩子的黴，不，十九輩子！";
         default:
-                return "我和他没法讲理，因为他就没理！";
+                return "我和他沒法講理，因為他就沒理！";
         }
 }
 
-// 询问NPC2有关NPC1的事情
+// 詢問NPC2有關NPC1的事情
 string ask_2_for_1()
 {
         mapping my = query_entire_dbase();
 
         if (! objectp(NPC1))
-                return "我...我可没有想害他...真的没有啊！";
+                return "我...我可沒有想害他...真的沒有啊！";
 
         if (! environment(NPC1))
-                return "他奶奶的，" + NPC2->name() + "这个" +
+                return "他奶奶的，" + NPC2->name() + "這個" +
                        RANK_D->query_rude(NPC) + "！跑了？";
 
         switch (random(3))
         {
         case 0:
-                return "不要提他，听到这个名字我就生气！";
+                return "不要提他，聽到這個名字我就生氣！";
         case 1:
-                return "你别添乱，这人让我堵心。";
+                return "你別添亂，這人讓我堵心。";
         default:
-                return "他以为自己声音大就占理了？他是老天啊，靠打雷讲理？";
+                return "他以為自己聲音大就佔理了？他是老天啊，靠打雷講理？";
         }
 }
 
-// 询问NPC1的状况
+// 詢問NPC1的狀況
 string ask_npc1(object knower, object me)
 {
         mapping my = query_entire_dbase();
 
         if (! objectp(NPC1))
-                return CYN "嘿，据说" HIY + NPC1_NAME + NOR CYN
-                       "被人做掉了，你看看，火气大就没好处吧！" NOR;
+                return CYN "嘿，據說" HIY + NPC1_NAME + NOR CYN
+                       "被人做掉了，你看看，火氣大就沒好處吧！" NOR;
 
-        return CYN "哦，这人呀，我也不认识他，没听过他的字号。" NOR;
+        return CYN "哦，這人呀，我也不認識他，沒聽過他的字號。" NOR;
 }
 
-// 询问NPC2的状况
+// 詢問NPC2的狀況
 string ask_npc2(object knower, object me)
 {
         mapping my = query_entire_dbase();
 
         if (! objectp(NPC2))
-                return CYN "嘿，据说" HIY + NPC2_NAME + NOR CYN
-                       "被人砍了，脾气大敢情就这下场呀。" NOR;
+                return CYN "嘿，據說" HIY + NPC2_NAME + NOR CYN
+                       "被人砍了，脾氣大敢情就這下場呀。" NOR;
 
-        return CYN "这人我没怎么听说过，唉！孤陋寡闻啊。" NOR;
+        return CYN "這人我沒怎麼聽說過，唉！孤陋寡聞啊。" NOR;
 }
 
-// 询问单正
+// 詢問單正
 string ask_shan(object knower, object me)
 {
         if( query("weiwang", me)<1000 )
                 call_out("do_whisper", 1, knower, me);
 
-        return CYN "连铁面判官你都不认识？啧啧，他老人家可是武林"
-                   "中的\n名人呀，家住泰山，专门调节各种纠纷，处"
+        return CYN "連鐵面判官你都不認識？嘖嘖，他老人家可是武林"
+                   "中的\n名人呀，家住泰山，專門調節各種糾紛，處"
                    "理不平之事。\n" NOR;
 }
 
@@ -196,12 +196,12 @@ void do_whisper(object knower, object me)
                 return;
 
         tell_object(me, WHT + knower->name() + WHT "悄悄的和你"
-                    "说：“可惜你的江湖威望太低了，请不动他。”\n");
+                    "說：“可惜你的江湖威望太低了，請不動他。”\n");
         message("vision", knower->name() + "在" + me->name() +
-                "的耳边悄悄的说了些什么。\n", environment(me), ({ me }));
+                "的耳邊悄悄的說了些什麼。\n", environment(me), ({ me }));
 }
 
-// 任务介绍
+// 任務介紹
 string query_introduce(object knower)
 {
         mapping my = query_entire_dbase();
@@ -212,32 +212,32 @@ string query_introduce(object knower)
                 call_out("do_say", 1, knower);
         }
 
-        return CYN "听说" HIY + NPC1_NAME + NOR CYN "和" +
+        return CYN "聽說" HIY + NPC1_NAME + NOR CYN "和" +
                HIY + NPC2_NAME + NOR CYN "在" + PLACE +
-               CYN "发生了纠纷，不知道为什么，要是"
-               HIY "单正" NOR CYN "在就好了。" NOR;
+               CYN "發生了糾紛，不知道為什麼，要是"
+               HIY "單正" NOR CYN "在就好了。" NOR;
 }
 
-// 这个消息能够被散布吗？
+// 這個消息能夠被散佈嗎？
 int can_rumor_by(object knower)
 {
-        // 20%的几率被散布
+        // 20%的幾率被散佈
         return (random(10) < 2);
 }
 
-// 登记该任务的消息
+// 登記該任務的消息
 void register_information()
 {
         mapping my = query_entire_dbase();
 
         if (! clonep() || ! mapp(my))
-                // 不是任务，所以不登记
+                // 不是任務，所以不登記
                 return;
 
         set_information(NPC1_NAME, (: ask_npc1 :));
         set_information(NPC2_NAME, (: ask_npc2 :));
         set_information(NPC1_ID, (: ask_npc1 :));
         set_information(NPC2_ID, (: ask_npc2 :));
-        set_information("单正", (: ask_shan :));
+        set_information("單正", (: ask_shan :));
         set_information("shan zheng", (: ask_shan :));
 }

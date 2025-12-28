@@ -51,7 +51,7 @@ void connect()
         if( sizeof(connectsort) ) return;
         
         /*
-         * 多线程同时获取所有的mud信息
+         * 多線程同時獲取所有的mud信息
          */
         
         cnt = keys(mudlist);
@@ -80,7 +80,7 @@ void connect()
                         }
                 }
                 
-                DEBUG((i+1)+". "+ipport+" 连线检查");                
+                DEBUG((i+1)+". "+ipport+" 連線檢查");                
                 
                 socket_fd = SOCKET_D->socket_open(address, port, STREAM,
                                 (: get_each_mud_rece :),(: get_each_mud_close :), (: get_each_mud_status :));
@@ -93,7 +93,7 @@ void connect()
                 else
                 {
                         connect_times++;
-                        DEBUG((i+1)+". "+ipport+" 连线逾时"+connect_times+"次");
+                        DEBUG((i+1)+". "+ipport+" 連線逾時"+connect_times+"次");
                         socket_fd = SOCKET_D->socket_open(address, port, STREAM,
                                         (: get_each_mud_rece :),(: get_each_mud_close :), (: get_each_mud_status :));
                                         
@@ -104,7 +104,7 @@ void connect()
                         }
                         else
                         {                              
-                                DEBUG((i+1)+". "+ipport+" 连线逾时失败");
+                                DEBUG((i+1)+". "+ipport+" 連線逾時失敗");
                         }
                 }
         }
@@ -125,7 +125,7 @@ void connect_check()
         sscanf(ipport, "%s %*d", address);
         if( sscanf(address, "%*d.%*d.%*d.%*d") == 4 )
         {
-                DEBUG(sizeof(connectsort)+". "+connectsort[0]+" 域名无需解析"); 
+                DEBUG(sizeof(connectsort)+". "+connectsort[0]+" 域名無需解析"); 
                 connectsort = connectsort[1..];  
                 connect_check();
                 return;
@@ -134,13 +134,13 @@ void connect_check()
         {
                 if( !undefinedp(resolvedaddress[address]) )
                 {
-                        DEBUG(sizeof(connectsort)+". "+connectsort[0]+" 域名已经解析"); 
+                        DEBUG(sizeof(connectsort)+". "+connectsort[0]+" 域名已經解析"); 
                         connectsort = connectsort[1..];                        
                         connect_check();
                         return;
                 }
                 
-                DEBUG(sizeof(connectsort)+". "+address+" 进行名称解析");
+                DEBUG(sizeof(connectsort)+". "+address+" 進行名稱解析");
                 resolve(address, "resolve_callback");
         }                    
 }
@@ -155,11 +155,11 @@ void resolve_callback(string address, string resolved, int key)
         if( !resolved )
         {
                 resolve_times++;
-                DEBUG(sizeof(connectsort)+". "+ipport+" 域名检查逾时"+resolve_times+"次");
+                DEBUG(sizeof(connectsort)+". "+ipport+" 域名檢查逾時"+resolve_times+"次");
                 if( resolve_times > 1 )
                 {
                         resolve_times = 0;
-                        DEBUG(sizeof(connectsort)+". "+ipport+" 域名检查逾时失败");
+                        DEBUG(sizeof(connectsort)+". "+ipport+" 域名檢查逾時失敗");
                         connectsort = connectsort[1..];
                         connect_check();
                 }
@@ -183,15 +183,15 @@ void resolve_callback(string address, string resolved, int key)
 void get_each_mud_status(int fd, string msg)
 {
         if( fd && !undefinedp(socket_obs[fd]) )
-                DEBUG(sprintf("%d. 读取MUD『%s』信息状况：%s\n",
+                DEBUG(sprintf("%d. 讀取MUD『%s』信息狀況：%s\n",
                               fd, socket_obs[fd][IPPORT], msg));
         else
-                DEBUG(sprintf("%d. 读取MUD信息状况：%s\n", fd, msg));
+                DEBUG(sprintf("%d. 讀取MUD信息狀況：%s\n", fd, msg));
 }
 
 void get_each_mud_rece(int fd, mixed msg)
 {
-        // 获取mud的login内容信息放入mud_data["fd"]中
+        // 獲取mud的login內容信息放入mud_data["fd"]中
         if( undefinedp(mud_data[fd]) )
                 mud_data[fd] = msg;
         else
@@ -221,7 +221,7 @@ void get_each_mud_close(int fd)
         
         if( !sizeof(msg) )
         {
-                // 读取不成功，再来一次      
+                // 讀取不成功，再來一次      
                 if( member_array(ipport,connect_obs) == -1 )
                 {
                         socket_fd = SOCKET_D->socket_open(address, port, STREAM,
@@ -257,48 +257,48 @@ void get_each_mud_close(int fd)
                 mudlist[ipport]["USERS"] = implode(usercount, (:$1+$2:));
         }
 
-        DEBUG(fd+". "+ipport+" 侦测连线状况完毕");
+        DEBUG(fd+". "+ipport+" 偵測連線狀況完畢");
         socket_close(fd);
         SOCKET_D->close_socket(fd);
         map_delete(socket_obs, fd);
         
-        // 所有的mud数据都读取完毕
+        // 所有的mud數據都讀取完畢
         if( sizeof(socket_obs) < 1 )
         {
                 mud_data = ([]);
                 connect_obs = ({});
 
                 save();
-                MSG("MUDLIST 更新资料完毕，共 "+sizeof(mudlist)+" 组 Mud 资料");
+                MSG("MUDLIST 更新資料完畢，共 "+sizeof(mudlist)+" 組 Mud 資料");
                 update_mrtg_data();
                 HTML_D->create_mudlist_html();
                 return;
         }
 }
 
-// 将单一 Mud 加入 MRTG
+// 將單一 Mud 加入 MRTG
 void add_mud_to_mrtg(string name)
 {
         mapping info = ([
                 "Directory":"mudlist/"+replace_string(name, " ", "_"),
                 "Target":"`cat \""LIBRARY_PATH+MRTGDATA+name+"\"`",
                 "YLegend":"user(s)",
-                "LegendI":"线上人数",
+                "LegendI":"線上人數",
                 "LegendO":"",
-                "Legend1":"在游戏中的线上使用者人数",
+                "Legend1":"在遊戲中的線上使用者人數",
                 "ShortLegend":"人",
                 "Legend2":"",
-                "Title": mudlist[name]["MUD_CHINESE_NAME"]+" - "+mudlist[name]["MUD_ENGLISH_NAME"]+" 人数统计列表",
-                "PageTop":mudlist[name]["MUD_CHINESE_NAME"]+" - "+mudlist[name]["MUD_ENGLISH_NAME"]+" 人数统计列表"
+                "Title": mudlist[name]["MUD_CHINESE_NAME"]+" - "+mudlist[name]["MUD_ENGLISH_NAME"]+" 人數統計列表",
+                "PageTop":mudlist[name]["MUD_CHINESE_NAME"]+" - "+mudlist[name]["MUD_ENGLISH_NAME"]+" 人數統計列表"
         ]);
 
-        // 纪录该 Mud 之线上玩家数
+        // 紀錄該 Mud 之線上玩家數
         write_file(MRTGDATA+name, mudlist[name]["USERS"]+"\n0", 1);
 
         MRTG_D->addmrtg(name, info);
 }
 
-// 将中文玩家总数加入 MRTG
+// 將中文玩家總數加入 MRTG
 void add_all_muds_to_mrtg(int alluser)
 {
         string name="0_total_count";
@@ -308,24 +308,24 @@ void add_all_muds_to_mrtg(int alluser)
                 "Directory":"mudlist/"+name,
                 "Target":"`cat \""LIBRARY_PATH+MRTGDATA+name+"\"`",
                 "YLegend":"user(s)",
-                "LegendI":"线上人数",
-                "LegendO":"MUD 间数",
-                "Legend1":"在 MUDs 游戏中的线上总使用者人数",
-                "Legend2":"当时所监测的 MUDs 数量",
+                "LegendI":"線上人數",
+                "LegendO":"MUD 間數",
+                "Legend1":"在 MUDs 遊戲中的線上總使用者人數",
+                "Legend2":"當時所監測的 MUDs 數量",
                 "ShortLegend":"&nbsp",
                 "MaxBytes":10000,
                 "AbsMax":20000,
-                "Title": "MUDs 人数统计列表",
-                "PageTop":"MUDs 人数统计列表"
+                "Title": "MUDs 人數統計列表",
+                "PageTop":"MUDs 人數統計列表"
         ]);
 
-        // 纪录所有 Mud 线上玩家总数
+        // 紀錄所有 Mud 線上玩家總數
         write_file(MRTGDATA+"0_total_count", alluser+"\n"+sizeof(mudlist), 1);
 
         MRTG_D->addmrtg(name, info);
 }
 
-// 更新 MRTG 资讯
+// 更新 MRTG 資訊
 void update_mrtg_data()
 {
         int i;
@@ -336,7 +336,7 @@ void update_mrtg_data()
         {
                 if( !stringp(name) || !mapp(m) ) continue;
 
-                // 分散处理
+                // 分散處理
                 call_out((:add_mud_to_mrtg, name:), ++i*2);
 
                 alluser += m["USERS"];
@@ -363,7 +363,7 @@ void distributed_connect()
         connect_check();
 
         //update_mrtg_data();
-        MSG("MUDLIST 开始取得资讯");
+        MSG("MUDLIST 開始取得資訊");
 }
 
 void change_ipport(string old_ipport, string new_ipport)
@@ -440,5 +440,5 @@ return;
 }
 string query_name()
 {
-        return "泥巴列表系统(MUDLIST_D)";
+        return "泥巴列表系統(MUDLIST_D)";
 }

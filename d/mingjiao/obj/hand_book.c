@@ -4,13 +4,13 @@ inherit ITEM;
 
 void create()
 {
-        set_name("鹰爪手法", ({ "yingzhua shoufa", "shoufa", "book" }));
+        set_name("鷹爪手法", ({ "yingzhua shoufa", "shoufa", "book" }));
         set_weight(1000);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "本");
-                set("long","这是一本讲述基本手法要领的书籍。\n");
+                set("long","這是一本講述基本手法要領的書籍。\n");
                 set("value", 100);
                 set("material", "paper");
                 set("unique", 1);

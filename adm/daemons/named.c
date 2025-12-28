@@ -8,15 +8,15 @@
 inherit F_SAVE;
 inherit F_DBASE;
 
-nosave string *family_name = ({ "东方", "独孤", "慕容", "欧阳", "司马",
-                                "西门", "尉迟", "长孙", "诸葛", "上官",
-                                "夏候", "闻人", "皇甫", "澹台", "公治",
-                                "淳于", "申屠", "公孙", "公羊", "轩辕",
-                                "令狐", "钟离", "宇文", "幕容", "仲孙",
+nosave string *family_name = ({ "東方", "獨孤", "慕容", "歐陽", "司馬",
+                                "西門", "尉遲", "長孫", "諸葛", "上官",
+                                "夏候", "聞人", "皇甫", "澹臺", "公治",
+                                "淳于", "申屠", "公孫", "公羊", "軒轅",
+                                "令狐", "鍾離", "宇文", "幕容", "仲孫",
                                 "司徒", "司空", "端木", "公良", "百里",
-                                "东郭", "南郭", "呼延", "羊舌", "东门",
-                                "南官", "南宫", "拓拔", "完颜", "耶律",
-                                "鲜于" });
+                                "東郭", "南郭", "呼延", "羊舌", "東門",
+                                "南官", "南宮", "拓拔", "完顏", "耶律",
+                                "鮮于" });
 
 void create()
 {
@@ -93,9 +93,9 @@ public string who_is(string name)
 
         if (! stringp(name) || strlen(name) < 2 ||
             ! stringp(id = query(PATH(name))))
-                return "没有人叫这个名字。\n";
+                return "沒有人叫這個名字。\n";
 
-        return "游戏中叫" + name + "的有：" + id + "\n";
+        return "遊戲中叫" + name + "的有：" + id + "\n";
 }
 
 // check the id - name
@@ -171,16 +171,16 @@ public string invalid_new_name(string name)
                 return "不能使用空名字。\n";
 
         if (member_array(name, family_name) != -1)
-                return "不能使用复姓作为名字。\n";
+                return "不能使用複姓作為名字。\n";
 
-        if (strsrch(name, "春龙") != -1)
-                return "不能使用这个名字。\n";
+        if (strsrch(name, "春龍") != -1)
+                return "不能使用這個名字。\n";
 
-        // 和对有关ID-名字的信息
+        // 和對有關ID-名字的信息
         assure_map_name(name);
 
         if (id = query(PATH(name)))
-                return "这个名字和 " + id + " 的名字重复了。\n";
+                return "這個名字和 " + id + " 的名字重複了。\n";
 
         if (strlen(name) < 4)
                 return 0;
@@ -188,18 +188,18 @@ public string invalid_new_name(string name)
         l = strlen(name);
         for (i = 0; i <= l - 4; i++)
         {
-                // 和对有关ID-名字的信息
+                // 和對有關ID-名字的信息
                 assure_map_name(name[i..i + 3]);
                 if (i + 6 <= l)
                         assure_map_name(name[i..i + 5]);
 
                 if (member_array(name[i..i + 3], family_name) == -1 &&
                     stringp(id = query(PATH(name[i..i + 3]))))
-                        return "这个名字和 " + id + " 的名字太接近了。\n";
+                        return "這個名字和 " + id + " 的名字太接近了。\n";
 
                 if ((i + 6 <= l) &&
                     stringp(id = query(PATH(name[i..i + 5]))))
-                        return "这个名字和 " + id + " 的名字太接近了。\n";
+                        return "這個名字和 " + id + " 的名字太接近了。\n";
         }
 
         return 0;

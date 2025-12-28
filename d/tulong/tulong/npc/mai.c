@@ -4,11 +4,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("麦鲸", ({ "mai jing", "mai", "jing" }) );
+        set_name("麥鯨", ({ "mai jing", "mai", "jing" }) );
         set("long",
-                  "这是巨鲸帮帮主麦鲸，身高七尺，满面\n扎须，相貌很是威猛。\n");
+                  "這是巨鯨幫幫主麥鯨，身高七尺，滿面\n扎須，相貌很是威猛。\n");
         set("attitude", "heroism");
-        set("title", WHT "巨鲸帮帮主" NOR);
+        set("title", WHT "巨鯨幫幫主" NOR);
         set("age", 47);
         set("combat_exp", 800000);
         set("max_neili", 1500+random(1000));
@@ -29,25 +29,25 @@ void create()
 
 int accept_fight(object who)
 {
-        command("say 我不和你蛮打，只和你比(bi)一些水上功夫。");
+        command("say 我不和你蠻打，只和你比(bi)一些水上功夫。");
         return 0;
 }
 
 int accept_hit(object who)
 {
-        command("say 我不和你蛮打，只和你比(bi)一些水上功夫。");
+        command("say 我不和你蠻打，只和你比(bi)一些水上功夫。");
         return 0;
 }
 
 int accept_kill(object who)
 {
-        command("say 怎么，想得屠龙刀就非得要行凶不成？");
+        command("say 怎麼，想得屠龍刀就非得要行兇不成？");
         return 1;
 }
 
 int accept_ansuan(object who)
 {
-        return notify_fail("你刚想暗算，可是只见会场里黑压压的挤满了人，根本看不清楚。\n");
+        return notify_fail("你剛想暗算，可是隻見會場裡黑壓壓的擠滿了人，根本看不清楚。\n");
 }
 
 int begin()
@@ -57,10 +57,10 @@ int begin()
         return 0;
 
         command("nod");
-        command("say 我巨鲸帮的绝技，乃是使用水上功夫。");
-        command("say 如今你我各用湿泥糊嘴，比试一下水上功夫，如何？");
+        command("say 我巨鯨幫的絕技，乃是使用水上功夫。");
+        command("say 如今你我各用溼泥糊嘴，比試一下水上功夫，如何？");
 
-        message_vision(HIW "$n和$N各取湿泥，糊上口鼻。\n" NOR,
+        message_vision(HIW "$n和$N各取溼泥，糊上口鼻。\n" NOR,
                            this_object(),me);
         set_temp("bi", 1, me);
         set("anti",me);
@@ -74,7 +74,7 @@ void die()
 {
         if (objectp(query("anti")))
         {
-                message_vision(HIR"\n\n$N挣扎了两下，一口气没接上，倒在地上一动不动了。\n"NOR,this_object());
+                message_vision(HIR"\n\n$N掙扎了兩下，一口氣沒接上，倒在地上一動不動了。\n"NOR,this_object());
                 set_temp("win_mai", 1, query("anti"));
                 delete_temp("bi", query("anti"));
                 query("anti")->apply_condition("nishui",0);
@@ -86,7 +86,7 @@ void unconcious()
 {
         if (objectp(query("anti")))
         {
-                message_vision(HIR"\n\n$N挣扎了两下，一口气没接上，倒在地上一动不动了。\n"NOR,this_object());
+                message_vision(HIR"\n\n$N掙扎了兩下，一口氣沒接上，倒在地上一動不動了。\n"NOR,this_object());
                 set_temp("win_mai", 1, query("anti"));
                 delete_temp("bi", query("anti"));
                 query("anti")->apply_condition("nishui",0);
@@ -122,10 +122,10 @@ int do_get(string arg)
         obj=this_object();
         if(where == "ding")
         {
-                message_vision(CYN "$N正色道：这位英雄请了！\n" NOR,
+                message_vision(CYN "$N正色道：這位英雄請了！\n" NOR,
                                    obj);
 
-                message_vision(CYN "$N说道：屠龙宝刀乃不世之宝，要得此刀，需过(bi)了我这关！\n" NOR,
+                message_vision(CYN "$N說道：屠龍寶刀乃不世之寶，要得此刀，需過(bi)了我這關！\n" NOR,
                                    obj);
 
                 delete_temp("bi", this_player());

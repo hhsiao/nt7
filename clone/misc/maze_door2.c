@@ -4,15 +4,15 @@ inherit ITEM;
 void create()
 {
                 
-        set_name(RED"迷宫入口"NOR, ({ "maze door","door"}) );
+        set_name(RED"迷宮入口"NOR, ({ "maze door","door"}) );
         set_weight(5);
         set("no_get",1);
 
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("long", GRN"从这个入口可以进入迷宫。(enter door)\n"NOR); 
-                set("unit", "个");
+                set("long", GRN"從這個入口可以進入迷宮。(enter door)\n"NOR); 
+                set("unit", "個");
                 set("lore",1);
                 set("value", 20);
         }
@@ -35,7 +35,7 @@ int do_enter(string arg) {
         
         if( !stringp(entry) || entry == "" || 
             !(maze = find_object(entry)) )
-                return notify_fail("迷宫已经摧毁，无法进入。\n");
+                return notify_fail("迷宮已經摧毀，無法進入。\n");
                 
         this_player()->move(maze);
         return 1;

@@ -1,9 +1,9 @@
-// tiejia.c 铁甲
+// tiejia.c 鐵甲
 #include <armor.h>
 inherit CLOTH;
 void create()
 {
-        set_name("铁甲", ({ "armor" }) );
+        set_name("鐵甲", ({ "armor" }) );
         set_weight(20000);
         /*if( clonep() )
                 set_default_object(__FILE__);

@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// hui.c 静慧师太
+// hui.c 靜慧師太
 
 #include <command.h>
 #include <ansi.h>
@@ -11,9 +11,9 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("静慧师太", ({ "jinghui shitai","jinghui","shitai"}));
+        set_name("靜慧師太", ({ "jinghui shitai","jinghui","shitai"}));
         set("long",
-           "她是峨嵋派四师姐，只见她两眼烁烁有神，不停的扫视着四周。。\n");
+           "她是峨嵋派四師姐，只見她兩眼爍爍有神，不停的掃視著四周。。\n");
         set("gender", "女性");
         set("age", 45);
         set("attitude", "peaceful");
@@ -92,52 +92,52 @@ int do_nod(string arg)
                 return 0;
 
         command("smile");
-        command("say 我讲个故事你听：\n");
+        command("say 我講個故事你聽：\n");
 
-        message("vision", "静慧师太对着"+me->name()+"讲了几句话。\n", environment(me), ({me}) );
+        message("vision", "靜慧師太對著"+me->name()+"講了幾句話。\n", environment(me), ({me}) );
 
         switch(random(2)) {
                 case 0:
-                write("静慧师太说：赵州从谂，乃是禅宗著名高师。
-            有一次一个官员曾问他：和尚还入地狱吗？　赵州从谂答：我马上就入。
-            那官员颇有些幸灾乐祸，说：大善知识为什么还入地狱呢？
-            赵州从谂是怎样回答他的呢？\n\n");
+                write("靜慧師太說：趙州從諗，乃是禪宗著名高師。
+            有一次一個官員曾問他：和尚還入地獄嗎？　趙州從諗答：我馬上就入。
+            那官員頗有些幸災樂禍，說：大善知識為什麼還入地獄呢？
+            趙州從諗是怎樣回答他的呢？\n\n");
 
                 if ((int)me->query_skill("mahayana", 1) > 60 +random(5)) {
-                        write("你忽然想起在一部经书里读到过这个故事。\n");
-                        write("你说：赵州从谂回答他道：我不入地狱，谁去教化你？\n\n");
-                        message("vision", me->name()+"想了一下，跟静慧师太说了几句话。\n",
+                        write("你忽然想起在一部經書裡讀到過這個故事。\n");
+                        write("你說：趙州從諗回答他道：我不入地獄，誰去教化你？\n\n");
+                        message("vision", me->name()+"想了一下，跟靜慧師太說了幾句話。\n",
                                 environment(me), ({me}) );
 
-                        command("say 阿弥陀佛，善哉！善哉！好吧，我就收下你了。");
-                        command("say 希望你能以慈悲之心，以智慧之力，努力行善，济度众生。\n");
+                        command("say 阿彌陀佛，善哉！善哉！好吧，我就收下你了。");
+                        command("say 希望你能以慈悲之心，以智慧之力，努力行善，濟度眾生。\n");
                         command("recruit "+query("id", me));
                 }
                 else {
-                        write("你想了许久，也不明白其中的道理。\n");
-                        command("say 阿弥陀佛，你多学些佛法后再来找我吧。\n");
+                        write("你想了許久，也不明白其中的道理。\n");
+                        command("say 阿彌陀佛，你多學些佛法後再來找我吧。\n");
                 }
                 break;
 
                 case 1:
-                write("静慧师太说：赵州从谂，乃是禅宗著名高师。
-            有一次一个僧人问他：狗子还有佛性没有？　赵州说：无。　
-            僧人说：上至诸佛，下至蝼蚁，都有佛性，为什么狗子却没有？
-            赵州从谂是怎样回答他的呢？\n\n");
+                write("靜慧師太說：趙州從諗，乃是禪宗著名高師。
+            有一次一個僧人問他：狗子還有佛性沒有？　趙州說：無。　
+            僧人說：上至諸佛，下至螻蟻，都有佛性，為什麼狗子卻沒有？
+            趙州從諗是怎樣回答他的呢？\n\n");
 
                 if ((int)me->query_skill("mahayana", 1) > 60 +random(5)) {
-                        write("你灵机一动，想起这个典故。\n");
-                        write("你说：赵州从谂回答道：因为他有业识，即识神之业力在。\n\n");
-                        message("vision", me->name()+"想了一下，跟静慧师太说了几句话。\n",
+                        write("你靈機一動，想起這個典故。\n");
+                        write("你說：趙州從諗回答道：因為他有業識，即識神之業力在。\n\n");
+                        message("vision", me->name()+"想了一下，跟靜慧師太說了幾句話。\n",
                                 environment(me), ({me}) );
 
-                        command("say 阿弥陀佛，善哉！善哉！好吧，我就收下你了。");
-                        command("say 希望你能以慈悲之心，以智慧之力，努力行善， 济度众生。\n");
+                        command("say 阿彌陀佛，善哉！善哉！好吧，我就收下你了。");
+                        command("say 希望你能以慈悲之心，以智慧之力，努力行善， 濟度眾生。\n");
                         command("recruit "+query("id", me));
                 }
                 else {
-                        write("你想了许久，也不明白其中的道理。\n");
-                        command("say 阿弥陀佛，你多学些佛法后在来找我吧。\n");
+                        write("你想了許久，也不明白其中的道理。\n");
+                        command("say 阿彌陀佛，你多學些佛法後在來找我吧。\n");
                 }
                        break;
         }
@@ -150,9 +150,9 @@ void attempt_apprentice(object ob)
         if (! permit_recruit(ob))
                 return;
 
-        command("say 阿弥陀佛，善哉！善哉！在本庵修行，我要先考考你的佛法。");
+        command("say 阿彌陀佛，善哉！善哉！在本庵修行，我要先考考你的佛法。");
         set_temp("pending/kao", 1, ob);
-        command("say 你要准备好了，就告诉(nod)我吧。\n");
+        command("say 你要準備好了，就告訴(nod)我吧。\n");
         add_action("do_nod", "nod");
         return;
 }

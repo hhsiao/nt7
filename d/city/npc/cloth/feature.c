@@ -14,9 +14,9 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIW "这是一件出自天宫织女妙手神裁的羽"
-			    "纱轻衣。款式新颖别致，\n轻柔飘逸的。"
-			    "放在手中简直轻若无物，真是一件服饰极品。\n" NOR);
+                set("long", HIW "這是一件出自天宮織女妙手神裁的羽"
+			    "紗輕衣。款式新穎別緻，\n輕柔飄逸的。"
+			    "放在手中簡直輕若無物，真是一件服飾極品。\n" NOR);
 
                 set("unit", "件");
 	        set("value", 100000);
@@ -25,10 +25,10 @@ void create()
                 set("armor_prop/armor", 10);
                 set("armor_prop/armor_vs_force", 10);
                 set("armor_prop/attack", -2); 
-		set("wear_msg", HIW "$N" HIW "轻柔的展开一件洁白如雪的飘逸纱"
-			        "衣轻轻披在身上，映衬的\n$P" HIW "肌肤如"
-				"雪一般，一张盈盈笑脸如出水芙蓉，"
-				"让人意动魂摇。\n" NOR);
+		set("wear_msg", HIW "$N" HIW "輕柔的展開一件潔白如雪的飄逸紗"
+			        "衣輕輕披在身上，映襯的\n$P" HIW "肌膚如"
+				"雪一般，一張盈盈笑臉如出水芙蓉，"
+				"讓人意動魂搖。\n" NOR);
 
         }
 

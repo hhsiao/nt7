@@ -1,4 +1,4 @@
-// hun.c 无名
+// hun.c 無名
 
 #include <ansi.h>
 
@@ -17,23 +17,23 @@ int perform(object me, object target)
         skill = me->query_skill("nine-finger", 1);
 
         if (! me->is_fighting(target))
-                return notify_fail("无名只能对战斗中的对手使用。\n");
+                return notify_fail("無名只能對戰鬥中的對手使用。\n");
 
         if(me->query_skill_mapped("finger") != "nine-finger") 
-                return notify_fail("你没有用九字真言手印，无法使用「无名」绝招！\n");
+                return notify_fail("你沒有用九字真言手印，無法使用「無名」絕招！\n");
 
         if (me->query_skill_prepared("finger") != "nine-finger")
-                return notify_fail("你没有准备使用九字真言手印，无法施展「无名」绝招。\n");
+                return notify_fail("你沒有準備使用九字真言手印，無法施展「無名」絕招。\n");
 
         if (skill < 100)
-                return notify_fail("你的九字真言手印等级不够，练好了再来！\n");
+                return notify_fail("你的九字真言手印等級不夠，練好了再來！\n");
 
         if( objectp(weapon=query_temp("weapon", me)) || 
             objectp(weapon=query_temp("handing", me)) )
-                return notify_fail("你必须空着双手才能使用指法绝招。\n");
+                return notify_fail("你必須空著雙手才能使用指法絕招。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
         
         ap = me->query_skill("finger") + me->query_skill("force");
         ap+=query("jiali", me);
@@ -49,11 +49,11 @@ int perform(object me, object target)
         if (me->query_skill_mapped("force"))
                 mapforce = to_chinese(me->query_skill_mapped("force"));
         else
-                mapforce = "内力";
+                mapforce = "內力";
                 
-        msg = MAG "\n$N" NOR MAG "口中默诵九字真言，双手摊开，九式手印不住变幻。\n" +
-               "一时之间，漫天手印混杂着强烈的" HIW + mapforce + NOR + 
-               MAG "，无坚不摧地杀向$n" NOR MAG "！\n" NOR;
+        msg = MAG "\n$N" NOR MAG "口中默誦九字真言，雙手攤開，九式手印不住變幻。\n" +
+               "一時之間，漫天手印混雜著強烈的" HIW + mapforce + NOR + 
+               MAG "，無堅不摧地殺向$n" NOR MAG "！\n" NOR;
                 
         message_combatd(msg, me, target);
 
@@ -66,20 +66,20 @@ int perform(object me, object target)
                 COMBAT_D->do_attack(me, target, 0, 0);
         }
 
-        msg = "\n忽闻一声大喝" HIW " 临 兵 斗 者 皆 阵 列 在 前 !\n" NOR +  
-              "只见$N身形凌空而起，双手合什，宝瓶气从四面八方涌来，充塞天地，即使协生双翼，还是避无可避！ \n" + 
-              "正是" HIW "九字真言手印" NOR "终极式： " HIY "九印合一" NOR "！\n" NOR; 
+        msg = "\n忽聞一聲大喝" HIW " 臨 兵 鬥 者 皆 陣 列 在 前 !\n" NOR +  
+              "只見$N身形凌空而起，雙手合什，寶瓶氣從四面八方湧來，充塞天地，即使協生雙翼，還是避無可避！ \n" + 
+              "正是" HIW "九字真言手印" NOR "終極式： " HIY "九印合一" NOR "！\n" NOR; 
 
         if (ap / 2 + random(ap) > dp || !living(target))
         {
                 if (weapon2)
-                        msg += MAG "$n" NOR MAG "见$N" MAG "来势凶猛，不敢正面抵挡，手中" + weapon2->name() + 
-                               NOR MAG "满天幻影，防得水泄不通\n" + 
-                               "$N" NOR MAG "竟是置若罔闻，" HIW "螺旋劲气" NOR MAG "仍旧绵绵不绝，$n" NOR MAG "无可奈何之下，被击个正着！\n" NOR; 
+                        msg += MAG "$n" NOR MAG "見$N" MAG "來勢兇猛，不敢正面抵擋，手中" + weapon2->name() + 
+                               NOR MAG "滿天幻影，防得水洩不通\n" + 
+                               "$N" NOR MAG "竟是置若罔聞，" HIW "螺旋勁氣" NOR MAG "仍舊綿綿不絕，$n" NOR MAG "無可奈何之下，被擊個正著！\n" NOR; 
                 else
-                        msg += MAG "$n" NOR MAG "见$N" MAG "来势凶猛，不敢正面抵挡，侧身进步双掌奋力侧击$N\n" + 
-                               NOR MAG "$N" NOR MAG "竟是置若罔闻，" HIW "螺旋劲气" NOR MAG "仍旧绵绵不绝，$n" + 
-                               NOR MAG "无可奈何之下，被击个正着！\n" NOR;
+                        msg += MAG "$n" NOR MAG "見$N" MAG "來勢兇猛，不敢正面抵擋，側身進步雙掌奮力側擊$N\n" + 
+                               NOR MAG "$N" NOR MAG "竟是置若罔聞，" HIW "螺旋勁氣" NOR MAG "仍舊綿綿不絕，$n" + 
+                               NOR MAG "無可奈何之下，被擊個正著！\n" NOR;
                
                 target->receive_damage("qi", damage, me);
                 target->receive_wound("qi", damage/2, me);
@@ -89,13 +89,13 @@ int perform(object me, object target)
         } else
         {
                 if (weapon)
-                        msg += MAG "$n" NOR MAG "见$N" NOR MAG "来势凶猛，不敢正面抵挡，手中" + weapon2->name() +
-                               NOR MAG "满天幻影，防得水泄不通\n" +
-                               "$N" NOR MAG "被缓得一缓，" HIW "螺旋劲气" NOR MAG"已然落空！\n" NOR;
+                        msg += MAG "$n" NOR MAG "見$N" NOR MAG "來勢兇猛，不敢正面抵擋，手中" + weapon2->name() +
+                               NOR MAG "滿天幻影，防得水洩不通\n" +
+                               "$N" NOR MAG "被緩得一緩，" HIW "螺旋勁氣" NOR MAG"已然落空！\n" NOR;
 
                 else
-                        msg += MAG "$n" NOR MAG "见$N" NOR MAG "来势凶猛，不敢正面抵挡，侧身进步双掌奋力侧击$N\n" + 
-                               NOR MAG "$N" NOR MAG "被缓得一缓，" HIW "螺旋劲气" NOR MAG "已然落空，但$n" NOR MAG "也被$N" NOR MAG "震得气血翻涌！\n" NOR;
+                        msg += MAG "$n" NOR MAG "見$N" NOR MAG "來勢兇猛，不敢正面抵擋，側身進步雙掌奮力側擊$N\n" + 
+                               NOR MAG "$N" NOR MAG "被緩得一緩，" HIW "螺旋勁氣" NOR MAG "已然落空，但$n" NOR MAG "也被$N" NOR MAG "震得氣血翻湧！\n" NOR;
         }
 
         me->start_busy(2 + random(2));

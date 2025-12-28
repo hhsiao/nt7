@@ -1,4 +1,4 @@
-// Inherit: quarry.c 猎物
+// Inherit: quarry.c 獵物
 // Create by Vin for Heros.cn
 
 #include <ansi.h>
@@ -13,16 +13,16 @@ void setup()
 {
         if (query("aves"))
         {
-                set("limbs", ({ "头部", "身体", "左翅", "右翅",
+                set("limbs", ({ "頭部", "身體", "左翅", "右翅",
                                 "爪子", "尾巴" }));
                 set("verbs", ({ "bite", "claw" }));
         } else
         {
-                set("limbs", ({ "头部", "身体", "腹部", "背部",
-                                "前脚", "后脚", "尾部" }));
+                set("limbs", ({ "頭部", "身體", "腹部", "背部",
+                                "前腳", "後腳", "尾部" }));
                 set("verbs", ({ "hoof", "bite", "claw" }));
         }
-        set("race", "野兽");
+        set("race", "野獸");
         set("attitude", "aggressive");
         ::setup();
 }
@@ -35,7 +35,7 @@ void init()
         if (! interactive(me = this_player()))
                 return;
 
-        // 自动攻击驭兽术等级不高的玩家
+        // 自動攻擊馭獸術等級不高的玩家
         if ((int)me->query_skill("training", 1) < 100 &&
             query_temp("owner") != query("id", me) &&
             !query("no_auto_kill"))
@@ -52,11 +52,11 @@ void disappear()
 {
         object ob = this_object();
 
-        // 捕猎呼出的野兽会遁之
+        // 捕獵呼出的野獸會遁之
         if (living(ob) && query("owner", ob))
         {
-                message_vision(WHT "\n突然$N" WHT "猛地一窜，瞬间便"
-                               "消失得无影无踪。\n\n", ob);
+                message_vision(WHT "\n突然$N" WHT "猛地一竄，瞬間便"
+                               "消失得無影無蹤。\n\n", ob);
                 destruct(ob);
         }
 }
@@ -69,21 +69,21 @@ void die(object killer)
         string msg;
 
         if (query("aves"))
-                message_vision(HIR "\n只见$N" HIR "扑腾了几下，从半"
-                               "空中坠落下来，死了。\n\n" NOR, ob);
+                message_vision(HIR "\n只見$N" HIR "撲騰了幾下，從半"
+                               "空中墜落下來，死了。\n\n" NOR, ob);
         else
-                message_vision(HIR "\n只听$N" HIR "嚎了几声，倒在地"
-                               "上扑腾了几下，死了。\n\n" NOR, ob);
+                message_vision(HIR "\n只聽$N" HIR "嚎了幾聲，倒在地"
+                               "上撲騰了幾下，死了。\n\n" NOR, ob);
 
         if (objectp(me = killer)
            || objectp(me = query_last_damage_from()))
         {
-                // 如果为自己的猎物，则奖励之
+                // 如果為自己的獵物，則獎勵之
                 // if (query("owner", ob) == query("id", me) &&
                 if (
                    query("combat_exp", me) <= 5000000)
                 {
-                        // 根据猎物设定的参数来给予奖励
+                        // 根據獵物設定的參數來給予獎勵
                         power = query("power", ob);
 
                         if (power < 50)
@@ -92,26 +92,26 @@ void die(object killer)
                         if (power > 500)
                                 power = 500;
 
-                        GIFT_D->delay_bonus(me, ([ "prompt" : "通过这次猎取" + ob->name() +
-                                                              HIG "的经历",
+                        GIFT_D->delay_bonus(me, ([ "prompt" : "通過這次獵取" + ob->name() +
+                                                              HIG "的經歷",
                                                    "exp"    : random(power) + power,
                                                    "pot"    : random(power / 2) + power / 2,
                                                    "score"  : random(power / 4), ]));
                 }
                 skill = me->query_skill("hunting", 1);
 
-                // 获得物品
+                // 獲得物品
                 if (query("item1", ob) && random(skill) > 10)
                 {
                         item = new(query("item1", ob));
                         item->move(me, 1);
 
-                        msg = HIC "你仔细翻寻" + ob->name() +
-                              HIC "的尸体，从上面割下了一" +
+                        msg = HIC "你仔細翻尋" + ob->name() +
+                              HIC "的屍體，從上面割下了一" +
                               query("base_unit", item) +
                               item->name() + HIC;
 
-                        // 一定几率获得高级物品
+                        // 一定幾率獲得高級物品
                         if (query("item3") && random(skill) > 60
                            && random(5) > 3)
                         {

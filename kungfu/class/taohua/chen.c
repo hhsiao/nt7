@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// chen.c 陈玄风
+// chen.c 陳玄風
 
 #include <ansi.h>;
 inherit NPC;
@@ -9,13 +9,13 @@ inherit NPC;
 void create()
 {
         object ob;
-        set_name("陈玄风", ({ "chen xuanfeng", "chen", "xuanfeng" }));
-        set("title", "黑风双煞");
-        set("nickname", YEL "铜尸" NOR);
+        set_name("陳玄風", ({ "chen xuanfeng", "chen", "xuanfeng" }));
+        set("title", "黑風雙煞");
+        set("nickname", YEL "銅屍" NOR);
         set("gender", "男性");
         set("age", 35);
-        set("long", "此人是黄药师的二弟子，他浓眉大眼，背厚膀宽，躯体甚\n"
-                    "是壮健，只是面色微微泛黄。\n");
+        set("long", "此人是黃藥師的二弟子，他濃眉大眼，背厚膀寬，軀體甚\n"
+                    "是壯健，只是面色微微泛黃。\n");
         set("attitude", "aggressive");
         set("str", 28);
         set("int", 25);
@@ -59,18 +59,18 @@ void create()
                 (: exert_function, "recover" :),
         }));
 
-        create_family("桃花岛", 2, "被逐弟子");
+        create_family("桃花島", 2, "被逐弟子");
         set("inquiry", ([
-                "铜尸" : "江湖上的人都这么叫我的，你怕不怕？哈哈哈哈。",
-                "东邪" : "那是我师父的绰号。",
-                "西毒" : "那是与家师齐名的高手之一，是个老毒物，住在白驼山。",
-                "南帝" : "段王爷已出家当和尚去了，法名叫一灯。",
-                "北丐" : "北丐统领中原的丐帮，势力颇为强大。",
-                "黄蓉" : "她是我师父的独女，最是刁蛮任性。",
-                "洪七公" : "洪七公武功高强，而且教会郭靖那小儿降龙十八掌，可恨！",
-                "梅超风" : "她是我的师妹，也是我的内室。",
-                "陈玄风" : "不就是我么？你是白痴啊？",
-                "黄药师" : "他是我师父。"
+                "銅屍" : "江湖上的人都這麼叫我的，你怕不怕？哈哈哈哈。",
+                "東邪" : "那是我師父的綽號。",
+                "西毒" : "那是與家師齊名的高手之一，是個老毒物，住在白駝山。",
+                "南帝" : "段王爺已出家當和尚去了，法名叫一燈。",
+                "北丐" : "北丐統領中原的丐幫，勢力頗為強大。",
+                "黃蓉" : "她是我師父的獨女，最是刁蠻任性。",
+                "洪七公" : "洪七公武功高強，而且教會郭靖那小兒降龍十八掌，可恨！",
+                "梅超風" : "她是我的師妹，也是我的內室。",
+                "陳玄風" : "不就是我麼？你是白痴啊？",
+                "黃藥師" : "他是我師父。"
         ]));
         set_temp("apply/damage", 100);
         set_temp("apply/unarmed_damage", 100);
@@ -95,12 +95,12 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        command("say 少烦我，快滚！");
+        command("say 少煩我，快滾！");
 }
 
 int accept_fight(object me)
 {
-        command("say 给我滚开！");
+        command("say 給我滾開！");
         return 0;
 }
 
@@ -122,8 +122,8 @@ void kill_ob (object ob)
 
         if (guard && ! guard->is_fighting())
         {
-                message_vision(HIW "\n$N" HIW "大怒道：居然欺负到我们黑风双煞"
-                               "头上来了，死吧！\n\n" NOR, guard);
+                message_vision(HIW "\n$N" HIW "大怒道：居然欺負到我們黑風雙煞"
+                               "頭上來了，死吧！\n\n" NOR, guard);
                 guard->kill_ob(ob);
         }
 }
@@ -147,9 +147,9 @@ void die()
         }
 
         if (flag)
-                message_vision(HIR"陈玄风惨嚎一声，道：贼婆娘，我陪你来了！！！\n"NOR, this_object());
+                message_vision(HIR"陳玄風慘嚎一聲，道：賊婆娘，我陪你來了！！！\n"NOR, this_object());
         else
-                message_vision(HIR"陈玄风惨嚎一声，道：贼婆娘，给我报仇！！！\n"NOR, this_object());
+                message_vision(HIR"陳玄風慘嚎一聲，道：賊婆娘，給我報仇！！！\n"NOR, this_object());
 
         ::die();
 }

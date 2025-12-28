@@ -5,32 +5,32 @@ inherit ROOM;
 
 void create()
 {
-	set("short", "万佛洞");
+	set("short", "萬佛洞");
 	set("long", @LONG
-阳光被外面的树林遮住，这洞内显得较昏暗，洞内满是精美的佛
-像，墙上绘着佛祖的一生事迹的故事。走在洞里，你看着墙上的壁画，
-感悟颇深。这里没有什么明显的出口。
+陽光被外面的樹林遮住，這洞內顯得較昏暗，洞內滿是精美的佛
+像，牆上繪著佛祖的一生事蹟的故事。走在洞裡，你看著牆上的壁畫，
+感悟頗深。這裡沒有什麼明顯的出口。
 LONG);
 	set("exits", ([
 	       "out" : __DIR__"wfd",
 	       "north" : __DIR__"wfd3",
 
         ]));
-        create_door("north", "石门", "south", DOOR_CLOSED);
+        create_door("north", "石門", "south", DOOR_CLOSED);
 
 	setup();
 }
 
 void init()
 {
-        add_action("do_linghui","领会");
+        add_action("do_linghui","領會");
         add_action("do_linghui","linghui");	
 }
 
 int do_linghui()
 {
 	object me = this_player();
-	message_vision("$N盘腿静坐了下来，看着眼前的壁画，良久，似有所悟。\n", me);
+	message_vision("$N盤腿靜坐了下來，看著眼前的壁畫，良久，似有所悟。\n", me);
 	me->set_busy(10);
 //    me->set("shen",0);
 	return 1;

@@ -20,7 +20,7 @@ int query_neili_improve(object me)
 }
 
 mapping *action = ({
-([      "action" : "$N高举手中$w，使出一招「磨牙吮血」，一刀斜劈$n的$l",
+([      "action" : "$N高舉手中$w，使出一招「磨牙吮血」，一刀斜劈$n的$l",
         "force"  : 210,
         "attack" : 20,
         "dodge"  : 30,
@@ -28,19 +28,19 @@ mapping *action = ({
         "lvl"    : 0,
         "damage" : 100,
         "skill_name"  : "磨牙吮血",
-        "damage_type" : "割伤",
+        "damage_type" : "割傷",
 ]),
-([      "action" : "$N就地一滚，使一招「刺血满地」，手中$w卷向$n的大腿",
+([      "action" : "$N就地一滾，使一招「刺血滿地」，手中$w卷向$n的大腿",
         "force"  : 240,
         "attack" : 25,
         "dodge"  : 45,
         "parry"  : 35,
         "lvl"    : 140,
         "damage" : 120,
-        "skill_name"  : "刺血满地",
-        "damage_type" : "割伤",
+        "skill_name"  : "刺血滿地",
+        "damage_type" : "割傷",
 ]),
-([      "action" : "$N足尖一点，使出「血海茫茫」，刀锋自上而下直插$n的$l",
+([      "action" : "$N足尖一點，使出「血海茫茫」，刀鋒自上而下直插$n的$l",
         "force"  : 280,
         "attack" : 40,
         "dodge"  : 52,
@@ -48,49 +48,49 @@ mapping *action = ({
         "lvl"    : 160,
         "damage" : 130,
         "skill_name"  : "血海茫茫",
-        "damage_type" : "割伤",
+        "damage_type" : "割傷",
 ]),
-([      "action" : "$N使出一招「呕心沥血」，将$w舞得如白雾一般压向$n",
+([      "action" : "$N使出一招「嘔心瀝血」，將$w舞得如白霧一般壓向$n",
         "force"  : 320,
         "attack" : 45,
         "dodge"  : 58,
         "parry"  : 42,
         "lvl"    : 180,
         "damage" : 140,
-        "skill_name"  : "呕心沥血",
-        "damage_type" : "割伤",
+        "skill_name"  : "嘔心瀝血",
+        "damage_type" : "割傷",
 ]),
-([      "action" : "$N低吼一声，使出「血口喷人」，举$w直劈$n的$l",
+([      "action" : "$N低吼一聲，使出「血口噴人」，舉$w直劈$n的$l",
         "force"  : 340,
         "attack" : 50,
         "dodge"  : 65,
         "parry"  : 45,
         "lvl"    : 200,
         "damage" : 150,
-        "skill_name"  : "血口喷人",
-        "damage_type" : "割伤",
+        "skill_name"  : "血口噴人",
+        "damage_type" : "割傷",
 ]),
-([      "action" : "$N使出「血迹斑斑」，飞身斜刺，忽然反手一刀横斩$n的腰部",
+([      "action" : "$N使出「血跡斑斑」，飛身斜刺，忽然反手一刀橫斬$n的腰部",
         "force"  : 360,
         "attack" : 55,
         "dodge"  : 70,
         "parry"  : 60,
         "lvl"    : 220,
         "damage" : 160,
-        "skill_name"  : "血迹斑斑",
-        "damage_type" : "割伤",
+        "skill_name"  : "血跡斑斑",
+        "damage_type" : "割傷",
 ]),
-([      "action" : "$N使一式「以血还血」，挥刀直指$n的胸口",
+([      "action" : "$N使一式「以血還血」，揮刀直指$n的胸口",
         "force"  : 390,
         "attack" : 60,
         "dodge"  : 80,
         "parry"  : 55,
         "lvl"    : 240,
         "damage" : 170,
-        "skill_name"  : "以血还血",
-        "damage_type" : "割伤",
+        "skill_name"  : "以血還血",
+        "damage_type" : "割傷",
 ]),
-([      "action" : "$N刀锋虚点，使出一招「血流满面」，转身举$w横劈$n的面门",
+([      "action" : "$N刀鋒虛點，使出一招「血流滿面」，轉身舉$w橫劈$n的面門",
         "force"  : 420,
         "attack" : 70,
         "dodge"  : 90,
@@ -98,7 +98,7 @@ mapping *action = ({
         "lvl"    : 260,
         "damage" : 185,
         "skill_name"  : "血流漫面",
-        "damage_type" : "割伤",
+        "damage_type" : "割傷",
 ]),
 });
 
@@ -117,31 +117,31 @@ int valid_enable(string usage)
 int valid_learn(object me)
 {
         if( query("character", me) == "光明磊落" || 
-           query("character", me) == "狡黠多变" )
-                return notify_fail("你心中暗道：这血刀大法邪气太重，甚过诡异，莫"
-                                   "不是专门设来害人的？\n");
+           query("character", me) == "狡黠多變" )
+                return notify_fail("你心中暗道：這血刀大法邪氣太重，甚過詭異，莫"
+                                   "不是專門設來害人的？\n");
 
         if( query("str", me)<28 )
-                return notify_fail("你先天膂力孱弱，无法修炼血刀大法。\n");
+                return notify_fail("你先天膂力孱弱，無法修煉血刀大法。\n");
 
         if( query("dex", me)<26 )
-                return notify_fail("你先天身法太差，无法修炼血刀大法。\n");
+                return notify_fail("你先天身法太差，無法修煉血刀大法。\n");
 
-        if( query("gender", me) == "无性" && query("xuedao-dafa", me)>29 )
-                return notify_fail("你无根无性，阴阳不调，难以领会高深的血刀大法。\n");
+        if( query("gender", me) == "無性" && query("xuedao-dafa", me)>29 )
+                return notify_fail("你無根無性，陰陽不調，難以領會高深的血刀大法。\n");
 
         if ((int)me->query_skill("force", 1) < 120)
-                return notify_fail("你的基本内功火候不足，不能学血刀大法。\n");
+                return notify_fail("你的基本內功火候不足，不能學血刀大法。\n");
 
         if( query("max_neili", me)<1600 )
-                return notify_fail("你的内力修为不足，不能学血刀大法。\n");
+                return notify_fail("你的內力修為不足，不能學血刀大法。\n");
 
         if (me->query_skill("force", 1) < me->query_skill("xuedao-dafa", 1))
-                return notify_fail("你的基本内功水平不够，难以锻炼更深厚的血刀大法。\n");
+                return notify_fail("你的基本內功水平不夠，難以鍛鍊更深厚的血刀大法。\n");
 
         if (me->query_skill("xuedao-dafa", 1) > 120 &&
            me->query_skill("blade", 1) < me->query_skill("xuedao-dafa", 1))
-                return notify_fail("你的基本刀法水平不够，难以锻炼更深厚的血刀大法。\n");
+                return notify_fail("你的基本刀法水平不夠，難以鍛鍊更深厚的血刀大法。\n");
 
         return ::valid_learn(me);
 }
@@ -157,7 +157,7 @@ mapping query_action(object me, object weapon)
 
 int practice_skill(object me)
 {
-        return notify_fail("血刀大法只能用学(learn)的来增加熟练度。\n");
+        return notify_fail("血刀大法只能用學(learn)的來增加熟練度。\n");
 }
 
 int difficult_level()

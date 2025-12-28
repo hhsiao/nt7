@@ -7,13 +7,13 @@ inherit NPC;
 
 void create()
 {
-        set_name("杀手", ({ "killer", "sha shou" }) );
+        set_name("殺手", ({ "killer", "sha shou" }) );
         set("gender", "男性" );
         set("age", 20 + random(20));
 
         set("long",
-                "这是一个身材高大的江湖人，两臂粗壮，膀阔"
-                "腰圆，看起来似乎不怀好意。\n"
+                "這是一個身材高大的江湖人，兩臂粗壯，膀闊"
+                "腰圓，看起來似乎不懷好意。\n"
         );
 
         set("str", 25);
@@ -25,9 +25,9 @@ void create()
         set("attitude", "heroism");
         set("chat_chance_combat", 15);
         set("chat_msg_combat", ({
-                "杀手骂道：你奶奶的，敢和我斗？不知道死字怎么写是么？\n",
-                "杀手喝道：快把宝物交出来，我饶了你这条小命！\n",
-                "杀手呵呵大笑：你遇到了老子我，那算是倒霉了！\n"
+                "殺手罵道：你奶奶的，敢和我鬥？不知道死字怎麼寫是麼？\n",
+                "殺手喝道：快把寶物交出來，我饒了你這條小命！\n",
+                "殺手呵呵大笑：你遇到了老子我，那算是倒黴了！\n"
         }) );
 
         set_skill("blade", 80);
@@ -58,7 +58,7 @@ void do_flee()
                 call_out("do_flee", 60);
 
         if (environment())
-                message_vision("$N东张西望的看了一会儿，拔腿溜走了。\n",
+                message_vision("$N東張西望的看了一會兒，拔腿溜走了。\n",
                                this_object());
 
         destruct(this_object());
@@ -66,7 +66,7 @@ void do_flee()
 
 void unconcious()
 {
-        message_vision(HIR "$N" HIR "嚎道：“好么！这个江湖上到底还"
+        message_vision(HIR "$N" HIR "嚎道：“好麼！這個江湖上到底還"
                        "是有比我狠的！”\n" NOR, this_object());
         ::unconcious();
 }

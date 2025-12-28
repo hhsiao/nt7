@@ -5,12 +5,12 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "议事大厅");
+        set("short", "議事大廳");
         set("long", @LONG
-        这里是唐门的议事大厅。平时一般不使用，只有在唐门发生重大事情的时
-候，唐门的长辈才在这儿聚集商量。整个大厅建筑得很奇怪，四周有八根朱红大柱
-地面黝黑发亮，是唐门平时冶炼暗器所剩的铁屑溶制成的整块。正中是一个很大的
-八卦图(bagua)。
+        這裡是唐門的議事大廳。平時一般不使用，只有在唐門發生重大事情的時
+候，唐門的長輩才在這兒聚集商量。整個大廳建築得很奇怪，四周有八根硃紅大柱
+地面黝黑髮亮，是唐門平時冶煉暗器所剩的鐵屑溶製成的整塊。正中是一個很大的
+八卦圖(bagua)。
 LONG
         );
         
@@ -25,7 +25,7 @@ LONG
                         ]));
 
         set("item_desc", ([
-                "bagua" : HIY "很奇怪的八卦图，不知道唐门为什么要在这儿刻上它。\n",  
+                "bagua" : HIY "很奇怪的八卦圖，不知道唐門為什麼要在這兒刻上它。\n",  
     ]));
 
         setup();
@@ -42,19 +42,19 @@ int do_break(string arg)
 
     if( !arg || arg!="bagua" )
         {
-        write("唐门的财物岂是你随便能破坏的！\n");
+        write("唐門的財物豈是你隨便能破壞的！\n");
         return 1;
     }
-if( query_temp("marks/闹", this_player())){
+if( query_temp("marks/鬧", this_player())){
     message_vision(
-    "$N走到八卦前，腾身而起，运起全身内力，双掌自上而下重重击向八卦。\n", this_player());
+    "$N走到八卦前，騰身而起，運起全身內力，雙掌自上而下重重擊向八卦。\n", this_player());
 
 
     n=query("neili", me);
     if (n >= 1500)
         {
         message_vision(
-        HIR"$N只听轰得一声巨响！！！八卦竟然翻转，面前出现一个洞。\n"NOR, this_player());
+        HIR"$N只聽轟得一聲巨響！！！八卦竟然翻轉，面前出現一個洞。\n"NOR, this_player());
         set("exits/down", "/d/tangmen/qiushi");
         set("neili", n-1500, this_player());
         remove_call_out("close");
@@ -63,20 +63,20 @@ if( query_temp("marks/闹", this_player())){
     else
         {
                 message_vision(
-                HIW"结果只听一声闷哼，$N被八卦的反弹力震得眼前一黑....\n"NOR, this_player());
+                HIW"結果只聽一聲悶哼，$N被八卦的反彈力震得眼前一黑....\n"NOR, this_player());
 set("neili", 0,                 this_player());
                 this_player()->unconcious();
     }
-delete_temp("marks/闹", me);
+delete_temp("marks/鬧", me);
 return 1;    
 }
 else 
-        {write(HIY"你娃脑壳有包啊？看到是铁砣砣都要去打！\n"NOR);
+        {write(HIY"你娃腦殼有包啊？看到是鐵砣砣都要去打！\n"NOR);
         return 1;}
 }
 
 void close(object room)
 {
-    message("vision","只听见一阵嘎嘎的响声，八卦又翻了转来，恢复了原样。\n", room);
+    message("vision","只聽見一陣嘎嘎的響聲，八卦又翻了轉來，恢復了原樣。\n", room);
     delete("exits/down", room);
 }

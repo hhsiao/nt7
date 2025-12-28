@@ -4,10 +4,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "浓密树林");
+        set("short", "濃密樹林");
         set("long", @LONG
-这里是一片浓密的树林，参天的大树遮天蔽日，偶尔有几缕
-光线透进来。地上满是枯枝败叶，空气中弥漫着让人不安的气氛。
+這裡是一片濃密的樹林，參天的大樹遮天蔽日，偶爾有幾縷
+光線透進來。地上滿是枯枝敗葉，空氣中瀰漫著讓人不安的氣氛。
 LONG
         );
 
@@ -36,9 +36,9 @@ protected void do_ansuan(object me)
         if( !me || (environment(me) != this_object()) )
                 return;
 
-        tell_object(me, sprintf(HIB"\n突然“嗖”的一声，树后打来一只飞镖。\n%s\n\n"NOR,
-                flag?"你赶紧一侧身躲了过去，下出了一身冷汗。":
-                sprintf("一下钉在了你的%s上。",(n=sizeof(limbs=query("limbs", me)))?
+        tell_object(me, sprintf(HIB"\n突然“嗖”的一聲，樹後打來一隻飛鏢。\n%s\n\n"NOR,
+                flag?"你趕緊一側身躲了過去，下出了一身冷汗。":
+                sprintf("一下釘在了你的%s上。",(n=sizeof(limbs=query("limbs", me)))?
                 limbs[random(n)]:"身")));
 
         if(!flag)

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;36m小应声虫[2;37;0m[2;37;0m", ({"answerbug"}));        
+        set_name("[1;36m小應聲蟲[2;37;0m[2;37;0m", ({"answerbug"}));        
         set("gender", "男性");                
-        set("long", "千金一应，一应千金！！！[2;37;0m
-它是卓大航的魔幻兽。
+        set("long", "千金一應，一應千金！！！[2;37;0m
+它是卓大航的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

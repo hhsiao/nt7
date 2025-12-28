@@ -10,9 +10,9 @@ void create()
 {
         set("short", "半山");
 	set("long", @LONG
-这山崖似乎无穷无尽，幸好崖缝中有不少砂石，不至于一溜而下，越到底
-越是平缓，不再是危崖笔立，但耳中轰隆轰隆的声音越来越响，只觉水珠如下
-大雨溅到脸上，隐隐生疼。
+這山崖似乎無窮無盡，幸好崖縫中有不少砂石，不至於一溜而下，越到底
+越是平緩，不再是危崖筆立，但耳中轟隆轟隆的聲音越來越響，只覺水珠如下
+大雨濺到臉上，隱隱生疼。
 LONG
 	);
 	set("exits", ([ /* sizeof() == 1 */
@@ -33,7 +33,7 @@ int do_down(string arg)
 {
 	object me = this_player();
         if (!arg || arg!="down") return 0;
-	message_vision(HIR "$N伏在坡上，半滚半爬，一下子溜到了谷底。\n" NOR, me);
+	message_vision(HIR "$N伏在坡上，半滾半爬，一下子溜到了谷底。\n" NOR, me);
 	me->move(__DIR__"gudi");
 	return 1;
 }

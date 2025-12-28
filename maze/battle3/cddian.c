@@ -52,7 +52,7 @@ int valid_leave(object me,string dir)
         for(i=0;i<sizeof(env);i++)
         if( query("id", env[i]) == "jinyiwei" )
           {
-           env[i]->command("say "+"大胆狂徒，居然敢到宫中来撒野，受死吧！\n");
+           env[i]->command("say "+"大膽狂徒，居然敢到宮中來撒野，受死吧！\n");
            env[i]->kill_ob(me);
           }
        }

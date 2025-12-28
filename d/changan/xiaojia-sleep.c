@@ -4,9 +4,9 @@ inherit ROOM;
 
 void create ()
 {
-        set ("short", "卧室");
+        set ("short", "臥室");
         set("long", @LONG
-没想好呢！呵呵！
+沒想好呢！呵呵！
 LONG );
         set("exits", 
         ([ //sizeof() == 1

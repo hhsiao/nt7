@@ -3,10 +3,10 @@ inherit KNOWER;
 
 void create()
 {
-        set_name("渔夫", ({ "yu fu", "yu", "fu" }));
+        set_name("漁夫", ({ "yu fu", "yu", "fu" }));
         set("gender", "男性");
         set("age", 40 + random(10));
-        set("long", "一个头戴斗笠的渔夫，正悠然自得地在岸边垂钓。\n");
+        set("long", "一個頭戴斗笠的漁夫，正悠然自得地在岸邊垂釣。\n");
 
         set("attitude", "friendly");
 
@@ -25,7 +25,7 @@ void create()
         setup();
         set("chat_chance", 1);
         set("chat_msg", ({
-                CYN "渔夫看了你一眼，自言自语道：这世道真是越来越不太平了。\n" NOR,
+                CYN "漁夫看了你一眼，自言自語道：這世道真是越來越不太平了。\n" NOR,
         }) );
         carry_object("/clone/cloth/cloth")->wear();
         add_money("coin", 20);

@@ -6,8 +6,8 @@ void create()
 {
 	set("short", YEL"山峰"NOR);
         set("long", @LONG
-沿着山坡而行，向北而上是一座山峰，山峰座落在灵蛇岛的北部，
-在山峰之东，可以看见一间孤零零的茅屋。
+沿著山坡而行，向北而上是一座山峰，山峰座落在靈蛇島的北部，
+在山峰之東，可以看見一間孤零零的茅屋。
 LONG );
 	set("exits", ([
 	  	"southdown" : __DIR__"sfjiao",
@@ -19,6 +19,6 @@ LONG );
                 CLASS_D("mingjiao") + "/miaofeng" : 1,
 */
 	]));
-	set("outdoors","灵蛇岛");
+	set("outdoors","靈蛇島");
 	setup();
 }

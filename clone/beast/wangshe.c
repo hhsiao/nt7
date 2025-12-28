@@ -3,9 +3,9 @@ inherit SNAKE;
 
 void create()
 {
-        set_name(NOR + RED "眼镜王蛇" NOR, ({ "yanjing wangshe", "yanjing",
+        set_name(NOR + RED "眼鏡王蛇" NOR, ({ "yanjing wangshe", "yanjing",
                                               "wangshe", "she" }));
-        set("long", RED "这是一条五彩斑斓的眼镜王蛇，毒性为万蛇之最。\n" NOR);
+        set("long", RED "這是一條五彩斑斕的眼鏡王蛇，毒性為萬蛇之最。\n" NOR);
 
         set("age", 3);
         set("str", 35);

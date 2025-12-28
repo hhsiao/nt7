@@ -5,14 +5,14 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIY"铜药炉"NOR, ({"yaolu", "lu"}));
+        set_name(HIY"銅藥爐"NOR, ({"yaolu", "lu"}));
         set_weight(100000000000000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一座黄铜做的丹炉，烫得有点让人无法接近。\n");
+                set("long", "一座黃銅做的丹爐，燙得有點讓人無法接近。\n");
                 set("unit", "座");
-                     set("no_get","你是大力士吧？这个也想拿起来？");
+                     set("no_get","你是大力士吧？這個也想拿起來？");
                 set("value", 2000);
         }
 }

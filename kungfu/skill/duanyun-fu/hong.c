@@ -1,4 +1,4 @@
-//hongtianza.c 夺命三斧之「轰天砸」
+//hongtianza.c 奪命三斧之「轟天砸」
 // Modified by Venus Oct.1997
 #include <ansi.h>
 #include <combat.h>
@@ -15,19 +15,19 @@ int perform(object me, object target)
     if( !target ) target = offensive_target(me);
 
               if( !target || !me->is_fighting(target) )
-                      return notify_fail("「"HIM"「轰天砸」"NOR"」只能在战斗中对对手使用。\n");
+                      return notify_fail("「"HIM"「轟天砸」"NOR"」只能在戰鬥中對對手使用。\n");
 
               if( !objectp(weapon=query_temp("weapon", target)) )
-                      return notify_fail("对方没有使用兵器，难以施展「轰天砸」。\n");
+                      return notify_fail("對方沒有使用兵器，難以施展「轟天砸」。\n");
 
     if( target->is_busy() )
-    return notify_fail(target->name() + "目前正茫然不知所措，加紧攻击吧。\n");
+    return notify_fail(target->name() + "目前正茫然不知所措，加緊攻擊吧。\n");
     if( (int)me->query_skill("duanyun-fu",1) < 50)
-    return notify_fail("你目前功力还使不出「轰天砸」。\n");
+    return notify_fail("你目前功力還使不出「轟天砸」。\n");
     if( query("neili", me)<100 )
-    return notify_fail("你的内力不够。\n");
+    return notify_fail("你的內力不夠。\n");
     addn("neili", -60, me);
-msg = CYN"$N突然暴吼一声：“我砸！我砸！我砸砸砸！”，手中巨斧竟然砸向$p手中兵刃！\n"NOR;
+msg = CYN"$N突然暴吼一聲：“我砸！我砸！我砸砸砸！”，手中巨斧竟然砸向$p手中兵刃！\n"NOR;
     target_w=query_temp("weapon", target);
     me->start_busy(1);
 
@@ -37,15 +37,15 @@ msg = CYN"$N突然暴吼一声：“我砸！我砸！我砸砸砸！”，手�
     if( random(query("combat_exp", me)/100)>
       query("combat_exp", target)/300){
     if( target_w->weight() > 2 * random(my_w->weight()) ) {
-msg+="结果$p手中的"+query("name", target_w)+"被$P的轰天砸砸个正着，再也把握不?住，立即脱手飞出！\n" NOR;
+msg+="結果$p手中的"+query("name", target_w)+"被$P的轟天砸砸個正著，再也把握不?住，立即脫手飛出！\n" NOR;
     target_w->unequip();
     target_w->move(environment(target));
     target->reset_action();
     target->start_busy( (int)me->query_skill("duanyun-fu") / 20 );
 }
    msg += HIC
-"只见$n手中的"+query("name", target_w)+"竟然被砸断作数段，并且
-受到$N的劲气的激荡而向$n迅速射去！\n"NOR;
+"只見$n手中的"+query("name", target_w)+"竟然被砸斷作數段，並且
+受到$N的勁氣的激盪而向$n迅速射去！\n"NOR;
     message_combatd(msg,me,target);
     target_w->unequip();
     target_w->move(environment(target));
@@ -56,7 +56,7 @@ msg+="结果$p手中的"+query("name", target_w)+"被$P的轰天砸砸个正着�
     target->start_busy( (int)me->query_skill("duanyun-fu") / 20 );
     limbs=query("limbs", target);
     me->start_busy(1);
-    msg += "结果$p呆立当场，被攻了个措手不及！\n" NOR;
+    msg += "結果$p呆立當場，被攻了個措手不及！\n" NOR;
     size=(int)(me->query_skill("duanyun-fu")/10);
     damage=random(size)+size;
                                  damage=damage+me->query_str()/3+random(query_temp("apply/damage",me)); 
@@ -69,9 +69,9 @@ msg+="结果$p手中的"+query("name", target_w)+"被$P的轰天砸砸个正着�
    }
     COMBAT_D->report_status(target);
     } else {
-    msg += "可是$p急忙将自己的兵刃闪开，并没有让$P的计谋得逞。\n" NOR;
+    msg += "可是$p急忙將自己的兵刃閃開，並沒有讓$P的計謀得逞。\n" NOR;
     }
     return 1;
     }
-    return notify_fail(target->name() + "目前是空手，你想砸什么？\n");
+    return notify_fail(target->name() + "目前是空手，你想砸什麼？\n");
 }

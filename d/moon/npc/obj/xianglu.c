@@ -2,7 +2,7 @@
 inherit ITEM;
 void create()
 {
-        set_name("缕金香炉", ({ "香炉", "缕金香炉"}) );
+        set_name("縷金香爐", ({ "香爐", "縷金香爐"}) );
         set_weight(500);
         set_max_encumbrance(80000);
         set("no_get", 1);
@@ -10,8 +10,8 @@ void create()
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "个");
-                set("long", "一个缕金的香炉。似乎有左(left)右(right)转动过的痕迹。\n");
+                set("unit", "個");
+                set("long", "一個縷金的香爐。似乎有左(left)右(right)轉動過的痕跡。\n");
                 set("value", 1);
         }
 }

@@ -17,11 +17,11 @@ private string *check_skilltemp = ({
 });
 
 private string *check_skillname = ({
-            "八震字决",
-            "罗汉降魔",
-            "罗汉伏虎",
-            "摩诃参禅",
-            "惊魔一指",
+            "八震字決",
+            "羅漢降魔",
+            "羅漢伏虎",
+            "摩訶參禪",
+            "驚魔一指",
 });
 
 
@@ -63,48 +63,48 @@ int do_ask(string arg)
         
                  if( query(check_canpfm[i], me) )
                  {
-                     message_vision(CYN "我不是已经教过你了吗？" NOR, ob, me); 
+                     message_vision(CYN "我不是已經教過你了嗎？" NOR, ob, me); 
                      return 1; 
                  }
 
                  if( query("family/family_name", me) != query("family/family_name", ob) )
                  {
               
-                     message_vision(CYN RANK_D->query_respect(me) + "和本派素无瓜葛，何出此言？" NOR, ob, me); 
+                     message_vision(CYN RANK_D->query_respect(me) + "和本派素無瓜葛，何出此言？" NOR, ob, me); 
                      return 1;
                   }
 
                  if (me->query_skill(check_skill[i], 1) < 1)
                  {
-                     message_vision(CYN "你连" + to_chinese(check_skill[i]) + "都未曾学过，何来绝招？" NOR, ob, me);
+                     message_vision(CYN "你連" + to_chinese(check_skill[i]) + "都未曾學過，何來絕招？" NOR, ob, me);
                      return 1;
                  }
       
                  if( query("gongxian", me)<100 )
                  { 
-                     message_vision(CYN "你虽在我少林门下，却甚无作为，这招我先不忙传你。" NOR, ob, me); 
+                     message_vision(CYN "你雖在我少林門下，卻甚無作為，這招我先不忙傳你。" NOR, ob, me); 
                      return 1; 
                  }
         
                  if (me->query_skill("force") < 100)
                  {
-                     message_vision(CYN "你的内功火候不足，学不成这招。" NOR, ob, me);          
+                     message_vision(CYN "你的內功火候不足，學不成這招。" NOR, ob, me);          
                      return 1; 
                  }
         
                  if (me->query_skill(check_skill[i], 1) < 80)
                  {
-                     message_vision(CYN "你的"+ to_chinese(check_skill[i]) + "火候未到，还得多练习练习。" NOR, ob, me);
+                     message_vision(CYN "你的"+ to_chinese(check_skill[i]) + "火候未到，還得多練習練習。" NOR, ob, me);
                      return 1; 
                  }
        
-                 message_vision(HIY "$n" HIY "点了点头，伸手将$N" HIY "招至" 
-                                    "身边，在耳旁低声细说良久，$N" HIY "听" 
-                                    "后会\n心的一笑，看来大有所悟。\n" NOR, me, ob); 
+                 message_vision(HIY "$n" HIY "點了點頭，伸手將$N" HIY "招至" 
+                                    "身邊，在耳旁低聲細說良久，$N" HIY "聽" 
+                                    "後會\n心的一笑，看來大有所悟。\n" NOR, me, ob); 
                                                                         
                  command("nod"); 
                  command("say 明白了？"); 
-                 tell_object(me, HIC "你学会了「" + check_skillname[i] + "」。\n" NOR); 
+                 tell_object(me, HIC "你學會了「" + check_skillname[i] + "」。\n" NOR); 
       
                  if (me->can_improve_skill(check_skilltemp[i])) 
                      me->improve_skill(check_skilltemp[i], 1500000); 

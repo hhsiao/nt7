@@ -1,11 +1,11 @@
-// 大唐双龙传
-// jin.c 金满柜
+// 大唐雙龍傳
+// jin.c 金滿櫃
  
 inherit NPC;
 inherit F_BANKER;
 void create()
 {
-   set_name("金满柜", ({"jin mangui", "jin", "boss"}));
+   set_name("金滿櫃", ({"jin mangui", "jin", "boss"}));
    set("shop_id",({"jin mangui", "jin", "boss"}));
    set("gender", "男性");
    set("age", 47);
@@ -17,7 +17,7 @@ void create()
    set("mana", 200); 
    set("combat_exp", 50000);
    set("attitude", "friendly");
-   set("rank_info/respect", "掌柜的");
+   set("rank_info/respect", "掌櫃的");
    set("env/wimpy", 50);
    set("chat_chance", 10);
    set_skill("parry", 60);

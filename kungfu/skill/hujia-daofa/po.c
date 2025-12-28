@@ -1,12 +1,12 @@
 // This program is a part of NITAN MudLIB
-// po.c 破字诀
+// po.c 破字訣
 
 #include <ansi.h>
 #include <combat.h>
 
 inherit F_SSERVER;
 
-string name() { return "破字诀"; }
+string name() { return "破字訣"; }
 
 int perform(object me, object target)
 {
@@ -21,23 +21,23 @@ int perform(object me, object target)
                 target = me->select_opponent();
         }
         if (! target || ! me->is_fighting(target))
-                return notify_fail("「破字诀」只能对战斗中的对手使用。\n");
+                return notify_fail("「破字訣」只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "blade" )
-                return notify_fail("运用「破字诀」手中必须有刀！\n");
+                return notify_fail("運用「破字訣」手中必須有刀！\n");
 
         if ((int)me->query_skill("hujia-daofa", 1) < 90)
-                return notify_fail("你的胡家刀法不够娴熟，不会使用「破字诀」。\n");
+                return notify_fail("你的胡家刀法不夠嫻熟，不會使用「破字訣」。\n");
 
         if ((int)me->query_skill("force") < 150)
-                return notify_fail("你的内功修为不够高。\n");
+                return notify_fail("你的內功修為不夠高。\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你现在内力太弱，不能使用「破字诀」。\n");
+                return notify_fail("你現在內力太弱，不能使用「破字訣」。\n");
 
         msg = HIM "$N" HIM "手中的" + weapon->name() +
-              HIM "轻轻一转，一股无形刀气悄然无息的袭向$n" HIM "。\n"NOR;
+              HIM "輕輕一轉，一股無形刀氣悄然無息的襲向$n" HIM "。\n"NOR;
 
         ap = attack_power(me, "blade");
         dp = defense_power(target, "force");
@@ -47,13 +47,13 @@ int perform(object me, object target)
                 damage = damage_power(me, "blade");
                 addn("neili", -150, me);
                 msg += COMBAT_D->do_damage(me, target, REMOTE_ATTACK, damage, 65,
-                                           HIR "只见$n" HIR "一声惨叫，整个人如遭"
-                                           "电击，口中鲜血狂喷而出！\n" NOR);
+                                           HIR "只見$n" HIR "一聲慘叫，整個人如遭"
+                                           "電擊，口中鮮血狂噴而出！\n" NOR);
                 me->start_busy(2);
         } else
         {
-                msg += HIC "可是$p" HIC "默运内力，硬是抵挡了$P"
-                       HIC "的这记无形刀气。\n"NOR;
+                msg += HIC "可是$p" HIC "默運內力，硬是抵擋了$P"
+                       HIC "的這記無形刀氣。\n"NOR;
                 addn("neili", -50, me);
                 me->start_busy(3);
         }

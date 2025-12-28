@@ -174,45 +174,45 @@ varargs string appromix_time(int n, int flag)
         int bn;
 
         if( n <= 0 )
-                return flag ? "马上就" : "马上";
+                return flag ? "馬上就" : "馬上";
 
         bn = 1;
         if( n < bn * 60 ) {
-                // bn 单位是秒钟
-                s = "秒钟";
+                // bn 單位是秒鐘
+                s = "秒鐘";
                 odd = 0;
         } else
         if( bn *= 60, n < bn * 60 ) {
-                // bn 单位是分钟
-                s = "分钟";
-                os = "秒钟";
+                // bn 單位是分鐘
+                s = "分鐘";
+                os = "秒鐘";
                 odd = n % bn;
                 n /= bn;
         } else
         if( bn *= 60, n < 24 * bn ) {
-                // bn 单位是小时
-                s = "小时";
-                os = "分钟";
+                // bn 單位是小時
+                s = "小時";
+                os = "分鐘";
                 odd = (n % bn) / 60;
                 n /= bn;
         } else
         if( bn *= 24, n < 30 * bn ) {
-                // bn 单位是天
+                // bn 單位是天
                 s = "天";
-                os = "小时";
+                os = "小時";
                 odd = (n % bn) / (60 * 60);
                 n /= bn;
         } else
         if( n < 365 * bn ) {
-                // bn 单位是天
-                s = "个月";
+                // bn 單位是天
+                s = "個月";
                 os = "天";
                 odd = (n % (30 * bn)) / bn;
                 n /= 30 * bn;
         } else {
-                // bn 单位是天
+                // bn 單位是天
                 s = "年";
-                os = "个月";
+                os = "個月";
                 odd = (n % (365 * bn)) / (bn * 30);
                 n /= 365 * bn;
         }
@@ -221,7 +221,7 @@ varargs string appromix_time(int n, int flag)
         if( odd )
                 s += "零" + chinese_number(odd) + os;
 
-        if( flag ) s += "以后";
+        if( flag ) s += "以後";
         return s;
 }
 

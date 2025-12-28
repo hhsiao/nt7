@@ -1,5 +1,5 @@
 // This program is a part of NITAN MudLIB
-// mang.c 剑芒
+// mang.c 劍芒
 
 
 #include <ansi.h>
@@ -7,19 +7,19 @@
 
 inherit F_SSERVER;
 
-string name() { return "剑芒"; }
+string name() { return "劍芒"; }
 string *name1 = ({
         "玉堂穴",
-        "大横穴",
-        "幽门穴",
-        "章门穴",
+        "大橫穴",
+        "幽門穴",
+        "章門穴",
         "晴明穴",
-        "紫宫穴",
-        "风池穴",
-        "百汇穴",
-        "太阳穴",
-        "长强穴",
-        "灵台穴"
+        "紫宮穴",
+        "風池穴",
+        "百匯穴",
+        "太陽穴",
+        "長強穴",
+        "靈臺穴"
 });
 
 void check_fight(object me, object target, int amount);
@@ -33,48 +33,48 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! target->is_fighting(me))
-                return notify_fail("「剑芒」只能对战斗中的对手使用。\n");
+                return notify_fail("「劍芒」只能對戰鬥中的對手使用。\n");
 
         if( query("qi", target) <= 50 )
-                return notify_fail("你现在没有必要用「剑芒」攻击敌人了。\n");
+                return notify_fail("你現在沒有必要用「劍芒」攻擊敵人了。\n");
 
         if( !weapon || query("skill_type", weapon) != "sword"
         ||  me->query_skill_mapped("sword") != "huashan-sword")
-                return notify_fail("你现在无法使用「剑芒」攻击敌人。\n");
+                return notify_fail("你現在無法使用「劍芒」攻擊敵人。\n");
 
         if( query_temp("perform", me) == 1 ||
             query_temp("perform2", me) == 1 ||
             query_temp("perform3", me) == 1 )
-                return notify_fail("你现在正用着「剑芒」呢。\n");
+                return notify_fail("你現在正用著「劍芒」呢。\n");
 
         if ((int)me->query_skill("huashan-sword", 1) < 100 ||
             (int)me->query_skill("sword", 1) < 100 ||
             (int)me->query_str() < 25   ||
             (int)me->query_dex() < 25)
-                return notify_fail("你有的功夫还不够娴熟，不会使用「剑芒」。\n");
+                return notify_fail("你有的功夫還不夠嫻熟，不會使用「劍芒」。\n");
 
         if ((int)me->query_skill("zixia-shengong", 1) < 80)
-                return notify_fail("你的紫霞神功修为不够，无法领悟「剑芒」的精髓。\n");
+                return notify_fail("你的紫霞神功修為不夠，無法領悟「劍芒」的精髓。\n");
 
 
         if( query("max_neili", me)<800 )
-                return notify_fail("你的内力太弱，无法使用出「剑芒」！\n");
+                return notify_fail("你的內力太弱，無法使用出「劍芒」！\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你的真气不够！\n");
+                return notify_fail("你的真氣不夠！\n");
 
         name = name1[random(sizeof(name1))];
         name2=query("name", weapon);
 
-        msg = HIC "\n$N右手剑锋一转，手中" + name2 + HIC "直斗，顿时使$N" +
-              HIC "被一片剑辉所笼罩，其中一支剑芒奔向$n " HIC "的" + name + "。\n" NOR;
+        msg = HIC "\n$N右手劍鋒一轉，手中" + name2 + HIC "直鬥，頓時使$N" +
+              HIC "被一片劍輝所籠罩，其中一支劍芒奔向$n " HIC "的" + name + "。\n" NOR;
 
         ap = attack_power(me, "sword");
         dp = defense_power(target, "dodge");
 
         if (ap / 2 + random(ap) > dp)
         {
-                msg += HIR "结果一剑刺中，$n只觉得全身气脉通道阻塞，真气立受干挠！\n"NOR;
+                msg += HIR "結果一劍刺中，$n只覺得全身氣脈通道阻塞，真氣立受干撓！\n"NOR;
                 if (! target->is_busy())
                         target->start_busy(2 + random(4));
                 addn("neili", -200, me);
@@ -93,7 +93,7 @@ int perform(object me, object target)
                 me->start_busy(2);
                 addn("neili", -100, me);
                 addn("neili", -100, target);
-                msg += HIY"\n$p大叫一声不好，全身用力一纵，顺势跳了开去。\n" NOR;
+                msg += HIY"\n$p大叫一聲不好，全身用力一縱，順勢跳了開去。\n" NOR;
         }
         message_combatd(msg, me, target);
         me->start_call_out((: call_other, __FILE__, "check_fight",
@@ -126,7 +126,7 @@ int perform2(object me, object target)
         }
 
         name = name1[random(sizeof(name1))];
-        msg = MAG "\n接着$N踏前一步，" + name2 + "发出的第二支剑芒隔空点向$n的" + name + "，认穴竟无厘毫之差！\n" NOR;
+        msg = MAG "\n接著$N踏前一步，" + name2 + "發出的第二支劍芒隔空點向$n的" + name + "，認穴竟無釐毫之差！\n" NOR;
 
         ap = attack_power(me, "sword");
         dp = defense_power(target, "parry");
@@ -139,8 +139,8 @@ int perform2(object me, object target)
                 addn("neili", -300, me);
 
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 50,
-                                           HIR "结果只听见$n" HIR "一声惨嚎，" + name2 + HIR "已在$p的" + name +
-                                           HIR "对穿而出，鲜血溅得满地！！\n" NOR);
+                                           HIR "結果只聽見$n" HIR "一聲慘嚎，" + name2 + HIR "已在$p的" + name +
+                                           HIR "對穿而出，鮮血濺得滿地！！\n" NOR);
 
                 if( !target->is_busy() )
                         target->start_busy(2);
@@ -157,7 +157,7 @@ int perform2(object me, object target)
         {       me->start_busy(3);
                 addn("neili", -100, me);
                 delete_temp("perform", me);
-                msg += HIY"可是$p一个巧云翻身，远远的躲了开去。\n"NOR;
+                msg += HIY"可是$p一個巧雲翻身，遠遠的躲了開去。\n"NOR;
         }
         message_combatd(msg, me, target);
         me->start_call_out( (: call_other, __FILE__, "check_fight", me ,target :), 1);
@@ -187,7 +187,7 @@ int perform3(object me, object target)
         }
 
         name = name1[random(sizeof(name1))];
-        msg = HIW "\n紧跟着$N手中" + name2 + "发出第三支剑芒，只见一道光芒直奔$n，剑辉扫向$n的" + name + "！\n" NOR;
+        msg = HIW "\n緊跟著$N手中" + name2 + "發出第三支劍芒，只見一道光芒直奔$n，劍輝掃向$n的" + name + "！\n" NOR;
 
         ap = attack_power(me, "sword");
         dp = defense_power(target, "force");
@@ -197,8 +197,8 @@ int perform3(object me, object target)
                 addn("neili", -200, me);
                 delete_temp("perform2", me);
 
-                msg += HIR "$n只觉体内奇经八脉中内息为之一怠，全身气力竟然提不起来了！\n" NOR;
-                msg += HIW "$N趁$n身形一慢的当儿，连环数剑奋力击出，正是剑宗绝技" + HIR "“夺命三仙剑”！\n" NOR;
+                msg += HIR "$n只覺體內奇經八脈中內息為之一怠，全身氣力竟然提不起來了！\n" NOR;
+                msg += HIW "$N趁$n身形一慢的當兒，連環數劍奮力擊出，正是劍宗絕技" + HIR "“奪命三仙劍”！\n" NOR;
                 message_combatd(msg, me, target);
                 addn("apply/attack", skill, me);
                 addn("apply/damage", skill, me);
@@ -221,7 +221,7 @@ int perform3(object me, object target)
                 addn("neili", -100, me);
                 delete_temp("perform2", me);
                 target->start_busy(1);
-                msg += HIY"\n$p喘息未定，见$P手中发出的剑芒如狂风般点来，连忙又跃开数尺，狼狈地避开。\n" NOR;
+                msg += HIY"\n$p喘息未定，見$P手中發出的劍芒如狂風般點來，連忙又躍開數尺，狼狽地避開。\n" NOR;
                 message_combatd(msg, me, target);
         }
         me->start_call_out( (: call_other, __FILE__, "check_fight", me ,target :), 1);
@@ -232,7 +232,7 @@ void back(object me)
 {
         string msg;
         if (! me) return;
-        msg = HIW "\n你身形一收，手中剑芒渐渐消失。\n" NOR;
+        msg = HIW "\n你身形一收，手中劍芒漸漸消失。\n" NOR;
         tell_object(me, msg);
         delete_temp("perform", me);
         delete_temp("perform2", me);

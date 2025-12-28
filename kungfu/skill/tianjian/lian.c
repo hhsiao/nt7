@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define SHENG "「" HIW "连环决" NOR "」"
+#define SHENG "「" HIW "連環決" NOR "」"
 
 inherit F_SSERVER;
  
@@ -15,26 +15,26 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(SHENG "只能在战斗中对对手使用。\n");
+                return notify_fail(SHENG "只能在戰鬥中對對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
               query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对，难以施展" SHENG "。\n");
+                return notify_fail("你使用的武器不對，難以施展" SHENG "。\n");
 
         if (level = me->query_skill("tianjian", 1) < 20)
-                return notify_fail("你的天剑修为不够（要求天剑二十级），难以施展" SHENG "。\n");
+                return notify_fail("你的天劍修為不夠（要求天劍二十級），難以施展" SHENG "。\n");
 
         if (me->query_skill_mapped("sword") != "tianjian")
-                return notify_fail("你没有激发天剑，难以施展" SHENG "。\n");
+                return notify_fail("你沒有激發天劍，難以施展" SHENG "。\n");
 
         if( query("neili", me)<15 )
-                return notify_fail("你现在真气（要求15的内力）不够，难以施展" SHENG "。\n");
+                return notify_fail("你現在真氣（要求15的內力）不夠，難以施展" SHENG "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了（对方已死亡），用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了（對方已死亡），用不著這麼費力吧？\n");
 
         msg = HIY "$N" HIY "身法忽快，手中" + weapon->name() +
-              HIY "回转，突然「唰！唰！」数剑，连连刺向$n" HIY "。\n" NOR;
+              HIY "迴轉，突然「唰！唰！」數劍，連連刺向$n" HIY "。\n" NOR;
 
         message_combatd(msg, me, target);
 
@@ -60,7 +60,7 @@ int perform(object me, object target)
                 {
                                 set("newbie_quest/completed", 1, me);
                                 me->save();
-                                tell_object(me, HIG "你已经学会了如何施展绝招，快回去找老村长领取奖励吧！\n" NOR);
+                                tell_object(me, HIG "你已經學會了如何施展絕招，快回去找老村長領取獎勵吧！\n" NOR);
                 }
 
         return 1;

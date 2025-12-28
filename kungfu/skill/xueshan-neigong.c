@@ -1,4 +1,4 @@
-// xueshan-neigong.c 雪山内功
+// xueshan-neigong.c 雪山內功
 
 inherit FORCE;
 int is_pbsk() { return 1; }
@@ -22,7 +22,7 @@ int valid_learn(object me)
 
 int practice_skill(object me)
 {
-            return notify_fail("雪山内功只能用学(learn)的来增加熟练度。\n");
+            return notify_fail("雪山內功只能用學(learn)的來增加熟練度。\n");
 }
 
 string exert_function_file(string func)

@@ -22,14 +22,14 @@ void show_msg(object me)
         if( ((n=query("qi", me)) <= 5) || (sk<40) || (random(10)>(sk-35)) )
         {
                 if(n>25) n=25;
-                message_vision("$N一个没站稳，倒栽冲摔了下去。\n", me);
+                message_vision("$N一個沒站穩，倒栽衝摔了下去。\n", me);
                 me->receive_damage("qi",n);
                 me->move(__DIR__"lianwu");
-                tell_room(environment(me), me->name()+"摔了下来。\n", ({me}));
+                tell_room(environment(me), me->name()+"摔了下來。\n", ({me}));
                 return;
         }
 
-        message_vision("$N扎了个马步，纹丝不动。\n", me);
+        message_vision("$N紮了個馬步，紋絲不動。\n", me);
 }
 
 int valid_leave(object ob,string dir)

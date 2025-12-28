@@ -1,4 +1,4 @@
-// anbian.c 岸边
+// anbian.c 岸邊
 // Modify By River@SJ 99.06
 #include <ansi.h>
 inherit ROOM;
@@ -6,23 +6,23 @@ inherit ROOM;
 void home( object ob );
 void create()
 {
-        set("short", GRN"岸边"NOR);
+        set("short", GRN"岸邊"NOR);
         set("long", @LONG
-只见岸边数里之外树木葱翠，奇峰挺拔，耸立着好几座高山。岛
-东端山石直降人入海，并无浅滩，帆船吃水较深，却可以泊在岸边。
-这时你看见不远的有一块颇为平整的岩石，上面被人用利器刻着『灵
-蛇岛』三个大字，其侧还有几个看不太清的小字(zi)。往东而上是一
-个很高的山岗，再上面是一座山峰。海滩上有几只海船，看来可以推
+只見岸邊數里之外樹木蔥翠，奇峰挺拔，聳立著好幾座高山。島
+東端山石直降人入海，並無淺灘，帆船吃水較深，卻可以泊在岸邊。
+這時你看見不遠的有一塊頗為平整的岩石，上面被人用利器刻著『靈
+蛇島』三個大字，其側還有幾個看不太清的小字(zi)。往東而上是一
+個很高的山崗，再上面是一座山峰。海灘上有幾隻海船，看來可以推
 (tui)下海去。
 LONG );
         set("exits", ([ 
                 "eastup" : __DIR__"shanguang",
         ]));
         set("item_desc", ([
-                "zi" :HIR"\t\t踏足灵蛇岛，必死！\n"NOR
+                "zi" :HIR"\t\t踏足靈蛇島，必死！\n"NOR
         ]));
         set("boat", 1);
-        set("outdoors", "灵蛇岛");
+        set("outdoors", "靈蛇島");
         setup();
 }
 
@@ -45,9 +45,9 @@ int do_enter()
              inv = all_inventory(sea);
              for(i= 0;i< sizeof(inv);i++){
                    if(inv[i]->query("boat_of") == base_name(this_object())){
-                          message_vision("$N象猴子一样蹦得老高，两下就窜上了海船。\n\n", me);
+                          message_vision("$N象猴子一樣蹦得老高，兩下就竄上了海船。\n\n", me);
                           me->move(inv[i]);
-                          message("vision",me->name()+"象猴子一样蹦了上来。\n",environment(me), ({me}) );
+                          message("vision",me->name()+"象猴子一樣蹦了上來。\n",environment(me), ({me}) );
                           return 1;
                    }
              }
@@ -62,12 +62,12 @@ int do_push(string arg)
         me = this_player();
         
         if( arg=="chuan" || arg=="船" ) {
-            if(me->is_busy()) return notify_fail("你正忙着呢。\n");
-            if(!query("boat")) return notify_fail("岸上已经没有海船了。\n");
-            if(query("boat_on_sea")) return notify_fail("岸边有艘海船呢，你再推下去一艘，它们会相撞的。\n");
+            if(me->is_busy()) return notify_fail("你正忙著呢。\n");
+            if(!query("boat")) return notify_fail("岸上已經沒有海船了。\n");
+            if(query("boat_on_sea")) return notify_fail("岸邊有艘海船呢，你再推下去一艘，它們會相撞的。\n");
             me->start_busy(5);
             add("boat", -1);
-            message_vision("$N使出吃奶的劲，将海船推进了大海，现在总算可以上船(enter)了。\n", me);
+            message_vision("$N使出吃奶的勁，將海船推進了大海，現在總算可以上船(enter)了。\n", me);
             EMOTE_D->do_emote(me,"touch", me->query("id"));
             me->add("jingli", -50);
             ob=new("/clone/misc/boat2");
@@ -92,12 +92,12 @@ int do_enter ( string arg )
         string dir;
         if (! arg || arg != "chuan")
         {
-                tell_object(this_player() , "你要 enter 哪儿？\n" ) ;
+                tell_object(this_player() , "你要 enter 哪兒？\n" ) ;
                 return 1 ;
         }
         ob = this_player () ;
-        message_vision("船夫一见有人上船，忙叫了一声：开船喽！\n", ob);
-        message_vision("船夫升起帆，船就向西方航行。\n", ob);
+        message_vision("船伕一見有人上船，忙叫了一聲：開船嘍！\n", ob);
+        message_vision("船伕升起帆，船就向西方航行。\n", ob);
         ob->move("/d/mingjiao/lsd/dahai") ;
         tell_object(ob, BLU "你在海上航行了三天三夜.......\n" NOR ) ;
         call_out("home", 10 , ob );
@@ -105,7 +105,7 @@ int do_enter ( string arg )
 }
 void home( object ob )
 {
-        tell_object(ob , "大船终于抵达了南海岸边。你走下船来。\n" ) ;
+        tell_object(ob , "大船終於抵達了南海岸邊。你走下船來。\n" ) ;
         ob->move("/d/beijing/haigang") ;
 }
 

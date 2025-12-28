@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("跟屁虫[1;35m[2;37;0m[2;37;0m", ({"ddddd"}));        
+        set_name("跟屁蟲[1;35m[2;37;0m[2;37;0m", ({"ddddd"}));        
         set("gender", "女性");                
-        set("long", "看！灰机[2;37;0m
-它是焱馨的魔幻兽。
+        set("long", "看！灰機[2;37;0m
+它是焱馨的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

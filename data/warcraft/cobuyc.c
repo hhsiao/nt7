@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("一只大鸟[2;37;0m[2;37;0m", ({"cobuycc"}));        
+        set_name("一隻大鳥[2;37;0m[2;37;0m", ({"cobuycc"}));        
         set("gender", "男性");                
-        set("long", "一只大鸟[2;37;0m
-它是彩色的魔幻兽。
+        set("long", "一隻大鳥[2;37;0m
+它是彩色的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

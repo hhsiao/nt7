@@ -30,7 +30,7 @@ nomask void add_encumbrance(int w)
 void over_encumbrance()
 {
         if( !interactive(this_object()) )return;
-        tell_object(this_object(), "你的负荷过重了！\n");
+        tell_object(this_object(), "你的負荷過重了！\n");
 }
 
 nomask int query_weight() { return weight; }
@@ -68,7 +68,7 @@ varargs int move(mixed dest, int raw)
         // If we are equipped, unequip first.
         if( !(is_char = me->is_character()) &&
             query("equipped") && !me->unequip() )
-                return notify_fail("你没有办法取下这样东西。\n");
+                return notify_fail("你沒有辦法取下這樣東西。\n");
 
         // Find the destination ob for moving.
         if( objectp(dest))
@@ -82,12 +82,12 @@ varargs int move(mixed dest, int raw)
 
 /*
         if (is_char && query("in_prison", me) && wiz_level(me) < 7 && ob->is_room() && query("in_prison", me)!=base_name(ob) && base_name(ob)!=VOID_OB)
-                return notify_fail(sprintf("%s被囚禁起来了，无法移动。\n", me->name()));
+                return notify_fail(sprintf("%s被囚禁起來了，無法移動。\n", me->name()));
 */
 
         if( !is_char && query("bind_owner", me) && base_name(ob) != VOID_OB &&
             (!userp(ob) || (query("bind_owner", me) != query("id", ob)&&!wizardp(ob))) ) {
-                write(sprintf("%s已经绑定，无法移动。\n",
+                write(sprintf("%s已經綁定，無法移動。\n",
                               me->name()));
                 return 0;
         }
@@ -99,26 +99,26 @@ varargs int move(mixed dest, int raw)
         // Since the player can carry the bag, we assume he can carry the this
         // object in the bag and encumbrance checking is unessessary.
         // ----------------------
-        // 检查目标是否能够包容住该物品
-        // 在检查前，我们先检查是否目标OBJ是该物件的环境（或者是它的环境的环境），如果是，那就好象是
-        // 从一个玩家身上背着的包里取出一个物品，既然玩家可以背起这个包，那么我们可以想当然的认为他也
-        // 可以背起这个OBJ并且超重检查是不必要的。 By JackyBoy@TOMUD 2001/5/6
+        // 檢查目標是否能夠包容住該物品
+        // 在檢查前，我們先檢查是否目標OBJ是該物件的環境（或者是它的環境的環境），如果是，那就好象是
+        // 從一個玩家身上揹著的包裡取出一個物品，既然玩家可以背起這個包，那麼我們可以想當然的認為他也
+        // 可以背起這個OBJ並且超重檢查是不必要的。 By JackyBoy@TOMUD 2001/5/6
         env = me;
         while( env = environment(env) )
                 if( env == ob ) break;
         if( !env && (int) ob->query_encumbrance() + weight() >
             (int) ob->query_max_encumbrance() ) {
                 if( raw && environment(ob) && !query("bindable", me) ) {
-                        message_vision("由于$n对于$N而言是在"
+                        message_vision("由於$n對於$N而言是在"
                                        "是太重了，只好先扔在一旁。\n",
                                        ob, this_object());
                         ob = environment(ob);
                 } else if( ob == this_player() ) {
                         return notify_fail(this_object()->name() +
-                                           "对你而言太重了。\n");
+                                           "對你而言太重了。\n");
                 } else {
                         return notify_fail(this_object()->name() +
-                                           "对" + ob->name() +
+                                           "對" + ob->name() +
                                            "而言太重了。\n");
                 }
         }
@@ -129,7 +129,7 @@ varargs int move(mixed dest, int raw)
         if( env ) {
                 if( env != ob && magic_move && userp(env) ) {
                         if( env->visible(me) )
-                                tell_object(env, HIM "你忽然觉得身上好像轻了一"
+                                tell_object(env, HIM "你忽然覺得身上好像輕了一"
                                                  "些。\n" NOR);
                         if( userp(me) ) {
                                 addn_temp("person_in_you", -1, env);
@@ -184,7 +184,7 @@ varargs int move(mixed dest, int raw)
         // Enter environment
         if( magic_move && userp(ob) ) {
                 if( ob->visible(this_object()) )
-                        tell_object(ob, HIM "你忽然觉得身上好像重了一"
+                        tell_object(ob, HIM "你忽然覺得身上好像重了一"
                                          "些。\n" NOR);
                 if( userp(this_object()) )
                         addn_temp("person_in_you", 1, ob);
@@ -196,7 +196,7 @@ varargs int move(mixed dest, int raw)
                 if( env ) {
                         env->add_encumbrance(-weight());
                         if( userp(env) && query_temp("tomud", env) )
-                                tell_object(env, REM1(this_object())); //如果是从玩家身上移动走，则应该是REM1
+                                tell_object(env, REM1(this_object())); //如果是從玩家身上移動走，則應該是REM1
                         else if( !living(env) ) {
                                 users = filter_array(all_inventory(env),
                                                      (: (userp($1) && query_temp("tomud", $1)) :)) -
@@ -206,15 +206,15 @@ varargs int move(mixed dest, int raw)
                                         tell_object(user, REM0(this_object()));
 
                                 // tell_room(env,REM0(this_object()),this_object() );
-                                // 如果是从房间里移动走，则应该是REM0
+                                // 如果是從房間裡移動走，則應該是REM0
                         }
-                        // else log_file("move.log",ctime(time())+"：不知道如何显示REM消息---"+base_name(env)+"\n");
+                        // else log_file("move.log",ctime(time())+"：不知道如何顯示REM消息---"+base_name(env)+"\n");
                 }
                 if( ob ) {
                         ob->add_encumbrance(weight());
                         if( (userp(ob)|| interactive(ob)) && query_temp("tomud", ob) )
                                 tell_object(ob, ADD1(this_object()) );
-                                // 如果是移动到玩家身上，则应该是ADD1
+                                // 如果是移動到玩家身上，則應該是ADD1
                         else if( !ob->is_character() ) {
                                 users = filter_array(all_inventory(ob),
                                                      (: (userp($1) && query_temp("tomud", $1)) :)) -
@@ -223,20 +223,20 @@ varargs int move(mixed dest, int raw)
                                 foreach( user in users )
                                         tell_object(user, ADD0(this_object()));
                                 // tell_room(ob, ADD0(this_object()),this_object() );
-                                // 如果是移动到房间里，则应该是ADD0
+                                // 如果是移動到房間裡，則應該是ADD0
                         }
                 }
         }
         // Move & run INIT function
         move_object(ob);
 
-        // bindable == 2 拾取绑定
+        // bindable == 2 拾取綁定
         if( me && !is_char && query("bindable", me) &&
             query("bindable", me) == 2 && userp(ob) ) {
                 set("bind_owner", query("id", ob), me);
                 set("set_data", 1, me);
-                tell_object(ob, HIM "你内心深处隐隐约约的感应到" + me->name() +
-                                HIM "与你融为一体。\n" NOR);
+                tell_object(ob, HIM "你內心深處隱隱約約的感應到" + me->name() +
+                                HIM "與你融為一體。\n" NOR);
         }
 
 
@@ -267,13 +267,13 @@ void remove(string euid)
                         log_file("destruct", sprintf("%s attempt to destruct user object %s (%s)\n",
                                  euid, query("id"),
                                  ctime(time())));
-                        error("你(" + euid + ")不能摧毁其他的使用者。\n");
+                        error("你(" + euid + ")不能摧毀其他的使用者。\n");
                 }
                 log_file("destruct", sprintf("%s in %O destruct on %s.\n",
                                              query("id", me),
                                              environment(me),
                                              ctime(time())));
-                error("只有ROOT才能摧毁玩家。\n");
+                error("只有ROOT才能摧毀玩家。\n");
         } else if( query("equipped", me) ) {
                 // Failed to unequip, only log but continue
                 if( !me->unequip() )
@@ -294,7 +294,7 @@ void remove(string euid)
 
                 //Add By JackyBoy@TOMUD      2001/5/27
                 if( userp(ob) && query_temp("tomud", ob) )
-                        tell_object(ob, REM1(me) ); //如果是从玩家身上移动走，则应该是REM1
+                        tell_object(ob, REM1(me) ); //如果是從玩家身上移動走，則應該是REM1
                 else if( !living(ob) && !ob->is_character() ) {
                         users = filter_array(all_inventory(ob),
                                             (: (userp($1) && query_temp("tomud", $1)) :)) -
@@ -302,12 +302,12 @@ void remove(string euid)
                         if( sizeof(users) > 0 )
                         foreach( user in users )
                                 tell_object(user, REM0(me));
-                        // tell_room(ob, REM0(me), me );//如果是从房间里移动走，则应该是REM0
+                        // tell_room(ob, REM0(me), me );//如果是從房間裡移動走，則應該是REM0
                 }
 
                 if( is_magic_move() && userp(ob) ) {
                         if( ob->visible(this_object()) )
-                                tell_object(ob, HIM "你忽然觉得身上好像轻了一些。\n" NOR);
+                                tell_object(ob, HIM "你忽然覺得身上好像輕了一些。\n" NOR);
 
                         if( userp(me) ) {
                                 // One user enter another user
@@ -328,7 +328,7 @@ void remove(string euid)
 void move_or_destruct(object dest)
 {
         if( userp(this_object()) ) {
-                tell_object(this_object(), "一阵时空的扭曲将你传送到另一个地方....\n");
+                tell_object(this_object(), "一陣時空的扭曲將你傳送到另一個地方....\n");
                 move(VOID_OB);
         } else if( this_object()->is_ob_saved() )
                 this_object()->save();

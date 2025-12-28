@@ -25,27 +25,27 @@ int main(object me, string arg)
                 {
                         ownstockvalue = data["value"];
                         if( undefinedp(stocks[num]) ) continue;
-                        curstockvalue = stocks[num]["现价"];
+                        curstockvalue = stocks[num]["現價"];
 
                         gain = (curstockvalue - ownstockvalue)*100. / ownstockvalue;
 
-                        if( stocks[num]["涨跌"] < 0 )
+                        if( stocks[num]["漲跌"] < 0 )
                         {
                                 stockcolor = HIG;
 
-                                if( stocks[num]["状态"] == "t3g2" )
+                                if( stocks[num]["狀態"] == "t3g2" )
                                         stockcolor += BGRN;
 
-                                stockdesc = " □"+sprintf("%.2f", -stocks[num]["涨跌"]);
+                                stockdesc = " □"+sprintf("%.2f", -stocks[num]["漲跌"]);
                         }
-                        else if( stocks[num]["涨跌"] > 0 )
+                        else if( stocks[num]["漲跌"] > 0 )
                         {
                                 stockcolor = HIR;
 
-                                if( stocks[num]["状态"] == "t3r2" )
+                                if( stocks[num]["狀態"] == "t3r2" )
                                         stockcolor += BRED;
 
-                                stockdesc = " ▲"+sprintf("%.2f", stocks[num]["涨跌"]);
+                                stockdesc = " ▲"+sprintf("%.2f", stocks[num]["漲跌"]);
                         }
                         else
                         {
@@ -53,13 +53,13 @@ int main(object me, string arg)
                                 stockdesc = " —";
                         }
                         msg += ({ HIY"股"NOR YEL"票" });
-                        msg += ({ sprintf(NOR" %-12s %12s %-12s%-19s %12s\n", HIM+num + NOR" "HIW +stocks[num]["股票名称"]+NOR, WHT +(data["amount"]) +NOR" 张", NOR YEL"持股 "HIW+sprintf("%.2f", ownstockvalue||0.0)+NOR, NOR YEL"现价 "+stockcolor+sprintf("%6.2f", curstockvalue||0.0)+stockdesc+NOR, NOR YEL"利润 "+(curstockvalue>ownstockvalue?HIR:curstockvalue<ownstockvalue?HIG:HIW)+(gain>0?"+":gain==0.?" ":"")+sprintf("%.2f", gain||0.0)+"%"+NOR ) });
+                        msg += ({ sprintf(NOR" %-12s %12s %-12s%-19s %12s\n", HIM+num + NOR" "HIW +stocks[num]["股票名稱"]+NOR, WHT +(data["amount"]) +NOR" 張", NOR YEL"持股 "HIW+sprintf("%.2f", ownstockvalue||0.0)+NOR, NOR YEL"現價 "+stockcolor+sprintf("%6.2f", curstockvalue||0.0)+stockdesc+NOR, NOR YEL"利潤 "+(curstockvalue>ownstockvalue?HIR:curstockvalue<ownstockvalue?HIG:HIW)+(gain>0?"+":gain==0.?" ":"")+sprintf("%.2f", gain||0.0)+"%"+NOR ) });
                 }
 
         }
         else
 
-                msg += ({ NOR"手上没有持有任何股票" });
+                msg += ({ NOR"手上沒有持有任何股票" });
 
         me->start_more(implode(msg, ""));
         return 1;
@@ -67,6 +67,6 @@ int main(object me, string arg)
 
 int help()
 {
-        write("\n此命令可以列出你的股票情况。\n\n");
+        write("\n此命令可以列出你的股票情況。\n\n");
         return 1;
 }

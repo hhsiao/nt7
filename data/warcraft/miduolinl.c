@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("云采[2;37;0m[2;37;0m", ({"mohuanshou"}));        
+        set_name("雲採[2;37;0m[2;37;0m", ({"mohuanshou"}));        
         set("gender", "男性");                
-        set("long", "云采[2;37;0m
-它是米十二的魔幻兽。
+        set("long", "雲採[2;37;0m
+它是米十二的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

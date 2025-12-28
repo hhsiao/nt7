@@ -7,11 +7,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "魔鬼滩");
+        set("short", "魔鬼灘");
         set("long", @LONG
-这是蛇谷中最荒凉恐怖的地带，地上连一粒石子都没有。民间传
-说这里发生过一些奇怪的事情。滩头四周的树木都向一边歪长着，中
-心是一块巨大的凹陷处，似乎有一股巨大的旋风要把你卷进滩坑里。
+這是蛇谷中最荒涼恐怖的地帶，地上連一粒石子都沒有。民間傳
+說這裡發生過一些奇怪的事情。灘頭四周的樹木都向一邊歪長著，中
+心是一塊巨大的凹陷處，似乎有一股巨大的旋風要把你捲進灘坑裡。
 LONG );
 
         set("exits", ([ 
@@ -37,7 +37,7 @@ void init()
 {
         object me = this_player();
 
-        if( query("race", me) == "蛇类")return ;
+        if( query("race", me) == "蛇類")return ;
 
         set("enter_shegu", 1, me);
         addn("jingli", -7, me);
@@ -50,7 +50,7 @@ void init()
         if( query("hide_snake") ) {
                 remove_call_out("snake_attack");
                 call_out("snake_attack", 3+random(3), me); 
-                tell_object(me, HIB"你一走进魔鬼滩，登时觉得四面八方传来极为浓冽的毒气，异乎寻常……\n"NOR,);
+                tell_object(me, HIB"你一走進魔鬼灘，登時覺得四面八方傳來極為濃冽的毒氣，異乎尋常……\n"NOR,);
         }
 }
 
@@ -78,8 +78,8 @@ void snake_attack(object me)
 
         snake->move(here);
 
-        message("vision", HIR"你突然听见沙沙异声，一条"+snake->name()+HIR"从魔鬼滩中心土底窜出，伴随一阵腥风，向"+me->name()+"张口咬去！\n"NOR, environment(me), me);
-        tell_object(me, HIR"你耳中忽闻沙沙异声，猛然警觉，但见一条"+snake->name()+HIR"从魔鬼滩中心土坑窜出，张口向你咬来！\n"NOR);
+        message("vision", HIR"你突然聽見沙沙異聲，一條"+snake->name()+HIR"從魔鬼灘中心土底竄出，伴隨一陣腥風，向"+me->name()+"張口咬去！\n"NOR, environment(me), me);
+        tell_object(me, HIR"你耳中忽聞沙沙異聲，猛然警覺，但見一條"+snake->name()+HIR"從魔鬼灘中心土坑竄出，張口向你咬來！\n"NOR);
         COMBAT_D->do_attack(snake,me,query_temp("weapon", snake));
         snake->kill_ob(me);
 }

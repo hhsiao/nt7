@@ -13,8 +13,8 @@ void create()
 {
         object ob;
 
-        set_name("左冷禅", ({ "zuo lengchan", "zuo" }) );
-        set("title", HIR"五岳剑派盟主"HIY"嵩山派第十三代掌门"NOR);
+        set_name("左冷禪", ({ "zuo lengchan", "zuo" }) );
+        set("title", HIR"五嶽劍派盟主"HIY"嵩山派第十三代掌門"NOR);
         set("gender", "男性");
         set("class", "swordsman");
         set("age", 55);
@@ -62,12 +62,12 @@ void create()
         prepare_skill("strike", "hanbing-zhang");
         set("inquiry",([
                 "秘籍"       : (: ask_book :),
-                "掌谱"       : (: ask_book :),
-                "大嵩阳掌谱" : (: ask_book :),
-                "剑谱"       : (: ask_book1 :),
-                "嵩山剑谱"   : (: ask_book1 :),
+                "掌譜"       : (: ask_book :),
+                "大嵩陽掌譜" : (: ask_book :),
+                "劍譜"       : (: ask_book1 :),
+                "嵩山劍譜"   : (: ask_book1 :),
         ]));
-        create_family("嵩山派", 13, "掌门");
+        create_family("嵩山派", 13, "掌門");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -114,33 +114,33 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)>-30000 )
         {
-                command("say 我最看不惯你们这些狭义之士，你还是请回吧！");
+                command("say 我最看不慣你們這些狹義之士，你還是請回吧！");
                 return;
         }
 
         if( query("combat_exp", ob)<360000 )
         {
-                command("say 你现在经验尚浅，还是多在江湖上走走吧。");
+                command("say 你現在經驗尚淺，還是多在江湖上走走吧。");
                 return;
         }
 
         if ((int)ob->query_skill("songshan-jian", 1) < 160)
         {
-                command("say 我嵩山剑派乃五岳剑派之一，最为重视剑法。");
-                command("say 你的嵩山剑法还不够熟练，下去练练再来吧。");
+                command("say 我嵩山劍派乃五嶽劍派之一，最為重視劍法。");
+                command("say 你的嵩山劍法還不夠熟練，下去練練再來吧。");
                 return;
         }
 
         if ((int)ob->query_skill("songshan-xinfa", 1) < 160)
         {
-                command("say 我嵩山剑派虽善用剑，但内功却是御剑之本。");
-                command("say 你是否还应该在嵩山心法上多下点功夫？");
+                command("say 我嵩山劍派雖善用劍，但內功卻是御劍之本。");
+                command("say 你是否還應該在嵩山心法上多下點功夫？");
                 return;
         }
 
         command("haha");
         command("say 孺子可教，孺子可教。今日我就收下你吧。");
-        command("say 你以后定要勤练武，扬我嵩山派雄风。");
+        command("say 你以後定要勤練武，揚我嵩山派雄風。");
         command("recruit "+query("id", ob));
 }
 
@@ -149,16 +149,16 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "历练" :
-        case "历炼" :
-        case "锻炼" :
+        case "歷練" :
+        case "歷煉" :
+        case "鍛鍊" :
                 return QUEST_D->accept_ask(this_object(), me, topic);
                 break;
 
-        case "踏雪无痕" :
+        case "踏雪無痕" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/hanbing-zhang/heng",
-                           "name"    : "踏雪无痕",
+                           "name"    : "踏雪無痕",
                            "sk1"     : "hanbing-zhang",
                            "lv1"     : 100,
                            "force"   : 160,
@@ -166,10 +166,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -32000, ]));
                 break;
 
-        case "极天寒掌" :
+        case "極天寒掌" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/hanbing-zhang/han",
-                           "name"    : "极天寒掌",
+                           "name"    : "極天寒掌",
                            "sk1"     : "hanbing-zhang",
                            "lv1"     : 120,
                            "force"   : 200,
@@ -177,10 +177,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -48000, ]));
                 break;
 
-        case "神光再现" :
+        case "神光再現" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/poyang-jian/xian",
-                           "name"    : "神光再现",
+                           "name"    : "神光再現",
                            "sk1"     : "poyang-jian",
                            "lv1"     : 100,
                            "dodge"   : 140,
@@ -188,10 +188,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -54000, ]));
                 break;
 
-        case "天外玉龙" :
+        case "天外玉龍" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/poyang-jian/long",
-                           "name"    : "天外玉龙",
+                           "name"    : "天外玉龍",
                            "sk1"     : "poyang-jian",
                            "lv1"     : 120,
                            "force"   : 180,
@@ -200,10 +200,10 @@ int accept_ask(object me, string topic)
                 break;
 
 
-        case "寒冰真气" :
+        case "寒冰真氣" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/hanbing-zhenqi/freezing",
-                           "name"    : "寒冰真气",
+                           "name"    : "寒冰真氣",
                            "sk1"     : "hanbing-zhenqi",
                            "lv1"     : 80,
                            "force"   : 140,
@@ -211,7 +211,7 @@ int accept_ask(object me, string topic)
                            "shen"    : -93000, ]));
                 break;
 
-        case "残阳宝剑" :
+        case "殘陽寶劍" :
                 return MASTER_D->give_item(me, this_object(),
                         ([ "item"    : CANYANG,
                            "master"  : 1,
@@ -231,13 +231,13 @@ string ask_book()
 
         if( query("family/family_name", this_player()) != "嵩山派" )
                 return RANK_D->query_respect(this_player()) +
-                "与本派毫无瓜葛，我派的武功典籍可不能交给你。";
-        if (query("book_count") < 1) return "你来晚了，本派的秘籍不在此处。";
+                "與本派毫無瓜葛，我派的武功典籍可不能交給你。";
+        if (query("book_count") < 1) return "你來晚了，本派的秘籍不在此處。";
         addn("book_count", -1);
         ob = new("/clone/book/songyang-zhangpu");
         ob->move(this_player());
-        command("rumor"+query("name", this_player())+"拿到大嵩阳掌谱啦。\n");
-        return "好吧，这本「大嵩阳掌谱」你拿回去好好钻研。";
+        command("rumor"+query("name", this_player())+"拿到大嵩陽掌譜啦。\n");
+        return "好吧，這本「大嵩陽掌譜」你拿回去好好鑽研。";
 }
 
 string ask_book1()
@@ -246,11 +246,11 @@ string ask_book1()
 
         if( query("family/family_name", this_player()) != "嵩山派" )
                 return RANK_D->query_respect(this_player()) +
-                "与本派毫无瓜葛，我派的武功典籍可不能交给你。";
-        if (query("book_count1") < 1) return "你来晚了，本派的秘籍不在此处。";
+                "與本派毫無瓜葛，我派的武功典籍可不能交給你。";
+        if (query("book_count1") < 1) return "你來晚了，本派的秘籍不在此處。";
         addn("book_count1", -1);
         ob = new("/clone/book/sword_book4");
         ob->move(this_player());
-        command("rumor"+query("name", this_player())+"拿到嵩山剑谱啦。\n");
-        return "好吧，这本「嵩山剑谱」你拿回去好好钻研。";
+        command("rumor"+query("name", this_player())+"拿到嵩山劍譜啦。\n");
+        return "好吧，這本「嵩山劍譜」你拿回去好好鑽研。";
 }

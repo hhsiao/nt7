@@ -3,16 +3,16 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "神峰山脚");
+        set("short", "神峰山腳");
         set("long", @LONG
-此处已是神峰(peak)山脚，近看尤其美丽，通体雪白，莹
-光纯净，做玉匠的只要找到小小的一块白玉，已然是终身吃之
-不尽了，哪知这里竟有这样一座白玉山峰。抬头仰望，只觉心
-旷神怡，万虑俱消。你不禁暗暗赞叹造物之奇。
+此處已是神峰(peak)山腳，近看尤其美麗，通體雪白，瑩
+光純淨，做玉匠的只要找到小小的一塊白玉，已然是終身吃之
+不盡了，哪知這裡竟有這樣一座白玉山峰。抬頭仰望，只覺心
+曠神怡，萬慮俱消。你不禁暗暗讚歎造物之奇。
 LONG);
         set("outdoors", "gaochang");
         set("item_desc", ([
-                "peak" : HIW "陡峭的白玉山峰上布满斧凿痕迹，看来似乎"
+                "peak" : HIW "陡峭的白玉山峰上佈滿斧鑿痕跡，看來似乎"
                          "可以爬上去。\n" NOR,
         ]));
 
@@ -32,15 +32,15 @@ int do_climb(string arg)
         object me = this_player();
 
         if (! arg || arg != "up")
-                return notify_fail("你要往哪个方向爬？\n");
+                return notify_fail("你要往哪個方向爬？\n");
 
-        message("vision", HIW "只见" + me->name() + HIW "战战兢兢地往神"
+        message("vision", HIW "只見" + me->name() + HIW "戰戰兢兢地往神"
                           "峰上爬去。\n" NOR, environment(me), ({me}));
 
         me->move(__DIR__"shenfeng");
-        tell_object(me, HIW "\n你费了好大劲，终于爬上了神峰，累得你直喘"
-                          "粗气。\n\n" NOR);
-        message("vision", HIW "只见" + me->name() + HIW "气喘嘘嘘地爬了"
-                          "上来。\n", environment(me), ({me}));
+        tell_object(me, HIW "\n你費了好大勁，終於爬上了神峰，累得你直喘"
+                          "粗氣。\n\n" NOR);
+        message("vision", HIW "只見" + me->name() + HIW "氣喘噓噓地爬了"
+                          "上來。\n", environment(me), ({me}));
         return 1;
 }

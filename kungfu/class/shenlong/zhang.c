@@ -9,9 +9,9 @@ inherit F_GUARDER;
 
 void create()
 {
-        set_name("张淡月", ({ "zhang danyue", "zhang"}));
-        set("title", HIY"神龙教"BLU"黑龙使"NOR);
-        set("long", "这是一个黑衣大汉，身躯笔挺，容貌威严。\n" );
+        set_name("張淡月", ({ "zhang danyue", "zhang"}));
+        set("title", HIY"神龍教"BLU"黑龍使"NOR);
+        set("long", "這是一個黑衣大漢，身軀筆挺，容貌威嚴。\n" );
         set("gender", "男性");
 
         set("age", 44);
@@ -48,7 +48,7 @@ void create()
         map_skill("unarmed", "xianglong-zhang");
         map_skill("parry", "xianglong-zhang");
 
-        create_family("神龙教", 0, "长老");
+        create_family("神龍教", 0, "長老");
 
         set("coagents", ({
                 ([ "startroom" : "/d/shenlong/dating",
@@ -56,11 +56,11 @@ void create()
         }));
 
         set("inquiry", ([
-                "神龙教" : "一般人是入不了我神龙教的(join shenlongjiao).\n",
-                "洪安通" : "教主脾气不好,要讨他欢心才好。\n",
-                "教主"   : "教主脾气不好,要讨他欢心才好。\n",
-                "入教"   : "一般人是入不了我神龙教的(join shenlongjiao).\n",
-                "口号"   : "万年不老！永享仙福！寿与天齐！文武仁圣！\n",
+                "神龍教" : "一般人是入不了我神龍教的(join shenlongjiao).\n",
+                "洪安通" : "教主脾氣不好,要討他歡心才好。\n",
+                "教主"   : "教主脾氣不好,要討他歡心才好。\n",
+                "入教"   : "一般人是入不了我神龍教的(join shenlongjiao).\n",
+                "口號"   : "萬年不老！永享仙福！壽與天齊！文武仁聖！\n",
         ]));
 
         set("master_ob", 4);
@@ -96,6 +96,6 @@ void greeting(object ob)
 
 void attempt_apprentice(object ob)
 {
-        command("say 你走开！别烦我！");
+        command("say 你走開！別煩我！");
         return;
 }

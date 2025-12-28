@@ -10,19 +10,19 @@ int main(object me, string arg)
         int pts;
 
         if ((max = me->query_max_craze()) < 1)
-                return notify_fail("你的性格不合，不善发作。\n");
+                return notify_fail("你的性格不合，不善發作。\n");
 
         if (me->query_con() < 35 && me->query_str() < 35)
-                return notify_fail("你的身体素质还不够好，贸然发作有伤身体。\n");
+                return notify_fail("你的身體素質還不夠好，貿然發作有傷身體。\n");
 
         if (me->is_busy())
-                return notify_fail("你现在忙着呢。\n");
+                return notify_fail("你現在忙著呢。\n");
 
         if( query("neili", me)<1000 )
-                return notify_fail("你的内力不够充沛，难以控制自己的情绪。\n");
+                return notify_fail("你的內力不夠充沛，難以控制自己的情緒。\n");
 
-        message_vision(HIR "$N" HIR "嘿然冷笑，关节喀啦喀啦"
-                       "的响个不停，一股悍气油然而起。\n" NOR, me);
+        message_vision(HIR "$N" HIR "嘿然冷笑，關節喀啦喀啦"
+                       "的響個不停，一股悍氣油然而起。\n" NOR, me);
 
         pts = max * random(me->query_skill("force") + 500) / 1000;
         me->improve_craze(pts);
@@ -39,9 +39,9 @@ int help (object me)
         write(@HELP
 指令格式: berserk|baofa
  
-这个指令让你运用内功控制情绪，大行发作，积蓄自己的愤怒。不过
-生气对自己没有好处，每次发作都会让自己的气受到损失。在身体不
-支的时候发怒小心晕厥。
+這個指令讓你運用內功控制情緒，大行發作，積蓄自己的憤怒。不過
+生氣對自己沒有好處，每次發作都會讓自己的氣受到損失。在身體不
+支的時候發怒小心暈厥。
 
 HELP );
         return 1;

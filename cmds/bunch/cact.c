@@ -1,6 +1,6 @@
 // cact.c
-// 一个动作函数只能由一个唯一的动词引导
-// 要不分析命令阵列太麻烦，也没什么实际意义。
+// 一個動作函數只能由一個唯一的動詞引導
+// 要不分析命令陣列太麻煩，也沒什麼實際意義。
 // by Find.
 
 #include <ansi.h>
@@ -50,19 +50,19 @@ int main(object me, string arg)
 
 	if(!n = sizeof(acts))
 	{
-		tell_object(me, "请设你要加入动作的动词[3-10英文字母](q 退出)：\n");
+		tell_object(me, "請設你要加入動作的動詞[3-10英文字母](q 退出)：\n");
 		input_to( (: set_action_verb :), me, env, acts);
 		return 1;
 	}
 
-	out = "目前此地已经定义的动作：\n";
+	out = "目前此地已經定義的動作：\n";
 
 	out += list_msg(acts);
 
-	out += "请选择操作：\n(1). 删除一个动作。\n";
+	out += "請選擇操作：\n(1). 刪除一個動作。\n";
 
 	if(n < max_action_per_room)
-		out += "(2). 加入一个动作。\n(q). 退出：";
+		out += "(2). 加入一個動作。\n(q). 退出：";
 	else
 		out += "(q). 退出：";
 
@@ -84,9 +84,9 @@ protected void decide_action_do(string str, object who, object env, mixed *acts)
 		return;
 	}
 
-	if(sizeof(str) && (str[0] == '1'))	// 删除
+	if(sizeof(str) && (str[0] == '1'))	// 刪除
 	{
-		tell_object(who, "请输入欲删除动作的动词(q 退出)：\n");
+		tell_object(who, "請輸入欲刪除動作的動詞(q 退出)：\n");
 		input_to( (: delete_action :), who, env, acts);
 		return;
 	}
@@ -95,29 +95,29 @@ protected void decide_action_do(string str, object who, object env, mixed *acts)
 	{
 		if(sizeof(acts) >= max_action_per_room)
 		{
-			tell_object(who, sprintf("这里已经设定了%s个动作，不能再设定了。\n非法操作错误。\n", chinese_number(max_action_per_room)));
+			tell_object(who, sprintf("這裡已經設定了%s個動作，不能再設定了。\n非法操作錯誤。\n", chinese_number(max_action_per_room)));
 			return;
 		}
-		tell_object(who, "请设你要加入动作的动词[3-10英文字母](q 退出)：\n");
+		tell_object(who, "請設你要加入動作的動詞[3-10英文字母](q 退出)：\n");
 		input_to( (: set_action_verb :), who, env, acts);
 		return;
 	}
 
-	out = "目前此地已经定义的动作：\n";
+	out = "目前此地已經定義的動作：\n";
 
 	out += list_msg(acts);
 
-	out += "请选择操作：\n(1). 删除一个动作。\n";
+	out += "請選擇操作：\n(1). 刪除一個動作。\n";
 
 	if(sizeof(acts) < max_action_per_room)
-		out += "(2). 加入一个动作。\n(q). 退出：";
+		out += "(2). 加入一個動作。\n(q). 退出：";
 	else
 		out += "(q). 退出：";
 
 	input_to((: decide_action_do :), who, env, acts);
 }
 
-// 删除动作
+// 刪除動作
 protected void delete_action(string str, object who, object env, mixed *acts)
 {
 	string func, fname, content, f_sect, m_sect, e_sect, result, sf_sect, se_sect;
@@ -128,14 +128,14 @@ protected void delete_action(string str, object who, object env, mixed *acts)
 
 	if(!stringp(str) || !sizeof(str))
 	{
-		tell_object(who, "请输入欲删除动作的动词(q 退出)：\n");
+		tell_object(who, "請輸入欲刪除動作的動詞(q 退出)：\n");
 		input_to( (: delete_action :), who, env, acts);
 		return;
 	}
 
 	if(!n = sizeof(acts))
 	{
-		tell_object(who, "此地没有定义任何动作。\n异常错误。\n");
+		tell_object(who, "此地沒有定義任何動作。\n異常錯誤。\n");
 		return;
 	}
 
@@ -156,25 +156,25 @@ protected void delete_action(string str, object who, object env, mixed *acts)
 
 	if(!func)
 	{
-		tell_object(who, "此地没有定义这个动作。\n");
+		tell_object(who, "此地沒有定義這個動作。\n");
 		return;
 	}
 
 	if(environment(who) != env)
 	{
-		tell_object(who, "你的位置发生了变化，修改被停止。\n");
+		tell_object(who, "你的位置發生了變化，修改被停止。\n");
 		return;
 	}
 
 	if(!content = read_file(fname = base_name(env) +".c"))
 	{
-		tell_object(who, "无法读入档案文件。\n");
+		tell_object(who, "無法讀入檔案文件。\n");
 		return;
 	}
 
 	if(!BUNCH_D->parse_function_body(ref content, "int", func, ref f_sect, ref m_sect, ref e_sect, 1))
 	{
-		tell_object(who, "无法剖析目的房间档案，修改被停止。\n");
+		tell_object(who, "無法剖析目的房間檔案，修改被停止。\n");
 		return;
 	}
 
@@ -182,13 +182,13 @@ protected void delete_action(string str, object who, object env, mixed *acts)
 
 	if(!BUNCH_D->parse_function_body(ref content, "void", "init", ref f_sect, ref m_sect, ref e_sect, 0))
 	{
-		tell_object(who, "无法剖析目的房间档案(2)，修改被停止。\n");
+		tell_object(who, "無法剖析目的房間檔案(2)，修改被停止。\n");
 		return;
 	}
 
 	if(!BUNCH_D->parse_set_value(ref m_sect, func, ref sf_sect, ref se_sect, "add_action"))
 	{
-		tell_object(who, "无法剖析目的房间档案(3)，修改被停止。\n");
+		tell_object(who, "無法剖析目的房間檔案(3)，修改被停止。\n");
 		return;
 	}
 
@@ -197,7 +197,7 @@ protected void delete_action(string str, object who, object env, mixed *acts)
 		content = sprintf("%s\n%s\n", f_sect, e_sect);
 		if(!BUNCH_D->parse_function_body(ref content, "void", "init", ref f_sect, ref m_sect, ref e_sect, 1))
 		{
-			tell_object(who, "无法剖析目的房间档案(2)，修改被停止。\n");
+			tell_object(who, "無法剖析目的房間檔案(2)，修改被停止。\n");
 			return;
 		}
 
@@ -210,7 +210,7 @@ protected void delete_action(string str, object who, object env, mixed *acts)
 
 	if(!BUNCH_D->parse_set_value(ref content, sprintf("%s_action_func", str), ref f_sect, ref e_sect))
 	{
-		tell_object(who, "无法剖析目的房间档案(4)，修改被停止。\n");
+		tell_object(who, "無法剖析目的房間檔案(4)，修改被停止。\n");
 		return;
 	}
 
@@ -218,20 +218,20 @@ protected void delete_action(string str, object who, object env, mixed *acts)
 
 	if(!write_file(fname, result, 1))
 	{
-		tell_object(who, "无法写入文件内容，修改失败。\n");
+		tell_object(who, "無法寫入文件內容，修改失敗。\n");
 		return;
 	}
 
 	if( !BUNCH_D->update_room(env) )
 	{
-		tell_object(who, "无法载入房间，修改失败。\n");
+		tell_object(who, "無法載入房間，修改失敗。\n");
 		return;
 	}
 
-	tell_object(who, "删除成功。\n");
+	tell_object(who, "刪除成功。\n");
 }
 
-// 增加 move 类动作
+// 增加 move 類動作
 protected void set_action_verb(string str, object who, object env, mixed *acts)
 {
 	if(!who || !env)
@@ -239,13 +239,13 @@ protected void set_action_verb(string str, object who, object env, mixed *acts)
 
 	if(!stringp(str) || !sizeof(str))
 	{
-		tell_object(who, "请设你要加入动作的动词[3-10英文字母](q 退出)：\n");
+		tell_object(who, "請設你要加入動作的動詞[3-10英文字母](q 退出)：\n");
 		input_to( (: set_action_verb :), who, env, acts);
 	}
 
 	if(!regexp(str, "^[a-z]+$"))
 	{
-		tell_object(who, "动作的动词只能用小写英文字母。\n操作被终止。\n");
+		tell_object(who, "動作的動詞只能用小寫英文字母。\n操作被終止。\n");
 		return;
 	}
 
@@ -257,7 +257,7 @@ protected void set_action_verb(string str, object who, object env, mixed *acts)
 
 	if((sizeof(str) < 3) || (sizeof(str) > 10))
 	{
-		tell_object(who, "动作的动词只能3-10个英文字母。\n操作被终止。\n");
+		tell_object(who, "動作的動詞只能3-10個英文字母。\n操作被終止。\n");
 		return;
 	}
 
@@ -266,16 +266,16 @@ protected void set_action_verb(string str, object who, object env, mixed *acts)
 		for(int i=0;i<sizeof(acts);i++)
 			if(acts[i][0] == str)
 			{
-				tell_object(who, "这个动词已经在这里存在了。\n非法操作。\n");
+				tell_object(who, "這個動詞已經在這裡存在了。\n非法操作。\n");
 				return;
 			}
 	}
 
-	tell_object(who, "可设定的动作类型：
-  1. 移动类动作。
-  2. 开出口类动作
-  3. 发现物品类动作
-请选择(q 退出)：\n");
+	tell_object(who, "可設定的動作類型：
+  1. 移動類動作。
+  2. 開出口類動作
+  3. 發現物品類動作
+請選擇(q 退出)：\n");
 
 	input_to((: select_action_class :), who, env, str);
 }
@@ -296,50 +296,50 @@ protected void select_action_class(string str, object who, object env, string ve
 
 	if(!id = who->query_banghui_id())
 	{
-		tell_object(who, "你的帮派记录错乱。\n修改失败。\n");
+		tell_object(who, "你的幫派記錄錯亂。\n修改失敗。\n");
 		return;
 	}
 
-	if(sizeof(str) && (str[0] == '1'))	// 移动类
+	if(sizeof(str) && (str[0] == '1'))	// 移動類
 	{
 		mapping exits;
 
 		if(!env = BUNCH_D->update_room(env))
 		{
-			tell_object(who, "无法载入当前房间。\n操作失败。\n");
+			tell_object(who, "無法載入當前房間。\n操作失敗。\n");
 			return;
 		}
 
 		if(!mapp(exits = env->query("exits")) || !sizeof(exits))
 		{
-			tell_object(who, "当前房间没有出口连向其他的房间。\n没有可设定移动的出口。\n");
+			tell_object(who, "當前房間沒有出口連向其他的房間。\n沒有可設定移動的出口。\n");
 			return;
 		}
 		actarg = allocate_mapping(8);
 		actarg["action_class"] = "move";
 		actarg["banghui_id"] = id;
-		tell_object(who, "对可以使用此动作人的限制：
-  1. 只有本帮派的人可以。
+		tell_object(who, "對可以使用此動作人的限制：
+  1. 只有本幫派的人可以。
   2. 任何人都可以。
-请选择(q 退出)：
+請選擇(q 退出)：
 ");
 		input_to((: move_get_limit :), who, env, verb, actarg, exits);
 		return;
 	}
 
-	if(sizeof(str) && (str[0] == '2'))	// 开出口
+	if(sizeof(str) && (str[0] == '2'))	// 開出口
 	{
 		mapping exits;
 
 		if(!env = BUNCH_D->update_room(env))
 		{
-			tell_object(who, "无法载入当前房间。\n操作失败。\n");
+			tell_object(who, "無法載入當前房間。\n操作失敗。\n");
 			return;
 		}
 
 		if(!mapp(exits = env->query("exits")) || !sizeof(exits))
 		{
-			tell_object(who, "当前房间没有出口连向其他的房间。\n没有可设定移动的出口。\n");
+			tell_object(who, "當前房間沒有出口連向其他的房間。\n沒有可設定移動的出口。\n");
 			return;
 		}
 		tell_object(who, "目前不行。\n");
@@ -352,11 +352,11 @@ protected void select_action_class(string str, object who, object env, string ve
 		return;
 	}
 
-	tell_object(who, "可设定的动作类型：
-  1. 移动类动作。
-  2. 开出口类动作
-  3. 发现物品类动作
-请选择(q 退出)：\n");
+	tell_object(who, "可設定的動作類型：
+  1. 移動類動作。
+  2. 開出口類動作
+  3. 發現物品類動作
+請選擇(q 退出)：\n");
 
 	input_to((: select_action_class :), who, env, str);
 }
@@ -375,8 +375,8 @@ protected void move_get_limit(string str, object who, object env, string verb, m
 	if(sizeof(str) && (str[0] == '1'))
 	{
 		actarg["player_limit"] = 1;
-		tell_object(who, "请设定此动作必须的参数：
-( 0 没有参数, q 退出)
+		tell_object(who, "請設定此動作必須的參數：
+( 0 沒有參數, q 退出)
 ");
 		input_to((: move_get_arg :), who, env, verb, actarg, exits);
 		return;
@@ -385,17 +385,17 @@ protected void move_get_limit(string str, object who, object env, string verb, m
 	if(sizeof(str) && (str[0] == '2'))
 	{
 		actarg["player_limit"] = 2;
-		tell_object(who, "请设定此动作必须的参数：
-( 0 没有参数, q 退出)
+		tell_object(who, "請設定此動作必須的參數：
+( 0 沒有參數, q 退出)
 ");
 		input_to((: move_get_arg :), who, env, verb, actarg, exits);
 		return;
 	}
 
-	tell_object(who, "对可以使用此动作人的限制：
-  1. 只有本帮派的人可以。
+	tell_object(who, "對可以使用此動作人的限制：
+  1. 只有本幫派的人可以。
   2. 任何人都可以。
-请选择(q 退出)：
+請選擇(q 退出)：
 ");
 	input_to((: move_get_limit :), who, env, verb, actarg, exits);
 }
@@ -413,7 +413,7 @@ protected void move_get_arg(string str, object who, object env, string verb, map
 
 	if(sizeof(str) && (str[0] == '0'))
 	{
-		string out = "目前这里的出口：\n";
+		string out = "目前這裡的出口：\n";
 		actarg["action_arg"] = 0;
 		actarg["fail_msg"] = 0;
 
@@ -423,7 +423,7 @@ protected void move_get_arg(string str, object who, object env, string verb, map
 				continue;
 			out += sprintf("  %s 通往 %s\n", dir, explode(dest,"/")[<1]);
 		}
-		out += "请选择此动作目的地为哪个出口的目的地？(q 退出)：\n";
+		out += "請選擇此動作目的地為哪個出口的目的地？(q 退出)：\n";
 		tell_object(who, out);
 		input_to((: move_get_dest :), who, env, verb, actarg, exits);
 		return;
@@ -437,15 +437,15 @@ protected void move_get_arg(string str, object who, object env, string verb, map
 
 	if(!stringp(str) || !sizeof(str))
 	{
-		tell_object(who, "请设定此动作必须的参数：
-( 0 没有参数, q 退出)
+		tell_object(who, "請設定此動作必須的參數：
+( 0 沒有參數, q 退出)
 ");
 		input_to((: move_get_arg :), who, env, verb, actarg, exits);
 		return;
 	}
 
 	actarg["action_arg"] = str;
-	tell_object(who, "请设定没有使用正确的参数的错误提示信息[最多15个汉字]\n请输入(q 退出)：\n");
+	tell_object(who, "請設定沒有使用正確的參數的錯誤提示信息[最多15個漢字]\n請輸入(q 退出)：\n");
 	input_to((: move_get_fail_msg :), who, env, verb, actarg, exits);
 }
 
@@ -464,20 +464,20 @@ protected void move_get_fail_msg(string str, object who, object env, string verb
 
 	if(!stringp(str) || !sizeof(str) || (sizeof(str) > 30))
 	{
-		tell_object(who, "请设定没有使用正确的参数的错误提示信息[最多15个汉字]\n请输入(q 退出)：\n");
+		tell_object(who, "請設定沒有使用正確的參數的錯誤提示信息[最多15個漢字]\n請輸入(q 退出)：\n");
 		input_to((: move_get_fail_msg :), who, env, verb, actarg, exits);
 		return;
 	}
 
 	actarg["fail_msg"] = str[<1]=='\n'?str:str+"\n";
-	out = "目前这里的出口：\n";
+	out = "目前這裡的出口：\n";
 	foreach(string dir, string dest in exits)
 	{
 		if(!stringp(dest) || !sizeof(dest))
 			continue;
 		out += sprintf("  %s 通往 %s\n", dir, explode(dest,"/")[<1]);
 	}
-	out += "请选择此动作目的地为哪个出口的目的地？(q 退出)：\n";
+	out += "請選擇此動作目的地為哪個出口的目的地？(q 退出)：\n";
 	tell_object(who, out);
 	input_to((: move_get_dest :), who, env, verb, actarg, exits);
 }
@@ -497,14 +497,14 @@ protected void move_get_dest(string str, object who, object env, string verb, ma
 	{
 		string out;
 
-		out = "目前这里的出口：\n";
+		out = "目前這裡的出口：\n";
 		foreach(string dir, string dest in exits)
 		{
 			if(!stringp(dest) || !sizeof(dest))
 				continue;
 			out += sprintf("  %s 通往 %s\n", dir, explode(dest,"/")[<1]);
 		}
-		out += "请选择此动作目的地为哪个出口的目的地？(q 退出)：\n";
+		out += "請選擇此動作目的地為哪個出口的目的地？(q 退出)：\n";
 		tell_object(who, out);
 		input_to((: move_get_dest :), who, env, verb, actarg, exits);
 		return;
@@ -512,18 +512,18 @@ protected void move_get_dest(string str, object who, object env, string verb, ma
 
 	if(undefinedp(exits[str]))
 	{
-		tell_object(who, "没有这个出口。\n操作失败。\n");
+		tell_object(who, "沒有這個出口。\n操作失敗。\n");
 		return;
 	}
 
 	if(!in_same_dir(base_name(env), exits[str]))
 	{
-		tell_object(who, "你没有修改目的档案的权利。\n修改失败。\n");
+		tell_object(who, "你沒有修改目的檔案的權利。\n修改失敗。\n");
 		return;
 	}
 
 	actarg["move_dest"] = exits[str];
-	tell_object(who, "请设定动作人离开这个房间的信息['$N' 代表动作人](q 退出)：\n");
+	tell_object(who, "請設定動作人離開這個房間的信息['$N' 代表動作人](q 退出)：\n");
 
 	input_to((: move_get_here_msg :), who, env, verb, actarg, exits, str);
 }
@@ -541,7 +541,7 @@ protected void move_get_here_msg(string str, object who, object env, string verb
 
 	if(!stringp(str) || (sizeof(str) < 10))
 	{
-		tell_object(who, "<显示信息至少要有 5 个汉字长>\n请设定动作人离开这个房间的信息['$N' 代表动作人](q 退出)：\n");
+		tell_object(who, "<顯示信息至少要有 5 個漢字長>\n請設定動作人離開這個房間的信息['$N' 代表動作人](q 退出)：\n");
 		input_to((: move_get_here_msg :), who, env, verb, actarg, exits, dir);
 		return;
 	}
@@ -549,14 +549,14 @@ protected void move_get_here_msg(string str, object who, object env, string verb
 
 	if(sizeof(str) > 50)
 	{
-		tell_object(who, "<显示信息不能超过 25 个汉字长>\n请设定动作人离开这个房间的信息['$N' 代表动作人](q 退出)：\n");
+		tell_object(who, "<顯示信息不能超過 25 個漢字長>\n請設定動作人離開這個房間的信息['$N' 代表動作人](q 退出)：\n");
 		input_to((: move_get_here_msg :), who, env, verb, actarg, exits, dir);
 		return;
 	}
 
 	actarg["here_msg"] = str[<1]=='\n'?str:str+"\n";
 
-	tell_object(who, "请设定动作人到达目的房间的信息['$N' 代表动作人](q 退出)：\n");
+	tell_object(who, "請設定動作人到達目的房間的信息['$N' 代表動作人](q 退出)：\n");
 
 	input_to((: move_get_dest_msg :), who, env, verb, actarg, exits, dir);
 }
@@ -576,7 +576,7 @@ protected void move_get_dest_msg(string str, object who, object env, string verb
 
 	if(!stringp(str) || (sizeof(str) < 10))
 	{
-		tell_object(who, "<显示信息至少要有 5 个汉字长>\n请设定动作人到达目的房间的信息['$N' 代表动作人](q 退出)：\n");
+		tell_object(who, "<顯示信息至少要有 5 個漢字長>\n請設定動作人到達目的房間的信息['$N' 代表動作人](q 退出)：\n");
 		input_to((: move_get_here_msg :), who, env, verb, actarg, exits, dir);
 		return;
 	}
@@ -584,7 +584,7 @@ protected void move_get_dest_msg(string str, object who, object env, string verb
 
 	if(sizeof(str) > 50)
 	{
-		tell_object(who, "<显示信息不能超过 25 个汉字长>\n请设定动作人到达目的房间的信息['$N' 代表动作人](q 退出)：\n");
+		tell_object(who, "<顯示信息不能超過 25 個漢字長>\n請設定動作人到達目的房間的信息['$N' 代表動作人](q 退出)：\n");
 		input_to((: move_get_here_msg :), who, env, verb, actarg, exits, dir);
 		return;
 	}
@@ -593,7 +593,7 @@ protected void move_get_dest_msg(string str, object who, object env, string verb
 
 	if(environment(who) != env)
 	{
-		tell_object(who, "你的位置发生了变化，操作终止。\n");
+		tell_object(who, "你的位置發生了變化，操作終止。\n");
 		return;
 	}
 
@@ -603,7 +603,7 @@ protected void move_get_dest_msg(string str, object who, object env, string verb
 	object me = this_player();
 	mapping act_arg;
 	if(!mapp(act_arg = query(\"%s_action_func\")) || !sizeof(act_arg))
-		return notify_fail(\"出现错误。\n\");
+		return notify_fail(\"出現錯誤。\n\");
 	if( (act_arg[\"player_limit\"] == 1)
 	&& (me->query_banghui_id() != act_arg[\"banghui_id\"]) )
 		return 0;
@@ -614,14 +614,14 @@ protected void move_get_dest_msg(string str, object who, object env, string verb
 	}
 	message_vision(act_arg[\"here_msg\"], me);
 	if(!me->move(act_arg[\"move_dest\"]))
-		return notify_fail(\"过不去。\n\");
+		return notify_fail(\"過不去。\n\");
 	message_vision(act_arg[\"dest_msg\"], me);
 	return 1;
 }", verb, verb);
 
 	if(!content = read_file(fname = base_name(env) + ".c"))
 	{
-		tell_object(who, "无法读取档案内容。\n操作失败。\n");
+		tell_object(who, "無法讀取檔案內容。\n操作失敗。\n");
 		return;
 	}
 
@@ -629,7 +629,7 @@ protected void move_get_dest_msg(string str, object who, object env, string verb
 	{
 		if(!BUNCH_D->parse_function_body(ref content, "void", "create", ref f_sect, ref m_sect, ref e_sect, 0))
 		{
-			tell_object(who, "无法剖析文件内容，修改失败。\n");
+			tell_object(who, "無法剖析文件內容，修改失敗。\n");
 			return;
 		}
 
@@ -641,7 +641,7 @@ protected void move_get_dest_msg(string str, object who, object env, string verb
 		content = sprintf("%s\n%s\n%s\n%s\n", f_sect, adac_str, m_sect, e_sect);
 		if(!BUNCH_D->parse_function_body(ref content, "void", "create", ref f_sect, ref m_sect, ref e_sect, 0))
 		{
-			tell_object(who, "无法剖析文件内容，修改失败。\n");
+			tell_object(who, "無法剖析文件內容，修改失敗。\n");
 			return;
 		}
 		result = sprintf("// Room: %s\n\n%s\n\tset(\"%s_action_func\", %O);\n%s\n%s\n%s\n",
@@ -650,18 +650,18 @@ protected void move_get_dest_msg(string str, object who, object env, string verb
 
 	if(!write_file(fname, result, 1))
 	{
-		tell_object(who, "无法写入文件内容，修改失败。\n");
+		tell_object(who, "無法寫入文件內容，修改失敗。\n");
 		return;
 	}
 
 	if( !env = BUNCH_D->update_room(env) )
 	{
-		tell_object(who, "无法载入房间，修改失败。\n");
+		tell_object(who, "無法載入房間，修改失敗。\n");
 		return;
 	}
 
 	if(BUNCH_D->break_an_exit(who, env, dir))
-		tell_object(who, "动作加入成功。\n");
+		tell_object(who, "動作加入成功。\n");
 }
 
-// 开出口类动作
+// 開出口類動作

@@ -8,14 +8,14 @@ inherit RINGS;
  
 void create()
 {
-	set_name("[45m幸运女神戒指[2;37;0m", ({ "luck ring" }));
+	set_name("[45m幸運女神戒指[2;37;0m", ({ "luck ring" }));
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-	set("unit", "个");
-	set("long", "[1;33m这便是幸运女神戴过的戒指，神光浮现。
+	set("unit", "個");
+	set("long", "[1;33m這便是幸運女神戴過的戒指，神光浮現。
 [2;37;0m");
 	set("value", 3000);
 	set("no_sell", 1);
@@ -29,7 +29,7 @@ void create()
         
 	set("mod_mark", "A3022");
 	set("mod_level", "M3002");
-	set("mod_name", "[41;1m幸运女神之眷念[2;37;0m");
+	set("mod_name", "[41;1m幸運女神之眷念[2;37;0m");
 	set("quality_level", 4);
 
 	set("armor_type", "rings");
@@ -45,7 +45,7 @@ int receive_summon(object me)
         return ITEM_D->receive_summon(me, this_object());
 }
 
-// 隐藏物品
+// 隱藏物品
 int hide_anywhere(object me)
 {
         return ITEM_D->hide_anywhere(me, this_object());

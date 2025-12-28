@@ -65,17 +65,17 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "个");
-                set("base_unit", "个");
+                set("unit", "個");
+                set("base_unit", "個");
                 set("base_weight", 500);
         set("consistence", 21);
 
-                set("long", "一只用粗麻布织成的袋子，身上所带布袋的多少，是丐帮弟子江湖地位的标志。\n");
+                set("long", "一隻用粗麻布織成的袋子，身上所帶布袋的多少，是丐幫弟子江湖地位的標誌。\n");
                 set("material", "cloth");
                 set("base_armor", 5);
-                set("no_drop", "身为丐帮弟子，袋在则人在，袋亡则人亡。\n");
-        set("no_get",  "这个布袋紧紧地绑在他身上，你拿不到手。\n");
-                set("no_steal", "这个布袋紧紧地绑在他身上，你偷不到手。\n");
+                set("no_drop", "身為丐幫弟子，袋在則人在，袋亡則人亡。\n");
+        set("no_get",  "這個布袋緊緊地綁在他身上，你拿不到手。\n");
+                set("no_steal", "這個布袋緊緊地綁在他身上，你偷不到手。\n");
         }
 
         setup();
@@ -96,7 +96,7 @@ int do_remove(string arg)
 {
         if( (arg && present(arg, this_player()) == this_object())
           || arg == "all" ) {
-                tell_object(this_player(), "丐帮弟子，袋在人在，袋亡人亡，你不能解除布袋！\n");
+                tell_object(this_player(), "丐幫弟子，袋在人在，袋亡人亡，你不能解除布袋！\n");
                 return 1;
         }
 

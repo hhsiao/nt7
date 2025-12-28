@@ -5,20 +5,20 @@ inherit NPC;
 
 void create()
 {
-        set_name("驿站小二", ({"xiao er"}) );
+        set_name("驛站小二", ({"xiao er"}) );
         set("gender", "男性" );
         set("age", 22);
         set("long",
-                "这位小二正笑咪咪地闲著，还不时拿起茶壶喝上两口。\n");
+                "這位小二正笑咪咪地閒著，還不時拿起茶壺喝上兩口。\n");
         set("combat_exp", 100);
         set("attitude", "friendly");
         set("no_get", "1");
         set("rank_info/respect", "小二哥");
         set("chat_chance", 1 );
         set("chat_msg", ({
-                (:command("say "+"有钱的坐坐车，没钱的跑跑腿。"):),
-                ( : command("say "+"有钱你是大爷，没钱我是大爷。") : ),
-                ( : command("say "+"价格公平合理，卖买自由竞争！") : ),
+                (:command("say "+"有錢的坐坐車，沒錢的跑跑腿。"):),
+                ( : command("say "+"有錢你是大爺，沒錢我是大爺。") : ),
+                ( : command("say "+"價格公平合理，賣買自由競爭！") : ),
         }) );       
         setup();
         carry_object("/clone/misc/cloth")->wear();
@@ -51,12 +51,12 @@ void greeting(object ob)
         switch( random(2) ) 
         {
                 case 0:
-                        say( "小二笑咪咪地说道：这位" + RANK_D->query_respect(ob)
-                                + "，到那儿去啊。\n");
+                        say( "小二笑咪咪地說道：這位" + RANK_D->query_respect(ob)
+                                + "，到那兒去啊。\n");
                         break;
                 case 1:
-                        say( "小二喝了口茶，说道：这位" + RANK_D->query_respect(ob)
-                                + "，长途旅行，本店优惠。\n");
+                        say( "小二喝了口茶，說道：這位" + RANK_D->query_respect(ob)
+                                + "，長途旅行，本店優惠。\n");
                         break;
         }
 }
@@ -75,7 +75,7 @@ int accept_object(object who, object ob)
         
         if( query("money_id", ob) && ob->value() >= 2000 )
         {
-                tell_object(who, "小二一哈腰，说道：多谢您老，请您老雇车。\n");
+                tell_object(who, "小二一哈腰，說道：多謝您老，請您老僱車。\n");
 
                 set_temp("paid_for", 1, who);
 

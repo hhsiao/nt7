@@ -13,14 +13,14 @@ mixed ask_skill1();
 
 void create()
 {
-        set_name("白世镜", ({ "bai shijing", "bai", "shijing" }));
+        set_name("白世鏡", ({ "bai shijing", "bai", "shijing" }));
         set("long", @LONG
-这是一位须眉皆白的老丐，双目间透出一丝寒
-气。他就是丐帮的传功长老白世镜，所擅的缠
-丝擒拿手在武林中享名已久。
+這是一位鬚眉皆白的老丐，雙目間透出一絲寒
+氣。他就是丐幫的傳功長老白世鏡，所擅的纏
+絲擒拿手在武林中享名已久。
 LONG);
-        set("nickname", HIR "大义长老" NOR);
-        set("title", "丐帮九袋长老");
+        set("nickname", HIR "大義長老" NOR);
+        set("title", "丐幫九袋長老");
         set("gender", "男性");
         set("age", 48);
         set("attitude", "peaceful");
@@ -73,10 +73,10 @@ LONG);
 
         prepare_skill("hand", "chansi-shou");
 
-        create_family("丐帮", 18, "长老");
+        create_family("丐幫", 18, "長老");
 
         set("inquiry", ([
-                "缠丝擒拿" : (: ask_skill1 :),
+                "纏絲擒拿" : (: ask_skill1 :),
         ]));
 
         set("chat_chance_combat", 120);
@@ -106,36 +106,36 @@ void attempt_apprentice(object ob)
 
         if ((int)ob->query_str() < 26)
         {
-                command("say 我们丐帮的武艺一向以刚猛为主，" +
-                        RANK_D->query_respect(ob) + "臂力太弱，似乎不宜学丐帮的功夫？");
+                command("say 我們丐幫的武藝一向以剛猛為主，" +
+                        RANK_D->query_respect(ob) + "臂力太弱，似乎不宜學丐幫的功夫？");
                 return;
         }
 
         if( query("combat_exp", ob)<120000 )
         {
-                command("say 你的江湖经验不够，还是先向各位长老学习吧。");
+                command("say 你的江湖經驗不夠，還是先向各位長老學習吧。");
                 return;
         }
 
         if( query("shen", ob)<20000 )
         {
-                command("say 你身为丐帮弟子，竟然不做好事？");
+                command("say 你身為丐幫弟子，竟然不做好事？");
                 return;
         }
 
         if( query("family/beggarlvl", ob)<4 )
         {
-                command("say 你在本帮的地位太低，还是先向其他师父学习吧。");
+                command("say 你在本幫的地位太低，還是先向其他師父學習吧。");
                 return;
         }
 
         if (ob->query_skill("force") < 90)
         {
-                command("say 你的内功火候还不够，还是先向其他师父学习吧。");
+                command("say 你的內功火候還不夠，還是先向其他師父學習吧。");
                 return;
         }
         command("hmm");
-        command("say 我收下你便是，可别给我添麻烦。");
+        command("say 我收下你便是，可別給我添麻煩。");
         command("recruit "+query("id", ob));
 
         if( query("class", ob) != "beggar" )
@@ -155,34 +155,34 @@ mixed ask_skill1()
         me = this_player();
 
         if( query("can_perform/chansi-shou/qin", me) )
-                return "这招我不是已经教会你了吗？";
+                return "這招我不是已經教會你了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "阁下与在下素不相识，不知此话从何说起？";
+                return "閣下與在下素不相識，不知此話從何說起？";
 
         if (me->query_skill("chansi-shou", 1) < 1)
-                return "你连缠丝擒拿手都没学，何谈绝招可言？";
+                return "你連纏絲擒拿手都沒學，何談絕招可言？";
 
         if( query("family/gongji", me)<400 )
-                return "你在我们丐帮内甚无作为，这招我暂时还不能传你。";
+                return "你在我們丐幫內甚無作為，這招我暫時還不能傳你。";
 
         if( query("shen", me)<30000 )
-                return "你的侠义正事还做得不够，这招我暂时还不能传你。";
+                return "你的俠義正事還做得不夠，這招我暫時還不能傳你。";
 
         if (me->query_skill("chansi-shou", 1) < 120)
-                return "你的缠丝擒拿手火候还不够，还是下去练高点再来吧。";
+                return "你的纏絲擒拿手火候還不夠，還是下去練高點再來吧。";
 
         if (me->query_skill("force") < 150)
-                return "你现在的内功修为不足，还是练高点再来吧。";
+                return "你現在的內功修為不足，還是練高點再來吧。";
 
-        message_sort(HIY "\n$n" HIY "冷笑一声，大袖一挥，随即只见其"
-                     "双手忽折忽扭，或抓或甩，直琐$N" HIY "各处要脉"
-                     "。$N" HIY "见状不由大惊，连忙左闪右避，招架拆"
-                     "解，可始终未能摆脱$n" HIY "的纠缠，心下甚为折"
+        message_sort(HIY "\n$n" HIY "冷笑一聲，大袖一揮，隨即只見其"
+                     "雙手忽折忽扭，或抓或甩，直瑣$N" HIY "各處要脈"
+                     "。$N" HIY "見狀不由大驚，連忙左閃右避，招架拆"
+                     "解，可始終未能擺脫$n" HIY "的糾纏，心下甚為折"
                      "服。\n\n" NOR, me, this_object());
 
-        command("say 明白了么。");
-        tell_object(me, HIC "你学会了「缠丝擒拿」。\n" NOR);
+        command("say 明白了麼。");
+        tell_object(me, HIC "你學會了「纏絲擒拿」。\n" NOR);
         if (me->can_improve_skill("hand"))
                 me->improve_skill("hand", 1500000);
         if (me->can_improve_skill("chansi-shou"))

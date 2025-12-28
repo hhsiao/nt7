@@ -8,7 +8,7 @@ inherit CLOTH;
  
 void create()
 {
-        set_name(HIY "神" HIW "之" HIM "祝福" NOR YEL "战衣" NOR, ({ "zhufu cloth", "cloth", "buyi" }) );
+        set_name(HIY "神" HIW "之" HIM "祝福" NOR YEL "戰衣" NOR, ({ "zhufu cloth", "cloth", "buyi" }) );
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
@@ -23,7 +23,7 @@ void create()
         set("auto_load", 1); 
         set("mod_mark", "A2012");  
         set("mod_level", "M2010");  
-        set("mod_name", HIY"神"HIW"之"HIM"祝福"NOR YEL"套装"NOR); 
+        set("mod_name", HIY"神"HIW"之"HIM"祝福"NOR YEL"套裝"NOR); 
 
         set("enchase", ([ 
                 "flute" : 1,

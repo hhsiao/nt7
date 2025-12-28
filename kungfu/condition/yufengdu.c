@@ -10,10 +10,10 @@ string chinese_name() { return "玉蜂毒"; }
 
 string update_msg_others()
 {
-        return HIW "$N" HIW "面色痛苦，四肢不住的微微抽动。\n" NOR;
+        return HIW "$N" HIW "面色痛苦，四肢不住的微微抽動。\n" NOR;
 }
 
 string update_msg_self()
 {
-        return HIG "你只觉全身奇痒无比，犹如许多虫蚁钻入在体内。\n" NOR;
+        return HIG "你只覺全身奇癢無比，猶如許多蟲蟻鑽入在體內。\n" NOR;
 }

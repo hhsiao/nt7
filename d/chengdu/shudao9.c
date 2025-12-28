@@ -3,10 +3,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "山顶");
+        set("short", "山頂");
         set("long", @LONG
-这里是一座高山的山顶，临江一面是陡峭的悬崖，仔细望去，有
-一些石窝可以落脚，西看去，只见云雾中有好象有几栋房子。
+這裡是一座高山的山頂，臨江一面是陡峭的懸崖，仔細望去，有
+一些石窩可以落腳，西看去，只見雲霧中有好象有幾棟房子。
 LONG );
         set("exits", ([
                   "eastdown" :  __DIR__"shudao8",

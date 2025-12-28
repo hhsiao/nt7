@@ -6,8 +6,8 @@ void setup()
 {
         set_name("[35m麒麟怪[2;37;0m[2;37;0m", ({"kirin"}));        
         set("gender", "男性");                
-        set("long", "这是一只怪怪的麒麟。[2;37;0m
-它是司徒拔的魔幻兽。
+        set("long", "這是一隻怪怪的麒麟。[2;37;0m
+它是司徒拔的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

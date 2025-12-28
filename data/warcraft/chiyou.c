@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("大马[2;37;0m[2;37;0m", ({"dama"}));        
+        set_name("大馬[2;37;0m[2;37;0m", ({"dama"}));        
         set("gender", "男性");                
-        set("long", "大马[2;37;0m
-它是蚩尤的魔幻兽。
+        set("long", "大馬[2;37;0m
+它是蚩尤的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

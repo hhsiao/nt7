@@ -1,4 +1,4 @@
-//jiuyin-baiguzhao.c 九阴白骨爪
+//jiuyin-baiguzhao.c 九陰白骨爪
 
 #include <ansi.h>;
 inherit SKILL;
@@ -8,65 +8,65 @@ string martialtype() { return "skill"; }
 int is_pbsk() { return 1; }
 
 mapping *action = ({
-([      "action": "$N左爪虚晃，右爪蓄力，一招「勾魂夺魄」直插向$n的$l",
+([      "action": "$N左爪虛晃，右爪蓄力，一招「勾魂奪魄」直插向$n的$l",
         "force" : 250,
         "attack": 45,
         "dodge" : 10,
         "parry" : 18,
         "damage": 30,
         "lvl"   : 0,
-        "skill_name" : "勾魂夺魄" ,
-        "damage_type" : "抓伤"
+        "skill_name" : "勾魂奪魄" ,
+        "damage_type" : "抓傷"
 ]),
-([      "action": "$N双手连环成爪，爪爪钩向$n，「九子连环」已向$n的$l抓出",
+([      "action": "$N雙手連環成爪，爪爪鉤向$n，「九子連環」已向$n的$l抓出",
         "force" : 270,
         "attack": 50,
         "dodge" : 20,
         "parry" : 26,
         "damage": 45,
         "lvl"   : 40,
-        "skill_name" : "九子连环" ,
-        "damage_type" : "抓伤"
+        "skill_name" : "九子連環" ,
+        "damage_type" : "抓傷"
 ]),
-([      "action": "$N双手使出「十指穿心」，招招不离$n的$l",
+([      "action": "$N雙手使出「十指穿心」，招招不離$n的$l",
         "force" : 300,
         "attack": 60,
         "dodge" : 20,
         "parry" : 32,
         "damage": 45,
         "lvl"   : 70,
-        "skill_name"  : "九子连环" ,
-        "damage_type" : "抓伤"
+        "skill_name"  : "九子連環" ,
+        "damage_type" : "抓傷"
 ]),
-([      "action": "$N身形围$n一转，使出「天罗地网」，$n的$l已完全笼罩在爪影下",
+([      "action": "$N身形圍$n一轉，使出「天羅地網」，$n的$l已完全籠罩在爪影下",
         "force" : 340,
         "attack": 85,
         "dodge" : 30,
         "parry" : 55,
         "damage": 55,
         "lvl"   : 100,
-        "skill_name" : "天罗地网" ,
-        "damage_type" : "抓伤"
+        "skill_name" : "天羅地網" ,
+        "damage_type" : "抓傷"
 ]),
-([      "action": "$N使一招「风卷残云」，双爪幻出满天爪影抓向$n全身",
+([      "action": "$N使一招「風捲殘雲」，雙爪幻出滿天爪影抓向$n全身",
         "force" : 370,
         "attack": 110,
         "dodge" : 40,
         "parry" : 68,
         "damage": 70,
         "lvl"   : 130,
-        "skill_name" : "风卷残云" ,
-        "damage_type" : "抓伤"
+        "skill_name" : "風捲殘雲" ,
+        "damage_type" : "抓傷"
 ]),
-([      "action": "$N吐气扬声，一招「唯我独尊」双爪奋力向$n天灵戳下",
+([      "action": "$N吐氣揚聲，一招「唯我獨尊」雙爪奮力向$n天靈戳下",
         "force" : 420,
         "attack": 140,
         "dodge" : 50,
         "parry" : 85,
         "damage": 90,
         "lvl"   : 160,
-        "skill_name" : "唯我独尊" ,
-        "damage_type" : "抓伤"
+        "skill_name" : "唯我獨尊" ,
+        "damage_type" : "抓傷"
 ]),
 });
 
@@ -74,26 +74,26 @@ int valid_enable(string usage) { return usage=="claw" || usage=="parry"; }
 int valid_combine(string combo) { return combo=="cuixin-zhang"; }
 int valid_learn(object me)
 {
-        if( query("character", me) != "心狠手辣" && query("character", me) != "国士无双" )
-                return notify_fail("你天性不符，受其拘束，无法领会九阴白骨爪的妙旨。\n");
+        if( query("character", me) != "心狠手辣" && query("character", me) != "國士無雙" )
+                return notify_fail("你天性不符，受其拘束，無法領會九陰白骨爪的妙旨。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练九阴白骨爪必须空手。\n");
+                return notify_fail("練九陰白骨爪必須空手。\n");
 
         if( query("max_neili", me)<800 )
-                return notify_fail("你的内力太弱，无法练九阴白骨爪。\n");
+                return notify_fail("你的內力太弱，無法練九陰白骨爪。\n");
 
         if ((int)me->query_str() < 30)
-                return notify_fail("你现在膂力孱弱，还无法练九阴白骨爪。\n");
+                return notify_fail("你現在膂力孱弱，還無法練九陰白骨爪。\n");
 
         if ((int)me->query_skill("force") < 90)
-                return notify_fail("你的内功太差，无法练九阴白骨爪。\n");
+                return notify_fail("你的內功太差，無法練九陰白骨爪。\n");
 
         if ((int)me->query_skill("claw", 1) < 60)
-                return notify_fail("你的基本爪法太差，无法领会九阴白骨爪。\n");
+                return notify_fail("你的基本爪法太差，無法領會九陰白骨爪。\n");
 
         if ((int)me->query_skill("claw", 1) < (int)me->query_skill("jiuyin-baiguzhao", 1))
-                return notify_fail("你的基本爪法火候不够，无法领会更高深的九阴白骨爪。\n");
+                return notify_fail("你的基本爪法火候不夠，無法領會更高深的九陰白骨爪。\n");
 
         return 1;
 }
@@ -105,16 +105,16 @@ int practice_skill(object me)
 
         skill = me->query_skill("jiuyin-baiguzhao", 1);
         if( query("qi", me)<100 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你的内力不够练九阴白骨爪。\n");
+                return notify_fail("你的內力不夠練九陰白骨爪。\n");
 
         if( query("no_fight", environment(me)) )
-                return notify_fail("这里不能练功。\n");
+                return notify_fail("這裡不能練功。\n");
 
         if( query("sleep_room", environment(me)) )
-                return notify_fail("这里练功会打扰别人休息。\n");
+                return notify_fail("這裡練功會打擾別人休息。\n");
 
         if (skill < 200)
         {
@@ -124,7 +124,7 @@ int practice_skill(object me)
                                        base_name($1) == "/clone/misc/head") &&
                                        query_temp("clawed_by_jiuyin", $1)<10:));
                 if (sizeof(obs) < 1)
-                        return notify_fail("练九阴白骨抓需有尸体或是完好的头盖骨。\n");
+                        return notify_fail("練九陰白骨抓需有屍體或是完好的頭蓋骨。\n");
 
                 addn("neili", -450, me);
         }
@@ -133,14 +133,14 @@ int practice_skill(object me)
         addn("neili", -40, me);
         if (skill < 200)
         {
-                message_vision(HIB "只见$N" HIB "左手上圈下钩、左旋右转，连变了"
-                               "七八般花样，蓦地里右手一伸，噗的一响，五根手指直"
-                               "插入\n头骨的脑门。随后五根手指" HIR "血淋淋"
-                               HIB "的提将起来。\n" NOR, me);
+                message_vision(HIB "只見$N" HIB "左手上圈下鉤、左旋右轉，連變了"
+                               "七八般花樣，驀地裡右手一伸，噗的一響，五根手指直"
+                               "插入\n頭骨的腦門。隨後五根手指" HIR "血淋淋"
+                               HIB "的提將起來。\n" NOR, me);
 
                 if (base_name(obs[0]) == "/clone/misc/head")
                         obs[0]->set("long",query("long", obs[0])+
-                                    "上面赫然有五个小洞，伸手一探，刚好可以插入。\n");
+                                    "上面赫然有五個小洞，伸手一探，剛好可以插入。\n");
 
                 addn_temp("clawed_by_jiuyin", 1, obs[0]);
                 me->improve_skill("jiuyin-baiguzhao", 100 + skill * 5 + random(500));
@@ -166,13 +166,13 @@ mapping query_action(object me, object weapon)
         int f_e2 = 600;
         int /*i,lvl,*/ seq, ttl = sizeof(action);
 
-        seq = random(ttl);       /* 选择出手招数序号 */
+        seq = random(ttl);       /* 選擇出手招數序號 */
         return ([
                 "action"      : action[seq]["action"],
                 "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
                 "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
                 "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
-                "damage_type" : random(2) ? "抓伤" : "内伤",
+                "damage_type" : random(2) ? "抓傷" : "內傷",
         ]);
 }
 int learn_bonus() { return 0; }
@@ -187,7 +187,7 @@ int power_point(object me)
 
 void skill_improved(object me)
 {
-        tell_object(me, HIR"你忽然从心底生出一股恶念：杀、杀、杀！我要杀绝天下人！\n" NOR );
+        tell_object(me, HIR"你忽然從心底生出一股惡念：殺、殺、殺！我要殺絕天下人！\n" NOR );
         addn("shen", -200, me);
 }
 mixed hit_ob(object me, object victim, int damage_bonus)
@@ -208,7 +208,7 @@ mixed hit_ob(object me, object victim, int damage_bonus)
                                  "id":query("id", me),
                                  "duration" : lvl / 100 + random(lvl / 10) ]));
                 result = ([ "damage" : damage_bonus ]);
-                result += ([ "msg" : HIR "你听到「喀啦」一声轻响，竟似是骨碎的声音！\n" NOR ]);
+                result += ([ "msg" : HIR "你聽到「喀啦」一聲輕響，竟似是骨碎的聲音！\n" NOR ]);
 
                 return result;
         }
@@ -235,25 +235,25 @@ string perform_action_file(string action)
 
 int help(object me)
 {
-        write(HIC"\n九阴白骨爪："NOR"\n");
+        write(HIC"\n九陰白骨爪："NOR"\n");
         write(@HELP
 
-    徽宗皇帝于政和年间，遍搜普天下道家之书，雕版印行，一共
-有五千四百八十一卷，称为‘万寿道藏’。皇帝委派刻书之人，叫
-做黄裳。他生怕这部大道藏刻错了字，皇帝发觉之后不免要杀他的
-头，因此上一卷一卷的细心校读。他居然便因此精通道学，更因此
-而悟得了武功中的高深道理。他无师自通，修习内功外功，竟成为
-一位武功大高手。他因此涉及江湖仇杀，退隐山林。不知不觉竟已
-过了四十多年，终于对每一个敌人所使过的招数，他都想通了破解
-的法子对付。于是出得山来，去报仇雪恨。不料那些敌人全都已不
-在人世了。黄裳心想：‘原来我也老了，可也没几年好活啦。’他
-花了这几十年心血，想出了包含普天下各家各派功夫的武学，过得
-几年，这番心血岂不是就此湮没？于是他将所想到的法门写成了上
-下两卷书，那就是《九阴真经》。九阴白骨爪就是依此书练成的霸
+    徽宗皇帝於政和年間，遍搜普天下道家之書，雕版印行，一共
+有五千四百八十一卷，稱為‘萬壽道藏’。皇帝委派刻書之人，叫
+做黃裳。他生怕這部大道藏刻錯了字，皇帝發覺之後不免要殺他的
+頭，因此上一卷一卷的細心校讀。他居然便因此精通道學，更因此
+而悟得了武功中的高深道理。他無師自通，修習內功外功，竟成為
+一位武功大高手。他因此涉及江湖仇殺，退隱山林。不知不覺竟已
+過了四十多年，終於對每一個敵人所使過的招數，他都想通了破解
+的法子對付。於是出得山來，去報仇雪恨。不料那些敵人全都已不
+在人世了。黃裳心想：‘原來我也老了，可也沒幾年好活啦。’他
+花了這幾十年心血，想出了包含普天下各家各派功夫的武學，過得
+幾年，這番心血豈不是就此湮沒？於是他將所想到的法門寫成了上
+下兩卷書，那就是《九陰真經》。九陰白骨爪就是依此書練成的霸
 道功夫。
 
-        学习要求：
-                内力200
+        學習要求：
+                內力200
 HELP
         );
         return 1;

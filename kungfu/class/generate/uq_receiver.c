@@ -29,14 +29,14 @@ void set_from_me(object me)
 
 int accept_fight(object ob)
 {
-        command("say 很好！那我就不客气了。");
+        command("say 很好！那我就不客氣了。");
         kill_ob(ob);
         return 1;
 }
 
 int accept_hit(object ob)
 {
-        command("say 哼！什么人？");
+        command("say 哼！什麼人？");
         kill_ob(ob);
         return 1;
 }

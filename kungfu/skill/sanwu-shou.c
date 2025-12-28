@@ -3,29 +3,29 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action" : "$N单手一扬，一招「无孔不入」，手中$w抖得笔直，对准$n"
-                   "当头罩下",
+([      "action" : "$N單手一揚，一招「無孔不入」，手中$w抖得筆直，對準$n"
+                   "當頭罩下",
         "force"  : 90,
         "attack" : 13,
         "dodge"  : 10,
         "parry"  : 10,
         "damage" : 20,
         "lvl" : 0,
-        "skill_name" : "无孔不入",
-        "damage_type":  "劈伤"
+        "skill_name" : "無孔不入",
+        "damage_type":  "劈傷"
 ]),
-([      "action" : "$N身形一转，一招「无所不至」，手中$w如矫龙般腾空一卷"
-                   "，猛地击向$n",
+([      "action" : "$N身形一轉，一招「無所不至」，手中$w如矯龍般騰空一卷"
+                   "，猛地擊向$n",
         "force"  : 130,
         "attack" : 24,
         "dodge"  : 28,
         "parry"  : 15,
         "damage" : 36,
         "lvl" : 30,
-        "skill_name" : "无所不至",
-        "damage_type":  "劈伤"
+        "skill_name" : "無所不至",
+        "damage_type":  "劈傷"
 ]),
-([      "action" : "$N唰的一抖长鞭，一招「无所不为」，手中$w抖得笔直，刺向"
+([      "action" : "$N唰的一抖長鞭，一招「無所不為」，手中$w抖得筆直，刺向"
                    "$n$l",
         "force"  : 170,
         "attack" : 35,
@@ -33,49 +33,49 @@ mapping *action = ({
         "parry"  : 21,
         "damage" : 55,
         "lvl" : 60,
-        "skill_name" : "无所不为",
-        "damage_type":  "刺伤"
+        "skill_name" : "無所不為",
+        "damage_type":  "刺傷"
 ]),
-([      "action" : "$N力贯鞭梢，一招「风起云涌」，手中$w舞出满天鞭影，排山倒"
-                   "海般扫向$n全身",
+([      "action" : "$N力貫鞭梢，一招「風起雲湧」，手中$w舞出滿天鞭影，排山倒"
+                   "海般掃向$n全身",
         "force"  : 200,
         "attack" : 40,
         "dodge"  : 50,
         "parry"  : 30,
         "damage" : 64,
         "lvl" : 90,
-        "skill_name" : "风起云涌",
-        "damage_type":  "刺伤"
+        "skill_name" : "風起雲湧",
+        "damage_type":  "刺傷"
 ]),
-([      "action" : "$N运气于腕，一招「风卷残云」，手中$w向一根铜棍般直击向$n",
+([      "action" : "$N運氣於腕，一招「風捲殘雲」，手中$w向一根銅棍般直擊向$n",
         "force"  : 220,
         "attack" : 50,
         "dodge"  : 66,
         "parry"  : 38,
         "damage" : 80,
         "lvl" : 120,
-        "skill_name" : "风卷残云",
-        "damage_type":  "内伤"
+        "skill_name" : "風捲殘雲",
+        "damage_type":  "內傷"
 ]),
-([      "action" : "$N单臂一挥，一招「欲擒故纵」，手中$w直击向$n腰肋",
+([      "action" : "$N單臂一揮，一招「欲擒故縱」，手中$w直擊向$n腰肋",
         "force"  : 260,
         "attack" : 56,
         "dodge"  : 80,
         "parry"  : 32,
         "damage" : 98,
         "lvl" : 150,
-        "skill_name" : "欲擒故纵",
-        "damage_type":  "内伤"
+        "skill_name" : "欲擒故縱",
+        "damage_type":  "內傷"
 ]),
-([      "action" : "$N高高跃起，一招「无影无踪」，手中$w笔直向$n当头罩下",
+([      "action" : "$N高高躍起，一招「無影無蹤」，手中$w筆直向$n當頭罩下",
         "force"  : 300,
         "attack" : 70,
         "dodge"  : 110,
         "parry"  : 40,
         "damage" : 130,
         "lvl" : 200,
-        "skill_name" : "无影无踪",
-        "damage_type":  "内伤"
+        "skill_name" : "無影無蹤",
+        "damage_type":  "內傷"
 ])
 });
 
@@ -88,24 +88,24 @@ int valid_learn(object me)
 {
         object weapon;
 
-        if( query("character", me) != "心狠手辣" && query("character", me) != "国士无双" )
-                return notify_fail("练三无三不手必须要心狠手辣，我看你这点做得还不够。\n"); 
+        if( query("character", me) != "心狠手辣" && query("character", me) != "國士無雙" )
+                return notify_fail("練三無三不手必須要心狠手辣，我看你這點做得還不夠。\n"); 
 
         if( !objectp(weapon=query_temp("weapon", me) )
          || query("skill_type", weapon) != "whip" )
-                return notify_fail("你必须先找一条鞭子才能练三无三不手。\n");
+                return notify_fail("你必須先找一條鞭子才能練三無三不手。\n");
 
         if( query("max_neili", me)<800 )
-                return notify_fail("你的内力不足，没有办法练三无三不手。\n");
+                return notify_fail("你的內力不足，沒有辦法練三無三不手。\n");
 
         if ((int)me->query_skill("force") < 120)
-                return notify_fail("你的内功火候太浅，没有办法练三无三不手。\n");
+                return notify_fail("你的內功火候太淺，沒有辦法練三無三不手。\n");
 
         if ((int)me->query_skill("whip", 1) < 100)
-                return notify_fail("你的基本鞭法火候太浅，没有办法练三无三不手。\n");
+                return notify_fail("你的基本鞭法火候太淺，沒有辦法練三無三不手。\n");
 
         if ((int)me->query_skill("whip", 1) < (int)me->query_skill("sanwu-shou", 1))
-                return notify_fail("你的基本鞭法水平有限，无法领会更高深的没有办法练三无三不手。\n");
+                return notify_fail("你的基本鞭法水平有限，無法領會更高深的沒有辦法練三無三不手。\n");
 
         return 1;
 }
@@ -133,13 +133,13 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me) )
          || query("skill_type", weapon) != "whip" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if( query("qi", me)<60 )
-                return notify_fail("你的体力不够练三无三不手。\n");
+                return notify_fail("你的體力不夠練三無三不手。\n");
 
         if( query("neili", me)<70 )
-                return notify_fail("你的内力不够练三无三不手。\n");
+                return notify_fail("你的內力不夠練三無三不手。\n");
 
         me->receive_damage("qi", 55);
         addn("neili", -60, me);

@@ -5,16 +5,16 @@ void do_swing();
 void set_from_me(object me);
 void create()
 {
-        string *names = ({ "青铜狻猊" });
+        string *names = ({ "青銅狻猊" });
 
         ::create();
         set_name( names[random(sizeof(names))], ({ "bronze ni", "bronze", "ni" }));
         set("long", @LONG
-这是一个沉睡在皇陵青铜机关兽，身长丈许，肋生双翅，爪利牙尖，更有飞天遁地之
-能，道法神通均为兽族翘楚。在东方仙术的作用下，它的行动奇快，进退如风，再加
-上毛皮刀枪不入，利爪快如刀刃，端的是极难对付。
+這是一個沉睡在皇陵青銅機關獸，身長丈許，肋生雙翅，爪利牙尖，更有飛天遁地之
+能，道法神通均為獸族翹楚。在東方仙術的作用下，它的行動奇快，進退如風，再加
+上毛皮刀槍不入，利爪快如刀刃，端的是極難對付。
 LONG);
-        set("title", HIR"机关兽" NOR);
+        set("title", HIR"機關獸" NOR);
         set("str", 150);
         set("con", 150);
         set("dex", 150);
@@ -33,7 +33,7 @@ LONG);
         }) );
 
         set("combat_exp", 100000000);
-        set("death_msg",YEL"\n$N散落成一堆青铜。\n\n"NOR);
+        set("death_msg",YEL"\n$N散落成一堆青銅。\n\n"NOR);
         set("no_corpse", 1);
 
         set("rewards", ([
@@ -86,10 +86,10 @@ void do_swing()
         if( !enemies || sizeof(enemies)==0 )
                 return;
 
-        msg = HIW"$N口中突然多了件物事，似是一块透明的布疋，若有若无，不知是什么东西,向众人吐去！\n"NOR;
+        msg = HIW"$N口中突然多了件物事，似是一塊透明的布疋，若有若無，不知是什麼東西,向眾人吐去！\n"NOR;
         message_vision(msg,this_object());
         foreach( enemy in enemies ) {
-                msg = HIW"$n突然间脚下一滑，扑地倒了，跟着身子便变成了一团。\n"NOR;
+                msg = HIW"$n突然間腳下一滑，撲地倒了，跟著身子便變成了一團。\n"NOR;
                 message_vision(msg,this_object(), enemy);
                 enemy->receive_damage("qi",10000+random(10000),this_object());
                 COMBAT_D->report_status(enemy);

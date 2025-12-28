@@ -4,22 +4,22 @@ inherit ROOM;
 
 void create ()
 {
-        set ("short", "萧记当铺");
+        set ("short", "蕭記當鋪");
         set("long", @LONG
-这是长安城里最大的一家当铺了。素来以买卖公平著称。门口挂
-了一块牌子 (paizi)。一个三尺高的柜台挡在你的面前，柜台后坐着
-掌柜的冯老板，见你走了进来，一双精明的眼睛上上下下打量着你。
+這是長安城裡最大的一家當鋪了。素來以買賣公平著稱。門口掛
+了一塊牌子 (paizi)。一個三尺高的櫃檯擋在你的面前，櫃檯後坐著
+掌櫃的馮老闆，見你走了進來，一雙精明的眼睛上上下下打量著你。
 LONG );
         set("exits", ([ /* sizeof() == 1 */
                 "north" : "/d/changan/qixiang3",
         ]));
         set("item_desc", ([
                 "paizi" : "公平交易\n
-sell        卖 
-buy         买
-pawn        当
-expiate     赎
-value       估价
+sell        賣 
+buy         買
+pawn        當
+expiate     贖
+value       估價
 ",
         ]));
 

@@ -6,7 +6,7 @@
 // #pragma save_binary
 #include <ansi.h>
 
-#define SYNTAX  "指令格式：purge [<未上线天数>] | <使用者姓名> because <原因>\n"
+#define SYNTAX  "指令格式：purge [<未上線天數>] | <使用者姓名> because <原因>\n"
 
 inherit F_CLEAN_UP;
 
@@ -31,21 +31,21 @@ int main(object me, string arg)
                 return notify_fail(SYNTAX);
 
         if (wiz_level(me) <= wiz_level(name) && ! is_root(me))
-                return notify_fail("你没有权限删除这个人物。\n");
+                return notify_fail("你沒有權限刪除這個人物。\n");
 
         seteuid(getuid());
         if (file_size(DATA_DIR + "login/" + name[0..0] + "/" + name + __SAVE_EXTENSION__) < 0)
-                return notify_fail("没有这位使用者。\n");
+                return notify_fail("沒有這位使用者。\n");
 
         if (ob = find_player(name))
                 CHANNEL_D->do_channel(this_object(), "rumor", "使用者" +
                                       query("name", ob)+"被"+
-                                      query("name", me)+"删除了。");
+                                      query("name", me)+"刪除了。");
 
         // remove the user from disk
         UPDATE_D->remove_user(name, 1);
 
-        tell_object(me, "使用者 " + capitalize(name) + " 删除掉了。\n");
+        tell_object(me, "使用者 " + capitalize(name) + " 刪除掉了。\n");
         log_file("static/purge", sprintf("%s %s purged %s because %s.\n",
                  log_time(), geteuid(this_player(1)), name, reason));
 
@@ -61,11 +61,11 @@ protected int do_purge_players(object me, int day)
 
         seteuid(getuid());
 
-        if (day < 30) return notify_fail("您还是手下留情。别连他们都杀了。\n");
+        if (day < 30) return notify_fail("您還是手下留情。別連他們都殺了。\n");
 
-        message_system(sprintf("系统开始整理玩家储存档中，并清除超过 %d 天不上线的使用者...", day));
-        write(HIG "现在系统将检查所有玩家，稍后汇报。\n"
-              HIG "进度：" + process_bar(0) + "\n");
+        message_system(sprintf("系統開始整理玩家儲存檔中，並清除超過 %d 天不上線的使用者...", day));
+        write(HIG "現在系統將檢查所有玩家，稍後彙報。\n"
+              HIG "進度：" + process_bar(0) + "\n");
 
         if (me)
         {
@@ -92,7 +92,7 @@ protected int do_purge_players(object me, int day)
 
                                 if (! arrayp(info) || sizeof(info) < 3)
                                         continue;
-                                        // 可能没有这个文件
+                                        // 可能沒有這個文件
 
                                 if ((time()-(int)info[1]) / 86400 >= day && ! objectp(find_player(name)))
                                 {
@@ -107,19 +107,19 @@ protected int do_purge_players(object me, int day)
                 }
                 ppl_cnt += j;
                 message("system", ESC + "[1A" + ESC + "[256D"
-                                  HIG "进度：" + process_bar((i + 1) * 100 / sizeof(dir)) +
-                                   "\n" + (me ? HIR "执行中" NOR "> " : ""),
+                                  HIG "進度：" + process_bar((i + 1) * 100 / sizeof(dir)) +
+                                   "\n" + (me ? HIR "執行中" NOR "> " : ""),
                                    me ? me : filter_array(all_interactive(), (: wizardp :)));
         }
-        message_system("系统整理批量档案处理完毕，请继续游戏。\n" ESC + "[K");
+        message_system("系統整理批量檔案處理完畢，請繼續遊戲。\n" ESC + "[K");
         if (me)
         {
                 me->detach_system();
         }
 
-        write(HIG "原来总共有 " + ppl_cnt + " 位使用者。\n" NOR);
-        write(HIG "有 " + count + " 个超过 " + day + " 天未上线的使用者被清除掉了。\n" NOR);
-        write(HIG "现在总共有 " + (ppl_cnt - count) + " 位使用者。\n" NOR);
+        write(HIG "原來總共有 " + ppl_cnt + " 位使用者。\n" NOR);
+        write(HIG "有 " + count + " 個超過 " + day + " 天未上線的使用者被清除掉了。\n" NOR);
+        write(HIG "現在總共有 " + (ppl_cnt - count) + " 位使用者。\n" NOR);
 
         return 1;
 
@@ -128,9 +128,9 @@ protected int do_purge_players(object me, int day)
 int help(object me)
 {
 write(@HELP
-指令格式：purge [<未上线天数>] | <使用者姓名> because <原因>
+指令格式：purge [<未上線天數>] | <使用者姓名> because <原因>
 
-清除一个使用者或清除超过一定天数不曾上线地使用者。
+清除一個使用者或清除超過一定天數不曾上線地使用者。
 HELP );
     return 1;
 }

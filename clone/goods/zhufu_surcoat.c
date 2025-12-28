@@ -8,14 +8,14 @@ inherit SURCOAT;
  
 void create()
 {
-        set_name(HIY "神" HIW "之" HIM "祝福" NOR YEL "披风" NOR, ({ "zhufu surcoat", "surcoat", "pi feng", "pifeng" }) );
+        set_name(HIY "神" HIW "之" HIM "祝福" NOR YEL "披風" NOR, ({ "zhufu surcoat", "surcoat", "pi feng", "pifeng" }) );
         set_weight(100);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-                set("unit", "双");
-                set("long", "这是一件布质的披风。\n"); 
+                set("unit", "雙");
+                set("long", "這是一件布質的披風。\n"); 
                 set("value", 1000); 
                 set("material", "cloth");
                 set("armor_prop/armor", 20);
@@ -25,7 +25,7 @@ void create()
         set("mark", "A2016");  
         set("mod_mark", "A2016");  
         set("mod_level", "M2010");  
-        set("mod_name", HIY"神"HIW"之"HIM"祝福"NOR YEL"套装"NOR); 
+        set("mod_name", HIY"神"HIW"之"HIM"祝福"NOR YEL"套裝"NOR); 
 
         set("enchase", ([ 
                 "flute" : 1,

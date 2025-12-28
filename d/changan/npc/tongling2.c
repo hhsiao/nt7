@@ -4,11 +4,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("萧群", ({ "xiao qun"}) );
+        set_name("蕭群", ({ "xiao qun"}) );
         set("gender", "男性");
         set("age", 30);
         set("combat_exp", 200000);
-        set("title", "御林军统领");
+        set("title", "御林軍統領");
         set("attitude", "friendly");
         set("per", 25);
         set("str", 35);
@@ -32,6 +32,6 @@ void create()
 
 int accept_fight(object me)
 {
-        command("say 我贵为御林军统领，岂能与你一般见识！");
+        command("say 我貴為御林軍統領，豈能與你一般見識！");
         return 0;
 }

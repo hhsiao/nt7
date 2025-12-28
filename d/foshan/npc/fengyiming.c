@@ -2,12 +2,12 @@ inherit NPC;
 
 void create()
 {
-        set_name("凤一鸣", ({ "feng yiming", "feng", "yiming" }));
+        set_name("鳳一鳴", ({ "feng yiming", "feng", "yiming" }));
         set("long", @LONG
-凤一鸣是佛山镇上大财主凤天南之子。只见他
-步履轻捷，脸上英气勃勃，显是武功不弱。
+鳳一鳴是佛山鎮上大財主鳳天南之子。只見他
+步履輕捷，臉上英氣勃勃，顯是武功不弱。
 LONG);
-        set("title", "佛山五虎门传人");
+        set("title", "佛山五虎門傳人");
         set("gender", "男性");
         set("age", 25);
         set("combat_exp", 40000);

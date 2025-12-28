@@ -3,14 +3,14 @@ inherit NPC;
 
 void create()
 {
-        set_name("北丑", ({ "bei chou", "bei", "chou", "xizi" }) );
-        set("nickname", HIW "北戏子" NOR);
+        set_name("北醜", ({ "bei chou", "bei", "chou", "xizi" }) );
+        set("nickname", HIW "北戲子" NOR);
         set("title", HIC "武林泰斗" NOR);
         set("gender", "男性" );
         set("age", 68);
-        set("long", HIC "这是一个身着戏子打扮的瘦小老头，长得尖\n"
-                        "嘴猴腮，天生一副奸相。这便是当今武林中\n"
-                        "号称「" HIR "南贤北丑" HIC "」戏子北丑。"
+        set("long", HIC "這是一個身著戲子打扮的瘦小老頭，長得尖\n"
+                        "嘴猴腮，天生一副奸相。這便是當今武林中\n"
+                        "號稱「" HIR "南賢北醜" HIC "」戲子北醜。"
                         "\n" NOR);
         set("attitude", "friendly");
         set("max_jing", 250000);
@@ -131,7 +131,7 @@ void die()
                          if (arrayp(ob->query_team()))
                          {
                                  command("heng");
-                                 command("say 胜之不武！");
+                                 command("say 勝之不武！");
                                  set("qi", 400000);
                                  set("jing", 150000);
                                  set("neili", 35000);
@@ -151,7 +151,7 @@ void die()
              if (ob->query("sky12/floor") == 5)
              {
                       ob->set("sky12/floor", 6);
-                 command("say 阁下请便吧！");
+                 command("say 閣下請便吧！");
              }
         }
 
@@ -169,7 +169,7 @@ void die()
 
         return;
 }
-// 气血小于1000则死亡，避免他人协助帮忙转世
+// 氣血小於1000則死亡，避免他人協助幫忙轉世
 void heart_beat()
 {
         if (this_object()->query("qi") < 1000 || this_object()->query("eff_qi") < 1000)

@@ -1,17 +1,17 @@
-// lianwu.c 盘龙居练武场
+// lianwu.c 盤龍居練武場
 
 //** inherit PRIVATE_ROOM;
 inherit ROOM;                                   /* EXAMPLE */
 
 void create()
 {
-        set("short", "练武场");
+        set("short", "練武場");
         set("long", @LONG
-此处便是盘龙居的练武场，人在江湖，武功万万不可荒废。
+此處便是盤龍居的練武場，人在江湖，武功萬萬不可荒廢。
 LONG );
 
-        set("default_long", "此处便是ROOM_NAME的练武场，人在江湖，武功"/* EXAMPLE */
-                            "万万不可荒废。");                         /* EXAMPLE */
+        set("default_long", "此處便是ROOM_NAME的練武場，人在江湖，武功"/* EXAMPLE */
+                            "萬萬不可荒廢。");                         /* EXAMPLE */
                                                                        /* EXAMPLE */
 
         set("exits", ([

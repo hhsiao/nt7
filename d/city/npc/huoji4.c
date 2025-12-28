@@ -1,4 +1,4 @@
-// huoji. 当铺伙计
+// huoji. 當鋪夥計
 
 #include <ansi.h>
 inherit BUNCHER; 
@@ -8,11 +8,11 @@ int redeem(string arg);
 
 void create()
 {
-        set_name("当铺伙计", ({ "dangpu huoji", "huoji" }));
+        set_name("當鋪夥計", ({ "dangpu huoji", "huoji" }));
         set("str", 20);
         set("gender", "男性");
         set("age", 18);
-        set("long", "他是唐楠从乡下招来帮忙的。\n");
+        set("long", "他是唐楠從鄉下招來幫忙的。\n");
         set("combat_exp", 2500);
         set("attitude", "friendly");
         

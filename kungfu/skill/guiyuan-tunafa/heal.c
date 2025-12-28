@@ -5,19 +5,19 @@
 int exert(object me, object target, int amount)
 {
         if( me->is_fighting() )
-                return notify_fail("战斗中运功疗伤？找死吗？\n");
+                return notify_fail("戰鬥中運功療傷？找死嗎？\n");
 
         if( query("neili", me)-query("max_neili", me)<50 )
-                return notify_fail("你的真气不够。\n");
+                return notify_fail("你的真氣不夠。\n");
 
         if( query("eff_qi", me)<query("max_qi", me)/2 )
                 return 
-notify_fail("你已经受伤过重，只怕一运真气便有生命危险！\n");
+notify_fail("你已經受傷過重，只怕一運真氣便有生命危險！\n");
 
-        write( HIW "你全身放松，坐下来开始运功疗伤。\n" NOR);
+        write( HIW "你全身放鬆，坐下來開始運功療傷。\n" NOR);
         message("vision",
                 HIW + me->name() + 
-"坐下来运功疗伤，脸上一阵红一阵白，不久，吐出一口瘀血，脸色看起来好多了。\n" 
+"坐下來運功療傷，臉上一陣紅一陣白，不久，吐出一口瘀血，臉色看起來好多了。\n" 
 NOR,
                 environment(me), me);
 

@@ -7,7 +7,7 @@ void setup()
         set_name("[5m[1;31m兵[1;32m虎[2;37;0m[2;37;0m", ({"binghu"}));        
         set("gender", "女性");                
         set("long", "老虎[2;37;0m
-它是兵丙的魔幻兽。
+它是兵丙的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

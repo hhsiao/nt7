@@ -16,7 +16,7 @@ int do_invite(string arg);
 
 void setup()
 {
-        set("channel_id", "聊天精灵");
+        set("channel_id", "聊天精靈");
         ::setup();
 }
 
@@ -24,7 +24,7 @@ void create()
 {
         set("short", "聊天室");
         set("long", @DESC
-这里什么也没有。
+這裡什麼也沒有。
 DESC );
         set("no_fight", 1);
         set("no_sleep_room",1);
@@ -42,12 +42,12 @@ void init_room(object out_room, object me)
         set("owner_id",query("id", me));
         set("startroom", base_name(out_room));
         set("short",me->name(1)+"("+query("id", me)+")的聊天室");
-        set("long", sort_string("这里是" + me->name(1) + "为大家提供的聊"
-                                "天室，中间几个桌凳，上面零零散散的摆着茶"
-                                "水和烟灰缸，地上则是一地的瓜子皮和烟头，"
-                                "除此之外空空荡荡的什么也没有。在门口歪歪"
-                                "斜斜的放着一个黑板(chalkboard)，上面写着"
-                                "几行字。\n", 64, 4));
+        set("long", sort_string("這裡是" + me->name(1) + "為大家提供的聊"
+                                "天室，中間幾個桌凳，上面零零散散的擺著茶"
+                                "水和菸灰缸，地上則是一地的瓜子皮和菸頭，"
+                                "除此之外空空蕩蕩的什麼也沒有。在門口歪歪"
+                                "斜斜的放著一個黑板(chalkboard)，上面寫著"
+                                "幾行字。\n", 64, 4));
         set("exits/out", base_name(out_room));
 
         if( query("env/auto_ban", me) )
@@ -57,7 +57,7 @@ void init_room(object out_room, object me)
                 do_invite(query("env/auto_invite", me));
 
         CHANNEL_D->do_channel(out_room, "sys",
-                              sprintf("%s(%s)在%s建立了一个聊天室。",
+                              sprintf("%s(%s)在%s建立了一個聊天室。",
                                       me->name(1),query("id", me),
                                       out_room->short()));
         if (me->query_skill("idle-force", 1) >= 100)
@@ -72,9 +72,9 @@ protected string look_board()
         string topic;
 
         if (! stringp(topic = query("topic")))
-                return "海阔凭鱼跃，天高任鸟飞 - 畅所欲言。\n";
+                return "海闊憑魚躍，天高任鳥飛 - 暢所欲言。\n";
 
-        return "今天的话题是：" + topic + "\n";
+        return "今天的話題是：" + topic + "\n";
 }
 
 int is_owner(object me)
@@ -83,7 +83,7 @@ int is_owner(object me)
             query("couple/id", me) == query("owner_id") )
                 return 1;
 
-        return notify_fail("你不是这个聊天室的主人，没有发话的权利。\n");
+        return notify_fail("你不是這個聊天室的主人，沒有發話的權利。\n");
 }
 
 int welcome(object me)
@@ -97,10 +97,10 @@ int welcome(object me)
         if (query("ban_all"))
         {
                 if (! arrayp(can = query("can")))
-                        return notify_fail("现在主人不允许任何人进入这个聊天室。\n");
+                        return notify_fail("現在主人不允許任何人進入這個聊天室。\n");
 
                 if( member_array(query("id", me),can) == -1 )
-                        return notify_fail("你现在不能进入这个聊天室。\n");
+                        return notify_fail("你現在不能進入這個聊天室。\n");
                 return 1;
         }
 
@@ -108,7 +108,7 @@ int welcome(object me)
                 return 1;
 
         if( member_array(query("id", me),ban) != -1 )
-                return notify_fail("你现在不能进入这个聊天室。\n");
+                return notify_fail("你現在不能進入這個聊天室。\n");
 
         return 1;
 }
@@ -142,17 +142,17 @@ int do_ban(string arg)
         {
                 if (query("ban_all"))
                 {
-                        write("你现在拒绝所有没有经过邀请的人进入聊天室。\n");
+                        write("你現在拒絕所有沒有經過邀請的人進入聊天室。\n");
                         return 1;
                 }
 
                 if (! sizeof(ban))
                 {
-                        write("你现在并没有拒绝任何人进入聊天室。\n");
+                        write("你現在並沒有拒絕任何人進入聊天室。\n");
                         return 1;
                 }
 
-                msg = "你的黑名单：\n" HIR;
+                msg = "你的黑名單：\n" HIR;
                 for (i = 0; i < sizeof(ban); i++)
                 {
                         msg += sprintf("%12-s", ban[i]);
@@ -169,49 +169,49 @@ int do_ban(string arg)
         {
                 if (! query("ban_all"))
                 {
-                        write("现在开始你将拒绝那些没有经过邀"
-                              "请的人进入聊天室。\n");
+                        write("現在開始你將拒絕那些沒有經過邀"
+                              "請的人進入聊天室。\n");
                         set("ban_all", 1);
                 } else
-                        write("你刚才已经拒绝那些没有经过邀请"
-                              "的人进入聊天室了。\n");
+                        write("你剛才已經拒絕那些沒有經過邀請"
+                              "的人進入聊天室了。\n");
                 return 1;
         }
 
         if (member_array(arg, ban) != -1)
         {
-                write("此人现在已经被设定为拒绝入内的人士了。\n");
+                write("此人現在已經被設定為拒絕入內的人士了。\n");
                 return 1;
         }
 
         if( arg == query("id", me) )
         {
-                write("拒绝你自己入内？你是不是大脑有问题？\n");
+                write("拒絕你自己入內？你是不是大腦有問題？\n");
                 return 1;
         }
 
         if (arg == query("owner_id"))
         {
-                write("连屋主你也想关在外面？看来你是有点问题了。\n");
+                write("連屋主你也想關在外面？看來你是有點問題了。\n");
         }
 
         all = explode(arg, ",") - ({ "", query("owner") }) - ban;
         if (! sizeof(all))
         {
-                write("这些人现在已经被设定为邀请入内的人士了。\n");
+                write("這些人現在已經被設定為邀請入內的人士了。\n");
                 return 1;
         }
         if (sizeof(ban) > 50)
         {
-                write("够了，你已经指定太多的人了，还不如干脆"
-                      "许可所有的人(invite all)入内好了。\n");
+                write("夠了，你已經指定太多的人了，還不如干脆"
+                      "許可所有的人(invite all)入內好了。\n");
                 return 1;
         }
 
         ban += all;
         can -= all;
         arg = implode(all, ",");
-        write("你将(" + arg + ")打入了黑名单，从现在开始拒绝其入内。\n");
+        write("你將(" + arg + ")打入了黑名單，從現在開始拒絕其入內。\n");
         set("ban", ban);
         set("can", can);
         return 1;
@@ -238,17 +238,17 @@ int do_invite(string arg)
         {
                 if (! query("ban_all"))
                 {
-                        write("你现在同意任何没有被拒绝的人进入聊天室。\n");
+                        write("你現在同意任何沒有被拒絕的人進入聊天室。\n");
                         return 1;
                 }
 
                 if (! sizeof(can))
                 {
-                        write("你现在并没有特别邀请任何人进入聊天室。\n");
+                        write("你現在並沒有特別邀請任何人進入聊天室。\n");
                         return 1;
                 }
 
-                msg = "以下这些人是你特地关照要请进来的：\n" HIC;
+                msg = "以下這些人是你特地關照要請進來的：\n" HIC;
                 for (i = 0; i < sizeof(can); i++)
                 {
                         msg += sprintf("%12-s", can[i]);
@@ -265,30 +265,30 @@ int do_invite(string arg)
         {
                 if (query("ban_all"))
                 {
-                        write("现在开始你同意让所有没有被打入"
-                              "黑名单的人都能进入聊天室。\n");
+                        write("現在開始你同意讓所有沒有被打入"
+                              "黑名單的人都能進入聊天室。\n");
                         delete("ban_all");
                 } else
-                        write("你已经同意让所有没有被打入黑名"
-                              "单的人都能进入聊天室了。\n");
+                        write("你已經同意讓所有沒有被打入黑名"
+                              "單的人都能進入聊天室了。\n");
                 return 1;
         }
 
         if (member_array(arg, can) != -1)
         {
-                write("此人现在已经被设定为邀请入内的人士了。\n");
+                write("此人現在已經被設定為邀請入內的人士了。\n");
                 return 1;
         }
 
         if( arg == query("id", me) )
         {
-                write("邀请你自己？看来是没有这个必要。\n");
+                write("邀請你自己？看來是沒有這個必要。\n");
                 return 1;
         }
 
         if (arg == query("owner_id"))
         {
-                write("邀请屋主么？似乎多此一举了。\n");
+                write("邀請屋主麼？似乎多此一舉了。\n");
         }
 
         all=explode(arg,",")-({"",query("owner"),query("id", me)});
@@ -296,28 +296,28 @@ int do_invite(string arg)
 
         if (! sizeof(all))
         {
-                write("这些人现在已经被设定为邀请入内的人士了。\n");
+                write("這些人現在已經被設定為邀請入內的人士了。\n");
                 return 1;
         }
 
         if (sizeof(can) > 50)
         {
-                write("够了，你已经指定太多的人了，还不如干脆"
-                      "许可所有的人(invite all)入内好了。\n");
+                write("夠了，你已經指定太多的人了，還不如干脆"
+                      "許可所有的人(invite all)入內好了。\n");
                 return 1;
         }
 
         ban -= all;
         can += all;
         arg = implode(all, ",");
-        write("你将(" + arg + ")列入邀请名单，从现在开始特别邀请他入内。\n");
+        write("你將(" + arg + ")列入邀請名單，從現在開始特別邀請他入內。\n");
         set("ban", ban);
         set("can", can);
 
         if (sizeof(all) == 1 &&
             objectp(ob = find_player(arg)) &&
             ! present(ob, this_object()))
-                TELL_CMD->main(me, arg + " 来我的聊天室聊聊天吧！");
+                TELL_CMD->main(me, arg + " 來我的聊天室聊聊天吧！");
         return 1;
 }
 
@@ -332,15 +332,15 @@ int do_kickout(string arg)
                 return 0;
 
         if (! arg)
-                return notify_fail("你要把谁踢出去？\n");
+                return notify_fail("你要把誰踢出去？\n");
 
         ob = present(arg, this_object());
         if (! ob)
-                return notify_fail("这里没有这个人啊！\n");
+                return notify_fail("這裡沒有這個人啊！\n");
 
         if( query("id", ob) == "menshen" )
         {
-                message_vision("$N把$n仔细的叠了起来收好。\n",
+                message_vision("$N把$n仔細的疊了起來收好。\n",
                                me, ob);
                 destruct(ob);
                 return 1;
@@ -350,15 +350,15 @@ int do_kickout(string arg)
                 return notify_fail("看清楚了，那可不是活人。\n");
 
         if (ob == me)
-                return notify_fail("你大脑有水？\n");
+                return notify_fail("你大腦有水？\n");
 
-        message_vision("$N飞起一脚，将$n咕噜咕噜的踢出门去！\n",
+        message_vision("$N飛起一腳，將$n咕嚕咕嚕的踢出門去！\n",
                        me, ob);
         ob->move(query("startroom"));
         ob->start_busy(3);
-        message("vision", "只听“啪嗒”一声，" + ob->name() +
-                "狼狈不堪的滚了出来，屁股上面还清清楚楚的留"
-                "着一个鞋印。\n", environment(ob), ({ ob }));
+        message("vision", "只聽“啪嗒”一聲，" + ob->name() +
+                "狼狽不堪的滾了出來，屁股上面還清清楚楚的留"
+                "著一個鞋印。\n", environment(ob), ({ ob }));
         return 1;
 }
 
@@ -373,18 +373,18 @@ int do_closechat()
         if (! is_owner(me))
                 return 0;
 
-        message_vision("$N站起来，伸了个懒腰，道：走吧走吧，该走了。\n", me);
+        message_vision("$N站起來，伸了個懶腰，道：走吧走吧，該走了。\n", me);
         obs = filter_array(deep_inventory(this_object()), (: userp :));
         for (i = 0; i < sizeof(obs); i++)
         {
                 message_vision("$N走了出去。\n", obs[i]);
                 obs[i]->move(query("startroom"));
                 if (living(obs[i]))
-                        message("vision", obs[i]->name() + "从" + short() +
-                                "里面走了出来。\n", environment(obs[i]), ({ obs[i] }));
+                        message("vision", obs[i]->name() + "從" + short() +
+                                "裡面走了出來。\n", environment(obs[i]), ({ obs[i] }));
                 else
-                        message("visoin", obs[i]->name() + "被人从" + short() +
-                                "里面抬了出来。\n", environment(obs[i]), ({ obs[i] }));
+                        message("visoin", obs[i]->name() + "被人從" + short() +
+                                "裡面抬了出來。\n", environment(obs[i]), ({ obs[i] }));
         }
         CHANNEL_D->do_channel(this_object(), "sys",
                               sprintf("%s被%s(%s)拆除了。",
@@ -402,25 +402,25 @@ int do_summon(string arg)
                 return 0;
 
         if (arg != "menshen" && arg != "men shen")
-                return notify_fail("你要召唤什么？\n");
+                return notify_fail("你要召喚什麼？\n");
 
         if (objectp(present("men shen", this_object())))
         {
-                write("这里已经有门神为你把守了。\n");
+                write("這裡已經有門神為你把守了。\n");
                 return 1;
         }
 
         if (this_player()->query_skill("idle-force", 1) < 100)
         {
-                write("你的发呆神功水平有限，还无法发呆出一个门神来。\n");
+                write("你的發呆神功水平有限，還無法發呆出一個門神來。\n");
                 return 1;
         }
 
         ob = new("/clone/npc/menshen");
-        message_vision("$N忽然不说话了，发了一会儿呆，过了一"
-                       "阵，突然天上掉下一张年画，\n上面画着"
-                       "一个威武雄壮的门神。$N把它拣了起来，"
-                       "贴在门上面。\n", this_player());
+        message_vision("$N忽然不說話了，發了一會兒呆，過了一"
+                       "陣，突然天上掉下一張年畫，\n上面畫著"
+                       "一個威武雄壯的門神。$N把它揀了起來，"
+                       "貼在門上面。\n", this_player());
         ob->move(this_object());
         return 1;
 }
@@ -431,8 +431,8 @@ int do_secret(string arg)
 
         if (! arg)
         {
-                write("现在聊天室" + (query("secret") ? "处于秘密状态。\n"
-                                                      : "处于公开状态。\n"));
+                write("現在聊天室" + (query("secret") ? "處於秘密狀態。\n"
+                                                      : "處於公開狀態。\n"));
                 return 1;
         }
 
@@ -444,28 +444,28 @@ int do_secret(string arg)
         {
                 if (query("secret"))
                 {
-                        write("现在聊天室已经是秘密的了。\n");
+                        write("現在聊天室已經是秘密的了。\n");
                         return 1;
                 }
 
-                message_vision("$N神神秘秘的看了看四周，把手指竖在"
-                               "唇前，小声道：“吁”。\n", me);
+                message_vision("$N神神秘秘的看了看四周，把手指豎在"
+                               "唇前，小聲道：“籲”。\n", me);
                 set("secret", 1);
-                message("vision", HIG "现在聊天室已经是秘密的了。\n" NOR,
+                message("vision", HIG "現在聊天室已經是秘密的了。\n" NOR,
                         all_inventory());
         } else
         if (arg == "off" || arg == "OFF" || arg == "-")
         {
                 if (! query("secret"))
                 {
-                        write("现在聊天室并不是秘密的。\n");
+                        write("現在聊天室並不是秘密的。\n");
                         return 1;
                 }
 
                 message_vision("$N鬼鬼祟祟的看了看四周，道：“大家是不"
-                               "是都说完悄悄话了？”\n", me);
+                               "是都說完悄悄話了？”\n", me);
                 delete("secret");
-                message("vision", HIC "现在聊天室已经是公开的了。\n" NOR,
+                message("vision", HIC "現在聊天室已經是公開的了。\n" NOR,
                         all_inventory());
         } else
                 do_help("secret");
@@ -485,23 +485,23 @@ int do_topic(string arg)
         if (! arg)
         {
                 if (query("topic"))
-                        write("目前的话题是：" + query("topic") + "。\n");
+                        write("目前的話題是：" + query("topic") + "。\n");
                 else
-                        write("目前没有限制什么话题。\n");
-                write("你打算指定什么新话题？\n");
+                        write("目前沒有限制什麼話題。\n");
+                write("你打算指定什麼新話題？\n");
                 return 1;
         }
 
         if (arg == "none")
         {
                 delete("topic");
-                message_vision("$N道：大家随便聊聊吧，不必拘泥于某个话题。\n", me);
+                message_vision("$N道：大家隨便聊聊吧，不必拘泥於某個話題。\n", me);
                 return 1;
         }
 
         set("topic", arg);
-        message_vision("$N道：咱们今天不如谈谈『" + arg + "』这个话题。\n"
-                       "说完从地上找到一根粉笔在黑板上胡乱涂了几行字。\n", me);
+        message_vision("$N道：咱們今天不如談談『" + arg + "』這個話題。\n"
+                       "說完從地上找到一根粉筆在黑板上胡亂塗了幾行字。\n", me);
         return 1;
 }
 
@@ -511,15 +511,15 @@ int do_help(string arg)
         {
         case "here":
                 write(@HELP
-在这里你可以使用以下这些和聊天室相关的命令：
-    ban          禁止某些人访问聊天室
-    closechat    关闭这个聊天室(所有人都被踢出)
-    invite       邀请某个人进入聊天室
-    kickout      将某个人踢出聊天室
-    summon       呼叫神灵
-    look         看看聊天室里面都有谁
-    out          离开聊天室
-    topic        设置聊天室的话题
+在這裡你可以使用以下這些和聊天室相關的命令：
+    ban          禁止某些人訪問聊天室
+    closechat    關閉這個聊天室(所有人都被踢出)
+    invite       邀請某個人進入聊天室
+    kickout      將某個人踢出聊天室
+    summon       呼叫神靈
+    look         看看聊天室裡面都有誰
+    out          離開聊天室
+    topic        設置聊天室的話題
 HELP );
                 break;
 
@@ -527,13 +527,13 @@ HELP );
                 write(@HELP_BAN
 指令格式 : ban <玩家ID> [all]
 
-此指令让你禁止指定的玩家进入你的聊天室。如果指明的参数是 all
-则禁止所有的玩家进入，这时只有那些经过邀请的玩家才能进入。这
-条指令不会影响此时已经在聊天室内的玩家。如果一次需要禁止多个
-玩家，可以用逗号分开，比如：ban xxx,yyy,zzz。 在聊天室刚刚建
-立好的时候会自动执行ban auto_ban，其中auto_ban是你设置的参数。
+此指令讓你禁止指定的玩家進入你的聊天室。如果指明的參數是 all
+則禁止所有的玩家進入，這時只有那些經過邀請的玩家才能進入。這
+條指令不會影響此時已經在聊天室內的玩家。如果一次需要禁止多個
+玩家，可以用逗號分開，比如：ban xxx,yyy,zzz。 在聊天室剛剛建
+立好的時候會自動執行ban auto_ban，其中auto_ban是你設置的參數。
 
-相关指令：kickout, invite
+相關指令：kickout, invite
 HELP_BAN );
                 break;
 
@@ -541,7 +541,7 @@ HELP_BAN );
                 write(@HELP_CLOSECHAT
 指令格式 : closechat
 
-关闭这个聊天室。
+關閉這個聊天室。
 
 HELP_CLOSECHAT );
 
@@ -549,15 +549,15 @@ HELP_CLOSECHAT );
                 write(@HELP_BAN
 指令格式 : invite <玩家ID> [all]
 
-此指令让你邀请指定的玩家进入你的聊天室。如果先前这个玩家被指
-明禁止进入，这此时状态取消，同时如果玩家可以接收tell的话将会
-收到你的邀请信息。如果指明的参数是 all则表明取消禁止所有的玩
-家进入的限制，这是相对ban all 而言的。如果一次需要邀请多个玩
-家，可以用逗号分开，比如：ban xxx,yyy,zzz。 在聊天室刚刚建立
-好的时候会自动执行invite auto_invite， 其中auto_invite是你设
-置的参数。
+此指令讓你邀請指定的玩家進入你的聊天室。如果先前這個玩家被指
+明禁止進入，這此時狀態取消，同時如果玩家可以接收tell的話將會
+收到你的邀請信息。如果指明的參數是 all則表明取消禁止所有的玩
+家進入的限制，這是相對ban all 而言的。如果一次需要邀請多個玩
+家，可以用逗號分開，比如：ban xxx,yyy,zzz。 在聊天室剛剛建立
+好的時候會自動執行invite auto_invite， 其中auto_invite是你設
+置的參數。
 
-相关指令：kickout, ban
+相關指令：kickout, ban
 HELP_BAN );
                 break;
 
@@ -565,9 +565,9 @@ HELP_BAN );
                 write(@HELP_BAN
 指令格式 : invite <玩家ID>
 
-踢出某一个捣乱的玩家，如果ID是men shen则把门神收起来。
+踢出某一個搗亂的玩家，如果ID是men shen則把門神收起來。
 
-相关指令：ban, invite
+相關指令：ban, invite
 HELP_BAN );
                 break;
 
@@ -575,8 +575,8 @@ HELP_BAN );
                 write(@HELP_SUMMON
 指令格式 : summon menshen
 
-如果你有一百级的发呆神功，在你自己的聊天室里面就可以使用这条
-命令呼叫门神帮你把守聊天室，自动踢出那些混进聊天室的人。
+如果你有一百級的發呆神功，在你自己的聊天室裡面就可以使用這條
+命令呼叫門神幫你把守聊天室，自動踢出那些混進聊天室的人。
 HELP_SUMMON );
                 break;
 
@@ -584,7 +584,7 @@ HELP_SUMMON );
                 write(@HELP_BAN
 指令格式 : topic <任意信息> | <none>
 
-指定一个聊天的话题。
+指定一個聊天的話題。
 
 HELP_BAN );
                 break;
@@ -593,13 +593,13 @@ HELP_BAN );
                 write(@HELP_SECRET
 指令格式 : secret [+ | on | - | off]
 
-使自己的聊天室成为秘密的聊天室，或者解除秘密状态。
+使自己的聊天室成為秘密的聊天室，或者解除秘密狀態。
 
 HELP_SECRET );
                 break;
 
         default:
-                return notify_fail("你要查看什么帮助？\n");
+                return notify_fail("你要查看什麼幫助？\n");
         }
 
         return 1;
@@ -628,7 +628,7 @@ int clean_up()
 {
         object *obs;
 
-        // 聊天室里面有玩家、聊天魂魄、LV10兵器则不析构
+        // 聊天室裡面有玩家、聊天魂魄、LV10兵器則不析構
         obs = filter_array(all_inventory(), (: userp($1) || playerp($1) || $1->is_chatter() ||
                                                $1->is_item_make() && $1->is_stay_in_room() :));
         if (! sizeof(obs))

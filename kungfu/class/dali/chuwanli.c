@@ -11,9 +11,9 @@ inherit F_GUARDER;
 
 void create()
 {
-        set_name("褚万里", ({ "chu wanli", "chu" }));
-        set("title", "大理国护卫" );
-        set("long", "他是大理国四大护卫之一，英气逼人。\n");
+        set_name("褚萬里", ({ "chu wanli", "chu" }));
+        set("title", "大理國護衛" );
+        set("long", "他是大理國四大護衛之一，英氣逼人。\n");
         set("gender", "男性");
         set("age", 40);
         set("class", "officer");
@@ -63,12 +63,12 @@ void create()
         }));
 
         set("guarder", ([
-                "refuse_home" : CYN "$N" CYN "拦住$n" CYN "道：对不"
-                                "起！王爷有令，出了段家就莫回来。\n" NOR,
-                "refuse_other": CYN "$N" CYN "一把拦住$n" CYN "，喝"
-                                "道：闲杂人等，不能入内。\n" NOR,
-                "refuse_carry": CYN "$N" CYN "陪着笑脸对$n" CYN "道"
-                                "：可否将…你背的人放下再进王府？\n" NOR,
+                "refuse_home" : CYN "$N" CYN "攔住$n" CYN "道：對不"
+                                "起！王爺有令，出了段家就莫回來。\n" NOR,
+                "refuse_other": CYN "$N" CYN "一把攔住$n" CYN "，喝"
+                                "道：閒雜人等，不能入內。\n" NOR,
+                "refuse_carry": CYN "$N" CYN "陪著笑臉對$n" CYN "道"
+                                "：可否將…你背的人放下再進王府？\n" NOR,
         ]));
 
         create_family("段氏皇族", 15, "家臣");
@@ -93,6 +93,6 @@ void attempt_apprentice(object ob)
                 return;
 
         command("shake");
-        command("say 世子殿下何需如此，只要有事吩咐在下一声便是。");
+        command("say 世子殿下何需如此，只要有事吩咐在下一聲便是。");
         return;
 }

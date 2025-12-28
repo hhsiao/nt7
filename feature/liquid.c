@@ -46,24 +46,24 @@ string extra_long()
         if( amount = query("liquid/remaining") ) {
                 max = query("max_liquid");
                 if( amount == max )
-                        str = "里面装满了" + query("liquid/name") + "。\n";
+                        str = "裡面裝滿了" + query("liquid/name") + "。\n";
                 else if( amount >= max * 2 / 3 )
-                        str = "里面装了七、八分满的" + query("liquid/name") + "。\n";
+                        str = "裡面裝了七、八分滿的" + query("liquid/name") + "。\n";
                 else if( amount >= max * 2 / 5 )
-                        str = "里面装了五、六分满的" + query("liquid/name") + "。\n";
+                        str = "裡面裝了五、六分滿的" + query("liquid/name") + "。\n";
                 else if( amount >= 1 )
-                        str = "里面装了少许的" + query("liquid/name") + "。\n";
+                        str = "裡面裝了少許的" + query("liquid/name") + "。\n";
         }
 
-        str += "物品类型    ：    容器\n";
-        str += sprintf("属    性    ：    %s\n", query("liquid/name"));
+        str += "物品類型    ：    容器\n";
+        str += sprintf("屬    性    ：    %s\n", query("liquid/name"));
         str += sprintf("重    量    ：    %d\n", this_object()->query_weight());
         str += sprintf("能    量    ：    %d\n", query("max_liquid"));
-        str += sprintf("剩    余    ：    %d\n", query("liquid/remaining"));
-        str += sprintf("使用方式    ：    输入指令 drink %s 饮用。\n", query("id"));
+        str += sprintf("剩    餘    ：    %d\n", query("liquid/remaining"));
+        str += sprintf("使用方式    ：    輸入指令 drink %s 飲用。\n", query("id"));
         if( this_object()->query_autoload() )
-                str += "下线丢失    ：    否\n";
+                str += "下線丟失    ：    否\n";
         else
-                str += "下线丢失    ：    是\n";
+                str += "下線丟失    ：    是\n";
         return str;
 }

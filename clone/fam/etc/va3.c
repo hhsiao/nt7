@@ -9,10 +9,10 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIG "这是一块上等宝玉，相信可以"
-                            "卖个好价钱。\n");
+                set("long", HIG "這是一塊上等寶玉，相信可以"
+                            "賣個好價錢。\n");
                 set("value", 160000);
-                set("unit", "块");
+                set("unit", "塊");
 
         }
 }

@@ -14,46 +14,46 @@ int main(object me, string arg)
                 return 0;
 
         if( query("no_fight", environment(me)) )
-                return notify_fail("这里不准战斗。\n");
+                return notify_fail("這裡不準戰鬥。\n");
 
         if (! arg)
-                return notify_fail("你想杀谁？\n");
+                return notify_fail("你想殺誰？\n");
 
         if( !objectp(obj = present(arg, environment(me))) || !me->visible(obj) )
-                return notify_fail("这里没有这个人。\n");
+                return notify_fail("這裡沒有這個人。\n");
 
         if( query_temp("apply/name", me) && userp(obj) )
-                return notify_fail("你还是先取下面具吧!\n");
+                return notify_fail("你還是先取下面具吧!\n");
 
         if( query_temp("apply/shade_vision", obj) )
                 return notify_fail("你看不到"+query("name", obj)+"。\n");
 
         if (! obj->is_character() || obj->is_corpse())
-                return notify_fail("看清楚一点，那并不是活物。\n");
+                return notify_fail("看清楚一點，那並不是活物。\n");
 
         if (obj == me)
-                return notify_fail("用 suicide 指令会比较快:)。\n");
+                return notify_fail("用 suicide 指令會比較快:)。\n");
 
         if (arrayp(me->query_team()) &&
             member_array(obj, me->query_team()) != -1)
-                return notify_fail("连你自己队伍中的人也要杀吗？太不人道了吧！\n");
+                return notify_fail("連你自己隊伍中的人也要殺嗎？太不人道了吧！\n");
 
         if (me->is_fighting(obj) && me->is_killing(query("id", obj)))
-                return notify_fail("你正在和人家生死相扑呢。\n");
+                return notify_fail("你正在和人家生死相撲呢。\n");
 
         if (! me->is_fighting(obj) &&
             query("qi", me)<query("max_qi", me)*3/10 )
-                return notify_fail("你现在没有力气战斗了。\n");
+                return notify_fail("你現在沒有力氣戰鬥了。\n");
 
         callname = RANK_D->query_rude(obj);
 
         if( query("can_speak", obj) )
         {
             if (random(3) > 1)
-            message_vision("\n$N对着$n喝道：「" 
+            message_vision("\n$N對著$n喝道：「" 
                     + callname + "！今日不是你死就是我活！」\n\n", me, obj);
             else
-            message_vision("\n$N对着$n喝道：「" 
+            message_vision("\n$N對著$n喝道：「" 
                     + callname + "！明年今日就是你的忌日！」\n\n", me, obj);
         }
 
@@ -84,18 +84,18 @@ int help(object me)
         write(@HELP
 指令格式 : kill <人物>
  
-这个指令让你主动开始攻击一个人物，并且试图杀死对方，kill 和 fight 最大的
-不同在於双方将会真刀实枪地打斗，也就是说，会真的受伤。由於 kill 只需单方
-面一厢情愿就可以成立，因此你对任何人使用 kill 指令都会开始战斗，通常如果
-对方是 NPC 的话，他们也会同样对你使用 kill。
+這個指令讓你主動開始攻擊一個人物，並且試圖殺死對方，kill 和 fight 最大的
+不同在於雙方將會真刀實槍地打鬥，也就是說，會真的受傷。由於 kill 只需單方
+面一廂情願就可以成立，因此你對任何人使用 kill 指令都會開始戰鬥，通常如果
+對方是 NPC 的話，他們也會同樣對你使用 kill。
 
-当有人对你使用 kill 指令时会出现红色的字样警告你，对於一个玩家而言，如果
-你没有对一名敌人使用过 kill 指令，就不会将对方真的打伤或杀死( 使用法术除
+當有人對你使用 kill 指令時會出現紅色的字樣警告你，對於一個玩家而言，如果
+你沒有對一名敵人使用過 kill 指令，就不會將對方真的打傷或殺死( 使用法術除
 外)。
 
-其他相关指令: hit, fight
+其他相關指令: hit, fight
 
-有关 fight 跟 kill 的区分请看 'help combat'.
+有關 fight 跟 kill 的區分請看 'help combat'.
 HELP );
         return 1;
 }

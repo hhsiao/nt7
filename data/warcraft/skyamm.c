@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("筋斗云[2;37;0m[2;37;0m", ({"jdy"}));        
+        set_name("筋斗雲[2;37;0m[2;37;0m", ({"jdy"}));        
         set("gender", "男性");                
-        set("long", "筋斗云[2;37;0m
-它是纸鸢纷飞的魔幻兽。
+        set("long", "筋斗雲[2;37;0m
+它是紙鳶紛飛的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");
         set("owner", "skyamm");
-        set("owner_name", "纸鸢纷飞");
+        set("owner_name", "紙鳶紛飛");
         set_temp("owner", "skyamm");
-        set_temp("owner_name", "纸鸢纷飞");
+        set_temp("owner_name", "紙鳶紛飛");
         ::setup();
 }

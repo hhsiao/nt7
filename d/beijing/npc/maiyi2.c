@@ -2,11 +2,11 @@ inherit BUNCHER;
 
 void create()
 {
-        set_name("卖艺人", ({ "maiyi ren", "ren" }) );
+        set_name("賣藝人", ({ "maiyi ren", "ren" }) );
         set("gender", "男性" );
         set("age", 25);
         set("long",
-              "一个沿街卖艺的人。\n");
+              "一個沿街賣藝的人。\n");
         set("shen_type", 1);
         set("combat_exp", 10000);
         set("str", 20);
@@ -18,7 +18,7 @@ void create()
         set_skill("unarmed",20);
         set("chat_chance", 1);
         set("chat_msg", ({
-                 "卖艺人大声叫道：俺给大家表演俺的绝活。\n",
+                 "賣藝人大聲叫道：俺給大家表演俺的絕活。\n",
         }) );       
 
         setup();

@@ -7,11 +7,11 @@ inherit F_MASTER;
 void create()
 {
         set_name("戴永明", ({ "dai yongming","dai", "yongming"}));
-          set("long", "镇远镖局的镖师中以他为首，也以他武功最\n"
-                    "高，根基最好。他身形修长，相貌端正，白\n"
-                    "衣飘飘，气度不凡。虽然已四十多岁，但依\n"
-                    "然形象潇洒。\n");
-        set("title", "镇远镖局镖师");
+          set("long", "鎮遠鏢局的鏢師中以他為首，也以他武功最\n"
+                    "高，根基最好。他身形修長，相貌端正，白\n"
+                    "衣飄飄，氣度不凡。雖然已四十多歲，但依\n"
+                    "然形象瀟灑。\n");
+        set("title", "鎮遠鏢局鏢師");
           set("gender", "男性");
           set("age", 35);
         set("class", "fighter");
@@ -52,7 +52,7 @@ void create()
         prepare_skill("cuff", "bagua-quan");
         prepare_skill("strike", "bagua-zhang");
 
-          create_family("八卦门", 3, "弟子");
+          create_family("八卦門", 3, "弟子");
           setup();
 
           carry_object("/clone/misc/cloth")->wear();
@@ -64,7 +64,7 @@ void attempt_apprentice(object me)
                 return;
 
         command("en");
-        command("say 既然这样，那你就留下吧。");
+        command("say 既然這樣，那你就留下吧。");
         command("recruit "+query("id", me));
         if( query("class", me) != "fighter" )
                 set("class", "fighter", me);

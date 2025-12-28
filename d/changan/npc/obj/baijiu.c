@@ -11,14 +11,14 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", "一个用来装酒的酒瓶，能装两，三斤白酒。\n");
-                set("unit", "个");
+                set("long", "一個用來裝酒的酒瓶，能裝兩，三斤白酒。\n");
+                set("unit", "個");
                 set("value", 100);
                 set("max_liquid", 15);
         }
         set("liquid", ([
                 "type": "alcohol",
-                "name": "劣质白酒",
+                "name": "劣質白酒",
                 "remaining": 15,
                 "drunk_supply": 15,
         ]));

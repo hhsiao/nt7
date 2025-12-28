@@ -7,11 +7,11 @@ inherit F_SSERVER;
 int exert(object me, object target)
 {
         if( query("max_neili", me)<1 )
-                return notify_fail("你已经将内力散尽，没什么必要再散功了。\n");
+                return notify_fail("你已經將內力散盡，沒什麼必要再散功了。\n");
 
-        tell_object(target, HIY "你默默的按照吸星大法的诀窍将内力散入奇经八脉。\n" NOR);
-        message("vision", HIY + me->name() + "呼吸沉重，却又不像受伤的样"
-                          "子，不知道在修炼什么厉害的功夫。\n" NOR,
+        tell_object(target, HIY "你默默的按照吸星大法的訣竅將內力散入奇經八脈。\n" NOR);
+        message("vision", HIY + me->name() + "呼吸沉重，卻又不像受傷的樣"
+                          "子，不知道在修煉什麼厲害的功夫。\n" NOR,
                 environment(me), ({ me }));
 
         me->start_busy(1);
@@ -22,7 +22,7 @@ int exert(object me, object target)
         if( query("max_neili", me) < 1 )
         {
                 set("can_learn/xixing-dafa/ren", 1, me);
-                tell_object(me, HIR "你终于悟得学习吸星大法，压抑内力反噬的方法。\n" NOR);
+                tell_object(me, HIR "你終於悟得學習吸星大法，壓抑內力反噬的方法。\n" NOR);
         }
         return 1;
 }

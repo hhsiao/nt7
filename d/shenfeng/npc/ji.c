@@ -2,11 +2,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("计老人", ({ "ji laoren", "ji" , "laoren" }));
+        set_name("計老人", ({ "ji laoren", "ji" , "laoren" }));
         set("gender", "男性");
         set("age", 70);
-        set("long", "他满头白发，竟无一根是黑的。身材甚是高大，只\n"
-                    "是弓腰曲背衰老已极。\n");
+        set("long", "他滿頭白髮，竟無一根是黑的。身材甚是高大，只\n"
+                    "是弓腰曲背衰老已極。\n");
         set("attitude", "friendly");
         set("combat_exp", 10000);
         set("shen_type", 1);
@@ -27,7 +27,7 @@ void create()
         set_temp("apply/defense", 20);
         set_temp("apply/damage", 15);
         set("inquiry", ([
-                "李文秀" : "这孩子真是命苦。",
+                "李文秀" : "這孩子真是命苦。",
         ]));
 
         setup();

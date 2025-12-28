@@ -1,15 +1,15 @@
-// yi.c 斗转星移
+// yi.c 斗轉星移
 // mud updated on 25th,Feb,2015
 #include <ansi.h>
 #include <combat.h>
 
 inherit F_SSERVER;
 
-string name() { return "斗转星移"; }
-string *limbs = ({"头部", "颈部", "胸口", "后心","小腹",});
+string name() { return "斗轉星移"; }
+string *limbs = ({"頭部", "頸部", "胸口", "後心","小腹",});
 mapping weap =
-        (["sword":"剑","blade":"刀","whip":"鞭",
-        "club":"棍","staff":"棒","hammer":"锤",
+        (["sword":"劍","blade":"刀","whip":"鞭",
+        "club":"棍","staff":"棒","hammer":"錘",
         "throwing":"暗器","dagger":"匕",]);
 int perform(object me, object target)
 {
@@ -30,27 +30,27 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("「斗转星移」只能对战斗中的对手使用。\n");
+                return notify_fail("「斗轉星移」只能對戰鬥中的對手使用。\n");
 
         if( userp(me) && !query("yuanshen", me) )
-                return notify_fail("你尚未悟道，无法使用"+name()+"。\n");
+                return notify_fail("你尚未悟道，無法使用"+name()+"。\n");
 
         if ((int)me->query_skill("douzhuan-xingyi", 1) < 1000)
-                return notify_fail("你的斗转星移不够娴熟，不会使用绝招。\n");
+                return notify_fail("你的斗轉星移不夠嫻熟，不會使用絕招。\n");
 
         if ((int)me->query_skill("zihui-xinfa", 1) < 1000)
-                return notify_fail("你的紫徽心法修为还不到家，难以运用「斗转星移」。\n");
+                return notify_fail("你的紫徽心法修為還不到家，難以運用「斗轉星移」。\n");
 
         if( query("neili", me)<600 )
-                return notify_fail("你现在真气不够，无法使用「斗转星移」。\n");
+                return notify_fail("你現在真氣不夠，無法使用「斗轉星移」。\n");
 
         if (! living(target))
-              return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+              return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         if( userp(me) )
         {
                 if( (time = BUFF_D->get_buff_overtime(me, "dzxy_yi")) > 0 )
-                        return notify_fail(MAG"斗转星移消耗心神太甚，还需等待"+time+"秒。\n"NOR);
+                        return notify_fail(MAG"斗轉星移消耗心神太甚，還需等待"+time+"秒。\n"NOR);
         }
 
         prepare = target->query_skill_prepare();
@@ -66,11 +66,11 @@ int perform(object me, object target)
                         if(objectp(weapon2) && attack_skill != query("skill_type",weapon2))
                         {
                            wme = weap[query("skill_type",weapon2)];
-                           wmsg = "$N驭气于"+weapon2->name()+"，化"+wme+"为"+wob+"。\n";
+                           wmsg = "$N馭氣於"+weapon2->name()+"，化"+wme+"為"+wob+"。\n";
                            wme = weapon2->name();
                          }
                         if(!objectp(weapon2))
-                        wme = HIW+BLINK"无形真气"NOR;
+                        wme = HIW+BLINK"無形真氣"NOR;
                 }
         else if(  sizeof(prepare) == 0) attack_skill = "unarmed";
         else if(  sizeof(prepare) == 1) attack_skill = (keys(prepare))[0];
@@ -93,9 +93,9 @@ int perform(object me, object target)
                 flag = 2;
 
                 limb = limbs[random(sizeof(limbs))];
-        msg = HIG "$N" HIG "施展起绝学「斗转星移」，以彼之道，还施彼身！\n"NOR;
-                msg+= HIG "$N"NOR+HIG"冷笑一声，仿佛洞彻了$n"NOR+HIG"的成名绝技------"+HIR+to_chinese(martial_skill)+HIG+"!\n";
-                msg+= HIG"赫然使出了"+HIR+to_chinese(martial_skill)+HIG+"，好似毕生钻研一般。\n"NOR;
+        msg = HIG "$N" HIG "施展起絕學「斗轉星移」，以彼之道，還施彼身！\n"NOR;
+                msg+= HIG "$N"NOR+HIG"冷笑一聲，彷彿洞徹了$n"NOR+HIG"的成名絕技------"+HIR+to_chinese(martial_skill)+HIG+"!\n";
+                msg+= HIG"赫然使出了"+HIR+to_chinese(martial_skill)+HIG+"，好似畢生鑽研一般。\n"NOR;
                 if(stringp(wmsg))
                 msg+= wmsg;
                 act = SKILL_D(martial_skill)->query_action(target,weapon);
@@ -118,7 +118,7 @@ int perform(object me, object target)
         if(flag == 1) ap = ap - ap/5;
                 if(flag == 2) ap = ap + ap/5;
 
-        delta = ABILITY_D->check_ability(me, "ap_power-dzxy-yi"); // 门派ab
+        delta = ABILITY_D->check_ability(me, "ap_power-dzxy-yi"); // 門派ab
         if( delta ) ap += ap*delta/100;
 
         der = 0;
@@ -126,7 +126,7 @@ int perform(object me, object target)
         addn("neili", -50, me);
                 if (ap/2 > dp && query("combat_exp",me) /10 > query("combat_exp",target))
                 {
-                    msg+= HIK"$n眼见$N使出自己毕生所学，万念俱灰，坐以待毙。\n"NOR;
+                    msg+= HIK"$n眼見$N使出自己畢生所學，萬念俱灰，坐以待斃。\n"NOR;
                         message_combatd(msg, me, target);
                         target->receive_damage("qi", 100, me);
                         target->die(me);
@@ -135,36 +135,36 @@ int perform(object me, object target)
         else if (ap > dp /10 * 12)
         {
                 // Success to make the target attack hiself
-            msg += HIK "结果$N" HIK "一招击出，正好打在$n的"+limb+"上，$n不禁一声惨叫，摔跌开去。" NOR;
+            msg += HIK "結果$N" HIK "一招擊出，正好打在$n的"+limb+"上，$n不禁一聲慘叫，摔跌開去。" NOR;
             dam = query("max_qi", target);
             damage = target->receive_damage("qi", dam / 2, me);
             wounded = target->receive_wound("qi", dam / 2, me);
                         message_combatd(msg, me, target);
             message_combatd(COMBAT_D->report_status(target,1), target, me);
                         if( userp(me) )
-                tell_object(me, HIW "( 你对" +
+                tell_object(me, HIW "( 你對" +
                                         query("name", target)+HIW"造成"+
-                                        damage + "点伤害，" +
-                                        wounded + "点创伤。)\n" NOR);
+                                        damage + "點傷害，" +
+                                        wounded + "點創傷。)\n" NOR);
             if( userp(target) )
                      tell_object(target, HIG "( 你受到" +
-                                        query("name", me)+HIG+damage+"点伤害，"+
-                                        wounded + "点创伤。)\n" NOR);
+                                        query("name", me)+HIG+damage+"點傷害，"+
+                                        wounded + "點創傷。)\n" NOR);
 
         }
                 else if (ap / 2 + random(ap) < dp)
         {
                 // The enemy has defense
-                msg += CYN "然而$p" CYN "内功深厚，并没有被$P"
-                       CYN "这巧妙的劲力所带动。\n" CYN;
+                msg += CYN "然而$p" CYN "內功深厚，並沒有被$P"
+                       CYN "這巧妙的勁力所帶動。\n" CYN;
                             message_combatd(msg, me, target);
         }
                 else if (sizeof(obs = me->query_enemy() - ({ target })) == 0)
         {
                 // No other enemy
-                msg += HIC "结果$p" HIC "的招式莫名其妙的变"
-                       "了方向，竟然控制不住！幸好身边没有别"
-                       "人，没有酿成大祸。\n" NOR;
+                msg += HIC "結果$p" HIC "的招式莫名其妙的變"
+                       "了方向，竟然控制不住！幸好身邊沒有別"
+                       "人，沒有釀成大禍。\n" NOR;
                             message_combatd(msg, me, target);
         }
                 else
@@ -174,10 +174,10 @@ int perform(object me, object target)
 
                 der = obs[random(sizeof(obs))];
                 name = der->name();
-                if (name == target->name()) name = "另一个" + name;
-                msg += HIG "结果$p" HIG "发出的招式不由自主"
-                       "的变了方向，突然攻向" + name + HIG "，不禁令" +
-                       name + HIG "大吃一惊，招架不迭！" NOR;
+                if (name == target->name()) name = "另一個" + name;
+                msg += HIG "結果$p" HIG "發出的招式不由自主"
+                       "的變了方向，突然攻向" + name + HIG "，不禁令" +
+                       name + HIG "大吃一驚，招架不迭！" NOR;
                             message_combatd(msg, me, target);
         }
 
@@ -191,8 +191,8 @@ int perform(object me, object target)
                 }
         }
         time = 38;
-        time -= ABILITY_D->check_ability(me, "cd-dzxy-yi"); // ab门派减cd
-        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent减cd
+        time -= ABILITY_D->check_ability(me, "cd-dzxy-yi"); // ab門派減cd
+        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd
         if(wizardp(me) && query("id",me) =="mud") time =2;
         buff = ([
                 "caster" : me,
@@ -200,9 +200,9 @@ int perform(object me, object target)
                 "type"   : "cooldown",
                 "type2"  : "dzxy_yi",
                 "attr"   : "curse",
-                "name"   : "斗转星移·斗转星移",
+                "name"   : "斗轉星移·斗轉星移",
                 "time"   : time,
-                "buff_msg" : "斗转星移消耗心神太甚，还需等待"+time+"秒方可再次施展。\n",
+                "buff_msg" : "斗轉星移消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : "",
                 "disa_type": 0,
         ]);

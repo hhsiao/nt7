@@ -1,4 +1,4 @@
-// zhike.c 灵虚
+// zhike.c 靈虛
 
 #include <ansi.h>
 //#include "daozhang.h"
@@ -7,10 +7,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("灵虚道长", ({ "lingxu daozhang", "lingxu", "daozhang" }));
-        set("long", "他是武当山的知客道长，是宋远桥的弟子。守在山门迎接香客。\n");
+        set_name("靈虛道長", ({ "lingxu daozhang", "lingxu", "daozhang" }));
+        set("long", "他是武當山的知客道長，是宋遠橋的弟子。守在山門迎接香客。\n");
         set("gender", "男性");
-        set("nickname", "知客道长");
+        set("nickname", "知客道長");
         set("age", 30);
         set("attitude", "peaceful");
         set("shen_type", 1);
@@ -51,30 +51,30 @@ void create()
 
         set("chat_chance",2);
         set("chat_msg", ({
-                 "灵虚道长说道：我武当地灵人杰，香火鼎盛，普天下的人都来朝拜敬香。\n",
-                 "灵虚道长说道：玄岳门乃武当出入门户，我等一定要精心守卫(volunteer)，不可丝毫懈殆。\n"
-                 "灵虚道长说道：香火练制不易，不能随便与人，虔诚奉献者方能得之。\n",
-                 "灵虚道长说道：我武当地灵人杰，香火鼎盛，普天下的人都来朝拜敬香。\n",
-                 "灵虚道长说道：听说山门前的松林里有异果，有砍树的道士进去找，就再也没有出来。\n",
+                 "靈虛道長說道：我武當地靈人傑，香火鼎盛，普天下的人都來朝拜敬香。\n",
+                 "靈虛道長說道：玄嶽門乃武當出入門戶，我等一定要精心守衛(volunteer)，不可絲毫懈殆。\n"
+                 "靈虛道長說道：香火練制不易，不能隨便與人，虔誠奉獻者方能得之。\n",
+                 "靈虛道長說道：我武當地靈人傑，香火鼎盛，普天下的人都來朝拜敬香。\n",
+                 "靈虛道長說道：聽說山門前的松林裡有異果，有砍樹的道士進去找，就再也沒有出來。\n",
         }));
 
         set("inquiry", ([
-                "香火" : "香火练制不易，不能随便与人，虔诚奉献者方能得之。",
-                "进香" : "进香？童言无忌！童言无忌！要说敬香才是！",
-                "敬香" : "殿堂的香火能绵延不断，都因为我武当弟子和山外香客及时敬奉。",
-                "虔诚奉献" : "虔诚奉献就是主动多捐献香火钱，多作义工。",
-                "敬奉" : "虔诚奉献就是主动多捐献香火钱，多作义工。",
-                "松林" : "武当松林在山门前面。",
-                "柏林" : "武当柏林就在遇真宫后。",
-                "name" : "我是武当的知客道长，负责守卫山门。",
-                "here" : "这里是武当的玄岳门，一直南上就可到紫霄宫。",
-                "rumors" : "听说山门前的松林里有异果，不知是真是假。"
-                "可是有砍树的道士进去找，就再也没有出来。\n",
-                "守卫" : "我这里的工作就是守卫(volunteer)山门，每次守一天。\n",
-                "工作" : "我这里的工作就是守卫(volunteer)山门，每次守一天。\n",
-                "干活" : "我这里的工作就是守卫(volunteer)山门，每次守一天。\n",
+                "香火" : "香火練制不易，不能隨便與人，虔誠奉獻者方能得之。",
+                "進香" : "進香？童言無忌！童言無忌！要說敬香才是！",
+                "敬香" : "殿堂的香火能綿延不斷，都因為我武當弟子和山外香客及時敬奉。",
+                "虔誠奉獻" : "虔誠奉獻就是主動多捐獻香火錢，多作義工。",
+                "敬奉" : "虔誠奉獻就是主動多捐獻香火錢，多作義工。",
+                "松林" : "武當松林在山門前面。",
+                "柏林" : "武當柏林就在遇真宮後。",
+                "name" : "我是武當的知客道長，負責守衛山門。",
+                "here" : "這裡是武當的玄嶽門，一直南上就可到紫霄宮。",
+                "rumors" : "聽說山門前的松林裡有異果，不知是真是假。"
+                "可是有砍樹的道士進去找，就再也沒有出來。\n",
+                "守衛" : "我這裡的工作就是守衛(volunteer)山門，每次守一天。\n",
+                "工作" : "我這裡的工作就是守衛(volunteer)山門，每次守一天。\n",
+                "幹活" : "我這裡的工作就是守衛(volunteer)山門，每次守一天。\n",
         ]));
-        create_family("武当派", 3, "弟子");
+        create_family("武當派", 3, "弟子");
 
         setup();
         carry_object(WEAPON_DIR"changjian")->wield();
@@ -106,13 +106,13 @@ void greeting(object ob)
         if (environment(this_object())!=environment(ob))
         return;
         myfam=query("family", ob);
-        if ( myfam && myfam["family_name"] == "武当派" )
-                command("say这位道"+((query("gender", ob) == "女性")?"姑":"兄")+"辛苦了！");
-        else if( query("title", ob) == "武当道童" )
-                say("灵虚道长对"+ob->name()+"说道：这位"+RANK_D->query_respect(ob)+"还要继续努力啊！\n");
+        if ( myfam && myfam["family_name"] == "武當派" )
+                command("say這位道"+((query("gender", ob) == "女性")?"姑":"兄")+"辛苦了！");
+        else if( query("title", ob) == "武當道童" )
+                say("靈虛道長對"+ob->name()+"說道：這位"+RANK_D->query_respect(ob)+"還要繼續努力啊！\n");
         else if( query("shen", ob)>-100 )
-                say("灵虚道长作了个揖道：这位" + RANK_D->query_respect(ob) + "请了，欢迎来到武当山！\n");
-        else        say("灵虚道长「唰」抽出长剑：这位" + RANK_D->query_respect(ob) + "满脸杀气，如果不是来武当敬香就请回吧！\n");
+                say("靈虛道長作了個揖道：這位" + RANK_D->query_respect(ob) + "請了，歡迎來到武當山！\n");
+        else        say("靈虛道長「唰」抽出長劍：這位" + RANK_D->query_respect(ob) + "滿臉殺氣，如果不是來武當敬香就請回吧！\n");
 }
 
 int do_volunteer()
@@ -123,23 +123,23 @@ int do_volunteer()
 //      int i;
 
         if( query_temp("in_guard", me) )
-                return notify_fail("知客道长对你说：你专心守好山门，别想打两份工。\n");
+                return notify_fail("知客道長對你說：你專心守好山門，別想打兩份工。\n");
 
-        if( query("family/family_name", me) != "武当派" )
+        if( query("family/family_name", me) != "武當派" )
         {
-                message_vision("知客道长大喝一声：作为别派的弟子，我怎么放心你呢？！\n", me);
+                message_vision("知客道長大喝一聲：作為別派的弟子，我怎麼放心你呢？！\n", me);
                 return 1;
         }
 
-        if( query("short", environment(this_object())) != "玄岳门" )
+        if( query("short", environment(this_object())) != "玄嶽門" )
         {
-                message_vision("哎呀，我怎么在这里呀，等我先回去。\n", me);
+                message_vision("哎呀，我怎麼在這裡呀，等我先回去。\n", me);
                 return 1;
         }
 
         if( query("combat_exp", me) >= 400000 )
          {
-                message_vision("知客道长一揖道：怎敢烦劳壮士做这粗活。\n", me);
+                message_vision("知客道長一揖道：怎敢煩勞壯士做這粗活。\n", me);
                 return 1;
         }
 
@@ -151,9 +151,9 @@ int do_volunteer()
                            environment($1) :));
 
         if (sizeof(obs) > 3)
-                return notify_fail("知客道长对你说：已经有不少人守山门了，你一会再来吧。\n");
+                return notify_fail("知客道長對你說：已經有不少人守山門了，你一會再來吧。\n");
 
-        tell_room(environment(me),query("name", me)+"开始在武当山门值守。\n");
+        tell_room(environment(me),query("name", me)+"開始在武當山門值守。\n");
         set("qi", 30000);
         set("jing", 30000);
         set_temp("in_guard", 1, me);
@@ -181,14 +181,14 @@ void clone_meng(object me)
         maxqi=query("eff_qi", me);
         maxexp=query("combat_exp", me);
 
-        if( query("short", environment(me)) != "玄岳门" )
+        if( query("short", environment(me)) != "玄嶽門" )
         {
-                tell_object(me,"你在武当山门值守走开，失败。\n");
+                tell_object(me,"你在武當山門值守走開，失敗。\n");
                 call_out("end_guard", 0, me);
                 return;
         }
 
-        tell_room(environment(me), "山下突然冲上来一伙蒙面大汉。\n");
+        tell_room(environment(me), "山下突然衝上來一夥蒙面大漢。\n");
 
         ob = new("/d/wudang/npc/mengmian.c");
         if (! me->is_ghost())
@@ -214,10 +214,10 @@ void clone_meng(object me)
         set("qi", maxqi, ob);
         set("volunteer_owner",query("id",  me), ob);
 
-        set("title", HIR"蒙面大汉"NOR, ob);
+        set("title", HIR"蒙面大漢"NOR, ob);
         ob->kill_ob(me);
-        message_vision(HIR "\n$N对着$n大叫一声，杀啊!。\n" NOR, ob, me);
-        tell_room(environment(me), "山下突然冲上来一伙蒙面大汉。\n");
+        message_vision(HIR "\n$N對著$n大叫一聲，殺啊!。\n" NOR, ob, me);
+        tell_room(environment(me), "山下突然衝上來一夥蒙面大漢。\n");
 
         ob = new("/d/wudang/npc/mengmian.c");
         if (! me->is_ghost())
@@ -244,10 +244,10 @@ void clone_meng(object me)
         set("qi", maxqi, ob);
         set("volunteer_owner",query("id",  me), ob);
 
-        set("title", HIR"蒙面大汉"NOR, ob);
+        set("title", HIR"蒙面大漢"NOR, ob);
         ob->kill_ob(me);
         me->kill_ob(ob);
-        message_vision(HIR "\n$N对着$n大叫一声，杀啊!。\n" NOR, ob, me);
+        message_vision(HIR "\n$N對著$n大叫一聲，殺啊!。\n" NOR, ob, me);
 
         call_out("clone_meng", 100, me);
 }
@@ -263,7 +263,7 @@ void end_guard(object me)
 
         delete_temp("in_guard", me);
 
-        if( query("short", environment(me)) == "玄岳门" )
+        if( query("short", environment(me)) == "玄嶽門" )
         {
                 addn("family/gongji", random(8)+4, me);
                 addn("combat_exp", random(220)+120, me);
@@ -272,12 +272,12 @@ void end_guard(object me)
                 else
                         addn("potential", random(50)+80, me);
 
-                tell_room(environment(me),query("name", me)+"在武当山门值守期已满。\n");
-                tell_object(me, "你在武当山门值守期已满。\n");
+                tell_room(environment(me),query("name", me)+"在武當山門值守期已滿。\n");
+                tell_object(me, "你在武當山門值守期已滿。\n");
         } else
         {
-                tell_room(environment(me),query("name", me)+"在武当山门值守走开，失败。\n");
-                tell_object(me, "你在武当山门值守走开，失败。\n");
+                tell_room(environment(me),query("name", me)+"在武當山門值守走開，失敗。\n");
+                tell_object(me, "你在武當山門值守走開，失敗。\n");
         }
         enemys = children("/d/wudang/npc/mengmian");
         enemys = filter_array(enemys, (: query("volunteer_owner", $1) == $(query("id",me)) :));
@@ -288,12 +288,12 @@ void end_guard(object me)
                         if (enemys[i]->is_fighting())
                         {
                                 enemys[i]->remove_all_killer();
-                                tell_room(environment(enemys[i]), HIW "只见" + enemys[i]->name()
-                                        + "突然面色一变，迅速攻出几招，跳出战圈转身逃了。\n");
+                                tell_room(environment(enemys[i]), HIW "只見" + enemys[i]->name()
+                                        + "突然面色一變，迅速攻出幾招，跳出戰圈轉身逃了。\n");
                         }
                         else {
-                                tell_room(environment(enemys[i]), HIW "只见" + enemys[i]->name()
-                                        + "掐值一算，突然脸色大变，急急忙忙地逃走了。\n");
+                                tell_room(environment(enemys[i]), HIW "只見" + enemys[i]->name()
+                                        + "掐值一算，突然臉色大變，急急忙忙地逃走了。\n");
                         }
                         destruct(enemys[i]);
                 }
@@ -318,12 +318,12 @@ void die()
                         if (enemys[i]->is_fighting())
                         {
                                 enemys[i]->remove_all_killer();
-                                tell_room(environment(enemys[i]), HIW "只见" + enemys[i]->name()
-                                        + "突然面色一变，迅速攻出几招，跳出战圈转身逃了。\n");
+                                tell_room(environment(enemys[i]), HIW "只見" + enemys[i]->name()
+                                        + "突然面色一變，迅速攻出幾招，跳出戰圈轉身逃了。\n");
                         }
                         else {
-                                tell_room(environment(enemys[i]), HIW "只见" + enemys[i]->name()
-                                        + "掐值一算，突然脸色大变，急急忙忙地逃走了。\n");
+                                tell_room(environment(enemys[i]), HIW "只見" + enemys[i]->name()
+                                        + "掐值一算，突然臉色大變，急急忙忙地逃走了。\n");
                         }
                         destruct(enemys[i]);
                 }
@@ -338,10 +338,10 @@ int accept_object(object who, object ob)
 //      string *wanted;
         if( query("money_id", ob) && ob->value() >= 100*query("age", who) )
         {
-                if( (query("family/family_name", who)) == "武当派" )
-                        tell_object(who,"灵虚道长哈哈一笑：既然道"+((query("gender", who) == "女性")?"姑":"兄")+"如此诚心向道，我这有新制香火一枝，请拿去贡奉吧。\n");
+                if( (query("family/family_name", who)) == "武當派" )
+                        tell_object(who,"靈虛道長哈哈一笑：既然道"+((query("gender", who) == "女性")?"姑":"兄")+"如此誠心向道，我這有新制香火一枝，請拿去貢奉吧。\n");
                 else
-                        tell_object(who, "灵虚道长哈哈一笑：既然施主如此诚心向道，我这有新制香火一枝，请施主拿去贡奉吧。\n");
+                        tell_object(who, "靈虛道長哈哈一笑：既然施主如此誠心向道，我這有新制香火一枝，請施主拿去貢奉吧。\n");
                 obn = new("/d/wudang/obj/incense");
                 obn->move(who);
                 return 1;
@@ -349,10 +349,10 @@ int accept_object(object who, object ob)
         else
                 if( query("money_id", ob) )
                 {
-                        if( (query("family/family_name", who)) == "武当派" )
-                                tell_object(who,"灵虚道长对你赞叹道：武当山香火鼎盛，全靠象道"+((query("gender", who) == "女性")?"姑":"兄")+"你这样捐献香火啊！\n");
+                        if( (query("family/family_name", who)) == "武當派" )
+                                tell_object(who,"靈虛道長對你讚歎道：武當山香火鼎盛，全靠象道"+((query("gender", who) == "女性")?"姑":"兄")+"你這樣捐獻香火啊！\n");
                         else
-                                tell_object(who, "灵虚道长对你赞叹道：武当山香火鼎盛，全靠象您这样的虔诚香客啊！\n");
+                                tell_object(who, "靈虛道長對你讚歎道：武當山香火鼎盛，全靠象您這樣的虔誠香客啊！\n");
                         return 1;
                 }
         return 0;

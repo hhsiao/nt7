@@ -1,14 +1,14 @@
 // Written by Lonely@nitan.org
-// xiaofeng.c 萧峰(乔峰)
+// xiaofeng.c 蕭峰(喬峰)
 
 #include <ansi.h>
 inherit NPC;
 
 string *quest_msg = ({
-        "乔峰见到你说道：你实在是一个伟大的朋友！我乔某这辈子，交定你了！\n",
-        "乔峰饱经风霜的脸上，泛起一丝难得的笑意。\n",
-        "我们现在可以走了，阿朱姑娘深受重伤，暂时就躺在车中。放心，我们一定会胜利的。\n",
-        "阿朱，你也一定会没事的，等你伤好了，我们就去塞外一起牧马放羊，再也不回来了。\n",
+        "喬峰見到你說道：你實在是一個偉大的朋友！我喬某這輩子，交定你了！\n",
+        "喬峰飽經風霜的臉上，泛起一絲難得的笑意。\n",
+        "我們現在可以走了，阿朱姑娘深受重傷，暫時就躺在車中。放心，我們一定會勝利的。\n",
+        "阿朱，你也一定會沒事的，等你傷好了，我們就去塞外一起牧馬放羊，再也不回來了。\n",
         "走吧！\n"
 });
 
@@ -16,16 +16,16 @@ void quest_stage(object ob, int stage);
 
 void create()
 {
-        set_name("乔峰", ({"qiao feng", "qiao", "feng"}));
+        set_name("喬峰", ({"qiao feng", "qiao", "feng"}));
         set("gender", "男性");
-        set("nickname",HIB"铁掌降龙"NOR);
+        set("nickname",HIB"鐵掌降龍"NOR);
         set("age", 28);
         set("long",
-                "他就是丐帮前任帮主，因被发现是契丹人而众叛亲离。\n"
-                "在江湖上与燕子坞的慕荣复并称为「北乔峰，南慕荣」。\n"
-                "他身穿一件普通的粗布褂子，腰间用一条麻绳随便一系。\n"
-                "他身高六尺有余，体格十分魁梧，长有一张线条粗旷、十\n"
-                "分男性化的脸庞，双目如电，炯炯有神。\n");
+                "他就是丐幫前任幫主，因被發現是契丹人而眾叛親離。\n"
+                "在江湖上與燕子塢的慕榮復並稱為「北喬峰，南慕榮」。\n"
+                "他身穿一件普通的粗布褂子，腰間用一條麻繩隨便一系。\n"
+                "他身高六尺有餘，體格十分魁梧，長有一張線條粗曠、十\n"
+                "分男性化的臉龐，雙目如電，炯炯有神。\n");
         set("attitude", "peaceful");
 
         set("str", 45);
@@ -35,7 +35,7 @@ void create()
         set("dex", 30);
         set("chat_chance", 1);
         set("chat_msg", ({
-                "萧峰叹了口气道：“唉……想不到我萧峰大好男儿，居然保护不了一个阿朱！\n",
+                "蕭峰嘆了口氣道：“唉……想不到我蕭峰大好男兒，居然保護不了一個阿朱！\n",
         }));
 
         set("qi", 4000000);
@@ -49,15 +49,15 @@ void create()
         set("combat_exp", 1800000000);
         set("shen", 200000);
 
-        set_skill("force", 1200);             // 基本内功
-        set_skill("huntian-qigong", 1200);    // 混天气功
-        set_skill("unarmed", 1200);           // 基本拳脚
-        set_skill("xianglong-zhang", 1200);   // 降龙十八掌
-        set_skill("dodge", 1200);             // 基本躲闪
-        set_skill("xiaoyaoyou", 1200);        // 逍遥游
+        set_skill("force", 1200);             // 基本內功
+        set_skill("huntian-qigong", 1200);    // 混天氣功
+        set_skill("unarmed", 1200);           // 基本拳腳
+        set_skill("xianglong-zhang", 1200);   // 降龍十八掌
+        set_skill("dodge", 1200);             // 基本躲閃
+        set_skill("xiaoyaoyou", 1200);        // 逍遙遊
         set_skill("parry", 1200);             // 基本招架
-        set_skill("begging", 500);            // 叫化绝活
-        set_skill("checking", 500);           // 道听途说
+        set_skill("begging", 500);            // 叫化絕活
+        set_skill("checking", 500);           // 道聽途說
 
         map_skill("force", "huntian-qigong");
         map_skill("unarmed", "xianglong-zhang");
@@ -86,9 +86,9 @@ void init()
                 if( base_name(environment()) == "/maze/juxianzhuang/damen" )
                 {
                         this_object()->set_leader(0);
-                        message_vision("$n和$N以及阿朱一行来到聚贤庄门前，徐长老迎面上来，出于故人之情，劝$N离开。\n"
-                                       "然而$N一心只想为阿朱疗伤，就是上刀山下火海也在所不惜。\n"
-                                       "$N抱着阿朱直接闯进了聚贤庄。\n",
+                        message_vision("$n和$N以及阿朱一行來到聚賢莊門前，徐長老迎面上來，出於故人之情，勸$N離開。\n"
+                                       "然而$N一心只想為阿朱療傷，就是上刀山下火海也在所不惜。\n"
+                                       "$N抱著阿朱直接闖進了聚賢莊。\n",
                                        this_object(), ob);
                         ob->set_temp("juxianzhuang_step", 13);
                         destruct(this_object());
@@ -110,6 +110,6 @@ void quest_stage(object ob, int stage)
         }
         ob->set_temp("juxianzhuang_step", 12);
         this_object()->set_leader(ob);
-        message_vision("$N决定开始跟随$n一起行动。\n", this_object(), ob);
+        message_vision("$N決定開始跟隨$n一起行動。\n", this_object(), ob);
         return;
 }

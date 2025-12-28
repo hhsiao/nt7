@@ -5,12 +5,12 @@ void create()
 {
         set("short", "泥潭");
         set("long", @LONG
-这里是一个片大泥潭，向前望去，眼前一团茫茫白雾裹着一方一
-圆两间茅屋，隐隐约约有灯光从方屋中射出。此茅屋无门无户，连窗
-户都没有一个，不知道土墙(wall)那边有些什么。
+這裡是一個片大泥潭，向前望去，眼前一團茫茫白霧裹著一方一
+圓兩間茅屋，隱隱約約有燈光從方屋中射出。此茅屋無門無戶，連窗
+戶都沒有一個，不知道土牆(wall)那邊有些什麼。
 LONG );
         set("item_desc",([
-                "wall" : "一堵看起来不是很高的土墙。\n",
+                "wall" : "一堵看起來不是很高的土牆。\n",
                 ]));
         set("no_clean_up", 0);
         set("no_magic", 1);
@@ -35,16 +35,16 @@ int do_jump(string arg)
         object me = this_player();
 
         if ( !arg || arg != "wall")
-                return notify_fail( "什么？\n");
+                return notify_fail( "什麼？\n");
 
-        message_vision("$N纵身往土墙上跳去。\n", me);
+        message_vision("$N縱身往土牆上跳去。\n", me);
         if ( me->query_skill("dodge",1) <= 50) {
-                message_vision("$N通的一声摔进了泥潭，满身臭气。\n", me);
+                message_vision("$N通的一聲摔進了泥潭，滿身臭氣。\n", me);
                 me->receive_wound("qi", 100);
         }
         if ( me->query_skill("dodge",1) > 50 ) {
                 me->move("/d/dali/yingroom2");
-                message("vision", me->name() + "纵身由墙上跳了过来。\n",environment(me), 
+                message("vision", me->name() + "縱身由牆上跳了過來。\n",environment(me), 
                         ({me}) );
         }
         return 1;

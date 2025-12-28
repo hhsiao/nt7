@@ -6,20 +6,20 @@ void create()
 {
         set("short", "迎仙道");
         set("long",@LONG
-仙者在出岛时法力会受到彩石沙滩的影响而减弱，当再次回到
-岛上后需要在距离这里不远处的修真池中进行修炼以帮助恢复法力。
-此路便是为迎接从修真池中修炼出来的仙者而设，意为欢迎其回到
-蓬莱仙岛。
+仙者在出島時法力會受到彩石沙灘的影響而減弱，當再次回到
+島上後需要在距離這裡不遠處的修真池中進行修煉以幫助恢復法力。
+此路便是為迎接從修真池中修煉出來的仙者而設，意為歡迎其回到
+蓬萊仙島。
 LONG);
 
         set("exits", ([
                 "east"     : __DIR__"nanshandao2",
                 "west"     : __DIR__"xiuzhenchi",
         ]));
-        set("no_rideto", 1);         // 设置不能骑马到其他地方
-        set("no_flyto", 1);          // 设置不能从起来地方骑马来这里
-        set("no_die", 1);            // 死亡后移动到扁鹊居
-        set("penglai", 1);           // 表示在蓬莱岛
+        set("no_rideto", 1);         // 設置不能騎馬到其他地方
+        set("no_flyto", 1);          // 設置不能從起來地方騎馬來這裡
+        set("no_die", 1);            // 死亡後移動到扁鵲居
+        set("penglai", 1);           // 表示在蓬萊島
 
         set("region", "penglai");
         setup();
@@ -32,14 +32,14 @@ void init ()
                 if( !query("penglai/go_quest/ok", this_player()) )
                 {
                         this_player()->start_busy(3);
-                        tell_object(this_player(), NOR + WHT "你到了此处，四周仙气缭绕令你一时间难以辨别方向。\n" NOR);
+                        tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);
                 }
                 else
                 {
                         if (random(2))
                         {
                                 this_player()->start_busy(1);
-                                tell_object(this_player(), NOR + WHT "你到了此处，四周仙气缭绕令你一时间难以辨别方向。\n" NOR);                
+                                tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);                
                         }
                 }
         }

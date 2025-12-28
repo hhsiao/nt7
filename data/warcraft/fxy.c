@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m坑蒙拐骗[2;37;0m[2;37;0m", ({"fyy"}));        
+        set_name("[1;31m坑蒙拐騙[2;37;0m[2;37;0m", ({"fyy"}));        
         set("gender", "女性");                
         set("long", "                 [2;37;0m
-它是淡泊的魔幻兽。
+它是淡泊的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

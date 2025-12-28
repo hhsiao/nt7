@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("龙马[2;37;0m[2;37;0m", ({"mralong"}));        
+        set_name("龍馬[2;37;0m[2;37;0m", ({"mralong"}));        
         set("gender", "男性");                
         set("long", "骨地[2;37;0m
-它是迅雷哥的魔幻兽。
+它是迅雷哥的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

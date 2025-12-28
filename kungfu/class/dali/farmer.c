@@ -10,7 +10,7 @@ void create()
 {
         set_name("武三通", ({ "wu santong", "nong", "farmer", "wu" }));
         set("long",
-                        "一个中年农夫。\n");
+                        "一箇中年農夫。\n");
         set("gender", "男性");
         set("age", 35);
         set("attitude", "peaceful");
@@ -44,7 +44,7 @@ void create()
         prepare_skill("finger", "sun-finger");
 
         set("inquiry", ([
-                "上山" : "什么上山下山，没看见我都快挺不住了吗？！\n",
+                "上山" : "什麼上山下山，沒看見我都快挺不住了嗎？！\n",
         ]));
 
         setup();
@@ -65,13 +65,13 @@ int do_push(string arg)
         if (arg!="rock") { return 0; }
         if (environment(me)!=find_object("/d/heizhao/yideng5.c")) { return 0; }
         if( me->query_str()>25 && query("max_neili", me) >= 1000){
-                write("你大喊一声：大叔，顶住，我来帮你！！！\n");
-                write("你使出全身力气，双掌上推，帮农夫将大石推起尺许来高！\n");
-                write("农夫身形一晃，闪在大石之外，却不去牵牛，把一双大眼将你上下不停地打量！\n\n");
+                write("你大喊一聲：大叔，頂住，我來幫你！！！\n");
+                write("你使出全身力氣，雙掌上推，幫農夫將大石推起尺許來高！\n");
+                write("農夫身形一晃，閃在大石之外，卻不去牽牛，把一雙大眼將你上下不停地打量！\n\n");
                 me->move("/d/heizhao/yideng6.c");
                 return 1;
         }
 
-        write("你试图用力助农夫推开大石，无奈显然功力不够，怎样用力也没效果。\n");
+        write("你試圖用力助農夫推開大石，無奈顯然功力不夠，怎樣用力也沒效果。\n");
         return 1;
 }

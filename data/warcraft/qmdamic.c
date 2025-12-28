@@ -7,7 +7,7 @@ void setup()
         set_name("[33m土麒麟[2;37;0m[2;37;0m", ({"qmdamicc"}));        
         set("gender", "男性");                
         set("long", "wartime[2;37;0m
-它是王三的魔幻兽。
+它是王三的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

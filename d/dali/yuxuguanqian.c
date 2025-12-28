@@ -4,10 +4,10 @@
 inherit ROOM;
 void create()
 {
-        set("short","玉虚观前");
+        set("short","玉虛觀前");
         set("long", @LONG
-东面一座庙观，门前匾上写着『玉虚观』三个大字，西边一个碧
-水荡漾的小湖，四周绿柳成荫，实乃修心养性的好地方。
+東面一座廟觀，門前匾上寫著『玉虛觀』三個大字，西邊一個碧
+水盪漾的小湖，四周綠柳成蔭，實乃修心養性的好地方。
 LONG );
         set("objects", ([
            "/d/dali/npc/xiaodaogu": 2,

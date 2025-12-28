@@ -13,9 +13,9 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", RED "太阳真火凝聚而成，乌金色，能破邪怯魔，千军辟易。。\n" NOR);
+                set("long", RED "太陽真火凝聚而成，烏金色，能破邪怯魔，千軍辟易。。\n" NOR);
                 set("value", 50000);
-                set("unit", "块");
+                set("unit", "塊");
                 set("can_enchant", "weapon");
                 set("can_be_enchased", 1);
                 set("magic/type", "magic");

@@ -13,7 +13,7 @@ int update_condition(object me, int duration)
 
         if( !(query("outdoors", where)))return CND_CONTINUE;
         if( objectp(cloth=query_temp("armor/cloth", me)) && query("warm_cloth", cloth))return 0;
-        tell_object(me, HIR"忽然一阵刺骨的寒风袭来，你不禁打了个哆嗦！\n"NOR);             
+        tell_object(me, HIR"忽然一陣刺骨的寒風襲來，你不禁打了個哆嗦！\n"NOR);             
         me->receive_damage("qi", 25);
         me->receive_wound("qi", 5);
         me->receive_damage("jing", 25);

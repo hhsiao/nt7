@@ -11,77 +11,77 @@ string get_con_name(string coni)
         
         switch (coni)
         {
-                // 毒类
-                case "7bug_poison"      : name = "七虫软筋散"; break;           
+                // 毒類
+                case "7bug_poison"      : name = "七蟲軟筋散"; break;           
                 case "bee_poison"       : name = "玉蜂毒"; break;
-                case "bing_poison"      : name = "冰魄银针毒"; break;
+                case "bing_poison"      : name = "冰魄銀針毒"; break;
                 case "bt_poison"        : name = "怪蛇毒"; break;               
                 case "cold_poison"      : name = "寒毒"; break;
-                case "fs_poison"        : name = "腐尸毒"; break;
-                case "hb_poison"        : name = "寒冰绵掌毒"; break;           
-                case "huagu_poison"     : name = "化骨绵掌毒"; break;
+                case "fs_poison"        : name = "腐屍毒"; break;
+                case "hb_poison"        : name = "寒冰綿掌毒"; break;           
+                case "huagu_poison"     : name = "化骨綿掌毒"; break;
                 case "hot_poison"       : name = "火毒"; break; 
-                case "lvbo_poison"      : name = "绿波香露奇毒"; break;                                         
-                case "man_poison"       : name = "蔓陀萝花毒"; break;
-                case "qianli_poison"    : name = "千里销魂散"; break;
-                case "qtlh_poi"         : name = "青陀罗花毒"; break;
-                case "qzhu_poison"      : name = "千蛛万毒手毒"; break;
-                case "sanxiao"          : name = "三笑逍遥散毒"; break;
-                case "sl_poison"        : name = "神龙毒"; break;
+                case "lvbo_poison"      : name = "綠波香露奇毒"; break;                                         
+                case "man_poison"       : name = "蔓陀蘿花毒"; break;
+                case "qianli_poison"    : name = "千里銷魂散"; break;
+                case "qtlh_poi"         : name = "青陀羅花毒"; break;
+                case "qzhu_poison"      : name = "千蛛萬毒手毒"; break;
+                case "sanxiao"          : name = "三笑逍遙散毒"; break;
+                case "sl_poison"        : name = "神龍毒"; break;
                 case "snake_poison"     : name = "蛇毒"; break; 
                 case "sxs_poison"       : name = "三笑散之毒"; break;   
                 case "sy_poison"        : name = "大手印掌毒"; break;   
-                case "tz_poison"        : name = "铁掌毒"; break;               
-                case "warm_poison"      : name = "热毒"; break;
+                case "tz_poison"        : name = "鐵掌毒"; break;               
+                case "warm_poison"      : name = "熱毒"; break;
                 case "xx_poison"        : name = "星宿掌毒"; break;
-                case "wh_poison"        : name = "神龙五行毒"; break;   
+                case "wh_poison"        : name = "神龍五行毒"; break;   
                         
                 case "xuanmin_poison"   : name = "玄冥神掌寒毒"; break;
                 case "xx_poison"        : name = "星宿掌毒"; break;
-                case "wh_poison"        : name = "神龙五行毒"; break;   
+                case "wh_poison"        : name = "神龍五行毒"; break;   
                 
-                // 伤类
-                case "broken_arm"       : name = "断手"; break;
-                case "dgb_ban_wound"    : name = "打狗棒脚伤"; break;
+                // 傷類
+                case "broken_arm"       : name = "斷手"; break;
+                case "dgb_ban_wound"    : name = "打狗棒腳傷"; break;
                 case "fugu_poison"      : name = "化血腐骨粉"; break;
-                case "dsy_poison"       : name = "大手印内伤"; break;           
-                case "huagong"          : name = "化功大法内伤"; break;         
-                case "hunyuan_hurt"     : name = "混元掌内伤"; break;
-                case "hyd_condition"    : name = "火焰刀烧伤"; break;
-                case "juehu_hurt"       : name = "虎爪绝户手伤"; break;
-                case "neishang"         : name = "内伤"; break;
-                case "nxsz_hurt"        : name = "凝血神爪内伤"; break;
-                case "qiankun_wound"    : name = "弹指神通内伤"; break;
-                case "qishang_poison"   : name = "七伤拳内伤"; break;
-                case "ruanjin_poison"   : name = "软筋散毒"; break;
-                case "yyz_hurt"         : name = "一阳指内伤"; break;
-                case "yzc_qiankun"      : name = "一指禅内劲"; break;           
-                // 忙类
-                case "no_exert"         : name = "闭气"; break;
+                case "dsy_poison"       : name = "大手印內傷"; break;           
+                case "huagong"          : name = "化功大法內傷"; break;         
+                case "hunyuan_hurt"     : name = "混元掌內傷"; break;
+                case "hyd_condition"    : name = "火焰刀燒傷"; break;
+                case "juehu_hurt"       : name = "虎爪絕戶手傷"; break;
+                case "neishang"         : name = "內傷"; break;
+                case "nxsz_hurt"        : name = "凝血神爪內傷"; break;
+                case "qiankun_wound"    : name = "彈指神通內傷"; break;
+                case "qishang_poison"   : name = "七傷拳內傷"; break;
+                case "ruanjin_poison"   : name = "軟筋散毒"; break;
+                case "yyz_hurt"         : name = "一陽指內傷"; break;
+                case "yzc_qiankun"      : name = "一指禪內勁"; break;           
+                // 忙類
+                case "no_exert"         : name = "閉氣"; break;
                 case "no_perform"       : name = "封招"; break;
-                case "no_force"         : name = "气息不匀";break;
-                //生病类
-                case "ill_fashao"       : name = "发烧"; break;
+                case "no_force"         : name = "氣息不勻";break;
+                //生病類
+                case "ill_fashao"       : name = "發燒"; break;
                 case "ill_kesou"        : name = "咳嗽"; break;
-                case "ill_shanghan"     : name = "伤寒"; break;
+                case "ill_shanghan"     : name = "傷寒"; break;
                 case "ill_zhongshu"     : name = "中暑"; break;
-                case "ill_dongshang"    : name = "冻伤"; break;         
-//              // 药类
-//              case "bonze_drug"       : name = "少林丹药"; break;
+                case "ill_dongshang"    : name = "凍傷"; break;         
+//              // 藥類
+//              case "bonze_drug"       : name = "少林丹藥"; break;
 //              
 //              // 其它
-//              case "bonze_jail"       : name = "少林监狱"; break;
-                case "job_busy"         : name = "任务繁忙状态"; break;
-                case "gb_job_busy"              : name = "颂摩崖任务倒计时"; break;
-                case "qzkj_job_busy"            : name = "全真抗金倒计时"; break;
-                case "xykm_job_busy"            : name = "襄阳抗蒙倒计时"; break;
-                case "hb_job_busy"           : name = "福州镖局护镖倒计时"; break;
-              case "lfta_job"               : name = "妖气袭体"; break;
-              case "zwf_job_busy"               : name = "夜探赵王府"; break;
-               case "db_exp"               : name = "双倍经验"; break;
-               case "xs_job"               : name = "雪山强抢美女"; break;
+//              case "bonze_jail"       : name = "少林監獄"; break;
+                case "job_busy"         : name = "任務繁忙狀態"; break;
+                case "gb_job_busy"              : name = "頌摩崖任務倒計時"; break;
+                case "qzkj_job_busy"            : name = "全真抗金倒計時"; break;
+                case "xykm_job_busy"            : name = "襄陽抗蒙倒計時"; break;
+                case "hb_job_busy"           : name = "福州鏢局護鏢倒計時"; break;
+              case "lfta_job"               : name = "妖氣襲體"; break;
+              case "zwf_job_busy"               : name = "夜探趙王府"; break;
+               case "db_exp"               : name = "雙倍經驗"; break;
+               case "xs_job"               : name = "雪山強搶美女"; break;
 case "fuben"               : name = "副本"; break;
-                default                 : name = "不详"; break;
+                default                 : name = "不詳"; break;
         }
         
         return name;
@@ -104,27 +104,27 @@ int main(object me,string arg)
                 if (wizardp(me) ) {
                         if (!tar) tar = LOGIN_D->find_body(arg);
                         if (!tar) tar = find_living(arg);
-                        if (!tar) return notify_fail("你要察看谁的特殊状态？\n");
+                        if (!tar) return notify_fail("你要察看誰的特殊狀態？\n");
                         if (wiz_level(me) < wiz_level(tar))
-                                return notify_fail("你要察看谁的特殊状态？\n");
+                                return notify_fail("你要察看誰的特殊狀態？\n");
                 }
         }
 
         if (!wizardp(me) && me!=tar)
-                return notify_fail("你要察看谁的特殊状态？\n");
+                return notify_fail("你要察看誰的特殊狀態？\n");
 
         if (tar->is_corpse() || !tar->is_character())
                 return notify_fail("那不是活物耶！\n");
                 
 //              if ( sizeof(tar->query_entire_conditions()) < 1 )
 //              {
-//                      tell_object(me, (tar!=me?tar->name(1):"你")+"身上没有包括任何特殊状态。\n");
+//                      tell_object(me, (tar!=me?tar->name(1):"你")+"身上沒有包括任何特殊狀態。\n");
 //                      return 1;
 //              }
 
-                msg = (tar!=me?tar->name(1):"你")+"身上包含下列特殊状态：\n";
+                msg = (tar!=me?tar->name(1):"你")+"身上包含下列特殊狀態：\n";
                 msg += "┌────────────────────────┐
-│状态名称约剩余时间      类别│
+│狀態名稱約剩餘時間      類別│
 ├────────────────────────┤\n";
 
                 cons = tar->query_entire_conditions();
@@ -139,7 +139,7 @@ int main(object me,string arg)
                 {
                         coni = keys(cons)[i];
                         conn = get_con_name(coni);
-                        if (conn == "不详")
+                        if (conn == "不詳")
                                 continue;
                         if (values(cons)[i] < 0){
                                 tar->clear_condition(coni);
@@ -157,18 +157,18 @@ int main(object me,string arg)
                         
                         if ( !conob )
                         {
-                                //msg += sprintf("│%-48s│\n", "状态文件无法加载："+CON_DIR+coni+".c");
+                                //msg += sprintf("│%-48s│\n", "狀態文件無法加載："+CON_DIR+coni+".c");
                                 continue;
                         }
 
                         switch (conob->query_type(me))
                         {
                                 case "poison" : contp = HIB"毒"NOR; p++; break;
-                                case "hurt"   : contp = HIR"伤"NOR; h++; break;
-                                case "wound"  : contp = HIR"伤"NOR; h++; break;
+                                case "hurt"   : contp = HIR"傷"NOR; h++; break;
+                                case "wound"  : contp = HIR"傷"NOR; h++; break;
                                 case "busy"   : contp = HIY"忙"NOR; b++; break;
                                 case "job"    : contp = HIY"忙"NOR; b++; break;
-                                case "drug"   : contp = HIG"药"NOR; d++; break;
+                                case "drug"   : contp = HIG"藥"NOR; d++; break;
                                 case "illness"   : contp = HIG"病"NOR; h++; break;
                                 default       : contp = WHT"？"NOR; m++; break;
                         }
@@ -178,16 +178,16 @@ int main(object me,string arg)
                 }
 
                 msg += "└────────────────────────┘\n";
-                if (wizardp(me)) msg += sprintf("%51s\n", sprintf("毒：%d伤：%d忙：%d药：%d其他：%d共：%d",
+                if (wizardp(me)) msg += sprintf("%51s\n", sprintf("毒：%d傷：%d忙：%d藥：%d其他：%d共：%d",
                                                  p, h, b, d, m, (p+b+h+d+m)));
                 if ( (p+b+h+d+m) < 1 )
-                        tell_object(me, (tar!=me?tar->name(1):"你")+"身上没有包括任何特殊状态。\n");
+                        tell_object(me, (tar!=me?tar->name(1):"你")+"身上沒有包括任何特殊狀態。\n");
                 else
                         tell_object(me, msg);
                 if (tar->is_robot())
-                        tell_object(me, HIY+(tar!=me?tar->name(1):"你")+"被判断为机器人，赶快用robot命令召唤一个出来吧。\n"+NOR);
+                        tell_object(me, HIY+(tar!=me?tar->name(1):"你")+"被判斷為機器人，趕快用robot命令召喚一個出來吧。\n"+NOR);
                 else
-                        tell_object(me,"当前"+ (tar!=me?tar->name(1):"你")+"没有被判断为机器人。\n");
+                        tell_object(me,"當前"+ (tar!=me?tar->name(1):"你")+"沒有被判斷為機器人。\n");
         
         
         return 1;
@@ -198,9 +198,9 @@ int help(object me)
 {
         write(@HELP
 指令格式： cond
-           cond <对象名称>             (巫师专用)
+           cond <對象名稱>             (巫師專用)
 
-这个指令可以显示你的中毒情况和受伤情况。
+這個指令可以顯示你的中毒情況和受傷情況。
 
 HELP
         );

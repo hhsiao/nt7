@@ -2,9 +2,9 @@ inherit ROOM;
 
 void create() 
 { 
-        set("short", "弑神大殿"); 
+        set("short", "弒神大殿"); 
         set("long", @LONG 
-这里是30级BOSS挑战区。
+這裡是30級BOSS挑戰區。
 
 LONG
 ); 

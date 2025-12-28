@@ -14,10 +14,10 @@ void create()
         ob2 = find_object(BAOJIA);
         if (! ob2) ob2 = load_object(BAOJIA);
 
-        set("short","鳌府密室");
+        set("short","鰲府密室");
         set("long", @LONG
-这里是鳌拜府的密室，但是这里似乎也没有珍藏什么特别
-的宝贝。周围黑漆漆的，颇为阴森恐怖。
+這裡是鰲拜府的密室，但是這裡似乎也沒有珍藏什麼特別
+的寶貝。周圍黑漆漆的，頗為陰森恐怖。
 LONG);
         set("exits", ([
                 "up" :  __DIR__"aofu_shufang",

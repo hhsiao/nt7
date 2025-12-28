@@ -4,8 +4,8 @@ inherit NPC;
 inherit F_DEALER;
 void create()
 {
-        set_name("金算盘", ({"jin suanpan", "jin"}));
-        set("title", "当铺掌柜");
+        set_name("金算盤", ({"jin suanpan", "jin"}));
+        set("title", "當鋪掌櫃");
         set("gender", "男性");
         set("age", 34);
 

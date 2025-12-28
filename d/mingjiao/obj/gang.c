@@ -12,8 +12,8 @@ void create()
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "这是一个极大的水缸，可以用来储存冷水。\n");
-                set("unit", "个");
+                set("long", "這是一個極大的水缸，可以用來儲存冷水。\n");
+                set("unit", "個");
                 set("no_get", 1);
                 set("value",1);
                 set("amount", 0);
@@ -24,7 +24,7 @@ string extra_long()
 {
         int amount=query("amount");
 
-        return "里面有"+chinese_number(amount)+"升水。\n";
+        return "裡面有"+chinese_number(amount)+"升水。\n";
 }
 
 void reset()

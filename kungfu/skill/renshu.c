@@ -1,13 +1,13 @@
-// renshu 东洋忍术
+// renshu 東洋忍術
 
 inherit SKILL;
 
 string *dodge_msg = ({
-        "$n身子一扭，姿势颇为怪异，躲过了$N这一招。\n",
-        "可是$n突然抱头滚地而走，躲过了$N这一招。\n",
-        "$n突然身边弥漫起一团白雾，让$N失去了方向。\n",
-        "$n忽然身形加快，使$N失去了$n的踪迹。\n",
-        "$n突然匍匐于地，使$N招数全然落空。\n",
+        "$n身子一扭，姿勢頗為怪異，躲過了$N這一招。\n",
+        "可是$n突然抱頭滾地而走，躲過了$N這一招。\n",
+        "$n突然身邊瀰漫起一團白霧，讓$N失去了方向。\n",
+        "$n忽然身形加快，使$N失去了$n的蹤跡。\n",
+        "$n突然匍匐於地，使$N招數全然落空。\n",
 });
 
 int valid_enable(string usage) { return (usage == "dodge") || (usage == "move"); }
@@ -22,7 +22,7 @@ string query_dodge_msg(string limb)
 int practice_skill(object me)
 {
         if( query("qi", me)<50 )
-                return notify_fail("你的体力太差了，无法练习东洋忍术。\n");
+                return notify_fail("你的體力太差了，無法練習東洋忍術。\n");
 
         me->receive_damage("qi", 40);
         return 1;

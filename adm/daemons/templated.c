@@ -1,31 +1,31 @@
 // This program is a part of NITAN MudLIB
 // templated.c
 
-// 模板精灵工作的流程：
+// 模板精靈工作的流程：
 
-// 一、创建物件方式
-//  1、获得模板基准文件名，创建基准物件。
-//  2、获得模板文件将要处理的 DBASE 的格式。
-//  3、获得物件的所有数据，根据传入的参数(arg)找到本次物件的数据。
-//  4、如果有专门的基准物件，则创建专门的。
-//  5、设定 DBASE(m[DBASE_KEY1] = DBASE VALUE)。
-//  6、呼叫基准物件中的函数(call_other(ob, "function", argument))。
-//  7、返回该物件。
+// 一、創建物件方式
+//  1、獲得模板基準文件名，創建基準物件。
+//  2、獲得模板文件將要處理的 DBASE 的格式。
+//  3、獲得物件的所有數據，根據傳入的參數(arg)找到本次物件的數據。
+//  4、如果有專門的基準物件，則創建專門的。
+//  5、設定 DBASE(m[DBASE_KEY1] = DBASE VALUE)。
+//  6、呼叫基準物件中的函數(call_other(ob, "function", argument))。
+//  7、返回該物件。
 
-// 模板文件准备的数据结构：
+// 模板文件準備的數據結構：
 // mixed *dbase_format = ({ DBASE_KEY1, DBASE_KEY2, });
 // mapping object_data = ({ "arg1" : ({ ({ DBASE_VALUE1, DBASE_VALUE2, }),
 //                         ([ "function1" : ({ argument1, }) ]), }) });
-// 或下面结构
+// 或下面結構
 // mapping object_data = ({ "arg1" : ({ ([ DBASE_KEY1 : DBASE_VALUE1, DBASE_KEY2 : DBASE_VALUE2, ]),
 //                         ([ "function1" : ({ argument1, }) ]), , "extra_base_file", }) });
 
-// 模板物件提供的接口函数：
-// query_base_file()       - 基准物件名
+// 模板物件提供的接口函數：
+// query_base_file()       - 基準物件名
 // query_dbase_format()    - dbase 格式
 // query_function_format() - function 格式
-// query_entire_data()     - 所有数据
-// query_template_data()   - 指定的数据
+// query_entire_data()     - 所有數據
+// query_template_data()   - 指定的數據
 
 #include <ansi.h>
 #include <template.h>
@@ -49,22 +49,22 @@
 #define monitor(x)
 #endif
 
-// 创建物件
+// 創建物件
 varargs object create_object(string file, string arg, mapping dbase_data,
                              int model, mapping function_data)
 {
         object  tob;     // 模板物件
-        object  ob;      // 创建的物件
+        object  ob;      // 創建的物件
 
         string  template;// 模板文件名
-        string  type;    // 所属类型
+        string  type;    // 所屬類型
 
         int     full;    // 是否在 data 中指定 key 和 value
         mixed   format;  // dbase、function 格式
-        mixed   data;    // 数据
-        mixed   key;     // 数据(mapping)中的一个 key
+        mixed   data;    // 數據
+        mixed   key;     // 數據(mapping)中的一個 key
         mapping dbase;   // 物件的 dbase
-        int     i, max;  // 计数器
+        int     i, max;  // 計數器
         object  shadow_ob;
         mapping applied_prop, temp;
         string *apply;
@@ -80,7 +80,7 @@ varargs object create_object(string file, string arg, mapping dbase_data,
                 return 0;
 
         if( !sscanf(file, TEMPLATE_DIR "%s.c", template) ) {
-                // 非模板文件创造物件
+                // 非模板文件創造物件
                 if( !objectp(ob = new(file)) )
                         return 0;
 
@@ -125,7 +125,7 @@ varargs object create_object(string file, string arg, mapping dbase_data,
                         dbase["set_data"] = 1;
                 }
 
-                // 设置名称
+                // 設置名稱
                 if( member_array(F_NAME, deep_inherit_list(ob)) != -1 ) {
                         if( !undefinedp(dbase_data["name"]) )
                                 ob->set_name(dbase_data["name"], ({ arg }));
@@ -145,34 +145,34 @@ varargs object create_object(string file, string arg, mapping dbase_data,
                 return ob;
         }
 
-        // 模板文件创造物件
+        // 模板文件創造物件
         if( !arrayp(data = tob->query_template_data(arg)) || !sizeof(data) )
                 return 0;
 
-        // 是否有专门的基准文件？
+        // 是否有專門的基準文件？
         if( sizeof(data) > EXTRA_BASE_DATA )
                 file = data[EXTRA_BASE_DATA];
 
         if( sizeof(data) <= EXTRA_BASE_DATA || file_size(file) <= 0 ) {
-                // 有无基准物件文件
+                // 有無基準物件文件
                 if( !stringp(file = tob->query_base_file()))
                         return 0;
         }
 
-        // 根据基准文件创建的物件能否加载？
+        // 根據基準文件創建的物件能否加載？
         if( !objectp(ob = new(file)) )
                 return 0;
 
-        // 配置 dbase 数据
+        // 配置 dbase 數據
         if( !arrayp(format = tob->query_dbase_format()) || !sizeof(format) )
                 full = 1;
         else    full = 0;
 
-        // 将模板中的 dbase 数据转入物件中
+        // 將模板中的 dbase 數據轉入物件中
         dbase = ob->query_entire_dbase();
         switch (full)
         {
-        // 采用全格式模式
+        // 採用全格式模式
         case 1:
                 if( !mapp(data[DBASE_DATA]) ||
                     !sizeof(data[DBASE_DATA]) )
@@ -183,13 +183,13 @@ varargs object create_object(string file, string arg, mapping dbase_data,
                         dbase[key] = data[DBASE_DATA][key];
 
                 break;
-        // 采用格式对应模式
+        // 採用格式對應模式
         default:
                 if( !arrayp(format) )
                         return 0;
 
-                // 如果格式中只有一项，而数据又不是数组型的，
-                // 则直接把 dbase 中的那唯一的格式设为数据。
+                // 如果格式中只有一項，而數據又不是數組型的，
+                // 則直接把 dbase 中的那唯一的格式設為數據。
                 max = sizeof(format);
                 if( max == 1 && !arrayp(data[DBASE_DATA]) )
                         dbase[format[0]] = data[DBASE_DATA];
@@ -201,7 +201,7 @@ varargs object create_object(string file, string arg, mapping dbase_data,
                 break;
         }
 
-        // 处理外部传入的 dbase_data 数据
+        // 處理外部傳入的 dbase_data 數據
         if( sizeof(dbase_data) ) {
                 format = keys(dbase_data);
                 foreach( key in format ) {
@@ -243,7 +243,7 @@ varargs object create_object(string file, string arg, mapping dbase_data,
         }
 
         if( member_array(F_NAME, deep_inherit_list(ob)) != -1 ) {
-                // 设置名称
+                // 設置名稱
                 if( !undefinedp(dbase_data["name"]) ) {
                         i = strsrch(template, "/") + 1;
                         type = template[i..<1];
@@ -255,16 +255,16 @@ varargs object create_object(string file, string arg, mapping dbase_data,
                 dbase["set_data"] = 1;
         }
 
-        // 是否预备了 function (模板数据的第二项)的格式？
-        // 若无，则采用全格式模式，即模板数据的首项为
-        // mapping。否则就采用 array 格式。
+        // 是否預備了 function (模板數據的第二項)的格式？
+        // 若無，則採用全格式模式，即模板數據的首項為
+        // mapping。否則就採用 array 格式。
         if( !arrayp(format = tob->query_function_format()) || !sizeof(format) )
                 full = 1;
         else
                 full = 0;
 
-        // 呼叫函数数据
-        // 对物件呼叫模板中指定的函数
+        // 呼叫函數數據
+        // 對物件呼叫模板中指定的函數
         if( sizeof(data) > FUNCTION_DATA &&
            // (mapp(data[FUNCTION_DATA]) || arrayp(data[FUNCTION_DATA])) &&
            sizeof(data[FUNCTION_DATA]) ) {
@@ -273,23 +273,23 @@ varargs object create_object(string file, string arg, mapping dbase_data,
                         format = keys(data[FUNCTION_DATA]);
 
                         foreach( key in format ) {
-                                monitor(sprintf("create_object执行%O->%s(%O)", ob, key,
+                                monitor(sprintf("create_object執行%O->%s(%O)", ob, key,
                                                 data[FUNCTION_DATA][key]));
                                 call_other(ob, key, data[FUNCTION_DATA][key]);
                         }
-                } else { // 使用格式对应模式
+                } else { // 使用格式對應模式
                         if( !arrayp(format) )
                                 return 0;
 
-                        // 如果格式中只有一项，而数据又不是数组型的，
-                        // 则直接以这一项为参数呼叫那个函数。
+                        // 如果格式中只有一項，而數據又不是數組型的，
+                        // 則直接以這一項為參數呼叫那個函數。
                         if( sizeof(format) == 1 && !arrayp(data[FUNCTION_DATA]) )
                                 call_other(ob, format[0], data[FUNCTION_DATA]);
                         else {
                                 max = sizeof(format);
 
                                 for( i = 0; i < max; i++ ) {
-                                        // 若这个函数无须参数
+                                        // 若這個函數無須參數
                                         if( undefinedp(data[DBASE_DATA][i]) )
                                                 call_other(ob, format[i]);
                                         else
@@ -299,7 +299,7 @@ varargs object create_object(string file, string arg, mapping dbase_data,
                 }
         }
 
-        // 处理外部传入的 function_data 数据
+        // 處理外部傳入的 function_data 數據
         if( sizeof(function_data) ) {
                 dbase["function"] = function_data;
                 format = keys(function_data);
@@ -348,45 +348,45 @@ protected string prop_segment(mapping p, string path)
         return buf;
 }
 
-// 编译为文件
+// 編譯為文件
 varargs string create_file(string tfile, string arg, mapping dbase_data,
                            int model, mapping function_data)
 {
-        string  bfile;          // 基准物件文件名
-        string  cfile;          // 待编译的文件名
-        string  type;           // 物件类型
+        string  bfile;          // 基準物件文件名
+        string  cfile;          // 待編譯的文件名
+        string  type;           // 物件類型
         string  name;
 
         string  template;       // 模板文件名
-        string *content;        // 编译的文件内容
-        string  content_str;    // 编译的文件内容
-        string  content_line;   // 编译中一行的内容
+        string *content;        // 編譯的文件內容
+        string  content_str;    // 編譯的文件內容
+        string  content_line;   // 編譯中一行的內容
 
-        int     i;              // 计数器
-        int     n;              // 文件行数
+        int     i;              // 計數器
+        int     n;              // 文件行數
         int     l;
-        int     j;              // 计数器
-        int     k;              // dbase / 函数数目
-        string  t;              // 当前时间
+        int     j;              // 計數器
+        int     k;              // dbase / 函數數目
+        string  t;              // 當前時間
 
-        int     comment_on;     // 正在书写注释
-        int     dbase_on;       // 正在书写 dbase 数据
-        int     function_on;    // 正在书写函数数据
+        int     comment_on;     // 正在書寫註釋
+        int     dbase_on;       // 正在書寫 dbase 數據
+        int     function_on;    // 正在書寫函數數據
 
         object  tob;            // 模板物件
         object  ob;
 
         int     full_dbase;     // 是否完整 dbase 格式
-        int     full_function;  // 是否完整函数格式
+        int     full_function;  // 是否完整函數格式
 
         string *dbase_format;   // dbase 格式
-        string *function_format;// 函数格式
+        string *function_format;// 函數格式
         string  temp_str1;
         string  temp_str2;
 
-        mixed   data;           // 模板数据
+        mixed   data;           // 模板數據
         mixed   format;         // dbase、function 格式
-        mixed   key;            // 数据(mapping)中的一个 key
+        mixed   key;            // 數據(mapping)中的一個 key
         mixed   dbase;
         mapping applied_prop, temp;
         string *apply;
@@ -417,9 +417,9 @@ varargs string create_file(string tfile, string arg, mapping dbase_data,
                         map_delete(dbase_data, "shadow_ob");
 
                 while( 1 ) {
-                        // 生成待编译的文件名
+                        // 生成待編譯的文件名
                         cfile = sprintf("%sunknow/%s-%d.c", TEMPLATE_DATA, arg, time() + random(99999999));
-                        // 将空格替换为 "_"
+                        // 將空格替換為 "_"
                         cfile = replace_string(cfile, " ", CONNECT_CHAR);
                         if( file_size(cfile) == -1 )
                                 break;
@@ -435,7 +435,7 @@ varargs string create_file(string tfile, string arg, mapping dbase_data,
                 content_str = "";
 
                 for( i = 0; i < n; i++ ) {
-                        // 找到处理外部传入 dbase_data 数据的位置
+                        // 找到處理外部傳入 dbase_data 數據的位置
                         temp_str1 = content[i];
                         temp_str1 = replace_string(temp_str1, " ", "");
 
@@ -446,7 +446,7 @@ varargs string create_file(string tfile, string arg, mapping dbase_data,
                                 content[i] = sprintf("\tset_name(\"%s\", ({ \"%s\" }));",
                                                      name, arg);
 
-                        // 处理外部传入 dbase_data 和文件本身有重叠部分
+                        // 處理外部傳入 dbase_data 和文件本身有重疊部分
                         if( sizeof(dbase_data) ) {
                                 format = keys(dbase_data);
                                 foreach (key in format)
@@ -483,7 +483,7 @@ varargs string create_file(string tfile, string arg, mapping dbase_data,
                                                         dbase[key] = dbase_data[key];
                                                 /////////////////////
                                         }
-                                        // 这里有个排版的问题
+                                        // 這裡有個排版的問題
                                         content[i] = sprintf("\tset(\"%s\", %O);",
                                                              key, dbase);
 
@@ -533,13 +533,13 @@ varargs string create_file(string tfile, string arg, mapping dbase_data,
                 content_line = sprintf("// %s.c\n", replace_string(arg, " ", CONNECT_CHAR));
                 content_line += sprintf("// Create by TEMPLATE_D. %s.", t);
 
-                // 写入一行
+                // 寫入一行
                 content_str += content_line + "\n";
 
                 for( i = 0; i < j; i++ )
                         content_str += content[i] + "\n";
 
-                // 处理外部传入 dbase_data 数据
+                // 處理外部傳入 dbase_data 數據
                 content_str += prop_segment(dbase_data, "");
                 /*
                 if( sizeof(dbase_data) ) {
@@ -560,7 +560,7 @@ int receive_summon(object me)
         return ITEM_D->receive_summon(me, this_object());
 }
 
-// 隐藏物品
+// 隱藏物品
 int hide_anywhere(object me)
 {
         return ITEM_D->hide_anywhere(me, this_object());
@@ -574,14 +574,14 @@ SUMMON;
                 return cfile;
         }
 
-        // 模板数据是否符合格式？
+        // 模板數據是否符合格式？
         if( !arrayp(data = tob->query_template_data(arg)) || !sizeof(data))
                 return 0;
 
-        // 是否有专门的基准文件？
+        // 是否有專門的基準文件？
         if( sizeof(data) > EXTRA_BASE_DATA)
                 bfile = data[EXTRA_BASE_DATA];
-        // 否则使用预设的基准文件
+        // 否則使用預設的基準文件
         else
                 bfile = tob->query_base_file();
 
@@ -600,31 +600,31 @@ SUMMON;
 
         while(1)
         {
-                // 生成待编译的文件名
+                // 生成待編譯的文件名
                 cfile = sprintf("%s%s/%s-%d.c", TEMPLATE_DATA, template, arg, time() + random(99999999));
-                // 将空格替换为 "_"
+                // 將空格替換為 "_"
                 cfile = replace_string(cfile, " ", CONNECT_CHAR);
                 if( file_size(cfile) == -1)
                         break;
         }
 
-        // 准备编译所需数据
+        // 準備編譯所需數據
 
-        // 是否预备了 dbase (模板数据的第一项)的格式？
+        // 是否預備了 dbase (模板數據的第一項)的格式？
         if( !arrayp(dbase_format = tob->query_dbase_format()) ||
             !sizeof(dbase_format))
                 full_dbase = 1;
         else
                 full_dbase = 0;
 
-        // 是否预备了函数(模板数据的第二项)的格式？
+        // 是否預備了函數(模板數據的第二項)的格式？
         if( !arrayp(function_format = tob->query_function_format()) ||
             !sizeof(function_format))
                 full_function = 1;
         else
                 full_function = 0;
 
-        // 开始编译
+        // 開始編譯
 
         assure_file(cfile);
 
@@ -641,14 +641,14 @@ SUMMON;
 
         for (i = 0; i < n; i++)
         {
-                // 书写注释
+                // 書寫註釋
                 if( strsrch(content[i], COMMENT_ENTRY) != -1 && !comment_on)
                 {
                         comment_on = 1;
                         content_line = sprintf("// %s.c\n", replace_string(arg, " ", CONNECT_CHAR));
                         content_line += sprintf("// Create by TEMPLATE_D. %s.", t);
 
-                        // 写入一行
+                        // 寫入一行
                         content_str += content_line + "\n";
                         continue;
                 }
@@ -661,12 +661,12 @@ SUMMON;
                         continue;
                 }
 
-                // 书写 dbase 数据
+                // 書寫 dbase 數據
                 if( strsrch(content[i], DBASE_ENTRY) != -1)
                 {
                         dbase_on = 1;
 
-                        // 使用格式对应模式
+                        // 使用格式對應模式
                         if( !full_dbase)
                         {
                                 if( !arrayp(dbase_format))
@@ -776,12 +776,12 @@ SUMMON;
                         continue;
                 }
 
-                // 书写函数数据
+                // 書寫函數數據
                 if( strsrch(content[i], FUNCTION_ENTRY) != -1)
                 {
                         function_on = 1;
 
-                        // 使用格式对应模式
+                        // 使用格式對應模式
                         if( !full_function)
                         {
                                 k = sizeof(function_format);
@@ -837,43 +837,43 @@ SUMMON;
                         continue;
                 }
 
-                // 检查书写结束标志
+                // 檢查書寫結束標誌
 
-                // 书写注释结束
+                // 書寫註釋結束
                 if( strsrch(content[i], COMMENT_EXIT) != -1)
                 {
                         comment_on = 0;
                         continue;
                 }
 
-                // 书写名称结束
+                // 書寫名稱結束
                 if( strsrch(content[i], NAME_EXIT) != -1)
                         continue;
 
-                // 书写 dbase 结束
+                // 書寫 dbase 結束
                 if( strsrch(content[i], DBASE_EXIT) != -1)
                 {
                         dbase_on = 0;
                         continue;
                 }
 
-                // 书写函数结束
+                // 書寫函數結束
                 if( strsrch(content[i], FUNCTION_EXIT) != -1)
                 {
                         function_on = 0;
                         continue;
                 }
 
-                // 若正在书写注释，忽略
+                // 若正在書寫註釋，忽略
                 if( comment_on) continue;
 
-                // 若正在书写 dbase，忽略
+                // 若正在書寫 dbase，忽略
                 if( dbase_on) continue;
 
-                // 若正在书写函数，忽略
+                // 若正在書寫函數，忽略
                 if( function_on) continue;
 
-                // 否则直接添加这一行
+                // 否則直接添加這一行
                 content_str += content[i] + "\n";
         }
 

@@ -1,11 +1,11 @@
-//  lihua.c 疾风枪 
+//  lihua.c 疾風槍 
 //Created by Redhat@Sjmud 2009/4/7
 
 #include <ansi.h>
 
 inherit F_SSERVER;
 
-string perform_name() {return MAG"疾风枪"NOR;}
+string perform_name() {return MAG"疾風槍"NOR;}
 
 private int remove_effect(object me, int amount);
 
@@ -15,42 +15,42 @@ int perform(object me)
         int skill;
     
         if(!me->is_fighting() )
-                return notify_fail("「疾风枪」只能在战斗中使用。\n");
+                return notify_fail("「疾風槍」只能在戰鬥中使用。\n");
     
         if ((int)me->query_skill("yangjia-qiang", 1) < 350 )
-                return notify_fail("你的杨家枪不够娴熟，不能真正发挥「疾风枪」的威力。\n");
+                return notify_fail("你的楊家槍不夠嫻熟，不能真正發揮「疾風槍」的威力。\n");
     
         if((int)me->query_skill("spear", 1) < 350 )
-                return notify_fail("你的基本内功等级不够，不能使用「疾风枪」。\n");
+                return notify_fail("你的基本內功等級不夠，不能使用「疾風槍」。\n");
 
         if( !objectp(weapon = me->query_temp("weapon"))
          || weapon->query("skill_type") != "spear" )
-                return notify_fail("你手中无枪，怎能运用「疾风枪」？！\n");
+                return notify_fail("你手中無槍，怎能運用「疾風槍」？！\n");
                                 
         if (me->query_skill_mapped("spear") != "yangjia-qiang"
          || me->query_skill_mapped("parry") != "yangjia-qiang")
-                return notify_fail("你现在无法使用「神威枪」进行攻击。\n");
+                return notify_fail("你現在無法使用「神威槍」進行攻擊。\n");
     
         if ((int)me->query("max_neili") < 6000 )
-                return notify_fail("你的内力修为太低，不能使用「疾风枪」。\n");
+                return notify_fail("你的內力修為太低，不能使用「疾風槍」。\n");
 
         if ((int)me->query("neili") < 3000 )
-                return notify_fail("你现在内力太弱，不能使用「疾风枪」。\n");
+                return notify_fail("你現在內力太弱，不能使用「疾風槍」。\n");
 
         if ((int)me->query("jingli") < 2000 )
-                return notify_fail("你现在精力太少，不能使用「疾风枪」。\n");
+                return notify_fail("你現在精力太少，不能使用「疾風槍」。\n");
 
         if(me->query_temp("yjq/jifeng"))
-                return notify_fail("你现正在使用「疾风枪」。\n");
+                return notify_fail("你現正在使用「疾風槍」。\n");
 
         if(me->query_temp("yjq/shenwei"))
-                return notify_fail("你现正在使用「神威枪」。\n");
+                return notify_fail("你現正在使用「神威槍」。\n");
                 
         if(me->query_temp("yjq/qinghe"))
-                return notify_fail("你现正在使用「骤雨清荷」。\n");
+                return notify_fail("你現正在使用「驟雨清荷」。\n");
 
-    message_vision(HIC"$N融合贯通武学，使出杨家枪绝技之「"MAG"疾风枪"HIC"」，只见"+weapon->query("name")+HIC"招数凌厉，招数犹如幻影般朝发夕至！\n"NOR, me);
-        me->start_exert(2+random(2),"「疾风枪」");
+    message_vision(HIC"$N融合貫通武學，使出楊家槍絕技之「"MAG"疾風槍"HIC"」，只見"+weapon->query("name")+HIC"招數凌厲，招數猶如幻影般朝發夕至！\n"NOR, me);
+        me->start_exert(2+random(2),"「疾風槍」");
         me->add("neili", -500);
         me->add("jingli", -300);
         me->start_busy(1+random(2));
@@ -84,7 +84,7 @@ void check_fight(object me, object weapon)
            me->delete_temp("double_attack");
            me->delete_temp("yjq/jifeng");
            if(living(me) && !me->is_ghost())
-              message_vision(HIW"$N一套「疾风枪」使完，脸上不由凸现一股豪气。\n"NOR, me);
+              message_vision(HIW"$N一套「疾風槍」使完，臉上不由凸現一股豪氣。\n"NOR, me);
            return;
         } 
         call_out("check_fight", 1, me, weapon);
@@ -92,18 +92,18 @@ void check_fight(object me, object weapon)
 
 int help(object me)
 {
-   write(YEL"\n杨家枪「"HIG"疾风枪"YEL"」："NOR"\n");
+   write(YEL"\n楊家槍「"HIG"疾風槍"YEL"」："NOR"\n");
    write(@HELP
    指令：perform jifeng
    
-   大幅提高攻击速度。
+   大幅提高攻擊速度。
 
-   要求：杨家枪350级，
-         基本枪法350级，
-         最大内力 5000 以上，
-         当前内力 3000 以上，
-         当前精力 2000 以上，
-         激发杨家枪为招架。
+   要求：楊家槍350級，
+         基本槍法350級，
+         最大內力 5000 以上，
+         當前內力 3000 以上，
+         當前精力 2000 以上，
+         激發楊家槍為招架。
 HELP
    );
    return 1;

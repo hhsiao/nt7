@@ -1,25 +1,25 @@
 // by rcwiz for yhonline
-// 入梦神功
+// 入夢神功
 
 #include <ansi.h>
 
 inherit FORCE;
 
 string *dodge_msg = ({
-        HIW "$n" HIW "手足忽的一晃，$N" HIW "竟然无法进击，只能自保。\n" NOR,
-        HIW "只见$n" HIW "身子轻轻晃动，$N" HIW "眼前顿时出现了无数个$n" HIW
-        "的幻影，令$N" HIW "完全无法辨出虚实。\n" NOR,
-        HIW "$n" HIW "往旁边歪歪斜斜的迈出一步，却恰好令$N" HIW "的攻击失之"
-        "毫厘。\n" NOR,
-        HIW "$N" HIW "这一招来的好快，然后$n" HIW "一闪，似乎不费半点力气，"
-        "却将$N" HIW "这一招刚好避开。\n" NOR,
-        HIW "但见$n" HIW "轻轻一跃，已不见了踪影，$N" HIW "心中大骇，却又见"
-        "$n" HIW "擦肩奔过，步法之奇巧，当真令人思索菲仪。\n" NOR,
+        HIW "$n" HIW "手足忽的一晃，$N" HIW "竟然無法進擊，只能自保。\n" NOR,
+        HIW "只見$n" HIW "身子輕輕晃動，$N" HIW "眼前頓時出現了無數個$n" HIW
+        "的幻影，令$N" HIW "完全無法辨出虛實。\n" NOR,
+        HIW "$n" HIW "往旁邊歪歪斜斜的邁出一步，卻恰好令$N" HIW "的攻擊失之"
+        "毫釐。\n" NOR,
+        HIW "$N" HIW "這一招來的好快，然後$n" HIW "一閃，似乎不費半點力氣，"
+        "卻將$N" HIW "這一招剛好避開。\n" NOR,
+        HIW "但見$n" HIW "輕輕一躍，已不見了蹤影，$N" HIW "心中大駭，卻又見"
+        "$n" HIW "擦肩奔過，步法之奇巧，當真令人思索菲儀。\n" NOR,
 });
 
 string *parry_msg = ({
-        HIW "$N" HIW "一招击在$n" HIW "身上，力道竟消失得无影无踪！\n" NOR,
-        HIW "$n轻轻一带，$N" HIW "发现自己招数回击过来，吓得往后倒退几步。\n" NOR,
+        HIW "$N" HIW "一招擊在$n" HIW "身上，力道竟消失得無影無蹤！\n" NOR,
+        HIW "$n輕輕一帶，$N" HIW "發現自己招數回擊過來，嚇得往後倒退幾步。\n" NOR,
 });
 
 int query_neili_improve(object me)
@@ -32,22 +32,22 @@ int query_neili_improve(object me)
 
 mapping *action = ({
 ([
-        "action": HIW "$N" HIW "单手一挥，刹那间狂风骤起， 令人不寒而栗。" NOR,
+        "action": HIW "$N" HIW "單手一揮，剎那間狂風驟起， 令人不寒而慄。" NOR,
         "attack": 999,
         "dodge" : 999,
         "parry" : 999,
         "damage": 999,
         "force" : 999,
-        "damage_type":  "神伤"
+        "damage_type":  "神傷"
 ]),
 ([
-        "action": HIG "$N" HIG "神情微变，猛然间狂风暴雨，天色大变。" NOR,
+        "action": HIG "$N" HIG "神情微變，猛然間狂風暴雨，天色大變。" NOR,
         "attack": 999,
         "dodge" : 999,
         "parry" : 999,
         "damage": 999,
         "force" : 999,
-        "damage_type":  "神伤"
+        "damage_type":  "神傷"
 ]),
 });
 
@@ -103,8 +103,8 @@ mixed hit_ob(object me, object victim, int damage_bonus)
                       }
                       else 
                       {
-                           message_vision(HIR "$N" HIR "对着$n" HIR "需点几下，$n" HIR 
-                                          "竟无法动弹了。\n" NOR, me, victim);
+                           message_vision(HIR "$N" HIR "對著$n" HIR "需點幾下，$n" HIR 
+                                          "竟無法動彈了。\n" NOR, me, victim);
                                      
                            victim->start_busy(20 + random(20));                                            
                       }
@@ -114,8 +114,8 @@ mixed hit_ob(object me, object victim, int damage_bonus)
 
         if (random(20) == 1)
         {
-                message_vision(NOR + HIG "猛然间一阵青烟飘过，诸葛亮已"
-                               "经不见了影踪 ……\n", me, victim);               
+                message_vision(NOR + HIG "猛然間一陣青煙飄過，諸葛亮已"
+                               "經不見了影蹤 ……\n", me, victim);               
 
                 victim->move("/kungfu/class/sky/bagua");
 
@@ -136,7 +136,7 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
         {
                 result = ([ "damage": -damage ]);
 
-                result += (["msg" : HIW "$n" HIW "凌空虚点几下，猛然间不见了踪影。\n" NOR]);
+                result += (["msg" : HIW "$n" HIW "凌空虛點幾下，猛然間不見了蹤影。\n" NOR]);
 
                 return result;
         }

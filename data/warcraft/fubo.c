@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("镇魂麒麟[2;37;0m[2;37;0m", ({"qilin"}));        
+        set_name("鎮魂麒麟[2;37;0m[2;37;0m", ({"qilin"}));        
         set("gender", "男性");                
-        set("long", "一股悠远宁静的气息将你包围[2;37;0m
-它是伏波的魔幻兽。
+        set("long", "一股悠遠寧靜的氣息將你包圍[2;37;0m
+它是伏波的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

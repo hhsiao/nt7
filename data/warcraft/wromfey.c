@@ -4,12 +4,12 @@
 
 void setup()
 {
-        set_name("[35m细雨如丝[2;37;0m[2;37;0m", ({"dranet"}));        
+        set_name("[35m細雨如絲[2;37;0m[2;37;0m", ({"dranet"}));        
         set("gender", "男性");                
-        set("long", "今生若不执子之手 待来生愿与子偕老[2;37;0m
-它是徐州柴火的魔幻兽。
+        set("long", "今生若不執子之手 待來生願與子偕老[2;37;0m
+它是徐州柴火的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "wromfey");
         set("owner_name", "徐州柴火");

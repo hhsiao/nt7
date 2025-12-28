@@ -4,13 +4,13 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "卧龙道");
+        set("short", "臥龍道");
         set("long",@LONG
-卧龙道位于蝶仙谷与飞龙谷之间，是连接两处的要道，传说仙
-界曾派出巨龙守护这里的道口，为的是防止谷中飞龙出谷，危害人
-间。可不想那巨龙偷懒睡熟，让那飞龙逃出山谷。后来巨龙得到仙
-界惩罚，变做化石，卧在此路之上，终身守护飞龙谷，此道便以卧
-龙道命名。
+臥龍道位於蝶仙谷與飛龍谷之間，是連接兩處的要道，傳說仙
+界曾派出巨龍守護這裡的道口，為的是防止谷中飛龍出谷，危害人
+間。可不想那巨龍偷懶睡熟，讓那飛龍逃出山谷。後來巨龍得到仙
+界懲罰，變做化石，臥在此路之上，終身守護飛龍谷，此道便以臥
+龍道命名。
 LONG);
 
         set("exits", ([
@@ -18,10 +18,10 @@ LONG);
                 "east"     : __DIR__"jinxianqiao",        
                 "south"    : __DIR__"changshengdao2",                
         ]));
-        set("no_rideto", 1);         // 设置不能骑马到其他地方
-        set("no_flyto", 1);          // 设置不能从起来地方骑马来这里
-        set("no_die", 1);            // 死亡后移动到扁鹊居
-        set("penglai", 1);           // 表示在蓬莱岛
+        set("no_rideto", 1);         // 設置不能騎馬到其他地方
+        set("no_flyto", 1);          // 設置不能從起來地方騎馬來這裡
+        set("no_die", 1);            // 死亡後移動到扁鵲居
+        set("penglai", 1);           // 表示在蓬萊島
         set("objects", ([ 
                 "/clone/npc/walker": 2,
         ]));
@@ -36,14 +36,14 @@ void init ()
                 if( !query("penglai/go_quest/ok", this_player()) )
                 {
                         this_player()->start_busy(3);
-                        tell_object(this_player(), NOR + WHT "你到了此处，四周仙气缭绕令你一时间难以辨别方向。\n" NOR);
+                        tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);
                 }
                 else
                 {
                         if (random(2))
                         {
                                 this_player()->start_busy(1);
-                                tell_object(this_player(), NOR + WHT "你到了此处，四周仙气缭绕令你一时间难以辨别方向。\n" NOR);                
+                                tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);                
                         }
                 }
         }

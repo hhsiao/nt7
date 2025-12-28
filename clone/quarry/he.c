@@ -3,8 +3,8 @@ inherit QUARRY;
 
 void create()
 {
-        set_name(HIR "丹顶鹤" NOR, ({ "danding he", "danding", "he" }));
-        set("long", HIR "全身洁白的丹顶鹤，看来是修了翅膀，没法高飞了。\n" NOR);
+        set_name(HIR "丹頂鶴" NOR, ({ "danding he", "danding", "he" }));
+        set("long", HIR "全身潔白的丹頂鶴，看來是修了翅膀，沒法高飛了。\n" NOR);
         set("no_auto_kill", 1);
         set("aves", 1);
 

@@ -10,13 +10,13 @@ mixed ask_pfm();
 
 void create()
 {
-    set_name("张乘云", ({"zhang chengyun", "zhang", "chengyun"}));
+    set_name("張乘雲", ({"zhang chengyun", "zhang", "chengyun"}));
     set("nickname", HIW "白猿神魔" NOR );
-    set("title", "日月神教长老");
+    set("title", "日月神教長老");
     set("gender", "男性");
     set("age", 42);
     set("shen_type", -1);
-    set("long", "他是日月神教长老。\n");
+    set("long", "他是日月神教長老。\n");
     set("attitude", "peaceful");
 
     set("per", 21);
@@ -57,11 +57,11 @@ void create()
     map_skill("sword", "riyue-jian");
     map_skill("parry", "fengyun-bianhuan");
 
-    create_family("日月神教", 2, "长老");
+    create_family("日月神教", 2, "長老");
 
     set("inquiry", ([
-        "风起云涌"  : (: ask_pfm :),
-        "绝招"      : (: ask_pfm :),
+        "風起雲湧"  : (: ask_pfm :),
+        "絕招"      : (: ask_pfm :),
     ]));
 
     set("master_ob",3);
@@ -75,12 +75,12 @@ void attempt_apprentice(object ob)
 
     if((int)ob->query_skill("riyue-xinfa", 1) < 120)
     {
-         command("say 本教的内功心法你还没练好，还要多下苦功才行！");
+         command("say 本教的內功心法你還沒練好，還要多下苦功才行！");
          return;
     }
 
     command("recruit "+query("id", ob));
-    set("title", HIM"日月神教"HIW"白猿护法"NOR, ob);
+    set("title", HIM"日月神教"HIW"白猿護法"NOR, ob);
 }
 
 mixed ask_pfm()
@@ -91,18 +91,18 @@ mixed ask_pfm()
               return "你是不是想和我切磋一下？";
 
       if( query("family/family_name", me) != query("family/family_name") )
-              return "我神教武功独步武林，这位" + RANK_D->query_respect(me) +
-                     "既然想学，不如入我神教如何？";
+              return "我神教武功獨步武林，這位" + RANK_D->query_respect(me) +
+                     "既然想學，不如入我神教如何？";
 
       if (me->query_skill("fengyun-bianhuan", 1) < 150)
-              return "你的风云变幻还练不到家，让我怎么教你呢！";
+              return "你的風雲變幻還練不到家，讓我怎麼教你呢！";
 
-      message_vision(HIW "$n" HIW "对$N" HIW "点了点头：注意看清楚了。\n" HIW
-                     "只见$n" HIW "双拳一错，顿时一股气旋向$N" HIW
-                     "卷来，$N" HIW "感觉胸口似有重压，不由连退数步。\n" NOR,
+      message_vision(HIW "$n" HIW "對$N" HIW "點了點頭：注意看清楚了。\n" HIW
+                     "只見$n" HIW "雙拳一錯，頓時一股氣旋向$N" HIW
+                     "捲來，$N" HIW "感覺胸口似有重壓，不由連退數步。\n" NOR,
                      me, this_object());
-      command("say 看懂没有？");
-      tell_object(me, HIC "你学会了「风起云涌」这一招。\n" NOR);
+      command("say 看懂沒有？");
+      tell_object(me, HIC "你學會了「風起雲湧」這一招。\n" NOR);
       if (me->can_improve_skill("cuff"))
             me->improve_skill("cuff", 160000);
       set("can_perform/fengyun-bianhuan/fengyun", 1, me);

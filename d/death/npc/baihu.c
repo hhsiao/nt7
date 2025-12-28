@@ -6,15 +6,15 @@ void create()
 
         set_name(HIW "白虎" NOR,({"bai hu", "bai", "hu", "tiger"}));
 
-        set("race", "野兽");
-        set("long", HIW "\n\n一只长达丈许的巨型猛虎，乃四神兽之一的白虎。\n"
-                        "它全身毛皮洁白无暇，很是高贵。\n" NOR);
+        set("race", "野獸");
+        set("long", HIW "\n\n一隻長達丈許的巨型猛虎，乃四神獸之一的白虎。\n"
+                        "它全身毛皮潔白無暇，很是高貴。\n" NOR);
         set("age", 10000);
         set("attitude", "peaceful");
 
-        set("limbs", ({ "头部", "身体", "前爪", "后爪", "虎尾" }) );
+        set("limbs", ({ "頭部", "身體", "前爪", "後爪", "虎尾" }) );
         set("verbs", ({ "bite" }) );
-        set("title", HIY "神兽" NOR);
+        set("title", HIY "神獸" NOR);
 
         set("combat_exp", 8000000);
         set("max_neili", 18000);
@@ -64,8 +64,8 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->receive_wound("qi", 200 + random(200), me);
         set("neili",query("max_neili",  me), me);
-        return HIW "白虎喷出一团寒气，刹时地面冰封九尺，四周冰雪"
-               "纷飞，似乎连空气都要被冻住一般。\n" NOR;
+        return HIW "白虎噴出一團寒氣，剎時地面冰封九尺，四周冰雪"
+               "紛飛，似乎連空氣都要被凍住一般。\n" NOR;
 }
 
 void die()
@@ -86,7 +86,7 @@ void die()
             query("wang_get/虎皮", me) && 
             userp(me) )
         {
-                message_vision(HIC "$N" HIC "从白虎的尸体上除下了一张白虎"
+                message_vision(HIC "$N" HIC "從白虎的屍體上除下了一張白虎"
                                "皮和一根虎骨。\n", me);
                 gu->move(me);
                 pi->move(me);
@@ -95,15 +95,15 @@ void die()
                 addn("combat_exp", exp, me);
                 addn("potential", pot, me);
 
-                tell_object(me, HIC "由于你斩杀神兽白虎，你获得了" + chinese_number(exp)
-                                + "点经验和" + chinese_number(pot) + "点潜能。\n" NOR);
+                tell_object(me, HIC "由於你斬殺神獸白虎，你獲得了" + chinese_number(exp)
+                                + "點經驗和" + chinese_number(pot) + "點潛能。\n" NOR);
         }
 
         if( objectp(me = query_last_damage_from()) &&
             query("wang_get/虎骨", me) && 
             userp(me) )
         {
-                message_vision(HIC "$N" HIC "从白虎的尸体上除下了一根虎骨。\n", me);
+                message_vision(HIC "$N" HIC "從白虎的屍體上除下了一根虎骨。\n", me);
                 gu->move(me);
                 delete("wang_get/虎骨", me);
                 addn("combat_exp", exp, me);
@@ -111,15 +111,15 @@ void die()
                 if( query("potential", me)>me->query_potential_limit() )
                 set("potential", me->query_potential_limit(), me);
 
-                tell_object(me, HIC "由于你斩杀神兽白虎，你获得了" + chinese_number(exp)
-                                + "点经验和" + chinese_number(pot) + "点潜能。\n" NOR);
+                tell_object(me, HIC "由於你斬殺神獸白虎，你獲得了" + chinese_number(exp)
+                                + "點經驗和" + chinese_number(pot) + "點潛能。\n" NOR);
         }
 
         if( objectp(me = query_last_damage_from()) &&
             query("wang_get/虎皮", me) && 
             userp(me) )
         {
-                message_vision(HIC "$N" HIC "从白虎的尸体上除下了一张白虎皮。\n", me);
+                message_vision(HIC "$N" HIC "從白虎的屍體上除下了一張白虎皮。\n", me);
                 pi->move(me);
                 delete("wang_get/虎皮", me);
         }

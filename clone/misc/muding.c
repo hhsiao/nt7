@@ -26,7 +26,7 @@ void create()
         set_name("木鼎", ({ "mu ding", "muding", "ding" }) );
         set_weight(1000);
         set("long", @LONG
-一只木制的鼎，里面散发出香料的气味，但是细细感觉下却有一股腥味。
+一隻木製的鼎，裡面散發出香料的氣味，但是細細感覺下卻有一股腥味。
 LONG );
         set("unit", "只");
         set("value", 2500);
@@ -52,16 +52,16 @@ int do_clear(string arg)
         int k;
 
         if (! id(arg))
-                return notify_fail("你要清空什么？\n");
+                return notify_fail("你要清空什麼？\n");
 
         me = this_player();
         ob = all_inventory(this_object());
         if (! ob)
-                return notify_fail("现在" + name() + "里面没有任何东西。\n");
+                return notify_fail("現在" + name() + "裡面沒有任何東西。\n");
 
         if( query_temp("id") != query("id", me) && 
             query_temp("id") && environment() != me)
-                return notify_fail("人家正用的" + name() + "，你瞎搞什么？\n");
+                return notify_fail("人家正用的" + name() + "，你瞎搞什麼？\n");
 
         if (query_temp("lighting"))
         {
@@ -77,14 +77,14 @@ int do_clear(string arg)
                 if (! ob[i]->is_insect())
                         continue;
 
-                message_vision("$N把" + name() + "里面的$n倒了出来，扔掉了。\n",
+                message_vision("$N把" + name() + "裡面的$n倒了出來，扔掉了。\n",
                                me, ob[i]);
                 k++;
                 destruct(ob[i]);
         }
 
         if (! k)
-                message_vision("$N晃了晃" + name() + "，没啥毒虫。\n", me);
+                message_vision("$N晃了晃" + name() + "，沒啥毒蟲。\n", me);
 
         back_owner(me);
         return 1;
@@ -98,34 +98,34 @@ int do_light(string arg)
         me = this_player();
         if( query_temp("id") != query("id", me) && 
             query_temp("id") && environment() != me)
-                return notify_fail("人家正用的" + name() + "，你瞎搞什么？\n");
+                return notify_fail("人家正用的" + name() + "，你瞎搞什麼？\n");
 
         if( query("no_fight", environment(me)) )
-                return notify_fail("这里你也想练毒，不太好吧。\n");
+                return notify_fail("這裡你也想練毒，不太好吧。\n");
 
         if (query_temp("lighting"))
-                return notify_fail("现在" + name() + "中正在燃烧香料。\n");
+                return notify_fail("現在" + name() + "中正在燃燒香料。\n");
 
         if (me->is_busy())
-                return notify_fail("你现在正忙着呢，等一会儿吧。\n");
+                return notify_fail("你現在正忙著呢，等一會兒吧。\n");
 
         if (me->is_fighting())
-                return notify_fail("打架的时候你还有心思弄这个？\n");
+                return notify_fail("打架的時候你還有心思弄這個？\n");
 
         if (! objectp(ob = present("xiang liao", me)) ||
             ! ob->query_amount())
-                return notify_fail("现在你身上没有香料，无法使用" + name() + "。\n");
+                return notify_fail("現在你身上沒有香料，無法使用" + name() + "。\n");
 
         ob->add_amount(-1);
-        message_vision(HIM "\n$N" HIM "把" + name() + HIM "摆在地上，放入"
-                       "香料，点燃后发出缕缕香气。\n\n" NOR, me);
+        message_vision(HIM "\n$N" HIM "把" + name() + HIM "擺在地上，放入"
+                       "香料，點燃後發出縷縷香氣。\n\n" NOR, me);
         set_temp("lighting", 1);
         set_temp("id",query("id", me));
 
         if (environment() == me)
         {
                 this_object()->move(environment(me));
-                set("no_get", name() + "里面正烧着香料呢，别乱动！\n");
+                set("no_get", name() + "裡面正燒著香料呢，別亂動！\n");
         }
 
         remove_call_out("catch_insect");
@@ -160,14 +160,14 @@ void catch_insect(object me)
         env = environment(this_object());
         if (! objectp(me) || environment(me) != env || ! living(me))
         {
-                message_vision("香气渐渐的散去了。\n", this_object());
+                message_vision("香氣漸漸的散去了。\n", this_object());
                 return;
         }
 
         if( !query("outdoors", env) || query("no_insect", env) )
         {
-                message_vision("香气渐渐散去了，啥也没抓到，看来$N是白忙活了。\n"
-                               "$N叹口气，收回了" + name() + "。\n",
+                message_vision("香氣漸漸散去了，啥也沒抓到，看來$N是白忙活了。\n"
+                               "$N嘆口氣，收回了" + name() + "。\n",
                                me);
                 back_owner(me);
                 return;
@@ -195,36 +195,36 @@ void catch_insect(object me)
                         catch(insect = new("/clone/insect/" + st[i]));
                         if (! objectp(insect)) break;
 
-                        message_vision(HIG "香气越来越稀薄，突然一" +
+                        message_vision(HIG "香氣越來越稀薄，突然一" +
                                        query("unit", insect)+insect->name()+
-                                       HIG "爬进了" + name() + HIG "。\n" NOR, me);
+                                       HIG "爬進了" + name() + HIG "。\n" NOR, me);
                         if (! insect->move(this_object()))
                         {
-                                message_vision("可惜" + name() + "剩下的空间太小了，" + insect->name() +
-                                               "没能钻进去，走掉了。\n", me);
+                                message_vision("可惜" + name() + "剩下的空間太小了，" + insect->name() +
+                                               "沒能鑽進去，走掉了。\n", me);
                                 destruct(insect);
-                                message_vision("$N叹口气，收回了" + name() + "。\n", me);
+                                message_vision("$N嘆口氣，收回了" + name() + "。\n", me);
                                 back_owner(me);
                                 return;
                         } else
                         if (me->is_fighting() || me->is_busy())
                         {
-                                message_vision("可是$N正忙着，只好眼睁睁的看着" +
+                                message_vision("可是$N正忙著，只好眼睜睜的看著" +
                                                insect->name() + "又走掉了。\n", me);
                                 destruct(insect);
                                 return;
                         }
                         insect->unconcious();
                         back_owner(me);
-                        message_vision("$N大喜，连忙收起" + name() + "。\n", me);
+                        message_vision("$N大喜，連忙收起" + name() + "。\n", me);
                         me->start_busy(random(1));
                         return;
                 }
                 sum -= rs[st[i]];
         }
 
-        message_vision("香气渐渐散去了，啥也没抓到，看来是白忙活了。\n"
-                       "$N叹口气，收回了" + name() + "。\n",
+        message_vision("香氣漸漸散去了，啥也沒抓到，看來是白忙活了。\n"
+                       "$N嘆口氣，收回了" + name() + "。\n",
                        me);
         back_owner(me);
 }
@@ -240,21 +240,21 @@ int do_liandu(string arg)
         me = this_player();
 
         if (me->query_skill("poison", 1) < 50)
-                return notify_fail("你的基本毒技火候不够，不能练毒。\n");
+                return notify_fail("你的基本毒技火候不夠，不能練毒。\n");
 
         if (me->query_skill("huagong-dafa", 1) < 80)
-                return notify_fail("你的化功大法火候不够，不能练毒。\n");
+                return notify_fail("你的化功大法火候不夠，不能練毒。\n");
 
         ob = all_inventory(this_object());
         if (! ob)
-                return notify_fail("现在" + name() + "里面没有任何东西。\n");
+                return notify_fail("現在" + name() + "裡面沒有任何東西。\n");
 
         if( query_temp("id") != query("id", me) && 
             query_temp("id") && environment() != me)
-                return notify_fail("人家正用的" + name() + "，你瞎搞什么？\n");
+                return notify_fail("人家正用的" + name() + "，你瞎搞什麼？\n");
 
         if (query_temp("lighting"))
-                return notify_fail("现在" + name() + "里面正燃着香料呢。\n");
+                return notify_fail("現在" + name() + "裡面正燃著香料呢。\n");
 
         for (amount = 0, i = 0; i < sizeof(ob); i++)
         {
@@ -262,16 +262,16 @@ int do_liandu(string arg)
                 amount++;
         }
 
-        if (! amount) return notify_fail(name() + "又没啥毒虫，你练什么毒？\n");
+        if (! amount) return notify_fail(name() + "又沒啥毒蟲，你練什麼毒？\n");
 
-        message_vision(HIG "$N" HIG "盘腿坐下，将手伸入" + name() +
-                       HIG "，冥神练功。\n\n" NOR, me);
+        message_vision(HIG "$N" HIG "盤腿坐下，將手伸入" + name() +
+                       HIG "，冥神練功。\n\n" NOR, me);
 
         amount = 0;
         for (i = 0; i < sizeof(ob); i++)
         {
                 if (! ob[i]->is_insect()) continue;
-                message_vision(HIM "$n" HIM "慢慢化作桨水，渗入到$N" HIM "手心。\n" NOR,
+                message_vision(HIM "$n" HIM "慢慢化作槳水，滲入到$N" HIM "手心。\n" NOR,
                                me, ob[i]);
                 amount+=query("insect_poison/level", ob[i])*
                           query("insect_poison/maximum", ob[i]);
@@ -279,11 +279,11 @@ int do_liandu(string arg)
         }
 
         me->start_busy(random(1));
-        message_vision("\n$N练功完毕，睁开眼睛，站了起来。\n", me);
+        message_vision("\n$N練功完畢，睜開眼睛，站了起來。\n", me);
         amount /= 4;
         if (amount < 5)
         {
-                tell_object(me, "你觉得没有任何效果。\n");
+                tell_object(me, "你覺得沒有任何效果。\n");
                 return 1;
         }
  
@@ -298,7 +298,7 @@ int do_liandu(string arg)
         if (me->can_improve_skill("huagong-dafa"))
                 me->improve_skill("huagong-dafa", 1 + random(amount / 2) + add);
 
-        tell_object(me, HIG "你觉得你的「化功大法」和「基本毒技」又有了新的进步。\n" NOR);
+        tell_object(me, HIG "你覺得你的「化功大法」和「基本毒技」又有了新的進步。\n" NOR);
 
         return 1;
 }
@@ -314,29 +314,29 @@ int do_make(string arg)
         int amount;
 
         if (! arg)
-                return notify_fail("你想利用" + name() + "制作什么？\n");
+                return notify_fail("你想利用" + name() + "製作什麼？\n");
 
         if (arg != "poison" && arg != "du")
-                return notify_fail("使用" + name() + "无法制作这种东西。\n");
+                return notify_fail("使用" + name() + "無法制作這種東西。\n");
 
         me = this_player();
 
         if (me->query_skill("poison", 1) < 50)
-                return notify_fail("你的基本毒技火候不够，不能制毒。\n");
+                return notify_fail("你的基本毒技火候不夠，不能製毒。\n");
 
         if (me->query_skill("huagong-dafa", 1) < 80)
-                return notify_fail("你的化功大法火候不够，不能制毒。\n");
+                return notify_fail("你的化功大法火候不夠，不能製毒。\n");
 
         ob = all_inventory(this_object());
         if (! ob)
-                return notify_fail("现在" + name() + "里面没有任何东西。\n");
+                return notify_fail("現在" + name() + "裡面沒有任何東西。\n");
 
         if( query_temp("id") != query("id", me) && 
             query_temp("id") && environment() != me)
-                return notify_fail("人家正用的" + name() + "，你瞎搞什么？\n");
+                return notify_fail("人家正用的" + name() + "，你瞎搞什麼？\n");
 
         if (query_temp("lighting"))
-                return notify_fail("现在" + name() + "里面正燃着香料呢。\n");
+                return notify_fail("現在" + name() + "裡面正燃著香料呢。\n");
 
         for (amount = 0, i = 0; i < sizeof(ob); i++)
         {
@@ -344,16 +344,16 @@ int do_make(string arg)
                 amount++;
         }
 
-        if (! amount) return notify_fail(name() + "又没啥毒虫，你怎么制毒？\n");
+        if (! amount) return notify_fail(name() + "又沒啥毒蟲，你怎麼製毒？\n");
 
-        message_vision(HIG "$N" HIG "双手围住" + name() +
-                       HIG "，运起内功开始制毒。\n\n" NOR, me);
+        message_vision(HIG "$N" HIG "雙手圍住" + name() +
+                       HIG "，運起內功開始製毒。\n\n" NOR, me);
 
         amount = 0;
         for (i = 0; i < sizeof(ob); i++)
         {
                 if (! ob[i]->is_insect()) continue;
-                message_vision(HIM "$n" HIM "慢慢化作桨水...\n" NOR,
+                message_vision(HIM "$n" HIM "慢慢化作槳水...\n" NOR,
                                me, ob[i]);
                 amount+=query("insect_poison/level", ob[i])*
                           query("insect_poison/maximum", ob[i]);
@@ -361,7 +361,7 @@ int do_make(string arg)
         }
 
         me->start_busy(random(3));
-        message_vision("\n$N运功完毕，松开了手\n", me);
+        message_vision("\n$N運功完畢，鬆開了手\n", me);
 
         // calculate poison level & duratiin
 
@@ -373,7 +373,7 @@ int do_make(string arg)
         amount = (amount + plvl / 2) / plvl;
         if (amount < 5)
         {
-                tell_object(me, "你发现什么都没有弄出来，看来这次是失败了。\n");
+                tell_object(me, "你發現什麼都沒有弄出來，看來這次是失敗了。\n");
                 return 1;
         }
 
@@ -381,14 +381,14 @@ int do_make(string arg)
                 plvl = flvl * 13 / 10;
 
         du = new("/clone/misc/duwan");
-        set("poison/name", "剧毒", du);
+        set("poison/name", "劇毒", du);
         set("poison/level", plvl, du);
         set("poison/id",query("id",  me), du);
         set("poison/duration", amount, du);
 
         du->move(this_object());
 
-        tell_object(me, "你揭开" + name() + "，一粒暗红色的毒丸赫然其中，你赶忙将其取出。\n");
+        tell_object(me, "你揭開" + name() + "，一粒暗紅色的毒丸赫然其中，你趕忙將其取出。\n");
 
         return 1;
 }

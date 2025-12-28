@@ -6,12 +6,12 @@ inherit NPC;
 void create()
 {
         set_name(CYN "黑熊" NOR, ({ "hei xiong", "bear","xiong" }) );
-        set("race", "野兽");
+        set("race", "野獸");
         set("age", 20);
-        set("long", "一只凶猛的黑熊，形体硕大，人立而行。\n");
+        set("long", "一隻兇猛的黑熊，形體碩大，人立而行。\n");
         set("attitude", "aggressive");
 
-        set("limbs", ({ "熊头", "熊身", "前爪", "后爪", "尾巴" }) );
+        set("limbs", ({ "熊頭", "熊身", "前爪", "後爪", "尾巴" }) );
         set("verbs", ({ "bite", "claw" }) );
         set("unit", "只");
 
@@ -24,8 +24,8 @@ void create()
 
         set("chat_chance", 10);
         set("chat_msg", ({
-                "黑熊冲着你摇头摆尾地，不知道是什么意思。\n",
-                "黑熊挤了挤鼻子，你觉得它好象在笑，顿时一阵紧张。\n",
+                "黑熊衝著你搖頭擺尾地，不知道是什麼意思。\n",
+                "黑熊擠了擠鼻子，你覺得它好象在笑，頓時一陣緊張。\n",
         }));
 }
 
@@ -46,7 +46,7 @@ void greeting(object ob)
         if (! objectp(ob) || environment(ob) != environment())
                 return;
 
-        message_vision("$N憨憨的看着$n。\n",
+        message_vision("$N憨憨的看著$n。\n",
                        this_object(), ob);
 }
 

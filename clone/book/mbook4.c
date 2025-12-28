@@ -10,7 +10,7 @@ void create()
         else*/
         {
                 set("unit", "本");
-                set("long", YEL "孙思邈所著的医书，囊括了许多名家学说。\n" NOR);
+                set("long", YEL "孫思邈所著的醫書，囊括了許多名家學說。\n" NOR);
                 set("value", 50000);
                 set("material", "paper");
                 set("skill",

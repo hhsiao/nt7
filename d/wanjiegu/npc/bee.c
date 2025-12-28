@@ -4,12 +4,12 @@ inherit NPC;
 void create()
 {
         set_name("蜜蜂", ({ "bee" }) );
-        set("race", "昆虫");
-        set("subrace", "飞虫");
+        set("race", "昆蟲");
+        set("subrace", "飛蟲");
         set("age", 1);
-        set("long", "一只疯狂的杀人蜂。\n");
+        set("long", "一隻瘋狂的殺人蜂。\n");
 
-        set("limbs", ({ "头部", "身体", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體", "尾巴" }) );
         set("verbs", ({ "bite" }) );
 
         set_skill("dodge", 50);

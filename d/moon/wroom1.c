@@ -5,10 +5,10 @@
 inherit ROOM;
 void create()
 {
-	set("short", "左偏厅");
+	set("short", "左偏廳");
 	set("long", @LONG
-这是一间别致的小厅，厅中央摆放着一张红木圆桌，
-桌上放着一盘残棋，还有两杯香茗，尚有余温。
+這是一間別致的小廳，廳中央擺放著一張紅木圓桌，
+桌上放著一盤殘棋，還有兩杯香茗，尚有餘溫。
 LONG	);
 	set("exits", ([ 
   "east" : __DIR__"room",

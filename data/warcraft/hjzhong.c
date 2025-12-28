@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("小红帽[2;37;0m[2;37;0m", ({"zhq"}));        
+        set_name("小紅帽[2;37;0m[2;37;0m", ({"zhq"}));        
         set("gender", "男性");                
-        set("long", "小红帽[2;37;0m
-它是利九的魔幻兽。
+        set("long", "小紅帽[2;37;0m
+它是利九的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

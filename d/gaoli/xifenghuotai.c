@@ -1,11 +1,11 @@
-// Room in 高丽
+// Room in 高麗
 inherit ROOM;
 void create()        
 {
-        set("short", "烽火台");
+        set("short", "烽火臺");
         set("long", @LONG        
-这是高丽位于西边山峰上的一个烽火台。有几个官兵正在这里观察
-情况。从这里可以看到东边高丽城的全貌，非常壮观。
+這是高麗位於西邊山峰上的一個烽火臺。有幾個官兵正在這裡觀察
+情況。從這裡可以看到東邊高麗城的全貌，非常壯觀。
 LONG
         );
 set("outdoors", "gaoli");

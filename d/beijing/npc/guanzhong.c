@@ -2,11 +2,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("观众", ({ "guan zhong", "guan", "zhong" }) );
+        set_name("觀眾", ({ "guan zhong", "guan", "zhong" }) );
         set("gender", "男性" );
         set("age", 32);
         set("long",
-              "一个在戏院里看戏的观众。\n");
+              "一個在戲院裡看戲的觀眾。\n");
         set("shen_type", 1);
         set("combat_exp", 10000);
         set("str", 17);
@@ -18,7 +18,7 @@ void create()
         set_skill("unarmed",20);
         set("chat_chance", 1);
         set("chat_msg", ({
-                "观众大声鼓掌称好。\n",
+                "觀眾大聲鼓掌稱好。\n",
         }) );       
 
         setup();

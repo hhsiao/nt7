@@ -3,13 +3,13 @@
 inherit BLADE;
 void create()
 {
-        set_name( HIW "钢刀" NOR,  ({ "gang dao", "dao", "blade" }));
+        set_name( HIW "鋼刀" NOR,  ({ "gang dao", "dao", "blade" }));
         set_weight(10000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "柄");
-                set("long", "一柄钢铁打造的刀。\n");
+                set("long", "一柄鋼鐵打造的刀。\n");
                 set("value", 500);
                 set("material", "gold");
         }

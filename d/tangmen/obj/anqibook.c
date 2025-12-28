@@ -4,15 +4,15 @@ inherit ITEM;
 
 void create()
 {
-        set_name("暗器手法入门", ({ "book", "shu"}));
+        set_name("暗器手法入門", ({ "book", "shu"}));
         set_weight(100);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "本");
                 set("long",
-                        "暗器手法入门\n"
-                        "这是一本暗器使用的入门书。\n");
+                        "暗器手法入門\n"
+                        "這是一本暗器使用的入門書。\n");
                 set("value", 500);
                 set("material", "silk");
                 set("skill", ([

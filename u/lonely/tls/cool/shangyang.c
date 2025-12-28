@@ -5,13 +5,13 @@ string look_left(object me);
 string look_right(object me);
 void create()
 {
-         set("short",HIY"商阳"NOR);
-         set("long","这个山洞内一尘不染，非常干净，光线来自洞顶，似乎有块非常大的宝石，
-   迎面墙壁上挂着两张图谱(tupu)，地上放着几个蒲团，你随便找了个地方坐了下来。\n"
+         set("short",HIY"商陽"NOR);
+         set("long","這個山洞內一塵不染，非常乾淨，光線來自洞頂，似乎有塊非常大的寶石，
+   迎面牆壁上掛著兩張圖譜(tupu)，地上放著幾個蒲團，你隨便找了個地方坐了下來。\n"
 );
 
           set("item_desc", ([
-             "tupu" : "墙上挂着两张图谱(left)(right)，似乎就是六脉神剑的武功要诣。\n",
+             "tupu" : "牆上掛著兩張圖譜(left)(right)，似乎就是六脈神劍的武功要詣。\n",
              "left": (: look_left :),
              "right": (: look_right :),
 ]));
@@ -25,17 +25,17 @@ setup();
 }
 string look_left(object me)
 {
-       return YEL"\n这张图谱是一个卷轴舒开，帛面年深日久，已成焦黄之色，图上开头写着： \n"+
-       "“六脉神剑”以一阳指指力为根基，将一阳指的指力化作剑气，有质无形，可称无形气剑。所谓六脉，\n"+
-       "即手之六脉太阴肺经、厥阴心包经、少阴心经、太阳小肠经、阳明胃经、少阳三焦经,六脉神剑，即\n"+
-       "是由六脉劲气化出的六种无形剑气。。。紧跟着帛上绘着个裸体男子的图形，身上注明穴位，以红线\n"+
-       "黑线绘着内力的运走径道，旁边注着一行小字“商阳剑运气法门”。\n" NOR;
+       return YEL"\n這張圖譜是一個卷軸舒開，帛面年深日久，已成焦黃之色，圖上開頭寫著： \n"+
+       "“六脈神劍”以一陽指指力為根基，將一陽指的指力化作劍氣，有質無形，可稱無形氣劍。所謂六脈，\n"+
+       "即手之六脈太陰肺經、厥陰心包經、少陰心經、太陽小腸經、陽明胃經、少陽三焦經,六脈神劍，即\n"+
+       "是由六脈勁氣化出的六種無形劍氣。。。緊跟著帛上繪著個裸體男子的圖形，身上註明穴位，以紅線\n"+
+       "黑線繪著內力的運走徑道，旁邊注著一行小字“商陽劍運氣法門”。\n" NOR;
 }
 string look_right(object me)
 {
-        return YEL"\n这张图谱是一个卷轴舒开，帛面年深日久，已成焦黄之色，图上都是纵横交叉的直线、\n"+
-        "圆圈和弧形,但见红线黑线，纵横交错，头绪纷繁之极，这图便是商阳剑的剑法，巧妙活泼，难以捉摸，\n"+
-        "变化极其复杂。\n" NOR;
+        return YEL"\n這張圖譜是一個卷軸舒開，帛面年深日久，已成焦黃之色，圖上都是縱橫交叉的直線、\n"+
+        "圓圈和弧形,但見紅線黑線，縱橫交錯，頭緒紛繁之極，這圖便是商陽劍的劍法，巧妙活潑，難以捉摸，\n"+
+        "變化極其複雜。\n" NOR;
 }
 void init()
 {
@@ -61,37 +61,37 @@ int do_study(string arg)
        
        weapon = me->query_temp("weapon");
       
-       if(me->is_busy()|| me->is_fighting()) return notify_fail("你正忙着呢！\n");
+       if(me->is_busy()|| me->is_fighting()) return notify_fail("你正忙著呢！\n");
        if (!arg) return 0;   
      
        if (weapon )
-            return notify_fail("你手中拿着东西，怎么练？\n");   
+            return notify_fail("你手中拿著東西，怎麼練？\n");   
     
      
        if(arg=="left" ) {
        
-       if (j>2) return notify_fail("你已经竭尽全力去体会图谱上的精要，可是总感觉体内数道内劲无法运转自如！\n");		
+       if (j>2) return notify_fail("你已經竭盡全力去體會圖譜上的精要，可是總感覺體內數道內勁無法運轉自如！\n");		
        if (lvl>30*(j+1)) me->set_skill("liumai-shenjian",30*(j+1));         
       
        if (neili<(j+1)*3000+1500&&!me->query("liumai-shenjian/shangyang"))
-            return notify_fail("你竭尽全力的驱动体内的一阳指真气，试图由商阳穴射出无形剑气，却无半点劲气发出。\n");
+            return notify_fail("你竭盡全力的驅動體內的一陽指真氣，試圖由商陽穴射出無形劍氣，卻無半點勁氣發出。\n");
 
        
        if (lvl>30*(j+1))
-            return notify_fail("你已经竭尽全力去体会图谱上的精要，可是总感觉内劲无法运气成束！\n");
+            return notify_fail("你已經竭盡全力去體會圖譜上的精要，可是總感覺內勁無法運氣成束！\n");
 
        if (me->query("neili",1)<50)
-            return notify_fail("你的内力快不够了！\n");   
+            return notify_fail("你的內力快不夠了！\n");   
        if (me->query("jing",1)<50)
-           return notify_fail("你的精神快不够了！\n");       
+           return notify_fail("你的精神快不夠了！\n");       
        me->receive_damage("jing",40+random(10));
        me->receive_damage("neili",40+random(10));
 if (lvl>=30*(j+1)||me->query("liumai-shenjian/shangyang",1)){
-       write("你内力运转自如，凝聚真气，食指点出，嗤嗤声响，一条无形剑气自“商阳”穴中激射而出。\n");
+       write("你內力運轉自如，凝聚真氣，食指點出，嗤嗤聲響，一條無形劍氣自“商陽”穴中激射而出。\n");
        if (!me->query("liumai-shenjian/shangyang"))
        me->add("liumai-shenjian/shangyang", 1);
        } else {
-       write("你照着图谱研习商阳剑法的运气法门，渐渐的悟出其中的精要所在。\n");
+       write("你照著圖譜研習商陽劍法的運氣法門，漸漸的悟出其中的精要所在。\n");
        if (!me->query("liumai-shenjian/shangyang"))
        me->improve_skill("liumai-shenjian", me->query("int"));
        }
@@ -99,19 +99,19 @@ if (lvl>=30*(j+1)||me->query("liumai-shenjian/shangyang",1)){
   }else if (arg=="right") {
   	
        if (!me->query("liumai-shenjian/shangyang"))
-            return notify_fail("你已经竭尽全力去体会图谱上的剑法，可惜这一路剑法的剑气你还没有练成！\n");
+            return notify_fail("你已經竭盡全力去體會圖譜上的劍法，可惜這一路劍法的劍氣你還沒有練成！\n");
        if (me->query("neili",1)<60)
-            return notify_fail("你的内力快不够了！\n");   
+            return notify_fail("你的內力快不夠了！\n");   
        if (me->query("jing",1)<60)
-            return notify_fail("你的精神快不够了！\n");
+            return notify_fail("你的精神快不夠了！\n");
        me->receive_damage("jing",50+random(10));
        me->receive_damage("neili",50+random(10));
-       write("你照着剑谱研习商阳剑法，渐渐的悟出其中的精要所在。\n");
+       write("你照著劍譜研習商陽劍法，漸漸的悟出其中的精要所在。\n");
        me->add_temp("shangyang", 1);
        if (me->query_temp("shangyang")>=10) {
        me->add("liumai-shenjian/shangyang", 1);
        me->set_temp("shangyang",0);
-       write("你凝聚真气，拇指点处，将图上的商阳剑法演练了一遍。\n");
+       write("你凝聚真氣，拇指點處，將圖上的商陽劍法演練了一遍。\n");
        }
       return 1;
 	}     

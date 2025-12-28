@@ -5,10 +5,10 @@
 
 void create()
 {
-        set("short", "后院");
+        set("short", "後院");
 	set ("long", @LONG
-这是游戏基地的后院，正中一个假山，傲然而立、非常雄伟。下
-有一水池，环山而走，悠然不息。东面乃是练武之处，西面是厨房。
+這是遊戲基地的後院，正中一個假山，傲然而立、非常雄偉。下
+有一水池，環山而走，悠然不息。東面乃是練武之處，西面是廚房。
 LONG );
 
         set("exits", ([
@@ -23,8 +23,8 @@ LONG );
         setup();
 
         set("room_owner", "多炮塔");
-        set("room_name", "游戏基地");
+        set("room_name", "遊戲基地");
         set("room_id", "gamebase");
         set("room_owner_id", "dpt");
-        set("room_position", "南海之滨");
+        set("room_position", "南海之濱");
 }

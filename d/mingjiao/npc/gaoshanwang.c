@@ -13,11 +13,11 @@ void create()
 {
         set_name("高山王", ({ "gao shanwang", "gao", "shanwang", }));
         set("long",
-        "他是一位身宽体胖的老者，身穿一件白布长袍。\n"
-        "他正笑嘻嘻地看着你，好象对你颇有好感。\n"
+        "他是一位身寬體胖的老者，身穿一件白布長袍。\n"
+        "他正笑嘻嘻地看著你，好象對你頗有好感。\n"
         );
 
-            set("title",HIG "明教" HIW "白虎坛" NOR "坛主");
+            set("title",HIG "明教" HIW "白虎壇" NOR "壇主");
 
         set("gender", "男性");
         set("attitude", "friendly");
@@ -55,7 +55,7 @@ void create()
         map_skill("sword", "damo-jian");
 
         prepare_skill("finger", "nianhua-zhi");
-        create_family("明教", 4, "白虎坛坛主");
+        create_family("明教", 4, "白虎壇壇主");
 
         set("inquiry", ([
                 "明教" :    (: ask_me :),
@@ -73,7 +73,7 @@ void init()
 
 string ask_me()
 {
-        return "你想加入我明教(join mingjiao)吗？";
+        return "你想加入我明教(join mingjiao)嗎？";
 }
 
 #include "tanzhu.h"

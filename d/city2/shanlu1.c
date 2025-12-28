@@ -5,8 +5,8 @@ void create()
 {
         set("short", "山道");
         set("long", @LONG
-这里已经看不到襄阳了，满眼望去，尽是曲曲折折的山道，大军
-行到此处，人畜都开始有些吃力起来。
+這裡已經看不到襄陽了，滿眼望去，盡是曲曲折折的山道，大軍
+行到此處，人畜都開始有些吃力起來。
 LONG );
         set("outdoors", "xiangyang");
         set("no_magic",1);
@@ -30,7 +30,7 @@ void init()
         {
             me->move(__DIR__"wsling");
             delete_temp("yidao", me);
-            tell_object(me,YEL"一路风尘仆仆之后，乌石岭已经近在眼前了......\n"NOR);
+            tell_object(me,YEL"一路風塵僕僕之後，烏石嶺已經近在眼前了......\n"NOR);
             return;
         }
 
@@ -38,11 +38,11 @@ void init()
         {
             me->move(__DIR__"shanlu");
             delete_temp("yidao", me);
-            tell_object(me,YEL"一路风尘仆仆之后，大宋军营已经近在眼前了......\n"NOR);
+            tell_object(me,YEL"一路風塵僕僕之後，大宋軍營已經近在眼前了......\n"NOR);
             return;
         }
 
-        tell_object(me,YEL"你指挥着大军，行进在曲折的山道上......\n"NOR);
+        tell_object(me,YEL"你指揮著大軍，行進在曲折的山道上......\n"NOR);
 }
 
 int valid_leave(object me,string dir)

@@ -9,6 +9,6 @@ string name() { return HIM "天地幽然" NOR; }
 
 int perform(object me, string skill)
 {
-        return notify_fail("被动技能，不需要施展，能大幅度提高内力上限和加"
-                           "力上限，提高内力恢复速度。\n");
+        return notify_fail("被動技能，不需要施展，能大幅度提高內力上限和加"
+                           "力上限，提高內力恢復速度。\n");
 }

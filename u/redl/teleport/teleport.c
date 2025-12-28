@@ -11,7 +11,7 @@ int clean_up() { return 1;}
 
 mapping *sign = ({
         ([      "file"          :       FILEPATH "tower",       
-                "loop"          :       FILEPATH,                               //持续支付时，检查房间范围
+                "loop"          :       FILEPATH,                               //持續支付時，檢查房間範圍
                 "val"           :       50000                                   
         ]),
         ([      "file"          :       FILEPATH "qiulao",      
@@ -58,12 +58,12 @@ string look_kong(object me)
         int i = -1;
 
         msg = CYN
-"孔旁边有几行字：\n"
-"  此阵名曰『巧云飞星阵』，它可以带你穿梭到神秘的地方。\n"
-"  但需要花费财物来维持它的能量，指令：<put 数量 货币>\n" NOR;  
+"孔旁邊有幾行字：\n"
+"  此陣名曰『巧雲飛星陣』，它可以帶你穿梭到神秘的地方。\n"
+"  但需要花費財物來維持它的能量，指令：<put 數量 貨幣>\n" NOR;  
         while(i++<sizeof(sign)-1){
                 if (sign[i]["short"]) {
-                        msg += sprintf(" %-28s",  sign[i]["exit"] + ":" + sign[i]["short"] + "("+ chinese_number(sign[i]["val"]/10000) + "金·" + (sign[i]["loop"]? "维持":"进入") +")");
+                        msg += sprintf(" %-28s",  sign[i]["exit"] + ":" + sign[i]["short"] + "("+ chinese_number(sign[i]["val"]/10000) + "金·" + (sign[i]["loop"]? "維持":"進入") +")");
                         j ++;
                         if (j>1) {
                                 msg += "\n";
@@ -110,7 +110,7 @@ int do_put(string arg)
 
         if( !arg )
         {
-                        write(NOR "你要把什么投进去？\n" NOR);
+                        write(NOR "你要把什麼投進去？\n" NOR);
                         return 1;
         }
 
@@ -118,12 +118,12 @@ int do_put(string arg)
 
                 if ((time() - query_temp("teleportroom/put_time", me)) < 6) 
         {
-                        write(NOR "你这样反反覆覆算什么，等一会儿再投吧。\n" NOR);
+                        write(NOR "你這樣反反覆覆算什麼，等一會兒再投吧。\n" NOR);
                         return 1;
         }
 
         if(!interactive(me) || !playerp(me) || me->is_busy()) {
-                        write(NOR "你正忙着呢。\n" NOR);
+                        write(NOR "你正忙著呢。\n" NOR);
                         return 1;
         }
                 
@@ -153,13 +153,13 @@ int do_put(string arg)
 
         if ( !objectp(ob) )
         {
-                write("你身上没有这种东西啊！\n");
+                write("你身上沒有這種東西啊！\n");
                 return 1;
         }
 
         if (!query("money_id", ob))
         {
-                write(NOR "在这里只能投钱哦！\n" NOR);
+                write(NOR "在這裡只能投錢哦！\n" NOR);
                 return 1;
         }
         
@@ -169,7 +169,7 @@ int do_put(string arg)
                 // not combined object
                 if( amount > 1 )
                 {
-                        write(NOR + "这" + ob->name() + NOR + "是什么东西？\n" + NOR);
+                        write(NOR + "這" + ob->name() + NOR + "是什麼東西？\n" + NOR);
                         return 1;
                 }
                 max_count = 1;
@@ -178,7 +178,7 @@ int do_put(string arg)
                 // is combined object
                 if( amount > max_count )
                 {
-                        write(NOR + "你身上没有这么多" + ob->name() + NOR + "。\n" + NOR);
+                        write(NOR + "你身上沒有這麼多" + ob->name() + NOR + "。\n" + NOR);
                         return 1;
                 }
         }
@@ -187,7 +187,7 @@ int do_put(string arg)
                 
         if( value < 1000000 )
         {
-                write(NOR "你连一百两黄金都拿不出来？这也太寒酸了点吧...\n" NOR);
+                write(NOR "你連一百兩黃金都拿不出來？這也太寒酸了點吧...\n" NOR);
                 return 1;
         }
                 
@@ -196,9 +196,9 @@ int do_put(string arg)
 
         units = query("base_unit", ob);
         if (!units) units = query("unit", ob);
-        if (!units) units = "个";
+        if (!units) units = "個";
                 
-        message_vision(append_color(CYN + "$N掏出" + chinese_number(amount) + units + ob->name() + CYN + "走过去，机关人迎上前拿过，转身往孔里投了些能量石。\n" + NOR, CYN), me);
+        message_vision(append_color(CYN + "$N掏出" + chinese_number(amount) + units + ob->name() + CYN + "走過去，機關人迎上前拿過，轉身往孔裡投了些能量石。\n" + NOR, CYN), me);
 
                 if( max_count == amount ) {
                         destruct(ob);
@@ -217,7 +217,7 @@ int do_look(string arg)
         object me = this_player();
         //if ( arg && sscanf(arg, "%*d") ) {
         if ( arg && arg!="south" && arg!="southeast" && query("exits/" + arg) && wiz_level(me) < 5 ) {
-                        tell_object(me, NOR "你凝聚目力望过去，却只见浑沌的玄奥气象。\n" NOR);
+                        tell_object(me, NOR "你凝聚目力望過去，卻只見渾沌的玄奧氣象。\n" NOR);
                         return -1;
         }
         return 0;
@@ -237,17 +237,17 @@ int init()
 
 int do_tell_val(object me)
 {
-        tell_object(me, sprintf(HIG "巧云飞星阵：你储蓄的能量还余(%d)点。\n\n" NOR, query_temp("teleportroom/put_value", me)/10000)); 
+        tell_object(me, sprintf(HIG "巧雲飛星陣：你儲蓄的能量還餘(%d)點。\n\n" NOR, query_temp("teleportroom/put_value", me)/10000)); 
         return 1;
 }
 
 int do_tell_back(object me)
 {
-        //tell_object(me, sprintf(HIG "\n天边一股虚弱的能量束缚住了你..\n\n" NOR)); 
-        message_vision(append_color(NOR + YEL + "\n天边一股虚弱的能量束缚住了$N..\n\n" + NOR, YEL), me);
+        //tell_object(me, sprintf(HIG "\n天邊一股虛弱的能量束縛住了你..\n\n" NOR)); 
+        message_vision(append_color(NOR + YEL + "\n天邊一股虛弱的能量束縛住了$N..\n\n" + NOR, YEL), me);
         me->move(this_object());
-        //tell_object(me, sprintf(HIG "天旋地转中，你头晕目眩地被拉回了法阵。\n\n" NOR)); 
-        message_vision(append_color(NOR + YEL + "天旋地转中，$N头晕目眩地被拉回了法阵。\n\n" + NOR, YEL), me);
+        //tell_object(me, sprintf(HIG "天旋地轉中，你頭暈目眩地被拉回了法陣。\n\n" NOR)); 
+        message_vision(append_color(NOR + YEL + "天旋地轉中，$N頭暈目眩地被拉回了法陣。\n\n" + NOR, YEL), me);
         return 1;
 }
 
@@ -307,7 +307,7 @@ int check_teleroom()
         call_out("check_teleroom", 10);
 }
 
-int do_stop()//先清场，再改编
+int do_stop()//先清場，再改編
 {
         mapping usrs;
         string *ks;
@@ -318,7 +318,7 @@ int do_stop()//先清场，再改编
         if (query("do_stop")) {
                 delete("do_stop");
                 check_teleroom();
-                tell_object(me,YEL + "维修完毕，开放使用！\n" + NOR); 
+                tell_object(me,YEL + "維修完畢，開放使用！\n" + NOR); 
         } else {
                 set("do_stop", 1);
 
@@ -344,7 +344,7 @@ int do_stop()//先清场，再改编
                                 }
                         }
                 }
-                message_vision(append_color(NOR + CYN + "$N大声宣布：法阵开始维修，暂缓使用。\n" + NOR, CYN), me);
+                message_vision(append_color(NOR + CYN + "$N大聲宣佈：法陣開始維修，暫緩使用。\n" + NOR, CYN), me);
         }
         
         return 1;
@@ -360,12 +360,12 @@ int valid_leave(object me, string dir)
         
         if (query("do_stop") && wiz_level(me) < 5 && dir != "southeast" && dir != "south" && dir != "southwest") 
         {
-                tell_object(me, NOR + "这里正在维修，禁止使用！\n" + NOR); 
+                tell_object(me, NOR + "這裡正在維修，禁止使用！\n" + NOR); 
                 return -1;
         }
 
         if( me->query_condition("killer") ) {
-                tell_object(me, NOR"你正在被通缉，无法进入飞星阵！\n"NOR);
+                tell_object(me, NOR"你正在被通緝，無法進入飛星陣！\n"NOR);
                 return -1;
         }
 
@@ -373,14 +373,14 @@ int valid_leave(object me, string dir)
                         if( sizeof(inv) > 0  && wiz_level(me) < 5 && dir != "southeast" && dir != "south" && dir != "southwest") {
                                         foreach( object ob2 in inv ) {
                                         if( ob2->is_character() && base_name(ob2)!="/clone/user/baby" ) {
-                                        message_vision(append_color(NOR + CYN + "几个机关人冲上来围住$N，指了指他身上的$n。\n" + NOR, CYN), me, ob2);
+                                        message_vision(append_color(NOR + CYN + "幾個機關人衝上來圍住$N，指了指他身上的$n。\n" + NOR, CYN), me, ob2);
                                 return -1;
                                         }
                                         }
                                   }
         
                 if (query("exits/" + dir)) room = get_object(query("exits/" + dir));
-                if (room && objectp(room) && query("max_carry_user", room)) {//限制人数
+                if (room && objectp(room) && query("max_carry_user", room)) {//限制人數
                         inv = all_inventory(room);
                         if( sizeof(inv) > 0 ) {
                 foreach( object ob3 in inv ) {
@@ -389,7 +389,7 @@ int valid_leave(object me, string dir)
                 }
 
                 if(query("max_carry_user", room) < countp + 1 && wiz_level(me) < 5) {
-                                tell_object(me, "你发现对面的人太多了，出现空间不稳定的状态，吓得不敢踏进飞星阵。\n");  
+                                tell_object(me, "你發現對面的人太多了，出現空間不穩定的狀態，嚇得不敢踏進飛星陣。\n");  
                                 me->start_busy(2);
                                 return -1;      
                 }
@@ -405,7 +405,7 @@ int valid_leave(object me, string dir)
         if (value && wiz_level(me) < 5){
         //if (wiz_level(me) < 5){       
                 if (query_temp("teleportroom/put_value", me) < value) {
-                        message_vision(append_color(NOR + CYN + "几个机关人冲上来围住$N，指了指石台上的孔" + HIK + "(你的钱没缴够，look kong看清楚价格)" + NOR + CYN + "。\n" + NOR, CYN), me);
+                        message_vision(append_color(NOR + CYN + "幾個機關人衝上來圍住$N，指了指石臺上的孔" + HIK + "(你的錢沒繳夠，look kong看清楚價格)" + NOR + CYN + "。\n" + NOR, CYN), me);
                 me->start_busy(3);
                         return -1;
                 }
@@ -419,7 +419,7 @@ int valid_leave(object me, string dir)
                                                                                                       ]));
                         }
                         do_tell_val(me);
-                        message_vision(append_color(NOR + CYN + "$N" + (random(2) ? "轻轻" : "纵身") + "跳上" + (random(2) ? "石台" : "法阵") + "，电闪雷鸣" + (random(2) ? "一声霹雳响" : "一道极光里") + "，$N的身影" + (random(2) ? "消失" : "遁去") + "。\n" + NOR, CYN), me);
+                        message_vision(append_color(NOR + CYN + "$N" + (random(2) ? "輕輕" : "縱身") + "跳上" + (random(2) ? "石臺" : "法陣") + "，電閃雷鳴" + (random(2) ? "一聲霹靂響" : "一道極光裡") + "，$N的身影" + (random(2) ? "消失" : "遁去") + "。\n" + NOR, CYN), me);
                         return 1;
                 }
         }
@@ -429,11 +429,11 @@ int valid_leave(object me, string dir)
 
 void create()
 {
-        set("short", HIG "飞星法阵" NOR);
+        set("short", HIG "飛星法陣" NOR);
         set ("long", NOR
-"这里是一个特殊的阵法空间，八根巨大的石柱擎天而立，石柱中\n"
-"央漆黑一团，周围闪烁着紫色白色黄色的电蛇。法阵外缘的石台正中\n"
-"间有个小孔("CYN"kong"NOR")，边上站着几个傀儡机关人。\n"NOR
+"這裡是一個特殊的陣法空間，八根巨大的石柱擎天而立，石柱中\n"
+"央漆黑一團，周圍閃爍著紫色白色黃色的電蛇。法陣外緣的石臺正中\n"
+"間有個小孔("CYN"kong"NOR")，邊上站著幾個傀儡機關人。\n"NOR
         );
                 set("exits",([ /* sizeof() == 1 */
                         "south" : "/d/city/kedian4",

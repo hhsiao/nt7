@@ -1,16 +1,16 @@
 #include <ansi.h>
 #include <room.h>
 inherit CREATE_CHAT_ROOM;
-#define THROWTIME 30    //基础禁闭分钟
+#define THROWTIME 30    //基礎禁閉分鐘
 int is_chat_room() { return 1; }
 int do_check(string arg); 
 int do_tongji(string arg);
 int throwing(object me, int i, string bmsg);
 void create()
 {
-        set("short", NOR HIW "监测室" NOR);
+        set("short", NOR HIW "監測室" NOR);
         set("long", @LONG
-这是没有建造工作室的巫师的临时住处，这里的设备非常简单，只有
+這是沒有建造工作室的巫師的臨時住處，這裡的設備非常簡單，只有
 一些常用物品。
 LONG );
 
@@ -31,7 +31,7 @@ LONG );
 int valid_leave(object me, string dir)
 {
         if (dir == "up" && ! wizardp(me))
-                return notify_fail("那里只有巫师才能进去。\n");
+                return notify_fail("那裡只有巫師才能進去。\n");
 
         return ::valid_leave(me, dir);
 }
@@ -49,10 +49,10 @@ int do_check(string arg)
                 
         object me = this_player();
         if(! arg || arg == "")
-            return notify_fail("请输入要还阳者的id？\n");
+            return notify_fail("請輸入要還陽者的id？\n");
         obj = find_player(arg);
         if(!obj)
-            return notify_fail("没有这个人。\n");
+            return notify_fail("沒有這個人。\n");
         
                 msg1 = BUFF_D->check_buff(obj, "lbwb-shen")+"/"+ BUFF_D->get_buff_overtime(obj, "lbwb-shen");   
         msg2 = BUFF_D->check_buff(obj, "powerup")+"/"+ BUFF_D->get_buff_overtime(obj, "powerup");
@@ -60,10 +60,10 @@ int do_check(string arg)
         msg4 = BUFF_D->check_buff(obj, "powerofmoon")+"/"+ BUFF_D->get_buff_overtime(obj, "powerofmoon");
         msg5 = BUFF_D->check_buff(obj, "powerofstar")+"/"+ BUFF_D->get_buff_overtime(obj, "powerofstar");
                 
-        msg = arg+"的状态如下:\n";              
+        msg = arg+"的狀態如下:\n";              
         msg+= "凌波微步:"+msg1+"\n";
                 msg+= "powerup:"+msg2+"\n";
-                msg+= "太阳之力:"+msg3+"\n";
+                msg+= "太陽之力:"+msg3+"\n";
                 msg+= "月亮之力:"+msg4+"\n";
                 msg+= "星辰之力:"+msg5+"\n";            
                 tell_object(me,msg);
@@ -77,12 +77,12 @@ int do_tongji(string arg)
         object me = this_player();
                 
         if(! arg || arg == "")
-            return notify_fail("请输入玩家ID！\n");
+            return notify_fail("請輸入玩家ID！\n");
                         
         player = find_player(arg);
                 
         if(!player)
-            return notify_fail("没有这个人。\n");
+            return notify_fail("沒有這個人。\n");
 
         sk = "force";
         skname = to_chinese(sk);
@@ -92,10 +92,10 @@ int do_tongji(string arg)
         if (sklv < 2000) return 0;
         if (sklv < sklvmax * 13 / 10) return 0;
         if (sklv < sklvmax2 * 13 / 10) return 0;
-         //write(HIY + "统计到"+player->name()+"("+query("id", player)+")的"+skname+"("+sk+")的等级"+(string)sklv+"异常\n" + NOR);
-        log_file( "static/throw_skup", player->name()+"("+query("id", player)+")的"+skname+"("+sk+")的等级"+(string)sklv+"异常\n");
-        throwing(player, THROWTIME, skname+"("+sk+")等级异常达到" + (string)sklv + "级");
-        tell_object(player, NOR BLINK HIR "\n如果有异议，msg mail redl，留下你的解释。\n确定冤情后对于被禁闭的时段，可获补偿50NT/小时。\n\n" NOR);
+         //write(HIY + "統計到"+player->name()+"("+query("id", player)+")的"+skname+"("+sk+")的等級"+(string)sklv+"異常\n" + NOR);
+        log_file( "static/throw_skup", player->name()+"("+query("id", player)+")的"+skname+"("+sk+")的等級"+(string)sklv+"異常\n");
+        throwing(player, THROWTIME, skname+"("+sk+")等級異常達到" + (string)sklv + "級");
+        tell_object(player, NOR BLINK HIR "\n如果有異議，msg mail redl，留下你的解釋。\n確定冤情後對於被禁閉的時段，可獲補償50NT/小時。\n\n" NOR);
         return 1; 
 
 }
@@ -111,7 +111,7 @@ int throwing(object me, int i, string bmsg)
         set("redlworkroom/prison/time", query("online_time", me) + c , me);
         set("redlworkroom/prison/num", p + 1, me);
         
-        message_vision(append_color(NOR + YEL + "虚空中穿过来一只大如山岳的巨掌，对着$N" + NOR + YEL + "拦腰一捞，再缩回去就此不见了。\n" + NOR, YEL), me);
+        message_vision(append_color(NOR + YEL + "虛空中穿過來一隻大如山嶽的巨掌，對著$N" + NOR + YEL + "攔腰一撈，再縮回去就此不見了。\n" + NOR, YEL), me);
         me->move("/u/redl/prison");
         return 1;
 }
@@ -141,10 +141,10 @@ int auto_check()
         if (sklv < 2000) return 0;
         if (sklv < sklvmax * 13 / 10) return 0;
         if (sklv < sklvmax2 * 13 / 10) return 0;
-         //write(HIY + "统计到"+player->name()+"("+query("id", player)+")的"+skname+"("+sk+")的等级"+(string)sklv+"异常\n" + NOR);
-        log_file( "static/throw_skup", player->name()+"("+query("id", player)+")的"+skname+"("+sk+")的等级"+(string)sklv+"异常\n");
-        throwing(player, THROWTIME, skname+"("+sk+")等级异常达到" + (string)sklv + "级");
-        tell_object(player, NOR BLINK HIR "\n如果有异议，msg mail redl，留下你的解释。\n确定冤情后对于被禁闭的时段，可获补偿50NT/小时。\n\n" NOR);
+         //write(HIY + "統計到"+player->name()+"("+query("id", player)+")的"+skname+"("+sk+")的等級"+(string)sklv+"異常\n" + NOR);
+        log_file( "static/throw_skup", player->name()+"("+query("id", player)+")的"+skname+"("+sk+")的等級"+(string)sklv+"異常\n");
+        throwing(player, THROWTIME, skname+"("+sk+")等級異常達到" + (string)sklv + "級");
+        tell_object(player, NOR BLINK HIR "\n如果有異議，msg mail redl，留下你的解釋。\n確定冤情後對於被禁閉的時段，可獲補償50NT/小時。\n\n" NOR);
         return 1; 
 
 }

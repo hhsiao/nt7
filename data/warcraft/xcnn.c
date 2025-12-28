@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m血红大逼[2;37;0m[2;37;0m", ({"xcnntt"}));        
+        set_name("[1;31m血紅大逼[2;37;0m[2;37;0m", ({"xcnntt"}));        
         set("gender", "男性");                
         set("long", "$HIR$血淋淋大逼啊！！！[2;37;0m
-它是胡摸的魔幻兽。
+它是胡摸的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

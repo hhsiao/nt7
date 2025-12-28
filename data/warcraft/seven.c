@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("魔法扫把[2;37;0m[2;37;0m", ({"xxxxx"}));        
+        set_name("魔法掃把[2;37;0m[2;37;0m", ({"xxxxx"}));        
         set("gender", "男性");                
         set("long", "xxxxx[2;37;0m
-它是七天的魔幻兽。
+它是七天的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

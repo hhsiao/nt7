@@ -16,16 +16,16 @@ void main(object ob)
 	p_name=this_body()->query_id()[0];
 
 	if( !(CHAR_D->get_char(p_name,"skills")) )
-		write("你不会速攻之计。\n");
+		write("你不會速攻之計。\n");
         else if( !p_skill=CHAR_D->get_char(p_name,"skills")["sugong"] )
-		write("你不会速攻之计。\n");
+		write("你不會速攻之計。\n");
 	else if( !p_id)
-                write("只有身在军中才能使用速攻之计。\n");
+                write("只有身在軍中才能使用速攻之計。\n");
 	else {
 		load_object("/daemons/cast_d.c")->reg_player(p_name, "sugong");
 	ob->award_exp(ob->query_sk_level("sk_zhimou")/2+random(20),"sugong");
 		ob->simple_action(SG_SKILL_D->query_use("sugong"));
-		ob->start_busy(10, "你正忙于使用速攻之计。");
+		ob->start_busy(10, "你正忙於使用速攻之計。");
 
 		call_out("show_result", 5+random(5), ob, p_skill, p_id);
 	}
@@ -58,7 +58,7 @@ void show_result(object ob, int p_skill, int p_id)
 	   	mora = -(mora * 10);
 		load_object("/daemons/condition_d.c")->apply_condition(p_id,"confuse",mora,damage);
 		WARAI_D->war_inf(TROOP_D->get_troops(p_id,"task_id"),
-	TROOP_D->find_troop(p_id)->query_id()[1]+"使用速攻之计失败，陷入混乱之中。","b");
+	TROOP_D->find_troop(p_id)->query_id()[1]+"使用速攻之計失敗，陷入混亂之中。","b");
 	} else {
 	if ( soldier < 1000 ) soldier = 1000;
         mora = mora*1000/soldier;

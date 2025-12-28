@@ -4,10 +4,10 @@ inherit  ROOM;
 
 void create()
 {
-        set("short",  "厢房");
+        set("short",  "廂房");
         set("long",  @LONG
-这里是游府的一间厢房，游氏双雄的知交好友来府上做客大多居于此
-处。
+這裡是遊府的一間廂房，遊氏雙雄的知交好友來府上做客大多居於此
+處。
 LONG);
         set("exits",  ([  /*  sizeof()  ==  2  */
                 "east"  :  __DIR__"changlang7",

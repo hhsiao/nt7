@@ -9,19 +9,19 @@ int exert(object me, object target)
         string msg;
 
         if (target != me)
-                return notify_fail("你只能用碧云心法来提升自己的战斗力。\n");
+                return notify_fail("你只能用碧雲心法來提升自己的戰鬥力。\n");
 
         if( query("neili", me)<80 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if( BUFF_D->check_buff(me,"powerup") )
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force", 1);
         addn("neili", -100, me);
         me->receive_damage("qi", 0);
 
-        msg = HIR "$N凝神息气，运起碧云心法的最高境界，只见一股轻烟缭绕周身。\n" NOR;
+        msg = HIR "$N凝神息氣，運起碧雲心法的最高境界，只見一股輕煙繚繞周身。\n" NOR;
         
         data = ([
                 "attack" : skill/3,
@@ -33,11 +33,11 @@ int exert(object me, object target)
 	        "target": me,
 	        "type"  : "powerup",
 	        "attr"  : "bless",
-	        "name"  : "碧云心法·战神",
+	        "name"  : "碧雲心法·戰神",
 	        "time"  : skill,
 	        "buff_data": data,	
 	        "buff_msg" : msg,
-	        "disa_msg" : "你的碧云心法运行完毕，将内力收回丹田。\n",
+	        "disa_msg" : "你的碧雲心法運行完畢，將內力收回丹田。\n",
         ]);
 
         BUFF_D->buffup(buff);

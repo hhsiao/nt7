@@ -4,8 +4,8 @@ void create()
 {
         set("short", "大道");
         set("long", @LONG
-这是一条宽阔笔直的官道，足可容得下十马并驰。往东通向脂粉
-之都的襄阳，折向西南则通往西南重镇荆洲。
+這是一條寬闊筆直的官道，足可容得下十馬並馳。往東通向脂粉
+之都的襄陽，折向西南則通往西南重鎮荊洲。
 LONG );
         set("exits", ([
                 "northeast" : "/d/xiangyang/caodi6",

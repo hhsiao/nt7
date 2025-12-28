@@ -5,7 +5,7 @@ inherit SWORD;
 
 void create()
 {
-        set_name(HIC "吴钩剑" NOR, ({ "wugou jian", "wugou", "jian", "sword" }) );
+        set_name(HIC "吳鉤劍" NOR, ({ "wugou jian", "wugou", "jian", "sword" }) );
         set_weight(4000);
         /*if( clonep() )
                 set_default_object(__FILE__);

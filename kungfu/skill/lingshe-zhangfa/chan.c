@@ -1,11 +1,11 @@
 // This program is a part of NITAN MudLIB
-// chan.c 灵蛇缠身
+// chan.c 靈蛇纏身
 
 #include <ansi.h>
 
 inherit F_SSERVER;
 
-string name() { return "灵蛇缠身"; }
+string name() { return "靈蛇纏身"; }
 
 int perform(object me, object target)
 {
@@ -20,38 +20,38 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("「灵蛇缠身」只能对战斗中的对手使用。\n");
+                return notify_fail("「靈蛇纏身」只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "staff" )
-                return notify_fail("运用「灵蛇缠身」手中必须持杖！\n");
+                return notify_fail("運用「靈蛇纏身」手中必須持杖！\n");
 
         if ((int)me->query_skill("force") < 80)
-                return notify_fail("你的内功火候不够！\n");
+                return notify_fail("你的內功火候不夠！\n");
 
         if ((int)me->query_skill("staff") < 80)
-                return notify_fail("你的杖法还不到家，无法使用「灵蛇缠身」！\n");
+                return notify_fail("你的杖法還不到家，無法使用「靈蛇纏身」！\n");
 
         if (target->is_busy())
-                return notify_fail("对方正忙着呢，你还是加紧进攻吧！\n");
+                return notify_fail("對方正忙著呢，你還是加緊進攻吧！\n");
 
         if (! living(target))
-              return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+              return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         msg = HIG "$N" HIG "手中的" + weapon->name() +
-              HIG "不住的颤动，活现一条灵蛇，缠向$n" HIG "，难以捉摸。\n" NOR;
+              HIG "不住的顫動，活現一條靈蛇，纏向$n" HIG "，難以捉摸。\n" NOR;
 
         ap = attack_power(me, "staff");
         dp = defense_power(target, "dodge");
 
         if (ap / 2 + random(ap) > dp)
         {
-                msg += HIY "$n" HIY "仓皇之下只有严守门户，无暇反击！\n" NOR;
+                msg += HIY "$n" HIY "倉皇之下只有嚴守門戶，無暇反擊！\n" NOR;
                 target->start_busy(ap / 90 + 2);
         } else
         {
                 msg += HIC "可是$p" HIC "看破了$N" HIC
-                       "的虚招，巧妙的运用身法躲过了$P的攻击！" NOR;
+                       "的虛招，巧妙的運用身法躲過了$P的攻擊！" NOR;
                 me->start_busy(2);
         }
         message_combatd(msg, me, target);

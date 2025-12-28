@@ -7,16 +7,16 @@ string query_autoload()
                                                                                          
 void create()                                                                            
 {                                                                                        
-        set_name(HIY "阴虚丹" NOR, ({ "yinxu dan" }));              
+        set_name(HIY "陰虛丹" NOR, ({ "yinxu dan" }));              
         /*if (clonep())                                                                    
                 set_default_object(__FILE__);                                            
         else*/ {                                                                           
-                set("long", YEL "此丹吃下后可以消除一次臂力类吃丹失败记录。\n" NOR);   
-                set("base_unit", "颗");                                       
+                set("long", YEL "此丹吃下後可以消除一次臂力類吃丹失敗記錄。\n" NOR);   
+                set("base_unit", "顆");                                       
                 set("base_value", 400000);                                               
                 set("base_weight", 50);                                                  
                 set("only_do_effect", 1);                                                                                                                                       
-                set("gift_msg", HIM "突然间你觉得自己身上好象少了点什么。\n" NOR);
+                set("gift_msg", HIM "突然間你覺得自己身上好象少了點什麼。\n" NOR);
         }                                                                                
         setup();                                                                         
 }               
@@ -30,7 +30,7 @@ int do_effect(object me)
                        
         if( query("gift/clearcount", me) >= 3 )
         {                                                           
-                tell_object(me, "你觉得这药好象没什么效果。\n");
+                tell_object(me, "你覺得這藥好象沒什麼效果。\n");
         }
         else
         {                                                           
@@ -44,7 +44,7 @@ int do_effect(object me)
                 }
                 else 
                 {
-                        tell_object(me, HIC "你觉得这药好象没什么效果。\n" NOR);
+                        tell_object(me, HIC "你覺得這藥好象沒什麼效果。\n" NOR);
                 }
                 
         }             

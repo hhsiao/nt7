@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "西厢走廊");
+        set("short", "西廂走廊");
         set("long", @LONG
-你走在一条走廊上，东边是大殿，北边是一座楼阁。西面楼上传
-来阵阵打斗声。
+你走在一條走廊上，東邊是大殿，北邊是一座樓閣。西面樓上傳
+來陣陣打鬥聲。
 LONG );
         set("exits", ([
                 "northup" : __DIR__"cangjingge",

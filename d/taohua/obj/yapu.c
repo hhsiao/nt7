@@ -9,13 +9,13 @@ void create()
 {
         int skill;
         skill = random(60);
-        set_name("哑仆", ({ "ya pu","pu", "servant"}) );
+        set_name("啞僕", ({ "ya pu","pu", "servant"}) );
         set("gender", "男性");
         set("age", 30);
         set("long",
-"这是个桃花岛上的佣仆，是个忘恩负义，大奸大恶之徒，
-被黄药师擒住后，割去舌头，刺聋耳朵，充当厮养.
-他又聋又哑，神情木然。\n");
+"這是個桃花島上的傭僕，是個忘恩負義，大奸大惡之徒，
+被黃藥師擒住後，割去舌頭，刺聾耳朵，充當廝養.
+他又聾又啞，神情木然。\n");
         set("combat_exp", 10000);
         set("shen_type", -1);
         set("attitude", "peaceful");

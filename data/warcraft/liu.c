@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("巴风特[2;37;0m[2;37;0m", ({"ate"}));        
+        set_name("巴風特[2;37;0m[2;37;0m", ({"ate"}));        
         set("gender", "男性");                
-        set("long", "咕叽咕叽[2;37;0m
-它是晃悠的魔幻兽。
+        set("long", "咕嘰咕嘰[2;37;0m
+它是晃悠的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

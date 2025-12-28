@@ -9,9 +9,9 @@ mixed ask_skill1();
 void create()
 {
         set_name("朱丹臣", ({ "zhu danchen", "zhu", "danchen" }));
-        set("title", "大理国护卫" );
-        set("nickname", CYN "笔砚生" NOR);
-        set("long", "他是大理国四大护卫之一。一副书生酸溜溜的打扮行头。\n");
+        set("title", "大理國護衛" );
+        set("nickname", CYN "筆硯生" NOR);
+        set("long", "他是大理國四大護衛之一。一副書生酸溜溜的打扮行頭。\n");
         set("gender", "男性");
         set("age", 40);
         set("class", "officer");
@@ -55,7 +55,7 @@ void create()
         prepare_skill("strike", "wuluo-zhang");
 
         set("inquiry", ([
-                "透骨钉"   : (: ask_skill1 :),
+                "透骨釘"   : (: ask_skill1 :),
         ]));
 
         create_family("段氏皇族", 15, "家臣");
@@ -88,8 +88,8 @@ void attempt_apprentice(object ob)
                 return;
 
         command("smile");
-        command("say 世子殿下何需如此，只要有事吩咐在下一声便是。");
-        command("say 若世子不嫌弃，我这里倒是有一套笔法可以传授予你。");
+        command("say 世子殿下何需如此，只要有事吩咐在下一聲便是。");
+        command("say 若世子不嫌棄，我這裡倒是有一套筆法可以傳授予你。");
 
         return;
 }
@@ -99,20 +99,20 @@ int recognize_apprentice(object ob, string skill)
         if( query("family/family_name", ob) != "段氏皇族" )
         {
                 command("sneer");
-                command("say 我与阁下素不相识，不知阁下此话从何说起？");
+                command("say 我與閣下素不相識，不知閣下此話從何說起？");
                 return -1;
         }
 
         if (skill != "qingliang-daxuefa" && skill != "dagger")
         {
-                command("say 朱某生平只对笔法一项有所研究，其它功夫所知甚浅。");
+                command("say 朱某生平只對筆法一項有所研究，其它功夫所知甚淺。");
                 return -1;
         }
 
         if( !query_temp("can_learn/zhudanchen", ob) )
         {
                 command("hehe");
-                command("say 既然世子有心习武，在下理当竭尽所能传授。");
+                command("say 既然世子有心習武，在下理當竭盡所能傳授。");
                 set_temp("can_learn/zhudanchen", 1, ob);
         }
         return 1;
@@ -124,34 +124,34 @@ mixed ask_skill1()
 
         me = this_player();
         if( query("can_perform/qingliang-daxuefa/ding", me) )
-                return "我不是已经教给你了吗？";
+                return "我不是已經教給你了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return RANK_D->query_respect(me) + "和我素无瓜葛，何出此言？";
+                return RANK_D->query_respect(me) + "和我素無瓜葛，何出此言？";
 
         if (me->query_skill("qingliang-daxuefa", 1) < 1)
-                return "你连我清凉打穴法都未学，怎么来绝招一说？";
+                return "你連我清涼打穴法都未學，怎麼來絕招一說？";
 
         if( query("family/gongji", me)<400 )
-                return "恕在下无礼，王爷吩咐过，不得传功给无功子弟。";
+                return "恕在下無禮，王爺吩咐過，不得傳功給無功子弟。";
 
         if (me->query_skill("force") < 150)
-                return "你的内功修为太差，学不了这一招。";
+                return "你的內功修為太差，學不了這一招。";
 
         if( query("max_neili", me)<1200 )
-                return "你的内力修为太差，学不了这一招。";
+                return "你的內力修為太差，學不了這一招。";
 
         if (me->query_skill("qingliang-daxuefa", 1) < 100)
-                return "你清凉打穴法的火候还不够，回去练练再来吧。";
+                return "你清涼打穴法的火候還不夠，回去練練再來吧。";
 
-        message_sort(HIY "\n$n" HIY "微微一笑，伸手将$N" HIY "招到身前，低"
-                     "声在$N" HIY "耳旁嘀咕了半天。然后又拔出腰间铁扇翻转数"
-                     "下，斜刺而出。似乎是一种颇为独特的打穴法。\n\n" NOR,
+        message_sort(HIY "\n$n" HIY "微微一笑，伸手將$N" HIY "招到身前，低"
+                     "聲在$N" HIY "耳旁嘀咕了半天。然後又拔出腰間鐵扇翻轉數"
+                     "下，斜刺而出。似乎是一種頗為獨特的打穴法。\n\n" NOR,
                      me, this_object());
 
         command("smile");
-        command("say 这招并不难练，依世子的悟性很快就可以熟练运用了。");
-        tell_object(me, HIC "你学会了「透骨钉」。\n" NOR);
+        command("say 這招並不難練，依世子的悟性很快就可以熟練運用了。");
+        tell_object(me, HIC "你學會了「透骨釘」。\n" NOR);
         if (me->can_improve_skill("dagger"))
                 me->improve_skill("dagger", 1500000);
         if (me->can_improve_skill("qingliang-daxuefa"))
@@ -174,13 +174,13 @@ int accept_object(object who, object ob)
 
         if( query("dushu", who) + 1 < 1 )
         {
-                say(this_object()->name()+"笑道：“这怎么好意思，您上次给的钱还没读完呢！”\n");
+                say(this_object()->name()+"笑道：“這怎麼好意思，您上次給的錢還沒讀完呢！”\n");
                 return 0;
         }
 
         if( ob->value()/15 + query("dushu", who) < 0 )
         {
-                say(this_object()->name()+"受宠若惊地说：“这么多钱我可不敢收呀！”\n");
+                say(this_object()->name()+"受寵若驚地說：“這麼多錢我可不敢收呀！”\n");
                 return 0;
         }
 
@@ -188,13 +188,13 @@ int accept_object(object who, object ob)
         {
                 if( ob->value() >= learn )
                 {
-                        say(this_object()->name()+"点了点头，说道：哦，像你这麽有心的学生还真是不多见，好好努力\n可以向我请教读书写字(literate)的任何问题。\n");
+                        say(this_object()->name()+"點了點頭，說道：哦，像你這麼有心的學生還真是不多見，好好努力\n可以向我請教讀書寫字(literate)的任何問題。\n");
                         set("dushu", ob->value()/15, who);
                         return 1;
                 }
                 else
                 {
-                        say(this_object()->name()+"说道：你的诚意不够，这钱还是拿回去吧。\n");
+                        say(this_object()->name()+"說道：你的誠意不夠，這錢還是拿回去吧。\n");
                         return 0;
                 }
         }
@@ -202,13 +202,13 @@ int accept_object(object who, object ob)
         {
                 if( ob->value() >= learn )
                 {
-                        say(this_object()->name()+"点了点头，说道：哦，像你这麽有心的学生还真是不多见，好好努力将来必定前途无量，谢了。\n");
+                        say(this_object()->name()+"點了點頭，說道：哦，像你這麼有心的學生還真是不多見，好好努力將來必定前途無量，謝了。\n");
                         addn("dushu", ob->value()/15, who);
                         return 1;
                 }
                 else
                 {
-                        say(this_object()->name()+"说道：你的诚意不够，这钱还是拿回去吧。\n");
+                        say(this_object()->name()+"說道：你的誠意不夠，這錢還是拿回去吧。\n");
                         return 0;
                 }
         }
@@ -229,19 +229,19 @@ int do_learn(string arg)
         ob = this_object();
 
         if (me->is_busy())
-                return notify_fail("你现在正忙着呢。\n");
+                return notify_fail("你現在正忙著呢。\n");
 
         if(!arg || arg=="?" || arg=="/?")
-                return notify_fail("指令格式：learn <某人> [about] <技能> <次数>\n");
+                return notify_fail("指令格式：learn <某人> [about] <技能> <次數>\n");
 
         /*
         if ((sscanf(arg, "%s about %s %d", teacher,skill,times)!=3 ))
         if ((sscanf(arg, "%s %s %d", teacher, skill,times)!=3 ))
-                return notify_fail("指令格式：learn <某人> [about] <技能> <次数>\n");
+                return notify_fail("指令格式：learn <某人> [about] <技能> <次數>\n");
         */
 
         if( (i = sizeof(args = explode(arg, " "))) < 2 )
-                return notify_fail("指令格式：learn|xue <某人> <技能> <次数>\n");
+                return notify_fail("指令格式：learn|xue <某人> <技能> <次數>\n");
 
         i--;
         if( i >= 2 && sscanf(args[i], "%d", times) && times )
@@ -257,7 +257,7 @@ int do_learn(string arg)
                 return 0;
 
         if( me->is_fighting() )
-                return notify_fail("临阵磨枪？来不及啦。\n");
+                return notify_fail("臨陣磨槍？來不及啦。\n");
 
         c = 200 + query_temp("apply/learn_times", me);
         if( present("learn emblem", me) )
@@ -270,21 +270,21 @@ int do_learn(string arg)
                 c += 1000;
 
         if( times < 1 || times > c ) {
-                write("学习次数最少一次，最多也不能超过" + chinese_number(c) +"次。\n");
+                write("學習次數最少一次，最多也不能超過" + chinese_number(c) +"次。\n");
                 return 1;
         }
 
         if ((int)times<1) {
-                write("你要学几次？\n");
+                write("你要學幾次？\n");
                 return 1;
         }
 
         if( !living(ob) )
-                return notify_fail("嗯....你得先把" + ob->name() + "弄醒再说。\n");
+                return notify_fail("嗯....你得先把" + ob->name() + "弄醒再說。\n");
 
         if (me->query_skill("literate",1) >=ob->query_skill("literate", 1) && query("dushu",me))
         {
-                command("say 嗯...."+me->name()+"，你学习很用功，但我只能教你到这了。天底下已经无人可以教你了。\n");
+                command("say 嗯...."+me->name()+"，你學習很用功，但我只能教你到這了。天底下已經無人可以教你了。\n");
                 return 1;
         }
 
@@ -292,24 +292,24 @@ int do_learn(string arg)
 
         if( !query("dushu", me) )
         {
-                command("say 咦？"+me->name()+"，我不记得收过你这个学生啊....\n");
+                command("say 咦？"+me->name()+"，我不記得收過你這個學生啊....\n");
                 return 1;
         }
 
         if( query("dushu", me)<times ) {
-                command("say 咦？"+me->name()+"，你交的钱已经不够学这么多次了啊....\n");
+                command("say 咦？"+me->name()+"，你交的錢已經不夠學這麼多次了啊....\n");
                 return 1;
         }
 
         if (!learn)     learn=10;
         if (skill!="literate") {
-                write("这项技能你恐怕必须找别人学了。\n");
+                write("這項技能你恐怕必須找別人學了。\n");
                 return 1;
         }
         if (! room=find_object(query("startroom",ob)))
                 room=load_object(query("startroom",ob));
         if (room!=environment()){
-                command("say 我出来办点事，等我回去再说吧！");
+                command("say 我出來辦點事，等我回去再說吧！");
                 return 1;
         }
         /*
@@ -323,26 +323,26 @@ int do_learn(string arg)
         my_skill = me->query_skill(skill, 1);
         master_skill = ob->query_skill(skill, 1);
         if( my_skill >= master_skill ) {
-                write("这项技能你的程度已经不输你师父了。\n");
+                write("這項技能你的程度已經不輸你師父了。\n");
                 return 1;
         }
 
         if( (query("level", me) < 60 && my_skill > 10000) ||
             (query("level", me) < 80 && my_skill > 20000) ||
             (query("level", me) < 100 && my_skill > 30000) ) {
-                write("这项技能你的程度已经达到封顶上限了。\n");
+                write("這項技能你的程度已經達到封頂上限了。\n");
                 return 1;
         }
 
         if( (query("potential", me) - query("learned_points",me)) < times )
-                return notify_fail("你的潜能不够学习这么多次了。\n");
+                return notify_fail("你的潛能不夠學習這麼多次了。\n");
 
         gin_cost = 150 / (int)me->query_int() + 1;
         if( !my_skill ) {
                 gin_cost *= 2;
                 me->set_skill(skill,0);
         }
-        printf("你向%s请教有关「%s」的疑问。\n", ob->name(), to_chinese(skill));
+        printf("你向%s請教有關「%s」的疑問。\n", ob->name(), to_chinese(skill));
 
         t1 = query("jing",me) / gin_cost;
         t2 = times - t1;
@@ -364,7 +364,7 @@ int do_learn(string arg)
                         t3 = (int)query("neili",me) / neili_cost;
                         t4 = t1 + t3;
                         if( t4 == 0 ) {
-                                write("然而你今天太累了，无法再进行任何学习了。\n");
+                                write("然而你今天太累了，無法再進行任何學習了。\n");
                                 return 1;
                         }
 
@@ -408,14 +408,14 @@ int do_learn(string arg)
         if( query("special_skill/wisdom",me) )
                 rand += rand * 50 / 100;
 
-        printf("你听了%s的指导，似乎有些心得。\n", ob->name());
+        printf("你聽了%s的指導，似乎有些心得。\n", ob->name());
         addn("learned_points", t4, me);
         // me->improve_skill(skill, t4*grade * (10 + random((int)me->query_int() - 9)));
         me->improve_skill(skill, t4*grade*rand);
 
         if( t4 > 0 && t4 < times )
-                write("但是你今天太累了，学习了" + chinese_number(t4) +
-                      "次以后只好先停下来。\n");
+                write("但是你今天太累了，學習了" + chinese_number(t4) +
+                      "次以後只好先停下來。\n");
 
         addn("dushu", -t4, me);
         return 1;

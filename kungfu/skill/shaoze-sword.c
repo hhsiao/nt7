@@ -1,15 +1,15 @@
-// six-fingers.c 六脉神剑 - 少泽剑
+// six-fingers.c 六脈神劍 - 少澤劍
 #include <ansi.h>
 inherit SKILL;
 
 mapping *action = ({
-        ([ "name":   "少泽剑",
-           "action": "$N左手小指一伸，一条气流从少冲穴中激射而出，“少泽剑”"
-                     "出手入风，指向$n的$l",
+        ([ "name":   "少澤劍",
+           "action": "$N左手小指一伸，一條氣流從少衝穴中激射而出，“少澤劍”"
+                     "出手入風，指向$n的$l",
            "force":  320,
            "dodge":  60,
            "damage": 100,
-           "damage_type":  "刺伤"
+           "damage_type":  "刺傷"
         ]),
 });
 
@@ -20,13 +20,13 @@ int valid_enable(string usage) { return usage=="finger" ||  usage=="parry"; }
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练少泽剑必须空手。\n");
+                return notify_fail("練少澤劍必須空手。\n");
 
         if( query("max_neili", me)<2250 )
-                return notify_fail("你的内力太弱，无法学少泽剑。\n");
+                return notify_fail("你的內力太弱，無法學少澤劍。\n");
 
         if ((int)me->query_skill("finger", 1) < (int)me->query_skill("shaoze-sword", 1))
-                return notify_fail("你的基本指法水平有限，无法无法领会更高深的少泽剑。\n");
+                return notify_fail("你的基本指法水平有限，無法無法領會更高深的少澤劍。\n");
 
         return 1;
 }
@@ -45,13 +45,13 @@ int practice_skill(object me)
 //      int i,skill,damage;
 
         if ((int)me->query_skill("six-finger", 1))
-                return notify_fail("你已经学齐六脉神剑了。\n");
+                return notify_fail("你已經學齊六脈神劍了。\n");
 
         if( query("qi", me)<100 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你的内力不够练少泽剑。\n");
+                return notify_fail("你的內力不夠練少澤劍。\n");
 
         me->receive_damage("qi", 40);
         addn("neili", -80, me);
@@ -65,7 +65,7 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         if( random(damage_bonus/4) > victim->query_str() )
         {
                 victim->receive_wound("qi", (damage_bonus - 100) / 2 );
-                return HIR "你听到「嗤啦」一声轻响，脸上竟溅到一些血滴！\n" NOR;
+                return HIR "你聽到「嗤啦」一聲輕響，臉上竟濺到一些血滴！\n" NOR;
         }
 }
 

@@ -11,10 +11,10 @@ void create()
 {
         object ob; 
      
-        set_name(HIR + "努尔海" + NOR, ({ "nuer hai", "nuer", "hai" }));
-        set("nickname", HIY + "一品堂统领" + NOR);
+        set_name(HIR + "努爾海" + NOR, ({ "nuer hai", "nuer", "hai" }));
+        set("nickname", HIY + "一品堂統領" + NOR);
         set("long", 
-"西夏国有个讲武馆，叫做一品堂，是该国国王所立，堂中招聘武功高强之士，优礼供养。\n"
+"西夏國有個講武館，叫做一品堂，是該國國王所立，堂中招聘武功高強之士，優禮供養。\n"
         );
         
         set("age", 40);
@@ -37,32 +37,32 @@ void create()
         set("combat_exp", 2000000000);
                 set("jiali", 10000);
 
-                //set_temp("apply/add_blind", 100);//    : "致盲",                       // weapon 终极兵器 致盲-让对手失明
-                set_temp("apply/add_freeze", 5);//   : "冰冻",                       // weapon 终极兵器 冰冻-迟缓，减缓对方攻击，攻击pfm速度降低，无任何防御，无躲闪，无招架，就是挨打
-                set_temp("apply/add_burning", 30);//  : "灼烧",                       // weapon 终极兵器 灼烧-一定时间内目标不停的减少内力和气血condition
-                //set_temp("apply/add_dizziness", 100);//: "眩晕",                       // weapon 终极兵器 昏睡-眩晕，不能进行任何行动，但生命通常会加速回复，受到攻击会醒来，否则15秒内一直不动，解除战斗状态，昏睡本来就是一个混战时，先把一个敌人排除出战斗，专心对付其他人的技能
-                set_temp("apply/add_forget", 20);//   : "遗忘",                       // weapon 终极防具 遗忘-使对方忘记所有技能的绝招add_oblivion   
-                set_temp("apply/add_weak", 10);//     : "虚弱",                       // weapon 终极兵器
-                set_temp("apply/add_busy", 25);//     : "忙乱",                       // weapon 终极兵器
+                //set_temp("apply/add_blind", 100);//    : "致盲",                       // weapon 終極兵器 致盲-讓對手失明
+                set_temp("apply/add_freeze", 5);//   : "冰凍",                       // weapon 終極兵器 冰凍-遲緩，減緩對方攻擊，攻擊pfm速度降低，無任何防禦，無躲閃，無招架，就是捱打
+                set_temp("apply/add_burning", 30);//  : "灼燒",                       // weapon 終極兵器 灼燒-一定時間內目標不停的減少內力和氣血condition
+                //set_temp("apply/add_dizziness", 100);//: "眩暈",                       // weapon 終極兵器 昏睡-眩暈，不能進行任何行動，但生命通常會加速回復，受到攻擊會醒來，否則15秒內一直不動，解除戰鬥狀態，昏睡本來就是一個混戰時，先把一個敵人排除出戰鬥，專心對付其他人的技能
+                set_temp("apply/add_forget", 20);//   : "遺忘",                       // weapon 終極防具 遺忘-使對方忘記所有技能的絕招add_oblivion   
+                set_temp("apply/add_weak", 10);//     : "虛弱",                       // weapon 終極兵器
+                set_temp("apply/add_busy", 25);//     : "忙亂",                       // weapon 終極兵器
 
-                set_temp("apply/avoid_blind", 100);//  : "忽视致盲",                   // armor/rings 终极防具
-                set_temp("apply/avoid_freeze", 80);// : "忽视冰冻",                   // armor/rings 终极防具
-                set_temp("apply/avoid_burning", 80);//: "忽视灼烧",                   // armor/rings 终极防具
-                set_temp("apply/avoid_dizziness", 100);//: "忽视眩晕",                  // armor/rings 终极防具
-                set_temp("apply/avoid_forget", 90);// : "忽视遗忘",                   // armor/rings 终极兵器
-                set_temp("apply/avoid_weak", 85);//   : "忽视虚弱",                   // armor/rings 终极防具
-                set_temp("apply/avoid_busy", 80);//   : "忽视忙乱",                   // armor/rings 终极防具
-                set_temp("apply/reduce_busy", 80);//  : "化解忙乱",                   // armor/rings 终极防具
+                set_temp("apply/avoid_blind", 100);//  : "忽視致盲",                   // armor/rings 終極防具
+                set_temp("apply/avoid_freeze", 80);// : "忽視冰凍",                   // armor/rings 終極防具
+                set_temp("apply/avoid_burning", 80);//: "忽視灼燒",                   // armor/rings 終極防具
+                set_temp("apply/avoid_dizziness", 100);//: "忽視眩暈",                  // armor/rings 終極防具
+                set_temp("apply/avoid_forget", 90);// : "忽視遺忘",                   // armor/rings 終極兵器
+                set_temp("apply/avoid_weak", 85);//   : "忽視虛弱",                   // armor/rings 終極防具
+                set_temp("apply/avoid_busy", 80);//   : "忽視忙亂",                   // armor/rings 終極防具
+                set_temp("apply/reduce_busy", 80);//  : "化解忙亂",                   // armor/rings 終極防具
   
-                set_temp("apply/reduce_damage", 60);//  : 化解伤害",                   // armor 终极防具 
-                set_temp("apply/ap_power", 20);//  : "绝招攻击力",         // weapon/rings
-                set_temp("apply/dp_power", 35);//  : "绝招防御力",         // armor
-                set_temp("apply/da_power", 10);//  : "绝招伤害力",         // weapon/rings
-                set_temp("apply/avoid_defense", 30);//  : "攻击无视目标防御",   // weapon/rings
-                set_temp("apply/avoid_parry", 30);//  : "攻击无视目标招架",   // weapon/rings
-                set_temp("apply/avoid_dodge", 30);//  : "攻击无视目标躲闪",   // weapon/rings
-                set_temp("apply/avoid_force", 30);//  : "攻击无视内功防御",   // weapon/rings
-                set_temp("apply/avoid_attack", 60);//  : "无视目标特殊攻击",   // armor
+                set_temp("apply/reduce_damage", 60);//  : 化解傷害",                   // armor 終極防具 
+                set_temp("apply/ap_power", 20);//  : "絕招攻擊力",         // weapon/rings
+                set_temp("apply/dp_power", 35);//  : "絕招防禦力",         // armor
+                set_temp("apply/da_power", 10);//  : "絕招傷害力",         // weapon/rings
+                set_temp("apply/avoid_defense", 30);//  : "攻擊無視目標防禦",   // weapon/rings
+                set_temp("apply/avoid_parry", 30);//  : "攻擊無視目標招架",   // weapon/rings
+                set_temp("apply/avoid_dodge", 30);//  : "攻擊無視目標躲閃",   // weapon/rings
+                set_temp("apply/avoid_force", 30);//  : "攻擊無視內功防禦",   // weapon/rings
+                set_temp("apply/avoid_attack", 60);//  : "無視目標特殊攻擊",   // armor
 
         if (!random(3))
         {
@@ -188,12 +188,12 @@ void chk_blade(object blade)
         
         if (!query_temp("weapon") || !objectp(query("myweapon",me)))
         {
-                if (objectp(query_last_damage_from())) query_last_damage_from()->start_busy(3+random(4));//给点时间我带武器，不论对方有多少pfm busy
+                if (objectp(query_last_damage_from())) query_last_damage_from()->start_busy(3+random(4));//給點時間我帶武器，不論對方有多少pfm busy
                 if(objectp(blade)) destruct(blade);
                 blade = new("/clone/weapon/whip/tielian");
                 set("myweapon", blade, me);
                 blade->move(this_object()); 
-                str = sprintf("%s" HIY "从屁股后面一摸，又拿出一条%s" HIY "握在手中。\n" NOR,
+                str = sprintf("%s" HIY "從屁股後面一摸，又拿出一條%s" HIY "握在手中。\n" NOR,
                                        query("name", me),
                                        query("name", blade));
                         tell_room(environment(me), str, me);
@@ -213,11 +213,11 @@ void init()
 void die(object killer)
 {
          int showexp;
-        object dob;             // 打晕这个NPC的人
-        int n;                  // 可以奖励的人的数目
-        int exp;                // 需要瓜分的经验
-        int pot;                // 需要瓜分的潜能
-        object *t;              // 杀死我的人的队伍列表
+        object dob;             // 打暈這個NPC的人
+        int n;                  // 可以獎勵的人的數目
+        int exp;                // 需要瓜分的經驗
+        int pot;                // 需要瓜分的潛能
+        object *t;              // 殺死我的人的隊伍列表
         object tob;
         int i;
                 object *inv;
@@ -226,7 +226,7 @@ void die(object killer)
                 string s_gift, *key_s_gift;
                 int gift_point;
 
-        // 定义奖励物品列表
+        // 定義獎勵物品列表
                 mixed oblist;
                 
                 object env;
@@ -244,10 +244,10 @@ void die(object killer)
                 oblist = query("oblist");
 
 
-                // 通知当前房间，以便计算刷新
+                // 通知當前房間，以便計算刷新
                 env = environment(this_object());
                 env->npc_die(this_object());
-        // 找到杀了我(NPC)或是打晕我的人
+        // 找到殺了我(NPC)或是打暈我的人
         if (! objectp(dob = killer))
                 dob = query_last_damage_from();
 
@@ -287,7 +287,7 @@ void die(object killer)
                 showexp = exp;                
                                 
                                 CHANNEL_D->channel_broadcast(CHANL_NAME, 
-                                        query("name", dob) + "于无锡杏子林击杀"+HIY+"「一品堂统领」"+HIR+"努尔海"+NOR+"，获得"+chinese_number(get_show_giftexp(dob, showexp))+"点经验奖励。"
+                                        query("name", dob) + "於無錫杏子林擊殺"+HIY+"「一品堂統領」"+HIR+"努爾海"+NOR+"，獲得"+chinese_number(get_show_giftexp(dob, showexp))+"點經驗獎勵。"
                                         );
                                         
                                 exp = invert_reborngiftd(dob, exp);
@@ -311,7 +311,7 @@ void die(object killer)
                                                                    addn("xingzilin/bossnu",1,tob);addn("xingzilin/exp",exp,tob);GIFT_D->delay_bonus(tob,
                                                                           ([ "exp"      : exp + ((tob == dob) ? exp / 10 : 0),
                                                                                  "pot"      : pot + ((tob == dob) ? pot / 10 : 0),
-                                                                                 "prompt"   : "你的队伍杀死" + name() + "之后"]));
+                                                                                 "prompt"   : "你的隊伍殺死" + name() + "之後"]));
 
                                                  }
                                         }
@@ -321,7 +321,7 @@ void die(object killer)
                                                                    addn("xingzilin/bossnu",1,dob);addn("xingzilin/exp",exp,dob);GIFT_D->delay_bonus(dob,
                                                                           ([ "exp"      : exp,
                                                                                  "pot"      : pot,
-                                                                                 "prompt"   : "你在杀死" + name() + "之后"]));
+                                                                                 "prompt"   : "你在殺死" + name() + "之後"]));
                                 }
 
         }

@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("[1;36m输出文字中[2;37;0m[2;37;0m", ({"bmw"}));        
+        set_name("[1;36m輸出文字中[2;37;0m[2;37;0m", ({"bmw"}));        
         set("gender", "男性");                
         set("long", "bmw[2;37;0m
-它是离谱得很的魔幻兽。
+它是離譜得很的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");
         set("owner", "lpj");
-        set("owner_name", "离谱得很");
+        set("owner_name", "離譜得很");
         set_temp("owner", "lpj");
-        set_temp("owner_name", "离谱得很");
+        set_temp("owner_name", "離譜得很");
         ::setup();
 }

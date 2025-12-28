@@ -10,18 +10,18 @@ int dispel(object me, object ob, int duration)
 
         if (me != ob)
         {
-                tell_object(ob, "你发觉" + me->name() + "的内力源源涌进，原"
-                            "本紊乱的内息更是厉害，眼前登时一黑。\n");
-                tell_object(me, "你试图帮助" + ob->name() + "化解异种真气，"
-                            "却忽然发现自己的内力源源而逝，不由大惊，连忙住手。\n");
+                tell_object(ob, "你發覺" + me->name() + "的內力源源湧進，原"
+                            "本紊亂的內息更是厲害，眼前登時一黑。\n");
+                tell_object(me, "你試圖幫助" + ob->name() + "化解異種真氣，"
+                            "卻忽然發現自己的內力源源而逝，不由大驚，連忙住手。\n");
                 if (living(ob)) ob->unconcious();
                 return -1;
         }
 
         if (me->query_skill_mapped("force") != "yijinjing")
         {
-                tell_object(me, "你觉得异种真气左突右冲，内息"
-                            "大乱，根本无法将内力凝聚起来。\n");
+                tell_object(me, "你覺得異種真氣左突右衝，內息"
+                            "大亂，根本無法將內力凝聚起來。\n");
                 return -1;
         }
 
@@ -32,7 +32,7 @@ int dispel(object me, object ob, int duration)
         else
                 me->apply_condition("xixing-fanshi", n);
 
-        tell_object(me, "你默默的运用易筋经神功化解体内的异种真气。\n");
+        tell_object(me, "你默默的運用易筋經神功化解體內的異種真氣。\n");
 
         return 1;
 }
@@ -43,7 +43,7 @@ int update_condition(object me, int duration)
 
 	if( !living(me) && (query("eff_qi", me)<20 || query("eff_jing", me)<10) )
         {
-                me->set_temp("因为修习吸星大法不慎，内力反噬吐血身亡了");
+                me->set_temp("因為修習吸星大法不慎，內力反噬吐血身亡了");
 		me->die();
 		return 0;
 	} else
@@ -52,9 +52,9 @@ int update_condition(object me, int duration)
                 me->receive_wound("jing", 100);
                 if( query("max_neili", me) )
                         addn("max_neili", -1, me);
-		tell_object(me, HIR "你觉得丹田内息紊乱之极，浑身忽冷忽"
-                                "热，四肢百赅内力激荡，几欲晕厥。\n" NOR);
-		message("vision", me->name() + "脸色忽青忽红，四肢不住的颤动。\n",
+		tell_object(me, HIR "你覺得丹田內息紊亂之極，渾身忽冷忽"
+                                "熱，四肢百賅內力激盪，幾欲暈厥。\n" NOR);
+		message("vision", me->name() + "臉色忽青忽紅，四肢不住的顫動。\n",
 			environment(me), me);
 	}
 

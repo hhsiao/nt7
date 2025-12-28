@@ -1,4 +1,4 @@
-// 拍卖师
+// 拍賣師
 
 inherit NPC;
 #include <ansi.h>;
@@ -11,13 +11,13 @@ int delete_ob(int num);
 string to_ch(int money);
 void create()
 {
-        set_name("拍卖师", ({ "paimai shi", "ji", "shi" }) );
-                set("nickname", HIY+BLINK "天下第一锤" NOR);
+        set_name("拍賣師", ({ "paimai shi", "ji", "shi" }) );
+                set("nickname", HIY+BLINK "天下第一錘" NOR);
         set("gender", "男性");
         set("age", 45);
         set("no_get", 1);
         set("long",
-                "这是一位瘦高的中年人，因为公正无私而被推为天下第一拍卖师。\n");
+                "這是一位瘦高的中年人，因為公正無私而被推為天下第一拍賣師。\n");
         set("combat_exp",600000);
         set("shen", 0);
             set("attitude", "friendly");
@@ -73,33 +73,33 @@ int do_paimai(string arg)
         who=this_player();
         
         if( who->is_busy() )
-         return notify_fail("你的动作还没有完成，不能提交物品进行拍卖。\n");
+         return notify_fail("你的動作還沒有完成，不能提交物品進行拍賣。\n");
         if( who->query_condition("auction_forbindden"))
-                return notify_fail("你目前不能参与拍卖。\n");
+                return notify_fail("你目前不能參與拍賣。\n");
     if( !arg || sscanf(arg, "%s with %d",id, money)!=2 )
-                return notify_fail("指令格式：paimai <物品id> with <底价(silver为单位)> \n");
+                return notify_fail("指令格式：paimai <物品id> with <底價(silver為單位)> \n");
         if( !ob=present(id, who))
-                return notify_fail("你身上没有这样东西。\n");
+                return notify_fail("你身上沒有這樣東西。\n");
         if( query("money_id", ob) )
-                return notify_fail("你要拍卖「钱」？\n");
+                return notify_fail("你要拍賣「錢」？\n");
         if( query("value", ob)<10 || money == 0 )
-                return notify_fail("拍卖师说道：这件东西不值钱，你就别卖了！\n");
+                return notify_fail("拍賣師說道：這件東西不值錢，你就別賣了！\n");
         if( query("no_sell", ob) && !query("can_auction", ob) )
-                return notify_fail("拍卖师说道：这样东西不能拍卖了！\n");
+                return notify_fail("拍賣師說道：這樣東西不能拍賣了！\n");
         if( query("no_drop", ob) && !query("can_auction", ob) )
-                return notify_fail("拍卖师说道：扔不掉的东西想来卖，你当我这里是垃圾堆啊！\n");
+                return notify_fail("拍賣師說道：扔不掉的東西想來賣，你當我這裡是垃圾堆啊！\n");
         if( ob->query_unique() && !query("can_auction", ob) )
-                return notify_fail("拍卖师说道的说：这是孤品啊，我们这里可不敢承接这个买卖了！\n");
+                return notify_fail("拍賣師說道的說：這是孤品啊，我們這裡可不敢承接這個買賣了！\n");
     if( money<(100+query("value", ob)/100) )
-                return notify_fail("拍卖师说道：您想做赔本生意，嘿嘿，您财大气粗无所谓，小店的声誉可是要受损的。\n");
+                return notify_fail("拍賣師說道：您想做賠本生意，嘿嘿，您財大氣粗無所謂，小店的聲譽可是要受損的。\n");
     if(money<0||money>1000000)
-                return notify_fail("拍卖师说道：你出的价格是非法的。\n"); //防止溢出
+                return notify_fail("拍賣師說道：你出的價格是非法的。\n"); //防止溢出
         if( query("balance", who)<10000 )
-                return notify_fail("拍卖师说道：你账号里的钱不够支付手续费！\n");
+                return notify_fail("拍賣師說道：你賬號裡的錢不夠支付手續費！\n");
    
         addn("balance", -10000, who);
-        command("sys"+query("name", who)+"("+query("id", who)+")"+NOR+query("name", ob)+HIC+"进行拍卖。\n"NOR);
-        command("chat"+"有人提交"+NOR+query("name", ob)+HIC+"进行拍卖，请使用"+HIW"〖"HIG"拍卖"HIW"〗"NOR+HIC"频道"HIY"（ＢＩＬＬ）"HIC"了解具体情况。"NOR);
+        command("sys"+query("name", who)+"("+query("id", who)+")"+NOR+query("name", ob)+HIC+"進行拍賣。\n"NOR);
+        command("chat"+"有人提交"+NOR+query("name", ob)+HIC+"進行拍賣，請使用"+HIW"〖"HIG"拍賣"HIW"〗"NOR+HIC"頻道"HIY"（ＢＩＬＬ）"HIC"瞭解具體情況。"NOR);
     who->apply_condition("auction_forbindden",1+random(10));
         sscanf(file_name(ob),"%s#%d",file_name,clone_number);
 
@@ -150,12 +150,12 @@ int begin_paimai(string name,int money,int num,int m)
         m+=1;
         if (m==1)
         {
-                command("bill "+"现在开始拍卖 "NOR+name+HIG+" 的所有权。"+NOR);
+                command("bill "+"現在開始拍賣 "NOR+name+HIG+" 的所有權。"+NOR);
         }
         set("on_paimai",1);
         mon = to_ch(money);
-        command("bill "+NOR+name+HIG+"底价"+mon+"第"+chinese_number(m)+"次");
-        command("bill "+name+HIG"是本店第『"+chinese_number(num)+"』号拍卖品，有意者请使用ＢＩＤ命令进行竞买。"NOR);
+        command("bill "+NOR+name+HIG+"底價"+mon+"第"+chinese_number(m)+"次");
+        command("bill "+name+HIG"是本店第『"+chinese_number(num)+"』號拍賣品，有意者請使用ＢＩＤ命令進行競買。"NOR);
 
         if (!(m==3))
                 call_out("begin_paimai",20,name,money,num,m);
@@ -177,26 +177,26 @@ int finish_paimai(int num,int sign)
         owner=find_player(owner_id);
         if (sign==0)
         {
-                command("bill "+query("npaimai/" + sprintf("%d", num))+HIG+" 的所有权拍卖流标了。"+NOR);
+                command("bill "+query("npaimai/" + sprintf("%d", num))+HIG+" 的所有權拍賣流標了。"+NOR);
                 if(owner)
-                        tell_object(owner,HIR"你的东西没有卖出去，请在十分钟内来拍卖屋来取回自己的物品。\n"NOR);
+                        tell_object(owner,HIR"你的東西沒有賣出去，請在十分鐘內來拍賣屋來取回自己的物品。\n"NOR);
         }
         else            
         {
         if( !query_temp("invisibility_buyer", buyer) )
         {
-                command("bill成交!"+query("id", buyer)+"获得了"+NOR+query("npaimai/"+sprintf("%d",num))+HIG+"的所有权。"+NOR);
+                command("bill成交!"+query("id", buyer)+"獲得了"+NOR+query("npaimai/"+sprintf("%d",num))+HIG+"的所有權。"+NOR);
         }
         else
         {
-                command("bill 成交! 有人获得了 "+NOR+query("npaimai/" + sprintf("%d", num))+HIW+" 的所有权。"+NOR);
-                command("sys成交!"+query("id", buyer)+"获得了"+NOR+query("npaimai/"+sprintf("%d",num))+HIG+"的所有权。"+NOR);
+                command("bill 成交! 有人獲得了 "+NOR+query("npaimai/" + sprintf("%d", num))+HIW+" 的所有權。"+NOR);
+                command("sys成交!"+query("id", buyer)+"獲得了"+NOR+query("npaimai/"+sprintf("%d",num))+HIG+"的所有權。"+NOR);
         }
                 if (buyer)
-                        tell_object(buyer,HIR"你获得了 "+NOR+query("npaimai/" + sprintf("%d", num))+HIR+" 的所有权，请在十分钟内来拍卖屋取回你买的东西。\n"NOR);
+                        tell_object(buyer,HIR"你獲得了 "+NOR+query("npaimai/" + sprintf("%d", num))+HIR+" 的所有權，請在十分鐘內來拍賣屋取回你買的東西。\n"NOR);
                 if (owner)
-                        tell_object(owner,HIR"你的"+NOR+query("npaimai/" + sprintf("%d", num))+HIR+"卖了"
-                        +chinese_number(query("vpaimai/" + sprintf("%d", num)))+"两银子，扣除5%手续费，其余的已经加入你的户头了。\n"NOR);        
+                        tell_object(owner,HIR"你的"+NOR+query("npaimai/" + sprintf("%d", num))+HIR+"賣了"
+                        +chinese_number(query("vpaimai/" + sprintf("%d", num)))+"兩銀子，扣除5%手續費，其餘的已經加入你的戶頭了。\n"NOR);        
         }
     if(buyer)
           buyer->apply_condition("auction_forbindden",1+random(10));
@@ -224,9 +224,9 @@ int report_paimai(object buyer,int money,int num)
         remove_call_out("finish_paimai");
         remove_call_out("go_paimai");
         
-        if(query("pnum")) // pnum是判断是否有人投标的标志　 
+        if(query("pnum")) // pnum是判斷是否有人投標的標誌　 
         {
-                pay_back(query("ipaimai/" + sprintf("%d", num)),query("vpaimai/" + sprintf("%d", num))*100);//归还前一个竞买者的钱　
+                pay_back(query("ipaimai/" + sprintf("%d", num)),query("vpaimai/" + sprintf("%d", num))*100);//歸還前一個競買者的錢　
                 addn("pnum",1);
         }
         addn("balance", (0-money*100), buyer);
@@ -238,15 +238,15 @@ int report_paimai(object buyer,int money,int num)
         {
            if (!query("pnum"))
                    addn("pnum",1);
-                command("bill"+query("id", buyer)+"出价"+mon+"购入"+NOR+query("npaimai/"+sprintf("%d",num))+HIG"的所有权。");
+                command("bill"+query("id", buyer)+"出價"+mon+"購入"+NOR+query("npaimai/"+sprintf("%d",num))+HIG"的所有權。");
         call_out("go_paimai",5,query("name", buyer)+"("+query("id", buyer)+")",query("npaimai/"+sprintf("%d",num)),money,num,0);
         }
         else
         {
            if (!query("pnum"))
            addn("pnum",1);
-       command("sys"+query("id", buyer)+"出价"+mon+"购入"+NOR+query("npaimai/"+sprintf("%d",num))+HIG"的所有权。");
-       command("bill  有人出价 "+chinese_number(money)+"两银子 购入"+NOR+query("npaimai/" + sprintf("%d", num))+HIG"的所有权。");
+       command("sys"+query("id", buyer)+"出價"+mon+"購入"+NOR+query("npaimai/"+sprintf("%d",num))+HIG"的所有權。");
+       command("bill  有人出價 "+chinese_number(money)+"兩銀子 購入"+NOR+query("npaimai/" + sprintf("%d", num))+HIG"的所有權。");
        call_out("go_paimai",5,"某人",query("npaimai/" + sprintf("%d", num)),money,num,0);
         }
         return 1;
@@ -300,8 +300,8 @@ int go_paimai(string id,string name,int money,int num,int m)
         string mon;
         m+=1;
         mon = to_ch(money);
-        command("bill "+id+" 出价 "+mon+"购入 "+NOR+name+HIG+" 的所有权，第"+chinese_number(m)+"次");
-        command("bill "+name+HIG"是本店第『"+chinese_number(num)+"』号拍卖品，有意者请使用ＢＩＤ命令进行竞买。"NOR);
+        command("bill "+id+" 出價 "+mon+"購入 "+NOR+name+HIG+" 的所有權，第"+chinese_number(m)+"次");
+        command("bill "+name+HIG"是本店第『"+chinese_number(num)+"』號拍賣品，有意者請使用ＢＩＤ命令進行競買。"NOR);
         if (!(m==3))
                 call_out("go_paimai",20,id,name,money,num,m);
         else
@@ -315,7 +315,7 @@ int do_paimailist()
         {
                 if (query("lpaimai/" + sprintf("%d", i))==1)
                 {
-                        printf("%-10s： 底价 %-3d 两银子 \n",query("npaimai/" + sprintf("%d", i)),query("vpaimai/" + sprintf("%d", i)));
+                        printf("%-10s： 底價 %-3d 兩銀子 \n",query("npaimai/" + sprintf("%d", i)),query("vpaimai/" + sprintf("%d", i)));
                 }
                 else
                         return 1;
@@ -352,12 +352,12 @@ int do_yao()
                                 if( ob->query_unique() || query("can_auction", ob) )
                                         set("can_auction", 0, ob);
                                 ipaimai[terms[i]]="paimai shi";
-                                message_vision(CYN+"拍卖师将"+NOR+npaimai[terms[i]]+CYN+"交给$N。\n"NOR, this_player(),this_object());
+                                message_vision(CYN+"拍賣師將"+NOR+npaimai[terms[i]]+CYN+"交給$N。\n"NOR, this_player(),this_object());
                                 return 1;
                         }
                 }
         }
-        tell_object(this_player(),"这里没有属于你的物品。\n");
+        tell_object(this_player(),"這裡沒有屬於你的物品。\n");
         return 1;
 }
 int delete_ob(int num)
@@ -378,10 +378,10 @@ string to_ch(int money)
         string mon;
         gold = money/100;
     if(gold)
-                mon =chinese_number(gold)+"两黄金";
+                mon =chinese_number(gold)+"兩黃金";
         silver = money-gold*100;
         if(silver)
-                mon +="又"+chinese_number(silver)+"两白银";
+                mon +="又"+chinese_number(silver)+"兩白銀";
         mon +="("+sprintf("%d",money)+" silver)";
     set_temp("price",mon);
     return mon;

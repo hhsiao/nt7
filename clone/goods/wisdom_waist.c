@@ -4,13 +4,13 @@ inherit WAIST;
 
 void create()
 {
-        set_name(HIG "文曲星束带" NOR, ({ "wisdom waist", "waist", }));  
+        set_name(HIG "文曲星束帶" NOR, ({ "wisdom waist", "waist", }));  
 
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", "蕴含了文曲星的精元和无上智慧(神)。\n"); 
+                set("long", "蘊含了文曲星的精元和無上智慧(神)。\n"); 
                 set("unit", "件");
                 set("value", 2000000);
                 set("material", "cloth");
@@ -19,7 +19,7 @@ void create()
         set("auto_load", 1); 
         set("mod_mark", "A2002");  
         set("mod_level", "M2000");  
-        set("mod_name", HBGRN"文曲星学习套装(神)"NOR); 
+        set("mod_name", HBGRN"文曲星學習套裝(神)"NOR); 
         set("enchase", ([ 
                 "flute" : 2,
                 "used"  : 2,

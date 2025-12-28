@@ -6,7 +6,7 @@
 
 #define LINE  HIC "≡" HIY "------------------------------------------------" HIC "≡\n" NOR
 #define LINE2 HIC "≡" HIY "------------------==平招威力==------------------" HIC "≡\n" NOR
-#define LINE3 HIC "≡" HIY "------------------==绝招威力==------------------" HIC "≡\n" NOR
+#define LINE3 HIC "≡" HIY "------------------==絕招威力==------------------" HIC "≡\n" NOR
 
 inherit F_CLEAN_UP;
 inherit F_SSERVER;
@@ -25,7 +25,7 @@ int main(object me, string arg)
         string skill, skill2;
 
         if( !wizardp(me) && time()-query_temp("last_power", me)<5 )
-                return notify_fail("系统气喘嘘地叹道：慢慢来 ....\n");
+                return notify_fail("系統氣喘噓地嘆道：慢慢來 ....\n");
 
         set_temp("last_power", time(), me);
         MYGIFT_D->check_mygift(me, "newbie_mygift/power");
@@ -35,7 +35,7 @@ int main(object me, string arg)
                 ob = present(arg, environment(me));
                 if (!ob) ob = find_player(arg);
                 if (!ob) ob = find_living(arg);
-                if (!ob) return notify_fail("你要察看谁的状态？\n");
+                if (!ob) return notify_fail("你要察看誰的狀態？\n");
         } else
                 ob = me;
 
@@ -91,7 +91,7 @@ int main(object me, string arg)
         pp2 = defense_power(ob, "parry");
         dp2 = defense_power(ob, "dodge");
 
-        // 伤害等级
+        // 傷害等級
         if( weapon )
         {
                 damage1 = ob->query_all_buff("damage");
@@ -179,17 +179,17 @@ int main(object me, string arg)
         damage4 += damage4 / 300 * str;
 
 
-        line = HIY "\n"+(ob == me ? "你" : ob->name())+"的战斗属性如下\n" NOR;
+        line = HIY "\n"+(ob == me ? "你" : ob->name())+"的戰鬥屬性如下\n" NOR;
         line += LINE;
         line += LINE2;
         line += "\n";
-        line += sprintf(NOR + WHT "右手攻击：%-20d左手攻击：%d\n" NOR,
+        line += sprintf(NOR + WHT "右手攻擊：%-20d左手攻擊：%d\n" NOR,
                         ap1, ap3);
 
-        line += sprintf(NOR + WHT "右手伤害：%-20d左手伤害：%d\n" WHT,
+        line += sprintf(NOR + WHT "右手傷害：%-20d左手傷害：%d\n" WHT,
                         damage1, damage3);
 
-        line += sprintf(NOR + WHT "招架防御：%-20d躲闪防御：%d\n" WHT,
+        line += sprintf(NOR + WHT "招架防禦：%-20d躲閃防禦：%d\n" WHT,
                         pp1, dp1);
 
         line += "\n";
@@ -201,13 +201,13 @@ int main(object me, string arg)
         ap4 *= 10000;
         pp2 *= 10000;
         dp2 *= 10000;
-        line += sprintf(NOR + WHT "右手攻击：%-20d左手攻击：%d\n" NOR,
+        line += sprintf(NOR + WHT "右手攻擊：%-20d左手攻擊：%d\n" NOR,
                         ap2, ap4);
 
-        line += sprintf(NOR + WHT "右手伤害：%-20d左手伤害：%d\n" WHT,
+        line += sprintf(NOR + WHT "右手傷害：%-20d左手傷害：%d\n" WHT,
                         damage2, damage4);
 
-        line += sprintf(NOR + WHT "招架防御：%-20d躲闪防御：%d\n" WHT,
+        line += sprintf(NOR + WHT "招架防禦：%-20d躲閃防禦：%d\n" WHT,
                         pp2, dp2);
 
         line += "\n";

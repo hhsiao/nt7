@@ -7,8 +7,8 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "起点"); 
-        set("long", HIG "这是一个待建的房间。\n" NOR);
+        set("short", "起點"); 
+        set("long", HIG "這是一個待建的房間。\n" NOR);
 
         set("exits", ([ /* sizeof() == 1 */
                 "east" : "/data/room/redl/dadian",

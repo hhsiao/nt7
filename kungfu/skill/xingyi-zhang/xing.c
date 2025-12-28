@@ -4,7 +4,7 @@
 #include <combat.h>
 
 inherit F_SSERVER;
-string name() { return "星光点点"; }
+string name() { return "星光點點"; }
 
 int perform(object me, object target)
 {
@@ -15,31 +15,31 @@ int perform(object me, object target)
         if( !target ) target = offensive_target(me);
 
         if( !target || !me->is_fighting(target) )
-                return notify_fail("「星光点点」只能在战斗中对对手使用。\n");
+                return notify_fail("「星光點點」只能在戰鬥中對對手使用。\n");
 
         if( objectp(query_temp("weapon", me)) )
-                return notify_fail("使用「星光点点」时双手必须空着！\n");
+                return notify_fail("使用「星光點點」時雙手必須空著！\n");
 
         if( (int)me->query_skill("xingyi-zhang", 1) < 120 )
-                return notify_fail("你的星移掌不够娴熟，不会使用「星光点点」。\n");
+                return notify_fail("你的星移掌不夠嫻熟，不會使用「星光點點」。\n");
 
         if( (int)me->query_skill("zihui-xinfa", 1) < 120 )
-                return notify_fail("你的神元功等级不够，不能使用「星光点点」。\n");
+                return notify_fail("你的神元功等級不夠，不能使用「星光點點」。\n");
 
         if( (int)me->query_dex() < 25 )
-                return notify_fail("你的身法不够强，不能使用「星光点点」。\n");
+                return notify_fail("你的身法不夠強，不能使用「星光點點」。\n");
 
         if (me->query_skill_prepared("strike") != "xingyi-zhang"
                 || me->query_skill_mapped("strike") != "xingyi-zhang")
-                return notify_fail("你现在无法使用「星光点点」进行攻击。\n");
+                return notify_fail("你現在無法使用「星光點點」進行攻擊。\n");
 
 
         if( query("neili", me)<700 )
-                return notify_fail("你现在内力太弱，不能使用「星光点点」。\n");
+                return notify_fail("你現在內力太弱，不能使用「星光點點」。\n");
 
         addn("neili", -300, me);
 
-        message_combatd(HIW "\n$N双掌交相呼应,漫天的掌影犹如星星般在$n周围闪烁不定！\n" NOR,me, target);
+        message_combatd(HIW "\n$N雙掌交相呼應,漫天的掌影猶如星星般在$n周圍閃爍不定！\n" NOR,me, target);
 
 
         addn_temp("apply/attack", i, me);
@@ -52,7 +52,7 @@ int perform(object me, object target)
                 addn_temp("apply/str", i, me);
                 addn_temp("apply/attack", i, me);
                 addn_temp("apply/damage", i, me);
-                msg =  HIW"$N将神元神功发挥到极限，一双手掌发出耀眼的光芒，幻化出漫天掌影！" NOR;
+                msg =  HIW"$N將神元神功發揮到極限，一雙手掌發出耀眼的光芒，幻化出漫天掌影！" NOR;
                 message_combatd(msg, me, target);
                 COMBAT_D->do_attack(me,target,query_temp("weapon", me),TYPE_QUICK);
                 addn("neili", -100, me);

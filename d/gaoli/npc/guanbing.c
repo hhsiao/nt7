@@ -7,11 +7,11 @@ void create()
    set_name("官兵",({ "bing" }) );
    set("gender", "男性" );
    set("age", 32);
-   set("long", "这是守卫高丽的官兵，在这里检查来往的行人。\n");
+   set("long", "這是守衛高麗的官兵，在這裡檢查來往的行人。\n");
        
    set("combat_exp",800000);
    
-   set("guard","高丽");
+   set("guard","高麗");
    set("attitude", "peaceful");
    
         set("max_qi", 1000);

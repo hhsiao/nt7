@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("血莲[2;37;0m[2;37;0m", ({"darkness"}));        
+        set_name("血蓮[2;37;0m[2;37;0m", ({"darkness"}));        
         set("gender", "女性");                
-        set("long", "血莲[2;37;0m
-它是混沌幻影的魔幻兽。
+        set("long", "血蓮[2;37;0m
+它是混沌幻影的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

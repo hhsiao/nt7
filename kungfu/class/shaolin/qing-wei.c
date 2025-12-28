@@ -10,14 +10,14 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("清为比丘", ({
+        set_name("清為比丘", ({
                 "qingwei biqiu",
                 "qingwei",
                 "biqiu",
         }));
         set("long",
-                "他是一位体格强健的壮年僧人，他身得虎背熊腰，全身似乎蕴含\n"
-                "着无穷劲力。他身穿一袭白布黑边袈裟，似乎身怀武艺。\n"
+                "他是一位體格強健的壯年僧人，他身得虎背熊腰，全身似乎蘊含\n"
+                "著無窮勁力。他身穿一襲白布黑邊袈裟，似乎身懷武藝。\n"
         );
 
 
@@ -72,14 +72,14 @@ void attempt_apprentice(object ob)
 
         if( query("gender", ob) != "男性" )
         {
-                command ("say 阿弥陀佛！女施主呀，贫僧可不敢开这等玩笑啊。");
+                command ("say 阿彌陀佛！女施主呀，貧僧可不敢開這等玩笑啊。");
                 return;
         }
         
         if( query("class", ob) != "bonze" )
         {
-                command ("say 阿弥陀佛！贫僧就收下你做『俗家弟子』了。");
+                command ("say 阿彌陀佛！貧僧就收下你做『俗家弟子』了。");
         }
-        command("say 阿弥陀佛，善哉！善哉！");
+        command("say 阿彌陀佛，善哉！善哉！");
         command("recruit "+query("id", ob));
 }

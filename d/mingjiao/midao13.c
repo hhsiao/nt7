@@ -4,7 +4,7 @@ void create()
 { 
         set("short","秘室");
         set("long", @LONG
-这里是明教秘道里的一间小小的秘室。
+這裡是明教秘道里的一間小小的秘室。
 LONG );
     
         set("exits", ([

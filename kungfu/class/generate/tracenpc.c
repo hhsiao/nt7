@@ -38,7 +38,7 @@ varargs int move(mixed dest, int raw)
 {
         int r;
 
-        // 执行原本的MOVE函数
+        // 執行原本的MOVE函數
         r = ::move(dest, raw);
 
         if (query_temp("trace"))
@@ -49,7 +49,7 @@ varargs int move(mixed dest, int raw)
         return r;
 }
 
-// 判断是否有人需要调解
+// 判斷是否有人需要調解
 void give_intercession()
 {
         mixed ob;
@@ -72,30 +72,30 @@ void give_intercession()
                 return;
 
         me = query_leader();
-        message("vision", HIC + sort_msg(name() + "看见" + ob->name() +
-                          HIC "，蓦地冲上前去，大叫道：“老天开眼啊，兄弟今"
-                          "天终于寻到你了！”说罢只见两人拥在一起，热泪纵横"
-                          "，场面煞是感人。\n" NOR), environment());
+        message("vision", HIC + sort_msg(name() + "看見" + ob->name() +
+                          HIC "，驀地衝上前去，大叫道：“老天開眼啊，兄弟今"
+                          "天終於尋到你了！”說罷只見兩人擁在一起，熱淚縱橫"
+                          "，場面煞是感人。\n" NOR), environment());
         if (objectp(me))
         {
                 delete_temp("trace/" + ob, me);
-                tell_object(me, HIY "\n你见两人此番状态，颇为感慨，不由得暗"
+                tell_object(me, HIY "\n你見兩人此番狀態，頗為感慨，不由得暗"
                                 "自欣慰。\n\n" NOR);
 
                 GIFT_D->bonus(me, ([ "exp" : 200 + random(100),
                                      "pot" : 200 + random(100),
                                      "score"   : 20 + random(20),
                                      "weiwang" : 10 + random(10),
-                                     "prompt"  : "通过这次助人寻友" ]));
+                                     "prompt"  : "通過這次助人尋友" ]));
 
 /*
-                CHANNEL_D->do_channel(this_object(), "rumor", "听说" + me->name(1) +
-                                                     "("+query("id", me)+")帮"+
+                CHANNEL_D->do_channel(this_object(), "rumor", "聽說" + me->name(1) +
+                                                     "("+query("id", me)+")幫"+
                                                      name() + HIM "找到了失散的兄弟"
                                                      + ob->name() + HIM "。" NOR);
 */
 
-                // 被列为门派中断的自由任务
+                // 被列為門派中斷的自由任務
                 if( query("quest/freequest", me)>0 )
                         GIFT_D->delay_freequest_bonus(me);
         }

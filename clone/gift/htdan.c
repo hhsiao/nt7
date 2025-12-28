@@ -6,31 +6,31 @@ inherit ITEM;
 
 void create()
 {
-        set_name(YEL "糊涂丹" NOR, ({ "hutu dan", "dan", "hutu" }) );
+        set_name(YEL "糊塗丹" NOR, ({ "hutu dan", "dan", "hutu" }) );
         set_weight(200);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一颗园园很脏的丹药，据说吃了可以降低智力。\n");
+                set("long", "一顆園園很髒的丹藥，據說吃了可以降低智力。\n");
                 set("value", 10000);
-                set("unit", "颗");
+                set("unit", "顆");
                 set("only_do_effect", 1);
         }
 }
 
 int do_effect(object me)
 {
-        message_vision("$N一仰脖，吞下了一颗" + this_object()->name() +
+        message_vision("$N一仰脖，吞下了一顆" + this_object()->name() +
                        "。\n", me);
 
         if( query("gift/int/succeed", me)<1 )
         {
-                tell_object(me, "不过你觉得好像没什么作用。\n");
+                tell_object(me, "不過你覺得好像沒什麼作用。\n");
         } else
         {
-                tell_object(me, HIG "一股火热蓦然从脑中升起，"
-                            "你头痛欲裂，恰在此时一股混浊之意"
-                            "油然而起，顿感脑子不好使了。\n");
+                tell_object(me, HIG "一股火熱驀然從腦中升起，"
+                            "你頭痛欲裂，恰在此時一股混濁之意"
+                            "油然而起，頓感腦子不好使了。\n");
                 addn("int", -1, me);
                 addn("gift/int/succeed", -1, me);
                 if( query("gift/int/all", me)>0 )

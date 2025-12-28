@@ -10,9 +10,9 @@ void create()
                 int i = 10;
         set_name(NOR YEL "肉身" WHT "菩提" NOR, ({ "roushen puti", "roushen", "rou" }) );
         set_weight(1);
-                set("long", WHT "肉身菩萨身上的瘤子(类似乔丹之石)。。\n" NOR);
+                set("long", WHT "肉身菩薩身上的瘤子(類似喬丹之石)。。\n" NOR);
                 set("value", 50000);
-                set("unit", "块");
+                set("unit", "塊");
                 set("can_enchant", "all");
                 set("can_be_enchased", 1);
                 //set("magic/type", "magic");

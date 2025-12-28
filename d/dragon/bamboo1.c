@@ -3,11 +3,11 @@ inherit ROOM;
 #include <ansi.h>
 void create()
 {
-      set("short", "竹径");
+      set("short", "竹徑");
       set("long",
-"这里是一段落满青苔的青石板小路，右边是流水回萦，小桥略陈，左\n"
-"边是竹树掩映，山花浪漫，真个是幽深静谧，秀丽清朗。向北是一片草地，\n"
-"远远地似乎就已经闻到了花香。\n"
+"這裡是一段落滿青苔的青石板小路，右邊是流水回縈，小橋略陳，左\n"
+"邊是竹樹掩映，山花浪漫，真個是幽深靜謐，秀麗清朗。向北是一片草地，\n"
+"遠遠地似乎就已經聞到了花香。\n"
 );
       set("outdoors", "nightstar");
       set("no_fight", "1");
@@ -26,14 +26,14 @@ int valid_leave(object me, string dir)
       if (dir == "north")
       {
         if( query("qi", me)<50 )
-                return notify_fail("悠着点，小心身体。\n");
+                return notify_fail("悠著點，小心身體。\n");
              c_exp=query("combat_exp", me);
              c_skill=me->query_skill("dodge",1);
              if (((c_skill*c_skill*c_skill/10)< c_exp) && (c_skill<301))
                    me->improve_skill("dodge", (int)me->query_skill("dodge", 1)*10);
             me->receive_damage("qi",30);
 
-             tell_object(me,"你在竹林里悠闲地漫步，竟对轻功修为有所领悟。\n");
+             tell_object(me,"你在竹林裡悠閒地漫步，竟對輕功修為有所領悟。\n");
       }
         return 1;
 }

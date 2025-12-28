@@ -4,16 +4,16 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "鄂鱼潭岸上");
+        set("short", "鄂魚潭岸上");
         set("long", @LONG
-鄂鱼潭深处地底，寒似冰窟。潭中(tan)一团黑子晃动，仔
-细一看竟是许多凶猛的鄂鱼。 只见不远处似有一个洞口，但由
-于深潭相隔，不知如何过去。
+鄂魚潭深處地底，寒似冰窟。潭中(tan)一團黑子晃動，仔
+細一看竟是許多兇猛的鄂魚。 只見不遠處似有一個洞口，但由
+於深潭相隔，不知如何過去。
 
 LONG);
         set("item_desc",([
-               "tan" : HIC "潭中鄂鱼成群，凶猛无比。 恐怕只有"
-                       "施展轻功穿(cross)过去了。\n" NOR,
+               "tan" : HIC "潭中鄂魚成群，兇猛無比。 恐怕只有"
+                       "施展輕功穿(cross)過去了。\n" NOR,
         ]));
 
         set("no_clean_up", 0);
@@ -35,52 +35,52 @@ int do_cross(string arg)
         string msg;
 
         if (! arg || arg != "tan" )
-                return notify_fail("你要往哪儿跳？\n");
+                return notify_fail("你要往哪兒跳？\n");
 
-        // ob1 鄂鱼潭岸上
+        // ob1 鄂魚潭岸上
         if (! ob1 = find_object(__DIR__"eyutan1"))
                 ob1 = load_object(__DIR__"eyutan1");
 
-        // 若轻功不济则掉如潭水中,   ob2 深潭
+        // 若輕功不濟則掉如潭水中,   ob2 深潭
         if (! ob2 = find_object(__DIR__"eyutan2"))
                 ob2 = load_object(__DIR__"eyutan2");
 
-        // ob3 鄂鱼潭对岸
+        // ob3 鄂魚潭對岸
         if (! ob3 = find_object(__DIR__"eyutan3"))
                 ob3 = load_object(__DIR__"eyutan3");
 
         if (me->is_busy())
-                return notify_fail("你现在正忙着呢！\n");
+                return notify_fail("你現在正忙著呢！\n");
 
         if (me->is_fighting())
-                return notify_fail("你还是先把你面前这个家伙解决了再说。\n");
+                return notify_fail("你還是先把你面前這個傢伙解決了再說。\n");
 
         n = me->query_skill("dodge");
         
         if (n > 120)
         {   
-            msg = HIY + me->name() + HIY "飞身前跃，跳向鄂鱼潭，只见" + me->name() +
-                  HIY "到至深潭上空却又忽地落下，眼见要坠入潭中。却见" + me->name() +
-                  HIY "双足在鄂鱼背上一点，顷刻间腾向对岸。\n" NOR;
+            msg = HIY + me->name() + HIY "飛身前躍，跳向鄂魚潭，只見" + me->name() +
+                  HIY "到至深潭上空卻又忽地落下，眼見要墜入潭中。卻見" + me->name() +
+                  HIY "雙足在鄂魚背上一點，頃刻間騰向對岸。\n" NOR;
                       
             tell_room(ob1, sort_msg(msg), me);
 
-            tell_object(me,  HIC "你飞身前跃，跳至深潭半空身双足在鄂鱼背上一点，眨"
-                             "眼间已\n到得对岸。\n\n" NOR);
+            tell_object(me,  HIC "你飛身前躍，跳至深潭半空身雙足在鄂魚背上一點，眨"
+                             "眼間已\n到得對岸。\n\n" NOR);
 
-            tell_room(ob3, HIG + me->name() + HIG "从对岸跳了过来。\n" NOR, me);
+            tell_room(ob3, HIG + me->name() + HIG "從對岸跳了過來。\n" NOR, me);
         
             me->move(ob3);
         }     
         else
         {
-            msg = HIR + me->name() + HIR "飞身前跃，跳向鄂鱼潭，只见" + me->name() +
-                  HIR "到至深潭上空却力气已尽，落入潭中。\n" NOR;
+            msg = HIR + me->name() + HIR "飛身前躍，跳向鄂魚潭，只見" + me->name() +
+                  HIR "到至深潭上空卻力氣已盡，落入潭中。\n" NOR;
 
             tell_room(ob1, sort_msg(msg), me);
 
-            tell_object(me,  HIR "你飞身前跃，跳至深潭半空身却感觉力气已尽，想回头"
-                            "已不能，\n只听“扑咚”一声，你已经落入深潭之中。\n\n" NOR);
+            tell_object(me,  HIR "你飛身前躍，跳至深潭半空身卻感覺力氣已盡，想回頭"
+                            "已不能，\n只聽“撲咚”一聲，你已經落入深潭之中。\n\n" NOR);
              
             me->move(ob2);
         } 

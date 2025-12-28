@@ -7,7 +7,7 @@ void setup()
         set_name("去去去[2;37;0m[2;37;0m", ({"goldqqq"}));        
         set("gender", "男性");                
         set("long", "去去去[2;37;0m
-它是金求的魔幻兽。
+它是金求的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

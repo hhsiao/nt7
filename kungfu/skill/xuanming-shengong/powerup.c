@@ -9,20 +9,20 @@ int exert(object me, object target)
         int skill;
 
         if (target != me)
-                return notify_fail("你只能用玄冥神功提升自己的战斗力。\n");
+                return notify_fail("你只能用玄冥神功提升自己的戰鬥力。\n");
 
         if( query("neili", me)<100 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if( BUFF_D->check_buff(me, "powerup") ) 
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
 
         addn("neili", -100, me);
         me->receive_damage("qi", 0);
 
-        msg = MAG "$N微一凝神，运起玄冥神功，全身顿时升起一层氤氲寒气，将$N笼罩其中。\n" NOR;
+        msg = MAG "$N微一凝神，運起玄冥神功，全身頓時升起一層氤氳寒氣，將$N籠罩其中。\n" NOR;
 
         data = ([
                 "attack" : skill/3,
@@ -34,11 +34,11 @@ int exert(object me, object target)
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "玄冥神功·战神",
+                "name"  : "玄冥神功·戰神",
                 "time"  : skill,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : "你的玄冥神功运行完毕，将内力收回丹田。\n",
+                "disa_msg" : "你的玄冥神功運行完畢，將內力收回丹田。\n",
                         
         ]);
         BUFF_D->buffup(buff);

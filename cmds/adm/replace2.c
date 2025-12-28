@@ -14,15 +14,15 @@ int main(object me, string arg)
         seteuid(geteuid(me));
 
         if (!arg || sscanf(arg, "%s of %s to %s", pattern, file, replace) != 3)
-                return notify_fail("指令格式 : replace <原字符串> of <档名> to <替换字符串>\n");
+                return notify_fail("指令格式 : replace <原字符串> of <檔名> to <替換字符串>\n");
 
         file=resolve_path(query("cwd", me),file);
 
         if (file_size(file) < 0)
-                return notify_fail("没有这个档案。\n");
+                return notify_fail("沒有這個檔案。\n");
 
         if (! SECURITY_D->valid_read(file, me, "read_file"))
-                return notify_fail("你没有权限查看这个文件。\n");
+                return notify_fail("你沒有權限查看這個文件。\n");
 
         replace = replace_string(replace, "\\t", "\t");
         replace = replace_string(replace, "\\n", "\n");
@@ -40,17 +40,17 @@ int main(object me, string arg)
 
         rm( file );
         if(  write_file(file, str,1) )
-                write(" 替换成功。\n");
-        else write("失败……\n");
+                write(" 替換成功。\n");
+        else write("失敗……\n");
         return 1;
 }
 
 int help(object me)
 {
         write(@HELP
-指令格式 : replace <档案名>
+指令格式 : replace <檔案名>
 
-这个指令让你XXXXX。
+這個指令讓你XXXXX。
 
 see also: cat
 HELP );

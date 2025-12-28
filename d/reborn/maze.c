@@ -5,59 +5,59 @@ inherit VRM_SERVER;
 
 void create() 
 { 
-        // 迷宫房间所继承的物件的档案名称。 
+        // 迷宮房間所繼承的物件的檔案名稱。 
         set_inherit_room( ROOM );  
                         
-        // 唯一房间
+        // 唯一房間
         set_unique_room("/d/reborn/unique_room/xinmo_room"); 
 
-        // 迷宫房间里的怪物。 
+        // 迷宮房間裡的怪物。 
         set_maze_npcs( ([
                 "/d/reborn/npc/shadow": random(2),  
         ]) );   
         
-        // 迷宫的单边长 
+        // 迷宮的單邊長 
         set_maze_long(10); 
                         
-        // 入口方向(出口在对面) 
+        // 入口方向(出口在對面) 
         set_entry_dir("north"); 
                         
-        // 入口与区域的连接方向 
+        // 入口與區域的連接方向 
         set_link_entry_dir("north"); 
                         
-        // 入口与区域的连接档案名 
+        // 入口與區域的連接檔案名 
         set_link_entry_room("/d/reborn/jitan1"); 
                         
-        // 出口与区域的连接方向 
+        // 出口與區域的連接方向 
         set_link_exit_dir("south"); 
                         
-        // 出口与区域的连接档案名 
+        // 出口與區域的連接檔案名 
         set_link_exit_room("/d/reborn/jitan1");                        
                         
-        // 普通房间描述
+        // 普通房間描述
         set_maze_room_short(RED "幻境" NOR);
                         
         set_maze_room_desc(@LONG
-幻境里到处是迷雾弥漫，周边的景物似有似无，虚无缥缈。
+幻境裡到處是迷霧瀰漫，周邊的景物似有似無，虛無縹緲。
 LONG); 
                         
-        // 入口房间短描述 
+        // 入口房間短描述 
         set_entry_short(HIR "幻境入口" NOR); 
                         
-        // 入口房间描述 
+        // 入口房間描述 
         set_entry_desc(@LONG
-幻境里到处是迷雾弥漫，周边的景物似有似无，虚无缥缈。
+幻境裡到處是迷霧瀰漫，周邊的景物似有似無，虛無縹緲。
 LONG); 
                         
-        // 出口房间短描述 
+        // 出口房間短描述 
         set_exit_short(HIW "幻境出口" NOR); 
                         
-        // 出口房间描述 
+        // 出口房間描述 
         set_exit_desc(@LONG
-幻境里到处是迷雾弥漫，周边的景物似有似无，虚无缥缈。
+幻境裡到處是迷霧瀰漫，周邊的景物似有似無，虛無縹緲。
 LONG); 
 
-        // 迷宫房间是否为户外房间？ 
+        // 迷宮房間是否為戶外房間？ 
         set_outdoors(1); 
         
         set_remove_time(420);

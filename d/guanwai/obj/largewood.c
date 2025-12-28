@@ -12,7 +12,7 @@ void create()
         else*/
         {
                 set("unit", "批");
-                set("long", "这是伐自长白山的上好的大木料。\n");
+                set("long", "這是伐自長白山的上好的大木料。\n");
                 set("base_value", 2000);
                 set("base_unit", "根");
                 set("base_weight", 50000);
@@ -28,10 +28,10 @@ int fire(object me, object ob)
                 return 0;
 
         if( query_temp("warm", environment()) >= 40 )
-                return notify_fail("这里已经太热了，你还是换个地方点火吧。\n");
+                return notify_fail("這裡已經太熱了，你還是換個地方點火吧。\n");
 
-        message_vision("$N费了好大劲，总算用" + ob->name() + "把" + name() +
-                       "点着了，一片红红的火光映红了四周。\n", me);
+        message_vision("$N費了好大勁，總算用" + ob->name() + "把" + name() +
+                       "點著了，一片紅紅的火光映紅了四周。\n", me);
 
         fire = new("/clone/misc/needfire");
         fire->move(environment(me));

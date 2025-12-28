@@ -5,14 +5,14 @@ inherit RINGS;
 
 void create()
 {
-        set_name(HIM "十周年·端午·凤戒" NOR, ({ "duanwu fengjie", "fengjie" }));
+        set_name(HIM "十週年·端午·鳳戒" NOR, ({ "duanwu fengjie", "fengjie" }));
         set_weight(1);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
                 set("unit", "枚");
-                set("long", HIM "这是由炎黄十周年暨端午节发放的戒指，红光微微，其绚夺目，犹如一条凤凰起舞。\n" NOR);
+                set("long", HIM "這是由炎黃十週年暨端午節發放的戒指，紅光微微，其絢奪目，猶如一條鳳凰起舞。\n" NOR);
                 set("value", 100);
                 set("material", "gold");
                 set("armor_prop/dex", 10);

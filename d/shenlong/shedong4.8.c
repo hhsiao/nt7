@@ -4,7 +4,7 @@ void create()
 {
         set("short", "蛇精洞外");
         set("long",@LONG
-这是蛇精洞外，再往前走就要进入蛇精洞了，据说，还没有人能活着
+這是蛇精洞外，再往前走就要進入蛇精洞了，據說，還沒有人能活著
 走出蛇精洞。
 LONG);
 
@@ -14,7 +14,7 @@ LONG);
 		"enter"   : __DIR__"shejingdong",
 	]));
 
-	// 为确保100%安全，这里也设置免死
+	// 為確保100%安全，這裡也設置免死
 	set("no_die", 1);
 	
         setup();
@@ -25,10 +25,10 @@ int valid_leave(object me, string dir)
         object ob;
         object env;
 
-	// 检查是否已经开始蛇精战斗
+	// 檢查是否已經開始蛇精戰鬥
         if (dir == "enter")
         {
-                //return notify_fail("对不起，巫师还没有下令开放，你暂时不能参加对抗蛇精的战斗。\n");
+                //return notify_fail("對不起，巫師還沒有下令開放，你暫時不能參加對抗蛇精的戰鬥。\n");
         	
         	ob = find_living("jiutou shejing");
         	
@@ -36,7 +36,7 @@ int valid_leave(object me, string dir)
         	{
         		if (base_name(environment(ob)) == "/d/shenlong/shejingdong")
         		{
-        			write("对不起，里面已经开始了对抗蛇精的战斗。\n");
+        			write("對不起，裡面已經開始了對抗蛇精的戰鬥。\n");
         			return 0;
         		}
         	}
@@ -44,10 +44,10 @@ int valid_leave(object me, string dir)
         	if (! objectp(env = find_object(__DIR__"shejingdong")))
         		env = load_object(__DIR__"shejingdong");
         		
-        	// 正在清场则不能进入
+        	// 正在清場則不能進入
         	if( query("doing", env) )
        		{
-       			write("蛇精BOSS已经挑战结束，正在等待清场，请稍后再试！\n");
+       			write("蛇精BOSS已經挑戰結束，正在等待清場，請稍後再試！\n");
        			return 0;
        		}
         	

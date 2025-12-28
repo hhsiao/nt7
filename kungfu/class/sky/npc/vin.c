@@ -6,8 +6,8 @@ mixed give_quest();
 
 void create()
 {
-        set_name(HIY "轩辕行" NOR, ({ "vin" }));
-        set("long", HIY "    此人身穿炎黄圣袍，气宇轩昂，相貌不凡，乃「炎黄英雄史」开山祖师。\n" NOR);
+        set_name(HIY "軒轅行" NOR, ({ "vin" }));
+        set("long", HIY "    此人身穿炎黃聖袍，氣宇軒昂，相貌不凡，乃「炎黃英雄史」開山祖師。\n" NOR);
 
         set("gender", "男性");
         set("age", 22);
@@ -39,14 +39,14 @@ void create()
         map_skill("unarmed", "yinyang-shiertian");
         
         set("inquiry", ([
-                "轩辕行"     : "轩辕行也是你叫的吗？放肆！",
-                "望天涯"     : "他是炎黄英雄史的天神！",
-                "周风"       : "他是炎黄英雄史服务器管理人员！",
-                "心愿"       : (: give_quest :),
-                "上古神器"   :  "那是上古失落的神器，你有吗？",
-                "神器"       : "那是上古失落的神器，你有吗？",
-                "转世"       : "要转世先过我这关！",
-                "炎黄英雄史"  : "呵呵，这个也用问？",
+                "軒轅行"     : "軒轅行也是你叫的嗎？放肆！",
+                "望天涯"     : "他是炎黃英雄史的天神！",
+                "周風"       : "他是炎黃英雄史服務器管理人員！",
+                "心願"       : (: give_quest :),
+                "上古神器"   :  "那是上古失落的神器，你有嗎？",
+                "神器"       : "那是上古失落的神器，你有嗎？",
+                "轉世"       : "要轉世先過我這關！",
+                "炎黃英雄史"  : "呵呵，這個也用問？",
         ]));
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -65,23 +65,23 @@ mixed give_quest()
         
         if (me->query("sky12/floor") != 12)
         {
-                command("say 哼，无耻狂徒，你是怎么到这里来的，滚回地上去吧！");
+                command("say 哼，無恥狂徒，你是怎麼到這裡來的，滾回地上去吧！");
                 me->move("/d/city/wumiao");
                 me->unconcious();
                 return "哼！\n";
         }
 
         if (stringp(me->query("sky12/quest/obj")))
-             return "我不是让你帮我寻找" + me->query("sky12/quest/obj") + 
-                    "了吗，在哪儿呢？\n";
+             return "我不是讓你幫我尋找" + me->query("sky12/quest/obj") + 
+                    "了嗎，在哪兒呢？\n";
         
-        // 寻找一件上古神器     
+        // 尋找一件上古神器     
         obj = ULTRA_QUEST_D->get_random_magic_item();
         
         command("smile");
-        message_sort(HIW "\n$N" HIW "对$n" HIW "说道：多年前我遗失一件上古神"
-                     "器，名曰：" + HIR + obj + HIW "，如果你能帮我把它找回来"
-                     "给我，我便不再阻拦你！\n" NOR, this_object(), me);
+        message_sort(HIW "\n$N" HIW "對$n" HIW "說道：多年前我遺失一件上古神"
+                     "器，名曰：" + HIR + obj + HIW "，如果你能幫我把它找回來"
+                     "給我，我便不再阻攔你！\n" NOR, this_object(), me);
         
         me->set("sky12/quest/obj", obj);
         
@@ -103,7 +103,7 @@ int accept_object(object me, object ob)
                     ! ob->is_magic_item())
                 {
                         command("heng");
-                        command("say 想拿这个来蒙我，找死！");
+                        command("say 想拿這個來蒙我，找死！");
                         me->unconcious();
                         return 1;
                 }
@@ -111,7 +111,7 @@ int accept_object(object me, object ob)
                 if (me->query("sky12/floor") == 12)
                 {
                           me->set("sky12/floor", 13);
-                     command("say 很好，很好，阁下可以请便了！");
+                     command("say 很好，很好，閣下可以請便了！");
                 }                
 
                 destruct(ob);

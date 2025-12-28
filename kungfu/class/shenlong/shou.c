@@ -9,11 +9,11 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("瘦头陀", ({ "shou toutuo", "shou" ,"toutuo"}));
-        set("title", HIY"神龙教"NOR"右护法");
-        set("nickname",HIR "辽东瘦尊者" NOR);
-        set("long", "这头陀身材奇矮，而且胖得出奇，整个人就活脱脱是一个大冬瓜。\n"
-                    "光溜溜的脑袋上瞪着一对铜铃大眼，样子非常滑稽。\n" );
+        set_name("瘦頭陀", ({ "shou toutuo", "shou" ,"toutuo"}));
+        set("title", HIY"神龍教"NOR"右護法");
+        set("nickname",HIR "遼東瘦尊者" NOR);
+        set("long", "這頭陀身材奇矮，而且胖得出奇，整個人就活脫脫是一個大冬瓜。\n"
+                    "光溜溜的腦袋上瞪著一對銅鈴大眼，樣子非常滑稽。\n" );
         set("gender", "男性");
         set("age", 44);
 
@@ -55,7 +55,7 @@ void create()
         prepare_skill("hand", "shenlong-bashi");
         prepare_skill("strike", "huagu-mianzhang");
 
-        create_family("神龙教", 0, "闲散教众");
+        create_family("神龍教", 0, "閒散教眾");
 
         set_temp("apply/attack", 100);
         set_temp("apply/defense", 100);
@@ -63,11 +63,11 @@ void create()
         set_temp("apply/damage", 100);
 
         set("inquiry", ([
-                "神龙教" : "一般人是入不了我神龙教的(join shenlongjiao).\n",
-                "入教"   : "一般人是入不了我神龙教的(join shenlongjiao).\n",
-                "洪安通" : "教主脾气不好,要讨他欢心才好。\n",
-                "教主"   : "教主脾气不好,要讨他欢心才好。\n",
-                "口号"   : "万年不老！永享仙福！寿与天齐！文武仁圣！",
+                "神龍教" : "一般人是入不了我神龍教的(join shenlongjiao).\n",
+                "入教"   : "一般人是入不了我神龍教的(join shenlongjiao).\n",
+                "洪安通" : "教主脾氣不好,要討他歡心才好。\n",
+                "教主"   : "教主脾氣不好,要討他歡心才好。\n",
+                "口號"   : "萬年不老！永享仙福！壽與天齊！文武仁聖！",
         ]) );
         set("master_ob", 3);
         setup();
@@ -78,5 +78,5 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        command("say 滚！少在大爷面前瞎晃。");
+        command("say 滾！少在大爺面前瞎晃。");
 }

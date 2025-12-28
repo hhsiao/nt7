@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("波多结衣顾子[2;37;0m[2;37;0m", ({"plgop"}));        
+        set_name("波多結衣顧子[2;37;0m[2;37;0m", ({"plgop"}));        
         set("gender", "男性");                
         set("long", "@miaoshu[2;37;0m
-它是捣药四的魔幻兽。
+它是搗藥四的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "ymgd");
-        set("owner_name", "捣药四");
+        set("owner_name", "搗藥四");
         set_temp("owner", "ymgd");
-        set_temp("owner_name", "捣药四");
+        set_temp("owner_name", "搗藥四");
         ::setup();
 }

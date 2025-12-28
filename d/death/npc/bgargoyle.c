@@ -7,25 +7,25 @@
 inherit NPC;
 
 string *death_msg = ({
-        HIW "黑无常说道：喂！新来的，你叫什么名字？\n\n" NOR,
-        HIW "黑无常用奇异的眼光盯著你，好像要看穿你的一切似的。\n\n" NOR,
-        HIW "黑无常「哼」的一声，从袖中掏出一本像帐册的东西翻看著。\n\n" NOR,
-        HIW "黑无常合上册子，说道：咦？阳寿未尽？怎么可能？\n\n" NOR,
-        HIW "黑无常搔了搔头，叹道：罢了罢了，你走吧。\n\n"
-                "一股阴冷的浓雾突然出现，很快地包围了你。\n\n" NOR,
+        HIW "黑無常說道：喂！新來的，你叫什麼名字？\n\n" NOR,
+        HIW "黑無常用奇異的眼光盯著你，好像要看穿你的一切似的。\n\n" NOR,
+        HIW "黑無常「哼」的一聲，從袖中掏出一本像帳冊的東西翻看著。\n\n" NOR,
+        HIW "黑無常合上冊子，說道：咦？陽壽未盡？怎麼可能？\n\n" NOR,
+        HIW "黑無常搔了搔頭，嘆道：罷了罷了，你走吧。\n\n"
+                "一股陰冷的濃霧突然出現，很快地包圍了你。\n\n" NOR,
 });
 
 void create()
 {
-        set_name("黑无常", ({ "black gargoyle", "gargoyle" }));
+        set_name("黑無常", ({ "black gargoyle", "gargoyle" }));
         set("title", "冥府地藏王殿前");
         set("long",
-                "黑无常瞪著你，焦黄的脸上看不出任何喜怒哀乐。\n");
+                "黑無常瞪著你，焦黃的臉上看不出任何喜怒哀樂。\n");
         set("attitude", "peaceful");
         set("chat_chance", 15);
         set("chat_msg", ({
-                "黑无常嘿嘿干笑数声：你可终于落到我的手里了...\n",
-                "黑无常东张西望，不知道在打什么主意。\n",
+                "黑無常嘿嘿乾笑數聲：你可終於落到我的手裡了...\n",
+                "黑無常東張西望，不知道在打什麼主意。\n",
         }) );
         set("age", 217);
         set("combat_exp", 20000);
@@ -70,6 +70,6 @@ void death_stage(object ob, int stage)
         ob->move(REVIVE_ROOM);
         set("startroom", REVIVE_ROOM, ob);
         message("vision",
-                "你忽然发现前面多了一个人影，不过那人影又好像已经在那里\n"
-                "很久了，只是你一直没发觉。\n", environment(ob), ob);
+                "你忽然發現前面多了一個人影，不過那人影又好像已經在那裡\n"
+                "很久了，只是你一直沒發覺。\n", environment(ob), ob);
 }

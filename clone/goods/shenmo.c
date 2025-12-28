@@ -10,8 +10,8 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", HIY "霎那间天地变色，万物隐匿，乃魔界至高无上的宝物，支配着魔界万物。\n" NOR);
-                set("unit", "块");
+                set("long", HIY "霎那間天地變色，萬物隱匿，乃魔界至高無上的寶物，支配著魔界萬物。\n" NOR);
+                set("unit", "塊");
                 set("value", 13000);
                 set("can_be_tessera", 1);
 

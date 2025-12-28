@@ -7,11 +7,11 @@
 
 void create()
 {
-        set("short", "书房");
+        set("short", "書房");
 	set ("long", @LONG
-这里是水果摊的主人西瓜读书写字的地方，干净明亮。文房四宝
-整整齐齐的摆在桌子上面。有时西瓜也在这里签发(sign)一些邀请客
-人的请柬。 
+這裡是水果攤的主人西瓜讀書寫字的地方，乾淨明亮。文房四寶
+整整齊齊的擺在桌子上面。有時西瓜也在這裡簽發(sign)一些邀請客
+人的請柬。 
 LONG );
 
         set("exits", ([
@@ -22,7 +22,7 @@ LONG );
         setup();
 
         set("room_owner", "西瓜");
-        set("room_name", "水果摊");
+        set("room_name", "水果攤");
         set("room_id", "sgt");
         set("room_owner_id", "xigua");
         set("room_position", "碎石小道");
@@ -41,21 +41,21 @@ int do_sign()
         me = this_player();
 
             if (! is_room_owner(me))
-                    return notify_fail("你又不是这儿的主人，乱搞"
-                                       "什么？\n");
+                    return notify_fail("你又不是這兒的主人，亂搞"
+                                       "什麼？\n");
 
         if (me->is_busy())
-                return notify_fail("你现在还忙着呢。\n");
+                return notify_fail("你現在還忙著呢。\n");
 
-        message_vision("$N抽过一张纸，拿起笔来，在上面画符似"
-                       "的写了些东西。\n", me);
-        tell_object(me, "你写好一份手谕。\n");
+        message_vision("$N抽過一張紙，拿起筆來，在上面畫符似"
+                       "的寫了些東西。\n", me);
+        tell_object(me, "你寫好一份手諭。\n");
 
         ob = new("/d/room/roomobj/pass");
-        ob->set_name(HIW+query("name", me)+"手谕"NOR,
+        ob->set_name(HIW+query("name", me)+"手諭"NOR,
                      ({ "pass", query("room_owner_id") + " pass" }));
-        ob->set("long","一张由"+query("name",me)+"亲笔签发的"+
-                     "手谕，凭借它你可以进出" + query("room_name") +
+        ob->set("long","一張由"+query("name",me)+"親筆簽發的"+
+                     "手諭，憑藉它你可以進出" + query("room_name") +
                      "。\n");
         ob->move(me);
         me->start_busy(4 + random(4));

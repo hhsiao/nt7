@@ -10,12 +10,12 @@ mapping query_quest()
                 questsn = QUESTSN_D("4find")->query_questsn();
         else
         questsn = QUESTSN_D("4kill")->query_questsn();
-        if (questsn["type"] == "寻") 
+        if (questsn["type"] == "尋") 
         {
                 if (random(5) == 3)
                 {
                         questsn["type"] = "送";
-                        questsn["name"] = "回执";
+                        questsn["name"] = "回執";
                 }
         } 
         return questsn;

@@ -5,9 +5,9 @@ void create()
 {
         set("short", "柴房");
         set("long", @LONG
-这是一间矮小的瓦房，平时作为堆放杂物所用。房屋里布
-满了蛛网，地面满是灰尘。看样子已经很久没有人打扫了。柴
-房的一角斜放着几捆干柴。
+這是一間矮小的瓦房，平時作為堆放雜物所用。房屋裡布
+滿了蛛網，地面滿是灰塵。看樣子已經很久沒有人打掃了。柴
+房的一角斜放著幾捆乾柴。
 LONG);
         set("exits", ([
                 "west" : __DIR__"ma_dayuan",
@@ -29,8 +29,8 @@ void init()
 
         if( query("family/family_name", me) == "五毒教" )
         {
-                tell_object(me, HIR "\n你突然发现一只色彩斑斓的蜘蛛，竟"
-                                "似五毒教的独门密信。\n" NOR);
+                tell_object(me, HIR "\n你突然發現一隻色彩斑斕的蜘蛛，竟"
+                                "似五毒教的獨門密信。\n" NOR);
                 set_temp("want_back_wudu", 1, me);
 
                 remove_call_out("letter");
@@ -50,9 +50,9 @@ void letter(object me)
 
         tell_object(me, WHT "  ┏------------┓\n"
                             "  ┃柴房水缸下有┃\n"
-                            "  ┃本教密道能够┃\n"
+                            "  ┃本教密道能夠┃\n"
                             "  ┃直通(" HIY "back" NOR + WHT ")五┃\n"
-                            "  ┃毒教  齐云傲┃\n"
+                            "  ┃毒教  齊雲傲┃\n"
                             "  ┗------------┛\n" NOR);
 }
 
@@ -62,11 +62,11 @@ int do_back()
 
         if( query_temp("want_back_wudu", me) )
         {
-                message("vision", HIC "忽然间只见" + me->name() +
-                                  HIC "身形一晃，竟没了踪影。\n" NOR,
+                message("vision", HIC "忽然間只見" + me->name() +
+                                  HIC "身形一晃，竟沒了蹤影。\n" NOR,
                                   environment(me), ({me}));
                 me->move("/d/wudu/midao5");
-                tell_object(me, HIC "\n你钻进了柴房水缸下的密道。\n\n" NOR);
+                tell_object(me, HIC "\n你鑽進了柴房水缸下的密道。\n\n" NOR);
         }
         return 1;
 }

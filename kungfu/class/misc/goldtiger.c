@@ -6,12 +6,12 @@ inherit NPC;
 
 void create()
 {
-        set_name(NOR + YEL "黄金" + HIW "白玉" + HIY "虎" NOR, ({ "gold tiger" }) );
-        set("title", HIM "万兽之王" NOR);
+        set_name(NOR + YEL "黃金" + HIW "白玉" + HIY "虎" NOR, ({ "gold tiger" }) );
+        set("title", HIM "萬獸之王" NOR);
         set("gender", "男性");
         set("age", 2000);
         set("long", @LONG
-这是一只巨大的老虎，浑身金黄色，头为白色，犹如白玉。
+這是一隻巨大的老虎，渾身金黃色，頭為白色，猶如白玉。
 LONG );
         set("combat_exp", 1000000000);
         set("shen_type", 0);
@@ -59,7 +59,7 @@ void fight_ob(object ob)
         if (is_fighting(ob))
                 return;
 
-        message_vision(HIW "$N一声长啸，张牙舞爪，面目狰狞。\n" NOR, this_object(), ob);
+        message_vision(HIW "$N一聲長嘯，張牙舞爪，面目猙獰。\n" NOR, this_object(), ob);
 
         ::fight_ob(ob);
         if( !is_killing(query("id", ob)) )
@@ -68,7 +68,7 @@ void fight_ob(object ob)
 
 int accept_fight(object ob)
 {
-        message_vision(HIW "$N" HIW "一声长啸，扑向$n" HIW "上来。\n" NOR,
+        message_vision(HIW "$N" HIW "一聲長嘯，撲向$n" HIW "上來。\n" NOR,
                        this_object(), ob);
         kill_ob(ob);
         return -1;
@@ -88,8 +88,8 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->receive_wound("qi", 1000 + random(1000), me);
         set("neili",query("max_neili",  me), me);
-        return HIW "$N" HIW "周围紫气大盛，面目狰狞，狂啸一声，登时令$n"
-               HIW "迷惑不已，难以自拔。\n" NOR;
+        return HIW "$N" HIW "周圍紫氣大盛，面目猙獰，狂嘯一聲，登時令$n"
+               HIW "迷惑不已，難以自拔。\n" NOR;
 }
 
 varargs void unconcious(object defeater)
@@ -121,7 +121,7 @@ varargs void die(object killer)
 
         if( query("lunhui-sword_quest/chushengdao/give_quest", killer) )
         {
-                tell_object(killer, BLINK + HIG "你已经杀死了黄金白玉虎，任务完成。\n" NOR);
+                tell_object(killer, BLINK + HIG "你已經殺死了黃金白玉虎，任務完成。\n" NOR);
                 set("lunhui-sword_quest/chushengdao/killed", 1, killer);
                 killer->save();
         }
@@ -133,7 +133,7 @@ void random_move()
 {
         if (time() - query("born_time") > 1800)
         {
-                message_vision("$N窜入丛林，消失了。\n", this_object());
+                message_vision("$N竄入叢林，消失了。\n", this_object());
                 destruct(this_object());
                 return;
         }

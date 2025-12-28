@@ -6,18 +6,18 @@
 #include <ansi.h>
 #include <room.h>
 inherit ROOM;
-#define QUESTDIR1 "quest/天龙八部/凌波微步篇/"
+#define QUESTDIR1 "quest/天龍八部/凌波微步篇/"
 void create()
 {
-        set("short", "石屋里");
+        set("short", "石屋裡");
         set("long", @LONG
-这里是石屋里了，里面黑漆漆的，什么也看不清楚，阳光都被门口的一块
-大岩石挡住了，只能透过几缕石缝中透过来的阳光，你打量着这间屋子。
+這裡是石屋裡了，裡面黑漆漆的，什麼也看不清楚，陽光都被門口的一塊
+大岩石擋住了，只能透過幾縷石縫中透過來的陽光，你打量著這間屋子。
 LONG
         );
 
         set("item_desc", ([
-              "yan" : "一块大岩石，可以试着推开!。\n",
+              "yan" : "一塊大岩石，可以試著推開!。\n",
         ]));
         setup();
 }
@@ -49,17 +49,17 @@ int do_tui(string arg)
        int i;
         i = this_player()->query("neili");
        if( !arg || arg!="yan" ) 
-         return notify_fail("你要推什么？\n");
-        message_vision(HIY"$N站在门后，把双掌放在岩上，深深的吸了一口气，双臂一发劲，大喝一声“开”。\n"NOR, this_player());
+         return notify_fail("你要推什麼？\n");
+        message_vision(HIY"$N站在門後，把雙掌放在巖上，深深的吸了一口氣，雙臂一發勁，大喝一聲“開”。\n"NOR, this_player());
        if ( i >=800 ){
-        message_vision(RED"$N只听一阵轰响，大石缓缓的移开了！\n"NOR, this_player());
+        message_vision(RED"$N只聽一陣轟響，大石緩緩的移開了！\n"NOR, this_player());
         set("exits/out", __DIR__"muwu2");
         this_player()->add("neili",-800);
         remove_call_out("close");
         call_out("close", 5, this_object());
         }
        else {
-        message_vision("$N却见大石纹丝不动，看来$N的内力还不够。\n", this_player());
+        message_vision("$N卻見大石紋絲不動，看來$N的內力還不夠。\n", this_player());
         this_player()->set("neili",0);
         }
     return 1;
@@ -67,6 +67,6 @@ int do_tui(string arg)
 
 void close(object room)
 {
-      message("vision",YEL"大石缓缓移动，把石屋再次封住了。\n"NOR, room);
+      message("vision",YEL"大石緩緩移動，把石屋再次封住了。\n"NOR, room);
       room->delete("exits/out");
 }

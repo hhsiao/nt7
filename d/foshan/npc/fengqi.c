@@ -5,13 +5,13 @@ inherit F_DEALER;
 
 void create()
 {
-        set_name("凤七", ({ "feng qi", "feng", "qi" }) );
+        set_name("鳳七", ({ "feng qi", "feng", "qi" }) );
         set("gender", "男性" );
-        set("title", "酒楼老板" );
+        set("title", "酒樓老闆" );
         set("age", 42);
         set("long", @LONG
-凤七是凤天南的远房祖弟，在这英雄楼当掌柜。武功没有什么，为人
-却极是机灵，江湖上大大小小的事情都知道一些
+鳳七是鳳天南的遠房祖弟，在這英雄樓當掌櫃。武功沒有什麼，為人
+卻極是機靈，江湖上大大小小的事情都知道一些
 LONG );
         set("combat_exp", 10000);
         set("attitude", "friendly");
@@ -49,12 +49,12 @@ void greeting(object ob)
         switch (random(2))
         {
                 case 0:
-                        say( "凤七笑咪咪地说道：这位" + RANK_D->query_respect(ob)
-                                + "，进来喝杯茶，歇歇腿吧。\n");
+                        say( "鳳七笑咪咪地說道：這位" + RANK_D->query_respect(ob)
+                                + "，進來喝杯茶，歇歇腿吧。\n");
                         break;
                 case 1:
-                        say( "凤七笑咪咪地说道：这位" + RANK_D->query_respect(ob)
-                                + "，快请进。\n");
+                        say( "鳳七笑咪咪地說道：這位" + RANK_D->query_respect(ob)
+                                + "，快請進。\n");
                         break;
         }
 }

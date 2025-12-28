@@ -1,14 +1,14 @@
-// 厢房 xfang3.c
+// 廂房 xfang3.c
  
 #include <ansi.h>
 inherit ROOM;
 
 void create() 
 { 
-        set("short", "厢房");
+        set("short", "廂房");
         set("long", @LONG
-这是一间不大的厢房，陈设摆放十分整齐，靠左右墙边的地方各
-有一张小床，看来是熬药、作饭的两个小童休息的地方。
+這是一間不大的廂房，陳設擺放十分整齊，靠左右牆邊的地方各
+有一張小床，看來是熬藥、作飯的兩個小童休息的地方。
 LONG );
 
         set("exits", ([ 

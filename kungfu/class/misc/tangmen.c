@@ -4,8 +4,8 @@ inherit "/inherit/char/punisher";
 
 void create()
 {
-        set_name("唐门隐士", ({ "yin shi", "yin", "shi" }));
-        set("long",  "他就是唐门的高手，据说长年隐藏于山中。\n");
+        set_name("唐門隱士", ({ "yin shi", "yin", "shi" }));
+        set("long",  "他就是唐門的高手，據說長年隱藏於山中。\n");
         set("gender", "男性");
         set("age", 55);
         set("attitude", "peaceful");
@@ -54,7 +54,7 @@ void create()
 
         prepare_skill("hand", "boyun-suowu");
 
-        create_family("唐门世家", 0, "隐士");
+        create_family("唐門世家", 0, "隱士");
 
         set_temp("apply/attack", 100);
         set_temp("apply/damage", 100);

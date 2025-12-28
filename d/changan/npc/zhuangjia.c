@@ -8,10 +8,10 @@ object room = 0;
 
 void create()
 {
-        set_name( "庄家", ({ "zhuang jia", "zhuang" }) );
-        set("long", "这是长安赌场的职业赌徒，骰子上的功夫出神入化。\n");
+        set_name( "莊家", ({ "zhuang jia", "zhuang" }) );
+        set("long", "這是長安賭場的職業賭徒，骰子上的功夫出神入化。\n");
         set("attitude", "friendly");
-        set("title", HIR "骰子圣手" NOR);
+        set("title", HIR "骰子聖手" NOR);
         set("force_factor", 30);
         set("max_kee", 3000);
         set("max_sen", 3000);
@@ -50,17 +50,17 @@ void greeting(object ob)
         switch(random(3))
         {
         case 0:
-                say("庄家笑咪咪地说道：这位" + RANK_D->query_respect(ob) +
-                    "，过来赌两手，看看运气如何？\n");
+                say("莊家笑咪咪地說道：這位" + RANK_D->query_respect(ob) +
+                    "，過來賭兩手，看看運氣如何？\n");
                 break;
         case 1:
-                say("庄家晃了晃手中的骰子，叫道：这位" +
+                say("莊家晃了晃手中的骰子，叫道：這位" +
                     RANK_D->query_respect(ob) +
-                    "，别犹豫了。来下一注吧！\n");
+                    "，別猶豫了。來下一注吧！\n");
                 break;
         case 2:
-                say("庄家说道：这位" + RANK_D->query_respect(ob) +
-                    "，来！来！来！ 先押一把！\n");
+                say("莊家說道：這位" + RANK_D->query_respect(ob) +
+                    "，來！來！來！ 先押一把！\n");
                 break;
         }
 }

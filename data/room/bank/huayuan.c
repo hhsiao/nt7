@@ -5,12 +5,12 @@
 
 void create()
 {
-        set("short", "后花园");
+        set("short", "後花園");
 	set ("long", @LONG
-这是金风细雨楼的后花园，种着一些钱庄采自五湖四海、名山大
-川的奇花异草，美丽非常。钱庄有时读书练武疲倦了，就到这里稍作
-休息，观赏花草以怡情自乐，或许能突发灵感，有所领悟。西面就是
-通往主人居所的铁门，东面则是一片竹林。 
+這是金風細雨樓的後花園，種著一些錢莊採自五湖四海、名山大
+川的奇花異草，美麗非常。錢莊有時讀書練武疲倦了，就到這裡稍作
+休息，觀賞花草以怡情自樂，或許能突發靈感，有所領悟。西面就是
+通往主人居所的鐵門，東面則是一片竹林。 
 LONG );
 
         set("exits", ([
@@ -29,9 +29,9 @@ LONG );
                 "room" : __DIR__"jusuo",
         ]));
     
-        set("room_owner", "钱庄");
+        set("room_owner", "錢莊");
         set("room_owner_id", "bank");
-        set("room_name", "金风细雨楼");
+        set("room_name", "金風細雨樓");
         set("room_id", "gold");
         set("room_position", "[1;33m名人堂[2;37;0m");
 }
@@ -50,11 +50,11 @@ int do_sit(string arg)
         me = this_player();
         if( query_temp("has_sit", me) )
         {
-                message_vision("$N坐在那里摇啊摇，好不惬意。\n", me);
+                message_vision("$N坐在那裡搖啊搖，好不愜意。\n", me);
                 return 1;
         }
 
-        message_vision("$N找了的地方作了下来，看上去轻松多了。\n", me);
+        message_vision("$N找了的地方作了下來，看上去輕鬆多了。\n", me);
         set_temp("has_sit", 1, me);
         return 1;
 }
@@ -63,7 +63,7 @@ int valid_leave(object me, string dir)
 {
         if( query_temp("has_sit", me) )
         {
-                message_vision("$N掸掸尘土，站了起来。\n", me);
+                message_vision("$N撣撣塵土，站了起來。\n", me);
                 delete_temp("has_sit", me);
         }
 

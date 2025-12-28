@@ -11,15 +11,15 @@
 #define TOPTEN_RICH        DATA_DIR + "topten/rich.txt"
 #define TOPTEN_EXP         DATA_DIR + "topten/exp.txt"
 #define TOPTEN_NEILI       DATA_DIR + "topten/neili.txt"
-#define DUSHU_B                 NOR+WHT"江湖"HIR"读书"NOR+WHT"排行榜"NOR
+#define DUSHU_B                 NOR+WHT"江湖"HIR"讀書"NOR+WHT"排行榜"NOR
 #define JINGLI_B                 NOR+RED"江湖"HIW"精力"NOR+RED"排行榜"NOR
 #define RICH_B                     NOR+CYN"江湖"HIY"富豪"NOR+CYN"排行榜"NOR
-//#define PKER_B                 CYN"十大"HIR"杀人狂魔"NOR
-#define EXP_B           NOR+YEL"江湖"HIM"经验"NOR+YEL"排行榜"NOR
+//#define PKER_B                 CYN"十大"HIR"殺人狂魔"NOR
+#define EXP_B           NOR+YEL"江湖"HIM"經驗"NOR+YEL"排行榜"NOR
 //#define SHEN_B        CYN"十大"RED"邪道人物"NOR               
-#define NEILI_B                    NOR+BLU"江湖"HIC"内力"NOR+BLU"排行榜"NOR
+#define NEILI_B                    NOR+BLU"江湖"HIC"內力"NOR+BLU"排行榜"NOR
 //#define PER_B                    CYN"江湖"HIM"十大美女"NOR
-//#define AGE_B                    CYN"江湖十大"GRN"老前辈"NOR
+//#define AGE_B                    CYN"江湖十大"GRN"老前輩"NOR
 
 void topten_checkplayer(object);
 int get_all_data(object,string);
@@ -31,7 +31,7 @@ string query_type();
 
 
 void topten_checkplayer(object player)
-{//对于外貌等属性用先天还是后天呢？还有有些是需要有点区分的（比如男女性别）
+{//對於外貌等屬性用先天還是後天呢？還有有些是需要有點區分的（比如男女性別）
         topten_add(player,"rich");
         //topten_add(player,"pker");
         topten_add(player,"exp");
@@ -46,7 +46,7 @@ void topten_checkplayer(object player)
 
 string query_type()
 {
-        return HIY+CHINESE_MUD_NAME+"现在有以下类型的排行榜：\n"+
+        return HIY+CHINESE_MUD_NAME+"現在有以下類型的排行榜：\n"+
                 HIR"一：\t"NOR+RICH_B+"\n"+
                 HIR"二：\t"NOR EXP_B+"\n"+
                 //HIR"三：\t"NOR+PKER_B+"\n"+
@@ -70,7 +70,7 @@ int topten_save(string f_name,string b_name,string str)
                 str+=astr[i]+"\n";
 
         if(!write_file(f_name,str,1))
-                return notify_fail("无法写文件"+f_name+"，权限不够!不能更新"+b_name+"!\n");
+                return notify_fail("無法寫文件"+f_name+"，權限不夠!不能更新"+b_name+"!\n");
 
         return 1;
 }
@@ -113,7 +113,7 @@ string topten_query(string type)
                         return query_type();
         }
         if(file_size(f_name)==-1)
-                return b_name+"的数据文件还没有创建！\n";
+                return b_name+"的數據文件還沒有創建！\n";
         astr=explode(read_file(f_name),"\n");
         str=HIG+CHINESE_MUD_NAME+" : "NOR+b_name+"\n";
         for(i=0;i<sizeof(astr);i++)
@@ -123,8 +123,8 @@ string topten_query(string type)
                 for(j=0;j<sizeof(bstr);j++)
                 {
                         if(sscanf(bstr[j],"%s(%s)%d",name,id,data)!=3)
-                                return "数据错误!文件："+f_name+"第"+i+"行第"+j+"项！\n"+
-                                        "该行数据："+bstr[j]+"\n";
+                                return "數據錯誤!文件："+f_name+"第"+i+"行第"+j+"項！\n"+
+                                        "該行數據："+bstr[j]+"\n";
                         str+=name+"("+id+")\t";
                 }
                 str+="\n"NOR;
@@ -162,7 +162,7 @@ int get_all_data(object player,string type)
                         total=player->query_per();
                         break;*/
                 default:
-                        total=-1;//用-1标志类型出错！
+                        total=-1;//用-1標誌類型出錯！
         }
         return total;
 }
@@ -203,21 +203,21 @@ int topten_del(string pid,string type)
                         f_name=TOPTEN_DUSHU;
                         break;
                 default:
-                        return notify_fail("没有"+type+"这种排行榜！\n");
+                        return notify_fail("沒有"+type+"這種排行榜！\n");
         }
         
         if(file_size(f_name)==-1)
-                return notify_fail(b_name+"还没有创建！\n");
+                return notify_fail(b_name+"還沒有創建！\n");
         
         str=read_file(f_name);
         
         astr=explode(str,"\n");
         for(i=0;i<sizeof(astr);i++)
         {
-                //该行包括id则为真
+                //該行包括id則為真
                 if(strsrch(astr[i],pid)!=-1)
                 {
-                        //为真表示该行只有一个id，即pid
+                        //為真表示該行只有一個id，即pid
                         if(strsrch(astr[i],";")==-1)
                         {
                                 str="";
@@ -233,7 +233,7 @@ int topten_del(string pid,string type)
                                 bstr=explode(astr[i],";");
                                 for(j=0;j<sizeof(bstr);j++)
                                 {
-                                        //说明该项即pid,应该去除
+                                        //說明該項即pid,應該去除
                                         if(strsrch(bstr[j],pid)!=-1)
                                         {
                                                 astr[i]="";
@@ -247,7 +247,7 @@ int topten_del(string pid,string type)
                                                                         astr[i]+=bstr[k];
                                                         }
                                                 }
-                                                //本来去除后j的循环应该停止,但是不影响结果
+                                                //本來去除後j的循環應該停止,但是不影響結果
                                         }
                                         str=implode(astr,"\n");
                                 }
@@ -264,7 +264,7 @@ int topten_add(object player,string type)
         string *astr;
         int i,j,data;
         
-        //禁止巫师参加排行榜
+        //禁止巫師參加排行榜
         if(wizardp(player))
         return 0;
         if( query("id", player) == "idle")return 0;
@@ -301,7 +301,7 @@ int topten_add(object player,string type)
                         f_name=TOPTEN_DUSHU;
                         break;
                 default:
-                        return notify_fail("没有"+type+"这种排行榜！\n");
+                        return notify_fail("沒有"+type+"這種排行榜！\n");
         }
         
         if(!objectp(player) || !userp(player))
@@ -315,9 +315,9 @@ int topten_add(object player,string type)
 
         //主要程序！
         if(get_all_data(player,type)==-1)
-                return notify_fail("数据查询错误，可能是查询类型错误！\n");
+                return notify_fail("數據查詢錯誤，可能是查詢類型錯誤！\n");
         
-        //应该先排除该player的id!
+        //應該先排除該player的id!
         topten_del(query("id", player),type);
         str=read_file(f_name);
         astr=explode(str,"\n");
@@ -326,13 +326,13 @@ int topten_add(object player,string type)
         while(i<sizeof(astr))
         {
                 if(sscanf(astr[i],"%s(%s)%d",name,id,data)!=3) //|| sscanf(astr,"%s(%s)%d;%*s",name,id,data)!=3)
-                        return notify_fail(b_name+"文件数据错误！请呼叫巫师！\n");
+                        return notify_fail(b_name+"文件數據錯誤！請呼叫巫師！\n");
                 
                 str="";
                 
                 if(data<(int)get_all_data(player,type))
                 {
-                        //单独加入，暂时没考虑人数超过十行！
+                        //單獨加入，暫時沒考慮人數超過十行！
                         for(j=0;j<sizeof(astr);j++)
                         {
                                 if( strsrch(astr[j],query("id", player)) != -1 && strsrch(astr[j],query("name", player)) != -1 )
@@ -347,7 +347,7 @@ int topten_add(object player,string type)
                 else
                 if(data==(int)get_all_data(player,type))
                 {
-                        //并排加入
+                        //並排加入
                         for(j=0;j<sizeof(astr);j++)
                         {
                                 //by wenwu

@@ -1,4 +1,4 @@
-// 玩家任务：trace.c
+// 玩家任務：trace.c
 
 #include <ansi.h>
 #include <quest.h>
@@ -18,14 +18,14 @@ inherit QUEST_OB;
 string ask_1_for_2();
 mixed ask_2_for_1(object npc2, object npc1, string npc1_name);
 
-// 任务对象创建
+// 任務對象創建
 void create()
 {
         setup();
 }
 
-// 启动一个任务。自动生成两个人物，其中第二人打算寻
-// 找第一人，只需把第二人带到第一人处即可以领取奖励。
+// 啟動一個任務。自動生成兩個人物，其中第二人打算尋
+// 找第一人，只需把第二人帶到第一人處即可以領取獎勵。
 void init_quest()
 {
         string name;
@@ -33,22 +33,22 @@ void init_quest()
         object npc1, npc2;
         mapping my;
 
-        // 产生两个随机地点
+        // 產生兩個隨機地點
         place1 = NPC_D->random_place(({ "西域", place1 }));
         place2 = NPC_D->random_place(({ "西域", place2 }));
 
-        // 产生两个随机人物
+        // 產生兩個隨機人物
         npc1 = new(CLASS_D("generate") + "/questnpc");
         npc2 = new(CLASS_D("generate") + "/tracenpc");
 
         set_temp("quest_ob", this_object(), npc1);
         set_temp("quest_ob", this_object(), npc2);
 
-        // 生成任务的名字
-        name = "寻找" + npc1->name(1);
+        // 生成任務的名字
+        name = "尋找" + npc1->name(1);
         set_name(name);
 
-        // 记录这些人物、地点和物品信息
+        // 記錄這些人物、地點和物品信息
         my = query_entire_dbase();
 
         NPC1 = npc1;
@@ -60,11 +60,11 @@ void init_quest()
         NPC1_ID=query("id", npc1);
         NPC2_ID=query("id", npc2);
 
-        // 人物出现
+        // 人物出現
         NPC_D->place_npc(npc1, 0, ({ place1 }));
         NPC_D->place_npc(npc2, 0, ({ place2 }));
 
-        // 设置对话信息
+        // 設置對話信息
         set("inquiry",([
                 NPC1_NAME : "那就是鄙人我了！",
                 NPC1_ID   : "那就是鄙人我了！",
@@ -78,20 +78,20 @@ void init_quest()
                 NPC2_NAME : "那就是鄙人我了！",
                 NPC2_ID   : "那就是鄙人我了！", ]), npc2);
 
-        // 设置对象
+        // 設置對象
         set_temp("trace", NPC1_ID, npc2);
 
-        // 切换到正常状态
+        // 切換到正常狀態
         change_status(QUEST_READY);
 
-        // 设置任务最长存活时间：15分钟
+        // 設置任務最長存活時間：15分鐘
         set("live_time", 600);
 
-        // 登记谣言消息
+        // 登記謠言消息
         register_information();
 }
 
-// 任务终止
+// 任務終止
 void cancel_quest()
 {
         mapping my = query_entire_dbase();
@@ -106,30 +106,30 @@ void cancel_quest()
         if (objectp(NPC2))
                 destruct(NPC2);
 
-        // 任务消亡
+        // 任務消亡
         ::cancel_quest();
 }
 
-// 询问NPC1有关NPC2的事情
+// 詢問NPC1有關NPC2的事情
 string ask_1_for_2()
 {
         mapping my = query_entire_dbase();
 
         if (! objectp(NPC2))
-                return "天啊，我兄弟他…他怎么了？";
+                return "天啊，我兄弟他…他怎麼了？";
 
         switch (random(3))
         {
         case 0:
-                return "那天我们遇到仇人追杀，不小心就和他失散了，唉。";
+                return "那天我們遇到仇人追殺，不小心就和他失散了，唉。";
         case 1:
-                return "他是我同生共死的兄弟，可现在却不知他生在何处。";
+                return "他是我同生共死的兄弟，可現在卻不知他生在何處。";
         default:
-                return "知道他在哪里么？快请他过来，跟他说兄弟这里危险。";
+                return "知道他在哪裡麼？快請他過來，跟他說兄弟這裡危險。";
         }
 }
 
-// 询问NPC2有关NPC1的事情
+// 詢問NPC2有關NPC1的事情
 mixed ask_2_for_1(object npc2, object npc1, string npc1_name)
 {
         object me, follow;
@@ -138,42 +138,42 @@ mixed ask_2_for_1(object npc2, object npc1, string npc1_name)
         me = this_player();
 
         if( query("score", me)<500 )
-                return "谢谢你的好意，不过估计这事你也帮不上忙。";
+                return "謝謝你的好意，不過估計這事你也幫不上忙。";
 
         if( !query("quest/freequest", me) )
-                return "唉，你也一样有要事在身，我怎么好麻烦你？";
+                return "唉，你也一樣有要事在身，我怎麼好麻煩你？";
 
         if (! query_temp("trace/" + query_temp("trace", npc2),me))
-                return "你…你是从哪里听来的？这不干你的事。";
+                return "你…你是從哪裡聽來的？這不干你的事。";
 
         follow = npc2->query_leader();
 
         if (objectp(follow) && environment(follow) == environment(npc2))
         {
-                // 正在跟随另外一个人，察看当前执行的任务。
+                // 正在跟隨另外一個人，察看當前執行的任務。
 
                 if (follow == me)
-                        // 跟随的就是发话的人
-                        return "咱们快别耽搁了，万一我兄弟有个三长"
-                               "两短可…唉。";
+                        // 跟隨的就是發話的人
+                        return "咱們快別耽擱了，萬一我兄弟有個三長"
+                               "兩短可…唉。";
                 else
-                        return "现在" + follow->name() + "正在帮着"
-                               "寻找我兄弟，就不麻烦你了。";
+                        return "現在" + follow->name() + "正在幫著"
+                               "尋找我兄弟，就不麻煩你了。";
         }
-        message_vision(CYN "$N" CYN "一惊，紧握住$n" CYN "的双手道"
-                       "：你…你知道我兄弟在哪里？快…快带我去。\n"
+        message_vision(CYN "$N" CYN "一驚，緊握住$n" CYN "的雙手道"
+                       "：你…你知道我兄弟在哪裡？快…快帶我去。\n"
                        NOR, npc2, me);
 
         npc2->set_leader(me);
-        message_vision("$N决定开始跟随$n一起行动。\n", npc2, me);
+        message_vision("$N決定開始跟隨$n一起行動。\n", npc2, me);
 
-        // 四分钟以后解除跟随状态
+        // 四分鐘以後解除跟隨狀態
         remove_call_out("cancel_follow");
         call_out("cancel_follow", 240, npc2, me);
         return 1;
 }
 
-// 停止跟踪
+// 停止跟蹤
 void cancel_follow(object npc2, object me)
 {
         string startroom;
@@ -184,22 +184,22 @@ void cancel_follow(object npc2, object me)
         if( !stringp(startroom=query("startroom", npc2)) )
                 return;
 
-        // 不再跟随
+        // 不再跟隨
         npc2->set_leader(0);
-        message_vision(CYN "$N" CYN "皱眉道：你到底知不知道我"
-                       "兄弟的下落？算了，我还是自己找吧。\n"
+        message_vision(CYN "$N" CYN "皺眉道：你到底知不知道我"
+                       "兄弟的下落？算了，我還是自己找吧。\n"
                        NOR, npc2);
 
-        message_vision(HIC "$N" HIC "叹了口气，头也不回的走了。"
+        message_vision(HIC "$N" HIC "嘆了口氣，頭也不回的走了。"
                        "\n" NOR, npc2);
 
         // 返回故地
         npc2->move(startroom);
-        message_vision("$N赶了过来。\n", npc2);
+        message_vision("$N趕了過來。\n", npc2);
 }
 
 
-// 询问NPC1的状况
+// 詢問NPC1的狀況
 string ask_npc1(object knower, object me)
 {
         mapping my = query_entire_dbase();
@@ -215,27 +215,27 @@ string ask_npc1(object knower, object me)
         if (! objectp(NPC1) && ! objectp(NPC2))
         {
                 call_out("cancel_quest", 1);
-                return CYN "嘿嘿，据说" HIY + NPC1_NAME + NOR +
+                return CYN "嘿嘿，據說" HIY + NPC1_NAME + NOR +
                        CYN "和" HIY + NPC2_NAME + NOR + CYN "哥"
-                       "俩终于见面了。啧啧，真不错。" NOR;
+                       "倆終於見面了。嘖嘖，真不錯。" NOR;
         }
 
         if (! objectp(NPC1))
-                return CYN "唉…据说" HIY + NPC1_NAME + NOR +
-                       CYN "还是被仇家给做掉了，到死也没见着"
+                return CYN "唉…據說" HIY + NPC1_NAME + NOR +
+                       CYN "還是被仇家給做掉了，到死也沒見著"
                        HIY + NPC2_NAME + NOR + CYN "的面。" NOR;
 
         set_temp("trace/"+NPC1_ID, 1, me);
 
-        return CYN "这人武功不高，可是极重义气，跟他兄弟" HIY +
-               NPC2_NAME + NOR + CYN "失散后，便四处躲避仇家"
-               "的追杀。\n" + knower->name() + CYN "又接着道"
-               "：今上午听吃饭的几个家伙提起" HIY + NPC1_NAME +
-               NOR + CYN "，据说是躲到" + PLACE1 + NOR + CYN
+        return CYN "這人武功不高，可是極重義氣，跟他兄弟" HIY +
+               NPC2_NAME + NOR + CYN "失散後，便四處躲避仇家"
+               "的追殺。\n" + knower->name() + CYN "又接著道"
+               "：今上午聽吃飯的幾個傢伙提起" HIY + NPC1_NAME +
+               NOR + CYN "，據說是躲到" + PLACE1 + NOR + CYN
                "去了。" NOR;
 }
 
-// 询问NPC2的状况
+// 詢問NPC2的狀況
 string ask_npc2(object knower, object me)
 {
         mapping my = query_entire_dbase();
@@ -251,18 +251,18 @@ string ask_npc2(object knower, object me)
         if (! objectp(NPC1) && ! objectp(NPC2))
         {
                 call_out("cancel_quest", 1);
-                return CYN "嘿嘿，据说" HIY + NPC1_NAME + NOR +
+                return CYN "嘿嘿，據說" HIY + NPC1_NAME + NOR +
                        CYN "和" HIY + NPC2_NAME + NOR + CYN "哥"
-                       "俩终于见面了。啧啧，真不错。" NOR;
+                       "倆終於見面了。嘖嘖，真不錯。" NOR;
         }
 
         if (! objectp(NPC2))
-                return CYN "唉…据说那" HIY + NPC2_NAME + NOR +
-                       CYN "最后还是被仇家给做掉了，临死前还惦"
-                       "记着" HIY + NPC1_NAME + NOR + CYN "呢。" NOR;
+                return CYN "唉…據說那" HIY + NPC2_NAME + NOR +
+                       CYN "最後還是被仇家給做掉了，臨死前還惦"
+                       "記著" HIY + NPC1_NAME + NOR + CYN "呢。" NOR;
 
         return "那人跟他兄弟" HIY + NPC1_NAME + NOR + CYN "失散"
-               "后，担心得不得了。喏，现在还在" + PLACE2 + NOR +
+               "後，擔心得不得了。喏，現在還在" + PLACE2 + NOR +
                CYN "等他兄弟呢。" NOR;
 }
 
@@ -274,19 +274,19 @@ void do_whisper(object knower, object me)
 
         if( query("score", me)<500 )
                 tell_object(me, WHT + knower->name() + WHT "悄悄的和你"
-                                "说：算了吧，凭你这两下子，别人不会理你"
+                                "說：算了吧，憑你這兩下子，別人不會理你"
                                 "的。\n" NOR);
         else
                 tell_object(me, WHT + knower->name() + WHT "悄悄的和你"
-                                "说：我说呢，你也有事情做，何必去干涉别"
+                                "說：我說呢，你也有事情做，何必去幹涉別"
                                 "人的私事。\n" NOR);
 
         delete_temp("trace/have_ask", me);
-        message("vision", knower->name() + "在" + me->name() + "的耳边"
-                "悄悄的说了些什么。\n", environment(me), ({ me }));
+        message("vision", knower->name() + "在" + me->name() + "的耳邊"
+                "悄悄的說了些什麼。\n", environment(me), ({ me }));
 }
 
-// 任务介绍
+// 任務介紹
 string query_introduce(object knower)
 {
         mapping my = query_entire_dbase();
@@ -294,33 +294,33 @@ string query_introduce(object knower)
         if (! objectp(NPC1) && ! objectp(NPC2))
         {
                 call_out("cancel_quest", 1);
-                return CYN "嘿嘿，据说" HIY + NPC1_NAME + NOR +
+                return CYN "嘿嘿，據說" HIY + NPC1_NAME + NOR +
                        CYN "和" HIY + NPC2_NAME + NOR + CYN "哥"
-                       "俩终于见面了。啧啧，真不错。" NOR;
+                       "倆終於見面了。嘖嘖，真不錯。" NOR;
         }
 
-        return CYN "听说" HIY + NPC2_NAME + NOR + CYN "和"
+        return CYN "聽說" HIY + NPC2_NAME + NOR + CYN "和"
                HIY + NPC1_NAME + NOR + CYN "在" + PLACE2 +
-               CYN "被仇家围追堵杀，双方火拼了几个时辰，真"
-               "是壮烈。\n" + knower->name() + CYN "又接着"
-               "说道：唉…那几个仇家倒是被干掉了，可是这么"
-               "一对同生共死的兄弟也因此失散了。" NOR;
+               CYN "被仇家圍追堵殺，雙方火拼了幾個時辰，真"
+               "是壯烈。\n" + knower->name() + CYN "又接著"
+               "說道：唉…那幾個仇家倒是被幹掉了，可是這麼"
+               "一對同生共死的兄弟也因此失散了。" NOR;
 }
 
-// 这个消息能够被散布吗？
+// 這個消息能夠被散佈嗎？
 int can_rumor_by(object knower)
 {
-        // 20%的几率被散布
+        // 20%的幾率被散佈
         return (random(10) < 2);
 }
 
-// 登记该任务的消息
+// 登記該任務的消息
 void register_information()
 {
         mapping my = query_entire_dbase();
 
         if (! clonep() || ! mapp(my))
-                // 不是任务，所以不登记
+                // 不是任務，所以不登記
                 return;
 
         set_information(NPC1_NAME, (: ask_npc1 :));

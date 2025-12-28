@@ -6,9 +6,9 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("闻万夫", ({"wen wanfu", "wen", "wanfu"}));
-        set("long", "闻万夫是凌宵城雪山剑派中的六代弟子，已经在雪\n"
-                    "山凌宵城呆了多年，可武技还是平平。\n");
+        set_name("聞萬夫", ({"wen wanfu", "wen", "wanfu"}));
+        set("long", "聞萬夫是凌宵城雪山劍派中的六代弟子，已經在雪\n"
+                    "山凌宵城呆了多年，可武技還是平平。\n");
         set("gender", "男性");
         set("age", 34);
         set("attitude", "friendly");
@@ -70,7 +70,7 @@ void attempt_apprentice(object me)
         if (! permit_recruit(me))
                 return;
 
-        command("say 既然这样，我就代师父收下你了。");
+        command("say 既然這樣，我就代師父收下你了。");
         command("recruit "+query("id", me));
 }
 
@@ -87,8 +87,8 @@ void kill_ob (object ob)
 
         if (guard1 && ! guard1->is_fighting())
         {
-                message_vision (HIW "\n闻万夫大怒，喝道：居然欺到我们凌宵"
-                                "城头上来了，大家并肩子上！\n\n" NOR,
+                message_vision (HIW "\n聞萬夫大怒，喝道：居然欺到我們凌宵"
+                                "城頭上來了，大家併肩子上！\n\n" NOR,
                                 guard1);
                 guard1->kill_ob(ob);
         }

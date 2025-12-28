@@ -7,7 +7,7 @@ void setup()
         set_name("九把刀[2;37;0m[2;37;0m", ({"daoze"}));        
         set("gender", "男性");                
         set("long", "阿哈哈哈...[2;37;0m
-它是刀九把的魔幻兽。
+它是刀九把的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

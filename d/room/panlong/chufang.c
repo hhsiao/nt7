@@ -1,4 +1,4 @@
-// chufang.c 盘龙居厨房
+// chufang.c 盤龍居廚房
 
 //** inherit PRIVATE_ROOM;
 inherit ROOM;                                   /* EXAMPLE */
@@ -16,12 +16,12 @@ string *names = ({
 
 void create()
 {
-        set("short", "厨房");
+        set("short", "廚房");
         set("long", @LONG
-此处便是盘龙居的厨房，武功再高终究也不能辟谷，饭总是要吃的。
+此處便是盤龍居的廚房，武功再高終究也不能辟穀，飯總是要吃的。
 LONG );
 
-        set("default_long", "此处便是ROOM_NAME的厨房，只间几个仆人忙来"/* EXAMPLE */
+        set("default_long", "此處便是ROOM_NAME的廚房，只間幾個僕人忙來"/* EXAMPLE */
                             "忙去，不得歇息。");                       /* EXAMPLE */
                                                                        /* EXAMPLE */
 

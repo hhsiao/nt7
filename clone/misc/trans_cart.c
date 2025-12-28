@@ -7,7 +7,7 @@ inherit ITEM;
 
 void create()
 {
-        set_name("大车", ({ "cart" }));
+        set_name("大車", ({ "cart" }));
         set_weight(200000);
         set_max_encumbrance(1000000);
         if (clonep())
@@ -18,10 +18,10 @@ void create()
         else
         {
                 set("value", 1);
-                set("long", "这是一辆普通的马车，行驶在大官道上，你觉得晃晃悠悠的。\n");
-                set("unit", "辆");
+                set("long", "這是一輛普通的馬車，行駛在大官道上，你覺得晃晃悠悠的。\n");
+                set("unit", "輛");
                 set("material", "wood");
-                set("no_get", "好家伙，车你也想扛在肩上？\n");
+                set("no_get", "好傢伙，車你也想扛在肩上？\n");
         }
         setup();
 }

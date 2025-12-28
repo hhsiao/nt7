@@ -3,7 +3,7 @@
 
 inherit F_SSERVER;
 
-string name() { return HIR"灰飞湮灭"NOR; }
+string name() { return HIR"灰飛湮滅"NOR; }
 
 #include "/kungfu/skill/eff_msg.h";
 string final(object me, object target, int lvl);
@@ -23,35 +23,35 @@ int perform(object me, object target)
         }
 
         if( objectp(query_temp("weapon", me)) )
-                return notify_fail("「灰飞湮灭」只能空手才能施展。\n");
+                return notify_fail("「灰飛湮滅」只能空手才能施展。\n");
 
         if (! me->is_fighting(target))
-                return notify_fail("「灰飞湮灭」只能对战斗中的对手使用。\n");
+                return notify_fail("「灰飛湮滅」只能對戰鬥中的對手使用。\n");
 
         if (! target || ! target->is_character())
-                return notify_fail("你要对谁施展灰飞湮灭？\n");
+                return notify_fail("你要對誰施展灰飛湮滅？\n");
 
         if (! living(target))
                 return notify_fail("看清楚，那不是活人。\n");
 
         if (me->query_skill_prepared("strike") != "liuyang-zhang" )
-                return notify_fail("你还没有将天山六阳掌与逍遥折梅手互备，无法施展。\n");
+                return notify_fail("你還沒有將天山六陽掌與逍遙折梅手互備，無法施展。\n");
 
         if (me->query_skill_prepared("hand") != "zhemei-shou" )
-                return notify_fail("你还没有将天山六阳掌与逍遥折梅手互备，无法施展。\n");
+                return notify_fail("你還沒有將天山六陽掌與逍遙折梅手互備，無法施展。\n");
 
         if (me->query_skill_mapped("dodge") != "lingbo-weibu" )
-                return notify_fail("你还没有激发凌波微步，无法施展。\n");
+                return notify_fail("你還沒有激發凌波微步，無法施展。\n");
 
         if( query("neili", me)< query("max_neili",me)/35 )
-                return notify_fail("你的真气不够，现在无法施展灰飞湮灭。\n");
+                return notify_fail("你的真氣不夠，現在無法施展灰飛湮滅。\n");
 
-        msg = HIY "$N" HIY "左手化掌，右手成刀，不停翻转向前，掌风到处，一股紫气席卷而至，将$n" HIY "四周包围。\n" NOR;
+        msg = HIY "$N" HIY "左手化掌，右手成刀，不停翻轉向前，掌風到處，一股紫氣席捲而至，將$n" HIY "四周包圍。\n" NOR;
 
         ap = attack_power(me, "strike") + me->query_skill("hand");
         dp = defense_power(target, "parry") + target->query_skill("unarmed");
         
-        delta = ABILITY_D->check_ability(me, "ap_power-lyz-hui"); // 门派ab
+        delta = ABILITY_D->check_ability(me, "ap_power-lyz-hui"); // 門派ab
         if( delta ) ap += ap*delta/100;
         
         fmsk = me->query_skill("xiaoyao_you",1);
@@ -69,7 +69,7 @@ int perform(object me, object target)
                 damage+= me->query_all_buff("unarmed_damage");
                 damage+= damage / 300 * me->query_str();  
                 
-                delta = ABILITY_D->check_ability(me, "da_power-lyz-hui"); // 门派ab
+                delta = ABILITY_D->check_ability(me, "da_power-lyz-hui"); // 門派ab
                 if( delta ) damage += damage*delta/100;
                 
                 flagremote = UNARMED_ATTACK;
@@ -78,21 +78,21 @@ int perform(object me, object target)
                 if( fmsk > 2000 && me->query_skill("beiming-shengong",1) > 15000)
                   flagremote = REMOTE_ATTACK;
                 
-                // 如激发beiming-shengong 有1/3机会内力迸发
+                // 如激發beiming-shengong 有1/3機會內力迸發
                 if (random(3) == 1 && is_jifa_beiming)
                 {
-                        msg += HIW "刹那间，$N" HIW "只觉体内北冥真气犹如火山喷发般汹涌而出，周身"
-                                   "穴位中融和了无数武学高手不同宗派的内力，顷刻间涌出，游走至双掌"
-                                    "，泛出炽热的白光 ……\n" NOR;
+                        msg += HIW "剎那間，$N" HIW "只覺體內北冥真氣猶如火山噴發般洶湧而出，周身"
+                                   "穴位中融和了無數武學高手不同宗派的內力，頃刻間湧出，遊走至雙掌"
+                                    "，泛出熾熱的白光 ……\n" NOR;
                         msg = sort_msg(msg);
 
                         add_dam = 400;
                 }
 
-                // 离开逍遥派后威力减半
+                // 離開逍遙派後威力減半
                 if( !(query("family/family_name", me) ||
-                    query("family/family_name", me) != "逍遥派") && (!query("reborn/times", me) || 
-                    member_array("逍遥派", query("reborn/fams", me)) == -1) ) 
+                    query("family/family_name", me) != "逍遙派") && (!query("reborn/times", me) || 
+                    member_array("逍遙派", query("reborn/fams", me)) == -1) ) 
                 {
                         damage /= 2;
                         add_dam /= 2;
@@ -106,14 +106,14 @@ int perform(object me, object target)
                 else
                 {
                         msg += COMBAT_D->do_damage(me, target, flagremote, damage, add_dam+fmsk/10,
-                                                   HIR "只见风沙漫天,忽地一掌正中$n" HIR "胸口，随即"
-                                                   "闷哼一声，鲜血狂喷而出。\n" NOR);
+                                                   HIR "只見風沙漫天,忽地一掌正中$n" HIR "胸口，隨即"
+                                                   "悶哼一聲，鮮血狂噴而出。\n" NOR);
                 }
 
                 addn("neili", -query("max_neili", me)/40, me);
                 if (me->query_skill("lingbo-weibu", 1) >= 1500 && random(100) < 15)
                 {
-                        message_combatd(HIW "$N" HIW "默念凌波微步口诀，身法忽快，丝毫不受出招的阻碍。\n" NOR, me);
+                        message_combatd(HIW "$N" HIW "默唸凌波微步口訣，身法忽快，絲毫不受出招的阻礙。\n" NOR, me);
                 }
                 else
                 {
@@ -121,10 +121,10 @@ int perform(object me, object target)
                 }
         } else
         {
-                msg += CYN "可是$p" CYN "身法突变，左躲右闪，竟避过这招。\n" NOR;
+                msg += CYN "可是$p" CYN "身法突變，左躲右閃，竟避過這招。\n" NOR;
                 if (me->query_skill("lingbo-weibu", 1) >= 1500 && random(100) < 15)
                 {
-                        message_combatd(HIW "$N" HIW "默念凌波微步口诀，身法忽快，丝毫不受出招的阻碍。\n" NOR, me);
+                        message_combatd(HIW "$N" HIW "默唸凌波微步口訣，身法忽快，絲毫不受出招的阻礙。\n" NOR, me);
                 }
                 else
                 {
@@ -149,6 +149,6 @@ string final(object me, object target, int lvl)
 
           if (! target->is_busy()) target->start_busy(2 + random(5));
 
-          return HIR "$n" HIR "只觉得一股寒气透心而过，犹如利刃穿心，难受之极。\n" NOR;
+          return HIR "$n" HIR "只覺得一股寒氣透心而過，猶如利刃穿心，難受之極。\n" NOR;
 }
 

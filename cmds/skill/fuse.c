@@ -9,40 +9,40 @@ int main(object me, string str)
         int p, mp;
 
         if (! str)
-                return notify_fail("你要熔炼什么物品？\n");
+                return notify_fail("你要熔鍊什麼物品？\n");
 
         if (me->is_busy())
-                return notify_fail("先忙完了你的事情再做这件事情吧。\n");
+                return notify_fail("先忙完了你的事情再做這件事情吧。\n");
 
         if (me->is_fighting())
-                return notify_fail("你现在正在打架，没时间做这些事情。\n");
+                return notify_fail("你現在正在打架，沒時間做這些事情。\n");
 
         if (! objectp(ob = present(str, me)))
-                return notify_fail("你身上没有这件物品。\n");
+                return notify_fail("你身上沒有這件物品。\n");
 
         if (me->query_skill("force") < 300)
-                return notify_fail("你的内功修为不够，难以熔炼物品。\n");
+                return notify_fail("你的內功修為不夠，難以熔鍊物品。\n");
 
         if( query("max_neili", me)<5000 )
-                return notify_fail("你的内力修为不够，难以熔炼物品。\n");
+                return notify_fail("你的內力修為不夠，難以熔鍊物品。\n");
 
         if( query("neili", me)<3000 )
-                return notify_fail("你现在的内力不足，难以熔炼物品。\n");
+                return notify_fail("你現在的內力不足，難以熔鍊物品。\n");
 
         if( !query("can_make", ob) || !query("item_origin", ob) )
-                return notify_fail("这东西似乎熔炼不出什么。\n");
+                return notify_fail("這東西似乎熔鍊不出什麼。\n");
 
         p=query("power_point", ob);
 
-        message_vision(HIM "$N" HIM "将" + ob->name() +
-                       HIM "握于掌中，默默运转内力，迫"
+        message_vision(HIM "$N" HIM "將" + ob->name() +
+                       HIM "握於掌中，默默運轉內力，迫"
                        "使其熔化。\n" NOR, me);
 
         if (p < 50)
         {
-                message_vision(HIR "突然却见" + ob->name() +
-                               HIR "嗤的化作一股青烟，什么都"
-                               "没有留下。\n" NOR, me);
+                message_vision(HIR "突然卻見" + ob->name() +
+                               HIR "嗤的化作一股青煙，什麼都"
+                               "沒有留下。\n" NOR, me);
                 destruct(ob);
                 return 1;
         }
@@ -60,8 +60,8 @@ int main(object me, string str)
         else
                 stone = new("/clone/fam/item/stone1");
 
-        message_vision(HIM "霎时只见$N" HIM "掌心白雾蒸腾，似乎发"
-                       "生了什么不同寻常的事情。\n" NOR, me);
+        message_vision(HIM "霎時只見$N" HIM "掌心白霧蒸騰，似乎發"
+                       "生了什麼不同尋常的事情。\n" NOR, me);
 
         if( query("value", stone) )
         {
@@ -71,9 +71,9 @@ int main(object me, string str)
                 if (mp > 100) mp = 100;
 
                 addn("magic_points", mp, me);
-                tell_object(me, HIC "你通过熔炼"+ stone->name() +
-                                HIC "的过程，从而获得了" +
-                                chinese_number(mp) + "点灵慧。\n" NOR);
+                tell_object(me, HIC "你通過熔鍊"+ stone->name() +
+                                HIC "的過程，從而獲得了" +
+                                chinese_number(mp) + "點靈慧。\n" NOR);
         }
         addn("max_neili", -1, me);
         addn("neili", -3000, me);
@@ -90,9 +90,9 @@ int help(object me)
 write(@HELP
 指令格式：fuse <物品ID>
 
-此指令可让你将某些物品熔化。一般来说能够铸造武器的原料都可以
-被熔炼，不过熔炼物品需要比较高的内功等级和内力修为，每次成功
-的熔炼都会增加一定数量的灵慧，但是会消耗一点最大内力。
+此指令可讓你將某些物品熔化。一般來說能夠鑄造武器的原料都可以
+被熔鍊，不過熔鍊物品需要比較高的內功等級和內力修為，每次成功
+的熔鍊都會增加一定數量的靈慧，但是會消耗一點最大內力。
 HELP);
         return 1;
 }

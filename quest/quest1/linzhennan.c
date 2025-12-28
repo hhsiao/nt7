@@ -19,8 +19,8 @@ void create()
         set_name("林震南", ({ "lin zhennan", "lin"}));
         set("gender", "男性");
         set("age", 65);
-        set("title", "福威镖局总镖头");
-        set("long", "他就是福威镖局总镖头－－林震南。\n");
+        set("title", "福威鏢局總鏢頭");
+        set("long", "他就是福威鏢局總鏢頭－－林震南。\n");
         set("combat_exp", 30000);
         set("shen_type", 1);
         set("max_neili", 500);
@@ -32,16 +32,16 @@ void create()
         set_skill("dodge", 150);
         set_skill("parry", 150);
         set("inquiry", ([     
-                "运镖"     : (: ask_yunbiao :),
-                "镖队"     : (: ask_biaodui :),  
-                "镖"       : (: ask_yunbiao :),
-                "向阳老宅" : "林震南说道：那是我从前在福建时住的家院，已经破败了。\n",
-                "福威镖局" : (: ask_fuwei :),
-                "远图公"   : (: ask_yuantu :),
-                "林远图"   : "林震南大怒：小孩子这么没礼貌，直呼先人名讳！\n",
-                "辟邪剑法" : (: ask_pixie:),
-                "铜钱"     : (: ask_tong:),
-                "铜板"     : (: ask_tong:),
+                "運鏢"     : (: ask_yunbiao :),
+                "鏢隊"     : (: ask_biaodui :),  
+                "鏢"       : (: ask_yunbiao :),
+                "向陽老宅" : "林震南說道：那是我從前在福建時住的家院，已經破敗了。\n",
+                "福威鏢局" : (: ask_fuwei :),
+                "遠圖公"   : (: ask_yuantu :),
+                "林遠圖"   : "林震南大怒：小孩子這麼沒禮貌，直呼先人名諱！\n",
+                "辟邪劍法" : (: ask_pixie:),
+                "銅錢"     : (: ask_tong:),
+                "銅板"     : (: ask_tong:),
         ]));
         set_temp("apply/attack", 500);
         set_temp("apply/defense", 500);
@@ -54,10 +54,10 @@ void create()
 
 int ask_fuwei()
 {
-         say("林震南炫耀地说：我们林家三代走镖，一来仗着先祖远图公当年闯下的威名，二\n"
-                 "来靠著我们林家家传的玩艺儿不算含糊，这才有今日的局面，成为大江以南首屈\n"
-            "一指的大镖局。江湖上提到『福威镖局』四字，谁都要翘起大拇指，说一声：『\n"
-            "好福气！好威风！』哈哈，哈哈！\n");
+         say("林震南炫耀地說：我們林家三代走鏢，一來仗著先祖遠圖公當年闖下的威名，二\n"
+                 "來靠著我們林家家傳的玩藝兒不算含糊，這才有今日的局面，成為大江以南首屈\n"
+            "一指的大鏢局。江湖上提到『福威鏢局』四字，誰都要翹起大拇指，說一聲：『\n"
+            "好福氣！好威風！』哈哈，哈哈！\n");
          set_temp("marks/林1", 1, this_player());
          return 1;
 }
@@ -66,16 +66,16 @@ int ask_yuantu()
 {
           if( query_temp("marks/林1", this_player()) )
           {
-                 say("林震南磕一磕烟斗，说道：远图公是我的祖父，福威镖局是他一手创办的。当年\n"
-                        "祖父以七十二路辟邪剑法开创镖局，当真是打遍黑道无敌手。其时白道上英雄见\n"
-                          "他太过威风，也有去找他比试武艺的，青城派掌门余观主的师父长青子少年之时\n"
-                        "便在他辟邪剑法下输了几招。\n");
+                 say("林震南磕一磕菸斗，說道：遠圖公是我的祖父，福威鏢局是他一手創辦的。當年\n"
+                        "祖父以七十二路辟邪劍法開創鏢局，當真是打遍黑道無敵手。其時白道上英雄見\n"
+                          "他太過威風，也有去找他比試武藝的，青城派掌門餘觀主的師父長青子少年之時\n"
+                        "便在他辟邪劍法下輸了幾招。\n");
                  set_temp("marks/林2", 1, this_player());
                  return 1;
           }
           else 
           {
-                 say("林震南说道：远图公是我的祖父。\n");
+                 say("林震南說道：遠圖公是我的祖父。\n");
                  return 1;
           }
 }
@@ -85,13 +85,13 @@ int ask_pixie()
           int p1, p2, p3, p4;
           if( query("passwd", this_player()) )
           {
-                 say("林震南不悦地说道：我不是都告诉你了吗？我的剑法不及先祖。\n");
+                 say("林震南不悅地說道：我不是都告訴你了嗎？我的劍法不及先祖。\n");
           }
           else if( query_temp("marks/林2", this_player()) )
           {
-                 say("林震南一惊，说道：你怎么知道的？噢，我刚才说露嘴了。嗨，在下的功夫外人\n"
-                          "不知底细，其实及不上先祖。。\n");
-                 write("林震南顿一顿，接着对你低声说：先祖去世前，曾给家父留下");
+                 say("林震南一驚，說道：你怎麼知道的？噢，我剛才說露嘴了。嗨，在下的功夫外人\n"
+                          "不知底細，其實及不上先祖。。\n");
+                 write("林震南頓一頓，接著對你低聲說：先祖去世前，曾給家父留下");
                  p1 = random(4) + 1;
                  p2 = random(4) + 1;
                  p3 = random(4) + 1;
@@ -99,12 +99,12 @@ int ask_pixie()
                  set("passwd", p1*1000+p2*100+p3*10+p4, this_player());
                  write(CHINESE_D->chinese_number(p1) + "千" + CHINESE_D->chinese_number(p2) +
                              "百" + CHINESE_D->chinese_number(p3) + "十" + CHINESE_D->chinese_number(p4));
-                 write("个\n铜钱，我一直未解其中奥秘。\n");
+                 write("個\n銅錢，我一直未解其中奧秘。\n");
           }
           else 
           {
                    message("vision",
-                           HIM "林震南勃然大怒，喝道：你也窥视我们林家的辟邪剑谱？！我跟你拼了！\n" NOR, 
+                           HIM "林震南勃然大怒，喝道：你也窺視我們林家的辟邪劍譜？！我跟你拼了！\n" NOR, 
                            environment(), this_object());
                    kill_ob(this_player());
           }
@@ -118,18 +118,18 @@ int ask_tong()
           int p, p1, p2, p3, p4;
           if( !(p=query("passwd", this_player())) )
           {
-                 say("林震南一脸讥笑的样子，说：怎么混到这一步了到处要钱？\n");
+                 say("林震南一臉譏笑的樣子，說：怎麼混到這一步了到處要錢？\n");
           }
           else 
           {
-                 write("林震南低声说：先祖去世前，曾给家父留下");
+                 write("林震南低聲說：先祖去世前，曾給家父留下");
                  p1 = (int)p / 1000;
                  p2 = (int)(p - p1 * 1000) / 100;
                  p3 = (int)(p - p1 * 1000 - p2 * 100) / 10;
                  p4 = (int)(p - p1 * 1000 - p2 * 100 - p3 * 10);
                  write(CHINESE_D->chinese_number(p1) + "千" + CHINESE_D->chinese_number(p2) +
                              "百" + CHINESE_D->chinese_number(p3) + "十" + CHINESE_D->chinese_number(p4));
-                 write("个\n铜钱，我一直未解其中奥秘。\n");
+                 write("個\n銅錢，我一直未解其中奧秘。\n");
           }
           return 1;
 }
@@ -144,7 +144,7 @@ string chinese_time(int t)
         d = t;
         if (d) time = chinese_number(d) + "天";
         else time = "";
-        if (h) time += chinese_number(h) + "小时";
+        if (h) time += chinese_number(h) + "小時";
         if (m) time += chinese_number(m) + "分";    
         time += chinese_number(s) + "秒";
         return time;
@@ -159,25 +159,25 @@ mixed ask_yunbiao()
         me = this_player();
 
         if( query("combat_exp", me) < 100000 )
-                return "运镖可是件危险的差使，还是练好了功夫再来吧！\n";    
+                return "運鏢可是件危險的差使，還是練好了功夫再來吧！\n";    
 
         if( query("combat_exp", me) > 10000000000 )
-                return "让您来运镖太委屈您了！\n";    
+                return "讓您來運鏢太委屈您了！\n";    
                       
         if( query_temp("quest_yunbiao/have_task", me) )
-                return "你上次的镖还没送到呢，怎么又来了？\n"; 
+                return "你上次的鏢還沒送到呢，怎麼又來了？\n"; 
 
         if( me->query_condition("yunbiao_busy") )
-                return "你刚运镖失败，还是等待一段时间再来吧！\n"; 
+                return "你剛運鏢失敗，還是等待一段時間再來吧！\n"; 
 
         if( query_temp("quest_yunbiao/finished_time", me )
         &&  (time()-query_temp("quest_yunbiao/finished_time", me))<5 )
-                return RANK_D->query_respect(me) + "辛苦了，现在没有镖车要运，过会再来吧！\n";
+                return RANK_D->query_respect(me) + "辛苦了，現在沒有鏢車要運，過會再來吧！\n";
 
         if( mapp(query_temp("quest_yunbiao", me) )
         &&  !query_temp("quest_yunbiao/finished_time", me )
         &&  (time()-query_temp("quest_yunbiao/start_time", me))<60 )
-                       return "你把我的镖弄哪里去啦？不是被人劫了吧？\n";
+                       return "你把我的鏢弄哪裡去啦？不是被人劫了吧？\n";
 
         biao = yun_biao[random(sizeof(yun_biao))];
         time = biao["time"];
@@ -199,17 +199,17 @@ mixed ask_yunbiao()
         biaoche->move(environment(me));
             
         /*
-        message("channel:rumor",HIM"【镖局】"+query("name", me)+
-                     "即将护送镖车起程前往" + biao["name"] + "！\n" NOR,
+        message("channel:rumor",HIM"【鏢局】"+query("name", me)+
+                     "即將護送鏢車起程前往" + biao["name"] + "！\n" NOR,
                      users());  
         */
         
         delete_temp("apply/short", me);
         set_temp("apply/short",
-                            ({HIM"福威镖局镖头"NOR+me->name()+"("+query("id", me)+")"}), me);
+                            ({HIM"福威鏢局鏢頭"NOR+me->name()+"("+query("id", me)+")"}), me);
 
-        message_sort(HIM "$N" HIM "对$n" HIM "吩咐道：请在" + chinese_time(time) + "内，将镖车运送到" +
-                     biao["name"] + "。一路多加小心，你还是趁早上路吧！\n" NOR, this_object(), me);
+        message_sort(HIM "$N" HIM "對$n" HIM "吩咐道：請在" + chinese_time(time) + "內，將鏢車運送到" +
+                     biao["name"] + "。一路多加小心，你還是趁早上路吧！\n" NOR, this_object(), me);
         return 1;
 }
 
@@ -223,13 +223,13 @@ mixed ask_biaodui()
             me = this_player();
 
             if( query("combat_exp", me) < 200000 )
-                      return "运镖可是件危险的差使，还是练好了功夫再来吧！\n";
+                      return "運鏢可是件危險的差使，還是練好了功夫再來吧！\n";
                       
             if (! pointerp(team = me->query_team()))
-                       return "镖队需要人多一点才有保障，多叫些人手来吧！\n";
+                       return "鏢隊需要人多一點才有保障，多叫些人手來吧！\n";
 
             i = sizeof(team);
-            if (i > 2) return "人多手杂，容易坏事！\n";
+            if (i > 2) return "人多手雜，容易壞事！\n";
 
             if (objectp(team[0]) && objectp(team[1]))
             {
@@ -239,35 +239,35 @@ mixed ask_biaodui()
 
             if (! objectp(parter) 
          || !present(query("id", parter),environment(me)) )
-                       return "还是约上你的同伴一起来吧！\n";
+                       return "還是約上你的同伴一起來吧！\n";
 
             if( query_temp("quest_yunbiao/have_task", me) )
-                       return "你们上次的镖还没送到呢，怎么又来了？\n";
+                       return "你們上次的鏢還沒送到呢，怎麼又來了？\n";
 
             if( mapp(query_temp("quest_yunbiao", me) )
          && !query_temp("quest_yunbiao/finished_time", me )
          && (time()-query_temp("quest_yunbiao/start_time", me))<60 )
-                       return "你把我的镖队弄丢了，居然还有脸回来见我？\n";
+                       return "你把我的鏢隊弄丟了，居然還有臉回來見我？\n";
 
         if( query("combat_exp", parter)<50000 )
-                      return "运镖可是件危险的差使，不要让你的同伴去送死了！\n";
+                      return "運鏢可是件危險的差使，不要讓你的同伴去送死了！\n";
 
          if( query("combat_exp", me) > 10000000000 ) 
-                    return "让您来运镖太委屈您了！\n";     
+                    return "讓您來運鏢太委屈您了！\n";     
 
           if( query("combat_exp", parter) > 10000000000 ) 
-                    return "让您的同伴和你一起运镖太委屈他了！\n";     
+                    return "讓您的同伴和你一起運鏢太委屈他了！\n";     
                       
         if( me->query_condition("yunbiao_busy") )
-                return "你刚运镖失败，还是等待一段时间再来吧！\n"; 
+                return "你剛運鏢失敗，還是等待一段時間再來吧！\n"; 
 
         if( parter->query_condition("yunbiao_busy") )
-                return "你的同伴刚运镖失败，还是等待一段时间再来吧！\n"; 
+                return "你的同伴剛運鏢失敗，還是等待一段時間再來吧！\n"; 
 
             if( mapp(query_temp("quest_yunbiao", parter) )
          && !query_temp("quest_yunbiao/finished_time", parter )
          && (time()-query_temp("quest_yunbiao/start_time", me))<60 )
-                       return "你找这样无能的同伴当帮手，我可不放心把镖队交给你！\n";
+                       return "你找這樣無能的同伴當幫手，我可不放心把鏢隊交給你！\n";
 
             biao = yun_biao[random(sizeof(yun_biao))];
             time = biao["time"];
@@ -298,20 +298,20 @@ mixed ask_biaodui()
             biaoche->move(environment(me));
 
         /*
-            message("channel:rumor",HIM"【镖局】"+query("name", me)+
-                     "率领的镖队即将起程前往" + biao["name"] + "！\n" NOR, users());
+            message("channel:rumor",HIM"【鏢局】"+query("name", me)+
+                     "率領的鏢隊即將起程前往" + biao["name"] + "！\n" NOR, users());
         */
         
             delete_temp("apply/short", me);
             set_temp("apply/short",
-                         ({HIM"福威镖局镖头"NOR+me->name()+"("+query("id", me)+")"}),me);
+                         ({HIM"福威鏢局鏢頭"NOR+me->name()+"("+query("id", me)+")"}),me);
 
             delete_temp("apply/short", parter);
             set_temp("apply/short",
-                             ({HIM"福威镖局镖师"NOR+parter->name()+"("+query("id", parter)+")"}),parter);
+                             ({HIM"福威鏢局鏢師"NOR+parter->name()+"("+query("id", parter)+")"}),parter);
 
-            message_sort(HIM "$N" HIM "对$n" HIM "吩咐道：请在" + chinese_time(time) + "内，将镖队运送到" +
-                     biao["name"] + "。一路多加小心，你们还是趁早上路吧！\n" NOR, this_object(), me);
+            message_sort(HIM "$N" HIM "對$n" HIM "吩咐道：請在" + chinese_time(time) + "內，將鏢隊運送到" +
+                     biao["name"] + "。一路多加小心，你們還是趁早上路吧！\n" NOR, this_object(), me);
         return 1;
 }
 

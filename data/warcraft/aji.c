@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("鸡鸡[2;37;0m[2;37;0m", ({"jiji"}));        
+        set_name("雞雞[2;37;0m[2;37;0m", ({"jiji"}));        
         set("gender", "男性");                
-        set("long", "鸡鸡[2;37;0m
-它是阿己的魔幻兽。
+        set("long", "雞雞[2;37;0m
+它是阿己的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

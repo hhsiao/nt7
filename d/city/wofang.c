@@ -1,9 +1,9 @@
 inherit ROOM;
 void create()
 {
-         set("short","铁匠卧房");
+         set("short","鐵匠臥房");
         set("long", @LONG
-这里是铁匠的卧房，如果你累了，也可以在这里休息一下。
+這裡是鐵匠的臥房，如果你累了，也可以在這裡休息一下。
 LONG );
          set("exits",([
          "north":"/d/city/datiepu",

@@ -20,9 +20,9 @@ void fight_ob(object ob)
 
 void create()
 {
-        set_name(HIG "五毒圣物" NOR, ({ "wudu shengwu", "wudu", "shengwu" }));
-        set("long", HIG "这是从五毒教毒窟中逃出来的剧毒蜘蛛，约莫半人高，看起来样子十分可怕。\n" NOR);
-        set("race", "野兽");
+        set_name(HIG "五毒聖物" NOR, ({ "wudu shengwu", "wudu", "shengwu" }));
+        set("long", HIG "這是從五毒教毒窟中逃出來的劇毒蜘蛛，約莫半人高，看起來樣子十分可怕。\n" NOR);
+        set("race", "野獸");
         set("age", 20 + random(100));
 
         set("combat_exp", 5000000);
@@ -56,7 +56,7 @@ void create()
 
         setup();
 
-        set("limbs", ({ "头部", "身体", "长腿" }));
+        set("limbs", ({ "頭部", "身體", "長腿" }));
         set("verbs", ({ "bite" }));
 
         set("worm_poison", ([
@@ -82,8 +82,8 @@ void create()
         ]));
 
         set("drops", ([
-                "RA&RANDOM30"    :       100,   // 低级普通装备
-                "RA&RANDOM40"    :       40,    // 低级普通装备
+                "RA&RANDOM30"    :       100,   // 低級普通裝備
+                "RA&RANDOM40"    :       40,    // 低級普通裝備
                 "FI&/clone/goods/enchant-scroll" :   20,
                 "FI&/clone/goods/sun"    :   20,
                 "FI&/clone/goods/moon"   :   20,
@@ -142,8 +142,8 @@ void random_move()
                 env = environment(this_object());
                 message_vision("$N急急忙忙的走了。\n", this_object());
 
-                CHANNEL_D->channel_broadcast("news", HIG "听说" + HIW +
-                        env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一带出现的" +
+                CHANNEL_D->channel_broadcast("news", HIG "聽說" + HIW +
+                        env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一帶出現的" +
                         HIR + this_object()->short() + HIG "消失了。\n" NOR);
 
                 destruct(this_object());
@@ -175,13 +175,13 @@ varargs void die(object killer)
                 return;
         }
 
-        if( time() < query_temp("end_time", me) ) // 时间没有到，死亡不了
+        if( time() < query_temp("end_time", me) ) // 時間沒有到，死亡不了
         {
                 addn("jing", query("max_jing") / 10);
                 addn("eff_jing", query("max_jing") / 10);
                 addn("qi", query("max_qi") / 10);
                 addn("eff_qi", query("max_qi") / 10);
-                message_vision(HIR "\n$N" HIR "大喝一声，运用秘法，气血有所回升！\n\n" NOR, me);
+                message_vision(HIR "\n$N" HIR "大喝一聲，運用秘法，氣血有所回升！\n\n" NOR, me);
                 return;
         }
 
@@ -192,7 +192,7 @@ varargs void die(object killer)
                         message_vision(death_msg, me);
         }
 
-        /* 以下部分转移到equipmentd.c中处理,因涉及到动态物品
+        /* 以下部分轉移到equipmentd.c中處理,因涉及到動態物品
         if( drops = query("drops") ) {
                 times = ACTION_D->query_action("fuben_drop");
                 if( !times ) times = 1;
@@ -256,7 +256,7 @@ varargs void die(object killer)
                                 else if( query("level", user) <= fuben_level+30 ) percent = 50;
                                 */
                                 else {
-                                        tell_object(user, ((killer == user)?"您":killer->name())+"杀死"+query("name")+"，但您经验与BOSS的水平相差过大，没有奖励。\n");
+                                        tell_object(user, ((killer == user)?"您":killer->name())+"殺死"+query("name")+"，但您經驗與BOSS的水平相差過大，沒有獎勵。\n");
                                         continue;
                                 }
                                 rewards["percent"] = percent;
@@ -265,7 +265,7 @@ varargs void die(object killer)
                         else
                         {
                                 if( query("combat_exp", user) > query("combat_exp")*2 ) {
-                                        tell_object(user, ((killer == user)?"您":killer->name())+"杀死"+query("name")+"，但您经验与BOSS的水平相差过大，没有奖励。\n");
+                                        tell_object(user, ((killer == user)?"您":killer->name())+"殺死"+query("name")+"，但您經驗與BOSS的水平相差過大，沒有獎勵。\n");
                                         continue;
                                 }
                         }

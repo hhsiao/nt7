@@ -4,12 +4,12 @@
 
 void setup()
 {
-        set_name("[1;37m睚眦[2;37;0m[2;37;0m", ({"revenge"}));        
+        set_name("[1;37m睚眥[2;37;0m[2;37;0m", ({"revenge"}));        
         set("gender", "男性");                
-        set("long", "龙身豺首,性格刚烈,嗜杀好斗,一饭之德必偿,睚眦之怨必报![2;37;0m
-它是死性不改的魔幻兽。
+        set("long", "龍身豺首,性格剛烈,嗜殺好鬥,一飯之德必償,睚眥之怨必報![2;37;0m
+它是死性不改的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "death");
         set("owner_name", "死性不改");

@@ -3,9 +3,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short","树林");
+        set("short","樹林");
         set("long", @LONG
-这里是衡山半山腰的一片树林，据说这里经常有野兽出没。
+這裡是衡山半山腰的一片樹林，據說這裡經常有野獸出沒。
 LONG );
 
         set("objects",([

@@ -6,14 +6,14 @@ void create()
 {
         set("short", "芝房");
         set("long", @LONG
-这里是绝情谷储藏各类药材的地方，只见墙角放着一个药
-柜(chest)，阵阵药味从中散发出来。
+這裡是絕情谷儲藏各類藥材的地方，只見牆角放著一個藥
+櫃(chest)，陣陣藥味從中散發出來。
 
-         =====未完待续。。。。=====
+         =====未完待續。。。。=====
 LONG);
 
         set("item_desc",([
-               "chest" : HIC "这是储藏药物的柜子，想必里面定是藏着许多珍贵的药材。\n" NOR,
+               "chest" : HIC "這是儲藏藥物的櫃子，想必裡面定是藏著許多珍貴的藥材。\n" NOR,
         ]));
 
         set("exits", ([
@@ -36,7 +36,7 @@ int do_open(string arg)
         object ob;
 
         if (! arg || arg != "chest")
-                return notify_fail("你要做什么？\n");
+                return notify_fail("你要做什麼？\n");
 
 
        return 1;

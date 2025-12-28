@@ -1,4 +1,4 @@
-//查询游戏交费时间的命令，直接从数据库取数据，应该禁止频繁读取
+//查詢遊戲交費時間的命令，直接從數據庫取數據，應該禁止頻繁讀取
 //Write By JackyBoy@XAJH 2001/5/15
 #include <ansi.h>
 
@@ -13,13 +13,13 @@ class channel_class
 mapping channels;
 string *chann;
 string cmdhelp=
-"选单命令格式：<"HIR"频道"HIG">   <"HIR"命令"HIG">\n"+
-"其中频道为你可以设置和使用的频道的英文名，比如"HIC"chat"HIG","HIM"rumor"HIG"等\n"+
-"而命令为"HIR"public"HIG","HIR"main"HIG"或者"HIR"none"HIG"，其中：\n"+
-HIR"public"HIG"表示开启频道并将信息显示到公共信息窗口\n"+
-HIR"main  "HIG"表示开启频道并将信息显示到主信息窗口中\n"+
-HIR"none  "HIG"表示将频道关闭，不再接收频道信息\n"+
-"你也可以输入"HIR"exit"HIG"退出命令选单，或输入"HIR"help/?"HIG"获取本信息！\n";
+"選單命令格式：<"HIR"頻道"HIG">   <"HIR"命令"HIG">\n"+
+"其中頻道為你可以設置和使用的頻道的英文名，比如"HIC"chat"HIG","HIM"rumor"HIG"等\n"+
+"而命令為"HIR"public"HIG","HIR"main"HIG"或者"HIR"none"HIG"，其中：\n"+
+HIR"public"HIG"表示開啟頻道並將信息顯示到公共信息窗口\n"+
+HIR"main  "HIG"表示開啟頻道並將信息顯示到主信息窗口中\n"+
+HIR"none  "HIG"表示將頻道關閉，不再接收頻道信息\n"+
+"你也可以輸入"HIR"exit"HIG"退出命令選單，或輸入"HIR"help/?"HIG"獲取本信息！\n";
 
 int do_chan(string,object,int);
 int show_main(object);
@@ -28,7 +28,7 @@ int main(object me,string arg)
 {
         channels=CHANNEL_D->query_chann();
         chann=keys(channels);
-        //非巫师就过滤掉这些巫师频道设置
+        //非巫師就過濾掉這些巫師頻道設置
         if(!wizardp(me)) chann -= ({"wiz","sys","debug","nch"});
         chann -= ({"shout"});
 
@@ -48,19 +48,19 @@ int show_main(object me)
         //tuned_ch=query("channels", me);
         tuned_ch = CHANNEL_D->query_using_channel(me, 1);
 
-        str=me->name()+"的频道设置为：\n"HIC"≡"HIY"------------------------------------------------------------"HIC"≡\n"NOR;
-        str+=sprintf(HIC" %-10s        %-8s         %-8s\n\n","频道命令","频道名称","频道状态");
+        str=me->name()+"的頻道設置為：\n"HIC"≡"HIY"------------------------------------------------------------"HIC"≡\n"NOR;
+        str+=sprintf(HIC" %-10s        %-8s         %-8s\n\n","頻道命令","頻道名稱","頻道狀態");
         foreach(s in chann)
         {
                 ch = copy(channels[s]);
-                if( !pointerp(tuned_ch) || !sizeof(tuned_ch) ) state=HIG"关闭";
-                else if(member_array(s,tuned_ch)==-1) state=GRN"关闭";
+                if( !pointerp(tuned_ch) || !sizeof(tuned_ch) ) state=HIG"關閉";
+                else if(member_array(s,tuned_ch)==-1) state=GRN"關閉";
                 else if( query("chann/"+s, me))state=HIC"主窗口";
                 else state=HIY"公共窗口";
                 str+=sprintf(WHT"[%-10s]       [%-8s]        %-8s\n",s,ch->msg,state);
         }
         str+="\n"HIC"≡"HIY"------------------------------------------------------------"HIC"≡\n"NOR;
-        str+="请输入命令("HIY"help"NOR"看帮助，"HIY"exit"NOR"退出)：";
+        str+="請輸入命令("HIY"help"NOR"看幫助，"HIY"exit"NOR"退出)：";
         write(str);
         input_to( (: do_chan :) ,me);
         return 1;
@@ -87,7 +87,7 @@ int do_chan(string arg,object me,int once)
 
         if(!arg)
         {
-                write("\n请输入命令("HIY"help"NOR"看帮助，"HIY"exit"NOR"退出)：");
+                write("\n請輸入命令("HIY"help"NOR"看幫助，"HIY"exit"NOR"退出)：");
                 input_to( (: do_chan :) ,me);
                 return 1;
         }
@@ -98,16 +98,16 @@ int do_chan(string arg,object me,int once)
         {
                 case "?":
                 case "help":
-                        //显示帮助信息
+                        //顯示幫助信息
                         write(HIG+cmdhelp+NOR);
                         break;
                 case "q":
                 case "quit":
                 case "exit":
-                        write(HIG"退出频道设置程序。。。\n"NOR);
+                        write(HIG"退出頻道設置程序。。。\n"NOR);
                         once=1;break;
                 default:
-                        //进行程序处理
+                        //進行程序處理
                         tmp=0;
                         if(sscanf(arg,"%s %s",ch,cmd)==2)
                         {
@@ -118,26 +118,26 @@ int do_chan(string arg,object me,int once)
                                                 {
                                                         open_ch(me,ch);
                                                         delete("chann/"+ch, me);
-                                                        write(HIG"你打开了" + channels[ch]["name"] + "频道。\n"NOR);
+                                                        write(HIG"你打開了" + channels[ch]["name"] + "頻道。\n"NOR);
                                                 }
-                                                else write(HIG"频道错误！没有"+HIY+"ch"+HIG+"这个频道！\n"NOR);
+                                                else write(HIG"頻道錯誤！沒有"+HIY+"ch"+HIG+"這個頻道！\n"NOR);
                                                 break;
                                         case "main":
                                                 if(member_array(ch,chann)!=-1)
                                                 {
                                                         open_ch(me,ch);
                                                         set("chann/"+ch, 1, me);
-                                                        write(HIG"你打开了" + channels[ch]["name"] + "频道。\n"NOR);
+                                                        write(HIG"你打開了" + channels[ch]["name"] + "頻道。\n"NOR);
                                                 }
-                                                else write(HIG"频道错误！没有"+HIY+"ch"+HIG+"这个频道！\n"NOR);
+                                                else write(HIG"頻道錯誤！沒有"+HIY+"ch"+HIG+"這個頻道！\n"NOR);
                                                 break;
                                         case "none":
                                                 if(member_array(ch,chann)!=-1)
                                                 {
                                                         set("channels",query("channels",  me)-({ch}), me);
-                                                        write(HIG"你关闭了" + channels[ch]["name"] + "频道。\n"NOR);
+                                                        write(HIG"你關閉了" + channels[ch]["name"] + "頻道。\n"NOR);
                                                 }
-                                                else write(HIG"频道错误！没有"+HIY+"ch"+HIG+"这个频道！\n"NOR);
+                                                else write(HIG"頻道錯誤！沒有"+HIY+"ch"+HIG+"這個頻道！\n"NOR);
                                                 break;
                                         default:
                                                 tmp=1;
@@ -154,22 +154,22 @@ int do_chan(string arg,object me,int once)
 int help()
 {
         write(@HELP
-指令格式 : chann                         (菜单模式)
+指令格式 : chann                         (菜單模式)
            chann    <命令串>             (直接指定)
 
-这个指令可以让你自由设置频道信息的显示，关闭或者显示位置。
-显示位置有main（主窗口）和public（公共信息窗口）两个选择。
-如果位置设置为没有（none），则表示要关闭该频道。
+這個指令可以讓你自由設置頻道信息的顯示，關閉或者顯示位置。
+顯示位置有main（主窗口）和public（公共信息窗口）兩個選擇。
+如果位置設置為沒有（none），則表示要關閉該頻道。
 
-命令串格式为：<频道> < main | public | none>
-频道为你要进行操作的频道名称，后面跟着的是none表示要关闭该
-频道，跟着main表示要打开频道并将信息显示在主区域窗口，如果
-是public则显示到公共信息区域窗口。
+命令串格式為：<頻道> < main | public | none>
+頻道為你要進行操作的頻道名稱，後面跟著的是none表示要關閉該
+頻道，跟著main表示要打開頻道並將信息顯示在主區域窗口，如果
+是public則顯示到公共信息區域窗口。
 
 直接指定的命令模式例子：
-chann chat none    —— 此操作为将chat频道关闭
-chann chat main    —— 此操作将打开chat频道并显示到主窗口
-chann rumor public —— 此操作将在公共窗口打开rumor频道
+chann chat none    —— 此操作為將chat頻道關閉
+chann chat main    —— 此操作將打開chat頻道並顯示到主窗口
+chann rumor public —— 此操作將在公共窗口打開rumor頻道
 HELP );
     return 1;
 }

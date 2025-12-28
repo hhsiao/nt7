@@ -12,9 +12,9 @@ void create()
         else*/
         {
                 set("unit", "本");
-                set("long", WHT "这本书记载了当年孟子许多言行哲论，是儒家经典书籍。\n" NOR);
+                set("long", WHT "這本書記載了當年孟子許多言行哲論，是儒家經典書籍。\n" NOR);
                 set("value", 100);
-                set("no_sell", "这…这值什么钱？\n");
+                set("no_sell", "這…這值什麼錢？\n");
                 set("material", "paper");
                 set("skill", ([
                         "name" : "literate",

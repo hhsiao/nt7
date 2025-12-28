@@ -49,7 +49,7 @@ int main(object me, string arg)
                 si = 0;
                 printf ("result = %O\n", sizeof(objects((: stat_fun, st :))));
 
-                // 选出复制超过 50 个的物品
+                // 選出複製超過 50 個的物品
                 reset_eval_cost();
                 ks = keys(st);
                 ks = filter_array(ks, (: $(st)[$1] >= 50 :));
@@ -58,9 +58,9 @@ int main(object me, string arg)
                 reset_eval_cost();
                 ks = sort_array(ks, (: $(st)[$2] - $(st)[$1] :));
 
-                // 选择前100个
-                msg += "目前系统中有 " + si +
-                       " 个物品，其中复制对象超过 50 个的物品如下：\n";
+                // 選擇前100個
+                msg += "目前系統中有 " + si +
+                       " 個物品，其中複製對象超過 50 個的物品如下：\n";
                 for (i = 0; i < sizeof(ks) && i < 100; i++)
                         msg += sprintf("%3d. %-40s %d\n",
                                        i + 1, ks[i], st[ks[i]]);
@@ -89,7 +89,7 @@ int help(object me)
         write(@HELP
 指令格式 : status [detail | object]
 
-利用此指令可得知有关系统的信息。
+利用此指令可得知有關係統的信息。
 HELP );
         return 1;
 }

@@ -1,4 +1,4 @@
-// necklace.c 金项链
+// necklace.c 金項鍊
 
 #include <armor.h>
 #include <ansi.h>
@@ -7,7 +7,7 @@ inherit NECK;
 
 void create()
 {
-        set_name(HIY "神武项圈" NOR, ({ "shenwu xiangquan", "shenwu", "xiangquan" }));
+        set_name(HIY "神武項圈" NOR, ({ "shenwu xiangquan", "shenwu", "xiangquan" }));
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);

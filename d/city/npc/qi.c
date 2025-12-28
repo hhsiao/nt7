@@ -1,4 +1,4 @@
-// qi.c 戚长发
+// qi.c 戚長髮
 
 #include <ansi.h>
 #include <command.h>
@@ -10,15 +10,15 @@ int do_answer();
 
 void create()
 {
-        set_name("戚长发", ({ "qi changfa", "qi" }));
-        set("title", "躺尸剑门传人");
-        set("nickname", HIR "宰人不用刀，" HIC "愿" HIR "者上钩" NOR);
+        set_name("戚長髮", ({ "qi changfa", "qi" }));
+        set("title", "躺屍劍門傳人");
+        set("nickname", HIR "宰人不用刀，" HIC "願" HIR "者上鉤" NOR);
 
         set("gender", "男性");
         set("age", 48);
         set("str", 100);
         set("long",
-                "戚老板最近是爆发横财，所谓是三年不开张，开张管三年。\n");
+                "戚老闆最近是爆發橫財，所謂是三年不開張，開張管三年。\n");
         set_skill("unarmed", 50);
         set_skill("dodge", 50);
         set_skill("higgling", 800);
@@ -28,20 +28,20 @@ void create()
         set("attitude", "friendly");
 
         set("inquiry", ([
-                "宝物" : (: do_answer :),
-                "买卖" : (: do_answer :),
+                "寶物" : (: do_answer :),
+                "買賣" : (: do_answer :),
                 "生意" : (: do_answer :),
-                "东西" : "扔掉就没了！嘿嘿。",
-                "还我钱"     : "哼！我这里是有进无出！",
-                "我的钱"     : "什么你的钱，地上的就是我的！",
-                "钱"         : "想钱啊？自己去挣！",
-                "我的东西"   : "扔掉就没了！嘿嘿。",
-                "赎"         : "赎？没得赎！",
-                "天王保命丹" : "卖！卖！五百两黄金一粒！",
-                "翡翠兰"     : "可治百毒啊！有气就能活！",
-                "朱睛冰蟾"   : "虽然不象翡翠兰那样可起死回生，但是能解百毒！",
-                "讨价还价"   : "和我学(higgling)... 我很穷啊！",
-                "higgling"   : "和我学讨价还价么... 我很穷啊！",
+                "東西" : "扔掉就沒了！嘿嘿。",
+                "還我錢"     : "哼！我這裡是有進無出！",
+                "我的錢"     : "什麼你的錢，地上的就是我的！",
+                "錢"         : "想錢啊？自己去掙！",
+                "我的東西"   : "扔掉就沒了！嘿嘿。",
+                "贖"         : "贖？沒得贖！",
+                "天王保命丹" : "賣！賣！五百兩黃金一粒！",
+                "翡翠蘭"     : "可治百毒啊！有氣就能活！",
+                "朱睛冰蟾"   : "雖然不象翡翠蘭那樣可起死回生，但是能解百毒！",
+                "討價還價"   : "和我學(higgling)... 我很窮啊！",
+                "higgling"   : "和我學討價還價麼... 我很窮啊！",
         ]));
 
         set("vendor_goods", ([
@@ -120,7 +120,7 @@ void heart_beat()
                             find_object(start_room) == environment())
                                 continue;
 
-                        message_vision("$N皱了皱眉，把$n推了出去。\n",
+                        message_vision("$N皺了皺眉，把$n推了出去。\n",
                                        this_object(), ob);
                         ob->move("/d/city/beidajie1");
                 }
@@ -147,15 +147,15 @@ int do_drop(string arg)
                 if( query_temp("static/drop_npc", me)>1 &&
                     query("combat_exp", me) >= 50000 )
                 {
-                        message_vision("$N大怒道：：“好你个" +
+                        message_vision("$N大怒道：：“好你個" +
                                        RANK_D->query_rude(ob) +
-                                       "，还来添乱！”\n说罢只见$N"
-                                       "飞起一脚，将$n和" + ob->name() +
-                                       "一起踢出门外。\n", this_object(), me);
+                                       "，還來添亂！”\n說罷只見$N"
+                                       "飛起一腳，將$n和" + ob->name() +
+                                       "一起踢出門外。\n", this_object(), me);
                         ob->move("/d/city/beidajie1");
                         me->move("/d/city/beidajie1");
-                        message("vision", "只听叮叮咣光一阵向，" + me->name() +
-                                          "被人一脚踢了出来。\n",
+                        message("vision", "只聽叮叮咣光一陣向，" + me->name() +
+                                          "被人一腳踢了出來。\n",
                                 environment(me), me);
 /*
                         me->receive_damage("qi", 1);
@@ -164,13 +164,13 @@ int do_drop(string arg)
                         return 1;
                 }
 
-                message_vision("$N怒道：“滚开，少给我添乱，影响我的生意。”\n"
-                               "说罢只见$N飞起一脚，将$n和" + ob->name() +
-                               "一起踢出门外。\n", this_object(), me);
+                message_vision("$N怒道：“滾開，少給我添亂，影響我的生意。”\n"
+                               "說罷只見$N飛起一腳，將$n和" + ob->name() +
+                               "一起踢出門外。\n", this_object(), me);
                 ob->move("/d/city/beidajie1");
                 me->move("/d/city/beidajie1");
-                message("vision", "只听叮叮咣光一阵向，" + me->name() +
-                                  "被人一脚踢了出来。\n",
+                message("vision", "只聽叮叮咣光一陣向，" + me->name() +
+                                  "被人一腳踢了出來。\n",
                         environment(me), me);
 /*
                 me->receive_damage("qi", 1);
@@ -196,14 +196,14 @@ int do_drop(string arg)
                 switch (random(4))
                 {
                 case 0:
-                        command("say 日积月累，小康之路！");
+                        command("say 日積月累，小康之路！");
                         break;
                 case 1:
                         command("kok "+query("id", this_player()));
-                        command("say 随地乱扔垃圾，罚款五元！");
+                        command("say 隨地亂扔垃圾，罰款五元！");
                         break;
                 case 2:
-                        command("say 败家子，败家子！");
+                        command("say 敗家子，敗家子！");
                         break;
                 default:
                         command("heihei");
@@ -215,9 +215,9 @@ int do_drop(string arg)
 
 int do_answer()
 {
-        write(name() + "在你耳边轻声说道：我");
+        write(name() + "在你耳邊輕聲說道：我");
         ::do_list();
-        write("这可真是货真价实，童叟无欺啊！\n");
+        write("這可真是貨真價實，童叟無欺啊！\n");
         return 1;
 }
 
@@ -230,13 +230,13 @@ int accept_object(object who, object ob)
 
                 if( query("money_id", ob) && ob->value() >= 10000 )
                 {
-                        message_vision("$N同意指点$n一些讨价还价得的技巧。\n",
+                        message_vision("$N同意指點$n一些討價還價得的技巧。\n",
                                        this_object(), who);
                         addn_temp("mark/戚", ob->value()/100, who);
                         destruct(ob);
                         return 1;
                 }
-                command("say 你这点钱... 我虽然穷可还真看不上！");
+                command("say 你這點錢... 我雖然窮可還真看不上！");
                 return -1;
         }
 
@@ -246,7 +246,7 @@ int accept_object(object who, object ob)
                 command("say 好！好！");
                 break;
         case 1:
-                command("say 不要就给我！");
+                command("say 不要就給我！");
                 break;
         }
 
@@ -261,14 +261,14 @@ int accept_object(object who, object ob)
 
 void unconcious()
 {
-        message_vision("\n$N哼哼两声，道：“困死了...哦！”\n",
+        message_vision("\n$N哼哼兩聲，道：“困死了...哦！”\n",
                        this_object());
         full_self();
 }
 
 void die()
 {
-        message_vision("\n$N大叫一声，道：“痛死啦！”连忙掏出天王保命丹吃了两颗。\n",
+        message_vision("\n$N大叫一聲，道：“痛死啦！”連忙掏出天王保命丹吃了兩顆。\n",
                        this_object());
         full_self();
 }

@@ -7,7 +7,7 @@ inherit "/inherit/char/punisher";
 void create()
 {
         set_name("老夫人", ({ "lao furen", "furen" }));
-        set("long",  "她看上去年纪已经不小了，不过从眉角中依然可看出当年的风姿。\n");
+        set("long",  "她看上去年紀已經不小了，不過從眉角中依然可看出當年的風姿。\n");
         set("gender", "女性");
         set("age", 69);
         set("attitude", "peaceful");

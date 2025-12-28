@@ -7,11 +7,11 @@
 
 void create()
 {
-        set("short", "右厢房");
+        set("short", "右廂房");
 	set ("long", @LONG
-这是水果摊的右厢房，是客人居住的地方。虽然不算奢华，却也
-布置得非常舒适。一张床整齐干净，没有多少折纹，而窗帘厚大结实，
-使屋内光线恰到好处。 
+這是水果攤的右廂房，是客人居住的地方。雖然不算奢華，卻也
+佈置得非常舒適。一張床整齊乾淨，沒有多少折紋，而窗簾厚大結實，
+使屋內光線恰到好處。 
 LONG );
 
         set("exits", ([
@@ -21,12 +21,12 @@ LONG );
         set("sleep_room", 1);
         set("no_fight", 1);
 
-        create_door("east", "木门", "west", DOOR_CLOSED);
+        create_door("east", "木門", "west", DOOR_CLOSED);
 
         setup();
 
         set("room_owner", "西瓜");
-        set("room_name", "水果摊");
+        set("room_name", "水果攤");
         set("room_id", "sgt");
         set("room_owner_id", "xigua");
         set("room_position", "碎石小道");

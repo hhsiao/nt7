@@ -9,19 +9,19 @@ int exert(object me, object target)
         int skill;
 
         if (target != me)
-                return notify_fail("你只能用天寰神诀来提升自己的战斗力。\n");
+                return notify_fail("你只能用天寰神訣來提升自己的戰鬥力。\n");
 
         if( query("neili", me)<150 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if( query_temp("powerup", me) )
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
         addn("neili", -100, me);
         me->receive_damage("qi", 0);
-        message_combatd(HIR "$N" HIR "纵声长啸，体内真气急剧运转，引得周围"
-                        "气流随之荡漾。\n" NOR, me);
+        message_combatd(HIR "$N" HIR "縱聲長嘯，體內真氣急劇運轉，引得周圍"
+                        "氣流隨之盪漾。\n" NOR, me);
         addn_temp("apply/attack", skill/3, me);
         addn_temp("apply/defense", skill/3, me);
         set_temp("powerup", 1, me);
@@ -39,6 +39,6 @@ void remove_effect(object me, int amount)
                 addn_temp("apply/attack", -amount, me);
                 addn_temp("apply/defense", -amount, me);
                 delete_temp("powerup", me);
-                tell_object(me, "你的天寰神诀运行完毕，将内力收回丹田。\n");
+                tell_object(me, "你的天寰神訣運行完畢，將內力收回丹田。\n");
         }
 }

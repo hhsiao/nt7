@@ -11,8 +11,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "顶");
-                set("long", "这是一顶小小的黑帽子，上面绣了几颗宝石。\n");
+                set("unit", "頂");
+                set("long", "這是一頂小小的黑帽子，上面繡了幾顆寶石。\n");
                 set("value", 10000);
                 set("material", "cloth");
         }

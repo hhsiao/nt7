@@ -11,9 +11,9 @@ void create()
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一颗同时泛着奇异魔光和佛光的果实，据说吃了以后可以清除吃丹留下的后遗症。\n");
+                set("long", "一顆同時泛著奇異魔光和佛光的果實，據說吃了以後可以清除吃丹留下的後遺症。\n");
                 set("value", 10000);
-                set("unit", "颗");
+                set("unit", "顆");
                 set("no_sell", 1);
                 set("only_do_effect", 1);
         }
@@ -21,7 +21,7 @@ void create()
 
 int do_effect(object me)
 {
-        message_vision("$N一仰脖，吞下了一颗" + this_object()->name() +
+        message_vision("$N一仰脖，吞下了一顆" + this_object()->name() +
                        "。\n", me);
 
         if( query("gift/int/fail", me) )
@@ -81,9 +81,9 @@ int do_effect(object me)
                         delete("gift/dex/fail", me);
         } 
         
-        tell_object(me, HIG "一股火热蓦然从全身升起，"
-                            "你全身欲裂，恰在此时一股舒坦之意"
-                            "油然而起，顿感全身舒服多了。\n" NOR);
+        tell_object(me, HIG "一股火熱驀然從全身升起，"
+                            "你全身欲裂，恰在此時一股舒坦之意"
+                            "油然而起，頓感全身舒服多了。\n" NOR);
 
         destruct(this_object());
         return 1;

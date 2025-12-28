@@ -3,28 +3,28 @@
 
 inherit NPC;
 
-#define PLACE "cd"     //扬州
+#define PLACE "cd"     //揚州
 #define TYPE  "bad"    //黑道
-#define WAIT_TIME 60    //完成不了任务的反省时间
+#define WAIT_TIME 60    //完成不了任務的反省時間
 
 
 
 mapping bunch_bad = ([
-        "bunch_name" : "修罗门",
+        "bunch_name" : "修羅門",
         "id"   : "xlm",
         "place": "cd",
-        "boss" : "冷无风",
+        "boss" : "冷無風",
         "place_name": "成都",
         "type" : "bad",
 ]);
 
 void create()
 {
-        set_name("冷无风", ({ "leng wufeng", "leng","wufeng" }));
+        set_name("冷無風", ({ "leng wufeng", "leng","wufeng" }));
         set("gender", "男性");
         set("age", 32);
-        set("long", "他看起来冷冷的，面部好象僵住了一般，没有一点表情变化。他就是" + bunch_bad["bunch_name"] + "的成都坛主。\n");
-        set("title",HIB"修罗门成都坛主"NOR);
+        set("long", "他看起來冷冷的，面部好象僵住了一般，沒有一點表情變化。他就是" + bunch_bad["bunch_name"] + "的成都壇主。\n");
+        set("title",HIB"修羅門成都壇主"NOR);
         set("per",20);
         set("combat_exp", 1000000);
         set("shen_type", -1);

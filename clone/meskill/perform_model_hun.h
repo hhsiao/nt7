@@ -5,7 +5,7 @@ inherit F_SSERVER;
 
 int is_player_perform() { return 1; }
 
-string name() { return HIW "<绝招名>" NOR; }
+string name() { return HIW "<絕招名>" NOR; }
 
 string *weapon_sk = ({
         "sword", "blade", "staff", "whip", "club", "hammer", "axe"
@@ -27,14 +27,14 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if (member_array("BASE_SKILL", weapon_sk) != -1)
         {
                 attack = WEAPON_ATTACK;
                 if( !objectp(weapon=query_temp("weapon", me) )
                     || query("skill_type", weapon) != "BASE_SKILL" )
-                        return notify_fail("你所使用的武器不对，难以施展" + name() + "。\n");
+                        return notify_fail("你所使用的武器不對，難以施展" + name() + "。\n");
         } else
         {
                 attack = UNARMED_ATTACK;
@@ -43,21 +43,21 @@ int perform(object me, object target)
         }
 
         if ((int)me->query_skill("SKILL", 1) < 400)
-                return notify_fail("你" + to_chinese("SKILL") + "不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你" + to_chinese("SKILL") + "不夠嫻熟，難以施展" + name() + "。\n");
 
         if (member_array("BASE_SKILL", weapon_sk) == -1)
         {
                 if (me->query_skill_prepared("BASE_SKILL") != "SKILL")
-                        return notify_fail("你没有准备" + to_chinese("SKILL") + "，难以施展" + name() + "。\n");
+                        return notify_fail("你沒有準備" + to_chinese("SKILL") + "，難以施展" + name() + "。\n");
         }
 
         if( query("neili", me)<500 )
-                return notify_fail("你现在的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "<PFM发招描述>" + "\n" + NOR;
+        msg = HIW "<PFM發招描述>" + "\n" + NOR;
 
         ap = attack_power(me, "BASE_SKILL");
         dp = defense_power(target, "parry");
@@ -74,22 +74,22 @@ int perform(object me, object target)
                 */
         } else
         {
-                msg += NOR + CYN "<PFM失误描述>" + "\n" NOR;
+                msg += NOR + CYN "<PFM失誤描述>" + "\n" NOR;
                 addn("neili", -100, me);
         }
 
         message_sort(msg, me, target);
 
-        msg = HIW "$N" HIW "余势未尽，招式陡然变得凌厉无比，一转念间已然攻出数招。\n" NOR;
+        msg = HIW "$N" HIW "餘勢未盡，招式陡然變得凌厲無比，一轉念間已然攻出數招。\n" NOR;
         if (ap / 2 + random(ap) > dp)
         {
                 count = ap / 20;
-                msg += HIR "$n" HIR "见$P" HIR "来势迅猛之极，一时不知该如"
-                       "何作出抵挡，竟呆立当场。\n" NOR;
+                msg += HIR "$n" HIR "見$P" HIR "來勢迅猛之極，一時不知該如"
+                       "何作出抵擋，竟呆立當場。\n" NOR;
         } else
         {
-                msg += HIY "$n" HIY "见$p" HIY "来势迅猛之极，甚难防备，连"
-                       "忙振作精神，小心抵挡。\n" NOR;
+                msg += HIY "$n" HIY "見$p" HIY "來勢迅猛之極，甚難防備，連"
+                       "忙振作精神，小心抵擋。\n" NOR;
                 count = 0;
         }
 

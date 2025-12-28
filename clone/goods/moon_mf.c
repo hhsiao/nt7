@@ -10,9 +10,9 @@ void create()
         int i = 8;
         set_name(NOR YEL "秘魔" WHT "邪眼" NOR, ({ "mimo xieyan", "mimo", "xieyan" }) );
         set_weight(1);
-                set("long", WHT "能发现隐秘宝藏的妖怪的眼珠。\n" NOR);
+                set("long", WHT "能發現隱秘寶藏的妖怪的眼珠。\n" NOR);
                 set("value", 50000);
-                set("unit", "块");
+                set("unit", "塊");
                 set("can_enchant", "all");
                 set("can_be_enchased", 1);
                 //set("magic/type", "magic");

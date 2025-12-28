@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("什么呢[2;37;0m[2;37;0m", ({"newly"}));        
+        set_name("什麼呢[2;37;0m[2;37;0m", ({"newly"}));        
         set("gender", "女性");                
-        set("long", "什么呢[2;37;0m
-它是新手的魔幻兽。
+        set("long", "什麼呢[2;37;0m
+它是新手的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

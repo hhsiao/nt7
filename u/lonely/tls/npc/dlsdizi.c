@@ -5,7 +5,7 @@ inherit FIGHTER;
 inherit F_UNIQUE;
 #include <ansi.h>
 
-#define QUESTDIR2 "quest/天龙八部/天龙营救篇/"
+#define QUESTDIR2 "quest/天龍八部/天龍營救篇/"
 
 int power_condition(object me, object ob,int p);
 int pfm();
@@ -18,16 +18,16 @@ void create()
   name = RNAME_D->get_random_name(random(3));
 	set_name(name["name"], name["id"]);
 	set_name(query("name"), ({ query("id"),"dls dizi"}));
-  set("title", HIY"大轮寺弟子"NOR);
+  set("title", HIY"大輪寺弟子"NOR);
 	set("gender", (sex?"男性":"女性"));
-	set("long", "大轮寺高手。\n");
+	set("long", "大輪寺高手。\n");
 	set("str", 25);
 	set("dex", 25);
 	set("con", 25);
 	set("int", 25);
 	set("per", 25);
 	set("shen_type", -1);
-  create_family("大轮寺", 10, "弟子");
+  create_family("大輪寺", 10, "弟子");
   set_skill("huanxi-chan", 200);
   set_skill("literate", 150);
   set_skill("force", 200);
@@ -130,9 +130,9 @@ void init()
 	  	  if(environment(me)!=environment(ob)) return;
 	      if(ob->query("setok")) return;
  		    ob->set("setok",1);
-        if(ob->query("type")==1) message_vision(HIG"$N点了点头道：“看来这里就是天龙寺，我们赶快进去吧！”\n"NOR,ob);
-        if(ob->query("type")==2) message_vision(HIG"$N冷笑一声：“所谓的大理最高的武学胜地，也不过如此！”\n"NOR,ob,me);
-        if(ob->query("type")==3) message_vision(HIY"$N突然警惕地看了$n一眼急声道：“小心、有人、结阵！”\n"NOR,ob,me);
+        if(ob->query("type")==1) message_vision(HIG"$N點了點頭道：“看來這裡就是天龍寺，我們趕快進去吧！”\n"NOR,ob);
+        if(ob->query("type")==2) message_vision(HIG"$N冷笑一聲：“所謂的大理最高的武學勝地，也不過如此！”\n"NOR,ob,me);
+        if(ob->query("type")==3) message_vision(HIY"$N突然警惕地看了$n一眼急聲道：“小心、有人、結陣！”\n"NOR,ob,me);
         power_condition(me, ob,100+random(100));
 			  remove_call_out("zhen");
                           call_out("zhen",5,ob);
@@ -163,15 +163,15 @@ int do_kill(object me)
 {
 	object ob = this_object();
 	if(!me) return 0;
-  if(!random(3)) message_vision(HIG"呼的一个身影蹿了出来，$N恶狠狠地道：“"+me->name()+"你这个"+RANK_D->query_rude(ob)+ "，拿命来！”\n"NOR,ob);
-  else if(random(2)) message_vision(HIY"\n$N慢慢地从角落里走了出来，冷笑一声道：不知天高地厚，竟然敢阻碍"+RANK_D->query_self_rude(ob) +"的去路！\n"NOR,ob);
-  else message_vision(HIB"\n$N急声道：“大家一齐上，"+me->name()+"就算武功再高，也决不是我们大轮寺的对手！”\n"NOR,ob);
+  if(!random(3)) message_vision(HIG"呼的一個身影躥了出來，$N惡狠狠地道：“"+me->name()+"你這個"+RANK_D->query_rude(ob)+ "，拿命來！”\n"NOR,ob);
+  else if(random(2)) message_vision(HIY"\n$N慢慢地從角落裡走了出來，冷笑一聲道：不知天高地厚，竟然敢阻礙"+RANK_D->query_self_rude(ob) +"的去路！\n"NOR,ob);
+  else message_vision(HIB"\n$N急聲道：“大家一齊上，"+me->name()+"就算武功再高，也決不是我們大輪寺的對手！”\n"NOR,ob);
 	remove_call_out("checking");
 	call_out("checking", 2, me, ob);
 	::do_kill(me);
 }
 
-//检查，quest过程不允许死亡
+//檢查，quest過程不允許死亡
 int checking(object me, object ob)
 {
 	int ret =  ::checking(me,ob);
@@ -182,15 +182,15 @@ int checking(object me, object ob)
   if(!living(me) && living(ob) && ob->query("jing")>0 && ob->query("jingli")>0 && ob->query("qi")>0  ){
 		remove_call_out("checking");
 		me->delete(QUESTDIR2+"start");
-		me->delete_temp("quest/天龙八部");
-		me->delete_temp("quest/busy");//任务冲突标志取消
+		me->delete_temp("quest/天龍八部");
+		me->delete_temp("quest/busy");//任務衝突標誌取消
 		me->set("qi",100);													
-		me->set("quest/天龙八部/time",time());
-		me->set("quest/天龙八部/combat_exp",me->query("combat_exp"));
-		log_file("quest/TLBB", sprintf("%s纪录：%s(%s)天龙营救篇失败。经验%d。\n", ob->name(1),me->name(1),me->query("id"), me->query("combat_exp")) );
+		me->set("quest/天龍八部/time",time());
+		me->set("quest/天龍八部/combat_exp",me->query("combat_exp"));
+		log_file("quest/TLBB", sprintf("%s紀錄：%s(%s)天龍營救篇失敗。經驗%d。\n", ob->name(1),me->name(1),me->query("id"), me->query("combat_exp")) );
 		me->set("jing",100);
 		me->set("jingli",100);
-		tell_room(environment(ob), HIB"\n"+ob->name()+"哼了一声，疾步闯入天龙寺，转身几个起落就不见了。\n"NOR);
+		tell_room(environment(ob), HIB"\n"+ob->name()+"哼了一聲，疾步闖入天龍寺，轉身幾個起落就不見了。\n"NOR);
 		destruct(ob);
 		return 1;
 	}
@@ -209,20 +209,20 @@ void do_lost()
 	me = find_player(ob->query("kill_id"));
 	if(!me) return;
 	me->delete(QUESTDIR2+"start");
-	me->delete_temp("quest/天龙八部");
-	me->delete_temp("quest/busy");//任务冲突标志取消
-	me->set("quest/天龙八部/time",time());
-	me->set("quest/天龙八部/combat_exp",me->query("combat_exp"));
-	log_file("quest/TLBB", sprintf("%s纪录：%s(%s)天龙营救篇失败。经验%d。\n", ob->name(1),me->name(1),me->query("id"), me->query("combat_exp")) );
-    if(random(2)) tell_room(environment(ob), HIB"\n"+ob->name()+"哼了一声：“"+me->name()+"已经身受重伤，暂且饶他一命。”说完，"+ob->name()+"疾步闯入天龙寺。\n"NOR);
-	else tell_room(environment(ob), HIB"\n"+ob->name()+"冷冷说道：“不值得在"+me->name()+"身上浪费太多时间，还是大事为重，暂且饶他一命。我们还是快走吧”，说完疾步闯入天龙寺。\n"NOR);
+	me->delete_temp("quest/天龍八部");
+	me->delete_temp("quest/busy");//任務衝突標誌取消
+	me->set("quest/天龍八部/time",time());
+	me->set("quest/天龍八部/combat_exp",me->query("combat_exp"));
+	log_file("quest/TLBB", sprintf("%s紀錄：%s(%s)天龍營救篇失敗。經驗%d。\n", ob->name(1),me->name(1),me->query("id"), me->query("combat_exp")) );
+    if(random(2)) tell_room(environment(ob), HIB"\n"+ob->name()+"哼了一聲：“"+me->name()+"已經身受重傷，暫且饒他一命。”說完，"+ob->name()+"疾步闖入天龍寺。\n"NOR);
+	else tell_room(environment(ob), HIB"\n"+ob->name()+"冷冷說道：“不值得在"+me->name()+"身上浪費太多時間，還是大事為重，暫且饒他一命。我們還是快走吧”，說完疾步闖入天龍寺。\n"NOR);
 	destruct(ob);
 }
 
 void dest(object ob)
 {
   if(!ob) return;
-  tell_room(environment(ob), HIR+"\n"+ob->name()+"哼了一声，还是且回我大轮寺了。\n"NOR);
+  tell_room(environment(ob), HIR+"\n"+ob->name()+"哼了一聲，還是且回我大輪寺了。\n"NOR);
 	destruct(ob);
 }
 void die()

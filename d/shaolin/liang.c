@@ -4,17 +4,17 @@ inherit ROOM;
 
 void create()
 { 
-       set("short","藏经阁房梁");
+       set("short","藏經閣房梁");
         set("long", @LONG
-你现在在藏经阁的房梁上四下观瞧，周围都是一些高大的书架(s
+你現在在藏經閣的房樑上四下觀瞧，周圍都是一些高大的書架(s
 hujia)。
 LONG );
         set("exits", ([
                 "down" : __DIR__"cjlou1",
         ]));       
         set("item_desc", ([
-                "shujia" : "书架顶上积满了厚厚的灰尘。\n",
-                "书架"   : "书架顶上积满了厚厚的灰尘。\n",
+                "shujia" : "書架頂上積滿了厚厚的灰塵。\n",
+                "書架"   : "書架頂上積滿了厚厚的灰塵。\n",
         ]) ); 
         set("objects", ([
                 "/d/shaolin/obj/muban" : 1,
@@ -40,12 +40,12 @@ int do_jump(string arg)
                 if( query_temp("marks/跳1", me) )
                 {
                         if (me->query_skill("dodge",1)<100)
-                                write("你试图跳上书架的顶端，但老是跳不上去。\n");
+                                write("你試圖跳上書架的頂端，但老是跳不上去。\n");
                         else 
                         {
-                                write("你纵身跃上了书架顶端。\n");
+                                write("你縱身躍上了書架頂端。\n");
                                 message("vision",
-                                        me->name() + "一纵身跃上了书架顶端。\n",
+                                        me->name() + "一縱身躍上了書架頂端。\n",
                                         environment(me), ({me}) );
                                 me->move("/d/shaolin/shujiad");
 

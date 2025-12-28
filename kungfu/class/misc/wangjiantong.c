@@ -1,4 +1,4 @@
-// wangjiantong.c 汪剑通
+// wangjiantong.c 汪劍通
 
 #include <ansi.h>
 
@@ -6,11 +6,11 @@ inherit "/inherit/char/punisher";
 
 void create()
 {
-        set_name("汪剑通", ({"wang jiantong", "wang", "jiantong"}));
+        set_name("汪劍通", ({"wang jiantong", "wang", "jiantong"}));
 
         set("gender", "男性");
         set("age", 54);
-        set("long", "他体态魁梧，相貌威严。\n");
+        set("long", "他體態魁梧，相貌威嚴。\n");
         set("attitude", "peaceful");
         
         set("str", 35);
@@ -58,7 +58,7 @@ void create()
 
         prepare_skill("strike", "dragon-strike");
 
-        create_family("丐帮", 0, "名宿");
+        create_family("丐幫", 0, "名宿");
 
         setup();
         carry_object("/clone/weapon/gangzhang")->wield();

@@ -13,7 +13,7 @@ void create()
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIR "一根细长的羽箭，箭尖相当尖锐，势道十分凶猛。\n" NOR);
+                set("long", HIR "一根細長的羽箭，箭尖相當尖銳，勢道十分兇猛。\n" NOR);
                 set("unit", "把");
                 set("base_unit", "根");
                 set("base_weight", 150);
@@ -25,5 +25,5 @@ void create()
         init_throwing(400);
         setup();
 
-        set("no_wield", "这不是用来装备的。\n");
+        set("no_wield", "這不是用來裝備的。\n");
 }

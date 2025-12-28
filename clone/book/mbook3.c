@@ -3,14 +3,14 @@ inherit BOOK;
 
 void create()
 {
-        set_name(YEL "「华佗内昭图」" NOR, ({ "medical book3", "medical", "book3" }));
+        set_name(YEL "「華佗內昭圖」" NOR, ({ "medical book3", "medical", "book3" }));
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
                 set("unit", "本");
-                set("long", YEL "神医华佗所著的医书，内含许多医学秘要。\n" NOR);
+                set("long", YEL "神醫華佗所著的醫書，內含許多醫學秘要。\n" NOR);
                 set("value", 30000);
                 set("material", "paper");
                 set("skill",

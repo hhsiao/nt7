@@ -27,7 +27,7 @@ void create()
         set_skill("blade", 40);
         set_skill("strike", 50);
 
-        create_family("唐门世家", 4, "家丁");
+        create_family("唐門世家", 4, "家丁");
 
         setup();
         carry_object("/clone/misc/cloth")->wear();
@@ -46,25 +46,25 @@ int do_give(string arg)
 
         me = this_player();
 
-        if(!arg) return notify_fail("你要给谁什么东西？\n");
+        if(!arg) return notify_fail("你要給誰什麼東西？\n");
 
         if( sscanf(arg, "%s to ding", item) == 1 || sscanf(arg, "ding %s", item)==1 );
                 else 
-                        return notify_fail("你要给谁什么东西？\n");
+                        return notify_fail("你要給誰什麼東西？\n");
 
         if(!objectp(who = present("jia ding", environment(me))) || !living(who))
-                return notify_fail("这里没有这个人。\n");
+                return notify_fail("這裡沒有這個人。\n");
 
         if(sscanf(item, "%d %s", amount, item)==2)
         {
                 if( !objectp(obj = present(item, me)) )        
-                        return notify_fail("你身上没有这样东西。\n");
+                        return notify_fail("你身上沒有這樣東西。\n");
                 if( !obj->query_amount() )        
-                        return notify_fail( obj->name() + "不能被分开给人。\n");
+                        return notify_fail( obj->name() + "不能被分開給人。\n");
                 if( amount < 1 )
-                        return notify_fail("东西的数量至少是一个。\n");
+                        return notify_fail("東西的數量至少是一個。\n");
                 if( amount > obj->query_amount() ) 
-                        return notify_fail("你没有那么多的" + obj->name() + "。\n");
+                        return notify_fail("你沒有那麼多的" + obj->name() + "。\n");
                 else 
                         if( amount == (int)obj->query_amount() )
                                 return do_giveto(me, obj2);
@@ -95,7 +95,7 @@ int do_give(string arg)
         }
 
         if(!objectp(obj = present(item, me)))
-                return notify_fail("你身上没有这样东西。\n");
+                return notify_fail("你身上沒有這樣東西。\n");
         return do_giveto(me, obj);
 }
 
@@ -103,19 +103,19 @@ int do_giveto(object me, object obj)
 {
         if( !environment() || base_name(environment()) != query("startroom") )
         {
-                write("家丁说道：真是抱歉，请您等一下到储料房来找我吧。\n");
+                write("家丁說道：真是抱歉，請您等一下到儲料房來找我吧。\n");
                 return 0;
         }
 
         if( !query_temp("yao", me) || !query_temp("tangmen", me) )
         {
-                message_vision("家丁很怪异的看着$N，欠身说道：“您应该没有做这里的工作吧！”\n", me);
+                message_vision("家丁很怪異的看著$N，欠身說道：“您應該沒有做這裡的工作吧！”\n", me);
                 return 0;
         }        
 
         if( query("id", obj) == "caoyao" && !userp(obj) )
         {
-                message_vision("家丁冲着$N一恭身，说道：“辛苦您了，东西就交给我吧！”\n", me);
+                message_vision("家丁衝著$N一恭身，說道：“辛苦您了，東西就交給我吧！”\n", me);
                 destruct(obj);
                 delete_temp("tangmen", me);
                 delete_temp("yao", me);
@@ -126,7 +126,7 @@ int do_giveto(object me, object obj)
         }
         else
         {
-                message_vision("家丁很为难的看着$N，欠身说道：“这不是你应该找到的东西吧！”\n", me);
+                message_vision("家丁很為難的看著$N，欠身說道：“這不是你應該找到的東西吧！”\n", me);
                 return 0;
         }
 }

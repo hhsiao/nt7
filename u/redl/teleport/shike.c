@@ -9,8 +9,8 @@ void create()
 {
         set("short", "石磕山");
         set("long", 
-"这是七十二福地里的石磕山，漫山遍野的大小石头嶙峋乱砌。偶\n"
-"尔在一些石缝处，看得见好像有矿脉的微微纹理，颜色黑黄不清。\n"
+"這是七十二福地裡的石磕山，漫山遍野的大小石頭嶙峋亂砌。偶\n"
+"爾在一些石縫處，看得見好像有礦脈的微微紋理，顏色黑黃不清。\n"
 );
                 //set("outdoors", "yangzhou");
                 set("exits",([ /* sizeof() == 1 */
@@ -41,7 +41,7 @@ void create()
 
 int discmds() 
 { 
-        tell_object(this_player(), "你不能在这里毛手毛脚地乱来。\n");  
+        tell_object(this_player(), "你不能在這裡毛手毛腳地亂來。\n");  
         return 1;  
 } 
 

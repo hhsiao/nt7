@@ -5,19 +5,19 @@ inherit NPC;
 
 void create()
 {
-        set_name("万青山", ({ "wan qingshan", "wan", "qingshan" }) );
-        set("title", HIR "龙行天下" NOR);
+        set_name("萬青山", ({ "wan qingshan", "wan", "qingshan" }) );
+        set("title", HIR "龍行天下" NOR);
         set("gender", "男性" );
         set("age", 45);
         set("int", 30);
         set("skill_public",1);
         set("long",
-                "河洛镖局总镖头，为人豪爽，不少走江湖的人物都是向他求教的武功。\n"
+                "河洛鏢局總鏢頭，為人豪爽，不少走江湖的人物都是向他求教的武功。\n"
         );
         set("chat_chance", 10);
         set("chat_msg", ({
-                "万青山说道：镖局的人手越来越少了！\n",
-                "万青山说道：护镖真是一件很危险的事！\n",
+                "萬青山說道：鏢局的人手越來越少了！\n",
+                "萬青山說道：護鏢真是一件很危險的事！\n",
         }) );
         set("attitude", "peaceful");
         set_skill("unarmed", 40);

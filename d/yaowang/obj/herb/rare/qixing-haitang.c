@@ -5,7 +5,7 @@ void create()
           if (clonep())      
                  set_default_object(__FILE__); 
           else { 
-                  set("long", NOR + HIG "这株花的叶子也和寻常海棠无异，花瓣紧贴枝干而生，花枝如铁，花瓣上有七个小小的黄点。\n" NOR); 
+                  set("long", NOR + HIG "這株花的葉子也和尋常海棠無異，花瓣緊貼枝幹而生，花枝如鐵，花瓣上有七個小小的黃點。\n" NOR); 
                   set("base_unit", "株");
                   set("base_value", 5000); 
                   set("base_weight", 20);

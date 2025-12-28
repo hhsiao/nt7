@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("圣麒麟[2;37;0m[2;37;0m", ({"qilin"}));        
+        set_name("聖麒麟[2;37;0m[2;37;0m", ({"qilin"}));        
         set("gender", "男性");                
-        set("long", "这是一只圣麒麟。[2;37;0m
-它是一色的魔幻兽。
+        set("long", "這是一隻聖麒麟。[2;37;0m
+它是一色的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

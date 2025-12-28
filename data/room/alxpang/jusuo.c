@@ -9,8 +9,8 @@ void create()
 {
         set("short", "居所");
 	set ("long", @LONG
-这就是海景房主人风四郎休息、读书的地方。楼上就是主人的卧
-室，西面则是书房。 
+這就是海景房主人風四郎休息、讀書的地方。樓上就是主人的臥
+室，西面則是書房。 
 LONG );
 
         set("exits", ([
@@ -26,9 +26,9 @@ LONG );
                 "room" : __DIR__"huayuan",
         ]));
     
-        set("room_owner", "风四郎");
+        set("room_owner", "風四郎");
         set("room_name", "海景房");
         set("room_id", "sea");
         set("room_owner_id", "alxpang");
-        set("room_position", "青砖路");
+        set("room_position", "青磚路");
 }

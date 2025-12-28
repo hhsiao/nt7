@@ -8,8 +8,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", NOR + MAG "一块蛟皮，呈紫黑色，坚硬无比，乃上等皮革原料。\n" NOR);
-                set("unit", "块");
+                set("long", NOR + MAG "一塊蛟皮，呈紫黑色，堅硬無比，乃上等皮革原料。\n" NOR);
+                set("unit", "塊");
                 set("value", 100000);
         }
         setup();

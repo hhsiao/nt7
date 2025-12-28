@@ -5,9 +5,9 @@ inherit NPC;
 int ask_wjb(object me, object ob); 
 void create() 
 { 
-     set_name("守卫",({"shou wei","guard"}) ); 
-     set("long","这是一位的无极帮的守卫。\n"); 
-     set("title","无极帮帮众"); 
+     set_name("守衛",({"shou wei","guard"}) ); 
+     set("long","這是一位的無極幫的守衛。\n"); 
+     set("title","無極幫幫眾"); 
      set("gender","男性"); 
      set("age",20); 
      set("combat_exp",100000); 
@@ -16,7 +16,7 @@ void create()
      set_skill("literate",150); 
      set_skill("unarmed",150); 
      set("inquiry",([ 
-          "无极帮" : (: ask_wjb :), 
+          "無極幫" : (: ask_wjb :), 
      ]) ); 
      setup(); 
 } 
@@ -25,19 +25,19 @@ int ask_wjb(object me, object ob)
 { 
      me=this_player(); 
      ob=this_object(); 
-     if( query("bunch/bunch_name", me) != "无极帮" && query("shen", me) >= 0 )
+     if( query("bunch/bunch_name", me) != "無極幫" && query("shen", me) >= 0 )
      { 
            command("famours"+query("id", me));
-           tell_object(me,"守卫笑眯眯地对你说：“是想加入咱们无极帮吧？请进请进。”\n"); 
+           tell_object(me,"守衛笑眯眯地對你說：“是想加入咱們無極幫吧？請進請進。”\n"); 
            set_temp("good_wjb", 1, me);
            return 1; 
      } 
      if( bad_bunch(me) || query("shen", me)<0 )
      { 
-           ob->command("say 哪里来的邪魔歪道，找打么？\n"); 
+           ob->command("say 哪裡來的邪魔歪道，找打麼？\n"); 
            return 1; 
      } 
 
-     tell_object(me,"守卫奇怪道：“同为本帮兄弟，你何出此言啊？”\n"); 
+     tell_object(me,"守衛奇怪道：“同為本幫兄弟，你何出此言啊？”\n"); 
      return 1; 
 } 

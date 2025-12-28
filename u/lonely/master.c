@@ -17,7 +17,7 @@ object connect()
 	err = catch(login_ob = new(LOGIN_OB));
 
 	if (err) {
-		write("现在有人正在修改使用者连线部份的程式，请待会再来。\n");
+		write("現在有人正在修改使用者連線部份的程式，請待會再來。\n");
 		write(err);
 	}
 	return login_ob;
@@ -57,8 +57,8 @@ protected void crash(string error, object command_giver, object current_object)
     	mixed cmds;
     	int i;
 
-        efun::shout("系统核心发出一声惨叫：哇—哩—咧—\n");
-        efun::shout("系统核心告诉你：要当机了，自己保重吧！\n");
+        efun::shout("系統核心發出一聲慘叫：哇—哩—咧—\n");
+        efun::shout("系統核心告訴你：要當機了，自己保重吧！\n");
         
         log_file("static/CRASHES", MUD_NAME + " crashed on: " + ctime(time()) +
 	         ", error: " + error + "\n");
@@ -114,7 +114,7 @@ protected void crash(string error, object command_giver, object current_object)
                 }
                 ob->save();
         }
-        efun::shout("【存盘精灵】：您的档案已经紧急保存了。");
+        efun::shout("【存盤精靈】：您的檔案已經緊急保存了。");
 #endif
 }
 
@@ -184,10 +184,10 @@ void log_error(string file, string message)
         else    home = LOG_DIR;
     	
         if (this_player(1)) 
-                efun::write("\n编译时段错误：" + message); 
+                efun::write("\n編譯時段錯誤：" + message); 
         else
         if (this_player()) 
-                tell_object(this_player(), "\n编译时段错误：" + message);
+                tell_object(this_player(), "\n編譯時段錯誤：" + message);
 
         efun::write_file(home + "log", message);
 }
@@ -227,7 +227,7 @@ void destruct_env_of(object ob)
 {
 	if (!interactive(ob))
 		return;
-	tell_object(ob, "你所存在的空间被毁灭了。\n");
+	tell_object(ob, "你所存在的空間被毀滅了。\n");
 	ob->move(VOID_OB);
 }
 
@@ -281,23 +281,23 @@ string standard_trace(mapping error, int caught)
 
         /* keep track of number of errors per object...if you're into that */
 
-        res = (caught) ? "错误讯息被拦截：" : "";
-        res = sprintf("%s\n执行时段错误：%s\n程式：%s 第 %i 行\n物件：%s\n",
+        res = (caught) ? "錯誤訊息被攔截：" : "";
+        res = sprintf("%s\n執行時段錯誤：%s\n程式：%s 第 %i 行\n物件：%s\n",
     	              res, error["error"],
                       error["program"], error["line"],
                       error["object"] ? file_name(error["object"]) : "0");
 
         if (! error["object"] && (me = this_player()))
         {
-                res += sprintf("当前玩家：%s(%s) - %O  所在环境：%O\n",
+                res += sprintf("當前玩家：%s(%s) - %O  所在環境：%O\n",
                                me->name(1), me->query("id"), me, environment(me));
 	        cmds = me->query_commands();
-	        res += me->name(1) + "身上及四周的物品与所在的环境提供以下指令：\n";
+	        res += me->name(1) + "身上及四周的物品與所在的環境提供以下指令：\n";
 	        for(i = 0; i<sizeof(cmds); i++)
 		        res += sprintf("%-15s  %2d %O\n",
                                        cmds[i][0], cmds[i][1], cmds[i][2]);
 
-                res += sprintf("当前的命令：%O\n", me->query_last_input());
+                res += sprintf("當前的命令：%O\n", me->query_last_input());
         }
 
         i = 0;
@@ -319,7 +319,7 @@ string standard_trace(mapping error, int caught)
 
         for (; i < s; i++)
         {
-                res = sprintf("%s呼叫来自：%s 的 %s() 第 %i 行，物件： %O\n",
+                res = sprintf("%s呼叫來自：%s 的 %s() 第 %i 行，物件： %O\n",
 	                      res,
                               error["trace"][i]["program"],
                               error["trace"][i]["function"],
@@ -329,7 +329,7 @@ string standard_trace(mapping error, int caught)
         return res;
 }
 
-// 完整出错信息
+// 完整出錯信息
 string full_trace(mapping error, int caught)
 {
         int count;
@@ -338,11 +338,11 @@ string full_trace(mapping error, int caught)
 
         err_msg = "\n" + sprintf(@ERR
 ——————————————<Bugs Report>——————————————
-[ 错误时间 ]: %-s
-[ 错误内容 ]: %-s
-[ 错误档案 ]: %-s
-[ 错误行数 ]: %-d
-[ 资料回溯 ]:
+[ 錯誤時間 ]: %-s
+[ 錯誤內容 ]: %-s
+[ 錯誤檔案 ]: %-s
+[ 錯誤行數 ]: %-d
+[ 資料回溯 ]:
 ERR,
         ctime(time()),
         replace_string(error["error"], "\n", " "),
@@ -353,11 +353,11 @@ ERR,
         {
                 count++;
                 err_msg +=sprintf(@ERR
-    -- 第 %|3d 层调用 --
-        [ 触动物件 ]: %O     
-        [ 程式档案 ]: %s
-        [ 函式名称 ]: %s(%s)
-        [ 呼叫行数 ]: %s
+    -- 第 %|3d 層調用 --
+        [ 觸動物件 ]: %O     
+        [ 程式檔案 ]: %s
+        [ 函式名稱 ]: %s(%s)
+        [ 呼叫行數 ]: %s
 ERR,
                 count,
                 trace["object"],
@@ -368,13 +368,13 @@ ERR,
 
                 if( trace["arguments"] )
                 {
-                        err_msg += "        [ 传入参数 ]:\n";
-                        err_msg += implode(map(trace["arguments"], (: "                   ** ("+typeof($1)+")"+implode(explode(sprintf("%."+TRACE_DETAIL_LENGTH_LIMIT+"O\n", $1)+(strlen(sprintf("%O", $1)) > TRACE_DETAIL_LENGTH_LIMIT ? "... 讯息过长省略\n" : ""), "\n"),"\n                      ") :)), "\n")+"\n";
+                        err_msg += "        [ 傳入參數 ]:\n";
+                        err_msg += implode(map(trace["arguments"], (: "                   ** ("+typeof($1)+")"+implode(explode(sprintf("%."+TRACE_DETAIL_LENGTH_LIMIT+"O\n", $1)+(strlen(sprintf("%O", $1)) > TRACE_DETAIL_LENGTH_LIMIT ? "... 訊息過長省略\n" : ""), "\n"),"\n                      ") :)), "\n")+"\n";
                 }
                 if( trace["locals"] )
                 {
-                        err_msg += "        [ 程式变数 ]:\n";
-                        err_msg += implode(map(trace["locals"], (: "                   ** ("+typeof($1)+")"+implode(explode(sprintf("%."+TRACE_DETAIL_LENGTH_LIMIT+"O\n", $1)+(strlen(sprintf("%O", $1)) > TRACE_DETAIL_LENGTH_LIMIT ? "... 讯息过长省略\n" : ""), "\n"),"\n                      ") :)), "\n")+"\n";
+                        err_msg += "        [ 程式變數 ]:\n";
+                        err_msg += implode(map(trace["locals"], (: "                   ** ("+typeof($1)+")"+implode(explode(sprintf("%."+TRACE_DETAIL_LENGTH_LIMIT+"O\n", $1)+(strlen(sprintf("%O", $1)) > TRACE_DETAIL_LENGTH_LIMIT ? "... 訊息過長省略\n" : ""), "\n"),"\n                      ") :)), "\n")+"\n";
                 }
         }
         err_msg+="——————————————<Bugs Report>——————————————\n\n";
@@ -399,14 +399,14 @@ string error_handler(mapping error, int caught)
                 if (wizardp(this_player(1)))
         	        tell_object(this_player(1), standard_trace(error, caught));
                 else
-                        tell_object(this_player(1), HIY "这里发现了臭虫，请用 SOS 指令将详细情况报告给巫师。\n" NOR);
+                        tell_object(this_player(1), HIY "這裡發現了臭蟲，請用 SOS 指令將詳細情況報告給巫師。\n" NOR);
         } else
         if (this_player())
                 tell_object(this_player(), standard_trace(error, caught));
                
         ob = filter_array(users(), "filter_wiz", this_object());
-        message("channel:debug", WHT "【系统出错】" +
-            	sprintf("执行时段错误：%s程式：%s 第 %i 行\n" NOR,
+        message("channel:debug", WHT "【系統出錯】" +
+            	sprintf("執行時段錯誤：%s程式：%s 第 %i 行\n" NOR,
                     	error["error"],
                     	error["program"], error["line"]), ob);
                     	
@@ -417,7 +417,7 @@ string error_handler(mapping error, int caught)
 
     	efun::write_file(LOG_DIR + "debug.log", standard_trace(error, caught));
     	    
-    	// 写入完整的出错信息
+    	// 寫入完整的出錯信息
         //efun::write_file(LOG_DIR + "debug_full.log", full_trace(error, caught));
     	
         // whatever we return goes to the debug.log
@@ -531,7 +531,7 @@ string object_name(object ob)
 
 mixed query(string arg)
 {
-	if (arg == "channel_id") return "系统核心";
+	if (arg == "channel_id") return "系統核心";
 	return 0;
 }
 

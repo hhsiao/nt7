@@ -12,8 +12,8 @@ void create()
 {
         set_name("接引使", ({"jieyin shi","jieyin","shi",}));
         set("long",
-                "他是一位精明的中年人，身穿一件白布长袍。\n"
-                "他正在上下打量着你。\n"
+                "他是一位精明的中年人，身穿一件白布長袍。\n"
+                "他正在上下打量著你。\n"
                 );
 
         set("title", HIG "明教" NOR);
@@ -69,7 +69,7 @@ void init()
 
 string ask_for_join()
 {
-        return "有介绍信就可以找光明左使加入我明教。\n";
+        return "有介紹信就可以找光明左使加入我明教。\n";
 }
 
 int accept_object(object ob, object obj)
@@ -85,38 +85,38 @@ int accept_object(object ob, object obj)
             query_temp("have_letter", ob) )
         {
                 if( query("can_apprentice_menzhu", ob) )
-                        return notify_fail("还不赶快去找风字门门主拓跋学我光明圣教的入门武功!\n");
+                        return notify_fail("還不趕快去找風字門門主拓跋學我光明聖教的入門武功!\n");
 
                    if( !mapp(family=query("family", ob)) || !ob->query_family() )
                    {
                         delete_temp("have_letter", ob);
 
                         if( query("gender", ob) == "女性" )
-                                command("say 我明教又得一女中豪杰，真是可"
-                                        "喜可贺！");
+                                command("say 我明教又得一女中豪傑，真是可"
+                                        "喜可賀！");
                         else 
-                                command("say 我明教又得一英雄好汉，真是可"
-                                        "喜可贺！");
+                                command("say 我明教又得一英雄好漢，真是可"
+                                        "喜可賀！");
 
-                        set("can_apprentice_menzhu", "风字门", ob);
+                        set("can_apprentice_menzhu", "風字門", ob);
 
                         command("smile");
-                        tell_object(ob,"接引使者对你说道：光明圣教光明左使手下有天、地、风、雷四门，你先到风字门门主拓跋那里学入门武功吧！\n");
+                        tell_object(ob,"接引使者對你說道：光明聖教光明左使手下有天、地、風、雷四門，你先到風字門門主拓跋那裡學入門武功吧！\n");
                         destruct(obj);
                         return 1;
                 }
 
                 if (family["family_name"] != "明教")
                 {
-                        message_vision("$N对$n摇摇头，说道：你已经加入"
-                                       "其他门派了，不能再入我明教。\n",
+                        message_vision("$N對$n搖搖頭，說道：你已經加入"
+                                       "其他門派了，不能再入我明教。\n",
                                        me, ob);
                         return 1;
                 } else
-                        message_vision("$N摇摇头，对$n说道：你已经是我明教"
+                        message_vision("$N搖搖頭，對$n說道：你已經是我明教"
                                        "的人了。\n", me, ob);
         }
         command("?");
-        command("say 这东西给我可没有什麽用。");
+        command("say 這東西給我可沒有什麼用。");
         return 0;
 }

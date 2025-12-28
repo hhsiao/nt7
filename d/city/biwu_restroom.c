@@ -8,9 +8,9 @@ void create()
 {
     set("short", HIY"休息室"NOR);
         set("long", @LONG
-这是一个简单但是色彩柔和的小房间，四周随意放着一些沙发，
-另外中间还有几张小床，给打下擂台的挑战者们时不时给抬到这里来。
-这里最好请保持安静。
+這是一個簡單但是色彩柔和的小房間，四周隨意放著一些沙發，
+另外中間還有幾張小床，給打下擂臺的挑戰者們時不時給抬到這裡來。
+這裡最好請保持安靜。
 LONG );
 
     set("no_fight",1);
@@ -42,7 +42,7 @@ int do_get()
     me = this_player();
     if (wizardp(me)) return 0;
 
-    tell_object(me,"在这里你想干什么？\n");
+    tell_object(me,"在這裡你想幹什麼？\n");
     return 1;
 }
 
@@ -52,7 +52,7 @@ int do_drop()
     me = this_player();
     if (wizardp(me)) return 0;
 
-    tell_object(me,"在这里你想干什么？\n");
+    tell_object(me,"在這裡你想幹什麼？\n");
     return 1;
 }
 
@@ -62,6 +62,6 @@ int do_put()
     me = this_player();
     if (wizardp(me)) return 0;
 
-    tell_object(me,"在这里你想干什么？\n");
+    tell_object(me,"在這裡你想幹什麼？\n");
     return 1;
 }

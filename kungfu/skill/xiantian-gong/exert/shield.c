@@ -1,4 +1,4 @@
-// shield.c 先天无极劲
+// shield.c 先天無極勁
 
 #include <ansi.h>
 
@@ -11,18 +11,18 @@ int exert(object me, object target)
         int skill;
 
         if ((int)me->query_skill("xiantian-gong", 1) < 50)
-                return notify_fail("你的先天功还不够深厚。\n");
+                return notify_fail("你的先天功還不夠深厚。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你现在的真气不够。\n");
+                return notify_fail("你現在的真氣不夠。\n");
 
         if( BUFF_D->check_buff(me, "shield") )
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
 
-        msg = HIW "$N" HIW "深深吸了一口气，双臂一振，一股浑厚的气劲登"
-              "时盘旋在身边四周。\n" NOR;     
+        msg = HIW "$N" HIW "深深吸了一口氣，雙臂一振，一股渾厚的氣勁登"
+              "時盤旋在身邊四周。\n" NOR;     
 
         data = ([
                 "armor" : skill/2,
@@ -33,11 +33,11 @@ int exert(object me, object target)
                 "target": me,
                 "type"  : "shield",
                 "attr"  : "bless",
-                "name"  : "先天功·护体神功",
+                "name"  : "先天功·護體神功",
                 "time"  : skill,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : "你的先天功运行完毕，将内力收回丹田。\n",
+                "disa_msg" : "你的先天功運行完畢，將內力收回丹田。\n",
                         
         ]);
         BUFF_D->buffup(buff);

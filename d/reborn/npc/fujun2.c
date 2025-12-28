@@ -24,9 +24,9 @@ string *valid_types = ({
 
 void create()
 {
-        set_name(BLU "华山府君" NOR, ({ "huashan fujun", "huashan", "fujun" }));
-        set("long", "他就是华山府君。\n");
-        set("title", HIW "西岳" NOR);
+        set_name(BLU "華山府君" NOR, ({ "huashan fujun", "huashan", "fujun" }));
+        set("long", "他就是華山府君。\n");
+        set("title", HIW "西嶽" NOR);
         set("gender", "男性");
         set("age", 50);
         set("str", 91);
@@ -63,7 +63,7 @@ void create()
         prepare_skill("unarmed", "kuihua-mogong");
 
         set("inquiry", ([
-                "献祭"  : (: ask_offer : ),
+                "獻祭"  : (: ask_offer : ),
                 "offer" : (: ask_offer : ),
         ])); 
         
@@ -114,16 +114,16 @@ int ask_offer()
                 
         if( !objectp( ob = present("contract", me) ) ||
             query("owner", ob) != query("id", me)){
-                tell_object(me, BLU "华山府君说道：「你还没有去领取阎王契(contract)，我不会接受你的献祭请求。」\n" NOR);
+                tell_object(me, BLU "華山府君說道：「你還沒有去領取閻王契(contract)，我不會接受你的獻祭請求。」\n" NOR);
                 return 1;
         }
 
-        message_vision(CYN "$N" CYN "讶道：「既是身怀阎王契，本府君这便给你一个机会吧。」\n"
-                       CYN "$N" CYN "低头沈吟片刻又道：「转生非同寻常，非有过人之胆识运气，不能成此大事，我这便待考验你一番。」\n"
-                       CYN "$N" CYN "续道：「你我以所学之武功作为赌注，我们来豪赌一场如何？」\n" NOR, 
+        message_vision(CYN "$N" CYN "訝道：「既是身懷閻王契，本府君這便給你一個機會吧。」\n"
+                       CYN "$N" CYN "低頭沈吟片刻又道：「轉生非同尋常，非有過人之膽識運氣，不能成此大事，我這便待考驗你一番。」\n"
+                       CYN "$N" CYN "續道：「你我以所學之武功作為賭注，我們來豪賭一場如何？」\n" NOR, 
                        this_object(), me); 
                        
-        tell_object(me, BLU "华山府君想要与你赌博，你是否同意(answer yes/no)？\n" NOR);
+        tell_object(me, BLU "華山府君想要與你賭博，你是否同意(answer yes/no)？\n" NOR);
         add_action("do_answer", "answer"); 
                        
         return 1; 
@@ -137,20 +137,20 @@ int do_answer(string arg)
                 return 0;
                 
         if( arg == "yes" ) { 
-                message_vision(BLU "$N" BLU "大笑道：「好好好！果然有过人之胆识！\n"
-                               BLU "$N" BLU "掏出一枚铜钱往上一抛，只见铜钱翻转不止后落入$N" BLU "掌中，随即便被紧紧盖住。\n" NOR,
+                message_vision(BLU "$N" BLU "大笑道：「好好好！果然有過人之膽識！\n"
+                               BLU "$N" BLU "掏出一枚銅錢往上一拋，只見銅錢翻轉不止後落入$N" BLU "掌中，隨即便被緊緊蓋住。\n" NOR,
                                this_object(), me);
-                tell_object(me, BLU "华山府君道：「拿(wager)一门像样的技艺出来，然后猜猜(guess)是正面(front)还是反面(back)？猜对三次便算你过关。」\n" NOR);
+                tell_object(me, BLU "華山府君道：「拿(wager)一門像樣的技藝出來，然後猜猜(guess)是正面(front)還是反面(back)？猜對三次便算你過關。」\n" NOR);
                 set_temp("can_wager", 1, me);
                 add_action("do_wager", "wager");   
                 add_action("do_guess", "guess");             
         } else if( arg == "no" ) { 
-                message_vision(BLU "$N" BLU "大怒道：你连这点胆识都没有，还想转世，简直是痴心妄想！\n" NOR,
+                message_vision(BLU "$N" BLU "大怒道：你連這點膽識都沒有，還想轉世，簡直是痴心妄想！\n" NOR,
                                this_object(), me); 
                 remove_call_out("destroy");
                 call_out("destroy", 1);
         } else 
-                return notify_fail("你要回答什么？\n"); 
+                return notify_fail("你要回答什麼？\n"); 
                 
         return 1; 
 }
@@ -169,18 +169,18 @@ int do_wager(string arg)
         if( !arg ) return notify_fail("格式：wager skill\n");
 
         if( !query_temp("can_wager", me) )
-                return notify_fail(BLU "华山府君皱眉道：。。。\n" NOR);
+                return notify_fail(BLU "華山府君皺眉道：。。。\n" NOR);
         
         if( me->query_skillo(arg, 1) < 3000 )
-                return notify_fail(BLU "华山府君皱眉道：「这点小玩意你还是拿回家自己玩吧。」\n" NOR);       
+                return notify_fail(BLU "華山府君皺眉道：「這點小玩意你還是拿回家自己玩吧。」\n" NOR);       
                 
         if( !SKILL_D(arg)->valid_enable("parry") && 
             !SKILL_D(arg)->valid_enable("dodge") &&
             !SKILL_D(arg)->valid_enable("throwing") &&
             !SKILL_D(arg)->valid_enable("force")) 
-                return notify_fail(BLU "华山府君皱眉道：「你还是拿出一门像样的技艺吧。」\n" NOR);
+                return notify_fail(BLU "華山府君皺眉道：「你還是拿出一門像樣的技藝吧。」\n" NOR);
         
-        message_vision(HIW "$N" HIW "大笑道：“好吧，那我就拿我所学" + to_chinese(arg) + "作为赌注。”\n" NOR, me);
+        message_vision(HIW "$N" HIW "大笑道：“好吧，那我就拿我所學" + to_chinese(arg) + "作為賭注。”\n" NOR, me);
         set_temp("wager", arg, me);
 
         return 1;
@@ -199,18 +199,18 @@ int do_guess(string arg)
         if( !arg || (arg != "front" && arg != "back"))
                 return 0;       
         
-        message_vision(HIW "$N" HIW "接着道：“我赌铜板是 " + arg + " 向上。”\n" NOR, me);  
+        message_vision(HIW "$N" HIW "接著道：“我賭銅板是 " + arg + " 向上。”\n" NOR, me);  
         if( random(10) < 5 ) {
-                message_vision(HIW "$N" HIW "将手掌摊开，铜板是正面(front)向上。\n" NOR, ob, me);
+                message_vision(HIW "$N" HIW "將手掌攤開，銅板是正面(front)向上。\n" NOR, ob, me);
                 if( arg == "front" ) {
                         addn_temp("guess/win", 1, me);
                         if( query_temp("guess/win", me)<2 )
-                                message_vision(BLU "$N" BLU "道：「你胜了一趟。」\n" NOR, ob, me);
+                                message_vision(BLU "$N" BLU "道：「你勝了一趟。」\n" NOR, ob, me);
                         else if( query_temp("guess/win", me) == 2 )
-                                message_vision(BLU "$N" BLU "道：「不错不错，你胜了两趟。」\n" NOR, ob, me);
+                                message_vision(BLU "$N" BLU "道：「不錯不錯，你勝了兩趟。」\n" NOR, ob, me);
                         else {
-                                message_vision(BLU "$N" BLU "笑道：「江山代有才人出，果真是阎王契的有缘人！」\n"
-                                               BLU "$N" BLU "又道：「本府君最重手上功夫，你必须献祭(offer)一门空手武技。」\n" NOR, 
+                                message_vision(BLU "$N" BLU "笑道：「江山代有才人出，果真是閻王契的有緣人！」\n"
+                                               BLU "$N" BLU "又道：「本府君最重手上功夫，你必須獻祭(offer)一門空手武技。」\n" NOR, 
                                                ob, me);
                                 delete_temp("can_wager", me);
                                 delete_temp("wager", me);
@@ -219,22 +219,22 @@ int do_guess(string arg)
                                 add_action("do_offer", "offer");
                         }
                 } else {
-                        message_vision(BLU "$N" BLU "笑道：「看来你运气不佳啊，没事，我们再来！」\n" NOR, ob, me);
+                        message_vision(BLU "$N" BLU "笑道：「看來你運氣不佳啊，沒事，我們再來！」\n" NOR, ob, me);
                         me->set_skill(query_temp("wager", me),200);
                         delete_temp("wager", me);
-                        tell_object(me, BLU "华山府君凌空一掏，你忽然觉得自己身上少了什么。\n" NOR);                        
+                        tell_object(me, BLU "華山府君凌空一掏，你忽然覺得自己身上少了什麼。\n" NOR);                        
                 }
         } else {
-                message_vision(HIC "$N" HIC "将手掌摊开，铜板是反面(back)向上。\n" NOR, ob, me);
+                message_vision(HIC "$N" HIC "將手掌攤開，銅板是反面(back)向上。\n" NOR, ob, me);
                 if( arg == "back" ) {
                         addn_temp("guess/win", 1, me);
                         if( query_temp("guess/win", me)<2 )
-                                message_vision(BLU "$N" BLU "道：「你胜了一趟。」\n" NOR, ob, me);
+                                message_vision(BLU "$N" BLU "道：「你勝了一趟。」\n" NOR, ob, me);
                         else if( query_temp("guess/win", me) == 2 )
-                                message_vision(BLU "$N" BLU "道：「不错不错，你胜了两趟。」\n" NOR, ob, me);
+                                message_vision(BLU "$N" BLU "道：「不錯不錯，你勝了兩趟。」\n" NOR, ob, me);
                         else {
-                                message_vision(BLU "$N" BLU "笑道：「江山代有才人出，果真是阎王契的有缘人！」\n"
-                                               BLU "$N" BLU "又道：「本府君最重手上功夫，你必须献祭(offer)一门空手武技。」\n" NOR, 
+                                message_vision(BLU "$N" BLU "笑道：「江山代有才人出，果真是閻王契的有緣人！」\n"
+                                               BLU "$N" BLU "又道：「本府君最重手上功夫，你必須獻祭(offer)一門空手武技。」\n" NOR, 
                                                ob, me);
                                 delete_temp("can_wager", me);
                                 delete_temp("wager", me);
@@ -243,10 +243,10 @@ int do_guess(string arg)
                                 add_action("do_offer", "offer");
                         }
                 } else {
-                        message_vision(BLU "$N" BLU "笑道：「看来你运气不佳啊，没事，我们再来！」\n" NOR, ob, me);
+                        message_vision(BLU "$N" BLU "笑道：「看來你運氣不佳啊，沒事，我們再來！」\n" NOR, ob, me);
                         me->set_skill(query_temp("wager", me),200);
                         delete_temp("wager", me);
-                        tell_object(me, BLU "华山府君凌空一掏，你忽然觉得自己身上少了什么。\n" NOR);                        
+                        tell_object(me, BLU "華山府君凌空一掏，你忽然覺得自己身上少了什麼。\n" NOR);                        
                 }                
         }      
         return 1;
@@ -261,23 +261,23 @@ void do_broadcast(int index)
         {
         case(0):
                 tell_room(environment(),
-                        BLU "华山府君点头道：「如此甚好，我这便记载到阎王契上。」\n" NOR);
+                        BLU "華山府君點頭道：「如此甚好，我這便記載到閻王契上。」\n" NOR);
                 break;
         case(1):
                 tell_room(environment(),
-                        BLU "只见华山府君喃喃有词，乍时山岚乱动、云间溢出光芒，只见一授案飘然而下，其上文房四宝一应俱全。\n" NOR);
+                        BLU "只見華山府君喃喃有詞，乍時山嵐亂動、雲間溢出光芒，只見一授案飄然而下，其上文房四寶一應俱全。\n" NOR);
                 break;
         case(2):
                 tell_room(environment(),
-                        BLU "华山府君提笔挥洒，只见丝丝紫光渗入阎王契上，片刻即成。\n" NOR);
+                        BLU "華山府君提筆揮灑，只見絲絲紫光滲入閻王契上，片刻即成。\n" NOR);
                 break;
         case(3):
                 tell_room(environment(),
-                        BLU "华山府君满意道：「这便成了。本府君功成身退，小友多多保重。」\n" NOR);
+                        BLU "華山府君滿意道：「這便成了。本府君功成身退，小友多多保重。」\n" NOR);
                 break;
         default:
                 tell_room(environment(),
-                        BLU "华山府君化做一阵清烟消失，转瞬便已飘渺无踪。\n授案化做一阵清烟消失，转瞬便已飘渺无踪。\n" NOR);
+                        BLU "華山府君化做一陣清煙消失，轉瞬便已飄渺無蹤。\n授案化做一陣清煙消失，轉瞬便已飄渺無蹤。\n" NOR);
 
                 remove_call_out("destroy");
                 destruct(this_object());
@@ -303,20 +303,20 @@ int do_offer(string arg)
 
         if( !objectp( ob = present("contract", me) ) ||
                 query("owner", ob) != query("id", me) )
-                return notify_fail(BLU "华山府君说道：「你还没有去领取阎王契(contract)，我不会接受你的献祭请求。」\n" NOR);
+                return notify_fail(BLU "華山府君說道：「你還沒有去領取閻王契(contract)，我不會接受你的獻祭請求。」\n" NOR);
 
         if( query("offer_huashan", ob) )
-                return notify_fail(BLU "华山府君说道：「你已经在华山献祭过了，就不用再来献祭吧。」\n" NOR);
+                return notify_fail(BLU "華山府君說道：「你已經在華山獻祭過了，就不用再來獻祭吧。」\n" NOR);
                 
         if( !query_temp("can_offer", me) || 
                 query_temp("can_offer", me) != query("id", this_object()) )
-                return notify_fail(BLU "华山府君皱眉道：「你还是先去完成我的条件再来献祭吧。」\n" NOR);
+                return notify_fail(BLU "華山府君皺眉道：「你還是先去完成我的條件再來獻祭吧。」\n" NOR);
 
         if( me->query_skillo(skill, 1) < 3000 || level < 3000 )
-                return notify_fail(BLU "华山府君皱眉道：「你献祭的技能等级必须达到3000级！」\n" NOR);
+                return notify_fail(BLU "華山府君皺眉道：「你獻祭的技能等級必須達到3000級！」\n" NOR);
 
         if( me->query_skillo(skill, 1) < level )
-                return notify_fail(BLU "华山府君皱眉道：「你这门技能没有这么高的等级。」\n" NOR);
+                return notify_fail(BLU "華山府君皺眉道：「你這門技能沒有這麼高的等級。」\n" NOR);
         
         unarmed = 0;
         for( i=0; i<sizeof(valid_types); i++ ) {
@@ -325,15 +325,15 @@ int do_offer(string arg)
                         break;
                 }
         }                
-        if( !unarmed ) return notify_fail(BLU "华山府君皱眉道：「你还是先献祭个空手技能吧。」\n" NOR);
+        if( !unarmed ) return notify_fail(BLU "華山府君皺眉道：「你還是先獻祭個空手技能吧。」\n" NOR);
 
         me->add_skill(skill, -level); 
         delete_temp("can_offer", me);
         set("offer/"+skill, level, me);
         
-        message_vision( HIR "$N" HIR "略一沉思道：「既然如此，为显诚意，我决定献祭" + to_chinese(skill) + level + "级。」\n" NOR, me );
-        tell_object(me, BLU "华山府君凌空一掏，你忽然觉得自己身上少了什么。\n" NOR);                      
-        msg = HIW + NATURE_D->game_time() + "，" + me->query_idname() + HIW "于华山献祭" + to_chinese(skill) + level + "级。\n";
+        message_vision( HIR "$N" HIR "略一沉思道：「既然如此，為顯誠意，我決定獻祭" + to_chinese(skill) + level + "級。」\n" NOR, me );
+        tell_object(me, BLU "華山府君凌空一掏，你忽然覺得自己身上少了什麼。\n" NOR);                      
+        msg = HIW + NATURE_D->game_time() + "，" + me->query_idname() + HIW "於華山獻祭" + to_chinese(skill) + level + "級。\n";
         
         rec=query("offer", ob);
         if( ! rec ) rec = ({});
@@ -347,7 +347,7 @@ int do_offer(string arg)
 
 void destroy()
 {
-        message_vision( BLU "$N化做一阵清烟消失，转瞬便已飘渺无踪。\n" NOR,
+        message_vision( BLU "$N化做一陣清煙消失，轉瞬便已飄渺無蹤。\n" NOR,
                         this_object() );
         destruct(this_object());
         return;

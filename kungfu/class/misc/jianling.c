@@ -9,12 +9,12 @@ void check_weapon();
 
 void create()
 {
-        set_name(HIG "剑灵" NOR, ({ "jian ling", "jian", "ling" }) );
-        set("title", HIC "虚空之痕" NOR);
-        set("long", HIG "在你的面前站立着一位高大的青年，他双手交叉于胸前，雪\n"
-                        "白的长发随风飘洒。背上背负着一柄巨大的宝剑，散发着蓝\n"
-                        "色的剑芒。这位青年看上去十分忧伤，空洞的眼神中似乎藏\n"
-                        "着世俗人间永远无法看透的悲伤。\n" NOR);
+        set_name(HIG "劍靈" NOR, ({ "jian ling", "jian", "ling" }) );
+        set("title", HIC "虛空之痕" NOR);
+        set("long", HIG "在你的面前站立著一位高大的青年，他雙手交叉於胸前，雪\n"
+                        "白的長髮隨風飄灑。背上揹負著一柄巨大的寶劍，散發著藍\n"
+                        "色的劍芒。這位青年看上去十分憂傷，空洞的眼神中似乎藏\n"
+                        "著世俗人間永遠無法看透的悲傷。\n" NOR);
 
         set("gender", "男性");
         set("age", 35);
@@ -74,9 +74,9 @@ void create()
 
         set_skill("jingluo-xue", 5000);
 
-        set("no_nuoyi", 1); // 不被挪移影响
-        set("lonely-sword/nothing", 1); //无招
-        set("can_learn/lonely-sword/xukong", 1); //特殊绝招，虚空之痕
+        set("no_nuoyi", 1); // 不被挪移影響
+        set("lonely-sword/nothing", 1); //無招
+        set("can_learn/lonely-sword/xukong", 1); //特殊絕招，虛空之痕
         
         set("yinyang-shiertian/shier", 12);
         set("yinyang-shiertian/yinyang", 12);
@@ -99,17 +99,17 @@ void create()
         // yun perform
         set("chat_chance_combat", 120); 
         set("chat_msg_combat", ({ 
-              // 独孤九剑
+              // 獨孤九劍
               (: command("perform sword.jian") :), 
-              (: command("perform sword.xukong") :),         // 虚空之痕   
+              (: command("perform sword.xukong") :),         // 虛空之痕   
               (: command("perform sword.po twice") :), 
               (: command("perform sword.qi and sword.yi") :), 
               (: command("perform sword.po and finger.tian") :),    
-              (: command("perform sword.xukong") :),         // 虚空之痕                
+              (: command("perform sword.xukong") :),         // 虛空之痕                
               (: command("perform sword.po and sword.yi") :),    
-              (: command("perform sword.xukong") :),         // 虚空之痕                   
+              (: command("perform sword.xukong") :),         // 虛空之痕                   
                (: command("perform finger.tian twice") :),                                                                                    
-              // 阴阳12t
+              // 陰陽12t
               (: command("perform finger.tian twice") :), 
               (: command("perform finger.zhen and finger.jiu") :), 
 
@@ -123,7 +123,7 @@ void create()
         }));
  
 
-        set("my_life", 1); // 当气血低于10%的时候补满一次，设置该参数为0
+        set("my_life", 1); // 當氣血低於10%的時候補滿一次，設置該參數為0
         //set("end_time", 1800);
         set("clear_fuben", 1);
 
@@ -135,23 +135,23 @@ void create()
         // 武器
         carry_object("/clone/weapon/landie-jian")->wield();
 
-        // 设置地点
+        // 設置地點
         //set("startroom", "/d/shenlong/huodong1");
 }
 
-// 全屏伤害 毁灭一击
+// 全屏傷害 毀滅一擊
 /*
-东方不败具备毁灭一击，随机发动，全场100%命中，伤血及上限80%
--- 套装对其具备克制作用，如下：$HIG$
-   -= 通玄套装: 50%几率抵御毁灭一击，同时毁灭一击若抵御失败，伤血及上限50%$HIM$
-   -= 鸿钧套装: 具备通玄套装的特性。同时，命中东方不败后对其追加一次伤害和
-                忙乱效果。
-                例如本次命中东方不败伤害为10万，则再追加10万伤害，同时令其
-                忙乱5至10秒。$HIR$
-   -= 造化套装:90%几率抵御毁灭一击，同时毁灭一击若抵御失败，伤血及上限30%
-               命中东方不败后对其追加二次伤害和忙乱效果。例如本次命中东方不
-               败伤害为10万，则再追加20万伤害，同时令其忙乱5至10秒。
-               命中东方不败后70%追加封招10秒。$NOR$
+東方不敗具備毀滅一擊，隨機發動，全場100%命中，傷血及上限80%
+-- 套裝對其具備剋制作用，如下：$HIG$
+   -= 通玄套裝: 50%幾率抵禦毀滅一擊，同時毀滅一擊若抵禦失敗，傷血及上限50%$HIM$
+   -= 鴻鈞套裝: 具備通玄套裝的特性。同時，命中東方不敗後對其追加一次傷害和
+                忙亂效果。
+                例如本次命中東方不敗傷害為10萬，則再追加10萬傷害，同時令其
+                忙亂5至10秒。$HIR$
+   -= 造化套裝:90%幾率抵禦毀滅一擊，同時毀滅一擊若抵禦失敗，傷血及上限30%
+               命中東方不敗後對其追加二次傷害和忙亂效果。例如本次命中東方不
+               敗傷害為10萬，則再追加20萬傷害，同時令其忙亂5至10秒。
+               命中東方不敗後70%追加封招10秒。$NOR$
 */
 void damage_all()
 {
@@ -164,8 +164,8 @@ void damage_all()
                 set_heart_beat(0);
                 return;
         }
-        msg = HIM "$N" HIM "一声长叹，手中的蓝蝶宝剑化作万千蓝色光芒的彩蝶，铺天盖地般卷来，刹那间，"
-                  "万千光芒迸发出刺眼的光芒，竟变成道道剑芒从四面八方激射而来 ……\n" NOR;
+        msg = HIM "$N" HIM "一聲長嘆，手中的藍蝶寶劍化作萬千藍色光芒的彩蝶，鋪天蓋地般捲來，剎那間，"
+                  "萬千光芒迸發出刺眼的光芒，竟變成道道劍芒從四面八方激射而來 ……\n" NOR;
         
         message_vision(sort_msg(msg), this_object());
         
@@ -177,34 +177,34 @@ void damage_all()
                 if (! obs[i]->is_character() || obs[i] == this_object())
                         continue;
                         
-                // 特殊标志的ID不会被受招
+                // 特殊標誌的ID不會被受招
                 if( query("jianling-summon", obs[i]))continue;
                 
                 tzlv = to_int(query_temp("modequip_itemmake_level", obs[i]));
-                // 套装等级在2以下的100%收到80%的气血上限伤害
-                // 非玩家生物肯定没有套装，也是100%受伤
+                // 套裝等級在2以下的100%收到80%的氣血上限傷害
+                // 非玩家生物肯定沒有套裝，也是100%受傷
                 if ( tzlv < 2 || ! playerp(obs[i]))
                 {
                         set("last_damage_from", this_object(), obs[i]);
                         obs[i]->receive_wound("qi",query("max_qi", obs[i])/5*4,this_object());
-                        message_vision("$N" HIY "惊恐万分，已经毫无招架之力，数道剑芒穿胸而过，"
-                                           "猛然喷出一口鲜血，倒退几步，经脉尽伤，无法动弹！\n" NOR, obs[i]);
+                        message_vision("$N" HIY "驚恐萬分，已經毫無招架之力，數道劍芒穿胸而過，"
+                                           "猛然噴出一口鮮血，倒退幾步，經脈盡傷，無法動彈！\n" NOR, obs[i]);
                         obs[i]->start_busy(10);
                 }
                 else if (tzlv == 2)
                 {
-                        // 50%抵御，若未成功，则伤害为50%
+                        // 50%抵禦，若未成功，則傷害為50%
                         if (random(2))
                         {
-                                message_vision("$N" HIG "惊恐万分，已经毫无招架之力，突然全身一道栏光笼罩，其"
-                                                   "身穿的【通玄套装】将所有伤害全部抵御！\n" NOR, obs[i]);
+                                message_vision("$N" HIG "驚恐萬分，已經毫無招架之力，突然全身一道欄光籠罩，其"
+                                                   "身穿的【通玄套裝】將所有傷害全部抵禦！\n" NOR, obs[i]);
                         }
                         else
                         {
                                 set("last_damage_from", this_object(), obs[i]);
                                 obs[i]->receive_wound("qi",query("max_qi", obs[i])/2,this_object());
-                                message_vision(HIY "$N" HIY "惊恐万分，已经毫无招架之力，数道蓝芒穿胸而过，"
-                                                   "猛然喷出一口鲜血！\n" NOR, obs[i]);
+                                message_vision(HIY "$N" HIY "驚恐萬分，已經毫無招架之力，數道藍芒穿胸而過，"
+                                                   "猛然噴出一口鮮血！\n" NOR, obs[i]);
                                 obs[i]->start_busy(5);
                         }
                 }
@@ -212,15 +212,15 @@ void damage_all()
                 {
                         if (random(2))
                         {
-                                message_vision("$N" HIC "惊恐万分，已经毫无招架之力，突然全身一道青光笼罩，其"
-                                                   "身穿的【鸿钧套装】将所有伤害全部抵御！\n" NOR, obs[i]);
+                                message_vision("$N" HIC "驚恐萬分，已經毫無招架之力，突然全身一道青光籠罩，其"
+                                                   "身穿的【鴻鈞套裝】將所有傷害全部抵禦！\n" NOR, obs[i]);
                         }
                         else
                         {
                                 set("last_damage_from", this_object(), obs[i]);
                                 obs[i]->receive_wound("qi",query("max_qi", obs[i])/2,this_object());
-                                message_vision(HIY "$N" HIY "惊恐万分，已经毫无招架之力，数道蓝芒穿胸而过，"
-                                                   "猛然喷出一口鲜血！\n" NOR, obs[i]);
+                                message_vision(HIY "$N" HIY "驚恐萬分，已經毫無招架之力，數道藍芒穿胸而過，"
+                                                   "猛然噴出一口鮮血！\n" NOR, obs[i]);
                                 obs[i]->start_busy(5);
                         }                       
                 }
@@ -228,8 +228,8 @@ void damage_all()
                 {
                         if (1)
                         {
-                                message_vision(HIM "$N" HIM "凝神抵御，一道紫色的光芒缠绕在其周围，【造化套装】"
-                                                    "叮叮作响，竟将所有伤害化解于无形！\n" NOR, obs[i]);
+                                message_vision(HIM "$N" HIM "凝神抵禦，一道紫色的光芒纏繞在其周圍，【造化套裝】"
+                                                    "叮叮作響，竟將所有傷害化解於無形！\n" NOR, obs[i]);
                         }
                 }
         }
@@ -248,7 +248,7 @@ void heart_beat()
                 delete_temp("no_exert");
         }
 /*
-        // 检查武器
+        // 檢查武器
         if (! query_temp("weapon"))
         {
                 ob = new("/clone/weapon/xuantie-jian");
@@ -258,7 +258,7 @@ void heart_beat()
         */
         if (random(5) == 1)check_weapon();
         
-        // 5%的机会全屏攻击，100%命中，伤血及上限80%
+        // 5%的機會全屏攻擊，100%命中，傷血及上限80%
         if (random(100) < 5)
         {
                 damage_all();
@@ -267,14 +267,14 @@ void heart_beat()
         return ::heart_beat();
 }
 
-// 检查武器
+// 檢查武器
 void check_weapon()
 {
         object me, ob;
         
         me = this_object();
 
-        // 同时补充内力
+        // 同時補充內力
         set("neili", query("max_neili"));
 
         if (me->is_busy())me->interrupt_busy(me, 1000); 
@@ -311,10 +311,10 @@ void check_weapon()
                 me->clear_condition();
         }
 
-        // 很小几率恢复气血
+        // 很小几率恢復氣血
         if (random(800) == 1)
         {
-                //log_file("qilin", ctime(time()) + " 成功恢复气血。\n");
+                //log_file("qilin", ctime(time()) + " 成功恢復氣血。\n");
                 if( query("eff_qi", me)<query("max_qi", me)/3)addn("eff_qi",query("max_qi",  me)/5, me);
                 if( query("qi", me)<query("max_qi", me)/3)addn("qi",query("max_qi",  me)/5, me);
         }
@@ -361,7 +361,7 @@ void new_life()
 {
         object me = this_object();
         
-        // 补满气血
+        // 補滿氣血
         set("eff_qi",query("max_qi",  me), me);
         set("qi",query("max_qi",  me), me);
         set("eff_jing",query("max_jing",  me), me);
@@ -379,11 +379,11 @@ void new_life()
         set_temp("apply/unarmed_damage", 400000); 
         set_temp("apply/damage", 200000); 
         set_temp("apply/armor", 100000);
-        set_temp("apply/qy", 70);  // 气运
-        set_temp("apply/fy", 70);  // 福缘              
+        set_temp("apply/qy", 70);  // 氣運
+        set_temp("apply/fy", 70);  // 福緣              
         delete("my_life", me);
 
-        message_vision(HIG "\n$N" HIG "长叹一声，一只蓝色光芒的蝴蝶从身体内升起！\n\n" NOR, me);
+        message_vision(HIG "\n$N" HIG "長嘆一聲，一隻藍色光芒的蝴蝶從身體內升起！\n\n" NOR, me);
         
         return; 
 }
@@ -396,11 +396,11 @@ int receive_wound(string type, int damage, object who)
 
         if (! who)return 0;
 
-        // 蓝蝶仙子在，不受任何伤害
+        // 藍蝶仙子在，不受任何傷害
         landie=query("mylandie", me);
         if (objectp(landie))
         {
-                message_vision(HIC "$N" HIC "轻叹一声，对$n" HIC "的攻势毫无理会。\n" NOR, me, who);
+                message_vision(HIC "$N" HIC "輕嘆一聲，對$n" HIC "的攻勢毫無理會。\n" NOR, me, who);
                 return 0;
         }
         
@@ -417,15 +417,15 @@ int receive_damage(string type, int damage, object who)
 
         if (! who)return 0;
 
-        // 蓝蝶仙子在，不受任何伤害
+        // 藍蝶仙子在，不受任何傷害
         landie=query("mylandie", me);
         if (objectp(landie))
         {
-                message_vision(HIC "$N" HIC "轻叹一声，对$n" HIC "的攻势毫无理会。\n" NOR, me, who);
+                message_vision(HIC "$N" HIC "輕嘆一聲，對$n" HIC "的攻勢毫無理會。\n" NOR, me, who);
                 return 0;
         }
 
-        // 套装的追加伤害
+        // 套裝的追加傷害
         if (objectp(who))
         {
                 tzlv = to_int(query_temp("modequip_itemmake_level", who));
@@ -434,18 +434,18 @@ int receive_damage(string type, int damage, object who)
                 {
                         damage *= 2;
                         this_object()->start_busy(5+random(6));
-                        tell_object(HIM "「鸿钧套装」追加伤害及附加忙乱！\n" NOR);
+                        tell_object(HIM "「鴻鈞套裝」追加傷害及附加忙亂！\n" NOR);
                 }
                 else if (tzlv == 4)
                 {
                         damage *= 3;
                         start_busy(5+random(6));
-                        tell_object(HIM "「造化套装」追加伤害及附加忙乱！\n" NOR);
+                        tell_object(HIM "「造化套裝」追加傷害及附加忙亂！\n" NOR);
                         if (random(10) < 7)
                         {
                                 set_temp("no_perform", 1);
                                 call_out("remove_no_perform", 10);
-                                tell_object(HIC "「造化套装」追加封招10秒！\n" NOR);
+                                tell_object(HIC "「造化套裝」追加封招10秒！\n" NOR);
                         }
                 }
         }
@@ -467,15 +467,15 @@ void remove_no_perform()
         delete_temp("no_perform");
 }
 
-// 检查生命
+// 檢查生命
 void check_life()
 {
         object env;
         
-        // 如果life<=1则死亡
+        // 如果life<=1則死亡
         if (1)
         {
-                message_vision(HIR "\n$N" HIR "一声悲凉的长叹，竟化作一直蓝蝶飞走了。\n" NOR, this_object());
+                message_vision(HIR "\n$N" HIR "一聲悲涼的長嘆，竟化作一直藍蝶飛走了。\n" NOR, this_object());
 
                 destruct(this_object());
         }
@@ -483,20 +483,20 @@ void check_life()
 
 void die(object killer)
 {
-        object dob;             // 打晕这个NPC的人                                                                                       
-        int n;                  // 可以奖励的人的数目                                                                                    
-        int exp;                // 需要瓜分的经验
-        int pot;                // 需要瓜分的潜能                                                                                        
+        object dob;             // 打暈這個NPC的人                                                                                       
+        int n;                  // 可以獎勵的人的數目                                                                                    
+        int exp;                // 需要瓜分的經驗
+        int pot;                // 需要瓜分的潛能                                                                                        
         int weiwang;            // 需要瓜分的威望
-        int score;              // 需要瓜分的阅历
-        object *t;              // 杀死我的人的队伍列表                                                                                  
+        int score;              // 需要瓜分的閱歷
+        object *t;              // 殺死我的人的隊伍列表                                                                                  
         object tob;       
         object ob;
-        int mar;                //  需要瓜分的体会
+        int mar;                //  需要瓜分的體會
         int i;
 
-        // 定义奖励物品列表
-        // 几率  X / 百分之
+        // 定義獎勵物品列表
+        // 幾率  X / 百分之
         mixed oblist = ([
                 "/clone/armor/jianling/jianling-zhili"   : 1,
                 "/clone/armor/jianling/jianling-zhili2"  : 1,
@@ -517,14 +517,14 @@ void die(object killer)
                 return; 
         }
 
-        // 如果还未重生，则重生一次
+        // 如果還未重生，則重生一次
         if (query("my_life"))
         {
                 new_life();
                 return;
         }
 
-        // 找到杀了我(NPC)或是打晕我的人
+        // 找到殺了我(NPC)或是打暈我的人
         if (! objectp(dob = killer))
                 dob = query_last_damage_from();
         if (! objectp(dob))
@@ -532,7 +532,7 @@ void die(object killer)
                 
         if (! dob)
         {
-                // 调用生命检查函数
+                // 調用生命檢查函數
                 check_life();
                 return;
         }
@@ -575,14 +575,14 @@ void die(object killer)
                                 if (objectp(tob) && living(tob))
                                 {       
                                         
-                                        // 设置战胜过剑灵的标记
+                                        // 設置戰勝過劍靈的標記
                                         if( !query("thborn/fuben/jianling/win", tob) )
                                         {
-                                                tell_object(tob, HIG + BLINK + "恭喜你！已经成功战胜剑灵，可以使用剑灵装备了！\n" NOR);
+                                                tell_object(tob, HIG + BLINK + "恭喜你！已經成功戰勝劍靈，可以使用劍靈裝備了！\n" NOR);
                                                 set("thborn/fuben/jianling/win", 1, tob);
                                         }
                                         
-                                        // 会员奖励再提高10%
+                                        // 會員獎勵再提高10%
                                         if( MEMBER_D->is_valib_member(query("id", tob)) )
                                         {
                                                 if (environment(tob) == environment(dob))
@@ -592,7 +592,7 @@ void die(object killer)
                                                                    "weiwang"  : weiwang + weiwang * 1 / 10 + ((tob == dob) ? 50000 : 0),  
                                                                    "score"    : score + score * 1 / 10 + ((tob == dob) ? 50000 : 0),
                                                                    "mar"      : mar + mar * 1 / 10 + ((tob == dob) ? 50000 : 0),
-                                                                   "prompt"   : "你的队伍杀死" + name() + HIG "之后"]), 999);          
+                                                                   "prompt"   : "你的隊伍殺死" + name() + HIG "之後"]), 999);          
                                         }
                                         else
                                         {
@@ -603,17 +603,17 @@ void die(object killer)
                                                                    "weiwang"  : weiwang + ((tob == dob) ? 50000 : 0),  
                                                                    "score"    : score + ((tob == dob) ? 50000 : 0),
                                                                    "mar"      : mar + ((tob == dob) ? 50000 : 0),
-                                                                   "prompt"   : "你的队伍杀死" + name() + HIG "之后"]), 999);  
+                                                                   "prompt"   : "你的隊伍殺死" + name() + HIG "之後"]), 999);  
                                         }
                                 }
                         }
                 }
                 else
                 {
-                        // 设置战胜过剑灵的标记
+                        // 設置戰勝過劍靈的標記
                         if( !query("thborn/fuben/jianling/win", dob) )
                         {
-                                tell_object(dob, HIG + BLINK + "恭喜你！已经成功战胜剑灵，可以使用剑灵装备了！\n" NOR);
+                                tell_object(dob, HIG + BLINK + "恭喜你！已經成功戰勝劍靈，可以使用劍靈裝備了！\n" NOR);
                                 set("thborn/fuben/jianling/win", 1, dob);
                         }
                         
@@ -625,7 +625,7 @@ void die(object killer)
                                            "weiwang"  : weiwang + weiwang * 3 / 10,                               
                                            "score"    : score + score * 3 / 10,  
                                            "mar"      : mar + mar * 3 / 10,                           
-                                           "prompt"   : "你在战胜" + name() + HIG "之后"]), 100);                                    
+                                           "prompt"   : "你在戰勝" + name() + HIG "之後"]), 100);                                    
                         }                                                                                          
 
                         else
@@ -636,7 +636,7 @@ void die(object killer)
                                            "weiwang"  : weiwang,                               
                                            "score"    : score,  
                                            "mar"      : mar,                           
-                                           "prompt"   : "你在战胜" + name() + HIG "之后"]), 100); 
+                                           "prompt"   : "你在戰勝" + name() + HIG "之後"]), 100); 
                        }     
                 }
         }
@@ -655,18 +655,18 @@ void die(object killer)
                         gift_ob = new(s_gift);
                         if (objectp(gift_ob))
                         {
-                                message_vision(HIC "当~~一声，从$N" HIC "身上掉出" + gift_ob->name() + HIC "，落在地上。\n" NOR, this_object());                                  
+                                message_vision(HIC "當~~一聲，從$N" HIC "身上掉出" + gift_ob->name() + HIC "，落在地上。\n" NOR, this_object());                                  
                                 set("who_get/id", "NONE", gift_ob);
-                                set("who_get/time", time()+30, gift_ob);//30秒内都不能捡取
+                                set("who_get/time", time()+30, gift_ob);//30秒內都不能撿取
                                 gift_ob->move(environment(this_object()));                                                                           
                         }
-                        else // 纪录之
+                        else // 紀錄之
                         {
                                 log_file("gift-none", s_gift + " from " + __FILE__ + "\n");
                         }
                 }
                 
-                // 1%几率再追加一件物品
+                // 1%幾率再追加一件物品
                 if (random(100) < 1)
                 {
                         s_gift = key_s_gift[random(sizeof(key_s_gift))];
@@ -674,17 +674,17 @@ void die(object killer)
                         gift_ob2 = new(s_gift);
                         if (objectp(gift_ob2))
                         {
-                                message_vision(HIC "当~~一声，从$N" HIC "身上掉出" + gift_ob2->name() + HIC "，落在地上。\n" NOR, this_object());                                  
+                                message_vision(HIC "當~~一聲，從$N" HIC "身上掉出" + gift_ob2->name() + HIC "，落在地上。\n" NOR, this_object());                                  
                                 set("who_get/id", "NONE", gift_ob2);
-                                set("who_get/time", time()+10, gift_ob2);//30秒内都不能捡取
+                                set("who_get/time", time()+10, gift_ob2);//30秒內都不能撿取
                                 gift_ob2->move(environment(this_object()));                                                                           
                         }
-                        else // 纪录之
+                        else // 紀錄之
                         {
                                 log_file("gift-none", s_gift + " from " + __FILE__ + "\n");
                         }                       
                 }
-                // 0.01%几率再追加一件
+                // 0.01%幾率再追加一件
                 if (random(10000) == 1)
                 {
                         s_gift = key_s_gift[random(sizeof(key_s_gift))];
@@ -692,62 +692,62 @@ void die(object killer)
                         gift_ob3 = new(s_gift);
                         if (objectp(gift_ob3))
                         {
-                                message_vision(HIC "当~~一声，从$N" HIC "身上掉出" + gift_ob3->name() + HIC "，落在地上。\n" NOR, this_object());                                  
+                                message_vision(HIC "當~~一聲，從$N" HIC "身上掉出" + gift_ob3->name() + HIC "，落在地上。\n" NOR, this_object());                                  
                                 //gift_ob3->set("who_get/id", "NONE");
-                                //gift_ob3->set("who_get/time", time() + 30); // 30秒内都不能捡取
+                                //gift_ob3->set("who_get/time", time() + 30); // 30秒內都不能撿取
                                 gift_ob3->move(environment(this_object()));                                                                           
                         }
-                        else // 纪录之
+                        else // 紀錄之
                         {
                                 log_file("gift-none", s_gift + " from " + __FILE__ + "\n");
                         }
                 }
 /*
-                // 25%的几率掉东西
+                // 25%的幾率掉東西
                 if (random(4) == 1) 
                 {
                         ran = random(100);
 
-                        if (random(10) == 1)// 10%蝉翼披风
+                        if (random(10) == 1)// 10%蟬翼披風
                         {
                                 gift_ob = new("/clone/armor/dongfang/chanyi-pifeng");
                                 
                                 if (objectp(gift_ob))
                                 {
-                                        message_vision(HIC "当~~一声，从$N" HIC "身上掉出" + gift_ob->name() + HIC "，落在地上。\n" NOR, this_object());                                  
+                                        message_vision(HIC "當~~一聲，從$N" HIC "身上掉出" + gift_ob->name() + HIC "，落在地上。\n" NOR, this_object());                                  
                                         set("who_get/id", "NONE", gift_ob);
-                                        set("who_get/time", time()+30, gift_ob);//30秒内都不能捡取
+                                        set("who_get/time", time()+30, gift_ob);//30秒內都不能撿取
                                         gift_ob->move(environment(this_object()));                                                                           
                                 }
                         }
                         
-                        if (random(100) < 3)// 黑玉指环 3%
+                        if (random(100) < 3)// 黑玉指環 3%
                         {
                                 gift_ob2 = new("/clone/armor/dongfang/heiyu");
                                 
                                 if (objectp(gift_ob2))
                                 {
-                                        message_vision(HIC "当~~一声，从$N" HIC "身上掉出" + gift_ob2->name() + HIC "，落在地上。\n" NOR, this_object());                                  
+                                        message_vision(HIC "當~~一聲，從$N" HIC "身上掉出" + gift_ob2->name() + HIC "，落在地上。\n" NOR, this_object());                                  
                                         set("who_get/id", "NONE", gift_ob2);
-                                        set("who_get/time", time()+30, gift_ob2);//30秒内都不能捡取
+                                        set("who_get/time", time()+30, gift_ob2);//30秒內都不能撿取
                                         gift_ob2->move(environment(this_object()));                                                                           
                                 }
                         }                       
 
-                        if (random(100) < 3)// 紫血环
+                        if (random(100) < 3)// 紫血環
                         {
                                 gift_ob3 = new("/clone/armor/dongfang/zixue");
                                 
                                 if (objectp(gift_ob3))
                                 {
-                                        message_vision(HIC "当~~一声，从$N" HIC "身上掉出" + gift_ob3->name() + HIC "，落在地上。\n" NOR, this_object());                                  
+                                        message_vision(HIC "當~~一聲，從$N" HIC "身上掉出" + gift_ob3->name() + HIC "，落在地上。\n" NOR, this_object());                                  
                                         set("who_get/id", "NONE", gift_ob3);
-                                        set("who_get/time", time()+30, gift_ob3);//30秒内都不能捡取
+                                        set("who_get/time", time()+30, gift_ob3);//30秒內都不能撿取
                                         gift_ob3->move(environment(this_object()));                                                                           
                                 }
                         }
 
-                        if (random(100) < 5)// 魅影剑法或天擎秘气 5% 随机一件
+                        if (random(100) < 5)// 魅影劍法或天擎秘氣 5% 隨機一件
                         {
                                 switch(random(3))
                                 {
@@ -766,9 +766,9 @@ void die(object killer)
 
                                 if (objectp(gift_ob4))
                                 {
-                                        message_vision(HIC "当~~一声，从$N" HIC "身上掉出" + gift_ob4->name() + HIC "，落在地上。\n" NOR, this_object());                                  
+                                        message_vision(HIC "當~~一聲，從$N" HIC "身上掉出" + gift_ob4->name() + HIC "，落在地上。\n" NOR, this_object());                                  
                                         set("who_get/id", "NONE", gift_ob4);
-                                        set("who_get/time", time()+30, gift_ob4);//30秒内都不能捡取
+                                        set("who_get/time", time()+30, gift_ob4);//30秒內都不能撿取
                                         gift_ob4->move(environment(this_object()));                                                                           
                                 }
                         }
@@ -776,34 +776,34 @@ void die(object killer)
                 */
         }
         
-        // 5/100几率掉出无名铜人
+        // 5/100幾率掉出無名銅人
         if (random(100) < (5+5*query_temp("apply/magic_find", dob)/100))
         {
                 object ob_tongren;
                 ob_tongren = new("/clone/tongren/tongren"+(1+random(2)));     
-                message_vision(HIR "当~~一声，从$N" HIR "身上掉出" + ob_tongren->name() + HIR "，落在地上。\n" NOR, this_object());
+                message_vision(HIR "當~~一聲，從$N" HIR "身上掉出" + ob_tongren->name() + HIR "，落在地上。\n" NOR, this_object());
                 set("who_get/id", "NONE", ob_tongren);
-                set("who_get/time", time()+30, ob_tongren);//30秒内都不能捡取
+                set("who_get/time", time()+30, ob_tongren);//30秒內都不能撿取
                 ob_tongren->move(environment(this_object()));
         }
                 
-        // 特殊活动爆物品，统一调用giftd接口
+        // 特殊活動爆物品，統一調用giftd接口
         GIFT_D->fuben_boss_gift(this_object()); 
                                 
-        // 20%几率掉出特殊物品
-        // 同时有50%几率掉出2件
+        // 20%幾率掉出特殊物品
+        // 同時有50%幾率掉出2件
         if (random(100) < (2+2*query_temp("apply/magic_find", dob)/100))
         {       
                 object gift_huoyan;
                 gift_huoyan = new("/clone/tessera/rune31");
                 set("who_get/id", "NONE", gift_huoyan);
-                set("who_get/time", time()+30, gift_huoyan);//30秒内都不能捡取
+                set("who_get/time", time()+30, gift_huoyan);//30秒內都不能撿取
                 gift_huoyan->move(environment(this_object()));  
-                message_vision(HIW "叮~~一声，从$N" HIW "身上掉出" + gift_huoyan->name() + 
+                message_vision(HIW "叮~~一聲，從$N" HIW "身上掉出" + gift_huoyan->name() + 
                                HIW "，落在地上。\n" NOR, this_object());
 
         }
-        // 检查生命
+        // 檢查生命
         check_life();
 
         return ;

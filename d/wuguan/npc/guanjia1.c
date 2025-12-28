@@ -6,11 +6,11 @@ void create()
         set_name("柴房管事", ({ "chaifang guanshi", "guanshi" }) );
         set("gender", "男性" );
         set("age", 50);
-        set("long", "他是柴房管事，专管柴房！\n");
+        set("long", "他是柴房管事，專管柴房！\n");
         set("combat_exp", 2500);
         set("attitude", "friendly");
         set("inquiry", ([
-             	"劈柴" : "你就在这老老实实劈柴，我不满意，你就别想回去覆命！",
+             	"劈柴" : "你就在這老老實實劈柴，我不滿意，你就別想回去覆命！",
                
         ]) );
         setup();
@@ -38,14 +38,14 @@ void greeting(object ob)
         if (! (present("chai dao", ob)))
         {
         	command("hmm"+query("id", ob));
-        	command("say 你还没领工具吧，去东物品房找武爷要了再来。\n");
+        	command("say 你還沒領工具吧，去東物品房找武爺要了再來。\n");
         	return;
         }
 
         if( !(query_temp("job_name", ob) != "劈柴") )
         {
         	command("nod"+query("id", ob));
-                command("say 是耶律大爷吩咐你来的吧？那你就在这劈柴(" HIY
+                command("say 是耶律大爺吩咐你來的吧？那你就在這劈柴(" HIY
                         "pi chai" NOR + CYN ")好了。\n" NOR);
         }
 }

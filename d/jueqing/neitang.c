@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "内堂");
+        set("short", "內堂");
         set("long", @LONG
-绝情谷内堂较大厅要宽敞一些，四周陈设甚多，但四周仍
-摆放着几盆花木，清香四溢。可见谷主是个爱花之人。
+絕情谷內堂較大廳要寬敞一些，四周陳設甚多，但四周仍
+擺放著幾盆花木，清香四溢。可見谷主是個愛花之人。
 LONG);
         set("exits", ([
                "south"  : __DIR__"dating",

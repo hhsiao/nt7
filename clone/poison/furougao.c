@@ -9,7 +9,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "盒");
-                set("long", HIM "这是一盒五彩斑斓的剧毒药膏，可杀人于无形。\n" NOR);
+                set("long", HIM "這是一盒五彩斑斕的劇毒藥膏，可殺人於無形。\n" NOR);
                 set("value", 50);
                 set("poison_type", "poison");
                 set("can_pour", 1);
@@ -18,7 +18,7 @@ void create()
                 set("poison", ([
                         "level" : 200,
                         "id"    : "he tieshou",
-                        "name"  : "腐肉膏剧毒",
+                        "name"  : "腐肉膏劇毒",
                         "duration": 15,
                 ]));
                 set("no_sell", 1);
@@ -29,8 +29,8 @@ void create()
 
 int do_effect(object me)
 {
-        message_vision("$N一仰脖，将腐肉膏倒入了嘴中。\n", me);
-        set_temp("die_reason", "吃了腐肉膏去见黑白无常了", me);
+        message_vision("$N一仰脖，將腐肉膏倒入了嘴中。\n", me);
+        set_temp("die_reason", "吃了腐肉膏去見黑白無常了", me);
         me->die();
         destruct(this_object());
         return 1;

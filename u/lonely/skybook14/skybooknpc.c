@@ -11,7 +11,7 @@ int  heal_self();
 int  exert_function(string func);
 
 
-// 为NPC生成随机五行属性而设置
+// 為NPC生成隨機五行屬性而設置
 void setup()
 {
         set("yuanshen/wuxing", 1 + random(5));
@@ -65,12 +65,12 @@ int accept_fight(object who)
                         return 1;
                 } else
                 {
-                        command("say 哼！我小歇片刻再收拾你不迟。");
+                        command("say 哼！我小歇片刻再收拾你不遲。");
                         return 0;
                 }
                         break;
                 default:
-                        command("say 想倚多为胜，这不是欺人太甚吗！");
+                        command("say 想倚多為勝，這不是欺人太甚嗎！");
                         return 0;
         }
 
@@ -80,8 +80,8 @@ int accept_fight(object who)
                 {
                 case "friendly":
                         command("say " + RANK_D->query_self(this_object())
-                                + "怎么可能是" + RANK_D->query_respect(who)
-                                + "的对手？");
+                                + "怎麼可能是" + RANK_D->query_respect(who)
+                                + "的對手？");
                         return 0;
                 case "aggressive":
                 case "killer":
@@ -89,14 +89,14 @@ int accept_fight(object who)
                         break;
                 default:
                         command("say 既然" + RANK_D->query_respect(who)
-                                + "赐教，" + RANK_D->query_self(this_object())
+                                + "賜教，" + RANK_D->query_self(this_object())
                                 + "只好奉陪。");
                         break;
                 }
                 return 1;
         }
 
-        command("say 今天有些疲惫，改日再战也不迟啊。");
+        command("say 今天有些疲憊，改日再戰也不遲啊。");
         return 0;
 }
 
@@ -128,27 +128,27 @@ int accept_hit(object who)
                 switch(att)
                 {
                 case "friendly":
-                        command("say 这位" + RANK_D->query_respect(who)
+                        command("say 這位" + RANK_D->query_respect(who)
                                 + "，且慢！");
                         break;
                 case "aggressive":
                         if (random(t) > 8)
                         {
-                                command("say 他奶奶的，怎么这么烦？就让" +
+                                command("say 他奶奶的，怎麼這麼煩？就讓" +
                                         RANK_D->query_self_rude(this_object()) +
-                                        "开开杀戒！");
+                                        "開開殺戒！");
                                 kill_ob(who);
                                 return 1;
                         }
-                        command("say 好个" + RANK_D->query_rude(who) +
+                        command("say 好個" + RANK_D->query_rude(who) +
                                 "，接招！");
                         break;
                 case "killer":
                         if (random(t) > 2)
                         {
-                                command("say 哼，找死找到这里来了，" +
+                                command("say 哼，找死找到這裡來了，" +
                                         RANK_D->query_self_rude(this_object()) +
-                                        "手正痒呢！");
+                                        "手正癢呢！");
                                 kill_ob(who);
                                 return 1;
                         }
@@ -161,19 +161,19 @@ int accept_hit(object who)
                                 kill_ob(who);
                                 return 1;
                         }
-                        command("say 这位" + RANK_D->query_respect(who)
+                        command("say 這位" + RANK_D->query_respect(who)
                                 + "，且慢！");
                         break;
                         switch (random(3))
                         {
                         case 0:
-                                command("say 来来来！");
+                                command("say 來來來！");
                                 break;
                         case 1:
-                                command("say 那就较量较量！");
+                                command("say 那就較量較量！");
                                 break;
                         case 2:
-                                command("say 来吧！我还会怕了你不成？");
+                                command("say 來吧！我還會怕了你不成？");
                                 break;
                         }
                         break;
@@ -183,7 +183,7 @@ int accept_hit(object who)
                 switch(att) {
                 case "friendly":
                         command("say 既然" + RANK_D->query_respect(who)
-                                + "如此无礼，我只有不容情了！");
+                                + "如此無禮，我只有不容情了！");
                         break;
                 case "aggressive":
                 case "killer":
@@ -191,7 +191,7 @@ int accept_hit(object who)
                                 "！你找死。");
                         break;
                 default:
-                        command("say 你不仁，我不义！" + RANK_D->query_rude(who) +
+                        command("say 你不仁，我不義！" + RANK_D->query_rude(who) +
                                 "，可不要怪我。");
                         break;
                 }
@@ -228,7 +228,7 @@ int accept_kill(object who)
                 break;
         default:
                 command("say 好！" + RANK_D->query_rude(who)
-                        + "，咱们就一决生死！");
+                        + "，咱們就一決生死！");
                 break;
         }
 
@@ -246,7 +246,7 @@ int accept_ansuan(object who)
         if (this_object()->is_guarder())
                 return this_object()->check_enemy(who, "ansuan");
 
-        command(random(2) ? "say 嗯？怎么…" : "say 啊呀，不好！");
+        command(random(2) ? "say 嗯？怎麼…" : "say 啊呀，不好！");
         return 1;
 }
 
@@ -258,11 +258,11 @@ int accept_touxi(object who)
         if (this_object()->is_guarder())
                 return this_object()->check_enemy(who, "touxi");
 
-        command(random(2) ? "say 嗯！怎么…是谁！" : "say 啊呀…你…");
+        command(random(2) ? "say 嗯！怎麼…是誰！" : "say 啊呀…你…");
         return 1;
 }
 
-// 为任务提供连接
+// 為任務提供連接
 mixed accept_ask(object who, string topic)
 {
 
@@ -290,7 +290,7 @@ int accept_object(object who, object ob)
                 return ULTRA_D->accept_object(this_object(), who, ob);
 }
 
-// 回覆任务人物的应酬
+// 回覆任務人物的應酬
 int need_accede(object who)
 {
         if (! this_object()->is_waiter()
@@ -314,7 +314,7 @@ int return_home(object home)
                 return 0;
 
         // Leave for home now.
-        message("vision", this_object()->name() + "急急忙忙地离开了。\n",
+        message("vision", this_object()->name() + "急急忙忙地離開了。\n",
                 environment(), this_object());
 
         return move(home);
@@ -356,11 +356,11 @@ int heal_self()
                 return 0;
 
         if (! query_skill_mapped("force"))
-                // 没有激发内功
+                // 沒有激發內功
                 return 0;
 
         if (query_temp("no_exert"))
-                // 特殊情况禁止使用内功
+                // 特殊情況禁止使用內功
                 return 0;
 
         my = query_entire_dbase();
@@ -369,7 +369,7 @@ int heal_self()
 
         if (my["jing"] < my["eff_jing"] * 8 / 10)
         {
-                // 精气太少
+                // 精氣太少
                 exert_function("regenerate");
                 return 1;
         }
@@ -377,28 +377,28 @@ int heal_self()
         if (my["qi"] < my["eff_qi"] * 8 / 10 &&
             query_skill("force") >= 150)
         {
-                // 气血不够充沛并且内功等级高
+                // 氣血不夠充沛並且內功等級高
                 exert_function("recover");
                 return 1;
         }
 
         if (my["eff_qi"] < my["max_qi"])
         {
-                // 受伤了
+                // 受傷了
                 exert_function("heal");
                 return 1;
         }
 
         if (my["eff_jing"] < my["max_jing"])
         {
-                // 精受到了损失
+                // 精受到了損失
                 exert_function("inspire");
                 return 1;
         }
 
         if (my["neili"] < my["max_neili"] - 10)
         {
-                // 内力不够充沛，打坐恢复
+                // 內力不夠充沛，打坐恢復
                 cost = my["max_neili"] - my["neili"];
                 if (cost > my["qi"] / 2) cost = my["qi"] / 2;
                 command(sprintf("dazuo %d", cost));
@@ -448,7 +448,7 @@ int random_move()
                 return 0;
         dirs = keys(exits);
              
-        // 防止NPC走到no_fight的房间
+        // 防止NPC走到no_fight的房間
         dest = dirs[random(sizeof(dirs))];
         dest_file = exits[dest];
         if (! objectp(ob = find_object(dest_file)))
@@ -478,7 +478,7 @@ int exert_function(string func)
         if (! stringp(force_skill = query_skill_mapped("force")))
                 return 0;
 
-        // 特殊情况禁止使用内功
+        // 特殊情況禁止使用內功
         if (this_object()->query_temp("no_exert"))
                 return 0;
 
@@ -498,7 +498,7 @@ int perform_action(string action)
         if (sscanf(action, "%s.%s", martial_skill, act) != 2)
                 return 0;
 
-        // 特殊情况禁止使用外功
+        // 特殊情況禁止使用外功
         if (this_object()->query_temp("no_perform"))
                 return 0;
 
@@ -537,7 +537,7 @@ void move_or_destruct()
         remove();
 }
 
-// 调用天书管理OB
+// 調用天書管理OB
 void dialog_end(object me, int flag)
 {
         object ob;

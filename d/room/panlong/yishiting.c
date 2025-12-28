@@ -1,4 +1,4 @@
-// yishiting.c 盘龙居议事厅
+// yishiting.c 盤龍居議事廳
 
 #include <room.h>
 
@@ -7,15 +7,15 @@ inherit ROOM;                                   /* EXAMPLE */
 
 void create()
 {
-        set("short", "议事厅");
+        set("short", "議事廳");
         set("long", @LONG
-这就是盘龙居主人和重要人物商量大事之处，正中有不少桌椅，侧
-面是屏风，厅堂中挂着两个条幅，两旁通往演武厅。
+這就是盤龍居主人和重要人物商量大事之處，正中有不少桌椅，側
+面是屏風，廳堂中掛著兩個條幅，兩旁通往演武廳。
 LONG );
 
-        set("default_long", "这就是ROOM_NAME主人ROOM_OWNER和重要人物"  /* EXAMPLE */
-                            "商量江湖大事之处，正中有不少桌椅，侧面是" /* EXAMPLE */
-                            "屏风，厅堂中挂着两个条幅，两旁通往演武厅" /* EXAMPLE */
+        set("default_long", "這就是ROOM_NAME主人ROOM_OWNER和重要人物"  /* EXAMPLE */
+                            "商量江湖大事之處，正中有不少桌椅，側面是" /* EXAMPLE */
+                            "屏風，廳堂中掛著兩個條幅，兩旁通往演武廳" /* EXAMPLE */
                             "。");                                     /* EXAMPLE */
                                                                        /* EXAMPLE */
 

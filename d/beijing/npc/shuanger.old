@@ -8,8 +8,8 @@ int ask_kiss();
 
 void create()
 {
-        set_name("双儿", ({ "shuang er", "shuang","er"}));
-        set("title", HIW "天下无双" NOR);
+        set_name("雙兒", ({ "shuang er", "shuang","er"}));
+        set("title", HIW "天下無雙" NOR);
         set("nickname", HIM "大功告成" NOR);
         set("gender", "女性");
         set("age", 15);
@@ -46,7 +46,7 @@ void create()
         set_temp("apply/attack", 15);
         set_temp("apply/damage", 15);
         set("inquiry", ([
-             "你愿不愿意跟我走" : (: ask_go :),
+             "你願不願意跟我走" : (: ask_go :),
         ]));
         setup();
         carry_object("/clone/weapon/changjian")->wield();
@@ -64,32 +64,32 @@ int ask_go()
                 sscanf(query("id"),"%s's shuang er",host_id);
                 if(query("id")==host_id)
                 {
-                        say(query("name")+"睁大眼睛看了看"+
-                                query("name", me)+"，说:当然愿意啦,我都听你的。\n");
+                        say(query("name")+"睜大眼睛看了看"+
+                                query("name", me)+"，說:當然願意啦,我都聽你的。\n");
                         return 1;
                 }
                 if( query("id", me) != host_id )
                 {
-                        say(query("name")+"睁大眼睛看了看"+
-                                query("name", me)+"，说:不行的,我得听我主人的。\n");
+                        say(query("name")+"睜大眼睛看了看"+
+                                query("name", me)+"，說:不行的,我得聽我主人的。\n");
                         return 1;
                    }
         }
         if( query("weiwang", this_player()) >= 70 )
         {
-                write( HIY "双儿道:夫人待我恩重如山,主人对我庄家又有大恩。\n" NOR);
-                write( HIY "夫人要我服侍主人,我一定尽心。\n" NOR);
+                write( HIY "雙兒道:夫人待我恩重如山,主人對我莊家又有大恩。\n" NOR);
+                write( HIY "夫人要我服侍主人,我一定盡心。\n" NOR);
                 command("nod");        
                 set_leader(me);
-                new_name=query("name", me)+"的丫环双儿";
+                new_name=query("name", me)+"的丫環雙兒";
                 new_id=query("id", me)+"'sshuanger";
                 set("name",new_name);
                 set("id",new_id);
-                set("long","这是"+new_name+"。\n"
-                "她是一个十分清秀的少女,大约十四五岁年纪;\n"
-                "一张雪白的脸庞,眉弯嘴小,笑靥如花,正笑嘻嘻地看着你。\n");
+                set("long","這是"+new_name+"。\n"
+                "她是一個十分清秀的少女,大約十四五歲年紀;\n"
+                "一張雪白的臉龐,眉彎嘴小,笑靨如花,正笑嘻嘻地看著你。\n");
         }
-        else say(query("name")+"睁大眼睛看着"+
-                query("name", me)+"，说:不行的,夫人没有同意。\n");
+        else say(query("name")+"睜大眼睛看著"+
+                query("name", me)+"，說:不行的,夫人沒有同意。\n");
         return 1;
 }

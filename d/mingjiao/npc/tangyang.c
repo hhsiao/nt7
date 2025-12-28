@@ -13,8 +13,8 @@ void create()
 {
         set_name("唐洋", ({ "tang yang", "tang", "yang", }));
         set("long",
-        "他是一位高大魁伟的中年男子，身穿一件白布长袍。\n"
-        "他天生神力，手中的两头狼牙棒有万夫不当之勇，真是一条威风凛凛的汉子。\n"
+        "他是一位高大魁偉的中年男子，身穿一件白布長袍。\n"
+        "他天生神力，手中的兩頭狼牙棒有萬夫不當之勇，真是一條威風凜凜的漢子。\n"
         );
 
         set("title", HIG "明教" BLK "洪水旗" NOR "掌旗使");
@@ -64,13 +64,13 @@ void create()
         prepare_skill("strike", "guangming-zhang");
 
         create_family("明教", 37, "洪水旗掌旗使");
-        set("inherit_title",HIG"明教"NOR"洪水旗教众"NOR);
+        set("inherit_title",HIG"明教"NOR"洪水旗教眾"NOR);
 
         set("inquiry", ([
-                "name" : "在下就是明教洪水旗掌旗使唐洋，不知阁下有何指教。",
-                "任务" : (: ask_job :),
+                "name" : "在下就是明教洪水旗掌旗使唐洋，不知閣下有何指教。",
+                "任務" : (: ask_job :),
                 "job"  : (: ask_job :),
-                "放弃" : (: ask_abandon :),
+                "放棄" : (: ask_abandon :),
                 "abandon" : (: ask_abandon :),
         ]));
 
@@ -86,13 +86,13 @@ string ask_job()
      object ling,tong;
 
     if( !(fam=query("family", this_player())) || fam["family_name"] != "明教" )
-        return "这位"+RANK_D->query_respect(player)+"并非我教弟兄，在下哪敢分派阁下什么任务呢？\n";
+        return "這位"+RANK_D->query_respect(player)+"並非我教弟兄，在下哪敢分派閣下什麼任務呢？\n";
 
         if( query("combat_exp", player)>400000 )
-                 return "这位"+RANK_D->query_respect(player)+"实战经验已经颇高，岂敢劳烦大架。\n";
+                 return "這位"+RANK_D->query_respect(player)+"實戰經驗已經頗高，豈敢勞煩大架。\n";
 
         if (fam["generation"] <=37)
-                 return "这位"+RANK_D->query_respect(player)+"在我明教地位已是颇高，岂敢劳烦大架。\n";
+                 return "這位"+RANK_D->query_respect(player)+"在我明教地位已是頗高，豈敢勞煩大架。\n";
 
         if( query_temp("water_amount", player) >= 15 )
         {
@@ -101,7 +101,7 @@ string ask_job()
                         destruct(tong);
                 delete_temp("water_amount", player);
                 call_out("reward",0,this_player(),"挑水");
-                return "干得不错！下去好好休息休息。\n";
+                return "幹得不錯！下去好好休息休息。\n";
         }
 
         if( query("mingjiao/job", player) )
@@ -113,10 +113,10 @@ string ask_job()
 
         tong=new(OBJ_PATH"/mutong");
         tong->move(player);
-        tell_object(player,"唐洋给你一个木桶。\n");
+        tell_object(player,"唐洋給你一個木桶。\n");
 
-        return "我洪水旗在教内负责制造毒水，最近冰水快用完了，你去\n"
-                "碧水寒潭取些水来，倒进藏水室的大缸里。那潭水极是寒\n"
+        return "我洪水旗在教內負責製造毒水，最近冰水快用完了，你去\n"
+                "碧水寒潭取些水來，倒進藏水室的大缸裡。那潭水極是寒\n"
                 "冷，你要多加小心。\n";
 }
 

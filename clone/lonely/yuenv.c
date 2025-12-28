@@ -5,7 +5,7 @@ inherit SWORD;
 
 void create()
 {
-        set_name(HIR"越女"+HIY"朝阳"+HIC"剑"NOR, ({ "yuenv chaoyang jian", "yuenv jian","jian", "sword" }) );
+        set_name(HIR"越女"+HIY"朝陽"+HIC"劍"NOR, ({ "yuenv chaoyang jian", "yuenv jian","jian", "sword" }) );
         set_weight(8000);
         /*if( clonep() )
                 set_default_object(__FILE__);
@@ -17,11 +17,11 @@ void create()
                 set("unit", "把");
                 set("value", 10000000);
                 set("material", "steel");
-                set("long", "一把赤红软剑，据说是战国时越女的随身佩剑，其锋利程度不下干将 莫邪。\n");
-                set("wield_msg", HIR"一声脆响,$N手里无声无息的多了把赤红软剑.\n"NOR);
-                set("wield_msg", HIR"空气突然变得沉闷..,但听...\n"
-                                 HIB"锵........镪........呛................\n"
-                                 HIY"阵阵清越龙吟声不断响起...连绵不绝,$N手里已多了把"HIR"赤红软剑.\n"NOR);
+                set("long", "一把赤紅軟劍，據說是戰國時越女的隨身佩劍，其鋒利程度不下干將 莫邪。\n");
+                set("wield_msg", HIR"一聲脆響,$N手裡無聲無息的多了把赤紅軟劍.\n"NOR);
+                set("wield_msg", HIR"空氣突然變得沉悶..,但聽...\n"
+                                 HIB"鏘........鏹........嗆................\n"
+                                 HIY"陣陣清越龍吟聲不斷響起...連綿不絕,$N手裡已多了把"HIR"赤紅軟劍.\n"NOR);
         }
 
         init_sword(500,2);

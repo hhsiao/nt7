@@ -22,51 +22,51 @@ int main(object me, string arg)
         where = environment(me);
         
         if (! arg)
-               return notify_fail("你要闭关钻研什么武功？\n");
+               return notify_fail("你要閉關鑽研什麼武功？\n");
         
         if (! me->query_skill(arg) || 
             file_size(SKILL_D(arg) + ".c") < 0)    
-               return notify_fail("你要钻研的武功不存在或你不会该武功。\n");
+               return notify_fail("你要鑽研的武功不存在或你不會該武功。\n");
         
         //if (! SKILL_D(arg)->is_invent_skill())
         if (me->query_skillo(arg, 1) < 4600 )
-               return notify_fail("你对" + to_chinese(arg) + "的领悟还不够，无法提升其COMBAT威力。\n");  
+               return notify_fail("你對" + to_chinese(arg) + "的領悟還不夠，無法提升其COMBAT威力。\n");  
                
         if( query("pigging", where) )
-                return notify_fail("你还是专心拱猪吧！\n");
+                return notify_fail("你還是專心拱豬吧！\n");
 
         if( !query("no_fight", where) )
-                return notify_fail("在这里闭关钻研？不太安全吧？\n");
+                return notify_fail("在這裡閉關鑽研？不太安全吧？\n");
 
         if( !query("sleep_room", where) )
-                return notify_fail("你得找一个能够休息的地方闭关钻研。\n");
+                return notify_fail("你得找一個能夠休息的地方閉關鑽研。\n");
 
         if (me->is_busy())
-                return notify_fail("你现在正忙着呢。\n");
+                return notify_fail("你現在正忙著呢。\n");
                         
         if( query("combat_exp", me)<10000000000 )
-                return notify_fail("你的经验不够，没法闭关钻研。\n");
+                return notify_fail("你的經驗不夠，沒法閉關鑽研。\n");
 
         if( query("potential", me)-query("learned_points", me)<1000000 )
-                return notify_fail("你的潜能不够，没法闭关钻研。\n");
+                return notify_fail("你的潛能不夠，沒法閉關鑽研。\n");
 
         if( query("experience", me)<query("learned_experience", me)+600000 )
-                return notify_fail("你现在积累的实战体会还太少。\n"); 
+                return notify_fail("你現在積累的實戰體會還太少。\n"); 
         
         if( query("qi", me)*100/query("max_qi", me)<90 )
-                return notify_fail("你现在的气太少了，无法静心钻研。\n");
+                return notify_fail("你現在的氣太少了，無法靜心鑽研。\n");
 
         if( query("jing", me)*100/query("max_jing", me)<90 )
-                return notify_fail("你现在的精太少了，无法静心钻研。\n");
+                return notify_fail("你現在的精太少了，無法靜心鑽研。\n");
 
         if( query("max_neili", me)<4000 )
-                return notify_fail("你觉得内力颇有不足，看来目前还难以"
-                                   "进行长时间的闭关钻研。\n");
+                return notify_fail("你覺得內力頗有不足，看來目前還難以"
+                                   "進行長時間的閉關鑽研。\n");
 
         if( query("neili", me)*100/query("max_neili", me)<90 )
-                return notify_fail("你现在的内力太少了，无法静心钻研。\n");
+                return notify_fail("你現在的內力太少了，無法靜心鑽研。\n");
 
-        message_vision("$N盘膝坐下，开始冥神运功，闭关钻研" + to_chinese(arg) + "。\n", me);
+        message_vision("$N盤膝坐下，開始冥神運功，閉關鑽研" + to_chinese(arg) + "。\n", me);
         set("startroom", base_name(where), me);
         set("doing", "invent", me);
         set("upgrade", arg, me);
@@ -74,7 +74,7 @@ int main(object me, string arg)
         me->start_busy(bind((:call_other, __FILE__, "closing" :), me),
                        bind((:call_other, __FILE__, "halt_closing" :), me));
         CHANNEL_D->do_channel(this_object(), "rumor",
-                              sprintf("大宗师%s(%s)开始闭关修炼钻研%s。",
+                              sprintf("大宗師%s(%s)開始閉關修煉鑽研%s。",
                               me->name(1),query("id", me),to_chinese(arg)));
 
         return 1;
@@ -85,7 +85,7 @@ int continue_uping(object me)
         me->start_busy(bind((:call_other, __FILE__, "closing" :), me),
                        bind((:call_other, __FILE__, "halt_closing" :), me));
         CLOSE_D->user_closed(me);
-        tell_object(me,HIR"\n你继续闭关修炼钻研"+to_chinese(query("upgrade", me))+"...\n"NOR);
+        tell_object(me,HIR"\n你繼續閉關修煉鑽研"+to_chinese(query("upgrade", me))+"...\n"NOR);
         return 1;
 }
 
@@ -116,11 +116,11 @@ int closing(object me)
         if( pot <= query("learned_points", me )
          || mar <= query("learned_experience", me) )
         {
-                tell_object(me, "你的潜能或体会耗尽了。\n");
-                message_vision("$N睁开双目，缓缓吐了一口气，站了起来。\n", me);
+                tell_object(me, "你的潛能或體會耗盡了。\n");
+                message_vision("$N睜開雙目，緩緩吐了一口氣，站了起來。\n", me);
                 CLOSE_D->user_opened(me);
                 CHANNEL_D->do_channel(this_object(), "rumor",
-                                      sprintf("听说%s(%s)修炼钻研%s功德圆满。",
+                                      sprintf("聽說%s(%s)修煉鑽研%s功德圓滿。",
                                       me->name(1),query("id", me),to_chinese(skill)));
                 if (! interactive(me))
                 {
@@ -151,20 +151,20 @@ int closing(object me)
         set_temp("last_closing", tn, me);
                 
         if (random(10) == 0)
-                //tell_object(me, "闭关修炼" + to_chinese(skill) + "中...\n");
-                tell_object(me, "你闭关钻研" + to_chinese(skill) + "，似有所思。\n");
+                //tell_object(me, "閉關修煉" + to_chinese(skill) + "中...\n");
+                tell_object(me, "你閉關鑽研" + to_chinese(skill) + "，似有所思。\n");
         
         /*
         if ((random(100) < 3) && me->can_improve_neili())
         {
-                tell_object(me, HIR "你对内功有所领悟，感到内力进步了！\n" NOR);
+                tell_object(me, HIR "你對內功有所領悟，感到內力進步了！\n" NOR);
                 addn("improve/neili", 1, me);
                 me->improve_neili(10 + random(20));
         }
 
         if ((random(100) < 3) && me->can_improve_jingli())
         {
-                tell_object(me, HIM "你对神通有所领悟，感到精力进步了！\n" NOR);
+                tell_object(me, HIM "你對神通有所領悟，感到精力進步了！\n" NOR);
                 addn("improve/jingli", 1, me);
                 me->improve_jingli(5 + random(10));
         }
@@ -176,12 +176,12 @@ int closing(object me)
         addn("combat_exp", exp_inc, me);
         me->improve_skill("martial-cognize", 800 + random(800));
 
-        tell_object(me, HIM "你脑中突然灵光一闪，你对" + to_chinese(skill) + "有了更深的领悟！\n" NOR); 
+        tell_object(me, HIM "你腦中突然靈光一閃，你對" + to_chinese(skill) + "有了更深的領悟！\n" NOR); 
         me->improve_skill(skill, 5000 + random(1000));
         SKILLS_D->upgrade_skill_power(skill); 
         CHANNEL_D->do_channel(find_object(SKILLS_D), "rumor", 
-                              "江湖传言，武学大宗师" + me->name(1) + "闭关修炼钻研" + 
-                              to_chinese(skill) + "，终于完善其破绽之处，并广为流传。"); 
+                              "江湖傳言，武學大宗師" + me->name(1) + "閉關修煉鑽研" + 
+                              to_chinese(skill) + "，終於完善其破綻之處，並廣為流傳。"); 
 
         return 1;
 }
@@ -189,12 +189,12 @@ int closing(object me)
 int halt_closing(object me)
 {
         CLOSE_D->user_opened(me);
-        tell_object(me,"你中止了闭关修炼"+to_chinese(query("upgrade", me))+"。\n");
-        message_vision(HIY "$N" HIY "大喝一声，睁开眼来，一股气流登时"
-                       "将众人迫退四步。\n\n" NOR, me);
+        tell_object(me,"你中止了閉關修煉"+to_chinese(query("upgrade", me))+"。\n");
+        message_vision(HIY "$N" HIY "大喝一聲，睜開眼來，一股氣流登時"
+                       "將眾人迫退四步。\n\n" NOR, me);
 
-        CHANNEL_D->do_channel(this_object(), "rumor", "听说" + me->name(1) +
-                              "修炼"+to_chinese(query("upgrade", me))+"中途突然复出。");
+        CHANNEL_D->do_channel(this_object(), "rumor", "聽說" + me->name(1) +
+                              "修煉"+to_chinese(query("upgrade", me))+"中途突然復出。");
         return 1;
 }
 
@@ -211,11 +211,11 @@ int help(object me)
         write(@HELP
 指令格式 : upskill
 
-闭关修炼研究武功，只有你武功达到4600级以后才能够闭关修炼研究提升你的武功
-的COMBAT数值，要求必须在一个安全并且可以休息的地方才能修炼，修炼前需要有
-一百万点潜能及六十万体会，闭关开始以后，玩家离线以后其角色将仍然在线修行，
-直到玩家中止修炼(halt)或是潜能或体会耗尽。期间内玩家的经验、修炼武功、武
-学修养、以及修炼武功威力将会提升。
+閉關修煉研究武功，只有你武功達到4600級以後才能夠閉關修煉研究提升你的武功
+的COMBAT數值，要求必須在一個安全並且可以休息的地方才能修煉，修煉前需要有
+一百萬點潛能及六十萬體會，閉關開始以後，玩家離線以後其角色將仍然在線修行，
+直到玩家中止修煉(halt)或是潛能或體會耗盡。期間內玩家的經驗、修煉武功、武
+學修養、以及修煉武功威力將會提升。
 
 HELP );
         return 1;

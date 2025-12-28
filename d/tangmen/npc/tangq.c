@@ -5,9 +5,9 @@ inherit F_BANKER;
 
 void create()
 {
-        set_name("唐钱", ({"tang qian", "tang"}));
-        set("title", "钱庄老板");
-        set("nickname", HIR"见钱封喉"NOR);
+        set_name("唐錢", ({"tang qian", "tang"}));
+        set("title", "錢莊老闆");
+        set("nickname", HIR"見錢封喉"NOR);
         set("gender", "男性");
         set("age", 34);
         set("str", 22);
@@ -26,8 +26,8 @@ void create()
         set("env/wimpy", 50);
         set("chat_chance", 2);
         set("chat_msg", ({
-                "唐钱骄傲的说道：本银号已经有三百多年的历史，在蜀中可以说是第一家。\n",
-                "唐钱笑着说道：在本店存钱无利息，取钱吗？你说要不要收取一定的费用啊。\n"
+                "唐錢驕傲的說道：本銀號已經有三百多年的歷史，在蜀中可以說是第一家。\n",
+                "唐錢笑著說道：在本店存錢無利息，取錢嗎？你說要不要收取一定的費用啊。\n"
         }));
         set_skill("unarmed", 50);
         set_skill("dodge", 50);

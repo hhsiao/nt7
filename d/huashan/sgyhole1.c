@@ -7,9 +7,9 @@ void create()
 {
         set("short", "山洞");
         set("long", @LONG
-山洞内有块光溜溜的大石，不知道曾有多少华山派的前辈在此思
-过面壁，以致这块大石竟被坐得滑溜。石壁(wall)左侧刻着「风清扬
-」三个大字，是以利器所刻，笔划苍劲，深有半寸。这三字刻得劲力
+山洞內有塊光溜溜的大石，不知道曾有多少華山派的前輩在此思
+過面壁，以致這塊大石竟被坐得滑溜。石壁(wall)左側刻著「風清揚
+」三個大字，是以利器所刻，筆劃蒼勁，深有半寸。這三字刻得勁力
 非凡，想必其人武功一定十分了得。
 LONG );
         set("objects", ([
@@ -36,20 +36,20 @@ int do_break(string arg)
 //      mapping fam;
 
         if( !objectp(weapon=query_temp("weapon", me)) )
-                return notify_fail("你一掌打在石壁，满手都是鲜血。\n");
+                return notify_fail("你一掌打在石壁，滿手都是鮮血。\n");
 
-        message_vision(HIC "$N走到石壁前，拿起" + weapon->name() + "，随手向石壁刺了过去！\n"NOR, me);
+        message_vision(HIC "$N走到石壁前，拿起" + weapon->name() + "，隨手向石壁刺了過去！\n"NOR, me);
 
         if( query("neili", me)<200 )
         {
-                message_vision(HIC "结果只听一声闷哼，$N被石壁的反弹力震得眼前一黑....\n" NOR,
+                message_vision(HIC "結果只聽一聲悶哼，$N被石壁的反彈力震得眼前一黑....\n" NOR,
                                me);
                 set("neili", 0, me);
                 me->unconcious();
                 return 1;
         }
 
-        message_vision(HIC "$N只听一声轰响，石壁竟然被捅穿了，原来里面有一个大洞！\n"NOR, me);
+        message_vision(HIC "$N只聽一聲轟響，石壁竟然被捅穿了，原來裡面有一個大洞！\n"NOR, me);
         set("exits/enter",__DIR__"sgyhole");
         addn("neili", -200, me);
         remove_call_out("close");
@@ -64,6 +64,6 @@ void close_out()
 
 void close(object room)
 {
-        message("vision","崖上忽然掉下来一块巨石，将洞口封了个严严实实。\n", room);
+        message("vision","崖上忽然掉下來一塊巨石，將洞口封了個嚴嚴實實。\n", room);
         delete("exits/enter", room);
 }

@@ -4,11 +4,11 @@ inherit DEMONROOM;
 
 void create()
 {
-        set("short", "蟠桃园");
+        set("short", "蟠桃園");
         set("long",@LONG
-这里是蓬莱仙岛的蟠桃园，蟠桃树一百年开花，再过一百年才
-结果，每逢蟠桃出现的时候群仙便会会聚在此举行蟠桃大会。虽然
-同居一岛，但是每过两百年群仙才会借着蟠桃大会聚会一次，共享
+這裡是蓬萊仙島的蟠桃園，蟠桃樹一百年開花，再過一百年才
+結果，每逢蟠桃出現的時候群仙便會會聚在此舉行蟠桃大會。雖然
+同居一島，但是每過兩百年群仙才會藉著蟠桃大會聚會一次，共享
 蟠桃美酒。
 LONG);
 
@@ -16,10 +16,10 @@ LONG);
                 "northeast"   : __DIR__"fanchendao",
                 "southeast"   : __DIR__"pantaoyuan1",
         ]));
-        set("no_rideto", 1);         // 设置不能骑马到其他地方
-        set("no_flyto", 1);          // 设置不能从起来地方骑马来这里
-        set("no_die", 1);            // 死亡后移动到扁鹊居
-        set("penglai", 1);           // 表示在蓬莱岛
+        set("no_rideto", 1);         // 設置不能騎馬到其他地方
+        set("no_flyto", 1);          // 設置不能從起來地方騎馬來這裡
+        set("no_die", 1);            // 死亡後移動到扁鵲居
+        set("penglai", 1);           // 表示在蓬萊島
 
         set("n_time", 30); 
         set("n_npc", 1); 
@@ -37,14 +37,14 @@ void init ()
                 if( !query("penglai/go_quest/ok", this_player()) )
                 {
                         this_player()->start_busy(3);
-                        tell_object(this_player(), NOR + WHT "你到了此处，四周仙气缭绕令你一时间难以辨别方向。\n" NOR);
+                        tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);
                 }
                 else
                 {
                         if (random(2))
                         {
                                 this_player()->start_busy(1);
-                                tell_object(this_player(), NOR + WHT "你到了此处，四周仙气缭绕令你一时间难以辨别方向。\n" NOR);                
+                                tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);                
                         }
                 }
         }

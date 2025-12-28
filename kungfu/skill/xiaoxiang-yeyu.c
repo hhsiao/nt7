@@ -9,10 +9,10 @@ int valid_enable(string usage) { return usage == "tanqin-jifa"; }
 int valid_learn(object me)
 {
         if (me->query_skill("tanqin-jifa", 1) < 50)
-                return notify_fail("你弹琴技法水平太差，无法领会潇湘夜雨。\n");
+                return notify_fail("你彈琴技法水平太差，無法領會瀟湘夜雨。\n");
 
         if (me->query_skill("tanqin-jifa", 1) < me->query_skill("xiaoxiang-yeyu", 1))
-                return notify_fail("你弹琴技法水平有限，无法领会更精妙的潇湘夜雨。\n");
+                return notify_fail("你彈琴技法水平有限，無法領會更精妙的瀟湘夜雨。\n");
 
         return 1;
 }
@@ -23,13 +23,13 @@ int practice_skill(object me)
 
         if( !objectp(ob=query_temp("handing", me)) || 
             ! ob->valid_as_qin())
-                return notify_fail("你不拿琴在手上，怎么练习？\n");
+                return notify_fail("你不拿琴在手上，怎麼練習？\n");
 
         if( query("jing", me)<80 )
-                return notify_fail("你的精神不够好，没法练习了。\n");
+                return notify_fail("你的精神不夠好，沒法練習了。\n");
 
         if( query("qi", me)<30 )
-                return notify_fail("你现在口干舌燥，实在是太累了。\n");
+                return notify_fail("你現在口乾舌燥，實在是太累了。\n");
 
         me->receive_damage("jing", 25);
         me->receive_damage("qi", 10);
@@ -51,6 +51,6 @@ void do_effect(object me)
         // special effort
         obs = all_inventory(environment(me)) - ({ me });
         obs->receive_heal("qi", random(lvl / 15) + 20);
-        message("vision", HIG "你听了" + me->name() + HIG "一曲潇湘夜雨，顿"
-                          "觉神清气爽，内息渐渐缓和了下来。\n" NOR, obs);
+        message("vision", HIG "你聽了" + me->name() + HIG "一曲瀟湘夜雨，頓"
+                          "覺神清氣爽，內息漸漸緩和了下來。\n" NOR, obs);
 }

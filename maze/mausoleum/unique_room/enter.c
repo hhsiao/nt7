@@ -3,12 +3,12 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "内宫通道");
+        set("short", "內宮通道");
         set("long", @LONG
-通道两侧，自东向西依次排列着狮、獬、骆驼、象、麒麟和马六
-种石雕巨兽，各有两对四座，共十二对二十四座，造型生动，栩栩如
-生，使你像来到了传说的仙界。在淡淡的月照下，众石兽或蹲或立，
-不畏风霜雨雪。
+通道兩側，自東向西依次排列著獅、獬、駱駝、象、麒麟和馬六
+種石雕巨獸，各有兩對四座，共十二對二十四座，造型生動，栩栩如
+生，使你像來到了傳說的仙界。在淡淡的月照下，眾石獸或蹲或立，
+不畏風霜雨雪。
 LONG );
         set("maze", 1);
         set("no_magic", 1);
@@ -45,7 +45,7 @@ void init()
         set("exits/westdown",  file+"westgate");
         set("exits/eastdown",  file+"eastgate");
         set("init_exits", 1);
-        tell_room(this_object(), "突然四周一阵旋转，等一切安静下来，你发现地板下出现几个洞口。\n");
+        tell_room(this_object(), "突然四周一陣旋轉，等一切安靜下來，你發現地板下出現幾個洞口。\n");
         LOOK_CMD->look_room(me,this_object(),query("env/brief", me));
         return;
 }

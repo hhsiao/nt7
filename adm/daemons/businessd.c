@@ -2,7 +2,7 @@
 
 #define ETC_FILE        "/adm/etc/busi_domains"
 #define WROOM(x)        sprintf("/d/%s/business",x)
-// 最小调整额 5000 两黄金，即：50万两白银
+// 最小調整額 5000 兩黃金，即：50萬兩白銀
 #define MIN_CHANGE      500000
 
 #define MAX_ARRIVE      1       /* 1天 */
@@ -63,14 +63,14 @@ protected void init_domains()
 
                 if(sscanf(domains[i],"%s %s",domain,temp) != 2)
                 {
-                        log_file("business",sprintf("BUSINESS_D: 通商区 %s 定义错误。\n",
+                        log_file("business",sprintf("BUSINESS_D: 通商區 %s 定義錯誤。\n",
                                 domains[i]));
                         continue;
                 }
 
                 if(sscanf(temp,"%d,%d",x,y) != 2)
                 {
-                        log_file("business",sprintf("BUSINESS_D: 通商区 %s 定义错误。\n",
+                        log_file("business",sprintf("BUSINESS_D: 通商區 %s 定義錯誤。\n",
                                 domains[i]));
                         continue;
                 }
@@ -91,7 +91,7 @@ string *query_valid_domains()
                 return ({});
 }
 
-// 随机因素：1小时轮巡一次。
+// 隨機因素：1小時輪巡一次。
 varargs void random_check(int f)
 {
         int max,min,i,n,a,flag;
@@ -104,9 +104,9 @@ varargs void random_check(int f)
                 return;
         */
 
-        flag = 0; // 每次轮巡要有一个商行被恢复
+        flag = 0; // 每次輪巡要有一個商行被恢復
         max = 100;
-        min = 100; // 每次轮巡要有一个商行价格被调整
+        min = 100; // 每次輪巡要有一個商行價格被調整
 
         domains = keys(valid_domains);
 
@@ -155,51 +155,51 @@ varargs void random_check(int f)
 
         a = random(100);
 
-        if(a < 20 || f) // 调整最小值
+        if(a < 20 || f) // 調整最小值
         {
                 if(objectp(min_room))
                         random_change(min_room,1);
         }
 
-        else if(a < 60) // 随机调整
+        else if(a < 60) // 隨機調整
         {
                 if(sizeof(rooms))
                         random_change(rooms[random(sizeof(rooms))],0);
         }
 
-        else if(a < 80) // 调整最大值
+        else if(a < 80) // 調整最大值
         {
                 if(objectp(max_room))
                         random_change(max_room,1);
         }
 }
 
-// flag = 1 恢复调整; flag = 0 随机调整
+// flag = 1 恢復調整; flag = 0 隨機調整
 void random_change(object room,int flag)
 {
         int dir,rate,times;
 
         rate = room->query_price_rate();
 
-        if(flag && (rate != 100))       // 恢复调整
+        if(flag && (rate != 100))       // 恢復調整
         {
                 times = abs(100 - rate)/10;
                 if(times < 1)
                         times = 1;
                 if( rate < 100 )
-                        dir = 1;        // 向大调
+                        dir = 1;        // 向大調
                 else
-                        dir = -1;       // 向小调
+                        dir = -1;       // 向小調
         }
 
-        else    // 随机调整
+        else    // 隨機調整
         {
                 if(random(2))
                         dir = 1;
                 else
                         dir = -1;
 
-                if(!random(10)) // 中大奖啦
+                if(!random(10)) // 中大獎啦
                         times = 2;
                 else
                         times = 1;
@@ -210,9 +210,9 @@ void random_change(object room,int flag)
 
 int
 count_fasong_time(
-        string now,     /* 货物当前所在地 */
+        string now,     /* 貨物當前所在地 */
         string dest,    /* 目的地 */
-        int value       /* 货物总值(单位 gold) */
+        int value       /* 貨物總值(單位 gold) */
         )
 {
         class coordinate nowp,destp;

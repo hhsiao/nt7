@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;33m黑月追风[2;37;0m[2;37;0m", ({"doo"}));        
+        set_name("[1;33m黑月追風[2;37;0m[2;37;0m", ({"doo"}));        
         set("gender", "男性");                
-        set("long", "坐骑[2;37;0m
-它是慕容崛的魔幻兽。
+        set("long", "坐騎[2;37;0m
+它是慕容崛的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

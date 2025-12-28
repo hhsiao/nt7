@@ -4,8 +4,8 @@ void create()
 {
         set("short","山路");
         set("long", @LONG
-川西多是崇山峻岭，交通不便。一条山路蜿蜒在山间，连接着藏
-边和中原。
+川西多是崇山峻嶺，交通不便。一條山路蜿蜒在山間，連接著藏
+邊和中原。
 LONG );
         set("exits",([
                 "north" : "/d/chengdu/nanheqiaos",

@@ -17,7 +17,7 @@ string extra_long()
 {
         string str;
 
-        str  = sprintf( "\n物品属性 : 任务物品，重量%d克，下线%s丢失\n",
+        str  = sprintf( "\n物品屬性 : 任務物品，重量%d克，下線%s丟失\n",
                         this_object()->query_weight(),
                         (this_object()->query_autoload() || query("auto_load")) ? "不" : "" );
 

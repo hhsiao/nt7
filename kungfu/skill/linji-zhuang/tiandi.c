@@ -6,27 +6,27 @@ int exert(object me, object target)
 {
         int level = me->query_skill("linji-zhuang", 1);
 
-        if (level < 30) return notify_fail("你的临济十二庄修为还不够。\n");
+        if (level < 30) return notify_fail("你的臨濟十二莊修為還不夠。\n");
 
         if (me->is_fighting())
-                return notify_fail("战斗中不能运用天地二庄。\n");
+                return notify_fail("戰鬥中不能運用天地二莊。\n");
 
         if( query("max_neili", me)<5*level )
-                return notify_fail("你的内力还不够强。\n");
+                return notify_fail("你的內力還不夠強。\n");
 
         if( query("neili", me)<4*level )
-                return notify_fail("你的真气不够。\n");
+                return notify_fail("你的真氣不夠。\n");
 
         if( query("eff_qi", me)<query("max_qi", me)/2 )
-                return notify_fail("你已经受伤过重，只怕一运真气便有生命危险！\n");
+                return notify_fail("你已經受傷過重，只怕一運真氣便有生命危險！\n");
 
         if( query_temp("linji/tiandi", me) )
-                return notify_fail("你已经运用天地二庄聚精气于身了。\n");
+                return notify_fail("你已經運用天地二莊聚精氣於身了。\n");
 
         set_temp("linji/tiandi", 1, me);
-        write( HIY "你席地而坐，五心向天，运行天地二庄，益气升阳，益阴潜阳，升降反正，天地二气交泰于身，顿觉自己精气上限增加了。\n" NOR);
+        write( HIY "你席地而坐，五心向天，運行天地二莊，益氣昇陽，益陰潛陽，升降反正，天地二氣交泰於身，頓覺自己精氣上限增加了。\n" NOR);
         message_combatd(
-                HIY + "只见" + me->name() + "席地而坐，五心向天，脸上红光时隐时现，不一会儿便神采弈弈地站了起来。\n" NOR,
+                HIY + "只見" + me->name() + "席地而坐，五心向天，臉上紅光時隱時現，不一會兒便神采弈弈地站了起來。\n" NOR,
                 me);
 
         addn("max_qi", level*10, me);
@@ -51,5 +51,5 @@ void remove_effect(object me, int level)
                 set("eff_jing",query("max_jing",  me), me);
         delete_temp("linji/tiandi", me);
 
-        tell_object(me, HIG"你所聚天地之精气已散回天地之间，你又恢复了原有精气。\n"NOR);
+        tell_object(me, HIG"你所聚天地之精氣已散迴天地之間，你又恢復了原有精氣。\n"NOR);
 }

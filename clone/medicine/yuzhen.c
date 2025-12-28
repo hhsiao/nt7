@@ -9,7 +9,7 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "这是一包玉真散，非常珍贵的疗伤药品。\n");
+                set("long", "這是一包玉真散，非常珍貴的療傷藥品。\n");
                 set("base_unit", "包");
                 set("base_value", 20000);
                 set("base_weight", 50);
@@ -39,21 +39,21 @@ int do_effect(object me)
 
         if( time()-query_temp("last_eat/yuzhen", me)<10 )
         {
-                write("你刚服用过药，需药性发挥完效用以后才能继续服用。\n");
+                write("你剛服用過藥，需藥性發揮完效用以後才能繼續服用。\n");
                 return 1;
         }
 
         my = me->query_entire_dbase();
         if (my["eff_qi"] == my["max_qi"])
         {
-                write("你现在并没有受伤，不必服用" + name() + "。\n");
+                write("你現在並沒有受傷，不必服用" + name() + "。\n");
                 return 1;
         }
 
         set_temp("last_eat/yuzhen", time(), me);
 
-        message_vision(CYN "$N" CYN "张开嘴，猛地吞下了" + name() +
-                       CYN "，轻轻的哼了一声。\n" NOR, me);
+        message_vision(CYN "$N" CYN "張開嘴，猛地吞下了" + name() +
+                       CYN "，輕輕的哼了一聲。\n" NOR, me);
 
         set("eff_qi", my["max_qi"], me);
         set("qi", my["max_qi"], me);

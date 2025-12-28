@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[34m穷奇熊[2;37;0m[2;37;0m", ({"gaze"}));        
+        set_name("[34m窮奇熊[2;37;0m[2;37;0m", ({"gaze"}));        
         set("gender", "男性");                
         set("long", "桶桶[2;37;0m
-它是李彬彬的魔幻兽。
+它是李彬彬的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

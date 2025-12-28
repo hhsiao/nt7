@@ -3,11 +3,11 @@ inherit RIVER;
 
 void create()
 {
-        set ("short", "桃花江东岸");
+        set ("short", "桃花江東岸");
         set ("long", @LONG
-这里是桃花江 (river)边，江水清澈，水流平缓，两岸都
-是无边的桃树，不断有桃花随风飘入江中，随波逐流。江边停
-泊着一条渡船。
+這裡是桃花江 (river)邊，江水清澈，水流平緩，兩岸都
+是無邊的桃樹，不斷有桃花隨風飄入江中，隨波逐流。江邊停
+泊著一條渡船。
 LONG);
         set("to", "/d/wudu/jiang1");
         set("exits", ([

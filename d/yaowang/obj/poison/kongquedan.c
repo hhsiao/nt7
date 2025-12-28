@@ -6,11 +6,11 @@ inherit ITEM;
 
 void create()
 {
-        set_name(BLU "孔雀胆" NOR, ({"kongque dan", "dan"}));
+        set_name(BLU "孔雀膽" NOR, ({"kongque dan", "dan"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一瓶剧毒的毒药, 如果用来炼暗器有见血封喉之效. \n");
+                set("long", "一瓶劇毒的毒藥, 如果用來煉暗器有見血封喉之效. \n");
                 set("unit", "粒");
                 set("value", 20000);
                 set("base_weight", 10);
@@ -21,7 +21,7 @@ void create()
                 set("poison", ([
                         "level" : 220,
                         "id"    : "yaowang",
-                        "name"  : "剧毒",
+                        "name"  : "劇毒",
                         "duration" : 18,
                 ]));
                 set("no_sell", 1);
@@ -32,8 +32,8 @@ void create()
 
 int do_effect(object me)
 {
-        message_vision("$N仰头张口吞下一粒" + name() + "。\n", me);
-        set_temp("die_reason", "吃了孔雀胆，中毒死了", me);
+        message_vision("$N仰頭張口吞下一粒" + name() + "。\n", me);
+        set_temp("die_reason", "吃了孔雀膽，中毒死了", me);
         me->die();
         destruct(this_object());
         return 1;

@@ -1,7 +1,7 @@
-// yinyang-shiertian.c 阴阳十二重天
-// 三十岁之前通晓九阳神功、九阴神功、北冥神功、凌波微步、乾
-// 坤大挪移、降龙十八掌和六脉神剑，合其为一创出，S+++级武学。
-// 阴阳十二重天可以激发为天下所有的武功。
+// yinyang-shiertian.c 陰陽十二重天
+// 三十歲之前通曉九陽神功、九陰神功、北冥神功、凌波微步、乾
+// 坤大挪移、降龍十八掌和六脈神劍，合其為一創出，S+++級武學。
+// 陰陽十二重天可以激發為天下所有的武功。
 
 #include <ansi.h>
 
@@ -10,34 +10,34 @@ inherit FORCE;
 int is_ultimate_skill() { return 1; }
 
 string *xue_name = ({ 
-"劳宫穴", "膻中穴", "曲池穴", "关元穴", "曲骨穴", "中极穴", "承浆穴", "天突穴", "百会穴",
-"幽门穴", "章门穴", "大横穴", "紫宫穴", "冷渊穴", "天井穴", "极泉穴", "清灵穴", "至阳穴", });
+"勞宮穴", "膻中穴", "曲池穴", "關元穴", "曲骨穴", "中極穴", "承漿穴", "天突穴", "百會穴",
+"幽門穴", "章門穴", "大橫穴", "紫宮穴", "冷淵穴", "天井穴", "極泉穴", "清靈穴", "至陽穴", });
 
 string *attack_name = ({
-"九阳六脉剑气", "九阴六脉剑气", "九阳无极劲", "九阴无极劲", "九阴太玄劲","九阳太玄劲" });
+"九陽六脈劍氣", "九陰六脈劍氣", "九陽無極勁", "九陰無極勁", "九陰太玄勁","九陽太玄勁" });
 
 string *dodge_msg = ({
-        HIW "$n" HIW "手足忽的一晃，$N" HIW "竟然无法进击，只能自保。\n" NOR,
-        HIW "只见$n" HIW "身子轻轻晃动，$N" HIW "眼前顿时出现了无数个$n" HIW
-        "的幻影，令$N" HIW "完全无法辨出虚实。\n" NOR,
-        HIW "$n" HIW "往旁边歪歪斜斜的迈出一步，却恰好令$N" HIW "的攻击失之"
-        "毫厘。\n" NOR,
-        HIW "$N" HIW "这一招来的好快，然后$n" HIW "一闪，似乎不费半点力气，"
-        "却将$N" HIW "这一招刚好避开。\n" NOR,
-        HIW "但见$n" HIW "轻轻一跃，已不见了踪影，$N" HIW "心中大骇，却又见"
-        "$n" HIW "擦肩奔过，步法之奇巧，当真令人思索菲仪。\n" NOR,
+        HIW "$n" HIW "手足忽的一晃，$N" HIW "竟然無法進擊，只能自保。\n" NOR,
+        HIW "只見$n" HIW "身子輕輕晃動，$N" HIW "眼前頓時出現了無數個$n" HIW
+        "的幻影，令$N" HIW "完全無法辨出虛實。\n" NOR,
+        HIW "$n" HIW "往旁邊歪歪斜斜的邁出一步，卻恰好令$N" HIW "的攻擊失之"
+        "毫釐。\n" NOR,
+        HIW "$N" HIW "這一招來的好快，然後$n" HIW "一閃，似乎不費半點力氣，"
+        "卻將$N" HIW "這一招剛好避開。\n" NOR,
+        HIW "但見$n" HIW "輕輕一躍，已不見了蹤影，$N" HIW "心中大駭，卻又見"
+        "$n" HIW "擦肩奔過，步法之奇巧，當真令人思索菲儀。\n" NOR,
 });
 
 string *parry_msg = ({
-        HIW "$N" HIW "一招击在$n" HIW "身上，却被$n" HIW "暗运乾坤大挪移内劲"
-        "，将内力尽数移入地下。\n" NOR,
-        HIW "$n轻轻一带，$N" HIW "发现自己招数回击过来，吓得往后倒退几步。\n" NOR,
-        HIW "$n手臂回转，在$N" HIW "手肘下轻轻一推，$N" HIW "招数落空。\n" NOR,
-        HIW "$n右手伸出，在$N" HIW "手腕上轻轻一拉，$N" HIW "收势不住，直往前扑去。\n" NOR,
-        HIW "$n身形不动，$N" HIW "一招击下，有如石沉大海，不觉呆住了。\n" NOR,
-        HIW "$n左牵右引，$N" HIW "如身处漩流，连续转了好几个圈。\n" NOR,
-        HIW "$n双手回圈，$N" HIW "只觉得前面好象有一堵墙，再也攻不进去。\n" NOR,
-        HIW "$n轻轻一转，$N" HIW "一招击在地上，只打得尘土飞扬。\n" NOR,
+        HIW "$N" HIW "一招擊在$n" HIW "身上，卻被$n" HIW "暗運乾坤大挪移內勁"
+        "，將內力盡數移入地下。\n" NOR,
+        HIW "$n輕輕一帶，$N" HIW "發現自己招數回擊過來，嚇得往後倒退幾步。\n" NOR,
+        HIW "$n手臂迴轉，在$N" HIW "手肘下輕輕一推，$N" HIW "招數落空。\n" NOR,
+        HIW "$n右手伸出，在$N" HIW "手腕上輕輕一拉，$N" HIW "收勢不住，直往前撲去。\n" NOR,
+        HIW "$n身形不動，$N" HIW "一招擊下，有如石沉大海，不覺呆住了。\n" NOR,
+        HIW "$n左牽右引，$N" HIW "如身處漩流，連續轉了好幾個圈。\n" NOR,
+        HIW "$n雙手迴圈，$N" HIW "只覺得前面好象有一堵牆，再也攻不進去。\n" NOR,
+        HIW "$n輕輕一轉，$N" HIW "一招擊在地上，只打得塵土飛揚。\n" NOR,
 });
 
 int query_neili_improve(object me)
@@ -61,113 +61,113 @@ int query_jingli_improve(object me)
 }
 
 mapping *actionf = ({
-([      "action": HIW "$N" HIW "右手中指一竖，「六脉神剑」向前刺出。真气鼓荡，嗤"
-                  "然声响，无形剑气直指$n" HIW,
+([      "action": HIW "$N" HIW "右手中指一豎，「六脈神劍」向前刺出。真氣鼓盪，嗤"
+                  "然聲響，無形劍氣直指$n" HIW,
         "force" : 700,
         "attack": 300,
         "dodge" : 450,
         "parry" : 450,
         "damage": 550,
-        "weapon": HIW "破体无形剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon": HIW "破體無形劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "action": HIR "$N" HIR "身体一侧，一掌凌空劈出，一股炽热无比的气流顿时澎"
-                  "湃涌至$n" HIR "全身各处",
+([      "action": HIR "$N" HIR "身體一側，一掌凌空劈出，一股熾熱無比的氣流頓時澎"
+                  "湃湧至$n" HIR "全身各處",
         "force" : 800,
         "attack": 400,
         "dodge" : 350,
         "parry" : 350,
         "damage": 250,
-        "weapon": HIR "九阳无极劲" NOR,
-        "damage_type":  "割伤"
+        "weapon": HIR "九陽無極勁" NOR,
+        "damage_type":  "割傷"
 ]),
-([      "action": HIY "$N" HIY "身形一转，拳头携着疾速旋转的气流挥出，疾如闪电，"
-                  "势如雷霆，击向$n" HIY,
+([      "action": HIY "$N" HIY "身形一轉，拳頭攜著疾速旋轉的氣流揮出，疾如閃電，"
+                  "勢如雷霆，擊向$n" HIY,
         "force" : 800,
         "attack": 400,
         "dodge" : 350,
         "parry" : 350,
         "damage": 250,
-        "weapon": HIY "九阴无极劲" NOR,
-        "damage_type":  "刺伤"
+        "weapon": HIY "九陰無極勁" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "action": WHT "$N" WHT "双掌平平提到胸前，神色沉重的缓缓施出「降龙十八掌"
-                  "」推向$n" WHT "全身各处",
+([      "action": WHT "$N" WHT "雙掌平平提到胸前，神色沉重的緩緩施出「降龍十八掌"
+                  "」推向$n" WHT "全身各處",
         "force" : 1000,
         "attack": 450,
         "dodge" : 200,
         "parry" : 200,
         "damage": 200,
-        "weapon": WHT "降龙无极劲" NOR,
-        "damage_type": "刺伤"
+        "weapon": WHT "降龍無極勁" NOR,
+        "damage_type": "刺傷"
 ]),
-([      "action": HIW "$N" HIW "双手十指齐伸，数十条气流从少冲穴中激射而出，「六"
-                  "脉神剑」出手如风，指向$n" HIW,
+([      "action": HIW "$N" HIW "雙手十指齊伸，數十條氣流從少衝穴中激射而出，「六"
+                  "脈神劍」出手如風，指向$n" HIW,
         "force" : 700,
         "attack": 300,
         "dodge" : 450,
         "parry" : 450,
         "damage": 550,
-        "weapon": HIW "破体无形剑气" NOR,
-        "damage_type":  "刺伤"
+        "weapon": HIW "破體無形劍氣" NOR,
+        "damage_type":  "刺傷"
 ]),
-([      "action": WHT "$N" WHT "突然身形飞起，双掌居高临下一招「降龙十八掌」在呼"
-                  "啸声中迅捷无比地劈向$n" WHT "全身各处",
+([      "action": WHT "$N" WHT "突然身形飛起，雙掌居高臨下一招「降龍十八掌」在呼"
+                  "嘯聲中迅捷無比地劈向$n" WHT "全身各處",
         "force" : 1000,
         "attack": 450,
         "dodge" : 200,
         "parry" : 200,
         "damage": 200,
-        "weapon": WHT "降龙无极劲" NOR,
-        "damage_type": "刺伤"
+        "weapon": WHT "降龍無極勁" NOR,
+        "damage_type": "刺傷"
 ]),
 });
 
 mapping *actionw = ({
-([      "action": HIY "$N" HIY "攻势忽缓而不疏，$w" HIY "变化无常，捉摸不定向$n"
-                  HIY "慢慢卷去",
+([      "action": HIY "$N" HIY "攻勢忽緩而不疏，$w" HIY "變化無常，捉摸不定向$n"
+                  HIY "慢慢捲去",
         "force" : 600,
         "attack": 300,
         "dodge" : 300,
         "parry" : 300,
         "damage": 400,
-        "damage_type": "内伤"
+        "damage_type": "內傷"
 ]),
-([      "action": HIY "$N" HIY "手中的$w" HIY "突焕气象森严，便似千军万马奔驰而"
-                  "来，如同棍棒一般横扫$n" HIY,
+([      "action": HIY "$N" HIY "手中的$w" HIY "突煥氣象森嚴，便似千軍萬馬奔馳而"
+                  "來，如同棍棒一般橫掃$n" HIY,
         "force" : 600,
         "attack": 300,
         "dodge" : 300,
         "parry" : 300,
         "damage": 400,
-        "damage_type": "内伤"
+        "damage_type": "內傷"
 ]),
-([      "action": HIY "$N" HIY "卷起手中的$w" HIY "，就如铁锤一般对着$n" HIY "乱"
-                  "砍乱砸，没有半点章法",
+([      "action": HIY "$N" HIY "捲起手中的$w" HIY "，就如鐵錘一般對著$n" HIY "亂"
+                  "砍亂砸，沒有半點章法",
         "force" : 600,
         "attack": 300,
         "dodge" : 300,
         "parry" : 300,
         "damage": 400,
-        "damage_type": "内伤"
+        "damage_type": "內傷"
 ]),
-([      "action": HIY "$N" HIY "运用$w" HIY "幻化做一个一个圆圈，似乎要将$n" HIY
-                  "团团包围",
+([      "action": HIY "$N" HIY "運用$w" HIY "幻化做一個一個圓圈，似乎要將$n" HIY
+                  "團團包圍",
         "force" : 600,
         "attack": 300,
         "dodge" : 300,
         "parry" : 300,
         "damage": 400,
-        "damage_type": "内伤"
+        "damage_type": "內傷"
 ]),
-([      "action": HIY "$N" HIY "含笑回转$w" HIY "，伸手一指，颇得拈花指之意，点"
+([      "action": HIY "$N" HIY "含笑迴轉$w" HIY "，伸手一指，頗得拈花指之意，點"
                   "向$n" HIY "全身",
         "force" : 600,
         "attack": 300,
         "dodge" : 300,
         "parry" : 300,
         "damage": 400,
-        "damage_type": "内伤"
+        "damage_type": "內傷"
 ]),
 });
 
@@ -197,44 +197,44 @@ int get_finish(object me)
 
         if( query("int", me)<39 )
         {
-                tell_object(me, "你演练完毕，只感思绪紊乱，看来依你的悟性，无"
-                                "法将其合一。\n");
+                tell_object(me, "你演練完畢，只感思緒紊亂，看來依你的悟性，無"
+                                "法將其合一。\n");
                 return 0;
         }
         if( query("con", me)<39 )
         {
-                tell_object(me, "你演练完毕，只觉全身真气乱窜，眼冒金星，两耳轰鸣，好"
-                                "不容易才控制下来。\n");
+                tell_object(me, "你演練完畢，只覺全身真氣亂竄，眼冒金星，兩耳轟鳴，好"
+                                "不容易才控制下來。\n");
                 return 0;
         }
         if( query("str", me)<39 )
         {
-                tell_object(me, "你演练完毕，只觉双臂酸疼，全身发软。\n");
+                tell_object(me, "你演練完畢，只覺雙臂痠疼，全身發軟。\n");
                 return 0;
         }
         if( query("dex", me)<39 )
         {
-                tell_object(me, "你演练完毕，发现依你的身法暂时还无法将其融会贯通。\n");
+                tell_object(me, "你演練完畢，發現依你的身法暫時還無法將其融會貫通。\n");
                 return 0;
         }
 
         if( query("age", me) >= 18 )
         {
-                                tell_object(me, "你已错过演练的最佳时刻，今生将于此高深武学无缘。\n");
+                                tell_object(me, "你已錯過演練的最佳時刻，今生將於此高深武學無緣。\n");
                 return 0;
         }
 
         if (random(100) != 1 && ! wizardp(me))
         {
-                tell_object(me, "你觉得有所感悟，或许再演练一次就能融会贯通，练成阴阳九转十二重天。\n");
+                tell_object(me, "你覺得有所感悟，或許再演練一次就能融會貫通，練成陰陽九轉十二重天。\n");
                 return 0;
         }
 
-        tell_object(me, HIW "一阵凡尘往事涌上心头，你几欲放声长叹。霎那间，你放眼回首，竟有一股莫名\n"
-                        "的悲哀。宗师泰斗那种高出不胜寒、登泰山而小天下之感犹然而生，你只觉得以\n往的"
-                        "武学现在看来是多么的渺小可笑。\n" NOR);
+        tell_object(me, HIW "一陣凡塵往事湧上心頭，你幾欲放聲長嘆。霎那間，你放眼回首，竟有一股莫名\n"
+                        "的悲哀。宗師泰斗那種高出不勝寒、登泰山而小天下之感猶然而生，你只覺得以\n往的"
+                        "武學現在看來是多麼的渺小可笑。\n" NOR);
 
-        CHANNEL_D->do_channel(this_object(), "rumor", "听说" + me->name() + "演练出"HIY"阴阳九转十二重天"HIM"。\n");
+        CHANNEL_D->do_channel(this_object(), "rumor", "聽說" + me->name() + "演練出"HIY"陰陽九轉十二重天"HIM"。\n");
         return 1;
 }
 
@@ -286,27 +286,27 @@ int valid_learn(object me)
         level = me->query_skill("yinyang-shiertian", 1);
         for (i = 0; i < sizeof(usage_skills); i++)
                 if (me->query_skill(usage_skills[i], 1) < level)
-                        return notify_fail("你对" + to_chinese(usage_skills[i]) + "的理解还"
-                                           "不够，无法继续领会更高深的阴阳十二重天。\n");
+                        return notify_fail("你對" + to_chinese(usage_skills[i]) + "的理解還"
+                                           "不夠，無法繼續領會更高深的陰陽十二重天。\n");
 
         if (me->query_skill("martial-cognize", 1) < level)
-                                return notify_fail("你武学修养不够，无法继续修炼。\n");
+                                return notify_fail("你武學修養不夠，無法繼續修煉。\n");
         
         if( level>380 && query("yinyang-shiertian/yinyang", me) )
-                                return notify_fail("你阴阳九转十二重天已达到新的层次，须修炼出阴阳境界方能再次提升。\n");
+                                return notify_fail("你陰陽九轉十二重天已達到新的層次，須修煉出陰陽境界方能再次提升。\n");
         
         if( level>480 && query("yinyang-shiertian/qiankun", me) )
-                                return notify_fail("你阴阳九转十二重天已达到新的层次，须修炼出乾坤境界方能再次提升。\n");
+                                return notify_fail("你陰陽九轉十二重天已達到新的層次，須修煉出乾坤境界方能再次提升。\n");
 
         if( level>600 && query("yinyang-shiertian/shier", me) )
-                                return notify_fail("你阴阳九转十二重天已达到新的层次，须修炼出十二重天境界方能再次提升。\n");      
+                                return notify_fail("你陰陽九轉十二重天已達到新的層次，須修煉出十二重天境界方能再次提升。\n");      
 
         return 1;
 }
 
 int practice_skill(object me)
 {
-        return notify_fail("阴阳十二重天博大精深，无法简单的通过练习进步。\n");
+        return notify_fail("陰陽十二重天博大精深，無法簡單的通過練習進步。\n");
 }
 
 int difficult_level()
@@ -328,8 +328,8 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         else
                 addn("neili", -300, victim);
 
-        return NOR + HIR "$n" HIR "接下$N" HIR "一招，" + name2 + "顿时破体而"
-               "入，全身真气由" + name1 + "狂泻而出。\n" NOR;
+        return NOR + HIR "$n" HIR "接下$N" HIR "一招，" + name2 + "頓時破體而"
+               "入，全身真氣由" + name1 + "狂瀉而出。\n" NOR;
 }
 
 mixed valid_damage(object ob, object me, int damage, object weapon)
@@ -347,20 +347,20 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
                 switch (random(4))
                 {
                 case 0:
-                        result += (["msg" : HIW "$n" HIW "面含微笑，轻轻一格，已将天"
-                                            "下所有进攻招数全部封死。\n" NOR]);
+                        result += (["msg" : HIW "$n" HIW "面含微笑，輕輕一格，已將天"
+                                            "下所有進攻招數全部封死。\n" NOR]);
                         break;
                 case 1:
-                        result += (["msg" : HIW "$n" HIW "眉头微微一皱，动也不动，将"
-                                            "$N" HIW "震到一边。\n" NOR]);
+                        result += (["msg" : HIW "$n" HIW "眉頭微微一皺，動也不動，將"
+                                            "$N" HIW "震到一邊。\n" NOR]);
                         break;
                 case 2:
-                        result += (["msg" : HIW "$n" HIW "身形微微一抖，已将$N" HIW 
-                                            "迫退至丈许开外。\n" NOR]);
+                        result += (["msg" : HIW "$n" HIW "身形微微一抖，已將$N" HIW 
+                                            "迫退至丈許開外。\n" NOR]);
                         break;
                 default:
-                        result += (["msg" : HIW "$n" HIW "一声轻哼，身形微微一动，已"
-                                            "飘然远去，使$N" HIW "的进攻全无用处。\n" NOR]);
+                        result += (["msg" : HIW "$n" HIW "一聲輕哼，身形微微一動，已"
+                                            "飄然遠去，使$N" HIW "的進攻全無用處。\n" NOR]);
                         break;
                 }
                 return result;

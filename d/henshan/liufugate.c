@@ -5,15 +5,15 @@ int do_knock(string arg);
 
 void create()
 {
-        set("short", "刘府大门");
+        set("short", "劉府大門");
         set("long",
-"这里是刘府大门。刘府的主人，就是衡山派中的仅次于掌\n门人莫大先生"
-"的第二号人物刘正风刘老爷子。今天兴许刘府有\n事吧，大门(gate)紧闭，管"
-"家家丁也异样紧张，莫非今天出了\n什么事情。\n\n" HIR
+"這裡是劉府大門。劉府的主人，就是衡山派中的僅次於掌\n門人莫大先生"
+"的第二號人物劉正風劉老爺子。今天興許劉府有\n事吧，大門(gate)緊閉，管"
+"家家丁也異樣緊張，莫非今天出了\n什麼事情。\n\n" HIR
 "     ||                                        ||\n"
 "  ┏≡≡┓" HIW "   ※※※※※※※※※※※※※※" HIR "   ┏≡≡┓\n"
 "  {------}" HIW "   ※                        ※" HIR "   {------}\n"
-"  ┗≡≡┛" HIW "   ※       " HIY "刘      府" HIW "       ※" HIR "   ┗≡≡┛\n"
+"  ┗≡≡┛" HIW "   ※       " HIY "劉      府" HIW "       ※" HIR "   ┗≡≡┛\n"
 "   │││" HIW "    ※                        ※" HIR "    │││\n"
 "   │││" HIW "    ※※※※※※※※※※※※※※" HIR "    │││\n"
 "   │││                                    │││\n\n"
@@ -25,7 +25,7 @@ void create()
         ]));
 
         set("item_desc", ([
-                "gate" : HIR "\n朱红的大门紧闭着，敲敲(knock)看吧。\n\n" NOR,
+                "gate" : HIR "\n硃紅的大門緊閉著，敲敲(knock)看吧。\n\n" NOR,
         ]));
 
         set("objects", ([
@@ -50,8 +50,8 @@ int do_knock(string arg)
         object me;
 
         me = this_player();
-              message_vision(HIW "\n$N“咚，咚，咚……。”地敲着门，可里面"
-                             "却一点动静都没有。\n\n" NOR, me);
+              message_vision(HIW "\n$N“咚，咚，咚……。”地敲著門，可裡面"
+                             "卻一點動靜都沒有。\n\n" NOR, me);
 
         set_temp("marks/liufu", 1, me);
 
@@ -65,12 +65,12 @@ int do_push(string arg)
     mapping fam;
 
     if( !query_temp("marks", me) )
-              return notify_fail("门关得牢牢的，急切打不开！\n");
+              return notify_fail("門關得牢牢的，急切打不開！\n");
 
     if ( !arg || arg != "gate" ) 
-              return notify_fail("这是干嘛？\n");
+              return notify_fail("這是幹嘛？\n");
 
-    message_vision(HIY "$N走到门前，把门随便一推，居然就推开了大门！\n\n"NOR,me);
+    message_vision(HIY "$N走到門前，把門隨便一推，居然就推開了大門！\n\n"NOR,me);
 
     set("exits/enter",__DIR__"liufudayuan");
 
@@ -87,7 +87,7 @@ void close_out()
 
 void close(object room)
 {
-    message("vision",HIC"\n一阵咿咿呀呀门响，里面有人把大门给关上了。\n"NOR, room);
+    message("vision",HIC"\n一陣咿咿呀呀門響，裡面有人把大門給關上了。\n"NOR, room);
 
     delete("exits/enter", room);
 }

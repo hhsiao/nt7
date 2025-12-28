@@ -7,9 +7,9 @@ inherit NPC;
 void create()
 {
         set_name("金娃娃", ({ "jin wawa", "jin", "fish" }) );
-        set("race", "野兽");
+        set("race", "野獸");
         set("age",35);
-        set("long", "此物似鱼非鱼，似蛇非蛇，全身金色，有尺来长。\n");
+        set("long", "此物似魚非魚，似蛇非蛇，全身金色，有尺來長。\n");
 
         set("attitude", "peaceful");
         

@@ -1,5 +1,5 @@
 //biaotou.c
-//镖头.c 
+//鏢頭.c 
 
 inherit NPC;
 
@@ -8,35 +8,35 @@ void init();
 int ask_start();
 int ask_arrived();
 
-mapping default_dirs = ([ //root:在此定义移动方向。
+mapping default_dirs = ([ //root:在此定義移動方向。
         "north":                "北",
         "south":                "南",
-        "east":                 "东",
+        "east":                 "東",
         "west":                 "西",
-        "northup":              "北边",
-        "southup":              "南边",
-        "eastup":               "东边",
-        "westup":               "西边",
-        "northdown":            "北边",
-        "southdown":            "南边",
-        "eastdown":             "东边",
-        "westdown":             "西边",
-        "northeast":            "东北",
+        "northup":              "北邊",
+        "southup":              "南邊",
+        "eastup":               "東邊",
+        "westup":               "西邊",
+        "northdown":            "北邊",
+        "southdown":            "南邊",
+        "eastdown":             "東邊",
+        "westdown":             "西邊",
+        "northeast":            "東北",
         "northwest":            "西北",
-        "southeast":            "东南",
+        "southeast":            "東南",
         "southwest":            "西南",
         "up":                   "上",
         "down":                 "下",
-        "enter":                "里",
+        "enter":                "裡",
         "out":                  "外",
 ]);
 
 void create()
 {
-        set("title","运镖天下");
-        set_name(HIC "镖头" NOR, ({ "biao tou", "tou" }));
-        set("nickname",HIW "一招毕命" NOR);
-        set("long","他是一个驰骋江湖数十年的老镖师。\n");
+        set("title","運鏢天下");
+        set_name(HIC "鏢頭" NOR, ({ "biao tou", "tou" }));
+        set("nickname",HIW "一招畢命" NOR);
+        set("long","他是一個馳騁江湖數十年的老鏢師。\n");
         set("gender", "男性");
         set("age", 54);
         
@@ -46,8 +46,8 @@ void create()
         set("no_get",1);
 
         set("inquiry", ([
-                "出发" : (: ask_start :),
-                "抵达" : (: ask_arrived :),
+                "出發" : (: ask_start :),
+                "抵達" : (: ask_arrived :),
         ]));
         set("chat_chance_combat", 60);
 
@@ -59,14 +59,14 @@ void create()
 }
 int accept_hit(object ob)
 {
-        command("say 毛都没长齐学人劫镖？去死吧！");
+        command("say 毛都沒長齊學人劫鏢？去死吧！");
         command("perform sword.lian");
         kill_ob(ob);
         return 1;
 }
 int accept_kill(object ob)
 {
-        command("say 毛都没长齐学人劫镖？去死吧！");
+        command("say 毛都沒長齊學人劫鏢？去死吧！");
         command("yun recover");
         return 1;
 }
@@ -88,7 +88,7 @@ int do_move(string arg)
         kar = 20 + random(10);
 
         if( !living(ob) )
-              return notify_fail("嗯....你得先把" + ob->name() + "弄醒再说。\n");
+              return notify_fail("嗯....你得先把" + ob->name() + "弄醒再說。\n");
 
         if (ob->query_temp("owner/id") != me->query("id")) {
                 command("? " + me->query("id"));
@@ -97,35 +97,35 @@ int do_move(string arg)
         
         if (!arg) {
                 command("kick " + me->query("id"));
-                command("say 你要我赶到哪儿去？");
+                command("say 你要我趕到哪兒去？");
                 return notify_fail("\n");
                 }
 
         if( !mapp(exit = env->query("exits")) || undefinedp(exit[arg]) ) {
                 command("?");
-                command("say 这个方向没有路呃。");
+                command("say 這個方向沒有路呃。");
                 return notify_fail("\n");
                 }
 
         if (ob->is_busy()) {
-                command("say 我这儿正忙着呢！");
+                command("say 我這兒正忙著呢！");
                 return notify_fail("\n");
                 }
 
         if (me->is_busy()) {
-                command("say 你自己都忙不过来，还催我干什么？");
+                command("say 你自己都忙不過來，還催我幹什麼？");
                 return notify_fail("\n");
                 }
 
         if (ob->is_fighting()) {
-                command("say 请你先把我的对手料理了吧！\n");
+                command("say 請你先把我的對手料理了吧！\n");
                 return notify_fail("\n");
                 }
 
         command("go " + arg); 
         ob->start_busy(2 + random(2));
         me->move(environment(ob));
-        message_vision(HIC "镖头用警惕的眼光观察着四周。\n" NOR,me);
+        message_vision(HIC "鏢頭用警惕的眼光觀察著四周。\n" NOR,me);
         busy = 2 + random(30 - kar);
         if (busy > 3) busy = 3;
         me->start_busy(busy);
@@ -136,7 +136,7 @@ int do_move(string arg)
         
         call_out("robber", 1);
 
-        message_vision(HIR "突然，一个劫匪从暗处窜了出来！！！\n\n" NOR,me);
+        message_vision(HIR "突然，一個劫匪從暗處竄了出來！！！\n\n" NOR,me);
 
         ob->move(environment(me));
                  
@@ -149,20 +149,20 @@ int ask_start()
         object ob = this_object(), me = this_player();
 
         if (ob->query_temp("started")) {
-                command("say 不是已经在路上了吗？");
+                command("say 不是已經在路上了嗎？");
                 return 1;
                 }
 
         if (me->query("quest/yunbiao") ==1) {
                 ob->set_temp("started",1);
                 ob->set_temp("owner/id",me->query("id"));
-                command("say 好吧，我们出发！");
+                command("say 好吧，我們出發！");
                 return 1;
                 }
         
         if (ob->query_temp("owner/id") != me->query("id")) {
                 command("slap " + me->query("id"));
-                command("say 又没有让你护镖，来瞎闹什么？");
+                command("say 又沒有讓你護鏢，來瞎鬧什麼？");
                 return 1;
                 }
         call_out("leave", 600);
@@ -179,41 +179,41 @@ int ask_arrived()
         ob = this_object();
 
         if (ob->query_temp("owner/id") != me->query("id")) {
-                command("say " + me->query("name") + "你并没有护这趟镖，凭什么来领取奖励？");
+                command("say " + me->query("name") + "你並沒有護這趟鏢，憑什麼來領取獎勵？");
                 command("grin " + me->query("id"));
                 return 1;
                 }
 
         if (ob->is_busy()) {
-                command("say 我这儿正忙着呢！");
+                command("say 我這兒正忙著呢！");
                 return notify_fail("\n");
                 }
 
         if (ob->is_fighting()) {
-                command("say 请你先把我的对手料理了吧！\n");
+                command("say 請你先把我的對手料理了吧！\n");
                 return notify_fail("\n");
                 }
 
         if (ob->query_temp("fuzhou") ==1){
                  if (file_name(environment(ob)) !="/d/fuzhou/biaojuzt") {
-                         command("say 你想半途而废？");
+                         command("say 你想半途而廢？");
                        return 1;
                        }
 
                 if (!present("lin zhennan", environment(ob))) {
-                       command("say 总镖头不在，不好交差啊！");
+                       command("say 總鏢頭不在，不好交差啊！");
                        return 1;
                        }
 
    }
    else {
                 if (file_name(environment(ob)) !="/d/city/qianzhuang") {
-                command("say 你想半途而废？");
+                command("say 你想半途而廢？");
                 return 1;
                 }
 
                 if (!present("qian yankai", environment(ob))) {
-                        command("say 钱老板不在，不好交差啊！");
+                        command("say 錢老闆不在，不好交差啊！");
                         return 1;
                            }
         }
@@ -221,18 +221,18 @@ int ask_arrived()
         ww = (50 + random(50));
         exp = (100 + random(30)) * 10;
         pot = (500 + random(exp)) * 6 / 10;
-        message_vision(HIW "$N被奖励了：\n"
-                + HIG + chinese_number(exp) + "点实战经验，\n"  
-                + HIC + chinese_number(pot) + "点潜能，\n"
-                + HIY + chinese_number(exp * pot / 500000) + "两黄金，\n" 
-                + HIW + chinese_number(ww) + "点江湖威望，\n"NOR,me); 
+        message_vision(HIW "$N被獎勵了：\n"
+                + HIG + chinese_number(exp) + "點實戰經驗，\n"  
+                + HIC + chinese_number(pot) + "點潛能，\n"
+                + HIY + chinese_number(exp * pot / 500000) + "兩黃金，\n" 
+                + HIW + chinese_number(ww) + "點江湖威望，\n"NOR,me); 
 
         me->add("combat_exp",exp);
         me->add("potential",pot);
         me->add("balance",(exp * pot/50));
         me->add("weiwang",ww);
 
-        message_vision(CYN "镖师往钱庄里间离去了。\n" NOR,me);
+        message_vision(CYN "鏢師往錢莊裡間離去了。\n" NOR,me);
         destruct(ob);
 
         return 1;

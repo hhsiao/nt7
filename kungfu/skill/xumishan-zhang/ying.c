@@ -1,12 +1,12 @@
 // This program is a part of NITAN MudLIB
-// ying.c 须弥山掌「群山叠影」
+// ying.c 須彌山掌「群山疊影」
 
 #include <ansi.h>
 #include <combat.h>
 
 inherit F_SSERVER;
 
-string name() { return "群山叠影"; }
+string name() { return "群山疊影"; }
 
 int perform(object me, object target)
 {
@@ -18,37 +18,37 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("「群山叠影」只能对战斗中的对手使用。\n");
+                return notify_fail("「群山疊影」只能對戰鬥中的對手使用。\n");
 
         if( objectp(query_temp("weapon", me)) )
-                return notify_fail("你必须空手才能使用「群山叠影」！\n");
+                return notify_fail("你必須空手才能使用「群山疊影」！\n");
 
         if ((lvl = (int)me->query_skill("xumishan-zhang", 1)) < 150)
-                return notify_fail("你的须弥山掌掌不够娴熟，不会使用「群山叠影」。\n");
+                return notify_fail("你的須彌山掌掌不夠嫻熟，不會使用「群山疊影」。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你现在真气太弱，不能使用「群山叠影」。\n");
+                return notify_fail("你現在真氣太弱，不能使用「群山疊影」。\n");
 
         if (me->query_skill_prepared("strike") != "xumishan-zhang")
-                return notify_fail("你现在没有准备使用须弥山掌，不能使用「群山叠影」。\n");
+                return notify_fail("你現在沒有準備使用須彌山掌，不能使用「群山疊影」。\n");
 
-        msg = HIY "$N" HIY "稳稳使出须弥山掌掌的绝招「群山叠影」，双掌"
-              "平平向$n" HIY "推去，$n" HIY "顿时觉得一股排山倒海的"
-              "内力向自己涌来。\n" NOR;
+        msg = HIY "$N" HIY "穩穩使出須彌山掌掌的絕招「群山疊影」，雙掌"
+              "平平向$n" HIY "推去，$n" HIY "頓時覺得一股排山倒海的"
+              "內力向自己湧來。\n" NOR;
         addn("neili", -150, me);
 
         ap = attack_power(me, "strike");
         dp = defense_power(target, "force");
         if (ap / 2 + random(ap) > dp)
         {
-                msg += HIR "$n" HIR "顿时觉得呼吸不畅，全然被这"
-                       "股力道所制，只得拼命运动抵挡。\n" NOR;
+                msg += HIR "$n" HIR "頓時覺得呼吸不暢，全然被這"
+                       "股力道所制，只得拼命運動抵擋。\n" NOR;
                 count = ap / 10;
                 addn_temp("apply/attack", count, me);
         } else
         {
-                msg += HIC "$n" HIC "深吸一口气，凝神抵挡，犹如轻舟立"
-                       "于惊涛骇浪之中，左右颠簸，却是不倒。\n" NOR;
+                msg += HIC "$n" HIC "深吸一口氣，凝神抵擋，猶如輕舟立"
+                       "於驚濤駭浪之中，左右顛簸，卻是不倒。\n" NOR;
                 count = 0;
         }
         message_combatd(msg, me, target);

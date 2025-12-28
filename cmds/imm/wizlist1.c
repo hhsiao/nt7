@@ -30,7 +30,7 @@ string time_period(int time)
         if (d) str = chinese_number(d) + "天";
         else str = "";
 
-        if (h) str += chinese_number(h) + "小时";
+        if (h) str += chinese_number(h) + "小時";
 
         return str;
 }
@@ -47,9 +47,9 @@ int main(object me, string arg)
         if (! SECURITY_D->valid_grant(me, "(wizard)"))
                 return 0;
 
-        desc = NOR + LOCAL_MUD_NAME() + "目前的巫师有：\n";
+        desc = NOR + LOCAL_MUD_NAME() + "目前的巫師有：\n";
         desc += "------------------------------------------------------------------------\n" NOR;
-        desc += BBLU HIW "巫师等级        巫师人物    目前任务              连线状态              \n"NOR;
+        desc += BBLU HIW "巫師等級        巫師人物    目前任務              連線狀態              \n"NOR;
         desc += "------------------------------------------------------------------------\n" NOR;
 
         list = sort_array(SECURITY_D->query_wizlist(), (: sort_level :));
@@ -75,11 +75,11 @@ int main(object me, string arg)
                         r = wizhood(list[i]);
                         switch (wizhood(list[i]))
                         {
-                                case "(admin)"          : msg = "系统管理"; k = adm_n; break;
-                                case "(arch)"           : msg = "程序开发"; k = arc_n; break;
-                                case "(wizard)"         : msg = "开发辅助"; k = wiz_n; break;
+                                case "(admin)"          : msg = "系統管理"; k = adm_n; break;
+                                case "(arch)"           : msg = "程序開發"; k = arc_n; break;
+                                case "(wizard)"         : msg = "開發輔助"; k = wiz_n; break;
                                 case "(apprentice)"     : msg = "玩家管理"; k = app_n; break;
-                                case "(immortal)"       : msg = "管理辅助"; k = imm_n; break;
+                                case "(immortal)"       : msg = "管理輔助"; k = imm_n; break;
                         }
                         j = 1;
                 } else
@@ -107,9 +107,9 @@ int main(object me, string arg)
                         t=time()-query_temp("time", ob);
 
                         if (t < 3600)
-                                att = "连线不足一小时";
+                                att = "連線不足一小時";
                         else
-                                att = "连线" + time_period(t);
+                                att = "連線" + time_period(t);
 
                         y = 1;
                 } else
@@ -121,9 +121,9 @@ int main(object me, string arg)
                                                    DATA_DIR, "/" + list[i][0..0] + "/",
                                                    list[i], __SAVE_EXTENSION__), -1)[1]);
                         if (t < 3600)
-                                att = "离线不足一小时";
+                                att = "離線不足一小時";
                         else
-                                att = "离线" + time_period(t);
+                                att = "離線" + time_period(t);
 
                         y = 0;
                 }
@@ -159,7 +159,7 @@ string get_mission(string arg)
 
                 return mis;
         }
-        return "任务未定";
+        return "任務未定";
 }
 
 int help(object me)
@@ -167,7 +167,7 @@ int help(object me)
         write(@HELP
 指令格式 : wizlist
 
-用途 : 列出目前所有的巫师名单。
+用途 : 列出目前所有的巫師名單。
 HELP );
         return 1;
 }

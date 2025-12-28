@@ -11,7 +11,7 @@ void create()
 {
         set_name("丁典", ({ "ding dian", "ding" }));
         set("long",
-                "这人满脸虬髯，头发长长的直垂至颈，衣衫破烂不堪，简直如同荒山中的野人。\n");
+                "這人滿臉虯髯，頭髮長長的直垂至頸，衣衫破爛不堪，簡直如同荒山中的野人。\n");
         set("gender", "男性");
         set("age", 35);
 
@@ -35,15 +35,15 @@ void create()
         set("shen_type", 1);
         set("chat_chance", 10);
         set("chat_msg", ({
-                "丁典轻轻叹了一口气。那叹息中，竟有忧伤、温柔之意。\n",
-                "丁典嘴角挂着一丝微笑，痴望远处高楼纱窗上那一盆鲜花。\n",
-                "丁典大声道：怎么会忘记？决不会的！难道……难道是生了病？\n",
-                "丁典喃喃道：就算是生了病，也会叫人来换花啊！\n",
+                "丁典輕輕嘆了一口氣。那嘆息中，竟有憂傷、溫柔之意。\n",
+                "丁典嘴角掛著一絲微笑，痴望遠處高樓紗窗上那一盆鮮花。\n",
+                "丁典大聲道：怎麼會忘記？決不會的！難道……難道是生了病？\n",
+                "丁典喃喃道：就算是生了病，也會叫人來換花啊！\n",
         }) );
         set("inquiry", ([
-                "凌霜华" : "“唉……”，然后指了指牢外那座小楼的窗口，啥也不说了。\n",
-                "唤醒"   : (: ask_skill1 :),
-                "疗精"   : (: ask_skill2 :),
+                "凌霜華" : "“唉……”，然後指了指牢外那座小樓的窗口，啥也不說了。\n",
+                "喚醒"   : (: ask_skill1 :),
+                "療精"   : (: ask_skill2 :),
         ]));
 
         setup();
@@ -55,22 +55,22 @@ int accept_object(object me, object obj)
 {
         object key;
         if( query("id", obj) == "green flower" && 
-             filter_color(query("name", obj),1) == "绿玉如意"){
-                message("vision",me->name()+"给丁典一盆绿菊花。\n",environment(me),
+             filter_color(query("name", obj),1) == "綠玉如意"){
+                message("vision",me->name()+"給丁典一盆綠菊花。\n",environment(me),
                         ({me}));
                 key = new("/clone/book/shenzhaojing");
                 if (!key){
-                        command("say 我已经托人把书带给霜华了，不劳您大驾了。");
+                        command("say 我已經託人把書帶給霜華了，不勞您大駕了。");
                         return 0;
                 }
 
                 command("touch "+query("id", me));
-                command("say 这位"+RANK_D->query_respect(me)+"是霜华派来送信的吧。");
+                command("say 這位"+RANK_D->query_respect(me)+"是霜華派來送信的吧。");
                 key->move(me);
                 addn("book_count", -1);
-                message_vision("$n递给$N一本书。\n", me, this_object() );
-                command("say 这本书就是我练功打坐用的《神照经》，你拿去带给霜华吧。");
-                command("rumor "+query("name", me)+"弄到了一册神照经。");
+                message_vision("$n遞給$N一本書。\n", me, this_object() );
+                command("say 這本書就是我練功打坐用的《神照經》，你拿去帶給霜華吧。");
+                command("rumor "+query("name", me)+"弄到了一冊神照經。");
                 remove_call_out("destroying");
                 call_out("destroying", 1, this_object(), obj);
                 return 1;
@@ -78,9 +78,9 @@ int accept_object(object me, object obj)
         if( query("id", obj) == "green flower" && 
             filter_color(query("name", obj),1) == "春水碧波" )
         {
-                message("vision",me->name()+"给丁典一盆绿菊花。\n",environment(me),
+                message("vision",me->name()+"給丁典一盆綠菊花。\n",environment(me),
                         ({me}));
-                message_vision("丁典同意指点$N一些武功的问题。\n",me);
+                message_vision("丁典同意指點$N一些武功的問題。\n",me);
                 addn_temp("mark/丁", 1000, me);
                 return 1;
         }
@@ -111,13 +111,13 @@ int ask_skill1()
         if( query("can_perform/shenzhaojing/wakeup", who))return 0;
         if (who->query_skill("shenzhaojing",1) < 100)
         {
-                command("say 你的神照经功力还不够高，多学学吧。");
+                command("say 你的神照經功力還不夠高，多學學吧。");
                 return 1;
         }
         command("sign");
-        command("say 不知你学得神照经是福是祸了。也罢，随你去吧。");
-        tell_object(who,HIC"丁典在你耳边悄悄说了几句运功的口诀，你急忙用心一一记下。\n"NOR);
-        tell_object(who,HIC "你学会了「唤醒」。\n" NOR);
+        command("say 不知你學得神照經是福是禍了。也罷，隨你去吧。");
+        tell_object(who,HIC"丁典在你耳邊悄悄說了幾句運功的口訣，你急忙用心一一記下。\n"NOR);
+        tell_object(who,HIC "你學會了「喚醒」。\n" NOR);
         set("can_perform/shenzhaojing/wakeup", 1, who);
         return 1;
 }
@@ -131,13 +131,13 @@ int ask_skill2()
         if( query("can_perform/shenzhaojing/jingheal", who))return 0;
         if (who->query_skill("shenzhaojing",1) < 50)
         {
-                command("say 你的神照经功力还不够高，多学学吧。");
+                command("say 你的神照經功力還不夠高，多學學吧。");
                 return 1;
         }
         command("sign");
-        command("say 不知你学得神照经是福是祸了。也罢，随你去吧。");
-        tell_object(who,HIC"丁典在你耳边悄悄说了几句运功的口诀，你急忙用心一一记下。\n"NOR);
-        tell_object(who,HIC "你学会了「疗精」。\n" NOR);
+        command("say 不知你學得神照經是福是禍了。也罷，隨你去吧。");
+        tell_object(who,HIC"丁典在你耳邊悄悄說了幾句運功的口訣，你急忙用心一一記下。\n"NOR);
+        tell_object(who,HIC "你學會了「療精」。\n" NOR);
         set("can_perform/shenzhaojing/jingheal", 1, who);
         return 1;
 }

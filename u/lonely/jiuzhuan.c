@@ -1,4 +1,4 @@
-// story:niulang 牛郎织女 ->改为偷九转
+// story:niulang 牛郎織女 ->改為偷九轉
 
 #include <ansi.h>
 
@@ -9,18 +9,18 @@ nosave string family_name;
 int give_gift();
 object select_character();
 
-string prompt() { return HIY "【故事传闻】" NOR; }
+string prompt() { return HIY "【故事傳聞】" NOR; }
 
 nosave mixed *story = ({
-        "太上老君的炼丹房。",
-        "清风和明月正在打盹。",
+        "太上老君的煉丹房。",
+        "清風和明月正在打盹。",
         "ZZZ~~~~~",
-        "$N翻箱倒柜正找着什么。",
-        "门外传来敲门声：清风、明月，该起来尿尿啦！",
-        "$N吓得屁滚尿流，这不是太上老君的声音吗！",
-        "太上老君：$N，你在这里干啥，莫非是学那猴头来盗我仙丹？",
-        "说罢手中浮尘一挥，$N便飞将出去。",
-        "$N眼前一黑，从手中掉落一物。",
+        "$N翻箱倒櫃正找著什麼。",
+        "門外傳來敲門聲：清風、明月，該起來尿尿啦！",
+        "$N嚇得屁滾尿流，這不是太上老君的聲音嗎！",
+        "太上老君：$N，你在這裡幹啥，莫非是學那猴頭來盜我仙丹？",
+        "說罷手中浮塵一揮，$N便飛將出去。",
+        "$N眼前一黑，從手中掉落一物。",
                 (: give_gift :),
         "太上老君大叫：哎呀！不好，我的仙丹！",                
 });
@@ -70,6 +70,6 @@ mixed query_story_message(int step)
 int give_gift()
 {
         STORY_D->give_gift("/clone/gift/jiuzhuan", 1,
-                HIM "\n“啪”的一声一颗闪闪发光的仙丹掉到你面前。\n\n" NOR);
+                HIM "\n“啪”的一聲一顆閃閃發光的仙丹掉到你面前。\n\n" NOR);
         return 1;
 }

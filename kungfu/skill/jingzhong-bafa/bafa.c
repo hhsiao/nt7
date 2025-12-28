@@ -16,35 +16,35 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("井中八法只能对战斗中的对手使用。\n");
+                return notify_fail("井中八法只能對戰鬥中的對手使用。\n");
  
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "blade" )
-                return notify_fail("手中没刀还使什么井中八法。\n");
+                return notify_fail("手中沒刀還使什麼井中八法。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你的真气不够！\n");
+                return notify_fail("你的真氣不夠！\n");
 
         if ((int)me->query_skill("force") < 300)
-                return notify_fail("你的内功火候不够！\n");
+                return notify_fail("你的內功火候不夠！\n");
 
         if ((int)me->query_skill("jingzhong-bafa", 1) < 200)
-                return notify_fail("你的井中八法还不到家，无法施展绝招。\n");
+                return notify_fail("你的井中八法還不到家，無法施展絕招。\n");
 
         if (me->query_skill_mapped("blade") != "jingzhong-bafa")
-                return notify_fail("你没有激发井中八法，无法施展绝招。\n");
+                return notify_fail("你沒有激發井中八法，無法施展絕招。\n");
 
-        msg = HIY "$N" HIY "一声清啸，手中的" + weapon->name() +
-              HIY "将「井中八法」一齐施出，刀法变化莫测，笼罩了$n" HIY "周身要害！\n" NOR;
+        msg = HIY "$N" HIY "一聲清嘯，手中的" + weapon->name() +
+              HIY "將「井中八法」一齊施出，刀法變化莫測，籠罩了$n" HIY "周身要害！\n" NOR;
 
         if (random(me->query_skill("blade")) > target->query_skill("parry") / 3)
         {
-                msg += HIR "$n" HIR "见来招实在是变幻莫测，不由得心"
-                       "生惧意，招式登时出了破绽！\n" NOR;
+                msg += HIR "$n" HIR "見來招實在是變幻莫測，不由得心"
+                       "生懼意，招式登時出了破綻！\n" NOR;
                 count = me->query_skill("jingzhong-bafa)", 1) / 3;
         } else
         {
-                msg += HIC "$n" HIC "心底微微一惊，打起精神小心接招。\n" NOR;
+                msg += HIC "$n" HIC "心底微微一驚，打起精神小心接招。\n" NOR;
                 count = 0;
         }
 

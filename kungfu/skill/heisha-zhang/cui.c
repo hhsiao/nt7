@@ -15,34 +15,34 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if( userp(me) && !query("can_perform/heisha-zhang/cui", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(CUI "只能对战斗中的对手使用。\n");
+                return notify_fail(CUI "只能對戰鬥中的對手使用。\n");
 
         if( objectp(query_temp("weapon", me)) )
-                return notify_fail("你必须空手才能使用" CUI "。\n");
+                return notify_fail("你必須空手才能使用" CUI "。\n");
 
         if (me->query_skill_mapped("strike") != "heisha-zhang")
-                return notify_fail("你没有激发黑砂掌，难以施展" CUI "。\n");
+                return notify_fail("你沒有激發黑砂掌，難以施展" CUI "。\n");
 
         if (me->query_skill_prepared("strike") != "heisha-zhang")
-                return notify_fail("你现在没有准备使用黑砂掌，难以施展" CUI "。\n");
+                return notify_fail("你現在沒有準備使用黑砂掌，難以施展" CUI "。\n");
 
         if ((int)me->query_skill("heisha-zhang", 1) < 100)
-                return notify_fail("你的黑砂掌不够熟练，难以施展" CUI "。\n");
+                return notify_fail("你的黑砂掌不夠熟練，難以施展" CUI "。\n");
 
         if ((int)me->query_skill("force") < 150)
-                return notify_fail("你的内力修为不足，难以施展" CUI "。\n");
+                return notify_fail("你的內力修為不足，難以施展" CUI "。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你的真气不够，难以施展" CUI "。\n");
+                return notify_fail("你的真氣不夠，難以施展" CUI "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIB "$N" HIB "冷笑数声，单掌陡然一振，催魂般悄然拍至$n"
-              HIB "前胸，不着半点力道。\n" NOR;  
+        msg = HIB "$N" HIB "冷笑數聲，單掌陡然一振，催魂般悄然拍至$n"
+              HIB "前胸，不著半點力道。\n" NOR;  
 
         lvl = me->query_skill("heisha-zhang", 1);
 
@@ -59,13 +59,13 @@ int perform(object me, object target)
                                   "id":query("id", me),
                                   "duration" : lvl / 50 + random(lvl / 20) ]));
                                   msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK,
-                                         damage, 20, HIR "$n" HIR "只觉$N" HIR "掌劲穿"
-                                         "胸而过，一时说不出的难受，呕出一大口黑血。\n"
+                                         damage, 20, HIR "$n" HIR "只覺$N" HIR "掌勁穿"
+                                         "胸而過，一時說不出的難受，嘔出一大口黑血。\n"
                                          NOR);
         } else
         {
-                msg += CYN "$n" CYN "见$N"
-                       CYN "来势汹涌，奋力格挡，终于化解开来。\n" NOR;
+                msg += CYN "$n" CYN "見$N"
+                       CYN "來勢洶湧，奮力格擋，終於化解開來。\n" NOR;
         }
         message_combatd(msg, me, target);
 

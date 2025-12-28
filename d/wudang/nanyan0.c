@@ -5,10 +5,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "南岩宫地下室");
+        set("short", "南巖宮地下室");
         set("long", @LONG
-这是一个干燥洁净的地下室，四壁用光滑的大理石砌就而成，十
-数支松明照得这里通明透亮。
+這是一個乾燥潔淨的地下室，四壁用光滑的大理石砌就而成，十
+數支松明照得這裡通明透亮。
 LONG );
         set("objects", ([
                    CLASS_D("wudang") +"/xiaosong": 1,
@@ -29,14 +29,14 @@ int valid_leave(object me, string dir)
             if (dir == "up")
             {
                        if (me->query_skill("taiji-shengong", 1) < 80)
-                              return notify_fail(HIY "你试着推了推顶上的砖盖，触"
-                                           "手冰凉，纹丝不动。\n" NOR);
+                              return notify_fail(HIY "你試著推了推頂上的磚蓋，觸"
+                                           "手冰涼，紋絲不動。\n" NOR);
 
-                  message_sort(HIY "\n$N" HIY "全身运足太极神功，拔身错步，嘿地"
-                             "一声，举起双掌向上猛击。只见一股白气自$N" HIY
-                             "掌心而出，迅猛无比地击中顶上的砖盖。克剌剌一"
-                             "声巨响，砖盖被震成无数小碎片四散飘飞。露出一"
-                             "个向上的洞口来。\n\n" NOR, me );
+                  message_sort(HIY "\n$N" HIY "全身運足太極神功，拔身錯步，嘿地"
+                             "一聲，舉起雙掌向上猛擊。只見一股白氣自$N" HIY
+                             "掌心而出，迅猛無比地擊中頂上的磚蓋。克剌剌一"
+                             "聲巨響，磚蓋被震成無數小碎片四散飄飛。露出一"
+                             "個向上的洞口來。\n\n" NOR, me );
              }
              return ::valid_leave(me, dir);
 }

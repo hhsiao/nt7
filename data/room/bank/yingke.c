@@ -7,11 +7,11 @@
 
 void create()
 {
-        set("short", "金风细雨楼迎客厅");
+        set("short", "金風細雨樓迎客廳");
 	set ("long", @LONG
-这里是金风细雨楼的主人钱庄迎接八方来客的地方。大凡客人来
-拜见钱庄，少不得在这里寒暄叙话，了尽仰慕之情。东面通往一个茶
-室，是主人陪同客人品尝天下名茶之处。 
+這裡是金風細雨樓的主人錢莊迎接八方來客的地方。大凡客人來
+拜見錢莊，少不得在這裡寒暄敘話，了盡仰慕之情。東面通往一個茶
+室，是主人陪同客人品嚐天下名茶之處。 
 LONG );
 
         set("exits", ([
@@ -20,7 +20,7 @@ LONG );
                 "east"   : __DIR__"chashi",
         ]));
 
-        create_door("east", "木门", "west", DOOR_CLOSED);
+        create_door("east", "木門", "west", DOOR_CLOSED);
 
         set("objects", ([
                 "/d/room/roomnpc/yahuan" : 2,
@@ -29,8 +29,8 @@ LONG );
         set("no_sleep_room", 1);
         setup();
 
-        set("room_owner", "钱庄");
-        set("room_name", "金风细雨楼");
+        set("room_owner", "錢莊");
+        set("room_name", "金風細雨樓");
         set("room_id", "gold");
         set("room_owner_id", "bank");
         set("room_position", "[1;33m名人堂[2;37;0m");

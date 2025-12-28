@@ -8,9 +8,9 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("殷锦", ({ "yin jin", "yin"}));
-        set("title", HIY"神龙教"YEL"黄龙使"NOR);
-        set("long", "这是个汉子, 一脸奸相, 明显是个小人.\n" );
+        set_name("殷錦", ({ "yin jin", "yin"}));
+        set("title", HIY"神龍教"YEL"黃龍使"NOR);
+        set("long", "這是個漢子, 一臉奸相, 明顯是個小人.\n" );
         set("gender", "男性");
         set("age", 44);
         set("str", 22);
@@ -52,14 +52,14 @@ void create()
         prepare_skill("claw", "sanyin-wugongzhao");
         prepare_skill("strike", "chousui-zhang");
 
-        create_family("神龙教", 0, "长老");
+        create_family("神龍教", 0, "長老");
 
         set("inquiry", ([
-                "神龙教" : "一般人是入不了我神龙教的(join shenlongjiao).\n",
-                "洪安通" : "教主脾气不好,要讨他欢心才好。\n",
-                "教主"   : "教主脾气不好,要讨他欢心才好。\n",
-                "入教"   : "一般人是入不了我神龙教的(join shenlongjiao).\n",
-                "口号"   : "万年不老！永享仙福！寿与天齐！文武仁圣！\n",
+                "神龍教" : "一般人是入不了我神龍教的(join shenlongjiao).\n",
+                "洪安通" : "教主脾氣不好,要討他歡心才好。\n",
+                "教主"   : "教主脾氣不好,要討他歡心才好。\n",
+                "入教"   : "一般人是入不了我神龍教的(join shenlongjiao).\n",
+                "口號"   : "萬年不老！永享仙福！壽與天齊！文武仁聖！\n",
         ]));
         set("master_ob", 4);
         setup();
@@ -92,6 +92,6 @@ void greeting(object ob)
 
 void attempt_apprentice(object ob)
 {
-        command("say 除了文物仁圣的洪教主，谁有资格收徒？");
+        command("say 除了文物仁聖的洪教主，誰有資格收徒？");
         return;
 }

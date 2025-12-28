@@ -6,12 +6,12 @@ inherit NPC;
 string ask_job();
 void create()
 {
-        set_name("飘然子", ({ "piaoran zi", "piaoran", "zi" }) );
+        set_name("飄然子", ({ "piaoran zi", "piaoran", "zi" }) );
         set("gender", "男性" );
         set("nickname", "星宿派五弟子");
         set("age", 28);
-        set("long", "他生性淫邪，武功高强，经常奸淫良家妇女。
-后被正派人士截杀，断了两条腿逃回了星宿后，就再没步出过这个山洞。\n");
+        set("long", "他生性淫邪，武功高強，經常姦淫良家婦女。
+後被正派人士截殺，斷了兩條腿逃回了星宿後，就再沒步出過這個山洞。\n");
         set("env/wimpy", 40);
         set("str", 28);
         set("dex", 10);
@@ -48,10 +48,10 @@ void create()
 
         create_family("星宿派", 2, "弟子");
         set("inquiry", ([
-                "星宿派" : "你想加入，就拜我为师。",
-                "星宿海" : "去星宿海干什么？拜我为师就够你学的了。",
-                "丁春秋" : "丁春秋是你叫的吗？没大没小的。以后叫老仙！",
-                "炼毒"   : (: ask_job :),
+                "星宿派" : "你想加入，就拜我為師。",
+                "星宿海" : "去星宿海乾什麼？拜我為師就夠你學的了。",
+                "丁春秋" : "丁春秋是你叫的嗎？沒大沒小的。以後叫老仙！",
+                "煉毒"   : (: ask_job :),
                 "毒"     : (: ask_job :),
                 "poison" : (: ask_job :),
         ]));
@@ -70,23 +70,23 @@ string ask_job()
         poison = me->query_skill("poison", 1);
         exp=query("combat_exp", me);
 
-        if(!fam) return "给老子滚一边去！";
+        if(!fam) return "給老子滾一邊去！";
         if( fam["family_name"] != "星宿派" && !query_temp("ding_flatter", me) )
-                return "给老子滚一边去！";
-        if(poison < 120) return "哈哈哈，你先学够了基本的毒技再来吧。";
-        if(poison >= 200) return "这个。。。这种腐尸毒对你好象没什么用了吧？";
+                return "給老子滾一邊去！";
+        if(poison < 120) return "哈哈哈，你先學夠了基本的毒技再來吧。";
+        if(poison >= 200) return "這個。。。這種腐屍毒對你好象沒什麼用了吧？";
         if(me->query_skill("huagong-dafa", 1) < 100 )
-                return "你的化功大法还不纯熟，炼毒会很危险的！";
+                return "你的化功大法還不純熟，煉毒會很危險的！";
         if(me->query_condition("wait_xx_task"))
-                return "你好象把师兄的事情搞砸了吧？这次你就好好等着。";
+                return "你好象把師兄的事情搞砸了吧？這次你就好好等著。";
         if(me->query_condition("xx_task") || me->query_condition("xx_task2"))
-                return "你还在为其他师兄弟们做事呢，等完成了再来我这里吧。";
+                return "你還在為其他師兄弟們做事呢，等完成了再來我這裡吧。";
         if( interactive(me) && query_temp("xx_job", me) )
-                return "你怎么还在这里发呆？";
+                return "你怎麼還在這裡發呆？";
 
         set_temp("promotion_target", 1, me);
-        message_vision("\n$N对着$n嘿嘿一笑：“想练毒是吧？先去给你自己找具有用的尸体来。”\n", this_object(), me);
-        return "记住，可不是杀个小喽罗那样丢人显眼！\n";
+        message_vision("\n$N對著$n嘿嘿一笑：“想練毒是吧？先去給你自己找具有用的屍體來。”\n", this_object(), me);
+        return "記住，可不是殺個小嘍羅那樣丟人顯眼！\n";
 }
 
 /*
@@ -109,7 +109,7 @@ void greeting(object me)
 
         if (fam["family_name"] != "星宿派")
         {
-                command("say 哪里跑来的"+RANK_D->query_rude(me)+"！竟敢擅闯星宿禁地！");
+                command("say 哪裡跑來的"+RANK_D->query_rude(me)+"！竟敢擅闖星宿禁地！");
                 kill_ob(me);
         }
 }
@@ -118,7 +118,7 @@ void kicking(object who)
 {
         if(!who || environment(who) != environment())  return;
         who->move("/d/xingxiu/cave");
-        message("vision","只听“呼”地一声，紧接着"+query("name", who)+"从黑暗中直飞出来，摔了个四脚朝天！\n",environment(who),who);
+        message("vision","只聽“呼”地一聲，緊接著"+query("name", who)+"從黑暗中直飛出來，摔了個四腳朝天！\n",environment(who),who);
         who->receive_wound("jing", 200);
         who->receive_wound("qi", 250);
         who->start_busy(5);
@@ -134,25 +134,25 @@ int accept_object(object who, object ob,object me)
         }
         if( query("id", ob) != "corpse" )
         {
-                command("say 这是什么东西？？");
+                command("say 這是什麼東西？？");
                 return 0;
         }
         if(userp(ob))
         {
                 command("stare"+query("id", who));
-                command("say 竟敢来这里欺骗我，给我滚出去！");
-                message_vision("\n说完$N双掌前推，一股内劲拂出，就将$n震出洞外！\n\n", this_object(), who);
+                command("say 竟敢來這裡欺騙我，給我滾出去！");
+                message_vision("\n說完$N雙掌前推，一股內勁拂出，就將$n震出洞外！\n\n", this_object(), who);
                 kicking(who);
                 return 0;
         }
         if( !query_temp("promotion_target", who) )
         {
-                command("say 你这样拿具尸体给我干什么？");
+                command("say 你這樣拿具屍體給我幹什麼？");
                 return 0;
         }
         if( query("kill_by", ob) != who )
         {
-                command("say 嘿嘿，练腐尸毒的尸体是需要自己亲自杀的，你另找一具吧。");
+                command("say 嘿嘿，練腐屍毒的屍體是需要自己親自殺的，你另找一具吧。");
                 return 0;
         }
         if( (query("victim_user", ob) && 
@@ -160,14 +160,14 @@ int accept_object(object who, object ob,object me)
                 (!query("victim_user", ob) && 
                 query("victim_exp", ob)<query("combat_exp", who)) )
         {
-                command("say 嘿嘿，我早就说过太弱的尸体没用，你另找一具吧。");
+                command("say 嘿嘿，我早就說過太弱的屍體沒用，你另找一具吧。");
                 return 0;
         }
         if (interactive(who) && (who->query_condition("xx_task") ||
                 who->query_condition("xx_task2")))
         {
                 command("pat"+query("id", who));
-                command("say 你还在为其他师兄弟们做事呢，等完成了再来我这里吧。");
+                command("say 你還在為其他師兄弟們做事呢，等完成了再來我這裡吧。");
                 return 0;
         }
         call_out("put_in", 4, ob, this_object(), who, obj);
@@ -180,13 +180,13 @@ int put_in(object corpse, object ob, object me, object obj)
         int i;
         if(!objectp(present(obj, environment(ob))))
         {
-                command("say 咦？石棺怎么不见了？");
+                command("say 咦？石棺怎麼不見了？");
                 command("drop corpse");
                 return 1;
         }
         if(!objectp(present(me, environment(ob))))
         {
-                command("say 耶？那家伙怎么不见了？");
+                command("say 耶？那傢伙怎麼不見了？");
                 command("drop corpse");
                 return 1;
         }
@@ -200,5 +200,5 @@ int put_in(object corpse, object ob, object me, object obj)
         set_temp("liandu_target",query("id",  me), obj);
         set("arg",query_temp("dest",  ob), obj);
         command("nod"+query("id", me));
-        command("say 好吧，你来试着练习(liandu)一下毒技吧。");
+        command("say 好吧，你來試著練習(liandu)一下毒技吧。");
 }

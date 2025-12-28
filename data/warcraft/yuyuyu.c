@@ -6,8 +6,8 @@ void setup()
 {
         set_name("玉兔[2;37;0m[2;37;0m", ({"yutu"}));        
         set("gender", "男性");                
-        set("long", "好可爱的小兔子噢[2;37;0m
-它是玉兔玉的魔幻兽。
+        set("long", "好可愛的小兔子噢[2;37;0m
+它是玉兔玉的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

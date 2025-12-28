@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "乱石滩");
+        set("short", "亂石灘");
         set("long", @LONG
-这里怪石林立，路极不好走，不小心就要摔个跟斗，过了
-这片石滩，就是长江岸边。
+這裡怪石林立，路極不好走，不小心就要摔個跟斗，過了
+這片石灘，就是長江岸邊。
 LONG);
         set("outdoors", "kunming");
         set("exits", ([

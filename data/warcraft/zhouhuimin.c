@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[5m[1;31m红颜知己[2;37;0m[2;37;0m", ({"ilovelong"}));        
+        set_name("[5m[1;31m紅顏知己[2;37;0m[2;37;0m", ({"ilovelong"}));        
         set("gender", "男性");                
-        set("long", "我爱我的龙龙[2;37;0m
-它是周慧敏的魔幻兽。
+        set("long", "我愛我的龍龍[2;37;0m
+它是周慧敏的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

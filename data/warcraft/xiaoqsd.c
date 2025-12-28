@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m小红[2;37;0m[2;37;0m", ({"sleep_bag"}));        
+        set_name("[1;31m小紅[2;37;0m[2;37;0m", ({"sleep_bag"}));        
         set("gender", "女性");                
-        set("long", "我的乖乖红[2;37;0m
-它是墨甜的魔幻兽。
+        set("long", "我的乖乖紅[2;37;0m
+它是墨甜的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

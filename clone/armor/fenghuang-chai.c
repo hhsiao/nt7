@@ -5,7 +5,7 @@ inherit HAIRPIN;
 
 void create()
 {
-        set_name(HIR "凤凰金钗" NOR, ({ "fenghuang chai", "fenghuang", "chai" }));
+        set_name(HIR "鳳凰金釵" NOR, ({ "fenghuang chai", "fenghuang", "chai" }));
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
@@ -18,7 +18,7 @@ void create()
                 set("armor_prop/int", 4);
                 set("armor_prop/con", 4);
                 set("limit", ([
-                        "sex" : 1, // 1 为女性
+                        "sex" : 1, // 1 為女性
                 ]));
         }
         setup();

@@ -5,15 +5,15 @@
 #include <ansi.h>
 int get_object(object ob);
 inherit ROOM;
-#define QUESTDIR1 "quest/天龙八部/凌波微步篇/"
+#define QUESTDIR1 "quest/天龍八部/凌波微步篇/"
 
 string look_down();
 void create()
 {
-	set("short", "白龙峰");
+	set("short", "白龍峰");
 	set("long", @LONG
-走出十余里，你来到无量山主峰的后山，已来到无量剑派禁地，任何外人
-不得擅入。这里丛林密布，山石怪异。旁边就是一深不见底的悬崖(cliff)。
+走出十餘里，你來到無量山主峰的後山，已來到無量劍派禁地，任何外人
+不得擅入。這裡叢林密佈，山石怪異。旁邊就是一深不見底的懸崖(cliff)。
 LONG
 	);
 	set("exits", ([
@@ -26,7 +26,7 @@ LONG
 
 	set("item_desc",([
 	   "cliff" : (: look_down :),
-	   "down" : "下面白茫茫的什么也看不见。\n"
+	   "down" : "下面白茫茫的什麼也看不見。\n"
 	]));
 	setup();
 }
@@ -49,7 +49,7 @@ int do_jump(string arg,object *obj)
 	      object me= this_player();
         if (!arg || (arg !="down" && arg !="cliff")) return 0;
         if(sizeof(obj)){
-         message_vision(HIR "$N脚下踩一个空，「啊～～～」发出一声惨叫，向下直坠下去。\n"NOR, me);
+         message_vision(HIR "$N腳下踩一個空，「啊～～～」發出一聲慘叫，向下直墜下去。\n"NOR, me);
          me->receive_wound("qi", 20);
          me->unconcious();
          me->move("/d/dali/shanlu3");
@@ -59,11 +59,11 @@ int do_jump(string arg,object *obj)
         if( query(QUESTDIR1+"start", me )
             && query(QUESTDIR1+"over", me) )
         {
-	       message_vision(HIR "$N脚下踩一个空，「啊～～～」发出一声惨叫，向下直坠下去。\n" 
-                            "$N坠下百余丈，撞到崖边一棵古松上，弹了几弹，下坠的巨力却也消了。\n" NOR, me);
+	       message_vision(HIR "$N腳下踩一個空，「啊～～～」發出一聲慘叫，向下直墜下去。\n" 
+                            "$N墜下百餘丈，撞到崖邊一棵古松上，彈了幾彈，下墜的巨力卻也消了。\n" NOR, me);
          me->move(__DIR__"bankong");
-         tell_object(me,HIY"\n你已不是第一次跳跃，看似危险，其实你早看好了方向，你半空一个凌身翻，\n"
-                           "抓住古松，再次借力又一个飞身，已经安全到达一棵树顶。你缓缓跃了下来。\n"NOR);
+         tell_object(me,HIY"\n你已不是第一次跳躍，看似危險，其實你早看好了方向，你半空一個凌身翻，\n"
+                           "抓住古松，再次借力又一個飛身，已經安全到達一棵樹頂。你緩緩躍了下來。\n"NOR);
          me->move(__DIR__"banshan1");
 	       return 1;
          }
@@ -73,12 +73,12 @@ int do_jump(string arg,object *obj)
          || query("marks/xiaoyao", me )
 )
         {
-	       message_vision(HIR "$N脚下踩一个空，「啊～～～」发出一声惨叫，向下直坠下去。\n" 
-         "$N坠下百余丈，撞到崖边一棵古松上，弹了几弹，下坠的巨力却也消了。\n" NOR, me);
+	       message_vision(HIR "$N腳下踩一個空，「啊～～～」發出一聲慘叫，向下直墜下去。\n" 
+         "$N墜下百餘丈，撞到崖邊一棵古松上，彈了幾彈，下墜的巨力卻也消了。\n" NOR, me);
          me->move(__DIR__"bankong");
 	       return 1;
          }
-         message_vision(HIR "$N脚下踩一个空，「啊～～～」发出一声惨叫，向下直坠下去。\n"NOR, me);          
+         message_vision(HIR "$N腳下踩一個空，「啊～～～」發出一聲慘叫，向下直墜下去。\n"NOR, me);          
          me->receive_wound("qi", 20);
          me->unconcious();
          me->move("/d/dali/shanlu3");
@@ -87,5 +87,5 @@ int do_jump(string arg,object *obj)
 
 string look_down()
 {
-	return  "下面(down)深不可测，根本看不到底，如果你要自杀，这到是个好地方。\n";
+	return  "下面(down)深不可測，根本看不到底，如果你要自殺，這到是個好地方。\n";
 }

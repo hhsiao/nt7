@@ -8,15 +8,15 @@ int give_quest(string arg);
 void create()
 {
         set_name("郭靖", ({"guo jing", "guo", "jing"}));
-        set("nickname", HIY "北侠" NOR);
-        set_temp("title", HIW"大宋兵马大元帅"NOR);
+        set("nickname", HIY "北俠" NOR);
+        set_temp("title", HIW"大宋兵馬大元帥"NOR);
         set("gender", "男性");
         set("age", 41);
         set("long",
-                "他就是人称北侠的郭靖，既是蒙古成吉思汗的金刀驸马，又是\n"
-                "江南七怪、全真派马钰道长、「北丐」洪七公和「老顽童」周\n"
-                "伯通等人的徒弟，身兼数门武功。他身着一件灰色长袍，体态\n"
-                "魁梧，敦厚的面目中透出一股威严。\n");
+                "他就是人稱北俠的郭靖，既是蒙古成吉思汗的金刀駙馬，又是\n"
+                "江南七怪、全真派馬鈺道長、「北丐」洪七公和「老頑童」周\n"
+                "伯通等人的徒弟，身兼數門武功。他身著一件灰色長袍，體態\n"
+                "魁梧，敦厚的面目中透出一股威嚴。\n");
         set("attitude", "friendly");
         set_max_encumbrance(100000000);
         set_temp("warquest/party", "song");
@@ -27,35 +27,35 @@ void create()
         set("dex", 25);
         set("chat_chance", 1);
         set("chat_msg", ({
-                "郭靖叹了口气道：“蒙古兵久攻襄阳不下，一定会再出诡计，蓉儿又不在身边，这....\n",
-                "郭靖说道：“华筝公主近来不知可好，抽空一定要回大漠去看看她。\n",
+                "郭靖嘆了口氣道：“蒙古兵久攻襄陽不下，一定會再出詭計，蓉兒又不在身邊，這....\n",
+                "郭靖說道：“華箏公主近來不知可好，抽空一定要回大漠去看看她。\n",
         }));
 
         set("inquiry", ([
-                "周伯通" : "你见到我周大哥了？他现在可好？\n",
-                "老顽童" : "周大哥一贯这样，没点正经！\n",
-                "洪七公" : "师父除了吃，就是喜欢玩。到处玩，还是为了找吃的。\n",
-                "黄药师" : "那是我泰山大人。他云游四海，神龙见首不见尾的。\n",
-                "一灯大师" : "在下对大师好生感激。\n",
-                "欧阳锋" : "这个老毒物，害死我六位师父，一待襄阳事了，决不与他干休。\n",
-                "黄蓉"   : "蓉儿是我的爱妻，你问她做甚？\n",
-                "蓉儿"   : "蓉儿就是蓉儿了。你问这么多干嘛？\n",
-                "郭芙"   : "这个女儿，又笨又不听话。\n",
-                "郭襄"   : "襄儿生于乱世，这辈子又多艰厄。但愿她能快乐一世。\n",
-                "郭破虏" : "那是我的小儿子。\n",
-                "杨过"   : "过儿确实有出息。\n",
-                "马钰"   : "马道长于我有半师之谊。\n",
-                "丘处机" : "邱道长义薄云天，是真豪杰。\n",
-                "柯镇恶" : "那是我大师父。\n",
-                "朱聪"   : "那是我二师父。\n",
-                "韩宝驹" : "那是我三师父。\n",
-                "南希仁" : "那是我四师父。\n",
-                "张阿生" : "那是我五师父。\n",
-                "全金发" : "那是我六师父。\n",
-                "韩小莹" : "那是我七师父。\n",
-                "丐帮"   : "丐帮英雄几百年了，守卫襄阳多亏了他们。\n",
-                "拜师"   : "现在蒙古人围攻襄阳，我哪有心情收徒啊！\n",
-                "领取任务" : "格式：lingming houqin-baozhang",
+                "周伯通" : "你見到我周大哥了？他現在可好？\n",
+                "老頑童" : "周大哥一貫這樣，沒點正經！\n",
+                "洪七公" : "師父除了吃，就是喜歡玩。到處玩，還是為了找吃的。\n",
+                "黃藥師" : "那是我泰山大人。他雲遊四海，神龍見首不見尾的。\n",
+                "一燈大師" : "在下對大師好生感激。\n",
+                "歐陽鋒" : "這個老毒物，害死我六位師父，一待襄陽事了，決不與他干休。\n",
+                "黃蓉"   : "蓉兒是我的愛妻，你問她做甚？\n",
+                "蓉兒"   : "蓉兒就是蓉兒了。你問這麼多幹嘛？\n",
+                "郭芙"   : "這個女兒，又笨又不聽話。\n",
+                "郭襄"   : "襄兒生於亂世，這輩子又多艱厄。但願她能快樂一世。\n",
+                "郭破虜" : "那是我的小兒子。\n",
+                "楊過"   : "過兒確實有出息。\n",
+                "馬鈺"   : "馬道長於我有半師之誼。\n",
+                "丘處機" : "邱道長義薄雲天，是真豪傑。\n",
+                "柯鎮惡" : "那是我大師父。\n",
+                "朱聰"   : "那是我二師父。\n",
+                "韓寶駒" : "那是我三師父。\n",
+                "南希仁" : "那是我四師父。\n",
+                "張阿生" : "那是我五師父。\n",
+                "全金髮" : "那是我六師父。\n",
+                "韓小瑩" : "那是我七師父。\n",
+                "丐幫"   : "丐幫英雄幾百年了，守衛襄陽多虧了他們。\n",
+                "拜師"   : "現在蒙古人圍攻襄陽，我哪有心情收徒啊！\n",
+                "領取任務" : "格式：lingming houqin-baozhang",
                 ]));
 
         set("qi", 10000);
@@ -69,12 +69,12 @@ void create()
         set("combat_exp", 25000000);
         set("score", 200000);
 
-        set_skill("force", 400);                // 基本内功
-        set_skill("huntian-qigong", 400);       // 混天气功
-        set_skill("strike", 400);               // 基本拳脚
-        set_skill("dragon-strike", 400);        // 降龙十八掌
-        set_skill("dodge", 400);                // 基本躲闪
-        set_skill("xiaoyaoyou", 400);           // 逍遥游
+        set_skill("force", 400);                // 基本內功
+        set_skill("huntian-qigong", 400);       // 混天氣功
+        set_skill("strike", 400);               // 基本拳腳
+        set_skill("dragon-strike", 400);        // 降龍十八掌
+        set_skill("dodge", 400);                // 基本躲閃
+        set_skill("xiaoyaoyou", 400);           // 逍遙遊
         set_skill("parry", 400);                // 基本招架
         set_skill("arrow", 400);
         set_skill("lianzhu-arrow", 400);
@@ -128,13 +128,13 @@ int give_quest(string arg)
         
         if (! arg)
         {
-                tell_object(ob, "你想要领命去干什么事情？！\n");
+                tell_object(ob, "你想要領命去幹什麼事情？！\n");
                 return 1;
         }
         
         if( query_temp("warquest/party", ob) != "song" )
         {
-                tell_object(ob, "你还没有参加宋军，如何领命啊？！\n");
+                tell_object(ob, "你還沒有參加宋軍，如何領命啊？！\n");
                 return 1;
         }
                 
@@ -145,14 +145,14 @@ int give_quest(string arg)
                 if( query_temp("warquest/train", ob )
                  && query_temp("warquest/train", ob) != "infantry" )
                 {
-                        tell_object(ob, "你已经另有他职了！\n");
+                        tell_object(ob, "你已經另有他職了！\n");
                         return 1;
                 }
 
-                message_vision(HIR "$N略一沉思，从案前抽出一枚令箭道：“$n听令，" +
-                               "近来军中几无能战之师，\n命你加紧训练一支精锐步兵，以备不时之需，" +
-                               "不得有误！\n" NOR, me, ob);
-                set_temp("title", HIW"大宋步兵营统领"NOR, ob);
+                message_vision(HIR "$N略一沉思，從案前抽出一枚令箭道：“$n聽令，" +
+                               "近來軍中幾無能戰之師，\n命你加緊訓練一支精銳步兵，以備不時之需，" +
+                               "不得有誤！\n" NOR, me, ob);
+                set_temp("title", HIW"大宋步兵營統領"NOR, ob);
                 if (! present("ling jian", ob))
                 {
                         ling = new("/adm/npc/obj/lingjian");
@@ -160,7 +160,7 @@ int give_quest(string arg)
                         ling->move(ob);
                 }
                 set_temp("warquest/train", "infantry", ob);
-                set_temp("warquest/quest", "训练步兵，作战准备", ob);
+                set_temp("warquest/quest", "訓練步兵，作戰準備", ob);
                 ob->command("drill");
                 break;
 
@@ -169,15 +169,15 @@ int give_quest(string arg)
                 if( query_temp("warquest/train", ob )
                  && query_temp("warquest/train", ob) != "cavalry" )
                 {
-                        tell_object(ob, "你已经另有他职了！\n");
+                        tell_object(ob, "你已經另有他職了！\n");
                         return 1;
                 }
 
-                message_vision(HIR "$N略一沉思，从案前抽出一枚令箭道：“$n听令，" +
-                               "近来军中几无能战之师，\n命你加紧训练一支精锐骑兵，以备不时之需，" +
-                               "不得有误！\n" NOR, me, ob);
+                message_vision(HIR "$N略一沉思，從案前抽出一枚令箭道：“$n聽令，" +
+                               "近來軍中幾無能戰之師，\n命你加緊訓練一支精銳騎兵，以備不時之需，" +
+                               "不得有誤！\n" NOR, me, ob);
 
-                set_temp("title", HIR"大宋车骑营统领"NOR, ob);
+                set_temp("title", HIR"大宋車騎營統領"NOR, ob);
                 if (! present("zhan ma", ob))
                 {
                         horse = new("/maze/battle3/song/horse");
@@ -192,7 +192,7 @@ int give_quest(string arg)
                         ling->move(ob);
                 }
                 set_temp("warquest/train", "cavalry", ob);
-                set_temp("warquest/quest", "训练骑兵，作战准备", ob);
+                set_temp("warquest/quest", "訓練騎兵，作戰準備", ob);
                 ob->command("drill");
                 break;
 
@@ -201,14 +201,14 @@ int give_quest(string arg)
                 if( query_temp("warquest/train", ob )
                  && query_temp("warquest/train", ob) != "archer" )
                 {
-                        tell_object(ob, "你已经另有他职了！\n");
+                        tell_object(ob, "你已經另有他職了！\n");
                         return 1;
                 }
 
-                message_vision(HIR "$N略一沉思，从案前抽出一枚令箭道：“$n听令，" +
-                               "近来军中几无能战之师，\n命你加紧训练一支精锐弓箭手，以备不时之需，" +
-                               "不得有误！\n" NOR, me, ob);
-                set_temp("title", HIB"大宋神弩营统领"NOR, ob);
+                message_vision(HIR "$N略一沉思，從案前抽出一枚令箭道：“$n聽令，" +
+                               "近來軍中幾無能戰之師，\n命你加緊訓練一支精銳弓箭手，以備不時之需，" +
+                               "不得有誤！\n" NOR, me, ob);
+                set_temp("title", HIB"大宋神弩營統領"NOR, ob);
                 if (! present("ling jian", ob))
                 {
                         ling = new("/adm/npc/obj/lingjian");
@@ -217,7 +217,7 @@ int give_quest(string arg)
                 }
 
                 set_temp("warquest/train", "archer", ob);
-                set_temp("warquest/quest", "训练弓兵，作战准备", ob);
+                set_temp("warquest/quest", "訓練弓兵，作戰準備", ob);
                 ob->command("drill");
                 break;
                 
@@ -225,11 +225,11 @@ int give_quest(string arg)
                 count = 600000;
                 if( WAR_D->query_moneys() < 600000 )
                 {
-                        message_vision(HIR "$N略一沉思，从案前抽出一枚令箭道：“$n听令，" +
-                               "近来军中粮草匮乏，\n命你火速率部，在半月内将京师供应之粮草押解" +
-                               "至军中，如有延误，军法论处！\n" NOR, me, ob);
+                        message_vision(HIR "$N略一沉思，從案前抽出一枚令箭道：“$n聽令，" +
+                               "近來軍中糧草匱乏，\n命你火速率部，在半月內將京師供應之糧草押解" +
+                               "至軍中，如有延誤，軍法論處！\n" NOR, me, ob);
 
-                        set_temp("title", HIY"大宋军备营统领"NOR, ob);
+                        set_temp("title", HIY"大宋軍備營統領"NOR, ob);
                         if (! present("ling jian", ob))
                         {
                                 ling = new("/adm/npc/obj/lingjian");
@@ -237,15 +237,15 @@ int give_quest(string arg)
                                 ling->move(ob);
                         }
                         set_temp("warquest/purchase", "forage", ob);
-                        set_temp("warquest/quest", "押运粮草，补充军备", ob);
+                        set_temp("warquest/quest", "押運糧草，補充軍備", ob);
                         ob->command("stock");
                 } 
                 else if( WAR_D->query_soilders(me) < 2000 )
                 {        
-                        message_vision(HIR "$N略一沉思，从案前抽出一枚令箭道：“$n听令，" +
-                               "近来军中兵员匮乏，\n命你火速率部，赶去襄阳城内招募新兵" +
-                               "至军中，如有延误，军法论处！\n" NOR, me, ob);
-                        set_temp("title", HIY"大宋军备营统领"NOR, ob);
+                        message_vision(HIR "$N略一沉思，從案前抽出一枚令箭道：“$n聽令，" +
+                               "近來軍中兵員匱乏，\n命你火速率部，趕去襄陽城內招募新兵" +
+                               "至軍中，如有延誤，軍法論處！\n" NOR, me, ob);
+                        set_temp("title", HIY"大宋軍備營統領"NOR, ob);
                         if (! present("ling jian", ob))
                         {
                                 ling = new("/adm/npc/obj/lingjian");
@@ -253,16 +253,16 @@ int give_quest(string arg)
                                 ling->move(ob);
                         }
                         set_temp("warquest/purchase", "enlist", ob);
-                        set_temp("warquest/quest", "招募新兵，补充兵源", ob);
+                        set_temp("warquest/quest", "招募新兵，補充兵源", ob);
                         WAR_D->change_moneys(-count);
                         ob->command("stock");
                 }
                 else if( WAR_D->query_weapons(me) < 4000 )
                 {               
-                        message_vision(HIR "$N略一沉思，从案前抽出一枚令箭道：“$n听令，" +
-                               "近来军中兵器和盔甲匮乏，\n命你火速率部，赶去襄阳城内采购兵器和盔甲" +
-                               "至军中，如有延误，军法论处！\n" NOR, me, ob);
-                        set_temp("title", HIY"大宋军备营统领"NOR, ob);
+                        message_vision(HIR "$N略一沉思，從案前抽出一枚令箭道：“$n聽令，" +
+                               "近來軍中兵器和盔甲匱乏，\n命你火速率部，趕去襄陽城內採購兵器和盔甲" +
+                               "至軍中，如有延誤，軍法論處！\n" NOR, me, ob);
+                        set_temp("title", HIY"大宋軍備營統領"NOR, ob);
                         if (! present("ling jian", ob))
                         {
                                 ling = new("/adm/npc/obj/lingjian");
@@ -270,16 +270,16 @@ int give_quest(string arg)
                                 ling->move(ob);
                         }
                         set_temp("warquest/purchase", "weapon", ob);
-                        set_temp("warquest/quest", "购置兵甲，补充军备", ob);
+                        set_temp("warquest/quest", "購置兵甲，補充軍備", ob);
                         WAR_D->change_moneys(-count);
                         ob->command("stock");
                 }
                 else if( WAR_D->query_arrows(me) < 2000 )
                 {
-                        message_vision(HIR "$N略一沉思，从案前抽出一枚令箭道：“$n听令，" +
-                               "近来军营箭楼羽箭匮乏，\n命你火速率部，赶去襄阳城内采购羽箭" +
-                               "至军中，如有延误，军法论处！\n" NOR, me, ob);
-                        set_temp("title", HIY"大宋军备营统领"NOR, ob);
+                        message_vision(HIR "$N略一沉思，從案前抽出一枚令箭道：“$n聽令，" +
+                               "近來軍營箭樓羽箭匱乏，\n命你火速率部，趕去襄陽城內採購羽箭" +
+                               "至軍中，如有延誤，軍法論處！\n" NOR, me, ob);
+                        set_temp("title", HIY"大宋軍備營統領"NOR, ob);
                         if (! present("ling jian", ob))
                         {
                                 ling = new("/adm/npc/obj/lingjian");
@@ -287,16 +287,16 @@ int give_quest(string arg)
                                 ling->move(ob);
                         }
                         set_temp("warquest/purchase", "arrow", ob);
-                        set_temp("warquest/quest", "购置羽箭，补充军备", ob);
+                        set_temp("warquest/quest", "購置羽箭，補充軍備", ob);
                         WAR_D->change_moneys(-count);
                         ob->command("stock");
                 }
                 else if( WAR_D->query_horses(me) < 2000 )
                 {
-                        message_vision(HIR "$N略一沉思，从案前抽出一枚令箭道：“$n听令，" +
-                               "近来军中战马匮乏，\n命你火速率部，赶去襄阳城内采购战马" +
-                               "至军中，如有延误，军法论处！\n" NOR, me, ob);
-                        set_temp("title", HIY"大宋军备营统领"NOR, ob);
+                        message_vision(HIR "$N略一沉思，從案前抽出一枚令箭道：“$n聽令，" +
+                               "近來軍中戰馬匱乏，\n命你火速率部，趕去襄陽城內採購戰馬" +
+                               "至軍中，如有延誤，軍法論處！\n" NOR, me, ob);
+                        set_temp("title", HIY"大宋軍備營統領"NOR, ob);
                         if (! present("ling jian", ob))
                         {
                                 ling = new("/adm/npc/obj/lingjian");
@@ -304,16 +304,16 @@ int give_quest(string arg)
                                 ling->move(ob);
                         }
                         set_temp("warquest/purchase", "horse", ob);
-                        set_temp("warquest/quest", "购置战马，补充军备", ob);
+                        set_temp("warquest/quest", "購置戰馬，補充軍備", ob);
                         WAR_D->change_moneys(-count);
                         ob->command("stock");
                 }
                 else if( WAR_D->query_stones(me) < 2000 )
                 {
-                        message_vision(HIR "$N略一沉思，从案前抽出一枚令箭道：“$n听令，" +
-                               "近来军中滚石和檑木匮乏，\n命你火速率部，赶去襄阳城内采购石头和木材" +
-                               "至军中，如有延误，军法论处！\n" NOR, me, ob);
-                        set_temp("title", HIY"大宋军备营统领"NOR, ob);
+                        message_vision(HIR "$N略一沉思，從案前抽出一枚令箭道：“$n聽令，" +
+                               "近來軍中滾石和檑木匱乏，\n命你火速率部，趕去襄陽城內採購石頭和木材" +
+                               "至軍中，如有延誤，軍法論處！\n" NOR, me, ob);
+                        set_temp("title", HIY"大宋軍備營統領"NOR, ob);
                         if (! present("ling jian", ob))
                         {
                                 ling = new("/adm/npc/obj/lingjian");
@@ -321,29 +321,29 @@ int give_quest(string arg)
                                 ling->move(ob);
                         }
                         set_temp("warquest/purchase", "stone", ob);
-                        set_temp("warquest/quest", "购置石木，补充军备", ob);
+                        set_temp("warquest/quest", "購置石木，補充軍備", ob);
                         WAR_D->change_moneys(-count);
                         ob->command("stock");
                 }
                 else if( WAR_D->query_economy(me) < 1200000 )
                 {
-                        message_vision(HIR "$N略一沉思，从案前抽出一枚令箭道：“$n听令，" +
-                               "近来蒙古骑兵常骚扰我大宋襄阳城，\n命你火速率部，赶去襄阳驻守城池" +
-                               "，如有延误，军法论处！\n" NOR, me, ob);
-                        set_temp("title", HIY"大宋后防营统领"NOR, ob);
+                        message_vision(HIR "$N略一沉思，從案前抽出一枚令箭道：“$n聽令，" +
+                               "近來蒙古騎兵常騷擾我大宋襄陽城，\n命你火速率部，趕去襄陽駐守城池" +
+                               "，如有延誤，軍法論處！\n" NOR, me, ob);
+                        set_temp("title", HIY"大宋後防營統領"NOR, ob);
 
                         set_temp("warquest/guard", 1, ob);
-                        set_temp("warquest/quest", "守卫襄阳，稳固后方", ob);
+                        set_temp("warquest/quest", "守衛襄陽，穩固後方", ob);
                         // ob->command("guard");
                         ob->move("/d/xiangyang/guofuting");
                 }
                 else
                 {
-                        message_vision(HIR "$N略一沉思，从案前抽出一枚令箭道：“$n听令，" +
-                               "近来军中粮草匮乏，\n命你火速率部，在半月内将京师供应之粮草押解" +
-                               "至军中，如有延误，军法论处！\n" NOR, me, ob);
+                        message_vision(HIR "$N略一沉思，從案前抽出一枚令箭道：“$n聽令，" +
+                               "近來軍中糧草匱乏，\n命你火速率部，在半月內將京師供應之糧草押解" +
+                               "至軍中，如有延誤，軍法論處！\n" NOR, me, ob);
 
-                        set_temp("title", HIY"大宋军备营统领"NOR, ob);
+                        set_temp("title", HIY"大宋軍備營統領"NOR, ob);
                         if (! present("ling jian", ob))
                         {
                                 ling = new("/adm/npc/obj/lingjian");
@@ -351,16 +351,16 @@ int give_quest(string arg)
                                 ling->move(ob);
                         }
                         set_temp("warquest/purchase", "forage", ob);
-                        set_temp("warquest/quest", "押运粮草，补充军备", ob);
+                        set_temp("warquest/quest", "押運糧草，補充軍備", ob);
                         ob->command("stock");
                 }
                 break;
         default:
-                tell_object(ob, "你想要领命做什么事情？！\n");
+                tell_object(ob, "你想要領命做什麼事情？！\n");
                 return 1;
         }
 
-        message_vision("众将领大声应道：末将遵命！！\n", me, ob);
+        message_vision("眾將領大聲應道：末將遵命！！\n", me, ob);
         return 1;
 }
 
@@ -369,7 +369,7 @@ int accept_hit(object me)
         if (playerp(me))
         {
                 command("heng");
-                command("say 你要想要找死吗！");
+                command("say 你要想要找死嗎！");
                 return 0;
         }
 }
@@ -379,7 +379,7 @@ int accept_fight(object me)
         if (playerp(me))
         {
                 command("heng");
-                command("say 你要想要找死吗！");
+                command("say 你要想要找死嗎！");
                 return 0;
         }
 }
@@ -388,7 +388,7 @@ int accept_kill(object me)
 {
         if (playerp(me))
         {
-                message_vision(CYN "$N" CYN "大怒道：“看来你是真的想找死！”，说罢一掌把$n" CYN
+                message_vision(CYN "$N" CYN "大怒道：“看來你是真的想找死！”，說罷一掌把$n" CYN
                                "劈倒在地。\n" NOR, this_object(), me);
                 me->unconcious();
                 return -1;

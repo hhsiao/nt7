@@ -7,7 +7,7 @@ inherit "/inherit/char/punisher";
 void create()
 {
         set_name("穆人清", ({ "mu renqing", "mu", "renqing" }));
-        set("title", HIY "拳剑无双" NOR);
+        set("title", HIY "拳劍無雙" NOR);
 
         set("gender", "男性");
         set("attitude", "peaceful");
@@ -54,7 +54,7 @@ void create()
         map_skill("sword", "huashan-sword");
         map_skill("strike", "hunyuan-zhang");
 
-        create_family("华山派", 18, "弟子");
+        create_family("華山派", 18, "弟子");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({

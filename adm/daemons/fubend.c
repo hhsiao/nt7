@@ -37,8 +37,8 @@ int clean_up() { return 1; }
 void create()
 {
         seteuid(ROOT_UID);
-        set("channel_id", "副本精灵");
-        CHANNEL_D->do_channel(this_object(), "sys", "副本系统已经启动。");
+        set("channel_id", "副本精靈");
+        CHANNEL_D->do_channel(this_object(), "sys", "副本系統已經啟動。");
         load_all_fuben();
 }
 
@@ -119,7 +119,7 @@ mixed compile_private_object(string file)
                 return 0;
         }
         dir[0] = "";
-        rfile = implode(dir,"/"); // 正常区域房间
+        rfile = implode(dir,"/"); // 正常區域房間
         //ob = load_object(rfile);
         ob = new(rfile);
         if( ob ) {
@@ -145,7 +145,7 @@ int enter_fuben_private(object me, string file)
         int time = 3600;
 
         if( me->query_condition("killer") ) {
-                tell_object(me, "你是被通缉的罪犯，无法进入副本！\n");
+                tell_object(me, "你是被通緝的罪犯，無法進入副本！\n");
                 return 0;
         }
 
@@ -153,7 +153,7 @@ int enter_fuben_private(object me, string file)
         if( sizeof(inv) > 0 ) {
                 foreach( object ob in inv ) {
                         if( interactive(ob) || userp(ob) ) {
-                                tell_object(me, "你不可以将其他玩家背进副本。\n");
+                                tell_object(me, "你不可以將其他玩家背進副本。\n");
                                 return 0;
                         }
                 }
@@ -189,7 +189,7 @@ int enter_fuben_private(object me, string file)
                 if( time < 10 ) time = 10;
 
                 if( time()-query("fuben_private/"+fbname, me) < time ) {
-                        tell_object(me, "你距离上次进入该副本时间太短，请稍后再试。\n");
+                        tell_object(me, "你距離上次進入該副本時間太短，請稍後再試。\n");
                         return 0;
                 }
                 if( me->in_team() ) {
@@ -224,7 +224,7 @@ int enter_fuben_private(object me, string file)
                                 if( time < 10 ) time = 10;
 
                                 if( time()-query("fuben_private/"+fbname, usr) < time ) {
-                                        tell_object(me, usr->name()+"距离上次进入该副本时间太短，请稍后再试。\n");
+                                        tell_object(me, usr->name()+"距離上次進入該副本時間太短，請稍後再試。\n");
                                         return 0;
                                 }
                         }
@@ -246,10 +246,10 @@ int enter_fuben_private(object me, string file)
                                 }
                         } else
                         me->move(startroom);
-                        //CHANNEL_D->do_channel(this_object(),"sys",query("name",me)+"("+owner+")"+"进入了副本"+fbname+"。");
+                        //CHANNEL_D->do_channel(this_object(),"sys",query("name",me)+"("+owner+")"+"進入了副本"+fbname+"。");
                         ret = SCHEDULE_D->set_event(dest_time, 0, this_object(), "delay_clear_fuben_private", file, owner);
                         set_temp("fuben_private_event", ret, me);
-                        set("fuben_private/"+fbname, time(), me); // 记录时间
+                        set("fuben_private/"+fbname, time(), me); // 記錄時間
                         if( undefinedp(fuben_private_all[fbname]) )
                                 fuben_private_all[fbname] = ([]);
                         dest_time += time();
@@ -267,12 +267,12 @@ public int enter_fuben(object me, string fbname)
         int ret, dest_time;
 
         if( undefinedp(fuben_data[fbname]) ) {
-                tell_object(me, "没有这个副本。\n");
+                tell_object(me, "沒有這個副本。\n");
                 return 0;
         }
 
         if( me->query_condition("killer") ) {
-                tell_object(me, "你是被通缉的罪犯，无法进入副本！\n");
+                tell_object(me, "你是被通緝的罪犯，無法進入副本！\n");
                 return 0;
         }
 
@@ -280,7 +280,7 @@ public int enter_fuben(object me, string fbname)
         if( sizeof(inv) > 0 ) {
                 foreach( object ob in inv ) {
                         if( interactive(ob) || userp(ob) ) {
-                                tell_object(me, "你不可以将其他玩家背进副本。\n");
+                                tell_object(me, "你不可以將其他玩家背進副本。\n");
                                 return 0;
                         }
                 }
@@ -288,12 +288,12 @@ public int enter_fuben(object me, string fbname)
 
         if( !undefinedp(fuben_data[fbname]["team"]) ) {
                 if( !me->in_team() ) {
-                        tell_object(me, "你必须组队才能进入这个副本！\n");
+                        tell_object(me, "你必須組隊才能進入這個副本！\n");
                         return 0;
                 }
 
                 if( !objectp(me->query_team_leader()) ) {
-                        tell_object(me, "你的队伍好象出现了问题！\n");
+                        tell_object(me, "你的隊伍好象出現了問題！\n");
                         return 0;
                 }
                 owner=(query("id", me->query_team_leader()));
@@ -302,7 +302,7 @@ public int enter_fuben(object me, string fbname)
                         owner=query("id", me);
                 } else {
                         if( !objectp(me->query_team_leader()) ) {
-                                tell_object(me, "你的队伍好象出现了问题！\n");
+                                tell_object(me, "你的隊伍好象出現了問題！\n");
                                 return 0;
                         }
                         owner=(query("id", me->query_team_leader()));
@@ -319,7 +319,7 @@ public int enter_fuben(object me, string fbname)
         entry = find_object(filename);
         if( !entry ) {
                 if( me->in_team() && !me->is_team_leader() ) {
-                        tell_object(me, "必须由队长来创建副本！\n");
+                        tell_object(me, "必須由隊長來創建副本！\n");
                         return 0;
                 }
                 if( undefinedp(fuben_list[fbname]) )
@@ -350,9 +350,9 @@ public int enter_fuben(object me, string fbname)
         if( entry ) {
                 /*
                 CHANNEL_D->do_channel(this_object(),"sys",
-                        query("name", me)+"("+query("id", me)+")"+"进入了副本"+fbname+"("+owner+")。");
+                        query("name", me)+"("+query("id", me)+")"+"進入了副本"+fbname+"("+owner+")。");
                 */
-                tell_object(me, HIR "祝你好运气！\n" NOR);
+                tell_object(me, HIR "祝你好運氣！\n" NOR);
                 me->move(entry);
 
                 return 1;
@@ -558,7 +558,7 @@ public int delay_clear_fuben_private(string fbname,string owner)
 
         file = "/p/"+owner+fbname;
         if( objectp(room=find_object(file)) )
-                tell_room(room, HBCYN+fuben_private_list[fbname]+"("+owner+")副本将在"+DELAY_CLEAR_TIME+"秒后消失。\n"NOR);
+                tell_room(room, HBCYN+fuben_private_list[fbname]+"("+owner+")副本將在"+DELAY_CLEAR_TIME+"秒後消失。\n"NOR);
         call_out("clear_fuben_private",DELAY_CLEAR_TIME,fbname,owner);
         return 1;
 }
@@ -585,7 +585,7 @@ int clear_fuben_private(string fbname,string owner)
                                                 ob->move(outroom);
                                         else
                                                 ob->move(VOID_OB);
-                                        tell_object(ob,"当前副本已到最大时间，系统强制重置。\n");
+                                        tell_object(ob,"當前副本已到最大時間，系統強制重置。\n");
                                 }
                         }
                 }
@@ -598,7 +598,7 @@ int clear_fuben_private(string fbname,string owner)
 
 public int delay_clear_fuben(string fbname,string owner)
 {
-        tell_fuben(fbname,owner,HBCYN+fuben_data[fbname]["name"]+"("+owner+")副本将在"+DELAY_CLEAR_TIME+"秒后消失。\n"NOR);
+        tell_fuben(fbname,owner,HBCYN+fuben_data[fbname]["name"]+"("+owner+")副本將在"+DELAY_CLEAR_TIME+"秒後消失。\n"NOR);
         call_out("clear_fuben",DELAY_CLEAR_TIME,fbname,owner);
         return 1;
 }
@@ -627,14 +627,14 @@ public int clear_fuben(string fbname,string owner)
         }
         if( out ) outroom = get_object(out);
         else      outroom = get_object(VOID_OB);
-        tell_fuben(fbname,owner,HBCYN+fuben_data[fbname]["name"]+"("+owner+")副本空间被摧毁。\n"NOR);
+        tell_fuben(fbname,owner,HBCYN+fuben_data[fbname]["name"]+"("+owner+")副本空間被摧毀。\n"NOR);
         for( i=0;i<sz;i++ ) {
                 file = "/f/"+fbname+"/"+owner+"/"+key[i];
                 if( objectp(room = find_object(file)) ) {
                         if( room->is_maze() )
-                                room->remove_all_players(outroom, "一阵时空的扭曲将你传送到另一个地方....\n");
+                                room->remove_all_players(outroom, "一陣時空的扭曲將你傳送到另一個地方....\n");
                         else if( arrayp(inv = all_inventory(room)) ) {
-                                tell_room(room, "一阵时空的扭曲将你传送到另一个地方....\n");
+                                tell_room(room, "一陣時空的扭曲將你傳送到另一個地方....\n");
                                 for( j=sizeof(inv)-1;j>=0;j-- ) {
                                          if( interactive(inv[j])||userp(inv[j])||inv[j]->is_worm2()||inv[j]->is_warcraft() ) {
                                                 clear_maze_item(inv[j]);
@@ -648,7 +648,7 @@ public int clear_fuben(string fbname,string owner)
         if( mapp(fuben_all[fbname]) )
                 map_delete(fuben_all[fbname], owner);
 
-        //CHANNEL_D->do_channel(this_object(),"sys","系统清理了副本"+fbname+"("+owner+")。");
+        //CHANNEL_D->do_channel(this_object(),"sys","系統清理了副本"+fbname+"("+owner+")。");
 
         if( !MEMBER_D->is_valid_member(owner) ) {
                 if( undefinedp(all[fbname]) )
@@ -698,7 +698,7 @@ public int valid_enter(object usr, string fbname)
         int time;
 
         if( !state || member_array(fbname, valid_fbname) != -1 ) {
-                tell_object(usr, "该副本被巫师关闭，您暂时无法进入。\n");
+                tell_object(usr, "該副本被巫師關閉，您暫時無法進入。\n");
                 return -4;
         }
 
@@ -707,13 +707,13 @@ public int valid_enter(object usr, string fbname)
                     !undefinedp(all[fbname][query_ip_number(usr)]) &&
                     !MEMBER_D->is_valid_member(usr) &&
                     sizeof(all[fbname][query_ip_number(usr)]) > VALID_CREATE_NUMBER ) {
-                        tell_object(usr, "该副本限制IP多重进入，您已经超过最高上限。\n");
+                        tell_object(usr, "該副本限制IP多重進入，您已經超過最高上限。\n");
                         return -3;
                 }
         }
 
         if( undefinedp(fuben_data[fbname]) ) {
-                tell_object(usr, "游戏中目前并没有开放该副本，请您核对后再试。\n");
+                tell_object(usr, "遊戲中目前並沒有開放該副本，請您核對後再試。\n");
                 return -2;
         }
 
@@ -722,12 +722,12 @@ public int valid_enter(object usr, string fbname)
                 return 1;
 
         if( query("level", usr)<to_int(fuben_data[fbname]["level"])){
-                tell_object(usr, "您实战经验不足，进副本恐有不测，还是先历练一下再来吧。\n");
+                tell_object(usr, "您實戰經驗不足，進副本恐有不測，還是先歷練一下再來吧。\n");
                 return 0;
         }
 
         if( query("level", usr) >= to_int(fuben_data[fbname]["level"]) ){
-                tell_object(usr, "您经验太高了，就不要进去欺负那些可怜的小怪物了吧。\n");
+                tell_object(usr, "您經驗太高了，就不要進去欺負那些可憐的小怪物了吧。\n");
                 return -1;
         }
         */
@@ -762,26 +762,26 @@ public int valid_enter(object usr, string fbname)
                 if( time < 10 ) time = 10;
 
                 if( time()-query("fuben/"+fbname, usr) < time ) {
-                        tell_object(usr, "你离上次进入副本时间太短，请休息会再来。\n");
+                        tell_object(usr, "你離上次進入副本時間太短，請休息會再來。\n");
                         return -5;
                 }
         }
 
         if( !undefinedp(fuben_data[fbname]["team"]) ) {
                 if( !usr->in_team() || !sizeof(usr->query_team()) ) {
-                        tell_object(usr, "该副本必须组队才能进入。\n");
+                        tell_object(usr, "該副本必須組隊才能進入。\n");
                         return -6;
                 }
 
                 if( sizeof(usr->query_team()) > to_int(fuben_data[fbname]["team"]) ) {
-                        tell_object(usr, "你的队伍人数超过该副本规定的上限。\n");
+                        tell_object(usr, "你的隊伍人數超過該副本規定的上限。\n");
                         return -7;
                 }
         }
 
         if( !undefinedp(fuben_data[fbname]["single"]) ) {
                 if( usr->in_team() && usr->is_team_leader() ) {
-                        tell_object(usr, "该副本是单人副本，您必须解散队伍方可进入。\n");
+                        tell_object(usr, "該副本是單人副本，您必須解散隊伍方可進入。\n");
                         return -8;
                 }
         }
@@ -793,20 +793,20 @@ public int valid_enter(object usr, string fbname)
 public int close_fuben(object me, string fbname)
 {
         if( !stringp(fbname) ) {
-                tell_object(me, HIC "请输入你要关闭的副本<ID>。\n" NOR);
+                tell_object(me, HIC "請輸入你要關閉的副本<ID>。\n" NOR);
                 return 1;
         }
 
         if( fbname == "all" ) {
-                tell_object(me, HIC "关闭副本任务完毕。\n" NOR);
+                tell_object(me, HIC "關閉副本任務完畢。\n" NOR);
                 state = 0;
                 return 1;
         } else {
                 if( member_array(fbname, valid_fbname) == -1 ) {
                         valid_fbname += ({ fbname });
-                        tell_object(me, HIC "关闭副本<"+fbname+">任务完毕。\n" NOR);
+                        tell_object(me, HIC "關閉副本<"+fbname+">任務完畢。\n" NOR);
                 } else
-                        tell_object(me, HIC "副本<"+fbname+">已经处于关闭中。\n" NOR);
+                        tell_object(me, HIC "副本<"+fbname+">已經處於關閉中。\n" NOR);
                 return 1;
         }
 }
@@ -814,20 +814,20 @@ public int close_fuben(object me, string fbname)
 public int open_fuben(object me, string fbname)
 {
         if( !stringp(fbname) ) {
-                tell_object(me, HIC "请输入你要开启的副本<ID>。\n" NOR);
+                tell_object(me, HIC "請輸入你要開啟的副本<ID>。\n" NOR);
                 return 1;
         }
 
         if( fbname == "all" ) {
-                tell_object(me, HIC "开启副本任务完毕。\n" NOR);
+                tell_object(me, HIC "開啟副本任務完畢。\n" NOR);
                 state = 1;
                 return 1;
         } else {
                 if( member_array(fbname, valid_fbname) != -1 ) {
                         valid_fbname -= ({ fbname });
-                        tell_object(me, HIC "开启副本<"+fbname+">任务完毕。\n" NOR);
+                        tell_object(me, HIC "開啟副本<"+fbname+">任務完畢。\n" NOR);
                 } else
-                        tell_object(me, HIC "副本<"+fbname+">已经处于开启中。\n" NOR);
+                        tell_object(me, HIC "副本<"+fbname+">已經處於開啟中。\n" NOR);
                 return 1;
         }
 }

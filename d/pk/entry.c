@@ -6,11 +6,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "屠人场入口");
+        set("short", "屠人場入口");
         set("long", @LONG
-这里是一间不算大的小屋，当中摆了一个桌子，后面做着一个人，
-正笑吟吟的看着你。他身后有一扇门，虚掩着，里面黑乎乎的，也不知
-道通往哪里。西面望出去是宽阔敞亮的大街，让人无限向往。
+這裡是一間不算大的小屋，當中擺了一個桌子，後面做著一個人，
+正笑吟吟的看著你。他身後有一扇門，虛掩著，裡面黑乎乎的，也不知
+道通往哪裡。西面望出去是寬闊敞亮的大街，讓人無限嚮往。
 LONG
         );
         set("exits", ([
@@ -29,7 +29,7 @@ LONG
 int valid_leave(object me, string dir)
 {
         if (dir == "north")
-                return notify_fail("乌老大喝道：给我站住！那儿不能随意进入。\n");
+                return notify_fail("烏老大喝道：給我站住！那兒不能隨意進入。\n");
 
         return ::valid_leave(me, dir);
 }

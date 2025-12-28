@@ -2,10 +2,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("镖师", ({ "biao shi", "bian"}) );
+        set_name("鏢師", ({ "biao shi", "bian"}) );
         set("gender", "男性" );
         set("age", 32);
-        set("long", "这是一位高达六尺的镖师。\n");
+        set("long", "這是一位高達六尺的鏢師。\n");
         set("combat_exp", 200000);
         set("attitude", "friendly");
         set_skill("force", 100);

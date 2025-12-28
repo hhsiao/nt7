@@ -6,8 +6,8 @@ void setup()
 {
         set_name("[1;31m虞珞[2;37;0m[2;37;0m", ({"pony"}));        
         set("gender", "女性");                
-        set("long", "集勇气、智慧、与美丽于一身的强大生物[2;37;0m
-它是慕容雪的魔幻兽。
+        set("long", "集勇氣、智慧、與美麗於一身的強大生物[2;37;0m
+它是慕容雪的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

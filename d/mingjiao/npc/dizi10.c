@@ -1,11 +1,11 @@
-// dizi10.c 门主
+// dizi10.c 門主
 #include <ansi.h>
 inherit NPC;
 void create()
 {
         string weapon;
-        set_name("门主", ({"men zhu","men", "zhu"}));
-        set("long","这是一位杨逍属下天地风雷四门之一的门主。\n");
+        set_name("門主", ({"men zhu","men", "zhu"}));
+        set("long","這是一位楊逍屬下天地風雷四門之一的門主。\n");
         set("gender", random(2)?"女性":"男性");
         set("attitude", "peaceful");
         set("age", 25+random(20));

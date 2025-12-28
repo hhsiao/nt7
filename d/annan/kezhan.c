@@ -4,11 +4,11 @@ inherit ROOM;
 
 void create ()
 {
-  set ("short","城西客栈");
+  set ("short","城西客棧");
   set ("long", @LONG
-这里是家小客店。这几天来住店的人很多，不知道还没有空房子。
-店小二正在门前热情地招呼着客人。客店的门前挂着个大牌子，上面写
-着「住宿五两纹银」。门口挂着两个大红灯笼，上面写着「平安」二字。
+這裡是家小客店。這幾天來住店的人很多，不知道還沒有空房子。
+店小二正在門前熱情地招呼著客人。客店的門前掛著個大牌子，上面寫
+著「住宿五兩紋銀」。門口掛著兩個大紅燈籠，上面寫著「平安」二字。
 LONG);
 
   set("exits", ([ 
@@ -30,8 +30,8 @@ int valid_leave(object me,string dir)
 {
         if( !query_temp("gived_money", me) && dir == "enter" )
                 if(objectp(present("xiao",environment(me))))
-                        return notify_fail("店小二拦住了你：客官，您还没给钱呢!\n");
-                else return notify_fail("掌柜从里面喊道：客官，给钱再住店啊!\n");
+                        return notify_fail("店小二攔住了你：客官，您還沒給錢呢!\n");
+                else return notify_fail("掌櫃從裡面喊道：客官，給錢再住店啊!\n");
                 return ::valid_leave(me,dir);
                 return 1;
 }

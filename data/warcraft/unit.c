@@ -7,7 +7,7 @@ void setup()
         set_name("小笨瓜[2;37;0m[2;37;0m", ({"unitwang"}));        
         set("gender", "女性");                
         set("long", "呆呆傻傻[2;37;0m
-它是冷夜的魔幻兽。
+它是冷夜的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

@@ -4,11 +4,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "苗家后厅");
+        set("short", "苗家後廳");
         set("long", @LONG
-这里是苗家的后厅，厅内非常的宽敞明亮。正中摆放着张
-八仙桌，四周墙壁上挂着一些字画。只见一个脸色透黄，神情
-严肃的瘦高个子正座中堂，正是「金面佛」苗人凤。
+這裡是苗家的後廳，廳內非常的寬敞明亮。正中擺放著張
+八仙桌，四周牆壁上掛著一些字畫。只見一個臉色透黃，神情
+嚴肅的瘦高個子正座中堂，正是「金面佛」苗人鳳。
 LONG);
         set("exits", ([
                   "west"  : __DIR__"miaojia_zoulang1",
@@ -38,8 +38,8 @@ int valid_leave(object me, string dir)
         {
                 if( query("family/family_name", me) != "中原苗家"
                 & objectp(present("miao renfeng", environment(me))))
-                        return notify_fail(CYN "苗人凤眉头微微一皱，喝道：阁下未"
-                                           "免太过放肆，是瞧不起苗某人吗？\n" NOR);
+                        return notify_fail(CYN "苗人鳳眉頭微微一皺，喝道：閣下未"
+                                           "免太過放肆，是瞧不起苗某人嗎？\n" NOR);
         }
         return ::valid_leave(me, dir);
 }

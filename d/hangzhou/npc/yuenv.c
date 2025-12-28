@@ -10,7 +10,7 @@ void create()
 {
         set_name("越女", ({ "yue nv", "yuenv" }));
         set("long", @LONG
-她是一位年轻的牧羊女，脸上挂着一丝与年龄不相称的哀思。
+她是一位年輕的牧羊女，臉上掛著一絲與年齡不相稱的哀思。
 LONG );
         set("gender", "女性");
         set("class", "swordsman");
@@ -42,8 +42,8 @@ LONG );
         map_skill("sword", "yuenv-jian");
 
         set("inquiry", ([
-                "绝招" : (: ask_me :),
-                "绝技" : (: ask_me :),
+                "絕招" : (: ask_me :),
+                "絕技" : (: ask_me :),
                 "西子捧心" : (: ask_me :),
         ]));
 
@@ -72,24 +72,24 @@ int recognize_apprentice(object ob, string skill)
         {
                 if( query("gender", ob) == "女性" )
                 {
-                        message_vision("$N眼圈一红，对$n道：也好。\n",
+                        message_vision("$N眼圈一紅，對$n道：也好。\n",
                                        this_object(), ob);
                         set_temp("can_learn/yuenv/yuenv-jian", 1, ob);
                         return 1;
                 }
-                message_vision("$N瞥了$n一眼，没有理$n。\n", this_object(), ob);
+                message_vision("$N瞥了$n一眼，沒有理$n。\n", this_object(), ob);
                 return -1;
         }
 
         if (skill == "sword")
         {
-                message_vision("$N看了看$n，点点头道：剑术也没有什么难学的。\n",
+                message_vision("$N看了看$n，點點頭道：劍術也沒有什麼難學的。\n",
                                this_object(), ob);
                 set_temp("can_learn/yuenv/sword", 1, ob);
                 return 1;
         }
 
-        command("say 我只懂得一点剑术，你可不要为难我。");
+        command("say 我只懂得一點劍術，你可不要為難我。");
         return -1;
 }
 
@@ -100,31 +100,31 @@ int ask_me()
         me = this_player();
         if( query("can_perform/yuenv-jian/pengxin", me) )
         {
-                command("say 你很喜欢开玩笑么？学过了还来找我？");
+                command("say 你很喜歡開玩笑麼？學過了還來找我？");
         } else
         if( query("gender", me) != "女性" )
         {
-                command("say 你们男人没有什么好东西，还是别说什么花言巧语了。");
+                command("say 你們男人沒有什麼好東西，還是別說什麼花言巧語了。");
         } else
         if( query("per", me) >= 30 )
         {
-                message_vision("$N看着$n，幽幽的叹了一口气，似乎想起了什么。\n",
+                message_vision("$N看著$n，幽幽的嘆了一口氣，似乎想起了什麼。\n",
                                this_object(), me);
         } else
         if (me->query_skill("force") < 120)
         {
-                command("say 你的内功底子这么差，还谈什么绝招，笑死人家了。");
+                command("say 你的內功底子這麼差，還談什麼絕招，笑死人家了。");
                 return 1;
         } else
         if (me->query_skill("yuenv-jian", 1) < 100)
         {
-                command("say 你还是练好我的剑术再说吧，不要好高鹜远，反而一事无成。");
+                command("say 你還是練好我的劍術再說吧，不要好高鶩遠，反而一事無成。");
                 return 1;
         } else
         {
                 command("nod");
-                command("say 好吧，我就叫你这一招“西子捧心”，以后你若见到... 还是算了吧。");
-                tell_object(me, "你听了越女的指点，明白了如何运用这一绝技。\n");
+                command("say 好吧，我就叫你這一招“西子捧心”，以後你若見到... 還是算了吧。");
+                tell_object(me, "你聽了越女的指點，明白瞭如何運用這一絕技。\n");
                 set("can_perform/yuenv-jian/pengxin", 1, me);
         }
         return 1;

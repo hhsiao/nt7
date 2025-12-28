@@ -5,7 +5,7 @@ inherit NPC;
 void create()
 {
         set_name("山羊", ({ "shan yang" }));
-        set("long","一头短角山羊，大理地区常见的家畜。\n");
+        set("long","一頭短角山羊，大理地區常見的家畜。\n");
         set("race", "家畜");
         set("age", 5);
         set("int", 30);
@@ -17,7 +17,7 @@ void create()
         set("combat_exp",50000);
         set("attitude", "peaceful");
 
-        set("limbs", ({ "头部", "腹部", "尾巴","后腿","前腿" }) );
+        set("limbs", ({ "頭部", "腹部", "尾巴","後腿","前腿" }) );
         set("verbs", ({ "bite","hoof" }) );
         set_temp("apply/attack", 50);
         set_temp("apply/armor", 15);

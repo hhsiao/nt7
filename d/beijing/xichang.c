@@ -3,11 +3,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short",RED"西厂"NOR);
+        set("short",RED"西廠"NOR);
         set("long", @LONG
-这里就是京城的特务机构——西厂。大厅内很是宽阔，这里警备
-深严，穿着制服的西厂官兵和太监在这里来回走动。看来这里不宜久
-留，赶快离开为妙。[2；37；0m
+這裡就是京城的特務機構——西廠。大廳內很是寬闊，這裡警備
+深嚴，穿著制服的西廠官兵和太監在這裡來回走動。看來這裡不宜久
+留，趕快離開為妙。[2；37；0m
 LONG );
         set("exits", ([
                 "north" : "/d/beijing/xichang_men",

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("风骚美人[2;37;0m[2;37;0m", ({"meiren"}));        
+        set_name("風騷美人[2;37;0m[2;37;0m", ({"meiren"}));        
         set("gender", "女性");                
         set("long", "水蜜桃[2;37;0m
-它是在喇在的魔幻兽。
+它是在喇在的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

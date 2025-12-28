@@ -5,12 +5,12 @@ void do_swing();
 void set_from_me(object me);
 void create()
 {
-        string *names = ({ "青铜老虎" });
+        string *names = ({ "青銅老虎" });
 
         ::create();
         set_name( names[random(sizeof(names))], ({ "bronze tiger", "bronze", "tiger" }) );
-        set("long", "这是一个沉睡在皇陵青铜机关兽。\n");
-        set("title", HIR "机关兽" NOR);
+        set("long", "這是一個沉睡在皇陵青銅機關獸。\n");
+        set("title", HIR "機關獸" NOR);
 
         set("str", 150);
         set("con", 120);
@@ -29,7 +29,7 @@ void create()
                 (: do_swing :),
         }) );
         set("combat_exp", 100000000);
-        set("death_msg",YEL"\n$N散落成一堆青铜。\n\n"NOR);
+        set("death_msg",YEL"\n$N散落成一堆青銅。\n\n"NOR);
         set("no_corpse", 1);
 
         set("rewards", ([
@@ -82,10 +82,10 @@ void do_swing()
         if( !enemies || sizeof(enemies)==0 )
                 return;
 
-        msg = RED "$N张开大口，吐一个大火球！！\n" NOR;
+        msg = RED "$N張開大口，吐一個大火球！！\n" NOR;
         message_vision(msg, this_object());
         foreach( enemy in enemies ) {
-                msg = RED"火球在天空炸开,无数小火球飞向$n！"NOR;
+                msg = RED"火球在天空炸開,無數小火球飛向$n！"NOR;
                 message_vision(msg,this_object(), enemy);
                 enemy->receive_damage("qi",5000+random(5000),this_object());
                 COMBAT_D->report_status(enemy);

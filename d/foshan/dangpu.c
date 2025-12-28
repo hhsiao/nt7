@@ -3,11 +3,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short","英雄典当");
+        set("short","英雄典當");
         set("long", @LONG
-当铺里一张高高的柜台，柜台后面坐着当铺的朝奉。这家当铺是
-凤老爷所开，十多年来从没人来闹过事，朝奉也就很放心。柜台上挂
-着一个木牌子(paizi)。
+當鋪裡一張高高的櫃檯，櫃檯後面坐著當鋪的朝奉。這家當鋪是
+鳳老爺所開，十多年來從沒人來鬧過事，朝奉也就很放心。櫃檯上掛
+著一個木牌子(paizi)。
 LONG );
         set("no_fight", 1);
         set("no_steal", 1);
@@ -17,11 +17,11 @@ LONG );
                               "        ※                  ※\n"
                               "        ※     公平交易     ※\n"
                               "        ※                  ※\n"
-                              "        ※  " NOR + HIW "卖出" NOR + WHT "：   " NOR + HIY "sell" NOR + WHT "   ※\n"
+                              "        ※  " NOR + HIW "賣出" NOR + WHT "：   " NOR + HIY "sell" NOR + WHT "   ※\n"
                               "        ※                  ※\n"
-                              "        ※  " NOR + HIW "买进" NOR + WHT "：   " NOR + HIY "buy" NOR + WHT "    ※\n"
+                              "        ※  " NOR + HIW "買進" NOR + WHT "：   " NOR + HIY "buy" NOR + WHT "    ※\n"
                               "        ※                  ※\n"
-                              "        ※  " NOR + HIW "估价" NOR + WHT "：   " NOR + HIY "value" NOR + WHT "  ※\n"
+                              "        ※  " NOR + HIW "估價" NOR + WHT "：   " NOR + HIY "value" NOR + WHT "  ※\n"
                               "        ※                  ※\n"
                               "        ※                  ※\n"
                               "        ※※※※※※※※※※※\n\n\n" NOR,

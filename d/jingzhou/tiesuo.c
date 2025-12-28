@@ -3,11 +3,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", HIC "江中铁索" NOR);
+        set("short", HIC "江中鐵索" NOR);
         set("long", @LONG
-你站在一江水之中的一条铁索上，铁索随水起伏不停，你站在这
-里，若没顶尖的轻功，是坚持不了多久的。从这里向江中看去，更觉
-得气势宏大，江水奔流，向江心看去，好象水低有一些古怪的东西。
+你站在一江水之中的一條鐵索上，鐵索隨水起伏不停，你站在這
+裡，若沒頂尖的輕功，是堅持不了多久的。從這裡向江中看去，更覺
+得氣勢宏大，江水奔流，向江心看去，好象水低有一些古怪的東西。
 LONG );
         setup();
 } 
@@ -29,11 +29,11 @@ int do_jump (string arg)
                         me->die();
                 } else
                 {
-                        tell_object(me, "你奋不顾身的跳进了江中，一阵江水涌来……\n");
+                        tell_object(me, "你奮不顧身的跳進了江中，一陣江水湧來……\n");
                         me->move(__DIR__"river");
                          me->unconcious();}
                         return 1;
                 }        
         else
-        return notify_fail("你要做什么？\n");
+        return notify_fail("你要做什麼？\n");
 }

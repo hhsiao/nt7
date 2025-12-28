@@ -8,15 +8,15 @@ string look_desk();
 
 void create()
 {
-        set("short", "紫盖仙洞");
+        set("short", "紫蓋仙洞");
         set("long", @LONG
-这里便是紫盖仙洞。听这里的人说的由于这里处于紫盖峰下，峰
-上融化的雪水便经过山涧汇如紫盖仙洞中，但是这里却一点水也没有，
-耳边却传来来淙淙的水流声，你才发现雪水并不是汇直接流入洞中，
-而是从洞壁上顺势向下流，经过一个较深的低洼地带，积蓄起来，水
-满则溢，便形成了水莲洞外的飞瀑。往光照来的的地方看去，已没有
-路可走，数丈远处便是悬崖，原来这个洞竟生于一个峭壁之上。只见
-不远处摆着一个石桌(desk)，显然这里曾经有人来过。
+這裡便是紫蓋仙洞。聽這裡的人說的由於這裡處於紫蓋峰下，峰
+上融化的雪水便經過山澗匯如紫蓋仙洞中，但是這裡卻一點水也沒有，
+耳邊卻傳來來淙淙的水流聲，你才發現雪水並不是匯直接流入洞中，
+而是從洞壁上順勢向下流，經過一個較深的低窪地帶，積蓄起來，水
+滿則溢，便形成了水蓮洞外的飛瀑。往光照來的的地方看去，已沒有
+路可走，數丈遠處便是懸崖，原來這個洞竟生於一個峭壁之上。只見
+不遠處擺著一個石桌(desk)，顯然這裡曾經有人來過。
 LONG );
         
         set("item_desc",([
@@ -48,17 +48,17 @@ int do_move(string arg)
                 here = load_object(__DIR__"zigaihole");
 
         if (! arg || (arg != "desk" && arg != "石桌"))
-                return notify_fail("你想移什么？\n");
+                return notify_fail("你想移什麼？\n");
        
         if( query_temp("marks/移", here) )
         {
-                write(HIG "\n你用力一推，将石桌移回了原处。\n\n" NOR);
+                write(HIG "\n你用力一推，將石桌移回了原處。\n\n" NOR);
                 delete_temp("marks/移", here);
                 return 1;
         }
         
         
-        write(HIC "\n你用力一推，石桌下面竟露出一个坑(keng)来。\n\n"NOR);
+        write(HIC "\n你用力一推，石桌下面竟露出一個坑(keng)來。\n\n"NOR);
 
         set_temp("marks/移", 1, here);
         return 1;
@@ -74,10 +74,10 @@ int do_pick(string arg)
                 here = load_object(__DIR__"zigaihole");
 
         if (! arg || (arg != "book"))
-                return notify_fail("你要拿什么？\n");
+                return notify_fail("你要拿什麼？\n");
         
         if( query_temp("marks/拿", here) || !query_temp("marks/移", here) )
-                return notify_fail("你要拿什么？\n");
+                return notify_fail("你要拿什麼？\n");
 
         // book = find_object(ZHUJIAN);
         book = new(ZHUJIAN);
@@ -88,11 +88,11 @@ int do_pick(string arg)
         {
                 set_temp("marks/拿", 1, here);
                 book->move(me, 1);
-                message_vision(HIC"$N"HIC"从坑中将"+query("name", book)+
-                               HIC "拿了出来。\n" NOR, me);
+                message_vision(HIC"$N"HIC"從坑中將"+query("name", book)+
+                               HIC "拿了出來。\n" NOR, me);
                 return 1;
         } else
-                return notify_fail(YEL "这里面什么也没有。\n" NOR);
+                return notify_fail(YEL "這裡面什麼也沒有。\n" NOR);
         return 1;
 }
 
@@ -104,10 +104,10 @@ string look_desk()
                 here = load_object(__DIR__"zigaihole");
 
         if( query_temp("marks/移", here) )
-                return WHT "\n石桌像是已被人推开，下面露出一个坑(keng)来。\n";
+                return WHT "\n石桌像是已被人推開，下面露出一個坑(keng)來。\n";
         else
    
-                return WHT "\n一张石桌，上面已布满了灰尘。\n";
+                return WHT "\n一張石桌，上面已佈滿了灰塵。\n";
 
        
 }
@@ -122,16 +122,16 @@ string look_keng()
                 here = load_object(__DIR__"zigaihole");
 
         if( !query_temp("marks/移", here) )
-                return "你要看什么？\n\n";
+                return "你要看什麼？\n\n";
 
         // if (! book) book = load_object(ZHUJIAN);
 
         // if (environment(book))
         if( query_temp("marks/拿", here) )
-                return HIY "\n这个坑中像是藏东西的，但里面空空如也，显然里面的东西已\n"
+                return HIY "\n這個坑中像是藏東西的，但裡面空空如也，顯然裡面的東西已\n"
                            "被人拿走了。\n" NOR;
 
-        return HIY "\n只见里面放着一本(book)，你忍不住想拿(pick)来看看。\n" NOR;
+        return HIY "\n只見裡面放著一本(book)，你忍不住想拿(pick)來看看。\n" NOR;
            
 }
 

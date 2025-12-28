@@ -9,9 +9,9 @@ inherit F_QUESTER;
 void create()
 {
         set_name("裘千仞", ({ "qiu qianren", "qiu", "qianren", "ren"}));
-        set("nickname", WHT "铁掌水上漂" NOR);
-        set("long", "他就是威震川湘的铁掌帮的帮主铁掌水上漂裘千仞。\n"
-                    "他头须皆白，身穿黄葛短衫，右手挥着一把大蒲扇。\n" );
+        set("nickname", WHT "鐵掌水上漂" NOR);
+        set("long", "他就是威震川湘的鐵掌幫的幫主鐵掌水上漂裘千仞。\n"
+                    "他頭須皆白，身穿黃葛短衫，右手揮著一把大蒲扇。\n" );
 
         set("gender", "男性");
         set("age", 60);
@@ -61,17 +61,17 @@ void create()
 
         prepare_skill("strike", "tie-zhang");
 
-        create_family("铁掌帮", 14, "帮主");
+        create_family("鐵掌幫", 14, "幫主");
 
         set("inquiry", ([
-                "绝招"    : "你要问什么绝招？",
-                "绝技"    : "你要问什么绝技？",
-                "铁掌掌谱": "这本秘籍不在我手里，想必已经失落很久了。",
-                "上官剑南": "他是我的授业恩师，你问这个干嘛？",
-                "裘千丈"  : "哼，大哥老是打着我的名号到处招摇撞骗，总有一天我要……",
-                "裘千尺"  : "三妹下嫁到绝情谷去了，你问这个有什么事吗？",
-                "绝情谷"  : "绝情谷公孙止那家伙不是个东西，你问这个干嘛？",
-                "华山论剑": "哼，去年的华山论剑要不是因为我在闭观，哪里轮得上王重阳那牛鼻子。",
+                "絕招"    : "你要問什麼絕招？",
+                "絕技"    : "你要問什麼絕技？",
+                "鐵掌掌譜": "這本秘籍不在我手裡，想必已經失落很久了。",
+                "上官劍南": "他是我的授業恩師，你問這個幹嘛？",
+                "裘千丈"  : "哼，大哥老是打著我的名號到處招搖撞騙，總有一天我要……",
+                "裘千尺"  : "三妹下嫁到絕情谷去了，你問這個有什麼事嗎？",
+                "絕情谷"  : "絕情谷公孫止那傢伙不是個東西，你問這個幹嘛？",
+                "華山論劍": "哼，去年的華山論劍要不是因為我在閉觀，哪裡輪得上王重陽那牛鼻子。",
         ]));
 
         set("chat_chance_combat", 120);
@@ -95,7 +95,7 @@ void attempt_apprentice(object me)
 {
         string purename, name, new_name;
 
-        command("say 铁掌帮暂不开放！\n");
+        command("say 鐵掌幫暫不開放！\n");
         return;
 
          /*
@@ -104,48 +104,48 @@ void attempt_apprentice(object me)
          */
 
         if( query("family/family_name", me) && 
-             query("family/family_name", me) == "绝情谷" && 
+             query("family/family_name", me) == "絕情谷" && 
              query("family/master_name", me) == "裘千尺" )
         {
                 command("nod");
-                command("say 原来是三妹的后裔，这样也好，我们本来就是一家人。且让"
+                command("say 原來是三妹的後裔，這樣也好，我們本來就是一家人。且讓"
                 "我先看看你的能力。\n");
-                set("move_party/绝情谷—铁掌帮", 1, me);
+                set("move_party/絕情谷—鐵掌幫", 1, me);
         }
 
         if( query("shen", me)>-60000 )
         {
                 command("heng");
-                command("say 我裘千仞可不收心慈手软的人做徒弟。");
+                command("say 我裘千仞可不收心慈手軟的人做徒弟。");
                 return;
         }
 
         if( query("combat_exp", me)<800000 )
         {
                 command("heng");
-                command("say 你这点能力怎能继承我的衣钵？");
+                command("say 你這點能力怎能繼承我的衣缽？");
                 return;
         }
 
         if ((int)me->query_skill("force") < 260)
         {
-                command("say 要学我的铁掌绝技，内功非精纯不可，你还是先多练练吧。");
+                command("say 要學我的鐵掌絕技，內功非精純不可，你還是先多練練吧。");
                 return;
         }
 
         if ((int)me->query_skill("strike", 1) < 180)
         {
-                command("say 要学我的铁掌绝技，需要精湛的掌法作基础，我看你在那上"
-                        "面下的工夫还不够啊。");
+                command("say 要學我的鐵掌絕技，需要精湛的掌法作基礎，我看你在那上"
+                        "面下的工夫還不夠啊。");
                 return;
         }
 
-        command("say 不错，不错！");
-        command("say 我就收下你了，希望你苦练铁掌神功，将之发扬光大。");
+        command("say 不錯，不錯！");
+        command("say 我就收下你了，希望你苦練鐵掌神功，將之發揚光大。");
         command("recruit"+query("id", me));
 
-        if( query("move_party/绝情谷—铁掌帮", me) && 
-             query("surname", me) == "公孙" )
+        if( query("move_party/絕情谷—鐵掌幫", me) && 
+             query("surname", me) == "公孫" )
         {
                 name=query("name", me);
                 purename=query("purename", me);
@@ -154,10 +154,10 @@ void attempt_apprentice(object me)
 
                 set("surname", "裘", me);
                 set("name", new_name, me);
-                delete("move_party/绝情谷—铁掌帮", me);
+                delete("move_party/絕情谷—鐵掌幫", me);
 
-                command("say 公孙止那老家伙不是个东西，你以后还是跟你娘亲姓为好。");
-                command("say 从今以后你就叫作" + new_name + "吧。");
+                command("say 公孫止那老傢伙不是個東西，你以後還是跟你孃親姓為好。");
+                command("say 從今以後你就叫作" + new_name + "吧。");
         }
 }
 
@@ -167,41 +167,41 @@ mixed ask_skill3()
 
         me = this_player();
         if( query("can_perform/tie-zhang/juesha", me) )
-                return "这招我已经教过你了，还是自己下去多多练习吧！";
+                return "這招我已經教過你了，還是自己下去多多練習吧！";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return RANK_D->query_respect(me) + "和本帮素无瓜葛，何出此言？";
+                return RANK_D->query_respect(me) + "和本幫素無瓜葛，何出此言？";
 
         if (me->query_skill("tie-zhang", 1) < 1)
-                return "你连铁掌掌法都没学，何谈此言？";
+                return "你連鐵掌掌法都沒學，何談此言？";
 
         if( query("shen", me)>-100000 )
-                return "心慈手软的人永远干不了大事，这招你不学也罢！";
+                return "心慈手軟的人永遠幹不了大事，這招你不學也罷！";
 
         if (me->query_skill("tie-zhang", 1) < 200)
-                return "你的铁掌掌法还练得不到家，自己下去练练再来吧！";
+                return "你的鐵掌掌法還練得不到家，自己下去練練再來吧！";
 
         if (me->query_skill("tianlei-shengong", 1) < 180)
-                return "这一招需求强大的天雷真气做基础，看来你所下的功夫还不够啊！";
+                return "這一招需求強大的天雷真氣做基礎，看來你所下的功夫還不夠啊！";
 
         if( query("family/gongji", me)<660 )
-                return "你的门派贡献不够，这招我不能传你！";
+                return "你的門派貢獻不夠，這招我不能傳你！";
 
-        message_vision(HIY "$n" HIY "默默注视了$N" HIY "良"
-                       "久，说道：“既然如此，今日我便传你"
-                       "这招！我只演示一遍，你可要看仔细了"
-                       "！”\n\n" NOR + HIR "$n" HIR "说完"
-                       "一声怒喝，体内所积存数十载的天雷真"
-                       "气澎湃而发，衣衫鼓动，双臂陡然暴\n"
-                       "长数尺。只听四周破空之声骤然响之，"
-                       "$n" HIR "双掌幻出漫天掌影，铺天盖"
-                       "地向四面八方\n云涌而出，当真气势磅"
-                       "礴，无与伦比！\n" NOR,
+        message_vision(HIY "$n" HIY "默默注視了$N" HIY "良"
+                       "久，說道：“既然如此，今日我便傳你"
+                       "這招！我只演示一遍，你可要看仔細了"
+                       "！”\n\n" NOR + HIR "$n" HIR "說完"
+                       "一聲怒喝，體內所積存數十載的天雷真"
+                       "氣澎湃而發，衣衫鼓動，雙臂陡然暴\n"
+                       "長數尺。只聽四周破空之聲驟然響之，"
+                       "$n" HIR "雙掌幻出漫天掌影，鋪天蓋"
+                       "地向四面八方\n雲湧而出，當真氣勢磅"
+                       "礴，無與倫比！\n" NOR,
                        me, this_object());
         command("nod");
-        command("say 这招「九穹绝刹掌」是我铁掌帮最为精深的招式，你明白了多少？");
-        command("say 这其中的奥妙还需要你自己下来勤加练习方能吸收，自己下去多多练习吧。");
-        tell_object(me, HIC "你学会了「九穹绝刹掌」这一招。\n" NOR);
+        command("say 這招「九穹絕剎掌」是我鐵掌幫最為精深的招式，你明白了多少？");
+        command("say 這其中的奧妙還需要你自己下來勤加練習方能吸收，自己下去多多練習吧。");
+        tell_object(me, HIC "你學會了「九穹絕剎掌」這一招。\n" NOR);
         if (me->can_improve_skill("strike"))
                 me->improve_skill("strike", 960000);
         if (me->can_improve_skill("unarmed"))
@@ -222,32 +222,32 @@ mixed ask_skill4()
 
         me = this_player();
         if( query("can_perform/feilong-zhangfa/fei", me) )
-                return "这招我已经教过你了，还是自己下去多多练习吧！";
+                return "這招我已經教過你了，還是自己下去多多練習吧！";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return RANK_D->query_respect(me) + "和本帮素无瓜葛，何出此言？";
+                return RANK_D->query_respect(me) + "和本幫素無瓜葛，何出此言？";
 
         if (me->query_skill("feilong-zhangfa", 1) < 1)
-                return "你连飞龙杖法都没学，何谈此言？";
+                return "你連飛龍杖法都沒學，何談此言？";
 
         if( query("shen", me)>-10000 )
-                return "嘿嘿嘿，你这样心慈手软能干成什么事？这招你不学也罢！";
+                return "嘿嘿嘿，你這樣心慈手軟能幹成什麼事？這招你不學也罷！";
 
         if (me->query_skill("feilong-zhangfa", 1) < 150)
-                return "你的飞龙杖法还练得不到家，自己下去练练再来吧！";
+                return "你的飛龍杖法還練得不到家，自己下去練練再來吧！";
 
         if( query("family/gongji", me)<160 )
-                return "你的门派贡献不够，这招我不能传你！";
+                return "你的門派貢獻不夠，這招我不能傳你！";
 
-        message_vision(HIY "$n" HIY "微微点了点头，对$N" HIY
-                       "说道：“看好了！”随即顺手抄起一根钢"
-                       "杖，注力入腕，「飕」的\n一声掷出，刹"
-                       "那只见一道银光飞逝而过，同时只听「扑"
-                       "哧」一声碎响，钢杖已没入$N" HIY "身"
-                       "后的柱\n子数尺之深。\n" NOR, me, this_object());
+        message_vision(HIY "$n" HIY "微微點了點頭，對$N" HIY
+                       "說道：“看好了！”隨即順手抄起一根鋼"
+                       "杖，注力入腕，「颼」的\n一聲擲出，剎"
+                       "那隻見一道銀光飛逝而過，同時只聽「撲"
+                       "哧」一聲碎響，鋼杖已沒入$N" HIY "身"
+                       "後的柱\n子數尺之深。\n" NOR, me, this_object());
         command("nod");
-        command("say 这招「龙飞势」并不复杂，下来后自己多加练习就行了！");
-        tell_object(me, HIC "你学会了「龙飞势」这一招。\n" NOR);
+        command("say 這招「龍飛勢」並不複雜，下來後自己多加練習就行了！");
+        tell_object(me, HIC "你學會了「龍飛勢」這一招。\n" NOR);
         if (me->can_improve_skill("staff"))
                 me->improve_skill("staff", 960000);
         if (me->can_improve_skill("feilong-zhangfa"))
@@ -260,9 +260,9 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "历练" :
-        case "历炼" :
-        case "锻炼" :
+        case "歷練" :
+        case "歷煉" :
+        case "鍛鍊" :
                 return QUEST_D->accept_ask(this_object(), me, topic);
                 break;
 
@@ -270,14 +270,14 @@ int accept_ask(object me, string topic)
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/tie-zhang/lei",
                            "name"    : "掌心雷",
-                           "msg1"    : HIY "$N" HIY "投以赞许的"
-                                       "一笑，说道：“看好了！”"
-                                       "随即只见$N" HIY "猛催内"
-                                       "力，双掌登时变得火红，你"
-                                       "正惊诧之际$N" HIY "双掌幻"
-                                       "为一对掌刀凌空劈\n斩而出"
-                                       "，只听「喀嚓」一声，大厅"
-                                       "内一张青石桌应声而碎！",
+                           "msg1"    : HIY "$N" HIY "投以讚許的"
+                                       "一笑，說道：“看好了！”"
+                                       "隨即只見$N" HIY "猛催內"
+                                       "力，雙掌登時變得火紅，你"
+                                       "正驚詫之際$N" HIY "雙掌幻"
+                                       "為一對掌刀凌空劈\n斬而出"
+                                       "，只聽「喀嚓」一聲，大廳"
+                                       "內一張青石桌應聲而碎！",
                            "sk1"     : "tie-zhang",
                            "lv1"     : 160,
                            "force"   : 240,
@@ -286,21 +286,21 @@ int accept_ask(object me, string topic)
                            "shen"    : -65000, ]));
                 break;
 
-        case "九穹绝刹掌" :
+        case "九穹絕剎掌" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/tie-zhang/juesha",
-                           "name"    : "九穹绝刹掌",
-                           "msg1"    : HIY "$N" HIY "默默注视了你"
-                                       "良久，说道：“既然如此，今"
-                                       "日我便传你这招！我只演示一"
-                                       "遍，你可要看仔细了！”说完"
-                                       "一声怒喝，体内所积存数十载"
-                                       "的天雷真气澎湃而发，衣衫鼓"
-                                       "动，双臂陡然暴长数尺。只听"
-                                       "四周破空之声骤然响之，$N" HIY
-                                       "双掌幻出漫天掌影，铺天盖地向"
-                                       "四面八方云涌而出，当真气势磅"
-                                       "礴，无与伦比！",
+                           "name"    : "九穹絕剎掌",
+                           "msg1"    : HIY "$N" HIY "默默注視了你"
+                                       "良久，說道：“既然如此，今"
+                                       "日我便傳你這招！我只演示一"
+                                       "遍，你可要看仔細了！”說完"
+                                       "一聲怒喝，體內所積存數十載"
+                                       "的天雷真氣澎湃而發，衣衫鼓"
+                                       "動，雙臂陡然暴長數尺。只聽"
+                                       "四周破空之聲驟然響之，$N" HIY
+                                       "雙掌幻出漫天掌影，鋪天蓋地向"
+                                       "四面八方雲湧而出，當真氣勢磅"
+                                       "礴，無與倫比！",
                            "sk1"     : "tie-zhang",
                            "lv1"     : 200,
                            "force"   : 300,
@@ -309,10 +309,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -85000, ]));
                 break;
 
-        case "无影掌" :
+        case "無影掌" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/tie-zhang/ying",
-                           "name"    : "无影掌",
+                           "name"    : "無影掌",
                            "sk1"     : "tie-zhang",
                            "lv1"     : 100,
                            "force"   : 80,
@@ -321,10 +321,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -60000, ]));
                 break;
 
-        case "龙影掌" :
+        case "龍影掌" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/tie-zhang/long",
-                           "name"    : "龙影掌",
+                           "name"    : "龍影掌",
                            "sk1"     : "tie-zhang",
                            "lv1"     : 100,
                            "force"   : 80,
@@ -346,10 +346,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -90000, ]));
                 break;
 
-        case "阴阳磨" :
+        case "陰陽磨" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/tie-zhang/yin",
-                           "name"    : "阴阳磨",
+                           "name"    : "陰陽磨",
                            "sk1"     : "tie-zhang",
                            "lv1"     : 220,
                            "force"   : 300,
@@ -370,10 +370,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -75000, ]));
                 break;
 
-        case "五雷连闪" :
+        case "五雷連閃" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/tianlei-dao/shan",
-                           "name"    : "五雷连闪",
+                           "name"    : "五雷連閃",
                            "sk1"     : "tianlei-dao",
                            "lv1"     : 150,
                            "force"   : 150,
@@ -382,7 +382,7 @@ int accept_ask(object me, string topic)
                            "shen"    : -75000, ]));
                 break;
 /*
-        case "镇岳尚方" :
+        case "鎮嶽尚方" :
                 return MASTER_D->give_item(me, this_object(),
                         ([ "item"    : ZHENYUE,
                            "master"  : 1,
@@ -405,16 +405,16 @@ int recognize_apprentice(object ob, string skill)
 {
         if (ob->query_skill(skill, 1) >= 400)
         {
-                command("say 够了！我就教你到这里吧，武功还是"
+                command("say 夠了！我就教你到這裡吧，武功還是"
                         "要靠自己多研究才是！");
                 return -1;
         }
 
-        if( query("character", ob) != "阴险奸诈" && 
+        if( query("character", ob) != "陰險奸詐" && 
             query("character", ob) != "心狠手辣" && 
-            query("character", ob) != "国士无双" )
+            query("character", ob) != "國士無雙" )
         {
-                command("say 你是什么人，也想老夫传授你武功？！");
+                command("say 你是什麼人，也想老夫傳授你武功？！");
                 return -1;
         }
 
@@ -428,12 +428,12 @@ int recognize_apprentice(object ob, string skill)
 
         if (skill == "tie-zhang")
         {
-                message_vision("$N看了看$n，嘿嘿地笑道：铁掌掌法也没有什么难学的。\n",
+                message_vision("$N看了看$n，嘿嘿地笑道：鐵掌掌法也沒有什麼難學的。\n",
                                this_object(), ob);
                 set_temp("can_learn/qiu/tie-zhang", 1, ob);
                 return 1;
         }
 
-        command("say 我只懂得一点铁掌掌法，你可不要烦我。");
+        command("say 我只懂得一點鐵掌掌法，你可不要煩我。");
         return -1;
 }

@@ -9,7 +9,7 @@ void create()
         set("nickname",HIY "金刀" NOR);
         set("gender", "男性");
         set("age", 45);
-        set("long", "他就是赫赫有名镖师－－王元霸。\n");
+        set("long", "他就是赫赫有名鏢師－－王元霸。\n");
 
         set("combat_exp", 300000);
         set("shen_type", 1);
@@ -25,7 +25,7 @@ void create()
         set_skill("parry", 50);
 
         set("inquiry", ([
-                "赔偿" : (:ask_peichang:),
+                "賠償" : (:ask_peichang:),
                 "job" : (:ask_job:),
         ]) );
 
@@ -45,22 +45,22 @@ int ask_job()
         
         if (file_name(environment(this_object())) !="/d/changan/biaoju-dating") {
                 command("shrug");
-                command("whisper "+me->query("id")+" 不在镖局，我无法调动镖师啊");
+                command("whisper "+me->query("id")+" 不在鏢局，我無法調動鏢師啊");
                 return 1;
                 }                               
 
         if (me->query("combat_exp") < 2500000) {
-                command("say "+ me->query("name")+"真不知廉耻，这点身手还来要差使？！");
+                command("say "+ me->query("name")+"真不知廉恥，這點身手還來要差使？！");
                 return 1;
                 }
        
         if (me->query("combat_exp") > 15000000) {
-                command("say "+ me->query("name")+"大侠，您名声太大了，我们小镖局可请不起你了！");
+                command("say "+ me->query("name")+"大俠，您名聲太大了，我們小鏢局可請不起你了！");
                 return 1;
                 }
 
         if (me->query("quest2/yunbiao")==1) {
-                command("whisper "+me->query("id")+" 我不是叫你护送一位镖师吗？你不保护镖头，回来做什么？");
+                command("whisper "+me->query("id")+" 我不是叫你護送一位鏢師嗎？你不保護鏢頭，回來做什麼？");
                 return 1;
                 }
         uob = filter_array(users(), (: query_ip_name($1) == $(query_ip_name(me)) :));
@@ -69,7 +69,7 @@ int ask_job()
         if (sizeof(uob) > 1)
         {
                 me->start_busy(3);
-                command("say 对不起，您这个IP运镖的ID太多了！");
+                command("say 對不起，您這個IP運鏢的ID太多了！");
                 return 1;
         }
 
@@ -103,15 +103,15 @@ int ask_job()
         ob->map_skill("parry", "taiji-quan");
         ob->map_skill("dodge", "tiyunzong");
         if(random(2)==0){
-                command("whisper "+me->query("id")+" "+ RANK_D->query_respect(me) +"来得正好，我有一宗镖要运到「福威镖局 —— 总镖头」林震南手中。");
+                command("whisper "+me->query("id")+" "+ RANK_D->query_respect(me) +"來得正好，我有一宗鏢要運到「福威鏢局 —— 總鏢頭」林震南手中。");
                 ob->set_temp("fuzhou",1);
                 }
         else    {
-                command("whisper "+me->query("id")+" " + RANK_D->query_respect(me) +"来得正好，我有一宗镖要运到「铁公鸡」钱眼开手中。");
+                command("whisper "+me->query("id")+" " + RANK_D->query_respect(me) +"來得正好，我有一宗鏢要運到「鐵公雞」錢眼開手中。");
                 ob->set_temp("yangzhou",1);
                 }         
-                command("whisper "+me->query("id")+" 你就同这位镖师一同前往吧。");
-            command("chat "+ me->query("name") + "替老夫运镖起航啦，各路英雄豪杰给点薄面，多多关照。");
+                command("whisper "+me->query("id")+" 你就同這位鏢師一同前往吧。");
+            command("chat "+ me->query("name") + "替老夫運鏢起航啦，各路英雄豪傑給點薄面，多多關照。");
                 return 1;
 }       
 
@@ -125,20 +125,20 @@ int ask_peichang()
         
         if (me->query("quest2/wait"))
         {
-                command("whisper "+me->query("id")+" 你的赔偿手续还没办好呢。");
+                command("whisper "+me->query("id")+" 你的賠償手續還沒辦好呢。");
                 return 1;
         }
 
         if (! me->query("quest2/yunbiao"))
         {
                 command("? "+me->query("id"));
-                command("tell "+me->query("id")+" 你又没有丢镖，何谈赔偿？");
+                command("tell "+me->query("id")+" 你又沒有丟鏢，何談賠償？");
                 return 1;
         }
 
         if (balance < dot ) {
                 command("?");
-                command("whisper "+me->query("id")+" 你需要用" + chinese_number(dot / 100000) + "两黄金来赔偿我们的损失。");
+                command("whisper "+me->query("id")+" 你需要用" + chinese_number(dot / 100000) + "兩黃金來賠償我們的損失。");
                 }
         else {
                 me->add("balance",-dot/10);
@@ -155,6 +155,6 @@ int cancel()
         object me = this_player();
         me->set("quest2/yunbiao",0);
         me->delete("quest2/wait",0);
-        command("tell " + me->query("id") + " 你的赔偿手续已经办妥了。");
+        command("tell " + me->query("id") + " 你的賠償手續已經辦妥了。");
 }
 

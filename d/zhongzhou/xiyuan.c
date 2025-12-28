@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "戏院");
+        set("short", "戲院");
         set("long", @LONG
-这是戏院的大厅，里面台上唱戏正唱的欢呢。你刚站定就
-有两三个彪行大汉来势凶凶上前，不知要发生什么事。
+這是戲院的大廳，裡面臺上唱戲正唱的歡呢。你剛站定就
+有兩三個彪行大漢來勢兇兇上前，不知要發生什麼事。
 LONG);
         set("exits", ([
                 "east" : __DIR__"wendingbei2",

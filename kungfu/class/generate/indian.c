@@ -7,7 +7,7 @@ inherit CHALLENGER;
 void create()
 {
         set_name("天竺人", ({ "indian" }));
-        set("long", "一个天竺人，长得非常瘦小。\n");
+        set("long", "一個天竺人，長得非常瘦小。\n");
         set("gender", "男性");
         set("age", 20);
         set("str", 20);
@@ -62,8 +62,8 @@ void create()
         set_temp("apply/dodge", 50);
         set_temp("apply/force", 50);
 
-        set("chat_lost", "中原武学真是名不虚传。");
-        set("chat_win", "嗯…看来这个人武功还没有学到家，还是改日再来吧。");
+        set("chat_lost", "中原武學真是名不虛傳。");
+        set("chat_win", "嗯…看來這個人武功還沒有學到家，還是改日再來吧。");
 
         setup();
 
@@ -73,24 +73,24 @@ void create()
 string challenge()
 {
         set("opinion/msg", ({
-                (random(2) ? "此人来头不小，当年达摩祖师便是来自天竺。"
-                           : "这是天竺高手，和少林派乃是同源。"),
-                (random(2) ? "去天竺路途遥远，十分凶险，来到中原大是不易。"
-                           : "天竺瑜珈术奥妙无穷，少林绝学易筋经便是由此化来。"),
-                (random(2) ? "当初达摩祖师来到中原，带来了十二项绝技，实在是非同小可。"
-                           : "少林绝技博大精深，天竺武学实在不可小视啊！"),
+                (random(2) ? "此人來頭不小，當年達摩祖師便是來自天竺。"
+                           : "這是天竺高手，和少林派乃是同源。"),
+                (random(2) ? "去天竺路途遙遠，十分兇險，來到中原大是不易。"
+                           : "天竺瑜珈術奧妙無窮，少林絕學易筋經便是由此化來。"),
+                (random(2) ? "當初達摩祖師來到中原，帶來了十二項絕技，實在是非同小可。"
+                           : "少林絕技博大精深，天竺武學實在不可小視啊！"),
         }));
 
         command(random(2) ? "bow" : "buddhi " + query("id"));
         switch (random(2))
         {
         case 0:
-                return "我乃" + query("nation") + "人士，不远万里"
-                        "来到中原，特地向诸位高手请教武学。";
+                return "我乃" + query("nation") + "人士，不遠萬里"
+                        "來到中原，特地向諸位高手請教武學。";
 
         default:
-                return "我是" + query("nation") + "的" + name() + "，还"
-                       "望中原诸位武林高手赐教。";
+                return "我是" + query("nation") + "的" + name() + "，還"
+                       "望中原諸位武林高手賜教。";
         }
 }
 
@@ -100,7 +100,7 @@ void unconcious()
 
 void competition_with(object ob)
 {
-        command("say 好吧！我们就比划比划，勿伤和气。\n");
+        command("say 好吧！我們就比劃比劃，勿傷和氣。\n");
         ::competition_with(ob);
 }
 
@@ -125,9 +125,9 @@ void lost()
         else
                un=query("unit", ob);
 
-        message_vision(CYN "$N" CYN "双手合十，叹道：中原武学真是博大"
-                       "精深，这" + un + ob->name() + CYN "就算是我求"
-                       "学的赠礼吧。\n" NOR, this_object());
+        message_vision(CYN "$N" CYN "雙手合十，嘆道：中原武學真是博大"
+                       "精深，這" + un + ob->name() + CYN "就算是我求"
+                       "學的贈禮吧。\n" NOR, this_object());
 
         ob->move(this_object(), 1);
         command("give"+query("id", ob)+"to"+

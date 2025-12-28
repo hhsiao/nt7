@@ -5,7 +5,7 @@ inherit SWORD;
 
 void create()
 {
-        set_name(NOR + CYN "圣火令" NOR, ({ "shenghuo ling", "shenghuo", "ling" }));
+        set_name(NOR + CYN "聖火令" NOR, ({ "shenghuo ling", "shenghuo", "ling" }));
         set_weight(1000);
         if (clonep())
                 destruct(this_object());
@@ -13,16 +13,16 @@ void create()
                 set("unit", "柄");
                 set("value", 10000);
                 set("material", "steel");
-                set("no_sell", "他奶奶的，这种破铁牌也值钱？");
+                set("no_sell", "他奶奶的，這種破鐵牌也值錢？");
                 set("long", NOR + CYN "
-这是一柄两尺来长的黑牌，看上去非金非铁，但质地却是坚硬
-无比。整个令牌竟有若透明，令中隐隐似有火焰飞腾，实则是
-令质映光，颜色变幻。令上刻得有不少波斯文，所记似乎和武
-学有关，内容深奥，看来需要仔细研读一番才能够领悟。\n" NOR);
-                set("wield_msg", HIR "$N" HIR "从腰间抽出一片黑黝的"
-                                 "铁牌握在手中。\n" NOR);
-                set("unwield_msg", HIR "$N" HIR "单手一抖，已将圣火"
-                                 "令插回了腰间。\n" NOR);
+這是一柄兩尺來長的黑牌，看上去非金非鐵，但質地卻是堅硬
+無比。整個令牌竟有若透明，令中隱隱似有火焰飛騰，實則是
+令質映光，顏色變幻。令上刻得有不少波斯文，所記似乎和武
+學有關，內容深奧，看來需要仔細研讀一番才能夠領悟。\n" NOR);
+                set("wield_msg", HIR "$N" HIR "從腰間抽出一片黑黝的"
+                                 "鐵牌握在手中。\n" NOR);
+                set("unwield_msg", HIR "$N" HIR "單手一抖，已將聖火"
+                                 "令插回了腰間。\n" NOR);
                 set("skill", ([
                         "name"         : "shenghuo-ling",
                         "exp_required" : 1000000,

@@ -3,7 +3,7 @@
 inherit CLOTH;
 void create()
 {
-        set_name(BLK"重钢战甲"NOR, ({ "zhonggang zhanjia","jia" }) );   
+        set_name(BLK"重鋼戰甲"NOR, ({ "zhonggang zhanjia","jia" }) );   
         set_weight(20000);
         /*if( clonep() )
                 set_default_object(__FILE__);

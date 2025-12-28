@@ -10,11 +10,11 @@ inherit F_MASTER;
 string ask_me(object who);
 void create()
 {
-        set_name("劳德诺", ({ "lao denuo","lao","denuo" }) );
+        set_name("勞德諾", ({ "lao denuo","lao","denuo" }) );
         set("nickname", "老好人");
         set("gender", "男性");
         set("age", 61);
-        set("long", "劳德诺是岳不群的二弟子，武艺也是不凡。\n");
+        set("long", "勞德諾是嶽不群的二弟子，武藝也是不凡。\n");
         set("attitude", "peaceful");
 
         set("str", 26);
@@ -70,8 +70,8 @@ void create()
         set_temp("apply/armor", 100);
 
         set("inquiry", ([
-                "岳不群"     :  "他是我尊师，你找他有事吗？\n",
-                "宁中则"     :  "她是我师母！\n",
+                "嶽不群"     :  "他是我尊師，你找他有事嗎？\n",
+                "甯中則"     :  "她是我師母！\n",
                 "紫霞秘籍" : (: ask_me :),
         ]));
 
@@ -82,7 +82,7 @@ void create()
                    "id"        : "yue buqun" ]),
         }));
 
-        create_family("华山派", 14, "弟子");
+        create_family("華山派", 14, "弟子");
         set("master_ob",4);
         set("master_ob",2);
         setup();
@@ -99,7 +99,7 @@ void attempt_apprentice(object ob)
         if( query("shen", ob)<0 )
         {
              command("shake");
-             command("say 我华山派乃名门正派，不收你这种心术不正之徒！");
+             command("say 我華山派乃名門正派，不收你這種心術不正之徒！");
              return;
         }
 
@@ -122,30 +122,30 @@ int accept_ask(object me, string topic)
                            "shen"    : 500, ]));
                 break;
 
-        case "飞絮飘渺" :
+        case "飛絮飄渺" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/huashan-zhang/piao",
-                           "name"    : "飞絮飘渺",
+                           "name"    : "飛絮飄渺",
                            "sk1"     : "huashan-zhang",
                            "lv1"     : 30,
                            "gongxian": 60,
                            "shen"    : 600, ]));
                 break;
 
-        case "苍松式" :
+        case "蒼松式" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/huashan-quan/song",
-                           "name"    : "苍松式",
+                           "name"    : "蒼松式",
                            "sk1"     : "huashan-quan",
                            "lv1"     : 40,
                            "gongxian": 100,
                            "shen"    : 800, ]));
                 break;
 
-        case "剑掌五连环" :
+        case "劍掌五連環" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/huashan-sword/lian",
-                           "name"    : "剑掌五连环",
+                           "name"    : "劍掌五連環",
                            "sk1"     : "huashan-sword",
                            "lv1"     : 50,
                            "force"   : 100,
@@ -165,15 +165,15 @@ string ask_me(object who)
         object *ob, book;
 
         if ((random(10) < 8) || is_fighting())
-                return "对不起，这件事，我不清楚，你还是问我师傅去吧！\n";
+                return "對不起，這件事，我不清楚，你還是問我師傅去吧！\n";
 
         set_temp("apply/attack",  50);
         set_temp("apply/defense", 50);
         set_temp("apply/damage",  50);
 
         message("vision",
-                YEL "看来这件事你都知道了？臭贼，去死吧！\n"
-                "劳德诺使开长剑，招数精奇，狠辣无比，一改整日笑咪咪的模样。\n" NOR,
+                YEL "看來這件事你都知道了？臭賊，去死吧！\n"
+                "勞德諾使開長劍，招數精奇，狠辣無比，一改整日笑咪咪的模樣。\n" NOR,
                 environment(), this_object());
 
 
@@ -192,6 +192,6 @@ string ask_me(object who)
                 ob[i]->fight(this_object());
         }
 
-        return "我带师投艺，忍辱负重，你竟敢打我的主意！\n";
+        return "我帶師投藝，忍辱負重，你竟敢打我的主意！\n";
 }
 

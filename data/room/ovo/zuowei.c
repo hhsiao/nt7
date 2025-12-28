@@ -7,9 +7,9 @@ void create()
 {
         object ob;
 
-        set("short", "东北偏北左卫舍");
+        set("short", "東北偏北左衛舍");
 	set ("long", @LONG
-这里是左卫舍，是看护东北偏北大门的家丁放哨的地方。 
+這裡是左衛舍，是看護東北偏北大門的家丁放哨的地方。 
 LONG );
 
         set("exits", ([
@@ -48,7 +48,7 @@ LONG );
         }));
 
         set("room_owner", "小球球");
-        set("room_name", "东北偏北");
+        set("room_name", "東北偏北");
         set("room_id", "dan");
         set("room_owner_id", "ovo");
         set("room_position", "碎石小道");

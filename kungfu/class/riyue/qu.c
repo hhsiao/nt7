@@ -11,10 +11,10 @@ void create()
 {
         object ob;
         set_name("曲洋", ({ "qu yang", "qu", "yang"}));
-        set("title", "日月神教前辈长老");
+        set("title", "日月神教前輩長老");
         set("gender", "男性" );
         set("age", 45);
-        set("long", "他就是日月神教十大长老之一，琴技天下无双。\n" );
+        set("long", "他就是日月神教十大長老之一，琴技天下無雙。\n" );
         set("attitude", "friendly");
 
         set("max_qi", 5400);
@@ -56,7 +56,7 @@ void create()
         prepare_skill("claw", "poyue-zhao");
         prepare_skill("cuff", "zhenyu-quan");
 
-        create_family("日月神教", 12, "长老");
+        create_family("日月神教", 12, "長老");
 
         set("coagents", ({
                 ([ "startroom" : "/d/henshan/furongfeng",
@@ -102,7 +102,7 @@ void init(object ob)
                         command("play xiaoao-jianghu");
                 else
                         say(CYN + this_object()->name() +
-                            CYN "深深地叹了口气。\n" NOR);
+                            CYN "深深地嘆了口氣。\n" NOR);
         }
         return;
 }
@@ -112,5 +112,5 @@ void attempt_apprentice(object ob)
         if (! permit_recruit(ob))
                 return;
 
-        command("say 老夫年岁已大，不再收徒，你去找其他长老好了。");
+        command("say 老夫年歲已大，不再收徒，你去找其他長老好了。");
 }

@@ -3,7 +3,7 @@
 
 inherit F_SSERVER;
 
-string name() { return HIR "卸甲锥心势" NOR; }
+string name() { return HIR "卸甲錐心勢" NOR; }
 
 int perform(object me, object target)
 {
@@ -19,29 +19,29 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "blade" )
-                return notify_fail("你使用的武器不对，难以施展" + name() + "。\n");
+                return notify_fail("你使用的武器不對，難以施展" + name() + "。\n");
 
         if ((int)me->query_skill("force") < 200)
-                return notify_fail("你的内功火候不够，难以施展" + name() + "。\n");
+                return notify_fail("你的內功火候不夠，難以施展" + name() + "。\n");
 
         if ((int)me->query_skill("hujia-daofa", 1) < 140)
-                return notify_fail("你的胡家刀法还不到家，难以施展" + name() + "。\n");
+                return notify_fail("你的胡家刀法還不到家，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("blade") != "hujia-daofa")
-                return notify_fail("你没有激发胡家刀法，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發胡家刀法，難以施展" + name() + "。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你的真氣不夠，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         msg = HIR "$N" HIR "手中的" + weapon->name() +  HIR "一振，施出「卸"
-              "甲锥心势」，顿时一股凌厉无比的无形刀气破空袭向$n" HIR "！\n"NOR;
+              "甲錐心勢」，頓時一股凌厲無比的無形刀氣破空襲向$n" HIR "！\n"NOR;
 
         ap = attack_power(me, "blade");
         dp = defense_power(target, "parry");
@@ -51,13 +51,13 @@ int perform(object me, object target)
                 damage = damage_power(me, "blade");
                 addn("neili", -150, me);
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 70,
-                                           HIR "只见$n" HIR "一声惨叫，整个人如遭"
-                                           "电击，刀气穿心，口中鲜血狂喷而出！\n" NOR);
+                                           HIR "只見$n" HIR "一聲慘叫，整個人如遭"
+                                           "電擊，刀氣穿心，口中鮮血狂噴而出！\n" NOR);
                 me->start_busy(2);
         } else
         {
-                msg += CYN "可是$p" CYN "默运内力，硬是抵挡了$P"
-                       CYN "的这记无形刀气。\n"NOR;
+                msg += CYN "可是$p" CYN "默運內力，硬是抵擋了$P"
+                       CYN "的這記無形刀氣。\n"NOR;
                 addn("neili", -50, me);
                 me->start_busy(3);
         }

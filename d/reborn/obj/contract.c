@@ -7,14 +7,14 @@ int is_magic_item() { return 1; }
 
 void create()
 {
-        set_name(BLU "阎王契" NOR, ({ "contract" }) );
+        set_name(BLU "閻王契" NOR, ({ "contract" }) );
         set_weight(100);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "份");
                 set("value", 10000);
-                set("long", BLU "这是一份阎王契。\n" NOR);
+                set("long", BLU "這是一份閻王契。\n" NOR);
 
         }
         setup();

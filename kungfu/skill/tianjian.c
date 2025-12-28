@@ -4,30 +4,30 @@ inherit SKILL;
 int is_ultimate_skill() { return 1; }
 
 mapping *action = ({
-([      "action" : "$N剑横于胸，猛地刺向$n，招式颇为凌厉",
+([      "action" : "$N劍橫於胸，猛地刺向$n，招式頗為凌厲",
         "force"  : 20,
          "attack" : 40,
         "dodge"  : 20,
         "parry"  : 20,
         "damage" : 20,
         "lvl"    : 0,
-        "damage_type": "刺伤"
+        "damage_type": "刺傷"
 ]),
-([      "action" : "$N手中$w在半空划出一个半圆，忽然间剑光一闪，$w已刺向$n$l",
+([      "action" : "$N手中$w在半空劃出一個半圓，忽然間劍光一閃，$w已刺向$n$l",
         "force"  : 40,
         "attack" : 60,
         "dodge"  : 20,
         "damage" : 40,
         "lvl"    : 10,
-        "damage_type": "刺伤"
+        "damage_type": "刺傷"
 ]),
-([      "action" : "$N飞身而起，只见半空剑闪动，$w犹如生了眼睛一般刺向$n",
+([      "action" : "$N飛身而起，只見半空劍閃動，$w猶如生了眼睛一般刺向$n",
         "force"  : 60,
         "attack" : 80,
         "dodge"  : 15,
         "damage" : 50,
         "lvl"    : 20,
-        "damage_type": "刺伤"
+        "damage_type": "刺傷"
 ]),
 });
 
@@ -37,10 +37,10 @@ int valid_enable(string usage) { return usage == "sword" || usage == "parry"; }
 int valid_learn(object me)
 {
         if ((int)me->query_skill("sword", 1) < 10)
-                return notify_fail("你的基本剑法火候太浅，无法学习天剑。\n");
+                return notify_fail("你的基本劍法火候太淺，無法學習天劍。\n");
 
         if ((int)me->query_skill("sword", 1) < (int)me->query_skill("tianjian", 1))
-                return notify_fail("你的基本剑法水平有限，无法领会更高深的天剑。\n");
+                return notify_fail("你的基本劍法水平有限，無法領會更高深的天劍。\n");
 
         return 1;
 }
@@ -69,10 +69,10 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if( query("qi", me)<10 )
-                return notify_fail("你的体力不够练天剑。\n");
+                return notify_fail("你的體力不夠練天劍。\n");
 
         me->receive_damage("qi", 5);        
 
@@ -93,7 +93,7 @@ void skill_improved(object me)
         if( lvl >= 30 &&  
             !query("can_perform/tianjian/lian", me) )   
         {
-                tell_object(me, HIC "你通晓了天剑「" HIR "连环决" HIC "」的奥秘。\n" NOR);     
+                tell_object(me, HIC "你通曉了天劍「" HIR "連環決" HIC "」的奧秘。\n" NOR);     
                 set("can_perform/tianjian/lian", 1, me);  
         }
 }

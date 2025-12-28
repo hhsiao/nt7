@@ -15,7 +15,7 @@ int main(object me, string arg)
                 return 0;
 //#endif
 
-        write(sprintf("一共清除了 %d 个变量.\n",
+        write(sprintf("一共清除了 %d 個變量.\n",
                       reclaim_objects()));
         return 1;
 }
@@ -25,7 +25,7 @@ int help()
         write(@TEXT
 指令格式: reclaim
 
-查阅所有的对象，清除那些不应继续保存在内存中的变量。
+查閱所有的對象，清除那些不應繼續保存在內存中的變量。
 TEXT );
         return 1;
 }

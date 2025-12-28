@@ -4,7 +4,7 @@ void create()
 {
         set("short", "幽深隧道");
         set("long",@LONG
-这是一条幽深的隧道深不见底。
+這是一條幽深的隧道深不見底。
 LONG);
 
 	set("exits", ([

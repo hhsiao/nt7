@@ -1,4 +1,4 @@
-// ci.c 刺剑
+// ci.c 刺劍
 
 #include <ansi.h>
 #include <combat.h>
@@ -18,29 +18,29 @@ int perform(object me, object target)
                 target = me->select_opponent();
         }
         if (! target || ! me->is_fighting(target))
-                return notify_fail("「刺剑」只能对战斗中的对手使用。\n");
+                return notify_fail("「刺劍」只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
                 
         if ((int)me->query_skill("xiyang-jian", 1) < 70)
-                return notify_fail("你的西洋剑术不够娴熟，不会使用「刺剑」。\n");
+                return notify_fail("你的西洋劍術不夠嫻熟，不會使用「刺劍」。\n");
                                 
         if ((int)me->query_skill("force") < 120)
-                return notify_fail("你的内功修为不够高，难以运用「刺剑」。\n");
+                return notify_fail("你的內功修為不夠高，難以運用「刺劍」。\n");
                         
         if( query("neili", me)<300 )
-                return notify_fail("你现在真气不够，不能使用「刺剑」。\n");
+                return notify_fail("你現在真氣不夠，不能使用「刺劍」。\n");
 
         if (me->query_skill_mapped("sword") != "xiyang-jian")
-                return notify_fail("你没有激发西洋剑术不够娴熟，不能使用「刺剑」。\n");
+                return notify_fail("你沒有激發西洋劍術不夠嫻熟，不能使用「刺劍」。\n");
 
        if (! living(target))
-              return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+              return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIC "\n$N" HIC "一声呼哨，手中的" +
-              weapon->name() + HIC "犹如一道电光闪向$n" HIC "的胸前。\n"NOR;
+        msg = HIC "\n$N" HIC "一聲呼哨，手中的" +
+              weapon->name() + HIC "猶如一道電光閃向$n" HIC "的胸前。\n"NOR;
 
         ap = me->query_skill("sword");
         dp = target->query_skill("parry");
@@ -49,13 +49,13 @@ int perform(object me, object target)
                 damage = ap / 2 + random(ap * 2 / 3);
                 addn("neili", -70, me);
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 70,
-                                           HIR "$n" HIR "急忙招架，却是慢了一步，被这"
-                                           "一剑正好刺中胸口，鲜血飞溅！\n" NOR);
+                                           HIR "$n" HIR "急忙招架，卻是慢了一步，被這"
+                                           "一劍正好刺中胸口，鮮血飛濺！\n" NOR);
                 me->start_busy(2);
         } else 
         {
-                msg += CYN "然而$p" CYN "眼明手快，不慌不忙的将$P"
-                       CYN "的剑招架开。\n"NOR;
+                msg += CYN "然而$p" CYN "眼明手快，不慌不忙的將$P"
+                       CYN "的劍招架開。\n"NOR;
                 addn("neili", -30, me);
                 me->start_busy(3);
         }

@@ -13,11 +13,11 @@ int level_up()
                 object ob, *obs;
                 string obname;
                 
-        message_vision(append_color(HIY + "\n数道黑气从地底升起缠绕在$N身上，$N体型又增大了一些。\n\n" + NOR, HIY), me);
+        message_vision(append_color(HIY + "\n數道黑氣從地底升起纏繞在$N身上，$N體型又增大了一些。\n\n" + NOR, HIY), me);
 
         addn("level", 1);
         lv = query("level");
-//      set("title", HIC + chinese_number(lv) + "级" + NOR);    
+//      set("title", HIC + chinese_number(lv) + "級" + NOR);    
                 set("jiali", lv * 5);
         set("str", 20 + random(lv) + lv / 2);
         set("con", 20 + random(lv) + lv / 2);
@@ -83,7 +83,7 @@ int level_up()
                                 NOR + CYN + (random(2) ? "哐啷" : "噹地") + (random(2) ? "~ " : "，") + NOR + CYN + "$n" + (random(2) ? "掉" : "落") + 
                                 (random(2) ? "下" : "出") + obname + NOR + CYN + (random(2) ? ".." : "...") + "\n" NOR, CYN), me, this_object());
                         if (rnd < 1000 || query("channel_time") < time()) {
-                                CHANNEL_D->channel_broadcast("dt", sort_msg(NOR + HIW + "传说有人在福地" + query("short", environment()) + HIW + "发现了" + NOR + obname + HIW "。\n" + NOR, 64));
+                                CHANNEL_D->channel_broadcast("dt", sort_msg(NOR + HIW + "傳說有人在福地" + query("short", environment()) + HIW + "發現了" + NOR + obname + HIW "。\n" + NOR, 64));
                                 set("channel_time", time() + 120);
                         }
                 }
@@ -94,10 +94,10 @@ int level_up()
 
 void create()
 {
-        set_name(HIK "铁魔像" NOR, ({ "tie moxiang", "moxiang", "tie" }) );
+        set_name(HIK "鐵魔像" NOR, ({ "tie moxiang", "moxiang", "tie" }) );
         set("gender", "男性" );
         set("age", 99);
-        set("long",     NOR "测试伤害和死亡的傀儡铁魔像，它拥有成长能力。\n" HIR "(你如果太菜，则可能死亡)\n" NOR );
+        set("long",     NOR "測試傷害和死亡的傀儡鐵魔像，它擁有成長能力。\n" HIR "(你如果太菜，則可能死亡)\n" NOR );
         set("shen_type", 0);
         
         setup();
@@ -133,9 +133,9 @@ varargs void receive_damage(string type, int n)
 varargs void unconcious()
 {
 //      if (objectp(query_last_damage_from())) {
-//              message_vision(append_color(YEL + "\n$N：<杀死>" + "...\n\n" + NOR, YEL), query_last_damage_from());
+//              message_vision(append_color(YEL + "\n$N：<殺死>" + "...\n\n" + NOR, YEL), query_last_damage_from());
 //      }
-        message_vision(append_color(YEL + "\n$N晕倒了...\n\n" + NOR, YEL), this_object());
+        message_vision(append_color(YEL + "\n$N暈倒了...\n\n" + NOR, YEL), this_object());
         die(query_last_damage_from());
         return;
 }
@@ -143,7 +143,7 @@ varargs void unconcious()
 varargs void die(object killer)
 {
 //      if (objectp(killer)) {
-//              message_vision(append_color(YEL + "\n$N：<杀死>" + "...\n\n" + NOR, YEL), killer);
+//              message_vision(append_color(YEL + "\n$N：<殺死>" + "...\n\n" + NOR, YEL), killer);
 //      }
         message_vision(append_color(YEL + "\n$N散架了...\n\n" + NOR, YEL), this_object());
         level_up();

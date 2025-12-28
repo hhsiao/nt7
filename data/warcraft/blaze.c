@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[5m[1;31m火气[1;32m腾[1;35m腾[2;37;0m[2;37;0m[2;37;0m", ({"blazing"}));        
+        set_name("[5m[1;31m火氣[1;32m騰[1;35m騰[2;37;0m[2;37;0m[2;37;0m", ({"blazing"}));        
         set("gender", "男性");                
-        set("long", "火气腾腾！[2;37;0m
-它是火炎焱的魔幻兽。
+        set("long", "火氣騰騰！[2;37;0m
+它是火炎焱的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

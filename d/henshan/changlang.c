@@ -2,9 +2,9 @@ inherit ROOM;
 
 void create()
 {
-          set("short","长廊");
+          set("short","長廊");
         set("long", @LONG
-这是通往客房的长廊，不远处便是客房和厨房了。
+這是通往客房的長廊，不遠處便是客房和廚房了。
 LONG );
           set("exits",([
                       "west"      :__DIR__"zhurongdian",

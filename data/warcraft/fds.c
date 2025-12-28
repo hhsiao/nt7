@@ -6,8 +6,8 @@ void setup()
 {
         set_name("百毒朱雀[2;37;0m[2;37;0m", ({"fgg"}));        
         set("gender", "男性");                
-        set("long", "一只鸟[2;37;0m
-它是玄魔子的魔幻兽。
+        set("long", "一隻鳥[2;37;0m
+它是玄魔子的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

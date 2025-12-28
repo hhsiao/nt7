@@ -4,12 +4,12 @@ inherit "/maze/necropolis/necropolis_npc";
 void do_summon();
 void create()
 {
-        string *names = ({"僵尸王"}); 
+        string *names = ({"殭屍王"}); 
         // set_name( names[random(sizeof(names))], ({ "lord zombie","zombie"}));
         set_name( names[random(sizeof(names))], ({ "lord zombie" }));
         set("vendetta_mark","zombie");
-        set("long", "这是一个腐烂的僵尸。\n");
-        set("title", HIB "(鬼气)" NOR); 
+        set("long", "這是一個腐爛的殭屍。\n");
+        set("title", HIB "(鬼氣)" NOR); 
 
         set("str", 50);
         set("con", 120);
@@ -24,7 +24,7 @@ void create()
         set("chat_chance", 1);
         //set("chat_chance", 2);
         //set("chat_msg", ({
-        //                "骷髅空洞的眼眶里闪烁着可怕的荧光。\n"
+        //                "骷髏空洞的眼眶裡閃爍著可怕的熒光。\n"
         //}) ); 
 
         set("chat_chance_combat", 50);
@@ -34,7 +34,7 @@ void create()
 
         set("combat_exp", 300000000);
         set("bellicosity", 1000000 );
-        set("death_msg",RED"\n$N化作了一滩血水。\n\n"NOR);
+        set("death_msg",RED"\n$N化作了一灘血水。\n\n"NOR);
 
         set_skill("force", 220);
         set_skill("dodge", 220);
@@ -69,7 +69,7 @@ void do_summon() {
    object zombie,me,enemy, *enemies;
         me = this_object();
         
-        message_vision(HIM "\n$N嗬嗬干嚎，周围的僵尸应声而来。\n" NOR, me); 
+        message_vision(HIM "\n$N嗬嗬乾嚎，周圍的殭屍應聲而來。\n" NOR, me); 
         seteuid(getuid());   
         if(random(2))
                 zombie = new(__DIR__"zombie_blood");
@@ -81,7 +81,7 @@ void do_summon() {
                         zombie->kill_ob(enemy);
                         enemy->kill_ob(zombie);
         } 
-  message_vision( "\n\n$N恶狠狠地扑了上来。\n" , zombie);
+  message_vision( "\n\n$N惡狠狠地撲了上來。\n" , zombie);
         call_out("leave",10+random(10),zombie);
   start_busy(3);
 }

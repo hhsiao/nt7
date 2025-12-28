@@ -3,10 +3,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", HIB "阴阳塔" NOR);
+        set("short", HIB "陰陽塔" NOR);
         set("long", HIB @LONG
-这是地狱中最高的一座塔，高约三百余尺，共有十八级。这里就是
-塔顶，塔顶有个供奉台(stone)，传说有神兽朱雀路过。
+這是地獄中最高的一座塔，高約三百餘尺，共有十八級。這裡就是
+塔頂，塔頂有個供奉臺(stone)，傳說有神獸朱雀路過。
 LONG NOR
         );
 
@@ -44,26 +44,26 @@ int do_fang(string arg)
 
 
         if (me->is_busy())
-                return notify_fail("你现在正忙着呢。\n");
+                return notify_fail("你現在正忙著呢。\n");
                 
         if (objectp(present("zhu que", environment(me))))
-                return notify_fail("朱雀已经现身了，还寻什么呀，赶快战斗吧！\n");
+                return notify_fail("朱雀已經現身了，還尋什麼呀，趕快戰鬥吧！\n");
 
         if (query("zhuque") < 1)
-                return notify_fail("朱雀已经被宰了，你再怎么寻也是寻不到的！\n");
+                return notify_fail("朱雀已經被宰了，你再怎麼尋也是尋不到的！\n");
 
         if (arg != "qise yinluo")
-                return notify_fail("你必须放上至宝七色璎珞，才能招引神兽朱雀！\n");
+                return notify_fail("你必須放上至寶七色瓔珞，才能招引神獸朱雀！\n");
                                 
         if (! objectp(ob = present("qise yinluo", me)))
-                return notify_fail("你身上没有至宝七色璎珞！\n");               
+                return notify_fail("你身上沒有至寶七色瓔珞！\n");               
         
         destruct(ob);
-        message_vision(HIC "\n$N" HIC "你小心翼翼的将至宝七色璎珞放到供奉台，开始目不转睛的寻找朱雀。\n" NOR, me); 
+        message_vision(HIC "\n$N" HIC "你小心翼翼的將至寶七色瓔珞放到供奉臺，開始目不轉睛的尋找朱雀。\n" NOR, me); 
         
         ob1 = new("/d/death/npc/zhuque");
         ob1->move(environment(me));
-        message_vision(HIC "\n神兽朱雀受到至宝七色璎珞的招引，突然出现在供奉台，你顿时大喜！\n" NOR, me);         
+        message_vision(HIC "\n神獸朱雀受到至寶七色瓔珞的招引，突然出現在供奉臺，你頓時大喜！\n" NOR, me);         
         
         return 1;
 }

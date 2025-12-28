@@ -7,7 +7,7 @@ string long()
         string msg; 
         
         msg = query("long"); 
-        msg += "这是黑臭虫(bugc)的勋章挂带。
+        msg += "這是黑臭蟲(bugc)的勳章掛帶。
 ";
         
         //return sort_string(msg, 64, 0); 

@@ -4,10 +4,10 @@ void create()
 {
         set("short", "山谷");
         set("long",
-"[1;32m此处有些稀疏的树木，眼前矗立着一座千层叠翠、万里点苍\n"
-"的山峰，围成一处幽谷，中有一泓清潭，泉水从峰间奔流而下，喷珠泄玉，\n"
-"直入清潭，还有几只小精灵正在潭边飞舞。此处空气清凉湿润，沁人心肺，\n"
-"四周却看不见任何明显的出路，看来，你只好四处转转(around)看了。\n"
+"[1;32m此處有些稀疏的樹木，眼前矗立著一座千層疊翠、萬里點蒼\n"
+"的山峰，圍成一處幽谷，中有一泓清潭，泉水從峰間奔流而下，噴珠洩玉，\n"
+"直入清潭，還有幾隻小精靈正在潭邊飛舞。此處空氣清涼溼潤，沁人心肺，\n"
+"四周卻看不見任何明顯的出路，看來，你只好四處轉轉(around)看了。\n"
 ); 
         set("exits", ([
         ]) );
@@ -34,14 +34,14 @@ int do_around(string arg)
    me = this_player(); 
    if (random(20)<10)
    { 
-   tell_object(me, "你转来转去，也没找到出口，你迷了路！！\n\n");
+   tell_object(me, "你轉來轉去，也沒找到出口，你迷了路！！\n\n");
    room = find_object(__DIR__"liechang");
    if(!objectp(room)) room=load_object(__DIR__"liechang");
    me->move(room);
    return 1;
    }
    else  
-     tell_object(me, "你发现西边似乎有条路(xifang)。\n\n");
+     tell_object(me, "你發現西邊似乎有條路(xifang)。\n\n");
 return 1;}
 
 int do_catch(string arg)
@@ -49,34 +49,34 @@ int do_catch(string arg)
    object spirit, me, room;
 
    me = this_player();
-   if(!arg || arg != "小精灵" && arg != "spirit" ) return 0;
+   if(!arg || arg != "小精靈" && arg != "spirit" ) return 0;
    spirit = present("spirit", this_object());
    if(!objectp(spirit)||userp(spirit)) return 0;
 
    switch ( random (7)) {
    case 0:
-      message_vision("$N向前一扑！小精灵往後一闪，$N落了个空。 \n", me); 
+      message_vision("$N向前一撲！小精靈往後一閃，$N落了個空。 \n", me); 
       break;
    case 1:
-      message_vision("$N向右一扑！小精灵向左一闪，$N落了个空。 \n", me); 
+      message_vision("$N向右一撲！小精靈向左一閃，$N落了個空。 \n", me); 
       break;
    case 2:
-      message_vision("$N向左一扑，小精灵向右一闪，$N落了个空。\n", me); 
+      message_vision("$N向左一撲，小精靈向右一閃，$N落了個空。\n", me); 
       break;
    case 3:
-      message_vision("$N左扑右挡紧紧地跟着小精灵，深怕一转眼就不见了……\n", me);
+      message_vision("$N左撲右擋緊緊地跟著小精靈，深怕一轉眼就不見了……\n", me);
    break;
    case 4:
-      message_vision("$N合身扑上，小精灵向旁边一晃躲开了$N，$N收势不住摔了个嘴啃泥。  \n", me);
+      message_vision("$N合身撲上，小精靈向旁邊一晃躲開了$N，$N收勢不住摔了個嘴啃泥。  \n", me);
    break;
    case 5:
-      message_vision("$N蹑手蹑脚地朝小精灵摸过去，想从后面抓住它，小精灵机灵地向前一冲，$N没成功。\n", me);
+      message_vision("$N躡手躡腳地朝小精靈摸過去，想從後面抓住它，小精靈機靈地向前一衝，$N沒成功。\n", me);
    break;
    case 6:
-      message_vision("$N往前一扑，小精灵向前一冲，从$N的手边飞快的飞了过去。 \n", me); 
-      message_vision("$N调头便向小精灵逃跑的方向追去……\n", me); 
-      message_vision("\n小精灵三转两转，倏地一下不见了踪影。\n\n", me); 
-      message("vision", me->name() + "紧紧跟着小精灵倏地一下也不见了踪影。\n", environment(me), me);
+      message_vision("$N往前一撲，小精靈向前一衝，從$N的手邊飛快的飛了過去。 \n", me); 
+      message_vision("$N調頭便向小精靈逃跑的方向追去……\n", me); 
+      message_vision("\n小精靈三轉兩轉，倏地一下不見了蹤影。\n\n", me); 
+      message("vision", me->name() + "緊緊跟著小精靈倏地一下也不見了蹤影。\n", environment(me), me);
       room = find_object(__DIR__"outlet2");
       if(!objectp(room)) room=load_object(__DIR__"outlet2");
       me->move(room);
@@ -92,7 +92,7 @@ int do_west(string arg)
         object me;
         object room;
         me = this_player();
-        message_vision("$N往西边的树林走去 . \n", me);
+        message_vision("$N往西邊的樹林走去 . \n", me);
 
         room = load_object(__DIR__"spirit3");
         if(room) me->move(room);

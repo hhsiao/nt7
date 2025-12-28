@@ -1,13 +1,13 @@
 inherit FORCE;
 
 mapping *action = ({
-([      "action": "$N将峨嵋九阳神功运劲于臂，一掌凌空劈斩而出，划出一道炽热的黄芒",
+([      "action": "$N將峨嵋九陽神功運勁於臂，一掌凌空劈斬而出，劃出一道熾熱的黃芒",
         "lvl"   : 0,
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
-([      "action": "$N跨步上前，身形微微一展，双掌对准$n$l一并攻出",
+([      "action": "$N跨步上前，身形微微一展，雙掌對準$n$l一併攻出",
         "lvl"   : 0,
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
 });
 
@@ -43,32 +43,32 @@ int valid_force(string force)
 int valid_learn(object me)
 {
         if ((int)me->query_skill("yinyang-shiertian", 1))
-                return notify_fail("你已将九阳神功融汇贯通，合成了普天之下最强"
-                                   "的武功，不必再分开学习了。\n");
+                return notify_fail("你已將九陽神功融匯貫通，合成了普天之下最強"
+                                   "的武功，不必再分開學習了。\n");
 
         if ((int)me->query_skill("jiuyang-shengong", 1))
-                return notify_fail("你已将三种九阳神功全部融汇贯通，不必再分开"
-                                   "学习了。\n");
+                return notify_fail("你已將三種九陽神功全部融匯貫通，不必再分開"
+                                   "學習了。\n");
 
-        if( query("gender", me) == "无性" && query("emei-jiuyang", me)>9 )
-                return notify_fail("你无根无性，阴阳不调，难以领会高深的峨嵋九"
-                                   "阳神功。\n");
+        if( query("gender", me) == "無性" && query("emei-jiuyang", me)>9 )
+                return notify_fail("你無根無性，陰陽不調，難以領會高深的峨嵋九"
+                                   "陽神功。\n");
 
         if( query("con", me)<33 )
-                return notify_fail("你的先天根骨孱弱，无法修炼峨嵋九阳神功。\n");
+                return notify_fail("你的先天根骨孱弱，無法修煉峨嵋九陽神功。\n");
 
         if ((int)me->query_skill("force", 1) < 100)
-            return notify_fail("你的内功太差，无法学习峨嵋九阳神功。\n");
+            return notify_fail("你的內功太差，無法學習峨嵋九陽神功。\n");
 
         if( query("max_neili", me)<1200 )
-            return notify_fail("你的内力修为太浅，无法学习峨嵋九阳神功。\n");
+            return notify_fail("你的內力修為太淺，無法學習峨嵋九陽神功。\n");
 
         return ::valid_learn(me);
 }
 
 int practice_skill(object me)
 {
-        return notify_fail("峨嵋九阳神功只能用学(learn)的来增加熟练度。\n");
+        return notify_fail("峨嵋九陽神功只能用學(learn)的來增加熟練度。\n");
 }
 
 string exert_function_file(string func)

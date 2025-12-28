@@ -28,7 +28,7 @@ int do_kill(string arg)
         else 
         if( query("ygjg", me) )
         {
-                  tell_object(who, CYN "你还是各司其职，专心对付你的" HIR "蒙古兵" CYN "吧。\n" NOR);
+                  tell_object(who, CYN "你還是各司其職，專心對付你的" HIR "蒙古兵" CYN "吧。\n" NOR);
                   return 1;
         }
         return 0;

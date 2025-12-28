@@ -3,8 +3,8 @@ inherit F_DEALER;
 
 void create()
 {
-        set_name("萧南忠", ({ "xiao nanzhong", "xiao", "nanzhong" }));
-        set("title", "杂货铺老板");
+        set_name("蕭南忠", ({ "xiao nanzhong", "xiao", "nanzhong" }));
+        set("title", "雜貨鋪老闆");
         set("shen_type", 1);
         set("gender", "男性");
         set("age", 45);

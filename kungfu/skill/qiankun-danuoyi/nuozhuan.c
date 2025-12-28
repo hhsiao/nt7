@@ -2,7 +2,7 @@
 
 #include <ansi.h>
 
-string name() { return MAG "挪转乾坤" NOR; }
+string name() { return MAG "挪轉乾坤" NOR; }
 
 int perform(object me, object target)
 {
@@ -12,48 +12,48 @@ int perform(object me, object target)
         int time;
 
         if( !userp(me) && !query("yuanshen", me) )
-                return notify_fail("你尚未悟道，无法施展" + name() + "。\n" NOR);
+                return notify_fail("你尚未悟道，無法施展" + name() + "。\n" NOR);
 
         if( (level = me->query_skill("qiankun-danuoyi", 1)) < 1000 )
-                return notify_fail("你的乾坤大挪移还不够熟练，难以施展" + name() + "。\n" NOR);
+                return notify_fail("你的乾坤大挪移還不夠熟練，難以施展" + name() + "。\n" NOR);
 
         if( (int)query("jingli", me) < 2000 )
-                return notify_fail("你现在真气不足，难以施展" + name() + "。\n" NOR);
+                return notify_fail("你現在真氣不足，難以施展" + name() + "。\n" NOR);
 
         if( (int)query("neili", me) < 5000 )
-                return notify_fail("你现在内力不够，难以施展" + name() + "。\n" NOR);
+                return notify_fail("你現在內力不夠，難以施展" + name() + "。\n" NOR);
 
          if (BUFF_D->check_buff(me,"qkdny-nuozhuan") )
-                return notify_fail("你已经运起" + name() + "。\n" NOR);
+                return notify_fail("你已經運起" + name() + "。\n" NOR);
 
         if( userp(me) ) 
         {
                 if( (time = BUFF_D->get_buff_overtime(me, "qkdny_nuozhuan")) > 0 )
-                        return notify_fail(MAG"挪转乾坤消耗心神太甚，还需等待"+time+"秒。\n"NOR);
+                        return notify_fail(MAG"挪轉乾坤消耗心神太甚，還需等待"+time+"秒。\n"NOR);
         }
 
         addn("neili", -1000, me);
         me->receive_damage("qi", 0);
 
-        msg = MAG "\n$N" MAG "提起真气，默念" + name() + "心法，心中卸力拆招的法门已达发乎自然之境。\n" NOR;
+        msg = MAG "\n$N" MAG "提起真氣，默唸" + name() + "心法，心中卸力拆招的法門已達發乎自然之境。\n" NOR;
 
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "qkdny-nuozhuan",
                 "attr"  : "bless",
-                "name"  : "乾坤大挪移·挪转乾坤",
+                "name"  : "乾坤大挪移·挪轉乾坤",
                 "time"  : level,
                 "buff_data": "nuozhuan",      
                 "buff_msg" : msg,
-                "disa_msg" : "你的「挪转乾坤」运功完毕，将内力收回丹田。\n",
+                "disa_msg" : "你的「挪轉乾坤」運功完畢，將內力收回丹田。\n",
                         
         ]);
         BUFF_D->buffup(buff);
 
         time = level+40;
-        time -= ABILITY_D->check_ability(me, "cd-qkdny-nuozhuan"); // ab门派减cd
-        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent减cd
+        time -= ABILITY_D->check_ability(me, "cd-qkdny-nuozhuan"); // ab門派減cd
+        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd
 
         buff =
         ([
@@ -62,9 +62,9 @@ int perform(object me, object target)
                 "type"   : "cooldown",
                 "type2"  : "qkdny_nuozhuan",
                 "attr"   : "curse",
-                "name"   : "乾坤大挪移·挪转乾坤",
+                "name"   : "乾坤大挪移·挪轉乾坤",
                 "time"   : time,
-                "buff_msg" : "挪转乾坤消耗心神太甚，还需等待"+time+"秒方可再次施展。\n",
+                "buff_msg" : "挪轉乾坤消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : "",
                 "disa_type": 0,
         ]);

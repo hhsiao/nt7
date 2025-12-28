@@ -2,77 +2,77 @@ inherit SKILL;
 int is_pbsk() { return 1; }
 
 mapping *action = ({
-([      "action": "$N手中$w斜指，一招「沙鸥掠波」，反身一顿，一刀向$n的$l撩去",
+([      "action": "$N手中$w斜指，一招「沙鷗掠波」，反身一頓，一刀向$n的$l撩去",
         "force" : 20,
         "dodge" : 10,
         "parry" : 25,
         "damage": 5,
         "lvl"   : 0,
-        "skill_name"  : "沙鸥掠波",
-        "damage_type" : "割伤"
+        "skill_name"  : "沙鷗掠波",
+        "damage_type" : "割傷"
 ]),
-([      "action": "$N一招「平沙落雁」，左右腿虚点，$w一提一收，平刃挥向$n的颈部",
+([      "action": "$N一招「平沙落雁」，左右腿虛點，$w一提一收，平刃揮向$n的頸部",
         "force" : 30,
         "dodge" : 30,
         "parry" : 40,
         "damage": 10,
         "lvl"   : 20,
         "skill_name"  : "平沙落雁",
-        "damage_type" : "割伤"
+        "damage_type" : "割傷"
 ]),
-([      "action": "$N展身虚步，提腰跃落，一招「飞燕入林」，刀锋一卷，拦腰斩向$n",
+([      "action": "$N展身虛步，提腰躍落，一招「飛燕入林」，刀鋒一卷，攔腰斬向$n",
         "force" : 40,
         "dodge" : 35,
         "parry" : 45,
         "damage": 15,
         "lvl"   : 40,
-        "skill_name"  : "飞燕入林",
-        "damage_type" : "割伤"
+        "skill_name"  : "飛燕入林",
+        "damage_type" : "割傷"
 ]),
-([      "action": "$N一招「凤凰挚窝」，$w大开大阖，自上而下划出一个大弧，笔直劈向$n",
+([      "action": "$N一招「鳳凰摯窩」，$w大開大闔，自上而下劃出一個大弧，筆直劈向$n",
         "force" : 60,
         "dodge" : 45,
         "parry" : 45,
         "damage": 20,
         "lvl"   : 60,
-        "skill_name"  : "凤凰挚窝",
-        "damage_type" : "割伤"
+        "skill_name"  : "鳳凰摯窩",
+        "damage_type" : "割傷"
 ]),
-([      "action": "$N手中$w一沉，一招「玉女穿梭」，双手持刃拦腰反切，砍向$n的胸口",
+([      "action": "$N手中$w一沉，一招「玉女穿梭」，雙手持刃攔腰反切，砍向$n的胸口",
         "force" : 80,
         "dodge" : 50,
         "parry" : 55,
         "damage": 25,
         "lvl"   : 80,
         "skill_name"  : "玉女穿梭",
-        "damage_type" : "割伤"
+        "damage_type" : "割傷"
 ]),
-([      "action": "$N挥舞$w，使出一招「怀中抱月」，上劈下撩，左挡右开，齐齐罩向$n",
+([      "action": "$N揮舞$w，使出一招「懷中抱月」，上劈下撩，左擋右開，齊齊罩向$n",
         "force" : 90,
         "dodge" : 65,
         "parry" : 55,
         "damage": 30,
         "lvl"   : 100,
-        "skill_name"  : "怀中抱月",
-        "damage_type" : "割伤"
+        "skill_name"  : "懷中抱月",
+        "damage_type" : "割傷"
 ]),
-([      "action": "$N一招「风卷荷叶」，左脚跃步落地，$w顺势往前，挟风声劈向$n的$l",
+([      "action": "$N一招「風捲荷葉」，左腳躍步落地，$w順勢往前，挾風聲劈向$n的$l",
         "force" : 120,
         "dodge" : 75,
         "parry" : 85,
         "damage": 35,
         "lvl"   : 120,
-        "skill_name"  : "风卷荷叶",
-        "damage_type" : "割伤"
+        "skill_name"  : "風捲荷葉",
+        "damage_type" : "割傷"
 ]),
-([      "action": "$N盘身驻地，一招「青龙出水」，挥出一片流光般的刀影，向$n的全身涌去",
+([      "action": "$N盤身駐地，一招「青龍出水」，揮出一片流光般的刀影，向$n的全身湧去",
         "force" : 140,
         "dodge" : 90,
         "parry" : 90,
         "damage": 40,
         "lvl"   : 140,
-        "skill_name"  : "青龙出水",
-        "damage_type" : "割伤"
+        "skill_name"  : "青龍出水",
+        "damage_type" : "割傷"
 ]),
 });
 
@@ -85,13 +85,13 @@ int valid_enable(string usage)
 int valid_learn(object me)
 {
         if( query("max_neili", me)<200 )
-                return notify_fail("你的内力修为不够。\n");
+                return notify_fail("你的內力修為不夠。\n");
 
         if ((int)me->query_skill("force") < 50)
-                return notify_fail("你的内功火候太浅。\n");
+                return notify_fail("你的內功火候太淺。\n");
 
         if ((int)me->query_skill("blade", 1) < (int)me->query_skill("danding-dao", 1))
-                return notify_fail("你的基本刀法水平有限，无法领会更高深的丹碇刀法。\n");
+                return notify_fail("你的基本刀法水平有限，無法領會更高深的丹碇刀法。\n");
 
         return 1;
 }
@@ -119,13 +119,13 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "blade" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if( query("qi", me)<60 )
-                return notify_fail("你的体力不够练丹碇刀法。\n");
+                return notify_fail("你的體力不夠練丹碇刀法。\n");
 
         if( query("neili", me)<60 )
-                return notify_fail("你的内力不够练丹碇刀法。\n");
+                return notify_fail("你的內力不夠練丹碇刀法。\n");
 
         me->receive_damage("qi", 45);
         addn("neili", -43, me);

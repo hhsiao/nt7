@@ -14,11 +14,11 @@ void create()
 {
         object arrow;
 
-        set_name(HIR "蒙古哲别" NOR, ({"menggu zhebie", "zhebie" }));
+        set_name(HIR "蒙古哲別" NOR, ({"menggu zhebie", "zhebie" }));
         set("title", HIY "神射手" NOR);
         set("gender", "男性");
         set("age", 20 + random(20));
-        set("long", "这是一位蒙古神射手，蒙古人称为哲别！");
+        set("long", "這是一位蒙古神射手，蒙古人稱為哲別！");
         set("chat_chance", 100);
         set("chat_msg", ({ (: random_move :),
         }));
@@ -29,12 +29,12 @@ void create()
                 (: shot_arrow :),
         }));
 
-        // 蒙古士兵标志
+        // 蒙古士兵標誌
         set("mgbing", 1);
 
         set_temp("apply/armor", 5000);
         set_temp("apply/damage", 8000);
-        set_temp("apply/attack", 100000); // 较高命中
+        set_temp("apply/attack", 100000); // 較高命中
 
         set("str", 40);
         set("int", 10 + random(14));
@@ -43,7 +43,7 @@ void create()
 
         set("combat_exp", 200000000);
 
-        // 增加射击命中
+        // 增加射擊命中
         set("special_skill/accuracy", 1);
 
         set("max_qi", 500000);
@@ -70,12 +70,12 @@ void create()
         
         set_temp("born_time", time());
 
-        set_temp("dest_now", 0); // 撤退标记 0 为不撤退继续战斗
+        set_temp("dest_now", 0); // 撤退標記 0 為不撤退繼續戰鬥
 
         add_money("gold", 3 + random(5));
 
-        // 设置奖励级别
-        set("gift/level", "哲别");
+        // 設置獎勵級別
+        set("gift/level", "哲別");
         set("gift/exp", 3500 + random(3001));
         set("gift/pot", 5200 + random(5401));
         set("gift/experience", 1400 + random(1201));
@@ -99,7 +99,7 @@ void check_time()
 
         if (! me->is_fighting())return;
 
-        // 同时补充内力
+        // 同時補充內力
         set("neili", query("max_neili"));
 
         if (random(10) == 1)
@@ -124,7 +124,7 @@ void check_time()
 
         if (me->is_busy())me->interrupt_busy(this_object(),1000); 
 
-        // 很小几率恢复气血
+        // 很小几率恢復氣血
         if (random(20) == 1)
         {
                 if (me->query("eff_qi") < me->query("max_qi") / 3)me->add("eff_qi", me->query("max_qi") / 5);
@@ -134,7 +134,7 @@ void check_time()
 
 int accept_fight(object ob)
 {
-        command("say 我可没兴趣陪你玩，快给我滚开。");
+        command("say 我可沒興趣陪你玩，快給我滾開。");
         return 0;
 }
 
@@ -145,29 +145,29 @@ int accept_hit(object ob)
 
 int accept_ansuan(object ob)
 {
-        return notify_fail("那人警惕性好高，你难以下手。\n");
+        return notify_fail("那人警惕性好高，你難以下手。\n");
 }
 
 int accept_touxi(object ob)
 {
-        return notify_fail("那人警惕性好高，你难以下手。\n");
+        return notify_fail("那人警惕性好高，你難以下手。\n");
 }
 
 void die(object killer)
 {
-        object dob;             // 打晕这个NPC的人
-        int n;                  // 组队中队员数目
-        int exp;                // 需要瓜分的经验
-        int pot;                // 需要瓜分的潜能
-        int tihui;              // 需要瓜分的体会
+        object dob;             // 打暈這個NPC的人
+        int n;                  // 組隊中隊員數目
+        int exp;                // 需要瓜分的經驗
+        int pot;                // 需要瓜分的潛能
+        int tihui;              // 需要瓜分的體會
         int weiwang;            // 需要瓜分的威望
-        int score;              // 需要瓜分的阅历
+        int score;              // 需要瓜分的閱歷
 
-        object *t;              // 杀死我的人的队伍列表
+        object *t;              // 殺死我的人的隊伍列表
         object tob;
         int i;
 
-        // 找到杀了我(NPC)或是打晕我的人
+        // 找到殺了我(NPC)或是打暈我的人
         if (! objectp(dob = killer))
                 dob = query_defeated_by();
 
@@ -179,7 +179,7 @@ void die(object killer)
                 return;
         }
 
-        // 战斗进行时才有奖励
+        // 戰鬥進行時才有獎勵
         if (XYWAR_D->now_status() != 2)
         {
                 if (! query("no_total"))
@@ -194,12 +194,12 @@ void die(object killer)
                 pot = query("gift/pot");
                 tihui = query("gift/experience");
 
-                // 组队
+                // 組隊
                 t = dob->query_team();
 
                 if (pointerp(t))n = sizeof(t);
 
-                // 组队后需要瓜分经验
+                // 組隊後需要瓜分經驗
                 if (n > 1)
                 {
                        exp /= n;
@@ -211,8 +211,8 @@ void die(object killer)
                 if (pot < 1)pot = 1;
                 if (tihui < 1)tihui = 1;
                                 
-                // 帝王符图
-                // 编号49
+                // 帝王符圖
+                // 編號49
                 if (dob->query("scborn/ok") && MEMBER_D->is_valib_member(dob->query("id")) && dob->query("quest_tuteng/start"))
                 {
                         int n_tt;
@@ -224,7 +224,7 @@ void die(object killer)
                                 ob_tt = new("/clone/tuteng/diwang-suipian" + sprintf("%d", n_tt));
                                 if (ob_tt)
                                 {
-                                        write(HIG "你获得了一张帝王符图碎片。\n" NOR);
+                                        write(HIG "你獲得了一張帝王符圖碎片。\n" NOR);
                                         ob_tt->move(dob, 1);
                                 }
                         }
@@ -232,33 +232,33 @@ void die(object killer)
                                                 
                 if (pointerp(t))
                 {                                                
-                        /// 999 表明获得的特殊奖励不受上限限制
+                        /// 999 表明獲得的特殊獎勵不受上限限制
                         foreach(tob in t)
                         {
                                    if (objectp(tob) && living(tob))
                                    {
-                                                     // 设置杀敌标志，最为最终奖励依据
+                                                     // 設置殺敵標誌，最為最終獎勵依據
                                                      tob->set("xywar/xy_" + sprintf("%d", XYWAR_D->get_ran_num()), pot);
 
                                                   GIFT_D->delay_bonus(tob,
                                                          ([ "exp"         : exp + ((tob == dob) ? exp : 0),
                                                               "pot"         : pot + ((tob == dob) ? pot : 0),
                                                                "mar"         : tihui + ((tob == dob) ? tihui : 0),
-                                                              "prompt"      : "你的队伍击毙" + name() + "之后" ]), 999);
+                                                              "prompt"      : "你的隊伍擊斃" + name() + "之後" ]), 999);
                                                                   
                                     }
                         }
                 }
                 else
                 {
-                        // 设置杀敌标志，最为最终奖励依据
+                        // 設置殺敵標誌，最為最終獎勵依據
                         dob->set("xywar/xy_" + sprintf("%d", XYWAR_D->get_ran_num()), pot);
                         
                         GIFT_D->delay_bonus(dob,
                             ([ "exp"         : exp,
                                "pot"         : pot,
                                "mar"         : tihui,
-                               "prompt"      : "你在击毙" + name() + "之后" ]), 999);
+                               "prompt"      : "你在擊斃" + name() + "之後" ]), 999);
                 }
         }
 
@@ -275,7 +275,7 @@ void uncoucious()
         die(query_last_damage_from());
 }
 
-// 弓箭手特有函数，用于使用弓箭攻击敌人
+// 弓箭手特有函數，用於使用弓箭攻擊敵人
 void shot_arrow()
 {
                 object me = this_object();
@@ -308,22 +308,22 @@ void random_move()
                 set_temp("dest_now", 1);
         }
 
-        // 行进路径方向
-        // 需要先设置
+        // 行進路徑方向
+        // 需要先設置
         route = query("route");
 
         env = environment(this_object());
 
         if (! objectp(env))return;
         
-        // 如果到达中央广场宣告襄阳保卫战失败
+        // 如果到達中央廣場宣告襄陽保衛戰失敗
         if (base_name(env) == "/d/xiangyang/guangchang")
         {                        
-               XYWAR_D->arrived_center();// 保卫战失败
+               XYWAR_D->arrived_center();// 保衛戰失敗
                return;
         }
 
-        // 按照路由列表移动
+        // 按照路由列表移動
         if (stringp(route) && XYWAR_D->now_status() == 2)command("go " + route);
 
 }
@@ -335,11 +335,11 @@ void init()
         if (! living(me) || me->query_temp("apply/invisible"))
                  return;
 
-        // 蒙古并不相互战斗
+        // 蒙古並不相互戰鬥
         if (me->query("mgbing"))return;                        
 
-        // 延迟一定时间攻击
-        // 为了设置fighting标记也更真实
+        // 延遲一定時間攻擊
+        // 為了設置fighting標記也更真實
         if (! me->query("env/invisible"))call_out("do_kill", 1 + random(3), me);
         if (playerp(me))me->set("env/combatd",4);
 }
@@ -351,10 +351,10 @@ void do_kill(object me)
         if (! living(me) || me->query_temp("apply/invisible"))
                  return;
 
-        // 并不是每个对象都攻击，这样做是为了节约系统资源和更为真实
+        // 並不是每個對象都攻擊，這樣做是為了節約系統資源和更為真實
         if (me->is_fighting() && random(3) == 1)return;
 
-        // 只能同时攻击一个人
+        // 只能同時攻擊一個人
         if (this_object()->is_fighting())return;
 
         kill_ob(me);

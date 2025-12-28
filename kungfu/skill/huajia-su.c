@@ -1,5 +1,5 @@
 #include <ansi.h>
-// 全真化甲术 huajia-su
+// 全真化甲術 huajia-su
 inherit SKILL; 
 string type() { return "knowledge"; } 
 
@@ -9,14 +9,14 @@ string family_name() { return "全真教"; }
 int valid_learn(object me)
 {        
         if (me->query_skill("quanzhen-jian", 1) < 30)
-                return notify_fail("你全真剑法火候不足，无法研习化甲术。\n");        
+                return notify_fail("你全真劍法火候不足，無法研習化甲術。\n");        
         
         if( query("family/family_name", me) != family_name() )
-                return notify_fail("化甲术只能全真教弟子方可研习。\n");
+                return notify_fail("化甲術只能全真教弟子方可研習。\n");
 
         if (me->query_skill("taoism", 1) < 
             me->query_skill("huajia-su", 1) * 60 /100)
-                return notify_fail("你道学心发修为不足，无法继续研习化甲术。\n");
+                return notify_fail("你道學心發修為不足，無法繼續研習化甲術。\n");
 
         return 1;
 }

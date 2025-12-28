@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "潇湘馆");
+        set("short", "瀟湘館");
         set("long", @LONG
-这是缥缈峰灵鹫宫的裁缝室。几个女子围坐在一块，飞针走线，
-苦练女红，为灵鹫宫的诸多女弟子缝纫青衣斗篷。 
+這是縹緲峰靈鷲宮的裁縫室。幾個女子圍坐在一塊，飛針走線，
+苦練女紅，為靈鷲宮的諸多女弟子縫紉青衣斗篷。 
 LONG );
         set("exits", ([
                 "south" : __DIR__"changl10",

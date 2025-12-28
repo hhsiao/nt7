@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("神行者号[2;37;0m[2;37;0m", ({"luhu"}));        
+        set_name("神行者號[2;37;0m[2;37;0m", ({"luhu"}));        
         set("gender", "男性");                
-        set("long", "神行者号[2;37;0m
-它是唐如的魔幻兽。
+        set("long", "神行者號[2;37;0m
+它是唐如的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

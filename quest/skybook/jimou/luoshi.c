@@ -18,20 +18,20 @@ void main(object ob, string who)
 	p_name=CHAR_D->get_char(ob->query_primary_id(),"name");
 	where = TROOP_D->get_troop_area(p_id);
 	if(!(p_skill=CHAR_D->get_char(ob->query_primary_id(),"skills")["luoshi"]) )
-	{	write("你不会落石之计。\n");
+	{	write("你不會落石之計。\n");
 		return;}
 	if( !p_id){
-                write("只有身在军中才能使用落石之计。\n");
+                write("只有身在軍中才能使用落石之計。\n");
                 return;
         }	
 	// In the furture, We have to consider theplayer's ablility
 	// add the exp of this jimou, reduce mp, etc.
 	if ( !e_id || TROOP_D->get_troop_area(e_id)!=where)
-		{ write("对方不在此战场上。\n");
+		{ write("對方不在此戰場上。\n");
 			return;
 		}
 	if (TROOP_D->get_troop_side(e_id) ==TROOP_D->get_troop_side(p_id))
-                {write ("不可向己方部队施用此计。\n");
+                {write ("不可向己方部隊施用此計。\n");
                         return;
                 }	
 	x =TROOP_D->get_troop_position(p_id)[0];
@@ -41,20 +41,20 @@ void main(object ob, string who)
                 y2 = TROOP_D->get_troop_position(e_id)[1];
 	if (MAP_D->get_map_cell(where,y2,x2,"m") != "∧")
 		{
-		write("对方不在山区，无法施计。\n");
+		write("對方不在山區，無法施計。\n");
 		return;}
                 if( (x-x2)*(x-x2)+(y-y2)*(y-y2) > 4 ){
-			write("你离敌人太远无法施计。\n");
+			write("你離敵人太遠無法施計。\n");
 			return;}
                 tell(deep_inventory(TROOP_D->find_troop(e_id)),
-	"一阵奔雷般的响声传来，无数大石向部队砸了下来。，原来是"+p_name+"
-对你的部队使用落石之计。\n",
+	"一陣奔雷般的響聲傳來，無數大石向部隊砸了下來。，原來是"+p_name+"
+對你的部隊使用落石之計。\n",
                         MSG_INDENT);
                 // In future, we have to consider effects of the
                 // ablility of general, zhenxing, dixing, etc.
                 // Now the damage depends only on the No of bowman
 	ob->simple_action(SG_SKILL_D->query_use("luoshi"));
-	ob->start_busy(10, "你正忙于施计呢。\n");
+	ob->start_busy(10, "你正忙於施計呢。\n");
 	load_object("/daemons/cast_d.c")->reg_player(ob->query_primary_id(),"luoshi");
         ob->award_exp(ob->query_sk_level("sk_zhimou")/2+random(20), "luoshi");
 	call_out("show_result", 10+random(5), ob, who, p_skill, p_id, e_id);
@@ -82,7 +82,7 @@ kill = random(kill);
 	ob->stop_busy();
 	if( kill>50)
 	{	tell(deep_inventory(TROOP_D->find_troop(e_id)),
-                "乱石砸下，士兵鬼哭狼嚎，死者无数。\n",
+                "亂石砸下，士兵鬼哭狼嚎，死者無數。\n",
                         MSG_INDENT);
 		mora = random (-20) -10;
 		mora1 = random (6) +2;
@@ -93,7 +93,7 @@ kill = random(kill);
 	{     if(kill>20)
 		{
 	tell(deep_inventory(TROOP_D->find_troop(e_id)),
-        	"乱石砸下，士兵多有损伤。\n",
+        	"亂石砸下，士兵多有損傷。\n",
                         MSG_INDENT);	
 		mora = random (-10) - 5;
 		mora1 = random (3) + 1;
@@ -103,7 +103,7 @@ kill = random(kill);
 	      else if( kill>5)
 		{
 		tell(deep_inventory(TROOP_D->find_troop(e_id)),
-        	"乱石砸下，士兵有些损伤。\n",
+        	"亂石砸下，士兵有些損傷。\n",
                         MSG_INDENT);
 		mora = random(-5) - 1;
 		mora1 = 1;
@@ -113,7 +113,7 @@ kill = random(kill);
 	      else 
 		{
 		tell(deep_inventory(TROOP_D->find_troop(e_id)),
-        	"乱石砸下，但士兵们在指挥下小心翼翼的躲过了乱石。\n",
+        	"亂石砸下，但士兵們在指揮下小心翼翼的躲過了亂石。\n",
                         MSG_INDENT);
 		mora = random(8) + 3;
 		mora1 = random(-8) - 3;
@@ -137,8 +137,8 @@ kill = random(kill);
 	 WARAI_D->kill_troop(e_id,damage);
                 WARAI_D->clear_empty_troop(({e_id}));
          WARAI_D->war_inf(TROOP_D->get_troops(p_id,"task_id"),
-TROOP_D->find_troop(p_id)->query_id()[1]+"使用落石之计，使"+
-TROOP_D->find_troop(e_id)->query_id()[1]+"损失"+chinese_number(damage)+
+TROOP_D->find_troop(p_id)->query_id()[1]+"使用落石之計，使"+
+TROOP_D->find_troop(e_id)->query_id()[1]+"損失"+chinese_number(damage)+
 "人”。","b"); 
 	};	
 

@@ -13,16 +13,16 @@ int main(object me, string arg)
             (query("family/family_name", me) == "少林派" || 
             query("family/family_name", me) == "峨嵋派") )
         {
-                write("你没有禀告师长，怎敢擅自还俗？\n");
+                write("你沒有稟告師長，怎敢擅自還俗？\n");
                 return 1;
         }
 
         if( query_temp("pending/secularize", me) )
         {
                 CHANNEL_D->do_channel(this_object(), "rumor",
-                        "听说" + me->name(1) + "厌倦了清贫枯燥的生活，决定还俗。");
+                        "聽說" + me->name(1) + "厭倦了清貧枯燥的生活，決定還俗。");
                 delete("class", me);
-                write("你摸了摸脑袋，叹了口气，决定回尘世好好享受享受。\n");
+                write("你摸了摸腦袋，嘆了口氣，決定回塵世好好享受享受。\n");
 
                 if( stringp(query("purename", me)) )
                         me->set_name();
@@ -30,7 +30,7 @@ int main(object me, string arg)
         }
 
         set_temp("pending/secularize", 1, me);
-        write(YEL "你决定要还俗吗？这可是大事，如果你下了决心，那就再输入一次这个命令。\n" NOR);
+        write(YEL "你決定要還俗嗎？這可是大事，如果你下了決心，那就再輸入一次這個命令。\n" NOR);
         return 1;
 }
 
@@ -39,7 +39,7 @@ int help (object me)
         write(@HELP
 指令格式: secularize|huansu
  
-这个指令让你放弃无聊的出家生活。
+這個指令讓你放棄無聊的出家生活。
 
 HELP );
         return 1;

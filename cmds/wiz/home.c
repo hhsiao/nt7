@@ -33,7 +33,7 @@ int main(object me, string arg)
         {
                 ob = UPDATE_D->global_find_player(arg);  
                 if (! objectp(ob)) 
-                        return notify_fail( "没有这个玩家。\n");
+                        return notify_fail( "沒有這個玩家。\n");
                         
                 file2 = "/u/" + arg + "/workroom.c";
         }
@@ -41,14 +41,14 @@ int main(object me, string arg)
         if (file_size(file2) <= 0)
         {
                 if (arg) 
-                        return notify_fail(query("name", ob)+"没有自己的工作室。\n");
+                        return notify_fail(query("name", ob)+"沒有自己的工作室。\n");
                 else 
                 if (! get_dir("/u/" + geteuid(me) + "/"))
                 {
                         if (mkdir("/u/" + geteuid(me)))
-                                write(GRN "\n你的目录建在 /u 下。\n\n" NOR);
+                                write(GRN "\n你的目錄建在 /u 下。\n\n" NOR);
                         else 
-                                return notify_fail("建立目录失败！\n");
+                                return notify_fail("建立目錄失敗！\n");
                 }
                 str = read_file(file1);
                 str = replace_string(str, "NAME", this_player()->name());
@@ -75,8 +75,8 @@ int help(object me)
  write(@HELP
 指令格式 : home 或 home <sb>
 
-利用此一指令可直接回到自己的工作室或到有工作室的巫师家做客。
-如果你有 'msg_home' 这个设定, 则在场的人都会看到那个讯息.
+利用此一指令可直接回到自己的工作室或到有工作室的巫師家做客。
+如果你有 'msg_home' 這個設定, 則在場的人都會看到那個訊息.
 HELP
     );
     return 1;

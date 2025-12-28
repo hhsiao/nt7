@@ -5,11 +5,11 @@ string look_duilian();
 
 void create()
 {
-        set("short", "南天门");
+        set("short", "南天門");
         set("long", @LONG
-到了南天门，才能望到衡山第一的祝融峰。南天门是花岗岩做成
-的石碑坊，中门镌有「南天门」三字横额，左右二门的门楣上，分别
-刻有「行云」和「施雨」二字。楹联(lian)破陋，显见岁月已久。
+到了南天門，才能望到衡山第一的祝融峰。南天門是花崗岩做成
+的石碑坊，中門鐫有「南天門」三字橫額，左右二門的門楣上，分別
+刻有「行雲」和「施雨」二字。楹聯(lian)破陋，顯見歲月已久。
 LONG );
         set("item_desc",([
                 "lian" : (: look_duilian :),
@@ -40,25 +40,25 @@ string look_duilian()
         "\t※※※※※※※        ※※※※※※※\n"
         "\t※※※※※※※        ※※※※※※※\n"
         "\t※※      ※※        ※※      ※※\n"
-        "\t※※" NOR + WHT "　门　" HIC "※※        ※※" NOR + WHT "  路  " HIC "※※\n"
+        "\t※※" NOR + WHT "　門　" HIC "※※        ※※" NOR + WHT "  路  " HIC "※※\n"
         "\t※※　 　 ※※        ※※      ※※\n"
         "\t※※" NOR + WHT "　可　" HIC "※※        ※※" NOR + WHT "  承  " HIC "※※\n"
         "\t※※　 　 ※※        ※※      ※※\n"
-        "\t※※" NOR + WHT "　通　" HIC "※※        ※※" NOR + WHT "  绝  " HIC "※※\n"
+        "\t※※" NOR + WHT "　通　" HIC "※※        ※※" NOR + WHT "  絕  " HIC "※※\n"
         "\t※※　 　 ※※        ※※      ※※\n"
-        "\t※※" NOR + WHT "　天　" HIC "※※        ※※" NOR + WHT "  顶  " HIC "※※\n"
+        "\t※※" NOR + WHT "　天　" HIC "※※        ※※" NOR + WHT "  頂  " HIC "※※\n"
         "\t※※　 　 ※※        ※※      ※※\n"
         "\t※※" HIW "　仰　" HIC "※※        ※※" HIW "  俯  " HIC "※※\n"
         "\t※※　 　 ※※        ※※      ※※\n"
-        "\t※※" HIW "　观　" HIC "※※        ※※" HIW "  瞰  " HIC "※※\n"
+        "\t※※" HIW "　觀　" HIC "※※        ※※" HIW "  瞰  " HIC "※※\n"
         "\t※※　 　 ※※        ※※      ※※\n"
         "\t※※" HIW "　碧　" HIC "※※        ※※" HIW "  翠  " HIC "※※\n"
         "\t※※　 　 ※※        ※※      ※※\n"
         "\t※※" HIW "　落　" HIC "※※        ※※" HIW "  微  " HIC "※※\n"
         "\t※※　 　 ※※        ※※      ※※\n"
-        "\t※※" HIW "　星　" HIC "※※        ※※" HIW "  峦  " HIC "※※\n"
+        "\t※※" HIW "　星　" HIC "※※        ※※" HIW "  巒  " HIC "※※\n"
         "\t※※　 　 ※※        ※※      ※※\n"
-        "\t※※" HIW "　辰　" HIC "※※        ※※" HIW "  屿  " HIC "※※\n"
+        "\t※※" HIW "　辰　" HIC "※※        ※※" HIW "  嶼  " HIC "※※\n"
         "\t※※　 　 ※※        ※※      ※※\n"
         "\t※※" HIW "　近　" HIC "※※        ※※" HIW "  低  " HIC "※※\n"
         "\t※※    　※※        ※※      ※※\n"

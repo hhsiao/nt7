@@ -7,11 +7,11 @@
 
 void create()
 {
-        set("short", "水果摊迎客厅");
+        set("short", "水果攤迎客廳");
 	set ("long", @LONG
-这里是水果摊的主人西瓜迎接八方来客的地方。大凡客人来拜见
-西瓜，少不得在这里寒暄叙话，了尽仰慕之情。东面通往一个茶室，
-是主人陪同客人品尝天下名茶之处。 
+這裡是水果攤的主人西瓜迎接八方來客的地方。大凡客人來拜見
+西瓜，少不得在這裡寒暄敘話，了盡仰慕之情。東面通往一個茶室，
+是主人陪同客人品嚐天下名茶之處。 
 LONG );
 
         set("exits", ([
@@ -20,7 +20,7 @@ LONG );
                 "east"   : __DIR__"chashi",
         ]));
 
-        create_door("east", "木门", "west", DOOR_CLOSED);
+        create_door("east", "木門", "west", DOOR_CLOSED);
 
         set("objects", ([
                 "/d/room/roomnpc/yahuan" : 2,
@@ -30,7 +30,7 @@ LONG );
         setup();
 
         set("room_owner", "西瓜");
-        set("room_name", "水果摊");
+        set("room_name", "水果攤");
         set("room_id", "sgt");
         set("room_owner_id", "xigua");
         set("room_position", "碎石小道");

@@ -11,7 +11,7 @@ mixed ask_reborn();
 void create()
 {
         set_name("地藏王", ({ "dizang", }));
-        set("long", "他容貌威严，不可一世。哇！他可是掌管人间生死的神仙。\n");
+        set("long", "他容貌威嚴，不可一世。哇！他可是掌管人間生死的神仙。\n");
         set("gender", "男性");
         set("age", 99);
         set("attitude", "peaceful");
@@ -52,10 +52,10 @@ void create()
            
         set("inquiry", ([
                 "麒麟靴"   : (: ask_xue :),
-                "转世"     : (: ask_reborn :),                
+                "轉世"     : (: ask_reborn :),                
                 "重生"     : (: ask_reborn :),
-                "转生"     : (: ask_reborn :),
-                "转世重生" : (: ask_reborn :),
+                "轉生"     : (: ask_reborn :),
+                "轉世重生" : (: ask_reborn :),
         ]));
         
         setup();
@@ -70,11 +70,11 @@ int attempt_apprentice(object ob)
 {
         if( !query("born", ob) )
         {
-                command("say 你快投胎去，在这里瞎搅和什么？");
+                command("say 你快投胎去，在這裡瞎攪和什麼？");
                 return 0;
         }
 
-        command("say 滚！给我一边儿去！");
+        command("say 滾！給我一邊兒去！");
 }
 
 mixed ask_xue()
@@ -85,8 +85,8 @@ mixed ask_xue()
 
         me = this_player();
 
-        if( !query("hell_quest/锁阳丹", me) )
-                return "其麒麟靴是我的宝物，你打听它干什么？";
+        if( !query("hell_quest/鎖陽丹", me) )
+                return "其麒麟靴是我的寶物，你打聽它幹什麼？";
 
         ob = find_object(QILIN_XUE);
         if (! ob) ob = load_object(QILIN_XUE);
@@ -99,19 +99,19 @@ mixed ask_xue()
         }
 
         if (owner == me)
-                return "麒麟靴不是在你的手中么，怎么反而来找我呢？";
+                return "麒麟靴不是在你的手中麼，怎麼反而來找我呢？";
 
         if (objectp(owner) && owner != this_object())
         {
                 if (! owner->is_character())
-                        return "我已经把麒麟靴已经借出去了。";
+                        return "我已經把麒麟靴已經借出去了。";
 
-                        return "麒麟靴现在落在"+query("name", owner)+
-                               "手中，你去把他找回来吧。";
+                        return "麒麟靴現在落在"+query("name", owner)+
+                               "手中，你去把他找回來吧。";
         }
 
         ob->move(this_object());
-        message_vision("$N点点头道：“好，既然你是为了老夫的锁阳丹之事，老夫就借给你吧！”\n", 
+        message_vision("$N點點頭道：“好，既然你是為了老夫的鎖陽丹之事，老夫就借給你吧！”\n", 
                        this_object(), me);
  command("give boots to "+query("id", me));
         return 1;
@@ -124,20 +124,20 @@ mixed ask_reborn()
         who = this_player();
 
         if( !query("reborn_lunhui", who)){
-                message_vision( BLU "$N" BLU "对$n" BLU "一拱手，道：你想转世先过了六道守卫佛这一关再说！\n", 
+                message_vision( BLU "$N" BLU "對$n" BLU "一拱手，道：你想轉世先過了六道守衛佛這一關再說！\n", 
                                 this_object(), who );
                 return 1;
         }      
           
         if( query("betrayer", who) )
         {
-                message_vision("$N对$n怒道：你还是先把与判师门派中的纠葛解决了再来！\n",
+                message_vision("$N對$n怒道：你還是先把與判師門派中的糾葛解決了再來！\n",
                                this_object(), who);
                 return 1;
         }
 
-        message_vision( BLU "$N" BLU "点点头道：“好，既然你闯过地府的考验，老夫就送你上天界直接面见佛祖！”\n"
-                        BLU "$N" BLU "随手一招，突然刮起一阵阴风，将$n" BLU "带到极乐世界。\n" NOR, 
+        message_vision( BLU "$N" BLU "點點頭道：“好，既然你闖過地府的考驗，老夫就送你上天界直接面見佛祖！”\n"
+                        BLU "$N" BLU "隨手一招，突然颳起一陣陰風，將$n" BLU "帶到極樂世界。\n" NOR, 
                         this_object(), who );                            
                  
         who->move("/d/reborn/heaven");

@@ -3,7 +3,7 @@
 
 inherit F_SSERVER;
 
-string name() { return HIW "兰剑舞" NOR; } 
+string name() { return HIW "蘭劍舞" NOR; } 
 
 int perform(object me, object target)
 {
@@ -16,25 +16,25 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对，难以施展" + name() + "。\n");
+                return notify_fail("你使用的武器不對，難以施展" + name() + "。\n");
 
         if ((int)me->query_skill("lunhui-sword", 1) < 600)
-                return notify_fail("你的六道轮回剑不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你的六道輪迴劍不夠嫻熟，難以施展" + name() + "。\n");
 
         if( query("neili", me)<3000 )
-                return notify_fail("你的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你的真氣不夠，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("sword") != "lunhui-sword")
-                return notify_fail("你没有激发六道轮回剑，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發六道輪迴劍，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIG "$N" HIG "轻舞手中" + weapon->name() + HIG "，剑光四射间，漫天兰花洒落，犹如仙境般美妙 ……\n" NOR;
+        msg = HIG "$N" HIG "輕舞手中" + weapon->name() + HIG "，劍光四射間，漫天蘭花灑落，猶如仙境般美妙 ……\n" NOR;
 
         ap = attack_power(me, "sword"); 
         dp = defense_power(target, "dodge");

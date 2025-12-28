@@ -18,7 +18,7 @@ int check_legal_name(string name, int max_len);
 int check_legal_id(string arg);
 
 string* warcraft_type = ({
-        "青龙",
+        "青龍",
         "白虎",
         "朱雀",
         "玄武",
@@ -26,7 +26,7 @@ string* warcraft_type = ({
 });
 
 mapping magic_type = ([ 
-        "青龙" : "wood",
+        "青龍" : "wood",
         "白虎" : "metal",
         "朱雀" : "fire",
         "玄武" : "water",
@@ -35,22 +35,22 @@ mapping magic_type = ([
 
 void create()
 {
-        set_name("狂风", ({ "kuang feng", "kuang", "feng" }) );
+        set_name("狂風", ({ "kuang feng", "kuang", "feng" }) );
         set("gender", "男性" );
         set("age", 21);
         set("long",@LONG
-狂风来自神秘的精意山庄，最近突然出现在扬州城，并出售
-人们从没有见过的魔幻兽，传说这个魔幻兽具有神奇的功能，
-你如果喜欢的话，不妨也选(choose)一只。
+狂風來自神秘的精意山莊，最近突然出現在揚州城，並出售
+人們從沒有見過的魔幻獸，傳說這個魔幻獸具有神奇的功能，
+你如果喜歡的話，不妨也選(choose)一隻。
 LONG );
-        set("title",HIW"炼器师"NOR);
+        set("title",HIW"煉器師"NOR);
         set("combat_exp", 5000000);
 
         set("inquiry", ([
-                "魔幻兽"     : "只要给我一张魔幻兽兑换券，你就能拥有魔幻兽了！",
-                "如意乾坤袋" : "给我材料地藏之石，你就可以拥有如意乾坤袋了。",
-                "乾坤袋"     : "给我材料地藏之石，你就可以拥有如意乾坤袋了。",
-                "勋章挂带"   : "给我材料魔法丝带，你就可以拥有勋章挂带了。",
+                "魔幻獸"     : "只要給我一張魔幻獸兌換券，你就能擁有魔幻獸了！",
+                "如意乾坤袋" : "給我材料地藏之石，你就可以擁有如意乾坤袋了。",
+                "乾坤袋"     : "給我材料地藏之石，你就可以擁有如意乾坤袋了。",
+                "勳章掛帶"   : "給我材料魔法絲帶，你就可以擁有勳章掛帶了。",
         ]));
 
         set_skill("training", 100000);
@@ -61,7 +61,7 @@ LONG );
 
         setup();
         carry_object("/clone/cloth/cloth")->wear();
-        create_family("精意山庄", 2, "弟子");
+        create_family("精意山莊", 2, "弟子");
 }
 
 void init()
@@ -80,12 +80,12 @@ void greeting(object ob)
         if( !ob || environment(ob) != environment() ) return;
         switch( random(5) ) {
                 case 0:
-                        say( "狂风说道：这位" + RANK_D->query_respect(ob)
-                                + "，要魔幻兽么？\n");
+                        say( "狂風說道：這位" + RANK_D->query_respect(ob)
+                                + "，要魔幻獸麼？\n");
                         break;
                 case 1:
-                        say( "狂风说道：这位" + RANK_D->query_respect(ob)
-                                + "，魔幻兽可以保护主人的哦。\n");
+                        say( "狂風說道：這位" + RANK_D->query_respect(ob)
+                                + "，魔幻獸可以保護主人的哦。\n");
                         break;
         }
 }
@@ -97,7 +97,7 @@ int do_choose()
         object me = this_player();
 
         if (me->is_busy())
-                return notify_fail("你上一个动作还没有完成。\n");
+                return notify_fail("你上一個動作還沒有完成。\n");
 
         filename = WARCRAFT_DIR+query("id", me);
         if (file_size(WARCRAFT_DIR+query("id", me)+FILE_EXTENSION) > 0)
@@ -109,21 +109,21 @@ int do_choose()
                 set("warcraft/file", filename, me);
                 set("warcraft/status", "living", me);
                 MYGIFT_D->check_mygift(me, "newbie_mygift/warcraft"); 
-                return notify_fail("你宿命中已经拥有过魔幻兽，我已经帮你沟通血契了。\n");
+                return notify_fail("你宿命中已經擁有過魔幻獸，我已經幫你溝通血契了。\n");
         }
 
         if (me->query_skill("training", 1) <30)
-                return notify_fail("你的驭兽术太低了，即使养了魔幻兽，也会背弃你而去。\n");
+                return notify_fail("你的馭獸術太低了，即使養了魔幻獸，也會背棄你而去。\n");
 
         if( !query_temp("warcraft/money", me) )
         {
-                command("say 这位" + RANK_D->query_respect(me) + "，每只魔幻兽一百两黄金，你必须先给钱！");
+                command("say 這位" + RANK_D->query_respect(me) + "，每隻魔幻獸一百兩黃金，你必須先給錢！");
                 return 1;
         }
 
-        write("您要养哪类魔幻兽：\n");
-        write(" 1. 青龙   2. 白虎   3. 朱雀   4. 玄武  5. 麒麟\n");
-        write("请选择数字代号：(q 键取消)");
+        write("您要養哪類魔幻獸：\n");
+        write(" 1. 青龍   2. 白虎   3. 朱雀   4. 玄武  5. 麒麟\n");
+        write("請選擇數字代號：(q 鍵取消)");
 
         input_to( (: get_subtype :), me);
         return 1;
@@ -140,16 +140,16 @@ void get_subtype(string arg, object ob)
 
         if (n <= 0 || n > 5)
         {
-                write("您要养哪类魔幻兽：\n");
-                write(" 1. 青龙   2. 白虎   3. 朱雀   4. 玄武  5. 麒麟\n");
-                write("请选择数字代号：(q 键取消)");
+                write("您要養哪類魔幻獸：\n");
+                write(" 1. 青龍   2. 白虎   3. 朱雀   4. 玄武  5. 麒麟\n");
+                write("請選擇數字代號：(q 鍵取消)");
                 input_to( (: get_subtype :), ob);
                 return;
         }
         set_temp("warcraft/race_type", warcraft_type[n-1], ob);
 
         write("\n");
-        write("请设定魔幻兽的性别(雄性：1  雌性：0)：");
+        write("請設定魔幻獸的性別(雄性：1  雌性：0)：");
         input_to( (: get_gender :), ob );
 }
 
@@ -163,7 +163,7 @@ void get_gender(string arg, object ob)
         if (n != 0 && n != 1)
         {
                 write("\n");
-                write("请设定魔幻兽的性别(雄性：1  雌性：0)：");
+                write("請設定魔幻獸的性別(雄性：1  雌性：0)：");
                 input_to( (: get_gender :), ob );
                 return;
         }
@@ -171,13 +171,13 @@ void get_gender(string arg, object ob)
 
         write("\n");
 
-        write(sort_string(CYN "你按照狂风的指点开始飞快的念道：“在天的见"
-                "证之下，集勇气、智慧、与美丽于一身的强大生物，幻兽呀！请"
-                "你以最深的灵性，聆听我的倾诉，我－"+query("name", ob)+
-                "－将与你缔结永生的血之盟约，终此生惟有你与我为终生之盟友"
+        write(sort_string(CYN "你按照狂風的指點開始飛快的念道：“在天的見"
+                "證之下，集勇氣、智慧、與美麗於一身的強大生物，幻獸呀！請"
+                "你以最深的靈性，聆聽我的傾訴，我－"+query("name", ob)+
+                "－將與你締結永生的血之盟約，終此生惟有你與我為終生之盟友"
                 "，契。”\n" NOR, 64));
-        write("你与魔幻兽的血之盟约签订完毕。\n");
-        write("请设定魔幻兽的英文 id ：");
+        write("你與魔幻獸的血之盟約簽訂完畢。\n");
+        write("請設定魔幻獸的英文 id ：");
         input_to( (: get_id :), ob );
 }
 
@@ -189,7 +189,7 @@ void get_id(string arg, object ob)
         {
                 write("\n");
 
-                write("请设定魔幻兽的英文 id ：");
+                write("請設定魔幻獸的英文 id ：");
                 input_to( (: get_id :), ob );
                 return;
         }
@@ -199,7 +199,7 @@ void get_id(string arg, object ob)
         set_temp("warcraft/id", arg, ob);
 
         write("\n");
-        write("请设定魔幻兽的中文名：(可加颜色help nick)");
+        write("請設定魔幻獸的中文名：(可加顏色help nick)");
         input_to( (: get_name :), ob);
 }
 
@@ -218,16 +218,16 @@ void get_name(string arg, object ob)
 
         if (! check_legal_name(arg, 12))
         {
-                write("请设定魔幻兽的中文名：(可加颜色)");
+                write("請設定魔幻獸的中文名：(可加顏色)");
                 input_to( (: get_name :), ob);
                 return;
         }
 
         if (stringp(result = NAME_D->invalid_new_name(arg)))
-        if (stringp(result = NAME_D->invalid_new_name(arg)) || strsrch(arg, "张春龙") != -1)
+        if (stringp(result = NAME_D->invalid_new_name(arg)) || strsrch(arg, "張春龍") != -1)
         {
-                write("对不起，" + result);
-                write(HIR "禁止使用与他人姓名相同或接近的魔幻兽名。并因循RULES中对名字的相关规定。"NOR+"\n");
+                write("對不起，" + result);
+                write(HIR "禁止使用與他人姓名相同或接近的魔幻獸名。並因循RULES中對名字的相關規定。"NOR+"\n");
                 input_to( (: get_name :), ob);
                 return;
         }
@@ -238,7 +238,7 @@ void get_name(string arg, object ob)
         set_temp("warcraft/name", arg, ob);
 
         write("\n");
-        write("请描述魔幻兽：(不可加颜色)");
+        write("請描述魔幻獸：(不可加顏色)");
         input_to( (: get_desc :), ob);
 }
 
@@ -251,7 +251,7 @@ void get_desc(string arg, object ob)
         arg = replace_string(arg, "\\", "");
         if (! check_legal_name(arg, 60))
         {
-                write("请描述魔幻兽：");
+                write("請描述魔幻獸：");
                 input_to( (: get_desc :), ob);
                 return;
         }
@@ -289,7 +289,7 @@ void build_warcraft(object ob)
         file = replace_string(file, "MAGIC_TYPE", magic_type[warcraft_type]);
         file = replace_string(file, "LONG_DESCRIPTION",
                             warcraft_desc + "\n" + "它是" +
-                            query("name", ob)+"的魔幻兽。\n");
+                            query("name", ob)+"的魔幻獸。\n");
 
         file=replace_string(file,"OWNER_ID",query("id", ob));
         file=replace_string(file,"OWNER_NAME",query("name", ob));
@@ -304,8 +304,8 @@ void build_warcraft(object ob)
         }
 
         assure_file(filename);
-        write_file(filename + ".c", file); // 写入文件
-        VERSION_D->append_sn(filename + ".c"); // 给物品增加识别码
+        write_file(filename + ".c", file); // 寫入文件
+        VERSION_D->append_sn(filename + ".c"); // 給物品增加識別碼
 
         catch(call_other(filename, "???"));
         warcraft = find_object(filename);
@@ -315,7 +315,7 @@ void build_warcraft(object ob)
                 money = new("/clone/money/gold");
                 money->set_amount(100);
                 money->move(ob, 1);
-                message_vision("$N一呆，对$n道：抱歉抱歉！出了一些问题！钱我还是还你吧。\n",
+                message_vision("$N一呆，對$n道：抱歉抱歉！出了一些問題！錢我還是還你吧。\n",
                                this_object(), ob);
                 return;
         }
@@ -336,7 +336,7 @@ void build_warcraft(object ob)
         set("warcraft/status", "living", ob);
         delete_temp("warcraft", ob);
 
-        command("say 你可以吹声口哨召唤你的魔幻兽！<whistle " + warcraft_id +">\n");
+        command("say 你可以吹聲口哨召喚你的魔幻獸！<whistle " + warcraft_id +">\n");
 
         MYGIFT_D->check_mygift(ob, "newbie_mygift/warcraft");   
         return;
@@ -353,18 +353,18 @@ int accept_object(object me, object ob)
                 filename=ITEM_DIR+"cruise/"+query("id", me);
                 if (file_size(filename + ".c") > 0)
                 {
-                        message_vision("$N一呆，对$n道：你的宿命中已经拥有过如意乾坤袋！我帮你恢复了。\n",
+                        message_vision("$N一呆，對$n道：你的宿命中已經擁有過如意乾坤袋！我幫你恢復了。\n",
                                        this_object(), me);
                         set("can_summon/qiankun", filename, me);
                         return 0;
                 }
 
-                command("say 这可是制作如意乾坤袋的特殊材料，既然你我有缘，我就免费帮你制作一个吧！");
+                command("say 這可是製作如意乾坤袋的特殊材料，既然你我有緣，我就免費幫你製作一個吧！");
                 if (1)
                 {
                         file = read_file(CRUISE_OB);
                         file = replace_string(file, "LONG_DESCRIPTION",
-                                                "这是" + me->query_idname(1) + "的如意乾坤袋。\n");
+                                                "這是" + me->query_idname(1) + "的如意乾坤袋。\n");
 
                         // give cruise ob to me
                         filename=ITEM_DIR+"cruise/"+query("id", me);
@@ -389,7 +389,7 @@ int accept_object(object me, object ob)
                                 xob = new("/clone/item/dizangshi");
                                 xob->move(me, 1);
 */
-                                message_vision("$N一呆，对$n道：抱歉抱歉！出了一些问题！材料我还是还你吧。\n",
+                                message_vision("$N一呆，對$n道：抱歉抱歉！出了一些問題！材料我還是還你吧。\n",
                                                this_object(), me);
                                 return 0;
                         }
@@ -404,8 +404,8 @@ int accept_object(object me, object ob)
                         cruise_ob->save();
                         set("can_summon/qiankun", filename, me);
 
-                        tell_object(me, HIY "你获得了一个如意乾坤袋。\n" NOR);
-                        tell_object(me, HIY "你可以通过summon qiankun和hide qiankun来召唤和隐藏如意乾坤袋。\n" NOR);
+                        tell_object(me, HIY "你獲得了一個如意乾坤袋。\n" NOR);
+                        tell_object(me, HIY "你可以通過summon qiankun和hide qiankun來召喚和隱藏如意乾坤袋。\n" NOR);
                         destruct(ob);
                         return 1;
                 }
@@ -416,18 +416,18 @@ int accept_object(object me, object ob)
                 filename=ITEM_DIR+"belt/"+query("id", me);
                 if (file_size(filename + ".c") > 0)
                 {
-                        message_vision("$N一呆，对$n道：你的宿命中已经拥有过勋章挂带！我帮你恢复了。\n",
+                        message_vision("$N一呆，對$n道：你的宿命中已經擁有過勳章掛帶！我幫你恢復了。\n",
                                        this_object(), me);
                         set("can_summon/belt", filename, me);
                         return 0;
                 }
 
-                command("say 这可是制作勋章挂带的特殊材料，既然你我有缘，我就免费帮你制作一个吧！");
+                command("say 這可是製作勳章掛帶的特殊材料，既然你我有緣，我就免費幫你製作一個吧！");
                 if (1)
                 {
                         file = read_file(BELT_OB);
                         file = replace_string(file, "LONG_DESCRIPTION",
-                                                "这是" + me->query_idname(1) + "的勋章挂带。\n");
+                                                "這是" + me->query_idname(1) + "的勳章掛帶。\n");
 
                         // give cruise ob to me
                         filename=ITEM_DIR+"belt/"+query("id", me);
@@ -448,7 +448,7 @@ int accept_object(object me, object ob)
                         cruise_ob = find_object(filename);
                         if (! cruise_ob)
                         {
-                                message_vision("$N一呆，对$n道：抱歉抱歉！出了一些问题！材料我还是还你吧。\n",
+                                message_vision("$N一呆，對$n道：抱歉抱歉！出了一些問題！材料我還是還你吧。\n",
                                                this_object(), me);
                                 return 0;
                         }
@@ -463,8 +463,8 @@ int accept_object(object me, object ob)
                         cruise_ob->save();
                         set("can_summon/belt", filename, me);
 
-                        tell_object(me, HIY "你获得了一个勋章挂带。\n" NOR);
-                        tell_object(me, HIY "你可以通过summon belt和hide belt来召唤和隐藏勋章挂带。\n" NOR);
+                        tell_object(me, HIY "你獲得了一個勳章掛帶。\n" NOR);
+                        tell_object(me, HIY "你可以通過summon belt和hide belt來召喚和隱藏勳章掛帶。\n" NOR);
                         destruct(ob);
                         return 1;
                 }
@@ -473,7 +473,7 @@ int accept_object(object me, object ob)
         {
                 if (me->query_skill("training", 1) < 30)
                 {
-                        command("say 你的驭兽术不够，即使养了魔幻兽，也会离你而去！");
+                        command("say 你的馭獸術不夠，即使養了魔幻獸，也會離你而去！");
                         return 0;
                 }
                 else
@@ -481,8 +481,8 @@ int accept_object(object me, object ob)
                         set_temp("warcraft/money", 1, me);
                         command("say 好我收下了！");
                         command("say " + me->name() +
-                                     "，现在我这里有各种魔幻兽！");
-                        command("say 请选择你要的魔幻兽 < choose >");
+                                     "，現在我這裡有各種魔幻獸！");
+                        command("say 請選擇你要的魔幻獸 < choose >");
                         destruct(ob);
                         return 1;
                 }
@@ -500,7 +500,7 @@ int check_legal_id(string id)
 
         if ((strlen(id) < 3) || (strlen(id) > 20))
         {
-                write("对不起，英文 id 必须是 3 到 20 个英文字母。\n");
+                write("對不起，英文 id 必須是 3 到 20 個英文字母。\n");
                 return 0;
         }
 
@@ -508,7 +508,7 @@ int check_legal_id(string id)
 
         if (id[i] != ' ' && (id[i] < 'a' || id[i] > 'z'))
         {
-                write("对不起，英文 id 只能用英文字母。\n");
+                write("對不起，英文 id 只能用英文字母。\n");
                 return 0;
         }
 
@@ -516,14 +516,14 @@ int check_legal_id(string id)
 
         if (ppl || id == "guest" || id == "new")
         {
-                write("这个名字与别的玩家ID相同了．．．");
+                write("這個名字與別的玩家ID相同了．．．");
                 return 0;
         }
 
         if (file_size(sprintf("/data/user/%c/%s", id[0], id)
                     + __SAVE_EXTENSION__) >= 0)
         {
-                write("这个名字已经被别的玩家使用了．．．");
+                write("這個名字已經被別的玩家使用了．．．");
                 return 0;
         }
 
@@ -538,14 +538,14 @@ int check_legal_name(string name, int max_len)
         i = strlen(name);
         if ((strlen(name) < 2) || (strlen(name) > max_len ))
         {
-                write(sprintf("对不起，魔幻兽中文字必须是 1 到 %d 个中文字。\n",
+                write(sprintf("對不起，魔幻獸中文字必須是 1 到 %d 箇中文字。\n",
                       max_len / 2));
                 return 0;
         }
 
         if (max_len < 13 && ! is_chinese(name))
         {
-                write("对不起，请您用「中文」为宠物取名字或描述。\n");
+                write("對不起，請您用「中文」為寵物取名字或描述。\n");
                 return 0;
         }
         return 1;
@@ -553,7 +553,7 @@ int check_legal_name(string name, int max_len)
 
 int attempt_apprentice(object ob)
 {
-        command("say 滚！给我一边儿去！");
+        command("say 滾！給我一邊兒去！");
 }
 
 int recognize_apprentice(object me, string skill)

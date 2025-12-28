@@ -1,5 +1,5 @@
 // This program is a part of NITAN MudLIB
-// yuxiao-jianfa.c 玉萧剑法
+// yuxiao-jianfa.c 玉蕭劍法
 
 #include <ansi.h>;
 inherit SKILL;
@@ -7,12 +7,12 @@ string type() { return "martial"; }
 string martialtype() { return "skill"; }
 
 string *xue_name = ({
-        "劳宫穴","膻中穴","曲池穴","关元穴","曲骨穴","中极穴","承浆穴","天突穴","百会穴",
-        "幽门穴","章门穴","大横穴","紫宫穴","冷渊穴","天井穴","极泉穴","清灵穴","至阳穴",
+        "勞宮穴","膻中穴","曲池穴","關元穴","曲骨穴","中極穴","承漿穴","天突穴","百會穴",
+        "幽門穴","章門穴","大橫穴","紫宮穴","冷淵穴","天井穴","極泉穴","清靈穴","至陽穴",
 });
 
 string *parry_msg = ({
-        "却见$n身子微转，轻描淡写的以$w轻轻挡开，口唇未离箫边，乐声竟未有片刻停滞。\n",
+        "卻見$n身子微轉，輕描淡寫的以$w輕輕擋開，口唇未離簫邊，樂聲竟未有片刻停滯。\n",
 });
 
 string query_parry_msg(object weapon, object me)
@@ -29,53 +29,53 @@ string query_parry_msg(object weapon, object me)
 string *order = ({""HIY"", ""HIG"", ""RED"", ""MAG"", ""YEL"", ""HIC"", ""HIW"", ""HIR"",""HIB"", ""CYN"",""WHT"",""HIM"",""BLU""});
 
 mapping *action = ({
-([        "action" : "$N漫步提腰，一招"+(order[random(13)])+"「英雄潇洒我独行」"NOR"，飘然来至$n面前，随即手中$w微震，剑尖疾点向$n的$l",
+([        "action" : "$N漫步提腰，一招"+(order[random(13)])+"「英雄瀟灑我獨行」"NOR"，飄然來至$n面前，隨即手中$w微震，劍尖疾點向$n的$l",
         "lvl" : 0,
-        "skill_name": "英雄潇洒我独行"
+        "skill_name": "英雄瀟灑我獨行"
 ]),
-([        "action" : "$N斜跨一步，使出一式"+(order[random(13)])+"「儿女情长只恨短」"NOR"，挥剑舞出两道一长一短的光影直刺$n的$l",
+([        "action" : "$N斜跨一步，使出一式"+(order[random(13)])+"「兒女情長只恨短」"NOR"，揮劍舞出兩道一長一短的光影直刺$n的$l",
         "lvl" : 10,
-        "skill_name" : "儿女情长只恨短"
+        "skill_name" : "兒女情長只恨短"
 ]),
-([        "action" : "$N一招"+(order[random(13)])+"「翩然离去不思归」"NOR"，$w骤然出鞘又立刻回到剑鞘中，随即转身翩然离去。$n这时才感觉到有一股劲气逼向自己的$l",
+([        "action" : "$N一招"+(order[random(13)])+"「翩然離去不思歸」"NOR"，$w驟然出鞘又立刻回到劍鞘中，隨即轉身翩然離去。$n這時才感覺到有一股勁氣逼向自己的$l",
         "lvl" : 20,
-        "skill_name": "翩然离去不思归"
+        "skill_name": "翩然離去不思歸"
 ]),
-([        "action" : "$N双手举剑向天，一招"+(order[random(13)])+"「傲立群雄无所惧」"NOR"，$w带起阵阵惊雷，自上而下向$n的头颅剁去",
+([        "action" : "$N雙手舉劍向天，一招"+(order[random(13)])+"「傲立群雄無所懼」"NOR"，$w帶起陣陣驚雷，自上而下向$n的頭顱剁去",
         "lvl" : 30,
-        "skill_name": "傲立群雄无所惧"
+        "skill_name": "傲立群雄無所懼"
 ]),
-([        "action" : "$N施展出"+(order[random(13)])+"「倾城一笑万人醉」"NOR"，手握$w颔首微微一笑，$n只看得一呆，却见一道剑影犹如龙游般袭向自己的$l，而自己却没看清$N何时出的手",
+([        "action" : "$N施展出"+(order[random(13)])+"「傾城一笑萬人醉」"NOR"，手握$w頷首微微一笑，$n只看得一呆，卻見一道劍影猶如龍游般襲向自己的$l，而自己卻沒看清$N何時出的手",
         "lvl" : 40,
-        "skill_name" : "倾城一笑万人醉"
+        "skill_name" : "傾城一笑萬人醉"
 ]),
-([        "action" : "$N左脚踏实，右脚虚点，一招"+(order[random(13)])+"「一曲奏毕愁肠结」"NOR"，$w带着一团剑花，飘浮不定地逼向$n的$l",
+([        "action" : "$N左腳踏實，右腳虛點，一招"+(order[random(13)])+"「一曲奏畢愁腸結」"NOR"，$w帶著一團劍花，飄浮不定地逼向$n的$l",
         "lvl" : 50,
-        "skill_name": "一曲奏毕愁肠结"
+        "skill_name": "一曲奏畢愁腸結"
 ]),
-([        "action" : "$N一招"+(order[random(13)])+"「处子弄箫亦多情」"NOR"，左手轻抚$w，随即猛地一弹，右手向前一递，只见一道闪烁不定的剑影迅速刺向$n的$l",
+([        "action" : "$N一招"+(order[random(13)])+"「處子弄簫亦多情」"NOR"，左手輕撫$w，隨即猛地一彈，右手向前一遞，只見一道閃爍不定的劍影迅速刺向$n的$l",
         "lvl" : 60,
-        "skill_name" : "处子弄箫亦多情"
+        "skill_name" : "處子弄簫亦多情"
 ]),
-([        "action" : "$N回身低首，神色黯然，一招"+(order[random(13)])+"「闻声哀怨断人肠」"NOR"，$w剑尖游移不定地刺向$n的$l",
+([        "action" : "$N回身低首，神色黯然，一招"+(order[random(13)])+"「聞聲哀怨斷人腸」"NOR"，$w劍尖遊移不定地刺向$n的$l",
         "lvl" : 70,
-        "skill_name" : "闻声哀怨断人肠"
+        "skill_name" : "聞聲哀怨斷人腸"
 ]),
-([        "action" : "$N坐手掩面，一招"+(order[random(13)])+"「彼将离兮泪涟涟」"NOR"，右手$w斜向下划出，$n微觉奇怪，正迟疑间，却见$N手中的$w已反挑而上，直刺自己的咽喉",
+([        "action" : "$N坐手掩面，一招"+(order[random(13)])+"「彼將離兮淚漣漣」"NOR"，右手$w斜向下劃出，$n微覺奇怪，正遲疑間，卻見$N手中的$w已反挑而上，直刺自己的咽喉",
         "lvl" : 80,
-        "skill_name": "彼将离兮泪涟涟"
+        "skill_name": "彼將離兮淚漣漣"
 ]),
-([        "action" : "$N忽然面露微笑，一招"+(order[random(13)])+"「随音而舞笑开颜」"NOR"，右手$w一闪，舞出三团剑花刺向$n的上中下三路",
+([        "action" : "$N忽然面露微笑，一招"+(order[random(13)])+"「隨音而舞笑開顏」"NOR"，右手$w一閃，舞出三團劍花刺向$n的上中下三路",
         "lvl" : 90,
-        "skill_name" : "随音而舞笑开颜"
+        "skill_name" : "隨音而舞笑開顏"
 ]),
-([        "action" : "$N左手食指疾点$w，一招"+(order[random(13)])+"「箫音有情人无情」"NOR"，$w发出一声龙吟，余音缭绕，$n只觉得胸前一闷，一阵刚猛的劲气迫向自己",
+([        "action" : "$N左手食指疾點$w，一招"+(order[random(13)])+"「簫音有情人無情」"NOR"，$w發出一聲龍吟，餘音繚繞，$n只覺得胸前一悶，一陣剛猛的勁氣迫向自己",
         "lvl" : 100,
-        "skill_name" : "箫音有情人无情"
+        "skill_name" : "簫音有情人無情"
 ]),
-([        "action" : "$N右手微震，一招"+(order[random(13)])+"「箫声响毕情两断」"NOR"，手中$w急颤，发出一阵震耳欲聋的轰鸣，刹那间飞沙走石，$n已在一团剑光的笼罩下，正勉力支撑着",
+([        "action" : "$N右手微震，一招"+(order[random(13)])+"「簫聲響畢情兩斷」"NOR"，手中$w急顫，發出一陣震耳欲聾的轟鳴，剎那間飛沙走石，$n已在一團劍光的籠罩下，正勉力支撐著",
         "lvl" : 110,
-        "skill_name" : "箫声响毕情两断"
+        "skill_name" : "簫聲響畢情兩斷"
 ]),
 });
 
@@ -84,16 +84,16 @@ int valid_enable(string usage) { return usage == "sword" || usage == "parry"; }
 int valid_learn(object me)
 {
         if( query("max_neili", me)<1200 )
-                return notify_fail("你的内力修为不够，无法学习玉萧剑法。\n");
+                return notify_fail("你的內力修為不夠，無法學習玉蕭劍法。\n");
 
         if ((int)me->query_skill("force") < 150)
-                return notify_fail("你的内功火候不够，无法学习玉萧剑法。\n");
+                return notify_fail("你的內功火候不夠，無法學習玉蕭劍法。\n");
 
         if ((int)me->query_skill("sword", 1) < 100)
-                return notify_fail("你的基本剑法火候不够，无法学习玉萧剑法。\n");
+                return notify_fail("你的基本劍法火候不夠，無法學習玉蕭劍法。\n");
 
         if ((int)me->query_skill("sword", 1) < (int)me->query_skill("yuxiao-jianfa", 1))
-                return notify_fail("你的基本剑法水平有限，无法领会更高深的玉萧剑法。\n");
+                return notify_fail("你的基本劍法水平有限，無法領會更高深的玉蕭劍法。\n");
 
         return 1;
 }
@@ -124,30 +124,30 @@ mapping query_action(object me, object weapon)
             query("neili", me)>200 )
         {
                 return ([
-                        "action": HIC "$w" NOR + HIC "上的剑芒，犹似长蛇般伸缩不定......\n\n"
-                                  HIG"$N丹田中猛提一口真气，身子滴溜溜的打了半个圈子，手中$w"NOR+HIG"一挺，蓦地剑芒突盛，青芒疾刺$n$l！"NOR,
+                        "action": HIC "$w" NOR + HIC "上的劍芒，猶似長蛇般伸縮不定......\n\n"
+                                  HIG"$N丹田中猛提一口真氣，身子滴溜溜的打了半個圈子，手中$w"NOR+HIG"一挺，驀地劍芒突盛，青芒疾刺$n$l！"NOR,
                         "dodge" : -100,
                         "parry" : -100,
                         "attack": 200,
                         "force" : 400,
                         "damage": 400,
-                        "damage_type":  "刺伤"
+                        "damage_type":  "刺傷"
                 ]);
         }
         for(i = ttl; i > 0; i--)
                 if(lvl > action[i-1]["lvl"])
                 {
-                        seq = i; /* 获得招数序号上限 */
+                        seq = i; /* 獲得招數序號上限 */
                         break;
                 }
-        seq = random(seq);       /* 选择出手招数序号 */
+        seq = random(seq);       /* 選擇出手招數序號 */
         return ([
                 "action"      : action[seq]["action"],
                 "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
                 "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
                 "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
                 "damage"      : m_e1 + (m_e2 - m_e1) * seq / ttl,
-                "damage_type" : random(2) ? "割伤" : "刺伤",
+                "damage_type" : random(2) ? "割傷" : "刺傷",
         ]);
 }
 
@@ -156,14 +156,14 @@ int practice_skill(object me)
         object weapon;
 
         if( !(weapon=query_temp("weapon", me)) )
-                return notify_fail("空手时无法练玉箫剑法。\n");
+                return notify_fail("空手時無法練玉簫劍法。\n");
         if( query("skill_type", weapon) != "sword" && query("skill_type", weapon) != "xsword" )
-                return notify_fail("你使用的武器不对，无法练玉箫剑法。\n");
+                return notify_fail("你使用的武器不對，無法練玉簫劍法。\n");
         if( query("qi", me)<80 )
-                return notify_fail("你的体力不够练玉箫剑法。\n");
+                return notify_fail("你的體力不夠練玉簫劍法。\n");
 
         if( query("neili", me)<80 )
-                return notify_fail("你的体力不够练玉箫剑法。\n");
+                return notify_fail("你的體力不夠練玉簫劍法。\n");
 
         me->receive_damage("qi", 70);
         addn("neili", -70, me);
@@ -194,10 +194,10 @@ mixed hit_ob(object me, object victim, int damage)
         result = ([ "damage" : damage ]);
 
         if (random(2) != 1)
-                result += ([ "msg" : HIR "$n听到耳边传来一阵阵萧声，顿时血气翻滚，一股热流穿心而过！\n" NOR]);
+                result += ([ "msg" : HIR "$n聽到耳邊傳來一陣陣蕭聲，頓時血氣翻滾，一股熱流穿心而過！\n" NOR]);
         else
-                result += ([ "msg" : HIB "$n被$N剑上所附的一部分螺旋劲气侵入" RED + name + NOR +
-                                     HIB "，顿时经脉倒转，痛苦万分！\n" NOR]);
+                result += ([ "msg" : HIB "$n被$N劍上所附的一部分螺旋勁氣侵入" RED + name + NOR +
+                                     HIB "，頓時經脈倒轉，痛苦萬分！\n" NOR]);
         return result;
 }
 
@@ -223,18 +223,18 @@ int power_point(object me) { return 1.0; }
 
 int help(object me)
 {
-        write(HIC"\n玉箫剑法："NOR"\n");
+        write(HIC"\n玉簫劍法："NOR"\n");
         write(@HELP
 
-    玉箫剑法是东海桃花岛主黄药师的不传之密。
-    在桃花岛竹林内“积翠亭”两旁，悬着一副对联：“桃花影里
-飞神剑，碧海潮生按玉箫”，隐然黄药师生平两大得意武功。落英
-神剑之外就是玉箫剑法了。
+    玉簫劍法是東海桃花島主黃藥師的不傳之密。
+    在桃花島竹林內“積翠亭”兩旁，懸著一副對聯：“桃花影裡
+飛神劍，碧海潮生按玉簫”，隱然黃藥師生平兩大得意武功。落英
+神劍之外就是玉簫劍法了。
 
-        学习要求：
-                碧波神功100级
-                内力500
-                机缘
+        學習要求：
+                碧波神功100級
+                內力500
+                機緣
 HELP
         );
         return 1;

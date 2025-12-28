@@ -14,7 +14,7 @@ string test()
                        ({5, 9, 1, 3, 0, 7, 8, 4, 6, 2}),
                        ({8, 0, 6, 1, 9, 3, 4, 5, 2, 7}), });
 
-        // 取出4个坐标
+        // 取出4個座標
         x = random(10);
         y = random(10);
         str1 = to_string(x)+to_string(y);
@@ -31,9 +31,9 @@ string test()
         // CDEFJHIJ
         result = str1+str2+str3+str4; 
         
-        b = random(10); // 决定奇偶数B
-        r = random(10); // 随机干扰数
-        a = random(9);   // 干扰数字的位置A
+        b = random(10); // 決定奇偶數B
+        r = random(10); // 隨機干擾數
+        a = random(9);   // 干擾數字的位置A
         result = result[0..a-1]+to_string(r)+result[a..];
         result = to_string(a)+to_string(b)+result;  // 密文
         write(sprintf("%s\n", result));

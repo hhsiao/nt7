@@ -35,21 +35,21 @@ string do_wear()
         if( query("gender", me) == "女性" )
         {
                 if (per >= 30)
-                        msg = HIC "$N" HIC "轻轻将一件$n" HIC "披在身上，神态曼妙之极。\n";
+                        msg = HIC "$N" HIC "輕輕將一件$n" HIC "披在身上，神態曼妙之極。\n";
                 else if (per >= 25)
-                        msg = HIG "$N" HIG "把$n" HIG "展开，披在身上。\n";
+                        msg = HIG "$N" HIG "把$n" HIG "展開，披在身上。\n";
                 else if (per >= 20)
-                        msg = YEL "$N" YEL "把$n" YEL "披在身上，缩了缩脖子。\n";
-                else    msg = YEL "$N" YEL "毛手毛脚的把$n" YEL "披在身上。\n";
+                        msg = YEL "$N" YEL "把$n" YEL "披在身上，縮了縮脖子。\n";
+                else    msg = YEL "$N" YEL "毛手毛腳的把$n" YEL "披在身上。\n";
         } else
         {
                 if (per >= 30)
-                        msg = HIC "$N" HIC "随手一挥，将$n" HIC "披在身上，姿势潇洒之极。\n";
+                        msg = HIC "$N" HIC "隨手一揮，將$n" HIC "披在身上，姿勢瀟灑之極。\n";
                 else if (per >= 25)
-                        msg = HIG "$N" HIG "把$n" HIG "展开，披在身上。\n";
+                        msg = HIG "$N" HIG "把$n" HIG "展開，披在身上。\n";
                 else if (per >= 20)
-                        msg = YEL "$N" YEL "把$n" YEL "披在身上，扯了扯衣角，缩了缩脖子。\n";
-                else    msg = YEL "$N" YEL "毛手毛脚的把$n" YEL "披在身上，甚是猥琐。\n";
+                        msg = YEL "$N" YEL "把$n" YEL "披在身上，扯了扯衣角，縮了縮脖子。\n";
+                else    msg = YEL "$N" YEL "毛手毛腳的把$n" YEL "披在身上，甚是猥瑣。\n";
         }
         return msg;
 }

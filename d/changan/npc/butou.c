@@ -4,10 +4,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("捕头", ({ "bu tou"}));
+        set_name("捕頭", ({ "bu tou"}));
         set("age", 40);
         set("gender", "男性");
-        set("long","长安巡捕头领\n");
+        set("long","長安巡捕頭領\n");
         set("attitude", "peaceful");
         set("shen_type", 1);
         set("str", 20);

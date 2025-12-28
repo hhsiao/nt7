@@ -7,15 +7,15 @@ inherit NPC;
 
 void create()
 {
-        set_name("木丹凤", ({ "mu", "wood" }));
-        set("long", "他就是天下闻之色变的侠客岛岛主，号称“叶上秋露”。\n"
-                   +"只见他长须稀稀落落，兀自黑多白少，但一张脸却满是皱纹。\n"
-                   +"看不出他的实际年纪。\n"
+        set_name("木丹鳳", ({ "mu", "wood" }));
+        set("long", "他就是天下聞之色變的俠客島島主，號稱“葉上秋露”。\n"
+                   +"只見他長鬚稀稀落落，兀自黑多白少，但一張臉卻滿是皺紋。\n"
+                   +"看不出他的實際年紀。\n"
                    );
-        set("title", "侠客岛主");
+        set("title", "俠客島主");
         set("gender", "男性");
         set("age", 75);
-        set("nickname", HIB "叶上秋露" NOR);
+        set("nickname", HIB "葉上秋露" NOR);
         set("shen_type",1);
         set("attitude", "peaceful");
 
@@ -53,10 +53,10 @@ void create()
         map_skill("parry", "jinwu-blade");
         map_skill("staff", "jinwu-blade");
 
-        create_family("侠客岛",1, "岛主");
+        create_family("俠客島",1, "島主");
         set("inquiry",([
-           "腊八粥" :   "腊八粥只赠有缘人，不知你是否满足条件。？\n",
-           "铜牌"   :   "我这可没有这玩艺，你如想要的话，可找别人问一问。\n",
+           "臘八粥" :   "臘八粥只贈有緣人，不知你是否滿足條件。？\n",
+           "銅牌"   :   "我這可沒有這玩藝，你如想要的話，可找別人問一問。\n",
         ]) );
         setup();
         carry_object("/clone/weapon/gangdao")->wield();
@@ -65,7 +65,7 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        message_vision("木岛主拍拍$N的头，微微摇了摇头。\n",ob);
+        message_vision("木島主拍拍$N的頭，微微搖了搖頭。\n",ob);
 //        command("recruit " + ob->query("id"));
         return;
 }
@@ -78,36 +78,36 @@ int accept_object(object who, object ob)
 
         if ( !who || environment(who) != environment() ) return 0;
         if ( !objectp(ob) ) return 0;
-        if ( !present(ob, who) ) return notify_fail("你没有这件东西。\n");
+        if ( !present(ob, who) ) return notify_fail("你沒有這件東西。\n");
              command("smile");
-        if( query("name", ob) == "罚恶铜牌" )
+        if( query("name", ob) == "罰惡銅牌" )
         {
             if( query_temp("own", ob) != query("name", who) )
             {
-                 message_vision("这不是你的东西。\n",who);
+                 message_vision("這不是你的東西。\n",who);
                  return 0;
             }
-            command("say原来是"+query("name", who)+"大侠"+
-                "欢迎光临本岛。");
+            command("say原來是"+query("name", who)+"大俠"+
+                "歡迎光臨本島。");
 
             obn=new("/d/xiakedao/obj/labazhou");
             obn->move(who);
-            command(" say  这是本岛特产腊八粥，外边可不易喝到，其中最主要的一味是<断肠蚀骨腐心草>，"
-               + "瞧" +  RANK_D->query_respect(who) + "也是有缘之人，快乘热喝，这样效力方著。");
-            message_vision("木岛主给了你一碗腊八粥",who);
+            command(" say  這是本島特產臘八粥，外邊可不易喝到，其中最主要的一味是<斷腸蝕骨腐心草>，"
+               + "瞧" +  RANK_D->query_respect(who) + "也是有緣之人，快乘熱喝，這樣效力方著。");
+            message_vision("木島主給了你一碗臘八粥",who);
             if( query_temp("zhou", who) == 1 )
             {
-                 command(" say 看来居士福缘深厚，有机会一睹武林绝技，请进吧！");
-                 message_vision("只听得一阵隆隆的响声由远及近。\n", this_player());
+                 command(" say 看來居士福緣深厚，有機會一睹武林絕技，請進吧！");
+                 message_vision("只聽得一陣隆隆的響聲由遠及近。\n", this_player());
                  set_temp("zhou", 0, who);
-                 message_vision("只见岛主身后的石板缓缓移了开来，露出一条长长的甬道。\n", this_player());
+                 message_vision("只見島主身後的石板緩緩移了開來，露出一條長長的甬道。\n", this_player());
                  set("exits/enter", "/u/noz/test/mishi", environment(who));
 
                  room=environment(who);
                  remove_call_out("close");
                  key = new("/d/xiakedao/obj/key");
-message_vision("这是我身后石门的钥匙，也是侠客岛上的凭证，希望你妥善保管，不可随意丢弃，" +
-                    "更不可交付他人，离岛时应与归还。\n", who);
+message_vision("這是我身後石門的鑰匙，也是俠客島上的憑證，希望你妥善保管，不可隨意丟棄，" +
+                    "更不可交付他人，離島時應與歸還。\n", who);
                  key->move(who);
                  call_out("close", 15, room);
                  return 1;
@@ -117,13 +117,13 @@ message_vision("这是我身后石门的钥匙，也是侠客岛上的凭证，�
         }
         else
         {
-            message_vision("我不需要这东西。\n",who);
+            message_vision("我不需要這東西。\n",who);
             return 0;
         }
 }
 
 void close(object room)
 {
-        message("vision","轰隆隆的响声响过之后，石板又合上了。\n", room);
+        message("vision","轟隆隆的響聲響過之後，石板又合上了。\n", room);
         delete("exits/enter", room);
 }

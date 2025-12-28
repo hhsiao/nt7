@@ -11,14 +11,14 @@ void create()
 {
         set_name("天山童姥", ({ "tong lao", "tong", "lao" }));
         set("long",
-            "她就是"+HIC"「灵鹫宫」"NOR+"的开山祖师.\n"+
-            "乍一看似乎是个十七八岁的女子,可神情却是老气横秋.\n"+
-            "双目如电,炯炯有神,向你瞧来时,自有一股凌人的威严.\n");
-        set("title", HIC"灵鹫宫主人"NOR);
+            "她就是"+HIC"「靈鷲宮」"NOR+"的開山祖師.\n"+
+            "乍一看似乎是個十七八歲的女子,可神情卻是老氣橫秋.\n"+
+            "雙目如電,炯炯有神,向你瞧來時,自有一股凌人的威嚴.\n");
+        set("title", HIC"靈鷲宮主人"NOR);
         set("gender", "女性");
         set("per", 20);
         set("age", 96);
-        set("nickname", HIR "唯我独尊" NOR);
+        set("nickname", HIR "唯我獨尊" NOR);
         set("shen_type",0);
         set("attitude", "peaceful");
 
@@ -81,7 +81,7 @@ void create()
         prepare_skill("strike", "liuyang-zhang");
         prepare_skill("hand", "zhemei-shou");
 
-        create_family("灵鹫宫", 1, "主人");
+        create_family("靈鷲宮", 1, "主人");
 
         set("chat_chance_combat", 50);
         set("chat_msg_combat", ({
@@ -117,12 +117,12 @@ void attempt_apprentice(object ob)
         }
         if ((int)ob->query_skill("bahuang-gong", 1) < 230)
         {
-                command("say " + RANK_D->query_respect(ob) + "是否还应该多练练八荒六合唯我独尊功？");
+                command("say " + RANK_D->query_respect(ob) + "是否還應該多練練八荒六合唯我獨尊功？");
                 return;
         }
         if (ob->query_con() < 30)
         {
-                command("say 本门功法极为难练,你的根骨似乎不够.");
+                command("say 本門功法極為難練,你的根骨似乎不夠.");
                 return;
         }
         command("recruit "+query("id", ob));
@@ -136,10 +136,10 @@ int accept_ask(object me, string topic)
         switch (topic)
         {
 
-        case "灰飞烟灭" :
+        case "灰飛煙滅" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/liuyang-zhang/hui",
-                           "name"    : "灰飞烟灭",
+                           "name"    : "灰飛煙滅",
                            "sk1"     : "liuyang-zhang",
                            "lv1"     : 150,
                            "sk2"     : "zhemei-shou",
@@ -188,10 +188,10 @@ int accept_ask(object me, string topic)
                            "gongxian": 400, ]));
                 break;
 
-        case "九羽天诛" :
+        case "九羽天誅" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/tianyu-qijian/zhu",
-                           "name"    : "九羽天诛",
+                           "name"    : "九羽天誅",
                            "sk1"     : "tianyu-qijian",
                            "lv1"     : 160,
                            "neili"   : 2200,

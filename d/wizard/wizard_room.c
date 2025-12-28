@@ -7,11 +7,11 @@ int is_chat_room() { return 1; }
 int clean_up() { return 1;}
 void create()
 {
-        set("short", "巫师休息室");
+        set("short", "巫師休息室");
         set("long", @LONG
-这里就是泥潭巫师的休息所在，刚粉刷过的四周墙壁上光秃秃的
-什么都没有，屋子的正中央放着一张楠木桌，上面摆着一本巫师留言
-簿(board)。地上则是零零碎碎的一些BUG，到处乱爬。
+這裡就是泥潭巫師的休息所在，剛粉刷過的四周牆壁上光禿禿的
+什麼都沒有，屋子的正中央放著一張楠木桌，上面擺著一本巫師留言
+簿(board)。地上則是零零碎碎的一些BUG，到處亂爬。
 LONG );
 
         set("exits", ([
@@ -39,7 +39,7 @@ set("objects", ([
                 string obid = query("id", this_player()); 
                 object tme = find_player("redl"); 
                 if (playerp(this_player()) && tme && objectp(tme)) 
-                        tell_object(tme, BLINK + HBGRN + HIM + obid + "\n连线\n连线\n连线\n连线\n连线\n连线\n连线\n连线\n连线\a\n" + NOR);  
+                        tell_object(tme, BLINK + HBGRN + HIM + obid + "\n連線\n連線\n連線\n連線\n連線\n連線\n連線\n連線\n連線\a\n" + NOR);  
       }  
 
 void heart_beat()

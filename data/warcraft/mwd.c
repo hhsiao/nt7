@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("无电[2;37;0m[2;37;0m", ({"wudian"}));        
+        set_name("無電[2;37;0m[2;37;0m", ({"wudian"}));        
         set("gender", "男性");                
-        set("long", "无电[2;37;0m
-它是魔无电的魔幻兽。
+        set("long", "無電[2;37;0m
+它是魔無電的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");
         set("owner", "mwd");
-        set("owner_name", "魔无电");
+        set("owner_name", "魔無電");
         set_temp("owner", "mwd");
-        set_temp("owner_name", "魔无电");
+        set_temp("owner_name", "魔無電");
         ::setup();
 }

@@ -6,8 +6,8 @@ void setup()
 {
         set_name("玄武[2;37;0m[2;37;0m", ({"sleepba"}));        
         set("gender", "男性");                
-        set("long", "无[2;37;0m
-它是米壹的魔幻兽。
+        set("long", "無[2;37;0m
+它是米壹的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("雀儿[2;37;0m[2;37;0m", ({"queer"}));        
+        set_name("雀兒[2;37;0m[2;37;0m", ({"queer"}));        
         set("gender", "女性");                
-        set("long", "这是一只可爱的小鸟。[2;37;0m
-它是枯草的魔幻兽。
+        set("long", "這是一隻可愛的小鳥。[2;37;0m
+它是枯草的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;37m芦苇[2;37;0m[2;37;0m", ({"dkuu"}));        
+        set_name("[1;37m蘆葦[2;37;0m[2;37;0m", ({"dkuu"}));        
         set("gender", "男性");                
-        set("long", "$HIW$芦苇[2;37;0m
-它是枯木的魔幻兽。
+        set("long", "$HIW$蘆葦[2;37;0m
+它是枯木的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

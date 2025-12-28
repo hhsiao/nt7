@@ -1,55 +1,55 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action" : "$N双手虚晃，左脚猛地飞起，一式「开山腿」，踢向$n的$l",
+([      "action" : "$N雙手虛晃，左腳猛地飛起，一式「開山腿」，踢向$n的$l",
         "force" : 80,
         "attack": 10,
         "dodge" : 15,
         "parry" : 15,
         "damage": 10,
         "lvl"   : 0,
-        "damage_type" : "瘀伤",
-        "skill_name"  : "开山腿"
+        "damage_type" : "瘀傷",
+        "skill_name"  : "開山腿"
 ]),
-([      "action" : "$N左脚顿地，身形猛转，右脚一式「劈碑腿」，猛踹$n的$l",
+([      "action" : "$N左腳頓地，身形猛轉，右腳一式「劈碑腿」，猛踹$n的$l",
         "force" : 100,
         "attack": 20,
         "dodge" : 20,
         "parry" : 20,
         "damage": 15,
         "lvl"   : 30,
-        "damage_type" : "瘀伤",
+        "damage_type" : "瘀傷",
         "skill_name"  : "劈碑腿"
 ]),
-([      "action" : "$N右脚飞一般踹出，既猛且准，一式「碎石腿」，踢向的$n",
+([      "action" : "$N右腳飛一般踹出，既猛且準，一式「碎石腿」，踢向的$n",
         "force" : 140,
         "attack": 30,
         "dodge" : 25,
         "parry" : 25,
         "damage": 18,
         "lvl"   : 60,
-        "damage_type" : "瘀伤",
+        "damage_type" : "瘀傷",
         "skill_name"  : "碎石腿"
 ]),
-([      "action" : "$N双足连环圈转，一式「裂地腿」，足带风尘，攻向$n的全身",
+([      "action" : "$N雙足連環圈轉，一式「裂地腿」，足帶風塵，攻向$n的全身",
         "force" : 160,
         "attack": 35,
         "dodge" : 30,
         "parry" : 30,
         "damage": 20,
         "lvl"   : 90,
-        "damage_type" : "瘀伤",
+        "damage_type" : "瘀傷",
         "skill_name"  : "裂地腿"
 ]),
-([      "action" : "$N双脚交叉踢起，一式「钻天腿」，脚脚不离$n的面门左右",
+([      "action" : "$N雙腳交叉踢起，一式「鑽天腿」，腳腳不離$n的面門左右",
         "force" : 180,
         "attack": 35,
         "dodge" : 40,
         "parry" : 40,
         "damage": 25,
         "lvl"   : 120,
-        "damage_type" : "瘀伤",
-        "skill_name"  : "钻天腿"
+        "damage_type" : "瘀傷",
+        "skill_name"  : "鑽天腿"
 ]),
 });
 
@@ -58,16 +58,16 @@ int valid_enable(string usage) { return usage=="unarmed" ||  usage=="parry"; }
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练破碑腿必须空手。\n");
+                return notify_fail("練破碑腿必須空手。\n");
 
         if ((int)me->query_skill("force") < 40)
-                return notify_fail("你的内功火候不够，无法学破碑腿。\n");
+                return notify_fail("你的內功火候不夠，無法學破碑腿。\n");
 
         if ((int)me->query_skill("unarmed", 1) < 20)
-                return notify_fail("你的基本拳脚火候不够，无法学破碑腿。\n");
+                return notify_fail("你的基本拳腳火候不夠，無法學破碑腿。\n");
 
         if ((int)me->query_skill("unarmed", 1) < (int)me->query_skill("pobei-tui", 1))
-                return notify_fail("你的基本拳脚水平有限，无法领会更高深的破碑腿。\n");
+                return notify_fail("你的基本拳腳水平有限，無法領會更高深的破碑腿。\n");
 
         return 1;
 }
@@ -92,10 +92,10 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me)
 {
         if( query("qi", me)<100 )
-               return notify_fail("你的体力太低了。\n");
+               return notify_fail("你的體力太低了。\n");
 
         if( query("neili", me)<80 )
-               return notify_fail("你的内力不够练破碑腿。\n");
+               return notify_fail("你的內力不夠練破碑腿。\n");
 
         me->receive_damage("qi", 80);
         addn("neili", -60, me);

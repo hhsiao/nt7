@@ -10,13 +10,13 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一个磁杯子。\n");
-                set("unit", "个");
+                set("long", "一個磁杯子。\n");
+                set("unit", "個");
                 set("max_liquid", 5);
         }
         
         set("liquid", ([
-                "name": "豆浆",
+                "name": "豆漿",
                 "remaining": 8,
         ]));
         setup();

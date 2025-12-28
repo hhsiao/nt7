@@ -7,7 +7,7 @@ void setup()
         set_name("睡袋[2;37;0m[2;37;0m", ({"sleepbag"}));        
         set("gender", "男性");                
         set("long", "秘密[2;37;0m
-它是大亨的魔幻兽。
+它是大亨的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

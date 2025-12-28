@@ -29,7 +29,7 @@ int main(object me, string arg)
         int flag;
 
         if (! is_root(me) && ! SECURITY_D->valid_grant(me, "(admin)"))
-                return notify_fail("你没有权限访问安全系统。\n");
+                return notify_fail("你沒有權限訪問安全系統。\n");
 
         seteuid(geteuid(me));
         dtr = SECURITY_D->query_security("default_trusted_read");
@@ -46,34 +46,34 @@ int main(object me, string arg)
         cew = SECURITY_D->query_security("exclude_write");
         if (! arg)
         {
-                msg = "目前文件关于安全的配置信息(青色表示缺省配置)：\n";
-                msg += HIR + title("读取禁止") + NOR;
+                msg = "目前文件關於安全的配置信息(青色表示缺省配置)：\n";
+                msg += HIR + title("讀取禁止") + NOR;
                 msg += auth_msg(cer, der, 0, 0);
-                msg += HIC + title("读取许可") + NOR;
+                msg += HIC + title("讀取許可") + NOR;
                 msg += auth_msg(ctr, dtr, 0, 0);
-                msg += HIR + title("写入禁止") + NOR;
+                msg += HIR + title("寫入禁止") + NOR;
                 msg += auth_msg(cew, dew, 0, 0);
-                msg += HIC + title("写入许可") + NOR;
+                msg += HIC + title("寫入許可") + NOR;
                 msg += auth_msg(ctw, dtw, 0, 0);
                 write(msg);
                 return 1;
         } else
         if (arg == "read")
         {
-                msg = "目前文件关于安全的配置信息中读取的设置(青色表示缺省配置)：\n";
-                msg += HIR + title("读取禁止") + NOR;
+                msg = "目前文件關於安全的配置信息中讀取的設置(青色表示缺省配置)：\n";
+                msg += HIR + title("讀取禁止") + NOR;
                 msg += auth_msg(cer, der, 0, 0);
-                msg += HIC + title("读取许可") + NOR;
+                msg += HIC + title("讀取許可") + NOR;
                 msg += auth_msg(ctr, dtr, 0, 0);
                 write(msg);
                 return 1;
         } else
         if (arg == "write")
         {
-                msg = "目前文件关于安全的配置信息中写入的设置(青色表示缺省配置)：\n";
-                msg += HIR + title("写入禁止") + NOR;
+                msg = "目前文件關於安全的配置信息中寫入的設置(青色表示缺省配置)：\n";
+                msg += HIR + title("寫入禁止") + NOR;
                 msg += auth_msg(cew, dew, 0, 0);
-                msg += HIC + title("写入许可") + NOR;
+                msg += HIC + title("寫入許可") + NOR;
                 msg += auth_msg(ctw, dtw, 0, 0);
                 write(msg);
                 return 1;
@@ -102,7 +102,7 @@ int main(object me, string arg)
                 SECURITY_D->set_security("extend_exclude_write", eew);
                 reset_security();
 
-                write("清除了该用户所有的访问信息，采用缺省配置。\n");
+                write("清除了該用戶所有的訪問信息，採用缺省配置。\n");
                 return 1;
         }
 
@@ -124,15 +124,15 @@ int main(object me, string arg)
 
         if (! dir)
         {
-                msg = "目前关于" CYN + euid + status +
-                      NOR "的权限(青色表示缺省配置)：\n";
-                msg += HIR + title("读取禁止") + NOR;
+                msg = "目前關於" CYN + euid + status +
+                      NOR "的權限(青色表示缺省配置)：\n";
+                msg += HIR + title("讀取禁止") + NOR;
                 msg += auth_msg(cer, der, euid, status);
-                msg += HIC + title("读取许可") + NOR;
+                msg += HIC + title("讀取許可") + NOR;
                 msg += auth_msg(ctw, dtw, euid, status);
-                msg += HIR + title("写入禁止") + NOR;
+                msg += HIR + title("寫入禁止") + NOR;
                 msg += auth_msg(cew, dew, euid, status);
-                msg += HIC + title("写入许可") + NOR;
+                msg += HIC + title("寫入許可") + NOR;
                 msg += auth_msg(ctw, dtw, euid, status);
                 write(msg);
                 return 1;
@@ -140,17 +140,17 @@ int main(object me, string arg)
 
         if (! para)
         {
-                msg = CYN + euid + status + NOR "对档案("
-                      YEL + dir + NOR ")的权限：";
+                msg = CYN + euid + status + NOR "對檔案("
+                      YEL + dir + NOR ")的權限：";
                 if (SECURITY_D->valid_read(dir, euid == "Every" ? status : euid, "ls"))
-                        msg += WHT "可读 " NOR;
+                        msg += WHT "可讀 " NOR;
                 else
-                        msg += HIR "禁止读取 " NOR;
+                        msg += HIR "禁止讀取 " NOR;
 
                 if (SECURITY_D->valid_write(dir, euid == "Every" ? status : euid, "ls"))
-                        msg += WHT "可写\n";
+                        msg += WHT "可寫\n";
                 else
-                        msg += HIR "禁止写入\n";
+                        msg += HIR "禁止寫入\n";
                 write(msg);
                 return 1;
         }
@@ -161,15 +161,15 @@ int main(object me, string arg)
         case "not_read":
                 if (in_map(usr, dtr, dir))
                 {
-                        write("缺省配置中<可以读取规则>中已经包含了对"
-                              "该用户(组)对目录的访问权限说明。\n");
+                        write("缺省配置中<可以讀取規則>中已經包含了對"
+                              "該用戶(組)對目錄的訪問權限說明。\n");
                         break;
                 }
 
                 if (in_map(usr, der, dir))
                 {
-                        write("缺省配置中<禁止读取规则>中已经包含了对"
-                              "该用户(组)对目录的访问权限说明。\n");
+                        write("缺省配置中<禁止讀取規則>中已經包含了對"
+                              "該用戶(組)對目錄的訪問權限說明。\n");
                         break;
                 }
 
@@ -186,22 +186,22 @@ int main(object me, string arg)
                 SECURITY_D->set_security("extend_trusted_read", etr);
                 SECURITY_D->set_security("extend_exclude_read", eer);
                 reset_security();
-                write("成功的修改了 " CYN + usr + NOR " 对目录 " WHT + dir + NOR " 的读取权限。\n");
+                write("成功的修改了 " CYN + usr + NOR " 對目錄 " WHT + dir + NOR " 的讀取權限。\n");
                 break;
 
         case "can_write":
         case "not_write":
                 if (in_map(usr, dtw, dir))
                 {
-                        write("缺省配置中<可以写入规则>中已经包含了对"
-                              "该用户(组)对目录的访问权限说明。\n");
+                        write("缺省配置中<可以寫入規則>中已經包含了對"
+                              "該用戶(組)對目錄的訪問權限說明。\n");
                         return 1;
                 }
 
                 if (in_map(usr, dew, dir))
                 {
-                        write("缺省配置中<禁止写入规则>中已经包含了对"
-                              "该用户(组)对目录的访问权限说明。\n");
+                        write("缺省配置中<禁止寫入規則>中已經包含了對"
+                              "該用戶(組)對目錄的訪問權限說明。\n");
                         return 1;
                 }
 
@@ -218,7 +218,7 @@ int main(object me, string arg)
                 SECURITY_D->set_security("extend_trusted_write", etw);
                 SECURITY_D->set_security("extend_exclude_write", eew);
                 reset_security();
-                write("成功的修改了 " CYN + usr + NOR " 对目录 " WHT + dir + NOR " 的写入权限。\n");
+                write("成功的修改了 " CYN + usr + NOR " 對目錄 " WHT + dir + NOR " 的寫入權限。\n");
                 break;
 
         case "unknow":
@@ -232,7 +232,7 @@ int main(object me, string arg)
                 flag |= remove_from_map(usr, eew, dir);
                 if (! flag)
                 {
-                        write("原先没有关于该用户(组)对目录的访问权限设置。\n");
+                        write("原先沒有關於該用戶(組)對目錄的訪問權限設置。\n");
                         break;
                 }
 
@@ -241,12 +241,12 @@ int main(object me, string arg)
                 SECURITY_D->set_security("extend_trusted_write", etw);
                 SECURITY_D->set_security("extend_exclude_write", eew);
                 reset_security();
-                write("成功的取消了 " CYN + usr + NOR " 对目录 " WHT + dir + NOR " 的访问权限。\n");
+                write("成功的取消了 " CYN + usr + NOR " 對目錄 " WHT + dir + NOR " 的訪問權限。\n");
                 break;
 
         default:
-                write ("权限参数必须为 can_read、not_read、can_write、"
-                       "not_write、unknow 中的一种。\n");
+                write ("權限參數必須為 can_read、not_read、can_write、"
+                       "not_write、unknow 中的一種。\n");
                 break;
         }
 
@@ -300,7 +300,7 @@ string auth_msg(mapping ruler, mapping default_ruler, string euid, string status
                 if (line) msg += line + "\n";
         }
         if (msg == "")
-                msg = WHT "没有限制。\n" NOR;
+                msg = WHT "沒有限制。\n" NOR;
         else
                 msg += NOR;
         return msg;
@@ -386,19 +386,19 @@ int help(object me)
            auth <user> | <wizhood> -clear
            auth <user> | <wizhood> [ <directory> [ can_read | not_read | can_write | not_write | unknow ] ]
 
-这个命令用来查询或设置巫师的权限。 如果指明 read | write  表明查询
-读取或是写入的权限信息。
+這個命令用來查詢或設置巫師的權限。 如果指明 read | write  表明查詢
+讀取或是寫入的權限信息。
 
-如果指定一个用户或是组，表示查询或是设置该用户(组)的安全权限，如果
-使用了参数 -clear 表示要清除该用户或是组的的所有权限。如果指明了目
-录则设置该用户(组)对目录的访问权限。其中 unknow 表示不针对该目录进
-行设置，即继承上级目录的权限。
+如果指定一個用戶或是組，表示查詢或是設置該用戶(組)的安全權限，如果
+使用了參數 -clear 表示要清除該用戶或是組的的所有權限。如果指明瞭目
+錄則設置該用戶(組)對目錄的訪問權限。其中 unknow 表示不針對該目錄進
+行設置，即繼承上級目錄的權限。
 
-注意：所有配置信息的修改均不能违反缺省配置，即如果缺省配置指明某个
-用户(组)不能或是可以访问某个目录，你不能再重新设置。当然，缺省配置
-如果指明的是组，你可以对用户在进行配置。比如：
-缺省配置：(arch)不能访问/backup/
-你可以设置 test 用户访问/backup/
+注意：所有配置信息的修改均不能違反缺省配置，即如果缺省配置指明某個
+用戶(組)不能或是可以訪問某個目錄，你不能再重新設置。當然，缺省配置
+如果指明的是組，你可以對用戶在進行配置。比如：
+缺省配置：(arch)不能訪問/backup/
+你可以設置 test 用戶訪問/backup/
 
 HELP
     );

@@ -16,8 +16,8 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", "符文：显定极风符，可以放入凹槽物品。\n");
-                set("unit", "个");
+                set("long", "符文：顯定極風符，可以放入凹槽物品。\n");
+                set("unit", "個");
                 set("enchase/SN", 19);
                 set("enchase/type", "all");
                 set("enchase/consistence", 100); 

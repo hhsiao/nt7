@@ -1,18 +1,18 @@
 // Copyright (C) 2003, by Lonely. All rights reserved.
 // This software can not be used, copied, or modified 
 // in any form without the written permission from authors.
-// tao2.c 桃干仙
+// tao2.c 桃幹仙
 
 inherit NPC;
 string ask_me();
 
 void create()
 {
-        set_name("桃干仙", ({ "tao ganxian", "tao", "ganxian" }));
+        set_name("桃幹仙", ({ "tao ganxian", "tao", "ganxian" }));
         set("nickname", "桃谷六仙老二");
         set("long", 
-"桃根仙张着一张长长的马脸，尊容是令人不敢恭维的。与其五兄\n"
-"弟行影不离，号称「桃谷六仙」。\n");
+"桃根仙張著一張長長的馬臉，尊容是令人不敢恭維的。與其五兄\n"
+"弟行影不離，號稱「桃谷六仙」。\n");
         set("gender", "男性");
         set("age", 63);
         set("attitude", "peaceful");
@@ -47,15 +47,15 @@ void create()
         set("chat_chance", 5);
 
         set("chat_msg", ({
-                "桃干仙神气地说道：咱们桃谷六仙在江湖上威名赫赫！\n",
-                "桃干仙说道：你若是不认识咱们，那你一定是这个．．．这个．．孤陋寡闻。\n",
+                "桃幹仙神氣地說道：咱們桃谷六仙在江湖上威名赫赫！\n",
+                "桃幹仙說道：你若是不認識咱們，那你一定是這個．．．這個．．孤陋寡聞。\n",
         }) );
 
         set("inquiry", ([
-                "令狐冲"     : "令狐兄是我的好朋友，常说咱们六兄弟是江湖中的英雄好汉。\n",
-                "风清扬"     : (: ask_me :),
-                "风前辈"     : (: ask_me :),
-                "风清扬前辈" : (: ask_me :),
+                "令狐沖"     : "令狐兄是我的好朋友，常說咱們六兄弟是江湖中的英雄好漢。\n",
+                "風清揚"     : (: ask_me :),
+                "風前輩"     : (: ask_me :),
+                "風清揚前輩" : (: ask_me :),
         ]));
 
         setup();

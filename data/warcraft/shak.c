@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m绝情兽[2;37;0m[2;37;0m", ({"doo"}));        
+        set_name("[1;31m絕情獸[2;37;0m[2;37;0m", ({"doo"}));        
         set("gender", "男性");                
-        set("long", "坐骑[2;37;0m
-它是林若音的魔幻兽。
+        set("long", "坐騎[2;37;0m
+它是林若音的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

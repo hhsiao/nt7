@@ -12,14 +12,14 @@ void create()
         else*/
         {
                 set("unit", "副");
-                set("long", HIR "你定睛一看，却无法辩识清楚，妖焰的火光闪耀刺眼，令人敬畏。\n" NOR);
+                set("long", HIR "你定睛一看，卻無法辯識清楚，妖焰的火光閃耀刺眼，令人敬畏。\n" NOR);
                 set("value", 200000);
                 set("material", "gold");
                 set("armor_prop/con", 40);
                 set("armor_prop/magic_find", 10);
                 set("limit", ([
                         "exp" : 10000000,
-                        "sex" : 1, // 1 为女性
+                        "sex" : 1, // 1 為女性
                 ]));
         }
         setup();

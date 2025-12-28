@@ -3,10 +3,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "水莲洞内");
+        set("short", "水蓮洞內");
         set("long", @LONG
-往前行段路后，道路也渐渐宽阔了起来。隐隐约约似乎有水滴之
-声传来，你不禁想朝声音传来的方向走去 (zou)看看。
+往前行段路後，道路也漸漸寬闊了起來。隱隱約約似乎有水滴之
+聲傳來，你不禁想朝聲音傳來的方向走去 (zou)看看。
 LONG );
         set("exits",([
                "east" : __DIR__"zigai1",
@@ -28,20 +28,20 @@ void init()
         add_action("do_use", "use");
 
         if (present("fire", me))
-                       set_temp("marks/点", 1, me);
+                       set_temp("marks/點", 1, me);
 
-        else delete_temp("marks/点", me);
+        else delete_temp("marks/點", me);
 }        
 
 int do_zou()
 {
         object me = this_player();
         
-        if( !query_temp("marks/点", me) )
-                return notify_fail(HIW"\n这里一片漆黑，如果没有火光寸步难行。\n\n"NOR);
+        if( !query_temp("marks/點", me) )
+                return notify_fail(HIW"\n這裡一片漆黑，如果沒有火光寸步難行。\n\n"NOR);
         
         if (me->is_fighting() || me->is_busy())
-                return notify_fail("\n你现在正忙着呢。\n\n");
+                return notify_fail("\n你現在正忙著呢。\n\n");
         
         me->move(__DIR__"outzigai");
         
@@ -57,9 +57,9 @@ int do_use(string arg)
         
         if (! present("fire", me)) return 0;
 
-        write(HIC "\n你将火折点然了。\n\n" NOR);
+        write(HIC "\n你將火折點然了。\n\n" NOR);
 
-        set_temp("marks/点", 1, me);
+        set_temp("marks/點", 1, me);
 
         return 1;
 

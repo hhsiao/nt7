@@ -29,8 +29,8 @@ protected string *update_file(string file)
 
 // Function name:       epilog
 // Return:              List of files to preload
-// 初始化作业 Initialization
-// 若 driver 参数为 -e , flag 为非零值
+// 初始化作業 Initialization
+// 若 driver 參數為 -e , flag 為非零值
 
 string *epilog(int flag)
 {
@@ -43,8 +43,8 @@ string *epilog(int flag)
 
         if( flag )
         {
-                printf("驱动程式取消预先载入程序。\n");
-                log_file("preload/preload","驱动程式取消预先载入程序。\n");
+                printf("驅動程式取消預先載入程序。\n");
+                log_file("preload/preload","驅動程式取消預先載入程序。\n");
                 return allocate(0);
         }
 
@@ -52,7 +52,7 @@ string *epilog(int flag)
 }
 
 // preload an object
-// 预先载入物件
+// 預先載入物件
 void preload(string file)
 {
         mixed err;
@@ -61,5 +61,5 @@ void preload(string file)
                 return;
 
         if( err = catch(load_object(file)) )
-                log_file("static/preload",sprintf("载入 %s 时发生错误: %O\n", file, err));
+                log_file("static/preload",sprintf("載入 %s 時發生錯誤: %O\n", file, err));
 }

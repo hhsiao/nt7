@@ -5,7 +5,7 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action" : "$N左手虚按，右腿使一招「一步等天」，向$n的$l踢去",
+([      "action" : "$N左手虛按，右腿使一招「一步等天」，向$n的$l踢去",
         "attack" : 30,
         "force"  : 70,
         "dodge"  : 42,
@@ -13,37 +13,37 @@ mapping *action = ({
         "damage" : 22,
         "skill_name" : "一步等天",
         "lvl" : 0,
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N左手虚出，右手使一招「袈裟拦雀」，向$n的$l袭去",
+([      "action" : "$N左手虛出，右手使一招「袈裟攔雀」，向$n的$l襲去",
         "attack" : 40,
         "force" : 85,
         "dodge" : 81,
         "parry" : 102,
         "damage" : 42,
-        "skill_name" : "袈裟拦雀",
+        "skill_name" : "袈裟攔雀",
         "lvl" : 30,
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N使一招「直冲拳」，左手回撤，有拳向$n的$l直击而去",
+([      "action" : "$N使一招「直衝拳」，左手回撤，有拳向$n的$l直擊而去",
         "attack" : 50,
         "force" : 100,
         "dodge" : 88,
         "parry" : 105,
         "damage" : 44,
-        "skill_name" : "直冲拳",
+        "skill_name" : "直衝拳",
         "lvl" : 140,
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N忽地分开右手上左手下，一招「双风贯耳」，向$n的$l和面门打去",
+([      "action" : "$N忽地分開右手上左手下，一招「雙風貫耳」，向$n的$l和麵門打去",
         "attack" : 30,
         "force" : 125,
         "dodge" : 86,
         "parry" : 119,
         "damage" : 45,
-        "skill_name" : "双风贯耳",
+        "skill_name" : "雙風貫耳",
         "lvl" : 160,
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
 ([      "action" : "$N左手由胸前向下，右臂微曲，使一招「伏魔式」，向$n的$l推去",
         "attack" : 56,
@@ -53,49 +53,49 @@ mapping *action = ({
         "damage" : 52,
         "skill_name" : "伏魔式",
         "lvl" : 180,
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N双手回收，一式「反云手」，向$n的$l推去",
+([      "action" : "$N雙手回收，一式「反雲手」，向$n的$l推去",
         "attack" : 54,
         "force" : 185,
         "dodge" : 102,
         "parry" : 122,
         "damage" : 83,
-        "skill_name" : "反云手",
+        "skill_name" : "反雲手",
         "lvl" : 200,
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N身体向后腾出，左手略直，右臂微曲，使一招「镇魔拳」，向$n的$l和面门打去",
+([      "action" : "$N身體向後騰出，左手略直，右臂微曲，使一招「鎮魔拳」，向$n的$l和麵門打去",
         "attack" : 70,
         "force" : 215,
         "dodge" : 132,
         "parry" : 121,
         "damage" : 82,
-        "skill_name" : "镇魔拳",
+        "skill_name" : "鎮魔拳",
         "lvl" : 220,
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N双手伸开，招「镇魂式」，将$n浑身上下都笼罩在重重掌影之中",
+([      "action" : "$N雙手伸開，招「鎮魂式」，將$n渾身上下都籠罩在重重掌影之中",
         "attack" : 81,
         "force" : 260,
         "dodge" : 154,
         "parry" : 145,
         "damage" : 92,
-        "skill_name" : "镇魂式",
+        "skill_name" : "鎮魂式",
         "lvl" : 230,
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N双手握拳，左手猛地向前推出，一招「荡魔式」，直奔$n心窝而去",
+([      "action" : "$N雙手握拳，左手猛地向前推出，一招「蕩魔式」，直奔$n心窩而去",
         "attack" : 90,
         "force" : 285,
         "dodge" : 166,
         "parry" : 175,
         "damage" : 100,
-        "skill_name" : "荡魔式",
+        "skill_name" : "蕩魔式",
         "lvl" : 240,
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
-([      "action" : "$N飞身而起，半空中双拳翻滚而出，一招「降妖伏魔」，一股劲风直逼$n",
+([      "action" : "$N飛身而起，半空中雙拳翻滾而出，一招「降妖伏魔」，一股勁風直逼$n",
         "attack" : 120,
         "force" : 340,
         "dodge" : 178,
@@ -103,7 +103,7 @@ mapping *action = ({
         "damage" : 120,
         "skill_name" : "降妖伏魔",
         "lvl" : 250,
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
 });
 
@@ -112,31 +112,31 @@ int valid_enable(string usage) { return usage == "unarmed" || usage == "parry"; 
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练袈裟伏魔功必须空手。\n");
+                return notify_fail("練袈裟伏魔功必須空手。\n");
 
         if( query("str", me)<25 )
-                return notify_fail("你先天臂力不足，无法修炼袈裟伏魔功。\n");
+                return notify_fail("你先天臂力不足，無法修煉袈裟伏魔功。\n");
 
         if( query("con", me)<25 )
-                return notify_fail("你先天根骨不足，无法修炼袈裟伏魔功。\n");
+                return notify_fail("你先天根骨不足，無法修煉袈裟伏魔功。\n");
         
         if ((int)me->query_skill("force") < 280)
-                return notify_fail("你的内功火候不够，无法学袈裟伏魔功。\n");
+                return notify_fail("你的內功火候不夠，無法學袈裟伏魔功。\n");
 
         if( query("max_neili", me)<1800 )
-                return notify_fail("你的内力太弱，无法练袈裟伏魔功。\n");
+                return notify_fail("你的內力太弱，無法練袈裟伏魔功。\n");
 
 
         if ((int)me->query_skill("ruying-suixingtui", 1) < 160)
-                                return notify_fail("你的如影随形腿火候不够，无法学袈裟伏魔功。\n");
+                                return notify_fail("你的如影隨形腿火候不夠，無法學袈裟伏魔功。\n");
         if ((int)me->query_skill("unarmed", 1) < 120)
-                return notify_fail("你的基本拳脚火候不够，无法学袈裟伏魔功。\n");
+                return notify_fail("你的基本拳腳火候不夠，無法學袈裟伏魔功。\n");
 
         if ((int)me->query_skill("unarmed", 1) < (int)me->query_skill("jiasha-fumogong", 1))
-                return notify_fail("你的基本拳脚水平有限，无法领会更高深的袈裟伏魔功。\n");
+                return notify_fail("你的基本拳腳水平有限，無法領會更高深的袈裟伏魔功。\n");
 
         if ((int)me->query_skill("ruying-suixingtui", 1) < (int)me->query_skill("jiasha-fumogong", 1))
-                return notify_fail("你的如影随形腿水平有限，无法领会更高深的袈裟伏魔功。\n");
+                return notify_fail("你的如影隨形腿水平有限，無法領會更高深的袈裟伏魔功。\n");
 
         return 1;
 }
@@ -176,18 +176,18 @@ varargs mixed hit_ob(object me, object victim, int damage_bonus)
 
                 addn("neili", -30, me);
                 victim->receive_wound("qi", (damage_bonus - 100) / 4, me); 
-                return HIY "$N" HIY "内力猛催，突然间一股浑厚无比的的内力" 
-                       HIY "透体而入，只听$n一声闷哼！\n" NOR; 
+                return HIY "$N" HIY "內力猛催，突然間一股渾厚無比的的內力" 
+                       HIY "透體而入，只聽$n一聲悶哼！\n" NOR; 
         }
 }
 
 int practice_skill(object me)
 {
         if( query("qi", me)<70 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
 
         if( query("neili", me)<70 )
-                return notify_fail("你的内力不够练袈裟伏魔功。\n");
+                return notify_fail("你的內力不夠練袈裟伏魔功。\n");
 
         me->receive_damage("qi", 65);
         addn("neili", -59, me);

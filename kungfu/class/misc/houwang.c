@@ -1,4 +1,4 @@
-//开始阅读文件：/kungfu/class/misc/houwang.c
+//開始閱讀文件：/kungfu/class/misc/houwang.c
 //redl 2014
 #include <ansi.h>
 inherit NPC;
@@ -15,30 +15,30 @@ void rape()
         object me = this_object();
         int lv = query("level");
         if (lv<30) return;
-        if (query("short", environment())=="水帘洞") return ;
+        if (query("short", environment())=="水簾洞") return ;
         if (random(10000)>(lv*lv) && (query("n_flee") > 1800)) return;
         if (random(70-lv) && (query("n_flee") > 1800)) return;
-                //掳掠
+                //擄掠
                 obs = filter_array(query_enemy(),
                            (: playerp($1) &&
                            living($1)
                            :));
                 if (obs && arrayp(obs) && sizeof(obs)) {
                         delete("chat_chance");
-                        message_vision(YEL "只见$N突然脸上露出邪恶的笑容，嘎嘎大叫道：筋斗云，疾！\n" NOR, me);
-                        message_vision(CYN "金光遍地中，$N" NOR CYN "被一朵乌云裹走了......\n" NOR, me);
+                        message_vision(YEL "只見$N突然臉上露出邪惡的笑容，嘎嘎大叫道：筋斗雲，疾！\n" NOR, me);
+                        message_vision(CYN "金光遍地中，$N" NOR CYN "被一朵烏雲裹走了......\n" NOR, me);
                         me->move("/u/redl/teleport/huaguo");
                         me->start_busy(3);
                         foreach(object tob in obs) {
                                 if (!userp(tob)) continue;
-                                message_vision(CYN "金光遍地中，$N" NOR CYN "被一朵乌云裹走了......\n" NOR, tob);
+                                message_vision(CYN "金光遍地中，$N" NOR CYN "被一朵烏雲裹走了......\n" NOR, tob);
                                 tob->move("/u/redl/teleport/huaguo");
                                 tob->start_busy(3);
                                 me->kill_ob(tob);
                                 if (names!="") names +="、";
                                 names += query("name", tob);
                         }
-                        CHANNEL_D->channel_broadcast("rumor", "某人(Someone.)：听说"+query("name")+"把"+names+"掳掠到水帘洞去了，不知道想做什么...\n" NOR);
+                        CHANNEL_D->channel_broadcast("rumor", "某人(Someone.)：聽說"+query("name")+"把"+names+"擄掠到水簾洞去了，不知道想做什麼...\n" NOR);
                 }
 }
 
@@ -51,21 +51,21 @@ int level_up()
 
         addn("level", 1);
         lv = query("level");
-        set("title", HIC + chinese_number(lv) + "级" + NOR);    
+        set("title", HIC + chinese_number(lv) + "級" + NOR);    
         if (lv >= 90) {
-        set_name("鸿蒙天猴", ({ "hou wang", "hou", "wang", "monkey" }));
+        set_name("鴻蒙天猴", ({ "hou wang", "hou", "wang", "monkey" }));
             new("/d/emei/obj/pantao")->move(me, 1);
             new("/d/emei/obj/pantao")->move(me, 1);
             ef = 20;
     }
         else if (lv >= 80) {
-        set_name("不动神猴", ({ "hou wang", "hou", "wang", "monkey" }));
+        set_name("不動神猴", ({ "hou wang", "hou", "wang", "monkey" }));
             new("/d/emei/obj/pantao")->move(me, 1);
             if (!random(2)) new("/d/emei/obj/pantao")->move(me, 1);
             ef = 21;
     }
         else if (lv >= 70) {
-        set_name("金刚顽猴", ({ "hou wang", "hou", "wang", "monkey" }));
+        set_name("金剛頑猴", ({ "hou wang", "hou", "wang", "monkey" }));
             new("/d/emei/obj/pantao")->move(me, 1);
             if (!random(3)) new("/d/emei/obj/pantao")->move(me, 1);
             ef = 22;
@@ -77,13 +77,13 @@ int level_up()
             ef = 23;
     }
         else if (lv >= 50) {
-        set_name("斗战胜佛", ({ "hou wang", "hou", "wang", "monkey" }));
+        set_name("鬥戰勝佛", ({ "hou wang", "hou", "wang", "monkey" }));
             new("/d/emei/obj/pantao")->move(me, 1);
             if (!random(5)) new("/d/emei/obj/pantao")->move(me, 1);
             ef = 24;
     }
         else if (lv >= 40) {
-        set_name("齐天大圣", ({ "hou wang", "hou", "wang", "monkey" }));
+        set_name("齊天大聖", ({ "hou wang", "hou", "wang", "monkey" }));
             if (lv / 2 * 2 == lv)       new("/d/emei/obj/pantao")->move(me, 1);
             if (!random(6)) new("/d/emei/obj/pantao")->move(me, 1);
             ef = 43;
@@ -100,7 +100,7 @@ int level_up()
             ef = 76;
     }
         else if (lv >= 10) {
-        set_name("山岳巨猿", ({ "hou wang", "hou", "wang", "monkey" }));
+        set_name("山嶽巨猿", ({ "hou wang", "hou", "wang", "monkey" }));
             if (lv / 5 * 5 == lv)       new("/d/emei/obj/pantao")->move(me, 1);
             ef = 96;
     }
@@ -110,11 +110,11 @@ int level_up()
             ef = 105;
     }
     if ((lv / 10 * 10 == lv)) {
-        CHANNEL_D->channel_broadcast("news", "听说"+query("name")+"出现在"+query("short", environment())+"。\n" NOR);
-                message_vision(append_color(BLINK + BCYN + HIY + "\n" + oldname + "在地上滚出老远，突然撑起愤怒咆哮，$N出现在你面前。\n\n" + NOR, BLINK + HIY), me);
+        CHANNEL_D->channel_broadcast("news", "聽說"+query("name")+"出現在"+query("short", environment())+"。\n" NOR);
+                message_vision(append_color(BLINK + BCYN + HIY + "\n" + oldname + "在地上滾出老遠，突然撐起憤怒咆哮，$N出現在你面前。\n\n" + NOR, BLINK + HIY), me);
         }
         else
-                message_vision(append_color(BCYN + HIY + "\n" + oldname + "在地上滚出老远，翻身立起来猛然捶胸嚎叫不已。\n\n" + NOR, HIY), me);
+                message_vision(append_color(BCYN + HIY + "\n" + oldname + "在地上滾出老遠，翻身立起來猛然捶胸嚎叫不已。\n\n" + NOR, HIY), me);
                 
         addn("str", 3 + random(2));
         addn("int", 1 + random(2));
@@ -154,23 +154,23 @@ int level_up()
         add_temp("apply/unarmed_damage", ef/5000);
         set_temp("apply/armor", ef/1000);
 
-                set_temp("apply/add_freeze", lv / 5);//   : "冰冻",                       // weapon 终极兵器 冰冻-迟缓，减缓对方攻击，攻击pfm速度降低，无任何防御，无躲闪，无招架，就是挨打
-                set_temp("apply/add_forget", lv / 20);//   : "遗忘",                       // weapon 终极防具 遗忘-使对方忘记所有技能的绝招add_oblivion   
-                set_temp("apply/add_weak", lv / 10);//     : "虚弱",                       // weapon 终极兵器
-                set_temp("apply/add_busy", lv / 50);//     : "忙乱",                       // weapon 终极兵器
-                set_temp("apply/avoid_freeze", lv - 5);// : "忽视冰冻",                   // armor/rings 终极防具
-                set_temp("apply/avoid_weak", lv - 5);//   : "忽视虚弱",                   // armor/rings 终极防具
-                set_temp("apply/avoid_busy", lv);//   : "忽视忙乱",                   // armor/rings 终极防具
-                set_temp("apply/reduce_busy", lv);//  : "化解忙乱",                   // armor/rings 终极防具
-                set_temp("apply/reduce_damage", lv / 2);//  : 化解伤害",                   // armor 终极防具 
-                set_temp("apply/ap_power", lv);//  : "绝招攻击力",         // weapon/rings
-                set_temp("apply/dp_power", lv);//  : "绝招防御力",         // armor
-                set_temp("apply/da_power", lv / 10);//  : "绝招伤害力",         // weapon/rings
-                set_temp("apply/avoid_defense", lv - 10);//  : "攻击无视目标防御",   // weapon/rings
-                set_temp("apply/avoid_parry", lv - 10);//  : "攻击无视目标招架",   // weapon/rings
-                set_temp("apply/avoid_dodge", lv - 10);//  : "攻击无视目标躲闪",   // weapon/rings
-                set_temp("apply/avoid_force", lv - 10);//  : "攻击无视内功防御",   // weapon/rings
-                set_temp("apply/avoid_attack", lv - 10);//  : "无视目标特殊攻击",   // armor
+                set_temp("apply/add_freeze", lv / 5);//   : "冰凍",                       // weapon 終極兵器 冰凍-遲緩，減緩對方攻擊，攻擊pfm速度降低，無任何防禦，無躲閃，無招架，就是捱打
+                set_temp("apply/add_forget", lv / 20);//   : "遺忘",                       // weapon 終極防具 遺忘-使對方忘記所有技能的絕招add_oblivion   
+                set_temp("apply/add_weak", lv / 10);//     : "虛弱",                       // weapon 終極兵器
+                set_temp("apply/add_busy", lv / 50);//     : "忙亂",                       // weapon 終極兵器
+                set_temp("apply/avoid_freeze", lv - 5);// : "忽視冰凍",                   // armor/rings 終極防具
+                set_temp("apply/avoid_weak", lv - 5);//   : "忽視虛弱",                   // armor/rings 終極防具
+                set_temp("apply/avoid_busy", lv);//   : "忽視忙亂",                   // armor/rings 終極防具
+                set_temp("apply/reduce_busy", lv);//  : "化解忙亂",                   // armor/rings 終極防具
+                set_temp("apply/reduce_damage", lv / 2);//  : 化解傷害",                   // armor 終極防具 
+                set_temp("apply/ap_power", lv);//  : "絕招攻擊力",         // weapon/rings
+                set_temp("apply/dp_power", lv);//  : "絕招防禦力",         // armor
+                set_temp("apply/da_power", lv / 10);//  : "絕招傷害力",         // weapon/rings
+                set_temp("apply/avoid_defense", lv - 10);//  : "攻擊無視目標防禦",   // weapon/rings
+                set_temp("apply/avoid_parry", lv - 10);//  : "攻擊無視目標招架",   // weapon/rings
+                set_temp("apply/avoid_dodge", lv - 10);//  : "攻擊無視目標躲閃",   // weapon/rings
+                set_temp("apply/avoid_force", lv - 10);//  : "攻擊無視內功防禦",   // weapon/rings
+                set_temp("apply/avoid_attack", lv - 10);//  : "無視目標特殊攻擊",   // armor
 
         addn("max_neili", query("max_neili")*ef/500);
         set("neili", query("max_neili"));
@@ -184,7 +184,7 @@ int level_up()
         full_self();
         me->reset_action(); 
         //command("jiali max");
-        if ((query("short", environment())!="水帘洞"))
+        if ((query("short", environment())!="水簾洞"))
                 set("n_flee", 1800 + ((10 * lv < 600) ? (10 * lv) : 600));
         else 
                 set("n_flee", 1800 + 120 * lv);
@@ -219,11 +219,11 @@ void remotekill_enemlist()
         if (strsrch(base_name(where), "/d/death/") != -1) return;
         if (query_temp("sleeped", own))  return; 
         if (environment(own) == environment()) return;
-        message_vision(BLINK BCYN HIY "$N" HIY "从耳朵里掏出根绣花针，迎风一晃无限长大，望虚空处一戳...\n" NOR, this_object()); 
-        msg = BLINK BCYN HIY + (random(2) ? "天上":"云中") + HIY + (random(2) ? "突然":"忽地") + 
-                (random(2) ? "显现":"凝聚出") + "一根巨柱直插而来，$N" + (random(2) ? "刚刚":"只来得及") + 
-                (random(2) ? "认清":"看到") + HIW + (random(2) ? "『定海神针铁.重一万三千～～』":"『定海神针铁.重一万～～～』") + 
-                HIY + "几个大字...\n" + NOR;
+        message_vision(BLINK BCYN HIY "$N" HIY "從耳朵裡掏出根繡花針，迎風一晃無限長大，望虛空處一戳...\n" NOR, this_object()); 
+        msg = BLINK BCYN HIY + (random(2) ? "天上":"雲中") + HIY + (random(2) ? "突然":"忽地") + 
+                (random(2) ? "顯現":"凝聚出") + "一根巨柱直插而來，$N" + (random(2) ? "剛剛":"只來得及") + 
+                (random(2) ? "認清":"看到") + HIW + (random(2) ? "『定海神針鐵.重一萬三千～～』":"『定海神針鐵.重一萬～～～』") + 
+                HIY + "幾個大字...\n" + NOR;
         message_vision(msg, own);       
         own->receive_damage("qi", query("max_qi", own)*damage/100, this_object());
         own->receive_wound("qi", query("max_qi", own)*damage/100, this_object());
@@ -253,8 +253,8 @@ void heart_beat()
                         if (query("doubi") && !random(2)) new(__FILE__)->move(environment());
             }
         if( query("level") && query("n_flee") < 2 ){
-                        message_vision(CYN + query("name") + NOR + CYN + "嘿嘿笑道：罢，本大王去也...\n"+ NOR + 
-                                                        YEL + query("name") + NOR + YEL + "说完，掐诀一个筋斗冲九霄而逝。\n" + NOR, me); 
+                        message_vision(CYN + query("name") + NOR + CYN + "嘿嘿笑道：罷，本大王去也...\n"+ NOR + 
+                                                        YEL + query("name") + NOR + YEL + "說完，掐訣一個筋斗衝九霄而逝。\n" + NOR, me); 
                         destruct(this_object());                                                                            
                         return;
         }
@@ -269,7 +269,7 @@ void heart_beat()
                 if (!random(23 - (query("level")/5))) {
             me->stop_busy();
         }
-        if ((query("short", environment())=="水帘洞"))
+        if ((query("short", environment())=="水簾洞"))
                         enemies = filter_array(all_inventory(environment()), (: query("id", $1) != "hou wang" &&
                                                                                                                         (!query("env/invisible", $1)) && 
                                                                                                                         $1->is_character() && living($1)
@@ -280,12 +280,12 @@ void heart_beat()
                 !random(8 - ((!query("chat_chance")) ? (query("level")/10) : 0)) && 
                 query("level") >= 40 && random(query("level")+1)>=40 && enemies && arrayp(enemies) && sizeof(enemies)) {
                 set_temp("smh_time", time() + 2);
-            msg = HIY "\n$N睁开火眼精睛射出一道弧形光线，沿着身前几个方向一扫。\n" NOR;
+            msg = HIY "\n$N睜開火眼精睛射出一道弧形光線，沿著身前幾個方向一掃。\n" NOR;
             message_vision(append_color(msg, HIY), me);
             me->start_busy(2);
                 foreach(enemy in enemies) {
                                 if (enemy && objectp(enemy)) {
-                        msg = HIR "$N全身燃起白晃晃的三昧真火，烧得是皮开肉绽。\n" NOR;
+                        msg = HIR "$N全身燃起白晃晃的三昧真火，燒得是皮開肉綻。\n" NOR;
                         message_vision(append_color(msg, HIR), enemy);
                         damage = query("max_qi", enemy)/1000*query("level");
                         if (damage < 30000 * query("level")) damage = 30000 * query("level");
@@ -332,7 +332,7 @@ int receive_damage(string type, int n, object who)
                 set("jzxg_time",time()+100-lv);
                 if (query("jzxg_msgtime")<time()){
                         set("jzxg_msgtime",time());
-                        message_vision(HIW "$N暗运" BLINK HIY "九转玄功" NOR HIW "，坚若不动金刚，万法不侵。\n" NOR, this_object());
+                        message_vision(HIW "$N暗運" BLINK HIY "九轉玄功" NOR HIW "，堅若不動金剛，萬法不侵。\n" NOR, this_object());
                 }
                   return ::receive_damage(type, 100-lv,who);
         }
@@ -354,7 +354,7 @@ int receive_wound(string type, int n, object who)
                 set("jzxg_time",time()+100-lv);
                 if (query("jzxg_msgtime")<time()){
                         set("jzxg_msgtime",time());
-                        message_vision(HIW "$N暗运" BLINK HIY "九转玄功" NOR HIW "，坚若不动金刚，万法不侵。\n" NOR, this_object());
+                        message_vision(HIW "$N暗運" BLINK HIY "九轉玄功" NOR HIW "，堅若不動金剛，萬法不侵。\n" NOR, this_object());
                 }
                 return ::receive_wound(type, 100-lv, who);
         }
@@ -368,11 +368,11 @@ void init()
         //string there;
         //there = base_name(environment());
         if (//(strsrch(there, "/u/redl/teleport/huaguo") != -1) &&
-                query("short", environment())=="水帘洞" &&
+                query("short", environment())=="水簾洞" &&
                 base_name(this_player()) != base_name(this_object())
         ) {
                 if (query("env/invisible", this_player())) return;
-                message_vision(append_color(NOR + CYN + "$N对$n怒喝道：何方妖怪敢擅闯我花果山？\n" + NOR, CYN), this_object(), this_player());
+                message_vision(append_color(NOR + CYN + "$N對$n怒喝道：何方妖怪敢擅闖我花果山？\n" + NOR, CYN), this_object(), this_player());
                 this_object()->kill_ob(this_player());
         }
 }
@@ -408,10 +408,10 @@ void create()
 {
                 int lv = 0, *t;
                 set_name("猴王", ({ "hou wang", "hou", "wang", "monkey" }));
-        set("race", "野兽");
+        set("race", "野獸");
         set("age", 23);
-        set("long", "这是一只身材硕壮的大马猴，眼神中透露出一股霸\n"
-                    "气，看起来极不好惹。\n");
+        set("long", "這是一隻身材碩壯的大馬猴，眼神中透露出一股霸\n"
+                    "氣，看起來極不好惹。\n");
         set("rank_info/rude", "孽畜");
         set("rank_info/respect", "大猴子");
         set("combat_exp", 500000000);
@@ -481,20 +481,20 @@ int accept_object(object me, object ob)
 {
         if( !query("food_supply", ob) )
         {
-                message_vision(CYN "$N" CYN "摆了摆手，吱吱吱吱一阵"
-                               "乱叫。\n" NOR, this_object());
+                message_vision(CYN "$N" CYN "擺了擺手，吱吱吱吱一陣"
+                               "亂叫。\n" NOR, this_object());
                 return 0;
         }
 
         if( query("food") >= max_food_capacity()-query("food_supply", ob) )
         {
-                message_vision(CYN "$N" CYN "伸长脖子嗅嗅，摆了摆手"
-                               "，打了一个饱嗝。\n" NOR, this_object());
+                message_vision(CYN "$N" CYN "伸長脖子嗅嗅，擺了擺手"
+                               "，打了一個飽嗝。\n" NOR, this_object());
 
                 if (present("pan tao", this_object()))
                 {
-                        message_vision(CYN "\n$N" CYN "挠了挠头，从身后摸出"
-                                       "个水灵灵的大蟠桃，又嗅了嗅。\n" NOR,
+                        message_vision(CYN "\n$N" CYN "撓了撓頭，從身後摸出"
+                                       "個水靈靈的大蟠桃，又嗅了嗅。\n" NOR,
                                        this_object());
 
                         command("give pan tao to "+query("id", me));
@@ -503,7 +503,7 @@ int accept_object(object me, object ob)
                 return 0;
         }
 
-        message_vision(CYN "$N" CYN "一把抓过$n" NOR + CYN "，使劲嗅了嗅。\n"
+        message_vision(CYN "$N" CYN "一把抓過$n" NOR + CYN "，使勁嗅了嗅。\n"
                        NOR, this_object(), ob);
 
         ob->move(this_object());
@@ -516,7 +516,7 @@ int accept_object(object me, object ob)
 
 int accept_fight(object ob)
 {
-        message_vision(CYN "$N" CYN "朝着$n" CYN "吱吱吱吱一阵乱叫。"
+        message_vision(CYN "$N" CYN "朝著$n" CYN "吱吱吱吱一陣亂叫。"
                        "\n" NOR, this_object(), ob);
         return 0;
 }
@@ -526,7 +526,7 @@ void fight_ob(object ob)
         if (is_fighting(ob))
                 return;
 
-        message_vision(HIW "$N" HIW "仰天一声长哮，朝$n" HIW "猛扑了"
+        message_vision(HIW "$N" HIW "仰天一聲長哮，朝$n" HIW "猛撲了"
                        "上去。\n" NOR, this_object(), ob);
 
         ::fight_ob(ob);
@@ -548,13 +548,13 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->receive_wound("qi", 80 + random(50), me);
         addn_temp("can_learn/houwang", 1, ob);
-        return random(2) ? HIY "陡然间$N" HIY "招式一变，腾空跃起，双"
-                           "爪竟似幻作两道金光，宛若星划长空，飕的抓向"
+        return random(2) ? HIY "陡然間$N" HIY "招式一變，騰空躍起，雙"
+                           "爪竟似幻作兩道金光，宛若星劃長空，颼的抓向"
                            "$n" HIY "而去。\n" NOR:
 
-                           HIY "$N" HIY "蓦地里一声清啸，双拳回圈斜挥"
-                           "而出，招式煞为精奇。$n" HIY "登时只觉眼花"
-                           "缭乱，难以招架。\n" NOR;
+                           HIY "$N" HIY "驀地裡一聲清嘯，雙拳迴圈斜揮"
+                           "而出，招式煞為精奇。$n" HIY "登時只覺眼花"
+                           "繚亂，難以招架。\n" NOR;
 }
 
 void die(object killer)
@@ -596,8 +596,8 @@ void die(object killer)
                 obs = filter_array(all_inventory(this_object()), (: query("id", $1) == "pan tao" :));
                 if (obs && arrayp(obs) && sizeof(obs)) {
                         num = sizeof(obs);
-                        CHANNEL_D->channel_broadcast("news", NOR YEL "听说"+query("short", environment())+NOR YEL"的"+query("name")+"死后留下"+ HIY + chinese_number(num)+ NOR +
-                                 YEL + "个" + HIR "蟠桃" + NOR YEL  + "。\n" NOR);
+                        CHANNEL_D->channel_broadcast("news", NOR YEL "聽說"+query("short", environment())+NOR YEL"的"+query("name")+"死後留下"+ HIY + chinese_number(num)+ NOR +
+                                 YEL + "個" + HIR "蟠桃" + NOR YEL  + "。\n" NOR);
                 }
                 if (num>0) enemies = filter_array(query_enemy(),
                            (: playerp($1) &&
@@ -606,7 +606,7 @@ void die(object killer)
         if (enemies && arrayp(enemies) && sizeof(enemies)>0) {
             while(num--){
                 enemy = enemies[random(sizeof(enemies))];
-                    message_vision(NOR + CYN + "$N" + NOR + CYN + "见"+query("name")+"倒地，一拥而上哄抢到一个" + HIR + "蟠桃" + NOR + CYN + "。\n" + NOR, enemy);
+                    message_vision(NOR + CYN + "$N" + NOR + CYN + "見"+query("name")+"倒地，一擁而上哄搶到一個" + HIR + "蟠桃" + NOR + CYN + "。\n" + NOR, enemy);
                 obs[num]->move(enemy, 1);
             }
         }
@@ -623,7 +623,7 @@ void unconcious()
          && random(ob->query_int())>500 && !random(10) 
          && !query("can_perform/mizong-houquan/zhen",ob) )
          {
-         tell_object(ob,HIR"\n突然间，你心灵福至，暮然领悟了迷踪猴拳的绝招"HIC"「震字诀」"HIR"！\n");
+         tell_object(ob,HIR"\n突然間，你心靈福至，暮然領悟了迷蹤猴拳的絕招"HIC"「震字訣」"HIR"！\n");
          set("can_perform/mizong-houquan/zhen",1,ob);
          }
      if (objectp(ob)
@@ -638,10 +638,10 @@ void unconcious()
            && random(50) == 1
            && userp(ob))
         {
-                tell_object(ob, HIW "\n你通过和猴王格斗，突然间灵光一"
-                                "闪，领悟出了猴拳的真诣所在。\n\n" NOR +
-                                HIC "恭喜你练成了「迷踪猴拳」。\n" NOR);
-      message("channel:rumor",MAG"【谣言】某人：听说"+query("name", ob)+NOR+MAG"和猴子大战三百回合，学会了「迷踪猴拳」。\n"NOR,users()); 
+                tell_object(ob, HIW "\n你通過和猴王格鬥，突然間靈光一"
+                                "閃，領悟出了猴拳的真詣所在。\n\n" NOR +
+                                HIC "恭喜你練成了「迷蹤猴拳」。\n" NOR);
+      message("channel:rumor",MAG"【謠言】某人：聽說"+query("name", ob)+NOR+MAG"和猴子大戰三百回合，學會了「迷蹤猴拳」。\n"NOR,users()); 
                 ob->set_skill("mizong-houquan", 49);
                 ob->improve_skill("mizong-houquan", 1500000);
                 ob->improve_skill("martial-cognize", 1500000);

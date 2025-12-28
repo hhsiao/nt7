@@ -6,14 +6,14 @@ inherit HANDS;
 
 void create()
 {
-        set_name( "铁手掌", ({ "iron hand", "hand" }) );
+        set_name( "鐵手掌", ({ "iron hand", "hand" }) );
         set_weight(2000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
                 set("material", "steel");
-                set("unit", "块");
+                set("unit", "塊");
                 set("value", 500);
                 set("armor_prop/armor", 1 );
                 set("armor_prop/hand", 5);

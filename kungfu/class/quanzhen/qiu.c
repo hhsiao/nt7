@@ -14,14 +14,14 @@ void thank_dest(object obj, object ob);
 
 void create()
 {
-        set_name("丘处机", ({"qiu chuji", "qiu"}));
+        set_name("丘處機", ({"qiu chuji", "qiu"}));
         set("gender", "男性");
         set("age", 36);
         set("class", "taoist");
-        set("nickname",HIM"长春子"NOR);
+        set("nickname",HIM"長春子"NOR);
         set("long",
-                "他就是江湖上人称‘长春子’的丘处机丘真人，他方面大耳，\n"
-                "满面红光，剑目圆睁，双眉如刀，相貌威严，平生疾恶如仇。\n");
+                "他就是江湖上人稱‘長春子’的丘處機丘真人，他方面大耳，\n"
+                "滿面紅光，劍目圓睜，雙眉如刀，相貌威嚴，平生疾惡如仇。\n");
         set("attitude", "heroism");
         set("shen_type",1);
         set("str", 32);
@@ -96,9 +96,9 @@ void create()
 
         set("book_count",1);
         set("inquiry", ([
-                "全真教" :  "我全真教是天下道家玄门正宗。\n",
-                "纯阳神通功": "纯阳神通功是本门第一绝技，可惜我辈愚昧不堪，都没有练成。",
-                "任务" : (: ask_job :),
+                "全真教" :  "我全真教是天下道家玄門正宗。\n",
+                "純陽神通功": "純陽神通功是本門第一絕技，可惜我輩愚昧不堪，都沒有練成。",
+                "任務" : (: ask_job :),
                 "job" : (: ask_job :),
         ]) );
 
@@ -133,10 +133,10 @@ void greeting(object ob)
                 if( !(fam=query("family", ob)) || fam["family_name"] != "全真教" )
                 {
                         if (ob->is_not_bad())
-                                command("say 这里是本教重地，你走动小心些。");
+                                command("say 這裡是本教重地，你走動小心些。");
                         else
                         {
-                                command("say 你这魔头，竟敢闯入我全真重地，我一定要杀了你！");
+                                command("say 你這魔頭，竟敢闖入我全真重地，我一定要殺了你！");
                                 kill_ob(ob);
                         }
                 } else
@@ -151,15 +151,15 @@ void attempt_apprentice(object ob)
 
         if ((int)ob->query_skill("quanzhen-xinfa",1) < 120 )
         {
-                command("say 你的本门内功心法火候不足,难以领略更高深的武功。");
+                command("say 你的本門內功心法火候不足,難以領略更高深的武功。");
                 return;
         }
         if( query("shen", ob)<12000 )
         {
-                command("say 你目前表现太差！多做点行侠仗义的是再来找我！\n");
+                command("say 你目前表現太差！多做點行俠仗義的是再來找我！\n");
                 return;
         }
-        command("say 好吧，我就收下你这个徒弟了，可别坏了我们全真七子得名头！");
+        command("say 好吧，我就收下你這個徒弟了，可別壞了我們全真七子得名頭！");
         command("recruit "+query("id", ob));
 }
 
@@ -175,19 +175,19 @@ string ask_job()
         job_stat=query_temp("qz/caiyao", ob);
 
         if( query("family/family_name", ob) != "全真教" )
-                return "这位" + RANK_D->query_respect(ob) + "非我全真教弟子，岂敢劳烦。\n";
+                return "這位" + RANK_D->query_respect(ob) + "非我全真教弟子，豈敢勞煩。\n";
 
         if( query("combat_exp", ob)>2000000 )
-                return "这位"+RANK_D->query_respect(ob)+"实战经验已经颇高，岂敢劳烦大架。\n";
+                return "這位"+RANK_D->query_respect(ob)+"實戰經驗已經頗高，豈敢勞煩大架。\n";
 
         if (job_stat)
         {
                 command("hmm "+query("id", ob));
-                return "你还没完成任务，就又想要新的？\n";
+                return "你還沒完成任務，就又想要新的？\n";
         }
 
         command("nod");
-        command("say 好，最近炼丹用的草药都用完了，你去山下树林里去采一些回来。");
+        command("say 好，最近煉丹用的草藥都用完了，你去山下樹林裡去採一些回來。");
 
         if (objectp(yaochu = present("yao chu", ob)))
                 destruct(yaochu);
@@ -232,7 +232,7 @@ int accept_object(object me, object obj)
         }
 
         command( "hmm" );
-        command( "say 你给我这东西做什麽？" );
+        command( "say 你給我這東西做什麼？" );
         return 0;
 }
 
@@ -248,7 +248,7 @@ void reward_dest(object obj, object ob)
                 destruct(yaochu);
 
         command("pat "+query("id", ob));
-        command("say "+query("name", ob)+"干的不错，下去休息一下吧！\n");
+        command("say "+query("name", ob)+"乾的不錯，下去休息一下吧！\n");
 
         if( query_temp("qz/caiyao", ob) )
         {
@@ -262,6 +262,6 @@ void reward_dest(object obj, object ob)
 void thank_dest(object obj, object ob)
 {
         command( "jump");
-        command( "say 我们很需要这些药材，多谢啦！\n");
+        command( "say 我們很需要這些藥材，多謝啦！\n");
         destruct(obj);
 }

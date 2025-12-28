@@ -7,11 +7,11 @@ void create()
         if( clonep() )
                 destruct(this_object());
         else {
-                set("unit", "个");
+                set("unit", "個");
                 set("material", "wood");
-                set("long", "这是一个莽牯朱蛤。\n");
+                set("long", "這是一個莽牯朱蛤。\n");
         }
-        set("owner", "段誉");
+        set("owner", "段譽");
         setup();
 }
 

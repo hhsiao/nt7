@@ -6,9 +6,9 @@ void create ()
 {
   set ("short", "青木林");
   set ("long", HIG @LONG
-四面都是幽暗的树林，鸟语花香充溢其间，实在是绝美的风景。
-然而，没有什么可以指示离开的去向，也没有什么能暗示出口在哪
-里。
+四面都是幽暗的樹林，鳥語花香充溢其間，實在是絕美的風景。
+然而，沒有什麼可以指示離開的去向，也沒有什麼能暗示出口在哪
+裡。
 LONG);
 
   set("exits", ([
@@ -36,7 +36,7 @@ int do_quit ()
   me = this_player();
 
   set("startroom", base_name(environment(me)), me);
-  tell_object(me,"暂时离开青木阵……\n");
+  tell_object(me,"暫時離開青木陣……\n");
   return 0; // return 0 to invoke normal quit
 }
 */
@@ -82,7 +82,7 @@ void leave_here(object me)
         cao = new("/quest/tulong/obj/xiaocao");
         cao->move(environment(me));
       }
-      tell_object(me,HIG"绿草地上有一朵花！\n"NOR);
+      tell_object(me,HIG"綠草地上有一朵花！\n"NOR);
 }
 
 void found_outlet(object me)

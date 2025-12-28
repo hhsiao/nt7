@@ -7,7 +7,7 @@ void setup()
         set_name("[5m[35m浩瀚星空[2;37;0m[2;37;0m", ({"space"}));        
         set("gender", "男性");                
         set("long", "浩瀚星空[2;37;0m
-它是星河大帝的魔幻兽。
+它是星河大帝的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

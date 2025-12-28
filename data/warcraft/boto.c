@@ -6,10 +6,10 @@ void setup()
 {
         set_name("摸金令[2;37;0m[2;37;0m", ({"geng"}));        
         set("gender", "男性");                
-        set("long", "这是一个穿山甲爪子所制的护身符，据说能护佑盗墓者...。[2;37;0m
-它是胡八一的魔幻兽。
+        set("long", "這是一個穿山甲爪子所制的護身符，據說能護佑盜墓者...。[2;37;0m
+它是胡八一的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "boto");
         set("owner_name", "胡八一");

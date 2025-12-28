@@ -6,11 +6,11 @@ void create()
 {
         set_name("血刀老祖--幻", ({ "xuedao laozu-shadow","shadow" }));
         set("long",@LONG
-这喇嘛身着黄袍，年纪极老，尖头削耳，脸上都是皱纹。他就是血刀门第四代掌门。
-不过仔细一看，似乎不象是真人。
+這喇嘛身著黃袍，年紀極老，尖頭削耳，臉上都是皺紋。他就是血刀門第四代掌門。
+不過仔細一看，似乎不象是真人。
 LONG
         );
-        set("title",HIR"血刀门第四代掌门"NOR);
+        set("title",HIR"血刀門第四代掌門"NOR);
         set("gender", "男性");
         set("age", 85);
         set("attitude", "peaceful");
@@ -68,7 +68,7 @@ LONG
 int accept_fight(object ob)
 {
         ob=this_player();   
-        if( !query("fighter", ob)){command("grin");command("say 好，送死的来了！\n");
+        if( !query("fighter", ob)){command("grin");command("say 好，送死的來了！\n");
         set("fighter", 1, ob);
         set_temp("m_success/幻影", 1, ob);
         remove_call_out("kill_ob");
@@ -76,10 +76,10 @@ int accept_fight(object ob)
         return 1;
         }
         else
-        write(query("name", ob)+"，你已经上过场了！\n");}
+        write(query("name", ob)+"，你已經上過場了！\n");}
 void die()
 {
-        object ob;        message_vision("\n$N一晃，变为一缕轻烟消失了。\n", this_object());
+        object ob;        message_vision("\n$N一晃，變為一縷輕煙消失了。\n", this_object());
         ob = new("/quest/tulong/npc/shadow2");
         ob->move(environment(this_object()));
         destruct(this_object());

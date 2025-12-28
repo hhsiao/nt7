@@ -4,18 +4,18 @@ inherit ROOM;
 string look_notice();
 void create()
 {
-        set("short", "元老组");
+        set("short", "元老組");
         set("long", @LONG
-你眼前是一片绿色的大草坪,草坪的中央是一块大石台。石台的旁边放置着
-一块石碑(notice)和几个兵器架(jia)，石碑的后面一面大旗(flag)迎风招展!!!!!!!
-大石台上高高悬挂一块大木牌(paizi)，上面写着所有赛程安排情况。
+你眼前是一片綠色的大草坪,草坪的中央是一塊大石臺。石臺的旁邊放置著
+一塊石碑(notice)和幾個兵器架(jia)，石碑的後面一面大旗(flag)迎風招展!!!!!!!
+大石臺上高高懸掛一塊大木牌(paizi)，上面寫著所有賽程安排情況。
 LONG
     );
         set("item_desc", ([ /* sizeof() == 1 */
-                "大鼓" : "这是一只牛皮制成的巨鼓，武林人士在华山论剑时敲响(knock)它开始比武。",
+                "大鼓" : "這是一隻牛皮製成的巨鼓，武林人士在華山論劍時敲響(knock)它開始比武。",
                 "flag" : " 自 古 英 雄 出 少 年 \n",
-                "jia"  : "可以拿(na)的兵器有剑(sword)，刀(blade)，杖(staff)，鞭(whip)，铁锤(hammer)，\n"
-                         "暗器(throwing)，棍子(club)。还有衣服(cloth)，护手(hand)，指套(finger)。\n",
+                "jia"  : "可以拿(na)的兵器有劍(sword)，刀(blade)，杖(staff)，鞭(whip)，鐵錘(hammer)，\n"
+                         "暗器(throwing)，棍子(club)。還有衣服(cloth)，護手(hand)，指套(finger)。\n",
                 "notice" : (: look_notice :),
         ]));
         
@@ -39,7 +39,7 @@ void init()
         /*
         if (! wizardp(me) && age < 40)
         {
-                tell_object(me,"大会主持告诉你：你不可以在这个场地比武！请选择你年龄相应的场地！！\n");
+                tell_object(me,"大會主持告訴你：你不可以在這個場地比武！請選擇你年齡相應的場地！！\n");
                 me->move("/d/huashan/houzhiwangyu");
                 return;
         }
@@ -76,7 +76,7 @@ void do_recover(object me)
 
 int discmds()
 {
-        tell_object(this_player(), "现在你还是专心看比武吧！\n");
+        tell_object(this_player(), "現在你還是專心看比武吧！\n");
 
         return 1;
 }
@@ -90,7 +90,7 @@ int get_weapon(string arg)
         
         me = this_player();
         
-        if (! arg) return notify_fail("你要拿取什么物品？\n");
+        if (! arg) return notify_fail("你要拿取什麼物品？\n");
         
         cloth = sword = blade = staff = whip = hammer = throwing = hand = finger = club = 0;
         
@@ -138,54 +138,54 @@ int get_weapon(string arg)
         switch (arg) 
         {
         case "cloth":
-                if (cloth) return notify_fail("你身上不是已经有了吗？\n");
+                if (cloth) return notify_fail("你身上不是已經有了嗎？\n");
                 ob = new("/clone/cloth/cloth");
                 break;
         case "sword":
-                if (sword) return notify_fail("你身上不是已经有了吗？\n");
+                if (sword) return notify_fail("你身上不是已經有了嗎？\n");
                 ob = new("/clone/weapon/changjian");
                 break;
         case "blade":
-                if (blade) return notify_fail("你身上不是已经有了吗？\n");
+                if (blade) return notify_fail("你身上不是已經有了嗎？\n");
                 ob = new("/clone/weapon/blade");
                 break;
         case "staff":
-                if (staff) return notify_fail("你身上不是已经有了吗？\n");
+                if (staff) return notify_fail("你身上不是已經有了嗎？\n");
                 ob = new("/clone/weapon/zhubang");
                 break;
         case "club":
-                if (club) return notify_fail("你身上不是已经有了吗？\n");
+                if (club) return notify_fail("你身上不是已經有了嗎？\n");
                 ob = new("/clone/weapon/qimeigun");
                 break;
         case "whip":
-                if (whip) return notify_fail("你身上不是已经有了吗？\n");
+                if (whip) return notify_fail("你身上不是已經有了嗎？\n");
                 ob = new("/clone/weapon/changbian");
                 break;
         case "hammer":
-                if (hammer) return notify_fail("你身上不是已经有了吗？\n");
+                if (hammer) return notify_fail("你身上不是已經有了嗎？\n");
                 ob = new("/clone/weapon/hammer");
                 break;
         case "throwing":
-                if (throwing) return notify_fail("你身上不是已经有了吗？\n");
+                if (throwing) return notify_fail("你身上不是已經有了嗎？\n");
                 ob = new("/d/tangmen/obj/qinglianzi");
                 ob->set_amount(1000);
                 break;
         case "finger":
-                if (finger) return notify_fail("你身上不是已经有了吗？\n");
+                if (finger) return notify_fail("你身上不是已經有了嗎？\n");
                 ob = new("/d/city/npc/obj/zhitao");
                 break;
         case "hand":
-                if (hand) return notify_fail("你身上不是已经有了吗？\n");
+                if (hand) return notify_fail("你身上不是已經有了嗎？\n");
                 ob = new("/d/city/npc/obj/tieshou");
                 break;
         default:  
-                return notify_fail("你要拿取什么物品？\n"); 
+                return notify_fail("你要拿取什麼物品？\n"); 
                 break;
         }
         
         ob->move(me, 1);
         
-        tell_object(me,"你从架上拿下了一"+query("unit", ob)+ob->name()+"。\n");
+        tell_object(me,"你從架上拿下了一"+query("unit", ob)+ob->name()+"。\n");
         return 1;
 }
         
@@ -199,7 +199,7 @@ string look_notice()
         who = this_player();
         file = read_file("/log/static/lunjian4");
         if (! file)
-                return "目前没有任何比武记录。\n";
+                return "目前沒有任何比武記錄。\n";
         name_list = explode(file, "\n");
         for (i = 0; i < sizeof(name_list); i++) 
         {
@@ -207,7 +207,7 @@ string look_notice()
                 {
                         j++;
                         k = 0;
-                        printf("\n第" + chinese_number(j) + "届(元老组)华山论剑结果：\n");
+                        printf("\n第" + chinese_number(j) + "屆(元老組)華山論劍結果：\n");
                         continue;
                 }
                 k++;

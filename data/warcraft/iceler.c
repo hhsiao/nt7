@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("七宝如意[2;37;0m[2;37;0m", ({"icelice"}));        
+        set_name("七寶如意[2;37;0m[2;37;0m", ({"icelice"}));        
         set("gender", "女性");                
         set("long", "  [2;37;0m
-它是冰霓裳的魔幻兽。
+它是冰霓裳的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

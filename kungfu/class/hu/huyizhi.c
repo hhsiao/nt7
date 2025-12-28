@@ -17,8 +17,8 @@ void create()
         set("character", "光明磊落");
         set("age", 37);
         set("long", @LONG
-这人胡子拉碴，头上裹着一围白巾，脚下踢着
-一双拖鞋，全然一副乡农模样。
+這人鬍子拉碴，頭上裹著一圍白巾，腳下踢著
+一雙拖鞋，全然一副鄉農模樣。
 LONG);
         set("attitude", "peaceful");
         set("str", 36);
@@ -65,13 +65,13 @@ LONG);
         prepare_skill("strike", "tianchang-zhang");
         prepare_skill("cuff",   "hujia-quan");
 
-        create_family("关外胡家", 13, "高手");
+        create_family("關外胡家", 13, "高手");
 
         set("inquiry", ([
-                "百胜刀法" : (: ask_me :),
-                "美刀王"   : "美刀王已经死了，还提他做甚？",
-                "陈圆圆"   : "唉！我也没能和她说上几句话。",
-                "陈园园"   : "唉！我也没能和她说上几句话。",
+                "百勝刀法" : (: ask_me :),
+                "美刀王"   : "美刀王已經死了，還提他做甚？",
+                "陳圓圓"   : "唉！我也沒能和她說上幾句話。",
+                "陳園園"   : "唉！我也沒能和她說上幾句話。",
         ]));
 
         set("chat_chance_combat", 120);
@@ -95,23 +95,23 @@ string ask_me()
         object /*ob,*/ me;
 
         me = this_player();
-        if( query("family/family_name", me) != "关外胡家" )
-                return "这是在下擅长的本事，你要不要较量较量？\n";
+        if( query("family/family_name", me) != "關外胡家" )
+                return "這是在下擅長的本事，你要不要較量較量？\n";
 
-        return "很好... 很好... 既然是胡家弟子，有没有兴趣学学我的百胜刀法？";
+        return "很好... 很好... 既然是胡家弟子，有沒有興趣學學我的百勝刀法？";
 }
 
 int recognize_apprentice(object ob, string skill)
 {
-        if( query("family/family_name", ob) != "关外胡家" )
+        if( query("family/family_name", ob) != "關外胡家" )
         {
-                command("say 想偷学我们胡家绝技？嘿嘿...");
+                command("say 想偷學我們胡家絕技？嘿嘿...");
                 return -1;
         }
 
         if (skill != "baisheng-daofa")
         {
-                command("say 我只传你百胜刀法，其他还是找你师傅去学吧。");
+                command("say 我只傳你百勝刀法，其他還是找你師傅去學吧。");
                 return -1;
         }
 
@@ -128,18 +128,18 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "横扫千军" :
+        case "橫掃千軍" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/baisheng-daofa/heng",
-                           "name"    : "横扫千军",
+                           "name"    : "橫掃千軍",
                            "sk1"     : "baisheng-daofa",
-                           "msg1"    : "$N微微点了点头，在$n耳旁轻声"
-                                       "嘀咕了几句，随即又伸手作刀，"
-                                       "左劈右斩比划演示了半天。$n在"
-                                       "一旁默不做声，直到$N演示结束"
-                                       "，突然双眸一亮，似乎在武学上"
+                           "msg1"    : "$N微微點了點頭，在$n耳旁輕聲"
+                                       "嘀咕了幾句，隨即又伸手作刀，"
+                                       "左劈右斬比劃演示了半天。$n在"
+                                       "一旁默不做聲，直到$N演示結束"
+                                       "，突然雙眸一亮，似乎在武學上"
                                        "又有了新的突破。",
-                           "msg2"    : "这招乃是我穷集毕生精力所创，"
+                           "msg2"    : "這招乃是我窮集畢生精力所創，"
                                        "威力非同小可。",
                            "lv1"     : 150,
                            "force"   : 200,

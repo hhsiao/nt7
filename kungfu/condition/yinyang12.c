@@ -8,26 +8,26 @@ inherit POISON;
 
 string name() { return "yinyang12"; }
 
-string chinese_name() { return "乱气之阴阳"; }
+string chinese_name() { return "亂氣之陰陽"; }
 
 string update_msg_others()
 {
-        return HIW "$N" HIW "脸上呈现出痛苦的表情，四肢变得僵硬，全身瘫软了下来。\n" NOR;
+        return HIW "$N" HIW "臉上呈現出痛苦的表情，四肢變得僵硬，全身癱軟了下來。\n" NOR;
 }
 
 string update_msg_self()
 {
-        return HIW "你只觉全身酸软无比，竟使不出丝毫气力。\n" NOR;
+        return HIW "你只覺全身痠軟無比，竟使不出絲毫氣力。\n" NOR;
 }
 
 string die_msg_others()
 {
-        return HIW "$N" HIW "倒在地上，抽搐了一阵，再也没有半点生气了。\n" NOR;
+        return HIW "$N" HIW "倒在地上，抽搐了一陣，再也沒有半點生氣了。\n" NOR;
 }
 
 string die_reason()
 {
-        return "乱气之阴阳发作，力乏而尽";
+        return "亂氣之陰陽發作，力乏而盡";
 }
 
 

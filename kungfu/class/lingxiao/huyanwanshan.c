@@ -6,10 +6,10 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("呼延万善", ({"huyan wanshan", "huyan", "wanshan"}));
-        set("long", "呼延万善乃凌宵城雪山剑派六代弟子中较为出色的\n"
-                    "一位，平时深得师父的喜爱。只见他雄姿英发，精\n"
-                    "神抖擞，一看便知武功不弱。\n");
+        set_name("呼延萬善", ({"huyan wanshan", "huyan", "wanshan"}));
+        set("long", "呼延萬善乃凌宵城雪山劍派六代弟子中較為出色的\n"
+                    "一位，平時深得師父的喜愛。只見他雄姿英發，精\n"
+                    "神抖擻，一看便知武功不弱。\n");
         set("gender", "男性");
         set("age", 32);
         set("attitude", "friendly");
@@ -71,6 +71,6 @@ void attempt_apprentice(object me)
         if (! permit_recruit(me))
                 return;
 
-        command("say 很好，你以后就跟着我吧。");
+        command("say 很好，你以後就跟著我吧。");
         command("recruit "+query("id", me));
 }

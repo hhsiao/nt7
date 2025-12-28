@@ -4,8 +4,8 @@ void create()
 {
         set("short",  "青石路" );
         set("long", @LONG
-一条青石大道，青石铺成，平坦宽阔，抬头一看，前面的
-城门清晰可见。
+一條青石大道，青石鋪成，平坦寬闊，抬頭一看，前面的
+城門清晰可見。
 LONG);
         set("outdoors", "kunming");
         set("exits", ([

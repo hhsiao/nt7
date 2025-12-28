@@ -1,10 +1,10 @@
-// an.c 太极拳「按」字诀
+// an.c 太極拳「按」字訣
 
 #include <ansi.h>
 #include <combat.h>
 
 inherit F_SSERVER;
-string name() { return "按字诀"; }
+string name() { return "按字訣"; }
 
 int perform(object me, object target)
 {
@@ -14,27 +14,27 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("「按字诀」只能对战斗中的对手使用。\n");
+                return notify_fail("「按字訣」只能對戰鬥中的對手使用。\n");
 
         if( objectp(query_temp("weapon", me)) )
-                return notify_fail("你必须空手才能使用「按字诀」！\n");
+                return notify_fail("你必須空手才能使用「按字訣」！\n");
 
         if ((int)me->query_skill("taiji-quan", 1) < 200)
-                return notify_fail("你对太极拳理的理解还不够，不会使用「按字诀」。\n");
+                return notify_fail("你對太極拳理的理解還不夠，不會使用「按字訣」。\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你现在真气太弱，不能使用「按字诀」。\n");
+                return notify_fail("你現在真氣太弱，不能使用「按字訣」。\n");
 
-        msg = HIG "$N" HIG "双拳上下挥动，使出太极拳「按字诀」，$n"
-              HIG "感到一股强大的劲力从头顶压落。\n" NOR;
+        msg = HIG "$N" HIG "雙拳上下揮動，使出太極拳「按字訣」，$n"
+              HIG "感到一股強大的勁力從頭頂壓落。\n" NOR;
 
         addn("neili", -200, me);
 
         dp = (defense_power(target, "parry") + target->query_skill("force", 1)) / 3;
 
         if( query("character", me) == "光明磊落" ||
-            query("character", me) == "国土无双" ||
-            query("character", me) == "狡黠多变" )
+            query("character", me) == "國土無雙" ||
+            query("character", me) == "狡黠多變" )
                acter = 3;
         else
                acter = 4;
@@ -63,14 +63,14 @@ int perform(object me, object target)
 
                 msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK,
                                            damage, 70,
-                                           HIY "$n" HIY "登感呼吸不畅，胸闷难当，"
-                                           HIY "喉头一甜，狂喷数口"HIR"鲜血"HIY"！\n"
-                                           ":内伤@?");
+                                           HIY "$n" HIY "登感呼吸不暢，胸悶難當，"
+                                           HIY "喉頭一甜，狂噴數口"HIR"鮮血"HIY"！\n"
+                                           ":內傷@?");
         } else
         {
                 me->start_busy(3);
-                msg += HIY "$p" HIY "急运内功，聚劲于外，挺身硬接了$P"
-                       HIY "这一招，“砰”的一声巨响，双方各自震退数步！\n" NOR;
+                msg += HIY "$p" HIY "急運內功，聚勁於外，挺身硬接了$P"
+                       HIY "這一招，“砰”的一聲巨響，雙方各自震退數步！\n" NOR;
         }
         message_combatd(msg, me, target);
         return 1;

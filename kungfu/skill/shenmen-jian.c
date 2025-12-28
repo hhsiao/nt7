@@ -2,59 +2,59 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action" : "$N身形斜飞，手中$w轻轻点向$n的腕部",
+([      "action" : "$N身形斜飛，手中$w輕輕點向$n的腕部",
         "force"  : 60,
         "dodge"  :-20,
         "parry"  :-10,
         "damage" : 5,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action" : "$N长跃而起，$w猛然下刺，直打$n腕部的神门穴",
+([      "action" : "$N長躍而起，$w猛然下刺，直打$n腕部的神門穴",
         "force"  : 74,
         "dodge"  :-25,
         "parry"  :-13,
         "damage" : 9,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action" : "$N手中$w自上而下反刺，模拟冰轮横空、清光铺地的光景",
+([      "action" : "$N手中$w自上而下反刺，模擬冰輪橫空、清光鋪地的光景",
         "force"  : 86,
         "attack" : 27,
         "dodge"  :-15,
         "parry"  :-17,
         "damage" : 17,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action" : "$N手中$w颤动来回挥削，只幌得$n眼花撩乱，浑不知从何攻来",
+([      "action" : "$N手中$w顫動來回揮削，只幌得$n眼花撩亂，渾不知從何攻來",
         "force"  : 89,
         "attack" : 31,
         "dodge"  :-25,
         "parry"  :-25,
         "damage" : 21,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action" : "$N手中$w由内自外一刺，左手虚击，身形一晃，$w已搭在$n腕部",
+([      "action" : "$N手中$w由內自外一刺，左手虛擊，身形一晃，$w已搭在$n腕部",
         "force"  : 107,
         "attack" : 38,
         "dodge"  :-30,
         "parry"  :-35,
         "damage" : 29,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action" : "$N左掌横摆胸前，右手中$w轻轻挥拂，直取$n的神门要穴",
+([      "action" : "$N左掌橫擺胸前，右手中$w輕輕揮拂，直取$n的神門要穴",
         "force"  : 130,
         "attack" : 29,
         "dodge"  :-35,
         "parry"  :-37,
         "damage" : 28,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action" : "$N手中$w中宫直入，携着强大的劲道攻向$n的$l",
+([      "action" : "$N手中$w中宮直入，攜著強大的勁道攻向$n的$l",
         "force"  : 160,
         "attack" : 42,
         "dodge"  :-45,
         "parry"  :-40,
         "damage" : 39,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
 });
 
@@ -66,13 +66,13 @@ int valid_enable(string usage)
 int valid_learn(object me)
 {
         if ((int)me->query_skill("force") < 60)
-                return notify_fail("你的内功火候不到，无法学习神门十三剑。\n");
+                return notify_fail("你的內功火候不到，無法學習神門十三劍。\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你的内力太差，无法学习神门十三剑。\n");
+                return notify_fail("你的內力太差，無法學習神門十三劍。\n");
 
         if (me->query_skill("sword", 1) < me->query_skill("shenmen-jian", 1))
-                return notify_fail("你的基本剑法水平有限，无法领会更高深的神门十三剑。\n");
+                return notify_fail("你的基本劍法水平有限，無法領會更高深的神門十三劍。\n");
 
         return 1;
 }
@@ -106,8 +106,8 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         victim->receive_wound("qi", (damage_bonus - 100) / 2, me);
         weapon->move(environment(victim));
 
-        return HIW "突然间$n" HIW "被$N" HIW "一剑刺中神门要穴，手中" +
-               weapon->name() + HIW "再也抓拿不住，不禁脱手飞出。\n" NOR;
+        return HIW "突然間$n" HIW "被$N" HIW "一劍刺中神門要穴，手中" +
+               weapon->name() + HIW "再也抓拿不住，不禁脫手飛出。\n" NOR;
 }
 
 int practice_skill(object me)
@@ -116,13 +116,13 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if( query("qi", me)<65 )
-                return notify_fail("你的体力不够练神门十三剑。\n");
+                return notify_fail("你的體力不夠練神門十三劍。\n");
 
         if( query("neili", me)<65 )
-                return notify_fail("你的内力不足以练神门十三剑。\n");
+                return notify_fail("你的內力不足以練神門十三劍。\n");
 
         me->receive_damage("qi", 52);
         addn("neili", -58, me);

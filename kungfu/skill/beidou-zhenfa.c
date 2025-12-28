@@ -7,28 +7,28 @@ inherit SKILL;
 int valid_enable(string usage) { return usage=="array"; }
 
 string *position = ({
-        "天权","天枢","天璇","天玑","玉衡","开阳","摇光"
+        "天權","天樞","天璇","天璣","玉衡","開陽","搖光"
 });
 
 string *sword = ({
-        "踏奇门，走偏锋，剑尖颤了几颤，一招巧妙无比的「分花拂柳」，似左实右往空中刺去。",
-        "使一招「琴心三叠」，身形向上飘起，手中剑虚虚实实幻出三点寒光射向空中。",
-        "身形一转，猛然一式「罡风扫叶」，舞出满天剑影，挟着劲风向前扫去。",
-        "仰天长笑，身形飘然而起，在半空中身子一旋，一式「狂歌痛饮」狂风般地击向空中。",
-        "左手捏着剑诀，右足踏开一招“定阳针”向上斜刺。",
-        "向前迈去一大步，使出「探海屠龙」，手中剑舞成一个光球，迅若奔雷击出。",
-        "运力一抖剑，一时「马蹴落花」，剑幻出点点剑花，飘然刺出。",
-        "手中剑一指，纵起丈余，一时「横行漠北」，雷霆般击出。",
-        "身形向上飘起，突然一转身，头下脚上，手握剑，一招「絮坠无声」，无声无息地攻出。",
-        "大喝一声，一招「白虹经天」，剑闪电般划出一道大圆弧劈下。",
-        "忽然身形高高跃起，使出「浪迹天涯」，手中剑幻出漫天花瓣，迅如雷霆射出。"
+        "踏奇門，走偏鋒，劍尖顫了幾顫，一招巧妙無比的「分花拂柳」，似左實右往空中刺去。",
+        "使一招「琴心三疊」，身形向上飄起，手中劍虛虛實實幻出三點寒光射向空中。",
+        "身形一轉，猛然一式「罡風掃葉」，舞出滿天劍影，挾著勁風向前掃去。",
+        "仰天長笑，身形飄然而起，在半空中身子一旋，一式「狂歌痛飲」狂風般地擊向空中。",
+        "左手捏著劍訣，右足踏開一招“定陽針”向上斜刺。",
+        "向前邁去一大步，使出「探海屠龍」，手中劍舞成一個光球，迅若奔雷擊出。",
+        "運力一抖劍，一時「馬蹴落花」，劍幻出點點劍花，飄然刺出。",
+        "手中劍一指，縱起丈餘，一時「橫行漠北」，雷霆般擊出。",
+        "身形向上飄起，突然一轉身，頭下腳上，手握劍，一招「絮墜無聲」，無聲無息地攻出。",
+        "大喝一聲，一招「白虹經天」，劍閃電般劃出一道大圓弧劈下。",
+        "忽然身形高高躍起，使出「浪跡天涯」，手中劍幻出漫天花瓣，迅如雷霆射出。"
 });
 
 string *zhen =  ({
-        "天罡北斗阵法滚滚推动，攻势连绵不绝，瞬间将敌人围在垓心。",
-        "天罡北斗阵气势宏大，前攻后击，连环相接，让人眼花撩乱，方寸顿失。",
-        "只见天罡北斗阵暗合五行八卦之理，阵中人步法精妙，攻守配合得天衣无缝。",
-        "天罡北斗阵越缩越小，无形剑气象浪潮一般逼向中央，令人有窒息之感。"
+        "天罡北斗陣法滾滾推動，攻勢連綿不絕，瞬間將敵人圍在垓心。",
+        "天罡北斗陣氣勢宏大，前攻後擊，連環相接，讓人眼花撩亂，方寸頓失。",
+        "只見天罡北斗陣暗合五行八卦之理，陣中人步法精妙，攻守配合得天衣無縫。",
+        "天罡北斗陣越縮越小，無形劍氣象浪潮一般逼向中央，令人有窒息之感。"
 });
 
 
@@ -39,19 +39,19 @@ void out_beidou(object me);
 
 int valid_learn(object me)
 {
-        if( query("gender", me) == "无性" && 
+        if( query("gender", me) == "無性" && 
         (int)me->query_skill("beidou-zhenfa", 1) > 49)
-                return notify_fail("你无根无性，阴阳不调，难以领会高深的天罡北斗阵法。\n");
+                return notify_fail("你無根無性，陰陽不調，難以領會高深的天罡北斗陣法。\n");
 
         if ((int)me->query_skill("array", 1) <= (int)me->query_skill("beidou-zhenfa",1))
-                return notify_fail("你的基本阵法火候还不够。\n");
+                return notify_fail("你的基本陣法火候還不夠。\n");
 
             return ::valid_learn(me);
 }
 
 int practice_skill(object me)
 {
-        return notify_fail("天罡北斗阵法只能用学(learn)的来增加熟练度。\n");
+        return notify_fail("天罡北斗陣法只能用學(learn)的來增加熟練度。\n");
 }
 
 int form_array(object me,string arg)
@@ -66,69 +66,69 @@ int form_array(object me,string arg)
 
         if( me->is_busy() )
         {
-                return notify_fail("你正忙着呢！\n");
+                return notify_fail("你正忙著呢！\n");
         }
 
         if( me->query_skill_mapped("array") != "beidou-zhenfa")
-                return notify_fail("你还没有激发好天罡北斗阵法！\n");
+                return notify_fail("你還沒有激發好天罡北斗陣法！\n");
 
         member = me->query_team();
         level = sizeof(member) *20;
 
         if (sizeof(member) < 3 || sizeof(member) > 7)
-                return notify_fail("天罡北斗阵最少三个人，最多七个人。\n");
+                return notify_fail("天罡北斗陣最少三個人，最多七個人。\n");
 
         if( me->query_skill("beidou-zhenfa",1) < level)
-                return notify_fail("你的天罡北斗阵法等级太低！\n");
+                return notify_fail("你的天罡北斗陣法等級太低！\n");
 
         if (!arg)
-                return notify_fail("指令格式：team form beidou-zhenfa 目标ID \n");
+                return notify_fail("指令格式：team form beidou-zhenfa 目標ID \n");
 
         if (!enemy = present(arg,here))
-                return notify_fail("你要摆阵攻击的"+arg+"不在这里啊？\n");
+                return notify_fail("你要擺陣攻擊的"+arg+"不在這裡啊？\n");
 
         if( query("family/family_name", enemy) == "全真教" )
-                return notify_fail("怎么？你们要同门残杀么？\n");
+                return notify_fail("怎麼？你們要同門殘殺麼？\n");
 
-        if( query("race", enemy) != "人类" )
-                return notify_fail("怎么？杀鸡还用牛刀么？\n");
+        if( query("race", enemy) != "人類" )
+                return notify_fail("怎麼？殺雞還用牛刀麼？\n");
 
         for( i = 0; i < sizeof(member); i++ )
         {
            if (!objectp(member[i]))
-                return notify_fail("你的队伍有点问题，需要重新组合队伍。\n");
+                return notify_fail("你的隊伍有點問題，需要重新組合隊伍。\n");
 
            if (environment(member[i]) != here)
-                return notify_fail("你队伍中的" + member[i]->name() + "现在不在这里啊！\n");
+                return notify_fail("你隊伍中的" + member[i]->name() + "現在不在這裡啊！\n");
 
            if( query("family/family_name", member[i]) != "全真教" )
-                return notify_fail("你队伍中的" + member[i]->name() + "不是全真教弟子。\n");
+                return notify_fail("你隊伍中的" + member[i]->name() + "不是全真教弟子。\n");
 
            if (member[i]->is_busy())
-                return notify_fail("你队伍中的" + member[i]->name() + "正忙着呢！\n");
+                return notify_fail("你隊伍中的" + member[i]->name() + "正忙著呢！\n");
 
            if (member[i]->query_skill_mapped("array") != "beidou-zhenfa")
-                return notify_fail("你队伍中的" + member[i]->name() + "没有激发好天罡北斗阵法。\n");
+                return notify_fail("你隊伍中的" + member[i]->name() + "沒有激發好天罡北斗陣法。\n");
 
            if (member[i]->query_skill("beidou-zhenfa",1) < level )
-                return notify_fail("你队伍中的" + member[i]->name() + "天罡北斗阵法等级不够。\n");
+                return notify_fail("你隊伍中的" + member[i]->name() + "天罡北斗陣法等級不夠。\n");
 
            if ( member[i]->query_skill("quanzhen-jian",1) <60 ||
                 query("combat_exp", member[i])<50000 || 
                 member[i]->query_skill("dodge") <60)
-                return notify_fail("你队伍中的" + member[i]->name() + "武功太差，不能参加「天罡北斗阵」。\n");
+                return notify_fail("你隊伍中的" + member[i]->name() + "武功太差，不能參加「天罡北斗陣」。\n");
 
            if( query("neili", member[i])<500 )
-                return notify_fail("你队伍中的" + member[i]->name() + "内力太差，不能参加「天罡北斗阵」。\n");
+                return notify_fail("你隊伍中的" + member[i]->name() + "內力太差，不能參加「天罡北斗陣」。\n");
 
            if( query("jingli", member[i])<300 )
-                return notify_fail("你队伍中的" + member[i]->name() + "精力太差，不能参加「天罡北斗阵」。\n");
+                return notify_fail("你隊伍中的" + member[i]->name() + "精力太差，不能參加「天罡北斗陣」。\n");
 
            exp_diff=to_float(query("combat_exp", member[i])-query("combat_exp", me));
            exp_diff/=to_float(query("combat_exp", me));
 
            if( exp_diff > 0.4 || exp_diff < -0.4 )
-                return notify_fail("你队伍中的" + member[i]->name() + "武功和你差距太大，不能共摆「天罡北斗阵」。\n");
+                return notify_fail("你隊伍中的" + member[i]->name() + "武功和你差距太大，不能共擺「天罡北斗陣」。\n");
         }
 
         power = me->query_skill("force");
@@ -168,11 +168,11 @@ int form_array(object me,string arg)
                 }
         }
 
-        message_vision(HIM"$N突然身形移动，发动" + msg +
-                        "将" + enemy->name() + "围在中间，正是摆的「天罡北斗阵」阵法。\n\n"NOR, me);
+        message_vision(HIM"$N突然身形移動，發動" + msg +
+                        "將" + enemy->name() + "圍在中間，正是擺的「天罡北斗陣」陣法。\n\n"NOR, me);
 
-        message_vision(HIR"\n$N对$n喝道：" + RANK_D->query_rude(enemy) +
-                        "你一向为非作歹，今天本教要替天行道，纳命来！\n\n"NOR, me, enemy);
+        message_vision(HIR"\n$N對$n喝道：" + RANK_D->query_rude(enemy) +
+                        "你一向為非作歹，今天本教要替天行道，納命來！\n\n"NOR, me, enemy);
 
         for (i = 0;i < sizeof(member); i++)
         {
@@ -204,7 +204,7 @@ void check_leaving(object me)
                  object enemy = offensive_target(me);
                  if( !objectp(enemy) && !me->is_busy() && !me->is_fighting() )
                  {
-                         message_vision(HIY"\n$N作了个楫道：贫道先告退了！说完就快步离开了。\n"NOR, me);
+                         message_vision(HIY"\n$N作了個楫道：貧道先告退了！說完就快步離開了。\n"NOR, me);
                          call_out("destruct_me",10,me);
                          return;
                   }
@@ -290,9 +290,9 @@ int beidouzhen(object me)
         if( random(2)==1 )
         {
                 if(random(2)==0)
-                        message_vision(WHT"\n" + position[mypos] + "位上的$N气沉丹田，暗运神功，猛然吐气开声，身形往前一纵。\n"NOR, me);
+                        message_vision(WHT"\n" + position[mypos] + "位上的$N氣沉丹田，暗運神功，猛然吐氣開聲，身形往前一縱。\n"NOR, me);
                 else
-                        message_vision(WHT"\n" + position[mypos] + "位上的$N挺身而出，步法精妙，长袖飘飘，攻势如虹。\n"NOR, me);
+                        message_vision(WHT"\n" + position[mypos] + "位上的$N挺身而出，步法精妙，長袖飄飄，攻勢如虹。\n"NOR, me);
 
                 addn_temp("apply/damage", power, me);
                 addn_temp("apply/sword", power/2, me);
@@ -325,9 +325,9 @@ int halt_beidou(object me)
 
                 if(random(2)==1)
                 {
-                        message_vision(HIG"\n$N踉跄了一步，差点摔出北斗阵。\n"NOR, me);
+                        message_vision(HIG"\n$N踉蹌了一步，差點摔出北斗陣。\n"NOR, me);
                 }
-                else message_vision(HIG"\n$N被打的晃了几晃，不过又站稳了步子。\n"NOR, me);
+                else message_vision(HIG"\n$N被打的晃了幾晃，不過又站穩了步子。\n"NOR, me);
                 call_out("restart",4,me);
                 return 1;
         }
@@ -345,9 +345,9 @@ void out_beidou(object me)
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
            query("skill_type", weapon) != "sword" )
-                message_vision(HIG"\n$N身子向后一纵，使一招『收山式』，右拳划了一圈，左掌往怀中一抱，退出「天罡北斗阵」。\n"NOR, me);
+                message_vision(HIG"\n$N身子向後一縱，使一招『收山式』，右拳劃了一圈，左掌往懷中一抱，退出「天罡北斗陣」。\n"NOR, me);
         else
-                message_vision(HIG"\n$N身子向后一纵，使一招『收剑式』，将剑挽了一个剑花，往怀中一抱，退出「天罡北斗阵」。\n"NOR, me);
+                message_vision(HIG"\n$N身子向後一縱，使一招『收劍式』，將劍挽了一個劍花，往懷中一抱，退出「天罡北斗陣」。\n"NOR, me);
 
         addn_temp("apply/defense", -bd_power, me);
         addn_temp("apply/parry", -bd_power/3, me);

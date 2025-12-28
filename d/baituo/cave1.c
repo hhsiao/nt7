@@ -2,9 +2,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "岩洞内");
+        set("short", "巖洞內");
         set("long", @LONG
-这里是岩洞内部，洞顶上悬挂着洁白的钟乳石。
+這裡是巖洞內部，洞頂上懸掛著潔白的鐘乳石。
 LONG );
         set("exits",([
                 "out" : __DIR__"cave",

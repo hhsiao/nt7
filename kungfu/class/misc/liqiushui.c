@@ -7,7 +7,7 @@ inherit "/inherit/char/punisher";
 void create()
 {
         set_name("李秋水", ({ "li qiushui", "li" }));
-        set("long",  "她体态轻盈，姿势曼妙，只是脸上蒙了一张面纱，看不真切。\n");
+        set("long",  "她體態輕盈，姿勢曼妙，只是臉上蒙了一張面紗，看不真切。\n");
         set("gender", "女性");
         set("age", 88);
         set("attitude", "peaceful");
@@ -47,7 +47,7 @@ void create()
         prepare_skill("hand","zhemei-shou");
         prepare_skill("strike","liuyang-zhang");
 
-        create_family("逍遥派", 0, "前辈");
+        create_family("逍遙派", 0, "前輩");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({

@@ -10,7 +10,7 @@ int clean_up() { return 1;}
 
 int do_restart()
 {
-        set("byj/entertime", time());//用途等于uid
+        set("byj/entertime", time());//用途等於uid
         return 1;
 }
 
@@ -25,9 +25,9 @@ void create()
 {
         set("short", "玉京山");
         set("long",
-"这里是玉京山顶，白色的薄雾缭绕中，隐约传来许多鸟鸣声。朦胧中\n"
-"只见几条小路分别通向各方。路中间一块牌子上写着："+CYN+"正中（经验）北方\n"
-"（潜能）南方（金钱）西方（精力）东方（内力）.红莲老祖二零一三年。\n"
+"這裡是玉京山頂，白色的薄霧繚繞中，隱約傳來許多鳥鳴聲。朦朧中\n"
+"只見幾條小路分別通向各方。路中間一塊牌子上寫著："+CYN+"正中（經驗）北方\n"
+"（潛能）南方（金錢）西方（精力）東方（內力）.紅蓮老祖二零一三年。\n"
 );
 
         set("exits", ([
@@ -59,23 +59,23 @@ int valid_leave(object me, string dir)
         if (dir != "south"){
                 if (!playerp(me)) return -1;
 //              if (me->is_busy()) {
-//                      tell_object(me,NOR + "你的动作还没有完成，不能移动！\n" + NOR); 
+//                      tell_object(me,NOR + "你的動作還沒有完成，不能移動！\n" + NOR); 
 //                      return 1; 
 //              }
 
                 me->start_busy(2+random(2));
                 
                 if ( query("byj/entertime") == query("byj/entertime", me) ){
-                        tell_object(me,NOR"今天你以及来过了，别太贪心了啊。\n"NOR); 
+                        tell_object(me,NOR"今天你以及來過了，別太貪心了啊。\n"NOR); 
                         return -1; 
                 }
 
         if( me->in_team() ) {
-           tell_object(me, "你不能组队上去！\n");
+           tell_object(me, "你不能組隊上去！\n");
            return -1;
         }
 
-                if ( objectp(query_temp("is_riding", me)) ) return notify_fail("你骑着马没法上去！\n");
+                if ( objectp(query_temp("is_riding", me)) ) return notify_fail("你騎著馬沒法上去！\n");
 
                 ob = find_object(__DIR__"byjxx"); 
 
@@ -84,7 +84,7 @@ int valid_leave(object me, string dir)
                 if( sizeof(inv) > 0 ) {
                     foreach( object ob3 in inv ) {
                                 if( playerp(ob3) ) {
-                                    tell_object(me,NOR"你再等等吧，现在"+query("name",ob3)+NOR+"正在"+HIC+query("short",ob)+NOR+"上神游！\n"NOR); 
+                                    tell_object(me,NOR"你再等等吧，現在"+query("name",ob3)+NOR+"正在"+HIC+query("short",ob)+NOR+"上神遊！\n"NOR); 
                                         return -1;
                                 }
                         }
@@ -93,7 +93,7 @@ int valid_leave(object me, string dir)
 
                 if (ob) destruct(ob);
                 load_object(__DIR__"byjxx.c")->create();
-                delete_temp("byj", me);//防止玩家没有quit过
+                delete_temp("byj", me);//防止玩家沒有quit過
                 set("byj/entertime", query("byj/entertime"), me);
                 
         }

@@ -6,8 +6,8 @@ void setup()
 {
         set_name("白白[2;37;0m[2;37;0m", ({"white"}));        
         set("gender", "女性");                
-        set("long", "一只朱雀[2;37;0m
-它是高岑的魔幻兽。
+        set("long", "一隻朱雀[2;37;0m
+它是高岑的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

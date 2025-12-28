@@ -6,14 +6,14 @@ void create()
 {
         set("short", HIR"岩石路"NOR);
         set("long", @LONG
-这是一岩石路，由此去火山尚须四十多里路。但在此已可以看到
-四面山上一缕黑烟冲天而起。岩石路皆由火山灰堆成，厉时久，地面
-十分坚硬。
+這是一岩石路，由此去火山尚須四十多里路。但在此已可以看到
+四面山上一縷黑煙沖天而起。岩石路皆由火山灰堆成，厲時久，地面
+十分堅硬。
 LONG );
 	set("exits",([
 		"east" : __DIR__"shishan",
 		"west" : __DIR__"ysroad2",
 	]));
-	set("outdoors","冰火岛");
+	set("outdoors","冰火島");
 	setup();
 }

@@ -1,10 +1,10 @@
-// NPC :gan_baobao.c 甘宝宝 
+// NPC :gan_baobao.c 甘寶寶 
 // By River 98/12
 inherit NPC;
 void create()
 {
-        set_name("甘宝宝", ({ "gan baobao", "gan", "baobao"}));
-        set("title","万劫谷谷主夫人");
+        set_name("甘寶寶", ({ "gan baobao", "gan", "baobao"}));
+        set("title","萬劫谷谷主夫人");
         set("nickname","俏夜叉");        
         set("gender", "女性" );
         set("age", 36);
@@ -23,7 +23,7 @@ void create()
         set("max_neili", 1000);      
         set("unique", 1);
         
-        set("long","这妇人约莫三十六七岁左右年纪，容色清秀，眉目间依稀与钟灵甚是相似。\n");
+        set("long","這婦人約莫三十六七歲左右年紀，容色清秀，眉目間依稀與鍾靈甚是相似。\n");
         set("combat_exp", 200000);
         set("shen", 800); 
 

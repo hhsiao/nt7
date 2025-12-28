@@ -6,12 +6,12 @@ inherit ITEM;
 
 void create()
 {
-        set_name("腊八粥", ({ "zhou"}));
+        set_name("臘八粥", ({ "zhou"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "碗");
-                set("long", "这是一碗珍贵的补品腊八粥。\n");
+                set("long", "這是一碗珍貴的補品臘八粥。\n");
                 set("value", 20000);
                 set("only_do_effect", 1);
         }
@@ -31,10 +31,10 @@ int do_effect(object me)
                 neili += random(50) + 1;
                 if (neili >= neili_limit) neili = neili_limit;
                 addn("neili", 25-random(50), me);
-                message_vision(HIY "$N" HIY "吃下一碗腊八粥，顿然间"
-                               "只觉一股热气直沁心肺...\n" NOR, me);
+                message_vision(HIY "$N" HIY "吃下一碗臘八粥，頓然間"
+                               "只覺一股熱氣直沁心肺...\n" NOR, me);
         } else
-                message_vision(HIY "$N" HIY "吃下一碗腊八粥，不怎么甜，有点苦...\n" NOR,
+                message_vision(HIY "$N" HIY "吃下一碗臘八粥，不怎麼甜，有點苦...\n" NOR,
                                me);
 
         destruct(this_object());

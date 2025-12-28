@@ -5,11 +5,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short","石阶");
+        set("short","石階");
 
         set("long",@LONG
-这後山石阶蜿蜒於战场中，也不知通往何处。只见浓荫蔽天，越
-走越是阴森，不时还有野兽吼声传来，令人心中发毛。
+這後山石階蜿蜒於戰場中，也不知通往何處。只見濃廕庇天，越
+走越是陰森，不時還有野獸吼聲傳來，令人心中發毛。
 LONG);
 
         set("exits",([
@@ -49,10 +49,10 @@ int valid_leave(object me, string dir)
                         if( query_temp("battle/team_name", me) != query_temp("battle/team_name", ob) )
                         {
                                 if( objectp(wp=query_temp("weapon", ob)) )
-                                        message_vision("$N对$n喝道：尔等邪魔歪道人物，要想过此路，得先问问我手中的"
-                                                +query("name", wp)+"答应不答应！\n",ob,me);
+                                        message_vision("$N對$n喝道：爾等邪魔歪道人物，要想過此路，得先問問我手中的"
+                                                +query("name", wp)+"答應不答應！\n",ob,me);
                                 else
-                                        message_vision("$N对$n喝道：只要我在，尔等邪魔歪道人物，便休想过此路！\n", ob, me);
+                                        message_vision("$N對$n喝道：只要我在，爾等邪魔歪道人物，便休想過此路！\n", ob, me);
                                 return notify_fail("\n");
                         }
                 }

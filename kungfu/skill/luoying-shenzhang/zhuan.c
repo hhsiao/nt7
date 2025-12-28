@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return HIY "奇门五转" NOR; }
+string name() { return HIY "奇門五轉" NOR; }
 
 inherit F_SSERVER;
 
@@ -14,34 +14,34 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(name() + "只能空手施展。\n");
 
         if ((int)me->query_skill("luoying-shenzhang", 1) < 120)
-                return notify_fail("你的落英神剑掌不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你的落英神劍掌不夠嫻熟，難以施展" + name() + "。\n");
 
         if ((int)me->query_skill("qimen-wuxing", 1) < 120)
-                return notify_fail("你对奇门五行的研究不够，难以施展" + name() + "。\n");
+                return notify_fail("你對奇門五行的研究不夠，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("strike") != "luoying-shenzhang")
-                return notify_fail("你没有激发落英神剑掌，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發落英神劍掌，難以施展" + name() + "。\n");
 
         if (me->query_skill_prepared("strike") != "luoying-shenzhang")
-                return notify_fail("你没有准备落英神剑掌，难以施展" + name() + "。\n");
+                return notify_fail("你沒有準備落英神劍掌，難以施展" + name() + "。\n");
 
         if ((int)me->query_skill("force") < 180)
-                return notify_fail("你的内功火候不足，难以施展" + name() + "。\n");
+                return notify_fail("你的內功火候不足，難以施展" + name() + "。\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你现在的内力不够，难以施展" + name() + "。\n");
+                return notify_fail("你現在的內力不夠，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIY "$N" HIY "掌势陡然一变，施出落英神剑掌「奇门五转」绝技，虚虚"
-              "实实的攻向$n" HIY "。\n" NOR;
+        msg = HIY "$N" HIY "掌勢陡然一變，施出落英神劍掌「奇門五轉」絕技，虛虛"
+              "實實的攻向$n" HIY "。\n" NOR;
 
         ap = attack_power(me, "strike") +
              (int)me->query_skill("qimen-wuxing", 1) +
@@ -59,13 +59,13 @@ int perform(object me, object target)
                 damage = damage_power(me, "strike");
 
                 msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 50,
-                                           HIR "$n" HIR "大吃一惊，登时接连中掌，"
-                                           "狂喷出一口鲜血，身子急转个不停。\n" NOR);
+                                           HIR "$n" HIR "大吃一驚，登時接連中掌，"
+                                           "狂噴出一口鮮血，身子急轉個不停。\n" NOR);
         } else
         {
                 me->start_busy(3);
-                msg += HIC "可是$p" HIC "看破了$P" HIC "的企图，连消带打，避开了$P"
-                       HIC "这一击。\n"NOR;
+                msg += HIC "可是$p" HIC "看破了$P" HIC "的企圖，連消帶打，避開了$P"
+                       HIC "這一擊。\n"NOR;
         }
         message_combatd(msg, me, target);
         return 1;

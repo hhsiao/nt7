@@ -3,9 +3,9 @@ inherit WORM;
 
 void create()
 {
-        set_name(HIW "阴山天蜈" NOR, ({ "yinshan tianwu", "yinshan", "tianwu" }));
-        set("long", HIW "这是一条三寸多长，长有一双翅膀剧毒蜈蚣。\n" NOR);
-        set("race", "野兽");
+        set_name(HIW "陰山天蜈" NOR, ({ "yinshan tianwu", "yinshan", "tianwu" }));
+        set("long", HIW "這是一條三寸多長，長有一雙翅膀劇毒蜈蚣。\n" NOR);
+        set("race", "野獸");
         set("age", random(10));
         set("attitude", "peaceful");
 
@@ -14,7 +14,7 @@ void create()
 
         set("str", 40);
         set("con", 30);
-        set("limbs", ({ "头部", "身体", "尾巴" }));
+        set("limbs", ({ "頭部", "身體", "尾巴" }));
         set("verbs", ({ "bite" }));
 
         set("worm_poison", ([

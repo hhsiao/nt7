@@ -3,7 +3,7 @@
 inherit CLOTH;
 void create()
 {
-        set_name(BLK"精钢甲"NOR, ({ "jingang jia","jia" }) );   
+        set_name(BLK"精鋼甲"NOR, ({ "jingang jia","jia" }) );   
         set_weight(20000);
         /*if( clonep() )
                 set_default_object(__FILE__);

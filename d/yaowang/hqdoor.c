@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "小月门");
+        set("short", "小月門");
         set("long", @LONG
-这里是过道的尽头，东面是红砖围墙，正中是一扇小月门，
-门口站着两个小丫环。
+這裡是過道的盡頭，東面是紅磚圍牆，正中是一扇小月門，
+門口站著兩個小丫環。
 LONG
         );
         set("exits", ([ /* sizeof() == 2 */

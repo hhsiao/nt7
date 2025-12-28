@@ -1,16 +1,16 @@
-// quester.c 接收请求任务
+// quester.c 接收請求任務
 #include <ansi.h>
 
 int is_quester() { return 1; }
 
 /*
-// 接受询问
+// 接受詢問
 mixed accept_ask(object who, string topic)
 {
         return QUEST_D->accept_ask(this_object(), who, topic);
 }
 */
-// 请求任务
+// 請求任務
 int ask_quest(object who)
 {
         return QUEST_D->ask_quest(this_object(), who);
@@ -35,7 +35,7 @@ int accept_object(object who, object ob)
 }
 */
 
-// 取消任务
+// 取消任務
 int cancel_quest(object who)
 {
         return QUEST_D->cancel_quest(this_object(), who);

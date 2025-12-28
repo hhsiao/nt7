@@ -6,10 +6,10 @@ void smart_fight();
 
 void create()
 {
-        string *names = ({RED"僵尸"NOR});
+        string *names = ({RED"殭屍"NOR});
         set_name( names[random(sizeof(names))], ({ "zombie"}));
         set("vendetta_mark","skeleton");
-        set("long", "这是一只"+query("name")+"。\n");
+        set("long", "這是一隻"+query("name")+"。\n");
         set("zone","blood");
         set("attitude", "aggressive");
         set("chat_chance_combat", 0);

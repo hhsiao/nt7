@@ -5,8 +5,8 @@ int is_pld_npc(){return 1;}
 
 void create()
 {
-        set_name(HIW "飞龙" NOR, ({ "fei long", "fei", "long" }));
-        set("long", HIW "这是一只长着翅膀的恶龙，看起来令人毛骨悚然。\n" NOR);
+        set_name(HIW "飛龍" NOR, ({ "fei long", "fei", "long" }));
+        set("long", HIW "這是一隻長著翅膀的惡龍，看起來令人毛骨悚然。\n" NOR);
 
         set("age", 190);
         set("str", 40);
@@ -42,7 +42,7 @@ void create()
 }
 void init()
 {
-	// 随机攻击玩家
+	// 隨機攻擊玩家
 	if (userp(this_player()))
 	{
 		kill_ob(this_player());

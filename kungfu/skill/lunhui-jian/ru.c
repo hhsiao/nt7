@@ -1,7 +1,7 @@
 #include <ansi.h> 
 #include <combat.h> 
 
-#define RU "「" HIR "我入地狱" NOR "」" 
+#define RU "「" HIR "我入地獄" NOR "」" 
 
 inherit F_SSERVER; 
 
@@ -18,29 +18,29 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me); 
 
         if (! target || ! me->is_fighting(target)) 
-                return notify_fail(RU "只能对战斗中的对手使用。\n"); 
+                return notify_fail(RU "只能對戰鬥中的對手使用。\n"); 
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对，难以施展" RU "。\n"); 
+                return notify_fail("你使用的武器不對，難以施展" RU "。\n"); 
 
         if ((int)me->query_skill("lunhui-jian", 1) < 200) 
-                return notify_fail("你的释迦轮回剑法不够娴熟，难以施展" RU "。\n"); 
+                return notify_fail("你的釋迦輪迴劍法不夠嫻熟，難以施展" RU "。\n"); 
 
         if( query("neili", me)<200 )
-                return notify_fail("你现在真气不够，难以施展" RU "。\n"); 
+                return notify_fail("你現在真氣不夠，難以施展" RU "。\n"); 
 
         if ((int)me->query_skill("buddhism", 1) < 200) 
-                return notify_fail("你现在对佛学领悟不够，难以施展" RU "。\n"); 
+                return notify_fail("你現在對佛學領悟不夠，難以施展" RU "。\n"); 
 
         if (me->query_skill_mapped("sword") != "lunhui-jian")  
-                return notify_fail("你没有激发释迦轮回剑，难以施展" RU "。\n"); 
+                return notify_fail("你沒有激發釋迦輪迴劍，難以施展" RU "。\n"); 
 
         if (! living(target)) 
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n"); 
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n"); 
 
-        msg = HIC "$N" HIC "气贯手中长剑，一剑去势沉稳，缓缓的扫向$n" 
-              "，看似变化平平。\n" NOR; 
+        msg = HIC "$N" HIC "氣貫手中長劍，一劍去勢沉穩，緩緩的掃向$n" 
+              "，看似變化平平。\n" NOR; 
 
         addn("neili", -80, me);
         ap = attack_power(me, "sword");
@@ -59,8 +59,8 @@ int perform(object me, object target)
                                            (: final, me, target, damage :)); 
         } else 
         {
-                msg += HIC "可是$n" HIC "见识广博" HIC "，以料到$P剑法的变化" 
-                       "，全神应对。\n" NOR; 
+                msg += HIC "可是$n" HIC "見識廣博" HIC "，以料到$P劍法的變化" 
+                       "，全神應對。\n" NOR; 
         } 
         message_combatd(msg, me, target); 
 
@@ -71,8 +71,8 @@ string final(object me, object target, int damage)
 {
         target->receive_damage("jing", damage / 4, me); 
         target->receive_wound("jing", damage / 8, me); 
-        return  HIC "$n" HIC "见剑势平平，丝毫未把这招放在眼里，忽然$N" 
-                HIC "剑势一变，手中长\n剑竟荡起层层涟漪，一波一波的逼向$n！\n" NOR + 
-                HIR "$n" HIR "对这变化毫无防范，顿时被$P" HIR "这一剑扫中" 
-                "，一股血柱自剑芒中激射而出！\n" NOR; 
+        return  HIC "$n" HIC "見劍勢平平，絲毫未把這招放在眼裡，忽然$N" 
+                HIC "劍勢一變，手中長\n劍竟蕩起層層漣漪，一波一波的逼向$n！\n" NOR + 
+                HIR "$n" HIR "對這變化毫無防範，頓時被$P" HIR "這一劍掃中" 
+                "，一股血柱自劍芒中激射而出！\n" NOR; 
 }

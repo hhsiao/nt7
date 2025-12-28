@@ -9,28 +9,28 @@ inherit ROOM;
 
 string look_swing(object me);
 string *high_msg = ({
-        "吓得尖声呼叫“啊～～～”\n",
-        "脸色苍白，紧张得连声都不敢出了。\n",
-        "只觉得头晕眼花，生怕摔下来。\n",
-        "盼着赶紧停下来。\n",
-        "大声叫着“真好玩啊！”\n",
-        "颤声喊道“我怕怕～～～～”\n",
+        "嚇得尖聲呼叫“啊～～～”\n",
+        "臉色蒼白，緊張得連聲都不敢出了。\n",
+        "只覺得頭暈眼花，生怕摔下來。\n",
+        "盼著趕緊停下來。\n",
+        "大聲叫著“真好玩啊！”\n",
+        "顫聲喊道“我怕怕～～～～”\n",
 });
 string *mid_msg = ({
         "大叫“爽啊！真刺激！”\n",
-        "兴奋得满脸通红，但就是不敢睁眼。\n",
-        "似乎还觉得不过瘾，还想再高一些。\n",
-        "一付很轻松的样子。\n",
-        "紧张的汗都出来了。\n",
-        "哈哈大笑，从没这么高兴过。\n",
+        "興奮得滿臉通紅，但就是不敢睜眼。\n",
+        "似乎還覺得不過癮，還想再高一些。\n",
+        "一付很輕鬆的樣子。\n",
+        "緊張的汗都出來了。\n",
+        "哈哈大笑，從沒這麼高興過。\n",
 });
 string *low_msg = ({
-        "高兴的叫个不停。\n",
-        "兴奋得在秋千上手舞足蹈，也不怕摔下来。\n",
-        "觉得有点头晕，不过还可以坚持。\n",
-        "不由想起了童年时光。\n",
-        "感觉轻松自如，还想再高一点。\n",
-        "从秋千上站了起来，以显示高超的技术。\n",
+        "高興的叫個不停。\n",
+        "興奮得在鞦韆上手舞足蹈，也不怕摔下來。\n",
+        "覺得有點頭暈，不過還可以堅持。\n",
+        "不由想起了童年時光。\n",
+        "感覺輕鬆自如，還想再高一點。\n",
+        "從鞦韆上站了起來，以顯示高超的技術。\n",
 });
 
 int clean_up() { return 1;}
@@ -46,23 +46,23 @@ int do_clean()
 
 int do_gun(object me, int i)
 {
-                message_vision(NOR + "秋千突然无风自动，荡起来打在$N头上，将$N打到北方去了。\n" + NOR, me);
+                message_vision(NOR + "鞦韆突然無風自動，蕩起來打在$N頭上，將$N打到北方去了。\n" + NOR, me);
                 me->move("/d/city/kedian4");
                 me->start_busy(i);
-                message_vision(NOR + "$N屁滚尿流地从南方滚了过来。\n" + NOR, me);
+                message_vision(NOR + "$N屁滾尿流地從南方滾了過來。\n" + NOR, me);
                 me->command("stat");
-                tell_object(me, "你一屁股跌坐到地上，半天都爬不起来。\n");
+                tell_object(me, "你一屁股跌坐到地上，半天都爬不起來。\n");
                 return 1;
 }
 
 void create()
 {
-        set("short", "秋千园");
+        set("short", "鞦韆園");
         set("long", 
-        "一个废弃的花园，杂草丛生，落叶缤纷。左边有一个小石桌，\n"
-        "几尊石凳。右边有两棵大树，树中间挂着一架"+CYN"秋千"NOR+"。一阵风吹过，\n"
-        "枯叶在空中飞舞，那曾经热闹过的秋千也轻轻荡了起来，仿佛诉\n"
-        "说着往日的记忆。\n"
+        "一個廢棄的花園，雜草叢生，落葉繽紛。左邊有一個小石桌，\n"
+        "幾尊石凳。右邊有兩棵大樹，樹中間掛著一架"+CYN"鞦韆"NOR+"。一陣風吹過，\n"
+        "枯葉在空中飛舞，那曾經熱鬧過的鞦韆也輕輕蕩了起來，彷彿訴\n"
+        "說著往日的記憶。\n"
         );
         set("exits", ([ /* sizeof() == 2 */
             "north" : __DIR__"kedian4",
@@ -70,7 +70,7 @@ void create()
                         "northwest" : "/u/redl/school/gate",  
 ]));
         set("item_desc", ([
-                "秋千": (: look_swing :),
+                "鞦韆": (: look_swing :),
                 "swing": (: look_swing :),
         ]) );
 //            set("outdoors", 1);
@@ -95,7 +95,7 @@ void create()
 
 string look_swing(object me)
 {
-        return "这是一架用藤条编就的秋千(swing)，虽然已久无人用，\n但看起来还结实，可以坐上去(sit)试试，\n也可以抱你心爱的人坐上去(lift)。\n";
+        return "這是一架用藤條編就的鞦韆(swing)，雖然已久無人用，\n但看起來還結實，可以坐上去(sit)試試，\n也可以抱你心愛的人坐上去(lift)。\n";
 }
 
 int do_action(string arg)
@@ -141,12 +141,12 @@ int do_push2(string arg)
         object me,ob;
         me = this_player();
         if(!arg || !objectp(ob = present(arg, environment(me))))
-                return notify_fail("你要推谁啊？\n");
-        if( arg == query("id", me))return notify_fail("你没法自己推自己啊。pig...:P\n");
-        if( is_owner(ob) ) return notify_fail("你这样做不太好吧？...:P\n");
+                return notify_fail("你要推誰啊？\n");
+        if( arg == query("id", me))return notify_fail("你沒法自己推自己啊。pig...:P\n");
+        if( is_owner(ob) ) return notify_fail("你這樣做不太好吧？...:P\n");
         if( query_temp("marks/swingm", ob)){
-                message_vision("$N又使劲推了$n一下，秋千荡的飞了起来。\n",me,ob);
-                message_vision(RED"$N脚下一个不稳，从秋千上跌了下来，摔了个大屁堆儿！\n"NOR,ob);
+                message_vision("$N又使勁推了$n一下，鞦韆蕩的飛了起來。\n",me,ob);
+                message_vision(RED"$N腳下一個不穩，從鞦韆上跌了下來，摔了個大屁堆兒！\n"NOR,ob);
                 remove_call_out("swing_left");
                 remove_call_out("swing_right");
                 delete_temp("marks/sitted", ob);
@@ -181,12 +181,12 @@ int do_sit(string arg)
         object me,ob;
         me = this_player();
         id = query("id", me);
-        if(me->is_fighting()) return notify_fail("一边打架一边荡秋千？你没事吧？\n");
-        if(me->is_busy()) return notify_fail("你正忙着，没空荡秋千。\n");
+        if(me->is_fighting()) return notify_fail("一邊打架一邊盪鞦韆？你沒事吧？\n");
+        if(me->is_busy()) return notify_fail("你正忙著，沒空蕩鞦韆。\n");
         if(!arg) {
-                //write("你想自己即不是红莲也不是芝芝，还是(sit swing)再玩吧。\n");
+                //write("你想自己即不是紅蓮也不是芝芝，還是(sit swing)再玩吧。\n");
                 if (!is_owner(me)) {
-                        if ( query("enter_num") > 25 ) {//可能有人试图想刷
+                        if ( query("enter_num") > 25 ) {//可能有人試圖想刷
                                                                 do_gun(me, 60);
                                 return 1;
                         }
@@ -194,7 +194,7 @@ int do_sit(string arg)
                                 (query("online_time", me) < 43200) || 
                                 ( (query("enter_id/"+id)) && (time() - query("enter_id/"+id) < 43200) ) || 
                                 wiz_level(me) >= wiz_level("(wizard)") ) {
-                                if ( (query_temp("enter_num/"+id)) && (query_temp("enter_num/"+id) > 2) ) {//可能有人试图想刷
+                                if ( (query_temp("enter_num/"+id)) && (query_temp("enter_num/"+id) > 2) ) {//可能有人試圖想刷
                                         do_gun(me, 300);
                                         return 1;
                                 }
@@ -210,25 +210,25 @@ int do_sit(string arg)
                 message_vision("$N坐在了地上。\n",me);
                 //if (!rnd) {
                                         set_temp("can_enterredlroom", 1, me);
-                                        message_vision(YEL + "$N在" + MAG + "相思树" + YEL + "下迷迷糊糊地睡着了...\n" + NOR, me);
+                                        message_vision(YEL + "$N在" + MAG + "相思樹" + YEL + "下迷迷糊糊地睡著了...\n" + NOR, me);
                                         me->move("/u/redl/private_room/dating");
-                                        message_vision(YEL + "大片紫青色烟雾聚拢弥散过后，$N来到了神秘的化乐天遗迹。\n" + NOR, me);
+                                        message_vision(YEL + "大片紫青色煙霧聚攏彌散過後，$N來到了神秘的化樂天遺蹟。\n" + NOR, me);
                     //return 1;
                 //}
                 //me->start_busy(3);
                 return 1;
         }
-        if(arg != "swing") return notify_fail("你要坐什么？\n");
+        if(arg != "swing") return notify_fail("你要坐什麼？\n");
         if(query("marks/sitted")) {
                 sitter=query("marks/sitted", this_object());
                 ob = present(sitter,environment(me));
                 if( (ob) && (query_temp("marks/sitted", ob))){
-                        write("秋千上已经有人了。\n");
+                        write("鞦韆上已經有人了。\n");
                         return 1;
                 }
         }
-        message_vision("$N坐到了秋千上面。\n", me);
-        write("你可以自己荡秋千(dang)，也可以让别人推一把(push)。\n");
+        message_vision("$N坐到了鞦韆上面。\n", me);
+        write("你可以自己盪鞦韆(dang)，也可以讓別人推一把(push)。\n");
         set("marks/sitted",query("id", me));
         set_temp("marks/sitted", 1, me);
         return 1;
@@ -243,26 +243,26 @@ int do_lift()
                 sitter=query("marks/sitted", this_object());
                 ob = present(sitter,environment(me));
                 if( (ob) && (query_temp("marks/sitted", ob))){
-                        write("秋千上已经有人了。\n");
+                        write("鞦韆上已經有人了。\n");
                         return 1;
                 }
         }
         sitter = query("couple/couple_id", me );
         if (!sitter) {
-                 write("你还没有爱人。\n");
+                 write("你還沒有愛人。\n");
                  return 1;
         }
         ob = present(sitter, environment(me));
         if (!objectp(ob)) {
-                 write("你想抱谁上秋千？\n");
+                 write("你想抱誰上鞦韆？\n");
                  return 1;
         }
         if( !ob->is_character() || query("not_living", ob) ) {
                  write("看清楚了，那不是活人！\n");
                  return 1;
         }
-        message_vision("$N轻轻抱起$n放到了秋千上面。\n", me,ob);
-        tell_object(ob, "你可以自己荡秋千(dang)，也可以让别人推一把(push)。\n");
+        message_vision("$N輕輕抱起$n放到了鞦韆上面。\n", me,ob);
+        tell_object(ob, "你可以自己盪鞦韆(dang)，也可以讓別人推一把(push)。\n");
         set("marks/sitted",query("id", ob));
         set_temp("marks/sitted", 1, ob);
         return 1;
@@ -273,20 +273,20 @@ int do_dang()
         int i;
         object me;
         me = this_player();
-        if(me->is_fighting()) return notify_fail("一边打架一边荡秋千？你没事吧？\n");
-        if(me->is_busy()) return notify_fail("你正忙着，没空荡秋千。\n");
+        if(me->is_fighting()) return notify_fail("一邊打架一邊盪鞦韆？你沒事吧？\n");
+        if(me->is_busy()) return notify_fail("你正忙著，沒空蕩鞦韆。\n");
         i=query_temp("marks/swingm", me);
         if( !query_temp("marks/sitted", me) )
-        return notify_fail("你还没坐到秋千上。\n");
+        return notify_fail("你還沒坐到鞦韆上。\n");
         if( !query_temp("marks/swingm", me)){
-                message_vision("$N脚下一使劲，秋千缓缓的荡了起来。\n",me);
+                message_vision("$N腳下一使勁，鞦韆緩緩的蕩了起來。\n",me);
                 set_temp("marks/swingm", 3, me);
                 call_out("swing_left",7,me);
                 return 1;
         }
         if( query_temp("marks/swingm", me)>9){
-                message_vision("$N脚下再一使劲，秋千荡的飞了起来。\n",me);
-                message_vision(RED"$N脚下一个不稳，从秋千上跌了下来，摔了个大屁堆儿！\n"NOR,me);
+                message_vision("$N腳下再一使勁，鞦韆蕩的飛了起來。\n",me);
+                message_vision(RED"$N腳下一個不穩，從鞦韆上跌了下來，摔了個大屁堆兒！\n"NOR,me);
                 remove_call_out("swing_left");
                 remove_call_out("swing_right");
                 delete_temp("marks/sitted", me);
@@ -295,7 +295,7 @@ int do_dang()
                 return 1;
         }
         
-        message_vision(YEL"$N使劲荡了一下，秋千荡的更高更快了！\n"NOR,me);
+        message_vision(YEL"$N使勁蕩了一下，鞦韆蕩的更高更快了！\n"NOR,me);
         i = i + 3;
         set_temp("marks/swingm", i, me);
         remove_call_out("swing_left");
@@ -309,25 +309,25 @@ int do_push(string arg)
         int i;
         object me,ob;
         me = this_player();
-        if(me->is_fighting()) return notify_fail("一边打架一边荡秋千？你没事吧？\n");
-        if(me->is_busy()) return notify_fail("你先把手头的事忙完再说吧。\n");
+        if(me->is_fighting()) return notify_fail("一邊打架一邊盪鞦韆？你沒事吧？\n");
+        if(me->is_busy()) return notify_fail("你先把手頭的事忙完再說吧。\n");
         if(!arg || !objectp(ob = present(arg, environment(me))))
-                return notify_fail("你要推谁啊？\n");
-        if( arg == query("id", me))return notify_fail("你没法自己推自己啊。pig...:P\n");
+                return notify_fail("你要推誰啊？\n");
+        if( arg == query("id", me))return notify_fail("你沒法自己推自己啊。pig...:P\n");
         if( !query_temp("marks/sitted", ob) )
-                return notify_fail("对方不在秋千上，你没法推。\n");
-        if(ob->is_fighting()) return notify_fail("一边打架一边荡秋千？你没事吧？\n");
-        if(ob->is_busy()) return notify_fail("对方正忙着呢。\n");
+                return notify_fail("對方不在鞦韆上，你沒法推。\n");
+        if(ob->is_fighting()) return notify_fail("一邊打架一邊盪鞦韆？你沒事吧？\n");
+        if(ob->is_busy()) return notify_fail("對方正忙著呢。\n");
         i=query_temp("marks/swingm", ob);
         if( !query_temp("marks/swingm", ob)){
-                message_vision(YEL"$N轻轻推了$n一下，秋千缓缓荡了起来。\n"NOR,me,ob);
+                message_vision(YEL"$N輕輕推了$n一下，鞦韆緩緩蕩了起來。\n"NOR,me,ob);
                 set_temp("marks/swingm", 3, ob);
                 call_out("swing_left",7,ob);
                 return 1;
         }
         if( query_temp("marks/swingm", ob)>9){
-                message_vision("$N又使劲推了$n一下，秋千荡的飞了起来。\n",me,ob);
-                message_vision(RED"$N脚下一个不稳，从秋千上跌了下来，摔了个大屁堆儿！\n"NOR,ob);
+                message_vision("$N又使勁推了$n一下，鞦韆蕩的飛了起來。\n",me,ob);
+                message_vision(RED"$N腳下一個不穩，從鞦韆上跌了下來，摔了個大屁堆兒！\n"NOR,ob);
                 remove_call_out("swing_left");
                 remove_call_out("swing_right");
                 delete_temp("marks/sitted", ob);
@@ -338,7 +338,7 @@ ob->set_short_desc(0);
                 return 1;
         }
         
-        message_vision(YEL"$N又轻轻推了$n一下，秋千荡的更高更快了！\n"NOR,me,ob);
+        message_vision(YEL"$N又輕輕推了$n一下，鞦韆蕩的更高更快了！\n"NOR,me,ob);
         i = i + 3;
         set_temp("marks/swingm", i, ob);
         remove_call_out("swing_left");
@@ -351,8 +351,8 @@ int do_down()
         object me;
         me = this_player();
         if( !query_temp("marks/sitted", me) )
-        return notify_fail("这个方向没有出路。\n");
-        message_vision("$N从摇荡的秋千上蹦了下来。\n",me);
+        return notify_fail("這個方向沒有出路。\n");
+        message_vision("$N從搖盪的鞦韆上蹦了下來。\n",me);
         remove_call_out("swing_left");
         remove_call_out("swing_right");
         delete_temp("marks/sitted", me);
@@ -371,17 +371,17 @@ void swing_left(object me)
         if(i>0) {
                 if(i>3) {
                         if(i>6) {
-                                msg = "秋千向前荡的又高又直，$N"+high_msg[random( sizeof( high_msg ))];
+                                msg = "鞦韆向前蕩的又高又直，$N"+high_msg[random( sizeof( high_msg ))];
                                 message_vision(msg,me);
                                 call_out("swing_right",10-i,me);
                                 return;
                         }
-                        msg = "秋千飞一样向前荡去，$N"+mid_msg[random( sizeof( mid_msg ))];
+                        msg = "鞦韆飛一樣向前蕩去，$N"+mid_msg[random( sizeof( mid_msg ))];
                         message_vision(msg,me);
                         call_out("swing_right",10-i,me);
                         return;
                 }
-                msg = "秋千缓缓向前荡去，$N"+low_msg[random( sizeof( low_msg ))];
+                msg = "鞦韆緩緩向前蕩去，$N"+low_msg[random( sizeof( low_msg ))];
                 message_vision(msg,me);
                 call_out("swing_right",10-i,me);
                 return;
@@ -395,7 +395,7 @@ void swing_right(object me)
         i=query_temp("marks/swingm", me);
         i = i-1;
         if(i<1) {
-                message_vision("秋千缓缓停了下来，$N意犹未尽的走下秋千。\n",me);
+                message_vision("鞦韆緩緩停了下來，$N意猶未盡的走下鞦韆。\n",me);
                 delete_temp("marks/sitted", me);
                 delete_temp("marks/swingm", me);
                 delete("marks/sitted", this_object());
@@ -405,17 +405,17 @@ void swing_right(object me)
         if(i>0) {
                 if(i>3) {
                         if(i>6) {
-                                msg = "秋千向后荡的又快又猛，$N"+high_msg[random( sizeof( high_msg ))];
+                                msg = "鞦韆向後蕩的又快又猛，$N"+high_msg[random( sizeof( high_msg ))];
                                 message_vision(msg,me);
                                 call_out("swing_left",10-i,me);
                                 return;
                         }
-                        msg = "秋千高高的向后荡去，$N"+mid_msg[random( sizeof( mid_msg ))];
+                        msg = "鞦韆高高的向後蕩去，$N"+mid_msg[random( sizeof( mid_msg ))];
                         message_vision(msg,me);
                         call_out("swing_left",10-i,me);
                         return;
                 }
-                msg = "秋千缓缓向后荡去，$N"+low_msg[random( sizeof( low_msg ))];
+                msg = "鞦韆緩緩向後蕩去，$N"+low_msg[random( sizeof( low_msg ))];
                 message_vision(msg,me);
                 call_out("swing_left",10-i,me);
                 return;
@@ -425,7 +425,7 @@ void swing_right(object me)
 int valid_leave(object me, string dir)
 {
         if( query_temp("marks/sitted", me) )
-        return notify_fail("你先要从秋千上下来(down)才能离开。\n");
+        return notify_fail("你先要從鞦韆上下來(down)才能離開。\n");
         return ::valid_leave(me, dir);
         return 1;
 }

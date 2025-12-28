@@ -5,9 +5,9 @@
 
 void create()
 {
-        set("short", "练武场");
+        set("short", "練武場");
 	set ("long", @LONG
-此处便是逍遥洞的练武场，人在江湖，武功万万不可荒废。 
+此處便是逍遙洞的練武場，人在江湖，武功萬萬不可荒廢。 
 LONG );
 
         set("exits", ([
@@ -24,8 +24,8 @@ LONG );
         setup();
     
         set("room_owner", "暴雪");
-        set("room_name", "逍遥洞");
+        set("room_name", "逍遙洞");
         set("room_id", "blz");
         set("room_owner_id", "blz");
-        set("room_position", "青砖路");
+        set("room_position", "青磚路");
 }

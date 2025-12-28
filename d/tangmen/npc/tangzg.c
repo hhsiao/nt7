@@ -1,4 +1,4 @@
-// tangzg.c 唐掌柜 
+// tangzg.c 唐掌櫃 
 
 inherit NPC;
 inherit F_VENDOR;
@@ -6,14 +6,14 @@ inherit F_VENDOR;
 
 void create()
 {
-        set_name("唐掌柜", ({ "tang zhanggui", "tang" }));
-        set("title", "唐家铺子老板");
+        set_name("唐掌櫃", ({ "tang zhanggui", "tang" }));
+        set("title", "唐家鋪子老闆");
         set("shen_type", 1);
 
         set("gender", "男性");
         set("age", 45);
         set("long",
-                "唐掌柜是唐门的家人，做了多年的买卖了。\n");
+                "唐掌櫃是唐門的家人，做了多年的買賣了。\n");
         set_skill("unarmed", 50);
         set_skill("dodge", 50);
         set_temp("apply/damage", 15);

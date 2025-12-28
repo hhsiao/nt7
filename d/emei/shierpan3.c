@@ -3,10 +3,10 @@ inherit ROOM;
 
 void create()
 {
-      set("short", "十二盘");
+      set("short", "十二盤");
         set("long", @LONG
-这里石阶陡折多弯，号称「十二盘」。你见路边有个八音池，有
-人正在向池中击掌(clap)。由此西上可达华严顶，东下则到万年庵。
+這裡石階陡折多彎，號稱「十二盤」。你見路邊有個八音池，有
+人正在向池中擊掌(clap)。由此西上可達華嚴頂，東下則到萬年庵。
 LONG );
       set("outdoors", "emei");
       set("exits", ([
@@ -27,9 +27,9 @@ void init()
 
 int do_clap()
 {
-      message_vision(HIC "\n池内忽然有蛙大鸣一声，接着群蛙次第相"
-                     "合，最后又是一蛙大\n鸣，群蛙便嘎然而止，其"
-                     "数正好为八。\n", this_player());
+      message_vision(HIC "\n池內忽然有蛙大鳴一聲，接著群蛙次第相"
+                     "合，最後又是一蛙大\n鳴，群蛙便嘎然而止，其"
+                     "數正好為八。\n", this_player());
       return 1;
 }
 
@@ -48,11 +48,11 @@ int valid_leave(object me, string dir)
                         if (me->can_improve_skill("dodge") && c_skill < 100)
                                 me->improve_skill("dodge", 1 + c_skill / 15);
 
-                        tell_object(me, HIC "你爬上十二盘，有些累了。\n" NOR);
+                        tell_object(me, HIC "你爬上十二盤，有些累了。\n" NOR);
                 } else
                 {
                         set("qi", 0, me);
-                        tell_object(me, HIR "你太累了，再也走不动了。\n" NOR);
+                        tell_object(me, HIR "你太累了，再也走不動了。\n" NOR);
                         return -1;
                 }
       }

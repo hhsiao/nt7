@@ -19,16 +19,16 @@ int valid_enable(string usage)
 int valid_learn(object me)
 {        
         if (me->query_skill("force", 1) < 40)
-                return notify_fail("你的基本内功太差了。\n");
-        if( query("gender", me) == "无性" && me->query_skill("sanku-shengong",1)>49 )
-                return notify_fail("唐门不要你这种无根无性的人，你无法领会高深的三苦神功。\n");
+                return notify_fail("你的基本內功太差了。\n");
+        if( query("gender", me) == "無性" && me->query_skill("sanku-shengong",1)>49 )
+                return notify_fail("唐門不要你這種無根無性的人，你無法領會高深的三苦神功。\n");
               
         return ::valid_learn(me);
 }
  
 int practice_skill(object me)
 {
-        return notify_fail("三苦神功只能用学(learn)的来增加熟练度。\n");
+        return notify_fail("三苦神功只能用學(learn)的來增加熟練度。\n");
 }
 
 string exert_function_file(string func)

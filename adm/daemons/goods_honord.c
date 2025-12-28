@@ -37,7 +37,7 @@ int query_rate() { return rate; }
 void create()
 {
         seteuid(ROOT_UID);
-        set("name", HIC"荣誉兑换商城"NOR);
+        set("name", HIC"榮譽兌換商城"NOR);
         init_goods();
 }
 
@@ -95,18 +95,18 @@ string chinese_type(string type)
         switch(type)
         {
         case "object"   : return HIC "物品" NOR;
-        case "pill"     : return HIM "丹药" NOR;
+        case "pill"     : return HIM "丹藥" NOR;
         case "special"  : return HIG "先天技能" NOR;
-        case "special2" : return HIB "转世技能" NOR;
+        case "special2" : return HIB "轉世技能" NOR;
         case "story"    : return WHT "故事" NOR;
-        case "enchase"  : return HIW "镶嵌" NOR;
+        case "enchase"  : return HIW "鑲嵌" NOR;
         case "symbol"   : return YEL "神符" NOR;
-        case "card"     : return HIY "会员卡" NOR;
-        case "gold"     : return HIY "黄金" NOR;
-        case "prop"     : return HIY "装备" NOR;
-        case "module"   : return HIG "套装" NOR;
-        case "package"  : return HIR "礼包" NOR;
-        case "srv"      : return HIM "服务" NOR;
+        case "card"     : return HIY "會員卡" NOR;
+        case "gold"     : return HIY "黃金" NOR;
+        case "prop"     : return HIY "裝備" NOR;
+        case "module"   : return HIG "套裝" NOR;
+        case "package"  : return HIR "禮包" NOR;
+        case "srv"      : return HIM "服務" NOR;
         case "other"    : return HIR "其他" NOR;
         default         : return HIR "未知" NOR;
         }
@@ -119,15 +119,15 @@ public varargs int show_goods(object me, string arg)
         int len = 0;
 
         if( !sizeof(all_goods) ) {
-                tell_object(me, sprintf("目前%s没有可以兑换的东西。\n", query("name")));
+                tell_object(me, sprintf("目前%s沒有可以兌換的東西。\n", query("name")));
                 return 1;
         }
 
         if( !arg ) arg = "all";
 
-        msg  = sprintf("%s目前可以兑换以下货物：\n\n" NOR, query("name"));
+        msg  = sprintf("%s目前可以兌換以下貨物：\n\n" NOR, query("name"));
         msg += sprintf(HIW "%-6s%-16s%-11s%-10s%s\n" NOR,
-                      "编号", "名称", "荣誉点", "种类", "功能简要");
+                      "編號", "名稱", "榮譽點", "種類", "功能簡要");
         msg += HIG "------------------------------------------------------------------------------------------\n\n" NOR;
         foreach( item in all_goods ) {
                 if( item->type == arg || arg == "all"  )
@@ -145,7 +145,7 @@ public varargs int show_goods(object me, string arg)
         }
 
         msg += "\n";
-        msg += HIG "请认真阅读有关说明，兑换前请考虑清楚， 如无差错，恕不退货！\n" NOR;
+        msg += HIG "請認真閱讀有關說明，兌換前請考慮清楚， 如無差錯，恕不退貨！\n" NOR;
         msg += HIG "------------------------------------------------------------------------------------------\n" NOR;
         me->start_more(msg);
         return 1;
@@ -161,12 +161,12 @@ public int exchange_goods(object ob, string arg)
 
         n = sizeof(all_goods);
         if( !n ) {
-                write(sprintf("目前%s没有可以兑换的东西。\n", query("name")));
+                write(sprintf("目前%s沒有可以兌換的東西。\n", query("name")));
                 return 1;
         }
 
         if( query("honors", ob) < 1 ) {
-                write("你还没有获得任何荣誉点。\n");
+                write("你還沒有獲得任何榮譽點。\n");
                 return 1;
         }
 
@@ -177,13 +177,13 @@ public int exchange_goods(object ob, string arg)
         }
 
         if( i >= n ) {
-                write(HIR "你想兑换什么？ 请使用 rystore show all 查询。\n" NOR);
+                write(HIR "你想兌換什麼？ 請使用 rystore show all 查詢。\n" NOR);
                 return 1;
 
         }
 
         if( all_goods[i]->type == "manual" ) {
-                write("对不起，该服务必须由 admin 手动实现，请及时与 admin 联系！\n");
+                write("對不起，該服務必須由 admin 手動實現，請及時與 admin 聯繫！\n");
                 return 1;
         }
 
@@ -198,7 +198,7 @@ public int exchange_goods(object ob, string arg)
         money = query("honors", ob);
         
         if( money < value) {
-                write("对不起，您的荣誉点不够！\n");
+                write("對不起，您的榮譽點不夠！\n");
                 return 1;
         }
 
@@ -211,7 +211,7 @@ public int exchange_goods(object ob, string arg)
                 which = all_goods[i]->name;
                 item = new(all_goods[i]->file);
                 if( !objectp(item) ) {
-                        write("复制物品失败，请与本站ADMIN联系！\n");
+                        write("複製物品失敗，請與本站ADMIN聯繫！\n");
                         return 1;
                 }
 
@@ -219,11 +219,11 @@ public int exchange_goods(object ob, string arg)
 
                 item->move(ob, 1);
                
-                write(HIC "您总共花费了 " HIY + value + HIC + " 点荣誉, 祝您好运！\n" NOR);
+                write(HIC "您總共花費了 " HIY + value + HIC + " 點榮譽, 祝您好運！\n" NOR);
                 return 1;
 
         default:
-                write("无效物品种类！\n");
+                write("無效物品種類！\n");
                 return 0;
         }
 }

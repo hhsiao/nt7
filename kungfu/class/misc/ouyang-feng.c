@@ -12,10 +12,10 @@ int hurting();
 
 void create()
 {
-        set_name("欧阳锋", ({ "ouyang feng", "ouyang", "feng" }));
-        set("long", "他是白驼山庄主，号称“西毒”的欧阳锋。\n"
-                    "由于习练「九阴真经」走火入魔，已变得精\n"
-                    "神错乱，整日披头散发。\n");
+        set_name("歐陽鋒", ({ "ouyang feng", "ouyang", "feng" }));
+        set("long", "他是白駝山莊主，號稱“西毒”的歐陽鋒。\n"
+                    "由於習練「九陰真經」走火入魔，已變得精\n"
+                    "神錯亂，整日披頭散髮。\n");
         set("title", "老毒物");
         set("gender", "男性");
         set("age", 53);
@@ -79,7 +79,7 @@ void create()
         prepare_skill("finger", "shedu-qiqiao");
         prepare_skill("cuff", "lingshe-quan");
 
-        create_family("欧阳世家", 5, "掌门");
+        create_family("歐陽世家", 5, "掌門");
 
 /*
         set("chat_chance", 30);
@@ -121,8 +121,8 @@ void create()
         ]));
 
         set("drops", ([
-                "RA&RANDOM60"    :       50,   // 低级普通装备
-                "RA&RANDOM70"    :       30,   // 低级普通装备
+                "RA&RANDOM60"    :       50,   // 低級普通裝備
+                "RA&RANDOM70"    :       30,   // 低級普通裝備
                 "FI&/clone/tessera/rune21" :   30,
                 "FI&/clone/goods/enchant-scroll" :   40,
                 "FI&/clone/goods/sun"   :   50,
@@ -166,9 +166,9 @@ int accept_fight(object ob)
 
 int accept_hit(object ob)
 {
-        message_vision(HIW "$N" HIW "脸色一变，闪过一道杀气。怒"
-                       "喝道：好一个" + RANK_D->query_rude(ob) +
-                       "，来吧！\n" NOR, this_object());
+        message_vision(HIW "$N" HIW "臉色一變，閃過一道殺氣。怒"
+                       "喝道：好一個" + RANK_D->query_rude(ob) +
+                       "，來吧！\n" NOR, this_object());
         kill_ob(ob);
         return 1;
 }
@@ -183,12 +183,12 @@ int accept_kill(object ob)
 
 int accept_ansuan(object ob)
 {
-        return notify_fail("那人警惕性好高，你难以下手。\n");
+        return notify_fail("那人警惕性好高，你難以下手。\n");
 }
 
 int accept_touxi(object ob)
 {
-        return notify_fail("那人警惕性好高，你难以下手。\n");
+        return notify_fail("那人警惕性好高，你難以下手。\n");
 }
 
 void kill_ob(object me)
@@ -225,7 +225,7 @@ int hurting()
         object *inv;
 
         remove_call_out("hurting");
-        message_vision( HIR "\n\n$N手中灵蛇杖吐出一股炽可焚金的火焰．．整个天地似乎都被燃烧着！！！\n\n",this_object());
+        message_vision( HIR "\n\n$N手中靈蛇杖吐出一股熾可焚金的火焰．．整個天地似乎都被燃燒著！！！\n\n",this_object());
         inv = all_inventory(environment(this_object()));
         for(i=sizeof(inv)-1; i>=0; i--)
         if( living(inv[i]))
@@ -240,7 +240,7 @@ int hurting()
                                      "id":query("id", this_object()),
                                      "name" : "火毒",
                                      "duration" : 200 ]));
-                tell_object(inv[i], HIG "你中了灵蛇杖的火毒。\n");
+                tell_object(inv[i], HIG "你中了靈蛇杖的火毒。\n");
                 COMBAT_D->report_status(inv[i],1);
         }
         call_out("hurting", random(5)+5);
@@ -256,8 +256,8 @@ mixed hit_ob(object me, object ob, int damage_bouns)
         ob->receive_damage("qi", damage, me);
         ob->receive_wound("qi", damage, me);
         set("neili",query("max_neili",  me), me);
-        return HIB "$N" HIB "大吼一声，手中"HIR"灵蛇杖"HIB"砸向$n"
-               HIB "，$n顿时感到五雷轰顶，伤及五脏内腹。\n" NOR;
+        return HIB "$N" HIB "大吼一聲，手中"HIR"靈蛇杖"HIB"砸向$n"
+               HIB "，$n頓時感到五雷轟頂，傷及五臟內腹。\n" NOR;
 }
 
 void random_move()
@@ -269,8 +269,8 @@ void random_move()
                 env = environment(this_object());
                 message_vision("$N急急忙忙的走了。\n", this_object());
                 
-                CHANNEL_D->channel_broadcast("news", HIG "听说" + HIW +
-                        env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一带出现的" +
+                CHANNEL_D->channel_broadcast("news", HIG "聽說" + HIW +
+                        env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一帶出現的" +
                         HIR + this_object()->short() + HIG "消失了。\n" NOR);
 
                 destruct(this_object());
@@ -282,5 +282,5 @@ void random_move()
 void death_msg()
 {
         //command("chat* yi");
-        command("mess* sigh 九阴真经不是天下无敌么...？");
+        command("mess* sigh 九陰真經不是天下無敵麼...？");
 }

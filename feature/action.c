@@ -44,7 +44,7 @@ varargs void start_busy(mixed new_busy, mixed new_interrupt)
                 avd_busy = 0;
                 add_busy = 0;
 
-                // 战斗状态下忙乱及化解忙乱才起作用
+                // 戰鬥狀態下忙亂及化解忙亂才起作用
                 if( me->is_fighting() && previous_object() &&
                     sscanf(base_name(previous_object()), "/kungfu/skill/%*s") ) {
                         avd_busy = me->query_all_buff("avoid_busy");
@@ -80,7 +80,7 @@ varargs void start_busy(mixed new_busy, mixed new_interrupt)
                         new_busy = random(new_busy);
 
                 if( new_busy > 1 && playerp(me) &&
-                    random(10) < 4 && (query("character") == "狡黠多变" || query("character") == "国士无双") )
+                    random(10) < 4 && (query("character") == "狡黠多變" || query("character") == "國士無雙") )
                         new_busy--;
 
                 if( new_busy > 0 && playerp(me) && random(10) < 3 && query("special_skill/taxue", me) )

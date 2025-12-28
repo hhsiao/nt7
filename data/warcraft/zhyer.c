@@ -4,12 +4,12 @@
 
 void setup()
 {
-        set_name("大鸟[2;37;0m[2;37;0m", ({"niao"}));        
+        set_name("大鳥[2;37;0m[2;37;0m", ({"niao"}));        
         set("gender", "男性");                
-        set("long", "人死鸟朝天，不死万万年。[2;37;0m
-它是下雨的魔幻兽。
+        set("long", "人死鳥朝天，不死萬萬年。[2;37;0m
+它是下雨的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "zhyer");
         set("owner_name", "下雨");

@@ -5,9 +5,9 @@ void create()
 {
         if( !restore() ) {
                 set_name("彩票", ({"cai piao"}));
-                set("long","这是一张福利彩票\n");
+                set("long","這是一張福利彩票\n");
         }
-        set("unit", "张");
+        set("unit", "張");
         seteuid(getuid());
 }
 

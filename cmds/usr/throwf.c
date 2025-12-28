@@ -15,15 +15,15 @@ int main(object me, string arg)
         string no_tell, can_tell;
 
         if (me->is_busy()) 
-                return notify_fail("你现在正忙着呢。\n");
+                return notify_fail("你現在正忙著呢。\n");
  
                 me->start_busy(5); 
  
         if( wiz_level(me) < 1 )
-                return notify_fail("你没有这个权力。\n");
+                return notify_fail("你沒有這個權力。\n");
 
         if (! arg || arg == "")
-                return notify_fail("你是打算禁闭谁？\n");
+                return notify_fail("你是打算禁閉誰？\n");
 
         if( arg == query("id", me) )
                 return notify_fail("你有病？\n");
@@ -31,13 +31,13 @@ int main(object me, string arg)
         obj = find_player(arg);
 
         if (! obj || ! me->visible(obj)) 
-                return notify_fail("没有这个人。\n");
+                return notify_fail("沒有這個人。\n");
 
           if ( wiz_level(obj) >= wiz_level(me) )
-                return notify_fail("你权限不足。\n");
+                return notify_fail("你權限不足。\n");
 
 
-                tell_object(me, "注意：\n只能惩罚chat频道刷屏的人，禁止滥用，\n对于聊天室里非chat的刷屏者，先使用push来制止。\n如果确定要继续使用输入y:\n"); 
+                tell_object(me, "注意：\n只能懲罰chat頻道刷屏的人，禁止濫用，\n對於聊天室裡非chat的刷屏者，先使用push來制止。\n如果確定要繼續使用輸入y:\n"); 
                 input_to("get_input", me, obj);
 
         return 1;
@@ -53,7 +53,7 @@ int do_beep(object obj)
 protected void get_input(string arg, object me, object obj)
 {
         if (!arg || arg!="y") {
-                tell_object(me, "你宽容地打消了念头。\n"); 
+                tell_object(me, "你寬容地打消了念頭。\n"); 
                 return;
         }
         call_out("do_beep", 1, obj); 
@@ -70,7 +70,7 @@ int help(object me)
         write(@HELP
 指令格式：throwf <某人>
 
-因为某人刷屏而禁闭他一段时间，惩罚时间递增，有记录。（导师权限以上可用）
+因為某人刷屏而禁閉他一段時間，懲罰時間遞增，有記錄。（導師權限以上可用）
 
 HELP);
         return 1;

@@ -7,8 +7,8 @@ inherit NPC;
 int do_copy(object ob);
 
 string *title = ({
-	"天河帮", "长鲸岛", "神农帮", "巨鲸帮", "海沙派", "青竹帮",
-	"龙游帮", "金龙帮", "鄱阳帮", "恶虎沟", "千柳庄"
+	"天河幫", "長鯨島", "神農幫", "巨鯨幫", "海沙派", "青竹幫",
+	"龍游幫", "金龍幫", "鄱陽幫", "惡虎溝", "千柳莊"
 });
 
 void create()
@@ -21,11 +21,11 @@ string weapon = "null" , menpai;
 
 name = RNAME_D->get_random_name(i);
 set_name(name["name"], name["id"] + ({ "jie fei" }));
-set("title", HIW+title[random(sizeof(title))]+NOR+(i?"":"女")+"帮众");
+set("title", HIW+title[random(sizeof(title))]+NOR+(i?"":"女")+"幫眾");
 set("gender", i?"男性":"女性");
 set("age", 27+random(30));
 
-set("long","这个拦路的劫匪是"+query("title")+"，满脸伤疤，一脸凶狠而霸道的样子。\n");
+set("long","這個攔路的劫匪是"+query("title")+"，滿臉傷疤，一臉兇狠而霸道的樣子。\n");
 set("attitude", "peaceful");
 set("combat_exp", 5000000);
 
@@ -91,7 +91,7 @@ set("dex",35+random(5));
 			(: perform_action, "cuff.zhen" :),
 			(: perform_action, "cuff.luanhuan" :),
 		}));
-		menpai = "武当";
+		menpai = "武當";
 		break;
 		case 1:  // wd2
 		set_skill("yinyun-ziqi", 500);
@@ -112,7 +112,7 @@ set("dex",35+random(5));
 		  (: perform_action, "sword.lian" :),
 		}));
 		weapon = "sword";
-		menpai = "武当";
+		menpai = "武當";
 		break;
 		case 2:  // sl1
 		set_skill("yijin-jing", 500);
@@ -152,7 +152,7 @@ set("dex",35+random(5));
 			(: perform_action, "sword.lianhuan" :),
 		}));
 		weapon = "sword";
-		menpai = "华山";
+		menpai = "華山";
 		break;
 		case 4:  // sl3
 		set_skill("yijin-jing", 500);
@@ -188,7 +188,7 @@ set("dex",35+random(5));
 			(: perform_action, "sword.zongjue" :),
 		}));
 		weapon = "sword";
-		menpai = "华山";
+		menpai = "華山";
 		break;
 		case 6:  // hs2
 		set_skill("zixia-gong", 500);
@@ -207,7 +207,7 @@ set("dex",35+random(5));
 			(: perform_action, "blade.sanshenfeng" :),
 		}));
 		weapon = "blade";
-		menpai = "华山";
+		menpai = "華山";
 		break;
 		case 7:  // gb1
 		set_skill("huntian-qigong", 500);
@@ -229,7 +229,7 @@ set("dex",35+random(5));
 			(: perform_action, "stick.pi" :),				
 		}));
 		weapon = "stick";
-		menpai = "丐帮";
+		menpai = "丐幫";
 		break;
 		case 8:  // gb2
 		set_skill("huntian-qigong", 500);
@@ -248,7 +248,7 @@ set("dex",35+random(5));
 			(: perform_action, "strike.xiao" :),
 			(: perform_action, "strike.paiyun" :),
 		}));
-		menpai = "丐帮";
+		menpai = "丐幫";
 		break;
 		case 9:  // thd1
 		set_skill("bihai-chaosheng", 500);
@@ -274,7 +274,7 @@ set("dex",35+random(5));
 		}));
 		set("thd/perform",999);
 		weapon = "xiao";
-		menpai = "桃花岛";
+		menpai = "桃花島";
 		break;
 		case 10: // thd2
 		set_skill("bihai-chaosheng", 500);
@@ -295,7 +295,7 @@ set("dex",35+random(5));
 			(: perform_action, "finger.shentong" :),
 		}));
 		set("thd/perform",999);
-		menpai = "桃花岛";
+		menpai = "桃花島";
 		break;
 		case 11: // mr1
 		set_skill("shenyuan-gong", 500);
@@ -316,7 +316,7 @@ set("dex",35+random(5));
       (: perform_action, "parry.lianhuan" :),
 		}));
 		weapon = "sword";
-		menpai = "姑苏慕容";
+		menpai = "姑蘇慕容";
 		break;
 		case 12: // gumu1
 		set_skill("yunu-xinjing", 500);
@@ -336,8 +336,8 @@ set("dex",35+random(5));
 		}));
 		weapon = "sword";
 		menpai = "古墓";
-		if (random(2)) set("env/玄铁剑法","海潮");
-		else set("env/玄铁剑法","汹涌");
+		if (random(2)) set("env/玄鐵劍法","海潮");
+		else set("env/玄鐵劍法","洶湧");
 		break;
 		case 13: // emei1
 		set_skill("linji-zhuang", 500);
@@ -455,7 +455,7 @@ set("dex",35+random(5));
 			(: exert_function, "ku" :),
 			(: exert_function, "jiuchong" :),
 		}));
-		menpai = "大理天龙寺";
+		menpai = "大理天龍寺";
 		break;
 		case 19: // gumu2
 		set_skill("yinsuo-jinling", 500);
@@ -510,7 +510,7 @@ set("dex",35+random(5));
 		set("chat_msg_combat", ({
       (: perform_action, "strike.diezhang" :),
 		}));
-		menpai = "昆仑派";
+		menpai = "崑崙派";
 		break;
 		case 22: // kl2
 		set_skill("xuantian-wuji", 500);
@@ -526,7 +526,7 @@ set("dex",35+random(5));
 			(: exert_function, "taxue" :),
 			(: perform_action, "cuff.kaishan" :),
 		}));
-		menpai = "昆仑派";
+		menpai = "崑崙派";
 		break;
 		case 23: // kl3
 		set_skill("xuantian-wuji", 500);
@@ -542,7 +542,7 @@ set("dex",35+random(5));
 			(: exert_function, "taxue" :),
 			(: perform_action, "leg.chuanyun" :),
 		}));
-		menpai = "昆仑派";
+		menpai = "崑崙派";
 		break;
 		case 24: // kl4
 		set_skill("xuantian-wuji", 500);
@@ -557,7 +557,7 @@ set("dex",35+random(5));
 			(: perform_action, "sword.xunlei" :),
 			(: perform_action, "sword.podi" :),
 		}));
-		menpai = "昆仑派";
+		menpai = "崑崙派";
 		weapon = "sword";
 		break;
 		case 25: // tls3
@@ -575,7 +575,7 @@ set("dex",35+random(5));
 			(: perform_action, "finger.sanmai" :),
 			(: perform_action, "finger.sandie" :),
 		}));
-		menpai = "大理天龙寺";
+		menpai = "大理天龍寺";
 		break;
 		case 26: // tz1
 		set_skill("guiyuan-tunafa", 500);
@@ -595,7 +595,7 @@ set("dex",35+random(5));
 			(: perform_action, "strike.qinna" :),
 			(: perform_action, "strike.lianhuan" :),
 		}));
-		menpai = "铁掌派";
+		menpai = "鐵掌派";
 		break;
 		case 27: // tz2
 		set_skill("guiyuan-tunafa", 500);
@@ -614,7 +614,7 @@ set("dex",35+random(5));
 			(: perform_action, "strike.lianhuan" :),
 			(: perform_action, "strike.heyi" :),
 		}));
-		menpai = "铁掌派";
+		menpai = "鐵掌派";
 		break;
 		case 28: // sld1
 		set_skill("dulong-dafa", 500);
@@ -630,7 +630,7 @@ set("dex",35+random(5));
 			(: exert_function, "wudi" :),
 			(: perform_action, "strike.bujue" :),
 		}));
-		menpai = "神龙教";
+		menpai = "神龍教";
 		break;
 		case 29: // sld2
 		set_skill("dulong-dafa", 500);
@@ -650,7 +650,7 @@ set("dex",35+random(5));
 			(: perform_action, "dagger.beauty" :),
 			(: perform_action, "dagger.diqing" :),
 		}));
-		menpai = "神龙教";
+		menpai = "神龍教";
 		weapon = "dagger";
 		break;
 		
@@ -674,7 +674,7 @@ set("dex",35+random(5));
 			(: perform_action, "whip.feilong" :),
 			(: perform_action, "whip.feilong" :),
 		}));
-		menpai = "神龙教";
+		menpai = "神龍教";
 		weapon = "whip";
 		break;
 		
@@ -699,7 +699,7 @@ set("dex",35+random(5));
 			(: perform_action, "cuff.lingshe" :),
 			(: perform_action, "cuff.lingshe" :),
 		}));
-		menpai = "神龙教";
+		menpai = "神龍教";
 		break;
 		
 		
@@ -717,7 +717,7 @@ set("dex",35+random(5));
 		
 		
 		default: // others      BUG!!!
-		set("long","武功设置错误，BUG！！！");
+		set("long","武功設置錯誤，BUG！！！");
 	}
 	set("weapon" , weapon);
 
@@ -796,7 +796,7 @@ void fight_ob(object ob)
 {
 	if (!objectp(query_temp("target"))
 	|| ob->query_temp("protecting") != query_temp("target")) {
-		command("say 走远点，老子正忙着呢。");
+		command("say 走遠點，老子正忙著呢。");
 		ob->remove_killer(this_object());
 	}
 	else ::fight_ob(ob);
@@ -806,6 +806,6 @@ void dest()
 {
 	object ob = this_object();
 
-	if (environment(ob)) message_vision("$N匆匆忙忙地离开了。\n",ob);
+	if (environment(ob)) message_vision("$N匆匆忙忙地離開了。\n",ob);
 	destruct(ob);
 }

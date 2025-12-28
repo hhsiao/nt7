@@ -7,7 +7,7 @@ void setup()
         set_name("[30m冥火[2;37;0m[2;37;0m", ({"qilin_ddoz"}));        
         set("gender", "女性");                
         set("long", "冥火[2;37;0m
-它是偷天的魔幻兽。
+它是偷天的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

@@ -31,7 +31,7 @@ void get_inventory(object ob, int deep)
         {
             //if( mapping_eqv(get_object(inv[i])->query_entire_dbase(), inv[i]->query_entire_dbase()) ) {
             if (query("set_data", inv[i]) || query("equipped", inv[i]))
-            { // 降低计算复杂度
+            { // 降低計算複雜度
                 file = save_variable(inv[i]->query_entire_dbase());
                 file = replace_string(file, "\n", ex2);
             }
@@ -98,7 +98,7 @@ int restore()
     return 0;
 }
 
-// logind.c 调用
+// logind.c 調用
 int restore_package()
 {
     string file;

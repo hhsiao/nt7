@@ -21,9 +21,9 @@ void create()
         set("dex", 25);
         set("str", 25);
         set("long",
-"她是韦爵爷不知道第几房的小妾，在这里开个成衣铺，卖些不知道
-哪来的衣服。有人说那都是韦爵爷从宫中弄出来的禁品。话这么说，
-生意照样红活。\n");
+"她是韋爵爺不知道第幾房的小妾，在這裡開個成衣鋪，賣些不知道
+哪來的衣服。有人說那都是韋爵爺從宮中弄出來的禁品。話這麼說，
+生意照樣紅活。\n");
         set_skill("unarmed", 60);
         set_skill("changquan", 60);
         map_skill("unarmed", "changquan");
@@ -81,25 +81,25 @@ string ask_job()
 
         me = this_player();
         if( query_temp("job/sew", me) )
-                return "让你做的衣服你弄好了么？";
+                return "讓你做的衣服你弄好了麼？";
 
         if( query("gender", me) != "女性" )
-                return "这女孩子家的活你也来干？";
+                return "這女孩子家的活你也來幹？";
 
         if( query("combat_exp", me)<30000 )
-                return "让你在我这儿干活我还真有点不放心。";
+                return "讓你在我這兒幹活我還真有點不放心。";
 
         if( query("combat_exp", me)>3000000 )
-                return "大侠您好，您还是看见什么好的自己选件吧，让您干活也太委屈了！";
+                return "大俠您好，您還是看見什麼好的自己選件吧，讓您幹活也太委屈了！";
 
         if( query("qi", me)<30 )
-                return "你脸色这么差，还是先歇会儿吧。";
+                return "你臉色這麼差，還是先歇會兒吧。";
 
         if( query("jing", me)<30 )
-                return "你精神头不行啊，别把我得料子糟踏了！";
+                return "你精神頭不行啊，別把我得料子糟踏了！";
 
         if (me->query_int() < 20)
-                return "嘻嘻...你这么笨手笨脚的，也会做衣服？";
+                return "嘻嘻...你這麼笨手笨腳的，也會做衣服？";
 
         if (! interactive(me))
                 return "...";
@@ -111,10 +111,10 @@ string ask_job()
                               query_ip_number($1) == query_ip_number($(me)) :));
 
         if (sizeof(obs) > 0)
-                return "现在已经有" + obs[0]->name() + "在帮我啦，不劳你了。";
+                return "現在已經有" + obs[0]->name() + "在幫我啦，不勞你了。";
 
         set_temp("job/sew", 1, me);
-        return "好，你就帮我做点裁缝(sew)的小活吧！喏，东西都在这儿。";
+        return "好，你就幫我做點裁縫(sew)的小活吧！喏，東西都在這兒。";
 }
 
 int do_sew(string arg)
@@ -123,12 +123,12 @@ int do_sew(string arg)
 
         me = this_player();
         if (me->is_busy())
-                return notify_fail("你正忙着呢，别着急。\n");
+                return notify_fail("你正忙著呢，彆著急。\n");
 
         if( !query_temp("job/sew", me) )
         {
-                message_vision("$N偷偷的拿起一个顶针，$n一声娇吒道："
-                               "你给我放下，有什么好玩的？\n",
+                message_vision("$N偷偷的拿起一個頂針，$n一聲嬌吒道："
+                               "你給我放下，有什麼好玩的？\n",
                                me, this_object());
                 return 1;
         }
@@ -136,7 +136,7 @@ int do_sew(string arg)
         set_temp("job/step", 1, me);
         me->start_busy(bind((: call_other, __FILE__, "working" :), me),
                        bind((: call_other, __FILE__, "halt_working" :), me));
-        tell_object(me, "你开始缝纫。\n");
+        tell_object(me, "你開始縫紉。\n");
         return 1;
 }
 
@@ -163,25 +163,25 @@ int working(object me)
         switch(query_temp("job/step", me) )
         {
         case 1:
-                msg = "$N戴上一个顶针，摸出针线。";
+                msg = "$N戴上一個頂針，摸出針線。";
                 break;
         case 2:
-                msg = "$N展开布料，对着样子比划了半天。";
+                msg = "$N展開布料，對著樣子比劃了半天。";
                 break;
         case 3:
-                msg = "$N轻轻的折了折料子，留下几条痕印。";
+                msg = "$N輕輕的折了折料子，留下幾條痕印。";
                 break;
         case 4:
         case 6:
-                msg = "$N专心致志的一针一线的缝纫。";
+                msg = "$N專心致志的一針一線的縫紉。";
                 break;
         case 5:
-                msg = "$N凝眉看了看样子，若有所思。";
+                msg = "$N凝眉看了看樣子，若有所思。";
         case 7:
-                msg = "$N轻动纤纤细指，缝针上下穿梭，衣服的模样渐渐的出来了。";
+                msg = "$N輕動纖纖細指，縫針上下穿梭，衣服的模樣漸漸的出來了。";
                 break;
         default:
-                msg = "$N把衣服缝好，烫熨完毕，叠好递给$n。";
+                msg = "$N把衣服縫好，燙熨完畢，疊好遞給$n。";
                 finish = 1;
                 break;
         }
@@ -189,7 +189,7 @@ int working(object me)
 
         if (finish)
         {
-                msg += "$n看了$N缝出来的衣服，点头道：不错，有点意思。\n";
+                msg += "$n看了$N縫出來的衣服，點頭道：不錯，有點意思。\n";
                 delete_temp("job/sew", me);
                 delete_temp("job/step", me);
 
@@ -209,12 +209,12 @@ int working(object me)
         {
                 if (! query("zhufu_mod/cloth", me) && random(10) == 1) 
                 {
-                        message_vision("$n对$N微微一笑，道：干得不赖，有点" 
-                                       "意思，这个神之祝福战衣就算是我送给你的礼物吧。\n",
+                        message_vision("$n對$N微微一笑，道：幹得不賴，有點" 
+                                       "意思，這個神之祝福戰衣就算是我送給你的禮物吧。\n",
                                        me, this_object());
                         ob = new("/clone/goods/zhufu_cloth"); 
                         ob->move(me, 1); 
-                        tell_object(me, HIM "\n你获得了一个" + ob->name() + HIM "！\n" NOR);
+                        tell_object(me, HIM "\n你獲得了一個" + ob->name() + HIM "！\n" NOR);
                         set("zhufu_mod/cloth", 1, me); 
                 }
                 return 0;
@@ -226,8 +226,8 @@ int working(object me)
 
 int halt_working(object me)
 {
-        message_vision("$N把手中的针线一扔，嘀咕道："
-                       "没劲，本姑娘不干了！\n", me);
+        message_vision("$N把手中的針線一扔，嘀咕道："
+                       "沒勁，本姑娘不幹了！\n", me);
         delete_temp("job/sew", me);
         delete_temp("job/step", me);
         return 1;

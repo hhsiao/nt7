@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define HUAN "「" HIM "云霞幻生" NOR "」"
+#define HUAN "「" HIM "雲霞幻生" NOR "」"
 
 inherit F_SSERVER;
 
@@ -20,36 +20,36 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(HUAN "只能对战斗中的对手使用。\n");
+                return notify_fail(HUAN "只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "club" )
-                return notify_fail("你使用的武器不对，难以施展" HUAN "。\n");
+                return notify_fail("你使用的武器不對，難以施展" HUAN "。\n");
 
         skill = me->query_skill("caiyan-gong", 1);
 
         if (skill < 120)
-                return notify_fail("你采燕功等级不够，难以施展" HUAN "。\n");
+                return notify_fail("你採燕功等級不夠，難以施展" HUAN "。\n");
 
         if (me->query_skill("dodge") < 180)
-                return notify_fail("你的轻功火候不够，难以施展" HUAN "。\n");
+                return notify_fail("你的輕功火候不夠，難以施展" HUAN "。\n");
  
         if (me->query_skill_mapped("club") != "caiyan-gong")
-                return notify_fail("你没有激发采燕功，难以施展" HUAN "。\n");
+                return notify_fail("你沒有激發採燕功，難以施展" HUAN "。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你现在的真气不够，难以施展" HUAN "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" HUAN "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         wn = weapon->name();
 
-        message_sort(HIM "\n$N" HIM "蓦地施出「" HIW "云霞幻生"
-                     HIM "」绝技，手中" + wn + HIM "由一变二，"
-                     "由二变四，由四变八，由八变十六……竟幻出"
-                     "无数根" + wn + HIM "。棍影层层叠叠朝四周"
-                     "疾刺而出，企图封锁$n" HIM "的退路。\n" NOR,
+        message_sort(HIM "\n$N" HIM "驀地施出「" HIW "雲霞幻生"
+                     HIM "」絕技，手中" + wn + HIM "由一變二，"
+                     "由二變四，由四變八，由八變十六……竟幻出"
+                     "無數根" + wn + HIM "。棍影層層疊疊朝四周"
+                     "疾刺而出，企圖封鎖$n" HIM "的退路。\n" NOR,
                      me, target);
 
         ap = attack_power(me, "club");
@@ -65,8 +65,8 @@ int perform(object me, object target)
                 me->start_busy(2);
         } else
         {
-                msg = CYN "$n" CYN "大惊之下急忙跃开数步，方才摆脱$N"
-                      CYN "棍影的范围。\n" NOR;
+                msg = CYN "$n" CYN "大驚之下急忙躍開數步，方才擺脫$N"
+                      CYN "棍影的範圍。\n" NOR;
                 addn("neili", -50, me);
                 me->start_busy(3);
         }
@@ -79,15 +79,15 @@ string final(object me, object target, int damage)
 {
         string msg;
 
-        msg = HIR "$p大惊失色之下接连被$P击中数棍"
-              "，当即疼痛难当，";
+        msg = HIR "$p大驚失色之下接連被$P擊中數棍"
+              "，當即疼痛難當，";
 
         if (random(3) >= 1 && ! target->is_busy())
         {
                 target->start_busy(damage /60+ 2);
-                msg += "无暇反击。\n" NOR;
+                msg += "無暇反擊。\n" NOR;
         } else
-                msg += "急声长呼。\n" NOR;
+                msg += "急聲長呼。\n" NOR;
 
         return  msg;
 }

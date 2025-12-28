@@ -13,8 +13,8 @@ void create()
         else*/ {
                 set("position", "on");
                 set("prep", "on");
-                set("unit", "张");
-                set("long", "一张大木桌，足够几十个人同时吃饭。\n");
+                set("unit", "張");
+                set("long", "一張大木桌，足夠幾十個人同時吃飯。\n");
                 set("value", 1);
         }
 }

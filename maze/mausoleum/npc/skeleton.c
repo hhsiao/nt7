@@ -4,12 +4,12 @@ inherit CLASS_D("generate") + "/boss";
 void sp_attack();
 void create()
 {
-        string *names = ({"骷髅武士"});
+        string *names = ({"骷髏武士"});
 
         ::create();
         set_name( names[random(sizeof(names))], ({ "skeleton fighter","skeleton", "fighter" }));
-        set("long", "这是一只骨头架子。\n");
-        set("title", HIB "(鬼气)" NOR);
+        set("long", "這是一隻骨頭架子。\n");
+        set("title", HIB "(鬼氣)" NOR);
 
         set("str", 50);
         set("con", 120);
@@ -24,7 +24,7 @@ void create()
         /*
         set("chat_chance", 1);
         set("chat_msg", ({
-                "骷髅空洞的眼眶里闪烁着可怕的荧光。\n"
+                "骷髏空洞的眼眶裡閃爍著可怕的熒光。\n"
         }) );
         */
         set("chat_chance_combat", 120);
@@ -40,7 +40,7 @@ void create()
                 "mar" : 10,
         ]));
         //set("level", 20 );
-        set("death_msg",BLU"\n$N散成了一堆碎骨头。\n\n"NOR);
+        set("death_msg",BLU"\n$N散成了一堆碎骨頭。\n\n"NOR);
         set("no_corpse", 1);
         set_temp("apply/attack", 2000+random(1000));
         set_temp("apply/unarmed_damage",2000+random(1000));
@@ -77,8 +77,8 @@ void sp_attack()
         if( objectp(weapon) ) weapon->unequip();
         if( objectp(ob = present("long sword", this_object())) ) {
                 ob->wield();
-                msg = HIB"$N双眼突然发出强烈的蓝光，令$n睁不开眼，$n感到一阵具痛。\n片刻后光芒散去，$n赫然发现$N的手中长剑正在滴血，\n"
-                 "$n被$N使出一套失传已久的古代剑法所伤！\n"NOR;
+                msg = HIB"$N雙眼突然發出強烈的藍光，令$n睜不開眼，$n感到一陣具痛。\n片刻後光芒散去，$n赫然發現$N的手中長劍正在滴血，\n"
+                 "$n被$N使出一套失傳已久的古代劍法所傷！\n"NOR;
                 message_vision(append_color(msg, HIB),this_object(),enemy);
                 enemy->receive_damage("qi",2000+random(2000),this_object());
                 COMBAT_D->report_status(enemy);

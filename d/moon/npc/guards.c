@@ -2,12 +2,12 @@
 inherit NPC;
 void create()
 {
-	string *order=({"少年", "青年", "中年", "壮年", "老年"});
-        set_name((order[random(5)]) +"庄丁", ({ "guards"}) );
+	string *order=({"少年", "青年", "中年", "壯年", "老年"});
+        set_name((order[random(5)]) +"莊丁", ({ "guards"}) );
         set("gender", "男性" );
-        set("title", "圆月山庄");
+        set("title", "圓月山莊");
         set("age", 22);
-        set("long", "这是圆月山庄的一个庄丁。\n");
+        set("long", "這是圓月山莊的一個莊丁。\n");
         set("combat_exp", 300000+random(100000));
         set("attitude", "friendly");
         set_skill("unarmed", 50);
@@ -24,7 +24,7 @@ void create()
         set("max_force",300);
         set("chat_chance", 3);
         set("chat_msg", ({
-                "庄丁警惕地喝道；站住！你是干什么的？\n",
+                "莊丁警惕地喝道；站住！你是幹什麼的？\n",
 		(: random_move :),
         }) );
 	

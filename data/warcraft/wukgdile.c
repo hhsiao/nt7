@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m风间萌衣[2;37;0m[2;37;0m", ({"wurisa"}));        
+        set_name("[1;31m風間萌衣[2;37;0m[2;37;0m", ({"wurisa"}));        
         set("gender", "女性");                
         set("long", "wield jian[2;37;0m
-它是宇智波鼬的魔幻兽。
+它是宇智波鼬的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

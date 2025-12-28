@@ -1,4 +1,4 @@
-// head.c 脑袋
+// head.c 腦袋
 
 #include <ansi.h>
 
@@ -12,18 +12,18 @@ int is_head() { return 1; }
 
 void create()
 {
-        set_name(NOR + RED "头颅" NOR, ({ "head" }));
+        set_name(NOR + RED "頭顱" NOR, ({ "head" }));
         set_weight(1500);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "颗");
+                set("unit", "顆");
                 set("value", 1);
                 set("no_store", 1);
-                set("no_sell", "我的天…这…这你也拿来卖…官…官府呢？");
+                set("no_sell", "我的天…這…這你也拿來賣…官…官府呢？");
                 set("food_supply", 10);
                 set("food_remaining", 4);
-                set("long", RED "这是一颗鲜血淋淋的首级，鲜血正缓缓渗出。\n" NOR);
+                set("long", RED "這是一顆鮮血淋淋的首級，鮮血正緩緩滲出。\n" NOR);
         }
 }
 
@@ -41,19 +41,19 @@ int set_from(object owner)
 
         if( !stringp(query("victim_name", owner)) )
         {
-                set("name", "腐烂的人头");
-                set("name", "腐烂的无头尸体", owner);
+                set("name", "腐爛的人頭");
+                set("name", "腐爛的無頭屍體", owner);
         } else
         {
-                set("name",query("victim_name", owner)+"的人头");
-                set("name", "无头尸体", owner);
+                set("name",query("victim_name", owner)+"的人頭");
+                set("name", "無頭屍體", owner);
         }
 
         if( query_temp("clawed_by_jiuyin", owner) )
         {
                 set_temp("clawed_by_jiuyin", 1);
                 set("long", query("long") +
-                            "上面赫然有五个小洞，伸手一探，刚好可以插入。\n");
+                            "上面赫然有五個小洞，伸手一探，剛好可以插入。\n");
         }
 
         set_name(NOR + RED + query("name") + NOR, ({ "head" }));
@@ -70,9 +70,9 @@ int do_cut(object me, string part)
 
 int finish_eat()
 {
-        set_name(NOR + WHT "骷髅头" NOR, ({ "bone" }));
+        set_name(NOR + WHT "骷髏頭" NOR, ({ "bone" }));
         set_weight(150);
-        set("long", WHT "这是一个白森森的骷髅头。\n" NOR);
+        set("long", WHT "這是一個白森森的骷髏頭。\n" NOR);
         return 1;
 }
 

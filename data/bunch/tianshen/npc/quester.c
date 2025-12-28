@@ -8,20 +8,20 @@ inherit NPC;
 #define WAIT_TIME      60
 
 mapping bunch_good = ([
-	"bunch_name" : "天神宫",
+	"bunch_name" : "天神宮",
 	"id" : "tianshen",
 	"place" : "yz",
-	"boss" : "西门公子",
-	"place_name" : "扬州城",
+	"boss" : "西門公子",
+	"place_name" : "揚州城",
 	"type"  : "good",
 	]);
 
 void create()
 {
-        set_name("任务使者", ({ "quester" }));
+        set_name("任務使者", ({ "quester" }));
         set("gender", "男性");
         set("age", 23);
-        set("long", "他是一个长得很英俊的男子，看上去风流倜傥。\n");
+        set("long", "他是一個長得很英俊的男子，看上去風流倜儻。\n");
         set("bunch/bunch_name", bunch_good["bunch_name"]);
         set("shen_type", 1);
         set("per", 29);

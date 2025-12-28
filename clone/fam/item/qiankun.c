@@ -9,14 +9,14 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIW "这是一块晶莹剔透的宝石，石面光华"
-                            "流转，便似活物一般。\n" NOR);
-                set("unit", "块");
+                set("long", HIW "這是一塊晶瑩剔透的寶石，石面光華"
+                            "流轉，便似活物一般。\n" NOR);
+                set("unit", "塊");
                 set("value", 30000);
                 set("item_origin", 1);
                 set("material_attrib", "stone");
                 set("material_name", HIG "乾" HIW "坤" HIY "石" NOR);
-                set("can_make", ({ "铁掌" }));
+                set("can_make", ({ "鐵掌" }));
                 set("power_point", 100);
         }
 }

@@ -10,13 +10,13 @@ void create()
         set_name( "金人", ({ "gold man", "gold", "man"}));
         set_color("$HIY$");
         set("long", @LONG
-这是秦始皇完成统一大业之后，收缴天下兵器，熔化之后铸成的一座金人，身高三丈，
-重达千石，如同一座巍峨的山峰，耸立在你面前。秦始皇死后，这座金人就作为墓室
-的守卫者，数千年来一直守卫着秦陵的内宫。它刀枪不入，力大无穷，触动机关之后
-在东方仙术的作用下赫然使出一套失传已久的武技，古往今来不知有多少盗墓的好手
+這是秦始皇完成統一大業之後，收繳天下兵器，熔化之後鑄成的一座金人，身高三丈，
+重達千石，如同一座巍峨的山峰，聳立在你面前。秦始皇死後，這座金人就作為墓室
+的守衛者，數千年來一直守衛著秦陵的內宮。它刀槍不入，力大無窮，觸動機關之後
+在東方仙術的作用下赫然使出一套失傳已久的武技，古往今來不知有多少盜墓的好手
 栽在它的手上。
 LONG );
-        set("title", HIY "九大护法" NOR);
+        set("title", HIY "九大護法" NOR);
         set("attitude", "aggressive");
         set("str", 120);
         set("con", 120);
@@ -40,7 +40,7 @@ LONG );
                 (: sp_attack :),
         }));
 
-        set("death_msg", HIY "\n$N散落成一堆青铜。\n\n" NOR);
+        set("death_msg", HIY "\n$N散落成一堆青銅。\n\n" NOR);
         set("no_corpse", 1);
 
         set_skill("force", 4500);
@@ -119,18 +119,18 @@ void sp_attack()
                 return;
         enemy = enemies[random(sizeof(enemies))];
         switch( random(7) ){
-                case 6: msg = HIY"$N猛地一跺脚，一道震波从地面传来，$n顿受重创，扑通摔倒在地。\n"NOR;break;
-                case 5: msg = HIY"$N突然向你扑来，死死地将你抱住，$n听见自己全身的骨骼格格作响，似乎要在这一抱之下化为齑粉"NOR; break;
-                case 4: msg = HIY"$N突然高高跃起，巨大的身躯遮天蔽日。你想要施展身法闪躲开来，无奈金人的体积实在太大，\n"
-                                 "而墓室中的空间不大，闪躲的余地十分有限，只听到一声巨响，你的身躯被金人活活砸入地面\n"NOR; break;
-                case 3: msg = HIY"$N双手突然发出强烈的光芒，令$n睁不开眼，$n感到一阵具痛。片刻后光芒散去，$n赫然发现$N的手中多出一柄巨斧正在滴血，\n"
-                                 "$n被$N使出一套失传已久的古代斧法所伤！\n"NOR; break;
-                case 2: msg = HIY"$N双手突然发出强烈的光芒，令$n睁不开眼，$n感到一阵具痛。片刻后光芒散去，$n赫然发现$N的手中多出一柄巨剑正在滴血，\n"
-                                 "$n被$N使出一套失传已久的古代剑法所伤！\n"NOR; break;
-                case 1: msg = HIY"$N双手突然发出强烈的光芒，令$n睁不开眼，$n感到一阵具痛。片刻后光芒散去，$n赫然发现$N的手中多出一柄巨锤正在滴血，\n"
-                                 "$n被$N使出一套失传已久的古代锤法所伤！\n"NOR; break;
-                default: msg = HIY"$N双手突然发出强烈的光芒，令$n睁不开眼，$n感到一阵具痛。片刻后光芒散去，$n赫然发现$N的手中多出一柄巨刀正在滴血，\n"
-                                 "$n被$N使出一套失传已久的古代刀法所伤！\n"NOR; break;
+                case 6: msg = HIY"$N猛地一跺腳，一道震波從地面傳來，$n頓受重創，撲通摔倒在地。\n"NOR;break;
+                case 5: msg = HIY"$N突然向你撲來，死死地將你抱住，$n聽見自己全身的骨骼格格作響，似乎要在這一抱之下化為齏粉"NOR; break;
+                case 4: msg = HIY"$N突然高高躍起，巨大的身軀遮天蔽日。你想要施展身法閃躲開來，無奈金人的體積實在太大，\n"
+                                 "而墓室中的空間不大，閃躲的餘地十分有限，只聽到一聲巨響，你的身軀被金人活活砸入地面\n"NOR; break;
+                case 3: msg = HIY"$N雙手突然發出強烈的光芒，令$n睜不開眼，$n感到一陣具痛。片刻後光芒散去，$n赫然發現$N的手中多出一柄巨斧正在滴血，\n"
+                                 "$n被$N使出一套失傳已久的古代斧法所傷！\n"NOR; break;
+                case 2: msg = HIY"$N雙手突然發出強烈的光芒，令$n睜不開眼，$n感到一陣具痛。片刻後光芒散去，$n赫然發現$N的手中多出一柄巨劍正在滴血，\n"
+                                 "$n被$N使出一套失傳已久的古代劍法所傷！\n"NOR; break;
+                case 1: msg = HIY"$N雙手突然發出強烈的光芒，令$n睜不開眼，$n感到一陣具痛。片刻後光芒散去，$n赫然發現$N的手中多出一柄巨錘正在滴血，\n"
+                                 "$n被$N使出一套失傳已久的古代錘法所傷！\n"NOR; break;
+                default: msg = HIY"$N雙手突然發出強烈的光芒，令$n睜不開眼，$n感到一陣具痛。片刻後光芒散去，$n赫然發現$N的手中多出一柄巨刀正在滴血，\n"
+                                 "$n被$N使出一套失傳已久的古代刀法所傷！\n"NOR; break;
         }
         message_vision(append_color(msg, HIY),this_object(),enemy);
         enemy->receive_damage("qi",10000+random(10000),this_object());
@@ -159,8 +159,8 @@ mixed hit_ob(object me, object ob, int damage_bouns)
         ob->receive_damage("qi", damage, me);
         ob->receive_wound("qi", damage, me);
         set("neili",query("max_neili",  me), me);
-        return HIY "$N" HIY "全身闪出耀眼的金光，登时令$n"
-               HIY "全身有若刀绞。\n" NOR;
+        return HIY "$N" HIY "全身閃出耀眼的金光，登時令$n"
+               HIY "全身有若刀絞。\n" NOR;
 }
 
 int random_move()
@@ -222,7 +222,7 @@ varargs void die(object killer)
                 owner = FUBEN_D->query_fuben_owner(killer);
                 password = 1+random(9);
                 set("quest/password/"+finished, password, mazeobj);
-                FUBEN_D->tell_fuben("mausoleum",owner,HIW"杀死 "+name()+": "+finished+"/"+count+"。\n密码 "+password+"\n"NOR);
+                FUBEN_D->tell_fuben("mausoleum",owner,HIW"殺死 "+name()+": "+finished+"/"+count+"。\n密碼 "+password+"\n"NOR);
 
                 /*
                 obs = pointerp(killer->query_team()) ?

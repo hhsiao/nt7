@@ -5,7 +5,7 @@
 
 inherit F_SSERVER;
 
-string name() { return "去剑势"; }
+string name() { return "去劍勢"; }
 
 int perform(object me, object target)
 {
@@ -16,15 +16,15 @@ int perform(object me, object target)
 
         if( !target ) target = offensive_target(me);
         if( !target || !target->is_character() )
-                return notify_fail("去剑势只能对对手使用。\n");
+                return notify_fail("去劍勢只能對對手使用。\n");
 
         if( me->query_skill("liancheng-jianfa") < 80 )
-                return notify_fail("你的连城剑法不够娴熟，不能施用去剑势。\n");
+                return notify_fail("你的連城劍法不夠嫻熟，不能施用去劍勢。\n");
 
         if( !objectp(weapon=query_temp("weapon", target)) )
-                return notify_fail("对手并没有使用武器。\n");
+                return notify_fail("對手並沒有使用武器。\n");
 
-        msg = "$N清啸一声，抖直手中的兵刃，以连城剑法的去剑势顺势搭上了$n的兵器！\n";
+        msg = "$N清嘯一聲，抖直手中的兵刃，以連城劍法的去劍勢順勢搭上了$n的兵器！\n";
 
         ap = attack_power(me, "sword");
         dp = defense_power(target, "parry");
@@ -32,7 +32,7 @@ int perform(object me, object target)
         if (ap / 2 + random(ap) > dp)
         {
                 me->start_busy(1);
-                msg += HIY "只听得一阵金铁交鸣之声，结果$p的兵刃被$P手中的兵器一连一带，远远地飞了开去！\n" NOR;
+                msg += HIY "只聽得一陣金鐵交鳴之聲，結果$p的兵刃被$P手中的兵器一連一帶，遠遠地飛了開去！\n" NOR;
                 obj=query_temp("weapon", target);
                 obj->unequip();
                 obj->move(environment(me));
@@ -40,7 +40,7 @@ int perform(object me, object target)
                 target->start_busy(1 + random(4));
         } else
         {
-                msg += "可是$p看破了$P的企图，并没有上当。\n" NOR;
+                msg += "可是$p看破了$P的企圖，並沒有上當。\n" NOR;
                 me->start_busy(2);
         }
         message_combatd(msg, me, target);

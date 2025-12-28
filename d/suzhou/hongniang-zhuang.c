@@ -9,11 +9,11 @@ string look_sign(object me);
 
 void create()
 {
-        set("short", "红娘堂");
+        set("short", "紅娘堂");
         set("long", @LONG
-这里就是天下夫妇定约结缘的红娘堂，只有在这里缔结婚约或是
-解除婚约才能得到世人的承认。这里是一个不大的门厅，但是经过一
-番修整之后，显得十分地气派。厅堂正中挂着一块雕着字的乌木匾牌
+這裡就是天下夫婦定約結緣的紅娘堂，只有在這裡締結婚約或是
+解除婚約才能得到世人的承認。這裡是一個不大的門廳，但是經過一
+番修整之後，顯得十分地氣派。廳堂正中掛著一塊雕著字的烏木匾牌
 (sign)。
 LONG );
         set("exits", ([
@@ -36,10 +36,10 @@ LONG );
 
 string look_sign(object me)
 {
-        return HIM"劝和不劝分\n"
-   "求缘更求份\n"
-   "红线前生系\n"
-   "姻结一世人\n"NOR;
+        return HIM"勸和不勸分\n"
+   "求緣更求份\n"
+   "紅線前生系\n"
+   "姻結一世人\n"NOR;
 }
 
 int valid_leave(object me, string dir)

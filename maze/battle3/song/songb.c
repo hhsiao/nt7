@@ -11,7 +11,7 @@ void create()
 
         NPC_D->generate_cn_name(this_object());
         set("gender", "男性");
-        set("long", "这是一名大宋将军，正威风凛凛地巡视着自己的队伍。\n");
+        set("long", "這是一名大宋將軍，正威風凜凜地巡視著自己的隊伍。\n");
 
         set("int", 30);
         set("str", 30 + random(20));
@@ -100,7 +100,7 @@ int do_kill(string arg)
 
         if (this_object()->id(arg))
         {
-                write("有没有搞错，那是军队耶，还不快跑？！\n");
+                write("有沒有搞錯，那是軍隊耶，還不快跑？！\n");
                 return 1;
         } else
         if ((sscanf(arg, "%s from %s",what, who) == 2 ||
@@ -108,12 +108,12 @@ int do_kill(string arg)
              sscanf(arg, "%s on %s", what, who) == 2 ||
              sscanf(arg, "%s %s", what, who) == 2) &&
              this_object()->id(who)) {
-                write("有没有搞错，那是军队耶，还不快跑？！\n");
+                write("有沒有搞錯，那是軍隊耶，還不快跑？！\n");
                 return 1;
         } else
         if (arg == "roar" || arg == "hou")
         {
-                write("有没有搞错，那是军队耶，还不快跑？！\n");
+                write("有沒有搞錯，那是軍隊耶，還不快跑？！\n");
                 return 1;
         }
 
@@ -122,8 +122,8 @@ int do_kill(string arg)
 
 void die()
 {
-        message_vision("$N率领的宋军将士寡不敌众，不幸" +
-                     HIR "全军覆没" NOR "！\n", this_object());
+        message_vision("$N率領的宋軍將士寡不敵眾，不幸" +
+                     HIR "全軍覆沒" NOR "！\n", this_object());
 
         return ::die();
 }

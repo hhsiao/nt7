@@ -3,33 +3,33 @@
 #include <template.h>
 
 nosave mixed  *dbase_format;    // dbase 格式
-nosave mixed  *function_format; // 函数格式
+nosave mixed  *function_format; // 函數格式
 
-nosave mapping template_data;   // 模板数据
-nosave string  base_file;       // 基准文件
+nosave mapping template_data;   // 模板數據
+nosave string  base_file;       // 基準文件
 
-// 这是一个模板
+// 這是一個模板
 int is_template() { return 1; }
 
-// 查询 dbase 格式
+// 查詢 dbase 格式
 mixed *query_dbase_format()
 {
         return (sizeof(dbase_format) ? dbase_format : 0);
 }
 
-// 查询函数格式
+// 查詢函數格式
 mixed *query_function_format()
 {
         return (sizeof(function_format) ? function_format : 0);
 }
 
-// 查询基准文件
+// 查詢基準文件
 string query_base_file() { return sprintf("%s%s.c", BASIC_OB_DIR, base_file); }
 
-// 查询全部模板数据
+// 查詢全部模板數據
 mapping query_entire_data() { return template_data; }
 
-// 查询指定模板数据
+// 查詢指定模板數據
 mixed *query_template_data(string template)
 {
         if( undefinedp(template_data[template]) )
@@ -54,7 +54,7 @@ void set_function_format(string *format)
         function_format = format;
 }
 
-// 设置基准文件
+// 設置基準文件
 void set_base_file(string file)
 {
         if( !stringp(file) || file == "" )
@@ -63,7 +63,7 @@ void set_base_file(string file)
         base_file = file;
 }
 
-// 设置模板数据
+// 設置模板數據
 void set_template_data(mapping data)
 {
         if( !mapp(data) || !sizeof(data) )

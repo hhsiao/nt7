@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("蓝蓝[2;37;0m[2;37;0m", ({"lucas"}));        
+        set_name("藍藍[2;37;0m[2;37;0m", ({"lucas"}));        
         set("gender", "男性");                
         set("long", "小狗狗[2;37;0m
-它是李子衿的魔幻兽。
+它是李子衿的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

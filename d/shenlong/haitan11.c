@@ -2,9 +2,9 @@ inherit DEMONROOM;
 
 void create()
 {
-        set("short", "海边");
+        set("short", "海邊");
         set("long",@LONG
-这是神龙岛东部沿岸海边。
+這是神龍島東部沿岸海邊。
 LONG);
 
 	set("exits", ([

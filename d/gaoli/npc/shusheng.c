@@ -1,13 +1,13 @@
-// 大唐双龙传
+// 大唐雙龍傳
  
-//书生。
+//書生。
 
 inherit NPC;
 
 void create()
 {
-  set_name("书生", ({"shu sheng","shu","sheng"}));
-  set("long","这是高丽的一个书生，整天苦读诗书。\n");
+  set_name("書生", ({"shu sheng","shu","sheng"}));
+  set("long","這是高麗的一個書生，整天苦讀詩書。\n");
   set("gender", "男性");
   set("combat_exp", 3000);
   set("age", 20);

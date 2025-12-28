@@ -1,19 +1,19 @@
-// 套装组合列表文件表
+// 套裝組合列表文件表
 // boss.xml
-// BOSS专用套装
+// BOSS專用套裝
 
 #modlist
-// 对应的套装
+// 對應的套裝
 <M3000>
-<mod_name>$CYNGRN$龙之神力$NOR$</mod_name>
+<mod_name>$CYNGRN$龍之神力$NOR$</mod_name>
 <mod_parts>
-A3000:$CYNGRN$龙神护腕$NOR$
-A3001:$CYNGRN$龙神鳞甲$NOR$
-A3002:$CYNGRN$龙神之翼$NOR$
-A3003:$CYNGRN$龙神束带$NOR$
-A3004:$CYNGRN$龙神之触$NOR$
-A3005:$CYNGRN$龙神胫甲$NOR$
-A3006:$CYNGRN$龙神战甲$NOR$
+A3000:$CYNGRN$龍神護腕$NOR$
+A3001:$CYNGRN$龍神鱗甲$NOR$
+A3002:$CYNGRN$龍神之翼$NOR$
+A3003:$CYNGRN$龍神束帶$NOR$
+A3004:$CYNGRN$龍神之觸$NOR$
+A3005:$CYNGRN$龍神脛甲$NOR$
+A3006:$CYNGRN$龍神戰甲$NOR$
 </mod_parts>
 <bas>3</bas>
 <num>7</num>
@@ -35,14 +35,14 @@ reduce_damage:20
 #listend
 
 #eqlist
-// 套装的部件
+// 套裝的部件
 <A3000>
 <type>armor/wrists</type>
-<name>$CYNGRN$龙神护腕$NOR$</name>
+<name>$CYNGRN$龍神護腕$NOR$</name>
 <id>dragon wrists</id>
 <value>10000</value>
 <mod_level>M3000</mod_level>
-<mod_name>$CYNGRN$龙之神力$NOR$</mod_name>
+<mod_name>$CYNGRN$龍之神力$NOR$</mod_name>
 <require>
 level:20
 con:30
@@ -77,11 +77,11 @@ apply_prop/force:2
 
 <A3001>
 <type>armor/armor</type>
-<name>$CYNGRN$龙神鳞甲$NOR$</name>
+<name>$CYNGRN$龍神鱗甲$NOR$</name>
 <id>dragon armor</id>
 <value>10000</value>
 <mod_level>M3000</mod_level>
-<mod_name>$CYNGRN$龙之神力$NOR$</mod_name>
+<mod_name>$CYNGRN$龍之神力$NOR$</mod_name>
 <require>
 level:20
 con:30
@@ -116,11 +116,11 @@ apply_prop/force:2
 
 <A3002>
 <type>armor/surcoat</type>
-<name>$CYNGRN$龙神之翼$NOR$</name>
+<name>$CYNGRN$龍神之翼$NOR$</name>
 <id>dragon surcoat</id>
 <value>10000</value>
 <mod_level>M3000</mod_level>
-<mod_name>$CYNGRN$龙之神力$NOR$</mod_name>
+<mod_name>$CYNGRN$龍之神力$NOR$</mod_name>
 <require>
 level:20
 con:30
@@ -155,11 +155,11 @@ apply_prop/dodge:1
 
 <A3003>
 <type>armor/waist</type>
-<name>$CYNGRN$龙神束带$NOR$</name>
+<name>$CYNGRN$龍神束帶$NOR$</name>
 <id>dragon waist</id>
 <value>10000</value>
 <mod_level>M3000</mod_level>
-<mod_name>$CYNGRN$龙之神力$NOR$</mod_name>
+<mod_name>$CYNGRN$龍之神力$NOR$</mod_name>
 <require>
 level:20
 con:30
@@ -194,11 +194,11 @@ apply_prop/int:2
 
 <A3004>
 <type>armor/head</type>
-<name>$CYNGRN$龙神之触$NOR$</name>
+<name>$CYNGRN$龍神之觸$NOR$</name>
 <id>dragon head</id>
 <value>10000</value>
 <mod_level>M3000</mod_level>
-<mod_name>$CYNGRN$龙之神力$NOR$</mod_name>
+<mod_name>$CYNGRN$龍之神力$NOR$</mod_name>
 <require>
 level:20
 con:30
@@ -231,11 +231,11 @@ apply_prop/int:2
 
 <A3005>
 <type>armor/boots</type>
-<name>$CYNGRN$龙神胫甲$NOR$</name>
+<name>$CYNGRN$龍神脛甲$NOR$</name>
 <id>dragon boots</id>
 <value>10000</value>
 <mod_level>M3000</mod_level>
-<mod_name>$CYNGRN$龙之神力$NOR$</mod_name>
+<mod_name>$CYNGRN$龍之神力$NOR$</mod_name>
 <require>
 level:20
 con:30
@@ -270,11 +270,11 @@ apply_prop/dex:5
 
 <A3006>
 <type>armor/cloth</type>
-<name>$CYNGRN$龙神战甲$NOR$</name>
+<name>$CYNGRN$龍神戰甲$NOR$</name>
 <id>dragon cloth</id>
 <value>10000</value>
 <mod_level>M3000</mod_level>
-<mod_name>$CYNGRN$龙之神力$NOR$</mod_name>
+<mod_name>$CYNGRN$龍之神力$NOR$</mod_name>
 <require>
 level:20
 con:30
@@ -308,17 +308,17 @@ apply_prop/con:2
 </A3006>
 
 
-//注重攻击、伤害加强
+//注重攻擊、傷害加強
 <M3001>
-<mod_name>$HBBLU$破坏神之毁灭$NOR$</mod_name>
+<mod_name>$HBBLU$破壞神之毀滅$NOR$</mod_name>
 <mod_parts>
-A3010:$HBBLU$破坏神战甲$NOR$
-A3011:$HBBLU$破坏神披风$NOR$
-A3012:$HBBLU$破坏神腰带$NOR$
-A3013:$HBBLU$破坏神头盔$NOR$
-A3014:$HBBLU$破坏神战靴$NOR$
-A3015:$HBBLU$破坏神护腕$NOR$
-A3016:$HBBLU$破坏神战衣$NOR$
+A3010:$HBBLU$破壞神戰甲$NOR$
+A3011:$HBBLU$破壞神披風$NOR$
+A3012:$HBBLU$破壞神腰帶$NOR$
+A3013:$HBBLU$破壞神頭盔$NOR$
+A3014:$HBBLU$破壞神戰靴$NOR$
+A3015:$HBBLU$破壞神護腕$NOR$
+A3016:$HBBLU$破壞神戰衣$NOR$
 </mod_parts>
 <bas>4</bas>
 <num>7</num>
@@ -338,15 +338,15 @@ counter_damage:50
 </M3001>
 
 
-// 六个配件
+// 六個配件
 <A3010>
 <type>armor/armor</type>
-<name>$HBBLU$破坏神战甲$NOR$</name>
+<name>$HBBLU$破壞神戰甲$NOR$</name>
 <id>diablo armor</id>
-<long>此装备只是瞧上一眼，已经让人杀意腾腾、血脉喷张、战意无穷。</long>
+<long>此裝備只是瞧上一眼，已經讓人殺意騰騰、血脈噴張、戰意無窮。</long>
 <value>300000</value>
 <mod_level>M3001</mod_level>
-<mod_name>$HBBLU$破坏神之毁灭$NOR$</mod_name>
+<mod_name>$HBBLU$破壞神之毀滅$NOR$</mod_name>
 <require>
 level:30
 str:60
@@ -382,12 +382,12 @@ apply_prop/reduce_busy:1
 
 <A3011>
 <type>armor/surcoat</type>
-<name>$HBBLU$破坏神披风$NOR$</name>
+<name>$HBBLU$破壞神披風$NOR$</name>
 <id>diablo surcoat</id>
-<long>此装备只是瞧上一眼，已经让人杀意腾腾、血脉喷张、战意无穷。</long>
+<long>此裝備只是瞧上一眼，已經讓人殺意騰騰、血脈噴張、戰意無窮。</long>
 <value>300000</value>
 <mod_level>M3001</mod_level>
-<mod_name>$HBBLU$破坏神之毁灭$NOR$</mod_name>
+<mod_name>$HBBLU$破壞神之毀滅$NOR$</mod_name>
 <require>
 level:30
 str:60
@@ -423,12 +423,12 @@ apply_prop/reduce_damage:3
 
 <A3012>
 <type>armor/waist</type>
-<name>$HBBLU$破坏神腰带$NOR$</name>
+<name>$HBBLU$破壞神腰帶$NOR$</name>
 <id>diablo waist</id>
-<long>此装备只是瞧上一眼，已经让人杀意腾腾、血脉喷张、战意无穷。</long>
+<long>此裝備只是瞧上一眼，已經讓人殺意騰騰、血脈噴張、戰意無窮。</long>
 <value>300000</value>
 <mod_level>M3001</mod_level>
-<mod_name>$HBBLU$破坏神之毁灭$NOR$</mod_name>
+<mod_name>$HBBLU$破壞神之毀滅$NOR$</mod_name>
 <require>
 level:30
 str:60
@@ -464,12 +464,12 @@ apply_prop/reduce_damage:3
 
 <A3013>
 <type>armor/head</type>
-<name>$HBBLU$破坏神头盔$NOR$</name>
+<name>$HBBLU$破壞神頭盔$NOR$</name>
 <id>diablo head</id>
-<long>此装备只是瞧上一眼，已经让人杀意腾腾、血脉喷张、战意无穷。</long>
+<long>此裝備只是瞧上一眼，已經讓人殺意騰騰、血脈噴張、戰意無窮。</long>
 <value>300000</value>
 <mod_level>M3001</mod_level>
-<mod_name>$HBBLU$破坏神之毁灭$NOR$</mod_name>
+<mod_name>$HBBLU$破壞神之毀滅$NOR$</mod_name>
 <require>
 level:30
 str:60
@@ -505,12 +505,12 @@ apply_prop/reduce_damage:3
 
 <A3014>
 <type>armor/boots</type>
-<name>$HBBLU$破坏神战靴$NOR$</name>
+<name>$HBBLU$破壞神戰靴$NOR$</name>
 <id>diablo boots</id>
-<long>此装备只是瞧上一眼，已经让人杀意腾腾、血脉喷张、战意无穷。</long>
+<long>此裝備只是瞧上一眼，已經讓人殺意騰騰、血脈噴張、戰意無窮。</long>
 <value>300000</value>
 <mod_level>M3001</mod_level>
-<mod_name>$HBBLU$破坏神之毁灭$NOR$</mod_name>
+<mod_name>$HBBLU$破壞神之毀滅$NOR$</mod_name>
 <require>
 level:30
 str:60
@@ -546,12 +546,12 @@ apply_prop/reduce_busy:1
 
 <A3015>
 <type>armor/wrists</type>
-<name>$HBBLU$破坏神护腕$NOR$</name>
+<name>$HBBLU$破壞神護腕$NOR$</name>
 <id>diablo wrists</id>
-<long>此装备只是瞧上一眼，已经让人杀意腾腾、血脉喷张、战意无穷。</long>
+<long>此裝備只是瞧上一眼，已經讓人殺意騰騰、血脈噴張、戰意無窮。</long>
 <value>300000</value>
 <mod_level>M3001</mod_level>
-<mod_name>$HBBLU$破坏神之毁灭$NOR$</mod_name>
+<mod_name>$HBBLU$破壞神之毀滅$NOR$</mod_name>
 <require>
 level:30
 str:60
@@ -587,12 +587,12 @@ apply_prop/reduce_busy:1
 
 <A3016>
 <type>armor/cloth</type>
-<name>$HBBLU$破坏神战衣$NOR$</name>
+<name>$HBBLU$破壞神戰衣$NOR$</name>
 <id>diablo wrists</id>
-<long>此装备只是瞧上一眼，已经让人杀意腾腾、血脉喷张、战意无穷。</long>
+<long>此裝備只是瞧上一眼，已經讓人殺意騰騰、血脈噴張、戰意無窮。</long>
 <value>300000</value>
 <mod_level>M3001</mod_level>
-<mod_name>$HBBLU$破坏神之毁灭$NOR$</mod_name>
+<mod_name>$HBBLU$破壞神之毀滅$NOR$</mod_name>
 <require>
 level:30
 str:60
@@ -627,11 +627,11 @@ apply_prop/reduce_damage:3
 </A3016>
 
 <M3002>
-<mod_name>$HBRED$幸运女神之眷念$NOR$</mod_name>
+<mod_name>$HBRED$幸運女神之眷念$NOR$</mod_name>
 <mod_parts>
-A3020:$BMAG$幸运女神项链$NOR$
-A3021:$BMAG$幸运女神护符$NOR$
-A3022:$BMAG$幸运女神戒指$NOR$
+A3020:$BMAG$幸運女神項鍊$NOR$
+A3021:$BMAG$幸運女神護符$NOR$
+A3022:$BMAG$幸運女神戒指$NOR$
 </mod_parts>
 <bas>2</bas>
 <num>3</num>

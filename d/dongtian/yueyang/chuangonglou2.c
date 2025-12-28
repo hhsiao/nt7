@@ -8,24 +8,24 @@ string look_xiang(object me)
 {
         string snum;
         mapping cg_teachers = ([]);
-        if (me->is_busy()) return NOR"你现在正忙。\n"NOR;
+        if (me->is_busy()) return NOR"你現在正忙。\n"NOR;
         me->start_busy(3);
         cg_teachers = query("cg_teachers");
         if (undefinedp(cg_teachers) || !mapp(cg_teachers) || !sizeof(cg_teachers))
-          snum = "没有主人";
+          snum = "沒有主人";
          else 
           snum = "有" + chinese_number(sizeof(cg_teachers)) + "人";
-        return NOR "温馨提示：现在" + snum + "在此拓印下武学。\n主人上楼来会自动拓印(要求１００亿经验、５００万潜能)，任何人上楼来都有机会学习，注意９０秒超时。\n" NOR;
+        return NOR "溫馨提示：現在" + snum + "在此拓印下武學。\n主人上樓來會自動拓印(要求１００億經驗、５００萬潛能)，任何人上樓來都有機會學習，注意９０秒超時。\n" NOR;
 }
 
 
 void create()
 {
-        set("short", "二楼");
+        set("short", "二樓");
         set("long", 
-"这里是传功楼的二楼，房间正中有一尊神龛，供奉着个西瓜大小的水晶\n"
-"头颅("CYN"skull"NOR")。颅骨上无数玄奥的蝌蚪文在游动，金色的紫焰在它的七窍间升\n"
-"腾着钻进钻出。\n"
+"這裡是傳功樓的二樓，房間正中有一尊神龕，供奉著個西瓜大小的水晶\n"
+"頭顱("CYN"skull"NOR")。顱骨上無數玄奧的蝌蚪文在遊動，金色的紫焰在它的七竅間升\n"
+"騰著鑽進鑽出。\n"
 );
                 //set("outdoors", "yangzhou");
                 set("exits",([ /* sizeof() == 1 */
@@ -93,9 +93,9 @@ int ta_skills(object gcroom, object me)
         __DIR__"data.c"->do_save("cg_teachers", cg_teachers);
         
 
-        write(NOR + "你拓印下了这些技能在此：[\n" + NOR + CYN + sort_msg(implode(map_array(keys(newskls),(: to_chinese($1) :)),"、"),30) + "]\n" + NOR);
+        write(NOR + "你拓印下了這些技能在此：[\n" + NOR + CYN + sort_msg(implode(map_array(keys(newskls),(: to_chinese($1) :)),"、"),30) + "]\n" + NOR);
 
-        write(NOR CYN "水晶头颅" YEL "上的两个空洞的眼眶喷出金光对着你一卷..\n你感觉修到８００级的技能被搜了一遍，浑身一阵虚脱无力。\n" NOR "( 你的战斗经验减少２０００万，潜能减少５００万 )\n");
+        write(NOR CYN "水晶頭顱" YEL "上的兩個空洞的眼眶噴出金光對著你一卷..\n你感覺修到８００級的技能被搜了一遍，渾身一陣虛脫無力。\n" NOR "( 你的戰鬥經驗減少２０００萬，潛能減少５００萬 )\n");
         addn("potential", -5000000, me);
         addn("combat_exp", -20000000, me);
         set("dongtian/chuangong/ta_time", time() + 86400, me);
@@ -111,38 +111,38 @@ int do_nod(string arg)
         object hu, gcroom = get_object(__DIR__"guangchang.c");
         
         if (!arg || arg!="skull") {
-                write(NOR + "你想答应谁？\n" + NOR);
+                write(NOR + "你想答應誰？\n" + NOR);
                 return 1;
         }
 
         if (me->is_busy()) {
-                write(NOR + "你现在正忙。\n" + NOR);
+                write(NOR + "你現在正忙。\n" + NOR);
                 return 1;
         }
         
         me->start_busy(3);
         
         if (query_temp("teacher/studentid")!=query("id", me) || (this_object() != environment(me))) {
-                write(NOR + "点啥头？关你屁事啊...\n" + NOR);
+                write(NOR + "點啥頭？關你屁事啊...\n" + NOR);
                 return 1;
         }
         
         delskill = query_temp("teacher/delskill");
         idelskill = me->query_skillo(delskill, 1);
         if ( idelskill < 2000 ) {
-                write(NOR + "你的供奉技能的等级未合要求，脱掉全部装备再来。\n" + NOR);
+                write(NOR + "你的供奉技能的等級未合要求，脫掉全部裝備再來。\n" + NOR);
                 return 1;
         }
 
         cg_data = query("dongtian/cg_data", me);
         if (!undefinedp(cg_data) || cg_data || mapp(cg_data) || sizeof(cg_data)) {
-                write(NOR + "你不能再从传功楼学新技能了，除非使用白玉笏<use baiyu hu>放弃掉。\n" + NOR);
+                write(NOR + "你不能再從傳功樓學新技能了，除非使用白玉笏<use baiyu hu>放棄掉。\n" + NOR);
                 return 1;
         }
         
-        hu = query_temp("handing", me);//白玉笏定价200，不能过低，免于大米学习泛滥和利用
+        hu = query_temp("handing", me);//白玉笏定價200，不能過低，免於大米學習氾濫和利用
         if (!hu || base_name(hu)!="/d/dongtian/obj/baiyuhu") {
-                write(NOR + "你手里必须握有白玉笏<hand hu>。\n" + NOR);
+                write(NOR + "你手裡必須握有白玉笏<hand hu>。\n" + NOR);
                 return 1;
         }
         
@@ -156,7 +156,7 @@ int do_nod(string arg)
                 "center"                :               __DIR__"guangchang.c",
         ]);
         
-        message_vision(NOR + YEL + "$N" + NOR + YEL + "重重地对着" + CYN + "水晶头颅" + YEL "点了点头。\n" + NOR, me);
+        message_vision(NOR + YEL + "$N" + NOR + YEL + "重重地對著" + CYN + "水晶頭顱" + YEL "點了點頭。\n" + NOR, me);
         
         mysks = cg_data["skills_id"];
         skmax = to_int(pow(to_float(query("combat_exp", me)/100), 1.0 / 3)*10) + 1; 
@@ -164,46 +164,46 @@ int do_nod(string arg)
                  itmp = mysks[stmp];
                  if (itmp > skmax) itmp = skmax;
                  me->set_skill(stmp, itmp);
-                 message_vision(NOR + YEL + "无数金色蝌蚪文涌向$N" + NOR + YEL + "的头顶，$N" + 
-                        NOR + YEL + "的『" + NOR + CYN + to_chinese(stmp) + NOR + YEL + "』提高到" + NOR + CYN + (string)itmp + NOR + YEL + "级了。\n" + NOR, me);
-                 CHANNEL_D->channel_broadcast("dt", NOR + HIW + "听说" + query("name", me) + NOR + HIW + "在" + 
+                 message_vision(NOR + YEL + "無數金色蝌蚪文湧向$N" + NOR + YEL + "的頭頂，$N" + 
+                        NOR + YEL + "的『" + NOR + CYN + to_chinese(stmp) + NOR + YEL + "』提高到" + NOR + CYN + (string)itmp + NOR + YEL + "級了。\n" + NOR, me);
+                 CHANNEL_D->channel_broadcast("dt", NOR + HIW + "聽說" + query("name", me) + NOR + HIW + "在" + 
                         NOR + HIC + __DIR__"guangchang.c"->load_name() + NOR + HIW + 
-                        "洞天的传功楼学会了『" + NOR + CYN + to_chinese(stmp) + NOR + HIW + "』。\n" + NOR);
+                        "洞天的傳功樓學會了『" + NOR + CYN + to_chinese(stmp) + NOR + HIW + "』。\n" + NOR);
         }
         
         mypfms = cg_data["can_perform"];
         if (mypfms && sizeof(mypfms)) foreach(stmp in keys(mypfms)) {
                  set("can_perform/" + stmp, mypfms[stmp], me);
-                 message_vision(NOR + "$N" + NOR + "习得了『" + NOR + CYN + to_chinese(stmp) + NOR + "』的一些绝招。\n" + NOR, me);
+                 message_vision(NOR + "$N" + NOR + "習得了『" + NOR + CYN + to_chinese(stmp) + NOR + "』的一些絕招。\n" + NOR, me);
         }
         
         me->delete_skill(delskill); 
-        write(NOR "你忘记了关于『" + NOR + CYN + to_chinese(delskill) + NOR + "』的所有内容(不包括绝招)。\n" NOR);
+        write(NOR "你忘記了關於『" + NOR + CYN + to_chinese(delskill) + NOR + "』的所有內容(不包括絕招)。\n" NOR);
         gcroom->cg_add(me);
 
         set("dongtian/cg_data", cg_data, me);
         destruct(hu);
         gcroom->add_qy2(20000);
-        write(NOR HIY "洞天气运 +２００００。\n" NOR);
-        write(NOR CYN "你耳边传来重重一声叹息道：下去吧，以后少来这里。\n" NOR);
-        message_vision(append_color(NOR + YEL + "虚空中穿过来一只大如山岳的巨掌，按着$N" + NOR + YEL + "往楼下一推。\n" + NOR, YEL), me);
+        write(NOR HIY "洞天氣運 +２００００。\n" NOR);
+        write(NOR CYN "你耳邊傳來重重一聲嘆息道：下去吧，以後少來這裡。\n" NOR);
+        message_vision(append_color(NOR + YEL + "虛空中穿過來一隻大如山嶽的巨掌，按著$N" + NOR + YEL + "往樓下一推。\n" + NOR, YEL), me);
         me->move(query("exits/down"));
-        message_vision(NOR + YEL + "一阵金烟弥散过后，$N" + NOR + YEL + "从楼梯上骨碌骨碌滚了下来。\n" + NOR, me);
+        message_vision(NOR + YEL + "一陣金煙彌散過後，$N" + NOR + YEL + "從樓梯上骨碌骨碌滾了下來。\n" + NOR, me);
         me->save();
-        log_file("static/dongtiancg", ctime(time()) + " 传功 " + query("id", me) + " \n");
+        log_file("static/dongtiancg", ctime(time()) + " 傳功 " + query("id", me) + " \n");
         return 1;
 }
 
 int tra_skills2(object gcroom, object me)
 {
-                write(NOR CYN "水晶头颅继续说道：\n"
-                        "  你拥有这次学到的技能后，将会掌握和原主人拓印时一样的绝招。\n"
-                        "  学到以后，每次再见到我，都可以更新技能到它的主人拓印下的程度。\n"
-                        "  今后不能再从传功楼学新技能了，除非使用白玉笏<use baiyu hu>放弃掉。\n"
-                        "  假如本洞天失守，你学到的技能和绝招，将会被我无条件地抹去。\n"
-                        "  你还愿意吗？\n"
-                         +  NOR + "( 答应的话输入<nod skull>，需要手里握着白玉笏 )\n" + NOR + 
-                         BLINK + HIR + "重要提示：脱下你所有的加技能的装备，不要自误。\n" + NOR);
+                write(NOR CYN "水晶頭顱繼續說道：\n"
+                        "  你擁有這次學到的技能後，將會掌握和原主人拓印時一樣的絕招。\n"
+                        "  學到以後，每次再見到我，都可以更新技能到它的主人拓印下的程度。\n"
+                        "  今後不能再從傳功樓學新技能了，除非使用白玉笏<use baiyu hu>放棄掉。\n"
+                        "  假如本洞天失守，你學到的技能和絕招，將會被我無條件地抹去。\n"
+                        "  你還願意嗎？\n"
+                         +  NOR + "( 答應的話輸入<nod skull>，需要手裡握著白玉笏 )\n" + NOR + 
+                         BLINK + HIR + "重要提示：脫下你所有的加技能的裝備，不要自誤。\n" + NOR);
         return 1;
 }
 
@@ -227,7 +227,7 @@ int tra_skills(object gcroom, object me)
         delete_temp("teacher"); 
         
         cg_data = query("dongtian/cg_data", me);
-        if (undefinedp(cg_data) || !mapp(cg_data) || !sizeof(cg_data)) {//新学拓印
+        if (undefinedp(cg_data) || !mapp(cg_data) || !sizeof(cg_data)) {//新學拓印
                 while(sizeof(cg_teachers) && sflag) {
                         teacher = values(cg_teachers)[random(sizeof(cg_teachers))];
                         if (query("id", me)!=teacher["id"]) {
@@ -237,20 +237,20 @@ int tra_skills(object gcroom, object me)
                         map_delete(cg_teachers, teacher["id"]);
                 }
                 if (sflag) {
-                        write(NOR "目前没小伙伴可以教你，而你又不能自己教自己。\n" NOR);
+                        write(NOR "目前沒小夥伴可以教你，而你又不能自己教自己。\n" NOR);
                         return 0;//唯一合格的teacher是自己
                 }
                 if (gcroom->owner_level(me)>1) inum += 2;
-                write(NOR + "你这次的师傅是" + teacher["name"] + "，最多可以学到" + chinese_number(inum) + "样技能。\n" + NOR);
+                write(NOR + "你這次的師傅是" + teacher["name"] + "，最多可以學到" + chinese_number(inum) + "樣技能。\n" + NOR);
                 tskls = teacher["skills"];
                 if (undefinedp(tskls) || !mapp(tskls) || !sizeof(tskls)) return 0;
                 newtskls = copy(tskls);
                 foreach(string tmptsk in keys(tskls)) {
                         if ( me->query_skillo(tmptsk, 1)>0 ) {
-                                //write("本来已会:" + tmptsk + "\n");
+                                //write("本來已會:" + tmptsk + "\n");
                                 map_delete(newtskls, tmptsk);
                         } /*else {
-                                write(HIY + "不会:" + tmptsk + "\n" + NOR);
+                                write(HIY + "不會:" + tmptsk + "\n" + NOR);
                         }*/
                 }
                 setskills = ([]);
@@ -262,7 +262,7 @@ int tra_skills(object gcroom, object me)
                         map_delete(newtskls, keys(newtskls)[tmpi]);
                 }
                 if (!setskills || !sizeof(setskills)) {
-                        write(NOR + teacher["name"] + "会的技能你都会，没办法学习。\n" + NOR);
+                        write(NOR + teacher["name"] + "會的技能你都會，沒辦法學習。\n" + NOR);
                         return 0;
                 }
                         
@@ -276,8 +276,8 @@ int tra_skills(object gcroom, object me)
                         map_delete(skls, delskill);
                 }
                 if (sflag) {
-                        write(NOR + "你连一样大于２０００的技能都没有，没办法供奉给水晶头颅。\n" + NOR);
-                        return 0;//没有够等级的供奉skill
+                        write(NOR + "你連一樣大於２０００的技能都沒有，沒辦法供奉給水晶頭顱。\n" + NOR);
+                        return 0;//沒有夠等級的供奉skill
                 }
                         
                 setpfms = copy(teacher["can_perform"]);
@@ -295,10 +295,10 @@ int tra_skills(object gcroom, object me)
                 set_temp("teacher/guid", teacher["guid"]);
                 set_temp("teacher/can_perform", setpfms);
                 set_temp("teacher/delskill", delskill);
-                write(NOR CYN "水晶头颅" HIG "传递神念给你：你可愿意把『" + HIY + to_chinese(query_temp("teacher/delskill")) + HIG + 
-                        "』供奉给我？我可以传授你" + query_temp("teacher/name") + "拓印\n在这的『" + NOR + HIY + 
+                write(NOR CYN "水晶頭顱" HIG "傳遞神念給你：你可願意把『" + HIY + to_chinese(query_temp("teacher/delskill")) + HIG + 
+                        "』供奉給我？我可以傳授你" + query_temp("teacher/name") + "拓印\n在這的『" + NOR + HIY + 
                         implode(tsks, HIG + "』『" + NOR + HIY) + HIG + "』。\n" + 
-                         NOR + "( 答应的话输入<nod skull>，需要手里握着白玉笏 )\n" + NOR);
+                         NOR + "( 答應的話輸入<nod skull>，需要手裡握著白玉笏 )\n" + NOR);
                 remove_call_out("tra_skills2");
                 call_out("tra_skills2", 2, gcroom, me);
         } else {//更新拓印
@@ -319,12 +319,12 @@ int tra_skills(object gcroom, object me)
                         if ( me->query_skillo(tmptsk3, 1)<itmp ) {
 if (itmp > skmax && SKILL_D(tmptsk3)->type() == "martial") itmp = skmax; //mud modified
                                  me->set_skill(tmptsk3, itmp);
-                                 message_vision(NOR + YEL + "无数金色蝌蚪文涌向$N" + NOR + YEL + "的头顶，$N" + 
-                                        NOR + YEL + "的『" + NOR + CYN + to_chinese(tmptsk3) + NOR + YEL + "』提高到" + NOR + CYN + (string)itmp + NOR + YEL + "级了。\n" + NOR, me);
+                                 message_vision(NOR + YEL + "無數金色蝌蚪文湧向$N" + NOR + YEL + "的頭頂，$N" + 
+                                        NOR + YEL + "的『" + NOR + CYN + to_chinese(tmptsk3) + NOR + YEL + "』提高到" + NOR + CYN + (string)itmp + NOR + YEL + "級了。\n" + NOR, me);
                         } 
                         if (teacher["can_perform"][tmptsk3]) {
                                 set("can_perform/" + tmptsk3, teacher["can_perform"][tmptsk3], me);
-                                message_vision(NOR + "$N" + NOR + "更新了『" + NOR + CYN + to_chinese(tmptsk3) + NOR + "』的一些绝招。\n" + NOR, me);
+                                message_vision(NOR + "$N" + NOR + "更新了『" + NOR + CYN + to_chinese(tmptsk3) + NOR + "』的一些絕招。\n" + NOR, me);
                         }
                 }
 
@@ -346,13 +346,13 @@ int push_down(object me)
         
         cg_data = query("dongtian/cg_data", me);
         if (undefinedp(cg_data) || !mapp(cg_data) || !sizeof(cg_data)) {
-                tell_object(me, NOR CYN "你耳边传来重重一声叹息道：下去吧，畏首畏尾，瞻前顾后的鼠辈。\n" NOR);
+                tell_object(me, NOR CYN "你耳邊傳來重重一聲嘆息道：下去吧，畏首畏尾，瞻前顧後的鼠輩。\n" NOR);
         } else {
-                tell_object(me, NOR CYN "你耳边传来重重一声叹息道：时间到了，别占着茅坑不拉屎，下去吧。\n" NOR);
+                tell_object(me, NOR CYN "你耳邊傳來重重一聲嘆息道：時間到了，別佔著茅坑不拉屎，下去吧。\n" NOR);
         }
-        message_vision(append_color(NOR + YEL + "虚空中穿过来一只大如山岳的巨掌，按着$N" + NOR + YEL + "往楼下一推。\n" + NOR, YEL), me);
+        message_vision(append_color(NOR + YEL + "虛空中穿過來一隻大如山嶽的巨掌，按著$N" + NOR + YEL + "往樓下一推。\n" + NOR, YEL), me);
         me->move(query("exits/down"));
-        message_vision(NOR + YEL + "一阵金烟弥散过后，$N" + NOR + YEL + "从楼梯上骨碌骨碌滚了下来。\n" + NOR, me);
+        message_vision(NOR + YEL + "一陣金煙彌散過後，$N" + NOR + YEL + "從樓梯上骨碌骨碌滾了下來。\n" + NOR, me);
         return 1;
 }
 
@@ -367,12 +367,12 @@ void init()
                            (: query("equipped", $1) :));
 
         if (obs && arrayp(obs) && sizeof(obs) && wiz_level(me) < 5) {
-                write(NOR "你这么不听劝，身上怎么还戴有装备？\n" NOR);
+                write(NOR "你這麼不聽勸，身上怎麼還戴有裝備？\n" NOR);
                 push_down(me);
                 return;
         }
         
- if (query("hold_time", gcroom) > 1) {//洞天玩家所有时
+ if (query("hold_time", gcroom) > 1) {//洞天玩家所有時
         set("dongtian/chuangong/visit_time", time() + 300, me);
         if (gcroom->owner_level(me) > 1 && (query("potential", me)-query("learned_points", me))>5000000 && query("combat_exp",me)>10000000000 && query("dongtian/chuangong/ta_time", me)<time()) {
                 ta_skills(gcroom, me);

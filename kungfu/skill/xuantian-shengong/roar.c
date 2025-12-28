@@ -1,4 +1,4 @@
-// roar.c 五雷啸
+// roar.c 五雷嘯
 
 #include <ansi.h>
 
@@ -10,10 +10,10 @@ int exert(object me, object target)
         int i, skill, damage;
 
         if( query("neili", me)<400 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if( query("no_fight", environment(me)) )
-                return notify_fail("在这里不能攻击他人。\n");
+                return notify_fail("在這裡不能攻擊他人。\n");
 
         skill = me->query_skill("force");
 
@@ -21,8 +21,8 @@ int exert(object me, object target)
         me->receive_damage("qi", 10);
 
         me->start_busy(5);
-        message_combatd(HIY "$N" HIY "深深地吸一囗气，发出一"
-                        "声惊天动地的长啸！\n" NOR, me);
+        message_combatd(HIY "$N" HIY "深深地吸一囗氣，發出一"
+                        "聲驚天動地的長嘯！\n" NOR, me);
 
         ob = all_inventory(environment(me));
         for (i = 0; i < sizeof(ob); i++)
@@ -41,7 +41,7 @@ int exert(object me, object target)
                         ob[i]->receive_damage("jing", damage * 2, me);
                         if( query("neili", ob[i])<skill*2 )
                         ob[i]->receive_wound("jing", damage);
-                        tell_object(ob[i], "你觉得眼前一阵金星乱冒，耳朵痛得像是要裂开一样！\n");
+                        tell_object(ob[i], "你覺得眼前一陣金星亂冒，耳朵痛得像是要裂開一樣！\n");
                 }
 
                 me->want_kill(ob[i]);

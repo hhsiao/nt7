@@ -3,11 +3,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short",HIR"红队西路"NOR);
+        set("short",HIR"紅隊西路"NOR);
         set("long",@LONG
-抢旗战场
+搶旗戰場
 
-叙述征求，一格 2 玄黄
+敘述徵求，一格 2 玄黃
 LONG);
         set("flag_war", 1);
         set("no_magic", 1);

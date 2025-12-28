@@ -10,13 +10,13 @@ mixed ask_me();
 void create()
 {
         object ob;
-        set_name("渡元禅师", ({ "duyuan chanshi", "duyuan", "chanshi" }) );
+        set_name("渡元禪師", ({ "duyuan chanshi", "duyuan", "chanshi" }) );
         set("title", "莆田少林寺高手");
         set("gender", "男性");
         set("age", 63);
-        set("long", "渡元禅师乃是莆田少林寺方丈红叶禅师的得意\n"
-                    "弟子，因岳肃和蔡子峰偷看到葵花宝典一事而\n"
-                    "下山察访。\n");
+        set("long", "渡元禪師乃是莆田少林寺方丈紅葉禪師的得意\n"
+                    "弟子，因嶽肅和蔡子峰偷看到葵花寶典一事而\n"
+                    "下山察訪。\n");
         set("attitude", "peaceful");
         set("class", "bonze");
         set("combat_exp", 3500000);
@@ -68,8 +68,8 @@ void create()
         prepare_skill("unarmed", "pixie-jian");
 
         set("inquiry", ([
-                "辟邪剑法" : (: ask_me :),
-                "葵花宝典" : (: ask_me :),
+                "辟邪劍法" : (: ask_me :),
+                "葵花寶典" : (: ask_me :),
         ]));
 
         set_temp("apply/attack", 150);
@@ -111,7 +111,7 @@ void create()
 
 mixed ask_me()
 {
-        message("vision", HIR "渡元禅师尖叫道：你怎么知道？今日要怪就只"
+        message("vision", HIR "渡元禪師尖叫道：你怎麼知道？今日要怪就只"
                           "能怪你多嘴了！\n" NOR, environment(),
                           this_object() );
         kill_ob(this_player());

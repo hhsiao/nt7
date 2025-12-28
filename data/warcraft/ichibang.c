@@ -7,7 +7,7 @@ void setup()
         set_name("皮皮皮皮[2;37;0m[2;37;0m", ({"pppp"}));        
         set("gender", "女性");                
         set("long", "皮皮皮皮[2;37;0m
-它是一起邦的魔幻兽。
+它是一起邦的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

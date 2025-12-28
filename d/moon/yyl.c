@@ -2,10 +2,10 @@
 inherit ROOM;
 void create()
 {
-	set("short", "月影楼");
+	set("short", "月影樓");
 	set("long", @LONG
-此处群墙下面是白石台阶，雕成朵朵莲花模样，
-屋子里是大理石砌成纹理，显得富丽而又不落俗套。
+此處群牆下面是白石臺階，雕成朵朵蓮花模樣，
+屋子裡是大理石砌成紋理，顯得富麗而又不落俗套。
 LONG    );
 	set("exits", ([ 
   "up" : __DIR__"yyl1",
@@ -24,8 +24,8 @@ int valid_leave(object me, string dir)
 {
         if (  (dir == "up")
  &&((string)me->query("class") != "bandit") 
-//  && ((string)me->query("family/family_name") != "圆月山庄")
+//  && ((string)me->query("family/family_name") != "圓月山莊")
            && objectp(present("guards", environment(me))) )
-        return notify_fail("守卫挡住你道；非本庄第子不得擅闯月影楼！。\n");
+        return notify_fail("守衛擋住你道；非本莊第子不得擅闖月影樓！。\n");
         return ::valid_leave(me, dir);
 }

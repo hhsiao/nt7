@@ -4,14 +4,14 @@ inherit BOOK;
 
 void create()
 {
-        set_name("狂风刀法秘籍", ({ "kuangfeng book", "book" }));
+        set_name("狂風刀法秘籍", ({ "kuangfeng book", "book" }));
         set_weight(200);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
                 set("unit", "本");
-                set("long","这是一本薄薄的小册子，上面写着狂风刀法秘籍四个小字。\n");
+                set("long","這是一本薄薄的小冊子，上面寫著狂風刀法秘籍四個小字。\n");
                 set("no_sell", 1);
                 set("material", "silk");
                 set("skill", ([

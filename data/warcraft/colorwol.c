@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("电动车[2;37;0m[2;37;0m", ({"fox"}));        
+        set_name("電動車[2;37;0m[2;37;0m", ({"fox"}));        
         set("gender", "女性");                
-        set("long", "电动车[2;37;0m
-它是不二熊的魔幻兽。
+        set("long", "電動車[2;37;0m
+它是不二熊的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

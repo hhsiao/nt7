@@ -7,7 +7,7 @@ void setup()
         set_name("白虎[2;37;0m[2;37;0m", ({"poe"}));        
         set("gender", "女性");                
         set("long", "das[2;37;0m
-它是破黎的魔幻兽。
+它是破黎的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

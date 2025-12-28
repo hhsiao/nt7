@@ -1,4 +1,4 @@
-// moneyd.c  钱的功能
+// moneyd.c  錢的功能
 // by Xiang@XKX (95/12/22)
 // Rewritten by Lonely@chinamud.cn
 
@@ -11,17 +11,17 @@ string money_str(int amount)
         string output;
 
         if( amount / 10000 ) {
-                output = chinese_number(amount / 10000) + "两黄金";
+                output = chinese_number(amount / 10000) + "兩黃金";
                 amount %= 10000;
         }
         else
                 output = "";
         if( amount / 100 ) {
-                output = output + chinese_number(amount / 100) + "两白银";
+                output = output + chinese_number(amount / 100) + "兩白銀";
                 amount %= 100;
         }
         if( amount )
-                return output + chinese_number(amount) + "文铜钱";
+                return output + chinese_number(amount) + "文銅錢";
         return output;
 }
 
@@ -34,23 +34,23 @@ string price_str(int amount)
                 amount = 1;
 
         if( amount / 10000 ) {
-                output = chinese_number(amount / 10000) + "两黄金";
+                output = chinese_number(amount / 10000) + "兩黃金";
                 amount %= 10000;
         }
         else
                 output = "";
         if( amount / 100 ) {
                 if( output != "" )
-                        output += "又" + chinese_number(amount / 100) + "两白银";
+                        output += "又" + chinese_number(amount / 100) + "兩白銀";
                 else
-                        output = chinese_number(amount / 100) + "两白银";
+                        output = chinese_number(amount / 100) + "兩白銀";
                 amount %= 100;
         }
         if( amount )
                 if( output != "" )
-                        return output + "又" + chinese_number(amount) + "文铜板";
+                        return output + "又" + chinese_number(amount) + "文銅板";
                 else
-                        return chinese_number(amount) + "文铜板";
+                        return chinese_number(amount) + "文銅板";
         return output;
 }
 

@@ -3,11 +3,11 @@
 inherit BOOK;
 
 string* titles = ({
-        "修罗指法",
+        "修羅指法",
         "神掌八打",
-        "无相指法",
-        "多罗叶指",
-        "一拍两散",
+        "無相指法",
+        "多羅葉指",
+        "一拍兩散",
 });
 
 string* skills = ({
@@ -24,8 +24,8 @@ void create()
 
         set_name(titles[i], ({ "shaolin wuji", "wuji" }));
         set_weight(200);
-        set("unit", "册");
-        set("long", "这是一册" + titles[i] + "\n");
+        set("unit", "冊");
+        set("long", "這是一冊" + titles[i] + "\n");
         set("value", 500);
         set("material", "paper");
         set("skill", ([

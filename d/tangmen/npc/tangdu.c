@@ -54,13 +54,13 @@ void create()
         prepare_skill("hand", "boyun-suowu");
 
         
-        create_family("唐门世家", 3, "弟子");
+        create_family("唐門世家", 3, "弟子");
 
         set("inquiry", ([
                 "job" : ( : give_job  : ),
                 "工作": ( : give_job  : ),
                 "duyao": ( : give_duyao : ),
-                "毒药": ( : give_duyao : ),
+                "毒藥": ( : give_duyao : ),
         ]));
 
         set("chat_chance_combat", 20);
@@ -90,8 +90,8 @@ int give_job()
         int coun;
 
         string *tar = ({
-                "","蜈蚣","毒蝎子","竹叶青","金环蛇","蝮蛇","千年毒王",
-//                "蝎毒","蝎子壳","蝎子尾","蝮蛇毒","蝮蛇胆","蝮蛇皮","青蛇毒","青蛇胆","青蛇皮","金蛇毒","金蛇胆","金蛇皮",
+                "","蜈蚣","毒蠍子","竹葉青","金環蛇","蝮蛇","千年毒王",
+//                "蠍毒","蠍子殼","蠍子尾","蝮蛇毒","蝮蛇膽","蝮蛇皮","青蛇毒","青蛇膽","青蛇皮","金蛇毒","金蛇膽","金蛇皮",
         });
 
         me = this_player();
@@ -99,17 +99,17 @@ int give_job()
 
         if( !environment() || base_name(environment()) != query("startroom") )
         {
-                say("唐毒说道:“我现在没心情给你派活，等我回制毒房再说吧！”\n");
+                say("唐毒說道:“我現在沒心情給你派活，等我回製毒房再說吧！”\n");
                 return 0;
         }
 
         if( !query_temp("tangmen/du", me) )
-                command("say “这里没有活能给你干，你听谁说的？”");
+                command("say “這裡沒有活能給你幹，你聽誰說的？”");
         else
         {
                 if( query_temp("duyao", me) )
                 {
-                        command("say “你还没有完成刚才给你的任务呢！”");
+                        command("say “你還沒有完成剛才給你的任務呢！”");
                         return 1;
                 }
                 coun = 1 + random(sizeof(tar));
@@ -117,7 +117,7 @@ int give_job()
                         coun = ( sizeof(tar) - 1 );
                 targ = tar[coun];
                 printf("%d/%d\n",coun,sizeof(tar));
-                say("唐毒说道:“我这里正缺一味毒物，快去给我找一只" + targ + "来吧！”\n");
+                say("唐毒說道:“我這裡正缺一味毒物，快去給我找一隻" + targ + "來吧！”\n");
                 set_temp("duyao", coun, me);
         }
         return 1;
@@ -130,27 +130,27 @@ int give_duyao()
         
         if ( me->is_busy() )
         {
-                command("say 你正忙着呢！\n");
+                command("say 你正忙著呢！\n");
                 return 1;
         }
 
-        if( query("family/family_name", me) != "唐门世家" )
+        if( query("family/family_name", me) != "唐門世家" )
         {
-                command("say 你不是我唐门中人，我无法给你毒药！\n");
+                command("say 你不是我唐門中人，我無法給你毒藥！\n");
                 return 1;
         } else
         if ( query("duyao") < 1 )
         {
-                command("say 我这里的毒药已经给完了！\n");
+                command("say 我這裡的毒藥已經給完了！\n");
                 return 1;
         } else
         {
-                command("say 此毒药含有巨毒，普天之下只有三人能解，千万要注意不要自己中毒了！\n");
+                command("say 此毒藥含有巨毒，普天之下只有三人能解，千萬要注意不要自己中毒了！\n");
                 ob = new("/d/tangmen/obj/duyao");
 //                ob->move(this_object(), 1);
 //                command("givetangmenqiduto"+query("id", me));
                 ob->move(me, 1);
-                message_vision("$N对$n点了点头，道：此毒药含有剧毒，可要小心使用。\n", this_object(), me); 
+                message_vision("$N對$n點了點頭，道：此毒藥含有劇毒，可要小心使用。\n", this_object(), me); 
                 addn("duyao", -1);
                 me->start_busy(1);
                 return 1;
@@ -161,7 +161,7 @@ int give_duyao()
 
 int accept_object(object who, object ob)
 {
-        command("say 要是找到了，就放到储藏室去吧！给我干什么?");
-        write("唐毒冲着你扬了扬手中一只墨绿色的虫子，嘿嘿奸笑了几声。\n");
+        command("say 要是找到了，就放到儲藏室去吧！給我幹什麼?");
+        write("唐毒衝著你揚了揚手中一隻墨綠色的蟲子，嘿嘿奸笑了幾聲。\n");
         return 0;
 }

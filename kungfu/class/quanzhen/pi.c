@@ -10,7 +10,7 @@ void create()
         set("age", 24);
         set("class", "taoist");
         set("long",
-                "他是一位体格强健的壮年道士，似乎身怀武艺。\n");
+                "他是一位體格強健的壯年道士，似乎身懷武藝。\n");
         set("attitude", "friendly");
         set("shen_type",1);
         set("str", 26);
@@ -63,7 +63,7 @@ void create()
         create_family("全真教", 4, "弟子");
 
         set("inquiry", ([
-                "全真教" :  "我全真教是天下道家玄门正宗。\n",
+                "全真教" :  "我全真教是天下道家玄門正宗。\n",
         ]) );
 
         setup();

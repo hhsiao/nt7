@@ -5,7 +5,7 @@
 
 inherit F_SSERVER;
 
-#define XUAN "「" HIW "太玄激劲" NOR "」"
+#define XUAN "「" HIW "太玄激勁" NOR "」"
  
 int perform(object me, object target)
 {
@@ -18,65 +18,65 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(XUAN "只能对战斗中的对手使用。\n");
+                return notify_fail(XUAN "只能對戰鬥中的對手使用。\n");
         
         if( me->is_busy() )
-                return notify_fail("你正忙着呢！\n");
+                return notify_fail("你正忙著呢！\n");
 
         if( query("neili", me)<800 )
-                return notify_fail("你的真气不够，无法施展" XUAN "！\n");
+                return notify_fail("你的真氣不夠，無法施展" XUAN "！\n");
 
         if( query("max_neili", me)<5000 )
-                return notify_fail("你的内力修为还不足以使出" XUAN "。\n");
+                return notify_fail("你的內力修為還不足以使出" XUAN "。\n");
 
         if ((int)me->query_skill("force") < 300)
-                return notify_fail("你的内功火候不够，难以施展" XUAN "！\n");
+                return notify_fail("你的內功火候不夠，難以施展" XUAN "！\n");
 
         if ((lvl = (int)me->query_skill("taixuan-gong", 1)) < 240)
-                return notify_fail("你的太玄功还不够熟练，无法使用" XUAN "！\n");
+                return notify_fail("你的太玄功還不夠熟練，無法使用" XUAN "！\n");
 
-        // 未学会如何驾御兵器只能激发为拳脚施展 太玄激劲
+        // 未學會如何駕御兵器只能激發為拳腳施展 太玄激勁
         if( !query("can_learned/taixuan-gong/enable_weapon", me) )
         {
              weapon=query_temp("weapon", me);
              if (objectp(weapon))
-                     return notify_fail("你还没有学会如何利用太玄功驾御兵器，这招只能空手施展！\n");
+                     return notify_fail("你還沒有學會如何利用太玄功駕御兵器，這招只能空手施展！\n");
 
              if (me->query_skill_mapped("unarmed") != "taixuan-gong"
                  || me->query_skill_prepared("unarmed") != "taixuan-gong")
-                       return notify_fail("你没有准备太玄功，无法使用" XUAN "。\n");
+                       return notify_fail("你沒有準備太玄功，無法使用" XUAN "。\n");
 
         }
-        else // 已经学会利用太玄功驾御兵器
+        else // 已經學會利用太玄功駕御兵器
         {
              weapon=query_temp("weapon", me);
-             // 当没有持武器时判断施展该招需要准备为拳脚
+             // 當沒有持武器時判斷施展該招需要準備為拳腳
              if (! objectp(weapon))
              {
                     if (me->query_skill_mapped("unarmed") != "taixuan-gong"
                         || me->query_skill_prepared("unarmed") != "taixuan-gong")
-                              return notify_fail("你没有准备太玄功，无法使用" XUAN "。\n");
+                              return notify_fail("你沒有準備太玄功，無法使用" XUAN "。\n");
              }          
-             // 手持有武器必须为刀或者剑
+             // 手持有武器必須為刀或者劍
              else if( objectp(weapon) && query("skill_type", weapon) != "sword"
                        && query("skill_type", weapon) != "blade" )
-                              return notify_fail("你使用的武器不对，无法施展" XUAN "。\n");
+                              return notify_fail("你使用的武器不對，無法施展" XUAN "。\n");
 
              if (objectp(weapon) && me->query_skill_mapped("sword") != "taixuan-gong"
                   && query("skill_type", weapon) == "sword" )
-                              return notify_fail("你还没有激发太玄功，无法施展" XUAN "。\n");
+                              return notify_fail("你還沒有激發太玄功，無法施展" XUAN "。\n");
              
              else if( objectp(weapon) && query("skill_type", weapon) == "blade"
                       && me->query_skill_mapped("blade") != "taixuan-gong")
-                              return notify_fail("你还没有激发太玄功，无法施展" XUAN "。\n");                              
+                              return notify_fail("你還沒有激發太玄功，無法施展" XUAN "。\n");                              
                          
         }
         if (! living(target))
-              return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+              return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "\n霎时间$N" HIW "只觉思绪狂涌，当即闭上双眼，再不理睬$n"
-              HIW "如何招架，只管施招攻出！此时侠客岛石壁上的千百种招"
-              "式，转眼已从$N" HIW "心底传向手足，尽数向$n" HIW "袭去！\n" NOR;
+        msg = HIW "\n霎時間$N" HIW "只覺思緒狂湧，當即閉上雙眼，再不理睬$n"
+              HIW "如何招架，只管施招攻出！此時俠客島石壁上的千百種招"
+              "式，轉眼已從$N" HIW "心底傳向手足，盡數向$n" HIW "襲去！\n" NOR;
 
         message_combatd(sort_msg(msg), me, target);
         

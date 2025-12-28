@@ -1,4 +1,4 @@
-// hongri.c 红日法王
+// hongri.c 紅日法王
 
 #include <ansi.h>
 
@@ -6,8 +6,8 @@ inherit "/inherit/char/punisher";
 
 void create()
 {
-        set_name("红日法王", ({ "hongri fawang", "fawang" }));
-        set("long",  "他看上去是一个藏僧，胸前绣着一个大大的太阳。\n");
+        set_name("紅日法王", ({ "hongri fawang", "fawang" }));
+        set("long",  "他看上去是一個藏僧，胸前繡著一個大大的太陽。\n");
         set("gender", "男性");
         set("age", 62);
         set("attitude", "peaceful");
@@ -53,7 +53,7 @@ void create()
         prepare_skill("cuff", "yujiamu-quan");
         prepare_skill("hand", "dashou-yin");
 
-        create_family("血刀门", 0, "法王");
+        create_family("血刀門", 0, "法王");
         set("class", "bonze");
 
         set("chat_chance_combat", 120);

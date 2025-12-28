@@ -12,7 +12,7 @@ int main(object me, string arg)
         if (! SECURITY_D->valid_grant(me, "(admin)"))
                 return 0;
         
-        message_system("游戏重新启动，请稍候再登录。");
+        message_system("遊戲重新啟動，請稍候再登錄。");
 
         user = users();
         for (i = 0; i < sizeof(user); i++)
@@ -38,7 +38,7 @@ int help (object me)
         write(@HELP
 指令格式: shutdown
  
-强行重新起动游戏，并且不保存任何运行中的数据。
+強行重新起動遊戲，並且不保存任何運行中的數據。
  
 HELP );
         return 1;

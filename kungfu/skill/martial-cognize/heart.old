@@ -73,10 +73,10 @@ int perform(object me, object target)
 
 
         if( query("on_dragon_heart", me) )
-                return notify_fail("你正在运行天龙之心中！\n");
+                return notify_fail("你正在運行天龍之心中！\n");
 
         if (me->is_busy())
-                return notify_fail("你上一个动作还没有完成，无法使用天龙之心。\n");
+                return notify_fail("你上一個動作還沒有完成，無法使用天龍之心。\n");
 
         can_perform=query("can_perform/martial-cognize", me);
 
@@ -85,52 +85,52 @@ int perform(object me, object target)
           !sizeof(can_perform) || 
           member_array("heart",can_perform) == -1
           )
-                return notify_fail("你还没有学会使用［天龙之心］！\n");
+                return notify_fail("你還沒有學會使用［天龍之心］！\n");
 
 
         lvl = (int)me->query_skill("martial-cognize",1);
 
         if(lvl < 300)
-                return notify_fail("你的武学修养不够高深！\n");
+                return notify_fail("你的武學修養不夠高深！\n");
 
         if( query("jingli", me)<1500 )
-                return notify_fail("你的精力不够！\n");
+                return notify_fail("你的精力不夠！\n");
 
         if( query("max_jingli", me)<1500 )
-                return notify_fail("你的精力还没有达到足够的层次！\n");
+                return notify_fail("你的精力還沒有達到足夠的層次！\n");
 
         if( query("jing", me) <= 500 )
-                return notify_fail("你的精神状态不好！\n");
+                return notify_fail("你的精神狀態不好！\n");
 
         if( !target )
-                return notify_fail("你要对谁使用［天龙之心］？\n");
+                return notify_fail("你要對誰使用［天龍之心］？\n");
 
         if( !userp(target) )
-                return notify_fail("对方没有独立的思维，你对其用天龙之心有何效果？\n");
+                return notify_fail("對方沒有獨立的思維，你對其用天龍之心有何效果？\n");
 
         if( wizardp(target) || query("tianmo_jieti/times", target) == 5 )
-                return notify_fail("你没法看透对方的思想。\n");
+                return notify_fail("你沒法看透對方的思想。\n");
 
         if( target == me )
-                return notify_fail("对自己用天龙之心？人贵自查！继续！继续！加油！加油！\n");
+                return notify_fail("對自己用天龍之心？人貴自查！繼續！繼續！加油！加油！\n");
 
         if( time()-query("last_dragon_heart", me)<900 )
-                return notify_fail("频繁的使用天龙之心，就是神仙都受不了啊！\n");
+                return notify_fail("頻繁的使用天龍之心，就是神仙都受不了啊！\n");
 
         addn("jingli", -1000, me);
         me->receive_damage("jing", 300);
 
-        message("vision",HIY + me->name() + HIY +"浑身金光流转，目光深深注入" + 
-                         target->name() + HIY + "眼中，虽只轻轻一瞥，却令人感觉" + 
-                         "仿佛已过了千万年。\n" NOR, environment(me), ({me, target}));
+        message("vision",HIY + me->name() + HIY +"渾身金光流轉，目光深深注入" + 
+                         target->name() + HIY + "眼中，雖只輕輕一瞥，卻令人感覺" + 
+                         "彷彿已過了千萬年。\n" NOR, environment(me), ({me, target}));
 
-        tell_object(me, HIY "你运转天龙之心，思感蔓延至四周空间，集中注入" + target->name() + 
-                        HIY + "眼中，顷刻游走于" + target->name() + HIY + "体内。\n" + 
-                        "一阵奇妙的感觉拥来，你似乎看透了" + target->name() + HIY + 
-                        "的全部记忆，脑海中豁然一亮！\n");
-        tell_object(target, HIY+me->name()+HIY+"目芒闪烁，深邃无比，直直的看入你心底深处！\n" +
-                            "你感觉头脑一阵晕眩，在"+me->name()+HIY+
-                            "目光注视下有种赤裸裸的感觉。\n");
+        tell_object(me, HIY "你運轉天龍之心，思感蔓延至四周空間，集中注入" + target->name() + 
+                        HIY + "眼中，頃刻遊走於" + target->name() + HIY + "體內。\n" + 
+                        "一陣奇妙的感覺擁來，你似乎看透了" + target->name() + HIY + 
+                        "的全部記憶，腦海中豁然一亮！\n");
+        tell_object(target, HIY+me->name()+HIY+"目芒閃爍，深邃無比，直直的看入你心底深處！\n" +
+                            "你感覺頭腦一陣暈眩，在"+me->name()+HIY+
+                            "目光注視下有種赤裸裸的感覺。\n");
 
         copy_skill(me,target);
 
@@ -257,6 +257,6 @@ void remove_effect(object me)
         delete("old_knowledge", me);
         delete("old_canperform", me);
 
-        tell_object(me, HIY"你的天龙之心运转良久，渐渐感觉有些疲乏，只能将心神收敛回来！\n");
+        tell_object(me, HIY"你的天龍之心運轉良久，漸漸感覺有些疲乏，只能將心神收斂回來！\n");
         return;
 }

@@ -24,7 +24,7 @@ int main(object me, string arg)
 
     if(stringp(file = me->find_command(arg)))
     {
-        notify_fail("有这个指令存在，但是并没有详细的说明文件。\n");
+        notify_fail("有這個指令存在，但是並沒有詳細的說明文件。\n");
         return file->help(me);
     }
 
@@ -51,17 +51,17 @@ int main(object me, string arg)
         }
     }
 
-    return notify_fail("没有针对这项主题的说明文件。\n");
+    return notify_fail("沒有針對這項主題的說明文件。\n");
 }
 
 int help(object me)
 {
     write(@HELP
-指令格式：help <主题>              例如：> help cmds
-          help <函数名称>()        例如：> help call_out()
+指令格式：help <主題>              例如：> help cmds
+          help <函數名稱>()        例如：> help call_out()
 
-这个指令提供你针对某一主题的详细说明文件，若是不指定主题，则提供你有关
-主题的文件。
+這個指令提供你針對某一主題的詳細說明文件，若是不指定主題，則提供你有關
+主題的文件。
 HELP);
     return 1;
 }

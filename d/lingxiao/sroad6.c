@@ -6,10 +6,10 @@ void create()
 {
         set("short", "山路");
         set("long", @LONG 
-走到这里，反觉暖和一些了，风仍在刮，但耳边只听到叮当
-的流水声。一道白波从岩缝中垂下，簌簌清流令人心神一爽，左
-边热气腾腾，烟雾弥漫，显然是个温泉，右边零零落落有几间木
-屋，是凌霄弟子巡山看守时住宿之地。
+走到這裡，反覺暖和一些了，風仍在刮，但耳邊只聽到叮噹
+的流水聲。一道白波從巖縫中垂下，簌簌清流令人心神一爽，左
+邊熱氣騰騰，煙霧瀰漫，顯然是個溫泉，右邊零零落落有幾間木
+屋，是凌霄弟子巡山看守時住宿之地。
 LONG);
         set("outdoors", "lingxiao");
         set("exits", ([
@@ -18,7 +18,7 @@ LONG);
             "west" : __DIR__"water", 
             "east"  : __DIR__"muwu",
         ]));
-        create_door("east", "木门", "west", DOOR_CLOSED);
+        create_door("east", "木門", "west", DOOR_CLOSED);
         set("no_clean_up", 0);
         setup();
 }

@@ -20,25 +20,25 @@ int main(object me, string arg)
         {
                 grant = SECURITY_D->query_site_privilege("edit");
                 if( !grant && !sscanf(dir, "/u/%*s") )
-                        return notify_fail("你只能在你自己的目录下建子目录。\n");
+                        return notify_fail("你只能在你自己的目錄下建子目錄。\n");
                         
                 if( grant != "all" && !sscanf(dir, "/%s/%*s", grant) )
-                        return notify_fail("你只能在你自己目录下以及" + grant + "目录下建子目录。\n");
+                        return notify_fail("你只能在你自己目錄下以及" + grant + "目錄下建子目錄。\n");
         }
         seteuid(geteuid(me));
         if (mkdir(dir))
                 write("Ok.\n");
         else
-                write("你没有在这里建子目录的权利。\n");
+                write("你沒有在這裡建子目錄的權利。\n");
         return 1;        
 }
 
 int help(object me)
 {
         write(@HELP
-指令格式 : mkdir <子目录名>
+指令格式 : mkdir <子目錄名>
 
-建立一个子目录。
+建立一個子目錄。
 
 see also: rm
 HELP );

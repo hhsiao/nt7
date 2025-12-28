@@ -9,8 +9,8 @@ void create()
         else*/ {
                 set("unit", "瓶");
                 set("base_unit", "瓶");
-                set("long", HIG "采自灵山，千年来以灵芝为母，不断的"
-                            "吸取着日精月华。\n" NOR);
+                set("long", HIG "採自靈山，千年來以靈芝為母，不斷的"
+                            "吸取著日精月華。\n" NOR);
                 set("value", 30000);
         }
         setup();
@@ -33,24 +33,24 @@ int do_drink(string arg)
         un = query("unit");
 
         if (! arg || ! id(arg))
-                return notify_fail("你要喝什么东西？\n");
+                return notify_fail("你要喝什麼東西？\n");
 
         if (me->is_busy())
-                return notify_fail("急什么，小心别噎着了。\n");
+                return notify_fail("急什麼，小心別噎著了。\n");
 
 /*
         if ((int)me->query_condition("pill_drug") > 0)
         {
-                write("你觉得现在内息未定，经脉隐隐还能感到真气冲荡，不"
-                      "敢贸然服食。\n");
+                write("你覺得現在內息未定，經脈隱隱還能感到真氣衝蕩，不"
+                      "敢貿然服食。\n");
                 return 1;
         }
 */
 
         //me->apply_condition("pill_drug", 4000);
 
-        message_vision(HIY "$N" HIY "喝下一" + un + na + HIY "，脸色一变，似"
-                       "乎精神了许多。\n" NOR, me);
+        message_vision(HIY "$N" HIY "喝下一" + un + na + HIY "，臉色一變，似"
+                       "乎精神了許多。\n" NOR, me);
 
         mapsk = me->query_skill_mapped("dodge");
 
@@ -63,9 +63,9 @@ int do_drink(string arg)
                 if (stringp(mapsk) && me->can_improve_skill(mapsk))
                         me->improve_skill(mapsk, 20000);
 
-                tell_object(me, HIG "你只觉浑身上下飘飘欲仙，便似获得了重生一般。\n" NOR);
+                tell_object(me, HIG "你只覺渾身上下飄飄欲仙，便似獲得了重生一般。\n" NOR);
         } else
-                tell_object(me, HIY "你感到灵台处一阵空明，精力得到了完全的补充。\n" NOR);
+                tell_object(me, HIY "你感到靈臺處一陣空明，精力得到了完全的補充。\n" NOR);
 
         me->improve_jingli(100 + random(101));
 

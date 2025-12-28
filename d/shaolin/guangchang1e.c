@@ -5,12 +5,12 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "广场");
+        set("short", "廣場");
         set("long", @LONG
-这里是少林寺前的广场，整个广场由大块的青石铺成，极为平坦。
-但因年代久远，都有些破损。丛丛小草从石板的缝隙中长了出来。广
-场周围都是密密的松树林，四角上各放了几块石碑，字迹都甚为模糊。
-边上立了块木牌(mupai)，寺前三三两两的站着几个僧人。
+這裡是少林寺前的廣場，整個廣場由大塊的青石鋪成，極為平坦。
+但因年代久遠，都有些破損。叢叢小草從石板的縫隙中長了出來。廣
+場周圍都是密密的松樹林，四角上各放了幾塊石碑，字跡都甚為模糊。
+邊上立了塊木牌(mupai)，寺前三三兩兩的站著幾個僧人。
 LONG );
         set("exits", ([
                 "east" : __DIR__"shulin1",
@@ -18,7 +18,7 @@ LONG );
                 "west" : __DIR__"guangchang1",
         ]));
         set("item_desc",([
-                "mupai"        :   "少林寺护法松林，违令擅入者杀无赦！\n",
+                "mupai"        :   "少林寺護法松林，違令擅入者殺無赦！\n",
         ]));
         set("outdoors", "shaolin");
         set("objects",([
@@ -35,8 +35,8 @@ int valid_leave(object me, string dir)
         && me->query_skill("dodge",1) <= 20 
         && (present("qingwu biqiu", environment(me))))
 
-        return notify_fail("清无拦住劝你: 东边是本寺护法松林，向来有进无出，\n"
-                    + RANK_D->query_respect(me) + "轻功不佳，最好先看看木牌，不要随便进去！\n");
+        return notify_fail("清無攔住勸你: 東邊是本寺護法松林，向來有進無出，\n"
+                    + RANK_D->query_respect(me) + "輕功不佳，最好先看看木牌，不要隨便進去！\n");
 
         return ::valid_leave(me, dir);
 }

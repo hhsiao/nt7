@@ -2,10 +2,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("红花会众", ({ "honghua huizhong", "hong", "honghua", "huizhong" }) );
+        set_name("紅花會眾", ({ "honghua huizhong", "hong", "honghua", "huizhong" }) );
         set("gender", "男性");
         set("age", 25);
-        set("long", "这是位青年壮汉，虎背熊腰，胸前配带一朵大红花。\n");
+        set("long", "這是位青年壯漢，虎背熊腰，胸前配帶一朵大紅花。\n");
         set("combat_exp", 20000);
         set("shen_type", 1);
         set("attitude", "heroism");

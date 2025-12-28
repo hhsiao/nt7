@@ -1,11 +1,11 @@
-// danhuangshayi.c 淡黄纱衣
+// danhuangshayi.c 淡黃紗衣
 
 #include <ansi.h>
 #include <armor.h>
 inherit CLOTH;
 void create()
 {
-        set_name( YEL "淡黄纱衣" NOR, ({ "danhuang shayi", "cloth" }) );
+        set_name( YEL "淡黃紗衣" NOR, ({ "danhuang shayi", "cloth" }) );
         set_weight(800);
         /*if (clonep())
                 set_default_object(__FILE__);

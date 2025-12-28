@@ -7,11 +7,11 @@
 
 inherit ITEM;
 
-// 是否讨论板？
+// 是否討論板？
 int is_board()  { return 1; }
 
-// create() 时调用，主要用于根据数据库内保留的信息设置
-// 版面的长描述。
+// create() 時調用，主要用於根據數據庫內保留的信息設置
+// 版面的長描述。
 void setup()
 {
         string loc;
@@ -40,7 +40,7 @@ void init()
         add_action("do_discard", "discard");
 }
 
-// 版面的短描述，要返回未读的文章/主题数。
+// 版面的短描述，要返回未讀的文章/主題數。
 string short()
 {
         mapping *notes;
@@ -63,10 +63,10 @@ string short()
                       : BOARD_D->query_all_topics(ob));
         time = (mode ? POST_TIME : TOPIC_TIME);
 
-        str = mode ? "文章" : "主题";
+        str = mode ? "文章" : "主題";
 
         if (! arrayp(notes) || ! sizeof(notes))
-                return ::short() + " [ 没有任何" + str + " ]";
+                return ::short() + " [ 沒有任何" + str + " ]";
 
         last_read_time = query("board_last_read/" + query("board_id"), me);
         max = sizeof(notes) - 1;
@@ -77,12 +77,12 @@ string short()
         max++;
         if (unread)
                 return sprintf(HIC + "%s" + NOR + " [ %d 篇%s，" + HIY + "%d" + NOR + " 篇" +
-                               HIR + "未读" + NOR + "]", ::short(), max, str, unread);
+                               HIR + "未讀" + NOR + "]", ::short(), max, str, unread);
         else
                 return sprintf("%s [ " WHT "%d" NOR " 篇%s ]", ::short(), max, str);
 }
 
-// 版面的长描述，返回所有文章/主题的列表。
+// 版面的長描述，返回所有文章/主題的列表。
 string long()
 {
         mixed *notes;
@@ -111,7 +111,7 @@ string long()
                 if (i < 0) i = 0;
                 for (; i < sizeof(notes); i++)
                 {
-                        // 加上 1 参数则不返回 msg
+                        // 加上 1 參數則不返回 msg
                         pinfo = BOARD_D->query_post_info(notes[i][POST_ID], 1);
                         if (pinfo[POST_SUBJECT] == "")
                         {
@@ -131,10 +131,10 @@ string long()
                        "───[ " WHT "BBS 模式" NOR " ]\n\n";
         } else
         {
-                // 加上 1 参数则不返回后三项
+                // 加上 1 參數則不返回後三項
                 notes = BOARD_D->query_all_topics(this_object(), 1);
                 msg = sprintf("『 " HIW "%s" NOR " 』(" WHT "%s" NOR ")\n%s"
-                              "\n" WHT "目前所有的主题有：\n" NOR
+                              "\n" WHT "目前所有的主題有：\n" NOR
                               "────────────────────────"
                               "─────────────\n", query("name"),
                               sprintf(FORUM_URL, query("forum_id")),
@@ -159,7 +159,7 @@ string long()
         return msg;
 }
 
-// 这将被玩家物件中的 F_EDIT 呼叫
+// 這將被玩家物件中的 F_EDIT 呼叫
 void done_post(object me, string title, string text)
 {
         int i;
@@ -175,7 +175,7 @@ void done_post(object me, string title, string text)
 
         if (strlen(text) > 64 * 1024)
         {
-                tell_object(me, "你的文章太长了，请略去一些不必要的。\n");
+                tell_object(me, "你的文章太長了，請略去一些不必要的。\n");
                 return;
         }
 
@@ -183,13 +183,13 @@ void done_post(object me, string title, string text)
         i = sizeof(lines);
         if (i > 2000)
         {
-                tell_object(me, "你的文章太长了，请略去一些不必要的。\n");
+                tell_object(me, "你的文章太長了，請略去一些不必要的。\n");
                 return;
         }
 
         if (i > 20 && strlen(text) / i < 10)
         {
-                tell_object(me, "你的文章中短句太多了，请调整一下以便他人阅读。\n");
+                tell_object(me, "你的文章中短句太多了，請調整一下以便他人閱讀。\n");
                 return;
         }
 
@@ -198,12 +198,12 @@ void done_post(object me, string title, string text)
                 // scan all lines
                 if (strlen(lines[i]) > 300)
                 {
-                        tell_object(me, "你文章中有些行太长了，请分行以便他人阅读。\n");
+                        tell_object(me, "你文章中有些行太長了，請分行以便他人閱讀。\n");
                         return;
                 }
         }
 
-        // 与浏览器方式兼容
+        // 與瀏覽器方式兼容
         text = replace_string(text, "  ", "　");
         ob = this_object();
         mode = is_bbs_mode(me);
@@ -213,28 +213,28 @@ void done_post(object me, string title, string text)
         if (sscanf(title, "re last %d", num)) topic_id = BOARD_D->query_number_topic(ob, -num, mode);
         if (sscanf(title, "re %d", num)) topic_id = BOARD_D->query_number_topic(ob, (num - 1), mode);
 
-        // 回复旧主题？
+        // 回覆舊主題？
         if (topic_id)
         {
                 if (! BOARD_D->reply_topic(ob, topic_id,
                                            query("id", me), text,
                                            query_ip_number(me)))
-                        tell_object(me, "回复失败，请向巫师查询原因。\n");
+                        tell_object(me, "回覆失敗，請向巫師查詢原因。\n");
                 else
-                        tell_object(me, "回复完毕。\n");
+                        tell_object(me, "回覆完畢。\n");
                 return;
         }
 
-        // 发表新主题？
+        // 發表新主題？
         if (! BOARD_D->post_new_topic(ob, title,
                                       query("id", me), text,
                                       query_ip_number(me)))
         {
-                tell_object(me, "发表失败，请向巫师查询原因。\n");
+                tell_object(me, "發表失敗，請向巫師查詢原因。\n");
                 return;
         }
 
-        tell_object(me, "发表完毕。\n");
+        tell_object(me, "發表完畢。\n");
         return;
 }
 
@@ -243,23 +243,23 @@ int do_post(string arg, int n)
         object me;
 
         if (! arg)
-                return notify_fail("发表文章请指定一个标题。\n");
+                return notify_fail("發表文章請指定一個標題。\n");
 
         me = this_player();
         if (wiz_level(me) < 1)
         {
                 if (query("mud_age", me) < 1800)
-                        return notify_fail("你必须在完成注册三十分钟以后才能使用讨论版，这段"
-                                           "时间内请先阅读他人的留言。\n");
+                        return notify_fail("你必須在完成註冊三十分鐘以後才能使用討論版，這段"
+                                           "時間內請先閱讀他人的留言。\n");
 
                 if (query("jing", me) < 50)
-                        return notify_fail("你现在精神不济，休息一会儿再说吧。\n");
+                        return notify_fail("你現在精神不濟，休息一會兒再說吧。\n");
 
                 me->receive_damage("jing", 50);
         }
 
         if (replace_string(arg, " ", "") == "")
-                arg = "无标题";
+                arg = "無標題";
 
         me->edit((: done_post, me, arg :));
         return 1;
@@ -281,16 +281,16 @@ int do_read(string arg)
         // 是否使用 bbs 模式？
         mode = is_bbs_mode(me);
 
-        if (! arg) return notify_fail("指令格式：read <文章 / 主题编号> | new | next\n");
+        if (! arg) return notify_fail("指令格式：read <文章 / 主題編號> | new | next\n");
 
         if (! DATABASE_D->query_db_status())
                 DATABASE_D->connect_to_database();
-        // 获得本版所有留言
+        // 獲得本版所有留言
         notes = (mode ? BOARD_D->query_all_posts(ob)
                       : BOARD_D->query_all_topics(ob));
         time = (mode ? POST_TIME : TOPIC_TIME);
 
-        if (! sizeof(notes)) return notify_fail("讨论板上没有任何文章。\n");
+        if (! sizeof(notes)) return notify_fail("討論板上沒有任何文章。\n");
 
         if (arg == "new" || arg == "next")
         {
@@ -307,18 +307,18 @@ int do_read(string arg)
                 }
         } else
         if (! sscanf(arg, "%d", num))
-                return notify_fail("你要读第几篇文章？\n");
+                return notify_fail("你要讀第幾篇文章？\n");
 
         if (num < 1 || num > sizeof(notes))
-                return notify_fail("没有这篇文章。\n");
+                return notify_fail("沒有這篇文章。\n");
         num--;
 
         // bbs 模式
         if (mode)
         {
-                // 本帖相关的一些信息
+                // 本帖相關的一些信息
                 pinfo = BOARD_D->query_post_info(notes[num][POST_ID]);
-                // 发贴的时间
+                // 發貼的時間
                 t = notes[num][POST_TIME];
                 tinfo = BOARD_D->query_topic_info(notes[num][TOPIC_ID]);
                 title = ((sizeof(tinfo) && pinfo[POST_SUBJECT] == "") ? ("Re: " + tinfo[TOPIC_TITLE]) :
@@ -334,11 +334,11 @@ int do_read(string arg)
 
                 BOARD_D->add_topic_view(notes[num][TOPIC_ID], 1);
 
-                // 此贴是哪篇主题的回复？
+                // 此貼是哪篇主題的回覆？
                 if (sizeof(tinfo))
-                        msg += sprintf("此贴是主题 " WHT "%s" NOR " (%d) 的%s。\nWeb 地址： " WHT "(%s)" NOR,
+                        msg += sprintf("此貼是主題 " WHT "%s" NOR " (%d) 的%s。\nWeb 地址： " WHT "(%s)" NOR,
                                        tinfo[TOPIC_TITLE], BOARD_D->query_topic_number(ob, tinfo[TOPIC_ID]),
-                                       (tinfo[TOPIC_FIRST_ID] == notes[num][POST_ID] ? "首贴" : "回复"),
+                                       (tinfo[TOPIC_FIRST_ID] == notes[num][POST_ID] ? "首貼" : "回覆"),
                                        sprintf(TOPIC_URL, tinfo[TOPIC_ID]));
         } else
         {
@@ -359,7 +359,7 @@ int do_read(string arg)
 
                 BOARD_D->add_topic_view(notes[num][TOPIC_ID], 1);
 
-                // 是否有回复呢？
+                // 是否有回覆呢？
                 if (notes[num][TOPIC_REPLIES])
                 {
                         mode = query("env/reply_mode", me);
@@ -370,7 +370,7 @@ int do_read(string arg)
                                                                      notes[num][TOPIC_FIRST_ID]);
                                 switch (mode)
                                 {
-                                // 显示最后一篇回复
+                                // 顯示最後一篇回覆
                                 case 1 :
                                         reply = replies[sizeof(replies) - 1];
                                         pinfo = BOARD_D->query_post_info(reply[POST_ID]);
@@ -385,7 +385,7 @@ int do_read(string arg)
                                                        BOARD_D->query_mud_name(reply[POSTER_ID]),
                                                        pinfo[POST_TEXT]);
                                         break;
-                                // 显示所有回复
+                                // 顯示所有回覆
                                 // case 2 :
                                 default :
                                         foreach (reply in replies)
@@ -407,12 +407,12 @@ int do_read(string arg)
                                 msg += "─────────────────────────────"
                                        "────────\n";
                         }
-                        msg += "本主题共有 " WHT + notes[num][TOPIC_REPLIES] + NOR " 篇回复。\n";
+                        msg += "本主題共有 " WHT + notes[num][TOPIC_REPLIES] + NOR " 篇回覆。\n";
                 }
         }
         me->start_more(msg);
 
-        // 记录上次阅读到哪里
+        // 記錄上次閱讀到哪裡
         if (! mapp(last_read_time))
                 set("board_last_read", ([myid:t]), me);
         else
@@ -436,7 +436,7 @@ int do_discard(string arg)
         ob = this_object();
 
         if (! arg || sscanf(arg, "%d", num) != 1)
-                return notify_fail("指令格式：discard <留言编号>\n");
+                return notify_fail("指令格式：discard <留言編號>\n");
 
         if (! DATABASE_D->query_db_status())
                 DATABASE_D->connect_to_database();
@@ -446,31 +446,31 @@ int do_discard(string arg)
         {
                 post_id = BOARD_D->query_number_post(ob, num - 1);
                 if (! post_id)
-                        return notify_fail("没有这篇文章。\n");
+                        return notify_fail("沒有這篇文章。\n");
 
                 pdata = BOARD_D->query_post_data(post_id);
 
                 if (BOARD_D->query_user_name(pdata[POSTER_ID]) != query("id", me) &&
                     wiz_level(me) < wiz_level("(wizard)"))
-                        return notify_fail("这篇文章不是你写的，你也没有删除文章的权限。\n");
+                        return notify_fail("這篇文章不是你寫的，你也沒有刪除文章的權限。\n");
 
                 BOARD_D->delete_post(ob, post_id);
-                write("删除第 " + num + " 篇文章....Ok。\n");
+                write("刪除第 " + num + " 篇文章....Ok。\n");
                 return 1;
         } else
         {
                 topic_id = BOARD_D->query_number_topic(ob, num - 1, mode);
                 if (! topic_id)
-                        return notify_fail("没有这篇文章。\n");
+                        return notify_fail("沒有這篇文章。\n");
 
                 tinfo = BOARD_D->query_topic_info(topic_id);
 
                 if (BOARD_D->query_user_name(tinfo[TOPIC_POSTER]) != query("id", me) &&
                     wiz_level(me) < wiz_level("(wizard)"))
-                        return notify_fail("这篇文章不是你写的，你也没有删除文章的权限。\n");
+                        return notify_fail("這篇文章不是你寫的，你也沒有刪除文章的權限。\n");
 
                 BOARD_D->delete_topic(ob, topic_id);
-                write("删除第 " + num + " 篇主题....Ok。\n");
+                write("刪除第 " + num + " 篇主題....Ok。\n");
                 return 1;
         }
 }

@@ -10,24 +10,24 @@ inherit SNAKE;
 mapping default_dirs = ([
         "north":        "北",
         "south":        "南",
-                  "east":         "东",
+                  "east":         "東",
         "west":         "西",
-        "northup":      "北边",
-                  "southup":      "南边",
-        "eastup":       "东边",
-                  "westup":       "西边",
-        "northdown":    "北边",
-        "southdown":    "南边",
-        "eastdown":     "东边",
-        "westdown":     "西边",
-                  "northeast":    "东北",
+        "northup":      "北邊",
+                  "southup":      "南邊",
+        "eastup":       "東邊",
+                  "westup":       "西邊",
+        "northdown":    "北邊",
+        "southdown":    "南邊",
+        "eastdown":     "東邊",
+        "westdown":     "西邊",
+                  "northeast":    "東北",
                   "northwest":    "西北",
-                  "southeast":    "东南",
+                  "southeast":    "東南",
                   "southwest":    "西南",
                   "up":           "上",
                   "down":         "下",
                   "out":          "外",
-                  "enter":        "里",
+                  "enter":        "裡",
 ]);
 
 void set_owner(object owner);
@@ -48,7 +48,7 @@ void create()
         int max,max1;
 
                   set_name(HIW"怪蛇"NOR, ({ "guai she", "she", "snake" }) );
-                  set("unit", "条");
+                  set("unit", "條");
                   set("age", 29);
                   set("long", (: long_desc :));
                   set("attitude", "peaceful");
@@ -88,18 +88,18 @@ string long_desc()
                   string desc ;
                   object snake = this_object();
 
-                  desc = HIW"一条全身银鳞的小蛇，是西域欧阳峰用几十种最毒的蛇杂交培育出来的，奇毒无比，它正伸出血红的毒舌盯住你。\n"NOR;
+                  desc = HIW"一條全身銀鱗的小蛇，是西域歐陽峰用幾十種最毒的蛇雜交培育出來的，奇毒無比，它正伸出血紅的毒舌盯住你。\n"NOR;
 
                   if( query("food", snake)<50 )
-                         desc += RED"它看起来胃瘪瘪的，恐怕饿得正慌。\n"NOR;
+                         desc += RED"它看起來胃癟癟的，恐怕餓得正慌。\n"NOR;
                   else if( query("food", snake)<100 )
-                         desc += "它看起来不是很有精神，恐怕有点饿。\n";
+                         desc += "它看起來不是很有精神，恐怕有點餓。\n";
                   else if( query("food", snake)<150 )
-                         desc += "它看起来满活泼的，看来是半饱了。\n";
+                         desc += "它看起來滿活潑的，看來是半飽了。\n";
                   else if( query("food", snake)<200 )
-                         desc += "它看起来胃鼓鼓的，看来是快饱了。\n";
+                         desc += "它看起來胃鼓鼓的，看來是快飽了。\n";
                   else
-                         desc += HIY"它看起来胃鼓鼓的，似乎吃的太饱撑得简直快要爆炸了。\n"NOR;
+                         desc += HIY"它看起來胃鼓鼓的，似乎吃的太飽撐得簡直快要爆炸了。\n"NOR;
 
                   return desc;
 }
@@ -144,7 +144,7 @@ void init()
 
 /*
                   if( interactive(ob = this_player()) &&
-                                query("family/family_name", ob) != "欧阳世家" && 
+                                query("family/family_name", ob) != "歐陽世家" && 
                                 random(ob->query_kar() + ob->query_per()) < 30 &&
                                 query("combat_exp", ob)>query("combat_exp", me)*9/10 )
                   {
@@ -225,13 +225,13 @@ void do_leave(object ob)
                 {
                         if( ob->is_busy() || ob->is_fighting())
                         {
-                                message_vision("$N向后一跳，跳出战圈！\n",ob);
+                                message_vision("$N向後一跳，跳出戰圈！\n",ob);
                                 if(present("guai she",environment(ob)))
-                                  message_vision("$N说道：没想到老毒物的宝贝玩意还真有两下子。"+RANK_D->query_self(ob)+"改日再来奉陪！\n",ob);
-                                else message_vision("$N说道：哈蛤，老毒物的宝贝玩意到底不是"+RANK_D->query_self(ob)+"的对手！\n",ob);
+                                  message_vision("$N說道：沒想到老毒物的寶貝玩意還真有兩下子。"+RANK_D->query_self(ob)+"改日再來奉陪！\n",ob);
+                                else message_vision("$N說道：哈蛤，老毒物的寶貝玩意到底不是"+RANK_D->query_self(ob)+"的對手！\n",ob);
                         }
                         if(!living(ob))ob->revive(0);
-                        message_vision("$N急急忙忙离开了。\n",ob);
+                        message_vision("$N急急忙忙離開了。\n",ob);
                         destruct(ob);
                 }
 }
@@ -259,18 +259,18 @@ void action(object me, object ob)
         else if( query("owner", random(6) != 0 && (owner=present(me),here)) )
         {
 
-                message_vision(HIR"\n$N"+HIR"喝道：老毒物的弟子驱蛇伤人无数，今天"+RANK_D->query_self(ob)+"特来送你们上西天！\n"NOR, ob);
+                message_vision(HIR"\n$N"+HIR"喝道：老毒物的弟子驅蛇傷人無數，今天"+RANK_D->query_self(ob)+"特來送你們上西天！\n"NOR, ob);
                 ob->kill_ob(me);
                 ob->kill_ob(owner);
         }
         else if( random(2)==0 )
         {
-                message_vision(HIR"\n$N"+HIR"突然向$n"+HIR"发动进攻!\n"NOR, ob,me);
+                message_vision(HIR"\n$N"+HIR"突然向$n"+HIR"發動進攻!\n"NOR, ob,me);
                 ob->kill_ob(me);
         }
         else
         {
-                message_vision(HIR"\n$N"+HIR"喝道：老毒物的怪蛇害人无数，今天"+RANK_D->query_self(ob)+"誓为民除害！\n"NOR, ob);
+                message_vision(HIR"\n$N"+HIR"喝道：老毒物的怪蛇害人無數，今天"+RANK_D->query_self(ob)+"誓為民除害！\n"NOR, ob);
                 ob->kill_ob(me);
         }
 
@@ -312,7 +312,7 @@ private int is_suitable(object victim, object killer)
                   });
 
                   if(  !clonep(victim) || userp(victim)
-                         || query("race", victim) != "人类"
+                         || query("race", victim) != "人類"
                          || query("shen", victim)<0
                          || query("winner", victim )
                         || strsrch(base_name(victim), "/kungfu/skill/") != -1
@@ -416,7 +416,7 @@ void killer_show(object me)
 
   ob->move(here);
   setup_skill(me,ob);
-  message_vision("\n$N快步走了过来!\n", ob);
+  message_vision("\n$N快步走了過來!\n", ob);
 
   call_out("action",random(10),me,ob);
 
@@ -435,33 +435,33 @@ int do_drive(string arg)
         string target_dir, dir, dest, victim;
         mapping exit;
 
-        if (!arg) return notify_fail("你要驱赶什么？\n");
+        if (!arg) return notify_fail("你要驅趕什麼？\n");
 
-        if( sscanf(arg, "%s %s", victim, dir) != 2 ) return notify_fail("指令错误！\n");
+        if( sscanf(arg, "%s %s", victim, dir) != 2 ) return notify_fail("指令錯誤！\n");
 
 
-        if( victim == query("id", me))return notify_fail("何必多此一举？\n");
+        if( victim == query("id", me))return notify_fail("何必多此一舉？\n");
 
-        if ( victim != "snake" && victim != "guai she" && victim != "she" ) return notify_fail("你要驱赶什么？\n");
+        if ( victim != "snake" && victim != "guai she" && victim != "she" ) return notify_fail("你要驅趕什麼？\n");
 
         ob = present(victim, environment(me));
 
-        if (!ob) return notify_fail("这里并无此人！\n");
-        if (!living(ob)) return notify_fail("这不是活物！\n");
+        if (!ob) return notify_fail("這裡並無此人！\n");
+        if (!living(ob)) return notify_fail("這不是活物！\n");
 
 
         env = environment(me);
         if( !mapp(exit=query("exits", env)) || undefinedp(exit[dir]) )
-                return notify_fail("无此方向可去！\n");
+                return notify_fail("無此方向可去！\n");
 
         dest = exit[dir];
 
         if( !(obj = find_object(dest)) )
                                          call_other(dest, "???");
                   if( !(obj = find_object(dest)) )
-                                         return notify_fail("无法走！\n");
-        if( !wizardp(ob) && query("short", obj) == "巫师休息室" )
-                return notify_fail("无法走！\n");
+                                         return notify_fail("無法走！\n");
+        if( !wizardp(ob) && query("short", obj) == "巫師休息室" )
+                return notify_fail("無法走！\n");
 
         if( !undefinedp(default_dirs[dir]) )
                                          target_dir = default_dirs[dir];
@@ -469,9 +469,9 @@ int do_drive(string arg)
                                          target_dir = dir;
 
         if ( present("shezhang",me) || present("guai shezhang",me))
-                message_vision(HIR "$N用蛇杖驱赶$n朝"+target_dir+"走去。\n" NOR, me, ob);
+                message_vision(HIR "$N用蛇杖驅趕$n朝"+target_dir+"走去。\n" NOR, me, ob);
         else
-                message_vision( "$N用手势驱赶$n朝"+target_dir+"走去。\n" , me, ob);
+                message_vision( "$N用手勢驅趕$n朝"+target_dir+"走去。\n" , me, ob);
 
 
         if( query("owner", ob) != query("id", me) )
@@ -482,10 +482,10 @@ int do_drive(string arg)
 
         if( random(20) != 0)
         {
-                message("vision", HIR "只见"+ob->name()+"乖乖的向"+target_dir+"游过去。\n" NOR, environment(ob), ({ob}));
+                message("vision", HIR "只見"+ob->name()+"乖乖的向"+target_dir+"游過去。\n" NOR, environment(ob), ({ob}));
 
                 if( ob->move(obj) ) {
-                        message( "vision", HIR "只见"+ob->name()+"游了过来。\n" NOR, environment(ob), ({ob}));
+                        message( "vision", HIR "只見"+ob->name()+"遊了過來。\n" NOR, environment(ob), ({ob}));
                         return 1;
                 }
         }
@@ -501,29 +501,29 @@ int do_yao(string arg)
         string target_dir, dir, dest, victim;
         mapping exit;
 
-        if (!arg) return notify_fail("你要驱赶什么？\n");
+        if (!arg) return notify_fail("你要驅趕什麼？\n");
 
         victim = arg;
 
-        if( victim == query("id", me))return notify_fail("怪蛇疑惑地看着你。\n");
+        if( victim == query("id", me))return notify_fail("怪蛇疑惑地看著你。\n");
 
         ob = present(victim, environment(me));
         snake = present("guai she",environment(me));
 
-        if (!ob) return notify_fail("这里并无此人！\n");
+        if (!ob) return notify_fail("這裡並無此人！\n");
 
 
 
         if ( present("shezhang",me) || present("guai shezhang",me))
-                message_vision(HIR "$N用蛇杖驱赶蛇朝$n咬去。\n" NOR, me, ob);
+                message_vision(HIR "$N用蛇杖驅趕蛇朝$n咬去。\n" NOR, me, ob);
         else
                 message_vision( "$N用手指了指蛇，又朝$n指去。\n" , me, ob);
 
-//        if (!living(ob)) return notify_fail("这不是活物！\n");
+//        if (!living(ob)) return notify_fail("這不是活物！\n");
 
 
 
-        if( query("owner") != query("id", me) || query("race", ob) != "人类" || query("id", ob) == "guaishe" )
+        if( query("owner") != query("id", me) || query("race", ob) != "人類" || query("id", ob) == "guaishe" )
         {
                 message_vision( "可是$N理都不理。\n" NOR, snake );
                 return 1;
@@ -531,22 +531,22 @@ int do_yao(string arg)
 
         if ( query("food") >= 200  )
         {
-                message_vision( "可是$N吃得太饱了，理都不理。\n" NOR, snake );
+                message_vision( "可是$N吃得太飽了，理都不理。\n" NOR, snake );
                 return 1;
         }
 
         if( query("combat_exp", ob)<query("combat_exp", me)*4/5 )
-                return notify_fail("怪蛇只对武功高手感兴趣！\n");
+                return notify_fail("怪蛇只對武功高手感興趣！\n");
 
 
 
         if( random(20) != 0)
         {
-                message_vision( HIR "只见$N"+HIW"闪电般的向$n扑击过去。\n" NOR, snake, ob );
+                message_vision( HIR "只見$N"+HIW"閃電般的向$n撲擊過去。\n" NOR, snake, ob );
                 snake->kill_ob(ob);
                 if(random(4)!=0 && living(ob) )
                 {
-                        message_vision( HIR "$N对着$n"+HIR"冷笑一声："+RANK_D->query_rude(me)+HIR"居然敢纵蛇伤我，看招！\n" NOR, ob,me );
+                        message_vision( HIR "$N對著$n"+HIR"冷笑一聲："+RANK_D->query_rude(me)+HIR"居然敢縱蛇傷我，看招！\n" NOR, ob,me );
                         ob->kill_ob(me);
                 }
         }
@@ -562,19 +562,19 @@ int do_stop(string arg)
         string target_dir, dir, dest, victim;
         mapping exit;
 
-        if (!arg) return notify_fail("你要驱赶什么？\n");
+        if (!arg) return notify_fail("你要驅趕什麼？\n");
 
         victim = arg;
 
 
         ob = present(victim, environment(me));
 
-        if (!ob) return notify_fail("这里并无此物！\n");
+        if (!ob) return notify_fail("這裡並無此物！\n");
 
         if ( present("shezhang",me) || present("guai shezhang",me))
-                message_vision(HIR "$N用蛇杖示意$n停下来。\n" NOR, me,ob);
+                message_vision(HIR "$N用蛇杖示意$n停下來。\n" NOR, me,ob);
         else
-                message_vision( "$N用手指示意$n停下来。\n" , me, ob);
+                message_vision( "$N用手指示意$n停下來。\n" , me, ob);
 
         if( query("owner", ob) != query("id", me) )
         {
@@ -585,7 +585,7 @@ int do_stop(string arg)
 
         if( random(20) != 0)
         {
-                message("vision", HIR "只见$N乖乖地缩回来，不咬了。\n" NOR, ob );
+                message("vision", HIR "只見$N乖乖地縮回來，不咬了。\n" NOR, ob );
                 ob->remove_all_killer();
         }
         else
@@ -601,24 +601,24 @@ int convert(string arg)
         object ob,snake = present("guai she",environment(me));
 
         if (arg != "guai she" && arg != "she" && arg != "snake" || !snake ) return 0;
-        if( query("family/family_name", me) != "欧阳世家" )
-                return notify_fail("你不能化蛇为杖。\n");
+        if( query("family/family_name", me) != "歐陽世家" )
+                return notify_fail("你不能化蛇為杖。\n");
 
-        if( !(ob=present("guai shezhang",me)) ) return notify_fail("蛇杖在哪儿？\n");
+        if( !(ob=present("guai shezhang",me)) ) return notify_fail("蛇杖在哪兒？\n");
 
         if( query("jingli", me)<50)return notify_fail("你的精力不足。\n");
 
-        message_vision("$N左手持怪蛇杖伸到$n面前，右手对着$n做着奇怪的手势，口中念念有词。\n",
+        message_vision("$N左手持怪蛇杖伸到$n面前，右手對著$n做著奇怪的手勢，口中唸唸有詞。\n",
                 me,snake);
 
         addn("jingli", -20, me);
 
         if( query("food", snake)<200 )
-                return notify_fail("怪蛇还没喂饱，不肯进蛇杖。\n");
+                return notify_fail("怪蛇還沒餵飽，不肯進蛇杖。\n");
 
-        if( query("snake", ob) >= 2)return notify_fail("蛇杖上已有两条蛇了，怪蛇挤不上去！\n");
+        if( query("snake", ob) >= 2)return notify_fail("蛇杖上已有兩條蛇了，怪蛇擠不上去！\n");
 
-        message_vision("$N"+HIW"看了看$n，突然似箭一般跃起，准确地落在蛇杖上，盘了起来。\n"NOR,
+        message_vision("$N"+HIW"看了看$n，突然似箭一般躍起，準確地落在蛇杖上，盤了起來。\n"NOR,
                 snake,me);
         if( query("bt/job", me) != 0){
                 if( (query("bt/exp", me)+query("bt/pot", me)+query("bt/lvl", me)) != 0 )
@@ -649,7 +649,7 @@ int random_walk()
                                 if(snake)
                                 {
                                         if(!living(snake))snake->revive(0);
-                                                message_vision("$N在地上找了一个缝钻了进去，不见了。\n",snake);
+                                                message_vision("$N在地上找了一個縫鑽了進去，不見了。\n",snake);
                                                 destruct(snake);
                                 }
                                 return 0;
@@ -668,7 +668,7 @@ int random_walk()
                                 if(snake)
                                 {
                                         if(!living(snake))snake->revive(0);
-                                                message_vision("$N在地上找了一个缝钻了进去，不见了。\n",snake);
+                                                message_vision("$N在地上找了一個縫鑽了進去，不見了。\n",snake);
                                                 destruct(snake);
                                 }
                                 return 0;
@@ -689,15 +689,15 @@ int random_walk()
 
 
         if( !mapp(exit=query("exits", here)) || undefinedp(exit[dir]) )
-                return notify_fail("无此方向可去！\n");
+                return notify_fail("無此方向可去！\n");
 
 
                   there = find_object( exit[dir] );
                   if( there )
                         {
-                                message_vision("$N蜿蜒地向"+default_dirs[dir]+"游了过去。\n",snake);
+                                message_vision("$N蜿蜒地向"+default_dirs[dir]+"遊了過去。\n",snake);
                                 this_object()->move(there);
-                                message_vision("$N蜿蜒地游了过来。\n",snake);
+                                message_vision("$N蜿蜒地遊了過來。\n",snake);
                                 all_inventory(here)->follow_me(this_object(), dir);
                         }
                   else return 0;
@@ -787,11 +787,11 @@ int auto_perform()
                 return random_walk();
         }
 
-        message_vision("\n$N"+HIW"突然闪电般地跃起，象一条白箭似的射向$n"+HIW"的咽喉。\n"NOR,me,target);
+        message_vision("\n$N"+HIW"突然閃電般地躍起，象一條白箭似的射向$n"+HIW"的咽喉。\n"NOR,me,target);
 
         if( random(query("combat_exp", me))>random(query("combat_exp", target)) || !living(target) )
         {
-                        message_vision(HIR"结果$N"+HIR"一口咬住$n"+HIR"的咽喉，猛猛地吸起血来。\n\n"NOR,me,target);
+                        message_vision(HIR"結果$N"+HIR"一口咬住$n"+HIR"的咽喉，猛猛地吸起血來。\n\n"NOR,me,target);
                         damage=random(me->query_skill("force")+me->query_skill("hamagong")+query("jiali", me))*(1+random(3));
                         if(damage > 1000) damage = 1000;
                         if(damage < 100) damage = 100;
@@ -832,7 +832,7 @@ int auto_perform()
                         COMBAT_D->report_status(target);
         }
         else
-                message_vision(HIG"$N"+HIG"慌忙一闪身，正好躲过$n"+HIG"这一攻击，不过也被吓得全身流汗，要知道这怪蛇奇毒无比，咬中了就九死一生。\n"NOR,target,me);
+                message_vision(HIG"$N"+HIG"慌忙一閃身，正好躲過$n"+HIG"這一攻擊，不過也被嚇得全身流汗，要知道這怪蛇奇毒無比，咬中了就九死一生。\n"NOR,target,me);
 
         return 1;
 }

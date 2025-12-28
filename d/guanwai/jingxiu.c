@@ -1,4 +1,4 @@
-// jingxiu.c 静修室
+// jingxiu.c 靜修室
 
 inherit ROOM;
 
@@ -12,10 +12,10 @@ string look_men();
 
 void create()
 {
-        set("short", "静修室");
+        set("short", "靜修室");
         set("long", @LONG
-这里是静修室，屋中有一些胡家弟子在这里打坐练功。南面有一
-扇小门(men)，里面隐隐传来了鼾声。
+這裡是靜修室，屋中有一些胡家弟子在這裡打坐練功。南面有一
+扇小門(men)，裡面隱隱傳來了鼾聲。
 LONG );
         set("exits", ([
                 "east" : __DIR__"houyuan",
@@ -49,9 +49,9 @@ int close_men()
         if (objectp(room))
         {
                 delete("exits/south");
-                message("vision", "门吱吱呀呀地自己合上了。\n", this_object());
+                message("vision", "門吱吱呀呀地自己合上了。\n", this_object());
                 delete("exits/north", room);
-                message("vision", "门吱吱呀呀地自己合上了。\n", room);
+                message("vision", "門吱吱呀呀地自己合上了。\n", room);
         } else message("vision", "ERROR: men not found(close).\n", room);
 
         return 1;
@@ -62,10 +62,10 @@ int do_knock(string arg)
         object room;
 
         if (!arg || (arg != "door" && arg != "men"))
-                return notify_fail("你要敲什么？\n");
+                return notify_fail("你要敲什麼？\n");
 
         if (query("exits/south"))
-                return notify_fail("大门已经是开着了。\n");
+                return notify_fail("大門已經是開著了。\n");
 
         if (!( room = find_object(__DIR__"xiuxishi")) )
                 room = load_object(__DIR__"xiuxishi");
@@ -74,8 +74,8 @@ int do_knock(string arg)
         {
                 if( query_temp("sleeping_person", room)>0 )
                 {
-                        message_vision("$N刚轻轻地敲了一下门，就听见里面传出一阵雷鸣般的鼾声，\n"
-                                       "显然里面的人睡得跟死猪似的，怎么敲都没用了\n",
+                        message_vision("$N剛輕輕地敲了一下門，就聽見裡面傳出一陣雷鳴般的鼾聲，\n"
+                                       "顯然裡面的人睡得跟死豬似的，怎麼敲都沒用了\n",
                                        this_player());
                 } else
                 if( query_temp("person_inside", room)>0 )
@@ -83,28 +83,28 @@ int do_knock(string arg)
                         switch (random(2))
                         {
                         case 0:
-                                message_vision("$N轻轻地敲了敲门，只听见里面有人很不耐烦地吼到：\n"
-                                               "刚躺下就来敲门！我睡着了，听不见！！！\n",
+                                message_vision("$N輕輕地敲了敲門，只聽見裡面有人很不耐煩地吼到：\n"
+                                               "剛躺下就來敲門！我睡著了，聽不見！！！\n",
                                                this_player());
                                 break;
                         case 1:
-                                message_vision("$N轻轻地敲了敲门，只听见里面有些响动，\n"
-                                               "好象有人在踱来踱去，拿不定主意是否开门。\n",
+                                message_vision("$N輕輕地敲了敲門，只聽見裡面有些響動，\n"
+                                               "好象有人在踱來踱去，拿不定主意是否開門。\n",
                                                this_player());
                                 break;
                         }
                 } else
                 {
                         delete_temp("sleeping_person", room);
-                        message_vision("$N轻轻地敲了敲门：咚、咚、咚．．．咚、咚、咚．．．\n",
+                        message_vision("$N輕輕地敲了敲門：咚、咚、咚．．．咚、咚、咚．．．\n",
                                        this_player());
                 }
         }
 
         if (objectp(room))
-                message("vision",  "外面传来一阵敲门声，你从门缝往外一瞧，是" +
-                        this_player()->name() + "一脸焦急地站在门外，\n"
-                        "看样子也想进来休息。\n", room);
+                message("vision",  "外面傳來一陣敲門聲，你從門縫往外一瞧，是" +
+                        this_player()->name() + "一臉焦急地站在門外，\n"
+                        "看樣子也想進來休息。\n", room);
         return 1;
 }
 
@@ -114,10 +114,10 @@ int do_kick(string arg)
         object room;
 
         if (!arg || (arg != "door" && arg != "men"))
-                return notify_fail("你要踢什么？\n");
+                return notify_fail("你要踢什麼？\n");
 
         if (query("exits/south"))
-                return notify_fail("大门开着，你踢它干吗？。\n");
+                return notify_fail("大門開著，你踢它幹嗎？。\n");
 
         if (!( room = find_object(__DIR__"xiuxishi")) )
                 room = load_object(__DIR__"xiuxishi");
@@ -127,24 +127,24 @@ int do_kick(string arg)
         {
                 if( query("qi", me)<40 )
                 {
-                        message_vision("$N飞起一脚，狠狠的踢中大门，然而大门纹丝不动。\n", me);
-                        message("vision", "就听“砰”的一声巨响，外面似乎有人发火踢门了。\n", room);
-                        tell_object(me, "你觉得脚趾几乎都要断了！\n");
+                        message_vision("$N飛起一腳，狠狠的踢中大門，然而大門紋絲不動。\n", me);
+                        message("vision", "就聽“砰”的一聲巨響，外面似乎有人發火踢門了。\n", room);
+                        tell_object(me, "你覺得腳趾幾乎都要斷了！\n");
                         me->unconcious();
                 } else
                 if( query("qi", me)<100 )
                 {
-                        message_vision("$N飞起一脚，狠狠的踢中大门，然而大门只是晃了一下。\n", me);
-                        message("vision", "就听“砰”的一声巨响，外面似乎有人发火踢门了。\n", room);
-                        tell_object(me, "你觉得脚非常的痛！\n");
+                        message_vision("$N飛起一腳，狠狠的踢中大門，然而大門只是晃了一下。\n", me);
+                        message("vision", "就聽“砰”的一聲巨響，外面似乎有人發火踢門了。\n", room);
+                        tell_object(me, "你覺得腳非常的痛！\n");
                         set("qi", 20, me);
                         me->receive_wound("qi", 20);
                 } else
                 {
-                        message_vision("$N飞起一脚，狠狠将大门踹开。\n", me);
-                        message("vision", "就听“砰”的一声巨响，门忽的一下子就开了，吓了"
-                                "你一跳。仔细一看，原来是" + me->name() +
-                                "气势汹汹的站在门口。\n", room);
+                        message_vision("$N飛起一腳，狠狠將大門踹開。\n", me);
+                        message("vision", "就聽“砰”的一聲巨響，門忽的一下子就開了，嚇了"
+                                "你一跳。仔細一看，原來是" + me->name() +
+                                "氣勢洶洶的站在門口。\n", room);
                         me->receive_damage("qi", 100);
                         delete_temp("person_inside", room);
                         set("exits/south", __DIR__"xiuxishi");
@@ -162,10 +162,10 @@ int do_push(string arg)
         object room;
 
         if (query("exits/south"))
-                return notify_fail("门已经是开着了。\n");
+                return notify_fail("門已經是開著了。\n");
 
         if (!arg || (arg != "door" && arg != "men"))
-                return notify_fail("你要推什么？\n");
+                return notify_fail("你要推什麼？\n");
 
         if (!(room = find_object(__DIR__"xiuxishi")))
                 room = load_object(__DIR__"xiuxishi");
@@ -176,14 +176,14 @@ int do_push(string arg)
                     {
                         delete_temp("person_inside", room);
                         set("exits/south", __DIR__"xiuxishi");
-                        message_vision("$N轻轻地把门推开。\n", this_player());
+                        message_vision("$N輕輕地把門推開。\n", this_player());
                         set("exits/north", __FILE__, room);
-                        message("vision", "有人从外面把门推开了。\n", room);
+                        message("vision", "有人從外面把門推開了。\n", room);
                         remove_call_out("close_men");
                         call_out("close_men", 10);
                 } else
                 {
-                        message_vision("$N想把门推开，却发觉门被人从里面闩上了。\n",
+                        message_vision("$N想把門推開，卻發覺門被人從裡面閂上了。\n",
                                        this_player());
                 }
         }
@@ -199,9 +199,9 @@ string look_men()
                 room = load_object(__DIR__"xiuxishi");
 
         if( objectp(room) && query_temp("person_inside", room)>0 )
-                return "门上挂了个牌子：休息中、请毋打扰\n";
+                return "門上掛了個牌子：休息中、請毋打擾\n";
 
-        return "门上挂了个牌子：休息室\n";
+        return "門上掛了個牌子：休息室\n";
 }
 
 int valid_leave(object me, string dir)
@@ -231,9 +231,9 @@ int force_open(object room)
         delete_temp("person_inside", room);
             set("exits/north", __DIR__"xiuxishi");
             set("exits/south", __FILE__, room);
-            message("vision", "外面突然响起粗重的脚步声，由远而近，到门前停了下来．．．\n"
-                          "几个弟子一下子把门打开，伸个头进来，骂骂咧咧道：什么鸟人\n"
-                          "在里面磨磨蹭蹭的？\n", room);
+            message("vision", "外面突然響起粗重的腳步聲，由遠而近，到門前停了下來．．．\n"
+                          "幾個弟子一下子把門打開，伸個頭進來，罵罵咧咧道：什麼鳥人\n"
+                          "在裡面磨磨蹭蹭的？\n", room);
             remove_call_out("close_men");
             call_out("close_men", 10);
 

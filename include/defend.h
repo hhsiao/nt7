@@ -1,6 +1,6 @@
 mapping familys = ([
 
-        "武当派" : ([
+        "武當派" : ([
                 "place" : ({ "/d/wudang/shijie1", "/d/wudang/shibapan","/d/wudang/haohanpo", 
                              "/d/wudang/guangchang", "/d/wudang/tynroad", "/d/wudang/mozhenjing",
                              "/d/wudang/fuzhenguan", "/d/wudang/shiliang", "/d/wudang/yuzhengong",
@@ -24,7 +24,7 @@ mapping familys = ([
                 "master_place" : "/d/shaolin/fzlou2",
         ]),
 
-        "丐帮" : ([
+        "丐幫" : ([
                 "place" : ({ "/d/city/ml1", "/d/city/ml2",
                              "/d/city/ml3", "/d/city/pomiao", 
                              "/d/gaibang/shoushe", "/d/gaibang/inhole",
@@ -56,7 +56,7 @@ mapping familys = ([
                 "master_place" : "/d/xingxiu/riyuedong",
         ]),
         
-        "华山派" : ([
+        "華山派" : ([
                 "place" : ({ "/d/huashan/yunu", "/d/huashan/square", 
                              "/d/huashan/zhenyue", "/d/huashan/pingxinshi",
                              "/d/huashan/yuquan", "/d/huashan/chaoyang", 
@@ -91,7 +91,7 @@ mapping familys = ([
                 "master_place" : "/d/mingjiao/dadian",
         ]),
 
-        "大轮寺" : ([
+        "大輪寺" : ([
                 "place" : ({ "/d/xueshan/shanjiao", "/d/xueshan/cangjing", "/d/xueshan/cangjingge",
                              "/d/xueshan/caoyuan", "/d/xueshan/cedian1", "/d/xueshan/cedian2", 
                              "/d/xueshan/chang", "/d/xueshan/chanshi", "/d/xueshan/dadian",  
@@ -124,7 +124,7 @@ mapping familys = ([
                 "master_place" : "/d/gumu/zhengting",
         ]),
 
-        "灵鹫宫" : ([
+        "靈鷲宮" : ([
                 "place" : ({ "/d/lingjiu/xianchou", "/d/lingjiu/dadao1", "/d/lingjiu/dadao2",
                              "/d/lingjiu/changl15", "/d/lingjiu/changl6", "/d/lingjiu/dating",
                              "/d/lingjiu/changl7", "/d/lingjiu/changl8", "/d/lingjiu/changl4",
@@ -136,7 +136,7 @@ mapping familys = ([
                 "master_place" : "/d/lingjiu/dating",
         ]), 
 
-        "欧阳世家" : ([
+        "歐陽世家" : ([
                 "place" : ({ "/d/baituo/houyuan", "/d/baituo/tuyuan", "/d/baituo/zhuyuan",
                              "/d/baituo/shoushe", "/d/baituo/menlang", "/d/baituo/huayuan",
                              "/d/baituo/damen", "/d/baituo/yuanzi", "/d/baituo/dating", 
@@ -146,7 +146,7 @@ mapping familys = ([
                 "master_place" : "/d/baituo/dating",
         ]), 
 
-        "桃花岛" : ([
+        "桃花島" : ([
                 "place" : ({ "/d/taohua/wofang", "/d/taohua/hyjuchu", "/d/taohua/changlang2", 
                              "/d/taohua/changlang", "/d/taohua/shuilong", "/d/taohua/jingshe",
                              "/d/taohua/haitan", "/d/taohua/tuqiu", "/d/taohua/zhulin",
@@ -157,7 +157,7 @@ mapping familys = ([
                 "master_place" : "/d/taohua/dating",
         ]),
 
-        "血刀门" : ([
+        "血刀門" : ([
                 "place" : ({ "/d/xuedao/sroad7", "/d/xuedao/sroad8", "/d/xuedao/shandong1", 
                              "/d/xuedao/wangyougu", "/d/xuedao/sroad9", "/d/xuedao/shandong2",
                              "/d/xuedao/shandong3", }),
@@ -166,7 +166,7 @@ mapping familys = ([
                 "master_place" : "/d/xuedao/shandong3",
         ]),
 
-        "关外胡家" : ([
+        "關外胡家" : ([
                 "place" : ({ "/d/guanwai/caoguduo", "/d/guanwai/baihe", "/d/guanwai/xiaoyuan", 
                              "/d/guanwai/milin1", "/d/guanwai/xiaowu", "d/guanwai/houyuan",
                              "/d/guanwai/liangonge", "/d/guanwai/liangong", "/d/guanwai/jingxiu",}),
@@ -175,7 +175,7 @@ mapping familys = ([
                 "master_place" : "/d/guanwai/xiaowu",
         ]),
 
-        "神龙教" : ([
+        "神龍教" : ([
                 "place" : ({ "/d/shenlong/zoulang", "/d/shenlong/zhulin", "/d/shenlong/jushi", 
                              "/d/shenlong/road2", "/d/shenlong/road", "/d/shenlong/kongdi",
                              "/d/shenlong/xiaowu", "/d/shenlong/caodi", "/d/shenlong/haitan",}),
@@ -195,7 +195,7 @@ mapping familys = ([
                 "master_place" : "/d/yanziwu/canheju",
         ]),
 
-        "逍遥派" : ([
+        "逍遙派" : ([
                 "place" : ({ "/d/xiaoyao/mubanlu", "/d/xiaoyao/liangong", "/d/xiaoyao/xiaodao4", 
                              "/d/xiaoyao/muwu1", "/d/xiaoyao/xiaodao5", "/d/xiaoyao/qingcaop",
                              "/d/xiaoyao/muwu2", "/d/xiaoyao/xiaodao3", "/d/xiaoyao/xiaodao1",
@@ -205,7 +205,7 @@ mapping familys = ([
                 "master_place" : "/d/xiaoyao/qingcaop",
         ]),
 
-        "华山剑宗" : ([ 
+        "華山劍宗" : ([ 
                 "place" : ({ "/d/huashan/jzroad1", "/d/village/hsroad2", "/d/huashan/jzroad1", 
                              "/d/huashan/jzroad2", "/d/huashan/jzroad3", "/d/huashan/jzroad4",  
                              "/d/huashan/jzroad5", "/d/huashan/jzroad6", "/d/huashan/shangu",}),  
@@ -213,7 +213,7 @@ mapping familys = ([
                 "master_id" : "feng buping", 
                 "master_place" : "/d/huashan/xiaowu",
         ]),
-        "唐门世家" : ([ 
+        "唐門世家" : ([ 
                 "place" : ({ "/d/tangmen/ximen", "/d/tangmen/xdajie", "/d/tangmen/zhongxin", 
                              "/d/tangmen/bdajie1", "/d/tangmen/bdajie2", "/d/tangmen/ndajie",  
                              "/d/tangmen/edajie",}),  

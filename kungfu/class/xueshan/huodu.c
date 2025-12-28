@@ -10,8 +10,8 @@ void create()
 {
         set_name("霍都", ({ "huo du", "huo", "du" }));
         set("long", @LONG
-他是金轮法王座下的二弟子。深得法王的真传。
-霍都贵为蒙古王子，地位极其尊贵。
+他是金輪法王座下的二弟子。深得法王的真傳。
+霍都貴為蒙古王子，地位極其尊貴。
 LONG);
         set("nickname", HIY "蒙古王子" NOR);
         set("gender", "男性");
@@ -71,7 +71,7 @@ LONG);
         create_family("密宗", 3, "弟子");
 
         set("inquiry", ([
-                // "破元通虚" : (: ask_skill1 :),
+                // "破元通虛" : (: ask_skill1 :),
         ]));
 
         set("master_ob", 3);
@@ -88,13 +88,13 @@ void attempt_apprentice(object ob)
 
         if( query("gender", ob) == "女性" )
         {
-                command("say 嘿？你一个姑娘跑到雪山寺来干什么？");
+                command("say 嘿？你一個姑娘跑到雪山寺來幹什麼？");
                 return;
         }
 
         if( query("gender", ob) != "男性" )
         {
-                command("say 我平生最讨厌不男不女的阉人，给我滚开。");
+                command("say 我平生最討厭不男不女的閹人，給我滾開。");
                 return;
         }
 
@@ -106,18 +106,18 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)>-5000 )
         {
-                command("say 我从来不和正派人士打交道，给我滚开。");
+                command("say 我從來不和正派人士打交道，給我滾開。");
                 return;
         }
 
         if ((int)ob->query_skill("mizong-neigong", 1) < 50)
         {
-                command("say 你内功这么差，也好意思来麻烦我？");
+                command("say 你內功這麼差，也好意思來麻煩我？");
                 return;
         }
 
         command("nod");
-        command("say 小王看得起你，以后就跟着我吧。");
+        command("say 小王看得起你，以後就跟著我吧。");
         command("recruit "+query("id", ob));
 }
 
@@ -128,34 +128,34 @@ mixed ask_skill1()
         me = this_player();
 
         if( query("can_perform/poxu-daxuefa/tong", me) )
-                return "这招小王不是已经教过你了么？";
+                return "這招小王不是已經教過你了麼？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "给我滚开！";
+                return "給我滾開！";
 
         if (me->query_skill("poxu-daxuefa", 1) < 1)
-                return "你连破虚打穴法都没学，跟小王罗嗦什么？";
+                return "你連破虛打穴法都沒學，跟小王羅嗦什麼？";
 
         if( query("family/gongji", me)<400 )
-                return "你为雪山寺效力不够，这招暂时还不能传你。";
+                return "你為雪山寺效力不夠，這招暫時還不能傳你。";
 
         if( query("shen", me)>-10000 )
-                return "嘿！你为人如此正派，看来这招不适合你。";
+                return "嘿！你為人如此正派，看來這招不適合你。";
 
         if (me->query_skill("force") < 160)
-                return "你的内功修为不足，还学不了这一招。";
+                return "你的內功修為不足，還學不了這一招。";
 
         if (me->query_skill("poxu-daxuefa", 1) < 120)
-                return "等你把破虚打穴法练熟了再来找小王吧。";
+                return "等你把破虛打穴法練熟了再來找小王吧。";
 
-        message_sort(HIY "\n$n" HIY "沉思片刻，方才点了点头，伸手将$N" HIY
-                     "招至身边，俯身在$P" HIY "耳旁低声细说良久，$N" HIY
-                     "听后不禁会心的一笑，似乎对$n" HIY "的教导大有所悟"
+        message_sort(HIY "\n$n" HIY "沉思片刻，方才點了點頭，伸手將$N" HIY
+                     "招至身邊，俯身在$P" HIY "耳旁低聲細說良久，$N" HIY
+                     "聽後不禁會心的一笑，似乎對$n" HIY "的教導大有所悟"
                      "。\n\n" NOR, me, this_object());
 
         command("grin");
-        command("say 这招的精髓都告诉你了，可得用心练习。");
-        tell_object(me, HIC "你学会了「破元通虚」。\n" NOR);
+        command("say 這招的精髓都告訴你了，可得用心練習。");
+        tell_object(me, HIC "你學會了「破元通虛」。\n" NOR);
 
         if (me->can_improve_skill("dagger"))
                 me->improve_skill("dagger", 1500000);

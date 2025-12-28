@@ -4,12 +4,12 @@
 
 void setup()
 {
-        set_name("小虫[2;37;0m[2;37;0m", ({"jjkkll"}));        
+        set_name("小蟲[2;37;0m[2;37;0m", ({"jjkkll"}));        
         set("gender", "女性");                
-        set("long", "可怜虫[2;37;0m
-它是胡呆的魔幻兽。
+        set("long", "可憐蟲[2;37;0m
+它是胡呆的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "hmjj");
         set("owner_name", "胡呆");

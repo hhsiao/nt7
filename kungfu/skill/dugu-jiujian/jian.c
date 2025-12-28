@@ -1,6 +1,6 @@
 #include <ansi.h>
 
-#define HUA "「" MAG "剑心通明" NOR "」"
+#define HUA "「" MAG "劍心通明" NOR "」"
 
 inherit F_SSERVER;
 
@@ -15,30 +15,30 @@ int perform(object me, object target)
         int skill;
 
         if( !query("scborn/ok", me) )
-                return notify_fail("你所使用的外功中没有这个功能。\n");
+                return notify_fail("你所使用的外功中沒有這個功能。\n");
 
         if (me->query_skill_mapped("sword") != "dugu-jiujian")
-                return notify_fail("你还没有激发独孤九剑。\n");
+                return notify_fail("你還沒有激發獨孤九劍。\n");
                 
         if( !query("can_learn/dugu-jiujian/nothing", me) )
-                return notify_fail("你还没有进入无招境界，何谈剑心通明？\n");
+                return notify_fail("你還沒有進入無招境界，何談劍心通明？\n");
                 
         if ((int)me->query_skill("dugu-jiujian", 1) < 1000)
-                return notify_fail("你的独孤九剑等级不够，难以施展" HUA "。\n");
+                return notify_fail("你的獨孤九劍等級不夠，難以施展" HUA "。\n");
                                         
         if( query_temp("dugu_sword", me) )
-                return notify_fail("你已经运起" HUA "了。\n");
+                return notify_fail("你已經運起" HUA "了。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) )
-                return notify_fail("你所使用的武器不对！\n");
+                return notify_fail("你所使用的武器不對！\n");
                 
         if( query("skill_type", weapon) != "sword" )
-                return notify_fail("你所使用的武器不对！\n");
+                return notify_fail("你所使用的武器不對！\n");
                 
         if( query("neili", me)<250 )
-                return notify_fail("你此时的内力不足，难以施展" HUA "。\n");
+                return notify_fail("你此時的內力不足，難以施展" HUA "。\n");
 
-        msg = MAG "$N" MAG "凝神聚气，挥洒手中兵器，进入无招无我，剑心通明境界！\n\n" NOR;
+        msg = MAG "$N" MAG "凝神聚氣，揮灑手中兵器，進入無招無我，劍心通明境界！\n\n" NOR;
 
         message_combatd(msg, me, target);
 
@@ -62,6 +62,6 @@ void remove_effect(object me, int amount)
         {
                 addn_temp("apply/damage", -1*amount, me);
                 delete_temp("dugu_sword", me);
-                tell_object(me, "你的" HUA "运行完毕，将内力收回丹田。\n");
+                tell_object(me, "你的" HUA "運行完畢，將內力收回丹田。\n");
         }
 }

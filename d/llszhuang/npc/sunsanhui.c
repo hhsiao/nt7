@@ -2,11 +2,11 @@
 inherit NPC;
 void create()
 {
-        set_name("孙三毁", ({ "sun sanhui","sun","sanhui"}) );
+        set_name("孫三毀", ({ "sun sanhui","sun","sanhui"}) );
         set("long",@LONG
-他背上斜插著把长箭，高瘦修长，却丝毫不给人半点体弱的感觉。整个人
-像以钢筋架成，深藏著惊人的力量。使人觉得他不动则已，一动起来必是万分
-迅捷灵巧。他面貌长而削，颧骨高起，双睛神采异常，光华隐现。
+他背上斜插著把長箭，高瘦修長，卻絲毫不給人半點體弱的感覺。整個人
+像以鋼筋架成，深藏著驚人的力量。使人覺得他不動則已，一動起來必是萬分
+迅捷靈巧。他面貌長而削，顴骨高起，雙睛神采異常，光華隱現。
 LONG
          );
         set("title",CYN"神箭八雄"NOR);
@@ -24,7 +24,7 @@ LONG
         set_skill("dodge", 500);
         set_skill("parry", 400);
         set_skill("sword",420);
-        set_skill("force",800); //防止别人来弹指
+        set_skill("force",800); //防止別人來彈指
         set_skill("hamagong",500);
         set_skill("tiyunzong",400);
         map_skill("sword","pixie-jian");

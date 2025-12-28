@@ -1,8 +1,8 @@
 #include <ansi.h>
 inherit NPC;
-string *first_name = ({ "沙", "尘"});
+string *first_name = ({ "沙", "塵"});
 string *first_id = ({ "sha", "ash"});
-string *name_words = ({ "蝎", "魔"});
+string *name_words = ({ "蠍", "魔"});
 string *id_words = ({ "xie", "mo"});
 int combatpower();
 
@@ -49,8 +49,8 @@ void create()
         set_temp("apply/armor", 2500+random(2500));
 
         set("drops", ([
-                "RA&RANDOM20"    :       100,   // 低级普通装备
-                "RA&RANDOM30"    :       30,    // 中级普通装备
+                "RA&RANDOM20"    :       100,   // 低級普通裝備
+                "RA&RANDOM30"    :       30,    // 中級普通裝備
                 "MO&A1000"       :       1,
                 "MO&A1001"       :       1,
                 "MO&A1002"       :       1,
@@ -85,8 +85,8 @@ mixed hit_ob(object me, object ob, int damage_bouns)
         if (damage < 0) damage = 0;
         ob->receive_wound("qi", damage, me);
         set("neili",query("max_neili",  me), me);
-        return HIC "$N" HIC "“呼”的一声吹出一阵黄沙，登时令$n"
-               HIC "犹如千针加身。\n" NOR;
+        return HIC "$N" HIC "“呼”的一聲吹出一陣黃沙，登時令$n"
+               HIC "猶如千針加身。\n" NOR;
 }
 
 void unconcious()

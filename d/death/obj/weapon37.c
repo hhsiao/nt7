@@ -5,7 +5,7 @@ inherit DAGGER;
 
 void create()
 {
-        set_name(WHT "鱼肠剑" NOR, ({ "yuchang dagger", "dagger", "yuchang" }) );
+        set_name(WHT "魚腸劍" NOR, ({ "yuchang dagger", "dagger", "yuchang" }) );
         set_weight(4000);
         /*if( clonep() )
                 set_default_object(__FILE__);

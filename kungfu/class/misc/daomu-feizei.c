@@ -10,12 +10,12 @@ void death_msg();
 
 void create()
 {
-        set_name(HIM "盗墓飞贼" NOR, ({ "daomu feizei", "daomu", "feizei" }) );
+        set_name(HIM "盜墓飛賊" NOR, ({ "daomu feizei", "daomu", "feizei" }) );
         set("title", HIC "「神秘人」" NOR);
         set("gender", random(2) == 1 ? "男性" : "女性");
         set("age", 25);
         set("long", @LONG
-这是一名盗墓的飞贼，一身黑色蒙面装束，看起来身形矫健。
+這是一名盜墓的飛賊，一身黑色蒙面裝束，看起來身形矯健。
 LONG);
         set("combat_exp", 3000000);
         set("shen_type", 0);
@@ -32,7 +32,7 @@ LONG);
 
         set("no_clean_up", 1);
 
-        //set("no_nuoyi", 1); // 不被挪移影响
+        //set("no_nuoyi", 1); // 不被挪移影響
 
         set("str", 28);
         set("int", 25);
@@ -85,8 +85,8 @@ LONG);
         ]));
 
         set("drops", ([
-                "RA&RANDOM10"    :       100,   // 低级普通装备
-                "RA&RANDOM20"    :       40,    // 低级普通装备
+                "RA&RANDOM10"    :       100,   // 低級普通裝備
+                "RA&RANDOM20"    :       40,    // 低級普通裝備
                 "FI&/clone/goods/enchant-scroll" :   20,
                 "FI&/clone/goods/sun"    :   20,
                 "FI&/clone/goods/moon"   :   20,
@@ -123,7 +123,7 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->start_busy(5 + random(6));
         me->receive_wound("qi", 300 + random(300), ob);
-        return HIY "$N" HIY "大喝一声，拼死反抗，竟逼得$n" HIY "手忙脚乱。\n" NOR;
+        return HIY "$N" HIY "大喝一聲，拼死反抗，竟逼得$n" HIY "手忙腳亂。\n" NOR;
 }
 
 void heart_beat()
@@ -143,7 +143,7 @@ void random_move()
                 env = environment(this_object());
                 message_vision("$N急急忙忙的走了。\n", this_object());
 
-                CHANNEL_D->channel_broadcast("news", HIG "听说" + HIW + env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一带出现的" +
+                CHANNEL_D->channel_broadcast("news", HIG "聽說" + HIW + env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一帶出現的" +
                         HIR + this_object()->short() + HIR "消失了。\n" NOR);
 
                 destruct(this_object());
@@ -157,15 +157,15 @@ void death_msg()
         if (random(2) == 1)
         {
                 command("mess* grin");
-                //command("chat 想抓我没那么容易，后会无期...！");
-                CHANNEL_D->do_channel(this_object(), "mess", "听说" + name() + HIW "从古墓中盗得珍宝后，夺路而逃。" NOR);
+                //command("chat 想抓我沒那麼容易，後會無期...！");
+                CHANNEL_D->do_channel(this_object(), "mess", "聽說" + name() + HIW "從古墓中盜得珍寶後，奪路而逃。" NOR);
         }
         else
         {
-                message_vision(HIG "猛然间，$N " HIG " 向后一跳，随手仍出一颗黑色小丸，顿时腾起一片烟雾 ...\n" NOR,
+                message_vision(HIG "猛然間，$N " HIG " 向後一跳，隨手仍出一顆黑色小丸，頓時騰起一片煙霧 ...\n" NOR,
                                this_object());
-                //command("chat 哼，雕虫小技，不陪你们玩了，告辞！");
-                CHANNEL_D->do_channel(this_object(), "mess", "听说" + name() + HIW "从古墓中盗得珍宝后，夺路而逃。" NOR);
+                //command("chat 哼，雕蟲小技，不陪你們玩了，告辭！");
+                CHANNEL_D->do_channel(this_object(), "mess", "聽說" + name() + HIW "從古墓中盜得珍寶後，奪路而逃。" NOR);
         }
 }
 
@@ -179,7 +179,7 @@ void die(object killer)
                 return;
         }
 
-        if( time() < query_temp("end_time") ) // 时间没有到，死亡不了
+        if( time() < query_temp("end_time") ) // 時間沒有到，死亡不了
         {
                 addn("jing", query("max_jing") / 10);
                 if( query("jing") > query("max_jing") ) set("jing", query("max_jing"));
@@ -189,7 +189,7 @@ void die(object killer)
                 if( query("qi") > query("max_qi") ) set("qi", query("max_qi"));
                 addn("eff_qi", query("max_qi") / 10);
                 if( query("eff_qi") > query("max_qi") ) set("eff_qi", query("max_qi"));
-                message_vision(HIR "\n$N" HIR "大喝一声，运用秘法，气血有所回升！\n\n" NOR, this_object());
+                message_vision(HIR "\n$N" HIR "大喝一聲，運用秘法，氣血有所回升！\n\n" NOR, this_object());
                 return;
         }
 

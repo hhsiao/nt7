@@ -22,7 +22,7 @@ void distributed_preload()
         object ob;
 
 #ifdef LONELY_IMPROVED
-        // 关闭系统心跳
+        // 關閉系統心跳
         //set_config(__RC_HEARTBEAT_INTERVAL_MSEC__, 10000);
 
         foreach(ob in loginuser)
@@ -33,18 +33,18 @@ void distributed_preload()
         if( !sizeof(preload_list) ) {
                 foreach( ob in loginuser ) {
                         if( objectp(ob) ) {
-                                ob->directly_receive("\n"+MUD_FULL_NAME+"启动完毕，重新连线中...。\n");
+                                ob->directly_receive("\n"+MUD_FULL_NAME+"啟動完畢，重新連線中...。\n");
                                 destruct(ob);
                         }
                 }
 #ifdef LONELY_IMPROVED
-                // 启动系统心跳
+                // 啟動系統心跳
                 //set_config(__RC_HEARTBEAT_INTERVAL_MSEC__, 1000);
 #endif
                 return;
         }
 
-        //log_file("static/preload",sprintf("载入 %s\n", preload_list[0]));
+        //log_file("static/preload",sprintf("載入 %s\n", preload_list[0]));
 
 
 
@@ -54,13 +54,13 @@ void distributed_preload()
 
                 if( err = catch(ob = load_object(preload_list[0])) )
                 {
-                        broadcast(sprintf(HIW+"%'0'3d "NOR"- 载入 %s ...", sizeof(preload_list), preload_list[0]));
+                        broadcast(sprintf(HIW+"%'0'3d "NOR"- 載入 %s ...", sizeof(preload_list), preload_list[0]));
                         broadcast(HIR"Failed\n"NOR);
-                        log_file("static/preload",sprintf("载入 %s 时发生错误: %O\n", preload_list[0], err));
+                        log_file("static/preload",sprintf("載入 %s 時發生錯誤: %O\n", preload_list[0], err));
                 }
                 else
                 {
-                        broadcast(sprintf(HIW+"%'0'3d "NOR"- 载入 %s ...", sizeof(preload_list), preload_list[0]->query_name() || preload_list[0]));
+                        broadcast(sprintf(HIW+"%'0'3d "NOR"- 載入 %s ...", sizeof(preload_list), preload_list[0]->query_name() || preload_list[0]));
                         broadcast(sprintf(HIG"Done (%.2f Kbytes)\n"NOR, memory_info(ob)/1024.));
                 }
                 preload_list = preload_list[1..];
@@ -68,7 +68,7 @@ void distributed_preload()
         }
         else
         {
-                broadcast(sprintf(HIW+"%'0'3d "NOR"- 载入 %s ...", sizeof(preload_list), preload_list[0]->query_name() || preload_list[0]));
+                broadcast(sprintf(HIW+"%'0'3d "NOR"- 載入 %s ...", sizeof(preload_list), preload_list[0]->query_name() || preload_list[0]));
                 broadcast(sprintf(HIC"Loaded (%.2f Kbytes)\n"NOR, memory_info(ob)/1024.));
                 preload_list = preload_list[1..];
                 distributed_preload();
@@ -152,7 +152,7 @@ string query_network_packet_stats()
 #ifdef LONELY_IMPROVED
         mapping networkstats = network_stats();
 
-        return sprintf("已接收 %s 封包(%.2f/sec)，已传送 %s 封包(%.2f/sec)",
+        return sprintf("已接收 %s 封包(%.2f/sec)，已傳送 %s 封包(%.2f/sec)",
                         NUMBER_D->number_symbol(networkstats["incoming packets total"]),
                         to_float(networkstats["incoming packets total"])/uptime(),
                         NUMBER_D->number_symbol(networkstats["outgoing packets total"]),
@@ -167,7 +167,7 @@ string query_network_volume_stats()
 #ifdef LONELY_IMPROVED
         mapping networkstats = network_stats();
 
-        return sprintf("已接收 %s 资料(%.3f KBytes/sec)，已传送 %s 资料(%.3f KBytes/sec)",
+        return sprintf("已接收 %s 資料(%.3f KBytes/sec)，已傳送 %s 資料(%.3f KBytes/sec)",
                         dsize(networkstats["incoming volume total"]),
                         to_float(networkstats["incoming volume total"])/1024./uptime(),
                         dsize(networkstats["outgoing volume total"]),
@@ -190,18 +190,18 @@ string query_total_system_info()
                         ++module_room;
         }
 
-        msg += "真实时间   - "+TIME_D->replace_ctime(time())+"\n";
-        msg += "游戏时间   - "+TIME_D->game_time_description()+"\n";
-        msg += "启动时间   - "+CHINESE_D->chinese_period(uptime())+"\n";
-        msg += "使用者总数 - "+sizeof(users())+" 人\n";
-        msg += "物件总数   - "+sizeof(objects())+" 个\n";
-        msg += "房间模组数 - "+module_room+" 间\n";
-        msg += "心跳总数   - "+sizeof(heart_beats())+" 个\n";
-        msg += "延迟呼叫数 - "+sizeof(call_out_info())+" 个\n";
-        msg += "系统负载   - "+query_load_average()+"、平均 CPU 负荷："+sprintf("%.2f", cpuload)+"%\n";
-        msg += "封包传输   - "+query_network_packet_stats()+"\n";
-        msg += "资料传输   - "+query_network_volume_stats()+"\n";
-        msg += "记忆体使用 - "+sprintf("%.6f MBytes\n", memory_info()/1024./1024. );
+        msg += "真即時間   - "+TIME_D->replace_ctime(time())+"\n";
+        msg += "遊戲時間   - "+TIME_D->game_time_description()+"\n";
+        msg += "啟動時間   - "+CHINESE_D->chinese_period(uptime())+"\n";
+        msg += "使用者總數 - "+sizeof(users())+" 人\n";
+        msg += "物件總數   - "+sizeof(objects())+" 個\n";
+        msg += "房間模組數 - "+module_room+" 間\n";
+        msg += "心跳總數   - "+sizeof(heart_beats())+" 個\n";
+        msg += "延遲呼叫數 - "+sizeof(call_out_info())+" 個\n";
+        msg += "系統負載   - "+query_load_average()+"、平均 CPU 負荷："+sprintf("%.2f", cpuload)+"%\n";
+        msg += "封包傳輸   - "+query_network_packet_stats()+"\n";
+        msg += "資料傳輸   - "+query_network_volume_stats()+"\n";
+        msg += "記憶體使用 - "+sprintf("%.6f MBytes\n", memory_info()/1024./1024. );
 
         return msg;
 }
@@ -252,16 +252,16 @@ void startup_save_all(int level)
 {
         int costtime;
 
-        // 关闭系统心跳计算
+        // 關閉系統心跳計算
         //set_config(__RC_HEARTBEAT_INTERVAL_MSEC__, 10000);
 
         costtime = time_expression { catch(save_all(level)); };
 
-        CHANNEL_D->channel_broadcast("news", sprintf("系统资料全面储存完毕(Lv "+level+")，共花费 %.3f 秒。", costtime/1000000.));
+        CHANNEL_D->channel_broadcast("news", sprintf("系統資料全面儲存完畢(Lv "+level+")，共花費 %.3f 秒。", costtime/1000000.));
 
         set("system/save_all/time/"+level, costtime/1000000., DATABASE_D->query_ob());
 
-        // 重新启动系统心跳计算
+        // 重新啟動系統心跳計算
         //set_config(__RC_HEARTBEAT_INTERVAL_MSEC__, 1000);
 }
 
@@ -271,7 +271,7 @@ void prepare_to_save_all(int level)
 
 
         if( undefinedp(estimate_time) )
-                CHANNEL_D->channel_broadcast("news", "五秒钟后系统进行资料全面储存(Lv "+level+")，存档过程可能耗费数秒钟至数分钟，请稍候。");
+                CHANNEL_D->channel_broadcast("news", "五秒鐘後系統進行資料全面儲存(Lv "+level+")，存檔過程可能耗費數秒鐘至數分鐘，請稍候。");
         else
         {
                 int low = to_int(estimate_time - estimate_time/5);
@@ -279,7 +279,7 @@ void prepare_to_save_all(int level)
 
                 if( low < 0 ) low = 0;
 
-                CHANNEL_D->channel_broadcast("news", "五秒钟后系统进行资料全面储存(Lv "+level+")，存档过程估计约需要耗费 "+low+" 至 "+high+" 秒左右，请稍候。");
+                CHANNEL_D->channel_broadcast("news", "五秒鐘後系統進行資料全面儲存(Lv "+level+")，存檔過程估計約需要耗費 "+low+" 至 "+high+" 秒左右，請稍候。");
         }
         call_out((: startup_save_all :), 5, level);
 }
@@ -297,5 +297,5 @@ int remove()
 }
 string query_name()
 {
-        return "中央管理系统(SYSTEM_D)";
+        return "中央管理系統(SYSTEM_D)";
 }

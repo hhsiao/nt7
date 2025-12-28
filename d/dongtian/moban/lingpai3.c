@@ -29,6 +29,6 @@ string long()
                 set("dt_name", load_name());
                 set("dt_time", time() + 60);
         }
-        return "这是一枚玉质令牌，有金篆文刻字『" + query("dt_name") + "』。\n" + HIK + "( hand ling, recall dt )\n" + NOR;
+        return "這是一枚玉質令牌，有金篆文刻字『" + query("dt_name") + "』。\n" + HIK + "( hand ling, recall dt )\n" + NOR;
 }
 

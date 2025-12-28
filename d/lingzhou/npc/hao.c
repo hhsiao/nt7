@@ -5,13 +5,13 @@ inherit NPC;
 
 void create()
 {
-        set_name("郝连铁树", ({ "haolian tieshu", "tieshu" }));
+        set_name("郝連鐵樹", ({ "haolian tieshu", "tieshu" }));
         set("gender", "男性");
-        set("title", HIY"西夏国征东大将军"HIM"西夏一品堂"HIR"总管"NOR); 
+        set("title", HIY"西夏國徵東大將軍"HIM"西夏一品堂"HIR"總管"NOR); 
         set("age", random(10) + 20);
         set("str", 25);
         set("dex", 16);
-        set("long", "这是西夏的征东大将军，声势显赫。\n");
+        set("long", "這是西夏的徵東大將軍，聲勢顯赫。\n");
         set("combat_exp", 300000);
         set("shen_type", 1);
         set("attitude", "aggressive");

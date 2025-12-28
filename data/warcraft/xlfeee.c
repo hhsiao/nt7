@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("小红[2;37;0m[2;37;0m", ({"xiaobai"}));        
+        set_name("小紅[2;37;0m[2;37;0m", ({"xiaobai"}));        
         set("gender", "女性");                
         set("long", "ＡＡＡＡＡ[2;37;0m
-它是大黑的魔幻兽。
+它是大黑的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

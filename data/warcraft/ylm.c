@@ -7,7 +7,7 @@ void setup()
         set_name("大熊[2;37;0m[2;37;0m", ({"daxiong"}));        
         set("gender", "女性");                
         set("long", "大熊[2;37;0m
-它是一粒米的魔幻兽。
+它是一粒米的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

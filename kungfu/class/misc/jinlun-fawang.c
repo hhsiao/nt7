@@ -11,15 +11,15 @@ inherit BOSS;
 void create()
 {
         object ob1, ob2;
-        set_name("金轮法王", ({ "jinlun fawang", "jinlun", "fawang" }));
+        set_name("金輪法王", ({ "jinlun fawang", "jinlun", "fawang" }));
         set("long", @LONG
-他便是大轮寺的护教法王。贵为蒙古国师，极
-受成吉思汗重用，常年来随军队征战，扰乱中
-原武林，地位显赫尊崇无比。金轮法王踏足中
-原后罕逢敌手，藐视中原群雄。其武道之高深
-当可谓西域第一人。
+他便是大輪寺的護教法王。貴為蒙古國師，極
+受成吉思汗重用，常年來隨軍隊征戰，擾亂中
+原武林，地位顯赫尊崇無比。金輪法王踏足中
+原後罕逢敵手，藐視中原群雄。其武道之高深
+當可謂西域第一人。
 LONG);
-        set("nickname", HIY "蒙古国师" NOR);
+        set("nickname", HIY "蒙古國師" NOR);
         set("gender", "男性");
         set("class", "bonze");
         set("age", 58);
@@ -95,9 +95,9 @@ LONG);
                 (: exert_function, "powerup" :),
         }));
 
-        create_family("大轮寺", 1, "住持");
+        create_family("大輪寺", 1, "住持");
 
-        //set("end_time", 1200);  // 必须战斗不少于1200秒后死亡
+        //set("end_time", 1200);  // 必須戰鬥不少於1200秒後死亡
         set("rewards", ([
                 "exp"   : 100000,
                 "pot"   : 50000,
@@ -108,8 +108,8 @@ LONG);
         ]));
 
         set("drops", ([
-                "RA&RANDOM40"    :       100,   // 低级普通装备
-                "RA&RANDOM50"    :       40,    // 低级普通装备
+                "RA&RANDOM40"    :       100,   // 低級普通裝備
+                "RA&RANDOM50"    :       40,    // 低級普通裝備
                 "FI&/clone/goods/enchant-scroll" :   20,
                 "FI&/clone/goods/sun"    :   20,
                 "FI&/clone/goods/moon"   :   20,
@@ -184,7 +184,7 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->start_busy(5 + random(6));
         me->receive_wound("qi", 1500 + random(1500), ob);
-        return HIY "$N" HIY "大喝一声，拼死反抗，竟逼得$n" HIY "手忙脚乱。\n" NOR;
+        return HIY "$N" HIY "大喝一聲，拼死反抗，竟逼得$n" HIY "手忙腳亂。\n" NOR;
 }
 
 void heart_beat()
@@ -205,7 +205,7 @@ varargs void die(object killer)
                 return;
         }
 
-        if( time() < query_temp("end_time") ) // 时间没有到，死亡不了
+        if( time() < query_temp("end_time") ) // 時間沒有到，死亡不了
         {
                 addn("jing", query("max_jing") / 10);
                 if( query("jing") > query("max_jing") ) set("jing", query("max_jing"));
@@ -215,7 +215,7 @@ varargs void die(object killer)
                 if( query("qi") > query("max_qi") ) set("qi", query("max_qi"));
                 addn("eff_qi", query("max_qi") / 10);
                 if( query("eff_qi") > query("max_qi") ) set("eff_qi", query("max_qi"));
-                message_vision(HIR "\n$N" HIR "大喝一声，运用秘法，气血有所回升！\n\n" NOR, this_object());
+                message_vision(HIR "\n$N" HIR "大喝一聲，運用秘法，氣血有所回升！\n\n" NOR, this_object());
                 return;
         }
 
@@ -229,20 +229,20 @@ varargs void die(object killer)
                 return;
         }
 
-        // 战胜金轮获取小龙女线索
+        // 戰勝金輪獲取小龍女線索
         if (query("can_perform/surge-force/quest/step", killer) == 1)
         {
-                message_vision(HIR "$N" HIR "眼见$n" HIR "快要支持不住，赶紧上前一步喝道：快说，小龙女何在？"
-                                   "否则，取你老命！\n$n" HIR "怒道：小龙女已经被那公孙止捉去，困于绝情山庄内，关"
-                                   "我何事？\n\n正说话间，$n" HIR "已趁机杀出一条血路...\n\n" NOR, killer, this_object());
+                message_vision(HIR "$N" HIR "眼見$n" HIR "快要支持不住，趕緊上前一步喝道：快說，小龍女何在？"
+                                   "否則，取你老命！\n$n" HIR "怒道：小龍女已經被那公孫止捉去，困於絕情山莊內，關"
+                                   "我何事？\n\n正說話間，$n" HIR "已趁機殺出一條血路...\n\n" NOR, killer, this_object());
 
-                tell_object(killer, HIM "看来，还是赶快去绝情山庄一趟吧！\n\n" NOR);
+                tell_object(killer, HIM "看來，還是趕快去絕情山莊一趟吧！\n\n" NOR);
                 set("can_perform/surge-force/quest/step", 2, killer);
                 killer->save();
         }
 
         //command("chat* haha");
-        command("mess 天下间竟有武功如此了得的人物，老衲甘拜下风！");
+        command("mess 天下間竟有武功如此了得的人物，老衲甘拜下風！");
 
         return ::die();
 }

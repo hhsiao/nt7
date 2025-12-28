@@ -15,16 +15,16 @@ int exert(object me, object target)
         int neili_cost;
 
         if( userp(me) && !query("can_perform/xuedao-dafa/resurrect", me) )
-                return notify_fail("你所学的内功中没有这种功能。\n");
+                return notify_fail("你所學的內功中沒有這種功能。\n");
 
         if ((int)me->query_skill("xuedao-dafa", 1) < 120)
-                return notify_fail("你的血刀大法不够深厚，难以施展" R "。\n");
+                return notify_fail("你的血刀大法不夠深厚，難以施展" R "。\n");
 
         if( query("max_neili", me)<1000 )
-                return notify_fail("你的内力修为不足，难以施展" R "。\n");
+                return notify_fail("你的內力修為不足，難以施展" R "。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你现在的真气不够，难以施展" R "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" R "。\n");
 
         my = me->query_entire_dbase();
         if ((rp = (my["max_qi"] - my["eff_qi"])) < 1)
@@ -34,8 +34,8 @@ int exert(object me, object target)
                 rp = my["max_qi"] / 10;
 
         skill = me->query_skill("xuedao-dafa", 1);
-        msg = HIR "$N" HIR "深深吸入一口气，脸色由红转白，复又由白翻"
-              "红，伤势恢复了不少。\n" NOR;
+        msg = HIR "$N" HIR "深深吸入一口氣，臉色由紅轉白，復又由白翻"
+              "紅，傷勢恢復了不少。\n" NOR;
         message_combatd(msg, me);
 
         neili_cost = rp + 100;
@@ -50,8 +50,8 @@ int exert(object me, object target)
 
         if (random(10) < 3)
         {
-                tell_object(me, HIC "由于你过度的催动真元，导致你的内"
-                                "力有所损耗。\n" NOR);
+                tell_object(me, HIC "由於你過度的催動真元，導致你的內"
+                                "力有所損耗。\n" NOR);
                 addn("max_neili", -1, me);
         }
         me->start_busy(3);

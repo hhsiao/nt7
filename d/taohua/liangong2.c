@@ -1,7 +1,7 @@
 // Copyright (C) 2003, by Lonely. All rights reserved.
 // This software can not be used, copied, or modified 
 // in any form without the written permission from authors.
-// 增加(discuss <对象> <次数> )功能 
+// 增加(discuss <對象> <次數> )功能 
 
 inherit ROOM;
 
@@ -10,11 +10,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "练功房");
+        set("short", "練功房");
         set("long", @LONG
-这是桃花岛弟子的练功房。屋子东半部散放着几个蒲团，供诸弟子打
-坐吐纳，调气养息，修练内功之用。西半部地上则绘着伏羲六十四卦的方
-位卦象，大概是修习奇门遁甲所用。书架上有一些经书。
+這是桃花島弟子的練功房。屋子東半部散放著幾個蒲團，供諸弟子打
+坐吐納，調氣養息，修練內功之用。西半部地上則繪著伏羲六十四卦的方
+位卦象，大概是修習奇門遁甲所用。書架上有一些經書。
 LONG );
          set("exits", ([
                 "west" : __DIR__"changlang",

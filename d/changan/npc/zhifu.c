@@ -4,13 +4,13 @@ inherit NPC;
 
 void create()
 {
-        set_name("梁兴禄", ({ "liang xinglu", "liang" }));
-        set("title", "长安知府");
+        set_name("梁興祿", ({ "liang xinglu", "liang" }));
+        set("title", "長安知府");
         set("gender", "男性");
         set("age", 43);
         set("str", 20);
         set("dex", 20);
-        set("long", "长安城现任知府。\n");
+        set("long", "長安城現任知府。\n");
         set("combat_exp", 50000);
         set("shen_type", 0);
         set("attitude", "heroism");

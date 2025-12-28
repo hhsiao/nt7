@@ -5,15 +5,15 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIY "铜板" NOR, ({"coin", "coins", "coin_money" }));
-                set("long", "这是流通中单位最小的货币，约要一百个铜板才值得一两银子。\n");
+        set_name(HIY "銅板" NOR, ({"coin", "coins", "coin_money" }));
+                set("long", "這是流通中單位最小的貨幣，約要一百個銅板才值得一兩銀子。\n");
                 set("unit", "串");
                 set("value", 0);
                 set("base_value", 0);
-                set("base_unit", "个");
+                set("base_unit", "個");
                 set("base_weight", 0);
-                set("wield_msg", "$N从袖口取出一串$n抛了抛，握在手中。\n");
-                set("unwield_msg", "$N将手中的$n放回兜里。\n");
+                set("wield_msg", "$N從袖口取出一串$n拋了拋，握在手中。\n");
+                set("unwield_msg", "$N將手中的$n放回兜裡。\n");
                 set("no_uget", 1);
                 set("no_drop", 1);
                 set("no_give", 1);
@@ -32,7 +32,7 @@ int do_stop(object me)
         
         if( me && query_temp("block_msg/all", me) )
         {
-                if (own && objectp(own) && living(own)) tell_object(own, NOR + "..>" + HIR + me->name() + HIR + "看得见一些景象了。\n" + NOR);
+                if (own && objectp(own) && living(own)) tell_object(own, NOR + "..>" + HIR + me->name() + HIR + "看得見一些景象了。\n" + NOR);
                 delete_temp("block_msg/all", me);
         }
         destruct(this_object());

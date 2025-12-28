@@ -10,12 +10,12 @@ string chinese_name() { return "玄冥寒毒"; }
 
 string update_msg_others()
 {
-       return HIW "$N脸色发紫，全身不住的颤抖，牙关格格作响。\n" NOR;
+       return HIW "$N臉色發紫，全身不住的顫抖，牙關格格作響。\n" NOR;
 }
 
 string update_msg_self()
 {
-        return HIW "只感到一股奇寒从体内犹然而升，沁入三焦六脉，看来是玄冥神掌之毒发作了！\n" NOR;
+        return HIW "只感到一股奇寒從體內猶然而升，沁入三焦六脈，看來是玄冥神掌之毒發作了！\n" NOR;
 }
 
 int jing_damage(object me, mapping cnd)

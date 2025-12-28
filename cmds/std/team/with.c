@@ -13,16 +13,16 @@ int main(object me, string arg)
             ! living(ob) ||
             ! ob->is_character() ||
             ob == me)
-                return notify_fail("你想和谁成为伙伴？\n");
+                return notify_fail("你想和誰成為夥伴？\n");
 
         if (! pointerp(me->query_team()) || me->is_team_leader())
         {
                 if (sizeof(me->query_team()) >= 12)
-                        return notify_fail("你这个队伍里面的人实在是太多"
-                                           "了，大家都照顾不过来了。\n");
+                        return notify_fail("你這個隊伍裡面的人實在是太多"
+                                           "了，大家都照顧不過來了。\n");
 
                 if ( (strsrch(base_name(environment(me)), "/d/dongtian") != -1) && (sizeof(me->query_team()) >= 5) )
-                        return notify_fail("在洞天福地里组队不能超过五人。\n");
+                        return notify_fail("在洞天福地裡組隊不能超過五人。\n");
 
 
                 if( me == query_temp("pending/team", ob) )
@@ -30,13 +30,13 @@ int main(object me, string arg)
                         if (! pointerp(me->query_team()))
                         {
                                 ob->add_team_member(me);
-                                message_vision("$N决定加入$n的队伍。\n", me, ob);
+                                message_vision("$N決定加入$n的隊伍。\n", me, ob);
                                 MYGIFT_D->check_mygift(me, "newbie_mygift/zudui"); 
                                 MYGIFT_D->check_mygift(ob, "newbie_mygift/zudui"); 
                         } else
                         {
                                 me->add_team_member(ob);
-                                message_vision("$N决定让$n加入队伍。\n", me, ob);
+                                message_vision("$N決定讓$n加入隊伍。\n", me, ob);
                                 MYGIFT_D->check_mygift(me, "newbie_mygift/zudui"); 
                                 MYGIFT_D->check_mygift(ob, "newbie_mygift/zudui"); 
                         }
@@ -47,15 +47,15 @@ int main(object me, string arg)
                         /*
                         if( query("level", ob)<query("level", me)-10 || 
                             query("level", ob)>query("level", me)+10 )
-                                return notify_fail("你们的角色等级相差较大，无法组队。\n");
+                                return notify_fail("你們的角色等級相差較大，無法組隊。\n");
                         */
                                 
-                        message_vision("$N邀请$n加入$P的队伍。\n", me, ob);
-                        tell_object(ob, YEL "如果你愿意加入，请用 team with " +
+                        message_vision("$N邀請$n加入$P的隊伍。\n", me, ob);
+                        tell_object(ob, YEL "如果你願意加入，請用 team with " +
                                     query("id", me)+"。\n"NOR);
                         set_temp("pending/team", ob, me);
                         return 1;
                 }
         } else
-                return notify_fail("只有队伍领袖可以邀请别人加入。\n");
+                return notify_fail("只有隊伍領袖可以邀請別人加入。\n");
 }

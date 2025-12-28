@@ -6,8 +6,8 @@ void setup()
 {
         set_name("安妮[2;37;0m[2;37;0m", ({"annie"}));        
         set("gender", "男性");                
-        set("long", "快乐的小安妮[2;37;0m
-它是慕容小二的魔幻兽。
+        set("long", "快樂的小安妮[2;37;0m
+它是慕容小二的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

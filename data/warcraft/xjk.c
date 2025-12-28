@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;36m汗血宝马[2;37;0m[2;37;0m", ({"baby"}));        
+        set_name("[1;36m汗血寶馬[2;37;0m[2;37;0m", ({"baby"}));        
         set("gender", "女性");                
-        set("long", "魔幻神兽[2;37;0m
-它是沐雪吻梅的魔幻兽。
+        set("long", "魔幻神獸[2;37;0m
+它是沐雪吻梅的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

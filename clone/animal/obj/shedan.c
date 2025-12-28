@@ -8,9 +8,9 @@ int cure_ob(string);
 
 void create()
 {
-        set_name("毒蛇胆", ({"shedan", "dan"}));
+        set_name("毒蛇膽", ({"shedan", "dan"}));
         set("unit", "粒");
-        set("long", "这是一只绿莹莹的毒蛇胆。\n");
+        set("long", "這是一隻綠瑩瑩的毒蛇膽。\n");
         set("value", 200);
         set("medicine", 1);
         setup();
@@ -36,7 +36,7 @@ int effect_in_liquid(object ob)
         if( query("liquid/type", ob) == "alcohol" )
         {
                 addn("qi", 10*query("liquid/drunk_apply", ob), this_player());
-                message_vision(MAG"$N感到一股真气缓缓注入丹田，混身上下暖哄哄的。\n"NOR, this_player());
+                message_vision(MAG"$N感到一股真氣緩緩注入丹田，混身上下暖哄哄的。\n"NOR, this_player());
         }
         return 0;
 }

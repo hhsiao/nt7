@@ -18,8 +18,8 @@ int update_condition(object me, int duration)
         if( query_temp("guo_shoucheng/where", me) != query("site", room )
          && !query_temp("guo_shoucheng/job_over", me) )
         {
-                message_vision(HIY "一个宋兵跑过来对$N说道：你居然临阵脱逃，" +
-                               "我去报告郭大人！\n" NOR, me);
+                message_vision(HIY "一個宋兵跑過來對$N說道：你居然臨陣脫逃，" +
+                               "我去報告郭大人！\n" NOR, me);
 
                 set_temp("guo_shoucheng/failed", 1, me);
                 me->apply_condition("jobjianlou_limit", 0);  
@@ -31,16 +31,16 @@ int update_condition(object me, int duration)
                 if (duration % 2 == 0 && duration > 20)     
                 {
                         step = random(9) + 1;
-                        message_vision(HIY "忽然$N从箭垛口似乎看到城下" HIW + chinese_number(step) +
-                                       HIY "箭外有一名" HIR "蒙古箭手" HIY "在探头探脑。\n" NOR, me);
+                        message_vision(HIY "忽然$N從箭垛口似乎看到城下" HIW + chinese_number(step) +
+                                       HIY "箭外有一名" HIR "蒙古箭手" HIY "在探頭探腦。\n" NOR, me);
                         obb = new("/quest/quest5/job2/robber4");
                         obb->move("/d/xiangyang/"+query("site", room)+step);
                         obb->change_ob(me);
                         set("where",query("site",  room), obb);
                 } else
                 if (duration % 10 == 0)  
-                        message_vision(HIY "$N通过箭垛口警惕地巡视着城外的情况，" +
-                                       "可是好象没有发现任何敌情。\n" NOR, me);
+                        message_vision(HIY "$N通過箭垛口警惕地巡視著城外的情況，" +
+                                       "可是好象沒有發現任何敵情。\n" NOR, me);
         }
 
         if (me->is_ghost())
@@ -53,8 +53,8 @@ int update_condition(object me, int duration)
         if (duration == 1
          && query_temp("guo_shoucheng/where", me) == query("site", room) )
         {
-                message_vision(CYN "\n一个守城宋兵跑过来说道：蒙古靼子暂时被击退了，" +
-                               "$N可以回去复命了！\n"NOR,me);
+                message_vision(CYN "\n一個守城宋兵跑過來說道：蒙古靼子暫時被擊退了，" +
+                               "$N可以回去覆命了！\n"NOR,me);
                 if( query_temp("guo_shoucheng/start_job", me) )
                         set_temp("guo_shoucheng/job_over", 1, me);
                 delete_temp("guo_shoucheng/start_job", me);

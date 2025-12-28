@@ -9,11 +9,11 @@ int dragonblow ();
 
 void create()
 {
-	set_name("沙海蛰龙", ({ "hibernating dragon", "boss","dragon" }) );
-	set("race", "龙");
+	set_name("沙海蟄龍", ({ "hibernating dragon", "boss","dragon" }) );
+	set("race", "龍");
 	set("gender", "雄性");
-	set("long", "这本是一条在海底修炼的神龙。因为沧海桑田的变迁，原来的翰海变成
-了沙漠。它在这里蛰伏下来，也不知道有几千几万年了。 \n");
+	set("long", "這本是一條在海底修煉的神龍。因為滄海桑田的變遷，原來的翰海變成
+了沙漠。它在這裡蟄伏下來，也不知道有幾千幾萬年了。 \n");
 	
 	set("combat_exp", 15000000);
 	
@@ -60,7 +60,7 @@ int dragon_attack(){
 
 
 int dragonbreath ()	{
-	message_vision(HIR"\n\n$N身上忽然发出淡淡的红光，转瞬间，光芒越来越强烈。。。\n\n"NOR,
+	message_vision(HIR"\n\n$N身上忽然發出淡淡的紅光，轉瞬間，光芒越來越強烈。。。\n\n"NOR,
 			this_object());
 	call_out("hurting",10);
 	set("dragon/breath",time());
@@ -70,7 +70,7 @@ int dragonbreath ()	{
 int hurting()	{
 	int i,dam;
 	object *inv;
-	message_vision(HIR"\n\n$N一张嘴，无数道烈焰迎面向你扑来，闪无可闪，避无可避。\n\n"NOR,this_object());
+	message_vision(HIR"\n\n$N一張嘴，無數道烈焰迎面向你撲來，閃無可閃，避無可避。\n\n"NOR,this_object());
 	inv = all_inventory(environment(this_object()));
         for(i=sizeof(inv)-1; i>=0; i--)
 		if( living(inv[i]))
@@ -90,7 +90,7 @@ int dragonblow()	{
 int dragonstun()	{
 	int i,dam;
 	object *inv;
-	message_vision(HIW"\n\n$N忽直立而起，又重重跃下，天摇地动，沙穴震颤。。。。\n\n"NOR,this_object());
+	message_vision(HIW"\n\n$N忽直立而起，又重重躍下，天搖地動，沙穴震顫。。。。\n\n"NOR,this_object());
 	inv = all_inventory(environment(this_object()));
         for(i=sizeof(inv)-1; i>=0; i--)
 		if( living(inv[i]))
@@ -98,7 +98,7 @@ int dragonstun()	{
 			if (random(this_object()->query("combat_exp"))*5<inv[i]->query("combat_exp"))
 				continue;
 			inv[i]->perform_busy(2);
-			message_vision(YEL"$N只觉心胆俱裂，目瞪口呆，动弹不得。\n"NOR,inv[i]);
+			message_vision(YEL"$N只覺心膽俱裂，目瞪口呆，動彈不得。\n"NOR,inv[i]);
         	}
 	set("is_stunning",time());
 	return 1;
@@ -113,7 +113,7 @@ int dragonclaw()	{
 	ob->set("bite_time",time());
 	enemy=ob->query_enemy();
 	me=enemy[random(sizeof(enemy))];
-	message_vision(HIG"\n$N举起巨灵般的前爪，挟风雷之势，迅急地向$n的头部一抓。\n"NOR,ob,me);
+	message_vision(HIG"\n$N舉起巨靈般的前爪，挾風雷之勢，迅急地向$n的頭部一抓。\n"NOR,ob,me);
 	me->receive_wound("kee",1000+random(1000),ob);
 	COMBAT_D->report_status(me);
 	return 1;
@@ -136,9 +136,9 @@ void die()
 	// The purpose is, everyone present who contributed hate can get mark
 	// the stone ... one at time, give whoever you want :D
 	if(objectp(me)) { 
-		CHANNEL_D->do_channel("rumor","一个新的武林神话的诞生。。。。");
-		CHANNEL_D->do_channel("rumor",sprintf("%s，%s于%s%s%s。", NATURE_D->game_time(),
-				me->query("name"), environment(this_object())->query("short"),"斩杀", name())); 
+		CHANNEL_D->do_channel("rumor","一個新的武林神話的誕生。。。。");
+		CHANNEL_D->do_channel("rumor",sprintf("%s，%s於%s%s%s。", NATURE_D->game_time(),
+				me->query("name"), environment(this_object())->query("short"),"斬殺", name())); 
 	    
 	    hate = query_hate_list();
 	    if (sizeof(hate))
@@ -148,17 +148,17 @@ void die()
 	    }
 	    if (sizeof(ppl_present)) 
 	    for (i=0;i<sizeof(ppl_present);i++) 	
-	        REWARD_D->riddle_done(ppl_present[i], "蛰龙赤丹", 200, 1);
+	        REWARD_D->riddle_done(ppl_present[i], "蟄龍赤丹", 200, 1);
 		
 		rstone = new("/obj/specials/stone/rstone");
 		if (objectp(rstone)) {
-			message_vision(HIR"\n一点红光从沙海蛰龙双目间落下刚好掉入$n手中。\n"NOR, this_object(), me);
+			message_vision(HIR"\n一點紅光從沙海蟄龍雙目間落下剛好掉入$n手中。\n"NOR, this_object(), me);
 			if (!rstone->move(me))
 				rstone->move(environment(me));
 //			me->set("stone_mark/rstone", 1);
 //			rstone->set("stone_owner", me);
 			log_file("riddle/IMBUE_LOG",
-			sprintf("%s(%s) 揭开 沙海蛰龙 得到蛰龙赤丹 %s \n",
+			sprintf("%s(%s) 揭開 沙海蟄龍 得到蟄龍赤丹 %s \n",
 				me->name(1), geteuid(me), ctime(time()) ));			
 		}
 	} 

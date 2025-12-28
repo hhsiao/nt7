@@ -2,7 +2,7 @@
 inherit ITEM;
 void create()
 {
-        set_name("泻玉泉", ({ "泻玉泉", "jade lake"}) );
+        set_name("瀉玉泉", ({ "瀉玉泉", "jade lake"}) );
         set_weight(500);
         set_max_encumbrance(80000);
         set("no_get", 1);
@@ -11,7 +11,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "座");
-                set("long", "一个小水池。\n");
+                set("long", "一個小水池。\n");
                 set("value", 1);
         }
 }

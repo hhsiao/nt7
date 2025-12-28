@@ -6,9 +6,9 @@ inherit __DIR__"normal.c";
 
 void create()
 {
-        set("short", "练功房");
+        set("short", "練功房");
         set("long", 
-"这是洞天里的练功房，收罗了各处极品的练功对象在此供人锻炼。\n"
+"這是洞天裡的練功房，收羅了各處極品的練功對象在此供人鍛鍊。\n"
 );
                 //set("outdoors", "yangzhou");
                 set("exits",([ /* sizeof() == 1 */
@@ -27,7 +27,7 @@ void create()
         set("no_sleep_room", 1); 
         set("max_carry_user" ,1);
         
-        //set("owner_level", 1);        //不能成为外来者避风港
+        //set("owner_level", 1);        //不能成為外來者避風港
         
         setup();
 }

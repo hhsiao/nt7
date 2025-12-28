@@ -4,14 +4,14 @@ inherit ITEM;
 int query_autoload() { return 1; }
 void create()
 {
-        set_name(HIM "欧冶子圣符" NOR, ({ "ouyezi symbol", "symbol" }));
+        set_name(HIM "歐冶子聖符" NOR, ({ "ouyezi symbol", "symbol" }));
         set_weight(3000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", HIM "欧冶子圣符可以将普通自造兵器升级(upd)为准10LVL兵器。\n" NOR);
-                set("unit", "张");
+                set("long", HIM "歐冶子聖符可以將普通自造兵器升級(upd)為準10LVL兵器。\n" NOR);
+                set("unit", "張");
                 set("value", 500000);
         }
         setup();
@@ -29,18 +29,18 @@ int do_integrate(string arg)
         string ownerid;
 
         if (! arg)
-                return notify_fail("你要往什么道具上使用该圣符？\n");
+                return notify_fail("你要往什麼道具上使用該聖符？\n");
 
         me = this_player();
         if (! objectp(ob = present(arg, me)) &&
             ! objectp(ob = present(arg, environment(me))))
-                return notify_fail("你身上和附近没有这样道具啊。\n");
+                return notify_fail("你身上和附近沒有這樣道具啊。\n");
 
         if( !ob->is_item_make() )
-                return notify_fail("只有自造装备才可以升级为准10LV。\n");
+                return notify_fail("只有自造裝備才可以升級為準10LV。\n");
 
         if( query("magic/imbue_ok", ob) )
-                return notify_fail(name() + "已经是准10LVL以上兵器，没有这个必要吧。\n");
+                return notify_fail(name() + "已經是準10LVL以上兵器，沒有這個必要吧。\n");
 
         if (!ob->is_weapon() && !ob->is_unarmed_weapon())
         {
@@ -58,10 +58,10 @@ int do_integrate(string arg)
         }
         ob->save();
   
-        tell_object(me, "你把" + name() + "盖在" + ob->name() + "上，然后口中念念有词，\n"
-                        "只见圣符化作一道红光飞入" + ob->name() + "体内！\n");
+        tell_object(me, "你把" + name() + "蓋在" + ob->name() + "上，然後口中唸唸有詞，\n"
+                        "只見聖符化作一道紅光飛入" + ob->name() + "體內！\n");
 
-        tell_object(me, HIC "你感受" + ob->name() + HIC"发生了不可言喻的变化。\n" NOR);
+        tell_object(me, HIC "你感受" + ob->name() + HIC"發生了不可言喻的變化。\n" NOR);
 
         destruct(this_object());
         return 1;

@@ -10,25 +10,25 @@ int dispel(object me, object ob, int duration)
 
         if (me != ob)
         {
-                tell_object(ob, "你发觉" + me->name() + "的内力自奇经八脉涌入，一时"
-                            "间丹田之中内息交战，眼前登时一黑。\n");
-                tell_object(me, "你试图帮助" + ob->name() + "化解异种真气，"
-                            "却见" + ob->name() + "脸色惨白，不由大惊，连忙住手。\n");
+                tell_object(ob, "你發覺" + me->name() + "的內力自奇經八脈湧入，一時"
+                            "間丹田之中內息交戰，眼前登時一黑。\n");
+                tell_object(me, "你試圖幫助" + ob->name() + "化解異種真氣，"
+                            "卻見" + ob->name() + "臉色慘白，不由大驚，連忙住手。\n");
                 if (living(ob)) ob->unconcious();
                 return -1;
         }
 
         if (me->query_skill_mapped("force") != "jiuyang-shengong")
         {
-                tell_object(me, HIW "你只觉得丹田犹如寒冰，一运内力"
-                            "就觉得如同千百根钢针一齐攒刺。\n" NOR);
+                tell_object(me, HIW "你只覺得丹田猶如寒冰，一運內力"
+                            "就覺得如同千百根鋼針一齊攢刺。\n" NOR);
                 return -1;
         }
 
         if (me->query_skill("jiuyang-shengong", 1) + 30 < duration)
         {
-                tell_object(me, "你试图运用九阳神功化解这股"
-                            "阴寒之气，但是总是功亏一篑。\n");
+                tell_object(me, "你試圖運用九陽神功化解這股"
+                            "陰寒之氣，但是總是功虧一簣。\n");
                 return -1;
         }
 
@@ -39,7 +39,7 @@ int dispel(object me, object ob, int duration)
         else
                 me->apply_condition("qiankun-except", n);
 
-        tell_object(me, "你默默的运用九阳神功化解体内的异种真气。\n");
+        tell_object(me, "你默默的運用九陽神功化解體內的異種真氣。\n");
 
         return 1;
 }
@@ -50,16 +50,16 @@ int update_condition(object me, int duration)
 
 	if( !living(me) && (query("eff_qi", me)<100 || query("eff_jing", me)<50) )
         {
-                set_temp("die_reason", "因为强自修炼乾坤大挪移神功，走火入魔而死", me);
+                set_temp("die_reason", "因為強自修煉乾坤大挪移神功，走火入魔而死", me);
 		me->die();
 		return 0;
 	} else
         {
                 me->receive_wound("qi", 100);
                 me->receive_wound("jing", 50);
-		tell_object(me, HIR "你觉得丹田阵阵寒冷，可是脸上却"
-                            "好像发烧一样火热之极。\n" NOR);
-		message("vision", me->name() + "脸色忽青忽红，强忍着运功抗争。\n",
+		tell_object(me, HIR "你覺得丹田陣陣寒冷，可是臉上卻"
+                            "好像發燒一樣火熱之極。\n" NOR);
+		message("vision", me->name() + "臉色忽青忽紅，強忍著運功抗爭。\n",
 			environment(me), me);
 	}
 

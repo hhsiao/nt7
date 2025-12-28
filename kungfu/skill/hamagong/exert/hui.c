@@ -10,9 +10,9 @@ int exert(object me, object target)
         string msg;
 
         if( !(n=query_temp("reverse", me)) )
-                return notify_fail("你并没有倒转经脉啊。\n");
+                return notify_fail("你並沒有倒轉經脈啊。\n");
 
-        msg = HIB "$N" HIB "缓缓吐出一口气，脸色变了变，阴阳不定。\n" NOR;
+        msg = HIB "$N" HIB "緩緩吐出一口氣，臉色變了變，陰陽不定。\n" NOR;
         message_combatd(msg, me);
 
         addn_temp("apply/defense", -n, me);

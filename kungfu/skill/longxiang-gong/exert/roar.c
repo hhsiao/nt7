@@ -10,7 +10,7 @@ int exert(object me, object target)
         int i, skill, damage;
 
         if( query("neili", me)<100 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         skill = me->query_skill("force");
 
@@ -18,11 +18,11 @@ int exert(object me, object target)
         me->receive_damage("qi", 10);
 
         if( query("no_fight", environment(me)) )
-                return notify_fail("这里不能攻击别人! \n");
+                return notify_fail("這裡不能攻擊別人! \n");
 
         me->start_busy(5);
-        message_combatd(HIW "$N" HIW "面无表情，歌声如梵唱般"
-                        "贯入众人的耳中！\n\n" NOR, me);
+        message_combatd(HIW "$N" HIW "面無表情，歌聲如梵唱般"
+                        "貫入眾人的耳中！\n\n" NOR, me);
 
         ob = all_inventory(environment(me));
         for (i = 0; i < sizeof(ob); i++)
@@ -47,8 +47,8 @@ int exert(object me, object target)
                         ob[i]->receive_damage("jing", damage * 2, me);
                         if( query("neili", ob[i])<skill*2 )
                                 ob[i]->receive_wound("jing", damage, me);
-                        tell_object(ob[i], "你忽然觉得脑中一片空白，不"
-                                    "由自主地随歌声舞蹈起来......\n");
+                        tell_object(ob[i], "你忽然覺得腦中一片空白，不"
+                                    "由自主地隨歌聲舞蹈起來......\n");
                 }
         }
         return 1;

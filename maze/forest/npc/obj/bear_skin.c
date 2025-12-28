@@ -8,8 +8,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", NOR + WHT "巨熊的皮毛，乌黑亮泽，手感极为光滑。\n" NOR);
-                set("base_unit", "张");
+                set("long", NOR + WHT "巨熊的皮毛，烏黑亮澤，手感極為光滑。\n" NOR);
+                set("base_unit", "張");
                 set("base_value", 7000);
                 set("base_weight", 600);
         }

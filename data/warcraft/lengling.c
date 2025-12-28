@@ -7,7 +7,7 @@ void setup()
         set_name("棒棒[2;37;0m[2;37;0m", ({"bangbang"}));        
         set("gender", "男性");                
         set("long", "棒棒[2;37;0m
-它是冷凌的魔幻兽。
+它是冷凌的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

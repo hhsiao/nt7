@@ -1,5 +1,5 @@
 // This program is a part of NITAN MudLIB
-// /adm/daemons/x_pointd.c 点阵任务守护程序
+// /adm/daemons/x_pointd.c 點陣任務守護程序
 
 #include <ansi.h>
 #include <x_point.h>
@@ -7,14 +7,14 @@
 #define is_GB1(x)       ((x)>=0xa1 && (x)<=0xf7)
 #define is_GB2(x)       ((x)>=0xa1 && (x)<=0xfe)
 
-public string make_msg(mapping num);                        //数字点阵
-public string make_chn_msg(mapping num);                    //中文点阵
-public mapping get_question();                              //点阵产生
-public string *trouble(string *str_point);                  //点阵干扰
-public string make_mask(string msg, string arg, int i);     //点阵遮罩
-public string *Get_Point(string src);                       //点阵取值
+public string make_msg(mapping num);                        //數字點陣
+public string make_chn_msg(mapping num);                    //中文點陣
+public mapping get_question();                              //點陣產生
+public string *trouble(string *str_point);                  //點陣干擾
+public string make_mask(string msg, string arg, int i);     //點陣遮罩
+public string *Get_Point(string src);                       //點陣取值
 
-//数字点阵
+//數字點陣
 public string make_msg(mapping num)
 {
     int x;
@@ -52,7 +52,7 @@ public string make_msg(mapping num)
     return msg;
 }
 
-//中文点阵
+//中文點陣
 public string make_chn_msg(mapping num)
 {
     int x, y;
@@ -67,12 +67,12 @@ public string make_chn_msg(mapping num)
     the_point1 = Get_Point(num["num1"]);
     if(!the_point1)
         log_file("static/chn_num",
-            sprintf("这个汉字没有取到点阵：%s，请仔细查看\n", num["num1"]));
+            sprintf("這個漢字沒有取到點陣：%s，請仔細查看\n", num["num1"]));
 
     the_point2 = Get_Point(num["num2"]);
     if(!the_point2)
         log_file("static/chn_num",
-            sprintf("这个汉字没有取到点阵：%s，请仔细查看\n", num["num2"]));
+            sprintf("這個漢字沒有取到點陣：%s，請仔細查看\n", num["num2"]));
 
 //    the_point1 = trouble(the_point1);
 //    the_point2 = trouble(the_point2);
@@ -129,7 +129,7 @@ public string make_mask(string msg, string arg, int i)
     return msg;
 }
 
-//点阵任务
+//點陣任務
 public mapping get_question()
 {
     int the_num, i, j;
@@ -179,7 +179,7 @@ public mapping get_question()
     return quest;
 }
 
-//点阵干扰
+//點陣干擾
 public string *trouble(string *str_point)
 {
     int i/*, j*/, random_col, random_line, get_it;

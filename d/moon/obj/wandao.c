@@ -5,16 +5,16 @@
 inherit BLADE;
 void create()
 {
-	set_name(HIC "圆月弯刀" NOR, ({ "wandao" }) );
+	set_name(HIC "圓月彎刀" NOR, ({ "wandao" }) );
 	set_weight(7000);
         set("value", 20000);
 	if( clonep() )
 		set_default_object(__FILE__);
 	else {
 		set("unit", "把");
-		set("long", "这是一把形状很奇特的刀，刀身仿佛有点弯曲。\n");
+		set("long", "這是一把形狀很奇特的刀，刀身彷彿有點彎曲。\n");
 		set("material", "steel");
-		set("wield_msg", "$N的$n突然出鞘，你根本就没有看见$N拔刀！\n");
+		set("wield_msg", "$N的$n突然出鞘，你根本就沒有看見$N拔刀！\n");
 		set("unwield_msg", "$N的$n已入鞘。\n");
 	}
 	init_blade(90);
@@ -28,6 +28,6 @@ mixed hit_ob(object me, object victim, int damage_bonus)
 	if(dam > random(pro) )
 	{
 	victim->start_busy(1);
-	return HIR "圆月弯刀迸发出霸道的刀气，席卷$n的全身！$n气为之窒，动弹不得！\n" NOR;
+	return HIR "圓月彎刀迸發出霸道的刀氣，席捲$n的全身！$n氣為之窒，動彈不得！\n" NOR;
 	}
 }

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;35m九头鸟[2;37;0m[2;37;0m", ({"birdjiu"}));        
+        set_name("[1;35m九頭鳥[2;37;0m[2;37;0m", ({"birdjiu"}));        
         set("gender", "男性");                
-        set("long", "九头鸟[2;37;0m
-它是九重天的魔幻兽。
+        set("long", "九頭鳥[2;37;0m
+它是九重天的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

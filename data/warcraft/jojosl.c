@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m劫数[2;37;0m[2;37;0m", ({"jie"}));        
+        set_name("[1;31m劫數[2;37;0m[2;37;0m", ({"jie"}));        
         set("gender", "男性");                
-        set("long", "劫数难逃。[2;37;0m
-它是渡情天的魔幻兽。
+        set("long", "劫數難逃。[2;37;0m
+它是渡情天的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

@@ -11,12 +11,12 @@ inherit F_GUARDER;
 
 void create()
 {
-        set_name("兰剑", ({ "lan jian", "lan", "jian"}));
+        set_name("蘭劍", ({ "lan jian", "lan", "jian"}));
         set("long", @LONG
-梅剑、兰剑、竹剑、菊剑四姐妹本是缥缈峰下
-一家穷人的孩子。因无力抚养，被天山童姥看
-中后收入门下。只见她容貌姣好，瓜子脸蛋又
-眼如点漆，清秀绝俗。
+梅劍、蘭劍、竹劍、菊劍四姐妹本是縹緲峰下
+一家窮人的孩子。因無力撫養，被天山童姥看
+中後收入門下。只見她容貌姣好，瓜子臉蛋又
+眼如點漆，清秀絕俗。
 LONG );
         set("gender", "女性");
         set("age", 18);
@@ -63,14 +63,14 @@ LONG );
         }));
 
         set("guarder", ([
-                "refuse_other": CYN "$N" CYN "对$n" CYN "冷笑道："
-                                "什么人？居然敢在我们灵鹫宫乱闯！"
+                "refuse_other": CYN "$N" CYN "對$n" CYN "冷笑道："
+                                "什麼人？居然敢在我們靈鷲宮亂闖！"
                                 NOR,
-                "refuse_carry": CYN "$N" CYN "对$n" CYN "喝道：喂"
-                                "！你这是把人搬到哪里去呀？" NOR,
+                "refuse_carry": CYN "$N" CYN "對$n" CYN "喝道：喂"
+                                "！你這是把人搬到哪裡去呀？" NOR,
         ]));
 
-        create_family("灵鹫宫", 3, "弟子");
+        create_family("靈鷲宮", 3, "弟子");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -96,19 +96,19 @@ void attempt_apprentice(object ob)
         if( query("gender", ob) == "男性" )
         {
                 command("consider");
-                command("say 我看你还是去少林寺吧，我们主公天天都在怀念。");
+                command("say 我看你還是去少林寺吧，我們主公天天都在懷念。");
                 return;
         }
 
         if( query("gender", ob) != "女性" )
         {
                 command("@@");
-                command("say 这位公公，我看你还是赶紧回宫伺候皇上吧。");
+                command("say 這位公公，我看你還是趕緊回宮伺候皇上吧。");
                 return;
         }
 
         command("xixi");
-        command("say 既然这样，那你就留在这儿下吧，以后我就是你师父了。");
+        command("say 既然這樣，那你就留在這兒下吧，以後我就是你師父了。");
         command("recruit "+query("id", ob));
 
         if( query("class", ob) != "dancer" )

@@ -6,12 +6,12 @@ int do_back(object me);
 
 void create()
 { 
-      set("short", "演武台");
+      set("short", "演武臺");
       set("long",
-"[1;32m这里看上去象是一个比武场，十丈见方的场地上整整齐齐地\n"
-"铺着一圈彩色玛瑙石，架着香烟袅绕的四个巨大金银铜铁鼎，场地中间还\n"
-"铺着软松的皮绒织锦毯。在场边有一个书架似的摆饰(shelf)，在它旁边\n"
-"还有一张绢帛(note)。\n"
+"[1;32m這裡看上去象是一個比武場，十丈見方的場地上整整齊齊地\n"
+"鋪著一圈彩色瑪瑙石，架著香菸裊繞的四個巨大金銀銅鐵鼎，場地中間還\n"
+"鋪著軟松的皮絨織錦毯。在場邊有一個書架似的擺飾(shelf)，在它旁邊\n"
+"還有一張絹帛(note)。\n"
 );
    set("exits",([
            "south" : __DIR__"xiuxishi",
@@ -20,8 +20,8 @@ void create()
              "/quest/tulong/npc/shadow" : 1,
   ]));
   set("item_desc", ([
-     "shelf" : "这是一个药架，里面放着一些金创药，似乎可以拿出来(take jinchuang)。\n", 
-      "note" : "勇敢的人啊，如果你们的脚步到此为止，就回去凡间吧(back)。\n", 
+     "shelf" : "這是一個藥架，裡面放著一些金創藥，似乎可以拿出來(take jinchuang)。\n", 
+      "note" : "勇敢的人啊，如果你們的腳步到此為止，就回去凡間吧(back)。\n", 
   ]));
 //  set("no_clean_up", 0);
   set("no_magic", 1);
@@ -39,13 +39,13 @@ void init()
 
 int do_quit(string arg)
 {
-        write(query("name", this_player())+"，这里只能fight！\n");
+        write(query("name", this_player())+"，這裡只能fight！\n");
         return 1;
 }
 
 int do_steal(string arg)
 {
-        write(query("name", this_player())+"，不要为此不才之事！\n");
+        write(query("name", this_player())+"，不要為此不才之事！\n");
         return 1;
 }
 int do_take(string arg)
@@ -53,23 +53,23 @@ int do_take(string arg)
         object me=this_player();
         object ob;
         if(!arg || arg!="jinchuang")
-          return notify_fail("你要拿什么？\n");
+          return notify_fail("你要拿什麼？\n");
         if( !query("fighter", me) )
-          return notify_fail("你还没比武就想拿药？\n"); 
+          return notify_fail("你還沒比武就想拿藥？\n"); 
        ob = new ("/clone/misc/jinchuang");   
        ob->move(me); 
-  message_vision ("$N从台上拿起$n。\n",me,ob); 
+  message_vision ("$N從臺上拿起$n。\n",me,ob); 
         return 1;  
 }
 
 int do_back(object me)
 {
         me=this_player();
-        message_vision(HIC"$N的身影消失在一阵光芒中。\n"NOR,me); 
+        message_vision(HIC"$N的身影消失在一陣光芒中。\n"NOR,me); 
         set("fighter", 0, me);
-        set_temp("m_success/初级", 0, me);
+        set_temp("m_success/初級", 0, me);
         set_temp("m_success/幻影", 0, me);
-        set_temp("m_success/孽龙", 0, me);
+        set_temp("m_success/孽龍", 0, me);
         me->move("/d/city/wumiao");
         return 1;
 }
@@ -78,9 +78,9 @@ int do_back(object me)
 int valid_leave(string dir)
 {
               if((present("jinchuang yao", this_player())))
-            return notify_fail("请不要带走这里的东西。\n"); 
+            return notify_fail("請不要帶走這裡的東西。\n"); 
         if((present("budai", this_player())))
-            return notify_fail("请放下布袋，这里的东西不能带出去，谢谢。\n"); 
+            return notify_fail("請放下布袋，這裡的東西不能帶出去，謝謝。\n"); 
     return ::valid_leave();
 
  }

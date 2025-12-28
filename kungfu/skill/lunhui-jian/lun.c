@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define XIN "「" HIR "六道轮回" NOR "」"
+#define XIN "「" HIR "六道輪迴" NOR "」"
 
 inherit F_SSERVER;
 
@@ -25,47 +25,47 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))   
-                return notify_fail(XIN "只能在战斗中使用。\n");
+                return notify_fail(XIN "只能在戰鬥中使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me) )
             || query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对，难以施展" XIN "。\n");
+                return notify_fail("你使用的武器不對，難以施展" XIN "。\n");
 
         if ((int)me->query_skill("force") < 380)
-                return notify_fail("你内功修为不足，难以施展" XIN "。\n");
+                return notify_fail("你內功修為不足，難以施展" XIN "。\n");
 
         if( query("max_neili", me)<5000 )
-                return notify_fail("你内力修为不足，难以施展" XIN "。\n");
+                return notify_fail("你內力修為不足，難以施展" XIN "。\n");
 
         if ((int)me->query_skill("buddhism", 1) < 240)
-                return notify_fail("你禅宗心法修为不足，难以施展" XIN "。\n");
+                return notify_fail("你禪宗心法修為不足，難以施展" XIN "。\n");
 
         if ((int)me->query_skill("lunhui-jian", 1) < 260)
-                return notify_fail("你释迦轮回剑修为不足，难以施展" XIN "。\n");
+                return notify_fail("你釋迦輪迴劍修為不足，難以施展" XIN "。\n");
 
         if (me->query_skill_mapped("sword") != "lunhui-jian")
-                return notify_fail("你还没有激发释迦轮回剑，难以施展" XIN "。\n");
+                return notify_fail("你還沒有激發釋迦輪迴劍，難以施展" XIN "。\n");
 
         if( query("neili", me)<600 )
-                return notify_fail("你内力不足，难以施展" XIN "。\n");
+                return notify_fail("你內力不足，難以施展" XIN "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
         
         if( userp(me) ) 
         {
                 if( (time = BUFF_D->get_buff_overtime(me, "lhj_lun")) > 0 )
-                        return notify_fail(MAG"六道轮回消耗心神太甚，还需等待"+time+"秒。\n"NOR);
+                        return notify_fail(MAG"六道輪迴消耗心神太甚，還需等待"+time+"秒。\n"NOR);
         }
         
         wn = weapon->name();
 
         message_combatd(HIW "$N" HIW "面露拈花之意，祭起手中" + wn +
-                        HIW "，霎时碧波流转，华光万丈，说不尽的祥和。"
+                        HIW "，霎時碧波流轉，華光萬丈，說不盡的祥和。"
                         "\n" NOR, me, target);
 
 /*
-        //  记录下最初的房间
+        //  記錄下最初的房間
         if (! objectp(sroom = environment(me)))
                 return 1;
 
@@ -73,7 +73,7 @@ int perform(object me, object target)
             base_name(sroom) == "/d/shenlong/huodong1" ||
 sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") || 
             query("biwu_room", sroom) )
-                return notify_fail("这个技能无法在此处施展！\n");
+                return notify_fail("這個技能無法在此處施展！\n");
 */
                 
         ap = attack_power(me, "sword") + me->query_skill("buddhism", 1);
@@ -82,7 +82,7 @@ sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") ||
              target->query_skill("buddhism", 1);
         
         if (target->is_bad()) ap += ap / 10; 
-        delta = ABILITY_D->check_ability(me, "ap_power-lhj-lun"); // 门派ab
+        delta = ABILITY_D->check_ability(me, "ap_power-lhj-lun"); // 門派ab
         if( delta ) ap += ap*delta/100;
         
         damage = damage_power(me, "sword");
@@ -91,7 +91,7 @@ sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") ||
                 damage+= damage / 300 * me->query_str();
                 damage*= 5;
         
-        delta2 = ABILITY_D->check_ability(me, "da_power-lhj-lun"); // 门派ab
+        delta2 = ABILITY_D->check_ability(me, "da_power-lhj-lun"); // 門派ab
         if( delta2 ) damage += damage*delta2/100;
         
         wound = 60;
@@ -103,7 +103,7 @@ sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") ||
                 }
 
 /*
-        // 六道轮回之人间道
+        // 六道輪迴之人間道
         room = find_object("/d/death/liudaolunhui/rendao");
         if (! room) room = load_object("/d/death/liudaolunhui/rendao");
 
@@ -115,8 +115,8 @@ sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") ||
 */
 
 
-        message_vision(HIY "\n$N" HIY "左手轻轻一拨，右手所持的" + wn +
-                       HIY "叮呤做响，剑姿说不出的潇洒妙曼。\n" NOR, me, target);
+        message_vision(HIY "\n$N" HIY "左手輕輕一撥，右手所持的" + wn +
+                       HIY "叮呤做響，劍姿說不出的瀟灑妙曼。\n" NOR, me, target);
 
         if (ap / 2 + random(ap) > dp)
         {
@@ -124,13 +124,13 @@ sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") ||
                                            (: attack1, me, target, damage :));
         } else
         {
-                msg = CYN "可是$n" CYN "收敛心神，奋力招"
-                      "架，将剑招卸于无形。\n" NOR;
+                msg = CYN "可是$n" CYN "收斂心神，奮力招"
+                      "架，將劍招卸於無形。\n" NOR;
         }
         message_vision(msg, me, target);
 
 /*
-        // 六道轮回之畜生道
+        // 六道輪迴之畜生道
         room = find_object("/d/death/liudaolunhui/chushengdao");
         if (! room) room = load_object("/d/death/liudaolunhui/chushengdao");
 
@@ -143,8 +143,8 @@ sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") ||
 
         ap *= 2;
 
-        message_vision(HIY "\n却见$N" HIY "面无表情，将手中" + wn +
-                       HIY "猛的往前一递，犹如毒蛇般噬向$n" HIY "。\n"
+        message_vision(HIY "\n卻見$N" HIY "面無表情，將手中" + wn +
+                       HIY "猛的往前一遞，猶如毒蛇般噬向$n" HIY "。\n"
                        NOR, me, target);
 
         if (ap / 2 + random(ap) > dp)
@@ -153,13 +153,13 @@ sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") ||
                                            (: attack2, me, target, damage :));
         } else
         {
-                msg = CYN "可是$n" CYN "收敛心神，奋力招"
-                      "架，将剑招卸于无形。\n" NOR;
+                msg = CYN "可是$n" CYN "收斂心神，奮力招"
+                      "架，將劍招卸於無形。\n" NOR;
         }
         message_vision(msg, me, target);
 
 /*
-        // 六道轮回之饿鬼道
+        // 六道輪迴之餓鬼道
         room = find_object("/d/death/liudaolunhui/eguidao");
         if (! room) room = load_object("/d/death/liudaolunhui/eguidao");
         
@@ -171,8 +171,8 @@ sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") ||
 */
 
 
-        message_vision(HIY "\n$N" HIY "一声长叹，左手捏着剑诀，忽闻" +
-                       wn + HIY "上血腥之气渐浓，朝$n" HIY "迎头斩落。\n"
+        message_vision(HIY "\n$N" HIY "一聲長嘆，左手捏著劍訣，忽聞" +
+                       wn + HIY "上血腥之氣漸濃，朝$n" HIY "迎頭斬落。\n"
                        NOR, me, target);
 
         if (ap / 2 + random(ap) > dp)
@@ -181,13 +181,13 @@ sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") ||
                                            (: attack3, me, target, damage :));
         } else
         {
-                msg = CYN "可是$n" CYN "收敛心神，奋力招"
-                      "架，将剑招卸于无形。\n" NOR;
+                msg = CYN "可是$n" CYN "收斂心神，奮力招"
+                      "架，將劍招卸於無形。\n" NOR;
         }
         message_vision(msg, me, target);
 
 /*
-        // 六道轮回之修罗道
+        // 六道輪迴之修羅道
         room = find_object("/d/death/liudaolunhui/xiuluodao");
         if (! room) room = load_object("/d/death/liudaolunhui/xiuluodao");
 
@@ -199,8 +199,8 @@ sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") ||
 */
 
 
-        message_vision(HIY "\n忽见$N" HIY "身形微晃，顿时幻出十数个身"
-                       "影，十数柄" + wn + HIY "齐向$n" HIY "刺去。"
+        message_vision(HIY "\n忽見$N" HIY "身形微晃，頓時幻出十數個身"
+                       "影，十數柄" + wn + HIY "齊向$n" HIY "刺去。"
                        "\n" NOR, me, target);
 
         if (ap / 2 + random(ap) > dp)
@@ -209,13 +209,13 @@ sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") ||
                                            (: attack4, me, target, damage :));
         } else
         {
-                msg = CYN "可是$n" CYN "收敛心神，奋力招"
-                      "架，将剑招卸于无形。\n" NOR;
+                msg = CYN "可是$n" CYN "收斂心神，奮力招"
+                      "架，將劍招卸於無形。\n" NOR;
         }
         message_vision(msg, me, target);
 
 /*
-        // 六道轮回之地狱道
+        // 六道輪迴之地獄道
         room = find_object("/d/death/liudaolunhui/diyudao");
         if (! room) room = load_object("/d/death/liudaolunhui/diyudao");
 
@@ -227,8 +227,8 @@ sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") ||
 */
 
 
-        message_vision(HIY "\n紧接着$N" HIY + wn + HIY "一颤，有若龙吟"
-                       "，剑身腾起一道滔天寒流，向四周扩散开去。\n" NOR,
+        message_vision(HIY "\n緊接著$N" HIY + wn + HIY "一顫，有若龍吟"
+                       "，劍身騰起一道滔天寒流，向四周擴散開去。\n" NOR,
                        me, target);
 
         if (ap / 2 + random(ap) > dp)
@@ -237,13 +237,13 @@ sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") ||
                                            (: attack5, me, target, damage :));
         } else
         {
-                msg = CYN "可是$n" CYN "收敛心神，奋力招"
-                      "架，将剑招卸于无形。\n" NOR;
+                msg = CYN "可是$n" CYN "收斂心神，奮力招"
+                      "架，將劍招卸於無形。\n" NOR;
         }
         message_vision(msg, me, target);
 
 /*
-        // 六道轮回之天极道
+        // 六道輪迴之天極道
         room = find_object("/d/death/liudaolunhui/tiandao");
         if (! room) room = load_object("/d/death/liudaolunhui/tiandao");
 
@@ -255,8 +255,8 @@ sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") ||
 */
 
 
-        message_vision(HIY "\n$N" HIY "身外化身，剑外化剑，手中" + wn +
-                       HIY "便似蛟龙腾空，拨云见日，天地为之失色。\n"
+        message_vision(HIY "\n$N" HIY "身外化身，劍外化劍，手中" + wn +
+                       HIY "便似蛟龍騰空，撥雲見日，天地為之失色。\n"
                        NOR, me, target);
 
         if (ap / 2 + random(ap) > dp)
@@ -265,8 +265,8 @@ sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") ||
                                            (: attack6, me, target, damage :));
         } else
         {
-                msg = CYN "可是$n" CYN "收敛心神，奋力招"
-                      "架，将剑招卸于无形。\n" NOR;
+                msg = CYN "可是$n" CYN "收斂心神，奮力招"
+                      "架，將劍招卸於無形。\n" NOR;
         }
         message_vision(msg, me, target);
 
@@ -274,12 +274,12 @@ sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") ||
 
         addn("neili", -200-random(400), me);
 
-        // 为什么提行？为了画面更为赏心悦目而已
+        // 為什麼提行？為了畫面更為賞心悅目而已
         tell_object(me, "\n\n");
         tell_object(target, "\n\n");
 
 /*
-        // 转移回最初的房间
+        // 轉移回最初的房間
         if (base_name(sroom) != "/d/shenlong/shejingdong")
         {
                 me->move(sroom);
@@ -288,8 +288,8 @@ sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") ||
 */
 
         time  = 40;
-        time -= ABILITY_D->check_ability(me, "cd-lhj-lunhui"); // ab门派减cd
-        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent减cd
+        time -= ABILITY_D->check_ability(me, "cd-lhj-lunhui"); // ab門派減cd
+        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd
                 
         buff =  
 	([
@@ -298,16 +298,16 @@ sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") ||
 	        "type"   : "cooldown",
 	        "type2"  : "lhj_lun",
 	        "attr"   : "curse",
-	        "name"   : "释迦轮回剑·六道轮回",
+	        "name"   : "釋迦輪迴劍·六道輪迴",
 	        "time"   : time,
-	        "buff_msg" : "六道轮回消耗心神太甚，还需等待"+time+"秒方可再次施展。\n",
+	        "buff_msg" : "六道輪迴消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
 	        "disa_msg" : "",
 	        "disa_type": 0,
 	]);
 	BUFF_D->buffup(buff);
 
 /*
-        // 不能通过断线来保命
+        // 不能通過斷線來保命
         if( query("qi", target)<0 )
                 target->die(me);
 */
@@ -320,8 +320,8 @@ string attack1(object me, object target, int damage)
 
                 int p;                
 
-        // 转世后如满足条件则有很大几率出现特效
-                // 门派技能六到轮回可提高出特效的几率
+        // 轉世後如滿足條件則有很大幾率出現特效
+                // 門派技能六到輪迴可提高出特效的幾率
                 p = 0;
                 if( query("yuanshen_level", me) )
                 {
@@ -344,17 +344,17 @@ string attack1(object me, object target, int damage)
 
                 if (random(101) >= p)
                 {
-                        return HIR "$n" HIR "只觉得身处幻境，心神不宁，全身"
-                   "各处竟不受自己控制。\n" NOR;
+                        return HIR "$n" HIR "只覺得身處幻境，心神不寧，全身"
+                   "各處竟不受自己控制。\n" NOR;
                 }
 
-        msg = HIR "$n" HIR "只觉心头一阵凄苦，竟忍不住要落"
-              "下泪来，喉咙一甜，呕出一口鲜血。\n" NOR;
+        msg = HIR "$n" HIR "只覺心頭一陣悽苦，竟忍不住要落"
+              "下淚來，喉嚨一甜，嘔出一口鮮血。\n" NOR;
 
         if( !query_temp("liudaolunhui", target) )
         {
-                msg += WHT "$p忽然察觉到全身的力气竟似一丝"
-                       "丝远离自己而去，无助之极。\n" NOR;
+                msg += WHT "$p忽然察覺到全身的力氣竟似一絲"
+                       "絲遠離自己而去，無助之極。\n" NOR;
 
                 addn_temp("apply/attack", -damage, target);
                 addn_temp("apply/parry", -damage, target);
@@ -379,8 +379,8 @@ string attack2(object me, object target, int damage)
 
                 int p;                
 
-        // 转世后如满足条件则有很大几率出现特效
-                // 门派技能六到轮回可提高出特效的几率
+        // 轉世後如滿足條件則有很大幾率出現特效
+                // 門派技能六到輪迴可提高出特效的幾率
                 p = 0;
                 if( query("yuanshen_level", me) )
                 {
@@ -401,21 +401,21 @@ string attack2(object me, object target, int damage)
 
                 if (random(101) >= p)
                 {
-                        return HIR "$n" HIR "只觉得身处幻境，心神不宁，全身"
-                   "各处竟不受自己控制。\n" NOR;
+                        return HIR "$n" HIR "只覺得身處幻境，心神不寧，全身"
+                   "各處竟不受自己控制。\n" NOR;
                 }
 
                 damage = damage * p / 100;
 
-        msg = HIR "忽然间$n" HIR "感到胸口处一阵火热，剑气"
-              "袭体，带出一蓬血雨。\n" NOR;
+        msg = HIR "忽然間$n" HIR "感到胸口處一陣火熱，劍氣"
+              "襲體，帶出一蓬血雨。\n" NOR;
 
         if( objectp(weapon=query_temp("weapon", target)) && (query("material", weapon) != "tian jing"
         ||      query("material", weapon) != "no name") )
         {
                 wn = weapon->name();
-                msg += WHT "忽听「锵锵锵」几声脆响，$n" WHT "的" + wn +
-                       WHT "竟被$N" WHT "绞成了块块碎片。\n" NOR;
+                msg += WHT "忽聽「鏘鏘鏘」幾聲脆響，$n" WHT "的" + wn +
+                       WHT "竟被$N" WHT "絞成了塊塊碎片。\n" NOR;
 
                 set("consistence", 0, weapon);
                 weapon->move(target);
@@ -430,8 +430,8 @@ string attack3(object me, object target, int damage)
 
                 int p;                
 
-        // 转世后如满足条件则有很大几率出现特效
-                // 门派技能六到轮回可提高出特效的几率
+        // 轉世後如滿足條件則有很大幾率出現特效
+                // 門派技能六到輪迴可提高出特效的幾率
                 p = 0;
                 if( query("yuanshen_level", me) )
                 {
@@ -452,21 +452,21 @@ string attack3(object me, object target, int damage)
 
                 if (random(101) >= p)
                 {
-                        return HIR "$n" HIR "只觉得身处幻境，心神不宁，全身"
-                   "各处竟不受自己控制。\n" NOR;
+                        return HIR "$n" HIR "只覺得身處幻境，心神不寧，全身"
+                   "各處竟不受自己控制。\n" NOR;
                 }
 
                 damage = damage * p / 100;
 
-        msg = HIR "剑锋过处，卷起漫天血浪，$n" HIR "只感头晕目"
-              "眩，四肢乏力，难以再战。\n" NOR;
+        msg = HIR "劍鋒過處，捲起漫天血浪，$n" HIR "只感頭暈目"
+              "眩，四肢乏力，難以再戰。\n" NOR;
 
         if( BUFF_D->check_buff(me, "shield") ) 
         {
                 BUFF_D->debuff(me, "shield", 1);
 
-                msg += WHT "$N" WHT "气劲涌至，宛若刀割，顿时将$n"
-                       WHT "的护体真气摧毁得荡然无存。\n" NOR;
+                msg += WHT "$N" WHT "氣勁湧至，宛若刀割，頓時將$n"
+                       WHT "的護體真氣摧毀得蕩然無存。\n" NOR;
         }
         return msg;
 }
@@ -478,8 +478,8 @@ string attack4(object me, object target, int damage)
 
                 int p;                
 
-        // 转世后如满足条件则有很大几率出现特效
-                // 门派技能六到轮回可提高出特效的几率
+        // 轉世後如滿足條件則有很大幾率出現特效
+                // 門派技能六到輪迴可提高出特效的幾率
                 p = 0;
                 if( query("yuanshen_level", me) )
                 {
@@ -500,20 +500,20 @@ string attack4(object me, object target, int damage)
 
                 if (random(101) >= p)
                 {
-                        return HIR "$n" HIR "只觉得身处幻境，心神不宁，全身"
-                   "各处竟不受自己控制。\n" NOR;
+                        return HIR "$n" HIR "只覺得身處幻境，心神不寧，全身"
+                   "各處竟不受自己控制。\n" NOR;
                 }
 
                 damage = damage * p / 100;
 
-        msg = HIR "$n" HIR "顿时大惊失色，瞬间已被$N" HIR "连中"
-              "数剑，直削得血肉模糊。\n" NOR;
+        msg = HIR "$n" HIR "頓時大驚失色，瞬間已被$N" HIR "連中"
+              "數劍，直削得血肉模糊。\n" NOR;
 
         if( objectp(cloth=query_temp("armor/cloth", target)) )
         {
                 cn = cloth->name();
-                msg += WHT "忽听轰然声大作，$n" WHT "身着的" + cn +
-                       WHT "在$N" WHT "内力激荡下，竟被震得粉碎。\n"
+                msg += WHT "忽聽轟然聲大作，$n" WHT "身著的" + cn +
+                       WHT "在$N" WHT "內力激盪下，竟被震得粉碎。\n"
                        NOR;
 
                 set("consistence", 0, cloth);
@@ -523,8 +523,8 @@ string attack4(object me, object target, int damage)
         ||      query("material", armor) != "no name") )
         {
                 an = armor->name();
-                msg += WHT "忽听「哧啦」一声脆响，$n" WHT "身着的" +
-                       an + WHT "竟被$N" WHT "震裂，化成块块碎片。\n"
+                msg += WHT "忽聽「哧啦」一聲脆響，$n" WHT "身著的" +
+                       an + WHT "竟被$N" WHT "震裂，化成塊塊碎片。\n"
                        NOR;
 
                 set("consistence", 0, armor);
@@ -539,8 +539,8 @@ string attack5(object me, object target, int damage)
 
                 int p;                
 
-        // 转世后如满足条件则有很大几率出现特效
-                // 门派技能六到轮回可提高出特效的几率
+        // 轉世後如滿足條件則有很大幾率出現特效
+                // 門派技能六到輪迴可提高出特效的幾率
                 p = 0;
                 if( query("yuanshen_level", me) )
                 {
@@ -561,25 +561,25 @@ string attack5(object me, object target, int damage)
 
                 if (random(101) >= p)
                 {
-                        return HIR "$n" HIR "只觉得身处幻境，心神不宁，全身"
-                   "各处竟不受自己控制。\n" NOR;
+                        return HIR "$n" HIR "只覺得身處幻境，心神不寧，全身"
+                   "各處竟不受自己控制。\n" NOR;
                 }
 
                 damage = damage * p / 100;
 
-        msg = HIR "只见$n" HIR "全身一阵抽搐，被剑锋所携的极寒气流"
-              "包裹其中，刺痛难当。\n" NOR;
+        msg = HIR "只見$n" HIR "全身一陣抽搐，被劍鋒所攜的極寒氣流"
+              "包裹其中，刺痛難當。\n" NOR;
 
         if (! target->query_condition("poison"))
         {
                 target->affect_by("poison",
                         ([ "level"    : damage / 3,
-                           "name"     : "炼狱寒焰",
+                           "name"     : "煉獄寒焰",
                            "id":query("id", me),
                            "duration" : damage / 50 ]));
 
-                msg += WHT "霎时间$n" WHT "忽觉一股奇寒散入七经八脉"
-                       "，仿佛连血液都停止了流动。\n" NOR;
+                msg += WHT "霎時間$n" WHT "忽覺一股奇寒散入七經八脈"
+                       "，彷彿連血液都停止了流動。\n" NOR;
         }
         return msg;
 }
@@ -591,8 +591,8 @@ string attack6(object me, object target, int damage)
 
                 int p;                
 
-        // 转世后如满足条件则有很大几率出现特效
-                // 门派技能六到轮回可提高出特效的几率
+        // 轉世後如滿足條件則有很大幾率出現特效
+                // 門派技能六到輪迴可提高出特效的幾率
                 p = 0;
                 if( query("yuanshen_level", me) )
                 {
@@ -613,21 +613,21 @@ string attack6(object me, object target, int damage)
 
                 if (random(101) >= p)
                 {
-                        return HIR "$n" HIR "只觉得身处幻境，心神不宁，全身"
-                   "各处竟不受自己控制。\n" NOR;
+                        return HIR "$n" HIR "只覺得身處幻境，心神不寧，全身"
+                   "各處竟不受自己控制。\n" NOR;
                 }
 
                 damage = damage * p / 100;
 
-        msg = HIR "$N" HIR "剑势迅猛之极，令$n" HIR "毫无招架余地，"
-              "竟镇怯当场，素手待毙。\n" NOR;
+        msg = HIR "$N" HIR "劍勢迅猛之極，令$n" HIR "毫無招架餘地，"
+              "竟鎮怯當場，素手待斃。\n" NOR;
 
         if( !query_temp("no_exert", target) )
         {
                 set_temp("no_exert", 1, target);
 
-                msg += WHT "$n" WHT "只感到全身真气涣散，丹元瓦解，似"
-                       "乎所有的武功竟都消逝殆尽。\n" NOR;
+                msg += WHT "$n" WHT "只感到全身真氣渙散，丹元瓦解，似"
+                       "乎所有的武功竟都消逝殆盡。\n" NOR;
         }
         return msg;
 }

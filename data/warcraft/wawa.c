@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("埃凤[2;37;0m[2;37;0m", ({"waa"}));        
+        set_name("埃鳳[2;37;0m[2;37;0m", ({"waa"}));        
         set("gender", "女性");                
-        set("long", "埃凤[2;37;0m
-它是心娃的魔幻兽。
+        set("long", "埃鳳[2;37;0m
+它是心娃的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

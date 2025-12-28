@@ -15,12 +15,12 @@ int update_condition(object me, int duration)
         me->receive_damage("jing", 1500+random(2000));
         if( query("eff_jing", me)<0 || query("eff_qi", me)<0)
         {
-                set_temp("die_reason", "蟾蜍毒发作而死", me);
+                set_temp("die_reason", "蟾蜍毒發作而死", me);
                 me->die();
                 return 0;
         }
         me->apply_condition("chanchu_poison", duration - 1);
-        tell_object(me, HIG"你觉得伤口一阵阵发凉，没啥感觉了。你中的蟾蜍毒发作了！\n" NOR );
+        tell_object(me, HIG"你覺得傷口一陣陣發涼，沒啥感覺了。你中的蟾蜍毒發作了！\n" NOR );
         return 1;
 }
 

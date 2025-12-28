@@ -12,23 +12,23 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIY "这是一颗增加容貌的仙丹。\n" NOR);
-                set("base_unit", "颗");
+                set("long", HIY "這是一顆增加容貌的仙丹。\n" NOR);
+                set("base_unit", "顆");
                 set("base_value", 10000);
                 set("base_weight", 50);
                 set("only_do_effect", 1);
 
-                // 增加天赋的种类
+                // 增加天賦的種類
                 set("gift_type", "per");
 
-                // 天赋种类的名称
+                // 天賦種類的名稱
                 set("gift_name", "容貌");
 
-                // 成功的几率
+                // 成功的幾率
                 set("gift_point", 100);
 
                 // 成功的描述
-                set("gift_msg", HIC "突然间你的皮肤透过一道光泽。\n" NOR);
+                set("gift_msg", HIC "突然間你的皮膚透過一道光澤。\n" NOR);
         }
         setup();
 }
@@ -39,15 +39,15 @@ int do_effect(object me)
 
         point = query("gift_point");
 
-        // 真命天子提升成功几率
+        // 真命天子提升成功幾率
         if( query("special_skills/emperor", me) )
                 point += 35;
 
-        // 天煞孤星提升成功几率
+        // 天煞孤星提升成功幾率
         if( query("special_skills/lonely", me) )
                 point += 10;
 
-        // 福星高照提升成功几率
+        // 福星高照提升成功幾率
         if( query("special_skill/lucky", me) )
                 point += 5;
 
@@ -58,29 +58,29 @@ int do_effect(object me)
         if( query("gift/" + query("gift_type") + "/all", me) >= 1 ||
             query("gift/" + query("gift_type") + "/succeed", me) >= 6 )
         {
-                tell_object(me, "你觉得这药好象没什么效果。\n");
+                tell_object(me, "你覺得這藥好象沒什麼效果。\n");
         } else
         if (random(100) >= point)
         {
-                tell_object(me, HIR "不过你觉得这药好像没起到什么"
+                tell_object(me, HIR "不過你覺得這藥好像沒起到什麼"
                                 "作用。\n" NOR);
 
-                // 记录失败的记号
+                // 記錄失敗的記號
                 addn("gift/"+query("gift_type")+"/fail", 1, me);
         } else
         {
                 tell_object(me, query("gift_msg"));
                 tell_object(me, HIC "你的" + query("gift_name") +
-                                HIC "永久增加一点。\n" NOR);
+                                HIC "永久增加一點。\n" NOR);
 
-                // 记录成功的记号
+                // 記錄成功的記號
                 addn("gift/"+query("gift_type")+"/succeed", 1, me);
 
-                // 增加相应的天赋属性
+                // 增加相應的天賦屬性
                 addn(query("gift_type"), 1, me);
         }
 
-        // 记录入吃丹的总量
+        // 記錄入吃丹的總量
         /*
         if( !query("gift/" + query("gift_type") + "/all", me) ) 
                 addn("gift/"+query("gift_type")+"/all", 1, me);

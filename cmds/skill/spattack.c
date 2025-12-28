@@ -5,7 +5,7 @@
 inherit F_CLEAN_UP;
 
 mapping weapon_name = ([
-        "sword" : "剑",
+        "sword" : "劍",
         "blade" : "刀",
         "staff" : "杖",
         "whip"  : "鞭",
@@ -24,7 +24,7 @@ int main(object me, string arg)
         object target;
 
         if( query("no_fight", environment(me)) )
-                return notify_fail("这里不能战斗。\n");
+                return notify_fail("這裡不能戰鬥。\n");
 
         if (! arg)
         {
@@ -34,22 +34,22 @@ int main(object me, string arg)
                 target = present(arg, environment(me));
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("会心一击只能对战斗中的对手使用。\n");
+                return notify_fail("會心一擊只能對戰鬥中的對手使用。\n");
 
         if( !stringp(couple_id=query("couple/couple_id", me)) )
-                return notify_fail("你还没有伴侣，使什么会心一击？\n");
+                return notify_fail("你還沒有伴侶，使什麼會心一擊？\n");
 
         couple_name=query("couple/couple_name", me);
 
         if (! objectp(couple = find_player(couple_id)))
-                return notify_fail(couple_name + "不在这个世界上，无法给与你力量。\n");
+                return notify_fail(couple_name + "不在這個世界上，無法給與你力量。\n");
 
         if (couple->is_ghost())
-                return notify_fail(couple_name + "现在是鬼魂一个，无"
-                                   "法穿越灵界给与你力量。\n");
+                return notify_fail(couple_name + "現在是鬼魂一個，無"
+                                   "法穿越靈界給與你力量。\n");
 
         if (! living(couple))
-                return notify_fail("你的心灵现在无法和" + couple_name + "沟通。\n");
+                return notify_fail("你的心靈現在無法和" + couple_name + "溝通。\n");
 
         if (target == couple)
                 return notify_fail("你有病啊！\n");
@@ -77,42 +77,42 @@ void do_remote_fight(object me, object couple, object target, int n)
 
         if( query("jingli", me)<need )
         {
-                write("你试图和你的伴侣进行心灵上的沟通，但是"
-                      "一时觉得精力不济，难以联系。\n");
+                write("你試圖和你的伴侶進行心靈上的溝通，但是"
+                      "一時覺得精力不濟，難以聯繫。\n");
                 return;
         }
 
         if( query("jingli", couple)<need )
         {
-                write("你隐隐约约的感觉到你伴侣"
-                      "的灵力，但是非常微弱，很难捕捉到。\n");
+                write("你隱隱約約的感覺到你伴侶"
+                      "的靈力，但是非常微弱，很難捕捉到。\n");
                 return;
         }
 
         if (me->is_busy())
         {
-                write("( 你上一个动作还没有完成，不能施展会心一击。)\n");
+                write("( 你上一個動作還沒有完成，不能施展會心一擊。)\n");
                 return;
         }
 
         if (random(2))
-                tell_object(me, HIM "你心中默默的念着" + couple->name(1) +
-                            HIM "的名字，隐隐感到那若即若离的"
-                            "灵觉，穿透了无尽的虚空，和你心心相连。\n\n" NOR);
+                tell_object(me, HIM "你心中默默的念著" + couple->name(1) +
+                            HIM "的名字，隱隱感到那若即若離的"
+                            "靈覺，穿透了無盡的虛空，和你心心相連。\n\n" NOR);
         else
-                tell_object(me, HIM "穿过了缥缈的虚空，你仿佛看到" + couple->name(1) +
-                            HIM "，给予你无上的鼓舞和无尽的力量。\n\n" NOR);
+                tell_object(me, HIM "穿過了縹緲的虛空，你彷彿看到" + couple->name(1) +
+                            HIM "，給予你無上的鼓舞和無盡的力量。\n\n" NOR);
 
         if (random(2))
-                tell_object(couple, HIM "你似乎感觉到" + me->name(1) +
-                            HIM "在你心灵深处呼唤你的名字，两人之"
-                            "间有如心有灵犀，你默默的为" +
+                tell_object(couple, HIM "你似乎感覺到" + me->name(1) +
+                            HIM "在你心靈深處呼喚你的名字，兩人之"
+                            "間有如心有靈犀，你默默的為" +
                             gender_pronoun(query("gender", me))+
-                            "祝福：去吧，我的爱人！\n" NOR);
+                            "祝福：去吧，我的愛人！\n" NOR);
         else
                 tell_object(couple, HIM "冥冥你感到了" + me->name(1) +
-                            HIM "对你的呼唤，这一刹那，你们在心灵上"
-                            "全然相通，让你把无形的力量注入给对方，鼓舞着" +
+                            HIM "對你的呼喚，這一剎那，你們在心靈上"
+                            "全然相通，讓你把無形的力量注入給對方，鼓舞著" +
                             gender_pronoun(query("gender", me))+"。\n"NOR);
 
         addn("jingli", -cost, me);
@@ -121,22 +121,22 @@ void do_remote_fight(object me, object couple, object target, int n)
         if (weapon && (chinese_type = weapon_name[query("skill_type", weapon)]))
         {
                 if( query("gender", me) == "女性" )
-                        msg = HIG "$N" HIG "弹" + chinese_type +
-                              "轻吟，宛若黄莺出谷，飘身而进，手中的" +
+                        msg = HIG "$N" HIG "彈" + chinese_type +
+                              "輕吟，宛若黃鶯出谷，飄身而進，手中的" +
                               weapon->name() + HIG "化作流星夜雨，披向$n"
                               HIG "。\n" NOR;
                 else
-                        msg = HIC "$N持" + chinese_type + "而进，竟然视$n" HIC "有若无物，手中" +
-                              weapon->name() + HIC "挥洒自如，荡起层层" +
-                              chinese_type + "影，将$p" HIC "困在当中。\n" NOR;
+                        msg = HIC "$N持" + chinese_type + "而進，竟然視$n" HIC "有若無物，手中" +
+                              weapon->name() + HIC "揮灑自如，蕩起層層" +
+                              chinese_type + "影，將$p" HIC "困在當中。\n" NOR;
         } else
         {
                 if( query("gender", me) == "女性" )
-                        msg = HIG "$N" HIG "轻声浅笑，飘然而进，身法惊艳"
-                              "绝伦，有若九天玄女踏足红尘，举手投足之间没有任何破绽。\n" NOR;
+                        msg = HIG "$N" HIG "輕聲淺笑，飄然而進，身法驚豔"
+                              "絕倫，有若九天玄女踏足紅塵，舉手投足之間沒有任何破綻。\n" NOR;
                 else
-                        msg = HIC "$N" HIC "纵声长啸，一股杀气凛然而起，天"
-                              "地登时色变，$N" HIC "挟风雷万钧之势，压向$n"
+                        msg = HIC "$N" HIC "縱聲長嘯，一股殺氣凜然而起，天"
+                              "地登時色變，$N" HIC "挾風雷萬鈞之勢，壓向$n"
                               HIC "。\n" NOR;
         }
 
@@ -170,22 +170,22 @@ void do_here_fight(object me, object couple, object target, int n)
 
         if (me->is_busy())
         {
-                write("( 你上一个动作还没有完成，不能施展会心一击。)\n");
+                write("( 你上一個動作還沒有完成，不能施展會心一擊。)\n");
                 return;
         }
 
         if (couple->is_busy())
         {
-                write("你的伴侣现在正忙，无法配合你进行会心一击。\n");
+                write("你的伴侶現在正忙，無法配合你進行會心一擊。\n");
                 return;
         }
 
         if (! couple->is_fighting(target))
                 couple->fight_ob(target);
 
-        message_combatd(HIY "$N" HIY "和$n" HIY "两人眼神一交，心意已"
-                        "然相通，不由的会心一笑，只见二人身形一错，霎时\n"
-                        "已经向" + target->name() + "攻出数招！\n" NOR,
+        message_combatd(HIY "$N" HIY "和$n" HIY "兩人眼神一交，心意已"
+                        "然相通，不由的會心一笑，只見二人身形一錯，霎時\n"
+                        "已經向" + target->name() + "攻出數招！\n" NOR,
                         me, couple);
 
         enhance1 = ((int)couple->query_skill("force") + n / 10) / 5;
@@ -216,14 +216,14 @@ void do_here_fight(object me, object couple, object target, int n)
 int help (object me)
 {
         write(@HELP
-指令格式：spattack [<施用对象>]
+指令格式：spattack [<施用對象>]
 
-如果你结婚了，就可以使用会心一击，联手打击对你正在攻击的对手，
-即使你的伴侣不在你的身边，也可以运用灵力穿过遥远的时空给与你
-支持，当然这需要耗费精力，两个人灵肉结合的次数越多，耗费的精
-力就越少。如果你的伴侣就在你的身边，则可以一起施展招数攻击对
-手，不需要耗费精力，招数的威力与两的人灵肉结合的次数于伴侣的
-内功等级相关。
+如果你結婚了，就可以使用會心一擊，聯手打擊對你正在攻擊的對手，
+即使你的伴侶不在你的身邊，也可以運用靈力穿過遙遠的時空給與你
+支持，當然這需要耗費精力，兩個人靈肉結合的次數越多，耗費的精
+力就越少。如果你的伴侶就在你的身邊，則可以一起施展招數攻擊對
+手，不需要耗費精力，招數的威力與兩的人靈肉結合的次數於伴侶的
+內功等級相關。
 HELP );
         return 1;
 }

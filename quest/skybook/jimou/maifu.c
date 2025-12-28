@@ -14,23 +14,23 @@ void main(object ob)
 	p_id=TROOP_D->get_char_troop(this_body()->query_id()[0]);
 	p_name=this_body()->query_id()[0];
 	if(!(CHAR_D->get_char(p_name,"skills")))
-       	{       write("你不会埋伏之计。\n");
+       	{       write("你不會埋伏之計。\n");
                 return;
        	}
 	
         if(!p_skill=CHAR_D->get_char(p_name,"skills")["maifu"])
-	{	write("你不会埋伏之计。\n");
+	{	write("你不會埋伏之計。\n");
 		return;
 	}
 	if( !p_id){
-                write("只有身在军中才能使用埋伏之计。\n");
+                write("只有身在軍中才能使用埋伏之計。\n");
                 return;
         };	
 	// In the furture, We have to consider theplayer's ablility
 	// add the exp of this jimou, reduce mp, etc.
 
 	ob->simple_action(SG_SKILL_D->query_use("maifu"));
-	ob->start_busy(10, "你正忙于使用埋伏之计。");
+	ob->start_busy(10, "你正忙於使用埋伏之計。");
 	load_object("/daemons/cast_d.c")->reg_player(ob->query_primary_id(),"maifu");
         ob->award_exp(ob->query_sk_level("sk_zhimou")/2+random(20), "maifu");
 	call_out("show_result", 5+random(5), ob, p_skill, p_id);
@@ -69,7 +69,7 @@ void show_result(object ob, int p_skill, int p_id)
 "/daemons/condition_d.c"->apply_condition(p_id,"confuse",mora,damage);
 	  
 	WARAI_D->war_inf(TROOP_D->get_troops(p_id,"task_id"),
-TROOP_D->find_troop(p_id)->query_id()[1]+"使用埋伏之计失败，陷入混乱之中。","b");	
+TROOP_D->find_troop(p_id)->query_id()[1]+"使用埋伏之計失敗，陷入混亂之中。","b");	
 	}
 	else {
 	damage = (random(p_skill) + 12)/ 12;	

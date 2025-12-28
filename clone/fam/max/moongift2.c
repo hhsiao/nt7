@@ -4,14 +4,14 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIY "中秋月饼四盒装" NOR, ({ "moon gift" }) );
+        set_name(HIY "中秋月餅四盒裝" NOR, ({ "moon gift" }) );
         set_weight(1);
 
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIY "二零零五年炎黄中秋特别礼品，请使用open moon gift指令打开。\n"
-                                                "同时，深切悼念在9.18事变中牺牲的烈士，勿忘国耻！\n"NOR);
+                set("long", HIY "二零零五年炎黃中秋特別禮品，請使用open moon gift指令打開。\n"
+                                                "同時，深切悼念在9.18事變中犧牲的烈士，勿忘國恥！\n"NOR);
                 set("value", 1);
                 set("no_sell", 1);
                         set("unit", "盒");
@@ -50,7 +50,7 @@ int do_open(string arg)
                 ob = new("/clone/fam/max/yuebinggift2");
                 ob->move(me, 1);
 
-                tell_object(me, HIG "你打开中秋月饼四盒装。\n" NOR);
+                tell_object(me, HIG "你打開中秋月餅四盒裝。\n" NOR);
                 
                 destruct(this_object());
                 

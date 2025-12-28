@@ -13,7 +13,7 @@
 mapping emotions;
 
 string help = @HELP
-此为表情指令，请使用指令 semote 来查阅表情指令列表及使用方法。
+此為表情指令，請使用指令 semote 來查閱表情指令列表及使用方法。
 HELP;
 varargs string do_emote(object me, string verb, string arg, int option);
 
@@ -57,20 +57,20 @@ varargs mixed do_emote(object me, string verb, string arg, int option)
         if( query("doing", me) == "scheme" )
         {
                 if( query("jing", me) < 100 )
-                        return notify_fail("你现在的精神不济，等一会儿吧。\n");
+                        return notify_fail("你現在的精神不濟，等一會兒吧。\n");
                 addn("jing", -50, me);
         }
 
-        /* 无对象 && 无附加文字 */
+        /* 無對象 && 無附加文字 */
         if ( !arg || !arg[0] )
                 emotion_msg = emotion[NONE_ALL];
 
-        /* 若将 arg 拆成两部份 */
+        /* 若將 arg 拆成兩部份 */
         else if( sscanf(arg, "%s %s", your_name, argument) == 2 )
         {
                 int which;
 
-                // 检查复数目标
+                // 檢查複數目標
                 if( sscanf(argument, "%d", which) && which > 1 && objectp(you = present(your_name+" "+which, me) || present(your_name+" "+which, environment(me))) )
                 {
                         your_name += " "+which;
@@ -80,10 +80,10 @@ varargs mixed do_emote(object me, string verb, string arg, int option)
                 if( !objectp(you) )
                         you =  present(your_name, environment(me)) || find_player(your_name);
 
-                /* 找到对象 && 有附加文字 */
+                /* 找到對象 && 有附加文字 */
                 if( objectp(you) && me->visible(you) )
                 {
-                        /* 对象是自己 */
+                        /* 對象是自己 */
                         if( you == me )
                         {
                                 emotion_msg = argument == "" ? emotion[ME_ALL] : emotion[ME_ALL_ARG];
@@ -95,7 +95,7 @@ varargs mixed do_emote(object me, string verb, string arg, int option)
                         emotion_msg = replace_string(emotion_msg, "$T", multi_emote(me, argument, option));
                         //if( !is_chinese(argument) ) en_arg = argument;
                 }
-                /* 无对象 && 有附加文字 */
+                /* 無對象 && 有附加文字 */
                 else
                 {
                         //if( !is_chinese(your_name) ) en_arg = your_name;
@@ -103,7 +103,7 @@ varargs mixed do_emote(object me, string verb, string arg, int option)
                         emotion_msg = replace_string(emotion[NONE_ALL_ARG], "$T", multi_emote(me, arg, option));
                 }
         }
-        /* 找到对象 && 无附加文字 */
+        /* 找到對象 && 無附加文字 */
         else if( objectp(you = present(arg, environment(me)) || find_player(arg)) && me->visible(you) )
         {
                 if( you == me )
@@ -115,7 +115,7 @@ varargs mixed do_emote(object me, string verb, string arg, int option)
                         emotion_msg = emotion[YOU_ALL];
         }
 
-        /* 无对象 && 有附加文字 */
+        /* 無對象 && 有附加文字 */
         else
         {
                 //if( !is_chinese(arg) ) en_arg = arg;
@@ -137,19 +137,19 @@ varargs mixed do_emote(object me, string verb, string arg, int option)
                 {
                         can_emote=query("env/can_emote", you);
                         if (! is_sub(query("id", me), can_emote))
-                                tell(me, HIY+pnoun(2, me)+"目前无法对"+you->query_idname()+HIY"使用任何表情指令。\n"NOR);
+                                tell(me, HIY+pnoun(2, me)+"目前無法對"+you->query_idname()+HIY"使用任何表情指令。\n"NOR);
                                 return 0;
                 }
 /*
                 if( arrayp(ignore) && member_array( me->query_id(1), ignore ) != -1 )
                 {
-                        tell(me, HIY+pnoun(2, me)+"目前无法对"+you->query_idname()+HIY"使用任何表情指令。\n"NOR);
+                        tell(me, HIY+pnoun(2, me)+"目前無法對"+you->query_idname()+HIY"使用任何表情指令。\n"NOR);
                         return 0;
                 }
 */
         }
 
-        // 计算使用次数
+        // 計算使用次數
 #ifdef  __PACKAGE_ARITH_OPERATOR__
         emotion[USE] = count(emotion[USE],"+",1);
 #else
@@ -177,7 +177,7 @@ varargs mixed do_emote(object me, string verb, string arg, int option)
                 if( !objectp(you) || same_environment(me, you) || !me->visible(you) )
                         msg(CYN+emotion_msg+NOR+BLK" * "+verb+" "+(arg?arg:"")+"\n"NOR, me, you, 1, EMTMSG);
                 else
-                        msg(HIB"远方"NOR"-"+CYN+emotion_msg+NOR+BLK" * "+verb+" "+(arg?arg:"")+"\n"NOR, me, you, 1, EMTMSG);
+                        msg(HIB"遠方"NOR"-"+CYN+emotion_msg+NOR+BLK" * "+verb+" "+(arg?arg:"")+"\n"NOR, me, you, 1, EMTMSG);
         }
 
         // Let NPC know we are doing emote on him.
@@ -235,7 +235,7 @@ private void create()
 
         if( !restore_object(DATA) )
         {
-                log_file("static/emote","无法载入存档。\n");
+                log_file("static/emote","無法載入存檔。\n");
                 destruct(this_object());
         }
 }
@@ -252,5 +252,5 @@ int remove()
 
 string query_name()
 {
-        return "表情系统(EMOTE_D)";
+        return "表情系統(EMOTE_D)";
 }

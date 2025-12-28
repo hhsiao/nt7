@@ -15,9 +15,9 @@ void create()
         id=query("id", me);
         birthday=query("birthday", me);
         }
-        set_name("电子表", ({ "watch" }) );
+        set_name("電子錶", ({ "watch" }) );
         set("long", (: do_long :) );
-        set("unit", "块");
+        set("unit", "塊");
         set("value", 0);
 
         setup();
@@ -43,16 +43,16 @@ int do_zeng(string arg)
         if(!arg||sscanf(arg, "%s to %s", item, target)!=2) return notify_fail("zeng <物品> to <某人>\n");
         obj = present(item, me);
         ob = present(target, environment(me));
-        if(!ob) return notify_fail("这里没有这个人。\n");
-        if(!obj) return notify_fail("你身上没有这样物品。\n");
-        if(obj!=this_object()) return notify_fail("这样东西还是不赠的好。\n");
-        if( id != query("id", me))return notify_fail("你不是这个物品的主人，无权转赠！\n");
+        if(!ob) return notify_fail("這裡沒有這個人。\n");
+        if(!obj) return notify_fail("你身上沒有這樣物品。\n");
+        if(obj!=this_object()) return notify_fail("這樣東西還是不贈的好。\n");
+        if( id != query("id", me))return notify_fail("你不是這個物品的主人，無權轉贈！\n");
         name=query("name", ob);
         id=query("id", ob);
         birthday=query("birthday", ob);
         obj->move(ob);
-        if( query("id", me) == "wop")message_vision("$N赠给$n一"+query("unit", obj)+query("name", obj)+"。\n",me,ob);
-        else message_vision("$N将"+query("name", obj)+"转赠给了$n。\n",me,ob);
+        if( query("id", me) == "wop")message_vision("$N贈給$n一"+query("unit", obj)+query("name", obj)+"。\n",me,ob);
+        else message_vision("$N將"+query("name", obj)+"轉贈給了$n。\n",me,ob);
         return 1;
 }
 
@@ -82,15 +82,15 @@ string do_long()
                 + "年" + CHINESE_D->chinese_number(birth[4]+1) + "月"
                 + CHINESE_D->chinese_number(birth[3]) + "日";
 
-        printf("这是一块精致的电子表，表上显示现在的时间是：\n\n");
+        printf("這是一塊精緻的電子錶，表上顯示現在的時間是：\n\n");
         printf(HIY"\t\t"HBBLU"┏--------------┓\n"NOR);
         printf(HIY"\t\t"HBBLU"┃  "HIR"%s"YEL"  ┃\n"NOR, ld);
         printf(HIY"\t\t"HBBLU"┃  "HIR"%s"YEL"  ┃\n"NOR, lt);
         printf(HIY"\t\t"HBBLU"┗--------------┛\n"NOR);
-        printf("\n表的背后刻着一行小字：\n\n");
-        printf(HIY"\t赠%s：\n\n"NOR, name);
-        printf(HIR"\t\t祝天天快乐!\n\n"NOR);
-        printf(HIB"\t\t\t\t\t夜辰(nightstar)赠于\n"NOR);
+        printf("\n表的背後刻著一行小字：\n\n");
+        printf(HIY"\t贈%s：\n\n"NOR, name);
+        printf(HIR"\t\t祝天天快樂!\n\n"NOR);
+        printf(HIB"\t\t\t\t\t夜辰(nightstar)贈於\n"NOR);
         printf(HIB"\t\t\t\t\t%s\n"NOR, gt);
         return "";
 }

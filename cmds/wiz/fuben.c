@@ -32,8 +32,8 @@ int main(object me,string arg)
         all  = FUBEN_D->query_fuben_all();
         data = FUBEN_D->query_fuben_data();
         if( !stringp(fbname) ) {
-                if( !all ) return notify_fail("泥潭现在没有任何副本。\n");
-                msg += "泥潭现在开启的副本空间如下：\n";
+                if( !all ) return notify_fail("泥潭現在沒有任何副本。\n");
+                msg += "泥潭現在開啟的副本空間如下：\n";
                 msg += "＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\n";
                 ks = keys(all);
                 for( i=0;i<sizeof(ks);i++ ) {
@@ -41,7 +41,7 @@ int main(object me,string arg)
                         if( mapp(temp) && sizeof(temp) ) {
                                 os = keys(temp);
                                 for( j=0;j<sizeof(os);j++ )
-                                        msg += sprintf("副本名称：%-33s剩余时间：%s\n",
+                                        msg += sprintf("副本名稱：%-33s剩餘時間：%s\n",
                                                 data[ks[i]]["name"]+"<"+ks[i]+">("+os[j]+")",
                                                 appromix_time(temp[os[j]] - time()) );
                         }
@@ -60,25 +60,25 @@ int main(object me,string arg)
 
                 if( fbname != "all" && (undefinedp(data[fbname]) ||
                     undefinedp(all[fbname])) )
-                        return notify_fail("泥潭现在没有这个副本。\n");
+                        return notify_fail("泥潭現在沒有這個副本。\n");
 
                 if( cmd == "list" ) {
-                        msg += sprintf("泥潭现在开启的%s副本空间如下：\n", (fbname=="all")?"所有":data[fbname]["name"]);
+                        msg += sprintf("泥潭現在開啟的%s副本空間如下：\n", (fbname=="all")?"所有":data[fbname]["name"]);
                         msg += "＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\n";
                         if( fbname == "all" ) {
                                 ks = keys(data);
                                 for( i=0;i<sizeof(ks);i++ ) {
-                                        msg += sprintf("副本名称：%-26s组队要求：%-8s任务时间：%s\n",
+                                        msg += sprintf("副本名稱：%-26s組隊要求：%-8s任務時間：%s\n",
                                                data[ks[i]]["name"]+"<"+ks[i]+">",
-                                               (!undefinedp(data[ks[i]]["team"]))?"必须":
-                                               (!undefinedp(data[ks[i]]["single"])?"单人":"任意"),
+                                               (!undefinedp(data[ks[i]]["team"]))?"必須":
+                                               (!undefinedp(data[ks[i]]["single"])?"單人":"任意"),
                                                appromix_time(to_int(data[ks[i]]["time"])) );
                                 }
                         } else {
                                 temp = all[fbname];
                                 ks = keys(temp);
                                 for( i=0;i<sizeof(ks);i++ ) {
-                                        msg += sprintf("副本名称：%-33s剩余时间：%s\n",
+                                        msg += sprintf("副本名稱：%-33s剩餘時間：%s\n",
                                                data[fbname]["name"]+"<"+fbname+">("+ks[i]+")",
                                                appromix_time(temp[ks[i]] - time()) );
                                 }
@@ -110,14 +110,14 @@ int main(object me,string arg)
 int help (object me)
 {
                       write(@HELP
-指令格式 : fuben list [副本名称]
-           fuben dest  副本名称  [副本主人]
+指令格式 : fuben list [副本名稱]
+           fuben dest  副本名稱  [副本主人]
 
-fuben list [all]              查看当前游戏中所有的副本详细信息
-fuben list 副本名称           查看指定副本的详细信息
-fuben open|dest all|副本名称  查看指定副本的详细信息
-fuben dest 副本名称           销毁指定类型副本的所有副本
-fuben dest 副本名称 副本主人  销毁指定类型副本的某人副本
+fuben list [all]              查看當前遊戲中所有的副本詳細信息
+fuben list 副本名稱           查看指定副本的詳細信息
+fuben open|dest all|副本名稱  查看指定副本的詳細信息
+fuben dest 副本名稱           銷燬指定類型副本的所有副本
+fuben dest 副本名稱 副本主人  銷燬指定類型副本的某人副本
 
 HELP );
                       return 1;

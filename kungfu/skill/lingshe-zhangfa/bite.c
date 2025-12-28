@@ -6,7 +6,7 @@
 
 inherit F_SSERVER;
 
-string name() { return "驱蛇咬人"; }
+string name() { return "驅蛇咬人"; }
 //void remove_bite(object);
 
 int perform(object me, object target)
@@ -27,37 +27,37 @@ int perform(object me, object target)
         if( !target
         ||        !target->is_character()
         ||        !me->is_fighting(target) )
-                return notify_fail("你只能纵蛇偷袭战斗中的对手。\n");
+                return notify_fail("你只能縱蛇偷襲戰鬥中的對手。\n");
 
         if (lv < 200 )
-                return notify_fail("你的灵蛇杖法不够娴熟，无法在使杖攻敌之余纵蛇伤人。\n");
+                return notify_fail("你的靈蛇杖法不夠嫻熟，無法在使杖攻敵之餘縱蛇傷人。\n");
 
         if (poison < 200 )
-                return notify_fail("你对使毒的法门所知有限。\n");
+                return notify_fail("你對使毒的法門所知有限。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) )
-                 return notify_fail("你手上没有盘蛇的兵器。\n");
+                 return notify_fail("你手上沒有盤蛇的兵器。\n");
         
         type=query("snake_type", weapon);
         
         /*
         if( !type && query("id", weapon) != "she zhang" )
-                return notify_fail("你的"+weapon->name()+"上并没有蛇。\n");
+                return notify_fail("你的"+weapon->name()+"上並沒有蛇。\n");
         */
         if( t && (time() - t) < 5 )
-                return notify_fail("你刚刚已经纵蛇伤人，这麽快就故技重施，祗怕难以奏效。\n");
+                return notify_fail("你剛剛已經縱蛇傷人，這麼快就故技重施，祗怕難以奏效。\n");
 
         if( me->query_skill("training",1) < 100 )
-               return notify_fail("你的驭兽术无法顺利驱使毒蛇伤人。\n");
+               return notify_fail("你的馭獸術無法順利驅使毒蛇傷人。\n");
 
         if( query("neili", me)<poi_amount )
-                return notify_fail("你的内力不够，难以在纵蛇袭击时稳控"+weapon->name()+"。\n");
+                return notify_fail("你的內力不夠，難以在縱蛇襲擊時穩控"+weapon->name()+"。\n");
 
         if( query("jingli", me)<300 )
-                return notify_fail("你的精力不够，难以在纵蛇袭击时稳控"+weapon->name()+"。\n");
+                return notify_fail("你的精力不夠，難以在縱蛇襲擊時穩控"+weapon->name()+"。\n");
 
         if(( me->query_skill_mapped("force") != "hamagong") && ( me->query_skill_mapped("force") != "jiuyin-hamagong"))
-                return notify_fail("你所用的内功与「灵蛇杖法」气路相悖！\n");
+                return notify_fail("你所用的內功與「靈蛇杖法」氣路相悖！\n");
 
         addn("neili", -(poi_amount/2+50), me);
         addn("jingli", -200, me);
@@ -66,7 +66,7 @@ int perform(object me, object target)
         case "怪蛇" :
         snake_path = "/d/baituo/npc/guaishe";
         break;
-        case "灵蛇" :
+        case "靈蛇" :
         snake_path = "/d/baituo/npc/lingshe";
         break;
         default:
@@ -96,7 +96,7 @@ int perform(object me, object target)
         set("snake_poison", poi_amount*5, snake);
         snake->kill_ob(target);
 
-        message_combatd(HIB"\n$N将"+weapon->name()+HIB"一抖，杖上金环当啷啷一阵乱响，一条"+type+HIB"从杖底直盘上来。\n"NOR,me);
+        message_combatd(HIB"\n$N將"+weapon->name()+HIB"一抖，杖上金環噹啷啷一陣亂響，一條"+type+HIB"從杖底直盤上來。\n"NOR,me);
 
         me->start_busy(1);
 
@@ -116,7 +116,7 @@ int perform(object me, object target)
         if (damage/2+random(damage)>dp)
         {
                 addn("neili", -200, me);
-                message_combatd(HIB"\n$N忽然将"+weapon->name()+HIB"当头打了下来，$n因为防备毒蛇而躲闪不及。\n"NOR,me,target);
+                message_combatd(HIB"\n$N忽然將"+weapon->name()+HIB"當頭打了下來，$n因為防備毒蛇而躲閃不及。\n"NOR,me,target);
                 COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 100);
         }
 
@@ -132,14 +132,14 @@ void remove_bite(object me, string type)
 {
         if (! objectp(me)) return;
         delete_temp("baituo/bite", me);
-        tell_object(me, type+"昂起了头，嘶地一吐舌头。\n");
+        tell_object(me, type+"昂起了頭，嘶地一吐舌頭。\n");
 }
 
 mapping query_action(object me)
 {
         string msg1, msg2;
-        msg1 = HIR"祗见"+SNAKE_STAFF->name()+HIR"从$n眼前掠过，缠杖盘旋的一条$N吞吐伸缩，猛然张口咬向$n$l，狰狞诡异之极！"NOR;
-        msg2 = HIW BLK"一条$N才刚窜出，冷不防"+SNAKE_STAFF->name()+HIW BLK"上另一条$N也已悄没声息地昂首而起，一口向$n$l咬去！"NOR;
+        msg1 = HIR"祗見"+SNAKE_STAFF->name()+HIR"從$n眼前掠過，纏杖盤旋的一條$N吞吐伸縮，猛然張口咬向$n$l，猙獰詭異之極！"NOR;
+        msg2 = HIW BLK"一條$N才剛竄出，冷不防"+SNAKE_STAFF->name()+HIW BLK"上另一條$N也已悄沒聲息地昂首而起，一口向$n$l咬去！"NOR;
         return ([
         "action":query("second_attack", me)?msg2:msg1,
         "force" : 400,
@@ -147,5 +147,5 @@ mapping query_action(object me)
         "parry" : 0,
         "damage" : 400,
         "weapon" :"毒牙",
-        "damage_type":"咬伤"]);
+        "damage_type":"咬傷"]);
 }

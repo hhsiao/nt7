@@ -2,11 +2,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("书生", ({ "shu sheng", "shu", "sheng" }) );
+        set_name("書生", ({ "shu sheng", "shu", "sheng" }) );
         set("gender", "男性" );
         set("age", 22);
         set("long",
-                "一个在街上闲逛的少年书生。\n");
+                "一個在街上閒逛的少年書生。\n");
         set("shen_type", 1);
         set("combat_exp", 10000);
        set("str", 10);

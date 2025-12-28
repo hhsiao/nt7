@@ -1,52 +1,52 @@
 //COOL@SJ 200001009 add yyz liao yyz_hurt
 #include <ansi.h>
 
-string exert_name() {return HIY"纯阳疗伤"NOR;}
+string exert_name() {return HIY"純陽療傷"NOR;}
 
 int exert(object me, object target)
 {
 	if( !objectp(target) )
-		return notify_fail("你要用一阳指为谁疗伤？\n");
+		return notify_fail("你要用一陽指為誰療傷？\n");
 
 	if (target->is_corpse() || !target->is_character())
 		return notify_fail("那不是活物耶！\n");
 
 	if (target->is_busy())
-		return notify_fail("对方现在没有空接受你的疗伤。\n");
+		return notify_fail("對方現在沒有空接受你的療傷。\n");
 
 	if((int)me->query_skill("force") < 270 )
-	      return notify_fail("你的乾天一阳功不够娴熟，无法替人疗伤！\n");
+	      return notify_fail("你的乾天一陽功不夠嫻熟，無法替人療傷！\n");
 
 	if((int)me->query_skill("yiyang-zhi",1) < 180 )
-	      return notify_fail("你的一阳指神功不够娴熟，无法替人疗伤！\n");
+	      return notify_fail("你的一陽指神功不夠嫻熟，無法替人療傷！\n");
 
 	if (me->query_skill_prepared("finger") != "yiyang-zhi"
 	|| me->query_skill_mapped("finger") != "yiyang-zhi")
-		return notify_fail("你现在无法使用一阳指替人疗伤！\n");
+		return notify_fail("你現在無法使用一陽指替人療傷！\n");
 
 	if( me->is_fighting() && target != me)
-		return notify_fail("战斗中无法替别人疗伤！\n");
+		return notify_fail("戰鬥中無法替別人療傷！\n");
 
         if( target->is_fighting()&&target != me)
-                return notify_fail("对方正在战斗，无法替他疗伤！\n");
+                return notify_fail("對方正在戰鬥，無法替他療傷！\n");
 
 	if( (int)me->query("max_neili") < 2000 )
-		return notify_fail("你的内力修为不够。\n");
+		return notify_fail("你的內力修為不夠。\n");
 
 	if( (int)me->query("neili") < 400 )
-		return notify_fail("你的真气不够。\n");
+		return notify_fail("你的真氣不夠。\n");
 
 	if((int)me->query_skill("medicine", 1) < 120 )
-	       return notify_fail("看样子你的医理知识所知甚少，不知如何下手? \n");
+	       return notify_fail("看樣子你的醫理知識所知甚少，不知如何下手? \n");
 
 	if (!target->query_condition("yyz_hurt")
 	&& target->query("eff_qi") >= target->query("max_qi"))
-		return notify_fail( target->name() + "并没有受伤！\n");
+		return notify_fail( target->name() + "並沒有受傷！\n");
 
 	if (me->is_fighting()) {
 		message_vision(
-			HIY"\n$N手臂颤动，犹如蜻蜓点水，一口气连点过自己胸口的十二道大穴，纯阳真气不断透入……\n\n"
-			HIM"只这片刻之间，$N脸色便有了红晕，伤势好多了。\n" NOR, me);
+			HIY"\n$N手臂顫動，猶如蜻蜓點水，一口氣連點過自己胸口的十二道大穴，純陽真氣不斷透入……\n\n"
+			HIM"只這片刻之間，$N臉色便有了紅暈，傷勢好多了。\n" NOR, me);
 		if (target->query_condition("yyz_hurt")) target->clear_condition("yyz_hurt");
 		if ((int)target->query("eff_qi") < (int)target->query("max_qi"))
 		{
@@ -54,18 +54,18 @@ int exert(object me, object target)
 			me->receive_curing("qi", 10 + me->query_skill("force") );
 			me->receive_heal("qi", 10 + me->query_skill("force"));
 		}
-		me->start_exert(5, "疗伤");
+		me->start_exert(5, "療傷");
 	} else {
 		target->start_busy(2);
 	  	if (target != me){
 			me->start_busy(2);
-	    		message_vision(HIY"\n$N伸出右手食指，微一凝气，听得嗤嗤声响, 食指沿任、督二脉各穴依此点过，最后按在$n胸口的膻中大穴上，纯阳内力源源透入。。。\n\n"
-			   	HIM"\n$N头顶冒起丝丝白气，$n感觉一股温正平和的内力在体内循环流动，过了一盏茶时分，$N才放开手指。只这片刻之间，$n双颊\n"
-			   	HIM"便有了红晕，脸色看起来也好多了。\n" NOR,me,target);
+	    		message_vision(HIY"\n$N伸出右手食指，微一凝氣，聽得嗤嗤聲響, 食指沿任、督二脈各穴依此點過，最後按在$n胸口的膻中大穴上，純陽內力源源透入。。。\n\n"
+			   	HIM"\n$N頭頂冒起絲絲白氣，$n感覺一股溫正平和的內力在體內循環流動，過了一盞茶時分，$N才放開手指。只這片刻之間，$n雙頰\n"
+			   	HIM"便有了紅暈，臉色看起來也好多了。\n" NOR,me,target);
 		}
 		else
-	   		message_vision(HIY"\n$N盘腿坐下，微一凝气，食指依任、督二脉各穴依此点过，食指一收，虚掌按在胸口膻中大穴，纯阳真气源源透入。。。\n\n"
-				HIM"$N头顶冒起丝丝白气，过了一盏茶时分，才放开手指,$N的脸色看起来也好多了。\n" NOR,me);
+	   		message_vision(HIY"\n$N盤腿坐下，微一凝氣，食指依任、督二脈各穴依此點過，食指一收，虛掌按在胸口膻中大穴，純陽真氣源源透入。。。\n\n"
+				HIM"$N頭頂冒起絲絲白氣，過了一盞茶時分，才放開手指,$N的臉色看起來也好多了。\n" NOR,me);
 	   	if( (target != me)
 	    	&& userp(target)
 	    	&& target->query("eff_qi") < target->query("max_qi")/5) {

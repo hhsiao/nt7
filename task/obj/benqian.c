@@ -2,15 +2,15 @@
 inherit TASK; 
 void create() 
 {
-    set_name(HIR"翻本的本钱"NOR, ({ "benqian" }) ); 
+    set_name(HIR"翻本的本錢"NOR, ({ "benqian" }) ); 
     set_weight(1); 
     if( clonep() ) 
             destruct(this_object()); 
     else { 
-            set("unit", "张"); 
+            set("unit", "張"); 
             set("material", "paper"); 
-            set("long", "一张赌客翻本的本钱。\n"); 
+            set("long", "一張賭客翻本的本錢。\n"); 
           } 
-          set("owner", "赌客"); 
+          set("owner", "賭客"); 
           setup();
 }

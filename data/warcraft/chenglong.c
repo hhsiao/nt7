@@ -7,9 +7,9 @@ void setup()
         set_name("玄武[2;37;0m[2;37;0m", ({"aasw"}));        
         set("gender", "男性");                
         set("long", "玄武[2;37;0m
-它是成隆的魔幻兽。
+它是成隆的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "chenglong");
         set("owner_name", "成隆");

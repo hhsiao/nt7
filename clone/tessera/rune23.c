@@ -1,6 +1,6 @@
 //rune23.c
 
-// Mal 马尔
+// Mal 馬爾
 
 #include <ansi.h>
 
@@ -16,8 +16,8 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", "符文：上揲阮乐符，可以放入凹槽物品。\n");
-                set("unit", "个");
+                set("long", "符文：上揲阮樂符，可以放入凹槽物品。\n");
+                set("unit", "個");
                 set("enchase/SN", 23);
                 set("enchase/type", "all");
                 set("enchase/consistence", 100); 

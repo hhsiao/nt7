@@ -10,13 +10,13 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("李斧头", ({"li futou", "futou", "li"}));
-        set("title", "丐帮六袋弟子");
-        set("bunch/name","丐帮");
+        set_name("李斧頭", ({"li futou", "futou", "li"}));
+        set("title", "丐幫六袋弟子");
+        set("bunch/name","丐幫");
         set("gender", "男性");
         set("age", 32);
         set("long",
-                "李斧头生性豪爽，擅使大板斧，当着无敌，是丐帮有名的豪杰之士。\n");
+                "李斧頭生性豪爽，擅使大板斧，當著無敵，是丐幫有名的豪傑之士。\n");
 
         set("attitude", "heroism");
         set("class", "beggar");
@@ -66,7 +66,7 @@ void create()
 
         prepare_skill("hand", "shexing-diaoshou");
 
-        create_family("丐帮", 19, "弟子");
+        create_family("丐幫", 19, "弟子");
         set("master_ob",1);
         setup();
 
@@ -87,11 +87,11 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)<0 )
         {
-                command("say 你身为丐帮弟子，竟然不做好事？");
+                command("say 你身為丐幫弟子，竟然不做好事？");
                 return;
         }
         command("nod");
-        command("say 我便收你为徒，日后可得行侠仗义，莫损我丐帮名声。");
+        command("say 我便收你為徒，日後可得行俠仗義，莫損我丐幫名聲。");
         command("recruit "+query("id", ob));
 
         if( query("class", ob) != "beggar" )

@@ -1,2 +1,2 @@
-游戏地图==@==/doc/map/map
-地图鸟瞰==@==/help/mapall.txt
+遊戲地圖==@==/doc/map/map
+地圖鳥瞰==@==/help/mapall.txt

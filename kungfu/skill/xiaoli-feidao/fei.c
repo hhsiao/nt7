@@ -15,23 +15,23 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("小李飞刀只能在战斗中对对手使用。\n");
+                return notify_fail("小李飛刀只能在戰鬥中對對手使用。\n");
 
         if( !objectp(weapon=query_temp("handing", me)) || 
             query("skill_type", weapon) != "throwing" )
-                return notify_fail("你现在手中并没有拿着飞刀。\n");
+                return notify_fail("你現在手中並沒有拿著飛刀。\n");
 
         if ((skill = me->query_skill("xiaoli-feidao", 1)) < 100)
-                return notify_fail("你的小李飞刀不够娴熟。\n");
+                return notify_fail("你的小李飛刀不夠嫻熟。\n");
 
         if( query("neili", me)<100 )
-                return notify_fail("你内力不够了。\n");
+                return notify_fail("你內力不夠了。\n");
 
         addn("neili", -50, me);
         weapon->add_amount(-1);
 
-        msg= HIW "忽然间只见$N" HIW "手中寒光一闪，正是小李飞刀，例无虚发！\n\n"
-             NOR + HIR "一股鲜血从$n" HIR "咽喉中喷出……\n" NOR;
+        msg= HIW "忽然間只見$N" HIW "手中寒光一閃，正是小李飛刀，例無虛發！\n\n"
+             NOR + HIR "一股鮮血從$n" HIR "咽喉中噴出……\n" NOR;
         message_combatd(msg, me, target);
 
 

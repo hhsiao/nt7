@@ -6,8 +6,8 @@ inherit CLOTH;
 
 void create()
 {
-        set_name(HIR"大红"NOR HIY"金边"NOR HIR"滚龙袍"NOR, ({ "longpao" }));
-        set("long", "这是一件崭新大红金边滚龙袍，是新郎的专用礼服。\n");
+        set_name(HIR"大紅"NOR HIY"金邊"NOR HIR"滾龍袍"NOR, ({ "longpao" }));
+        set("long", "這是一件嶄新大紅金邊滾龍袍，是新郎的專用禮服。\n");
         set_weight(2000);
         /*if (clonep())
                 set_default_object(__FILE__);

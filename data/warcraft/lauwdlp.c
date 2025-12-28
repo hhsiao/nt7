@@ -7,9 +7,9 @@ void setup()
         set_name("白雕[2;37;0m[2;37;0m", ({"lauwdlpbb"}));        
         set("gender", "女性");                
         set("long", "白雕[2;37;0m
-它是不辣新娘的魔幻兽。
+它是不辣新娘的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "lauwdlp");
         set("owner_name", "不辣新娘");

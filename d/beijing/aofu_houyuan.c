@@ -3,11 +3,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short","鳌府后院");
+        set("short","鰲府後院");
         set("long", @LONG
-这里是鳌府的后院，中心是一个大花园。西边一条长廊走道直通
-往鳌狠的书房。北边是鳌狠私设的牢房，牢门由几个鳌府的侍卫把守
-着。
+這裡是鰲府的後院，中心是一個大花園。西邊一條長廊走道直通
+往鰲狠的書房。北邊是鰲狠私設的牢房，牢門由幾個鰲府的侍衛把守
+著。
 LONG );
         set("exits", ([
                 "north" :  "/d/beijing/aofu_naofang",
@@ -26,6 +26,6 @@ LONG );
 int valid_leave(object me, string dir)
 {
         if (objectp(present("shi wei", environment(me))) && dir == "north")
-                return notify_fail("鳌府侍卫拦住你道：没有王爷的吩咐，谁也不能进去。\n\n");
+                return notify_fail("鰲府侍衛攔住你道：沒有王爺的吩咐，誰也不能進去。\n\n");
         return ::valid_leave(me, dir);
 }

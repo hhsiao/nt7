@@ -7,9 +7,9 @@ void setup()
         set_name("酷比特[2;37;0m[2;37;0m", ({"zoox"}));        
         set("gender", "男性");                
         set("long", "酷比特[2;37;0m
-它是模工幻影的魔幻兽。
+它是模工幻影的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "tina");
         set("owner_name", "模工幻影");

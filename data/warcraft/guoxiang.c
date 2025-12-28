@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("爱神[2;37;0m[2;37;0m", ({"winner"}));        
+        set_name("愛神[2;37;0m[2;37;0m", ({"winner"}));        
         set("gender", "女性");                
-        set("long", "天下有情人终成眷属[2;37;0m
-它是郭襄的魔幻兽。
+        set("long", "天下有情人終成眷屬[2;37;0m
+它是郭襄的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

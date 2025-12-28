@@ -16,9 +16,9 @@ string *names = ({
 
 void create()
 {
-        set("short", "厨房");
+        set("short", "廚房");
 	set ("long", @LONG
-此处便是海景房的厨房，只间几个仆人忙来忙去，不得歇息。 
+此處便是海景房的廚房，只間幾個僕人忙來忙去，不得歇息。 
 LONG );
 
         set("exits", ([
@@ -39,9 +39,9 @@ LONG );
         set("no_sleep_room", 1);
         setup();
 
-        set("room_owner", "风四郎");
+        set("room_owner", "風四郎");
         set("room_name", "海景房");
         set("room_id", "sea");
         set("room_owner_id", "alxpang");
-        set("room_position", "青砖路");
+        set("room_position", "青磚路");
 }

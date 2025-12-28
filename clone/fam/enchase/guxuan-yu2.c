@@ -3,17 +3,17 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIB "古玄玉（2级）" NOR, ({"guxuan yu2", "yu2"}));
+        set_name(HIB "古玄玉（2級）" NOR, ({"guxuan yu2", "yu2"}));
         set_weight(1);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "块");
-                set("long", HIB "这是一块通体黑色的古玉，只有不到小拇指一半的大小，拥有辟邪的作用，\n"
-                                "古玄玉又称黑玉，通常镶绣于护身符之上，用于驱邪避灾，祈求神灵庇佑。\n" HIY
-                                "使用方式：镶嵌于护身符上，增加气运 +2\n " NOR);
+                set("unit", "塊");
+                set("long", HIB "這是一塊通體黑色的古玉，只有不到小拇指一半的大小，擁有辟邪的作用，\n"
+                                "古玄玉又稱黑玉，通常鑲繡於護身符之上，用於驅邪避災，祈求神靈庇佑。\n" HIY
+                                "使用方式：鑲嵌於護身符上，增加氣運 +2\n " NOR);
                 set("value", 500000);
-                set("enchase/name", "古玄玉（2级）");
+                set("enchase/name", "古玄玉（2級）");
                 set("enchase/qy", 2);
                 set("enchase/point", 1);
                 set("enchase/type", "myheart");

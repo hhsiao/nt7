@@ -3,10 +3,10 @@ inherit ROOM;
 
 void create()
 {
-          set("short", "百丈涧");
+          set("short", "百丈澗");
         set("long", @LONG
-山道到此突然消失，在你面前是一条山涧，山涧之中云雾缭绕，
-你根本无法看清对面。一条铁索(tiesuo)深入云中，旁边有一块石碑。
+山道到此突然消失，在你面前是一條山澗，山澗之中雲霧繚繞，
+你根本無法看清對面。一條鐵索(tiesuo)深入雲中，旁邊有一塊石碑。
 LONG );
           set("outdoors", "lingjiu");
           set("exits",([
@@ -16,8 +16,8 @@ LONG );
                 CLASS_D("lingjiu") + "/yupopo" : 1,
           ]));
           set("item_desc",([
-                      "tiesuo" : YEL "这条铁索是通往对面的接天桥，你"
-                           "也许可以走(zou)过去。\n" NOR,
+                      "tiesuo" : YEL "這條鐵索是通往對面的接天橋，你"
+                           "也許可以走(zou)過去。\n" NOR,
           ]));
           setup();
 }
@@ -32,7 +32,7 @@ int do_zou(string arg)
         object me = this_player(), room;
 
         if (! arg || arg != "tiesuo")
-                return notify_fail("你要走什么？\n");
+                return notify_fail("你要走什麼？\n");
 
         if (! (room = find_object(__DIR__"xianchou")))
                 room = load_object(__DIR__"xianchou");
@@ -40,10 +40,10 @@ int do_zou(string arg)
         if (! objectp(room))
                 return notify_fail(HIW "你大叫道：BUG！BUG！\n" NOR);
 
-        message_vision(HIW "\n只见$N" HIW "轻轻跃上铁索，飘然而"
+        message_vision(HIW "\n只見$N" HIW "輕輕躍上鐵索，飄然而"
                        "去。\n" NOR, me);
         me->move(room);
-        message_vision(HIW "$N" HIW "从铁索上飘然而下，来到这缥"
-                       "缈峰绝顶。\n" NOR, me);
+        message_vision(HIW "$N" HIW "從鐵索上飄然而下，來到這縹"
+                       "緲峰絕頂。\n" NOR, me);
         return 1;
 }

@@ -6,7 +6,7 @@ void create()
 {
         set_name("蒙面人", ({ "figure" }) );
         set("long",
-"这个人头上戴著蒙面头罩，八成准备干什麽坏事。\n");
+"這個人頭上戴著蒙面頭罩，八成準備幹什麼壞事。\n");
         set("attitude", "heroism");
         set("hired_killer", 1);
         set("age",random(10)+30);
@@ -70,13 +70,13 @@ int do_arrest(string arg)
    object who;
    job=query("job", ob);
    if( !job || job["job_type"] != "抓")
-     return notify_fail("你不是官差，不能抓差办案！\n");
+     return notify_fail("你不是官差，不能抓差辦案！\n");
    if(!arg)
-   return notify_fail("你想抓谁？\n");
+   return notify_fail("你想抓誰？\n");
    if(!objectp(who = present(arg, environment(ob))))
-   return notify_fail("这里没有你想抓的人。\n");
-   message_vision("$N拿起一条铁链子，抖动着...\n",ob); 
-   message_vision("对着$N大声喝道：“大胆贼人，看你往哪里逃！拿命来吧！”\n",this_object());
+   return notify_fail("這裡沒有你想抓的人。\n");
+   message_vision("$N拿起一條鐵鏈子，抖動著...\n",ob); 
+   message_vision("對著$N大聲喝道：“大膽賊人，看你往哪裡逃！拿命來吧！”\n",this_object());
    set_temp("arrest", 1, ob);
    this_object()->kill_ob(ob);
    return 1;
@@ -84,7 +84,7 @@ int do_arrest(string arg)
 
 void move_killer()
 {
-    message_vision("$N匆匆离去了。\n",this_object());
+    message_vision("$N匆匆離去了。\n",this_object());
     destruct(this_object());
     return ;
 }

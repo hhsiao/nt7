@@ -1,11 +1,11 @@
-// 大唐双龙传
+// 大唐雙龍傳
 //jiaotou.c 
  
 inherit NPC;
 
 void create()
 {
-        set_name("教头", ({ "jiaotou" }));
+        set_name("教頭", ({ "jiaotou" }));
         set("age", 28+random(10));
         set("gender", "男性");
         set("attitude", "peaceful");

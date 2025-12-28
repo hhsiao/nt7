@@ -5,20 +5,20 @@ int permit_recruit(object ob)
         if( query("detach/明教", ob) || 
             query("betrayer/明教", ob) )
         {
-                command("say 离开了明教就不要再回来！");
+                command("say 離開了明教就不要再回來！");
                 return 0;
         }
 
         if( query("betrayer/times", ob) )
         {
-                command("say 阁下不忠不信，我们明教最恨的就是你这种人。");
+                command("say 閣下不忠不信，我們明教最恨的就是你這種人。");
                 return 0;
         }
 
         if( query("family/family_name", ob) && 
             query("family/family_name", ob) != "明教" )
         {
-                command("say 你有了师傅，就不要来我们明教了！");
+                command("say 你有了師傅，就不要來我們明教了！");
                 return 0;
         }
 
@@ -33,7 +33,7 @@ int recognize_apprentice(object ob, string skill)
 
         if( !(ob_fam=query("family", ob)) || ob_fam["family_name"] != "明教" )
         {
-                command("say " + RANK_D->query_respect(ob) + "与本教素无来往，不知此话从何谈起？");
+                command("say " + RANK_D->query_respect(ob) + "與本教素無來往，不知此話從何談起？");
                 return -1;
         }
 

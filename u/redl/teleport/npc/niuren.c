@@ -15,7 +15,7 @@ int in_hgg() { return query("in_hgg");}
 void create()
 {
         set_name(NOR "牛人" NOR, ({ "niu ren", "niu", "ren" }));
-        set("long", NOR "这人是top gaoshou榜上有名的著名牛人。\n" NOR);
+        set("long", NOR "這人是top gaoshou榜上有名的著名牛人。\n" NOR);
         set("title", CYN "牛人" NOR);
         set("attitude", "aggressive");
         set("str", 1);
@@ -44,8 +44,8 @@ void create()
 
                 set("auto_perform", 1);
 
-        set("death_msg", NOR "\n$N大叫一声“我错了，我再也不敢牛了”，噗通一头栽倒在地，死了！\n" NOR);
-        set("init_msg", NOR "\n$N随着一阵烟雾出现在你面前。。。\n" NOR);
+        set("death_msg", NOR "\n$N大叫一聲“我錯了，我再也不敢牛了”，噗通一頭栽倒在地，死了！\n" NOR);
+        set("init_msg", NOR "\n$N隨著一陣煙霧出現在你面前。。。\n" NOR);
         set("drops", ([
                 "RA&EPIL60" : 1, 
                 "RA&LEGEND60" : 2, 
@@ -59,7 +59,7 @@ int nprotect(int dmg, object who)
 {
         object niu = present("qing niu", environment());
         if (niu && objectp(niu)) {
-                //niu->kill_ob(who);玩家需要主动去kill青牛，才易杀
+                //niu->kill_ob(who);玩家需要主動去kill青牛，才易殺
                 dmg = dmg / 100000;
                 if (dmg < 1) dmg = 1;
                 if (dmg > 10000 || (!objectp(who))) dmg = 10000;
@@ -332,7 +332,7 @@ void init()
                                         this_object()->kill_ob(this_player());
                                         set("enemy_player", me);
                                 } else if (in_hgg()) {
-                                        // if (random(2)) tell_object(me, HIG + name() + NOR + HIG + "严厉警告道：吾护道出关，尔等速速回避。\n" NOR);   
+                                        // if (random(2)) tell_object(me, HIG + name() + NOR + HIG + "嚴厲警告道：吾護道出關，爾等速速回避。\n" NOR);   
 //                                      call_out("killplayer", 8 + random(2), me);
                                 }
                 }
@@ -350,7 +350,7 @@ void init()
 //                 return;
 //         enemy = enemies[random(sizeof(enemies))];
 //         if( !enemy->is_busy() && !random(50) ) {
-//                 msg = HIK "\n$N往前疾冲，突然一个踉跄摔倒在地上，却恰好滑出去抱住了$n的双脚。\n" NOR;
+//                 msg = HIK "\n$N往前疾衝，突然一個踉蹌摔倒在地上，卻恰好滑出去抱住了$n的雙腳。\n" NOR;
 //                 message_vision(append_color(msg, HIK),this_object(),enemy);
 //                 enemy->start_busy(4+random(3));
 //                 return;

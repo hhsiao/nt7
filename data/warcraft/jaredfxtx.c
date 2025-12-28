@@ -7,7 +7,7 @@ void setup()
         set_name("米麒麟[2;37;0m[2;37;0m", ({"toucai"}));        
         set("gender", "女性");                
         set("long", "米色的麒麟[2;37;0m
-它是吸吸吸的魔幻兽。
+它是吸吸吸的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

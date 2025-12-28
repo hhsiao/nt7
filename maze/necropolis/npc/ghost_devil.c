@@ -10,8 +10,8 @@ void create()
         // set_name( names[random(sizeof(names))], ({ "ghost devil","ghost"}));
         set_name( names[random(sizeof(names))], ({ "ghost devil" }));
         set("vendetta_mark","ghost");
-        set("long", "这是个若隐若现的幽灵。\n");
-        set("title", HIB "(鬼气)" NOR); 
+        set("long", "這是個若隱若現的幽靈。\n");
+        set("title", HIB "(鬼氣)" NOR); 
 
         set("str", 50);
         set("con", 120);
@@ -26,9 +26,9 @@ void create()
         //set("shen_type", -1);        
         //set("chat_chance", 2);
         //set("chat_msg", ({
-        //               "骷髅空洞的眼眶里闪烁着可怕的荧光。\n"
+        //               "骷髏空洞的眼眶裡閃爍著可怕的熒光。\n"
         //}) ); 
-        set("death_msg",BLU"\n$N消失不见了。\n\n"NOR);
+        set("death_msg",BLU"\n$N消失不見了。\n\n"NOR);
         set("chat_chance_combat", 100);
         set("chat_msg_combat", ({
                 (: do_transfer() :),
@@ -72,7 +72,7 @@ void do_transfer() {
         if(!enemies || sizeof(enemies)==0)
                 return;
         
-        message_vision(HIM"\n$N仿佛在你的心底里呼唤，来吧...来吧...冥界在召唤你... \n"NOR, this_object(),enemy); 
+        message_vision(HIM"\n$N彷彿在你的心底裡呼喚，來吧...來吧...冥界在召喚你... \n"NOR, this_object(),enemy); 
         myexp = query("combat_exp");
         foreach(enemy in enemies)  {
                 if(!enemy)
@@ -81,14 +81,14 @@ void do_transfer() {
                         continue;
                 yourexp=query("combat_exp", enemy);
                 if( random(myexp*2 + yourexp)>yourexp ) {
-                        message_vision(HIM"\n$n像被强大的力量控制，身不由己的向$N走去...... \n"NOR, this_object(),enemy); 
+                        message_vision(HIM"\n$n像被強大的力量控制，身不由己的向$N走去...... \n"NOR, this_object(),enemy); 
                         enemy->receive_damage("jing",query("max_jing", enemy)/4,this_object());
                         if(!enemy->is_busy())
                                 enemy->start_busy(random(4));
                         COMBAT_D->report_status(enemy);
                 } else {
-                        message_vision(HIG"\n$n恐惧的喊到：这不是真的！ \n"NOR, this_object(),enemy); 
-                        message_vision(HIG"\n$n吓得扭头就跑! \n\n"NOR, this_object(),enemy); 
+                        message_vision(HIG"\n$n恐懼的喊到：這不是真的！ \n"NOR, this_object(),enemy); 
+                        message_vision(HIG"\n$n嚇得扭頭就跑! \n\n"NOR, this_object(),enemy); 
                         env = environment(enemy);
                         if(env) {
                                 exits=query("exits", env);

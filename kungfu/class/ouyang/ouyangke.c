@@ -19,9 +19,9 @@ void thank_dest(object obj,object ob);
 void create()
 {
         seteuid(getuid());
-        set_name("欧阳克", ({ "ouyang ke", "ouyang", "ke" }));
-        set("long", "他一身飘逸的白色长衫，手摇折扇，风流儒雅。\n");
-        set("title", "欧阳世家少庄主");
+        set_name("歐陽克", ({ "ouyang ke", "ouyang", "ke" }));
+        set("long", "他一身飄逸的白色長衫，手搖摺扇，風流儒雅。\n");
+        set("title", "歐陽世家少莊主");
         set("nickname", "玉面蛇心");
         set("gender", "男性");
         set("age", 27);
@@ -71,21 +71,21 @@ void create()
         prepare_skill("finger", "shedu-qiqiao");
         prepare_skill("cuff", "lingshe-quan");
 
-        create_family("欧阳世家", 6, "传人");
+        create_family("歐陽世家", 6, "傳人");
 
         set("inquiry", ([
                 "引路神蛇"   : (: ask_shenshe, "shenshe" :),
-                "欧阳峰" : "他是我叔父。",
-                "化尸粉" : "我只有一份化尸粉，不能给你。不过你要是给我一具尸体，我可以给你做些。",
+                "歐陽峰" : "他是我叔父。",
+                "化屍粉" : "我只有一份化屍粉，不能給你。不過你要是給我一具屍體，我可以給你做些。",
                 "活" : (: ask_job :),
                 "job" : (: ask_job :),
         ]));
 
         set("chat_chance", 2);
         set("chat_msg", ({
-                "欧阳克唱道：漂亮姑娘你请留步￣￣让我多看你一眼￣￣\n",
-                "欧阳克色迷迷地看着街边的小姑娘。\n",
-                "欧阳克把纸扇一展，转过身去，深情地吟道：红颜知己最难得￣\n",
+                "歐陽克唱道：漂亮姑娘你請留步￣￣讓我多看你一眼￣￣\n",
+                "歐陽克色迷迷地看著街邊的小姑娘。\n",
+                "歐陽克把紙扇一展，轉過身去，深情地吟道：紅顏知己最難得￣\n",
         }) );
 
         set("master_ob",3);
@@ -111,7 +111,7 @@ void greeting(object ob)
 {
         if (!ob || environment(ob) != environment()) return;
 
-        if (check_family(ob, "欧阳世家"))
+        if (check_family(ob, "歐陽世家"))
         {
                 command("nod"+query("id", ob));
                 return;
@@ -122,10 +122,10 @@ void greeting(object ob)
                 if( query("per", ob)<22 )
                         return;
 
-                if( query("sex/欧阳克", ob) )
+                if( query("sex/歐陽克", ob) )
                 {
                         command("kiss"+query("id", ob));
-                        command("say 怎么样，要不要再来几次啊... 嘻嘻。");
+                        command("say 怎麼樣，要不要再來幾次啊... 嘻嘻。");
                 } else
                 switch(random(3))
                 {
@@ -136,8 +136,8 @@ void greeting(object ob)
 
         }
         else
-                say("欧阳克叹了一口气说：这位"+RANK_D->query_respect(ob)+
-                        "，你要是能给我弄一个女人来就好了。\n");
+                say("歐陽克嘆了一口氣說：這位"+RANK_D->query_respect(ob)+
+                        "，你要是能給我弄一個女人來就好了。\n");
         return;
 }
 
@@ -150,9 +150,9 @@ void attempt_apprentice(object ob)
         command("recruit "+query("id", ob));
         if( !query("special/shenshe", ob) )
         {
-                command("say 你还不会使用引路神蛇吧？我告诉你口诀，你可不要忘记了！");
-                command("whisper"+query("id", ob)+"口诀是：@#$%^&*，你"
-                        "拿着引路神蛇到了西域沙漠就可以让神蛇带你回家了！");
+                command("say 你還不會使用引路神蛇吧？我告訴你口訣，你可不要忘記了！");
+                command("whisper"+query("id", ob)+"口訣是：@#$%^&*，你"
+                        "拿著引路神蛇到了西域沙漠就可以讓神蛇帶你回家了！");
                 set("special/shenshe", 1, ob);
         }
 }
@@ -161,8 +161,8 @@ int accept_fight(object ob)
 {
         if( query("gender", ob) == "女性" )
         {
-                message_vision("欧阳克摆摆手说道：这位"+RANK_D->query_respect(ob)+
-                "，我怎能欺负女孩子呢！\n", ob);
+                message_vision("歐陽克擺擺手說道：這位"+RANK_D->query_respect(ob)+
+                "，我怎能欺負女孩子呢！\n", ob);
                 return 0;
         }
 
@@ -182,9 +182,9 @@ void do_back()
                 return;
         }
 
-        message_vision("$N轻摇羽扇，飘然而去。\n", this_object());
+        message_vision("$N輕搖羽扇，飄然而去。\n", this_object());
         move(query("startroom"));
-        message_vision("$N轻摇羽扇，施施然的走了过来。\n", this_object());
+        message_vision("$N輕搖羽扇，施施然的走了過來。\n", this_object());
 }
 
 string ask_shenshe(string name)
@@ -192,19 +192,19 @@ string ask_shenshe(string name)
         mapping fam;
         object ob;
 
-        if( !(fam=query("family", this_player())) || fam["family_name"] != "欧阳世家" )
+        if( !(fam=query("family", this_player())) || fam["family_name"] != "歐陽世家" )
                 return RANK_D->query_respect(this_player()) +
-                "，你并不是本山庄的人，此话从何说起？";
+                "，你並不是本山莊的人，此話從何說起？";
 
         if (  present("shen she", this_player()) )
                 return RANK_D->query_respect(this_player()) +
-                "你身上不是有神蛇吗？怎么又来要？真是贪得无厌！";
+                "你身上不是有神蛇嗎？怎麼又來要？真是貪得無厭！";
 
         ob = new("/d/baituo/obj/" + name);
         ob->move(this_player());
 
-        message_vision("欧阳克给$N一条"+query("name", ob)+"。\n",this_player());
-        return "此神蛇乃本山庄特有，切记不可给予他人！";
+        message_vision("歐陽克給$N一條"+query("name", ob)+"。\n",this_player());
+        return "此神蛇乃本山莊特有，切記不可給予他人！";
 }
 
 string ask_job()
@@ -221,39 +221,39 @@ string ask_job()
 
         job_stat=query_temp("baituo/feeding", ob);
 
-        if( query("family/family_name", ob) != "欧阳世家" )
-                return RANK_D->query_rude(ob)+"莫非别有用心！\n";
+        if( query("family/family_name", ob) != "歐陽世家" )
+                return RANK_D->query_rude(ob)+"莫非別有用心！\n";
 
         if( query_temp(dataname, me)>5 )
-                       return "你已经跟我要了五只蛇了都还没还给我，我现在不放心给你蛇，你去冷静一下吧。\n";
+                       return "你已經跟我要了五隻蛇了都還沒還給我，我現在不放心給你蛇，你去冷靜一下吧。\n";
 
 
         if( ob->is_busy() ){
                 command("hmm"+query("id", ob));
-                return "你还在忙着干别的事呢！\n";
+                return "你還在忙著幹別的事呢！\n";
         }
 
         if( job_stat ){
                 command("hmm"+query("id", ob));
-                return "你还没干完活呢!\n";
+                return "你還沒幹完活呢!\n";
         }
 
         if( ob->query_skill("training") < 10 && random(4)!=0 ) {
-                return "你的驯兽术太低，随便拿只蛇练练去吧。\n";
+                return "你的馴獸術太低，隨便拿只蛇練練去吧。\n";
         }
 
         ob->start_busy(random(4));
         good_skill=to_int(pow(to_float(query("combat_exp", ob)/100),1.0/3))*10*0.7*3/2;
 
         if( query("combat_exp", ob)>20000 && (ob->query_skill("force")<good_skill) && random(15)>0){
-                command("say 你去好好练习一下蛤蟆功吧！");
-                return "蛤蟆功是本派的独门绝技，练成之后一定可以帮本少爷多抓几个美女来！\n";
+                command("say 你去好好練習一下蛤蟆功吧！");
+                return "蛤蟆功是本派的獨門絕技，練成之後一定可以幫本少爺多抓幾個美女來！\n";
                 }
 
         if( query("combat_exp", ob)>5000 && 
         query("max_neili", ob)<ob->query_skill("force")*7 && random(5)>0){
-                command("say 你内力不够，去好好打坐一下吧！");
-                return "内力越高，蛤蟆功的威力就越大，嘿黑，和美眉在一起也。。。\n";
+                command("say 你內力不夠，去好好打坐一下吧！");
+                return "內力越高，蛤蟆功的威力就越大，嘿黑，和美眉在一起也。。。\n";
                 }
 
 
@@ -261,17 +261,17 @@ string ask_job()
         if( query_temp("job_pos", me) == 0){
                 if(random(8)==1)
                 set_temp("job_pos", 1, me);
-                return "现在没什么事，你自个儿晃荡去吧。\n";
+                return "現在沒什麼事，你自個兒晃盪去吧。\n";
         }
 
         addn_temp("job_pos", -1, me);
                 addn_temp(dataname, 1, me);
 
         command("nod");
-        command("say好，我这里有一只奇毒的怪蛇，"+query("name", ob)+"你拿去好好调养。");
-        command("say 这怪蛇吃鸟类、吸人血。越是所谓名门正派的高手的气血越是滋养怪蛇。");
+        command("say好，我這裡有一隻奇毒的怪蛇，"+query("name", ob)+"你拿去好好調養。");
+        command("say 這怪蛇吃鳥類、吸人血。越是所謂名門正派的高手的氣血越是滋養怪蛇。");
         command("hehe");
-        command("say 它吃饱了以后，就会乖乖的爬进蛇杖里成为天下最厉害的兵器。");
+        command("say 它吃飽了以後，就會乖乖的爬進蛇杖裡成為天下最厲害的兵器。");
 
 
         guaishe = present("guai she",me );
@@ -297,7 +297,7 @@ string ask_job()
         guaishe = present("guai shezhang",me );
         if(guaishe)command("drop guai shezhang");
 
-        return "千万别弄丢了！\n";
+        return "千萬別弄丟了！\n";
 }
 
 int accept_object(object me, object obj)
@@ -308,26 +308,26 @@ int accept_object(object me, object obj)
 
         if( query("id", obj) == "corpse" )
         {
-                if( !query("family", me) || query("family/family_name", me) != "欧阳世家"){
-                        command("say 你要我给你收尸不成？\n");
+                if( !query("family", me) || query("family/family_name", me) != "歐陽世家"){
+                        command("say 你要我給你收屍不成？\n");
                         return 0;
                 }
-                if( query("family/master_name", me) != "欧阳锋" && 
-                        query("family/master_name", me) != "欧阳克"){
-                        command("say 你还是先练好功夫吧。\n");
+                if( query("family/master_name", me) != "歐陽鋒" && 
+                        query("family/master_name", me) != "歐陽克"){
+                        command("say 你還是先練好功夫吧。\n");
                         return 0;
                 }
 
                 if( query_temp("huashifen", me)){
-                         command("say 化尸粉这样烈性的药物不要用得过多。\n");
+                         command("say 化屍粉這樣烈性的藥物不要用得過多。\n");
                         return 0;
                  }
 
-                message_vision("$N将" + obj->name() + "放在地上，从怀中掏出一份化尸粉撒在上面。\n",this_object());
-                message_vision("片刻之间，" + obj->name() + "化作一滩黄水。黄水干了后成了一堆发出荧荧的黄光的粉末。\n" ,obj);
-                message_vision("$N将其中一份收在怀中，其余的交给$n。\n",this_object(),me);
-                command("say 你可以把化尸粉倒在尸体上，可即刻将其融化掉。");
-                command("say 你也可以把它涂在绷带上给人佯装裹伤，待毒性深入其伤口，他就死定了。");
+                message_vision("$N將" + obj->name() + "放在地上，從懷中掏出一份化屍粉撒在上面。\n",this_object());
+                message_vision("片刻之間，" + obj->name() + "化作一灘黃水。黃水乾了後成了一堆發出熒熒的黃光的粉末。\n" ,obj);
+                message_vision("$N將其中一份收在懷中，其餘的交給$n。\n",this_object(),me);
+                command("say 你可以把化屍粉倒在屍體上，可即刻將其融化掉。");
+                command("say 你也可以把它塗在繃帶上給人佯裝裹傷，待毒性深入其傷口，他就死定了。");
                 command("hehe ouyang ke");
 
                 hsf = new(DRUG_D("huashi"));
@@ -345,7 +345,7 @@ int accept_object(object me, object obj)
         }
 
         if( query("id", obj) == "guaishezhang"){
-                if( query("family/family_name", ob) == "欧阳世家"){
+                if( query("family/family_name", ob) == "歐陽世家"){
                         if( query("snake", obj)>0 )
                                 call_out("reward_dest", 1, obj, ob);
                         else
@@ -359,21 +359,21 @@ int accept_object(object me, object obj)
 
         if( !obj->is_character() || query("gender", obj) != "女性" )
         {
-                      command("say 我欧阳克不需要这件东西。");
+                      command("say 我歐陽克不需要這件東西。");
                 return 0;
         }
 
-        if( query("born_family", obj) == "欧阳世家" )
+        if( query("born_family", obj) == "歐陽世家" )
         {
                 command("kick"+query("id", me));
                 command("slap"+query("id", me));
-                command("say 我靠：你胆子可真不小，连我的胞妹你也敢欺负？");
+                command("say 我靠：你膽子可真不小，連我的胞妹你也敢欺負？");
                 return 1;
         }
 
-        if( query("short", environment(this_object())) == "丽春院" )
+        if( query("short", environment(this_object())) == "麗春院" )
         {
-                       command("say 我已经有女人了，你改天再送来吧。");
+                       command("say 我已經有女人了，你改天再送來吧。");
                 return 0;
         }
 
@@ -386,7 +386,7 @@ int accept_object(object me, object obj)
 
         if( query("age", obj)>29 )
         {
-                command("say 这种老古董还是留给你自己吧！");
+                command("say 這種老古董還是留給你自己吧！");
                 return 0;
         }
 
@@ -395,21 +395,21 @@ int accept_object(object me, object obj)
         if (userp(obj))
         {
                 command("papapa");
-                command("say 靠，你小子怎么比我还色，这个女的还是你自己留着吧！");
+                command("say 靠，你小子怎麼比我還色，這個女的還是你自己留著吧！");
                 return 0;
         }
 
-        if( query("sex/欧阳克", obj) >= 3 )
+        if( query("sex/歐陽克", obj) >= 3 )
         {
                 command("shake");
-                command("say 这女人我已经玩腻了，你自个留着吧。");
+                command("say 這女人我已經玩膩了，你自個留著吧。");
                 return 0;
         }
 
         if( !query("sex", ob) )
         {
-                command("say 哇，这还是个处女，怎么也得多给"
-                        "你点辛苦费！");
+                command("say 哇，這還是個處女，怎麼也得多給"
+                        "你點辛苦費！");
                 addition += 30;
         }
 
@@ -417,32 +417,32 @@ int accept_object(object me, object obj)
         obn->set_amount(20 + addition);
         obn->move(me);
 
-        message_vision("$n把" + obj->name() + "交给了$N。\n",
+        message_vision("$n把" + obj->name() + "交給了$N。\n",
                        this_object(), me);
 
-        message_vision("$N一把把" + obj->name() + "揽在怀里，对$n说："
-                       "这点银子是你的辛苦费，咱回头见。\n说完，就携着" +
-                       obj->name() + "往丽春院奔去...\n",
+        message_vision("$N一把把" + obj->name() + "攬在懷裡，對$n說："
+                       "這點銀子是你的辛苦費，咱回頭見。\n說完，就攜著" +
+                       obj->name() + "往麗春院奔去...\n",
                        this_object(), me);
 
         obj->move("/d/city/lichunyuan");
         move("/d/city/lichunyuan");
 
-        message_vision("$N抱着昏迷不醒的$n走了进来。\n", this_object(), obj);
+        message_vision("$N抱著昏迷不醒的$n走了進來。\n", this_object(), obj);
 
-        addn("sex/欧阳克", 1, obj);
+        addn("sex/歐陽克", 1, obj);
         addn("sex/times", 1, obj);
         if( query("sex/times", obj) == 1 )
-                set("sex/first", "欧阳克", obj);
+                set("sex/first", "歐陽克", obj);
 
         obj->revive();
-        tell_object(obj, HIY "你刚刚挣开眼睛，却发现一个人"
-                        "正抱着你，你大叫一声，几乎晕了过去。\n\n" NOR);
+        tell_object(obj, HIY "你剛剛掙開眼睛，卻發現一個人"
+                        "正抱著你，你大叫一聲，幾乎暈了過去。\n\n" NOR);
         command("kiss"+query("id", obj));
-        command("say 嘻嘻，你慌什么么嘛，可是" + me->name() +
-                "把你送过来的啊。");
+        command("say 嘻嘻，你慌什麼麼嘛，可是" + me->name() +
+                "把你送過來的啊。");
         /*
-        shout(sprintf(HIW "\n%s(%s)大声喊道：救命啊... 救... 救命...\n\n" NOR,
+        shout(sprintf(HIW "\n%s(%s)大聲喊道：救命啊... 救... 救命...\n\n" NOR,
                       obj->name()+HIW,query("id", obj)));
         */
 
@@ -451,8 +451,8 @@ int accept_object(object me, object obj)
                 set("chat_chance", 15, obj);
                 obj->set("chat_msg",({
                         obj->name() + "不住的抽泣。\n",
-                        obj->name() + "呜咽道：" + this_object()->name() + "，他... 他... 他这个坏东西。\n",
-                        obj->name() + "哭了起来：我不想活了！\n",
+                        obj->name() + "嗚咽道：" + this_object()->name() + "，他... 他... 他這個壞東西。\n",
+                        obj->name() + "哭了起來：我不想活了！\n",
                 }) );
         }
 
@@ -468,7 +468,7 @@ void reward_dest(object obj,object ob)
         dataname=query("id", ob);
 
         command("pat"+query("id", ob));
-        command("say"+query("name", ob)+"干的还不错，这样多干活，将来本少爷一定会赏你的！\n");
+        command("say"+query("name", ob)+"乾的還不錯，這樣多幹活，將來本少爺一定會賞你的！\n");
 
         if( query("gender", ob) == "女性" )
                 command("kiss1"+query("id", ob));
@@ -493,7 +493,7 @@ void destroy_staff(object obj,object ob)
 {
         command( "hmm" );
         command("kick"+query("id", ob));
-        command( "say 怎么就这样还给我？蛇呢？小心少爷我赏你一蛇杖！" );
+        command( "say 怎麼就這樣還給我？蛇呢？小心少爺我賞你一蛇杖！" );
         command( "angry" );
 
         destruct(obj);
@@ -503,7 +503,7 @@ void destroy_dest(object obj,object ob)
 {
         command( "hmm" );
         command("kick"+query("id", ob));
-        command( "say 怎么就这样还给我？应该喂饱变成蛇杖再交给我。小心少爷我赏你给蛇吃！" );
+        command( "say 怎麼就這樣還給我？應該餵飽變成蛇杖再交給我。小心少爺我賞你給蛇吃！" );
         command( "angry" );
 
         if( query_temp("baituo/feeding", ob) )
@@ -519,7 +519,7 @@ void thank_dest(object obj,object ob)
 {
         command( "ah");
         command( "jump");
-        command( "say 本少爷的蛇杖？多谢啦！\n");
+        command( "say 本少爺的蛇杖？多謝啦！\n");
         destruct(obj);
 }
 
@@ -528,16 +528,16 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "历练" :
-        case "历炼" :
-        case "锻炼" :
+        case "歷練" :
+        case "歷煉" :
+        case "鍛鍊" :
                 return QUEST_D->accept_ask(this_object(), me, topic);
                 break;
 
-        case "打字诀" :
+        case "打字訣" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/shedu-qiqiao/da",
-                           "name"    : "打字诀",
+                           "name"    : "打字訣",
                            "sk1"     : "shedu-qiqiao",
                            "lv1"     : 100,
                            "sk2"     : "force",
@@ -547,10 +547,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -4000, ]));
                 break;
 
-        case "炼毒" :
+        case "煉毒" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/shedu-qiqiao/liandu",
-                           "name"    : "炼毒",
+                           "name"    : "煉毒",
                            "sk1"     : "shedu-qiqiao",
                            "lv1"     : 120,
                            "sk2"     : "force",

@@ -1,7 +1,7 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action": "$N高高举起$w，施一招「天神降世」，狠狠的向$n的$l砸去",
+([      "action": "$N高高舉起$w，施一招「天神降世」，狠狠的向$n的$l砸去",
         "force" : 110,
         "attack": 2,
         "dodge" : -5,
@@ -9,9 +9,9 @@ mapping *action = ({
         "lvl"   : 0,
         "damage": 30,
         "skill_name" : "天神降世",
-        "damage_type": "挫伤",
+        "damage_type": "挫傷",
 ]),
-([      "action": "$N拔地而起，半空中一个筋斗，手中$w一式「崩山」扫向$n",
+([      "action": "$N拔地而起，半空中一個筋斗，手中$w一式「崩山」掃向$n",
         "force" : 130,
         "attack": 5,
         "dodge" : -11,
@@ -19,9 +19,9 @@ mapping *action = ({
         "lvl"   : 40,
         "damage": 40,
         "skill_name" : "崩山",
-        "damage_type": "挫伤",
+        "damage_type": "挫傷",
 ]),
-([      "action": "$N手中$w舞动，一招「力撼九天」挟着震天撞击之声，猛砸$n",
+([      "action": "$N手中$w舞動，一招「力撼九天」挾著震天撞擊之聲，猛砸$n",
         "force" : 150,
         "attack": 8,
         "dodge" : -6,
@@ -29,9 +29,9 @@ mapping *action = ({
         "lvl"   : 80,
         "damage": 45,
         "skill_name" : "力撼九天",
-        "damage_type": "挫伤",
+        "damage_type": "挫傷",
 ]),
-([      "action": "$N施一招「佛嗔」，手中$w呼呼有声，连续砸向$n的各个部位",
+([      "action": "$N施一招「佛嗔」，手中$w呼呼有聲，連續砸向$n的各個部位",
         "force" : 160,
         "attack": 15,
         "dodge" : 0,
@@ -39,17 +39,17 @@ mapping *action = ({
         "lvl"   : 100,
         "damage": 50,
         "skill_name" : "佛嗔",
-        "damage_type": "挫伤",
+        "damage_type": "挫傷",
 ]),
-([      "action": "$N横过手中$w，使出「轰顶」，手中$w劈空而下，击向$n$l",
+([      "action": "$N橫過手中$w，使出「轟頂」，手中$w劈空而下，擊向$n$l",
         "force" : 220,
         "attack": 22,
         "dodge" : -10,
         "parry" : -5,
         "lvl"   : 120,
         "damage": 75,
-        "skill_name" : "轰顶",
-        "damage_type": "挫伤",
+        "skill_name" : "轟頂",
+        "damage_type": "挫傷",
 ]),
 });
 
@@ -61,16 +61,16 @@ int valid_enable(string usage)
 int valid_learn(object me)
 {
         if( query("max_neili", me)<300 )
-                return notify_fail("你的内力修为不够，难以修炼无上大力杵。\n");
+                return notify_fail("你的內力修為不夠，難以修煉無上大力杵。\n");
 
         if ((int)me->query_skill("force") < 30)
-                return notify_fail("你的内功火候太浅，难以修炼无上大力杵。\n");
+                return notify_fail("你的內功火候太淺，難以修煉無上大力杵。\n");
 
         if ((int)me->query_skill("hammer", 1) < 20)
-                return notify_fail("你的基本锤法不够，难以修炼无上大力杵。\n");
+                return notify_fail("你的基本錘法不夠，難以修煉無上大力杵。\n");
 
         if ((int)me->query_skill("hammer", 1) < (int)me->query_skill("dali-chu", 1))
-                return notify_fail("你的基本锤法水平有限，无法领会更高深的无上大力杵。\n");
+                return notify_fail("你的基本錘法水平有限，無法領會更高深的無上大力杵。\n");
 
         return 1;
 }
@@ -98,13 +98,13 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "hammer" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if( query("qi", me)<40 )
-                return notify_fail("你的体力不够，练不了无上大力杵。\n");
+                return notify_fail("你的體力不夠，練不了無上大力杵。\n");
 
         if( query("neili", me)<50 )
-                return notify_fail("你的内力不够，练不了无上大力杵。\n");
+                return notify_fail("你的內力不夠，練不了無上大力杵。\n");
 
         me->receive_damage("qi", 35);
         addn("neili", -40, me);

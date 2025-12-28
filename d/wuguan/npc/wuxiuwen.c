@@ -9,7 +9,7 @@ void create()
         set("title", HIY "郭靖二弟子" NOR);
         set("gender", "男性");
         set("age", 21);
-        set("long", "他是郭靖的二弟子，精明强干，专门负责后勤。\n");
+        set("long", "他是郭靖的二弟子，精明強幹，專門負責後勤。\n");
         set("attitude", "peaceful");
         set("shen_type", 1);
         set("per", 24);
@@ -50,8 +50,8 @@ void create()
         create_family("郭府", 2, "弟子");
 
         set("inquiry", ([
-                "黄蓉" : "那是我师母。",
-                "郭靖" : "那是我师父。",
+                "黃蓉" : "那是我師母。",
+                "郭靖" : "那是我師父。",
                 "工具" : (: give_tools :),
                 "tools" : (: give_tools :),
         ]));
@@ -89,25 +89,25 @@ string give_tools()
        	ob = this_player();
 
        	if( query_temp("mark/工具", ob) )
-		return "我不是已经给你了吗，怎么那么罗嗦？";
+		return "我不是已經給你了嗎，怎麼那麼羅嗦？";
 
-       	if( query_temp("mark/还了", ob) )
-		return "你还是先到耶律师兄那覆命了再说吧。";
+       	if( query_temp("mark/還了", ob) )
+		return "你還是先到耶律師兄那覆命了再說吧。";
 
-       	if( !((query_temp("job_name", ob) == "锯木头" )
-	 || (query_temp("job_name", ob) == "锄草" )
-            || (query_temp("job_name", ob) == "浇菜地" )
+       	if( !((query_temp("job_name", ob) == "鋸木頭" )
+	 || (query_temp("job_name", ob) == "鋤草" )
+            || (query_temp("job_name", ob) == "澆菜地" )
 	 || (query_temp("job_name", ob) == "劈柴" )
-	 || (query_temp("job_name", ob) == "打扫马房")) )
-             	return "你又没有领工作，跑来要什么工具？";
+	 || (query_temp("job_name", ob) == "打掃馬房")) )
+             	return "你又沒有領工作，跑來要什麼工具？";
 
-       	if( query_temp("job_name", ob) == "锄草" )
+       	if( query_temp("job_name", ob) == "鋤草" )
 		tools = new("/d/wuguan/obj/chutou");
        	else
-	if( query_temp("job_name", ob) == "浇菜地" )
+	if( query_temp("job_name", ob) == "澆菜地" )
 		tools = new("/d/wuguan/obj/piao");
         else
-	if( query_temp("job_name", ob) == "锯木头" )
+	if( query_temp("job_name", ob) == "鋸木頭" )
 		tools = new("/d/wuguan/obj/juzi");
         else
 	if( query_temp("job_name", ob) == "劈柴" )
@@ -117,10 +117,10 @@ string give_tools()
 
         tools->move(this_player());
 
-        message_vision(HIC "$N" HIC "交给$n" HIC "一把工具。\n"
+        message_vision(HIC "$N" HIC "交給$n" HIC "一把工具。\n"
                        NOR, me, ob);
         set_temp("mark/工具", 1, ob);
-        return "东西交给你了，可要小心保管，别弄丢了。";
+        return "東西交給你了，可要小心保管，別弄丟了。";
 }
 
 int accept_object(object me, object obj)
@@ -130,12 +130,12 @@ int accept_object(object me, object obj)
       	ob = this_player();
 
       	if( !(query_temp("mark/劈完了", ob )
-	 || query_temp("mark/浇完了", ob )
-	 || query_temp("mark/锄完了", ob )
-	 || query_temp("mark/锯完了", ob )
-	 || query_temp("mark/扫完了", ob)) )
+	 || query_temp("mark/澆完了", ob )
+	 || query_temp("mark/鋤完了", ob )
+	 || query_temp("mark/鋸完了", ob )
+	 || query_temp("mark/掃完了", ob)) )
 	{
-              	command("say 你还没完成工作，怎么就回来还工具了，偷懒吗？");
+              	command("say 你還沒完成工作，怎麼就回來還工具了，偷懶嗎？");
 	      	return 0;
         }
 
@@ -145,19 +145,19 @@ int accept_object(object me, object obj)
 	 && (query("id", obj) != "sao zhou" )
 	 && (query("id", obj) != "chai dao") )
 	{
-              	command("say 你还错东西了吧，我从没有发过这样工具。");
+              	command("say 你還錯東西了吧，我從沒有發過這樣工具。");
               	return 0;
         }
 
 	if( !query_temp("job_name", ob) )
 	{  
               	command("shake");
-              	command("say 我没有发给你过东西，你是不是还错了？");
+              	command("say 我沒有發給你過東西，你是不是還錯了？");
               	return 0;
         }
      	command("nod");
-     	command("say 干得不错，你现在去耶律师兄那儿领取酬劳吧。");
-        set_temp("mark/还了", 1, 	ob);
+     	command("say 幹得不錯，你現在去耶律師兄那兒領取酬勞吧。");
+        set_temp("mark/還了", 1, 	ob);
         destruct(obj);
      	return 1;
 }
@@ -168,27 +168,27 @@ void greeting(object ob)
 		return;
 
         if( query_temp("mark/劈完了", ob )
-	 || query_temp("mark/浇完了", ob )
-	 || query_temp("mark/锄完了", ob )
-	 || query_temp("mark/锯完了", ob )
-	 || query_temp("mark/扫完了", ob) )
+	 || query_temp("mark/澆完了", ob )
+	 || query_temp("mark/鋤完了", ob )
+	 || query_temp("mark/鋸完了", ob )
+	 || query_temp("mark/掃完了", ob) )
 	{
 		command("nod "+query("id", ob));
-         	command("say 你的工作做完了？那现在把工具还给我吧。");
+         	command("say 你的工作做完了？那現在把工具還給我吧。");
          	return; 
         }
 
         if( query_temp("mark/工具", ob) )
 		return 0; 
 
-        if( (query_temp("job_name", ob) == "锯木头" )
-	 || (query_temp("job_name", ob) == "锄草" )
-	 || (query_temp("job_name", ob) == "浇菜地" )
+        if( (query_temp("job_name", ob) == "鋸木頭" )
+	 || (query_temp("job_name", ob) == "鋤草" )
+	 || (query_temp("job_name", ob) == "澆菜地" )
 	 || (query_temp("job_name", ob) == "劈柴" )
-	 || (query_temp("job_name", ob) == "打扫马房") )
+	 || (query_temp("job_name", ob) == "打掃馬房") )
 	{
        		command("nod "+query("id", ob));
-       		command("say 你是来我这里领工具(" HIY "ask wu xiuwen about 工具"
+       		command("say 你是來我這裡領工具(" HIY "ask wu xiuwen about 工具"
                         NOR + CYN ")的吧。" NOR);
        	}
 }

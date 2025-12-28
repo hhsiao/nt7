@@ -3,8 +3,8 @@ inherit ITEM;
 
 void create()
 {
-     set_name(HIG"辟谷丸"NOR, ({ "bigu wan", "wan" })); set("unit", "颗");
-        set("long", "一颗碧绿色的药丸，。\n");
+     set_name(HIG"辟穀丸"NOR, ({ "bigu wan", "wan" })); set("unit", "顆");
+        set("long", "一顆碧綠色的藥丸，。\n");
         set_weight(1000);
         set("yaowang", 1);
         set("no_get", 1);
@@ -50,19 +50,19 @@ int do_eat(string arg)
         int i=query("value", this_object())/10;
 
         if (!id(arg))
-                return notify_fail("你要吃什么？\n");
+                return notify_fail("你要吃什麼？\n");
 
         if (me->is_busy() )
-                return notify_fail("别急，慢慢吃，小心别噎着了。\n");
+                return notify_fail("別急，慢慢吃，小心別噎著了。\n");
 
         if( query("food", me) >= ((query("str", me)*10)+100 )
                  && query("water", me) >= ((query("str", me)*10)+100) )
-                return notify_fail("你似乎不饿啊？\n");
+                return notify_fail("你似乎不餓啊？\n");
 
         addn("food", i, me);
         addn("water", i, me);
 //      me->addn("neili", i);
-        message_vision(HIG"$N服下一颗辟谷丸，顿觉一股清凉之气从腹中升起。\n"NOR, me);
+        message_vision(HIG"$N服下一顆辟穀丸，頓覺一股清涼之氣從腹中升起。\n"NOR, me);
         destruct(this_object());
         return 1;
 }

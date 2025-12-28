@@ -1,6 +1,6 @@
 void test()
 {
-        tell_object(find_player("lonely"), "\ncallout被调用！\n\n");
+        tell_object(find_player("lonely"), "\ncallout被調用！\n\n");
 }
 int find_handle()
 {

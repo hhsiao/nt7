@@ -6,14 +6,14 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("潘秀达", ({ "pan xiuda", "pan" }));
-        set("nickname", HIY "笑面阎罗" NOR);
+        set_name("潘秀達", ({ "pan xiuda", "pan" }));
+        set("nickname", HIY "笑面閻羅" NOR);
         set("long", @LONG
-他就是五毒教的左护法，人称笑面阎罗的潘秀
-达。别看他一脸笑眯眯的，但是常常杀人于弹
-指之间。
+他就是五毒教的左護法，人稱笑面閻羅的潘秀
+達。別看他一臉笑眯眯的，但是常常殺人於彈
+指之間。
 LONG);
-        set("title","五毒教护法");
+        set("title","五毒教護法");
         set("gender", "男性");
         set("age", 38);
         set("attitude", "friendly");
@@ -73,7 +73,7 @@ LONG);
         prepare_skill("strike", "tianchan-zhang");
         prepare_skill("claw", "wusheng-zhao");
 
-        create_family("五毒教", 12, "护法");
+        create_family("五毒教", 12, "護法");
 
         setup();
 
@@ -90,23 +90,23 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)>-5000 )
         {
-                command("say 做我五毒教弟子必须心狠手辣。");
+                command("say 做我五毒教弟子必須心狠手辣。");
                 return;
         }
         if ((int)ob->query_skill("wudu-shengong", 1) < 40)
         {
-                command("say 你的五毒心法还学的不够啊。");
+                command("say 你的五毒心法還學的不夠啊。");
                 return;
         }
         if ((int)ob->query_skill("wudu-qishu", 1) < 30)
         {
-                command("say 我五毒教弟子以毒杀人，修习毒技是首要的。");
-                command("say 你是否还应该多多钻研本门的绝学？");
+                command("say 我五毒教弟子以毒殺人，修習毒技是首要的。");
+                command("say 你是否還應該多多鑽研本門的絕學？");
                 return;
         }
 
         command("smile");
-        command("say 不错，不错。");
+        command("say 不錯，不錯。");
         command("recruit "+query("id", ob));
         return;
 }

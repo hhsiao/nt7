@@ -2,11 +2,11 @@ inherit ROOM;
 #include <ansi.h> 
 void create()
 {
-        set("short", "小屋里");
+        set("short", "小屋裡");
         set("long",
-"[1;32m这是一间朴素的小木屋，屋中的摆设都是些简单必要的家具\n"
-"。窗下是一张小几，上面放着一些食物。一个精灵族的女子正在屋中忙碌\n"
-"着什么。\n"
+"[1;32m這是一間樸素的小木屋，屋中的擺設都是些簡單必要的傢俱\n"
+"。窗下是一張小几，上面放著一些食物。一個精靈族的女子正在屋中忙碌\n"
+"著什麼。\n"
 ); 
         set("objects", ([ 
             "/quest/tulong/npc/spiritgirl" : 1,
@@ -33,16 +33,16 @@ int do_search (string arg)
   object hook;
  
         if (  present("hook", who) ) {
-                return notify_fail("你不是已经找到了吗？\n");
+                return notify_fail("你不是已經找到了嗎？\n");
           }
   if (random(10))
   {
-    message_vision ("$N四处搜索了一番，什么也没有找到。\n",who);  
+    message_vision ("$N四處搜索了一番，什麼也沒有找到。\n",who);  
   }
   else
   {
     hook = new ("/quest/tulong/obj/hook");
-    message_vision ("$N把小屋的大小角落都找了个遍，发现了一个小钩子！\n",who,hook);
+    message_vision ("$N把小屋的大小角落都找了個遍，發現了一個小鉤子！\n",who,hook);
     hook->move(who);  
   }
   return 1;

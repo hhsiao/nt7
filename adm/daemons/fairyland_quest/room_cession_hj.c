@@ -1,33 +1,33 @@
-//                标准描述长度示例                                   |
-// 自由转让 幻境游戏内 EXP POT 的房间
-// by naihe  2002-11-09  于茂名
+//                標準描述長度示例                                   |
+// 自由轉讓 幻境遊戲內 EXP POT 的房間
+// by naihe  2002-11-09  於茂名
 
 #include <ansi.h>
 inherit ROOM;
 #include "temp/ctime_format_func.h"
 
 #include "z_hj_log_func.h"
-// 此文件中定义了LOG文件的文件名：HJ1_LOG_FILE
-// 以及 hj_log_file(string log_msg) 函数。
-// 本文件及 游戏出口处 都使用 hj_log_file() 函数，而不直接使用 log_file() .
+// 此文件中定義了LOG文件的文件名：HJ1_LOG_FILE
+// 以及 hj_log_file(string log_msg) 函數。
+// 本文件及 遊戲出口處 都使用 hj_log_file() 函數，而不直接使用 log_file() .
 
 void create()
 {
-    set("short", "幻境游戏奖品转让处");
+    set("short", "幻境遊戲獎品轉讓處");
     set("long", "
-    幻境游戏是一个没有EXP、没有SKILLS要求的游戏，人人可玩，
-并且效果一样。更重要的是，它允许你在自己的主ID练功时，使用
-一个别的ID（甚至是新注册的ID）来进行游戏，并且：
+    幻境遊戲是一個沒有EXP、沒有SKILLS要求的遊戲，人人可玩，
+並且效果一樣。更重要的是，它允許你在自己的主ID練功時，使用
+一個別的ID（甚至是新註冊的ID）來進行遊戲，並且：
 
-       "HIR"游戏得到的经验值、潜能值允许转让给登记的ID"NOR"
+       "HIR"遊戲得到的經驗值、潛能值允許轉讓給登記的ID"NOR"
 
-    将两个ID都登记一次，即可相互转让在游戏里得到的 EXP/POT 。
-    "HIG"<dengji 人物ID>"NOR"   登记你的相互ID(主ID及大米各登记一次)
-    "HIG"<checkme>"NOR"         查询自己的未转出的 EXP/POT 情况
-    "HIG"<take exp / pot / mar 点数>"NOR"  把 EXP/POT/MAR 兑现
-    "HIG"<zhuan exp / pot / mar 点数>"NOR" 把 EXP/POT/MAR 转给登记ID并同时兑现
+    將兩個ID都登記一次，即可相互轉讓在遊戲裡得到的 EXP/POT 。
+    "HIG"<dengji 人物ID>"NOR"   登記你的相互ID(主ID及大米各登記一次)
+    "HIG"<checkme>"NOR"         查詢自己的未轉出的 EXP/POT 情況
+    "HIG"<take exp / pot / mar 點數>"NOR"  把 EXP/POT/MAR 兌現
+    "HIG"<zhuan exp / pot / mar 點數>"NOR" 把 EXP/POT/MAR 轉給登記ID並同時兌現
 
-    更详细的说明，请输入<help here> 指令。\n\n");
+    更詳細的說明，請輸入<help here> 指令。\n\n");
     set("no_fight", "1");
     set("no_steal", "1");
     set("no_sleep_room", "1");
@@ -54,24 +54,24 @@ int do_help(string arg)
     string msg;
     if(!arg || arg!="here") return 0;
 
-    msg = "###########  幻境游戏登记ID详细说明 #############
-    为了防止出现“众多大米造就一个获益ID”的情况，
-故实行“相互登记”的规则。在这里，你只需要把任何
-两个ID都登记上对方的ID，就可以完成登记手续，而在
-接下来的任何时候，无论你用哪一个ID进行游戏，它所
-得到的经验值和潜能值，都可以转让给另一个ID。举例：
+    msg = "###########  幻境遊戲登記ID詳細說明 #############
+    為了防止出現“眾多大米造就一個獲益ID”的情況，
+故實行“相互登記”的規則。在這裡，你只需要把任何
+兩個ID都登記上對方的ID，就可以完成登記手續，而在
+接下來的任何時候，無論你用哪一個ID進行遊戲，它所
+得到的經驗值和潛能值，都可以轉讓給另一個ID。舉例：
 
-    我希望能够把这两个ID的得益相互转让：
+    我希望能夠把這兩個ID的得益相互轉讓：
     \"naihe\" ----> 主ID  \"money\" ----> 大米ID\n";
 
     msg += "
-    那么，我先用\"naihe\"输入指令：<dengji money>，
-再用\"money\"输入指令：<dengji naihe>，即可完成。
-完成以后，在日后进行游戏时，无论是\"naihe\"还是
-\"money\"所得到的经验、潜能奖励，都可以在相互之间
-随意转让了。
+    那麼，我先用\"naihe\"輸入指令：<dengji money>，
+再用\"money\"輸入指令：<dengji naihe>，即可完成。
+完成以後，在日後進行遊戲時，無論是\"naihe\"還是
+\"money\"所得到的經驗、潛能獎勵，都可以在相互之間
+隨意轉讓了。
 
-    祝游戏愉快！
+    祝遊戲愉快！
                            by naihe 2003-10-22
 #################################################\n";
 
@@ -83,15 +83,15 @@ int do_dengji(string arg)
 {
     object me = this_player();
 
-    return notify_fail("幻境任务修改为主id进行的任务，不再开放登记id转让。\n");
+    return notify_fail("幻境任務修改為主id進行的任務，不再開放登記id轉讓。\n");
     if( query("huanjing2003/together_id", me) )
-        return notify_fail("你已经登记过你的相互ID了，请输入 <checkme> 指令查看。\n如需更改，请以 <mto> 指令发送信件，联系巫师奈何(naihe)。\n");
-    if(!arg) return notify_fail("你还未登记你的相互ID，请输入一个ID。请注意，登记后，你不能再次更改这个ID。\n如有不明白之处，请输入 <help here> 查询。\n");
-    if( arg == query("id", me))return notify_fail("不必登记自己，可直接转让。\n");
+        return notify_fail("你已經登記過你的相互ID了，請輸入 <checkme> 指令查看。\n如需更改，請以 <mto> 指令發送信件，聯繫巫師奈何(naihe)。\n");
+    if(!arg) return notify_fail("你還未登記你的相互ID，請輸入一個ID。請注意，登記後，你不能再次更改這個ID。\n如有不明白之處，請輸入 <help here> 查詢。\n");
+    if( arg == query("id", me))return notify_fail("不必登記自己，可直接轉讓。\n");
 
     set("huanjing2003/together_id", arg, me);
 
-    write("登记成功！如果 \""+arg+"\" 未登记你的这个ID，请登记它，否则无法相互转让。\n");
+    write("登記成功！如果 \""+arg+"\" 未登記你的這個ID，請登記它，否則無法相互轉讓。\n");
     return 1;
 }
 
@@ -102,7 +102,7 @@ int do_take( string arg )
     string type;
     int times = "/adm/daemons/actiond"->query_action("task_reward"); 
 
-    if(!arg) return notify_fail("指令的正确格式请输入 <look> 查看。\n");
+    if(!arg) return notify_fail("指令的正確格式請輸入 <look> 查看。\n");
 
 /*
     if( sscanf(arg, "exp %d", amount) )
@@ -111,19 +111,19 @@ int do_take( string arg )
         type = "pot";
 */
      if( sscanf(arg, "%s %d", type, amount) != 2 )
-         return notify_fail("指令的正确格式请输入 <look> 查看。\n");
+         return notify_fail("指令的正確格式請輸入 <look> 查看。\n");
 
     if( type != "exp" && type != "pot" && type != "mar" )
-        return notify_fail("指令的正确格式请输入 <look> 查看。\n");
+        return notify_fail("指令的正確格式請輸入 <look> 查看。\n");
 
     if( amount<1 || !query("huanjing2003/"+type, me )
        || query("huanjing2003/"+type, me)<amount )
-        return notify_fail("你没有足够的 "+type+" 可以兑现或数值不正确。请输入<checkme>查询。\n");
+        return notify_fail("你沒有足夠的 "+type+" 可以兌現或數值不正確。請輸入<checkme>查詢。\n");
 
     if( type == "exp" )
     {
         if( amount < 1000 )
-            return notify_fail("EXP 兑现，每次至少 1000 点。\n");
+            return notify_fail("EXP 兌現，每次至少 1000 點。\n");
         addn("huanjing2003/exp", -amount, me);
         if( times ) amount *= times;
         addn("combat_exp", amount, me);
@@ -135,7 +135,7 @@ int do_take( string arg )
     if( type == "pot" )
     {
         if( amount < 500 )
-            return notify_fail("POT 的兑现，每次至少 500 点。\n");
+            return notify_fail("POT 的兌現，每次至少 500 點。\n");
         addn("huanjing2003/pot", -amount, me);
         if( times ) amount *= times;
         addn("potential", amount, me);
@@ -148,7 +148,7 @@ int do_take( string arg )
     if( type == "mar" )
     {
         if( amount < 100 )
-            return notify_fail("MAR 的兑现，每次至少 100 点。\n");
+            return notify_fail("MAR 的兌現，每次至少 100 點。\n");
         addn("huanjing2003/mar", -amount, me);
         if( times ) amount *= times;
         addn("experience", amount, me);
@@ -158,9 +158,9 @@ int do_take( string arg )
 #endif
     }
 
-    message_vision( sprintf("$N将 %d 点幻境游戏奖励的 %s 兑现成了MUD里的 %s 。\n", amount, type, type), me );
+    message_vision( sprintf("$N將 %d 點幻境遊戲獎勵的 %s 兌現成了MUD裡的 %s 。\n", amount, type, type), me );
 
-    hj_log_file( sprintf("\n%s(%s)兑现了 %d 点幻境 %s 。(%s)\n",
+    hj_log_file( sprintf("\n%s(%s)兌現了 %d 點幻境 %s 。(%s)\n",
         query("name", me),getuid(me),amount,type,ctime_format()));
     return 1;
 }
@@ -172,20 +172,20 @@ int do_zhuan(string arg)
     int amount;
     string target_id, type = ".";
 
-    // 无论格式正确与否，先给提示。
+    // 無論格式正確與否，先給提示。
     target_id=query("huanjing2003/together_id", me);
     if( !target_id ) 
         target_id = query("id", me);
-        //return notify_fail("你并未登记你的相互ID！\n");
+        //return notify_fail("你並未登記你的相互ID！\n");
 
     target = find_player( target_id );
     if( !target )
-        return notify_fail("你所登记的ID \""+target_id+"\" 并不在线，不能转让。\n");
+        return notify_fail("你所登記的ID \""+target_id+"\" 並不在線，不能轉讓。\n");
     if( target != me && query("huanjing2003/together_id", target) != getuid(me) )
-        return notify_fail("你所登记的ID \""+target_id+"\" ，对方并没有登记你的ID，不能转让。\n");
+        return notify_fail("你所登記的ID \""+target_id+"\" ，對方並沒有登記你的ID，不能轉讓。\n");
 
     // ok.
-    if(!arg) return notify_fail("指令的正确格式请输入 <look> 查看。\n");
+    if(!arg) return notify_fail("指令的正確格式請輸入 <look> 查看。\n");
 
 /*
     if( sscanf(arg, "exp %d", amount) )
@@ -194,19 +194,19 @@ int do_zhuan(string arg)
         type = "pot";
 */
      if( sscanf(arg, "%s %d", type, amount) != 2 )
-         return notify_fail("指令的正确格式请输入 <look> 查看。\n");
+         return notify_fail("指令的正確格式請輸入 <look> 查看。\n");
 
     if( type != "exp" && type != "pot" && type != "mar" )
-        return notify_fail("指令的正确格式请输入 <look> 查看。\n");
+        return notify_fail("指令的正確格式請輸入 <look> 查看。\n");
 
     if( amount<1 || !query("huanjing2003/"+type, me )
        || query("huanjing2003/"+type, me)<amount )
-        return notify_fail("你没有足够的 "+type+" 可以转让或数值不正确。请输入<checkme>查询。\n");
+        return notify_fail("你沒有足夠的 "+type+" 可以轉讓或數值不正確。請輸入<checkme>查詢。\n");
 
     if( type == "exp" )
     {
         if( amount < 1000 )
-            return notify_fail("EXP 的转让每次至少 1000 点。\n");
+            return notify_fail("EXP 的轉讓每次至少 1000 點。\n");
         addn("huanjing2003/exp", -amount, me);
         addn("combat_exp", amount, target);
 #ifdef DB_SAVE
@@ -217,7 +217,7 @@ int do_zhuan(string arg)
     if( type == "pot" )
     {
         if( amount < 500 )
-            return notify_fail("POT 的转让每次至少 500 点。\n");
+            return notify_fail("POT 的轉讓每次至少 500 點。\n");
         addn("huanjing2003/pot", -amount, me);
 #ifdef DB_SAVE
         if (MEMBER_D->is_double_reward(me) && MEMBER_D->is_double_reward(target)) 
@@ -228,7 +228,7 @@ int do_zhuan(string arg)
     if( type == "mar" )
     {
         if( amount < 100 )
-            return notify_fail("MAR 的转让每次至少 100 点。\n");
+            return notify_fail("MAR 的轉讓每次至少 100 點。\n");
         addn("huanjing2003/mar", -amount, me);
 #ifdef DB_SAVE
         if (MEMBER_D->is_double_reward(me) && MEMBER_D->is_double_reward(target)) 
@@ -237,10 +237,10 @@ int do_zhuan(string arg)
         addn("experience", amount, target);
     }
     
-    message_vision( sprintf("$N将 %d 点幻境游戏奖励的 %s 转给了$n。\n",amount,type ),
+    message_vision( sprintf("$N將 %d 點幻境遊戲獎勵的 %s 轉給了$n。\n",amount,type ),
         me, target );
 
-    hj_log_file( sprintf("\n%s(%s)转让 %d 点幻境 %s 予 %s(%s) 。(%s)\n",
+    hj_log_file( sprintf("\n%s(%s)轉讓 %d 點幻境 %s 予 %s(%s) 。(%s)\n",
         query("name", me),getuid(me),amount,type,
         query("name", target),getuid(target),ctime_format()));
 
@@ -253,22 +253,22 @@ int do_checkme()
     object me=this_player();
 
     if( query("huanjing2003/exp", me)>0 )
-        write(HIY"你有"+query("huanjing2003/exp", me)+"点在本游戏里获得的经验值。\n"NOR);
-    else write(HIY"你没有在本游戏里获得的经验值。\n"NOR);
+        write(HIY"你有"+query("huanjing2003/exp", me)+"點在本遊戲裡獲得的經驗值。\n"NOR);
+    else write(HIY"你沒有在本遊戲裡獲得的經驗值。\n"NOR);
 
     if( query("huanjing2003/pot", me)>0 )
-        write(HIY"你有"+query("huanjing2003/pot", me)+"点在本游戏里获得的潜能值。\n"NOR);
-    else write(HIY"你没有在本游戏里获得的潜能值。\n"NOR);
+        write(HIY"你有"+query("huanjing2003/pot", me)+"點在本遊戲裡獲得的潛能值。\n"NOR);
+    else write(HIY"你沒有在本遊戲裡獲得的潛能值。\n"NOR);
 
     if( query("huanjing2003/mart", me)>0 )
-        write(HIY"你有"+query("huanjing2003/mar", me)+"点在本游戏里获得的体会值。\n"NOR);
-    else write(HIY"你没有在本游戏里获得的体会值。\n"NOR);
+        write(HIY"你有"+query("huanjing2003/mar", me)+"點在本遊戲裡獲得的體會值。\n"NOR);
+    else write(HIY"你沒有在本遊戲裡獲得的體會值。\n"NOR);
     
-    write("你可以直接把它们兑换成你的经验值、潜能值或体会值；或者把它们转给你所登记的相互ID。\n");
+    write("你可以直接把它們兌換成你的經驗值、潛能值或體會值；或者把它們轉給你所登記的相互ID。\n");
 
     if( query("huanjing2003/together_id", me) )
-        write("你登记的相互ID是：\""+query("huanjing2003/together_id", me)+"\"\n");
-    else write("你还未登记相互ID，不能转让这些得分。需要转让时，请先登记。\n");
+        write("你登記的相互ID是：\""+query("huanjing2003/together_id", me)+"\"\n");
+    else write("你還未登記相互ID，不能轉讓這些得分。需要轉讓時，請先登記。\n");
 
     return 1;
 }

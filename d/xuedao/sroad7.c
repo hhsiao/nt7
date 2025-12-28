@@ -5,7 +5,7 @@ void create()
 {
         set("short", "大雪山口");
         set("long", @LONG
-群山环绕，四周积雪终年不化。南边不远处有一个山谷。
+群山環繞，四周積雪終年不化。南邊不遠處有一個山谷。
 LONG );
         set("exits", ([
                 "north"     : __DIR__"sroad6",
@@ -25,8 +25,8 @@ int valid_leave(object me, string dir)
 
         if (dir == "southup")
         {
-                message_vision(HIW "\n突然间只听得轰隆一声巨响，$N" HIW
-                               "脚下踏了个空，竟然是雪崩了！\n" NOR, me);
+                message_vision(HIW "\n突然間只聽得轟隆一聲巨響，$N" HIW
+                               "腳下踏了個空，竟然是雪崩了！\n" NOR, me);
 
                 if (me->query_dex() / 2 + random(me->query_dex()) < 13)
                 {
@@ -34,9 +34,9 @@ int valid_leave(object me, string dir)
                         me->receive_wound("qi", 70);
                 }
 
-                tell_object(me, HIW "只见大片的积雪从山峰上奔腾而下，铺"
-                                "天盖地扑来，沿途并夹\n带了不少岩石。赶"
-                                "紧逃命吧！\n\n" NOR);
+                tell_object(me, HIW "只見大片的積雪從山峰上奔騰而下，鋪"
+                                "天蓋地撲來，沿途並夾\n帶了不少岩石。趕"
+                                "緊逃命吧！\n\n" NOR);
 
                 if (me->query_dex() / 2 + random(me->query_dex()) >= 15)
                 {

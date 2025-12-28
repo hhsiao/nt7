@@ -12,8 +12,8 @@ void create()
 		set_default_object(__FILE__);
 	else*/ {
 	
-		set("long", "洞穴出口。(相关指令touch)\n");
-		set("unit", "个");
+		set("long", "洞穴出口。(相關指令touch)\n");
+		set("unit", "個");
 		set("base_weight", 50);
 		
 		set("no_get",1);
@@ -52,13 +52,13 @@ int do_touch(string arg)
                 
 	if( me->query_busy() ) 	
 	{
-	        tell_object(me,"你正忙着呢，再等一会。\n");
+	        tell_object(me,"你正忙著呢，再等一會。\n");
 	        return 1;
 	}
         
         if( !wizardp(me)&&me->distance(obj)>40 ) 
 	{
-	        tell_object(me,"请再靠近一点，40米以内。\n");
+	        tell_object(me,"請再靠近一點，40米以內。\n");
 	        return 1;
 	}
 	
@@ -82,7 +82,7 @@ int do_touch(string arg)
 		}					
 	}
 	
-	tell_object(me,HIG"你一头钻出了"+query("name")+"。\n"NOR);
+	tell_object(me,HIG"你一頭鑽出了"+query("name")+"。\n"NOR);
 	set("coor",coor,me);
 	
 	if( !query("enter_num") ) 

@@ -7,13 +7,13 @@ void setup()
         set_name("朱雀[2;37;0m[2;37;0m", ({"fkaa"}));        
         set("gender", "男性");                
         set("long", "朱雀[2;37;0m
-它是福丽的魔幻兽。
+它是福麗的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");
         set("owner", "fkl");
-        set("owner_name", "福丽");
+        set("owner_name", "福麗");
         set_temp("owner", "fkl");
-        set_temp("owner_name", "福丽");
+        set_temp("owner_name", "福麗");
         ::setup();
 }

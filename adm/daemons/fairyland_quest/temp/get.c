@@ -1,9 +1,9 @@
 // get.c
-// last updated by April 2001.09.27     禁止在睡房里拿睡觉人的东西
+// last updated by April 2001.09.27     禁止在睡房裡拿睡覺人的東西
 // last updated by naihe 2002.09.25 
-// 各文件可使用set("no_get","信息") 格式自定义no_get信息，
-// 使用 set("no_get","1") 格式将使用默认信息：这个东西拿不起来。
-// 之前的物件设定为 set("no_get",1) 的，也将使用默认信息。
+// 各文件可使用set("no_get","信息") 格式自定義no_get信息，
+// 使用 set("no_get","1") 格式將使用默認信息：這個東西拿不起來。
+// 之前的物件設定為 set("no_get",1) 的，也將使用默認信息。
 
 #include <ansi.h>
 
@@ -19,37 +19,37 @@ int main(object me, string arg)
         object obj, *inv, env, obj2;
         int i, amount, newa;
 
-        if( !arg ) return notify_fail("你要捡起什么东西？\n");
+        if( !arg ) return notify_fail("你要撿起什麼東西？\n");
         if( me->is_busy() )
-                return notify_fail("你上一个动作还没有完成！\n");
+                return notify_fail("你上一個動作還沒有完成！\n");
 
         // Check if a container is specified.
         if( sscanf(arg, "%s from %s", arg, from)==2 ) {
                 env = present(from, me);
                 if(!env) env = present(from, environment(me));
-                if(!env) return notify_fail("你找不到 " + from + " 这样东西。\n");
+                if(!env) return notify_fail("你找不到 " + from + " 這樣東西。\n");
                 if(wizardp(me) && living(env) && (wiz_level(me) <= wiz_level(env))
                  && !query("ridable", env) && env->query_lord() != me )
-                        return notify_fail("你的巫师等级必须比对方高，才能搜身。\n");
+                        return notify_fail("你的巫師等級必須比對方高，才能搜身。\n");
         } 
         else env = environment(me);
         
-        // 不能在睡房里拿睡觉人的东西
+        // 不能在睡房裡拿睡覺人的東西
         if (!wizardp(me) && living(env) && env->query_lord() != me)
-                return notify_fail("光天化日的想抢劫啊？\n");
+                return notify_fail("光天化日的想搶劫啊？\n");
         else if( !wizardp(me) && query("no_get_from", env) )
-                return notify_fail("边上有人看着呢，不如等人家醒了抢劫吧！\n");
+                return notify_fail("邊上有人看著呢，不如等人家醒了搶劫吧！\n");
 
         // Check if a certain amount is specified.
         if(sscanf(arg, "%d %s", amount, item)==2) {
                 if( !objectp(obj = present(item, env)) )
-                        return notify_fail("这里没有这样东西。\n");
+                        return notify_fail("這裡沒有這樣東西。\n");
                 if( !obj->query_amount() )
-                        return notify_fail( obj->name() + "不能被分开拿走。\n");
+                        return notify_fail( obj->name() + "不能被分開拿走。\n");
                 if( amount < 1 )
-                        return notify_fail("东西的个数至少是一个。\n");
+                        return notify_fail("東西的個數至少是一個。\n");
                 if( amount > obj->query_amount() )
-                        return notify_fail("这里没有那么多的" + obj->name() + "。\n");
+                        return notify_fail("這裡沒有那麼多的" + obj->name() + "。\n");
                 else if( amount == (int)obj->query_amount() ) {
                         return do_get(me, obj);
                }else {
@@ -67,29 +67,29 @@ int main(object me, string arg)
 
         // Check if we are makeing a quick get.
         if(arg=="all") {
-                if( me->is_fighting() ) return notify_fail("你还在战斗中！只能一次拿一样。\n");
+                if( me->is_fighting() ) return notify_fail("你還在戰鬥中！只能一次拿一樣。\n");
                 if( !env->query_max_encumbrance() )     return notify_fail("那不是容器。\n");
 
                 inv = all_inventory(env);
                 if( !sizeof(inv) )
-                        return notify_fail("那里面没有任何东西。\n");
+                        return notify_fail("那裡面沒有任何東西。\n");
 
                 for(i=0; i<sizeof(inv); i++) {
                         if( inv[i]->is_character() || query("no_get", inv[i]))continue;
                         do_get(me, inv[i]);
                 }
-                write("捡好了。\n");
+                write("撿好了。\n");
                 return 1;
         }
 
         if( !objectp(obj = present(arg, env)) || living(obj) )
-                return notify_fail("你附近没有这样东西。\n");
+                return notify_fail("你附近沒有這樣東西。\n");
 
-// 修改一下这里的描述。
+// 修改一下這裡的描述。
         if( query("no_get", obj) )
     {
         no_get_message=query("no_get", obj);
-        if(!stringp(no_get_message) || no_get_message=="1") return notify_fail("这个东西拿不起来。\n");
+        if(!stringp(no_get_message) || no_get_message=="1") return notify_fail("這個東西拿不起來。\n");
         else return notify_fail(no_get_message+"\n");
     }
 
@@ -108,13 +108,13 @@ int do_get(object me, object obj)
         if( obj->is_character() ) {
                 if( living(obj) ) return 0;
                 //      if( !userp(obj) && !obj->is_corpse() )
-                //              return notify_fail("你只能背负其他玩家的身体。\n");
+                //              return notify_fail("你只能揹負其他玩家的身體。\n");
                 // If we try to save someone from combat, take the risk :P
         }
     else if( query("no_get", obj) )
     {
         no_get_message=query("no_get", obj);
-        if(!stringp(no_get_message) || no_get_message=="1") return notify_fail("这个东西拿不起来。\n");
+        if(!stringp(no_get_message) || no_get_message=="1") return notify_fail("這個東西拿不起來。\n");
         else return notify_fail(no_get_message+"\n");
     }
 
@@ -123,13 +123,13 @@ int do_get(object me, object obj)
         if( obj->move(me) ) {
                 if( me->is_fighting() ) me->start_busy(1);
                 if( obj->is_character() )
-                        message_vision( "$N将$n扶了起来背在背上。\n", me, obj );
+                        message_vision( "$N將$n扶了起來背在背上。\n", me, obj );
                 else
                         message_vision( sprintf("$N%s%s%s$n。\n", 
-                                old_env==environment(me)? "捡起":
+                                old_env==environment(me)? "撿起":
                                         (old_env->is_character() ?
-                                                "从" + old_env->name() + "身上" + (equipped? "除下" : "搜出"):
-                                                "从" + old_env->name() + "中拿出"),
+                                                "從" + old_env->name() + "身上" + (equipped? "除下" : "搜出"):
+                                                "從" + old_env->name() + "中拿出"),
                                 obj->query_amount()? amt : "一", 
                                 obj->query_amount()?query("base_unit", obj):query("unit", obj)),me,obj);
                 return 1;
@@ -140,9 +140,9 @@ int do_get(object me, object obj)
 int help(object me)
 {
         write(@HELP
-指令格式 : get <物品名称> [from <容器名>]
+指令格式 : get <物品名稱> [from <容器名>]
  
-这个指令可以让你捡起地上或容器内的某样物品.
+這個指令可以讓你撿起地上或容器內的某樣物品.
  
 HELP
     );

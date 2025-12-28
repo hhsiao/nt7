@@ -5,14 +5,14 @@ inherit SWORD;
 
 void create()
 {
-        set_name(NOR + HIC "天龙" HIY "伏魔剑" NOR, ({ "tianlong jian", "jian" }));
+        set_name(NOR + HIC "天龍" HIY "伏魔劍" NOR, ({ "tianlong jian", "jian" }));
         set_weight(1200);
                 set("unit", "柄");
-                set("long", "这是一柄精金铁铸造的细剑，蜀山齐霞儿所有，剑气光明正大。\n");
+                set("long", "這是一柄精金鐵鑄造的細劍，蜀山齊霞兒所有，劍氣光明正大。\n");
                 set("value", 5000);
                 set("material", "steel");
-                set("wield_msg", "$N「唰」的一声抽出一柄$n握在手中。\n");
-                set("unwield_msg", "$N将手中的$n插回剑鞘。\n");
+                set("wield_msg", "$N「唰」的一聲抽出一柄$n握在手中。\n");
+                set("unwield_msg", "$N將手中的$n插回劍鞘。\n");
         set("weapon_prop/fatal_blow", 35);
         set("weapon_prop/add_forget", 7);
         set("weapon_prop/avoid_parry", 5);

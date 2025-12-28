@@ -4,7 +4,7 @@ inherit NPC;
 
 void create()
 {
-        set_name("男仆", ({ "nan pu", "pu" }));
+        set_name("男僕", ({ "nan pu", "pu" }));
         set("gender", "男性");
         set("age", 25);
 

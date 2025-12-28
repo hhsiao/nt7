@@ -1,4 +1,4 @@
-// duanyu.c 段誉
+// duanyu.c 段譽
 
 #include <ansi.h>
 
@@ -6,11 +6,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("段誉", ({"duan yu", "duan", "yu"}));
+        set_name("段譽", ({"duan yu", "duan", "yu"}));
         set("gender", "男性");
-        set("title", "大理国王子");
+        set("title", "大理國王子");
         set("age", 22);
-        set("long", "他是一个身穿青衫的年轻男子。脸孔略尖，有一股书生的呆气。\n");
+        set("long", "他是一個身穿青衫的年輕男子。臉孔略尖，有一股書生的呆氣。\n");
         set("attitude", "peaceful");
         set("class", "royal");
         
@@ -21,13 +21,13 @@ void create()
 
         set("chat_chance", 1);
         set("chat_msg", ({
-                CYN "段誉叹了口气道：唉，老爸这是怎么回事？\n" NOR,
+                CYN "段譽嘆了口氣道：唉，老爸這是怎麼回事？\n" NOR,
         }));
 
         set("inquiry", ([
-                "大理" : "大理是个好地方，山清水秀，风景宜人。\n",
-                "王语嫣" : "唉，她心里只有她表哥，从来就没把我放在眼里。\n",
-                "拜师" : "嗯……我的师傅是老子、孔子和庄子，他们的学问我还没学全呢。\n",
+                "大理" : "大理是個好地方，山清水秀，風景宜人。\n",
+                "王語嫣" : "唉，她心裡只有她表哥，從來就沒把我放在眼裡。\n",
+                "拜師" : "嗯……我的師傅是老子、孔子和莊子，他們的學問我還沒學全呢。\n",
         ]));
 
         set("qi", 5000);
@@ -89,21 +89,21 @@ void help_girl(object me)
         if (! living(this_object()))
                 return;
 
-        command("say 语嫣妹子，不要慌张，有我段誉在此！");
+        command("say 語嫣妹子，不要慌張，有我段譽在此！");
 
         switch(query("gender", me) )
         {
         case "男性":
-                msg = "这位" + RANK_D->query_respect(me) +
-                      "，你怎能如此狠心？这么动人的妹子你也下得了手？";
+                msg = "這位" + RANK_D->query_respect(me) +
+                      "，你怎能如此狠心？這麼動人的妹子你也下得了手？";
                 break;
         case "女性":
-                msg = "这位" + RANK_D->query_respect(me) +
+                msg = "這位" + RANK_D->query_respect(me) +
                       "，你莫非妒忌人家美貌，所以下此毒手？";
                 break;
         default:
-                msg = "这位" + RANK_D->query_respect(me) +
-                      "，我说你已然半男不女，怎么还打女孩子的主意？";
+                msg = "這位" + RANK_D->query_respect(me) +
+                      "，我說你已然半男不女，怎麼還打女孩子的主意？";
                 break;
         }        
         command("say " + msg);
@@ -111,11 +111,11 @@ void help_girl(object me)
         if (wang = present("wang yuyan"))
         {
                 if (living(wang))
-                        message_vision(HIW "\n$N" HIW "连忙扶住$n" HIW "，背在身"
-                                       "后。\n$n" HIW "道：段郎，我看他武功来历，"
-                                       "帮你指点他的破绽。\n" NOR, this_object(), wang);
+                        message_vision(HIW "\n$N" HIW "連忙扶住$n" HIW "，背在身"
+                                       "後。\n$n" HIW "道：段郎，我看他武功來歷，"
+                                       "幫你指點他的破綻。\n" NOR, this_object(), wang);
                 else
-                        message_vision(HIW "\n$N" HIW "一把搂住$n" HIW "，抱在怀"
+                        message_vision(HIW "\n$N" HIW "一把摟住$n" HIW "，抱在懷"
                                        "中。\n" NOR, this_object(), wang);
 
                 me->remove_enemy(wang);
@@ -130,19 +130,19 @@ void help_girl(object me)
 
 int accept_fight(object me)
 {
-        command("say 哎呀呀，有话好好说，不要就动手嘛。");
+        command("say 哎呀呀，有話好好說，不要就動手嘛。");
         return 0;
 }
 
 int accept_hit(object me)
 {
-        command("say 你这人怎么回事？怎么突然就动手打人呢？。");
+        command("say 你這人怎麼回事？怎麼突然就動手打人呢？。");
         return 1;
 }
 
 int accept_kill(object me)
 {
-        command("say 反了反了，这年头还有王法没有？");
+        command("say 反了反了，這年頭還有王法沒有？");
         return 1;
 }
 
@@ -150,13 +150,13 @@ void unconcious()
 {
         object wang;
 
-        command("say 语嫣妹子……");
+        command("say 語嫣妹子……");
 
         if (wang = present("wang yuyan", this_object()))
         {
                 wang->move(environment());
-                message_vision(HIW "\n$N" HIW "从$n" HIW "身上跌了下来，大惊"
-                               "失色，道：段郎，段郎！你怎么了啦？\n" NOR, wang,
+                message_vision(HIW "\n$N" HIW "從$n" HIW "身上跌了下來，大驚"
+                               "失色，道：段郎，段郎！你怎麼了啦？\n" NOR, wang,
                                this_object());
         }
 
@@ -170,8 +170,8 @@ void die()
         if (wang = present("wang yuyan", this_object()))
         {
                 wang->move(environment());
-                message_vision(HIW "$N" HIW "从$n" HIW "身上跌了下来，大惊失"
-                               "色，道：段郎，段郎！你怎么死了啊？\n" NOR, wang,
+                message_vision(HIW "$N" HIW "從$n" HIW "身上跌了下來，大驚失"
+                               "色，道：段郎，段郎！你怎麼死了啊？\n" NOR, wang,
                                this_object());
         }
 
@@ -188,7 +188,7 @@ void check_enemys(object wang)
 
         if (is_fighting() && random(5) == 0 && living(wang))
         {
-                message_vision(HIW "\n王语嫣在$N" HIW "耳边嘀嘀咕咕的说些话。\n"
+                message_vision(HIW "\n王語嫣在$N" HIW "耳邊嘀嘀咕咕的說些話。\n"
                                NOR, this_object());
                 addn_temp("apply/damage", 10);
                 addn_temp("apply/defense", 10);
@@ -204,12 +204,12 @@ void check_enemys(object wang)
                 set_temp("apply/defense", 50);
                 if (! living(wang))
                 {
-                        command("say 这下好了，我的语嫣妹子不会受惊了。");
+                        command("say 這下好了，我的語嫣妹子不會受驚了。");
                         return;
                 }
-                message_vision(HIW "$n" HIW "对$N" HIW "道：好了，敌人退了，我"
-                               "下来吧。\n$N" HIW "这才恋恋不舍的把$n" HIW "放"
-                               "了下来。\n" NOR, this_object(), wang);
+                message_vision(HIW "$n" HIW "對$N" HIW "道：好了，敵人退了，我"
+                               "下來吧。\n$N" HIW "這才戀戀不捨的把$n" HIW "放"
+                               "了下來。\n" NOR, this_object(), wang);
                 wang->move(environment(this_object()));
                 return;
         }

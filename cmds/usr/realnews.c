@@ -21,9 +21,9 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式 : realnews <list | 编号>
+指令格式 : realnews <list | 編號>
  
-这个指令可以查看实时新闻，参数为list则显示所有新闻列表。
+這個指令可以查看即時新聞，參數為list則顯示所有新聞列表。
  
 HELP
     );

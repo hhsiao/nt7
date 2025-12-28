@@ -1,4 +1,4 @@
-// story:sun 日炽
+// story:sun 日熾
 #include <ansi.h>
 
 inherit F_CLEAN_UP;
@@ -6,17 +6,17 @@ inherit F_CLEAN_UP;
 mixed random_gift();
 
 nosave mixed *story = ({
-        "后羿：哪里跑！",
-        "金乌：糟糕，这下避无可避，该怎么办？",
+        "后羿：哪裡跑！",
+        "金烏：糟糕，這下避無可避，該怎麼辦？",
         "后羿：看箭！",
         "「嗖——」",
-        "金乌：天杀的，今天就和你拼了！",
-        "后羿：早该如此，看我的「百步穿阳」！",
-        "金乌：「毁灭之光」！",
+        "金烏：天殺的，今天就和你拼了！",
+        "后羿：早該如此，看我的「百步穿陽」！",
+        "金烏：「毀滅之光」！",
         "「嗖——嗖——」",
-        "金乌：哎呦……",
+        "金烏：哎呦……",
         "「哧啦——哧啦——」",
-        "后羿抹了抹汗：好险！",
+        "后羿抹了抹汗：好險！",
         (: random_gift :),
 });
 
@@ -25,7 +25,7 @@ void create()
         seteuid(getuid());
 }
 
-string prompt() { return HIR "【神话】" NOR; }
+string prompt() { return HIR "【神話】" NOR; }
 
 mixed query_story_message(int step)
 {
@@ -71,16 +71,16 @@ mixed random_gift()
         if (! sizeof(ips))
                 return 0;
 
-        // 随即抽一个IP
+        // 隨即抽一個IP
         ks = keys(ips);
         ip = ks[random(sizeof(ks))];
 
-        // 在该IP地址上随即抽取一个玩家
+        // 在該IP地址上隨即抽取一個玩家
         ob = ips[ip][random(sizeof(ips[ip]))];
 
         if( query("gift/sun", ob)>4 || random(5)>1 )
         {
-                msg = HIR + ob->name(1) + "一声惨叫，软软的倒了下去。" NOR;
+                msg = HIR + ob->name(1) + "一聲慘叫，軟軟的倒了下去。" NOR;
                 if( query("combat_exp", ob)<1000000 || 
                     query("qi", ob)<1000 )
                         ob->unconcious();
@@ -93,8 +93,8 @@ mixed random_gift()
                 }
         } else
         {
-                msg = HIY "霎那间" + ob->name(1) +
-                      HIY "浑身金光闪闪，如沐金涛，神威凛凛。" NOR;
+                msg = HIY "霎那間" + ob->name(1) +
+                      HIY "渾身金光閃閃，如沐金濤，神威凜凜。" NOR;
                 addn("str", 1, ob);
                 addn("gift/sun", 1, ob);
         }

@@ -9,28 +9,28 @@ int perform(object me, object target)
         int count, skill;
 
         if( BUFF_D->check_buff(me, "dodgeup") )
-                return notify_fail("你已经运起「九阴归元」了。\n");
+                return notify_fail("你已經運起「九陰歸元」了。\n");
 
         if ((int)me->query_skill("shexing-lifan", 1)< 150)
-                return notify_fail("你的蛇行狸翻等级不够，难以施展此项绝技！\n");
+                return notify_fail("你的蛇行狸翻等級不夠，難以施展此項絕技！\n");
 
         if ((int)me->query_dex() < 30)
-                return notify_fail("你的身法不够使用「九阴归元」绝技！\n");
+                return notify_fail("你的身法不夠使用「九陰歸元」絕技！\n");
 
         if ((int)me->query_skill("force", 1)< 150)
-                return notify_fail("你的内功火候不够，难以施展此项绝技！\n");
+                return notify_fail("你的內功火候不夠，難以施展此項絕技！\n");
 
         if ((int)me->query_skill("dodge", 1)< 150)
-                return notify_fail("你的轻功修为不够，不会使用此项绝技！\n");
+                return notify_fail("你的輕功修為不夠，不會使用此項絕技！\n");
 
         if( query("max_neili", me)<1000 )
-                return notify_fail("你的内力修为不够使用「九阴归元」！\n");
+                return notify_fail("你的內力修為不夠使用「九陰歸元」！\n");
 
         if( query("neili", me)<250 )
-                return notify_fail("你此时的内力不足！\n");
+                return notify_fail("你此時的內力不足！\n");
 
-        msg = HIW "$N" HIW "运起九阴真气，双臂骨骼一阵爆响，身形一展，整"
-                  "个人顿时凌空飘起，速度变得异常敏捷。\n" NOR;
+        msg = HIW "$N" HIW "運起九陰真氣，雙臂骨骼一陣爆響，身形一展，整"
+                  "個人頓時凌空飄起，速度變得異常敏捷。\n" NOR;
         
 
         skill = me->query_skill("shexing-lifan", 1);
@@ -49,11 +49,11 @@ int perform(object me, object target)
                 "target": me,
                 "type"  : "dodgeup",
                 "attr"  : "bless",
-                "name"  : "蛇行狸翻·九阴归元",
+                "name"  : "蛇行狸翻·九陰歸元",
                 "time"  : skill/2,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : "你的九阴归元运行完毕，将内力收回丹田。\n",
+                "disa_msg" : "你的九陰歸元運行完畢，將內力收回丹田。\n",
                         
         ]);
         BUFF_D->buffup(buff);

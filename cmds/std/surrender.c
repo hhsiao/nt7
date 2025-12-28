@@ -9,12 +9,12 @@ int main(object me, string arg)
         object ob;
         
         if( !me->is_fighting() )
-                return notify_fail("投降？现在没有人在打你啊....？\n");
+                return notify_fail("投降？現在沒有人在打你啊....？\n");
 
         ob=query_temp("last_opponent", me);
         if( objectp(ob) && living(ob) && ob->is_killing(me) ) {
-                message_vision("$N向$n求饶，但是$N大声说道："
-                        + RANK_D->query_rude(me) + "废话少说，纳命来！\n", ob, me);
+                message_vision("$N向$n求饒，但是$N大聲說道："
+                        + RANK_D->query_rude(me) + "廢話少說，納命來！\n", ob, me);
                 return 1;
         }
 
@@ -24,7 +24,7 @@ int main(object me, string arg)
         else
                 set("score", 0, me);
 
-        message_vision( HIW "\n$N说道：「不打了，不打了，我投降....。」\n\n" NOR, me);
+        message_vision( HIW "\n$N說道：「不打了，不打了，我投降....。」\n\n" NOR, me);
         return 1;
 }
 int help(object me)
@@ -32,7 +32,7 @@ int help(object me)
   write(@HELP
 指令格式 : surrender
  
-这个指令可以让你向敌人投降而终止战斗。
+這個指令可以讓你向敵人投降而終止戰鬥。
  
 HELP
     );

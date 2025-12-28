@@ -8,8 +8,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "颗");
-                set("long", HIR "一颗黑色的药丸。恢复300点气血和最大气血。\n" NOR);
+                set("unit", "顆");
+                set("long", HIR "一顆黑色的藥丸。恢復300點氣血和最大氣血。\n" NOR);
                 set("value", 2000);
                 set("only_do_effect", 1);
         }
@@ -21,11 +21,11 @@ int do_effect(object me)
 {
         if( time()-query_temp("last_eat", me)<2 )
         {
-                write("你刚吃过药，药力还没有完全吸收。\n");
+                write("你剛吃過藥，藥力還沒有完全吸收。\n");
                 return 1;
         }
         set_temp("last_eat", time(), me);
-        message_vision(HIR "$N" HIR "吃下一颗小回丹，只觉舒泰之极！\n" NOR, me);
+        message_vision(HIR "$N" HIR "吃下一顆小回丹，只覺舒泰之極！\n" NOR, me);
 
         if( query("max_qi", me)-query("eff_qi", me) <= 300 )
         {

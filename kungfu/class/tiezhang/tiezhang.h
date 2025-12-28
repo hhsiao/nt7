@@ -2,25 +2,25 @@
 
 int permit_recruit(object ob)
 {
-        return notify_fail("暂时不开放。\n");
-        if( query("detach/铁掌帮", ob) || query("betrayer/铁掌帮", ob) )
+        return notify_fail("暫時不開放。\n");
+        if( query("detach/鐵掌幫", ob) || query("betrayer/鐵掌幫", ob) )
         {
-                command("say 你当年既然已经离开本帮，现在干嘛又要回来？");
+                command("say 你當年既然已經離開本幫，現在幹嘛又要回來？");
                 return 0;
         }
 
         if( query("betrayer/times", ob) )
         {
-                command("say 我铁掌帮虽然不是名门正派，但是你这样的背信弃义之徒还是不会要的！");
+                command("say 我鐵掌幫雖然不是名門正派，但是你這樣的背信棄義之徒還是不會要的！");
                 return 0;
         }
 
         if( query("family/family_name", ob) && 
-            query("family/family_name", ob) != "铁掌帮" && 
-            query("family/family_name", ob) != "绝情谷" && 
+            query("family/family_name", ob) != "鐵掌幫" && 
+            query("family/family_name", ob) != "絕情谷" && 
             query("family/master_name", ob) != "裘千尺" )
         {
-                command("say 你既然已经有了名师指点，还来我们铁掌帮干嘛？");
+                command("say 你既然已經有了名師指點，還來我們鐵掌幫幹嘛？");
                 return 0;
         }
 

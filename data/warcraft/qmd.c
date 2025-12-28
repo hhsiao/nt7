@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;33m血之盟约[2;37;0m[2;37;0m", ({"qmda"}));        
+        set_name("[1;33m血之盟約[2;37;0m[2;37;0m", ({"qmda"}));        
         set("gender", "男性");                
-        set("long", "血之盟约[2;37;0m
-它是星宿弟子的魔幻兽。
+        set("long", "血之盟約[2;37;0m
+它是星宿弟子的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

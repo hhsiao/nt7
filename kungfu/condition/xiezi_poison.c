@@ -8,10 +8,10 @@ int update_condition(object me, int duration)
         if( duration < 1 ) return 0;
         me->receive_wound("qi", 15+random(10));
         me->receive_damage("jing", 25+random(20));
-        tell_object(me, HIG"你感到呼吸困难，四肢渐渐肿了起来。你中的蝎子毒发作了！\n" NOR );
+        tell_object(me, HIG"你感到呼吸困難，四肢漸漸腫了起來。你中的蠍子毒發作了！\n" NOR );
         if( query("eff_jing", me)<0 || query("eff_qi", me)<0 )
         {
-                set_temp("die_reason", "蝎子毒发作死亡");
+                set_temp("die_reason", "蠍子毒發作死亡");
                 return 0;
         }
         me->apply_condition("xiezi_poison", duration - 1);

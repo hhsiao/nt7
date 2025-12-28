@@ -196,12 +196,12 @@ int accept_fight(object who)
                                 command("say 哼！出招吧！");
                                 return 1;
                         } else {
-                                command("say 哼！我小歇片刻再收拾你不迟。");
+                                command("say 哼！我小歇片刻再收拾你不遲。");
                                 return 0;
                         }
                         break;
                 default:
-                        command("say 想倚多为胜，这不是欺人太甚吗！");
+                        command("say 想倚多為勝，這不是欺人太甚嗎！");
                         return 0;
                 }
         }
@@ -211,8 +211,8 @@ int accept_fight(object who)
                 {
                 case "friendly":
                         command("say " + RANK_D->query_self(this_object())
-                                + "怎么可能是" + RANK_D->query_respect(who)
-                                + "的对手？");
+                                + "怎麼可能是" + RANK_D->query_respect(who)
+                                + "的對手？");
                         return 0;
                 case "aggressive":
                 case "killer":
@@ -220,14 +220,14 @@ int accept_fight(object who)
                         break;
                 default:
                         command("say 既然" + RANK_D->query_respect(who)
-                                + "赐教，" + RANK_D->query_self(this_object())
+                                + "賜教，" + RANK_D->query_self(this_object())
                                 + "只好奉陪。");
                         break;
                 }
                 return 1;
         }
 
-        command("say 今天有些疲惫，改日再战也不迟啊。");
+        command("say 今天有些疲憊，改日再戰也不遲啊。");
         return 0;
 }
 
@@ -248,8 +248,8 @@ int accept_hit(object who)
 
 /*
         if( this_object()->is_master() ) {
-                command("say 这位" + RANK_D->query_respect(who)
-                        + "，还是改日再切磋吧！");
+                command("say 這位" + RANK_D->query_respect(who)
+                        + "，還是改日再切磋吧！");
                 return -1;
         }
 */
@@ -266,25 +266,25 @@ int accept_hit(object who)
                 {
                 case "friendly":
                 case "peaceful":
-                        command("say 这位" + RANK_D->query_respect(who)
+                        command("say 這位" + RANK_D->query_respect(who)
                                 + "，且慢！");
                         break;
                 case "aggressive":
                         if( random(t) > 8 ) {
-                                command("say 他奶奶的，怎么这么烦？就让" +
+                                command("say 他奶奶的，怎麼這麼煩？就讓" +
                                         RANK_D->query_self_rude(this_object()) +
-                                        "开开杀戒！");
+                                        "開開殺戒！");
                                 kill_ob(who);
                                 return 1;
                         }
-                        command("say 好个" + RANK_D->query_rude(who) +
+                        command("say 好個" + RANK_D->query_rude(who) +
                                 "，接招！");
                         break;
                 case "killer":
                         if( random(t) > 3 ) {
-                                command("say 哼，找死找到这里来了，" +
+                                command("say 哼，找死找到這裡來了，" +
                                         RANK_D->query_self_rude(this_object()) +
-                                        "手正痒呢！");
+                                        "手正癢呢！");
                                 kill_ob(who);
                                 return 1;
                         }
@@ -296,19 +296,19 @@ int accept_hit(object who)
                                 kill_ob(who);
                                 return 1;
                         }
-                        command("say 这位" + RANK_D->query_respect(who)
+                        command("say 這位" + RANK_D->query_respect(who)
                                 + "，且慢！");
                         break;
                         switch (random(3))
                         {
                         case 0:
-                                command("say 来来来！");
+                                command("say 來來來！");
                                 break;
                         case 1:
-                                command("say 那就较量较量！");
+                                command("say 那就較量較量！");
                                 break;
                         case 2:
-                                command("say 来吧！我还会怕了你不成？");
+                                command("say 來吧！我還會怕了你不成？");
                                 break;
                         }
                         break;
@@ -318,7 +318,7 @@ int accept_hit(object who)
                 case "friendly":
                 case "peaceful":
                         command("say 既然" + RANK_D->query_respect(who)
-                                + "如此无礼，我只有不容情了！");
+                                + "如此無禮，我只有不容情了！");
                         break;
                 case "aggressive":
                 case "killer":
@@ -326,7 +326,7 @@ int accept_hit(object who)
                                 "！你找死。");
                         break;
                 default:
-                        command("say 你不仁，我不义！" + RANK_D->query_rude(who) +
+                        command("say 你不仁，我不義！" + RANK_D->query_rude(who) +
                                 "，可不要怪我。");
                         break;
                 }
@@ -362,7 +362,7 @@ int accept_kill(object who)
                 break;
         default:
                 command("say 好！" + RANK_D->query_rude(who)
-                        + "，咱们就一决生死！");
+                        + "，咱們就一決生死！");
                 break;
         }
         return 1;
@@ -378,7 +378,7 @@ int accept_ansuan(object who)
         if( this_object()->is_guarder())
                 return this_object()->check_enemy(who, "ansuan");
 
-        command(random(2) ? "say 嗯？怎么…" : "say 啊呀，不好！");
+        command(random(2) ? "say 嗯？怎麼…" : "say 啊呀，不好！");
         return 1;
 }
 
@@ -390,17 +390,17 @@ int accept_touxi(object who)
         if( this_object()->is_guarder() )
                 return this_object()->check_enemy(who, "touxi");
 
-        command(random(2) ? "say 嗯！怎么…是谁！" : "say 啊呀…你…");
+        command(random(2) ? "say 嗯！怎麼…是誰！" : "say 啊呀…你…");
         return 1;
 }
 
-// 为任务提供连接
+// 為任務提供連接
 mixed accept_ask(object who, string topic)
 {
         if( this_object()->is_quester() )
                 return QUEST_D->accept_ask(this_object(), who, topic);
 
-        // 下面的程序为宗师任务服务
+        // 下面的程序為宗師任務服務
         if( !this_object()->is_knower() ) {
                 if( query("ultraquest/id", who) == query("id") )
                         return ULTRA_QUEST_D->ask_information(this_object(), who, topic);
@@ -415,7 +415,7 @@ int accept_object(object who, object ob)
         if( this_object()->is_quester() )
                 return QUEST_D->accept_object(this_object(), who, ob);
 
-        // 下面程序为宗师任务服务
+        // 下面程序為宗師任務服務
         id = query("ultraquest/id", who);
 
         if( !id ) return 0;
@@ -426,7 +426,7 @@ int accept_object(object who, object ob)
                 return ULTRA_QUEST_D->accept_object(this_object(), who, ob);
 }
 
-// 回覆任务人物的应酬
+// 回覆任務人物的應酬
 int need_accede(object who)
 {
         string id;
@@ -456,7 +456,7 @@ int return_home(object home)
                 return 0;
 
         // Leave for home now.
-        message("vision", this_object()->name() + "急急忙忙地离开了。\n",
+        message("vision", this_object()->name() + "急急忙忙地離開了。\n",
                 environment(), this_object());
 
         return move(home);
@@ -499,11 +499,11 @@ int heal_self()
                 return 0;
 
         if( !query_skill_mapped("force") )
-                // 没有激发内功
+                // 沒有激發內功
                 return 0;
 
         if( query_temp("no_exert") )
-                // 特殊情况禁止使用内功
+                // 特殊情況禁止使用內功
                 return 0;
 
         my = this_object()->query_entire_dbase();
@@ -511,7 +511,7 @@ int heal_self()
                 return 0;
 
         if( my["jing"] < my["eff_jing"] * 8 / 10 ) {
-                // 精气太少
+                // 精氣太少
                 exert_function("regenerate");
                 return 1;
         }
@@ -519,26 +519,26 @@ int heal_self()
         if( my["qi"] < my["eff_qi"] * 8 / 10 &&
             query_skill("force") >= 150 &&
             my["eff_qi"] > my["max_qi"]/2 ) {
-                // 气血不够充沛并且内功等级高
+                // 氣血不夠充沛並且內功等級高
                 exert_function("recover");
                 return 1;
         }
 
         if( my["eff_qi"] < my["max_qi"] ) {
-                // 受伤了
+                // 受傷了
                 exert_function("heal");
                 return 1;
         }
 
         if( my["eff_jing"] < my["max_jing"] &&
             my["eff_qi"] > my["max_qi"]/2 ) {
-                // 精受到了损失
+                // 精受到了損失
                 exert_function("jingheal");
                 return 1;
         }
 
         if( my["neili"] < my["max_neili"] - 10 ) {
-                // 内力不够充沛，打坐恢复
+                // 內力不夠充沛，打坐恢復
                 cost = my["max_neili"] - my["neili"];
                 if( cost > my["qi"] / 2 ) cost = my["qi"] / 2;
                 command(sprintf("dazuo %d", cost));
@@ -682,9 +682,9 @@ void relay_emote(object me, string verb)
 
         att = query( "attitude" );
 
-        // 如果这个npc身上设了emote这个mapping
-        // 对一些emote有特殊的反应，
-        // 这个反应可以是个string，也可以是个function
+        // 如果這個npc身上設了emote這個mapping
+        // 對一些emote有特殊的反應，
+        // 這個反應可以是個string，也可以是個function
 
         if( relay_msg = query("emote/" + verb) ) {
                 if( stringp(relay_msg) )
@@ -735,7 +735,7 @@ void full_self()
 void attempt_apprentice(object ob)
 {
         command("sigh "+query("id", ob));
-        command("say "+RANK_D->query_self(this_object())+"才疏学浅，不敢误人子弟，这位"+
-                       RANK_D->query_respect(ob)+"另谋高就吧！");
+        command("say "+RANK_D->query_self(this_object())+"才疏學淺，不敢誤人子弟，這位"+
+                       RANK_D->query_respect(ob)+"另謀高就吧！");
         return;
 }

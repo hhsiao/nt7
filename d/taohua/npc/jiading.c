@@ -1,5 +1,5 @@
 //Cracked by Kafei
-//指认yapu_npc的家丁
+//指認yapu_npc的家丁
 //maco
 
 inherit NPC;
@@ -9,7 +9,7 @@ string ask_yapu();
 void create()
 {
         set_name("家丁", ({ "jia ding", "ding" }));
-        set("long", "一个二十出头的小伙子，身板结实，双目有神，似乎练过几年功夫。\n");
+        set("long", "一個二十出頭的小夥子，身板結實，雙目有神，似乎練過幾年功夫。\n");
         set("gender", "男性");
         set("age", 25);
 
@@ -23,10 +23,10 @@ void create()
         set("combat_exp", 10000);
         set("shen_type", 1);
         set("inquiry", ([
-                "哑仆" : (:ask_yapu:),
+                "啞僕" : (:ask_yapu:),
                 "yapu" : (:ask_yapu:),
         ]));
-        create_family("桃花岛", 4, "家丁");
+        create_family("桃花島", 4, "家丁");
         delete("title");
         setup();
 }
@@ -59,14 +59,14 @@ void leave(object me)
         }
 
         else if(objectp(present(me, environment(jiading)))){
-        message_vision(CYN"$N说道：这麽久还捉不到那"+query("find_yapu_real")+"装成的"+query("find_yapu")+"，我看今天是逮不到他了，不如先回归云庄吧。\n"NOR,jiading);
+        message_vision(CYN"$N說道：這麼久還捉不到那"+query("find_yapu_real")+"裝成的"+query("find_yapu")+"，我看今天是逮不到他了，不如先回歸雲莊吧。\n"NOR,jiading);
         command("sigh");
-        message_vision("$N快步离开了。\n"NOR,jiading);
+        message_vision("$N快步離開了。\n"NOR,jiading);
         destruct(jiading);
         }
 
         else {
-        message_vision("$N快步离开了。\n"NOR,jiading);
+        message_vision("$N快步離開了。\n"NOR,jiading);
         destruct(jiading);
         }
 
@@ -81,7 +81,7 @@ void check(object me)
         if( !query("find_yapu", me) )
         {
         command("bye"+query("id", me));
-        message_vision("$N快步离开了。\n"NOR,jiading);
+        message_vision("$N快步離開了。\n"NOR,jiading);
         destruct(jiading);
         }
 
@@ -109,32 +109,32 @@ int do_recognize(string arg)
         if( query("job_master") != query("id", me) )
                 return 0;
         if( query("recognized"))
-                return notify_fail("家丁已经指认出来对方了！\n");
+                return notify_fail("家丁已經指認出來對方了！\n");
         if( !living(jiading) )
-                return notify_fail("嗯....你得先把家丁弄醒再说。\n");
+                return notify_fail("嗯....你得先把家丁弄醒再說。\n");
         if( !arg )
-                return notify_fail("你要家丁指认谁？\n");
+                return notify_fail("你要家丁指認誰？\n");
         if(!objectp(ob = present(arg, environment(this_player()))))
-                return notify_fail("这里没有这个人。\n");
+                return notify_fail("這裡沒有這個人。\n");
         if( query("th_victim", ob) )
-                return notify_fail(ob->name()+"已经被指认出来了！\n");
+                return notify_fail(ob->name()+"已經被指認出來了！\n");
         if(ob == me)
-                return notify_fail("指认你自己？有意义吗？\n");
+                return notify_fail("指認你自己？有意義嗎？\n");
         if(ob == jiading)
-                return notify_fail("要家丁指认家丁？\n");
-        if( query("family/family_name", ob) == "桃花岛" )
-                return notify_fail("你连桃花岛的人物也认不出来？\n");
+                return notify_fail("要家丁指認家丁？\n");
+        if( query("family/family_name", ob) == "桃花島" )
+                return notify_fail("你連桃花島的人物也認不出來？\n");
         if( me->is_busy() || me->is_fighting() )
-                return notify_fail("你正忙着呢。\n");
+                return notify_fail("你正忙著呢。\n");
         if( jiading->is_busy() || jiading->is_fighting() )
-                return notify_fail( "家丁正忙着呢。\n");
+                return notify_fail( "家丁正忙著呢。\n");
         if( query("no_fight", environment(me)) )
-                return notify_fail("这里不能战斗，认出来也没用。\n");
+                return notify_fail("這裡不能戰鬥，認出來也沒用。\n");
 
 
         me->start_busy(1);
 
-        message_vision("$N低声在家丁耳边说道：是不是这个"+ob->name()+"？\n",me,ob);
+        message_vision("$N低聲在家丁耳邊說道：是不是這個"+ob->name()+"？\n",me,ob);
         where = environment(ob);
 
         if( query("yapu_target", ob) == query("id", me )
@@ -148,7 +148,7 @@ int do_recognize(string arg)
         set("real_face", 1, ob);
         set("recognized",1);
 
-        //yapu_npc的身分改换
+        //yapu_npc的身分改換
         {
         set("long",query("real_long",  ob), ob);
         if( query("real_title", ob) )
@@ -238,7 +238,7 @@ int do_recognize(string arg)
                 
         switch(query("real_menpai", ob)){
         case "huashan" :
-        ob->set_name("大盗", ({"da dao", "dao" ,"robber"}) );
+        ob->set_name("大盜", ({"da dao", "dao" ,"robber"}) );
         ob->set_skill("blade", s_level);
         ob->set_skill("sword", s_level);
         ob->set_skill("cuff", s_level);
@@ -261,7 +261,7 @@ int do_recognize(string arg)
         ob->map_skill("blade", "liangyi-dao");
         ob->prepare_skill("cuff", "pishi-poyu");
         ob->prepare_skill("strike", "hunyuan-zhang");
-        set("real_message", HIR"小贩脸色一变，喝道："+RANK_D->query_rude(me)+"原来是黄老邪门下？想捉"+RANK_D->query_self_rude(ob)+"，可没那麽容易！\n"NOR, ob);
+        set("real_message", HIR"小販臉色一變，喝道："+RANK_D->query_rude(me)+"原來是黃老邪門下？想捉"+RANK_D->query_self_rude(ob)+"，可沒那麼容易！\n"NOR, ob);
         addn("gain_exp", random(10)+30, ob);
         addn("gain_pot", random(5)+20, ob);
         ob->add_money("silver", 20+random(31));
@@ -271,7 +271,7 @@ int do_recognize(string arg)
                 break;
                 
         case "dajin" :
-        ob->set_name("杀手", ({"shashou", "shou", "killer"}) );
+        ob->set_name("殺手", ({"shashou", "shou", "killer"}) );
         ob->set_skill("sword", s_level);
         ob->set_skill("cuff", s_level);
         ob->set_skill("taiji-shengong", s_level);
@@ -286,7 +286,7 @@ int do_recognize(string arg)
         ob->map_skill("dodge", "tiyunzong");
         ob->map_skill("sword", "taiji-jian");
         ob->prepare_skill("cuff", "taiji-quan");
-        set("real_message", HIR"书生冷笑一声，道："+RANK_D->query_rude(me)+"，特地前来送死吗？\n"NOR, ob);
+        set("real_message", HIR"書生冷笑一聲，道："+RANK_D->query_rude(me)+"，特地前來送死嗎？\n"NOR, ob);
         set("jiali", 0, ob);
         set("str", 27+random(4), ob);
         ob->carry_object("/clone/anqi/feibiao")->set_amount(2+random(3));
@@ -294,7 +294,7 @@ int do_recognize(string arg)
                 break;
                 
         case "tiezhang" :
-        ob->set_name("恶霸", ({"e ba", "ba"}) );
+        ob->set_name("惡霸", ({"e ba", "ba"}) );
         ob->set_skill("strike", s_level+20);
         ob->set_skill("blade", s_level);
         ob->set_skill("taixuan-gong", level);
@@ -309,7 +309,7 @@ int do_recognize(string arg)
         ob->prepare_skill("strike", "tie-zhang");
         addn("gain_exp", -20, ob);
         addn("gain_pot", -20, ob);
-        set("real_message", HIR"趟子手吃了一惊，脸上陡现杀气，朝$N冲了过来！\n"NOR, ob);
+        set("real_message", HIR"趟子手吃了一驚，臉上陡現殺氣，朝$N衝了過來！\n"NOR, ob);
                 break;
                 
         case "shaolin" :
@@ -334,7 +334,7 @@ int do_recognize(string arg)
         ob->map_skill("sword", "damo-jian");
         ob->map_skill("blade", "xiuluo-dao");
         ob->map_skill("club", "zui-gun");
-        set("real_message", HIR"僧人脸色一变，狞笑道：好哇，你居然认出了"+RANK_D->query_self_rude(ob)+"来，需容你不得！\n"NOR, ob);
+        set("real_message", HIR"僧人臉色一變，獰笑道：好哇，你居然認出了"+RANK_D->query_self_rude(ob)+"來，需容你不得！\n"NOR, ob);
                 switch (random(3)) {
                 case 0 :
                         ob->set_skill("finger", s_level);
@@ -367,10 +367,10 @@ int do_recognize(string arg)
                 break;
                 
         case "xiyu" :
-        ob->set_name("蒙古武将", ({"menggu wujiang", "wujiang", "jiang"}) );
+        ob->set_name("蒙古武將", ({"menggu wujiang", "wujiang", "jiang"}) );
         set("class", "officer", ob);
         set("dali/rank", 3, ob);
-        set("rank_info/rude", "狗鞑子", ob);
+        set("rank_info/rude", "狗韃子", ob);
         ob->set_skill("hamagong", s_level+10);
         ob->set_skill("lingshe-zhang", s_level);
         ob->set_skill("wuxingbu", s_level);
@@ -387,15 +387,15 @@ int do_recognize(string arg)
         ob->map_skill("parry", "luan-blade");
         
         set("real_message", "", ob);
-        message_vision(HIR"胡人双眼一噔，冷笑道：就凭你这"+RANK_D->query_rude(me)+"，也想跟"+RANK_D->query_self_rude(ob)+"作对？\n"NOR, me, ob);
+        message_vision(HIR"胡人雙眼一噔，冷笑道：就憑你這"+RANK_D->query_rude(me)+"，也想跟"+RANK_D->query_self_rude(ob)+"作對？\n"NOR, me, ob);
 
         {
         num = 1+random(3);
-        message_vision(HIR"胡人拍了拍手，身後突然跃出"+chinese_number(num)+"个铁甲护卫，"+chinese_number(num+1)+"人向$N左右包抄！\n"NOR, me, ob);
+        message_vision(HIR"胡人拍了拍手，身後突然躍出"+chinese_number(num)+"個鐵甲護衛，"+chinese_number(num+1)+"人向$N左右包抄！\n"NOR, me, ob);
                     for (i=0; i<num; i++) {
                 huwei = new("/d/taohua/npc/mg_huwei");
                 set("combat_exp", exp/2+random(exp/1000), huwei);
-                set("rank_info/rude", "狗鞑子", huwei);
+                set("rank_info/rude", "狗韃子", huwei);
                 set("max_qi",query("max_qi",  ob)/2, huwei);
                 set("eff_qi",query("max_qi",  ob)/2, huwei);
                 set("max_jing",query("max_jing",  ob)/2, huwei);
@@ -457,7 +457,7 @@ int do_recognize(string arg)
                 break;
                 
         case "mizong" :
-        ob->set_name("护法喇嘛", ({"hufa lama", "hufa", "lama"}) );
+        ob->set_name("護法喇嘛", ({"hufa lama", "hufa", "lama"}) );
         set("class", "lama", ob);
         ob->set_skill("longxiang-banruo", level);
         ob->set_skill("shenkongxing", level);
@@ -480,7 +480,7 @@ int do_recognize(string arg)
         ob->map_skill("blade", "xue-dao");
         ob->map_skill("sword", "mingwang-jian");
         ob->map_skill("staff", "jingang-chu");
-        set("real_message", HIR"穷汉见$N目光瞧来，脸上忽然变得狰狞可怖，叫道："+RANK_D->query_rude(me)+"是桃花岛来的？\n"NOR, ob);
+        set("real_message", HIR"窮漢見$N目光瞧來，臉上忽然變得猙獰可怖，叫道："+RANK_D->query_rude(me)+"是桃花島來的？\n"NOR, ob);
         
         if( query_temp("armor/cloth", ob) )
         destruct(query_temp("armor/cloth", ob));
@@ -524,7 +524,7 @@ int do_recognize(string arg)
         ob->prepare_skill("claw", "sanyin-zhua");
 
         set("real_message", "", ob);
-        message_vision(HIR"女孩眼珠一转，微笑道：这位"+RANK_D->query_respect(me)+"，你该不是要捉我吧？那……我可要先下手。\n"NOR, me);
+        message_vision(HIR"女孩眼珠一轉，微笑道：這位"+RANK_D->query_respect(me)+"，你該不是要捉我吧？那……我可要先下手。\n"NOR, me);
         
         ob->carry_object("/clone/drug/xxqingxin-san");
         ob->carry_object("/d/xingxiu/obj/lianxin");
@@ -538,8 +538,8 @@ int do_recognize(string arg)
         addn("gain_pot", random(5)+10, ob);
 
         if( random(query("combat_exp", me))>2000000 && ob->query_skill("strike")>250 && query("neili", ob)>1000 && random(2) == 1){
-        message_vision("$N把玉笛放到口边，轻轻一吹，只听一阵极尖极细的哨子声远远传了出去。\n", ob);
-        message_vision(HIR"随着哨子声，玉笛里突然飞出蓝印印的一点火星，火星陡地熄灭，随即大亮，蓬的一声响，腾向半空，升起有丈许，这才缓缓降落。\n"NOR, me);
+        message_vision("$N把玉笛放到口邊，輕輕一吹，只聽一陣極尖極細的哨子聲遠遠傳了出去。\n", ob);
+        message_vision(HIR"隨著哨子聲，玉笛裡突然飛出藍印印的一點火星，火星陡地熄滅，隨即大亮，蓬的一聲響，騰向半空，升起有丈許，這才緩緩降落。\n"NOR, me);
         new("/d/xingxiu/obj/flute_fire")->move(environment(me));
         addn("gain_exp", random(20)+50, ob);
         addn("gain_pot", random(10)+30, ob);
@@ -552,7 +552,7 @@ int do_recognize(string arg)
                 weapon->move(ob);
                 weapon->wield();
                 }
-                //设定完成
+                //設定完成
                 message_vision(""+query("real_message", ob)+"",me,ob);
                 ob->kill_ob(me);
                 me->fight_ob(ob);
@@ -560,30 +560,30 @@ int do_recognize(string arg)
         }
 
         }
-        //改换完成
+        //改換完成
         }
         else if( query("name", ob) == query("find_yapu") )
         {
         command("shake");
-        command("say 打扮差不多，不过不是。");
+        command("say 打扮差不多，不過不是。");
         }
 
-        else if( query("race", ob) != "人类" )
+        else if( query("race", ob) != "人類" )
         {
         command("consider");
-        command("say 就算那"+query("find_yapu_real")+"作恶多端，禽兽不如，好歹也还是个人哪……。");
+        command("say 就算那"+query("find_yapu_real")+"作惡多端，禽獸不如，好歹也還是個人哪……。");
         }
 
         else if( query("gender", ob) == "女性" && query("per", ob) >= 30 && query("age", ob)<30 )
         {
         message_vision("家丁呆呆地看著$n……\n",me,ob);
         command("shake");
-        command("say 这位"+ RANK_D->query_respect(me) +"神仙一般的人物，怎麽会是那个"+query("find_yapu_real")+"？");
+        command("say 這位"+ RANK_D->query_respect(me) +"神仙一般的人物，怎麼會是那個"+query("find_yapu_real")+"？");
         }
         else if( query("gender", ob) == "男性" && query("per", ob) >= 30 )
         {
         command("shake");
-        command("say 这位"+ RANK_D->query_respect(me) +"仪表堂堂，岂是那"+query("find_yapu_real")+"可以比拟？");
+        command("say 這位"+ RANK_D->query_respect(me) +"儀表堂堂，豈是那"+query("find_yapu_real")+"可以比擬？");
         }
         else
         {
@@ -605,28 +605,28 @@ int do_bring(string arg)
         if( query("job_master") != query("id", me) )
                 return 0;
         if( !living(jiading) )
-                return notify_fail("嗯....你得先把家丁弄醒再说。\n");
+                return notify_fail("嗯....你得先把家丁弄醒再說。\n");
         if( !arg )
-                return notify_fail("你要家丁带走谁？\n");
+                return notify_fail("你要家丁帶走誰？\n");
         if(!objectp(ob = present(arg, environment(this_player()))))
-                return notify_fail("这里没有这个人。\n");
+                return notify_fail("這裡沒有這個人。\n");
         if(ob == me)
-                return notify_fail("带走自己？你到底在想什麽？\n");
+                return notify_fail("帶走自己？你到底在想什麼？\n");
         if(ob == jiading)
-                return notify_fail("要家丁带走家丁？\n");
+                return notify_fail("要家丁帶走家丁？\n");
         if( query("th_victim", ob) != query("id", me) )
-                return notify_fail("你无法确定"+ob->name()+"是不是你要捉的对象。\n");
+                return notify_fail("你無法確定"+ob->name()+"是不是你要捉的對象。\n");
         if( me->is_busy() || me->is_fighting() )
-                return notify_fail("你正忙着呢。\n");
+                return notify_fail("你正忙著呢。\n");
         if( jiading->is_busy() || jiading->is_fighting() )
-                return notify_fail( "家丁正忙着呢。\n");
+                return notify_fail( "家丁正忙著呢。\n");
 
         switch(query("family/master_name", me)){
-        case "黄药师" :
-        lu = "我陆师兄";
+        case "黃藥師" :
+        lu = "我陸師兄";
         break;
         default:
-        lu = "陆庄主";
+        lu = "陸莊主";
         }
 
         yapu_exp=query("gain_exp", ob);
@@ -639,50 +639,50 @@ int do_bring(string arg)
          && query("yapu_fail", ob) == query("id", me) )
         {
         command("shrug");
-        command("say 怎麽把人打死了？……算了，还是先把它带回去交差吧。");
-        message_vision("家丁将"+ob->name()+"扶了起来背在背上，走掉了。\n",me,ob);
+        command("say 怎麼把人打死了？……算了，還是先把它帶回去交差吧。");
+        message_vision("家丁將"+ob->name()+"扶了起來背在背上，走掉了。\n",me,ob);
         delete("find_yapu", me);
         me->apply_condition("th_yapu_fail", 5);
         destruct(ob);
         destruct(jiading);
         }
         else if( query("th_victim", ob) == query("id", me) && !living(ob)){
-                message_vision(CYN"$N说道：把这"+ob->name()+"处理了！\n"NOR,me,ob);
+                message_vision(CYN"$N說道：把這"+ob->name()+"處理了！\n"NOR,me,ob);
                 command("nod "+getuid(me));
                 
                 if( query_temp("last_damage_from", ob) == me && query("age", ob)<20 && query("shen", me)>1000){
-                message_vision(HIR"家丁掏出一把细长的铁柄小刀，扳开$n的嘴巴，正要斩去$n的舌头……\n"NOR,me,ob);
-                message_vision(CYN"$N忽然说道：且慢！这"+ob->name()+"年纪尚轻，虽然误入歧途，但是未始不能改过。\n"NOR,me,ob);
-                message_vision(CYN"$N说道：你先别动手，直接把$p带回归云庄，交给"+lu+"，由他处理便是。\n"NOR,me,ob);
+                message_vision(HIR"家丁掏出一把細長的鐵柄小刀，扳開$n的嘴巴，正要斬去$n的舌頭……\n"NOR,me,ob);
+                message_vision(CYN"$N忽然說道：且慢！這"+ob->name()+"年紀尚輕，雖然誤入歧途，但是未始不能改過。\n"NOR,me,ob);
+                message_vision(CYN"$N說道：你先別動手，直接把$p帶回歸雲莊，交給"+lu+"，由他處理便是。\n"NOR,me,ob);
                 command("ok");
                 addn("th_exp", yapu_exp, me);
                 addn("th_pot", yapu_pot, me);
                 set("th_help_yapu", 1, me);
                 }
                 else if( query_temp("last_damage_from", ob) == me){
-                message_vision(HIR"家丁掏出一把细长的铁柄小刀，扳开$n的嘴巴，飞快地斩去了$n的舌头，跟着转过刀锋，在$p双耳各刺一刀，立时鲜血泉涌！\n"NOR,me,ob);
-                message_vision(HIR"家丁收起小刀，取出一个瓷瓶，挑出伤药弹在$p断舌和双耳伤处，流血立缓，可是从此也已成聋哑之人。\n"NOR,me,ob);
+                message_vision(HIR"家丁掏出一把細長的鐵柄小刀，扳開$n的嘴巴，飛快地斬去了$n的舌頭，跟著轉過刀鋒，在$p雙耳各刺一刀，立時鮮血泉湧！\n"NOR,me,ob);
+                message_vision(HIR"家丁收起小刀，取出一個瓷瓶，挑出傷藥彈在$p斷舌和雙耳傷處，流血立緩，可是從此也已成聾啞之人。\n"NOR,me,ob);
                 addn("th_exp", yapu_exp, me);
                 addn("th_pot", yapu_pot, me);
                 }
                 else {
-                command("say 虽然不是"+ RANK_D->query_respect(me) +"亲手摆平的，不过总算是逮到这"+RANK_D->query_rude(ob)+"了！");
+                command("say 雖然不是"+ RANK_D->query_respect(me) +"親手擺平的，不過總算是逮到這"+RANK_D->query_rude(ob)+"了！");
                 set_temp("not_me", 1, me);
-                //算成功，不过没reward。
+                //算成功，不過沒reward。
                 }
-        command("say 我现在就把这"+RANK_D->query_rude(ob)+"带回归云庄上。");
-        message_vision("家丁将"+ob->name()+"扶了起来背在背上，走掉了。\n",me,ob);
+        command("say 我現在就把這"+RANK_D->query_rude(ob)+"帶回歸雲莊上。");
+        message_vision("家丁將"+ob->name()+"扶了起來背在背上，走掉了。\n",me,ob);
         set("th_yapu_ok", 1, me);
 
                 if( query_temp("not_me", me)){
-                tell_object(me,"此次工作本来可获得"+yapu_exp+"点桃花exp，"+yapu_pot+"点桃花pot，不过因为不是你自己完成的，所以不算。\n");
+                tell_object(me,"此次工作本來可獲得"+yapu_exp+"點桃花exp，"+yapu_pot+"點桃花pot，不過因為不是你自己完成的，所以不算。\n");
                 log_file("test/yapu_job",
                 sprintf("%s(%s) failed to get %d th_exp and %d th_pot from %s on %s\n", 
                 me->name(),query("id", me),yapu_exp,yapu_pot,ob->name(),ctime(time())));
                 delete_temp("not_me", me);
                 }
                 else {
-                tell_object(me,"此次工作获得"+yapu_exp+"点桃花exp，"+yapu_pot+"点桃花pot。\n");
+                tell_object(me,"此次工作獲得"+yapu_exp+"點桃花exp，"+yapu_pot+"點桃花pot。\n");
                 log_file("test/yapu_job",
                 sprintf("%s(%s) got %d th_exp and %d th_pot from %s on %s\n", 
                 me->name(),query("id", me),yapu_exp,yapu_pot,ob->name(),ctime(time())));
@@ -690,12 +690,12 @@ int do_bring(string arg)
                 }
                 if( query("th_exp", me)>10000){
                 set("th_exp", 10000, me);
-                tell_object(me,"你的桃花经验已经达到10000点的满点，不能再累积了。\n");
+                tell_object(me,"你的桃花經驗已經達到10000點的滿點，不能再累積了。\n");
                 }
 
                 if( query("th_pot", me)>query("max_potential", me)*10){
                 set("th_pot",query("max_potential",  me)*10, me);
-                tell_object(me,"你的桃花潜能已经达到"+(query("max_potential", me)*10)+"点的满点，不能再累积了。\n");
+                tell_object(me,"你的桃花潛能已經達到"+(query("max_potential", me)*10)+"點的滿點，不能再累積了。\n");
                 }
                 
         destruct(ob);
@@ -712,7 +712,7 @@ string ask_yapu()
         me = this_player();
 
         if( query("job_master") == query("id", me)){
-        return "我在"+query("yapu_region")+""+query("yapu_room")+CYN"见到那"+query("find_yapu_real")+"时，看来是个寻常"+query("find_yapu")+"模样。";        
+        return "我在"+query("yapu_region")+""+query("yapu_room")+CYN"見到那"+query("find_yapu_real")+"時，看來是個尋常"+query("find_yapu")+"模樣。";        
         }
         else return 0;
 }
@@ -726,14 +726,14 @@ int do_order(string arg)
         if( query("job_master") != query("id", me) )
                 return 0;
         if( !living(jiading) )
-                return notify_fail("嗯....你得先把家丁弄醒再说。\n");
+                return notify_fail("嗯....你得先把家丁弄醒再說。\n");
         if( me->is_busy() )
-                return notify_fail("你正忙着呢。\n");
+                return notify_fail("你正忙著呢。\n");
         if( jiading->is_busy() || jiading->is_fighting() )
-                return notify_fail( "家丁正忙着呢。\n");
+                return notify_fail( "家丁正忙著呢。\n");
 
         if( arg == "follow" ) {
-        message_vision("$N向家丁招了招手，要他跟上来。\n",me);
+        message_vision("$N向家丁招了招手，要他跟上來。\n",me);
         command("follow"+query("id", me));
         }
         if( arg == "stay" ) {
@@ -742,7 +742,7 @@ int do_order(string arg)
         command("follow none");
         }
         if( arg == "leave" ) {
-        message_vision("$N向家丁一挥手，说道：你先离开这儿！\n",me);
+        message_vision("$N向家丁一揮手，說道：你先離開這兒！\n",me);
         command("nod");
         jiading->random_move();
         }

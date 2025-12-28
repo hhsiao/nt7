@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("五九式轻坦[2;37;0m[2;37;0m", ({"ybx"}));        
+        set_name("五九式輕坦[2;37;0m[2;37;0m", ({"ybx"}));        
         set("gender", "男性");                
-        set("long", "天朝国产坦克[2;37;0m
-它是何琢言的魔幻兽。
+        set("long", "天朝國產坦克[2;37;0m
+它是何琢言的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

@@ -1,4 +1,4 @@
-// Ward.c 王朝战争主控制程序
+// Ward.c 王朝戰爭主控制程序
 // Created by Lonely 2000.7.20
 // Rewrite by Lonely@nitan3 2007/11/28
 
@@ -22,17 +22,17 @@ inherit F_DBASE;
 
 class ward_info
 {
-        int economy;     /* 经济国力 */
-        int horses;      /* 战马数量 */
-        int weapons;     /* 兵甲数量 */
-        int stones;      /* 石木数量 */
-        int arrows;      /* 羽箭数量 */
-        int soilders;    /* 兵源数量 */
-        int moneys;      /* 饷银数量 */
-        int forages;     /* 粮草数量 */
-        int count;       /* 将军人数 */
-        object marshal;  /* 主    帅 */
-        object *generals;/* 将 军 们 */
+        int economy;     /* 經濟國力 */
+        int horses;      /* 戰馬數量 */
+        int weapons;     /* 兵甲數量 */
+        int stones;      /* 石木數量 */
+        int arrows;      /* 羽箭數量 */
+        int soilders;    /* 兵源數量 */
+        int moneys;      /* 餉銀數量 */
+        int forages;     /* 糧草數量 */
+        int count;       /* 將軍人數 */
+        object marshal;  /* 主    帥 */
+        object *generals;/* 將 軍 們 */
 }
 
 class ward_info song_info;
@@ -84,17 +84,17 @@ public string query_continue_time() { return time_period(time() - start_time); }
 public string *query_ip_numbers() { return ip_numbers; }
 #include <war.h>
 
-string *zhen1 = ({ "普通阵","鱼鳞阵","锋矢阵","鹤翼阵","偃月阵","方圆阵","雁行阵","长蛇阵","云龙阵" });
+string *zhen1 = ({ "普通陣","魚鱗陣","鋒矢陣","鶴翼陣","偃月陣","方圓陣","雁行陣","長蛇陣","雲龍陣" });
 mapping zhen2 = ([
-        "普通阵" : ({  0,  -5,   5,  -5,   5,  -5,   5,  -5,   5 }),
-        "鱼鳞阵" : ({  5,   0,  10,  10,  -5,  10,  -5,   5, -10 }),
-        "锋矢阵" : ({ -5, -10,   0,  10,   5,  -5,  10, -10,   5 }),
-        "鹤翼阵" : ({  5,  10, -10,   0,  -5,  -5, -10,  10,   5 }),
-        "偃月阵" : ({ -5,   5,  -5,   5,   0, -10, -10,  10,  10 }),
-        "方圆阵" : ({  5, -10,   5,   5,  10,   0,  -5,  -5,  -5 }),
-        "雁行阵" : ({ -5,   5, -10,  10,  10,   5,   0, -10,  -5 }),
-        "长蛇阵" : ({  5,  -5,  10, -10, -10,   5,  10,   0,  -5 }),
-        "云龙阵" : ({ -5,  10,  -5,  -5, -10,   5,   5,   5,   0 }),
+        "普通陣" : ({  0,  -5,   5,  -5,   5,  -5,   5,  -5,   5 }),
+        "魚鱗陣" : ({  5,   0,  10,  10,  -5,  10,  -5,   5, -10 }),
+        "鋒矢陣" : ({ -5, -10,   0,  10,   5,  -5,  10, -10,   5 }),
+        "鶴翼陣" : ({  5,  10, -10,   0,  -5,  -5, -10,  10,   5 }),
+        "偃月陣" : ({ -5,   5,  -5,   5,   0, -10, -10,  10,  10 }),
+        "方圓陣" : ({  5, -10,   5,   5,  10,   0,  -5,  -5,  -5 }),
+        "雁行陣" : ({ -5,   5, -10,  10,  10,   5,   0, -10,  -5 }),
+        "長蛇陣" : ({  5,  -5,  10, -10, -10,   5,  10,   0,  -5 }),
+        "雲龍陣" : ({ -5,  10,  -5,  -5, -10,   5,   5,   5,   0 }),
 ]);
 int zhen_power(string type1, string type2)
 {
@@ -126,14 +126,14 @@ void remove(string euid)
                 return;
 
         if (sizeof(song_info->generals))
-                error("战争精灵：目前还有玩家正在参与王朝战争，你不能摧毁战争精灵。\n");
+                error("戰爭精靈：目前還有玩家正在參與王朝戰爭，你不能摧毀戰爭精靈。\n");
 }
 */
 void create()
 {
         seteuid(ROOT_UID);
-        set("channel_id", "战争精灵");
-        CHANNEL_D->do_channel(this_object(), "sys", "王朝战争已经启动。");
+        set("channel_id", "戰爭精靈");
+        CHANNEL_D->do_channel(this_object(), "sys", "王朝戰爭已經啟動。");
 
         song_info = new(class ward_info);
         meng_info = new(class ward_info);
@@ -162,7 +162,7 @@ int do_inquiry(object me, string arg)
         if (! objectp(meng_info->marshal) ||
             ! objectp(song_info->marshal))
         {
-                tell_object(me, "现在前方没有任何战事！\n");
+                tell_object(me, "現在前方沒有任何戰事！\n");
                 return 0;
         }
 
@@ -172,7 +172,7 @@ int do_inquiry(object me, string arg)
         {
                 if (! valid_check && ! wizardp(me))
                 {
-                        tell_object(me, "你的军队目前还没有人侦探到蒙古军队的情报。\n");
+                        tell_object(me, "你的軍隊目前還沒有人偵探到蒙古軍隊的情報。\n");
                         return 0;
                 }
 
@@ -198,17 +198,17 @@ int do_inquiry(object me, string arg)
                 if (objectp(total[i]))
                         group+=query_temp("warquest/group", total[i]);
 
-        str = (arg == "meng" ? "蒙古" : "大宋") + "目前国力及军力状况";
+        str = (arg == "meng" ? "蒙古" : "大宋") + "目前國力及軍力狀況";
         str += "\n\n";
         str += HIC "≡" HIY "----------------------------------------------------" HIC "≡\n" NOR;
 
-        str += sprintf(WHT "粮草：%-10d担\t\t    饷银：%-10d两\n" NOR, info[0], info[1]);
-        str += sprintf(WHT "兵甲：%-10d件\t\t    战马：%-10d匹\n" NOR, info[2], info[3]);
+        str += sprintf(WHT "糧草：%-10d擔\t\t    餉銀：%-10d兩\n" NOR, info[0], info[1]);
+        str += sprintf(WHT "兵甲：%-10d件\t\t    戰馬：%-10d匹\n" NOR, info[2], info[3]);
         str += sprintf(WHT "石木：%-10d筐\t\t    羽箭：%-10d支\n" NOR, info[4], info[5]);
-        str += sprintf(WHT "兵源：%-10d人\t\t    国力：%-10d点\n" NOR, info[6], info[7]);
-        str += sprintf(WHT "将领：%-10d名\t\t    士兵：%-10d营\n" NOR, sizeof(total), group);
+        str += sprintf(WHT "兵源：%-10d人\t\t    國力：%-10d點\n" NOR, info[6], info[7]);
+        str += sprintf(WHT "將領：%-10d名\t\t    士兵：%-10d營\n" NOR, sizeof(total), group);
 
-        str += HIC "\n目前尚可调度的将领名册如下：\n" NOR;
+        str += HIC "\n目前尚可調度的將領名冊如下：\n" NOR;
 
         for (i = 0; i < sizeof(total); i++)
         {
@@ -218,16 +218,16 @@ int do_inquiry(object me, string arg)
                 ob = total[i];
 
                 quest=query_temp("warquest/quest", ob);
-                if (! quest) quest = "留守宋营，未派遣中";
+                if (! quest) quest = "留守宋營，未派遣中";
 
-                str += sprintf("%s%-" + (35+color_len(ob->short(1))) + "s 统军：%-10d营\n" NOR,
+                str += sprintf("%s%-" + (35+color_len(ob->short(1))) + "s 統軍：%-10d營\n" NOR,
                                 (ob == me ? HIC : WHT), ob->short(1),
                                 query_temp("warquest/group", ob));
-                str += sprintf("%s任务：%-29s 位置：%s\n", (ob == me ? NOR : NOR), quest, environment(ob)->short(1));
+                str += sprintf("%s任務：%-29s 位置：%s\n", (ob == me ? NOR : NOR), quest, environment(ob)->short(1));
         }
         str += "\n\n";
-        str += "战争已经进行时间 " + query_continue_time() + " \n";
-        str += HIB "已阵亡将领" + chinese_number(info[8] - sizeof(total)) + "名\n" NOR;
+        str += "戰爭已經進行時間 " + query_continue_time() + " \n";
+        str += HIB "已陣亡將領" + chinese_number(info[8] - sizeof(total)) + "名\n" NOR;
         str += HIC "≡" HIY "----------------------------------------------------" HIC "≡\n" NOR;
         write(str);
         return 1;
@@ -360,7 +360,7 @@ void init_marshal(object me)
 {
         object bingfu, kaijia;
 
-        set_temp("title", HIW"大宋兵马大元帅"NOR, me);
+        set_temp("title", HIW"大宋兵馬大元帥"NOR, me);
         set_temp("warquest/party", "song", me);
         set("eff_qi",query("max_qi",  me)+1000*query("degree_jungong", me), me);
         set("qi",query("eff_qi",  me), me);
@@ -381,9 +381,9 @@ void init_marshal(object me)
                 bingfu->move(me);
         }
 
-        tell_object(me, HIC "\n大人，朝中可用之兵已经所剩无几，仅此数营步兵，尚可一战，此次\n" +
-                        "出征，任重道远，无奈事关我大宋国运，还望大人尽力而为，望大人\n" +
-                        "早日得胜，凯旋回朝！御马监有为将军备的千里马，可助大人脚力。\n\n" NOR);
+        tell_object(me, HIC "\n大人，朝中可用之兵已經所剩無幾，僅此數營步兵，尚可一戰，此次\n" +
+                        "出征，任重道遠，無奈事關我大宋國運，還望大人盡力而為，望大人\n" +
+                        "早日得勝，凱旋迴朝！御馬監有為將軍備的千里馬，可助大人腳力。\n\n" NOR);
 
         song_info->count = 1;
         song_info->marshal = me;
@@ -405,7 +405,7 @@ void init_player(object me)
 
         set_temp("warquest/time", time(), me);
         me->move("/d/city2/sying1");
-        tell_object(me, HIY "你定神一看，这才发现自己已经到了" +
+        tell_object(me, HIY "你定神一看，這才發現自己已經到了" +
                             environment(me)->short() + HIY "。\n");
 
         song_info->count++;
@@ -447,17 +447,17 @@ void init_general(object me)
 
         if (party == "meng")
         {
-                // 一个营的军队为2000气
+                // 一個營的軍隊為2000氣
                 addn("eff_qi", degree*2000, me);
                 set("qi",query("eff_qi",  me), me);
                 set_temp("warquest/group", degree, me);
                 set_temp("warquest/array", array1, me);
                 set("degree_jungong", degree, me);
 
-                if (degree > 10) set_temp("title", HIR "蒙古万夫长" NOR, me);
-                else if (degree > 8) set_temp("title", HIG "蒙古军那颜" NOR, me);
-                else if (degree > 5) set_temp("title", HIY "蒙古千夫长" NOR, me);
-                else set_temp("title", HIC "蒙古百夫长" NOR, me);
+                if (degree > 10) set_temp("title", HIR "蒙古萬夫長" NOR, me);
+                else if (degree > 8) set_temp("title", HIG "蒙古軍那顏" NOR, me);
+                else if (degree > 5) set_temp("title", HIY "蒙古千夫長" NOR, me);
+                else set_temp("title", HIC "蒙古百夫長" NOR, me);
 
                 horse = new("/d/city2/meng/horse");
                 horse->move(environment(me));
@@ -486,9 +486,9 @@ void init_general(object me)
 int marshal_die()
 {
         message_ward(CHINESE_D->chinese_date((time()-14*365*24*60*60)) +
-                MAG "，蒙古骑兵大败宋军于襄阳！！\n" +
-                "              宋军主帅 " HIR + query("name", song_info->marshal) + " ( " + query("id", song_info->marshal) + " ) " NOR +
-                MAG "战死沙场，以身殉国！！\n              靖康耻犹未雪，臣子恨何时灭啊！\n" NOR);
+                MAG "，蒙古騎兵大敗宋軍於襄陽！！\n" +
+                "              宋軍主帥 " HIR + query("name", song_info->marshal) + " ( " + query("id", song_info->marshal) + " ) " NOR +
+                MAG "戰死沙場，以身殉國！！\n              靖康恥猶未雪，臣子恨何時滅啊！\n" NOR);
 
         fail_kingwar();
         return 0;
@@ -496,38 +496,38 @@ int marshal_die()
 
 string ask_kingwar(object me)
 {
-        //return "前线暂时没有战事，将军还是请回吧！\n";
+        //return "前線暫時沒有戰事，將軍還是請回吧！\n";
         if (me->query_condition("junquest_fail"))
-                return "大人尚是待罪之身，轻言出兵，恐性命难保啊，还是请回吧！\n";
+                return "大人尚是待罪之身，輕言出兵，恐性命難保啊，還是請回吧！\n";
 
         if( query("degree_jungong", me)<8 )
-                return "大人官低位卑，如何能任一军之帅，难服人心哪？！\n";
+                return "大人官低位卑，如何能任一軍之帥，難服人心哪？！\n";
 
         if (me->query_skill("craft-cognize", 1) < 120)
-                return "大人并不精通兵法，如何能任一军之帅，难服人心哪？！\n";
+                return "大人並不精通兵法，如何能任一軍之帥，難服人心哪？！\n";
 
         if (me->query_skill("array-cognize", 1) < 120)
-                return "大人并不精通行兵布阵，如何能任一军之帅，难服人心哪？！\n";
+                return "大人並不精通行兵佈陣，如何能任一軍之帥，難服人心哪？！\n";
 
 /*
         if( query("kingwar_time", me)+3600>time() )
-                return "大人刚征战归来不久，还是休养一段时间后再说！\n";
+                return "大人剛征戰歸來不久，還是休養一段時間後再說！\n";
 */
 
         if (objectp(song_info->marshal))
         {
                 if (me == song_info->marshal)
-                        return "大人已经经军令在身了，还在这里磨蹭什么啊？！\n";
+                        return "大人已經經軍令在身了，還在這裡磨蹭什麼啊？！\n";
                 else
-                        return "现在已经有" + song_info->marshal->name(1) + "率军出征了，大人可以前去助阵。\n";
+                        return "現在已經有" + song_info->marshal->name(1) + "率軍出征了，大人可以前去助陣。\n";
         }
 
         if (start_kingwar(me))
         {
-                return "大人还是快点起程吧，耽误了行程可就麻烦了！\n";
+                return "大人還是快點起程吧，耽誤了行程可就麻煩了！\n";
         }
 
-        return "似乎出现了点问题，你还是找巫师吧！\n";
+        return "似乎出現了點問題，你還是找巫師吧！\n";
 }
 
 // start war
@@ -540,9 +540,9 @@ int start_kingwar(object me)
         init_marshal(me);
 
         message_ward(CHINESE_D->chinese_date((time() - 14 * 365 * 24 * 60 * 60)) +
-                MAG "蒙古可汗大举南侵，大宋派出\n " +
-                ""+"兵马大元帅"+query("name", me)+MAG+"("+query("id", me)+MAG+")"+
-                MAG + "，兴师北上抗敌......\n" NOR);
+                MAG "蒙古可汗大舉南侵，大宋派出\n " +
+                ""+"兵馬大元帥"+query("name", me)+MAG+"("+query("id", me)+MAG+")"+
+                MAG + "，興師北上抗敵......\n" NOR);
 
         room = get_object("/d/city2/syuanmen1");
         if (objectp(room))
@@ -564,28 +564,28 @@ int start_kingwar(object me)
         meng_info->arrows = 500000;
         meng_info->soilders = 2000000;
 
-        // 布置蒙古军队
+        // 佈置蒙古軍隊
         marshal = new("/d/city2/meng/kehan");
         marshal->move("/d/city2/mying1");
-        set_temp("warquest/quest", "挥军南下，入侵大宋", marshal);
+        set_temp("warquest/quest", "揮軍南下，入侵大宋", marshal);
         meng_info->marshal = marshal;
         meng_info->count = 0;
         init_general(marshal);
         general = new("/d/city2/meng/mengj");
         general->move("/d/city2/mying1");
-        set_temp("warquest/quest", "守卫蒙营，保卫可汗", general);
+        set_temp("warquest/quest", "守衛蒙營，保衛可汗", general);
         init_general(general);
 
         for (i = 0; i < 4; i++)
         {
                 general = new("/d/city2/meng/mengj");
                 general->move("/d/city2/mying");
-                set_temp("warquest/quest", "守卫蒙营，保护可汗", general);
+                set_temp("warquest/quest", "守衛蒙營，保護可汗", general);
                 init_general(general);
                 general = new("/d/city2/meng/mengj");
                 general->move("/d/city2/dhunya");
                 init_general(general);
-                set_temp("warquest/quest", "守卫蒙营，保护可汗", general);
+                set_temp("warquest/quest", "守衛蒙營，保護可汗", general);
         }
 
         if( query("degree_jungong", me)>10 )
@@ -593,7 +593,7 @@ int start_kingwar(object me)
         {
                 general=new("/d/city2/meng/mengj");
                 general->move("/d/city2/caoyuan");
-                set_temp("warquest/quest", "守卫草原，阻止入侵", general);
+                set_temp("warquest/quest", "守衛草原，阻止入侵", general);
                 init_general(general);
         }
 
@@ -602,11 +602,11 @@ int start_kingwar(object me)
         {
                 general = new("/d/city2/meng/mengj");
                 general->move("/d/city2/myuanmen1");
-                set_temp("warquest/quest", "守卫蒙营，阻止入侵", general);
+                set_temp("warquest/quest", "守衛蒙營，阻止入侵", general);
                 init_general(general);
         }
 
-        // 初始化宋朝军队数据
+        // 初始化宋朝軍隊數據
         song_info->economy = 1200000;
         song_info->moneys = 50000000;
         song_info->forages = 240000;
@@ -619,9 +619,9 @@ int start_kingwar(object me)
         jianjun = new("/d/city2/npc/jianjun");
         jianjun->move("/d/city2/sying1");
         init_general(jianjun);
-        set_temp("warquest/quest", "留守宋营，监察军事", jianjun);
+        set_temp("warquest/quest", "留守宋營，監察軍事", jianjun);
 
-        // 布置宋军
+        // 佈置宋軍
         for(i = 0; i < 4; i++)
         {
                 general = new("/d/city2/song/songb");
@@ -646,46 +646,46 @@ int start_kingwar(object me)
 string join_kingwar(object me)
 {
         if (! objectp(song_info->marshal))
-                return "现在前方没有战事，将军您以后再来吧！\n";
+                return "現在前方沒有戰事，將軍您以後再來吧！\n";
 
         if (me == song_info->marshal)
-                return "元帅您不要开玩笑了！\n";
+                return "元帥您不要開玩笑了！\n";
 
         if ((time() - start_time) > 1800)
-                // return "现在前方战事快要结束了，将军您以后再来吧！\n";
-                return "现在前方战事早就开始了，将军您以后再来吧！\n";
+                // return "現在前方戰事快要結束了，將軍您以後再來吧！\n";
+                return "現在前方戰事早就開始了，將軍您以後再來吧！\n";
 
         if (member_array(query_ip_number(me), ip_numbers) != -1
 #ifdef DB_SAVE
          && !MEMBER_D->is_valid_member(query("id", me) )
 #endif
            )
-                return "非会员每个IP上只可一个ID参军，将军您还是以后再来吧！\n";
+                return "非會員每個IP上只可一個ID參軍，將軍您還是以後再來吧！\n";
 
         /*
         if( query("age", me)<12 )
-                return "您还小，以后再来为国效力吧！\n";
+                return "您還小，以後再來為國效力吧！\n";
         */
 
         if( query("combat_exp", me)<100000 )
-                return "其志可嘉，但无奈手无缚鸡之力，您还是请回吧！\n";
+                return "其志可嘉，但無奈手無縛雞之力，您還是請回吧！\n";
 
         /*
         if( query("degree_jungong", me)<1 )
-                return "您的军衔太低微了，到前方估计没什么用啊！\n";
+                return "您的軍銜太低微了，到前方估計沒什麼用啊！\n";
         */
 
         if (member_array(me, song_info->generals) != -1)
-                return "将军您已经披甲上阵了，快到前方去吧！？\n";
+                return "將軍您已經披甲上陣了，快到前方去吧！？\n";
 
 /*
         message_ward(CHINESE_D->chinese_date((time()-14*365*24*60*60)) + MAG "有志之士" + me->name(1) +
-                MAG "奔赴前线加入了支援宋军抗击蒙古军队之列！\n" NOR);
+                MAG "奔赴前線加入了支援宋軍抗擊蒙古軍隊之列！\n" NOR);
 */
 
         init_player(me);
 
-        return "将军您来的正是时候，请马上出发奔赴前线支援吧！\n";
+        return "將軍您來的正是時候，請馬上出發奔赴前線支援吧！\n";
 }
 
 // void heart_beat()
@@ -695,7 +695,7 @@ void auto_beat()
             ! objectp(song_info->marshal))
                 return;
 
-        // 处理自动作战
+        // 處理自動作戰
         auto_fight();
 
         if (time() - start_time > 300)
@@ -717,7 +717,7 @@ void auto_check()
             ! sscanf(room, "/d/wuguan/%*s"))
         {
                 message_ward(CHINESE_D->chinese_date((time()-14*365*24*60*60)) + song_info->marshal->name(1) +
-                        MAG "在战场上临阵脱逃，导致宋军无首领，军心涣散，被蒙古军队全线击败！\n" NOR);
+                        MAG "在戰場上臨陣脫逃，導致宋軍無首領，軍心渙散，被蒙古軍隊全線擊敗！\n" NOR);
                 fail_kingwar();
                 return;
         }
@@ -734,22 +734,22 @@ void auto_check()
                                 song_info->generals -= ({ total[i] });
                                 continue;
                         }
-                        // 检查是否脱离战场
+                        // 檢查是否脫離戰場
                         room = base_name(environment(total[i]));
                         if (! sscanf(room, "/d/city2/%*s") &&
                             ! sscanf(room, "/d/xiangyang/%*s") &&
                             ! sscanf(room, "/d/wuguan/%*s"))
                         {
                                 message("channel:rumor",
-                                        MAG "【军情】大宋：" + total[i]->name(1) +
-                                        MAG "的军队在战场上临阵脱逃，宋军军心开始涣散，战斗力下降！\n" NOR, users());
+                                        MAG "【軍情】大宋：" + total[i]->name(1) +
+                                        MAG "的軍隊在戰場上臨陣脫逃，宋軍軍心開始渙散，戰鬥力下降！\n" NOR, users());
                                 // not in war room
                                 restore_status(total[i]);
                                 song_info->generals -= ({ total[i] });
                                 ip_numbers -= ({ query_ip_number(total[i]) });
                                 continue;
                         }
-                        // 检查率领的军队(压粮没有带兵的除外)
+                        // 檢查率領的軍隊(壓糧沒有帶兵的除外)
                         if( !query_temp("warquest/escort", total[i]) &&
                             !query_temp("warquest/guard", total[i]) &&
                             query_temp("warquest/train", total[i]) &&
@@ -794,14 +794,14 @@ void check_assignment()
                 song_info->economy -= 100000;
                 if( song_info->economy < 1000000 )
                 message("channel:rumor",
-                        MAG "【军情】大宋：蒙古突骑兵潜进襄阳城内烧杀抢掠，急待增加守城兵力！！！\n" NOR, users());
-                // message_ward(MAG "大宋兵马大元帅疏于襄阳的城防工作，蒙古骑兵在襄阳城内烧杀抢掠。\n" NOR);
+                        MAG "【軍情】大宋：蒙古突騎兵潛進襄陽城內燒殺搶掠，急待增加守城兵力！！！\n" NOR, users());
+                // message_ward(MAG "大宋兵馬大元帥疏於襄陽的城防工作，蒙古騎兵在襄陽城內燒殺搶掠。\n" NOR);
         }
         return;
 }
 
-// 军队作战处理
-// 分为手动控制和系统控制
+// 軍隊作戰處理
+// 分為手動控制和系統控制
 void auto_fight()
 {
         object *obs, ob, obb, env, room;
@@ -825,7 +825,7 @@ void auto_fight()
                         if (! living(total[i])) continue;
 
                         ob = total[i];
-                        // 粮草及饷银短缺则出现逃兵
+                        // 糧草及餉銀短缺則出現逃兵
                         if (meng_info->moneys < 1)
                                 addn("eff_qi", -1, ob);
                         if (meng_info->forages < 1)
@@ -836,11 +836,11 @@ void auto_fight()
                         set("qi",query("eff_qi",  ob), ob);
                         set_temp("warquest/group", group, ob);
 
-                        // 兵法辅助攻击-恢复
+                        // 兵法輔助攻擊-恢復
                         if( query_temp("warquest/recover", ob) )
                                 continue;
 
-                        // 兵法辅助攻击-混乱
+                        // 兵法輔助攻擊-混亂
                         if( query_temp("warquest/confusion", ob) )
                         {
                                 set_temp("warquest/recover", 1, ob);
@@ -857,16 +857,16 @@ void auto_fight()
                                 {
                                         obb = obs[j];
                                         if (! obb->is_character() || ! living(obb) ||
-                                            query("race", obb) != "人类" || obb->is_net_dead() )
+                                            query("race", obb) != "人類" || obb->is_net_dead() )
                                                 continue;
 
                                         if( query_temp("warquest/party", obb) != "meng" && !wizardp(obb) )
                                         {
-                                                message_vision(HIW "$N" HIW "大声下令道：骑兵准备！一排排骑兵列出整齐的「" HIY + zhen +
-                                                        HIW "」，\n阳光下的蒙古军刀闪闪发光——>" HBRED "突击" NOR HIW "！！\n" +
-                                                        "$N" HIW "一声令下，万马齐鸣，蒙古骑兵开始了可怕的冲锋！！\n" NOR, ob);
+                                                message_vision(HIW "$N" HIW "大聲下令道：騎兵準備！一排排騎兵列出整齊的「" HIY + zhen +
+                                                        HIW "」，\n陽光下的蒙古軍刀閃閃發光——>" HBRED "突擊" NOR HIW "！！\n" +
+                                                        "$N" HIW "一聲令下，萬馬齊鳴，蒙古騎兵開始了可怕的衝鋒！！\n" NOR, ob);
 
-                                                craft = "突击";
+                                                craft = "突擊";
                                                 set_temp("warquest/attack", 1, ob);
                                                 ob->start_call_out((: call_other, __FILE__, "attack_over", ob :), 10);
                                                 do_attack(ob, obb, zhen, craft, env);
@@ -895,16 +895,16 @@ void auto_fight()
                                 {
                                         obb = obs[j];
                                         if (! obb->is_character() || ! living(obb) ||
-                                            query("race", obb) != "人类" || obb->is_net_dead() )
+                                            query("race", obb) != "人類" || obb->is_net_dead() )
                                                 continue;
 
                                         if( query_temp("warquest/party", obb) != "meng" && !wizardp(obb) )
                                         {
-                                                message_vision(HIC "$N" HIC "大声下令道：弓箭手准备！\n" +
-                                                        "一排排利箭在阳光下闪闪发光——>" HBRED "飞射" NOR HIC "！！\n" +
-                                                        "$N" HIC "一声令下，万弩齐发！\n" NOR, ob);
+                                                message_vision(HIC "$N" HIC "大聲下令道：弓箭手準備！\n" +
+                                                        "一排排利箭在陽光下閃閃發光——>" HBRED "飛射" NOR HIC "！！\n" +
+                                                        "$N" HIC "一聲令下，萬弩齊發！\n" NOR, ob);
 
-                                                craft = "突击";
+                                                craft = "突擊";
                                                 set_temp("warquest/attack", 1, ob);
                                                 ob->start_call_out((: call_other, __FILE__, "attack_over", ob :), 10);
                                                 do_attack(ob, obb, zhen, craft, env, dir, room);
@@ -930,7 +930,7 @@ void auto_fight()
                         ob = total[i];
                         if( query_temp("warquest/group", ob)>0 )
                         {
-                                // 粮草及饷银短缺则出现逃兵
+                                // 糧草及餉銀短缺則出現逃兵
                                 if (song_info->moneys < 1)
                                         addn("eff_qi", -1, ob);
                                 if (song_info->forages < 1)
@@ -947,25 +947,25 @@ void auto_fight()
 
                         if( number>0 && query_temp("warquest/train", ob) )
                         {
-                                tell_object(ob, HIR "你训练出" HIY + chinese_number(number) + HIR "营精锐士兵补充到你的军队中！\n" NOR);
+                                tell_object(ob, HIR "你訓練出" HIY + chinese_number(number) + HIR "營精銳士兵補充到你的軍隊中！\n" NOR);
                                 addn_temp("warquest/group", number, ob);
                         } else
                         if( number<0 && team>0 && !query_temp("warquest/train_begin", ob) )
                         {
                                 if (abs(number) > team) number = team;
                                 else number = abs(number);
-                                tell_object(ob, HIW "你损失了" HIR + chinese_number(number) + HIW "营的士兵！\n" NOR);
+                                tell_object(ob, HIW "你損失了" HIR + chinese_number(number) + HIW "營的士兵！\n" NOR);
                                 addn_temp("warquest/group", -number, ob);
                         }
 
-                        // 判断玩家是否设置为手动控制战斗
+                        // 判斷玩家是否設置為手動控制戰鬥
                         if( !query("env/auto_war", ob))continue;
 
                         zhen=query_temp("warquest/array", ob);
-                        if (! zhen) zhen = "普通阵";
+                        if (! zhen) zhen = "普通陣";
 
                         env = environment(ob);
-                        // 必须有队伍才能攻击
+                        // 必須有隊伍才能攻擊
                         if( !query_temp("warquest/attack", ob) &&
                               query_temp("warquest/group", ob)>0 &&
                             (query_temp("warquest/train", ob) == "cavalry" ||
@@ -1000,16 +1000,16 @@ void auto_fight()
                                                                                         if (! WIELD_CMD->main(ob, "bow"))
                                                                                                 continue;
 
-                                                                                craft = "骑射";
-                                                                                message_vision(HIB "$N" HIB "大声下令道：神弩营列阵「" HIR + zhen +
-                                                                                        HIB "」！\n一排排利箭在阳光下闪闪发光——>" HBRED + craft +
-                                                                                        NOR HIB "！！\n$N" HIB "一声令下，万弩齐发！\n" NOR, ob);
+                                                                                craft = "騎射";
+                                                                                message_vision(HIB "$N" HIB "大聲下令道：神弩營列陣「" HIR + zhen +
+                                                                                        HIB "」！\n一排排利箭在陽光下閃閃發光——>" HBRED + craft +
+                                                                                        NOR HIB "！！\n$N" HIB "一聲令下，萬弩齊發！\n" NOR, ob);
                                                                         } else
                                                                         {
                                                                                 craft = "突破";
                                                                                 ob->move(room);
-                                                                                message_vision(HIC "$N" HIC "将手中宝剑一挥，大喝道：车骑营列阵「" HIR + zhen +
-                                                                                        HIC "」！\n向敌军发起冲锋——>" HBRED + craft + NOR HIC "！！\n" NOR,
+                                                                                message_vision(HIC "$N" HIC "將手中寶劍一揮，大喝道：車騎營列陣「" HIR + zhen +
+                                                                                        HIC "」！\n向敵軍發起衝鋒——>" HBRED + craft + NOR HIC "！！\n" NOR,
                                                                                         ob, obb);
                                                                         }
                                                                         set_temp("warquest/attack", 1, ob);
@@ -1036,9 +1036,9 @@ void auto_fight()
                                                 if( !obb->is_character() || query_temp("warquest/party", obb) != "meng" )
                                                         continue;
 
-                                                craft = "奋战";
-                                                message_vision(HIR "$N" HIR "大声下令道：步兵营列阵！队伍开始排出整齐的「" HIY + zhen +
-                                                        HIR "」！\n在一片闪烁的刀光中，$N" HIR "指挥队伍发起了可怕的冲锋——>" HBYEL +
+                                                craft = "奮戰";
+                                                message_vision(HIR "$N" HIR "大聲下令道：步兵營列陣！隊伍開始排出整齊的「" HIY + zhen +
+                                                        HIR "」！\n在一片閃爍的刀光中，$N" HIR "指揮隊伍發起了可怕的衝鋒——>" HBYEL +
                                                         craft + NOR HIR "！\n" NOR, ob, obb);
                                                 set_temp("warquest/attack", 1, ob);
                                                 ob->start_call_out((: call_other, __FILE__, "attack_over", ob :), 10);
@@ -1071,7 +1071,7 @@ varargs void do_attack(object me, object target, string zhen, string craft,
 
         party=query_temp("warquest/party", me);
 
-        // 守城兵法特殊攻击
+        // 守城兵法特殊攻擊
         if (craft == "落石")
         {
                 for(i=0;i<query_temp("warquest/group", me);i++ )
@@ -1093,19 +1093,19 @@ varargs void do_attack(object me, object target, string zhen, string craft,
 
                         if (random(10) > 1)
                         {
-                                message_vision(HIC "无数擂石及火油从城墙上推下来，$N"
-                                        HIC "一时不备，士兵死伤不少。\n" NOR, target);
-                                message_vision(HIC "$N" HIC "的士兵吆喝着将无数擂石及火油从城墙上推下去，$n"
-                                        HIC "一时不备，士兵死伤不少。\n" NOR, me, target);
+                                message_vision(HIC "無數擂石及火油從城牆上推下來，$N"
+                                        HIC "一時不備，士兵死傷不少。\n" NOR, target);
+                                message_vision(HIC "$N" HIC "的士兵吆喝著將無數擂石及火油從城牆上推下去，$n"
+                                        HIC "一時不備，士兵死傷不少。\n" NOR, me, target);
                                 target->receive_damage("qi", damage, me);
                                 target->receive_wound("qi", damage, me);
                                 addn_temp("warquest/reward", 5, me);
                         } else
                         {
-                                message_vision(HIC "$N" HIC "的士兵吆喝着将无数擂石及火油从城墙上推下去，$n"
-                                        HIC "却早有防备，没有受到损失。\n" NOR, me, target);
-                                message_vision(HIC "无数擂石及火油从城墙上推下来，$N"
-                                        HIC "却早有防备，没有受到损失。\n" NOR, target);
+                                message_vision(HIC "$N" HIC "的士兵吆喝著將無數擂石及火油從城牆上推下去，$n"
+                                        HIC "卻早有防備，沒有受到損失。\n" NOR, me, target);
+                                message_vision(HIC "無數擂石及火油從城牆上推下來，$N"
+                                        HIC "卻早有防備，沒有受到損失。\n" NOR, target);
                                 addn_temp("warquest/reward", 4, me);
                         }
                         if (party == "song")
@@ -1115,7 +1115,7 @@ varargs void do_attack(object me, object target, string zhen, string craft,
                 }
                 return;
         } else
-        if (craft == "射台")
+        if (craft == "射臺")
         {
                 for(i=0;i<query_temp("warquest/group", me);i++ )
                 {
@@ -1136,20 +1136,20 @@ varargs void do_attack(object me, object target, string zhen, string craft,
 
                         if (random(10) < 9)
                         {
-                                message_vision(HIC "无数羽箭从箭楼如飞蝗般射下来，$N"
-                                        HIC "一时不备，士兵死伤不少。\n" NOR, target);
-                                message_vision(HIC "但听一声梆子响，从箭垛后面钻出无数$N的士兵，箭如飞蝗，$n"
-                                        HIC "一时不备，士兵倒下了一片。\n" NOR, me, target);
+                                message_vision(HIC "無數羽箭從箭樓如飛蝗般射下來，$N"
+                                        HIC "一時不備，士兵死傷不少。\n" NOR, target);
+                                message_vision(HIC "但聽一聲梆子響，從箭垛後面鑽出無數$N的士兵，箭如飛蝗，$n"
+                                        HIC "一時不備，士兵倒下了一片。\n" NOR, me, target);
 
                                 target->receive_damage("qi", damage, me);
                                 target->receive_wound("qi", damage, me);
                                 addn_temp("warquest/reward", 5, me);
                         } else
                         {
-                                message_vision(HIC "无数羽箭从箭楼如飞蝗般射下来，$N"
-                                        HIC "一时不备，士兵死伤不少。\n" NOR, target);
-                                message_vision(HIC "但听一声梆子响，从箭垛后面钻出无数$N的士兵，箭如飞蝗，$n"
-                                        HIC "却早有防备，没有受到损失。\n" NOR, me, target);
+                                message_vision(HIC "無數羽箭從箭樓如飛蝗般射下來，$N"
+                                        HIC "一時不備，士兵死傷不少。\n" NOR, target);
+                                message_vision(HIC "但聽一聲梆子響，從箭垛後面鑽出無數$N的士兵，箭如飛蝗，$n"
+                                        HIC "卻早有防備，沒有受到損失。\n" NOR, me, target);
                                 addn_temp("warquest/reward", 4, me);
                         }
                         if (party == "song")
@@ -1160,7 +1160,7 @@ varargs void do_attack(object me, object target, string zhen, string craft,
                 return;
         }
 
-        // 阵法效果
+        // 陣法效果
         count=zhen_power(zhen,query_temp("warquest/array", target));
         points = COMBAT_D->skill_power(me, "parry", SKILL_USAGE_DEFENSE);
 
@@ -1172,7 +1172,7 @@ varargs void do_attack(object me, object target, string zhen, string craft,
 
         if( query_temp("warquest/party", me) == "meng" )
         {
-                // 蒙古军队攻击
+                // 蒙古軍隊攻擊
                 if (! objectp(target) || ! target->is_character())
                 {
                         addn_temp("apply/attack", -count, me);
@@ -1219,8 +1219,8 @@ varargs void do_attack(object me, object target, string zhen, string craft,
                             environment(me) != environment(target))
                                 break;
                         /*
-                        message_vision(HIC "$N" HIC "指挥的蒙古铁骑，万马奔腾，" +
-                                "如狂风骤雨般朝$n" HIC "发起了冲击！！\n" NOR, me, target);
+                        message_vision(HIC "$N" HIC "指揮的蒙古鐵騎，萬馬奔騰，" +
+                                "如狂風驟雨般朝$n" HIC "發起了衝擊！！\n" NOR, me, target);
                         */
 
                         COMBAT_D->do_attack(me,target,query_temp("weapon", me));
@@ -1233,11 +1233,11 @@ varargs void do_attack(object me, object target, string zhen, string craft,
         }
 
         power = 0;
-        if (craft == "奋战" || craft == "突破" || craft == "骑射")
+        if (craft == "奮戰" || craft == "突破" || craft == "騎射")
                 power = points*10/100;
-        else if (craft == "奋斗" || craft == "突进" || craft == "奔射")
+        else if (craft == "奮鬥" || craft == "突進" || craft == "奔射")
                 power = points*20/100;
-        else if (craft == "奋迅" || craft == "突击" || craft == "飞射")
+        else if (craft == "奮迅" || craft == "突擊" || craft == "飛射")
                 power = points*30/100;
 
         power = to_int(pow(to_float(power/100), 1.0 / 3)) * 10;
@@ -1253,11 +1253,11 @@ varargs void do_attack(object me, object target, string zhen, string craft,
                     query_temp("warquest/train", me) == "infantry" )
                 {
                         /*
-                        message_vision(HIR "$N" HIR "指挥的三军杀声雷动，" +
-                                "如狂风骤雨般朝$n发起了攻击！！\n" NOR, me, target);
+                        message_vision(HIR "$N" HIR "指揮的三軍殺聲雷動，" +
+                                "如狂風驟雨般朝$n發起了攻擊！！\n" NOR, me, target);
                         */
                         COMBAT_D->do_attack(me,target,query_temp("weapon", me));
-                        // 杀江洋大盗没有奖励
+                        // 殺江洋大盜沒有獎勵
                         if( query_temp("warquest/party", target) == "meng" )
                                 addn_temp("warquest/reward", 4, me);
                 } else
@@ -1266,7 +1266,7 @@ varargs void do_attack(object me, object target, string zhen, string craft,
                         bow=query_temp("weapon", me);
                         if( bow && query("is_bow", bow) )
                                 bow->do_shoot(query("id", target),me,bow,room,dir,1);
-                        // 杀江洋大盗没有奖励
+                        // 殺江洋大盜沒有獎勵
                         if( query_temp("warquest/party", target) == "meng" )
                                 addn_temp("warquest/reward", 4, me);
                 }
@@ -1274,7 +1274,7 @@ varargs void do_attack(object me, object target, string zhen, string craft,
 
         if( query_temp("warquest/train", me) == "cavalry" )
         {
-                message_vision(HIW "一阵冲杀过后，$N" HIW "率领着宋军骑兵如风" +
+                message_vision(HIW "一陣衝殺過後，$N" HIW "率領著宋軍騎兵如風" +
                         "一般消失了！\n" NOR, me);
                 me->move(env);
         }
@@ -1289,8 +1289,8 @@ varargs void do_attack(object me, object target, string zhen, string craft,
         return;
 }
 
-// 消除军队异常状况
-// 混乱，士气低落...
+// 消除軍隊異常狀況
+// 混亂，士氣低落...
 void recover_status(object me)
 {
         delete_temp("warquest/confusion", me);
@@ -1310,19 +1310,19 @@ void attack_over(object me)
                 return;
 
         if (party == "meng")
-                message_vision(HIB "$N手中军刀一挥，蒙古骑兵攻势一缓，重新" +
-                        "开始列阵，准备发起新一轮的冲击！！\n" NOR, me);
+                message_vision(HIB "$N手中軍刀一揮，蒙古騎兵攻勢一緩，重新" +
+                        "開始列陣，準備發起新一輪的衝擊！！\n" NOR, me);
         else
         if (party == "song")
-                message_vision(HIW "$N" HIW "手中令旗一挥，三军攻势一缓，重新" +
-                        "开始列阵，准备发起新一轮的攻击！！\n" NOR, me);
+                message_vision(HIW "$N" HIW "手中令旗一揮，三軍攻勢一緩，重新" +
+                        "開始列陣，準備發起新一輪的攻擊！！\n" NOR, me);
 
         delete_temp("warquest/attack", me);
 
         return;
 }
 
-// 军队移动处理
+// 軍隊移動處理
 void auto_move()
 {
         mapping move_way;
@@ -1358,17 +1358,17 @@ void auto_move()
 
                         room = environment(ob);
 
-                        // 兵法辅助攻击-陷阱
+                        // 兵法輔助攻擊-陷阱
                         if( query("craft/trap", room) &&
                             query("craft/trap", room) != "meng" && random(10) )
                         {
-                                // 损失一营部队
+                                // 損失一營部隊
                                 ob->receive_damage("qi", 2000);
                                 ob->receive_wound("qi", 2000);
                                 if (! ob->is_busy())
                                         ob->start_busy(2 + random(2));
                                 delete("craft/trap", room);
-                                message_vision(HIB "$N" HIB "率领着一支蒙古突骑兵落入陷阱，损失了部分军队！.....\n" NOR, ob);
+                                message_vision(HIB "$N" HIB "率領著一支蒙古突騎兵落入陷阱，損失了部分軍隊！.....\n" NOR, ob);
                         }
 
                         file = base_name(room);
@@ -1377,7 +1377,7 @@ void auto_move()
                                 if( !query_temp("warquest/attack", ob) )
                                 {
                                         message_ward(CHINESE_D->chinese_date((time() - 14*365*24*60*60)) +
-                                                MAG "蒙古骑兵大败宋军于襄阳！！\n" NOR);
+                                                MAG "蒙古騎兵大敗宋軍於襄陽！！\n" NOR);
 
                                         fail_kingwar();
                                         return;
@@ -1386,20 +1386,20 @@ void auto_move()
                         if (file == "/d/city2/syuanmen1")
                         {
                                 if( query("defence", room)>0 && !query_temp("warquest/break", ob) )
-                                        message("channel:rumor", MAG "【军情】大宋：一名" +
-                                                query_temp("title", ob)+MAG"率领的蒙古突骑兵已经攻到宋军大营，"+
-                                                "宋军吃紧，急待增援！！！\n" NOR, users());
+                                        message("channel:rumor", MAG "【軍情】大宋：一名" +
+                                                query_temp("title", ob)+MAG"率領的蒙古突騎兵已經攻到宋軍大營，"+
+                                                "宋軍吃緊，急待增援！！！\n" NOR, users());
 
                                 if( query("defence", room)>0 )
                                 {
-                                        message_vision("$N将手中长刀一挥。兵将蚁聚，涌至城边，一边架起云梯" +
-                                                "攀越城墙，一边掘土而进。\n", ob);
+                                        message_vision("$N將手中長刀一揮。兵將蟻聚，湧至城邊，一邊架起雲梯" +
+                                                "攀越城牆，一邊掘土而進。\n", ob);
                                         set_temp("warquest/break", 1, ob);
                                         ob->command("break");
                                 } else
                                 if( query_temp("warquest/break", ob)){
-                                        message("channel:rumor", MAG "【军情】大宋：宋军大营" +
-                                                MAG "被蒙古骑兵攻破，形势危急！！！\n" NOR, users());
+                                        message("channel:rumor", MAG "【軍情】大宋：宋軍大營" +
+                                                MAG "被蒙古騎兵攻破，形勢危急！！！\n" NOR, users());
                                         delete_temp("warquest/break", ob);
                                 }
 
@@ -1418,7 +1418,7 @@ void auto_move()
                         if( query_temp("warquest/move_from", ob) )
                                 ob->move(query_temp("warquest/move_from", ob));
 
-                        message_vision(HIB "$N" HIB "率领着一支蒙古突骑兵缓缓地朝宋军大营移动着.....\n" NOR, ob);
+                        message_vision(HIB "$N" HIB "率領著一支蒙古突騎兵緩緩地朝宋軍大營移動著.....\n" NOR, ob);
                         ob->start_busy(2 + random(2));
                 }
         }
@@ -1456,28 +1456,28 @@ void auto_move()
                                                 switch(query_temp("warquest/purchase", ob) )
                                                 {
                                                 case "weapon" :
-                                                        tell_object(ob, HIY "你率领的大军到达了襄阳城，命令部下开始购置兵器和盔甲，\n" +
-                                                                        HIY "你将前线所需兵甲载上马车，又立刻开始了行军的奔程....\n" NOR);
+                                                        tell_object(ob, HIY "你率領的大軍到達了襄陽城，命令部下開始購置兵器和盔甲，\n" +
+                                                                        HIY "你將前線所需兵甲載上馬車，又立刻開始了行軍的奔程....\n" NOR);
                                                         break;
                                                 case "horse"  :
-                                                        tell_object(ob, HIY "你率领的大军到达了襄阳城，命令部下开始购置战马，\n" +
-                                                                        HIY "你将前线所需战马全部带上，又立刻开始了行军的奔程....\n" NOR);
+                                                        tell_object(ob, HIY "你率領的大軍到達了襄陽城，命令部下開始購置戰馬，\n" +
+                                                                        HIY "你將前線所需戰馬全部帶上，又立刻開始了行軍的奔程....\n" NOR);
                                                         break;
                                                 case "stone"  :
-                                                        tell_object(ob, HIY "你率领的大军到达了襄阳城，命令部下开始购置石头和檑木，\n" +
-                                                                        HIY "你将前线所需石木载上马车，又立刻开始了行军的奔程....\n" NOR);
+                                                        tell_object(ob, HIY "你率領的大軍到達了襄陽城，命令部下開始購置石頭和檑木，\n" +
+                                                                        HIY "你將前線所需石木載上馬車，又立刻開始了行軍的奔程....\n" NOR);
                                                         break;
                                                 case "arrow"  :
-                                                        tell_object(ob, HIY "你率领的大军到达了襄阳城，命令部下开始购置羽箭，\n" +
-                                                                        HIY "你将前线所需羽箭载上马车，又立刻开始了行军的奔程....\n" NOR);
+                                                        tell_object(ob, HIY "你率領的大軍到達了襄陽城，命令部下開始購置羽箭，\n" +
+                                                                        HIY "你將前線所需羽箭載上馬車，又立刻開始了行軍的奔程....\n" NOR);
                                                         break;
                                                 case "enlist" :
-                                                        tell_object(ob, HIY "你率领的大军到达了襄阳城，命令部下开始招募新兵，\n" +
-                                                                        HIY "你带上所招募的新兵，又立刻开始了行军的奔程....\n" NOR);
+                                                        tell_object(ob, HIY "你率領的大軍到達了襄陽城，命令部下開始招募新兵，\n" +
+                                                                        HIY "你帶上所招募的新兵，又立刻開始了行軍的奔程....\n" NOR);
                                                         break;
                                                 case "forage" :
-                                                        tell_object(ob, HIY "你率领的解粮大军终于到达了襄阳城，" +
-                                                                        HIY "你将粮草载上马车，又立刻开始了行军的奔程....\n" NOR);
+                                                        tell_object(ob, HIY "你率領的解糧大軍終於到達了襄陽城，" +
+                                                                        HIY "你將糧草載上馬車，又立刻開始了行軍的奔程....\n" NOR);
                                                         break;
                                                 default :
                                                         break;
@@ -1490,8 +1490,8 @@ void auto_move()
                                 {
                                         if (! ob->is_busy())
                                         ob->start_busy(5 + random(5));
-                                        message_vision(HIY "$N" HIY "率领的解粮大军终于到达了京师汴梁，" +
-                                                "$N" HIY "将粮草载上马车，又立刻开始了行军的奔程....\n" NOR, ob);
+                                        message_vision(HIY "$N" HIY "率領的解糧大軍終於到達了京師汴梁，" +
+                                                "$N" HIY "將糧草載上馬車，又立刻開始了行軍的奔程....\n" NOR, ob);
                                         set_temp("warquest/move", "backward", ob);
                                         move_way = backward_way;
                                 }
@@ -1503,53 +1503,53 @@ void auto_move()
                                         switch(query_temp("warquest/purchase", ob) )
                                         {
                                                 case "weapon" :
-                                                        message_vision(HIY "$N" HIY "率领的购置兵甲大军终于到达了襄阳军营，\n" +
-                                                                "$N" HIY "的兵甲及时支援了大军的军备....\n" NOR, ob);
+                                                        message_vision(HIY "$N" HIY "率領的購置兵甲大軍終於到達了襄陽軍營，\n" +
+                                                                "$N" HIY "的兵甲及時支援了大軍的軍備....\n" NOR, ob);
                                                         addn_temp("warquest/reward", 500, ob);
                                                         count = song_info->economy / 20 + random(1000);
                                                         song_info->weapons += count;
-                                                        tell_object(song_info->marshal, HIY "购置兵甲的军马到了，你的军备又增加了！\n" NOR);
+                                                        tell_object(song_info->marshal, HIY "購置兵甲的軍馬到了，你的軍備又增加了！\n" NOR);
                                                         break;
                                                 case "horse"  :
-                                                        message_vision(HIY "$N" HIY "率领的购置战马大军终于到达了襄阳军营，\n" +
-                                                                "$N" HIY "的羽箭及时支援了大军的军备....\n" NOR, ob);
+                                                        message_vision(HIY "$N" HIY "率領的購置戰馬大軍終於到達了襄陽軍營，\n" +
+                                                                "$N" HIY "的羽箭及時支援了大軍的軍備....\n" NOR, ob);
                                                         addn_temp("warquest/reward", 500, ob);
                                                         count = song_info->economy / 40 + random(500);
                                                         song_info->horses += count;
-                                                        tell_object(song_info->marshal, HIY "购置战马的军马到了，你的军备又增加了！\n" NOR);
+                                                        tell_object(song_info->marshal, HIY "購置戰馬的軍馬到了，你的軍備又增加了！\n" NOR);
                                                         break;
                                                 case "stone"  :
-                                                        message_vision(HIY "$N" HIY "率领的购置石木大军终于到达了襄阳军营，\n" +
-                                                                "$N" HIY "的羽箭及时支援了大军的军备....\n" NOR, ob);
+                                                        message_vision(HIY "$N" HIY "率領的購置石木大軍終於到達了襄陽軍營，\n" +
+                                                                "$N" HIY "的羽箭及時支援了大軍的軍備....\n" NOR, ob);
                                                         addn_temp("warquest/reward", 500, ob);
                                                         count = song_info->economy / 20 + random(1000);
                                                         song_info->stones += count;
-                                                        tell_object(song_info->marshal, HIY "购置石木的军马到了，你的军备又增加了！\n" NOR);
+                                                        tell_object(song_info->marshal, HIY "購置石木的軍馬到了，你的軍備又增加了！\n" NOR);
                                                         break;
                                                 case "arrow"  :
-                                                        message_vision(HIY "$N" HIY "率领的购置羽箭大军终于到达了襄阳军营，\n" +
-                                                                "$N" HIY "的羽箭及时支援了大军的军备....\n" NOR, ob);
+                                                        message_vision(HIY "$N" HIY "率領的購置羽箭大軍終於到達了襄陽軍營，\n" +
+                                                                "$N" HIY "的羽箭及時支援了大軍的軍備....\n" NOR, ob);
                                                         addn_temp("warquest/reward", 500, ob);
                                                         count = song_info->economy / 20 + random(1000);
                                                         song_info->arrows += count;
-                                                        tell_object(song_info->marshal, HIY "购置羽箭的军马到了，你的军备又增加了！\n" NOR);
+                                                        tell_object(song_info->marshal, HIY "購置羽箭的軍馬到了，你的軍備又增加了！\n" NOR);
                                                         break;
                                                 case "enlist" :
-                                                        message_vision(HIY "$N" HIY "率领的招募新兵大军终于到达了襄阳军营，\n" +
-                                                                "$N" HIY "的新兵及时支援了大军的兵源....\n" NOR, ob);
+                                                        message_vision(HIY "$N" HIY "率領的招募新兵大軍終於到達了襄陽軍營，\n" +
+                                                                "$N" HIY "的新兵及時支援了大軍的兵源....\n" NOR, ob);
                                                         addn_temp("warquest/reward", 500, ob);
                                                         count = song_info->economy / 20 + random(1000);
                                                         song_info->soilders += count;
-                                                        tell_object(song_info->marshal, HIY "招募新兵的军马到了，你的新兵又增加了！\n" NOR);
+                                                        tell_object(song_info->marshal, HIY "招募新兵的軍馬到了，你的新兵又增加了！\n" NOR);
                                                         break;
                                                 case "forage" :
-                                                        message_vision(HIY "$N" HIY "率领的解粮大军终于到达了襄阳军营，\n" +
-                                                                "$N" HIY "的粮草及时支援了大军的补给....\n" NOR, ob);
+                                                        message_vision(HIY "$N" HIY "率領的解糧大軍終於到達了襄陽軍營，\n" +
+                                                                "$N" HIY "的糧草及時支援了大軍的補給....\n" NOR, ob);
 
                                                         addn_temp("warquest/reward", 500, ob);
                                                         count = song_info->economy / 5 + random(10000);
                                                         song_info->forages += count;
-                                                        tell_object(song_info->marshal, HIY "押解粮草的军马到了，你的补给又增加了！\n" NOR);
+                                                        tell_object(song_info->marshal, HIY "押解糧草的軍馬到了，你的補給又增加了！\n" NOR);
                                                         break;
                                                 default :
                                                         break;
@@ -1583,13 +1583,13 @@ void auto_move()
                         case "horse"  :
                         case "stone"  :
                         case "arrow"  :
-                                message_vision(YEL "$N率领着购置军备大队人马不分昼夜地行进着.....\n", ob);
+                                message_vision(YEL "$N率領著購置軍備大隊人馬不分晝夜地行進著.....\n", ob);
                                 break;
                         case "enlist" :
-                                message_vision(YEL "$N率领着招募新兵的大队人马不分昼夜地行进着.....\n", ob);
+                                message_vision(YEL "$N率領著招募新兵的大隊人馬不分晝夜地行進著.....\n", ob);
                                 break;
                         case "forage" :
-                                message_vision(YEL "$N率领着押运粮草大队人马不分昼夜地行进着.....\n", ob);
+                                message_vision(YEL "$N率領著押運糧草大隊人馬不分晝夜地行進著.....\n", ob);
                                 break;
                         default :
                                 break;
@@ -1602,7 +1602,7 @@ void auto_move()
         return;
 }
 
-// 处理军需物资消耗
+// 處理軍需物資消耗
 void auto_cost()
 {
         int i, count = 0;
@@ -1674,13 +1674,13 @@ void auto_cost()
         if (song_info->moneys < 1 && ! have1)
         {
                 message("channel:rumor",
-                        MAG "【军情】大宋：饷银短缺军队出现逃兵，士气下降！！\n" NOR, users());
+                        MAG "【軍情】大宋：餉銀短缺軍隊出現逃兵，士氣下降！！\n" NOR, users());
                 have1 = 1;
         }
         if (song_info->forages < 1 && ! have2)
         {
                 message("channel:rumor",
-                        MAG "【军情】大宋：粮草短缺军队出现逃兵，士气下降！！\n" NOR, users());
+                        MAG "【軍情】大宋：糧草短缺軍隊出現逃兵，士氣下降！！\n" NOR, users());
                 have2 = 1;
         }
 
@@ -1717,7 +1717,7 @@ void auto_train()
                         if (! type)
                         {
                                 delete_temp("warquest/train_begin", ob);
-                                tell_object(ob, "元帅并没有分派给你训练队伍的命令！\n");
+                                tell_object(ob, "元帥並沒有分派給你訓練隊伍的命令！\n");
                                 continue;
                         }
 
@@ -1725,35 +1725,35 @@ void auto_train()
                             || query("train", room) != type )
                         {
                                 delete_temp("warquest/train_begin", ob);
-                                tell_object(ob, "请你到指定的兵营里面训练新兵！\n");
+                                tell_object(ob, "請你到指定的兵營裡面訓練新兵！\n");
                                 continue;
                         }
 
                         if (song_info->forages < 12000)
                         {
                                 delete_temp("warquest/train_begin", ob);
-                                tell_object(ob,"由于粮草不足，军队新兵的训练被迫终止！\n");
+                                tell_object(ob,"由於糧草不足，軍隊新兵的訓練被迫終止！\n");
 
                                 tell_object(song_info->marshal,
-                                        HIY "由于粮草不足，你的队伍被迫终止了训练！\n" NOR);
+                                        HIY "由於糧草不足，你的隊伍被迫終止了訓練！\n" NOR);
                                 continue;
                         }
 
                         if (song_info->soilders < 200)
                         {
                                 delete_temp("warquest/train_begin", ob);
-                                tell_object(ob,"由于兵源不足，军队无新兵可训练！\n");
+                                tell_object(ob,"由於兵源不足，軍隊無新兵可訓練！\n");
                                 tell_object(song_info->marshal,
-                                        HIY "由于兵源不足，你的队伍被迫终止了训练新兵！\n" NOR);
+                                        HIY "由於兵源不足，你的隊伍被迫終止了訓練新兵！\n" NOR);
                                 continue;
                         }
 
                         if (song_info->weapons < 400)
                         {
                                 delete_temp("warquest/train_begin", ob);
-                                tell_object(ob,"由于兵甲不足，军队新兵的训练被迫终止！\n");
+                                tell_object(ob,"由於兵甲不足，軍隊新兵的訓練被迫終止！\n");
                                 tell_object(song_info->marshal,
-                                        HIY "由于兵器不足，你的队伍被迫终止了训练新兵！\n" NOR);
+                                        HIY "由於兵器不足，你的隊伍被迫終止了訓練新兵！\n" NOR);
                                 continue;
                         }
 
@@ -1761,27 +1761,27 @@ void auto_train()
                             song_info->horses < 200)
                         {
                                 delete_temp("warquest/train_begin", ob);
-                                tell_object(ob,"由于战马不足，军队新兵的训练被迫终止！\n");
+                                tell_object(ob,"由於戰馬不足，軍隊新兵的訓練被迫終止！\n");
                                 tell_object(song_info->marshal,
-                                        HIY "由于战马不足，你的队伍被迫终止了训练新兵！\n" NOR);
+                                        HIY "由於戰馬不足，你的隊伍被迫終止了訓練新兵！\n" NOR);
                                 continue;
                         }
 
                         if( query_temp("warquest/group", ob)>query("degree_jungong", ob) )
                         {
                                 delete_temp("warquest/train_begin", ob);
-                                tell_object(ob,"你带兵的能力不足，训练不了更庞大精锐的队伍了！\n");
+                                tell_object(ob,"你帶兵的能力不足，訓練不了更龐大精銳的隊伍了！\n");
 
                                 tell_object(song_info->marshal,
-                                        HIY "你又训练出一支的精锐部队了！\n" NOR);
+                                        HIY "你又訓練出一支的精銳部隊了！\n" NOR);
                                 continue;
                         }
 
                         if( random(query("degree_jungong", ob))>1 )
                         {
-                                message_vision(HIW "$N将手中令旗一挥，新兵开始集结，" +
-                                        "开始排列着不同的阵形，忽又散开，\n合时井然有序，分" +
-                                        "时杂而不乱，看来$N真乃深谙用兵之道的良将啊！\n" NOR, ob);
+                                message_vision(HIW "$N將手中令旗一揮，新兵開始集結，" +
+                                        "開始排列著不同的陣形，忽又散開，\n合時井然有序，分" +
+                                        "時雜而不亂，看來$N真乃深諳用兵之道的良將啊！\n" NOR, ob);
 
                                 addn("eff_qi", 200, ob);
                                 song_info->soilders -= 200;
@@ -1789,9 +1789,9 @@ void auto_train()
                                 if (type == "archer" || type == "cavalry")
                                         song_info->horses -= 200;
                         } else
-                                message_vision(HIY "$N将手中令旗一挥，可是新兵好象乱哄哄的，" +
-                                        "根本不听$N的指挥调遣，\n$N直气得吹胡子瞪眼！！！\n" NOR, ob);
-                        // 粮草额外消耗
+                                message_vision(HIY "$N將手中令旗一揮，可是新兵好象亂哄哄的，" +
+                                        "根本不聽$N的指揮調遣，\n$N直氣得吹鬍子瞪眼！！！\n" NOR, ob);
+                        // 糧草額外消耗
                         song_info->forages -= 20;
                 }
         }
@@ -1805,20 +1805,20 @@ int check_out(object me)
         string msg;
 //      string room;
 
-        tell_object(me, HIR "\n你乘着混乱，逃回元帅大营，又饥有渴，已到半昏迷状态！\n" NOR);
+        tell_object(me, HIR "\n你乘著混亂，逃回元帥大營，又飢有渴，已到半昏迷狀態！\n" NOR);
         if (ob = me->query_last_damage_from())
         {
-                msg = MAG + me->name(1) + MAG "的军队被" + ob->name(1) + MAG "的军队杀的全军覆没，一人逃回大营。" NOR;
+                msg = MAG + me->name(1) + MAG "的軍隊被" + ob->name(1) + MAG "的軍隊殺的全軍覆沒，一人逃回大營。" NOR;
         } else
-                msg = MAG + me->name(1) + MAG "的军队全军覆没，一人逃回宋军大营。" NOR;
+                msg = MAG + me->name(1) + MAG "的軍隊全軍覆沒，一人逃回宋軍大營。" NOR;
 
-        message("channel:rumor", MAG "【军情】大宋：" + msg + "\n" NOR, users());
+        message("channel:rumor", MAG "【軍情】大宋：" + msg + "\n" NOR, users());
 
         me->move("/d/city2/sying1");
-        message("vision", "一个黑影倏的窜了过来，随即就是“啪”的"
-                "一声，就见" + me->name() +"摔倒了地上，一副半死不"
-                "活的样子。\n", environment(me), ({ me }));
-        tell_object(me, "半昏半迷中，你觉得被人拎了起来，又"
+        message("vision", "一個黑影倏的竄了過來，隨即就是“啪”的"
+                "一聲，就見" + me->name() +"摔倒了地上，一副半死不"
+                "活的樣子。\n", environment(me), ({ me }));
+        tell_object(me, "半昏半迷中，你覺得被人拎了起來，又"
                     "重重的摔倒了地上。\n");
         if (! living(me))
                 me->revive();
@@ -1828,17 +1828,17 @@ int check_out(object me)
 // overide function of quit
 int check_quit(object me)
 {
-           message("channel:rumor", MAG "【军情】大宋：" + MAG + me->name(1) + "在战场上临阵脱逃。\n", users());
+           message("channel:rumor", MAG "【軍情】大宋：" + MAG + me->name(1) + "在戰場上臨陣脫逃。\n", users());
         restore_status(me);
 
         if (arrayp(song_info->generals) && sizeof(song_info->generals))
                 song_info->generals -= ({ me });
 
-        tell_object(me, "你一口气逃出了战场，来到扬州中央广场。\n");
+        tell_object(me, "你一口氣逃出了戰場，來到揚州中央廣場。\n");
 
         // continue run quit function
         me->move("/d/city/guangchang");
-        message("vision", "只见" + me->name() + "慌里慌张的跑了过来。\n",
+        message("vision", "只見" + me->name() + "慌里慌張的跑了過來。\n",
                 environment(me), ({ me }));
 
         ip_numbers -= ({ query_ip_number(me) });
@@ -1849,8 +1849,8 @@ int general_die(object me)
 {
         delete_temp("warquest", me);
         message_ward(CHINESE_D->chinese_date((time()-14*365*24*60*60)) +
-                MAG"，宋军将领"HIR+query("name", me)+"("+query("id", me)+")"NOR+
-                MAG "战死沙场，以身殉国！！\n" NOR);
+                MAG"，宋軍將領"HIR+query("name", me)+"("+query("id", me)+")"NOR+
+                MAG "戰死沙場，以身殉國！！\n" NOR);
 
         if (arrayp(song_info->generals) && sizeof(song_info->generals))
                 song_info->generals -= ({ me });
@@ -1866,13 +1866,13 @@ void fail_kingwar()
 
         remove_enemy();
         message_ward(CHINESE_D->chinese_date((time() - 14*365*24*60*60)) +
-                MAG "宋军被蒙古军队击败了，大宋派出使者割地求和！！\n" NOR);
+                MAG "宋軍被蒙古軍隊擊敗了，大宋派出使者割地求和！！\n" NOR);
 
         if (objectp(song_info->marshal))
         {
                 restore_status(song_info->marshal);
                 song_info->marshal->move("/d/city/guangchang");
-                message("vision", "只见" + song_info->marshal->name() + "走了过来。\n",
+                message("vision", "只見" + song_info->marshal->name() + "走了過來。\n",
                         environment(song_info->marshal), ({ song_info->marshal }));
                 song_info->marshal->apply_condition("junquest_fail", 50);
         }
@@ -1887,7 +1887,7 @@ void fail_kingwar()
                                 continue;
                         restore_status(total[i]);
                         total[i]->move("/d/city/guangchang");
-                        message("vision", "只见" + total[i]->name() + "走了过来。\n",
+                        message("vision", "只見" + total[i]->name() + "走了過來。\n",
                                 environment(total[i]), ({ total[i] }));
                 }
         }
@@ -1902,7 +1902,7 @@ void win_kingwar()
 
         remove_enemy();
         message_ward(CHINESE_D->chinese_date((time() - 14*365*24*60*60)) +
-                MAG "宋军英勇的击败了蒙古军队，迫使蒙古军队向大宋求和！\n" NOR);
+                MAG "宋軍英勇的擊敗了蒙古軍隊，迫使蒙古軍隊向大宋求和！\n" NOR);
         give_bouns();
         restore_kingwar();
         return;
@@ -1919,7 +1919,7 @@ void finish_kingwar()
 
         remove_enemy();
         message_ward(CHINESE_D->chinese_date((time() - 14*365*24*60*60)) +
-                MAG + "宋军经过艰苦的抵抗，使得蒙古军队久攻不下，终于撤退了！\n" NOR);
+                MAG + "宋軍經過艱苦的抵抗，使得蒙古軍隊久攻不下，終於撤退了！\n" NOR);
         give_bouns();
         restore_kingwar();
         return;
@@ -1938,8 +1938,8 @@ void remove_enemy()
                         {
                                 enemys[j]->remove_all_killer();
                         }
-                        tell_room(environment(enemys[j]), HIW "只见" + enemys[j]->name() +
-                                  "突然哈哈大笑几声后，率领军队不见了！\n");
+                        tell_room(environment(enemys[j]), HIW "只見" + enemys[j]->name() +
+                                  "突然哈哈大笑幾聲後，率領軍隊不見了！\n");
                         destruct(enemys[j]);
                 }
         }
@@ -1950,12 +1950,12 @@ void remove_enemy()
                         if (enemys[j]->is_fighting())
                         {
                                 enemys[j]->remove_all_killer();
-                                tell_room(environment(enemys[j]), HIW "只见" + enemys[j]->name() +
-                                          "突然哈哈大笑几声，迅速攻出几招，跳出战圈率领军队不见了。\n");
+                                tell_room(environment(enemys[j]), HIW "只見" + enemys[j]->name() +
+                                          "突然哈哈大笑幾聲，迅速攻出幾招，跳出戰圈率領軍隊不見了。\n");
                         }
                         else {
-                                tell_room(environment(enemys[j]), HIW "只见" + enemys[j]->name() +
-                                          "突然脸色大喜，急急忙忙地率领军队不见了。\n");
+                                tell_room(environment(enemys[j]), HIW "只見" + enemys[j]->name() +
+                                          "突然臉色大喜，急急忙忙地率領軍隊不見了。\n");
                         }
                         destruct(enemys[j]);
                 }
@@ -1967,12 +1967,12 @@ void remove_enemy()
                         if (enemys[j]->is_fighting())
                         {
                                 enemys[j]->remove_all_killer();
-                                tell_room(environment(enemys[j]), HIW "只见" + enemys[j]->name() +
-                                        "突然哈哈大笑几声，迅速攻出几招，跳出战圈率领军队不见了。\n");
+                                tell_room(environment(enemys[j]), HIW "只見" + enemys[j]->name() +
+                                        "突然哈哈大笑幾聲，迅速攻出幾招，跳出戰圈率領軍隊不見了。\n");
                         }
                         else {
-                                tell_room(environment(enemys[j]), HIW "只见" + enemys[j]->name()
-                                                  + "突然脸色大喜，急急忙忙地率领军队不见了。\n");
+                                tell_room(environment(enemys[j]), HIW "只見" + enemys[j]->name()
+                                                  + "突然臉色大喜，急急忙忙地率領軍隊不見了。\n");
                         }
                         destruct(enemys[j]);
                 }
@@ -1985,12 +1985,12 @@ void remove_enemy()
                         if (enemys[j]->is_fighting())
                         {
                                 enemys[j]->remove_all_killer();
-                                tell_room(environment(enemys[j]), HIW "只见" + enemys[j]->name()
-                                                  + "突然面色一变，迅速攻出几招，跳出战圈率领军队不见了。\n");
+                                tell_room(environment(enemys[j]), HIW "只見" + enemys[j]->name()
+                                                  + "突然面色一變，迅速攻出幾招，跳出戰圈率領軍隊不見了。\n");
                         }
                         else {
-                                tell_room(environment(enemys[j]), HIW "只见" + enemys[j]->name()
-                                                  + "掐值一算，突然脸色大变，急急忙忙地率领军队不见了。\n");
+                                tell_room(environment(enemys[j]), HIW "只見" + enemys[j]->name()
+                                                  + "掐值一算，突然臉色大變，急急忙忙地率領軍隊不見了。\n");
                         }
                         song_info->generals -= ({ enemys[j] });
                         destruct(enemys[j]);
@@ -2037,7 +2037,7 @@ void remove_enemy()
 void message_ward(string msg)
 {
         // CHANNEL_D->do_channel(this_object(), "rumor", msg);
-        message("channel:rumor", MAG "【史记】" + msg + NOR, users());
+        message("channel:rumor", MAG "【史記】" + msg + NOR, users());
 }
 
 // remove overide function
@@ -2201,17 +2201,17 @@ void give_bouns()
         ob->move(song_info->marshal, 1);
 */
 
-        message("channel:rumor", HIY "【京城】奉天承命，皇帝诏曰：\n" +
-               "            " + song_info->marshal->name(1) + HIY "抗蒙有功，赏黄金千两，绸缎五百匹，美女十名，" +
-                "记军功 " HIR + chinese_number(jungong) +
-                HIY " 策，钦此！\n\n" NOR, users());
+        message("channel:rumor", HIY "【京城】奉天承命，皇帝詔曰：\n" +
+               "            " + song_info->marshal->name(1) + HIY "抗蒙有功，賞黃金千兩，綢緞五百匹，美女十名，" +
+                "記軍功 " HIR + chinese_number(jungong) +
+                HIY " 策，欽此！\n\n" NOR, users());
 
-        tell_object(song_info->marshal, HIW "因抗蒙有功，你获得了 " + HIR + chinese_number(jungong) +
-                          HIW " 策军功！！\n" NOR);
+        tell_object(song_info->marshal, HIW "因抗蒙有功，你獲得了 " + HIR + chinese_number(jungong) +
+                          HIW " 策軍功！！\n" NOR);
 
         restore_status(song_info->marshal);
         song_info->marshal->move("/d/city/guangchang");
-        message("vision", "只见" + song_info->marshal->name() + "走了过来。\n",
+        message("vision", "只見" + song_info->marshal->name() + "走了過來。\n",
                 environment(song_info->marshal), ({ song_info->marshal }));
 
         if (arrayp(total) && sizeof(total) > 0)
@@ -2223,7 +2223,7 @@ void give_bouns()
                         if (total[i] == song_info->marshal)
                                 continue;
 
-                        tell_object(total[i], HIR "蒙古军队撤兵了，准备班师回朝吧！\n" NOR);
+                        tell_object(total[i], HIR "蒙古軍隊撤兵了，準備班師回朝吧！\n" NOR);
 
                         //rew = total[i]->query("jungong");
                         reward=query_temp("warquest/reward", total[i]);
@@ -2280,12 +2280,12 @@ void give_bouns()
                         }
 */
 
-                        tell_object(total[i], HIW "因抗蒙有功，你获得了 " + HIR + chinese_number(jungong) +
-                                              HIW " 策军功！！\n" NOR);
+                        tell_object(total[i], HIW "因抗蒙有功，你獲得了 " + HIR + chinese_number(jungong) +
+                                              HIW " 策軍功！！\n" NOR);
 
                         restore_status(total[i]);
                         total[i]->move("/d/city/guangchang");
-                        message("vision", "只见" + total[i]->name() + "走了过来。\n",
+                        message("vision", "只見" + total[i]->name() + "走了過來。\n",
                                 environment(total[i]), ({ total[i] }));
                 }
         }
@@ -2318,7 +2318,7 @@ int continue_kingwar(string arg)
                                 general = new("/d/city2/meng/mengb");
                                 general->move(room);
                                 init_general(general);
-                                set_temp("warquest/quest", "攻打宋营，入侵大宋", general);
+                                set_temp("warquest/quest", "攻打宋營，入侵大宋", general);
                         }
                 }
         } else
@@ -2332,7 +2332,7 @@ int continue_kingwar(string arg)
                         general->move(room);
                         init_general(general);
                         tell_object(song_info->marshal,
-                                HIR "朝廷派遣支援前线的一名宋军将领到了，赶快派遣他任务吧！！！\n" NOR);
+                                HIR "朝廷派遣支援前線的一名宋軍將領到了，趕快派遣他任務吧！！！\n" NOR);
                 }
         }
 
@@ -2348,37 +2348,37 @@ string do_assign(object me, string arg)
         int i, count;
 
         if (! arg || sscanf(arg, "%s to %s", who, what) != 2)
-                return "请用 paiqian sb to do sth. 来发布号令！\n";
+                return "請用 paiqian sb to do sth. 來發布號令！\n";
 
         if (who != "all" && ! objectp(ob = present(who, environment(me))))
-                return "这里没有你可以调度的这名将领！\n";
+                return "這裡沒有你可以調度的這名將領！\n";
 
         if (who == "all" && (what != "battle" || what != "ST-chuzheng"))
-                return "请用 paiqian sb to do sth. 来发布号令！\n";
+                return "請用 paiqian sb to do sth. 來發布號令！\n";
 
         if( query_temp("warquest/party", ob) != "song" )
-                return "对方不是宋军，如何供你调度？！\n";
+                return "對方不是宋軍，如何供你調度？！\n";
 
         /*
         if( query("degree_jungong", ob)<1 )
-                return "对方的统帅才能太低了，难堪大用！\n";
+                return "對方的統帥才能太低了，難堪大用！\n";
         */
 
         if (ob == me)
                 return "自己命令自己？你不嫌累啊你？！\n";
 
         if( query("id", ob) == "jianjun" )
-                return "你不可以命令大宋监军去做别的事情！\n";
+                return "你不可以命令大宋監軍去做別的事情！\n";
 
         if( query("eff_qi", ob) < query("max_qi", ob) )
-                return "你还是等对方养好伤再派遣任务吧。\n";
+                return "你還是等對方養好傷再派遣任務吧。\n";
 
         switch(what)
         {
         case "battle":
         case "chuzheng":
-                message_vision(HIR "$N略一沉思，，而后果敢的下令道：本帅决定迎战蒙古大军，\n"
-                               "各位将军请即刻调派人马随同本帅出征！如有违令，军法论处！\n" NOR, me);
+                message_vision(HIR "$N略一沉思，，而後果敢的下令道：本帥決定迎戰蒙古大軍，\n"
+                               "各位將軍請即刻調派人馬隨同本帥出征！如有違令，軍法論處！\n" NOR, me);
 
                 inv = all_inventory(environment(me));
                 for (i=sizeof(inv)-1; i>=0; i--)
@@ -2391,19 +2391,19 @@ string do_assign(object me, string arg)
 
                         inv[i]->set_leader(me);
                         set_temp("warquest/battle", 1, inv[i]);
-                        set_temp("warquest/quest", "军队出征，迎战蒙军", inv[i]);
+                        set_temp("warquest/quest", "軍隊出征，迎戰蒙軍", inv[i]);
                 }
-                return "众将大声应道：末将遵命！！\n";
+                return "眾將大聲應道：末將遵命！！\n";
                 break;
         case "recon": // reconnaissance
         case "zhencha" :
                 if (! userp(ob))
-                        return "此项任务艰巨,你只能调度玩家去完成！\n";
+                        return "此項任務艱鉅,你只能調度玩家去完成！\n";
 
-                message_vision(HIR "$N略一沉思，从案前抽出一枚令箭道：“$n听令，" +
-                               "蒙古大军攻击将至，\n命你火速前往蒙古军营侦察敌情以便本帅" +
-                               "知己知彼，如有延误，军法论处！\n" NOR, me, ob);
-                set_temp("title", HIY"大宋侦察营统领"NOR, ob);
+                message_vision(HIR "$N略一沉思，從案前抽出一枚令箭道：“$n聽令，" +
+                               "蒙古大軍攻擊將至，\n命你火速前往蒙古軍營偵察敵情以便本帥" +
+                               "知己知彼，如有延誤，軍法論處！\n" NOR, me, ob);
+                set_temp("title", HIY"大宋偵察營統領"NOR, ob);
                 if (! present("ling jian", ob))
                 {
                         ling = new("/adm/npc/obj/lingjian");
@@ -2411,23 +2411,23 @@ string do_assign(object me, string arg)
                         ling->move(ob);
                 }
                 set_temp("warquest/recon", 1, ob);
-                set_temp("warquest/quest", "深入蒙境，侦察敌情", ob);
+                set_temp("warquest/quest", "深入蒙境，偵察敵情", ob);
                 // ob->command("recon");
                 break;
         case "enlist":
         case "zhaomu-xinbing" :
                 /*
                 if (! userp(ob))
-                        return "此项任务艰巨,你只能调度玩家去完成！\n";
+                        return "此項任務艱鉅,你只能調度玩家去完成！\n";
                 */
                 count = song_info->economy / 2 + 1000;
                 if (song_info->moneys < count)
-                        return "军中银两已经不多，不足以用来支付招募新兵的开支！\n";
+                        return "軍中銀兩已經不多，不足以用來支付招募新兵的開支！\n";
 
-                message_vision(HIR "$N略一沉思，从案前抽出一枚令箭道：“$n听令，" +
-                               "近来军中兵员匮乏，\n命你火速率部，赶去襄阳城内招募新兵" +
-                               "至军中，如有延误，军法论处！\n" NOR, me, ob);
-                set_temp("title", HIY"大宋军备营统领"NOR, ob);
+                message_vision(HIR "$N略一沉思，從案前抽出一枚令箭道：“$n聽令，" +
+                               "近來軍中兵員匱乏，\n命你火速率部，趕去襄陽城內招募新兵" +
+                               "至軍中，如有延誤，軍法論處！\n" NOR, me, ob);
+                set_temp("title", HIY"大宋軍備營統領"NOR, ob);
                 if (! present("ling jian", ob))
                 {
                         ling = new("/adm/npc/obj/lingjian");
@@ -2435,7 +2435,7 @@ string do_assign(object me, string arg)
                         ling->move(ob);
                 }
                 set_temp("warquest/purchase", "enlist", ob);
-                set_temp("warquest/quest", "招募新兵，补充兵源", ob);
+                set_temp("warquest/quest", "招募新兵，補充兵源", ob);
                 song_info->moneys -= count;
                 ob->command("stock");
                 break;
@@ -2443,16 +2443,16 @@ string do_assign(object me, string arg)
         case "gouzhi-bingjia" :
                 /*
                 if (! userp(ob))
-                        return "此项任务艰巨,你只能调度玩家去完成！\n";
+                        return "此項任務艱鉅,你只能調度玩家去完成！\n";
                 */
                 count = song_info->economy / 2 + 1000;
                 if (song_info->moneys < count)
-                        return "军中银两已经不多，不足以用来支付购置兵甲的开支！\n";
+                        return "軍中銀兩已經不多，不足以用來支付購置兵甲的開支！\n";
 
-                message_vision(HIR "$N略一沉思，从案前抽出一枚令箭道：“$n听令，" +
-                               "近来军中兵器和盔甲匮乏，\n命你火速率部，赶去襄阳城内采购兵器和盔甲" +
-                               "至军中，如有延误，军法论处！\n" NOR, me, ob);
-                set_temp("title", HIY"大宋军备营统领"NOR, ob);
+                message_vision(HIR "$N略一沉思，從案前抽出一枚令箭道：“$n聽令，" +
+                               "近來軍中兵器和盔甲匱乏，\n命你火速率部，趕去襄陽城內採購兵器和盔甲" +
+                               "至軍中，如有延誤，軍法論處！\n" NOR, me, ob);
+                set_temp("title", HIY"大宋軍備營統領"NOR, ob);
                 if (! present("ling jian", ob))
                 {
                         ling = new("/adm/npc/obj/lingjian");
@@ -2460,7 +2460,7 @@ string do_assign(object me, string arg)
                         ling->move(ob);
                 }
                 set_temp("warquest/purchase", "weapon", ob);
-                set_temp("warquest/quest", "购置兵甲，补充军备", ob);
+                set_temp("warquest/quest", "購置兵甲，補充軍備", ob);
                 song_info->moneys -= count;
                 ob->command("stock");
                 break;
@@ -2468,16 +2468,16 @@ string do_assign(object me, string arg)
         case "gouzhi-yujian" :
                 /*
                 if (! userp(ob))
-                        return "此项任务艰巨,你只能调度玩家去完成！\n";
+                        return "此項任務艱鉅,你只能調度玩家去完成！\n";
                 */
                 count = song_info->economy / 2 + 1000;
                 if (song_info->moneys < count)
-                        return "军中银两已经不多，不足以用来支付购置羽箭的开支！\n";
+                        return "軍中銀兩已經不多，不足以用來支付購置羽箭的開支！\n";
 
-                message_vision(HIR "$N略一沉思，从案前抽出一枚令箭道：“$n听令，" +
-                               "近来军营箭楼羽箭匮乏，\n命你火速率部，赶去襄阳城内采购羽箭" +
-                               "至军中，如有延误，军法论处！\n" NOR, me, ob);
-                set_temp("title", HIY"大宋军备营统领"NOR, ob);
+                message_vision(HIR "$N略一沉思，從案前抽出一枚令箭道：“$n聽令，" +
+                               "近來軍營箭樓羽箭匱乏，\n命你火速率部，趕去襄陽城內採購羽箭" +
+                               "至軍中，如有延誤，軍法論處！\n" NOR, me, ob);
+                set_temp("title", HIY"大宋軍備營統領"NOR, ob);
                 if (! present("ling jian", ob))
                 {
                         ling = new("/adm/npc/obj/lingjian");
@@ -2485,7 +2485,7 @@ string do_assign(object me, string arg)
                         ling->move(ob);
                 }
                 set_temp("warquest/purchase", "arrow", ob);
-                set_temp("warquest/quest", "购置羽箭，补充军备", ob);
+                set_temp("warquest/quest", "購置羽箭，補充軍備", ob);
                 song_info->moneys -= count;
                 ob->command("stock");
                 break;
@@ -2493,16 +2493,16 @@ string do_assign(object me, string arg)
         case "gouzhi-zhanma" :
                 /*
                 if (! userp(ob))
-                        return "此项任务艰巨,你只能调度玩家去完成！\n";
+                        return "此項任務艱鉅,你只能調度玩家去完成！\n";
                 */
                 count = song_info->economy / 2 + 1000;
                 if (song_info->moneys < count)
-                        return "军中银两已经不多，不足以用来支付购置战马的开支！\n";
+                        return "軍中銀兩已經不多，不足以用來支付購置戰馬的開支！\n";
 
-                message_vision(HIR "$N略一沉思，从案前抽出一枚令箭道：“$n听令，" +
-                               "近来军中战马匮乏，\n命你火速率部，赶去襄阳城内采购战马" +
-                               "至军中，如有延误，军法论处！\n" NOR, me, ob);
-                set_temp("title", HIY"大宋军备营统领"NOR, ob);
+                message_vision(HIR "$N略一沉思，從案前抽出一枚令箭道：“$n聽令，" +
+                               "近來軍中戰馬匱乏，\n命你火速率部，趕去襄陽城內採購戰馬" +
+                               "至軍中，如有延誤，軍法論處！\n" NOR, me, ob);
+                set_temp("title", HIY"大宋軍備營統領"NOR, ob);
                 if (! present("ling jian", ob))
                 {
                         ling = new("/adm/npc/obj/lingjian");
@@ -2510,7 +2510,7 @@ string do_assign(object me, string arg)
                         ling->move(ob);
                 }
                 set_temp("warquest/purchase", "horse", ob);
-                set_temp("warquest/quest", "购置战马，补充军备", ob);
+                set_temp("warquest/quest", "購置戰馬，補充軍備", ob);
                 song_info->moneys -= count;
                 ob->command("stock");
                 break;
@@ -2518,16 +2518,16 @@ string do_assign(object me, string arg)
         case "gouzhi-shimu" :
                 /*
                 if (! userp(ob))
-                        return "此项任务艰巨,你只能调度玩家去完成！\n";
+                        return "此項任務艱鉅,你只能調度玩家去完成！\n";
                 */
                 count = song_info->economy / 2 + 1000;
                 if (song_info->moneys < count)
-                        return "军中银两已经不多，不足以用来支付购置石木的开支！\n";
+                        return "軍中銀兩已經不多，不足以用來支付購置石木的開支！\n";
 
-                message_vision(HIR "$N略一沉思，从案前抽出一枚令箭道：“$n听令，" +
-                               "近来军中滚石和檑木匮乏，\n命你火速率部，赶去襄阳城内采购石头和木材" +
-                               "至军中，如有延误，军法论处！\n" NOR, me, ob);
-                set_temp("title", HIY"大宋军备营统领"NOR, ob);
+                message_vision(HIR "$N略一沉思，從案前抽出一枚令箭道：“$n聽令，" +
+                               "近來軍中滾石和檑木匱乏，\n命你火速率部，趕去襄陽城內採購石頭和木材" +
+                               "至軍中，如有延誤，軍法論處！\n" NOR, me, ob);
+                set_temp("title", HIY"大宋軍備營統領"NOR, ob);
                 if (! present("ling jian", ob))
                 {
                         ling = new("/adm/npc/obj/lingjian");
@@ -2535,18 +2535,18 @@ string do_assign(object me, string arg)
                         ling->move(ob);
                 }
                 set_temp("warquest/purchase", "stone", ob);
-                set_temp("warquest/quest", "购置石木，补充军备", ob);
+                set_temp("warquest/quest", "購置石木，補充軍備", ob);
                 song_info->moneys -= count;
                 ob->command("stock");
                 break;
         case "guard-xiangyang":
         case "shouwei-xiangyang" :
                 if (! userp(ob))
-                        return "此项任务艰巨,你只能调度玩家去完成！\n";
-                message_vision(HIR "$N略一沉思，从案前抽出一枚令箭道：“$n听令，" +
-                               "近来蒙古骑兵常骚扰我大宋襄阳城，\n命你火速率部，赶去襄阳驻守城池" +
-                               "，如有延误，军法论处！\n" NOR, me, ob);
-                set_temp("title", HIY"大宋后防营统领"NOR, ob);
+                        return "此項任務艱鉅,你只能調度玩家去完成！\n";
+                message_vision(HIR "$N略一沉思，從案前抽出一枚令箭道：“$n聽令，" +
+                               "近來蒙古騎兵常騷擾我大宋襄陽城，\n命你火速率部，趕去襄陽駐守城池" +
+                               "，如有延誤，軍法論處！\n" NOR, me, ob);
+                set_temp("title", HIY"大宋後防營統領"NOR, ob);
                 /*
                 if (! present("ling jian", ob))
                 {
@@ -2556,17 +2556,17 @@ string do_assign(object me, string arg)
                 }
                 */
                 set_temp("warquest/guard", 1, ob);
-                set_temp("warquest/quest", "守卫襄阳，稳固后方", ob);
+                set_temp("warquest/quest", "守衛襄陽，穩固後方", ob);
                 // ob->command("guard");
                 ob->move("/d/wuguan/guofu_dating");
                 break;
         case "yayun-liangcao":
         case "escort-forage" :
-                message_vision(HIR "$N略一沉思，从案前抽出一枚令箭道：“$n听令，" +
-                               "近来军中粮草匮乏，\n命你火速率部，在半月内将京师供应之粮草押解" +
-                               "至军中，如有延误，军法论处！\n" NOR, me, ob);
+                message_vision(HIR "$N略一沉思，從案前抽出一枚令箭道：“$n聽令，" +
+                               "近來軍中糧草匱乏，\n命你火速率部，在半月內將京師供應之糧草押解" +
+                               "至軍中，如有延誤，軍法論處！\n" NOR, me, ob);
 
-                set_temp("title", HIY"大宋军备营统领"NOR, ob);
+                set_temp("title", HIY"大宋軍備營統領"NOR, ob);
                 if (! present("ling jian", ob))
                 {
                         ling = new("/adm/npc/obj/lingjian");
@@ -2574,7 +2574,7 @@ string do_assign(object me, string arg)
                         ling->move(ob);
                 }
                 set_temp("warquest/purchase", "forage", ob);
-                set_temp("warquest/quest", "押运粮草，补充军备", ob);
+                set_temp("warquest/quest", "押運糧草，補充軍備", ob);
                 ob->command("stock");
                 break;
 
@@ -2582,13 +2582,13 @@ string do_assign(object me, string arg)
         case "train-cavalry":
                 if( query_temp("warquest/train", ob )
                  && query_temp("warquest/train", ob) != "cavalry" )
-                        return "对方已经另有他职了，请重新选派将领吧！\n";
+                        return "對方已經另有他職了，請重新選派將領吧！\n";
 
-                message_vision(HIR "$N略一沉思，从案前抽出一枚令箭道：“$n听令，" +
-                               "近来军中几无能战之师，\n命你加紧训练一支精锐骑兵，以备不时之需，" +
-                               "不得有误！\n" NOR, me, ob);
+                message_vision(HIR "$N略一沉思，從案前抽出一枚令箭道：“$n聽令，" +
+                               "近來軍中幾無能戰之師，\n命你加緊訓練一支精銳騎兵，以備不時之需，" +
+                               "不得有誤！\n" NOR, me, ob);
 
-                set_temp("title", HIR"大宋车骑营统领"NOR, ob);
+                set_temp("title", HIR"大宋車騎營統領"NOR, ob);
                 if (! present("zhan ma", ob))
                 {
                         UNRIDE_CMD->main(ob);
@@ -2604,7 +2604,7 @@ string do_assign(object me, string arg)
                         ling->move(ob);
                 }
                 set_temp("warquest/train", "cavalry", ob);
-                set_temp("warquest/quest", "训练骑兵，作战准备", ob);
+                set_temp("warquest/quest", "訓練騎兵，作戰準備", ob);
                 ob->command("drill");
                 break;
 
@@ -2612,12 +2612,12 @@ string do_assign(object me, string arg)
         case "xunlian-bubing":
                 if( query_temp("warquest/train", ob )
                  && query_temp("warquest/train", ob) != "infantry" )
-                        return "对方已经另有他职了，请重新选派将领吧！\n";
+                        return "對方已經另有他職了，請重新選派將領吧！\n";
 
-                message_vision(HIR "$N略一沉思，从案前抽出一枚令箭道：“$n听令，" +
-                               "近来军中几无能战之师，\n命你加紧训练一支精锐步兵，以备不时之需，" +
-                               "不得有误！\n" NOR, me, ob);
-                set_temp("title", HIW"大宋步兵营统领"NOR, ob);
+                message_vision(HIR "$N略一沉思，從案前抽出一枚令箭道：“$n聽令，" +
+                               "近來軍中幾無能戰之師，\n命你加緊訓練一支精銳步兵，以備不時之需，" +
+                               "不得有誤！\n" NOR, me, ob);
+                set_temp("title", HIW"大宋步兵營統領"NOR, ob);
                 if (! present("ling jian", ob))
                 {
                         ling = new("/adm/npc/obj/lingjian");
@@ -2625,7 +2625,7 @@ string do_assign(object me, string arg)
                         ling->move(ob);
                 }
                 set_temp("warquest/train", "infantry", ob);
-                set_temp("warquest/quest", "训练步兵，作战准备", ob);
+                set_temp("warquest/quest", "訓練步兵，作戰準備", ob);
                 ob->command("drill");
                 break;
 
@@ -2633,12 +2633,12 @@ string do_assign(object me, string arg)
         case "xunlian-gongnu":
                 if( query_temp("warquest/train", ob )
                  && query_temp("warquest/train", ob) != "archer" )
-                        return "对方已经另有他职了，请重新选派将领吧！\n";
+                        return "對方已經另有他職了，請重新選派將領吧！\n";
 
-                message_vision(HIR "$N略一沉思，从案前抽出一枚令箭道：“$n听令，" +
-                               "近来军中几无能战之师，\n命你加紧训练一支精锐弓箭手，以备不时之需，" +
-                               "不得有误！\n" NOR, me, ob);
-                set_temp("title", HIB"大宋神弩营统领"NOR, ob);
+                message_vision(HIR "$N略一沉思，從案前抽出一枚令箭道：“$n聽令，" +
+                               "近來軍中幾無能戰之師，\n命你加緊訓練一支精銳弓箭手，以備不時之需，" +
+                               "不得有誤！\n" NOR, me, ob);
+                set_temp("title", HIB"大宋神弩營統領"NOR, ob);
 
                 if (! present("ling jian", ob))
                 {
@@ -2648,13 +2648,13 @@ string do_assign(object me, string arg)
                 }
 
                 set_temp("warquest/train", "archer", ob);
-                set_temp("warquest/quest", "训练弓兵，作战准备", ob);
+                set_temp("warquest/quest", "訓練弓兵，作戰準備", ob);
                 ob->command("drill");
                 break;
 
         default:
-                return "身为一军之帅，请不要滥用你的军权！\n";
+                return "身為一軍之帥，請不要濫用你的軍權！\n";
         }
 
-        return query("name", ob) + "大声应道：末将遵命！！\n";
+        return query("name", ob) + "大聲應道：末將遵命！！\n";
 }

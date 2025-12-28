@@ -3,11 +3,11 @@ inherit ROOM;
 void create()
 {
         int i;
-        set("short", "书架顶");
+        set("short", "書架頂");
         set("long", @LONG
-书架顶上积满了厚厚的一层灰尘，书架顶和房梁还有三尺多高的
-距离由于不经常打扫，这里步满了蜘蛛丝，书架顶的浮尘上还能依稀
-见到一些爬虫留下的痕迹有时候有些小鸟也会在这里筑巢。
+書架頂上積滿了厚厚的一層灰塵，書架頂和房梁還有三尺多高的
+距離由於不經常打掃，這裡步滿了蜘蛛絲，書架頂的浮塵上還能依稀
+見到一些爬蟲留下的痕跡有時候有些小鳥也會在這裡築巢。
 LONG );
         set("exits", ([ /* sizeof() == 1 */
                 "down" : "/d/shaolin/cjlou1",
@@ -29,9 +29,9 @@ int do_pull()
         object ob, *obs, me = this_player();
         
         if (me->is_busy())
-                return notify_fail("你正忙着呢！\n");
+                return notify_fail("你正忙著呢！\n");
                 
-        message_vision("$N仔细地打扫了书架顶上的灰尘,看上去干净多了。\n", me);
+        message_vision("$N仔細地打掃了書架頂上的灰塵,看上去幹淨多了。\n", me);
         me->start_busy(5);
         
         // obs = filter_array(children("/clone/book/yijinjing.c"), (: clonep :));
@@ -41,7 +41,7 @@ int do_pull()
                     ob = new("/clone/book/yijin_book"); 
                 ob->move(me, 1);
                 addn("bamboo_count", -1);
-                CHANNEL_D->do_channel(this_object(),"rumor",sprintf("%s搞到了少林镇寺之宝易筋经秘籍啦。",query("name", me)));
+                CHANNEL_D->do_channel(this_object(),"rumor",sprintf("%s搞到了少林鎮寺之寶易筋經秘籍啦。",query("name", me)));
         } else
         if (query("yijinjing_count") > 0)
         {
@@ -49,7 +49,7 @@ int do_pull()
                 else ob = new("/clone/book/yijinjing");
                 ob->move(me, 1);
                 addn("yijinjing_count", -1);
-                CHANNEL_D->do_channel(this_object(),"rumor",sprintf("%s搞到了少林镇寺之宝易筋经残谱啦。",query("name", me)));
+                CHANNEL_D->do_channel(this_object(),"rumor",sprintf("%s搞到了少林鎮寺之寶易筋經殘譜啦。",query("name", me)));
         }
         return 1;
 }

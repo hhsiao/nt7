@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("小鸡仔[2;37;0m[2;37;0m", ({"chick"}));        
+        set_name("小雞仔[2;37;0m[2;37;0m", ({"chick"}));        
         set("gender", "女性");                
-        set("long", "就是一直刚从蛋壳孵化出来的小鸡[2;37;0m
-它是小曼的魔幻兽。
+        set("long", "就是一直剛從蛋殼孵化出來的小雞[2;37;0m
+它是小曼的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

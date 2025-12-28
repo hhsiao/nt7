@@ -6,10 +6,10 @@ inherit __DIR__"normal.c";
 
 void create()
 {
-        set("short", "药圃");
+        set("short", "藥圃");
         set("long", 
-"这是药圃，各种奇珍异草在这里不分季节地竞相开放，传说偶尔大运的\n"
-"人可以在这里拾到灵草。\n"
+"這是藥圃，各種奇珍異草在這裡不分季節地競相開放，傳說偶爾大運的\n"
+"人可以在這裡拾到靈草。\n"
 );
                 set("outdoors", "dongtian");
                 set("exits",([ /* sizeof() == 1 */

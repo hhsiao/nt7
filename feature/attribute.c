@@ -11,7 +11,7 @@ int query_equipment_buff(string key)
         int i, fullsuit;
         int buff = 0;
         
-        // 套装系统加成
+        // 套裝系統加成
         if( data = query_temp("fullsuit", this_object()) )
         {
                 fullsuit = 1;
@@ -25,7 +25,7 @@ int query_equipment_buff(string key)
                 }
         }
         
-        // 装备本身加成        
+        // 裝備本身加成        
         foreach(object ob in this_object()->query_equipment_objects())
         {
                 if( !objectp(ob) ) continue;

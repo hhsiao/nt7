@@ -1,4 +1,4 @@
-// familyd.c 保存所有的门派信息
+// familyd.c 保存所有的門派信息
 
 #include <ansi.h>
 
@@ -8,67 +8,67 @@
 inherit F_SAVE;
 inherit F_DBASE;
 
-// 门派声望最大是10亿
+// 門派聲望最大是10億
 #define MAX_FAMILY_FAME         1000000000
 
-// 每个门派最多有100个仇人
+// 每個門派最多有100個仇人
 #define MAX_HATRED_PERSON       100
 
-// 当仇人超过的时候每次移除多少个
+// 當仇人超過的時候每次移除多少個
 #define HATREDP_REMOVED         10
 
 mapping family_fame = ([
         "少林寺"   : 10000000,
-        "武当派"   : 8000000,
-        "丐帮"     : 7000000,
+        "武當派"   : 8000000,
+        "丐幫"     : 7000000,
         "全真教"   : 5000000,
-        "华山派"   : 4500000,
+        "華山派"   : 4500000,
         "段氏皇族" : 4000000,
         "慕容世家" : 4000000,
         "雪山寺"   : 3500000,
-        "灵鹫宫"   : 3500000,
+        "靈鷲宮"   : 3500000,
         "峨嵋派"   : 3000000,
-        "桃花岛"   : 2500000,
-        "神龙教"   : 2000000,
+        "桃花島"   : 2500000,
+        "神龍教"   : 2000000,
         "古墓派"   : 1500000,
         "星宿派"   : 1200000,
-        "逍遥派"   : 1000000,
-        "血刀门"   : 800000,
+        "逍遙派"   : 1000000,
+        "血刀門"   : 800000,
         "魔教"     : 700000,
-        "唐门世家" : 650000,
-        "华山剑宗" : 600000,
-        "欧阳世家" : 500000,
-        "关外胡家" : 400000,
+        "唐門世家" : 650000,
+        "華山劍宗" : 600000,
+        "歐陽世家" : 500000,
+        "關外胡家" : 400000,
 ]);
 
-// 门派ID对应的门派名字
+// 門派ID對應的門派名字
 nosave mapping family_name = ([
         "shaolin"  : "少林寺",
-        "wudang"   : "武当派",
-        "gaibang"  : "丐帮",
+        "wudang"   : "武當派",
+        "gaibang"  : "丐幫",
         "quanzhen" : "全真教",
-        "huashan"  : "华山派",
+        "huashan"  : "華山派",
         "duan"     : "段氏皇族",
         "murong"   : "慕容世家",
         "xueshan"  : "雪山寺",
-        "lingjiu"  : "灵鹫宫",
+        "lingjiu"  : "靈鷲宮",
         "emei"     : "峨嵋派",
-        "taohua"   : "桃花岛",
-        "shenlong" : "神龙教",
+        "taohua"   : "桃花島",
+        "shenlong" : "神龍教",
         "gumu"     : "古墓派",
         "xingxiu"  : "星宿派",
-        "xiaoyao"  : "逍遥派",
-        "xuedao"   : "血刀门",
-        "jianzong" : "华山剑宗",
-        "ouyang"   : "欧阳世家",
-        "hu"       : "关外胡家",
-        "tangmen"  : "唐门世家",
+        "xiaoyao"  : "逍遙派",
+        "xuedao"   : "血刀門",
+        "jianzong" : "華山劍宗",
+        "ouyang"   : "歐陽世家",
+        "hu"       : "關外胡家",
+        "tangmen"  : "唐門世家",
         "mojiao"   : "魔教",
 ]);
 
 mapping last_family_fame;
 
-// 门派对仇人仇恨度的排序
+// 門派對仇人仇恨度的排序
 private int sort_hatred(string id1, string id2, mapping hatred);
 
 void create()
@@ -95,7 +95,7 @@ public void mud_shutdown()
         save();
 }
 
-// 心跳：维护门派的通常信息
+// 心跳：維護門派的通常信息
 private void heart_beat()
 {
         int t;
@@ -107,7 +107,7 @@ private void heart_beat()
         last = query("last_check");
         if ((t / 86400) != (last / 86400))
         {
-                // 天数发生了变化：复制门派的名望信息
+                // 天數發生了變化：複製門派的名望信息
                 all_fam = keys(family_fame) - ({ 0 });
                 last_family_fame = family_fame;
                 family_fame = ([ ]);
@@ -117,13 +117,13 @@ private void heart_beat()
         }
         set("last_check", t);
 
-        // 保存门派的最新信息
+        // 保存門派的最新信息
         save();
 }
 
-// 返回门派声望：如果参数为空，返回mapping类型，包含了所有门
-// 派的声望；如果参数是人物， 则返回该人物所在的那个门派的声
-// 望；如果参数是门派，则返回该门派的声望。
+// 返回門派聲望：如果參數為空，返回mapping類型，包含了所有門
+// 派的聲望；如果參數是人物， 則返回該人物所在的那個門派的聲
+// 望；如果參數是門派，則返回該門派的聲望。
 public mixed query_family_fame(mixed ob)
 {
         string fname;
@@ -142,18 +142,18 @@ public mixed query_family_fame(mixed ob)
         return family_fame;
 }
 
-// 查询昨天的门派名望信息
+// 查詢昨天的門派名望信息
 public mapping query_all_last_family_fame()
 {
         if (! mapp(last_family_fame))
-                // 没有昨天的信息，返回今天的
+                // 沒有昨天的信息，返回今天的
                 return family_fame;
 
-        // 返回昨天的门派声望信息
+        // 返回昨天的門派聲望信息
         return last_family_fame;
 }
 
-// 查询门派的仇恨信息：输入的ob可以是门派的名字，也可是门派
+// 查詢門派的仇恨信息：輸入的ob可以是門派的名字，也可是門派
 // 中的人物。
 public mapping query_family_hatred(mixed ob)
 {
@@ -174,7 +174,7 @@ public mapping query_family_hatred(mixed ob)
         return hatred;
 }
 
-// 变化门派声望：输入的ob可以是门派的名字，也可是门派中的人
+// 變化門派聲望：輸入的ob可以是門派的名字，也可是門派中的人
 // 物。
 public void add_family_fame(mixed ob, int n)
 {
@@ -192,7 +192,7 @@ public void add_family_fame(mixed ob, int n)
         if (! stringp(fname) || undefinedp(family_fame[fname]))
                 return;
 
-        // 计算新的门派声望
+        // 計算新的門派聲望
         new_fame = family_fame[fname] + n;
         if (new_fame < 0) new_fame = 0;
         if (new_fame > MAX_FAMILY_FAME)
@@ -200,7 +200,7 @@ public void add_family_fame(mixed ob, int n)
         family_fame[fname] = new_fame;
 }
 
-// 门派间仇杀
+// 門派間仇殺
 public void family_kill(object killer, object victim)
 {
         int kexp;
@@ -212,12 +212,12 @@ public void family_kill(object killer, object victim)
         mapping hatred;
         mixed *d;
 
-        // 只有玩家之间的仇杀才计算在内
+        // 只有玩家之間的仇殺才計算在內
         if (! objectp(killer) || ! playerp(killer) ||
             ! objectp(victim) || ! playerp(victim))
                 return;
 
-        // 巫师之间的比划可不能算数
+        // 巫師之間的比劃可不能算數
         if (wizardp(killer) || wizardp(victim))
                 return;
 
@@ -228,23 +228,23 @@ public void family_kill(object killer, object victim)
 
         if (stringp(kfam) && kfam == vfam)
         {
-                // 同门残杀？
+                // 同門殘殺？
                 return;
         }
 
         if (kexp < vexp * 3 && vexp >= 100000)
         {
-                // 杀手的经验不是远远的大于对方，并且被杀的
-                // 人有一定的经验，这将导致门派声望的降低。
+                // 殺手的經驗不是遠遠的大於對方，並且被殺的
+                // 人有一定的經驗，這將導致門派聲望的降低。
                 fame_delta = vexp + query("score", killer) * 2 +
                              query("weiwang", killer)*10;
                 fame_delta /= 1000;
         } else
-                // 对手经验太少，或是差距太大，不影响声望
+                // 對手經驗太少，或是差距太大，不影響聲望
                 fame_delta = 0;
 
-        // 查看杀手所在的门派是否仇恨死者：如果仇恨，则能够
-        // 带动声望的变化。
+        // 查看殺手所在的門派是否仇恨死者：如果仇恨，則能夠
+        // 帶動聲望的變化。
         if (stringp(kfam))
         {
                 string path;
@@ -253,16 +253,16 @@ public void family_kill(object killer, object victim)
                 d = query(path);
                 if (arrayp(d) && sizeof(d) >= 2 && intp(d[1]))
                 {
-                        // 仇恨死者，门派获得额外的声望
+                        // 仇恨死者，門派獲得額外的聲望
                         if (d[1] > 2000)
                                 CHANNEL_D->do_channel(this_object(), "rumor",
-                                        "听说" + killer->name(1) + "击毙了" +
-                                        victim->name(1) + "，为" +
-                                        kfam + "讨回了公道。");
+                                        "聽說" + killer->name(1) + "擊斃了" +
+                                        victim->name(1) + "，為" +
+                                        kfam + "討回了公道。");
                         fame_delta += d[1] / 3;
 
-                        // 对此人的仇恨降低(降低的要比增加的要多)，
-                        // 具体可以看fame_delta 与仇恨度公司的差异
+                        // 對此人的仇恨降低(降低的要比增加的要多)，
+                        // 具體可以看fame_delta 與仇恨度公司的差異
                         d[1] -= fame_delta;
                         if (d[1] <= 0)
                                 delete(path);
@@ -271,16 +271,16 @@ public void family_kill(object killer, object victim)
                 }
         }
 
-        // 调整两个门派的声望
+        // 調整兩個門派的聲望
         add_family_fame(killer,  fame_delta);
         add_family_fame(victim, -fame_delta);
 
-        // 统计该杀手对本门的残害程度
+        // 統計該殺手對本門的殘害程度
         if (! stringp(vfam))
                 return;
 
-        // 仇恨程度和声望的变化都是在一个数量级上(K经验)，但
-        // 是仇恨程度低于声望的变化。
+        // 仇恨程度和聲望的變化都是在一個數量級上(K經驗)，但
+        // 是仇恨程度低於聲望的變化。
         vexp = vexp / 1000 + 1;
         if (vexp > 5000)
                 vexp = (vexp - 5000) / 16 + 2000;
@@ -296,13 +296,13 @@ public void family_kill(object killer, object victim)
                 return;
         }
 
-        // 每个门派最多记录若干个仇人
+        // 每個門派最多記錄若干個仇人
         if (! undefinedp(d = hatred[kid]))
         {
                 if (! arrayp(d) || sizeof(d) < 2 ||
                     ! intp(d[1]) || ! stringp(d[0]))
                 {
-                        // 这个ID的数据出了故障
+                        // 這個ID的數據出了故障
                         d = 0;
                 }
         } else
@@ -311,8 +311,8 @@ public void family_kill(object killer, object victim)
                 string *ids;
                 int i;
 
-                // 过滤去掉一些人，为什么不去掉一个？这是为
-                // 了防止过滤频繁的进行过滤操作。
+                // 過濾去掉一些人，為什麼不去掉一個？這是為
+                // 了防止過濾頻繁的進行過濾操作。
                 ids = sort_array(keys(hatred),
                                  (: sort_hatred :), hatred);
                 for (i = 0; i < sizeof(ids) && i < HATREDP_REMOVED; i++)
@@ -327,29 +327,29 @@ public void family_kill(object killer, object victim)
                 d[1] += vexp;
         }
 
-        // 记录这个人的信息
+        // 記錄這個人的信息
         hatred[kid] = d;
 }
 
-// 去掉所有门派对某个人的仇恨信息
+// 去掉所有門派對某個人的仇恨信息
 public void remove_hatred(string id)
 {
         mapping all_hatred, hatred;
         string fam;
 
         if (! mapp(all_hatred = query("hatred")))
-                // 现在还没有仇恨信息
+                // 現在還沒有仇恨信息
                 return;
 
-        // 查阅所有的门派
+        // 查閱所有的門派
         foreach (fam in keys(all_hatred))
         {
                 if (mapp(hatred = all_hatred[fam]))
-                        // 去掉该门派对某人的仇恨信息
+                        // 去掉該門派對某人的仇恨信息
                         map_delete(hatred, id);
 
                 if (! mapp(hatred) || ! sizeof(hatred))
-                        // 这个门派已经没有仇恨信息
+                        // 這個門派已經沒有仇恨信息
                         map_delete(all_hatred, fam);
         }
 }
@@ -382,7 +382,7 @@ public mapping query_all_family_name()
         return family_name;
 }
 
-// 外部调用高效练功
+// 外部調用高效練功
 int query_family_efficient(string fname, string arg)
 {
         if( !fname ) return 0;

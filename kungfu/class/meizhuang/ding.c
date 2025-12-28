@@ -9,13 +9,13 @@ mixed ask_skill1();
 
 void create()
 {
-        set_name("丁坚", ({"ding jian","ding",}));
+        set_name("丁堅", ({"ding jian","ding",}));
         set("long",
-                "他就是隐居江湖数年的一字电剑丁坚，现在在梅庄当仆人。\n"
+                "他就是隱居江湖數年的一字電劍丁堅，現在在梅莊當僕人。\n"
         );
         set("gender", "男性");
-        set("nickname", HIY "一字电剑" NOR);
-        set("title", "梅庄仆从");
+        set("nickname", HIY "一字電劍" NOR);
+        set("title", "梅莊僕從");
         set("attitude", "friendly");
 
         set("age", 30);
@@ -56,19 +56,19 @@ void create()
         }));
 
         set("guarder", ([
-                "refuse_other": CYN "$N" CYN "对$n" CYN "皱眉道："
-                                "给我站住，孤山梅庄岂是随便走动地"
+                "refuse_other": CYN "$N" CYN "對$n" CYN "皺眉道："
+                                "給我站住，孤山梅莊豈是隨便走動地"
                                 "方？" NOR,
-                "refuse_carry": CYN "$N" CYN "对$n" CYN "喝道：你"
-                                "背上背的是什么人？" NOR,
+                "refuse_carry": CYN "$N" CYN "對$n" CYN "喝道：你"
+                                "背上背的是什麼人？" NOR,
         ]));
 
-        create_family("梅庄", 2, "仆从");
+        create_family("梅莊", 2, "僕從");
 
         set("inquiry", ([
-                "绝招"        : "你要问什么绝招？",
-                "绝技"        : "你要问什么绝技？",
-                "电光四射"    : (: ask_skill1 :),
+                "絕招"        : "你要問什麼絕招？",
+                "絕技"        : "你要問什麼絕技？",
+                "電光四射"    : (: ask_skill1 :),
         ]));
 
         set("chat_chance_combat", 100);
@@ -93,30 +93,30 @@ void attempt_apprentice(object me)
 
         if( query("family/family_name", me) && 
              query("family/family_name", me) == "日月神教" && 
-             query("family/master_name", me) == "东方不败" )
+             query("family/master_name", me) == "東方不敗" )
         {
                 command("ah");
-                command("say 原来是东方教主的弟子，兴会，兴会！");
-                command("say 这件事非同小可，我做不了主，你还是去找几位庄主吧。");
-                set("move_party/日月神教—梅庄", 1, me);
+                command("say 原來是東方教主的弟子，興會，興會！");
+                command("say 這件事非同小可，我做不了主，你還是去找幾位莊主吧。");
+                set("move_party/日月神教—梅莊", 1, me);
                 return;
         }
 
         if( query("shen", me)>1000 )
         {
                 command("heng");
-                command("say 我们孤山梅庄向来不问江湖事，也不结交你这样的侠义之士。");
+                command("say 我們孤山梅莊向來不問江湖事，也不結交你這樣的俠義之士。");
                 return;
         }
 
         if( query("shen", me)<-1000 )
         {
                 command("heng");
-                command("say 我们孤山梅庄向来不问江湖事，更不会结交名声不好之人。");
+                command("say 我們孤山梅莊向來不問江湖事，更不會結交名聲不好之人。");
                 return;
         }
 
-        command("say 好吧，既然你有心练武，我就收下你。");
+        command("say 好吧，既然你有心練武，我就收下你。");
         command("recruit "+query("id", me));
 }
 
@@ -127,32 +127,32 @@ mixed ask_skill1()
         me = this_player();
 
         if( query("can_perform/jidian-jian/dian", me) )
-                return "能教的我已经都教完了。";
+                return "能教的我已經都教完了。";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return RANK_D->query_respect(me) + "和本教素无瓜葛，何出此言？";
+                return RANK_D->query_respect(me) + "和本教素無瓜葛，何出此言？";
 
         if (me->query_skill("jidian-jian", 1) < 1)
-                return "你连疾电剑法都没学，何谈此言？";
+                return "你連疾電劍法都沒學，何談此言？";
 
         if( query("family/gongji", me)<50 )
-                return "你对本庄所作出的贡献不够，这一招我暂时还不能传你。";
+                return "你對本莊所作出的貢獻不夠，這一招我暫時還不能傳你。";
 
         if (me->query_skill("jidian-jian", 1) < 100)
-                return "你的疾电剑法还练得不到家，自己下去练练再来吧！";
+                return "你的疾電劍法還練得不到家，自己下去練練再來吧！";
 
         if (me->query_skill("force") < 150)
-                return "你的内功火候尚不精纯，是学不会这招的。";
+                return "你的內功火候尚不精純，是學不會這招的。";
 
-        message_vision(HIY "$n" HIY "点了点头，说道：这疾电剑法的电光"
-                       "四射其实是慑人声势使其无所施其\n技，我这里给你"
-                       "演示一遍，你可看好了。$n" HIY "说完手中长剑一"
-                       "抖，将这套剑\n法施展出来，霎时之间，满室都是电"
-                       "光，耀人眼目。$N" HIY "看后双目一亮，顿时\n大"
+        message_vision(HIY "$n" HIY "點了點頭，說道：這疾電劍法的電光"
+                       "四射其實是懾人聲勢使其無所施其\n技，我這裡給你"
+                       "演示一遍，你可看好了。$n" HIY "說完手中長劍一"
+                       "抖，將這套劍\n法施展出來，霎時之間，滿室都是電"
+                       "光，耀人眼目。$N" HIY "看後雙目一亮，頓時\n大"
                        "有所悟。\n" NOR, me, this_object());
         command("nod");
-        command("say 这招其实很简单，稍微练练便可以施展了。");
-        tell_object(me, HIC "你学会了「电光四射」。\n" NOR);
+        command("say 這招其實很簡單，稍微練練便可以施展了。");
+        tell_object(me, HIC "你學會了「電光四射」。\n" NOR);
 
         if (me->can_improve_skill("sword"))
                 me->improve_skill("sword", 1500000);

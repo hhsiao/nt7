@@ -1,13 +1,13 @@
 inherit NPC;
 void create()
 {
-        string *names = ({"小青蛇","小绿蛇","小花蛇"});
+        string *names = ({"小青蛇","小綠蛇","小花蛇"});
         set_name( names[random(sizeof(names))], ({ "little snake","snake"}));
         set("vendetta_mark","snake");
-        set("race", "野兽");
+        set("race", "野獸");
         set("gender", "雄性");
         set("age", 20);
-        set("long", "这是一条小蛇。\n");
+        set("long", "這是一條小蛇。\n");
 
         set("str", 20);
         set("cor", 100);
@@ -22,9 +22,9 @@ void create()
         set("attitude", "peaceful");
                                 //set("chat_chance", 2);
         //set("chat_msg", ({
-        //                "小熊拱了拱你的脚。\n"
+        //                "小熊拱了拱你的腳。\n"
         //}) );
-        set("limbs", ({ "头部", "身体", "尾巴", "七寸" }) );
+        set("limbs", ({ "頭部", "身體", "尾巴", "七寸" }) );
         set("verbs", ({ "bite" }) );
         set("combat_exp", 100000);
         set("bellicosity", 5 );

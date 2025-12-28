@@ -1,4 +1,4 @@
-//lianparry.c                唐门练武场
+//lianparry.c                唐門練武場
 
 inherit ROOM;
 
@@ -7,11 +7,11 @@ int do_lian(string);
 
 void create ()
 {
-        set ("short", "练武场");
+        set ("short", "練武場");
         set ("long", @LONG
-这是一个宽敞的练武场。你的面前是百十个设计精巧的机关木头
-人，它们被摆放成一个八卦阵，只要有人走进阵中它们就会自动攻击
-不时的有人被打出阵来，这里可以练练(jin)基本的招架功夫。
+這是一個寬敞的練武場。你的面前是百十個設計精巧的機關木頭
+人，它們被擺放成一個八卦陣，只要有人走進陣中它們就會自動攻擊
+不時的有人被打出陣來，這裡可以練練(jin)基本的招架功夫。
 LONG);
         set("exits", ([
                 "west" : __DIR__"nzlange3",
@@ -34,20 +34,20 @@ int do_lian(string arg)
         me = this_player();
 
         if ( !arg || ( arg != "zhen" ) )
-                return notify_fail("你想干什么？\n");
+                return notify_fail("你想幹什麼？\n");
 
         jingli_cost = (-1) * (5 + random(15));
         qi_cost = (-1) * (1 + random(5));
 
         if( query("qi", me) <= (-qi_cost) )
-                return notify_fail("你太虚弱了，再练就要出人命了。\n");
+                return notify_fail("你太虛弱了，再練就要出人命了。\n");
 
         if( query("jingli", me) <= (-jingli_cost) )
-                return notify_fail("你太疲劳了，没有精力练功了。\n");
+                return notify_fail("你太疲勞了，沒有精力練功了。\n");
 
         if ( (int)me->query_skill("parry", 1) < 51 )  
         {
-                write("你运气于周身上下，小心翼翼的走进木人阵中，不一会儿就被打的鼻青脸肿！\n可是你对基本招架有了一点了解。\n");
+                write("你運氣於周身上下，小心翼翼的走進木人陣中，不一會兒就被打的鼻青臉腫！\n可是你對基本招架有了一點了解。\n");
                 addn("jingli", jingli_cost, me);
                 addn("qi", qi_cost, me);
                 me->improve_skill("parry",(15+random(query("int", me)/2)));
@@ -55,12 +55,12 @@ int do_lian(string arg)
         else
                 if ( (int)me->query_skill("parry", 1) < 101 )  
                 {
-                write("你运气于四肢，迈步走进木人阵中，不断挡开木人的袭击！\n你对基本招架有了一些认识。\n");
+                write("你運氣於四肢，邁步走進木人陣中，不斷擋開木人的襲擊！\n你對基本招架有了一些認識。\n");
                         addn("jingli", jingli_cost, me);
                         addn("qi", qi_cost, me);
                         me->improve_skill("parry",(20+random(query("int", me)/2)));
                 }
                 else
-                        write("你甩手走进木人阵中，竟没有一个木人能够打中你的身体！\n你在这里已经学不到什么了！\n");
+                        write("你甩手走進木人陣中，竟沒有一個木人能夠打中你的身體！\n你在這裡已經學不到什麼了！\n");
         return 1;
 }

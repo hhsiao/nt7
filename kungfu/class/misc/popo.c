@@ -7,7 +7,7 @@ inherit "/inherit/char/punisher";
 void create()
 {
         set_name("老婆婆", ({ "lao popo", "popo" }));
-        set("long",  "这是古墓派不出世的高人，江湖上鲜有人知。\n");
+        set("long",  "這是古墓派不出世的高人，江湖上鮮有人知。\n");
         set("gender", "女性");
         set("age", 53);
         set("attitude", "peaceful");

@@ -4,8 +4,8 @@ void create()
 {
         set("short", "竹林");
         set("long", @LONG
-这里是一片苍翠的竹林，轻风吹过，竹影摇动。竟让人心里格外
-安宁。
+這裡是一片蒼翠的竹林，輕風吹過，竹影搖動。竟讓人心裡格外
+安寧。
 LONG);
         set("exits", ([
                 "east" : __DIR__"shulin",

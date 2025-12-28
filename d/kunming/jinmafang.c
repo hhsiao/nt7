@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "金马枋");
+        set("short", "金馬枋");
         set("long", @LONG
-昆明名胜之一，金马枋，传说在每年的一天，其影子和碧
-鸡枋的影子交相辉印，称为金碧交辉，巍巍奇观。
+昆明名勝之一，金馬枋，傳說在每年的一天，其影子和碧
+雞枋的影子交相輝印，稱為金碧交輝，巍巍奇觀。
 LONG);
         set("outdoors", "kunming");
 

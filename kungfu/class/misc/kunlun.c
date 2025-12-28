@@ -4,8 +4,8 @@ inherit "/inherit/char/punisher";
 
 void create()
 {
-        set_name("昆仑隐士", ({ "yin shi", "yin", "shi" }));
-        set("long",  "他就是昆仑派的高手，据说长年隐藏于山中。\n");
+        set_name("崑崙隱士", ({ "yin shi", "yin", "shi" }));
+        set("long",  "他就是崑崙派的高手，據說長年隱藏於山中。\n");
         set("gender", "男性");
         set("age", 55);
         set("attitude", "peaceful");
@@ -54,7 +54,7 @@ void create()
         prepare_skill("strike", "kunlun-zhang");
         prepare_skill("cuff", "zhentian-quan");
 
-        create_family("昆仑派", 0, "隐士");
+        create_family("崑崙派", 0, "隱士");
 
      
         set("chat_chance_combat", 100);

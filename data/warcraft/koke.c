@@ -6,8 +6,8 @@ void setup()
 {
         set_name("雀神[2;37;0m[2;37;0m", ({"que"}));        
         set("gender", "女性");                
-        set("long", "一只凤凰[2;37;0m
-它是月容的魔幻兽。
+        set("long", "一隻鳳凰[2;37;0m
+它是月容的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

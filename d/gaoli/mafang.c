@@ -1,13 +1,13 @@
 // /d/gaoli/maji
-// Room in 高丽
+// Room in 高麗
 // rich 99/03/28
 inherit ROOM;
 void create()        
 {
-        set("short", "马房");
+        set("short", "馬房");
         set("long", @LONG
-高丽马虽然不如突厥马那么高大，但却善走长途，这个马房，各式
-各样的马应有尽有，突厥马，高丽马，甚至连岭南马都有。
+高麗馬雖然不如突厥馬那麼高大，但卻善走長途，這個馬房，各式
+各樣的馬應有盡有，突厥馬，高麗馬，甚至連嶺南馬都有。
 LONG
         );
 set("outdoors", "gaoli");

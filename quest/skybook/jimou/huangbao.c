@@ -1,4 +1,4 @@
-// 谎报
+// 謊報
 #include <mudlib.h>
 #include <daemons.h>
 #include <ansi.h>
@@ -22,37 +22,37 @@ string* charlist;
 	p_name=CHAR_D->get_char(ob->query_primary_id(),"name");
 	where = TROOP_D->get_troop_area(p_id);
 	if(!(p_skill=CHAR_D->get_char(ob->query_primary_id(),"skills")["huangbao"]))
-        {       write("你不会谎报之计。\n");
+        {       write("你不會謊報之計。\n");
                 return;}
 	if( !p_id){
-                write("只有身在军中才能谎报。\n");
+                write("只有身在軍中才能謊報。\n");
                 return;
         }	
 	// In the furture, We have to consider theplayer's ablility
 	// add the exp of this jimou, reduce mp, etc.
 	if ( !e_id || TROOP_D->get_troop_area(e_id)!=where)
-		{ write("对方不在此战场上。\n");
+		{ write("對方不在此戰場上。\n");
 			return;
 		}
 	
 	if (TROOP_D->get_troop_side(e_id) ==TROOP_D->get_troop_side(p_id))
-                {write ("不可向己方部队施用此计。\n");
+                {write ("不可向己方部隊施用此計。\n");
                         return;
                 }
 	side = TROOP_D->get_troops(p_id,"side");
 	if (side == "a")
-	{	write("只有防守方可以施用此计。\n");
+	{	write("只有防守方可以施用此計。\n");
 		return;
 	}
 	task = TROOP_D->get_troops(e_id, "task_id");
 	if( (who==TASK_D->get_task(task, "att_leader")) ){
-                write("不可对主将施用此计。\n");
+                write("不可對主將施用此計。\n");
                 return;
 		}
 charlist = TROOP_D->get_troops(e_id,"chars");
 
 if(member_array(TASK_D->get_task(task, "att_leader"),charlist)>=0)
-        {write("不可对主将部队使用.\n");
+        {write("不可對主將部隊使用.\n");
                 return;
         }
 	x =TROOP_D->get_troop_position(p_id)[0];
@@ -62,16 +62,16 @@ if(member_array(TASK_D->get_task(task, "att_leader"),charlist)>=0)
                 y2 = TROOP_D->get_troop_position(e_id)[1];
 
                 if( (x-x2)*(x-x2)+(y-y2)*(y-y2) > 9 ){
-			write("你离敌人太远无法施计。\n");
+			write("你離敵人太遠無法施計。\n");
 			return;}
                 tell(deep_inventory(TROOP_D->find_troop(e_id)),
-	"士兵一阵喧哗，原来是"+p_name+"对你的部队使用谎报之计。\n",
+	"士兵一陣喧譁，原來是"+p_name+"對你的部隊使用謊報之計。\n",
                         MSG_INDENT);
                 // In future, we have to consider effects of the
                 // ablility of general, zhenxing, dixing, etc.
                 // Now the damage depends only on the No of bowman
 	ob->simple_action(SG_SKILL_D->query_use("huangbao"));
-	ob->start_busy(10, "你正忙于谎报呢。");
+	ob->start_busy(10, "你正忙於謊報呢。");
 	load_object("/daemons/cast_d.c")->reg_player(ob->query_primary_id(), "huangbao");
         ob->award_exp(ob->query_sk_level("sk_zhimou")/2+random(20), "huangbao");
 	
@@ -111,12 +111,12 @@ kill = random(kill);
                         MSG_INDENT);
 		mora1 = random (6) +2;
 		tell(deep_inventory(TROOP_D->find_troop(p_id)),
-                "计策完全成功，敌人撤退。\n",
+                "計策完全成功，敵人撤退。\n",
                         MSG_INDENT);
 		ob->simple_action(SG_SKILL_D->query_succ("huangbao"));	
 		WARAI_D->war_inf(TROOP_D->get_troops(p_id,"task_id"),
-TROOP_D->find_troop(p_id)->query_id()[1]+"使用谎报之计，令"+
-TROOP_D->find_troop(e_id)->query_id()[1]+"全军撤退。","b");
+TROOP_D->find_troop(p_id)->query_id()[1]+"使用謊報之計，令"+
+TROOP_D->find_troop(e_id)->query_id()[1]+"全軍撤退。","b");
 	TROOP_D->remove_troop(e_id);
 		return;
 } 
@@ -124,44 +124,44 @@ TROOP_D->find_troop(e_id)->query_id()[1]+"全军撤退。","b");
 	{     if(kill>20)
 		{
 	tell(deep_inventory(TROOP_D->find_troop(e_id)),
-        	"士兵开始逃走，想是受了谎报的影响。\n",
+        	"士兵開始逃走，想是受了謊報的影響。\n",
                         MSG_INDENT);	
 		mora = random (-3) - 5;
 		mora1 = random (3) + 1;
 		rate = 1.1;
 	tell(deep_inventory(TROOP_D->find_troop(p_id)),
-                "计策大成功，敌方士兵开始逃走。\n",
+                "計策大成功，敵方士兵開始逃走。\n",
                         MSG_INDENT);	
 	ob->simple_action(SG_SKILL_D->query_succ("huangbao"));
 		}
 	      else if( kill>5)
 		{
 		tell(deep_inventory(TROOP_D->find_troop(e_id)),
-        	"士兵面有疑问，受了谎报的影响。\n",
+        	"士兵面有疑問，受了謊報的影響。\n",
                         MSG_INDENT);
 		mora = random(-2) - 1;
 		mora1 = 1;
 		tell(deep_inventory(TROOP_D->find_troop(p_id)),
-                "计策成功，敌人受了谎报的影响。\n",
+                "計策成功，敵人受了謊報的影響。\n",
                         MSG_INDENT);
 	ob->simple_action(SG_SKILL_D->query_succ("huangbao"));
 		}	
 	      else 
 		{
 		tell(deep_inventory(TROOP_D->find_troop(e_id)),
-        	"士兵成功破解敌人谎报。\n",
+        	"士兵成功破解敵人謊報。\n",
                         MSG_INDENT);
 		mora = random(20) + 10;
 		mora1 = random(-8) - 3;
 		ob->simple_action(SG_SKILL_D->query_fail("huangbao"));
 		tell(deep_inventory(TROOP_D->find_troop(p_id)),
-                "计策失败，我军蒙受损失。\n",
+                "計策失敗，我軍蒙受損失。\n",
                         MSG_INDENT);
 	  	damage= 100 + random (150);
         	WARAI_D->kill_troop(p_id,damage);
 		WARAI_D->war_inf(TROOP_D->get_troops(p_id,"task_id"),
-TROOP_D->find_troop(p_id)->query_id()[1]+"使用谎报之计失败，被敌人乘机歼
-灭"+chinese_number(damage)+"人。","b");
+TROOP_D->find_troop(p_id)->query_id()[1]+"使用謊報之計失敗，被敵人乘機殲
+滅"+chinese_number(damage)+"人。","b");
 		WARAI_D->clear_empty_troop(({p_id}));
 		
 		}
@@ -172,7 +172,7 @@ TROOP_D->find_troop(p_id)->query_id()[1]+"使用谎报之计失败，被敌人�
 	{	damage =kill*rate*2;
 		WARAI_D->kill_troop(e_id,damage);
                 WARAI_D->war_inf(TROOP_D->get_troops(p_id,"task_id"),
-TROOP_D->find_troop(p_id)->query_id()[1]+"使用谎报之计，令"+
+TROOP_D->find_troop(p_id)->query_id()[1]+"使用謊報之計，令"+
 TROOP_D->find_troop(e_id)->query_id()[1]+"逃走"+
 chinese_number(damage)+"人。","b");
                 WARAI_D->clear_empty_troop(({e_id}));

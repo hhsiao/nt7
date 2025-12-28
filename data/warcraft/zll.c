@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;36m风风[2;37;0m[2;37;0m", ({"baihuuu"}));        
+        set_name("[1;36m風風[2;37;0m[2;37;0m", ({"baihuuu"}));        
         set("gender", "女性");                
-        set("long", "$HIC$风风[2;37;0m
-它是聆聆的魔幻兽。
+        set("long", "$HIC$風風[2;37;0m
+它是聆聆的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

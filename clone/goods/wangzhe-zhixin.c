@@ -9,8 +9,8 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", HIR "这是一颗晶莹无瑕的宝石，据说拥有着奇幻的力量，是用来绿化套装的必备材料。\n" NOR); 
-                set("unit", "块");
+                set("long", HIR "這是一顆晶瑩無瑕的寶石，據說擁有著奇幻的力量，是用來綠化套裝的必備材料。\n" NOR); 
+                set("unit", "塊");
                 set("value", 500000);
                 set("no_sell", 1);
                 set("auto_load", 1);

@@ -2,15 +2,15 @@
 inherit NPC;
 void create()
 {
-        set_name("钱二败", ({ "qian erbai","qian","erbai"}) );
+        set_name("錢二敗", ({ "qian erbai","qian","erbai"}) );
         set("long",@LONG
-那人看来不算老，却脸皮都皱了起来，身材矮小，原本应是个毫不起眼的汉子，
-可是他一对眼睛神芒闪烁，锐利至像能透视别人肺腑般，一脚踏在凳上，手肘枕在膝
-头处托着箭壶，有种稳如泰山的感觉，在在都使人感到他绝非平凡之辈。
+那人看來不算老，卻臉皮都皺了起來，身材矮小，原本應是個毫不起眼的漢子，
+可是他一對眼睛神芒閃爍，銳利至像能透視別人肺腑般，一腳踏在凳上，手肘枕在膝
+頭處託著箭壺，有種穩如泰山的感覺，在在都使人感到他絕非平凡之輩。
 LONG
          );
         set("title",BLU"神箭八雄"NOR);
-        set("nickname","穿云箭");
+        set("nickname","穿雲箭");
         set("max_jing", 6000);
         set("max_qi", 6000);                    
         set("max_sen", 6000);
@@ -25,7 +25,7 @@ LONG
         set_skill("dodge", 500);
         set_skill("parry", 500);
         set_skill("sword",420);
-        set_skill("force",800); //防止别人来弹指
+        set_skill("force",800); //防止別人來彈指
         set_skill("hamagong",500);
         set_skill("tiyunzong",500);
         map_skill("sword","pixie-jian");

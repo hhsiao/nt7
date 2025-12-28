@@ -11,7 +11,7 @@ void create()
         {
                 set("unit", "件");
                 set("long",
-                        "一件上面绣有血色棋局的衣服。\n");
+                        "一件上面繡有血色棋局的衣服。\n");
                 set("value", 7000);
                 set("material", "cloth");
                 set("skill", ([

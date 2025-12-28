@@ -7,7 +7,7 @@ void setup()
         set_name("[5m[1;31m杳[1;32m杳[2;37;0m[2;37;0m[2;37;0m", ({"yaoyao"}));        
         set("gender", "女性");                
         set("long", "$BLINK$$HIR$杳$HIG$杳$NOR$[2;37;0m
-它是旮旮的魔幻兽。
+它是旮旮的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

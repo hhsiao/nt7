@@ -11,7 +11,7 @@ void init()
 
 void create()
 {
-        set_name(CYN "圣火令" NOR, ({ "shenghuo ling", "shenghuo", "ling" }) );
+        set_name(CYN "聖火令" NOR, ({ "shenghuo ling", "shenghuo", "ling" }) );
         set_weight(1000);
         /*if( clonep() )
                 set_default_object(__FILE__);
@@ -20,12 +20,12 @@ void create()
                 set("unit", "把");
                 set("value", 10000);
                 set("material", "steel");
-                set("no_sell", "他奶奶的，这是什么玩意？");
-                set("long", CYN "这是一柄两尺来长的黑牌，非金非铁。质地坚硬无比，\n"
-                                "似透明，令中隐隐似有火焰飞腾，实则是令质映光，颜\n"
-                                "色变幻。令上刻得有不少波斯文字。 \n" NOR);
-                set("wield_msg", CYN "$N“唰”的一声，从腰间抽出一片黑黝的铁牌握在手中。\n");
-                set("unwield_msg", CYN "$N将圣火令插回腰间。\n" NOR);
+                set("no_sell", "他奶奶的，這是什麼玩意？");
+                set("long", CYN "這是一柄兩尺來長的黑牌，非金非鐵。質地堅硬無比，\n"
+                                "似透明，令中隱隱似有火焰飛騰，實則是令質映光，顏\n"
+                                "色變幻。令上刻得有不少波斯文字。 \n" NOR);
+                set("wield_msg", CYN "$N“唰”的一聲，從腰間抽出一片黑黝的鐵牌握在手中。\n");
+                set("unwield_msg", CYN "$N將聖火令插回腰間。\n" NOR);
         }
         init_sword(100);
         setup();
@@ -42,53 +42,53 @@ int do_du(string arg)
         if (!(arg=="shenghuo ling" || arg == "shenghuo" || arg == "ling" ))
         return 0;
         if (me->is_busy()) {
-                write("你现在正忙着呢。\n");
+                write("你現在正忙著呢。\n");
                 return 1;
         }
         if( me->is_fighting() ) {
-                write("你无法在战斗中专心下来研读新知！\n");
+                write("你無法在戰鬥中專心下來研讀新知！\n");
                 return 1;
         }
         if (!id(arg)) { 
-                write("你要读什么？\n");
+                write("你要讀什麼？\n");
                 return 1;
         }
         if( !me->query_skill("literate", 1) ){
-                write("你是个文盲，先学点文化(literate)吧。\n");
+                write("你是個文盲，先學點文化(literate)吧。\n");
                 return 1;
         }
         if( me->query_skill("sanscrit", 1) < 199){
-                write("你的梵文水平太低，无法看懂圣火令里所记载的内容。\n");
+                write("你的梵文水平太低，無法看懂聖火令裡所記載的內容。\n");
                 return 1;
         }
 
-        message("vision", me->name() + "正专心地研读圣火令。\n", environment(me), me);
+        message("vision", me->name() + "正專心地研讀聖火令。\n", environment(me), me);
 
         if( query("jing", me)<80){
-                write("你现在过于疲倦，无法专心下来研读新知。\n");
+                write("你現在過於疲倦，無法專心下來研讀新知。\n");
                 return 1;
         }
         if( query("qi", me)<80){
-                write("你现在过于疲倦，无法专心下来研读新知。\n");
+                write("你現在過於疲倦，無法專心下來研讀新知。\n");
                 return 1;
         }
         pxlevel = me->query_skill("shenghuo-ling", 1);
 
         if( query("combat_exp", me)<100000){
-                write("你的实战经验不足，再怎么读也没用。\n");
+                write("你的實戰經驗不足，再怎麼讀也沒用。\n");
                 return 1;
         }
         if( query("combat_exp", me)<pxlevel*pxlevel/10*pxlevel){
-                write("你的实战经验不足，再怎么读也没用。\n");
+                write("你的實戰經驗不足，再怎麼讀也沒用。\n");
                 return 1;
         }
         if( me->query_skill("shenghuo-ling", 1) > 49){
-                write("你研读了一会儿，但是发现圣火令上所记载的对你而言都太浅了，没有学到任何东西。\n");
+                write("你研讀了一會兒，但是發現聖火令上所記載的對你而言都太淺了，沒有學到任何東西。\n");
                 return 1;
         }
         me->receive_damage("qi", 50);
         me->receive_damage("jing", 50);
         me->improve_skill("shenghuo-ling", (int)me->query_skill("literate", 1)/5+1);
-        write("你研读圣火令，颇有心得。\n");
+        write("你研讀聖火令，頗有心得。\n");
         return 1;
 }

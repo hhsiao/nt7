@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;33m仙鹤[2;37;0m[2;37;0m", ({"car"}));        
+        set_name("[1;33m仙鶴[2;37;0m[2;37;0m", ({"car"}));        
         set("gender", "男性");                
-        set("long", "$HIY$仙鹤[2;37;0m
-它是太上老君的魔幻兽。
+        set("long", "$HIY$仙鶴[2;37;0m
+它是太上老君的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

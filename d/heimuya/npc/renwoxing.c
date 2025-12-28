@@ -10,8 +10,8 @@ void create()
 {
         set_name("任我行", ({ "ren woxing", "ren","woxing" }));
         set("title", BLU "日月神教教主"NOR );
-        set("long", "只见他一张长长的脸孔，脸色雪白，更无半分血色，眉目清秀，
-身材甚高，一头黑发，穿的是一袭青衫。\n");
+        set("long", "只見他一張長長的臉孔，臉色雪白，更無半分血色，眉目清秀，
+身材甚高，一頭黑髮，穿的是一襲青衫。\n");
         set("gender", "男性");
         set("class", "scholar");
         set("age", 55);
@@ -56,9 +56,9 @@ void create()
         map_skill("parry", "damo-jian");
 
         set("inquiry", ([
-                "比剑" :  (: ask_bijian :),
-                "剑法" :  (: ask_bijian :),
-                "黑木令" : "要拿黑木令？老夫想先看看你的剑法！\n",
+                "比劍" :  (: ask_bijian :),
+                "劍法" :  (: ask_bijian :),
+                "黑木令" : "要拿黑木令？老夫想先看看你的劍法！\n",
         ]) );
          setup();
         carry_object("/d/wudang/obj/bluecloth")->wear();
@@ -68,77 +68,77 @@ void create()
 int ask_bijian()
 {
         object obj, me = this_player(), ob = this_object();
-        message_vision("$N躬身说道：“晚辈今日有幸拜见任老前辈，还望多加指教。”\n
-$n笑道：“不用客气，你来解我寂寞，可多谢你啦。”\n", me, ob );
+        message_vision("$N躬身說道：“晚輩今日有幸拜見任老前輩，還望多加指教。”\n
+$n笑道：“不用客氣，你來解我寂寞，可多謝你啦。”\n", me, ob );
         message_vision("$N道：“不敢。”\n
-$n点了点头，说道：“我只想瞧瞧你的剑法，并非真的过
-招，再说，我也未必能胜得了你。”\n\n", me, ob);
-        say(HIR"任我行大喝一声：“少林剑法！”"NOR);
+$n點了點頭，說道：“我只想瞧瞧你的劍法，並非真的過
+招，再說，我也未必能勝得了你。”\n\n", me, ob);
+        say(HIR"任我行大喝一聲：“少林劍法！”"NOR);
         COMBAT_D->do_attack(ob, me, query_temp("weapon"));
         if( query("qi", me)<0 || !present(me,environment()) )
         {
-                say("任我行叹了口气，说道：“才一招。”\n");
+                say("任我行嘆了口氣，說道：“才一招。”\n");
                 return 1;
         }
         command("enable sword taiji-jian");
-        say(HIR"任我行大喝一声：“武当剑法！”"NOR);
+        say(HIR"任我行大喝一聲：“武當劍法！”"NOR);
         COMBAT_D->do_attack(ob, me, query_temp("weapon"));
         if( query("qi", me)<0 || !present(me,environment()) )
         {
-                say("任我行叹了口气，说道：“才两招。”\n");
+                say("任我行嘆了口氣，說道：“才兩招。”\n");
                 return 1;
         }
         command("enable sword huifeng-jian");
-        say(HIR"任我行大喝一声：“峨嵋剑法！”"NOR);
+        say(HIR"任我行大喝一聲：“峨嵋劍法！”"NOR);
         COMBAT_D->do_attack(ob, me, query_temp("weapon"));
         if( query("qi", me)<0 || !present(me,environment()) )
         {
-                say("任我行叹了口气，说道：“才三招。”\n");
+                say("任我行嘆了口氣，說道：“才三招。”\n");
                 return 1;
         }
         command("enable sword songshan-sword");
-        say(HIR"任我行大喝一声：“嵩山剑法！”"NOR);
+        say(HIR"任我行大喝一聲：“嵩山劍法！”"NOR);
         COMBAT_D->do_attack(ob, me, query_temp("weapon"));
         if( query("qi", me)<0 || !present(me,environment()) )
         {
-                say("任我行叹了口气，说道：“才四招。”\n");
+                say("任我行嘆了口氣，說道：“才四招。”\n");
                 return 1;
         }
         command("enable sword taishan-sword");
-        say(HIR"任我行大喝一声：“泰山剑法！”"NOR);
+        say(HIR"任我行大喝一聲：“泰山劍法！”"NOR);
         COMBAT_D->do_attack(ob, me, query_temp("weapon"));
         if( query("qi", me)<0 || !present(me,environment()) )
         {
-                say("任我行叹了口气，说道：“才五招。”\n");
+                say("任我行嘆了口氣，說道：“才五招。”\n");
                 return 1;
         }
         command("enable sword huashan-sword");
-        say(HIR"任我行大喝一声：“华山剑法！”"NOR);
+        say(HIR"任我行大喝一聲：“華山劍法！”"NOR);
         COMBAT_D->do_attack(ob, me, query_temp("weapon"));
         if( query("qi", me)<0 || !present(me,environment()) )
         {
-                say("任我行叹了口气，说道：“才六招。”\n");
+                say("任我行嘆了口氣，說道：“才六招。”\n");
                 return 1;
         }
         command("enable sword hengshan-sword");
-        say(HIR"任我行大喝一声：“衡山剑法！”"NOR);
+        say(HIR"任我行大喝一聲：“衡山劍法！”"NOR);
         COMBAT_D->do_attack(ob, me, query_temp("weapon"));
         if( query("qi", me)<0 || !present(me,environment()) )
         {
-                say("任我行叹了口气，说道：“才七招。”\n");
+                say("任我行嘆了口氣，說道：“才七招。”\n");
                 return 1;
         }
         command("enable sword hengshan-jian");
-        say(HIR"任我行大喝一声：“恒山剑法！”"NOR);
+        say(HIR"任我行大喝一聲：“恆山劍法！”"NOR);
         COMBAT_D->do_attack(ob, me, query_temp("weapon"));
         if( query("qi", me)<0 || !present(me,environment()) )
         {
-                say("任我行叹了口气，说道：“还是没过八招。”\n");
+                say("任我行嘆了口氣，說道：“還是沒過八招。”\n");
                 return 1;
         }
 
         obj = new("/d/heimuya/obj/heimu-ling");
         obj -> move(me);
-        say("任我行说道：“这位" + RANK_D->query_respect(me)+"不错，我就送你一块黑木令吧。”\n");
+        say("任我行說道：“這位" + RANK_D->query_respect(me)+"不錯，我就送你一塊黑木令吧。”\n");
         return 1;
 }

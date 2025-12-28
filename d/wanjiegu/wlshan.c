@@ -4,10 +4,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "无量山");
+        set("short", "無量山");
         set("long", @LONG
-这里就是无量山区。山上树木丛生，很少有人走动，你都无法找
-到一条能够上山的路。沿着山脚有一条蜿蜒的小路。
+這裡就是無量山區。山上樹木叢生，很少有人走動，你都無法找
+到一條能夠上山的路。沿著山腳有一條蜿蜒的小路。
 LONG );
         set("outdoors", "wanjiegu");
         set("exits", ([ /* sizeof() == 2 */

@@ -12,25 +12,25 @@ int main(object me, string arg)
         int i;
 
         if (PK_D->is_ready())
-                return notify_fail("现在正在报名呢，等会儿再说。\n");
+                return notify_fail("現在正在報名呢，等會兒再說。\n");
 
         obs = PK_D->query_all_competitor();
         if (! arrayp(obs) || ! sizeof(obs))
         {
                 if (PK_D->is_pking())
-                        return notify_fail("无法和 PK DAEMON 进行正常的联系。\n");
-                return notify_fail("现在屠人场内并没有什么人。\n");
+                        return notify_fail("無法和 PK DAEMON 進行正常的聯繫。\n");
+                return notify_fail("現在屠人場內並沒有什麼人。\n");
         }
 
         obs -= ({ me, 0 });
         if (! sizeof(obs))
         {
-                write("现在屠人场中只有你一个人了。\n");
+                write("現在屠人場中只有你一個人了。\n");
                 return 1;
         }
 
-        msg = HIR "现在屠人场中除了你还剩下" + chinese_number(sizeof(obs)) +
-              "人，他们是：\n" NOR;
+        msg = HIR "現在屠人場中除了你還剩下" + chinese_number(sizeof(obs)) +
+              "人，他們是：\n" NOR;
         msg += HIC "≡" HIY "----------------------------------------------------------------------" HIC "≡\n" NOR;
         for (i = 0; i < sizeof(obs); i++)
         {
@@ -53,7 +53,7 @@ int help(object me)
 write(@HELP
 指令格式 : pkd
 
-用这条指令可以查看目前还有谁在屠人场中比赛。
+用這條指令可以查看目前還有誰在屠人場中比賽。
 
 HELP );
         return 1;

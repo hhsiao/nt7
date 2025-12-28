@@ -7,7 +7,7 @@ void setup()
         set_name("[1;37m少陵野老[2;37;0m[2;37;0m", ({"baihu"}));        
         set("gender", "男性");                
         set("long", "少陵野老，杜陵布衣[2;37;0m
-它是杜甫的魔幻兽。
+它是杜甫的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

@@ -6,12 +6,12 @@ inherit NPC;
 
 void create()
 {
-        set_name("牛头怪", ({ "niutou guai", "niutou" }) );
+        set_name("牛頭怪", ({ "niutou guai", "niutou" }) );
         set("title", HIY "魔族" NOR);
         set("gender", "男性");
         set("age", 58);
         set("long", @LONG
-这是一个满脸杀气的恶汉，两眼直露凶光。
+這是一個滿臉殺氣的惡漢，兩眼直露兇光。
 LONG );
         set("combat_exp", 10000000);
         set("shen_type", 0);
@@ -58,8 +58,8 @@ void fight_ob(object ob)
         if (is_fighting(ob))
                 return;
 
-        message_vision(HIR "$N" HIR "口中呵呵作响，两眼中"
-                       "凶光毕露。\n" NOR, this_object(), ob);
+        message_vision(HIR "$N" HIR "口中呵呵作響，兩眼中"
+                       "兇光畢露。\n" NOR, this_object(), ob);
 
         ::fight_ob(ob);
         if( !is_killing(query("id", ob)) )
@@ -68,7 +68,7 @@ void fight_ob(object ob)
 
 int accept_fight(object ob)
 {
-        message_vision("$N一阵狂叫，猛然扑了上来。\n",
+        message_vision("$N一陣狂叫，猛然撲了上來。\n",
                        this_object(), ob);
         kill_ob(ob);
         return -1;
@@ -88,8 +88,8 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->receive_wound("qi", 200 + random(200), me);
         set("neili",query("max_neili",  me), me);
-        return HIR "$N" HIR "身上腾起一股火焰，登时逼得$n"
-               HIR "退后几步，闷哼一声。\n" NOR;
+        return HIR "$N" HIR "身上騰起一股火焰，登時逼得$n"
+               HIR "退後幾步，悶哼一聲。\n" NOR;
 }
 
 void unconcious()
@@ -102,9 +102,9 @@ void die()
         object ob;
 
         ob = new("/clone/tessera/rune09");
-        command("chat 呀！想不到凡人也有如此厉害的！");
-        message_sort(HIR "$N" HIR "吐一口鲜血，身边涌现出一股黑烟，只听叮玲玲一声"
-                     "轻响，$N"HIR"掉下了一"+query("unit", ob)+
+        command("chat 呀！想不到凡人也有如此厲害的！");
+        message_sort(HIR "$N" HIR "吐一口鮮血，身邊湧現出一股黑煙，只聽叮玲玲一聲"
+                     "輕響，$N"HIR"掉下了一"+query("unit", ob)+
                      ob->name() + HIR "。\n", this_object());
         ob->move(environment());
         destruct(this_object());
@@ -116,8 +116,8 @@ void random_move()
         {
                 message_vision("$N急急忙忙的走了。\n", this_object());
                 CHANNEL_D->channel_broadcast("rumor",
-                        "听说" + name() + HIM "找上花果山水帘洞，惨"
-                        "遭猴兵戏辱，已经逃回火焰山。" NOR);
+                        "聽說" + name() + HIM "找上花果山水簾洞，慘"
+                        "遭猴兵戲辱，已經逃回火焰山。" NOR);
                 destruct(this_object());
                 return;
         }

@@ -9,7 +9,7 @@ void create()
 {
         set_name("霍元甲", ({ "huo yuanjia", "huo", "yuanjia" }));
         set("long", @LONG
-    精武门掌门，「迷踪拳」的创始人。一心挑起抗击东瀛流寇，堪称当世民
+    精武門掌門，「迷蹤拳」的創始人。一心挑起抗擊東瀛流寇，堪稱當世民
 族英雄。
 LONG);
         set("gender", "男性");
@@ -29,7 +29,7 @@ LONG);
         set("combat_exp", 1200000);
         set("no_quest_npc", 1);
         set("no_bark", 1);
-        create_family("精武门", 1, "掌门");
+        create_family("精武門", 1, "掌門");
         /*
         set_skill("force", 150);
         set_skill("yijin-jing", 150);
@@ -50,7 +50,7 @@ LONG);
         */
         set("inquiry", ([
                 "抗日": (: ask_job :),
-                "次数"  : (: ask_gonglao :),
+                "次數"  : (: ask_gonglao :),
         ]));
         setup();
         //carry_object(MISC_D("cloth"))->wear();
@@ -64,10 +64,10 @@ string ask_gonglao(object who)
 
         i=query("job/japan_job", me);
 
-        if( !query("job/japan_job", me))return "「抗击流寇为我辈中人的职责，"+RANK_D->query_respect(this_player())+"也要一起响应才是。」";
+        if( !query("job/japan_job", me))return "「抗擊流寇為我輩中人的職責，"+RANK_D->query_respect(this_player())+"也要一起響應才是。」";
 
         command("massage"+query("id", me));
-        return "「你已经抗击了" + chinese_number(i) + "次东瀛人的侵犯。」";
+        return "「你已經抗擊了" + chinese_number(i) + "次東瀛人的侵犯。」";
 }
 
 int filldata(object obj)
@@ -88,34 +88,34 @@ string ask_job(string arg)
         ob_list = users();
         ob_list = filter_array(ob_list, (: filldata :));
 
-        if( count_lt(query("combat_exp", me),200000))return "「东瀛人很强悍，你还是不要去冒险了。」";
+        if( count_lt(query("combat_exp", me),200000))return "「東瀛人很強悍，你還是不要去冒險了。」";
 
-        if( query("job_done", me) == "japan")return "「东瀛人刚被击退，一时还不会来。」";
+        if( query("job_done", me) == "japan")return "「東瀛人剛被擊退，一時還不會來。」";
 
         if ( me->query_condition("killer") ) {
                 command("fule"+query("id", me));
-                return "「先管好自己吧，你这个杀人犯!";
+                return "「先管好自己吧，你這個殺人犯!";
         }
-        if( query("job_done", me) == "japan_job")return "「你不是刚刚帮我偷过一次吗？」";
+        if( query("job_done", me) == "japan_job")return "「你不是剛剛幫我偷過一次嗎？」";
 
-        if ( me->query_condition("job_busy" ) ) return "「哇，你比我还忙着，先做完你自己的任务吧。」";
+        if ( me->query_condition("job_busy" ) ) return "「哇，你比我還忙著，先做完你自己的任務吧。」";
 
-        if ( me->query_condition("gb_busy" ) ) return "「你不是在帮丐帮做任务吗？」";
+        if ( me->query_condition("gb_busy" ) ) return "「你不是在幫丐幫做任務嗎？」";
 
-        if ( me->query_condition("xx_task" ) ) return "「你不是在帮星宿丁老贼做任务吗？」";
+        if ( me->query_condition("xx_task" ) ) return "「你不是在幫星宿丁老賊做任務嗎？」";
 
-        if ( me->query_condition("guanfu_task" ) ) return "「你已经投靠官府这棵大树，还来我在帮助我偷官府的东西？」";
+        if ( me->query_condition("guanfu_task" ) ) return "「你已經投靠官府這棵大樹，還來我在幫助我偷官府的東西？」";
 
-        if ( me->query_condition("niao_job" ) ) return "「你正在帮青鸟送请帖。」";
+        if ( me->query_condition("niao_job" ) ) return "「你正在幫青鳥送請帖。」";
 
         if( query_temp("japan/job", me)){
                 command("knock"+query("id", me));
-                return "「不叫你去做了吗？怎么还在这里？为国抗敌是要作出实际行动来的。」";
+                return "「不叫你去做了嗎？怎麼還在這裡？為國抗敵是要作出實際行動來的。」";
         }
         for ( i = 0; i < sizeof(ob_list); i++ ) {
-                if( query_temp("japan/job", ob_list[i]))return "「现在东瀛人已经进城，无法在潜入那里了。」";
+                if( query_temp("japan/job", ob_list[i]))return "「現在東瀛人已經進城，無法在潛入那裡了。」";
 
-                if ( (int)ob_list[i]->query_condition("japan_job") >= 1 ) return "「现在东瀛人已经进城，无法在潜入那里了。」";
+                if ( (int)ob_list[i]->query_condition("japan_job") >= 1 ) return "「現在東瀛人已經進城，無法在潛入那裡了。」";
         }
         team = me->query_team();
         count = sizeof(team);
@@ -125,17 +125,17 @@ string ask_job(string arg)
                 team = ({ me });
         }
         for ( i = 0; i < count; i++ ) {
-                if ( team[i] == 0 ) return "「你的队伍中现在有人不在。」";
+                if ( team[i] == 0 ) return "「你的隊伍中現在有人不在。」";
 
-                if( query_temp("japan/job", team[i]))return "「"+query("name", team[i])+"不是已经去了吗？你还站这里干吗？」";
+                if( query_temp("japan/job", team[i]))return "「"+query("name", team[i])+"不是已經去了嗎？你還站這裡幹嗎？」";
 
-                if( (uptime()-query("time", ob))<300)return "「刚刚有人进城杀敌去了。」";
+                if( (uptime()-query("time", ob))<300)return "「剛剛有人進城殺敵去了。」";
 
-                if( query("combat_exp", team[i])<200000)return "「东瀛人很强悍，我不能让还"+query("name", team[i])+"去冒险了。」";
+                if( query("combat_exp", team[i])<200000)return "「東瀛人很強悍，我不能讓還"+query("name", team[i])+"去冒險了。」";
 
-                if( query("job_done", team[i]) == "japan")return "「东瀛人刚被击退，一时还不会来。」";
+                if( query("job_done", team[i]) == "japan")return "「東瀛人剛被擊退，一時還不會來。」";
         }
-        if ( count > 3 ) return "「人太多了就会被敌人发现。」";
+        if ( count > 3 ) return "「人太多了就會被敵人發現。」";
 
         delete("player", ob);
         minexp=query("combat_exp", me);
@@ -155,7 +155,7 @@ string ask_job(string arg)
                         }
                 }
         }
-        if( (maxexp-minexp)>800000)return "「"+query("player/minname", me)+"和"+query("player/maxname", me)+"的武功差太远了。」";
+        if( (maxexp-minexp)>800000)return "「"+query("player/minname", me)+"和"+query("player/maxname", me)+"的武功差太遠了。」";
 
         ob=query("player/max", me);
         maxexp=query("combat_exp", ob);
@@ -228,5 +228,5 @@ string ask_job(string arg)
                 target->move("/d/tianjin/town" + random(4) + random(10));
         }
         set("time", uptime(), ob);
-        return "「据息东瀛人又要来天津城烧杀，就去好好地为国杀敌吧。」";
+        return "「據息東瀛人又要來天津城燒殺，就去好好地為國殺敵吧。」";
 }

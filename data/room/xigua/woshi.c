@@ -8,11 +8,11 @@
 
 void create()
 {
-        set("short", "卧室");
+        set("short", "臥室");
 	set ("long", @LONG
-这是主人的卧室，收拾得井井有条。南窗下是一张大床，床边有
-一个柜子。推开窗户可以看到下面的花园，还可嗅到阵阵花香，非常
-惬意。远处是一大片竹林。 
+這是主人的臥室，收拾得井井有條。南窗下是一張大床，床邊有
+一個櫃子。推開窗戶可以看到下面的花園，還可嗅到陣陣花香，非常
+愜意。遠處是一大片竹林。 
 LONG );
 
         set("exits", ([
@@ -29,7 +29,7 @@ LONG );
         setup();
     
         set("room_owner", "西瓜");
-        set("room_name", "水果摊");
+        set("room_name", "水果攤");
         set("room_id", "sgt");
         set("room_owner_id", "xigua");
         set("room_position", "碎石小道");
@@ -50,11 +50,11 @@ int do_findbaby(string arg)
                 return 0;
 
         if( !query("couple/child_id", me) )
-                return notify_fail("你又还没有孩子，来这里凑什么热闹啊？\n");
+                return notify_fail("你又還沒有孩子，來這裡湊什麼熱鬧啊？\n");
 
         if( objectp(baby=find_living(query("couple/child_id", me)) )
         &&  environment(baby) && baby->is_baby())
-                return notify_fail("你们的孩子已经跑出去玩了，好好四处找找吧！\n");
+                return notify_fail("你們的孩子已經跑出去玩了，好好四處找找吧！\n");
 
         if( query("gender", me) == "女性" )
                 file=read_file("/data/baby/"+query("id", me)+".o");
@@ -67,12 +67,12 @@ int do_findbaby(string arg)
                 baby->load_baby(me);
                 baby->move(environment(me));
                 message_vision("你忽然看到床底下" +
-                        ({"探出一颗小脑瓜", "伸出一双小脚丫", "伸出一支小手"})
+                        ({"探出一顆小腦瓜", "伸出一雙小腳丫", "伸出一支小手"})
                         [random(3)] + "．．．\n", me);
 
         } else
         {
-                tell_object(me, MAG "你们的孩子不幸夭折了，请节哀吧。\n" NOR);
+                tell_object(me, MAG "你們的孩子不幸夭折了，請節哀吧。\n" NOR);
                 delete("couple/child_id", me);
                 delete("couple/child_name", me);
         }

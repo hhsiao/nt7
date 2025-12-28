@@ -7,7 +7,7 @@ inherit F_DEALER;
 void create()
 {
         set_name("茶博士", ({ "cha boshi", "boshi", "cha" }));
-        set("title", "茶馆跑堂");
+        set("title", "茶館跑堂");
         set("shen_type", 1);
 
         set("str", 30);
@@ -35,5 +35,5 @@ void init()
 void greeting(object ob)
 {
         if (!ob || environment(ob) != environment()) return;
-        say("茶博士笑眯眯地说道：这位" + RANK_D->query_respect(ob) + "，快请进来喝杯热茶，刚从山上运下的泉水沏的。\n");
+        say("茶博士笑眯眯地說道：這位" + RANK_D->query_respect(ob) + "，快請進來喝杯熱茶，剛從山上運下的泉水沏的。\n");
 }

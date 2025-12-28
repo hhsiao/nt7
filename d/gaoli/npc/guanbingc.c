@@ -1,4 +1,4 @@
-// 大唐双龙传
+// 大唐雙龍傳
 
 //官兵
 
@@ -12,7 +12,7 @@ void create()
         set_name(HIY"官兵"NOR, ({ "guan bing", "bing"}) );
         set("gender", "男性");
         set("age", 35);
-        set("long","这是高丽衙门的官兵，总管高丽的治安。\n");
+        set("long","這是高麗衙門的官兵，總管高麗的治安。\n");
         set("combat_exp", 300000+random(40000));
         set("attitude", "heroism");
         set("str", 30);

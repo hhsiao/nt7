@@ -3,10 +3,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "栈道");
+        set("short", "棧道");
         set("long", @LONG
-这里是通往明教的栈道，脚下茂林生云，极其艰险。远远看到上
-头就是明教内三堂美仑美奂的飞檐画栋了。
+這裡是通往明教的棧道，腳下茂林生雲，極其艱險。遠遠看到上
+頭就是明教內三堂美侖美奐的飛簷畫棟了。
 LONG );
         set("exits", ([
                 "northup"   : __DIR__"tianweitang",

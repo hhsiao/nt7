@@ -5,11 +5,11 @@ inherit NPC;
 void create()
 {
         set_name("李白", ({ "li bai", "li", "bai"}));
-        set("long", "这便是唐朝第一大诗人李太白，只见他须垂\n"
-                    "三尺，面如冠玉，双目炯炯有神。一手持青\n"
-                    "铜爵，一手持长剑，正在独饮。\n"); 
-        set("title", "唐朝大诗人");
-        set("nickname", HIW "诗仙" NOR);
+        set("long", "這便是唐朝第一大詩人李太白，只見他須垂\n"
+                    "三尺，面如冠玉，雙目炯炯有神。一手持青\n"
+                    "銅爵，一手持長劍，正在獨飲。\n"); 
+        set("title", "唐朝大詩人");
+        set("nickname", HIW "詩仙" NOR);
         set("gender", "男性");
         set("age", 37);
         set("attitude", "friendly");
@@ -103,7 +103,7 @@ void die()
                          if (arrayp(ob->query_team()))
                          {
                                  command("heng");
-                                 command("say 胜之不武！");
+                                 command("say 勝之不武！");
                                  set("qi", 500000);
                                  set("jing", 560000);
                              set("neili", 35000);
@@ -121,7 +121,7 @@ void die()
              if (ob->query("sky12/floor") == 8)
              {
                       ob->set("sky12/floor", 9);
-                 command("say 阁下请便吧！");
+                 command("say 閣下請便吧！");
              }
         }
 
@@ -136,7 +136,7 @@ void die()
 
         return;
 }
-// 气血小于1000则死亡，避免他人协助帮忙转世
+// 氣血小於1000則死亡，避免他人協助幫忙轉世
 void heart_beat()
 {
         if (this_object()->query("qi") < 1000 || this_object()->query("eff_qi") < 1000)

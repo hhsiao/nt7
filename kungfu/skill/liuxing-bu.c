@@ -4,11 +4,11 @@
 inherit SKILL;
 
 string *dodge_msg = ({
-        "只见$n一式「银鞍照白马」，借力转力身子腾空而起，躲过了$N这一招。\n",
-          "$n身子斜飞而起，一式「飒沓如流星」避过了$N这一招。\n",
-          "$n一式「千里不留行」避过$N的攻势，脚在$N的身上一点，飘出数丈。\n",
-          "$n一转身，双掌往後拍出，借力一招「事了拂衣去」躲开$N这一招。\n", 
-          "$n身子往地下一躺，脚一撑一招「深藏身与名」身子贴地滑出躲开$N的这一招。\n",
+        "只見$n一式「銀鞍照白馬」，借力轉力身子騰空而起，躲過了$N這一招。\n",
+          "$n身子斜飛而起，一式「颯沓如流星」避過了$N這一招。\n",
+          "$n一式「千里不留行」避過$N的攻勢，腳在$N的身上一點，飄出數丈。\n",
+          "$n一轉身，雙掌往後拍出，借力一招「事了拂衣去」躲開$N這一招。\n", 
+          "$n身子往地下一躺，腳一撐一招「深藏身與名」身子貼地滑出躲開$N的這一招。\n",
 });
 
 int valid_enable(string usage) { return (usage == "dodge") || (usage == "move"); }
@@ -23,7 +23,7 @@ string query_dodge_msg(string limb)
 int practice_skill(object me)
 {
         if( query("jingli", me)<40 )
-                return notify_fail("你的精力太差了，不能练侠客游。\n");
+                return notify_fail("你的精力太差了，不能練俠客遊。\n");
         me->receive_damage("jingli", 30);
         return 1;
 }

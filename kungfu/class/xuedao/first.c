@@ -13,7 +13,7 @@ string zm_apply()
         object ob = this_player();
         
         if( query("class", ob) != "bonze" )
-                return "雪刀门必须是和尚才能担当首席大弟子。\n";
+                return "雪刀門必須是和尚才能擔當首席大弟子。\n";
                 
         return ::zm_apply();
 }

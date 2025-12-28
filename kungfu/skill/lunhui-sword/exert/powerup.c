@@ -9,16 +9,16 @@ int exert(object me, object target)
         int skill;
 
         if (target != me)
-                return notify_fail("你只能用六道轮回剑来提升自己的战斗力。\n");
+                return notify_fail("你只能用六道輪迴劍來提升自己的戰鬥力。\n");
 
         if( query_temp("powerup", me) )
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
 
-        message_combatd(HIG "\n$N" HIG "长叹一声，手挽宝剑，谈笑风声间，六道真气自体内而出，涌向天际，化作一朵金兰，消失了。\n" NOR, me);
+        message_combatd(HIG "\n$N" HIG "長嘆一聲，手挽寶劍，談笑風聲間，六道真氣自體內而出，湧向天際，化作一朵金蘭，消失了。\n" NOR, me);
 
-        // 打通BREAKUP后的效果增加20%
+        // 打通BREAKUP後的效果增加20%
         if( query("breakup", me))skill=skill+skill*2/10;
 
         addn_temp("apply/attack", skill, me);
@@ -41,7 +41,7 @@ void remove_effect(object me, int amount)
                 addn_temp("apply/attack", -amount, me);
                 addn_temp("apply/damage", -amount, me);
                 delete_temp("powerup", me);
-                tell_object(me, HIY "你的六道轮回剑「剑气通天」运行完毕，将内力收回丹田。\n" NOR);
+                tell_object(me, HIY "你的六道輪迴劍「劍氣通天」運行完畢，將內力收回丹田。\n" NOR);
         }
 
 

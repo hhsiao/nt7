@@ -7,10 +7,10 @@ inherit F_GUARDER;
 
 void create()
 {
-        set_name("邓百川", ({"deng baichuan", "deng"}));
+        set_name("鄧百川", ({"deng baichuan", "deng"}));
         set("gender", "男性");
         set("age", 42);
-        set("long", "他是慕容家四大家臣之首，功力最为深厚。\n");
+        set("long", "他是慕容家四大家臣之首，功力最為深厚。\n");
         set("attitude", "peaceful");
         set("str", 26);
         set("int", 22);
@@ -45,7 +45,7 @@ void create()
 
         set("inquiry", ([
                 "慕容博":   "那是老主人。\n",
-                "慕容复":   "他就是我们跟随的公子！\n",
+                "慕容復":   "他就是我們跟隨的公子！\n",
         ]));
 
         set("coagents", ({
@@ -60,6 +60,6 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        command("say 我们跟随慕容公子，不收徒。");
+        command("say 我們跟隨慕容公子，不收徒。");
         return;
 }

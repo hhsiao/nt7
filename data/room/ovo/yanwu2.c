@@ -5,10 +5,10 @@
 
 void create()
 {
-        set("short", "东北偏北演武厅");
+        set("short", "東北偏北演武廳");
 	set ("long", @LONG
-这是东北偏北的演武厅，有时有些江湖朋友来会，想一试身手，
-就在这里比武较量。 
+這是東北偏北的演武廳，有時有些江湖朋友來會，想一試身手，
+就在這裡比武較量。 
 LONG );
 
         set("exits", ([
@@ -25,7 +25,7 @@ LONG );
         setup();
 
         set("room_owner", "小球球");
-        set("room_name", "东北偏北");
+        set("room_name", "東北偏北");
         set("room_id", "dan");
         set("room_owner_id", "ovo");
         set("room_position", "碎石小道");

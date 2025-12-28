@@ -11,7 +11,7 @@ void create()
         else*/
         {
                 set("unit", "本");
-                set("long", "这是一本破纸片，上面画着舞棍的小人。\n");
+                set("long", "這是一本破紙片，上面畫著舞棍的小人。\n");
                 set("value", 100);
                 set("material", "paper");
                 set("skill", ([

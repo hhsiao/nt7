@@ -5,11 +5,11 @@ string look_gate();
 
 void create()
 {
-        set("short", "报国寺山门");
+        set("short", "報國寺山門");
         set("long", @LONG
-报国寺为峨嵋出入之门户。山门(gate)上有一块大匾。寺外苍楠
-环卫，翠柏掩映。由此一路向西上开始登峨嵋山，北面下山是一条弯
-弯的石阶路。
+報國寺為峨嵋出入之門戶。山門(gate)上有一塊大匾。寺外蒼楠
+環衛，翠柏掩映。由此一路向西上開始登峨嵋山，北面下山是一條彎
+彎的石階路。
 LONG );
         set("outdoors", "emei");
         set("item_desc", ([
@@ -33,7 +33,7 @@ string look_gate()
       return
 RED "\n\n　　　　≌≌≌≌≌≌≌≌≌≌≌≌≌≌≌≌≌\n"
 "　　　　≌≌　　　　　　　　　　　　　≌≌\n"
-"　　　　≌≌" WHT "　　　报　　国　　寺" RED "　　　≌≌\n"
+"　　　　≌≌" WHT "　　　報　　國　　寺" RED "　　　≌≌\n"
 "　　　　≌≌　　　　　　　　　　　　　≌≌\n"
 "　　　　≌≌≌≌≌≌≌≌≌≌≌≌≌≌≌≌≌\n\n\n";
 }

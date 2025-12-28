@@ -10,9 +10,9 @@ inherit NPC;
 
 void create()
 {
-        set_name(HIY "无我尊者" NOR, ({ "wuwo zunzhe"}) );
-        set("title", HIG "忘忧谷主人" NOR);
-        set("long", HIR "一位面色和善的尊者，似乎看尽一切尘世凡俗！\n" NOR);
+        set_name(HIY "無我尊者" NOR, ({ "wuwo zunzhe"}) );
+        set("title", HIG "忘憂谷主人" NOR);
+        set("long", HIR "一位面色和善的尊者，似乎看盡一切塵世凡俗！\n" NOR);
 
         set("gender", "男性");
         set("age", 49);
@@ -23,7 +23,7 @@ void create()
               // 
               (: command("perform sword.ben twice") :), 
               (: command("perform sword.ben and sword.tian") :),
-              // 阴阳12t
+              // 陰陽12t
               (: command("perform finger.tian twice") :), 
               (: command("perform finger.zhen and finger.jiu") :), 
 
@@ -40,7 +40,7 @@ void create()
         // 武器
         carry_object("/clone/weapon/fengshen-jian")->wield();
 
-        // 设置地点
+        // 設置地點
         //set("startroom", "/d/shenlong/huodong1");
 }
 
@@ -167,7 +167,7 @@ void init_npc(object me)
                 npc_qi = 250000000; // 2.5E
         }
                         
-        // 对NPC_qi修正
+        // 對NPC_qi修正
         npc_qi -= npc_qi / 2; // 降低50%
 
         reset_eval_cost();
@@ -191,13 +191,13 @@ void init_npc(object me)
         set("neili", 10000000);
         set("max_neili", 10000000);
         set("jiali", 1000);
-        set("no_nuoyi", 1); // 不被挪移影响
-        set_temp("apply/qy", 20);  // 气运
-        set_temp("apply/fy", 20);  // 福缘
+        set("no_nuoyi", 1); // 不被挪移影響
+        set_temp("apply/qy", 20);  // 氣運
+        set_temp("apply/fy", 20);  // 福緣
 
         npc_level = max_skill; 
         
-        // 对npc_level修正 
+        // 對npc_level修正 
         npc_level -= npc_level / 5; // 降低20%
 
         set_skill("unarmed", npc_level);
@@ -239,7 +239,7 @@ void init_npc(object me)
         prepare_skill("finger", "yinyang-shiertian");
         prepare_skill("unarmed", "yinyang-shiertian");
 
-        // 奖励
+        // 獎勵
         exp = max_skill * 10;
         pot = max_skill * 20;
         mar = max_skill * 5;
@@ -291,17 +291,17 @@ void unconcious()
 
 void die(object killer)
 {
-        object dob;             // 打晕这个NPC的人
-        int exp;                // 需要瓜分的经验
-        int pot;                // 需要瓜分的潜能
-        int mar;                //  需要瓜分的体会
+        object dob;             // 打暈這個NPC的人
+        int exp;                // 需要瓜分的經驗
+        int pot;                // 需要瓜分的潛能
+        int mar;                //  需要瓜分的體會
         int i;
         object gift_ob, gift_ob2, gift_ob3, ob_tys;
         string s_gift, *key_s_gift;
         int gift_point, ran;
 
-        // 定义奖励物品列表
-        // 几率  X / 百分之
+        // 定義獎勵物品列表
+        // 幾率  X / 百分之
         mixed oblist = ([
                 "/clone/fam/max/naobaijin"               : 1,
                 "/clone/fam/pill/sheli4"                 : 1,
@@ -371,7 +371,7 @@ void die(object killer)
         ]);
 
 
-        // dob 设置在我身上 init_npc(me)的时候已经设置
+        // dob 設置在我身上 init_npc(me)的時候已經設置
         dob = query("me");
 
         if (! dob)destruct(this_object());
@@ -395,7 +395,7 @@ void die(object killer)
                                         ([ "exp"      : exp + exp / 10,
                                            "pot"      : pot + pot  / 10,
                                            "mar"      : mar + mar/ 10, 
-                                           "prompt"   : "你在战胜" + name() + HIG "之后"]), 999);
+                                           "prompt"   : "你在戰勝" + name() + HIG "之後"]), 999);
                 }
 
                 else
@@ -404,7 +404,7 @@ void die(object killer)
                                         ([ "exp"      : exp,
                                            "pot"      : pot,
                                            "mar"      : mar,
-                                           "prompt"   : "你在战胜" + name() + HIG "之后"]), 999); 
+                                           "prompt"   : "你在戰勝" + name() + HIG "之後"]), 999); 
                 }
         }
 
@@ -421,19 +421,19 @@ void die(object killer)
                         gift_ob = new(s_gift);
                         if (objectp(gift_ob))
                         {
-                                message_vision(HIC "当~~一声，从$N" HIC "身上掉出" + 
+                                message_vision(HIC "當~~一聲，從$N" HIC "身上掉出" + 
                                                gift_ob->name() + HIC "，落在地上。\n" NOR, this_object());
                                 gift_ob->set("who_get/id", "NONE");
-                                gift_ob->set("who_get/time", time() + 30); // 30秒内都不能捡取
+                                gift_ob->set("who_get/time", time() + 30); // 30秒內都不能撿取
                                 gift_ob->move(environment(this_object()));
                         }
-                        else // 纪录之
+                        else // 紀錄之
                         {
                                 //log_file("gift-none", s_gift + " from " + __FILE__ + "\n");
                         }
                 }
                 
-                // 20%几率再追加一件物品
+                // 20%幾率再追加一件物品
                 if (random(10) < 2)
                 {
                         s_gift = key_s_gift[random(sizeof(key_s_gift))];
@@ -441,51 +441,51 @@ void die(object killer)
                         gift_ob2 = new(s_gift);
                         if (objectp(gift_ob2))
                         {
-                                message_vision(HIC "当~~一声，从$N" HIC "身上掉出" + 
+                                message_vision(HIC "當~~一聲，從$N" HIC "身上掉出" + 
                                                gift_ob2->name() + HIC "，落在地上。\n" NOR, this_object());
                                 gift_ob2->move(environment(this_object()));
                         }
-                        else // 纪录之
+                        else // 紀錄之
                         {
                                 //log_file("gift-none", s_gift + " from " + __FILE__ + "\n");
                         }
                 }
         }
         
-        // 50%几率掉出铁英石头
+        // 50%幾率掉出鐵英石頭
         if (random(100) < 25)
         {
                 ob_tys = new("/clone/fam/item/tieying-shi");
                 ob_tys->set_amount(1 + random(5));
                 if (objectp(ob_tys))
                 {
-                        message_vision(HIG "当~~一声，从$N" HIG "身上掉出" + HIY + 
-                                       sprintf("%d", ob_tys->query_amount()) + HIG "块" + 
+                        message_vision(HIG "當~~一聲，從$N" HIG "身上掉出" + HIY + 
+                                       sprintf("%d", ob_tys->query_amount()) + HIG "塊" + 
                                        ob_tys->name() + HIG "，落在地上。\n" NOR, this_object());
                         ob_tys->move(environment(this_object()));
                 }
-                else // 纪录之
+                else // 紀錄之
                 {
-                        log_file("gift-none", "铁英石 from " + __FILE__ + "\n");
+                        log_file("gift-none", "鐵英石 from " + __FILE__ + "\n");
                 }               
                 
         }
         
 /*      
-        // 5/100几率掉出无名铜人
+        // 5/100幾率掉出無名銅人
         if (random(100) < 5)
         {
                 object ob_tongren;
                 ob_tongren = new("/clone/fam/item/wuming-tongren");
-                message_vision(HIR "当~~一声，从$N" HIR "身上掉出" + ob_tongren->name() + HIR "，落在地上。\n" NOR, this_object());
+                message_vision(HIR "當~~一聲，從$N" HIR "身上掉出" + ob_tongren->name() + HIR "，落在地上。\n" NOR, this_object());
                 ob_tongren->set("who_get/id", "NONE");
-== 未完继续 95% == (ENTER 继续下一页，q 离开，b 前一页)
-                ob_tongren->set("who_get/time", time() + 30); // 30秒内都不能捡取
+== 未完繼續 95% == (ENTER 繼續下一頁，q 離開，b 前一頁)
+                ob_tongren->set("who_get/time", time() + 30); // 30秒內都不能撿取
                 ob_tongren->move(environment(this_object()));
         }
    */
    
-        // 为玩家所在帮派累积积分
+        // 為玩家所在幫派累積積分
         BUNCH_D->add_points(dob);
         
         destruct(this_object());

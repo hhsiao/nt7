@@ -6,18 +6,18 @@ void create()
 {
 	set("short", HIR"火山口"NOR);
         set("long", @LONG
-到了这里就等于到了地狱了。
+到了這裡就等於到了地獄了。
 LONG );
 	set("exits",([
 		"southdown" : __DIR__"huoshan1",
 	]));
-        set("outdoors","冰火岛");
+        set("outdoors","冰火島");
 	setup();
 }
 
 void init()
 {
         object me =this_player();
-        me->set_temp("die_reason", "误入火山口烧死");
+        me->set_temp("die_reason", "誤入火山口燒死");
        	me->die();
 }

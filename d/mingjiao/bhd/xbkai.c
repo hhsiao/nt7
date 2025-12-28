@@ -4,15 +4,15 @@
 inherit ROOM;
 void create()
 {
-	set("short", HIW"小冰块"NOR);
+	set("short", HIW"小冰塊"NOR);
         set("long", @LONG
-这是一块小浮基，能用手划(hua)动它，不远之处就是一块岩石(
-yanshi)，从那里可以登上陆地。
+這是一塊小浮基，能用手劃(hua)動它，不遠之處就是一塊岩石(
+yanshi)，從那裡可以登上陸地。
 LONG );
         set("no_fight", 1);
         set("no_get_from", 1); 
         set("no_sleep_room", 1); 
-	set("outdoors","极北");
+	set("outdoors","極北");
 	setup();
 }
 
@@ -28,12 +28,12 @@ void init()
         for(i= 0;i< sizeof(obj);i++){
              if(obj[i]==me ) continue;
              if(obj[i]->is_character()){
-                 message_vision(HIR"只见小冰块猛得一震，沉下海去！\n"NOR, ob);
+                 message_vision(HIR"只見小冰塊猛得一震，沉下海去！\n"NOR, ob);
                  obj[i]->unconcious();
                  obj[i]->move(__DIR__"dbshan");
                  me->unconcious();
                  me->move(__DIR__"dbshan");
-                 message("vision", "一个昏迷不醒的人被海水冲了上来。\n",environment(me), ({me}) );
+                 message("vision", "一個昏迷不醒的人被海水衝了上來。\n",environment(me), ({me}) );
              }
         }
         delete("hua_trigger");
@@ -44,14 +44,14 @@ void init()
 int do_hua()
 {
       object ob=this_player();
-      if(ob->is_busy()) return notify_fail("你正忙着呢。\n");
-      if(ob->query_temp("marks/划1")) return notify_fail("你已经划到岩石边了。\n");
-      message_vision("$N手脚划动，吃力的向北边的岩石划去。\n",ob);
+      if(ob->is_busy()) return notify_fail("你正忙著呢。\n");
+      if(ob->query_temp("marks/劃1")) return notify_fail("你已經劃到岩石邊了。\n");
+      message_vision("$N手腳划動，吃力的向北邊的岩石劃去。\n",ob);
       ob->start_busy(1);      
       if((int)query("hua_trigger")>=7){
-            message_vision("浮冰终于被$N划到达岩石的旁边。\n", ob);
+            message_vision("浮冰終於被$N劃到達岩石的旁邊。\n", ob);
 	    delete("hua_trigger");
-	    ob->set_temp("marks/划1",1);
+	    ob->set_temp("marks/劃1",1);
             }
       else add("hua_trigger", 1);
       return 1;
@@ -61,16 +61,16 @@ int do_pa(string arg)
 {
 	object ob;
 	ob=this_player();	
-	if (!ob->query_temp("marks/划1"))
-		return notify_fail("你现在离岩石还很远呢。\n");
+	if (!ob->query_temp("marks/劃1"))
+		return notify_fail("你現在離岩石還很遠呢。\n");
         if (!arg  || arg !="yanshi")
-		return notify_fail("你要爬到那里？\n");
-	message("vision", ob->name() + "坚难的爬上了岩石。\n", environment(ob), ({ob}));
+		return notify_fail("你要爬到那裡？\n");
+	message("vision", ob->name() + "堅難的爬上了岩石。\n", environment(ob), ({ob}));
         ob->move(__DIR__"yanshi");
-        message("vision", ob->name() + "从浮冰上爬了上来，浑身上水。\n",environment(ob), ({ob}) );
+        message("vision", ob->name() + "從浮冰上爬了上來，渾身上水。\n",environment(ob), ({ob}) );
         EMOTE_D->do_emote(ob,"cold", ob->query("id"));
         EMOTE_D->do_emote(ob,"cold");
-        ob->delete_temp("marks/划1");
+        ob->delete_temp("marks/劃1");
         ob->start_busy(2);
         return 1;
 }

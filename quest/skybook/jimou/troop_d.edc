@@ -130,7 +130,7 @@ string get_troop_name(int p_id)
 	if(!p_nationname)
 		p_nationname=p_nation;
 	p_ret=p_nationname+"第"+
-CHINESE_D->chinese_number(troops[p_id]["ser"])+"军团";
+CHINESE_D->chinese_number(troops[p_id]["ser"])+"軍團";
 	return p_ret;
 }
 int get_troop_canbeseen(int t_id)
@@ -333,7 +333,7 @@ void remove_troop(int p_id)
 				  AREA_D->get_area(p_area,"meeting"));
 			o_char=CHAR_D->find_char(char);
 			if(objectp(o_char))
-			  o_char->simple_action("$N从战场上撤了下来。\n");
+			  o_char->simple_action("$N從戰場上撤了下來。\n");
 		 }
      }
   }
@@ -347,7 +347,7 @@ void remove_troop(int p_id)
 			if(o->is_living())
 			{
 				o->move(VOID_ROOM); // should be wiz
-				o->simple_action("$N被一脚踹到了虚无。\n");
+				o->simple_action("$N被一腳踹到了虛無。\n");
 			}
 			else
 				o->remove();

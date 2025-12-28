@@ -2,11 +2,11 @@
 inherit ROOM;
 void create()
 {
-        set("short","谷后树林");
+        set("short","谷後樹林");
         set("long",@LONG
-树林里郁郁葱葱，鸟语花香，光线从树叶的缝隙中洒
-向大地，微风吹来，树影一阵婆娑。四周全是树，一片绿
-色，在碧绿的海洋中，你渐渐地迷失了方向。
+樹林裡鬱鬱蔥蔥，鳥語花香，光線從樹葉的縫隙中灑
+向大地，微風吹來，樹影一陣婆娑。四周全是樹，一片綠
+色，在碧綠的海洋中，你漸漸地迷失了方向。
 LONG
         );
         set("exits",([
@@ -67,38 +67,38 @@ int valid_leave(object me, string dir)
                  {
                                  me->move(__DIR__"donghou");
                            delete_temp("zhongnan/tree", me);
-                        message("vision",query("name", me)+"一脸倦容地从树林中钻了出来。\n",environment(me),me);
-                             write("你走了半天，终于走出了这片树林。\n");
+                        message("vision",query("name", me)+"一臉倦容地從樹林中鑽了出來。\n",environment(me),me);
+                             write("你走了半天，終於走出了這片樹林。\n");
                              return -1;
                  } else
                 if( query_temp("zhongnan/tree", me)<i )
                 {
-                        message("vision",query("name", me)+"胡乱地在树林中钻来钻去。\n",environment(me),me);
-                        msg="你走了几步，发现你走进了树林的更深处。\n";
+                        message("vision",query("name", me)+"胡亂地在樹林中鑽來鑽去。\n",environment(me),me);
+                        msg="你走了幾步，發現你走進了樹林的更深處。\n";
                 } else
                 if( query_temp("zhongnan/tree", me) == i )
                 {
-                        message("vision",query("name", me)+"钻进了树林，可是一会儿又走回了原地。\n",environment(me),me);
-                        msg="你钻进了树林，可是一会儿又走回了原地。\n";
+                        message("vision",query("name", me)+"鑽進了樹林，可是一會兒又走回了原地。\n",environment(me),me);
+                        msg="你鑽進了樹林，可是一會兒又走回了原地。\n";
                 } else
                 {
-                        message("vision",query("name", me)+"似乎胸有成竹地钻进了树林里。\n",environment(me),me);
-                        msg="你走了几步，发现这儿你似乎曾经走过。\n";
+                        message("vision",query("name", me)+"似乎胸有成竹地鑽進了樹林裡。\n",environment(me),me);
+                        msg="你走了幾步，發現這兒你似乎曾經走過。\n";
                 }
                 return notify_fail(msg);//::valid_leave(me,dir);
         }else 
         if( query_temp("dugu_visit", me) == 1 )
         {        if(dir=="north")
                 {
-                        message("vision",query("name", me)+"向树林深处走去，消失树林之中……\n",environment(me),me);
+                        message("vision",query("name", me)+"向樹林深處走去，消失樹林之中……\n",environment(me),me);
                         me->move(__DIR__"qiaobi");
                         delete_temp("dugu_visit", me);
-                        message("vision",query("name", me)+"从树林中走了过来。\n",environment(me),me);
-                        write("你往北走了里许，来到了一座峭壁之前。\n");
+                        message("vision",query("name", me)+"從樹林中走了過來。\n",environment(me),me);
+                        write("你往北走了裡許，來到了一座峭壁之前。\n");
                         return -1;
                 } else
                 {
-                        message_vision("$N在树林里信步而行，边走边欣赏风景。\n",me);
+                        message_vision("$N在樹林裡信步而行，邊走邊欣賞風景。\n",me);
                         return ::valid_leave(me,dir);
                 }
         }

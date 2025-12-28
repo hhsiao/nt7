@@ -8,14 +8,14 @@ string do_unwield();
 
 void create()
 {
-        set_name(HIY "真武剑" NOR,({ "zhenwu jian", "jian", "sword", "zhenwu" }) );
+        set_name(HIY "真武劍" NOR,({ "zhenwu jian", "jian", "sword", "zhenwu" }) );
         set_weight(1500);
         if (clonep())
                 destruct(this_object());
         else {
                 set("long", @LONG
-这是一柄寒光闪闪的宝剑，昔年武当张真人持此剑荡妖除魔，扫尽群丑。
-江湖宵小，见此剑无不心荡神摇。
+這是一柄寒光閃閃的寶劍，昔年武當張真人持此劍蕩妖除魔，掃盡群醜。
+江湖宵小，見此劍無不心蕩神搖。
 LONG );
                 set("unit", "把");
                 set("value", 800000);
@@ -39,7 +39,7 @@ string do_wield()
         call_out("check_npc", 0, me, environment(me));
         if( query("shen", me)>10000 )
         {
-                return HIC "$N一声长啸，将$n" HIC "荡出剑鞘，霎时天地间浩气凛然。\n" NOR;
+                return HIC "$N一聲長嘯，將$n" HIC "盪出劍鞘，霎時天地間浩氣凜然。\n" NOR;
         } else
         if( query("shen", me) >= 0 )
         {
@@ -47,10 +47,10 @@ string do_wield()
         } else
         if( query("shen", me)>-10000 )
         {
-                return HIG "$N战战兢兢的摸出一把$n" HIG "。\n" NOR;
+                return HIG "$N戰戰兢兢的摸出一把$n" HIG "。\n" NOR;
         } else
         {
-                return HIG "$N一声冷笑，“唰”的一声亮出了$n" HIG "。\n" NOR;
+                return HIG "$N一聲冷笑，“唰”的一聲亮出了$n" HIG "。\n" NOR;
         }
 }
 
@@ -61,12 +61,12 @@ string do_unwield()
         me = this_player();
         remove_call_out("check_npc");
         if( query("shen", me) >= 0 )
-                return HIC "$N一挥手，还剑入鞘。\n" NOR;
+                return HIC "$N一揮手，還劍入鞘。\n" NOR;
         else
         if( query("shen", me)>-10000 )
-                return HIG "$N把$n" HIG "插回剑鞘，抹了抹头上的汗。\n" NOR;
+                return HIG "$N把$n" HIG "插回劍鞘，抹了抹頭上的汗。\n" NOR;
         else
-                return HIG "$N一晒，把$n" HIG "插回剑鞘。\n" NOR;
+                return HIG "$N一曬，把$n" HIG "插回劍鞘。\n" NOR;
 }
 
 void check_npc(object me, object env)
@@ -95,15 +95,15 @@ void check_npc(object me, object env)
 
                         if( query("shen", ob[i])>10000 )
                         {
-                                message_vision("$N大怒喝道：好你个" + RANK_D->query_rude(me) +
-                                               "，居然敢盗用真武剑？\n", ob[i]);
+                                message_vision("$N大怒喝道：好你個" + RANK_D->query_rude(me) +
+                                               "，居然敢盜用真武劍？\n", ob[i]);
                                 if( !query("on_fight", env) )
                                         ob[i]->kill_ob(me);
                         } else
                         if (ob[i]->is_bad())
                         {
-                                message_vision(random(2) ? "$N哈哈大笑，对$n道：干得好，干得好。\n" :
-                                                           "$N拼命鼓掌，对$n道：兄弟加油干啊！",
+                                message_vision(random(2) ? "$N哈哈大笑，對$n道：幹得好，幹得好。\n" :
+                                                           "$N拼命鼓掌，對$n道：兄弟加油幹啊！",
                                                ob[i], me);
                         }
                         continue;
@@ -114,8 +114,8 @@ void check_npc(object me, object env)
 
                 if( query("shen", ob[i])>10000 && !userp(ob[i]) )
                 {
-                        message_vision(random(2) ? "$N赞道：好剑，好剑！\n" :
-                                                   "$N叹道：见此剑真是如见张真人啊！\n",
+                        message_vision(random(2) ? "$N讚道：好劍，好劍！\n" :
+                                                   "$N嘆道：見此劍真是如見張真人啊！\n",
                                        ob[i]);
                 } else
                 if( query("shen", ob[i])<-10 && !userp(ob[i]) )
@@ -125,25 +125,25 @@ void check_npc(object me, object env)
                         my_exp=query("combat_exp", me);
                         if (ob_exp > my_exp * 2 || ob_exp > 1500000)
                         {
-                                message_vision(random(2) ? "$N对$n冷冷道：滚开！少在我面前卖弄。\n" :
-                                                           "$N一声冷笑，对$n道：你以为你是谁？张三丰？哈哈哈哈！\n",
+                                message_vision(random(2) ? "$N對$n冷冷道：滾開！少在我面前賣弄。\n" :
+                                                           "$N一聲冷笑，對$n道：你以為你是誰？張三丰？哈哈哈哈！\n",
                                                ob[i], me);
                         } else
                         if (ob_exp > 20000)
                         {
-                                message_vision(random(2) ? "$N脸色有些不对劲。\n" :
+                                message_vision(random(2) ? "$N臉色有些不對勁。\n" :
                                                            "$N露出害怕的神色。\n",
                                                ob[i]);
                                 if( query("no_fight", env) )
                                         continue;
-                                message_vision(random(2) ? "$N怒喝一声，“大家都不要活了！”\n" :
-                                                           "$N一言不发，忽的扑向$n，身形极快。\n",
+                                message_vision(random(2) ? "$N怒喝一聲，“大家都不要活了！”\n" :
+                                                           "$N一言不發，忽的撲向$n，身形極快。\n",
                                                ob[i], me);
                                 ob[i]->kill_ob(me);
                         } else
                         {
-                                message_vision(random(2) ? "$N扑通一声，瘫倒在地，双手急摇道：“不是我！真的不是我！”\n" :
-                                                           "$N一个哆嗦，结结巴巴的什么也说不上来。\n",
+                                message_vision(random(2) ? "$N撲通一聲，癱倒在地，雙手急搖道：“不是我！真的不是我！”\n" :
+                                                           "$N一個哆嗦，結結巴巴的什麼也說不上來。\n",
                                                ob[i], me);
                                 if( !query("no_fight", env) )
                                         ob[i]->unconcious();
@@ -173,9 +173,9 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         case 0:
                 if (! victim->is_busy())
                         victim->start_busy(me->query_skill("sword") / 10 + 2);
-                return HIC "$N跨前一步，手中的" NOR+HIY "真武剑" NOR+HIC "幻化成无数圆圈，"
-                       "向$n逼去，剑法细密之极。$n大吃一\n"
-                       "惊，不知如何抵挡，只有连连后退。\n" NOR;
+                return HIC "$N跨前一步，手中的" NOR+HIY "真武劍" NOR+HIC "幻化成無數圓圈，"
+                       "向$n逼去，劍法細密之極。$n大吃一\n"
+                       "驚，不知如何抵擋，只有連連後退。\n" NOR;
 
         case 1:
                 n = me->query_skill("sowrd");
@@ -185,9 +185,9 @@ mixed hit_ob(object me, object victim, int damage_bonus)
                 n /= 2;
                 victim->receive_damage("jing", n, me);
                 victim->receive_wound("jing", n / 2, me);
-                return random(2) ? HIY "$N一声长吟，手中的真武剑化作一到长虹，“唰”的扫过$n。\n" NOR:
-                                   HIY "$N突然大声喝道：“邪魔外道，还不受死？”手中真武剑"
-                                   HIY "忽的一抖，$n登时觉得眼前一花。\n" NOR;
+                return random(2) ? HIY "$N一聲長吟，手中的真武劍化作一到長虹，“唰”的掃過$n。\n" NOR:
+                                   HIY "$N突然大聲喝道：“邪魔外道，還不受死？”手中真武劍"
+                                   HIY "忽的一抖，$n登時覺得眼前一花。\n" NOR;
         }
 
         // double effect
@@ -219,13 +219,13 @@ void return_to_zhang()
                         return;
                 }
 
-                message_vision("忽然一个武当弟子走了过来，看到$N，忙招呼道：“张真人让我来找你拿回"
-                               "真武剑，你现在不用了么？”\n"
+                message_vision("忽然一個武當弟子走了過來，看到$N，忙招呼道：“張真人讓我來找你拿回"
+                               "真武劍，你現在不用了麼？”\n"
                                "$N道：“好了，好了，你就拿回去吧。”\n"
-                               "$N将剑交给武当弟子带走。\n", me);
+                               "$N將劍交給武當弟子帶走。\n", me);
         } else
         {
-                message("visoin", "忽然一个武当弟子走了过来，捡起真武剑，叹了口气，摇摇头走了。\n",
+                message("visoin", "忽然一個武當弟子走了過來，撿起真武劍，嘆了口氣，搖搖頭走了。\n",
                         me);
         }
 

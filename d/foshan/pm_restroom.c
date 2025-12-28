@@ -7,13 +7,13 @@ int do_look(string arg);
 
 void create()
 {
-        set("short", "英雄会馆");
+        set("short", "英雄會館");
         set("long", @LONG
-英雄会馆也是凤老爷的家业。常来这里的人，都是有能耐有来头
-的。英雄会馆里围着黑压压的一群人，南方有一扇紧紧关闭的小门。
-只有在每月一次的店铺拍卖时「南霸天」凤天南才会将它打开，在那
-里会见各处的商贾。小门旁挂着的一块红木牌子(paizi)上标写着各家
-店铺拍卖的底价。
+英雄會館也是鳳老爺的家業。常來這裡的人，都是有能耐有來頭
+的。英雄會館裡圍著黑壓壓的一群人，南方有一扇緊緊關閉的小門。
+只有在每月一次的店鋪拍賣時「南霸天」鳳天南才會將它打開，在那
+裡會見各處的商賈。小門旁掛著的一塊紅木牌子(paizi)上標寫著各家
+店鋪拍賣的底價。
 LONG );
 
         set("no_beg", 1);
@@ -52,8 +52,8 @@ int valid_leave(object me, string dir)
                 if( (query("balance", me)<5000000
                  || query("weiwang", me)<0 )
                 &&  dir == "south" && ! wizardp(me))
-                        return notify_fail(CYN "凤一鸣拦住你，冷笑道：以阁下的财"
-                                           "产和地位，尚不足以进去。\n" NOR);
+                        return notify_fail(CYN "鳳一鳴攔住你，冷笑道：以閣下的財"
+                                           "產和地位，尚不足以進去。\n" NOR);
         }
         return ::valid_leave(me);
 }
@@ -63,18 +63,18 @@ int do_open()
         object me = this_player();
 
         if (query("exits/south"))
-                return notify_fail("门已经是开着的了。\n");
+                return notify_fail("門已經是開著的了。\n");
 
         set("exits/south", __DIR__"pmc");
 
-        message_vision(HIY "$N" HIY "轻轻一推，将通向英雄会馆的"
-                       "小门开启了。\n" NOR, me);
+        message_vision(HIY "$N" HIY "輕輕一推，將通向英雄會館的"
+                       "小門開啟了。\n" NOR, me);
 
-        shout(HIY "【商界传闻】" NOR + WHT + me->name() + WHT "[" +
-              query("id", me)+WHT"]开启了佛山英雄会馆的店铺拍"
-              "卖会的大门。\n" NOR);
+        shout(HIY "【商界傳聞】" NOR + WHT + me->name() + WHT "[" +
+              query("id", me)+WHT"]開啟了佛山英雄會館的店鋪拍"
+              "賣會的大門。\n" NOR);
 
-        write("你开通了店铺拍卖会的路径。\n");
+        write("你開通了店鋪拍賣會的路徑。\n");
         return 1;
 }
 
@@ -83,11 +83,11 @@ int do_close()
         object me = this_player();
 
         if (! query("exits/south"))
-                return notify_fail("门已经是关着的了。\n");
+                return notify_fail("門已經是關著的了。\n");
 
         delete("exits/south");
-        message_vision(WHT "$N" WHT "顺手一带，将通向拍卖后厅的"
-                       "小门关上了。\n" NOR, me);
+        message_vision(WHT "$N" WHT "順手一帶，將通向拍賣後廳的"
+                       "小門關上了。\n" NOR, me);
         return 1;
 }
 
@@ -102,35 +102,35 @@ int do_look(string arg)
 
         if (! query("exits/south"))
         {
-                write("现在尚未到拍卖店铺的时间。\n");
+                write("現在尚未到拍賣店鋪的時間。\n");
                 return 1;
         }
 
         shop_record = SHOP_D->query_shop();
 
-        msg = LOCAL_MUD_NAME() + "店铺拍卖底价表：\n"NOR;
+        msg = LOCAL_MUD_NAME() + "店鋪拍賣底價表：\n"NOR;
         msg += HIY "┌--------------------------------------------------┐\n" NOR;
 
         msg += sprintf(HIY "│" NOR + WHT " %-18s%-18s%-13s" HIY "│\n" NOR,
-                       "店铺位置",
-                       "店铺名称",
-                       "拍卖底价");
+                       "店鋪位置",
+                       "店鋪名稱",
+                       "拍賣底價");
 
         msg += HIY "├--------------------------------------------------┤\n" NOR;
 
         for (i = 0; i < sizeof(shop_record); i++)
         {
                 g = shop_record[i]["price"];
-                msg += sprintf(HIY "│" HIC " %s店铺           "
+                msg += sprintf(HIY "│" HIC " %s店鋪           "
                                HIG "%-16s" NOR +
-                               YEL "黄金" + chinese_number(g) +
-                               "两    " HIY "│\n" NOR,
+                               YEL "黃金" + chinese_number(g) +
+                               "兩    " HIY "│\n" NOR,
                                shop_record[i]["id"],
                                shop_record[i]["name"]);
         }
         msg += HIY "└--------------------------------------------------┘\n" NOR;
-        msg += WHT "总共有" + chinese_number(sizeof(shop_record)) +
-               WHT "家店铺等待拍卖。\n";
+        msg += WHT "總共有" + chinese_number(sizeof(shop_record)) +
+               WHT "家店鋪等待拍賣。\n";
         write(msg);
         return 1;
 }

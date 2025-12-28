@@ -1,18 +1,18 @@
 // This program is a part of NITAN MudLIB
-// liancheng-jian.c 连城剑法
+// liancheng-jian.c 連城劍法
 
 inherit SKILL;
 
 string *action_msg = ({
-        "$N使一式「孤鸿海上来」，手中$w嗡嗡微振，幻成一条疾光刺向$n的$l",
-        "$N错步上前，使出「池潢不敢顾」，手中$w划出一道剑光劈向$n的$l",
-        "$N手中$w一抖，一招「落日照大旗」，斜斜一剑反腕撩出，攻向$n的$l",
-        "$N手中剑锵啷啷长吟一声，一式「马鸣风萧萧」，一道剑光飞向$n的$l",
-        "$N一式「落日阳关路」，手中$w舞出无数剑花，使$n难断虚实，无可躲避",
-        "$N手中$w斜指苍天，剑芒吞吐，一式「羌笛怨杨柳」，对准$n的$l斜斜击出",
-        "$N一式「春风度玉门」，手腕急抖，挥洒出万点金光，刺向$n的$l",
-        "$N一式「遥挂在前川」，$w飞斩盘旋，如疾电般射向$n的胸口",
-        "$N一式「飞流三千尺」，$w突然从天而降，一片金光围掠$n全身",
+        "$N使一式「孤鴻海上來」，手中$w嗡嗡微振，幻成一條疾光刺向$n的$l",
+        "$N錯步上前，使出「池潢不敢顧」，手中$w劃出一道劍光劈向$n的$l",
+        "$N手中$w一抖，一招「落日照大旗」，斜斜一劍反腕撩出，攻向$n的$l",
+        "$N手中劍鏘啷啷長吟一聲，一式「馬鳴風蕭蕭」，一道劍光飛向$n的$l",
+        "$N一式「落日陽關路」，手中$w舞出無數劍花，使$n難斷虛實，無可躲避",
+        "$N手中$w斜指蒼天，劍芒吞吐，一式「羌笛怨楊柳」，對準$n的$l斜斜擊出",
+        "$N一式「春風度玉門」，手腕急抖，揮灑出萬點金光，刺向$n的$l",
+        "$N一式「遙掛在前川」，$w飛斬盤旋，如疾電般射向$n的胸口",
+        "$N一式「飛流三千尺」，$w突然從天而降，一片金光圍掠$n全身",
 });
 
 int valid_enable(string usage) { return usage == "sword" || usage == "parry"; }
@@ -26,7 +26,7 @@ mapping query_action(object me, object weapon)
                 "attack": 70 + random(10),
                 "dodge" : 20 + random(10),
                 "parry" : 20 + random(10),
-                "damage_type" : random(2)?"刺伤":"割伤",
+                "damage_type" : random(2)?"刺傷":"割傷",
         ]);
 }
 
@@ -36,11 +36,11 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me) )
          || query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
         if( query("qi", me)<80 )
-                return notify_fail("你的体力不够练连城剑法。\n");
+                return notify_fail("你的體力不夠練連城劍法。\n");
         if( query("neili", me)<80 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
         me->receive_damage("qi", 70);
         addn("neili", -70, me);
         return 1;

@@ -5,7 +5,7 @@ inherit THROWING;
 
 void create()
 {
-        set_name(HIW "仙鹤神针" NOR, ({ "xianhe shenzhen", "zhen" }) );
+        set_name(HIW "仙鶴神針" NOR, ({ "xianhe shenzhen", "zhen" }) );
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {

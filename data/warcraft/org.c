@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("你号[2;37;0m[2;37;0m", ({"jkl"}));        
+        set_name("你號[2;37;0m[2;37;0m", ({"jkl"}));        
         set("gender", "男性");                
         set("long", "asdf[2;37;0m
-它是小柚子的魔幻兽。
+它是小柚子的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

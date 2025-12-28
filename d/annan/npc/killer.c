@@ -2,10 +2,10 @@ inherit NPC;
 
 void create()
 {
-   set_name("安南盗贼",({ "dao zei","dao","zei" }) );
+   set_name("安南盜賊",({ "dao zei","dao","zei" }) );
         set("gender", "男性" );
         set("age", 42);
-   set("long", "这是一个流窜于江湖的盗贼，近日被长安的捕头通缉。\n");
+   set("long", "這是一個流竄於江湖的盜賊，近日被長安的捕頭通緝。\n");
        
    set("combat_exp",100000);
    set("str", 28);

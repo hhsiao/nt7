@@ -1,21 +1,21 @@
-/* *********************网路即时通讯系统***********************
+/* *********************網路即時通訊系統***********************
 *  
 *                                                  By Whatup *
 *                                               
-* 离线
+* 離線
 :whatup_!whatup@mail2000.com.tw QUIT :Leaving...
-上线
+上線
 :whatup_!whatup@mail2000.com.tw JOIN :#bitlbee
     :root!root@localhost.localdomain PRIVMSG #bitlbee :Question on MSN connection (handle yukang.tw@yahoo.com.tw):
     :root!root@localhost.localdomain PRIVMSG #bitlbee :The user whatup.tw@gmail.com (□蝻-舀踵) wants to add you to his/her buddy list. Do you want to allow this?
     :root!root@localhost.localdomain PRIVMSG #bitlbee :You can use the yes/no commands to answer this question.
 
-*                                     ==未经同意，严禁流出==  *
+*                                     ==未經同意，嚴禁流出==  *
 **************************************************************/
 
-/* 标头引入档 */
+/* 標頭引入檔 */
 #include <ansi.h>
-/* 侦错设定 */
+/* 偵錯設定 */
 #include <net/socket.h>
 #include <net/socket_errors.h>
 
@@ -27,7 +27,7 @@
 
 inherit F_DBASE;
 
-/* 启始设定 */
+/* 啟始設定 */
 nosave mapping users = ([]);
 
 protected int process_identify(object me,string pass);
@@ -36,14 +36,14 @@ protected void close_socket(int fd);
 varargs void send_who(int fd,string id);
 void send_ping();
 
-/* 档案主档 */
+/* 檔案主檔 */
 void create()
 {
-        set("channel_id", "通讯精灵");
+        set("channel_id", "通訊精靈");
         seteuid(getuid());
 
 #ifdef DEBUG
-        TELL(sprintf("[%s]启始完成。", TIME_D->replace_ctime(time()) ));
+        TELL(sprintf("[%s]啟始完成。", TIME_D->replace_ctime(time()) ));
 #endif 
 
         call_out((:send_ping:),PING_TIME);
@@ -63,7 +63,7 @@ void remove()
         foreach(int fd,mapping m in users)
         {
                 if(m["obj"])
-                        tell_object(m["obj"],"重新更新 im 系统，请重新登入。\n");
+                        tell_object(m["obj"],"重新更新 im 系統，請重新登入。\n");
                 socket_write(fd,"QUIT\r\n");
                 socket_close(fd);
         }
@@ -80,7 +80,7 @@ void reset()
         }
 }
 
-/* 开始登入 */
+/* 開始登入 */
 void login_irc(object user)
 {
         int err,fd;
@@ -88,13 +88,13 @@ void login_irc(object user)
         id=query("id", user);
         if(!id)
         {
-                tell_object(user,"你没有登入 ID ");
+                tell_object(user,"你沒有登入 ID ");
                 return ;
         }
         fd = socket_create(STREAM, "read_callback","close_socket");
         if ( fd < 0 )
         {
-                tell_object(user,"连结失败，可能是主机没有开启或是网路无法连线。");
+                tell_object(user,"連結失敗，可能是主機沒有開啟或是網路無法連線。");
                 return;
         }
         users[fd] = allocate_mapping(5);
@@ -108,14 +108,14 @@ void login_irc(object user)
         if( err==EESUCCESS )
         {
 #ifdef DEBUG
-                TELL(sprintf("[%s] %s 成功\启动 Socket ,开始准备登入 irc.fd = %d",
+                TELL(sprintf("[%s] %s 成功\啟動 Socket ,開始準備登入 irc.fd = %d",
                         TIME_D->replace_ctime(time()) ,id,fd));
 #endif 
         }
         else
         {
 #ifdef DEBUG
-                TELL(sprintf("[%s]启动 Socket 失败,无法送连结网路主机.",
+                TELL(sprintf("[%s]啟動 Socket 失敗,無法送連結網路主機.",
                         TIME_D->replace_ctime(time()) ));
 #endif 
                 return ;
@@ -129,7 +129,7 @@ protected int process_identify(object me,string pass)
         int fd=query_temp("im_fd", me);
         if( fd < -1 ) 
         {
-                tell_object(me,"[IM Message]:连线失败，请稍后再试！\n");
+                tell_object(me,"[IM Message]:連線失敗，請稍後再試！\n");
                 return 1;
         }
         if(users[fd]["obj"] == me)
@@ -191,28 +191,28 @@ protected void read_callback(int fd,mixed message)
                                         //:root!root@localhost.localdomain PRIVMSG #bitlbee :The user whatup.tw@gmail.com (□蝻-舀踵) wants to add you to his/her buddy list. Do you want to allow this?
                                         if(sscanf(msg,"The user %s wants to add you to his/her buddy list. Do you want to allow this?",mail) == 1)
                                         {
-                                                tell_object(users[fd]["obj"],"\n[IM Message]:"+mail+"想要把你加入他的好友名单，同意的话用 im yes，不同意的话，用 im no。\n");
+                                                tell_object(users[fd]["obj"],"\n[IM Message]:"+mail+"想要把你加入他的好友名單，同意的話用 im yes，不同意的話，用 im no。\n");
                                         }
                                         else if(sscanf(msg,"%s: %s",id,msg) == 2  && users[fd]["obj"]
                                             && id == users[fd]["id"])
-                                                tell_object(users[fd]["obj"],sprintf(HIW HBBLU"%s 用即时讯息传给你 : %s\n"NOR,
+                                                tell_object(users[fd]["obj"],sprintf(HIW HBBLU"%s 用即時訊息傳給你 : %s\n"NOR,
                                                         users[fd]["list"][name][4]+"("+users[fd]["list"][name][0]
                                                         +"@"+users[fd]["list"][name][1]+")\n["+name+"]",msg));
                                         else 
                                                 switch(msg)
                                         {
                                         case "The nick is (probably) not registered":
-                                                tell_object(users[fd]["obj"],"\n[IM Message]:第一次使用该精灵，自动注册帐号！\n");
+                                                tell_object(users[fd]["obj"],"\n[IM Message]:第一次使用該精靈，自動註冊帳號！\n");
                                                 socket_write(fd,"PRIVMSG #bitlbee :register "+crypt(users[fd]["id"],users[fd]["id"])[0..10]+"\r\n");
                                                 break;
                                         case "Incorrect password":
-                                                tell_object(users[fd]["obj"],"\n[IM Message]:登入密码错误(请通知系统管理员)！\n");
+                                                tell_object(users[fd]["obj"],"\n[IM Message]:登入密碼錯誤(請通知系統管理員)！\n");
                                                 break;
                                         case "YAHOO - Login error: Error 99 (Logged in on a different machine or device)":
-                                                tell_object(users[fd]["obj"],"\n[IM Message]:你已在其他电脑登入 YAHOO！\n");
+                                                tell_object(users[fd]["obj"],"\n[IM Message]:你已在其他電腦登入 YAHOO！\n");
                                                 break;
                                         case "MSN - Logged out: Someone else logged in with your account":
-                                                tell_object(users[fd]["obj"],"\n[IM Message]:你已在其他电脑登入 MSN ！\n");
+                                                tell_object(users[fd]["obj"],"\n[IM Message]:你已在其他電腦登入 MSN ！\n");
                                                 break;
                                         case "YAHOO - Signing off..":
                                                 tell_object(users[fd]["obj"],"\n[IM Message]:你登出 YAHOO ！\n");
@@ -228,36 +228,36 @@ protected void read_callback(int fd,mixed message)
                                                 tell_object(users[fd]["obj"],"\n[IM Message]:YAHOO 登入成功！\n");
                                                 break;
                                         case "No accounts known. Use 'account add' to add one.":
-                                                tell_object(users[fd]["obj"],"\n[IM Message]:请使用 im register msn 或是 im register yahoo 注册帐号！\n");
+                                                tell_object(users[fd]["obj"],"\n[IM Message]:請使用 im register msn 或是 im register yahoo 註冊帳號！\n");
                                                 break;
                                         case "MSN - Login error: Error during Passport authentication":
-                                                tell_object(users[fd]["obj"],"\n[IM Message]:MSN密码错误！\n");
+                                                tell_object(users[fd]["obj"],"\n[IM Message]:MSN密碼錯誤！\n");
                                                 break;
                                         default:
                                         }
                                 }
 
-                                // 上站讯息 :paiting!paiting@hotmail.com JOIN :#bitlbee
+                                // 上站訊息 :paiting!paiting@hotmail.com JOIN :#bitlbee
                                 if(sscanf(m,":%s!%s JOIN :#bitlbee",id,name) == 2)
                                 {
                                         send_who(fd,id);
-                                        tell_object(users[fd]["obj"],"\n[IM Message]:"+id+"上线了 ！\n");
+                                        tell_object(users[fd]["obj"],"\n[IM Message]:"+id+"上線了 ！\n");
                                         continue;
                                 }
-                                // 下站讯息 :paiting!paiting@hotmail.com QUIT :Leaving...
+                                // 下站訊息 :paiting!paiting@hotmail.com QUIT :Leaving...
                                 if(sscanf(m,":%s!%s QUIT :Leaving...",id,name) == 2)
                                 {
                                         map_delete(users[fd]["list"],id);
-                                        tell_object(users[fd]["obj"],"\n[IM Message]:"+id+"离线了 ！\n");
+                                        tell_object(users[fd]["obj"],"\n[IM Message]:"+id+"離線了 ！\n");
                                         continue;
                                 }
-                                // 状况变线上 :root!root@rw.twku.net MODE #bitlbee +v paiting
+                                // 狀況變線上 :root!root@rw.twku.net MODE #bitlbee +v paiting
                                 if(sscanf(m,":root!root@rw.twku.net MODE #bitlbee +v %s",id) == 1)
                                 {
                                         send_who(fd,id);
                                         continue;
                                 }
-                                // 状况变away或忙录 :root!root@rw.twku.net MODE #bitlbee -v paiting
+                                // 狀況變away或忙錄 :root!root@rw.twku.net MODE #bitlbee -v paiting
                                 if(sscanf(m,":root!root@rw.twku.net MODE #bitlbee -v %s",id) == 1)
                                 {
                                         send_who(fd,id);
@@ -288,19 +288,19 @@ void socket_write(int fd,mixed message)
         i = efun::socket_write(fd,message);
         switch(i)
         {
-        case EEFDRANGE:       TELL("描述值 (descriptor) 超出范围。"); break;
-        case EEBADF:          TELL("无效的描述值。"); break;
-        case EESECURITY:      TELL("企图违反安全。"); break;
+        case EEFDRANGE:       TELL("描述值 (descriptor) 超出範圍。"); break;
+        case EEBADF:          TELL("無效的描述值。"); break;
+        case EESECURITY:      TELL("企圖違反安全。"); break;
         case EENOADDR:        TELL("socket 未指定位址。"); break;
-        case EEBADADDR:       TELL("位址格式的问题。"); break;
-        case EENOTCONN:       TELL("socket 尚未连接。"); break;
-        case EEALREADY:       TELL("操作已在进行中。"); break;
-        case EETYPENOTSUPP:   TELL("不支援此物件型态。"); break;
-                //        case EEBADDATA:       TELL("送出的资料含有太多巢状层次 (nested level)。"); break;
-        case EESENDTO:        TELL("sendto 的问题。"); break;
-        case EEMODENOTSUPP:   TELL("不支援此 socket 型态。"); break;
-        case EEWOULDBLOCK:    TELL("操作将会停滞 (block)。"); break;
-        case EESEND:          TELL("送出 (send) 的问题。"); break;
+        case EEBADADDR:       TELL("位址格式的問題。"); break;
+        case EENOTCONN:       TELL("socket 尚未連接。"); break;
+        case EEALREADY:       TELL("操作已在進行中。"); break;
+        case EETYPENOTSUPP:   TELL("不支援此物件型態。"); break;
+                //        case EEBADDATA:       TELL("送出的資料含有太多巢狀層次 (nested level)。"); break;
+        case EESENDTO:        TELL("sendto 的問題。"); break;
+        case EEMODENOTSUPP:   TELL("不支援此 socket 型態。"); break;
+        case EEWOULDBLOCK:    TELL("操作將會停滯 (block)。"); break;
+        case EESEND:          TELL("送出 (send) 的問題。"); break;
         case EECALLBACK:      TELL("等待回呼 (callback) 中。"); break;
         default:
 
@@ -316,7 +316,7 @@ protected void close_socket(int fd)
         map_delete(users,fd);
         socket_close(fd);
 #ifdef DEBUG
-        TELL(sprintf("[%s] %d,连线结束",
+        TELL(sprintf("[%s] %d,連線結束",
                 TIME_D->replace_ctime(time()),fd ));
 #endif
 }
@@ -329,7 +329,7 @@ void send_command(int fd,mixed message)
                 TIME_D->replace_ctime(time()),fd,message ));
 #endif
 }
-// 处理 irc 线上使用者
+// 處理 irc 線上使用者
 varargs void send_who(int fd,string id)
 {
         if(undefinedp(id))   socket_write(fd,"WHO #bitlbee\r\n");
@@ -339,11 +339,11 @@ varargs void send_who(int fd,string id)
 void process_who(int fd,string str)
 {
         string id,ip,status,nick,name;
-        //:rw.twku.net 352 whatup #bitlbee whatup 218-184-22-55.cm.dynamic.apol.com.tw rw.twku.net whatup H :0 小ｘ儿
+        //:rw.twku.net 352 whatup #bitlbee whatup 218-184-22-55.cm.dynamic.apol.com.tw rw.twku.net whatup H :0 小ｘ兒
         if(sscanf(str,":%*s 352 %*s #bitlbee %s %s %*s %s %s :%*d %s",
                 id,ip,name,status,nick) == 9) 
                 users[fd]["list"][name] = ({ id,ip,name,status,nick});
-        //:rw.twku.net 352 whatup whatup_ whatup mail2000.com.tw rw.twku.net whatup_ H :0 鱼缸-有谁要 gmail 帐号，我有一堆-.
+        //:rw.twku.net 352 whatup whatup_ whatup mail2000.com.tw rw.twku.net whatup_ H :0 魚缸-有誰要 gmail 帳號，我有一堆-.
         //:%*s 352 %*s %*s %s %s %*s %s %s :%*d %*s
         if(sscanf(str,":%*s 352 %*s %*s %s %s %*s %s %s :%*d %s",
                 id,ip,name,status,nick) == 10) 
@@ -355,14 +355,14 @@ int process_send_msg(object me,string who,string msg)
         int fd=query_temp("im_fd", me);
         if(undefinedp(users[fd]) &&
             !undefinedp(users[fd]["list"][who]))
-                return notify_fail("[IM Message] 即时讯息上的好友名单没有这个人！\n");
+                return notify_fail("[IM Message] 即時訊息上的好友名單沒有這個人！\n");
         socket_write(fd,"PRIVMSG #bitlbee :"+ who + ":"+msg+"\r\n");
         {
                 string *n = users[fd]["list"][who];
 
                 // Unknown Bug ; Temporarily modified by clode
                 if( !n || sizeof(n) != 5 ) return 1;
-                tell_object(me,sprintf(HIW HBBLU"你用即时讯息传给 %s : %s\n"NOR,
+                tell_object(me,sprintf(HIW HBBLU"你用即時訊息傳給 %s : %s\n"NOR,
                         n[4]+"("+n[0]+"@"+n[1]+")\n["+who+"]",msg));
         }
         return 1;
@@ -370,7 +370,7 @@ int process_send_msg(object me,string who,string msg)
 
 int del_account(int fd,string protocol) 
 {
-        // 要先离线，才能删掉
+        // 要先離線，才能刪掉
         socket_write(fd,"PRIVMSG #bitlbee :account off "+protocol+"\r\n");
         socket_write(fd,"PRIVMSG #bitlbee :account del "+protocol+"\r\n");
 }
@@ -385,5 +385,5 @@ mapping query_users(){ return users; }
 
 string query_name()
 {
-        return "网路即时通讯系统(IM_D)";
+        return "網路即時通訊系統(IM_D)";
 }

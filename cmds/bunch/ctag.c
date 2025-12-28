@@ -8,10 +8,10 @@ protected mapping valid_tags = ([
 "noride" : "NORIDE",
 "start" : "valid_startroom",
 ]), c_msg = ([
-"outdoors" : "户外标记",
-"no_fight" : "安全区标记",
-"NORIDE" : "不能骑坐骑标记",
-"valid_startroom" : "起始点标记",
+"outdoors" : "戶外標記",
+"no_fight" : "安全區標記",
+"NORIDE" : "不能騎坐騎標記",
+"valid_startroom" : "起始點標記",
 ]);
 
 protected void delete_room_tag(string str, object who, object env, string tag);
@@ -38,12 +38,12 @@ int main(object me, string arg)
 
 	if(env->query(valid_tags[tags[n]]))
 	{
-		write(sprintf("这里已经设定了%s，是否要清除？[y/n]：", c_msg[valid_tags[tags[n]]]));
+		write(sprintf("這裡已經設定了%s，是否要清除？[y/n]：", c_msg[valid_tags[tags[n]]]));
 		input_to( (: delete_room_tag :), me, env, valid_tags[tags[n]] );
 	}
 	else
 	{
-		write(sprintf("这里没有设定%s，是否要设定？[y/n]：", c_msg[valid_tags[tags[n]]]));
+		write(sprintf("這裡沒有設定%s，是否要設定？[y/n]：", c_msg[valid_tags[tags[n]]]));
 		input_to( (: add_room_tag :), me, env, valid_tags[tags[n]] );
 	}
 
@@ -65,19 +65,19 @@ protected void delete_room_tag(string str, object who, object env, string tag)
 
 	if(environment(who) != env)
 	{
-		tell_object(who, "你的位置发生了变化，修改被停止。\n");
+		tell_object(who, "你的位置發生了變化，修改被停止。\n");
 		return;
 	}
 
 	if(undefinedp(c_msg[tag]))
 	{
-		tell_object(who, "出现异常错误，修改被停止。\n");
+		tell_object(who, "出現異常錯誤，修改被停止。\n");
 		return;
 	}
 
 	if(!content = read_file(fname = base_name(env) + ".c"))
 	{
-		tell_object(who, "无法读取文件内容，修改失败。\n");
+		tell_object(who, "無法讀取文件內容，修改失敗。\n");
 		return;
 	}
 
@@ -87,14 +87,14 @@ protected void delete_room_tag(string str, object who, object env, string tag)
 
 		if(!write_file(fname, result, 1))
 		{
-			tell_object(who, "无法写入文件内容，修改失败。\n");
+			tell_object(who, "無法寫入文件內容，修改失敗。\n");
 			return;
 		}
 	}
 
 	if( !BUNCH_D->update_room(env) )
 	{
-		tell_object(who, "无法载入房间，修改失败。\n");
+		tell_object(who, "無法載入房間，修改失敗。\n");
 		return;
 	}
 
@@ -116,31 +116,31 @@ protected void add_room_tag(string str, object who, object env, string tag)
 
 	if(environment(who) != env)
 	{
-		tell_object(who, "你的位置发生了变化，修改被停止。\n");
+		tell_object(who, "你的位置發生了變化，修改被停止。\n");
 		return;
 	}
 
 	if(undefinedp(c_msg[tag]))
 	{
-		tell_object(who, "出现异常错误，修改被停止。\n");
+		tell_object(who, "出現異常錯誤，修改被停止。\n");
 		return;
 	}
 
 	if(!id = who->query_banghui_id())
 	{
-		tell_object(who, "你的帮派记录错乱。\n修改失败。\n");
+		tell_object(who, "你的幫派記錄錯亂。\n修改失敗。\n");
 		return;
 	}
 
 	if(!content = read_file(fname = base_name(env) + ".c"))
 	{
-		tell_object(who, "无法读取文件内容，修改失败。\n");
+		tell_object(who, "無法讀取文件內容，修改失敗。\n");
 		return;
 	}
 
 	if(!BUNCH_D->parse_function_body(ref content, "void", "create", ref f_sect, ref m_sect, ref e_sect, 0))
 	{
-		tell_object(who, "无法剖析文件内容，修改失败。\n");
+		tell_object(who, "無法剖析文件內容，修改失敗。\n");
 		return;
 	}
 
@@ -149,24 +149,24 @@ protected void add_room_tag(string str, object who, object env, string tag)
 
 	if(!write_file(fname, result, 1))
 	{
-		tell_object(who, "无法写入文件内容，修改失败。\n");
+		tell_object(who, "無法寫入文件內容，修改失敗。\n");
 		return;
 	}
 
 	if( !BUNCH_D->update_room(env) )
 	{
-		tell_object(who, "无法载入房间，修改失败。\n");
+		tell_object(who, "無法載入房間，修改失敗。\n");
 		return;
 	}
 
-	tell_object(who, "设置成功。\n");
+	tell_object(who, "設置成功。\n");
 }
 
 int help(object me)
 {
 write(@HELP
 
-帮助信息。
+幫助信息。
 
 HELP
     );

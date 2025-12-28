@@ -4,16 +4,16 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIR "「血刀经」" NOR, ({ "xuedao jing", "xuedao", "jing", "book" }));
+        set_name(HIR "「血刀經」" NOR, ({ "xuedao jing", "xuedao", "jing", "book" }));
         set_weight(500);
         if (clonep())
                 destruct(this_object());
         else {
                 set("unit", "本");
-                set("long", HIR "这是一本薄薄的书册，封面上豁然写着「血"
-                            "刀经」三个大字。\n" NOR);
+                set("long", HIR "這是一本薄薄的書冊，封面上豁然寫著「血"
+                            "刀經」三個大字。\n" NOR);
                 set("value", 1);
-                set("no_sell", "血…血刀…经？这…该不会是血刀门的东西吧？");
+                set("no_sell", "血…血刀…經？這…該不會是血刀門的東西吧？");
                 set("material", "paper");
                 set("skill", ([
                         "name" : "xuedao-dafa",

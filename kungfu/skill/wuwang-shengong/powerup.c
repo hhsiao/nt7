@@ -1,4 +1,4 @@
-// powerup.c 无妄神功加力
+// powerup.c 無妄神功加力
 
 #include <ansi.h>
 
@@ -11,19 +11,19 @@ int exert(object me, object target)
         int skill;
 
         if (target != me)
-                return notify_fail("你只能用无妄神功提升自己的战斗力。\n");
+                return notify_fail("你只能用無妄神功提升自己的戰鬥力。\n");
 
         if( query("neili", me)<100 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if( BUFF_D->check_buff(me, "powerup") ) 
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
         addn("neili", -100, me);
         me->receive_damage("qi", 0);
 
-        msg = HIW "$N" HIW "长啸一声，全身真气迸发，顿时一股阴寒气流弥漫四周。\n" NOR;
+        msg = HIW "$N" HIW "長嘯一聲，全身真氣迸發，頓時一股陰寒氣流瀰漫四周。\n" NOR;
 
         data = ([
                 "attack" : skill/3,
@@ -35,11 +35,11 @@ int exert(object me, object target)
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "无妄神功·战神",
+                "name"  : "無妄神功·戰神",
                 "time"  : skill,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : "你的无妄神功运行完毕，将内力收回丹田。\n",
+                "disa_msg" : "你的無妄神功運行完畢，將內力收回丹田。\n",
                         
         ]);
         BUFF_D->buffup(buff);

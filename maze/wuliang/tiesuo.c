@@ -4,12 +4,12 @@
 inherit ROOM;
 void create()
 {
-        set("short", "铁索桥");
+        set("short", "鐵索橋");
         set("long", @LONG
-铁索桥共是四条铁索，两条在下，上铺木板，以供行走，两条在旁作为扶
-手。一踏上桥，几条铁索便即幌动，行到江心，铁索晃得更加厉害，一瞥眼间，
-但见江水荡荡，激起无数泡沫，如快马奔腾般从脚底飞过，只要一个失足，卷
-入江水，任你多好的水性也难活命。 
+鐵索橋共是四條鐵索，兩條在下，上鋪木板，以供行走，兩條在旁作為扶
+手。一踏上橋，幾條鐵索便即幌動，行到江心，鐵索晃得更加厲害，一瞥眼間，
+但見江水蕩蕩，激起無數泡沫，如快馬奔騰般從腳底飛過，只要一個失足，卷
+入江水，任你多好的水性也難活命。 
 LONG
         );
         set("exits", ([
@@ -28,8 +28,8 @@ void init()
         object me=this_player();
         if ( me->query_skill("dodge", 1) < random(50)){
         me->start_busy(2);
-        set_temp("last_damage_from", "坠入江中淹", me);
-        message_vision(HIR"$N脚下一个不稳，把持不住，摔入滚滚翻腾的澜沧江内。\n"NOR,me);
+        set_temp("last_damage_from", "墜入江中淹", me);
+        message_vision(HIR"$N腳下一個不穩，把持不住，摔入滾滾翻騰的瀾滄江內。\n"NOR,me);
         me->unconcious();
 //        me->move("/d/death/relax");
         me->die();

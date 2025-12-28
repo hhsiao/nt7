@@ -10,12 +10,12 @@ int main(object me,string arg)
                 arg=replace_string(arg,"'","");
                 arg=replace_string(arg,"\\","");
                 set("qqinfo", arg, me);
-                write(ALERT("你的个人信息已经设置成功!\n"));
+                write(ALERT("你的個人信息已經設置成功!\n"));
                 return 1;
         }
         if(arg&&!objectp(obj))
                 obj = UPDATE_D->global_find_player(arg);
-        if(!objectp(obj)) return notify_fail(ALERT("无法查询对方信息。"));
+        if(!objectp(obj)) return notify_fail(ALERT("無法查詢對方信息。"));
         if( stringp(str=query("qqinfo", obj)) )
         {
                 write(TMI("qqinfo"+((obj==me)?"0":"1")+" "+str));

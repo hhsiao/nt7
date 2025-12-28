@@ -1,12 +1,12 @@
 // This program is a part of NITAN MudLIB
-// wang.c 天罗地网 「天罗地网」
+// wang.c 天羅地網 「天羅地網」
 
 #include <ansi.h>
 #include <combat.h>
 
 inherit F_SSERVER;
 
-string name() { return HIW "天罗地网" NOR; }
+string name() { return HIW "天羅地網" NOR; }
 
 int perform(object me, object target)
 {
@@ -21,35 +21,35 @@ int perform(object me, object target)
         if( !target
         ||      !target->is_character()
         ||      !me->is_fighting(target) )
-                return notify_fail("「天罗地网」只能在战斗中使用。\n");
+                return notify_fail("「天羅地網」只能在戰鬥中使用。\n");
 
         if((int)me->query_str() < 25)
-                return notify_fail("你臂力不够,不能使用这一绝技!\n");
+                return notify_fail("你臂力不夠,不能使用這一絕技!\n");
 
         if((int)me->query_skill("yunv-xinfa",1) < 100)
-                return notify_fail("你玉女心经的功力不够不能使用天罗地网!\n");
+                return notify_fail("你玉女心經的功力不夠不能使用天羅地網!\n");
 
         if((int)me->query_skill("strike") < 120)
-                return notify_fail("你的掌法修为不够,目前还不能使用天罗地网绝技!\n");
+                return notify_fail("你的掌法修為不夠,目前還不能使用天羅地網絕技!\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你内力现在不够, 不能使用天罗地网! \n");
+                return notify_fail("你內力現在不夠, 不能使用天羅地網! \n");
 
         if( target->is_busy() )
-                return notify_fail(target->name() + "目前正自顾不暇，放胆攻击吧ⅵ\n");
+                return notify_fail(target->name() + "目前正自顧不暇，放膽攻擊吧ⅵ\n");
 
         if( BUFF_D->check_buff(target, "tldw_wang") )
-                return notify_fail("对手已在你的天罗地网势之中！\n");
+                return notify_fail("對手已在你的天羅地網勢之中！\n");
 
-        msg = HIM "\n但见$N双臂飞舞，出手挡击回臂反扑发掌奇快，但一招一式清清楚楚自成" +
-              "段落，两只手掌宛似化成了千手千掌！\n" NOR;
+        msg = HIM "\n但見$N雙臂飛舞，出手擋擊回臂反撲發掌奇快，但一招一式清清楚楚自成" +
+              "段落，兩隻手掌宛似化成了千手千掌！\n" NOR;
 
         ap = attack_power(me, "strike");
         dp = defense_power(target, "dodge");
 
         if (ap / 2 + random(ap) > dp)
         {
-                msg += CYN "\n$n心下大骇，飞滚翻扑，始终逃不出$N只掌所围作的圈子! \n" NOR;
+                msg += CYN "\n$n心下大駭，飛滾翻撲，始終逃不出$N只掌所圍作的圈子! \n" NOR;
 
                 target->start_busy( 2 + ap / 100 );
                 data = ([
@@ -61,11 +61,11 @@ int perform(object me, object target)
 			"target":target,
 			"type":"tldw_wang",
 			"attr":"curse",
-			"name":"天罗地网·天罗地网",                       
+			"name":"天羅地網·天羅地網",                       
 			"buff_data":data,
 			"time":  skill/20,
 			"buff_msg": "",
-			"disa_msg": HIG"慢慢的，你已不似初见时那么诧异万分。\n\n"NOR,
+			"disa_msg": HIG"慢慢的，你已不似初見時那麼詫異萬分。\n\n"NOR,
 		]);
 		BUFF_D->buffup(buff);
                 addn("neili", -150, me);
@@ -74,7 +74,7 @@ int perform(object me, object target)
         }
         else
         {
-                msg += HIY "\n可是$p气定神弦，看破了$P的诱惑，纵身一跃，跳了开去。\n" NOR;
+                msg += HIY "\n可是$p氣定神弦，看破了$P的誘惑，縱身一躍，跳了開去。\n" NOR;
                 me->start_busy(1+random(3));
                 addn("neili", -100, me);
                 return 1;
@@ -94,24 +94,24 @@ void checking(object me, object target, int skill)
                 {
                         BUFF_D->debuff(target, "tldw_wang", -1);
 
-                        message_combatd(HIG"慢慢的，$n已不似初见时那么诧异万分。\n\n"NOR,me,target);
+                        message_combatd(HIG"慢慢的，$n已不似初見時那麼詫異萬分。\n\n"NOR,me,target);
                         return ;
                 }
                 if( !me->is_fighting() )
                 {
                         BUFF_D->debuff(target, "tldw_wang", -1);
 
-                        message_combatd(HIG"慢慢的，$n已不似初见时那么诧异万分。\n\n"NOR,me,target);
+                        message_combatd(HIG"慢慢的，$n已不似初見時那麼詫異萬分。\n\n"NOR,me,target);
                         return ;
                 }
 
                 if( me->query_skill_mapped("strike") != "tianluo-diwang"
                 ||  me->query_skill_prepared("strike") != "tianluo-diwang" )
                 {
-                        message_combatd(HIM"\n$N骤然变换招数，不能再继续用天罗地网牵制对手的攻击！\n"NOR, me);
+                        message_combatd(HIM"\n$N驟然變換招數，不能再繼續用天羅地網牽制對手的攻擊！\n"NOR, me);
                         BUFF_D->debuff(target, "tldw_wang", -1);
 
-                        message_combatd(HIG"慢慢的，$n已不似初见时那么诧异万分。\n\n"NOR,me,target);
+                        message_combatd(HIG"慢慢的，$n已不似初見時那麼詫異萬分。\n\n"NOR,me,target);
                         return ;
                 }
 

@@ -4,7 +4,7 @@ inherit ITEM;
 
 string* titles = ({
 
-      "摩诃僧诋律"
+      "摩訶僧詆律"
 	
 });
 
@@ -16,7 +16,7 @@ void create()
 		set_default_object(__FILE__);
 	else {
 		set("unit", "本");
-		set("long", "这是一册佛经。\n");
+		set("long", "這是一冊佛經。\n");
 		set("value", 500);
 		set("material", "paper");
 		set("skill", ([
@@ -44,7 +44,7 @@ int do_tear(string arg)
 
 	if ( !arg )
 	{
-		return notify_fail("什么？\n");
+		return notify_fail("什麼？\n");
 	}
 
 	me = this_player();
@@ -53,7 +53,7 @@ int do_tear(string arg)
 	{
 		bible = new(CLASS_D("shaolin")+"/obj/book-jiuyang");
 		where = environment(me);
-		message_vision("$N轻轻地把书撕掉……，突然从书缝中飘落出几页羊皮纸。\n",
+		message_vision("$N輕輕地把書撕掉……，突然從書縫中飄落出幾頁羊皮紙。\n",
 			this_player());
 		bible->move(file_name(where));
 		destruct(this_object());

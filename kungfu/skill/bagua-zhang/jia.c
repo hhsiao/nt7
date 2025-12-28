@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include "/kungfu/skill/eff_msg.h";
 
-#define JIA "「" HIY "掌中夹镖" NOR "」"
+#define JIA "「" HIY "掌中夾鏢" NOR "」"
 
 inherit F_SSERVER;
 int perform(object me, object target)
@@ -12,49 +12,49 @@ int perform(object me, object target)
         object weapon;
 
         if( userp(me) && !query("can_perform/bagua-zhang/jia", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(JIA "只能在战斗中对对手使用。\n");
+                return notify_fail(JIA "只能在戰鬥中對對手使用。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(JIA "只能空手施展。\n");
 
         if( !objectp(weapon=query_temp("handing", me)) || 
             query("skill_type", weapon) != "throwing" )
-                return notify_fail("你现在手中并没有拿着暗器。\n");
+                return notify_fail("你現在手中並沒有拿著暗器。\n");
 
         if (me->query_skill_mapped("strike") != "bagua-zhang") 
-                return notify_fail("你没有激发八卦掌，难以施展" JIA "。\n");
+                return notify_fail("你沒有激發八卦掌，難以施展" JIA "。\n");
 
         if (me->query_skill_prepared("strike") != "bagua-zhang") 
-                return notify_fail("你没有准备八卦掌，难以施展" JIA "。\n");
+                return notify_fail("你沒有準備八卦掌，難以施展" JIA "。\n");
 
         if (me->query_skill_mapped("throwing") != "bagua-biao") 
-                return notify_fail("你没有激发八卦镖诀，难以施展" JIA "。\n");
+                return notify_fail("你沒有激發八卦鏢訣，難以施展" JIA "。\n");
 
         if ((int)me->query_skill("bagua-zhang", 1) < 120)
-                return notify_fail("你的八卦掌不够娴熟，难以施展" JIA "。\n");
+                return notify_fail("你的八卦掌不夠嫻熟，難以施展" JIA "。\n");
 
         if ((int)me->query_skill("bagua-biao", 1) < 120)
-                return notify_fail("你的八卦镖诀不够娴熟，难以施展" JIA "。\n");
+                return notify_fail("你的八卦鏢訣不夠嫻熟，難以施展" JIA "。\n");
 
         if ((int)me->query_skill("force") < 150)
-                return notify_fail("你的内功火候不够，难以施展" JIA "。\n");
+                return notify_fail("你的內功火候不夠，難以施展" JIA "。\n");
 
         if( query("neili", me)<150 )
-                return notify_fail("你现在真气不足，难以施展" JIA "。\n");
+                return notify_fail("你現在真氣不足，難以施展" JIA "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         addn("neili", -100, me);
         weapon->add_amount(-1);
 
-        msg = HIY "$N" HIY "一声暴喝，一掌重重击向$n" HIY "，$p" HIY
-              "正欲格挡，忽然只见眼前金光一闪，一股劲风已由$N" HIY
+        msg = HIY "$N" HIY "一聲暴喝，一掌重重擊向$n" HIY "，$p" HIY
+              "正欲格擋，忽然只見眼前金光一閃，一股勁風已由$N" HIY
               "掌中激射而出！\n" NOR;
 
         me->start_busy(2);
@@ -67,8 +67,8 @@ int perform(object me, object target)
                 damage = damage_power(me, "throwing");
                 msg += HIR "$n" HIR "果真始料不及，$N" HIR "那" +
                        query("base_unit", weapon)+weapon->name()+
-                       HIR "正好打在$p" HIR "要穴上，顿时血气上涌，"
-                       "连退数步！\n" NOR;
+                       HIR "正好打在$p" HIR "要穴上，頓時血氣上湧，"
+                       "連退數步！\n" NOR;
                 target->receive_damage("qi", damage * 3 / 2, me);
                 target->receive_wound("qi", damage, me);
                 p=query("qi", target)*100/query("max_qi", target);
@@ -83,7 +83,7 @@ int perform(object me, object target)
         } else
         {
                 msg += CYN "可是$p" CYN "早料得$P"
-                       CYN "有此一着，哈哈一笑，斜跳闪开。\n" NOR;
+                       CYN "有此一著，哈哈一笑，斜跳閃開。\n" NOR;
                 message_combatd(msg, me, target);
         }
         me->reset_action();

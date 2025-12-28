@@ -1,15 +1,15 @@
 #modlist
 
 <M2000>
-<mod_name>$HBGRN$文曲星学习套装(神)$NOR$</mod_name>
+<mod_name>$HBGRN$文曲星學習套裝(神)$NOR$</mod_name>
 <mod_parts>
 A2000:$HBGRN$文曲星甲$NOR$
-A2001:$HBGRN$文曲星披风$NOR$
-A2002:$HBGRN$文曲星束带$NOR$
-A2003:$HBGRN$文曲星头盔$NOR$
+A2001:$HBGRN$文曲星披風$NOR$
+A2002:$HBGRN$文曲星束帶$NOR$
+A2003:$HBGRN$文曲星頭盔$NOR$
 A2004:$HBGRN$文曲星靴$NOR$
-A2005:$HBGRN$文曲星护腕$NOR$
-A2006:$HBGRN$文曲星战衣$NOR$
+A2005:$HBGRN$文曲星護腕$NOR$
+A2006:$HBGRN$文曲星戰衣$NOR$
 </mod_parts>
 <bas>3</bas>
 <num>7</num>
@@ -27,15 +27,15 @@ int:240
 </M2000>
 
 <M2010>
-<mod_name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$套装$NOR$</mod_name>
+<mod_name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$套裝$NOR$</mod_name>
 <mod_parts>
-A2010:$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$铁甲$NOR$
-A2011:$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$头盔$NOR$
-A2012:$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$战衣$NOR$
-A2013:$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$束带$NOR$
+A2010:$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$鐵甲$NOR$
+A2011:$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$頭盔$NOR$
+A2012:$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$戰衣$NOR$
+A2013:$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$束帶$NOR$
 A2014:$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$皮靴$NOR$
-A2015:$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$护腕$NOR$
-A2016:$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$披风$NOR$
+A2015:$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$護腕$NOR$
+A2016:$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$披風$NOR$
 </mod_parts>
 <bas>4</bas>
 <num>7</num>
@@ -54,21 +54,21 @@ max_neili:100000
 </M2010>
 
 <M2030>
-<mod_name>$HBRED$刑天套装$NOR$</mod_name>
+<mod_name>$HBRED$刑天套裝$NOR$</mod_name>
 <mod_parts>
-A2030:$HBGRN$刑天战甲$NOR$
-A2031:$HBGRN$刑天战衣$NOR$
-A2032:$HBGRN$刑天头盔$NOR$
-A2033:$HBGRN$刑天魔剑$NOR$
-A2034:$HBGRN$刑天魔剑$NOR$
+A2030:$HBGRN$刑天戰甲$NOR$
+A2031:$HBGRN$刑天戰衣$NOR$
+A2032:$HBGRN$刑天頭盔$NOR$
+A2033:$HBGRN$刑天魔劍$NOR$
+A2034:$HBGRN$刑天魔劍$NOR$
 A2035:$HBGRN$刑天魔刀$NOR$
 A2036:$HBGRN$刑天魔刀$NOR$
 A2037:$HBGRN$刑天魔掌$NOR$
 A2038:$HBGRN$刑天魔指$NOR$
-A2039:$HBGRN$刑天战靴$NOR$
-A2040:$HBGRN$刑天披风$NOR$
-A2041:$HBGRN$刑天腰带$NOR$
-A2042:$HBGRN$刑天护腕$NOR$
+A2039:$HBGRN$刑天戰靴$NOR$
+A2040:$HBGRN$刑天披風$NOR$
+A2041:$HBGRN$刑天腰帶$NOR$
+A2042:$HBGRN$刑天護腕$NOR$
 </mod_parts>
 <bas>9</bas>
 <num>13</num>
@@ -98,15 +98,15 @@ fatal_blow:60
 </M2030>
 
 
-#文曲星套装部件
+#文曲星套裝部件
 <A2000>
 <type>armor/armor</type>
 <name>$HBGRN$文曲星甲$NOR$</name>
 <id>wisdom armor</id>
-<long>蕴含了文曲星的精元和无上智慧(神)。</long>
+<long>蘊含了文曲星的精元和無上智慧(神)。</long>
 <value>2000000</value>
 <mod_level>M2000</mod_level>
-<mod_name>$HBGRN$文曲星学习套装(神)$NOR$</mod_name>
+<mod_name>$HBGRN$文曲星學習套裝(神)$NOR$</mod_name>
 <require>
 level:10
 con:20
@@ -141,12 +141,12 @@ apply_prop/practice_effect:10
 
 <A2001>
 <type>armor/surcoat</type>
-<name>$HBGRN$文曲星披风$NOR$</name>
+<name>$HBGRN$文曲星披風$NOR$</name>
 <id>wisdom surcoat</id>
-<long>蕴含了文曲星的精元和无上智慧(神)。</long>
+<long>蘊含了文曲星的精元和無上智慧(神)。</long>
 <value>2000000</value>
 <mod_level>M2000</mod_level>
-<mod_name>$HBGRN$文曲星学习套装(神)$NOR$</mod_name>
+<mod_name>$HBGRN$文曲星學習套裝(神)$NOR$</mod_name>
 <require>
 level:10
 con:20
@@ -181,12 +181,12 @@ apply_prop/derive_effect:10
 
 <A2002>
 <type>armor/waist</type>
-<name>$HBGRN$文曲星束带$NOR$</name>
+<name>$HBGRN$文曲星束帶$NOR$</name>
 <id>wisdom waist</id>
-<long>蕴含了文曲星的精元和无上智慧(神)。</long>
+<long>蘊含了文曲星的精元和無上智慧(神)。</long>
 <value>2000000</value>
 <mod_level>M2000</mod_level>
-<mod_name>$HBGRN$文曲星学习套装(神)$NOR$</mod_name>
+<mod_name>$HBGRN$文曲星學習套裝(神)$NOR$</mod_name>
 <require>
 level:10
 con:20
@@ -221,12 +221,12 @@ apply_prop/derive_effect:10
 
 <A2003>
 <type>armor/head</type>
-<name>$HBGRN$文曲星头盔$NOR$</name>
+<name>$HBGRN$文曲星頭盔$NOR$</name>
 <id>wisdom head</id>
-<long>蕴含了文曲星的精元和无上智慧(神)。</long>
+<long>蘊含了文曲星的精元和無上智慧(神)。</long>
 <value>2000000</value>
 <mod_level>M2000</mod_level>
-<mod_name>$HBGRN$文曲星学习套装(神)$NOR$</mod_name>
+<mod_name>$HBGRN$文曲星學習套裝(神)$NOR$</mod_name>
 <require>
 level:10
 con:20
@@ -263,10 +263,10 @@ apply_prop/research_effect:10
 <type>armor/boots</type>
 <name>$HBGRN$文曲星靴$NOR$</name>
 <id>wisdom boots</id>
-<long>蕴含了文曲星的精元和无上智慧(神)。</long>
+<long>蘊含了文曲星的精元和無上智慧(神)。</long>
 <value>2000000</value>
 <mod_level>M2000</mod_level>
-<mod_name>$HBGRN$文曲星学习套装(神)$NOR$</mod_name>
+<mod_name>$HBGRN$文曲星學習套裝(神)$NOR$</mod_name>
 <require>
 level:10
 con:20
@@ -301,12 +301,12 @@ apply_prop/practice_effect:10
 
 <A2005>
 <type>armor/wrists</type>
-<name>$HBGRN$文曲星护腕$NOR$</name>
+<name>$HBGRN$文曲星護腕$NOR$</name>
 <id>wisdom wrists</id>
-<long>蕴含了文曲星的精元和无上智慧(神)。</long>
+<long>蘊含了文曲星的精元和無上智慧(神)。</long>
 <value>2000000</value>
 <mod_level>M2000</mod_level>
-<mod_name>$HBGRN$文曲星学习套装(神)$NOR$</mod_name>
+<mod_name>$HBGRN$文曲星學習套裝(神)$NOR$</mod_name>
 <require>
 level:10
 con:20
@@ -341,12 +341,12 @@ apply_prop/practice_effect:10
 
 <A2006>
 <type>armor/cloth</type>
-<name>$HBGRN$文曲星战衣$NOR$</name>
+<name>$HBGRN$文曲星戰衣$NOR$</name>
 <id>wisdom cloth</id>
-<long>一件丝质的衣服。</long>
+<long>一件絲質的衣服。</long>
 <value>2000000</value>
 <mod_level>M2000</mod_level>
-<mod_name>$HBGRN$文曲星学习套装(神)$NOR$</mod_name>
+<mod_name>$HBGRN$文曲星學習套裝(神)$NOR$</mod_name>
 <require>
 level:10
 con:20
@@ -380,15 +380,15 @@ apply_prop/derive_effect:10
 </A2006>
 
 
-#祝福套装部件
+#祝福套裝部件
 <A2010>
 <type>armor/armor</type>
-<name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$铁甲$NOR$</name>
+<name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$鐵甲$NOR$</name>
 <id>zhufu armor</id>
-<long>一件沉甸甸的铁甲。</long>
+<long>一件沉甸甸的鐵甲。</long>
 <value>3000</value>
 <mod_level>M2010</mod_level>
-<mod_name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$套装$NOR$</mod_name>
+<mod_name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$套裝$NOR$</mod_name>
 <require>
 level:1
 con:13
@@ -415,12 +415,12 @@ apply_prop/int:1
 
 <A2011>
 <type>armor/head</type>
-<name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$头盔$NOR$</name>
+<name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$頭盔$NOR$</name>
 <id>zhufu head</id>
-<long>这是一顶铁制的头盔，用以保护头部。</long>
+<long>這是一頂鐵製的頭盔，用以保護頭部。</long>
 <value>3000</value>
 <mod_level>M2010</mod_level>
-<mod_name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$套装$NOR$</mod_name>
+<mod_name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$套裝$NOR$</mod_name>
 <require>
 level:1
 con:13
@@ -447,12 +447,12 @@ apply_prop/int:1
 
 <A2012>
 <type>armor/cloth</type>
-<name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$战衣$NOR$</name>
+<name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$戰衣$NOR$</name>
 <id>zhufu cloth</id>
-<long>一件丝质的衣服。</long>
+<long>一件絲質的衣服。</long>
 <value>3000</value>
 <mod_level>M2010</mod_level>
-<mod_name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$套装$NOR$</mod_name>
+<mod_name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$套裝$NOR$</mod_name>
 <require>
 level:1
 con:13
@@ -479,12 +479,12 @@ apply_prop/int:1
 
 <A2013>
 <type>armor/waist</type>
-<name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$束带$NOR$</name>
+<name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$束帶$NOR$</name>
 <id>zhufu waist</id>
-<long>这是一条皮质的护腰，用以保护腰部。</long>
+<long>這是一條皮質的護腰，用以保護腰部。</long>
 <value>3000</value>
 <mod_level>M2010</mod_level>
-<mod_name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$套装$NOR$</mod_name>
+<mod_name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$套裝$NOR$</mod_name>
 <require>
 level:1
 con:13
@@ -513,10 +513,10 @@ apply_prop/con:1
 <type>armor/boots</type>
 <name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$皮靴$NOR$</name>
 <id>zhufu boots</id>
-<long>这是一双用上好牛皮作的皮靴，用以保护足部。</long>
+<long>這是一雙用上好牛皮作的皮靴，用以保護足部。</long>
 <value>3000</value>
 <mod_level>M2010</mod_level>
-<mod_name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$套装$NOR$</mod_name>
+<mod_name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$套裝$NOR$</mod_name>
 <require>
 level:1
 con:13
@@ -543,12 +543,12 @@ apply_prop/dex:1
 
 <A2015>
 <type>armor/wrists</type>
-<name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$护腕$NOR$</name>
+<name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$護腕$NOR$</name>
 <id>zhufu wrists</id>
-<long>这是一件布质的护腕，用以保护腕部。</long>
+<long>這是一件布質的護腕，用以保護腕部。</long>
 <value>3000</value>
 <mod_level>M2010</mod_level>
-<mod_name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$套装$NOR$</mod_name>
+<mod_name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$套裝$NOR$</mod_name>
 <require>
 level:1
 con:13
@@ -575,12 +575,12 @@ apply_prop/int:1
 
 <A2016>
 <type>armor/surcoat</type>
-<name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$披风$NOR$</name>
+<name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$披風$NOR$</name>
 <id>zhufu surcoat</id>
-<long>这是一件丝质的披风。</long>
+<long>這是一件絲質的披風。</long>
 <value>3000</value>
 <mod_level>M2010</mod_level>
-<mod_name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$套装$NOR$</mod_name>
+<mod_name>$HIY$神$HIW$之$HIM$祝福$NOR$$YEL$套裝$NOR$</mod_name>
 <require>
 level:1
 con:13
@@ -606,15 +606,15 @@ apply_prop/int:1
 </A2016>
 
 
-#刑天套装部件
+#刑天套裝部件
 <A2030>
 <type>rings/neck</type>
-<name>$HBGRN$刑天项链$NOR$</name>
+<name>$HBGRN$刑天項鍊$NOR$</name>
 <id>xingtian neck</id>
-<long>一条黄金打造的项链。</long>
+<long>一條黃金打造的項鍊。</long>
 <value>2000000</value>
 <mod_level>M2030</mod_level>
-<mod_name>$HBRED$刑天套装$NOR$</mod_name>
+<mod_name>$HBRED$刑天套裝$NOR$</mod_name>
 <require>
 level:10
 con:20
@@ -629,10 +629,10 @@ armor:10
 <type>rings/rings</type>
 <name>$HBGRN$刑天戒指$NOR$</name>
 <id>xingtian ring</id>
-<long>一个黄金打造的戒指。</long>
+<long>一個黃金打造的戒指。</long>
 <value>2000000</value>
 <mod_level>M2030</mod_level>
-<mod_name>$HBRED$刑天套装$NOR$</mod_name>
+<mod_name>$HBRED$刑天套裝$NOR$</mod_name>
 <require>
 level:10
 con:20
@@ -645,12 +645,12 @@ armor:10
 
 <A2032>
 <type>rings/charm</type>
-<name>$HBGRN$刑天护符$NOR$</name>
+<name>$HBGRN$刑天護符$NOR$</name>
 <id>xingtian charm</id>
-<long>一件黄金制作的护身符。</long>
+<long>一件黃金製作的護身符。</long>
 <value>2000000</value>
 <mod_level>M2030</mod_level>
-<mod_name>$HBRED$刑天套装$NOR$</mod_name>
+<mod_name>$HBRED$刑天套裝$NOR$</mod_name>
 <require>
 level:10
 con:20
@@ -663,12 +663,12 @@ armor:10
 
 <A2033>
 <type>weapon/sword</type>
-<name>$HBGRN$刑天魔剑$NOR$</name>
+<name>$HBGRN$刑天魔劍$NOR$</name>
 <id>xingtian sword</id>
-<long>一把血光冲天的魔剑。</long>
+<long>一把血光沖天的魔劍。</long>
 <value>2000000</value>
 <mod_level>M2030</mod_level>
-<mod_name>$HBRED$刑天套装$NOR$</mod_name>
+<mod_name>$HBRED$刑天套裝$NOR$</mod_name>
 <require>
 level:10
 con:20
@@ -681,12 +681,12 @@ damage:50000
 
 <A2034>
 <type>weapon/sword</type>
-<name>$HBGRN$刑天魔剑$NOR$</name>
+<name>$HBGRN$刑天魔劍$NOR$</name>
 <id>xingtian sword</id>
-<long>一把血光冲天的魔剑。</long>
+<long>一把血光沖天的魔劍。</long>
 <value>2000000</value>
 <mod_level>M2030</mod_level>
-<mod_name>$HBRED$刑天套装$NOR$</mod_name>
+<mod_name>$HBRED$刑天套裝$NOR$</mod_name>
 <require>
 level:10
 con:20
@@ -701,10 +701,10 @@ damage:50000
 <type>weapon/blade</type>
 <name>$HBGRN$刑天魔刀$NOR$</name>
 <id>xingtian blade</id>
-<long>一把血光冲天的魔刀。</long>
+<long>一把血光沖天的魔刀。</long>
 <value>2000000</value>
 <mod_level>M2030</mod_level>
-<mod_name>$HBRED$刑天套装$NOR$</mod_name>
+<mod_name>$HBRED$刑天套裝$NOR$</mod_name>
 <require>
 level:10
 con:20
@@ -719,10 +719,10 @@ damage:50000
 <type>weapon/blade</type>
 <name>$HBGRN$刑天魔刀$NOR$</name>
 <id>xingtian blade</id>
-<long>一把血光冲天的魔刀。</long>
+<long>一把血光沖天的魔刀。</long>
 <value>2000000</value>
 <mod_level>M2030</mod_level>
-<mod_name>$HBRED$刑天套装$NOR$</mod_name>
+<mod_name>$HBRED$刑天套裝$NOR$</mod_name>
 <require>
 level:10
 con:20
@@ -737,10 +737,10 @@ damage:50000
 <type>armor/hands</type>
 <name>$HBGRN$刑天魔掌$NOR$</name>
 <id>xingtian hand</id>
-<long>一副血光冲天的铁掌。</long>
+<long>一副血光沖天的鐵掌。</long>
 <value>2000000</value>
 <mod_level>M2030</mod_level>
-<mod_name>$HBRED$刑天套装$NOR$</mod_name>
+<mod_name>$HBRED$刑天套裝$NOR$</mod_name>
 <require>
 level:10
 con:20
@@ -756,10 +756,10 @@ unarmed_damage:50000
 <type>armor/finger</type>
 <name>$HBGRN$刑天魔指$NOR$</name>
 <id>xingtian finger</id>
-<long>一副血光冲天的指套。</long>
+<long>一副血光沖天的指套。</long>
 <value>2000000</value>
 <mod_level>M2030</mod_level>
-<mod_name>$HBRED$刑天套装$NOR$</mod_name>
+<mod_name>$HBRED$刑天套裝$NOR$</mod_name>
 <require>
 level:10
 con:20

@@ -22,9 +22,9 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式 : qinfo [<任务名称>]
+指令格式 : qinfo [<任務名稱>]
 
-此指令可查看当前系统有的任务。
+此指令可查看當前系統有的任務。
 HELP );
         return 1;
 }

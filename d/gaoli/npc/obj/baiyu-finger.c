@@ -10,7 +10,7 @@ void create()
    /*if( clonep() )
      set_default_object(__FILE__);
    else*/ {
-     set("long","这是一枚名贵的白玉戒指。\n");
+     set("long","這是一枚名貴的白玉戒指。\n");
      set("material", "白玉");
      set("unit", "枚");
      set("value", 800);

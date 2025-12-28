@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("功夫熊猫[2;37;0m[2;37;0m", ({"kiss"}));        
+        set_name("功夫熊貓[2;37;0m[2;37;0m", ({"kiss"}));        
         set("gender", "男性");                
-        set("long", "它来自动物园...[2;37;0m
-它是功夫小子的魔幻兽。
+        set("long", "它來自動物園...[2;37;0m
+它是功夫小子的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

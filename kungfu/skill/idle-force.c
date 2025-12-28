@@ -1,4 +1,4 @@
-// idle-force.c 发呆神功
+// idle-force.c 發呆神功
 
 inherit SKILL;
 

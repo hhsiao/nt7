@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("布莱恩[2;37;0m[2;37;0m", ({"bryan"}));        
+        set_name("布萊恩[2;37;0m[2;37;0m", ({"bryan"}));        
         set("gender", "女性");                
-        set("long", "可爱的布莱恩！[2;37;0m
-它是可妮的魔幻兽。
+        set("long", "可愛的布萊恩！[2;37;0m
+它是可妮的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

@@ -11,10 +11,10 @@ void create()
 {
         object ob;
         object sb;
-        set_name("温仪", ({ "wen yi", "wen" }));
+        set_name("溫儀", ({ "wen yi", "wen" }));
         set("long", 
-        "她就是金蛇郎君的妻子温仪。\n"
-        "一位三十来岁的女子，容貌清秀，有着一种成熟的韵味。\n");
+        "她就是金蛇郎君的妻子溫儀。\n"
+        "一位三十來歲的女子，容貌清秀，有著一種成熟的韻味。\n");
         set("gender", "女性");
         set("age", 36);
         set("attitude", "friendly");
@@ -52,13 +52,13 @@ void create()
     prepare_skill("cuff", "wenjia-quan");
     
     set("inquiry", ([
-                "温青青" : "青青是我女儿,她姓夏,叫夏青青.\n",
-                "夏青青" : "青青是我女儿.\n",
-                "温方山" : "温方山是我爹爹.\n",
+                "溫青青" : "青青是我女兒,她姓夏,叫夏青青.\n",
+                "夏青青" : "青青是我女兒.\n",
+                "溫方山" : "溫方山是我爹爹.\n",
                 "金蛇郎君" : "名震天下的金蛇郎君就是我的夫君。\n",
-                "温家五老" : "哼......\n",
+                "溫家五老" : "哼......\n",
                 "夏雪宜" : (: ask_xia1 :),
-                "宝物" : (: ask_gift :),
+                "寶物" : (: ask_gift :),
                 "掌法秘籍" : (: ask_gift :),
                 "金蛇掌法" : (: ask_gift :),
         ]));
@@ -90,15 +90,15 @@ void kill_ob(object ob)
 {
         ob->remove_killer(this_object());
         remove_killer(ob);
-        message_vision("温仪对$N淡淡一笑，又转过身去，眉宇间没有丝毫恐惧。”\n", ob);
-        message_vision("$N心中忽然觉得：“自己怎麽这麽无耻，对一个手无寸铁的人也要下此毒手？”\n", ob);
+        message_vision("溫儀對$N淡淡一笑，又轉過身去，眉宇間沒有絲毫恐懼。”\n", ob);
+        message_vision("$N心中忽然覺得：“自己怎麼這麼無恥，對一個手無寸鐵的人也要下此毒手？”\n", ob);
 }
 
 int ask_xia1()
 {
         object me = this_player();
         string msg;
-        msg = CYN"温仪听到$N的询问,身子一震,脸色大变。\n"NOR;
+        msg = CYN"溫儀聽到$N的詢問,身子一震,臉色大變。\n"NOR;
         message_vision(msg, me);
                 
     if( query_temp("quest/金蛇掌法/start",1, me)){
@@ -106,7 +106,7 @@ int ask_xia1()
         call_out("do_happen1",3,me);
                 return 1;
         }
-        msg = CYN"温仪脸色变了几变,渐渐平静下来,对$N说:你问他作什么?\n"NOR;
+        msg = CYN"溫儀臉色變了幾變,漸漸平靜下來,對$N說:你問他作什麼?\n"NOR;
         message_vision(msg,me);
         set_temp("quest/jinshe2/fail", 1, me);
         return 1;
@@ -116,11 +116,11 @@ int do_happen1(object me)
 {
         string msg;
         //if (base_name(environment(me)) != HERE)               return 1;
-        msg = CYN"温仪叹了口气,道:既然你是青青的朋友,我就告诉你吧。\n"NOR;
-        msg+= CYN"温仪顿了顿道:那是一段陈年旧事,十八年前我遇到了青青的父亲夏雪宜,也就是金蛇郎君。\n"NOR;
-        msg+= CYN"温仪道:我们相亲相爱,本以为,本以为真的可以化解父辈的仇恨,可是爹爹......。\n"NOR;
-        msg+= CYN"温仪突然眼圈发红,哽咽着说不出话来......\n"NOR;
-        msg+= HIG"温仪哭得梨花带雨,楚楚可怜,你忍不住想"HIC"安慰(comfort)"HIG"她一下.\n"NOR;
+        msg = CYN"溫儀嘆了口氣,道:既然你是青青的朋友,我就告訴你吧。\n"NOR;
+        msg+= CYN"溫儀頓了頓道:那是一段陳年舊事,十八年前我遇到了青青的父親夏雪宜,也就是金蛇郎君。\n"NOR;
+        msg+= CYN"溫儀道:我們相親相愛,本以為,本以為真的可以化解父輩的仇恨,可是爹爹......。\n"NOR;
+        msg+= CYN"溫儀突然眼圈發紅,哽咽著說不出話來......\n"NOR;
+        msg+= HIG"溫儀哭得梨花帶雨,楚楚可憐,你忍不住想"HIC"安慰(comfort)"HIG"她一下.\n"NOR;
         message_vision(msg, me);
          set("quest/jinshe2/step1", 1, me);
         return 1;       
@@ -131,20 +131,20 @@ int do_comfort(string arg)
        object me=this_player();
        if( !query("quest/jinshe2/step1", this_player()))return 0;
         
-        if( !arg ) return notify_fail("你说什么？\n");
+        if( !arg ) return notify_fail("你說什麼？\n");
         
-        message_vision("$N轻声安慰道：" + arg + "\n", this_player());
-        if( strsrch(arg, "夏夫人") >=0 && (strsrch(arg, "你别难过") >=0
-         || strsrch(arg, "是金蛇郎君") >=0 || strsrch(arg, "特意叫我来找你的") >=0 )) {
+        message_vision("$N輕聲安慰道：" + arg + "\n", this_player());
+        if( strsrch(arg, "夏夫人") >=0 && (strsrch(arg, "你別難過") >=0
+         || strsrch(arg, "是金蛇郎君") >=0 || strsrch(arg, "特意叫我來找你的") >=0 )) {
                 command("ah");
-                command("say 你说的都是真的?!!!\n");
+                command("say 你說的都是真的?!!!\n");
                 command("touch"+query("id", this_player()));
                 set_temp("quest/jinshe2/step2", 1, this_player());
                 delete_temp("quest/jinshe2/step1",1, this_player());
                 return 0;
         } else {
-                command("say 他这个负心人,丢下我们娘儿俩,一走就是十八年.");
-                msg = HIC"安慰人总得有个称呼,说法,消息和理由吧？\n"NOR;
+                command("say 他這個負心人,丟下我們孃兒倆,一走就是十八年.");
+                msg = HIC"安慰人總得有個稱呼,說法,消息和理由吧？\n"NOR;
                 message_vision(msg, me);
         }
         
@@ -156,56 +156,56 @@ int accept_object(object who, object ob)
     object me = this_player();
         if( !who || environment(who) != environment() ) {return 0;}
         if ( !objectp(ob) ) {return 0; }
-        if ( !present(ob, who) ) return notify_fail("你没有这件东西。\n");
+        if ( !present(ob, who) ) return notify_fail("你沒有這件東西。\n");
         if( !query_temp("quest/jinshe2/step2", this_player()) && !query("quest/jinshe2/xin", this_player()))return 0;
         if (userp(ob)) {
                command("?"+query("id", who));
-               command("say 你把人打晕想干什么？");
+               command("say 你把人打暈想幹什麼？");
                this_object()->kill_ob(who);
-               return notify_fail("糟糕，穿帮了！\n");
+               return notify_fail("糟糕，穿幫了！\n");
         }
         if( query("id", ob) == "xinjian" && query("name", ob) == "家信"){
                 if( query("quest/jinshe2/xin", this_player())){
                         command("wuwu");
-                        command("say 这...这是雪宜的字体。");
+                        command("say 這...這是雪宜的字體。");
                         command("touch"+query("id", who));
-                        command("say 雪宜从前留下了一批宝物,送你当作感谢吧!"); 
+                        command("say 雪宜從前留下了一批寶物,送你當作感謝吧!"); 
                         set("quest/jinshe2/gift", 1, this_player());
                         call_out("destroying", 1, ob);
                         return 1; 
             }
             command("hmm");
-            command("say 你是从哪里得到的这封信?当心我去找月影举报你!");
-            msg = HIG"温仪柳眉一皱:来人啊,把这个骗子轰出去!!!。\n"NOR;
+            command("say 你是從哪裡得到的這封信?當心我去找月影舉報你!");
+            msg = HIG"溫儀柳眉一皺:來人啊,把這個騙子轟出去!!!。\n"NOR;
             message_vision(msg, me);
-            message_vision(HIR"\n一群家丁应声而出,将$N乱棒打晕,丢了出去。\n"NOR,me);
+            message_vision(HIR"\n一群家丁應聲而出,將$N亂棒打暈,丟了出去。\n"NOR,me);
             me->unconcious();
             me->move("/d/city/chmiao");
-            tell_room(environment(me),HIR"突然涌出一群温府家丁,将" + me->name(1) +"乱棍打晕,丢了出去"NOR);
+            tell_room(environment(me),HIR"突然湧出一群溫府家丁,將" + me->name(1) +"亂棍打暈,丟了出去"NOR);
             return 1;
           }
-        if( query("name", ob) != HIY"金蛇锥"NOR || query("id", ob) != "jinshezhui"){
+        if( query("name", ob) != HIY"金蛇錐"NOR || query("id", ob) != "jinshezhui"){
                command("shake"+query("id", who));
-               command("say 谢谢你啦。");
+               command("say 謝謝你啦。");
                return 0;
         }
-        if( !query_temp("quest/金蛇剑法/金蛇锥", this_player()) )
+        if( !query_temp("quest/金蛇劍法/金蛇錐", this_player()) )
         {
              command("hmm");
-              command("say 你是从哪里得到的?当心我去找月影和戴黛举报你!");
-             msg = HIG"温仪柳眉一皱:来人啊,把这个骗子轰出去!!!。\n"NOR;
+              command("say 你是從哪裡得到的?當心我去找月影和戴黛舉報你!");
+             msg = HIG"溫儀柳眉一皺:來人啊,把這個騙子轟出去!!!。\n"NOR;
              message_vision(msg, me);
-             message_vision(HIR"\n一群家丁应声而出,将$N乱棒打晕,丢了出去。\n"NOR,me);
+             message_vision(HIR"\n一群家丁應聲而出,將$N亂棒打暈,丟了出去。\n"NOR,me);
              me->unconcious();
              me->move("/d/city/chmiao");
-             tell_room(environment(me),HIR"突然涌出一群温府家丁,将" + me->name(1) +"乱棍打晕,丢了出去"NOR);
+             tell_room(environment(me),HIR"突然湧出一群溫府家丁,將" + me->name(1) +"亂棍打暈,丟了出去"NOR);
          call_out("destroying", 1, ob);
              return 1;
 }
         command("ah"+query("id", who));
-        command("say 这是雪宜的随身之物,看来你是他托付的人,如果有他的"HIY"消息"CYN"的话,麻烦请您告诉我一声.\n"NOR);
+        command("say 這是雪宜的隨身之物,看來你是他託付的人,如果有他的"HIY"消息"CYN"的話,麻煩請您告訴我一聲.\n"NOR);
         command("thank"+query("id", who));
-        msg = HIG"温仪向你打听有关夏雪宜的"HIW"消息"HIG",去看看夏雪宜的"HIR"遗物"HIG"里有什么线索吧。\n"NOR;
+        msg = HIG"溫儀向你打聽有關夏雪宜的"HIW"消息"HIG",去看看夏雪宜的"HIR"遺物"HIG"裡有什麼線索吧。\n"NOR;
         message_vision(msg, me);
         set("quest/jinshe2/xin", 1, who);
         delete_temp("quest/jinshe2/step2",1, who);
@@ -226,19 +226,19 @@ string ask_gift()
         int time;
   
   if( !query("quest/jinshe2/pass", me) && !query("quest/jinshe2/gift", me) )
-        return "耶?你怎么突然说这么奇怪的事情?\n";
+        return "耶?你怎麼突然說這麼奇怪的事情?\n";
         
         if ( is_busy() || is_fighting())
-                return "你没看到我正忙着么？\n";
+                return "你沒看到我正忙著麼？\n";
   
         sb = present("box", this_object());
   ob = present("zhangfa miji", this_object());
         if ( !ob && !sb)
-                return "耶？东西给我放到那里去了？\n";
+                return "耶？東西給我放到那裡去了？\n";
 
         time=time()-query("quest/jinshe2/zf_time", me);
         if( query("quest/jinshe2/zf_time", me) && time<86400 && !wizardp(me) && !query("env/debug", me) )
-                return "你不是已经问过了?真是贪得无厌!!!\n";
+                return "你不是已經問過了?真是貪得無厭!!!\n";
 
         quest=query("quest/jinshe2", me);
 
@@ -247,23 +247,23 @@ string ask_gift()
                         set("owner", me, ob);
                         ob->move(me);
                         set("quest/jinshe2/zf_time", time(), me);
-                        return "好吧，这本「掌法图解」你拿回去好好研究研究。\n";
+                        return "好吧，這本「掌法圖解」你拿回去好好研究研究。\n";
                 }
                 else
-                        return "你要的「掌法图解」已经给别人拿走了\n";
+                        return "你要的「掌法圖解」已經給別人拿走了\n";
         }
         if ( quest["gift"] ) {
                 if ( sb ) {
                         set("owner", me, sb);
                         sb->move(me);
                         set("quest/jinshe2/zf_time", time(), me);
-                        return "谢谢你,家夫留下的这个「包裹」就送给你吧.\n";
+                        return "謝謝你,家夫留下的這個「包裹」就送給你吧.\n";
                 }
                 else
-                        return "真不巧,我这里现在没有,你过阵子再来吧.\n";
+                        return "真不巧,我這裡現在沒有,你過陣子再來吧.\n";
         }
 
         if( query("registered", me)<3 )
-                return "我现在很忙，没兴趣和你多罗嗦！\n";
+                return "我現在很忙，沒興趣和你多羅嗦！\n";
 
 }

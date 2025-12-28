@@ -13,7 +13,7 @@ int main(object me, string arg)
 
         seteuid(geteuid(me));
 
-        if (! arg) return notify_fail("指令格式 : more <档名>|<物件名> \n");
+        if (! arg) return notify_fail("指令格式 : more <檔名>|<物件名> \n");
 
         if (sscanf(arg, "%s -n", file)) with_line_number = 0;
         else file = arg;
@@ -23,12 +23,12 @@ int main(object me, string arg)
         {
                 ob = present(arg, me);
                 if (! ob) ob = present(arg, environment(me));
-                if (! ob) return notify_fail("没有这个档案。\n");
+                if (! ob) return notify_fail("沒有這個檔案。\n");
                 file = base_name(ob) + ".c";
         }
 
         if (! SECURITY_D->valid_read(file, me, "read_file"))
-                return notify_fail("没有这个档案。\n");
+                return notify_fail("沒有這個檔案。\n");
 
         if (with_line_number)
                 me->start_more_file(file);
@@ -40,10 +40,10 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式 : more <档案名> [-n]
+指令格式 : more <檔案名> [-n]
 
-这个指令让你可以以分页方式查阅一个文件的内容。如果带 -n
-参数，则表示不显示行号。
+這個指令讓你可以以分頁方式查閱一個文件的內容。如果帶 -n
+參數，則表示不顯示行號。
 
 see also: cat
 HELP );

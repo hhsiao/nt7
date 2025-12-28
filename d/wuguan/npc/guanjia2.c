@@ -6,11 +6,11 @@ void create()
         set_name("木房管事", ({ "mufang guanshi", "guanshi" }) );
         set("gender", "男性" );
         set("age", 50);
-        set("long", "他是木房管事，专管木房！\n");
+        set("long", "他是木房管事，專管木房！\n");
         set("combat_exp", 2500);
         set("attitude", "friendly");
         set("inquiry", ([
-             	"锯木头" : "你就在这老老实实给我锯木头，没有我的满意，你别想回去覆命！",
+             	"鋸木頭" : "你就在這老老實實給我鋸木頭，沒有我的滿意，你別想回去覆命！",
                
         ]));
         setup();
@@ -33,19 +33,19 @@ void greeting(object ob)
 {
         if (! ob || environment(ob) != environment()) return;
          
-        if( query_temp("job_name", ob) != "锯木头")return ;
+        if( query_temp("job_name", ob) != "鋸木頭")return ;
 
         if (! (present("ju zi", ob)))
         {
         	command("hmm"+query("id", ob));
-        	command("say 你还没领工具吧，去东物品房找武爷要了再来。\n");
+        	command("say 你還沒領工具吧，去東物品房找武爺要了再來。\n");
         	return;
         }
 
-        if( !(query_temp("job_name", ob) != "锯木头") )
+        if( !(query_temp("job_name", ob) != "鋸木頭") )
         {
         	command("nod"+query("id", ob));
-                command("say 是耶律大爷吩咐你来的吧？那你就在这锯木(" HIY
+                command("say 是耶律大爺吩咐你來的吧？那你就在這鋸木(" HIY
                         "ju mutou" NOR + CYN ")好了。\n" NOR);
         }
 }

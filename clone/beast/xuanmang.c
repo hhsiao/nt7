@@ -8,8 +8,8 @@ void create()
         set_name(NAME, ({ "xuanbing chimang", "xuan", "bing", "xuanbing",
                           "chimang", "mang", "snake" }));
         set("long", HIW @LONG
-这是一只雪山怪蛇，只见它通体雪白，眼如烈
-炎。看来这个冰洞是它的巢穴。
+這是一隻雪山怪蛇，只見它通體雪白，眼如烈
+炎。看來這個冰洞是它的巢穴。
 LONG NOR);
 
         set("age", 15);

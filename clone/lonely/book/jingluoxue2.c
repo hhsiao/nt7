@@ -4,16 +4,16 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIW "「玉颧神脉经」" NOR, ({ "yuquan jing", "yuquan", "jing", "book" }));
+        set_name(HIW "「玉顴神脈經」" NOR, ({ "yuquan jing", "yuquan", "jing", "book" }));
         set_weight(500);
         if (clonep())
                 destruct(this_object());
         else {
                 set("unit", "本");
-                set("long", HIW "这是一本精装书册，书页已然发黄，书"
-                            "皮上写着「玉颧神脉经」五个字。\n" NOR);
+                set("long", HIW "這是一本精裝書冊，書頁已然發黃，書"
+                            "皮上寫著「玉顴神脈經」五個字。\n" NOR);
                 set("value", 1);
-                set("no_sell", "奶奶的，这本破书也能卖钱？");
+                set("no_sell", "奶奶的，這本破書也能賣錢？");
                 set("material", "paper");
                 set("skill", ([
                         "name" : "jingluo-xue",

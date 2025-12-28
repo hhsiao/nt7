@@ -7,11 +7,11 @@ inherit F_GUARDER;
 
 void create()
 {
-        set_name("王诚", ({ "wang cheng", "wang", "cheng"}));
-        set("title", "日月神教风雷旗主");
+        set_name("王誠", ({ "wang cheng", "wang", "cheng"}));
+        set("title", "日月神教風雷旗主");
         set("long", @LONG
-这是日月神教风雷旗主王诚，此人身材矮胖，
-满脸堆笑，其实为人十分狠毒。
+這是日月神教風雷旗主王誠，此人身材矮胖，
+滿臉堆笑，其實為人十分狠毒。
 LONG);
         set("gender", "男性" );
         set("class", "scholar");
@@ -61,11 +61,11 @@ LONG);
         }));
 
         set("guarder", ([
-                "refuse_other": CYN "$N" CYN "对$n" CYN "皱眉道："
-                                "我不管你是怎么上来的，这黑木崖岂"
-                                "是自由进出之地？" NOR,
-                "refuse_carry": CYN "$N" CYN "对$n" CYN "喝道：你"
-                                "背上背的是什么人？还不快快给我放"
+                "refuse_other": CYN "$N" CYN "對$n" CYN "皺眉道："
+                                "我不管你是怎麼上來的，這黑木崖豈"
+                                "是自由進出之地？" NOR,
+                "refuse_carry": CYN "$N" CYN "對$n" CYN "喝道：你"
+                                "背上背的是什麼人？還不快快給我放"
                                 "下！" NOR,
         ]));
 
@@ -90,5 +90,5 @@ void attempt_apprentice(object ob)
         if (! permit_recruit(ob))
                 return;
 
-             command("say 我不收徒，你去找教内的其余长老好了。");
+             command("say 我不收徒，你去找教內的其餘長老好了。");
 }

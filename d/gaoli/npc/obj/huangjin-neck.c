@@ -5,13 +5,13 @@ inherit NECK;
 
 void create()
 {
-   set_name(HIY"黄金项链"NOR, ({ "necklace"}) );
+   set_name(HIY"黃金項鍊"NOR, ({ "necklace"}) );
    set_weight(1000);
    /*if( clonep() )
      set_default_object(__FILE__);
    else*/ {
-     set("long","这是一串名贵的黄金项链。\n");
-     set("material", "黄金");
+     set("long","這是一串名貴的黃金項鍊。\n");
+     set("material", "黃金");
      set("unit", "串");
      set("value", 1000);
      set("armor_prop/armor",10);

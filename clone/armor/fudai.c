@@ -12,8 +12,8 @@ void create()
         else*/
         {
                 set("material", "paper");
-                set("unit", "个");
-                set("long", HIR "扶桑国有绣制福袋的习俗，据说带在身边可以逢凶化吉。\n" NOR);
+                set("unit", "個");
+                set("long", HIR "扶桑國有繡制福袋的習俗，據說帶在身邊可以逢凶化吉。\n" NOR);
                 set("value", 1000000);
                 set("limit", ([
                         "exp"    :   2000000,

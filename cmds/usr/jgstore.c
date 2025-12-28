@@ -16,7 +16,7 @@ int main(object me, string arg)
 
         if( !arg || arg == "") return help(me);
         if( time()-query_temp("last_member", me)<3 )
-                return notify_fail("系统忙，请稍后再试！\n");
+                return notify_fail("系統忙，請稍後再試！\n");
 
         if( !wizardp(me) )
                 set_temp("last_member", time(), me);
@@ -30,10 +30,10 @@ int main(object me, string arg)
                 return GOODS_D->show_goods(me, str2);
 
         case "exchange":
-                // 防止注册id刷物品
+                // 防止註冊id刷物品
                 /*
                 if( query("combat_exp", me) < 1000000 && !MEMBER_D->is_valid_member(me) )
-                        return notify_fail("你暂时还没有资格将军功兑换为物品！\n");
+                        return notify_fail("你暫時還沒有資格將軍功兌換為物品！\n");
                 */ 
                 if( sscanf(str2, "%s %d", str2, amount) != 2 )
                         amount = 1;
@@ -42,7 +42,7 @@ int main(object me, string arg)
                 if( amount < 1 ) amount = 1;        
                 if( !GOODS_D->exchange_goods(me, str2, amount))
                 {
-                        write("兑换失败！\n");
+                        write("兌換失敗！\n");
                         return 1;
                 }
                 write("Successful!\n");
@@ -61,13 +61,13 @@ int help (object me)
 
         money = query("jungong", me);
 
-        write(HIY "□ 您目前的军功为 " + money + " (NT)
+        write(HIY "□ 您目前的軍功為 " + money + " (NT)
 " WHT "——————————————————————————————————
 
-" HIM "输入指令：    jgstore show all                  查看所有商城的货物
-输入指令：    jgstore exchange <代号> <数量>    兑换指定代号的商品
+" HIM "輸入指令：    jgstore show all                  查看所有商城的貨物
+輸入指令：    jgstore exchange <代號> <數量>    兌換指定代號的商品
 
-" WHT "<代号>  ：    可用物品的 name 或 编号
+" WHT "<代號>  ：    可用物品的 name 或 編號
 " WHT "——————————————————————————————————\n" NOR);
 
         return 1;

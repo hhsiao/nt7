@@ -36,7 +36,7 @@ void rehash(string dir)
                 if (sscanf(cmds[i], "%s.c", cmds[i]))
                         cmdlist[cmds[i]] = dir + cmds[i] + ".c";
 
-        // 取所有命令的别名
+        // 取所有命令的別名
         i = sizeof(cmds);
         while (i--)
                 if (sscanf(cmds[i], "%s.alias", cmds[i]))
@@ -112,16 +112,16 @@ int do_command(object me, string verb, string arg, string *path)
                 call_other(file, "main", me, arg) )
                 ; else
         if( me->is_in_prison() )
-                return notify_fail("狱卒喝道：你老老实实的呆着别动！" + appromix_time(me->query_time_to_leave(), 1) + "放你出去！\n")
+                return notify_fail("獄卒喝道：你老老實實的待著別動！" + appromix_time(me->query_time_to_leave(), 1) + "放你出去！\n")
                 ; else
         if( query("id") == "guest" )
-                return notify_fail("既然仅仅是来参观，还是不要说话了！\n")
+                return notify_fail("既然僅僅是來參觀，還是不要說話了！\n")
                 ; else
         if( EMOTE_D->do_emote(me, verb, arg) )
                 ; else
         if( CHANNEL_D->do_channel(me, verb, arg) )
                 ; else
-        if( mapp(para) && para["auto_say"] && query_fail_msg() == "什么？\n" &&
+        if( mapp(para) && para["auto_say"] && query_fail_msg() == "什麼？\n" &&
                 stringp(file = (string)find_command("say", path)) && !me->is_direct_command() &&
                 call_other(file, "main", me, me->query_orginal_input()) )
                 ; else
@@ -150,7 +150,7 @@ int evaluate_command(object me, string verb, string arg, string *path)
         };
         if( !objectp(me) ) return 1;
         if( command_timecost > 200000 )
-                CHANNEL_D->channel_broadcast("nch", sprintf("%s下达指令 %s 超过系统限制，执行时间(%fs) \n", me->query_idname(1), verb+ " " +arg, to_float(command_timecost)/1000000));
+                CHANNEL_D->channel_broadcast("nch", sprintf("%s下達指令 %s 超過系統限制，執行時間(%fs) \n", me->query_idname(1), verb+ " " +arg, to_float(command_timecost)/1000000));
 #else
         //result = me->evaluate_command(verb, arg);
         result = do_command(me, verb, arg, path);

@@ -10,9 +10,9 @@ int ask_recover();
 void create()
 {
         seteuid(getuid());
-        set_name(HIY "释迦牟尼" NOR, ({ "buddha", "fo zu", "fo", "shijia muni" }));
+        set_name(HIY "釋迦牟尼" NOR, ({ "buddha", "fo zu", "fo", "shijia muni" }));
         set("long", @LONG
-佛祖庄严宝像，让人不敢正视。
+佛祖莊嚴寶像，讓人不敢正視。
 LONG);
         set("nickname", HIW "三界法王" NOR);
         set("title", HIC "佛祖" NOR);
@@ -81,11 +81,11 @@ int ask_recover()
         object me = this_player();
 
         command("look "+query("id", me));
-        command("say 你与我前世有缘吗?");
-        command("say 你可记得前世你姓甚名谁，我给你的揭语又是什么？");
-        command("say 若你能答得上来我便给你开启前生全部记忆。");
+        command("say 你與我前世有緣嗎?");
+        command("say 你可記得前世你姓甚名誰，我給你的揭語又是什麼？");
+        command("say 若你能答得上來我便給你開啟前生全部記憶。");
 
-        tell_object(me, HIW "佛祖在你耳边说道，若你想起来了就输入 recollect <id> <揭语> \n" NOR);
+        tell_object(me, HIW "佛祖在你耳邊說道，若你想起來了就輸入 recollect <id> <揭語> \n" NOR);
         return 1;
 }
 
@@ -99,36 +99,36 @@ int do_recollect(string arg)
         object buddha, ob, me = this_player();
 
         if( query_temp("do_recollect") )
-                return notify_fail("我现在正忙着，你请稍后片刻。\n");
+                return notify_fail("我現在正忙著，你請稍後片刻。\n");
 
         if( query("reborn/times", me) )
-                return notify_fail("你的阿赖耶识不是已经打开了吗？");
+                return notify_fail("你的阿賴耶識不是已經打開了嗎？");
 
         if( !arg || sscanf(arg, "%s %s", my_id, pass) != 2 )
-                return notify_fail("你究竟记不记得自己前世是谁？\n");
+                return notify_fail("你究竟記不記得自己前世是誰？\n");
 
         buddha = get_object(BUDDHA);
         data = buddha->query_reborn_data(my_id);
-        if( !data ) return notify_fail("我怎么不记得前世跟你有缘呢？\n");
+        if( !data ) return notify_fail("我怎麼不記得前世跟你有緣呢？\n");
 
         if( data["reborn_pass"] != pass )
-                return notify_fail("这句哪里是我给过的揭语！\n");
+                return notify_fail("這句哪裡是我給過的揭語！\n");
 
         if( data["reborn_time"]>query("birthday", me) )
-                return notify_fail("此人转世之时你已在世上，你又怎么可能会是他今生投胎之躯？\n");
+                return notify_fail("此人轉世之時你已在世上，你又怎麼可能會是他今生投胎之軀？\n");
 
         if( data["gender"] != query("gender", me) )
-                return notify_fail("你于此人转世之前的性别不一致，你怎么可能是他呢？\n");
+                return notify_fail("你於此人轉世之前的性別不一致，你怎麼可能是他呢？\n");
 
         if( query("combat_exp", me) >= 100000000 )
-                return notify_fail("你的经验受今世影响太深，我无法帮你打开阿赖耶识。\n");
+                return notify_fail("你的經驗受今世影響太深，我無法幫你打開阿賴耶識。\n");
 
         set_temp("do_recollect", 1);
 
-        command("say 看来你果然是前世与我有缘之人，待我将你前世记忆打开！");
+        command("say 看來你果然是前世與我有緣之人，待我將你前世記憶打開！");
 
-        message_vision( HIY "\n佛祖说着便朝着$N" HIY "轻轻一挥手。\n\n" NOR
-                        HIR "$N" HIR "突然感到头痛欲裂......\n\n" NOR, me );
+        message_vision( HIY "\n佛祖說著便朝著$N" HIY "輕輕一揮手。\n\n" NOR
+                        HIR "$N" HIR "突然感到頭痛欲裂......\n\n" NOR, me );
 
         my_name = data["name"];
         my = me->query_entire_dbase();
@@ -175,7 +175,7 @@ int do_recollect(string arg)
         my["ability1"] = copy(data["ability1"]);
         my["ability2"] = copy(data["ability2"]);
         my["newbie_mygift"] = copy(data["newbie_mygift"]);
-        my["character"] = "国士无双";
+        my["character"] = "國士無雙";
         my["welcomegift"] = 1;
         my["tianfu"] = 0;
         delete("tianfu", me);
@@ -211,12 +211,12 @@ int do_recollect(string arg)
                                 item_filename = ITEM_DIR + id[0..0] + "/" + id +
                                         "-" + sum[i] + FILE_EXTENSION;
                         if( file_size(item_filename) != -1 )
-                                write("已经存在原文件档案，现覆盖处理。\n");
+                                write("已經存在原文件檔案，現覆蓋處理。\n");
 
                         assure_file(item_filename);
                         rm(item_filename);
                         if( !write_file(item_filename, content, 1) ) {
-                                write("写入档案(" + filename + ")时出错，请通知巫师处理。\n");
+                                write("寫入檔案(" + filename + ")時出錯，請通知巫師處理。\n");
                                 return 0;
                         }
 
@@ -253,12 +253,12 @@ int do_recollect(string arg)
                 item_filename = DATA_DIR + "warcraft/" + id + FILE_EXTENSION;
 
                 if( file_size(item_filename) != -1 )
-                        write("已经存在原文件档案，现覆盖处理。\n");
+                        write("已經存在原文件檔案，現覆蓋處理。\n");
 
                 assure_file(item_filename);
                 rm(item_filename);
                 if( !write_file(item_filename, content, 1) ) {
-                        write("写入档案(" + filename + ")时出错，请通知巫师处理。\n");
+                        write("寫入檔案(" + filename + ")時出錯，請通知巫師處理。\n");
                         return 0;
                 }
 
@@ -283,7 +283,7 @@ int do_recollect(string arg)
         if( query("reborn/times", me) == 1 )
         {
                 set("xiantian_force", 1, me);
-                tell_object(me, HIY "你终于脱凡入圣，可以修炼先天真气了。\n" NOR);
+                tell_object(me, HIY "你終於脫凡入聖，可以修煉先天真氣了。\n" NOR);
         } else
         if( query("reborn/times", me) == 2 )
         {
@@ -293,7 +293,7 @@ int do_recollect(string arg)
                 set("yuanshen/armor", 10, me);
                 set("yuanshen_exp", 1, me);
                 set("yuanshen_level", 1, me);
-                tell_object(me, HIY "你将精力化成元神，终于练得元神出世。\n" NOR);
+                tell_object(me, HIY "你將精力化成元神，終於練得元神出世。\n" NOR);
         } else
         if( query("reborn/times", me) == 3 )
         {
@@ -303,9 +303,9 @@ int do_recollect(string arg)
                 set("yuanshen/armor", 100, me);
                 set("yuanshen_exp", 100000, me);
                 set("yuanshen_level", 100, me);
-                tell_object(me, HIY "你的元神终于可以突破瓶颈，可以继续修炼了。\n" NOR);
+                tell_object(me, HIY "你的元神終於可以突破瓶頸，可以繼續修煉了。\n" NOR);
         }
-        message("vision", HBRED "【转世重生】天界：据说有人已得佛祖恩典，开启了阿赖耶识。\n" NOR, users());
+        message("vision", HBRED "【轉世重生】天界：據說有人已得佛祖恩典，開啟了阿賴耶識。\n" NOR, users());
         me->save();
         me->unconcious();
 

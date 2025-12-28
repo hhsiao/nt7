@@ -3,7 +3,7 @@
 
 inherit F_SSERVER;
 
-string name() { return HIR "封杀" NOR; }
+string name() { return HIR "封殺" NOR; }
 
 string final(object me, object targer, int lvl);
 
@@ -17,28 +17,28 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能在战斗中使用。\n");
+                return notify_fail(name() + "只能在戰鬥中使用。\n");
 
         if ((int)me->query_skill("tougu-zhen", 1) < 100)
-                return notify_fail("你的透骨针还不够娴熟，无法施展" + name() + "！\n");
+                return notify_fail("你的透骨針還不夠嫻熟，無法施展" + name() + "！\n");
 
         if ((int)me->query_skill("force") < 260)
-                return notify_fail("你内功火候不够，难以施展" + name() + "！\n");
+                return notify_fail("你內功火候不夠，難以施展" + name() + "！\n");
 
         if ((int)query("max_neili", me) < 2400)
-                return notify_fail("你的真气不够，无法施展" + name() + "！\n");
+                return notify_fail("你的真氣不夠，無法施展" + name() + "！\n");
 
         if ((int)query("neili", me) < 350)
-                return notify_fail("你的真气不够，无法施展" + name() + "！\n");
+                return notify_fail("你的真氣不夠，無法施展" + name() + "！\n");
 
         if (me->query_skill_prepared("finger") != "tougu-zhen")
-                return notify_fail("你没有准备使用透骨针，无法使用" + name() + "！\n");
+                return notify_fail("你沒有準備使用透骨針，無法使用" + name() + "！\n");
 
        if (! living(target))
-              return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+              return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N" HIW "使出透骨针「" HIR "封 杀" HIW "」绝技，手指挥舞，幻出漫天寒星"
-              "，携带着阴寒之劲直封$n" HIW "各处要穴！\n" NOR;
+        msg = HIW "$N" HIW "使出透骨針「" HIR "封 殺" HIW "」絕技，手指揮舞，幻出漫天寒星"
+              "，攜帶著陰寒之勁直封$n" HIW "各處要穴！\n" NOR;
 
         lvl = me->query_skill("tougu-zhen", 1);
 
@@ -56,7 +56,7 @@ int perform(object me, object target)
                 me->start_busy(1);
         } else
         {
-                msg += CYN "可是$n急忙退闪，连消带打躲开了这一击。\n" NOR;
+                msg += CYN "可是$n急忙退閃，連消帶打躲開了這一擊。\n" NOR;
                 me->start_busy(3);
                 addn("neili", -50, me);
         }
@@ -72,5 +72,5 @@ string final(object me, object target, int lvl)
                            "id"       : query("id", me),
                            "duration" : lvl / 50 + random(lvl / 20) ]));
 
-        return HIR "结果只听$n一声惨嚎，被攻个正着，透骨针极寒之劲攻心，全身瘫麻，鲜血狂喷！\n" NOR;
+        return HIR "結果只聽$n一聲慘嚎，被攻個正著，透骨針極寒之勁攻心，全身癱麻，鮮血狂噴！\n" NOR;
 }

@@ -7,11 +7,11 @@ inherit NPC;
 void create()
 {
         set_name(NOR "小七" NOR, ({ "xiao qi","qi","npc_xiaoqi" }) );
-        set("title", NOR "通吃帮护法" NOR);
+        set("title", NOR "通吃幫護法" NOR);
         set("nickname", MAG "野人" NOR);
         set("gender", "男性");
         set("age", 18);
-        set("long", NOR"他就是江湖上赫赫有名的通吃帮口吃的小七。\n"NOR);
+        set("long", NOR"他就是江湖上赫赫有名的通吃幫口吃的小七。\n"NOR);
         set("attitude", "peaceful");
         set("str", 28);
         set("con", 29);

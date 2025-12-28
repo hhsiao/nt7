@@ -3,7 +3,7 @@
 #include <ansi.h>
 #include <command.h>
 
-// 经验过高后无任何奖励
+// 經驗過高後無任何獎勵
 #define MAX_EXP              50000000
 
 void smart_fight();
@@ -14,11 +14,11 @@ inherit BOSS;
 
 void create()
 {
-        set_name("柳长街", ({ "liu changjie", "changjie" }) );
-        set("long", "柳叶飘飘，任我飞舞，长街漫漫，任我逍遥。\n");
+        set_name("柳長街", ({ "liu changjie", "changjie" }) );
+        set("long", "柳葉飄飄，任我飛舞，長街漫漫，任我逍遙。\n");
         set("gender", "男性");
         set("age", 30);
-        set("title",HIY"太虚任遨游"NOR);
+        set("title",HIY"太虛任遨遊"NOR);
         set("attitude", "friendly");
         set("str", 35);
         set("int", 30);
@@ -75,7 +75,7 @@ void create()
         set_temp("apply/unarmed_damage", 4000);
         set_temp("apply/armor", 4000);
 
-        set("auto_perform", 1); // 自动出绝招
+        set("auto_perform", 1); // 自動出絕招
         //set("death_msg", (: death_msg :));
 
 /*
@@ -99,8 +99,8 @@ void create()
         ]));
 
         set("drops", ([
-                "RA&RANDOM20"    :       100,   // 低级普通装备
-                "RA&RANDOM30"    :       40,    // 低级普通装备
+                "RA&RANDOM20"    :       100,   // 低級普通裝備
+                "RA&RANDOM30"    :       40,    // 低級普通裝備
                 "FI&/adm/npc/obj/ganjiang-symbol" :   20,
                 "FI&/clone/goods/sun"    :   20,
                 "FI&/clone/goods/moon"   :   20,
@@ -139,7 +139,7 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->start_busy(5 + random(6));
         //me->receive_wound("qi", 500 + random(600), ob);
-        return HIY "$N" HIY "怒喝一声，奋力反抗，竟逼得$n" HIY "手忙脚乱。\n" NOR;
+        return HIY "$N" HIY "怒喝一聲，奮力反抗，竟逼得$n" HIY "手忙腳亂。\n" NOR;
 }
 
 void heart_beat()
@@ -159,7 +159,7 @@ void random_move()
                 env = environment(this_object());
                 message_vision("$N急急忙忙的走了。\n", this_object());
 
-                CHANNEL_D->channel_broadcast("news", HIG "听说" + HIW + env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一带出现的" +
+                CHANNEL_D->channel_broadcast("news", HIG "聽說" + HIW + env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一帶出現的" +
                         HIR + this_object()->short() + HIR "消失了。\n" NOR);
 
                 destruct(this_object());
@@ -173,15 +173,15 @@ void death_msg()
         if (random(2) == 1)
         {
                 command("chat* grin");
-                command("chat 天地间任我逍遥，后会无期...！");
-                CHANNEL_D->do_channel(this_object(), "rumor", "听说" + name() + HIM "战斗中负伤后，夺路而逃。" NOR);
+                command("chat 天地間任我逍遙，後會無期...！");
+                CHANNEL_D->do_channel(this_object(), "rumor", "聽說" + name() + HIM "戰鬥中負傷後，奪路而逃。" NOR);
         }
         else
         {
-                message_vision(HIG "猛然间，$N " HIG " 向后一跳，随手仍出一颗黑色小丸，顿时腾起一片烟雾 ...\n" NOR,
+                message_vision(HIG "猛然間，$N " HIG " 向後一跳，隨手仍出一顆黑色小丸，頓時騰起一片煙霧 ...\n" NOR,
                                this_object());
-                command("chat 这是绝对不可能的，这次是个意外！！");
-                CHANNEL_D->do_channel(this_object(), "rumor", "听说" + name() + HIM "战斗中负伤后，夺路而逃。" NOR);
+                command("chat 這是絕對不可能的，這次是個意外！！");
+                CHANNEL_D->do_channel(this_object(), "rumor", "聽說" + name() + HIM "戰鬥中負傷後，奪路而逃。" NOR);
         }
 }
 
@@ -199,11 +199,11 @@ void smart_fight()
         weapon= query_temp("weapon", me);
         if( time() > query("last_time/busy")+ 6 )
         {
-                message_vision(HIG"\n$N剑雨横洒，布满整个战场！\n"NOR,this_object());
+                message_vision(HIG"\n$N劍雨橫灑，佈滿整個戰場！\n"NOR,this_object());
                 for( i=0;i<sizeof(enemy);i++ ) {
                         if( objectp(ob = enemy[i]) ) {
                                 if( ob->query_busy() ) continue;
-                                        message_vision(WHT"$n浑身剧震，诸般大穴似乎都被点中，完全动弹不得！\n"NOR,this_object(),ob);
+                                        message_vision(WHT"$n渾身劇震，諸般大穴似乎都被點中，完全動彈不得！\n"NOR,this_object(),ob);
                                         ob->start_busy(10);
                         }
                 }
@@ -219,16 +219,16 @@ void smart_fight()
                 add_temp("apply/damage",4000);
                 message_vision(BRED WHT"\n天外流星\n"NOR,this_object());
 
-                msg = HIW "$N" HIW "手腕一阵疾抖，剑身微颤，剑作龙吟。刹那间剑芒陡涨，如天河倒泻一般洒向$n" HIW "。" NOR;
+                msg = HIW "$N" HIW "手腕一陣疾抖，劍身微顫，劍作龍吟。剎那間劍芒陡漲，如天河倒瀉一般灑向$n" HIW "。" NOR;
                 message_vision(BRED WHT+msg+NOR, this_object(), target);
                 COMBAT_D->do_attack(me, target, weapon, 0);
 
-                message_vision(  HIR "$n" HIR "顿时目瞪口呆，一个不慎，被$N"
-                                           HIR "精妙的剑招刺中，鲜血飞溅！\n" NOR,me,target);
+                message_vision(  HIR "$n" HIR "頓時目瞪口呆，一個不慎，被$N"
+                                           HIR "精妙的劍招刺中，鮮血飛濺！\n" NOR,me,target);
                 target->receive_wound("qi",query("qi", target)/20,me);
 
                 if (!random(2)) COMBAT_D->do_attack(me, target, weapon, 0);
-                msg = HIY "$N" HIY "一声清啸，剑法忽变，手中长剑" + HIY "轻轻划出，带出一条无比绚丽的剑芒，遥指$n" HIY "而去。" NOR;
+                msg = HIY "$N" HIY "一聲清嘯，劍法忽變，手中長劍" + HIY "輕輕劃出，帶出一條無比絢麗的劍芒，遙指$n" HIY "而去。" NOR;
                 message_vision(BRED WHT+msg+NOR, this_object(), target);
                 COMBAT_D->do_attack(me, target, weapon, 0);
 

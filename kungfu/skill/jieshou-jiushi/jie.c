@@ -3,7 +3,7 @@
 
 inherit F_SSERVER;
 
-string name() { return HIR "截筋断脉" NOR; }
+string name() { return HIR "截筋斷脈" NOR; }
 
 int perform(object me)
 {
@@ -20,31 +20,31 @@ int perform(object me)
         skill = me->query_skill("jieshou-jiushi", 1);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(name() + "只能空手施展。\n");
 
         if (skill < 100)
-                return notify_fail("你的截手九式等级不够，难以施展" + name() + "。\n");
+                return notify_fail("你的截手九式等級不夠，難以施展" + name() + "。\n");
 
         if( query("max_neili", me)<800 )
-                return notify_fail("你的内力修为不足，难以施展" + name() + "。\n");
+                return notify_fail("你的內力修為不足，難以施展" + name() + "。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你的内力不够，难以施展" + name() + "。\n");
+                return notify_fail("你的內力不夠，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("hand") != "jieshou-jiushi")
-                return notify_fail("你没有激发截手九式，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發截手九式，難以施展" + name() + "。\n");
 
         if (me->query_skill_prepared("hand") != "jieshou-jiushi")
-                return notify_fail("你现在没有准备使用截手九式，难以施展" + name() + "。\n");
+                return notify_fail("你現在沒有準備使用截手九式，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIR "$N" HIR "身形一展，陡然跃至$n" HIR "跟前，十指箕张，直锁$n"
-              HIR "要穴，正是截手九式绝技「截筋断脉」。\n" NOR;
+        msg = HIR "$N" HIR "身形一展，陡然躍至$n" HIR "跟前，十指箕張，直鎖$n"
+              HIR "要穴，正是截手九式絕技「截筋斷脈」。\n" NOR;
 
         ap = attack_power(me, "hand");
         dp = defense_power(target, "parry");
@@ -63,15 +63,15 @@ int perform(object me)
                         target->start_busy(1);
 
                 msg += COMBAT_D->do_damage(me, target, REMOTE_ATTACK,
-                       damage, 10, HIR "$n" HIR "奋力格挡，可还是被$N"
-                                   HIR "截住腕部要穴，只觉眼前一黑，"
-                                   "几欲晕倒。\n" NOR);
+                       damage, 10, HIR "$n" HIR "奮力格擋，可還是被$N"
+                                   HIR "截住腕部要穴，只覺眼前一黑，"
+                                   "幾欲暈倒。\n" NOR);
         }
         else
         {
                 addn("neili", -100, me);
-                msg += CYN "$n" CYN "见状大吃一惊，急忙向后猛退数步，"
-                       "终于避开了$N" CYN "这一击。\n" NOR;
+                msg += CYN "$n" CYN "見狀大吃一驚，急忙向後猛退數步，"
+                       "終於避開了$N" CYN "這一擊。\n" NOR;
                 me->start_busy(4);
         }
         message_combatd(msg, me, target);

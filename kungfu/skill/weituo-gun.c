@@ -1,4 +1,4 @@
-// weituo-gun.c 韦陀棍
+// weituo-gun.c 韋陀棍
 
 #include <ansi.h>;
 inherit SHAOLIN_SKILL;
@@ -7,39 +7,39 @@ string martialtype() { return "skill"; }
 int is_pbsk() { return 1; }
 
 mapping *action = ({
-([        "action":"$N一招"YEL"「黄石纳履」"NOR"，手中$w如蜻蜓点水般，招招向$n的下盘要害点去
+([        "action":"$N一招"YEL"「黃石納履」"NOR"，手中$w如蜻蜓點水般，招招向$n的下盤要害點去
 ",
         "lvl" : 0,
-        "skill_name" : "黄石纳履"
+        "skill_name" : "黃石納履"
 ]),
-([        "action":"$N把$w平提胸口，一拧身，一招"BLU"「勒马停锋」"NOR"，$w猛地撩向$n的颈部",
+([        "action":"$N把$w平提胸口，一擰身，一招"BLU"「勒馬停鋒」"NOR"，$w猛地撩向$n的頸部",
         "lvl" : 8,
-        "skill_name" : "勒马停锋"
+        "skill_name" : "勒馬停鋒"
 ]),
-([        "action":"$N一招"HIC"「平地龙飞」"NOR"，全身滴溜溜地在地上打个大转，举棍向$n的胸腹间戳去",
+([        "action":"$N一招"HIC"「平地龍飛」"NOR"，全身滴溜溜地在地上打個大轉，舉棍向$n的胸腹間戳去",
         "lvl" : 16,
-        "skill_name" : "平地龙飞"
+        "skill_name" : "平地龍飛"
 ]),
-([        "action":"$N伏地一个滚翻，一招"HIB"「伏虎听风」"NOR"，$w挟呼呼风声迅猛扫向$n的足胫
+([        "action":"$N伏地一個滾翻，一招"HIB"「伏虎聽風」"NOR"，$w挾呼呼風聲迅猛掃向$n的足脛
 ",
         "lvl" : 24,
-        "skill_name" : "伏虎听风"
+        "skill_name" : "伏虎聽風"
 ]),
-([        "action":"$N一招"HIW"「流星赶月」"NOR"，身棍合一，棍端逼成一条直线，流星般向顶向$n的$l",
+([        "action":"$N一招"HIW"「流星趕月」"NOR"，身棍合一，棍端逼成一條直線，流星般向頂向$n的$l",
         "lvl" : 35,
-        "skill_name" : "流星赶月"
+        "skill_name" : "流星趕月"
 ]),
-([        "action":"$N双手持棍划了个天地大圈，一招"RED"「红霞贯日」"NOR"，一棍从圆心正中击出，撞向$n的胸口",
+([        "action":"$N雙手持棍劃了個天地大圈，一招"RED"「紅霞貫日」"NOR"，一棍從圓心正中擊出，撞向$n的胸口",
         "lvl" : 44,
-        "skill_name" : "红霞贯日"
+        "skill_name" : "紅霞貫日"
 ]),
-([        "action":"$N一招"YEL"「投鞭断流」"NOR"，$w高举，以雷霆万钧之势对准$n的天灵当头劈下",
+([        "action":"$N一招"YEL"「投鞭斷流」"NOR"，$w高舉，以雷霆萬鈞之勢對準$n的天靈當頭劈下",
         "lvl" : 52,
-        "skill_name" : "投鞭断流"
+        "skill_name" : "投鞭斷流"
 ]),
-([        "action":"$N潜运真力，一招"HIW"「苍龙归海」"NOR"，$w顿时长了数丈，矫龙般直射$n的胸口",
+([        "action":"$N潛運真力，一招"HIW"「蒼龍歸海」"NOR"，$w頓時長了數丈，矯龍般直射$n的胸口",
         "lvl" : 60,
-        "skill_name" : "苍龙归海"
+        "skill_name" : "蒼龍歸海"
 ]),
 });
 
@@ -47,13 +47,13 @@ int valid_enable(string usage) { return usage == "club" || usage == "parry"; }
 int valid_learn(object me)
 {
         if( query("max_neili", me)<250 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if ((int)me->query_skill("force") < 50)
-                return notify_fail("你的内功火候太浅。\n");
+                return notify_fail("你的內功火候太淺。\n");
 
         if ((int)me->query_skill("club", 1) < (int)me->query_skill("weituo-gun", 1))
-                return notify_fail("你的基本棍法水平有限，无法领会更高深的韦陀棍法。\n");
+                return notify_fail("你的基本棍法水平有限，無法領會更高深的韋陀棍法。\n");
 
         return 1;
 }
@@ -63,9 +63,9 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me) )
                  || query("skill_type", weapon) != "club" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
         if( query("qi", me)<50 || query("neili", me)<50 )
-                return notify_fail("你的内力或气不够练韦陀棍。\n");
+                return notify_fail("你的內力或氣不夠練韋陀棍。\n");
         me->receive_damage("qi", 20);
         addn("neili", -10, me);
         return 1;
@@ -94,17 +94,17 @@ mapping query_action(object me, object weapon)
         for(i = ttl; i > 0; i--)
                 if(lvl > action[i-1]["lvl"])
                 {
-                        seq = i; /* 获得招数序号上限 */
+                        seq = i; /* 獲得招數序號上限 */
                         break;
                 }
-        seq = random(seq);       /* 选择出手招数序号 */
+        seq = random(seq);       /* 選擇出手招數序號 */
         return ([
                 "action"      : action[seq]["action"],
                 "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
                 "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
                 "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
                 "damage"      : m_e1 + (m_e2 - m_e1) * seq / ttl,
-                "damage_type" : "挫伤",
+                "damage_type" : "挫傷",
         ]);
 }
 int learn_bonus() { return 15; }
@@ -119,14 +119,14 @@ string perform_action_file(string action)
 
 int help(object me)
 {
-        write(HIC"\n韦陀棍："NOR"\n");
+        write(HIC"\n韋陀棍："NOR"\n");
         write(@HELP
 
-    韦陀棍为少林七十二绝技之一。
+    韋陀棍為少林七十二絕技之一。
 
-        学习要求：
-                混元一气功20级
-                内力100
+        學習要求：
+                混元一氣功20級
+                內力100
 HELP
         );
         return 1;

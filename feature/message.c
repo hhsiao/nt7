@@ -113,7 +113,7 @@ string prompt()
                         p = HIG + sprintf("%d/%d/%d", query("jing"), query("qi"), query("neili")) + p;
                 else {
                         my = this_object()->query_entire_dbase();
-                        p = TMI("statu " + sprintf("精%d气%d精力%d内力%d食%d水%d潜能%d经验%d",
+                        p = TMI("statu " + sprintf("精%d氣%d精力%d內力%d食%d水%d潛能%d經驗%d",
                                 my["jing"], my["qi"], my["jingli"], my["neili"],
                                 my["food"], my["water"], my["potential"] - my["learned_points"],
                                 my["combat_exp"]) + p);
@@ -169,7 +169,7 @@ void receive_message(string msgclass, string msg)
 
                                 if( query_temp("tomud") ) {
                                         if( !query("chann/" + msgclass))
-                                                msg = PTEXT(msg);  // 默认往公共窗口扔频道信息
+                                                msg = PTEXT(msg);  // 默認往公共窗口扔頻道信息
                                 }
                                 break;
                         case "outdoor":
@@ -223,7 +223,7 @@ void receive_message(string msgclass, string msg)
 }
 
 //
-// 所有讯息输出的唯一通道, 支援 client 的讯息类别分类
+// 所有訊息輸出的唯一通道, 支援 client 的訊息類別分類
 //
 /*
 nomask varargs void catch_tell(string msg, string classes)
@@ -248,7 +248,7 @@ nomask varargs void catch_tell(string msg, string classes)
         {
                 if( query_temp("tomud") )
                         if( !query("chann/" + classes))
-                                msg = PTEXT(msg);  // 默认往公共窗口扔频道信息
+                                msg = PTEXT(msg);  // 默認往公共窗口扔頻道信息
         }
 
         if( query_temp("block_msg/all")
@@ -304,7 +304,7 @@ void write_prompt()
 {
         string str;
         if( sizeof(msg_buffer) ) {
-                receive(BOLD "[输入时暂存讯息]\n" NOR);
+                receive(BOLD "[輸入時暫存訊息]\n" NOR);
                 for( int i = 0; i < sizeof(msg_buffer); i++ )
                         receive(msg_buffer[i]);
                 msg_buffer = ({});
@@ -313,7 +313,7 @@ void write_prompt()
                 return;
         str = prompt();
         if( this_object()->is_attach_system() )
-                receive(HIR "执行中" HIY "> " NOR);
+                receive(HIR "執行中" HIY "> " NOR);
         else if( str ) {
                 if( !this_object()->query_temp("tomud") )
                         receive(ESC "[256D" + str);

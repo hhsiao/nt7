@@ -5,7 +5,7 @@ void create()
 {
        // set_name(HIY "刀魂" NOR, ({ "daohun" }) );
 
-        set("gender", "无性");
+        set("gender", "無性");
         set("age", 35);
 
         // yun perform
@@ -41,18 +41,18 @@ void init_npc(object me)
         ob = this_object();
         env = environment(me);
 
-        // 设置出生时间
+        // 設置出生時間
         set("start_time", time(), ob);
-        // 设置出生地点
+        // 設置出生地點
         set("start_place", env, ob);
-        // 设置归属
+        // 設置歸屬
         set("owner",query("id",  me), ob);
 
         set_name(HIB+me->name()+HIB"的刀魂"NOR,({query("id", me)+"-daohun"}));
-        set("long", HIM "据说当霸道修炼到一定程度便能够达到刀人合一的\n"
-                        "境界，能够使手中的刀富有灵气，从而幻化出刀魂。\n" NOR);
+        set("long", HIM "據說當霸道修煉到一定程度便能夠達到刀人合一的\n"
+                        "境界，能夠使手中的刀富有靈氣，從而幻化出刀魂。\n" NOR);
 
-        // 设置百分比
+        // 設置百分比
         if (me->query_skill("badao") >= 7000)
         {
                 percent = 120;
@@ -105,7 +105,7 @@ void init_npc(object me)
         // 削弱修正
         percent -= 20;
         
-        // 设置技能     
+        // 設置技能     
         if (mapp(map_status = me->query_skill_map()))
         {
                 mname = keys(map_status);
@@ -113,11 +113,11 @@ void init_npc(object me)
                 temp = sizeof(map_status);
                 for (i = 0; i < temp; i++)
                 {
-                       // 设置基本技能
+                       // 設置基本技能
                        ob->set_skill(mname[i], me->query_skill(mname[i], 1) * percent / 100); 
-                       // 设置激发技能
+                       // 設置激發技能
                        ob->set_skill(map_status[mname[i]], me->query_skill(map_status[mname[i]], 1) * percent / 100);
-                       // 激发技能
+                       // 激發技能
                        ob->map_skill(mname[i], map_status[mname[i]]);
                 }
         }
@@ -164,20 +164,20 @@ void heart_beat()
         
         keep_heart_beat();
         
-        // 每3次心跳检查1次
+        // 每3次心跳檢查1次
         if (time() - query("last_check_heart_beat") >= 6)
         {
                 set("last_check_heart_beat", time());
                 
-                // 如果不在出生房间超过1次则消失
+                // 如果不在出生房間超過1次則消失
                 env = environment(this_object());
                 if (! objectp(env) || env != query("start_place"))
                 {
                         if (query("no_in_place") > 0)
                         {
                                 // 消失
-                                message_vision(HIG "$N" HIG "周身白光笼罩，伴随着刺眼的光芒，$N" HIG 
-                                                   "瞬间化为乌有！\n" NOR, this_object());
+                                message_vision(HIG "$N" HIG "周身白光籠罩，伴隨著刺眼的光芒，$N" HIG 
+                                                   "瞬間化為烏有！\n" NOR, this_object());
                                 destruct(this_object());
                                 return;
                         }
@@ -186,29 +186,29 @@ void heart_beat()
                                 addn("no_in_place", 1);
                         }
                 }
-                // 如果超过时间则消失
+                // 如果超過時間則消失
                 if (time() - query("start_time") > 5*60)
                 {
-                        message_vision(HIG "$N" HIG "周身白光笼罩，伴随着刺眼的光芒，$N" HIG 
-                                        "瞬间化为乌有！\n" NOR, this_object()); 
+                        message_vision(HIG "$N" HIG "周身白光籠罩，伴隨著刺眼的光芒，$N" HIG 
+                                        "瞬間化為烏有！\n" NOR, this_object()); 
                         destruct(this_object());
                         return;
                 }
                 
-                // 三次检查OWNER不存在则消失
+                // 三次檢查OWNER不存在則消失
                 owner = find_player(query("owner"));
                 if (! objectp(owner))
                 {
                         addn("no_find_owner", 1);
                         if (query("no_find_ower") >= 3)
                         {
-                                message_vision(HIG "$N" HIG "周身白光笼罩，伴随着刺眼的光芒，$N" HIG 
-                                                "瞬间化为乌有！\n" NOR, this_object()); 
+                                message_vision(HIG "$N" HIG "周身白光籠罩，伴隨著刺眼的光芒，$N" HIG 
+                                                "瞬間化為烏有！\n" NOR, this_object()); 
                                 destruct(this_object());
                                 return;                         
                         }
                 }
-                else // 随机攻击OWNER攻击的目标
+                else // 隨機攻擊OWNER攻擊的目標
                 {
                         if (owner->is_fighting() && ! this_object()->is_fighting())
                         {
@@ -216,7 +216,7 @@ void heart_beat()
                                 if (sizeof(obs))
                                 {
                                         obtar = obs[random(sizeof(obs))];
-                                        message_combatd(HIR "\n$N" HIR "对$n" HIR "发动攻击……\n\n" NOR, this_object(), obtar); 
+                                        message_combatd(HIR "\n$N" HIR "對$n" HIR "發動攻擊……\n\n" NOR, this_object(), obtar); 
                                         this_object()->kill_ob(obtar);
                                 }
                         }
@@ -255,8 +255,8 @@ void unconcious()
 
 void die(object killer)
 {
-        message_vision(HIG "$N" HIG "周身白光笼罩，伴随着刺眼的光芒，$N" HIG 
-                                     "瞬间化为乌有！\n" NOR, this_object());
+        message_vision(HIG "$N" HIG "周身白光籠罩，伴隨著刺眼的光芒，$N" HIG 
+                                     "瞬間化為烏有！\n" NOR, this_object());
         destruct(this_object());
         return;
 }

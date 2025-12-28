@@ -20,10 +20,10 @@ protected string list_desc_msg(mapping desc)
 	{
 		if(stringp(b))
 			out += sprintf("%s\n%s\n%s\n%s\n----------------------------------------------\n",
-				HBCYN HIG"提示词："NOR, a, HBCYN HIG"提示信息："NOR, b);
+				HBCYN HIG"提示詞："NOR, a, HBCYN HIG"提示信息："NOR, b);
 		else
 			out += sprintf("%s\n%s\n%s\n%O\n----------------------------------------------\n",
-				HBCYN HIG"提示词："NOR, a, HBCYN HIG"提示信息："NOR, b);
+				HBCYN HIG"提示詞："NOR, a, HBCYN HIG"提示信息："NOR, b);
 	}
 
 	return out;
@@ -48,9 +48,9 @@ int main(object me, string arg)
 	if(!mapp(desc) || !sizeof(desc))
 	{
 		out = "
-「目前这里没有任何特殊提示」
-请选择你要进行的操作：
-(1) 加入一条新的特殊提示。
+「目前這裡沒有任何特殊提示」
+請選擇你要進行的操作：
+(1) 加入一條新的特殊提示。
 (q) 退出。
 ";
 		write(out);
@@ -59,14 +59,14 @@ int main(object me, string arg)
 	}
 
 	out = "
-            「目前这里已有的特殊提示」
+            「目前這裡已有的特殊提示」
 -------------------------------------------------
 ";
 	out += list_desc_msg(desc);
 
-	out += "请选择你要进行的操作：
-(1) 加入一条新的特殊提示。
-(2) 删除一条已存在的提示。
+	out += "請選擇你要進行的操作：
+(1) 加入一條新的特殊提示。
+(2) 刪除一條已存在的提示。
 (q) 退出。
 ";
 	write(out);
@@ -87,7 +87,7 @@ protected void decide_action_do(string str, object who, object env, mapping desc
 
 	if(sizeof(str) && (str[0] == '1'))
 	{
-		tell_object(who, HBCYN HIG"请输入设定的提示词[1-6个汉字](q 退出)：\n"NOR);
+		tell_object(who, HBCYN HIG"請輸入設定的提示詞[1-6個漢字](q 退出)：\n"NOR);
 		input_to( (: add_desc_short :), who, env, desc );
 		return;
 	}
@@ -96,25 +96,25 @@ protected void decide_action_do(string str, object who, object env, mapping desc
 	{
 		if(!desc || !sizeof(desc))
 		{
-			tell_object(who, "功能选择错误。\n");
+			tell_object(who, "功能選擇錯誤。\n");
 			return;
 		}
-		tell_object(who, HBCYN HIG"请输入要删除特殊提示的提示词：\n"NOR);
+		tell_object(who, HBCYN HIG"請輸入要刪除特殊提示的提示詞：\n"NOR);
 		input_to( (: delete_desc :), who, env, desc );
 		return;
 	}
 
 	if(!desc || !sizeof(desc))
 		tell_object(who, "
-请选择你要进行的操作：
-(1) 加入一条新的特殊提示。
+請選擇你要進行的操作：
+(1) 加入一條新的特殊提示。
 (q) 退出。
 ");
 	else
 		tell_object(who, "
-请选择你要进行的操作：
-(1) 加入一条新的特殊提示。
-(2) 删除一条已存在的提示。
+請選擇你要進行的操作：
+(1) 加入一條新的特殊提示。
+(2) 刪除一條已存在的提示。
 (q) 退出。
 ");
 	input_to( (: decide_action_do :), who, env, desc );
@@ -135,31 +135,31 @@ protected void delete_desc(string str, object who, object env, mapping desc)
 
 	if(!stringp(str) || (sizeof(str) < 2) || (sizeof(str) > 12))
 	{
-		tell_object(who, "提示词输入错误。\n");
+		tell_object(who, "提示詞輸入錯誤。\n");
 		return;
 	}
 
 	if(undefinedp(desc[str]))
 	{
-		tell_object(who, "没有这个提示词。\n");
+		tell_object(who, "沒有這個提示詞。\n");
 		return;
 	}
 
 	if(environment(who) != env)
 	{
-		tell_object(who, "你的位置发生了变化，修改被停止。\n");
+		tell_object(who, "你的位置發生了變化，修改被停止。\n");
 		return;
 	}
 
 	if(!content = read_file(fname = base_name(env) + ".c"))
 	{
-		tell_object(who, "无法读取文件内容，修改失败。\n");
+		tell_object(who, "無法讀取文件內容，修改失敗。\n");
 		return;
 	}
 
 	if(!BUNCH_D->parse_set_value(ref content, "item_desc", ref f_sect, ref e_sect))
 	{
-		tell_object(who, "无法剖析文件内容，修改失败。\n");
+		tell_object(who, "無法剖析文件內容，修改失敗。\n");
 		return;
 	}
 
@@ -173,17 +173,17 @@ protected void delete_desc(string str, object who, object env, mapping desc)
 
 	if(!write_file(fname, result, 1))
 	{
-		tell_object(who, "无法写入文件内容，修改失败。\n");
+		tell_object(who, "無法寫入文件內容，修改失敗。\n");
 		return;
 	}
 
 	if( !BUNCH_D->update_room(env) )
 	{
-		tell_object(who, "无法载入房间，修改失败。\n");
+		tell_object(who, "無法載入房間，修改失敗。\n");
 		return;
 	}
 
-	tell_object(who, "删除成功。\n");
+	tell_object(who, "刪除成功。\n");
 }
 
 protected void add_desc_short(string str, object who, object env, mapping desc)
@@ -199,20 +199,20 @@ protected void add_desc_short(string str, object who, object env, mapping desc)
 
 	if(!str || (sizeof(str) <= 2))
 	{
-		tell_object(who, HBCYN HIG"请输入设定的提示词[1-6个汉字](q 退出)：\n"NOR);
+		tell_object(who, HBCYN HIG"請輸入設定的提示詞[1-6個漢字](q 退出)：\n"NOR);
 		input_to( (: add_desc_short :), who, env, desc );
 		return;
 	}
 
 	if(sizeof(str) > 12)
 	{
-		tell_object(who, HBCYN HIG"提示词的长度不能超过6个汉字，请输入(q 退出)：\n"NOR);
+		tell_object(who, HBCYN HIG"提示詞的長度不能超過6個漢字，請輸入(q 退出)：\n"NOR);
 		input_to( (: add_desc_short :), who, env, desc );
 		return;
 	}
 
-	tell_object(who, "请输入提示信息：\n·信息内容不能超过六行\n·每行不超过25个汉字
-请输入('.'结束输入，'q'退出)：\n------------------------------------------------------\n");
+	tell_object(who, "請輸入提示信息：\n·信息內容不能超過六行\n·每行不超過25個漢字
+請輸入('.'結束輸入，'q'退出)：\n------------------------------------------------------\n");
 	input_to((: add_desc_long :), who, env, desc, str, "");
 }
 
@@ -231,21 +231,21 @@ protected void add_desc_long(string str, object who, object env, mapping desc, s
 	if( (str[0] == 'q')
 	|| (str[0] == 'Q') )
 	{
-		tell_object(who, "终止房间修改。\n");
+		tell_object(who, "終止房間修改。\n");
 		return;
 	}
 
-	if(str[0] == '.')	// 结束输入
+	if(str[0] == '.')	// 結束輸入
 	{
 		if( !sizeof(ilong) )
 		{
-			tell_object(who, "你没有特殊提示设定足够的提示信息\n增加特殊提示失败。\n");
+			tell_object(who, "你沒有特殊提示設定足夠的提示信息\n增加特殊提示失敗。\n");
 			return;
 		}
 
 		if( sizeof(explode(ilong, "\n")) > 6)
 		{
-			tell_object(who, HBCYN HIG"·提示信息内容不能超过六行\n增加特殊提示失败。\n"NOR);
+			tell_object(who, HBCYN HIG"·提示信息內容不能超過六行\n增加特殊提示失敗。\n"NOR);
 			return;
 		}
 
@@ -265,14 +265,14 @@ protected void add_desc_long(string str, object who, object env, mapping desc, s
 		for(int i=0; i<n; i++)
 			if(strlen(tmp[i]) > 50)
 			{
-				tell_object(who, HBCYN HIG"每一行不能超过二十五个中文字，请重新输入刚才输入的内容：\n");
+				tell_object(who, HBCYN HIG"每一行不能超過二十五個中文字，請重新輸入剛才輸入的內容：\n");
 				input_to((: add_desc_long :), who, env, desc, ishort, ilong);
 				return;
 			}
 
 		if((n + sizeof(explode(ilong, "\n"))) > 6)
 		{
-			tell_object(who, HBCYN HIG"·提示信息内容不能超过六行\n增加特殊提示失败。\n"NOR);
+			tell_object(who, HBCYN HIG"·提示信息內容不能超過六行\n增加特殊提示失敗。\n"NOR);
 			return;
 		}
 	}
@@ -281,14 +281,14 @@ protected void add_desc_long(string str, object who, object env, mapping desc, s
 	{
 		if(strlen(str) > 50)
 		{
-			tell_object(who, HBCYN HIG"每一行不能超过二十五个中文字，请重新输入上一次输入的内容：\n");
+			tell_object(who, HBCYN HIG"每一行不能超過二十五個中文字，請重新輸入上一次輸入的內容：\n");
 			input_to((: add_desc_long :), who, env, desc, ishort, ilong);
 			return;
 		}
 
 		if( sizeof(explode(ilong, "\n")) > 5 )
 		{
-			tell_object(who, HBCYN HIG"·提示信息内容不能超过六行\n增加特殊提示失败。\n"NOR);
+			tell_object(who, HBCYN HIG"·提示信息內容不能超過六行\n增加特殊提示失敗。\n"NOR);
 			return;
 		}
 	}
@@ -306,19 +306,19 @@ protected void make_item_desc(object who, object env, mapping desc)
 
 	if(!mapp(desc) || !sizeof(desc))
 	{
-		tell_object(who, "无加入项目。\n");
+		tell_object(who, "無加入項目。\n");
 		return;
 	}
 
 	if(environment(who) != env)
 	{
-		tell_object(who, "你的位置发生了变化，加入操作被停止。\n");
+		tell_object(who, "你的位置發生了變化，加入操作被停止。\n");
 		return;
 	}
 
 	if(!content = read_file(fname = base_name(env) + ".c"))
 	{
-		tell_object(who, "无法读取文件内容，修改失败。\n");
+		tell_object(who, "無法讀取文件內容，修改失敗。\n");
 		return;
 	}
 
@@ -328,7 +328,7 @@ protected void make_item_desc(object who, object env, mapping desc)
 	{
 		if(!BUNCH_D->parse_function_body(ref content, "void", "create", ref f_sect, ref m_sect, ref e_sect, 0))
 		{
-			tell_object(who, "无法剖析文件内容，修改失败。\n");
+			tell_object(who, "無法剖析文件內容，修改失敗。\n");
 			return;
 		}
 
@@ -340,13 +340,13 @@ protected void make_item_desc(object who, object env, mapping desc)
 
 	if(!write_file(fname, result, 1))
 	{
-		tell_object(who, "无法写入文件内容，修改失败。\n");
+		tell_object(who, "無法寫入文件內容，修改失敗。\n");
 		return;
 	}
 
 	if( !BUNCH_D->update_room(env) )
 	{
-		tell_object(who, "无法载入房间，修改失败。\n");
+		tell_object(who, "無法載入房間，修改失敗。\n");
 		return;
 	}
 

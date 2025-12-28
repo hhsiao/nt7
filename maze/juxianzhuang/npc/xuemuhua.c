@@ -8,12 +8,12 @@ int ask_me();
 
 void create()
 {
-        set_name("薛慕华", ({ "xue muhua", "xue", "muhua" }));
-        set("long", "他就是号称阎王敌的神医薛慕华，据说他\n"
-                    "精通医理，可以起死回生。\n");
+        set_name("薛慕華", ({ "xue muhua", "xue", "muhua" }));
+        set("long", "他就是號稱閻王敵的神醫薛慕華，據說他\n"
+                    "精通醫理，可以起死回生。\n");
         set("gender", "男性");
-        set("title", "逍遥派函谷八友");
-        set("nickname", HIM "阎王敌" NOR);
+        set("title", "逍遙派函谷八友");
+        set("nickname", HIM "閻王敵" NOR);
         set("age", 50);
         set("class", "shaman");
         set("attitude", "peaceful");
@@ -23,7 +23,7 @@ void create()
         set("dex", 25);
 
         set("inquiry", ([
-                "疗伤" : (:ask_me:),
+                "療傷" : (:ask_me:),
         ]) );
 
         set("max_qi", 3000);
@@ -61,7 +61,7 @@ void create()
         prepare_skill("hand", "qingyun-shou");
         prepare_skill("strike", "liuyang-zhang");
 
-        create_family("逍遥派", 3, "弟子");
+        create_family("逍遙派", 3, "弟子");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -85,30 +85,30 @@ int ask_me()
 
         dir = base_name(environment(me));
         if (sscanf(dir,"/f/%s/%s/maze",quest,userid)!=2) {
-                command("say 我现在没空！");
+                command("say 我現在沒空！");
                 return 1;
         }
 
         azhu = present("a zhu", environment(me));
         if(me->is_fighting() || me->query_temp("busy"))
         {
-                command("say 我现在没空！");
+                command("say 我現在沒空！");
                 return 1;
         }
 
         if((int)ob->query_temp("juxianzhuang_step") != 14)
         {
-                command("say 我为何要为你们疗伤！");
+                command("say 我為何要為你們療傷！");
                 return 1;
         }
         if(!objectp(azhu))
         {
-                command("say 你没有受任何伤啊？");
+                command("say 你沒有受任何傷啊？");
                 return 1;
         }
         else
         {
-                message_vision("薛慕华喂$N服下一颗药丸，然后盘膝坐下，双掌贴着$N的背心。\n", azhu);
+                message_vision("薛慕華喂$N服下一顆藥丸，然後盤膝坐下，雙掌貼著$N的背心。\n", azhu);
 
                 ob->delete_temp("juxianzhuang_step");
                 FUBEN_D->delay_clear_fuben(quest, userid);

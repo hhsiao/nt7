@@ -10,11 +10,11 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("范骅", ({ "fan ye", "fan", "ye" }));
-        set("title", "大理国护国三公" );
-        set("nickname", HIW "司马" NOR);
+        set_name("範驊", ({ "fan ye", "fan", "ye" }));
+        set("title", "大理國護國三公" );
+        set("nickname", HIW "司馬" NOR);
         set("long", @LONG
-他是大理国三大公之一。
+他是大理國三大公之一。
 LONG);
         set("gender", "男性");
         set("age", 46);
@@ -59,7 +59,7 @@ LONG);
         prepare_skill("cuff", "jinyu-quan");
         prepare_skill("strike", "wuluo-zhang");
 
-        create_family("段氏皇族", 15, "司马");
+        create_family("段氏皇族", 15, "司馬");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -83,6 +83,6 @@ void attempt_apprentice(object ob)
                 return;
 
         command("smile");
-        command("say 世子殿下何需如此，只要有事吩咐在下一声便是。");
+        command("say 世子殿下何需如此，只要有事吩咐在下一聲便是。");
         return;
 }

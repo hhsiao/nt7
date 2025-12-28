@@ -7,9 +7,9 @@ void create()
 {
         object ob;
 
-        set("short", "海景房左卫舍");
+        set("short", "海景房左衛舍");
 	set ("long", @LONG
-这里是左卫舍，是看护海景房大门的家丁放哨的地方。 
+這裡是左衛舍，是看護海景房大門的家丁放哨的地方。 
 LONG );
 
         set("exits", ([
@@ -47,9 +47,9 @@ LONG );
                    "id"        : "shou wei 1" ]),
         }));
 
-        set("room_owner", "风四郎");
+        set("room_owner", "風四郎");
         set("room_name", "海景房");
         set("room_id", "sea");
         set("room_owner_id", "alxpang");
-        set("room_position", "青砖路");
+        set("room_position", "青磚路");
 }

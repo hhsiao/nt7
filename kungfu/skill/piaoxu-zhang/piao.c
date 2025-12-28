@@ -1,6 +1,6 @@
 #include <ansi.h>
 
-string name() { return HIW "飞絮飘零" NOR; }
+string name() { return HIW "飛絮飄零" NOR; }
 
 inherit F_SSERVER;
 
@@ -15,28 +15,28 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( objectp(query_temp("weapon", me)) )
                 return notify_fail(name() + "只能空手施展。\n");
 
         if ((lvl = (int)me->query_skill("piaoxu-zhang", 1)) < 80)
-                return notify_fail("你飘絮掌法不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你飄絮掌法不夠嫻熟，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("strike") != "piaoxu-zhang")
-                return notify_fail("你没有激发飘絮掌法，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發飄絮掌法，難以施展" + name() + "。\n");
 
         if (me->query_skill_prepared("strike") != "piaoxu-zhang")
-                return notify_fail("你没有准备飘絮掌法，难以施展" + name() + "。\n");
+                return notify_fail("你沒有準備飄絮掌法，難以施展" + name() + "。\n");
 
         if( query("neili", me)<100 )
-                return notify_fail("你现在真气不足，难以施展" + name() + "。\n");
+                return notify_fail("你現在真氣不足，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N" HIW "微微一笑，单掌施出飘絮掌法绝技「飞絮飘零」，顿时掌"
-              "影重重，虚实难辨，全全笼罩$n" HIW "而去。\n" NOR;
+        msg = HIW "$N" HIW "微微一笑，單掌施出飄絮掌法絕技「飛絮飄零」，頓時掌"
+              "影重重，虛實難辨，全全籠罩$n" HIW "而去。\n" NOR;
         addn("neili", -50, me);
 
         ap = attack_power(me, "strike");
@@ -44,14 +44,14 @@ int perform(object me, object target)
 
         if (ap / 2 + random(ap) > dp)
         {
-                msg += HIR "$n" HIR "顿时觉得眼花缭乱，全然分辨"
-                       "不清真伪，只得拼命运动抵挡。\n" NOR;
+                msg += HIR "$n" HIR "頓時覺得眼花繚亂，全然分辨"
+                       "不清真偽，只得拼命運動抵擋。\n" NOR;
                 count = ap / 10;
                 addn_temp("apply/attack", count, me);
         } else
         {
-                msg += HIC "可是$n" HIC "凝神顿气，奋力抵挡，丝"
-                       "毫不受掌影的干扰，。\n" NOR;
+                msg += HIC "可是$n" HIC "凝神頓氣，奮力抵擋，絲"
+                       "毫不受掌影的干擾，。\n" NOR;
                 count = 0;
         }
         message_combatd(msg, me, target);

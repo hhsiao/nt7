@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("龟仙人[2;37;0m[2;37;0m", ({"lvbiao"}));        
+        set_name("龜仙人[2;37;0m[2;37;0m", ({"lvbiao"}));        
         set("gender", "女性");                
-        set("long", "龟仙人[2;37;0m
-它是空巫的魔幻兽。
+        set("long", "龜仙人[2;37;0m
+它是空巫的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

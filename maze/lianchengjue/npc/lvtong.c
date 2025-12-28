@@ -3,8 +3,8 @@ inherit NPC;
 
 void create()
 {
-        set_name("吕通", ({ "lv tong", "lv", "tong" }));
-        set("nickname", HIC "大盗" NOR);
+        set_name("呂通", ({ "lv tong", "lv", "tong" }));
+        set("nickname", HIC "大盜" NOR);
         set("gender", "男性" );
         set("class", "swordman");
         set("attitude", "peaceful");
@@ -75,11 +75,11 @@ void die(object killer)
         if (userp(killer) && environment(killer) == environment(this_object())) 
         {
                 command("haha");
-                command("say 好好，万震山，今日有人助你，我吕通不会就这么算了，你等着！");
-                if (killer->query("skybook14/连城诀/任务编号") == 25)
+                command("say 好好，萬震山，今日有人助你，我呂通不會就這麼算了，你等著！");
+                if (killer->query("skybook14/連城訣/任務編號") == 25)
                 {
-                        killer->set("skybook14/连城诀/任务状态", 1);
-                        tell_object(killer, HIG "任务达成！\n" NOR);
+                        killer->set("skybook14/連城訣/任務狀態", 1);
+                        tell_object(killer, HIG "任務達成！\n" NOR);
                 }
                 destruct(this_object());
                 return;

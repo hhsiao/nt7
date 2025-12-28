@@ -27,7 +27,7 @@ int main(object me, string arg)
         {
                 dir=query("cwd", me);
                 if (! dir)
-                        return notify_fail("你要重新编译那个路径下档案？\n");
+                        return notify_fail("你要重新編譯那個路徑下檔案？\n");
         } else
         {
                 dir=resolve_path(query("cwd", me),dir);
@@ -36,20 +36,20 @@ int main(object me, string arg)
                 dir += "/";
 
         if (file_size(dir) != -2)
-                return notify_fail("没有" + dir + "这个路径。\n");
+                return notify_fail("沒有" + dir + "這個路徑。\n");
 
         set("cwd", dir, me);
 
-        message_system("整理批量档案中，请稍候...");
+        message_system("整理批量檔案中，請稍候...");
         if (! update_dir(me, dir, continueable, total))
         {
-                write(HIR "编译遇到错误中止。\n" NOR);
+                write(HIR "編譯遇到錯誤中止。\n" NOR);
         }
 
         if (total[0] > 0)
-                write(HIC "总共有" + HIW + total[0] + HIC "个档案被成功编译！\n" NOR);
+                write(HIC "總共有" + HIW + total[0] + HIC "個檔案被成功編譯！\n" NOR);
         else
-                write(HIC "没有编译任何档案。\n" NOR);
+                write(HIC "沒有編譯任何檔案。\n" NOR);
 
         return 1;
 }
@@ -69,13 +69,13 @@ int update_dir(object me, string dir, int continueable, int *total)
         if (! sizeof(file))
         {
                 if (file_size(dir) == -2)
-                        write(dir + "这个目录是空的。\n");
+                        write(dir + "這個目錄是空的。\n");
                 else
-                        write("没有" + dir + "这个目录。\n");
+                        write("沒有" + dir + "這個目錄。\n");
                 return 1;
         }
 
-        write (HIY "开始编译目录" + dir + "下面的所有文件。\n" NOR);
+        write (HIY "開始編譯目錄" + dir + "下面的所有文件。\n" NOR);
         i = sizeof(file);
         compcount = 0;
         filecount = 0;
@@ -102,8 +102,8 @@ int update_dir(object me, string dir, int continueable, int *total)
 
                 // continue to compile next file
         }
-        write(HIC "\n整理了目录" + dir + "下的" + HIW + filecount + HIC +
-              "个文件，编译了其中" + HIW + compcount + HIC + "个档案。\n" NOR );
+        write(HIC "\n整理了目錄" + dir + "下的" + HIW + filecount + HIC +
+              "個文件，編譯了其中" + HIW + compcount + HIC + "個檔案。\n" NOR );
 
         i = sizeof(file);
         while (i--)
@@ -144,7 +144,7 @@ int update_file(object me, string file)
                 if (obj == environment(me))
                 {
                         if (file_name(obj) == VOID_OB)
-                                return notify_fail("\n你不能在 VOID_OB 里重新编译 VOID_OB。\n");
+                                return notify_fail("\n你不能在 VOID_OB 裡重新編譯 VOID_OB。\n");
 
                         inv = all_inventory(obj);
                         i = sizeof(inv);
@@ -157,12 +157,12 @@ int update_file(object me, string file)
                 destruct(obj);
         }
 
-        if (obj) return notify_fail("\n无法清除旧程式码。\n");
+        if (obj) return notify_fail("\n無法清除舊程式碼。\n");
 
         err = catch( call_other(file, "???") );
         if (err)
         {
-                printf( "\n发生错误：\n%s\n", err );
+                printf( "\n發生錯誤：\n%s\n", err );
                 return 0;
         } else
         {
@@ -179,10 +179,10 @@ int update_file(object me, string file)
 int help(object me)
 {
   write(@HELP
-指令格式 : updateall <路径名> [1]
+指令格式 : updateall <路徑名> [1]
 
-这个指令可以更新某个路径下的全部档案, 并将新档的内容载入记
-忆体内. 如果后面尾随标志1， 则编译遇到错误时将不会中止。
+這個指令可以更新某個路徑下的全部檔案, 並將新檔的內容載入記
+憶體內. 如果後面尾隨標誌1， 則編譯遇到錯誤時將不會中止。
 HELP
     );
     return 1;

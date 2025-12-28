@@ -2,15 +2,15 @@
 
 inherit ROOM;
 #include <ansi.h>
-#define QUESTDIR5 "quest/雪山飞狐/宝藏/"
+#define QUESTDIR5 "quest/雪山飛狐/寶藏/"
 
 void create()
 {
-            set("short",HIW"大厅"NOR);
+            set("short",HIW"大廳"NOR);
             set("long",@LONG
-这里是宝藏图标志的天坛，巨大的广场难以想象当初如何建造。中间堆落
-着一个巨大的天坛，看来是祭祀所用，可能因为年代的久远，已经有些塌陷。
-但不影响其宏大的气势。
+這裡是寶藏圖標誌的天壇，巨大的廣場難以想象當初如何建造。中間堆落
+著一個巨大的天壇，看來是祭祀所用，可能因為年代的久遠，已經有些塌陷。
+但不影響其宏大的氣勢。
 LONG
        );
         set("exits", ([
@@ -44,33 +44,33 @@ int i;
      me->delete_temp("out");
      me->delete_temp(QUESTDIR5+"search_ok");
      me->delete_temp(QUESTDIR5+"search");
-          message_vision(YEL"突然$N听到一个声音道：“这里不欢迎$N！”\n"NOR,me);
+          message_vision(YEL"突然$N聽到一個聲音道：“這裡不歡迎$N！”\n"NOR,me);
     if(!wizardp(me)) 
       {
              me->move("/d/xiangyang/damen");  
-           tell_object(me,YEL"你抬眼一看，这里竟然是武馆大门，刚才的一切像梦一样虚幻。\n"NOR); 
+           tell_object(me,YEL"你抬眼一看，這裡竟然是武館大門，剛才的一切像夢一樣虛幻。\n"NOR); 
     }
     else 
      {
-          if(random(2)) message_vision(YEL"$N似乎有些气愤，张口骂道：“没看出我是谁啊？我是巫师"+me->query("name")+"”\n\n"NOR,me);
-          else message_vision(YEL"$N哼了一声，突然浑身散发出神才有的气势，额头隐隐约约显出几个金字："NOR+HIY+me->query("name")+NOR+YEL"！\n\n"NOR,me);
-          message_vision(YEL"刚才鸟叫的声音好像也似乎因为$N的气势萎了回去。$N不由地得意地一笑。\n"NOR,me);
-          message_vision(YEL"突然一个角落里飞出一只鞋子，砰的一声砸到$N头上，接着一个声音道：“管你是谁，TMD”\n"NOR ,me);
+          if(random(2)) message_vision(YEL"$N似乎有些氣憤，張口罵道：“沒看出我是誰啊？我是巫師"+me->query("name")+"”\n\n"NOR,me);
+          else message_vision(YEL"$N哼了一聲，突然渾身散發出神才有的氣勢，額頭隱隱約約顯出幾個金字："NOR+HIY+me->query("name")+NOR+YEL"！\n\n"NOR,me);
+          message_vision(YEL"剛才鳥叫的聲音好像也似乎因為$N的氣勢萎了回去。$N不由地得意地一笑。\n"NOR,me);
+          message_vision(YEL"突然一個角落裡飛出一隻鞋子，砰的一聲砸到$N頭上，接著一個聲音道：“管你是誰，TMD”\n"NOR ,me);
           me->unconcious();
     }
      return;   
   }
    if(ob->query("busy")&&ob->query("busy")!=me->query("id"))
   {
-     tell_object(me,YEL"突然你听到一个声音道：“宝藏已经被人抢先一步了！”\n"NOR); 
+     tell_object(me,YEL"突然你聽到一個聲音道：“寶藏已經被人搶先一步了！”\n"NOR); 
      me->move("/d/xiangyang/damen");  
      me->delete_temp(QUESTDIR5+"search_ok");
       me->delete_temp(QUESTDIR5+"search");
-     tell_object(me,YEL"你抬眼一看，这里竟然是武馆大门，刚才的一切像梦一样虚幻。\n"NOR); 
+     tell_object(me,YEL"你抬眼一看，這裡竟然是武館大門，剛才的一切像夢一樣虛幻。\n"NOR); 
      return;   
    }
   ob->set("exits/up",me->query_temp(QUESTDIR5+"map_where"));
-  ob->set("busy",me->query("id"));//其他玩家无法进入
+  ob->set("busy",me->query("id"));//其他玩家無法進入
   remove_call_out("check");
   call_out("check",1,me);
 }
@@ -91,9 +91,9 @@ void check(object me)
 	}
         if((obj=present("baozang tu",me))) 
         {
-                            tell_object(me,YEL"你顺手丢掉"+obj->query("name")+YEL"。\n"NOR); 
-              message_vision(HIC"$N丢下一张"+obj->query("name")+HIC"！\n" NOR,me);
-              message_vision(obj->query("name")+HIC"落地时一闪，竟然失去了踪影！\n" NOR,me);
+                            tell_object(me,YEL"你順手丟掉"+obj->query("name")+YEL"。\n"NOR); 
+              message_vision(HIC"$N丟下一張"+obj->query("name")+HIC"！\n" NOR,me);
+              message_vision(obj->query("name")+HIC"落地時一閃，竟然失去了蹤影！\n" NOR,me);
                     destruct(obj);
        }
   call_out("check",1,me);

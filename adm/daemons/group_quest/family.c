@@ -1,4 +1,4 @@
-// group_quest:family 群组任务——门派入侵
+// group_quest:family 群組任務——門派入侵
 
 #include <ansi.h>
 #include "family.h"
@@ -14,8 +14,8 @@ void create()
         }
 }
 
-//string prompt() { return HIR "【门派入侵】" NOR; }
-string prompt() { return HIR "【门派】" NOR; }
+//string prompt() { return HIR "【門派入侵】" NOR; }
+string prompt() { return HIR "【門派】" NOR; }
 
 int select_quest()
 {
@@ -25,7 +25,7 @@ int select_quest()
         string p,*kp;
         mapping fam_map = ([]);
 
-        // 遍历再现所有玩家，取得每个门派的在线玩家数，存入变量fam_map  family -> player_number
+        // 遍歷再現所有玩家，取得每個門派的在線玩家數，存入變量fam_map  family -> player_number
         foreach (object user in users())
         {
                 if (! wizardp(user))
@@ -39,29 +39,29 @@ int select_quest()
                 }
         }
 
-        // MUD中没有属于任何一个门派的玩家
+        // MUD中沒有屬於任何一個門派的玩家
         if (!sizeof(fam_map))
             return 0;
 
-        // 取得有玩家在线的门派名单
+        // 取得有玩家在線的門派名單
         kp = keys(fam_map);
-        kp -= ({ "古村", "绝情谷", "云龙门", "华山剑宗" });
+        kp -= ({ "古村", "絕情谷", "雲龍門", "華山劍宗" });
         if( !sizeof(kp) ) return 0;
 
-        // 随即挑选一个门派
+        // 隨即挑選一個門派
         p = kp[random(sizeof(kp))];
 
-        // 根据这个门派在线的玩家数决定任务敌人数
+        // 根據這個門派在線的玩家數決定任務敵人數
         all = sizeof(fam_map[p]);
         if (all < 5) all = 5;
         if (all > 20) all = 30 - random(10);
 
         the_family = p;
 
-        // 从这个门派中随机抽取三个玩家的名单，
-        // 这里有一个问题，如果这个门派在线的玩家数少于3人怎么办？
-        // 而且我也没有发现哪里使用到了name1, name2, name3，很奇怪
-        // 我现在把他们放到一个name数组里面
+        // 從這個門派中隨機抽取三個玩家的名單，
+        // 這裡有一個問題，如果這個門派在線的玩家數少於3人怎麼辦？
+        // 而且我也沒有發現哪裡使用到了name1, name2, name3，很奇怪
+        // 我現在把他們放到一個name數組裡面
         i = 3;
         while (i--)
         {
@@ -73,11 +73,11 @@ int select_quest()
                 name[i] = p + "弟子";
         }
 
-        // 设置国家
-        the_nation = "中国";
+        // 設置國家
+        the_nation = "中國";
         the_enemy = GROUP_QUEST_D->get_enemy(); 
 
-        // 选取一个故事
+        // 選取一個故事
         story = all_story[random(sizeof(all_story))];
 
         return 1;
@@ -96,7 +96,7 @@ string create_tiaoxin()
         {
                 lvl = random(15) + 1;
                 ob = GROUP_QUEST_D->create_npc(the_nation,lvl);
-                GROUP_QUEST_D->place_npc(ob,"门派",the_family,lvl);
+                GROUP_QUEST_D->place_npc(ob,"門派",the_family,lvl);
                 set("title", title, ob);
                 ob->random_move();
                 ob->random_move();
@@ -104,7 +104,7 @@ string create_tiaoxin()
                 ob->random_move();
         }
         GROUP_QUEST_D->set_enemy(all);
-        return "大小喽罗高呼：『" + HIY + "【" + the_family + "】" + NOR + WHT + "的人快给我滚出来，大爷们今天要你们的好看！！』";
+        return "大小嘍羅高呼：『" + HIY + "【" + the_family + "】" + NOR + WHT + "的人快給我滾出來，大爺們今天要你們的好看！！』";
 }
 
 mixed query_quest_message(int step)

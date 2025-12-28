@@ -17,10 +17,10 @@ string to_ch_desc(int status)
 {
         if( status == 0 ) return HIW "普通" NOR;
         else if( status == 1 ) return HIW "普通" NOR;
-        else if( status == 2 ) return HIB "优良" NOR;
+        else if( status == 2 ) return HIB "優良" NOR;
         else if( status == 3 ) return HIC "珍稀" NOR;
-        else if( status == 4 ) return HIM "史诗" NOR;
-        else if( status == 5 ) return HIY "传说" NOR;
+        else if( status == 4 ) return HIM "史詩" NOR;
+        else if( status == 5 ) return HIY "傳說" NOR;
         else if( status == 6 ) return HBRED+HIW "神器" NOR;
         else return HBRED+HIY "仙器" NOR;
 }
@@ -53,7 +53,7 @@ string short()
                     
         if( !undefinedp(query("consistence")) && query("consistence") < 1 ) 
         //if( query("endurance") < 1 ) 
-                status += HIW" 损"NOR WHT"坏"NOR;
+                status += HIW" 損"NOR WHT"壞"NOR;
                 
         if( !stringp(colorname = query("colorname")) )
                 str = s_name + "(" + s_id + ")";
@@ -72,7 +72,7 @@ int fire(object me, object ob)
         string msg;
 
         if( this_object()->is_item_make() )
-                return notify_fail("你累得满头大汗，怎么点也点不着。\n");
+                return notify_fail("你累得滿頭大汗，怎麼點也點不著。\n");
 
         if( stringp(msg = query("no_light")) )
                 return notify_fail(msg);
@@ -80,21 +80,21 @@ int fire(object me, object ob)
         switch( query("material") )
         {
         case "wood":
-                msg = "$N把$n放在$f下面点燃了，火光闪动，渐"
-                      "渐只剩下了一团碳粉碎渣。\n";
+                msg = "$N把$n放在$f下面點燃了，火光閃動，漸"
+                      "漸只剩下了一團碳粉碎渣。\n";
                 break;
         case "leather":
         case "feather":
         case "silk":
-                msg = "$N用$f把$n点着了，结果散发出一阵令人难闻的臭味。\n";
+                msg = "$N用$f把$n點著了，結果散發出一陣令人難聞的臭味。\n";
                 break;
         case "paper":
         case "cloth":
-                msg = "$N点着了$n，火苗闪了几闪，很快就"
-                      "烧了个干干净净，什么都没有剩下来。\n";
+                msg = "$N點著了$n，火苗閃了幾閃，很快就"
+                      "燒了個乾乾淨淨，什麼都沒有剩下來。\n";
                 break;
         default:
-                return notify_fail("这东西看上去没法点，还是省省力气吧。\n");
+                return notify_fail("這東西看上去沒法點，還是省省力氣吧。\n");
         }
 
         msg = replace_string(msg, "$n", name());
@@ -115,22 +115,22 @@ string type()
         else if( this_object()->is_food() )
                 return "食物";
         else if( this_object()->is_liquid() )
-                return "饮具";
+                return "飲具";
         else if( this_object()->is_container() )
                 return "容器";
         else if( this_object()->is_book() )
-                return "书物";
+                return "書物";
         else if( this_object()->is_money() )
-                return "货币";
+                return "貨幣";
         else if( this_object()->is_charm() )
-                return "护身符";
+                return "護身符";
         else if( this_object()->is_rune() )
                 return "符文";
         else if( this_object()->is_tessera() )
-                return "镶嵌物";
+                return "鑲嵌物";
         else if( this_object()->is_task() )
-                return "任务物品";
-        else    return "杂物";
+                return "任務物品";
+        else    return "雜物";
 }
 
 mixed query_autoload()

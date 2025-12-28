@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("小龙女[2;37;0m[2;37;0m", ({"laugmbb"}));        
+        set_name("小龍女[2;37;0m[2;37;0m", ({"laugmbb"}));        
         set("gender", "男性");                
-        set("long", "小龙女[2;37;0m
-它是不用右手的魔幻兽。
+        set("long", "小龍女[2;37;0m
+它是不用右手的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

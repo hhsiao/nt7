@@ -26,16 +26,16 @@ int main(object me, string arg)
                 ob = present(arg, environment(me));  
                 if (! ob) ob = find_player(arg);  
                 if (! ob) ob = find_living(arg);  
-                if (! ob) return notify_fail("你要恢复谁的召唤列表？\n");  
+                if (! ob) return notify_fail("你要恢復誰的召喚列表？\n");  
         }  
           
         path=ITEM_DIR+query("id", ob)[0..0]+"/";
         dirs=get_dir(path+query("id", ob)+"-*.c");
           
-        // 删除原有召唤列表  
+        // 刪除原有召喚列表  
         //delete("can_summon", ob);
   
-        // 重建召唤列表          
+        // 重建召喚列表          
         for (i = 0; i < sizeof(dirs); i++)  
         {  
                 file_name = path + dirs[i];  
@@ -48,7 +48,7 @@ int main(object me, string arg)
         if (file_size(file_name) > 0) 
                  set("can_summon/wedding ring", file_name[0..<3], ob);
         
-        // 漫游包
+        // 漫遊包
         file_name=ITEM_DIR+"cruise/"+query("id", ob)+".c";
         if (file_size(file_name) > 0) 
                  set("can_summon/qiankun", file_name[0..<3], ob);
@@ -61,10 +61,10 @@ int main(object me, string arg)
         if (file_size(file_name) > 0) 
                  set("can_whistle/"+query("id", get_object(file_name)), file_name[0..<3], ob);
                          
-        msg = HIC"" + ob->name() + HIC"的召唤列表更新完毕。\n"NOR;  
+        msg = HIC"" + ob->name() + HIC"的召喚列表更新完畢。\n"NOR;  
         write(msg);  
         if (ob != me)
-                tell_object(ob, HIC"你的召唤列表已经更新。\n"NOR);
+                tell_object(ob, HIC"你的召喚列表已經更新。\n"NOR);
                 
         return 1;  
 }  

@@ -29,7 +29,7 @@ nosave object *total = ({ });
 #define FOURTH          "/clone/fam/max/zhenyu"
 #define FIFTH           "/clone/fam/max/longjia"
 
-#define NCH_CHANNEL(x) CHANNEL_D->channel_broadcast("nch", "比武精灵："+(string)x) 
+#define NCH_CHANNEL(x) CHANNEL_D->channel_broadcast("nch", "比武精靈："+(string)x) 
 
 void create()
 {
@@ -40,7 +40,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "只");
-                set("long", "这是一只牛皮制成的巨鼓，武林人士在华山论剑时敲响(knock)它开始比武。\n");
+                set("long", "這是一隻牛皮製成的巨鼓，武林人士在華山論劍時敲響(knock)它開始比武。\n");
                 set("no_get", 1); 
         }
 }
@@ -58,13 +58,13 @@ int do_knock(string arg)
 
         me = this_player();
         ob = environment(this_object());
-        if (! arg || arg != "drum")    return notify_fail("你要敲什么？\n");
+        if (! arg || arg != "drum")    return notify_fail("你要敲什麼？\n");
 
         if (query("is_drum_knocked"))
-                return notify_fail("比武大会已经开始了，不必再击鼓了。\n");
+                return notify_fail("比武大會已經開始了，不必再擊鼓了。\n");
 
         if (! wizardp(me) && query("id", me)!="lazy cat")
-                return notify_fail("现在召开比武大会，必需由巫师击鼓。\n");
+                return notify_fail("現在召開比武大會，必需由巫師擊鼓。\n");
 
         env = all_inventory(ob);
         j = 0;
@@ -85,12 +85,12 @@ int do_knock(string arg)
         }
         if (j < 3)
 {
-if (query("id", me)=="lazy cat") me->command("say 喵喵喵，人数不够，取消比武。");
-                return notify_fail("到场人数太少了，你还是先多召集几个玩家吧。\n");
+if (query("id", me)=="lazy cat") me->command("say 喵喵喵，人數不夠，取消比武。");
+                return notify_fail("到場人數太少了，你還是先多召集幾個玩家吧。\n");
 }
 
-        // message_vision(BOLD "\n\n\t$N敲响了华山绝顶比武场上的大鼓，鼓声咚咚，令人热血沸腾。\n\n" NOR, me);
-        msg=BOLD"\n\n\t"+query("name", me)+"敲响了华山绝顶比武场上的大鼓，鼓声咚咚，令人热血沸腾。\n\n"NOR;
+        // message_vision(BOLD "\n\n\t$N敲響了華山絕頂比武場上的大鼓，鼓聲咚咚，令人熱血沸騰。\n\n" NOR, me);
+        msg=BOLD"\n\n\t"+query("name", me)+"敲響了華山絕頂比武場上的大鼓，鼓聲咚咚，令人熱血沸騰。\n\n"NOR;
         message("channel:news", msg, users());
 
         if ((wizardp(me) && wiz_level(me) >= 4) || query("id", me)=="lazy cat")
@@ -144,21 +144,21 @@ int check_out(object me)
         my["jing"] = 1;
         my["jingli"] = 1;
 
-        tell_object(me, HIR "\n你觉得眼前一阵模糊...这下完了！\n" NOR);
+        tell_object(me, HIR "\n你覺得眼前一陣模糊...這下完了！\n" NOR);
         if (ob = me->query_last_damage_from())
         {
-                msg = "听说" + me->name(1) + "惨遭" + ob->name(1) + "的毒手，被一脚踢下擂台。";
+                msg = "聽說" + me->name(1) + "慘遭" + ob->name(1) + "的毒手，被一腳踢下擂臺。";
         } else
-                msg = "听说" + me->name(1) + "运气不佳，本领有限、已经惨遭淘汰。";
+                msg = "聽說" + me->name(1) + "運氣不佳，本領有限、已經慘遭淘汰。";
         message_competition(msg);
 
         restore_status(me);
         total -= ({ me });
         me->move(ENTRY_ROOM);
-        message("vision", "一个黑影倏的窜了出来，随即就是“啪”的"
-                "一声，就见" + me->name() +"摔倒了地上，一副半死不"
-                "活的样子。\n", environment(me), ({ me }));
-        tell_object(me, "半昏半迷中，你觉得被人拎了起来，又"
+        message("vision", "一個黑影倏的竄了出來，隨即就是“啪”的"
+                "一聲，就見" + me->name() +"摔倒了地上，一副半死不"
+                "活的樣子。\n", environment(me), ({ me }));
+        tell_object(me, "半昏半迷中，你覺得被人拎了起來，又"
                     "重重的摔倒了地上。\n");
         if (! living(me))
                 me->revive();
@@ -168,16 +168,16 @@ int check_out(object me)
 // overide function of quit
 int check_quit(object me)
 {
-        message_competition("听说" + me->name(1) +
-                            "临阵脱逃，溜走了。");
+        message_competition("聽說" + me->name(1) +
+                            "臨陣脫逃，溜走了。");
         restore_status(me);
         if (arrayp(total))
                 total -= ({ me });
-        tell_object(me, "你决定弃权，逃了下去。\n");
+        tell_object(me, "你決定棄權，逃了下去。\n");
 
         // continue run quit function
         me->move(ENTRY_ROOM);
-        message("vision", "只见" + me->name() + "脸色非常难看的跑了下来。\n",
+        message("vision", "只見" + me->name() + "臉色非常難看的跑了下來。\n",
                 environment(me), ({ me }));
         return 1;
 }
@@ -306,7 +306,7 @@ void de_group(object *fighters)
 
                         if (no1)
                         {
-                                overmsg = HIW "\n\n本次武林比武大会的结果:\n" + HIM + "          第一名是" +
+                                overmsg = HIW "\n\n本次武林比武大會的結果:\n" + HIM + "          第一名是" +
                                         query("name", no1)+"("+query("id", no1)+")。\n"NOR;
                                 message("channel:news", overmsg, users());
                                 file+=query("name", no1)+"("+query("id", no1)+")\n";
@@ -359,7 +359,7 @@ void de_group(object *fighters)
                                                 addn("combat/PKS", -10, no1);
                                         else delete("combat/PKS", no1);
                                         
-                                        HISTORY_D->add_history("华山论剑", query("id", no1), sprintf("英豪组 %s(%s)，年龄 %d、等级 %d，荣获名次 1.\n", 
+                                        HISTORY_D->add_history("華山論劍", query("id", no1), sprintf("英豪組 %s(%s)，年齡 %d、等級 %d，榮獲名次 1.\n", 
                                                 query("name", no1), query("id", no1), query("age", no1), query("level",no1)));    
                                 }
                                 if (no2)
@@ -377,7 +377,7 @@ void de_group(object *fighters)
                                                 addn("combat/PKS", -7, no1);
                                         else delete("combat/PKS", no1);
                                         
-                                        HISTORY_D->add_history("华山论剑", query("id", no2), sprintf("英豪组 %s(%s)，年龄 %d、等级 %d，荣获名次 2.\n", 
+                                        HISTORY_D->add_history("華山論劍", query("id", no2), sprintf("英豪組 %s(%s)，年齡 %d、等級 %d，榮獲名次 2.\n", 
                                                 query("name", no2), query("id", no2), query("age", no2), query("level", no2)));    
                                 }
                                 if (no3)
@@ -395,7 +395,7 @@ void de_group(object *fighters)
                                                 addn("combat/PKS", -5, no1);
                                         else delete("combat/PKS", no1);
                                         
-                                        HISTORY_D->add_history("华山论剑", query("id", no3), sprintf("英豪组 %s(%s)，年龄 %d、等级 %d，荣获名次 3.\n", 
+                                        HISTORY_D->add_history("華山論劍", query("id", no3), sprintf("英豪組 %s(%s)，年齡 %d、等級 %d，榮獲名次 3.\n", 
                                                 query("name", no3), query("id", no3), query("age", no3), query("level", no3)));    
                                 }
                                 if (no4)
@@ -442,7 +442,7 @@ void de_group(object *fighters)
                         return;
                 }
                 set("loop", 1);
-                msg = BOLD "\n\n比武大会第" + chinese_number((int)query("lunshu") + 1) + "轮(循环赛)赛程：\n\n" NOR;
+                msg = BOLD "\n\n比武大會第" + chinese_number((int)query("lunshu") + 1) + "輪(循環賽)賽程：\n\n" NOR;
                 k = 0;
                 for (i = 0; i < sizeof(fighters); i++)
                 {
@@ -462,7 +462,7 @@ void de_group(object *fighters)
                 }
         } else
         {
-                msg = BOLD "\n\n比武大会第" + chinese_number((int)query("lunshu")+  1) + "轮(淘汰赛)赛程：\n\n" NOR;
+                msg = BOLD "\n\n比武大會第" + chinese_number((int)query("lunshu")+  1) + "輪(淘汰賽)賽程：\n\n" NOR;
                 set("loop", 0);
                 list = sort_array(fighters, "sort_user", this_object());
                 for (i = 0; i < sizeof(list); i++)
@@ -477,7 +477,7 @@ void de_group(object *fighters)
                 if (sizeof(list)%2)
                 {
                         i = 1;
-                        msg+=HIY+(query("name", list[0])+"------(此轮免战)\t"NOR);
+                        msg+=HIY+(query("name", list[0])+"------(此輪免戰)\t"NOR);
                         set("group0", ([ list[0]: 0 ]));
 
                 }
@@ -531,9 +531,9 @@ void start_fight()
                 if (ob1 && ! ob2)
                 {
                         arena[ob1] += 1;
-                        tell_room(room, BOLD "\n第" + chinese_number((int)query("lunshu")+1) + "轮第" +
+                        tell_room(room, BOLD "\n第" + chinese_number((int)query("lunshu")+1) + "輪第" +
                                 chinese_number(round) + "回合：  " +
-                                query("name", ob1)+"("+query("id", ob1)+")"+HIY+"---------免战!\n"NOR);
+                                query("name", ob1)+"("+query("id", ob1)+")"+HIY+"---------免戰!\n"NOR);
                         remove_call_out("start_fight");
                         call_out("start_fight", 1);
                         return;
@@ -541,23 +541,23 @@ void start_fight()
                 if (ob2 && ! ob1)
                 {
                         arena[ob2] += 1;
-                        tell_room(room, BOLD "\n第" + chinese_number((int)query("lunshu")+1) + "轮第" +
+                        tell_room(room, BOLD "\n第" + chinese_number((int)query("lunshu")+1) + "輪第" +
                                 chinese_number(round) + "回合：  " +
-                                query("name", ob2)+"("+query("id", ob2)+")"+HIY+"---------免战!\n"NOR);
+                                query("name", ob2)+"("+query("id", ob2)+")"+HIY+"---------免戰!\n"NOR);
                         remove_call_out("start_fight");
                         call_out("start_fight", 1);
                         return;
                 }
                 if (! ob1 && ! ob2)
                 {
-                        tell_room(room, BOLD "\n第" + chinese_number((int)query("lunshu")+1) + "轮第" +
+                        tell_room(room, BOLD "\n第" + chinese_number((int)query("lunshu")+1) + "輪第" +
                                 chinese_number(round) + "回合：  " +
                                 HIY + "-----------SKIP----------\n" NOR);
                         remove_call_out("start_fight");
                         call_out("start_fight", 1);
                         return;
                 }
-                tell_room(room, BOLD "\n第" + chinese_number((int)query("lunshu")+1) + "轮第" +
+                tell_room(room, BOLD "\n第" + chinese_number((int)query("lunshu")+1) + "輪第" +
                         chinese_number(round) + "回合：  " +
                         query("name", ob1)+"("+query("id", ob1)+")"+HIY+"---V.S.---"+NOR+BOLD+
                         query("name", ob2)+"("+query("id", ob2)+")\n"NOR);
@@ -565,7 +565,7 @@ void start_fight()
                         room = load_object(LUNJIAN);
                 recover(ob1);
                 recover(ob2);
-                message_vision(HIW "\n$N和$n施展轻功,双双跃上擂台。\n\n" NOR, ob1, ob2);
+                message_vision(HIW "\n$N和$n施展輕功,雙雙躍上擂臺。\n\n" NOR, ob1, ob2);
 
                 if (! arrayp(total))
                         total = ({ ob1 });
@@ -585,15 +585,15 @@ void start_fight()
                 init_player(ob2);
                 //set_heart_beat(1);
 
-                message("vision", HIW "\n" + ob1->name() + "和" + ob2->name() + "一前一后，跃了上来。\n\n" NOR,
+                message("vision", HIW "\n" + ob1->name() + "和" + ob2->name() + "一前一後，躍了上來。\n\n" NOR,
                         room, ({ob1, ob2}));
                 set("time", 3);
                 remove_call_out("att_fight");
                 call_out("att_fight", 2, ob1, ob2);
         } else
         {
-                tell_room(room, HIW "比武大会第" + chinese_number((int)query("lunshu")+1) + "轮比赛结束。\n" NOR);
-                set("item_desc/paizi", "现在还没开始比赛呢！", environment());
+                tell_room(room, HIW "比武大會第" + chinese_number((int)query("lunshu")+1) + "輪比賽結束。\n" NOR);
+                set("item_desc/paizi", "現在還沒開始比賽呢！", environment());
                 addn("lunshu", 1);
                 list = filter_array(keys(query("arena")), "filter_user", this_object());
                 de_group(list);
@@ -617,17 +617,17 @@ void checking(object ob1, object ob2)
                 return ;
         }
         if (! ob1 && ! ob2)
-                tell_room(environment(), BOLD "由于双方弃权,继续下一轮比赛。\n" NOR);
+                tell_room(environment(), BOLD "由於雙方棄權,繼續下一輪比賽。\n" NOR);
         else if (ob1 && (! ob2 || ! present(ob2, room)))
         {
                 winner = ob1;
-                message("vision", HIC + ob1->name() + "哈哈大笑几声，跳了下去。\n" NOR, room, ({ob1}));
+                message("vision", HIC + ob1->name() + "哈哈大笑幾聲，跳了下去。\n" NOR, room, ({ob1}));
         } else if (! ob1 || ! present(ob1, room))
         {
                 winner = ob2;
-                message("vision", HIC + ob2->name() + "哈哈大笑几声，跳了下去。\n" NOR, room, ({ob2}));
+                message("vision", HIC + ob2->name() + "哈哈大笑幾聲，跳了下去。\n" NOR, room, ({ob2}));
         } else
-                tell_room(environment(), BOLD "由于双方弃权,继续下一轮比赛。\n" NOR);
+                tell_room(environment(), BOLD "由於雙方棄權,繼續下一輪比賽。\n" NOR);
         if (winner)
         {
                 arena = query("arena");
@@ -652,8 +652,8 @@ void checking(object ob1, object ob2)
                         if (! living(ob2))
                                 ob2->revive();
                 }
-                message_vision(HIC "$N哈哈大笑，从擂台上跳了下来。\n" NOR, winner);
-                tell_room(environment(),BOLD"这一回合的结果是："+query("name", winner)+"胜。\n"NOR);
+                message_vision(HIC "$N哈哈大笑，從擂臺上跳了下來。\n" NOR, winner);
+                tell_room(environment(),BOLD"這一回合的結果是："+query("name", winner)+"勝。\n"NOR);
                 total = ({ });
                 recover(ob1);
                 recover(ob2);
@@ -685,8 +685,8 @@ int att_fight(object ob1, object ob2)
                                 call_out("att_fight", 5, ob1, ob2);
                                 return 1;
                         }
-                        tell_room(room, HIY "\t-------  开     始  -------\n\n" NOR);
-                        message_vision("\n$N对著$n喝道：「" + RANK_D->query_rude(ob2) + "！今日不是你死就是我活！」\n\n", ob1, ob2);
+                        tell_room(room, HIY "\t-------  開     始  -------\n\n" NOR);
+                        message_vision("\n$N對著$n喝道：「" + RANK_D->query_rude(ob2) + "！今日不是你死就是我活！」\n\n", ob1, ob2);
                 }
                 if (! ob1->is_killing(ob2)) ob1->kill_ob(ob2);
                 if (! ob2->is_killing(ob1)) ob2->kill_ob(ob1);
@@ -736,7 +736,7 @@ int give_money(object *players,object *fighters)
 {
         if (query("drum_knocked"))
         {
-                message("vision", query("drum_knocked") + "笑嘻嘻地对大伙说到：哈哈，哈哈，多谢捧场！\n",
+                message("vision", query("drum_knocked") + "笑嘻嘻地對大夥說到：哈哈，哈哈，多謝捧場！\n",
                         environment());
                 foreach (object user in players)
                 {
@@ -750,7 +750,7 @@ int give_money(object *players,object *fighters)
          new("/u/redl/npc/obj/penny")->move(user); 
                         }
                 }
-                message("vision", query("drum_knocked") + "给参赛的江湖人士每人一点礼物：“小小意思，笑纳，笑纳。”\n",
+                message("vision", query("drum_knocked") + "給參賽的江湖人士每人一點禮物：“小小意思，笑納，笑納。”\n",
                         environment());
         }
         de_group(fighters);

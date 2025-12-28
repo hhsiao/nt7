@@ -5,7 +5,7 @@ inherit WHIP;
 
 void create()
 {
-        set_name(HIW "缠魂丝" NOR, ({ "chanhun si", "si", "chanhun", "whip" }) );
+        set_name(HIW "纏魂絲" NOR, ({ "chanhun si", "si", "chanhun", "whip" }) );
         set_weight(4000);
         /*if( clonep() )
                 set_default_object(__FILE__);

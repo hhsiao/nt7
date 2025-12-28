@@ -4,10 +4,10 @@ inherit NPC;
 
 void create()
 {
-        string *order = ({"风", "云", "雨", "雷", "电", "雾", "水", "火", "地", "花"});
+        string *order = ({"風", "雲", "雨", "雷", "電", "霧", "水", "火", "地", "花"});
 
-        set_name((order[random(10)]) + "精灵", ({ "spirit" }) );
-        set("long", "这是一位来自精灵界的小精灵，背后有一对透明的羽翼。\n");
+        set_name((order[random(10)]) + "精靈", ({ "spirit" }) );
+        set("long", "這是一位來自精靈界的小精靈，背後有一對透明的羽翼。\n");
         set("attitude", "friendly");
 
         set("max_qi", 10100);
@@ -49,8 +49,8 @@ int heal_up()
 void leave()
 {
         message("vision",
-                HIW + name() + "说道：我不能久留，既然事情已经结束，我要回精灵界了！\n\n"
-                + name() + "化成一道柔和的光芒，渐渐消失不见了。\n" NOR, environment(),
+                HIW + name() + "說道：我不能久留，既然事情已經結束，我要回精靈界了！\n\n"
+                + name() + "化成一道柔和的光芒，漸漸消失不見了。\n" NOR, environment(),
                 this_object() );
         destruct(this_object());
 }
@@ -61,8 +61,8 @@ void invocation(object who)
         object *enemy;
 
         message("vision",
-                HIY "一阵清风吹过，一个小精灵随风而来。\n\n"
-                + name() + "说道：我是接受精灵刀的召唤来帮忙的！\n" NOR,
+                HIY "一陣清風吹過，一個小精靈隨風而來。\n\n"
+                + name() + "說道：我是接受精靈刀的召喚來幫忙的！\n" NOR,
                 environment(), this_object() );
         enemy = who->query_enemy();
         i = sizeof(enemy);

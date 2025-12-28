@@ -4,17 +4,17 @@ inherit COMBINED_ITEM;
 
 void create()
 {
-        set_name(WHT"玄武"NOR+HIY"神农丹"NOR, ({"xuanwu dan", "dan"}));
+        set_name(WHT"玄武"NOR+HIY"神農丹"NOR, ({"xuanwu dan", "dan"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
                 set("base_unit", "粒");
-                set("no_drop", "这样东西不能离开你。\n");
-                set("no_sell", "这样东西不能离开你。\n");
-                set("no_put", "这样东西不能放在那儿。\n");
-                set("no_get", "这样东西不能离开那儿。\n");
-                set("no_steal", "这样东西不能离开那儿。\n");
-                set("no_beg", "这样东西不能离开那儿。\n");
+                set("no_drop", "這樣東西不能離開你。\n");
+                set("no_sell", "這樣東西不能離開你。\n");
+                set("no_put", "這樣東西不能放在那兒。\n");
+                set("no_get", "這樣東西不能離開那兒。\n");
+                set("no_steal", "這樣東西不能離開那兒。\n");
+                set("no_beg", "這樣東西不能離開那兒。\n");
                 set("base_value", 0);
                 set("only_do_effect", 1);
         }
@@ -28,7 +28,7 @@ int do_effect(object me)
 
         if( time()-query_temp("last_eat/dan(S, me)")<600 )
         {
-                write("你刚服用过药，需药性发挥完效用以后才能继续服用。\n");
+                write("你剛服用過藥，需藥性發揮完效用以後才能繼續服用。\n");
                 return 1;
         }
 
@@ -36,12 +36,12 @@ int do_effect(object me)
 
 //        me->set_temp("last_eat/dan(S)", time());
 
-        message_sort(WHT "$N" WHT "吃下一颗$n" WHT "，只觉"
-                     "全身筋脉逆流而上，内力源源不断的涌入"
-                     "丹田，说不出的舒服受用。顿时感到灵台"
-                     "处如湖面一般平静，以往所学的武学知识"
-                     "一一涌向心头，在灵台处交融贯通。$N" WHT
-                     "感到的经验和潜能有了一定的进展。\n"NOR, me, this_object());
+        message_sort(WHT "$N" WHT "吃下一顆$n" WHT "，只覺"
+                     "全身筋脈逆流而上，內力源源不斷的湧入"
+                     "丹田，說不出的舒服受用。頓時感到靈臺"
+                     "處如湖面一般平靜，以往所學的武學知識"
+                     "一一湧向心頭，在靈臺處交融貫通。$N" WHT
+                     "感到的經驗和潛能有了一定的進展。\n"NOR, me, this_object());
         set("jingli",query("max_jingli",  me), me);
         set("neili",query("max_neili",  me), me);
         addn("combat_exp", 200, me);

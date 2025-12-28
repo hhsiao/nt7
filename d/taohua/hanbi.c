@@ -8,11 +8,11 @@ void create()
 {
         set("short", "涵碧峰");
         set("long", @LONG
-涵碧峰实际上是一块硕大无朋的太湖石峰，高四丈有余，因为特别适
-合青苔生长，通体碧绿，故而得名“涵碧”。据传说，这是花石纲遗物中
-的上品，比起苏州名闻天下的瑞云峰和狮子峰来有过之而无不及，原址本
-在苏州，因黄药师夫人冯氏原籍苏州，黄药师才费偌大心力，将之移往桃
-花岛，使夫人不致有僻处海外之感。
+涵碧峰實際上是一塊碩大無朋的太湖石峰，高四丈有餘，因為特別適
+合青苔生長，通體碧綠，故而得名“涵碧”。據傳說，這是花石綱遺物中
+的上品，比起蘇州名聞天下的瑞雲峰和獅子峰來有過之而無不及，原址本
+在蘇州，因黃藥師夫人馮氏原籍蘇州，黃藥師才費偌大心力，將之移往桃
+花島，使夫人不致有僻處海外之感。
 LONG );
         set("exits", ([
                 "south" : __DIR__"songlin3",
@@ -39,10 +39,10 @@ int valid_leave(object me, string dir)
 {
 
         if( (query("family/master_name", me) != "程英" )
-         && (query("family/master_name", me) != "黄药师" )
+         && (query("family/master_name", me) != "黃藥師" )
          && (!query_temp("shagu_pass", me) )
         && present("sha gu", this_object()) )
-        return notify_fail("\n傻姑傻笑了几声，伸开双手一拦，说到：要进去先陪我玩一会儿吧，这里人都不理我，闷死了！\n");
+        return notify_fail("\n傻姑傻笑了幾聲，伸開雙手一攔，說到：要進去先陪我玩一會兒吧，這裡人都不理我，悶死了！\n");
 
         return ::valid_leave(me, dir);
 }

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[31m不死鸟[2;37;0m[2;37;0m", ({"busi"}));        
+        set_name("[31m不死鳥[2;37;0m[2;37;0m", ({"busi"}));        
         set("gender", "男性");                
         set("long", "$RED$浴火重生[2;37;0m
-它是楚真的魔幻兽。
+它是楚真的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

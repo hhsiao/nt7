@@ -9,11 +9,11 @@ mixed ask_me();
 
 void create()
 {
-        set_name("游方道人", ({ "dao ren", "dao", "daoren" }) );
+        set_name("遊方道人", ({ "dao ren", "dao", "daoren" }) );
         set("gender", "男性" );
         set("age", 34);
-        set("long", "一个白净矮胖的道士，见谁都笑眯眯的，正悠\n"
-                    "闲的品着一杯香茶。\n");
+        set("long", "一個白淨矮胖的道士，見誰都笑眯眯的，正悠\n"
+                    "閒的品著一杯香茶。\n");
         set("max_qi", 1800);
         set("max_jing", 1000);
         set("max_neili", 2000);
@@ -53,7 +53,7 @@ void create()
                 "回五毒教": (: ask_me :),
         ]) );
 
-        create_family("五毒教", 13, "护法弟子");
+        create_family("五毒教", 13, "護法弟子");
 
         set("vendor_goods", ([
                "/d/wudu/obj/jiedudan" : 300000,
@@ -85,17 +85,17 @@ void greeting(object ob)
         switch(random(3))
         {
         case 0:
-                say(CYN "游方道人嘿嘿一阵奸笑道：这位" + RANK_D->query_respect(ob) +
-                    CYN "，也是来住店的吗？\n" NOR);
+                say(CYN "遊方道人嘿嘿一陣奸笑道：這位" + RANK_D->query_respect(ob) +
+                    CYN "，也是來住店的嗎？\n" NOR);
                 break;
         case 1:
-                say(CYN "游方道人点了点手道：这位" + RANK_D->query_respect(ob) +
-                    CYN "请过这里坐，这是要去那啊？\n" NOR);
+                say(CYN "遊方道人點了點手道：這位" + RANK_D->query_respect(ob) +
+                    CYN "請過這裡坐，這是要去那啊？\n" NOR);
                 break;
         case 2:
-                say(CYN "游方道人面现惊讶之色道：这位" + RANK_D->query_respect(ob) +
-                    CYN "眉现黑气，近日会有大难。\n游方道人继续说道：贫道有一些随身"
-                    "丹丸可以卖给你，或许可救你一命。\n" NOR);
+                say(CYN "遊方道人面現驚訝之色道：這位" + RANK_D->query_respect(ob) +
+                    CYN "眉現黑氣，近日會有大難。\n遊方道人繼續說道：貧道有一些隨身"
+                    "丹丸可以賣給你，或許可救你一命。\n" NOR);
                 break;
         }
 }
@@ -107,11 +107,11 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)>-1000 )
         {
-                command("say 我教弟子贵在随心所欲，不收伪君子。");
+                command("say 我教弟子貴在隨心所欲，不收偽君子。");
                 return;
         }
         command("recruit "+query("id", ob));
-        set("title", "五毒教教众", ob);
+        set("title", "五毒教教眾", ob);
         return;
 }
 
@@ -121,28 +121,28 @@ mixed ask_me()
         me = this_player();
 
         if( query("family/family_name", me) != "五毒教" )
-                return "你大爷的，你罗里八嗦到底想说啥子？";
+                return "你大爺的，你羅裡八嗦到底想說啥子？";
 
         if (find_object(query("startroom")) != environment())
-                return "我这里还有事，你就自己走回去吧。";
+                return "我這裡還有事，你就自己走回去吧。";
 
-        command("say 这位"+ RANK_D->query_respect(me) + "来的正好，这里"
-                "正有马车要回山办事，就让他们送你一程吧。\n");
+        command("say 這位"+ RANK_D->query_respect(me) + "來的正好，這裡"
+                "正有馬車要回山辦事，就讓他們送你一程吧。\n");
 
-        message_vision(HIC "游方道人一招手，一辆马车驶过来停在门前。\n$N"
-                       HIC "急忙钻进车中，只听一阵清脆的鞭响，马车绝尘而"
+        message_vision(HIC "遊方道人一招手，一輛馬車駛過來停在門前。\n$N"
+                       HIC "急忙鑽進車中，只聽一陣清脆的鞭響，馬車絕塵而"
                        "去。\n\n" NOR, me);
 
         ob = load_object("/d/wudu/damen");
         ob = find_object("/d/wudu/damen");
 
-        message("vision", HIC "\n远处一辆马车急驶而来，车门一开" +
-                          query("name", me)+HIC"从里面钻了出来"
+        message("vision", HIC "\n遠處一輛馬車急駛而來，車門一開" +
+                          query("name", me)+HIC"從裡面鑽了出來"
                           "。\n\n" NOR, environment(me), ({me}));
 
         me->move("/d/wudu/damen");
-        tell_object(me, CYN "\n车把势说道：这位" + RANK_D->query_respect(me) +
-                        CYN "已经到了，请下车吧。\n\n" NOR);
+        tell_object(me, CYN "\n車把勢說道：這位" + RANK_D->query_respect(me) +
+                        CYN "已經到了，請下車吧。\n\n" NOR);
         return 1;
 
 }

@@ -17,11 +17,11 @@ void create()
 {
         seteuid(getuid());
         if( !restore() ) {
-                set_name("魏无双", ({ "wulin mengzhu", "mengzhu", "zhu" }) );
+                set_name("魏無雙", ({ "wulin mengzhu", "mengzhu", "zhu" }) );
                 set("title", "武林盟主" );
                 set("gender", "男性" );
                 set("age", 40);
-                set("long","他就是雄踞武林，号召天下，威风赫赫的当今武林盟主。\n");
+                set("long","他就是雄踞武林，號召天下，威風赫赫的當今武林盟主。\n");
                 set("attitude", "heroism");
                 set("generation", 0);
                 set("winner","NONE");
@@ -60,7 +60,7 @@ void create()
                 carry_object("/d/city/obj/cloth")->wear();
         } else {
                 if( !query("name") )
-                        set_name("魏无双", ({  "wulin mengzhu", "mengzhu", "zhu" }));
+                        set_name("魏無雙", ({  "wulin mengzhu", "mengzhu", "zhu" }));
                 else
                         set_name(query("name"), ({  "wulin mengzhu", "mengzhu", "zhu" }));
                 setup();
@@ -111,12 +111,12 @@ int do_kill(string arg)
 
         if( !this_object()->id(arg) ) return 0;
         if( query("winner", this_object()) == query("id", this_player()) )
-                return notify_fail("你是不是疯了？！\n");
+                return notify_fail("你是不是瘋了？！\n");
 
-        command("say 你想谋害本盟主，当真是吃了熊心豹子胆了！！");
+        command("say 你想謀害本盟主，當真是吃了熊心豹子膽了！！");
         command("say 座下白衣武士何在！");
 
-        message_vision("四周的白衣武士群起对$N发动攻击！\n", this_player());
+        message_vision("四周的白衣武士群起對$N發動攻擊！\n", this_player());
         for( i=0; i<4; i++ ) {
                 if( objectp( ob = present("wei shi " + (i+1), environment(this_object())) ) )
                         ob->kill_ob(this_player());
@@ -132,17 +132,17 @@ int accept_fight(object ob)
         if( time()-query("combat/pktime", this_player())<28800 )
                 return 0;
         if( query("winner", me) == query("id", ob)){
-                command("say 你跟你自己打什么架？！\n");
+                command("say 你跟你自己打什麼架？！\n");
                 return 0;
         }
 
         if( wizardp(this_player()) ){
-                command("say 巫师不能抢盟主之位！\n");
+                command("say 巫師不能搶盟主之位！\n");
                 return 0;
         }
 
         if( me->is_fighting() || query("fighting", me)){
-                command("say 已经有人正在挑战武林盟主！\n");
+                command("say 已經有人正在挑戰武林盟主！\n");
                 return 0;
         }
 
@@ -161,8 +161,8 @@ void win()
                 return;
         }
 
-        command("say 看来" + RANK_D->query_respect(me) +
-                "还得多加练习，方能在当今武林中出人头地 !\n");
+        command("say 看來" + RANK_D->query_respect(me) +
+                "還得多加練習，方能在當今武林中出人頭地 !\n");
         ::win();
 }
 
@@ -174,9 +174,9 @@ void lost()
         ob = query_competitor();
 
         if( !living(me) ) me->revive();
-        command("say 果然厉害，恭喜你成为当今武林盟主！\n");
-        command("chat 哈哈哈，到底是长江後浪推前浪，一代新人换旧人！\n");
-        command("chat恭喜"+query("name", ob)+"被推举为当今武林盟主！\n");
+        command("say 果然厲害，恭喜你成為當今武林盟主！\n");
+        command("chat 哈哈哈，到底是長江後浪推前浪，一代新人換舊人！\n");
+        command("chat恭喜"+query("name", ob)+"被推舉為當今武林盟主！\n");
         set("fighting", 1, me);
         remove_call_out("do_copy");
         call_out("do_copy", 1, me, ob);
@@ -232,10 +232,10 @@ int do_recopy(object me, object ob)
         ob = this_player();
 
         if( me->is_fighting() || ob->is_fighting() || query("fighting", me) )
-                return notify_fail("现在这里正打的不亦乐乎！等会吧！\n");
+                return notify_fail("現在這裡正打的不亦樂乎！等會吧！\n");
 
         if( query("winner", me) != query("id", ob) )
-                return notify_fail("你不是现任武林盟主！\n");;
+                return notify_fail("你不是現任武林盟主！\n");;
 
         set("name",query("name",  ob), me);
         delete("party", ob);
@@ -362,7 +362,7 @@ int do_clone(object me, object ob)
         delete("fighting", me);
         set("backup/condition", ob->query_condition(), me);
         save();
-        tell_object(ob, "状态储存完毕。\n");
+        tell_object(ob, "狀態儲存完畢。\n");
         /*
         newob = new(MENGZHU);
         newob->move("/d/taishan/fengchan");
@@ -384,14 +384,14 @@ int do_recover()
         ob = this_player();
 
         if( me->is_fighting() || ob->is_fighting() || query("fighting", me) )
-                return notify_fail("现在这里正打的不亦乐乎！等会吧！\n");
+                return notify_fail("現在這裡正打的不亦樂乎！等會吧！\n");
 
         if( query("winner", me) != query("id", ob) || query("age", me)>query("age", ob) || 
              query("birthday", me) != query("birthday", ob) )
-                return notify_fail("你不是现任武林盟主！\n");
+                return notify_fail("你不是現任武林盟主！\n");
 
         if( time()-query("recover", me)<60 )
-                return notify_fail("状态暂时不能复元。\n");
+                return notify_fail("狀態暫時不能復元。\n");
 
         /* delete and copy skills */
         if( mapp(skill_status = ob->query_skills()) ) {
@@ -433,6 +433,6 @@ int do_recover()
         }
 
         set("recover", time(), me);
-        write("状态复元完毕。\n");
+        write("狀態復元完畢。\n");
         return 1;
 }

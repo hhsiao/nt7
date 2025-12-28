@@ -9,11 +9,11 @@ void create()
     set("race", "家畜");
     set("age", 2);
     set("long",
-        "这只野羊在低头吃草，见了人也不惊避。\n");
+        "這隻野羊在低頭吃草，見了人也不驚避。\n");
     set("combat_exp", 5000);
     set("shen_type", -1);
     set("attitude", "peaceful");
-    set("limbs", ({ "羊角", "前蹄", "后蹄" }) );
+    set("limbs", ({ "羊角", "前蹄", "後蹄" }) );
     set("verbs", ({ "hoof" }) );
 
     set("water", 200);

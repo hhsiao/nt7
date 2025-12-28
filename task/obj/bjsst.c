@@ -2,15 +2,15 @@
 inherit TASK;
 void create()
 {
-    set_name(WHT"白金丝手套"NOR, ({ "shou tao", "shoutao" }) ); 
+    set_name(WHT"白金絲手套"NOR, ({ "shou tao", "shoutao" }) ); 
     set_weight(1);
     if( clonep() )
        destruct(this_object());
     else {
-       set("unit", "双"); 
+       set("unit", "雙"); 
        set("material", "steel");
-       set("long", "这是一双白金丝手套，手套乃质地轻薄柔软，以极细极韧的白金丝织成。\n"); 
+       set("long", "這是一雙白金絲手套，手套乃質地輕薄柔軟，以極細極韌的白金絲織成。\n"); 
     }
-    set("owner", "小龙女"); 
+    set("owner", "小龍女"); 
     setup();
 }

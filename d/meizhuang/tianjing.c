@@ -5,8 +5,8 @@ void create()
 {
         set("short", "大天井");
         set("long", @LONG
-你走过一个大天井，天井左右各植一棵老梅，枝干如铁，极是苍
-劲。往南是梅庄大门，北面是大厅。
+你走過一個大天井，天井左右各植一棵老梅，枝幹如鐵，極是蒼
+勁。往南是梅莊大門，北面是大廳。
 LONG );
         set("exits", ([ /* sizeof() == 2 */
             "north" : __DIR__"dating",
@@ -29,19 +29,19 @@ int do_open(string arg)
         object room;
 
         if (query("exits/south"))
-                return notify_fail("大门已经是开着了。\n");
+                return notify_fail("大門已經是開著了。\n");
 
         if (!arg || (arg != "gate" && arg != "south"))
-                return notify_fail("你要开什么？\n");
+                return notify_fail("你要開什麼？\n");
 
         if(!( room = find_object(__DIR__"gate")) )
                 room = load_object(__DIR__"gate");
         if(objectp(room))
         {
                 set("exits/south", __DIR__"gate");
-                message_vision("$N使劲把大门打了开来。\n", this_player());
+                message_vision("$N使勁把大門打了開來。\n", this_player());
                 set("exits/north", __FILE__, room);
-                message("vision", "吱地一声，里面有人把大门打开了。\n", room);
+                message("vision", "吱地一聲，裡面有人把大門打開了。\n", room);
                 remove_call_out("close_gate");
                 call_out("close_gate", 10);
         }
@@ -58,8 +58,8 @@ void close_gate()
         if(objectp(room))
         {
                 delete("exits/south");
-                        message("vision", "护院上前把大门关了起来。\n", this_object());
+                        message("vision", "護院上前把大門關了起來。\n", this_object());
                 delete("exits/north", room);
-                message("vision", "乒地一声，里面有人把大门关上了。\n", room);
+                message("vision", "乒地一聲，裡面有人把大門關上了。\n", room);
         }
 }

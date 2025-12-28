@@ -1,9 +1,9 @@
-//                标准描述长度示例                                   |
-// 需要 DEBUG 之物件暂时存放之 房间
+//                標準描述長度示例                                   |
+// 需要 DEBUG 之物件暫時存放之 房間
 // by naihe  2002-10-31
 
 
-// 本文件已弃置，对应功能代码已全部删除。
+// 本文件已棄置，對應功能代碼已全部刪除。
 // naihe 0:01 03-10-21
 
 
@@ -15,7 +15,7 @@ void create()
     set("short",BLU"out room testing"NOR);
     set("long","
 
-             "HIR" 幻境游戏 DEBUG OBJ 暂存房间 "NOR"
+             "HIR" 幻境遊戲 DEBUG OBJ 暫存房間 "NOR"
 
 \n");
 
@@ -47,7 +47,7 @@ int do_limits()
        query("name", this_player()) !="奈何" ||
        !wizardp(this_player()) )
     {
-        write("本房间十分重要，请勿在此进行一些有可能造成失误的操作。\n");
+        write("本房間十分重要，請勿在此進行一些有可能造成失誤的操作。\n");
         return 1;
     }
 

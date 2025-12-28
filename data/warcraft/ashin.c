@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("嗷呜[2;37;0m[2;37;0m", ({"kilin"}));        
+        set_name("嗷嗚[2;37;0m[2;37;0m", ({"kilin"}));        
         set("gender", "男性");                
-        set("long", "嗷呜嗷呜嗷呜[2;37;0m
-它是莫信的魔幻兽。
+        set("long", "嗷嗚嗷嗚嗷嗚[2;37;0m
+它是莫信的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

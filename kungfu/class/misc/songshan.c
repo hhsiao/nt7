@@ -4,8 +4,8 @@ inherit "/inherit/char/punisher";
 
 void create()
 {
-        set_name("怪侠", ({ "guai xia", "guai", "xia" }));
-        set("long",  "他就是嵩山派的高手人称怪侠。\n");
+        set_name("怪俠", ({ "guai xia", "guai", "xia" }));
+        set("long",  "他就是嵩山派的高手人稱怪俠。\n");
         set("gender", "男性");
         set("age", 55);
         set("attitude", "peaceful");

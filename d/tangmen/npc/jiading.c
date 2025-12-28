@@ -27,7 +27,7 @@ void create()
         set_skill("blade", 40);
         set_skill("strike", 50);
 
-        create_family("唐门世家", 4, "家丁");
+        create_family("唐門世家", 4, "家丁");
 
         setup();
         carry_object("/clone/misc/cloth")->wear();

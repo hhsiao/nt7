@@ -9,11 +9,11 @@ void create()
 {
         set_name(NOR HIW "白玉" HIC "笏" NOR, ({"baiyu hu", "hu"}));
         set_weight(50);
-                set("unit", "块");
+                set("unit", "塊");
                 set("value", 1);
                 set("weight", 5);
                 set("material", "jade");
-                set("long", "这是块光洁无暇的法器，记载洞天中水晶头颅所授的玄奥意恉。\n");
+                set("long", "這是塊光潔無暇的法器，記載洞天中水晶頭顱所授的玄奧意恉。\n");
                 set("set_data", 1); 
                 set("auto_load", 1); 
                 set("no_sell", 1);
@@ -42,22 +42,22 @@ int fangqiall(object me)
         cg_data = query("dongtian/cg_data", me);
         mysks = cg_data["skills_id"];
         if (query_temp("flag_use_baiyuhu", me)) 
-                message_vision(NOR + "$N" + NOR + "把$n" + NOR + "紧紧贴在额头上。\n", me, this_object());
+                message_vision(NOR + "$N" + NOR + "把$n" + NOR + "緊緊貼在額頭上。\n", me, this_object());
         else
-                message_vision(append_color(NOR + YEL + "虚空中穿过来一只大如山岳的巨掌，死死按住$N" + NOR + YEL + "动弹不得。\n" + NOR, YEL), me);
-        foreach(string skid in keys(mysks)) {//to_chinese(skid) 老显示仙器 ?
+                message_vision(append_color(NOR + YEL + "虛空中穿過來一隻大如山嶽的巨掌，死死按住$N" + NOR + YEL + "動彈不得。\n" + NOR, YEL), me);
+        foreach(string skid in keys(mysks)) {//to_chinese(skid) 老顯示仙器 ?
                 if (query_temp("flag_use_baiyuhu", me)) {
-                        message_vision(NOR + "无数金色蝌蚪文涌向$n" + NOR + 
+                        message_vision(NOR + "無數金色蝌蚪文湧向$n" + NOR + 
                                 "，$N" + NOR + 
-                                "关于『" + NOR + CYN + (string)skid + NOR + "』的记忆被抹去了。\n" + NOR, me, this_object());
+                                "關於『" + NOR + CYN + (string)skid + NOR + "』的記憶被抹去了。\n" + NOR, me, this_object());
                 } else {
-                        message_vision(NOR + "无数金色蝌蚪文涌向巨掌的手心" + NOR + 
+                        message_vision(NOR + "無數金色蝌蚪文湧向巨掌的手心" + NOR + 
                                 "，$N" + NOR + 
-                                "关于『" + NOR + CYN + (string)skid + NOR + "』的记忆被抹去了。\n" + NOR, me);
+                                "關於『" + NOR + CYN + (string)skid + NOR + "』的記憶被抹去了。\n" + NOR, me);
                 }
                 me->delete_skill(skid); 
                 delete("can_perform/" + skid, me);
-                tell_object(me, NOR + "你忘记了关于『" + NOR + CYN + (string)skid + NOR + "』的所有内容(包括绝招)。\n" + NOR);
+                tell_object(me, NOR + "你忘記了關於『" + NOR + CYN + (string)skid + NOR + "』的所有內容(包括絕招)。\n" + NOR);
         }
         gcroom = get_object(cg_data["center"]);
         gcroom->cg_remove(me);
@@ -65,7 +65,7 @@ int fangqiall(object me)
         me->save();
         if (query_temp("flag_use_baiyuhu", me)) {
                 delete_temp("flag_use_baiyuhu", me);
-                log_file("static/dongtiancg", ctime(time()) + " 放弃 " + query("id", me) + " \n");
+                log_file("static/dongtiancg", ctime(time()) + " 放棄 " + query("id", me) + " \n");
                 destruct(this_object());
         } else {
                 log_file("static/dongtiancg", ctime(time()) + " 抹去 " + query("id", me) + " \n");
@@ -83,7 +83,7 @@ int do_use(string arg)
         }
         
         if (!is_learned(me)) {
-                tell_object(me, NOR "你并没有在任何洞天的传功楼学过东西。\n" NOR);
+                tell_object(me, NOR "你並沒有在任何洞天的傳功樓學過東西。\n" NOR);
                 return 1;
         }
         set_temp("flag_use_baiyuhu",1 , me);

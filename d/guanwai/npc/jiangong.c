@@ -1,4 +1,4 @@
-// jiangong 监工
+// jiangong 監工
 
 #include <ansi.h>
 
@@ -12,9 +12,9 @@ int   halt_working(object me);
 
 void create()
 {
-        set_name("监工", ({ "jian gong", "jiangong" }));
-        set("long", "这是一个监工，眼光不断闪烁，不知"
-                    "道在打什么坏主意\n");
+        set_name("監工", ({ "jian gong", "jiangong" }));
+        set("long", "這是一個監工，眼光不斷閃爍，不知"
+                    "道在打什麼壞主意\n");
         set("gender", "男性");
         set("age", 38);
         set("no_get", 1);
@@ -26,21 +26,21 @@ void create()
         set("combat_exp", 500000);
         set("shen_type", 1);
         set("inquiry", ([
-                "job"  : "你是想采矿(mine)啊，还是运货(transit)？",
-                "工作" : "你是想采矿(mine)啊，还是运货(transit)？",
-                "采矿" : (: ask_mine :),
+                "job"  : "你是想採礦(mine)啊，還是運貨(transit)？",
+                "工作" : "你是想採礦(mine)啊，還是運貨(transit)？",
+                "採礦" : (: ask_mine :),
                 "mine" : (: ask_mine :),
-                "运货" : (: ask_transit :),
+                "運貨" : (: ask_transit :),
                 "transit" : (: ask_transit :),
         ]));
         setup();
 
         set("chat_chance", 1);
         set("chat_msg", ({
-                "监工喝道：快！快给我干！\n",
-                "监工一扬鞭子，骂道：他奶奶的，你给我放老实点。\n",
-                "监工打量着四周，不知道在打什么主意。 \n",
-                "监工狠狠的抽了一个人几下，骂道：怎么把石头掉到地上了，你这笨蛋。\n",
+                "監工喝道：快！快給我幹！\n",
+                "監工一揚鞭子，罵道：他奶奶的，你給我放老實點。\n",
+                "監工打量著四周，不知道在打什麼主意。 \n",
+                "監工狠狠的抽了一個人幾下，罵道：怎麼把石頭掉到地上了，你這笨蛋。\n",
         }));
 }
 
@@ -57,19 +57,19 @@ mixed ask_mine()
 
         me = this_player();
         if( query_temp("job/move", me) )
-                return "让你搬的石料你搬了没有？再胡闹我抽死你！";
+                return "讓你搬的石料你搬了沒有？再胡鬧我抽死你！";
 
         if( query("combat_exp", me)<500000 )
-                return "你这点经验也来采石场混？随便一大哥看你不顺眼就把你放到了。";
+                return "你這點經驗也來採石場混？隨便一大哥看你不順眼就把你放到了。";
 
         if( query("combat_exp", me)>3000000 )
-                return "大侠你也来搬石头？免了免了，我还是另找人吧！";
+                return "大俠你也來搬石頭？免了免了，我還是另找人吧！";
 
         if( query("qi", me)<60 )
-                return "我看你上气不接下气了嘛，还是算了吧，我可不想闹出人命来。";
+                return "我看你上氣不接下氣了嘛，還是算了吧，我可不想鬧出人命來。";
 
         if (me->query_str() < 25)
-                return "我说你有多点力气，也来凑热闹？";
+                return "我說你有多點力氣，也來湊熱鬧？";
 
         if (! interactive(me))
                 return "...";
@@ -80,10 +80,10 @@ mixed ask_mine()
                               query_temp("job/move", $1) && 
                               query_ip_number($1) == query_ip_number($(me)) :));
         if (sizeof(obs) > 0)
-                return "现在已经有" + obs[0]->name() + "干活呢，你歇着吧。";
+                return "現在已經有" + obs[0]->name() + "幹活呢，你歇著吧。";
 
         set_temp("job/move", 1, me);
-        return "好，你就去山上搬石料下来(move)，我这工资可不菲哦。";
+        return "好，你就去山上搬石料下來(move)，我這工資可不菲哦。";
 }
 
 int do_mine(string arg)
@@ -92,15 +92,15 @@ int do_mine(string arg)
 
         me = this_player();
         if (me->is_busy())
-                return notify_fail("你正忙着呢，别着急。\n");
+                return notify_fail("你正忙著呢，彆著急。\n");
 
         if( !query_temp("job/move", me) )
-                return notify_fail("你又没领活，瞎忙活啥？\n");
+                return notify_fail("你又沒領活，瞎忙活啥？\n");
 
         set_temp("job/step", 1, me);
         me->start_busy(bind((: call_other, __FILE__, "working" :), me),
                        bind((: call_other, __FILE__, "halt_working" :), me));
-        tell_object(me, "你开始工作。\n");
+        tell_object(me, "你開始工作。\n");
         return 1;
 }
 
@@ -129,33 +129,33 @@ int working(object me)
                 break;
         case 2:
                 me->receive_damage("qi", 1);
-                msg = "$N走到山腰，道：我是来搬石料的。";
+                msg = "$N走到山腰，道：我是來搬石料的。";
                 break;
         case 3:
                 me->receive_damage("qi", 1);
-                msg = "来往的工人扫了$N一眼，似乎没看到。一个爆破手道：嗨，那儿，去那儿搬。";
+                msg = "來往的工人掃了$N一眼，似乎沒看到。一個爆破手道：嗨，那兒，去那兒搬。";
                 break;
         case 4:
                 me->receive_damage("qi", 6);
-                msg = "$N赶到爆破的地方，选了一块正合适自己的石料，抗在肩头。";
+                msg = "$N趕到爆破的地方，選了一塊正合適自己的石料，抗在肩頭。";
                 break;
         case 5:
         case 7:
         case 9:
                 me->receive_damage("qi", 8);
-                msg = "$N扛着石料，一步一步往山下挨。";
+                msg = "$N扛著石料，一步一步往山下挨。";
                 break;
         case 6:
                 me->receive_damage("qi", 9);
-                msg = "$N喘了口气，掂了掂肩头的石料，继续前进。";
+                msg = "$N喘了口氣，掂了掂肩頭的石料，繼續前進。";
                 break;
         case 8:
                 me->receive_damage("qi", 10);
-                msg = "$N觉得肩头的石料越来越重，只好换一下肩扛。";
+                msg = "$N覺得肩頭的石料越來越重，只好換一下肩扛。";
                 break;
         default:
                 me->receive_damage("qi", 5);
-                msg = "$N把石料扛到$n那里，把石料装上车子，总算松了口气。";
+                msg = "$N把石料扛到$n那裡，把石料裝上車子，總算鬆了口氣。";
                 finish = 1;
                 break;
         }
@@ -165,11 +165,11 @@ int working(object me)
         {
                 object ob;
                 if (me->query_str() >= 30)
-                        msg += "$n看了$N搬的石料，讶道：厉害"
-                               "啊，这么大块石料也搬下来了！\n";
+                        msg += "$n看了$N搬的石料，訝道：厲害"
+                               "啊，這麼大塊石料也搬下來了！\n";
                 else
-                        msg += "$n看了$N搬的石料，道：行，干得"
-                               "不赖！喏，这是你的工钱。\n";
+                        msg += "$n看了$N搬的石料，道：行，幹得"
+                               "不賴！喏，這是你的工錢。\n";
                 delete_temp("job/move", me);
                 delete_temp("job/step", me);
 
@@ -202,11 +202,11 @@ int halt_working(object me)
 {
         if( query_temp("job/step", me) >= 4 )
         {
-                message_vision("$N把肩头的石料一仍，骂骂咧咧道："
-                               "累死我了，真不是人干的活！\n", me);
+                message_vision("$N把肩頭的石料一仍，罵罵咧咧道："
+                               "累死我了，真不是人乾的活！\n", me);
         } else
         {
-                message_vision("$N叹了口气，道：今天不干了！\n", me);
+                message_vision("$N嘆了口氣，道：今天不幹了！\n", me);
         }
 
         delete_temp("job/move", me);
@@ -225,58 +225,58 @@ mixed ask_transit()
         if (! stringp(startroom = query("startroom")) ||
             find_object(startroom) != environment())
                 // not in start room
-                return "我...我有点头晕...";
+                return "我...我有點頭暈...";
 
         me = this_player();
 
         if( query("score", me)<1000 )
-                return "你这人阅历这些浅，也敢接这差使？";
+                return "你這人閱歷這些淺，也敢接這差使？";
 
         if( query("combat_exp", me)<30000 )
-                return "一边儿去！你这人本事太差，我可不放心让你押货！";
+                return "一邊兒去！你這人本事太差，我可不放心讓你押貨！";
 
         if( objectp(query_temp("job/gw_cart", me)) )
-                return "上次让你送的你完事了么？快去！别罗嗦！";
+                return "上次讓你送的你完事了麼？快去！別羅嗦！";
 
         if( (amount=query("job/gw_stone", me))>0 )
         {
                 amount = (amount + 99) / 20;
-                // 五天(MUD时间)内如果货物还没有送达，则不能领
-                message_sort("$N冷笑一声，对$n道：“" + me->name(1) +
+                // 五天(MUD時間)內如果貨物還沒有送達，則不能領
+                message_sort("$N冷笑一聲，對$n道：“" + me->name(1) +
                              "，上次你送的石料... 哼！你本事"
-                             "低微，这次我不多加追究了，可是"
-                             "那一车石料岂能就这样白白的丢了"
-                             "？你先赔了" + chinese_number(amount) +
-                             "两白银再说！”\n",
+                             "低微，這次我不多加追究了，可是"
+                             "那一車石料豈能就這樣白白的丟了"
+                             "？你先賠了" + chinese_number(amount) +
+                             "兩白銀再說！”\n",
                              this_object(), me);
                 return 1;
         }
 
         c = environment(me)->query_product_amount("stone");
         if (c < 800)
-                return "现在还没有多少石料呢，不忙运走，你等等吧。";
+                return "現在還沒有多少石料呢，不忙運走，你等等吧。";
         else
         if (c < 1200)
-                message_vision("$N看了看$n，道：“也好，虽然"
-                               "现在还不多，不过也差不多了。”\n",
+                message_vision("$N看了看$n，道：“也好，雖然"
+                               "現在還不多，不過也差不多了。”\n",
                                this_object(), me);
         else
         if (c < 2000)
-                message_vision("$N点点头，对$n道：“好吧，就"
-                               "快满一车了，就发了吧。”\n",
+                message_vision("$N點點頭，對$n道：“好吧，就"
+                               "快滿一車了，就發了吧。”\n",
                                this_object(), me);
         if (c < 10000)
                 message_vision("$N看到$n，招呼道：“正好，正"
-                               "打算发车呢，就你来吧！”\n",
+                               "打算發車呢，就你來吧！”\n",
                                this_object(), me);
         else
         if (c < 30000)
-                message_vision("$N连忙道：“快准备吧，这里已"
-                               "经有好几车了！”\n",
+                message_vision("$N連忙道：“快準備吧，這裡已"
+                               "經有好幾車了！”\n",
                                this_object(), me);
         else
                 message_vision("$N看到$n，大喜道：“正好！眼"
-                               "看这库里就要满了，你来的正好！”\n",
+                               "看這庫裡就要滿了，你來的正好！”\n",
                                this_object(), me);
 
         if (c > 3000) c = 3000;
@@ -288,17 +288,17 @@ mixed ask_transit()
         set_temp("goods/id", "stone", ob);
         set_temp("goods/unit", "斤", ob);
         set_temp("goods/amount", c, ob);
-        message_sort("$N吆喝两声，叫人推过一"+query("unit", ob)+
-                     ob->name() + "来，回头对" + me->name() +
-                     "道：“来！你把这车货物送到长安工部石厂去，"
-                     "你别把石头不当钱，丢了一样要你的命！”\n",
+        message_sort("$N吆喝兩聲，叫人推過一"+query("unit", ob)+
+                     ob->name() + "來，回頭對" + me->name() +
+                     "道：“來！你把這車貨物送到長安工部石廠去，"
+                     "你別把石頭不當錢，丟了一樣要你的命！”\n",
                      this_object(), me);
-        tell_object(me,YEL+name()+"交给你一"+query("unit", ob)+
+        tell_object(me,YEL+name()+"交給你一"+query("unit", ob)+
                         ob->name() + "。\n" NOR);
         ob->move(environment(me));
         ob->set_owner(me);
 
-        // 记录这次任务的信息
+        // 記錄這次任務的信息
         set("job/gw_stone", c, me);
         set_temp("job/gw_cart", ob, me);
         set_temp("job/info", "gw_stone", ob);
@@ -319,20 +319,20 @@ int accept_object(object who, object ob)
                 amount = (amount + 99) / 20;
                 if (ob->value() < amount * 100)
                 {
-                        message_vision("$N看了看$n递过来的钱，大喝"
-                                       "道：“就这点？一边儿去！”\n",
+                        message_vision("$N看了看$n遞過來的錢，大喝"
+                                       "道：“就這點？一邊兒去！”\n",
                                        this_object(), who);
                         return 0;
                 }
 
-                message_vision("$N鼻子哼了一声，接过" + ob->name() +
+                message_vision("$N鼻子哼了一聲，接過" + ob->name() +
                                "，道：“算了，就不追究你了。”\n",
                                this_object(), who);
                 delete("job/gw_stone", who);
         } else
         {
-                message_vision("$N眉开眼笑，把" + ob->name() +
-                               "接了过来，收入包囊，却不理会$n。\n",
+                message_vision("$N眉開眼笑，把" + ob->name() +
+                               "接了過來，收入包囊，卻不理會$n。\n",
                                this_object(), who);
         }
 

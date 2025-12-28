@@ -86,7 +86,7 @@ int query_neili_limit()
 
         fam = query("family/family_name");
         if (query("class") == "bonze" &&
-            (fam == "雪山寺" || fam == "少林派" || fam == "峨嵋派" || fam == "血刀门"))
+            (fam == "雪山寺" || fam == "少林派" || fam == "峨嵋派" || fam == "血刀門"))
                 neili_limit += 500;
 
         neili_limit += this_object()->query_all_buff("max_neili"); 
@@ -118,7 +118,7 @@ int query_current_neili_limit()
 
         fam = query("family/family_name");
         if (query("class") == "bonze" &&
-            (fam == "雪山寺" || fam == "少林派" || fam == "峨嵋派" || fam == "血刀门"))
+            (fam == "雪山寺" || fam == "少林派" || fam == "峨嵋派" || fam == "血刀門"))
                 neili += 500;
 
         neili += this_object()->query_all_buff("max_neili"); 
@@ -252,15 +252,15 @@ void die()
         if (objectp(killer))
         {
                 CHANNEL_D->do_channel(find_object(COMBAT_D), "rumor", 
-                        "我看见" + this_object()->name() + "被" + killer->name() +
-                        "杀害了，真是惨无人道啊！\n" NOR);
+                        "我看見" + this_object()->name() + "被" + killer->name() +
+                        "殺害了，真是慘無人道啊！\n" NOR);
 
                   if (playerp(killer))
                           killer->apply_condition("killer", 1000 + killer->query_condition("killer"));
         } else
                 CHANNEL_D->do_channel(find_object(COMBAT_D), "rumor", 
-                        "听说" + this_object()->name() +
-                        "死了，死状惨不忍睹！\n" NOR);
+                        "聽說" + this_object()->name() +
+                        "死了，死狀慘不忍睹！\n" NOR);
 
         if (objectp(corpse = CHAR_D->make_corpse(this_object(), killer)))
                 corpse->move(environment());

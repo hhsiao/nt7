@@ -1,4 +1,4 @@
-// 店铺继承
+// 店鋪繼承
 // Create by smallfish.
 // Update by jjgod.
 // Update by Lonely@nitan.org
@@ -11,16 +11,16 @@ inherit F_SAVE;
 
 class goods
 {
-        mapping data; // 动态物品数据
+        mapping data; // 動態物品數據
         string name;
         string id;
         string *ids;
         string type;
         string file;
         string unit;
-        int amount;  // 数量
-        mixed value;   // intp为gold，stringp为$NT
-        int number;  // 编号
+        int amount;  // 數量
+        mixed value;   // intp為gold，stringp為$NT
+        int number;  // 編號
 }
 
 class goods *all_goods = ({});
@@ -44,10 +44,10 @@ int add_one_good(object obj, mixed price, int amount)
 
         if( obj->is_weapon() )           type = "武器";
         else if( obj->is_armor() )       type = "防具";
-        else if( obj->is_liquid() )      type = "饮具";
+        else if( obj->is_liquid() )      type = "飲具";
         else if( obj->is_food() )        type = "食物";
         else if( obj->is_container() )   type = "容器";
-        else if( obj->is_book() )        type = "书籍";
+        else if( obj->is_book() )        type = "書籍";
         else                             type = "其它";
 
         file = base_name(obj);
@@ -111,59 +111,59 @@ public string do_stock(object ob, object me, string arg)
 
         room = environment(ob);
 
-        // intp(value) 为gold, stringp(value) 为$NT
+        // intp(value) 為gold, stringp(value) 為$NT
         if( !query("shop_type", room) )
-                return "对不起，该店铺目前已经被巫师关闭。\n";
+                return "對不起，該店鋪目前已經被巫師關閉。\n";
 
         if (! arg || (sscanf(arg, "%s value %d", arg, value) != 2 &&
             sscanf(arg, "%s nt %s", arg, value) != 2) )
-                return "指令格式：stock <货物> value * ( 其中 * 是以铜板作单位的价格 )或\n"
-                       "          stock <货物> nt * ( 其中 * 是以 $NT 作单位的价格 )\n";
+                return "指令格式：stock <貨物> value * ( 其中 * 是以銅板作單位的價格 )或\n"
+                       "          stock <貨物> nt * ( 其中 * 是以 $NT 作單位的價格 )\n";
 
         if (! value)
-                return "指令格式：stock <货物> value * ( 其中 * 是以铜板作单位的价格 )或\n"
-                       "          stock <货物> nt * ( 其中 * 是以 $NT 作单位的价格 )\n";
+                return "指令格式：stock <貨物> value * ( 其中 * 是以銅板作單位的價格 )或\n"
+                       "          stock <貨物> nt * ( 其中 * 是以 $NT 作單位的價格 )\n";
 
         if (intp(value) && value > 100000000 && !wizardp(me))
-                return "店铺最多标价一万两黄金，你就别那么心黑了吧。\n";
+                return "店鋪最多標價一萬兩黃金，你就別那麼心黑了吧。\n";
 
         if (stringp(value) && to_int(value) < 0 || to_int(value) > 1000000)
-                return "店铺最多标价一百万$NT，你就别那么心黑了吧。\n";
+                return "店鋪最多標價一百萬$NT，你就別那麼心黑了吧。\n";
 
         if (! (item = present(arg, me)) || ! objectp(item))
-                return "你身上并没有这个货物啊！\n";
+                return "你身上並沒有這個貨物啊！\n";
 
         if( query("no_sell", item) )
-                return "这个东西太招摇了，还是别拿出来贩卖。\n";
+                return "這個東西太招搖了，還是別拿出來販賣。\n";
 
         if( query("no_get", item) || query("no_drop", item) || 
             query("no_put", item) || query("no_beg", item) || 
             query("no_steal", item) || query("no_drop", item) || 
             query("item_make", item) || query("owner", item) )
-                return "这个东西摆不上货架，就暂时别拿出来卖啦。\n";
+                return "這個東西擺不上貨架，就暫時別拿出來賣啦。\n";
 
         if (item->is_item_make())
-                return "这个东西太招摇了，还是别拿出来贩卖。\n";
+                return "這個東西太招搖了，還是別拿出來販賣。\n";
 
         if( query("wiz_only", item) && !wizardp(me) )
-                return "这个东西只能在巫师商店里卖。\n";
+                return "這個東西只能在巫師商店裡賣。\n";
 
         if (item->is_character())
-                return "你不能贩卖活物。\n";
+                return "你不能販賣活物。\n";
 
         if( query("money_id", item) )
-                return "你把钱也拿来出售？\n";
+                return "你把錢也拿來出售？\n";
 
         switch(query("equipped", item)){
         case "worn":
-                return item->name() + "必须先脱下来才能存放。\n";
+                return item->name() + "必須先脫下來才能存放。\n";
 
         case "wielded":
-                return item->name() + "必须先解除装备才能存放。\n";
+                return item->name() + "必須先解除裝備才能存放。\n";
         }
 
         if (sizeof(all_goods) >= 80)
-                return "你店铺上的东西太多了，先收几种货物再摆吧。\n";
+                return "你店鋪上的東西太多了，先收幾種貨物再擺吧。\n";
 
         if (item->query_amount() && item->query_amount() > 1)
         {
@@ -176,11 +176,11 @@ public string do_stock(object ob, object me, string arg)
         name = item->name(1);
         add_one_good(item, value, 1);
 
-        message_vision(HIW "$N" HIW "将『" HIG + name + HIW "』标上" HIY +
-                (intp(value) ? MONEY_D->price_str(value) : (value+"NT")) + HIW "的价格开始出售。\n" NOR, me);
+        message_vision(HIW "$N" HIW "將『" HIG + name + HIW "』標上" HIY +
+                (intp(value) ? MONEY_D->price_str(value) : (value+"NT")) + HIW "的價格開始出售。\n" NOR, me);
         room->save();
 
-        return "你摆置好了货物。\n";
+        return "你擺置好了貨物。\n";
 }
 
 public string do_unstock(object ob, object me, string arg)
@@ -191,16 +191,16 @@ public string do_unstock(object ob, object me, string arg)
         seteuid(getuid());
         room = environment(ob);
         if( !query("shop_type", room) )
-                return "对不起，该店铺目前已经被巫师关闭。\n";
+                return "對不起，該店鋪目前已經被巫師關閉。\n";
 
         if (! arg)
-                return "指令格式：unstock <货物>\n";
+                return "指令格式：unstock <貨物>\n";
 
         if (! (n = sizeof(all_goods)))
-                return "你现在还没有摆上任何货物。\n";
+                return "你現在還沒有擺上任何貨物。\n";
 
         if (sizeof(all_inventory(me)) >= MAX_ITEM_CARRIED && !wizardp(me))
-                return "你身上的东西太多了，没法从货架上取东西。\n";
+                return "你身上的東西太多了，沒法從貨架上取東西。\n";
 
         for( i = 0; i < n; i++ )
         {
@@ -210,7 +210,7 @@ public string do_unstock(object ob, object me, string arg)
                 {
                         if( !(all_goods[i]->amount) ) {
                                 all_goods[i] = 0;
-                                return "现在"+query("short", room)+"的货架上并没有这样货物。\n";
+                                return "現在"+query("short", room)+"的貨架上並沒有這樣貨物。\n";
                         }
 
                         all_goods[i]->amount -= 1;
@@ -230,16 +230,16 @@ public string do_unstock(object ob, object me, string arg)
         }
         all_goods -= ({ 0 });
 
-        message_vision(HIW "$N" HIW "将『" HIG + item->name(1) + HIW"』从货架上取下来不卖了。\n" NOR, me);
+        message_vision(HIW "$N" HIW "將『" HIG + item->name(1) + HIW"』從貨架上取下來不賣了。\n" NOR, me);
 
         room->save();
 
         if (! item->move(me))
         {
                 item->move(environment(me));
-                tell_object(me, "可是你已经拿不动了，只好把" + item->name(1) + NOR "放在地上。\n");
+                tell_object(me, "可是你已經拿不動了，只好把" + item->name(1) + NOR "放在地上。\n");
         }
-        return "你取好了货物。\n";
+        return "你取好了貨物。\n";
 }
 
 public varargs string do_list(object ob, object me, string arg)
@@ -249,7 +249,7 @@ public varargs string do_list(object ob, object me, string arg)
         object room;
 
         if( !wizardp(me) && me->query_condition("killer") )
-                return CYN "店铺不做杀人犯的生意！\n" NOR;
+                return CYN "店鋪不做殺人犯的生意！\n" NOR;
 
         if( me->is_busy() ) {
                 return BUSY_MESSAGE;
@@ -257,30 +257,30 @@ public varargs string do_list(object ob, object me, string arg)
 
         room = environment(ob);
         if( !query("shop_type", room) )
-                return "对不起，该店铺目前已经被巫师关闭。\n";
+                return "對不起，該店鋪目前已經被巫師關閉。\n";
 
         if( query("ban", room) && 
                 member_array(query("id", me),query("ban", room)) != -1 )
-                return "你是这家店铺不受欢迎的人物，无法购买东西。\n";
+                return "你是這家店鋪不受歡迎的人物，無法購買東西。\n";
 
         if( !sizeof(all_goods) ) {
-                return "现在"+query("short", room)+"目前并没有出售任何货物。\n";
+                return "現在"+query("short", room)+"目前並沒有出售任何貨物。\n";
         }
 
-        output = "该店铺目前出售以下物品：\n";
+        output = "該店鋪目前出售以下物品：\n";
 
         foreach( item in all_goods ) {
-                if( item->amount < 0 ) desc = "大量供应";
-                else if( item->amount == 0 ) desc = "暂时缺货";
+                if( item->amount < 0 ) desc = "大量供應";
+                else if( item->amount == 0 ) desc = "暫時缺貨";
                 else if( item->amount < 11 )
-                        desc = sprintf("仅剩%2d%2s", item->amount, item->unit);
+                        desc = sprintf("僅剩%2d%2s", item->amount, item->unit);
                 else if( item->amount < 31 )
-                        desc = sprintf("还剩%2d%2s", item->amount, item->unit);
+                        desc = sprintf("還剩%2d%2s", item->amount, item->unit);
                 else
-                        desc = "货源充足";
+                        desc = "貨源充足";
 
                 output += sprintf("(%3d)%" + sprintf("%d", (30 + color_len(item->name))) +
-                                  "-s：每%s%s" CYN "(现货%s)\n" NOR,
+                                  "-s：每%s%s" CYN "(現貨%s)\n" NOR,
                                   item->number,
                                   item->name + "(" + item->id + ")",
                                   item->unit,
@@ -289,7 +289,7 @@ public varargs string do_list(object ob, object me, string arg)
         }
 
         if (query("invite/" + query("id",me),room))
-                output += WHT"您是本店贵宾，购买所有货物均享受"HIW+chinese_number(query("invite/"+query("id",me),room))+HIW"折"NOR+WHT"的优惠。\n" NOR;
+                output += WHT"您是本店貴賓，購買所有貨物均享受"HIW+chinese_number(query("invite/"+query("id",me),room))+HIW"折"NOR+WHT"的優惠。\n" NOR;
         return output;
 }
 
@@ -303,7 +303,7 @@ public int do_buy(object obj, object me, string arg)
         room = environment(obj);
         if( !query("shop_type", room) )
         {
-               tell_object(me, "对不起，该店铺目前已经被巫师关闭。\n");
+               tell_object(me, "對不起，該店鋪目前已經被巫師關閉。\n");
                return 1;
         }
 
@@ -311,37 +311,37 @@ public int do_buy(object obj, object me, string arg)
                 member_array(query("id", me),query("ban", room)) != -1 )
         {
 
-               tell_object(me, "你是这家店铺不受欢迎的人物，无法购买东西。\n");
+               tell_object(me, "你是這家店鋪不受歡迎的人物，無法購買東西。\n");
                return 1;
         }
 
         if(me->is_busy())
         {
-                tell_object(me, "什么事都得等你忙完再说吧！\n");
+                tell_object(me, "什麼事都得等你忙完再說吧！\n");
                 return 1;
         }
 
         if (! arg)
         {
-                tell_object(me, "你要买什么东西？\n");
+                tell_object(me, "你要買什麼東西？\n");
                 return 1;
         }
 
         if (sizeof(all_inventory(me)) >= MAX_ITEM_CARRIED)
         {
-                tell_object(me, "你身上的东西太多了，先处理一下再买东西吧。\n");
+                tell_object(me, "你身上的東西太多了，先處理一下再買東西吧。\n");
                 return 1;
         }
 
         n = sizeof(all_goods);
         if( !n ) {
-                tell_object(me, "目前%s没有可以卖的东西。\n");
+                tell_object(me, "目前%s沒有可以賣的東西。\n");
                 return 1;
         }
 
 
         {
-                tell_object(me, "该店铺并没有出售这样货物。\n");
+                tell_object(me, "該店鋪並沒有出售這樣貨物。\n");
                 return 1;
         }
 
@@ -350,7 +350,7 @@ public int do_buy(object obj, object me, string arg)
                 ||  filter_color(all_goods[i]->name) == arg
                 ||  sprintf("%d", all_goods[i]->number) == arg) {
                         if( !(all_goods[i]->amount) ) {
-                                tell_object(me, sprintf("目前这%s" CYN "缺货，您过一段时间再来吧",
+                                tell_object(me, sprintf("目前這%s" CYN "缺貨，您過一段時間再來吧",
                                         all_goods[i]->name));
                                 return 1;
                         }
@@ -360,7 +360,7 @@ public int do_buy(object obj, object me, string arg)
 
         value = all_goods[i]->value;
 
-        // 如果是贵宾，则有优惠
+        // 如果是貴賓，則有優惠
         if (query("invite/" + query("id",me),room))
         {
                 if (intp(value))
@@ -374,11 +374,11 @@ public int do_buy(object obj, object me, string arg)
                 switch (SHOP_D->player_pay(me, obj, value))
                 {
                 case 0:
-                        tell_object(me, CYN + obj->name(1) + NOR + CYN "冷笑道：穷光蛋，一边呆着去。\n" NOR);
+                        tell_object(me, CYN + obj->name(1) + NOR + CYN "冷笑道：窮光蛋，一邊待著去。\n" NOR);
                         return 1;
 
                 case 2:
-                        tell_object(me, CYN + obj->name(1) + NOR + CYN "皱眉道：您还有没有零钱啊？银票我可找不开。\n" NOR);
+                        tell_object(me, CYN + obj->name(1) + NOR + CYN "皺眉道：您還有沒有零錢啊？銀票我可找不開。\n" NOR);
                         return 1;
 
                 default:
@@ -394,11 +394,11 @@ public int do_buy(object obj, object me, string arg)
                                 all_goods[i] = 0;
                         if (ob->query_amount())
                         {
-                                message_vision("$N从$n那里买下了" + ob->short() + "。\n", me, obj);
+                                message_vision("$N從$n那裡買下了" + ob->short() + "。\n", me, obj);
                         }
                         else
                         {
-                                message_vision("$N从$n那里买下了一"+query("unit", ob)+query("name", ob)+"。\n",me,obj);
+                                message_vision("$N從$n那裡買下了一"+query("unit", ob)+query("name", ob)+"。\n",me,obj);
                         }
 
                         ob->move(me, 1);
@@ -408,7 +408,7 @@ public int do_buy(object obj, object me, string arg)
                 string owner=query("owner", environment(obj));
                 if (!MEMBER_D->player_pay(me, to_int(value), owner))
                 {
-                        tell_object(me, CYN + obj->name(1) + NOR + CYN "冷笑道：你没有足够的$NT，还是先去冲值吧。\n" NOR);
+                        tell_object(me, CYN + obj->name(1) + NOR + CYN "冷笑道：你沒有足夠的$NT，還是先去衝值吧。\n" NOR);
                         return 1;
                 }
                 if( !all_goods[i]->data )
@@ -424,11 +424,11 @@ public int do_buy(object obj, object me, string arg)
                                 all_goods[i] = 0;
                 if (ob->query_amount())
                 {
-                        message_vision("$N从$n那里买下了" + ob->short() + "。\n", me, obj);
+                        message_vision("$N從$n那裡買下了" + ob->short() + "。\n", me, obj);
                 }
                 else
                 {
-                        message_vision("$N从$n那里买下了一"+query("unit", ob)+query("name", ob)+"。\n",me,obj);
+                        message_vision("$N從$n那裡買下了一"+query("unit", ob)+query("name", ob)+"。\n",me,obj);
                 }
 
                 ob->move(me, 1);
@@ -452,19 +452,19 @@ string long()
 {
         switch (query("shop_type"))
         {
-        // 店铺关闭时的描述
+        // 店鋪關閉時的描述
         case 0  : return query("long");
-        // 店铺开放时的描述
+        // 店鋪開放時的描述
         default :
                 if (stringp(query("apply/long")))
                         return sort_string(query("apply/long"), 60, 4);
                 else
-                // 默认描述
+                // 默認描述
                 if (! stringp(query("open_long")))
                         return @LONG
-这里是一间装饰得非常豪华的店铺，铺面宽敞明亮，柜子
-上摆满了各式各样、琳琅满目的货物。此时一位伙计正忙里忙
-外地招呼着客人。
+這裡是一間裝飾得非常豪華的店鋪，鋪面寬敞明亮，櫃子
+上擺滿了各式各樣、琳琅滿目的貨物。此時一位夥計正忙裡忙
+外地招呼著客人。
 LONG;
                 // 特殊描述
                 else return query("open_long");

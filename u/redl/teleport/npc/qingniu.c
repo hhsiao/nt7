@@ -1,4 +1,4 @@
-//开始阅读文件：/kungfu/class/misc/houwang.c
+//開始閱讀文件：/kungfu/class/misc/houwang.c
 //redl 2015/5
 #include <ansi.h>
 inherit NPC;
@@ -16,9 +16,9 @@ void heart_beat()
 void create()
 {
         set_name("青牛", ({ "qing niu", "qing", "niu" }));
-        set("race", "野兽");
+        set("race", "野獸");
         set("age", 48);
-        set("long", "这是一只野蛮的畜生，四蹄健壮牛角狰狞。\n");
+        set("long", "這是一隻野蠻的畜生，四蹄健壯牛角猙獰。\n");
         set("rank_info/rude", "畜生");
         set("rank_info/respect", "老牛");
         set("combat_exp", 5000000000);

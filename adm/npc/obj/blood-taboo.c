@@ -10,8 +10,8 @@ void create()
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIW "一瓶莹剔透血之禁忌，散射出绚目的光彩。\n"
-                            "他可以用来直接解除(jiechu)你与魔幻兽之间签订的血之盟约。\n" NOR);
+                set("long", HIW "一瓶瑩剔透血之禁忌，散射出絢目的光彩。\n"
+                            "他可以用來直接解除(jiechu)你與魔幻獸之間簽訂的血之盟約。\n" NOR);
                 set("value", 1);
                 set("no_sell", 1);
                 set("unit", "瓶");
@@ -34,14 +34,14 @@ int do_remove(string arg)
         me = this_player();
 
         if( !query("warcraft", me) )
-                return notify_fail("你没有和任何一只魔幻兽签订契约，无需解除血之盟约。\n");
+                return notify_fail("你沒有和任何一隻魔幻獸簽訂契約，無需解除血之盟約。\n");
         
         filename = "/data/warcraft/" + query("id", me);
         if (file_size(filename + ".c") > 0) 
         {
                 if (warcraft = find_object(filename)) 
                 {
-                        tell_object(me, HIR "你与" + warcraft->name() + HIR "之间的血之盟约已经解除。\n" NOR);
+                        tell_object(me, HIR "你與" + warcraft->name() + HIR "之間的血之盟約已經解除。\n" NOR);
                         destruct(warcraft); 
                 }
                 

@@ -1,22 +1,22 @@
 // This program is a part of NITAN MudLIB
-// stealth.c 仙隐迷踪
+// stealth.c 仙隱迷蹤
 // Created by Lonely 04/05/2009
 
 #include <ansi.h>
 
 inherit F_CLEAN_UP;
 
-string name() { return HIK "仙隐迷踪" NOR; }
+string name() { return HIK "仙隱迷蹤" NOR; }
 
 int perform(object me, string skill)
 {
         if( !query("yuanshen_level", me) )
-                return notify_fail("你尚未转世重生，无法使用此技能！\n");
+                return notify_fail("你尚未轉世重生，無法使用此技能！\n");
             
         if( time()-query("special/stealth", me)<21600 )
-                return notify_fail("你要过些时候才能再用此技能！\n");
+                return notify_fail("你要過些時候才能再用此技能！\n");
 
-        message_vision(HIK "$N" HIK "施展出仙隐迷踪，身影越来越淡，渐渐隐身不见了。\n" NOR, me);
+        message_vision(HIK "$N" HIK "施展出仙隱迷蹤，身影越來越淡，漸漸隱身不見了。\n" NOR, me);
 
         set_temp("apply/shade_vision", 1, me);
         set("special/stealth", time(), me);
@@ -32,6 +32,6 @@ int perform(object me, string skill)
 void remove_effect(object me)
 {
         delete_temp("apply/shade_vision", me);
-        tell_object(me, "你施展完仙隐迷踪，松了一口气。\n");
-        message_vision(HIK "$N" HIK "的身形逐渐显露出来，变的清晰可见。\n" NOR, me);
+        tell_object(me, "你施展完仙隱迷蹤，鬆了一口氣。\n");
+        message_vision(HIK "$N" HIK "的身形逐漸顯露出來，變的清晰可見。\n" NOR, me);
 }

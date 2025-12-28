@@ -11,11 +11,11 @@ void death_msg();
 void create()
 {
         set_name(HIW "扶桑武士" NOR, ({ "fusang wushi", "fusang", "wushi",}));
-        set("title", HIR "来自扶桑剑气道家的" NOR);
+        set("title", HIR "來自扶桑劍氣道家的" NOR);
         set("gender", "男性");
         set("age", 22);
         set("long", @LONG
-这是一位来自扶桑的武士，看上去异常冷漠。
+這是一位來自扶桑的武士，看上去異常冷漠。
 LONG);
         set("attitude", "friendly");
         set("str", 31);
@@ -100,8 +100,8 @@ LONG);
         ]));
 
         set("drops", ([
-                "RA&RANDOM60"    :       100,   // 低级普通装备
-                "RA&RANDOM70"    :       40,    // 低级普通装备
+                "RA&RANDOM60"    :       100,   // 低級普通裝備
+                "RA&RANDOM70"    :       40,    // 低級普通裝備
                 "FI&/clone/armor/fusang/heima-yi"       : 20,
                 "FI&/clone/armor/qianshou-guanyin"      : 5,
                 "FI&/clone/armor/mingwang-xiang"        : 10,
@@ -146,7 +146,7 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->start_busy(5 + random(6));
         me->receive_wound("qi", 1500 + random(1600), ob);
-        return HIY "$N" HIY "怒喝一声，奋力反抗，竟逼得$n" HIY "手忙脚乱。\n" NOR;
+        return HIY "$N" HIY "怒喝一聲，奮力反抗，竟逼得$n" HIY "手忙腳亂。\n" NOR;
 }
 
 void heart_beat()
@@ -166,7 +166,7 @@ void random_move()
                 env = environment(this_object());
                 message_vision("$N急急忙忙的走了。\n", this_object());
 
-                CHANNEL_D->channel_broadcast("news", HIG "听说" + HIW + env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一带出现的" +
+                CHANNEL_D->channel_broadcast("news", HIG "聽說" + HIW + env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一帶出現的" +
                         HIR + this_object()->short() + HIG "消失了。\n" NOR);
 
                 destruct(this_object());
@@ -177,7 +177,7 @@ void random_move()
 
 void death_msg()
 {
-        command("mess 中原武学果然名不虚传 ……");
-        CHANNEL_D->channel_broadcast("mess", "听说" + name() + HIW "被江湖人士所杀。" NOR);
+        command("mess 中原武學果然名不虛傳 ……");
+        CHANNEL_D->channel_broadcast("mess", "聽說" + name() + HIW "被江湖人士所殺。" NOR);
 }
 

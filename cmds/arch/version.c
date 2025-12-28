@@ -19,9 +19,9 @@ int main(object me, string arg)
                         return 0;
 
                 if (VERSION_D->clear_syn_info())
-                        write("清除了版本精灵正在的同步信息。\n");
+                        write("清除了版本精靈正在的同步信息。\n");
                 else
-                        write("目前版本精灵没有任何同步信息。\n");
+                        write("目前版本精靈沒有任何同步信息。\n");
 
                 return 1;
         }
@@ -30,7 +30,7 @@ int main(object me, string arg)
         {
                 if (! SECURITY_D->valid_grant(me, "(arch)"))
                 {
-                        write("你没有权限同步" + LOCAL_MUD_NAME() +
+                        write("你沒有權限同步" + LOCAL_MUD_NAME() +
                               "的版本。\n");
                         return 1;
                 }
@@ -39,7 +39,7 @@ int main(object me, string arg)
                     intp(ver=query("VERSION_NO", get_object(VERSION_D))) && 
                     time() > ver && time() - ver < 86400)
                 {
-                        write("这个版本是最近一天生成的，你现在没有必要再同步。\n");
+                        write("這個版本是最近一天生成的，你現在沒有必要再同步。\n");
                         return 1;
                 }
 
@@ -50,7 +50,7 @@ int main(object me, string arg)
         {
                 if (! SECURITY_D->valid_grant(me, "(admin)"))
                 {
-                        write("你没有权限读取服务器上的文件。\n");
+                        write("你沒有權限讀取服務器上的文件。\n");
                         return 1;
                 }
 
@@ -78,22 +78,22 @@ void show_version()
 
         if( !intp(ver=query("VERSION_NO", get_object(VERSION_D))) || !ver )
         {
-                write(sprintf("%s目前运行的版本不祥。\n",
+                write(sprintf("%s目前運行的版本不祥。\n",
                               LOCAL_MUD_NAME()));
                 return;
         }
 
-        write(sprintf("%s目前运行的版本是：%O[%s 生成]\n",
+        write(sprintf("%s目前運行的版本是：%O[%s 生成]\n",
                       LOCAL_MUD_NAME(), ver, ctime(ver)));
         if (wiz_level(this_player()) > wiz_level("(arch)") &&
             VERSION_D->is_release_server())
         {
                 si = VERSION_D->query_socket_info();
                 if (! mapp(si) || sizeof(si) < 1)
-                        write("目前没有其它站点在版本版本。\n");
+                        write("目前沒有其它站點在版本版本。\n");
                 else
                 {
-                        write("目前有 " + sizeof(si) + " 个站点在同步版本中。\n");
+                        write("目前有 " + sizeof(si) + " 個站點在同步版本中。\n");
                         i = 1;
                         foreach (k in keys(si))
                         {
@@ -105,12 +105,12 @@ void show_version()
                                 if (percent > 100)
                                         percent = 100;
 
-                                write(sprintf("%d. %s  正在传送：%s(%d%%)\n",
+                                write(sprintf("%d. %s  正在傳送：%s(%d%%)\n",
                                               i, si[k][SUB_SITES],
                                               stringp(si[k][FILE_NAME]) ? si[k][FILE_NAME] : "未知文件",
                                               percent));
                         }
-                        // 显示下一个同步信息
+                        // 顯示下一個同步信息
                 }
         }
 }
@@ -120,14 +120,14 @@ int help(object me)
         write(@HELP
 指令格式 : version [sync] | get <file>
  
-这个指令会显示游戏目前所用的 MudLib 版本。如果指明了sync参数，
-则系统将尝试同步最新的版本。注意：在运行中同步是不可靠的，因
-为系统不能自动的更新已经载入内存的对象，只有等所有内存中的对
-象更新以后，版本才真正的同步了。因此同步完版本最好是重新启动
+這個指令會顯示遊戲目前所用的 MudLib 版本。如果指明瞭sync參數，
+則系統將嘗試同步最新的版本。注意：在運行中同步是不可靠的，因
+為系統不能自動的更新已經載入內存的對象，只有等所有內存中的對
+象更新以後，版本才真正的同步了。因此同步完版本最好是重新啟動
 MUD 或是手工更新(update)那些不同的地方。
 
-使用 version get <file> 可以读取服务器上 /version/  路径下面
-的某个文件。
+使用 version get <file> 可以讀取服務器上 /version/  路徑下面
+的某個文件。
  
 HELP );
         return 1;

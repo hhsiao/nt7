@@ -6,10 +6,10 @@ inherit NPC;
 
 void create()
 {
-        set_name(NOR "殷叶" NOR, ({ "ying ye", "ying" }));
-                set("nickname", CYN "清洁大妈" NOR);
+        set_name(NOR "殷葉" NOR, ({ "ying ye", "ying" }));
+                set("nickname", CYN "清潔大媽" NOR);
         set("long", @LONG
-这是一个在学校里扫地的大妈，牙尖嘴利，口味颇重。
+這是一個在學校裡掃地的大媽，牙尖嘴利，口味頗重。
 LONG);
         set("gender", "男性" );
         set("age", 36);
@@ -29,8 +29,8 @@ LONG);
         set("combat_exp", 1333000);
 
         set("inquiry", ([
-                "入学" : "问我一个扫地的干嘛？你到教室里直接付钱给老师就行。\n"+NOR,
-                "注音" : "对，何止我的姓是错的注音，我整个姓名都是猥琐的谐音。\n"+NOR,
+                "入學" : "問我一個掃地的幹嘛？你到教室裡直接付錢給老師就行。\n"+NOR,
+                "注音" : "對，何止我的姓是錯的注音，我整個姓名都是猥瑣的諧音。\n"+NOR,
         ]));
 
         setup();

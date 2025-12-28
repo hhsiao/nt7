@@ -12,7 +12,7 @@ void start_borrowing()
 
 void create()
 {
-        set_name(CYN "玄铁" WHT "匕首" NOR,  ({ "bi shou", "sword", "jian" }));
+        set_name(CYN "玄鐵" WHT "匕首" NOR,  ({ "bi shou", "sword", "jian" }));
 
         set_weight(12000);
 
@@ -20,12 +20,12 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "柄");
-                set("no_sell", "这柄烂剑你自个留着吧。\n");
+                set("no_sell", "這柄爛劍你自個留著吧。\n");
                 set("value", 100000);
                 set("material", "xuantie");
                 set("wield_msg", HIR "$N" HIR "抽出一柄黑黝黝的"
-                                 "匕首拿在手中，只感到一阵寒气扑面而来。\n" NOR);
-                set("unwield_msg", HIR "$N" HIR "将手中的匕首插回靴中。\n" NOR);
+                                 "匕首拿在手中，只感到一陣寒氣撲面而來。\n" NOR);
+                set("unwield_msg", HIR "$N" HIR "將手中的匕首插回靴中。\n" NOR);
                 set("stable", 100);
         }
 
@@ -63,11 +63,11 @@ void return_to_aobai()
                      call_out("return_to_aobai", 1); 
                      return; 
              } 
-             //是否应该执行unwield
-             message_vision("忽然$N觉得身上少了件什么东西似的。\n", me); 
+             //是否應該執行unwield
+             message_vision("忽然$N覺得身上少了件什麼東西似的。\n", me); 
      } else 
      { 
-             message("vision", "忽然一个人走了过来，捡起"+name()+"，叹了口气，摇摇头走了。\n", me); 
+             message("vision", "忽然一個人走了過來，撿起"+name()+"，嘆了口氣，搖搖頭走了。\n", me); 
      } 
 
         move("/clone/misc/void");

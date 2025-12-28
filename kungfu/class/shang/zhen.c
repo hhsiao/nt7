@@ -6,13 +6,13 @@ inherit F_GUARDER;
 
 void create()
 {
-        set_name("商宝震", ({"shang baozhen", "shang", "baozhen"}));
+        set_name("商寶震", ({"shang baozhen", "shang", "baozhen"}));
         set("gender", "男性");
         set("title", "商家堡少主");
         set("age", 17);
         set("long", @LONG
-这便是商家堡的少主商宝震，只见他衣着华丽，
-宛然一副富家公子的模样。
+這便是商家堡的少主商寶震，只見他衣著華麗，
+宛然一副富家公子的模樣。
 LONG);
         set("attitude", "peaceful");
         set("shen_type", -1);
@@ -72,11 +72,11 @@ LONG);
         }));
 
         set("guarder", ([
-                "refuse_other": CYN "$N" CYN "对$n" CYN "冷喝道："
-                                "你给我站住！我们商家堡岂是由得外"
-                                "人随便走动地方？" NOR,
-                "refuse_carry": CYN "$N" CYN "对$n" CYN "喝道：你"
-                                "背上背的是什么人？给我放下来！" NOR,
+                "refuse_other": CYN "$N" CYN "對$n" CYN "冷喝道："
+                                "你給我站住！我們商家堡豈是由得外"
+                                "人隨便走動地方？" NOR,
+                "refuse_carry": CYN "$N" CYN "對$n" CYN "喝道：你"
+                                "背上背的是什麼人？給我放下來！" NOR,
         ]));
 
         create_family("商家堡", 4, "少主");
@@ -100,5 +100,5 @@ LONG);
 void attempt_apprentice(object ob)
 {
         command("shake");
-        command("say 你去找我爹爹或是娘亲好了，我自己的武功都没练好呢。");
+        command("say 你去找我爹爹或是孃親好了，我自己的武功都沒練好呢。");
 }

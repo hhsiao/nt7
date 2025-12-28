@@ -6,9 +6,9 @@ inherit COMBINED_ITEM;
 
 void create()
 {
-                set_name(NOR WHT "钢镚" NOR, ({ "penny", "gang beng" }));
+                set_name(NOR WHT "鋼鏰" NOR, ({ "penny", "gang beng" }));
                 set("base_value", 10);
-                set("long", NOR + WHT "这是一枚硬币，可以望天上扔(throwing penny)。\n" NOR);
+                set("long", NOR + WHT "這是一枚硬幣，可以望天上扔(throwing penny)。\n" NOR);
                 set("base_unit", "枚");
                 set("base_weight", 100);
                 set("unit", "堆");
@@ -23,25 +23,25 @@ int do_exchange(string arg)
         string target = query("id", me);
         
         if (!arg || (arg!="penny" && arg!="gang beng")) {
-                write(NOR "你要扔什么东西？\n" NOR);
+                write(NOR "你要扔什麼東西？\n" NOR);
                 return 1;
         }
         
-        if(me->is_busy()) return notify_fail("你正忙着呢。\n");
+        if(me->is_busy()) return notify_fail("你正忙著呢。\n");
 
         me->start_busy(2);
 
-        message_vision(NOR CYN "$N" NOR CYN "闭上眼睛掏出一枚$n" NOR CYN "，念念有词地往天上一扔...\n" NOR, me, this_object()); 
+        message_vision(NOR CYN "$N" NOR CYN "閉上眼睛掏出一枚$n" NOR CYN "，唸唸有詞地往天上一扔...\n" NOR, me, this_object()); 
         if (random(3)) {
                 if (MEMBER_D->is_member(target))
                         MEMBER_D->db_pay_member(target, 1);
                 else
                         MEMBER_D->db_create_member(target, 1);
-                write(NOR WHT "钢镚" NOR HIG "从天上击落1点泥潭币，一起跌回了你的衣兜里。" NOR HIK "(快使用member指令看看吧) \n" NOR); 
-                return 1;//不销毁，返回继续可扔
+                write(NOR WHT "鋼鏰" NOR HIG "從天上擊落1點泥潭幣，一起跌回了你的衣兜裡。" NOR HIK "(快使用member指令看看吧) \n" NOR); 
+                return 1;//不銷燬，返回繼續可扔
         }
 
-        message_vision(NOR CYN "$n" NOR CYN "飘啊飘，飘啊飘...\n就这样，再也没有望$N" NOR CYN "一眼地飞走了。\n" NOR, me, this_object()); 
+        message_vision(NOR CYN "$n" NOR CYN "飄啊飄，飄啊飄...\n就這樣，再也沒有望$N" NOR CYN "一眼地飛走了。\n" NOR, me, this_object()); 
         add_amount(-1); 
         if (query_amount() < 1) 
                 destruct(this_object()); 

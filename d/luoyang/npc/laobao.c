@@ -3,12 +3,12 @@ inherit BUNCHER;
 
 void create()
 {
-        set_name("老鸨婆", ({ "laobao po", "laobao", "po" }) );
+        set_name("老鴇婆", ({ "laobao po", "laobao", "po" }) );
         set("gender", "女性" );
         set("age", 42);
-        set("title", HIC "春月楼老板娘" NOR);
-        set("long", "这老鸨婆虽是徐娘半老，但仍风韵尤存，只不\n"
-                    "过脸上的粉太厚了。\n");
+        set("title", HIC "春月樓老闆娘" NOR);
+        set("long", "這老鴇婆雖是徐娘半老，但仍風韻尤存，只不\n"
+                    "過臉上的粉太厚了。\n");
         set("str", 25);
         set("dex", 25);
         set("con", 25);
@@ -43,36 +43,36 @@ void greeting(object me)
 {
         command("look"+query("id", me));
 
-            if( query("gender", me) == "无性" )
+            if( query("gender", me) == "無性" )
             {
-                    command("say 你当我们春月楼是什么地方？我的姑娘满汉蒙藏"
-                        "回都接，就是不伺候太监！");
+                    command("say 你當我們春月樓是什麼地方？我的姑娘滿漢蒙藏"
+                        "回都接，就是不伺候太監！");
                 command("kick"+query("id", me));
 
-                message("vision", me->name() + "被老鸨婆一脚踢出门外。\n",
+                message("vision", me->name() + "被老鴇婆一腳踢出門外。\n",
                                   environment(me), ({me}));
                        me->move("/d/luoyang/sroad5");
 
-                       message("vision", me->name() + "被人从春月楼里踢了出来，"
-                                  "栽倒在地上，磕掉两颗门牙。\n", 
+                       message("vision", me->name() + "被人從春月樓裡踢了出來，"
+                                  "栽倒在地上，磕掉兩顆門牙。\n", 
                                   environment(me), ({me}));
         } else
         {
                     if( query("class", me) == "bonze" )
                 {
                                command("say 呦，" + RANK_D->query_respect(me) 
-                                + "也来光顾我们春月楼啊。");
-                               command("say 想当年我接过一个西藏喇嘛，他上床前一"
-                                "定要念经，一面念经，眼珠子就骨溜溜的瞧着"
+                                + "也來光顧我們春月樓啊。");
+                               command("say 想當年我接過一個西藏喇嘛，他上床前一"
+                                "定要念經，一面唸經，眼珠子就骨溜溜的瞧著"
                                 "我。");
                     }
                 if( query("gender", me) == "女性" )
                 {
-                                command("say 哎呀，这年月大姑娘也逛窑子，成何体统。");
+                                command("say 哎呀，這年月大姑娘也逛窯子，成何體統。");
                                command("sigh");
-                               command("say 可惜我儿子不在，不然让他伺候你。");
+                               command("say 可惜我兒子不在，不然讓他伺候你。");
                 }
-                    command("say 楼上楼下的姑娘们，客人来了！");
+                    command("say 樓上樓下的姑娘們，客人來了！");
             }
             return ;
 }

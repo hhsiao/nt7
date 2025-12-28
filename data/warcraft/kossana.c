@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("美丽中国梦[2;37;0m[2;37;0m", ({"kossanapet"}));        
+        set_name("美麗中國夢[2;37;0m[2;37;0m", ({"kossanapet"}));        
         set("gender", "男性");                
-        set("long", "美丽中国梦[2;37;0m
-它是散兵壹米的魔幻兽。
+        set("long", "美麗中國夢[2;37;0m
+它是散兵壹米的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

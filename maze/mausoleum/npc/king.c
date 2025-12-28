@@ -6,8 +6,8 @@ inherit BOSS;
 void sp_attack();
 void create()
 {
-        set_name(HIB "秦始皇僵尸" NOR, ({ "qin shihuang", "king", "qin" }));
-        set("long", HIB "这曾是一位统一六国的王者，现在只是僵尸一个。\n" NOR);
+        set_name(HIB "秦始皇殭屍" NOR, ({ "qin shihuang", "king", "qin" }));
+        set("long", HIB "這曾是一位統一六國的王者，現在只是殭屍一個。\n" NOR);
         set("title", HIY "皇帝" NOR);
         set("attitude", "aggressive");
         set("str", 120);
@@ -31,7 +31,7 @@ void create()
         }));
 
         set("reborn/times", 3);
-        set("death_msg", HIY "\n$N散落成一堆碎骨头。\n\n" NOR);
+        set("death_msg", HIY "\n$N散落成一堆碎骨頭。\n\n" NOR);
         set("no_corpse", 1);
 
         set_skill("force", 6500);
@@ -128,8 +128,8 @@ void sp_attack()
         enemy = enemies[random(sizeof(enemies))];
            obs=filter_array(all_inventory(environment(this_object())),(:query("id", $1) == "skeleton fighter":)); 
         if( sizeof(obs) < 7 && !random(5) ) {
-                msg = HIY"$N展开手中的黑色幡布，顿时阴风呼号，惨雾弥漫，召唤出数个骷髅武士，\n"
-                         "这些骷髅生前是秦皇身边的护卫，死后仍然受他驱策，惨啸着向$n扑来！\n"NOR;
+                msg = HIY"$N展開手中的黑色幡布，頓時陰風呼號，慘霧瀰漫，召喚出數個骷髏武士，\n"
+                         "這些骷髏生前是秦皇身邊的護衛，死後仍然受他驅策，慘嘯著向$n撲來！\n"NOR;
                 message_vision(append_color(msg, HIY),this_object(),enemy);
                 for( i=0;i<3;i++ ) {
                         ob = new(__DIR__"skeleton");
@@ -140,25 +140,25 @@ void sp_attack()
                 return;
         }
         if( !enemy->is_busy() && sizeof(ob) > 3 && !random(5) ) {
-                msg = HIY"$N祭起手中的五色石印，只见那石印飞到空中，射出一道蒙蒙青光，把$n笼罩在内。\n"
-                         "$n只觉得身体仿佛被一座大山压住，四肢动弹不得，就连呼吸都十分艰难，只能眼\n"
-                         "睁睁地看着骷髅狞笑着一步步走近！\n" NOR;
+                msg = HIY"$N祭起手中的五色石印，只見那石印飛到空中，射出一道濛濛青光，把$n籠罩在內。\n"
+                         "$n只覺得身體彷彿被一座大山壓住，四肢動彈不得，就連呼吸都十分艱難，只能眼\n"
+                         "睜睜地看著骷髏獰笑著一步步走近！\n" NOR;
                 message_vision(append_color(msg, HIY),this_object(),enemy);
                 enemy->start_busy(5);
                 return;
         }
         /*
-        秦皇僵尸久攻不下，感到十分不耐烦，于是把河图虎符都仍在一旁，从身边的剑鞘中
-        拔出一把青光闪闪的宝剑，虽然在棺中历经千年岁月，这把宝剑仍然光可鉴人，锋利
-        无匹。烛光跳动间你赫然看见，剑鞘上刻着两个篆字：鹿卢。
+        秦皇殭屍久攻不下，感到十分不耐煩，於是把河圖虎符都仍在一旁，從身邊的劍鞘中
+        拔出一把青光閃閃的寶劍，雖然在棺中歷經千年歲月，這把寶劍仍然光可鑑人，鋒利
+        無匹。燭光跳動間你赫然看見，劍鞘上刻著兩個篆字：鹿盧。
         */
         switch( random(5) ){
-                case 4: msg = HIY "$N"HIY"手一挥，一道金光化作一把利剑射从$n"HIY"穿体而过！\n"NOR; break;
-                case 3: msg = HIW "$N"HIW"张开大口，一道道冰刀迅猛而至，$n"HIW"只觉自己气血凝滞，顿受重创。\n"NOR; break;
-                case 2: msg = HIR "$N"HIR"双掌并力将一巨大的火球推向$n"HIR"，$n"HIR"被烧的体无完肤。\n"NOR; break;
-                case 1: msg = MAG "$N"MAG"一声嚎叫，口中吐出黄沙，狂风呼啸，那尖利的啸声夹杂这黄沙如刀，如剑，越来越尖... 越来越急...\n"
-                                  "$n"MAG"全身顿时千创百孔，鲜血直涌而出。\n"NOR;break;
-                default: msg= HIG "$N"HIG"脚一跺地，只见$n"HIG"脚边的地上快速生长出树藤紧紧包裹这$n"HIG"，$n"HIG"顿时呼吸不畅，头晕眼花。\n"NOR; break;
+                case 4: msg = HIY "$N"HIY"手一揮，一道金光化作一把利劍射從$n"HIY"穿體而過！\n"NOR; break;
+                case 3: msg = HIW "$N"HIW"張開大口，一道道冰刀迅猛而至，$n"HIW"只覺自己氣血凝滯，頓受重創。\n"NOR; break;
+                case 2: msg = HIR "$N"HIR"雙掌併力將一巨大的火球推向$n"HIR"，$n"HIR"被燒的體無完膚。\n"NOR; break;
+                case 1: msg = MAG "$N"MAG"一聲嚎叫，口中吐出黃沙，狂風呼嘯，那尖利的嘯聲夾雜這黃沙如刀，如劍，越來越尖... 越來越急...\n"
+                                  "$n"MAG"全身頓時千創百孔，鮮血直湧而出。\n"NOR;break;
+                default: msg= HIG "$N"HIG"腳一跺地，只見$n"HIG"腳邊的地上快速生長出樹藤緊緊包裹這$n"HIG"，$n"HIG"頓時呼吸不暢，頭暈眼花。\n"NOR; break;
         }
         message_vision(msg,this_object(),enemy);
         if( !random(20) ) enemy->unconcious(); 
@@ -186,6 +186,6 @@ mixed hit_ob(object me, object ob, int damage_bouns)
         ob->receive_damage("qi", damage, me);
         ob->receive_wound("qi", damage, me);
         set("neili",query("max_neili",  me), me);
-        return HIY "$N" HIY "全身闪出耀眼的金光，登时令$n"
-               HIY "全身有若刀绞。\n" NOR;
+        return HIY "$N" HIY "全身閃出耀眼的金光，登時令$n"
+               HIY "全身有若刀絞。\n" NOR;
 }

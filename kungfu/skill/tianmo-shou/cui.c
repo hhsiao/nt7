@@ -19,21 +19,21 @@ int perform(object me)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("「催魂」只能对战斗中的对手使用。\n");
+                return notify_fail("「催魂」只能對戰鬥中的對手使用。\n");
 
         if( query_temp("weapon", me) )
-                return notify_fail("你只能空手使用「催魂」绝技。\n");
+                return notify_fail("你只能空手使用「催魂」絕技。\n");
 
         ap = attack_power(me, "hand");
 
         if (ap < 150)
-                return notify_fail("你的天魔手等级不够, 无法使用「催魂」！\n");
+                return notify_fail("你的天魔手等級不夠, 無法使用「催魂」！\n");
 
         if( query("neili", me)<150 )
-                return notify_fail("你的真气不够，无法运用「催魂」！\n");
+                return notify_fail("你的真氣不夠，無法運用「催魂」！\n");
 
-        msg = HIR "$N" HIR "步法忽变，左右横跨数步，口中吟吟有声，双手向$n" HIR
-              "缓缓拍到。\n" NOR;
+        msg = HIR "$N" HIR "步法忽變，左右橫跨數步，口中吟吟有聲，雙手向$n" HIR
+              "緩緩拍到。\n" NOR;
 
         dp = defense_power(target, "parry");
 
@@ -44,14 +44,14 @@ int perform(object me)
                 target->receive_damage("jing", damage/3, me);
                 target->receive_wound("jing", damage/5, me);
                 msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 60,
-                                           HIR "$n" HIR "正自惊疑，不及闪避，登时被"
-                                           "拍个正着。顿感精神不济，摇摇欲倒！\n" NOR);
+                                           HIR "$n" HIR "正自驚疑，不及閃避，登時被"
+                                           "拍個正著。頓感精神不濟，搖搖欲倒！\n" NOR);
                 me->start_busy(1 + random(3));
         } else
         {
                 addn("neili", -50, me);
-                msg += CYN "$n" CYN "见来势奇异，精神一振，奋力化解了$N"
-                       CYN "这一招。\n"NOR;
+                msg += CYN "$n" CYN "見來勢奇異，精神一振，奮力化解了$N"
+                       CYN "這一招。\n"NOR;
                 me->start_busy(3);
         }
         message_combatd(msg, me, target);

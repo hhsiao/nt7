@@ -10,9 +10,9 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("静玄师太", ({ "jingxuan shitai","jingxuan","shitai"}));
-        set("long", "她是峨嵋派大师姐，跟随灭绝师太二十余载，"
-                    "峨嵋派的功夫已尽得所传。\n");
+        set_name("靜玄師太", ({ "jingxuan shitai","jingxuan","shitai"}));
+        set("long", "她是峨嵋派大師姐，跟隨滅絕師太二十餘載，"
+                    "峨嵋派的功夫已盡得所傳。\n");
         set("gender", "女性");
         set("age", 42);
         set("attitude", "peaceful");
@@ -22,7 +22,7 @@ void create()
         set("inquiry",([
                 "剃度"  : (: ask_for_join :),
                 "出家"  : (: ask_for_join :),
-                "还俗"  : "峨嵋弟子，不能还俗。你找掌门师太吧。",
+                "還俗"  : "峨嵋弟子，不能還俗。你找掌門師太吧。",
         ]));
 
         set("str", 22);
@@ -73,7 +73,7 @@ void create()
         prepare_skill("finger", "tiangang-zhi");
 
         set("no_teach", ([
-                "linji-zhuang" : "临济十二庄需得我师父灭绝师太亲自传授。",
+                "linji-zhuang" : "臨濟十二莊需得我師父滅絕師太親自傳授。",
         ]));
 
         create_family("峨嵋派", 4, "弟子");
@@ -110,51 +110,51 @@ int do_nod(string arg)
                 return 0;
 
         command("smile");
-        command("say 我讲个故事你听：\n");
+        command("say 我講個故事你聽：\n");
 
-        message("vision", "静玄师太对着"+me->name()+"讲了几句话。\n",
+        message("vision", "靜玄師太對著"+me->name()+"講了幾句話。\n",
                         environment(me), ({me}) );
 
         switch(random(2)) {
                 case 0:
-                write("静玄师太说：罗汉和尚曾住在峨嵋山延福院里。
-            有僧人问他：什么是西来大意？　他说；井中红焰，日里浮沤。
-            僧人问：这怎么领会？　罗汉和尚是怎样回答他的呢？\n\n");
+                write("靜玄師太說：羅漢和尚曾住在峨嵋山延福院裡。
+            有僧人問他：什麼是西來大意？　他說；井中紅焰，日裡浮漚。
+            僧人問：這怎麼領會？　羅漢和尚是怎樣回答他的呢？\n\n");
 
                 if ((int)me->query_skill("mahayana", 1) > 60 + random(10)) {
-                        write("你想起在一部书里读到过这个典故。\n");
-                        write("你说：遥指扶桑日那边。\n\n");
-                        message("vision", me->name()+"想了一下，跟静玄师太说了几句话。\n",
+                        write("你想起在一部書裡讀到過這個典故。\n");
+                        write("你說：遙指扶桑日那邊。\n\n");
+                        message("vision", me->name()+"想了一下，跟靜玄師太說了幾句話。\n",
                                 environment(me), ({me}) );
 
-                        command("say 阿弥陀佛，善哉！善哉！好吧，我就收下你了。");
-                        command("say 希望你能以慈悲之心，以智慧之力，努力行善，济度众生。\n");
+                        command("say 阿彌陀佛，善哉！善哉！好吧，我就收下你了。");
+                        command("say 希望你能以慈悲之心，以智慧之力，努力行善，濟度眾生。\n");
                         command("recruit "+query("id", me));
                 }
                 else {
-                        write("你想了许久，也解不明白其中的禅理。\n");
-                        command("say 阿弥陀佛，你多学些佛法后再来找我吧。\n");
+                        write("你想了許久，也解不明白其中的禪理。\n");
+                        command("say 阿彌陀佛，你多學些佛法後再來找我吧。\n");
                 }
                 break;
 
                 case 1:
-                write("静玄师太说：密印安民曾在华藏寺开法。
-            密印安民有一次请教名僧圆悟：什么是古帆未挂？
-            圆悟说：庭前柏树子。密印安民大悟彻悟后说了什么？\n\n");
+                write("靜玄師太說：密印安民曾在華藏寺開法。
+            密印安民有一次請教名僧圓悟：什麼是古帆未掛？
+            圓悟說：庭前柏樹子。密印安民大悟徹悟後說了什麼？\n\n");
 
                 if ((int)me->query_skill("mahayana", 1) > 60 + random(10)) {
-                        write("你想起在一部经书里读到过这个典故。\n");
-                        write("你答道：古人说“一滴投于巨壑”，殊不知大海也投于一滴！。\n\n");
-                        message("vision", me->name()+"想了一下，跟静玄师太说了几句话。\n",
+                        write("你想起在一部經書裡讀到過這個典故。\n");
+                        write("你答道：古人說“一滴投於巨壑”，殊不知大海也投於一滴！。\n\n");
+                        message("vision", me->name()+"想了一下，跟靜玄師太說了幾句話。\n",
                                 environment(me), ({me}) );
 
-                        command("say 阿弥陀佛，善哉！善哉！好吧，我就收下你了。");
-                        command("say 希望你能以慈悲之心，以智慧之力，努力行善，济度众生。\n");
+                        command("say 阿彌陀佛，善哉！善哉！好吧，我就收下你了。");
+                        command("say 希望你能以慈悲之心，以智慧之力，努力行善，濟度眾生。\n");
                         command("recruit "+query("id", me));
                 }
                 else {
-                        write("你想了许久，也解不明白其中的禅理。\n");
-                        command("say 阿弥陀佛，你多学些佛法后在来找我吧。\n");
+                        write("你想了許久，也解不明白其中的禪理。\n");
+                        command("say 阿彌陀佛，你多學些佛法後在來找我吧。\n");
                 }
                        break;
         }
@@ -170,19 +170,19 @@ void attempt_apprentice(object ob)
         if( query("shen", ob)<1000 )
         {
                 command("say " + RANK_D->query_respect(ob) +
-                        "你行侠仗义之事还做的不够。");
+                        "你行俠仗義之事還做的不夠。");
                 return;
         }
 
         if ((int)ob->query_skill("mahayana",1) < 50)
         {
-                command("say 你大乘涅磐功的修为还不够，提高些再来吧。");
+                command("say 你大乘涅磐功的修為還不夠，提高些再來吧。");
                 return;
         }
 
-        command("say 阿弥陀佛，善哉！善哉！在本庵修行，我要先考考你的佛法。");
+        command("say 阿彌陀佛，善哉！善哉！在本庵修行，我要先考考你的佛法。");
         set_temp("pending/kao", 1, ob);
-        command("say 你要准备好了，就告诉(nod)我吧。\n");
+        command("say 你要準備好了，就告訴(nod)我吧。\n");
         add_action("do_nod", "nod");
         return;
 }

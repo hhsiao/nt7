@@ -11,7 +11,7 @@ void create()
 	else*/ {
 		set("unit", "瓶");
 		set("value", 1);
-		set("long", HIY "这是一瓶精心酿制的青梅酒，虽然装在瓶中，却依然无法掩盖其香气。\n" NOR);
+		set("long", HIY "這是一瓶精心釀製的青梅酒，雖然裝在瓶中，卻依然無法掩蓋其香氣。\n" NOR);
 	}
 
 	setup();

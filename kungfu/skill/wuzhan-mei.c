@@ -3,67 +3,67 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action" : "$N一招“五展梅”「冬梅初吐蕊」，手中$w犹如点点淡黄色的梅蕊刺向$n的$l",
+([      "action" : "$N一招“五展梅”「冬梅初吐蕊」，手中$w猶如點點淡黃色的梅蕊刺向$n的$l",
         "force" : 60,
         "dodge" : 2,
         "parry" : 10,
         "skill_name" : "冬梅初吐蕊",
         "lvl" : 0,
         "damage" : 70,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action" : "$N使出“五展梅”「幼梅傲霜雪」，$n只觉剑气扑面而来，仿佛置身冰天雪地中，\n"
-                   "$w仿佛化作傲霜的梅枝刺向$n的$l",
+([      "action" : "$N使出“五展梅”「幼梅傲霜雪」，$n只覺劍氣撲面而來，彷彿置身冰天雪地中，\n"
+                   "$w彷彿化作傲霜的梅枝刺向$n的$l",
         "force" : 100,
         "dodge" : 0,
         "parry" : 20,
         "skill_name" : "幼梅傲霜雪",
         "lvl" : 20,
         "damage" : 90,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
-([      "action" : "$N一招“五展梅”「劲梅笑迎春」，$w连续划出几个圆圈，剑势如朵朵梅花，\n"
+([      "action" : "$N一招“五展梅”「勁梅笑迎春」，$w連續劃出幾個圓圈，劍勢如朵朵梅花，\n"
                    "$n眼前一花，$w已攻到面前",
         "force" : 150,
         "dodge" : -2,
         "parry" : 30,
-        "skill_name" : "劲梅笑迎春",
+        "skill_name" : "勁梅笑迎春",
         "lvl" : 40,
         "damage" : 110,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
 
-([      "action" : "$N一腾身，$w飞舞，正是“五展梅”「腊梅暗香浮」,$n竟似闻到淡淡梅花幽香，\n"
-                   "恍惚间心驰神动,剑气已直刺$n的$l",
+([      "action" : "$N一騰身，$w飛舞，正是“五展梅”「臘梅暗香浮」,$n竟似聞到淡淡梅花幽香，\n"
+                   "恍惚間心馳神動,劍氣已直刺$n的$l",
         "force" : 200,
         "dodge" : -4,
         "parry" : 50,
-        "skill_name" : "腊梅暗香浮",
+        "skill_name" : "臘梅暗香浮",
         "lvl" : 60,
         "damage" : 130,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
 
-([      "action" : "$N向前跨上一步，手中$w使出“五展梅”「红梅展新枝」,剑光爆涨，\n"
-                   "快愈闪电直刺$n的$l",
+([      "action" : "$N向前跨上一步，手中$w使出“五展梅”「紅梅展新枝」,劍光爆漲，\n"
+                   "快愈閃電直刺$n的$l",
         "force" : 400,
         "dodge" : -6,
         "parry" : 70,
-        "skill_name" : "红梅展新枝",
+        "skill_name" : "紅梅展新枝",
         "lvl" : 80,
         "damage" : 150,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
 
-([      "action" : "$N手中的$w一晃，使出“五展梅”终极招式「五梅花枝俏」,五式合作一式，\n"
-                   "瞬间剑意漫天，$n只见梅花四处飞舞，隐藏其中的杀气已透骨而入",
+([      "action" : "$N手中的$w一晃，使出“五展梅”終極招式「五梅花枝俏」,五式合作一式，\n"
+                   "瞬間劍意漫天，$n只見梅花四處飛舞，隱藏其中的殺氣已透骨而入",
         "force" : 600,
         "dodge" : -8,
         "parry" : 90,
         "skill_name" : "五梅花枝俏",
         "lvl" : 100,
         "damage" : 170,
-        "damage_type" : "刺伤"
+        "damage_type" : "刺傷"
 ]),
 });
 
@@ -74,9 +74,9 @@ int valid_enable(string usage) { return (usage == "sword") || (usage == "parry")
 int valid_learn(object me)
 {
         if( query("max_neili", me)<300 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
         if ((int)me->query_skill("biyun-xinfa", 1) < 60)
-                return notify_fail("你的碧云心法太浅。\n");
+                return notify_fail("你的碧雲心法太淺。\n");
         return 1;
 }
 
@@ -103,9 +103,9 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me) )
          || query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
         if( query("qi", me)<50 )
-                return notify_fail("你的体力不够练五展梅。\n");
+                return notify_fail("你的體力不夠練五展梅。\n");
         me->receive_damage("qi", 20);
         return 1;
 }

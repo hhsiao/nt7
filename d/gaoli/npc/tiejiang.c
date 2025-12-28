@@ -2,11 +2,11 @@ inherit NPC;
 void create()
 {  
 //   reload("gaoli_tiejiang");
-   set_name("铁匠",({ "tie jiang","tie","jiang","tiejiang" }) );
+   set_name("鐵匠",({ "tie jiang","tie","jiang","tiejiang" }) );
    set("gender", "男性" );
    set("shop_id",({ "tie jiang","tie","jiang","tiejiang" }) );
    set("age", 40);
-   set("long", "这是高丽的铁匠，他打造的兵器都是很好。\n");
+   set("long", "這是高麗的鐵匠，他打造的兵器都是很好。\n");
    set("combat_exp",300000);
    set("str",26);
    set("neili",500);

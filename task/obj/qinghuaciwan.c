@@ -8,9 +8,9 @@ void create()
     if( clonep() )
             destruct(this_object());
     else {
-            set("unit", "个");
+            set("unit", "個");
             set("material", "stone");
-            set("long", "这是一个青花瓷碗。\n");
+            set("long", "這是一個青花瓷碗。\n");
           }
     set("owner", "曲三");
     setup();

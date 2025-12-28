@@ -13,7 +13,7 @@ void create()
         else*/
         {
                 set("material", "leather");
-                set("unit", "双");
+                set("unit", "雙");
                 set("armor_prop/armor", 1);
         }
         setup();

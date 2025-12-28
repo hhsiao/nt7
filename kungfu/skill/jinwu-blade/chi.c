@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return HIY "赤焰暴长" NOR; }
+string name() { return HIY "赤焰暴長" NOR; }
 
 inherit F_SSERVER;
 
@@ -17,26 +17,26 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me) )
             || query("skill_type", weapon) != "blade" )
-                return notify_fail("你使用的武器不对，无法施展" + name() + "。\n");
+                return notify_fail("你使用的武器不對，無法施展" + name() + "。\n");
 
         if ((int)me->query_skill("jinwu-blade", 1) < 120)
-                return notify_fail("你的金乌刀法不够娴熟，无法施展" + name() + "。\n");
+                return notify_fail("你的金烏刀法不夠嫻熟，無法施展" + name() + "。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你现在真气不够，无法施展" + name() + "。\n");
+                return notify_fail("你現在真氣不夠，無法施展" + name() + "。\n");
 
         if (me->query_skill_mapped("blade") != "jinwu-blade")
-                return notify_fail("你没有激发金乌刀法，无法施展" + name() + "。\n");
+                return notify_fail("你沒有激發金烏刀法，無法施展" + name() + "。\n");
 
         if (! living(target))
-               return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+               return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIY "$N" HIY "凝神聚气，将全身之力注入" + weapon->name() +
-              HIY "刀身顺势劈下，顿时一股凌厉的刀芒直贯$n" HIY "而去。\n"
+        msg = HIY "$N" HIY "凝神聚氣，將全身之力注入" + weapon->name() +
+              HIY "刀身順勢劈下，頓時一股凌厲的刀芒直貫$n" HIY "而去。\n"
               NOR;
 
         addn("neili", -150, me);
@@ -47,10 +47,10 @@ int perform(object me, object target)
             && query("skill_type", weapon2) == "sword"
            && target->query_skill_mapped("sword") == "xueshan-jian")
         {
-                msg += HIY "$n" HIY "慌忙中忙以雪山剑法作出抵挡，哪知$N"
-                       HIY "刀法竟似雪山剑法克星般，" + weapon->name() +
-                       HIY "焰芒霎时\n又暴涨数倍，完全封锁$n" HIY "的所"
-                       "有剑招！\n" NOR;
+                msg += HIY "$n" HIY "慌忙中忙以雪山劍法作出抵擋，哪知$N"
+                       HIY "刀法竟似雪山劍法剋星般，" + weapon->name() +
+                       HIY "焰芒霎時\n又暴漲數倍，完全封鎖$n" HIY "的所"
+                       "有劍招！\n" NOR;
                 ap += ap / 2;
         }
 
@@ -62,8 +62,8 @@ int perform(object me, object target)
                                            (: final, me, target, damage :));
         } else
         {
-                msg += HIC "可$n" HIC "却是镇定逾恒，一丝不乱，"
-                       "全神将此招化解开来。\n" NOR;
+                msg += HIC "可$n" HIC "卻是鎮定逾恆，一絲不亂，"
+                       "全神將此招化解開來。\n" NOR;
         }
         message_combatd(msg, me, target);
 
@@ -72,6 +72,6 @@ int perform(object me, object target)
 
 string final(object me, object target, int damage)
 {
-        return  HIR "只听$n" HIR "一声惨叫，被这一刀劈个正中，伤口"
-                "深可见骨，鲜血四处飞溅。\n" NOR;
+        return  HIR "只聽$n" HIR "一聲慘叫，被這一刀劈個正中，傷口"
+                "深可見骨，鮮血四處飛濺。\n" NOR;
 }

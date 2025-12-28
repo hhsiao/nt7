@@ -12,39 +12,39 @@ int main(object me, string arg)
                 return 0;
 
         if( query("no_fight", environment(me)) )
-                return notify_fail("这里禁止战斗。\n");
+                return notify_fail("這裡禁止戰鬥。\n");
 
         if( !arg
         ||  !objectp(obj = present(arg, environment(me)))
         ||  !me->visible(obj) )
-                return notify_fail("你想攻击谁？\n");
+                return notify_fail("你想攻擊誰？\n");
 
         if (! obj->is_character())
-                return notify_fail("看清楚一点，那并不是生物。\n");
+                return notify_fail("看清楚一點，那並不是生物。\n");
 
         if (obj->is_fighting(me))
                 return notify_fail("加油！加油！加油！\n");
 
         if (! living(obj))
-                return notify_fail(obj->name() + "已经无法战斗了。\n");
+                return notify_fail(obj->name() + "已經無法戰鬥了。\n");
 
         if( query("qi", me)<query("max_qi", me)*3/10 )
-                return notify_fail("你现在没有力气战斗了。\n");
+                return notify_fail("你現在沒有力氣戰鬥了。\n");
 
-        if (obj == me) return notify_fail("你不能攻击自己。\n");
+        if (obj == me) return notify_fail("你不能攻擊自己。\n");
 
         if( query("can_speak", obj) )
         {
-                message_vision("\n$N对著$n说道："
+                message_vision("\n$N對著$n說道："
                         + RANK_D->query_self(me)
-                        + me->name() + "，领教"
+                        + me->name() + "，領教"
                         + RANK_D->query_respect(obj) + "的高招！\n\n", me, obj);
 
                 if( objectp(old_target=query_temp("pending/fight", me)) )
-                        tell_object(old_target, YEL + me->name() + "取消了和你比试的念头。\n" NOR);
+                        tell_object(old_target, YEL + me->name() + "取消了和你比試的念頭。\n" NOR);
                 set_temp("pending/fight", obj, me);
 
-                notify_fail("看起来" + obj->name() + "并不想跟你较量。\n");
+                notify_fail("看起來" + obj->name() + "並不想跟你較量。\n");
                 switch (obj->accept_fight(me))
                 {
                 case 0:
@@ -58,7 +58,7 @@ int main(object me, string arg)
                 obj->fight_ob(me);
         } else
         {
-                message_vision("\n$N大喝一声，开始对$n发动攻击！\n\n", me, obj);
+                message_vision("\n$N大喝一聲，開始對$n發動攻擊！\n\n", me, obj);
                 me->fight_ob(obj);
                 obj->kill_ob(me);
         }
@@ -70,14 +70,14 @@ int help(object me)
         write(@HELP
 指令格式 : fight <人物>
 
-这个指令让你向一个人物「讨教」或者是「切磋武艺」，这种形式的战斗纯粹是
-点到为止，因此只会消耗体力，不会真的受伤，但是并不是所有的  NPC 都喜欢
-打架，因此有需多状况你的比武要求会被拒绝。
+這個指令讓你向一個人物「討教」或者是「切磋武藝」，這種形式的戰鬥純粹是
+點到為止，因此只會消耗體力，不會真的受傷，但是並不是所有的  NPC 都喜歡
+打架，因此有需多狀況你的比武要求會被拒絕。
 
-其他相关指令: kill
+其他相關指令: kill
 
-PS. 如果对方不愿意接受你的挑战，你仍然可以迳行用 kill 指令开始战斗，有
-    关 fight 跟 kill 的区分请看 'help combat'.
+PS. 如果對方不願意接受你的挑戰，你仍然可以逕行用 kill 指令開始戰鬥，有
+    關 fight 跟 kill 的區分請看 'help combat'.
 HELP );
         return 1;
 }

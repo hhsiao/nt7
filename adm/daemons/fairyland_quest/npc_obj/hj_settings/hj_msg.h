@@ -1,5 +1,5 @@
 // hj_msg.h
-// 发信息到所有地点
+// 發信息到所有地點
 
 void hj_shout( string msg )
 {

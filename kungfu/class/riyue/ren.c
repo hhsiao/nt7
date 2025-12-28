@@ -26,11 +26,11 @@ void create()
         set("attitude", "friendly");
         set("chat_chance", 3);
         set("chat_msg",({
-        "任盈盈说道：不知令狐冲他，怎样了，是否又和那小贱人在一起......\n",
-        "任盈盈说道：也不知蓝凤凰见没见到他，可真急死我了.......\n",
+        "任盈盈說道：不知令狐沖他，怎樣了，是否又和那小賤人在一起......\n",
+        "任盈盈說道：也不知藍鳳凰見沒見到他，可真急死我了.......\n",
         }) );
 
-        create_family("日月神教",2,"弟子 圣姑");
+        create_family("日月神教",2,"弟子 聖姑");
 
         set_skill("force", 120);
         set_skill("riyue-xinfa", 120);
@@ -56,7 +56,7 @@ void create()
         prepare_skill("cuff", "xuwu-piaomiao");
 
         set("inquiry",([
-            "令狐冲" : (: ask_linghuchong:),
+            "令狐沖" : (: ask_linghuchong:),
         ]) );
         set("letter",1);
 
@@ -74,12 +74,12 @@ void attempt_apprentice(object ob)
 
     if( query("shen", ob)>0 )
     {
-         command("say 我倒是想收你，可是教主会不答应的！");
+         command("say 我倒是想收你，可是教主會不答應的！");
          return;
     }
 
     command("recruit "+query("id", ob));
-    set("title", HIM"日月神教教众"NOR, ob);
+    set("title", HIM"日月神教教眾"NOR, ob);
 }
 
 string ask_linghuchong()
@@ -87,17 +87,17 @@ string ask_linghuchong()
     object me = this_player();
     object ob;
 
-    message_vision("任盈盈说道：去年上华山一去就再无音信，他不会忘记我吧......\n", me );
+    message_vision("任盈盈說道：去年上華山一去就再無音信，他不會忘記我吧......\n", me );
     if(! query("letter"))
-        return "这位" + RANK_D->query_respect(me) + "，我已经派" +
-               "蓝凤凰去寻找了，也不知道怎么样了。";
-    message_vision("任盈盈又说道：这位"+ RANK_D->query_respect(me)+"，我这里有"
-                   "信，你要是找到令狐冲，就把信交给他，他会明白的。\n" , me);
+        return "這位" + RANK_D->query_respect(me) + "，我已經派" +
+               "藍鳳凰去尋找了，也不知道怎麼樣了。";
+    message_vision("任盈盈又說道：這位"+ RANK_D->query_respect(me)+"，我這裡有"
+                   "信，你要是找到令狐沖，就把信交給他，他會明白的。\n" , me);
     ob=new("/d/heimuya/npc/obj/letter");
     ob->move(me);
     set("letter", 0);
     set_temp("ren_qingxin", 1, me);
-    return "这封信烦你交给令狐冲。\n";
+    return "這封信煩你交給令狐沖。\n";
 }
 
 void reset()

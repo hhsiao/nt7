@@ -5,12 +5,12 @@ void create()
 {
         set("short", "梅道");
         set("long", @LONG
-这是一条充满了梅花清香的大道。往北就是凌霄城的大殿
-凌霄殿了。闻着满天的梅香，本以为这里种满了梅树，走近却
-才发现，这里只有两棵合围粗的白梅，开着漫天的冰凌。其实
-是梅还是雪，已分不清了。看到这种情况那句「梅须逊雪三分
-白，雪却输梅一段香」的话，是谁也不会信了。这梅这雪，谁
-白谁香，分得出来吗？
+這是一條充滿了梅花清香的大道。往北就是凌霄城的大殿
+凌霄殿了。聞著滿天的梅香，本以為這裡種滿了梅樹，走近卻
+才發現，這裡只有兩棵合圍粗的白梅，開著漫天的冰凌。其實
+是梅還是雪，已分不清了。看到這種情況那句「梅須遜雪三分
+白，雪卻輸梅一段香」的話，是誰也不會信了。這梅這雪，誰
+白誰香，分得出來嗎？
 LONG);
         set("outdoors", "lingxiao");
         set("exits", ([
@@ -39,15 +39,15 @@ int do_pick(string arg)
         if (arg == "mei hua" || arg == "meihua")
         {
                 if (query("count") < -5)
-                        return notify_fail("这里的梅花已经被摘光了。\n");
+                        return notify_fail("這裡的梅花已經被摘光了。\n");
 
                 ob = new(__DIR__"obj/mei");
                 ob->move(me, 1);
                 addn("count", -1);
 
-                message_vision("$N从路旁的树上摘了一朵" +
+                message_vision("$N從路旁的樹上摘了一朵" +
                                query("name", ob)+"。\n",me);
                 return 1;
         } else
-                return notify_fail("你要摘什么？\n");
+                return notify_fail("你要摘什麼？\n");
 }

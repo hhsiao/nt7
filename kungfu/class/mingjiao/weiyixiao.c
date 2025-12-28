@@ -10,10 +10,10 @@ inherit F_COAGENT;
 #include "fawang.h"
 void create()
 {
-        set_name("韦一笑", ({"wei yixiao", "wei", "yixiao",}));
+        set_name("韋一笑", ({"wei yixiao", "wei", "yixiao",}));
         set("long",
-                "他长得活象是一只青翼大蝙蝠。\n"
-                "他的脸色灰扑扑的。\n"
+                "他長得活象是一隻青翼大蝙蝠。\n"
+                "他的臉色灰撲撲的。\n"
         );
 
         set("title",HIG "明教" HIC "青翼蝠王" NOR);
@@ -67,7 +67,7 @@ void create()
         set("chat_msg_combat", ({
                 (: command("perform strike.jue") :),
         }) );
-        create_family("明教", 35, "护法法王");
+        create_family("明教", 35, "護法法王");
         set("inherit_title",HIG"明教"NOR"光明散人"NOR);
 
         set("master_ob",4);
@@ -97,10 +97,10 @@ int accept_ask(object me, string topic)
         switch (topic)
         {
 
-        case "连绵不绝" :
+        case "連綿不絕" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/hanbing-mianzhang/jue",
-                           "name"    : "连绵不绝",
+                           "name"    : "連綿不絕",
                            "sk1"     : "hanbing-mianzhang",
                            "lv1"     : 140,
                            "neili"   : 2000,

@@ -1,14 +1,14 @@
 // /d/gaoli/xuanwumen
-// Room in 高丽
+// Room in 高麗
 // rich 99/03/28
 inherit ROOM;
 void create()        
 {
-        set("short", "广场");
+        set("short", "廣場");
         set("long", @LONG
-这里一个大广场。广场占地很大，估计可以容纳上千人。北边是高
-丽的天台，是高丽求神祭天的地方。每次求神祭天，都有上千人来这里
-祭拜，场面很是壮观。
+這裡一個大廣場。廣場佔地很大，估計可以容納上千人。北邊是高
+麗的天台，是高麗求神祭天的地方。每次求神祭天，都有上千人來這裡
+祭拜，場面很是壯觀。
 LONG
         );
 set("outdoors", "gaoli");

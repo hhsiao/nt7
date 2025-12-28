@@ -45,7 +45,7 @@ void create()
         seteuid(ROOT_UID);
 }
 
-// 查询 CARD 相关信息
+// 查詢 CARD 相關信息
 public mixed db_query_card(string CardSn, string key)
 {
         mixed  res;
@@ -129,12 +129,12 @@ public varargs int db_create_card(mixed ob, string CardSn, string CardPass, int 
 public int db_make_card(object me, int amount, int ctype)
 {
         string strtmpSn, strtmpPass;
-        string strQZ, strPS;           //  卡号前缀，用以表示卡的类别面额
+        string strQZ, strPS;           //  卡號前綴，用以表示卡的類別面額
         int nCount, i;
         mixed res, ret;
         string sql;
 
-        // 注册码组合序列
+        // 註冊碼組合序列
         string *codes = ({
                "A", "B", "C", "D", "E", "F", "G", "H", "I",
                "J", "K", "L", "M", "N", "O", "P", "Q", "R",
@@ -152,20 +152,20 @@ public int db_make_card(object me, int amount, int ctype)
         if( amount <= 0 )
                 return 0;
 
-        // 为保证数据存储没有问题，每次最多生成500个卡号
+        // 為保證數據存儲沒有問題，每次最多生成500個卡號
         if( amount > 500 )
         {
-                write("为保证数据存储没有问题，每次最多生成500个卡号！\n");
+                write("為保證數據存儲沒有問題，每次最多生成500個卡號！\n");
                 return 0;
         }
 
         if( !ctype )
         {
-                write("请输入卡号种类。" HIC + "10 OR 50 OR 100" + NOR "分别代表10RMB，50RMB和100RMB面额！\n");
+                write("請輸入卡號種類。" HIC + "10 OR 50 OR 100" + NOR "分別代表10RMB，50RMB和100RMB面額！\n");
                 return 0;
         }
 
-        // 必须输入合法的卡号种类
+        // 必須輸入合法的卡號種類
         switch(ctype)
         {
         case 10:
@@ -184,7 +184,7 @@ public int db_make_card(object me, int amount, int ctype)
                 break;
 
         default:
-                write("请输入卡号种类。" HIC + "10 OR 50 OR 100" + NOR "分别代表10RMB，50RMB和100RMB面额！\n");
+                write("請輸入卡號種類。" HIC + "10 OR 50 OR 100" + NOR "分別代表10RMB，50RMB和100RMB面額！\n");
                 return 0;
                 break;
         }
@@ -195,7 +195,7 @@ public int db_make_card(object me, int amount, int ctype)
         res = ({});
         while(1)
         {
-                // 卡号生成完毕，进行后续处理
+                // 卡號生成完畢，進行後續處理
                 if( nCount >= amount )
                 {
                         for (i = 0; i < sizeof(res); i+=2)
@@ -203,7 +203,7 @@ public int db_make_card(object me, int amount, int ctype)
                                 reset_eval_cost();
                                 if( !db_create_card(me, res[i], res[i+1], ctype) )
                                 {
-                                        write("生成卡号时失败！\n");
+                                        write("生成卡號時失敗！\n");
                                         return 0;
                                 }
                                 log_file("static/cards", sprintf("Card: %s-%s，value = %d.\n", res[i], res[i+1], ctype));
@@ -211,8 +211,8 @@ public int db_make_card(object me, int amount, int ctype)
                         return 1;
                 }
 
-                // 产生一个随机卡号
-                strtmpSn = strQZ; // 卡号前缀
+                // 產生一個隨機卡號
+                strtmpSn = strQZ; // 卡號前綴
                 strtmpPass = strPS;
                 for(i = 0; i < SN_LEN; i ++)
                 {
@@ -223,18 +223,18 @@ public int db_make_card(object me, int amount, int ctype)
                 sql = sprintf("SELECT card FROM %s WHERE card = \"%s\"",
                               CARD_TABLE, strtmpSn);
                 ret = DATABASE_D->db_query(sql);
-                if( ret ) continue; // 数据库已经存在
+                if( ret ) continue; // 數據庫已經存在
                 sql = sprintf("SELECT password FROM %s WHERE password = \"%s\"",
                               CARD_TABLE, strtmpPass);
                 ret = DATABASE_D->db_query(sql);
-                if( ret ) continue; // 数据库已经存在
+                if( ret ) continue; // 數據庫已經存在
 */
                 nCount ++;
                 res += ({ strtmpSn, strtmpPass });
         }
 }
 
-// 设定卡号属性
+// 設定卡號屬性
 public int db_set_card(string CardSn, string key, mixed data)
 {
         mixed  ret;
@@ -271,13 +271,13 @@ public int db_card_pay(object me, string CardSn, string CardPass)
 
         if (time() - query_temp("last_try_card_pay", me) < 5 )
         {
-                write("你距离上次充值错误的时间不足5秒，请稍微再试。\n");
+                write("你距離上次充值錯誤的時間不足5秒，請稍微再試。\n");
                 return 0;
         }
 
         if( !CardSn || sizeof(CardSn) != SN_LEN+2 )
         {
-                write("充值卡号位数错误，请确认你的充值卡号的正确性。\n");
+                write("充值卡號位數錯誤，請確認你的充值卡號的正確性。\n");
                 set_temp("last_try_card_pay", time(), me);
                 return 0;
         }
@@ -292,7 +292,7 @@ public int db_card_pay(object me, string CardSn, string CardPass)
         case "HU":
                 break;
         default:
-                write("充值卡号错误，请确认你的充值卡号的正确性。\n");
+                write("充值卡號錯誤，請確認你的充值卡號的正確性。\n");
                 set_temp("last_try_card_pay", time(), me);
                 return 0;
                 break;
@@ -302,27 +302,27 @@ public int db_card_pay(object me, string CardSn, string CardPass)
 
         if( !arrayp(res) || !stringp(pass = res[0]) )
         {
-                write("充值卡号错误，请确认你的充值卡号的正确性。\n");
+                write("充值卡號錯誤，請確認你的充值卡號的正確性。\n");
                 return 0;
         }
 
         if( CardPass != pass )
         {
-                write("充值卡密码错误，请确认你的充值卡密码的正确性。\n");
+                write("充值卡密碼錯誤，請確認你的充值卡密碼的正確性。\n");
                 return 0;
         }
 
         value = res[1];
 
-        // 活动期间
+        // 活動期間
         money = value + value / 5;
 
-        // 处理卡冲值后标记
+        // 處理卡衝值後標記
         sql = "UPDATE cards SET sale = 1, paytime = " + time() + ", payid = " + DB_STR(query("id", me)) + " WHERE card = '" + CardSn + "'";
         ret = DATABASE_D->db_query(sql);
         if( !intp(ret) )
         {
-                write(HIR "充值失败(0000)，并尽快与ADMIN联系。\n" NOR);
+                write(HIR "充值失敗(0000)，並儘快與ADMIN聯繫。\n" NOR);
                 return 0;
         }
 
@@ -332,7 +332,7 @@ public int db_card_pay(object me, string CardSn, string CardPass)
                 MEMBER_D->db_create_member(me, money);
 
 
-        tell_object(me, HIG "恭喜！王者币(NT)充值成功，充值面额" + HIR + sprintf("%d", value) +
-                        HIG "元，获得 " + HIR + sprintf("%d", money) + HIG + " 王者币(NT)。\n" NOR);
+        tell_object(me, HIG "恭喜！王者幣(NT)充值成功，充值面額" + HIR + sprintf("%d", value) +
+                        HIG "元，獲得 " + HIR + sprintf("%d", money) + HIG + " 王者幣(NT)。\n" NOR);
         return 1;
 }

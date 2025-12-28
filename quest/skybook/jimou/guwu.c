@@ -18,20 +18,20 @@ void main(object ob)
 	p_name=this_body()->query_id()[0];
 p_skill=CHAR_D->get_char(p_name,"skills")["guwu"];
         if(!(CHAR_D->get_char(p_name,"skills")))
-        {       write("你不会鼓舞之计。\n");
+        {       write("你不會鼓舞之計。\n");
                 return;
 	}
 	if(!p_skill=CHAR_D->get_char(p_name,"skills")["guwu"])
-        {       write("你不会鼓舞之计。\n");
+        {       write("你不會鼓舞之計。\n");
                 return;
         }
 	if(!p_id){
-                write("只有身在军中才能鼓舞士气。\n");
+                write("只有身在軍中才能鼓舞士氣。\n");
                 return;
         };	
 
 	ob->simple_action(SG_SKILL_D->query_use("guwu"));
-	ob->start_busy(10, "你正忙于鼓舞士气呢。");
+	ob->start_busy(10, "你正忙於鼓舞士氣呢。");
 	load_object("/daemons/cast_d.c")->reg_player(ob->query_primary_id(), "guwu");
 	ob->award_exp(ob->query_sk_level("sk_zhimou")/2+random(20), "guwu");
 	call_out("show_result", 5+random(5), ob, p_id, p_skill);

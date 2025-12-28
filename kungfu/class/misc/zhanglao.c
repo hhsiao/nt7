@@ -1,4 +1,4 @@
-// zhanglao.c 长老
+// zhanglao.c 長老
 
 #include <ansi.h>
 
@@ -6,8 +6,8 @@ inherit "/inherit/char/punisher";
 
 void create()
 {
-        set_name("长老", ({ "zhang lao", "zhang", "lao" }));
-        set("long",  "日月神教开山鼻祖方腊手下第一贴身侍卫，无人知晓其真实姓名。\n");
+        set_name("長老", ({ "zhang lao", "zhang", "lao" }));
+        set("long",  "日月神教開山鼻祖方臘手下第一貼身侍衛，無人知曉其真實姓名。\n");
         set("gender", "男性");
         set("age", 145);
         set("attitude", "peaceful");
@@ -50,7 +50,7 @@ void create()
     prepare_skill("cuff", "xuwu-piaomiao");
     prepare_skill("hand", "huanmo-longtianwu");
 
-    create_family("日月神教", 0, "护教长老");
+    create_family("日月神教", 0, "護教長老");
 
     setup();
 

@@ -7,10 +7,10 @@ inherit F_MASTER;
 int ask_shi();
 void create()
 {
-        set_name("慕容景岳", ({ "murong jingyue", "murong", "jingyue" }));
+        set_name("慕容景嶽", ({ "murong jingyue", "murong", "jingyue" }));
         set("nickname", HIC "大弟子" NOR);
         set("long",@LONG
-药王谷第二代弟子大师兄慕容景岳。
+藥王谷第二代弟子大師兄慕容景嶽。
 LONG );
 
         set("gender", "男性");
@@ -68,7 +68,7 @@ LONG );
 
         prepare_skill("hand", "jiuqu-zhegufa");
 
-        create_family("药王谷", 2, "弟子");
+        create_family("藥王谷", 2, "弟子");
         set("class", "bonze");
 
         set("chat_chance_combat", 80);
@@ -88,8 +88,8 @@ LONG );
         setup();
 
         set("inquiry", ([
-                "七星海棠" : "七星海棠乃天下第一毒，无药可治！",
-                "石万嗔"   : (: ask_shi :),
+                "七星海棠" : "七星海棠乃天下第一毒，無藥可治！",
+                "石萬嗔"   : (: ask_shi :),
          ]) );
 
         carry_object("/clone/cloth/cloth")->wear();
@@ -102,31 +102,31 @@ void attempt_apprentice(object ob)
 
         if( query("combat_exp", ob)<50000 )
         {
-                command("say 你现在经验尚浅，领会不了什么，还是先去增长点经验吧。");
+                command("say 你現在經驗尚淺，領會不了什麼，還是先去增長點經驗吧。");
                 return;
         }
 
         if ((int)ob->query_skill("yaogu-xinfa", 1) < 50)
         {
-                command("say 你本门的心法还学的不够啊。");
+                command("say 你本門的心法還學的不夠啊。");
                 return;
         }
 
         if ((int)ob->query_skill("literate", 1) < 100)
         {
-                command("say 你连最基本的学问都没学好，我如何传授你高深的毒技医术。");
+                command("say 你連最基本的學問都沒學好，我如何傳授你高深的毒技醫術。");
                 return;
         }
 
         if ((int)ob->query_skill("medical", 1) < 100)
         {
-                command("say 你先把医术钻研透彻了再来找我吧。");
+                command("say 你先把醫術鑽研透徹了再來找我吧。");
                 return;
         }
 
 
         command("pat"+query("id", ob));
-        command("say 不错，不错！既然你如此有心，我就收下你这个徒弟。");
+        command("say 不錯，不錯！既然你如此有心，我就收下你這個徒弟。");
         command("recruit "+query("id", ob));
         if( query("class", ob) != "bonze" )
                 set("class", "bonze", ob);
@@ -140,17 +140,17 @@ int ask_shi()
 
         me = this_player();
         
-        if( query("family/family_name", me) != "药王谷" )
-                return notify_fail( "你不是我们药王谷的，打听它干什么？");
+        if( query("family/family_name", me) != "藥王谷" )
+                return notify_fail( "你不是我們藥王谷的，打聽它幹什麼？");
 
         
 
         if( query("shen", me)<-100000 )
-                return notify_fail("你侠义正事做得太多，去了他也不见你。");
+                return notify_fail("你俠義正事做得太多，去了他也不見你。");
 
 
-        message_vision(HIC "$N" HIC "微微一笑，道：“我师叔就在后山"
-                       "哪儿的路径是左右右右右右！”\n" NOR,
+        message_vision(HIC "$N" HIC "微微一笑，道：“我師叔就在後山"
+                       "哪兒的路徑是左右右右右右！”\n" NOR,
                        this_object(), me);
         set_temp("murong_ask", 1, me);
         return 1;

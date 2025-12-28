@@ -2,68 +2,68 @@
 // From fy2005
 // Updated by Lonely@nitan7
 
-// 处理各种buff的监测与实行,提供list,提供debuff能力
+// 處理各種buff的監測與實行,提供list,提供debuff能力
 
        /*
         struct mapping buff:
         object caster,
         object target,
-        string type,    ---- BUFF的种类，这是用来检验的关键参数。
+        string type,    ---- BUFF的種類，這是用來檢驗的關鍵參數。
 
-        绝招冷却时间
+        絕招冷卻時間
         cooldown
 
-        提升攻防性能的参数：
+        提升攻防性能的參數：
 
         powerup(dodge/atk)              dodgeup         atkup           parryup
         powerup2(damageup/armorup)      damageup        armorup
 
         defdown(-parry/dodge)
         powerdown(-dodge/atk)
-        pseudo-busy (具有被busy的parry*2/5,dodge*2/5 同时atk*2/3特点,但是仍然可以出招,给攻击性门派)
+        pseudo-busy (具有被busy的parry*2/5,dodge*2/5 同時atk*2/3特點,但是仍然可以出招,給攻擊性門派)
 
-        提升自身属性的参数：
-        ironup (金刚类）        strup           dexup
+        提升自身屬性的參數：
+        ironup (金剛類）        strup           dexup
 
-        haste                   berserk         counter(反击)
-        evade                   criticalup(暴击)
+        haste                   berserk         counter(反擊)
+        evade                   criticalup(暴擊)
 
-        特种功能的参数：
+        特種功能的參數：
         damageshield    healshield      forceshield     prtshield
         lockup(no pfm etc)              freeze          blocked         no_abs  mermorize
         blind           lowresist       lockfield       damagecurse     cursedflesh
         ic-curse
         stoneskin (block kee damage)
-        skillup (某样特殊技能系数提高的标识)
-        soft_damage     Target的普通攻击不伤害最大值
+        skillup (某樣特殊技能係數提高的標識)
+        soft_damage     Target的普通攻擊不傷害最大值
 
-        提升精气等的参数                jing     qi
+        提升精氣等的參數                jing     qi
 
 
-                string type2,   --- powerup 包括了dodgeup,所以powerup的pfm应该使用type2定义dodgeup.
-                string attr,    --- BUFF 的大致分类（Bless 或是 Curse)
-                string name,    --- BUFF 的名字，一般武功名+特殊功能名，如 混沌功·斗寒诀
+                string type2,   --- powerup 包括了dodgeup,所以powerup的pfm應該使用type2定義dodgeup.
+                string attr,    --- BUFF 的大致分類（Bless 或是 Curse)
+                string name,    --- BUFF 的名字，一般武功名+特殊功能名，如 混沌功·鬥寒訣
 
-                mapping temp,   --- 具体的buff内容
+                mapping temp,   --- 具體的buff內容
 
-                string shield_type,     ---用于 SHIELD类的BUFF
+                string shield_type,     ---用於 SHIELD類的BUFF
                 int shield_amount,
                 string shield_desc,
 
-                string buffup_name,     ---用于 特殊效果类的BUFF，例如伤害反噬
+                string buffup_name,     ---用於 特殊效果類的BUFF，例如傷害反噬
                 string buffup_type,
                 int buffup_ratio,
                 string buffup_msg,
 
-                string disable_type,    --- 用于致盲等效果
-                string env_type         --- 用于隐身等效果
+                string disable_type,    --- 用於致盲等效果
+                string env_type         --- 用於隱身等效果
                 int    env_type_c
 
-                int time,               --- 持续时间
-                string buff_msg,        --- BUFF时看到的信息。
-                string warn_msg,        --- BUFF即将消失时的提示信息（可缺省）
-                string disa_msg,        --- BUFF消失时的提示信息（可缺省）
-                int disa_type,          --- BUFF消失时的提示方式        0: tell 1: message_vision
+                int time,               --- 持續時間
+                string buff_msg,        --- BUFF時看到的信息。
+                string warn_msg,        --- BUFF即將消失時的提示信息（可缺省）
+                string disa_msg,        --- BUFF消失時的提示信息（可缺省）
+                int disa_type,          --- BUFF消失時的提示方式        0: tell 1: message_vision
 
                 function finish_func,        // disa_type == 2: exec this function when buffup interrupted and tell, 3 exec w.b.i and m_v.
         */
@@ -104,7 +104,7 @@ int evaluate_event(int id)
         if( !event[EVENT_OBJECT] )
         {
                 delete("list/"+ id);
-                return 0; // 已经遗失物件
+                return 0; // 已經遺失物件
         }
 
         args = ({ event[EVENT_FUNCTION] }) + event[EVENT_OBJECT..sizeof(event)-1];
@@ -123,7 +123,7 @@ varargs int set_event(int time, string func, object ob, mixed args...)
 {
         mixed event;
 
-        if( !ob ) error("参数过少");
+        if( !ob ) error("參數過少");
 
         event = ({ 0, time, func, ob }) + args;
 
@@ -141,8 +141,8 @@ void delete_event(int handle)
 void create()
 {
         seteuid(getuid());
-        set("channel_id", "BUFF精灵");
-        monitor("BUFF系统已经启动。");
+        set("channel_id", "BUFF精靈");
+        monitor("BUFF系統已經啟動。");
         set("index",1);
         set_heart_beat(1);
 }
@@ -154,22 +154,22 @@ void heart_beat()
         if( !sizeof(events) ) return;
         if( !last_update_time ) last_update_time = time();
 
-        i = time() - last_update_time;  // 记算每次心跳之时间差
-        last_update_time = time();      // 记录最后一次心跳时间
+        i = time() - last_update_time;  // 記算每次心跳之時間差
+        last_update_time = time();      // 記錄最後一次心跳時間
 
         foreach( int id, mixed event in events )
         {
                 if( undefinedp(events[id]) ) continue;
-                if( !event[EVENT_OBJECT] ) {       // 删除已遗失物件或函式指标的事件
+                if( !event[EVENT_OBJECT] ) {       // 刪除已遺失物件或函式指標的事件
                         delete("list/"+ id);
                         map_delete(events, id);
                         continue;
-                } if( event[EVENT_CUR_TIME] < event[EVENT_MAX_TIME] ) {       // 未超过事件循环时间
+                } if( event[EVENT_CUR_TIME] < event[EVENT_MAX_TIME] ) {       // 未超過事件循環時間
                         event[EVENT_CUR_TIME] += i;
-                } else {       // 已超过事件循环时间
+                } else {       // 已超過事件循環時間
                         evaluate_event(id);
                         event[EVENT_CUR_TIME] = 0;
-                        map_delete(events, id); // 执行后删除
+                        map_delete(events, id); // 執行後刪除
                 }
         }
 }
@@ -182,7 +182,7 @@ void remove(string euid)
         if( query("id", this_player()) == "lonely")
                 return;
 
-        error("你不能摧毁BUFF精灵。\n");
+        error("你不能摧毀BUFF精靈。\n");
 }
 
 int list_buffs(){
@@ -297,7 +297,7 @@ int remove_buffup(object who,int index_num,int flag)
         finish_func=buff["finish_func"];
 
         if( functionp(finish_func) )
-                if( (flag && buff["disa_type"] >= 2) || !flag )  // 非正常中断，则disa_type 2|3时才执行此程式段。
+                if( (flag && buff["disa_type"] >= 2) || !flag )  // 非正常中斷，則disa_type 2|3時才執行此程式段。
                         evaluate(finish_func,who,buff["caster"]);
 
         disa_msg = buff["disa_msg"];
@@ -402,11 +402,11 @@ int buffup(mapping buff)
         //index_num = query("index");     // get buffup index
         if( who->is_user() || who->is_baby() )
         {
-                set("list/"+index_num, query("id", buff["target"])+":"+buff["name"]);   // daemon设置标记
+                set("list/"+index_num, query("id", buff["target"])+":"+buff["name"]);   // daemon設置標記
                 //addn("index", 1);
         }
 
-        set_temp("buff_list/"+index_num, buff, who);                            // 本人设置标记
+        set_temp("buff_list/"+index_num, buff, who);                            // 本人設置標記
         set_temp("buff_type/"+buff["type"], index_num, who);
         if( buff["type2"] )
                 set_temp("buff_type/"+buff["type2"], index_num, who);
@@ -416,11 +416,11 @@ int buffup(mapping buff)
 
         buff_msg = buff["buff_msg"];
         if( caster != who )
-                message_vision(buff_msg,who,caster);            // BUFFMSG 所有人都可见
+                message_vision(buff_msg,who,caster);            // BUFFMSG 所有人都可見
         else
         {
                 if( !buff["buff_type"] )
-                        message_vision(buff_msg, caster);       // BUFFMSG 所有人都可见
+                        message_vision(buff_msg, caster);       // BUFFMSG 所有人都可見
                 else
                         tell_object(caster, buff_msg);
         }
@@ -431,7 +431,7 @@ int buffup(mapping buff)
         if( stringp(data) ) set_temp(data, 1, who);
         else if( mapp(data) && sizeof(data) )
         {
-                if( special_func == 1 ) // 增加max血气内力的
+                if( special_func == 1 ) // 增加max血氣內力的
                 {
                         apply = keys(data);
                         n = sizeof(apply);
@@ -460,15 +460,15 @@ int buffup(mapping buff)
                 }
         }
 
-        disable_type = buff["disable_type"];    // 昏迷、目盲等状态
+        disable_type = buff["disable_type"];    // 昏迷、目盲等狀態
         if( disable_type && disable_type != "" )
                 set("disable_type", disable_type, who);
 
-        block_msg = buff["block_msg"];          // 阻挡接收某些信息
+        block_msg = buff["block_msg"];          // 阻擋接收某些信息
         if( block_msg && block_msg != "" )
                 set_temp("block_msg/"+block_msg, 1, who);
 
-        env_type = buff["env_type"];            // 设置环境变量数据
+        env_type = buff["env_type"];            // 設置環境變量數據
         if( env_type && env_type != "" )
                 set("env/"+env_type, buff["env_type_c"], who);
 
@@ -538,7 +538,7 @@ int buffup(mapping buff)
         return index_num;
 }
 
-int check_buff(object who,string what)  // 是否已有类似BUFF?
+int check_buff(object who,string what)  // 是否已有類似BUFF?
 {
         if( query_temp("buff_type/"+what, who) )
                 return query_temp("buff_type/"+what, who);
@@ -569,7 +569,7 @@ int get_buff_overtime(object who, string what)
         if( idx < 1 )
                 return 0;
         buff = query_temp("buff_list/"+idx, who);
-        time = query_temp("buff_time/"+idx, who) + buff["time"] - time();       // 是否时间超时
+        time = query_temp("buff_time/"+idx, who) + buff["time"] - time();       // 是否時間超時
         if( time < 0 ) remove_buffup(who,idx,1);
         return time;
 }

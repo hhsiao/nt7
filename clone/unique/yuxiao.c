@@ -7,7 +7,7 @@ inherit F_UNIQUE;
 
 void create()
 {
-        set_name(HIG"玉箫"NOR,({ "yu xiao", "xiao" }) );
+        set_name(HIG"玉簫"NOR,({ "yu xiao", "xiao" }) );
         set_weight(3000);
         /*if( clonep() )
                 set_default_object(__FILE__);
@@ -22,13 +22,13 @@ void create()
                 set("material", "steel");
                 set("shape", "flute");
                 set("long", 
-                        "一柄翠玉制玉箫，通体晶莹碧绿，近吹口处几点朱斑，殷红如血，显然都是\n"
-                        "数百年乃至上千年的古物。\n");
+                        "一柄翠玉製玉簫，通體晶瑩碧綠，近吹口處幾點朱斑，殷紅如血，顯然都是\n"
+                        "數百年乃至上千年的古物。\n");
                 set("wield_msg", 
-                    HIG "$N从腰间抽出一支玉箫，吹出优雅的箫声。箫声入耳，众人激荡的心情便即平\n"
-                        "复。$N随即和道：“苍生笑，不再寂聊，豪情仍在痴痴笑笑。”\n"NOR);
-                set("unwield_msg", CYN "$N将$n插到领後。\n" NOR);
-                set("unequip_msg", CYN "$N将$n插到领後。\n" NOR);
+                    HIG "$N從腰間抽出一支玉簫，吹出優雅的簫聲。簫聲入耳，眾人激盪的心情便即平\n"
+                        "復。$N隨即和道：“蒼生笑，不再寂聊，豪情仍在痴痴笑笑。”\n"NOR);
+                set("unwield_msg", CYN "$N將$n插到領後。\n" NOR);
+                set("unequip_msg", CYN "$N將$n插到領後。\n" NOR);
         }
 
         init_xsword(90); 

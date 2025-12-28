@@ -9,8 +9,8 @@ int main(object me, string arg)
         int wmp;
 
         if( !arg ) {
-                write("你现在的当「气」低於"+query("env/wimpy", me )
-                        + "% 时就会尝试逃跑。\n");
+                write("你現在的當「氣」低於"+query("env/wimpy", me )
+                        + "% 時就會嘗試逃跑。\n");
                 return 1;
         }
         if( sscanf(arg, "%d", wmp)!=1 || wmp < 0 || wmp > 80)
@@ -24,9 +24,9 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式： wimpy [<逃跑时「气」的百分比>]
+指令格式： wimpy [<逃跑時「氣」的百分比>]
 
-这个指令让你设定当「气」剩下百分之多少时，要开始「转进」。
+這個指令讓你設定當「氣」剩下百分之多少時，要開始「轉進」。
 HELP
         );
         return 1;

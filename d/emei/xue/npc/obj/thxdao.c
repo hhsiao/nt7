@@ -1,6 +1,6 @@
 // This program is a part of NITAN MudLIB 
 // redl 2014
-// 宝物
+// 寶物
 #include <weapon.h>
 #include <ansi.h>
 #include <combat.h>
@@ -23,10 +23,10 @@ int reset_wield()
                 return 0;
         }
         if (environment()==own && query("name")==query("bak_name")) return 1;
-        msg = NOR + HIY + "\n$N"  + NOR + HIY +  "轻拍刀鞘，";
+        msg = NOR + HIY + "\n$N"  + NOR + HIY +  "輕拍刀鞘，";
         if (query("name")!=query("bak_name")) {
                 delete("no_wield");
-                msg += query("name") + NOR + HIY + "一个激灵，聚合成";
+                msg += query("name") + NOR + HIY + "一個激靈，聚合成";
                 set_name(NOR HIB "天魔" HIM "化" HIR "血" NOR YEL "刀" NOR , ({ "huaxue dao", "dao" }));
         }
         msg += query("name") + NOR + HIY + "跳回$N" + NOR + HIY + "身上。\n" + NOR;
@@ -41,7 +41,7 @@ void create()
                 int lv = random(6)+10;
                 set_name(NOR HIB "天魔" HIM "化" HIR "血" NOR YEL "刀" NOR , ({ "huaxue dao", "dao" }));
                 set("bak_name", query("name"));
-        set("long", HIC "刀光如血，阴狠奇毒。\n  持有者" HIR "越杀越烈" HIC "无止境，并能增强自己的抗打击力。\n  此物自动认主，不毁不灭，乃南疆红木岭天狗崖的红发老祖镇山之宝。\n" HIK "(下线丢失，无法保存)\n" NOR);
+        set("long", HIC "刀光如血，陰狠奇毒。\n  持有者" HIR "越殺越烈" HIC "無止境，並能增強自己的抗打擊力。\n  此物自動認主，不毀不滅，乃南疆紅木嶺天狗崖的紅髮老祖鎮山之寶。\n" HIK "(下線丟失，無法保存)\n" NOR);
         set_weight(5000);
                 set("unit", "柄");
                 set("value", 100);
@@ -64,8 +64,8 @@ void create()
                 set("unique", 1);//已避免分解
                                 set("quality_level", 6);
                                 
-                                set("wield_msg", NOR CYN "$N" NOR CYN "一抹刀鞘，$n" NOR CYN "带着"+NOR+RED+"血光"+NOR+CYN+"跃到$N" NOR CYN "手中。\n" NOR); 
-                                set("unwield_msg", NOR CYN "$N" NOR CYN "随手一按，$n" NOR CYN "插回$N" NOR CYN "的腰间刀鞘里。\n" NOR); 
+                                set("wield_msg", NOR CYN "$N" NOR CYN "一抹刀鞘，$n" NOR CYN "帶著"+NOR+RED+"血光"+NOR+CYN+"躍到$N" NOR CYN "手中。\n" NOR); 
+                                set("unwield_msg", NOR CYN "$N" NOR CYN "隨手一按，$n" NOR CYN "插回$N" NOR CYN "的腰間刀鞘裡。\n" NOR); 
                 
                 //set("weapon_prop/kar", lv);
                 set("weapon_prop/add_skill", 125 + lv);
@@ -117,7 +117,7 @@ void heart_beat()
                 if (kn2 > 1000000) kn += 1;
                 if (kn2 > 10000000) kn += 1;
                 if (kn2 > 100000000) kn += 1;
-                snum = chinese_number(kn2 / 100 * 100);//整百显示
+                snum = chinese_number(kn2 / 100 * 100);//整百顯示
         for (i = 0; i < (1 + kn); i++)
         {
                 if (!arrayp(obs) || !sizeof(obs)) break;
@@ -135,18 +135,18 @@ void heart_beat()
           }
                         if( !enemy->is_busy() )
                                 enemy->start_busy(2);
-                                                message_vision(NOR + HIY "\n$N" + NOR + HIY + "手中的" + BLINK + query("name") + NOR + HIY + "斜劈，"+ snum + "条"+
-                                                                                NOR + BLINK + RED+"血炼幽魂"+NOR + HIY+"隐现，影影绰绰围住$n"+NOR + HIY+"嚎叫扑咬。\n" NOR, owner, enemy);
-                                                message_vision(HIW "( $N" + NOR + HIW + "手中的" + query("name") + NOR + HIW + "对" +
+                                                message_vision(NOR + HIY "\n$N" + NOR + HIY + "手中的" + BLINK + query("name") + NOR + HIY + "斜劈，"+ snum + "條"+
+                                                                                NOR + BLINK + RED+"血煉幽魂"+NOR + HIY+"隱現，影影綽綽圍住$n"+NOR + HIY+"嚎叫撲咬。\n" NOR, owner, enemy);
+                                                message_vision(HIW "( $N" + NOR + HIW + "手中的" + query("name") + NOR + HIW + "對" +
                                         query("name", enemy)+ NOR + HIW"造成"+
-                                        damage + "点伤害，" +
-                                        (damage / 2) + "点创伤。)\n" NOR, owner);
+                                        damage + "點傷害，" +
+                                        (damage / 2) + "點創傷。)\n" NOR, owner);
                         COMBAT_D->report_status(enemy);
                         if (query("eff_qi", enemy) < 1 ) {
                                 addn("artifacts/thxdao/kill_num", 1, owner);
                                                         set_temp("die_reason", NOR + "被" + query("name", owner) + "用天魔化血刀砍死了" + NOR, enemy);
                                                 enemy->die();
-                                                        message_vision(NOR + HIG "\n" + BLINK + query("name") + NOR + HIG + "反哺一匹血光，扩充了$N"+NOR + HIG+"的精血脉络。\n" NOR, owner);
+                                                        message_vision(NOR + HIG "\n" + BLINK + query("name") + NOR + HIG + "反哺一匹血光，擴充了$N"+NOR + HIG+"的精血脈絡。\n" NOR, owner);
                                                         addn("eff_jing", ap, owner);//可超上限
                                                         addn("eff_qi", ap * 2, owner);//可超上限
                         }

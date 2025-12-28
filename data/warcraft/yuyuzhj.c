@@ -7,7 +7,7 @@ void setup()
         set_name("路虎[2;37;0m[2;37;0m", ({"xuanwu"}));        
         set("gender", "男性");                
         set("long", "路虎[2;37;0m
-它是小祖宗的魔幻兽。
+它是小祖宗的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

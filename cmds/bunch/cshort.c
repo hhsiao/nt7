@@ -20,9 +20,9 @@ int main(object me, string arg)
 		return 0;
 
 	if(!content = read_file(base_name(env)+".c"))
-		return notify_fail("无法读取当前档案。\n");
+		return notify_fail("無法讀取當前檔案。\n");
 
-	write("请输入房间的名称[2-6个汉字]('q'退出)：\n");
+	write("請輸入房間的名稱[2-6個漢字]('q'退出)：\n");
 	input_to( (: get_room_short :), me, env );
 	return 1;
 }
@@ -36,7 +36,7 @@ protected void get_room_short(string sdesc, object who, object env)
 
 	if(!stringp(sdesc) || (sdesc == ""))
 	{
-		tell_object(who, "请输入房间的名称[2-6个汉字]，输入('q'退出)：\n");
+		tell_object(who, "請輸入房間的名稱[2-6個漢字]，輸入('q'退出)：\n");
 		input_to( (: get_room_short :), who, env);
 		return;
 	}
@@ -44,13 +44,13 @@ protected void get_room_short(string sdesc, object who, object env)
 	if( (sdesc[0] == 'q')
 	|| (sdesc[0] == 'Q') )
 	{
-		tell_object(who, "终止房间修改。\n");
+		tell_object(who, "終止房間修改。\n");
 		return;
 	}
 
 	if( ((l = strlen(sdesc)) < 4) || (l > 12) )
 	{
-		tell_object(who, "房间的名称必须为2-6个汉字，输入('q'退出)：\n");
+		tell_object(who, "房間的名稱必須為2-6個漢字，輸入('q'退出)：\n");
 		input_to( (: get_room_short :), who, env);
 		return;
 	}
@@ -61,7 +61,7 @@ protected void get_room_short(string sdesc, object who, object env)
 
                 if( sdesc[l]<128 )
 		{
-			tell_object(who, "房间的名称必须使用中文，输入('q'退出)：\n");
+			tell_object(who, "房間的名稱必須使用中文，輸入('q'退出)：\n");
 			input_to( (: get_room_short :), who, env);
 			return;
                 }
@@ -73,7 +73,7 @@ protected void get_room_short(string sdesc, object who, object env)
 			if( (section < 16)
 			|| (section > 87) )
 			{
-				tell_object(who,"\n房间的名称必须使用常用「汉字」，输入('q'退出)：\n");
+				tell_object(who,"\n房間的名稱必須使用常用「漢字」，輸入('q'退出)：\n");
 				input_to( (: get_room_short :), who, env);
 				return;
 			}
@@ -92,19 +92,19 @@ protected void change_room_short(object who, object env, string sdesc)
 
 	if(environment(who) != env)
 	{
-		tell_object(who, "你的位置发生了变化，修改被停止。\n");
+		tell_object(who, "你的位置發生了變化，修改被停止。\n");
 		return;
 	}
 
 	if(!content = read_file(fname = base_name(env)+".c"))
 	{
-		tell_object(who, "无法读取当前档案，修改失败。\n");
+		tell_object(who, "無法讀取當前檔案，修改失敗。\n");
 		return;
 	}
 
 	if(!BUNCH_D->parse_set_value(ref content, "short", ref f_sect, ref e_sect))
 	{
-		tell_object(who, "无法剖析当前档案，修改失败。\n");
+		tell_object(who, "無法剖析當前檔案，修改失敗。\n");
 		return;
 	}
 
@@ -113,13 +113,13 @@ protected void change_room_short(object who, object env, string sdesc)
 
 	if(!write_file(fname, newf, 1))
 	{
-		tell_object(who, "无法写入档案，修改失败。\n");
+		tell_object(who, "無法寫入檔案，修改失敗。\n");
 		return;
 	}
 
 	if( !BUNCH_D->update_room(env) )
 	{
-		tell_object(who, "重新载入房间错误，修改失败。\n");
+		tell_object(who, "重新載入房間錯誤，修改失敗。\n");
 		return;
 	}
 	tell_object(who, "修改成功。\n");

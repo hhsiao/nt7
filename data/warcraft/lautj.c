@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;36m老爷车[2;37;0m[2;37;0m", ({"lautjbb"}));        
+        set_name("[1;36m老爺車[2;37;0m[2;37;0m", ({"lautjbb"}));        
         set("gender", "男性");                
-        set("long", "尼玛卧槽乐[2;37;0m
-它是不辣公公的魔幻兽。
+        set("long", "尼瑪臥槽樂[2;37;0m
+它是不辣公公的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

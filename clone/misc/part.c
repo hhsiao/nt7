@@ -1,4 +1,4 @@
-// part.c 身体某部位
+// part.c 身體某部位
 
 #include <ansi.h>
 
@@ -12,12 +12,12 @@ int is_body_part() { return 1; }
 
 void create()
 {
-        set_name(RED "残肢" NOR, ({ "body part"}));
+        set_name(RED "殘肢" NOR, ({ "body part"}));
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "块");
+                set("unit", "塊");
                 set("value", 0);
                 set("no_store", 1);
                 set("food_supply", 15);
@@ -35,12 +35,12 @@ int set_from(object owner)
         case "眼珠":
         case "耳朵":
         case "鼻子":
-        case "舌头":
+        case "舌頭":
                 set("food_supply", 10);
                 set("food_remaining", 1);
                 break;
         case "手掌":
-        case "人脚":
+        case "人腳":
                 set("food_supply", 15);
                 set("food_remaining", 2);
                 break;

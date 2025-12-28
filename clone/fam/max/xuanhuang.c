@@ -1,4 +1,4 @@
-// xuanhuang.c 玄黄紫箐丹
+// xuanhuang.c 玄黃紫箐丹
 
 #include <ansi.h>
 
@@ -6,17 +6,17 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIM "玄黄紫箐丹" NOR, ({ "xuanhuang dan", "xuanhuang", "dan" }) );
+        set_name(HIM "玄黃紫箐丹" NOR, ({ "xuanhuang dan", "xuanhuang", "dan" }) );
         set_weight(300);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIM "一颗紫中泛黄的精致奇丹，具有着神话般的功效，传\n"
-                                "说吃了之后能平增数十年的功力，乃是练武之人梦寐\n"
-                                "以求的神丹妙药。本物品第一次吃效果最佳！\n" NOR);
+                set("long", HIM "一顆紫中泛黃的精緻奇丹，具有著神話般的功效，傳\n"
+                                "說吃了之後能平增數十年的功力，乃是練武之人夢寐\n"
+                                "以求的神丹妙藥。本物品第一次吃效果最佳！\n" NOR);
                 set("value", 100000);
                 set("no_sell", 1);
-                set("unit", "颗");
+                set("unit", "顆");
                 set("only_do_effect", 1);
         }
 }
@@ -27,7 +27,7 @@ int do_effect(object me)
         int effect;
         int neili;
 
-        log_file("static/using", sprintf("%s(%s) eat 玄黄紫箐丹 at %s.\n",
+        log_file("static/using", sprintf("%s(%s) eat 玄黃紫箐丹 at %s.\n",
                  me->name(1),query("id", me),ctime(time())));
 
         effect = 0;
@@ -35,21 +35,21 @@ int do_effect(object me)
         if( query("skybook/item/xuanhuang", me) )
         {
                 /*
-                message_vision(HIR "$N" HIR "一仰脖，吞下了一颗玄黄紫箐丹，却听$P"
-                               HIR "一声尖哮，喷出一口鲜血。\n" NOR, me);
+                message_vision(HIR "$N" HIR "一仰脖，吞下了一顆玄黃紫箐丹，卻聽$P"
+                               HIR "一聲尖哮，噴出一口鮮血。\n" NOR, me);
 
-                me->set_temp("die_reason","贪吃玄黄紫箐丹，结果弄得全身筋脉尽断"
+                me->set_temp("die_reason","貪吃玄黃紫箐丹，結果弄得全身筋脈盡斷"
                                            "而亡");
                 me->die();
                 */ 
                 me->improve_neili(500);
                 addn("skybook/item/xuanhuang", 1, me);
-                message_vision(HIW "$N" HIW "一仰脖，吞下了一颗玄黄紫箐丹，只见$P"
-                               HIW "浑身一颤，七窍都冒出白烟来。\n" NOR, me);
+                message_vision(HIW "$N" HIW "一仰脖，吞下了一顆玄黃紫箐丹，只見$P"
+                               HIW "渾身一顫，七竅都冒出白煙來。\n" NOR, me);
         } else
         {
-                message_vision(HIW "$N" HIW "一仰脖，吞下了一颗玄黄紫箐丹，只见$P"
-                               HIW "浑身一颤，七窍都冒出白烟来。\n" NOR, me);
+                message_vision(HIW "$N" HIW "一仰脖，吞下了一顆玄黃紫箐丹，只見$P"
+                               HIW "渾身一顫，七竅都冒出白煙來。\n" NOR, me);
 
                 //addn("combat_exp", 100000+random(50000), me);
                 addn("potential", 10000, me);

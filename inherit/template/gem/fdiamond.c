@@ -10,16 +10,16 @@ inherit TESSERA;
 void create()
 {
 //**    set_name("$name", ({ "$id", }));                        /* NAME_ENTRY */
-        set_name(HIW "稀世水晶钻" NOR, ({ "flawless diamond" }) );  /* NAME_EXIT  */
+        set_name(HIW "稀世水晶鑽" NOR, ({ "flawless diamond" }) );  /* NAME_EXIT  */
         set_weight(20);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/
         {
 //**            set("$dbase_key", "$dbase_value\n");            /* DBASE_ENTRY */
-                set("long", HIW "一颗精光闪闪的精美钻石，华丽异常。\n" NOR);  /* DBASE_EXIT  */
+                set("long", HIW "一顆精光閃閃的精美鑽石，華麗異常。\n" NOR);  /* DBASE_EXIT  */
                 set("value", 100000);
-                set("unit", "颗");
+                set("unit", "顆");
                 set("level", 3);
                 set("material", "fdiamond");
                 set("can_be_enchased", 1);

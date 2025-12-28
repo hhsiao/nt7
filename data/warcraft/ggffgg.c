@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;36m静蕾[2;37;0m[2;37;0m", ({"mimi"}));        
+        set_name("[1;36m靜蕾[2;37;0m[2;37;0m", ({"mimi"}));        
         set("gender", "女性");                
         set("long", "很好看，很牛叉[2;37;0m
-它是百里雷霆的魔幻兽。
+它是百里雷霆的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

@@ -4,11 +4,11 @@ inherit NPC;
 int summons();
 void create()
 {
-        set_name("日光精灵", ({ "spirit" }) );
+        set_name("日光精靈", ({ "spirit" }) );
         set("age", 20);
         set("gender", "男性"); 
         set("long", 
-"日光精灵，在日光中诞生的精灵，看上去象一团光影。\n");
+"日光精靈，在日光中誕生的精靈，看上去象一團光影。\n");
         set("attitude", "peaceful");
         set("str", 20);
         set("int", 20);
@@ -45,7 +45,7 @@ int summons()
 {
         object ob;
   object me = this_object ();
-        message_vision(HIY"$N双手结印，喃喃地念了几句咒语。\n"NOR, me);
+        message_vision(HIY"$N雙手結印，喃喃地念了幾句咒語。\n"NOR, me);
         ob = new("/quest/tulong/npc/spirit");
         ob->move(environment(me));
         ob->invocation(me); 

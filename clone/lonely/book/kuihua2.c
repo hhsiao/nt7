@@ -11,15 +11,15 @@ void create()
                 destruct(this_object());
         else {
                 set("unit", "件");
-                set("long", HIR "一件大红色的粗布袈裟，上面密密麻麻写满了小字。\n" NOR);
+                set("long", HIR "一件大紅色的粗布袈裟，上面密密麻麻寫滿了小字。\n" NOR);
                 set("value", 1000);
                 set("no_sell", 1);
                 set("no_store", 1);
                 set("no_pawn", 1);
                 set("material", "cloth");
                 set("armor_prop/armor", 25);
-                set("wear_msg", HIR "$N" HIR "展开一件大红色的袈裟披在身上。\n" NOR);
-                set("remove_msg", HIR "$N" HIR "将袈裟从身上脱了下来，折叠成小小的一团。\n" NOR);
+                set("wear_msg", HIR "$N" HIR "展開一件大紅色的袈裟披在身上。\n" NOR);
+                set("remove_msg", HIR "$N" HIR "將袈裟從身上脫了下來，摺疊成小小的一團。\n" NOR);
         }
         setup();
 }
@@ -45,52 +45,52 @@ int do_du(string arg)
 
         if (me->is_busy())
         {
-                write("你现在正忙着呢。\n");
+                write("你現在正忙著呢。\n");
                 return 1;
         }
 
         if (me->is_fighting())
         {
-                write("你无法在战斗中专心下来研读新知！\n");
+                write("你無法在戰鬥中專心下來研讀新知！\n");
                 return 1;
         }
 
         if( query("no_fight", where) && query("doing", me) != "scheme" )
         {
-                write("你无法在这里静下心来研读宝典。\n");
+                write("你無法在這裡靜下心來研讀寶典。\n");
                 return 1;
         }
 
         if (! me->query_skill("literate", 1))
         {
-                write("你是个文盲，先学点文化(literate)吧。\n");
+                write("你是個文盲，先學點文化(literate)吧。\n");
                 return 1;
         }
 
         if( !query("family/family_name", me) || query("family/family_name", me) != "日月神教" )
         {
-                write("辟邪剑法只有日月神教的人方能领会。\n"); 
+                write("辟邪劍法只有日月神教的人方能領會。\n"); 
                 return 1;
         }
 
         if( query("character", me) == "光明磊落" || 
-            query("character", me) == "狡黠多变" )
+            query("character", me) == "狡黠多變" )
         {
-                write("你心中暗道：这辟邪剑法损人损己，修炼来何用。\n");
+                write("你心中暗道：這辟邪劍法損人損己，修煉來何用。\n");
                 return 1;
         }
 
         if( !query("special_skill/ghost", me)){
         if( query("gender", me) == "女性" )
         {
-                write("自古以来没听说过女人可以修习葵花宝典。\n");
+                write("自古以來沒聽說過女人可以修習葵花寶典。\n");
                 return 1;
         }
 
         if( query("gender", me) == "男性" )
         {
                 me->receive_wound("qi", 50);
-                write(HIR "\n你试着修炼辟邪剑法，霎时只觉内息忽然大乱，几"
+                write(HIR "\n你試著修煉辟邪劍法，霎時只覺內息忽然大亂，幾"
                       "欲焚身。\n" NOR);
                 return 1;
         }
@@ -98,74 +98,74 @@ int do_du(string arg)
 
         if( query("int", me)<34 )
         {
-                write("你的天资不足，无法理解辟邪剑法的深意。\n");
+                write("你的天資不足，無法理解辟邪劍法的深意。\n");
                 return 1;
         }
 
         if( query("dex", me)<32 )
         {
-                write("你先天身法孱弱，难以修炼辟邪剑法。\n");
+                write("你先天身法孱弱，難以修煉辟邪劍法。\n");
                 return 1;
         }
 
         if (me->query_skill("sword", 1) < 100)
         {
-                write("你的基本剑法造诣太浅，无法理解辟邪剑法。\n");
+                write("你的基本劍法造詣太淺，無法理解辟邪劍法。\n");
                 return 1;
         }
 
         if (me->query_skill("dodge", 1) < 100)
         {
-                write("你的基本轻功造诣太浅，无法理解辟邪剑法。\n");
+                write("你的基本輕功造詣太淺，無法理解辟邪劍法。\n");
                 return 1;
         }
 
         if (me->query_skill("parry", 1) < 100)
         {
-                write("你的基本架造造诣太浅，无法理解辟邪剑法。\n");
+                write("你的基本架造造詣太淺，無法理解辟邪劍法。\n");
                 return 1;
         }
 
         if (me->query_skill("pixie-jian", 1) >= 180)
         {
-                write("袈裟上面记载的东西对你来说已经太过浅显了。\n");
+                write("袈裟上面記載的東西對你來說已經太過淺顯了。\n");
                 return 1;
         }
 
         if( query("combat_exp", me)<300000 )
         {
-                write("你的实战经验不足，再怎么读也没用。\n");
+                write("你的實戰經驗不足，再怎麼讀也沒用。\n");
                 return 1;
         }
 
         if( query("max_neili", me)<500 )
         {
-                write("你的内力太差，无法修炼此等神功。\n");
+                write("你的內力太差，無法修煉此等神功。\n");
                 return 1;
         }
 
         switch (random(3))
         {
         case 0:
-                message("vision", CYN "只见" + me->name() + CYN "偷偷"
-                        "摸摸地正在研读一件袈裟。\n" NOR,
+                message("vision", CYN "只見" + me->name() + CYN "偷偷"
+                        "摸摸地正在研讀一件袈裟。\n" NOR,
                         environment(me), me);
                 break;
         case 1:
-                message("vision", CYN + me->name() + CYN "照着一件袈裟"
-                        "骚首弄姿，好象在模仿女人。\n" NOR,
+                message("vision", CYN + me->name() + CYN "照著一件袈裟"
+                        "騷首弄姿，好象在模仿女人。\n" NOR,
                         environment(me), me);
                 break;
         case 2:
-                message("vision", CYN + me->name() + CYN "边读袈裟边把"
-                        "腰身扭来扭去，甚为诡异。\n" NOR,
+                message("vision", CYN + me->name() + CYN "邊讀袈裟邊把"
+                        "腰身扭來扭去，甚為詭異。\n" NOR,
                         environment(me), me);
                 break;
         }
 
         if( query("jing", me)<60 )
         {
-                write("你现在过于疲倦，无法专心下来研读新知。\n");
+                write("你現在過於疲倦，無法專心下來研讀新知。\n");
                 return 1;
         }
 
@@ -186,22 +186,22 @@ int do_du(string arg)
 
         if( query("neili", me)<neili_lost )
         {
-                write("你内力不够，无法钻研这么高深的武功。\n");
+                write("你內力不夠，無法鑽研這麼高深的武功。\n");
                 return 1;
         }
 
         if (! me->can_improve_skill("pixie-jian", 1))
         {
-                write("你的实战经验不足，再怎么读也没用。\n");
+                write("你的實戰經驗不足，再怎麼讀也沒用。\n");
                 return 1;
         }
 
         if ((plvl > 10) && (con / 2 + random(con) < 50) && random(100) == 1)
         {
-                tell_object(me, HIR "你依照着宝典所示运转内息，突然只觉内息逆流而"
-                                "上，四肢冰凉，心火如\n焚，惨嚎一声，晕了过去。\n" NOR);
+                tell_object(me, HIR "你依照著寶典所示運轉內息，突然只覺內息逆流而"
+                                "上，四肢冰涼，心火如\n焚，慘嚎一聲，暈了過去。\n" NOR);
 
-                message("vision", HIR + me->name() + "突然惨嚎一声，晕了过去。\n"
+                message("vision", HIR + me->name() + "突然慘嚎一聲，暈了過去。\n"
                                   NOR, environment(me), ({ me }));
 
                 if( query("max_neili", me)>10 )
@@ -215,14 +215,14 @@ int do_du(string arg)
         me->receive_damage("jing", random(30) + 30);
         addn("neili", -neili_lost, me);
 
-        // 天赋聪颖增加研读速度
+        // 天賦聰穎增加研讀速度
         if( query("special_skill/clever", me) )
                 me->improve_skill("pixie-jian",query("int", me)+5);
         else
                 me->improve_skill("pixie-jian",query("int", me)+1);
 
         me->start_busy(random(1) + 1);
-        write(HIR "你仔细研读袈裟上记载的神功，颇有心得。\n" NOR);
+        write(HIR "你仔細研讀袈裟上記載的神功，頗有心得。\n" NOR);
         return 1;
 }
 
@@ -236,104 +236,104 @@ int do_yanjiu(string arg)
 
         if (! arg)
         {
-                write("研究葵花宝典指令格式：research|yanjiu <绝招> from <葵花宝典>\n");
+                write("研究葵花寶典指令格式：research|yanjiu <絕招> from <葵花寶典>\n");
                 return 1;
         }
 
         if (sscanf(arg, "%s from %s", pfm, jiasha) != 2)
         {
-                write("研究葵花宝典指令格式：research|yanjiu <绝招> from <葵花宝典>\n");
+                write("研究葵花寶典指令格式：research|yanjiu <絕招> from <葵花寶典>\n");
                 return 1;
         }
 
         if (me->is_busy())
         {
-                write("你现在正忙着呢。\n");
+                write("你現在正忙著呢。\n");
                 return 1;
         }
 
         if (me->is_fighting())
         {
-                write("你无法在战斗中专心下来研读新知！\n");
+                write("你無法在戰鬥中專心下來研讀新知！\n");
                 return 1;
         }
 
         if( query("no_fight", where) && query("doing", me) != "scheme" )
         {
-                write("你无法在这里静下心来研读宝典。\n");
+                write("你無法在這裡靜下心來研讀寶典。\n");
                 return 1;
         }
 
         if (! me->query_skill("literate", 1))
         {
-                write("你是个文盲，先学点文化(literate)吧。\n");
+                write("你是個文盲，先學點文化(literate)吧。\n");
                 return 1;
         }
 
         if (! id(jiasha))
         {
-                write("你要研究什么？\n");
+                write("你要研究什麼？\n");
                 return 1;
         }
 
         if (pfm != "gui" && pfm != "duo" && pfm != "pi" && pfm != "po")
         {
-                write("袈裟上并没有记载你想研究的绝招。\n");
+                write("袈裟上並沒有記載你想研究的絕招。\n");
                 return 1;
         }
 
         if( query("combat_exp", me)<300000 )
         {
-                write("你的实战经验不足，再怎么读也没用。\n");
+                write("你的實戰經驗不足，再怎麼讀也沒用。\n");
                 return 1;
         }
 
         if( query("jing", me)<100 )
         {
-                write("你现在过于疲倦，无法专心下来研读新知。\n");
+                write("你現在過於疲倦，無法專心下來研讀新知。\n");
                 return 1;
         }
 
         if( query("potential", me)<query("learned_points", me)+10 )
         {
-                write("你的潜能不够了，研究不出什么。\n");
+                write("你的潛能不夠了，研究不出什麼。\n");
                 return 1;
         }
 
-        // 辟邪剑法绝招夺目神剑
+        // 辟邪劍法絕招奪目神劍
         if (pfm == "duo")
         {
                 if( query("can_perform/pixie-jian/duo", me) )
                 {
-                        write("你已经学会了这招，再研究也没用。\n");
+                        write("你已經學會了這招，再研究也沒用。\n");
                         return 1;
                 }
 
                 if (! (int)me->query_skill("pixie-jian"))
                 {
-                        write("你研究了半天，发现袈裟所记载的绝招与你毫无关系。\n");
+                        write("你研究了半天，發現袈裟所記載的絕招與你毫無關係。\n");
                         return 1;
                 }
 
                 if ((int)me->query_skill("pixie-jian", 1) < 80)
                 {
-                        write("你发现袈裟上记载的绝招过于深奥，一时难以明白。\n");
+                        write("你發現袈裟上記載的絕招過於深奧，一時難以明白。\n");
                         return 1;
                 }
 
                 if (random(20) < 18)
                 {
-                        message_vision(HIR "$N" HIR "仔细的研读袈裟上记载的绝招，似"
+                        message_vision(HIR "$N" HIR "仔細的研讀袈裟上記載的絕招，似"
                                        "有所悟。\n" NOR, me);
-                        tell_object(me, HIY "你对辟邪剑法有了更深的理解，但尚需进一"
+                        tell_object(me, HIY "你對辟邪劍法有了更深的理解，但尚需進一"
                                        "步的研究。\n" NOR);
                 } else
                 { 
-                        message_vision(HIR "$N" HIR "仔细的研读袈裟上记载的绝招，似"
+                        message_vision(HIR "$N" HIR "仔細的研讀袈裟上記載的絕招，似"
                                        "有所悟。\n" NOR, me);
-                        tell_object(me, HIY "过得良久，陡然间你双目一亮，终于领悟了"
-                                        "袈裟中所记载的辟邪剑法绝技「夺目神剑」的奥"
-                                        "秘！\n" NOR + HIC "你学会了「夺目神剑」。\n" NOR);
+                        tell_object(me, HIY "過得良久，陡然間你雙目一亮，終於領悟了"
+                                        "袈裟中所記載的辟邪劍法絕技「奪目神劍」的奧"
+                                        "秘！\n" NOR + HIC "你學會了「奪目神劍」。\n" NOR);
 
                         if (me->can_improve_skill("sword"))
                                 me->improve_skill("sword", 1500000);
@@ -352,40 +352,40 @@ int do_yanjiu(string arg)
                 return 1;
         }
 
-        // 辟邪剑法绝招鬼魅身法
+        // 辟邪劍法絕招鬼魅身法
         if (pfm == "gui")
         {
                 if( query("can_perform/pixie-jian/gui", me) )
                 {
-                        write("你已经学会了这招，再研究也没用。\n");
+                        write("你已經學會了這招，再研究也沒用。\n");
                         return 1;
                 }
 
                 if (! (int)me->query_skill("pixie-jian"))
                 {
-                        write("你研究了半天，发现袈裟所记载的绝招与你毫无关系。\n");
+                        write("你研究了半天，發現袈裟所記載的絕招與你毫無關係。\n");
                         return 1;
                 }
 
                 if ((int)me->query_skill("pixie-jian", 1) < 100)
                 {
-                        write("你发现袈裟上记载的绝招过于深奥，一时难以明白。\n");
+                        write("你發現袈裟上記載的絕招過於深奧，一時難以明白。\n");
                         return 1;
                 }
 
                 if (random(30) < 28)
                 {
-                        message_vision(HIR "$N" HIR "仔细的研读袈裟上记载的绝招，似"
+                        message_vision(HIR "$N" HIR "仔細的研讀袈裟上記載的絕招，似"
                                        "有所悟。\n" NOR, me);
-                        tell_object(me, HIY "你对辟邪剑法有了更深的理解，但尚需进一"
+                        tell_object(me, HIY "你對辟邪劍法有了更深的理解，但尚需進一"
                                        "步的研究。\n" NOR);
                 } else
                 { 
-                        message_vision(HIR "$N" HIR "仔细的研读袈裟上记载的绝招，似"
+                        message_vision(HIR "$N" HIR "仔細的研讀袈裟上記載的絕招，似"
                                        "有所悟。\n" NOR, me);
-                        tell_object(me, HIY "过得良久，陡然间你双目一亮，终于领悟了"
-                                        "袈裟中所记载的辟邪剑法绝技「鬼魅身法」的奥"
-                                        "秘！\n" NOR + HIC "你学会了「鬼魅身法」。\n" NOR);
+                        tell_object(me, HIY "過得良久，陡然間你雙目一亮，終於領悟了"
+                                        "袈裟中所記載的辟邪劍法絕技「鬼魅身法」的奧"
+                                        "秘！\n" NOR + HIC "你學會了「鬼魅身法」。\n" NOR);
 
                         if (me->can_improve_skill("sword"))
                                 me->improve_skill("sword", 1500000);
@@ -404,40 +404,40 @@ int do_yanjiu(string arg)
                 return 1;
         }
 
-        // 辟邪剑法绝招群邪辟易
+        // 辟邪劍法絕招群邪辟易
         if (pfm == "pi")
         {
                 if( query("can_perform/pixie-jian/pi", me) )
                 {
-                        write("你已经学会了这招，再研究也没用。\n");
+                        write("你已經學會了這招，再研究也沒用。\n");
                         return 1;
                 }
 
                 if (! (int)me->query_skill("pixie-jian"))
                 {
-                        write("你研究了半天，发现袈裟所记载的绝招与你毫无关系。\n");
+                        write("你研究了半天，發現袈裟所記載的絕招與你毫無關係。\n");
                         return 1;
                 }
 
                 if ((int)me->query_skill("pixie-jian", 1) < 120)
                 {
-                        write("你发现袈裟上记载的绝招过于深奥，一时难以明白。\n");
+                        write("你發現袈裟上記載的絕招過於深奧，一時難以明白。\n");
                         return 1;
                 }
 
                 if (random(40) < 38)
                 {
-                        message_vision(HIR "$N" HIR "仔细的研读袈裟上记载的绝招，似"
+                        message_vision(HIR "$N" HIR "仔細的研讀袈裟上記載的絕招，似"
                                        "有所悟。\n" NOR, me);
-                        tell_object(me, HIY "你对辟邪剑法有了更深的理解，但尚需进一"
+                        tell_object(me, HIY "你對辟邪劍法有了更深的理解，但尚需進一"
                                        "步的研究。\n" NOR);
                 } else
                 { 
-                        message_vision(HIR "$N" HIR "仔细的研读袈裟上记载的绝招，似"
+                        message_vision(HIR "$N" HIR "仔細的研讀袈裟上記載的絕招，似"
                                        "有所悟。\n" NOR, me);
-                        tell_object(me, HIY "过得良久，陡然间你双目一亮，终于领悟了"
-                                        "袈裟中所记载的辟邪剑法绝技「群邪辟易」的奥"
-                                        "秘！\n" NOR + HIC "你学会了「群邪辟易」。\n" NOR);
+                        tell_object(me, HIY "過得良久，陡然間你雙目一亮，終於領悟了"
+                                        "袈裟中所記載的辟邪劍法絕技「群邪辟易」的奧"
+                                        "秘！\n" NOR + HIC "你學會了「群邪辟易」。\n" NOR);
 
                         if (me->can_improve_skill("sword"))
                                 me->improve_skill("sword", 1500000);
@@ -456,40 +456,40 @@ int do_yanjiu(string arg)
                 return 1;
         }
 
-        // 辟邪剑法绝招破元神剑
+        // 辟邪劍法絕招破元神劍
         if (pfm == "po")
         {
                 if( query("can_perform/pixie-jian/po", me) )
                 {
-                        write("你已经学会了这招，再研究也没用。\n");
+                        write("你已經學會了這招，再研究也沒用。\n");
                         return 1;
                 }
 
                 if (! (int)me->query_skill("pixie-jian"))
                 {
-                        write("你研究了半天，发现袈裟所记载的绝招与你毫无关系。\n");
+                        write("你研究了半天，發現袈裟所記載的絕招與你毫無關係。\n");
                         return 1;
                 }
 
                 if ((int)me->query_skill("pixie-jian", 1) < 180)
                 {
-                        write("你发现袈裟上记载的绝招过于深奥，一时难以明白。\n");
+                        write("你發現袈裟上記載的絕招過於深奧，一時難以明白。\n");
                         return 1;
                 }
 
                 if (random(50) < 48)
                 {
-                        message_vision(HIR "$N" HIR "仔细的研读袈裟上记载的绝招，似"
+                        message_vision(HIR "$N" HIR "仔細的研讀袈裟上記載的絕招，似"
                                        "有所悟。\n" NOR, me);
-                        tell_object(me, HIY "你对辟邪剑法有了更深的理解，但尚需进一"
+                        tell_object(me, HIY "你對辟邪劍法有了更深的理解，但尚需進一"
                                        "步的研究。\n" NOR);
                 } else
                 { 
-                        message_vision(HIR "$N" HIR "仔细的研读袈裟上记载的绝招，似"
+                        message_vision(HIR "$N" HIR "仔細的研讀袈裟上記載的絕招，似"
                                        "有所悟。\n" NOR, me);
-                        tell_object(me, HIY "过得良久，陡然间你双目一亮，终于领悟了"
-                                        "袈裟中所记载的辟邪剑法绝技「破元神剑」的奥"
-                                        "秘！\n" NOR + HIC "你学会了「破元神剑」。\n" NOR);
+                        tell_object(me, HIY "過得良久，陡然間你雙目一亮，終於領悟了"
+                                        "袈裟中所記載的辟邪劍法絕技「破元神劍」的奧"
+                                        "秘！\n" NOR + HIC "你學會了「破元神劍」。\n" NOR);
 
                         if (me->can_improve_skill("sword"))
                                 me->improve_skill("sword", 1500000);

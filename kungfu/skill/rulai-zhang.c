@@ -2,95 +2,95 @@
 inherit SHAOLIN_SKILL;
 
 mapping *action = ({
-([        "action" : "$N一声大喝，左掌叠于右掌之上，劈向$n",
+([        "action" : "$N一聲大喝，左掌疊於右掌之上，劈向$n",
         "force" : 210,
         "attack": 22,
         "dodge" : 30,
         "parry" : 31,
         "damage": 15,
         "lvl"   : 0,
-        "damage_type" : "内伤"
+        "damage_type" : "內傷"
 ]),
-([        "action" : "$N面色凝重，双掌轻抖，飘忽不定地拍向$n",
+([        "action" : "$N面色凝重，雙掌輕抖，飄忽不定地拍向$n",
         "force" : 270,
         "attack": 38,
         "dodge" : 25,
         "parry" : 33,
         "damage": 30,
         "lvl"   : 20,
-        "damage_type" : "内伤"
+        "damage_type" : "內傷"
 ]),
-([        "action" : "$N气沉丹田，双掌幻化一片掌影，将$n笼罩于内。",
+([        "action" : "$N氣沉丹田，雙掌幻化一片掌影，將$n籠罩於內。",
         "force" : 320,
         "attack": 62,
         "dodge" : 43,
         "parry" : 44,
         "damage": 35,
         "lvl"   : 40,
-        "damage_type" : "内伤"
+        "damage_type" : "內傷"
 ]),
-([        "action" : "$N跨前一步，右掌中攻直进，向$n的$l连击三掌",
+([        "action" : "$N跨前一步，右掌中攻直進，向$n的$l連擊三掌",
         "force" : 370,
         "attack": 75,
         "dodge" : 55,
         "parry" : 68,
         "damage": 50,
         "lvl"   : 60,
-        "damage_type" : "内伤"
+        "damage_type" : "內傷"
 ]),
-([        "action" : "$N沉身顿气，贯出双掌，顿时只见一片掌影攻向$n",
+([        "action" : "$N沉身頓氣，貫出雙掌，頓時只見一片掌影攻向$n",
         "force" : 420,
         "attack": 82,
         "dodge" : 52,
         "parry" : 80,
         "damage": 30,
         "lvl"   : 80,
-        "damage_type" : "内伤"
+        "damage_type" : "內傷"
 ]),
-([        "action" : "$N双掌平挥，猛击向$n的$l，毫无半点花巧可言",
+([        "action" : "$N雙掌平揮，猛擊向$n的$l，毫無半點花巧可言",
         "force" : 460,
         "attack": 103,
         "dodge" : 65,
         "parry" : 101,
         "damage": 50,
         "lvl"   : 100,
-        "damage_type" : "内伤"
+        "damage_type" : "內傷"
 ]),
-([        "action" : "$N体内真气迸发，双掌缤纷拍出，顿时一片掌影笼罩$n",
+([        "action" : "$N體內真氣迸發，雙掌繽紛拍出，頓時一片掌影籠罩$n",
         "force" : 510,
         "attack": 128,
         "dodge" : 63,
         "parry" : 125,
         "damage": 80,
         "lvl"   : 120,
-        "damage_type" : "内伤"
+        "damage_type" : "內傷"
 ]),
-([        "action" : "$N左掌虚晃，右掌携着千钧之力猛然向$n的头部击落",
+([        "action" : "$N左掌虛晃，右掌攜著千鈞之力猛然向$n的頭部擊落",
         "force" : 530,
         "attack": 125,
         "dodge" : 77,
         "damage": 90,
         "parry" : 152,
         "lvl"   : 140,
-        "damage_type" : "内伤"
+        "damage_type" : "內傷"
 ]),
-([        "action" : "$N身子蓦的横移，右手横扫$n的$l，左手攻向$n的胸口",
+([        "action" : "$N身子驀的橫移，右手橫掃$n的$l，左手攻向$n的胸口",
         "force" : 580,
         "attack": 131,
         "dodge" : 80,
         "parry" : 115,
         "damage": 100,
         "lvl"   : 160,
-        "damage_type" : "内伤"
+        "damage_type" : "內傷"
 ]),
-([        "action" : "$N陡然一声暴喝，真气迸发，双掌同时击向$n的$l",
+([        "action" : "$N陡然一聲暴喝，真氣迸發，雙掌同時擊向$n的$l",
         "force" : 620,
         "attack": 132,
         "dodge" : 81,
         "parry" : 123,
         "damage": 130,
         "lvl"   : 180,
-        "damage_type" : "内伤"
+        "damage_type" : "內傷"
 ])
 });
 
@@ -107,25 +107,25 @@ int double_attack()
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练千手如来掌必须空手。\n");
+                return notify_fail("練千手如來掌必須空手。\n");
 
         if( query("str", me)<26 )
-                return notify_fail("你先天膂力不足，无法学习淳厚的古拙掌法。\n");
+                return notify_fail("你先天膂力不足，無法學習淳厚的古拙掌法。\n");
 
         if ((int)me->query_skill("buddhism", 1) < 300)
-                return notify_fail("你的禅宗心法不够，无法练千手如来掌。\n");
+                return notify_fail("你的禪宗心法不夠，無法練千手如來掌。\n");
 
         if ((int)me->query_skill("force") < 300)
-                return notify_fail("你的内功火候不够，无法练千手如来掌。\n");
+                return notify_fail("你的內功火候不夠，無法練千手如來掌。\n");
 
         if( query("max_neili", me)<3500 )
-                return notify_fail("你的内力修为太浅，无法练千手如来掌。\n");
+                return notify_fail("你的內力修為太淺，無法練千手如來掌。\n");
 
         if ((int)me->query_skill("strike", 1) < 200)
-                return notify_fail("你的基本掌法火候不够，无法练千手如来掌。\n");
+                return notify_fail("你的基本掌法火候不夠，無法練千手如來掌。\n");
 
         if ((int)me->query_skill("strike", 1) < (int)me->query_skill("rulai-zhang", 1))
-                return notify_fail("你的基本掌法水平有限，无法领会更高深的千手如来掌。\n");
+                return notify_fail("你的基本掌法水平有限，無法領會更高深的千手如來掌。\n");
 
         return 1;
 }
@@ -143,12 +143,12 @@ mixed hit_ob(object me, object victim, int i, int damage_bonus)
            || me->query_skill("rulai-zhang", 1) < 180)
                 return 0;
 
-        // 避免在使用Pfm时讯息重复
+        // 避免在使用Pfm時訊息重複
         if( !query_temp("rulai-zhang/hit_msg", me) )
                 message_sort(HIY "\n$N" HIY "忽然喝道：「" HIR + RANK_D->query_respect(victim) +
-                             HIR "，接" + RANK_D->query_self(me) + HIR "一掌。" HIY "」说罢轻飘"
-                             "飘拍出一掌，招式甚为寻常。但掌到中途，忽然微微摇晃，登时一掌变两"
-                             "掌，两掌又变四掌，四势连环，尽数笼罩$n" HIY "周身。\n",
+                             HIR "，接" + RANK_D->query_self(me) + HIR "一掌。" HIY "」說罷輕飄"
+                             "飄拍出一掌，招式甚為尋常。但掌到中途，忽然微微搖晃，登時一掌變兩"
+                             "掌，兩掌又變四掌，四勢連環，盡數籠罩$n" HIY "周身。\n",
                              me, victim);
 
         me->start_busy(1 + random(3));
@@ -165,11 +165,11 @@ mixed hit_ob(object me, object victim, int i, int damage_bonus)
         {
                 addn("neili", -80, me);
                 victim->receive_wound("qi", (damage_bonus - 120) / 2, me);
-                return random(2) ? HIR "$n" HIR "被$N" HIR "凌厉的掌风划中气门，只"
-                                   "感内息窒滞，“哇”的喷出一口鲜血！\n" NOR:
+                return random(2) ? HIR "$n" HIR "被$N" HIR "凌厲的掌風劃中氣門，只"
+                                   "感內息窒滯，“哇”的噴出一口鮮血！\n" NOR:
 
-                                   HIR "$N" HIR "一掌拍出，只听$n" HIR "胸前“喀嚓"
-                                   "喀嚓”几声脆响，竟似断了数根肋骨！\n" NOR;
+                                   HIR "$N" HIR "一掌拍出，只聽$n" HIR "胸前“喀嚓"
+                                   "喀嚓”幾聲脆響，竟似斷了數根肋骨！\n" NOR;
         }
 
         return 1;
@@ -187,9 +187,9 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me)
 {
         if( query("qi", me)<200 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
         if( query("neili", me)<220 )
-                return notify_fail("你的内力不够练千手如来掌。\n");
+                return notify_fail("你的內力不夠練千手如來掌。\n");
 
         me->receive_damage("qi", 180);
         addn("neili", -200, me);

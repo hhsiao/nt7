@@ -6,15 +6,15 @@ inherit CLOTH;
 
 void create()
 {
-        set_name(HIR "锦" HIC "镧" HIM "袈裟" NOR, ({ "jinlan jiasha", "jinlan", "jiasha" }) );
+        set_name(HIR "錦" HIC "鑭" HIM "袈裟" NOR, ({ "jinlan jiasha", "jinlan", "jiasha" }) );
         set_weight(3000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
                 set("unit", "件");
-                set("long", HIR "此乃传说中唐僧所穿戴的锦镧袈裟，只见金光闪耀，令人睁不开眼，犹如佛光普照般祥和。\n"
-                            HIC "仔细看去，袈裟上隐约出现几个大字：" HIG "不坠地狱，不入轮回\n" NOR);
+                set("long", HIR "此乃傳說中唐僧所穿戴的錦鑭袈裟，只見金光閃耀，令人睜不開眼，猶如佛光普照般祥和。\n"
+                            HIC "仔細看去，袈裟上隱約出現幾個大字：" HIG "不墜地獄，不入輪迴\n" NOR);
                 set("value", 800000);
                 set("armor_prop/armor", 800);
                 set("armor_prop/str", 7);

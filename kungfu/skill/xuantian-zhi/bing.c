@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define BING "「" HIW "冰坚地狱" NOR "」"
+#define BING "「" HIW "冰堅地獄" NOR "」"
 
 inherit F_SSERVER;
 
@@ -15,37 +15,37 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if( userp(me) && !query("can_perform/xuantian-zhi/bing", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(BING "只能对战斗中的对手使用。\n");
+                return notify_fail(BING "只能對戰鬥中的對手使用。\n");
 
         if( objectp(query_temp("weapon", me)) )
-                return notify_fail("你必须空手才能使用" BING "。\n");         
+                return notify_fail("你必須空手才能使用" BING "。\n");         
 
         if (me->query_skill_mapped("finger") != "xuantian-zhi")
-                return notify_fail("你没有激发玄天指，不能使用" BING "。\n");
+                return notify_fail("你沒有激發玄天指，不能使用" BING "。\n");
 
         if (me->query_skill_prepared("finger") != "xuantian-zhi")
-                return notify_fail("你现在没有准备使用玄天指，无法使用" BING "。\n");
+                return notify_fail("你現在沒有準備使用玄天指，無法使用" BING "。\n");
 
         if ((int)me->query_skill("xuantian-wujigong", 1) < 180)
-                return notify_fail("你的玄天无极功火候不够，使不出" BING "。\n");
+                return notify_fail("你的玄天無極功火候不夠，使不出" BING "。\n");
 
         if ((int)me->query_skill("xuantian-zhi", 1) < 180)
-                return notify_fail("你的玄天指不够熟练，不会使用" BING "。\n");
+                return notify_fail("你的玄天指不夠熟練，不會使用" BING "。\n");
 
         if( query("max_neili", me)<2000 )
-                return notify_fail("你的内力修为不足，无法使用" BING "。\n");
+                return notify_fail("你的內力修為不足，無法使用" BING "。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你的真气不够，无法使用" BING "。\n");
+                return notify_fail("你的真氣不夠，無法使用" BING "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N" HIW "默运玄天无极功，顿时一层寒霜笼罩全身，一声冷"
-              "笑，聚力于指，直戳$n" HIW "要穴！\n"NOR;  
+        msg = HIW "$N" HIW "默運玄天無極功，頓時一層寒霜籠罩全身，一聲冷"
+              "笑，聚力於指，直戳$n" HIW "要穴！\n"NOR;  
 
         lvl = me->query_skill("xuantian-zhi", 1);
 
@@ -63,10 +63,10 @@ int perform(object me, object target)
                                   "duration" : lvl / 50 + random(lvl / 20) ]));
                                   msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK,
                                          damage, 70, HIW "$n" HIW "稍不留神，已被$P" HIW
-                                         "一指点中，阴寒之劲顿时侵入三焦六脉。\n" NOR);
+                                         "一指點中，陰寒之勁頓時侵入三焦六脈。\n" NOR);
         } else
         {
-                msg += CYN "$n" CYN "见$N" CYN "来势汹涌，急忙提气跃开。\n" NOR;
+                msg += CYN "$n" CYN "見$N" CYN "來勢洶湧，急忙提氣躍開。\n" NOR;
         }
         message_combatd(msg, me, target);
 

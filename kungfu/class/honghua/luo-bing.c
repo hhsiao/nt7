@@ -8,11 +8,11 @@ mixed ask_skill1();
 
 void create()
 {
-        set_name("骆冰", ({ "luo bing", "luo", "bing"}));
-        set("title", "红花会十一当家");
-        set("nickname", HIC "鸳鸯刀" NOR);
-        set("long", "这是一个秀美的少妇。一手短刀，一手握着一\n"
-                    "柄长刀。\n");
+        set_name("駱冰", ({ "luo bing", "luo", "bing"}));
+        set("title", "紅花會十一當家");
+        set("nickname", HIC "鴛鴦刀" NOR);
+        set("long", "這是一個秀美的少婦。一手短刀，一手握著一\n"
+                    "柄長刀。\n");
         set("gender", "女性");
         set("age", 34);
         set("attitude", "peaceful");
@@ -53,7 +53,7 @@ void create()
 
         prepare_skill("unarmed", "changquan");
 
-        create_family("红花会", 4, "当家");
+        create_family("紅花會", 4, "當家");
 
         set("inquiry", ([
                 "刀影重重"  : (: ask_skill1 :),
@@ -79,12 +79,12 @@ void attempt_apprentice(object me)
 
         if( query("shen", me)<-1000 )
         {
-                command("say 我红花会不收不义之人，你还是走吧。");
+                command("say 我紅花會不收不義之人，你還是走吧。");
                 return;
         }
 
         command("xixi");
-        command("say 既然这样，我就收下你好了。");
+        command("say 既然這樣，我就收下你好了。");
         command("recruit "+query("id", me));
 }
 
@@ -95,34 +95,34 @@ mixed ask_skill1()
         me = this_player();
 
         if( query("can_perform/hanwang-qingdao/ying", me) )
-                return "你不是已经会了吗？";
+                return "你不是已經會了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return RANK_D->query_respect(me) + "和本教素无瓜葛，何出此言？";
+                return RANK_D->query_respect(me) + "和本教素無瓜葛，何出此言？";
 
         if (me->query_skill("hanwang-qingdao", 1) < 1)
-                return "你连韩王青刀都没学，何谈此言？";
+                return "你連韓王青刀都沒學，何談此言？";
 
             if( query("family/gongji", me)<80 )
-                return "你在会中所作的贡献还不够，这招我不忙传你。";
+                return "你在會中所作的貢獻還不夠，這招我不忙傳你。";
 
         if( query("shen", me)<5000 )
-                return "你侠义正事做得不够，这招我不能传你。";
+                return "你俠義正事做得不夠，這招我不能傳你。";
 
         if (me->query_skill("force") < 120)
-                return "你的内功火候不足，学不了这一招！";
+                return "你的內功火候不足，學不了這一招！";
 
         if (me->query_skill("hanwang-qingdao", 1) < 80)
-                return "你的韩王青刀还练得不到家，自己下去练练再来吧！";
+                return "你的韓王青刀還練得不到家，自己下去練練再來吧！";
 
-        message_vision(HIY "$n" HIY "点了点头，将$N" HIY "招至"
-                       "身边，在耳旁低声细说良久，$N" HIY "听"
-                       "后会心\n的一笑，看来大有所悟。\n" NOR,
+        message_vision(HIY "$n" HIY "點了點頭，將$N" HIY "招至"
+                       "身邊，在耳旁低聲細說良久，$N" HIY "聽"
+                       "後會心\n的一笑，看來大有所悟。\n" NOR,
                        me, this_object());
 
         command("nod");
-        command("say 刚才我所说的便是韩王青刀的精要，你可记清了？");
-        tell_object(me, HIC "你学会了「刀影重重」。\n" NOR);
+        command("say 剛才我所說的便是韓王青刀的精要，你可記清了？");
+        tell_object(me, HIC "你學會了「刀影重重」。\n" NOR);
 
         if (me->can_improve_skill("blade"))
                 me->improve_skill("blade", 1500000);

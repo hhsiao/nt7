@@ -1,11 +1,11 @@
 // This program is a part of NITAN MudLIB
-// jue.c 「总诀式」
+// jue.c 「總訣式」
 
 #include <ansi.h>
 
 inherit F_SSERVER;
 
-string name() { return "总诀式"; }
+string name() { return "總訣式"; }
 
 int perform(object me)
 {
@@ -19,36 +19,36 @@ int perform(object me)
         if (jing_cost < 5) jing_cost = 5;
 
         if( query("no_fight", environment(me)) && query("doing", me) != "scheme" )
-                return notify_fail("这里太嘈杂，你不能静下心来演练。\n");
+                return notify_fail("這裡太嘈雜，你不能靜下心來演練。\n");
 
         if (me->is_fighting())
-                return notify_fail("「总诀式」不能在战斗中演练。\n");
+                return notify_fail("「總訣式」不能在戰鬥中演練。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你必须先去找一把剑。\n");
+                return notify_fail("你必須先去找一把劍。\n");
 
         if (! skill || skill < 20)
-                return notify_fail("你的独孤九剑等级不够, 不能演练「总诀式」！\n");
+                return notify_fail("你的獨孤九劍等級不夠, 不能演練「總訣式」！\n");
 
         if( query("neili", me)<50 )
-                return notify_fail("你的内力不够，没有力气演练「总诀式」！\n");
+                return notify_fail("你的內力不夠，沒有力氣演練「總訣式」！\n");
 
         if( query("jing", me)<-jing_cost )
-                return notify_fail("你现在太累了，无法集中精神演练「总诀式」！\n");
+                return notify_fail("你現在太累了，無法集中精神演練「總訣式」！\n");
 
         if (me->query_skill("lonely-sword", 1) > 600 &&
             me->query_skill("lonely-sword", 1) > me->query_skill("sword", 1))
-                return notify_fail("你的剑法不够，无法使用「总诀式」来提高独孤九剑！\n");
+                return notify_fail("你的劍法不夠，無法使用「總訣式」來提高獨孤九劍！\n");
 
         if (me->query_skill("lonely-sword", 1) > 800)
-                return notify_fail("独孤九剑演练已经到了极限，需要研究才能提高等级！\n");
+                return notify_fail("獨孤九劍演練已經到了極限，需要研究才能提高等級！\n");
 
         if (! me->can_improve_skill("lonely-sword"))
-                return notify_fail("你的实战经验不够，无法体会「总诀式」！\n");
+                return notify_fail("你的實戰經驗不夠，無法體會「總訣式」！\n");
 
-        msg = HIG "$N" HIG "使出独孤九剑之「总诀式」，将手中" +
-              weapon->name() + HIG "随意挥舞击刺。\n" NOR;
+        msg = HIG "$N" HIG "使出獨孤九劍之「總訣式」，將手中" +
+              weapon->name() + HIG "隨意揮舞擊刺。\n" NOR;
         message_combatd(msg, me);
 
         addn("neili", -50, me);
@@ -64,7 +64,7 @@ int perform(object me)
            improve = 10 + random((int)me->query_int() * 4 - 9); else
            improve = 10 + random((int)me->query_int() * 8 - 9);
 
-        tell_object(me, MAG "你的「基本剑法」和「独孤九剑」进步了！\n" NOR);
+        tell_object(me, MAG "你的「基本劍法」和「獨孤九劍」進步了！\n" NOR);
         me->improve_skill("sword", improve);
         me->improve_skill("lonely-sword", improve * 3 / 2);
         me->start_busy(random(2));

@@ -1,11 +1,11 @@
 // This program is a part of NITAN MudLIB
-// jumie.c  少林多罗叶指－菩提寂灭
+// jumie.c  少林多羅葉指－菩提寂滅
 
 #include <ansi.h>
 #include <combat.h>
 
 inherit F_SSERVER;
-string name() { return "菩提寂灭"; }
+string name() { return "菩提寂滅"; }
 
 int perform(object me, object target)
 {
@@ -17,26 +17,26 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("「菩提寂灭」只能在战斗中对对手使用。\n");
+                return notify_fail("「菩提寂滅」只能在戰鬥中對對手使用。\n");
 
         if( query_temp("weapon", me) ||
             query_temp("secondary_weapon", me) )
-                return notify_fail("你必须空手才能使用「菩提寂灭」！\n");
+                return notify_fail("你必須空手才能使用「菩提寂滅」！\n");
 
         if (me->query_skill("force") < 200)
-                return notify_fail("你的内功的修为不够，不能使用这一绝技！\n");
+                return notify_fail("你的內功的修為不夠，不能使用這一絕技！\n");
 
         if (me->query_skill("duoluoye-zhi", 1) < 180)
-                return notify_fail("你的多罗叶指修为不够，目前不能使用「菩提寂灭」！\n");
+                return notify_fail("你的多羅葉指修為不夠，目前不能使用「菩提寂滅」！\n");
 
         if( query("neili", me)<800 || query("max_neili", me)<2500 )
-                return notify_fail("你的真气不够，无法使用「菩提寂灭」！\n");
+                return notify_fail("你的真氣不夠，無法使用「菩提寂滅」！\n");
 
         if (me->query_skill_mapped("finger") != "duoluoye-zhi")
-                return notify_fail("你没有激发多罗叶指，不能使用「菩提寂灭」！\n");
+                return notify_fail("你沒有激發多羅葉指，不能使用「菩提寂滅」！\n");
 
-        msg = HIB "$N" HIB "运起全身功力，直扑向$n" + HIB "，双手一圈，用一股内劲" +
-              "拖住$n，" + HIB "随即全力一指戳出，不惜耗费大量真元，力求一击毙敌！\n" NOR;
+        msg = HIB "$N" HIB "運起全身功力，直撲向$n" + HIB "，雙手一圈，用一股內勁" +
+              "拖住$n，" + HIB "隨即全力一指戳出，不惜耗費大量真元，力求一擊斃敵！\n" NOR;
 
         ap = attack_power(me, "finger") + me->query_skill("force", 1);
         dp = defense_power(target, "dodge") + target->query_skill("force", 1);
@@ -48,20 +48,20 @@ int perform(object me, object target)
                 addn("neili", -500, me);
 
                 msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 55,
-                                           HIR "只见$p" HIR "一声惨号，已被$P" +
-                                           HIR "一指击中，一股霸道的内力由$P" +
-                                           HIR "的指尖传来，伤及经脉！\n" NOR);
+                                           HIR "只見$p" HIR "一聲慘號，已被$P" +
+                                           HIR "一指擊中，一股霸道的內力由$P" +
+                                           HIR "的指尖傳來，傷及經脈！\n" NOR);
                 me->start_busy(1 + random(2));
         } else
         {
                 addn("neili", -200, me);
                 me->start_busy(3);
-                msg += CYN "可是$p" CYN "内力深厚，及时摆脱了"
-                       CYN "$P" CYN "内力的牵扯，躲开了这一击！\n" NOR;
+                msg += CYN "可是$p" CYN "內力深厚，及時擺脫了"
+                       CYN "$P" CYN "內力的牽扯，躲開了這一擊！\n" NOR;
         }
 
-        msg += HIR "而$P" + HIR "由于内力提升过度，经脉负荷不" +
-               "了，受了不轻的内伤！\n" NOR;
+        msg += HIR "而$P" + HIR "由於內力提升過度，經脈負荷不" +
+               "了，受了不輕的內傷！\n" NOR;
 
         me->receive_damage("qi", damage / 10);
 

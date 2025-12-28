@@ -18,18 +18,18 @@ int main(object me, string arg)
                 
         ob = UPDATE_D->global_find_player(arg);
         if (! ob)
-                return notify_fail(LOCAL_MUD_NAME() + "并没有这个人！\n");
+                return notify_fail(LOCAL_MUD_NAME() + "並沒有這個人！\n");
 
         if( !query("chblk_on", ob) )
         {
                 UPDATE_D->global_destruct_player(ob);
-                return notify_fail("这个人的频道目前好好的。\n");
+                return notify_fail("這個人的頻道目前好好的。\n");
         }
 
         delete("chblk_on", ob);
         delete("chblk_by", ob);
-        write("你打开了" + ob->name(1) + "的频道。\n");
-        tell_object(ob, me->name(1) + "打开了你的频道。\n");
+        write("你打開了" + ob->name(1) + "的頻道。\n");
+        tell_object(ob, me->name(1) + "打開了你的頻道。\n");
 
         UPDATE_D->global_destruct_player(ob, 1);
         return 1;
@@ -40,7 +40,7 @@ int help(object me)
         write(@HELP
 指令格式 : unchblk <玩家>
 
-此命令将打开某个玩家的频道。
+此命令將打開某個玩家的頻道。
 
 HELP );
         return 1;

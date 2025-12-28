@@ -27,14 +27,14 @@ int main(object me, string arg)
         {
                 string r;
                 r= examine_player(arg);
-                write("检查OK.\n");
+                write("檢查OK.\n");
                 log_file("static/email", filter_color(r));
                 return 1;
         }
 
-         message_system("系统进行数据处理中，请耐心等候...\n");
-        write(HIG "现在系统将检查所有玩家，稍后汇报。\n"
-              HIG "进度：" + process_bar(0) + "\n");
+         message_system("系統進行數據處理中，請耐心等候...\n");
+        write(HIG "現在系統將檢查所有玩家，稍後彙報。\n"
+              HIG "進度：" + process_bar(0) + "\n");
         if (me)
         {
                 me->attach_system();
@@ -77,8 +77,8 @@ void search_dir(object me, int raw)
                 }
                 total += j;
                 message("system", ESC + "[1A" + ESC + "[256D"
-                                  HIG "进度：" + process_bar((i + 1) * 100 / sizeof(dir)) +
-                                  "\n" + (me ? HIR "执行中" NOR "> " : ""),
+                                  HIG "進度：" + process_bar((i + 1) * 100 / sizeof(dir)) +
+                                  "\n" + (me ? HIR "執行中" NOR "> " : ""),
                                   me ? me : filter_array(all_interactive(), (: wizardp :)));
         }
 

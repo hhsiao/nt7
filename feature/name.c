@@ -22,7 +22,7 @@ void set_name(string name, string *id)
                         fullname += query("purename");
 
                 if( fullname == "" )
-                        fullname = "无名氏";
+                        fullname = "無名氏";
 
                 set("name", fullname);
         } else {

@@ -10,12 +10,12 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", HIG "一块绿色的九地玄玉，拥有能医重病，又能毒\n"
-                            "杀人于一身的至宝——九地玄玉，相传神农氏\n"
-                            "所用神农尺就是用这枚九地玄玉精炼而成。上\n"
-                            "古神物，已经通灵。\n" NOR);
+                set("long", HIG "一塊綠色的九地玄玉，擁有能醫重病，又能毒\n"
+                            "殺人於一身的至寶——九地玄玉，相傳神農氏\n"
+                            "所用神農尺就是用這枚九地玄玉精煉而成。上\n"
+                            "古神物，已經通靈。\n" NOR);
                 set("value", 10000000);
-                set("unit", "块");
+                set("unit", "塊");
                 set("can_be_tessera", 1);
                 set("magic/type", "earth");
                 set("magic/power", 1000);

@@ -14,7 +14,7 @@ void create()
                 set("enchase/point", 1);
                 set("enchase/type", "wrists");
                                 set("enchase/cur_firm", 100);
-                                set("nine_object", 1); // 九孔镶嵌物品标记
+                                set("nine_object", 1); // 九孔鑲嵌物品標記
                                 set("enchase/spe_data", ([]) );  
         }
         setup();

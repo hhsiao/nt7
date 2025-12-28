@@ -1,11 +1,11 @@
-// Room in 高丽
+// Room in 高麗
 inherit ROOM;
 void create()        
 {
-        set("short", "渔村");
+        set("short", "漁村");
         set("long", @LONG
-这是高丽的一个渔村，这里的人都靠打鱼为生，海岸边停满了渔船。
-渔夫们正挑着大担大担的鱼走着，箩里的鱼还在鲜蹦活跳。
+這是高麗的一個漁村，這裡的人都靠打魚為生，海岸邊停滿了漁船。
+漁夫們正挑著大擔大擔的魚走著，籮裡的魚還在鮮蹦活跳。
 LONG
         );
 set("outdoors", "gaoli");

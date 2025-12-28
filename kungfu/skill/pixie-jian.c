@@ -11,20 +11,20 @@ int valid_force(string force)
 }
 
 string *dodge_msg = ({
-        "突然之间，白影急幌，$n向后滑出丈余，立时又回到了原地，躲过了$N这一招。\n",
-        "$n手臂回转，在$N手肘下一推，顺势闪到一旁。\n",
-        "$n右手伸出，在$N手腕上迅速无比的一按，顺势跳到一旁。\n",
-        "$n身形飘忽，有如鬼魅，转了几转，移步到$N的身后，躲过了$N这一招。\n",
-        "$N只觉眼前一花，似乎见到$n身形一幌，但随即又见$n回到原地，却似从未离开。\n",
-        "$N眼睛一花，$n已没了踪影。突然$n从身后拍了一下$N的头，轻轻跃开。\n",
-        "$n嫣然一笑，诡异之极，$N竟不知如何是好，停住了攻击。\n",
+        "突然之間，白影急幌，$n向後滑出丈餘，立時又回到了原地，躲過了$N這一招。\n",
+        "$n手臂迴轉，在$N手肘下一推，順勢閃到一旁。\n",
+        "$n右手伸出，在$N手腕上迅速無比的一按，順勢跳到一旁。\n",
+        "$n身形飄忽，有如鬼魅，轉了幾轉，移步到$N的身後，躲過了$N這一招。\n",
+        "$N只覺眼前一花，似乎見到$n身形一幌，但隨即又見$n回到原地，卻似從未離開。\n",
+        "$N眼睛一花，$n已沒了蹤影。突然$n從身後拍了一下$N的頭，輕輕躍開。\n",
+        "$n嫣然一笑，詭異之極，$N竟不知如何是好，停住了攻擊。\n",
 });
 
-string *finger_name = ({ "左手中指", "左手无名指", "左手食指",
-                         "右手中指", "右手无名指", "右手食指", });
+string *finger_name = ({ "左手中指", "左手無名指", "左手食指",
+                         "右手中指", "右手無名指", "右手食指", });
 
 mapping *weapon_action = ({
-([      "action":"突然之间，白影急幌，$N向后滑出丈余，立时又回到了原地",
+([      "action":"突然之間，白影急幌，$N向後滑出丈餘，立時又回到了原地",
         "force" : 160,
         "attack": 40,
         "parry" : 30,
@@ -32,9 +32,9 @@ mapping *weapon_action = ({
         "damage": 150,
         "lvl" : 0,
         "skill_name" : "白影急幌",
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N右手伸出，在$n手腕上迅速无比的一按，$n险些击中自己小腹",
+([      "action":"$N右手伸出，在$n手腕上迅速無比的一按，$n險些擊中自己小腹",
         "force" : 180,
         "attack": 50,
         "parry" : 30,
@@ -42,9 +42,9 @@ mapping *weapon_action = ({
         "damage": 160,
         "lvl" : 20,
         "skill_name" : "自己小腹",
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"蓦地里$N猱身而上，蹿到$n的身后，又跃回原地",
+([      "action":"驀地裡$N猱身而上，躥到$n的身後，又躍回原地",
         "force" : 225,
         "attack": 60,
         "parry" : 35,
@@ -52,19 +52,19 @@ mapping *weapon_action = ({
         "damage": 170,
         "lvl" : 40,
         "skill_name" : "猱身而上",
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N突然间招法一变，$w忽伸忽缩，招式诡奇绝伦。$n惊骇之中方寸大乱",
+([      "action":"$N突然間招法一變，$w忽伸忽縮，招式詭奇絕倫。$n驚駭之中方寸大亂",
         "force" : 230,
         "attack": 70,
         "parry" : 40,
         "dodge" : 160,
         "damage": 180,
         "lvl" : 60,
-        "skill_name" : "招法一变",
-        "damage_type":  "刺伤"
+        "skill_name" : "招法一變",
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N身形飘忽，有如鬼魅，转了几转，移步到$n的左侧",
+([      "action":"$N身形飄忽，有如鬼魅，轉了幾轉，移步到$n的左側",
         "force" : 240,
         "attack": 80,
         "parry" : 50,
@@ -72,19 +72,19 @@ mapping *weapon_action = ({
         "damage": 200,
         "lvl" : 80,
         "skill_name" : "有如鬼魅",
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N一声冷笑，蓦地里疾冲上前，一瞬之间，与$n相距已不到一尺，$w随即递出",
+([      "action":"$N一聲冷笑，驀地裡疾衝上前，一瞬之間，與$n相距已不到一尺，$w隨即遞出",
         "force" : 260,
         "attack": 70,
         "parry" : 40,
         "dodge" : 165,
         "damage": 220,
         "lvl" : 100,
-        "skill_name" : "疾冲上前",
-        "damage_type":  "刺伤"
+        "skill_name" : "疾衝上前",
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N喝道：“好！”，便即拔出$w，反手刺出，跟着转身离去",
+([      "action":"$N喝道：“好！”，便即拔出$w，反手刺出，跟著轉身離去",
         "force" : 300,
         "attack": 90,
         "parry" : 45,
@@ -92,9 +92,9 @@ mapping *weapon_action = ({
         "damage": 230,
         "lvl" : 120,
         "skill_name" : "反手刺出",
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$n只觉眼前一花，似乎见到$N身形一幌，但随即又见$N回到原地，却似从未离开",
+([      "action":"$n只覺眼前一花，似乎見到$N身形一幌，但隨即又見$N回到原地，卻似從未離開",
         "force" : 340,
         "attack": 80,
         "parry" : 40,
@@ -102,19 +102,19 @@ mapping *weapon_action = ({
         "damage": 250,
         "lvl" : 140,
         "skill_name" : "眼前一花",
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N向后疾退，$n紧追两步，突然间$N闪到$n面前，手中$w直指$n的$l",
+([      "action":"$N向後疾退，$n緊追兩步，突然間$N閃到$n面前，手中$w直指$n的$l",
         "force" : 380,
         "attack": 100,
         "parry" : 50,
         "dodge" : 190,
         "damage": 270,
         "lvl" : 160,
-        "skill_name" : "向后疾退",
-        "damage_type":  "刺伤"
+        "skill_name" : "向後疾退",
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N蓦地冲到$n面前，手中$w直刺$n右眼！$n慌忙招架，不想$N的$w突然转向",
+([      "action":"$N驀地衝到$n面前，手中$w直刺$n右眼！$n慌忙招架，不想$N的$w突然轉向",
         "force" : 410,
         "attack": 130,
         "parry" : 55,
@@ -122,32 +122,32 @@ mapping *weapon_action = ({
         "damage": 300,
         "lvl" : 180,
         "skill_name" : "直刺右眼",
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N飞身跃起，$n抬眼一望，但见得$N从天直落而下，手中$w刺向$n的$l",
+([      "action":"$N飛身躍起，$n抬眼一望，但見得$N從天直落而下，手中$w刺向$n的$l",
         "force" : 440,
         "attack": 130,
         "parry" : 50,
         "dodge" : 230,
         "damage": 320,
         "lvl" : 200,
-        "skill_name" : "飞身跃起",
-        "damage_type":  "刺伤"
+        "skill_name" : "飛身躍起",
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N腰枝猛摆，$n眼前仿佛突然出现了七八个$N，七八只$w一起刺向$n",
+([      "action":"$N腰枝猛擺，$n眼前彷彿突然出現了七八個$N，七八隻$w一起刺向$n",
         "force" : 480,
         "attack": 140,
         "parry" : 60,
         "dodge" : 270,
         "damage": 340,
         "lvl" : 220,
-        "skill_name" : "腰枝猛摆",
-        "damage_type":  "刺伤"
+        "skill_name" : "腰枝猛擺",
+        "damage_type":  "刺傷"
 ]),
 });
 
 mapping *unarmed_action = ({
-([      "action":"突然之间，白影急幌，$N向后滑出丈余，立时又回到了原地",
+([      "action":"突然之間，白影急幌，$N向後滑出丈餘，立時又回到了原地",
         "force" : 100,
         "attack": 40,
         "parry" : 20,
@@ -155,9 +155,9 @@ mapping *unarmed_action = ({
         "damage": 50,
         "lvl" : 0,
         "skill_name" : "白影急幌",
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N右手伸出，在$n手腕上迅速无比的一按，$n险些击中自己小腹",
+([      "action":"$N右手伸出，在$n手腕上迅速無比的一按，$n險些擊中自己小腹",
         "force" : 120,
         "attack": 50,
         "parry" : 30,
@@ -165,9 +165,9 @@ mapping *unarmed_action = ({
         "damage": 60,
         "lvl" : 12,
         "skill_name" : "自己小腹",
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"蓦地里$N猱身而上，蹿到$n的身后，又跃回原地",
+([      "action":"驀地裡$N猱身而上，躥到$n的身後，又躍回原地",
         "force" : 125,
         "attack": 60,
         "parry" : 35,
@@ -175,19 +175,19 @@ mapping *unarmed_action = ({
         "damage": 70,
         "lvl" : 25,
         "skill_name" : "猱身而上",
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N突然间招法一变，手臂忽伸忽缩，招式诡奇绝伦。$n惊骇之中方寸大乱",
+([      "action":"$N突然間招法一變，手臂忽伸忽縮，招式詭奇絕倫。$n驚駭之中方寸大亂",
         "force" : 130,
         "attack": 70,
         "parry" : 40,
         "dodge" : 60,
         "damage": 80,
         "lvl" : 5,
-        "skill_name" : "招法一变",
-        "damage_type":  "刺伤"
+        "skill_name" : "招法一變",
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N身形飘忽，有如鬼魅，转了几转，移步到$n的左侧",
+([      "action":"$N身形飄忽，有如鬼魅，轉了幾轉，移步到$n的左側",
         "force" : 140,
         "attack": 80,
         "parry" : 50,
@@ -195,19 +195,19 @@ mapping *unarmed_action = ({
         "damage": 100,
         "lvl" : 35,
         "skill_name" : "有如鬼魅",
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N一声冷笑，蓦地里疾冲上前，一瞬之间，与$n相距已不到一尺，手指随即刺出",
+([      "action":"$N一聲冷笑，驀地裡疾衝上前，一瞬之間，與$n相距已不到一尺，手指隨即刺出",
         "force" : 160,
         "attack": 70,
         "parry" : 40,
         "dodge" : 65,
         "damage": 120,
         "lvl" : 45,
-        "skill_name" : "疾冲上前",
-        "damage_type":  "刺伤"
+        "skill_name" : "疾衝上前",
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N喝道：“好！”，便即反手刺出一指，跟着转身离去",
+([      "action":"$N喝道：“好！”，便即反手刺出一指，跟著轉身離去",
         "force" : 200,
         "attack": 90,
         "parry" : 45,
@@ -215,9 +215,9 @@ mapping *unarmed_action = ({
         "damage": 130,
         "lvl" : 55,
         "skill_name" : "反手刺出",
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$n只觉眼前一花，似乎见到$N身形一幌，但随即又见$N回到原地，却似从未离开",
+([      "action":"$n只覺眼前一花，似乎見到$N身形一幌，但隨即又見$N回到原地，卻似從未離開",
         "force" : 190,
         "attack": 80,
         "parry" : 40,
@@ -225,19 +225,19 @@ mapping *unarmed_action = ({
         "damage": 150,
         "lvl" : 65,
         "skill_name" : "眼前一花",
-        "damage_type":  "刺伤"
+        "damage_type":  "刺傷"
 ]),
-([      "action":"$N向后疾退，$n紧追两步，突然间$N闪到$n面前，手掌忽的劈向$n的$l",
+([      "action":"$N向後疾退，$n緊追兩步，突然間$N閃到$n面前，手掌忽的劈向$n的$l",
         "force" : 180,
         "attack": 100,
         "parry" : 50,
         "dodge" : 70,
         "damage": 170,
         "lvl" : 75,
-        "skill_name" : "向后疾退",
-        "damage_type":  "震伤"
+        "skill_name" : "向後疾退",
+        "damage_type":  "震傷"
 ]),
-([      "action":"$N蓦地冲到$n面前，指尖直刺$n右眼！$n慌忙招架，不想$N的手腕突然转向",
+([      "action":"$N驀地衝到$n面前，指尖直刺$n右眼！$n慌忙招架，不想$N的手腕突然轉向",
         "force" : 250,
         "attack": 130,
         "parry" : 55,
@@ -245,27 +245,27 @@ mapping *unarmed_action = ({
         "damage": 200,
         "lvl" : 85,
         "skill_name" : "直刺右眼",
-        "damage_type":  "震伤"
+        "damage_type":  "震傷"
 ]),
-([      "action":"$N飞身跃起，$n抬眼一望，但见得$N从天直落而下，挥掌砍向$n的$l",
+([      "action":"$N飛身躍起，$n抬眼一望，但見得$N從天直落而下，揮掌砍向$n的$l",
         "force" : 340,
         "attack": 130,
         "parry" : 50,
         "dodge" : 80,
         "damage": 220,
         "lvl" : 94,
-        "skill_name" : "飞身跃起",
-        "damage_type":  "震伤"
+        "skill_name" : "飛身躍起",
+        "damage_type":  "震傷"
 ]),
-([      "action":"$N腰枝猛摆，$n眼前仿佛突然出现了七八个$N，七八只手掌一起拍向$n",
+([      "action":"$N腰枝猛擺，$n眼前彷彿突然出現了七八個$N，七八隻手掌一起拍向$n",
         "force" : 400,
         "attack": 140,
         "parry" : 60,
         "dodge" : 110,
         "damage": 240,
         "lvl" : 120,
-        "skill_name" : "腰枝猛摆",
-        "damage_type":  "震伤"
+        "skill_name" : "腰枝猛擺",
+        "damage_type":  "震傷"
 ]),
 });
 
@@ -320,10 +320,10 @@ mapping query_action(object me, object weapon)
         for(i = ttl; i > 0; i--)
                 if(lvl > action[i-1]["lvl"])
                 {
-                        seq = i; /* 获得招数序号上限 */
+                        seq = i; /* 獲得招數序號上限 */
                         break;
                 }
-        seq = random(seq);       /* 选择出手招数序号 */
+        seq = random(seq);       /* 選擇出手招數序號 */
         return ([
                 "action"      : action[seq]["action"],
                 "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
@@ -342,54 +342,54 @@ string query_dodge_msg(string limb)
 int valid_learn(object me)
 {
         if( query("character", me) == "光明磊落" ||
-            query("character", me) == "狡黠多变" )
-                return notify_fail("你心中暗道：这辟邪剑法损人损己，修炼来何用。\n");
+            query("character", me) == "狡黠多變" )
+                return notify_fail("你心中暗道：這辟邪劍法損人損己，修煉來何用。\n");
 
         if( query("gender", me) == "女性" &&
             !query("special_skill/ghost", me) )
-                return notify_fail("自古以来没听说过女人可以修习葵花宝典。\n");
+                return notify_fail("自古以來沒聽說過女人可以修習葵花寶典。\n");
 
         if( query("gender", me) == "男性" &&
             !query("special_skill/ghost", me) )
         {
                 me->receive_wound("qi", 50);
-                return notify_fail(HIR "\n你试着修炼辟邪剑法，霎时只觉内息忽然大"
-                                   "乱，几欲焚身。\n" NOR);
+                return notify_fail(HIR "\n你試著修煉辟邪劍法，霎時只覺內息忽然大"
+                                   "亂，幾欲焚身。\n" NOR);
         }
 
         /*
         if( !query("family/family_name", me) ||
             query("family/family_name", me) != "日月神教" )
-                return notify_fail("辟邪剑法只有日月神教的人方能领会。\n");
+                return notify_fail("辟邪劍法只有日月神教的人方能領會。\n");
         */
 
         if( query("int", me)<34 )
-                return notify_fail("你的天资不足，无法理解辟邪剑法的深意。\n");
+                return notify_fail("你的天資不足，無法理解辟邪劍法的深意。\n");
 
         if( query("dex", me)<32 )
-                return notify_fail("你先天身法孱弱，难以修炼辟邪剑法。\n");
+                return notify_fail("你先天身法孱弱，難以修煉辟邪劍法。\n");
 
         if (me->query_skill("sword", 1) < 100)
-                return notify_fail("你的基本剑法造诣太浅，无法理解辟邪剑法。\n");
+                return notify_fail("你的基本劍法造詣太淺，無法理解辟邪劍法。\n");
 
         if (me->query_skill("dodge", 1) < 100)
-                return notify_fail("你的基本轻功造诣太浅，无法理解辟邪剑法。\n");
+                return notify_fail("你的基本輕功造詣太淺，無法理解辟邪劍法。\n");
 
         if (me->query_skill("parry", 1) < 100)
-                return notify_fail("你的基本架造造诣太浅，无法理解辟邪剑法。\n");
+                return notify_fail("你的基本架造造詣太淺，無法理解辟邪劍法。\n");
 
         if (me->query_skill("sword", 1) < me->query_skill("pixie-jian", 1))
-                return notify_fail("你的基本剑法造诣有限，无法理解更高深的辟邪剑法。\n");
+                return notify_fail("你的基本劍法造詣有限，無法理解更高深的辟邪劍法。\n");
 
         if (me->query_skill("dodge", 1) < me->query_skill("pixie-jian", 1))
-                return notify_fail("你的基本轻功造诣有限，无法理解更高深的辟邪剑法。\n");
+                return notify_fail("你的基本輕功造詣有限，無法理解更高深的辟邪劍法。\n");
 
         if (me->query_skill("parry", 1) < me->query_skill("pixie-jian", 1))
-                return notify_fail("你的基本招架造诣有限，无法理解更高深的辟邪剑法。\n");
+                return notify_fail("你的基本招架造詣有限，無法理解更高深的辟邪劍法。\n");
 
 /*
         if (me->query_skill("unarmed", 1) < me->query_skill("pixie-jian", 1))
-                return notify_fail("你的基本拳脚造诣有限，无法理解更高深的辟邪剑法。\n");
+                return notify_fail("你的基本拳腳造詣有限，無法理解更高深的辟邪劍法。\n");
 */
 
         return 1;
@@ -416,23 +416,23 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
                 switch (random(4))
                 {
                 case 0:
-                        result += (["msg" : HIR "$N" HIR "眼睛一花，$n" HIR "已没了踪"
-                                            "影。突然$n" HIR "从身后拍了一下$N" HIR "的"
-                                            "头，轻轻跃开。\n" NOR]);
+                        result += (["msg" : HIR "$N" HIR "眼睛一花，$n" HIR "已沒了蹤"
+                                            "影。突然$n" HIR "從身後拍了一下$N" HIR "的"
+                                            "頭，輕輕躍開。\n" NOR]);
                         break;
                 case 1:
-                        result += (["msg" : HIR "$N" HIR "眼前一花，似乎见到$n" HIR "身"
-                                            "形一晃，但随即又见$n" HIR "回到原地，却似"
-                                            "从未离开。\n" NOR]);
+                        result += (["msg" : HIR "$N" HIR "眼前一花，似乎見到$n" HIR "身"
+                                            "形一晃，但隨即又見$n" HIR "回到原地，卻似"
+                                            "從未離開。\n" NOR]);
                         break;
                 case 2:
-                        result += (["msg" : HIR "$n" HIR "身形飘忽，有如鬼魅，转了几转"
-                                            "，移步到$N" HIR "的身后，躲过了$N" HIR "这"
+                        result += (["msg" : HIR "$n" HIR "身形飄忽，有如鬼魅，轉了幾轉"
+                                            "，移步到$N" HIR "的身後，躲過了$N" HIR "這"
                                             "一招。\n" NOR]);
                         break;
                 default:
-                        result += (["msg" : HIR "突然间白影急晃，$n" HIR "向后滑出丈余"
-                                            "，立时又回到了原地，躲过了$N" HIR "这一招"
+                        result += (["msg" : HIR "突然間白影急晃，$n" HIR "向後滑出丈餘"
+                                            "，立時又回到了原地，躲過了$N" HIR "這一招"
                                             "。\n" NOR]);
                         break;
                 }
@@ -443,23 +443,23 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
                 switch (random(4))
                 {
                 case 0:
-                        result = HIY "$N" HIY "眼睛一花，$n" HIY "已没了踪影"
-                                 "。可是$N" HIY "精通易理，丝毫不为所乱，尽自"
+                        result = HIY "$N" HIY "眼睛一花，$n" HIY "已沒了蹤影"
+                                 "。可是$N" HIY "精通易理，絲毫不為所亂，儘自"
                                  "出招。\n" NOR;
                         break;
                 case 1:
-                        result = HIY "$N" HIY "眼前一花，似乎见到$n" HIY "身"
-                                 "形一晃。$N" HIY "一声冷笑，已瞬间看破招中虚"
-                                 "实。\n" NOR;
+                        result = HIY "$N" HIY "眼前一花，似乎見到$n" HIY "身"
+                                 "形一晃。$N" HIY "一聲冷笑，已瞬間看破招中虛"
+                                 "實。\n" NOR;
                         break;
                 case 2:
-                        result = HIY "$n" HIY "身形飘忽，有如鬼魅，转了几转，"
-                                 "可是$N" HIY "理也不理，连续数招径直攻出。\n"
+                        result = HIY "$n" HIY "身形飄忽，有如鬼魅，轉了幾轉，"
+                                 "可是$N" HIY "理也不理，連續數招徑直攻出。\n"
                                  NOR;
                         break;
                 default:
-                        result = HIY "突然间白影急晃，$n" HIY "向后滑出丈余，"
-                                 "可是$N" HIY "不假思索，追身攻上，更是巧妙无"
+                        result = HIY "突然間白影急晃，$n" HIY "向後滑出丈餘，"
+                                 "可是$N" HIY "不假思索，追身攻上，更是巧妙無"
                                  "方。\n" NOR;
                         break;
                 }
@@ -489,12 +489,12 @@ void cimu_end(object me, object target)
         {
                 if (living(target))
                 {
-                        message_combatd(HIC "$N" HIC "抹了抹流着的"
-                                        HIR "鲜血" HIC "，终于能看"
-                                        "见了。\n" NOR, target);
+                        message_combatd(HIC "$N" HIC "抹了抹流著的"
+                                        HIR "鮮血" HIC "，終於能看"
+                                        "見了。\n" NOR, target);
 
-                        tell_object(target, HIR "你终于抹掉了眼前的"
-                                            "鲜血，能看见了。\n" NOR);
+                        tell_object(target, HIR "你終於抹掉了眼前的"
+                                            "鮮血，能看見了。\n" NOR);
                 }
                 delete_temp("block_msg/all", target);
         }
@@ -508,11 +508,11 @@ void poyuan_end(object me, object target)
                 if (living(target))
                 {
                         message_combatd(HIC "$N" HIC "深深吸入一口"
-                                        "气，脸色由白转红，看起来好"
+                                        "氣，臉色由白轉紅，看起來好"
                                         "多了。\n" NOR, target);
 
-                        tell_object(target, HIY "你感到被扰乱的真气"
-                                            "慢慢平静了下来。\n" NOR);
+                        tell_object(target, HIY "你感到被擾亂的真氣"
+                                            "慢慢平靜了下來。\n" NOR);
                 }
                 target->clear_condition("no_perform");
         }
@@ -526,10 +526,10 @@ void exert_end(object me, object target)
                 if (living(target))
                 {
                         message_combatd(HIC "$N" HIC "深深吸入一口"
-                                        "气，脸色由白转红，看起来好"
+                                        "氣，臉色由白轉紅，看起來好"
                                         "多了。\n" NOR, target);
 
-                        tell_object(target, HIY "你感到周身穴道不再疼痛，轻松多了。\n" NOR);
+                        tell_object(target, HIY "你感到周身穴道不再疼痛，輕鬆多了。\n" NOR);
                 }
                 target->clear_condition("no_exert");
         }
@@ -554,8 +554,8 @@ mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time)
                                 {
                                         set_temp("block_msg/all", 1, victim);
                                         call_out("cimu_end", 20, me, victim);
-                                        message_combatd(HIR "$N" HIR "只觉双目一阵剧痛，眼前一黑，就什么"
-                                               "也看不见了，顿时长声痛极而呼。\n" NOR, victim);
+                                        message_combatd(HIR "$N" HIR "只覺雙目一陣劇痛，眼前一黑，就什麼"
+                                               "也看不見了，頓時長聲痛極而呼。\n" NOR, victim);
                                 }
                                 break;
                         case 1:
@@ -563,9 +563,9 @@ mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time)
                                 {
                                         victim->apply_condition("no_perform", 5);
                                         call_out("poyuan_end", 15, me, victim);
-                                        message_combatd(HIR "$N" HIR "只觉眼前寒芒一闪而过，随即全身一阵"
-                                                "刺痛，几股血柱自身上射出。\n$N陡然间一提真气，"
-                                                "竟发现周身力道竟似涣散一般，全然无法控制。\n" NOR, victim);
+                                        message_combatd(HIR "$N" HIR "只覺眼前寒芒一閃而過，隨即全身一陣"
+                                                "刺痛，幾股血柱自身上射出。\n$N陡然間一提真氣，"
+                                                "竟發現周身力道竟似渙散一般，全然無法控制。\n" NOR, victim);
                                 }
                                 break;
                         case 2:
@@ -576,9 +576,9 @@ mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time)
                                 {                       
                                         victim->apply_condition("no_exert", 1);
                                         call_out("exert_end", 30, me, victim);
-                                        message_combatd(HIR "$N" HIR "只觉寒光逼人，随即全身一阵"
-                                                "刺痛，气门已伤。\n$N陡然间一提真气，"
-                                                "竟发现周身穴道具痛无比。\n" NOR, victim);
+                                        message_combatd(HIR "$N" HIR "只覺寒光逼人，隨即全身一陣"
+                                                "刺痛，氣門已傷。\n$N陡然間一提真氣，"
+                                                "竟發現周身穴道具痛無比。\n" NOR, victim);
                                 }
                                 break;
                         default:
@@ -611,10 +611,10 @@ mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time)
                 return 0;
 
         if( query_temp("pixie-jian/pfm_jian", me) ) tell_object(me,HIG"---------------------------=\n"NOR);
-        // 避免在使用Pfm时讯息重复
+        // 避免在使用Pfm時訊息重複
         if( !query_temp("pixie-jian/hit_msg", me) )
-                message_combatd(HIW "\n霎时间只见$N" HIW "鬼魅般揉身冲上，" + name +
-                               HIW "指指点点，宛如夜雨流星，连续刺向$n" HIW "！\n"
+                message_combatd(HIW "\n霎時間只見$N" HIW "鬼魅般揉身衝上，" + name +
+                               HIW "指指點點，宛如夜雨流星，連續刺向$n" HIW "！\n"
                                NOR, me, victim);
 
 //        me->start_busy(1 + random(attack_time / 10));
@@ -632,8 +632,8 @@ mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time)
 
 int practice_skill(object me)
 {
-        return notify_fail(HIC "辟邪剑法只能通过研习「辟邪剑谱」或「葵花"
-                           "宝典」来学习。\n" NOR);
+        return notify_fail(HIC "辟邪劍法只能通過研習「辟邪劍譜」或「葵花"
+                           "寶典」來學習。\n" NOR);
 }
 
 int difficult_level()
@@ -669,7 +669,7 @@ void do_interlink(object me, object victim)
                 if (! sizeof(enemy)) return;
                 addn_temp("str", skill/10, me);
                 addn_temp("dex", skill/10, me);
-                // 对所有敌人均自动进行攻击
+                // 對所有敵人均自動進行攻擊
                 for (i = 0; i < sizeof(enemy); i++)
                 {
                         for (j = 0; j < (skill / (60 * sizeof(enemy))); j++)
@@ -689,68 +689,68 @@ void do_interlink(object me, object victim)
 
 int help(object me)
 {
-        write(HIC"\n辟邪剑法："NOR"\n");
+        write(HIC"\n辟邪劍法："NOR"\n");
         write(@HELP
 
-    要说辟邪剑法，就要从《葵花宝典》谈起。
+    要說辟邪劍法，就要從《葵花寶典》談起。
 
-    《葵花宝典》是一位宦官所作。这样一位大高手，为什麽在皇
-宫中做太监，那是谁也不知道。至於宝典中所载的武功，却是精深
-之极，三百多年来，始终无一人能据书练成。百余年前，这部宝典
-为福建莆田少林寺下院所得。其时莆田少林寺方丈红叶禅师，乃是
-一位大智大慧的了不起人物，依照他的武功悟性，该当练成宝典上
-所载武功才是。但他研究多年，直到逝世，始终没有起始练宝典中
+    《葵花寶典》是一位宦官所作。這樣一位大高手，為什麼在皇
+宮中做太監，那是誰也不知道。至於寶典中所載的武功，卻是精深
+之極，三百多年來，始終無一人能據書練成。百餘年前，這部寶典
+為福建莆田少林寺下院所得。其時莆田少林寺方丈紅葉禪師，乃是
+一位大智大慧的了不起人物，依照他的武功悟性，該當練成寶典上
+所載武功才是。但他研究多年，直到逝世，始終沒有起始練寶典中
 的武功。
 
-    一日华山派的岳肃和蔡子峰到莆田少林寺作客，偷看到《葵花
-宝典》。其时匆匆之际，二人不及同时阅遍全书，当下二人分读，
-一人读一半，後来回到华山，共同叁悟研讨。不料二人将书中功夫
-一加印证，竟然牛头不对马嘴，全然合不上来。二人都深信对方读
-错了书，只有自己所记的才是对的。华山的剑气二宗之分由此而起。
+    一日華山派的嶽肅和蔡子峰到莆田少林寺作客，偷看到《葵花
+寶典》。其時匆匆之際，二人不及同時閱遍全書，當下二人分讀，
+一人讀一半，後來回到華山，共同叄悟研討。不料二人將書中功夫
+一加印證，竟然牛頭不對馬嘴，全然合不上來。二人都深信對方讀
+錯了書，只有自己所記的才是對的。華山的劍氣二宗之分由此而起。
 
-    红叶禅师不久发现此事，他知道这部宝典所载武学不仅博大精
-深，且蒹凶险之极。这最难的还是第一关，只消第一关能打通，到
-後来也没什麽。第一关只要有半点岔差，立时非死即伤。红叶当下
-派遣得意弟子渡元禅师前往华山，劝论岳蔡二位，不可修习宝典中
-的武学。
+    紅葉禪師不久發現此事，他知道這部寶典所載武學不僅博大精
+深，且蒹兇險之極。這最難的還是第一關，只消第一關能打通，到
+後來也沒什麼。第一關只要有半點岔差，立時非死即傷。紅葉當下
+派遣得意弟子渡元禪師前往華山，勸論嶽蔡二位，不可修習寶典中
+的武學。
 
-    渡元禅师上得华山，岳蔡二人对他好生相敬，承认私阅《葵花
-宝典》，一面深致歉意，一面却以经中所载武学向他请教。殊不知
-渡元虽是红叶的得意弟子，宝典中的武学却未蒙传授。当下渡元禅
-师并不点明，听他们背诵经文，随口加以解释，心中却暗自记下。
-渡元禅师武功本极高明，又是绝顶机智之人，听到一句经文，便己
-意演绎几句，居然也说来头头是道。
+    渡元禪師上得華山，嶽蔡二人對他好生相敬，承認私閱《葵花
+寶典》，一面深致歉意，一面卻以經中所載武學向他請教。殊不知
+渡元雖是紅葉的得意弟子，寶典中的武學卻未蒙傳授。當下渡元禪
+師並不點明，聽他們背誦經文，隨口加以解釋，心中卻暗自記下。
+渡元禪師武功本極高明，又是絕頂機智之人，聽到一句經文，便己
+意演繹幾句，居然也說來頭頭是道。
 
-    不过岳蔡二人所记的本已不多，经过这麽一转述，不免又打了
-折扣。渡元禅师在华山上住了八日，这才作别，但从此却也没再回
-到莆田少林寺去。不久红叶禅师就收到渡元禅师的一通书信，说道
-他凡心难抑，决意还俗，无面目再见师父云云。
+    不過嶽蔡二人所記的本已不多，經過這麼一轉述，不免又打了
+折扣。渡元禪師在華山上住了八日，這才作別，但從此卻也沒再回
+到莆田少林寺去。不久紅葉禪師就收到渡元禪師的一通書信，說道
+他凡心難抑，決意還俗，無面目再見師父云云。
 
-    由於这一件事，华山派弟子偷窥《葵花宝典》之事也流传於外。
-过不多时，魔教十长老来攻华山，在华山脚下一场大战。魔教十长
-老多身受重伤，大败而去。但岳肃和蔡子峰两人均在这一役中毙命，
-而二人所录《葵花宝典》也被魔教夺了去。
+    由於這一件事，華山派弟子偷窺《葵花寶典》之事也流傳於外。
+過不多時，魔教十長老來攻華山，在華山腳下一場大戰。魔教十長
+老多身受重傷，大敗而去。但嶽肅和蔡子峰兩人均在這一役中斃命，
+而二人所錄《葵花寶典》也被魔教奪了去。
 
-    渡元禅师还俗之後，复了原姓，将法名颠倒过来取名远图，娶
-妻生子，创立镖局，在江湖上轰轰烈烈干了一番事业。
+    渡元禪師還俗之後，復了原姓，將法名顛倒過來取名遠圖，娶
+妻生子，創立鏢局，在江湖上轟轟烈烈幹了一番事業。
 
-    莆田少林寺的红叶禅师园寂之时，召集门人弟子，说明这部宝
-典的前因後果，便即将其投如炉中火化。红叶说：这部武学秘笈精
-妙奥妙，但其中许多关键之处，当年的撰作人并未能妥为叁通解透，
-留下的难题太多。尤其是第一关难过，不但难过，简直是不能过不
-可过，流传後世，实非武林之福。
+    莆田少林寺的紅葉禪師園寂之時，召集門人弟子，說明這部寶
+典的前因後果，便即將其投如爐中火化。紅葉說：這部武學秘笈精
+妙奧妙，但其中許多關鍵之處，當年的撰作人並未能妥為叄通解透，
+留下的難題太多。尤其是第一關難過，不但難過，簡直是不能過不
+可過，流傳後世，實非武林之福。
 
-    林远图的辟邪剑法，是从《葵花宝典》残篇中悟出的武功，两
-者系出同源。辟邪剑法有七十二路，但一来从不外传，二来使用此
-剑法之人个个动作迅捷诡异，外间无人得知其招法的名目，只知道
-其招式乃匪夷所思。林远图所自录的《辟邪剑谱》加了许多自己的
-解释，故较魔教所藏的《葵花宝典》易入门，但少了些内容。所以
-玩家欲习此功，当遵循先易後难之序。致於如何得到这两部武林秘
-笈，则一直是江湖上避而不谈的秘密。如泄露此秘，会招来杀身之
-祸。
+    林遠圖的辟邪劍法，是從《葵花寶典》殘篇中悟出的武功，兩
+者系出同源。辟邪劍法有七十二路，但一來從不外傳，二來使用此
+劍法之人個個動作迅捷詭異，外間無人得知其招法的名目，只知道
+其招式乃匪夷所思。林遠圖所自錄的《辟邪劍譜》加了許多自己的
+解釋，故較魔教所藏的《葵花寶典》易入門，但少了些內容。所以
+玩家欲習此功，當遵循先易後難之序。致於如何得到這兩部武林秘
+笈，則一直是江湖上避而不談的秘密。如洩露此秘，會招來殺身之
+禍。
 
-        学习要求：
-                自宫做太监
+        學習要求：
+                自宮做太監
 HELP
         );
         return 1;

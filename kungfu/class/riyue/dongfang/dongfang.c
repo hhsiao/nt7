@@ -18,9 +18,9 @@ int p, j;
 void create()
 {
         object ob;
-	set_name(HIR "东方不败" NOR, ({ "dongfang bubai", "dongfang", "bubai" }));
-	set("long", " 她就是东方不败，看起来不男不女，样子却甚为妖媚。\n");
-	set("gender", "无性");
+	set_name(HIR "東方不敗" NOR, ({ "dongfang bubai", "dongfang", "bubai" }));
+	set("long", " 她就是東方不敗，看起來不男不女，樣子卻甚為妖媚。\n");
+	set("gender", "無性");
 	set("age", 30);
 	set("shen_type", -1);
 	set("str", 51);
@@ -58,14 +58,14 @@ void create()
 	create_family("日月神教", 2, "弟子");
 
         set("inquiry", ([
-                "杨莲亭"    :    "莲弟 ……\n",
-                "任我行"    :    "哼 ……，我当初真该杀了他。\n",
+                "楊蓮亭"    :    "蓮弟 ……\n",
+                "任我行"    :    "哼 ……，我當初真該殺了他。\n",
                 "葵花魔功"  :    (: ask_kuihua :),
-                "无声无息"  :    (: ask_skill1 :),
-                "无穷无尽"  :    (: ask_skill2 :),
-                "无边无际"  :    (: ask_skill3 :),
-                "无法无天"  :    (: ask_skill4 :),
-                "毁天灭地"  :    (: ask_skill5 :),
+                "無聲無息"  :    (: ask_skill1 :),
+                "無窮無盡"  :    (: ask_skill2 :),
+                "無邊無際"  :    (: ask_skill3 :),
+                "無法無天"  :    (: ask_skill4 :),
+                "毀天滅地"  :    (: ask_skill5 :),
 		"分身化影"  :    (: ask_skill6 :),
                 
         ]));
@@ -116,7 +116,7 @@ mixed ask_kuihua()
             return 1;
         }
         
-        if( query("gender", me) != "无性" && !query("special_skill/guimai", me) )
+        if( query("gender", me) != "無性" && !query("special_skill/guimai", me) )
         {
              command("heng");
              ob->kill_ob(me);
@@ -133,18 +133,18 @@ mixed ask_kuihua()
         {
              if (me->query_skill("pixie-jian", 1))
              {
-                     command("say 下去好好练习，别来烦我！");
+                     command("say 下去好好練習，別來煩我！");
                      return 1;
              }
-             command("say 滚开！就凭你也配问这个？！");
+             command("say 滾開！就憑你也配問這個？！");
              return 1;
         }
 
         command("nod");
         command("heihei");
-        command("say 好吧，我就传你葵花魔功，你可小心了！");
-        tell_object(me, HIG "\n东方不败猛然尖啸一声，声音激荡刺耳，令人心驰神摇。你觉得胸口一震，一口鲜血喷出。\n" NOR);
-        tell_object(me, HIC "然而你却无法捕捉到东方不败的动向！\n" NOR);
+        command("say 好吧，我就傳你葵花魔功，你可小心了！");
+        tell_object(me, HIG "\n東方不敗猛然尖嘯一聲，聲音激盪刺耳，令人心馳神搖。你覺得胸口一震，一口鮮血噴出。\n" NOR);
+        tell_object(me, HIC "然而你卻無法捕捉到東方不敗的動向！\n" NOR);
 
         set_temp("teach_kh", 1, me);
 
@@ -177,10 +177,10 @@ void teach_kuihua(object me, int lv)
 	int qi;
 	
         string* teach_words = ({
-        HIG "忽然间东方不败身法陡然加快，呼啸着在你周围旋转，你感觉胸闷气短。\n" NOR,
-        HIG "霎那间一道银光闪过，东方不败手中银针顿时化分为万千幻影，缠绕在你周围，你渐渐觉得头晕目眩。\n" NOR,
-        HIG "渐渐地，东方不败身法越来越快，已化身为无数她的身影，东方不败尖啸一声，从不同的角度向你袭来。\n" NOR,
-        HIG "东方不败长袖一拂，一道银光划过，猛然间在你眼前一亮，你顿觉得胸口刺痛无比。\n" NOR,
+        HIG "忽然間東方不敗身法陡然加快，呼嘯著在你周圍旋轉，你感覺胸悶氣短。\n" NOR,
+        HIG "霎那間一道銀光閃過，東方不敗手中銀針頓時化分為萬千幻影，纏繞在你周圍，你漸漸覺得頭暈目眩。\n" NOR,
+        HIG "漸漸地，東方不敗身法越來越快，已化身為無數她的身影，東方不敗尖嘯一聲，從不同的角度向你襲來。\n" NOR,
+        HIG "東方不敗長袖一拂，一道銀光劃過，猛然間在你眼前一亮，你頓覺得胸口刺痛無比。\n" NOR,
         });
 
         if (environment(me) != environment(this_object())
@@ -190,7 +190,7 @@ void teach_kuihua(object me, int lv)
         sz = sizeof(teach_words);
 
         tell_object(me, teach_words[random(sz)]);
-        tell_object(me, HIC "然而你却无法捕捉到东方不败的动向！\n" NOR);
+        tell_object(me, HIC "然而你卻無法捕捉到東方不敗的動向！\n" NOR);
         
 	qi = 1400 - lv;
 	if (qi < 100)qi = 100;
@@ -208,17 +208,17 @@ void teach_kuihua(object me, int lv)
         tell_object(me, "( 你" + eff_status_msg(p) + ")\n\n");
         j ++;
 
-        // 能学葵花魔功了
+        // 能學葵花魔功了
         if (j >= 6 + random(2))
         {
-              message_sort(HIW "东方不败尖啸一声，又回到了原地，似乎从未离开过。\n" NOR, me);
+              message_sort(HIW "東方不敗尖嘯一聲，又回到了原地，似乎從未離開過。\n" NOR, me);
 
-              message_sort(HIW "东方不败再未有任何言语，只是玩弄着自己的指甲 ……\n" NOR, me);
+              message_sort(HIW "東方不敗再未有任何言語，只是玩弄著自己的指甲 ……\n" NOR, me);
 
               if (random(10) > 7)return;
               
-              write(HIM "你仔细回味刚才那惊心动魄的一幕，回想东方不败施展的各种招式，猛然间你一声长叹，"
-                        "心中疑虑顿然消除 ……\n" NOR);
+              write(HIM "你仔細回味剛才那驚心動魄的一幕，回想東方不敗施展的各種招式，猛然間你一聲長嘆，"
+                        "心中疑慮頓然消除 ……\n" NOR);
               if (me->can_improve_skill("force"))
                     me->improve_skill("force", 1500000);
               if (me->can_improve_skill("dodge"))
@@ -234,7 +234,7 @@ void teach_kuihua(object me, int lv)
               if( query("can_perform/pixie-jian/po", me) )
                        set("can_perform/kuihua-mogong/qiong", 1, me);
               me->set_skill("kuihua-mogong", 200 + (lv - 300) / 2 );
-              tell_object(me, HIG "你学会了「葵花魔功」！\n" NOR);
+              tell_object(me, HIG "你學會了「葵花魔功」！\n" NOR);
               
               me->save();
               
@@ -252,7 +252,7 @@ mixed ask_skill1()
 {
         object me = this_player();
         
-        if( query("gender", me) != "无性" && !query("special_skill/guimai", me) )
+        if( query("gender", me) != "無性" && !query("special_skill/guimai", me) )
         {
                command("heng");
                this_object()->kill_ob(me);
@@ -260,12 +260,12 @@ mixed ask_skill1()
         }
         if( query("can_perform/kuihua-mogong/sheng", me) )
         {
-               command("say 我不是已经传了你这招吗？怎么又来问我！");
+               command("say 我不是已經傳了你這招嗎？怎麼又來問我！");
                return 1;
         }
         command("nod");
         command("heihei");
-        tell_object(me, HIR "\n东方不败身子忽进忽退，身形诡秘异常，在你身边飘忽不定，不久又回到了原地。\n");
+        tell_object(me, HIR "\n東方不敗身子忽進忽退，身形詭秘異常，在你身邊飄忽不定，不久又回到了原地。\n");
         command("say 看清楚了？！");
         if (me->can_improve_skill("dodge"))
               me->improve_skill("dodge", 1500000);
@@ -274,7 +274,7 @@ mixed ask_skill1()
         me->improve_skill("martial-cognize", 1500000);
 
         set("can_perform/kuihua-mogong/sheng", 1, me);
-        tell_object(me, HIG "你学会了「无声无息」。\n");
+        tell_object(me, HIG "你學會了「無聲無息」。\n");
 
         return 1;
 }
@@ -283,7 +283,7 @@ mixed ask_skill2()
 {       
         object me = this_player();
         
-        if( query("gender", me) != "无性" && !query("special_skill/guimai", me) )
+        if( query("gender", me) != "無性" && !query("special_skill/guimai", me) )
         {
                command("heng");
                this_object()->kill_ob(me);
@@ -291,20 +291,20 @@ mixed ask_skill2()
         }
         if( query("can_perform/kuihua-mogong/qiong", me) )
         {
-               command("say 我不是已经传了你这招吗？怎么又来问我！");
+               command("say 我不是已經傳了你這招嗎？怎麼又來問我！");
                return 1;
         }
         if (me->query_skill("kuihua-mogong", 1) < 250)
         {
-               command("say 你葵花魔功还不够娴熟，还不快下去多加练习。");
+               command("say 你葵花魔功還不夠嫻熟，還不快下去多加練習。");
                return 1;
         }
       
         command("heihei");
-        tell_object(me, HIR "\n东方不败尖啸一声，猛然进步欺前，一招竟直袭向虚空，速度之快，令人称奇。\n" NOR);
+        tell_object(me, HIR "\n東方不敗尖嘯一聲，猛然進步欺前，一招竟直襲向虛空，速度之快，令人稱奇。\n" NOR);
         command("say 看清楚了？！");
-        command("say 这招精要在于快、准、狠，对于实战经验较低的人可能会一招使其毙命！");
-        command("say 你下去一定要勤加练习。");
+        command("say 這招精要在於快、準、狠，對於實戰經驗較低的人可能會一招使其斃命！");
+        command("say 你下去一定要勤加練習。");
 
         if (me->can_improve_skill("force"))
               me->improve_skill("force", 1500000);
@@ -313,7 +313,7 @@ mixed ask_skill2()
         me->improve_skill("martial-cognize", 1500000);
 
         set("can_perform/kuihua-mogong/qiong", 1, me);
-        tell_object(me, HIG "你学会了「无穷无尽」。\n");
+        tell_object(me, HIG "你學會了「無窮無盡」。\n");
 
         return 1;
 }
@@ -322,7 +322,7 @@ mixed ask_skill3()
 {
         object me = this_player();
         
-        if( query("gender", me) != "无性" && !query("special_skill/guimai", me) )
+        if( query("gender", me) != "無性" && !query("special_skill/guimai", me) )
         {
                command("heng");
                this_object()->kill_ob(me);
@@ -330,18 +330,18 @@ mixed ask_skill3()
         }
         if( query("can_perform/pixie-jian/po", me) )
         {
-               command("say 下去好好练习吧，没事别来烦我！");
+               command("say 下去好好練習吧，沒事別來煩我！");
                return 1;
         }
         if (me->query_skill("kuihua-mogong", 1) < 260)
         {
-               command("say 你葵花魔功还不够娴熟，还不快下去多加练习。");
+               command("say 你葵花魔功還不夠嫻熟，還不快下去多加練習。");
                return 1;
         }      
         command("heihei");
-        tell_object(me, HIR "\n东方不败一声尖啸，身体猛然旋转不定，霎那间似乎有千万根银针，齐齐卷向虚空 ……\n" NOR);
-        command("say 这招威力巨大，能伤对方丹元，使其短期内不能施展任何外功！");
-        command("say 你下去一定要勤加练习。");
+        tell_object(me, HIR "\n東方不敗一聲尖嘯，身體猛然旋轉不定，霎那間似乎有千萬根銀針，齊齊卷向虛空 ……\n" NOR);
+        command("say 這招威力巨大，能傷對方丹元，使其短期內不能施展任何外功！");
+        command("say 你下去一定要勤加練習。");
 
         if (me->can_improve_skill("force"))
               me->improve_skill("force", 1500000);
@@ -350,7 +350,7 @@ mixed ask_skill3()
         me->improve_skill("martial-cognize", 1500000);
 
         set("can_perform/pixie-jian/po", 1, me);
-        tell_object(me, HIG "你学会了「无边无际」。\n");
+        tell_object(me, HIG "你學會了「無邊無際」。\n");
 
         return 1;
 
@@ -360,7 +360,7 @@ mixed ask_skill4()
 {
         object me = this_player();
         
-        if( query("gender", me) != "无性" && !query("special_skill/guimai", me) )
+        if( query("gender", me) != "無性" && !query("special_skill/guimai", me) )
         {
                command("heng");
                this_object()->kill_ob(me);
@@ -368,19 +368,19 @@ mixed ask_skill4()
         }
         if( query("can_perform/kuihua-mogong/tian", me) )
         {
-               command("say 我不是已经传了你这招吗？怎么又来问我！");
+               command("say 我不是已經傳了你這招嗎？怎麼又來問我！");
                return 1;
         }
         if (me->query_skill("kuihua-mogong", 1) < 220)
         {
-               command("say 你葵花魔功还不够娴熟，还不快下去多加练习。");
+               command("say 你葵花魔功還不夠嫻熟，還不快下去多加練習。");
                return 1;
         }      
         command("heihei");
         command("say 看好了！");
-        tell_object(me, HIR "\n东方不败默运葵花魔功，身形变得奇快无比，接连从不同的方位向虚空攻出数招！\n" NOR);
-        command("say 这招以快取胜，以快制敌。");
-        command("say 你下去一定要勤加练习。");
+        tell_object(me, HIR "\n東方不敗默運葵花魔功，身形變得奇快無比，接連從不同的方位向虛空攻出數招！\n" NOR);
+        command("say 這招以快取勝，以快制敵。");
+        command("say 你下去一定要勤加練習。");
 
         if (me->can_improve_skill("force"))
               me->improve_skill("force", 1500000);
@@ -389,7 +389,7 @@ mixed ask_skill4()
         me->improve_skill("martial-cognize", 1500000);
 
         set("can_perform/kuihua-mogong/tian", 1, me);
-        tell_object(me, HIG "你学会了「无法无天」。\n");
+        tell_object(me, HIG "你學會了「無法無天」。\n");
 
         return 1;
 }
@@ -400,7 +400,7 @@ mixed ask_skill5()
         object me = this_player();
         string msg;
 
-        if( query("gender", me) != "无性" && !query("special_skill/guimai", me) )
+        if( query("gender", me) != "無性" && !query("special_skill/guimai", me) )
         {
                command("heng");
                this_object()->kill_ob(me);
@@ -408,34 +408,34 @@ mixed ask_skill5()
         }
         if( query("can_perform/kuihua-mogong/hui2", me) )
         {
-               command("say 我不是已经传了你这招吗？怎么又来问我！");
+               command("say 我不是已經傳了你這招嗎？怎麼又來問我！");
                return 1;
         }
         if (me->query_skill("kuihua-mogong", 1) < 320)
         {
-               command("say 你葵花魔功还不够娴熟，还不快下去多加练习。");
+               command("say 你葵花魔功還不夠嫻熟，還不快下去多加練習。");
                return 1;
         }
         if( query("max_neili", me)<4000 )
         {
-               command("say 你内力修为还不足，还不快下去多加修炼。");
+               command("say 你內力修為還不足，還不快下去多加修煉。");
                return 1;
         }
 
-        // 未学会毁天式，第一次学习
+        // 未學會毀天式，第一次學習
         if( !query("can_perform/kuihua-mogong/hui", me) )
         {
                command("heihei");
-               msg = HIW "东方不败对$N" HIW "说道：好，既然这样我就传你葵花魔功最高境「毁天灭地」！"
-                     "毁天灭地分两招，第一招「毁天式」，第二招「灭地诀」，必须要将这两招学全方能领"
-                     "悟出「毁天灭地」！现在我先传你第一招「毁天式」，待你下去将此招运用得熟练了我"
-                     "再传你「灭地诀」。你只要在战斗中使用 " HIR "perform sword.hui" HIW " 并且打中"
-                     "对方，该招的熟练度就会提升！\n" NOR;
+               msg = HIW "東方不敗對$N" HIW "說道：好，既然這樣我就傳你葵花魔功最高境「毀天滅地」！"
+                     "毀天滅地分兩招，第一招「毀天式」，第二招「滅地訣」，必須要將這兩招學全方能領"
+                     "悟出「毀天滅地」！現在我先傳你第一招「毀天式」，待你下去將此招運用得熟練了我"
+                     "再傳你「滅地訣」。你只要在戰鬥中使用 " HIR "perform sword.hui" HIW " 並且打中"
+                     "對方，該招的熟練度就會提升！\n" NOR;
 
                message_sort(msg, me);
-               tell_object(me, HIM "东方不败将「毁天式」的口诀告诉了你！\n" NOR);
-               command("say 下去好好练习吧！");
-               tell_object(me, HIG "你学会了「毁天式」。\n" NOR);
+               tell_object(me, HIM "東方不敗將「毀天式」的口訣告訴了你！\n" NOR);
+               command("say 下去好好練習吧！");
+               tell_object(me, HIG "你學會了「毀天式」。\n" NOR);
                set("can_perform/kuihua-mogong/hui", 1, me);
                if (me->can_improve_skill("force"))
                     me->improve_skill("force", 1500000);
@@ -446,24 +446,24 @@ mixed ask_skill5()
                return 1;
                
         }
-        else // 准备学习灭地诀
+        else // 準備學習滅地訣
         {
                if( query("can_perform/kuihua-mogong/hui1", me)<200 )
                {
                       command("shake");
-                      command("say 你还是先将「毁天式」运用熟练了再来吧！");
+                      command("say 你還是先將「毀天式」運用熟練了再來吧！");
                       return 1;
                }
                command("nod");
-               msg = HIW "东方不败对$N" HIW "说道：不错，不错！你「毁天式」已经运用得很熟练了，该是"
-                     "你学习「灭地诀」的时候了，你可看好了。猛然间东方不败身形一晃，已没了踪迹，刹"
-                     "那间，你只觉得地动山摇，风起云涌，正犹豫间，东方不败已蹿至你身后，轻轻地拍了"
-                     "拍你的头。\n" NOR;
+               msg = HIW "東方不敗對$N" HIW "說道：不錯，不錯！你「毀天式」已經運用得很熟練了，該是"
+                     "你學習「滅地訣」的時候了，你可看好了。猛然間東方不敗身形一晃，已沒了蹤跡，剎"
+                     "那間，你只覺得地動山搖，風起雲湧，正猶豫間，東方不敗已躥至你身後，輕輕地拍了"
+                     "拍你的頭。\n" NOR;
 
                message_sort(msg, me);
                command("say 明白了？");
-               command("say 下去好好练习吧！");
-               tell_object(me, HIG "你学会了「灭地诀」。\n" NOR);
+               command("say 下去好好練習吧！");
+               tell_object(me, HIG "你學會了「滅地訣」。\n" NOR);
                set("can_perform/kuihua-mogong/hui2", 1, me);
                if (me->can_improve_skill("force"))
                     me->improve_skill("force", 1500000);
@@ -479,7 +479,7 @@ mixed ask_skill6()
 {
         object me = this_player();
         
-        if( query("gender", me) != "无性" && !query("special_skill/guimai", me) )
+        if( query("gender", me) != "無性" && !query("special_skill/guimai", me) )
         {
                command("heng");
                this_object()->kill_ob(me);
@@ -487,22 +487,22 @@ mixed ask_skill6()
         }
         if( query("can_perform/kuihua-mogong/fenshen", me) )
         {
-               command("say 我不是已经传了你这招吗？怎么又来问我！");
+               command("say 我不是已經傳了你這招嗎？怎麼又來問我！");
                return 1;
         }
         if (me->query_skill("kuihua-mogong", 1) < 460)
         {
-               command("say 你葵花魔功还不够娴熟，还不快下去多加练习。");
+               command("say 你葵花魔功還不夠嫻熟，還不快下去多加練習。");
                return 1;
         }
  	if( query("max_neili", me)<6000 )
 	{
-                command("say 你内力修为不够，无法领会此招。\n");
+                command("say 你內力修為不夠，無法領會此招。\n");
 		return 1;
 	}
         command("heihei");
         command("say 看好了！");
-        tell_object(me, HIR "\n东方不败冷笑一声，幻化出无数的身影，令你眼花缭乱，不明方向。\n" NOR);
+        tell_object(me, HIR "\n東方不敗冷笑一聲，幻化出無數的身影，令你眼花繚亂，不明方向。\n" NOR);
         command("say 明白了？");
 
         if (me->can_improve_skill("force"))
@@ -514,7 +514,7 @@ mixed ask_skill6()
         me->improve_skill("martial-cognize", 1500000);
 
         set("can_perform/kuihua-mogong/fenshen", 1, me);
-        tell_object(me, HIG "你学会了「分身化影」。\n");
+        tell_object(me, HIG "你學會了「分身化影」。\n");
 
         return 1;
 }

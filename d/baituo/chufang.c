@@ -3,10 +3,10 @@
 inherit ROOM;
 void create()
 {
-        set("short","厨房");
+        set("short","廚房");
         set("long", @LONG
-这是间宽敞的厨房，厨师们在展示各自的烹饪绝活。整个房间弥
-漫着令人垂涎欲滴的菜香。墙上贴着一张醒目的启事(note)。
+這是間寬敞的廚房，廚師們在展示各自的烹飪絕活。整個房間彌
+漫著令人垂涎欲滴的菜香。牆上貼著一張醒目的啟事(note)。
 LONG );
 
         set("exits",([
@@ -15,7 +15,7 @@ LONG );
         ]));
 
         set("item_desc",([
-                "note" : "本厨房招收小工：每砍一担柴，付１０两银子。\n",
+                "note" : "本廚房招收小工：每砍一擔柴，付１０兩銀子。\n",
         ]));
 
         set("objects",([
@@ -37,8 +37,8 @@ int valid_leave(object me, string dir)
 {
         if (( present("jiang", me)||present("cake", me))
         && objectp(present("fei fei", environment(me))) )
-                return notify_fail("肥肥一把拽住你的衣领，"
-                                   "着急地叫到：饭菜不能带出去，"
-                                   "这里蟑螂已经够多了。\n");
+                return notify_fail("肥肥一把拽住你的衣領，"
+                                   "著急地叫到：飯菜不能帶出去，"
+                                   "這裡蟑螂已經夠多了。\n");
         return ::valid_leave(me, dir);
 }

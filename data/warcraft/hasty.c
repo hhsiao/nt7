@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("驴脸老诅[2;37;0m[2;37;0m", ({"goto"}));        
+        set_name("驢臉老詛[2;37;0m[2;37;0m", ({"goto"}));        
         set("gender", "女性");                
-        set("long", "它就是一驴脸。[2;37;0m
-它是阿草的魔幻兽。
+        set("long", "它就是一驢臉。[2;37;0m
+它是阿草的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

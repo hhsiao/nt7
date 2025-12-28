@@ -12,10 +12,10 @@ mixed ask_skill1();
 
 void create()
 {
-        set_name("古笃诚", ({ "gu ducheng", "gu", "ducheng" }));
-        set("title", "大理国护卫" );
+        set_name("古篤誠", ({ "gu ducheng", "gu", "ducheng" }));
+        set("title", "大理國護衛" );
         set("nickname", HIY "忠心耿耿" NOR);
-        set("long", "他是大理国四大护卫之一。\n");
+        set("long", "他是大理國四大護衛之一。\n");
         set("gender", "男性");
         set("age", 40);
         set("class", "officer");
@@ -60,7 +60,7 @@ void create()
         prepare_skill("strike", "wuluo-zhang");
 /*
         set("inquiry", ([
-                "错字诀"   : (: ask_skill1 :),
+                "錯字訣"   : (: ask_skill1 :),
         ]));
 */
         create_family("段氏皇族", 15, "家臣");
@@ -86,8 +86,8 @@ void attempt_apprentice(object ob)
                 return;
 
         command("ah");
-        command("say 世子殿下何需如此，只要有事吩咐在下一声便是。");
-        command("say 若世子不嫌弃，我这里倒是有一套斧法可以传授予你。");
+        command("say 世子殿下何需如此，只要有事吩咐在下一聲便是。");
+        command("say 若世子不嫌棄，我這裡倒是有一套斧法可以傳授予你。");
 
         return;
 }
@@ -97,20 +97,20 @@ int recognize_apprentice(object ob, string skill)
         if( query("family/family_name", ob) != "段氏皇族" )
         {
                 command("heng");
-                command("say 你算什么人？古某为何要听命于你？");
+                command("say 你算什麼人？古某為何要聽命於你？");
                 return -1;
         }
 
         if (skill != "pangen-cuojiefu" && skill != "hammer")
         {
-                command("say 我就只有这套斧法拿得出手，其余的还是找你爹爹学吧。");
+                command("say 我就只有這套斧法拿得出手，其餘的還是找你爹爹學吧。");
                 return -1;
         }
 
         if( !query_temp("can_learn/guducheng", ob) )
         {
                 command("hehe");
-                command("say 既然世子有心习武，在下理当竭尽所能传授。");
+                command("say 既然世子有心習武，在下理當竭盡所能傳授。");
                 set_temp("can_learn/guducheng", 1, ob);
         }
         return 1;
@@ -121,34 +121,34 @@ mixed ask_skill1()
 
         me = this_player();
         if( query("can_perform/pangen-cuojiefu/cuo", me) )
-                return "这个…这…在下不是已经教过你了吗？";
+                return "這個…這…在下不是已經教過你了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return RANK_D->query_respect(me) + "和古某素不相识，何出此言？";
+                return RANK_D->query_respect(me) + "和古某素不相識，何出此言？";
 
         if (me->query_skill("pangen-cuojiefu", 1) < 1)
-                return "世子殿下还是先学了在下的盘根错节斧再说吧。";
+                return "世子殿下還是先學了在下的盤根錯節斧再說吧。";
 
         if( query("family/gongji", me)<150 )
-                return "这个…不是我不愿意…只是王爷吩咐了，无功劳者不得…那个。";
+                return "這個…不是我不願意…只是王爺吩咐了，無功勞者不得…那個。";
 
         if (me->query_skill("force") < 120)
-                return "这个…世子殿下的内功修为还有待提高。";
+                return "這個…世子殿下的內功修為還有待提高。";
 
         if( query("max_neili",1, me)<800 )
-                return "这个…世子殿下的内力修为还有待提高。";
+                return "這個…世子殿下的內力修為還有待提高。";
 
         if (me->query_skill("pangen-cuojiefu", 1) < 100)
-                return "世子殿下盘根错节斧的火候还不够，尚且用不了这招。";
+                return "世子殿下盤根錯節斧的火候還不夠，尚且用不了這招。";
 
-        message_sort(HIY "\n$n" HIY "对$N" HIY "点了点头，随即取出腰"
-                     "间大斧，力贯斧柄，陡然间一声断喝，接连猛挥数斧"
-                     "，威猛中不失精奇，招数巧妙，气势如虹。\n\n" NOR,
+        message_sort(HIY "\n$n" HIY "對$N" HIY "點了點頭，隨即取出腰"
+                     "間大斧，力貫斧柄，陡然間一聲斷喝，接連猛揮數斧"
+                     "，威猛中不失精奇，招數巧妙，氣勢如虹。\n\n" NOR,
                      me, this_object()); 
 
         command("bow");
-        command("say 古某才识浅薄，所学仅此而已，让世子殿下见笑了。");
-        tell_object(me, HIC "你学会了「错字诀」。\n" NOR);
+        command("say 古某才識淺薄，所學僅此而已，讓世子殿下見笑了。");
+        tell_object(me, HIC "你學會了「錯字訣」。\n" NOR);
         if (me->can_improve_skill("hammer"))
                 me->improve_skill("hammer", 1500000);
         if (me->can_improve_skill("pangen-cuojiefu"))

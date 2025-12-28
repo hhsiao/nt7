@@ -2,55 +2,55 @@
 inherit SKILL;
 
 mapping *action = ({
-([ "action": "$N将身一纵，跃在半空，一式「彩凤栖梧」，手中$w盘旋而下，鞭势灵动之至，击向$n$l",
+([ "action": "$N將身一縱，躍在半空，一式「綵鳳棲梧」，手中$w盤旋而下，鞭勢靈動之至，擊向$n$l",
    "dodge": -5,
    "damage":30,
    "force": 100,
         "attack": 90,
         "parry" : 60,
    "lvl" : 0,
-   "skill_name" : "彩凤栖梧",
-        "damage_type": "抽伤"
+   "skill_name" : "綵鳳棲梧",
+        "damage_type": "抽傷"
 ]),
-([ "action": "$N沉肩滑步，手中$w一抖，一式「凤凰展翅」，迅捷无比地分打左右两侧，$n顿时左右支绌，慌了手脚",
+([ "action": "$N沉肩滑步，手中$w一抖，一式「鳳凰展翅」，迅捷無比地分打左右兩側，$n頓時左右支絀，慌了手腳",
    "dodge": 5,
    "damage":50,
    "force": 150,
         "attack": 90,
         "parry" : 60,
    "lvl" : 20,
-   "skill_name" : "凤凰展翅",
-        "damage_type": "抽伤"
+   "skill_name" : "鳳凰展翅",
+        "damage_type": "抽傷"
 ]),
-([ "action": "$N将内力注入$w，蓦地使出一式「蛟龙戏凤」，$w矫夭飞舞，直如神龙破空一般抽向$n",
+([ "action": "$N將內力注入$w，驀地使出一式「蛟龍戲鳳」，$w矯夭飛舞，直如神龍破空一般抽向$n",
    "dodge": 10,
    "damage":80,
    "force": 200,
         "attack": 100,
         "parry" : 80,
    "lvl" : 40,
-   "skill_name" : "蛟龙戏凤",
-        "damage_type": "抽伤"
+   "skill_name" : "蛟龍戲鳳",
+        "damage_type": "抽傷"
 ]),
-([ "action": "$N一声清啸，手中$w一招「龙飞凤舞」，划出漫天鞭影铺天盖地地向$n卷来，势道猛烈之极",
+([ "action": "$N一聲清嘯，手中$w一招「龍飛鳳舞」，劃出漫天鞭影鋪天蓋地地向$n捲來，勢道猛烈之極",
    "dodge": -10,
    "damage":110,
    "force": 250,
         "attack": 100,
         "parry" : 80,
    "lvl" : 60,
-   "skill_name" : "龙飞凤舞",
-        "damage_type": "抽伤"
+   "skill_name" : "龍飛鳳舞",
+        "damage_type": "抽傷"
 ]),
-([ "action": "$N面露微笑跨前一步，右手$w轻扬，缓缓使出一式「龙凤呈祥」，鞭势平和中正，不带丝毫霸气",
+([ "action": "$N面露微笑跨前一步，右手$w輕揚，緩緩使出一式「龍鳳呈祥」，鞭勢平和中正，不帶絲毫霸氣",
    "dodge": 1,
    "damage":130,
    "force": 300,
         "attack": 120,
         "parry" : 90,
    "lvl" : 80,
-   "skill_name" : "龙凤呈祥",
-        "damage_type": "抽伤"
+   "skill_name" : "龍鳳呈祥",
+        "damage_type": "抽傷"
 ]),
 });
 int valid_enable(string usage) { return (usage == "whip") || (usage == "parry"); }
@@ -59,14 +59,14 @@ int valid_learn(object me)
 {
        object weapon;
    if( query("max_neili", me)<100 )
-               return notify_fail("你的内力不足，没有办法练习鞭法, 多练些内力再来吧。\n");
+               return notify_fail("你的內力不足，沒有辦法練習鞭法, 多練些內力再來吧。\n");
 
        if ((int)me->query_skill("force") < 40)
-               return notify_fail("你的内功火候太浅。\n");
+               return notify_fail("你的內功火候太淺。\n");
 
        if( !objectp(weapon=query_temp("weapon", me) )
         || query("skill_type", weapon) != "whip" )
-               return notify_fail("你必须先找一条鞭子才能练鞭法。\n");
+               return notify_fail("你必須先找一條鞭子才能練鞭法。\n");
 
        return 1;
 }
@@ -95,11 +95,11 @@ int practice_skill(object me)
 
        if( !objectp(weapon=query_temp("weapon", me) )
         || query("skill_type", weapon) != "whip" )
-               return notify_fail("你使用的武器不对。\n");
+               return notify_fail("你使用的武器不對。\n");
        if ((int)me->query_skill("force") < 100)
-               return notify_fail("你的内功火候太浅。\n");
+               return notify_fail("你的內功火候太淺。\n");
        if( query("jingli", me)<50 )
-               return notify_fail("你的体力不够练雷鸣鞭法。\n");
+               return notify_fail("你的體力不夠練雷鳴鞭法。\n");
        addn("jingli", -15, me);
        return 1;
 }
@@ -113,19 +113,19 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
                           && (query_temp("weapon", victim) )
                          && random(10)>5)
                   {
-                                                 message_vision(HIY "只见$N急速挥舞" + weap1->name() + "，转出无数个大小圈子，以阴柔之劲缠住对方的" + weap->name() +"！\n" NOR, me );        
-                                //                 message_vision(HIY "听见「锵」地一声，$N手中的" + weap->name()
-                //               + "被"+weap1->name()+"给缠住。\n" NOR, victim );
+                                                 message_vision(HIY "只見$N急速揮舞" + weap1->name() + "，轉出無數個大小圈子，以陰柔之勁纏住對方的" + weap->name() +"！\n" NOR, me );        
+                                //                 message_vision(HIY "聽見「鏘」地一聲，$N手中的" + weap->name()
+                //               + "被"+weap1->name()+"給纏住。\n" NOR, victim );
                          victim->start_busy(1);
                                                  if (random(me->query_str()) > victim->query_str()/2 )
                         {             
-                                        message_vision(HIY "$N气运手臂用力一拽，" + weap->name()
-                                + "却无法从"+weap1->name()+"的缠绕中脱开，情急之下只好放弃了手中的兵刃。\n" NOR, victim );
+                                        message_vision(HIY "$N氣運手臂用力一拽，" + weap->name()
+                                + "卻無法從"+weap1->name()+"的纏繞中脫開，情急之下只好放棄了手中的兵刃。\n" NOR, victim );
                         weap->move(environment(me));
                                                 victim->reset_action();
                                                 } else {
-                                                message_vision(HIY "$N暗运巧劲，" + weap->name()
-                                + "顺着方向快速旋转数下，解开了"+weap1->name()+"的缠绕。\n" NOR, victim );
+                                                message_vision(HIY "$N暗運巧勁，" + weap->name()
+                                + "順著方向快速旋轉數下，解開了"+weap1->name()+"的纏繞。\n" NOR, victim );
                         addn("neili", -50, victim);
                                                 }
                                                 addn("neili", -50, me);

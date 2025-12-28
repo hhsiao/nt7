@@ -19,24 +19,24 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("蛤蟆功「推天式」只能对战斗中的对手使用。\n");
+                return notify_fail("蛤蟆功「推天式」只能對戰鬥中的對手使用。\n");
 
         skill = me->query_skill("hamagong", 1);
 
         if (skill < 240)
-                return notify_fail("你的蛤蟆功修为不够精深，不能使用「推天式」！\n");
+                return notify_fail("你的蛤蟆功修為不夠精深，不能使用「推天式」！\n");
 
         if( query("max_neili", me)<4000 )
-                return notify_fail("你的内力修为不够深厚，无法施展「推天式」！\n");
+                return notify_fail("你的內力修為不夠深厚，無法施展「推天式」！\n");
 
         if( query("neili", me)<1000 )
-                return notify_fail("你的真气不够，无法运用「推天式」！\n");
+                return notify_fail("你的真氣不夠，無法運用「推天式」！\n");
 
        if (! living(target))
-              return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+              return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIY "$N" HIY "蹲在地上，“嗝”的一声大叫，双手弯"
-              "与肩齐，平推而出，一股极大的力道如同"
+        msg = HIY "$N" HIY "蹲在地上，“嗝”的一聲大叫，雙手彎"
+              "與肩齊，平推而出，一股極大的力道如同"
               "排山倒海一般奔向$n" HIY "。\n" NOR;
 
         ap=attack_power(me, "force");
@@ -48,22 +48,22 @@ int perform(object me, object target)
                 me->start_busy(2);
                 damage = damage_power(me, "force");
                 msg += COMBAT_D->do_damage(me, target, REMOTE_ATTACK, damage, 80,
-                                           HIR "$n" HIR "奋力低档，但是$P" HIR "的来势何"
-                                           "等浩大，$p" HIR "登时觉得气血不畅，“哇”的"
-                                           "吐出了一口鲜血。\n" NOR);
+                                           HIR "$n" HIR "奮力低檔，但是$P" HIR "的來勢何"
+                                           "等浩大，$p" HIR "登時覺得氣血不暢，“哇”的"
+                                           "吐出了一口鮮血。\n" NOR);
         } else
         if (target->query_skill("sun-finger", 1))
         {
                 me->start_busy(2);
                 addn("neili", -300, me);
-                msg += HIG "然而$p" HIG "哈哈一笑，随手一指刺出，正是一"
-                       "阳指的精妙招数，轻易的化解了$P" HIG "的攻势。\n" NOR;
+                msg += HIG "然而$p" HIG "哈哈一笑，隨手一指刺出，正是一"
+                       "陽指的精妙招數，輕易的化解了$P" HIG "的攻勢。\n" NOR;
         } else
         {
                 addn("neili", -200, me);
-                msg += CYN "可是$n" CYN "将内力运到双臂上，接下了$P"
-                       CYN "这一推之式，只听“蓬”的一声，震得四周"
-                       "尘土飞扬。\n" NOR;
+                msg += CYN "可是$n" CYN "將內力運到雙臂上，接下了$P"
+                       CYN "這一推之式，只聽“蓬”的一聲，震得四周"
+                       "塵土飛揚。\n" NOR;
                 me->start_busy(3);
                 target->start_busy(1);
                 if( query("neili", target)>200 )

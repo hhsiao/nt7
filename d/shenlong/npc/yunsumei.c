@@ -6,10 +6,10 @@ inherit NPC;
 
 void create()
 {
-	set_name("云素梅", ({"yun sumei", "yun" }));
-	set("title", HIY "神龙教" HIR "赤龙使" NOR "座下弟子");
+	set_name("雲素梅", ({"yun sumei", "yun" }));
+	set("title", HIY "神龍教" HIR "赤龍使" NOR "座下弟子");
 	set("long",
-	        "这是一个神龙教女弟子，一袭红衣，长得颇为可爱。\n"
+	        "這是一個神龍教女弟子，一襲紅衣，長得頗為可愛。\n"
 	);
 
 	set("gender", "女性");

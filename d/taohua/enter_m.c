@@ -7,11 +7,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "石阵入口");
+        set("short", "石陣入口");
         set("long", @LONG
-这是一片空阔的砂石滩，南边有一个小小的港湾，北边似乎是一座乱
-石阵，但是一股薄雾常年笼罩着石阵，使人看不真切阵中究竟。通入阵中
-的唯一小路又被一块大石碑(shibei)挡住。
+這是一片空闊的砂石灘，南邊有一個小小的港灣，北邊似乎是一座亂
+石陣，但是一股薄霧常年籠罩著石陣，使人看不真切陣中究竟。通入陣中
+的唯一小路又被一塊大石碑(shibei)擋住。
 LONG );
 
         set("exits", ([
@@ -20,8 +20,8 @@ LONG );
 
         set("item_desc", ([
                 "shibei" : "
-石碑表面十分光滑，似乎经常有人用手摩挲，上面有几行字：
-天道左旋，地道右旋，数往者顺，知来者逆。
+石碑表面十分光滑，似乎經常有人用手摩挲，上面有幾行字：
+天道左旋，地道右旋，數往者順，知來者逆。
 \n",
         ]));
 
@@ -42,20 +42,20 @@ int do_push(string arg)
         object me = this_player();
 
         if (!arg || arg != "shibei")
-                return notify_fail("什麽？\n");
+                return notify_fail("什麼？\n");
 
         if( me->query_str()<25 && query("combat_exp", me)>100000 )
         {
-                return notify_fail("你没那么大力气搬动石碑。\n");
+                return notify_fail("你沒那麼大力氣搬動石碑。\n");
         }
 
         /*
         if( (query("age", me)-query("taohua_maze", me))<query("taohua_maze2", me) )
-                return notify_fail("你今年已通过桃花混沌大阵，明年再来吧\n");
+                return notify_fail("你今年已通過桃花混沌大陣，明年再來吧\n");
         */
 
-        message_vision(HIW "石碑缓缓沉入地面，石阵中涌出一股怪风挟着浓雾向$N卷来！\n"
-                       "$N身影顿时消失在浓雾之中......\n\n\n\n\n" NOR, me);
+        message_vision(HIW "石碑緩緩沉入地面，石陣中湧出一股怪風挾著濃霧向$N捲來！\n"
+                       "$N身影頓時消失在濃霧之中......\n\n\n\n\n" NOR, me);
 
         if( query("taohua_maze", me) )
                 me->move("/d/taohua/maze/zhongshu");

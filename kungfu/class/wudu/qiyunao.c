@@ -14,15 +14,15 @@ mixed ask_me();
 
 void create()
 {
-        set_name("齐云敖", ({ "qi yunao", "qi", "yunao" }));
-        set("nickname", HIB "锦衣毒丐" NOR);
+        set_name("齊雲敖", ({ "qi yunao", "qi", "yunao" }));
+        set("nickname", HIB "錦衣毒丐" NOR);
         set("long", @LONG
-他就是五毒教的长老，人称锦衣毒丐的齐云
-敖。乃是教主的同门师兄，在教中一向飞扬
-跋扈，大权独揽。他长的身材魁梧，面目狰
-狞，身穿一件五彩锦衣，太阳穴高高坟起。
+他就是五毒教的長老，人稱錦衣毒丐的齊雲
+敖。乃是教主的同門師兄，在教中一向飛揚
+跋扈，大權獨攬。他長的身材魁梧，面目猙
+獰，身穿一件五彩錦衣，太陽穴高高墳起。
 LONG);
-        set("title","五毒教长老");
+        set("title","五毒教長老");
         set("gender", "男性");
         set("age", 45);
         set("attitude", "friendly");
@@ -61,8 +61,8 @@ LONG);
         set_skill("martial-cognize", 200);
 
         set("no_teach", ([
-                "xiuluo-yinshagong" : "要学修罗阴煞功找那贱人去。",
-                "ruanhong-zhusuo"   : "这武功是由那贱人传授的，要学你找她去。",
+                "xiuluo-yinshagong" : "要學修羅陰煞功找那賤人去。",
+                "ruanhong-zhusuo"   : "這武功是由那賤人傳授的，要學你找她去。",
         ]));
 
         map_skill("force", "xiuluo-yinshagong");
@@ -76,29 +76,29 @@ LONG);
         prepare_skill("strike", "tianchan-zhang");
         prepare_skill("claw", "wusheng-zhao");
 
-        create_family("五毒教", 11, "长老");
+        create_family("五毒教", 11, "長老");
 
         set("inquiry", ([
-                "毒经"     : "你是要毒经上篇、中篇还是下篇？",
-                "上篇"     :   "这个…毒经上篇你去问炼毒室的道人要吧。",
-                "毒经上篇" : "这个…毒经上篇你去问炼毒室的道人要吧。",
+                "毒經"     : "你是要毒經上篇、中篇還是下篇？",
+                "上篇"     :   "這個…毒經上篇你去問煉毒室的道人要吧。",
+                "毒經上篇" : "這個…毒經上篇你去問煉毒室的道人要吧。",
                 "中篇"     : (: ask_me :),
-                "毒经中篇" : (: ask_me :),
-                "下篇"     : "毒经下篇在教主手里，你去问她要吧。",
-                "毒经下篇" : "毒经下篇在教主手里，你去问她要吧。",
-                "腾蛇诀"   : (: ask_skill1 :),
+                "毒經中篇" : (: ask_me :),
+                "下篇"     : "毒經下篇在教主手裡，你去問她要吧。",
+                "毒經下篇" : "毒經下篇在教主手裡，你去問她要吧。",
+                "騰蛇訣"   : (: ask_skill1 :),
                 "毒蟾掌"   : (: ask_skill2 :),
-                "夺命连环" : (: ask_skill3 :),
+                "奪命連環" : (: ask_skill3 :),
         ]));
 
         set("jinshe_count", 1);
         set("chat_chance", 2);
         set("chat_msg",({
-                CYN "齐云敖怒道：这贱婢这样下去，本教三祖七子辛苦创下的基业"
-                "都要毁在她手里了。\n" NOR,
-                CYN "齐云敖自言自语道：我如能找到天下最厉害的毒圣，这教主之"
+                CYN "齊雲敖怒道：這賤婢這樣下去，本教三祖七子辛苦創下的基業"
+                "都要毀在她手裡了。\n" NOR,
+                CYN "齊雲敖自言自語道：我如能找到天下最厲害的毒聖，這教主之"
                 "位就是我的了。\n" NOR,
-                CYN "齐云敖自言自语道：唉…我应该上哪去找龙涎香呢？\n" NOR,
+                CYN "齊雲敖自言自語道：唉…我應該上哪去找龍涎香呢？\n" NOR,
         }));
 
         set("chat_chance_combat", 120);
@@ -123,35 +123,35 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)>-1000 )
         {
-                command("say 我越看你越象六扇门派来的卧底。");
+                command("say 我越看你越象六扇門派來的臥底。");
                 return;
         }
         if( query("shen", ob)>-15000 )
         {
-                command("say 你心慈手软，我是不会收你的！");
+                command("say 你心慈手軟，我是不會收你的！");
                 return;
         }
         if( query("combat_exp", ob)<150000 )
         {
-                command("say 你还是先去增长点经验吧。");
+                command("say 你還是先去增長點經驗吧。");
                 return;
         }
         if ((int)ob->query_skill("wudu-shengong", 1) < 80)
         {
-                command("say 你的五毒心法还学的不够啊。");
+                command("say 你的五毒心法還學的不夠啊。");
                 return;
         }
         if ((int)ob->query_skill("wudu-qishu", 1) < 80)
         {
-                command("say 我五毒教弟子以毒杀人，修习毒技是首要的。");
-                command("say 你是否还应该多多钻研本门的绝学？");
+                command("say 我五毒教弟子以毒殺人，修習毒技是首要的。");
+                command("say 你是否還應該多多鑽研本門的絕學？");
                 return;
         }
 
        command("nod");
-       command("say 不错，不错。");
+       command("say 不錯，不錯。");
        command("recruit "+query("id", ob));
-       set("title", "五毒教护法", ob);
+       set("title", "五毒教護法", ob);
        return;
 }
 
@@ -162,27 +162,27 @@ int accept_object(object who, object ob)
         if (! who || environment(who) != environment() ) return 0;
         if (! objectp(ob) ) return 0;
         if (! present(ob, who))
-                return notify_fail("你没有这件东西。\n");
+                return notify_fail("你沒有這件東西。\n");
 
         if( query("id", ob) != "longxianxiang" )
-                return notify_fail(CYN "齐云敖摇头道：这些破烂东西给我有"
-                                   "什么用？\n" NOR);
+                return notify_fail(CYN "齊雲敖搖頭道：這些破爛東西給我有"
+                                   "什麼用？\n" NOR);
 
-        message_vision(CYN "齐云敖见是龙涎香，大喜道：这…这…就是龙涎香"
-                       "吗？真是太好了。\n" NOR, who);
+        message_vision(CYN "齊雲敖見是龍涎香，大喜道：這…這…就是龍涎香"
+                       "嗎？真是太好了。\n" NOR, who);
 
         if (query("jinshe_count") < 1)
         {
                       command("sigh");
-                      command("say 本来我该谢你点什么的，可手头实在拿不出东西来。");
+                      command("say 本來我該謝你點什麼的，可手頭實在拿不出東西來。");
                       return 1;
         } else
         {
                 obn = new("/d/wudu/obj/jinsheduye");
                 obn->move(who);
                 addn("jinshe_count", -1);
-                command("say 本长老不能白收你的东西，这是一瓶金蛇毒液，送给你吧。");
-                message_vision("$N拿出" YEL "金蛇毒液" NOR "(jinshe duye)给$n。\n",
+                command("say 本長老不能白收你的東西，這是一瓶金蛇毒液，送給你吧。");
+                message_vision("$N拿出" YEL "金蛇毒液" NOR "(jinshe duye)給$n。\n",
                                this_object(), who);
                       return 1;
         }
@@ -194,31 +194,31 @@ mixed ask_skill1()
 
         me = this_player();
         if( query("can_perform/xiewei-bian/tengshe", me) )
-                return "你不是已经会了吗？";
+                return "你不是已經會了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return RANK_D->query_respect(me) + "不是我们五毒教的人，何出此言？";
+                return RANK_D->query_respect(me) + "不是我們五毒教的人，何出此言？";
 
         if (me->query_skill("xiewei-bian", 1) < 1)
-                return "你连蝎尾鞭都没学，还有什么绝招可言。";
+                return "你連蠍尾鞭都沒學，還有什麼絕招可言。";
 
         if( query("shen", me)>-20000 )
-                return "像你这样心慈手软，就算学了这招也干不了大事！";
+                return "像你這樣心慈手軟，就算學了這招也幹不了大事！";
 
           if( query("family/gongji", me)<100 )
-                return "你在教中所作的贡献还不够，这招我不忙传你。";
+                return "你在教中所作的貢獻還不夠，這招我不忙傳你。";
 
         if (me->query_skill("xiewei-bian", 1) < 100)
-                return "你的蝎尾鞭还不到家，要多练练！";
+                return "你的蠍尾鞭還不到家，要多練練！";
 
-        message_vision(HIY "$n" HIY "点了点头，在$N" HIY "耳边轻声"
-                       "嘀咕了几句，又拔出腰间长\n索，凌空一个盘旋"
-                       "，然后顺势一抖，鞭端猛的拔地而起，宛\n如活"
-                       "蛇一般，颇为巧妙。\n" NOR, me,
+        message_vision(HIY "$n" HIY "點了點頭，在$N" HIY "耳邊輕聲"
+                       "嘀咕了幾句，又拔出腰間長\n索，凌空一個盤旋"
+                       "，然後順勢一抖，鞭端猛的拔地而起，宛\n如活"
+                       "蛇一般，頗為巧妙。\n" NOR, me,
                        this_object());
         command("nod");
-        command("say 这招很简单，下去多练练便成！");
-        tell_object(me, HIC "你学会了「腾蛇诀」。\n" NOR);
+        command("say 這招很簡單，下去多練練便成！");
+        tell_object(me, HIC "你學會了「騰蛇訣」。\n" NOR);
         if (me->can_improve_skill("whip"))
                 me->improve_skill("whip", 1500000);
         if (me->can_improve_skill("xiewei-bian"))
@@ -236,34 +236,34 @@ mixed ask_skill2()
 
         me = this_player();
         if( query("can_perform/tianchan-zhang/chan", me) )
-                return "你不是已经会了吗？";
+                return "你不是已經會了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return RANK_D->query_respect(me) + "不是我们五毒教的人，何出此言？";
+                return RANK_D->query_respect(me) + "不是我們五毒教的人，何出此言？";
 
         if (me->query_skill("tianchan-zhang", 1) < 1)
-                return "你连天蟾掌法都没学，何谈此言？";
+                return "你連天蟾掌法都沒學，何談此言？";
 
         if( query("shen", me)>-35000 )
-                return "像你这样心慈手软，就算学了这招也干不了大事！";
+                return "像你這樣心慈手軟，就算學了這招也幹不了大事！";
 
           if( query("family/gongji", me)<200 )
-                return "你在教中所作的贡献还不够，这招我不忙传你。";
+                return "你在教中所作的貢獻還不夠，這招我不忙傳你。";
 
         if (me->query_skill("force") < 150)
-                return "你的内功火候不够，练不成这招！";
+                return "你的內功火候不夠，練不成這招！";
 
         if (me->query_skill("tianchan-zhang", 1) < 120)
-                return "你的天蟾掌法还不到家，要多练练！";
+                return "你的天蟾掌法還不到家，要多練練！";
 
         message_vision(HIY "$n" HIY "微微一笑，招手示意$N" HIY "他到跟"
-                       "前，然后在$N" HIY "耳边轻声\n嘀咕了半天，$N" HIY
-                       "直听得眉开眼笑，一边听一边点头。\n" NOR,
+                       "前，然後在$N" HIY "耳邊輕聲\n嘀咕了半天，$N" HIY
+                       "直聽得眉開眼笑，一邊聽一邊點頭。\n" NOR,
                        me, this_object());
 
         command("grin");
-        command("say 用这招对付那些比你强的敌人…嘿…打中就跑，别死缠。");
-        tell_object(me, HIC "你学会了「毒蟾掌」。\n" NOR);
+        command("say 用這招對付那些比你強的敵人…嘿…打中就跑，別死纏。");
+        tell_object(me, HIC "你學會了「毒蟾掌」。\n" NOR);
         if (me->can_improve_skill("strike"))
                 me->improve_skill("strike", 1500000);
         if (me->can_improve_skill("tianchan-zhang"))
@@ -280,32 +280,32 @@ mixed ask_skill3()
 
         me = this_player();
         if( query("can_perform/wusheng-zhao/lian", me) )
-                return "我不是已经教会你了吗？";
+                return "我不是已經教會你了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return RANK_D->query_respect(me) + "不是我们五毒教的人，何出此言？";
+                return RANK_D->query_respect(me) + "不是我們五毒教的人，何出此言？";
 
         if (me->query_skill("wusheng-zhao", 1) < 1)
-                return "你连五圣毒爪都没学，何谈此言？";
+                return "你連五聖毒爪都沒學，何談此言？";
 
         if( query("shen", me)>-40000 )
-                return "像你这样心慈手软，就算学了这招也干不了大事！";
+                return "像你這樣心慈手軟，就算學了這招也幹不了大事！";
 
         if( query("family/gongji", me)<300 )
-                return "你在教中所作的贡献还不够，这招我不忙传你。";
+                return "你在教中所作的貢獻還不夠，這招我不忙傳你。";
 
         if (me->query_skill("force") < 150)
-                return "你的内功火候不够，练不成这招！";
+                return "你的內功火候不夠，練不成這招！";
 
         if (me->query_skill("wusheng-zhao", 1) < 120)
-                return "你的五圣毒爪还不到家，要多练练！";
+                return "你的五聖毒爪還不到家，要多練練！";
 
-        message_vision(HIY "$n" HIY "微微一笑，陡然探出五指，手出如风，抓"
-                       "向$N" HIY "。$N" HIY "不\n由得大惊失色，急忙纵跃躲"
-                       "闪，可$n" HIY "五指还是搭在了$N" HIY "\n的肩上。\n"
+        message_vision(HIY "$n" HIY "微微一笑，陡然探出五指，手出如風，抓"
+                       "向$N" HIY "。$N" HIY "不\n由得大驚失色，急忙縱躍躲"
+                       "閃，可$n" HIY "五指還是搭在了$N" HIY "\n的肩上。\n"
                        NOR, me, this_object());
-        command("say 你懂了吗？");
-        tell_object(me, HIC "你学会了「夺命连环」。\n" NOR);
+        command("say 你懂了嗎？");
+        tell_object(me, HIC "你學會了「奪命連環」。\n" NOR);
         if (me->can_improve_skill("claw"))
                 me->improve_skill("claw", 1500000);
         if (me->can_improve_skill("wusheng-zhao"))
@@ -325,16 +325,16 @@ mixed ask_me()
         me = this_player();
 
         if( query("family/family_name", me) != "五毒教" )
-                return "你是哪里来的？跑来跟我罗嗦什么！";
+                return "你是哪裡來的？跑來跟我羅嗦什麼！";
 
         if( query("shen", me)>-10000 )
-                return "你是怎么搞的？连杀人都不会？";
+                return "你是怎麼搞的？連殺人都不會？";
 
         if( query("combat_exp", me)<100000 )
-                return "你现在经验太浅，不用忙着去阅读毒经。";
+                return "你現在經驗太淺，不用忙著去閱讀毒經。";
 
         if (me->query_skill("poison", 1) > 119)
-                return "你用毒的造诣已经不浅了，这毒经不看也罢。";
+                return "你用毒的造詣已經不淺了，這毒經不看也罷。";
 
         ob = find_object(DUJING);
         if (! ob) ob = load_object(DUJING);
@@ -347,23 +347,23 @@ mixed ask_me()
         }
 
         if (owner == me)
-                return "不就是你拿着么？怎么反倒问我来了？";
+                return "不就是你拿著麼？怎麼反倒問我來了？";
 
         if (objectp(owner) && owner != this_object())
         {
                 if (! owner->is_character())
-                        return "…嗯…毒经中篇现在不在我手里。";
+                        return "…嗯…毒經中篇現在不在我手裡。";
 
                 if( query("family/family_name", owner) == "五毒教" )
-                        return "毒经现在是你同门"+query("name", owner)+
+                        return "毒經現在是你同門"+query("name", owner)+
                                "在看，去找他吧。";
                 else
-                        return "我教的毒经现落在"+query("name", owner)+
-                               "的手中，你去把它夺回来吧！";
+                        return "我教的毒經現落在"+query("name", owner)+
+                               "的手中，你去把它奪回來吧！";
         }
         ob->move(this_object());
-        message_vision(CYN "$N" CYN "点头道：你拿去看吧，若有不解之处"
-                       "可以来问我。\n" NOR, this_object(), me);
+        message_vision(CYN "$N" CYN "點頭道：你拿去看吧，若有不解之處"
+                       "可以來問我。\n" NOR, this_object(), me);
         command("give du jing2 to "+query("id", me));
         return 1;
 }

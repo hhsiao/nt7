@@ -4,11 +4,11 @@ inherit SMITH;
 void create()
 {
         set_name("唐兵兵", ({ "tang bingbing", "tang", "bingbing" }) );
-        set("title",HIC "唐门暗器专卖店   店主" NOR);
+        set("title",HIC "唐門暗器專賣店   店主" NOR);
         set("gender", "男性" );
         set("age", 22);
         set("long",
-                "这是唐门专门卖兵器的小伙子，祖传的暗器专卖店的负责人。\n");
+                "這是唐門專門賣兵器的小夥子，祖傳的暗器專賣店的負責人。\n");
         set("combat_exp", 100);
         set("attitude", "friendly");
         set("no_get", "1");
@@ -46,12 +46,12 @@ void greeting(object ob)
         switch( random(2) ) 
         {
                 case 0:
-                        say( HIC"唐兵兵笑咪咪地说道：这位" + RANK_D->query_respect(ob)
-                                + "，来买暗器啊。\n"NOR);
+                        say( HIC"唐兵兵笑咪咪地說道：這位" + RANK_D->query_respect(ob)
+                                + "，來買暗器啊。\n"NOR);
                         break;
                 case 1:
-                        say( HIG"唐兵兵搓了搓手，说道：这位" + RANK_D->query_respect(ob)
-                                + "，想买点什么啊。\n"NOR);
+                        say( HIG"唐兵兵搓了搓手，說道：這位" + RANK_D->query_respect(ob)
+                                + "，想買點什麼啊。\n"NOR);
                         break;
         }
 }

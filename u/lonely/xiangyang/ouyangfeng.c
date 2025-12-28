@@ -6,12 +6,12 @@ inherit NPC;
 
 void create()
 {
-        set_name("欧阳锋", ({ "ouyang feng", "ouyang", "feng" }));
-        set("long", "他就是白驼山庄主，号称“西毒”的欧阳锋。脸型瘦削，\n"
-                    "身形剽悍，虽然受到郭靖欺骗误学习了「九阴真经」而走\n"
-                    "火入魔，一度变得精神错乱，但是现在已然恢复，功力犹\n"
-                    "胜往昔。\n");
-        set("title", "西域白驼山庄主");
+        set_name("歐陽鋒", ({ "ouyang feng", "ouyang", "feng" }));
+        set("long", "他就是白駝山莊主，號稱“西毒”的歐陽鋒。臉型瘦削，\n"
+                    "身形剽悍，雖然受到郭靖欺騙誤學習了「九陰真經」而走\n"
+                    "火入魔，一度變得精神錯亂，但是現在已然恢復，功力猶\n"
+                    "勝往昔。\n");
+        set("title", "西域白駝山莊主");
         set("gender", "男性");
         set("age", 53);
         set("nickname", HIR "西毒" NOR);
@@ -80,7 +80,7 @@ void create()
 
         prepare_skill("unarmed", "jiuyin-hamagong"); 
 
-        create_family("欧阳世家", 5, "掌门");
+        create_family("歐陽世家", 5, "掌門");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({

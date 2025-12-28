@@ -6,17 +6,17 @@ void do_swing();
 void set_from_me(object me);
 void create()
 {
-        string *names = ({ "青铜猛犸" });
+        string *names = ({ "青銅猛獁" });
 
         ::create();
         set_name( names[random(sizeof(names))], ({ "mammoth bronze", "mammoth", "bronze" }));
         set("long", @LONG
-这是一个沉睡在皇陵青铜机关兽。身高两丈有余，四肢极为粗壮，长鼻子左右摆动，
-嘴部长出一对弯曲的象牙，如同两把弯刀，极为锋利。在东方仙术的作用下，它的行
-动虽然迟缓，但力大无穷，长长的象鼻伸缩灵活如意，再加上毛皮刀枪不入，象牙快
-如刀刃，端的是极难对付。
+這是一個沉睡在皇陵青銅機關獸。身高兩丈有餘，四肢極為粗壯，長鼻子左右擺動，
+嘴部長出一對彎曲的象牙，如同兩把彎刀，極為鋒利。在東方仙術的作用下，它的行
+動雖然遲緩，但力大無窮，長長的象鼻伸縮靈活如意，再加上毛皮刀槍不入，象牙快
+如刀刃，端的是極難對付。
 LONG);
-        set("title", HIR"机关兽" NOR);
+        set("title", HIR"機關獸" NOR);
 
         set("str", 150);
         set("con", 150);
@@ -41,7 +41,7 @@ LONG);
         }) );
 
         set("combat_exp", 100000000);
-        set("death_msg",YEL"\n$N散落成一堆青铜。\n\n"NOR);
+        set("death_msg",YEL"\n$N散落成一堆青銅。\n\n"NOR);
         set("no_corpse", 1);
 
         set("rewards", ([
@@ -94,17 +94,17 @@ void do_swing()
         if( !enemies || sizeof(enemies)==0 )
                 return;
 
-        msg = BLU"$N口一张，口中已有七心海棠的药粉,轻轻一吐，一阵无色无味的薄雾向对方飘去。\n"NOR;
+        msg = BLU"$N口一張，口中已有七心海棠的藥粉,輕輕一吐，一陣無色無味的薄霧向對方飄去。\n"NOR;
         message_vision(msg,this_object());
         foreach( enemy in enemies ) {
-                msg = HIY"$n一时大意，已经中了$N的暗算！\n"NOR;
+                msg = HIY"$n一時大意，已經中了$N的暗算！\n"NOR;
                 message_vision(msg,this_object(), enemy);
                 enemy->affect_by("poison",
                                   ([ "level" : 1500,
                                      "id":query("id", this_object()),
                                      "name"  : "七心海棠毒",
                                      "duration" : 200 ]));
-                tell_object(enemy, HIG "你中了青铜猛犸的七心海棠毒。\n");
+                tell_object(enemy, HIG "你中了青銅猛獁的七心海棠毒。\n");
                 enemy->receive_damage("qi",10000+random(10000),this_object());
                 COMBAT_D->report_status(enemy);
                 if( !enemy->is_busy() && !enemy->query_all_buff("daomu") )

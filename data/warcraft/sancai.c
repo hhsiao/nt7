@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("三彩瑞兽麒麟[2;37;0m[2;37;0m", ({"sancaiqilin"}));        
+        set_name("三彩瑞獸麒麟[2;37;0m[2;37;0m", ({"sancaiqilin"}));        
         set("gender", "男性");                
-        set("long", "三彩瑞兽麒麟[2;37;0m
-它是唐三彩的魔幻兽。
+        set("long", "三彩瑞獸麒麟[2;37;0m
+它是唐三彩的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

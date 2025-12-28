@@ -1,15 +1,15 @@
-// Room: chaopath2.c 朝阳峰小路
+// Room: chaopath2.c 朝陽峰小路
 //Date: Oct. 2 1997 by Venus
 inherit ROOM;
 
 void create()
 {
-      set("short","朝阳峰小路");
+      set("short","朝陽峰小路");
         set("long", @LONG
-这里是朝阳峰小路，山势陡峭，两边下临深谷，一不小心都会掉
-了下去。东面有一条小路，长草没径，小路顺着山脊一路宛延而下至
-华山后山里。此处是华山前辈避世之处，轻易见不得人迹。就连华山
-弟子若是不得传招，也不能来此。北面的几栋小屋，便是华山前辈的
+這裡是朝陽峰小路，山勢陡峭，兩邊下臨深谷，一不小心都會掉
+了下去。東面有一條小路，長草沒徑，小路順著山脊一路宛延而下至
+華山後山裡。此處是華山前輩避世之處，輕易見不得人跡。就連華山
+弟子若是不得傳招，也不能來此。北面的幾棟小屋，便是華山前輩的
 居所。
 LONG );
       set("outdoors", "huashan");
@@ -40,20 +40,20 @@ int valid_leave(object me, string dir)
             (query("family/master_id", me) == "ailaozhe") )
                 return ::valid_leave(me, dir);
 
-        if( query("family/family_name", me) != "华山派" )
+        if( query("family/family_name", me) != "華山派" )
         {
-                message_vision("施戴子伸手拦住$N，道：抱歉，上面是两位"
-                               "长老清修之处，这位" + RANK_D->query_respect(me) +
-                               "请止步！\n", me);
-                return notify_fail("看来施戴子不会让你过去。\n");
+                message_vision("施戴子伸手攔住$N，道：抱歉，上面是兩位"
+                               "長老清修之處，這位" + RANK_D->query_respect(me) +
+                               "請止步！\n", me);
+                return notify_fail("看來施戴子不會讓你過去。\n");
         }
 
         if( query("combat_exp", me)<100000 )
         {
-                message_vision("施戴子伸手拦住$N，道：止步！上面是两位"
-                               "长老清修之处，你虽然是本派弟子，但是学"
-                               "艺不精，不能拜见！\n", me);
-                return notify_fail("看来施戴子不会让你过去。\n");
+                message_vision("施戴子伸手攔住$N，道：止步！上面是兩位"
+                               "長老清修之處，你雖然是本派弟子，但是學"
+                               "藝不精，不能拜見！\n", me);
+                return notify_fail("看來施戴子不會讓你過去。\n");
         }
 
         return ::valid_leave(me, dir);

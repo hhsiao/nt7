@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("易语言[2;37;0m[2;37;0m", ({"goldyyy"}));        
+        set_name("易語言[2;37;0m[2;37;0m", ({"goldyyy"}));        
         set("gender", "男性");                
-        set("long", "易语言[2;37;0m
-它是金原的魔幻兽。
+        set("long", "易語言[2;37;0m
+它是金原的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

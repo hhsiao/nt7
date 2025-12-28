@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("陆地乌龟[2;37;0m[2;37;0m", ({"tgid"}));        
+        set_name("陸地烏龜[2;37;0m[2;37;0m", ({"tgid"}));        
         set("gender", "男性");                
-        set("long", "陆地乌龟1号[2;37;0m
-它是硫磺二代的魔幻兽。
+        set("long", "陸地烏龜1號[2;37;0m
+它是硫磺二代的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

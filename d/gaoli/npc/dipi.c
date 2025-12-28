@@ -1,4 +1,4 @@
-// 大唐双龙传
+// 大唐雙龍傳
 
 
 inherit NPC;
@@ -6,7 +6,7 @@ inherit NPC;
 void create()
 {
   set_name("地痞", ({"di pi","pi"}));
-  set("long","这是一个地痞，到处捣乱打架。\n");
+  set("long","這是一個地痞，到處搗亂打架。\n");
   set("gender", "男性");
   set("combat_exp", 30000);
 
@@ -39,10 +39,10 @@ void welcome(object ob)
    
    switch(random(2)){
     case 0:
-     command("say 高丽的地头我说了算，有事找我就行了！");
+     command("say 高麗的地頭我說了算，有事找我就行了！");
      break;
     case 1:
-     command("say 今天还要去收保护费，不然就没饭吃了。");
+     command("say 今天還要去收保護費，不然就沒飯吃了。");
    }
    
 }

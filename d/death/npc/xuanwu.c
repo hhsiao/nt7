@@ -6,15 +6,15 @@ void create()
 
         set_name(WHT "玄武" NOR,({"xuan wu", "xuan", "wu"}));
 
-        set("race", "野兽");
-        set("long", WHT "\n\n一只龙头龟身的庞然大物，乃四神兽之一的玄武。\n"
-                        "它全身被厚厚的甲壳保护着。\n" NOR);
+        set("race", "野獸");
+        set("long", WHT "\n\n一隻龍頭龜身的龐然大物，乃四神獸之一的玄武。\n"
+                        "它全身被厚厚的甲殼保護著。\n" NOR);
         set("age", 10000);
         set("attitude", "peaceful");
 
-        set("limbs", ({ "头部", "身体", "双爪", "颈部", "翅膀" }) );
+        set("limbs", ({ "頭部", "身體", "雙爪", "頸部", "翅膀" }) );
         set("verbs", ({ "bite" }) );
-        set("title", HIY "神兽" NOR);
+        set("title", HIY "神獸" NOR);
 
         set("combat_exp", 8000000);
         set("max_neili", 25000);
@@ -64,8 +64,8 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->receive_wound("qi", 200 + random(200), me);
         set("neili",query("max_neili",  me), me);
-        return WHT "玄武双足猛踏地面，顿时地动山摇，山崩地裂，"
-               "四处飞沙走石，仿佛天地都要崩溃了一般。\n" NOR;
+        return WHT "玄武雙足猛踏地面，頓時地動山搖，山崩地裂，"
+               "四處飛沙走石，彷彿天地都要崩潰了一般。\n" NOR;
 }
 
 void die()
@@ -82,7 +82,7 @@ void die()
             query("wang_get/武甲", me) && 
             userp(me) )
         {
-                message_vision(HIC "$N" HIC "从玄武的尸体上除下了一块玄武甲壳。\n", me);
+                message_vision(HIC "$N" HIC "從玄武的屍體上除下了一塊玄武甲殼。\n", me);
                 jiake = new("/d/death/obj/jiake");
                 jiake->move(me);
                 delete("wang_get/武甲", me);
@@ -91,8 +91,8 @@ void die()
                 addn("combat_exp", exp, me);
                 addn("potential", pot, me);
 
-                tell_object(me, HIC "由于你斩杀神兽玄武，你获得了" + chinese_number(exp)
-                                + "点经验和" + chinese_number(pot) + "点潜能。\n" NOR);
+                tell_object(me, HIC "由於你斬殺神獸玄武，你獲得了" + chinese_number(exp)
+                                + "點經驗和" + chinese_number(pot) + "點潛能。\n" NOR);
         }
         ::die();
 }

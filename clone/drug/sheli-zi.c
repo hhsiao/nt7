@@ -15,10 +15,10 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "颗");
-                set("long", "这是一颗活佛坐化的舍利子，小指尖大小，色泛灰白，隐隐有宝光流动。\n");
-                set("no_drop","这样东西不能离开你。\n");
-                set("no_get", "这样东西不能离开那儿。\n");
+                set("unit", "顆");
+                set("long", "這是一顆活佛坐化的舍利子，小指尖大小，色泛灰白，隱隱有寶光流動。\n");
+                set("no_drop","這樣東西不能離開你。\n");
+                set("no_get", "這樣東西不能離開那兒。\n");
                 set("value", 10000);
                 set("no_sell", 1);
                 set("medicine", 1);
@@ -36,12 +36,12 @@ int cure_ob(object me)
                 addn("max_jingli", -add, me);
                 addn("eff_jingli", -add, me);
                 me->apply_condition("bonze_drug", 80);
-        message_vision(HIR "$N吃下一颗舍利子，只觉得肝肠寸断，五脏欲裂，原来服食太多药物，药效适得其反！\n" NOR, this_player());
+        message_vision(HIR "$N吃下一顆舍利子，只覺得肝腸寸斷，五臟欲裂，原來服食太多藥物，藥效適得其反！\n" NOR, this_player());
         me->unconcious();
         destruct(this_object());
         }
         else {
-                message_vision(HIY "$N吃下一颗舍利子，油然间只觉脑袋里注进了一缕清新之气...\n" NOR, this_player());
+                message_vision(HIY "$N吃下一顆舍利子，油然間只覺腦袋裡注進了一縷清新之氣...\n" NOR, this_player());
                 addn("max_jingli", add, me);
                 addn("eff_jingli", add, me);
                 me->apply_condition("bonze_drug", 80);

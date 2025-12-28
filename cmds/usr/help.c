@@ -98,7 +98,7 @@ int main(object me, string arg)
                         // me->start_more(color_filter(read_file(HELP_DIR + "/topics")));
                 } else
                 {
-                        write("没能找到帮助主题。\n");
+                        write("沒能找到幫助主題。\n");
                 }
                 return 1;
         }
@@ -112,7 +112,7 @@ int main(object me, string arg)
 
                 me->start_more(color_filter(MAP_D->show_map(environment(me))));
                 return 1;
-                //return notify_fail("请您使用 map 指令察看地图。\n");
+                //return notify_fail("請您使用 map 指令察看地圖。\n");
                 if (!objectp(here = environment(me)))
                 {
                         help(me);
@@ -122,7 +122,7 @@ int main(object me, string arg)
                 here_name = base_name(here);
                 if (sscanf(here_name,"/d/%s/",here_name) != 1)
                 {
-                        write("没有关于这里的帮助信息。\n");
+                        write("沒有關於這裡的幫助信息。\n");
                         return 1;
                 }
 
@@ -145,7 +145,7 @@ int main(object me, string arg)
 
                 if (!(the_file = here_map[here_name]))
                 {
-                        write("没有关于这里的帮助信息。\n");
+                        write("沒有關於這裡的幫助信息。\n");
                         return 1;
                 }
 
@@ -153,7 +153,7 @@ int main(object me, string arg)
 
                 if (file_size(the_file) <= 0)
                 {
-                        write("没有关于这里的帮助信息。\n");
+                        write("沒有關於這裡的幫助信息。\n");
                         return 1;
                 }
 
@@ -176,7 +176,7 @@ int main(object me, string arg)
 
         // Else, try if a command name is specified.
         if( stringp(file = me->find_command(arg)) ) {
-                notify_fail("有这个指令存在，但是并没有详细的说明文件。\n");
+                notify_fail("有這個指令存在，但是並沒有詳細的說明文件。\n");
                 return file->help(me);
         }
 
@@ -193,12 +193,12 @@ int main(object me, string arg)
                 }
         }
 
-// 武功帮助文件
+// 武功幫助文件
         sscanf(arg, "%s.%s", arg, str);
         if( file_size(SKILL_D(arg)+".c") < 1 )
-                return notify_fail("没有针对这项主题的说明文件。\n");
+                return notify_fail("沒有針對這項主題的說明文件。\n");
 
-// 武功绝招帮助文件
+// 武功絕招幫助文件
         if( stringp(str) )
         {
                 string exert;
@@ -206,36 +206,36 @@ int main(object me, string arg)
                 if( stringp(exert = SKILL_D(arg)->exert_function_file(str)) &&
                         file_size(exert +".c") > 0)
                 {
-                        notify_fail("对不起，"+to_chinese(arg)+"内功方面的「"+str+"」功能没有详细的说明。\n");
+                        notify_fail("對不起，"+to_chinese(arg)+"內功方面的「"+str+"」功能沒有詳細的說明。\n");
                         return exert->help(me);
                 }
                 else
                 if( stringp(exert = SKILL_D(arg)->perform_action_file(str)) &&
                         file_size(exert +".c") > 0)
                 {
-                        notify_fail("对不起，"+to_chinese(arg)+"外功方面的「"+str+"」功能没有详细的说明。\n");
+                        notify_fail("對不起，"+to_chinese(arg)+"外功方面的「"+str+"」功能沒有詳細的說明。\n");
                         return exert->help(me);
                 }
-                return notify_fail("对不起，"+to_chinese(arg)+"没有「"+str+"」这项功能。\n");
+                return notify_fail("對不起，"+to_chinese(arg)+"沒有「"+str+"」這項功能。\n");
         }
         if( !SKILL_D(arg)->help(me) )
         {
-                write(HIY"\n指定武技没有详细帮助说明。\n"NOR);
+                write(HIY"\n指定武技沒有詳細幫助說明。\n"NOR);
         }
-        return notify_fail("没有针对这项主题的说明文件。\n");
+        return notify_fail("沒有針對這項主題的說明文件。\n");
 }
 
 int help(object me)
 {
         write(@HELP
-指令格式：help <主题>              例如：> help cmds
-          help <函数名称>()        例如：> help call_out()
+指令格式：help <主題>              例如：> help cmds
+          help <函數名稱>()        例如：> help call_out()
 
-这个指令提供你针对某一主题的详细说明文件，若是不指定主题，则提供你有关
-主题的文件。
-玩家如果需要查看所在地的地图，可以尝试help here。 如果能搜索到地图，将
-显示该玩家所在房间所属区域的地图。如果该房间在地图中有标记，则会自动将
-其闪烁显示。
+這個指令提供你針對某一主題的詳細說明文件，若是不指定主題，則提供你有關
+主題的文件。
+玩家如果需要查看所在地的地圖，可以嘗試help here。 如果能搜索到地圖，將
+顯示該玩家所在房間所屬區域的地圖。如果該房間在地圖中有標記，則會自動將
+其閃爍顯示。
 HELP
         );
         return 1;

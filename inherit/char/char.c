@@ -131,7 +131,7 @@ void heart_beat()
         // Do attack if we are fighting.
         if( is_busy() ) {
                 if( is_fighting() )
-                        tell_object(me, "\n--->>你上一个动作没有完成，失去一次进攻机会。\n");
+                        tell_object(me, "\n--->>你上一個動作沒有完成，失去一次進攻機會。\n");
                 continue_action();
         } else if( living(me) ) {
                 // Is it time to flee?
@@ -148,7 +148,7 @@ void heart_beat()
                         if( my["eff_qi"] > 0 && my["qi"] * 100 / my["eff_qi"] <= 50 )
                                 SKILL_D("force/recover")->exert(me, me);
 
-                        // 如果不在打架而且处于受伤状态，则自行疗伤
+                        // 如果不在打架而且處於受傷狀態，則自行療傷
                         if( !is_fighting() ) {
                                 if( my["eff_jing"] < my["max_jing"] )
                                         SKILL_D("force/inspire")->exert(me, me);
@@ -162,7 +162,7 @@ void heart_beat()
                 else    attack();
         }
 
-        // 检测辅助任务
+        // 檢測輔助任務
         MYGIFT_D->check_curgift(me);
 
         if (my["doing"] == "trigger")
@@ -180,7 +180,7 @@ void heart_beat()
                 // scan() may do anything -- include destruct(this_object())
                 if( !me) return;
         } else {
-                // 杀戮值随时间而减少
+                // 殺戮值隨時間而減少
                 if( query("pk_score") > 0 ) {
                         if( time() - query("pk_score_time") >= 3600 ) {
                                 addn("pk_score", -1, me);
@@ -188,7 +188,7 @@ void heart_beat()
                         }
                 }
 
-                // 道具时间奖励
+                // 道具時間獎勵
                 if( mapp(my["time_reward"]) ) {
                         if( !undefinedp(my["time_reward"]["study"]) ) {
                                 my["time_reward"]["study"] -= 1;
@@ -206,13 +206,13 @@ void heart_beat()
         if( tick-- ) return;
         else tick = 5 + random(10);
 
-        if( !my["not_living"] ) // 木人不调用update condition
+        if( !my["not_living"] ) // 木人不調用update condition
                 cnd_flag = update_condition();
         if( !me ) return;
 
         /*
-        // 极其不合理，在玩家较多的游戏
-        // CPU 浪费极大，用另外的方法处理。
+        // 極其不合理，在玩家較多的遊戲
+        // CPU 浪費極大，用另外的方法處理。
         // Find.
         if( !(cnd_flag & CND_NO_HEAL_UP) )
                 cnd_flag = heal_up();
@@ -251,10 +251,10 @@ void heart_beat()
                 period = t - ((int) my["last_save"]);
                 if( period < 0 || period > 15 * 60 ) {
                         string msg;
-                        // msg = HIG "【档案存储】您的档案已经自动存盘。\n" NOR;
+                        // msg = HIG "【檔案存儲】您的檔案已經自動存盤。\n" NOR;
                         if( !me->save() )
-                                msg = HIR "【数据保护】由于数据异常，您的档"
-                                          "案本次存盘失败。\n" NOR;
+                                msg = HIR "【數據保護】由於數據異常，您的檔"
+                                          "案本次存盤失敗。\n" NOR;
                         set("last_save", t);
                         if( msg )
                                 tell_object(me, msg);
@@ -327,7 +327,7 @@ int visible(object ob)
         return 1;
 }
 
-// 这里应该区分是否带面具名字，而不是大小写
+// 這裡應該區分是否帶面具名字，而不是大小寫
 varargs string query_idname(int raw)
 {
         if( !raw ) return query("name") + "(" + query("id") + ")";
@@ -454,7 +454,7 @@ varargs string short(int raw)
                 if( stringp(bname = query("bunch/bunch_name")) )
                         str = sprintf("%s%s%s" NOR " %s",
                                 query(bname + "/color", get_object(BUNCH_D)) ? query(bname + "/color", find_object(BUNCH_D)) : NOR,
-                                bname, (string)query("bunch/title") ? query("bunch/title") : "帮众", str);
+                                bname, (string)query("bunch/title") ? query("bunch/title") : "幫眾", str);
 
                 if( stringp(title = query("viremploy/job")) )
                         str = sprintf(HIY "%s" NOR " %s", title, str);
@@ -470,19 +470,19 @@ varargs string short(int raw)
                 str += HIY "{" + obj->name(1) + NOR + HIY "}" NOR;
 
         if( me->is_ghost() )
-                str = HIB "(鬼气) " NOR + str;
+                str = HIB "(鬼氣) " NOR + str;
 
         if( me->is_weak() )
-                str += HIB " <虚弱>" NOR;
+                str += HIB " <虛弱>" NOR;
 
         if( me->is_freeze() )
-                str += HIW " <冰冻>" NOR;
+                str += HIW " <冰凍>" NOR;
 
         if( me->query_condition("killer") )
-                str += HIR " <通缉犯>" NOR;
+                str += HIR " <通緝犯>" NOR;
 
         if( me->is_fighting() )
-                str += HIR " <战斗中>" NOR;
+                str += HIR " <戰鬥中>" NOR;
 
         if( me->is_net_dead() ) {
                 switch( query("doing") )
@@ -490,44 +490,44 @@ varargs string short(int raw)
                 case "breakup":
                 case "animaout":
                 case "invent":
-                        str += HIY " <闭关中>" NOR;
+                        str += HIY " <閉關中>" NOR;
                         break;
 
                 case "closed":
                 case "xiulian":
-                        str += HIY " <修炼中>" NOR;
+                        str += HIY " <修煉中>" NOR;
                         break;
 
                 case "scheme":
-                        str += HIW " <计划中>" NOR;
+                        str += HIW " <計劃中>" NOR;
                         break;
 
                 case "trigger":
-                        str += HIW " <触发中>" NOR;
+                        str += HIW " <觸發中>" NOR;
                         break;
 
                 default:
-                        str += HIG " <断线中>" NOR;
+                        str += HIG " <斷線中>" NOR;
                 }
         }
 
         if( query_temp("on_bantan") )
-                str += HIG " <摆摊中> " NOR;
+                str += HIG " <擺攤中> " NOR;
 
         if( in_input() )
-                str += HIC " <输入文字中>" NOR;
+                str += HIC " <輸入文字中>" NOR;
 
         if( !living(me) && query("disable_type") )
                 str += HIR + query("disable_type") + NOR;
 
         if( in_edit() )
-                str += HIY " <编辑档案中>" NOR;
+                str += HIY " <編輯檔案中>" NOR;
 
         if( interactive(this_object()) &&
             !query("doing") &&
             query_idle(this_object()) > 120 )
                 if( wizardp(this_object())) str += HIM " <思考中>" NOR;
-                else str += HIM " <发呆中>" NOR;
+                else str += HIM " <發呆中>" NOR;
 
         return str;
 }

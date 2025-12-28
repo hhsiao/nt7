@@ -1,10 +1,10 @@
 inherit SKILL;
 
 string *dodge_msg = ({
-        "$n足跟一支，全身后仰，一招「鲤鱼倒穿波」，反窜出丈余，躲过了$N的攻击。\n",
-        "$n身体忽然柔若无骨，左右摇摆，使出一招「雨打漂萍」，避过了$N的攻击。\n",
-        "$n使出「物换星移」，滴溜溜一个转身，从$N身旁擦身而过，反而到了$N身后。\n",
-        "$n一招「落叶随风」，身体如一片落叶一般飘了出去，身行之潇洒，迅速到了极处。\n"
+        "$n足跟一支，全身後仰，一招「鯉魚倒穿波」，反竄出丈餘，躲過了$N的攻擊。\n",
+        "$n身體忽然柔若無骨，左右搖擺，使出一招「雨打漂萍」，避過了$N的攻擊。\n",
+        "$n使出「物換星移」，滴溜溜一個轉身，從$N身旁擦身而過，反而到了$N身後。\n",
+        "$n一招「落葉隨風」，身體如一片落葉一般飄了出去，身行之瀟灑，迅速到了極處。\n"
 });
 
 int valid_enable(string usage)
@@ -25,7 +25,7 @@ string query_dodge_msg(string limb)
 int practice_skill(object me)
 {
     if( query("qi", me)<50 )
-        return notify_fail("你的体力太差了，不能练登萍渡水。\n");
+        return notify_fail("你的體力太差了，不能練登萍渡水。\n");
 
     me->receive_damage("qi", 40);
     return 1;

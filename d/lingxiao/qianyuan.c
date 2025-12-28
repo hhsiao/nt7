@@ -5,10 +5,10 @@ void create()
 {
         set("short", "前院");
         set("long", @LONG 
-这里是凌霄城的前院，凌霄弟子大都居住于此后。这里种
-了一棵三人合围粗的墨梅，花瓣漆黑，气味芬芳。深邃的大院
-里，高山阳光透过墨梅的花瓣射下，在雪地上映出一块块亮斑。
-一只雪鹤在树下翩翩起舞，黑白相映，互有情趣。 
+這裡是凌霄城的前院，凌霄弟子大都居住於此後。這裡種
+了一棵三人合圍粗的墨梅，花瓣漆黑，氣味芬芳。深邃的大院
+裡，高山陽光透過墨梅的花瓣射下，在雪地上映出一塊塊亮斑。
+一隻雪鶴在樹下翩翩起舞，黑白相映，互有情趣。 
 LONG);
         set("outdoors", "lingxiao");
         set("exits", ([
@@ -37,15 +37,15 @@ int do_pick(string arg)
         if (arg == "mei hua" || arg == "meihua")
         {
                 if (query("count") < -5)
-                        return notify_fail("这里的梅花已经被摘光了。\n");
+                        return notify_fail("這裡的梅花已經被摘光了。\n");
 
                 ob = new(__DIR__"obj/mei");
                 ob->move(me, 1);
                 addn("count", -1);
 
-                message_vision("$N从路旁的树上摘了一朵" +
+                message_vision("$N從路旁的樹上摘了一朵" +
                                query("name", ob)+"。\n",me);
                 return 1;
         } else
-                return notify_fail("你要摘什么？\n");
+                return notify_fail("你要摘什麼？\n");
 }

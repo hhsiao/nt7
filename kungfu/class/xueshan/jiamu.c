@@ -9,9 +9,9 @@ void create()
 {
         set_name("嘉木活佛", ({ "jiamu huofo", "huofo", "jiamu" }));
         set("long", @LONG
-嘉木活佛是雪山寺有道的高僧，对佛法有精深
-的研究。他身穿一件黄色袈裟，头带僧帽。目
-光如电，似乎身怀绝技。
+嘉木活佛是雪山寺有道的高僧，對佛法有精深
+的研究。他身穿一件黃色袈裟，頭帶僧帽。目
+光如電，似乎身懷絕技。
 LONG);
         set("title", "雪山寺活佛");
         set("gender", "男性");
@@ -88,38 +88,38 @@ void attempt_apprentice(object ob)
 
         if( query("gender", ob) != "男性" )
         {
-                command("say 修习密宗内功需要纯阳之体。");
-                command("say 这位" + RANK_D->query_respect(ob) +
-                        "还是请回吧！");
+                command("say 修習密宗內功需要純陽之體。");
+                command("say 這位" + RANK_D->query_respect(ob) +
+                        "還是請回吧！");
                 return;
         }
 
         if( query("class", ob) != "bonze" )
         {
-                command("say 我佛门的清规戒律甚多。");
-                command("say 这位" + RANK_D->query_respect(ob) +
-                        "还是请回吧！");
+                command("say 我佛門的清規戒律甚多。");
+                command("say 這位" + RANK_D->query_respect(ob) +
+                        "還是請回吧！");
                 return;
         }
 
         if( query("family/family_name", ob) != "密宗" )
         {
-                command("say 这位" + RANK_D->query_respect(ob) +
-                        "既非本寺弟子，还是请回吧！");
+                command("say 這位" + RANK_D->query_respect(ob) +
+                        "既非本寺弟子，還是請回吧！");
                 return;
         }
 
         if ((int)ob->query_skill("lamaism", 1) < 60)
         {
-                command("say 入我雪山寺，修习密宗心法是首要的。");
-                command("say 这位" + RANK_D->query_respect(ob) +
-                        "是否还应该多多钻研本门的心法？");
+                command("say 入我雪山寺，修習密宗心法是首要的。");
+                command("say 這位" + RANK_D->query_respect(ob) +
+                        "是否還應該多多鑽研本門的心法？");
                 return;
         }
 
         command("smile");
         command("nod");
-        command("say 你就随我学习佛法吧！");
+        command("say 你就隨我學習佛法吧！");
         command("recruit "+query("id", ob));
 
         set("title", HIY"大喇嘛"NOR, ob);

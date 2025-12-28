@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("小猫[2;37;0m[2;37;0m", ({"mao"}));        
+        set_name("小貓[2;37;0m[2;37;0m", ({"mao"}));        
         set("gender", "女性");                
-        set("long", "一只猫[2;37;0m
-它是阿月的魔幻兽。
+        set("long", "一隻貓[2;37;0m
+它是阿月的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

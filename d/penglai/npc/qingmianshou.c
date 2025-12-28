@@ -6,8 +6,8 @@ inherit NPC;
 
 void create()
 {
-        set_name(HIG "青面兽" NOR, ({ "qingmian shou", "qingmian", "shou" }));
-        set("long", HIG "这是一只青面獠牙的巨兽，乃酒剑仙的坐骑，看样子是从蓬莱仙岛逃出来的。\n" NOR);
+        set_name(HIG "青面獸" NOR, ({ "qingmian shou", "qingmian", "shou" }));
+        set("long", HIG "這是一隻青面獠牙的巨獸，乃酒劍仙的坐騎，看樣子是從蓬萊仙島逃出來的。\n" NOR);
 
         set("age", 190);
         set("str", 40);
@@ -55,7 +55,7 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
 	ob->start_busy(2 + random(3));
 	me->receive_wound("qi", 200 + random(100), ob);
-        return HIY "$N" HIY "大喝一声，拼死反抗，竟逼得$n" HIY "手忙脚乱。\n" NOR;
+        return HIY "$N" HIY "大喝一聲，拼死反抗，竟逼得$n" HIY "手忙腳亂。\n" NOR;
 }
 
 void heart_beat()
@@ -81,22 +81,22 @@ void unconcious()
 
 void die(object killer)
 {
-        object dob;             // 打晕这个NPC的人
-        int n;                  // 可以奖励的人的数目
-        int exp;                // 需要瓜分的经验
-        int pot;                // 需要瓜分的潜能
+        object dob;             // 打暈這個NPC的人
+        int n;                  // 可以獎勵的人的數目
+        int exp;                // 需要瓜分的經驗
+        int pot;                // 需要瓜分的潛能
         int weiwang;            // 需要瓜分的威望
-        int gongxian;           // 贡献
-        int tihui;              // 体会
-        int score;              // 需要瓜分的阅历
-        object *t;              // 杀死我的人的队伍列表
+        int gongxian;           // 貢獻
+        int tihui;              // 體會
+        int score;              // 需要瓜分的閱歷
+        object *t;              // 殺死我的人的隊伍列表
         object tob;
         int ysg;
         int i;
 	object *inv;
 	
-        // 定义奖励物品列表
-	// 几率  MAX_POINT 分之 X
+        // 定義獎勵物品列表
+	// 幾率  MAX_POINT 分之 X
 	mixed oblist = ([
 		"/clone/fam/gift/str4" :1,
 		"/clone/fam/gift/con4" :1,			
@@ -118,7 +118,7 @@ void die(object killer)
 			return;
 		}
 */
-                // 找到杀了我(NPC)或是打晕我的人
+                // 找到殺了我(NPC)或是打暈我的人
                 if (! objectp(dob = killer))
                 dob = query_last_damage_from();
 
@@ -165,7 +165,7 @@ void die(object killer)
 								([ "exp"      : exp + ((tob == dob) ? 5000 : 0),
 								   "pot"      : pot + ((tob == dob) ? 5000 : 0),
 								   "mar"      : tihui + ((tob == dob) ? 1000 : 0),
-								   "prompt"   : "你的队伍打败" + name() + "之后"]), 999);
+								   "prompt"   : "你的隊伍打敗" + name() + "之後"]), 999);
 	
 					}
 				}
@@ -177,41 +177,41 @@ void die(object killer)
 						 ([ "exp"      : exp,
 					    	    "pot"      : pot,
 					    	    "mar"    : tihui,
-					    	    "prompt"   : "你在打败" + name() + "之后"]), 999);
+					    	    "prompt"   : "你在打敗" + name() + "之後"]), 999);
 			}
 	
 	        }
 		
-		message_vision(HIG "\n青面兽一声怪叫，瘫倒在地，化作一滩绿色的液体 ...\n" NOR, this_object());
+		message_vision(HIG "\n青面獸一聲怪叫，癱倒在地，化作一灘綠色的液體 ...\n" NOR, this_object());
 
-	        // 一定几率掉物品在杀我的人身上dob
+	        // 一定幾率掉物品在殺我的人身上dob
 		if (objectp(dob) && environment(dob) == environment(this_object()))
 		{
 			key_s_gift = keys(oblist);
 			s_gift = key_s_gift[random(sizeof(key_s_gift))];
 			gift_point = oblist[s_gift];
 	
-			// 判断几率
+			// 判斷幾率
 			if( MEMBER_D->is_valid_member(query("id", dob) )
 			    && random(MAX_POINT / ITEM_D->gift_point()) < gift_point)
 			{
-				// 获得物品--爆出物品直接放在dob身上
+				// 獲得物品--爆出物品直接放在dob身上
 				gift_ob = new(s_gift);
 				if (objectp(gift_ob))
 				{
-					message_vision(HIR "叮~~一声，从$N" HIR "掉出一样东西，$n" HIR 
-						       "赶紧拣了起来。\n" NOR, this_object(), dob);
+					message_vision(HIR "叮~~一聲，從$N" HIR "掉出一樣東西，$n" HIR 
+						       "趕緊揀了起來。\n" NOR, this_object(), dob);
 					tell_object(dob, BLINK + HIG "你得到了" + gift_ob->name() + BLINK + HIG "。\n" NOR);
 					gift_ob->move(dob, 1);
 				}
-				else // 纪录之 
+				else // 紀錄之 
 				{
 					log_file("killed-gift-none", s_gift + "\n");
 				}
 			}
 		}
 
-		// 掉出金钱及其他物品
+		// 掉出金錢及其他物品
 		if (1)
 		{
 			inv = all_inventory(this_object());

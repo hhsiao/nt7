@@ -6,10 +6,10 @@ inherit NPC;
 
 void create()
 {
-	set_name("沐剑屏", ({"mu jianping", "mu" }));
-	set("title", HIY "神龙教" HIR "赤龙使" NOR "座下弟子");
+	set_name("沐劍屏", ({"mu jianping", "mu" }));
+	set("title", HIY "神龍教" HIR "赤龍使" NOR "座下弟子");
 	set("long",
-	        "她是沐王府小郡主，流落江湖成了神龙教赤龙门女弟子，长得十分娇羞秀美。\n"
+	        "她是沐王府小郡主，流落江湖成了神龍教赤龍門女弟子，長得十分嬌羞秀美。\n"
 	);
 
 	set("gender", "男性");

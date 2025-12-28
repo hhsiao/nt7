@@ -3,13 +3,13 @@
 inherit ITEM;
 void create()
 {
-        set_name(HIB BLINK "龙珠" NOR, ({ "long zhu" ,"zhu", }) );
+        set_name(HIB BLINK "龍珠" NOR, ({ "long zhu" ,"zhu", }) );
         set_weight(100000);
         if( clonep() )
                 set_default_object(__FILE__);
         else {
-                set("unit", "颗");
-                set("long","这是颗龙眼，看来还值几个钱。\n");
+                set("unit", "顆");
+                set("long","這是顆龍眼，看來還值幾個錢。\n");
                 set("value", 1000000);
                 set("material", "dainomd");
               }
@@ -30,7 +30,7 @@ int do_pushin(string arg)
          || !query_temp("climb", me )
          || query_temp("chan", me) )
         return 0;
-        message_vision("$N捧起一颗"+query("name")+"塞进了石门的洞内。\n",me);
+        message_vision("$N捧起一顆"+query("name")+"塞進了石門的洞內。\n",me);
         addn("in_zhu", 1, room);
         if( query("in_zhu", room) == 2){
                 room->open_door(me,1);

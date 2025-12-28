@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[5m[1;37m圆月[2;37;0m[2;37;0m", ({"yuanyue"}));        
+        set_name("[5m[1;37m圓月[2;37;0m[2;37;0m", ({"yuanyue"}));        
         set("gender", "女性");                
-        set("long", "一轮圆月[2;37;0m
-它是月牙的魔幻兽。
+        set("long", "一輪圓月[2;37;0m
+它是月牙的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

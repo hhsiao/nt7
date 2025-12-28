@@ -10,13 +10,13 @@ void death_msg();
 
 void create()
 {
-        set_name("小龙女", ({ "xiao longnv",}));
-        set("title", HIR "困于情花谷的" NOR);
+        set_name("小龍女", ({ "xiao longnv",}));
+        set("title", HIR "困於情花谷的" NOR);
         set("gender", "女性");
         set("age", 22);
         set("long", @LONG
-她一生爱穿白衣，当真如风拂玉树，雪裹琼苞，
-兼之生性清冷，实当得起“冷浸溶溶月”的形
+她一生愛穿白衣，當真如風拂玉樹，雪裹瓊苞，
+兼之生性清冷，實當得起“冷浸溶溶月”的形
 容。
 LONG);
         set("attitude", "friendly");
@@ -105,8 +105,8 @@ LONG);
         ]));
 
         set("drops", ([
-                "RA&RANDOM40"    :       100,   // 低级普通装备
-                "RA&RANDOM50"    :       40,    // 低级普通装备
+                "RA&RANDOM40"    :       100,   // 低級普通裝備
+                "RA&RANDOM50"    :       40,    // 低級普通裝備
                 "FI&/clone/goods/enchant-scroll" :   20,
                 "FI&/clone/goods/sun"    :   20,
                 "FI&/clone/goods/moon"   :   20,
@@ -144,7 +144,7 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
 	ob->start_busy(5 + random(6));
 	me->receive_wound("qi", 900 + random(900), ob);
-        return HIY "$N" HIY "娇喝一声，奋力反抗，竟逼得$n" HIY "手忙脚乱。\n" NOR;
+        return HIY "$N" HIY "嬌喝一聲，奮力反抗，竟逼得$n" HIY "手忙腳亂。\n" NOR;
 }
 
 void heart_beat()
@@ -164,8 +164,8 @@ void random_move()
                 env = environment(this_object());
                 message_vision("$N急急忙忙的走了。\n", this_object());
 
-                CHANNEL_D->channel_broadcast("news", HIG "听说" + HIW +
-                        env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一带出现的" +
+                CHANNEL_D->channel_broadcast("news", HIG "聽說" + HIW +
+                        env->short() + "(" + LOOK_CMD->locate(base_name(env)) + ")" HIG "一帶出現的" +
                         HIR + this_object()->short() + HIG "消失了。\n" NOR);
 
                 destruct(this_object());
@@ -177,5 +177,5 @@ void random_move()
 void death_msg()
 {
         //command("chat* protect1");
-        CHANNEL_D->channel_broadcast("mess", "听说" + name() + HIW "被神雕救走 ……" NOR);
+        CHANNEL_D->channel_broadcast("mess", "聽說" + name() + HIW "被神鵰救走 ……" NOR);
 }

@@ -12,10 +12,10 @@ void create()
 {
         object arrow;
 
-        set_name(HIR "铁木真" NOR, ({"tie muzhen", "tie", "muzhen" }));
+        set_name(HIR "鐵木真" NOR, ({"tie muzhen", "tie", "muzhen" }));
         set("gender", "男性");
         set("age", 40 + random(20));
-        set("long", "这就是传说中蒙古大汗，成吉思汗铁木真，只见其身材高大魁梧，英气逼人，令人生畏！");
+        set("long", "這就是傳說中蒙古大汗，成吉思汗鐵木真，只見其身材高大魁梧，英氣逼人，令人生畏！");
         set("chat_chance", 130);
         set("chat_msg", ({ (: random_move :) }));
         set("chat_chance_combat", 120);
@@ -29,7 +29,7 @@ void create()
         }));
         set("no_get", 1);
 
-        // 蒙古士兵标志
+        // 蒙古士兵標誌
         set("mgbing", 1);
 
         set_temp("apply/armor", 15000);
@@ -74,14 +74,14 @@ void create()
 
         set_temp("born_time", time());
 
-        set_temp("dest_now", 0); // 撤退标记 0 为不撤退继续战斗
+        set_temp("dest_now", 0); // 撤退標記 0 為不撤退繼續戰鬥
 
         add_money("gold",4000 + random(1000));
 
-        // 增加射击命中
+        // 增加射擊命中
         set("special_skill/accuracy", 1);
         
-        // 设置奖励级别
+        // 設置獎勵級別
         set("gift/level", "成吉思汗");
         set("gift/exp", 1000000);
         set("gift/pot", 1000000);
@@ -119,7 +119,7 @@ void create()
 
 int accept_fight(object ob)
 {
-        command("say 我可没兴趣陪你玩，快给我滚开。");
+        command("say 我可沒興趣陪你玩，快給我滾開。");
         return 0;
 }
 
@@ -130,21 +130,21 @@ int accept_hit(object ob)
 
 int accept_ansuan(object ob)
 {
-        return notify_fail("那人警惕性好高，你难以下手。\n");
+        return notify_fail("那人警惕性好高，你難以下手。\n");
 }
 
 int accept_touxi(object ob)
 {
-        return notify_fail("那人警惕性好高，你难以下手。\n");
+        return notify_fail("那人警惕性好高，你難以下手。\n");
 }
 
 void me_die_msg()
 {        
         command("chat* sigh");
-        command("chat 枉我铁木真征战沙场多年，今日竟对一个小小的襄阳城束手无策。");
-        command("chat 罢罢罢，全军就此撤退，重新整顿，来日再战。");
+        command("chat 枉我鐵木真征戰沙場多年，今日竟對一個小小的襄陽城束手無策。");
+        command("chat 罷罷罷，全軍就此撤退，重新整頓，來日再戰。");
 
-        XYWAR_D->war_win(); // 襄阳胜利
+        XYWAR_D->war_win(); // 襄陽勝利
         set_temp("dest_now", 1);
         return;        
 }
@@ -152,8 +152,8 @@ void me_die_msg()
 void me_die_msg2()
 {
         command("chat* sigh");
-        command("chat 枉我铁木真征战沙场多年，今日竟对一个小小的襄阳城束手无策。");
-        command("chat 罢罢罢，全军就此撤退，重新整顿，来日再战。");
+        command("chat 枉我鐵木真征戰沙場多年，今日竟對一個小小的襄陽城束手無策。");
+        command("chat 罷罷罷，全軍就此撤退，重新整頓，來日再戰。");
 
         set_temp("dest_now", 1);
         return;                
@@ -161,15 +161,15 @@ void me_die_msg2()
 
 void die(object killer)
 {
-        object dob;             // 打晕这个NPC的人
-        int n;                  // 组队中队员数目
-        int exp;                // 需要瓜分的经验
-        int pot;                // 需要瓜分的潜能
-        int tihui;              // 需要瓜分的体会
+        object dob;             // 打暈這個NPC的人
+        int n;                  // 組隊中隊員數目
+        int exp;                // 需要瓜分的經驗
+        int pot;                // 需要瓜分的潛能
+        int tihui;              // 需要瓜分的體會
         int weiwang;            // 需要瓜分的威望
-        int score;              // 需要瓜分的阅历
+        int score;              // 需要瓜分的閱歷
 
-        object *t;              // 杀死我的人的队伍列表
+        object *t;              // 殺死我的人的隊伍列表
         object tob;
         int i;
 
@@ -180,7 +180,7 @@ void die(object killer)
                 return;
         }
 
-        // 战斗进行时才有奖励
+        // 戰鬥進行時才有獎勵
         if (XYWAR_D->now_status() != 2)
         {
                 me_die_msg2();
@@ -188,7 +188,7 @@ void die(object killer)
                 return;
         }
         
-        // 找到杀了我(NPC)或是打晕我的人
+        // 找到殺了我(NPC)或是打暈我的人
         if (! objectp(dob = killer))
                 dob = query_defeated_by();
 
@@ -205,12 +205,12 @@ void die(object killer)
                 pot = query("gift/pot");
                 tihui = query("gift/experience");
 
-                // 组队
+                // 組隊
                 t = dob->query_team();
 
                 if (pointerp(t))n = sizeof(t);
 
-                // 组队后需要瓜分经验
+                // 組隊後需要瓜分經驗
                 if (n > 1)
                 {
                        exp /= n;
@@ -224,33 +224,33 @@ void die(object killer)
                                 
                 if (pointerp(t))
                 {                                                
-                        /// 999 表明获得的特殊奖励不受上限限制
+                        /// 999 表明獲得的特殊獎勵不受上限限制
                         foreach(tob in t)
                         {
                                    if (objectp(tob) && living(tob))
                                    {
-                                                     // 设置杀敌标志，最为最终奖励依据
+                                                     // 設置殺敵標誌，最為最終獎勵依據
                                                      tob->set("xywar/xy_" + sprintf("%d", XYWAR_D->get_ran_num()), pot);
 
                                                   GIFT_D->delay_bonus(tob,
                                                          ([ "exp"         : exp + ((tob == dob) ? exp : 0),
                                                               "pot"         : pot + ((tob == dob) ? pot : 0),
                                                                "mar"         : tihui + ((tob == dob) ? tihui : 0),
-                                                              "prompt"      : "你的队伍击毙" + name() + "之后" ]), 999);
+                                                              "prompt"      : "你的隊伍擊斃" + name() + "之後" ]), 999);
                                                                   
                                     }
                         }
                 }
                 else
                 {
-                        // 设置杀敌标志，最为最终奖励依据
+                        // 設置殺敵標誌，最為最終獎勵依據
                         dob->set("xywar/xy_" + sprintf("%d", XYWAR_D->get_ran_num()), pot);
                         
                         GIFT_D->delay_bonus(dob,
                             ([ "exp"         : exp,
                                "pot"         : pot,
                                "mar"         : tihui,
-                               "prompt"      : "你在击毙" + name() + "之后" ]), 999);
+                               "prompt"      : "你在擊斃" + name() + "之後" ]), 999);
                 }
         }
 
@@ -266,7 +266,7 @@ void uncoucious()
         die(query_last_damage_from());
 }
 
-// 弓箭手特有函数，用于使用弓箭攻击敌人
+// 弓箭手特有函數，用於使用弓箭攻擊敵人
 void shot_arrow()
 {
         object me = this_object();
@@ -279,7 +279,7 @@ void shot_arrow()
                 command("shot");
         }
                 
-        // 同时补充内力
+        // 同時補充內力
         set("neili", query("max_neili"));
 
         if (random(10) == 1)
@@ -300,7 +300,7 @@ void shot_arrow()
 
         if (me->is_busy())me->interrupt_busy(this_object(),1000); 
 
-        // 很小几率恢复气血
+        // 很小几率恢復氣血
         if (random(20) == 1)
         {
                 if (me->query("eff_qi") < me->query("max_qi") / 3)me->add("eff_qi", me->query("max_qi") / 5);
@@ -327,16 +327,16 @@ void random_move()
                 set_temp("dest_now", 1);
         }
         
-        // 检查襄阳保卫战是否胜利 1 == 胜利
+        // 檢查襄陽保衛戰是否勝利 1 == 勝利
         if (XYWAR_D->now_status() == 0 && XYWAR_D->get_who_win() == 1)
         {
                 command("chat* sigh");
-                command("chat 枉我铁木真征战沙场多年，今日居然对一个小小的襄阳城束手无策。");
-                command("chat 罢罢罢，全军就此撤退，重新整顿，来日再战。");
+                command("chat 枉我鐵木真征戰沙場多年，今日居然對一個小小的襄陽城束手無策。");
+                command("chat 罷罷罷，全軍就此撤退，重新整頓，來日再戰。");
                 destruct(this_object());
                 return;
         }
-        // 检查襄阳保卫战是否失败 2 == 失败
+        // 檢查襄陽保衛戰是否失敗 2 == 失敗
         if (XYWAR_D->now_status() == 0 && XYWAR_D->get_who_win() == 2)
         {
                 command("chat* haha");

@@ -4,7 +4,7 @@ inherit __DIR__"bhd_npc.c";
 void create()
 {
         set_name(HIR "赤火蛇" NOR, ({ "chihuo she", "chihuo", "she" }));
-        set("long", HIW "这是一只浑身火红的巨蛇，似乎在这里生存了数千年。\n" NOR);
+        set("long", HIW "這是一隻渾身火紅的巨蛇，似乎在這裡生存了數千年。\n" NOR);
 
         set("age", 1900);
         set("str",80);
@@ -39,7 +39,7 @@ void create()
 }
 void init()
 {
-        // 随机攻击玩家
+        // 隨機攻擊玩家
         if (userp(this_player()) && random(2) == 1)
         {
                 kill_ob(this_player());

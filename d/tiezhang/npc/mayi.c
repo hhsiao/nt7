@@ -4,10 +4,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("麻衣长老", ({ "mayi zhanglao", "mayi", "zhanglao" }));
+        set_name("麻衣長老", ({ "mayi zhanglao", "mayi", "zhanglao" }));
         set("long",
-        "他是一个年约六旬的老者，满头花发，两鬓斑白。\n"
-        "他两侧的太阳穴高高鼓起，微闭的双目中时而闪过凌厉的眼神，似乎身怀绝技。\n"
+        "他是一個年約六旬的老者，滿頭花髮，兩鬢斑白。\n"
+        "他兩側的太陽穴高高鼓起，微閉的雙目中時而閃過凌厲的眼神，似乎身懷絕技。\n"
         );
         set("gender", "男性");
         set("attitude", "peaceful");

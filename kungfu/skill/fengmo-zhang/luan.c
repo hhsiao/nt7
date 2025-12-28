@@ -5,7 +5,7 @@
 
 inherit F_SSERVER;
 
-string name() { return HIR "群魔乱舞" NOR; }
+string name() { return HIR "群魔亂舞" NOR; }
 
 int perform(object me, object target)
 {
@@ -22,30 +22,30 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name()+"只能对战斗中的对手使用。\n");
+                return notify_fail(name()+"只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me) )
             || query("skill_type", weapon) != "staff" )
-                return notify_fail("你所使用的武器不对，难以施展"+name()+"。\n");
+                return notify_fail("你所使用的武器不對，難以施展"+name()+"。\n");
 
         if ((lvl = (int)me->query_skill("fengmo-zhang", 1)) < 120)
-                return notify_fail("你疯魔杖法火候不够，难以施展"+name()+"。\n");
+                return notify_fail("你瘋魔杖法火候不夠，難以施展"+name()+"。\n");
 
         if (me->query_skill_mapped("staff") != "fengmo-zhang")
-                return notify_fail("你没有激发疯魔杖法，难以施展"+name()+"。\n");
+                return notify_fail("你沒有激發瘋魔杖法，難以施展"+name()+"。\n");
 
         if ((int)me->query_skill("force") < 150)
-                return notify_fail("你的内功火候不够，难以施展"+name()+"。\n");
+                return notify_fail("你的內功火候不夠，難以施展"+name()+"。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你现在的真气不足，难以施展"+name()+"。\n");
+                return notify_fail("你現在的真氣不足，難以施展"+name()+"。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIR "只见$N" HIR "眼中杀气大盛，暴喝一声，飞扑上前，"
-                  "便如发狂一般，手中的" + weapon->name() +
-              HIR "化出数道残影，一齐打向$n" HIR "！\n" NOR;
+        msg = HIR "只見$N" HIR "眼中殺氣大盛，暴喝一聲，飛撲上前，"
+                  "便如發狂一般，手中的" + weapon->name() +
+              HIR "化出數道殘影，一齊打向$n" HIR "！\n" NOR;
 
         ap = attack_power(me, "staff");
         dp = defense_power(target, "parry");
@@ -53,8 +53,8 @@ int perform(object me, object target)
         if (ap / 2 + random(ap) > dp)
         {
 
-                msg += HIY "$n" HIY "见$N" HIY "这等声势，早已无心恋"
-                       "战，一时不知应该如何抵挡，唯有连连后退。\n" NOR;
+                msg += HIY "$n" HIY "見$N" HIY "這等聲勢，早已無心戀"
+                       "戰，一時不知應該如何抵擋，唯有連連後退。\n" NOR;
                 count = lvl / 10;
                 addn_temp("apply/attack", count, me);
         } else

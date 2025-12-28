@@ -4,9 +4,9 @@ inherit "/inherit/room/house_room";
 
 void create()
 {
-    set("short", "书斋");
+    set("short", "書齋");
     set("long", @LONG
-这里是主人平素读书写字的地方，干净明亮。文房四宝整整齐齐的摆
+這裡是主人平素讀書寫字的地方，乾淨明亮。文房四寶整整齊齊的擺
 在桌子上面。
 LONG);
 

@@ -5,7 +5,7 @@ inherit CLOTH;
 
 void create()
 {
-        set_name( HIY "锦团官服" NOR, ({ "cloth" }) );
+        set_name( HIY "錦團官服" NOR, ({ "cloth" }) );
         set_weight(3000);
         /*if( clonep() )
                 set_default_object(__FILE__);

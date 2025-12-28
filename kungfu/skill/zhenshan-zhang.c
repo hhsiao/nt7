@@ -1,44 +1,44 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action": "$N使出一招「力拔山河」，左掌虚晃一下，右手带起阵阵掌风拍向$n的$l",
+([      "action": "$N使出一招「力拔山河」，左掌虛晃一下，右手帶起陣陣掌風拍向$n的$l",
         "force" : 100,
         "attack": 18,
         "dodge" : 30,
         "parry" : 15,
         "damage": 40,
         "lvl"   : 0,
-        "damage_type": "瘀伤",
+        "damage_type": "瘀傷",
         "skill_name" : "力拔山河",
 ]),
-([      "action": "$N纵身跃起，一式「开碑断石」，双掌自上而下拍向$n的$l",
+([      "action": "$N縱身躍起，一式「開碑斷石」，雙掌自上而下拍向$n的$l",
         "force" : 200,
         "attack": 25,
         "dodge" : 40,
         "parry" : 30,
         "damage": 45,
         "lvl"   : 30,
-        "damage_type": "瘀伤",
-        "skill_name" : "开碑断石",
+        "damage_type": "瘀傷",
+        "skill_name" : "開碑斷石",
 ]),
-([      "action": "$N双掌呼地拍出，一招「风雨欲来」，带起阵阵飞沙走石，直击向$n的$l",
+([      "action": "$N雙掌呼地拍出，一招「風雨欲來」，帶起陣陣飛沙走石，直擊向$n的$l",
         "force" : 250,
         "attack": 35,
         "dodge" : 50,
         "parry" : 55,
         "damage": 45,
         "lvl"   : 60,
-        "damage_type": "瘀伤",
-        "skill_name" : "风雨欲来",
+        "damage_type": "瘀傷",
+        "skill_name" : "風雨欲來",
 ]),
-([      "action": "$N双掌齐出，幻做掌影重重，一招「地老天荒」拍向$n$l",
+([      "action": "$N雙掌齊出，幻做掌影重重，一招「地老天荒」拍向$n$l",
         "force" : 290,
         "attack": 42,
         "dodge" : 70,
         "parry" : 75,
         "damage": 43,
         "lvl"   : 120,
-        "damage_type": "瘀伤",
+        "damage_type": "瘀傷",
         "skill_name" : "地老天荒",
 ]),
 });
@@ -65,16 +65,16 @@ mapping query_action(object me, object weapon)
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练震山掌必须空手。\n");
+                return notify_fail("練震山掌必須空手。\n");
 
         if ((int)me->query_skill("force") < 100)
-                return notify_fail("你的内功火候不够，无法练震山掌。\n");
+                return notify_fail("你的內功火候不夠，無法練震山掌。\n");
 
         if( query("max_neili", me)<450 )
-                return notify_fail("你的内力太弱，无法练震山掌。\n");
+                return notify_fail("你的內力太弱，無法練震山掌。\n");
 
         if (me->query_skill("strike", 1) < me->query_skill("zhenshan-zhang", 1))
-                return notify_fail("你的基本掌法水平有限，无法领会更高深的震山掌。\n");
+                return notify_fail("你的基本掌法水平有限，無法領會更高深的震山掌。\n");
 
         return 1;
 }
@@ -83,10 +83,10 @@ int valid_learn(object me)
 int practice_skill(object me)
 {
         if( query("qi", me)<60 )
-                return notify_fail("你的体力太低了，先休息一下吧。\n");
+                return notify_fail("你的體力太低了，先休息一下吧。\n");
 
         if( query("neili", me)<60 )
-                return notify_fail("你的内力不够练震山掌。\n");
+                return notify_fail("你的內力不夠練震山掌。\n");
 
         if (me->query_skill("zhenshan-zhang", 1) < 50)
                 me->receive_damage("qi", 30);

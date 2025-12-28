@@ -4,17 +4,17 @@ inherit NPC;
 void create()
 {
 
-        set_name(GRN "青龙" NOR,({"qing long", "qing", "long", "dragon"}));
+        set_name(GRN "青龍" NOR,({"qing long", "qing", "long", "dragon"}));
 
-        set("race", "野兽");
-        set("long", GRN "\n\n一条长达数十丈的神龙，乃四神兽之一。它腾\n"
-                        "云驾雾，张牙舞爪，口中喷着熊熊烈火。\n" NOR);
+        set("race", "野獸");
+        set("long", GRN "\n\n一條長達數十丈的神龍，乃四神獸之一。它騰\n"
+                        "雲駕霧，張牙舞爪，口中噴著熊熊烈火。\n" NOR);
         set("age", 10000);
         set("attitude", "peaceful");
 
-        set("limbs", ({ "头部", "身体", "前爪", "后爪", "龙尾", "龙角" }) );
+        set("limbs", ({ "頭部", "身體", "前爪", "後爪", "龍尾", "龍角" }) );
         set("verbs", ({ "bite" }) );
-        set("title", HIY "神兽" NOR);
+        set("title", HIY "神獸" NOR);
 
         set("combat_exp", 10000000);
         set("max_neili", 20000);
@@ -64,8 +64,8 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->receive_wound("qi", 200 + random(200), me);
         set("neili",query("max_neili",  me), me);
-        return HIR "青龙喷出一团烈火，青龙潭内顿时扬起一片火海，潭水沸腾，似"
-               "乎整个大地都要被烤焦了一般。\n" NOR;
+        return HIR "青龍噴出一團烈火，青龍潭內頓時揚起一片火海，潭水沸騰，似"
+               "乎整個大地都要被烤焦了一般。\n" NOR;
 }
 
 void die()
@@ -82,46 +82,46 @@ void die()
         dan = new("/d/death/obj/longdan");
 
         if( objectp(me = query_last_damage_from()) &&
-            query("wang_get/龙胆", me) && 
-            query("wang_get/龙筋", me) && 
+            query("wang_get/龍膽", me) && 
+            query("wang_get/龍筋", me) && 
             userp(me) )
         {
-                message_vision(HIC "$N" HIC "从青龙的尸体上除下了一根龙筋和"
-                               "一只龙胆。\n", me);
+                message_vision(HIC "$N" HIC "從青龍的屍體上除下了一根龍筋和"
+                               "一隻龍膽。\n", me);
                 jin->move(me);
                 dan->move(me);
-                delete("wang_get/龙胆", me);
-                delete("wang_get/龙筋", me);
+                delete("wang_get/龍膽", me);
+                delete("wang_get/龍筋", me);
                 addn("combat_exp", exp, me);
                 addn("potential", pot, me);
                 if( query("potential", me)>me->query_potential_limit() )
                 set("potential", me->query_potential_limit(), me);
 
-                tell_object(me, HIC "由于你斩杀神兽青龙，你获得了" + chinese_number(exp)
-                                + "点经验和" + chinese_number(pot) + "点潜能。\n" NOR);
+                tell_object(me, HIC "由於你斬殺神獸青龍，你獲得了" + chinese_number(exp)
+                                + "點經驗和" + chinese_number(pot) + "點潛能。\n" NOR);
         }
 
         if( objectp(me = query_last_damage_from()) &&
-            query("wang_get/龙胆", me) && 
+            query("wang_get/龍膽", me) && 
             userp(me) )
         {
-                message_vision(HIC "$N" HIC "从青龙的尸体上除下了一只龙胆。\n", me);
+                message_vision(HIC "$N" HIC "從青龍的屍體上除下了一隻龍膽。\n", me);
                 dan->move(me);
-                delete("wang_get/龙胆", me);
+                delete("wang_get/龍膽", me);
                 addn("combat_exp", exp, me);
                 addn("potential", pot, me);
 
-                tell_object(me, HIC "由于你斩杀神兽青龙，你获得了" + chinese_number(exp)
-                                + "点经验和" + chinese_number(pot) + "点潜能。\n" NOR);
+                tell_object(me, HIC "由於你斬殺神獸青龍，你獲得了" + chinese_number(exp)
+                                + "點經驗和" + chinese_number(pot) + "點潛能。\n" NOR);
         }
 
         if( objectp(me = query_last_damage_from()) &&
-            query("wang_get/龙筋", me) && 
+            query("wang_get/龍筋", me) && 
             userp(me) )
         {
-                message_vision(HIC "$N" HIC "从青龙的尸体上除下了一根龙筋。\n", me);
+                message_vision(HIC "$N" HIC "從青龍的屍體上除下了一根龍筋。\n", me);
                 jin->move(me);
-                delete("wang_get/龙筋", me);
+                delete("wang_get/龍筋", me);
         }
 
         ::die();

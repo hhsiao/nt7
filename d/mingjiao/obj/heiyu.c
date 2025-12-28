@@ -13,13 +13,13 @@ void init()
 
 void create()
 {
-        set_name(HIW "黑玉断续膏" NOR, ({"heiyu duanxugao", "gao", "heiyu"}));
+        set_name(HIW "黑玉斷續膏" NOR, ({"heiyu duanxugao", "gao", "heiyu"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "盒");
                 set("heiyu", 3);
-                set("long", "一盒疗伤圣药黑玉断续膏，名虽黑玉，实则雪白。\n");
+                set("long", "一盒療傷聖藥黑玉斷續膏，名雖黑玉，實則雪白。\n");
                 set("value", 100000);
         }
         setup();
@@ -33,14 +33,14 @@ int do_eat(string arg)
         ob = this_object();
 
         if (! id(arg))
-                return notify_fail("你要服什么？\n");
+                return notify_fail("你要服什麼？\n");
                 
         if (this_player()->is_busy() || this_player()->is_fighting())
-                return notify_fail("你正忙着呢。\n");
+                return notify_fail("你正忙著呢。\n");
                 
         if( query("eff_qi", this_player()) == 
             this_player(query("max_qi", )) )
-                return notify_fail("你现在不需要用黑玉断续膏。\n");
+                return notify_fail("你現在不需要用黑玉斷續膏。\n");
 
         if( query("heiyu", ob)>0 )
         {      
@@ -49,7 +49,7 @@ int do_eat(string arg)
                 addn("neili",query("max_neili",  me)/10, me);
                 set("food", me->max_food_capacity(), me);
                 set("water", me->max_water_capacity(), me);
-                message_vision(HIW"$N把黑玉断续膏涂在伤口上，只觉伤势大为好转。\n"NOR, me);
+                message_vision(HIW"$N把黑玉斷續膏塗在傷口上，只覺傷勢大為好轉。\n"NOR, me);
                 addn("heiyu", -1, ob);
                 this_player()->start_busy(3);      
                 return 1;
@@ -57,8 +57,8 @@ int do_eat(string arg)
         
         if( query("heiyu", ob)<1 )
         {
-                write("盒中的黑玉断续膏已经所剩无几了。\n");
-                set("long", "一个用来盛疗伤圣药黑玉断续膏的木盒。\n", ob);
+                write("盒中的黑玉斷續膏已經所剩無幾了。\n");
+                set("long", "一個用來盛療傷聖藥黑玉斷續膏的木盒。\n", ob);
                 set("value", 5000, ob);
                 return 1;
         }

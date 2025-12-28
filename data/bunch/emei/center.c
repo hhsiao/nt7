@@ -12,8 +12,8 @@ int sort_by_id(mapping quest1, mapping quest2);
 
 void create()
 {
-	set("short", "峨眉洗象总坛");
-	set("long", "房间的墙上有一块牌子(paizi)。加入帮派峨眉洗象的玩家，可以在这里选择任务去完成。\n");
+	set("short", "峨眉洗象總壇");
+	set("long", "房間的牆上有一塊牌子(paizi)。加入幫派峨眉洗象的玩家，可以在這裡選擇任務去完成。\n");
 	set("objects", ([
 		__DIR__"npc/quester" : 1,
 	]));

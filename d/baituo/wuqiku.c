@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "武器库");
+        set("short", "武器庫");
         set("long", @LONG
-这里是白驼山弟子的武器库，白驼山弟子可以到此拿取练功用的
-各种武器。不过别派弟子是不允许进来的。
+這裡是白駝山弟子的武器庫，白駝山弟子可以到此拿取練功用的
+各種武器。不過別派弟子是不允許進來的。
 LONG );
         set("exits", ([
                 "east" : __DIR__"yuanzi",

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("腰杆酸[2;37;0m[2;37;0m", ({"tooly"}));        
+        set_name("腰桿酸[2;37;0m[2;37;0m", ({"tooly"}));        
         set("gender", "男性");                
-        set("long", "腰杆酸[2;37;0m
-它是伊卡璐的魔幻兽。
+        set("long", "腰桿酸[2;37;0m
+它是伊卡璐的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

@@ -35,7 +35,7 @@ void create()
         string *names = ({HIG"怪物王"NOR}); 
         set_name( names[random(sizeof(names))], ({ "king"}));
         set("vendetta_mark","skeleton");
-        set("long", "这是一只"+query("name")+"。\n");
+        set("long", "這是一隻"+query("name")+"。\n");
         set("boss",1);
         set("attitude", "aggressive");
         set("element",({"earth",}));
@@ -78,7 +78,7 @@ void smart_fight()
 	                return;
 	        }
 
-                msg="$N"+HIY+"伸起双脚，向地面猛蹋，顿时尘土四溅。\n"NOR,this_object();
+                msg="$N"+HIY+"伸起雙腳，向地面猛蹋，頓時塵土四濺。\n"NOR,this_object();
 	        i = sizeof(enemy);
 	        while(i--)
 	        {
@@ -110,7 +110,7 @@ void smart_fight1()
 	skill = me->query_skill("magic");
 	damage = me->query_skill("magic")/5;
 	
-  	msg="$N"+HIM+"伸起巨臂，向$n挥舞。\n";
+  	msg="$N"+HIM+"伸起巨臂，向$n揮舞。\n";
 	addn_temp("apply/magic_attack",skill,me);
 	addn_temp("apply/mag_damage",damage,me);
 
@@ -155,15 +155,15 @@ void die()
 	      
 	      	                if( next_flag )  
 	      	                        environment()->generate_bandit(connect["next"]);
-	                        tell_room(environment(),killer->query_idname()+"杀死了"+name()+",通往"+HIC+environment()->zone_range()[connect["next"]]["name"]+NOR"的通道打开了。\n",ob);
+	                        tell_room(environment(),killer->query_idname()+"殺死了"+name()+",通往"+HIC+environment()->zone_range()[connect["next"]]["name"]+NOR"的通道打開了。\n",ob);
 	                }
 	                if( !connect ) 
 	                {
-	                        message_vision(HIY"恭喜,这个世界被征服了。\n"NOR,ob);
-	                        CHANNEL_D->do_channel(this_object(),"chat", " [1;31m"+killer->name()+"打通了暗黑世界第"+(1+query("coor/z")/2000)+"层。 [0m");	
+	                        message_vision(HIY"恭喜,這個世界被征服了。\n"NOR,ob);
+	                        CHANNEL_D->do_channel(this_object(),"chat", " [1;31m"+killer->name()+"打通了暗黑世界第"+(1+query("coor/z")/2000)+"層。 [0m");	
 	                }
 	      
-                message_vision(HIR"\n$N一声惨嚎，倒在血泊里挣扎几下死了。\n"NOR,ob);
+                message_vision(HIR"\n$N一聲慘嚎，倒在血泊裡掙扎幾下死了。\n"NOR,ob);
 	        BUFF_D->debuff(ob,"all");
 	       	
 	       	bandit1=filter_array(children(__DIR__"bandit"),(:$1->query("zone")==$2->query("zone"):),ob);

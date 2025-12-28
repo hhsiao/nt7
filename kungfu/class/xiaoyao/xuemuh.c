@@ -11,12 +11,12 @@ int ask_heal();
 int ask_poison();
 void create()
 {
-        set_name("薛慕华", ({ "xue muhua", "xue", "muhua" }));
-        set("long", "他就是号称阎王敌的神医薛慕华，据说他\n"
-                    "精通医理，可以起死回生。\n");
+        set_name("薛慕華", ({ "xue muhua", "xue", "muhua" }));
+        set("long", "他就是號稱閻王敵的神醫薛慕華，據說他\n"
+                    "精通醫理，可以起死回生。\n");
         set("gender", "男性");
-        set("title", "逍遥派函谷八友");
-        set("nickname", HIM "阎王敌" NOR);
+        set("title", "逍遙派函谷八友");
+        set("nickname", HIM "閻王敵" NOR);
         set("age", 50);
         set("class", "shaman");
         set("attitude", "peaceful");
@@ -26,7 +26,7 @@ void create()
         set("dex", 25);
 
         set("inquiry", ([
-                "疗伤" : (:ask_me:),
+                "療傷" : (:ask_me:),
                 "治病"  : (: ask_heal :),
                 "解毒"  : (: ask_poison :),
         ]) );
@@ -66,7 +66,7 @@ void create()
         prepare_skill("hand", "qingyun-shou");
         prepare_skill("strike", "liuyang-zhang");
 
-        create_family("逍遥派", 3, "弟子");
+        create_family("逍遙派", 3, "弟子");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -88,18 +88,18 @@ void attempt_apprentice(object ob)
         if (ob->query_int() < 26)
         {
                 command("sigh");
-                command("say 虽然都说勤能补拙，可是……我看你还是走吧。");
+                command("say 雖然都說勤能補拙，可是……我看你還是走吧。");
                 return;
         }
 
         if (ob->query_skill("xiaowuxiang", 1) < 30)
         {
                 command("sigh");
-                command("say 你连本门的入门心法都没有学好，教我如何收你？");
+                command("say 你連本門的入門心法都沒有學好，教我如何收你？");
                 return;
         }
 
-        command("say 好吧，我就收下你了，以后要多为逍遥派出力啊。");
+        command("say 好吧，我就收下你了，以後要多為逍遙派出力啊。");
         command("recruit "+query("id", ob));
 }
 
@@ -111,38 +111,38 @@ int ask_me()
 
         if( me->is_fighting() || query_temp("busy", me) )
         {
-                command("say 我现在没空！");
+                command("say 我現在沒空！");
                 return 1;
         }
 
         if( query("count", me)<1 )
         {
-                command("say 伤药都用完了，我还没来得及配，你一会再来吧。");
+                command("say 傷藥都用完了，我還沒來得及配，你一會再來吧。");
                 return 1;
         }
         if( query("shen", ob)<0 )
         {
-                command("say 你心术不正，我可不敢为你疗伤！");
+                command("say 你心術不正，我可不敢為你療傷！");
                 return 1;
         }
         if( query("score", ob)<300 && query("combat_exp", ob)>100500 )
         {
-                command("say 你这点江湖阅历，也想让我为你疗伤？");
+                command("say 你這點江湖閱歷，也想讓我為你療傷？");
                 return 1;
         }
         if( query("eff_qi", ob) == query("max_qi", ob )
          && query("eff_jing", ob) == query("max_jing", ob) )
         {
                 command("?"+query("id", ob));
-                command("say 你没有受任何伤啊？");
+                command("say 你沒有受任何傷啊？");
                 return 1;
         }
         else
         {
-                message_vision("薛慕华喂$N服下一颗药丸，然后盘膝坐下，双掌贴着$N的背心。\n", ob);
+                message_vision("薛慕華喂$N服下一顆藥丸，然後盤膝坐下，雙掌貼著$N的背心。\n", ob);
                 if( query("combat_exp", ob)>100500 )
                 {
-                        if( query("family/family_name", ob) != "逍遥派" )
+                        if( query("family/family_name", ob) != "逍遙派" )
                                 addn("score", -200, ob);
                         else addn("score", -100, ob);
                 }
@@ -168,8 +168,8 @@ int recover(object ob)
         delete_temp("busy", this_object());
         set("eff_qi",query("max_qi",  ob), ob);
         set("eff_jing",query("max_jing",  ob), ob);
-        message_vision("大约过了一盅茶的时分，薛慕华慢慢地站了起来。\n",ob);
-        command("say 你的伤势已经全好了，可以走啦。");
+        message_vision("大約過了一盅茶的時分，薛慕華慢慢地站了起來。\n",ob);
+        command("say 你的傷勢已經全好了，可以走啦。");
         return 1;
 }
 int newyao(object me)
@@ -189,18 +189,18 @@ int ask_heal()
 
         if( me->is_fighting() || query_temp("busy", me) )
         {
-                command("say 我现在没空！");
+                command("say 我現在沒空！");
                 return 1;
         }
 
         if( query("shen", ob)<0 )
         {
-                command("say 你心术不正，我可不敢为你治病！");
+                command("say 你心術不正，我可不敢為你治病！");
                 return 1;
         }
         if( query("score", ob)<300 && query("combat_exp", ob)>100000 )
         {
-                command("say 你这点江湖阅历，也想让我为你治病？");
+                command("say 你這點江湖閱歷，也想讓我為你治病？");
                 return 1;
         }
 
@@ -210,10 +210,10 @@ int ask_heal()
             ||ob->query_condition("ill_dongshang")
             ||ob->query_condition("ill_fashao"))
         {
-                message_vision("薛慕华轻扣$N脉门，略一思索，随后转身从药篓里取出几味草药，开始为$N熬药。\n", ob);
+                message_vision("薛慕華輕釦$N脈門，略一思索，隨後轉身從藥簍裡取出幾味草藥，開始為$N熬藥。\n", ob);
                 if( query("combat_exp", ob)>100000 )
                 {
-                        if( query("family/family_name", ob) != "逍遥派" )
+                        if( query("family/family_name", ob) != "逍遙派" )
                                 addn("score", -200, ob);
                         else addn("score", -100, ob);
                 }
@@ -228,7 +228,7 @@ int ask_heal()
         else
         {
                 command("?"+query("id", ob));
-                command("say 看你的气色，并没有生病啊？");
+                command("say 看你的氣色，並沒有生病啊？");
                 return 1;
         }
 
@@ -246,8 +246,8 @@ int recover_II(object ob)
                 ob->clear_condition("ill_dongshang",0);
         if (ob->query_condition("ill_fashao"))
                 ob->clear_condition("ill_fashao",0);
-        message_vision("大约一柱香过后，薛慕华让你喝下一碗刚熬好的热气腾腾的中药。\n",ob);
-        command("say 你的身体已无大碍,可以走啦。");
+        message_vision("大約一柱香過後，薛慕華讓你喝下一碗剛熬好的熱氣騰騰的中藥。\n",ob);
+        command("say 你的身體已無大礙,可以走啦。");
         return 1;
 }
 
@@ -260,18 +260,18 @@ int ask_poison()
 
         if( me->is_fighting() || query_temp("busy", me) )
         {
-                command("say 我现在没空！");
+                command("say 我現在沒空！");
                 return 1;
         }
 
         if( query("shen", ob)<0 )
         {
-                command("say 你心术不正，我可不敢为你解毒！");
+                command("say 你心術不正，我可不敢為你解毒！");
                 return 1;
         }
         if( query("score", ob)<500 && query("combat_exp", ob)>100000 )
         {
-                command("say 你这点江湖阅历，也想让我为你解毒？");
+                command("say 你這點江湖閱歷，也想讓我為你解毒？");
                 return 1;
         }
 
@@ -292,10 +292,10 @@ int ask_poison()
             || ob->query_condition("zhua_poison")
             ||ob->query_condition("ice_sting"))
         {
-                message_vision("薛慕华轻扣$N脉门，双眉深锁，随后喂$N服下一颗药丸，盘膝坐下，双掌贴着$N的背心，开始为$N解毒。\n", ob);
+                message_vision("薛慕華輕釦$N脈門，雙眉深鎖，隨後喂$N服下一顆藥丸，盤膝坐下，雙掌貼著$N的背心，開始為$N解毒。\n", ob);
                 if( query("combat_exp", ob)>100000 )
                 {
-                        if( query("family/family_name", ob) != "逍遥派" )
+                        if( query("family/family_name", ob) != "逍遙派" )
                                 addn("score", -300, ob);
                         else addn("score", -200, ob);
                 }
@@ -310,7 +310,7 @@ int ask_poison()
         else
         {
                 command("?"+query("id", ob));
-                command("say 看来我帮不了你什么忙了！");
+                command("say 看來我幫不了你什麼忙了！");
                 return 1;
         }
 
@@ -350,7 +350,7 @@ int recover_III(object ob)
                 ob->clear_condition("zhua_poison",0);
         if (ob->query_condition("ice_sting"))
                 ob->clear_condition("ice_sting", 0);
-        message_vision("大约一柱香过后，$N吐出一口紫血，薛慕华慢慢地站了起来。\n",ob);
-        command("say 你体内毒素已清,可以走啦。");
+        message_vision("大約一柱香過後，$N吐出一口紫血，薛慕華慢慢地站了起來。\n",ob);
+        command("say 你體內毒素已清,可以走啦。");
         return 1;
 }

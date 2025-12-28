@@ -4,8 +4,8 @@ inherit NPC;
 
 void create()
 {
-        set_name("陈继盛", ({ "chen jisheng", "chen" }));
-        set("title", "知府师爷");
+        set_name("陳繼盛", ({ "chen jisheng", "chen" }));
+        set("title", "知府師爺");
         set("gender", "男性");
         set("age", 60);
         set("combat_exp", 40000);

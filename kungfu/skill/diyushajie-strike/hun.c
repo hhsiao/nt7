@@ -1,4 +1,4 @@
-// hun.c 群魔乱舞
+// hun.c 群魔亂舞
 
 #include <ansi.h>
 
@@ -17,23 +17,23 @@ int perform(object me, object target)
         skill = me->query_skill("diyushajie-strike", 1);
 
         if (! me->is_fighting(target))
-                return notify_fail("群魔乱舞只能对战斗中的对手使用。\n");
+                return notify_fail("群魔亂舞只能對戰鬥中的對手使用。\n");
 
         if(me->query_skill_mapped("strike") != "diyushajie-strike") 
-                return notify_fail("你没有用地狱杀劫掌法，无法使用「群魔乱舞」绝招！\n");
+                return notify_fail("你沒有用地獄殺劫掌法，無法使用「群魔亂舞」絕招！\n");
 
         if (me->query_skill_prepared("strike") != "diyushajie-strike")
-                return notify_fail("你没有准备使用地狱杀劫掌法，无法施展「群魔乱舞」绝招。\n");
+                return notify_fail("你沒有準備使用地獄殺劫掌法，無法施展「群魔亂舞」絕招。\n");
 
         if (skill < 100)
-                return notify_fail("你的地狱杀劫掌法等级不够，练好了再来！\n");
+                return notify_fail("你的地獄殺劫掌法等級不夠，練好了再來！\n");
 
         if( objectp(weapon=query_temp("weapon", me)) || 
             objectp(weapon=query_temp("handing", me)) )
-                return notify_fail("你必须空着双手才能使用掌法绝招。\n");
+                return notify_fail("你必須空著雙手才能使用掌法絕招。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
         
         ap = me->query_skill("strike") + me->query_skill("force");
         ap+=query("jiali", me);
@@ -44,10 +44,10 @@ int perform(object me, object target)
         dp = target->query_skill("parry",1) + target->query_skill("dodge",1);
         dp = dp*3/2;
 
-        msg = HIG "$N" HIG "双手合结“" HIY "十八层地狱轮回印" HIG "”，"
-              "脚踏阴阳八卦阵,方圆十里群魔乱舞。\n" HIG "阵阵奇异的声音，犹如鬼吟，"
+        msg = HIG "$N" HIG "雙手合結“" HIY "十八層地獄輪迴印" HIG "”，"
+              "腳踏陰陽八卦陣,方圓十里群魔亂舞。\n" HIG "陣陣奇異的聲音，猶如鬼吟，"
               "令$n" HIG "心神不定，神情恍惚。\n"
-              "突然间一圈圈碧芒围向$n" HIG "，震得$n" HIR "吐血" HIG "连连！\n" NOR;
+              "突然間一圈圈碧芒圍向$n" HIG "，震得$n" HIR "吐血" HIG "連連！\n" NOR;
 
         message_combatd(msg, me, target);
 
@@ -60,12 +60,12 @@ int perform(object me, object target)
                 COMBAT_D->do_attack(me, target, 0, 0);
         }
 
-        msg = HIG "\n$n" HIG "尚未回过心神，结果发现被“" HIY "十八层地狱轮回杀劫" HIG "”的强大魔气冲入体内，登感呼吸不畅。\n"
-              "乘此良机，$N" HIG "十八股极大的力道如同排山倒海一般奔向$n" HIG "，周遭狂风大作，飞砂走石！\n\n" NOR;
+        msg = HIG "\n$n" HIG "尚未回過心神，結果發現被“" HIY "十八層地獄輪迴殺劫" HIG "”的強大魔氣衝入體內，登感呼吸不暢。\n"
+              "乘此良機，$N" HIG "十八股極大的力道如同排山倒海一般奔向$n" HIG "，周遭狂風大作，飛砂走石！\n\n" NOR;
 
         if (ap / 2 + random(ap) > dp || !living(target))
         {
-                msg += HIM "$n" HIM "再也抵挡不住，身子被高高抛起，口中" HIR "鲜血" HIM "狂喷，生死不明。\n" NOR;
+                msg += HIM "$n" HIM "再也抵擋不住，身子被高高拋起，口中" HIR "鮮血" HIM "狂噴，生死不明。\n" NOR;
                 target->receive_damage("qi", damage, me);
                 target->receive_wound("qi", damage/2, me);
                 str=COMBAT_D->status_msg(query("qi", target)*100/query("max_qi", target));
@@ -73,7 +73,7 @@ int perform(object me, object target)
                 target->start_busy(1);
         } else
         {
-                msg += HIM "$n" HIM "拼力纵身后跃，险险避过此致命一击，心有余悸。\n" NOR;
+                msg += HIM "$n" HIM "拼力縱身後躍，險險避過此致命一擊，心有餘悸。\n" NOR;
         }
 
         me->start_busy(2 + random(2));

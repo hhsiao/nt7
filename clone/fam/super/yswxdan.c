@@ -7,10 +7,10 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {  
-        	set("long", HIY "使用（changewx 五行）元神五行丹后可指定更换元神五行属性一次。\n" + HIC
-        			"拥有者：拥有者ID\n" NOR);
-                set("unit", "颗");
-                set("owner", "拥有者ID"); // 绑定拥有者
+        	set("long", HIY "使用（changewx 五行）元神五行丹後可指定更換元神五行屬性一次。\n" + HIC
+        			"擁有者：擁有者ID\n" NOR);
+                set("unit", "顆");
+                set("owner", "擁有者ID"); // 綁定擁有者
 	        set("no_drop", 1);set("no_give", 1);set("no_store", 1);set("no_sell", 1);
         }
         setup();
@@ -41,27 +41,27 @@ int do_use(string arg)
 
 	if (arg != "金" && arg != "木" && arg != "水" &&
 	    arg != "土" && arg !="火")
-	    	return notify_fail("五行输入错误，范围：金木水火土！\n");
+	    	return notify_fail("五行輸入錯誤，範圍：金木水火土！\n");
 
 	wuxing = arg;
 	
 	arg = "yuanshenwuxingdan";
 
 	if (me->query("yuanshen/wuxing") == wx[wuxing])
-		return notify_fail("你五行已经是" + wuxing + "属性了！\n");
+		return notify_fail("你五行已經是" + wuxing + "屬性了！\n");
 
 	if (! objectp(ob = present(arg, me)))
-		return notify_fail("你身上没有这个东西！\n");
+		return notify_fail("你身上沒有這個東西！\n");
 
 
 	if (ob->query("owner") != me->query("id"))
-		return notify_fail(ob->name() + NOR "已经于其他玩家绑定！\n");
+		return notify_fail(ob->name() + NOR "已經於其他玩家綁定！\n");
 	
 
-	tell_object(me, HIG "恭喜！你服下" + ob->name() + HIG "后，元神五行变更为：" HIC + wuxing + HIG "！\n");
+	tell_object(me, HIG "恭喜！你服下" + ob->name() + HIG "後，元神五行變更為：" HIC + wuxing + HIG "！\n");
 	
 	log_file("super/"+ filter_color(query("name")) , me->query("id") + " at " + ctime(time()) + " 使用" + ob->name() + 
-	                                                "元神五行变更为：" + wuxing + "！\n");
+	                                                "元神五行變更為：" + wuxing + "！\n");
 
 	me->set("yuanshen/wuxing", wx[wuxing]);
 	me->set("yuanshen/last_change_wuxing", time());

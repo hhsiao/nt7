@@ -6,36 +6,36 @@ string type() { return "martial"; }
 string martialtype() { return "skill"; }
 
 mapping *action = ({
-([        "action" : "$N使出一招"RED"「钻木取火」"NOR"，飞身急转，双掌向前平平拍向$n",
-        "skill_name" : "钻木取火",
+([        "action" : "$N使出一招"RED"「鑽木取火」"NOR"，飛身急轉，雙掌向前平平拍向$n",
+        "skill_name" : "鑽木取火",
         "lvl" : 0
 ]),
-([        "action" : "$N使出一招"HIR"「祝融怀焰」"NOR"，手掌如刀，斜斜劈向$n的$l",
-        "skill_name" : "祝融怀焰",
+([        "action" : "$N使出一招"HIR"「祝融懷焰」"NOR"，手掌如刀，斜斜劈向$n的$l",
+        "skill_name" : "祝融懷焰",
         "lvl" : 10
 ]),
-([        "action" : "$N使出一招"HIR"「风火无边」"NOR"，双掌一拍，一道内力自掌中攻向$n的$l",
-        "skill_name" : "风火无边",
+([        "action" : "$N使出一招"HIR"「風火無邊」"NOR"，雙掌一拍，一道內力自掌中攻向$n的$l",
+        "skill_name" : "風火無邊",
         "lvl" : 20
 ]),
-([        "action" : "$N使出一招"RED"「六道轮回」"NOR"，双手合十，当头劈向$n",
-        "skill_name" : "六道轮回",
+([        "action" : "$N使出一招"RED"「六道輪迴」"NOR"，雙手合十，當頭劈向$n",
+        "skill_name" : "六道輪迴",
         "lvl" : 30
 ]),
-([        "action" : "$N使出一招"HIR"「双龙吐焰」"NOR"，双掌一错，两道内力交叉攻向$n的$l",
-        "skill_name" : "双龙吐焰",
+([        "action" : "$N使出一招"HIR"「雙龍吐焰」"NOR"，雙掌一錯，兩道內力交叉攻向$n的$l",
+        "skill_name" : "雙龍吐焰",
         "lvl" : 40
 ]),
-([        "action" : "$N使出一招"HIB"「刀山火海」"NOR"，双掌向下斜拍，顿时万千道内力从四面八方攻向$n",
+([        "action" : "$N使出一招"HIB"「刀山火海」"NOR"，雙掌向下斜拍，頓時萬千道內力從四面八方攻向$n",
         "skill_name" : "刀山火海",
         "lvl" : 60
 ]),
-([        "action" : "$N使出一招"RED"「白佛光度」"NOR"，左臂回收，右掌引内力直刺$n的$l",
+([        "action" : "$N使出一招"RED"「白佛光度」"NOR"，左臂回收，右掌引內力直刺$n的$l",
         "skill_name" : "白佛光度",
         "lvl" : 80
 ]),
-([        "action" : "$N使出一招"RED"「火内莲花」"NOR"，双掌微并，两臂前伸，一道内劲如排山倒海般攻向$n",
-        "skill_name" : "火内莲花",
+([        "action" : "$N使出一招"RED"「火內蓮花」"NOR"，雙掌微並，兩臂前伸，一道內勁如排山倒海般攻向$n",
+        "skill_name" : "火內蓮花",
         "lvl" : 100
 ]),
 });
@@ -50,16 +50,16 @@ int valid_combine(string combo)
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练火焰刀必须空手。\n");
+                return notify_fail("練火焰刀必須空手。\n");
 
         if( query("max_neili", me)<1200 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if ((int)me->query_skill("force") < 150)
-                return notify_fail("你的内功火候太浅。\n");
+                return notify_fail("你的內功火候太淺。\n");
 
         if (me->query_skill("strike", 1) < me->query_skill("huoyan-dao", 1))
-                return notify_fail("你的基本掌法火候有限，无法领会更高深的火焰刀法。\n");
+                return notify_fail("你的基本掌法火候有限，無法領會更高深的火焰刀法。\n");
 
         return 1;
 }
@@ -68,11 +68,11 @@ int practice_skill(object me)
         object weapon;
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练火焰刀必须空手。\n");
+                return notify_fail("練火焰刀必須空手。\n");
         if( query("qi", me)<60 )
-                return notify_fail("你的体力不够，练不了火焰刀。\n");
+                return notify_fail("你的體力不夠，練不了火焰刀。\n");
         if( query("neili", me)<40 )
-                return notify_fail("你的内力不够，练不了火焰刀。\n");
+                return notify_fail("你的內力不夠，練不了火焰刀。\n");
         me->receive_damage("qi", 55);
         addn("neili", -35, me);
         return 1;
@@ -99,16 +99,16 @@ mapping query_action(object me, object weapon)
         for(i = ttl; i > 0; i--)
                 if(lvl > action[i-1]["lvl"])
                 {
-                        seq = i; /* 获得招数序号上限 */
+                        seq = i; /* 獲得招數序號上限 */
                         break;
                 }
-        seq = random(seq);       /* 选择出手招数序号 */
+        seq = random(seq);       /* 選擇出手招數序號 */
         return ([
                 "action"      : action[seq]["action"],
                 "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
                 "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
                 "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
-                "damage_type" : "割伤",
+                "damage_type" : "割傷",
         ]);
 }
 int learn_bonus() { return 0; }
@@ -120,8 +120,8 @@ void skill_improved(object me)
         int skill = me->query_skill("huoyan-dao", 1);
         if( skill == 200 && !query("sl_gift/huoyandao", me) )
         {
-                tell_object(me, HIW"\n忽然，你感道体内内息越转越快，瞬时间功力已经上升到了一个新的境界！\n"
-                                "你的内力增加了！\n你的根骨增加了！\n" NOR);
+                tell_object(me, HIW"\n忽然，你感道體內內息越轉越快，瞬時間功力已經上升到了一個新的境界！\n"
+                                "你的內力增加了！\n你的根骨增加了！\n" NOR);
                 addn("max_neili", skill+random(skill), me);
                 addn("con", 1, me);
                 set("sl_gift/huoyandao", 1, me);
@@ -148,11 +148,11 @@ mixed hit_ob(object me, object victim, int damage_bonus)
                 switch(random(3))
                 {
                 case 0:
-                        msg = HIR"$n的经脉被一丝丝狂燥的火劲给侵入，全身痛苦无比！\n"NOR;
+                        msg = HIR"$n的經脈被一絲絲狂燥的火勁給侵入，全身痛苦無比！\n"NOR;
                 case 1:
-                        msg = HIR"只听见“碰”的一声，$n身上的火劲爆发了！\n"NOR;
+                        msg = HIR"只聽見“碰”的一聲，$n身上的火勁爆發了！\n"NOR;
                 case 2:
-                        msg = HIR"$n只闻到一阵阵烧焦的味道，完全不知道自己已经被烧地体无完肤了！\n"NOR;
+                        msg = HIR"$n只聞到一陣陣燒焦的味道，完全不知道自己已經被燒地體無完膚了！\n"NOR;
                 }
                 result += ([ "msg" : msg ]);
                 return result;
@@ -176,7 +176,7 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
         if (ap / 2 + random(ap) < dp)
         {
                 result = ([ "damage" : -damage / 2 ]);
-                result += ([ "msg" : HIR "$n展开火焰刀法，封住了一些$N的攻击！\n" NOR ]);
+                result += ([ "msg" : HIR "$n展開火焰刀法，封住了一些$N的攻擊！\n" NOR ]);
                 return result;
        }
 }
@@ -186,13 +186,13 @@ int help(object me)
         write(HIR"\n火焰刀："NOR"\n");
         write(@HELP
 
-    火焰刀为雪山大轮寺住持鸠摩智的独门绝技。
-    原为少林七十二绝技之一，后鸠摩智得慕容博相助，得窥少林
-绝艺，并辅以小无相功，另创新招。
+    火焰刀為雪山大輪寺住持鳩摩智的獨門絕技。
+    原為少林七十二絕技之一，後鳩摩智得慕容博相助，得窺少林
+絕藝，並輔以小無相功，另創新招。
 
-        学习要求：
-                小无相功60级
-                内力800
+        學習要求：
+                小無相功60級
+                內力800
 HELP
         );
         return 1;

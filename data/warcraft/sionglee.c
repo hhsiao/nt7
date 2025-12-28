@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[30m[1;33m玄兽[2;37;0m[2;37;0m", ({"horse"}));        
+        set_name("[30m[1;33m玄獸[2;37;0m[2;37;0m", ({"horse"}));        
         set("gender", "男性");                
-        set("long", "张牙舞爪的过山猛虎[2;37;0m
-它是江河的魔幻兽。
+        set("long", "張牙舞爪的過山猛虎[2;37;0m
+它是江河的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

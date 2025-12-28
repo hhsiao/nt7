@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[5m[1;31m最[1;32m贱[2;37;0m[2;37;0m", ({"tooly"}));        
+        set_name("[5m[1;31m最[1;32m賤[2;37;0m[2;37;0m", ({"tooly"}));        
         set("gender", "男性");                
-        set("long", "最贱[2;37;0m
-它是看看的魔幻兽。
+        set("long", "最賤[2;37;0m
+它是看看的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

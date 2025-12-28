@@ -2,15 +2,15 @@
 inherit TASK;  
 void create()   
 { 
-    set_name(HIW"太极剑经"NOR, ({ "tjjj" }) );   
+    set_name(HIW"太極劍經"NOR, ({ "tjjj" }) );   
     set_weight(1);  
          if( clonep() ) 
             destruct(this_object());   
     else { 
         set("unit", "本");  
         set("material", "book"); 
-        set("long", "张三丰自创武功太极剑的心法。\n");   
+        set("long", "張三丰自創武功太極劍的心法。\n");   
      } 
-     set("owner", "张三丰"); 
+     set("owner", "張三丰"); 
         setup();  
 }

@@ -14,12 +14,12 @@ int perform(object me, string skill)
         mapping my;
 
         if (me->query_condition("pk"))
-                return notify_fail("你正处于 PK 惩罚阶段，无法使用该特技。\n");
+                return notify_fail("你正處於 PK 懲罰階段，無法使用該特技。\n");
 
         if (time() - me->query("special2/yuan") < 86400 / 2)
-                return notify_fail("破元大法12小时只能施展一次！\n");
+                return notify_fail("破元大法12小時只能施展一次！\n");
 
-        message_vision(HIC "$N" HIC "施展出破元大法，真气突破奇经八脉，恢复所有状态！\n" NOR, me);
+        message_vision(HIC "$N" HIC "施展出破元大法，真氣突破奇經八脈，恢復所有狀態！\n" NOR, me);
        
         me->set("special2/yuan", time());
         

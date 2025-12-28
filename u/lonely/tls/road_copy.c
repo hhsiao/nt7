@@ -4,18 +4,18 @@
 #include <room.h>
 
 inherit ROOM;
-#define QUESTDIR2 "quest/天龙八部/天龙营救篇/"
+#define QUESTDIR2 "quest/天龍八部/天龍營救篇/"
 
 void create()
 {
 	set("short", HIW"白石路"NOR);
 	set("long", @LONG
-走进大门，只见红砖围墙，白石铺路，从这里一直通往天王殿，抬头
-望去，寺中亭台楼阁规模宏大，构筑精丽，宅地连云，其气势之盛更胜于
-五台，普陀等诸处佛门胜地的名山大寺。路旁立满了无量功德碑，两边各
-有一小院，院中满种着松竹。
+走進大門，只見紅磚圍牆，白石鋪路，從這裡一直通往天王殿，抬頭
+望去，寺中亭臺樓閣規模宏大，構築精麗，宅地連雲，其氣勢之盛更勝於
+五臺，普陀等諸處佛門勝地的名山大寺。路旁立滿了無量功德碑，兩邊各
+有一小院，院中滿種著松竹。
 LONG);
-	set("outdoors", "天龙寺");
+	set("outdoors", "天龍寺");
   set("quest",1);
 	set("exits", ([             
 		"northup" : __DIR__"twd",
@@ -40,8 +40,8 @@ void init()
      &&!this_object()->query("busy_id"))
   {
      me->start_busy(1);
-     message_vision(HIR"\n本来就人丁稀少的天龙寺今日更显得无比萧杀。$N脸上露出担心的神色。\n",me);
-     tell_object(me,HIB"你料想这场战斗定是非同小可，而这白石路，更是通往内堂的必经之路。\n"NOR); 
+     message_vision(HIR"\n本來就人丁稀少的天龍寺今日更顯得無比蕭殺。$N臉上露出擔心的神色。\n",me);
+     tell_object(me,HIB"你料想這場戰鬥定是非同小可，而這白石路，更是通往內堂的必經之路。\n"NOR); 
      this_object()->set("busy_id",me->query("id"));
      remove_call_out("killme");
      call_out("killme", 20, me);   
@@ -53,26 +53,26 @@ void killme(object me)
   if(!me) return;
   if(!present(me,this_object())) 
   {
-    tell_object(me,HIG"你竟然不在白石路，也算你临阵逃脱，逃过一劫。只是你的江湖名望大幅下降。\n"NOR); 
-    me->delete_temp("quest/天龙八部");
-	me->delete_temp("quest/busy");//任务冲突标志取消 
+    tell_object(me,HIG"你竟然不在白石路，也算你臨陣逃脫，逃過一劫。只是你的江湖名望大幅下降。\n"NOR); 
+    me->delete_temp("quest/天龍八部");
+	me->delete_temp("quest/busy");//任務衝突標誌取消 
     me->delete(QUESTDIR2+"start");
     me->add("mana",-random(300)-200);
     if(me->query("mana")<0) me->set("mana",0);
     this_object()->delete("busy_id");
-	log_file("quest/TLBB", sprintf("%s(%s)没有一直呆在白石路，失败。\n", me->name(1),me->query("id")) );
+	log_file("quest/TLBB", sprintf("%s(%s)沒有一直呆在白石路，失敗。\n", me->name(1),me->query("id")) );
   	return;
   }
   if(me->query_condition("killer"))
   {
-    tell_object(me,HIG"这段时间内，你竟然不专心看守白石路，本因不再放心你了，另外你的江湖名望大幅下降。\n"NOR); 
-    me->delete_temp("quest/天龙八部");
+    tell_object(me,HIG"這段時間內，你竟然不專心看守白石路，本因不再放心你了，另外你的江湖名望大幅下降。\n"NOR); 
+    me->delete_temp("quest/天龍八部");
     me->delete(QUESTDIR2+"start");
-	me->delete_temp("quest/busy");//任务冲突标志取消 
+	me->delete_temp("quest/busy");//任務衝突標誌取消 
     me->add("mana",-random(300)-200);
     if(me->query("mana")<0) me->set("mana",0);
     this_object()->delete("busy_id");
-	log_file("quest/TLBB", sprintf("%s(%s)quest期间变成tjf，失败。\n", me->name(1),me->query("id")) );
+	log_file("quest/TLBB", sprintf("%s(%s)quest期間變成tjf，失敗。\n", me->name(1),me->query("id")) );
   	return;
   }
      obj=new(__DIR__"npc/dlsdizi");
@@ -91,7 +91,7 @@ void killme(object me)
      obj->move(environment(me)); 
      obj->set_leader(me);
 
-     //玩家之间避免冲突
+     //玩家之間避免衝突
      remove_call_out("busy");
      call_out("busy", 1); 
 	 return;
@@ -110,14 +110,14 @@ int valid_leave(object me, string dir)
      &&me->query_temp(QUESTDIR2+"jiumozhi")
      &&!me->query_temp(QUESTDIR2+"kill_dizi")
      &&!me->query(QUESTDIR2+"over"))
-		return notify_fail(RED"不要乱跑，还是专心点救援天龙寺。\n"NOR);
+		return notify_fail(RED"不要亂跑，還是專心點救援天龍寺。\n"NOR);
 		
-  if(me->is_fighting()) return notify_fail(RED"不要乱跑，还是专心点救援天龙寺。\n"NOR);	
+  if(me->is_fighting()) return notify_fail(RED"不要亂跑，還是專心點救援天龍寺。\n"NOR);	
   
-	if ( me->query("family/family_name") != "天龙寺" 
+	if ( me->query("family/family_name") != "天龍寺" 
 	 && dir != "out" 
 	 && me->query("shen") < 0
 	 && objectp(present("wu seng", environment(me))))
-		return notify_fail("武僧拦住你，说道：天龙寺内不得随意进出。\n");
+		return notify_fail("武僧攔住你，說道：天龍寺內不得隨意進出。\n");
 	return ::valid_leave(me, dir);
 }

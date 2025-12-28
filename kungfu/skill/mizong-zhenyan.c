@@ -9,7 +9,7 @@ int valid_learn(object me)
 {        
 
         if( query("family/family_name", me) != family_name() )
-                return notify_fail("密宗真言只能大轮寺弟子方可研习。\n");
+                return notify_fail("密宗真言只能大輪寺弟子方可研習。\n");
 
         return 1;
 }

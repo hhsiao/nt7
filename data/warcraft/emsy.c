@@ -7,7 +7,7 @@ void setup()
         set_name("麒麟[2;37;0m[2;37;0m", ({"qlin"}));        
         set("gender", "女性");                
         set("long", "麒麟[2;37;0m
-它是大咪咪的魔幻兽。
+它是大咪咪的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

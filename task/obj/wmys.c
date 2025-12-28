@@ -2,14 +2,14 @@
 inherit TASK;
 void create()
 {
-    set_name(WHT"武穆遗书" NOR, ({ "yue-script" }));
+    set_name(WHT"武穆遺書" NOR, ({ "yue-script" }));
         set_weight(20);
         if( clonep() )
                 destruct(this_object());
         else {
                 set("unit", "本");
                 set("long",
-            "这是一本传自岳武穆的兵法手册，内文均是行军打仗、布阵用兵的精义要诀。\n");
+            "這是一本傳自嶽武穆的兵法手冊，內文均是行軍打仗、佈陣用兵的精義要訣。\n");
                 set("material", "paper");
                 set("skill", ([
                         "name":         "strategy",             
@@ -19,6 +19,6 @@ void create()
                         "max_skill":    80              
                         ]) );
                 }
-        set("owner", "赵敏");
+        set("owner", "趙敏");
         setup();
 }

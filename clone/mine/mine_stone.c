@@ -4,7 +4,7 @@
 
 inherit ITEM;
 
-protected string mine_class, ucheck_long, unit = "两";
+protected string mine_class, ucheck_long, unit = "兩";
 protected int eff_weight, check_flag;
 
 int no_save_in_home() { return 1; }
@@ -26,7 +26,7 @@ varargs int set_check_flag(int flag)
         }
 
         if(mine_class == BLACK_IRON)
-                unit = "钱";
+                unit = "錢";
 
         return check_flag = 1;
 }
@@ -36,23 +36,23 @@ void create()
         switch (random(3))
         {
                 case 0:
-                        set_name("小矿石", ({ "ore" }) );
-                        ucheck_long = "一小块矿石。\n";
+                        set_name("小礦石", ({ "ore" }) );
+                        ucheck_long = "一小塊礦石。\n";
                         set_weight(10000);
                         break;
                 case 1:
-                        set_name("矿石", ({ "ore" }) );
-                        ucheck_long = "一块矿石。\n";
+                        set_name("礦石", ({ "ore" }) );
+                        ucheck_long = "一塊礦石。\n";
                         set_weight(15000);
                         break;
                 case 2:
-                        set_name("大矿石", ({ "ore" }) );
-                        ucheck_long = "一大块矿石。\n";
+                        set_name("大礦石", ({ "ore" }) );
+                        ucheck_long = "一大塊礦石。\n";
                         set_weight(20000);
                         break;
         }
 
-        set("unit", "块");
+        set("unit", "塊");
         set("material", "stone");
         set("long", evaluate((: query_long :), this_object()));
         setup();
@@ -68,9 +68,9 @@ string query_long()
         if(!mine_class
         || (eff_weight < 1)
         || !(cm = MINE_D->chinese_mine_class(mine_class)))
-                return "这块石头里不含任何矿物成分。\n";
+                return "這塊石頭裡不含任何礦物成分。\n";
 
-        return sprintf("这是一块含有%s的矿石，\n大约含有 %d %s%s。\n",
+        return sprintf("這是一塊含有%s的礦石，\n大約含有 %d %s%s。\n",
                 cm, eff_weight, unit, cm);
 }
 

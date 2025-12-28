@@ -1,4 +1,4 @@
-// ultra.h 宗师评价玩家的公共代码
+// ultra.h 宗師評價玩家的公共代碼
 
 int calc_level(object me, string skill);
 void check_ultra(object me);
@@ -7,14 +7,14 @@ void check_ultra(object me);
 // level is calculate as:
 // level = (skill effect level) + (action["force"] - 200) / 5
 mapping opinions_rank = ([
-        520 : "宗师",
-        490 : "登峰造极",
-        460 : "超凡脱俗",
+        520 : "宗師",
+        490 : "登峰造極",
+        460 : "超凡脫俗",
         430 : "臻至化境",
-        400 : "炉火纯青",
+        400 : "爐火純青",
         360 : "已有大成",
-        320 : "非同凡响",
-        280 : "出类拔萃",
+        320 : "非同凡響",
+        280 : "出類拔萃",
         240 : "身手不凡",
         200 : "已有小成",
 ]);
@@ -37,21 +37,21 @@ void check_opinion(object me)
                 return;
         }
 
-        // rank: 原有的评价称号
-        // ks:   不同评价需要的等级按照升序排列
-        // lvl:  原有评价所在的等级
-        // next_lvl: 在原有的评价下下一等级需要的lvl
-        // opinion : 此次的评价等级，如果为-1就没有变化
+        // rank: 原有的評價稱號
+        // ks:   不同評價需要的等級按照升序排列
+        // lvl:  原有評價所在的等級
+        // next_lvl: 在原有的評價下下一等級需要的lvl
+        // opinion : 此次的評價等級，如果為-1就沒有變化
         rank=query("opinion/"MY_OPINION, me);
         ks  = sort_array(keys(opinions_rank), 1);
         if (! stringp(rank))
         {
-                // 以前没有评价，设置最小评价需要的等级
+                // 以前沒有評價，設置最小評價需要的等級
                 next_lvl = ks[0];
         } else
         {
-                // 以前有评价，看这一次如果提升的话需要
-                // 到多少级
+                // 以前有評價，看這一次如果提升的話需要
+                // 到多少級
                 for (i = 0; i < sizeof(ks) - 1; i++)
                         if (opinions_rank[ks[i]] == rank)
                         {
@@ -60,7 +60,7 @@ void check_opinion(object me)
                         }
                 if (i >= sizeof(ks))
                 {
-                        // 无法找到原先的等级，设置最小评价
+                        // 無法找到原先的等級，設置最小評價
                         next_lvl = ks[0];
                 }
         }
@@ -69,7 +69,7 @@ void check_opinion(object me)
         {
                 lvl = calc_level(me, my_opinions[i]);
                 if (lvl >= next_lvl && lvl > opinion)
-                        // 记录：第i项武学有更好的评价
+                        // 記錄：第i項武學有更好的評價
                         opinion = lvl;
         }
 
@@ -77,16 +77,16 @@ void check_opinion(object me)
         {
                 if (next_lvl == ks[0])
                 {
-                        message_vision(CYN "\n$N" CYN "淡淡一笑，对$n"
+                        message_vision(CYN "\n$N" CYN "淡淡一笑，對$n"
                                        CYN "道：“你的" OPINION_TYPE
                                        + NOR + CYN "不行啊！好好努力"
                                        "吧！”\n" NOR, this_object(),
                                        me);
                         return;
                 }
-                message_vision(CYN "\n$N" CYN "对$n" CYN "摇摇头道："
-                               "“不怎么样，我发现你的" OPINION_TYPE
-                               + NOR + CYN "比上次没什么太大的进步。"
+                message_vision(CYN "\n$N" CYN "對$n" CYN "搖搖頭道："
+                               "“不怎麼樣，我發現你的" OPINION_TYPE
+                               + NOR + CYN "比上次沒什麼太大的進步。"
                                "”\n" NOR, this_object(), me);
                 return;
         }
@@ -97,20 +97,20 @@ void check_opinion(object me)
         set("opinion/"MY_OPINION, opinions_rank[ks[i]], me);
         if (i == sizeof(ks) -1)
         {
-                // 到了终极
-                message_vision(CYN "\n$N" CYN "对$n" CYN "笑道：“恭"
+                // 到了終極
+                message_vision(CYN "\n$N" CYN "對$n" CYN "笑道：“恭"
                                "喜！" + RANK_D->query_respect(me) +
                                "的" OPINION_TYPE + NOR + CYN "已然到"
-                               "了宗师境界！武道无穷，阁下自重！”\n"
+                               "了宗師境界！武道無窮，閣下自重！”\n"
                                NOR, this_object(), me);
                 set("opinions/master", 1, me);
                 check_ultra(me);
                 return;
         }
 
-        message_vision(CYN "\n$N" CYN "沉思片刻，对$n" CYN "道：“就"
-                       "目前来看，你的" OPINION_TYPE + NOR + CYN "已"
-                       "经可以算得上是" + opinions_rank[ks[i]] + NOR
+        message_vision(CYN "\n$N" CYN "沉思片刻，對$n" CYN "道：“就"
+                       "目前來看，你的" OPINION_TYPE + NOR + CYN "已"
+                       "經可以算得上是" + opinions_rank[ks[i]] + NOR
                        + CYN "了。”\n" NOR, this_object(), me);
 }
 
@@ -118,18 +118,18 @@ void check_ultra(object me)
 {
         object *ultra;
 
-        if( query("opinion/unarmed", me) != "宗师" || 
-            query("opinion/weapon", me) != "宗师" || 
-            query("opinion/force", me) != "宗师" || 
-            query("opinion/dodge", me) != "宗师" )
+        if( query("opinion/unarmed", me) != "宗師" || 
+            query("opinion/weapon", me) != "宗師" || 
+            query("opinion/force", me) != "宗師" || 
+            query("opinion/dodge", me) != "宗師" )
                 return;
 
         set("opinion/ultra", 1, me);
         ultra = NPC_D->query_ultra_master();
         ultra -= ({ this_object() });
-        command("chat真是长江后浪推前浪，想不到今日又有"+query("name", me)+
-                "跻身武林大宗师的行列！");
+        command("chat真是長江後浪推前浪，想不到今日又有"+query("name", me)+
+                "躋身武林大宗師的行列！");
         ultra->do_congration(me);
         CHANNEL_D->do_channel(find_object(MASTER_OB), "rumor",
-                              "听说"+query("name", me)+"成为武学大宗师。");
+                              "聽說"+query("name", me)+"成為武學大宗師。");
 }

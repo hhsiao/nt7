@@ -71,7 +71,7 @@ string time_period(int time)
         str = "";
 
     if (h)
-        str += chinese_number(h) + "小时";
+        str += chinese_number(h) + "小時";
     if (m)
         str += chinese_number(m) + "分";
     str += chinese_number(s) + "秒";

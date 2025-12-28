@@ -2,105 +2,105 @@
 inherit SKILL;
 
 mapping *action = ({
-([        "action" : "$N一招「赤色落阳」，掌力化成弧形，罩向$n的$l",
+([        "action" : "$N一招「赤色落陽」，掌力化成弧形，罩向$n的$l",
         "force" : 60,
         "attack": 2,
         "parry" : 1,
         "damage": 2,
         "lvl"   : 0,
-        "skill_name" : "赤色落阳",
-        "damage_type" : "瘀伤"
+        "skill_name" : "赤色落陽",
+        "damage_type" : "瘀傷"
 ]),
-([        "action" : "$N一招「七彩流金」，身体高高跃起，扑向$n的$l就"
-                   "是一记重掌",
+([        "action" : "$N一招「七彩流金」，身體高高躍起，撲向$n的$l就"
+                   "是一記重掌",
         "force" : 80,
         "attack": 8,
         "parry" : 3,
         "damage": 4,
         "lvl"   : 20,
         "skill_name" : "七彩流金",
-        "damage_type" : "内伤"
+        "damage_type" : "內傷"
 ]),
-([        "action" : "$N一招「赤蝶迎晚霞」，忽然袖中双掌咋现，分别从"
-                   "左右两边齐齐攻向$n",
+([        "action" : "$N一招「赤蝶迎晚霞」，忽然袖中雙掌咋現，分別從"
+                   "左右兩邊齊齊攻向$n",
         "force" : 100,
         "attack": 12,
         "dodge" : 43,
         "damage": 6,
         "lvl"   : 30,
         "skill_name" : "赤蝶迎晚霞",
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
 
-([        "action" : "$N一招「群山遮落日」,头缓缓低下，似乎显得没精打"
-                   "采，一记云掌软绵绵的拍向$n",
+([        "action" : "$N一招「群山遮落日」,頭緩緩低下，似乎顯得沒精打"
+                   "採，一記雲掌軟綿綿的拍向$n",
         "force" : 130,
         "attack": 15,
         "dodge" : 55,
         "damage": 8,
         "lvl"   : 40,
         "skill_name" : "群山遮落日",
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
-([        "action" : "$N一招「幽幽谷中叙」，突然纵起丈余，犹如一只在空"
-                   "中盘旋的飞龙，一掌拍向$n",
+([        "action" : "$N一招「幽幽谷中敘」，突然縱起丈餘，猶如一隻在空"
+                   "中盤旋的飛龍，一掌拍向$n",
         "force" : 150,
         "attack": 22,
         "dodge" : 52,
         "damage": 14,
         "lvl"   : 60,
-        "skill_name" : "幽幽谷中叙",
-        "damage_type" : "瘀伤"
+        "skill_name" : "幽幽谷中敘",
+        "damage_type" : "瘀傷"
 ]),
 
-([        "action" : "$N双掌平挥，一招「冥冥道中聚」身如陀螺急转，忽然"
-                   "飞身而起，一掌拍向$n的$l",
+([        "action" : "$N雙掌平揮，一招「冥冥道中聚」身如陀螺急轉，忽然"
+                   "飛身而起，一掌拍向$n的$l",
         "force" : 180,
         "attack": 23,
         "dodge" : 65,
         "damage": 25,
         "lvl"   : 80,
         "skill_name" : "冥冥道中聚",
-        "damage_type" : "瘀伤"
+        "damage_type" : "瘀傷"
 ]),
-([        "action" : "$N一招「高堂明镜」，犹如一只展翅翱翔的大鹏，运掌"
-                   "如风般袭向$n",
+([        "action" : "$N一招「高堂明鏡」，猶如一隻展翅翱翔的大鵬，運掌"
+                   "如風般襲向$n",
         "force" : 210,
         "attack": 20,
         "dodge" : 63,
         "damage": 40,
         "lvl"   : 100,
-        "skill_name" : "高堂明镜",
-        "damage_type" : "内伤"
+        "skill_name" : "高堂明鏡",
+        "damage_type" : "內傷"
 ]),
 
-([        "action" : "$N左掌虚晃，右掌一记「天上人间」猛地插往$n的$l",
+([        "action" : "$N左掌虛晃，右掌一記「天上人間」猛地插往$n的$l",
         "force" : 240,
         "attack": 18,
         "dodge" : 77,
         "damage": 50,
         "lvl"   : 120,
-        "skill_name" : "天上人间",
-        "damage_type" : "瘀伤"
+        "skill_name" : "天上人間",
+        "damage_type" : "瘀傷"
 ]),
-([        "action" : "$N施出「金石为开」，双掌不断反转，忽地并拢，笔直"
-                   "地向$n的$l袭去",
+([        "action" : "$N施出「金石為開」，雙掌不斷反轉，忽地併攏，筆直"
+                   "地向$n的$l襲去",
         "force" : 260,
         "attack": 21,
         "dodge" : 80,
         "damage": 60,
         "lvl"   : 140,
-        "skill_name" : "金石为开",
-        "damage_type" : "瘀伤"
+        "skill_name" : "金石為開",
+        "damage_type" : "瘀傷"
 ]),
-([        "action" : "$N施出「万众归心」，双掌翻腾不息，龙吟般的卷向$n",
+([        "action" : "$N施出「萬眾歸心」，雙掌翻騰不息，龍吟般的卷向$n",
         "force" : 280,
         "attack": 25,
         "dodge" : 81,
         "damage": 80,
         "lvl"   : 160,
-        "skill_name" : "万众归心",
-        "damage_type" : "瘀伤"
+        "skill_name" : "萬眾歸心",
+        "damage_type" : "瘀傷"
 ])
 });
 
@@ -112,19 +112,19 @@ int valid_enable(string usage)
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练赤练神掌必须空手。\n");
+                return notify_fail("練赤練神掌必須空手。\n");
 
         if ((int)me->query_skill("force") < 120)
-                return notify_fail("你的内功火候不够，无法练赤练神掌。\n");
+                return notify_fail("你的內功火候不夠，無法練赤練神掌。\n");
 
         if( query("max_neili", me)<1000 )
-                return notify_fail("你的内力太弱，无法练赤练神掌。\n");
+                return notify_fail("你的內力太弱，無法練赤練神掌。\n");
 
         if ((int)me->query_skill("strike", 1) < 80)
-                return notify_fail("你的基本掌法火候不够，无法练赤练神掌。\n");
+                return notify_fail("你的基本掌法火候不夠，無法練赤練神掌。\n");
 
         if ((int)me->query_skill("strike", 1) < (int)me->query_skill("chilian-shenzhang", 1))
-                return notify_fail("你的基本掌法水平有限，无法领会更高深的赤练神掌。\n");
+                return notify_fail("你的基本掌法水平有限，無法領會更高深的赤練神掌。\n");
 
         return 1;
 }
@@ -141,9 +141,9 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me)
 {
         if( query("qi", me)<70 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
         if( query("neili", me)<60 )
-                return notify_fail("你的内力不够练赤练神掌。\n");
+                return notify_fail("你的內力不夠練赤練神掌。\n");
 
         me->receive_damage("qi", 61);
         addn("neili", -53, me);
@@ -169,9 +169,9 @@ mixed hit_ob(object me, object victim, int damage_bonus)
             victim->affect_by("poison",
                               ([ "level" : flvl + random(flvl),
                                  "id":query("id", me),
-                                 "name"  : "赤练神掌毒",
+                                 "name"  : "赤練神掌毒",
                                  "duration" : lvl / 100 + random(lvl / 10) ])))
         {
-                return HIW "$n" HIW "猛然觉得一阵寒气袭来，身子一晃，头脑微微有些发昏。\n" NOR;
+                return HIW "$n" HIW "猛然覺得一陣寒氣襲來，身子一晃，頭腦微微有些發昏。\n" NOR;
         }
 }

@@ -7,8 +7,8 @@ int main(object me, string arg)
         delete_temp("block_msg/all", me);
         write(CLR);
         delete_temp("boss_screen", me);
-        write("泥潭告诉你：运气如何？被抓住了吗？哈哈！\n");
-//        message("channel:chat",GRN"【警铃】"+me->name(1)+"得意洋洋地打开屏幕，看着老板在门外消失：拜拜了您哪。\n"NOR,users());
+        write("泥潭告訴你：運氣如何？被抓住了嗎？哈哈！\n");
+//        message("channel:chat",GRN"【警鈴】"+me->name(1)+"得意洋洋地打開屏幕，看著老闆在門外消失：拜拜了您哪。\n"NOR,users());
         return 1;
 }
 
@@ -17,9 +17,9 @@ int help(object me)
         write(@HELP
 指令格式: bossgone
 
-    这个指令让你(玩家)在老板走后恢复正常泥潭游戏。
+    這個指令讓你(玩家)在老闆走後恢復正常泥潭遊戲。
 
-有关指令：boss
+有關指令：boss
 HELP
         );
         return 1;

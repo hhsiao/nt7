@@ -5,10 +5,10 @@ inherit NPC;
 void create()
 {
 	int name_no = random(4); 
-	string *name_string = ({"邦","雨","永","刚","清","龙","方","言"});
+	string *name_string = ({"邦","雨","永","剛","清","龍","方","言"});
 
 	set_name("段"+name_string[name_no], ({"nan dizi", "nan", "dizi"}) );
-	set("long", "他大理段氏的家人，从小被送到天龙学艺。\n");
+	set("long", "他大理段氏的家人，從小被送到天龍學藝。\n");
 	set("gender", "男性" );
 	set("age", 26);
 	set("attitude", "peaceful");
@@ -42,9 +42,9 @@ void create()
 	prepare_skill("finger","yiyang-zhi");
 
 	set("shen_type", 1);
-	create_family("天龙寺", 15, "弟子");
+	create_family("天龍寺", 15, "弟子");
 	set("inquiry", ([
-		"name": "在下姓段，名唤" + name_string[name_no] + "，从十六岁起便投在这里学艺。",
+		"name": "在下姓段，名喚" + name_string[name_no] + "，從十六歲起便投在這裡學藝。",
 			]) );
 
 	setup();

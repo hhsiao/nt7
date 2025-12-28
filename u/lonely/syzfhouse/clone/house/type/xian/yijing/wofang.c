@@ -4,10 +4,10 @@ inherit "/inherit/room/house_room";
 
 void create()
 {
-    set("short", "卧房");
+    set("short", "臥房");
     set("long", @LONG
-这是主人的卧室，收拾得井井有条。推开窗户可以看到下面的花园，
-隐隐可嗅到阵阵花香，非常惬意。
+這是主人的臥室，收拾得井井有條。推開窗戶可以看到下面的花園，
+隱隱可嗅到陣陣花香，非常愜意。
 LONG);
 
     set("exits",

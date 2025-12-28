@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("马二[2;37;0m[2;37;0m", ({"tccbb"}));        
+        set_name("馬二[2;37;0m[2;37;0m", ({"tccbb"}));        
         set("gender", "男性");                
-        set("long", "马二[2;37;0m
-它是偷二的魔幻兽。
+        set("long", "馬二[2;37;0m
+它是偷二的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

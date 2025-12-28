@@ -12,10 +12,10 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("unit", "张");
-                set("long", "这是一张巨大的弓，命曰：天神，传说乃上天赐予成吉思汗的宝物，据说此弓百发百中，例无虚发。。\n");
+                set("unit", "張");
+                set("long", "這是一張巨大的弓，命曰：天神，傳說乃上天賜予成吉思汗的寶物，據說此弓百發百中，例無虛發。。\n");
                                 set("value", 80000);
-                set("accuracy", 2000);   // 准确度150%
+                set("accuracy", 2000);   // 準確度150%
         }
         setup();
 }

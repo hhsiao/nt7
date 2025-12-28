@@ -14,36 +14,36 @@ int random2 (int i)
 }
 
 mapping gutous = ([
-        "tc" : "头彩",
-        "sd" : "双对",
+        "tc" : "頭彩",
+        "sd" : "雙對",
         "qx" : "七星",
         "sx" : "散星",
  ]);
 
 void create()
 {
-        set("short", "赌场");
+        set("short", "賭場");
         set("long", @LONG
-大厅里摆满大大小小的赌桌，只要能说出名的赌具，这里都有。
-进来这里你首先听到的就是少女们吃吃的笑声和男人们的吹牛声，掷
-骰子声……在这里，你几乎就可以听到世上所有不规矩的声音。墙上
-挂着一块匾（ｓｉｇｎ）。
+大廳裡擺滿大大小小的賭桌，只要能說出名的賭具，這裡都有。
+進來這裡你首先聽到的就是少女們吃吃的笑聲和男人們的吹牛聲，擲
+骰子聲……在這裡，你幾乎就可以聽到世上所有不規矩的聲音。牆上
+掛著一塊匾（ｓｉｇｎ）。
 LONG );
         set("exits", ([ /* sizeof() == 1 */
                 "south" : "/d/changan/qixiang3",
         ]));
         set("item_desc", ([
                 "sign": @TEXT
-赌骰子方法:
+賭骰子方法:
 bet <kind> <amount> <money>
 
-只收现银，概不赊欠。
+只收現銀，概不賒欠。
 
 kind:
-    头彩 <tc>（骰数由每次开盘前确定）      ：一赢三十六
-    双对 <sd>（两骰号相同，且为偶数）      ：一赢十二
-    七星 <qx>（两骰之和为七）              ：一赢六
-    散星 <sx>（两骰之和为三，五，九，十一）：一赢三
+    頭彩 <tc>（骰數由每次開盤前確定）      ：一贏三十六
+    雙對 <sd>（兩骰號相同，且為偶數）      ：一贏十二
+    七星 <qx>（兩骰之和為七）              ：一贏六
+    散星 <sx>（兩骰之和為三，五，九，十一）：一贏三
 TEXT
         ]));
 
@@ -85,42 +85,42 @@ int do_bet(string arg)
         object zj;
 
         if (! objectp(zj = present("zhuang jia", this_object())))
-                return notify_fail("庄家都没有，你要和谁赌？\n");
+                return notify_fail("莊家都沒有，你要和誰賭？\n");
 
         if (! living(zj))
-                return notify_fail("你还是等庄家醒了再说吧！\n");
+                return notify_fail("你還是等莊家醒了再說吧！\n");
 
         if (! arg || sscanf (arg,"%s %d %s", what, amount, money) != 3)
-                return notify_fail("请使用： bet <押骰种类> <数目> <货币>\n");
+                return notify_fail("請使用： bet <押骰種類> <數目> <貨幣>\n");
 
         if (what != "tc" &&
             what != "sd" &&
             what != "qx" &&
             what != "sx")
-                return notify_fail("你要押哪一种骰？\n");
+                return notify_fail("你要押哪一種骰？\n");
 
         ob = present(money + "_money", me);
         if (! ob)
-                return notify_fail("你身上没有这种钱。\n");
+                return notify_fail("你身上沒有這種錢。\n");
 
         if (amount < 1)
-                return notify_fail("请多押一些钱。\n");
+                return notify_fail("請多押一些錢。\n");
 
         if (amount > ob->query_amount())
-                return notify_fail("你身上的钱不够押。\n");
+                return notify_fail("你身上的錢不夠押。\n");
 
         if (amount > 10)
-                return notify_fail("庄家喊道：怎么零零碎碎的那么多？"
-                                   "换成整票再来下注！\n");
+                return notify_fail("莊家喊道：怎麼零零碎碎的那麼多？"
+                                   "換成整票再來下注！\n");
 
         if( query("base_value", ob)*amount>100000 )
-                return notify_fail("赌注最大十两黄金。\n");
+                return notify_fail("賭注最大十兩黃金。\n");
 
         if( query_temp("gamble_bet/amount", me)>0 )
-                return notify_fail("你已经押过了。\n");
+                return notify_fail("你已經押過了。\n");
 
         if (room_status > 1)
-                return notify_fail("现在正在赌呢，稍等片刻。\n");
+                return notify_fail("現在正在賭呢，稍等片刻。\n");
 
         set_temp("gamble_bet/kind", what, me);
         set_temp("gamble_bet/amount", amount, me);
@@ -149,7 +149,7 @@ int valid_leave(object me, string dir)
         if (dir == "south")
         {
                 if( query_temp("gamble_bet/amount", me)>0 )
-                message_vision ("$N扔下押骰的钱，不要了。\n",me);
+                message_vision ("$N扔下押骰的錢，不要了。\n",me);
                 delete_temp("gamble_bet", me);
         }
         return ::valid_leave(me,dir);
@@ -221,8 +221,8 @@ int rdm()
 void gamble_prepare()
 {
         object room = this_object();
-        tell_room (room,"庄家唱道：新开盘！预叫头彩！\n");
-        tell_room (room,"庄家将两枚玉骰往银盘中一撒。\n");
+        tell_room (room,"莊家唱道：新開盤！預叫頭彩！\n");
+        tell_room (room,"莊家將兩枚玉骰往銀盤中一撒。\n");
         big[0] = rdm();
         big[1] = rdm();
 // keep two numbers different for a probability == 1/36
@@ -233,9 +233,9 @@ void gamble_prepare()
         }
         display_bet(room,big[0]);
         display_bet(room,big[1]);
-        tell_room(room,"庄家叫道：头彩骰号"+chinese_number(big[0])+
+        tell_room(room,"莊家叫道：頭彩骰號"+chinese_number(big[0])+
         chinese_number(big[1])+"！\n");
-        tell_room(room, "接着庄家麻利地顺手将玉骰从盘中收回：现在开盘押钱！\n");
+        tell_room(room, "接著莊家麻利地順手將玉骰從盤中收回：現在開盤押錢！\n");
         room_status = 1;
         call_out("gamble_start",24);
         delete_temp("better");
@@ -244,10 +244,10 @@ void gamble_prepare()
 void gamble_start()
 {
         object room = this_object();
-        tell_room (room,"庄家喊声：封盘停押！\n");
-        tell_room (room,"又补道：本盘头彩骰号是"+chinese_number(big[0])+
+        tell_room (room,"莊家喊聲：封盤停押！\n");
+        tell_room (room,"又補道：本盤頭彩骰號是"+chinese_number(big[0])+
         chinese_number(big[1])+"。\n");
-        tell_room (room,"然后将两枚玉骰扔进两个金盅，一手持一盅摇将起来。\n");
+        tell_room (room,"然後將兩枚玉骰扔進兩個金盅，一手持一盅搖將起來。\n");
         room_status = 2;
         call_out("gamble_perform", 6, 0);
         call_out("gamble_perform", 12, 1);
@@ -256,7 +256,7 @@ void gamble_start()
 void gamble_perform (int i)
 {
         object room = this_object();
-        tell_room(room, " 金盅倒扣在银盘上，玉骰滚了出来。\n");
+        tell_room(room, " 金盅倒扣在銀盤上，玉骰滾了出來。\n");
         res[i] = rdm();
         display_bet (room,res[i]);
 }
@@ -268,7 +268,7 @@ void player_wins(object who, int total)
         int amount=query_temp("gamble_bet/amount", who);
         total = total * amount;
         money->set_amount(total);
-        message_vision(sprintf("$N赢了%s%s%s！\n",
+        message_vision(sprintf("$N贏了%s%s%s！\n",
                        chinese_number(total),
                        query("base_unit", money),
                        query("name", money)),
@@ -281,7 +281,7 @@ void player_loses(object who, int total)
         object money = new("/clone/money/" +
                            query_temp("gamble_bet/money", who));
         total=query_temp("gamble_bet/amount", who);
-        message_vision(sprintf("庄家将$N押在银盘中的%s%s%s收走。\n",
+        message_vision(sprintf("莊家將$N押在銀盤中的%s%s%s收走。\n",
                                chinese_number(total),
                                query("base_unit", money),
                                query("name", money)),
@@ -323,10 +323,10 @@ void gamble_finish()
                 }
         }
         if (total == 0)
-                tell_room(room, "庄家叫道：" + chinese_number(res[0])+
-                                chinese_number(res[1])+"……空盘！\n");
+                tell_room(room, "莊家叫道：" + chinese_number(res[0])+
+                                chinese_number(res[1])+"……空盤！\n");
         else
-                tell_room(room, "庄家叫道："+chinese_number(res[0])+
+                tell_room(room, "莊家叫道："+chinese_number(res[0])+
                                 chinese_number(res[1])+"……" +
                                                gutous [win]+"！\n");
         list = query_temp("better");

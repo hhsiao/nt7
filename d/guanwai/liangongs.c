@@ -1,17 +1,17 @@
-// liangongs.c 练功房
+// liangongs.c 練功房
 
 inherit ROOM;
 
 void create()
 {
-        set("short", "南练功房");
+        set("short", "南練功房");
         set("long", @LONG
-这里是南面的练功房，屋中立着一些练武者常用的木人。
+這裡是南面的練功房，屋中立著一些練武者常用的木人。
 LONG );
         set("exits", ([
                 "north" : __DIR__"liangong",
         ]));
-        set("for_family", "关外胡家");
+        set("for_family", "關外胡家");
         setup();
         replace_program(ROOM);
 }

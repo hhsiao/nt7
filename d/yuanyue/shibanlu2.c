@@ -6,11 +6,11 @@ void create()
 {
         set("short", "碎石小路"); 
         set("long", @LONG
-这条碎石小路东边是一个梨园，西首便是富贵如意厅，路上生满
-了青苔，一不当心就会跌倒，两侧不知名的野花开得倒也茂盛，淡淡
-的散发着一种清新的花香。草窠中偶尔传来一两声蟋蟀的叫声。一抬
-头，可以看见几个或是蜈蚣状，或是老鹰状的风筝高高飞舞在蓝天白
-云中。
+這條碎石小路東邊是一個梨園，西首便是富貴如意廳，路上生滿
+了青苔，一不當心就會跌倒，兩側不知名的野花開得倒也茂盛，淡淡
+的散發著一種清新的花香。草窠中偶爾傳來一兩聲蟋蟀的叫聲。一抬
+頭，可以看見幾個或是蜈蚣狀，或是老鷹狀的風箏高高飛舞在藍天白
+雲中。
 LONG );
         set("outdoors", "wansong");
         set("type","road");
@@ -33,7 +33,7 @@ int valid_leave(object me, string dir)
          {
            if( query("kar", random(this_player()))<2 )
               {
-               message_vision("$N一脚踩在青苔上, 不小心滑了一跤, 四脚朝天地摔在地上起不来。\n\n\n", this_player());
+               message_vision("$N一腳踩在青苔上, 不小心滑了一跤, 四腳朝天地摔在地上起不來。\n\n\n", this_player());
                this_player()->unconcious();
               return 0;
               }

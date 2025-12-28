@@ -76,7 +76,7 @@ void send_rwho_q(string mud, object them, int verbose)
 void create()
 {
         seteuid(ROOT_UID);
-        set("channel_id", "网络精灵");
+        set("channel_id", "網絡精靈");
 }
 
 int visiblep(object obj) { return 1; }

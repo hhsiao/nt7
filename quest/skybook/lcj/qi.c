@@ -15,7 +15,7 @@ void create()
 	set_name("戚芳", ({ "qi fang","qi","fang", "woman" }));        
 	set("gender", "女性");
 	set("age", 21); 
-	set("long", "圆圆的脸蛋，一双大眼黑溜溜的。\n");
+	set("long", "圓圓的臉蛋，一雙大眼黑溜溜的。\n");
 	set("combat_exp", 3000);
 	set("shen_type", 1);
 	set("attitude", "friendly");        
@@ -27,23 +27,23 @@ void create()
 	map_skill("force", "shenzhao-jing");         
  
 	set("inquiry", ([
-		"万圭" : "他是我的夫君啊。",
-		"学习" : (: ask_xuexi4 :),
-		"狄云" : (: ask_diyun:),	
-		"唐诗选辑" : (: ask_tangshi:),	
-		"鞋样" : (: ask_xieyang:),	
+		"萬圭" : "他是我的夫君啊。",
+		"學習" : (: ask_xuexi4 :),
+		"狄雲" : (: ask_diyun:),	
+		"唐詩選輯" : (: ask_tangshi:),	
+		"鞋樣" : (: ask_xieyang:),	
 
-		"连城诀" : "连城决？......我没听说过。",
-		"连城剑法" : "什么连城剑法？我只学过躺尸剑法。",
-		"万震山" : "他是我师伯。",
-		"言达平" : "他是我师伯。",
-		"戚长发" : "他是我爹爹。",
-		"梅念笙" : "铁骨墨萼梅念笙老先生啊。",
-		"落花流水":"你说的可是南四奇！",
-		"花铁干":"“中平枪花铁干”！",
-		"刘乘风":"“柔云剑刘乘风”！",
-		"陆天抒":"“仁义陆大刀”！",
-		"水岱":"“冷月剑水岱”！",
+		"連城訣" : "連城決？......我沒聽說過。",
+		"連城劍法" : "什麼連城劍法？我只學過躺屍劍法。",
+		"萬震山" : "他是我師伯。",
+		"言達平" : "他是我師伯。",
+		"戚長髮" : "他是我爹爹。",
+		"梅念笙" : "鐵骨墨萼梅念笙老先生啊。",
+		"落花流水":"你說的可是南四奇！",
+		"花鐵幹":"“中平槍花鐵幹”！",
+		"劉乘風":"“柔雲劍劉乘風”！",
+		"陸天抒":"“仁義陸大刀”！",
+		"水岱":"“冷月劍水岱”！",
 	]));
 
 	setup();
@@ -67,7 +67,7 @@ void greeting(object ob)
 	if( !ob || environment(ob) != environment() ) return;
 	if ( ob ->query_temp("jobask") == 4) {
 		command("wanfu "+ob->query("id"));
-		command("say 这位" + RANK_D->query_respect(ob) +",你可以 "HIY HBCYN"ask qi about 学习"CYN" 来向我了解聊天的情况。"NOR);
+		command("say 這位" + RANK_D->query_respect(ob) +",你可以 "HIY HBCYN"ask qi about 學習"CYN" 來向我瞭解聊天的情況。"NOR);
 	}
 }                               
 
@@ -75,29 +75,29 @@ int ask_xuexi4()
 {
 	object ob = this_player();
 	if(ob->query_temp("jobask") == 4) {
-		command("say  这位" + RANK_D->query_respect(ob) +"来武馆多久啦？在这儿练功之余可和别人闲聊 "HIY HBCYN"chat"CYN"\n"+
-			"来交流交流感情。还可以散布些谣言 "HIY HBCYN" rumor"CYN" ,同一门派的还可以用 "HIY HBCYN" party"CYN"。\n"+
-			"闲聊和散布谣言时可用些已经有的动作。你可以试试 "HIY HBCYN"chat* hi"CYN" 。用 "HIY HBCYN"semote"CYN"\n"+
-			"可以查出哪些是已有了的动作。若你话太多惹人厌就会被人投票关闭交谈频\n"+
-			"道 "HIY HBCYN"vote chblk xxx"CYN" 。频道被关了后只有等别人投票打开 "HIY HBCYN"vote unchblk\n"+
-			"xxx"CYN" 。如果你想找人聊天而不想让其他人听到，你可以告诉 "HIY HBCYN"tell"CYN" 他(她)。有\n"+
-			"人告诉你什么事，你可以用 "HIY HBCYN"reply"CYN" 来回答他（她）。你还可以跟某一位与你\n"+
-			"在同一房间的人讲悄悄话 "HIY HBCYN"whisper"CYN" 。江湖上不少人沉迷在武功之中，喜欢打\n"+
-			"打杀杀的，然而我觉得还是闲聊交友更有趣。你好自为之吧。"NOR);
+		command("say  這位" + RANK_D->query_respect(ob) +"來武館多久啦？在這兒練功之餘可和別人閒聊 "HIY HBCYN"chat"CYN"\n"+
+			"來交流交流感情。還可以散佈些謠言 "HIY HBCYN" rumor"CYN" ,同一門派的還可以用 "HIY HBCYN" party"CYN"。\n"+
+			"閒聊和散佈謠言時可用些已經有的動作。你可以試試 "HIY HBCYN"chat* hi"CYN" 。用 "HIY HBCYN"semote"CYN"\n"+
+			"可以查出哪些是已有了的動作。若你話太多惹人厭就會被人投票關閉交談頻\n"+
+			"道 "HIY HBCYN"vote chblk xxx"CYN" 。頻道被關了後只有等別人投票打開 "HIY HBCYN"vote unchblk\n"+
+			"xxx"CYN" 。如果你想找人聊天而不想讓其他人聽到，你可以告訴 "HIY HBCYN"tell"CYN" 他(她)。有\n"+
+			"人告訴你什麼事，你可以用 "HIY HBCYN"reply"CYN" 來回答他（她）。你還可以跟某一位與你\n"+
+			"在同一房間的人講悄悄話 "HIY HBCYN"whisper"CYN" 。江湖上不少人沉迷在武功之中，喜歡打\n"+
+			"打殺殺的，然而我覺得還是閒聊交友更有趣。你好自為之吧。"NOR);
 		ob->delete_temp("jobask");
 		if(ob->query_temp("jobover") != 4) {
 			ob->set_temp("jobover", 4);
-			command("say 听说我师兄还有点事情找你，你最好去看一下。"NOR);
+			command("say 聽說我師兄還有點事情找你，你最好去看一下。"NOR);
 			if ( ob->query("combat_exp") < 400 ) {
 				ob->add("potential", 20);
 				ob->add("combat_exp", 100);
-				tell_object(ob,HIW"你听了戚芳的讲解，增加了一百点实战经验和二十点潜能，对江湖又多了一分了解。\n"NOR);
+				tell_object(ob,HIW"你聽了戚芳的講解，增加了一百點實戰經驗和二十點潛能，對江湖又多了一分了解。\n"NOR);
 			}
 		}
 		return 1;
 	}
 	if ( ob->query_temp("jobover") == 4) {
-		command("say 我不是都和你说了么，我师兄有事找你，快去看下吧。");
+		command("say 我不是都和你說了麼，我師兄有事找你，快去看下吧。");
 		return 1;
 	}
 }
@@ -109,22 +109,22 @@ string ask_diyun()
 	if(!me->query(QUESTDIR1+"over") || !me->query_temp(QUESTDIR2+"start" ))
 	{
 	   call_out("outwuguan",1,me);
-	   return "你怎么进来这里的？";
+	   return "你怎麼進來這裡的？";
 	}
 	if(!me->query_temp(QUESTDIR2+"waqiang" ))
-	   return "也不知道狄云现在怎么样啊！";
+	   return "也不知道狄雲現在怎麼樣啊！";
 	if(me->query_temp(QUESTDIR2+"askqi" ))
 	{
 	   command("sigh");
 	   command("say");
-	   return "也不知道狄云现在怎么样啊！";
+	   return "也不知道狄雲現在怎麼樣啊！";
 	}
 	command("say");
-	message_vision(HIY"$N脸上露出怀念的神色。\n", ob);
+	message_vision(HIY"$N臉上露出懷念的神色。\n", ob);
 	command("look "+me->query("id"));
-	command("say 恩，当年的事情发生的确太突然了，其实我也觉得狄云不象那种人。");
+	command("say 恩，當年的事情發生的確太突然了，其實我也覺得狄雲不象那種人。");
 	command("sigh");
-	command("say 也不知道现在狄云怎么样了。");
+	command("say 也不知道現在狄雲怎麼樣了。");
 	me->set_temp(QUESTDIR2+"askqi_diyun",1);
 	return "";
 }
@@ -136,27 +136,27 @@ string ask_tangshi()
 	if(!me->query(QUESTDIR1+"over") || !me->query_temp(QUESTDIR2+"start" ))
 	{
 	   call_out("outwuguan",1,me);
-	   return "你怎么进来这里的？";
+	   return "你怎麼進來這裡的？";
 	}
 	if(!me->query_temp(QUESTDIR2+"askqi_diyun" ))
 	{
 	   command("doubt");
-	   return "你说什么唐诗选辑？";
+	   return "你說什麼唐詩選輯？";
 	}
 	if(me->query_temp(QUESTDIR2+"asktangshi" ))
 	{
 	   command("say");
-	   return "好像在.....！真的忘记了！";
+	   return "好像在.....！真的忘記了！";
 	}
 	if(me->query_temp(QUESTDIR2+"askxieyang" ))
 	{
 	   command("say");
-	   return "好像在书房！";
+	   return "好像在書房！";
 	}
 	command("consider");
-	message_vision(HIY"$N仔细在脑海里搜索“唐诗选辑”。\n", ob);
+	message_vision(HIY"$N仔細在腦海裡搜索“唐詩選輯”。\n", ob);
 	command("look "+me->query("id"));
-	command("say 恩，好像有这么个名字。可是我有点忘记在哪里了。");
+	command("say 恩，好像有這麼個名字。可是我有點忘記在哪裡了。");
 	me->set_temp(QUESTDIR2+"asktangshi",1);
 	return "";
 }
@@ -169,23 +169,23 @@ string ask_xieyang()
 	if(!me->query(QUESTDIR1+"over") || !me->query_temp(QUESTDIR2+"start" ))
 	{
 	   call_out("outwuguan",1,me);
-	   return "你怎么进来这里的？";
+	   return "你怎麼進來這裡的？";
 	}
 	if(!me->query_temp(QUESTDIR2+"asktangshi" ))
 	{
 	   command("doubt");
-	   return "你说什么鞋样？";
+	   return "你說什麼鞋樣？";
 	}
 	if(me->query_temp(QUESTDIR2+"askxieyang" ))
 	{
 	   command("say");
-	   return "好像在书房！";
+	   return "好像在書房！";
 	}
 	command("en");
-	message_vision(HIY"$N慢慢在脑海里搜索“唐诗选辑”、“鞋样”，突然似乎想了起来。\n", ob);
+	message_vision(HIY"$N慢慢在腦海裡搜索“唐詩選輯”、“鞋樣”，突然似乎想了起來。\n", ob);
 	command("look "+me->query("id"));
-	command("say 恩，好像有这么个名字。我记得给狄云用来做过鞋样的。");
-	command("say 我好像顺手隔在书房里。只是也不知道现在狄云怎么样了。");
+	command("say 恩，好像有這麼個名字。我記得給狄雲用來做過鞋樣的。");
+	command("say 我好像順手隔在書房裡。只是也不知道現在狄雲怎麼樣了。");
 	me->set_temp(QUESTDIR2+"askxieyang",1);
 	return "";
 }
@@ -195,9 +195,9 @@ void outwuguan(object me)
 	object *inv;
 	if(!me) return;
 	command("?");
-	message_vision(HIY"$N脸上露出疑惑的神色。\n", ob);
-	command("say 你怎么进来这里的？");
-	message_vision(HIR"只听见一声来人啊，$N被一阵棍棒给打晕了。\n"NOR, me);
+	message_vision(HIY"$N臉上露出疑惑的神色。\n", ob);
+	command("say 你怎麼進來這裡的？");
+	message_vision(HIR"只聽見一聲來人啊，$N被一陣棍棒給打暈了。\n"NOR, me);
 	me->delete("enter_wuguan");
 	inv = filter_array(deep_inventory(me), (: userp :));
 	if( sizeof(inv))
@@ -205,5 +205,5 @@ void outwuguan(object me)
 	me->unconcious();
 	me->move("/d/xiangyang/damen");
 	me->delete_temp("quest/busy");//
-	me->delete_temp("quest/连城诀");
+	me->delete_temp("quest/連城訣");
 }

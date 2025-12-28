@@ -10,20 +10,20 @@ int exert(object me, object target)
         int skill;
         
         if (target != me) 
-                return notify_fail("你只能用龟息功提升自己的战斗力。\n");
+                return notify_fail("你只能用龜息功提升自己的戰鬥力。\n");
                 
         if( query("neili", me)<100 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
                 
         if( BUFF_D->check_buff(me, "powerup") )
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
 
         addn("neili", -100, me);
         me->receive_damage("qi", 0);
 
-        msg = MAG "$N" MAG "长长吸了口气，运用龟息功将全身力量提起。\n" NOR;
+        msg = MAG "$N" MAG "長長吸了口氣，運用龜息功將全身力量提起。\n" NOR;
 
         data = ([
                 "attack" : skill/3,
@@ -35,11 +35,11 @@ int exert(object me, object target)
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "龟息功·战神",
+                "name"  : "龜息功·戰神",
                 "time"  : skill,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : "你的龟息功运行完毕，将内力收回丹田。\n",
+                "disa_msg" : "你的龜息功運行完畢，將內力收回丹田。\n",
                         
         ]);
         BUFF_D->buffup(buff);

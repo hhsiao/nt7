@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("青鸾[2;37;0m[2;37;0m", ({"qingluan"}));        
+        set_name("青鸞[2;37;0m[2;37;0m", ({"qingluan"}));        
         set("gender", "男性");                
-        set("long", "青鸾杳，碧天云海音绝[2;37;0m
-它是白玉京的魔幻兽。
+        set("long", "青鸞杳，碧天雲海音絕[2;37;0m
+它是白玉京的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

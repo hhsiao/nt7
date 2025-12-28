@@ -7,7 +7,7 @@ void setup()
         set_name("泥人糊麒麟[2;37;0m[2;37;0m", ({"nirenqilin"}));        
         set("gender", "男性");                
         set("long", "泥人糊麒麟[2;37;0m
-它是泥人胡的魔幻兽。
+它是泥人胡的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

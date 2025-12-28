@@ -8,21 +8,21 @@ int exert(object me, object target)
         string msg;        
         int level = me->query_skill("linji-zhuang", 1);
 
-        if (level < 60) return notify_fail("你的临济十二庄修为还不够。\n");
+        if (level < 60) return notify_fail("你的臨濟十二莊修為還不夠。\n");
 
         if( query("max_neili", me)<5*level )
-                return notify_fail("你的内力还不够强。\n");
+                return notify_fail("你的內力還不夠強。\n");
 
         if( query("neili", me)<4*level )
-                return notify_fail("你的真气不够。\n");
+                return notify_fail("你的真氣不夠。\n");
 
         if( query("eff_qi", me)<query("max_qi", me)/2 )
-                return notify_fail("你已经受伤过重，只怕一运真气便有生命危险！\n");
+                return notify_fail("你已經受傷過重，只怕一運真氣便有生命危險！\n");
 
         if( BUFF_D->check_buff(me, "ljz_zhixin") ) 
-                return notify_fail("你已经运用之心二庄凝聚心神了。\n");
+                return notify_fail("你已經運用之心二莊凝聚心神了。\n");
                 
-        msg = HIY + "只见$N微一凝神，吞吐几口长气，一对眼眸灵动晶亮，神采弈弈。\n" NOR;
+        msg = HIY + "只見$N微一凝神，吞吐幾口長氣，一對眼眸靈動晶亮，神采弈弈。\n" NOR;
 
         addn("neili", -4*level, me);
         level += me->query_skill("literate", 1);
@@ -35,15 +35,15 @@ int exert(object me, object target)
                 "target": me,
                 "type"  : "ljz_zhixin",
                 "attr"  : "bless",
-                "name"  : "临济十二庄·之心",
+                "name"  : "臨濟十二莊·之心",
                 "time"  : level,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : HIG"你体内已积过多浊气，似乎领悟力又归于寻常。\n"NOR,
+                "disa_msg" : HIG"你體內已積過多濁氣，似乎領悟力又歸於尋常。\n"NOR,
                         
         ]);
         BUFF_D->buffup(buff);
-        tell_object(me, HIY "你微一凝神，运动之心两庄，去浊气出体外，收清气入心中，只觉灵台清明，领悟力似乎有所增加。\n" NOR);
+        tell_object(me, HIY "你微一凝神，運動之心兩莊，去濁氣出體外，收清氣入心中，只覺靈臺清明，領悟力似乎有所增加。\n" NOR);
 
         return 1;
 }

@@ -6,8 +6,8 @@ void setup()
 {
         set_name("小四[2;37;0m[2;37;0m", ({"xiaosi"}));        
         set("gender", "男性");                
-        set("long", "看起来威武雄壮[2;37;0m
-它是小半道的魔幻兽。
+        set("long", "看起來威武雄壯[2;37;0m
+它是小半道的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

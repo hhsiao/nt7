@@ -10,9 +10,9 @@ inherit BOSS;
 
 void create()
 {
-        set_name(CYN "晓月禅师" NOR, ({ "xiaoyue chanshi", "chanshi", "xiaoyue" }) );
-        set("title", HIG "蜀山" HIC "弃徒" NOR);
-        set("long", HIR "这是传说中的长眉第三徒灭尘子，\n此时才刚夺掌教之位失败，投奔哈哈老祖之前。\n" NOR);
+        set_name(CYN "曉月禪師" NOR, ({ "xiaoyue chanshi", "chanshi", "xiaoyue" }) );
+        set("title", HIG "蜀山" HIC "棄徒" NOR);
+        set("long", HIR "這是傳說中的長眉第三徒滅塵子，\n此時才剛奪掌教之位失敗，投奔哈哈老祖之前。\n" NOR);
         set("gender", "男性");
         set("family/family_name", "魔教");
         set("age", 58);
@@ -102,7 +102,7 @@ void create()
         set_temp("apply/reduce_damage", 80);
         set_temp("apply/reduce_busy", 80);
         set_heart_beat(2);
-        set("death_msg", NOR "\n$N" + (random(2)? "尖叫" : "嘶吼") + (random(2)? "一声" : "一头") + "栽倒，" + (random(2)? "化作脓血" : "散作青烟") + (random(2)? "。。" : "。。。") + "\n" NOR);
+        set("death_msg", NOR "\n$N" + (random(2)? "尖叫" : "嘶吼") + (random(2)? "一聲" : "一頭") + "栽倒，" + (random(2)? "化作膿血" : "散作青煙") + (random(2)? "。。" : "。。。") + "\n" NOR);
         setup();
 
         carry_object("/kungfu/class/quanzhen/obj/yellowrobe")->wear();
@@ -151,7 +151,7 @@ varargs void die()
                 message_vision(append_color(query("death_msg"),CYN), this_object());
                         if (!query("is_shadow", this_object())) {
                                 if (killer && objectp(killer) && environment(killer)==environment(this_object())) GIFT_D->delay_bonus(killer, 
-                                        ([ "exp" : BONUS_EXP, "pot" : BONUS_EXP/3, "mar" : BONUS_EXP/6, "prompt" : "你在广成金船击败" + name() + "之后"]));
+                                        ([ "exp" : BONUS_EXP, "pot" : BONUS_EXP/3, "mar" : BONUS_EXP/6, "prompt" : "你在廣成金船擊敗" + name() + "之後"]));
                         }
                                         
                 destruct(this_object());
@@ -173,7 +173,7 @@ void init()
         if (!ob->is_character()) return;
         if (environment() && query("no_fight", environment())) return;
         if (!(__DIR__"obj/door"->is_attacker(ob))) return;
-        tell_object(ob, NOR CYN + query("name", me) + NOR + CYN "恚怒道：就凭你也想和洒家争夺广成金船？\n" NOR);
+        tell_object(ob, NOR CYN + query("name", me) + NOR + CYN "恚怒道：就憑你也想和灑家爭奪廣成金船？\n" NOR);
         me->kill_ob(ob);
 }
 
@@ -235,9 +235,9 @@ int deploy()
 {
         object room = get_object("/u/redl/teleport/yuanjiang/jiaban");
         if (!room) return 0;
-        message_vision(append_color(NOR + CYN + "$N" + CYN + "纵身跳上了元江宝船。\n" + NOR, CYN), this_object());
+        message_vision(append_color(NOR + CYN + "$N" + CYN + "縱身跳上了元江寶船。\n" + NOR, CYN), this_object());
         this_object()->move(room);
-        message_vision(append_color(NOR + CYN + "$N" + CYN + "纵身跳了上来。\n" + NOR, CYN), this_object());
+        message_vision(append_color(NOR + CYN + "$N" + CYN + "縱身跳了上來。\n" + NOR, CYN), this_object());
     set("chat_chance", random(10) + 60);
         set("chat_msg", ({
                                 (: random_move :),

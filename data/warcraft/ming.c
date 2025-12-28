@@ -7,7 +7,7 @@ void setup()
         set_name("明明[2;37;0m[2;37;0m", ({"mingming"}));        
         set("gender", "女性");                
         set("long", "好[2;37;0m
-它是明教的魔幻兽。
+它是明教的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

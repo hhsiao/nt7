@@ -13,9 +13,9 @@
 #endif
 
 #define NO_FEE
-#define BUSY_MESSAGE     "你现在忙得很，无法做任何事情。\n"
-#define DEBUG_CHANNEL(x) CHANNEL_D->channel_broadcast("debug", "调试精灵："+(string)x)
-//#define NCH_CHANNEL(x) CHANNEL_D->channel_broadcast("nch", "I2D 精灵："+(string)x)
+#define BUSY_MESSAGE     "你現在忙得很，無法做任何事情。\n"
+#define DEBUG_CHANNEL(x) CHANNEL_D->channel_broadcast("debug", "調試精靈："+(string)x)
+//#define NCH_CHANNEL(x) CHANNEL_D->channel_broadcast("nch", "I2D 精靈："+(string)x)
 
 // Important directories
 #define INC_DIR                 "/include/"
@@ -32,23 +32,23 @@
 #define QUEST_DIR               "/adm/daemons/quest/"
 #define SHADOW_DIR              "/shadow/"
 #define STORY_DIR               "/adm/daemons/story/"
-#define ARMOR_DIR               "/clone/armor/"              //护具
+#define ARMOR_DIR               "/clone/armor/"              //護具
 #define WEAPON_DIR              "/clone/weapon/"             //兵器
-#define BOOK_DIR                "/clone/book/"               //书籍
-#define MONEY_DIR               "/clone/money/"              //货币
-#define ANIMAL_DIR              "/clone/animal/"             //动物
-#define JEWELRY_DIR             "/clone/jewelry/"            //珠宝
+#define BOOK_DIR                "/clone/book/"               //書籍
+#define MONEY_DIR               "/clone/money/"              //貨幣
+#define ANIMAL_DIR              "/clone/animal/"             //動物
+#define JEWELRY_DIR             "/clone/jewelry/"            //珠寶
 #define FOOD_DIR                "/clone/food/"               //食物
 #define FRUIT_DIR               "/clone/food/fruit/"         //水果
-#define LIQUID_DIR              "/clone/food/liquid/"        //饮料
+#define LIQUID_DIR              "/clone/food/liquid/"        //飲料
 #define TEA_DIR                 "/clone/food/tea/"           //茶水
-#define FODDER_DIR              "/clone/food/fodder/"        //饲料
+#define FODDER_DIR              "/clone/food/fodder/"        //飼料
 #define CLOTH_DIR               "/clone/cloth/"              //衣服
 #define HEAD_DIR                "/clone/cloth/head/"         //盔帽
 #define BOOT_DIR                "/clone/cloth/boot/"         //鞋靴
-#define NOSTRUM_DIR             "/clone/medicine/nostrum/"   //成药
-#define POISON_DIR              "/clone/medicine/poison/"    //毒药
-#define VEGETABLE_DIR           "/clone/medicine/vegetable/" //草药
+#define NOSTRUM_DIR             "/clone/medicine/nostrum/"   //成藥
+#define POISON_DIR              "/clone/medicine/poison/"    //毒藥
+#define VEGETABLE_DIR           "/clone/medicine/vegetable/" //草藥
 #define SHOP_DIR                "/clone/shop/"               //商店
 #define TEMP_DIR                "/temp/"
 #define TEMPLATE_DIR            "/template/"

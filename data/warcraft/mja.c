@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[5m[36m浅[1;31m斟[33m低[1;37m唱[2;37;0m[2;37;0m", ({"shenggui"}));        
+        set_name("[5m[36m淺[1;31m斟[33m低[1;37m唱[2;37;0m[2;37;0m", ({"shenggui"}));        
         set("gender", "男性");                
         set("long", "天子[2;37;0m
-它是明教弟子的魔幻兽。
+它是明教弟子的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

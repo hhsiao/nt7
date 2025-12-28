@@ -3,8 +3,8 @@ inherit __DIR__"bhd_npc.c";
 
 void create()
 {
-        set_name(HIY "金色凤凰" NOR, ({ "jinse fenghuang", "jinse", "fenghuang" }));
-        set("long", HIY "一只巨大凤凰，鳞片闪烁着金光，张开双翅，遮天蔽日。\n" NOR);
+        set_name(HIY "金色鳳凰" NOR, ({ "jinse fenghuang", "jinse", "fenghuang" }));
+        set("long", HIY "一隻巨大鳳凰，鱗片閃爍著金光，張開雙翅，遮天蔽日。\n" NOR);
 
         set("age", 99999);
         set("str",500);
@@ -42,7 +42,7 @@ void create()
 
 void init()
 {
-        // 随机攻击玩家
+        // 隨機攻擊玩家
         if (userp(this_player()) && random(2) == 1)
         {
                 kill_ob(this_player());

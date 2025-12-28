@@ -1,4 +1,4 @@
-// chashi.c 盘龙居茶室
+// chashi.c 盤龍居茶室
 
 #include <room.h>
 
@@ -9,12 +9,12 @@ void create()
 {
         set("short", "茶室");
         set("long", @LONG
-这是一个玲珑小巧的茶室，很是显得精致。正中有一茶几。
+這是一個玲瓏小巧的茶室，很是顯得精緻。正中有一茶几。
 LONG );
 
-        set("default_long", "是一个玲珑小巧的茶室，很是显得精致。正" /* EXAMPLE */
-                            "中有一茶几，两旁立着两个妙龄少女，正在" /* EXAMPLE */
-                            "听候主人的吩咐(tea)。" );               /* EXAMPLE */
+        set("default_long", "是一個玲瓏小巧的茶室，很是顯得精緻。正" /* EXAMPLE */
+                            "中有一茶几，兩旁立著兩個妙齡少女，正在" /* EXAMPLE */
+                            "聽候主人的吩咐(tea)。" );               /* EXAMPLE */
                                                                      /* EXAMPLE */
 
         set("exits", ([
@@ -25,7 +25,7 @@ LONG );
 //**            "/d/room/roomnpc/teagirl" : 2,
 //**    ]));
 
-        create_door("west", "木门", "east", DOOR_CLOSED);
+        create_door("west", "木門", "east", DOOR_CLOSED);
 
         set("no_sleep_room", 1);
         setup();

@@ -17,18 +17,18 @@ int do_washto(string arg);
 
 void create()
 {
-        set_name(HIR "洗天赋丹" NOR, ({"wash gift", "gift"}));
+        set_name(HIR "洗天賦丹" NOR, ({"wash gift", "gift"}));
         set_weight(200);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-                set("unit", "颗");
+                set("unit", "顆");
                 set("long", @LONG
-这是提供给那些出生时候选错天赋的人一次重新分配先天天赋的洗天赋丹。
-洗天赋丹每人只能使用一次，格式为 washto <膂力> <悟性> <根骨> <身法>
-例如：washto 20 20 20 20 ，洗天赋时候要求解完所有加先天的迷及吃全所
-有加先天的丹和使用完mygift礼物的四点先天。
+這是提供給那些出生時候選錯天賦的人一次重新分配先天天賦的洗天賦丹。
+洗天賦丹每人只能使用一次，格式為 washto <膂力> <悟性> <根骨> <身法>
+例如：washto 20 20 20 20 ，洗天賦時候要求解完所有加先天的迷及吃全所
+有加先天的丹和使用完mygift禮物的四點先天。
 LONG );
                 set("value", 1);
                 set("no_sell", 1);
@@ -63,30 +63,30 @@ int do_washto(string arg)
 
         /*
         if( query("age", me) > 20 )
-                return notify_fail("你已经过了新手期，在转世前不在拥有调整天赋的机会。\n");
+                return notify_fail("你已經過了新手期，在轉世前不在擁有調整天賦的機會。\n");
 
         if (query("reborn/times", me))
-                return notify_fail("洗天赋丹只能没有转世的玩家使用，你现在已经错过机缘了。\n");
+                return notify_fail("洗天賦丹只能沒有轉世的玩家使用，你現在已經錯過機緣了。\n");
         */
 
         if( query("gift/washed", me) >= 3 )
-                return notify_fail("你已经使用洗天赋丹超过三次了，每人只有三次机会。\n");
+                return notify_fail("你已經使用洗天賦丹超過三次了，每人只有三次機會。\n");
 
         //if (tmpstr > 43 || tmpstr < 21)
         if (tmpstr > 100 || tmpstr < 13)
-                return notify_fail("你所选择的膂力数值要求必须在21和43之间。\n");
+                return notify_fail("你所選擇的膂力數值要求必須在21和43之間。\n");
 
         //if (tmpint > 43 || tmpint < 21)
         if (tmpint > 100 || tmpint < 13)
-                return notify_fail("你所选择的悟性数值要求必须在21和43之间。\n");
+                return notify_fail("你所選擇的悟性數值要求必須在21和43之間。\n");
 
         //if (tmpcon > 46 || tmpcon < 24)
         if (tmpcon > 100 || tmpcon < 13)
-                return notify_fail("你所选择的根骨数值要求必须在24和46之间。\n");
+                return notify_fail("你所選擇的根骨數值要求必須在24和46之間。\n");
 
         //if (tmpdex > 43 || tmpdex < 21)
         if (tmpdex > 100 || tmpdex < 13)
-                return notify_fail("你所选择的身法数值要求必须在21和43之间。\n");
+                return notify_fail("你所選擇的身法數值要求必須在21和43之間。\n");
 
         my = me->query_entire_dbase();
         str = copy(my["str"]);
@@ -96,10 +96,10 @@ int do_washto(string arg)
 
         points = str + wux + con + dex;
         if (tmpstr + tmpint + tmpcon + tmpdex != points)
-                return notify_fail("你所重新选择的天赋数值和自己天赋的" + points + "总值不一致。\n");
+                return notify_fail("你所重新選擇的天賦數值和自己天賦的" + points + "總值不一致。\n");
         /*
 
-        write(HIW "开始检查现有天赋下所学技能是否满足升级条件...\n" NOR);
+        write(HIW "開始檢查現有天賦下所學技能是否滿足升級條件...\n" NOR);
 
         skill_status = me->query_skills();
         if (mapp(skill_status) && sizeof(skill_status))
@@ -179,7 +179,7 @@ int do_washto(string arg)
                                 if (objectp(weapon))
                                         destruct(weapon);
 
-                                return notify_fail(HIR "请输入 yanjiu " + sname[i] + " 1，确认可以研究后再洗新天赋。\n" NOR);
+                                return notify_fail(HIR "請輸入 yanjiu " + sname[i] + " 1，確認可以研究後再洗新天賦。\n" NOR);
                         }
 
                         if (objectp(weapon))
@@ -188,7 +188,7 @@ int do_washto(string arg)
         }
         */
 
-        write("你重新分配的天赋为\n"
+        write("你重新分配的天賦為\n"
               "膂力[" + tmpstr + "]\n"
               "悟性[" + tmpint + "]\n"
               "根骨[" + tmpcon + "]\n"
@@ -200,7 +200,7 @@ int do_washto(string arg)
         my["dex"] = tmpdex;
         
         /*
-        write(HIW "开始检查新天赋下所学技能是否满足学习条件...\n" NOR);
+        write(HIW "開始檢查新天賦下所學技能是否滿足學習條件...\n" NOR);
         
         if (mapp(skill_status) && sizeof(skill_status))
         {
@@ -283,7 +283,7 @@ int do_washto(string arg)
                                 my["int"] = wux;
                                 my["con"] = con;
                                 my["dex"] = dex;
-                                return notify_fail(HIR "新天赋不能满足" + to_chinese(sname[i]) + "学习条件，修改失败。\n" NOR);
+                                return notify_fail(HIR "新天賦不能滿足" + to_chinese(sname[i]) + "學習條件，修改失敗。\n" NOR);
                         }
 
                         if (objectp(weapon))
@@ -293,7 +293,7 @@ int do_washto(string arg)
         */
         addn("gift/washed", 1, me);
 
-        write("你重新分配你的天赋成功，请输入指令(hp -g)查看。\n");
+        write("你重新分配你的天賦成功，請輸入指令(hp -g)查看。\n");
         destruct(this_object());
         return 1;
 }

@@ -5,7 +5,7 @@ inherit F_QUESTER;
 #include <ansi.h>;
 void create()
 {
-        set_name("鲁连荣", ({ "lu lianrong", "lu", "lianrong" }) );
+        set_name("魯連榮", ({ "lu lianrong", "lu", "lianrong" }) );
         set("nickname", HIY"金眼雕"NOR);
         set("gender", "男性");
         set("class", "swordsman");

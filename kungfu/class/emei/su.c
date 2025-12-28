@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// su.c 苏梦清
+// su.c 蘇夢清
 
 inherit NPC;
 inherit F_MASTER;
@@ -9,7 +9,7 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("苏梦清", ({ "su mengqing","su","mengqing"}));
+        set_name("蘇夢清", ({ "su mengqing","su","mengqing"}));
         set("long",
                 "她是峨嵋派的第四代俗家弟子。\n");
         set("gender", "女性");

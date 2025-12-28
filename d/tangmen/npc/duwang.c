@@ -6,13 +6,13 @@ inherit NPC;
 void create()
 {
         set_name("千年毒王", ({ "duwang", "wang" }) );
-        set("race", "野兽");
+        set("race", "野獸");
         set("age", random(10));
-        set("long", "它看起来更象是一只老鼠，但是浑身却没有一根毛，又和青蛙一般光滑。\n");
+        set("long", "它看起來更象是一隻老鼠，但是渾身卻沒有一根毛，又和青蛙一般光滑。\n");
         set("attitude", "peaceful");
         set("str", 20);
         set("cor", 20);
-        set("limbs", ({ "头部", "身体", "七寸", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體", "七寸", "尾巴" }) );
         set("verbs", ({ "bite" }) );
 
         set("combat_exp", 100000+random(100000));
@@ -41,7 +41,7 @@ int hit_ob(object me, object ob, int damage)
         if( random(damage)>query_temp("apply/armor", ob) && ob->query_condition("snake_poison")<20 )
         {
                 ob->apply_condition("snake_poison", 100);
-                tell_object(ob, HIG "你觉得一阵麻木的感觉自被咬中的地方慢慢传遍全身！\n" NOR );
+                tell_object(ob, HIG "你覺得一陣麻木的感覺自被咬中的地方慢慢傳遍全身！\n" NOR );
         }
 }
 

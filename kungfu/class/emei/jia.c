@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// jia.c 静迦师太
+// jia.c 靜迦師太
 
 #include <command.h>
 #include <ansi.h>
@@ -11,9 +11,9 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("静迦师太", ({ "jingjia shitai","jingjia","shitai"}));
+        set_name("靜迦師太", ({ "jingjia shitai","jingjia","shitai"}));
         set("long",
-           "她是一位中年出家道姑，道冠高拢，慈眉善目。\n");
+           "她是一位中年出家道姑，道冠高攏，慈眉善目。\n");
         set("gender", "女性");
         set("age", 44);
         set("attitude", "peaceful");
@@ -23,7 +23,7 @@ void create()
         set("inquiry",([
                 "剃度"  : (: ask_for_join :),
                 "出家"  : (: ask_for_join :),
-                "还俗"  : "峨嵋弟子，不能还俗。你找掌门师太吧。",
+                "還俗"  : "峨嵋弟子，不能還俗。你找掌門師太吧。",
         ]));
 
         set("str", 30);

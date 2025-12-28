@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("永旭之巅[2;37;0m[2;37;0m", ({"yongxu"}));        
+        set_name("永旭之巔[2;37;0m[2;37;0m", ({"yongxu"}));        
         set("gender", "男性");                
-        set("long", "永旭之巅[2;37;0m
-它是倦收天的魔幻兽。
+        set("long", "永旭之巔[2;37;0m
+它是倦收天的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

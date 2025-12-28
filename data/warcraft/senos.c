@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("大块头[2;37;0m[2;37;0m", ({"hoho"}));        
+        set_name("大塊頭[2;37;0m[2;37;0m", ({"hoho"}));        
         set("gender", "男性");                
         set("long", "一大坨[2;37;0m
-它是笑青的魔幻兽。
+它是笑青的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

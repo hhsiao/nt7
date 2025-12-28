@@ -18,18 +18,18 @@ int main(object me, string arg)
         seteuid(getuid(me));
 
         if (! arg) return notify_fail("指令格式 : clear [-u] <物件之名"
-                                      "称或档名> | <玩家ID> <分项>\n" );
+                                      "稱或檔名> | <玩家ID> <分項>\n" );
 
         if (sscanf(arg, "-u %s", arg) == 1)
         {
                 if (sscanf(arg, "%s %s", target, arg) != 2)
                 {
-                        write("你必须指明清除用户的什么数据。\n");
+                        write("你必須指明清除用戶的什麼數據。\n");
                         return 1;
                 }
 
                 // clear the user data
-                write ("清除用户(" + target + ")的数据：" +
+                write ("清除用戶(" + target + ")的數據：" +
                        UPDATE_D->clear_user_data(target, arg));
                 return 1;
         }
@@ -53,8 +53,8 @@ int main(object me, string arg)
         if (! obj || userp(obj)) catch(obj = load_object(resolve_path(query("cwd", me), target)));
         if (obj && ! userp(obj))
         {
-                message_vision(sprintf("$N将物件<%O>连同存盘记录一起"
-                                       "彻底的摧毁了。\n", obj), me);
+                message_vision(sprintf("$N將物件<%O>連同存盤記錄一起"
+                                       "徹底的摧毀了。\n", obj), me);
                 if (! clonep(obj))
                 {
                         obs = filter_array(all_inventory(obj), (: userp :));
@@ -65,16 +65,16 @@ int main(object me, string arg)
                 target = base_name(obj);
 
                 if (! DBASE_D->clear_object(obj))
-                        write ("你没有能够成功的摧毁物件和记录。\n");
+                        write ("你沒有能夠成功的摧毀物件和記錄。\n");
                 else
                 {
                         if (remove_flag)
                         {
                                 seteuid(getuid());
                                 if (rm(target + ".c") == 1)
-                                        write("文件 " + target + ".c 已经成功删除。\n");
+                                        write("文件 " + target + ".c 已經成功刪除。\n");
                                 else
-                                        write("删除文件 " + target + ".c 失败。\n");
+                                        write("刪除文件 " + target + ".c 失敗。\n");
                         } else
                         if (arrayp(obs) && sizeof(obs))
                                 obs->move(target, 1);
@@ -82,9 +82,9 @@ int main(object me, string arg)
                 }
         } else
         {
-                write("你试图从数据库中清除条目(" + target + ")的记录。\n");
+                write("你試圖從數據庫中清除條目(" + target + ")的記錄。\n");
                 if (! DBASE_D->clear_object(target))
-                        write ("你没有能够成功的清除记录。\n");
+                        write ("你沒有能夠成功的清除記錄。\n");
                 else
                         write("Ok.\n");
         }
@@ -95,32 +95,32 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式 : clear -u <玩家ID> <分项>
-                 [-remove] <物件之名称或档名>
+指令格式 : clear -u <玩家ID> <分項>
+                 [-remove] <物件之名稱或檔名>
 
-利用此一指令可将一个物件(object)连同它的存盘记录一起清除，注
-意：这里的存盘记录指的是数据保存在 DBASE_D 中的那些对象， 如
-果记录是保存成单独的文件，则它们的存盘记录不会受到任何影响，
-这个命令是提供给巫师对受到损伤的对象进行数据修复时使用的。
+利用此一指令可將一個物件(object)連同它的存盤記錄一起清除，注
+意：這裡的存盤記錄指的是數據保存在 DBASE_D 中的那些對象， 如
+果記錄是保存成單獨的文件，則它們的存盤記錄不會受到任何影響，
+這個命令是提供給巫師對受到損傷的對象進行數據修復時使用的。
 
-如果使用参数 -u，则表示是要清除一个玩家对 MUD 中的对象数据，
-比如说住房的信息就可以通过该命令清除。即将指定的玩家的住房拆
-毁。
+如果使用參數 -u，則表示是要清除一個玩家對 MUD 中的對象數據，
+比如說住房的信息就可以通過該命令清除。即將指定的玩家的住房拆
+毀。
 
-分项包括：all      所有数据
+分項包括：all      所有數據
           board    留言版
           couple   婚配
           item     道具
           name     姓名
           room     房屋
-          brothers 结义
-          league   联盟
-          title    称号
+          brothers 結義
+          league   聯盟
+          title    稱號
 
-如果使用了 -remove 参数， 表示清除物件的存盘记录以后删除这个
-文件。这个参数需要谨慎使用。
+如果使用了 -remove 參數， 表示清除物件的存盤記錄以後刪除這個
+文件。這個參數需要謹慎使用。
 
-参考资料： dest，query
+參考資料： dest，query
 HELP );
         return 1;
 }

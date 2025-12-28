@@ -1,5 +1,5 @@
 // This program is a part of NITAN MudLIB
-// shengang.c 混天气功混天神罡
+// shengang.c 混天氣功混天神罡
 
 #include <ansi.h>
 #include <combat.h>
@@ -16,18 +16,18 @@ int exert(object me, object target)
         weapon=query_temp("weapon", me);
 
         if( !query("can_exert/huntian-qigong/shengang", me) )
-                return notify_fail(HIG "你还没有受到某人的指点，还不会使用这种功夫。\n" NOR);
+                return notify_fail(HIG "你還沒有受到某人的指點，還不會使用這種功夫。\n" NOR);
 
         if( BUFF_D->check_buff(me,"shield") )
-                return notify_fail(HIG "你已经在运混元天罡了。\n" NOR);
+                return notify_fail(HIG "你已經在運混元天罡了。\n" NOR);
 
         if( query("neili", me)<200 )
-                return notify_fail("你的内力还不够！\n");
+                return notify_fail("你的內力還不夠！\n");
 
         if( (int)me->query_skill("huntian-qigong", 1) < 150 )
-                return notify_fail("你的混天气功的修为不够，不能使用混元天罡! \n");
+                return notify_fail("你的混天氣功的修為不夠，不能使用混元天罡! \n");
 
-        msg = WHT "$N使出混天气功绝学「混元天罡」，一股白气自顶心泥丸发散而下，全身弥漫在白色薄雾中！\n" NOR;
+        msg = WHT "$N使出混天氣功絕學「混元天罡」，一股白氣自頂心泥丸發散而下，全身瀰漫在白色薄霧中！\n" NOR;
 
         qi = query("qi", me);
         maxqi = query("max_qi", me);
@@ -53,11 +53,11 @@ int exert(object me, object target)
 			"target": me,
 			"type"  : "shield",
 			"attr"  : "bless",
-			"name"  : "混天气功·混天神罡",
+			"name"  : "混天氣功·混天神罡",
 			"time"  : skill,
 			"buff_data": data,	
 			"buff_msg" : msg,
-			"disa_msg" : "白色的薄雾渐渐散去，$N的身形步法又变的清晰可见。\n",
+			"disa_msg" : "白色的薄霧漸漸散去，$N的身形步法又變的清晰可見。\n",
 			"disa_type": 1,
                 ]);
 
@@ -66,7 +66,7 @@ int exert(object me, object target)
         } 
         else
         {
-                msg = HIR "$N拼尽毕生功力想提起混元天罡，但自己受伤太重，没能成功!\n" NOR;
+                msg = HIR "$N拼盡畢生功力想提起混元天罡，但自己受傷太重，沒能成功!\n" NOR;
                 message_combatd(msg, me, target);
         }
         if( me->is_fighting() ) me->start_busy(3);

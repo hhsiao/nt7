@@ -5,9 +5,9 @@ void create()
 {
         set("short", "迎客亭"); 
         set("long", @LONG
-通过四雅清风，你来到了梅庄的迎客亭，这里虽然只有一张石桌
-(table) 和几个石凳，但却是一尘不染，石凳和石桌之间的空隙很大，
-显是方便来客与主人相互寒暄。
+通過四雅清風，你來到了梅莊的迎客亭，這裡雖然只有一張石桌
+(table) 和幾個石凳，但卻是一塵不染，石凳和石桌之間的空隙很大，
+顯是方便來客與主人相互寒暄。
 LONG );
         set("exits", ([
                 "south" : __DIR__"dating",
@@ -36,25 +36,25 @@ int do_zuan(string arg)
 
         if (arg != "table")
         {
-                write("你要往哪儿钻？\n");
+                write("你要往哪兒鑽？\n");
                 return 1;
         }
 
         if (objectp(ob = present("shi lingwei", this_object())) &&
             living(ob))
         {
-                write("你偷偷的看了看" + ob->name() + "，不敢乱来。\n");
+                write("你偷偷的看了看" + ob->name() + "，不敢亂來。\n");
                 return 1;
         }
 
-        write("你蹑手蹑脚的绕到石桌的后面，钻进了下面的一个小洞。\n");
+        write("你躡手躡腳的繞到石桌的後面，鑽進了下面的一個小洞。\n");
         if((int)me->query_skill("dodge",1) >= 30)
         {
-              write("你费尽九牛二虎之力，发现自己到了一个很神秘的地道里。\n");
+              write("你費盡九牛二虎之力，發現自己到了一個很神秘的地道里。\n");
               me->move(__DIR__"didao1");
               return 1;
         }
-        write("你试着钻了一下后面的一个小洞，发现钻不进去。\n");
+        write("你試著鑽了一下後面的一個小洞，發現鑽不進去。\n");
         addn("jing", -10, me);
         addn("qi", -10, me);
 

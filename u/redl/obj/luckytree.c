@@ -10,8 +10,8 @@ inherit ITEM;
 void post_channel(string arg);
 int gf3query(string qq);
 
-mapping *giftlists = ({//amount为每100人时派发的数量
-        //level 1，重要的节日才开
+mapping *giftlists = ({//amount為每100人時派發的數量
+        //level 1，重要的節日才開
                 ([
                         "id"                    :                       "xunzhang",
                         "level"                 :                       1,
@@ -19,14 +19,14 @@ mapping *giftlists = ({//amount为每100人时派发的数量
                         "amount"                :                       1
                         ]),
                 ([
-                        "id"                    :                       "ntb",//100泥潭币
+                        "id"                    :                       "ntb",//100泥潭幣
                         "level"                 :                       1,
                         "file"                  :                       "/u/redl/npc/obj/ntb",
                         "amount"                :                       10
                         ]),
-        //level 2，大的庆祝活动开
+        //level 2，大的慶祝活動開
                 ([
-                        "id"                    :                       "ntb",//100泥潭币
+                        "id"                    :                       "ntb",//100泥潭幣
                         "level"                 :                       2,
                         "file"                  :                       "/u/redl/npc/obj/ntb",
                         "amount"                :                       3
@@ -38,25 +38,25 @@ mapping *giftlists = ({//amount为每100人时派发的数量
                         "amount"                :                       6
                         ]),
                 ([
-                        "id"                    :                       "slsj",//圣灵水晶，刺激对装备系统的强化热情
+                        "id"                    :                       "slsj",//聖靈水晶，刺激對裝備系統的強化熱情
                         "level"                 :                       2,
                         "file"                  :                       "/clone/goods/shengling_crystal",
                         "amount"                :                       8
                         ]),
                 ([
-                        "id"                    :                       "qhsj",//强化水晶
+                        "id"                    :                       "qhsj",//強化水晶
                         "level"                 :                       2,
                         "file"                  :                       "/clone/goods/qianghua_crystal",
                         "amount"                :                       7
                         ]),
                 ([
-                        "id"                    :                       "jll",//九龙神火炉，大米用品，几乎没人愿意在它上面花钱
+                        "id"                    :                       "jll",//九龍神火爐，大米用品，幾乎沒人願意在它上面花錢
                         "level"                 :                       2,
                         "file"                  :                       "/clone/goods/jiulonglu",
                         "amount"                :                       6
                         ]),
                 ([
-                        "id"                    :                       "ryj",//日月镜，愿意买的人少
+                        "id"                    :                       "ryj",//日月鏡，願意買的人少
                         "level"                 :                       2,
                         "file"                  :                       "/clone/goods/riyue-jing",
                         "amount"                :                       3
@@ -67,7 +67,7 @@ mapping *giftlists = ({//amount为每100人时派发的数量
                         "file"                  :                       "/d/dongtian/obj/baiyuhu",
                         "amount"                :                       4
                         ]),
-        //level 3，小的庆祝活动或者节日开
+        //level 3，小的慶祝活動或者節日開
                 ([
                         "id"                    :                       "xunzhang",
                         "level"                 :                       3,
@@ -75,43 +75,43 @@ mapping *giftlists = ({//amount为每100人时派发的数量
                         "amount"                :                       7
                         ]),
                 ([
-                        "id"                    :                       "dtzb1",//神器动态装备或者宝石
+                        "id"                    :                       "dtzb1",//神器動態裝備或者寶石
                         "level"                 :                       3,
                         "file"                  :                       "",
                         "amount"                :                       12
                         ]),
                 ([
-                        "id"                    :                       "ldb",//六帝币，洞天持续消耗品，略可以多发
+                        "id"                    :                       "ldb",//六帝幣，洞天持續消耗品，略可以多發
                         "level"                 :                       3,
                         "file"                  :                       "/d/dongtian/obj/liudibi",
                         "amount"                :                       9
                         ]),
                 ([
-                        "id"                    :                       "wm",//无名之物
+                        "id"                    :                       "wm",//無名之物
                         "level"                 :                       3,
                         "file"                  :                       "/clone/goods/noname",
                         "amount"                :                       2
                         ]),
                 ([
-                        "id"                    :                       "xzx",//勋章箱子，随机开得勋章，可以多发
+                        "id"                    :                       "xzx",//勳章箱子，隨機開得勳章，可以多發
                         "level"                 :                       3,
                         "file"                  :                       "/clone/goods/xunzhang_xiang",
                         "amount"                :                       13
                         ]),
                 ([
-                        "id"                    :                       "ly2",//龙元2
+                        "id"                    :                       "ly2",//龍元2
                         "level"                 :                       3,
                         "file"                  :                       "/clone/goods/dragon_soul2",
                         "amount"                :                       3
                         ]),
                 ([
-                        "id"                    :                       "fhm",//芳华木
+                        "id"                    :                       "fhm",//芳華木
                         "level"                 :                       3,
                         "file"                  :                       "/u/redl/obj/fanghuamu",
                         "amount"                :                       6
                         ]),
                 ([
-                        "id"                    :                       "hytj",//鸡肋，寰宇天晶，给舍不得花钱的玩家一点盼头
+                        "id"                    :                       "hytj",//雞肋，寰宇天晶，給捨不得花錢的玩家一點盼頭
                         "level"                 :                       3,
                         "file"                  :                       "/clone/goods/tianjing",
                         "amount"                :                       8
@@ -123,30 +123,30 @@ mapping *giftlists = ({//amount为每100人时派发的数量
                         "amount"                :                       60
                         ]),
                 ([
-                        "id"                    :                       "cms",//册马石
+                        "id"                    :                       "cms",//冊馬石
                         "level"                 :                       3,
                         "file"                  :                       "/clone/goods/cemashi",
                         "amount"                :                       7
                         ]),
                 ([
-                        "id"                    :                       "taozhuang",//幸运女神
+                        "id"                    :                       "taozhuang",//幸運女神
                         "level"                 :                       3,
                         "file"                  :                       "/clone/goods/luck_neck",
                         "amount"                :                       17
                         ]),
                 ([
-                        "id"                    :                       "taozhuang",//幸运女神
+                        "id"                    :                       "taozhuang",//幸運女神
                         "level"                 :                       3,
                         "file"                  :                       "/clone/goods/luck_charm",
                         "amount"                :                       17
                         ]),
                 ([
-                        "id"                    :                       "taozhuang",//幸运女神
+                        "id"                    :                       "taozhuang",//幸運女神
                         "level"                 :                       3,
                         "file"                  :                       "/clone/goods/luck_ring",
                         "amount"                :                       17
                         ]),
-        //level 4，如果想开，那就开吧
+        //level 4，如果想開，那就開吧
                 ([
                         "id"                    :                       "xunzhang",
                         "level"                 :                       4,
@@ -160,13 +160,13 @@ mapping *giftlists = ({//amount为每100人时派发的数量
                         "amount"                :                       189
                         ]),
                 ([
-                        "id"                    :                       "zyw",//镇狱丸
+                        "id"                    :                       "zyw",//鎮獄丸
                         "level"                 :                       4,
                         "file"                  :                       "/clone/fam/max/zhenyu",
                         "amount"                :                       59
                         ]),
                 ([
-                        "id"                    :                       "ljd",//龙甲丹
+                        "id"                    :                       "ljd",//龍甲丹
                         "level"                 :                       4,
                         "file"                  :                       "/clone/fam/max/longjia",
                         "amount"                :                       119
@@ -178,13 +178,13 @@ mapping *giftlists = ({//amount为每100人时派发的数量
                         "amount"                :                       161
                         ]),
                 ([
-                        "id"                    :                       "wxts",//万象天书
+                        "id"                    :                       "wxts",//萬象天書
                         "level"                 :                       4,
                         "file"                  :                       "/d/dongtian/obj/wanxiangbook",
                         "amount"                :                       184
                         ]),
                 /*
-                        "id"                    :                       "qljp",//千两金票
+                        "id"                    :                       "qljp",//千兩金票
                         "level"                 :                       4,
                         "file"                  :                       "/clone/money/thousand-gold",
                         "amount"                :                       200
@@ -220,7 +220,7 @@ mapping *giftlists = ({//amount为每100人时派发的数量
                         "amount"                :                       40
                         ]),
                 ([
-                        "id"                    :                       "dtzb2",//传说动态装备或者宝石
+                        "id"                    :                       "dtzb2",//傳說動態裝備或者寶石
                         "level"                 :                       4,
                         "file"                  :                       "",
                         "amount"                :                       171
@@ -241,14 +241,14 @@ void set_giftlists()
                         tname = tob["file"];
                         if (!tname || tname =="") {
                                 if (tob["id"]=="dtzb1")
-                                        tname = BRED HIW "神器或宝石" NOR;
+                                        tname = BRED HIW "神器或寶石" NOR;
                                 else if (tob["id"]=="dtzb2")
-                                        tname = HIY "传说或宝石" NOR;
+                                        tname = HIY "傳說或寶石" NOR;
                         } else {
                                 tname = load_object(tname)->name();
                         }
                         tob += (["name":tname]);
-                        tob["amount"] = to_int(tob["amount"] * (sizeu / 100.00));//wiz start时的玩家数才为发放的比例。
+                        tob["amount"] = to_int(tob["amount"] * (sizeu / 100.00));//wiz start時的玩家數才為發放的比例。
                         if (tob["amount"]<1) tob["amount"] = 1;
                         addn("send_items_count", tob["amount"]);
                         gls += ({tob});
@@ -268,7 +268,7 @@ int send_giftlists()
         int i, rate, totalrate, rndrate, *rates;
                 
         gls = query("gift_items");
-        if (undefinedp(gls) || !gls || !sizeof(gls)) {//礼物已经发完
+        if (undefinedp(gls) || !gls || !sizeof(gls)) {//禮物已經發完
                 delete("start_at_time");
                 return 1;
         }
@@ -297,7 +297,7 @@ int send_giftlists()
                 if (!sizeof(gls)) break;
                 //gob = gls[random(sizeof(gls))];
                 
-                //圆桌
+                //圓桌
                         totalrate = 0;
                         rates = ({});
                         for(i=0; i<sizeof(gls); i++) {
@@ -341,7 +341,7 @@ int send_giftlists()
                                         set("bindable", 2, tob);
                                 }
                                 if (gob["id"]=="ntb") {
-                                        log_file("static/yangyong3",sprintf("%s 幸运之树 -> 百元泥潭币, 获得者( %s )\n",TIME_D->replace_ctime(time()), query("id", usr)));
+                                        log_file("static/yangyong3",sprintf("%s 幸運之樹 -> 百元泥潭幣, 獲得者( %s )\n",TIME_D->replace_ctime(time()), query("id", usr)));
                                 }
                         }
                         
@@ -355,13 +355,13 @@ int send_giftlists()
                                 //else msg += "、" + NOR + HIG + query("name", usr) + "(" + query("id", usr) + ")" + "得到" + tname + NOR;
                                 if (!msg) msg = NOR + HIG + query("name", usr) + "得到" + tname + NOR;
                                 else msg += "、" + NOR + HIG + query("name", usr) + "得到" + tname + NOR;
-                                tell_object(usr, NOR + HIG + "你获得了" + name() + NOR + HIG + "赠送的" + tname + NOR + HIG + "。" + HIK + "    ( tune news可打开频道 )\n" + NOR);
+                                tell_object(usr, NOR + HIG + "你獲得了" + name() + NOR + HIG + "贈送的" + tname + NOR + HIG + "。" + HIK + "    ( tune news可打開頻道 )\n" + NOR);
                         } else {
                                 destruct(tob); 
                         }
-                        //DEBUG_CHANNEL(NOR + query("id",usr) + "获得" + gob["name"] + "\n 剩余：" + (string)gob["amount"] + "个\n" + NOR);
+                        //DEBUG_CHANNEL(NOR + query("id",usr) + "獲得" + gob["name"] + "\n 剩餘：" + (string)gob["amount"] + "個\n" + NOR);
                         if (!gob["amount"]) {
-                                //DEBUG_CHANNEL(NOR + HIY + ">>>注销" + gob["name"] + "\n" + NOR);
+                                //DEBUG_CHANNEL(NOR + HIY + ">>>註銷" + gob["name"] + "\n" + NOR);
                                 gls -= ({gob});
                         }
                         
@@ -369,7 +369,7 @@ int send_giftlists()
                 }
         }
         
-        if (msg) post_channel(name() + NOR + HIC + "一刷，天外" + chinese_number(SEND_NUM) + "颗星斗上奇宝纷纷坠落。\n" + sort_msg("    " + msg + "。\n",100));
+        if (msg) post_channel(name() + NOR + HIC + "一刷，天外" + chinese_number(SEND_NUM) + "顆星斗上奇寶紛紛墜落。\n" + sort_msg("    " + msg + "。\n",100));
         
         set("gift_items", gls);
         return 1;
@@ -392,27 +392,27 @@ string long()
         object me = this_player();
         
         if (query("look_time") > time() && wiz_level(me) < 6) {
-                return query("longx") + HIK + "围观的人太多，你等会儿再挤吧。\n" + NOR;
+                return query("longx") + HIK + "圍觀的人太多，你等會兒再擠吧。\n" + NOR;
         }
         set("look_time", time() + 3 + random(3));
         msg = query("longx");
         if (query("qqgroup/gift")) {// && query("qqgroup/keys") && sizeof(query("qqgroup/keys"))) {
                 if (query("gf3_flag")) 
-                        msg += HIG "(如果你找wiz登记了QQ号，想领取" + query("qqgroup/giftname") + HIG + "请输入：input 你的QQ号) " HIK + "(注意负重)\n" + NOR;
+                        msg += HIG "(如果你找wiz登記了QQ號，想領取" + query("qqgroup/giftname") + HIG + "請輸入：input 你的QQ號) " HIK + "(注意負重)\n" + NOR;
                 else
-                        msg += HIG "(如果你从QQ获得了序号，想领取" + query("qqgroup/giftname") + HIG + "请输入：input 序号) " HIK + "(剩余" + HIY + (string)sizeof(query("qqgroup/keys")) + HIK + "件，注意负重)\n" + NOR;
+                        msg += HIG "(如果你從QQ獲得了序號，想領取" + query("qqgroup/giftname") + HIG + "請輸入：input 序號) " HIK + "(剩餘" + HIY + (string)sizeof(query("qqgroup/keys")) + HIK + "件，注意負重)\n" + NOR;
         }
         if (start_time) {
                 if (start_time > time()) {
-                        msg += NOR + " 仙界定于【" + (string)((start_time - time()) / 60) + "】分钟后发送礼物，随机派送给在线玩家，礼物清单如下：\n" + NOR;
+                        msg += NOR + " 仙界定於【" + (string)((start_time - time()) / 60) + "】分鐘後發送禮物，隨機派送給在線玩家，禮物清單如下：\n" + NOR;
                 } else {
-                        msg += NOR + " 仙界目前正在派发礼物，随机派送给在线玩家，剩余的礼物清单如下：\n" + NOR;
+                        msg += NOR + " 仙界目前正在派發禮物，隨機派送給在線玩家，剩餘的禮物清單如下：\n" + NOR;
                 }
                 msg += query_giftlists() + "\n" + NOR;
         } else {
-                msg += NOR + "(目前仙界没有派发礼物的计划。)\n" + NOR;
+                msg += NOR + "(目前仙界沒有派發禮物的計劃。)\n" + NOR;
         }
-        if (wiz_level(me) > 5) msg += HIK + "(本行仅巫师可见) - 指令：<tname|tlevel|trequire|tstart  qqaddkey|qqstart \n gf3add(qq,id)|qqstart|gf3start|gf3stop>\n" + NOR;
+        if (wiz_level(me) > 5) msg += HIK + "(本行僅巫師可見) - 指令：<tname|tlevel|trequire|tstart  qqaddkey|qqstart \n gf3add(qq,id)|qqstart|gf3start|gf3stop>\n" + NOR;
         return msg;
 }
 
@@ -421,10 +421,10 @@ int clean_up() { return 1; }
 
 void create()
 {
-        set_name(NOR BWHT YEL "幸运" CYN "之" GRN "树" NOR, ({ "lucky tree" }));
+        set_name(NOR BWHT YEL "幸運" CYN "之" GRN "樹" NOR, ({ "lucky tree" }));
         set_weight(100000000000);
-                set("longx", NOR HIW "这是红莲种植的白玉古树，枝头匍匐着" + chinese_number(SEND_NUM) + "只" NOR YEL "三足金蟾" HIW 
-                        "仰望星辰。\n金蟾的大嘴不停吞吐温养着海量的珠宝财物，琳琅满目让人眼花缭乱。\n" NOR);
+                set("longx", NOR HIW "這是紅蓮種植的白玉古樹，枝頭匍匐著" + chinese_number(SEND_NUM) + "只" NOR YEL "三足金蟾" HIW 
+                        "仰望星辰。\n金蟾的大嘴不停吞吐溫養著海量的珠寶財物，琳琅滿目讓人眼花繚亂。\n" NOR);
                 set("unit", "棵");
                 set("value", 1);
                 set("no_uget", 1);
@@ -440,8 +440,8 @@ void create()
                 set("unique", 1);
                 set("no_pawn", 1);
 
-                                set("gift_level", 4);//默认发最低级礼物
-                                set("gift_delay", 600);//默认10分钟喷发一次，每小时6次，避免太刷屏
+                                set("gift_level", 4);//默認發最低級禮物
+                                set("gift_delay", 600);//默認10分鐘噴發一次，每小時6次，避免太刷屏
                                 set("gift_require_level", R_LEVEL);
                                 set("gift_require_onlineday", R_ONLINEDAY);
                                 
@@ -457,8 +457,8 @@ void post_channel(string arg)
 
 int do_tname(string arg)
 {
-        if (!arg) return notify_fail(NOR "你想把树重新命名为什么？比如<tname 圣诞>\n" NOR);
-        set_name(NOR + BWHT + YEL + arg + CYN + "之" + GRN + "树" + NOR, ({ "lucky tree" }));
+        if (!arg) return notify_fail(NOR "你想把樹重新命名為什麼？比如<tname 聖誕>\n" NOR);
+        set_name(NOR + BWHT + YEL + arg + CYN + "之" + GRN + "樹" + NOR, ({ "lucky tree" }));
         write("ok\n");
         return 1;
 }
@@ -470,10 +470,10 @@ int do_tlevel(string arg)
         if (lv < 1) lv = 1;
         if (lv > 4) lv = 4;
         set("gift_level", lv);
-        if (lv == 1)            write("你设置了最高的礼物等级。\n");
-        else if (lv == 2)       write("你设置了中上的礼物等级。\n");
-        else if (lv == 3)       write("你设置了普通的礼物等级。\n");
-        else                            write("你设置了最低的礼物等级。\n");
+        if (lv == 1)            write("你設置了最高的禮物等級。\n");
+        else if (lv == 2)       write("你設置了中上的禮物等級。\n");
+        else if (lv == 3)       write("你設置了普通的禮物等級。\n");
+        else                            write("你設置了最低的禮物等級。\n");
         return 1;
 }
 
@@ -484,7 +484,7 @@ int do_tdelay(string arg)
         if (idelay < 60) idelay = 60;
         if (idelay > 3600) idelay = 3600;
         set("gift_delay", idelay);
-        write("你设置了每隔" + (string)(idelay / 60) + "分钟喷发一次礼物。\n");
+        write("你設置了每隔" + (string)(idelay / 60) + "分鐘噴發一次禮物。\n");
         return 1;
 }
 
@@ -492,11 +492,11 @@ int do_tstart(string arg)
 {
         int idelay;
         if( !arg || sscanf(arg, "%d", idelay) != 1 ) 
-                return notify_fail(NOR "你想多久以后开始发送礼物？< 指令格式：tstart 小时数(最少1) >\n" NOR);
+                return notify_fail(NOR "你想多久以後開始發送禮物？< 指令格式：tstart 小時數(最少1) >\n" NOR);
         if (idelay < 1) idelay = 1;
         set("start_at_time", time() + idelay * 3600 + 61);
         set_giftlists();
-        write("你设置了在" + (string)(idelay) + "小时后开始发送礼物 (look lucky tree可以获得信息，想取消发送用tcancel指令)。\n");
+        write("你設置了在" + (string)(idelay) + "小時後開始發送禮物 (look lucky tree可以獲得信息，想取消發送用tcancel指令)。\n");
         return 1;
 }
 
@@ -504,8 +504,8 @@ int do_tcancel()
 {
         object me = this_player();
         delete("start_at_time");
-        post_channel( NOR + HIW + query("name", me) + NOR + HIW + "取消" + query("name") + NOR + HIW + "发送礼物的计划了。\n" + NOR );
-        write("你取消了礼物的发送。\n");
+        post_channel( NOR + HIW + query("name", me) + NOR + HIW + "取消" + query("name") + NOR + HIW + "發送禮物的計劃了。\n" + NOR );
+        write("你取消了禮物的發送。\n");
         return 1;
 }
 
@@ -513,7 +513,7 @@ int do_trequire(string arg)
 {
         int ilv, iday;
         if( !arg || sscanf(arg, "%d %d", iday, ilv) != 2 ) 
-                return notify_fail(NOR "你想限制在线多少天，等级至少达到多少级的玩家才能获得？< 指令格式：do_trequire 天数 等级数 >\n" NOR);
+                return notify_fail(NOR "你想限制在線多少天，等級至少達到多少級的玩家才能獲得？< 指令格式：do_trequire 天數 等級數 >\n" NOR);
         if (ilv < 0) ilv = 0;
         if (iday < 0) iday = 0;
         set("gift_require_level", ilv);
@@ -526,13 +526,13 @@ int do_qqstart(string arg)
 {
         object ob;
         if( !arg) 
-                return notify_fail(NOR "你想通过QQ群发什么礼物？arg参数为可以clone的物品文件。\n" NOR);
+                return notify_fail(NOR "你想通過QQ群發什麼禮物？arg參數為可以clone的物品文件。\n" NOR);
         ob = new(arg);  
         if (!ob || !objectp(ob))        
-                return notify_fail(NOR "arg参数为可以clone的物品文件。\n" NOR);
+                return notify_fail(NOR "arg參數為可以clone的物品文件。\n" NOR);
         set("qqgroup/gift", arg);
         set("qqgroup/giftname", NOR + query("name", ob) + NOR);
-        write(NOR + "设置礼品为" + query("name", ob) + NOR + "ok。\n");
+        write(NOR + "設置禮品為" + query("name", ob) + NOR + "ok。\n");
         return 1;       
 }
 
@@ -541,7 +541,7 @@ int do_qqaddkey(string arg)
         string *sa;
 
         if( !arg) 
-                return notify_fail(NOR "你想添加什么礼物序号？arg参数为字串或字串数组，数组中间用,隔开。\n" NOR);
+                return notify_fail(NOR "你想添加什麼禮物序號？arg參數為字串或字串數組，數組中間用,隔開。\n" NOR);
                 
         sa = explode( arg, "," );
         set("qqgroup/keys", sa + (query("qqgroup/keys") ? query("qqgroup/keys") : ({})) );
@@ -566,7 +566,7 @@ int do_input(string arg)
                 return 1;
         }
         if (!query("qqgroup/gift")) {
-                        write(NOR "目前没有派发礼物。\n" NOR);
+                        write(NOR "目前沒有派發禮物。\n" NOR);
                         return 1;
         }
         if( !arg || sscanf(arg, "%d", i) != 1) 
@@ -583,17 +583,17 @@ int do_input(string arg)
                         return 0;
                 if (member_array(arg, query("qqgroup/keys")) == -1)
                 {
-                        write(NOR "你在瞎搞什么？\n" NOR);
+                        write(NOR "你在瞎搞什麼？\n" NOR);
                         me->start_busy(15);
                         return 1;
                 }
                 remove_qqkey(arg);
         }
         CHANNEL_D->channel_broadcast("chat",  (NOR + HIC + query("name",me) + NOR + HIC + "(" + query("id",me) + NOR + HIC + 
-                ((query("gf3_flag")) ? ("_QQ" + query_temp("gf3_qq", me)) : "") +")从幸运树获得了" + query("qqgroup/giftname") + NOR + HIC + "。\n" + NOR) );
-        write(NOR "你获得了" + query("qqgroup/giftname") + "。\n" NOR);
+                ((query("gf3_flag")) ? ("_QQ" + query_temp("gf3_qq", me)) : "") +")從幸運樹獲得了" + query("qqgroup/giftname") + NOR + HIC + "。\n" + NOR) );
+        write(NOR "你獲得了" + query("qqgroup/giftname") + "。\n" NOR);
         new(query("qqgroup/gift"))->move(me, 1);
-        log_file("static/luckytreeqq",sprintf("%s " + query("qqgroup/giftname") + ", 获得者( %s )\n",TIME_D->replace_ctime(time()), query("id", me)));
+        log_file("static/luckytreeqq",sprintf("%s " + query("qqgroup/giftname") + ", 獲得者( %s )\n",TIME_D->replace_ctime(time()), query("id", me)));
         return 1;
 }
 
@@ -631,7 +631,7 @@ int do_gf3add(string arg)
 {
         string qq, idname;
         if( !arg || sscanf(arg, "%s %s", qq, idname) != 2)  {
-                return notify_fail(NOR "你想怎么注册？< 指令格式：gf3add qq号(没有qq号此处也填写玩家id) id>\n" NOR);
+                return notify_fail(NOR "你想怎麼註冊？< 指令格式：gf3add qq號(沒有qq號此處也填寫玩家id) id>\n" NOR);
         }
         dt[qq] = (["id" : idname, "lasttime" : 1]);
         //dt["gf3"] += ([qq : (["id" : idname, "lasttime" : 1]) ]);
@@ -654,26 +654,26 @@ int gf3query(string qq)
         object me = this_player();
         
         if (!query("gf3_flag")) {
-                write(NOR "目前没有派发礼物。\n" NOR);
+                write(NOR "目前沒有派發禮物。\n" NOR);
                 return 0;
         }
         lasttime = gf3query2(qq);
         if (!lasttime) {
-                write(NOR "这个QQ帐号没有登记过。\n" NOR);
+                write(NOR "這個QQ帳號沒有登記過。\n" NOR);
                 return 0;
         }
         if (dt[qq]["id"] != query("id", me)) {
-                write(NOR "这个QQ不该由你来领取礼物。\n" NOR);
+                write(NOR "這個QQ不該由你來領取禮物。\n" NOR);
                 return 0;
         }
         if (lasttime == (time() / 86400)) {
-                write(NOR "今天已经领取过礼物了。\n" NOR);
+                write(NOR "今天已經領取過禮物了。\n" NOR);
                 return 0;
         }
         dt[qq] = (["id" : query("id", me), "lasttime" : (time() / 86400)]);
         do_save(dt);
         set_temp("gf3_qq", qq, me);
-        write(NOR "领取礼物成功。\n" NOR);
+        write(NOR "領取禮物成功。\n" NOR);
         return 1;
 }
 
@@ -727,13 +727,13 @@ void heart_beat()
                 ct /= 60;
                 if (ct >= 60 && (ct % 60) == 0) {
                         ct /= 60;
-                        //可恶的小白们，自己不开news频道，还只有我去chat频道刷
-                        CHANNEL_D->channel_broadcast("chat", ( NOR + HIC + query("name") + NOR + HIC + "(秋千园)将于" + chinese_number(ct) + NOR + HIC + 
-                                        "小时后，开始持续" + chinese_number(yjtime) + "小时派礼(详见新闻频道)，给在线超" + chinese_number(query("gift_require_onlineday")) + "天、等级超" + chinese_number(query("gift_require_level")) + "级的玩家。\n" + NOR ));
+                        //可惡的小白們，自己不開news頻道，還只有我去chat頻道刷
+                        CHANNEL_D->channel_broadcast("chat", ( NOR + HIC + query("name") + NOR + HIC + "(鞦韆園)將於" + chinese_number(ct) + NOR + HIC + 
+                                        "小時後，開始持續" + chinese_number(yjtime) + "小時派禮(詳見新聞頻道)，給在線超" + chinese_number(query("gift_require_onlineday")) + "天、等級超" + chinese_number(query("gift_require_level")) + "級的玩家。\n" + NOR ));
                 } else if (ct != 0) {
                         if ( ((ct<31) && ((ct%5)==0)) || (ct<5) ) {
-                                post_channel( NOR + HIG + query("name") + NOR + HIG + "(秋千园)将于" + chinese_number(ct) + NOR + HIG + 
-                                        "分钟后，开始持续" + chinese_number(yjtime) + "小时派礼，给在线超" + chinese_number(query("gift_require_onlineday")) + "天、等级超" + chinese_number(query("gift_require_level")) + "级的玩家。\n" + NOR );
+                                post_channel( NOR + HIG + query("name") + NOR + HIG + "(鞦韆園)將於" + chinese_number(ct) + NOR + HIG + 
+                                        "分鐘後，開始持續" + chinese_number(yjtime) + "小時派禮，給在線超" + chinese_number(query("gift_require_onlineday")) + "天、等級超" + chinese_number(query("gift_require_level")) + "級的玩家。\n" + NOR );
                         }
                 }
                 return;

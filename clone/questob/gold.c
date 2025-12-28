@@ -9,7 +9,7 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", "这是一副金制的器具。\n");
+                set("long", "這是一副金制的器具。\n");
                 set("base_unit", "副");
                 set("base_weight", 12000);
                 set("no_sell", 1);

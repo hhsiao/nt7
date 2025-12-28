@@ -9,7 +9,7 @@ void setup()
 
 int do_effect(object me)
 {
-        write("这块" + name() + "还是生的，烤熟了再吃吧。\n");
+        write("這塊" + name() + "還是生的，烤熟了再吃吧。\n");
         return 1;
 }
 
@@ -21,13 +21,13 @@ int broil(object me, object ob)
 
         if (me->is_busy())
         {
-                write("你现在忙着呢，过会儿再烤吧。\n");
+                write("你現在忙著呢，過會兒再烤吧。\n");
                 return 1;
         }
 
         message_sort(HIM "$N" HIM "把" + name() + HIM "放在" + ob->name() +
-                     HIM "上细细烤着，只听毕啵毕啵几声，闻得一阵诱人的香味"
-                     "渐渐散了出来。$P见状连忙把烤好的" + name() + HIM "取"
+                     HIM "上細細烤著，只聽畢啵畢啵幾聲，聞得一陣誘人的香味"
+                     "漸漸散了出來。$P見狀連忙把烤好的" + name() + HIM "取"
                      "下。\n\n" NOR, me);
 
         fob = new("/clone/food/meat");

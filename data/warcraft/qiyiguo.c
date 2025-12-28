@@ -6,8 +6,8 @@ void setup()
 {
         set_name("望望望[2;37;0m[2;37;0m", ({"lalala"}));        
         set("gender", "女性");                
-        set("long", "很开心的样子[2;37;0m
-它是奇意果的魔幻兽。
+        set("long", "很開心的樣子[2;37;0m
+它是奇意果的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

@@ -17,60 +17,60 @@ int main(object me, string arg)
         mapping self_flag;
         string *ps;
 
-        if( !arg ) return notify_fail("你要骑什么东西？\n");
+        if( !arg ) return notify_fail("你要騎什麼東西？\n");
         
         env = environment(me);
-        // 邀请人上坐骑
+        // 邀請人上坐騎
         sscanf(arg, "%s %s", s1, s2);
         if( s1 == "up" ) // s1 == arg;
         {
                 if( !MEMBER_D->is_valid_member(query("id", me)) )
-                        return notify_fail("对不起，只有会员才能邀请别人上坐骑。\n");
+                        return notify_fail("對不起，只有會員才能邀請別人上坐騎。\n");
 
                 if( sscanf(arg, "up %s", who) == 1 )
                 {
                         if( !objectp(horse=query_temp("is_riding", me)) )
-                                return notify_fail("你连坐骑都没有，怎么要求别人上坐骑？\n");
+                                return notify_fail("你連坐騎都沒有，怎麼要求別人上坐騎？\n");
 
                         if( !objectp(person = present(who, env)) )
-                                return notify_fail("这里没有这个人！\n");
+                                return notify_fail("這裡沒有這個人！\n");
 
                         if( query_temp("is_riding", person) )
-                                return notify_fail("别人已经有坐骑了。\n");
+                                return notify_fail("別人已經有坐騎了。\n");
 
                         if( objectp(query_temp("is_rided_follow", horse)) )
-                                return notify_fail("你的坐骑上已经有人了。\n");
+                                return notify_fail("你的坐騎上已經有人了。\n");
 
-                        message_vision(HIW "$N勒坐骑于前，对$n说道：请上坐骑一叙！\n" NOR, me, person);
+                        message_vision(HIW "$N勒坐騎於前，對$n說道：請上坐騎一敘！\n" NOR, me, person);
                         set_temp("ride_up",query("id", me), person);
-                        tell_object(person, HIG + me->name() + "邀请你上坐骑，如果同意请输入 ride ok 。\n" NOR);                  
+                        tell_object(person, HIG + me->name() + "邀請你上坐騎，如果同意請輸入 ride ok 。\n" NOR);                  
                         return 1;
                 }
 
-                return notify_fail("你要邀请谁上坐骑？\n");
+                return notify_fail("你要邀請誰上坐騎？\n");
         }
 
-        // 同意邀请上坐骑
+        // 同意邀請上坐騎
         if( arg == "ok" )
         {
                 if( !stringp(who=query_temp("ride_up", me)) )
-                        return notify_fail("没有人邀请你上坐骑。\n");
+                        return notify_fail("沒有人邀請你上坐騎。\n");
 
                 if( query_temp("is_riding_follow", me) )
-                        return notify_fail("你还是先下坐骑（ride down）再说吧。\n");
+                        return notify_fail("你還是先下坐騎（ride down）再說吧。\n");
         
                 person = find_player(who);
         
-                if( !objectp(person) ) return notify_fail("这里没有这个人。\n");
+                if( !objectp(person) ) return notify_fail("這裡沒有這個人。\n");
 
                 if( environment(me) != environment(person) )
-                        return notify_fail("这里没有这个人。\n");
+                        return notify_fail("這裡沒有這個人。\n");
                 
                 if( !objectp(horse=query_temp("is_riding", person)) )
-                        return notify_fail(person->name() + "似乎没有坐骑吧！\n");
+                        return notify_fail(person->name() + "似乎沒有坐騎吧！\n");
 
                 if( query_temp("is_rided_follow", horse) )
-                        return notify_fail(person->name() + "的" + horse->name() + NOR "已经有人在乘坐了。\n");
+                        return notify_fail(person->name() + "的" + horse->name() + NOR "已經有人在乘坐了。\n");
 
                 delete_temp("ride_up", me);
                 MAP_D->me_ride(me, horse);
@@ -79,7 +79,7 @@ int main(object me, string arg)
                 
         }
         
-        // follower 强行下坐骑
+        // follower 強行下坐騎
         if( arg == "down" )
         {
                 if( objectp(horse=query_temp("is_riding_follow", me)) )
@@ -87,7 +87,7 @@ int main(object me, string arg)
                         delete_temp("is_riding_follow", me);
                         delete_temp("is_rided_follow", horse);
                 
-                        message_vision("$N一翻身， 从" + horse->name() + NOR "跳了下来。\n" NOR, me);
+                        message_vision("$N一翻身， 從" + horse->name() + NOR "跳了下來。\n" NOR, me);
 
                         return 1;
                 }
@@ -104,12 +104,12 @@ int main(object me, string arg)
 
                         delete_temp("is_rided_follow", horse);
 
-                        message_vision("$N强行要求所有人下坐骑。\n", me);
+                        message_vision("$N強行要求所有人下坐騎。\n", me);
 
                         return 1;               
                 }
 
-                return notify_fail("你并没有骑坐骑。\n"); 
+                return notify_fail("你並沒有騎坐騎。\n"); 
         }
         
         if( arg == "?" )
@@ -121,7 +121,7 @@ int main(object me, string arg)
                         for (i = 0; i < sizeof(ps); i ++)
                                 write(sprintf(HIG "%-20s%-20s\n" NOR, ps[i], get_object(self_flag[ps[i]])->short()));
                 } else
-                        write("你目前没有记录地点。\n");
+                        write("你目前沒有記錄地點。\n");
 
                 return 1;
         }
@@ -130,7 +130,7 @@ int main(object me, string arg)
         {
                 env = environment(me);
 
-                // 判断记录是否已经超过限制
+                // 判斷記錄是否已經超過限制
                 if( !MEMBER_D->is_valid_member(query("id", me))) max_rec = 0;
                 else
                 {
@@ -157,53 +157,53 @@ int main(object me, string arg)
 
                 if( rec_n >= max_rec )
                 {
-                        write(HIR "你的记录已达到 " + sprintf("%d", rec_n) + " 条，已满！\n" NOR);
-                        write(HIR "你可以尝试使用以献锞径来增加你的记录数：\n\n" NOR);
+                        write(HIR "你的記錄已達到 " + sprintf("%d", rec_n) + " 條，已滿！\n" NOR);
+                        write(HIR "你可以嘗試使用以獻錁徑來增加你的記錄數：\n\n" NOR);
 
-                        write(HIC "普通玩家：         Max = 0 条\n" NOR);
-                        write(HIM "普通会员：         Max = 1 条\n" NOR);
-                        write(WHT "白银会员：         Max = 2 条\n" NOR);
-                        write(HIY "黄金会员：         Max = 3 条\n" NOR);
-                        write(HIW "白金会员：         Max = 4 条\n" NOR);
-                        write(HIG "册 坐骑 石：         每个册坐骑石增加 1 条 Max\n" NOR);
+                        write(HIC "普通玩家：         Max = 0 條\n" NOR);
+                        write(HIM "普通會員：         Max = 1 條\n" NOR);
+                        write(WHT "白銀會員：         Max = 2 條\n" NOR);
+                        write(HIY "黃金會員：         Max = 3 條\n" NOR);
+                        write(HIW "白金會員：         Max = 4 條\n" NOR);
+                        write(HIG "冊 坐騎 石：         每個冊坐騎石增加 1 條 Max\n" NOR);
                         
                         return 1;
                 }
  
                 if( !objectp(horse=query_temp("is_riding", me)) )
-                        return notify_fail("你还是先找匹坐骑再说吧？\n"); 
+                        return notify_fail("你還是先找匹坐騎再說吧？\n"); 
 
                 if( stringp(MAP_D->get_trans_path(who)) )
-                        return notify_fail("对不起，编号 " + who + " 已经存在，请另取一个编号。\n");
+                        return notify_fail("對不起，編號 " + who + " 已經存在，請另取一個編號。\n");
 
                 if( stringp(query("horse/flags/"+who, me)) )
-                        return notify_fail("对不起，编号 " + who + " 已经存在，请另取一个编号。\n");
+                        return notify_fail("對不起，編號 " + who + " 已經存在，請另取一個編號。\n");
 
-                // 如果房间没有出口不能记录
+                // 如果房間沒有出口不能記錄
                 if( !sizeof(query("exits", env)) )
-                        return notify_fail("此地点不能记录。\n");
+                        return notify_fail("此地點不能記錄。\n");
 
-                // no_magic 不能记录
+                // no_magic 不能記錄
                 if( query("no_magic", env) || query("maze", env) )
-                        return notify_fail("此地点不能记录。\n");
+                        return notify_fail("此地點不能記錄。\n");
 
                 if( clonep(env) || !env->is_room() || query("no_rideto", env) )
-                        return notify_fail("此地点不能记录。\n");
+                        return notify_fail("此地點不能記錄。\n");
 
                 if( domain_file(base_name(environment(me))) == "city2" )
-                        return notify_fail("此地点不能记录。\n");
+                        return notify_fail("此地點不能記錄。\n");
 
                 if( sscanf(base_name(environment(me)), "/data/%*s" ) ||
                     sscanf(base_name(environment(me)), "/maze/%*s" ) ||
                     sscanf(base_name(environment(me)), "/f/%*s" ) )
-                        return notify_fail("此地点不能记录。\n");
+                        return notify_fail("此地點不能記錄。\n");
 
                 //if( !query("outdoors", env) )
-                //        return notify_fail("此地点不能记录。\n");
+                //        return notify_fail("此地點不能記錄。\n");
                         
                 set("horse/flags/"+who, base_name(env), me);
                 //me->save();
-                write(HIG "记录成功！\n" NOR);
+                write(HIG "記錄成功！\n" NOR);
 
                 return 1;
 
@@ -212,45 +212,45 @@ int main(object me, string arg)
         if( sscanf(arg, "unrec %s", who) == 1 )
         {
                 if( !objectp(horse=query_temp("is_riding", me)) )
-                        return notify_fail("你还是先找匹坐骑再说吧？\n"); 
+                        return notify_fail("你還是先找匹坐騎再說吧？\n"); 
 
                 if( !stringp(query("horse/flags/"+who, me)) )
-                        return notify_fail("对不起，编号 " + who + " 不存在，请使用 rideto 查看。\n");
+                        return notify_fail("對不起，編號 " + who + " 不存在，請使用 rideto 查看。\n");
 
                 delete("horse/flags/"+who, me);
                 me->save();
 
-                write(HIG "删除记录成功。\n" NOR);
+                write(HIG "刪除記錄成功。\n" NOR);
 
                 return 1;
                 
         }
         
         if( query_temp("is_riding", me) )
-                return notify_fail("你已经有座骑了！\n");
+                return notify_fail("你已經有座騎了！\n");
 
         if( query_temp("is_riding_follow", me) )
-                return notify_fail("你先下马（ride down）再说吧！\n");
+                return notify_fail("你先下馬（ride down）再說吧！\n");
 
         if( me->is_busy() )
-                return notify_fail("你上一个动作还没有完成！\n");
+                return notify_fail("你上一個動作還沒有完成！\n");
 
         if( me->is_fighting() )
-                return notify_fail("你还在战斗中！没空骑上去。\n");
+                return notify_fail("你還在戰鬥中！沒空騎上去。\n");
 
-           if (query("id", me) != "redl" && query("couple/couple_id", me) != "redl" && wiz_level(me) < wiz_level("(boss)"))  return notify_fail("对不起，您无权乱骑。\n"); 
+           if (query("id", me) != "redl" && query("couple/couple_id", me) != "redl" && wiz_level(me) < wiz_level("(boss)"))  return notify_fail("對不起，您無權亂騎。\n"); 
 
         if (! objectp(obj = present(arg, environment(me))))
-                return notify_fail("你没有这样东西可骑。\n");
+                return notify_fail("你沒有這樣東西可騎。\n");
 /*
         if( !query("ridable", obj) )
-                return notify_fail("这个东西你也要骑？当心你的屁股！\n");
+                return notify_fail("這個東西你也要騎？當心你的屁股！\n");
 
         if( query("owner", obj) && query("owner", obj) != query("id", me) )
-                return notify_fail("它已经有主人了，你无法驾驭它！\n");
+                return notify_fail("它已經有主人了，你無法駕馭它！\n");
 */
         return do_ride(me, obj);
-        write("骑上去了。\n");
+        write("騎上去了。\n");
 }
 
 int do_ride(object me, object obj)
@@ -263,19 +263,19 @@ int do_ride(object me, object obj)
                 guard = filter_array(guard, (: objectp($1) && present($1, environment($2)) && living($1) && ($1!=$2) :), me);
                 if( sizeof(guard) )
                         return notify_fail( guard[0]->name()
-                                + "正守在" + obj->name() + "一旁，防止任何人骑走。\n");
+                                + "正守在" + obj->name() + "一旁，防止任何人騎走。\n");
         }
 
         obj->set_weight(1);
         if( obj->move(me) )
         {
-                message_vision( "$N飞身跃上$n，身手很是矫捷。\n", me, obj );
+                message_vision( "$N飛身躍上$n，身手很是矯捷。\n", me, obj );
                 set_temp("is_rided_by", me, obj);
                 set_temp("is_riding", obj, me);
         }
         else
         {
-                message_vision( "$N身上带的东西太重了，无法骑到$n身上去。\n", me, obj );
+                message_vision( "$N身上帶的東西太重了，無法騎到$n身上去。\n", me, obj );
         }
 
         return 1;
@@ -286,22 +286,22 @@ int help(object me)
         write(@HELP
 指令格式 :
 
-ride <生物名>        骑上代步的已驯养的动物。
-ride up <id>         邀请别人上马（会员指令）。
-ride ok              同意别人的邀请。
-ride down            从别人的马上下马（此指令是专为同乘他人的马的玩家设置的）。
-ride kick            让马上的同乘者下马。            
-ride rec <代号>      可以让你记录当前地点到rideto列表中去，以后可以直接骑上马
-                     使用 rideto <代号> 到达这个地方。
+ride <生物名>        騎上代步的已馴養的動物。
+ride up <id>         邀請別人上馬（會員指令）。
+ride ok              同意別人的邀請。
+ride down            從別人的馬上下馬（此指令是專為同乘他人的馬的玩家設置的）。
+ride kick            讓馬上的同乘者下馬。            
+ride rec <代號>      可以讓你記錄當前地點到rideto列表中去，以後可以直接騎上馬
+                     使用 rideto <代號> 到達這個地方。
 
-                     普通玩家：               可记录 0 条。
-                     普通会员：               可记录 1 条。
-                     白银会员：               可记录 2 条。
-                     黄金会员：               可记录 3 条。
-                     白金会员：               可记录 4 条。
-                     使用册马石一次：         可增加最大可记录空间 1 条。
+                     普通玩家：               可記錄 0 條。
+                     普通會員：               可記錄 1 條。
+                     白銀會員：               可記錄 2 條。
+                     黃金會員：               可記錄 3 條。
+                     白金會員：               可記錄 4 條。
+                     使用冊馬石一次：         可增加最大可記錄空間 1 條。
 
-ride unrec <代号>    删除指令代号的记录。
+ride unrec <代號>    刪除指令代號的記錄。
                        
 HELP
     );

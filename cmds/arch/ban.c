@@ -44,7 +44,7 @@ int help(object me)
           ban [add|del id]
           ban [list wel|net]
 
-这条命令是用来防止有人蓄意捣乱。
+這條命令是用來防止有人蓄意搗亂。
 HELP
         );
         return 1;

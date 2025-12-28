@@ -1,12 +1,12 @@
-// 大唐双龙传
+// 大唐雙龍傳
 
 
 inherit NPC;
 
 void create()
 {
-  set_name("剑客", ({"jian ke","ke"}));
-  set("long","这是一名高丽的剑客。\n");
+  set_name("劍客", ({"jian ke","ke"}));
+  set("long","這是一名高麗的劍客。\n");
   set("gender", "男性");
   set("combat_exp", 600000);
 
@@ -45,10 +45,10 @@ void welcome(object ob)
    
    switch(random(2)){
     case 0:
-     command("say 我的剑术是和弈剑派学的，非常高超的！");
+     command("say 我的劍術是和弈劍派學的，非常高超的！");
      break;
     case 1:
-     command("say 不是我吹牛，如今我的剑术在高丽也数一数二了。");
+     command("say 不是我吹牛，如今我的劍術在高麗也數一數二了。");
    }
    
 }

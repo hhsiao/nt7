@@ -4,14 +4,14 @@ inherit NPC;
 
 void create()
 {
-    set_name("范松", ({"fan song", "fan", "song"}));
+    set_name("範松", ({"fan song", "fan", "song"}));
     set("nickname", HIW "大力神魔" NOR );
-    set("title", "日月神教长老");
+    set("title", "日月神教長老");
     set("gender", "男性");
     set("age", 42);
     set("shen_type", -1);
     set("long",
-        "他是日月神教长老。\n");
+        "他是日月神教長老。\n");
     set("attitude", "peaceful");
 
     set("per", 21);
@@ -45,7 +45,7 @@ void create()
     map_skill("dodge", "lingxu-bu");
     map_skill("parry", "duanyun-fu");
 
-    create_family("日月神教", 2, "长老");
+    create_family("日月神教", 2, "長老");
 
     setup();
     carry_object("/d/heimuya/npc/obj/dafu")->wield();

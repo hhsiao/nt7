@@ -5,10 +5,10 @@ inherit ROOM;
 
 void create()
 {
-    set("short", "万安寺寺门");
+    set("short", "萬安寺寺門");
         set("long", @LONG
-这里便是万安寺的大门所在，那万安寺楼高四层，寺后的一座十三级宝塔更
-老远便可望见。大门内外不时有亲兵在来回巡视察看，戒备很是森严。
+這裡便是萬安寺的大門所在，那萬安寺樓高四層，寺後的一座十三級寶塔更
+老遠便可望見。大門內外不時有親兵在來回巡視察看，戒備很是森嚴。
 LONG );
 
     set("exits", ([
@@ -30,7 +30,7 @@ int valid_leave(object me,string dir)
         if ( dir == "enter" && ob = present("qianfu zhang"))
         {
                 ob->command("tnnd"+query("id", me));
-                message_vision(CYN "$N喝道：乱党贼子，敢在这里撒野？去死吧！\n" NOR,ob,me);
+                message_vision(CYN "$N喝道：亂黨賊子，敢在這裡撒野？去死吧！\n" NOR,ob,me);
                 ob->kill_ob(me);
                 ob=present("guan bing 1");
                 if (objectp(ob)) ob->kill_ob(me);
@@ -40,7 +40,7 @@ int valid_leave(object me,string dir)
                 if (objectp(ob)) ob->kill_ob(me);
                 ob=present("guan bing 4");
                 if (objectp(ob)) ob->kill_ob(me);
-                return notify_fail("大门被蒙古兵挡住了。\n");
+                return notify_fail("大門被蒙古兵擋住了。\n");
         }
         return 1;
 }
@@ -57,28 +57,28 @@ void init()
 
 void yixiao_rob(object me, object sword)
 {
-        message_vision(HIC "\n只听一声诡异的长笑，一条青影向$N" HIC
-                       "直扑而来，你定睛一看，原来是明教四大护"
+        message_vision(HIC "\n只聽一聲詭異的長笑，一條青影向$N" HIC
+                       "直撲而來，你定睛一看，原來是明教四大護"
                        "教法王之一的「" NOR+HIB 
                        "青\n翼蝠王" NOR+HIC
-                       "」韦一笑。\n\n" NOR,  me);
+                       "」韋一笑。\n\n" NOR,  me);
 
         if ((int)me->query_skill("parry") < 400)
         {
-                message_vision(HIW "$N" HIW "只见对方来势汹涌，连忙抽身抵挡，"
-                           "顿时只觉手中一轻，倚天剑已被韦一笑"
-                           "夺了过去！\n\n" NOR, me);
+                message_vision(HIW "$N" HIW "只見對方來勢洶湧，連忙抽身抵擋，"
+                           "頓時只覺手中一輕，倚天劍已被韋一笑"
+                           "奪了過去！\n\n" NOR, me);
                 sword->move(environment(me));
                 destruct(sword);
-                shout(HIR "\n【倚天屠龙】" NOR+WHT "韦一笑：嘿嘿，多谢你将倚天剑取回，咱们后会有期。\n" NOR );
+                shout(HIR "\n【倚天屠龍】" NOR+WHT "韋一笑：嘿嘿，多謝你將倚天劍取回，咱們後會有期。\n" NOR );
         }
         else {
-                message_vision(HIW "$N" HIW "见对方来势汹涌，当即纵身跃起，半"
-                           "空中拔出倚天剑，划出一道美丽的寒芒直贯韦一"
-                           "笑，只听韦\n一笑一声惨嚎，" NOR+HIR 
-                           "鲜血" NOR+HIW 
-                           "飞溅。\n\n", me);
+                message_vision(HIW "$N" HIW "見對方來勢洶湧，當即縱身躍起，半"
+                           "空中拔出倚天劍，劃出一道美麗的寒芒直貫韋一"
+                           "笑，只聽韋\n一笑一聲慘嚎，" NOR+HIR 
+                           "鮮血" NOR+HIW 
+                           "飛濺。\n\n", me);
         }
-        write(HIC "韦一笑长啸一声，施展绝世轻功，飞身飘然而起，扬起一路尘"
-              "埃，已不见了踪影......\n" NOR);
+        write(HIC "韋一笑長嘯一聲，施展絕世輕功，飛身飄然而起，揚起一路塵"
+              "埃，已不見了蹤影......\n" NOR);
 }

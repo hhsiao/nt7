@@ -26,12 +26,12 @@ void checking(object me,object ob)
                   }
                   else
                         addn_temp("help_killed", 1, ob);
-              message_vision("$N扑在地上挣扎了几下，口中喷出几口"HIR"鲜血"NOR"，死了！\n",me);
+              message_vision("$N撲在地上掙扎了幾下，口中噴出幾口"HIR"鮮血"NOR"，死了！\n",me);
                        remove_call_out("destroy");
                  call_out("destroy",1, me);
                   if(ob->query_condition("jobshadi_limit")==0)
                   {
-                        message_vision(CYN"\n一个守城宋兵跑过来说道：蒙古靼子暂时被击退了，$N可以回去复命了！\n"NOR,ob);
+                        message_vision(CYN"\n一個守城宋兵跑過來說道：蒙古靼子暫時被擊退了，$N可以回去覆命了！\n"NOR,ob);
                         set_temp("job_over", 1, ob);
                         delete_temp("start_job", ob);
                   }
@@ -39,7 +39,7 @@ void checking(object me,object ob)
                   {
                  switch( random(2) ) {
                         case 0:
-                        message_vision(HIR"城下又爬上来一个蒙古兵士。\n" NOR,ob); 
+                        message_vision(HIR"城下又爬上來一個蒙古兵士。\n" NOR,ob); 
                         robber=new(__DIR__"robber1");
                         robber->do_change(this_player());
                         robber->move(room);
@@ -48,7 +48,7 @@ void checking(object me,object ob)
             ob->kill_ob(robber);
                         break;
                         case 1:
-                        message_vision(HIR"城下又爬上来一个蒙古将领。\n" NOR,ob); 
+                        message_vision(HIR"城下又爬上來一個蒙古將領。\n" NOR,ob); 
                         robber=new(__DIR__"robber2");
                         robber->do_change(this_player());
                         robber->move(room);

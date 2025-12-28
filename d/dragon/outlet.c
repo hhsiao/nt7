@@ -5,7 +5,7 @@ void create ()
 {
   set ("short", "青木林出口");
   set ("long", HIG @LONG
-突然无数棵参天大树中出现了一条小径，似乎是出口！?LONG);
+突然無數棵參天大樹中出現了一條小徑，似乎是出口！?LONG);
 
   set("exits", ([
       ]));

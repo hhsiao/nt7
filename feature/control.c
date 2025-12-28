@@ -1,5 +1,5 @@
 // /feature/control.c
-// 游戏中有数量限制的物件。
+// 遊戲中有數量限制的物件。
 // by Find.
 
 nomask int is_ctl_ob() { return 1; }

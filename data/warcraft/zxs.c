@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("血凤[2;37;0m[2;37;0m", ({"xuefeng"}));        
+        set_name("血鳳[2;37;0m[2;37;0m", ({"xuefeng"}));        
         set("gender", "女性");                
-        set("long", "血凤[2;37;0m
-它是血墨的魔幻兽。
+        set("long", "血鳳[2;37;0m
+它是血墨的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

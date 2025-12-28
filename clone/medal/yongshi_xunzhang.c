@@ -6,8 +6,8 @@ inherit MEDAL;
 
 void create()
 {
-        set_name(HIY "勇士勋章" NOR, ({ "yongshi xunzhang", "yongshi", "xunzhang", "medal" }));
-        set("long", HIR "勇士勋章，非常珍贵，乃勇者的象征。\n" NOR);
+        set_name(HIY "勇士勳章" NOR, ({ "yongshi xunzhang", "yongshi", "xunzhang", "medal" }));
+        set("long", HIR "勇士勳章，非常珍貴，乃勇者的象徵。\n" NOR);
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
@@ -22,7 +22,7 @@ void create()
                 set("armor_prop/derive_times", 300);
         }
         set("enchase/SN", "ys1");
-        set("bindable", 1); // 装备绑定
+        set("bindable", 1); // 裝備綁定
         set("auto_load", 1);
         setup();
 }

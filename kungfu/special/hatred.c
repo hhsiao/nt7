@@ -1,24 +1,24 @@
-// hatred.c 杀气
+// hatred.c 殺氣
 // Created by Doing Lu 10/7/2K
 
 #include <ansi.h>
 
 inherit F_CLEAN_UP;
 
-string name() { return HIR "杀气冲霄" NOR; }
+string name() { return HIR "殺氣沖霄" NOR; }
 
 int perform(object me, string skill)
 {
         int count;
 
         if( query("qi", me)<80 )
-                return notify_fail("你的体力不支，无法蓄势提升自己的伤害力。\n");
+                return notify_fail("你的體力不支，無法蓄勢提升自己的傷害力。\n");
 
         if( query_temp("special_skill/hatred", me) )
-                return notify_fail("你现在已经是杀气腾腾了。\n");
+                return notify_fail("你現在已經是殺氣騰騰了。\n");
 
-        message_vision(HIR "$N" HIR "眼中精光闪过，冷冷的扫过"
-                       "四周，一股寒意凛然而起。\n" NOR, me);
+        message_vision(HIR "$N" HIR "眼中精光閃過，冷冷的掃過"
+                       "四周，一股寒意凜然而起。\n" NOR, me);
         switch(query("character", me) )
         {
         case "光明磊落":
@@ -29,15 +29,15 @@ int perform(object me, string skill)
                 count = 42;
                 break;
 
-        case "狡黠多变":
+        case "狡黠多變":
                 count = 38;
                 break;
 
-        case "阴险奸诈":
+        case "陰險奸詐":
                 count = 48;
                 break;
 
-        case "国士无双":
+        case "國士無雙":
                 count = 60;
                 break;
 
@@ -59,5 +59,5 @@ void remove_effect(object me, int count)
         delete_temp("special_skill/hatred", me);
         addn_temp("apply/damage", -count, me);
         addn_temp("apply/unarmed_damage", -count, me);
-        tell_object(me, "你精神一松懈，杀气荡然无存。\n");
+        tell_object(me, "你精神一鬆懈，殺氣蕩然無存。\n");
 }

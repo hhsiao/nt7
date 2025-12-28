@@ -6,8 +6,8 @@ void create()
 {
         set("short","草原");
         set("long",@LONG
-这里是雪山脚下的一片草原。北面是起伏的群山，山顶上积着终年
-不化的雪。西边有一条土路。
+這裡是雪山腳下的一片草原。北面是起伏的群山，山頂上積著終年
+不化的雪。西邊有一條土路。
 LONG );
         set("outdoors","xueshan");
         set("exits",([

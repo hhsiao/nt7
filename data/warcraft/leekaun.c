@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("来福[2;37;0m[2;37;0m", ({"laifu"}));        
+        set_name("來福[2;37;0m[2;37;0m", ({"laifu"}));        
         set("gender", "女性");                
         set("long", "喵喵喵[2;37;0m
-它是李少的魔幻兽。
+它是李少的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

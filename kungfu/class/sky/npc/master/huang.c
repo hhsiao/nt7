@@ -5,13 +5,13 @@ inherit NPC;
 void create()
 {
         object ob;
-        set_name("黄药师", ({"huang yaoshi", "huang", "yaoshi"}));
-        set("title", "东海桃花岛岛主");
-        set("nickname", HIC "东邪" NOR );
+        set_name("黃藥師", ({"huang yaoshi", "huang", "yaoshi"}));
+        set("title", "東海桃花島島主");
+        set("nickname", HIC "東邪" NOR );
         set("gender", "男性");
         set("age", 42);
-        set("long", "他就是桃花岛主。行事好恶全由己心，因此被\n"
-                    "人称作「东邪」。\n");
+        set("long", "他就是桃花島主。行事好惡全由己心，因此被\n"
+                    "人稱作「東邪」。\n");
         set("attitude", "peaceful");
         set("class", "scholar");
         set("str", 40);
@@ -77,7 +77,7 @@ void create()
 
         prepare_skill("finger" , "tanzhi-shentong");
 
-        create_family("桃花岛", 1, "岛主");
+        create_family("桃花島", 1, "島主");
 
                 set("chat_chance_combat", 120);
                 set("chat_msg_combat", ({
@@ -149,7 +149,7 @@ void die()
                          if (arrayp(ob->query_team()))
                          {
                                  command("heng");
-                                 command("say 胜之不武！");
+                                 command("say 勝之不武！");
                                  set("qi", 500000);
                                  set("jing", 500000);
                                  set("neili", 35000);
@@ -167,7 +167,7 @@ void die()
              if (ob->query("sky12/floor") == 6)
              {
                       ob->set("sky12/floor", 7);
-                 command("say 阁下请便！");
+                 command("say 閣下請便！");
              }           
         }
 
@@ -182,7 +182,7 @@ void die()
 
         return;
 }
-// 气血小于1000则死亡，避免他人协助帮忙转世
+// 氣血小於1000則死亡，避免他人協助幫忙轉世
 void heart_beat()
 {
         if (this_object()->query("qi") < 1000 || this_object()->query("eff_qi") < 1000)

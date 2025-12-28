@@ -5,8 +5,8 @@
 
 inherit F_DBASE;
 
-nosave string *event_name;      // 系统中所有的事件
-nosave mapping event_list;      // 待触发的事件
+nosave string *event_name;      // 系統中所有的事件
+nosave mapping event_list;      // 待觸發的事件
 
 void collect_all_event();
 
@@ -16,20 +16,20 @@ void create()
         object eob;
 
         seteuid(ROOT_UID);
-        set("channel_id", "事件精灵");
-        CHANNEL_D->do_channel(this_object(), "sys", "事件系统已经启动。");
+        set("channel_id", "事件精靈");
+        CHANNEL_D->do_channel(this_object(), "sys", "事件系統已經啟動。");
 
         event_name = get_dir(EVENT_DIR + "*.c");
         event_name = map_array(event_name, (: $1[0..<3] :));
 
-        // 析构所有的事件
+        // 析構所有的事件
         foreach (event in event_name)
                 if (objectp(eob = find_object(EVENT_DIR + event)))
                         destruct(eob);
 
         event_list = ([ ]);
         collect_all_event();
-        set_heart_beat(5);      // 每个小时心跳一次
+        set_heart_beat(5);      // 每個小時心跳一次
 }
 
 int clean_up()
@@ -47,7 +47,7 @@ mapping query_event_list()
         return event_list;
 }
 
-// EVENT_D启动时收集所有的事件
+// EVENT_D啟動時收集所有的事件
 void collect_all_event()
 {
         string event;
@@ -56,7 +56,7 @@ void collect_all_event()
                 (EVENT_DIR + event)->create_event();
 }
 
-// 登记在某时刻启动事件
+// 登記在某時刻啟動事件
 int test(string st, int year, int month, int day, int hour, mixed para)
 {
         if (undefinedp(event_list[st]))
@@ -65,7 +65,7 @@ int test(string st, int year, int month, int day, int hour, mixed para)
         event_list[st] = ({ year, month, day, hour, para });
 }
 
-// 登记在某时刻启动事件
+// 登記在某時刻啟動事件
 int at_when(int year, int month, int day, int hour, mixed para)
 {
         object pob;
@@ -76,15 +76,15 @@ int at_when(int year, int month, int day, int hour, mixed para)
                 return 0;
 
         if (geteuid(pob) != ROOT_UID)
-                // 为了安全，只有具有ROOT身份的对象才能够登记事件
+                // 為了安全，只有具有ROOT身份的對象才能夠登記事件
                 return 0;
 
         event_list[base_name(pob)] = ({ year, month, day, hour, para });
 }
 
-// 登记在一段时间以后启动事件
-// 如果传入的参数是负数，则标志了一个绝对的时间
-// 比如：Y = 0 month = 0 day = 1 hour = -5 表示明天5点钟
+// 登記在一段時間以後啟動事件
+// 如果傳入的參數是負數，則標誌了一個絕對的時間
+// 比如：Y = 0 month = 0 day = 1 hour = -5 表示明天5點鐘
 int at_after(int year, int month, int day, int hour, mixed para)
 {
         mixed *lt;
@@ -97,7 +97,7 @@ int at_after(int year, int month, int day, int hour, mixed para)
         return at_when(year, month, day, hour, para);
 }
 
-// 每个小时心跳一次，检查所有的事件
+// 每個小時心跳一次，檢查所有的事件
 void heart_beat()
 {
         mixed *lt;
@@ -124,10 +124,10 @@ void heart_beat()
                      el[3];
                 if (tnow < tt) continue;
 
-                // 先去掉这个事件 - 这个操作必须在触发前完成
+                // 先去掉這個事件 - 這個操作必須在觸發前完成
                 map_delete(event_list, event);
 
-                // 事件需要触发，调用传入参数
+                // 事件需要觸發，調用傳入參數
                 r = catch(event->trigger_event(el[4],
                                                lt[LT_YEAR], lt[LT_MON],
                                                lt[LT_MON], lt[LT_MDAY]));

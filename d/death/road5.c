@@ -3,13 +3,13 @@ inherit ROOM;
  
 void create()
 {
-        set("short", HIR "【鬼门大道】" NOR);
+        set("short", HIR "【鬼門大道】" NOR);
        set("long", HIR @LONG
 
-                    鬼     门     大     道
+                    鬼     門     大     道
 
-    你走在一条阴森森的路上，浓浓的雾环绕在你的四周，好像永远都
-不会散去似的，整条路前後只看到零星的几盏灯笼……
+    你走在一條陰森森的路上，濃濃的霧環繞在你的四周，好像永遠都
+不會散去似的，整條路前後只看到零星的幾盞燈籠……
 
 
 LONG NOR );
@@ -36,7 +36,7 @@ int valid_leave(object me, string dir)
                 }
                 else {
                         set_temp("long_road", i, me);
-                        return notify_fail( HIB "\n你走著走著……发现四周景色居然都没有变……\n" NOR);
+                        return notify_fail( HIB "\n你走著走著……發現四周景色居然都沒有變……\n" NOR);
                 }
         }
         else {

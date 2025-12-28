@@ -3,16 +3,16 @@ inherit NPC;
 
 void create()
 {
-        set_name("段延庆", ({"duan yanqing", "duan", "yanqing", "qing"}));
+        set_name("段延慶", ({"duan yanqing", "duan", "yanqing", "qing"}));
         set("gender", "男性");
-        set("nickname", HIR "恶贯满盈" NOR);
-        set("title", "四大恶人之首");
+        set("nickname", HIR "惡貫滿盈" NOR);
+        set("title", "四大惡人之首");
         set("age", 58);
         set("long", @LONG
-他就是四大恶人之首，人称恶贯满盈的段延庆。只
-见他身高五尺有余，脸上常年戴一张人皮面具，喜
-怒一丝不露。体格瘦长，双腿齐膝而断，只能用腋
-下的两根镔铁拐杖代步。
+他就是四大惡人之首，人稱惡貫滿盈的段延慶。只
+見他身高五尺有餘，臉上常年戴一張人皮面具，喜
+怒一絲不露。體格瘦長，雙腿齊膝而斷，只能用腋
+下的兩根鑌鐵柺杖代步。
 LONG);
         set("attitude", "peaceful");
         set("shen_type", -1);

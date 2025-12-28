@@ -10,7 +10,7 @@
 void create() { seteuid(getuid()); }
 
 int gift_point() { return 1; }
-// 可以用来浸透的物品列表：必须是物品的base_name
+// 可以用來浸透的物品列表：必須是物品的base_name
 string *imbue_list = ({
         "/d/shenlong/obj/hua4",
         "/clone/gift/puti-zi",
@@ -21,14 +21,14 @@ string *imbue_list = ({
         "/clone/gift/xuanhuang",
 });
 
-// 浸入的次数的随机界限：如果每次IMBUE以后取0-IMBUE次数的随机
-// 数大于这个数值，则IMBUE最终成功。
+// 浸入的次數的隨機界限：如果每次IMBUE以後取0-IMBUE次數的隨機
+// 數大於這個數值，則IMBUE最終成功。
 #define RANDOM_IMBUE_OK         100
 
-// 每次浸入需要圣化的次数
+// 每次浸入需要聖化的次數
 #define SAN_PER_IMBUE           5
 
-// 杀了人以后的奖励
+// 殺了人以後的獎勵
 void killer_reward(object me, object victim, object item)
 {
         int exp;
@@ -86,7 +86,7 @@ void killer_reward(object me, object victim, object item)
                 addn("magic/blood", 1, item);
 }
 
-// 召唤物品
+// 召喚物品
 int receive_summon(object me, object item)
 {
         object env;
@@ -96,33 +96,33 @@ int receive_summon(object me, object item)
         if ((env = environment(item)) && env == me)
         {
                 tell_object(me, item->name() + "不就在你身上"
-                            "嘛？你召唤个什么劲？\n");
+                            "嘛？你召喚個什麼勁？\n");
                 return 1;
         }
 
         if( query("jingli", me)<200 )
         {
-                tell_object(me, "你试图呼唤" + item->name() +
-                            "，可是难以进入境界，看来是精力不济。\n");
+                tell_object(me, "你試圖呼喚" + item->name() +
+                            "，可是難以進入境界，看來是精力不濟。\n");
                 return 0;
         }
         addn("jingli", -200, me);
 
         if( query("id", me) == "lonely" )
         {
-              message_sort(HIM "\n只见四周金光散布，祥云朵朵，远处有凤凰盘绕，麒麟逐戏。耳边"
-                           "传来阵阵梵音。$N"HIM"一声长啸，"+query("name", item)+HIM
-                           "破空而来 ……。\n\n" NOR, me);
+              message_sort(HIM "\n只見四周金光散佈，祥雲朵朵，遠處有鳳凰盤繞，麒麟逐戲。耳邊"
+                           "傳來陣陣梵音。$N"HIM"一聲長嘯，"+query("name", item)+HIM
+                           "破空而來 ……。\n\n" NOR, me);
         }
         else
 
-              message_vision(HIW "$N" HIW "突然大喝一声，伸出右手凌空"
-                             "一抓，忽然乌云密布，雷声隐隐。\n\n" NOR, me);
+              message_vision(HIW "$N" HIW "突然大喝一聲，伸出右手凌空"
+                             "一抓，忽然烏雲密佈，雷聲隱隱。\n\n" NOR, me);
 
         if (env == environment(me))
         {
-                message_vision(HIW "只见地上的" + item->name() +
-                               HIW "应声而起，飞跃至$N" HIW
+                message_vision(HIW "只見地上的" + item->name() +
+                               HIW "應聲而起，飛躍至$N" HIW
                                "的掌中！\n\n" NOR, me);
         } else
         {
@@ -135,54 +135,54 @@ int receive_summon(object me, object item)
                         switch (type)
                         {
                         case 0:
-                                message("vision", HIW "天空中传来隐隐的雷声"
-                                        "，忽然电闪雷鸣，" + item->name() +
-                                        HIW "腾空而起，"
-                                        "消失不见！\n\n" NOR, env);
+                                message("vision", HIW "天空中傳來隱隱的雷聲"
+                                        "，忽然電閃雷鳴，" + item->name() +
+                                        HIW "騰空而起，"
+                                        "消失不見！\n\n" NOR, env);
                                 break;
                         case 1:
-                                message("vision", HIC "一道神光从天而降"
-                                        "，罩定了" + item->name() + HIC "，只见" +
-                                        item->name() + HIC "化作长虹破空而"
+                                message("vision", HIC "一道神光從天而降"
+                                        "，罩定了" + item->name() + HIC "，只見" +
+                                        item->name() + HIC "化作長虹破空而"
                                         "走。\n\n" NOR, env);
                                 break;
                         default:
-                                message("vision", HIY "忽然间麝香遍地，氤氲弥漫，" +
-                                        item->name() + HIY "叮呤呤的抖动数下，化作一"
-                                        "道金光转瞬不见！\n\n" NOR, env);
+                                message("vision", HIY "忽然間麝香遍地，氤氳瀰漫，" +
+                                        item->name() + HIY "叮呤呤的抖動數下，化作一"
+                                        "道金光轉瞬不見！\n\n" NOR, env);
                                 break;
                         }
 
                         if (interactive(env = environment(item)))
                         {
                                 tell_object(env, HIM + item->name() +
-                                                 HIM "忽然离你而去了！\n" NOR);
+                                                 HIM "忽然離你而去了！\n" NOR);
                         }
                 }
 
                 switch (type)
                 {
                 case 0:
-                        message_vision(HIW "一声" HIR "霹雳" HIW "，"
-                                       "闪电划破长空，" + item->name() + HIW
-                                       "从天而降，飞入$N" HIW "的手中！\n\n" NOR, me);
+                        message_vision(HIW "一聲" HIR "霹靂" HIW "，"
+                                       "閃電劃破長空，" + item->name() + HIW
+                                       "從天而降，飛入$N" HIW "的手中！\n\n" NOR, me);
                         break;
                 case 1:
                         if( query("id", item) == "lonely")break;
 
-                        message_vision(HIW "一道" HIY "长虹" HIW "扫过"
-                                       "天空，只见" + item->name() + HIW
+                        message_vision(HIW "一道" HIY "長虹" HIW "掃過"
+                                       "天空，只見" + item->name() + HIW
                                         "落入了$N" HIW "的掌中！\n\n" NOR, me);
                         break;
                 default:
-                        message_vision(HIW "只见" + item->name() + HIW "呤呤作响，大"
-                                       "放异彩，挟云带雾，突现在$N"
+                        message_vision(HIW "只見" + item->name() + HIW "呤呤作響，大"
+                                       "放異彩，挾雲帶霧，突現在$N"
                                        HIW "的掌中！\n\n" NOR, me);
                         break;
                 }
         }
 
-        // 取消no_get属性
+        // 取消no_get屬性
         delete_temp("stab_by", item);
         delete("no_get", item);
 
@@ -214,7 +214,7 @@ int receive_summon(object me, object item)
         return 1;
 }
 
-// 隐藏物品
+// 隱藏物品
 int hide_anywhere(object me, object item)
 {
         if( item->item_owner() != query("id", me) &&
@@ -223,19 +223,19 @@ int hide_anywhere(object me, object item)
 
         if( query("jingli", me)<100 )
         {
-                tell_object(me, "你试图令" + item->name() +
-                            "遁去，可是精力不济，难以发挥它的能力。\n");
+                tell_object(me, "你試圖令" + item->name() +
+                            "遁去，可是精力不濟，難以發揮它的能力。\n");
                 return 0;
         }
         addn("jingli", -100, me);
 
-        message_vision(HIM "$N" HIM "轻轻一旋" + item->name() +
-                       HIM "，已然了无踪迹。\n", me);
+        message_vision(HIM "$N" HIM "輕輕一旋" + item->name() +
+                       HIM "，已然了無蹤跡。\n", me);
         destruct(item);
         return 1;
 }
 
-// 追寻物品
+// 追尋物品
 int receive_miss(object me, object item)
 {
         object env;
@@ -244,53 +244,53 @@ int receive_miss(object me, object item)
 
         if (env == environment(me))
         {
-                write("你瞪着" + item->name() + "，看啥？\n");
+                write("你瞪著" + item->name() + "，看啥？\n");
                 return 0;
         }
 
         if (env == me)
         {
-                write("你摸着" + item->name() + "，发了半天的呆。\n");
+                write("你摸著" + item->name() + "，發了半天的呆。\n");
                 return 0;
         }
 
         if (!objectp(env) || userp(env) || environment(env))
         {
-                write("你试图感应" + item->name() + "，但是感觉非常的渺茫。\n");
+                write("你試圖感應" + item->name() + "，但是感覺非常的渺茫。\n");
                 return 0;
         }
 
         if( !wizardp(me) && (!query("outdoors", env) || query("no_magic", env) ||
             query("maze", env) || query("penglai", env)) )
         {
-                write("冥冥中你感应到" + item->name() + "，但是似乎难以到达那里。\n");
+                write("冥冥中你感應到" + item->name() + "，但是似乎難以到達那裡。\n");
                 return 0;
         }
 
         if( sscanf(base_name(env), "/d/dongtian/%*s") )
         {
-                write("冥冥中你感应到" + item->name() + "，但是似乎难以到达那里。\n");
+                write("冥冥中你感應到" + item->name() + "，但是似乎難以到達那裡。\n");
                 return 0;
         }
 
-        message("vision", me->name() + "在凝神思索，不知道要做些什么。\n",
+        message("vision", me->name() + "在凝神思索，不知道要做些什麼。\n",
                 environment(me), ({ me }));
         if( query("jingli", me)<400 )
         {
-                write("你觉得" + item->name() + "的感觉相当"
-                      "飘忽，看来精力不济，难以感应。\n");
+                write("你覺得" + item->name() + "的感覺相當"
+                      "飄忽，看來精力不濟，難以感應。\n");
                 return 0;
         }
 
         // 消耗精力
         addn("jingli", -300-random(100), me);
-        message_vision(HIM "$N" HIM "口中念念有词，转瞬天际一道长虹划"
-                       "过，$N" HIM "驾彩虹而走。\n" NOR, me);
-        tell_object(me, "你追寻" + item->name() + "而去。\n");
+        message_vision(HIM "$N" HIM "口中唸唸有詞，轉瞬天際一道長虹劃"
+                       "過，$N" HIM "駕彩虹而走。\n" NOR, me);
+        tell_object(me, "你追尋" + item->name() + "而去。\n");
         me->move(environment(item));
-        message("vision", HIM "一道彩虹划过天际，" + me->name() +
-                HIM "飘然落下，有若神仙。\n" NOR, environment(me), ({ me }));
-        tell_object(me, HIM "你追寻到了" + item->name() +
+        message("vision", HIM "一道彩虹劃過天際，" + me->name() +
+                HIM "飄然落下，有若神仙。\n" NOR, environment(me), ({ me }));
+        tell_object(me, HIM "你追尋到了" + item->name() +
                     HIM "，落下遁光。\n" NOR);
         return 1;
 }
@@ -299,25 +299,25 @@ int receive_miss(object me, object item)
 int do_stab(object me, object item)
 {
         if( query("no_magic", environment(me)) )
-                return notify_fail("在这里乱弄什么！\n");
+                return notify_fail("在這裡亂弄什麼！\n");
 
         if (!item->is_weapon() && !item->is_unarmed_weapon())
                 return notify_fail(item->name() + "也能插在地上？\n");
 
         if( !query("outdoors", environment(me)) &&
             !wizardp(me))
-                return notify_fail("在这里乱弄什么！\n");
+                return notify_fail("在這裡亂弄什麼！\n");
 
         set("no_get", bind((:call_other,__FILE__,"do_get_item",item:),item), item);
         set_temp("stab_by",query("id",  me), item);
 
-        message_vision(WHT "\n$N" WHT "随手将" + item->name() + NOR +
-                       WHT "往地上一插，发出「嚓愣」一声脆响。\n\n" NOR, me);
+        message_vision(WHT "\n$N" WHT "隨手將" + item->name() + NOR +
+                       WHT "往地上一插，發出「嚓愣」一聲脆響。\n\n" NOR, me);
         item->move(environment(me));
         return 1;
 }
 
-// 把取物品时检查
+// 把取物品時檢查
 mixed do_get_item(object item)
 {
         object me;
@@ -327,18 +327,18 @@ mixed do_get_item(object item)
 
         if( query("id", me) != query_temp("stab_by", item) &&
             query("id", me) != item->item_owner() )
-                return "你试图将" + item->name() + "拔起，却"
-                       "发现它仿佛是生长在这里一般，无法撼动。\n";
+                return "你試圖將" + item->name() + "拔起，卻"
+                       "發現它彷彿是生長在這裡一般，無法撼動。\n";
 
-        message_vision(HIW "\n$N" HIW "随手拂过" + item->name() +
-                       HIW "脊处，顿时只听「嗤」的一声，扬起一阵"
-                       "尘土。\n\n" NOR, me);
+        message_vision(HIW "\n$N" HIW "隨手拂過" + item->name() +
+                       HIW "脊處，頓時只聽「嗤」的一聲，揚起一陣"
+                       "塵土。\n\n" NOR, me);
         delete_temp("stab_by", item);
         delete("no_get", item);
         return 0;
 }
 
-// 发挥特殊功能
+// 發揮特殊功能
 mixed do_touch(object me, object item)
 {
         string msg;
@@ -351,9 +351,9 @@ mixed do_touch(object me, object item)
             (query("no_fight", environment(me)) ||
             query("room_owner_id", environment(me)))) )
         {
-                message_vision(HIR "\n$N轻轻触碰" + item->name() +
-                               HIR "，突然间全身一震，连退数步，如"
-                               "遭受电击。\n" NOR, me);
+                message_vision(HIR "\n$N輕輕觸碰" + item->name() +
+                               HIR "，突然間全身一震，連退數步，如"
+                               "遭受電擊。\n" NOR, me);
                 me->receive_damage("qi", 50 + random(50));
                 return 1;
         }
@@ -361,40 +361,40 @@ mixed do_touch(object me, object item)
         if( query("jingli", me)<100 )
         {
                 set("jingli", 0, me);
-                return notify_fail(CYN "\n你凝视" + item->name() +
-                                   CYN "许久，悠悠一声长叹。\n" NOR);
+                return notify_fail(CYN "\n你凝視" + item->name() +
+                                   CYN "許久，悠悠一聲長嘆。\n" NOR);
         }
 
         addn("jingli", -80-random(20), me);
         switch (random(3))
         {
         case 0:
-                msg = CYN "\n$N" CYN "轻轻一弹$n" CYN "，长吟"
-                      "道：「别来无恙乎？」\n" NOR;
+                msg = CYN "\n$N" CYN "輕輕一彈$n" CYN "，長吟"
+                      "道：「別來無恙乎？」\n" NOR;
                 break;
         case 1:
-                msg = CYN "\n$N" CYN "轻轻抚过$n" CYN "，作古"
-                      "风一首，$n" CYN "铃铃作响，似以和之。\n" NOR;
+                msg = CYN "\n$N" CYN "輕輕撫過$n" CYN "，作古"
+                      "風一首，$n" CYN "鈴鈴作響，似以和之。\n" NOR;
                 break;
         default:
-                msg = CYN "\n$N" CYN "悠然一声长叹，轻抚$n"
-                      CYN "，沉思良久，不禁感慨万千。\n" NOR;
+                msg = CYN "\n$N" CYN "悠然一聲長嘆，輕撫$n"
+                      CYN "，沉思良久，不禁感慨萬千。\n" NOR;
                 break;
         }
 
         switch (random(3))
         {
         case 0:
-                msg += HIM "忽然只见$n" HIM "闪过一道光华，"
-                       "飞跃而起，散作千百流离。\n" NOR;
+                msg += HIM "忽然只見$n" HIM "閃過一道光華，"
+                       "飛躍而起，散作千百流離。\n" NOR;
                 break;
         case 1:
-                msg += HIM "顿听$n" HIM "一声龙吟，悠悠不绝"
+                msg += HIM "頓聽$n" HIM "一聲龍吟，悠悠不絕"
                        "，直沁入到你的心肺中去。\n" NOR;
                 break;
         default:
-                msg += HIM "霎时间$n" HIM "光芒四射，如蕴琉"
-                       "璃异彩，逼得你难以目视。\n" NOR;
+                msg += HIM "霎時間$n" HIM "光芒四射，如蘊琉"
+                       "璃異彩，逼得你難以目視。\n" NOR;
                 break;
         }
 
@@ -415,21 +415,21 @@ mixed do_touch(object me, object item)
                         my["jingli"] = my["max_jingli"];
                         set_temp("nopoison", 1, ob);
                 }
-                tell_object(obs, HIC "你感到一股温和的热浪袭来，便似"
-                                "获得重生一般。\n" NOR);
+                tell_object(obs, HIC "你感到一股溫和的熱浪襲來，便似"
+                                "獲得重生一般。\n" NOR);
         } else
         if( query("neili", me)<query("max_neili", me) )
         {
                 set("neili",query("max_neili",  me), me);
-                tell_object(me, HIC "你只觉一股热气至丹田冉冉升起，"
-                                "说不出的舒服。\n" NOR);
+                tell_object(me, HIC "你只覺一股熱氣至丹田冉冉升起，"
+                                "說不出的舒服。\n" NOR);
         }
         if (me->is_fighting() && !me->is_busy())
                 me->start_busy(10);
         return 1;
 }
 
-// 圣化物品
+// 聖化物品
 int do_san(object me, object item)
 {
         string my_id;
@@ -438,90 +438,90 @@ int do_san(object me, object item)
 
         if( !item->is_weapon() && !item->is_unarmed_weapon() )
         {
-                // 是装备类？
-                return notify_fail("防具无需圣化...\n");
+                // 是裝備類？
+                return notify_fail("防具無需聖化...\n");
         }
 
-        // 武器类的圣化
+        // 武器類的聖化
         if( query("magic/power", item)>0 )
-                return notify_fail("现在" + item->name() + "的威力"
-                                   "已经得到了充分的发挥了。\n");
+                return notify_fail("現在" + item->name() + "的威力"
+                                   "已經得到了充分的發揮了。\n");
 
         if( query("magic/imbue_ok", item) )
-                return notify_fail("现在" + item->name() + "的潜力"
-                                   "已经充分挖掘了，现在只是需要最"
-                                   "后一步融合。\n");
+                return notify_fail("現在" + item->name() + "的潛力"
+                                   "已經充分挖掘了，現在只是需要最"
+                                   "後一步融合。\n");
 
         my_id=query("id", me);
 
         count=sizeof(query("magic/do_san", item));
         if( query("magic/imbue_ob", item) )
-                return notify_fail("现在" + item->name() + "已经被充分的圣"
-                                   "化了，需要浸入神物以进一步磨练。\n");
+                return notify_fail("現在" + item->name() + "已經被充分的聖"
+                                   "化了，需要浸入神物以進一步磨練。\n");
 
         if( query("magic/do_san/"+my_id, item) )
-                return notify_fail("你已经为" + item->name() + "圣化过了，"
-                                   "非凡的能力还无法被它完全吸收。\n你"
-                                   "有必要寻求他人帮助以继续圣化。\n");
+                return notify_fail("你已經為" + item->name() + "聖化過了，"
+                                   "非凡的能力還無法被它完全吸收。\n你"
+                                   "有必要尋求他人幫助以繼續聖化。\n");
 
         if( item->item_owner() == my_id )
         {
                 if( !count )
-                        return notify_fail("你应该先寻求四位高手协助你先行圣化" +
+                        return notify_fail("你應該先尋求四位高手協助你先行聖化" +
                                            item->name() + "。\n");
 
                 if( count < SAN_PER_IMBUE - 1 )
-                        return notify_fail("你应该再寻求" +
+                        return notify_fail("你應該再尋求" +
                                            chinese_number(SAN_PER_IMBUE - 1 - count) +
-                                           "位高手先行圣化" + item->name() + "。\n");
+                                           "位高手先行聖化" + item->name() + "。\n");
         } else
         {
                 if( count >= SAN_PER_IMBUE - 1 )
-                        return notify_fail("最后需要他的主人为它圣化，不劳你费心了。\n");
+                        return notify_fail("最後需要他的主人為它聖化，不勞你費心了。\n");
         }
 
         if( query("neili", me)<query("max_neili", me)*9/10 )
-                return notify_fail("你现在内力并不充沛，怎敢贸然运用？\n");
+                return notify_fail("你現在內力並不充沛，怎敢貿然運用？\n");
 
         if( query("jingli", me)<query("max_jingli", me)*9/10 )
-                return notify_fail("你现在精力不济，怎敢贸然运用？\n");
+                return notify_fail("你現在精力不濟，怎敢貿然運用？\n");
 
         if( me->query_skillo("force", 1) < 300 )
-                return notify_fail("你的内功根基不够扎实，不能贸然圣化。\n");
+                return notify_fail("你的內功根基不夠紮實，不能貿然聖化。\n");
 
         if( query("max_neili", me)<8000 )
-                return notify_fail("你尝试运了一下内力，无法顺"
-                                   "利运足一个周天，难以施展你的能力。\n");
+                return notify_fail("你嘗試運了一下內力，無法順"
+                                   "利運足一個周天，難以施展你的能力。\n");
 
         if( query("max_jingli", me)<1000 )
-                return notify_fail("你试图凝神运用精力，但是感觉尚有欠缺。\n");
+                return notify_fail("你試圖凝神運用精力，但是感覺尚有欠缺。\n");
 
-        message_sort(HIM "$N" HIM "轻轻抚过$n" HIM "，两指点于其上，同"
-                     "时运转丹田内力，经由奇经\n八脉源源由体内流出，注"
-                     "入$n" HIM "。\n忽的只见氤氲紫气从$n" HIM
-                     "上腾然升起，弥漫在四周。\n" NOR, me, item);
+        message_sort(HIM "$N" HIM "輕輕撫過$n" HIM "，兩指點於其上，同"
+                     "時運轉丹田內力，經由奇經\n八脈源源由體內流出，注"
+                     "入$n" HIM "。\n忽的只見氤氳紫氣從$n" HIM
+                     "上騰然升起，瀰漫在四周。\n" NOR, me, item);
 
         if( query("max_neili", me)<me->query_neili_limit()-400 )
         {
                 if (random(2) == 1)
                 {
-                        // 内力未满警告
-                        message_vision(HIR "$N" HIR "脸色忽然变了变。\n" NOR,
+                        // 內力未滿警告
+                        message_vision(HIR "$N" HIR "臉色忽然變了變。\n" NOR,
                                        me);
-                        tell_object(me, HIC "你忽然觉得丹田气息有些错乱。\n" NOR);
+                        tell_object(me, HIC "你忽然覺得丹田氣息有些錯亂。\n" NOR);
                 } else
                 {
-                        message_vision(HIR "$N" HIR "忽然闷哼一声，脸"
-                                       "上刹时大汗淋漓！\n" NOR, me);
-                        tell_object(me, HIC "你感到可能是你的内力尚未锻炼"
-                                    "到极至，结果损伤了你的内功根基。\n" NOR);
-                        tell_object(me, HIC "你的基本内功下降了。\n");
+                        message_vision(HIR "$N" HIR "忽然悶哼一聲，臉"
+                                       "上剎時大汗淋漓！\n" NOR, me);
+                        tell_object(me, HIC "你感到可能是你的內力尚未鍛鍊"
+                                    "到極至，結果損傷了你的內功根基。\n" NOR);
+                        tell_object(me, HIC "你的基本內功下降了。\n");
                         me->set_skill("force", me->query_skillo("force", 1) - 10 - random(5));
                         return 1;
                 }
         }
 
-        // 统计IMBUE过的次数，并用来计算本次MAX_NEILI/JINGLI的消耗
+        // 統計IMBUE過的次數，並用來計算本次MAX_NEILI/JINGLI的消耗
         san = query("magic/imbue", item);
 
         addn("max_neili", -(san+5), me);
@@ -534,12 +534,12 @@ int do_san(object me, object item)
         if (item->item_owner() == my_id ||
             sizeof(query("magic/do_san", item)) == SAN_PER_IMBUE )
         {
-                tell_object(me, HIW "你凝神片刻，觉得" + item->name() +
-                            HIW "似乎有了灵性，跳跃不休，不禁微微一笑。\n" NOR);
+                tell_object(me, HIW "你凝神片刻，覺得" + item->name() +
+                            HIW "似乎有了靈性，跳躍不休，不禁微微一笑。\n" NOR);
                 message("vision", HIW + me->name() + HIW "忽然"
                         "微微一笑。\n" HIW, environment(me), ({ me }));
 
-                // 选定一个需要imbue的物品
+                // 選定一個需要imbue的物品
                 set("magic/imbue_ob", imbue_list[random(sizeof(imbue_list))], item);
         }
         return 1;
@@ -549,30 +549,30 @@ int do_san(object me, object item)
 int do_imbue(object me, object item, object imbue)
 {
         if( query("magic/power", item)>0 )
-                return notify_fail("现在" + item->name() + "的威力"
-                                   "已经得到了充分的发挥了。\n");
+                return notify_fail("現在" + item->name() + "的威力"
+                                   "已經得到了充分的發揮了。\n");
 
         if( query("magic/imbue_ok", item) )
-                return notify_fail("现在" + item->name() + "的潜力"
-                                   "已经充分挖掘了，现在只是需要最"
-                                   "后一步融合。\n");
+                return notify_fail("現在" + item->name() + "的潛力"
+                                   "已經充分挖掘了，現在只是需要最"
+                                   "後一步融合。\n");
 
         if( sizeof(query("magic/do_san", item))<SAN_PER_IMBUE )
-                return notify_fail("你必须先对" + item->name() +
-                                   "进行充分的圣化才行。\n");
+                return notify_fail("你必須先對" + item->name() +
+                                   "進行充分的聖化才行。\n");
 
         if( base_name(imbue) != query("magic/imbue_ob", item) )
-                return notify_fail(item->name() + "现在不需要用" +
-                                   imbue->name() + "来浸入。\n");
+                return notify_fail(item->name() + "現在不需要用" +
+                                   imbue->name() + "來浸入。\n");
 
-        message_sort(HIM "$N" HIM "深吸一口气，面上笼罩了一层白霜，只手握住$n" +
+        message_sort(HIM "$N" HIM "深吸一口氣，面上籠罩了一層白霜，隻手握住$n" +
                      imbue->name() +
-                     HIM "，忽然间融化在掌心，晶莹欲透！$N"
-                     HIM "随手一挥，将一汪清液洒在$n" HIM
-                     "上，登时化做雾气，须臾成五彩，奇光闪烁。\n" NOR,
+                     HIM "，忽然間融化在掌心，晶瑩欲透！$N"
+                     HIM "隨手一揮，將一汪清液灑在$n" HIM
+                     "上，登時化做霧氣，須臾成五彩，奇光閃爍。\n" NOR,
                      me, item);
 
-        tell_object(me, "你将" + imbue->name() + "的效力浸入了" +
+        tell_object(me, "你將" + imbue->name() + "的效力浸入了" +
                     item->name() + "。\n");
         delete("magic/do_san", item);
         delete("magic/imbue_ob", item);
@@ -588,15 +588,15 @@ int do_imbue(object me, object item, object imbue)
         ||  query("magic/imbue", item) >= 150 )
         {
                         // 浸透完成
-                tell_object(me, HIG "你忽然发现手中的" + item->name() +
-                                HIG "有一种跃跃欲试的感觉，似乎期待着什么。\n" NOR);
+                tell_object(me, HIG "你忽然發現手中的" + item->name() +
+                                HIG "有一種躍躍欲試的感覺，似乎期待著什麼。\n" NOR);
                 set("magic/imbue_ok", 1, item);
         }
 
         return 1;
 }
 
-// 镶嵌物品
+// 鑲嵌物品
 int do_enchase(object me, object item, object tessera)
 {
         mapping *ins;
@@ -609,70 +609,70 @@ int do_enchase(object me, object item, object tessera)
 int xpn;
 
         if( query("equipped", item) )
-                return notify_fail("你先解除" + item->name() + "的装备再说！\n");
+                return notify_fail("你先解除" + item->name() + "的裝備再說！\n");
 
         if( !query("enchase/flute", item) )
-                return notify_fail(item->name() + "上并没有凹槽可用来镶嵌。\n");
+                return notify_fail(item->name() + "上並沒有凹槽可用來鑲嵌。\n");
 
         if( query("enchase/used", item) >= query("enchase/flute", item) )
-                return notify_fail(item->name() + "上的凹槽已经镶满了。\n");
+                return notify_fail(item->name() + "上的凹槽已經鑲滿了。\n");
 
         if( (type = query("magic/type", item)) && query("can_be_tessera", tessera) )
-                return notify_fail(item->name() + "上已经拥有灵力物品了。\n");
+                return notify_fail(item->name() + "上已經擁有靈力物品了。\n");
 
         if( !tessera->is_tessera() || !mapp(query("enchase", tessera)) )
-                return notify_fail(tessera->name() + "不能发挥魔力，没有必要镶嵌在" + item->name() + "上面。\n");
+                return notify_fail(tessera->name() + "不能發揮魔力，沒有必要鑲嵌在" + item->name() + "上面。\n");
 
         if( query("can_be_qiling", tessera) )
         {
                 if( query("status", item) < 6 )
-                        return notify_fail(item->name() + "还不具备发挥启灵宝石作用的灵智。\n");
+                        return notify_fail(item->name() + "還不具備發揮啟靈寶石作用的靈智。\n");
 
                 if( item->is_weapon() || item->is_unarmed_weapon() )
                 {
                         if( query("enchase/flute", item) < 10 )
-                                return notify_fail(item->name() + "必须拥有最大凹槽数才能激发启灵宝石的能力。\n");
+                                return notify_fail(item->name() + "必須擁有最大凹槽數才能激發啟靈寶石的能力。\n");
                 } else
                 {
                         if( query("enchase/flute", item) < 8 )
-                                return notify_fail(item->name() + "必须拥有最大凹槽数才能激发启灵宝石的能力。\n");
+                                return notify_fail(item->name() + "必須擁有最大凹槽數才能激發啟靈寶石的能力。\n");
                 }
 
                 if( query("enchase/used", item)+1 < query("enchase/flute", item) )
-                        return notify_fail("用来启灵的宝石必须是镶嵌最后一个凹槽。\n");
+                        return notify_fail("用來啟靈的寶石必須是鑲嵌最後一個凹槽。\n");
         }
 
         if( !query("can_be_qiling", tessera) && type && query("magic/type", tessera) != type )
-                write(item->name() + "上已经拥有五行灵力属性和镶嵌物的五行灵力属性不一致，影响融合。\n");
+                write(item->name() + "上已經擁有五行靈力屬性和鑲嵌物的五行靈力屬性不一致，影響融合。\n");
 
         if( (level = me->query_skill("certosina", 1)) < 200 )
-                return notify_fail("你觉得你的镶嵌技艺还不够娴熟，不敢贸然动手。\n");
+                return notify_fail("你覺得你的鑲嵌技藝還不夠嫻熟，不敢貿然動手。\n");
 
         if( tessera->is_rune() && query("enchase/rune" + query("enchase/SN", tessera), item) )
-                return notify_fail(item->name() + "上的凹槽里已经镶嵌此符文,再镶嵌会产生魔性冲突。\n");
+                return notify_fail(item->name() + "上的凹槽裡已經鑲嵌此符文,再鑲嵌會產生魔性衝突。\n");
 
-        if( query("status", item) == 6 ) // 启灵的装备
+        if( query("status", item) == 6 ) // 啟靈的裝備
         {
-                if( !type && !query("can_be_tessera", tessera) ) // 没有镶嵌10LV
+                if( !type && !query("can_be_tessera", tessera) ) // 沒有鑲嵌10LV
                 {
                         if( query("enchase/used", item)+2 >= query("enchase/flute", item) )
-                               return notify_fail(item->name() + "上的剩下的二个的凹槽是用来镶嵌一个具有灵力和一个启灵的物品。\n");
+                               return notify_fail(item->name() + "上的剩下的二個的凹槽是用來鑲嵌一個具有靈力和一個啟靈的物品。\n");
                 }
                 if( !query("can_be_qiling", tessera) )
                 if( query("enchase/used", item)+1 >= query("enchase/flute", item) )
-                        return notify_fail(item->name() + "上的剩下的唯一的凹槽是用来镶嵌启灵宝石的。\n");
+                        return notify_fail(item->name() + "上的剩下的唯一的凹槽是用來鑲嵌啟靈寶石的。\n");
         } else
         {
                 if( !type && !query("can_be_tessera", tessera) )
                 {
                         if( query("enchase/used", item)+1 >= query("enchase/flute", item) )
-                                return notify_fail(item->name() + "上的剩下的一个的凹槽是用来镶嵌具有灵力的物品。\n");
+                                return notify_fail(item->name() + "上的剩下的一個的凹槽是用來鑲嵌具有靈力的物品。\n");
                 }
         }
 
         temp = query("enchase", tessera);
         if( undefinedp(temp["type"]) )
-                return notify_fail(tessera->name() + "的类型属性不适合镶嵌在" + item->name() + "上。\n");
+                return notify_fail(tessera->name() + "的類型屬性不適合鑲嵌在" + item->name() + "上。\n");
         else
         {
                 if( query("can_be_qiling", tessera) )
@@ -680,49 +680,49 @@ int xpn;
                         if( item->is_weapon() || item->is_unarmed_weapon() )
                         {
                                 if( temp["type"] != "weapon" )
-                                        return notify_fail(tessera->name() + "的类型属性不适合镶嵌在" + item->name() + "上。\n");
+                                        return notify_fail(tessera->name() + "的類型屬性不適合鑲嵌在" + item->name() + "上。\n");
                         } else
                         {
                                 if( temp["type"] != query("armor_type", item) )
-                                        return notify_fail(tessera->name() + "的类型属性不适合镶嵌在" + item->name() + "上。\n");
+                                        return notify_fail(tessera->name() + "的類型屬性不適合鑲嵌在" + item->name() + "上。\n");
                         }
                 } else {
                 if (temp["type"] != "all" &&
                     temp["type"] != query("skill_type", item) &&
                     temp["type"] != query("armor_type", item) )
-                        return notify_fail(tessera->name() + "的类型属性不适合镶嵌在" + item->name() + "上。\n");
+                        return notify_fail(tessera->name() + "的類型屬性不適合鑲嵌在" + item->name() + "上。\n");
                 }
         }
 
         if( tessera->is_rune() && (query("armor_type", item) == "rings" ||
             query("armor_type", item) == "neck" || query("armor_type", item) == "charm") )
-                return notify_fail("符文不适合镶嵌在" + item->name() + "上。\n");
+                return notify_fail("符文不適合鑲嵌在" + item->name() + "上。\n");
 
         if( level < 400 && random(level) < 180 && !(obj = present("enchase symbol", me)) )
         {
-                message_vision(HIM "听得“喀啦”一声，只见" + tessera->name() + HIM "撞在$n" +
-                               HIM "上，片片裂开。\n" NOR, me, item);
-                tell_object(me, HIC "你镶嵌" + tessera->name() + CYN "失败了。\n" NOR);
+                message_vision(HIM "聽得“喀啦”一聲，只見" + tessera->name() + HIM "撞在$n" +
+                               HIM "上，片片裂開。\n" NOR, me, item);
+                tell_object(me, HIC "你鑲嵌" + tessera->name() + CYN "失敗了。\n" NOR);
                 destruct(tessera);
                 me->start_busy(1);
                 return 1;
         }
         if( objectp(obj) ) destruct(obj);
 
-        message_vision( HIM "听得“喀啦”一声，$N" HIM "将" + tessera->name() + NOR HIM"镶嵌到了$n" HIM "上面，\n只见上面$n"
-                        HIM "隐隐的显过了一道奇异的光芒，随即变得平静，说不出的平凡。\n\n" NOR, me, item);
-        tell_object(me, HIC "你感受" + item->name() + HIC "发生了不可言喻的变化。\n" NOR);
+        message_vision( HIM "聽得“喀啦”一聲，$N" HIM "將" + tessera->name() + NOR HIM"鑲嵌到了$n" HIM "上面，\n只見上面$n"
+                        HIM "隱隱的顯過了一道奇異的光芒，隨即變得平靜，說不出的平凡。\n\n" NOR, me, item);
+        tell_object(me, HIC "你感受" + item->name() + HIC "發生了不可言喻的變化。\n" NOR);
 
         if( query("can_be_tessera", tessera) )
         {
-                //CHANNEL_D->do_channel(this_object(), "rumor", "听说神品" + item->name() + HIM + "来到了人间。");
+                //CHANNEL_D->do_channel(this_object(), "rumor", "聽說神品" + item->name() + HIM + "來到了人間。");
 
                 set("magic/type", query("magic/type", tessera), item);
                 set("magic/power", query("magic/power", tessera), item);
                 set("magic/tessera", tessera->name(), item);
         } else
         {
-                // 先镶嵌10lv物品，则可吸收后镶嵌同类物品的能量
+                // 先鑲嵌10lv物品，則可吸收後鑲嵌同類物品的能量
                 if( type && query("magic/type", tessera) == type )
                         addn("magic/power", query("magic/power", tessera), item);
         }
@@ -857,9 +857,9 @@ int xpn;
         item->add_weight(tessera->query_weight());
 
         if( IDENTIFY_D->identify_ultimate_ob(item) )
-                tell_object(me, BLINK HBMAG + tessera->name() + BLINK HBMAG "与" + item->name() +
+                tell_object(me, BLINK HBMAG + tessera->name() + BLINK HBMAG "與" + item->name() +
                                 BLINK HBMAG "的魔力充分融合相生使" + item->name() +
-                                BLINK HBMAG "发生了不可思议的突变。\n\n" NOR);
+                                BLINK HBMAG "發生了不可思議的突變。\n\n" NOR);
 
         item->save();
         destruct(tessera);
@@ -868,7 +868,7 @@ int xpn;
         return 1;
 }
 
-// 用内力将镶嵌物品溶化掉 melt
+// 用內力將鑲嵌物品溶化掉 melt
 int do_wash(object me, object item)
 {
         mapping enchase, insert, applied_prop;
@@ -877,27 +877,27 @@ int do_wash(object me, object item)
         int i, j, f, n;
 
         if( query("neili", me)<query("max_neili", me)*9/10 )
-                return notify_fail("你现在内力并不充沛，怎敢贸然运用？\n");
+                return notify_fail("你現在內力並不充沛，怎敢貿然運用？\n");
 
         if( query("jingli", me)<query("max_jingli", me)*9/10 )
-                return notify_fail("你现在精力不济，怎敢贸然运用？\n");
+                return notify_fail("你現在精力不濟，怎敢貿然運用？\n");
 
         if( me->query_skill("force") < 200 )
-                return notify_fail("你的内功根基不够扎实，不能贸然运功。\n");
+                return notify_fail("你的內功根基不夠紮實，不能貿然運功。\n");
 
         if( query("max_neili", me)<8000 )
-                return notify_fail("你尝试运了一下内力，无法顺"
-                                   "利运足一个周天，难以施展你的能力。\n");
+                return notify_fail("你嘗試運了一下內力，無法順"
+                                   "利運足一個周天，難以施展你的能力。\n");
 
         if( query("max_jingli", me)<1000 )
-                return notify_fail("你试图凝神运用精力，但是感觉尚有欠缺。\n");
+                return notify_fail("你試圖凝神運用精力，但是感覺尚有欠缺。\n");
 
-        message_vision(HIM "$N" HIM "将$n" HIM "握于掌中，默默运转内力，注入$n" HIM "凹槽。\n只见$n" HIM
-                       "白雾蒸腾，弥漫在四周。\n" NOR, me, item);
+        message_vision(HIM "$N" HIM "將$n" HIM "握於掌中，默默運轉內力，注入$n" HIM "凹槽。\n只見$n" HIM
+                       "白霧蒸騰，瀰漫在四周。\n" NOR, me, item);
 
 
-        message_vision(HIC"忽的却见$n"HIC"上面"HIY+chinese_number(query("enchase/flute", item))+
-                       HIC "个凹槽内物品嗤的化作一股青烟，\n$n"HIC "凹槽内已空无一物，犹如新出。\n" NOR,
+        message_vision(HIC"忽的卻見$n"HIC"上面"HIY+chinese_number(query("enchase/flute", item))+
+                       HIC "個凹槽內物品嗤的化作一股青煙，\n$n"HIC "凹槽內已空無一物，猶如新出。\n" NOR,
                        me, item);
 
         if( query("enchase/rune30", item) || query("enchase/rune31", item) ||
@@ -967,16 +967,16 @@ int do_wash(object me, object item)
         switch(query("quality_level", item) )
         {
         case 2 :
-                set("enchase/SN", 4, item);  // 精制
+                set("enchase/SN", 4, item);  // 精製
                 break;
         case 3 :
                 set("enchase/SN", 8, item);  // 珍稀
                 break;
         case 4 :
-                set("enchase/SN", 12, item); // 史诗
+                set("enchase/SN", 12, item); // 史詩
                 break;
         case 5 :
-                set("enchase/SN", 16, item); // 传说
+                set("enchase/SN", 16, item); // 傳說
                 break;
         case 6 :
                 set("enchase/SN", 25, item); // 神器
@@ -992,34 +992,34 @@ int do_wash(object me, object item)
         return 1;
 }
 
-// 锻造防具升级
+// 鍛造防具升級
 int do_forge(object me, object item)
 {
         int n, level;
 
         if( item->armor_level() >= 9 )
-                return notify_fail(item->name()+"已经达到9lv了，无需继续锻造。\n");
+                return notify_fail(item->name()+"已經達到9lv了，無需繼續鍛造。\n");
 
         if( (int)me->query_skill("force", 1) < 200 )
-                return notify_fail("你的内功修为不足。\n");
+                return notify_fail("你的內功修為不足。\n");
 
         if( query("qi", me)*100/query("max_qi", me)<90 )
-                return notify_fail("你现在的气太少了。\n");
+                return notify_fail("你現在的氣太少了。\n");
 
         if( query("jing", me)*100/query("max_jing", me)<90 )
-                return notify_fail("你现在的精太少了。\n");
+                return notify_fail("你現在的精太少了。\n");
 
         if( query("max_neili", me) < 5000 )
-                return notify_fail("你觉得内力颇有不足。\n");
+                return notify_fail("你覺得內力頗有不足。\n");
 
         if( query("neili", me)*100/query("max_neili", me)<90 )
-                return notify_fail("你现在的内力太少了。\n");
+                return notify_fail("你現在的內力太少了。\n");
 
         if( (query("potential", me)-query("learned_points", me)) < 20 )
-                return notify_fail("你的潜能不够，无法锻炼兵器！\n");
+                return notify_fail("你的潛能不夠，無法鍛鍊兵器！\n");
 
-        message_vision(HIM "$N" HIM "手握$n"+ HIM "，一股内力丝丝的传了进去，\n"
-                       HIM "$n" HIM "犹如烈火中重生一般，散发出绚目的光彩！\n" NOR,
+        message_vision(HIM "$N" HIM "手握$n"+ HIM "，一股內力絲絲的傳了進去，\n"
+                       HIM "$n" HIM "猶如烈火中重生一般，散發出絢目的光彩！\n" NOR,
                      me, item);
 
         addn("max_neili", -100, me);
@@ -1038,19 +1038,19 @@ int do_forge(object me, object item)
                 if( level == 9 )
                         set("magic/imbue_ok", 1, item);
 
-                message_vision(HIY +item->name()+ HIY "忽的一亮，一道金光隐入$N" HIY "的" +item->name()+ HIY "，不见了！\n" NOR +
-                               HIG "$N" HIG "的" +item->name()+ HIG "的等级提高了！\n" NOR, me);
+                message_vision(HIY +item->name()+ HIY "忽的一亮，一道金光隱入$N" HIY "的" +item->name()+ HIY "，不見了！\n" NOR +
+                               HIG "$N" HIG "的" +item->name()+ HIG "的等級提高了！\n" NOR, me);
         }
 
         item->save();
-        message_vision(RED "$N" RED "的" +item->name()+ RED "的质地改善了!\n" NOR, me);
+        message_vision(RED "$N" RED "的" +item->name()+ RED "的質地改善了!\n" NOR, me);
         if( !wizardp(me) )
                 me->start_busy(1);
 
         return 1;
 }
 
-// 10级兵器攻击对手
+// 10級兵器攻擊對手
 mixed weapon10lv_hit_ob(object me, object victim, object weapon, int damage_bonus)
 {
         mapping magic;
@@ -1060,7 +1060,7 @@ mixed weapon10lv_hit_ob(object me, object victim, object weapon, int damage_bonu
         int add, reduce;
         string msg;
 
-        // 计算魔法效果
+        // 計算魔法效果
         magic=query("magic", weapon);
         if( !mapp(magic) ) return;
         power = magic["power"];
@@ -1072,7 +1072,7 @@ mixed weapon10lv_hit_ob(object me, object victim, object weapon, int damage_bonu
         switch (magic["type"])
         {
         case "lighting":
-                // 闪电攻击：伤害内力++和气+
+                // 閃電攻擊：傷害內力++和氣+
                 resistance=victim->query_all_buff("resistance_lighting");
                 damage = (power + jingjia) * 200 / (100 + resistance);
                 add=me->query_all_buff("add_lighting");
@@ -1085,29 +1085,29 @@ mixed weapon10lv_hit_ob(object me, object victim, object weapon, int damage_bonu
                 switch (random(6))
                 {
                 case 0:
-                        msg = HIY + weapon->name() + HIY "迸发出几道明亮的闪光，兹兹作响，让$n"
-                              HIY "不由为之酥麻。\n" NOR;
+                        msg = HIY + weapon->name() + HIY "迸發出幾道明亮的閃光，茲茲作響，讓$n"
+                              HIY "不由為之酥麻。\n" NOR;
                         break;
                 case 1:
-                        msg = HIY "一道电光闪过，" + weapon->name() + HIY
-                              "变得耀眼夺目，令$n" HIY "无法正视，心神俱废。\n" NOR;
+                        msg = HIY "一道電光閃過，" + weapon->name() + HIY
+                              "變得耀眼奪目，令$n" HIY "無法正視，心神俱廢。\n" NOR;
                         break;
                 case 2:
-                        msg=HIY+query("name", weapon)+HIY"喷出一团炽白的光球，直奔$n"
-                              HIY "而去，$n" HIY "被打了个正着，受伤不轻。\n" NOR;
+                        msg=HIY+query("name", weapon)+HIY"噴出一團熾白的光球，直奔$n"
+                              HIY "而去，$n" HIY "被打了個正著，受傷不輕。\n" NOR;
                         break;
                 case 3:
-                        msg = HIY "一圈炽白的光环围绕" + weapon->name() + HIY
-                             "不断扩散开来，所到之处亮如白昼，$n" HIY "立刻魂飞魄散。\n" NOR;
+                        msg = HIY "一圈熾白的光環圍繞" + weapon->name() + HIY
+                             "不斷擴散開來，所到之處亮如白晝，$n" HIY "立刻魂飛魄散。\n" NOR;
                         break;
                 case 4:
-                        msg=HIY+query("name", weapon)+HIY"暴出漫天夹杂响雷的闪电直击而来，$n"
-                              HIY "被闪电悉数直穿身体而过，顿时软弱无力。\n" NOR;
+                        msg=HIY+query("name", weapon)+HIY"暴出漫天夾雜響雷的閃電直擊而來，$n"
+                              HIY "被閃電悉數直穿身體而過，頓時軟弱無力。\n" NOR;
                         break;
                 default:
-                        msg = HIY "天际隐隐响起几声闷雷，紧接着一道霹雳直下，" +
-                              weapon->name() + HIY "忽明忽暗，五彩缤纷，震得$n"
-                              HIY "酸软无力。\n" NOR;
+                        msg = HIY "天際隱隱響起幾聲悶雷，緊接著一道霹靂直下，" +
+                              weapon->name() + HIY "忽明忽暗，五彩繽紛，震得$n"
+                              HIY "痠軟無力。\n" NOR;
                         break;
                 }
 
@@ -1121,7 +1121,7 @@ mixed weapon10lv_hit_ob(object me, object victim, object weapon, int damage_bonu
                 break;
 
         case "water":
-                // 冷冻攻击：伤害精++和气+
+                // 冷凍攻擊：傷害精++和氣+
                 resistance=victim->query_all_buff("resistance_water");
                 damage = (power + jingjia) * 200 / (100 + resistance);
                 add=me->query_all_buff("add_water");
@@ -1138,37 +1138,37 @@ mixed weapon10lv_hit_ob(object me, object victim, object weapon, int damage_bonu
                 switch (random(6))
                 {
                 case 0:
-                        msg = HIB + weapon->name() + HIB "闪过一道冷涩的蓝光，让$n"
-                              HIB "不寒而栗。\n" NOR;
+                        msg = HIB + weapon->name() + HIB "閃過一道冷澀的藍光，讓$n"
+                              HIB "不寒而慄。\n" NOR;
                         break;
                 case 1:
-                        msg = HIB "忽然间" + weapon->name() + HIB
-                              "变得透体通蓝，一道道冰冷的寒光迸发出来，$n"
-                              HIB "浑身只是一冷。\n" NOR;
+                        msg = HIB "忽然間" + weapon->name() + HIB
+                              "變得透體通藍，一道道冰冷的寒光迸發出來，$n"
+                              HIB "渾身只是一冷。\n" NOR;
                         break;
                 case 2:
-                        msg = HIB "一圈晶莹的冰光环围绕" + weapon->name() + HIB
-                              "不断扩散开来，所到之处万物皆凝。$n" HIB
-                              "只觉自己气血凝滞。\n" NOR;
+                        msg = HIB "一圈晶瑩的冰光環圍繞" + weapon->name() + HIB
+                              "不斷擴散開來，所到之處萬物皆凝。$n" HIB
+                              "只覺自己氣血凝滯。\n" NOR;
                         break;
                 case 3:
-                        msg=HIB+query("name", weapon)+HIB"暴出漫天冰锥直射而来，$n"
-                              HIB "转眼间已然成了蜂窝。\n" NOR;
+                        msg=HIB+query("name", weapon)+HIB"暴出漫天冰錐直射而來，$n"
+                              HIB "轉眼間已然成了蜂窩。\n" NOR;
                         break;
                 case 4:
-                        msg = HIB "忽然间" + weapon->name() + HIB
-                              "变得透体通蓝，周围空气忽然急速凝结，一面淡蓝的冰墙把$n"
-                              HIB "冰封在了里面。\n" NOR;
+                        msg = HIB "忽然間" + weapon->name() + HIB
+                              "變得透體通藍，周圍空氣忽然急速凝結，一面淡藍的冰牆把$n"
+                              HIB "冰封在了裡面。\n" NOR;
                         break;
                 default:
                         msg = HIB "一道光圈由" + weapon->name() + HIB "射出，"
-                              "森然盘旋在$n" HIB "四周，悄然无息。\n" NOR;
+                              "森然盤旋在$n" HIB "四周，悄然無息。\n" NOR;
                         break;
                 }
                 break;
 
         case "fire":
-                // 火焰攻击：伤害精+和气++
+                // 火焰攻擊：傷害精+和氣++
                 resistance=victim->query_all_buff("resistance_fire");
                 damage = (power + jingjia) * 300 / (100 + resistance);
                 add=me->query_all_buff("add_fire");
@@ -1185,36 +1185,36 @@ mixed weapon10lv_hit_ob(object me, object victim, object weapon, int damage_bonu
                 switch (random(6))
                 {
                 case 0:
-                        msg = HIR + weapon->name() + HIR "蓦的腾起一串火焰，将$n"
-                              HIR "接连逼退了数步，惨叫连连。\n" NOR;
+                        msg = HIR + weapon->name() + HIR "驀的騰起一串火焰，將$n"
+                              HIR "接連逼退了數步，慘叫連連。\n" NOR;
                         break;
                 case 1:
-                        msg = HIR "一道火光从" + weapon->name() + HIR
-                              "上迸出，迅捷无伦的击中$n" HIR "，令人避无可避！\n" NOR;
+                        msg = HIR "一道火光從" + weapon->name() + HIR
+                              "上迸出，迅捷無倫的擊中$n" HIR "，令人避無可避！\n" NOR;
                         break;
                 case 2:
-                        msg = HIR "一圈通红的火光从" + weapon->name() + HIR
-                              "上迸出扩散开来，所到之处万物皆灰，将$n"
-                              HIR "身体烧出了一个焦黑的窟窿。\n" NOR;
+                        msg = HIR "一圈通紅的火光從" + weapon->name() + HIR
+                              "上迸出擴散開來，所到之處萬物皆灰，將$n"
+                              HIR "身體燒出了一個焦黑的窟窿。\n" NOR;
                         break;
                 case 3:
-                        msg=HIR+query("name", weapon)+HIB"暴出漫天通红的火球直击而来，$n"
-                              HIR "被置身一片火海，惨叫连连。\n" NOR;
+                        msg=HIR+query("name", weapon)+HIB"暴出漫天通紅的火球直擊而來，$n"
+                              HIR "被置身一片火海，慘叫連連。\n" NOR;
                         break;
                 case 4:
-                        msg = HIR "忽然间" + weapon->name() + HIR
-                              "变得透体通红，周围空气忽然异常干燥，$n"
-                              HIR "眨眼功夫周身竟然被熊熊烈火团团围住，被烧的体无完肤。\n" NOR;
+                        msg = HIR "忽然間" + weapon->name() + HIR
+                              "變得透體通紅，周圍空氣忽然異常乾燥，$n"
+                              HIR "眨眼功夫周身竟然被熊熊烈火團團圍住，被燒的體無完膚。\n" NOR;
                         break;
                 default:
-                        msg = HIR "一串串火焰从" + weapon->name() + HIR "上飞溅射出，"
-                              "四下散开，接连击中$n" HIR "！\n" NOR;
+                        msg = HIR "一串串火焰從" + weapon->name() + HIR "上飛濺射出，"
+                              "四下散開，接連擊中$n" HIR "！\n" NOR;
                         break;
                 }
                 break;
 
         case "metal":
-                // 冷冻攻击：伤害精++和气+
+                // 冷凍攻擊：傷害精++和氣+
                 resistance=victim->query_all_buff("resistance_metal");
                 damage = (power + jingjia) * 200 / (100 + resistance);
                 add=me->query_all_buff("add_metal");
@@ -1231,19 +1231,19 @@ mixed weapon10lv_hit_ob(object me, object victim, object weapon, int damage_bonu
                 switch (random(4))
                 {
                 case 0:
-                        msg = HIY + weapon->name()+HIY"顿时金光四射，纵横交错，布满了整个空间，$n"HIY"已难以醒目。\n"NOR;
+                        msg = HIY + weapon->name()+HIY"頓時金光四射，縱橫交錯，佈滿了整個空間，$n"HIY"已難以醒目。\n"NOR;
                         break;
                 case 1:
-                        msg = HIY + weapon->name()+HIY"一飞冲天，片刻时间化作无数的"HIY + weapon->name()+HIY"金钱撒地般的射向$n。\n"NOR;
+                        msg = HIY + weapon->name()+HIY"一飛沖天，片刻時間化作無數的"HIY + weapon->name()+HIY"金錢撒地般的射向$n。\n"NOR;
                         break;
                 default:
-                        msg = HIY + weapon->name()+HIY"通体变的金黄耀目，伴鸣响天地的撕裂声直击$n"HIY"要害之处。\n"NOR;
+                        msg = HIY + weapon->name()+HIY"通體變的金黃耀目，伴鳴響天地的撕裂聲直擊$n"HIY"要害之處。\n"NOR;
                         break;
                 }
                 break;
 
         case "wood":
-                // 冷冻攻击：伤害精++和气+
+                // 冷凍攻擊：傷害精++和氣+
                 resistance=victim->query_all_buff("resistance_wood");
                 damage = (power + jingjia) * 200 / (100 + resistance);
                 add=me->query_all_buff("add_wood");
@@ -1260,19 +1260,19 @@ mixed weapon10lv_hit_ob(object me, object victim, object weapon, int damage_bonu
                 switch (random(4))
                 {
                 case 0:
-                        msg =  HIG"霎时间"HIG + weapon->name()+HIG"之影暴长 ，似乎变幻出无数枝干，将$N紧紧抓住。\n" NOR;
+                        msg =  HIG"霎時間"HIG + weapon->name()+HIG"之影暴長 ，似乎變幻出無數枝幹，將$N緊緊抓住。\n" NOR;
                         break;
                 case 1:
-                        msg =  HIG + weapon->name()+HIG"在$n"HIG"周身盘旋，将$n"HIG"带入翡翠梦境，令$n迷失不已。\n" NOR;
+                        msg =  HIG + weapon->name()+HIG"在$n"HIG"周身盤旋，將$n"HIG"帶入翡翠夢境，令$n迷失不已。\n" NOR;
                         break;
                 default:
-                        msg =  HIG  + weapon->name()+HIG"闪出无数条亮影，如枯木回春般蔓延了$n"HIG"全身。\n" NOR;
+                        msg =  HIG  + weapon->name()+HIG"閃出無數條亮影，如枯木回春般蔓延了$n"HIG"全身。\n" NOR;
                         break;
                 }
                 break;
 
         case "earth":
-                // 冷冻攻击：伤害精++和气+
+                // 冷凍攻擊：傷害精++和氣+
                 resistance=victim->query_all_buff("resistance_earth");
                 damage = (power + jingjia) * 200 / (100 + resistance);
                 add=me->query_all_buff("add_earth");
@@ -1289,19 +1289,19 @@ mixed weapon10lv_hit_ob(object me, object victim, object weapon, int damage_bonu
                 switch (random(4))
                 {
                 case 0:
-                        msg = YEL + weapon->name()+ YEL"突然颤抖，音声低沉凝重，引山摇地动之式，$n"YEL"以不能自已！\n" NOR;
+                        msg = YEL + weapon->name()+ YEL"突然顫抖，音聲低沉凝重，引山搖地動之式，$n"YEL"以不能自已！\n" NOR;
                         break;
                 case 1:
-                        msg = YEL + weapon->name()+ YEL"急速的划过土石之缘，带动山石之雨，咆哮着令人心胆俱裂的震天怒响击向$n。 \n"NOR;
+                        msg = YEL + weapon->name()+ YEL"急速的劃過土石之緣，帶動山石之雨，咆哮著令人心膽俱裂的震天怒響擊向$n。 \n"NOR;
                         break;
                 default:
-                        msg = YEL + weapon->name()+ YEL"汲取天地万物之灵气发起攻击，刹那间天地苍苍，飞沙走石。\n" NOR;
+                        msg = YEL + weapon->name()+ YEL"汲取天地萬物之靈氣發起攻擊，剎那間天地蒼蒼，飛沙走石。\n" NOR;
                         break;
                 }
                 break;
 
         case "poison":
-                // 毒系魔法：打内力或者忙乱
+                // 毒系魔法：打內力或者忙亂
                 resistance=victim->query_all_buff("resistance_poison");
                 damage = (power + jingjia) * 200 / (100 + resistance);
                 add=me->query_all_buff("add_poison");
@@ -1322,34 +1322,34 @@ mixed weapon10lv_hit_ob(object me, object victim, object weapon, int damage_bonu
                 switch (random(6))
                 {
                 case 0:
-                        msg = HIG + weapon->name() + HIG "蓦的冒出丝丝白烟扩散开来，$n"
-                              HIG "顿时浑身慢慢酸软起来。\n" NOR;
+                        msg = HIG + weapon->name() + HIG "驀的冒出絲絲白煙擴散開來，$n"
+                              HIG "頓時渾身慢慢痠軟起來。\n" NOR;
                         break;
                 case 1:
-                        msg=HIG+query("name", weapon)+HIG"喷出股股黄烟快速围绕过来，$n"
-                              HIG "顿时感觉头重脚轻，竟然险些拿不动兵器。\n" NOR;
+                        msg=HIG+query("name", weapon)+HIG"噴出股股黃煙快速圍繞過來，$n"
+                              HIG "頓時感覺頭重腳輕，竟然險些拿不動兵器。\n" NOR;
                         break;
                 case 2:
-                        msg=HIG+query("name", weapon)+HIG"喷出漫天五彩迷雾扑面而来，$n"
-                              HIG "周身被五彩迷雾围在其中，手无敷鸡之力。\n" NOR;
+                        msg=HIG+query("name", weapon)+HIG"噴出漫天五彩迷霧撲面而來，$n"
+                              HIG "周身被五彩迷霧圍在其中，手無敷雞之力。\n" NOR;
                         break;
                 case 3:
-                        msg = HIG + weapon->name() + HIG "蓦的冒出几丝略带清香的白烟飘然而过，$n"
-                              HIG "顿时全身无力。\n" NOR;
+                        msg = HIG + weapon->name() + HIG "驀的冒出幾絲略帶清香的白煙飄然而過，$n"
+                              HIG "頓時全身無力。\n" NOR;
                         break;
                 case 4:
-                        msg = HIG + weapon->name() + HIG "蓦的一圈略带幽香的黄色烟雾不断扩散开来，所到之处万物皆枯，$n"
-                              HIG "只觉自己飘飘欲仙，全身使不出力量来。\n" NOR;
+                        msg = HIG + weapon->name() + HIG "驀的一圈略帶幽香的黃色煙霧不斷擴散開來，所到之處萬物皆枯，$n"
+                              HIG "只覺自己飄飄欲仙，全身使不出力量來。\n" NOR;
                         break;
                 default:
-                        msg=HIG+query("name", weapon)+HIG"喷出漫天浓香的五彩雾气，$n"
-                              HIG "只觉醉生梦死，全身使不出力量来。\n" NOR;
+                        msg=HIG+query("name", weapon)+HIG"噴出漫天濃香的五彩霧氣，$n"
+                              HIG "只覺醉生夢死，全身使不出力量來。\n" NOR;
                         break;
                 }
                 break;
 
         case "wind":
-                // 风系魔法：打法力或者加命中
+                // 風系魔法：打法力或者加命中
                 resistance=victim->query_all_buff("resistance_wind");
                 damage = (power + jingjia) * 200 / (100 + resistance);
                 add=me->query_all_buff("add_wind");
@@ -1367,34 +1367,34 @@ mixed weapon10lv_hit_ob(object me, object victim, object weapon, int damage_bonu
                 switch (random(6))
                 {
                 case 0:
-                        msg = HIW + weapon->name() + HIW "吹出一阵强风，直吹的$n"
-                              HIW "东倒西歪连站稳住都有些困难。\n" NOR;
+                        msg = HIW + weapon->name() + HIW "吹出一陣強風，直吹的$n"
+                              HIW "東倒西歪連站穩住都有些困難。\n" NOR;
                         break;
                 case 1:
-                        msg = HIW + weapon->name() + HIW "刮出一阵旋风，夹杂黄沙的旋风如万把风刀向$n"
-                              HIW "袭来，吹的$n" HIW "天旋地转，竟然险些拿不动兵器。\n" NOR;
+                        msg = HIW + weapon->name() + HIW "刮出一陣旋風，夾雜黃沙的旋風如萬把風刀向$n"
+                              HIW "襲來，吹的$n" HIW "天旋地轉，竟然險些拿不動兵器。\n" NOR;
                         break;
                 case 2:
-                        msg = HIW + weapon->name() + HIW "周围空气忽然急速旋转，$n"
-                              HIW "躲闪不及眨眼功夫周身竟然被强烈的龙卷风围在其中，被折腾的手无敷鸡之力。\n" NOR;
+                        msg = HIW + weapon->name() + HIW "周圍空氣忽然急速旋轉，$n"
+                              HIW "躲閃不及眨眼功夫周身竟然被強烈的龍捲風圍在其中，被折騰的手無敷雞之力。\n" NOR;
                         break;
                 case 3:
-                        msg = HIW + weapon->name() + HIW "刮出强风破，一阵狂风铺面过后，$n"
-                              HIW "似乎失去了些许防备能力。\n" NOR;
+                        msg = HIW + weapon->name() + HIW "刮出強風破，一陣狂風鋪面過後，$n"
+                              HIW "似乎失去了些許防備能力。\n" NOR;
                         break;
                 case 4:
-                        msg = HIW + weapon->name() + HIW "刮出一股气流迅速旋转并不断扩散开来，所到之处万物皆损，$n"
-                              HIW "只觉自己天旋地转，受伤不轻。\n" NOR;
+                        msg = HIW + weapon->name() + HIW "刮出一股氣流迅速旋轉並不斷擴散開來，所到之處萬物皆損，$n"
+                              HIW "只覺自己天旋地轉，受傷不輕。\n" NOR;
                         break;
                 default:
-                        msg = HIW + weapon->name() + HIW "刮出强大的龙卷风夹杂黄沙其中从各处向$n"+HIG+"迅速袭来，$n"
-                              HIW "身体向短线风筝在旋风中旋转，全身体无完肤。\n" NOR;
+                        msg = HIW + weapon->name() + HIW "刮出強大的龍捲風夾雜黃沙其中從各處向$n"+HIG+"迅速襲來，$n"
+                              HIW "身體向短線風箏在旋風中旋轉，全身體無完膚。\n" NOR;
                         break;
                 }
                 break;
 
         case "magic":
-                // 魔法攻击：吸取气+
+                // 魔法攻擊：吸取氣+
                 resistance=victim->query_all_buff("resistance_magic");
                 damage = (power + jingjia) * 200 / (100 + resistance);
                 add=me->query_all_buff("add_magic");
@@ -1415,16 +1415,16 @@ mixed weapon10lv_hit_ob(object me, object victim, object weapon, int damage_bonu
                 switch (random(3))
                 {
                 case 0:
-                        msg = HIM + weapon->name() + HIM "响起一阵奇异的声音，犹如龙吟，令$n"
+                        msg = HIM + weapon->name() + HIM "響起一陣奇異的聲音，猶如龍吟，令$n"
                               HIM "心神不定，神情恍惚。\n" NOR;
                         break;
                 case 1:
-                        msg = HIM "“啵”的一声，" + weapon->name() + HIM
-                              "如击败革，却见$n" HIM "闷哼一声，摇晃不定！\n" NOR;
+                        msg = HIM "“啵”的一聲，" + weapon->name() + HIM
+                              "如擊敗革，卻見$n" HIM "悶哼一聲，搖晃不定！\n" NOR;
                         break;
                 default:
-                        msg = HIM + weapon->name() + HIM "上旋出一道道五彩缤纷的"
-                              "光圈，笼罩了$n" HIM "，四下飞舞。\n" NOR;
+                        msg = HIM + weapon->name() + HIM "上旋出一道道五彩繽紛的"
+                              "光圈，籠罩了$n" HIM "，四下飛舞。\n" NOR;
                         break;
                 }
                 break;
@@ -1441,28 +1441,28 @@ mixed weapon10lv_hit_ob(object me, object victim, object weapon, int damage_bonu
         {
         case 0:
                 victim->receive_wound("jing", damage / 6 + random(damage / 6), me);
-                return msg + HIM "$N" HIM "嘿然冷笑，抖动" + weapon->name() +
-                       HIM "，数道光华一起射出，将$n" HIM "困在当中，无法自拔。\n" NOR;
+                return msg + HIM "$N" HIM "嘿然冷笑，抖動" + weapon->name() +
+                       HIM "，數道光華一起射出，將$n" HIM "困在當中，無法自拔。\n" NOR;
 
         case 1:
                 victim->receive_wound("jing", damage / 5 + random(damage / 5), me);
-                return msg + HIC "$N" HIC "手中的" + weapon->name() + HIC "射出各种光芒，"
-                       "眩目夺人，一道道神采映射得天地尽情失色，让$n"
+                return msg + HIC "$N" HIC "手中的" + weapon->name() + HIC "射出各種光芒，"
+                       "眩目奪人，一道道神采映射得天地盡情失色，讓$n"
                        HIC "目瞪口呆！\n" NOR;
         case 2:
                 victim->receive_wound("qi", damage / 4 + random(damage / 4), me);
-                return msg + HIY "$N" HIY "举起" + weapon->name() +
-                       HIY "，只见天空一道亮光闪过，$n" HIY "连吐几口鲜血！\n" NOR;
+                return msg + HIY "$N" HIY "舉起" + weapon->name() +
+                       HIY "，只見天空一道亮光閃過，$n" HIY "連吐幾口鮮血！\n" NOR;
 
         case 3:
                 victim->receive_wound("qi", damage / 3 + random(damage / 3), me);
-                return msg + HIG "$N" HIG "随手划动" + weapon->name() + HIG "，一圈圈碧芒"
-                       "围向$n" HIG "，震得$n吐血连连！\n" NOR;
+                return msg + HIG "$N" HIG "隨手划動" + weapon->name() + HIG "，一圈圈碧芒"
+                       "圍向$n" HIG "，震得$n吐血連連！\n" NOR;
 
         case 4:
                 victim->receive_wound("qi", damage / 2 + random(damage / 2), me);
-                return msg + HIW "$N" HIW "一声长叹，" + weapon->name() + HIW "轻轻递出，"
-                       "霎时万籁俱静，$n" HIW "只觉得整个人都跌进了地狱中去！\n" NOR;
+                return msg + HIW "$N" HIW "一聲長嘆，" + weapon->name() + HIW "輕輕遞出，"
+                       "霎時萬籟俱靜，$n" HIW "只覺得整個人都跌進了地獄中去！\n" NOR;
 
         default:
 
@@ -1474,7 +1474,7 @@ mixed weapon10lv_hit_ob(object me, object victim, object weapon, int damage_bonu
         }
 }
 
-// 9级兵器攻击对手
+// 9級兵器攻擊對手
 mixed weapon_hit_ob(object me, object victim, object weapon, int damage_bonus)
 {
         int ap;
@@ -1486,7 +1486,7 @@ mixed weapon_hit_ob(object me, object victim, object weapon, int damage_bonus)
 
         msg = "";
 
-        // 计算damage：不论是空手武器还是普通兵器，统一计算
+        // 計算damage：不論是空手武器還是普通兵器，統一計算
         if (weapon->is_weapon())
                 damage=me->query_all_buff("damage");
         else
@@ -1497,22 +1497,22 @@ mixed weapon_hit_ob(object me, object victim, object weapon, int damage_bonus)
         {
         case 0:
                 victim->receive_wound("jing", damage / 5 + random(damage / 5), me);
-                msg += HIY "$N" HIY "抖动手中的" + weapon->name() + HIY
-                       "，幻化成夜空流星，数道" HIM "紫芒" HIY "划破星"
-                       "空袭向$n" HIY "。\n" NOR;
+                msg += HIY "$N" HIY "抖動手中的" + weapon->name() + HIY
+                       "，幻化成夜空流星，數道" HIM "紫芒" HIY "劃破星"
+                       "空襲向$n" HIY "。\n" NOR;
                 break;
         case 1:
                 victim->receive_wound("qi", damage / 3 + random(damage / 3), me);
-                msg += HIR "$N" HIR "大喝一声，手中" + weapon->name() +
-                       HIR "遥指$n" HIR "，一道杀气登时将$n" HIR "震退"
-                       "数步。\n" NOR;
+                msg += HIR "$N" HIR "大喝一聲，手中" + weapon->name() +
+                       HIR "遙指$n" HIR "，一道殺氣登時將$n" HIR "震退"
+                       "數步。\n" NOR;
                 break;
         case 2:
                 victim->receive_wound("qi", damage / 6 + random(damage / 6), me);
                 victim->receive_wound("jing", damage / 10 + random(damage / 10), me);
-                msg += HIG "$N" HIG "蓦地回转" + weapon->name() + HIG
-                       "，漾起层层碧波，宛若" NOR + HIB "星河" HIG "气"
-                       "旋，将$n" HIG "圈裹其中。\n" NOR;
+                msg += HIG "$N" HIG "驀地迴轉" + weapon->name() + HIG
+                       "，漾起層層碧波，宛若" NOR + HIB "星河" HIG "氣"
+                       "旋，將$n" HIG "圈裹其中。\n" NOR;
                 break;
         case 3:
         case 4:
@@ -1530,7 +1530,7 @@ mixed weapon_hit_ob(object me, object victim, object weapon, int damage_bonus)
         return msg;
 }
 
-// 绝招：12连环攻击
+// 絕招：12連環攻擊
 void continue_attack(object me, object victim, object weapon, int times)
 {
         int i;
@@ -1545,34 +1545,34 @@ void continue_attack(object me, object victim, object weapon, int times)
                 return;
 
         /*
-        msg  = HIC "\n$N" HIC "一声冷笑，人与" + weapon->name() +
-               HIC "合而为一，飞也似的扑向$n" HIC "！\n" NOR;
+        msg  = HIC "\n$N" HIC "一聲冷笑，人與" + weapon->name() +
+               HIC "合而為一，飛也似的撲向$n" HIC "！\n" NOR;
         */
-        msg  = HIW "霎时只听$N" HIW "纵声长啸，人与" + weapon->name() +
-               HIW "融为一体，霎时间寒芒飞散，向$n" HIW "射去。\n" NOR;
+        msg  = HIW "霎時只聽$N" HIW "縱聲長嘯，人與" + weapon->name() +
+               HIW "融為一體，霎時間寒芒飛散，向$n" HIW "射去。\n" NOR;
 
         ap = me->query_skill("martial-cognize");
         dp = victim->query_skill("parry");
 
         if (ap / 2 + random(ap) > dp / 2)
                 /*
-                msg += HIR "$n" HIR "大骇之下慌忙后退，却哪里躲避得开？一时不禁破绽迭出！\n"
-                       HIY "$N" HIY "抓住$n" HIY "露出的破绽，急挥手中的" +
-                       weapon->name() + HIY "，连续" + chinese_number(times) +
+                msg += HIR "$n" HIR "大駭之下慌忙後退，卻哪裡躲避得開？一時不禁破綻迭出！\n"
+                       HIY "$N" HIY "抓住$n" HIY "露出的破綻，急揮手中的" +
+                       weapon->name() + HIY "，連續" + chinese_number(times) +
                        "招全部指向$n" HIY "的要害！\n" NOR;
                 */
-                msg += HIR "$n" HIR "大骇之下连忙后退，可已然不及闪避，慌乱"
-                       "中不禁破绽迭出。\n" HIW "$N" HIW "盯住$n" HIW "招中"
-                       "破绽，疾速旋转手中" + weapon->name() + HIW "，电光火"
-                       "石间已朝$n" HIW "攻出" + chinese_number(times) + HIW
+                msg += HIR "$n" HIR "大駭之下連忙後退，可已然不及閃避，慌亂"
+                       "中不禁破綻迭出。\n" HIW "$N" HIW "盯住$n" HIW "招中"
+                       "破綻，疾速旋轉手中" + weapon->name() + HIW "，電光火"
+                       "石間已朝$n" HIW "攻出" + chinese_number(times) + HIW
                        "招！\n" NOR;
         else
         {
                 /*
-                msg += HIC "$n" HIC "冥神抵挡，将$N" HIC "这必杀一击的所有变化全然封住！\n" NOR;
+                msg += HIC "$n" HIC "冥神抵擋，將$N" HIC "這必殺一擊的所有變化全然封住！\n" NOR;
                 */
-                msg += CYN "可是$n" CYN "冥神抵挡，将$N"
-                       CYN "此招的所有变化全然封住。\n" NOR;
+                msg += CYN "可是$n" CYN "冥神抵擋，將$N"
+                       CYN "此招的所有變化全然封住。\n" NOR;
                 message_combatd(msg, me, victim);
                 return;
         }
@@ -1593,7 +1593,7 @@ void continue_attack(object me, object victim, object weapon, int times)
         delete_temp("weapon_performing", me);
 }
 
-// 待扩充效果
+// 待擴充效果
 int qianghua_effect(object item, int p)
 {
         int level;
@@ -1615,7 +1615,7 @@ void reduce_consistence(object item, object me, object victim, int damage)
         int st;
         int con;
 
-        // 调用镶嵌物品攻击特效
+        // 調用鑲嵌物品攻擊特效
         if( !objectp(item) ) return;
 
         st=query("stable", item);
@@ -1625,7 +1625,7 @@ void reduce_consistence(object item, object me, object victim, int damage)
 
         con=query("consistence", item);
 
-        // 寰宇天晶炼制的武器永不磨损
+        // 寰宇天晶煉製的武器永不磨損
         if( query("material", item) == "tian jing" )
                 return;
 
@@ -1642,12 +1642,12 @@ void reduce_consistence(object item, object me, object victim, int damage)
 
         if (environment(item))
                 tell_object(environment(item), HIG "你的" +
-                            item->name() + HIG "已经彻底损坏了。\n");
+                            item->name() + HIG "已經徹底損壞了。\n");
 
         item->unequip();
 }
 
-// 构造物品缺省的耐久度信息
+// 構造物品缺省的耐久度信息
 void equip_setup(object item)
 {
         int stable;
@@ -1667,29 +1667,29 @@ void equip_setup(object item)
                 switch(query("material", item) )
                 {
                 case "cloth":
-                        // 永远不会损坏
+                        // 永遠不會損壞
                         stable = 0;
                         break;
 
                 case "paper":
                         stable = 3;
-                        set("no_repair", "这东西我可没法修理。\n", item);
+                        set("no_repair", "這東西我可沒法修理。\n", item);
                         break;
 
                 case "bone":
                         stable = 8;
-                        set("no_repear", "修理这个？可别拿我寻开心。\n", item);
+                        set("no_repear", "修理這個？可別拿我尋開心。\n", item);
                         break;
 
                 case "bamboo":
                 case "wood":
                         stable = 10;
-                        set("no_repair", "这东西我咋修理？\n", item);
+                        set("no_repair", "這東西我咋修理？\n", item);
                         break;
 
                 case "stone":
                         stable = 20;
-//                        item->set("no_repair", "这个坏了就坏了，可修不了。\n");
+//                        item->set("no_repair", "這個壞了就壞了，可修不了。\n");
                         break;
 
                 case "copper":
@@ -1724,7 +1724,7 @@ void equip_setup(object item)
         }
 }
 
-// 兵器镶嵌的宝石攻击
+// 兵器鑲嵌的寶石攻擊
 void enchase_attack(object item, object me, object victim, int damage)
 {
         mapping enchase,buff;
@@ -1743,7 +1743,7 @@ void enchase_attack(object item, object me, object victim, int damage)
         if( !query("skill_type", item) && query("armor_type", item) != "hands" &&
              query("armor_type", item) != "finger" ) return;
 
-        // 没有镶嵌则返回
+        // 沒有鑲嵌則返回
         enchase = query("enchase/apply_prop", item);
 
         if( !mapp(enchase) || sizeof(enchase) < 1 )
@@ -1753,7 +1753,7 @@ void enchase_attack(object item, object me, object victim, int damage)
         n = sizeof(apply);
         for( i=0;i<n;i++ )
         {
-                // 发出特效
+                // 發出特效
                 switch( apply[i] )
                 {
                 case "leech_qi":
@@ -1762,31 +1762,31 @@ void enchase_attack(object item, object me, object victim, int damage)
                         extra = damage*extra/100;
                         if( query("qi", victim) < extra ) extra = query("qi", victim);
                         if( extra < 1 ) break;
-                        message_combatd(HIG + "$N" HIG "的「" + item->name() + HIG "」发出一道奇异的光芒！\n" NOR, me);
+                        message_combatd(HIG + "$N" HIG "的「" + item->name() + HIG "」發出一道奇異的光芒！\n" NOR, me);
 
                         victim->receive_damage("qi", extra, me);
                         me->receive_heal("qi", extra);
-                        msg = HIR +victim->name()+ HIR "感到自己的气血被" + item->name() + HIR "吸干了似的。\n" NOR;
+                        msg = HIR +victim->name()+ HIR "感到自己的氣血被" + item->name() + HIR "吸乾了似的。\n" NOR;
                         tell_object(victim, msg);
-                        msg = HIY "「" + item->name() + HIY "」吸取「" + victim->name() + HIY + "」气血：" + sprintf("%d", extra) + "点\n" NOR;
+                        msg = HIY "「" + item->name() + HIY "」吸取「" + victim->name() + HIY + "」氣血：" + sprintf("%d", extra) + "點\n" NOR;
                         tell_object(me, msg);
                         break;
 
                 case "leech_neili":
-                        extra = enchase[apply[i]]; // 偷取内力%
+                        extra = enchase[apply[i]]; // 偷取內力%
                         if( random(100) > 70 ) break;
                         extra = damage*extra/100;
                         if( query("neili", victim) < extra ) extra = query("neili", victim);
                         if( extra < 1 ) break;
-                        message_combatd(HIG + "$N" HIG "的「" + item->name() + HIG "」发出一道奇异的光芒！\n" NOR, me);
+                        message_combatd(HIG + "$N" HIG "的「" + item->name() + HIG "」發出一道奇異的光芒！\n" NOR, me);
 
                         addn("neili", -extra, victim);
                         addn("neili", extra, me);
                         if( query("neili", me) > query("max_neili", me))
                                 set("neili", query("max_neili", me), me);
-                        msg = HIG +victim->name()+ HIG "感到自己的内力被" + item->name() + HIG "吸干了似的。\n" NOR;
+                        msg = HIG +victim->name()+ HIG "感到自己的內力被" + item->name() + HIG "吸乾了似的。\n" NOR;
                         tell_object(victim, msg);
-                        msg = HIY "「" + item->name() + HIY "」吸取「" + victim->name() + HIY + "」内力：" + sprintf("%d", extra) + "点\n" NOR;
+                        msg = HIY "「" + item->name() + HIY "」吸取「" + victim->name() + HIY + "」內力：" + sprintf("%d", extra) + "點\n" NOR;
                         tell_object(me, msg);
                         break;
 
@@ -1796,9 +1796,9 @@ void enchase_attack(object item, object me, object victim, int damage)
                         avoid = victim->query_all_buff("avoid_blind");
                         if( avoid > 60 ) avoid = 60;
                         if( random(100) < avoid ) break;
-                        message_combatd(HIG + "$N" HIG "的「" + item->name() + HIG "」发出一道奇异的光芒！\n" NOR, me);
+                        message_combatd(HIG + "$N" HIG "的「" + item->name() + HIG "」發出一道奇異的光芒！\n" NOR, me);
 
-                        msg = HIR "$N" HIR "只觉双目一阵剧痛，眼前一黑，就什么也看不见了，顿时长声痛极而呼。\n" NOR;
+                        msg = HIR "$N" HIR "只覺雙目一陣劇痛，眼前一黑，就什麼也看不見了，頓時長聲痛極而呼。\n" NOR;
 
                         buff = ([
                                 "caster":me,
@@ -1808,21 +1808,21 @@ void enchase_attack(object item, object me, object victim, int damage)
                                 "time":5,
                                 "block_msg":"all",
                                 "buff_msg": msg,
-                                "disa_msg":HIR "你终于抹掉了眼前的鲜血，能看见了。\n" NOR,
+                                "disa_msg":HIR "你終於抹掉了眼前的鮮血，能看見了。\n" NOR,
                         ]);
                         BUFF_D->buffup(buff);
                         break;
 
 /*
                 case "add_freeze":
-                        extra = enchase[apply[i]]; // 冰冻
+                        extra = enchase[apply[i]]; // 冰凍
                         if( random(100) > extra ) break;
                         avoid = victim->query_all_buff("avoid_freeze");
                         if( avoid > 60 ) avoid = 60;
                         if( random(100) < avoid ) break;
-                        message_combatd(HIG + "$N" HIG "的「" + item->name() + HIG "」发出一道奇异的光芒！\n" NOR, me);
+                        message_combatd(HIG + "$N" HIG "的「" + item->name() + HIG "」發出一道奇異的光芒！\n" NOR, me);
 
-                        msg = HIB "$N" HIB "只觉四肢僵硬，身体开始凝冻，行动迟缓，动作困难，像一个冰人似的。\n" NOR;
+                        msg = HIB "$N" HIB "只覺四肢僵硬，身體開始凝凍，行動遲緩，動作困難，像一個冰人似的。\n" NOR;
 
                         buff = ([
                                 "caster":me,
@@ -1832,21 +1832,21 @@ void enchase_attack(object item, object me, object victim, int damage)
                                 "time":5,
                                 "buff_data":"freeze",
                                 "buff_msg": msg,
-                                "disa_msg":HIR "你终于全身开始解冻，恢复了正常。\n" NOR,
+                                "disa_msg":HIR "你終於全身開始解凍，恢復了正常。\n" NOR,
                         ]);
                         BUFF_D->buffup(buff);
                         break;
 */
 
-                // 召唤神龙
+                // 召喚神龍
                 case "summon_shenlong":
                         extra = enchase[apply[i]];
                         if( random(100) > extra ) break;
                         if( time() - query_temp("last_summon_shenlong", me) < 180 ) break;
 
-                        message_combatd(HIG + "$N" HIG "的「" + item->name() + HIG "」发出一道奇异的光芒！\n" NOR, me);
+                        message_combatd(HIG + "$N" HIG "的「" + item->name() + HIG "」發出一道奇異的光芒！\n" NOR, me);
 
-                        msg = HIG "「" + item->name() + HIG "」光芒万丈，一条神龙伴随着光芒从天而降。\n" NOR;
+                        msg = HIG "「" + item->name() + HIG "」光芒萬丈，一條神龍伴隨著光芒從天而降。\n" NOR;
                         message_combatd(msg, me);
 
                         shenlong = new("/kungfu/class/misc/shenlong");
@@ -1856,7 +1856,7 @@ void enchase_attack(object item, object me, object victim, int damage)
                         set_temp("last_summon_shenlong", time(), me);
 
                         shenlong->move(environment(me));
-                        set("long", HIC + me->name() + HIC "的宝物龙女·碧海神龙的力量所召唤的神龙，威风无比。\n" NOR, shenlong);
+                        set("long", HIC + me->name() + HIC "的寶物龍女·碧海神龍的力量所召喚的神龍，威風無比。\n" NOR, shenlong);
                         shenlong->kill_ob(victim);
                         shenlong->force_me("guard " + query("id", me) );
                         break;

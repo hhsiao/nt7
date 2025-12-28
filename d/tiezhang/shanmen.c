@@ -4,12 +4,12 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "山门");
+        set("short", "山門");
         set("long", @LONG
-这里就是江湖上闻风丧胆的“铁掌帮”。自从“铁掌歼衡山”一役将衡
-山派打得一蹶不振之后，帮主铁掌水上漂的名头威震江湖。这里是进山的必
-经之路，曲的小路通向山里。路的一侧立着一块牌子(paizi) 。两旁的树林
-内不时传出一些响声，似乎有人在暗中监视。
+這裡就是江湖上聞風喪膽的“鐵掌幫”。自從“鐵掌殲衡山”一役將衡
+山派打得一蹶不振之後，幫主鐵掌水上漂的名頭威震江湖。這裡是進山的必
+經之路，曲的小路通向山裡。路的一側立著一塊牌子(paizi) 。兩旁的樹林
+內不時傳出一些響聲，似乎有人在暗中監視。
 LONG        );
     set("outdoors", "tiezhang");
         set("exits", ([ /* sizeof() == 2 */
@@ -34,9 +34,9 @@ int valid_leave(object me, string dir)
         mapping myfam;
         myfam=query("family", me);
 
-        if( (!myfam || myfam["family_name"] != "铁掌帮") && dir == "northup" && query("combat_exp", me) >= 10000 && 
+        if( (!myfam || myfam["family_name"] != "鐵掌幫") && dir == "northup" && query("combat_exp", me) >= 10000 && 
                 objectp(present("heiyi bangzhong", environment(me))))
-        return notify_fail(CYN "黑衣帮众抽刀拦住你的去路，说道：“你不是铁掌帮弟子，不能上山！\n" NOR);
+        return notify_fail(CYN "黑衣幫眾抽刀攔住你的去路，說道：“你不是鐵掌幫弟子，不能上山！\n" NOR);
 
         return ::valid_leave(me, dir);
 }

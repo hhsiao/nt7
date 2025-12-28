@@ -2,7 +2,7 @@ inherit SKILL;
 int is_pbsk() { return 1; }
 
 mapping *action = ({
-([      "action": "$N前腿踢出，后腿脚尖点地，一式「横空出世」，二掌直出，攻向$n"
+([      "action": "$N前腿踢出，後腿腳尖點地，一式「橫空出世」，二掌直出，攻向$n"
                   "的上中下三路",
         "force" : 120,
         "attack": 17,
@@ -10,9 +10,9 @@ mapping *action = ({
         "parry" : 12,
         "damage": 5,
         "lvl"   : 0,
-        "damage_type" : "瘀伤",
+        "damage_type" : "瘀傷",
 ]),
-([      "action": "$N左掌划一半圆，一式「长虹贯日」，右掌斜穿而出，疾拍$n的胸前"
+([      "action": "$N左掌劃一半圓，一式「長虹貫日」，右掌斜穿而出，疾拍$n的胸前"
                   "大穴",
         "force" : 150,
         "attack": 25,
@@ -20,9 +20,9 @@ mapping *action = ({
         "parry" : 18,
         "damage": 10,
         "lvl"   : 10,
-        "damage_type" : "瘀伤",
+        "damage_type" : "瘀傷",
 ]),
-([      "action": "$N使一式「云断秦岭」，右掌上引，左掌由后而上一个甩劈，斩向$n"
+([      "action": "$N使一式「雲斷秦嶺」，右掌上引，左掌由後而上一個甩劈，斬向$n"
                   "的$l",
         "force" : 170,
         "attack": 32,
@@ -30,18 +30,18 @@ mapping *action = ({
         "parry" : 22,
         "damage": 10,
         "lvl"   : 20,
-        "damage_type" : "劈伤",
+        "damage_type" : "劈傷",
 ]),
-([      "action": "$N左掌护胸，右拳凝劲后发，一式「铁索拦江」，缓缓推向$n的$l",
+([      "action": "$N左掌護胸，右拳凝勁後發，一式「鐵索攔江」，緩緩推向$n的$l",
         "force" : 190,
         "attack": 38,
         "dodge" : -5,
         "parry" : 32,
         "damage": 10,
         "lvl"   : 40,
-        "damage_type" : "瘀伤",
+        "damage_type" : "瘀傷",
 ]),
-([      "action": "$N使一式「狂风卷地」，全身飞速旋转，双掌一前一后，猛地拍向$n"
+([      "action": "$N使一式「狂風捲地」，全身飛速旋轉，雙掌一前一後，猛地拍向$n"
                   "的胸口",
         "force" : 210,
         "attack": 51,
@@ -49,25 +49,25 @@ mapping *action = ({
         "parry" : 27,
         "damage": 15,
         "lvl"   : 70,
-        "damage_type" : "瘀伤",
+        "damage_type" : "瘀傷",
 ]),
-([      "action": "$N合掌抱球，猛吸一口气，一式「怀中抱月」，双掌疾推向$n的肩头",
+([      "action": "$N合掌抱球，猛吸一口氣，一式「懷中抱月」，雙掌疾推向$n的肩頭",
         "force" : 250,
         "attack": 52,
         "dodge" : 5,
         "parry" : 38,
         "damage": 15,
         "lvl"   : 90,
-        "damage_type" : "瘀伤",
+        "damage_type" : "瘀傷",
 ]),
-([      "action": "$N向上高高跃起，一式「高山流水」，居高临下，掌力笼罩$n的全身",
+([      "action": "$N向上高高躍起，一式「高山流水」，居高臨下，掌力籠罩$n的全身",
         "force" : 280,
         "attack": 62,
         "dodge" : 20,
         "parry" : 56,
         "damage": 15,
         "lvl"   : 110,
-        "damage_type" : "瘀伤",
+        "damage_type" : "瘀傷",
 ]),
 });
 
@@ -76,16 +76,16 @@ int valid_enable(string usage) { return usage=="strike" ||  usage=="parry"; }
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练青莽掌必须空手。\n");
+                return notify_fail("練青莽掌必須空手。\n");
 
         if ((int)me->query_skill("force") < 20)
-                return notify_fail("你的内功心法火候不够，无法修炼青莽掌。\n");
+                return notify_fail("你的內功心法火候不夠，無法修煉青莽掌。\n");
 
         if( query("max_neili", me)<100 )
-                return notify_fail("你的内力太弱，无法练青莽掌。\n");
+                return notify_fail("你的內力太弱，無法練青莽掌。\n");
 
         if ((int)me->query_skill("strike", 1) < (int)me->query_skill("qingmang-zhang", 1))
-                return notify_fail("你的基本掌法火候有限，无法领会更高深的青莽掌。\n");
+                return notify_fail("你的基本掌法火候有限，無法領會更高深的青莽掌。\n");
 
         return 1;
 }
@@ -110,10 +110,10 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me)
 {
         if( query("qi", me)<40 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
 
         if( query("neili", me)<40 )
-                return notify_fail("你的内力不够练青莽掌。\n");
+                return notify_fail("你的內力不夠練青莽掌。\n");
 
         me->receive_damage("qi", 30);
         addn("neili", -30, me);

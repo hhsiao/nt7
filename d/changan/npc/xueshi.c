@@ -4,13 +4,13 @@ inherit NPC;
 
 void create()
 {
-        set_name("李博渊", ({"li boyuan", "li", "boyuan"}));
+        set_name("李博淵", ({"li boyuan", "li", "boyuan"}));
         set("gender", "男性");
         set("age", 45);
-        set("title", "大学士");
+        set("title", "大學士");
         set("str", 25);
         set("int", 30);
-        set("long", "李博渊是国子监大学士。\n");
+        set("long", "李博淵是國子監大學士。\n");
         set("combat_exp", 40000);
         set("attitude", "friendly");
         set("class", "scholar");
@@ -22,8 +22,8 @@ void create()
         set("neili", 500); 
         set("max_neili", 500);
         set("inquiry", ([
-                "读书识字": "对了，你是来对地方了！\n",
-                "学习" : "学习是要交学费的\n",
+                "讀書識字": "對了，你是來對地方了！\n",
+                "學習" : "學習是要交學費的\n",
         ]) );
 
         setup();
@@ -45,7 +45,7 @@ int accept_object(object who, object ob)
         set_temp("mark/李", 0, who);
         if( query("money_id", ob) && ob->value() >= 10000 )
         {
-                message_vision("李博渊同意指点$N一些读书写字的问题。\n", who);
+                message_vision("李博淵同意指點$N一些讀書寫字的問題。\n", who);
                 addn_temp("mark/李", ob->value()/50, who);
         
                 return 1; 

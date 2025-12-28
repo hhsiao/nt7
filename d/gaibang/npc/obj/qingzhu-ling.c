@@ -9,9 +9,9 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "面");
-                set("long", GRN "这是一面用青竹做成的令牌，凭此可向帮内"
-                            "师兄挑战。\n" NOR);
+                set("long", GRN "這是一面用青竹做成的令牌，憑此可向幫內"
+                            "師兄挑戰。\n" NOR);
                 set("material", "steel");
-                set("no_sell", "这是啥？也能卖钱？");
+                set("no_sell", "這是啥？也能賣錢？");
         }
 }

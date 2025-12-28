@@ -12,11 +12,11 @@ varargs void allow_ip_list(string *allow_ip,string name)
     if (!name)
         name="你";
     if (allow_ip && sizeof(allow_ip)){
-        write("\n"+name+"所设定的登录地址范围有：\n");
+        write("\n"+name+"所設定的登錄地址範圍有：\n");
         for (i=0;i<sizeof(allow_ip);i++)
                     printf("\t%s\n", allow_ip[i]);
     }else{
-        write(YEL+"警告："+name+"目前没有设定任何登录地址，"+name+"的帐号可以从任何地方上线！\n"+NOR);
+        write(YEL+"警告："+name+"目前沒有設定任何登錄地址，"+name+"的帳號可以從任何地方上線！\n"+NOR);
      if (name=="你")
         help();
     }
@@ -63,7 +63,7 @@ int main(object me, string arg)
                         return 1;
                     case "-d" :
                         delete("allow_ip", link_ob);
-                        write(query("name", link_ob)+"的登录地址设置已被删除。\n");
+                        write(query("name", link_ob)+"的登錄地址設置已被刪除。\n");
                         link_ob->save();
                         return 1;
                 }
@@ -75,26 +75,26 @@ int main(object me, string arg)
     switch(term){
         case "-?":
              if (!vaild_enter(arg,allow_ip)){
-                write(arg+" 不在你所设定的登录地址内。\n");
+                write(arg+" 不在你所設定的登錄地址內。\n");
              }else{
-                write(arg+" 可以正常登录。\n");
+                write(arg+" 可以正常登錄。\n");
              }
                 return 1;
         case "-d":
             if (!allow_ip || !sizeof(allow_ip))
-                return notify_fail(YEL+"\n警告：你目前没有设定任何登录地址，你的帐号可以从任何地方上线！\n"+NOR);
-            if (member_array(arg,allow_ip)==-1)    return notify_fail("你并没有设定"+arg+"\n");
+                return notify_fail(YEL+"\n警告：你目前沒有設定任何登錄地址，你的帳號可以從任何地方上線！\n"+NOR);
+            if (member_array(arg,allow_ip)==-1)    return notify_fail("你並沒有設定"+arg+"\n");
             allow_ip -= ({ arg });
                 line=query_ip_number(me);
             if (!vaild_enter(line,allow_ip)){
-                write("警告：你目前的IP地址 "+line+" 不在你所设定的登录地址内。\n请重新设置！\n");
+                write("警告：你目前的IP地址 "+line+" 不在你所設定的登錄地址內。\n請重新設置！\n");
                 return 1;
             }
             break;
         case "-s" :
             allow_ip=explode(arg,"|");
             allow_ip -= ({""});
-            write("设定登录地址：");
+            write("設定登錄地址：");
             for (i=0;i<sizeof(allow_ip);i++){
                 if (sscanf(allow_ip[i],"%s.%s.%s.%s",tmp1,tmp2,tmp3,tmp4)==4){
                     if (tmp1=="*")
@@ -105,7 +105,7 @@ int main(object me, string arg)
             }
             line=query_ip_number(me);
             if (!vaild_enter(line,allow_ip)){
-                   write(YEL+"\n警告：你目前的IP地址 "+line+" 不在你所设定的登录地址内。\n请重新设置！\n"+NOR);
+                   write(YEL+"\n警告：你目前的IP地址 "+line+" 不在你所設定的登錄地址內。\n請重新設置！\n"+NOR);
                     return 1;
             }else{
                 break;
@@ -126,23 +126,23 @@ int main(object me, string arg)
 int help()
 {
         write(@TEXT
-指令格式：allowip [-?] [-d] [IP地址或范围]
+指令格式：allowip [-?] [-d] [IP地址或範圍]
  
-设定自己的登录IP地址，如
+設定自己的登錄IP地址，如
       allowip 202.96.138.138
 
-也可设定一个IP地址范围，如
+也可設定一個IP地址範圍，如
       allowip 202.96.138.*
 
-也可同时设定多个地址范围(不超过五个)，中间用"|"隔开，如
+也可同時設定多個地址範圍(不超過五個)，中間用"|"隔開，如
       allowip 202.96.138.138|202.98.100.*|172.21.*.*
 
-即使别人知道你的密码，也不能从其他ip地址登录。
+即使別人知道你的密碼，也不能從其他ip地址登錄。
 
-其他参数:
+其他參數:
 
--?  : 验证某个IP地址是否能登录
--d  : 删除某个登录地址
+-?  : 驗證某個IP地址是否能登錄
+-d  : 刪除某個登錄地址
 
 TEXT
         );

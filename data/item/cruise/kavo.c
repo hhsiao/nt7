@@ -7,7 +7,7 @@ string long()
         string msg; 
         
         msg = query("long"); 
-        msg += "这是初见(kavo)的如意乾坤袋。
+        msg += "這是初見(kavo)的如意乾坤袋。
 ";
         msg += extra_long();
         

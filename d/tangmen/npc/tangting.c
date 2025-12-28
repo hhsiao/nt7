@@ -4,10 +4,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("唐听", ({ "tang ting", "tang", "ting"}));
+        set_name("唐聽", ({ "tang ting", "tang", "ting"}));
         set("nickname", HIR "嫡系死士" NOR); 
         set("long",
-"唐门三代弟子，在唐门地位颇高。\n");
+"唐門三代弟子，在唐門地位頗高。\n");
         set("gender", "男性");
         set("age", 55);
         set("class", "tangmen");
@@ -54,7 +54,7 @@ void create()
         
         prepare_skill("hand", "boyun-suowu");
         
-        create_family("唐门世家", 3, "弟子");
+        create_family("唐門世家", 3, "弟子");
 
         set_temp("apply/damage", 100);  
         set_temp("apply/unarmed_damage", 100);  

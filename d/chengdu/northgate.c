@@ -5,12 +5,12 @@ inherit ROOM;
 string look_gaoshi();
 void create()
 {
-        set("short", "北门");
+        set("short", "北門");
         set("long", @LONG
-这是成都北城门，城门正上方刻着『北门』两个楷书大字，城墙
-上贴着几张官府告示(gaoshi)。一条笔直的青石板大道向北延伸。北
-边望去，一片绿油油的田野夹着随风摇曳的高树，长竹。城门边两行
-官兵仔细盘查进出人等。
+這是成都北城門，城門正上方刻著『北門』兩個楷書大字，城牆
+上貼著幾張官府告示(gaoshi)。一條筆直的青石板大道向北延伸。北
+邊望去，一片綠油油的田野夾著隨風搖曳的高樹，長竹。城門邊兩行
+官兵仔細盤查進出人等。
 LONG );
         set("outdoors", "chengdu");
         set("item_desc", ([
@@ -34,5 +34,5 @@ LONG );
 
 string look_gaoshi()
 {
-        return FINGER_D->get_killer() + "\n成都提督\n吴天德\n";
+        return FINGER_D->get_killer() + "\n成都提督\n吳天德\n";
 }

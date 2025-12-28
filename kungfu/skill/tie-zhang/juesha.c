@@ -3,7 +3,7 @@
 
 inherit F_SSERVER;
 
-string name() { return "九穹绝刹掌"; }
+string name() { return "九穹絕剎掌"; }
 
 int perform(object me, object target)
 {
@@ -19,57 +19,57 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("「九穹绝刹掌」只能在战斗中对对手使用。\n");
+                return notify_fail("「九穹絕剎掌」只能在戰鬥中對對手使用。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("「九穹绝刹掌」只能空手使用。\n");
+                return notify_fail("「九穹絕剎掌」只能空手使用。\n");
 
         if( query("max_neili", me)<2200 )
-                return notify_fail("你的内力修为还不够，无法施展「九穹绝刹掌」。\n");
+                return notify_fail("你的內力修為還不夠，無法施展「九穹絕剎掌」。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你的真气不够！\n");
+                return notify_fail("你的真氣不夠！\n");
 
         if ((int)me->query_skill("tie-zhang", 1) < 200)
-                return notify_fail("你的铁掌火候不够，无法使用「九穹绝刹掌」！\n");
+                return notify_fail("你的鐵掌火候不夠，無法使用「九穹絕剎掌」！\n");
 
         if ((int)me->query_skill("force") < 300)
-                return notify_fail("你的内功修为不够，无法使用「九穹绝刹掌」！\n");
+                return notify_fail("你的內功修為不夠，無法使用「九穹絕剎掌」！\n");
 
         if (me->query_skill_mapped("strike") != "tie-zhang")
-                return notify_fail("你没有激发铁掌掌法，难以施展「九穹绝刹掌」。\n");
+                return notify_fail("你沒有激發鐵掌掌法，難以施展「九穹絕剎掌」。\n");
 
         if (me->query_skill_prepared("strike") != "tie-zhang")
-                return notify_fail("你现在没有准备使用铁掌掌法，难以施展「九穹绝刹掌」。\n");
+                return notify_fail("你現在沒有準備使用鐵掌掌法，難以施展「九穹絕剎掌」。\n");
 
         /*
         if (me->query_skill_prepared("cuff") == "tiexian-quan"
             || me->query_skill_prepared("unarmed") == "tiexian-quan" )
-                return notify_fail("施展「九穹绝刹掌」时铁掌掌法不宜和铁线拳互背！\n");
+                return notify_fail("施展「九穹絕剎掌」時鐵掌掌法不宜和鐵線拳互背！\n");
 
         if ((string)me->query_skill_mapped("force") != "tianlei-shengong")
-                return notify_fail("你必须激发天雷神功才能施展出「九穹绝刹掌」！\n");
+                return notify_fail("你必須激發天雷神功才能施展出「九穹絕剎掌」！\n");
         */
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIR "$N" HIR "一声怒喝，猛然施出铁掌掌法绝技「" NOR + WHT
-              "九穹绝刹掌" NOR + HIR "」！体内天雷真气急速运转，双臂陡"
-              "然\n暴长数尺。只听破空之声骤响，双掌幻出漫天掌影，铺天"
-              "盖地向$n" HIR "连环拍出！\n\n" NOR;
+        msg = HIR "$N" HIR "一聲怒喝，猛然施出鐵掌掌法絕技「" NOR + WHT
+              "九穹絕剎掌" NOR + HIR "」！體內天雷真氣急速運轉，雙臂陡"
+              "然\n暴長數尺。只聽破空之聲驟響，雙掌幻出漫天掌影，鋪天"
+              "蓋地向$n" HIR "連環拍出！\n\n" NOR;
 
         ap=attack_power(me,"strike")+me->query_str()*20;
         dp=defense_power(target,"parry")+me->query_dex()*20;
         if (ap / 2 + random(ap) > dp)
         {
                 count = ap / 10;
-                msg += RED "$n" RED "面对$P" RED "这排山倒海攻势，完全"
-                       "无法抵挡，唯有退后。\n" NOR;
+                msg += RED "$n" RED "面對$P" RED "這排山倒海攻勢，完全"
+                       "無法抵擋，唯有退後。\n" NOR;
         } else
         {
-                msg += HIC "$n" HIC "凝神应战，竭尽所能化解$P" HIC "这"
-                       "几掌。\n" NOR;
+                msg += HIC "$n" HIC "凝神應戰，竭盡所能化解$P" HIC "這"
+                       "幾掌。\n" NOR;
                 count = 0;
         }
 

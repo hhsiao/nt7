@@ -5,11 +5,11 @@ inherit NPC;
 void create()
 {
         object ob;
-        set_name("黄裳", ({"huang shang", "huang", "shang"}));
-        set("title", "大宗师");
+        set_name("黃裳", ({"huang shang", "huang", "shang"}));
+        set("title", "大宗師");
         set("gender", "男性");
         set("age", 42);
-        set("long", "此人气度闲雅，看不出武功高低。\n");
+        set("long", "此人氣度閒雅，看不出武功高低。\n");
         set("attitude", "peaceful");
         set("class", "scholar");
         set("str", 40);
@@ -139,7 +139,7 @@ void die()
 
         return;
 }
-// 气血小于1000则死亡，避免他人协助帮忙转世
+// 氣血小於1000則死亡，避免他人協助幫忙轉世
 void heart_beat()
 {
         if (this_object()->query("qi") < 1000 || this_object()->query("eff_qi") < 1000)

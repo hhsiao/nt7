@@ -9,13 +9,13 @@ inherit F_QUESTER;
 
 void create()
 {
-        set_name("银龙", ({"yin long", "yin", "long"}));
-        set("title", "魔教长老");
+        set_name("銀龍", ({"yin long", "yin", "long"}));
+        set("title", "魔教長老");
         set("gender", "男性");
         set("age", 52);
         set("shen_type", -1);
-        set("long", "银色衣装、戴着银色面具的人，面具下飘着银白色的长衫，因此，可以知道这是\n"
-                    "一个男人，一个老人。身上有股无形的、慑人的威力透射出来，使人不敢冒犯他。\n");
+        set("long", "銀色衣裝、戴著銀色面具的人，面具下飄著銀白色的長衫，因此，可以知道這是\n"
+                    "一個男人，一個老人。身上有股無形的、懾人的威力透射出來，使人不敢冒犯他。\n");
         set("attitude", "peaceful");
 
         set("per", 21);
@@ -67,7 +67,7 @@ void create()
 
         prepare_skill("strike", "yinlong-shou");
         
-        create_family("魔教", 40, "长老");
+        create_family("魔教", 40, "長老");
   
         set("chat_chance_combat", 120); 
         set("chat_msg_combat", ({
@@ -93,7 +93,7 @@ void attempt_apprentice(object ob)
 
         if ((int)ob->query_skill("moshen-xinfa", 1) < 120) 
         {
-                command("say 本教的内功心法你还没练好，还要多下苦功才行！");
+                command("say 本教的內功心法你還沒練好，還要多下苦功才行！");
                 return;
         }
         
@@ -104,16 +104,16 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "历练" :
-        case "历炼" :
-        case "锻炼" :
+        case "歷練" :
+        case "歷煉" :
+        case "鍛鍊" :
                 return QUEST_D->accept_ask(this_object(), me, topic);
                 break;
 
-        case "夺命" :
+        case "奪命" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/yinlong-shou/duo",
-                           "name"    : "夺命",
+                           "name"    : "奪命",
                            "sk1"     : "yinlong-shou",
                            "lv1"     : 200,
                            "dodge"   : 200,
@@ -121,10 +121,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -50000, ]));
                 break;
 
-        case "腾诀" :
+        case "騰訣" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/longteng-daofa/teng",
-                           "name"    : "腾诀",
+                           "name"    : "騰訣",
                            "sk1"     : "longteng-daofa",
                            "lv1"     : 200,
                            "dodge"   : 200,

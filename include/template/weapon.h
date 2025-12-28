@@ -10,13 +10,13 @@ string long()
 
         long = query("long");
 
-        // 显示前缀描述
+        // 顯示前綴描述
         if (arrayp(fix_list = query("prefix")) && sizeof(fix_list))
         {
                 foreach (fix_name in fix_list)
                         long += ITEM_D->get_prefix_desc(fix_name) + "\n";
         }
-        // 显示后缀描述
+        // 顯示後綴描述
         if (arrayp(fix_list = query("postfix")) && sizeof(fix_list))
         {
                 foreach (fix_name in fix_list)

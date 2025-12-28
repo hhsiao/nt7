@@ -5,9 +5,9 @@ inherit ITEM;
 
 #include <ansi.h>
 
-// 打造武器粗坯时需要的一种原料
-// 根据 material_ attrib = x 为判断标志，其有效点数为:power_point
-// 地藏之石的有效点数是 1000
+// 打造武器粗坯時需要的一種原料
+// 根據 material_ attrib = x 為判斷標誌，其有效點數為:power_point
+// 地藏之石的有效點數是 1000
 
 void create()
 {
@@ -17,8 +17,8 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", "这是一块来自地府的石头，亮晶晶的，闪耀着诡异的光芒，传说可以用它制成" HIY "如意乾坤袋。\n" NOR);
-                set("unit", "块");
+                set("long", "這是一塊來自地府的石頭，亮晶晶的，閃耀著詭異的光芒，傳說可以用它製成" HIY "如意乾坤袋。\n" NOR);
+                set("unit", "塊");
                 //set("material_attrib", "x");
                 set("power_point", 1000);
                 set("value", 10000000);

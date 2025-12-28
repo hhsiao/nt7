@@ -1,11 +1,11 @@
-// liang.c 梁喜禄
+// liang.c 梁喜祿
 
 inherit BUNCHER; 
 
 void create()
 {
-        set_name("梁喜禄", ({"liang xilu", "liang", "boss"}));
-        set("title", "货栈老板");
+        set_name("梁喜祿", ({"liang xilu", "liang", "boss"}));
+        set("title", "貨棧老闆");
         set("gender", "男性");
         set("age", 35);
         set("kee", 350); 

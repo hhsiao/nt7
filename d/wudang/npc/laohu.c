@@ -6,10 +6,10 @@ inherit NPC;
 void create()
 {
         set_name("老虎", ({ "laohu", "tiger","hu" }) );
-        set("race", "野兽");
+        set("race", "野獸");
         set("age", 20);
         set("long", @LONG
-一只斑斓猛虎，雄伟极了。
+一隻斑斕猛虎，雄偉極了。
 
          _.-'"''--..__.("\-''-'")
  ('.__.-' (  *  ) .-'    ( @ _@'
@@ -23,7 +23,7 @@ LONG);
         set("attitude", "aggressive");
         set("shen_type", -1);
 
-        set("limbs", ({ "虎头", "虎身", "前爪", "后抓", "尾巴" }) );
+        set("limbs", ({ "虎頭", "虎身", "前爪", "後抓", "尾巴" }) );
         set("verbs", ({ "bite", "claw" }) );
 
         set("combat_exp", 30000);
@@ -41,7 +41,7 @@ LONG);
 
         set("chat_chance", 10);
         set("chat_msg", ({
-                "老虎在浚巡，吓得你大气都不敢出。\n",
-                "老虎仰天长啸，声震山谷，黄叶纷坠。\n",
+                "老虎在浚巡，嚇得你大氣都不敢出。\n",
+                "老虎仰天長嘯，聲震山谷，黃葉紛墜。\n",
         }) );
 }

@@ -1,4 +1,4 @@
-// english.c 英国人
+// english.c 英國人
 
 #include <ansi.h>
 
@@ -6,8 +6,8 @@ inherit CHALLENGER;
 
 void create()
 {
-        set_name("英国人", ({ "english" }));
-        set("long", "一个英国人。\n");
+        set_name("英國人", ({ "english" }));
+        set("long", "一個英國人。\n");
         set("gender", "男性");
         set("age", 20);
         set("str", 40);
@@ -39,7 +39,7 @@ void create()
         map_skill("dodge", "xiyang-boji");
         map_skill("parry", "qishi-ji");
 
-        set("rank_info/rude", "红毛鬼");
+        set("rank_info/rude", "紅毛鬼");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -58,36 +58,36 @@ void create()
 string challenge()
 {
         set("opinion/msg", ({
-                (random(2) ? "此人佩带着圣骑士勋章，想必是由英吉利女皇亲自颁发。"
-                           : "此人身着重铠，手持长戟，想必应是英吉利的皇家骑士。"),
-                (random(2) ? "不错，英吉利皇家骑士团向来以勇猛著称，善于冲锋陷阵。"
-                           : "传说他们那里有个叫「龙枪」的勇士，其枪术已称得上是出神入化。"),
-                (random(2) ? "从如此遥远的地方远度而来，也真是够难为他的了！"
-                           : "嗯，长矛虽利于冲刺，但是变化略少，近身作战更见其弊。"),
+                (random(2) ? "此人佩帶著聖騎士勳章，想必是由英吉利女皇親自頒發。"
+                           : "此人身著重鎧，手持長戟，想必應是英吉利的皇家騎士。"),
+                (random(2) ? "不錯，英吉利皇家騎士團向來以勇猛著稱，善於衝鋒陷陣。"
+                           : "傳說他們那裡有個叫「龍槍」的勇士，其槍術已稱得上是出神入化。"),
+                (random(2) ? "從如此遙遠的地方遠度而來，也真是夠難為他的了！"
+                           : "嗯，長矛雖利於衝刺，但是變化略少，近身作戰更見其弊。"),
         }));
 
         command(random(2) ? "haha" : "killair");
         switch (random(2))
         {
         case 0:
-                return "我来自" + query("nation") + "，听说你们中原"
-                       "武术高明，特地前来切磋切磋！";
+                return "我來自" + query("nation") + "，聽說你們中原"
+                       "武術高明，特地前來切磋切磋！";
 
         default:
-                return "我是" + query("nation") + "皇家骑士团的" + name() + "，中"
-                       "原有谁愿意和我一较高低？";
+                return "我是" + query("nation") + "皇家騎士團的" + name() + "，中"
+                       "原有誰願意和我一較高低？";
         }
 }
 
 void unconcious()
 {
-        command("chat 啊！怎么……怎么这么厉害？");
+        command("chat 啊！怎麼……怎麼這麼厲害？");
         die();
 }
 
 void competition_with(object ob)
 {
-        command("say 太好了，我们就分个高低看看！\n");
+        command("say 太好了，我們就分個高低看看！\n");
         ::competition_with(ob);
 }
 

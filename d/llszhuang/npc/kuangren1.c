@@ -9,7 +9,7 @@ void create()
         set_name(name, ({ "kuang ren"}) );
         set("nickname",nickname);
         set("long",@LONG
-他眼神凶狠无比，狠狠瞪视着你。
+他眼神兇狠無比，狠狠瞪視著你。
 LONG
          );
         set("max_jing", 7000);

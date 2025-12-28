@@ -30,14 +30,14 @@ string long()
                 c = 1;
         }
 
-        return "这是一包鞋油，看上去还能用" + chinese_number(c) + "次。\n";
+        return "這是一包鞋油，看上去還能用" + chinese_number(c) + "次。\n";
 }
 
 void cost()
 {
         if (addn("count", -1) < 1)
         {
-                message_vision("$N把$n用完了，随手扔到了一边。\n",
+                message_vision("$N把$n用完了，隨手扔到了一邊。\n",
                                this_player(), this_object());
                 destruct(this_object());
         }

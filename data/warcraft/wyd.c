@@ -7,7 +7,7 @@ void setup()
         set_name("小白[2;37;0m[2;37;0m", ({"xiaobai"}));        
         set("gender", "女性");                
         set("long", "小白狗[2;37;0m
-它是多哥的魔幻兽。
+它是多哥的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

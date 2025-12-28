@@ -9,7 +9,7 @@ void create()
         else { 
                 set("unit", "把"); 
                 set("material", "iron"); 
-                set("long", "这是一把诡异的弯刀，刀身细长，刀背宽厚，刀柄怪异。\n"); 
+                set("long", "這是一把詭異的彎刀，刀身細長，刀背寬厚，刀柄怪異。\n"); 
         } 
         set("owner", "王五"); 
         setup(); 

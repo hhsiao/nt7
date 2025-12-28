@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;31m麒麟兽[2;37;0m[2;37;0m", ({"qilinshou"}));        
+        set_name("[1;31m麒麟獸[2;37;0m[2;37;0m", ({"qilinshou"}));        
         set("gender", "男性");                
-        set("long", "麒麟兽[2;37;0m
-它是落羽的魔幻兽。
+        set("long", "麒麟獸[2;37;0m
+它是落羽的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

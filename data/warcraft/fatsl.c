@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("长江[2;37;0m[2;37;0m", ({"fas"}));        
+        set_name("長江[2;37;0m[2;37;0m", ({"fas"}));        
         set("gender", "男性");                
-        set("long", "长江[2;37;0m
-它是少铭少的魔幻兽。
+        set("long", "長江[2;37;0m
+它是少銘少的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");
         set("owner", "fatsl");
-        set("owner_name", "少铭少");
+        set("owner_name", "少銘少");
         set_temp("owner", "fatsl");
-        set_temp("owner_name", "少铭少");
+        set_temp("owner_name", "少銘少");
         ::setup();
 }

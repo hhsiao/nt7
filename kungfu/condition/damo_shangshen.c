@@ -6,24 +6,24 @@ inherit "/inherit/condition/damo";
 
 string name() { return "damo_shangshen"; }
 
-string chinese_name() { return "伤神之扰"; }
+string chinese_name() { return "傷神之擾"; }
 
 string update_msg_others()
 {
-        return HIM "$N" HIM "摇头晃脑，连眼睛都睁不开了，看上"
-               "去困倦之极。\n" NOR;
+        return HIM "$N" HIM "搖頭晃腦，連眼睛都睜不開了，看上"
+               "去睏倦之極。\n" NOR;
 }
 
 string update_msg_self()
 {
-        return HIR "只觉得自己精神不济，疲惫不堪，看来是受到达"
-               "摩伤神剑的干扰。\n" NOR;
+        return HIR "只覺得自己精神不濟，疲憊不堪，看來是受到達"
+               "摩傷神劍的干擾。\n" NOR;
 }
 
 string die_msg_others()
 {
-        return HIR "$N" HIR "费力的吸入几口气，扑腾两下，就再"
-               "也没有半点动静。\n" NOR;
+        return HIR "$N" HIR "費力的吸入幾口氣，撲騰兩下，就再"
+               "也沒有半點動靜。\n" NOR;
 }
 
 string die_reason()

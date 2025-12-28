@@ -7,9 +7,9 @@ void setup()
         set_name("木瓜[2;37;0m[2;37;0m", ({"atxi"}));        
         set("gender", "男性");                
         set("long", "木瓜[2;37;0m
-它是泥一的魔幻兽。
+它是泥一的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "ntba");
         set("owner_name", "泥一");

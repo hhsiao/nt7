@@ -5,7 +5,7 @@ inherit THROWING;
 
 void create()
 {
-        set_name(HIR "雷霆神针" NOR, ({ "leiting shenzhen", "zhen" }) );
+        set_name(HIR "雷霆神針" NOR, ({ "leiting shenzhen", "zhen" }) );
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {

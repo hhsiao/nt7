@@ -35,15 +35,15 @@ void create()
 
 int accept_fight(object ob)
 {
-        command("say 我可没兴趣陪你玩，快给我滚开。");
+        command("say 我可沒興趣陪你玩，快給我滾開。");
         return 0;
 }
 
 int accept_hit(object ob)
 {
-        message_vision(HIW "$N" HIW "脸色一变，闪过一道杀气。怒"
-                       "喝道：好一个" + RANK_D->query_rude(ob) +
-                       "，来吧！\n" NOR, this_object());
+        message_vision(HIW "$N" HIW "臉色一變，閃過一道殺氣。怒"
+                       "喝道：好一個" + RANK_D->query_rude(ob) +
+                       "，來吧！\n" NOR, this_object());
         kill_ob(ob);
         return 1;
 }
@@ -58,12 +58,12 @@ int accept_kill(object ob)
 
 int accept_ansuan(object ob)
 {
-        return notify_fail("那人警惕性好高，你难以下手。\n");
+        return notify_fail("那人警惕性好高，你難以下手。\n");
 }
 
 int accept_touxi(object ob)
 {
-        return notify_fail("那人警惕性好高，你难以下手。\n");
+        return notify_fail("那人警惕性好高，你難以下手。\n");
 }
 
 void random_move()
@@ -81,13 +81,13 @@ void remove()
 
         if (! living(this_object()))
         {
-                message_vision(WHT "只见一道黑影闪过，将昏迷不醒的$N"
-                               WHT "架起，一个飞纵，消失得无影无踪。"
+                message_vision(WHT "只見一道黑影閃過，將昏迷不醒的$N"
+                               WHT "架起，一個飛縱，消失得無影無蹤。"
                                "\n" NOR, this_object());
                 return;
         }
 
-        message_vision(WHT "$N" WHT "谨慎地看了看四周，急急忙忙的走"
+        message_vision(WHT "$N" WHT "謹慎地看了看四周，急急忙忙的走"
                        "了。\n" NOR, this_object());
 
         ::remove();
@@ -103,20 +103,20 @@ void die(object killer)
            && query_temp("capture/" + query("id"), ob))
         {
                 delete_temp("capture/"+query("id"), ob);
-                GIFT_D->delay_bonus(ob, ([ "prompt" : "你为六大门派排除异己",
+                GIFT_D->delay_bonus(ob, ([ "prompt" : "你為六大門派排除異己",
                                            "exp"    : random(150) + 150,
                                            "pot"    : random(100) + 100,
                                            "score"  : random(25) + 15,
                                            "weiwang": random(10) + 10, ]));
 
 /*
-                CHANNEL_D->do_channel(this_object(), "rumor", "听说"
+                CHANNEL_D->do_channel(this_object(), "rumor", "聽說"
                                       +ob->name(1)+"("+query("id", ob)+
                                       ")在" + environment()->short() + HIM
-                                      "为六大门派击毙了" + name() + "。");
+                                      "為六大門派擊斃了" + name() + "。");
 */
 
-                // 被列为门派中断的自由任务
+                // 被列為門派中斷的自由任務
                 if( query("quest/freequest", ob)>0 )
                         GIFT_D->delay_freequest_bonus(ob);
         }

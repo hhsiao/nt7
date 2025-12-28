@@ -4,7 +4,7 @@
 inherit SKILL; 
 
 mapping *action =({
-([      "action":"$N左脚一收，身体向左倾斜，右手使出一招「天魔伏法」，一掌拍向$n的$l。",
+([      "action":"$N左腳一收，身體向左傾斜，右手使出一招「天魔伏法」，一掌拍向$n的$l。",
         "force" :40,
         "attack":15,
         "parry" :30,
@@ -12,9 +12,9 @@ mapping *action =({
         "damage":18,
         "lvl"   :0,
         "skill_name" :"天魔伏法",
-        "damage_type":"瘀伤"
+        "damage_type":"瘀傷"
 ]),
-([      "action":"$N一提真气，身子急拔，使出一招「分身化影」，幻出数个身影，拍向$n全身的各处要穴。",
+([      "action":"$N一提真氣，身子急拔，使出一招「分身化影」，幻出數個身影，拍向$n全身的各處要穴。",
         "force" :60,
         "attack":25,
         "parry" :50,
@@ -22,39 +22,39 @@ mapping *action =({
         "damage":20,
         "lvl"   :50,
         "skill_name" :"分身化影",
-        "damage_type":"瘀伤"
+        "damage_type":"瘀傷"
 ]),
-([      "action":"$N左跨一步，右跨一步，瞬间来到$n的面前，一招「魔天穹刹」，双掌内蕴真力，按向$n。",
+([      "action":"$N左跨一步，右跨一步，瞬間來到$n的面前，一招「魔天穹剎」，雙掌內蘊真力，按向$n。",
         "force" :80,
         "attack":38,
         "parry" :80,
         "dodge" :70,
         "damage":32,
         "lvl"   :80,
-        "skill_name" :"魔天穹刹",
-        "damage_type":"瘀伤"
+        "skill_name" :"魔天穹剎",
+        "damage_type":"瘀傷"
 ]),
-([      "action":"$N使一招「柳阴路曲」，上身前躬，双掌各划了个半圆，齐齐拍向$n的$l。",
+([      "action":"$N使一招「柳陰路曲」，上身前躬，雙掌各劃了個半圓，齊齊拍向$n的$l。",
         "force" :100,
         "attack":45,
         "parry" :90,
         "dodge" :90,
         "damage":46,
         "lvl"   :100,
-        "skill_name" :"柳阴路曲",
-        "damage_type":"瘀伤"
+        "skill_name" :"柳陰路曲",
+        "damage_type":"瘀傷"
 ]),
-([      "action":"$N使出一招「枯木生华」，左手拍向右掌，牵动全身，向$n飞身扑击。",
+([      "action":"$N使出一招「枯木生華」，左手拍向右掌，牽動全身，向$n飛身撲擊。",
         "force" :120,
         "attack":62,
         "parry" :100,
         "dodge" :110,
         "damage":60,
         "lvl"   :120,
-        "skill_name" :"枯木生华",
-        "damage_type":"瘀伤"
+        "skill_name" :"枯木生華",
+        "damage_type":"瘀傷"
 ]),
-([      "action":"$N纤腰一摆，陡然滑出数尺，右手顺势一招「魔影重重」往$n的$l拍去。",
+([      "action":"$N纖腰一擺，陡然滑出數尺，右手順勢一招「魔影重重」往$n的$l拍去。",
         "force" :150,
         "attack":80,
         "parry" :120,
@@ -62,17 +62,17 @@ mapping *action =({
         "damage":75,
         "lvl"   :150,
         "skill_name" :"魔影重重",
-        "damage_type":"内伤"
+        "damage_type":"內傷"
 ]),
-([      "action":"$N使出「虚敲实应」，右掌上引，左掌由后而上，形成一股气流冲向$n",
+([      "action":"$N使出「虛敲實應」，右掌上引，左掌由後而上，形成一股氣流衝向$n",
         "force" :180,
         "attack":100,
         "parry" :150,
         "dodge" :160,
         "damage":100,
         "lvl"   :180,
-        "skill_name" :"虚敲实应",
-        "damage_type":"内伤"
+        "skill_name" :"虛敲實應",
+        "damage_type":"內傷"
 ]),
 });
 
@@ -81,19 +81,19 @@ int valid_enable(string usage) { return usage == "strike" || usage == "parry"; }
 int valid_learn(object me)
 {
      if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-         return notify_fail("练天魔掌法必须空手。\n");
+         return notify_fail("練天魔掌法必須空手。\n");
 
      if ((int)me->query_skill("riyue-xinfa", 1) < 100)
-         return notify_fail("你的内功心法火候太浅，不能学天魔掌法。\n");
+         return notify_fail("你的內功心法火候太淺，不能學天魔掌法。\n");
 
      if ((int)me->query_skill("strike", 1) < 80)
-         return notify_fail("你的基本掌法火候不够。\n");
+         return notify_fail("你的基本掌法火候不夠。\n");
 
      if( query("max_neili", me)<300 )
-         return notify_fail("你的内力太低，无法学天魔掌法。\n");
+         return notify_fail("你的內力太低，無法學天魔掌法。\n");
 
      if ((int)me->query_skill("strike", 1) < (int)me->query_skill("tianmo-zhang", 1))
-         return notify_fail("你的基本掌法水平有限，无法领会更高深的天魔掌法。\n");
+         return notify_fail("你的基本掌法水平有限，無法領會更高深的天魔掌法。\n");
 
      return 1;
 }
@@ -118,13 +118,13 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me)
 {
      if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-         return notify_fail("练天魔掌法必须空手。\n");
+         return notify_fail("練天魔掌法必須空手。\n");
 
      if( query("qi", me)<80 )
-            return notify_fail("你的体力不够练天魔掌法。\n");
+            return notify_fail("你的體力不夠練天魔掌法。\n");
 
      if( query("neili", me)<70 )
-            return notify_fail("你的内力不够练天魔掌法。\n");
+            return notify_fail("你的內力不夠練天魔掌法。\n");
 
      me->receive_damage("qi", 65);
      addn("neili", -55, me);

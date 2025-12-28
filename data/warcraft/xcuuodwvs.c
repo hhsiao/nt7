@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("自行车[2;37;0m[2;37;0m", ({"zxcc"}));        
+        set_name("自行車[2;37;0m[2;37;0m", ({"zxcc"}));        
         set("gender", "男性");                
-        set("long", "自行车[2;37;0m
-它是高敏华的魔幻兽。
+        set("long", "自行車[2;37;0m
+它是高敏華的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "xcuuodwvs");
-        set("owner_name", "高敏华");
+        set("owner_name", "高敏華");
         set_temp("owner", "xcuuodwvs");
-        set_temp("owner_name", "高敏华");
+        set_temp("owner_name", "高敏華");
         ::setup();
 }

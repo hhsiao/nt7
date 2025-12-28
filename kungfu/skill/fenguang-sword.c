@@ -1,6 +1,6 @@
 // This is player's own skill (Write by Lonely@nt2)
-// Create by 网游始祖(Mud) at Sun Mar  8 16:58:57 2015
-// 太乙分光剑(fenguang-sword.c)
+// Create by 網遊始祖(Mud) at Sun Mar  8 16:58:57 2015
+// 太乙分光劍(fenguang-sword.c)
 
 #include <ansi.h>
 inherit SKILL;        
@@ -9,15 +9,15 @@ int is_invent_skill() { return 1; }
 
 mapping *action = ({
 // ZHAOSHI : 0
-([      "action" : "$N一招刺出，平平无奇，竟似毫无章法一般。",
+([      "action" : "$N一招刺出，平平無奇，竟似毫無章法一般。",
 	"attack" : 260,
 	"damage" : 260,
 	"force" : 260,
 	"dodge" : 260,
 	"parry" : 260,
 	"lvl" : 100,
-	"damage_type" : "刺伤",
-	"skill_name" : "无招"
+	"damage_type" : "刺傷",
+	"skill_name" : "無招"
  ]),
 // ZHAOSHI : 1
 });
@@ -28,10 +28,10 @@ int valid_learn(object me)
         
         if( !objectp(weapon=query_temp("weapon", me) )
                  || query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
                 
         if( query("max_neili", me)<50 )
-                return notify_fail("你的内力太弱，无法练" + "太乙分光剑" + "。\n");
+                return notify_fail("你的內力太弱，無法練" + "太乙分光劍" + "。\n");
                 
         return 1;
 }
@@ -80,13 +80,13 @@ int practice_skill(object me)
         object weapon; 
         if( !objectp(weapon=query_temp("weapon", me)) || 
                 query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");        
+                return notify_fail("你使用的武器不對。\n");        
         
         if( query("qi", me)<25 )
-                return notify_fail("你的体力不够了，休息一下再练吧。\n");
+                return notify_fail("你的體力不夠了，休息一下再練吧。\n");
                 
         if( query("neili", me)<3 )
-                return notify_fail("你的内力不够了，休息一下再练吧。\n");
+                return notify_fail("你的內力不夠了，休息一下再練吧。\n");
                 
         me->receive_damage("qi", 25);
         addn("neili", -3, me);
@@ -101,7 +101,7 @@ mixed hit_ob(object me, object victim, int damage)
         if (random(damage) > victim->query_str()) 
         {
                 result = ([ "damage" : damage ]);
-                result += ([ "msg" : HIW "你听到「喀嚓」一声轻响，已被$N的兵器所发杀气挫伤，$n顿时血冒三丈！！！\n" NOR ]);
+                result += ([ "msg" : HIW "你聽到「喀嚓」一聲輕響，已被$N的兵器所發殺氣挫傷，$n頓時血冒三丈！！！\n" NOR ]);
 
                 return result;
         }
@@ -114,5 +114,5 @@ string perform_action_file(string action)
 string query_description()
 {
 	return
- "网络始祖一招刺出，平平无奇，竟似毫无章法一般。" ; 
+ "網絡始祖一招刺出，平平無奇，竟似毫無章法一般。" ; 
 }

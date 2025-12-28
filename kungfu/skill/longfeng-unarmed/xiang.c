@@ -1,12 +1,12 @@
 // This is player's own perform (Write by Lonely@nt2)
-// Create by 剑人(Dlf) at Tue Mar  3 10:12:35 2015
-// 龙凤呈祥(xiang)
+// Create by 劍人(Dlf) at Tue Mar  3 10:12:35 2015
+// 龍鳳呈祥(xiang)
 #include <ansi.h>
 #include <combat.h>
 
 inherit F_SSERVER;
 
-string name() { return HIW "龙凤呈祥" NOR; }
+string name() { return HIW "龍鳳呈祥" NOR; }
 
 string *weapon_sk = ({
         "sword", "blade", "staff", "whip", "club", "hammer", "axe"
@@ -28,14 +28,14 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if (member_array("unarmed", weapon_sk) != -1)
         {
                 attack = WEAPON_ATTACK;
                 if( !objectp(weapon=query_temp("weapon", me) )
                     || query("skill_type", weapon) != "unarmed" )
-                        return notify_fail("你所使用的武器不对，难以施展" + name() + "。\n");
+                        return notify_fail("你所使用的武器不對，難以施展" + name() + "。\n");
         } else
         {
                 attack = UNARMED_ATTACK;
@@ -44,21 +44,21 @@ int perform(object me, object target)
         }
 
         if ((int)me->query_skill("longfeng-unarmed", 1) < 400)
-                return notify_fail("你" + to_chinese("longfeng-unarmed") + "不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你" + to_chinese("longfeng-unarmed") + "不夠嫻熟，難以施展" + name() + "。\n");
 
         if (member_array("unarmed", weapon_sk) == -1)
         {
                 if (me->query_skill_prepared("unarmed") != "longfeng-unarmed")
-                        return notify_fail("你没有准备" + to_chinese("longfeng-unarmed") + "，难以施展" + name() + "。\n");
+                        return notify_fail("你沒有準備" + to_chinese("longfeng-unarmed") + "，難以施展" + name() + "。\n");
         }
 
         if( query("neili", me)<500 )
-                return notify_fail("你现在的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N一声怒嚎，将顿步沉身，双拳朝$n交错打出，拳影重重叠叠，正是一招「龙凤呈祥」，双拳顿时携着雷霆万钧之势猛贯向$n" + "\n" + NOR;
+        msg = HIW "$N一聲怒嚎，將頓步沉身，雙拳朝$n交錯打出，拳影重重疊疊，正是一招「龍鳳呈祥」，雙拳頓時攜著雷霆萬鈞之勢猛貫向$n" + "\n" + NOR;
 
         ap = attack_power(me, "unarmed");
         dp = defense_power(target, "parry");
@@ -66,7 +66,7 @@ int perform(object me, object target)
         if (ap / 2 + random(ap) > dp)
         {
                 damage = damage_power(me, "unarmed");
-                msg += COMBAT_D->do_damage(me, target, attack, damage, 80, HIM "$n只感到头晕目眩，只见$N铺天盖地的向自己各个部位袭来！$n只一瞬间，全身竟已多了数十出伤痕，鲜血狂泻不止" + "\n" NOR);
+                msg += COMBAT_D->do_damage(me, target, attack, damage, 80, HIM "$n只感到頭暈目眩，只見$N鋪天蓋地的向自己各個部位襲來！$n只一瞬間，全身竟已多了數十出傷痕，鮮血狂瀉不止" + "\n" NOR);
                 addn("neili", -200, me);
 
                 /*
@@ -75,22 +75,22 @@ int perform(object me, object target)
                 */
         } else
         {
-                msg += NOR + CYN "$n只见$N拳势汹涌，不敢轻视，急忙凝神聚气，奋力化解开来。" + "\n" NOR;
+                msg += NOR + CYN "$n只見$N拳勢洶湧，不敢輕視，急忙凝神聚氣，奮力化解開來。" + "\n" NOR;
                 addn("neili", -100, me);
         }
 
         message_sort(msg, me, target);
 
-        msg = HIW "$N" HIW "余势未尽，招式陡然变得凌厉无比，一转念间已然攻出数招。\n" NOR;
+        msg = HIW "$N" HIW "餘勢未盡，招式陡然變得凌厲無比，一轉念間已然攻出數招。\n" NOR;
         if (ap / 2 + random(ap) > dp)
         {
                 count = ap / 20;
-                msg += HIR "$n" HIR "见$P" HIR "来势迅猛之极，一时不知该如"
-                       "何作出抵挡，竟呆立当场。\n" NOR;
+                msg += HIR "$n" HIR "見$P" HIR "來勢迅猛之極，一時不知該如"
+                       "何作出抵擋，竟呆立當場。\n" NOR;
         } else
         {
-                msg += HIY "$n" HIY "见$p" HIY "来势迅猛之极，甚难防备，连"
-                       "忙振作精神，小心抵挡。\n" NOR;
+                msg += HIY "$n" HIY "見$p" HIY "來勢迅猛之極，甚難防備，連"
+                       "忙振作精神，小心抵擋。\n" NOR;
                 count = 0;
         }
 

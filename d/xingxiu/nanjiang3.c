@@ -4,8 +4,8 @@ void create()
 {
         set("short", "南疆沙漠");
         set("long", @LONG
-这就是浩瀚的塔克拉马干大沙漠，一走进来，你仿佛迷失
-了方向。你感到口内十分焦渴，还是快些离开吧。
+這就是浩瀚的塔克拉馬干大沙漠，一走進來，你彷彿迷失
+了方向。你感到口內十分焦渴，還是快些離開吧。
 LONG);
         set("exits", ([
                 "northwest" : __DIR__"luzhou",
@@ -20,7 +20,7 @@ LONG);
         ]));
 
         set("outdoors", "xiyu");
-        set("no_map", "这里的地形令人迷惑，无法绘制地图。\n");
+        set("no_map", "這裡的地形令人迷惑，無法繪製地圖。\n");
 
         setup();
 }
@@ -35,7 +35,7 @@ int valid_leave(object me, string dir)
         current_water=query("water", me);
         if (current_water == 0)
         {
-                write("你已经感到不行了，冥冥中你觉得有人把你抬到天山脚下。\n");
+                write("你已經感到不行了，冥冥中你覺得有人把你抬到天山腳下。\n");
                 me->move(__DIR__"shanjiao");
                 me->unconcious();
                 return -1;
@@ -43,7 +43,7 @@ int valid_leave(object me, string dir)
 
         if (current_water <= 20)
         {
-                write("你过于缺水，眼冒金星。\n");
+                write("你過於缺水，眼冒金星。\n");
                 set("water", 0, me);
         } else
         if( !objectp(present("bigu fu", me)) && query("reborn/times", me) < 3 )

@@ -11,7 +11,7 @@ int main(object me, string arg)
                 return 0;
 
         if( !me->is_admin() )
-                return notify_fail("你不能使用该命令。\n"); 
+                return notify_fail("你不能使用該命令。\n"); 
 
         if (! arg) return help(me);
 
@@ -31,19 +31,19 @@ int help(object me)
         write(@HELP
 指令格式 : dual [detail]
 
-这个指令可以执行一段单独的LPC代码。
-可以使用var命令定义的私有变量。
+這個指令可以執行一段單獨的LPC代碼。
+可以使用var命令定義的私有變量。
 
-如果该段代码没有返回值，或者需要使用一个组合的代码段。
-必须设置环境变量 dual_type
+如果該段代碼沒有返回值，或者需要使用一個組合的代碼段。
+必須設置環境變量 dual_type
 
-与Unix相同，您也可以使用 ` 符号的内嵌命令格式，
-（需要设置 use_shell 环境变量）
-但是该代码必须有返回值。
+與Unix相同，您也可以使用 ` 符號的內嵌命令格式，
+（需要設置 use_shell 環境變量）
+但是該代碼必須有返回值。
 例如 chat I am `me->short()`, at `here->query("short")`
-会先计算出 me->short() 和 here->query("short") 的值，然后再替换命令。
+會先計算出 me->short() 和 here->query("short") 的值，然後再替換命令。
 又： `here->query("exits")[random(sizeof(here->query("exits")))]`
-会随机的选择当前房间的一个出口行走。
+會隨機的選擇當前房間的一個出口行走。
 
 HELP
         );

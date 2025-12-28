@@ -1,5 +1,5 @@
 
-// 蒙古军队进攻路线
+// 蒙古軍隊進攻路線
 protected mapping ward_way = ([
         "/d/city2/mying1"           :     "south",
         "/d/city2/mying"            :     "south",
@@ -23,7 +23,7 @@ protected mapping ward_way = ([
         "/d/city2/sying"            :     "south",
 ]);
 
-// 侦察路线及烧粮路线
+// 偵察路線及燒糧路線
 protected mapping forrecon_way = ([
         "/d/city2/mying6"            :     "north",
         "/d/city2/mying5"        :     "north",
@@ -70,7 +70,7 @@ protected mapping backrecon_way = ([
         "/d/city2/sying"            :     "south",
 ]);
 
-// 押运粮草、购置兵甲、购置箭羽、购置石木、购置战马、招募士兵路线
+// 押運糧草、購置兵甲、購置箭羽、購置石木、購置戰馬、招募士兵路線
 protected mapping forward_way = ([
         "/d/city2/sying1"           :     "south",
         "/d/city2/sying4"           :     "south",
@@ -123,13 +123,13 @@ protected string *ward_place = ({
 });
 
 protected string *degree_desc = ({
-       HIC "裨将" NOR,
-       HIY "佐将" NOR,
-       HIY "副将" NOR,
-       HIR "将军" NOR,
+       HIC "裨將" NOR,
+       HIY "佐將" NOR,
+       HIY "副將" NOR,
+       HIR "將軍" NOR,
        HIR "提督" NOR,
-       HIR "总督" NOR,
+       HIR "總督" NOR,
        MAG "兵部侍郎" NOR,
-       MAG "兵部尚书" NOR,
-       HIB "镇北节度使" NOR,
+       MAG "兵部尚書" NOR,
+       HIB "鎮北節度使" NOR,
 });

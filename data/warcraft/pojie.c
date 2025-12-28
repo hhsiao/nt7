@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("青龙[2;37;0m[2;37;0m", ({"cwg"}));        
+        set_name("青龍[2;37;0m[2;37;0m", ({"cwg"}));        
         set("gender", "女性");                
-        set("long", "青龙[2;37;0m
-它是破姐的魔幻兽。
+        set("long", "青龍[2;37;0m
+它是破姐的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

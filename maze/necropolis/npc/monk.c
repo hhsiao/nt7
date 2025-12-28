@@ -159,19 +159,19 @@ varargs void die(object killer)
                         if(finished>count)
                                         finished = count;
                         set("quest/killed/"+name(), finished, mazeobj);
-                        tell_object(killer,HIW"杀死 "+name()+": "+finished+"/"+count+"。\n"NOR);
+                        tell_object(killer,HIW"殺死 "+name()+": "+finished+"/"+count+"。\n"NOR);
                 }
-                //第6个任务，守卫丁一，杀二十个亡灵
+                //第6個任務，守衛丁一，殺二十個亡靈
                 if( query("quest/quest_index", mazeobj) == 6 && is_undead() && 
-                   environment() && query("short", environment()) == HIY"聚灵法阵"NOR){
-                                count=query("quest/to_kill/亡灵", mazeobj);
+                   environment() && query("short", environment()) == HIY"聚靈法陣"NOR){
+                                count=query("quest/to_kill/亡靈", mazeobj);
                                 if(count>0) {
-                                        finished=query("quest/killed/亡灵", mazeobj);
+                                        finished=query("quest/killed/亡靈", mazeobj);
                                         finished++;
                                         if(finished>count)
                                                 finished = count;
-                                        set("quest/killed/亡灵", finished, mazeobj);
-                                        tell_object(killer,HIW"超度 亡灵: "+finished+"/"+count+" 。\n"NOR);
+                                        set("quest/killed/亡靈", finished, mazeobj);
+                                        tell_object(killer,HIW"超度 亡靈: "+finished+"/"+count+" 。\n"NOR);
                                 }
                 }
         }

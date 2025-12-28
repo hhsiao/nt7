@@ -6,10 +6,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "青石小阶");
+        set("short", "青石小階");
         set("long", 
-"这是一条青石板铺就的路，半浸在湖水中，延伸向湖心的小岛上。走\n"
-"过间隔着的数十个青石桥墩之后，青石小阶往东转向上，渐渐可见密林间\n"
+"這是一條青石板鋪就的路，半浸在湖水中，延伸向湖心的小島上。走\n"
+"過間隔著的數十個青石橋墩之後，青石小階往東轉向上，漸漸可見密林間\n"
 "有棟木屋。\n"
 );
          //set("outdoors", "chengdu");
@@ -36,22 +36,22 @@ int do_wave()
                         case 1:
                         case 2:
                         case 3:
-                        tell_room(this_object(), CYN "≈≈"NOR HIG "一阵微风吹过，梦湖上面泛起了千百层粼粼碧波。\n" NOR);
+                        tell_room(this_object(), CYN "≈≈"NOR HIG "一陣微風吹過，夢湖上面泛起了千百層粼粼碧波。\n" NOR);
                         break;
                         case 4:
                         case 5:
                         case 6:
-                        tell_room(this_object(), CYN "≈≈"NOR HIW "湖水在沙滩边慢涨渐落，竟也似潮信绵绵不绝。\n" NOR);
+                        tell_room(this_object(), CYN "≈≈"NOR HIW "湖水在沙灘邊慢漲漸落，竟也似潮信綿綿不絕。\n" NOR);
                         break;
                         case 7:
                         case 8:
-                        tell_room(this_object(), CYN "≈≈"NOR HIC "碧浪轻轻拂过沙滩，就像情人温柔地吻过你的脚趾。\n" NOR);
+                        tell_room(this_object(), CYN "≈≈"NOR HIC "碧浪輕輕拂過沙灘，就像情人溫柔地吻過你的腳趾。\n" NOR);
                         break;
                         case 9:
-                        tell_room(this_object(), CYN "≈≈"NOR HIY "一个大浪打来，冲湿了青石小阶，再悄悄退却。\n" NOR);
+                        tell_room(this_object(), CYN "≈≈"NOR HIY "一個大浪打來，衝溼了青石小階，再悄悄退卻。\n" NOR);
                         break;
                 case 10:
-                        tell_room(this_object(), CYN "≈≈"NOR HIB "岸边树木摇曳沙沙作响，湖心岛上的木屋却安静如初。\n" NOR);
+                        tell_room(this_object(), CYN "≈≈"NOR HIB "岸邊樹木搖曳沙沙作響，湖心島上的木屋卻安靜如初。\n" NOR);
                         break;
             }
         call_out("do_wave", 11 + random(5));              

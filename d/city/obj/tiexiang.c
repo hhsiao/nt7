@@ -7,12 +7,12 @@ inherit ITEM;
 
 void create()
 {
-        set_name("铁箱", ({"tie xiang", "box"}));
+        set_name("鐵箱", ({"tie xiang", "box"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
                 set("long",
-                              "这是只铁箱，好像能打开(open)\n");
+                              "這是隻鐵箱，好像能打開(open)\n");
                 set("unit", "只");
                 set("open_count", 1);
                 set("weight", 1000);
@@ -31,7 +31,7 @@ int do_open()
         if (query("open_count") > 0)
         {
                 message_vision(
-                        HIY "$N伸手打开铁箱，箱子里有一本书，上写《天魔诀》三字。\n" NOR, 
+                        HIY "$N伸手打開鐵箱，箱子裡有一本書，上寫《天魔訣》三字。\n" NOR, 
                         this_player());
                 addn("open_count", -1);
                 ob = new("/clone/book/tianmo-jue");
@@ -39,5 +39,5 @@ int do_open()
                 return 1;
         }
         else 
-                return notify_fail("铁盒已经被别人打开过了。\n");
+                return notify_fail("鐵盒已經被別人打開過了。\n");
 }

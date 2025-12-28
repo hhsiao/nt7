@@ -4,12 +4,12 @@
 
 void setup()
 {
-        set_name("大头娃娃[2;37;0m[2;37;0m", ({"datou"}));        
+        set_name("大頭娃娃[2;37;0m[2;37;0m", ({"datou"}));        
         set("gender", "女性");                
         set("long", "xxx[2;37;0m
-它是米勒的魔幻兽。
+它是米勒的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "miller");
         set("owner_name", "米勒");

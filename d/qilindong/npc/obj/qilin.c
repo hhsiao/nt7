@@ -10,7 +10,7 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", "这是一根手臂，相传是于岳少年时赤膊搏斗火麒麟，左臂被麒麟血所溅而成。\n");
+                set("long", "這是一根手臂，相傳是於嶽少年時赤膊搏鬥火麒麟，左臂被麒麟血所濺而成。\n");
                 set("unit", "根");
                 set("value", 150);
                 set("no_sell", 1);

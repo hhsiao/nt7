@@ -1,4 +1,4 @@
-// shiye.c 知府师爷
+// shiye.c 知府師爺
 
 inherit NPC;
 
@@ -6,8 +6,8 @@ string ask_me();
 
 void create()
 {
-        set_name("谭友纪", ({ "tan youji", "tan" }));
-        set("title", "知府师爷");
+        set_name("譚友紀", ({ "tan youji", "tan" }));
+        set("title", "知府師爺");
         set("gender", "男性");
         set("age", 57);
 
@@ -20,7 +20,7 @@ void create()
         set("shen_type", 0);
 
         set("inquiry", ([
-                "叫化鸡" : (: ask_me :)
+                "叫化雞" : (: ask_me :)
         ]) );
 
         setup();
@@ -29,21 +29,21 @@ void create()
 
 string ask_me()
 {
-        if( query_temp("marks/鸡", this_player()) )
+        if( query_temp("marks/雞", this_player()) )
         {
-                say("好小子，你怎么知道我喜欢吃叫化鸡？\n");
+                say("好小子，你怎麼知道我喜歡吃叫化雞？\n");
                 command("lick");
-                say("既然你我成了食友，我就告诉你吧。付耳过来！\n");
-                command("whisper"+query("id", this_player())+"你去北京找全聚德的老板，只要告诉他是我叫你去的，他就会...");
-                delete_temp("marks/鸡", this_player());
-                set_temp("marks/鸡2", 1, this_player());
-                return "今天嗯....啊....那个天气很好....\n";
+                say("既然你我成了食友，我就告訴你吧。付耳過來！\n");
+                command("whisper"+query("id", this_player())+"你去北京找全聚德的老闆，只要告訴他是我叫你去的，他就會...");
+                delete_temp("marks/雞", this_player());
+                set_temp("marks/雞2", 1, this_player());
+                return "今天嗯....啊....那個天氣很好....\n";
         }
-        else if( query_temp("marks/鸡2", this_player()) )
-                return "我是个浙江人，也没有你那么罗嗦！\n";
+        else if( query_temp("marks/雞2", this_player()) )
+                return "我是個浙江人，也沒有你那麼羅嗦！\n";
         else
         {
-              set_temp("marks/鸡", 1, this_player());
-                return "泥缩丝米偶钉布懂\n";
+              set_temp("marks/雞", 1, this_player());
+                return "泥縮絲米偶釘布懂\n";
         }
 }

@@ -2,17 +2,17 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "沼泽边缘");
+        set("short", "沼澤邊緣");
         set("long", @LONG
-这里乌云密布，天色极暗。再往前走就是武林中有名的死域 
-－－火沼泽。那里不但荆棘密布，猛兽出没，还有能至人于死地 
-在一瞬间随时喷射的毒火泉。这有原始森林入口(Forest door)。
+這裡烏雲密佈，天色極暗。再往前走就是武林中有名的死域 
+－－火沼澤。那裡不但荊棘密佈，猛獸出沒，還有能至人於死地 
+在一瞬間隨時噴射的毒火泉。這有原始森林入口(Forest door)。
 LONG
         );
         set("item_desc", ([
-                "door" : "从这个入口可以进入原始森林迷宫副本。(enter door)\n",
-                "Forest door" : "从这个入口可以进入原始森林迷宫副本。(enter door)\n",
-                "forest door" : "从这个入口可以进入原始森林迷宫副本。(enter door)\n",
+                "door" : "從這個入口可以進入原始森林迷宮副本。(enter door)\n",
+                "Forest door" : "從這個入口可以進入原始森林迷宮副本。(enter door)\n",
+                "forest door" : "從這個入口可以進入原始森林迷宮副本。(enter door)\n",
         ]));
 
         set("exits",([

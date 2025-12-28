@@ -4,11 +4,11 @@ inherit ROOM;
 int do_climb(string arg);
 void create()
 {
-    set("short", "兵马俑");
+    set("short", "兵馬俑");
         set("long", @LONG
-来到这里似乎已经无路可走了，左面有个石台，不知是做什么用
-的，石台的上方可以看到许多植物的根，盘根错节，有些已经长到了
-石台上了。
+來到這裡似乎已經無路可走了，左面有個石臺，不知是做什麼用
+的，石臺的上方可以看到許多植物的根，盤根錯節，有些已經長到了
+石臺上了。
 LONG );
         set("exits", ([
           "south" : __DIR__"shidao5",
@@ -25,8 +25,8 @@ int do_climb(string arg)
 {
         object me = this_player();
         if( !arg || arg == "" ) return 0;
-        if( query_temp("pa", me))return notify_fail("你已经在石台上了，还爬什么呀！\n");
-        if( arg == "石台" ) {
+        if( query_temp("pa", me))return notify_fail("你已經在石臺上了，還爬什麼呀！\n");
+        if( arg == "石臺" ) {
                 message_vision("$N想都不想，就爬上了去。\n",me);
         set_temp("pa", 1, me);
         return 1;
@@ -36,10 +36,10 @@ int do_jump(string arg)
 {
         object me = this_player();
         if( !query_temp("pa", me))return 0;
-        if( !arg || arg == "") return notify_fail("你要跳到什么地方去呀？\n");
-        if( query_temp("jump", me))return notify_fail("你已经跳下来了。\n");
+        if( !arg || arg == "") return notify_fail("你要跳到什麼地方去呀？\n");
+        if( query_temp("jump", me))return notify_fail("你已經跳下來了。\n");
         if( arg == "down" ) {
-                message_vision("$N提了提气，又跳了下去。\n",me);
+                message_vision("$N提了提氣，又跳了下去。\n",me);
         set_temp("jump", 1, me);
         delete_temp("pa", me);
         return 1;
@@ -51,7 +51,7 @@ int do_pa(string arg)
         if( !query_temp("pa", me))return 0;
         if(!arg || arg == "") return notify_fail("你要往那爬？\n");
         if( arg == "根" ) {
-                message_vision("$N颤悠悠地爬上了盘在石台上的树根......\n",me);
+                message_vision("$N顫悠悠地爬上了盤在石臺上的樹根......\n",me);
         delete_temp("pa", me);
         delete_temp("jump", me);
         call_out("go_up", 10 , me );
@@ -61,6 +61,6 @@ int do_pa(string arg)
 void go_up(object me)
 {
         if(!me) return;
-        tell_object(me, "你顺着树根爬呀...爬呀......\n你爬了很久，终于你又见到了阳光。\n");
+        tell_object(me, "你順著樹根爬呀...爬呀......\n你爬了很久，終於你又見到了陽光。\n");
         me->move("/d/changan/caodi.c");
 }       

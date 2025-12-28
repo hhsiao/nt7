@@ -66,7 +66,7 @@ void attempt_apprentice(object ob)
                 return;
 
         if((int)ob->query_skill("panshi-shengong",1) < 140)
-                command("say 你的本门心法还得多多练习。");
+                command("say 你的本門心法還得多多練習。");
         else
         {
                 command("say 好啊，那我就收下你吧。");

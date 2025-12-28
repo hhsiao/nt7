@@ -5,10 +5,10 @@ int check_legal_id(string arg);
 
 void create()
 {
-        set_name("潇江", ({ "xiaojiang" }) );
+        set_name("瀟江", ({ "xiaojiang" }) );
         set("gender", "女性" );
         set("age", 22);
-        set("long","潇江姓顾，后嫁给一小土财主，财主过世后就开使每天背一个小筐卖（ｙａｎｇ）宠物\n");
+        set("long","瀟江姓顧，後嫁給一小土財主，財主過世後就開使每天背一個小筐賣（ｙａｎｇ）寵物\n");
         set("combat_exp", 5);
         set("chat_chance", 15);
         set("chat_msg", ({
@@ -36,12 +36,12 @@ void greeting(object ob)
         if( !ob || environment(ob) != environment() ) return;
         switch( random(5) ) {
                 case 0:
-                        say( "潇江说道：这位" + RANK_D->query_respect(ob)
-                                + "，要买小猫小狗么？\n");
+                        say( "瀟江說道：這位" + RANK_D->query_respect(ob)
+                                + "，要買小貓小狗麼？\n");
                         break;
                 case 1:
-                        say( "潇江说道：这位" + RANK_D->query_respect(ob)
-                                + "，你太穷酸了，我不卖给你。\n");
+                        say( "瀟江說道：這位" + RANK_D->query_respect(ob)
+                                + "，你太窮酸了，我不賣給你。\n");
                         break;
         }
 }
@@ -57,15 +57,15 @@ int do_yang(string arg)
         if(!arg || sscanf(arg,"%s %s %s %s",ctype,ccolor,cname,cid ) != 4)
         return notify_fail("指令格式：yang <type> <color> <name> <english name>\n");
         if(me->is_busy())
-        return notify_fail("你上一个动作还没有完成。\n");
+        return notify_fail("你上一個動作還沒有完成。\n");
         if(file_size( me->query_save_file() + ".pet.o") > 0)
-        return notify_fail("你已经拥有你心爱的宠物了。\n");
+        return notify_fail("你已經擁有你心愛的寵物了。\n");
         gold = present("gold_money", this_player());
-        if(!gold) return notify_fail("你身上没有金子。\n");
+        if(!gold) return notify_fail("你身上沒有金子。\n");
         if((int) gold->query_amount() < 100)
-        return notify_fail("你身上没有那麽多金子。\n");
+        return notify_fail("你身上沒有那麼多金子。\n");
         if( query("score", me)<500 )
-        return notify_fail("你的评价不够。\n");
+        return notify_fail("你的評價不夠。\n");
         if( !check_legal_name(cname))
         return notify_fail("");
         if( !check_legal_id(cid))
@@ -89,7 +89,7 @@ int do_yang(string arg)
             ccolor != "$HIC$" &&
             ccolor != "$HIW$" 
         )
-        return notify_fail("不知你要什么颜色．\n");
+        return notify_fail("不知你要什麼顏色．\n");
         cname = ccolor + cname;
         cname = replace_string(cname, "$BLK$", BLK);
         cname = replace_string(cname, "$RED$", RED);
@@ -116,11 +116,11 @@ int do_yang(string arg)
                         set("int", 5+random(10), newpet);
                         break;
                 case "cat":
-                        set("title", "小猫", newpet);
+                        set("title", "小貓", newpet);
                         set("per", 5+random(10), newpet);
                         break;
                 case "pig":
-                        set("title", "小猪", newpet);
+                        set("title", "小豬", newpet);
                         set("str", 5+random(10), newpet);
                         break;
                 case "monkey":
@@ -128,19 +128,19 @@ int do_yang(string arg)
                         set("dex", 5+random(10), newpet);
                         break;
                 case "duck":
-                        set("title", "小鸭", newpet);
+                        set("title", "小鴨", newpet);
                         set("con", 5+random(10), newpet);
                         break;
                 case "hen":
-                        set("title", "小鸡", newpet);
+                        set("title", "小雞", newpet);
                         set("kar", 5+random(10), newpet);
                         break;
                 case "hawk":
-                        set("title", "小鹰", newpet);
+                        set("title", "小鷹", newpet);
                         set("dex", 5+random(2), newpet);
                         break;
                 default:
-                        return notify_fail("这里没有你要的东西．\n");
+                        return notify_fail("這裡沒有你要的東西．\n");
         }
         set("owner",query("id",  me), newpet);
         set("possessed", me, newpet);
@@ -151,7 +151,7 @@ int do_yang(string arg)
         gold->add_amount(-100);
         addn("score", -500, me);
         me->start_busy(1);
-        command("say 你试着吹一声口哨（ｗｈｉｓｔｌｅ），你的小宝宝就会跑过来的！\n");
+        command("say 你試著吹一聲口哨（ｗｈｉｓｔｌｅ），你的小寶寶就會跑過來的！\n");
         seteuid(getuid());
         return 1;
 }
@@ -160,16 +160,16 @@ int check_legal_name(string name)
         int i;
         i = strlen(name);
         if( (strlen(name) < 2) || (strlen(name) > 40 ) ) {
-                write("对不起，中文名字必须是一到二十个中文字。\n");
+                write("對不起，中文名字必須是一到二十個中文字。\n");
                 return 0;
         }
         while(i--) {
                 if( name[i]<=' ' ) {
-                        write("对不起，中文名字不能用控制字元。\n");
+                        write("對不起，中文名字不能用控制字元。\n");
                         return 0;
                 }
                 if( i%2==0 && !is_chinese(name[i..<0]) ) {
-                        write("对不起，名字必需是中文。\n");
+                        write("對不起，名字必需是中文。\n");
                         return 0;
                 }
         }
@@ -181,7 +181,7 @@ int check_legal_id(string name)
         int i;
         i = strlen(name);
         if( (strlen(name) < 3) || (strlen(name) > 20 ) ) {
-                write("对不起，英文名字必须是三到二十个字。\n");
+                write("對不起，英文名字必須是三到二十個字。\n");
                 return 0;
         }
 

@@ -9,11 +9,11 @@ mixed ask_skill1();
 
 void create()
 {
-        set_name( "冯默风" ,({ "feng mofeng", "feng", "mofeng" }));
+        set_name( "馮默風" ,({ "feng mofeng", "feng", "mofeng" }));
         set("gender", "男性");
         set("age", 39);
-        set("long", "冯默风是黄药师最小的一个徒弟，他的根基不错，但性子\n"
-                    "较为愚鲁。他的基本功扎实，一副忠厚老实的样子。\n");
+        set("long", "馮默風是黃藥師最小的一個徒弟，他的根基不錯，但性子\n"
+                    "較為愚魯。他的基本功紮實，一副忠厚老實的樣子。\n");
         set("attitude", "friendly");
         set("class", "scholar");
         set("str", 30);
@@ -54,7 +54,7 @@ void create()
         prepare_skill("unarmed", "xuanfeng-tui");
         prepare_skill("strike", "pikong-zhang");
 
-        create_family("桃花岛", 2, "弟子");
+        create_family("桃花島", 2, "弟子");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -68,21 +68,21 @@ void create()
 
         set("chat_chance", 1);
         set("chat_msg", ({
-                    CYN "冯默风说道：师父疼爱小师妹，他的软猬甲一直由小师妹穿着。\n" NOR,
-                    CYN "冯默风自言自语地说道：家师所布置的这个桃花阵真是不简单！\n" NOR,
+                    CYN "馮默風說道：師父疼愛小師妹，他的軟蝟甲一直由小師妹穿著。\n" NOR,
+                    CYN "馮默風自言自語地說道：家師所佈置的這個桃花陣真是不簡單！\n" NOR,
         }));
 
         set("inquiry", ([
-                   "拜师" : (: ask_me :),
-                   "投师" : (: ask_me :),
-                   "东邪" : "家师人称东邪！呵呵。",
-                   "西毒" : "欧阳锋是与家师并世齐名的高手，人称老毒物。",
-                   "南帝" : "听家师说段王爷现在出家当了和尚，法名一灯。",
-                   "北丐" : "北丐洪七公是丐帮帮主，现在扬州城外。",
-                   "黄蓉" : "她是师父的爱女。",
-                   "黄药师" : "你要拜访家师？",
-                   "桃花岛" : "这儿就是桃花岛，你若不是本派弟子，要过桃花阵。",
-                   "桃花阵" : "往南就是了。",
+                   "拜師" : (: ask_me :),
+                   "投師" : (: ask_me :),
+                   "東邪" : "家師人稱東邪！呵呵。",
+                   "西毒" : "歐陽鋒是與家師並世齊名的高手，人稱老毒物。",
+                   "南帝" : "聽家師說段王爺現在出家當了和尚，法名一燈。",
+                   "北丐" : "北丐洪七公是丐幫幫主，現在揚州城外。",
+                   "黃蓉" : "她是師父的愛女。",
+                   "黃藥師" : "你要拜訪家師？",
+                   "桃花島" : "這兒就是桃花島，你若不是本派弟子，要過桃花陣。",
+                   "桃花陣" : "往南就是了。",
                    "碧浪滔天" : (: ask_skill1 :),
         ]));
         setup();
@@ -100,20 +100,20 @@ void attempt_apprentice(object ob)
         {
                 if (master != name())
                 {
-                        command("say 家师不是让你拜" + master + "的吗？你怎么来"
-                                "找我来了？");
+                        command("say 家師不是讓你拜" + master + "的嗎？你怎麼來"
+                                "找我來了？");
                         return;
                 }
 
-                command("say 好吧，既然家师有令，我就收下你了，不过要好好遵守桃"
-                        "花岛的规矩。");
+                command("say 好吧，既然家師有令，我就收下你了，不過要好好遵守桃"
+                        "花島的規矩。");
                 command("recruit "+query("id", ob));
                 delete_temp("taohua/master", ob);
                 return;
         }
 
         command("shake");
-        command("say 我可不敢擅自收徒，你还是找家师黄岛主吧！");
+        command("say 我可不敢擅自收徒，你還是找家師黃島主吧！");
 }
 
 mixed ask_skill1()
@@ -123,31 +123,31 @@ mixed ask_skill1()
         me = this_player();
 
         if( query("can_perform/canglang-zhi/tao", me) )
-                return "这一招我不是已经教过你了吗？";
+                return "這一招我不是已經教過你了嗎？";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "你不是我们桃花岛的人，问这个干嘛？";
+                return "你不是我們桃花島的人，問這個幹嘛？";
 
         if (me->query_skill("canglang-zhi", 1) < 1)
-                return "你连沧浪指法都没学，还谈什么绝招可言？";
+                return "你連滄浪指法都沒學，還談什麼絕招可言？";
 
         if( query("family/gongji", me)<50 )
-                return "师父吩咐过，不传功给无功劳的弟子。";
+                return "師父吩咐過，不傳功給無功勞的弟子。";
 
         if (me->query_skill("force") < 120)
-                return "你的内功修为不够，还是多锻炼锻炼吧。";
+                return "你的內功修為不夠，還是多鍛鍊鍛鍊吧。";
 
         if (me->query_skill("canglang-zhi", 1) < 80)
-                return "你的沧浪指法还不够熟练，练高了再来找我。";
+                return "你的滄浪指法還不夠熟練，練高了再來找我。";
 
-        message_sort(HIY "\n$n" HIY "点了点头，道：“既然家师吩咐过，今日我就"
-                     "传你这招，可要看好了。”说完只见$n" HIY "陡然伸出一指，"
-                     "纷翻不定，顿听指气嗤然作响，全全笼罩$N" HIY "四周。\n\n"
+        message_sort(HIY "\n$n" HIY "點了點頭，道：“既然家師吩咐過，今日我就"
+                     "傳你這招，可要看好了。”說完只見$n" HIY "陡然伸出一指，"
+                     "紛翻不定，頓聽指氣嗤然作響，全全籠罩$N" HIY "四周。\n\n"
                      NOR, me, this_object());
 
         command("nod");
-        command("say 看懂了吗？");
-        tell_object(me, HIC "你学会了「碧浪滔天」。\n" NOR);
+        command("say 看懂了嗎？");
+        tell_object(me, HIC "你學會了「碧浪滔天」。\n" NOR);
         if (me->can_improve_skill("finger"))
                 me->improve_skill("finger", 1500000);
         if (me->can_improve_skill("canglang-zhi"))
@@ -166,39 +166,39 @@ mixed ask_me()
 
         if( query("family/family_name", me) )
         {
-                if( query("family/family_name", me) != "桃花岛" )
+                if( query("family/family_name", me) != "桃花島" )
                 {
-                        command("say 阁下已有门派，家师是不会收留你的，请走吧！");
+                        command("say 閣下已有門派，家師是不會收留你的，請走吧！");
                         return 1;
                 }
 
                 if( query("family/master_name", me) )
                 {
-                        command("say 你不是已经入了我们桃花岛吗？");
+                        command("say 你不是已經入了我們桃花島嗎？");
                         return 1;
                 }
         }
 
-        if( query("detach/桃花岛", me) )
+        if( query("detach/桃花島", me) )
         {
-                command("say 当年你离开了桃花岛，今天还敢回来见家师？");
+                command("say 當年你離開了桃花島，今天還敢回來見家師？");
                 return 1;
         }
 
         if( query("betrayer/times", me) )
         {
-                command("say 你这判师之人，家师是绝对不会收你为徒的！");
+                command("say 你這判師之人，家師是絕對不會收你為徒的！");
                 return 1;
         }
-        command("say 好吧，我带你过桃花阵，你自己去找黄岛主吧。");
-        message_vision(HIW "\n$N" HIW "大步的向南走去，$n" HIW "紧随其后。\n\n" NOR,
+        command("say 好吧，我帶你過桃花陣，你自己去找黃島主吧。");
+        message_vision(HIW "\n$N" HIW "大步的向南走去，$n" HIW "緊隨其後。\n\n" NOR,
                        this_object(), me);
         this_object()->move("/d/taohua/damen");
         me->move("/d/taohua/damen");
-        command("say 好了，我带你到大门，你进去就可以见到家师。");
-        message_vision("$N头也不回的往北面离去。\n", this_object());
+        command("say 好了，我帶你到大門，你進去就可以見到家師。");
+        message_vision("$N頭也不回的往北面離去。\n", this_object());
         this_object()->move(query("startroom"));
-        message_vision("$N急匆匆的走了过来。\n", this_object());
+        message_vision("$N急匆匆的走了過來。\n", this_object());
         return 1;
 }
 

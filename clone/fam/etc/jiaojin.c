@@ -8,7 +8,7 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", NOR + MAG "一根南海恶蛟的龙筋，呈紫黑色。\n" NOR);
+                set("long", NOR + MAG "一根南海惡蛟的龍筋，呈紫黑色。\n" NOR);
                 set("unit", "根");
                 set("value", 500000);
         }

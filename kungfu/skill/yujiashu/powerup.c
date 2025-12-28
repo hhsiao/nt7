@@ -1,4 +1,4 @@
-// powerup.c 瑜伽术加力
+// powerup.c 瑜伽術加力
 
 #include <ansi.h>
 
@@ -11,18 +11,18 @@ int exert(object me, object target)
         int skill;
 
         if (target != me)
-                return notify_fail("你只能提升自己的战斗力。\n");
+                return notify_fail("你只能提升自己的戰鬥力。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if( query_temp("powerup", me) )
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
 
-        message_combatd(HIR "$N" HIR "厉声一喝，面目似笑非笑，骨"
-                        "骼哗啦哗啦直想，浑身潜力尽数提起！\n" NOR, me);
+        message_combatd(HIR "$N" HIR "厲聲一喝，面目似笑非笑，骨"
+                        "骼嘩啦嘩啦直想，渾身潛力盡數提起！\n" NOR, me);
 
         addn_temp("apply/attack", skill/3, me);
         addn_temp("apply/defense", skill/3, me);
@@ -41,5 +41,5 @@ void remove_effect(object me, int amount)
         addn_temp("apply/attack", -amount, me);
         addn_temp("apply/defense", -amount, me);
         delete_temp("powerup", me);
-        tell_object(me, "你的瑜伽术运行完毕，将内力收回丹田。\n");
+        tell_object(me, "你的瑜伽術運行完畢，將內力收回丹田。\n");
 }

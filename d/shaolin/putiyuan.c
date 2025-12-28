@@ -1,13 +1,13 @@
 // Room: /d/shaolin/putiyuan.c
 // by Doing Lu 10/10/2K
 
-// 迷题：取易筋经
-// 掀“一梦如是”
+// 迷題：取易筋經
+// 掀“一夢如是”
 // xian 一
-// xian 梦
-// xian 如 3 (因为如有多个，掀第三个)
+// xian 夢
+// xian 如 3 (因為如有多個，掀第三個)
 // xian 是
-// 然后look hole可以看到书，get book from hole即可。
+// 然後look hole可以看到書，get book from hole即可。
 
 #define THE_BOOK            "/clone/book/yijinjing"
 
@@ -24,18 +24,18 @@ void create()
         set("short", "菩提院");
 
         set("long", @LONG
-这里是少林寺的菩提院。殿上并列这三尊铜像，佛像之前安着一
-座屏风，屏风上装着一面极大的铜镜，擦得晶光净亮，镜中将你的人
-影照了出来，铜镜(jing)上镌着四句经偈，佛像前点着几盏油灯，昏
-黄的灯光之下，依稀看到的是：『一切有为法，如梦幻泡影，如露亦
-如电，当作如是观。』
+這裡是少林寺的菩提院。殿上並列這三尊銅像，佛像之前安著一
+座屏風，屏風上裝著一面極大的銅鏡，擦得晶光淨亮，鏡中將你的人
+影照了出來，銅鏡(jing)上鐫著四句經偈，佛像前點著幾盞油燈，昏
+黃的燈光之下，依稀看到的是：『一切有為法，如夢幻泡影，如露亦
+如電，當作如是觀。』
 LONG );
         set("exits", ([
                 "southdown" : __DIR__"guangchang4",
         ]));
 
         set("item_desc", ([
-                "铜镜" : (: look_jing :),
+                "銅鏡" : (: look_jing :),
                 "jing" : (: look_jing :),
                 "hole" : (: look_hole :)
         ]));
@@ -62,12 +62,12 @@ string look_jing()
 
         me = this_player();
         if( query("score", me)<1000 )
-                return "你看了半天，只看到自己的影子，没发现什么。\n";
+                return "你看了半天，只看到自己的影子，沒發現什麼。\n";
 
         if( query("score", me)<5000 )
-                return "你觉得上面镌的经偈似乎有些不同。\n";
+                return "你覺得上面鐫的經偈似乎有些不同。\n";
 
-        return "你发现上面镌的经偈光泽和别处不一样，难道可以掀(xian)开？\n";
+        return "你發現上面鐫的經偈光澤和別處不一樣，難道可以掀(xian)開？\n";
 }
 
 string look_hole()
@@ -75,12 +75,12 @@ string look_hole()
         string msg;
 
         if (query("status") != 4)
-                return "哪里有什么洞？抓老鼠么？\n";
+                return "哪裡有什麼洞？抓老鼠麼？\n";
 
         if (query("book_count"))
-                return "这是铜镜下面的一个小洞，里面放着一本残破的旧经书(book)。\n";
+                return "這是銅鏡下面的一個小洞，裡面放著一本殘破的舊經書(book)。\n";
 
-        return "这是铜镜下面的一个小洞，里面空空如也，什么也没有。\n";
+        return "這是銅鏡下面的一個小洞，裡面空空如也，什麼也沒有。\n";
 }
 
 int do_xian(string arg)
@@ -90,35 +90,35 @@ int do_xian(string arg)
         object ob;
 
         if (! arg)
-                return notify_fail("你要掀什么字？\n");
+                return notify_fail("你要掀什麼字？\n");
 
         if (objectp(ob = present("xuanji dashi", this_object())) &&
             living(ob))
-                return notify_fail("玄寂一眼扫了过来，冷冰冰"
-                                   "的似要将你看穿，你哪敢乱动？\n");
+                return notify_fail("玄寂一眼掃了過來，冷冰冰"
+                                   "的似要將你看穿，你哪敢亂動？\n");
 
         if (arg == "如")
-                return notify_fail("你要掀哪一个如？\n");
+                return notify_fail("你要掀哪一個如？\n");
 
         if (sscanf(arg, "%s %d", arg, n) != 2) n = 1;
         if (sizeof(arg) != 2)
-                return notify_fail("经偈中没有这个字呀！\n");
+                return notify_fail("經偈中沒有這個字呀！\n");
 
-        if (strsrch("一切有为法如梦幻泡影如露亦如电当作如是观", arg) == -1)
-                return notify_fail("经偈中没有这个字呀！\n");
+        if (strsrch("一切有為法如夢幻泡影如露亦如電當作如是觀", arg) == -1)
+                return notify_fail("經偈中沒有這個字呀！\n");
 
         if (arg != "如" && n != 1 || n > 4)
-                return notify_fail("经偈中没有这没多的“" +
+                return notify_fail("經偈中沒有這沒多的“" +
                                    arg + "”字呀！\n");
 
-        message_vision("$N掀了一下" + (n > 1 ? "第" + chinese_number(n) + "个" : "") +
+        message_vision("$N掀了一下" + (n > 1 ? "第" + chinese_number(n) + "個" : "") +
                        "“" + arg + "”字。\n", this_player());
 
         right = 0;
         switch (query("status"))
         {
         case 1:
-                if (arg == "梦") right = 2;
+                if (arg == "夢") right = 2;
                 break;
         case 2:
                 if (arg == "如" && n == 3) right = 3;
@@ -128,15 +128,15 @@ int do_xian(string arg)
                 break;
         }
 
-        // 只要掀“一”就还原
+        // 只要掀“一”就還原
         if (arg == "一") right = 1;
         set("status", right);
-        message("vision", "你听到“咔啦”一声响声，似乎"
-                          "有什么机关触动了。\n", this_object());
+        message("vision", "你聽到“咔啦”一聲響聲，似乎"
+                          "有什麼機關觸動了。\n", this_object());
         if (right == 4)
         {
-                message_vision("$N的手指还没有离开镜面，只听得轧轧声响，铜镜已"
-                               "经缓缓翻起，露出一个小洞(hole)。\n",
+                message_vision("$N的手指還沒有離開鏡面，只聽得軋軋聲響，銅鏡已"
+                               "經緩緩翻起，露出一個小洞(hole)。\n",
                                this_player());
                 call_out("close_hole", 8);
         }
@@ -162,11 +162,11 @@ int do_get(string arg)
         if (query("status") != 4)
                 return 0;
 
-        // 已经存在秘本，或者书已经被拿走
+        // 已經存在秘本，或者書已經被拿走
         if (objectp(ob = find_object(THE_BOOK)) &&
             environment(ob) || query("book_count") < 1)
         {
-                write("你想书想晕了头吗？那里并没有什么书呀！\n");
+                write("你想書想暈了頭嗎？那裡並沒有什麼書呀！\n");
                 return 1;
         }
 
@@ -174,20 +174,20 @@ int do_get(string arg)
         ob = load_object(THE_BOOK);
         if (! objectp(ob))
         {
-                write("系统出现故障 - 找不到应该在这里的秘籍了 :)\n");
+                write("系統出現故障 - 找不到應該在這裡的秘籍了 :)\n");
                 return 1;
         }
 
-        message_vision("$N从小洞中将那本经书取出，放进包内。\n", me);
+        message_vision("$N從小洞中將那本經書取出，放進包內。\n", me);
         ob->move(me, 1);
         CHANNEL_D->do_channel(this_object(), "rumor",
-                              me->name(1) + "从少林寺窃走一本易筋经。");
+                              me->name(1) + "從少林寺竊走一本易筋經。");
         return 1;
 }
 
 void close_hole()
 {
         set("status", 0);
-        message("vision", "一阵轧轧声过后，铜镜又缓缓的落下。\n",
+        message("vision", "一陣軋軋聲過後，銅鏡又緩緩的落下。\n",
                 this_object());
 }

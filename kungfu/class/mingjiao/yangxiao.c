@@ -13,11 +13,11 @@ string ask_me();
 
 void create()
 {
-        set_name("杨逍", ({"yang xiao","yang","xiao",}));
+        set_name("楊逍", ({"yang xiao","yang","xiao",}));
         set("long",
-        "他是一位中年书生，身穿白布长袍。\n"
-        "他相貌俊雅，只是双眉略向下垂，嘴边露出几条深深的皱纹，不免略带衰老凄苦\n"
-        "之相。他不言不动，神色漠然，似乎心驰远方，正在想什么事情。\n"
+        "他是一位中年書生，身穿白布長袍。\n"
+        "他相貌俊雅，只是雙眉略向下垂，嘴邊露出幾條深深的皺紋，不免略帶衰老悽苦\n"
+        "之相。他不言不動，神色漠然，似乎心馳遠方，正在想什麼事情。\n"
         );
 
         set("title",HIG "明教" HIR "光明左使" NOR);
@@ -70,9 +70,9 @@ void create()
         prepare_skill("strike", "guangming-zhang");
 
         set("inquiry", ([
-                "光明圣火阵"  : (: ask_me :),
-                "明教圣火阵"  : (: ask_me :),
-                "圣火阵"      : (: ask_me :),
+                "光明聖火陣"  : (: ask_me :),
+                "明教聖火陣"  : (: ask_me :),
+                "聖火陣"      : (: ask_me :),
         ]));
 
         set("chat_chance_combat", 20);
@@ -87,7 +87,7 @@ void create()
         set_temp("apply/unarmed_damage", 120);
         set_temp("apply/armor", 120);
 
-        set("inherit_title",HIG"明教"HIC"护教法王"NOR);
+        set("inherit_title",HIG"明教"HIC"護教法王"NOR);
         create_family("明教", 34, "光明左使");
         set("master_ob",4);
         set("coagents", ({
@@ -105,10 +105,10 @@ int accept_ask(object me, string topic)
         switch (topic)
         {
         /*
-        case "醉里乾坤" :
+        case "醉裡乾坤" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/pomopima-jian/zui",
-                           "name"    : "醉里乾坤",
+                           "name"    : "醉裡乾坤",
                            "sk1"     : "pomopima-jian",
                            "lv1"     : 120,
                            "force"   : 180,
@@ -116,10 +116,10 @@ int accept_ask(object me, string topic)
                            "shen"    : 80000, ]));
                 break;
         */
-        case "飞剑诀" :
+        case "飛劍訣" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/xiaoyao-jian/fei",
-                           "name"    : "飞剑诀",
+                           "name"    : "飛劍訣",
                            "sk1"     : "xiaoyao-jian",
                            "lv1"     : 60,
                            "gongxian": 400,
@@ -127,10 +127,10 @@ int accept_ask(object me, string topic)
                 break;
 
 
-        case "快剑诀" :
+        case "快劍訣" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/xiaoyao-jian/kuai",
-                           "name"    : "快剑诀",
+                           "name"    : "快劍訣",
                            "sk1"     : "xiaoyao-jian",
                            "lv1"     : 160,
                            "dodge"   : 260,
@@ -139,10 +139,10 @@ int accept_ask(object me, string topic)
                 break;
 
 
-        case "奇剑诀" :
+        case "奇劍訣" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/xiaoyao-jian/qi",
-                           "name"    : "奇剑诀",
+                           "name"    : "奇劍訣",
                            "sk1"     : "xiaoyao-jian",
                            "lv1"     : 160,
                            "neili"   : 3000,
@@ -151,7 +151,7 @@ int accept_ask(object me, string topic)
                 break;
 
 
-         case "幻灵剑" :
+         case "幻靈劍" :
                 return MASTER_D->give_item(me, this_object(),
                                (["item"     :  JIAN,
                                  "master"   :  1,

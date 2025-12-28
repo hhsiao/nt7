@@ -5,10 +5,10 @@ inherit "/inherit/room/house_door";
 
 void create()
 {
-    set("short", "仙宅大门");
+    set("short", "仙宅大門");
     set("long", @LONG
-眼前好大一片宅院，但见楼台瑰丽，玉墙蜿蜒，不知占地有多少亩。
-周遭云雾飘渺缭绕，景致似真似幻，令人如在梦中。
+眼前好大一片宅院，但見樓臺瑰麗，玉牆蜿蜒，不知佔地有多少畝。
+周遭雲霧飄渺繚繞，景緻似真似幻，令人如在夢中。
 LONG);
 
     set("exits",
@@ -38,10 +38,10 @@ int valid_leave(object me, string dir)
         && me->query("id") != query("owner")
         && me->query("couple/couple_id") != query("owner")
         && !me->query_temp("invited_guest/" + query("owner")))
-            return notify_fail(WHT "前面似乎有一阵无形的真气挡住，"
-                                   "令你再也无法前行半分。\n" NOR);
+            return notify_fail(WHT "前面似乎有一陣無形的真氣擋住，"
+                                   "令你再也無法前行半分。\n" NOR);
 
-    message_vision(HIC "\n一片云雾飘来，轻轻将$N裹起，"
-                       "飘飘悠悠地飞了进去。\n" NOR, me);
+    message_vision(HIC "\n一片雲霧飄來，輕輕將$N裹起，"
+                       "飄飄悠悠地飛了進去。\n" NOR, me);
     return ::valid_leave(me, dir);
 }

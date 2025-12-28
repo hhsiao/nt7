@@ -3,13 +3,13 @@ inherit ROOM;
 
 void create()
 {
-        set("short", HIW"无相宝塔"NOR);
+        set("short", HIW"無相寶塔"NOR);
         set("long",@LONG
-崇圣寺三塔东塔无相，高二百余尺，八角十层，皆为实心，各层
-分别雕卷龛、佛像、莲花等，华贵庄重。正面中央开卷龛，各置白色
+崇聖寺三塔東塔無相，高二百餘尺，八角十層，皆為實心，各層
+分別雕卷龕、佛像、蓮花等，華貴莊重。正面中央開卷龕，各置白色
 大理石佛像一尊。
 LONG);
-        set("outdoors", "天龙寺");
+        set("outdoors", "天龍寺");
         set("exits", ([
                 "south" : __DIR__"yz4",
         ]));	

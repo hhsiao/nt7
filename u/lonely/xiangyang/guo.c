@@ -10,15 +10,15 @@ void random_move();
 void create()
 {
         set_name("郭靖", ({"guo jing", "guo", "jing"}));
-        set("nickname", HIY"北侠"NOR);
+        set("nickname", HIY"北俠"NOR);
         set("gender", "男性");
         set("age", 41);
         set("long", 
-                "他就是人称北侠的郭靖，既是蒙古成吉思汗的金刀驸马，又是\n"
-                "江南七怪、全真派马钰道长、「北丐」洪七公和「老顽童」周\n"
-                "伯通等人的徒弟，身兼数门武功。\n"
-                "他身着一件灰色长袍，体态魁梧，敦厚的面目中透出一股威严\n"
-                "令人不由得产生一股钦佩之情。\n");
+                "他就是人稱北俠的郭靖，既是蒙古成吉思汗的金刀駙馬，又是\n"
+                "江南七怪、全真派馬鈺道長、「北丐」洪七公和「老頑童」周\n"
+                "伯通等人的徒弟，身兼數門武功。\n"
+                "他身著一件灰色長袍，體態魁梧，敦厚的面目中透出一股威嚴\n"
+                "令人不由得產生一股欽佩之情。\n");
          set("attitude", "peaceful");
 
         set("chat_chance", 80);
@@ -35,31 +35,31 @@ void create()
             set("no_nuoyi", 1);
             
         set("inquiry", ([
-                "周伯通" : "你见到我周大哥了？他现在可好？\n",
-                "老顽童" : "周大哥一贯这样，没点正经！\n",
-                "洪七公" : "师父除了吃，就是喜欢玩。到处玩，还是为了找吃的。\n",
-                "黄药师" : "那是我泰山大人。他云游四海，神龙见首不见尾的。\n",
-                "一灯大师" : "在下对大师好生感激。\n",
-                "欧阳锋" : "这个老毒物，害死我六位师父，一待襄阳事了，决不与他干休。\n",
-                "黄蓉"   : "蓉儿是我的爱妻，你问她做甚？\n",
-                "蓉儿"   : "蓉儿就是蓉儿了。你问这么多干嘛？\n",
-                "郭芙"   : "这个女儿，又笨又不听话。\n",
-                "郭襄"   : "襄儿生于乱世，这辈子又多艰厄。但愿她能快乐一世。\n",
-                "郭破虏" : "那是我的小儿子。\n",
-                "杨过"   : "过儿确实有出息。\n",
-                "马钰"   : "马道长于我有半师之谊。\n",
-                "丘处机" : "邱道长义薄云天，是真豪杰。\n",
-                "柯镇恶" : "那是我大师父。\n",
-                "朱聪"   : "那是我二师父。\n",
-                "韩宝驹" : "那是我三师父。\n",
-                "南希仁" : "那是我四师父。\n",
-                "张阿生" : "那是我五师父。\n",
-                "全金发" : "那是我六师父。\n",
-                "韩小莹" : "那是我七师父。\n",
-                "丐帮"   : "丐帮英雄几百年了，守卫襄阳多亏了他们。\n",
-                "拜师"   : "现在蒙古人围攻襄阳，我哪有心情收徒啊！\n",
-                "报名"   : (: sign_up :),
-                "杀蒙古鞑子" : (: sign_up :),
+                "周伯通" : "你見到我周大哥了？他現在可好？\n",
+                "老頑童" : "周大哥一貫這樣，沒點正經！\n",
+                "洪七公" : "師父除了吃，就是喜歡玩。到處玩，還是為了找吃的。\n",
+                "黃藥師" : "那是我泰山大人。他雲遊四海，神龍見首不見尾的。\n",
+                "一燈大師" : "在下對大師好生感激。\n",
+                "歐陽鋒" : "這個老毒物，害死我六位師父，一待襄陽事了，決不與他干休。\n",
+                "黃蓉"   : "蓉兒是我的愛妻，你問她做甚？\n",
+                "蓉兒"   : "蓉兒就是蓉兒了。你問這麼多幹嘛？\n",
+                "郭芙"   : "這個女兒，又笨又不聽話。\n",
+                "郭襄"   : "襄兒生於亂世，這輩子又多艱厄。但願她能快樂一世。\n",
+                "郭破虜" : "那是我的小兒子。\n",
+                "楊過"   : "過兒確實有出息。\n",
+                "馬鈺"   : "馬道長於我有半師之誼。\n",
+                "丘處機" : "邱道長義薄雲天，是真豪傑。\n",
+                "柯鎮惡" : "那是我大師父。\n",
+                "朱聰"   : "那是我二師父。\n",
+                "韓寶駒" : "那是我三師父。\n",
+                "南希仁" : "那是我四師父。\n",
+                "張阿生" : "那是我五師父。\n",
+                "全金髮" : "那是我六師父。\n",
+                "韓小瑩" : "那是我七師父。\n",
+                "丐幫"   : "丐幫英雄幾百年了，守衛襄陽多虧了他們。\n",
+                "拜師"   : "現在蒙古人圍攻襄陽，我哪有心情收徒啊！\n",
+                "報名"   : (: sign_up :),
+                "殺蒙古韃子" : (: sign_up :),
         ]));
 
         set("chat_chance_combat", 120);
@@ -84,11 +84,11 @@ void create()
         set("combat_exp", 40000000);
         set("score", 200000);
          
-        set_skill("force", 1200);                // 基本内功
-        set_skill("huntian-qigong", 1200);        // 混天气功
-        set_skill("strike", 1200);                // 基本拳脚
-        set_skill("xianglong-zhang", 1200);        // 降龙十八掌
-        set_skill("dodge", 1200);                // 基本躲闪
+        set_skill("force", 1200);                // 基本內功
+        set_skill("huntian-qigong", 1200);        // 混天氣功
+        set_skill("strike", 1200);                // 基本拳腳
+        set_skill("xianglong-zhang", 1200);        // 降龍十八掌
+        set_skill("dodge", 1200);                // 基本躲閃
         set_skill("jinyan-gong", 1200);                // 金雁功
         set_skill("parry", 1200);                // 基本招架
         set_skill("feixu-jin", 500);
@@ -115,44 +115,44 @@ string sign_up()
         me = this_player();
 
         if (is_fighting())
-                return HIR "对不住了，现在在先正忙于对付蒙古鞑子。\n" NOR;
+                return HIR "對不住了，現在在先正忙於對付蒙古韃子。\n" NOR;
                 
         if (! XYWAR_D->sign_up_status())
-                return HIR "对不住，现在不能报名！\n" NOR;
+                return HIR "對不住，現在不能報名！\n" NOR;
         
         if (! me->query_temp("want_sign_up_xiangyang_war"))
         {
                 me->set_temp("want_sign_up_xiangyang_war", 1);
-                return HIG "你是否决定报名参加襄阳保卫战，如果确定请再输入一次。\n" NOR;
+                return HIG "你是否決定報名參加襄陽保衛戰，如果確定請再輸入一次。\n" NOR;
         }
 
         if (XYWAR_D->if_sign_up(me->query("id")))
         {
-                return HIC "不错，阁下保家卫国之心可佳！郭某在此谢过了！\n" NOR;
+                return HIC "不錯，閣下保家衛國之心可佳！郭某在此謝過了！\n" NOR;
         }
 
         command("nod");
-        command("say 好好好，我大宋有如此爱国之士，定会将蒙古鞑子驱出中原！");
+        command("say 好好好，我大宋有如此愛國之士，定會將蒙古韃子驅出中原！");
         command("haha");
 
         XYWAR_D->sign_up(me->query("id"));
-        XYWAR_D->xywar_message(me->name() + "(" + me->query("id") + ")" HIG "已报名加入襄阳保卫战，目前共有 " + 
-                                     CHINESE_D->chinese_number(XYWAR_D->n_sign_up()) + " 名江湖义士参加抗击蒙古军！\n" NOR);
+        XYWAR_D->xywar_message(me->name() + "(" + me->query("id") + ")" HIG "已報名加入襄陽保衛戰，目前共有 " + 
+                                     CHINESE_D->chinese_number(XYWAR_D->n_sign_up()) + " 名江湖義士參加抗擊蒙古軍！\n" NOR);
 
-        tell_object(me, HIG "你已经成功报名参加本次的襄阳保卫战！\n" NOR);
-        tell_object(me, HIR "注意，襄阳保卫战结束请请勿离线，否则将自动取消报名资格！\n" NOR);
+        tell_object(me, HIG "你已經成功報名參加本次的襄陽保衛戰！\n" NOR);
+        tell_object(me, HIR "注意，襄陽保衛戰結束請請勿離線，否則將自動取消報名資格！\n" NOR);
 
-        tell_object(me, HIC "\n死亡保护90%已经设置完成，死亡后有90%几率不造成任何损失。\n" NOR);
+        tell_object(me, HIC "\n死亡保護90%已經設置完成，死亡後有90%幾率不造成任何損失。\n" NOR);
         
         XYWAR_D->set_no_die(me);
 
-        // 删除以前的随机字串标志        
+        // 刪除以前的隨機字串標誌        
         win_times = me->query("xywar/win");
         me->delete("xywar");
         me->set("xywar/win", win_times);
         me->save();
 
-        return "誓死保卫襄阳！\n";
+        return "誓死保衛襄陽！\n";
 
 }
 
@@ -160,8 +160,8 @@ string sign_up()
 void die()
 {
 
-        XYWAR_D->guojing_message(HIR "襄阳军士们，郭某去也，誓死保卫我襄阳！！！" NOR);
-        XYWAR_D->xywar_message("郭靖奋力抵抗蒙古鞑子，不幸战死襄阳，终其一生，为抵抗蒙古鞑子做出了难以磨灭的贡献！");
+        XYWAR_D->guojing_message(HIR "襄陽軍士們，郭某去也，誓死保衛我襄陽！！！" NOR);
+        XYWAR_D->xywar_message("郭靖奮力抵抗蒙古韃子，不幸戰死襄陽，終其一生，為抵抗蒙古韃子做出了難以磨滅的貢獻！");
         XYWAR_D->guojing_die();
         destruct(this_object());
 }
@@ -180,7 +180,7 @@ void init()
         if (base_name(env) == "/d/xiangyang/guangchang")
                 call_out("do_hello", 3, me);
         
-        //主动杀蒙古兵
+        //主動殺蒙古兵
         if (me->query("mgbing"))kill_ob(me);
 
 }
@@ -193,9 +193,9 @@ void do_hello(object me)
         
         if (! XYWAR_D->sign_up_status())return;
         
-        tell_object(me, HIG "\n郭靖对你说道：这位" + RANK_D->query_respect(me) + 
-        "，想参加襄阳保卫战，为抗击蒙古鞑自出一份力吗？\n"
-        "如果愿意参加襄阳保卫战请向我打听 " HIR "报名" HIG " 的相关信息吧！\n" NOR); 
+        tell_object(me, HIG "\n郭靖對你說道：這位" + RANK_D->query_respect(me) + 
+        "，想參加襄陽保衛戰，為抗擊蒙古韃自出一份力嗎？\n"
+        "如果願意參加襄陽保衛戰請向我打聽 " HIR "報名" HIG " 的相關信息吧！\n" NOR); 
 }
 
 void heart_beat()
@@ -228,27 +228,27 @@ void random_move()
                 set_temp("dest_now", 1);
         }
 
-        // 行进路径方向
-        // 需要先设置
+        // 行進路徑方向
+        // 需要先設置
         route = query("route");
 
         env = environment(this_object());
 
         if (! objectp(env))return;
 
-        // 如果到达中央广场则重新选择
+        // 如果到達中央廣場則重新選擇
         if (base_name(env) == "/d/xiangyang/guangchang" && XYWAR_D->if_guojing_moved())
         {
                 max_route = XYWAR_D->max_min_n_soldier("max");
                 doors = XYWAR_D->get_doors();
                 this_object()->move(doors[max_route]);
 
-                // 设置移动方向
+                // 設置移動方向
                 set("route", XYWAR_D->re_poision(max_route));
                 return;
         }
 
-        // 按照路由列表移动
+        // 按照路由列表移動
         if (stringp(route) && XYWAR_D->now_status() == 2)command("go " + route);
 }
 
@@ -256,19 +256,19 @@ int recognize_apprentice(object ob, string skill)
 {
         if (ob->query("xywar/win") < 6)
         {
-                tell_object(ob, HIG "郭靖对你说道：阁下侠义之心不足，郭某可不能贸然传你此招。\n" NOR);
+                tell_object(ob, HIG "郭靖對你說道：閣下俠義之心不足，郭某可不能貿然傳你此招。\n" NOR);
                 return -1;
         }
 
         if (ob->query_skill("jiuyin-shengong", 1) < 1)
         {
-                tell_object(ob, HIG "郭靖对你说道：你连九阴神功都不会，怎能领悟飞絮劲的奥妙？\n" NOR);
+                tell_object(ob, HIG "郭靖對你說道：你連九陰神功都不會，怎能領悟飛絮勁的奧妙？\n" NOR);
                 return -1;
         }
         
         if (ob->query_skill("feixu-jin", 1) < 400)
         {
-                tell_object(ob, HIG "郭靖对你说道：以你目前对飞絮劲的修为，还不足以进一步修炼？\n" NOR);
+                tell_object(ob, HIG "郭靖對你說道：以你目前對飛絮勁的修為，還不足以進一步修煉？\n" NOR);
                 return -1;
         }
 

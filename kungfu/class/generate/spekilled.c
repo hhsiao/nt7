@@ -77,13 +77,13 @@ void set_from_me(object me)
 
 int accept_fight(object ob)
 {
-        command("say 我可没兴趣陪你玩，快给我滚开。");
+        command("say 我可沒興趣陪你玩，快給我滾開。");
         return 0;
 }
 
 int accept_hit(object ob)
 {
-        command("say 等我办完正事再来收拾你！");
+        command("say 等我辦完正事再來收拾你！");
         return 0;
 }
 
@@ -98,29 +98,29 @@ int accept_kill(object ob)
 
         fam_info = query("fam_info");
 
-        // 检查是否处于正在攻打状态
+        // 檢查是否處於正在攻打狀態
         if ("/adm/daemons/story/familywar"->query_status() != ATTACKING)
         {
                 if( query("family/family_name", ob) == fam_info["family"] )
                 {
-                      command("say 哼！我目前有要事要办，等下再来取你性命。");
-                      return notify_fail("看来，别人不屑与你交手。\n");
+                      command("say 哼！我目前有要事要辦，等下再來取你性命。");
+                      return notify_fail("看來，別人不屑與你交手。\n");
                 }
                 else 
                 {
                       command("heng");
-                      return notify_fail("看来，别人不屑与你交手。\n");
+                      return notify_fail("看來，別人不屑與你交手。\n");
                 }
         }
         else
-        {       // 只接受组队的玩家
+        {       // 只接受組隊的玩家
                 if (! pointerp(t = ob->query_team()) || ! sizeof(t) || sizeof(t) < 2)
                 {
-                      command("say 我从不和单枪匹马的人交手。");
-                      return notify_fail("看来，别人不屑与你交手。\n");
+                      command("say 我從不和單槍匹馬的人交手。");
+                      return notify_fail("看來，別人不屑與你交手。\n");
                 }
 
-                message_vision(HIW "$N" HIW "大声叫道：“兄弟们，大家一起上啊，杀了$n" HIW "这" +
+                message_vision(HIW "$N" HIW "大聲叫道：“兄弟們，大家一起上啊，殺了$n" HIW "這" +
                                RANK_D->query_rude(this_object()) + "！”\n" NOR, ob, this_object());
 
                 foreach(killer in t)
@@ -151,28 +151,28 @@ int accept_kill(object ob)
 
 int accept_ansuan(object ob)
 {
-        return notify_fail("那人警惕性好高，你难以下手。\n");
+        return notify_fail("那人警惕性好高，你難以下手。\n");
 }
 
 int accept_touxi(object ob)
 {
-        return notify_fail("那人警惕性好高，你难以下手。\n");
+        return notify_fail("那人警惕性好高，你難以下手。\n");
 }
 
 void die(object killer)
 {
-        object dob;             // 打晕这个NPC的人
-        int n;                  // 可以奖励的人的数目
-        int exp;                // 需要瓜分的经验
-        int pot;                // 需要瓜分的潜能
+        object dob;             // 打暈這個NPC的人
+        int n;                  // 可以獎勵的人的數目
+        int exp;                // 需要瓜分的經驗
+        int pot;                // 需要瓜分的潛能
         int weiwang;            // 需要瓜分的威望
-        int score;              // 需要瓜分的阅历
+        int score;              // 需要瓜分的閱歷
         int gongxian;           //
-        object *t;              // 杀死我的人的队伍列表
+        object *t;              // 殺死我的人的隊伍列表
         object tob;
         int i;
 
-        // 找到杀了我(NPC)或是打晕我的人
+        // 找到殺了我(NPC)或是打暈我的人
         if (! objectp(dob = killer))
                 dob = query_defeated_by();
 
@@ -220,8 +220,8 @@ void die(object killer)
                                             "weiwang"  : weiwang + ((tob == dob) ? 1000 : 0),
                                             "score"    : score + ((tob == dob) ? 1000 : 0),
                                             "gongxian" : (n < 4 ? gongxian / 3 : gongxian), 
-                                            "prompt"  : (pointerp(t) ? "你的队伍击毙" + name() + "之后" :
-                                                        "击毙" + name() + "之后") ]));
+                                            "prompt"  : (pointerp(t) ? "你的隊伍擊斃" + name() + "之後" :
+                                                        "擊斃" + name() + "之後") ]));
 
 
                       }
@@ -246,7 +246,7 @@ void random_move()
         {
                 message_vision("$N急急忙忙的走了。\n", this_object());
                 CHANNEL_D->do_channel(this_object(), "rumor",
-                                      sprintf("听说%s在攻打%s之后，从此销声匿迹，被江湖中人所遗忘。",
+                                      sprintf("聽說%s在攻打%s之後，從此銷聲匿跡，被江湖中人所遺忘。",
                                               name(), fam_info["family"]));
                 log_file("static/killed_die", sprintf("%s %s(%s) vanished because timeout(%d:%d).\n",
                                                       log_time(), name(), query("id"),
@@ -261,18 +261,18 @@ void random_move()
                 listeners = filter_array(users(), (: filter_listener :));
 
                 if (query("is_leader") && random(3) == 0)
-                         message_vision(HIW "$N" HIW "说道：“弟兄们，不要着急，等下咱们攻入" + 
-                                        fam_info["family"] + "，大开杀戒~！”\n" NOR, this_object());
+                         message_vision(HIW "$N" HIW "說道：“弟兄們，不要著急，等下咱們攻入" + 
+                                        fam_info["family"] + "，大開殺戒~！”\n" NOR, this_object());
                 else if (random(10) == 0)
-                         message_vision(HIC "$N" HIC "嚷嚷道：“怎么首领还不下令攻打" + 
-                                        fam_info["family"] + "我都等得不耐烦了！”\n" NOR, this_object());                
+                         message_vision(HIC "$N" HIC "嚷嚷道：“怎麼首領還不下令攻打" + 
+                                        fam_info["family"] + "我都等得不耐煩了！”\n" NOR, this_object());                
    
                 return;
         }
         fam_info = query("fam_info");
         route = fam_info["route_list"];
 
-        // 已经走到终点
+        // 已經走到終點
         if (query("move") >= sizeof(route))
         {
 
@@ -282,8 +282,8 @@ void random_move()
                       {
 
                              CHANNEL_D->do_channel(this_object(), "rumor", 
-                                        "听说神秘组织攻到" + fam_info["family"] + "的" + fam_info["tar_room_nm"] + 
-                                        "，" + fam_info["family"] + "自此元气大伤。\n");
+                                        "聽說神秘組織攻到" + fam_info["family"] + "的" + fam_info["tar_room_nm"] + 
+                                        "，" + fam_info["family"] + "自此元氣大傷。\n");
 
                              "/adm/daemons/story/familywar"->change_status(OVER);
                       }
@@ -292,10 +292,10 @@ void random_move()
                return;
         }
 
-        // 按照路由列表移动
+        // 按照路由列表移動
         if (stringp(dir = route[query("move")]))
         {
-              command("say 兄弟们冲啊，杀得他们落花流水，片甲不留！");
+              command("say 兄弟們衝啊，殺得他們落花流水，片甲不留！");
               if (GO_CMD->main(this_object(), dir))addn("move", 1);
 
               else if (stringp(fam_info["spe_cmds"]))

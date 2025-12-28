@@ -81,7 +81,7 @@ void create()
         restore();
 }
 
-// 为了站点安全，需要设置自己的 SEC_SEED
+// 為了站點安全，需要設置自己的 SEC_SEED
 #define SEC_SEED        "09876543211234567890123456789021"
 
 int restore()
@@ -489,8 +489,8 @@ int valid_write(string file, mixed user, string func)
                         // check the object's file with id in dbase
                         if (euid && euid != getuid(user))
                         {
-                                write(sprintf(HIR "【保护】你的用户标识(%s)和有效用"
-                                              "户标识(%s)不同，档案不正常，不能保存。\n" NOR,
+                                write(sprintf(HIR "【保護】你的用戶標識(%s)和有效用"
+                                              "戶標識(%s)不同，檔案不正常，不能保存。\n" NOR,
                                               getuid(user), geteuid(user)));
                                 return 0;
                         }
@@ -498,8 +498,8 @@ int valid_write(string file, mixed user, string func)
                         if ((base_name(user) == USER_OB) &&
                             getuid(user) != query("id", user) )
                         {
-                                write(sprintf(HIR "【保护】你的用户标识(%s)和数据中"
-                                              "的标识(%s)不同，档案不正常，不能保存。\n" NOR,
+                                write(sprintf(HIR "【保護】你的用戶標識(%s)和數據中"
+                                              "的標識(%s)不同，檔案不正常，不能保存。\n" NOR,
                                               getuid(user),query("id", user)));
                                 return 0;
                         }
@@ -749,16 +749,16 @@ int valid_seteuid(object ob, string uid)
 // can ob bind function ?
 int valid_bind(object binder, object old_owner, object new_owner)
 {
-        // ROOT可以绑定任何函数
+        // ROOT可以綁定任何函數
         if (geteuid(binder) == ROOT_UID) return 1;
 
-        // 如果绑定者没有发生变化
+        // 如果綁定者沒有發生變化
         if (binder == new_owner) return 1;
 
         if (! wiz_level(new_owner) && geteuid(new_owner) != ROOT_UID)
                 return 1;
 
-        // 不同意绑定
+        // 不同意綁定
         return 0;
 }
 
@@ -771,16 +771,16 @@ int valid_grant(object ob, string min_level)
         object call_ob;
 
         if (! objectp(ob) || ! objectp(this_player(1)))
-                return notify_fail("没有对象呼叫这个命令。\n");
+                return notify_fail("沒有對象呼叫這個命令。\n");
 
         if (! objectp(cmd_ob = previous_object()))
-                return notify_fail("必须是命令调用授权函数。\n");
+                return notify_fail("必須是命令調用授權函數。\n");
 
         cmd = base_name(cmd_ob);
         if (sscanf(cmd, "/cmds/%*s/%s", cmd) != 2)
-                return notify_fail("必须是命令调用授权函数。\n");
+                return notify_fail("必須是命令調用授權函數。\n");
 
-        // 如果不是ROOT对象或是玩家本人呼叫，则不能授权。
+        // 如果不是ROOT對象或是玩家本人呼叫，則不能授權。
         call_ob = previous_object(1);
         if (! call_ob || call_ob != this_player(1) && geteuid(call_ob) != ROOT_UID)
         {
@@ -792,29 +792,29 @@ int valid_grant(object ob, string min_level)
                 return 0;
         }
 
-        // 是ROOT对象呼叫命令么？如果是，则可以授权。
+        // 是ROOT對象呼叫命令麼？如果是，則可以授權。
         if (geteuid(ob) == ROOT_UID && call_ob == ob)
                 return 1;
 
         if (ob != this_player(1))
-                return notify_fail("不是本人呼叫这个命令。\n");
+                return notify_fail("不是本人呼叫這個命令。\n");
 
-        // 是管理员呼叫命令么？如果是，则可以授权。
+        // 是管理員呼叫命令麼？如果是，則可以授權。
         if (is_root(ob))
                 return 1;
 
-        // 权限满足最低要求么？
+        // 權限滿足最低要求麼？
         if (wiz_level(ob) >= wiz_level(min_level))
                 return 1;
 
-        // 是否有显式的授权？如果有，则可以授权。
+        // 是否有顯式的授權？如果有，則可以授權。
         if (arrayp(gr = grant[geteuid(ob)]) && member_array(cmd, gr) != -1)
                 return 1;
 
         return 0;
 }
 
-// 授权函数
+// 授權函數
 int grant(string user, string cmd)
 {
         string *gr;
@@ -835,7 +835,7 @@ int grant(string user, string cmd)
         return 1;
 }
 
-// 收回授权
+// 收回授權
 int remove_grant(string user, string cmd)
 {
         string *gr;
@@ -867,7 +867,7 @@ int remove_grant(string user, string cmd)
         return 1;
 }
 
-// 查询授权
+// 查詢授權
 string *query_grant(string user)
 {
         if (! previous_object() || ! is_root(previous_object()))
@@ -876,7 +876,7 @@ string *query_grant(string user)
         return grant[user];
 }
 
-// 查询所有授权的人
+// 查詢所有授權的人
 string *query_grant_users()
 {
         if (! previous_object() || ! is_root(previous_object()))
@@ -885,7 +885,7 @@ string *query_grant_users()
         return keys(grant);
 }
 
-// 站点特殊权限的信息
+// 站點特殊權限的信息
 varargs int set_site_privilege(string item, string desc)
 {
         if (! previous_object() || ! is_root(previous_object()))
@@ -902,7 +902,7 @@ varargs int set_site_privilege(string item, string desc)
         return 1;
 }
 
-// 查询权限信息
+// 查詢權限信息
 varargs mixed query_site_privilege(string item)
 {
         if (! stringp(item))
@@ -916,7 +916,7 @@ varargs mixed query_site_privilege(string item)
         return site_privilege[item];
 }
 
-// 备份文件
+// 備份文件
 void backup_file(string file)
 {
         string euid;

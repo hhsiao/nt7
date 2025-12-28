@@ -21,18 +21,18 @@ int perform(object me, object target)
                 target = me->select_opponent();
         }
         if (! target || ! me->is_fighting(target))
-                return notify_fail("「九天式」只能对战斗中的对手使用。\n");
+                return notify_fail("「九天式」只能對戰鬥中的對手使用。\n");
 
         if ((int)me->query_skill("liuyang-zhang", 1) < 120)
-                return notify_fail("你的六阳掌法不够娴熟，不会使用「九天式」。\n");
+                return notify_fail("你的六陽掌法不夠嫻熟，不會使用「九天式」。\n");
 
         if ((int)me->query_skill("force") < 300)
-                return notify_fail("你的内功修为不够高，难以运用「九天式」。\n");
+                return notify_fail("你的內功修為不夠高，難以運用「九天式」。\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你现在真气不够，不能使用「九天式」。\n");
+                return notify_fail("你現在真氣不夠，不能使用「九天式」。\n");
 
-        msg = HIC "$N" HIC "双掌一振，化出满天掌影，团团笼罩住$n" HIC "！\n" NOR;
+        msg = HIC "$N" HIC "雙掌一振，化出滿天掌影，團團籠罩住$n" HIC "！\n" NOR;
 
         ap = attack_power(me, "strike");
         dp = defense_power(target, "parry");
@@ -43,13 +43,13 @@ int perform(object me, object target)
                 damage+= query("jiali", me);
 
                 msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 65,
-                                           HIR "$p" HIR "无奈，只能硬挡一招，结果被$P"
-                                           HIR "震得连退数步，吐血不止！\n" NOR);
+                                           HIR "$p" HIR "無奈，只能硬擋一招，結果被$P"
+                                           HIR "震得連退數步，吐血不止！\n" NOR);
                 me->start_busy(2);
         } else
         {
-                msg += HIC "可是$p" HIC "强运内力，硬生生的挡住$P"
-                       HIC "这一掌，没有受到任何伤害！\n"NOR;
+                msg += HIC "可是$p" HIC "強運內力，硬生生的擋住$P"
+                       HIC "這一掌，沒有受到任何傷害！\n"NOR;
                 addn("neili", -50, me);
                 me->start_busy(3);
         }

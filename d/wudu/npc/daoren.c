@@ -9,7 +9,7 @@ void create()
         set("gender", "男性" );
         set("age", 35);
         set("per", 20);
-        set("long", "一位身穿道服，干瘪黑瘦的中年道人．\n");
+        set("long", "一位身穿道服，乾癟黑瘦的中年道人．\n");
         set("combat_exp", 200000);
         set("attitude", "friendly");
         set("book_count", 1);
@@ -29,28 +29,28 @@ void create()
         map_skill("force", "beiming-shengong");
         map_skill("blade", "ruyi-dao");
 
-        set("title", "五毒教小头目");
+        set("title", "五毒教小頭目");
 
         set("chat_chance", 2);
         set("chat_msg",({
-                CYN "毒道人冷笑道：江湖中人谁敢和我们五毒教作对，管叫"
+                CYN "毒道人冷笑道：江湖中人誰敢和我們五毒教作對，管叫"
                 "他死的不明不白。\n" NOR,
-                CYN "毒道人干笑一声道：贫道专管练制各种毒药，保证药到"
+                CYN "毒道人乾笑一聲道：貧道專管練制各種毒藥，保證藥到"
                 "命除。\n" NOR,
         }));
 
         setup();
         add_money("silver", 20);
         set("inquiry", ([
-                "here"     : "此乃炼丹房，可以在这里练制(lianzhi)各种毒药。",
-                "毒药"     : "阁下可以在这里练制(lianzhi)各种毒药。",
+                "here"     : "此乃煉丹房，可以在這裡練制(lianzhi)各種毒藥。",
+                "毒藥"     : "閣下可以在這裡練制(lianzhi)各種毒藥。",
                 "原料"     : (: ask_me :),
-                "练毒"     : (: ask_me :),
-                "毒经"     : "你打算炼毒么？可惜我这里只有毒经上篇。",
+                "練毒"     : (: ask_me :),
+                "毒經"     : "你打算煉毒麼？可惜我這裡只有毒經上篇。",
                 "上篇"     : (: ask_me :),
-                "毒经上篇" : (: ask_me :),
+                "毒經上篇" : (: ask_me :),
                 "配方"     : (: ask_me :),
-                "毒药配方" : (: ask_me :),
+                "毒藥配方" : (: ask_me :),
         ]) );
         carry_object("/d/wudang/obj/greenrobe")->wear();
 }
@@ -62,20 +62,20 @@ int ask_me()
 
         if( query("family/family_name", me) != "五毒教" )
         {
-                command("say 阁下与本派并无渊源，这话是从何而来？");
+                command("say 閣下與本派並無淵源，這話是從何而來？");
                 return 1;
         }
 
         if (query("book_count") < 1)
         {
-                command("say 你来晚了，毒经我已经给别人了。");
+                command("say 你來晚了，毒經我已經給別人了。");
                 return 1;
         }
         addn("book_count", -1);
         ob = new("/d/wudu/obj/dujing1");
         ob->move(this_object());
 
-        command("say 此毒经上记载了各种密药的练制方法，千万不可遗失了。");
+        command("say 此毒經上記載了各種密藥的練制方法，千萬不可遺失了。");
         command("give jing1 to " + query("id",me));  
         return 1;
 }

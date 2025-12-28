@@ -1,7 +1,7 @@
-// /adm/npc/bunong.c 玩家住宅负责人：布侬
+// /adm/npc/bunong.c 玩家住宅負責人：布儂
 // By Alf, Last Update 2003.0730
 // Modify By Alf@Syzf, Last Update 2005.0402
-// 增加原址改建及贵宾扩限功能
+// 增加原址改建及貴賓擴限功能
 
 #include <ansi.h>
 #include "house_picture.h"
@@ -14,28 +14,28 @@ inherit NPC;
 #define VIP_ORIGIN  12
 
 public int show_type(object me);                        //房型列表
-public int show_base(object me);                        //地块列表
-private int choice_type(string arg);                    //选定房型
-private int choice_base(string arg);                    //选定地块
+public int show_base(object me);                        //地塊列表
+private int choice_type(string arg);                    //選定房型
+private int choice_base(string arg);                    //選定地塊
 private int build_house(string arg);                    //建造房屋
 private int do_rebuild(string arg);                     //原址改建
-private int do_cession(string arg);                     //房产转让
+private int do_cession(string arg);                     //房產轉讓
 private int do_dismantle(string arg);                   //房屋拆除
-public void confirm_type(string yn);                    //确认选型
-public void confirm_base(string yn);                    //确认选地
-public void confirm_build(string yn);                   //确认建造
-public void confirm_rebuild(string yn);                 //确认改建
-public void confirm_cession(string yn);                 //确认转让
-public void confirm_dismantle(string yn);               //确认拆除
-public void confirm_addvips(string yn);                 //确认扩限
-public void check_password(string passwd, object me);   //密码检测
-public void add_all_inquiry();                          //查询主题
-private int ask_cmds();                                 //指令帮助
-private int house_picture_user();                       //显示图样
-private int house_picture_bang();                       //显示图样
-private int house_picture_xian();                       //显示图样
-private void reset_all_static();                        //变量清零
-private int add_vip_count(string arg);                  //贵宾扩限
+public void confirm_type(string yn);                    //確認選型
+public void confirm_base(string yn);                    //確認選地
+public void confirm_build(string yn);                   //確認建造
+public void confirm_rebuild(string yn);                 //確認改建
+public void confirm_cession(string yn);                 //確認轉讓
+public void confirm_dismantle(string yn);               //確認拆除
+public void confirm_addvips(string yn);                 //確認擴限
+public void check_password(string passwd, object me);   //密碼檢測
+public void add_all_inquiry();                          //查詢主題
+private int ask_cmds();                                 //指令幫助
+private int house_picture_user();                       //顯示圖樣
+private int house_picture_bang();                       //顯示圖樣
+private int house_picture_xian();                       //顯示圖樣
+private void reset_all_static();                        //變量清零
+private int add_vip_count(string arg);                  //貴賓擴限
 
 static int the_value = 0;
 static int max_laodu = 0;
@@ -46,10 +46,10 @@ static mapping npc_data = ([]);
 
 void create()
 {
-    set_name("布侬", ({ "bu nong", "bu", "nong" }));
+    set_name("布儂", ({ "bu nong", "bu", "nong" }));
     set("nickname", HIC"居有其屋"NOR);
-    set("title", HIM"建筑精灵"NOR);
-    set("channel_id", "建筑精灵");
+    set("title", HIM"建築精靈"NOR);
+    set("channel_id", "建築精靈");
     set("gender", "女性");
     set("shen", 0);
     set("age", 20);
@@ -58,8 +58,8 @@ void create()
     set("wiz_tester", 1);
     set("combat_exp", 10000000);
     set("attitude", "friendly");
-    set("long", "\n这是一个年轻的女孩子，却一手操纵了「"HIY +
-                MUD_NAME + NOR"」的所有房屋建筑事宜。\n");
+    set("long", "\n這是一個年輕的女孩子，卻一手操縱了「"HIY +
+                MUD_NAME + NOR"」的所有房屋建築事宜。\n");
 
     setup();
     carry_object("/clone/misc/cloth")->wear();
@@ -69,14 +69,14 @@ void create()
 void init()
 {
     add_action("show_type", "showtype");              //房型列表
-    add_action("choice_type", "choosetype");          //选定房型
-    add_action("show_base", "showbase");              //地块列表
-    add_action("choice_base", "choosebase");          //选定地块
+    add_action("choice_type", "choosetype");          //選定房型
+    add_action("show_base", "showbase");              //地塊列表
+    add_action("choice_base", "choosebase");          //選定地塊
     add_action("build_house", "buildhouse");          //建造房屋
-    add_action("do_cession", "cession");              //房产转让
+    add_action("do_cession", "cession");              //房產轉讓
     add_action("do_dismantle", "dismantle");          //房屋拆除
     add_action("do_rebuild", "rebuild");              //原地改建
-    add_action("add_vip_count", "addvips");           //贵宾加量
+    add_action("add_vip_count", "addvips");           //貴賓加量
 }
 
 public void add_all_inquiry()
@@ -97,7 +97,7 @@ public void add_all_inquiry()
         }
         if(all_house[i]["type"] == "bang")
         {
-            type = "帮会驻地";
+            type = "幫會駐地";
             all_inquiry += ([ all_house[i]["name"] : (: house_picture_bang :)]);
             all_inquiry += ([ type : (: house_picture_bang :)]);
         }
@@ -111,7 +111,7 @@ public void add_all_inquiry()
 
     all_inquiry += ([
         "指令" : (: ask_cmds :),
-        "帮助" : (: ask_cmds :),
+        "幫助" : (: ask_cmds :),
         "cmds" : (: ask_cmds :),
         "help" : (: ask_cmds :),
     ]);
@@ -125,19 +125,19 @@ private int ask_cmds()
     me = this_player();
     ob = this_object();
 
-    message("vision", ob->name(1) + "在" + me->name() + "耳边小声的"
-                      "说了几句话。\n", environment(me), ({ me, ob }));
+    message("vision", ob->name(1) + "在" + me->name() + "耳邊小聲的"
+                      "說了幾句話。\n", environment(me), ({ me, ob }));
     tell_object(me, HIW@TEXT
 
         房型列表：showtype
-        地块列表：showbase
-        选定房型：choosetype <屋宅名称>
-        选定地块：choosebase <地块名称>
-        建造房屋：buildhouse <屋宅名称> on <地块名称>
-        贵宾扩限：   addvips <屋宅名称>
-        原址改建：   rebuild <原有屋宅名称>     （需验证原有屋宅编码）
-        房产转让：   cession <屋宅名称> to <对方ID> （需验证屋宅编码）
-        房屋拆除： dismantle <你的ID> <屋宅名称>    （需验证屋宅编码）
+        地塊列表：showbase
+        選定房型：choosetype <屋宅名稱>
+        選定地塊：choosebase <地塊名稱>
+        建造房屋：buildhouse <屋宅名稱> on <地塊名稱>
+        貴賓擴限：   addvips <屋宅名稱>
+        原址改建：   rebuild <原有屋宅名稱>     （需驗證原有屋宅編碼）
+        房產轉讓：   cession <屋宅名稱> to <對方ID> （需驗證屋宅編碼）
+        房屋拆除： dismantle <你的ID> <屋宅名稱>    （需驗證屋宅編碼）
 
 TEXT NOR);
     return 1;
@@ -150,8 +150,8 @@ public int show_type(object me)
     me = this_player();
     ob = this_object();
 
-    message("vision", ob->name(1) + "在" + me->name() + "耳边小声的"
-                      "说了几句话。\n", environment(me), ({ me, ob }));
+    message("vision", ob->name(1) + "在" + me->name() + "耳邊小聲的"
+                      "說了幾句話。\n", environment(me), ({ me, ob }));
     HOUSE_D->show_type(me);
     return 1;
 }
@@ -167,7 +167,7 @@ private int choice_type(string arg)
     ob = this_object();
 
     if(!arg || arg == "")
-        return notify_fail(HIW "指令格式：choosetype <屋宅名称>\n" NOR);
+        return notify_fail(HIW "指令格式：choosetype <屋宅名稱>\n" NOR);
 
     house_type = HOUSE_D->query_house_type();
     for(i = 0; i < sizeof(house_type); i++)
@@ -181,12 +181,12 @@ private int choice_type(string arg)
 
     if(!type)
     {
-        message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                       "耳边小声说了几句话。\n", environment(me),
+        message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                       "耳邊小聲說了幾句話。\n", environment(me),
                                                  ({ me, ob }));
-        tell_object(me, YEL + ob->name(1) + "摇头道：目前并无「"
-                        HIW + arg + NOR YEL"」供建造，请仔细查看"
-                            "屋宅类型(showtype)。\n" NOR);
+        tell_object(me, YEL + ob->name(1) + "搖頭道：目前並無「"
+                        HIW + arg + NOR YEL"」供建造，請仔細查看"
+                            "屋宅類型(showtype)。\n" NOR);
         return 1;
     }
 
@@ -194,12 +194,12 @@ private int choice_type(string arg)
     {
         if(!wizardp(me) && wizhood(me) != "(immortal)")
         {
-            message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                              "耳边小声说了几句话。\n", environment(me),
+            message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                              "耳邊小聲說了幾句話。\n", environment(me),
                                                         ({ me, ob }));
-            tell_object(me, YEL + ob->name(1) + "摇头道：阁下还没有位列"
+            tell_object(me, YEL + ob->name(1) + "搖頭道：閣下還沒有位列"
                                 "上界仙班，不能建造「" HIW + name + NOR
-                            YEL "」这种屋宅。\n" NOR);
+                            YEL "」這種屋宅。\n" NOR);
             return 1;
         }
     }
@@ -208,33 +208,33 @@ private int choice_type(string arg)
     {
         if(!wizardp(me) && me->query("bang/class") != 1)
         {
-            message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                              "耳边小声说了几句话。\n", environment(me),
+            message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                              "耳邊小聲說了幾句話。\n", environment(me),
                                                         ({ me, ob }));
-            tell_object(me, YEL + ob->name(1) + "摇头道：阁下尚未荣登"
-                                "帮主宝座，不能建造「" HIW + name + NOR
-                            YEL "」这种屋宅。\n" NOR);
+            tell_object(me, YEL + ob->name(1) + "搖頭道：閣下尚未榮登"
+                                "幫主寶座，不能建造「" HIW + name + NOR
+                            YEL "」這種屋宅。\n" NOR);
             return 1;
         }
 
         if(me->query("bank/gold") < value)
         {
-            message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                              "耳边小声说了几句话。\n", environment(me),
+            message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                              "耳邊小聲說了幾句話。\n", environment(me),
                                                         ({ me, ob }));
-            tell_object(me, YEL + ob->name(1) + "摇头道：阁下的存款不够"
-                                "支付「"HIW + name + NOR YEL"」这种屋宅"
-                                "的造价，去存够了钱再来吧。\n" NOR);
+            tell_object(me, YEL + ob->name(1) + "搖頭道：閣下的存款不夠"
+                                "支付「"HIW + name + NOR YEL"」這種屋宅"
+                                "的造價，去存夠了錢再來吧。\n" NOR);
             return 1;
         }
 
         if(!wizardp(me) && wizhood(me) != "(player)")
         {
-            message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                              "耳边小声说了几句话。\n", environment(me),
+            message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                              "耳邊小聲說了幾句話。\n", environment(me),
                                                         ({ me, ob }));
-            tell_object(me, YEL + ob->name(1) + "摇头道：阁下业已脱胎"
-                                "升仙，不用再追求这些凡俗之物了。\n" NOR);
+            tell_object(me, YEL + ob->name(1) + "搖頭道：閣下業已脫胎"
+                                "昇仙，不用再追求這些凡俗之物了。\n" NOR);
             return 1;
         }
     }
@@ -242,44 +242,44 @@ private int choice_type(string arg)
     if(type == "user")
     {
         if(me->query("house/user")
-            && !me->query_temp("building_house/rebuild"))   //并非改建
+            && !me->query_temp("building_house/rebuild"))   //並非改建
         {
-            message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                              "耳边小声说了几句话。\n", environment(me),
+            message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                              "耳邊小聲說了幾句話。\n", environment(me),
                                                         ({ me, ob }));
-            tell_object(me, YEL + ob->name(1) + "摇头道：阁下已经拥有一套"
+            tell_object(me, YEL + ob->name(1) + "搖頭道：閣下已經擁有一套"
                                 "玩家住宅了，不能再多造。\n" NOR);
             tell_object(me, YEL + ob->name(1) + "又笑道：如果想在原址改建，"
-                            "请使用" HIW " rebuild " NOR YEL "指令。\n" NOR);
+                            "請使用" HIW " rebuild " NOR YEL "指令。\n" NOR);
             return 1;
         }
 
         if(me->query("bank/gold") < value)
         {
-            message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                              "耳边小声说了几句话。\n", environment(me),
+            message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                              "耳邊小聲說了幾句話。\n", environment(me),
                                                         ({ me, ob }));
-            tell_object(me, YEL + ob->name(1) + "摇头道：阁下的存款不够"
-                                "支付「"HIW + name + NOR YEL"」这种屋宅"
-                                "的造价，去存够了钱再来吧。\n" NOR);
+            tell_object(me, YEL + ob->name(1) + "搖頭道：閣下的存款不夠"
+                                "支付「"HIW + name + NOR YEL"」這種屋宅"
+                                "的造價，去存夠了錢再來吧。\n" NOR);
             return 1;
         }
 
         if(!wizardp(me) && wizhood(me) != "(player)")
         {
-            message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                              "耳边小声说了几句话。\n", environment(me),
+            message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                              "耳邊小聲說了幾句話。\n", environment(me),
                                                         ({ me, ob }));
-            tell_object(me, YEL + ob->name(1) + "摇头道：阁下业已脱胎"
-                                "升仙，不用再追求这类凡俗之物了。\n" NOR);
+            tell_object(me, YEL + ob->name(1) + "搖頭道：閣下業已脫胎"
+                                "昇仙，不用再追求這類凡俗之物了。\n" NOR);
             return 1;
         }
     }
-    message("vision", ob->name(1) + "点了点头，在" + me->name() +
-                      "耳边小声说了几句话。\n", environment(me), ({ me, ob }));
-    tell_object(me, HIC "\n" + ob->name(1) + "点头道：" NOR);
+    message("vision", ob->name(1) + "點了點頭，在" + me->name() +
+                      "耳邊小聲說了幾句話。\n", environment(me), ({ me, ob }));
+    tell_object(me, HIC "\n" + ob->name(1) + "點頭道：" NOR);
     HOUSE_D->choice_type(arg, me);
-    tell_object(me, HIC "，确定吗(y/n)？\n" NOR);
+    tell_object(me, HIC "，確定嗎(y/n)？\n" NOR);
 	input_to("confirm_type", me);
     return 1;
 }
@@ -293,11 +293,11 @@ public void confirm_type(string yn)
     if(yn == "" || (yn[0] != 'y' && yn[0] != 'Y'))
     {
         me->delete_temp("building_house");
-        message_vision(YEL "$N想了想，对$n摇头道：我还是再看看吧。\n" NOR, me, ob);
+        message_vision(YEL "$N想了想，對$n搖頭道：我還是再看看吧。\n" NOR, me, ob);
         return;
     }
     else
-        message_vision(HIC "$N想了想，对$n点头道：我就选择这一种。\n" NOR, me, ob);
+        message_vision(HIC "$N想了想，對$n點頭道：我就選擇這一種。\n" NOR, me, ob);
     return;
 }
 
@@ -308,8 +308,8 @@ public int show_base(object me)
     me = this_player();
     ob = this_object();
 
-    message("vision", ob->name(1) + "在" + me->name() + "耳边小声的"
-                      "说了几句话。\n", environment(me), ({ me, ob }));
+    message("vision", ob->name(1) + "在" + me->name() + "耳邊小聲的"
+                      "說了幾句話。\n", environment(me), ({ me, ob }));
     HOUSE_D->show_base(me);
     return 1;
 }
@@ -326,15 +326,15 @@ private int choice_base(string arg)
     base = HOUSE_D->query_house_base();
 
     if(!arg || arg == "")
-        return notify_fail(HIW "指令格式：choosebase <地块名称>\n" NOR);
+        return notify_fail(HIW "指令格式：choosebase <地塊名稱>\n" NOR);
 
     if(!me->query_temp("building_house"))
     {
-        message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                       "耳边小声说了几句话。\n", environment(me),
+        message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                       "耳邊小聲說了幾句話。\n", environment(me),
                                                  ({ me, ob }));
-        tell_object(me, YEL + ob->name(1) + "摇头道：请先选择好你想要"
-                            "建造的屋宅类型(choosetype)。\n" NOR);
+        tell_object(me, YEL + ob->name(1) + "搖頭道：請先選擇好你想要"
+                            "建造的屋宅類型(choosetype)。\n" NOR);
         return 1;
     }
 
@@ -347,39 +347,39 @@ private int choice_base(string arg)
             room = get_object(BASE_DIR + base[i]["file"]);
             if(base[i]["type"] != type)
             {
-                message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                                  "耳边小声说了几句话。\n", environment(me),
+                message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                                  "耳邊小聲說了幾句話。\n", environment(me),
                                                             ({ me, ob }));
-                tell_object(me, YEL + ob->name(1) + "摇头道：「" HIW + arg +
-                            NOR YEL "」不适合建造你所选择的「" HIC + name +
-                            NOR YEL "」，请另选一处合适的地块。\n" NOR);
+                tell_object(me, YEL + ob->name(1) + "搖頭道：「" HIW + arg +
+                            NOR YEL "」不適合建造你所選擇的「" HIC + name +
+                            NOR YEL "」，請另選一處合適的地塊。\n" NOR);
                 return 1;
             }
             if(room->query("house_build") >= room->query("max_build"))
             {
-                message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                                  "耳边小声说了几句话。\n", environment(me),
+                message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                                  "耳邊小聲說了幾句話。\n", environment(me),
                                                             ({ me, ob }));
-                tell_object(me, YEL + ob->name(1) + "摇头道：「" HIW + arg +
-                            NOR YEL "」那里已经造了足够多的屋宅，请重新选一处"
-                                    "有空位的地块吧。\n" NOR);
+                tell_object(me, YEL + ob->name(1) + "搖頭道：「" HIW + arg +
+                            NOR YEL "」那裡已經造了足夠多的屋宅，請重新選一處"
+                                    "有空位的地塊吧。\n" NOR);
                 return 1;
             }
-            message("vision", ob->name(1) + "点了点头，在" + me->name() +
-                              "耳边小声说了几句话。\n", environment(me),
+            message("vision", ob->name(1) + "點了點頭，在" + me->name() +
+                              "耳邊小聲說了幾句話。\n", environment(me),
                                                         ({ me, ob }));
-            tell_object(me, HIC "\n" + ob->name(1) + "点头道：" NOR);
+            tell_object(me, HIC "\n" + ob->name(1) + "點頭道：" NOR);
             HOUSE_D->choice_base(arg, me);
-            tell_object(me, HIC "，确定吗(y/n)？\n" NOR);
+            tell_object(me, HIC "，確定嗎(y/n)？\n" NOR);
 	        input_to("confirm_base", me);
             return 1;
         }
     }
 
-    message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                      "耳边小声说了几句话。\n", environment(me), ({ me, ob }));
-    tell_object(me, YEL + ob->name(1) + "摇头道：没有「" HIW + arg +
-                NOR YEL"」这个地块，请仔细查看地块列表(showbase)。\n" NOR);
+    message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                      "耳邊小聲說了幾句話。\n", environment(me), ({ me, ob }));
+    tell_object(me, YEL + ob->name(1) + "搖頭道：沒有「" HIW + arg +
+                NOR YEL"」這個地塊，請仔細查看地塊列表(showbase)。\n" NOR);
     return 1;
 }
 
@@ -392,11 +392,11 @@ public void confirm_base(string yn)
     if(yn == "" || (yn[0] != 'y' && yn[0] != 'Y'))
     {
         me->delete_temp("building_house/base");
-        message_vision(YEL "$N想了想，对$n摇头道：我还是再看看吧。\n" NOR, me, ob);
+        message_vision(YEL "$N想了想，對$n搖頭道：我還是再看看吧。\n" NOR, me, ob);
         return;
     }
     else
-        message_vision(HIC "$N想了想，对$n点头道：我就选择这一处。\n" NOR, me, ob);
+        message_vision(HIC "$N想了想，對$n點頭道：我就選擇這一處。\n" NOR, me, ob);
     return;
 }
 
@@ -411,70 +411,70 @@ private int build_house(string arg)
     ob = this_object();
 
     if(!arg || sscanf(arg, "%s on %s", type, target) != 2)
-        return notify_fail(HIW "指令格式：buildhouse <屋宅类型> "
-                               "on <地块名称>\n" NOR);
+        return notify_fail(HIW "指令格式：buildhouse <屋宅類型> "
+                               "on <地塊名稱>\n" NOR);
 
     name = me->query_temp("building_house/name");
     base = me->query_temp("building_house/base");
     if(!name)
     {
-        message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                         "耳边小声说了几句话。\n", environment(me),
+        message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                         "耳邊小聲說了幾句話。\n", environment(me),
                                                    ({ me, ob }));
-        tell_object(me, YEL + ob->name(1) + "摇头道：阁下还没有选择好"
-                            "要建造的屋宅类型。\n" NOR);
+        tell_object(me, YEL + ob->name(1) + "搖頭道：閣下還沒有選擇好"
+                            "要建造的屋宅類型。\n" NOR);
         return 1;
     }
     if(!base)
     {
-        message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                         "耳边小声说了几句话。\n", environment(me),
+        message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                         "耳邊小聲說了幾句話。\n", environment(me),
                                                    ({ me, ob }));
-        tell_object(me, YEL + ob->name(1) + "摇头道：阁下还没有选择好"
-                            "要建造屋宅的地块。\n" NOR);
+        tell_object(me, YEL + ob->name(1) + "搖頭道：閣下還沒有選擇好"
+                            "要建造屋宅的地塊。\n" NOR);
         return 1;
     }
     if(type != name)
     {
-        message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                         "耳边小声说了几句话。\n", environment(me),
+        message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                         "耳邊小聲說了幾句話。\n", environment(me),
                                                    ({ me, ob }));
-        tell_object(me, YEL + ob->name(1) + "摇头道：阁下刚才好象选择"
-                            "的不是这种屋宅类型吧？\n" NOR);
+        tell_object(me, YEL + ob->name(1) + "搖頭道：閣下剛才好象選擇"
+                            "的不是這種屋宅類型吧？\n" NOR);
         return 1;
     }
     if(target != base["name"])
     {
-        message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                         "耳边小声说了几句话。\n", environment(me),
+        message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                         "耳邊小聲說了幾句話。\n", environment(me),
                                                    ({ me, ob }));
-        tell_object(me, YEL + ob->name(1) + "摇头道：阁下刚才好象选择"
-                            "的不是这个地块吧？\n" NOR);
+        tell_object(me, YEL + ob->name(1) + "搖頭道：閣下剛才好象選擇"
+                            "的不是這個地塊吧？\n" NOR);
         return 1;
     }
 
-    value = me->query_temp("building_house/val_t"); //房屋的造价
+    value = me->query_temp("building_house/val_t"); //房屋的造價
     if(!me->query_temp("rebuild_house"))
-        value += base["value"];                     //非改建需加宅基地价
-    me->set_temp("building_house/value", value);    //屋宅总造价
+        value += base["value"];                     //非改建需加宅基地價
+    me->set_temp("building_house/value", value);    //屋宅總造價
     if(me->query("bank/gold") < value)
     {
-        message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                         "耳边小声说了几句话。\n", environment(me),
+        message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                         "耳邊小聲說了幾句話。\n", environment(me),
                                                    ({ me, ob }));
-        tell_object(me, YEL + ob->name(1) + "摇头道：阁下的存款不够"
-                            "支付屋宅的造价共计 "WHT + value + YEL
-                            " 两黄金，去存够了钱再来吧。\n" NOR);
+        tell_object(me, YEL + ob->name(1) + "搖頭道：閣下的存款不夠"
+                            "支付屋宅的造價共計 "WHT + value + YEL
+                            " 兩黃金，去存夠了錢再來吧。\n" NOR);
         return 1;
     }
 
-    message("vision", ob->name(1) + "点了点头，在" + me->name() +
-                      "耳边小声说了几句话。\n", environment(me), ({ me, ob }));
-    tell_object(me, HIC + ob->name(1) + "点头道：你想在「"
+    message("vision", ob->name(1) + "點了點頭，在" + me->name() +
+                      "耳邊小聲說了幾句話。\n", environment(me), ({ me, ob }));
+    tell_object(me, HIC + ob->name(1) + "點頭道：你想在「"
                     HIW + target + HIC "」建造一套「"
-                    HIW + name + HIC"」，费用需 "
-                    HIY + value + " 两黄金"
-                    HIC "，确定吗(y/n)？\n" NOR);
+                    HIW + name + HIC"」，費用需 "
+                    HIY + value + " 兩黃金"
+                    HIC "，確定嗎(y/n)？\n" NOR);
 	input_to("confirm_build", me);
     return 1;
 }
@@ -487,14 +487,14 @@ public void confirm_build(string yn)
 
     if(yn == "" || (yn[0] != 'y' && yn[0] != 'Y'))
     {
-        message_vision(YEL "$N想了想，对$n摇头道：等我再考虑一下吧。\n" NOR, me, ob);
+        message_vision(YEL "$N想了想，對$n搖頭道：等我再考慮一下吧。\n" NOR, me, ob);
         return;
     }
-    message_vision(HIC "$N想了想，对$n点头道：就这样吧，我决定了。\n" NOR, me, ob);
-    me->set_temp("building_house/zhuan", "HOUSE_D");    //附加屋宅来源标志
-    me->set_temp("building_house/build", "build");      //附加建造标志以扣钱
+    message_vision(HIC "$N想了想，對$n點頭道：就這樣吧，我決定了。\n" NOR, me, ob);
+    me->set_temp("building_house/zhuan", "HOUSE_D");    //附加屋宅來源標誌
+    me->set_temp("building_house/build", "build");      //附加建造標誌以扣錢
 
-    if(me->query_temp("rebuild_house")) //原址改建前先拆除旧有屋宅
+    if(me->query_temp("rebuild_house")) //原址改建前先拆除舊有屋宅
     {
         HOUSE_D->do_dismantle(me, me->query_temp("building_house/rebuild"));
     }
@@ -503,7 +503,7 @@ public void confirm_build(string yn)
 
     if(me->query_temp("rebuild_house"))
     {
-        me->delete_temp("rebuild_house");   //标记删除，变量清零
+        me->delete_temp("rebuild_house");   //標記刪除，變量清零
         reset_all_static();
     }
 
@@ -518,14 +518,14 @@ private int do_rebuild(string arg)
     mapping build, house, base, old_vip;
 
     if(!arg || arg == "")
-        return notify_fail(HIW "指令格式：rebuild <原有屋宅名称>\n" NOR);
+        return notify_fail(HIW "指令格式：rebuild <原有屋宅名稱>\n" NOR);
 
     me = this_player();
     ob = this_object();
     build = me->query("house/build");
     if(!build)
     {
-        tell_object(me, YEL "你有建造过这种屋宅吗？\n" NOR);
+        tell_object(me, YEL "你有建造過這種屋宅嗎？\n" NOR);
         return 1;
     }
     if(mapp(build) && sizeof(build) > 0)
@@ -536,14 +536,14 @@ private int do_rebuild(string arg)
             if(build[key[i]] == arg)
             {
                 house = me->query("house/" + key[i]);
-                the_type = key[i];  //记录旧宅类型
-                the_name = arg;     //记录旧宅名称
+                the_type = key[i];  //記錄舊宅類型
+                the_name = arg;     //記錄舊宅名稱
                 break;
             }
         }
         if(!house)
         {
-            tell_object(me, YEL "你有建造过这种屋宅吗？\n" NOR);
+            tell_object(me, YEL "你有建造過這種屋宅嗎？\n" NOR);
             return 1;
         }
     }
@@ -556,35 +556,35 @@ private int do_rebuild(string arg)
             {
                 base = house[key[i]];
                 me->set_temp("building_house/base", base);
-                the_base = base["name"];   //记录宅基名称
-                the_value = house["value"]; //记录旧宅价值
+                the_base = base["name"];   //記錄宅基名稱
+                the_value = house["value"]; //記錄舊宅價值
                 room = get_object(house["entry"]);
-                max_laodu = (int)room->query("max_laodu");   //大门牢度
-                huyuan = get_object(room->query("huyuan"));    //查找护院
+                max_laodu = (int)room->query("max_laodu");   //大門牢度
+                huyuan = get_object(room->query("huyuan"));    //查找護院
                 huyuan->restore();
 //------------------------------------------------------------------------------------
-                npc_data["name"]   = huyuan->query("name");     //护院姓名
-                npc_data["long"]   = huyuan->query("long");     //护院描述
-                npc_data["gender"] = huyuan->query("gender");   //护院性别
+                npc_data["name"]   = huyuan->query("name");     //護院姓名
+                npc_data["long"]   = huyuan->query("long");     //護院描述
+                npc_data["gender"] = huyuan->query("gender");   //護院性別
 
-                if(stringp(huyuan->query("nickname")))          //护院外号
+                if(stringp(huyuan->query("nickname")))          //護院外號
                     npc_data["nickname"] = huyuan->query("nickname");
-                if(stringp(huyuan->query("title")))             //护院头衔
+                if(stringp(huyuan->query("title")))             //護院頭銜
                     npc_data["title"] = huyuan->query("title");
 
-                npc_data["level"] = huyuan->query("set_skill/level");   //护院等级
-                npc_data["skill"] = huyuan->query("generation_skill/code"); //护院技能
+                npc_data["level"] = huyuan->query("set_skill/level");   //護院等級
+                npc_data["skill"] = huyuan->query("generation_skill/code"); //護院技能
 
                 vips = huyuan->query("vip_limit");
                 if(vips <= 0)
                     vips = VIP_ORIGIN;
-                npc_data["vip_limit"] = vips;       //贵宾上限
+                npc_data["vip_limit"] = vips;       //貴賓上限
 
                 old_vip = huyuan->query("vip");
                 if(mapp(old_vip) && sizeof(old_vip) > 0)
                     npc_data["vip"] = old_vip;
 //------------------------------------------------------------------------------------
-                me->set_temp("building_house/rebuild", the_type);   //作上可改建标记
+                me->set_temp("building_house/rebuild", the_type);   //作上可改建標記
                 break;
             }
         }
@@ -592,11 +592,11 @@ private int do_rebuild(string arg)
 
     if(!me->query_temp("building_house/name"))
     {
-        message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                       "耳边小声说了几句话。\n", environment(me),
+        message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                       "耳邊小聲說了幾句話。\n", environment(me),
                                                  ({ me, ob }));
-        tell_object(me, YEL + ob->name(1) + "摇头道：改建前请先选择好你想要"
-                            "建造的屋宅类型(choosetype)。\n" NOR);
+        tell_object(me, YEL + ob->name(1) + "搖頭道：改建前請先選擇好你想要"
+                            "建造的屋宅類型(choosetype)。\n" NOR);
         return 1;
     }
 
@@ -605,33 +605,33 @@ private int do_rebuild(string arg)
     room = get_object(base["file"]);
     if(name == arg)
     {
-        message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                          "耳边小声说了几句话。\n", environment(me),
+        message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                          "耳邊小聲說了幾句話。\n", environment(me),
                                                     ({ me, ob }));
-        tell_object(me, sprintf(YEL "%s摇头道：你已经建造在「" HIW "%s" NOR
+        tell_object(me, sprintf(YEL "%s搖頭道：你已經建造在「" HIW "%s" NOR
                                 YEL "」上的屋宅不就是「" HIC "%s" NOR
-                                YEL "」这种房型吗？\n" NOR,
+                                YEL "」這種房型嗎？\n" NOR,
                                 ob->name(1), base["name"], name));
         return 1;
     }
     if(room->query("can_build") != type)
     {
-        message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                          "耳边小声说了几句话。\n", environment(me),
+        message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                          "耳邊小聲說了幾句話。\n", environment(me),
                                                     ({ me, ob }));
-        tell_object(me, sprintf(YEL "%s摇头道：你原有的宅基「" HIW "%s" NOR
-                                YEL "」不适合建造你选择改建的「" HIC "%s" NOR
-                                YEL "」，请另选合适的房型。\n" NOR,
+        tell_object(me, sprintf(YEL "%s搖頭道：你原有的宅基「" HIW "%s" NOR
+                                YEL "」不適合建造你選擇改建的「" HIC "%s" NOR
+                                YEL "」，請另選合適的房型。\n" NOR,
                                     ob->name(1), base["name"], name));
         return 1;
     }
 /*
 //-------------------------------------------------------------------------------
-    tell_object(me, sprintf("\n\n\t旧宅名称：%s\n"
-                            "\t旧宅类型：%s\n"
-                            "\t旧宅地基：%s\n"
-                            "\t旧宅价值：%d\n"
-                            "\t大门牢度：%d\n",
+    tell_object(me, sprintf("\n\n\t舊宅名稱：%s\n"
+                            "\t舊宅類型：%s\n"
+                            "\t舊宅地基：%s\n"
+                            "\t舊宅價值：%d\n"
+                            "\t大門牢度：%d\n",
                             the_name, the_type, the_base, the_value, max_laodu));
     msg = "";
     key = sort_array(keys(npc_data), 1);
@@ -648,12 +648,12 @@ private int do_rebuild(string arg)
     tell_object(me, msg);
 //-------------------------------------------------------------------------------
 */
-    message("vision", ob->name(1) + "点了点头，在" + me->name() +
-                      "耳边小声说了几句话。\n", environment(me),
+    message("vision", ob->name(1) + "點了點頭，在" + me->name() +
+                      "耳邊小聲說了幾句話。\n", environment(me),
                                                 ({ me, ob }));
-    tell_object(me, sprintf(HIC "\n%s点头道：你打算改建在「" HIW "%s"
-                            HIC "」上所拥有的「" HIY "%s"
-                            HIC "」，确定吗(y/n)？\n" NOR,
+    tell_object(me, sprintf(HIC "\n%s點頭道：你打算改建在「" HIW "%s"
+                            HIC "」上所擁有的「" HIY "%s"
+                            HIC "」，確定嗎(y/n)？\n" NOR,
                                 ob->name(1), base["name"], the_name));
 
     input_to("confirm_rebuild", me);
@@ -669,19 +669,19 @@ public void confirm_rebuild(string yn)
     if(yn == "" || (yn[0] != 'y' && yn[0] != 'Y'))
     {
         reset_all_static();
-        message_vision(YEL "$N想了想，对$n摇头道：等我再考虑一下吧。\n" NOR, me, ob);
+        message_vision(YEL "$N想了想，對$n搖頭道：等我再考慮一下吧。\n" NOR, me, ob);
         return;
     }
-    message_vision(HIC "$N想了想，对$n点头道：就这样吧，我决定了。\n" NOR, me, ob);
+    message_vision(HIC "$N想了想，對$n點頭道：就這樣吧，我決定了。\n" NOR, me, ob);
 //--------------------------------------------------------------------
-    me->set_temp("rebuild_house/the_base", the_base);   //记录旧宅地基
-    me->set_temp("rebuild_house/the_name", the_name);   //记录旧宅名称
-    me->set_temp("rebuild_house/the_type", the_type);   //记录旧宅类型
-    me->set_temp("rebuild_house/the_value", the_value); //记录旧宅价值
-    me->set_temp("rebuild_house/max_laodu", max_laodu); //记录大门牢度
-    me->set_temp("rebuild_house/npc_data", npc_data);   //记录护院数据
+    me->set_temp("rebuild_house/the_base", the_base);   //記錄舊宅地基
+    me->set_temp("rebuild_house/the_name", the_name);   //記錄舊宅名稱
+    me->set_temp("rebuild_house/the_type", the_type);   //記錄舊宅類型
+    me->set_temp("rebuild_house/the_value", the_value); //記錄舊宅價值
+    me->set_temp("rebuild_house/max_laodu", max_laodu); //記錄大門牢度
+    me->set_temp("rebuild_house/npc_data", npc_data);   //記錄護院數據
 //--------------------------------------------------------------------
-    tell_object(me, HIW "请输入原有屋宅编码：" NOR);
+    tell_object(me, HIW "請輸入原有屋宅編碼：" NOR);
     input_to("check_password", 1, me);
     return;
 }
@@ -697,22 +697,22 @@ private int do_cession(string arg)
     ob = this_object();
 
     if(!arg || sscanf(arg, "%s to %s", name, target) != 2)
-        return notify_fail(HIW "指令格式：cession <屋宅名称> "
-                               "to <被转让者ID>\n" NOR);
+        return notify_fail(HIW "指令格式：cession <屋宅名稱> "
+                               "to <被轉讓者ID>\n" NOR);
 
     build = me->query("house/build");
     if(sizeof(build) == 0)
-        return notify_fail(YEL "你有建造过屋宅吗？\n" NOR);
+        return notify_fail(YEL "你有建造過屋宅嗎？\n" NOR);
 
     key = sort_array(keys(build), 1);
     if(target == me->query("id"))
-        return notify_fail(YEL "转让给自己？搞错了吧。\n" NOR);
+        return notify_fail(YEL "轉讓給自己？搞錯了吧。\n" NOR);
 
     if(!objectp(who = present(target, environment(me)))
         || !userp(who)
         || !interactive(who)
         || !who->is_livings())
-            return notify_fail(YEL "这里没有这个人。\n" NOR);
+            return notify_fail(YEL "這裡沒有這個人。\n" NOR);
 
     for(i = 0; i < sizeof(key); i++)
     {
@@ -724,22 +724,22 @@ private int do_cession(string arg)
             {
                 if(!wizardp(me))
                 {
-                    message("vision", ob->name(1) + "摇了摇头，在"
-                                    + me->name() + "耳边小声说了几句话。\n",
+                    message("vision", ob->name(1) + "搖了搖頭，在"
+                                    + me->name() + "耳邊小聲說了幾句話。\n",
                                             environment(me), ({ me, ob }));
-                    tell_object(me, YEL + ob->name(1) + "摇头道：「"
-                                    HIW + name + NOR YEL"」这种屋宅"
-                                        "是不可以转让的。\n" NOR);
+                    tell_object(me, YEL + ob->name(1) + "搖頭道：「"
+                                    HIW + name + NOR YEL"」這種屋宅"
+                                        "是不可以轉讓的。\n" NOR);
                     return 1;
                 }
 
-                message("vision", ob->name(1) + "点了点头，在" + me->name() +
-                                  "耳边小声说了几句话。\n", environment(me),
+                message("vision", ob->name(1) + "點了點頭，在" + me->name() +
+                                  "耳邊小聲說了幾句話。\n", environment(me),
                                                             ({ me, ob }));
-                tell_object(me, HIC + ob->name(1) + "点头道：你所拥有的「"
-                                HIY + name + HIC "」将被转让给『"
+                tell_object(me, HIC + ob->name(1) + "點頭道：你所擁有的「"
+                                HIY + name + HIC "」將被轉讓給『"
                                 HIW + who->name() +
-                                HIC "』，确定吗(y/n)？\n" NOR);
+                                HIC "』，確定嗎(y/n)？\n" NOR);
                 me->set_temp("cession_house/type", key[i]);
                 me->set_temp("cession_house/name", who->query("id"));
                 input_to("confirm_cession", me);
@@ -750,21 +750,21 @@ private int do_cession(string arg)
             {
                 if(!wizardp(me) && wizhood(who) != "(player)")
                 {
-                    message("vision", ob->name(1) + "摇了摇头，在"
-                                    + me->name() + "耳边小声说了几句话。\n",
+                    message("vision", ob->name(1) + "搖了搖頭，在"
+                                    + me->name() + "耳邊小聲說了幾句話。\n",
                                             environment(me), ({ me, ob }));
-                    tell_object(me, YEL + "\n" + ob->name(1) + "摇头道："
-                                        + who->name() + "已经不再需要"
-                                        "这些凡俗事物了。\n" NOR);
+                    tell_object(me, YEL + "\n" + ob->name(1) + "搖頭道："
+                                        + who->name() + "已經不再需要"
+                                        "這些凡俗事物了。\n" NOR);
                     return 1;
                 }
-                message("vision", ob->name(1) + "点了点头，在" + me->name() +
-                                  "耳边小声说了几句话。\n", environment(me),
+                message("vision", ob->name(1) + "點了點頭，在" + me->name() +
+                                  "耳邊小聲說了幾句話。\n", environment(me),
                                                             ({ me, ob }));
-                tell_object(me, HIC + ob->name(1) + "点头道：你所拥有的「"
-                                HIY + name + HIC "」将被转让给『"
+                tell_object(me, HIC + ob->name(1) + "點頭道：你所擁有的「"
+                                HIY + name + HIC "」將被轉讓給『"
                                 HIW + who->name() +
-                                HIC "』，确定吗(y/n)？\n" NOR);
+                                HIC "』，確定嗎(y/n)？\n" NOR);
                 me->set_temp("cession_house/type", key[i]);
                 me->set_temp("cession_house/name", who->query("id"));
                 input_to("confirm_cession", me);
@@ -773,10 +773,10 @@ private int do_cession(string arg)
         }
     }
 
-    message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                      "耳边小声说了几句话。\n", environment(me), ({ me, ob }));
-    tell_object(me, YEL + "\n" + ob->name(1) + "摇头道：你有建造过「"
-                    HIW + name + NOR YEL"」这种屋宅吗？\n" NOR);
+    message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                      "耳邊小聲說了幾句話。\n", environment(me), ({ me, ob }));
+    tell_object(me, YEL + "\n" + ob->name(1) + "搖頭道：你有建造過「"
+                    HIW + name + NOR YEL"」這種屋宅嗎？\n" NOR);
     return 1;
 }
 
@@ -789,13 +789,13 @@ public void confirm_cession(string yn)
 
     if(yn == "" || (yn[0] != 'y' && yn[0] != 'Y'))
     {
-        message_vision(YEL "$N想了想，对$n摇头道：等我再考虑一下吧。\n" NOR, me, ob);
+        message_vision(YEL "$N想了想，對$n搖頭道：等我再考慮一下吧。\n" NOR, me, ob);
         me->delete_temp("cession_house");
         return;
     }
 
-    message_vision(HIC "$N想了想，对$n点头道：就这样吧，我决定了。\n" NOR, me, ob);
-    tell_object(me, HIW "请输入屋宅编码：" NOR);
+    message_vision(HIC "$N想了想，對$n點頭道：就這樣吧，我決定了。\n" NOR, me, ob);
+    tell_object(me, HIW "請輸入屋宅編碼：" NOR);
     input_to("check_password", 1, me);
     return;
 }
@@ -811,14 +811,14 @@ private int do_dismantle(string arg)
     ob = this_object();
 
     if(!arg || sscanf(arg, "%s %s", who, name) != 2)
-        return notify_fail(HIW "指令格式：dismantle <你的ID> <屋宅类型>\n" NOR);
+        return notify_fail(HIW "指令格式：dismantle <你的ID> <屋宅類型>\n" NOR);
 
     build = me->query("house/build");
     if(sizeof(build) == 0)
-        return notify_fail(YEL "你有建造过屋宅吗？\n" NOR);
+        return notify_fail(YEL "你有建造過屋宅嗎？\n" NOR);
 
     if(who != me->query("id"))
-        return notify_fail(YEL "你只能拆除自己所拥有的屋宅。\n" NOR);
+        return notify_fail(YEL "你只能拆除自己所擁有的屋宅。\n" NOR);
 
     key   = sort_array(keys(build), 1);
     for(i = 0; i < sizeof(key); i++)
@@ -831,20 +831,20 @@ private int do_dismantle(string arg)
             {
                 if(!wizardp(me))
                 {
-                    message("vision", ob->name(1) + "摇了摇头，在"
-                                    + me->name() + "耳边小声说了几句话。\n",
+                    message("vision", ob->name(1) + "搖了搖頭，在"
+                                    + me->name() + "耳邊小聲說了幾句話。\n",
                                             environment(me), ({ me, ob }));
-                    tell_object(me, YEL + ob->name(1) + "摇头道：「"
-                                    HIW + name + NOR YEL"」这种屋宅"
+                    tell_object(me, YEL + ob->name(1) + "搖頭道：「"
+                                    HIW + name + NOR YEL"」這種屋宅"
                                         "是不可以拆除的。\n" NOR);
                     return 1;
                 }
-                message("vision", ob->name(1) + "点了点头，在" + me->name() +
-                                  "耳边小声说了几句话。\n", environment(me),
+                message("vision", ob->name(1) + "點了點頭，在" + me->name() +
+                                  "耳邊小聲說了幾句話。\n", environment(me),
                                                             ({ me, ob }));
-                tell_object(me, HIC + ob->name(1) + "点头道：你所拥有的「"
-                                HIY + name + HIC "」将被拆除，"
-                                    "确定吗(y/n)？\n" NOR);
+                tell_object(me, HIC + ob->name(1) + "點頭道：你所擁有的「"
+                                HIY + name + HIC "」將被拆除，"
+                                    "確定嗎(y/n)？\n" NOR);
                me->set_temp("dismantle_house", key[i]);
                 input_to("confirm_dismantle", me);
                 return 1;
@@ -852,12 +852,12 @@ private int do_dismantle(string arg)
 
             if(key[i] == "user")
             {
-                message("vision", ob->name(1) + "点了点头，在" + me->name() +
-                                  "耳边小声说了几句话。\n", environment(me),
+                message("vision", ob->name(1) + "點了點頭，在" + me->name() +
+                                  "耳邊小聲說了幾句話。\n", environment(me),
                                                             ({ me, ob }));
-                tell_object(me, HIC + ob->name(1) + "点头道：你所拥有的「"
-                                HIY + name + HIC "」将被拆除，"
-                                    "确定吗(y/n)？\n" NOR);
+                tell_object(me, HIC + ob->name(1) + "點頭道：你所擁有的「"
+                                HIY + name + HIC "」將被拆除，"
+                                    "確定嗎(y/n)？\n" NOR);
 	            me->set_temp("dismantle_house", key[i]);
 	            input_to("confirm_dismantle", me);
                 return 1;
@@ -865,10 +865,10 @@ private int do_dismantle(string arg)
         }
     }
 
-    message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                      "耳边小声说了几句话。\n", environment(me), ({ me, ob }));
-    tell_object(me, YEL + "\n" + ob->name(1) + "摇头道：你有建造过「"
-                    HIW + name + NOR YEL"」这种屋宅吗？\n" NOR);
+    message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                      "耳邊小聲說了幾句話。\n", environment(me), ({ me, ob }));
+    tell_object(me, YEL + "\n" + ob->name(1) + "搖頭道：你有建造過「"
+                    HIW + name + NOR YEL"」這種屋宅嗎？\n" NOR);
     return 1;
 }
 
@@ -880,12 +880,12 @@ public void confirm_dismantle(string yn)
 
     if(yn == "" || (yn[0] != 'y' && yn[0] != 'Y'))
     {
-        message_vision(YEL "$N想了想，对$n摇头道：等我再考虑一下吧。\n" NOR, me, ob);
+        message_vision(YEL "$N想了想，對$n搖頭道：等我再考慮一下吧。\n" NOR, me, ob);
         me->delete_temp("dismantle_house");
         return;
     }
-    message_vision(HIC "$N想了想，对$n点头道：就这样吧，我决定了。\n" NOR, me, ob);
-    tell_object(me, HIW "请输入屋宅编码：" NOR);
+    message_vision(HIC "$N想了想，對$n點頭道：就這樣吧，我決定了。\n" NOR, me, ob);
+    tell_object(me, HIW "請輸入屋宅編碼：" NOR);
     input_to("check_password", 1, me);
     return;
 }
@@ -912,7 +912,7 @@ public void check_password(string passwd, object me)
     }
     else
     {
-        tell_object(me, "类型不明，检测中止。\n");
+        tell_object(me, "類型不明，檢測中止。\n");
         return;
     }
 
@@ -920,7 +920,7 @@ public void check_password(string passwd, object me)
     pass = house["pass"];
     if(passwd != pass)
     {
-        tell_object(me, HIR "密码错误！\n" NOR);
+        tell_object(me, HIR "密碼錯誤！\n" NOR);
         reset_all_static();
         return;
     }
@@ -931,13 +931,13 @@ public void check_password(string passwd, object me)
        temp = me->query_temp("cession_house");
         arg  = temp["type"];
 
-        tell_object(me, HIG "密码正确，开始转让......\n\n" NOR);
+        tell_object(me, HIG "密碼正確，開始轉讓......\n\n" NOR);
         if(!objectp(who = present(temp["name"], environment(me)))
             || !userp(who)
             || !interactive(who)
             || !who->is_livings())
         {
-            tell_object(me, YEL "转让失败，这里没有这个人。\n" NOR);
+            tell_object(me, YEL "轉讓失敗，這裡沒有這個人。\n" NOR);
             return;
         }
 
@@ -949,7 +949,7 @@ public void check_password(string passwd, object me)
         if(me->query_temp("dismantle_house"))
     {
         arg = me->query_temp("dismantle_house");
-        tell_object(me, HIG "密码正确，开始拆除......\n\n" NOR);
+        tell_object(me, HIG "密碼正確，開始拆除......\n\n" NOR);
         HOUSE_D->do_dismantle(me, arg);
         me->delete_temp("dismantle_house");
         return;
@@ -957,14 +957,14 @@ public void check_password(string passwd, object me)
     else
         if(me->query_temp("rebuild_house"))
     {
-        tell_object(me, HIG "密码正确，开始改建......\n\n" NOR);
+        tell_object(me, HIG "密碼正確，開始改建......\n\n" NOR);
         build_house(sprintf("%s on %s",
                         me->query_temp("building_house/name"), the_base));
         return;
     }
     else
     {
-        tell_object(me, "类型不明，操作中止。\n");
+        tell_object(me, "類型不明，操作中止。\n");
         return;
     }
 }
@@ -987,14 +987,14 @@ private int add_vip_count(string arg)
     string *key, msg;
 
     if(!arg || arg == "")
-        return notify_fail(HIW "指令格式：addvips <屋宅名称>\n" NOR);
+        return notify_fail(HIW "指令格式：addvips <屋宅名稱>\n" NOR);
 
     me = this_player();
     ob = this_object();
     build = me->query("house/build");
     if(!build)
     {
-        tell_object(me, YEL "你有建造过这种屋宅吗？\n" NOR);
+        tell_object(me, YEL "你有建造過這種屋宅嗎？\n" NOR);
         return 1;
     }
     if(mapp(build) && sizeof(build) > 0)
@@ -1011,14 +1011,14 @@ private int add_vip_count(string arg)
         }
         if(!house)
         {
-            tell_object(me, YEL "你有建造过这种屋宅吗？\n" NOR);
+            tell_object(me, YEL "你有建造過這種屋宅嗎？\n" NOR);
             return 1;
         }
     }
     if(mapp(house) && sizeof(house) > 0)
     {
         room = get_object(house["entry"]);
-        huyuan = get_object(room->query("huyuan"));    //查找护院
+        huyuan = get_object(room->query("huyuan"));    //查找護院
         huyuan->restore();
         how = huyuan->query("vip_limit");
         if((int)how <= 0)
@@ -1027,33 +1027,33 @@ private int add_vip_count(string arg)
 
     if(how >= VIP_LIMIT)
     {
-        message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                            "耳边小声说了几句话。\n", environment(me),
+        message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                            "耳邊小聲說了幾句話。\n", environment(me),
                                                     ({ me, ob }));
-        tell_object(me, sprintf(YEL "\n%s摇头道：你的「%s」当前的贵宾限额"
-                                    "已达%s位，无法再扩充了。\n" NOR,
+        tell_object(me, sprintf(YEL "\n%s搖頭道：你的「%s」當前的貴賓限額"
+                                    "已達%s位，無法再擴充了。\n" NOR,
                                         ob->name(1), arg, chinese_number(how)));
         return 1;
     }
 
     if(me->query("bank/gold") < VIP_VALUE)
     {
-        message("vision", ob->name(1) + "摇了摇头，在" + me->name() +
-                            "耳边小声说了几句话。\n", environment(me),
+        message("vision", ob->name(1) + "搖了搖頭，在" + me->name() +
+                            "耳邊小聲說了幾句話。\n", environment(me),
                                                     ({ me, ob }));
-        tell_object(me, sprintf(YEL "\n%s摇头道：阁下的存款不够支付扩充贵宾限额"
-                                    "的费用，去存够%s两黄金再来吧。\n" NOR,
+        tell_object(me, sprintf(YEL "\n%s搖頭道：閣下的存款不夠支付擴充貴賓限額"
+                                    "的費用，去存夠%s兩黃金再來吧。\n" NOR,
                                         ob->name(1), chinese_number(VIP_VALUE)));
         return 1;
     }
 
-    message("vision", ob->name(1) + "点了点头，在" + me->name() +
-                      "耳边小声说了几句话。\n", environment(me),
+    message("vision", ob->name(1) + "點了點頭，在" + me->name() +
+                      "耳邊小聲說了幾句話。\n", environment(me),
                                                 ({ me, ob }));
-    tell_object(me, sprintf(HIC "\n%s点头道：你的「%s」当前贵宾限额是 " HIW "%s"
-                            HIC " 位，\n你想花费" HIY "%s"
-                            HIC "两黄金将贵宾限额扩充到 "
-                            HIG "%s" HIC " 位吗(y/n)？\n" NOR,
+    tell_object(me, sprintf(HIC "\n%s點頭道：你的「%s」當前貴賓限額是 " HIW "%s"
+                            HIC " 位，\n你想花費" HIY "%s"
+                            HIC "兩黃金將貴賓限額擴充到 "
+                            HIG "%s" HIC " 位嗎(y/n)？\n" NOR,
                                 ob->name(1), arg,
                                 chinese_number(how),
                                 chinese_number(VIP_VALUE),
@@ -1073,11 +1073,11 @@ public void confirm_addvips(string yn)
     if(yn == "" || (yn[0] != 'y' && yn[0] != 'Y'))
     {
         me->delete_temp("house_addvips");
-        message_vision(YEL "$N想了想，对$n摇头道：等我再考虑一下吧。\n" NOR, me, ob);
+        message_vision(YEL "$N想了想，對$n搖頭道：等我再考慮一下吧。\n" NOR, me, ob);
         return;
     }
 
-    message_vision(HIC "$N想了想，对$n点头道：就这样吧，我决定了。\n" NOR, me, ob);
+    message_vision(HIC "$N想了想，對$n點頭道：就這樣吧，我決定了。\n" NOR, me, ob);
     HOUSE_D->add_vip_limit(VIP_VALUE, me, ob);
     return;
 }

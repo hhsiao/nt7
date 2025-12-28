@@ -1,4 +1,4 @@
-// Inherit: insect.c 毒虫
+// Inherit: insect.c 毒蟲
 
 #include <ansi.h>
 inherit NPC;
@@ -9,7 +9,7 @@ void setup()
 {
         mapping p;
 
-        // 毒虫具有毒性等级和毒量
+        // 毒蟲具有毒性等級和毒量
 
         p = query("insect_poison");
         if (! p)
@@ -62,11 +62,11 @@ varargs void revive(int quiet)
 
         if (env)
         {
-                tell_object(env, "你觉得身上有点不对劲，好像是"
-                            "跑掉了什么东西。\n");
+                tell_object(env, "你覺得身上有點不對勁，好像是"
+                            "跑掉了什麼東西。\n");
         } else
         {
-                message_vision("$N醒了过来，抖了抖身体，呼啦一下子就消失了。\n",
+                message_vision("$N醒了過來，抖了抖身體，呼啦一下子就消失了。\n",
                                this_object());
                 return;
         }

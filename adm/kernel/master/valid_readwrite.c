@@ -1,21 +1,21 @@
 // This program is a part of NT MudLIB
 
 /*
-名称：
-        valid_read - 检查一个人是否有权读取一个档案。
-语法：
+名稱：
+        valid_read - 檢查一個人是否有權讀取一個檔案。
+語法：
         int valid_read( string file, object user, string func );
 
-        整数 valid_read( 字串 档案, 物件 使用者, 字串 函式 );
+        整數 valid_read( 字串 檔案, 物件 使用者, 字串 函式 );
 用法：
-        每次当一个物件尝试读取档案时，驱动程式会呼叫主宰物件的 valid_read()
-        以检查是否允许读取。此函式的参数为档案名称、尝试读取此档的物件、呼
-        叫的函式名称。如果 valid_read() 传回非零值，则准许读取。
-参考：
+        每次當一個物件嘗試讀取檔案時，驅動程式會呼叫主宰物件的 valid_read()
+        以檢查是否允許讀取。此函式的參數為檔案名稱、嘗試讀取此檔的物件、呼
+        叫的函式名稱。如果 valid_read() 傳回非零值，則准許讀取。
+參考：
         valid_write
 作者：
         Tim Hollebeek  Beek@ZorkMUD, Lima Bean, IdeaExchange, and elsewhere
-翻译：
+翻譯：
         spock@muds.net          2000.May.21.    v22 版
 */
 
@@ -31,22 +31,22 @@ int valid_read(string file, mixed user, string func)
 }
 
 /*
-名称：
-        valid_write - 检查一个物件是否有权写入一个档案。
-语法：
+名稱：
+        valid_write - 檢查一個物件是否有權寫入一個檔案。
+語法：
         int valid_write( string file, object ob, string func );
 
-        整数 valid_write( 字串 档案, 物件 物件, 字串 函式 );
+        整數 valid_write( 字串 檔案, 物件 物件, 字串 函式 );
 用法：
-        每次当一个物件尝试写入档案时，驱动程式会呼叫主宰物件中的
-        valid_write() 以检查是否允许写入。此函式的参数为档案名称、尝试写入
-        此档的物件、呼叫的函式名称〈通常是被使用的外部函式〉。如果
-        valid_write() 传回非零值，则准许写入。
-参考：
+        每次當一個物件嘗試寫入檔案時，驅動程式會呼叫主宰物件中的
+        valid_write() 以檢查是否允許寫入。此函式的參數為檔案名稱、嘗試寫入
+        此檔的物件、呼叫的函式名稱〈通常是被使用的外部函式〉。如果
+        valid_write() 傳回非零值，則准許寫入。
+參考：
         valid_read
 作者：
         Tim Hollebeek  Beek@ZorkMUD, Lima Bean, IdeaExchange, and elsewhere
-翻译：
+翻譯：
         spock@muds.net          2000.May.21.    v22 版
 */
 

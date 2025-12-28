@@ -6,8 +6,8 @@ void setup()
 {
         set_name("拉拉[2;37;0m[2;37;0m", ({"wodegou"}));        
         set("gender", "男性");                
-        set("long", "贪婪[2;37;0m
-它是永生不死的魔幻兽。
+        set("long", "貪婪[2;37;0m
+它是永生不死的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

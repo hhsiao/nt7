@@ -12,14 +12,14 @@ int query_mine_value();
 
 void create(int arg)
 {
-        set_name("精铁锭", ({ "extract iron ingot" }) );
+        set_name("精鐵錠", ({ "extract iron ingot" }) );
         set_weight(0);
 
         if(intp(arg) && (arg >= 100))
                 set_weight(arg);
 
         set("value", evaluate((: query_mine_value :),this_object()) );
-        set("unit", "块");
+        set("unit", "塊");
         set("long", evaluate((: query_long :), this_object()));
 }
 
@@ -38,20 +38,20 @@ string query_selling_msg()
         int w = query_weight();
 
         if(w < 100)
-                return "一钱不值";
+                return "一錢不值";
         else
-                return sprintf("%d 两重", w/100);
+                return sprintf("%d 兩重", w/100);
 }
 
 string query_long()
 {
         int w = query_weight();
-        string l = "这是一块精铁锭，";
+        string l = "這是一塊精鐵錠，";
 
         if(w < 100)
-                l += "看起来\n一钱不值。\n";
+                l += "看起來\n一錢不值。\n";
         else
-                l += sprintf("大约\n有 %d 两重。\n", w/100);
+                l += sprintf("大約\n有 %d 兩重。\n", w/100);
 
         return l;
 }

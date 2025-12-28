@@ -7,11 +7,11 @@
 
 void create()
 {
-        set("short", "右厢房");
+        set("short", "右廂房");
 	set ("long", @LONG
-这是海南岛的右厢房，是客人居住的地方。虽然不算奢华，却也
-布置得非常舒适。一张床整齐干净，没有多少折纹，而窗帘厚大结实，
-使屋内光线恰到好处。 
+這是海南島的右廂房，是客人居住的地方。雖然不算奢華，卻也
+佈置得非常舒適。一張床整齊乾淨，沒有多少折紋，而窗簾厚大結實，
+使屋內光線恰到好處。 
 LONG );
 
         set("exits", ([
@@ -21,13 +21,13 @@ LONG );
         set("sleep_room", 1);
         set("no_fight", 1);
 
-        create_door("east", "木门", "west", DOOR_CLOSED);
+        create_door("east", "木門", "west", DOOR_CLOSED);
 
         setup();
 
-        set("room_owner", "灭下");
-        set("room_name", "海南岛");
+        set("room_owner", "滅下");
+        set("room_name", "海南島");
         set("room_id", "sky");
         set("room_owner_id", "sky");
-        set("room_position", "南海之滨");
+        set("room_position", "南海之濱");
 }

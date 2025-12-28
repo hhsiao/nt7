@@ -18,7 +18,7 @@ int main(object me, string arg)
         seteuid(geteuid(me));
 
         if (! arg)
-                return notify_fail("指令格式：rd <目录|文件名>\n");
+                return notify_fail("指令格式：rd <目錄|文件名>\n");
 
         if (file_size(arg) == -1)
                 arg = resolve_path(query("cwd", me), arg);
@@ -26,7 +26,7 @@ int main(object me, string arg)
         filename = arg;
 
         if (! SECURITY_D->valid_write(filename, me))
-                return notify_fail("没有足够的读写权限。\n");
+                return notify_fail("沒有足夠的讀寫權限。\n");
 
         if (file_size(filename) > 0)
         {
@@ -35,7 +35,7 @@ int main(object me, string arg)
 
         if (file_size(filename) == -2 && filename[strlen(filename) - 1] != '/') filename += "/";
         if (file_size(filename) != -2)
-                return notify_fail("没有这个文件或目录。\n");
+                return notify_fail("沒有這個文件或目錄。\n");
 
         result = deep_file_list(filename);
 
@@ -53,7 +53,7 @@ int main(object me, string arg)
                                 n++;
                 }
         }
-        write("目录" + filename + "总共有" + n + "个文件被成功转换。\n" NOR);
+        write("目錄" + filename + "總共有" + n + "個文件被成功轉換。\n" NOR);
 
         return 1;
 }
@@ -97,12 +97,12 @@ int do_replace(string filename)
         rm(filename);
         if (write_file(filename, implode(lines, "\n")))
         {
-                write(HIW + filename + "替换成功。\n");
+                write(HIW + filename + "替換成功。\n");
                 return 1;
         }
         else
         {
-                write(HIR + filename + "替换失败……\n");
+                write(HIR + filename + "替換失敗……\n");
                 return 0;
         }
 }

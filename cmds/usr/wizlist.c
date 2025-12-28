@@ -17,7 +17,7 @@ int main(object me, string arg)
         int i, k;
         string id;
 
-        desc = NOR + LOCAL_MUD_NAME() + "目前的巫师有：\n";
+        desc = NOR + LOCAL_MUD_NAME() + "目前的巫師有：\n";
         desc += HIW "------------------------------------------------------------------\n" NOR;
         list = SECURITY_D->query_wizlist();
         r = ([ ]);
@@ -77,7 +77,7 @@ int help(object me)
 write(@HELP
 指令格式 : wizlist
 
-用途 : 列出目前所有的巫师名单。
+用途 : 列出目前所有的巫師名單。
 HELP
      );
      return 1;

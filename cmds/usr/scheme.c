@@ -24,32 +24,32 @@ int main(object me, string arg)
         {
                 if( !stringp(schedule=query("schedule", me)) )
                 {
-                        write("你目前并没有制订任何计划。\n");
+                        write("你目前並沒有制訂任何計劃。\n");
                         return 1;
                 }
 
-                write("你目前制订的计划如下：\n" + schedule);
+                write("你目前制訂的計劃如下：\n" + schedule);
                 return 1;
         }
 
         if (sscanf(arg, "show %s", arg) == 1)
         {
                 if (! wizardp(me))
-                        return notify_fail("你无权查看他人制订的计划。\n");
+                        return notify_fail("你無權查看他人制訂的計劃。\n");
 
                 if (! objectp(ob = find_player(arg)))
-                        return notify_fail("没有这个玩家。\n");
+                        return notify_fail("沒有這個玩家。\n");
 
                 if( !stringp(schedule=query("schedule", ob)) )
                 {
-                        write("这个玩家没有制定计划。\n");
+                        write("這個玩家沒有制定計劃。\n");
                         return 1;
                 }
 
                 write((ob == me?"你":(ob->name(1)+"("+query("id", ob)+")"))+
-                      "现在制订的计划如下：\n" + schedule);
+                      "現在制訂的計劃如下：\n" + schedule);
                 if( query("doing", ob) == "scheme" )
-                        write("该计划目前正在执行中。\n");
+                        write("該計劃目前正在執行中。\n");
 
                 return 1;
         }
@@ -57,7 +57,7 @@ int main(object me, string arg)
         if (arg == "clear")
         {
                 if( query("doing", me) == "scheme" )
-                        return notify_fail("你现在正在执行计划，请先停下来再清除它。\n");
+                        return notify_fail("你現在正在執行計劃，請先停下來再清除它。\n");
 
                 delete("schedule", me);
                 write("Ok.\n");
@@ -67,9 +67,9 @@ int main(object me, string arg)
         if (arg == "edit")
         {
                 if( query("doing", me) == "scheme" )
-                        return notify_fail("你现在正在执行计划，请先停下来再修改。\n");
+                        return notify_fail("你現在正在執行計劃，請先停下來再修改。\n");
 
-                write("请输入你将要执行的计划：\n");
+                write("請輸入你將要執行的計劃：\n");
                 me->edit((: done_input, me :));
                 return 1;
         }
@@ -77,37 +77,37 @@ int main(object me, string arg)
         if (arg == "start")
         {
                 if( !stringp(schedule=query("schedule", me)) )
-                        return notify_fail("你目前还没有制订计划。\n");
+                        return notify_fail("你目前還沒有制訂計劃。\n");
 
                 if( query("doing", me) )
-                        return notify_fail("你现在正在忙于锻炼，不能开展新计划。\n");
+                        return notify_fail("你現在正在忙於鍛鍊，不能開展新計劃。\n");
 
                 env = environment(me);
                 if (! env)
-                        return notify_fail("你现在什么都做不了。\n");
+                        return notify_fail("你現在什麼都做不了。\n");
 
                 if (env->is_chat_room())
-                        return notify_fail("你不能在聊天室里面执行计划。\n");
+                        return notify_fail("你不能在聊天室裡面執行計劃。\n");
 
                 if( !query("sleep_room", env) )
-                        return notify_fail("你必须在能够休息的地方才能执行计划。\n");
+                        return notify_fail("你必須在能夠休息的地方才能執行計劃。\n");
 
                 if( !query("no_fight", env) )
-                        return notify_fail("你必须在安全的地方才能执行计划。\n");
+                        return notify_fail("你必須在安全的地方才能執行計劃。\n");
 
                 if( query("combat_exp", me)<50000 )
-                        return notify_fail("你的实战经验太浅薄，还是先好好锻炼锻炼再说吧。\n");
+                        return notify_fail("你的實戰經驗太淺薄，還是先好好鍛鍊鍛鍊再說吧。\n");
 
                 if( query("potential", me)-query("learned_points", me)<100 )
-                        return notify_fail("你的潜能太少，难以开展计划。\n");
+                        return notify_fail("你的潛能太少，難以開展計劃。\n");
 
                 if (sizeof(filter_array(all_inventory(env), (: playerp :))) > 12)
-                        return notify_fail("这里的人实在太多了，你难以静心开展计划。\n");
+                        return notify_fail("這裡的人實在太多了，你難以靜心開展計劃。\n");
 
                 addn("learned_points", 100, me);
 
-                // 执行计划
-                write("你开始执行计划。\n");
+                // 執行計劃
+                write("你開始執行計劃。\n");
                 set("startroom", base_name(env), me);
                 CLOSE_D->user_closed(me);
                 me->set_short_desc(0);
@@ -115,10 +115,10 @@ int main(object me, string arg)
                 return 1;
         }
 
-        return notify_fail("非法的命令参数。\n");
+        return notify_fail("非法的命令參數。\n");
 }
 
-// 开始执行计划
+// 開始執行計劃
 int continue_scheme(object me)
 {
         string schedule;
@@ -131,7 +131,7 @@ int continue_scheme(object me)
         scs = filter_array(scs, (: replace_string($1, " ", "\n") != "" :));
         if (sizeof(scs) < 1)
         {
-                write("这是一份空计划，你没什么好做的。\n");
+                write("這是一份空計劃，你沒什麼好做的。\n");
                 return 0;
         }
 
@@ -144,7 +144,7 @@ int continue_scheme(object me)
         return 1;
 }
 
-// 中止计划
+// 中止計劃
 int cancel_schedule(object me)
 {
         me->delete_override("unconcious");
@@ -161,7 +161,7 @@ int cancel_schedule(object me)
         return 0;
 }
 
-// 执行计划中
+// 執行計劃中
 void execute_schedule(object me)
 {
         mapping my, my_temp;
@@ -198,7 +198,7 @@ void execute_schedule(object me)
 
               if (me->is_fighting()) 
               { 
-                      write(NOR "\n你受到攻击，叫苦不迭地停下了计划！\n\n" NOR); 
+                      write(NOR "\n你受到攻擊，叫苦不迭地停下了計劃！\n\n" NOR); 
                       cancel_schedule(me); 
                       return; 
               } 
@@ -206,7 +206,7 @@ void execute_schedule(object me)
 
         if (my["food"] < 100 || my["water"] < 100)
         {
-                write("你觉得肚子有点饿了，看来要找点吃的东西了。\n");
+                write("你覺得肚子有點餓了，看來要找點吃的東西了。\n");
                 pay = 2000;
                 if( query("family/family_name", me) == "段氏皇族" )
                         pay = 100;
@@ -215,13 +215,13 @@ void execute_schedule(object me)
                 
                 if (MONEY_D->player_pay(me, pay) != 1)
                 {
-                        write("你发现自己带的钱不够了，看来只好先去弄些钱了。\n");
+                        write("你發現自己帶的錢不夠了，看來只好先去弄些錢了。\n");
                         cancel_schedule(me);
                         return;
                 }
-                write("你掏出一些钱，找了一位闲人让他帮你准备了一些食物。\n");
+                write("你掏出一些錢，找了一位閒人讓他幫你準備了一些食物。\n");
 
-                // 补充食物和水
+                // 補充食物和水
                 my["food"]  = me->max_food_capacity();
                 my["water"] = me->max_water_capacity();
                 me->start_busy(10 + random(10));
@@ -239,19 +239,19 @@ void execute_schedule(object me)
         if (scs_step < 0 || scs_step >= sizeof(scs))
                 scs_step = 0;
 
-        // 取第 n 步骤
+        // 取第 n 步驟
         cmd = scs[scs_step];
         cmd = me->process_input(cmd);
         if (sscanf(cmd, "%s:%s", cmd, cmd_case) != 2)
                 cmd_case = "IGNORE";
 
-        // 显示准备执行的命令
+        // 顯示準備執行的命令
         tell_object(me, me->prompt() + HIY + cmd + NOR "\n");
 
         switch (cmd)
         {
         case "REPEAT":
-                // 开始循环
+                // 開始循環
                 count = 1;
                 for (i = scs_step + 1; i < sizeof(scs); i++)
                 {
@@ -266,7 +266,7 @@ void execute_schedule(object me)
 
                 if (count > 0)
                 {
-                        write("计划中 repeat 没有找到与之匹配的 loop 命令，无法继续执行。\n");
+                        write("計劃中 repeat 沒有找到與之匹配的 loop 命令，無法繼續執行。\n");
                         cancel_schedule(me);
                         break;
                 }
@@ -278,20 +278,20 @@ void execute_schedule(object me)
                         my_temp["scs_repeat"] += ({ ({ scs_step, i }) });
                 else
                 {
-                        write("循环嵌套的层次太多，你的计划书好复杂，执行不了。\n");
+                        write("循環嵌套的層次太多，你的計劃書好複雜，執行不了。\n");
                         cancel_schedule(me);
                         break;
                 }
 
-                write("开始循环.\n");
+                write("開始循環.\n");
                 break;
 
         case "LOOP":
-                // 循环执行
+                // 循環執行
                 if (! arrayp(scs_repeat = my_temp["scs_repeat"]) ||
                     sizeof(scs_repeat) < 1)
                 {
-                        write("没有找到计划中与之匹配的 repeat 命令。\n");
+                        write("沒有找到計劃中與之匹配的 repeat 命令。\n");
                         cancel_schedule(me);
                         return;
                 }
@@ -301,11 +301,11 @@ void execute_schedule(object me)
                 break;
 
         case "BREAK":
-                // 跳出该循环
+                // 跳出該循環
                 if (! arrayp(scs_repeat = my_temp["scs_repeat"]) ||
                     sizeof(scs_repeat) < 1)
                 {
-                        write("没有找到计划中与之匹配的 repeat-loop 命令。\n");
+                        write("沒有找到計劃中與之匹配的 repeat-loop 命令。\n");
                         cancel_schedule(me);
                         return;
                 }
@@ -316,10 +316,10 @@ void execute_schedule(object me)
                 break;
 
         default:
-                // 执行第 n 步，并视情况看下一步是否执行第二操作
+                // 執行第 n 步，並視情況看下一步是否執行第二操作
                 if (! me->force_me(cmd))
                 {
-                        // 执行失败时的命令
+                        // 執行失敗時的命令
                         if (cmd_case != "IGNORE")
                                 tell_object(me, me->prompt() + HIY + cmd_case + NOR "\n");
 
@@ -330,11 +330,11 @@ void execute_schedule(object me)
                                 return;
 
                         case "CONTINUE":
-                                // 循环执行
+                                // 循環執行
                                 if (! arrayp(scs_repeat = my_temp["scs_repeat"]) ||
                                     sizeof(scs_repeat) < 1)
                                 {
-                                        write("没有找到计划中与之匹配的 repeat 命令。\n");
+                                        write("沒有找到計劃中與之匹配的 repeat 命令。\n");
                                         cancel_schedule(me);
                                         break;
                                 }
@@ -344,11 +344,11 @@ void execute_schedule(object me)
                                 break;
 
                         case "BREAK":
-                                // 跳出该循环
+                                // 跳出該循環
                                 if (! arrayp(scs_repeat = my_temp["scs_repeat"]) ||
                                     sizeof(scs_repeat) < 1)
                                 {
-                                        write("没有找到计划中与之匹配的 repeat-loop 命令。\n");
+                                        write("沒有找到計劃中與之匹配的 repeat-loop 命令。\n");
                                         cancel_schedule(me);
                                         break;
                                 }
@@ -359,21 +359,21 @@ void execute_schedule(object me)
                                 break;
 
                         case "IGNORE":
-                                // 执行命令忽略失败情况
+                                // 執行命令忽略失敗情況
                                 break;
 
                         default:
                                 me->force_me(cmd_case);
                                 break;
                         }
-                        // 命令失败时执行 cmd_case 完毕。
+                        // 命令失敗時執行 cmd_case 完畢。
                 }
-                // 执行玩家命令完毕
+                // 執行玩家命令完畢
         }
 
         if (++scs_step >= sizeof(scs))
         {
-                write("计划执行完毕。\n");
+                write("計劃執行完畢。\n");
                 cancel_schedule(me);
                 return;
         }
@@ -387,13 +387,13 @@ private void done_input(object me, string text)
 
         if (! stringp(text))
         {
-                tell_object(me, "你没有输入任何新的计划。\n");
+                tell_object(me, "你沒有輸入任何新的計劃。\n");
                 return;
         }
 
         if (strlen(text) > 400)
         {
-                tell_object(me, "你这份计划太长了，请重新设置一个短一些的。\n");
+                tell_object(me, "你這份計劃太長了，請重新設置一個短一些的。\n");
                 return;
         }
 
@@ -402,7 +402,7 @@ private void done_input(object me, string text)
         text = implode(strs, "\n") + "\n";
 
         set("schedule", text, me);
-        tell_object(me, "你设置了一份新的计划。\n");
+        tell_object(me, "你設置了一份新的計劃。\n");
 }
 
 void user_quit(object me)
@@ -425,15 +425,15 @@ int help (object me)
         write(@HELP
 指令格式 : scheme [<edit> | <start> | <clear> | <show> <玩家>]
  
-设定或开始你的计划。如果你需要长时间的读书或是练习技能，可以
-使用计划来完成，具体请参见 help schedule。
+設定或開始你的計劃。如果你需要長時間的讀書或是練習技能，可以
+使用計劃來完成，具體請參見 help schedule。
 
-edit  : 设定计划
-start : 开始执行计划
-clear : 清除目前的计划
-show  : 显示某个玩家的计划，只有巫师才能使用这个命令。
+edit  : 設定計劃
+start : 開始執行計劃
+clear : 清除目前的計劃
+show  : 顯示某個玩家的計劃，只有巫師才能使用這個命令。
 
-执行计划期间可以使用 halt 命令中止你正在进行的计划。
+執行計劃期間可以使用 halt 命令中止你正在進行的計劃。
 
 see also: halt, breakup, purchase
 HELP );

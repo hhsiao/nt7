@@ -5,12 +5,12 @@ inherit F_LIQUID;
 
 void create()
 {
-        set_name(HIC "雪鹤汤" NOR, ({"soup"}));
+        set_name(HIC "雪鶴湯" NOR, ({"soup"}));
         set_weight(50);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一碗香气扑鼻的雪鹤汤。\n");
+                set("long", "一碗香氣撲鼻的雪鶴湯。\n");
                 set("unit", "碗");
                 set("value", 80);
                 set("max_liquid", 4);
@@ -18,7 +18,7 @@ void create()
 
         set("liquid", ([
                     "type": "water",
-                "name": "雪鹤汤",
+                "name": "雪鶴湯",
                 "remaining": 6,
                 "drunk_supply": 20,
         ]));

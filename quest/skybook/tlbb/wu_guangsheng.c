@@ -1,13 +1,13 @@
-// NPC :wu_guangsheng.c 吴光胜
+// NPC :wu_guangsheng.c 吳光勝
 // By River 98/12
 inherit NPC;
 #include <ansi.h>
 
-#define QUESTDIR1 "quest/天龙八部/凌波微步篇/"
+#define QUESTDIR1 "quest/天龍八部/凌波微步篇/"
 void create()
 {
-        set_name("吴光胜", ({ "wu guangsheng", "wu", "guangsheng"}));
-        set("title","无量剑东宗弟子");              
+        set_name("吳光勝", ({ "wu guangsheng", "wu", "guangsheng"}));
+        set("title","無量劍東宗弟子");              
         set("gender", "男性" );
         set("age", 36);
         set("str", 27);
@@ -25,7 +25,7 @@ void create()
         set("max_neili", 1000);      
         set("unique", 1);
         
-        set("long","他是无量剑东宗的弟子。\n");
+        set("long","他是無量劍東宗的弟子。\n");
         set("combat_exp", 200000);
         set("shen", 800); 
 
@@ -53,15 +53,15 @@ void die()
 
  if(objectp(me)&& !present("yu guangbiao", environment(me))&& me->query(QUESTDIR1+"start") && !me->query(QUESTDIR1+"wuliangover")&& !me->query_temp(QUESTDIR1+"jianying") || me->query_temp("marks/xiaoyao/gotowyz")  )
  {
-    tell_object(me,HIY"\n这"+ob->name()+"眼见就要丧命，突然开口向你求饶，告诉你关于后山剑影的秘密。\n"NOR);
-	  tell_room(environment(me),HIC"\n只见，郁光标似乎重伤在身，向"+me->query("name")+"似乎讨教着什么。\n"NOR, ({ me }));
+    tell_object(me,HIY"\n這"+ob->name()+"眼見就要喪命，突然開口向你求饒，告訴你關於後山劍影的秘密。\n"NOR);
+	  tell_room(environment(me),HIC"\n只見，鬱光標似乎重傷在身，向"+me->query("name")+"似乎討教著什麼。\n"NOR, ({ me }));
 	  me->set_temp(QUESTDIR1+"jianying",1);
-    tell_object(me,HIY"\n按"+ob->name()+"所说，这后山一个峭崖边，一块常见到壁上常出现舞剑的人影，有时是男子，有时是女子，\n"
-                       "有时更是男女对使，互相击刺。玉壁上所显现的剑法之精，据说极其高明，相传是仙人使剑。\n"NOR);
+    tell_object(me,HIY"\n按"+ob->name()+"所說，這後山一個峭崖邊，一塊常見到壁上常出現舞劍的人影，有時是男子，有時是女子，\n"
+                       "有時更是男女對使，互相擊刺。玉壁上所顯現的劍法之精，據說極其高明，相傳是仙人使劍。\n"NOR);
 
-    tell_object(me,HIC"\n你听完"+ob->name()+"之后，还是手下不留情面，双手一紧，一股内力蓬勃而发。\n"NOR);
-	  tell_room(environment(me),HIC"\n吴光胜说完很多之后，然而不知为何，似乎气血一震，好像失去了什么似的，慢慢萎靡倒地。\n"NOR, ({ me }));
-    message_vision(HIG"$n仰天长叹，为什么啊，为什么，$N竟然如此狠心。\n"NOR, me, this_object());
+    tell_object(me,HIC"\n你聽完"+ob->name()+"之後，還是手下不留情面，雙手一緊，一股內力蓬勃而發。\n"NOR);
+	  tell_room(environment(me),HIC"\n吳光勝說完很多之後，然而不知為何，似乎氣血一震，好像失去了什麼似的，慢慢萎靡倒地。\n"NOR, ({ me }));
+    message_vision(HIG"$n仰天長嘆，為什麼啊，為什麼，$N竟然如此狠心。\n"NOR, me, this_object());
     if(me->query_temp("marks/xiaoyao/gotowyz")) {
     	me->delete_temp("marks/xiaoyao/gotowyz");
        me->delete_temp(QUESTDIR1+"jianying",1);

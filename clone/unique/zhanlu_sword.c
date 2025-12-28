@@ -11,30 +11,30 @@ inherit F_UNIQUE;
 
 void create()  
 { 
-        set_name(HIW "湛泸" NOR, ({"zhanlu sword", "zhanlu", "sword"}));  
+        set_name(HIW "湛瀘" NOR, ({"zhanlu sword", "zhanlu", "sword"}));  
         set_weight(15000);  
         /*if (clonep())  
                 set_default_object(__FILE__);  
         else*/ {
                 set("unit", "把");  
-                set("long", sort_msg(HIW"湛泸是一把剑，更是一只眼睛。湛泸：湛湛然而黑色也" 
-                                     "。这把通体黑色浑然无迹的长让人感到的不是它的锋利，而"
-                                     "是它的宽厚和慈祥。它就象上苍一只目光深邃、明察秋的黑" 
-                                     "色的眼睛，注视着君王、诸侯的一举一动。君有道，剑在侧" 
-                                     "，国兴旺。君无道，剑飞弃，国破败。五金之英，太阳之精" 
-                                     "，出之有神，服之有威。欧冶子铸成此剑时，不禁抚剑泪落" 
-                                     "，因为他终于圆了自己毕生的梦想：铸出一把无坚摧而又不" 
-                                     "带丝毫杀气的兵器。所谓仁者无敌，湛泸剑是一把仁道之剑。\n" NOR)); 
+                set("long", sort_msg(HIW"湛瀘是一把劍，更是一隻眼睛。湛瀘：湛湛然而黑色也" 
+                                     "。這把通體黑色渾然無跡的長讓人感到的不是它的鋒利，而"
+                                     "是它的寬厚和慈祥。它就象上蒼一隻目光深邃、明察秋的黑" 
+                                     "色的眼睛，注視著君王、諸侯的一舉一動。君有道，劍在側" 
+                                     "，國興旺。君無道，劍飛棄，國破敗。五金之英，太陽之精" 
+                                     "，出之有神，服之有威。歐冶子鑄成此劍時，不禁撫劍淚落" 
+                                     "，因為他終於圓了自己畢生的夢想：鑄出一把無堅摧而又不" 
+                                     "帶絲毫殺氣的兵器。所謂仁者無敵，湛瀘劍是一把仁道之劍。\n" NOR)); 
                 set("value", 100000);  
                 set("material", "steel"); 
-                set("no_sell", "我的天…你…你知道这是啥么？这你也敢拿来卖？");  
+                set("no_sell", "我的天…你…你知道這是啥麼？這你也敢拿來賣？");  
                 set("unique", 1);  
                 set("rigidity", 500);  
                 set("replica_ob", "/clone/weapon/changjian"); 
                 set("no_put",1);  
                 set("no_steal",1);
-                set("wield_msg",HIW"$N[噌]的一声抽出一把湛泸，没有丝毫杀气。\n"NOR);  
-                set("unwield_msg",HIW"$N把手中的湛泸插入剑鞘，剑身没有发出一丝声音。\n"NOR); 
+                set("wield_msg",HIW"$N[噌]的一聲抽出一把湛瀘，沒有絲毫殺氣。\n"NOR);  
+                set("unwield_msg",HIW"$N把手中的湛瀘插入劍鞘，劍身沒有發出一絲聲音。\n"NOR); 
         }
         init_sword(950); 
         setup(); 
@@ -43,6 +43,6 @@ mixed hit_ob(object me, object victim, int damage_bonus)
 { 
         victim->receive_damage("jing",query("str", me)*2,me);
         victim->receive_wound("jing",query("str", me)*2,me);
-        return HIW "湛泸从$N手中飞向天空，[嗡]一声，湛泸从天空化做长虹回到了$N手中，$n" 
-               HIW "只感到惊讶。\n" NOR; 
+        return HIW "湛瀘從$N手中飛向天空，[嗡]一聲，湛瀘從天空化做長虹回到了$N手中，$n" 
+               HIW "只感到驚訝。\n" NOR; 
 }

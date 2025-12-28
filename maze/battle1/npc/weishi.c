@@ -17,7 +17,7 @@ void create()
         object zhenwu;
 
         set_name("武士", ({ "wu shi", "shi" }));
-        set("long","这是位武士，身披钢甲，手执长剑，双目精光炯炯，警惕地巡视着四周的情形。\n");
+        set("long","這是位武士，身披鋼甲，手執長劍，雙目精光炯炯，警惕地巡視著四周的情形。\n");
         set("gender", "男性");
         set("age", 50);
         set("attitude", "heroism");
@@ -56,7 +56,7 @@ void create()
 
         prepare_skill("cuff", "taiji-quan");
 
-        create_family("武当派", 2, "");
+        create_family("武當派", 2, "");
 
         set("chat_chance_combat", 50);
         set("chat_msg_combat", ({
@@ -64,7 +64,7 @@ void create()
         }) );
 
         set("inquiry", ([
-                "护旗": (: do_huqi :),
+                "護旗": (: do_huqi :),
                 "huqi": (: do_huqi :),
         ]));
 
@@ -90,7 +90,7 @@ int accept_kill(object obj)
         string *sname;
         int i, max = 200;
 
-        command("say "+RANK_D->query_rude(obj)+"居然还想杀死我！看招！");
+        command("say "+RANK_D->query_rude(obj)+"居然還想殺死我！看招！");
 
         if( !objectp(query_temp("weapon", obj)) || !objectp(query_temp("weapon", me)) )
         {
@@ -114,22 +114,22 @@ string do_huqi()
         if( query_temp("battle/team_name", ob) != query_temp("battle/team_name") )
         {
                 me->kill_ob(ob);
-                return RANK_D->query_rude(this_player()) + "非本队人马，莫非想来诳我？看招！\n";
+                return RANK_D->query_rude(this_player()) + "非本隊人馬，莫非想來誑我？看招！\n";
         }
 
         if( !query("flag", environment(me)) )
         {
-                message_vision(HIG"$N疑惑地四下望望，说道：“可是这里没有旗可护！”\n"NOR,me);
-                return "别搞错了！";
+                message_vision(HIG"$N疑惑地四下望望，說道：“可是這裡沒有旗可護！”\n"NOR,me);
+                return "別搞錯了！";
         }
         else
         {
-                message_vision(HIG"$N看了看$n，痛快地说道：“好吧！我就留下来护旗。”\n"NOR,me,ob);
+                message_vision(HIG"$N看了看$n，痛快地說道：“好吧！我就留下來護旗。”\n"NOR,me,ob);
                 command("halt");
                 command("follow none");
         }
 
-        return "大家加油干！";
+        return "大家加油幹！";
 }
 
 varargs void die(object killer)

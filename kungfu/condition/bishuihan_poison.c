@@ -10,12 +10,12 @@ string chinese_name() { return "碧水寒毒"; }
 
 string update_msg_others()
 {
-       return HIW "$N" HIW "脸色苍白，突然由白转为绿色，接着又由绿色转为紫色，全身不住的颤抖，似乎非常痛苦。\n" NOR;
+       return HIW "$N" HIW "臉色蒼白，突然由白轉為綠色，接著又由綠色轉為紫色，全身不住的顫抖，似乎非常痛苦。\n" NOR;
 }
 
 string update_msg_self()
 {
-        return HIW "你只感到一股从未有过的奇寒之气从体内犹然而升，沁入全身各处大穴，看来是碧水寒毒发作了！\n" NOR;
+        return HIW "你只感到一股從未有過的奇寒之氣從體內猶然而升，沁入全身各處大穴，看來是碧水寒毒發作了！\n" NOR;
 }
 
 int jing_damage(object me, mapping cnd)

@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("书[2;37;0m[2;37;0m", ({"shui"}));        
+        set_name("書[2;37;0m[2;37;0m", ({"shui"}));        
         set("gender", "女性");                
-        set("long", "书[2;37;0m
-它是无金额的魔幻兽。
+        set("long", "書[2;37;0m
+它是無金額的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");
         set("owner", "woshi");
-        set("owner_name", "无金额");
+        set("owner_name", "無金額");
         set_temp("owner", "woshi");
-        set_temp("owner_name", "无金额");
+        set_temp("owner_name", "無金額");
         ::setup();
 }

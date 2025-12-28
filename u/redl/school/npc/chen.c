@@ -7,9 +7,9 @@ inherit NPC;
 void create()
 {
         set_name(NOR "陳肥" NOR, ({ "chen fei", "chen" }));
-                set("nickname", CYN "看门大叔" NOR);
+                set("nickname", CYN "看門大叔" NOR);
         set("long", @LONG
-这是一个在学校里看门的大叔，尽忠职守，谨慎无过。
+這是一個在學校裡看門的大叔，盡忠職守，謹慎無過。
 LONG);
         set("gender", "男性" );
         set("age", 36);
@@ -29,7 +29,7 @@ LONG);
         set("combat_exp", 1333000);
 
         set("inquiry", ([
-                "入学" : "问我一个看门的干嘛？你到教室里直接付钱给老师就行。\n"+NOR,
+                "入學" : "問我一個看門的幹嘛？你到教室裡直接付錢給老師就行。\n"+NOR,
         ]));
 
         setup();

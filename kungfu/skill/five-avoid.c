@@ -5,22 +5,22 @@
 inherit SKILL;
 
 mapping *action = ({
-([  "action" : "可是$n微微一笑，$N眼前水雾弥漫，$n已使出"+HIC"『水遁』"NOR+"借水而逝。\n",
+([  "action" : "可是$n微微一笑，$N眼前水霧瀰漫，$n已使出"+HIC"『水遁』"NOR+"借水而逝。\n",
     "dodge"  : 60
 ]),
-([  "action" : "却见$n抛下手中兵刃，扑向路边的一棵大树，转眼和枝叶混为一体，"
-               "$N茫然四顾，不知$n已经靠"+HIG"『木遁』"NOR+"躲开攻击。\n",
+([  "action" : "卻見$n拋下手中兵刃，撲向路邊的一棵大樹，轉眼和枝葉混為一體，"
+               "$N茫然四顧，不知$n已經靠"+HIG"『木遁』"NOR+"躲開攻擊。\n",
     "dodge"  : 70
 ]),
-([  "action" : "$n原地一转，立时钻入土中。$N这一招落到了空处，惊道"+HIY"『土"
+([  "action" : "$n原地一轉，立時鑽入土中。$N這一招落到了空處，驚道"+HIY"『土"
               "遁』"NOR+"！\n",
     "dodge"  : 80
 ]),
-([  "action" : "$n随手打出一团火球，喝道"+HIR"『火遁』"NOR+"！ 整个人消失在?火球中。\n",
+([  "action" : "$n隨手打出一團火球，喝道"+HIR"『火遁』"NOR+"！ 整個人消失在?火球中。\n",
     "dodge"  : 90
 ]),
-([  "action" : "$n哈哈一笑，把手中的兵刃交错一击，喝道“看我"+HIY
-               "『金遁』"NOR+"”，突然精光耀眼，$N眼前一花，这一招不知落到了何处。\n",
+([  "action" : "$n哈哈一笑，把手中的兵刃交錯一擊，喝道“看我"+HIY
+               "『金遁』"NOR+"”，突然精光耀眼，$N眼前一花，這一招不知落到了何處。\n",
     "dodge"  : 100
 ]),
 });
@@ -65,7 +65,7 @@ string query_dodge_msg(string limb)
 int practice_skill(object me)
 {
     if( query("qi", me)<70 )
-        return notify_fail("你的气力不够,不能修炼五行遁.\n");
+        return notify_fail("你的氣力不夠,不能修煉五行遁.\n");
 
     me->receive_damage("qi", 65);
     return 1;

@@ -13,7 +13,7 @@ int main(object me, string arg)
 
         if (! arg) return 0;
         if (wiz_level(me) < wiz_level(arg))
-                return notify_fail("你不能装载巫师级别比你高的玩家。\n");
+                return notify_fail("你不能裝載巫師級別比你高的玩家。\n");
 
         where = environment(me);
 
@@ -27,13 +27,13 @@ int main(object me, string arg)
         if (! user->restore())
         {
                 destruct(user);
-                return notify_fail("没有这个玩家。\n");
+                return notify_fail("沒有這個玩家。\n");
         }
         user->setup();
         
         if( !stringp(msg=query("env/msg_clone", me)) )
         if( query("outdoors", where) || query("exits", where) )
-                msg = HIM"$N掏出一砣泥巴，吐了两口口水,捏啊捏。。。捏了半天捏出一个$n。\n"NOR;
+                msg = HIM"$N掏出一砣泥巴，吐了兩口口水,捏啊捏。。。捏了半天捏出一個$n。\n"NOR;
 
         message_vision(msg + "\n", me, user);
         user->move(where);

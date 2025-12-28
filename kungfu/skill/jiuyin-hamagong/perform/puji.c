@@ -1,4 +1,4 @@
-// perform 蛤蟆扑击
+// perform 蛤蟆撲擊
 
 #include <ansi.h>
 #include <armor.h>
@@ -16,34 +16,34 @@ int perform(object me, object target)
         string *limb, type, result, str;
 
 
-        type = "内伤";
+        type = "內傷";
 
         if( !target ) target = offensive_target(me);
 
         if( !target
         ||      !target->is_character()
         ||      !me->is_fighting(target) )
-        return notify_fail("你不在战斗中，不能使用拍击。\n");
+        return notify_fail("你不在戰鬥中，不能使用拍擊。\n");
 
         if( userp(me) && !query("can_perform/jiuyin-hamagong/puji", me) )
-                      return notify_fail("你所使用的外功中没有这种功能。\n"); 
+                      return notify_fail("你所使用的外功中沒有這種功能。\n"); 
 
         if( objectp(query_temp("weapon", me)) )
-                return notify_fail("你手持兵器，无法施展蛤蟆功的掌法绝技。\n");
+                return notify_fail("你手持兵器，無法施展蛤蟆功的掌法絕技。\n");
 
         if( (int)me->query_skill("jiuyin-hamagong", 1) < 320 )
-                return notify_fail("你的蛤蟆功修为不够。\n");
+                return notify_fail("你的蛤蟆功修為不夠。\n");
 
         if ( me->query_skill_mapped("force") != "jiuyin-hamagong")
-                return notify_fail("你现在运使的内功并非蛤蟆功！\n");
+                return notify_fail("你現在運使的內功並非蛤蟆功！\n");
 
         if (me->query_skill_mapped("unarmed") != "jiuyin-hamagong")
-                return notify_fail("你没有准备九阴蛤蟆功，不能使用「扑击」！\n");
+                return notify_fail("你沒有準備九陰蛤蟆功，不能使用「撲擊」！\n");
         if( query("neili", me) <= 1000 )
-                return notify_fail("你的内力不够！\n");
+                return notify_fail("你的內力不夠！\n");
 
         if( query("jingli", me) <= 500 )
-                return notify_fail("你的精力不够！\n");
+                return notify_fail("你的精力不夠！\n");
 
         delete_temp("puji_time", me);
         remove_call_out("pu_hit");
@@ -67,7 +67,7 @@ void pu_hit(object me, object target)
 
         if( me->query_skill_mapped("force") != "jiuyin-hamagong" || me->query_skill_mapped("unarmed") != "jiuyin-hamagong") return;
 
-        type = "内伤";
+        type = "內傷";
 
         hmg = (int)me->query_skill("jiuyin-hamagong", 1);
         force = (int)me->query_skill("force", 1);
@@ -85,10 +85,10 @@ void pu_hit(object me, object target)
         addn_temp("puji_time", 1, me);
         time=query_temp("puji_time", me);
 
-        if( time == 1 ) msg = HIB "\n$N双腿一弯，蹲下身来，“阁”的一声大叫，运起蛤蟆功劲力，双掌齐发，向前推出。这一\n"
-                                  "推实乃$P毕生功力之所聚，$n猛然感受到山洪海啸般的劲力袭来。\n" NOR;
-        else if( time == 2 ) msg = HIM "\n$N第一推刚完，第二推又已迅速异常的赶到，前劲未衰，后劲继至，掌风越发猛烈。\n" NOR;
-        else msg = HIR "\n$N眼看前招落空，却毫无慌乱，顺势又是一推，第"+chinese_number(time)+"推的掌风犹如沙漠风暴，一阵猛过一阵，呼啸着向$n扑来。\n"NOR;
+        if( time == 1 ) msg = HIB "\n$N雙腿一彎，蹲下身來，“閣”的一聲大叫，運起蛤蟆功勁力，雙掌齊發，向前推出。這一\n"
+                                  "推實乃$P畢生功力之所聚，$n猛然感受到山洪海嘯般的勁力襲來。\n" NOR;
+        else if( time == 2 ) msg = HIM "\n$N第一推剛完，第二推又已迅速異常的趕到，前勁未衰，後勁繼至，掌風越發猛烈。\n" NOR;
+        else msg = HIR "\n$N眼看前招落空，卻毫無慌亂，順勢又是一推，第"+chinese_number(time)+"推的掌風猶如沙漠風暴，一陣猛過一陣，呼嘯著向$n撲來。\n"NOR;
 
         message_vision(msg , me,target);
         
@@ -99,16 +99,16 @@ void pu_hit(object me, object target)
 
         if( living(target) && fap < dp ) {
 
-                if(time == 1) message_vision(HIY "$n眼见这一推来势凶猛，挡既不能，避又不可，当下双足一点，跃高四尺，躲开了这一推。\n只听身後腾的一声大响，$N这一推的劲力激起一股狂风巨浪，顿时尘土纷扬，令人惊骇不已。\n\n" NOR, me, target);
+                if(time == 1) message_vision(HIY "$n眼見這一推來勢兇猛，擋既不能，避又不可，當下雙足一點，躍高四尺，躲開了這一推。\n只聽身後騰的一聲大響，$N這一推的勁力激起一股狂風巨浪，頓時塵土紛揚，令人驚駭不已。\n\n" NOR, me, target);
         
-                else message_vision(HIY "$n眼见这一推气势汹汹，当下双足一点，侧跃三尺，又躲开了这一推。\n只听轰的一声巨响，蛤蟆功猛劲激得灰泥弥漫，又是一片尘土飞扬，声势惊人。\n" NOR, me, target);
+                else message_vision(HIY "$n眼見這一推氣勢洶洶，當下雙足一點，側躍三尺，又躲開了這一推。\n只聽轟的一聲巨響，蛤蟆功猛勁激得灰泥瀰漫，又是一片塵土飛揚，聲勢驚人。\n" NOR, me, target);
                 target->start_busy(2);
                 me->start_busy(5);
                 if( me->query_skill("unarmed") > time*150 && time < 5)
                         call_out("pu_hit",2+random(2),me,target);
         }
 
-        else if( random(ap+pp)<pp && random(5) == 0 && query("race", target) == "人类" )
+        else if( random(ap+pp)<pp && random(5) == 0 && query("race", target) == "人類" )
         {
                 weapon=query_temp("weapon", target);
                 if(weapon)
@@ -116,11 +116,11 @@ void pu_hit(object me, object target)
                         weapon->unequip();
                         weapon->move(environment(target));
                         target->reset_action();
-                        message_vision(HIR"$N猛觉得劲风罩来，心知不妙，手中"NOR + weapon->name() + HIR"脱手飞出，赶紧也是双掌向前平推。这一下是以硬接硬，刹那之间，两下里竟然凝住不动。\n"NOR, target );
+                        message_vision(HIR"$N猛覺得勁風罩來，心知不妙，手中"NOR + weapon->name() + HIR"脫手飛出，趕緊也是雙掌向前平推。這一下是以硬接硬，剎那之間，兩下里竟然凝住不動。\n"NOR, target );
                 }
-                else message_vision(HIR"$N猛觉劲风罩来，心知不妙，也是双掌向前平推。这一下是以硬接硬，刹那之间，两下里竟然凝住不动。\n\n"NOR, target );
+                else message_vision(HIR"$N猛覺勁風罩來，心知不妙，也是雙掌向前平推。這一下是以硬接硬，剎那之間，兩下里竟然凝住不動。\n\n"NOR, target );
 
-                message("vision", HIW BLK"两人本是忽纵忽窜、大起大落的搏击，突然间变得两具僵尸相似，连手指也不动一动，似乎气也不喘一口。\n\n"NOR, environment(me), ({ me, target }) );
+                message("vision", HIW BLK"兩人本是忽縱忽竄、大起大落的搏擊，突然間變得兩具殭屍相似，連手指也不動一動，似乎氣也不喘一口。\n\n"NOR, environment(me), ({ me, target }) );
 
                 addn("neili", -hmg, target);
                 addn("jingli", -hmg, target);
@@ -137,11 +137,11 @@ void pu_hit(object me, object target)
                 if( (!living(target) || (!armor || (armor && query("armor_prop/armor", armor)<150))) && 
                     ( target->query_skill("dodge")+target->query_skill("parry") ) < random((me->query_skill("unarmed") + 
                          random(me->query_skill("force"))*2/3)) && 
-                     query("race", target) == "人类" && 
+                     query("race", target) == "人類" && 
                      random(2) == 1 &&
                      !query("no_nuoyi", target) )
                 {
-                        message_vision(HIR"只听$N一声惨叫，这一掌正中小腹。但见$n一个身躯突然平平飞出，腾的一响，尘土飞扬，跌在丈许之外，直挺挺的躺在地下，再也不动。\n\n"NOR, target,target );
+                        message_vision(HIR"只聽$N一聲慘叫，這一掌正中小腹。但見$n一個身軀突然平平飛出，騰的一響，塵土飛揚，跌在丈許之外，直挺挺的躺在地下，再也不動。\n\n"NOR, target,target );
                         target->receive_wound("qi",query("eff_qi", target),me);
                         target->receive_damage("qi",query("qi", target)+1,me);
                         addn("neili", -(query("jiali", me)+hmg/2), me);
@@ -166,7 +166,7 @@ void pu_hit(object me, object target)
 
                         limb=query("limbs", target);
 
-                        if(random(2) ) type = "瘀伤";
+                        if(random(2) ) type = "瘀傷";
                         result = COMBAT_D->damage_msg(damage, type);
                         result = replace_string( result, "$l", limb[random(sizeof(limb))]);
                         result = replace_string( result, "$p", target->name() );
@@ -203,17 +203,17 @@ void tie_hit(object me, object target)
         if( query("neili", target)<0)set("neili", 0, target);
 
         if( n1 > 3000 && n2 > 3000) {
-                msg = WHT"此时双方掌力均极强劲，欲分胜负，非使对方重创不可。\n"NOR;
+                msg = WHT"此時雙方掌力均極強勁，欲分勝負，非使對方重創不可。\n"NOR;
 
                 if( n1 > n2 )
-                msg += HIW"二人又僵持一会，$n头顶透出一缕缕的白气，渐渐越来越浓，就如蒸笼一般。\n"NOR;
-                else msg += HIW"二人又僵持一会，$N头顶透出一缕缕的白气，渐渐越来越浓，就如蒸笼一般。\n"NOR;
+                msg += HIW"二人又僵持一會，$n頭頂透出一縷縷的白氣，漸漸越來越濃，就如蒸籠一般。\n"NOR;
+                else msg += HIW"二人又僵持一會，$N頭頂透出一縷縷的白氣，漸漸越來越濃，就如蒸籠一般。\n"NOR;
         }
 
         else {
 
-                if( n1 > n2 ) msg = WHT"$N不断催动蛤蟆功猛劲，毫无衰颓迹象。稍过片刻，$n已是全身大汗淋漓。\n"NOR;
-                else msg = WHT"$N脸上黑气大盛，将蛤蟆功发挥到了极致。稍过片刻，$N已是全身大汗淋漓。$n似乎依然中气十足，头顶热气蒸蒸而上。\n"NOR;
+                if( n1 > n2 ) msg = WHT"$N不斷催動蛤蟆功猛勁，毫無衰頹跡象。稍過片刻，$n已是全身大汗淋漓。\n"NOR;
+                else msg = WHT"$N臉上黑氣大盛，將蛤蟆功發揮到了極致。稍過片刻，$N已是全身大汗淋漓。$n似乎依然中氣十足，頭頂熱氣蒸蒸而上。\n"NOR;
                 }
 
         message_vision(msg , me,target );
@@ -230,7 +230,7 @@ void tie_hit(object me, object target)
 
         if( query("neili", target) <= 0 )
         {
-                message_vision(HIR "\n$N突然喘不过气来，全身发抖，原来内力已全部耗尽。突闻前胸一片骨裂之声，已被九阴蛤蟆功一掌击中，哼也哼不出一声，仰身向后跌倒，双眼紧闭，脸如白纸，端的是生死难料。\n\n" NOR, target);
+                message_vision(HIR "\n$N突然喘不過氣來，全身發抖，原來內力已全部耗盡。突聞前胸一片骨裂之聲，已被九陰蛤蟆功一掌擊中，哼也哼不出一聲，仰身向後跌倒，雙眼緊閉，臉如白紙，端的是生死難料。\n\n" NOR, target);
                 target->receive_wound("qi",query("eff_qi", target),me);
                 target->receive_damage("qi",query("eff_qi", target)+1,me);
                 return;
@@ -238,7 +238,7 @@ void tie_hit(object me, object target)
 
         if( query("neili", me) <= 0 )
         {
-                message_vision(HIR "\n$N脸上黑气大作，突然喘不过气来，全身发抖，原来内力已全部耗尽。蛤蟆功立时全部反弹回来，但闻前胸一片骨裂之声，哼也哼不出一声，俯身跌倒，双眼紧闭，脸如黑墨，端的是生死难料。\n\n" NOR, me);
+                message_vision(HIR "\n$N臉上黑氣大作，突然喘不過氣來，全身發抖，原來內力已全部耗盡。蛤蟆功立時全部反彈回來，但聞前胸一片骨裂之聲，哼也哼不出一聲，俯身跌倒，雙眼緊閉，臉如黑墨，端的是生死難料。\n\n" NOR, me);
                 me->receive_wound("qi",query("eff_qi", me),target);
                 me->receive_damage("qi",query("eff_qi", me)+1,target);
         }

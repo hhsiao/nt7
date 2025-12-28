@@ -5,12 +5,12 @@ inherit THROWING;
  
 void create()
 {
-        set_name(HIC "回龙璧" NOR, ({ "huilong bi", "huilong", "bi" }));
+        set_name(HIC "回龍璧" NOR, ({ "huilong bi", "huilong", "bi" }));
         set_weight(100);
         /*if (clonep()) 
                 set_default_object(__FILE__); 
         else*/ {
-                set("long", HIC "一支温莹剔透的玉壁，上面雕纹着一条蛟龙。\n" NOR);
+                set("long", HIC "一支溫瑩剔透的玉壁，上面雕紋著一條蛟龍。\n" NOR);
                 set("unit", "支");
                 set("value", 80000);
                 set("no_sell", 1);

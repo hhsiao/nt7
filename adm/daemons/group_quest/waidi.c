@@ -1,4 +1,4 @@
-// group_quest:waidi 群组任务——外敌入侵
+// group_quest:waidi 群組任務——外敵入侵
 
 #include <ansi.h>
 #include "waidi.h"
@@ -14,8 +14,8 @@ void create()
         }
 }
 
-//string prompt() { return HIR "【外敌入侵】" NOR; }
-string prompt() { return HIR "【外敌】" NOR; }
+//string prompt() { return HIR "【外敵入侵】" NOR; }
+string prompt() { return HIR "【外敵】" NOR; }
 
 int select_quest()
 {
@@ -28,7 +28,7 @@ int select_quest()
         all = sizeof(users())/2;
 
         if (all<10) 
-                return 0;                       //玩家太少，终止本次任务。
+                return 0;                       //玩家太少，終止本次任務。
         if (all>80)
                 all = 80;
 
@@ -50,13 +50,13 @@ string create_waidi()
         string title;
 
         title = GROUP_QUEST_D->get_title(the_nation,1);
-        special = random(all);          //随机选择一个外敌放置一个宝石残片
+        special = random(all);          //隨機選擇一個外敵放置一個寶石殘片
         for (i = 0;i < all;i ++)
         {
                 lvl = random(17) + 1;
                 ob = GROUP_QUEST_D->create_npc(the_nation,lvl);
-                //GROUP_QUEST_D->place_npc(ob,"外敌入侵",place,lvl);
-                GROUP_QUEST_D->place_npc(ob,"外敌",place,lvl);
+                //GROUP_QUEST_D->place_npc(ob,"外敵入侵",place,lvl);
+                GROUP_QUEST_D->place_npc(ob,"外敵",place,lvl);
                 set("title", title, ob);
                 ob->random_move();
                 ob->random_move();
@@ -69,7 +69,7 @@ string create_waidi()
                 }
         }
         GROUP_QUEST_D->set_enemy(all);
-        return "匪徒们高呼：『我们是" + filter_color(title) + "，留下你们的性命钱财！抗命者杀！！』";
+        return "匪徒們高呼：『我們是" + filter_color(title) + "，留下你們的性命錢財！抗命者殺！！』";
 }
 
 string jiuming()

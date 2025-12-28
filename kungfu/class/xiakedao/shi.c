@@ -4,11 +4,11 @@ inherit NPC;
 void create()
 {
         set_name("石破天", ({"shi potian", "shi", "potian"}));
-        set("nickname", HIW "长乐帮主" NOR);
+        set("nickname", HIW "長樂幫主" NOR);
         set("gender", "男性");
         set("age", 20);
-        set("long", "他大约二十多岁，穿着一身破烂的衣服，却"
-                    "也挡不住他一身的英气。\n");
+        set("long", "他大約二十多歲，穿著一身破爛的衣服，卻"
+                    "也擋不住他一身的英氣。\n");
         set("max_qi", 8000);
         set("max_jing", 6000);
         set("neili", 10000);
@@ -57,17 +57,17 @@ void create()
         }) );
 
         set("inquiry", ([
-                "石中玉" : "他是我的兄弟，他现在在摩天崖。",
-                "阿绣"   : "呀！你见过她吗？她还好吧。",
-                "谢烟客" : "老伯伯可是个好人啊。",
-                "狗杂种" : "我就是狗杂种，找我有什么事吗。",
-                "侠客岛" : "那…那上面…这个…你还是别问为好。",
-                "史婆婆" : "他是我师父呀，也不知道她现在怎么样了。",
-                "太玄功" : "我…我不知道，这个你别问我。",
-                "太玄神功" : "我…我不知道，这个你别问我。",
+                "石中玉" : "他是我的兄弟，他現在在摩天崖。",
+                "阿繡"   : "呀！你見過她嗎？她還好吧。",
+                "謝煙客" : "老伯伯可是個好人啊。",
+                "狗雜種" : "我就是狗雜種，找我有什麼事嗎。",
+                "俠客島" : "那…那上面…這個…你還是別問為好。",
+                "史婆婆" : "他是我師父呀，也不知道她現在怎麼樣了。",
+                "太玄功" : "我…我不知道，這個你別問我。",
+                "太玄神功" : "我…我不知道，這個你別問我。",
         ]));
 
-        create_family("金乌派", 2, "掌门弟子");
+        create_family("金烏派", 2, "掌門弟子");
         setup();
 
         carry_object("/clone/misc/cloth")->wear();
@@ -98,7 +98,7 @@ void greeting(object ob)
            || environment(ob) != environment())
                 return;
 
-        say(HIW "\n只见石破天盘膝坐在树上，白雾从体内冉冉升起，笼罩四方。\n" NOR);
+        say(HIW "\n只見石破天盤膝坐在樹上，白霧從體內冉冉升起，籠罩四方。\n" NOR);
 
         return;
 }
@@ -107,7 +107,7 @@ void greeting(object ob)
 void attempt_apprentice(object ob)
 {
         command("ah");
-        command("say 那不成，那不成。我自己都还没学好呢。");
+        command("say 那不成，那不成。我自己都還沒學好呢。");
 }
 
 void unconcious()

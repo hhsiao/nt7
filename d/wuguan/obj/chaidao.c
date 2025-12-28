@@ -10,11 +10,11 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "柄");
-                set("long", YEL "这是一柄沉甸甸的砍柴刀，普通百姓的日常用品。\n" NOR);
+                set("long", YEL "這是一柄沉甸甸的砍柴刀，普通百姓的日常用品。\n" NOR);
                 set("value", 10);
                 set("material", "steel");
-                set("wield_msg", YEL "$N" YEL "「唰」的一声抽出一柄柴刀握在手中。\n" NOR);
-                set("unwield_msg", YEL "$N" YEL "将手中的柴刀插回腰间。\n" NOR);
+                set("wield_msg", YEL "$N" YEL "「唰」的一聲抽出一柄柴刀握在手中。\n" NOR);
+                set("unwield_msg", YEL "$N" YEL "將手中的柴刀插回腰間。\n" NOR);
         }
         init_blade(4);
         setup();

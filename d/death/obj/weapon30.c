@@ -5,7 +5,7 @@ inherit WHIP;
 
 void create()
 {
-        set_name(WHT "馄饨灵索" NOR, ({ "huntun suo", "huntun", "suo", "whip" }) );
+        set_name(WHT "餛飩靈索" NOR, ({ "huntun suo", "huntun", "suo", "whip" }) );
         set_weight(4000);
         /*if( clonep() )
                 set_default_object(__FILE__);

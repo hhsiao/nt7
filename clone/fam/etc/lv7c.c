@@ -3,12 +3,12 @@ inherit ITEM;
 
 void create()
 {
-        set_name(HIB "青龙牙" NOR, ({"qinglong ya", "qinglong", "ya"}));
+        set_name(HIB "青龍牙" NOR, ({"qinglong ya", "qinglong", "ya"}));
         set_weight(300);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIB "通体深蓝的的象牙状物体，传说是龙的牙齿。\n" NOR);
+                set("long", HIB "通體深藍的的象牙狀物體，傳說是龍的牙齒。\n" NOR);
                 set("unit", "根");
                 set("value", 50000);
                 set("can_be_enchased", 1);

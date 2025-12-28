@@ -19,7 +19,7 @@ int main(object me, string arg)
 
         if( !arg || arg == "") return help(me);
         if( time()-query_temp("last_member", me)<3 )
-                return notify_fail("系统忙，请稍后再试！\n");
+                return notify_fail("系統忙，請稍後再試！\n");
 
         if( !wizardp(me) )
                 set_temp("last_member", time(), me);
@@ -30,9 +30,9 @@ int main(object me, string arg)
                 
                 str_buy_list = DB_D->sort_mapping(buy_list, 0);
 
-                write(HIG " --== 商城销售统计简表（统计时间：2013年1月1日起） ==--\n" NOR);
+                write(HIG " --== 商城銷售統計簡表（統計時間：2013年1月1日起） ==--\n" NOR);
                 write(HIC "---------------------------------------------------------\n" NOR);
-                write(sprintf(HIW "%-30s%-20s\n" NOR, "商品名称", "累计购买"));
+                write(sprintf(HIW "%-30s%-20s\n" NOR, "商品名稱", "累計購買"));
                 write(HIC "---------------------------------------------------------\n" NOR);
                 for( i = 0; i < sizeof(str_buy_list); i ++)
                 {
@@ -58,7 +58,7 @@ int main(object me, string arg)
         case "buy":
                 if( !GOODS_D->buy_goods(me, str2))
                 {
-                        write("购买失败！\n");
+                        write("購買失敗！\n");
                         return 1;
                 }
                 write("Successful!\n");
@@ -78,30 +78,30 @@ int help (object me)
         money = MEMBER_D->db_query_member(me, "money");
         buyvalue = MEMBER_D->db_query_member(me, "buyvalue");
 
-        write(HIY "□ 您目前的王者币为 " + money + " (NT)
+        write(HIY "□ 您目前的王者幣為 " + money + " (NT)
 " WHT "——————————————————————————————————
 
-" HIM "输入指令：    ntstore show all                  查看所有商城的货物
-输入指令：    ntstore show object               显示所有商城物品类
-输入指令：    ntstore show pill                 显示所有商城丹药类
-输入指令：    ntstore show special              显示所有商城特技类
-输入指令：    ntstore show story                显示所有商城故事类
-输入指令：    ntstore show symbol               显示所有商城符文类
-输入指令：    ntstore show medal                显示所有商城勋章类
-输入指令：    ntstore show enchase              显示所有商城镶嵌类
-输入指令：    ntstore show prop                 显示所有商城装备类
-输入指令：    ntstore show other                显示所有商城其他类
-输入指令：    ntstore show srv                  显示所有商城服务类
-输入指令：    ntstore buy <代号>                购买指定代号的商品
-输入指令：    ntstore look <代号>               查看指定物品的属性
+" HIM "輸入指令：    ntstore show all                  查看所有商城的貨物
+輸入指令：    ntstore show object               顯示所有商城物品類
+輸入指令：    ntstore show pill                 顯示所有商城丹藥類
+輸入指令：    ntstore show special              顯示所有商城特技類
+輸入指令：    ntstore show story                顯示所有商城故事類
+輸入指令：    ntstore show symbol               顯示所有商城符文類
+輸入指令：    ntstore show medal                顯示所有商城勳章類
+輸入指令：    ntstore show enchase              顯示所有商城鑲嵌類
+輸入指令：    ntstore show prop                 顯示所有商城裝備類
+輸入指令：    ntstore show other                顯示所有商城其他類
+輸入指令：    ntstore show srv                  顯示所有商城服務類
+輸入指令：    ntstore buy <代號>                購買指定代號的商品
+輸入指令：    ntstore look <代號>               查看指定物品的屬性
 
-" WHT "<代号>  ：    可用物品的 name 或 id 或 编号
+" WHT "<代號>  ：    可用物品的 name 或 id 或 編號
 " WHT "——————————————————————————————————
-" HIC "淘宝冲值链接地址: " HIR "http://shop61698067.taobao.com\n
-" HIY "您总共在游戏商城消费 " + buyvalue + " (NT)。
-" HIY "目前游戏商城的折扣是 " + "/adm/daemons/goodsd.c"->query_rate() + "%，把握机会哦。
+" HIC "淘寶衝值鏈接地址: " HIR "http://shop61698067.taobao.com\n
+" HIY "您總共在遊戲商城消費 " + buyvalue + " (NT)。
+" HIY "目前遊戲商城的折扣是 " + "/adm/daemons/goodsd.c"->query_rate() + "%，把握機會哦。
 
-" HIG "相关参考文件：help member\n\n" NOR);
+" HIG "相關參考文件：help member\n\n" NOR);
 
         return 1;
 }

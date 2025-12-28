@@ -3,11 +3,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("赵齐贤", ({ "zhao qixian", "zhao", "qixian" }));
-        set("title", HIR "御前侍卫" NOR);
+        set_name("趙齊賢", ({ "zhao qixian", "zhao", "qixian" }));
+        set("title", HIR "御前侍衛" NOR);
         set("age", 32);
         set("gender", "男性");
-        set("long", "一个其貌不扬的中年男子，但身上竟着御前侍\n卫的装束。他便是御前侍卫赵齐贤。\n");
+        set("long", "一個其貌不揚的中年男子，但身上竟著御前侍\n衛的裝束。他便是御前侍衛趙齊賢。\n");
         set("attitude", "peaceful");
 
         set("str", 30);
@@ -27,7 +27,7 @@ void create()
 
        set("chat_chance_combat", 10);
         set("chat_msg_combat", ({
-                "赵齐贤喝道：太岁头上居然敢动土？\n",
+                "趙齊賢喝道：太歲頭上居然敢動土？\n",
         }));
         setup();
         carry_object("/d/beijing/npc/obj/sword4")->wield();
@@ -47,7 +47,7 @@ void init()
 
 int accept_fight(object me)
 {
-        command("say 这可是你活腻了自找的，休得怪我无情。\n");
+        command("say 這可是你活膩了自找的，休得怪我無情。\n");
         me->apply_condition("killer", 500);
         kill_ob(me);
         return 1;

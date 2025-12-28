@@ -1,4 +1,4 @@
-// lighting.c 连锁闪电
+// lighting.c 連鎖閃電
 // Created by Vin 8/5/2002
 
 #include <ansi.h>
@@ -17,22 +17,22 @@ int perform(object me, object target)
         int damage;
 
         if (! wizardp(me) && me->query("id") != "vin")
-                return notify_fail(LIGHTING "只能由巫师施展。\n");
+                return notify_fail(LIGHTING "只能由巫師施展。\n");
 
         if (! me->is_fighting())
-                return notify_fail(LIGHTING "只能对战斗中的对手使用。\n");
+                return notify_fail(LIGHTING "只能對戰鬥中的對手使用。\n");
 
         target = me->select_opponent();
 
         if (! target || ! target->is_character()
            || target->query("not_living"))
-                return notify_fail("你打算对谁施展" LIGHTING  "？\n");
+                return notify_fail("你打算對誰施展" LIGHTING  "？\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         msg = WHT "$N" WHT "施展法術「" HIW "連鎖閃電" NOR +
-              WHT "」，高聲念誦道：比迪姆·亞特蒙·泰里阿普·埃控。\n" NOR;
+              WHT "」，高聲念誦道：比迪姆·亞特蒙·泰裡阿普·埃控。\n" NOR;
 
         me->start_busy(1);
 

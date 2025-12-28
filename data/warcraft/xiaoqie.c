@@ -7,9 +7,9 @@ void setup()
         set_name("小蕾[2;37;0m[2;37;0m", ({"xiaolei"}));        
         set("gender", "女性");                
         set("long", "我的[2;37;0m
-它是小妾的魔幻兽。
+它是小妾的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "xiaoqie");
         set("owner_name", "小妾");

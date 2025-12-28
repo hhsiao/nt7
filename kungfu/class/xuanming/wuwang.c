@@ -7,7 +7,7 @@ void create()
 {
         object ob;
 
-        set_name("乌旺阿普", ({ "wuwang apu", "wuwang", "apu" }));
+        set_name("烏旺阿普", ({ "wuwang apu", "wuwang", "apu" }));
         set("gender", "男性");
         set("age", 21);
         set("long", @LONG
@@ -60,8 +60,8 @@ LONG);
         }));
 
         set("inquiry", ([
-                "鹿杖客"   : "他是我师父，你找他干什么？\n",
-                "玄冥神掌" : "那是我师父的绝技，天下无敌。\n",
+                "鹿杖客"   : "他是我師父，你找他幹什麼？\n",
+                "玄冥神掌" : "那是我師父的絕技，天下無敵。\n",
         ]));
 
         set_temp("apply/attack", 50);
@@ -85,7 +85,7 @@ LONG);
 
 void attempt_apprentice(object ob)
 {
-        command("say 要入玄冥谷，你还是找我师父或者师伯吧！\n");
+        command("say 要入玄冥谷，你還是找我師父或者師伯吧！\n");
         return;
 }
 

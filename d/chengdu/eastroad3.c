@@ -5,12 +5,12 @@
 inherit ROOM;
 void create()
 {
-        set("short", "东大街");
+        set("short", "東大街");
         set("long", @LONG
-你走在东大街上，踩着坚实的青石板地面。向北是一条宽直的大
-道。北边可以通往东城门，西南边通向南大街，东南方就是有名的望
-江楼了。东边则是大名鼎鼎的侠义盟成都分部。不远处有一幢破烂的
-房屋，但是屋子的门梁 (liang)已经垮塌，把门封了个严实。
+你走在東大街上，踩著堅實的青石板地面。向北是一條寬直的大
+道。北邊可以通往東城門，西南邊通向南大街，東南方就是有名的望
+江樓了。東邊則是大名鼎鼎的俠義盟成都分部。不遠處有一幢破爛的
+房屋，但是屋子的門梁 (liang)已經垮塌，把門封了個嚴實。
 LONG );
         set("outdoors", "chengdu");
         set("exits", ([
@@ -21,7 +21,7 @@ LONG );
         ]));
 
         set("item_desc", ([
-                    "liang" : "房子的门梁垮塌，将门封了个严实。\n",
+                    "liang" : "房子的門梁垮塌，將門封了個嚴實。\n",
         ]) );
 
 //        set("no_clean_up", 0);
@@ -45,23 +45,23 @@ int do_break(string arg)
                 return 0;
 
         if (query("break"))
-                return notify_fail("房梁已经被震飞，用不着再费力了。\n");
+                return notify_fail("房梁已經被震飛，用不著再費力了。\n");
 
-        message_vision(HIY "$N" HIY "走到房前，运气双掌，猛地击"
+        message_vision(HIY "$N" HIY "走到房前，運氣雙掌，猛地擊"
                        "向垮塌的房梁！\n" NOR, me);
 
         if( query("max_neili", me)<1000 )
         {
-               message_vision(HIR "结果只听一声闷哼，$N" HIR "内"
-                              "力不济，被房梁反震，眼前顿时一黑…"
+               message_vision(HIR "結果只聽一聲悶哼，$N" HIR "內"
+                              "力不濟，被房梁反震，眼前頓時一黑…"
                               "…\n" NOR, me);
                set("neili", 0, me);
                me->unconcious();
                return 1;
         }
 
-        message_vision(HIY "只听一声轰响，房梁顿时被$N" HIY "震"
-                       "得飞起，露出了大门！\n" NOR, me);
+        message_vision(HIY "只聽一聲轟響，房梁頓時被$N" HIY "震"
+                       "得飛起，露出了大門！\n" NOR, me);
 
         set("exits/enter", __DIR__"minju");
         set("neili", 0, me);

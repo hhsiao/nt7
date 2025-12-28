@@ -3,19 +3,19 @@
 
 class business
 {
-        string name;    /* 名称 */
+        string name;    /* 名稱 */
         string id;      /* ID */
-        string unit;    /* 单位 */
-        int amount;     /* 数量 */
-        int buy;        /* 收购单价 */
-        string from;    /* 收购地点 */
-        string now;     /* 货物当前所在地 */
-        string to;      /* 货物当前正在前往的地点 */
-        int time;       /* 预计到达的时间 */
+        string unit;    /* 單位 */
+        int amount;     /* 數量 */
+        int buy;        /* 收購單價 */
+        string from;    /* 收購地點 */
+        string now;     /* 貨物當前所在地 */
+        string to;      /* 貨物當前正在前往的地點 */
+        int time;       /* 預計到達的時間 */
 }
 
-int trade_amount = 0; /* 共进行过的交易次数 */
-int profit = 0; /* 共赚取的利润(silver) */
+int trade_amount = 0; /* 共進行過的交易次數 */
+int profit = 0; /* 共賺取的利潤(silver) */
 int query_profit() { return profit; }
 
 class business *all = ({});
@@ -44,7 +44,7 @@ int set_business(mapping data)
 protected void get_fasong_number(string num,object me,class business *have);
 protected void get_fasong_where(string num,object me,string *ds,class business ware);
 
-// 返回值 0 此人在本地没有这种货物, -1 数量不够.
+// 返回值 0 此人在本地沒有這種貨物, -1 數量不夠.
 nomask int sell_out(string id,int amount,int value)
 {
         string domain;
@@ -140,46 +140,46 @@ nomask string query_business_status()
         int n;
 
         if(!n  = sizeof(all))
-                output += "你目前手头没有任何货物。\n";
+                output += "你目前手頭沒有任何貨物。\n";
         else
         {
-                output += "你目前手头的货物有：\n";
+                output += "你目前手頭的貨物有：\n";
                 output += sprintf("%-22s%-12s%-12s%-12s%s\n",
-                        "货物名称","货物数量","收购地点","收购价格","状态");
+                        "貨物名稱","貨物數量","收購地點","收購價格","狀態");
                 output += "----------------------------------------------------------------------\n";
                 for(int i=0;i<n;i++)
                 {
                         string status;
 
                         if(!all[i]->to)
-                                status = sprintf("货物在%s",to_chinese(all[i]->now));
+                                status = sprintf("貨物在%s",to_chinese(all[i]->now));
                         else if(time() <=  all[i]->time)
-                                status = sprintf("正在运往%s的途中剩余%s天左右到达",to_chinese(all[i]->to),
+                                status = sprintf("正在運往%s的途中剩餘%s天左右到達",to_chinese(all[i]->to),
                                                  chinese_number((all[i]->time - time()) / 1440));
                         else
-                                status = sprintf("已运抵%s",to_chinese(all[i]->to));
+                                status = sprintf("已運抵%s",to_chinese(all[i]->to));
 
                         output += sprintf("%-22s%-12s%-12s%-12s%s\n",
                                 sprintf("%s(%s)",all[i]->name,all[i]->id),
                                 sprintf("%d%s",all[i]->amount,all[i]->unit),
                                 to_chinese(all[i]->from),
-                                sprintf("%d银/%s",all[i]->buy,all[i]->unit),
+                                sprintf("%d銀/%s",all[i]->buy,all[i]->unit),
                                 status
                                 );
                 }
         }
 
         if(!trade_amount)
-                output += "\n你还没有从事过贸易活动。\n\n";
+                output += "\n你還沒有從事過貿易活動。\n\n";
         else
-                output += sprintf("\n你共进行过%s次贸易。\n\n",chinese_number(trade_amount));
+                output += sprintf("\n你共進行過%s次貿易。\n\n",chinese_number(trade_amount));
 
         if(!profit)
-                output += "你还没有通过贸易赚取过利润。\n\n";
+                output += "你還沒有通過貿易賺取過利潤。\n\n";
         else if(profit < 0)
-                output += sprintf("你在从事贸易中共亏损了 %d 两白银。\n\n",abs(profit));
+                output += sprintf("你在從事貿易中共虧損了 %d 兩白銀。\n\n",abs(profit));
         else
-                output += sprintf("你在从事贸易中共赚取了 %d 两白银。\n\n",profit);
+                output += sprintf("你在從事貿易中共賺取了 %d 兩白銀。\n\n",profit);
 
         return output;
 }
@@ -199,7 +199,7 @@ nomask void fasong_ware()
 
         if( !(n = sizeof(all)) )
         {
-                write("你现在手里没有任何货物。\n");
+                write("你現在手裡沒有任何貨物。\n");
                 return;
         }
 
@@ -209,17 +209,17 @@ nomask void fasong_ware()
 
         if( !(n = sizeof(have)) )
         {
-                write(sprintf("你在%s没有任何货物。\n",to_chinese(from)));
+                write(sprintf("你在%s沒有任何貨物。\n",to_chinese(from)));
                 return;
         }
 
         if(n > 1)
         {
-                out = sprintf("你目前在%s共有%s笔货物：\n",to_chinese(from),chinese_number(n));
+                out = sprintf("你目前在%s共有%s筆貨物：\n",to_chinese(from),chinese_number(n));
                 for(i=0;i<n;i++)
                         out += sprintf("%2d. %s %d %s。\n",(i+1),
                                 have[i]->name,have[i]->amount,have[i]->unit);
-                out += "请选择你要发送的货物：\n";
+                out += "請選擇你要發送的貨物：\n";
                 write(out);
                 input_to( (: get_fasong_number :),this_player(),have );
                 return;
@@ -238,7 +238,7 @@ protected void get_fasong_number(string num,object me,class business *have)
 
         if(!sscanf(num,"%d",n))
         {
-                write("请选择你要发送的货物：\n");
+                write("請選擇你要發送的貨物：\n");
                 input_to((: get_fasong_number :),me,have);
                 return;
         }
@@ -246,7 +246,7 @@ protected void get_fasong_number(string num,object me,class business *have)
         n--;
         if( (n < 0 ) || (n > sizeof(have)) )
         {
-                write("请选择你要发送的货物：\n");
+                write("請選擇你要發送的貨物：\n");
                 input_to((: get_fasong_number :),me,have);
                 return;
         }
@@ -260,13 +260,13 @@ protected void get_fasong_number(string num,object me,class business *have)
                 if(strlen(v_domains[i]) > l)
                         l = strlen(v_domains[i]);
 
-        out = "目前可以发往的地点有：\n";
+        out = "目前可以發往的地點有：\n";
         bk = to_int(50/(l+5));
         l++;
         for(i=0;i<s;i++)
                 out += sprintf("%-3d%-"+(string)l+"s  %s",(i+1),v_domains[i],(i%bk==(bk-1))||i==n-1?"\n":"" );
 
-        out += "请选择你要发往的地点：\n";
+        out += "請選擇你要發往的地點：\n";
         write(out);
         input_to((: get_fasong_where :),me,ds,have[n]);
 }
@@ -280,7 +280,7 @@ protected void get_fasong_where(string num,object me,string *ds,class business w
 
         if(!sscanf(num,"%d",n))
         {
-                write("请选择你要发往的地点：\n");
+                write("請選擇你要發往的地點：\n");
                 input_to((: get_fasong_where :),me,ds,ware);
                 return;
         }
@@ -288,7 +288,7 @@ protected void get_fasong_where(string num,object me,string *ds,class business w
         n--;
         if( (n < 0 ) || (n >= sizeof(ds)) )
         {
-                write("请选择你要发往的地点：\n");
+                write("請選擇你要發往的地點：\n");
                 input_to((: get_fasong_where :),me,ds,ware);
                 return;
         }
@@ -296,7 +296,7 @@ protected void get_fasong_where(string num,object me,string *ds,class business w
         time = BUSINESS_D->count_fasong_time(ware->now,ds[n],ware->buy*ware->amount/100);
         if(!time)
         {
-                write("发送失败！！！！\n");
+                write("發送失敗！！！！\n");
                 return;
         }
 
@@ -305,24 +305,24 @@ protected void get_fasong_where(string num,object me,string *ds,class business w
         if(plus > 1)
                 fs_fee *= plus;
 
-        if(fs_fee < 20) // 1000 两白银。每次运费最少为 20 silver。
+        if(fs_fee < 20) // 1000 兩白銀。每次運費最少為 20 silver。
                 fs_fee = 20;
 
         if(query("balance", me) < fs_fee*100)
         {
-                write(sprintf("发送 %d %s%s去%s须缴纳运费 %d 两白银，你银行存款不够。\n",
+                write(sprintf("發送 %d %s%s去%s須繳納運費 %d 兩白銀，你銀行存款不夠。\n",
                         ware->amount,ware->unit,ware->name,to_chinese(ds[n]),fs_fee ));
                 return;
         }
 
         addn("balance", -fs_fee*100, me);
-        write(sprintf("发送 %d %s%s去%s的运费 %d 两白银已直接从你的银行存款中转帐。\n",
+        write(sprintf("發送 %d %s%s去%s的運費 %d 兩白銀已直接從你的銀行存款中轉帳。\n",
                         ware->amount,ware->unit,ware->name,to_chinese(ds[n]),fs_fee ));
         ware->now = 0;
         ware->to = ds[n];
         ware->time = time()+time*1440;
         this_object()->save();
-        write(sprintf("%s已发往%s,路上大约需要%s天。\n",
+        write(sprintf("%s已發往%s,路上大約需要%s天。\n",
                 ware->name,to_chinese(ds[n]),chinese_number(time)));
 }
 
@@ -338,7 +338,7 @@ protected void random_happen(class business w)
         string reason,cl;
         int n,loss;
 
-        // 损失率 1-5%，30% 可能性发生损失。
+        // 損失率 1-5%，30% 可能性發生損失。
 
         if(random(100) >= 30)
                 return;
@@ -365,19 +365,19 @@ protected void random_happen(class business w)
         if(!cl)
                 return;
 
-        if( (cl == "谷物") || (cl == "土特产") )
-                reason = "烂掉";
+        if( (cl == "穀物") || (cl == "土特產") )
+                reason = "爛掉";
         else
         {
                 if(random(2))
                         reason = "被偷";
                 else
-                        reason = "被抢";
+                        reason = "被搶";
         }
 
         w->amount -= loss;
 
-        tell_object(this_object(),sprintf("你的%s在运输途中%s了 %d %s。\n",
+        tell_object(this_object(),sprintf("你的%s在運輸途中%s了 %d %s。\n",
                 w->name,reason,loss,w->unit ));
 }
 

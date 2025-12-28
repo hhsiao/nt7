@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;35m凤凰[1;37m传奇[2;37;0m[2;37;0m", ({"dalimoone"}));        
+        set_name("[1;35m鳳凰[1;37m傳奇[2;37;0m[2;37;0m", ({"dalimoone"}));        
         set("gender", "女性");                
-        set("long", "这个是什么，你懂的。[2;37;0m
-它是大粒墨的魔幻兽。
+        set("long", "這個是什麼，你懂的。[2;37;0m
+它是大粒墨的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

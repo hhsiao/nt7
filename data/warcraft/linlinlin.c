@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("火炉[2;37;0m[2;37;0m", ({"huohu"}));        
+        set_name("火爐[2;37;0m[2;37;0m", ({"huohu"}));        
         set("gender", "女性");                
         set("long", "烈火熊熊[2;37;0m
-它是烤肉的魔幻兽。
+它是烤肉的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

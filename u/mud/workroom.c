@@ -12,7 +12,7 @@ void create()
 {
         set("short", NOR HIW "民工" HIK "棚" NOR);
         set("long", @LONG
-这是没有建造工作室的巫师的临时住处，这里的设备非常简单，只有
+這是沒有建造工作室的巫師的臨時住處，這裡的設備非常簡單，只有
 一些常用物品。
 LONG );
 
@@ -35,7 +35,7 @@ LONG );
 int valid_leave(object me, string dir)
 {
         if (dir == "north" && ! wizardp(me))
-                return notify_fail("那里只有巫师才能进去。\n");
+                return notify_fail("那裡只有巫師才能進去。\n");
 
         return ::valid_leave(me, dir);
 }
@@ -50,13 +50,13 @@ int do_hy(string arg)
         object obj;
         object me = this_player();
         if(! arg || arg == "")
-            return notify_fail("请输入要还阳者的id？\n");
+            return notify_fail("請輸入要還陽者的id？\n");
         obj = find_player(arg);
         if(!obj)
-            return notify_fail("没有这个人。\n");
+            return notify_fail("沒有這個人。\n");
 
         obj->move("/d/death/gate");
-        tell_object(me,obj->name()+"已经被送往白无常处复活！\n");
+        tell_object(me,obj->name()+"已經被送往白無常處復活！\n");
 
       return 1;
 }
@@ -65,7 +65,7 @@ int do_pick()
         object ob;
         object me = this_player();
         if(!wizardp(me) && query("id",me)!="mud")
-            return notify_fail("不要再别人家里乱翻东西！\n");
+            return notify_fail("不要再別人家裡亂翻東西！\n");
         ob = new("/u/mud/charm");
         ob->move(me);
         return 1;

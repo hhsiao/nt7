@@ -20,13 +20,13 @@ int main(object me, string msg)
         {
                 if( file_size(NOTICE) < 0 )
                 {
-                        write("现在没有设定任何连线通知\n");
+                        write("現在沒有設定任何連線通知\n");
                         write("--------------------------------------------\n\n");
                         return help(me);
                 }
 
                 arg = read_file(NOTICE);
-                write("你现在所设定的连线通知是：\n");
+                write("你現在所設定的連線通知是：\n");
                 write("--------------------------------------------\n\n");
 
                 if( strlen(arg) > 8190 )
@@ -59,17 +59,17 @@ int main(object me, string msg)
         msg = color_filter(msg);
         msg += NOR;
         write_file(NOTICE, msg, 1);
-        write("连线通知加入完毕。\n");
+        write("連線通知加入完畢。\n");
         return 1;
 }
 
 int help(object me)
 {
         write(@HELP
-指令格式: notice <通知内容>
+指令格式: notice <通知內容>
 
-改指令用来添加玩家连线后的通知信息，如无必要尽量少用
-notice -rm 用来清除信息。
+改指令用來添加玩家連線後的通知信息，如無必要儘量少用
+notice -rm 用來清除信息。
 HELP
         );
         return 1;

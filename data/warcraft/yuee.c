@@ -6,8 +6,8 @@ void setup()
 {
         set_name("喵喵[2;37;0m[2;37;0m", ({"lucas"}));        
         set("gender", "男性");                
-        set("long", "萌萌哒[2;37;0m
-它是沐沐的魔幻兽。
+        set("long", "萌萌噠[2;37;0m
+它是沐沐的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

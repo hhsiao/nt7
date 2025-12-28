@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("[31m理论[2;37;0m[2;37;0m", ({"zuesls"}));        
+        set_name("[31m理論[2;37;0m[2;37;0m", ({"zuesls"}));        
         set("gender", "男性");                
         set("long", "哈哈[2;37;0m
-它是贼就的魔幻兽。
+它是賊就的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");
         set("owner", "zuesl");
-        set("owner_name", "贼就");
+        set("owner_name", "賊就");
         set_temp("owner", "zuesl");
-        set_temp("owner_name", "贼就");
+        set_temp("owner_name", "賊就");
         ::setup();
 }

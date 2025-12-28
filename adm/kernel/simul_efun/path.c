@@ -58,17 +58,17 @@ string resolvePath(string path, int op)
         string tmp;
         int    i;
 
-        if( path == "/" ) // 对这个情况特殊处理
+        if( path == "/" ) // 對這個情況特殊處理
                 return (op) ? "/" : "*";
 
         dn = explode(path, "/");
-        if( op ) { // op为非0表示需要返回路径
+        if( op ) { // op為非0表示需要返回路徑
                 // dn = dn - ({dn[sizeof(dn) - 1]});
                 // tmp = implode(dn, "/") + "/";
-                // 上面的程序不好，不能对同名路径正确处理，比如不能在/log/log文件里搜索
+                // 上面的程序不好，不能對同名路徑正確處理，比如不能在/log/log文件裡搜索
                 tmp = "/";
                 for (i = 0; i < sizeof(dn) - 1; i++) {
-                        // write("合并" + dn[i] + "\n");
+                        // write("合併" + dn[i] + "\n");
                         tmp += dn[i] + "/";
                 }
                 return tmp;

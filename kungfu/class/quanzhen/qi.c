@@ -1,4 +1,4 @@
-// qi.c 祁志诚
+// qi.c 祁志誠
 // By Lgg,1998.10
 
 #include "quanzhen.h"
@@ -8,14 +8,14 @@ string ask_me();
 
 void create()
 {
-        set_name("祁志诚", ({"qi zhicheng", "qi"}));
+        set_name("祁志誠", ({"qi zhicheng", "qi"}));
         set("gender", "男性");
         set("age", 24);
         set("class", "taoist");
         set("long",
-                "他就是全真教第三代弟子中的好手，谭处端的大弟子祁志诚。\n"
-                "他相貌英俊，精明能干，深受长辈的信任，派遣他去掌管教中\n"
-                "的经书典籍。\n");
+                "他就是全真教第三代弟子中的好手，譚處端的大弟子祁志誠。\n"
+                "他相貌英俊，精明能幹，深受長輩的信任，派遣他去掌管教中\n"
+                "的經書典籍。\n");
         set("attitude", "friendly");
         set("shen_type",1);
         set("str", 25);
@@ -69,8 +69,8 @@ void create()
 
         set("book_count",1);
         set("inquiry", ([
-                "全真教" :  "我全真教是天下道家玄门正宗。\n",
-                "道德经" : (: ask_me :),
+                "全真教" :  "我全真教是天下道家玄門正宗。\n",
+                "道德經" : (: ask_me :),
         ]) );
 
         setup();
@@ -85,7 +85,7 @@ void attempt_apprentice(object ob)
         if (! permit_recruit(ob))
                 return;
 
-        command("say 好吧，我就收下你这个徒弟了。");
+        command("say 好吧，我就收下你這個徒弟了。");
         command("recruit "+query("id", ob));
 }
 
@@ -96,13 +96,13 @@ string ask_me()
 
         if( !(fam=query("family", this_player())) || fam["family_name"] != "全真教" )
                 return RANK_D->query_respect(this_player()) +
-                "与本教毫无瓜葛，你这话可叫我弄不明白了。";
+                "與本教毫無瓜葛，你這話可叫我弄不明白了。";
         if (query("book_count") < 1)
-                return "你来晚了，道德经已经被人取走了。";
+                return "你來晚了，道德經已經被人取走了。";
         addn("book_count", -1);
         ob = new("/d/quanzhen/npc/obj/daodejing-ii");
         ob->move(this_player());
-        return "好吧，这本「道德经」你拿回去好好研读。";
+        return "好吧，這本「道德經」你拿回去好好研讀。";
 }
 
 void reset()

@@ -4,7 +4,7 @@
  * File   : network_d.c
  * Author : Clode@RevivalWorld
  * Date   : 2002-9-12
- * Note   : 网路资讯精灵
+ * Note   : 網路資訊精靈
  * Update :
  *  o 2000-00-00  
  *
@@ -60,7 +60,7 @@ string query_network_packet_stats()
 {
 	mapping networkstats = network_stats();
 
-	return sprintf("已接收 %s 封包(%.2f/sec)，已传送 %s 封包(%.2f/sec)", NUMBER_D->number_symbol(networkstats["incoming packets total"]), to_float(networkstats["incoming packets total"])/uptime(), NUMBER_D->number_symbol(networkstats["outgoing packets total"]), to_float(networkstats["outgoing packets total"])/uptime());
+	return sprintf("已接收 %s 封包(%.2f/sec)，已傳送 %s 封包(%.2f/sec)", NUMBER_D->number_symbol(networkstats["incoming packets total"]), to_float(networkstats["incoming packets total"])/uptime(), NUMBER_D->number_symbol(networkstats["outgoing packets total"]), to_float(networkstats["outgoing packets total"])/uptime());
 
 }
 
@@ -68,7 +68,7 @@ string query_network_volume_stats()
 {
 	mapping networkstats = network_stats();
 
-	return sprintf("已接收 %s 资料(%.3f KBytes/sec)，已传送 %s 资料(%.3f KBytes/sec)", dsize(networkstats["incoming volume total"]), to_float(networkstats["incoming volume total"])/1024./uptime(), dsize(networkstats["outgoing volume total"]), to_float(networkstats["outgoing volume total"])/1024./uptime());
+	return sprintf("已接收 %s 資料(%.3f KBytes/sec)，已傳送 %s 資料(%.3f KBytes/sec)", dsize(networkstats["incoming volume total"]), to_float(networkstats["incoming volume total"])/1024./uptime(), dsize(networkstats["outgoing volume total"]), to_float(networkstats["outgoing volume total"])/1024./uptime());
 
 }
 
@@ -78,5 +78,5 @@ void create()
 }
 string query_name()
 {
-	return "网路资讯系统(NETWORK_D)";
+	return "網路資訊系統(NETWORK_D)";
 }

@@ -3,10 +3,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", HIB "阴阳塔" NOR);
+        set("short", HIB "陰陽塔" NOR);
         set("long", HIB @LONG
-这是地狱中最高的一座塔，高约三百余尺，共有十八级。相传塔顶
-住有神兽朱雀，这个传言也不知是真是假。
+這是地獄中最高的一座塔，高約三百餘尺，共有十八級。相傳塔頂
+住有神獸朱雀，這個傳言也不知是真是假。
 LONG NOR
         );
 

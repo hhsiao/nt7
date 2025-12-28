@@ -14,10 +14,10 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "颗");
-                set("long", HIG "这是一颗晶莹如玉的菩提子，采自灵山佛祖座"
-                            "前，珍稀无比，\n乃万年菩提树之实，功能化百劫"
-                            "，渡千灾，与天地同寿。\n");
+                set("unit", "顆");
+                set("long", HIG "這是一顆晶瑩如玉的菩提子，採自靈山佛祖座"
+                            "前，珍稀無比，\n乃萬年菩提樹之實，功能化百劫"
+                            "，渡千災，與天地同壽。\n");
                 set("value", 50000);
                 set("only_do_effect", 1);
         }
@@ -32,8 +32,8 @@ int do_effect(object me)
 /*
         if ((int)me->query_condition("putizi_drug") > 0)
         {
-                write("你觉得现在内息未定，经脉隐隐还能感到真气冲荡，不"
-                      "敢贸然服食。\n");
+                write("你覺得現在內息未定，經脈隱隱還能感到真氣衝蕩，不"
+                      "敢貿然服食。\n");
                 return 1;
         } else
 */
@@ -44,15 +44,15 @@ int do_effect(object me)
                         set("max_neili", neili_limit, me);
                 set("neili",query("max_neili",  me), me);
 
-                message_vision(HIY "$N" HIY "吃下一颗菩提子，顿然间只觉一股浩"
-                               "荡无比的真气直冲顶门，连忙运功吸纳。\n" NOR,
+                message_vision(HIY "$N" HIY "吃下一顆菩提子，頓然間只覺一股浩"
+                               "蕩無比的真氣直衝頂門，連忙運功吸納。\n" NOR,
                                me);
                 // me->apply_condition("putizi_drug", 1000);
         } else
         {
-                message_vision(HIY "$N" HIY "一仰脖，吞下了一颗菩提子。\n" NOR,
+                message_vision(HIY "$N" HIY "一仰脖，吞下了一顆菩提子。\n" NOR,
                                me);
-                tell_object(me, "你觉得没啥感觉，不如花生好吃。\n");
+                tell_object(me, "你覺得沒啥感覺，不如花生好吃。\n");
         }
 
         // me->start_busy(random(5) + 5);

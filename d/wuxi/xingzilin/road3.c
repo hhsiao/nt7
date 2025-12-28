@@ -8,8 +8,8 @@ void create()
 {
         set("short", "杏林小道");
         set("long", @LONG
-这是林中小路，高大的杏树密布。浓雾飘绕五丈外不可见人，周围
-杀喊的声音不时传来。
+這是林中小路，高大的杏樹密佈。濃霧飄繞五丈外不可見人，周圍
+殺喊的聲音不時傳來。
 LONG);
         set("no_magic", 1);
 	set("no_sleep_room",1);
@@ -29,7 +29,7 @@ setup();
 
 int valid_leave(object me, string dir)
 {
-          if (dir == "west" && ! playerp(me)) return 0; //阻挡npc逃出区域
+          if (dir == "west" && ! playerp(me)) return 0; //阻擋npc逃出區域
         return ::valid_leave(me, dir);
 }
 

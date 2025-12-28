@@ -1,4 +1,4 @@
-// shaolin 少林七十二绝技
+// shaolin 少林七十二絕技
 
 #include <ansi.h>
 

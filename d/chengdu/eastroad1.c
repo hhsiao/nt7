@@ -4,17 +4,17 @@
 inherit ROOM;
 void create()
 {
-        set("short", "东大街");
+        set("short", "東大街");
         set("long", @LONG
-你走在东大街坚实的青石板地面上。南边可以通向东城门，路边
-有一个简陋的茶摊，一块洗得发白了的旧帆布正顶着头顶火辣辣的阳
-光，一张长几上放着几只大号粗瓷碗 (Wan)。碗中盛满着可口的茶水。
-    往西北通往北大街，东北方一座大店面里传出阵阵划拳的喧闹。
+你走在東大街堅實的青石板地面上。南邊可以通向東城門，路邊
+有一個簡陋的茶攤，一塊洗得發白了的舊帆布正頂著頭頂火辣辣的陽
+光，一張長几上放著幾隻大號粗瓷碗 (Wan)。碗中盛滿著可口的茶水。
+    往西北通往北大街，東北方一座大店面裡傳出陣陣划拳的喧鬧。
 LONG );
         set("outdoors", "chengdu");
         set("resource/water", 1);
         set("item_desc", ([
-                "wan" : "香喷喷的大碗茶，来一碗吧！\n",
+                "wan" : "香噴噴的大碗茶，來一碗吧！\n",
         ]));
         set("exits", ([
                     "northeast" : __DIR__"jiudian",
@@ -48,9 +48,9 @@ int do_drink(string arg)
         {
                 set("water", current_water+60, me);
                 message("vision", me->name() +
-                        "端起一碗茶水来.... \n", environment(me), ({me}));
-                write("你端起一碗茶水来.咕噜.咕噜..喝了个干净。真解渴呀！\n");
+                        "端起一碗茶水來.... \n", environment(me), ({me}));
+                write("你端起一碗茶水來.咕嚕.咕嚕..喝了個乾淨。真解渴呀！\n");
         }
-        else write("你实在是喝不下了。\n");
+        else write("你實在是喝不下了。\n");
         return 1;
 }

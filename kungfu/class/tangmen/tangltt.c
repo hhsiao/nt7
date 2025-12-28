@@ -15,11 +15,11 @@ void close(object room);
 void create()
 {
         set_name("唐老太太", ({ "tang laotai", "tang" }));
-        set("nickname", HIW "霹雳夫人" NOR);
+        set("nickname", HIW "霹靂夫人" NOR);
         set("long",
-                "她就是唐门第二代掌门唐老太太，在她的经营下，\n"
-                "唐门在江湖中声名更加显赫。\n"
-                "她大约七十有余，一头银发，红光满面。\n");
+                "她就是唐門第二代掌門唐老太太，在她的經營下，\n"
+                "唐門在江湖中聲名更加顯赫。\n"
+                "她大約七十有餘，一頭銀髮，紅光滿面。\n");
         set("gender", "女性");
         set("age", 72);
         set("class", "tangmen");
@@ -73,10 +73,10 @@ void create()
 
         prepare_skill("hand", "boyun-suowu");
 
-        create_family("唐门世家", 2, "掌门");
+        create_family("唐門世家", 2, "掌門");
         set("inquiry", ([
-                "唐老爷子" : (:do_pull:),
-                "大闹唐门" : (: ask_me :)
+                "唐老爺子" : (:do_pull:),
+                "大鬧唐門" : (: ask_me :)
         ]));
 
         set_temp("apply/damage", 100);
@@ -103,38 +103,38 @@ void attempt_apprentice(object ob)
                 return;
 
 /*
-        if( (query("family/family_name", ob) != "唐门世家" && member_array("唐门世家", query("reborn/fams", ob)) == -1) || 
+        if( (query("family/family_name", ob) != "唐門世家" && member_array("唐門世家", query("reborn/fams", ob)) == -1) || 
              query("combat_exp", ob)<600000 )
         {
-                command("say 你还是先拜唐缺为师，学些唐门的基本工夫吧以及提升你的战斗经验吧！\n");
+                command("say 你還是先拜唐缺為師，學些唐門的基本工夫吧以及提升你的戰鬥經驗吧！\n");
                 return;
         }
 */
 
         if ((int)ob->query_skill("biyun-xinfa", 1) < 150)
         {
-                command("say 唐门虽然以暗器为主，但还是要辅以内力。");
+                command("say 唐門雖然以暗器為主，但還是要輔以內力。");
                 command("say " + RANK_D->query_respect(ob) +
-                        "是否还应该在碧云心法上多下点功夫？");
+                        "是否還應該在碧雲心法上多下點功夫？");
                 return;
         }
         if( query("dex", ob)<30 )
         {
-                command("say “你的身法太差了，不要误了自己啊！”\n");
+                command("say “你的身法太差了，不要誤了自己啊！”\n");
                 return;
         }
         if( query("int", ob)<28){
-                command("say 唐门历来注重弟子的文学修为。");
-                command("say 本派功夫要能熟练运用，必须能体会其中所含深远意境，悟性差了是不行的。");
-                command("say " + RANK_D->query_respect(ob) + "的悟性还大有潜力可挖，还是请回吧。");
+                command("say 唐門歷來注重弟子的文學修為。");
+                command("say 本派功夫要能熟練運用，必須能體會其中所含深遠意境，悟性差了是不行的。");
+                command("say " + RANK_D->query_respect(ob) + "的悟性還大有潛力可挖，還是請回吧。");
                 return;
         }
         if( query("str", ob)<30){
-                command("say " + RANK_D->query_respect(ob) + "的先天膂力不够，还是请回吧。");
+                command("say " + RANK_D->query_respect(ob) + "的先天膂力不夠，還是請回吧。");
                 return;
         }
 
-        command("say 好吧，从今天起你就是我的关门弟子了。\n");
+        command("say 好吧，從今天起你就是我的關門弟子了。\n");
         command("recruit "+query("id", ob));
 }
 
@@ -143,7 +143,7 @@ int do_pull()
         object me, room;
         me = this_player();
         room = environment(this_object());
-        message_vision(YEL"\n唐老太太一转身在床头扳动了一下。\n只听“滋滋”几声轻响床脚的地面移开了一个洞口。\n"NOR, me);
+        message_vision(YEL"\n唐老太太一轉身在床頭扳動了一下。\n只聽“滋滋”幾聲輕響床腳的地面移開了一個洞口。\n"NOR, me);
         set("exits/down", "/d/tangmen/didao1", room);
         remove_call_out("close");
         call_out("close", 3, environment(this_object()));
@@ -152,7 +152,7 @@ int do_pull()
 
 void close(object room)
 {
-        message("vision",HIR"身后传来一声轻响，想是暗门又被关上了。\n"NOR, this_player());
+        message("vision",HIR"身後傳來一聲輕響，想是暗門又被關上了。\n"NOR, this_player());
         delete("exits/down", room);
 }
 
@@ -160,25 +160,25 @@ string ask_me()
 {
         object me;
         me = this_player();
-        if( query_temp("marks/闹", me) )
+        if( query_temp("marks/鬧", me) )
         {
-                command("say 你想帮唐方那个死丫头打探消息吗？看我不劈了你");
+                command("say 你想幫唐方那個死丫頭打探消息嗎？看我不劈了你");
                 command("hit"+query("id", me));
-                return "看来老太婆非得教训你一下不可。\n";
+                return "看來老太婆非得教訓你一下不可。\n";
         }
-        if( query_temp("marks/萧", me) )
+        if( query_temp("marks/蕭", me) )
         {
                 command("angry"+query("id", this_player()));
-                command("say 难道你想像萧秋水一样来个大闹唐门吗？\n");
+                command("say 難道你想像蕭秋水一樣來個大鬧唐門嗎？\n");
                 command("heng"+query("id", this_player()));
-                command("say 唐方那个死丫头！\n");
-                set_temp("marks/闹", 1, this_player());
-                delete_temp("marks/萧", me);
-                return"萧秋水已被我关起来了！她别想再见到这个混小子了！\n";
+                command("say 唐方那個死丫頭！\n");
+                set_temp("marks/鬧", 1, this_player());
+                delete_temp("marks/蕭", me);
+                return"蕭秋水已被我關起來了！她別想再見到這個混小子了！\n";
         }
         else
         {
-                return "瓜娃子，你说啥子？老太婆听不懂哦！\n";
+                return "瓜娃子，你說啥子？老太婆聽不懂哦！\n";
         }
 
 
@@ -188,9 +188,9 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "历练" :
-        case "历炼" :
-        case "锻炼" :
+        case "歷練" :
+        case "歷煉" :
+        case "鍛鍊" :
                 return QUEST_D->accept_ask(this_object(), me, topic);
                 break;
 
@@ -206,20 +206,20 @@ int accept_ask(object me, string topic)
                            "shen"    : 100000, ]));
                 break;
 
-        case "随风而舞" :
+        case "隨風而舞" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/qiulin-shiye/wu",
-                           "name"    : "随风而舞",
+                           "name"    : "隨風而舞",
                            "sk1"     : "qiulin-shiye",
                            "lv1"     : 100,
                             "gongxian": 100,
                            ]));
                 break;
 
-        case "云雾暗点" :
+        case "雲霧暗點" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/boyun-suowu/dian",
-                           "name"    : "云雾暗点",
+                           "name"    : "雲霧暗點",
                            "sk1"     : "boyun-suowu",
                            "lv1"     : 120,
                            "sk2"     : "biyun-xinfa",
@@ -228,10 +228,10 @@ int accept_ask(object me, string topic)
                            "neili"   : 1400, ]));
                 break;
 
-        case "回梦" :
+        case "迴夢" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/boyun-suowu/meng",
-                           "name"    : "回梦",
+                           "name"    : "迴夢",
                            "sk1"     : "boyun-suowu",
                            "lv1"     : 160,
                            "sk2"     : "biyun-xinfa",
@@ -250,10 +250,10 @@ int accept_ask(object me, string topic)
                            "shen"    : 4000, ]));
                 break;
 
-        case "七子刚镖" :
+        case "七子剛鏢" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/tangmen-throwing/biao",
-                           "name"    : "七子刚镖",
+                           "name"    : "七子剛鏢",
                            "sk1"     : "tangmen-throwing",
                            "lv1"     : 140,
                            "sk2"     : "biyun-xinfa",
@@ -262,10 +262,10 @@ int accept_ask(object me, string topic)
                            "shen"    : 60000, ]));
                 break;
 
-        case "心有千结" :
+        case "心有千結" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/tangmen-throwing/qian",
-                           "name"    : "心有千结",
+                           "name"    : "心有千結",
                            "sk1"     : "tangmen-throwing",
                            "lv1"     : 140,
                            "sk2"     : "biyun-xinfa",

@@ -8,8 +8,8 @@ void create()
 {
         set("short", "睡房");
         set("long", 
-"这是洞天里的睡房，环境舒适，透过木窗隐约可见走廊，窗外的青青竹\n"
-"影摇曳，沙沙作响。练功辛苦了的人可以在此小憩。\n"
+"這是洞天裡的睡房，環境舒適，透過木窗隱約可見走廊，窗外的青青竹\n"
+"影搖曳，沙沙作響。練功辛苦了的人可以在此小憩。\n"
 );
                 //set("outdoors", "dongtian");
                 set("exits",([ /* sizeof() == 1 */
@@ -34,7 +34,7 @@ void create()
 
 int disscheme() 
 { 
-        tell_object(this_player(), "一声奸笑令你毛骨悚然..。\n");  
+        tell_object(this_player(), "一聲奸笑令你毛骨悚然..。\n");  
         return -1;  
 } 
 

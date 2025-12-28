@@ -2,18 +2,18 @@
 // by Find.
 
 /*********************************************
- * 每日凌晨三点自动刷新,此时机器负担应该很轻.
- * 此程序运行的负担应该很轻,如要再减低负担可将
- * USER_PER_CALL 的数字减小,但会增加此程序的运
- * 行时间.如感觉没什么负担想提升执行速度,可适当
- * 将这个数字增加.
+ * 每日凌晨三點自動刷新,此時機器負擔應該很輕.
+ * 此程序運行的負擔應該很輕,如要再減低負擔可將
+ * USER_PER_CALL 的數字減小,但會增加此程序的運
+ * 行時間.如感覺沒什麼負擔想提升執行速度,可適當
+ * 將這個數字增加.
  *********************************************/
 
 // #pragma optimize
 
 #define MIN_FORCE	1000
 #define MIN_GOLD	100
-#define MIN_EXP		100000	// 参加排名的最低要求经验值.
+#define MIN_EXP		100000	// 參加排名的最低要求經驗值.
 #define USER_PER_CALL	10
 #define YIJIA_ROOM	"/d/changan/ly-ge3"
 #define ERJIA_ROOM	"/d/changan/ly-ge2"
@@ -237,7 +237,7 @@ protected void update_top_room()
 	refresh_room(YIJIA_ROOM);
 	refresh_room(ERJIA_ROOM);
 
-	log_file("paiming",sprintf("江湖排名结果:\n%O\n", top_exp));
+	log_file("paiming",sprintf("江湖排名結果:\n%O\n", top_exp));
 
 	news = make_news();
 	NEWS_D->add_news_item( news , "p", 1);
@@ -334,7 +334,7 @@ protected void make_renyi_bang()
 {
 	mixed *bang;
 	string bang_file, out = HIY"
-                《仁义山庄》悬赏榜\n\n";
+                《仁義山莊》懸賞榜\n\n";
 
 	bang = DATABASE_D->db_query_bang_top_ten();
 
@@ -342,9 +342,9 @@ protected void make_renyi_bang()
 
 	if(sizeof(bang))
 		foreach(mixed *tmp in bang)
-			out += sprintf("悬赏追杀：%s(%s)
-    %-22s  当前赏金：%d 两黄金\n\n", tmp[1], tmp[0],
-		sizeof(tmp[2])?sprintf("曾在%s学艺",tmp[2]):"师承门派未能查清",tmp[3]);
+			out += sprintf("懸賞追殺：%s(%s)
+    %-22s  當前賞金：%d 兩黃金\n\n", tmp[1], tmp[0],
+		sizeof(tmp[2])?sprintf("曾在%s學藝",tmp[2]):"師承門派未能查清",tmp[3]);
 
 	out += (string)NOR;
 
@@ -355,10 +355,10 @@ protected string make_news()
 {
 	string out;
 
-	out = make_msg(top_rich, "财富");
+	out = make_msg(top_rich, "財富");
 	write_file(MISC_DIR"top_rich",out,1);
 
-	out = make_msg(top_force, "内功");
+	out = make_msg(top_force, "內功");
 	write_file(MISC_DIR"top_force",out,1);
 
 	out = make_msg(top_exp, "金");
@@ -387,7 +387,7 @@ int query_player_data(int num, string ref name, string ref id, string ref title
 	return 1;
 }
 
-// 先这样凑合着
+// 先這樣湊合著
 protected int sort_top_rich(class player_data t1, class player_data t2)
 {
 	if(t1->gold > t2->gold)

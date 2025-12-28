@@ -4,11 +4,11 @@
 inherit ROOM;
 void create()
 {
-        set("short", "客厅");
+        set("short", "客廳");
         set("long", @LONG
-万劫谷的正房，这是一间大客厅，宽敞明亮，青石铺的地，两边靠墙摆着
-的刀枪架，十八般兵器样样俱全。正中一张八仙桌，上有清茶一盏。旁边是谷
-主坐的太师椅。
+萬劫谷的正房，這是一間大客廳，寬敞明亮，青石鋪的地，兩邊靠牆擺著
+的刀槍架，十八般兵器樣樣俱全。正中一張八仙桌，上有清茶一盞。旁邊是谷
+主坐的太師椅。
 LONG
         );
         set("exits", ([
@@ -30,6 +30,6 @@ int valid_leave(object me,string dir)
      if( query("gender", me) == "男性"
       && dir == "east"
       && (present("zhong wanchou", environment(me))))
-         return notify_fail("钟万仇上前拦住你的去路：你这小白脸要找我夫人作甚？\n");
+         return notify_fail("鍾萬仇上前攔住你的去路：你這小白臉要找我夫人作甚？\n");
          return ::valid_leave(me, dir);
 }

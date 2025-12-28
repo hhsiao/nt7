@@ -4,8 +4,8 @@ inherit NPC;
 
 void create()
 {
-        set_name("清风", ({ "qing feng", "qing", "feng" }));
-        set("long", "他是武当山的小道童。\n");
+        set_name("清風", ({ "qing feng", "qing", "feng" }));
+        set("long", "他是武當山的小道童。\n");
         set("gender", "男性");
         set("age", 16);
         set("attitude", "peaceful");
@@ -36,14 +36,14 @@ void create()
         set_temp("apply/defense", 15);
         set_temp("apply/damage", 5);
         set("inquiry", ([
-                "清风" : "贫道便是清风。",
-                "武当" : "贫道便是武当派弟子。",
-                "武当派" : "贫道便是武当派弟子。",
-                "张无忌" : "小师叔？唉，不知道他现在病好了没有，大家都好生挂念他。",
-                "张三丰" : "祖师爷就在里面，不知你是否有要事找我们祖师爷?",
+                "清風" : "貧道便是清風。",
+                "武當" : "貧道便是武當派弟子。",
+                "武當派" : "貧道便是武當派弟子。",
+                "張無忌" : "小師叔？唉，不知道他現在病好了沒有，大家都好生掛念他。",
+                "張三丰" : "祖師爺就在裡面，不知你是否有要事找我們祖師爺?",
         ]));
 
-        create_family("武当派", 5, "弟子");
+        create_family("武當派", 5, "弟子");
         setup();
         carry_object(CLOTH_DIR"dao-cloth")->wear();
         carry_object(CLOTH_DIR"dao-shoe")->wear();

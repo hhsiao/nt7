@@ -1,4 +1,4 @@
-//                标准描述长度示例                                   |
+//                標準描述長度示例                                   |
 
 void delete_exit();
 void back_exit();
@@ -15,11 +15,11 @@ string the_exit2;
 void create()
 {
     set("room_mark",mark);
-    set("short",MAG"幻境"NOR+GRN"·迷失之宝物隐匿之林"NOR);
+    set("short",MAG"幻境"NOR+GRN"·迷失之寶物隱匿之林"NOR);
 
-    set("long","这里是一片望不到边的密林，气息却很是古怪。周围的树木都高大粗壮、枝
-藤纠结，你见不到日月光亮，周围也悄无声息。脚下的土地上树木的根须蔓延纠
-缠，你好不容易才勉强踏得几条小径往四处通去。\n");
+    set("long","這裡是一片望不到邊的密林，氣息卻很是古怪。周圍的樹木都高大粗壯、枝
+藤糾結，你見不到日月光亮，周圍也悄無聲息。腳下的土地上樹木的根鬚蔓延糾
+纏，你好不容易才勉強踏得幾條小徑往四處通去。\n");
 
     set("no_fight", "1");
     set("no_magic", "1");
@@ -27,7 +27,7 @@ void create()
     set("no_sleep_room", "1");
     set("invalid_startroom",1);
 
-// 下面是对应的出口。
+// 下面是對應的出口。
 
     set("exits",([
         "east":__DIR__"hj_room"+( mark +1),
@@ -40,51 +40,51 @@ void create()
         "southwest":__DIR__"hj_room"+( mark +9),
     ]));
 
-    if( mark <= 10 ) // 方阵型房间，最上面一横无 北向 方向
+    if( mark <= 10 ) // 方陣型房間，最上面一橫無 北向 方向
     {
         if(query("exits/north")) delete("exits/north");
         if(query("exits/northeast")) delete("exits/northeast");
         if(query("exits/northwest")) delete("exits/northwest");
     }
 
-    if( (mark % 10) == 1 ) // 方阵型房间，最左边一竖无 西向 方向
+    if( (mark % 10) == 1 ) // 方陣型房間，最左邊一豎無 西向 方向
     {
         if(query("exits/west")) delete("exits/west");
         if(query("exits/southwest")) delete("exits/southwest");
         if(query("exits/northwest")) delete("exits/northwest");
     }
 
-    if( (mark % 10) == 0 ) // 方阵型房间，最右边一竖无 东向 方向
+    if( (mark % 10) == 0 ) // 方陣型房間，最右邊一豎無 東向 方向
     {
         if(query("exits/east")) delete("exits/east");
         if(query("exits/southeast")) delete("exits/southeast");
         if(query("exits/northeast")) delete("exits/northeast");
     }
 
-    if( mark >= (HJ_ROOM_AMOUNT - 9) ) // 方阵型房间，最下面一横无 南向 方向
+    if( mark >= (HJ_ROOM_AMOUNT - 9) ) // 方陣型房間，最下面一橫無 南向 方向
     {
         if(query("exits/south")) delete("exits/south");
         if(query("exits/southeast")) delete("exits/southeast");
         if(query("exits/southwest")) delete("exits/southwest");
     }
 
-// 总共的房间数必须是整十数。
+// 總共的房間數必須是整十數。
 
     set("all_exit","ok");
 
 
-// 西北方即 1 号房间，有特殊文件支持
-// 其余各点如下：
+// 西北方即 1 號房間，有特殊文件支持
+// 其餘各點如下：
 
-// 第一横最后一个房间加入支持铸剑指令的NPC，即右上角（东北方）
+// 第一橫最後一個房間加入支持鑄劍指令的NPC，即右上角（東北方）
     if( mark == 10 )
         set("objects", ([ __DIR__"npc_obj/hj_npc_zhujian" : 1 ]));
 
-// 最后一横第一个房间加入支持炼魔指令的NPC，即左下角（西南方）
+// 最後一橫第一個房間加入支持煉魔指令的NPC，即左下角（西南方）
     if( mark == HJ_ROOM_AMOUNT - 9 )
         set("objects", ([ __DIR__"npc_obj/hj_npc_lianmo" : 1 ]));
 
-// 最后一个号码的房间加入支持交易指令的 NPC，即右下角（东南方）
+// 最後一個號碼的房間加入支持交易指令的 NPC，即右下角（東南方）
     if( mark == HJ_ROOM_AMOUNT )
         set("objects", ([ __DIR__"npc_obj/hj_npc_trader" : 1 ]));
 
@@ -94,7 +94,7 @@ void create()
 
 void init()
 {
-// 所有的共有动作(即 all_room_info_hj.h 及 1_room_info_special.h 共有)
+// 所有的共有動作(即 all_room_info_hj.h 及 1_room_info_special.h 共有)
 #include "all_common_init.h"
 
     if( query("all_exit", this_object()) == "ok" )
@@ -104,7 +104,7 @@ void init()
     }
 }
 
-// 所有的共有函数(即 all_room_info_hj.h 及 1_room_info_special.h 共有)
+// 所有的共有函數(即 all_room_info_hj.h 及 1_room_info_special.h 共有)
 #include "all_common_func.h"
 
 
@@ -127,7 +127,7 @@ void delete_exit()
     if(the_exit != "none")
     {
         set("all_exit","be_delete");
-        if(random(3) == 1) message("vision",HIB"你似乎看到几棵树木的位置移动了一下！……\n"NOR,this_object());
+        if(random(3) == 1) message("vision",HIB"你似乎看到幾棵樹木的位置移動了一下！……\n"NOR,this_object());
         remove_call_out("back_exit");
         call_out("back_exit",30+random(90));
     }
@@ -157,7 +157,7 @@ void back_exit()
     if( !undefinedp( the_marks[ the_exit ] ) )
         set( "exits/" + the_exit , __DIR__"hj_room" + the_marks[ the_exit ] );
 
-    if(random(3) == 1) message("vision",HIB"你似乎看到几棵树木的位置移动了一下！……\n"NOR,this_object());
+    if(random(3) == 1) message("vision",HIB"你似乎看到幾棵樹木的位置移動了一下！……\n"NOR,this_object());
     set("all_exit","ok");
 }
 
@@ -181,7 +181,7 @@ void add_exit()
     if( the_exit2 != "none" )
     {
         set("all_exit","be_add");
-        if(random(3) == 1) message("vision",HIB"你似乎看到几棵树木的位置移动了一下！……\n"NOR,this_object());
+        if(random(3) == 1) message("vision",HIB"你似乎看到幾棵樹木的位置移動了一下！……\n"NOR,this_object());
         remove_call_out("back_exit2");
         call_out("back_exit2",30+random(90));
     }
@@ -194,6 +194,6 @@ void back_exit2()
 
     delete( "exits/" + the_exit2 );
 
-    if(random(3) == 1) message("vision",HIB"你似乎看到几棵树木的位置移动了一下！……\n"NOR,this_object());
+    if(random(3) == 1) message("vision",HIB"你似乎看到幾棵樹木的位置移動了一下！……\n"NOR,this_object());
     set("all_exit","ok");
 }

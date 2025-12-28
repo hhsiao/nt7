@@ -6,8 +6,8 @@ void greeting(object me);
 
 void create()
 {
-        set_name("花铁干", ({ "hua tiegan", "hua"}));
-        set("long", "他一脸来上去大义凛然，却总让感觉有点什么不对。\n");
+        set_name("花鐵幹", ({ "hua tiegan", "hua"}));
+        set("long", "他一臉來上去大義凜然，卻總讓感覺有點什麼不對。\n");
         set("gender", "男性");
         set("age", 41);
         set("attitude", "peaceful");
@@ -37,22 +37,22 @@ void greeting(object me)
                 return;
 
         command("look"+query("id", me));
-        command("say 这位" + RANK_D->query_respect(me) +
-                "，这年头做那种什么正人君子太吃亏啦，看看\n"
-                "我？看看岳不群老哥，那才是做人的道理，别犹豫啦！");
+        command("say 這位" + RANK_D->query_respect(me) +
+                "，這年頭做那種什麼正人君子太吃虧啦，看看\n"
+                "我？看看嶽不群老哥，那才是做人的道理，別猶豫啦！");
 }
 
 void check_leave(object me, string dir)
 {
         if (dir == "out")
         {
-                message_vision("$N对$n奸笑道：上路吧！\n", this_object(), me);
+                message_vision("$N對$n奸笑道：上路吧！\n", this_object(), me);
                 command("chat 哈哈！江湖上又要...... 嘿嘿！");
-                set("character", "阴险奸诈", me);
+                set("character", "陰險奸詐", me);
         } else
         if (dir == "east")
         {
                 command("grin");
-                command("say 哼，没眼光！");
+                command("say 哼，沒眼光！");
         }
 }

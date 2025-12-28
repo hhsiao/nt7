@@ -4,7 +4,7 @@ inherit COMBINED_ITEM;
 
 void create()
 {
-        set_name(HIR"回阳无极丹"NOR, ({"huiyang dan", "dan"}));
+        set_name(HIR"回陽無極丹"NOR, ({"huiyang dan", "dan"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
@@ -22,20 +22,20 @@ int do_effect(object me)
 
         if( time()-query_temp("last_eat/dan(B, me)")<90 )
         {
-                write("你刚服用过药，需药性发挥完效用以后才能继续服用。\n");
+                write("你剛服用過藥，需藥性發揮完效用以後才能繼續服用。\n");
                 return 1;
         }
 
         my = me->query_entire_dbase();
         if (my["qi"] == my["max_qi"])
         {
-                write("你现在体力充沛，无需服用" + name() + "。\n");
+                write("你現在體力充沛，無需服用" + name() + "。\n");
                 return 1;
         }
 
         set_temp("last_eat/dan(B)", time(), me);
 
-        message_vision(HIR "$N吃下一粒回阳无极丹，内息得到了完全的补充。\n" NOR, me);
+        message_vision(HIR "$N吃下一粒回陽無極丹，內息得到了完全的補充。\n" NOR, me);
         set("qi",query("max_qi",  me), me);
         set("eff_qi",query("max_qi",  me), me);
 

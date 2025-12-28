@@ -23,12 +23,12 @@ int main(object me, string arg)
         if (arg && sscanf(arg, "out %s", arg) == 1)
         {
                 if (! me->is_brother(arg))
-                        return notify_fail("你现在没有这个结拜兄弟啊。\n");
+                        return notify_fail("你現在沒有這個結拜兄弟啊。\n");
 
                 if( query_temp("pending/brother_out", me) != arg )
                 {
-                        write("你确定要和这位朋友(" + arg + ")割袍断义吗？\n"
-                              YEL "如果你确定，请再输入一次这条命令。\n" NOR);
+                        write("你確定要和這位朋友(" + arg + ")割袍斷義嗎？\n"
+                              YEL "如果你確定，請再輸入一次這條命令。\n" NOR);
                         set_temp("pending/brother_out", arg, me);
                         return 1;
                 }
@@ -38,17 +38,17 @@ int main(object me, string arg)
                     environment(ob) == environment(me))
                 {
                         // is the brother at present now?
-                        message_vision("$N一声叹息，看着$n，绝决道：“" + ob->name(1) +
-                                       "不必多说，从今往后，你和我再也没有半点关系了！”\n",
+                        message_vision("$N一聲嘆息，看著$n，絕決道：“" + ob->name(1) +
+                                       "不必多說，從今往後，你和我再也沒有半點關係了！”\n",
                                        me, ob);
                 }
 
                 nid=query("brothers/"+arg, me)+"("+arg+")";
-                write("你和" + nid + "断绝了关系。\n");
+                write("你和" + nid + "斷絕了關係。\n");
                 id=query("id", me);
                 CHANNEL_D->do_channel(this_object(), "rumor",
-                        "听说" + me->name(1) + "(" + id + ")"
-                        "和" + nid + "割袍断义，断绝了来往。");
+                        "聽說" + me->name(1) + "(" + id + ")"
+                        "和" + nid + "割袍斷義，斷絕了來往。");
 
                 // remove the brother's association
                 UPDATE_D->clear_user_data(id, "brothers:" + arg);
@@ -63,15 +63,15 @@ int main(object me, string arg)
         } else
         {
                 if (! objectp(who = find_player(arg)))
-                        return notify_fail("没有找到这个玩家。\n");
+                        return notify_fail("沒有找到這個玩家。\n");
                 else
                         pro = who->name(1);
         }
 
         if( !mapp(bro=query("brothers", who)) || sizeof(bro)<1 )
-                return notify_fail(pro + "现在还没有结义的兄弟们。\n");
+                return notify_fail(pro + "現在還沒有結義的兄弟們。\n");
 
-        msg = pro + "现在" + LOCAL_MUD_NAME() + "的结义兄弟都有：\n\n";
+        msg = pro + "現在" + LOCAL_MUD_NAME() + "的結義兄弟都有：\n\n";
         ids = keys(bro);
         ids = sort_array(ids, (: sort_brothers :));
         foreach (id in ids)
@@ -79,15 +79,15 @@ int main(object me, string arg)
                 nid = (string) bro[id] + "(" + id + ")";
                 msg += sprintf(WHT "%-14s  ", nid);
                 if (objectp(ob = find_player(id)))
-                        msg += sprintf(HIY "在线   "
-                                       NOR WHT "经验：" HIC "%-9d "
-                                       NOR WHT "阅历：" HIW "%-8d "
+                        msg += sprintf(HIY "在線   "
+                                       NOR WHT "經驗：" HIC "%-9d "
+                                       NOR WHT "閱歷：" HIW "%-8d "
                                        NOR WHT "威望：" HIY "%-8d\n" NOR,
                                        query("combat_exp", ob),
                                        query("score", ob),
                                        query("weiwang", ob));
                 else
-                        msg += HIR "不在线\n" NOR;
+                        msg += HIR "不在線\n" NOR;
         }
         write(msg);
 
@@ -115,10 +115,10 @@ int sort_brothers(string id1, string id2)
 int help(object me)
 {
            write( @HELP
-指令格式: brothers 无参数 | out <sb>
+指令格式: brothers 無參數 | out <sb>
 
-查看自己现在的结义兄弟们。如果使用 brothers out <sb> 可以解
-除结义关系。
+查看自己現在的結義兄弟們。如果使用 brothers out <sb> 可以解
+除結義關係。
 
 see also：swear
 HELP );

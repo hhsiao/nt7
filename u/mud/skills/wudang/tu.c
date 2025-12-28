@@ -5,7 +5,7 @@
 
 inherit F_SSERVER;
 
-string name() { return HIW "太极图" NOR; }
+string name() { return HIW "太極圖" NOR; }
 
 int perform(object me, object target)
 {
@@ -25,40 +25,40 @@ int perform(object me, object target)
         if( !target ) target = offensive_target(me);
 
         if( !target || !me->is_fighting(target) )
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(name() + "只能空手施展。\n");
 
         if( (int)me->query_skill("taiji-quan", 1) < 250 )
-                return notify_fail("你的太极拳不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你的太極拳不夠嫻熟，難以施展" + name() + "。\n");
 
         if( (int)me->query_skill("taiji-shengong", 1) < 300 )
-                return notify_fail("你的太极神功修为还不够高，难以施展" + name() + "。\n");
+                return notify_fail("你的太極神功修為還不夠高，難以施展" + name() + "。\n");
 
         if( (int)me->query_skill("taoism", 1) < 300 )
-                return notify_fail("你的道学心法修为还不够高，难以施展" + name() + "。\n");
+                return notify_fail("你的道學心法修為還不夠高，難以施展" + name() + "。\n");
 
         if( me->query_skill_mapped("cuff") != "taiji-quan" )
-                return notify_fail("你现在没有激发太极拳，难以施展" + name() + "。\n");
+                return notify_fail("你現在沒有激發太極拳，難以施展" + name() + "。\n");
 
         if( me->query_skill_mapped("force") != "taiji-shengong" )
-                return notify_fail("你现在没有激发太极神功，难以施展" + name() + "。\n");
+                return notify_fail("你現在沒有激發太極神功，難以施展" + name() + "。\n");
 
         if( query("jing", me)<2000 )
-                return notify_fail("你现在精力不够，难以施展" + name() + "。\n");
+                return notify_fail("你現在精力不夠，難以施展" + name() + "。\n");
 
         if( query("neili", me)<2000 )
-                return notify_fail("你现在真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你現在真氣不夠，難以施展" + name() + "。\n");
 
              if( userp(me)&& !wizardp(me) ) 
         {
                 if( (duration = BUFF_D->get_buff_overtime(me, "tjq_tu")) > 0 )
-                        return notify_fail(MAG"太极图消耗心神太甚，还需等待"+duration+"秒。\n"NOR);
+                        return notify_fail(MAG"太極圖消耗心神太甚，還需等待"+duration+"秒。\n"NOR);
         }
         
-        msg = HIM "$N" HIM "淡然一笑，双手轻轻划了数个圈子，顿时四周的气"
-              "流波动，源源不断的被牵引进来。\n\n" NOR;
+        msg = HIM "$N" HIM "淡然一笑，雙手輕輕劃了數個圈子，頓時四周的氣"
+              "流波動，源源不斷的被牽引進來。\n\n" NOR;
         message_combatd(msg, me, target);
 
         per = me->query_skill("taiji-shengong",1)/2000 + me->query_skill("tianwei-zhengqi",1)/240;
@@ -80,27 +80,27 @@ int perform(object me, object target)
                         switch (random(3))
                         {
                         case 0:
-                                tell_object(obs[i], HIY "恍惚之间你似乎回到了过去的世界，竟"
-                                                    "然再无法控制自我，忽然眼前的一切\n"
-                                                    "又全然不见，你心头一乱，浑身一阵剧"
-                                                    "痛，内力紊乱难以控制！\n" NOR);
+                                tell_object(obs[i], HIY "恍惚之間你似乎回到了過去的世界，竟"
+                                                    "然再無法控制自我，忽然眼前的一切\n"
+                                                    "又全然不見，你心頭一亂，渾身一陣劇"
+                                                    "痛，內力紊亂難以控制！\n" NOR);
                                 break;
                         case 1:
-                                tell_object(obs[i], HIW "你眼前一切渐渐的模糊起来，好像是到"
-                                                    "了仙境，然而你却觉得内息越来越乱，\n"
-                                                    "四肢一阵酸痛，几乎要站立不住。\n" NOR);
+                                tell_object(obs[i], HIW "你眼前一切漸漸的模糊起來，好像是到"
+                                                    "了仙境，然而你卻覺得內息越來越亂，\n"
+                                                    "四肢一陣痠痛，幾乎要站立不住。\n" NOR);
 
                                 break;
                         default:
-                                tell_object(obs[i], HIR "你耳边忽然响起一个霹雳，眼见雷神挥"
-                                                    "舞电锤向你打来，你不禁大吃一惊，\n"
-                                                    "浑身上下都不听使唤，只有高声呼救。\n" NOR);
+                                tell_object(obs[i], HIR "你耳邊忽然響起一個霹靂，眼見雷神揮"
+                                                    "舞電錘向你打來，你不禁大吃一驚，\n"
+                                                    "渾身上下都不聽使喚，只有高聲呼救。\n" NOR);
                                 break;
                         }
                         damage = damage_power(me, "cuff");
                                                 damage+= me->query_all_buff("unarmed_damage");
                         damage*= me->query_skill("tianwei-zhengqi",1) /100;
-                        delta = ABILITY_D->check_ability(me, "da_power-tjq-tu"); // 门派ab
+                        delta = ABILITY_D->check_ability(me, "da_power-tjq-tu"); // 門派ab
                         if( delta ) damage += damage*delta/100;
         
                         if( damage < query("max_qi", obs[i])* (per + random(6)) / 100 )
@@ -124,22 +124,22 @@ int perform(object me, object target)
                         switch (random(3))
                         {
                         case 0:
-                                msg = HIR "只见" + obs[i]->name() +
+                                msg = HIR "只見" + obs[i]->name() +
                                       HIR "手舞足蹈，忘乎所以，忽"
-                                      "然大叫一声，吐血不止！\n" NOR;
+                                      "然大叫一聲，吐血不止！\n" NOR;
                                 msg += "( " + obs[i]->name() + eff_status_msg(p) + " )\n\n";
                                 
                                 break;
                         case 1:
-                                msg = HIR "却见" + obs[i]->name() +
-                                      HIR "容貌哀戚，似乎想起了什"
-                                      "么伤心之事，身子一晃，呕出数口鲜血！\n" NOR;
+                                msg = HIR "卻見" + obs[i]->name() +
+                                      HIR "容貌哀慼，似乎想起了什"
+                                      "麼傷心之事，身子一晃，嘔出數口鮮血！\n" NOR;
                                 msg += "( " + obs[i]->name() + eff_status_msg(p) + " )\n\n";
                                 break;
                         default:
                                 msg = HIR + obs[i]->name() +
-                                      HIR "呆立当场，一动不动，有如中"
-                                      "邪，七窍都迸出鲜血来。\n" NOR;
+                                      HIR "呆立當場，一動不動，有如中"
+                                      "邪，七竅都迸出鮮血來。\n" NOR;
                                 msg += "( " + obs[i]->name() + eff_status_msg(p) + " )\n\n";
                                 break;
                         }
@@ -152,8 +152,8 @@ int perform(object me, object target)
                         flag = 1;
                 } else
                 {
-                        tell_object(obs[i], HIC "你发现眼前的景物似幻似真，连忙"
-                                            "默运内功，不受困扰。\n" NOR);
+                        tell_object(obs[i], HIC "你發現眼前的景物似幻似真，連忙"
+                                            "默運內功，不受困擾。\n" NOR);
                         addn("neili", -200, obs[i]);
                 }
                 if( query("neili", obs[i])<0 )
@@ -162,12 +162,12 @@ int perform(object me, object target)
 
 
         if( !flag )
-                message_combatd(HIM "然而没有任何人受了$N"
-                               HIM "的影响。\n\n" NOR, me, 0, obs);
+                message_combatd(HIM "然而沒有任何人受了$N"
+                               HIM "的影響。\n\n" NOR, me, 0, obs);
         
         time  = 40;
-        time -= ABILITY_D->check_ability(me, "cd-tjq-tu"); // ab门派减cd
-        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent减cd 
+        time -= ABILITY_D->check_ability(me, "cd-tjq-tu"); // ab門派減cd
+        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd 
                
         buff = // Perform Cool Dow
         ([
@@ -176,9 +176,9 @@ int perform(object me, object target)
                 "type"   : "cooldown",
                 "type2"  : "tjq_tu",
                 "attr"   : "curse",
-                "name"   : "太极拳·太极图",
+                "name"   : "太極拳·太極圖",
                 "time"   : time,
-                "buff_msg" : "太极图消耗心神太甚，还需等待"+time+"秒方可再次施展。\n",
+                "buff_msg" : "太極圖消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : "",
                 "disa_type": 0,
        

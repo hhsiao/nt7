@@ -6,7 +6,7 @@
 // This is called when there is a driver segmentation fault or a bus error,
 // etc.  As it's static it can't be called by anything but the driver (and
 // master).
-// 当发生了 driver segmentation fault 或 bus error 等错误时, 将呼叫此函式
+// 當發生了 driver segmentation fault 或 bus error 等錯誤時, 將呼叫此函式
 protected void crash(string error, object command_giver, object current_object)
 {
 #if INSTALL_CRASH_SAVE
@@ -20,8 +20,8 @@ protected void crash(string error, object command_giver, object current_object)
         mixed cmds;
         int i;
 
-        efun::shout("系统核心发出一声惨叫：哇—哩—咧—\n");
-        efun::shout("系统核心告诉你：要当机了，自己保重吧！\n");
+        efun::shout("系統核心發出一聲慘叫：哇—哩—咧—\n");
+        efun::shout("系統核心告訴你：要當機了，自己保重吧！\n");
 
         log_file("static/CRASHES", MUD_NAME + " crashed on: " + ctime(time()) +", error: " + error + "\n");
         log_file("static/CRASHES", "command_giver: " + (command_giver ? file_name(command_giver) : "none") + "\n");
@@ -86,6 +86,6 @@ protected void crash(string error, object command_giver, object current_object)
                 catch(ob->remove());
         }
         */
-        efun::shout("【存盘精灵】：您的档案已经紧急保存了。");
+        efun::shout("【存盤精靈】：您的檔案已經緊急保存了。");
 #endif
 }

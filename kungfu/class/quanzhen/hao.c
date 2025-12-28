@@ -15,10 +15,10 @@ void create()
         set("gender", "男性");
         set("age", 34);
         set("class", "taoist");
-        set("nickname",HIG"广宁子"NOR);
+        set("nickname",HIG"廣寧子"NOR);
         set("long",
-                "他就是全真七子中的郝大通郝真人。他身材微胖，象个富翁模\n"
-                "样，身上穿的道袍双袖皆无。\n" );
+                "他就是全真七子中的郝大通郝真人。他身材微胖，象個富翁模\n"
+                "樣，身上穿的道袍雙袖皆無。\n" );
         set("attitude", "peaceful");
         set("shen_type",1);
         set("str", 30);
@@ -80,7 +80,7 @@ void create()
 
         set("book_count",1);
         set("inquiry", ([
-                "全真教" :  "我全真教是天下道家玄门正宗。\n",
+                "全真教" :  "我全真教是天下道家玄門正宗。\n",
         ]) );
 
         set("master_ob",3);
@@ -98,15 +98,15 @@ void attempt_apprentice(object ob)
 
         if ((int)ob->query_skill("quanzhen-xinfa",1) < 50 )
         {
-                command("say 你的本门内功心法火候不足,难以领略更高深的武功。");
+                command("say 你的本門內功心法火候不足,難以領略更高深的武功。");
                 return;
         }
         if( query("shen", ob)<5000 )
         {
-                command("say 你这人行侠仗义的事情做得太少！\n");
+                command("say 你這人行俠仗義的事情做得太少！\n");
                 return;
         }
-        command("say 好吧，我就收下你这个徒弟了。");
+        command("say 好吧，我就收下你這個徒弟了。");
         command("recruit "+query("id", ob));
 }
 

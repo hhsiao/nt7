@@ -6,7 +6,7 @@
 nosave mapping equipments = allocate_mapping(0);
 
 //
-// 回传所有装备资讯
+// 回傳所有裝備資訊
 //
 mapping query_equipments()
 {
@@ -14,7 +14,7 @@ mapping query_equipments()
 }
 
 //
-// 回传所有装备物件
+// 回傳所有裝備物件
 //
 object *query_equipment_objects()
 {
@@ -22,10 +22,10 @@ object *query_equipment_objects()
 }
 
 //
-// 解除某个物件装备
+// 解除某個物件裝備
 //
-// 1: 并无装备此物件
-// 2: 无法解除此项装备
+// 1: 並無裝備此物件
+// 2: 無法解除此項裝備
 //
 int unequip(object ob, int ref status)
 {
@@ -33,7 +33,7 @@ int unequip(object ob, int ref status)
         {
                 if( member_array(ob, eqs) != -1 )
                 {
-                        // 无法解除此项装备
+                        // 無法解除此項裝備
                         if( !ob->valid_unequip(this_object()) )
                         {
                                 status = 2;
@@ -54,16 +54,16 @@ int unequip(object ob, int ref status)
                 }
         }
 
-        // 并无装备此物件
+        // 並無裝備此物件
         status = 1;
         return 0;
 }
 
 //
-// 1: 此物件不是装备
-// 2: 无法装备在此物件上
-// 3: 不知此物件该装备在何处
-// 5: 已经装备在其他的部位上
+// 1: 此物件不是裝備
+// 2: 無法裝備在此物件上
+// 3: 不知此物件該裝備在何處
+// 5: 已經裝備在其他的部位上
 //
 int equip(object ob, int ref status)
 {
@@ -73,27 +73,27 @@ int equip(object ob, int ref status)
         string type;
         
 
-        // 此物件不是装备
+        // 此物件不是裝備
         if( !ob->is_equipment() )
         {
                 status = 1;
                 return 0;       
         }
 
-        // 无法装备在此物件上
+        // 無法裝備在此物件上
         if( !ob->valid_equip(this_object()) )
         {
                 status = 2;
                 return 0;
         }
 
-        // 不知此物件该装备在何处
+        // 不知此物件該裝備在何處
         type = query("armor_type", ob);
         if( !type ) 
         {
                 if( query("flag", ob) == 1 )
-                        type = "twohand";       // 双手
-                else    type = "hand";          // 单手
+                        type = "twohand";       // 雙手
+                else    type = "hand";          // 單手
         }
        
         if( !undefinedp(part_set[type]) )
@@ -115,7 +115,7 @@ int equip(object ob, int ref status)
         partid = partset[PART_ID];
         partamount = to_int(partset[PART_AMOUNT]);
         
-        // 已经无法再装备更多同种类的装备
+        // 已經無法再裝備更多同種類的裝備
         if( !undefinedp(equipments[partid]) && sizeof(equipments[partid]) >= partamount )
         {
                 status = 4;
@@ -124,14 +124,14 @@ int equip(object ob, int ref status)
 
         foreach(string p, object *eqs in equipments)
         {
-                // 装备部位存在冲突
+                // 裝備部位存在衝突
                 if( member_array(p, partset[PART_CONFLICT]) != -1 )
                 {
                         status = 4;
                         return 0;
                 }
 
-                if( member_array(ob, eqs) != -1 )   // 已经装备上该装备
+                if( member_array(ob, eqs) != -1 )   // 已經裝備上該裝備
                 {
                         status = 5;
                         return 0;
@@ -156,7 +156,7 @@ int equip(object ob, int ref status)
 
 
 //
-// 解除所有装备
+// 解除所有裝備
 //
 object *unequip_all()
 {
@@ -169,8 +169,8 @@ object *unequip_all()
                 {
                         ob->delete_equipping(this_object());
 
-                        delete_temp("mod_equip", ob);   // 取消套装装备标记
-                        delete_temp("mod_active", ob);  // 取消套装激活标记
+                        delete_temp("mod_equip", ob);   // 取消套裝裝備標記
+                        delete_temp("mod_active", ob);  // 取消套裝激活標記
                 }
                 
                 all_equipments += eqs;
@@ -178,8 +178,8 @@ object *unequip_all()
         
         equipments = allocate_mapping(0);
         
-        delete_temp("fullsuit", this_object());  // 删除套装资料 
-        delete_temp("module", this_object());  // 删除套装资料 
+        delete_temp("fullsuit", this_object());  // 刪除套裝資料 
+        delete_temp("module", this_object());  // 刪除套裝資料 
         this_object()->reset_buff_cache();
 
         return all_equipments;
@@ -188,10 +188,10 @@ object *unequip_all()
 
 
 //
-// 解除某个部位的所有装备
+// 解除某個部位的所有裝備
 //
-// 1: 此部位并无任何装备
-// 2: 无法解除此项装备
+// 1: 此部位並無任何裝備
+// 2: 無法解除此項裝備
 //
 object *unequip_part(string partid)
 {
@@ -202,7 +202,7 @@ object *unequip_part(string partid)
         
         foreach( object ob in equipments[partid] )
         {
-                // 无法解除这项装备
+                // 無法解除這項裝備
                 if( !ob->valid_unequip(this_object()) )
                         continue;
         
@@ -222,7 +222,7 @@ object *unequip_part(string partid)
 
 
 //
-// 检查此物件是否正在装备
+// 檢查此物件是否正在裝備
 //
 int is_equipping_object(object ob)
 {
@@ -235,7 +235,7 @@ int is_equipping_object(object ob)
 
 
 //
-// 检查某部位是否有装备
+// 檢查某部位是否有裝備
 //
 int is_equipping_part(string part)
 {
@@ -248,7 +248,7 @@ int is_equipping_part(string part)
 
 
 //
-// 回传某部位的装备物件
+// 回傳某部位的裝備物件
 //
 object *query_equipping_object(string partid)
 {
@@ -260,7 +260,7 @@ object *query_equipping_object(string partid)
 
 
 //
-// 回传某部位的装备物件的第n个物件
+// 回傳某部位的裝備物件的第n個物件
 //
 varargs object query_equipped_object(string partid, int n)
 {
@@ -280,7 +280,7 @@ varargs object query_equipped_object(string partid, int n)
 }
 
 //
-// 回传某装备的部位
+// 回傳某裝備的部位
 //
 string query_equipping_part(object ob)
 {

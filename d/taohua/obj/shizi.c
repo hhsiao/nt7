@@ -13,11 +13,11 @@ void create()
         else*/ {
                 set("unit", "些");
                 set("value", 0);
-                set("base_unit", "颗");
+                set("base_unit", "顆");
                 set("base_weight", 100);
                 set("base_value", 0);
                 set("material", "iron");
-                set("long", "一颗不同的小石子。\n");
+                set("long", "一顆不同的小石子。\n");
         }
         set_amount(10);
         init_throwing(2);

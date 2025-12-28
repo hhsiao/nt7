@@ -5,10 +5,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("湿勇性", ({ "shi yongxing", "yongxing", "shi"}));
+        set_name("溼勇性", ({ "shi yongxing", "yongxing", "shi"}));
         set("age", 50);
         set("gender", "男性");
-        set("long", "这是一个纯洁的老和尚。\n");
+        set("long", "這是一個純潔的老和尚。\n");
         set("attitude", "peaceful");
         set("str", 100);
         set("dex", 100);
@@ -35,16 +35,16 @@ void greeting(object ob)
         if (! ob || environment(ob) != environment())
                 return;
 
-        say(CYN "这位施主，你需要开光吗？\n" NOR);
+        say(CYN "這位施主，你需要開光嗎？\n" NOR);
 }
 
 int accept_object(object who, object ob)
 {
         if( query("money_id", ob) )
         {
-                message_vision(CYN "$N" CYN "对$n" CYN "说道：你想开光" NOR +
-                               HIY "(goto)" NOR + CYN "什么部位？先告诉老衲我再付"
-                               "钱也不迟。\n" NOR, this_object(), who);
+                message_vision(CYN "$N" CYN "對$n" CYN "說道：你想開光" NOR +
+                               HIY "(goto)" NOR + CYN "什麼部位？先告訴老衲我再付"
+                               "錢也不遲。\n" NOR, this_object(), who);
                 return 0;
         }
 

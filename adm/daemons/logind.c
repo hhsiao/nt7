@@ -19,7 +19,7 @@
 #define FESTIVAL_CMD            "/cmds/usr/festival"
 #define INVENTORY_CMD           "/cmds/usr/inventory"
 
-#define NO_FEE_WARNING  "$$【注意】为节约系统资源，如果玩家在 " + UNLOG_IDLE + " 天之内没有任何活动记录，人物将被系统自动清除。$$"
+#define NO_FEE_WARNING  "$$【注意】為節約系統資源，如果玩家在 " + UNLOG_IDLE + " 天之內沒有任何活動記錄，人物將被系統自動清除。$$"
 
 inherit F_DBASE;
 
@@ -32,8 +32,8 @@ nosave mapping blocks = ([]);
 
 nosave string *banned_name = ({
         "你", "你的", "我","我的","自己","屁", "他", "他的","她", "她的","它", "它的",
-        "鬼王","风云","流氓","爸","妈","祖先","祖宗","爷","奶","张春龙","毛泽东","邓小平","江泽民",
-        "胡锦涛", "春龙", "【","】","马克思","恩格斯","列宁","抄","手淫","老百姓","临时人物","女马","大便",
+        "鬼王","風雲","流氓","爸","媽","祖先","祖宗","爺","奶","張春龍","毛澤東","鄧小平","江澤民",
+        "胡錦濤", "春龍", "【","】","馬克思","恩格斯","列寧","抄","手淫","老百姓","臨時人物","女馬","大便",
 });
 
 nosave string *banned_id = ({
@@ -81,7 +81,7 @@ void destruct_ob(object me)
 void create()
 {
         seteuid(ROOT_UID);
-        set("channel_id", "连线精灵");
+        set("channel_id", "連線精靈");
         if( intp(WIZ_LOCK_LEVEL) )
                 wiz_lock_level = WIZ_LOCK_LEVEL;
         else
@@ -90,7 +90,7 @@ void create()
 
 void waiting_login(object ob, string arg)
 {
-        write("载入中，请稍后 ...\n");
+        write("載入中，請稍後 ...\n");
         input_to( (: waiting_login, ob :) );
 }
 
@@ -105,7 +105,7 @@ void logon(object ob)
         int reg_usr, max_usr, max_ips, time1, time2;
 
         if( !SYSTEM_D->valid_login() ) {
-                write(HIY + MUD_FULL_NAME + "载入中，请稍后 ...\n" NOR);
+                write(HIY + MUD_FULL_NAME + "載入中，請稍後 ...\n" NOR);
                 SYSTEM_D->add_loginuser( ob );
                 input_to((: waiting_login, ob :));
                 return;
@@ -115,8 +115,8 @@ void logon(object ob)
         now_time = time() & 0xFFFFFFFE;
         if( mapp(tmp_time = blocks[str]) ) {
                 if( now_time - tmp_time["time"] < tmp_time["punish"] ) {
-                        write(tmp_time["reason"] + "请过" +
-                              appromix_time(tmp_time["time"] + tmp_time["punish"] - now_time) + "再尝试连线。\n");
+                        write(tmp_time["reason"] + "請過" +
+                              appromix_time(tmp_time["time"] + tmp_time["punish"] - now_time) + "再嘗試連線。\n");
                         call_out("destruct_ob", 0, ob);
                         return;
                 }
@@ -125,7 +125,7 @@ void logon(object ob)
 
         login_usr = filter_array(children(LOGIN_OB), (: query_ip_number($1) == $2 :), str);
         if( (sizeof(login_usr) > 30 && str != PUBLIC_IP) ) {
-                block_ip(str, 300, "您的IP产生了大量废弃连接！");
+                block_ip(str, 300, "您的IP產生了大量廢棄連接！");
                 /*
                 for (i = 0; i < sizeof(login_usr); i ++)
                         destruct(login_usr[i]);
@@ -140,27 +140,27 @@ void logon(object ob)
         //catch(MUDLIST_CMD->main());
         UPTIME_CMD->main();
         if( query_temp("tomud", ob) )
-                write(ALERT("经典文字MUD游戏『"+LOCAL_MUD_NAME()+"』，群号『46899981』，本游戏为免费游戏！$$" +
-                        "请到 http://mudbuilder.com 浏览本游戏主页和论坛、新闻。$$"+
-                        "如果有任何疑问，请到本游戏论坛专区提问，或联系QQ 150867 咨询。$$"));
+                write(ALERT("經典文字MUD遊戲『"+LOCAL_MUD_NAME()+"』，群號『46899981』，本遊戲為免費遊戲！$$" +
+                        "請到 http://mudbuilder.com 瀏覽本遊戲主頁和論壇、新聞。$$"+
+                        "如果有任何疑問，請到本遊戲論壇專區提問，或聯繫QQ 150867 諮詢。$$"));
 
 
         if( BAN_D->is_banned(str) == 1 ) {
-                write(HIR "你的地址在本 MUD 不受欢迎，请去论坛 muds.cn 申述。\n" NOR);
+                write(HIR "你的地址在本 MUD 不受歡迎，請去論壇 muds.cn 申述。\n" NOR);
                 call_out("destruct_ob", 0, ob);
                 return;
         }
 
         if( mad_lock == 1 ) {
-                write("现在时空已经封闭了，不能进入！！ \n");
+                write("現在時空已經封閉了，不能進入！！ \n");
                 call_out("destruct_ob", 0, ob);
                 return;
         }
 
         /*if( !VERSION_D->is_version_ok() && !query_temp("operator", get_object(VERSION_D)) )
-                write(HIY "现在本站正在同步版本，如果你不是巫师，请稍候再登录。\n\n" NOR);
+                write(HIY "現在本站正在同步版本，如果你不是巫師，請稍候再登錄。\n\n" NOR);
         else*/ if( REBOOT_CMD->is_rebooting())
-                write(HIY "现在本站正在准备重新启动，如果你不是巫师，请稍候再登录。\n\n" NOR);
+                write(HIY "現在本站正在準備重新啟動，如果你不是巫師，請稍候再登錄。\n\n" NOR);
 
         usr = users() + filter(children(LOGIN_OB), (: interactive :));
         ip_cnt  = 0;
@@ -194,12 +194,12 @@ void logon(object ob)
                 else ppl_cnt++;
         }
 
-        //write(sprintf("目前注册玩家" HIW "%d" NOR "位，最高在线人数" HIC "%d" NOR "人(" CYN "%s" NOR ")，最高在线IP数" HIY "%d" NOR "个(" CYN "%s" NOR ")\n" NOR,
+        //write(sprintf("目前註冊玩家" HIW "%d" NOR "位，最高在線人數" HIC "%d" NOR "人(" CYN "%s" NOR ")，最高在線IP數" HIY "%d" NOR "個(" CYN "%s" NOR ")\n" NOR,
                 //reg_usr, max_usr, TIME_D->replace_ctime(time1), max_ips, TIME_D->replace_ctime(time2)));
-        write(sprintf("目前注册玩家" HIC "%s" NOR "位，最高同时在线人数" HIW "%s" NOR "人(" CYN "%s" NOR ")\n" NOR,
+        write(sprintf("目前註冊玩家" HIC "%s" NOR "位，最高同時在線人數" HIW "%s" NOR "人(" CYN "%s" NOR ")\n" NOR,
                 chinese_number(reg_usr), chinese_number(max_usr), TIME_D->replace_ctime(time1)));
 
-        write(sprintf("目前共有" HIY "%s" NOR "位神仙、" HIW "%s" NOR "位江湖人士在江湖中，以及" HIB "%s" NOR "位朋友正在步入江湖的途中。"+ ((wiz_lock_level>0)?HIR"(禁止玩家登入)":HIC"(允许玩家登入)") + "\n\n" NOR,
+        write(sprintf("目前共有" HIY "%s" NOR "位神仙、" HIW "%s" NOR "位江湖人士在江湖中，以及" HIB "%s" NOR "位朋友正在步入江湖的途中。"+ ((wiz_lock_level>0)?HIR"(禁止玩家登入)":HIC"(允許玩家登入)") + "\n\n" NOR,
                 chinese_number(wiz_cnt), chinese_number(ppl_cnt), chinese_number(login_cnt) ));
 
         if( ppl_cnt+wiz_cnt > max_usr )
@@ -209,13 +209,13 @@ void logon(object ob)
                 write_file(CONFIG_DIR "max_ips", sprintf("%d:%d", sizeof(ips), time()), 1);
 
         if( ban_cnt > 20 ) {
-                write("这个IP上同时正在连线的玩家太多了，请稍候再尝试！！ \n");
+                write("這個IP上同時正在連線的玩家太多了，請稍候再嘗試！！ \n");
                 call_out("destruct_ob", 0, ob);
                 return;
         }
 
         if( ip_cnt > MULTI_LOGIN && str != PUBLIC_IP && !BAN_D->is_netclub(str) ) {
-                write("对不起，" + MUD_NAME + "限制相同ip多重登录。\n");
+                write("對不起，" + MUD_NAME + "限制相同ip多重登錄。\n");
                 call_out("destruct_ob", 0, ob);
                 return;
         }
@@ -230,26 +230,26 @@ void logon(object ob)
         }
 
         // if( !query_temp("big5", ob)){
-        //         write(HIC "ヘ玡才栋琌虏砰叫块GB/BIG5э跑才栋┪钡祅魁ノめ\n" NOR
-        //               "目前的字符集是简体，请输入GB/BIG5改变字符集，或直接登录用户。\n"
-        //               "请输入您的英文名字(" CYN "忘记密码请输入「pass」" NOR ")：\n");
+        //         write(HIC "ヘ玡才棟琌虜砰叫塊GB/BIG5э跑才棟┪鋇祅魁ノめ\n" NOR
+        //               "目前的字符集是簡體，請輸入GB/BIG5改變字符集，或直接登錄用戶。\n"
+        //               "請輸入您的英文名字(" CYN "忘記密碼請輸入「pass」" NOR ")：\n");
         // } else {
         //         delete_temp("big5", ob);
-        //         write(HIC "目前的字符集是繁体，请输入GB/BIG5改变字符集，或直接登录用户。\n" NOR);
+        //         write(HIC "目前的字符集是繁體，請輸入GB/BIG5改變字符集，或直接登錄用戶。\n" NOR);
         //         set_temp("big5", 1, ob);
-        //         write("目前的字符集是繁体，请输入GB/BIG5改变字符集，或直接登录用户。\n");
-        //         write("请输入您的英文名字(" CYN "忘记密码请输入「pass」" NOR ")：\n");
+        //         write("目前的字符集是繁體，請輸入GB/BIG5改變字符集，或直接登錄用戶。\n");
+        //         write("請輸入您的英文名字(" CYN "忘記密碼請輸入「pass」" NOR ")：\n");
         // }
-        write(HIC "请输入您的英文名字(" CYN "忘记密码请输入「pass」" NOR ")：\n");
+        write(HIC "請輸入您的英文名字(" CYN "忘記密碼請輸入「pass」" NOR ")：\n");
         input_to( (: get_id :), ob );
 }
 
 protected void get_version(string arg, object ob)
 {
         if( !arg || arg[0..3] != CURRENT_CLIENT_VERSION ) {
-                write(HIY "请从下列地址下载Tomud客户端\n" NOR);
+                write(HIY "請從下列地址下載Tomud客戶端\n" NOR);
                 write(HIG "    http://www.mudbuilder.com/download/tomudsetup.exe\n" NOR);
-                write(HIY "或使用Zmud客户端选择3000端口重新连接。\n\n" NOR);
+                write(HIY "或使用Zmud客戶端選擇3000端口重新連接。\n\n" NOR);
                 //call_out("destruct_ob", 0, ob);
                 //return;
         }
@@ -262,12 +262,12 @@ protected void pass_id(string arg, object ob)
         int    flag;
 //      string where;
 
-        write("该服务尚未启用。\n");
+        write("該服務尚未啟用。\n");
         call_out("destruct_ob", 0, ob);
         return;
 
         if( wiz_level(arg) ) {
-                write("巫师ID密码则必须亲自找天神修改密码。\n");
+                write("巫師ID密碼則必須親自找天神修改密碼。\n");
                 call_out("destruct_ob", 0, ob);
                 return;
         }
@@ -283,7 +283,7 @@ protected void pass_id(string arg, object ob)
         {
                 if( (int)res[0] == 3)
                 {
-                        write(sprintf("[%s] 这个 ID 目前正在漫游中，请稍后再试。。\n", arg));
+                        write(sprintf("[%s] 這個 ID 目前正在漫遊中，請稍後再試。。\n", arg));
                         call_out("destruct_ob", 0, ob);
                         return;
                 }
@@ -291,7 +291,7 @@ protected void pass_id(string arg, object ob)
                 where = res[1];
                 if( stringp(where) && where != LOCAL_STATION)
                 {
-                        write(sprintf("[%s] 这个 ID 数据目前在%s，你还是去那里找回密码吧。\n",
+                        write(sprintf("[%s] 這個 ID 數據目前在%s，你還是去那裡找回密碼吧。\n",
                                       arg, ! undefinedp(stations[where]) ? stations[where] : "其他站"));
                         call_out("destruct_ob", 0, ob);
                         return;
@@ -301,16 +301,16 @@ protected void pass_id(string arg, object ob)
         flag = (file_size(ob->query_save_file() + __SAVE_EXTENSION__) >= 0);
 #endif
         if( !flag ) {
-                write("本游戏没有 " + arg + " 这位玩家。\n");
+                write("本遊戲沒有 " + arg + " 這位玩家。\n");
                 call_out("destruct_ob", 0, ob);
                 return;
         }
         if( !ob->restore() ) {
-                write("该角色储存挡出了一些问题，请利用 guest 人物通知巫师处理。\n");
+                write("該角色儲存擋出了一些問題，請利用 guest 人物通知巫師處理。\n");
                 call_out("destruct_ob", 0, ob);
                 return;
         }
-        write("请输入该角色的信箱地置(email)：\n");
+        write("請輸入該角色的信箱地置(email)：\n");
         input_to("get_email", 1, ob);
         return;
 }
@@ -322,13 +322,13 @@ protected void get_email(string arg, object ob)
 
         user = make_body(ob);
         if( !user || !user->restore() ) {
-                write("该角色储存挡出了一些问题，请利用 guest 人物通知巫师处理。\n");
+                write("該角色儲存擋出了一些問題，請利用 guest 人物通知巫師處理。\n");
                 if( user) call_out("destruct_ob", 0, user);
                 call_out("destruct_ob", 0, ob);
                 return;
         }
         if( query("email", user) == arg){
-                write("系统已将新管理密码 Email 至您的信箱。\n");
+                write("系統已將新管理密碼 Email 至您的信箱。\n");
                 pass = SMTP_D->random_passwd(8);
 #ifdef ENABLE_MD5_PASSWORD
                 set("ad_password", crypt(pass,sprintf("$1$%d",random(99999999))), ob);
@@ -340,9 +340,9 @@ protected void get_email(string arg, object ob)
                 msg = @LONG
 Hello, %id.
 
-感谢您参与网络游戏%MUD_NAME，您所使用的账号(%id)的管理密码现
-已经被系统修改成为%passwd，下次登录的时候请您使用新的管理密码
-登录，并重新设置登录使用的普通密码。对此造成的不便敬请原谅。
+感謝您參與網絡遊戲%MUD_NAME，您所使用的賬號(%id)的管理密碼現
+已經被系統修改成為%passwd，下次登錄的時候請您使用新的管理密碼
+登錄，並重新設置登錄使用的普通密碼。對此造成的不便敬請原諒。
 
                              %data
 LONG ;
@@ -351,10 +351,10 @@ LONG ;
                 msg = replace_string(msg, "%passwd", pass);
                 msg = replace_string(msg, "%data", ctime(time()));
 
-                //MAIL_D->queue_mail(0, 0, arg, LOCAL_MUD_NAME()+" - " + query("id", ob) + " 角色密码", msg);
-                SMTP_D->send_passmail(0, 0, arg, LOCAL_MUD_NAME()+ " - " + query("id", ob) + " 角色密码", msg);
+                //MAIL_D->queue_mail(0, 0, arg, LOCAL_MUD_NAME()+" - " + query("id", ob) + " 角色密碼", msg);
+                SMTP_D->send_passmail(0, 0, arg, LOCAL_MUD_NAME()+ " - " + query("id", ob) + " 角色密碼", msg);
         } else
-                write("您输入的资料与该角色不符。\n");
+                write("您輸入的資料與該角色不符。\n");
 
         call_out("destruct_ob", 0, user);
         call_out("destruct_ob", 0, ob);
@@ -372,7 +372,7 @@ protected void get_id(string arg, object ob)
 
         if( arg == "big5" ) {
                 if( query_temp("big5", ob) ) {
-                        write("请输入您的英文ID：\n");
+                        write("請輸入您的英文ID：\n");
                         input_to("pass_id", ob);
                         return;
                 }
@@ -381,7 +381,7 @@ protected void get_id(string arg, object ob)
                 return;
         } else if( arg == "gb" ) {
                 if( !query_temp("big5", ob) ) {
-                        write("请输入您的英文ID：\n");
+                        write("請輸入您的英文ID：\n");
                         input_to("pass_id", ob);
                         return;
                 }
@@ -389,14 +389,14 @@ protected void get_id(string arg, object ob)
                 logon(ob);
                 return;
         } else if( arg == "pass" ) {
-                write("请输入您的英文ID：\n");
+                write("請輸入您的英文ID：\n");
                 input_to("pass_id", ob);
                 return;
         }
 
         if( arg == "lonely" || arg == "redl" )
         {
-                write("就凭你也敢偷巫师的帐号？\n");
+                write("就憑你也敢偷巫師的帳號？\n");
                 destruct(ob);
                 return;
         }
@@ -409,12 +409,12 @@ protected void get_id(string arg, object ob)
                 addn_temp("fake_id", 1, ob);
                 if( query_temp("fake_id", ob)>20 &&
                     (ip = query_ip_number(ob)) != PUBLIC_IP ) {
-                        block_ip(ip, 300, "您的IP持续登录无效ID！");
+                        block_ip(ip, 300, "您的IP持續登錄無效ID！");
                         call_out("destruct_ob", 0, ob);
                         return;
                 }
                 */
-                write(YEL "请输入您的英文名字：" NOR);
+                write(YEL "請輸入您的英文名字：" NOR);
                 input_to("get_id", ob);
                 return;
         }
@@ -424,8 +424,8 @@ protected void get_id(string arg, object ob)
                     sizeof(users()) >= MAX_USERS ) {
                         // Only allow reconnect an interactive player when MAX_USERS exceeded.
                         if( !find_body(arg) ) {
-                                write("对不起，" + MUD_NAME +
-                                      "的使用者已经太多了，请待会再来。\n");
+                                write("對不起，" + MUD_NAME +
+                                      "的使用者已經太多了，請待會再來。\n");
                                 call_out("destruct_ob", 0, ob);
                                 return;
                         }
@@ -435,26 +435,26 @@ protected void get_id(string arg, object ob)
         if( wiz_level(arg) < 1 ) {
                 /*
                 if( !VERSION_D->is_version_ok() && !query_temp("operator", get_object(VERSION_D)) ){
-                        write("现在本站正在同步版本中，暂时不能登录，请稍候再尝试。\n");
+                        write("現在本站正在同步版本中，暫時不能登錄，請稍候再嘗試。\n");
                         call_out("destruct_ob", 0, ob);
                         return;
                 } else
                 */
                 if( REBOOT_CMD->is_rebooting() && !find_body(arg) ) {
-                        write("现在本站正准备重新启动，暂时不能登录，请稍候再尝试。\n");
+                        write("現在本站正準備重新啟動，暫時不能登錄，請稍候再嘗試。\n");
                         call_out("destruct_ob", 0, ob);
                         return;
                 }
         }
 
         if( wiz_level(arg) < wiz_lock_level ) {
-                write("对不起，" + MUD_NAME + "目前限制巫师等级 " + WIZ_LOCK_LEVEL + " 以上的人才能连线。\n");
+                write("對不起，" + MUD_NAME + "目前限制巫師等級 " + WIZ_LOCK_LEVEL + " 以上的人才能連線。\n");
                 call_out("destruct_ob", 0, ob);
                 return;
         }
 
         if( AHACK_D->query_block(arg) ) {
-                write(HIY "这个账号被暂时封锁了，请用 guest 人物登入与在线巫师联系。\n" NOR);
+                write(HIY "這個賬號被暫時封鎖了，請用 guest 人物登入與在線巫師聯繫。\n" NOR);
                 call_out("destruct_ob", 0, ob);
                 return;
         }
@@ -470,7 +470,7 @@ protected void get_id(string arg, object ob)
 /*
                 user = find_body("guest");
                 if( user ) {
-                        write("目前 guest 账号已有人在使用，请等一下再登陆。\n");
+                        write("目前 guest 賬號已有人在使用，請等一下再登陸。\n");
                         call_out("destruct_ob", 0, ob);
                         return;
                 }
@@ -481,7 +481,7 @@ protected void get_id(string arg, object ob)
                         call_out("destruct_ob", 0, ob);
                         return;
                 }
-                set("name", "临时人物", user);
+                set("name", "臨時人物", user);
                 set("gender", "男性", user);
                 set("title", "普通百姓", user);
                 set("food", 500, user);
@@ -505,7 +505,7 @@ protected void get_id(string arg, object ob)
         flag = arrayp(res);
         if( flag ) {
                 if( (int)res[0] == 3 ) {
-                        write(sprintf("[%s] 这个 ID 目前正在漫游中，请稍后再尝试登陆。。\n", arg));
+                        write(sprintf("[%s] 這個 ID 目前正在漫遊中，請稍後再嘗試登陸。。\n", arg));
                         call_out("destruct_ob", 0, ob);
                         return;
                 }
@@ -514,20 +514,20 @@ protected void get_id(string arg, object ob)
                 if( wiz_level(arg) < 1 && stringp(where) && where != LOCAL_STATION ) {
                         if( (int)res[0] > 0 ) {
                                 if( (int)res[0] == 2 )
-                                        write(sprintf("[%s] 这个 ID 目前正在%s闭关，如想漫游，请先将该 ID 从%s站退出。\n",
+                                        write(sprintf("[%s] 這個 ID 目前正在%s閉關，如想漫遊，請先將該 ID 從%s站退出。\n",
                                                       arg, ! undefinedp(stations[where]) ? stations[where] : "其他站",
                                                       ! undefinedp(stations[where]) ? stations[where] : "其他站"));
                                 else if( (int)res[0] == 1 )
-                                        write(sprintf("[%s] 这个 ID 目前正在%s连线，如想漫游，请先将该 ID 从%s站退出。\n",
+                                        write(sprintf("[%s] 這個 ID 目前正在%s連線，如想漫遊，請先將該 ID 從%s站退出。\n",
                                                       arg, ! undefinedp(stations[where]) ? stations[where] : "其他站",
                                                       ! undefinedp(stations[where]) ? stations[where] : "其他站"));
 
                                 call_out("destruct_ob", 0, ob);
                                 return;
                         }
-                        write(sprintf("[%s] 这个 ID 数据目前在%s，你想将该 ID 数据漫游过来(y/n)？：\n",
+                        write(sprintf("[%s] 這個 ID 數據目前在%s，你想將該 ID 數據漫遊過來(y/n)？：\n",
                                       arg, ! undefinedp(stations[where]) ? stations[where] : "其他站"));
-                        write("如果该 ID 不是你注册的或者你不想漫游，请输入(n/N)来重新注册或登陆其他 ID。\n" NOR);
+                        write("如果該 ID 不是你註冊的或者你不想漫遊，請輸入(n/N)來重新註冊或登陸其他 ID。\n" NOR);
                                 input_to("confirm_cruiseid", 1, ob);
                         return;
                 }
@@ -540,36 +540,36 @@ protected void get_id(string arg, object ob)
                 if( ob->restore() ) {
                         if( (string)SECURITY_D->get_status(query("id", ob)) != "(player)" ) {
                                 if( query("wizpwd", ob)){
-                                        write("请输入巫师专用密码：\n");
+                                        write("請輸入巫師專用密碼：\n");
                                         input_to("get_wizpwd", 1, ob);
                                         return;
                                 }
 
-                                write("\n警告！您没有设置巫师专用密码！请登陆后用" HIW " wizpwd " NOR "命令设置。\n");
-                                write("请输入密码：\n");
+                                write("\n警告！您沒有設置巫師專用密碼！請登陸後用" HIW " wizpwd " NOR "命令設置。\n");
+                                write("請輸入密碼：\n");
                                 input_to("get_passwd", 1, ob);
                                 return;
                         }
-                        write("这个角色已经存在，请输入该角色的密码：\n");
+                        write("這個角色已經存在，請輸入該角色的密碼：\n");
                         input_to("get_passwd", 1, ob);
                         return;
                 }
-                write("您的人物储存挡出了一些问题，请利用 guest 人物通知巫师处理。\n");
+                write("您的人物儲存擋出了一些問題，請利用 guest 人物通知巫師處理。\n");
                 call_out("destruct_ob", 0, ob);
                 return;
         }
 
 #ifdef DB_SAVE
         if( !DATABASE_D->query_db_status() ) {
-                write("对不起，由于连接不上数据库所在服务器，目前" + MUD_NAME + "暂时不接受数据漫游或新玩家注册。\n"
-                      "请访问游戏论坛：http://www.mudbuilder.com 获得详细的讯息，或重新尝试连接。\n");
+                write("對不起，由於連接不上數據庫所在服務器，目前" + MUD_NAME + "暫時不接受數據漫遊或新玩家註冊。\n"
+                      "請訪問遊戲論壇：http://www.mudbuilder.com 獲得詳細的訊息，或重新嘗試連接。\n");
                 call_out("destruct_ob", 0, ob);
                 return;
         }
 #endif
 
 #ifdef REFUSE_NEW_PLAYER
-        write("对不起，目前" + MUD_NAME + "暂时不接受新玩家注册。\n");
+        write("對不起，目前" + MUD_NAME + "暫時不接受新玩家註冊。\n");
         call_out("destruct_ob", 0, ob);
         return;
 #endif
@@ -580,7 +580,7 @@ protected void get_id(string arg, object ob)
                 if( usr[i] != ob && query("id", usr[i]) == arg )
                         break;
         if( i >= 0 ) {
-                write("有其他玩家正在使用这个 ID，请重新输入。\n");
+                write("有其他玩家正在使用這個 ID，請重新輸入。\n");
                 write("您的英文名字：\n");
                 input_to("get_id", ob);
                 return;
@@ -588,9 +588,9 @@ protected void get_id(string arg, object ob)
 
         if( query_temp("tomud", ob) )
                 write(ALERT(NO_FEE_WARNING)+"使用"+query("id", ob)+
-                        " 这个名字将会创造一个新的人物，您确定吗(y/n)？");
+                        " 這個名字將會創造一個新的人物，您確定嗎(y/n)？");
         else
-                write("使用"HIW+query("id", ob)+NOR"这个名字将会创造一个新的人物，您确定吗("HIR"y"NOR"/"HIY"n"NOR")？");
+                write("使用"HIW+query("id", ob)+NOR"這個名字將會創造一個新的人物，您確定嗎("HIR"y"NOR"/"HIY"n"NOR")？");
 
         input_to("confirm_id", ob);
 }
@@ -603,12 +603,12 @@ protected void get_wizpwd(string pass, object ob)
         old_pass=query("wizpwd", ob);
 
         if( crypt(pass, old_pass) == old_pass ) {
-                write(HIG "身份确认完成，巫师专用密码验证通过！\n" NOR);
-                write("请输入密码：\n");
+                write(HIG "身份確認完成，巫師專用密碼驗證通過！\n" NOR);
+                write("請輸入密碼：\n");
                 input_to("get_passwd", 1, ob);
                 return;
         } else {
-                write("密码错误！\n");
+                write("密碼錯誤！\n");
                 call_out("destruct_ob", 0, ob);
                 return;
         }
@@ -621,16 +621,16 @@ protected void confirm_cruiseid(string yn, object ob)
         write("\n");
         if( upper_case(yn) == "Y" ) {
                 if( cruise_lock ) {
-                        write("对不起，目前该站已被天神临时设置为禁止漫游，如想要漫游，请和天神联系。\n");
+                        write("對不起，目前該站已被天神臨時設置為禁止漫遊，如想要漫遊，請和天神聯繫。\n");
                         call_out("destruct_ob", 0, ob);
                         return;
                 }
 
-                write("请输入该 ID 管理密码：\n");
+                write("請輸入該 ID 管理密碼：\n");
                 input_to("get_cruisepwd", 1, ob);
                 return;
         }
-        write("你选择重新注册或登陆 ID，请重新输入。\n");
+        write("你選擇重新註冊或登陸 ID，請重新輸入。\n");
         write("您的英文名字：\n");
         input_to("get_id", ob);
         return;
@@ -646,19 +646,19 @@ protected void get_cruisepwd(string pass, object ob)
         passwd = DATABASE_D->db_query_user(query("id", ob), "ad_password");
 
         if( !stringp(passwd) || crypt(pass, passwd)[0..15] != passwd ) {
-                write("密码错误！\n");
+                write("密碼錯誤！\n");
                 call_out("destruct_ob", 0, ob);
                 return;
         }
 
-        write("人物身份确认完成，开始连接站点服务器获取人物的数据信息。\n");
+        write("人物身份確認完成，開始連接站點服務器獲取人物的數據信息。\n");
         sites = DATABASE_D->db_query_user(query("id", ob), "last_station");
         CRUISE_D->authenticate_user(ob, sites);
 
         call_out("destruct_ob", 0, ob);
         return;
 #else
-        write("密码错误！\n");
+        write("密碼錯誤！\n");
         call_out("destruct_ob", 0, ob);
         return;
 #endif
@@ -673,28 +673,28 @@ protected void get_passwd(string pass, object ob)
         ad_pass=query("ad_password", ob);
         if( !stringp(my_pass) || crypt(pass, my_pass) != my_pass ) {
                 if( !stringp(ad_pass) || crypt(pass, ad_pass) != ad_pass ) {
-                        write("密码错误！\n");
+                        write("密碼錯誤！\n");
                         call_out("destruct_ob", 0, ob);
                         return;
                 }
 
-                write(HIR "\n你采用了管理密码进入游戏，"
-                      "因此请你先修改你的普通密码。\n" NOR);
+                write(HIR "\n你採用了管理密碼進入遊戲，"
+                      "因此請你先修改你的普通密碼。\n" NOR);
 
-                // 做标记：表示目前流程是修改密码分支。
+                // 做標記：表示目前流程是修改密碼分支。
                 set_temp("reset_password", 1, ob);
-                write("\n请重新设定您的普通密码：\n");
+                write("\n請重新設定您的普通密碼：\n");
                 input_to("new_password", 1, ob);
                 return;
         }
 
         if( !stringp(ad_pass) ) {
-                write(HIC "\n请注意：你的ID目前还没有管理密码，请设置你的管理密码。\n\n" NOR);
-                write(HIW "在你普通密码丢失的情况下，你可以输入管理密码进入，并修改普通\n"
-                      "密码，所以请你设置一个可靠的并且与普通密码不同的管理密码，用\n"
-                      "来保护你的ID。平时请使用普通密码登陆，避免过于频繁的使用管理\n"
-                      "密码以导致潜在的泄漏风险。\n\n" NOR);
-                write("请输入你的管理密码：\n");
+                write(HIC "\n請注意：你的ID目前還沒有管理密碼，請設置你的管理密碼。\n\n" NOR);
+                write(HIW "在你普通密碼丟失的情況下，你可以輸入管理密碼進入，並修改普通\n"
+                      "密碼，所以請你設置一個可靠的並且與普通密碼不同的管理密碼，用\n"
+                      "來保護你的ID。平時請使用普通密碼登陸，避免過於頻繁的使用管理\n"
+                      "密碼以導致潛在的洩漏風險。\n\n" NOR);
+                write("請輸入你的管理密碼：\n");
                 input_to("reset_ad_password", 1, ob);
                 return;
         }
@@ -708,21 +708,21 @@ protected void reset_ad_password(string pass, object ob)
         write("\n");
 
         if( strlen(pass) < 5 ) {
-                write("管理密码的长度至少要五个字元，请重设您的管理密码：\n");
+                write("管理密碼的長度至少要五個字元，請重設您的管理密碼：\n");
                 input_to("reset_ad_password", 1, ob);
                 return;
         }
 
         my_pass=query("password", ob);
         if( stringp(my_pass) && crypt(pass, my_pass) == my_pass ) {
-                write(HIR "为了安全起见，系统要求管理密码的密码和普通密码不能相同。\n\n" NOR);
-                write("请重新输入你的管理密码：\n");
+                write(HIR "為了安全起見，系統要求管理密碼的密碼和普通密碼不能相同。\n\n" NOR);
+                write("請重新輸入你的管理密碼：\n");
                 input_to("reset_ad_password", 1, ob);
                 return;
         }
 
         set_temp("ad_password", crypt(pass,0), ob);
-        write("请再输入一次您的管理密码，以确认您没记错：\n");
+        write("請再輸入一次您的管理密碼，以確認您沒記錯：\n");
         input_to("confirm_reset_ad_password", 1, ob);
 }
 
@@ -735,7 +735,7 @@ protected void confirm_reset_ad_password(string pass, object ob)
         write("\n");
         old_pass=query_temp("ad_password", ob);
         if( crypt(pass, old_pass) != old_pass ) {
-                write("您两次输入的管理密码并不一样，请重新设定一次管理密码：\n");
+                write("您兩次輸入的管理密碼並不一樣，請重新設定一次管理密碼：\n");
                 input_to("reset_ad_password", 1, ob);
                 return;
         }
@@ -765,18 +765,18 @@ protected void check_ok(object ob)
                 rec = 1;
 
         if( !objectp(user)) {
-                write(HIR "无法创建该玩家，你可以尝试重新登录或是和巫师联系。\n" NOR);
+                write(HIR "無法創建該玩家，你可以嘗試重新登錄或是和巫師聯繫。\n" NOR);
                 return ;
         }
 
-        if( rec != 1 && !user->restore()) { // 必须要判断rec的值，否则会把玩家数据返回到前一次存储的数据
-                write(HIR "无法读取该玩家数据，你可以尝试重新登录或是和巫师联系。\n" + rec + NOR);
+        if( rec != 1 && !user->restore()) { // 必須要判斷rec的值，否則會把玩家數據返回到前一次存儲的數據
+                write(HIR "無法讀取該玩家數據，你可以嘗試重新登錄或是和巫師聯繫。\n" + rec + NOR);
                 return ;
         }
 
 #ifdef NO_FEE
         if( query_temp("tomud", ob) )
-                write(ALERT("文字MUD游戏『"+LOCAL_MUD_NAME()+"』将永久免费开放！请新老玩家相互转告！\n"));
+                write(ALERT("文字MUD遊戲『"+LOCAL_MUD_NAME()+"』將永久免費開放！請新老玩家相互轉告！\n"));
 #else
         /*
         if( query("monfee", user)<time() && arrayp(res=query_temp("res", ob))){
@@ -786,14 +786,14 @@ protected void check_ok(object ob)
                         on /= 10;
                         fee /= 10;
                         i = onl / 3600;
-                        str = "你总共购买游戏时间： " + fee + " 个小时$$" +
-                              "你已经在游戏中进行了：" + i + "小时" + ((on % 3600) / 60) + "分钟$$";
+                        str = "你總共購買遊戲時間： " + fee + " 個小時$$" +
+                              "你已經在遊戲中進行了：" + i + "小時" + ((on % 3600) / 60) + "分鐘$$";
                         if( i >= fee )
-                                str += "你购买的游戏时间已经使用完了，请联系『王者歸來』小组继续购买游戏时间！$$游戏主页： http://www.mudzone.org $$";
+                                str += "你購買的遊戲時間已經使用完了，請聯繫『王者歸來』小組繼續購買遊戲時間！$$遊戲主頁： http://www.mudzone.org $$";
                         else if( (fee - i) < 18 )
-                                str+="你购买的游戏时间已经只有 " + (fee - i - 1) + " 小时多一点了$$请赶快去 http://www.mudzone.org 给你的帐号续费吧$$";
+                                str+="你購買的遊戲時間已經只有 " + (fee - i - 1) + " 小時多一點了$$請趕快去 http://www.mudzone.org 給你的帳號續費吧$$";
                         else if( fee == i )
-                                str += "你购买的时间已经不到一个小时了，请尽快去 http://www.mudzone.org 给你的帐号续费$$";
+                                str += "你購買的時間已經不到一個小時了，請儘快去 http://www.mudzone.org 給你的帳號續費$$";
                         if( fee == 18 )
                                 str += NO_FEE_WARNING;
                         write(ALERT(str) + ((fee > 18) ? TMI("regur good") : "") + TMI("dlurl 123.12586.com/images/face32/"));
@@ -821,7 +821,7 @@ protected void check_ok(object ob)
                         reconnect(ob, user);
                         return;
                 }
-                write("您要将另一个连线中的相同人物赶出去，取而代之吗？(y/n)\n");
+                write("您要將另一個連線中的相同人物趕出去，取而代之嗎？(y/n)\n");
                 input_to("confirm_relogin", ob, user);
                 return;
         } else {
@@ -835,8 +835,8 @@ protected void check_ok(object ob)
                 if( query("last_on", ob)<time() &&
                     query("last_on", ob)>time()-30 &&
                     !wiz_level(user) ) {
-                        write("你距上一次退出时间只有"+chinese_number(time()-query("last_on", ob))+
-                              "秒钟，请稍候再登录。\n");
+                        write("你距上一次退出時間只有"+chinese_number(time()-query("last_on", ob))+
+                              "秒鐘，請稍候再登錄。\n");
                         call_out("destruct_ob", 0, user);
                         call_out("destruct_ob", 0, ob);
                         return;
@@ -846,7 +846,7 @@ protected void check_ok(object ob)
                 set("last_save", time(), user);
                 if( err = catch(waiting_enter_world(ob, user)) ) {
                         set_temp("debug_msg", err, user);
-                        msg = HIR "\n你无法进入这个世界，可能你的档案出了一些问题，需要和巫师联系。\n\n" NOR;
+                        msg = HIR "\n你無法進入這個世界，可能你的檔案出了一些問題，需要和巫師聯繫。\n\n" NOR;
                         if( mapp(err) )
                                 msg += MASTER_OB->standard_trace(err, 1);
                         set_temp("error", msg, user);
@@ -861,20 +861,20 @@ protected void confirm_relogin(string yn, object ob, object user)
         object old_link;
 
         if( !yn || yn=="" ) {
-                write("您要将另一个连线中的相同人物赶出去，取而代之吗？(y/n)\n");
+                write("您要將另一個連線中的相同人物趕出去，取而代之嗎？(y/n)\n");
                 input_to("confirm_relogin", ob, user);
                 return;
         }
 
         if( yn[0]!='y' && yn[0]!='Y' ) {
-                write("好吧，欢迎下次再来。\n");
+                write("好吧，歡迎下次再來。\n");
                 call_out("destruct_ob", 0, ob);
                 return;
         }
 
         if( user ) {
-                tell_object(user, "有人从别处( " + query_ip_number(ob)
-                                + " )连线取代你所控制的人物。\n");
+                tell_object(user, "有人從別處( " + query_ip_number(ob)
+                                + " )連線取代你所控制的人物。\n");
                 log_file("usage", sprintf("%s(%s) replaced by %s (%s)\n",
                          query("name", user),query("id", user),
                          query_ip_number(ob), ctime(time())));
@@ -886,7 +886,7 @@ protected void confirm_relogin(string yn, object ob, object user)
                         call_out("destruct_ob", 0, old_link);
                 }
         } else {
-                write("在线玩家断开了连接，你需要重新登陆。\n");
+                write("在線玩家斷開了連接，你需要重新登陸。\n");
                 call_out("destruct_ob", 0, ob);
                 return;
         }
@@ -897,13 +897,13 @@ protected void confirm_relogin(string yn, object ob, object user)
 protected void confirm_id(string yn, object ob)
 {
         if( yn=="" ) {
-                write("使用这个名字将会创造一个新的人物，请问您确定吗("HIR"y"NOR"/"HIY"n"NOR")？");
+                write("使用這個名字將會創造一個新的人物，請問您確定嗎("HIR"y"NOR"/"HIY"n"NOR")？");
                 input_to("confirm_id", ob);
                 return;
         }
 
         if( yn[0]!='y' && yn[0]!='Y' ) {
-                write("好吧，那么请重新输入您的英文名字：");
+                write("好吧，那麼請重新輸入您的英文名字：");
                 input_to("get_id", ob);
                 return;
         }
@@ -911,21 +911,21 @@ protected void confirm_id(string yn, object ob)
         write("\n\n");
         write(HIW @TEXT
 
-请输入您的高姓大名，由于这个名字代表你的人物，而且以后不能更
-改，务必慎重择名（不雅观的姓名将被删除）。另：请不要选择金庸
-小说中已有人物姓名。
+請輸入您的高姓大名，由於這個名字代表你的人物，而且以後不能更
+改，務必慎重擇名（不雅觀的姓名將被刪除）。另：請不要選擇金庸
+小說中已有人物姓名。
 
-首先输入的是你的姓，比如你想扮演角色叫张三，先输入“张”，然
-后电脑会询问你的名字，那时你再输入“三”。如果你想扮演的角色
-的名字比较怪，比如叫“老虎”，可以不输入姓，直接敲回车略过。
-但是建议你还是输入一个比较像样子的姓名，而这些比较怪的称号可
-以用昵称代替，否则某些地方的称呼可能会比较怪。如果你要加入世
-家，那么你就不必输入姓了，因为一旦加入世家将自动选择家传祖姓，
-不是你自己决定的。
+首先輸入的是你的姓，比如你想扮演角色叫張三，先輸入“張”，然
+後電腦會詢問你的名字，那時你再輸入“三”。如果你想扮演的角色
+的名字比較怪，比如叫“老虎”，可以不輸入姓，直接敲回車略過。
+但是建議你還是輸入一個比較像樣子的姓名，而這些比較怪的稱號可
+以用暱稱代替，否則某些地方的稱呼可能會比較怪。如果你要加入世
+家，那麼你就不必輸入姓了，因為一旦加入世家將自動選擇家傳祖姓，
+不是你自己決定的。
 
 TEXT NOR
         );
-        write("您的中文" HIG "姓氏" NOR "(不要超过两个汉字)：\n");
+        write("您的中文" HIG "姓氏" NOR "(不要超過兩個漢字)：\n");
         input_to("get_surname", ob);
 }
 
@@ -940,17 +940,17 @@ protected void get_surname(string arg, object ob)
                         arg = LANGUAGE_D->toGB(arg);
 #endif
                 if( !check_legal_name(arg, 2) ) {
-                        write("您的中文" HIG "姓氏" NOR "(不要超过两个汉字)：\n");
+                        write("您的中文" HIG "姓氏" NOR "(不要超過兩個漢字)：\n");
                         input_to("get_surname", ob);
                         return;
                 }
                 set("surname", arg, ob);
         } else {
-                write("您的中文" HIG "姓氏" NOR "(不可以没有姓氏)：\n");
+                write("您的中文" HIG "姓氏" NOR "(不可以沒有姓氏)：\n");
                 input_to("get_surname", ob);
                 return;
         }
-        write("您的中文" HIY "名字" NOR "(不要超过两个汉字)：\n");
+        write("您的中文" HIY "名字" NOR "(不要超過兩個漢字)：\n");
         input_to("get_name", ob);
 }
 
@@ -967,7 +967,7 @@ protected void get_name(string arg, object ob)
                 arg = LANGUAGE_D->toGB(arg);
 #endif
         if( !check_legal_name(arg, 2) ) {
-                write("您的中文" HIY "名字" NOR "(不要超过两个汉字)：\n");
+                write("您的中文" HIY "名字" NOR "(不要超過兩個漢字)：\n");
                 input_to("get_name", ob);
                 return;
         }
@@ -978,16 +978,16 @@ protected void get_name(string arg, object ob)
         fname += arg;
 
         if( strlen(fname) < 2) {
-                write("对不起，你的中文名字（姓和名的组合）至少要有两个汉字。\n");
-                write("\n请重新输入您中文" HIG "姓氏" NOR "：\n");
+                write("對不起，你的中文名字（姓和名的組合）至少要有兩個漢字。\n");
+                write("\n請重新輸入您中文" HIG "姓氏" NOR "：\n");
                 input_to("get_surname", ob);
                 return;
         }
 
         if( stringp(result = NAME_D->invalid_new_name(fname))
         ||  stringp(result = NAME_D->invalid_new_name(arg)) ) {
-                write("对不起，" + result + "\n");
-                write("\n请重新输入您中文" HIG "姓氏" NOR "：\n");
+                write("對不起，" + result + "\n");
+                write("\n請重新輸入您中文" HIG "姓氏" NOR "：\n");
                 input_to("get_surname", ob);
                 return;
         }
@@ -995,44 +995,44 @@ protected void get_name(string arg, object ob)
 #ifdef DB_SAVE
         if( DATABASE_D->db_find_user("name", fname) ||
             DATABASE_D->db_find_user("name", arg) ) {
-                write("对不起，你的姓名和其他站玩家的姓名重复或类似！\n");
-                write("\n请重新输入您中文" HIG "姓氏" NOR "：\n");
+                write("對不起，你的姓名和其他站玩家的姓名重複或類似！\n");
+                write("\n請重新輸入您中文" HIG "姓氏" NOR "：\n");
                 input_to("get_surname", ob);
                 return;
         }
 #endif
 
         if( arg == query("surname", ob)){
-                write(HIW "\n系统发现你输入的姓和名字相同，这样你的名字将是：“"
+                write(HIW "\n系統發現你輸入的姓和名字相同，這樣你的名字將是：“"
                       HIY + arg + arg + HIW "”。\n"
-                      "你是否是因为不了解本系统而且没有仔细阅读前面的帮助而错误的输入\n"
-                      "了你的姓名，如果是，请你重新连接并输入你的名字，否则请你输入一\n"
-                      "遍你的全名，表明你的确想使用这个名字。\n\n" NOR);
-                write("请输入您的全名(即姓和名字的组合)：\n");
+                      "你是否是因為不瞭解本系統而且沒有仔細閱讀前面的幫助而錯誤的輸入\n"
+                      "了你的姓名，如果是，請你重新連接並輸入你的名字，否則請你輸入一\n"
+                      "遍你的全名，表明你的確想使用這個名字。\n\n" NOR);
+                write("請輸入您的全名(即姓和名字的組合)：\n");
                 input_to("input_full_name", ob, arg + arg);
                 return;
         }
 
-        write(HIW "\n为了保证你的人物的安全，游戏要求你设置两个密码。一个是管理密\n"
-              "码，这个密码可以在你遗失了普通密码时登录游戏，并用来修改普通\n"
-              "密码。平时请使用普通密码登陆，避免过于频繁的使用管理密码以导\n"
-              "致潜在的泄漏风险。\n\n" NOR);
-        write("请设定您的管理密码：\n");
+        write(HIW "\n為了保證你的人物的安全，遊戲要求你設置兩個密碼。一個是管理密\n"
+              "碼，這個密碼可以在你遺失了普通密碼時登錄遊戲，並用來修改普通\n"
+              "密碼。平時請使用普通密碼登陸，避免過於頻繁的使用管理密碼以導\n"
+              "致潛在的洩漏風險。\n\n" NOR);
+        write("請設定您的管理密碼：\n");
         input_to("new_ad_password", 1, ob);
 }
 
 protected void input_full_name(string arg, object ob, string fname)
 {
         if( arg != fname ) {
-                write(WHT "\n你输入的全名并不是你姓和名字的的组合，系统认为你开始没有理解输\n"
-                      "入名字的要求，" HIR "请你仔细阅读所有提示的条款，不要自作聪明"
+                write(WHT "\n你輸入的全名並不是你姓和名字的的組合，系統認為你開始沒有理解輸\n"
+                      "入名字的要求，" HIR "請你仔細閱讀所有提示的條款，不要自作聰明"
                       NOR WHT "。包括在\n"
-                      "今后的游戏过程中请仔细阅读各种帮助和公告，避免因为自以为是而导\n"
-                      "致浪费时间或是遭受不必要的损失。\n" NOR);
+                      "今後的遊戲過程中請仔細閱讀各種幫助和公告，避免因為自以為是而導\n"
+                      "致浪費時間或是遭受不必要的損失。\n" NOR);
                 confirm_id("Yes", ob);
                 return;
         }
-        write("\n请设定您的管理密码：\n");
+        write("\n請設定您的管理密碼：\n");
         input_to("new_ad_password", 1, ob);
 }
 
@@ -1040,7 +1040,7 @@ protected void new_ad_password(string pass, object ob)
 {
         write("\n");
         if( strlen(pass) < 5 ) {
-                write("管理密码的长度至少要五个字元，请重设您的管理密码：\n");
+                write("管理密碼的長度至少要五個字元，請重設您的管理密碼：\n");
                 input_to("new_ad_password", 1, ob);
                 return;
         }
@@ -1051,7 +1051,7 @@ protected void new_ad_password(string pass, object ob)
         set_temp("ad_password", crypt(pass,0), ob);
 #endif
 
-        write("请再输入一次您的管理密码，以确认您没记错：\n");
+        write("請再輸入一次您的管理密碼，以確認您沒記錯：\n");
         input_to("confirm_ad_password", 1, ob);
 }
 
@@ -1064,16 +1064,16 @@ protected void confirm_ad_password(string pass, object ob)
         write("\n");
         old_pass=query_temp("ad_password", ob);
         if( crypt(pass, old_pass) != old_pass ) {
-                write("您两次输入的管理密码并不一样，请重新设定一次管理密码：\n");
+                write("您兩次輸入的管理密碼並不一樣，請重新設定一次管理密碼：\n");
                 input_to("new_ad_password", 1, ob);
                 return;
         }
 
         set("ad_password", old_pass, ob);
 
-        write(HIW "普通密码是你平时登录游戏时使用的，游戏中可以通过 PASSWD 命令\n"
-              "来修改这个密码。\n\n" NOR);
-        write("请输入你的普通密码：\n");
+        write(HIW "普通密碼是你平時登錄遊戲時使用的，遊戲中可以通過 PASSWD 命令\n"
+              "來修改這個密碼。\n\n" NOR);
+        write("請輸入你的普通密碼：\n");
         input_to("new_password", 1, ob);
 }
 
@@ -1083,15 +1083,15 @@ protected void new_password(string pass, object ob)
 
         write("\n");
         if( strlen(pass) < 3 ) {
-                write("密码的长度至少要三个字元，请重设您的密码：\n");
+                write("密碼的長度至少要三個字元，請重設您的密碼：\n");
                 input_to("new_password", 1, ob);
                 return;
         }
 
         if( stringp(ad_pass=query("ad_password", ob)) &&
             crypt(pass, ad_pass) == ad_pass ) {
-                write(HIR "请注意，为了安全起见，系统要求你的管理密码和普通密码不能相同。\n\n" NOR);
-                write("请重新设置您的普通密码：\n");
+                write(HIR "請注意，為了安全起見，系統要求你的管理密碼和普通密碼不能相同。\n\n" NOR);
+                write("請重新設置您的普通密碼：\n");
                 input_to("new_password", 1, ob);
                 return;
         }
@@ -1102,7 +1102,7 @@ protected void new_password(string pass, object ob)
         set_temp("password", crypt(pass,0), ob);
 #endif
 
-        write("请再输入一次您的密码，以确认您没记错：\n");
+        write("請再輸入一次您的密碼，以確認您沒記錯：\n");
         input_to("confirm_password", 1, ob);
 }
 
@@ -1115,15 +1115,15 @@ protected void confirm_password(string pass, object ob)
         write("\n");
         old_pass=query_temp("password", ob);
         if( crypt(pass, old_pass) != old_pass ) {
-                write("您两次输入的密码并不一样，请重新设定一次密码：\n");
+                write("您兩次輸入的密碼並不一樣，請重新設定一次密碼：\n");
                 input_to("new_password", 1, ob);
                 return;
         }
 
         set("password", old_pass, ob);
         if( query_temp("reset_password", ob)){
-                // 这是用户修改自己的密码分支流程，不是创建
-                // 用户分支，因此转移到 check_ok 函数继续执
+                // 這是用戶修改自己的密碼分支流程，不是創建
+                // 用戶分支，因此轉移到 check_ok 函數繼續執
                 // 行。
                 ob->save();
                 check_ok(ob);
@@ -1152,13 +1152,13 @@ protected void get_gender(string gender, object ob)
         else if( gender[0] == 'f' || gender[0] == 'F' )
                 set_temp("gender", "女性", ob);
         else {
-                write("对不起，您只能选择男性("HIG"m"NOR")或女性("HIM"f"NOR")的角色：");
+                write("對不起，您只能選擇男性("HIG"m"NOR")或女性("HIM"f"NOR")的角色：");
                 input_to("get_gender", ob);
                 return;
         }
         if( find_body(query("id", ob)) ) {
-                write(HIR "这个玩家现在已经登录到这个世界上了，请"
-                      "退出重新连接。\n" NOR);
+                write(HIR "這個玩家現在已經登錄到這個世界上了，請"
+                      "退出重新連接。\n" NOR);
                 call_out("destruct_ob", 0, ob);
                 return;
         }
@@ -1167,14 +1167,14 @@ protected void get_gender(string gender, object ob)
                 DATABASE_D->connect_to_database();
 
         if( DATABASE_D->db_find_user("id",query("id", ob))){
-                write(HIR "\n这个玩家现在已经在其他站注册了，请退出重新连接。\n" NOR);
+                write(HIR "\n這個玩家現在已經在其他站註冊了，請退出重新連接。\n" NOR);
                 call_out("destruct_ob", 0, ob);
                 return;
         }
 #endif
         set("body", USER_OB, ob);
         if( !objectp(user = make_body(ob)) ) {
-                write(HIR "\n你无法登录这个新的人物，请重新选择。\n" NOR);
+                write(HIR "\n你無法登錄這個新的人物，請重新選擇。\n" NOR);
                 call_out("destruct_ob", 0, ob);
                 return;
         }
@@ -1213,14 +1213,14 @@ object make_body(object ob)
                                  (string)geteuid(previous_object()),
                                  query("id", ob),
                                  ctime(time())));
-                write("你没有权限创建玩家。\n");
+                write("你沒有權限創建玩家。\n");
                 return 0;
         }
 
         seteuid(getuid());
         user = new(USER_OB);
         if( !user ) {
-                write("现在可能有人正在修改使用者物件的程式，无法进行复制。\n");
+                write("現在可能有人正在修改使用者物件的程式，無法進行復制。\n");
                 write(err+"\n");
                 return 0;
         }
@@ -1245,15 +1245,15 @@ private void init_new_player(object user)
         //set("channels", ({"chat","rumor","new","stock","info","sos","bill","family"}), user);
         set("channels", CHANNEL_D->query_default_channel(user->query_id(1)), user);
         CHANNEL_D->register_channel(user, query("channels"));
-        set("chann", (["sos":1,"tch":1,"auc":1]), user);//默认显示在主窗口的频道
+        set("chann", (["sos":1,"tch":1,"auc":1]), user);//默認顯示在主窗口的頻道
 
-        // 记录名字
+        // 記錄名字
         NAME_D->map_name(query("name", user), query("id", user));
 
         set("monfee", time()+8640000, user);
         //set("env/prompt", "time", user);
         set("env/wimpy", 60, user);
-        // 标准暂存讯息
+        // 標準暫存訊息
 	set("msg/chat", 1, user);
 	set("msg/rumor", 1, user);
 	set("msg/tell", 1, user);
@@ -1274,11 +1274,11 @@ void waiting_enter_world(object ob, object user)
                 return;
         }
 
-        set_temp("waiting_enter", 1, ob);//防止被销毁
+        set_temp("waiting_enter", 1, ob);//防止被銷燬
 
         if( file_size(NOTICE) > 0 ) {
                 msg  = BLINK "□  " NOR + WHT + CHINESE_MUD_NAME + NOR +
-                       HIK "公怖栏                          " NOR +
+                       HIK "公怖欄                          " NOR +
                        HIK + TIME_D->replace_ctime(stat(NOTICE)[1]) + "\n" NOR;
                 msg += HIK "_______________________________________________________________________________\n\n" NOR;
                 msg += read_file(NOTICE);
@@ -1296,7 +1296,7 @@ void waiting_enter_world(object ob, object user)
 
         write(msg);
 
-        write(WHT "请输入任意键继续或 " HIR + WAITING_ENTER_TIME + NOR + WHT " 秒后自动进入游戏\n" NOR);
+        write(WHT "請輸入任意鍵繼續或 " HIR + WAITING_ENTER_TIME + NOR + WHT " 秒後自動進入遊戲\n" NOR);
         set_temp("call_out_handle", call_out((:enter_world,ob,user,0,WAITING_ENTER_TIME:),1), ob);
 
         input_to( (: enter_world, ob, user, 0, 1 :) );
@@ -1330,7 +1330,7 @@ varargs void enter_world(object ob, object user, int silent, int timer, string a
 #ifdef LONELY_IMPROVED
                 remove_input_to(ob);
 #endif
-                write(TOTOP(1) + WHT "请输入任意键继续或 " HIR + timer + NOR + WHT " 秒后自动进入游戏\n" NOR);
+                write(TOTOP(1) + WHT "請輸入任意鍵繼續或 " HIR + timer + NOR + WHT " 秒後自動進入遊戲\n" NOR);
                 set_temp("call_out_handle", call_out((:enter_world,ob,user,silent,timer:),1), ob);
                 input_to( (: enter_world, ob, user, silent, 1 :) );
                 return;
@@ -1357,8 +1357,8 @@ varargs void enter_world(object ob, object user, int silent, int timer, string a
         if( query("last_on", ob)<time() &&
             query("last_on", ob)>time()-30 &&
             !wiz_level(user) ) {
-                write("你距上一次退出时间只有"+chinese_number(time()-query("last_on", ob))+
-                      "秒钟，请稍候再登录。\n");
+                write("你距上一次退出時間只有"+chinese_number(time()-query("last_on", ob))+
+                      "秒鐘，請稍候再登錄。\n");
                 call_out("destruct_ob", 0, user);
                 call_out("destruct_ob", 0, ob);
                 return;
@@ -1396,14 +1396,14 @@ varargs void enter_world(object ob, object user, int silent, int timer, string a
         } else {
                 if( err = catch(user->restore_package()) ) {
                         set_temp("debug_msg", err, user);
-                        write(HIR "\n你的身上物品档案出了一些问题，需要和巫师联系。\n\n" NOR);
+                        write(HIR "\n你的身上物品檔案出了一些問題，需要和巫師聯繫。\n\n" NOR);
                 }
         }
 #else
         if( !query_temp("newplayer", user)){
                 if( err = catch(user->restore_package()) ) {
                         set_temp("debug_msg", err, user);
-                        write(HIR "\n你的身上物品档案出了一些问题，需要和巫师联系。\n\n" NOR);
+                        write(HIR "\n你的身上物品檔案出了一些問題，需要和巫師聯繫。\n\n" NOR);
                 }
         }
         if( wizhood(user) == "(player)" ) {
@@ -1442,7 +1442,7 @@ varargs void enter_world(object ob, object user, int silent, int timer, string a
                 }
                 shoe  = new("/clone/cloth/xianlv");
         }
-        user->force_me("wear all"); // 其他下线不丢的防具先传上
+        user->force_me("wear all"); // 其他下線不丟的防具先傳上
         cloth->move(user);
         //catch(cloth->wear());
         cloth->wear();
@@ -1512,19 +1512,19 @@ varargs void enter_world(object ob, object user, int silent, int timer, string a
                 else
                         write(color_filter(read_file(MOTD)));
 
-                write("你连线进入" + MUD_NAME + "。\n");
+                write("你連線進入" + MUD_NAME + "。\n");
                 tell_room(startroom,query("name", user)+
-                          "连线进入这个世界。\n", ({ user }));
+                          "連線進入這個世界。\n", ({ user }));
 
 #ifdef MCCP_SUPPORT
                 if( !compressedp(user) )
-                        write(YEL "你所使用的连线软体未启动网路传输压缩("
-                              HIY "MCCP" NOR YEL ")功能，建议您启动该功能让网路更加顺畅。\n" NOR);
+                        write(YEL "你所使用的連線軟體未啟動網路傳輸壓縮("
+                              HIY "MCCP" NOR YEL ")功能，建議您啟動該功能讓網路更加順暢。\n" NOR);
 #endif
         }
 
         if( query("id", user) == "guest"){
-                write(HIG "\n>>>>> 欢迎你来到这里参观。\n" NOR);
+                write(HIG "\n>>>>> 歡迎你來到這裡參觀。\n" NOR);
                 user->guest_count();
         }
 
@@ -1532,28 +1532,28 @@ varargs void enter_world(object ob, object user, int silent, int timer, string a
         set("id",query("id",  user), login_ob);
         login_ob->restore();
         if( !query("login_times", login_ob)){
-                //write(NOR "你是第一次光临" + MUD_NAME + "。\n");
-                write(HIG "\n>>>>> 欢迎你第一次来到这个世界！:)\n" NOR);
+                //write(NOR "你是第一次光臨" + MUD_NAME + "。\n");
+                write(HIG "\n>>>>> 歡迎你第一次來到這個世界！:)\n" NOR);
                 set("login_times", 1, ob);
         // show rules
         } else {
                 addn("login_times", 1, ob);
-                write("你上次光临" + MUD_NAME + "是 " + HIG +
-                        ctime(query("last_on", login_ob))+NOR+"从"+HIR+
-                        query("last_from", login_ob)+NOR+"连接的。\n");
+                write("你上次光臨" + MUD_NAME + "是 " + HIG +
+                        ctime(query("last_on", login_ob))+NOR+"從"+HIR+
+                        query("last_from", login_ob)+NOR+"連接的。\n");
         }
         if( query_temp("newplayer", user) )
-                CHANNEL_D->channel_broadcast("news", "新玩家 "+user->query_idname()+"-"+query("gender", user)+" 羞涩地进入了这个世界，一脸茫然的样子...。", 1);
+                CHANNEL_D->channel_broadcast("news", "新玩家 "+user->query_idname()+"-"+query("gender", user)+" 羞澀地進入了這個世界，一臉茫然的樣子...。", 1);
         else if( query("last_on", login_ob) > 0 && time() - query("last_on", login_ob) > 7*86400 )
-                CHANNEL_D->channel_broadcast("news", "阔别 "+((time()-query("last_on", login_ob))/86400)+" 天的玩家"+user->query_idname()+"再次进入了这个世界...", 1);
+                CHANNEL_D->channel_broadcast("news", "闊別 "+((time()-query("last_on", login_ob))/86400)+" 天的玩家"+user->query_idname()+"再次進入了這個世界...", 1);
 
         destruct(login_ob);
 
         /*
         if( query_temp("no_allow_ip", ob) )
-                write(HIR "警告：你未设定自己的登录地址范围。请用" HIY " allowip " HIR "指令设置。\n" NOR);
+                write(HIR "警告：你未設定自己的登錄地址範圍。請用" HIY " allowip " HIR "指令設置。\n" NOR);
         */
-// 暂时关闭
+// 暫時關閉
 #ifdef DB_SAVE_BAK
         ip_number = resolve_ip_number(query_ip_number(user));
         sql = sprintf("SELECT place,address FROM %s WHERE ipstart <= \"%s\" AND"
@@ -1563,11 +1563,11 @@ varargs void enter_world(object ob, object user, int silent, int timer, string a
         {
                 place = ret[0];
                 address = ret[1];
-                msg = sprintf("%s(%s)由%s(%s，%s)连线进入。", user->name(), query("id", user), query_ip_number(user), place, address);
+                msg = sprintf("%s(%s)由%s(%s，%s)連線進入。", user->name(), query("id", user), query_ip_number(user), place, address);
         }
         else
 #endif
-                msg = sprintf("%s(%s)由%s连线进入。", user->name(), query("id", user), query_ip_number(user));
+                msg = sprintf("%s(%s)由%s連線進入。", user->name(), query("id", user), query_ip_number(user));
 
         if( !(wizardp(user) && query("env/no_loginmsg", user)) )
                 CHANNEL_D->do_channel(this_object(), "sys", msg);
@@ -1590,7 +1590,7 @@ varargs void enter_world(object ob, object user, int silent, int timer, string a
 #else
         if( BAN_D->is_welcome(query("id", user)) && !BAN_D->is_netclub(query_ip_number(user)) )
 #endif
-                BAN_D->open_club_line(user);    // 自动开放网吧限制
+                BAN_D->open_club_line(user);    // 自動開放網吧限制
 
         // notice user the user of this mud
         NEWS_D->prompt_user(user);
@@ -1605,14 +1605,14 @@ varargs void enter_world(object ob, object user, int silent, int timer, string a
                 if( couple_ob ) {
                         if( query("gender", user) != "男性"){
                                 tmpstr1 = "夫君";
-                                tmpstr  = "爱妻";
+                                tmpstr  = "愛妻";
                         } else {
-                                tmpstr1 = "爱妻";
+                                tmpstr1 = "愛妻";
                                 tmpstr  = "夫君";
                         }
-                        write(sprintf(WHT HIM "\n你的%s%s已经在这等了你好久了，快去找%s吧。。。\n" NOR,
+                        write(sprintf(WHT HIM "\n你的%s%s已經在這等了你好久了，快去找%s吧。。。\n" NOR,
                                       tmpstr1, couple_ob->name(), gender_pronoun(query("gender", couple_ob))));
-                        tell_object(couple_ob, sprintf(WHT HIM "\n你的%s%s抑制不住对你的思念跑来看你啦，快去和%s打个招呼吧。。。\n" NOR,
+                        tell_object(couple_ob, sprintf(WHT HIM "\n你的%s%s抑制不住對你的思念跑來看你啦，快去和%s打個招呼吧。。。\n" NOR,
                                                        tmpstr,user->name(),gender_pronoun(query("gender", user))));
                 }
         }
@@ -1663,7 +1663,7 @@ varargs void reconnect(object ob, object user, int silent)
 
             //if( !silent && (!wizardp(user) || !query("env/invisible", user))){
             if( !silent && !query("env/invisible", user)){
-                tell_room(environment(user),query("name", user)+YEL"重新连线回到这个世界。\n"NOR,
+                tell_room(environment(user),query("name", user)+YEL"重新連線回到這個世界。\n"NOR,
                 ({user}));
         }
 
@@ -1684,19 +1684,19 @@ varargs void reconnect(object ob, object user, int silent)
         {
                 place = ret[0];
                 address = ret[1];
-                msg = sprintf("%s(%s)由%s(%s，%s)重新连线进入。",query("name", user),query("id", user),query_ip_number(user),place,address);
+                msg = sprintf("%s(%s)由%s(%s，%s)重新連線進入。",query("name", user),query("id", user),query_ip_number(user),place,address);
         }
         else
 */
 #endif
-        msg = sprintf("%s(%s)由(%s)重新连线进入。",query("name", user),query("id", user),query_ip_number(user));
+        msg = sprintf("%s(%s)由(%s)重新連線進入。",query("name", user),query("id", user),query_ip_number(user));
         CHANNEL_D->do_channel( this_object(), "sys", msg );
 
         if( net_dead_time )
-                tell(user, YEL"\n"+pnoun(2, user)+"自断线于 " + ctime(net_dead_time) + " 到现在过了 " + ((time()-net_dead_time)/60) + " 分 " + ((time()-net_dead_time)%60) + " 秒。\n"NOR);
+                tell(user, YEL"\n"+pnoun(2, user)+"自斷線於 " + ctime(net_dead_time) + " 到現在過了 " + ((time()-net_dead_time)/60) + " 分 " + ((time()-net_dead_time)%60) + " 秒。\n"NOR);
 
         if( sizeof(msg_data) && net_dead_time && to_int(msg_data[<3]) > net_dead_time )
-                tell(user, HIY"\n在"+pnoun(2, user)+"断线的期间中有收到新的讯息，请使用 msg 指令查看。\n"NOR);
+                tell(user, HIY"\n在"+pnoun(2, user)+"斷線的期間中有收到新的訊息，請使用 msg 指令查看。\n"NOR);
         delete_temp("net_dead_time", user);
 }
 
@@ -1706,19 +1706,19 @@ int check_legal_id(string id)
         i = strlen(id);
 
         if( (strlen(id) < 3) || (strlen(id) > 10 ) ) {
-                write("对不起，你的"+HIW"英文"NOR+"名字必须是 3 到 10 个英文字母。\n");
+                write("對不起，你的"+HIW"英文"NOR+"名字必須是 3 到 10 個英文字母。\n");
                 return 0;
         }
 
         if( member_array(id, banned_id) != -1 ) {
-                write("对不起，" HIC"“" + id + "”" NOR"这个词有着特"
+                write("對不起，" HIC"“" + id + "”" NOR"這個詞有著特"
                       "殊的含意，不能用做英文名字。\n");
                 return 0;
         }
 
         while(i--) {
                 if( id[i]<'a' || id[i]>'z' ) {
-                        write("对不起，你的"+HIW"英文"NOR+"名字只能用英文字母。\n");
+                        write("對不起，你的"+HIW"英文"NOR+"名字只能用英文字母。\n");
                         return 0;
                 }
         }
@@ -1731,24 +1731,24 @@ int check_legal_name(string name, int maxlen)
 
         i = strlen(name);
         if( (strlen(name) < 1) || (strlen(name) > maxlen) ) {
-                write("对不起，你的中文姓名不能太长或太短。\n");
+                write("對不起，你的中文姓名不能太長或太短。\n");
                 return 0;
         }
 
         if( !is_chinese(name) ) {
-                write("对不起，请您用「中文」取名字。\n");
+                write("對不起，請您用「中文」取名字。\n");
                 return 0;
         }
 
         if( member_array(name, banned_name) != -1 ) {
-                write("对不起，这种名字会造成其他人的困扰。\n");
+                write("對不起，這種名字會造成其他人的困擾。\n");
                 return 0;
         }
 
         //if( member_array(name, banned_name) % 2 == 0 )
         for( i=0; i<sizeof(banned_name); i++ ) {
                 if( strsrch(name, banned_name[i]) != -1 ){
-                        write("对不起，这种名字会造成其他人的困扰。\n");
+                        write("對不起，這種名字會造成其他人的困擾。\n");
                         return 0;
                 }
         }

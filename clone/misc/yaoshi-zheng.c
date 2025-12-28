@@ -3,19 +3,19 @@ inherit ITEM;
 
 void create()
 {
-        set_name(WHT "炼药师证" NOR, ({ "yaoshi zheng", "yaoshi", "zheng" }));
+        set_name(WHT "煉藥師證" NOR, ({ "yaoshi zheng", "yaoshi", "zheng" }));
         set_weight(1);
         set("level", 1);
-        set("long", WHT "这是一枚红底金边的炼药师证，等级 "+query("level")+" 品，由炼药师协会颁发。\n" NOR);
+        set("long", WHT "這是一枚紅底金邊的煉藥師證，等級 "+query("level")+" 品，由煉藥師協會頒發。\n" NOR);
         set("unit", "枚");
         set("value", 5);
         set("material", "steal");
-        set("no_sell", "这年头，你把吃饭的家伙也拿来卖钱？");
+        set("no_sell", "這年頭，你把吃飯的傢伙也拿來賣錢？");
         setup();
 }
 
 void enable()
 {
-        set_name(HIR+chinese_number(query("level"))+"品" WHT "炼药师证" NOR, ({ "yaoshi zheng", "yaoshi", "zheng" }));
-        set("long", WHT "这是一枚红底金边的炼药师证，等级 "+query("level")+" 品，由炼药师协会颁发。\n" NOR);
+        set_name(HIR+chinese_number(query("level"))+"品" WHT "煉藥師證" NOR, ({ "yaoshi zheng", "yaoshi", "zheng" }));
+        set("long", WHT "這是一枚紅底金邊的煉藥師證，等級 "+query("level")+" 品，由煉藥師協會頒發。\n" NOR);
 }

@@ -5,10 +5,10 @@ inherit F_VENDOR;
 
 void create()
 {
-        set_name("台夷商贩", ({ "shang fan", "shang", "fan" }) );
+        set_name("臺夷商販", ({ "shang fan", "shang", "fan" }) );
         set("gender", "女性" );
         set("age", 32);
-        set("long", "一个摆夷妇女，背着个竹篓贩买些丝织物品和手工艺品。\n");
+        set("long", "一個擺夷婦女，揹著個竹簍販買些絲織物品和手工藝品。\n");
         set("combat_exp", 2500);
         set("per", 17);
         set("str", 17);

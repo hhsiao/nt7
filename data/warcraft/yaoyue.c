@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[35m怜星[2;37;0m[2;37;0m", ({"moonstar"}));        
+        set_name("[35m憐星[2;37;0m[2;37;0m", ({"moonstar"}));        
         set("gender", "男性");                
         set("long", "hello[2;37;0m
-它是邀月的魔幻兽。
+它是邀月的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

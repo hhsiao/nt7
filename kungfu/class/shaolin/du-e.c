@@ -16,12 +16,12 @@ void create()
 {
         object ob1, ob2;
         set_name("渡厄", ({ "du e", "e" }) );
-        set("title", "少林长老");
+        set("title", "少林長老");
         set("gender", "男性");
         set("age", 90);
         set("long",
-                "这是一个面颊深陷，瘦骨零丁的老僧，他脸色"
-                "枯黄，如同一段枯木。\n");
+                "這是一個面頰深陷，瘦骨零丁的老僧，他臉色"
+                "枯黃，如同一段枯木。\n");
 
         set("attitude", "peaceful");
         set("class", "bonze");
@@ -76,7 +76,7 @@ void create()
         set("inquiry", ([
                 "伏魔杖"     : (: ask_me :),
                 "伏魔刀"     : (: ask_dao :),
-                "九环锡杖"   : (: ask_zhang :),
+                "九環錫杖"   : (: ask_zhang :),
         ]));
 
         set("master_ob",4);
@@ -115,7 +115,7 @@ mixed ask_me()
 
         if( !query_temp("valid_in_fumoquan", this_player()) )
         {
-                command("say 大胆鼠辈，乳臭未干，竟敢偷入金刚伏魔圈，且让老衲来超度与你！");
+                command("say 大膽鼠輩，乳臭未乾，竟敢偷入金剛伏魔圈，且讓老衲來超度與你！");
                 kill_ob(this_player());
                 return 1;
         }
@@ -128,20 +128,20 @@ mixed ask_me()
 
         if (present("fumo zhang", this_player()))
                 return RANK_D->query_respect(this_player()) +
-                "宝杖只有一把，而且就在你身上，真是贪得无餍！";
+                "寶杖只有一把，而且就在你身上，真是貪得無饜！";
 
         if (present("fumo zhang", environment()) )
                 return RANK_D->query_respect(this_player()) +
-                "宝杖只有一把，而且就在这里任你取走，真是贪得无餍！";
+                "寶杖只有一把，而且就在這裡任你取走，真是貪得無饜！";
 
         ob = get_object("/d/shaolin/obj/fumo-zhang");
         if (! ob || environment(ob) && environment(ob) != this_object())
-                return "抱歉，你来晚了，伏魔杖已经给人取走了。";
+                return "抱歉，你來晚了，伏魔杖已經給人取走了。";
         ob->move(this_player());
 
-        message_vision("\n渡厄长笑一声，点点头，从身后的树洞里取出伏魔杖交给$N。\n\n", this_player());
+        message_vision("\n渡厄長笑一聲，點點頭，從身後的樹洞裡取出伏魔杖交給$N。\n\n", this_player());
 
-        return "你既然能闯进金刚伏魔圈来，必然是当今武林中的非凡人物，这伏魔杖是适逢其主了！";
+        return "你既然能闖進金剛伏魔圈來，必然是當今武林中的非凡人物，這伏魔杖是適逢其主了！";
 }
 
 mixed ask_dao()
@@ -154,7 +154,7 @@ mixed ask_dao()
 
         if( !query_temp("valid_in_fumoquan", me) )
         {
-                command("say 大胆鼠辈，竟敢偷入金刚伏魔圈，且让老衲来超度与你！");
+                command("say 大膽鼠輩，竟敢偷入金剛伏魔圈，且讓老衲來超度與你！");
                 kill_ob(me);
                 return 1;
         }
@@ -166,7 +166,7 @@ mixed ask_dao()
         }
 
         if( query("combat_exp", me)<1000000 )
-                return "你这点微末本事，打听达摩祖师留下的利器作甚？";
+                return "你這點微末本事，打聽達摩祖師留下的利器作甚？";
 
         ob = find_object(FUMODAO);
         if (! ob) ob = load_object(FUMODAO);
@@ -180,17 +180,17 @@ mixed ask_dao()
         }
 
         if (owner == me)
-                return "东西不已经给你了么？你还打算怎的？";
+                return "東西不已經給你了麼？你還打算怎的？";
 
         if (owner == environment(me))
         {
                 command("sneer");
                 command("get"+query("id", ob));
-                return "百年来还没人敢愚弄老衲，滚开！";
+                return "百年來還沒人敢愚弄老衲，滾開！";
         }
 
         if (objectp(owner) && owner != this_object())
-                return "此时伏魔刀并不在老衲手中。";
+                return "此時伏魔刀並不在老衲手中。";
 
         ob->move(this_object());
 
@@ -209,7 +209,7 @@ mixed ask_zhang()
 
         if( !query_temp("valid_in_fumoquan", me) )
         {
-                command("say 大胆鼠辈，竟敢偷入金刚伏魔圈，且让老衲来超度与你！");
+                command("say 大膽鼠輩，竟敢偷入金剛伏魔圈，且讓老衲來超度與你！");
                 kill_ob(me);
                 return 1;
         }
@@ -221,7 +221,7 @@ mixed ask_zhang()
         }
 
         if( query("combat_exp", me)<1000000 )
-                return "你这点微末本事，打听达摩祖师留下的利器作甚？";
+                return "你這點微末本事，打聽達摩祖師留下的利器作甚？";
 
         ob = find_object(JIUHUAN);
         if (! ob) ob = load_object(JIUHUAN);
@@ -235,17 +235,17 @@ mixed ask_zhang()
         }
 
         if (owner == me)
-                return "东西不已经给你了么？你还打算怎的？";
+                return "東西不已經給你了麼？你還打算怎的？";
 
         if (owner == environment(me))
         {
                 command("sneer");
                 command("get"+query("id", ob));
-                return "百年来还没人敢愚弄老衲，滚开！";
+                return "百年來還沒人敢愚弄老衲，滾開！";
         }
 
         if (objectp(owner) && owner != this_object())
-                return "此时九环锡杖并不在老衲手中。";
+                return "此時九環錫杖並不在老衲手中。";
 
         ob->move(this_object());
 
@@ -258,16 +258,16 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "历练" :
-        case "历炼" :
-        case "锻炼" :
+        case "歷練" :
+        case "歷煉" :
+        case "鍛鍊" :
                 return QUEST_D->accept_ask(this_object(), me, topic);
                 break;
 
-        case "缠绕诀" :
+        case "纏繞訣" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/riyue-bian/chan",
-                           "name"    : "缠绕诀",
+                           "name"    : "纏繞訣",
                            "sk1"     : "riyue-bian",
                            "lv1"     : 100,
                            "sk2"     : "force",

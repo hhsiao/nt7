@@ -2,9 +2,9 @@ inherit DEMONROOM;
 
 void create()
 {
-        set("short", "九头蛇洞");
+        set("short", "九頭蛇洞");
         set("long",@LONG
-这是蛇洞内的九头蛇洞，据说，这里是九头蛇出没的地方。
+這是蛇洞內的九頭蛇洞，據說，這裡是九頭蛇出沒的地方。
 LONG);
 
 

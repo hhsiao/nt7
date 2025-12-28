@@ -4,7 +4,7 @@ string ask_tea();
 void create()
 {
         set_name("侍茶小僮",({"xiao tong","xiao","tong"}));
-               set("long", "她就是专门侍茶的小僮。她长得眉清目秀。\n");
+               set("long", "她就是專門侍茶的小僮。她長得眉清目秀。\n");
         set("gender", "女性");
         set("age", 16);
         set("attitude", "friendly");
@@ -45,8 +45,8 @@ void init()
 void greeting(object ob)
 {
         if( !ob || environment(ob) != environment() ) return;
-        say(CYN"侍茶小僮笑吟吟地说道：这位" + RANK_D->query_respect(ob)
-             + "请了，我这就给您泡茶。\n"NOR);
+        say(CYN"侍茶小僮笑吟吟地說道：這位" + RANK_D->query_respect(ob)
+             + "請了，我這就給您泡茶。\n"NOR);
 }
 
 string ask_tea()
@@ -56,12 +56,12 @@ string ask_tea()
         ob=this_object();
         me=this_player();
                if( (query("water", me)*10/me->max_water_capacity())>8 )
-                return "你怎么喝饱了还想要？\n";
+                return "你怎麼喝飽了還想要？\n";
         if ( present("suanmei tang", this_player()))
-                return "先喝完了我给你的再说吧。\n";
+                return "先喝完了我給你的再說吧。\n";
         if ( present("suanmei tang",  environment(me)) )
-                return "那不是有吗？先喝完了再说。\n";
+                return "那不是有嗎？先喝完了再說。\n";
         ob=new("/d/mingjiao/obj/tang");
                ob->move(environment(this_object()));
-        return "这杯又甜又热的酸梅汤给你吧，请慢点喝哟。";
+        return "這杯又甜又熱的酸梅湯給你吧，請慢點喝喲。";
 }

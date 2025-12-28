@@ -1,13 +1,13 @@
-// sun.c 孙三毁
+// sun.c 孫三毀
 
 #include <ansi.h>
 inherit NPC;
 
 void create()
 {
-        set_name("孙三毁", ({ "sun  sanhui"}));
+        set_name("孫三毀", ({ "sun  sanhui"}));
         set("nickname", "神箭八雄");
-        set("long","原是武林中的巨寇，后来为躲避官府和仇家，随便起了个假名字。\n");
+        set("long","原是武林中的巨寇，後來為躲避官府和仇家，隨便起了個假名字。\n");
         set("gender", "男性");
         set("age", 46);
         set("attitude", "peaceful");

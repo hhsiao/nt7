@@ -3,13 +3,13 @@ inherit F_DEALER;
 
 void create()
 {
-        set_name("赵德言", ({ "zhao deyan", "zhao", "deyan" }));
-        set("title", "杂货铺老板");
+        set_name("趙德言", ({ "zhao deyan", "zhao", "deyan" }));
+        set("title", "雜貨鋪老闆");
         set("shen_type", 1);
 
         set("gender", "男性");
         set("age", 45);
-        set("long", "赵德言是土生土长的中州人，做了几十年的小买卖。\n");
+        set("long", "趙德言是土生土長的中州人，做了幾十年的小買賣。\n");
         set_skill("unarmed", 50);
         set_skill("dodge", 50);
         set_temp("apply/damage", 15);

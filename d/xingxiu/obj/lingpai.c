@@ -14,8 +14,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "块");
-                set("long", "这是一块明门正派声讨邪教的令牌。\n"NOR);
+                set("unit", "塊");
+                set("long", "這是一塊明門正派聲討邪教的令牌。\n"NOR);
                 set("material", "stone");
         }
         setup();

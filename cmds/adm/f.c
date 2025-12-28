@@ -12,16 +12,16 @@ int main(object me, string arg)
         if (! SECURITY_D->valid_grant(me, "(admin)"))
                 return 0;
 
-        if (! arg) return notify_fail("你要控制谁做什么？\n");
+        if (! arg) return notify_fail("你要控制誰做什麼？\n");
 
         if (sscanf(arg, "%s to %s", target, arg) != 2 ||
             ! objectp(ob = find_player(target)) &&
             ! objectp(ob = present(target, environment(me))) &&
             ! objectp(ob = find_living(target)))
         {
-                // 没有这个对象，查看最后一次的控制对象
+                // 沒有這個對象，查看最後一次的控制對象
                 if( !objectp(ob=query_temp("last_control", me)) )
-                        return notify_fail("这里没有这个人可供你控制。\n");
+                        return notify_fail("這裡沒有這個人可供你控制。\n");
                 if (stringp(target)) arg = target + " " + arg;
         }
 
@@ -30,7 +30,7 @@ int main(object me, string arg)
 
         if (wiz_level(me) <= wiz_level(ob) &&
             wiz_level(ob) && ! is_root(me))
-                return notify_fail("你不能控制权限比自己高的巫师。\n");
+                return notify_fail("你不能控制權限比自己高的巫師。\n");
 
         set_temp("last_control", ob, me);
         delete_temp("notify_fail", ob);
@@ -38,7 +38,7 @@ int main(object me, string arg)
         {
                 ob->command(arg);
                 if( !stringp(msg=query_temp("notify_fail", ob)) )
-                        msg = ob->name(1) + "无法执行你的命令。\n";
+                        msg = ob->name(1) + "無法執行你的命令。\n";
                 write(msg);
         }
 
@@ -50,8 +50,8 @@ int help(object me)
         write( @HELP
 指令格式: f <sb> to do sth.
 
-这个指令让你控制另外一个人物进行动作，如果你是连续控制某个人，
-那么以后不需要在输入这个ID。
+這個指令讓你控制另外一個人物進行動作，如果你是連續控制某個人，
+那麼以後不需要在輸入這個ID。
 HELP );
         return 1;
 }

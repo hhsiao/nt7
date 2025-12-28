@@ -21,24 +21,24 @@ int perform(object me, object target)
         }
 
         if (! me->is_fighting(target))
-                return notify_fail("「魔笑」只能对战斗中的对手使用。\n");
+                return notify_fail("「魔笑」只能對戰鬥中的對手使用。\n");
 
         skill = me->query_skill("tianmo-jian", 1);
 
         if (skill < 150)
-                return notify_fail("你的天魔剑法修为有限，现在不能使用「魔笑」！\n");
+                return notify_fail("你的天魔劍法修為有限，現在不能使用「魔笑」！\n");
 
         if( query("neili", me)<100 )
-                return notify_fail("你的真气不够，无法运用「魔笑」！\n");
+                return notify_fail("你的真氣不夠，無法運用「魔笑」！\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你只有装备剑才能施展「魔笑」！\n");
+                return notify_fail("你只有裝備劍才能施展「魔笑」！\n");
 
-        msg = HIR "$N" HIR "突然间身形连转，口中发出阵阵凄厉的怪笑，$n"
-              HIR "只觉耳中有如针刺，不禁心乱神迷，攻势顿缓。\n$N"
-              HIR "蓦的扑到$n" HIR "近前，手中的" + weapon->name() +
-              HIR "一振，瞬间已向$p刺出数剑。\n" NOR;
+        msg = HIR "$N" HIR "突然間身形連轉，口中發出陣陣淒厲的怪笑，$n"
+              HIR "只覺耳中有如針刺，不禁心亂神迷，攻勢頓緩。\n$N"
+              HIR "驀的撲到$n" HIR "近前，手中的" + weapon->name() +
+              HIR "一振，瞬間已向$p刺出數劍。\n" NOR;
 
         message_combatd(msg, me, target);
         count = skill / 2;

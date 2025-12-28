@@ -1,4 +1,4 @@
-subject : 易筋经
+subject : 易筋經
 author_name : 薇大呆
 author_id : vivi
 time : 1206624646
@@ -6,12 +6,12 @@ board : 薇大呆的留言板
 file : /data/analecta/2008/25658682.txt
 add_time : 1211022931
 content :
-藏经阁2楼jump fangliang;zou mu ban;jump shujia;qing sao
+藏經閣2樓jump fangliang;zou mu ban;jump shujia;qing sao
 qingsao
 qingsao
 qingsao2次
-qingsao两次
-yijinjing跟yijin jing的区别是
-yijinjing能从0读到380
-yijin jing能从0读到401但是所消耗的精力是yijinjing的3倍
+qingsao兩次
+yijinjing跟yijin jing的區別是
+yijinjing能從0讀到380
+yijin jing能從0讀到401但是所消耗的精力是yijinjing的3倍
 [2;37;0m

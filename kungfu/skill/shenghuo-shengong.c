@@ -20,17 +20,17 @@ int valid_force(string force)
 int valid_learn(object me)
 {
         if (query("int", me) < 32)
-                return notify_fail("你先天悟性不够，无法领悟圣火神功。\n");
+                return notify_fail("你先天悟性不夠，無法領悟聖火神功。\n");
 
         if ((int)me->query_skill("force", 1) < 180)
-                return notify_fail("你的基本内功火候还不够，还不能学习圣火神功。\n");
+                return notify_fail("你的基本內功火候還不夠，還不能學習聖火神功。\n");
 
         return ::valid_learn(me);
 }
 
 int practice_skill(object me)
 {
-        return notify_fail("圣火神功只能用学(learn)的来增加熟练度。\n");
+        return notify_fail("聖火神功只能用學(learn)的來增加熟練度。\n");
 }
 
 mixed hit_ob(object me, object victim, int damage_bonus)
@@ -61,8 +61,8 @@ mixed hit_ob(object me, object victim, int damage_bonus)
 
         if (lvl / 2 + random(lvl) > victim->query_skill("force", 1) &&
             ! query_temp("shenghuo-ling/max_hit", me) ) {
-                 message_vision(HIR "\n刹那间$N" HIR "身法陡然加快，剑招连绵而出，招式诡异无比"
-                                "，令$n" HIR "难以琢磨。\n" NOR, me, victim);
+                 message_vision(HIR "\n剎那間$N" HIR "身法陡然加快，劍招連綿而出，招式詭異無比"
+                                "，令$n" HIR "難以琢磨。\n" NOR, me, victim);
 
 
                  me->start_busy(1+ random(attack_time));

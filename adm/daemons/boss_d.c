@@ -65,8 +65,8 @@ varargs void place_boss(string name, mixed flag)
                 SCHEDULE_D->set_event(1800, 0, this_object(), "remove_boss", ob, room);
         }
         
-        CHANNEL_D->channel_broadcast("news", HIG "有人发现" HIR + ob->short() + HIG "出现在" + 
-                HIW + room->short() + HIY "(" + LOOK_CMD->locate(base_name(room)) + ")" HIG "一带活动。\n" NOR);  
+        CHANNEL_D->channel_broadcast("news", HIG "有人發現" HIR + ob->short() + HIG "出現在" + 
+                HIW + room->short() + HIY "(" + LOOK_CMD->locate(base_name(room)) + ")" HIG "一帶活動。\n" NOR);  
 }
 
 void remove_maze(string name, object room, object door)
@@ -77,8 +77,8 @@ void remove_maze(string name, object room, object door)
         
         destruct(door);
 
-        CHANNEL_D->channel_broadcast("news", HIG "听说" + HIW + 
-                room->short() + "(" + LOOK_CMD->locate(base_name(room)) + ")" HIG "一带出现的" +
+        CHANNEL_D->channel_broadcast("news", HIG "聽說" + HIW + 
+                room->short() + "(" + LOOK_CMD->locate(base_name(room)) + ")" HIG "一帶出現的" +
                 HIR + name + HIG "消失了。\n" NOR);
 }
 
@@ -88,8 +88,8 @@ void remove_boss(object ob, object room)
  
         tell_room(room, ob->name()+"急急忙忙的走了。\n", ({ ob }));
 
-        CHANNEL_D->channel_broadcast("news", HIG "听说" + HIW +
-                room->short() + "(" + LOOK_CMD->locate(base_name(room)) + ")" HIG "一带出现的" +
+        CHANNEL_D->channel_broadcast("news", HIG "聽說" + HIW +
+                room->short() + "(" + LOOK_CMD->locate(base_name(room)) + ")" HIG "一帶出現的" +
                 HIR + ob->short() + HIG "消失了。\n" NOR);
 
         destruct(ob);

@@ -1,5 +1,5 @@
 // fengxue.c
-// 封闭穴道防止毒气扩散和发作
+// 封閉穴道防止毒氣擴散和發作
 
 #include <ansi.h>
 
@@ -9,7 +9,7 @@ void end_fengxue(object me)
 {
          if (me->query_temp("fengxue"))
          {
-               write(HIG "你长舒一口气，周身被封闭的穴道已自动解开。\n");
+               write(HIG "你長舒一口氣，周身被封閉的穴道已自動解開。\n");
  
                me->delete_temp("fengxue");
 
@@ -19,7 +19,7 @@ void end_fengxue(object me)
          return;         
 }
 
-// 还要添加set fengxue 1
+// 還要添加set fengxue 1
 
 int main(object me, string arg)
 {
@@ -27,30 +27,30 @@ int main(object me, string arg)
          object ob;
 
          if (me->is_busy() || me->is_fighting())
-                 return notify_fail("等你忙完再说吧！\n");
+                 return notify_fail("等你忙完再說吧！\n");
 
 
          if (time() - me->query_temp("last_fengxue") < 60)
-                 return notify_fail("你的穴道刚冲开，不能继续封穴了。\n");
+                 return notify_fail("你的穴道剛衝開，不能繼續封穴了。\n");
 
          force = me->query_skill("force");
 /*
          if (me->query_skill("jingluo-xue", 1) < 100)
-                  return notify_fail("你对经络学了解不够，无法封穴。\n");
+                  return notify_fail("你對經絡學瞭解不夠，無法封穴。\n");
 */
          if (! arg)
          {
                 if (me->query_temp("fengxue"))
-                      return notify_fail("你已经将周身要穴封闭。\n");                
+                      return notify_fail("你已經將周身要穴封閉。\n");                
           
                 if (force < 300)
-                      return notify_fail("你内功修为不足，无法将自己穴道封闭。\n");
+                      return notify_fail("你內功修為不足，無法將自己穴道封閉。\n");
 
                 if (me->query("max_neili") < 2000)
-                      return notify_fail("你内力修为不足，无法将自己穴道封闭。\n");
+                      return notify_fail("你內力修為不足，無法將自己穴道封閉。\n");
 
-                message_vision(HIW "$N" HIW "暗运内息，右手食指猛地点向周身各"
-                               "处，将要穴封闭。\n" NOR, me);
+                message_vision(HIW "$N" HIW "暗運內息，右手食指猛地點向周身各"
+                               "處，將要穴封閉。\n" NOR, me);
 
                 me->set_temp("fengxue", 1);
 
@@ -63,25 +63,25 @@ int main(object me, string arg)
          }    
          
          if( !objectp(ob = present(arg, environment(me))) )
-		 return notify_fail("这里没有 " + arg + "。\n");
+		 return notify_fail("這裡沒有 " + arg + "。\n");
          
          if (! playerp(ob))
-                 return notify_fail("你只能帮助玩家封穴。\n");
+                 return notify_fail("你只能幫助玩家封穴。\n");
 
          if (! ob->query("env/fengxue") || ob->query_temp("fengxue"))
-                 return notify_fail("对方现在不需要你帮助封穴。\n");
+                 return notify_fail("對方現在不需要你幫助封穴。\n");
 
          if (force < 400)
-                 return notify_fail("你内功修为不足，无法帮助其他玩家封穴。\n");
+                 return notify_fail("你內功修為不足，無法幫助其他玩家封穴。\n");
 
          if (me->query("neili") < 300)
-                 return notify_fail("你内力不足，无法帮助其他玩家封穴。\n");
+                 return notify_fail("你內力不足，無法幫助其他玩家封穴。\n");
 
          if (me->query("max_neili") < 3000)
-                 return notify_fail("你内力修为不足，无法帮助其他玩家封穴。\n");
+                 return notify_fail("你內力修為不足，無法幫助其他玩家封穴。\n");
 
-         message_vision(HIY "$N" HIY "将内力运于指间，猛地点向$n" HIY "周"
-                        "身各处，将其要穴封闭。\n" NOR, me, ob);
+         message_vision(HIY "$N" HIY "將內力運於指間，猛地點向$n" HIY "周"
+                        "身各處，將其要穴封閉。\n" NOR, me, ob);
 
          ob->set_temp("fengxue", 1);
 
@@ -99,8 +99,8 @@ int help(object me)
   write(@HELP
 指令格式 : fengxue [玩家ID]
 
-该指令可以在中毒时暂时将穴道封闭，以免毒性发作。
-当穴道冲开后一分钟内不能再继续封穴。
+該指令可以在中毒時暫時將穴道封閉，以免毒性發作。
+當穴道衝開後一分鐘內不能再繼續封穴。
 
 HELP
 );

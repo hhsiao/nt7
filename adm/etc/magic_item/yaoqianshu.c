@@ -1,4 +1,4 @@
-// 上古十大神器之 摇钱树 
+// 上古十大神器之 搖錢樹 
 // 可使用三次
 // Create by Rcwiz for Hero.cn 2003/08
 
@@ -10,16 +10,16 @@ int is_magic_item() { return 1; }
 
 void create()
 {
-        set_name(NOR + YEL + "摇钱树" NOR, ({ "yaoqian shu", "yaoqian", "shu" }) );
+        set_name(NOR + YEL + "搖錢樹" NOR, ({ "yaoqian shu", "yaoqian", "shu" }) );
         set_weight(100);
         if (clonep())
                 set_default_object(__FILE__);
         else
         {
                 set("unit", "把");               
-                set("long", NOR + YEL "这是一颗摇钱树，有半人高，树支上挂满了各种\n"
-                                      "金银铜钱。\n"
-                                      "可以将树上的钱币摇(yao)下来。\n" NOR);                
+                set("long", NOR + YEL "這是一顆搖錢樹，有半人高，樹支上掛滿了各種\n"
+                                      "金銀銅錢。\n"
+                                      "可以將樹上的錢幣搖(yao)下來。\n" NOR);                
         }
         setup();
 }
@@ -42,10 +42,10 @@ int do_yao(string arg)
                  return notify_fail("你正忙呢！\n");
        
         if (this_object()->query("count") >= 3)
-                 return notify_fail("这颗摇钱树已经不能再摇出任何东西了！\n");
+                 return notify_fail("這顆搖錢樹已經不能再搖出任何東西了！\n");
 
-         message_sort(NOR + YEL + "\n$N" NOR + YEL "双手抱着摇钱树使劲的摇动着，"
-                      "一时间，金银元宝纷纷落在地上，金光闪闪，令人砰然心动。\n" NOR, me);
+         message_sort(NOR + YEL + "\n$N" NOR + YEL "雙手抱著搖錢樹使勁的搖動著，"
+                      "一時間，金銀元寶紛紛落在地上，金光閃閃，令人砰然心動。\n" NOR, me);
 
         i = 500 + random(500);
         g = new("/clone/money/gold");
@@ -55,7 +55,7 @@ int do_yao(string arg)
         this_object()->add("count", 1);
         if (this_object()->query("count") >= 3)
         {
-                tell_object(me, HIG "伴随着一道光芒化过，摇钱树钻入地下，消失了！\n" NOR);
+                tell_object(me, HIG "伴隨著一道光芒化過，搖錢樹鑽入地下，消失了！\n" NOR);
                 destruct(this_object());
         }
         

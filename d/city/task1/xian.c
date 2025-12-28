@@ -1,13 +1,13 @@
-// xian.c 鲜于通
+// xian.c 鮮于通
 
 #include <ansi.h>
 inherit NPC;
 
 void create()
 {
-        set_name("鲜于通", ({ "xianyu  tong"}));
-        set("nickname", "华山叛徒");
-        set("long", "长的眉目清秀，俊雅潇洒，但是实际上是个阴狠歹毒的人。\n");
+        set_name("鮮于通", ({ "xianyu  tong"}));
+        set("nickname", "華山叛徒");
+        set("long", "長的眉目清秀，俊雅瀟灑，但是實際上是個陰狠歹毒的人。\n");
         set("gender", "男性");
         set("age", 45);
         set("attitude", "peaceful");

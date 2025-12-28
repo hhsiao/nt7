@@ -3,9 +3,9 @@ inherit WORM;
 
 void create()
 {
-        set_name(CYN "长螯蝎" NOR, ({ "changao xie", "changao", "xie" }));
-        set("long", CYN "这是一只双螯巨大的毒蝎。\n" NOR);
-        set("race", "野兽");
+        set_name(CYN "長螯蠍" NOR, ({ "changao xie", "changao", "xie" }));
+        set("long", CYN "這是一隻雙螯巨大的毒蠍。\n" NOR);
+        set("race", "野獸");
         set("age", random(10));
         set("attitude", "peaceful");
 
@@ -14,7 +14,7 @@ void create()
 
         set("str", 30);
         set("con", 30);
-        set("limbs", ({ "头部", "身体", "尾巴" }));
+        set("limbs", ({ "頭部", "身體", "尾巴" }));
         set("verbs", ({ "bite" }));
 
         set("worm_poison", ([

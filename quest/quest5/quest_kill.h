@@ -1,5 +1,5 @@
 mapping area = ([
-         "扬州城" : ({
+         "揚州城" : ({
                  "/d/city/","beidajie1","beidajie2","beimen","bingyin",
                 "kedian2","lichunyuan","meigui","nandajie1","nandajie2",
                       "nanmen","neizhai","mudan","qianzhuang","shuyuan","xidajie1",
@@ -22,7 +22,7 @@ mapping area = ([
             "ximen","ximenwai","xisi","xisi2","yihongyu","yongding",
             "zahuopu","zhengmen"
             }),
-        "白驼山" : ({
+        "白駝山" : ({
                 "/d/baituo/","barn","base1","base2","bthill","btroad",
                      "changlang1","changlang2","changlang3","changlang4","dating",
                   "lingshege","road1","road2","road3","road4","road5","shegu1",
@@ -34,7 +34,7 @@ mapping area = ([
                   "shegu_maze5","shegu_maze6","shegu_maze7","shegu_maze8","shegu_maze9",
                     "shegu_pool","shegu_shanya",
                     }),
-         "灵鹫宫" : ({
+         "靈鷲宮" : ({
                  "/d/lingjiu/","biguan","changl1","changl10","changl11",
                     "changl12","changl13","changl14","changl15","changl2",
                     "changl3","changl4","changl5","changl6","changl7","changl8",
@@ -65,7 +65,7 @@ mapping area = ([
                     }),
 ]);
 
-string *city = ({"扬州城", "北京城", "白驼山", "灵鹫宫", "泉州城"});
+string *city = ({"揚州城", "北京城", "白駝山", "靈鷲宮", "泉州城"});
 
 int place_room(object me, object ob)
 {

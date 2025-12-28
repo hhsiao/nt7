@@ -10,45 +10,45 @@ int main(object me, string arg)
         object ob;
         int i;
         if( !query("bunch/bunch_name", me) )
-                return notify_fail("你没有参加任何帮会，无法通过切蹉武功征招NPC。\n");
+                return notify_fail("你沒有參加任何幫會，無法通過切蹉武功徵招NPC。\n");
                 
         if (! arg)
-                return notify_fail("你要和谁切磋武功？\n");
+                return notify_fail("你要和誰切磋武功？\n");
                 
         if (! ob = present(arg, environment(me)))
-                return notify_fail("这儿没有这么个人。\n");
+                return notify_fail("這兒沒有這麼個人。\n");
                 
         if (! ob->is_character())
-                return notify_fail("看清楚！那并不是个生物。\n");
+                return notify_fail("看清楚！那並不是個生物。\n");
                 
         if (playerp(ob))
-                return notify_fail("你只能与NPC切蹉武功。\n");
+                return notify_fail("你只能與NPC切蹉武功。\n");
                 
-        if (! living(ob)) return notify_fail("你得先把他弄醒再说。\n");
+        if (! living(ob)) return notify_fail("你得先把他弄醒再說。\n");
         
         if (me->is_fighting() || me->is_busy())
-                return notify_fail("你正忙着呢。\n");
+                return notify_fail("你正忙著呢。\n");
                 
         if( query("bunch/zhengzhao", ob) != 1 )
-                return notify_fail("这个NPC不能用切磋武功的方式征招。\n");
+                return notify_fail("這個NPC不能用切磋武功的方式徵招。\n");
                 
         if( query("bunch/bunch_name", ob) == query("bunch/bunch_name", me) )
-                return notify_fail("这个NPC已经是本帮兄弟，不必通过切蹉武功来征招。\n");
+                return notify_fail("這個NPC已經是本幫兄弟，不必通過切蹉武功來徵招。\n");
                 
         if ((object)query_temp("invite/target", ob) != me)
-                return notify_fail("你必须要先邀请(yaoqing)这个NPC。\n");
+                return notify_fail("你必須要先邀請(yaoqing)這個NPC。\n");
                 
         if (ob->is_fighting() || ob->is_busy())
-                return notify_fail("对方正忙着呢。\n");
+                return notify_fail("對方正忙著呢。\n");
                 
         if( query("bunch/bunch_name", ob) && query("bunch/zhongcheng", ob)>query("meili", me) )
-                return notify_fail("看样子对方不想和你切蹉武艺。\n");
+                return notify_fail("看樣子對方不想和你切蹉武藝。\n");
                 
         if( query("qi", ob)*100<query("max_qi", ob)*80 )
-                return notify_fail("看样子对方不想和你切蹉武艺。\n");
+                return notify_fail("看樣子對方不想和你切蹉武藝。\n");
                 
         message_vision(HIY"$N道：“如此" + RANK_D->query_self(ob) +
-                       "我便领教"+query("name", me)+"的高招！”\n"NOR,
+                       "我便領教"+query("name", me)+"的高招！”\n"NOR,
                        ob, me);
                        
         if( query_temp("invite/target", ob) )
@@ -80,19 +80,19 @@ void check_qi(object me,object ob)
         
         if( query("qi", ob)>query("max_qi", ob)/2 )
         {
-                message_vision("$N哈哈一笑，冲着$n道：“看来" + RANK_D->query_respect(me)
-                               + "还得苦练才行啊。”\n", ob, me);                
+                message_vision("$N哈哈一笑，衝著$n道：“看來" + RANK_D->query_respect(me)
+                               + "還得苦練才行啊。”\n", ob, me);                
         }
         
         else if (ob->query_last_damage_from() != me) 
         {
-                message_vision("$N哼了一声道：“靠他人帮忙算什么意思？”\n",ob);
+                message_vision("$N哼了一聲道：“靠他人幫忙算什麼意思？”\n",ob);
         }
         else            
         {
-                message_vision("$N对$n一抱拳道：“" + RANK_D->query_respect(me)
-                               + "果然厉害，" + RANK_D->query_self(ob)
-                               + "佩服得紧啊。”\n", ob, me);
+                message_vision("$N對$n一抱拳道：“" + RANK_D->query_respect(me)
+                               + "果然厲害，" + RANK_D->query_self(ob)
+                               + "佩服得緊啊。”\n", ob, me);
                 ob->do_join_bunch(me);
         }
 }

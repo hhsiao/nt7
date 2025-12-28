@@ -8,14 +8,14 @@ void create()
 {
         set_name("金蜈蚣", ({ "jin wu gong" }) );
         set_weight(100);
-        set("race", "野兽");
+        set("race", "野獸");
         set("age", 2);
-        set("long", "一只金灿灿的蜈蚣，很是漂亮。\n");
+        set("long", "一隻金燦燦的蜈蚣，很是漂亮。\n");
         set("attitude", "peaceful");
         set("str", 20);
         set("con", 20);
         set("unit", "只");
-        set("limbs", ({ "头部", "身体" }) );
+        set("limbs", ({ "頭部", "身體" }) );
         set("verbs", ({ "bite" }) );
 
         set("insect_poison", ([

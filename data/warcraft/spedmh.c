@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("阿娇[2;37;0m[2;37;0m", ({"bozi"}));        
+        set_name("阿嬌[2;37;0m[2;37;0m", ({"bozi"}));        
         set("gender", "男性");                
-        set("long", "阿娇[2;37;0m
-它是阴功的魔幻兽。
+        set("long", "阿嬌[2;37;0m
+它是陰功的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");
         set("owner", "spedmh");
-        set("owner_name", "阴功");
+        set("owner_name", "陰功");
         set_temp("owner", "spedmh");
-        set_temp("owner_name", "阴功");
+        set_temp("owner_name", "陰功");
         ::setup();
 }

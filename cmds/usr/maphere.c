@@ -1,8 +1,8 @@
-// 即时地图 maphere.c
+// 即時地圖 maphere.c
 // Modify by zjpwxh@sjpl 2004.4.24
 // Modify by zjpwxh@sjpl 2004.6.2
-// 改进了搜索算法，以广度遍历代替递归
-// 由于严重影响速度（递归调用导致！），所以进行此命令的使用者应该减少气血
+// 改進了搜索算法，以廣度遍歷代替遞歸
+// 由於嚴重影響速度（遞歸調用導致！），所以進行此命令的使用者應該減少氣血
 
 #include <ansi.h>
 #define MaxX 11
@@ -32,7 +32,7 @@ int main(object me, string arg)
                 Y = 6;
         } else {
                 if( !wizardp(me) && query("qi", me) < 100 )
-                        return notify_fail("你的体力不太好，先休息一下吧！\n");
+                        return notify_fail("你的體力不太好，先休息一下吧！\n");
 
                 if( !wizardp(me) )
                         addn("qi",-50,me);
@@ -48,12 +48,12 @@ int main(object me, string arg)
 
         where=environment(me);
         if(!objectp(where))
-                return notify_fail("对不起，不知道你到底在哪里呀！找巫师吧！\n");
+                return notify_fail("對不起，不知道你到底在哪裡呀！找巫師吧！\n");
 
         if(base_name(where)[0..1] == "/f")
-                return notify_fail("副本里无法通过该指令获取地图信息！\n");
+                return notify_fail("副本里無法通過該指令獲取地圖信息！\n");
 
-        tmp = HIY"即时地图"HIW"(地图大小："HIM+X+HIW"/"HIR+Y+HIW")"HIM"[建议使用 1024 X 768 分辨率]：\n\n"NOR;
+        tmp = HIY"即時地圖"HIW"(地圖大小："HIM+X+HIW"/"HIR+Y+HIW")"HIM"[建議使用 1024 X 768 分辨率]：\n\n"NOR;
         m = allocate(2*X+1);
         data = allocate((2*X+1)*(2*Y+1));
         rfile = ({});
@@ -107,7 +107,7 @@ int main(object me, string arg)
                                 tmp+="        ";
                         else
                         {
-                                //如果此项为空，并且此时j为偶数列，则输出空格
+                                //如果此項為空，並且此時j為偶數列，則輸出空格
                                 if( m[j][i]==" " && !(j%2) )
                                         tmp+="  ";
                                 else
@@ -125,7 +125,7 @@ int main(object me, string arg)
         text=explode(tmp, "\n");
         for(i=k; k<sizeof(text); k++)
                 write(text[k] + "\n");
-        write(HIM"["HIC"温磬提示："HIG"("HIB"蓝底"HIG"亮绿色的代表你目前所处房间)，"HIY"(黄色的代表有不规则出口的房间)，"HIM"]\n"NOR);
+        write(HIM"["HIC"溫磬提示："HIG"("HIB"藍底"HIG"亮綠色的代表你目前所處房間)，"HIY"(黃色的代表有不規則出口的房間)，"HIM"]\n"NOR);
 
         return 1;
 }
@@ -178,7 +178,7 @@ int draw_path(int x,int y,string direc)
         return 1;
 }
 
-// 改用广度遍历寻路算法,使地图的显示更加合理
+// 改用廣度遍歷尋路算法,使地圖的顯示更加合理
 int draw_room(int x,int y,object room)
 {
         int i,xx,yy;
@@ -247,13 +247,13 @@ void set_room(int x,int y,object room)
         mapping dir;
         string *dirs;
 
-        // 求取无颜色的房间short描述
+        // 求取無顏色的房間short描述
         name=filter_color(room->short());
 
-        // 房间的短名字最好在4个汉字以内
+        // 房間的短名字最好在4個漢字以內
         if(strlen(name)>8)  name=name[0..7];
 
-        if(strlen(name)<7) //对不足4个汉字的房间名进行居中处理
+        if(strlen(name)<7) //對不足4個漢字的房間名進行居中處理
         {
                 d=8-strlen(name);
                 if( d%2 )
@@ -312,10 +312,10 @@ int help(object me)
         write(@HELP
 指令格式：maphere [-m]
 
-本命令帮助玩家了解周围的房间地图的分布状况，并标志出房间之间的连接情况。
-连接标志中箭头所指方向地势更高，有不规范出口的房间以黄色标志，你所处的
-房间以蓝底亮绿色来标志！由于房间可能重叠的缘故，有些房间将无法显示出来。
-本命令默认以x=7,y=14 的地图大小显示，使用-m选项将以最大化x=11,y=22 显示。
+本命令幫助玩家瞭解周圍的房間地圖的分佈狀況，並標誌出房間之間的連接情況。
+連接標誌中箭頭所指方向地勢更高，有不規範出口的房間以黃色標誌，你所處的
+房間以藍底亮綠色來標誌！由於房間可能重疊的緣故，有些房間將無法顯示出來。
+本命令默認以x=7,y=14 的地圖大小顯示，使用-m選項將以最大化x=11,y=22 顯示。
 HELP);
         return 1;
 }

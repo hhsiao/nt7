@@ -8,27 +8,27 @@ inherit POISON;
 
 string name() { return "corpse_poison"; }
 
-string chinese_name() { return "腐尸毒"; }
+string chinese_name() { return "腐屍毒"; }
 
 string update_msg_others()
 {
-        return WHT "$N" WHT "全身上下淌着黄水，不住的嘶嚎，散发"
-               "出阵阵极难闻的恶臭。\n" NOR;
+        return WHT "$N" WHT "全身上下淌著黃水，不住的嘶嚎，散發"
+               "出陣陣極難聞的惡臭。\n" NOR;
 }
 
 string update_msg_self()
 {
-        return WHT "你只觉全身肌肤便似腐烂了一般，散发出一股极难"
-               "闻的恶臭。\n" NOR;
+        return WHT "你只覺全身肌膚便似腐爛了一般，散發出一股極難"
+               "聞的惡臭。\n" NOR;
 }
 
 string die_msg_others()
 {
-        return WHT "$N" WHT "嘶嚎了几声，就再没半点动静，全身散"
-               "发出一股恶臭。\n" NOR;
+        return WHT "$N" WHT "嘶嚎了幾聲，就再沒半點動靜，全身散"
+               "發出一股惡臭。\n" NOR;
 }
 
 string die_reason()
 {
-        return "腐尸毒发作生亡了";
+        return "腐屍毒發作生亡了";
 }

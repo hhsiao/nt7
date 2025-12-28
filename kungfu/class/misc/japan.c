@@ -6,11 +6,11 @@ inherit NPC;
 
 void create()
 {
-        set_name(HIR "东瀛" HIW "巨犬" NOR, ({ "dongying qinshou", "dongying", "qinshou" }) );
-        set("title", HIY "来自远方的禽兽" NOR);
-        set("gender", "变态");
+        set_name(HIR "東瀛" HIW "巨犬" NOR, ({ "dongying qinshou", "dongying", "qinshou" }) );
+        set("title", HIY "來自遠方的禽獸" NOR);
+        set("gender", "變態");
         set("age", 99);
-        set("long", HIY "一只巨大的禽兽，长相无比丑陋，据说来自远方的东瀛国。\n" NOR);
+        set("long", HIY "一隻巨大的禽獸，長相無比醜陋，據說來自遠方的東瀛國。\n" NOR);
 
         set("combat_exp", 10000000);
         set("attitude", "heroism");
@@ -142,7 +142,7 @@ int receive_damage(string type, int damage, object who)
 		who->add("potential", 1 + random(2));
 		who->add("experience", random(1));
 
-		// 获得钱
+		// 獲得錢
 		if (random(100) == 1)money = new("/clone/money/gold");
 		else if (random(50) == 1)money = new("/clone/money/silver");
 		else if (random(30) == 1)money = new("/clone/money/coin");	
@@ -153,11 +153,11 @@ int receive_damage(string type, int damage, object who)
 			if (money->query("id") == "coin")amount = 200 + random(400);
 			money->set_amount(amount);
 			money->move(who, 1);
-			tell_object(who, HIG "你从" + name() + HIG "身上获得了" + sprintf("%d", amount) + 
+			tell_object(who, HIG "你從" + name() + HIG "身上獲得了" + sprintf("%d", amount) + 
                                          money->query("base_unit") + money->name() + "。\n" NOR);
 		}
 
-		// 随机获得物品
+		// 隨機獲得物品
 		if (random(10000) == 1 && random(3) == 1)
 		{
 			ob = new(gift[random(sizeof(gift))]);
@@ -165,7 +165,7 @@ int receive_damage(string type, int damage, object who)
 			if (objectp(ob))
 			{
 				ob->move(who, 1);
-				tell_object(who, HIR "你从" + name() + HIG "身上获得了一" +                                         					ob->query("base_unit") + ob->name() + "。\n" NOR);				
+				tell_object(who, HIR "你從" + name() + HIG "身上獲得了一" +                                         					ob->query("base_unit") + ob->name() + "。\n" NOR);				
 			}
 		}
 		if (random(80000) == 1 && random(5) == 1)
@@ -175,7 +175,7 @@ int receive_damage(string type, int damage, object who)
 			if (objectp(weapon))
 			{
 				weapon->move(who, 1);
-				tell_object(who, HIR "你从" + name() + HIG "身上获得了一" +   
+				tell_object(who, HIR "你從" + name() + HIG "身上獲得了一" +   
 					weapon->query("base_unit") + weapon->name() + "。\n" NOR);				
 			}
 		}
@@ -186,7 +186,7 @@ int receive_damage(string type, int damage, object who)
 			if (objectp(armor))
 			{
 				armor->move(who, 1);
-				tell_object(who, HIR "你从" + name() + HIG "身上获得了一" +          
+				tell_object(who, HIR "你從" + name() + HIG "身上獲得了一" +          
 					armor->query("base_unit") + armor->name() + "。\n" NOR);				
 			}
 		}
@@ -197,7 +197,7 @@ int receive_damage(string type, int damage, object who)
 			if (objectp(armor2))
 			{
 				armor2->move(who, 1);
-				tell_object(who, HIR "你从" + name() + HIG "身上获得了一" +           
+				tell_object(who, HIR "你從" + name() + HIG "身上獲得了一" +           
 					armor2->query("base_unit") + armor2->name() + "。\n" NOR);				
 			}
 		}

@@ -5,10 +5,10 @@ inherit BOSS;
 void create()
 {
         object ob;
-        set_name(HIW "李莲英" NOR, ({ "li lianying", "li", "lianying" }));
-        set("long", "他就是大内太监总管。\n");
-        set("title", HIB "太监总管" NOR);
-        set("gender", "无性");
+        set_name(HIW "李蓮英" NOR, ({ "li lianying", "li", "lianying" }));
+        set("long", "他就是大內太監總管。\n");
+        set("title", HIB "太監總管" NOR);
+        set("gender", "無性");
         set("age", 50);
         set("shen_type", -1);
         set("str", 91);
@@ -82,8 +82,8 @@ void create()
 
         set("drops", 
                 ([
-                "RA&RANDOM50"                                    :       10000,  // 低级普通装备
-                "RA&RANDOM60"                                    :       300,    // 中级普通装备
+                "RA&RANDOM50"                                    :       10000,  // 低級普通裝備
+                "RA&RANDOM60"                                    :       300,    // 中級普通裝備
                 "FI&/clone/enchase/rune23"   :   300,
                 "FI&/clone/enchase/rune24"   :   300,
                 "FI&/clone/enchase/rune25"   :   300,

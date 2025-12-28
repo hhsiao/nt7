@@ -15,9 +15,9 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "滴");
-                set("long", HIG "这是附着在灵芝上的一滴晶莹剔透的玉露，传说采自\n"
-                                "灵山，千年来以灵芝为母，不断的吸取着日精月华，\n"
-                                "具有着无比神奇的功效。\n");
+                set("long", HIG "這是附著在靈芝上的一滴晶瑩剔透的玉露，傳說採自\n"
+                                "靈山，千年來以靈芝為母，不斷的吸取著日精月華，\n"
+                                "具有著無比神奇的功效。\n");
                 set("value", 1000000);
                 set("only_do_effect", 1);
         }
@@ -30,9 +30,9 @@ int do_effect(object me)
         int neili_limit;
 
         neili_limit = me->query_neili_limit();
-        message_vision(HIG "$N" HIG "小心翼翼的将玉露含在嘴中，登时觉得"
-                       "灵台一阵空明，浑身上\n下飘飘欲仙，一时间竟有不在"
-                       "尘世的感觉。\n" NOR,
+        message_vision(HIG "$N" HIG "小心翼翼的將玉露含在嘴中，登時覺得"
+                       "靈臺一陣空明，渾身上\n下飄飄欲仙，一時間竟有不在"
+                       "塵世的感覺。\n" NOR,
                        me);
 
         if( query("max_neili", me)<neili_limit )

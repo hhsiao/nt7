@@ -5,10 +5,10 @@
 inherit ROOM;
 void create()
 {
-	set("short", "东厢房");
+	set("short", "東廂房");
 	set("long", @LONG
-这里是供宾客休息的地方。所有的家具都被擦拭的
-一尘不染。南墙上挂着一幅《松下舞剑图》。
+這裡是供賓客休息的地方。所有的傢俱都被擦拭的
+一塵不染。南牆上掛著一幅《松下舞劍圖》。
 LONG	);
 	set("exits", ([ 
   "west" : __DIR__"gaden",

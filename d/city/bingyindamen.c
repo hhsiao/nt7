@@ -5,11 +5,11 @@ inherit ROOM;
 
 void create()
 {
-	set("short", "兵营大门");
+	set("short", "兵營大門");
         set("long", @LONG
-你正站在兵营的门口，面对着一排简陋的营房，可以看到穿着制
-服的官兵正在操练，不时地传来呐喊声。老百姓是不允许在此观看的，
-你最好赶快走开。
+你正站在兵營的門口，面對著一排簡陋的營房，可以看到穿著制
+服的官兵正在操練，不時地傳來吶喊聲。老百姓是不允許在此觀看的，
+你最好趕快走開。
 LONG );
 	set("exits", ([
 		"south" : "/d/city/bingyin",
@@ -29,6 +29,6 @@ int valid_leave(object me, string dir)
 {
 	if (!wizardp(me) && objectp(present("guan bing", environment(me))) && 
 		dir == "south")
-		return notify_fail("官兵拦住了你的去路。\n");
+		return notify_fail("官兵攔住了你的去路。\n");
 	return ::valid_leave(me, dir);
 }

@@ -7,10 +7,10 @@ void create()
     if( clonep() ) 
             destruct(this_object());  
     else { 
-            set("unit", "张");  
+            set("unit", "張");  
             set("material", "paper");
             set("long", "生辰八字。。。。。。！\n"); 
         }
-        set("owner", "红娘");  
+        set("owner", "紅娘");  
         setup(); 
 }

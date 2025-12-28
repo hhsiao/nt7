@@ -1,4 +1,4 @@
-// 大唐双龙传
+// 大唐雙龍傳
 //cui.c 
  
 inherit NPC;
@@ -8,7 +8,7 @@ void create()
         set_name("崔命鬼", ({ "cui minggui", "cui" }));
         set("age", 48);
         set("gender", "男性");
-        set("long","这是金府商号的大掌柜,是金大善人的左右手。/n");
+        set("long","這是金府商號的大掌櫃,是金大善人的左右手。/n");
         set("attitude", "peaceful");
    set("str", 20);
         set("combat_exp", 500000);

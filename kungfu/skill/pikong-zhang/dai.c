@@ -12,35 +12,35 @@ int perform(object me, object target)
         string msg;
 
         if( userp(me) && !query("can_perform/pikong-zhang/dai", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(DAI "只能对战斗中的对手使用。\n");
+                return notify_fail(DAI "只能對戰鬥中的對手使用。\n");
 
         if( objectp(weapon=query_temp("weapon", me)) )
                 return notify_fail(DAI "只能空手施展。\n");
 
         if ((int)me->query_skill("pikong-zhang", 1) < 80)
-                return notify_fail("你劈空掌不够娴熟，难以施展" DAI "。\n");
+                return notify_fail("你劈空掌不夠嫻熟，難以施展" DAI "。\n");
 
         if ((int)me->query_skill("force") < 120)
-                return notify_fail("你的内功修为不够，难以施展" DAI "。\n");
+                return notify_fail("你的內功修為不夠，難以施展" DAI "。\n");
 
         if( query("neili", me)<100 )
-                return notify_fail("你现在的真气不够，难以施展" DAI "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" DAI "。\n");
 
         if (me->query_skill_mapped("strike") != "pikong-zhang") 
-                return notify_fail("你没有激发劈空掌，难以施展" DAI "。\n");
+                return notify_fail("你沒有激發劈空掌，難以施展" DAI "。\n");
 
         if (me->query_skill_prepared("strike") != "pikong-zhang")
-                return notify_fail("你没有准备劈空掌，难以施展" DAI "。\n");
+                return notify_fail("你沒有準備劈空掌，難以施展" DAI "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIB "只见$N" HIB "双掌交叠，云贯而出，舞出无数圈劲气，一环环"
+        msg = HIB "只見$N" HIB "雙掌交疊，雲貫而出，舞出無數圈勁氣，一環環"
               "向$n" HIB "斫去。\n" NOR;
 
         if (random(me->query_skill("strike")) > target->query_skill("dodge") / 2)
@@ -50,14 +50,14 @@ int perform(object me, object target)
                 damage = damage / 2 + random(damage / 2);
                 addn("neili", -50, me);
                 msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 20,
-                                           HIR "$n" HIR "一惊，被$N" HIR "掌劲击"
-                                           "在胸前，经脉受震，登时呕出一口鲜血！\n" NOR);
+                                           HIR "$n" HIR "一驚，被$N" HIR "掌勁擊"
+                                           "在胸前，經脈受震，登時嘔出一口鮮血！\n" NOR);
         } else
         {
                 me->start_busy(3);
                 addn("neili", -30, me);
-                msg += CYN "可是$p" CYN "识破了$P"
-                       CYN "这一招，斜斜一跃避开。\n" NOR;
+                msg += CYN "可是$p" CYN "識破了$P"
+                       CYN "這一招，斜斜一躍避開。\n" NOR;
         }
         message_combatd(msg, me, target);
 

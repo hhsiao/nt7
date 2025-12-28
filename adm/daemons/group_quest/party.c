@@ -1,4 +1,4 @@
-// group_quest:party1 群组任务——帮派挑衅
+// group_quest:party1 群組任務——幫派挑釁
 
 #include <ansi.h>
 #include "party.h"
@@ -14,8 +14,8 @@ void create()
         }
 }
 
-//string prompt() { return HIR "【帮派挑衅】" NOR; }
-string prompt() { return HIR "【帮派】" NOR; }
+//string prompt() { return HIR "【幫派挑釁】" NOR; }
+string prompt() { return HIR "【幫派】" NOR; }
 
 int select_quest()
 {
@@ -64,7 +64,7 @@ int select_quest()
         if (!(place = GROUP_QUEST_D->query_place()))
                 return 0;
 
-        the_nation = "中国";
+        the_nation = "中國";
 
         story = all_story[random(sizeof(all_story))];
 
@@ -85,7 +85,7 @@ string create_tiaoxin()
         {
                 lvl = random(15) + 1;
                 ob = GROUP_QUEST_D->create_npc(the_nation,lvl);
-                GROUP_QUEST_D->place_npc(ob,"帮派",the_party,lvl,place);
+                GROUP_QUEST_D->place_npc(ob,"幫派",the_party,lvl,place);
                 set("title", title, ob);
                 ob->random_move();
                 ob->random_move();
@@ -93,7 +93,7 @@ string create_tiaoxin()
                 ob->random_move();
         }
         GROUP_QUEST_D->set_enemy(all);
-        return "大小喽罗高呼：『" + HIY + "【" + the_party + "】" + NOR + WHT + "的人快给我滚出来，大爷们今天要你们的好看！！』";
+        return "大小嘍羅高呼：『" + HIY + "【" + the_party + "】" + NOR + WHT + "的人快給我滾出來，大爺們今天要你們的好看！！』";
 }
 
 mixed query_quest_message(int step)

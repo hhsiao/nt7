@@ -3,13 +3,13 @@ inherit BOSS;
 int big_blowing();
 void create()
 {
-        set_name(HIR"烈火孽龙"NOR, ({ "fire dragon king", "dragon king", "dragon" }) );
-        set("race", "野兽");
+        set_name(HIR"烈火孽龍"NOR, ({ "fire dragon king", "dragon king", "dragon" }) );
+        set("race", "野獸");
         set("gender", "雄性");
         set("age", 200);
         set("long",
-"这是一条全身赤红，吸天地之间的火气而长大的孽龙！
-它全身散发着赤红色的火焰。\n");
+"這是一條全身赤紅，吸天地之間的火氣而長大的孽龍！
+它全身散發著赤紅色的火焰。\n");
 
         set("str", 248);
         set("con", 252);
@@ -25,9 +25,9 @@ void create()
         set("neili", 90001000);
         set("jiali", 900000);
         set("attitude", "aggressive");
-        set("limbs", ({ "头部", "身体", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體", "尾巴" }) );
         set("verbs", ({ "bite", "claw" }) );
-        set("death_msg", "$N化作一缕清风而去。\n");
+        set("death_msg", "$N化作一縷清風而去。\n");
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
                 (: big_blowing :)
@@ -70,7 +70,7 @@ void create()
 }
 int big_blowing()
 {
-        message_vision( HIR "\n\n烈火孽龙深深地吸入一口气，全身转为鲜红的火色，整个龙腹胀大了几倍！！\n\n" NOR,
+        message_vision( HIR "\n\n烈火孽龍深深地吸入一口氣，全身轉為鮮紅的火色，整個龍腹脹大了幾倍！！\n\n" NOR,
                         this_object());
         call_out("hurting", 1);
 
@@ -83,7 +83,7 @@ int hurting()
         int i;
         int dam;
         object *inv;
-        message_vision( HIR "\n\n烈火孽龙吐出一股炽可焚金的火焰．．整个天地似乎都被燃烧着！！！\n\n",this_object());
+        message_vision( HIR "\n\n烈火孽龍吐出一股熾可焚金的火焰．．整個天地似乎都被燃燒著！！！\n\n",this_object());
         inv = all_inventory(environment(this_object()));
         for(i=sizeof(inv)-1; i>=0; i--)
         if( living(inv[i]))
@@ -95,9 +95,9 @@ int hurting()
                 inv[i]->affect_by("poison",
                                   ([ "level" : 1500,
                                      "id":query("id", this_object()),
-                                     "name" : "烈火孽龙的火毒",
+                                     "name" : "烈火孽龍的火毒",
                                      "duration" : 200 ]));
-                tell_object(inv[i], HIG "你中了烈火孽龙的火毒。\n");
+                tell_object(inv[i], HIG "你中了烈火孽龍的火毒。\n");
                 COMBAT_D->report_status(inv[i],1);
         }
         return 1;
@@ -137,15 +137,15 @@ void die()
                 exp=(query("literate", killer)*4)+random(10000)+40000+userexp/60000;
                 if (exp > 100000) exp = 100000;
 
-                if( !query_temp("m_success/孽龙", killer) )
+                if( !query_temp("m_success/孽龍", killer) )
                 {
-                        set_temp("m_success/孽龙", 1, killer);
+                        set_temp("m_success/孽龍", 1, killer);
                         addn("combat_exp", exp, killer);
                         addn("potential", 50000, killer);
-                        message("channel:chat",HBMAG"【精灵神界】"+query("name", killer)+"成功地杀死了恶龙，解开了封印!得到无数经验和潜能及宝石.\n"NOR,users());
+                        message("channel:chat",HBMAG"【精靈神界】"+query("name", killer)+"成功地殺死了惡龍，解開了封印!得到無數經驗和潛能及寶石.\n"NOR,users());
 
-                message_vision(MAG "一道红光从天而降，照耀着$N。\n" NOR, killer);
-                message_vision(HIR "一团火焰猛地升腾，一个声音说道：谢谢你们解开了第七个封印，这些宝石就作为谢礼吧！！！\n" NOR, this_object());
+                message_vision(MAG "一道紅光從天而降，照耀著$N。\n" NOR, killer);
+                message_vision(HIR "一團火焰猛地升騰，一個聲音說道：謝謝你們解開了第七個封印，這些寶石就作為謝禮吧！！！\n" NOR, this_object());
 
                 for (i = 0; i < 7; i++)
                 {
@@ -164,12 +164,12 @@ void die()
                         obj->move(env, 1);
                 }
 
-                message_vision(HIY "红光退去，你突然发现地上有很多东西在闪闪发光。\n" NOR, this_object());
+                message_vision(HIY "紅光退去，你突然發現地上有很多東西在閃閃發光。\n" NOR, this_object());
                 }
         }
         set("exits/north", "/d/city/wumiao", env);
 /*
-        message_vision("$N化作一缕清风而去。\n", this_object());
+        message_vision("$N化作一縷清風而去。\n", this_object());
         destruct(this_object());
 */
         return ::die();
@@ -199,8 +199,8 @@ mixed hit_ob(object me, object ob, int damage_bouns)
         ob->receive_damage("qi", damage, me);
         ob->receive_wound("qi", damage, me);
         set("neili",query("max_neili",  me), me);
-        return HIR "$N" HIR "“吼”的一声吐出一鼓火焰，登时令$n"
-               HIR "感觉犹如整个天地似乎都被燃烧着。\n" NOR;
+        return HIR "$N" HIR "“吼”的一聲吐出一鼓火焰，登時令$n"
+               HIR "感覺猶如整個天地似乎都被燃燒著。\n" NOR;
 }
 
 int accept_fight(object ob)

@@ -1,10 +1,10 @@
-// kuang.c 风扫落叶
+// kuang.c 風掃落葉
 
 #include <ansi.h>
 
 inherit F_SSERVER;
 
-string name() { return HIG "风扫落叶" NOR; }
+string name() { return HIG "風掃落葉" NOR; }
 
 int perform(object me, object target)
 {
@@ -20,28 +20,28 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对！\n");
+                return notify_fail("你使用的武器不對！\n");
 
         if( query("neili", me)<180 )
-                return notify_fail("你的真气不够，无法施展" + name() + "！\n");
+                return notify_fail("你的真氣不夠，無法施展" + name() + "！\n");
 
         if ((int)me->query_skill("kuangfeng-jian", 1) < 100)
-                return notify_fail("你的狂风剑法还不到家，无法施展" + name() + "！\n");
+                return notify_fail("你的狂風劍法還不到家，無法施展" + name() + "！\n");
 
         if ((int)me->query_skill("dodge", 1) < 100)
-                return notify_fail("你的轻功修为不足，无法施展" + name() + "！\n");
+                return notify_fail("你的輕功修為不足，無法施展" + name() + "！\n");
 
         if (! living(target))
-               return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+               return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIC "$N" HIC "大喝一声，手中的" + weapon->name() +
-              HIC "犹如狂风疾电一般劈刺向$n" HIC "！\n"
-              HIR "霎时间只见剑气层层叠叠如波浪般汹涌而起，$n"
-              HIR "只觉得呼吸登时不畅。\n" NOR;
+        msg = HIC "$N" HIC "大喝一聲，手中的" + weapon->name() +
+              HIC "猶如狂風疾電一般劈刺向$n" HIC "！\n"
+              HIR "霎時間只見劍氣層層疊疊如波浪般洶湧而起，$n"
+              HIR "只覺得呼吸登時不暢。\n" NOR;
         message_combatd(msg, me, target);
         addn("neili", -150, me);
 

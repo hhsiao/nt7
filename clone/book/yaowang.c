@@ -7,15 +7,15 @@ inherit MEDICAL_BOOK;
 
 void create()
 {
-        set_name(HIM "药王神篇" NOR, ({ "yaowang shenpian", "shu" }));
+        set_name(HIM "藥王神篇" NOR, ({ "yaowang shenpian", "shu" }));
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
                 set("unit", "本");
-                set("long", "这是一本薄薄的小册子，上面工工整整"
-                            "写着“药王神篇”几个字。\n",
+                set("long", "這是一本薄薄的小冊子，上面工工整整"
+                            "寫著“藥王神篇”幾個字。\n",
 
                 );
                 set("material", "paper");
@@ -30,11 +30,11 @@ void create()
                 set("can_make", ([
                         "liuhe" : 80,           // 六合返精散
                         "qingxin" : 100,        // 清心定神散
-                        "zhending": 150,        // 固元镇定散
-                        "dieda" : 80,           // 跌打伤愈膏
+                        "zhending": 150,        // 固元鎮定散
+                        "dieda" : 80,           // 跌打傷愈膏
                         "huojin" : 100,         // 活筋舒血丸
-                        "tongmai" : 150,        // 贯气通脉丹
-                        "jiedu" : 100,          // 牛黄解毒丸
+                        "tongmai" : 150,        // 貫氣通脈丹
+                        "jiedu" : 100,          // 牛黃解毒丸
                         "tianxin" : 100,        // 天心解毒丹
                         "shengsheng" : 200,     // 生生造化丹
                 ]));

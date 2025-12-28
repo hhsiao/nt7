@@ -4,11 +4,11 @@
 inherit ROOM;
 void create()
 {       object 	con, item;
-	set("short", "练功场");
+	set("short", "練功場");
 	set("long", @LONG
- 这个练武场比起其他的要大了几倍，细纱铺成的场地在
-阳光下熠熠生光。在场地旁边放着几个兵器架，兵器架上
-插满了各式各样的武器。
+ 這個練武場比起其他的要大了幾倍，細紗鋪成的場地在
+陽光下熠熠生光。在場地旁邊放著幾個兵器架，兵器架上
+插滿了各式各樣的武器。
 LONG	);
 	set("exits", ([ 
   "westup" : __DIR__"fgaden",

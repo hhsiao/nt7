@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// longcheng.c 慕容龙城
+// longcheng.c 慕容龍城
 
 #include <ansi.h>
 
@@ -10,10 +10,10 @@ mixed try_learn_sk();
 
 void create()
 {
-        set_name("慕容龙城", ({ "murong longcheng", "murong", "longcheng" }));
+        set_name("慕容龍城", ({ "murong longcheng", "murong", "longcheng" }));
         set("long", @LONG
-他是姑苏慕容的传人，一手创造了绝世武功斗转星移，从而
-使慕容家跻身为武林世家地位。
+他是姑蘇慕容的傳人，一手創造了絕世武功斗轉星移，從而
+使慕容家躋身為武林世家地位。
 LONG );
         set("gender", "男性");
         set("age", 54);
@@ -68,15 +68,15 @@ LONG );
         prepare_skill("cuff", "qixing-quan");
 
         set("inquiry", ([
-                "绝招"   : (: ask_me :),
-                "绝技"   : (: ask_me :),
-                "风雨交加": (: ask_me :),
+                "絕招"   : (: ask_me :),
+                "絕技"   : (: ask_me :),
+                "風雨交加": (: ask_me :),
         ]));
 
-        create_family("慕容世家", 12, "传人");
+        create_family("慕容世家", 12, "傳人");
         set("chat_chance", 1);
         set("chat_msg",({
-                "慕容龙城低头不语。\n",
+                "慕容龍城低頭不語。\n",
         }));
 
         setup();
@@ -89,8 +89,8 @@ void attempt_apprentice(object ob)
 {
         if( query("family/family_name", ob) == query("family/family_name") )
         {
-                command("say 我早就不收徒弟了，不过你也是我们"
-                        "慕容家的传人，我就传你一套刀法(longcheng-shendao)吧！");
+                command("say 我早就不收徒弟了，不過你也是我們"
+                        "慕容家的傳人，我就傳你一套刀法(longcheng-shendao)吧！");
         } else
                 command("say 我不收徒弟。");
 }
@@ -106,21 +106,21 @@ mixed ask_me()
 
         me = this_player();
         if( query("can_perform/longcheng-shendao/feng", me) )
-                return "好好练功吧！光复大燕就靠你们这批人啦！！";
+                return "好好練功吧！光復大燕就靠你們這批人啦！！";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "你是哪儿来的？我可不认识你。";
+                return "你是哪兒來的？我可不認識你。";
 
         if (me->query_skill("longcheng-shendao", 1) < 120)
-                return "想学风雨交加首先可得练好我的龙城神刀啊！";
+                return "想學風雨交加首先可得練好我的龍城神刀啊！";
 
-        message_vision(HIC "$n" HIC "缓缓的摸出一根带子，轻轻一抖，立刻"
-                       "变得笔直，随即劈出，$N" HIC "只能看得到星光点点。\n$n"
-                       HIC "忽的收回刀势，慢慢的又劈出五刀，$N"
+        message_vision(HIC "$n" HIC "緩緩的摸出一根帶子，輕輕一抖，立刻"
+                       "變得筆直，隨即劈出，$N" HIC "只能看得到星光點點。\n$n"
+                       HIC "忽的收回刀勢，慢慢的又劈出五刀，$N"
                        HIC "看了不禁恍然大悟！\n" NOR,
                        me, this_object());
         command("say 知道了吧？");
-        tell_object(me, HIG "你学会了风雨交加。\n" NOR);
+        tell_object(me, HIG "你學會了風雨交加。\n" NOR);
         if (me->can_improve_skill("blade"))
                 me->improve_skill("blade", 160000);
         set("can_perform/longcheng-shendao/feng", 1, me);

@@ -8,8 +8,8 @@ void create()
 {
         set("short", "杏林小道");
         set("long", @LONG
-这是一条黄土小路，两旁的杏树薄雾飘绕。遥望东面又是一片茂密
-的杏树林，隐约有人马的声音传来。
+這是一條黃土小路，兩旁的杏樹薄霧飄繞。遙望東面又是一片茂密
+的杏樹林，隱約有人馬的聲音傳來。
 LONG);
         set("no_sleep_room",1);
         set("no_magic", 1);
@@ -28,7 +28,7 @@ void init()
 
         if (playerp(me) && random(3)==0 && ! objectp(present("wu shi", this_object())) && ( time() - query_temp("enter_xzz_road2", me) > 30 ))
         {
-                tell_object(me,CYN"两个人影突然从路边跳出来拦住你喝到：一品堂办事，给我留下来吧！\n"NOR); 
+                tell_object(me,CYN"兩個人影突然從路邊跳出來攔住你喝到：一品堂辦事，給我留下來吧！\n"NOR); 
                 killer = new(__DIR__"npc/wushi9"); 
                 killer->move(this_object()); 
                 killer = new(__DIR__"npc/wushi9"); 
@@ -39,10 +39,10 @@ void init()
 
 int valid_leave(object me, string dir)
 {
-        //战斗不可逃
+        //戰鬥不可逃
         if (me->is_fighting())
         {
-                tell_object(me,NOR"你还是先解决目前的敌人吧！\n"NOR); 
+                tell_object(me,NOR"你還是先解決目前的敵人吧！\n"NOR); 
                 return 0;
         }
         
@@ -51,7 +51,7 @@ int valid_leave(object me, string dir)
                 if (random(4) == 0)
                  {
                         me->move(__DIR__"road");
-                        tell_object(me,YEL"你慌不择路地逃出杏子林......\n"NOR); 
+                        tell_object(me,YEL"你慌不擇路地逃出杏子林......\n"NOR); 
                         return 1;
                  }
                 }
@@ -61,7 +61,7 @@ int valid_leave(object me, string dir)
                 if (random(8) == 0)
                  {
                         me->move(__DIR__"road3");
-                        tell_object(me,YEL"你冲进了东面的杏子林中......\n"NOR); 
+                        tell_object(me,YEL"你衝進了東面的杏子林中......\n"NOR); 
                         return 1;
                  }
         }

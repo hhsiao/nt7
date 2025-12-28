@@ -4,8 +4,8 @@ void create()
 {
         set("short", "小路");
         set("long", @LONG
-这里是一条小路，颇为不平，两边耸立着一些怪石，奇形
-怪状，甚是有趣 。
+這裡是一條小路，頗為不平，兩邊聳立著一些怪石，奇形
+怪狀，甚是有趣 。
 LONG);
         set("outdoors", "kunming");
         set("exits", ([

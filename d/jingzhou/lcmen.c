@@ -3,11 +3,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "粮仓大门");
+        set("short", "糧倉大門");
         set("long", @LONG
-你正站在荆州粮仓的门口，可以看到两个穿着制服的官兵正在此
-地巡逻，不时地传来呐喊声。老百姓是不允许在此观看的，你最好赶
-快走开。
+你正站在荊州糧倉的門口，可以看到兩個穿著制服的官兵正在此
+地巡邏，不時地傳來吶喊聲。老百姓是不允許在此觀看的，你最好趕
+快走開。
 LONG );
         set("exits", ([
                 "west" : __DIR__"nandajie2",
@@ -27,7 +27,7 @@ int valid_leave(object me, string dir)
 {
         if (dir == "east" &&
            objectp(present("guan bing", environment(me))))
-                return notify_fail(CYN "官兵一把拦住你，骂道：粮仓重地，岂是你们这些"
-                                   "泥腿子随便来得的？\n" NOR);                
+                return notify_fail(CYN "官兵一把攔住你，罵道：糧倉重地，豈是你們這些"
+                                   "泥腿子隨便來得的？\n" NOR);                
         return ::valid_leave(me, dir);
 }

@@ -1,7 +1,7 @@
 
-// wushen-jian.c 衡山五神剑
-// 由衡山派紫盖剑法、芙蓉剑法、石廪剑法、祝融剑法、天柱剑
-// 法合一所创，B+级器械武学。
+// wushen-jian.c 衡山五神劍
+// 由衡山派紫蓋劍法、芙蓉劍法、石廩劍法、祝融劍法、天柱劍
+// 法合一所創，B+級器械武學。
 
 #include <ansi.h>
 inherit SKILL;
@@ -9,54 +9,54 @@ int is_pbsk() { return 1; }
 
 mapping *action = ({
 ([      
-        "action" : "$N反转手中$w，剑光夺目，将「" HIR "祝融剑法" NOR
-                   "」发挥得淋漓尽致，闪电般射向$n",
+        "action" : "$N反轉手中$w，劍光奪目，將「" HIR "祝融劍法" NOR
+                   "」發揮得淋漓盡致，閃電般射向$n",
         "force" : 430,
         "attack": 147,
         "dodge" : 96,
         "parry" : 128,
         "damage": 190,
-        "damage_type" : "刺伤",
+        "damage_type" : "刺傷",
 ]),
 ([ 
-        "action" : "$N手中剑花突现，顿时剑光暴长，已将「" HIM "芙蓉剑"
+        "action" : "$N手中劍花突現，頓時劍光暴長，已將「" HIM "芙蓉劍"
                    "法" NOR "」使出，直刺$n的$l",
         "force" : 420,
         "attack": 154,
         "dodge" : 118,
         "parry" : 120,
         "damage": 210,
-        "damage_type" : "刺伤",
+        "damage_type" : "刺傷",
 ]),
 ([
-        "action" : "$N将$w一挥，长啸一声腾空而起，一式「" HIY "鹤翔紫"
-                   "盖" NOR "」，$w已指向$n$l",
+        "action" : "$N將$w一揮，長嘯一聲騰空而起，一式「" HIY "鶴翔紫"
+                   "蓋" NOR "」，$w已指向$n$l",
         "force" : 420,
         "attack": 156,
         "dodge" : 100,
         "parry" : 120,
         "damage": 223,
-        "damage_type" : "刺伤",
+        "damage_type" : "刺傷",
 ]),
 ([
-        "action" : "$N轻啸一声，右手$w虚刺$n左眼，突然右腕翻转，将「" HIG 
-                   "石廪剑法" NOR "」的精髓发挥到了极致",
+        "action" : "$N輕嘯一聲，右手$w虛刺$n左眼，突然右腕翻轉，將「" HIG 
+                   "石廩劍法" NOR "」的精髓發揮到了極致",
         "force" : 430,
         "attack": 160,
         "dodge" : 120,
         "parry" : 140,
         "damage": 248,
-        "damage_type" : "刺伤",
+        "damage_type" : "刺傷",
 ]),
 ([
-        "action" : "$N手中$w剑路忽快忽慢，若隐若现，一剑「" HIW "天柱云气"
-                   NOR "」犹如烟雾飘渺般使了出来",
+        "action" : "$N手中$w劍路忽快忽慢，若隱若現，一劍「" HIW "天柱雲氣"
+                   NOR "」猶如煙霧飄渺般使了出來",
         "force" : 480,
         "attack": 180,
         "dodge" : 140,
         "parry" : 160,
         "damage": 260,
-        "damage_type" : "刺伤",
+        "damage_type" : "刺傷",
 ]),
 });
 
@@ -86,48 +86,48 @@ int get_finish(object me)
         if( !(ob=query_temp("weapon", me) )
             || query("skill_type", ob) != "sword" )
         {
-                tell_object(me, "你空手舞了半天，发现如果不用剑实在难以演练。\n");
+                tell_object(me, "你空手舞了半天，發現如果不用劍實在難以演練。\n");
                 return 0;
         }
 
         if( query("int", me)<30 )
         {
-                tell_object(me, "你演练完毕，只感五种剑法毫无牵连，看来依你的悟"
-                                "性，无法将其合一。\n");
+                tell_object(me, "你演練完畢，只感五種劍法毫無牽連，看來依你的悟"
+                                "性，無法將其合一。\n");
                 return 0;
         }
 
         if( query("dex", me)<28 )
         {
-                tell_object(me, "你演练完毕，只觉依自己的身法灵动性，根本无法将"
-                                "五种剑法合一。\n");
+                tell_object(me, "你演練完畢，只覺依自己的身法靈動性，根本無法將"
+                                "五種劍法合一。\n");
                 return 0;
         }
 
         if (me->query_skill("martial-cognize", 1) < 150)
         {
-                tell_object(me, "你演练完毕，发现自己的武学修养尚待提高，暂且无"
-                                "法将五种剑法合一。\n");
+                tell_object(me, "你演練完畢，發現自己的武學修養尚待提高，暫且無"
+                                "法將五種劍法合一。\n");
                 return 0;
         }
 
         if( query("max_neili", me)<3200 )
         {
-                tell_object(me, "你突然觉得真气不继，看来依自己的内力修为，无法"
-                                "将五种剑法合一。\n");
+                tell_object(me, "你突然覺得真氣不繼，看來依自己的內力修為，無法"
+                                "將五種劍法合一。\n");
                 return 0;
         }
 
         if (random(20) < 17)
         {
-                tell_object(me, "你觉得有所感悟，或许再演练一次就能融会贯通，将"
-                                "五种剑法合一。\n");
+                tell_object(me, "你覺得有所感悟，或許再演練一次就能融會貫通，將"
+                                "五種劍法合一。\n");
                 return 0;
         }
 
-        tell_object(me, HIY "\n一阵凡尘往事涌上心头，你几欲放声长叹。霎那间衡山"
-                        "派五种剑法不断在\n你的脑海里交替闪现，最后终于融会贯通"
-                        "，合为一体。你终于通晓了衡山\n五神剑的诀窍。\n" NOR);
+        tell_object(me, HIY "\n一陣凡塵往事湧上心頭，你幾欲放聲長嘆。霎那間衡山"
+                        "派五種劍法不斷在\n你的腦海裡交替閃現，最後終於融會貫通"
+                        "，合為一體。你終於通曉了衡山\n五神劍的訣竅。\n" NOR);
         return 1;
 }
 
@@ -147,26 +147,26 @@ int valid_learn(object me)
 
         if( !(ob=query_temp("weapon", me) )
             || query("skill_type", ob) != "sword" )
-                return notify_fail("你必须先找一柄剑才能够练习。\n");
+                return notify_fail("你必須先找一柄劍才能夠練習。\n");
 
         if( query("int", me)<30 )
-                return notify_fail("你的先天悟性不足，没有办法练衡山五神剑。\n");
+                return notify_fail("你的先天悟性不足，沒有辦法練衡山五神劍。\n");
 
         if( query("dex", me)<28 )
-                return notify_fail("你的先天身法孱弱，没有办法练衡山五神剑。\n");
+                return notify_fail("你的先天身法孱弱，沒有辦法練衡山五神劍。\n");
 
         if (me->query_skill("martial-cognize", 1) < 180)
-                return notify_fail("你觉得衡山五神剑极其深奥，依照自己的武学修养"
-                                   "难以理解。\n");
+                return notify_fail("你覺得衡山五神劍極其深奧，依照自己的武學修養"
+                                   "難以理解。\n");
 
         if( query("max_neili", me)<4000 )
-                return notify_fail("你的内力修为不够，没有办法练衡山五神剑。\n");
+                return notify_fail("你的內力修為不夠，沒有辦法練衡山五神劍。\n");
 
         if ((int)me->query_skill("sword", 1) < 200)
-                return notify_fail("你的基本剑法太差，没有办法练衡山五神剑。\n");
+                return notify_fail("你的基本劍法太差，沒有辦法練衡山五神劍。\n");
 
         if ((int)me->query_skill("sword", 1) < (int)me->query_skill("wushen-jian", 1))
-                return notify_fail("你的基本剑法火候有限，无法领会更高深的衡山五神剑。\n");
+                return notify_fail("你的基本劍法火候有限，無法領會更高深的衡山五神劍。\n");
 
         return 1;
 }
@@ -183,12 +183,12 @@ int practice_skill(object me)
         int cost;
 
         if( query("qi", me)<100 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
 
         cost = me->query_skill("wushen-jian", 1) / 2 + 60;
 
         if( query("neili", me)<cost )
-                return notify_fail("你的内力不够练衡山五神剑。\n");
+                return notify_fail("你的內力不夠練衡山五神劍。\n");
 
         me->receive_damage("qi", 60);
         addn("neili", -cost, me);
@@ -208,7 +208,7 @@ void skill_improved(object me)
            if( lvl > 180 &&
             !query("can_perform/wushen-jian/hui", me) ) 
         {
-                tell_object(me, WHT "你通晓了衡山五神剑「" HIC "回峰蜿蜒势" WHT "」的奥秘。\n" NOR);    
+                tell_object(me, WHT "你通曉了衡山五神劍「" HIC "回峰蜿蜒勢" WHT "」的奧秘。\n" NOR);    
                 set("can_perform/wushen-jian/hui", 1, me);
                 me->improve_skill("martial-cognize", 1500000);  
                 me->improve_skill("martial-cognize", 1500000); 
@@ -217,7 +217,7 @@ void skill_improved(object me)
             if( lvl > 200 &&
             !query("can_perform/wushen-jian/qian", me) ) 
         {
-                tell_object(me, WHT "你通晓了衡山五神剑「" HIC "千剑纵横势" WHT "」的奥秘。\n" NOR);    
+                tell_object(me, WHT "你通曉了衡山五神劍「" HIC "千劍縱橫勢" WHT "」的奧秘。\n" NOR);    
                 set("can_perform/wushen-jian/qian", 1, me);
                 me->improve_skill("martial-cognize", 1500000);  
                 me->improve_skill("martial-cognize", 1500000); 
@@ -226,7 +226,7 @@ void skill_improved(object me)
             if( lvl > 240 &&
             !query("can_perform/wushen-jian/shen", me) ) 
         {
-                tell_object(me, WHT "你通晓了衡山五神剑「" HIC "五神朝元势" WHT "」的奥秘。\n" NOR);    
+                tell_object(me, WHT "你通曉了衡山五神劍「" HIC "五神朝元勢" WHT "」的奧秘。\n" NOR);    
                 set("can_perform/wushen-jian/shen", 1, me);
                 me->improve_skill("martial-cognize", 1500000);  
                 me->improve_skill("martial-cognize", 1500000); 
@@ -261,10 +261,10 @@ mixed hit_ob(object me, object victim, int damage_bonus)
                   addn("neili", -100, me);
                   victim->receive_wound("qi", (damage_bonus - 54) / 2, me);
                   
-                  return random(2) ? HIW "$N" HIW "一剑攻出，刹那间剑气横飞，$n" HIW
-                                     "身上顿时鲜血狂涌。\n" NOR:
-                                     HIW "$N" HIW "剑锋一转，一剑平平刺向$n" HIW "要害"
-                                     "，看似普通的一招其中却蕴藏着极大的杀着。\n" NOR;
+                  return random(2) ? HIW "$N" HIW "一劍攻出，剎那間劍氣橫飛，$n" HIW
+                                     "身上頓時鮮血狂湧。\n" NOR:
+                                     HIW "$N" HIW "劍鋒一轉，一劍平平刺向$n" HIW "要害"
+                                     "，看似普通的一招其中卻蘊藏著極大的殺著。\n" NOR;
              }
              break;
 
@@ -275,8 +275,8 @@ mixed hit_ob(object me, object victim, int damage_bonus)
                   weapon=query_temp("weapon", me);
                   if (!victim->is_busy())
                   victim->start_busy(2 + random(lvl / 60));
-                  return   HIC "$N" HIC "剑法陡然变快，手中" + weapon->name() + HIC "剑光夺目，"
-                           "将$n" HIC "笼罩在剑光之中。\n" NOR;
+                  return   HIC "$N" HIC "劍法陡然變快，手中" + weapon->name() + HIC "劍光奪目，"
+                           "將$n" HIC "籠罩在劍光之中。\n" NOR;
              }
              break;
 
@@ -285,9 +285,9 @@ mixed hit_ob(object me, object victim, int damage_bonus)
                   && random(2) == 1 && !query_temp("perform_wushenjian/qian", me) )
              {
                 weapon=query_temp("weapon", me);
-                message_sort(HIM "\n$N" HIM "轻啸一声，腾空而起，" + weapon->name() + "在"
-                             "空中挽出一个剑花，顷刻间剑花四散，洋洋洒洒。犹如无"
-                             "数花瓣从半空洒向$n" HIM "全身。\n" NOR, me, victim);
+                message_sort(HIM "\n$N" HIM "輕嘯一聲，騰空而起，" + weapon->name() + "在"
+                             "空中挽出一個劍花，頃刻間劍花四散，洋洋灑灑。猶如無"
+                             "數花瓣從半空灑向$n" HIM "全身。\n" NOR, me, victim);
 
                 for (i = 0; i < 5; i++)
                 {

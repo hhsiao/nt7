@@ -1,13 +1,13 @@
 /***** Written by ken@NT.  All rights reserved. *****/
 // tobig5.c
 /****************************************************/
-/* 中文字分两种，中国大陆用GB码，香港和台湾用BIG5码 */
-/* 由于内码不同，就会出现乱码的情况，GB码的编码是由 */  
-/* 0xa1 - 0xf7 ，BIG5码的编码是由 0x40 - 0x7e，因此 */
-/* 我们做有两个字库，分别是字库 "BtoG.tab"   和字库 */ 
-/* "GtoB.tab" ，在对应的字库中找出对应的文字， 这个 */
-/* 动作由"/adm/daemons/languaed.c" 完成，本程序只需 */
-/* 调用它里面的函数就可以了。                       */
+/* 中文字分兩種，中國大陸用GB碼，香港和臺灣用BIG5碼 */
+/* 由於內碼不同，就會出現亂碼的情況，GB碼的編碼是由 */  
+/* 0xa1 - 0xf7 ，BIG5碼的編碼是由 0x40 - 0x7e，因此 */
+/* 我們做有兩個字庫，分別是字庫 "BtoG.tab"   和字庫 */ 
+/* "GtoB.tab" ，在對應的字庫中找出對應的文字， 這個 */
+/* 動作由"/adm/daemons/languaed.c" 完成，本程序只需 */
+/* 調用它裡面的函數就可以了。                       */
 /****************************************************/
 
 #include <ansi.h>
@@ -33,7 +33,7 @@ int main(object me, string arg)
         seteuid(geteuid(me));
      
         if(!SECURITY_D->valid_write(file, me))
-                return notify_fail("没有足够的读写权限.\n");
+                return notify_fail("沒有足夠的讀寫權限.\n");
         
         if (file_size(file) == -1 )
                 file=resolve_path(query("cwd", me),file);
@@ -41,7 +41,7 @@ int main(object me, string arg)
         if(file_size(file) > 0)
         { 
                 to_big5(file);
-                write(HIW "文件∶" + file + "内所有内容转换完成.\n" NOR);
+                write(HIW "文件∶" + file + "內所有內容轉換完成.\n" NOR);
                 return 1;
         }
    
@@ -55,13 +55,13 @@ int main(object me, string arg)
                         {
                                 to_big5(dir[i]);
                                 total = total + 1;
-                                write(dir[i] + " 文转换完成。\n");
+                                write(dir[i] + " 文轉換完成。\n");
                         }
                 }
-                write("共把" + total + "个文件转换成大五码(BIG5)\n");
+                write("共把" + total + "個文件轉換成大五碼(BIG5)\n");
                 return 1;
         }
-        else return notify_fail("没有这个文件或目录.\n");
+        else return notify_fail("沒有這個文件或目錄.\n");
         return 1;               
 }
 
@@ -108,12 +108,12 @@ write(@HELP
 Written by ken@NT. All rights reserved.
 E-mail: printken@yahoo.com.hk
 
-指令格式: tobig5 <文件或目录>
-本指令可让你把文件或目录转换成BIG5码。
-比如togb /d/　会把 /d/　下的所有文件及目录内的所有文都转成BIG5
-我不建意使用转换目录，除非你很了解你想要做什么！
-(此指令建议放在/cmds/adm/下)
-注意：本命令比较危险，请小心使用。
+指令格式: tobig5 <文件或目錄>
+本指令可讓你把文件或目錄轉換成BIG5碼。
+比如togb /d/　會把 /d/　下的所有文件及目錄內的所有文都轉成BIG5
+我不建意使用轉換目錄，除非你很瞭解你想要做什麼！
+(此指令建議放在/cmds/adm/下)
+注意：本命令比較危險，請小心使用。
 
 HELP);
 return 1;

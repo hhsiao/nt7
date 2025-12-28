@@ -6,7 +6,7 @@ inherit EQUIP;
 
 void create()
 {
-        set_name( HIC "浅蓝色马褂" NOR, ({ "ma gua", "ma", "gua" }) );
+        set_name( HIC "淺藍色馬褂" NOR, ({ "ma gua", "ma", "gua" }) );
         set_weight(700);
         /*if( clonep() )
                 set_default_object(__FILE__);
@@ -17,7 +17,7 @@ void create()
                 set("armor_type", "cloth");
                 set("armor_prop/armor", 2);
                 set("wear_msg","$N穿上一件$n。\n");
-                set("remove_msg","$N将$n脱了下来。\n");
+                set("remove_msg","$N將$n脫了下來。\n");
         }
 
         setup();

@@ -5,12 +5,12 @@ void do_eat();
 
 void create()
 {
-        set_name("巫山云茶",({"tea", "cha", "yuncha"}));
+        set_name("巫山雲茶",({"tea", "cha", "yuncha"}));
         set_weight(50);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一杯热茶，夜辰亲手采摘巫山茉莉花叶，龙泉山茶花瓣，紫竹林竹芯，再调和晨露，芳香无比！\n");
+                set("long", "一杯熱茶，夜辰親手採摘巫山茉莉花葉，龍泉山茶花瓣，紫竹林竹芯，再調和晨露，芳香無比！\n");
                 set("unit", "杯");
                 set("value", 1000);
         set("remaining", 20);
@@ -33,10 +33,10 @@ int do_drink(string arg)
 
         if( !this_object()->id(arg) ) return 0;
         if( this_player()->is_busy() )
-                return notify_fail("你上一个动作还没有完成。\n");
+                return notify_fail("你上一個動作還沒有完成。\n");
         if( query("water", this_player() )
            >= (int)this_player()->max_water_capacity() )
-                return notify_fail("你已经喝太多了，再也灌不下一滴水了。\n");
+                return notify_fail("你已經喝太多了，再也灌不下一滴水了。\n");
 
         set("value", 0);
         addn("water", (int)query("drink_supply"), this_player());
@@ -69,11 +69,11 @@ int do_drink(string arg)
         addn("remaining", -1);
         if ( query("remaining") )
         {
-                message_vision("$N端起杯巫山云茶，有滋有味地品了几口。\n"+
-                "一股香气直入心脾，$N精神大振。\n", this_player());
+                message_vision("$N端起杯巫山雲茶，有滋有味地品了幾口。\n"+
+                "一股香氣直入心脾，$N精神大振。\n", this_player());
         } else 
         { 
-                message_vision("$N将巫山云茶一饮而尽，意犹未尽。\n", this_player());
+                message_vision("$N將巫山雲茶一飲而盡，意猶未盡。\n", this_player());
                 destruct(this_object());
         }
         return 1;

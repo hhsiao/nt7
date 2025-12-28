@@ -7,8 +7,8 @@ void create()
 {
         NPC_D->generate_cn_name(this_object());
         set("gender", "男性");
-        set("long", "这是位衣着破烂的丐帮弟子，眉目间透出股英气。\n");
-        set("title", "丐帮六袋弟子");
+        set("long", "這是位衣著破爛的丐幫弟子，眉目間透出股英氣。\n");
+        set("title", "丐幫六袋弟子");
         set("age", 38);
         set("attitude", "peaceful");
         set("class", "beggar");
@@ -49,7 +49,7 @@ void create()
 
         prepare_skill("hand", "shexing-diaoshou");
 
-        create_family("丐帮", 20, "弟子");
+        create_family("丐幫", 20, "弟子");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({

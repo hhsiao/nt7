@@ -7,7 +7,7 @@ string ask_me();
 void create()
 {
         set_name("天狼子", ({ "tianlang zi", "tianlang" }));
-        set("nickname", "星宿派三师兄");
+        set("nickname", "星宿派三師兄");
         set("long", 
                 "他就是丁春秋的三弟子天狼子。\n");
         set("gender", "男性");
@@ -44,7 +44,7 @@ void create()
         set_skill("tianshan-zhang", 50);
 
         set("no_teach", ([
-                "huagong-dafa" : "化功大法要老仙亲自传授。",
+                "huagong-dafa" : "化功大法要老仙親自傳授。",
         ]));
 
         map_skill("whip", "chanhun-suo");

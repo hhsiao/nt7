@@ -6,18 +6,18 @@ void close_path();
 
 void create()
 {
-        set("short", "梅庄密道");
+        set("short", "梅莊密道");
         set("long", @LONG
-这是一条昏暗潮湿的地道，地道很长，两边点着两根不太明亮的
-火把，地道两旁的墙壁上画着很多不知道出自何人之手的壁画，而且
-画得相当难看，你加快脚步，想知道地道的尽头是什么地方。突然之
-间你发现这里的地面已经是木板(floor)拼成的了。
+這是一條昏暗潮溼的地道，地道很長，兩邊點著兩根不太明亮的
+火把，地道兩旁的牆壁上畫著很多不知道出自何人之手的壁畫，而且
+畫得相當難看，你加快腳步，想知道地道的盡頭是什麼地方。突然之
+間你發現這裡的地面已經是木板(floor)拼成的了。
 LONG );
         set("exits", ([
             "south" : __DIR__"didao2",
         ]));
         set("item_desc", ([
-                "floor": "这层木板似乎可以拉开(pull)。\n",
+                "floor": "這層木板似乎可以拉開(pull)。\n",
         ]));
 
         setup();
@@ -34,7 +34,7 @@ int do_open(string arg)
 
         if (! arg || arg == "")
         {
-                write("你要打开什么？\n");
+                write("你要打開什麼？\n");
                 return 1;
         }
 
@@ -47,15 +47,15 @@ int do_open(string arg)
                         call_out("close_path", 5);
                 } else
                 {
-                        write("地上的木板现在已经拉开了。\n");
+                        write("地上的木板現在已經拉開了。\n");
                         return 1;
                 }
 
-                message_vision("$N拉起地上的木板，发现下面是空的。\n", me);
+                message_vision("$N拉起地上的木板，發現下面是空的。\n", me);
                 return 1;
         } else
         {
-                write("你没法打开 " + arg + " 这样东西。\n");
+                write("你沒法打開 " + arg + " 這樣東西。\n");
                 return 1;
         }
 }
@@ -63,7 +63,7 @@ int do_open(string arg)
 void close_path()
 {
         if (! query("exits/down")) return;
-        message("vision", "木板又弹了回来，遮住了下面的密道。\n",
+        message("vision", "木板又彈了回來，遮住了下面的密道。\n",
                 this_object());
         delete("exits/down");
 }

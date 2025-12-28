@@ -1,95 +1,95 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action": "$N手中$w斜指，一招「回身诛杀势」，反身一顿，一刀向$n的$l撩去",
+([      "action": "$N手中$w斜指，一招「回身誅殺勢」，反身一頓，一刀向$n的$l撩去",
         "force" : 72,
         "dodge" : 10,
         "parry" : 25,
         "attack": 16,
         "damage": 15,
         "lvl"   : 0,
-        "skill_name"  : "回身诛杀势",
-        "damage_type" : "割伤"
+        "skill_name"  : "回身誅殺勢",
+        "damage_type" : "割傷"
 ]),
-([      "action": "$N一招「临图现匕势」，左右腿虚点，$w一提一收，平刃挥向$n的颈部",
+([      "action": "$N一招「臨圖現匕勢」，左右腿虛點，$w一提一收，平刃揮向$n的頸部",
         "force" : 90,
         "dodge" : 30,
         "parry" : 40,
         "attack": 24,
         "damage": 21,
         "lvl"   : 20,
-        "skill_name"  : "临图现匕势",
-        "damage_type" : "割伤"
+        "skill_name"  : "臨圖現匕勢",
+        "damage_type" : "割傷"
 ]),
-([      "action": "$N展身虚步，提腰跃落，一招「下步劈山势」，刀锋一卷，拦腰斩向$n",
+([      "action": "$N展身虛步，提腰躍落，一招「下步劈山勢」，刀鋒一卷，攔腰斬向$n",
         "force" : 124,
         "dodge" : 35,
         "parry" : 45,
         "attack": 29,
         "damage": 35,
         "lvl"   : 40,
-        "skill_name"  : "下步劈山势",
-        "damage_type" : "割伤"
+        "skill_name"  : "下步劈山勢",
+        "damage_type" : "割傷"
 ]),
-([      "action": "$N一招「戮妖降魔势」，$w大开大阖，自上而下划出一个大弧，笔直劈向$n",
+([      "action": "$N一招「戮妖降魔勢」，$w大開大闔，自上而下劃出一個大弧，筆直劈向$n",
         "force" : 136,
         "dodge" : 45,
         "parry" : 45,
         "attack": 34,
         "damage": 52,
         "lvl"   : 60,
-        "skill_name"  : "戮妖降魔势",
-        "damage_type" : "割伤"
+        "skill_name"  : "戮妖降魔勢",
+        "damage_type" : "割傷"
 ]),
-([      "action": "$N手中$w一沉，一招「破玉穿梭势」，双手持刃拦腰反切，砍向$n的胸口",
+([      "action": "$N手中$w一沉，一招「破玉穿梭勢」，雙手持刃攔腰反切，砍向$n的胸口",
         "force" : 158,
         "dodge" : 50,
         "parry" : 55,
         "attack": 37,
         "damage": 65,
         "lvl"   : 80,
-        "skill_name"  : "破玉穿梭势",
-        "damage_type" : "割伤"
+        "skill_name"  : "破玉穿梭勢",
+        "damage_type" : "割傷"
 ]),
-([      "action": "$N挥舞$w，使出一招「抱月藏刀势」，上劈下撩，左挡右开，齐齐罩向$n",
+([      "action": "$N揮舞$w，使出一招「抱月藏刀勢」，上劈下撩，左擋右開，齊齊罩向$n",
         "force" : 169,
         "dodge" : 65,
         "parry" : 55,
         "attack": 46,
         "damage": 73,
         "lvl"   : 100,
-        "skill_name"  : "抱月藏刀势",
-        "damage_type" : "割伤"
+        "skill_name"  : "抱月藏刀勢",
+        "damage_type" : "割傷"
 ]),
-([      "action": "$N一招「寒星凸起势」，左脚跃步落地，$w顺势往前，挟风声劈向$n的$l",
+([      "action": "$N一招「寒星凸起勢」，左腳躍步落地，$w順勢往前，挾風聲劈向$n的$l",
         "force" : 210,
         "dodge" : 75,
         "parry" : 85,
         "attack": 55,
         "damage": 85,
         "lvl"   : 130,
-        "skill_name"  : "寒星凸起势",
-        "damage_type" : "割伤"
+        "skill_name"  : "寒星凸起勢",
+        "damage_type" : "割傷"
 ]),
-([      "action": "$N盘身驻地，一招「翻天弑穹势」，挥出一片流光般的刀影，向$n的全身涌去",
+([      "action": "$N盤身駐地，一招「翻天弒穹勢」，揮出一片流光般的刀影，向$n的全身湧去",
         "force" : 240,
         "dodge" : 90,
         "parry" : 90,
         "attack": 76,
         "damage": 104,
         "lvl"   : 160,
-        "skill_name"  : "翻天弑穹势",
-        "damage_type" : "割伤"
+        "skill_name"  : "翻天弒穹勢",
+        "damage_type" : "割傷"
 ]),
-([      "action": "$N回首施出一招「十二转破神势」，$w顿时卷起无数闪耀的刀芒笼罩$n全身",
+([      "action": "$N回首施出一招「十二轉破神勢」，$w頓時捲起無數閃耀的刀芒籠罩$n全身",
         "force" : 240,
         "dodge" : 90,
         "parry" : 90,
         "attack": 76,
         "damage": 104,
         "lvl"   : 200,
-        "skill_name"  : "十二转破神势",
-        "damage_type" : "割伤"
+        "skill_name"  : "十二轉破神勢",
+        "damage_type" : "割傷"
 ]),
 });
 
@@ -102,16 +102,16 @@ int valid_enable(string usage)
 int valid_learn(object me)
 {
         if( query("max_neili", me)<500 )
-                return notify_fail("你的内力修为不够。\n");
+                return notify_fail("你的內力修為不夠。\n");
 
         if ((int)me->query_skill("force") < 80)
-                return notify_fail("你的内功火候太浅。\n");
+                return notify_fail("你的內功火候太淺。\n");
 
         if ((int)me->query_skill("blade", 1) < 50)
-                return notify_fail("你的基本刀法火候太浅。\n");
+                return notify_fail("你的基本刀法火候太淺。\n");
 
         if ((int)me->query_skill("blade", 1) < (int)me->query_skill("shiying-lianhuan", 1))
-                return notify_fail("你的基本刀法水平有限，无法领会更高深的弑鹰九连环。\n");
+                return notify_fail("你的基本刀法水平有限，無法領會更高深的弒鷹九連環。\n");
 
         return 1;
 }
@@ -139,13 +139,13 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "blade" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if( query("qi", me)<60 )
-                return notify_fail("你的体力不够练弑鹰九连环。\n");
+                return notify_fail("你的體力不夠練弒鷹九連環。\n");
 
         if( query("neili", me)<60 )
-                return notify_fail("你的内力不够练弑鹰九连环。\n");
+                return notify_fail("你的內力不夠練弒鷹九連環。\n");
 
         me->receive_damage("qi", 55);
         addn("neili", -53, me);

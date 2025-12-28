@@ -2,10 +2,10 @@ inherit F_MASTER;
 inherit NPC;
 void create()
 {
-        set_name("了清禅师", ({ "liaoqing chanshi","liaoqing","chanshi"}) );
-        set("nickname", "无为尊者");
-        set("long", "了清禅师是本参大师的弟子，他年约三十多岁，
-年轻有为，笑容淳朴。\n");
+        set_name("了清禪師", ({ "liaoqing chanshi","liaoqing","chanshi"}) );
+        set("nickname", "無為尊者");
+        set("long", "了清禪師是本參大師的弟子，他年約三十多歲，
+年輕有為，笑容淳樸。\n");
         set("gender", "男性" );
         set("class", "bonze");
         set("attitude", "friendly");
@@ -15,7 +15,7 @@ void create()
         set("int", 28);
         set("con", 23);
         set("dex", 22);
-        create_family("天龙寺", 14, "弟子");
+        create_family("天龍寺", 14, "弟子");
 
         set("qi", 1000);
         set("max_qi", 1000);

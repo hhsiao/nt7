@@ -1,6 +1,6 @@
 // This is player's own skill (Write by Lonely@nt2)
-// Create by 剑明(Jianmin) at Tue Oct 21 16:53:53 2008
-// 飞天御剑(fly-sword.c)
+// Create by 劍明(Jianmin) at Tue Oct 21 16:53:53 2008
+// 飛天御劍(fly-sword.c)
 
 #include <ansi.h>
 inherit SKILL;        
@@ -9,15 +9,15 @@ int is_invent_skill() { return 1; }
 
 mapping *action = ({
 // ZHAOSHI : 0
-([      "action" : "乱击术,以比肉眼更快的速度向对手乱击.",
+([      "action" : "亂擊術,以比肉眼更快的速度向對手亂擊.",
         "attack" : 260,
         "damage" : 260,
         "force" : 260,
         "dodge" : 260,
         "parry" : 260,
         "lvl" : 100,
-        "damage_type" : "刺伤",
-        "skill_name" : "龙巢闪"
+        "damage_type" : "刺傷",
+        "skill_name" : "龍巢閃"
  ]),
 // ZHAOSHI : 1
 });
@@ -28,10 +28,10 @@ int valid_learn(object me)
         
         if( !objectp(weapon=query_temp("weapon", me) )
                  || query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
                 
         if( query("max_neili", me)<50 )
-                return notify_fail("你的内力太弱，无法练" + "飞天御剑" + "。\n");
+                return notify_fail("你的內力太弱，無法練" + "飛天御劍" + "。\n");
                 
         return 1;
 }
@@ -80,13 +80,13 @@ int practice_skill(object me)
         object weapon; 
         if( !objectp(weapon=query_temp("weapon", me)) || 
                 query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");        
+                return notify_fail("你使用的武器不對。\n");        
         
         if( query("qi", me)<25 )
-                return notify_fail("你的体力不够了，休息一下再练吧。\n");
+                return notify_fail("你的體力不夠了，休息一下再練吧。\n");
                 
         if( query("neili", me)<3 )
-                return notify_fail("你的内力不够了，休息一下再练吧。\n");
+                return notify_fail("你的內力不夠了，休息一下再練吧。\n");
                 
         me->receive_damage("qi", 25);
         addn("neili", -3, me);
@@ -101,7 +101,7 @@ mixed hit_ob(object me, object victim, int damage)
         if (random(damage) > victim->query_str()) 
         {
                 result = ([ "damage" : damage ]);
-                result += ([ "msg" : HIW "你听到「喀嚓」一声轻响，已被$N的兵器所发杀气挫伤，$n顿时血冒三丈！！！\n" NOR ]);
+                result += ([ "msg" : HIW "你聽到「喀嚓」一聲輕響，已被$N的兵器所發殺氣挫傷，$n頓時血冒三丈！！！\n" NOR ]);
 
                 return result;
         }

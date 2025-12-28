@@ -2,16 +2,16 @@
 inherit TASK;
 void create()
 {
-        set_name(HIY "金算盘" NOR,({ "jin suanpan" }) );
+        set_name(HIY "金算盤" NOR,({ "jin suanpan" }) );
         set_weight(100);
         if( clonep() )
                 destruct(this_object());
         else {
-                set("unit", "个");
+                set("unit", "個");
                 set("material", "stone");
-                set("long", "这是个金算盘。\n");
+                set("long", "這是個金算盤。\n");
         }
-        set("owner", "钱眼开");
+        set("owner", "錢眼開");
         setup();
 }
 

@@ -17,7 +17,7 @@ int main(object me, string arg)
         seteuid(geteuid(me)); 
 
         if (! arg || sscanf(arg, "%s %s to %s", dir, pattern, replace) != 3)
-                return notify_fail("指令格式：replace <目录|文件名> <原字符> to <新字符>\n");
+                return notify_fail("指令格式：replace <目錄|文件名> <原字符> to <新字符>\n");
 
         replace = replace_string(replace, "\\t", "\t"); 
         replace = replace_string(replace, "\\n", "\n"); 
@@ -27,7 +27,7 @@ int main(object me, string arg)
                 dir=resolve_path(query("cwd", me),dir);
 
         if (! SECURITY_D->valid_write(dir, me)) 
-                return notify_fail("没有足够的读写权限。\n"); 
+                return notify_fail("沒有足夠的讀寫權限。\n"); 
                 
         if (file_size(dir) > 0)
         {               
@@ -35,16 +35,16 @@ int main(object me, string arg)
                 str = replace_string(str, pattern, replace);                            
                 rm(dir);
                 if (write_file(dir, str, 1))
-                        write(HIW + dir + "替换成功。\n");
+                        write(HIW + dir + "替換成功。\n");
                 else 
-                        write(HIR + dir + "替换失败……\n");
+                        write(HIR + dir + "替換失敗……\n");
                 
                 return 1;
         }
 
         if (file_size(dir) == -2 && dir[strlen(dir) - 1] != '/') dir += "/";
         if (file_size(dir) != -2) 
-                return notify_fail("没有这个文件或目录。\n");
+                return notify_fail("沒有這個文件或目錄。\n");
                         
         result = deep_path_list(dir);
         //result = deep_file_list(dir);
@@ -60,9 +60,9 @@ int main(object me, string arg)
                         str = replace_string(str, pattern, replace);                            
                         rm(file);
                         if (write_file(file, str, 1))
-                                write(HIW + file + "替换成功。\n");
+                                write(HIW + file + "替換成功。\n");
                         else 
-                                write(HIR + file + "替换失败……\n");                                                      
+                                write(HIR + file + "替換失敗……\n");                                                      
                 }                
         }
 
@@ -93,9 +93,9 @@ string *deep_file_list(string dir)
 int help(object me)
 {
         write(@HELP
-指令格式: replace <目录|文件名> <原字符> to <新字符>
-将文件内容里的所有<原字串>转换成<新字串>。
-注意∶如果指令目录，是会深入该目录下的所有目录提取文件进行虑理，要小心使用！
+指令格式: replace <目錄|文件名> <原字符> to <新字符>
+將文件內容裡的所有<原字串>轉換成<新字串>。
+注意∶如果指令目錄，是會深入該目錄下的所有目錄提取文件進行慮理，要小心使用！
 HELP );
         return 1;
 }

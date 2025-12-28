@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return HIR "弹射毒药" NOR; }
+string name() { return HIR "彈射毒藥" NOR; }
 
 inherit F_SSERVER;
 
@@ -19,54 +19,54 @@ int perform(object me, object target)
         }
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能在战斗中对对手使用。\n");
+                return notify_fail(name() + "只能在戰鬥中對對手使用。\n");
 
         lvl = me->query_skill("hama-gong", 1);
         lvp = me->query_skill("poison");
 
         if (lvl < 160)
-                return notify_fail("你的蛤蟆功不够娴熟，难以施展" + name() + "。\n");
+                return notify_fail("你的蛤蟆功不夠嫻熟，難以施展" + name() + "。\n");
 
         if (lvp < 180)
-                return notify_fail("你对毒技的了解不够，难以施展" + name() + "。\n");
+                return notify_fail("你對毒技的瞭解不夠，難以施展" + name() + "。\n");
 
         if( query("max_neili", me)<2000 )
-                return notify_fail("你的内力修为不足，难以施展" + name() + "。\n");
+                return notify_fail("你的內力修為不足，難以施展" + name() + "。\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你现在的内息不足，难以施展" + name() + "。\n");
+                return notify_fail("你現在的內息不足，難以施展" + name() + "。\n");
 
-        // 任务NPC可以直接施展
+        // 任務NPC可以直接施展
         if( userp(me) && !objectp(du=query_temp("handing", me)) )
-                return notify_fail("你必须拿着(hand)些毒药才能施展" + name() + "。\n");
+                return notify_fail("你必須拿著(hand)些毒藥才能施展" + name() + "。\n");
 
         if (objectp(du) && ! mapp(query("poison", du)))
                 return notify_fail("你手中所拿的" + du->name() + NOR "不"
-                                   "是毒药，难以施展" + name() + "。\n");
+                                   "是毒藥，難以施展" + name() + "。\n");
 
         if( objectp(du) && query("no_shot", du) )
-                return notify_fail("将" + du->name() + NOR "弹射出去？似"
+                return notify_fail("將" + du->name() + NOR "彈射出去？似"
                                    "乎不太好吧。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         if (objectp(du))
                 name = du->name();
         else
                 name = NOR + RED "毒丸";
 
-        msg = HIR "$N" HIR "默运内功，施出蛤蟆功绝招「" HIR "弹射毒药"
-              HIR "」，将手中" + name + HIR "「嗖」地弹向$n" HIR "。\n" NOR;
+        msg = HIR "$N" HIR "默運內功，施出蛤蟆功絕招「" HIR "彈射毒藥"
+              HIR "」，將手中" + name + HIR "「嗖」地彈向$n" HIR "。\n" NOR;
 
         an=query("max_neili", me)+query("neili", me)/4;
         dn=query("max_neili", target)+query("neili", target)/4;
 
-        // 首先判断内力，如果对方内力过高则无效
+        // 首先判斷內力，如果對方內力過高則無效
         if (an / 2 + random(an) < dn)
         {
-                msg += WHT "然而$n" WHT "全然不放在心上，轻轻一抖，已将$N"
-                       WHT "射来毒丸打落。\n" NOR;
+                msg += WHT "然而$n" WHT "全然不放在心上，輕輕一抖，已將$N"
+                       WHT "射來毒丸打落。\n" NOR;
                 me->start_busy(2);
                 addn("neili", -150, me);
         } else
@@ -80,7 +80,7 @@ int perform(object me, object target)
 
                 if (ap / 2 + random(ap) > dp)
                 {
-                        msg += HIR "$n" HIR "一个不慎，毒丸已经射入体内，顿时痛苦不堪。\n" NOR;
+                        msg += HIR "$n" HIR "一個不慎，毒丸已經射入體內，頓時痛苦不堪。\n" NOR;
 
                         COMBAT_D->do_damage(me, target, REMOTE_ATTACK, damage, 75, " ");
 
@@ -96,15 +96,15 @@ int perform(object me, object target)
                         addn("neili", -200, me);
                 } else
                 {
-                        msg += CYN "可是$n" CYN "见势不妙，急忙腾挪身形，终"
-                               "于避开了$N" CYN "射来的毒丸。\n" NOR;
+                        msg += CYN "可是$n" CYN "見勢不妙，急忙騰挪身形，終"
+                               "於避開了$N" CYN "射來的毒丸。\n" NOR;
                         me->start_busy(3);
                         addn("neili", -100, me);
                 }
         }
         message_combatd(msg, me, target);
 
-        // 消耗毒药数量
+        // 消耗毒藥數量
         if (objectp(du))
         {
                 if (du->query_amount())

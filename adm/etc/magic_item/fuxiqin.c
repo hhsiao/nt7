@@ -16,10 +16,10 @@ void create()
         else
         {
                 set("unit", "把");
-                set("long", NOR + MAG "这是一把看似普通的古琴，传说乃上古伏羲氏\n"
+                set("long", NOR + MAG "這是一把看似普通的古琴，傳說乃上古伏羲氏\n"
                                       "所用。\n"
-                                      "弹奏(tan)后可恢复所有精、气、内力和异常状态。\n" 
-                                      "需要弹琴技法一百级，tan ? 查看使用次数。\n" NOR);
+                                      "彈奏(tan)後可恢復所有精、氣、內力和異常狀態。\n" 
+                                      "需要彈琴技法一百級，tan ? 查看使用次數。\n" NOR);
 
         }
         setup();
@@ -41,16 +41,16 @@ int do_tan(string arg)
 
         if (arg == "?")
         {
-                 write(HIG "使用次数 " + this_object()->query("count") + "/3\n" NOR);
+                 write(HIG "使用次數 " + this_object()->query("count") + "/3\n" NOR);
                  return 1;
         }
                 
         if (me->is_fighting() || me->is_busy())
                  return notify_fail("你正忙呢！\n");
 
-        message_sort(NOR + MAG + "\n$N" NOR + MAG "盘膝而坐，轻轻地拨弄着伏羲琴，"
-                                 "伴随着令人心醉的琴声，$N" NOR + MAG "只觉得周身"
-                                 "舒泰之极。\n" NOR, me);
+        message_sort(NOR + MAG + "\n$N" NOR + MAG "盤膝而坐，輕輕地撥弄著伏羲琴，"
+                                 "伴隨著令人心醉的琴聲，$N" NOR + MAG "只覺得周身"
+                                 "舒泰之極。\n" NOR, me);
 
         my = me->query_entire_dbase();
         my["jing"]   = my["eff_jing"]   = my["max_jing"];
@@ -66,7 +66,7 @@ int do_tan(string arg)
         this_object()->add("count", 1);
         if (this_object()->query("count") >= 3)
         {
-                write(HIW "只听得一阵脆响，伏羲琴已损坏了。\n" NOR);
+                write(HIW "只聽得一陣脆響，伏羲琴已損壞了。\n" NOR);
                 destruct(this_object());        
         }
 

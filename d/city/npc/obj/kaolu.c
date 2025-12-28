@@ -5,16 +5,16 @@ inherit ITEM;
 
 void create()
 {
-        set_name("小烤炉", ({ "kaolu" }) );
+        set_name("小烤爐", ({ "kaolu" }) );
         set_weight(10000);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ 
         {
-                set("unit", "个");
+                set("unit", "個");
                 set("value", 100000);
                 set("material", "stone");
-                set("long", "一个红泥制成的小烤炉，你似乎可以用它烤（ｆｒｙ）些什么\n");
+                set("long", "一個紅泥製成的小烤爐，你似乎可以用它烤（ｆｒｙ）些什麼\n");
         }
         
         setup();
@@ -35,25 +35,25 @@ int do_kao(string arg)
         me = this_player();
 
         if( !arg || arg == "")
-                return notify_fail("你烤什么？\n");
+                return notify_fail("你烤什麼？\n");
         if(!objectp(tar = present(arg, me)) )
-                return notify_fail("你烤什么？\n");
+                return notify_fail("你烤什麼？\n");
         if(tar->is_character() && !tar->is_corpse())
-                return notify_fail("天...啊！上天有好生之德，你还是让它安乐死吧！\n");
+                return notify_fail("天...啊！上天有好生之德，你還是讓它安樂死吧！\n");
         if( !tar->is_character() && !tar->is_corpse())
-                return notify_fail("这是你不可以烤的东西．\n");
+                return notify_fail("這是你不可以烤的東西．\n");
 
         supply = me->query_skill("cooking");
         if ( supply < 30) 
-                return notify_fail("你的炒菜手艺太差，还是先学点厨艺吧？\n"); 
+                return notify_fail("你的炒菜手藝太差，還是先學點廚藝吧？\n"); 
                 
         if( tar->is_corpse())
         {
                 name=query("name", tar);
                 name=replace_string(name,"一具","");
-                name=replace_string(name,"的尸体","");
-                if (name=="腐烂")         
-                        return notify_fail("都臭成这样了，还烤什么烤？\n");
+                name=replace_string(name,"的屍體","");
+                if (name=="腐爛")         
+                        return notify_fail("都臭成這樣了，還烤什麼烤？\n");
                 else
                         name="烤"+name+"肉";
 
@@ -66,7 +66,7 @@ int do_kao(string arg)
                 meat->move(me);
         }
 
-        message_vision("$N将$n切成片放到小烤炉里，$n一会儿就变成了一串香喷喷的烤肉串。\n", me, tar);
+        message_vision("$N將$n切成片放到小烤爐裡，$n一會兒就變成了一串香噴噴的烤肉串。\n", me, tar);
         tar->move(environment(me));
         destruct(tar);
         return 1;

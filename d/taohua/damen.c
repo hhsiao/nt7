@@ -3,12 +3,12 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "桃花山庄正门");
+        set("short", "桃花山莊正門");
         set("long",@LONG
-这里是桃花岛的正门。门前疏落地种了几株桃花树，更显
-得此地主人对桃花的偏爱。门口站着两个小童看守大门。看来
-由于地处边远人烟罕至，人们对山庄的防卫不是特别谨慎。门
-前有一对白雕(diao)，毛羽如雪，甚为可爱。
+這裡是桃花島的正門。門前疏落地種了幾株桃花樹，更顯
+得此地主人對桃花的偏愛。門口站著兩個小童看守大門。看來
+由於地處邊遠人煙罕至，人們對山莊的防衛不是特別謹慎。門
+前有一對白雕(diao)，毛羽如雪，甚為可愛。
 LONG);
         set("outdoors", "taohua");
         set("exits", ([
@@ -17,9 +17,9 @@ LONG);
                 "east"  : __DIR__"road1" ,       
         ]));
         set("item_desc", ([
-                "diao" : HIW "\n这一对白雕正展翅欲飞。如果是桃花岛"
-                         "的弟子，骑上(" HIY "ride" HIW ")就\n可以"
-                         "飞到中原，非常便利。\n\n" NOR,
+                "diao" : HIW "\n這一對白雕正展翅欲飛。如果是桃花島"
+                         "的弟子，騎上(" HIY "ride" HIW ")就\n可以"
+                         "飛到中原，非常便利。\n\n" NOR,
         ]));
         set("objects", ([
                 __DIR__"npc/shitong" : 2,
@@ -38,27 +38,27 @@ int do_ride(string arg)
             object ob = this_player();
 
         if (! arg || arg != "diao" )
-                return notify_fail("你要骑什么？\n");
+                return notify_fail("你要騎什麼？\n");
 
         if ((int)query("sb_ride"))
-                return notify_fail("现在白雕已经被人骑走了，等会儿再来吧。\n" ) ;
+                return notify_fail("現在白雕已經被人騎走了，等會兒再來吧。\n" ) ;
 
-        if( query("family/family_name", ob) != "桃花岛" )
+        if( query("family/family_name", ob) != "桃花島" )
         {
-                      message_vision(HIW "\n$N" HIW "一跃身跨上了白雕。只见白雕"
-                               "仰天长唳，突然猛然一颠……\n" HIR "结果$N"
-                               HIR "摔了个鼻青脸肿，看来白雕对$N" HIR "并"
-                               "不太感兴趣。\n" NOR, ob);
+                      message_vision(HIW "\n$N" HIW "一躍身跨上了白雕。只見白雕"
+                               "仰天長唳，突然猛然一顛……\n" HIR "結果$N"
+                               HIR "摔了個鼻青臉腫，看來白雕對$N" HIR "並"
+                               "不太感興趣。\n" NOR, ob);
                       return 1;
             }
 
             addn("sb_ride", 1);
-            message_vision(HIW "\n$N" HIW "一跃身跨上了白雕。只见白雕仰天长唳"
-                       "，突然展翅高飞。但\n看一雕一人身形渐渐缩小，终至不"
-                       "见。\n\n" NOR, ob);
+            message_vision(HIW "\n$N" HIW "一躍身跨上了白雕。只見白雕仰天長唳"
+                       "，突然展翅高飛。但\n看一雕一人身形漸漸縮小，終至不"
+                       "見。\n\n" NOR, ob);
 
             ob->move("/d/taohua/lantian") ;
-            tell_object(ob, HIW "\n你不断地飞呀飞，万水千山身下飘过……\n\n" NOR);
+            tell_object(ob, HIW "\n你不斷地飛呀飛，萬水千山身下飄過……\n\n" NOR);
             call_out("taohua", 1, ob);
             return 1;
 }
@@ -68,6 +68,6 @@ void taohua(object ob)
         if (base_name(environment(ob)) != "/d/taohua/lantian")
                 return;
           ob->move("/d/guiyun/qianyuan");
-          tell_object(ob, HIC "\n你终于飞到了中原，白雕落了下来。\n\n" NOR);
+          tell_object(ob, HIC "\n你終於飛到了中原，白雕落了下來。\n\n" NOR);
             addn("sb_ride", -1);
 }

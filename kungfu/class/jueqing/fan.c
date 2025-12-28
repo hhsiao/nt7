@@ -53,7 +53,7 @@ void create()
 
         prepare_skill("strike", "jueqing-zhang");
              
-        create_family("绝情谷", 5, "弟子");
+        create_family("絕情谷", 5, "弟子");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -85,14 +85,14 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)>0 )
         {
-                command("say 我绝情谷向来不和你们这些正道人士交往。");
-                command("say 你还是请回吧！");
+                command("say 我絕情谷向來不和你們這些正道人士交往。");
+                command("say 你還是請回吧！");
                 return;
         }
 
 
         command("nod");
-        command("say 今日我就暂且收下你，日后定须刻苦练武。");
+        command("say 今日我就暫且收下你，日後定須刻苦練武。");
         command("recruit "+query("id", ob));
 }
 
@@ -100,10 +100,10 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "流水无情" :
+        case "流水無情" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/jueqing-jian/liu",
-                           "name"    : "流水无情",
+                           "name"    : "流水無情",
                            "sk1"     : "jueqing-jian",
                            "lv1"     : 60,
                            "force"   : 60,
@@ -111,20 +111,20 @@ int accept_ask(object me, string topic)
                            "shen"    : -4000, ]));
                 break;
 
-        case "天绝锁" :
+        case "天絕鎖" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/tianjue-dao/suo",
-                           "name"    : "天绝锁",
+                           "name"    : "天絕鎖",
                            "sk1"     : "tianjue-dao",
                            "lv1"     :  40,
                            "gongxian":  100,
                            "shen"    : -4000, ]));
                 break;
 
-        case "破碎虚空" :
+        case "破碎虛空" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/pokong-quan/kong",
-                           "name"    : "破碎虚空",
+                           "name"    : "破碎虛空",
                            "sk1"     : "pokong-quan",
                            "lv1"     : 50,
                            "force"   : 70,
@@ -132,17 +132,17 @@ int accept_ask(object me, string topic)
                            "shen"    : -4000, ]));
                 break;
 
-        case "万念惧灰" :
+        case "萬念懼灰" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/jueqing-zhang/wan",
-                           "name"    : "万念惧灰",
-                           "msg1"    : this_object()->name() + "点了"
-                                       "点头，忽然一声长啸，声音震耳"
-                                       "欲聋，悲痛欲绝，顿感万念俱灰"
-                                       "，猛然间双掌疯狂般的拍向长空"
-                                       "，看似杂乱无章，但内中却隐藏"
-                                       "无限杀机。你看得心中不由地赞"
-                                       "叹。",
+                           "name"    : "萬念懼灰",
+                           "msg1"    : this_object()->name() + "點了"
+                                       "點頭，忽然一聲長嘯，聲音震耳"
+                                       "欲聾，悲痛欲絕，頓感萬念俱灰"
+                                       "，猛然間雙掌瘋狂般的拍向長空"
+                                       "，看似雜亂無章，但內中卻隱藏"
+                                       "無限殺機。你看得心中不由地贊"
+                                       "嘆。",
                            "sk1"     : "jueqing-zhang",
                            "lv1"     : 100,
                            "dodge"   : 80,
@@ -150,10 +150,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -8000, ]));
                 break;
 
-        case "九星连珠" :
+        case "九星連珠" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/guxing-jian/lian",
-                           "name"    : "九星连珠",
+                           "name"    : "九星連珠",
                            "sk1"     : "guxing-jian",
                            "lv1"     :  80,
                            "force"   :  60,
@@ -161,10 +161,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -12000, ]));
                 break;
 
-        case "天刀落云式" :
+        case "天刀落雲式" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/luoyun-dao/tian",
-                           "name"    : "天刀落云式",
+                           "name"    : "天刀落雲式",
                            "sk1"     : "luoyun-dao",
                            "lv1"     :  80,
                            "force"   :  60,
@@ -172,15 +172,15 @@ int accept_ask(object me, string topic)
                            "shen"    : -12000, ]));
                 break;
 
-        case "千山孤鸿影" :
+        case "千山孤鴻影" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/guhong-zhang/qian",
-                           "name"    : "千山孤鸿影",
-                           "msg1"    : this_object()->name() + "略微点"
-                                       "了点头，说道：“你可看清楚了。"
-                                       "”说罢双掌陡然连续拍出，刚中带"
-                                       "柔，双掌带风，已你笼罩在掌风之"
-                                       "中，你呆立当场却也不敢妄动。",
+                           "name"    : "千山孤鴻影",
+                           "msg1"    : this_object()->name() + "略微點"
+                                       "了點頭，說道：“你可看清楚了。"
+                                       "”說罷雙掌陡然連續拍出，剛中帶"
+                                       "柔，雙掌帶風，已你籠罩在掌風之"
+                                       "中，你呆立當場卻也不敢妄動。",
                            "sk1"     : "guhong-zhang",
                            "lv1"     : 80,
                            "force"   : 100,
@@ -188,10 +188,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -12000 ]));
                 break;
 
-        case "泰山压顶" :
+        case "泰山壓頂" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/poshui-zhang/tai",
-                           "name"    : "泰山压顶",
+                           "name"    : "泰山壓頂",
                            "sk1"     : "poshui-zhang",
                            "lv1"     : 120,
                            "force"   : 160,

@@ -1,4 +1,4 @@
-// story:feng 凤舞
+// story:feng 鳳舞
 
 #include <ansi.h>
 
@@ -7,14 +7,14 @@ mixed random_gift();
 inherit F_CLEAN_UP;
 
 nosave mixed *story = ({
-        "路人：这位大哥，这附近最近有什么奇怪的事情发生吗？",
-        "樵夫：听说最近东边的湖畔经常会飞来一只凤凰。",
-        "路人：原来真有这事....",
-        "樵夫：唉！又是个来送死的。",
-        "路人：听说上回老五看到了凤凰起舞，结果身法大涨，现在寻常人都打不过他了。",
+        "路人：這位大哥，這附近最近有什麼奇怪的事情發生嗎？",
+        "樵夫：聽說最近東邊的湖畔經常會飛來一隻鳳凰。",
+        "路人：原來真有這事....",
+        "樵夫：唉！又是個來送死的。",
+        "路人：聽說上回老五看到了鳳凰起舞，結果身法大漲，現在尋常人都打不過他了。",
         "......",
-        "湖边，凤凰看着水中的倒影，陶醉在自己的美丽中，翩翩起舞。",
-        "周围随着凤舞刮起了旋风。",
+        "湖邊，鳳凰看著水中的倒影，陶醉在自己的美麗中，翩翩起舞。",
+        "周圍隨著鳳舞颳起了旋風。",
         "呼～～～～",
         (: random_gift :),
 });
@@ -24,7 +24,7 @@ void create()
         seteuid(getuid());
 }
 
-string prompt() { return HIR "【神话】" NOR; }
+string prompt() { return HIR "【神話】" NOR; }
 
 mixed query_story_message(int step)
 {
@@ -70,16 +70,16 @@ mixed random_gift()
         if (! sizeof(ips))
                 return 0;
 
-        // 随即抽一个IP
+        // 隨即抽一個IP
         ks = keys(ips);
         ip = ks[random(sizeof(ks))];
 
-        // 在该IP地址上随即抽取一个玩家
+        // 在該IP地址上隨即抽取一個玩家
         ob = ips[ip][random(sizeof(ips[ip]))];
 
         if( query("gift/feng", ob)>4 || random(5) )
         {
-                msg = HIR + ob->name(1) + "被一阵旋风刮起，重重摔在了地上。" NOR;
+                msg = HIR + ob->name(1) + "被一陣旋風颳起，重重摔在了地上。" NOR;
                 if( query("combat_exp", ob)<1000000 || 
                     query("qi", ob)<1000 )
                         ob->unconcious();
@@ -92,8 +92,8 @@ mixed random_gift()
                 }
         } else
         {
-                msg = HIG "听说" + ob->name(1) +
-                      HIG "无意中看到了凤凰起舞。" NOR;
+                msg = HIG "聽說" + ob->name(1) +
+                      HIG "無意中看到了鳳凰起舞。" NOR;
                 addn("dex", 1, ob);
                 addn("gift/feng", 1, ob);
         }

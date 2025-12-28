@@ -14,18 +14,18 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("幽冥神指只能在战斗中对对手使用。\n");
+                return notify_fail("幽冥神指只能在戰鬥中對對手使用。\n");
 
         if (me->query_skill("kuihua-mogong", 1) < 150)
-                return notify_fail("你的葵花魔功还不够娴熟，不能使用幽冥神指！\n");
+                return notify_fail("你的葵花魔功還不夠嫻熟，不能使用幽冥神指！\n");
 
         if( query("neili", me)<300 )
-                return notify_fail("你的真气不够！\n");
+                return notify_fail("你的真氣不夠！\n");
 
         if (! living(target))
-              return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+              return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIR "$N" HIR "进步欺前，随即一指无声无息的向$n" HIR "的要害刺出！\n";
+        msg = HIR "$N" HIR "進步欺前，隨即一指無聲無息的向$n" HIR "的要害刺出！\n";
 
         ap = attack_power(me, "finger");
         dp = defense_power(target, "parry");
@@ -43,8 +43,8 @@ int perform(object me, object target)
                         damage = damage_power(me, "finger");
 
                         msg += COMBAT_D->do_damage(me, target, REMOTE_ATTACK, damage, 90,
-                                        HIR "$n" HIR "只觉此招，阴柔无比，诡异莫测，"
-                                        "心中一惊，却猛然间觉得一股阴风透骨而过。\n" NOR);
+                                        HIR "$n" HIR "只覺此招，陰柔無比，詭異莫測，"
+                                        "心中一驚，卻猛然間覺得一股陰風透骨而過。\n" NOR);
                         addn("neili", -140, me);
 
                         message_combatd(msg, me, target);
@@ -52,16 +52,16 @@ int perform(object me, object target)
                         return 1;
                 } else
                 {
-                        msg += HIR "这一招速度之快完全超出了$n" HIR "的想象，被$N"
-                                HIR "这一指正好刺中了丹田要害，浑身真气登时涣散！\n" NOR;
+                        msg += HIR "這一招速度之快完全超出了$n" HIR "的想象，被$N"
+                                HIR "這一指正好刺中了丹田要害，渾身真氣登時渙散！\n" NOR;
                         message_combatd(msg, me, target);
                         target->die(me);
                         return 1;
                 }
         } else
         {
-                msg += HIM "$n" HIM "大吃一惊，连忙退后，居然"
-                                "侥幸躲开着这一招！\n" NOR;
+                msg += HIM "$n" HIM "大吃一驚，連忙退後，居然"
+                                "僥倖躲開著這一招！\n" NOR;
                 me->start_busy(1 + random(2));
         }
 

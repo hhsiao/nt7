@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return HIG "清流剑" NOR; }
+string name() { return HIG "清流劍" NOR; }
 
 inherit F_SSERVER;
 
@@ -16,26 +16,26 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) ||
               query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对，难以施展" + name() + "。\n");
+                return notify_fail("你使用的武器不對，難以施展" + name() + "。\n");
 
         if (me->query_skill("force") < 220)
-                return notify_fail("你的内功的修为不够，难以施展" + name() + "。\n");
+                return notify_fail("你的內功的修為不夠，難以施展" + name() + "。\n");
 
         if (me->query_skill("shangqing-jian", 1) < 160)
-                return notify_fail("你的上清剑法修为不够，难以施展" + name() + "。\n");
+                return notify_fail("你的上清劍法修為不夠，難以施展" + name() + "。\n");
 
         if( query("neili", me)<400 )
-                return notify_fail("你的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你的真氣不夠，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("sword") != "shangqing-jian")
-                return notify_fail("你没有激发上清剑法，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發上清劍法，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         wname = weapon->name();
 
@@ -44,49 +44,49 @@ int perform(object me, object target)
         ap = attack_power(me, "sword");
         dp = defense_power(target, "parry");
 
-        msg = HIG "$N" HIG "施出上清剑法「清流剑」绝技，手中" + wname +
-              HIG "随即一颤，对准$n" HIG "连攻数剑，招式凌厉无比！\n" NOR;
+        msg = HIG "$N" HIG "施出上清劍法「清流劍」絕技，手中" + wname +
+              HIG "隨即一顫，對準$n" HIG "連攻數劍，招式凌厲無比！\n" NOR;
         if (ap / 2 + random(ap) > dp)
         {
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 20,
-                                           HIR "$p" HIR "奋力抵挡，却哪里招架得住，被$P"
-                                           HIR "这一剑刺中要脉，鲜血四处飞溅！\n" NOR);
+                                           HIR "$p" HIR "奮力抵擋，卻哪裡招架得住，被$P"
+                                           HIR "這一劍刺中要脈，鮮血四處飛濺！\n" NOR);
         } else
         {
-                msg += CYN "$p" CYN "凝神聚气，硬声声将$P"
-                       CYN "这一剑架开，丝毫无损。\n" NOR;
+                msg += CYN "$p" CYN "凝神聚氣，硬聲聲將$P"
+                       CYN "這一劍架開，絲毫無損。\n" NOR;
         }
 
         ap = attack_power(me, "sword");
         dp = defense_power(target, "dodge");
-        msg += "\n" HIG "却见$N" HIG "跨步上前，手中" + wname +
-               HIG "剑招陡变，又攻出一剑，剑尖顿闪出数道剑光，"
-               "笼罩$n" HIG "全身！\n" NOR;
+        msg += "\n" HIG "卻見$N" HIG "跨步上前，手中" + wname +
+               HIG "劍招陡變，又攻出一劍，劍尖頓閃出數道劍光，"
+               "籠罩$n" HIG "全身！\n" NOR;
         if (ap / 2 + random(ap) > dp)
         {
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 30,
-                                           HIR "$p" HIR "只觉眼花缭乱，一时难以勘透其"
-                                           "中奥妙，连中数剑，被削得血肉模糊！\n" NOR);
+                                           HIR "$p" HIR "只覺眼花繚亂，一時難以勘透其"
+                                           "中奧妙，連中數劍，被削得血肉模糊！\n" NOR);
         } else
         {
-                msg += CYN "可是$p" CYN "丝毫不为$P"
-                       CYN "华丽的剑光所动，稳稳将这一剑架开。\n" NOR;
+                msg += CYN "可是$p" CYN "絲毫不為$P"
+                       CYN "華麗的劍光所動，穩穩將這一劍架開。\n" NOR;
         }
 
         ap = attack_power(me, "sword");
         dp = defense_power(target, "force");
-        msg += "\n" HIG "$N" HIG "随即一声大喝，身外化身，剑外化剑，手中"
-               + wname + HIG "顿时漾起一道青芒，再次攻向$n" HIG "而去！\n"
+        msg += "\n" HIG "$N" HIG "隨即一聲大喝，身外化身，劍外化劍，手中"
+               + wname + HIG "頓時漾起一道青芒，再次攻向$n" HIG "而去！\n"
                NOR;
         if (ap / 2 + random(ap) > dp)
         {
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 40,
-                                           HIR "$p" HIR "运气抵挡，可只觉一股无形剑气"
-                                           "透体而过，难受之极，喷出数口鲜血！\n" NOR);
+                                           HIR "$p" HIR "運氣抵擋，可只覺一股無形劍氣"
+                                           "透體而過，難受之極，噴出數口鮮血！\n" NOR);
         } else
         {
-                msg += CYN "$p" CYN "一口气自丹田运了上来，$P"
-                CYN "附体剑芒虽然厉害，却未能伤$p" CYN "分毫。\n" NOR;
+                msg += CYN "$p" CYN "一口氣自丹田運了上來，$P"
+                CYN "附體劍芒雖然厲害，卻未能傷$p" CYN "分毫。\n" NOR;
         }
         me->start_busy(2 + random(3));
         addn("neili", -300, me);

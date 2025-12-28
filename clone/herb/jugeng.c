@@ -8,8 +8,8 @@ void create()
                 set_default_object(__FILE__);
         else*/ 
         {
-                set("long","菊梗：菊花根茎，清热败火。\n");
-                set("base_unit", "块");
+                set("long","菊梗：菊花根莖，清熱敗火。\n");
+                set("base_unit", "塊");
                 set("base_value", 4000);
                 set("base_weight", 60);
                 set("cure_s",0);

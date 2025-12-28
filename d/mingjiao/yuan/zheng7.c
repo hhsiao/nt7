@@ -6,7 +6,7 @@ inherit F_UNIQUE;
 
 void create()
 {
-        set_name("郑七灭", ({ "zheng qimie", "qimie", "zheng"}));
+        set_name("鄭七滅", ({ "zheng qimie", "qimie", "zheng"}));
         set("title", HIC "神箭八雄" NOR);
         set("gender", "男性");
         set("age", 25);
@@ -38,7 +38,7 @@ void create()
         setup();
 
         carry_object("/clone/misc/cloth")->wear();
-        set_temp("is_riding", BLK "雪蹄马" NOR);
+        set_temp("is_riding", BLK "雪蹄馬" NOR);
         set_temp("handing", carry_object("/d/mingjiao/yuan/obj/arrow"));
         add_money("gold",1);
 }

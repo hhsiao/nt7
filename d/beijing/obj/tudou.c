@@ -10,7 +10,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("long", "普通的土豆。\n");
-                set("unit", "个");
+                set("unit", "個");
                 set("value", 2);
                 set("food_remaining", 1);
                 set("food_supply", 5);

@@ -5,9 +5,9 @@ void home(object ob);
 
 void create()
 {
-        set("short", "海滩");
+        set("short", "海灘");
         set("long", @LONG
-你被一阵风吹得头晕目眩，似乎又回到了海滩。
+你被一陣風吹得頭暈目眩，似乎又回到了海灘。
 LONG);
 
 

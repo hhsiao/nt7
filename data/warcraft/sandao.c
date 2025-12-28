@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("哦饿[2;37;0m[2;37;0m", ({"sdfdfe"}));        
+        set_name("哦餓[2;37;0m[2;37;0m", ({"sdfdfe"}));        
         set("gender", "男性");                
-        set("long", "哦饿[2;37;0m
-它是胡三的魔幻兽。
+        set("long", "哦餓[2;37;0m
+它是胡三的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

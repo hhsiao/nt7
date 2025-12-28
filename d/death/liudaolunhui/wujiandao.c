@@ -8,21 +8,21 @@ inherit ROOM;
 void recreate();
 
 string *enter_msg = ({
-        HIB+"\n你只觉得眼前一花，突然什么也听不见，什么也看不见......\n\n"+NOR,
-        HIB+"只觉得身体不断的下坠......\n\n"+NOR,
-        HIB+"坠向无尽的黑暗......\n\n"+NOR,
-        HIB+"忽然仿佛一只大手托了你一下......\n\n"+NOR,
-        HIB+"冥冥中隐约传来阵阵叮叮当当碰撞声......\n\n"+NOR,
-        HIB+"你睁眼一看，发现自己已置身于一个喧嚣而似乎并不陌生的世界......\n\n"+NOR,
+        HIB+"\n你只覺得眼前一花，突然什麼也聽不見，什麼也看不見......\n\n"+NOR,
+        HIB+"只覺得身體不斷的下墜......\n\n"+NOR,
+        HIB+"墜向無盡的黑暗......\n\n"+NOR,
+        HIB+"忽然彷彿一隻大手託了你一下......\n\n"+NOR,
+        HIB+"冥冥中隱約傳來陣陣叮叮噹噹碰撞聲......\n\n"+NOR,
+        HIB+"你睜眼一看，發現自己已置身於一個喧囂而似乎並不陌生的世界......\n\n"+NOR,
 });
 
 void entering_world(object me, int n);
 
 void create()
 {
-        set("short", HIW "\n\n                无        间        道" NOR);
+        set("short", HIW "\n\n                無        間        道" NOR);
         set("long", HIW "\n"
-"这里是天地人三界不管的终极无间，这里没有任何出路，只有黑暗。\n\n" NOR);
+"這裡是天地人三界不管的終極無間，這裡沒有任何出路，只有黑暗。\n\n" NOR);
 
         set("no_magic", 1);
         setup();
@@ -43,41 +43,41 @@ int do_say(string arg)
 
         if( ! arg || arg == "" ) return 0;
 
-        if( arg == "潜能无限，精意神通，身居祸福，自我主宰！" 
+        if( arg == "潛能無限，精意神通，身居禍福，自我主宰！" 
         &&  (int)query("poem_said") != 1 )
         {
-                message_vision(HIW "\n只听$N" HIW "猛然高声喝道：“潜能无"
-                               "限，精意神通，身居祸福，自我主宰！”\n" NOR + 
-                               HIR "\n$N" HIR "话音刚"
-                               "落，地面突然「轰隆隆」晃动了几下。眼前出"
-                               "现了一个镜子。\n\n"
+                message_vision(HIW "\n只聽$N" HIW "猛然高聲喝道：“潛能無"
+                               "限，精意神通，身居禍福，自我主宰！”\n" NOR + 
+                               HIR "\n$N" HIR "話音剛"
+                               "落，地面突然「轟隆隆」晃動了幾下。眼前出"
+                               "現了一個鏡子。\n\n"
                                NOR, this_player());
                 ob = new("/d/death/obj/wujian");
                 ob->move(this_player(), 1); 
-                message_vision(HIW "突然间电闪雷鸣，宇宙无敌之剑无间闪电伴随着道道闪电穿进$N的怀中！\n", this_player());     
+                message_vision(HIW "突然間電閃雷鳴，宇宙無敵之劍無間閃電伴隨著道道閃電穿進$N的懷中！\n", this_player());     
                 this_object()->recreate();
                 set("poem_said", 1);
                 return 1;
         }
 
-        if( arg == "潜能无限，精意神通，身居祸福，自我主宰！" && (int)query("poem_said") == 1 )
+        if( arg == "潛能無限，精意神通，身居禍福，自我主宰！" && (int)query("poem_said") == 1 )
         {
-                write(HIC "\n你对着黑暗一声猛喝，声音在司内回荡了好一阵才消逝。\n" NOR);
+                write(HIC "\n你對著黑暗一聲猛喝，聲音在司內迴盪了好一陣才消逝。\n" NOR);
                 return 1;
         }
 }
 
 void recreate()
 {
-        set("short", HIW "\n\n                无        间        道" NOR);
+        set("short", HIW "\n\n                無        間        道" NOR);
         set("long", HIW "\n"
-"这里是天地人三界不管的终极无间，这里没有任何出路，只有黑暗。\n"
-"前方是一面足有一人高的大铜镜(mirror)。\n\n" NOR);
+"這裡是天地人三界不管的終極無間，這裡沒有任何出路，只有黑暗。\n"
+"前方是一面足有一人高的大銅鏡(mirror)。\n\n" NOR);
 
         set("item_desc", ([
-                "大铜镜": "一面足有一人高的大铜镜，奇怪的是镜子里一片混沌，照不出任何人影。\n",
-                "铜镜"  : "一面足有一人高的大铜镜，奇怪的是镜子里一片混沌，照不出任何人影。\n",
-                "mirror": "一面足有一人高的大铜镜，奇怪的是镜子里一片混沌，照不出任何人影。\n",
+                "大銅鏡": "一面足有一人高的大銅鏡，奇怪的是鏡子裡一片混沌，照不出任何人影。\n",
+                "銅鏡"  : "一面足有一人高的大銅鏡，奇怪的是鏡子裡一片混沌，照不出任何人影。\n",
+                "mirror": "一面足有一人高的大銅鏡，奇怪的是鏡子裡一片混沌，照不出任何人影。\n",
         ]));
         set("objects", ([
                 "/d/death/npc/ghost" : 21,
@@ -95,10 +95,10 @@ int do_enter(string arg)
         if (! query("poem_said")) return 0;
 
         if (objectp(present("ghost", environment(me)))) 
-                return notify_fail("你还是先解决掉这些亡魂吧！\n");
+                return notify_fail("你還是先解決掉這些亡魂吧！\n");
                 
         set_temp("entering_world", 1, me);
-        message_vision("$N向着铜镜的方向走去。\n",me);
+        message_vision("$N向著銅鏡的方向走去。\n",me);
         call_out("entering_world", 1, me, 0);
         return 1;
 }
@@ -114,26 +114,26 @@ void entering_world(object me, int n)
         if (n == sizeof(enter_msg) - 1)
         {
                 delete_temp("entering_world", me);
-                tell_room(environment(me), sprintf(HIY"铜镜中放出一道金光罩向%s，随后%s不见了。\n"NOR,
+                tell_room(environment(me), sprintf(HIY"銅鏡中放出一道金光罩向%s，隨後%s不見了。\n"NOR,
                           me->name(), me->name()), ({ me }));
                           
                 me->clear_condition();
  
                 foreach (item in all_inventory(me))
                 {
-                        message_vision("$N丢下了$n。\n", me, item);
+                        message_vision("$N丟下了$n。\n", me, item);
                         if (item->is_character())
                                 item->move(environment(me));
                         else
                                 destruct(item);
                 }
 
-                // 选择特殊技能
+                // 選擇特殊技能
                 UPDATE_D->zhuan_player(me);
 
                 me->move("/d/city/wumiao");
                 set("startroom", "/d/city/wumiao", me);
-                tell_room(environment(me),me->name()+"突然出现在眼前。\n",({me}));                                
+                tell_room(environment(me),me->name()+"突然出現在眼前。\n",({me}));                                
                 me->save();
                 return;                
         }
@@ -151,20 +151,20 @@ int do_smash(string arg)
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("id", weapon) != "wujianshandian" )
-                return notify_fail("你没有装备无间闪电，无法使用其 smash 神力！\n");
+                return notify_fail("你沒有裝備無間閃電，無法使用其 smash 神力！\n");
 
         if (! arg)
                 return notify_fail("指令格式: smash <living>\n");
         
         ob = present(arg, environment(me));
         if (! ob )        
-                return notify_fail("找不到这个生物。\n");
+                return notify_fail("找不到這個生物。\n");
 
-        message_vision(HIM"无间闪电化作无数闪电击向"+query("name", ob)+"...\n\n"
+        message_vision(HIM"無間閃電化作無數閃電擊向"+query("name", ob)+"...\n\n"
                        NOR, me);        
         if (! ob->is_character())
         {
-                message_vision(HIM + ob->name() + HIM "从这个世界上消失了...\n\n"
+                message_vision(HIM + ob->name() + HIM "從這個世界上消失了...\n\n"
                                NOR, me);
                 destruct(ob);
                 return 1;

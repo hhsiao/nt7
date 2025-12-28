@@ -1,4 +1,4 @@
-// ding-force.c 小丁气功
+// ding-force.c 小丁氣功
 
 inherit FORCE;
 int is_pbsk() { return 1; }
@@ -17,14 +17,14 @@ int valid_enable(string usage) { return usage == "force"; }
 
 int valid_learn(object me)
 {
-        if( query("gender", me) == "无性" && me->query_skill("ding-force",1)>49 )
-                return notify_fail("公公无根无性，小丁气功再难更上一层楼。\n");
+        if( query("gender", me) == "無性" && me->query_skill("ding-force",1)>49 )
+                return notify_fail("公公無根無性，小丁氣功再難更上一層樓。\n");
         return 1;
 }
 
 int practice_skill(object me)
 {
-        return notify_fail("小丁气功只能跟小丁学来增加熟练度。\n");
+        return notify_fail("小丁氣功只能跟小丁學來增加熟練度。\n");
 }
 
 string exert_function_file(string func)

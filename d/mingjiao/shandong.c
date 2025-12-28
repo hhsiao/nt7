@@ -8,14 +8,14 @@ void create()
 {
         set("short", "明教密洞");
         set("long", @LONG
-这里是一个小小土洞，周围黑乎乎的很难看清楚。隐隐约约，可
-以看到一扇大石门(men)。
+這裡是一個小小土洞，周圍黑乎乎的很難看清楚。隱隱約約，可
+以看到一扇大石門(men)。
 LONG );
         set("exits", ([
                 "out"  : __DIR__"huangtulu2",
         ]));
         set("item_desc", ([
-                "men"  : "一扇大石门，看来总有两万斤重吧。\n",
+                "men"  : "一扇大石門，看來總有兩萬斤重吧。\n",
         ]));
         set("outdoors", "mingjiao");
         setup();
@@ -32,24 +32,24 @@ int do_break(string arg)
         int i;
 
         if (arg != "men")
-                return notify_fail("你在干吗? \n");
+                return notify_fail("你在幹嗎? \n");
 
         if (query("neili", me) < 2500)
         {
-                write("你运了运气，觉得自己现在的内力不济。\n");
+                write("你運了運氣，覺得自己現在的內力不濟。\n");
                 return 1;
         }
 
         addn("neili", -2000, me);
         if (me->query_skill("force", 1) < 300)
         {
-                message_vision(CYN "$N" CYN "呀呀嘿嘿废了半天力气，结果"
-                                  "没什么动静。\n", me);
-                tell_object(me, "看来是自己的内功火候还不够。\n");
+                message_vision(CYN "$N" CYN "呀呀嘿嘿廢了半天力氣，結果"
+                                  "沒什麼動靜。\n", me);
+                tell_object(me, "看來是自己的內功火候還不夠。\n");
                 return 1;
         }
 
-        message_vision(CYN "石门在$N" CYN "一击之下轧轧声响，缓缓移开。\n" NOR,
+        message_vision(CYN "石門在$N" CYN "一擊之下軋軋聲響，緩緩移開。\n" NOR,
                        me);
 
         set("exits/enter",__DIR__"midao0");
@@ -61,6 +61,6 @@ int do_break(string arg)
 
 void close(object room)
 {
-        message("vision", "石门又在轧轧声响，缓缓闭上。\n"NOR, room);
+        message("vision", "石門又在軋軋聲響，緩緩閉上。\n"NOR, room);
         delete("exits/enter");
 }

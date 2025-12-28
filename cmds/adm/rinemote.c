@@ -50,7 +50,7 @@ int main(object me, string arg)
                 }
         }
 
-        write("一共搜索了" + chinese_number(count) + "个表情动词。\n");
+        write("一共搜索了" + chinese_number(count) + "個表情動詞。\n");
         return 1;
 }
 
@@ -59,7 +59,7 @@ int help(object me)
   write(@HELP
 指令格式 : replace in emote
 
-功能：替换emote中所有的英文标点符号为中文标点符号。
+功能：替換emote中所有的英文標點符號為中文標點符號。
 HELP );
     return 1;
 }

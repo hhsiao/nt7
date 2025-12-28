@@ -13,7 +13,7 @@ void create()
 		set_default_object(__FILE__);
 	else {
 		set("unit", "副");
-                set("long", "这是一副念珠，黑沉沉的不知是用什么制成的，看起来非常圆润，想必经常被抚摸滚动。\n");
+                set("long", "這是一副念珠，黑沉沉的不知是用什麼製成的，看起來非常圓潤，想必經常被撫摸滾動。\n");
 		set("value", 0);
 		set("material", "hand");
 		set("armor_prop/armor", 5);

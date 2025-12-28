@@ -5,7 +5,7 @@ inherit WAIST;
 
 void create()
 {
-        set_name(HIY "锁脉" NOR, ({ "suo mai2", "suo", "mai2" }));
+        set_name(HIY "鎖脈" NOR, ({ "suo mai2", "suo", "mai2" }));
         set_weight(10);
         /*if (clonep())
                 set_default_object(__FILE__);

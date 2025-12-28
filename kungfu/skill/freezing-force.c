@@ -1,4 +1,4 @@
-// freezing-force.c 少林 冰蚕寒功
+// freezing-force.c 少林 冰蠶寒功
 // Feb.21 1998 by Java
 
 #include <ansi.h>
@@ -28,10 +28,10 @@ int valid_learn(object me)
 {
         if( (!me->query_family() || 
             me->query_family() != "星宿派") && !query("yuanshen", me) ) 
-                return notify_fail("你不是星宿派门人，无法学习此神功。\n");
+                return notify_fail("你不是星宿派門人，無法學習此神功。\n");
 
         if (me->query_skill("force", 1) < 50)
-                return notify_fail("你的基本内功火候不够，难以锻炼冰蚕寒功！\n");
+                return notify_fail("你的基本內功火候不夠，難以鍛鍊冰蠶寒功！\n");
 
 /*
         if (me->query_skill("yijinjing", 1))
@@ -39,14 +39,14 @@ int valid_learn(object me)
 */
 
         if (me->query_skill("force", 1) < me->query_skill("freezing-force", 1))
-                return notify_fail("你的基本内功水平不够，难以锻炼更深厚的冰蚕寒功！\n");
+                return notify_fail("你的基本內功水平不夠，難以鍛鍊更深厚的冰蠶寒功！\n");
 
         return ::valid_learn(me);
 }
 
 int practice_skill(object me)
 {
-        return notify_fail("冰蚕寒功无法通过简单的练习来增加熟练度。\n");
+        return notify_fail("冰蠶寒功無法通過簡單的練習來增加熟練度。\n");
 }
 
 // hit effect called by combatd
@@ -72,8 +72,8 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
                                    "duration" : lvl / 40 + random(lvl / 20) ]));
 
                         return ([ "damage" : result * 2,
-                                  "msg" : HIW "霎时$n" HIW "只觉得寒风袭"
-                                          "体，有种说不出的难受。\n" NOR ]);
+                                  "msg" : HIW "霎時$n" HIW "只覺得寒風襲"
+                                          "體，有種說不出的難受。\n" NOR ]);
                 }
         }
 
@@ -86,14 +86,14 @@ string exert_function_file(string func)
 }
 
 string *fanzhen_msg = ({
-        "只震得$N胸内腹中，有如五脏一齐翻转！\n",
-        "抢先反震，将$N震得脸如白纸，全无血色！\n",
-        "震得$N心肺欲裂，腾腾腾连退数步！\n",
-        "功力已布满全身，将$N的力量反震回去！\n",
-        "震得$N天旋地转，腾腾腾连退七八步！\n",
-        "和$N一撞，只震的$p胸口气血翻涌！\n",
-        "$N便如撞在一堵棉花作面，钢铁为里的厚墙上一般，震退数步！\n",
-        "$N刚碰到$p，突然身子一震，登时飞了出去！\n",
+        "只震得$N胸內腹中，有如五臟一齊翻轉！\n",
+        "搶先反震，將$N震得臉如白紙，全無血色！\n",
+        "震得$N心肺欲裂，騰騰騰連退數步！\n",
+        "功力已佈滿全身，將$N的力量反震回去！\n",
+        "震得$N天旋地轉，騰騰騰連退七八步！\n",
+        "和$N一撞，只震的$p胸口氣血翻湧！\n",
+        "$N便如撞在一堵棉花作面，鋼鐵為裡的厚牆上一般，震退數步！\n",
+        "$N剛碰到$p，突然身子一震，登時飛了出去！\n",
 });
 mixed valid_damage(object ob, object me, int damage, object weapon)
 {
@@ -120,7 +120,7 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
                 {
                         result = ([ "damage" : -damage ]);
                         
-                        msg = random(2) ? HIR "$n身上生出一股反震之力，" : HIR "$n身上冰蚕寒功随心而起，";   
+                        msg = random(2) ? HIR "$n身上生出一股反震之力，" : HIR "$n身上冰蠶寒功隨心而起，";   
                               
                         msg += fanzhen_msg[random(sizeof(fanzhen_msg))] + NOR;             
                 
@@ -140,13 +140,13 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
                         case 1:
                         case 2:
                         case 3:                                                
-                                result += ([ "msg" : HIR "好似有一堵无形的墙在$n面前阻挡着，结果"
-                                                     "$N" HIR "一下子被反弹，震得$N" 
-                                                     HIR "手臂发麻！\n" NOR ]);
+                                result += ([ "msg" : HIR "好似有一堵無形的牆在$n面前阻擋著，結果"
+                                                     "$N" HIR "一下子被反彈，震得$N" 
+                                                     HIR "手臂發麻！\n" NOR ]);
                                 break;
                         default:
-                                result += ([ "msg" : HIR "结果$n身上生出一股反震之力，$N只觉虎口一热，" + 
-                                                     weapon1->name() + HIR "顿时脱手而出，飞出丈外！\n" NOR]);
+                                result += ([ "msg" : HIR "結果$n身上生出一股反震之力，$N只覺虎口一熱，" + 
+                                                     weapon1->name() + HIR "頓時脫手而出，飛出丈外！\n" NOR]);
                                 weapon1->unequip();
                                 weapon1->move(environment(ob));
                                 ob->reset_action();

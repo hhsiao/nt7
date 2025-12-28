@@ -4,11 +4,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("仙鹤花纹", ({ "picture"}) );
+        set_name("仙鶴花紋", ({ "picture"}) );
         set("gender", "男性" );
         set("age", 34);
         set("long",
-                "这是全身都罩在黑纱中的神秘人，全身散发着一股阴森的气息。\n");
+                "這是全身都罩在黑紗中的神秘人，全身散發著一股陰森的氣息。\n");
         set("max_qi", 5000);
         set("max_jing", 5000);
         set("max_neili", 5000);
@@ -54,7 +54,7 @@ int do_look(string arg)
 {
         if( arg == "picture" && query("id", this_object()) == "picture" )
     {
-            write("这是一张官府的"+query("name", this_object())+"。\n");
+            write("這是一張官府的"+query("name", this_object())+"。\n");
             destruct(this_object());
       return 1;
     }
@@ -113,7 +113,7 @@ void init()
 }
 void destroy_npc()
 {
-        message_vision(query("name", this_object())+"忽然打了个哆嗦，不由心生惧意，身形一晃，顿时混入莽莽人海之中。\n",environment(this_object()));
+        message_vision(query("name", this_object())+"忽然打了個哆嗦，不由心生懼意，身形一晃，頓時混入莽莽人海之中。\n",environment(this_object()));
         destruct(this_object());
 }
 void die()

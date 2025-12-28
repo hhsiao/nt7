@@ -1,4 +1,4 @@
-// wu.c 群魔乱舞
+// wu.c 群魔亂舞
 
 #include <ansi.h>
 #include <combat.h>
@@ -19,32 +19,32 @@ int perform(object me, object target)
                 target = me->select_opponent();
         }
 
-        if( userp(me) && query("gender", me) != "无性" && !query("special_skill/ghost",me))
-                return notify_fail("你的性别与日月内功相斥，无法使用此绝招！\n");  
+        if( userp(me) && query("gender", me) != "無性" && !query("special_skill/ghost",me))
+                return notify_fail("你的性別與日月內功相斥，無法使用此絕招！\n");  
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail("群魔乱舞只能对战斗中的对手使用。\n");
+                return notify_fail("群魔亂舞只能對戰鬥中的對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) || 
             query("skill_type", weapon) != "sword" )
-                return notify_fail("你没有装备剑，不能用这一招。\n");
+                return notify_fail("你沒有裝備劍，不能用這一招。\n");
 
         if( me->query_skill_mapped("sword") != "pixie-jian") 
-                return notify_fail("你并没有使用辟邪剑法，无法使用此绝招！\n"); 
+                return notify_fail("你並沒有使用辟邪劍法，無法使用此絕招！\n"); 
 
         if( query("neili", me)<300 )
-                return notify_fail("你的真气不够，无法施展群魔乱舞！\n");
+                return notify_fail("你的真氣不夠，無法施展群魔亂舞！\n");
 
         if ((lvl = (int)me->query_skill("pixie-jian", 1)) < 350)
-                return notify_fail("你的辟邪剑法火候不够，无法施展群魔乱舞！\n");
+                return notify_fail("你的辟邪劍法火候不夠，無法施展群魔亂舞！\n");
 
-        msg = HIR "$N" HIR "一声长吟，身形变得奇快无比，接连向$n"
-              HIR "攻出数招！\n" NOR;
+        msg = HIR "$N" HIR "一聲長吟，身形變得奇快無比，接連向$n"
+              HIR "攻出數招！\n" NOR;
         i = 7;
         if (lvl / 2 + random(lvl) > (int)target->query_skill("parry") || !living(target))
         {
-                msg += HIR "$n" HIR "只觉得眼前一花，发现四周都是$N"
-                       HIR "的身影，不由暗生惧意，接连后退。\n" NOR;
+                msg += HIR "$n" HIR "只覺得眼前一花，發現四周都是$N"
+                       HIR "的身影，不由暗生懼意，接連後退。\n" NOR;
                 count = (lvl + (int)me->query_skill("kuihua-xinfa", 1)) / 2;
                 if( me->query_skill_mapped("force") != "kuihua-xinfa")
                 count /= 2;
@@ -52,8 +52,8 @@ int perform(object me, object target)
                 i += random(6);
         } else
         {
-                msg += CYN "$n" CYN "见$N" CYN "身法好快，哪里"
-                       "敢怠慢，连忙打起精神小心应对。\n" NOR;
+                msg += CYN "$n" CYN "見$N" CYN "身法好快，哪裡"
+                       "敢怠慢，連忙打起精神小心應對。\n" NOR;
                 count = 0;
         }
 

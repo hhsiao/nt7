@@ -5,10 +5,10 @@
 
 void create()
 {
-        set("short", "听涛阁");
+        set("short", "聽濤閣");
 	set ("long", @LONG
-这是竹林一角的听涛阁，在这里风吹竹叶的阵阵涛声听的非常真
-切，真是让人心旷神怡。实在是一个参悟武功的好去处。 
+這是竹林一角的聽濤閣，在這裡風吹竹葉的陣陣濤聲聽的非常真
+切，真是讓人心曠神怡。實在是一個參悟武功的好去處。 
 LONG );
 
         set("exits", ([
@@ -21,7 +21,7 @@ LONG );
         set("research_improve", 15);  //15% improved
     
         set("room_owner", "西瓜");
-        set("room_name", "水果摊");
+        set("room_name", "水果攤");
         set("room_id", "sgt");
         set("room_owner_id", "xigua");
         set("room_position", "碎石小道");

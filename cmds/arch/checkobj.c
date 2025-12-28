@@ -1,4 +1,4 @@
-//checkobj  查询物品分布
+//checkobj  查詢物品分佈
 // Smallfish@Huaxia
 
 inherit F_CLEAN_UP;
@@ -17,28 +17,28 @@ int main(object me,string arg)
 
         seteuid(geteuid(me));
         if (!arg)
-                return notify_fail("指令格式：checkobj <物品文件>|<房间文件>\n");
+                return notify_fail("指令格式：checkobj <物品文件>|<房間文件>\n");
 
         file=resolve_path(query("cwd", me),arg);
         if (file_size(file) < 0)
         {
                 ob = present(arg, me);
                 if (! ob) ob = present(arg, environment(me));
-                if (! ob) return notify_fail("没有这个档案。\n");
+                if (! ob) return notify_fail("沒有這個檔案。\n");
                 file = base_name(ob) + ".c";
         }
 
         if (!objectp(ob = load_object(file)))
-                return notify_fail("无法根据" + file + "生成物品。\n");
+                return notify_fail("無法根據" + file + "生成物品。\n");
 
         if (ob->is_character())
         {
                 if (!userp(ob))
                         destruct(ob);
-                return notify_fail("这是一个人物物品。\n");
+                return notify_fail("這是一個人物物品。\n");
         }
 
-        if ((int)ob->query_max_encumbrance() == 100000000000)   //是房间
+        if ((int)ob->query_max_encumbrance() == 100000000000)   //是房間
                 info = check_room(file);
         else
                 info = check_obj(file);
@@ -62,14 +62,14 @@ string check_room(string file)
         room = load_object(file);
 
         if (!room)
-                return "检查" + file + "出错。\n";
+                return "檢查" + file + "出錯。\n";
 
-        msg = "这是一个房间：" + file + "，名称：" + room->short() + "\n";
+        msg = "這是一個房間：" + file + "，名稱：" + room->short() + "\n";
         msg += "------------------------------------------------------------------------\n";
         ob_list=query("objects", room);
         if( !mapp(ob_list) ) 
         {
-                msg += "这个房间没有任何物品。\n";
+                msg += "這個房間沒有任何物品。\n";
                 return msg;
         }
 
@@ -92,7 +92,7 @@ string check_room(string file)
         }
 
         if (!have_living)
-                msg += "这个房间目前没有活的物品。\n";
+                msg += "這個房間目前沒有活的物品。\n";
 
         list = keys(ob_list);
 
@@ -119,7 +119,7 @@ string check_obj(string file)
 
         ob = load_object(file);
         if (!ob)
-                return "检查" + file + "出错。\n";
+                return "檢查" + file + "出錯。\n";
 
         if (ob->is_character())
         {
@@ -128,7 +128,7 @@ string check_obj(string file)
                 return 0;
         }
 
-        msg = "物品：" + file + "，名称：" + ob->short() + "\n";
+        msg = "物品：" + file + "，名稱：" + ob->short() + "\n";
 
         if (clonep(ob))
                 destruct(ob);
@@ -137,7 +137,7 @@ string check_obj(string file)
 
         if (!sizeof(ob_list))
         {
-                msg += "这个文件没有任何复制物品。\n";
+                msg += "這個文件沒有任何複製物品。\n";
                 return msg;
         }
 
@@ -163,7 +163,7 @@ string check_obj(string file)
                 count += obj_env[list[i]];
         }
 
-        msg += "总共" + chinese_number(count) + "个物品。\n";
+        msg += "總共" + chinese_number(count) + "個物品。\n";
 
         obj_env = 0;
         return msg;
@@ -194,10 +194,10 @@ string base_environment(object ob)
 int help(object me)
 {
 write(@HELP
-指令格式 : checkobj <物品>|<房间>
+指令格式 : checkobj <物品>|<房間>
 
-查询指定的物品分布情况。
-如果查询房间，则显示房间所有固有物品的分布情况。
+查詢指定的物品分佈情況。
+如果查詢房間，則顯示房間所有固有物品的分佈情況。
 HELP
     );
     return 1;

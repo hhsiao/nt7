@@ -6,10 +6,10 @@ void setup()
 {
         set_name("十二天[2;37;0m[2;37;0m", ({"headalong"}));        
         set("gender", "男性");                
-        set("long", "后天[2;37;0m
-它是毛太粗的魔幻兽。
+        set("long", "後天[2;37;0m
+它是毛太粗的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "heada");
         set("owner_name", "毛太粗");

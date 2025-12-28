@@ -12,8 +12,8 @@ void create()
         set_name(HIR "六品武士" NOR, ({ "wu shi", "wu"}));
         set("nickname", HIY "西夏一品堂" NOR);
         set("long", 
-"西夏国有个讲武馆，叫做一品堂，是该国国王所立，堂中招聘武功高强之士，优礼供养。\n"
-"这是一品堂中的高级六品武士，据说受赫连大将军带领，此来不知道对中原有什么图谋......\n"
+"西夏國有個講武館，叫做一品堂，是該國國王所立，堂中招聘武功高強之士，優禮供養。\n"
+"這是一品堂中的高級六品武士，據說受赫連大將軍帶領，此來不知道對中原有什麼圖謀......\n"
         );
         
         set("age", 32);
@@ -98,11 +98,11 @@ void init()
 
 void die(object killer)
 {
-        object dob;             // 打晕这个NPC的人
-        int n;                  // 可以奖励的人的数目
-        int exp;                // 需要瓜分的经验
-        int pot;                // 需要瓜分的潜能
-        object *t;              // 杀死我的人的队伍列表
+        object dob;             // 打暈這個NPC的人
+        int n;                  // 可以獎勵的人的數目
+        int exp;                // 需要瓜分的經驗
+        int pot;                // 需要瓜分的潛能
+        object *t;              // 殺死我的人的隊伍列表
         object tob;
         int i;
                 object *inv;
@@ -111,7 +111,7 @@ void die(object killer)
                 string s_gift, *key_s_gift;
                 int gift_point;
 
-        // 定义奖励物品列表
+        // 定義獎勵物品列表
                 mixed oblist;
                 
                 object env;
@@ -119,10 +119,10 @@ void die(object killer)
                 oblist = query("oblist");
 
 
-                // 通知当前房间，以便计算刷新
+                // 通知當前房間，以便計算刷新
                 env = environment(this_object());
                 env->npc_die(this_object());
-        // 找到杀了我(NPC)或是打晕我的人
+        // 找到殺了我(NPC)或是打暈我的人
         if (! objectp(dob = killer))
                 dob = query_last_damage_from();
 
@@ -132,7 +132,7 @@ void die(object killer)
                                 return;
                 }
 
-                //移动惩罚消弱
+                //移動懲罰消弱
                 if (query_temp("xzz/ntrip", dob)>-1) addn_temp("xzz/ntrip", -1, dob);
                 addn_temp("xzz/nkill", 1, dob);
 
@@ -184,7 +184,7 @@ void die(object killer)
                                                                    addn("xingzilin/wushi6",1,tob);addn("xingzilin/exp",exp,tob);GIFT_D->delay_bonus(tob,
                                                                           ([ "exp"      : exp + ((tob == dob) ? exp / 10 : 0),
                                                                                  "pot"      : pot + ((tob == dob) ? pot / 10 : 0),
-                                                                                 "prompt"   : "你的队伍杀死" + name() + "之后"]));
+                                                                                 "prompt"   : "你的隊伍殺死" + name() + "之後"]));
 
                                                  }
                                         }
@@ -194,7 +194,7 @@ void die(object killer)
                                                                    addn("xingzilin/wushi6",1,dob);addn("xingzilin/exp",exp,dob);GIFT_D->delay_bonus(dob,
                                                                           ([ "exp"      : exp,
                                                                                  "pot"      : pot,
-                                                                                 "prompt"   : "你在杀死" + name() + "之后"]));
+                                                                                 "prompt"   : "你在殺死" + name() + "之後"]));
                                 }
 
         }

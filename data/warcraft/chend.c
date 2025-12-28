@@ -4,12 +4,12 @@
 
 void setup()
 {
-        set_name("[31m万里长城[2;37;0m[2;37;0m", ({"sff"}));        
+        set_name("[31m萬里長城[2;37;0m[2;37;0m", ({"sff"}));        
         set("gender", "男性");                
-        set("long", "万里长城。。[2;37;0m
-它是成城的魔幻兽。
+        set("long", "萬里長城。。[2;37;0m
+它是成城的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "chend");
         set("owner_name", "成城");

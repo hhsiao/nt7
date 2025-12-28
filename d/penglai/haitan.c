@@ -5,11 +5,11 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "海滩");
+        set("short", "海灘");
         set("long", @LONG
-这里就是蓬莱仙岛了。北边是一望无际的大海，放眼望去，整
-个岛被仙气笼罩，前方不远处是一片竹林，阵阵梵音传出，令人心
-旷神怡。
+這裡就是蓬萊仙島了。北邊是一望無際的大海，放眼望去，整
+個島被仙氣籠罩，前方不遠處是一片竹林，陣陣梵音傳出，令人心
+曠神怡。
 LONG);
 
         set("exits",([
@@ -18,10 +18,10 @@ LONG);
         set("outdoors", "penglai");
         //set("valid_startroom", 1);
         set("no_clean_up", 1);
-        set("no_rideto", 1);         // 设置不能骑马到其他地方
-        set("no_flyto", 1);          // 设置不能从起来地方骑马来这里
-        set("no_die", 1);            // 死亡后移动到扁鹊居
-        set("penglai", 1);           // 表示在蓬莱岛 
+        set("no_rideto", 1);         // 設置不能騎馬到其他地方
+        set("no_flyto", 1);          // 設置不能從起來地方騎馬來這裡
+        set("no_die", 1);            // 死亡後移動到扁鵲居
+        set("penglai", 1);           // 表示在蓬萊島 
         set("no_fight", 1);       
 
         set("objects", ([
@@ -43,7 +43,7 @@ void init()
                 
         if (0)
         {
-                   // 活动结束了，移动回客店
+                   // 活動結束了，移動回客店
                    if (random(2))
                    {
                            this_player()->move("/d/city/wumiao");
@@ -68,7 +68,7 @@ int valid_leave(object me, string dir)
         if (dir == "south")
         {
                 if( !MEMBER_D->is_valid_member(query("id", me)) )
-                        return notify_fail("只允许有效会员进入蓬莱岛！\n");
+                        return notify_fail("只允許有效會員進入蓬萊島！\n");
         }
 
         return 1;

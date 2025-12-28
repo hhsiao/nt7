@@ -21,12 +21,12 @@ int check_count(object me, int count)
                 if( query_temp("taohua/count", me) == 2080 )
                 {
                         tell_object(me,HIW"\n\n
-四周景物突然变得模糊起来，你觉得头脑一阵晕眩......
-你定了定神，发现自己成功了！
+四周景物突然變得模糊起來，你覺得頭腦一陣暈眩......
+你定了定神，發現自己成功了！
 \n\n"NOR);
                         /*
                         tell_object(me,
-                                HIR "四周景物突然变得模糊起来，你觉得头脑一阵晕眩......你在一阵烟雾中消失了。\n\n" NOR);
+                                HIR "四周景物突然變得模糊起來，你覺得頭腦一陣暈眩......你在一陣煙霧中消失了。\n\n" NOR);
                         */
                         if( !query("taohua_maze", me) )
                         {
@@ -37,7 +37,7 @@ int check_count(object me, int count)
                                 addn("int", 1, me);
                                 set("taohua_maze", age, me);
                                 delete_temp("taohua/count", me);
-                                tell_object(me,sprintf(HIY"你获得了%d点经验、%d点潜能，1点先天悟性！\n"NOR,
+                                tell_object(me,sprintf(HIY"你獲得了%d點經驗、%d點潛能，1點先天悟性！\n"NOR,
                                                 bonus,
                                                 bonus*2));
                                 // me->move("/d/taohua/xiangzhong");
@@ -46,7 +46,7 @@ int check_count(object me, int count)
                 } else
                 {
                         tell_object(me,
-                                HIW "你脚下一虚，不由自主的向下飞坠......你的意识渐渐模糊起来......\n\n" NOR);
+                                HIW "你腳下一虛，不由自主的向下飛墜......你的意識漸漸模糊起來......\n\n" NOR);
                         if (userp(me))
                         me->unconcious();
                         delete_temp("taohua/count", me);
@@ -56,7 +56,7 @@ int check_count(object me, int count)
         if( query_temp("/taohua/count", me)>2100 )
         {
                 tell_object(me,
-                        HIW "忽见得一阵狂风挂来，天空中乌云密布，一阵阴冷的浓雾瞬间把你裹住......\n\n" NOR);
+                        HIW "忽見得一陣狂風掛來，天空中烏雲密佈，一陣陰冷的濃霧瞬間把你裹住......\n\n" NOR);
                 if (userp(me))
                 me->unconcious();
                 delete_temp("taohua/count", me);
@@ -69,5 +69,5 @@ int check_count(object me, int count)
 void remove_effect(object me, int level)
 {
         addn_temp("apply/int", -level, me);
-        tell_object(me, HIB "你心中一动，脑海中空空荡荡，似乎有什麽东西正离你而去。\n" NOR);
+        tell_object(me, HIB "你心中一動，腦海中空空蕩蕩，似乎有什麼東西正離你而去。\n" NOR);
 }

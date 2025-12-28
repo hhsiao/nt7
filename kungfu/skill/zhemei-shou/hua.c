@@ -24,7 +24,7 @@ int perform(object me, object target)
                 target = me->select_opponent();
         }
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(name() + "只能空手施展。\n");
@@ -32,22 +32,22 @@ int perform(object me, object target)
         if ((int)me->query_skill("beiming-shengong", 1) < 220
         &&  (int)me->query_skill("xiaowuxiang", 1) < 220
         &&  (int)me->query_skill("bahuang-gong", 1) < 220)
-                return notify_fail("你的北冥神功火候不够，难以施展" + name() + "。\n");
+                return notify_fail("你的北冥神功火候不夠，難以施展" + name() + "。\n");
 
         if (lv = (int)me->query_skill("zhemei-shou", 1) < 220)
-                return notify_fail("你逍遥折梅手等级不够，难以施展" + name() + "。\n");
+                return notify_fail("你逍遙折梅手等級不夠，難以施展" + name() + "。\n");
 
         if( query("max_neili", me)<4000 )
-                return notify_fail("你的内力修为不足，难以施展" + name() + "。\n");
+                return notify_fail("你的內力修為不足，難以施展" + name() + "。\n");
 
         if( query("neili", me)<800 )
-                return notify_fail("你现在真气不足，难以施展" + name() + "。\n");
+                return notify_fail("你現在真氣不足，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIM "$N" HIM "深深吸进一口气，单手挥出，掌缘顿时霞光万道，漾出"
-              "七色虹彩向$n" HIM "席卷而至。\n" NOR;
+        msg = HIM "$N" HIM "深深吸進一口氣，單手揮出，掌緣頓時霞光萬道，漾出"
+              "七色虹彩向$n" HIM "席捲而至。\n" NOR;
 
         ap = attack_power(me, "hand") + me->query_skill("dodge");
         dp = defense_power(target, "parry") + target->query_skill("dodge");
@@ -56,7 +56,7 @@ int perform(object me, object target)
                 ap += ap / 10;
         
         ap += fmsk;
-        delta = ABILITY_D->check_ability(me, "ap_power-zms-hua"); // 门派ab
+        delta = ABILITY_D->check_ability(me, "ap_power-zms-hua"); // 門派ab
         if( delta ) ap += ap*delta/100;
         
         if (ap / 2 + random(ap) > dp)
@@ -74,10 +74,10 @@ int perform(object me, object target)
                 if (lv >= 400)cost_neili = -200;
                 if( !playerp(target) && query("max_neili", me)>query("max_neili", target)*2 )
                 {
-                        msg += HIM "只听$n" HIM "一声尖啸，$N" HIM "的七色掌"
-                               "劲已尽数注入$p" HIM "体内，顿时将$p" HIM "化"
-                               "为一滩血水。\n" NOR "( $n" RED "受伤过重，已"
-                               "经有如风中残烛，随时都可能断气。" NOR ")\n";
+                        msg += HIM "只聽$n" HIM "一聲尖嘯，$N" HIM "的七色掌"
+                               "勁已盡數注入$p" HIM "體內，頓時將$p" HIM "化"
+                               "為一灘血水。\n" NOR "( $n" RED "受傷過重，已"
+                               "經有如風中殘燭，隨時都可能斷氣。" NOR ")\n";
                         damage = -1;
                         addn("neili", cost_neili, me);
                         me->start_busy(1);
@@ -89,7 +89,7 @@ int perform(object me, object target)
                         damage+=me->query_all_buff("unarmed_damage");
                         damage*=4;
                         
-                        delta = ABILITY_D->check_ability(me, "da_power-zms-hua"); // 门派ab
+                        delta = ABILITY_D->check_ability(me, "da_power-zms-hua"); // 門派ab
                         if( delta ) damage += damage*delta/100;
         
 /*
@@ -101,16 +101,16 @@ int perform(object me, object target)
 */
 
                         msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 200+fmsk/15,
-                                HIM "$n" HIM "只是微微一愣，$N" HIM "的七色掌劲已破体而"
-                                "入，$p" HIM "便犹如身置洪炉一般，连呕数口鲜血。\n" NOR);
+                                HIM "$n" HIM "只是微微一愣，$N" HIM "的七色掌勁已破體而"
+                                "入，$p" HIM "便猶如身置洪爐一般，連嘔數口鮮血。\n" NOR);
                         //msg += "( $n" + eff_status_msg(p) + " )\n";
 
                         addn("neili", cost_neili, me);
                 }
         } else
         {
-                msg += CYN "$p" CYN "见状大惊失色，完全勘破不透$P"
-                       CYN "招中奥秘，当即飞身跃起丈许，躲闪开来。\n" NOR;
+                msg += CYN "$p" CYN "見狀大驚失色，完全勘破不透$P"
+                       CYN "招中奧秘，當即飛身躍起丈許，躲閃開來。\n" NOR;
                 addn("neili", -200, me);
         }
         message_combatd(msg, me, target);

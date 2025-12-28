@@ -3,10 +3,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "东厢走廊");
+        set("short", "東廂走廊");
         set("long", @LONG
-你走在一条走廊上，东边有几间雅室，人来人往很是热闹。西边
-则是武当派的大殿。
+你走在一條走廊上，東邊有幾間雅室，人來人往很是熱鬧。西邊
+則是武當派的大殿。
 LONG );
         set("exits", ([
                 "east" : __DIR__"donglang2",

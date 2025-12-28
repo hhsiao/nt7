@@ -4,8 +4,8 @@ void create()
 {
         set("short", "洞口");
         set("long", @LONG
-这里是山贼的老窝的洞口，几个山贼把守在洞前，来回的巡视着，
-守备很是森严。
+這裡是山賊的老窩的洞口，幾個山賊把守在洞前，來回的巡視著，
+守備很是森嚴。
 LONG );
         set("outdoors", "baituo");
         set("exits", ([

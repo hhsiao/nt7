@@ -7,7 +7,7 @@ void create()
 {
         set("short", "金船中控室");
         set("long", @LONG
-这就是广成金船上的中控室，WIZ专属房间。
+這就是廣成金船上的中控室，WIZ專屬房間。
 LONG );
                 for (int i = 0; i < 50; i++) {
                         set("exits/" + (string)i , __DIR__"chuan" + (string)i);
@@ -15,7 +15,7 @@ LONG );
                 set("exits/down"  , "/d/city/kedian4");
 
         set("objects", ([ 
-                __DIR__"npc/qi" : 1,//npc出发点
+                __DIR__"npc/qi" : 1,//npc出發點
                 //__DIR__"npc/qi2" : 1,
         ])); 
                 set("no_rideto", 1);

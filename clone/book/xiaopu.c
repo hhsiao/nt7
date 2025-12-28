@@ -4,14 +4,14 @@ inherit BOOK;
 
 void create()
 {
-        set_name("箫谱", ({ "xiao pu", "pu" }));
+        set_name("簫譜", ({ "xiao pu", "pu" }));
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
                 set("unit", "本");
-                set("long", "这是一本薄薄的箫谱，记载了一些吹箫的方法。\n");
+                set("long", "這是一本薄薄的簫譜，記載了一些吹簫的方法。\n");
                 set("value", 10);
                 set("material", "paper");
                 set("skill", ([

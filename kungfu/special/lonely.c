@@ -8,5 +8,5 @@ string name() { return CYN "天煞孤星" NOR; }
 
 int perform(object me, string skill)
 {
-        return notify_fail("天煞孤星这项技能不需要运用。\n");
+        return notify_fail("天煞孤星這項技能不需要運用。\n");
 }

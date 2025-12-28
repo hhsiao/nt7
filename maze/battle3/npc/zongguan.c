@@ -2,14 +2,14 @@
 inherit NPC;
 void create()
 {
-        set_name("侍卫总管", ({ "shiwei zongguan", "zongguan"}));
+        set_name("侍衛總管", ({ "shiwei zongguan", "zongguan"}));
 
-        set("gender", "无性");
+        set("gender", "無性");
         set("age", random(20) + 20);
         set("str", 200);
         set("dex", 200);
         set("con", 200);
-        set("long", "这就是侍卫总管大人，据说是乃宫中一位公公，一身武功从未显露过，也不知深浅。\n");   
+        set("long", "這就是侍衛總管大人，據說是乃宮中一位公公，一身武功從未顯露過，也不知深淺。\n");   
 
         set("combat_exp", 15000000);
         set("attitude", "peaceful");
@@ -60,8 +60,8 @@ void init()
       if( !query_temp("tongji", me) )
       {
        set_temp("tongji", 1, me);
-       command("chat "+"宫中众侍卫听令，捉拿图谋不轨之刺客——"
-             +query("name", me)+"！若有庇护之党羽，\n一概视同谋反，格杀勿论！");
+       command("chat "+"宮中眾侍衛聽令，捉拿圖謀不軌之刺客——"
+             +query("name", me)+"！若有庇護之黨羽，\n一概視同謀反，格殺勿論！");
       }
      }
 }

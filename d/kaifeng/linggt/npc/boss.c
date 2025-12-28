@@ -5,30 +5,30 @@ inherit NPC;
 
 
 
-//奖励频道
+//獎勵頻道
 #define CHANL_NAME "sys"
 
-#define GIFT_EXP 68000  //赏经验，依照等级差来放大，战力越强越级挑战时获益越多
+#define GIFT_EXP 68000  //賞經驗，依照等級差來放大，戰力越強越級挑戰時獲益越多
 
 #define N_INCREASE 25
 
-#define HP_QI_BASE 1000000                      //气的基础值
-#define HP_QI_INCREASE 0.01                     //每提升1层的精和气增加比例（N_INCREASE层一个阶段）
-#define HP_QI_XINCREASE 2.0                     //除非断绝do 20 pfm方可改回1.9                  //每N_INCREASE层改变气的指数
-#define HP_JING_PERCENT 1.5                     //精和气的比例
-#define HP_NEILI_PERCENT 0.15            //内力和气的比例
+#define HP_QI_BASE 1000000                      //氣的基礎值
+#define HP_QI_INCREASE 0.01                     //每提升1層的精和氣增加比例（N_INCREASE層一個階段）
+#define HP_QI_XINCREASE 2.0                     //除非斷絕do 20 pfm方可改回1.9                  //每N_INCREASE層改變氣的指數
+#define HP_JING_PERCENT 1.5                     //精和氣的比例
+#define HP_NEILI_PERCENT 0.15            //內力和氣的比例
 
-#define SK_BASE 800                                     //基础
-#define SK_LV 500        //原作480                                       //变数
+#define SK_BASE 800                                     //基礎
+#define SK_LV 500        //原作480                                       //變數
 #define SK_INCREASE 0.005                       //比例
-#define SK_XINCREASE 1.4                        //指数
+#define SK_XINCREASE 1.4                        //指數
 
 
 int nflee = 900;
 
 string *warning_desc = ({
-        HIG + "毫不费力" + NOR, HIG + "轻松搞定" + NOR, HIG + "一战可定" + NOR, HIY + "有点意思" + NOR, HIY + "棋逢对手" + NOR, 
-        HIY + "需要警慎" + NOR, HIY + "有点够呛" + NOR, HIR + "难以取胜" + NOR, HIR + "极度危险" + NOR, HIR + "纯属自杀" + NOR, 
+        HIG + "毫不費力" + NOR, HIG + "輕鬆搞定" + NOR, HIG + "一戰可定" + NOR, HIY + "有點意思" + NOR, HIY + "棋逢對手" + NOR, 
+        HIY + "需要警慎" + NOR, HIY + "有點夠嗆" + NOR, HIR + "難以取勝" + NOR, HIR + "極度危險" + NOR, HIR + "純屬自殺" + NOR, 
 });
 
 int ttype() 
@@ -39,11 +39,11 @@ int ttype()
 
 int invert_reborngiftd(object me, int exp)
 {
-        if (query("reborn/times", me)) exp *= 2;//抵消转世的奖励惩罚
+        if (query("reborn/times", me)) exp *= 2;//抵消轉世的獎勵懲罰
         return exp;
 }
 
-int get_show_giftexp(object me, int exp)//在news频道用来显示的经验奖励值
+int get_show_giftexp(object me, int exp)//在news頻道用來顯示的經驗獎勵值
 {
         int quest_times;
         if (MEMBER_D->is_double_reward(me)) exp *= 2;
@@ -56,13 +56,13 @@ int get_show_giftexp(object me, int exp)//在news频道用来显示的经验奖�
 
 int is_boss() { return 1; }
 
-void wield_wfile(string wfile)//提前装备
+void wield_wfile(string wfile)//提前裝備
 {
         object weapon; 
         weapon = new(wfile);
         weapon->move(this_object()); 
         weapon->wield(); 
-        set("chance_summon", -1);//如果掉落毁坏，故意不再有机会装备了!
+        set("chance_summon", -1);//如果掉落毀壞，故意不再有機會裝備了!
 }
 
 void check_weapon()
@@ -77,10 +77,10 @@ void check_weapon()
         
         if (!query_temp("weapon"))
         {
-                if (objectp(query_last_damage_from())) query_last_damage_from()->start_busy(3+random(3));//给点时间我带武器，不论对方有多少pfm busy
+                if (objectp(query_last_damage_from())) query_last_damage_from()->start_busy(3+random(3));//給點時間我帶武器，不論對方有多少pfm busy
                 weapon = new(wname);
                 weapon->move(this_object()); 
-                str = sprintf("%s" HIY "虚空一抓，突然%s" HIY "出现在他的手中。\n" NOR,
+                str = sprintf("%s" HIY "虛空一抓，突然%s" HIY "出現在他的手中。\n" NOR,
                                        query("name", me),
                                        query("name", weapon));
                         tell_room(environment(me), str, me);
@@ -128,7 +128,7 @@ void heart_beat()
                         this_object()->stop_busy();
         }
                 
-                if (!random(5) && objectp(query_last_damage_from())) {  //20%换招，以免被玩家一直刷damage
+                if (!random(5) && objectp(query_last_damage_from())) {  //20%換招，以免被玩家一直刷damage
                         query_last_damage_from()->start_busy(2+random(3));
                 }
                 
@@ -149,7 +149,7 @@ void heart_beat()
                         addn_temp("apply/attack", - query("elv") * 3000);
                     }
                         else if (this_object()->query_skill_mapped("sword") == "kuangfeng-jian") {
-                        i = 14;//14剑
+                        i = 14;//14劍
                         addn_temp("apply/attack", query("elv") * 6000);
                         while (i--) {this_object()->command("perform sword.yong");this_object()->stop_busy();}
                         addn_temp("apply/attack", - query("elv") * 6000);
@@ -178,9 +178,9 @@ void do_presk(string fam, int nlv, string bhand,string shand,string sparry,strin
         if (nlv > 20000000) set("title", HIY + fam + "魔王" + NOR);
         else if (nlv > 2000000) set("title", HIY + fam + "邪魔" + NOR);
         else if (nlv > 200000) set("title", HIY + fam + "狂魔" + NOR);
-        else if (nlv > 20000) set("title", HIY + fam + "恶魔" + NOR);
-        else if (nlv > 10000) set("title", HIY + fam + "恶人" + NOR);
-        else if (nlv > 5000) set("title", HIY + fam + "凶徒" + NOR);
+        else if (nlv > 20000) set("title", HIY + fam + "惡魔" + NOR);
+        else if (nlv > 10000) set("title", HIY + fam + "惡人" + NOR);
+        else if (nlv > 5000) set("title", HIY + fam + "兇徒" + NOR);
         else set("title", HIY + fam + "逆徒" + NOR);
         
         if (sweapsk!="") stmp += "、" + to_chinese(sweapsk);
@@ -188,8 +188,8 @@ void do_presk(string fam, int nlv, string bhand,string shand,string sparry,strin
         stmp += "、" + to_chinese(sdodge);
         stmp += "、" + to_chinese(sforce);
 
-        set("wmsg", HIG + "据说上面关押的是：" + query("title") + HIG + "，擅长武功是：" + stmp + 
-                "。\n    我觉得你对上他是" + warning_desc[elv] + HIG + "的。如果你还有灵符次数，现在就可以使用(pass)换掉他！\n" + HIG + NOR);
+        set("wmsg", HIG + "據說上面關押的是：" + query("title") + HIG + "，擅長武功是：" + stmp + 
+                "。\n    我覺得你對上他是" + warning_desc[elv] + HIG + "的。如果你還有靈符次數，現在就可以使用(pass)換掉他！\n" + HIG + NOR);
 
         set_skill(bhand, nlv);
         set_skill(shand, nlv);
@@ -225,7 +225,7 @@ void do_presk(string fam, int nlv, string bhand,string shand,string sparry,strin
         }
 
         if (weaponname!=""){
-                if (!query("chance_summon")) set("chance_summon", 3);//默认
+                if (!query("chance_summon")) set("chance_summon", 3);//默認
                 set("weaponname", weaponname);
                 set_skill(bweapsk, nlv);
                 set_skill(sweapsk, nlv);
@@ -237,15 +237,15 @@ void do_presk(string fam, int nlv, string bhand,string shand,string sparry,strin
 //      set_temp("murong/xingyi", 1);
         set_skill("leg", nlv);//青城
         set_skill("jingluo-xue", nlv / 2);
-        set_skill("throwing", nlv);//星宿炼心弹、桃花岛、唐门等需要
+        set_skill("throwing", nlv);//星宿煉心彈、桃花島、唐門等需要
         
         
         if (shand == "sad-strike"){
                 set("family/family_name", "古墓派");
-                set("couple/couple_id", "小龙女");
+                set("couple/couple_id", "小龍女");
         }
         if (shand == "dragon-strike"){
-                set("family/family_name", "丐帮");
+                set("family/family_name", "丐幫");
                 set_temp("yield", 1);
         }
         if (shand == "nuquan"){
@@ -272,10 +272,10 @@ void do_presk(string fam, int nlv, string bhand,string shand,string sparry,strin
                 set("gender", "男性");
         }
         if (shand == "tanzhi-shentong"){
-                set("family/family_name", "桃花岛");
+                set("family/family_name", "桃花島");
                 set_skill("qimen-wuxing", nlv / 10);
                 set_skill("qimen-xuanshu", nlv / 10);
-                //这里添加hand暗器
+                //這裡添加hand暗器
                 set("hand_throwing", "/d/chengdu/npc/obj/flower-leaf");
         }
         if (sweapsk=="lunhui-jian"){
@@ -285,8 +285,8 @@ void do_presk(string fam, int nlv, string bhand,string shand,string sparry,strin
                            set_skill("lunhui", random(nlv / 10)+ 100);
                         }
         }
-        if (fam == "白驼"){
-                set("family/family_name", "欧阳世家");
+        if (fam == "白駝"){
+                set("family/family_name", "歐陽世家");
                 if (elv >= 7){
                         set_skill("jinchan-tunyue", random(1400)+ 100);
                         if (nlv > 20000){
@@ -333,7 +333,7 @@ void do_presk(string fam, int nlv, string bhand,string shand,string sparry,strin
                 if (sweapsk=="daojian-guizhen") {
                                         set_skill("sword", nlv); 
                                         map_skill("sword", sweapsk); 
-                    //hand剑
+                    //hand劍
                         set("hand_throwing", "/clone/weapon/sword");
                 }
                 set_skill("baisheng-daofa", nlv); 
@@ -341,7 +341,7 @@ void do_presk(string fam, int nlv, string bhand,string shand,string sparry,strin
                                 set_skill("yaowang-miaoshu", random(nlv)+ 500); 
                                 map_skill("medical", "yaowang-miaoshu"); 
         }
-        if (fam == "唐门"){
+        if (fam == "唐門"){
                                 set_skill("tangmen-throwing", nlv);
                                 map_skill("throwing", "tangmen-throwing");
                 set_skill("luoxian-jue", random(1400)+ 100);
@@ -354,10 +354,10 @@ void do_presk(string fam, int nlv, string bhand,string shand,string sparry,strin
                                 set_skill("tangmen-medical", random(700)+ 500);         
                                 map_skill("poison", "tangmen-poison"); 
                                 map_skill("medical", "tangmen-medical"); 
-                //这里添加hand暗器
+                //這裡添加hand暗器
                 set("hand_throwing", "/kungfu/class/tangmen/obj/hua");
         }
-        if (fam == "华山"){
+        if (fam == "華山"){
                 set_skill("jianyi", random(1400) + tlv);
         }
         if (shand == "chousui-zhang"){
@@ -502,15 +502,15 @@ void setlv(int tlv, int nt1, int nt2)
                                 do_presk("五毒", nsk, "hand", "qianzhu-wandushou",  "qianzhu-wandushou", "wudu-yanluobu", "xiuluo-yinshagong", "", "", "","dodge.snake", "hand.chuan", "hand.jin");
                                 break;
                                                 case 4:
-                                set("chance_perform", 12);//连续pfm
+                                set("chance_perform", 12);//連續pfm
                                 wield_wfile("/clone/weapon/sword");
                                 do_presk("五毒", nsk, "hand", "qianzhu-wandushou",  "qianzhu-wandushou", "wudu-yanluobu", "xiuluo-yinshagong", "/clone/weapon/sword", "sword", "kuangfeng-jian","dodge.snake", "sword.yong", "hand.jin");
                                 break;
                         case 5:
                                 fudmg = 1.5;
                                 set("chance_summon", 55);
-                                set("lonely-sword/nothing",1);//无招
-                                do_presk("华山", nsk, "strike", "hunyuan-zhang",  "qiankun-danuoyi", "feiyan-huixiang", "zixia-shengong", "/clone/weapon/sword", "sword", "lonely-sword","sword.hun", "sword.po", "sword.xiao");
+                                set("lonely-sword/nothing",1);//無招
+                                do_presk("華山", nsk, "strike", "hunyuan-zhang",  "qiankun-danuoyi", "feiyan-huixiang", "zixia-shengong", "/clone/weapon/sword", "sword", "lonely-sword","sword.hun", "sword.po", "sword.xiao");
                                 break;
                         case 6:
                                 do_presk("桃花", nsk, "finger", "tanzhi-shentong",  "qiankun-danuoyi", "shenxing-baibian", "yijinjing", "", "", "","finger.dian", "finger.po", "finger.zhuan");
@@ -528,14 +528,14 @@ void setlv(int tlv, int nt1, int nt2)
                         case 0:
                                 do_presk("慕容", nsk, "finger", "canhe-zhi",  "douzhuan-xingyi", "shenxing-baibian", "yijinjing", "", "", "","finger.canhe", "finger.zhi", "parry.yi");
                                 break;
-                        case 1://太强……
+                        case 1://太強……
                                 do_presk("江湖", nsk, "unarmed", "mingyu-gong",  "mingyu-gong", "mingyu-gong", "mingyu-gong", "", "", "","unarmed.moqi", "unarmed.qiong", "");
                                 break;
-                        case 2://call die配合不坏和海量内力，高层后的噩梦
+                        case 2://call die配合不壞和海量內力，高層後的噩夢
                                 do_presk("少林", nsk, "finger", "yizhi-chan",  "jingang-buhuaiti", "shenxing-baibian", "yijin-duangu", "", "", "","finger.dian", "finger.jingmo", "parry.protect");
                                 break;
                         case 3:
-                                do_presk("丐帮", nsk, "strike", "dragon-strike",  "dragon-strike", "shexing-lifan", "huntian-qigong", "", "", "","strike.xiao", "strike.long", "strike.xianglong");
+                                do_presk("丐幫", nsk, "strike", "dragon-strike",  "dragon-strike", "shexing-lifan", "huntian-qigong", "", "", "","strike.xiao", "strike.long", "strike.xianglong");
                                 break;
                         case 4:
                                 do_presk("古墓", nsk, "unarmed", "sad-strike",  "douzhuan-xingyi", "shexing-lifan", "surge-force", "", "", "","unarmed.tao", "unarmed.tuo", "unarmed.xiao");
@@ -545,7 +545,7 @@ void setlv(int tlv, int nt1, int nt2)
                                 do_presk("胡家", nsk, "strike", "tianchang-zhang",  "daojian-guizhen", "sixiang-bufa", "lengyue-shengong", "/clone/weapon/blade", "blade", "daojian-guizhen","blade.tian", "blade.tian", "blade.po");
                                 break;
                         case 6:
-                                do_presk("唐门", nsk, "hand", "boyun-suowu",  "boyun-suowu", "qiulin-shiye", "biyun-xinfa", "", "", "","hand.dian", "throwing.hua", "throwing.shijie");
+                                do_presk("唐門", nsk, "hand", "boyun-suowu",  "boyun-suowu", "qiulin-shiye", "biyun-xinfa", "", "", "","hand.dian", "throwing.hua", "throwing.shijie");
                                 break;
                         case 7:
                                 fudmg = 0.1;
@@ -566,18 +566,18 @@ void setlv(int tlv, int nt1, int nt2)
                         case 0:
                                 do_presk("桃花", nsk, "finger", "tanzhi-shentong",  "tanzhi-shentong", "shenxing-baibian", "yijinjing", "", "", "","finger.dian", "finger.po", "finger.zhuan");
                                 break;
-                        case 1://强
+                        case 1://強
                                 do_presk("江湖", nsk, "unarmed", "taixuan-gong",  "taixuan-gong", "taixuan-gong", "taixuan-gong", "", "", "","unarmed.xuan", "", "");
                                 break;
-                        case 2://威力弱，不配九阴神功之名
+                        case 2://威力弱，不配九陰神功之名
                                 fudmg = 3.0;
                                 do_presk("江湖", nsk, "claw", "jiuyin-shengong",  "jiuyin-shengong", "jiuyin-shengong", "jiuyin-shengong", "", "", "","claw.xin", "claw.zhua", "claw.zhua");
                                 break;
-                        case 3://虽然只是金刚指，但添加个日月鞭
+                        case 3://雖然只是金剛指，但添加個日月鞭
                                 set("chance_summon", 8);
                                 do_presk("少林", nsk, "finger", "jingang-zhi",  "jingang-zhi", "shaolin-shenfa", "shaolin-xinfa", "/clone/weapon/whip", "whip", "riyue-bian","whip.chan", "finger.san", "whip.shang");
                                 break;
-                        case 4://小心控制恶心的刺目！
+                        case 4://小心控制噁心的刺目！
                                 set("chance_summon", 5);
                                 do_presk("日月", nsk, "unarmed", "pixie-jian",  "pixie-jian", "pixie-jian", "pixie-jian", "/d/fuzhou/npc/obj/xiuhua", "sword", "pixie-jian","unarmed.po", "unarmed.pi", "sword.duo");
                                 break;
@@ -591,7 +591,7 @@ void setlv(int tlv, int nt1, int nt2)
                                 do_presk("胡家", nsk, "strike", "tianchang-zhang",  "daojian-guizhen", "sixiang-bufa", "lengyue-shengong", "/clone/weapon/blade", "blade", "daojian-guizhen","strike.huang", "blade.tian", "blade.po");
                                 break;
                         case 7:
-                                do_presk("白驼", nsk, "strike", "hamagong",  "hamagong", "chanchu-bufa", "hamagong", "", "", "","strike.tui", "strike.puji", "strike.zhen");
+                                do_presk("白駝", nsk, "strike", "hamagong",  "hamagong", "chanchu-bufa", "hamagong", "", "", "","strike.tui", "strike.puji", "strike.zhen");
                                 break;
                         case 8:
                                 fudmg = 0.1;
@@ -608,7 +608,7 @@ void setlv(int tlv, int nt1, int nt2)
                 switch (((nt2>-1) ? nt2 :  random(9)))
         {
                         case 0://偏弱，但配合毒和busy，尚可
-                                do_presk("铁掌", nsk, "strike", "tie-zhang",  "tie-zhang", "shexing-lifan", "yijin-duangu", "", "", "","strike.juesha", "strike.yin", "strike.long");
+                                do_presk("鐵掌", nsk, "strike", "tie-zhang",  "tie-zhang", "shexing-lifan", "yijin-duangu", "", "", "","strike.juesha", "strike.yin", "strike.long");
                                 break;
                         case 1://偏弱
                                 fudmg = 1.8;
@@ -617,7 +617,7 @@ void setlv(int tlv, int nt1, int nt2)
                         case 2:
                                 do_presk("少林", nsk, "finger", "yizhi-chan",  "yizhi-chan", "yiwei-dujiang", "yijin-duangu", "", "", "","finger.dian", "finger.jingmo", "");
                                 break;
-                        case 3://虽然只是金刚指，但添加个轮回剑
+                        case 3://雖然只是金剛指，但添加個輪迴劍
                                 set("chance_summon", 2);
                                 do_presk("少林", nsk, "finger", "jingang-zhi",  "jingang-zhi", "shaolin-shenfa", "shaolin-xinfa", "/clone/weapon/sword", "sword", "lunhui-jian","finger.fumo", "finger.san", "sword.lun");
                                 break;
@@ -635,7 +635,7 @@ void setlv(int tlv, int nt1, int nt2)
                                 do_presk("胡家", nsk, "strike", "tianchang-zhang",  "daojian-guizhen", "sixiang-bufa", "lengyue-shengong", "/clone/weapon/blade", "blade", "daojian-guizhen","strike.huang", "blade.tian", "blade.xue");
                                 break;
                         case 7:
-                                do_presk("白驼", nsk, "strike", "hamagong",  "hamagong", "chanchu-bufa", "hamagong", "", "", "","strike.tui", "strike.puji", "strike.zhen");
+                                do_presk("白駝", nsk, "strike", "hamagong",  "hamagong", "chanchu-bufa", "hamagong", "", "", "","strike.tui", "strike.puji", "strike.zhen");
                                 break;
                         case 8:
                                 do_presk("五毒", nsk, "hand", "qianzhu-wandushou",  "qianzhu-wandushou", "wudu-yanluobu", "xiuluo-yinshagong", "", "", "","dodge.snake", "hand.chuan", "hand.jin");
@@ -649,8 +649,8 @@ void setlv(int tlv, int nt1, int nt2)
                 nsk += elv * 20;
                 switch (((nt2>-1) ? nt2 :  random(9)))
         {
-//                      case 0://pfm.c 37行错误
-//                              do_presk("红花", nsk, "hand", "benlei-shou",  "benlei-shou", "shexing-lifan", "honghua-shengong", "", "", "","hand.yunkai", "", "");
+//                      case 0://pfm.c 37行錯誤
+//                              do_presk("紅花", nsk, "hand", "benlei-shou",  "benlei-shou", "shexing-lifan", "honghua-shengong", "", "", "","hand.yunkai", "", "");
 //                              break;
                         case 0://太弱
                                 fudmg = 5.0;
@@ -660,15 +660,15 @@ void setlv(int tlv, int nt1, int nt2)
                                 fudmg = 4.0;
                                 do_presk("雪山", nsk, "hand", "dashou-yin",  "dashou-yin", "shexing-lifan", "yijin-duangu", "", "", "","hand.yin", "", "");
                                 break;
-                        case 2://偏下，配合低级9j
+                        case 2://偏下，配合低級9j
                                 //fudmg = 1.1;
                                 set("chance_summon", 3);
-                                set("lonely-sword/nothing",1);//无招
-                                do_presk("华山", nsk, "strike", "hunyuan-zhang",  "hunyuan-zhang", "feiyan-huixiang", "zixia-shengong", "/clone/weapon/sword", "sword", "lonely-sword","sword.qi", "sword.po", "sword.xiao");
+                                set("lonely-sword/nothing",1);//無招
+                                do_presk("華山", nsk, "strike", "hunyuan-zhang",  "hunyuan-zhang", "feiyan-huixiang", "zixia-shengong", "/clone/weapon/sword", "sword", "lonely-sword","sword.qi", "sword.po", "sword.xiao");
                                 break;
-                        case 3://狂风刀法
+                        case 3://狂風刀法
                                 //fudmg = 0.6;
-                                set("chance_perform", 5);//连续pfm
+                                set("chance_perform", 5);//連續pfm
                                 do_presk("江湖", nsk, "hand", "lanhua-shou",  "lanhua-shou", "fuguanglueying", "yijin-duangu", "/clone/weapon/blade", "blade", "kuangfeng-blade","hand.fei", "blade.kuang", "hand.fu");
                                 break;
                         case 4:
@@ -678,16 +678,16 @@ void setlv(int tlv, int nt1, int nt2)
                                 break;
                         case 5:
                                 fudmg = 1.6;
-                                do_presk("武当", nsk, "cuff", "taiji-quan",  "taiji-quan", "tiyunzong", "taiji-shengong", "", "", "","cuff.tu", "cuff.yin", "cuff.an");
+                                do_presk("武當", nsk, "cuff", "taiji-quan",  "taiji-quan", "tiyunzong", "taiji-shengong", "", "", "","cuff.tu", "cuff.yin", "cuff.an");
                                 break;
                         case 6:
-                                do_presk("白驼", nsk, "strike", "hamagong",  "hamagong", "chanchu-bufa", "hamagong", "", "", "","strike.tui", "strike.puji", "");
+                                do_presk("白駝", nsk, "strike", "hamagong",  "hamagong", "chanchu-bufa", "hamagong", "", "", "","strike.tui", "strike.puji", "");
                                 break;
                         case 7:
                                 set("chance_summon", 8);
                                 do_presk("日月", nsk, "hand", "huanmo-longtianwu",  "huanmo-longtianwu", "piaomiao-shenfa", "xixing-dafa", "/clone/weapon/sword", "sword", "yuanshi-jian", "sword.xuan", "sword.xuan", "");
                                 break;
-                        case 8://虽然只是金刚指，但添加个日月鞭
+                        case 8://雖然只是金剛指，但添加個日月鞭
                                 set("chance_summon", 5);
                                 do_presk("少林", nsk, "finger", "jingang-zhi",  "jingang-zhi", "shaolin-shenfa", "shaolin-xinfa", "/clone/weapon/whip", "whip", "riyue-bian","finger.fumo", "finger.san", "whip.he");
                                 break;
@@ -701,33 +701,33 @@ void setlv(int tlv, int nt1, int nt2)
         {
                         case 0://威力太弱,busy高
                                 fudmg = 6.5;
-                                do_presk("丐帮", nsk, "hand", "shexing-diaoshou",  "shexing-diaoshou", "xiaoyaoyou", "huntian-qigong", "", "", "","hand.chan", "", "");
+                                do_presk("丐幫", nsk, "hand", "shexing-diaoshou",  "shexing-diaoshou", "xiaoyaoyou", "huntian-qigong", "", "", "","hand.chan", "", "");
                                 break;
                         case 1:
                                 do_presk("江湖", nsk, "strike", "xuanming-zhang",  "xuanming-zhang", "shexing-lifan", "xuanming-shengong", "", "", "","strike.ying", "strike.lang", "strike.wuji");
                                 break;
-//                      case 2://pfm.c 39行错误
+//                      case 2://pfm.c 39行錯誤
 //                              do_presk("青城", nsk, "unarmed", "wuying-leg",  "wuying-leg", "chuanhua", "qingming-xuangong", "", "", "","unarmed.fanti", "", "");
 //                              break;
-                        case 2://太弱,添加天剑
+                        case 2://太弱,添加天劍
                                 fudmg = 6.0;
                                 set("chance_summon", 1);
                                 do_presk("江湖", nsk, "strike", "bizhen-qingzhang",  "bizhen-qingzhang", "shenxing-baibian", "yijin-duangu", "/clone/weapon/sword/changjian", "sword", "tianjian","strike.pengpai", "sword.lian", "");
                                 break;
-                        case 3://偏下，配合低级9j
+                        case 3://偏下，配合低級9j
                                 fudmg = 0.9;
-                                if (random(3)) set("lonely-sword/nothing",1);//无招
+                                if (random(3)) set("lonely-sword/nothing",1);//無招
                                 wield_wfile("/clone/weapon/sword");
-                                do_presk("华山", nsk, "strike", "hunyuan-zhang",  "hunyuan-zhang", "feiyan-huixiang", "zixia-shengong", "/clone/weapon/sword", "sword", "lonely-sword","strike.wuji", "sword.po", "sword.xiao");
+                                do_presk("華山", nsk, "strike", "hunyuan-zhang",  "hunyuan-zhang", "feiyan-huixiang", "zixia-shengong", "/clone/weapon/sword", "sword", "lonely-sword","strike.wuji", "sword.po", "sword.xiao");
                                 break;
                         case 4://弱
                                 fudmg = 10;
                                 wield_wfile("/clone/weapon/sword");
                                 do_presk("峨眉", nsk, "finger", "tiangang-zhi",  "tiangang-zhi", "zhutian-bu", "linji-zhuang", "/clone/weapon/sword", "sword", "yitian-jian","finger.ling", "sword.fumo", "sword.yitian");
                                 break;
-                        case 5://狂风刀法
+                        case 5://狂風刀法
                                 //fudmg = 0.5;
-                                set("chance_perform", 2);//连续pfm
+                                set("chance_perform", 2);//連續pfm
                                 wield_wfile("/clone/weapon/blade");
                                 do_presk("江湖", nsk, "hand", "lanhua-shou",  "lanhua-shou", "fuguanglueying", "yijin-duangu", "/clone/weapon/blade", "blade", "kuangfeng-blade","hand.fei", "blade.kuang", "hand.fu");
                                 break;
@@ -747,11 +747,11 @@ void setlv(int tlv, int nt1, int nt2)
                 nsk += elv * 20;
                 switch (((nt2>-1) ? nt2 :  random(7)))
         {
-                        case 0://偏下，配合低级9j
+                        case 0://偏下，配合低級9j
                                 fudmg = 0.7;
-                                set("lonely-sword/nothing",1);//无招
+                                set("lonely-sword/nothing",1);//無招
                                 wield_wfile("/clone/weapon/sword");
-                                do_presk("华山", nsk, "strike", "hunyuan-zhang",  "hunyuan-zhang", "feiyan-huixiang", "zixia-shengong", "/clone/weapon/sword", "sword", "lonely-sword","strike.wuji", "sword.po", "sword.yi");
+                                do_presk("華山", nsk, "strike", "hunyuan-zhang",  "hunyuan-zhang", "feiyan-huixiang", "zixia-shengong", "/clone/weapon/sword", "sword", "lonely-sword","strike.wuji", "sword.po", "sword.yi");
                                 break;
                         case 1://偏下
                                 fudmg = 1.2;
@@ -764,15 +764,15 @@ void setlv(int tlv, int nt1, int nt2)
                                 break;
                         case 3:
                                 fudmg = 1.3;
-                                do_presk("武当", nsk, "cuff", "taiji-quan",  "taiji-quan", "tiyunzong", "taiji-shengong", "", "", "","dodge.zong", "cuff.yin", "cuff.an");
+                                do_presk("武當", nsk, "cuff", "taiji-quan",  "taiji-quan", "tiyunzong", "taiji-shengong", "", "", "","dodge.zong", "cuff.yin", "cuff.an");
                                 break;
                         case 4:
                                 do_presk("血刀", nsk, "unarmed", "shenzhaojing",  "shenzhaojing", "zhuangzi-wu", "shenzhaojing", "", "", "","unarmed.wu", "unarmed.ying", "");
                                 break;
                         case 5:
-                                set("chance_perform", 1);//连续pfm
+                                set("chance_perform", 1);//連續pfm
                                 wield_wfile("/clone/weapon/sword");
-                                do_presk("华山", nsk, "strike", "hunyuan-zhang",  "hunyuan-zhang", "feiyan-huixiang", "zixia-shengong", "/clone/weapon/sword", "sword", "kuangfeng-jian","strike.wuji", "sword.yong", "sword.sao");
+                                do_presk("華山", nsk, "strike", "hunyuan-zhang",  "hunyuan-zhang", "feiyan-huixiang", "zixia-shengong", "/clone/weapon/sword", "sword", "kuangfeng-jian","strike.wuji", "sword.yong", "sword.sao");
                                 break;
                         case 6:
                                 do_presk("五毒", nsk, "hand", "qianzhu-wandushou",  "qianzhu-wandushou", "wudu-yanluobu", "xiuluo-yinshagong", "", "", "","dodge.snake", "hand.chuan", "hand.wan");
@@ -792,20 +792,20 @@ void setlv(int tlv, int nt1, int nt2)
                                 do_presk("江湖", nsk, "finger", "xuantian-zhi",  "xuantian-zhi", "zhuangzi-wu", "xuantian-wujigong", "", "", "","finger.bing", "", "");
                                 break;
 //                      case 2:
-//                              //pfm.c 34行错误
+//                              //pfm.c 34行錯誤
 //                              //do_presk("衡山", nsk, "hand", "luoyan-hand",  "luoyan-hand", "henshan-shenfa", "huiyan-xinfa", "", "", "","hand.jinghan", "", "");
 //                              break;
                         case 2:
                                         fudmg = 1.1;
-                                do_presk("武当", nsk, "cuff", "taiji-quan",  "taiji-quan", "tiyunzong", "taiji-shengong", "/clone/weapon/blade", "blade", "xuanxu-dao","blade.huan", "cuff.zhan", "cuff.ji");
+                                do_presk("武當", nsk, "cuff", "taiji-quan",  "taiji-quan", "tiyunzong", "taiji-shengong", "/clone/weapon/blade", "blade", "xuanxu-dao","blade.huan", "cuff.zhan", "cuff.ji");
                                 break;
                         case 3://偏上
                                 fudmg = 0.8;
                                 do_presk("少林", nsk, "finger", "yizhi-chan",  "yizhi-chan", "shaolin-shenfa", "shaolin-xinfa", "", "", "","finger.dian", "", "");
                                 break;
-                        case 4://狂风刀法
+                        case 4://狂風刀法
                                 fudmg = 0.25;
-                                set("chance_perform", 1);//连续pfm
+                                set("chance_perform", 1);//連續pfm
                                 wield_wfile("/clone/weapon/blade");
                                 do_presk("江湖", nsk, "hand", "lanhua-shou",  "lanhua-shou", "fuguanglueying", "yijin-duangu", "/clone/weapon/blade", "blade", "kuangfeng-blade","hand.fei", "blade.kuang", "hand.fu");
                                 break;
@@ -835,12 +835,12 @@ void setlv(int tlv, int nt1, int nt2)
                                 fudmg = 0.7;
                                 do_presk("少林", nsk, "finger", "yizhi-chan",  "yizhi-chan", "shaolin-shenfa", "shaolin-xinfa", "", "", "","finger.jingmo", "", "");
                                 break;
-                        case 4://兰花拂穴手+越女剑
+                        case 4://蘭花拂穴手+越女劍
                                 fudmg = 0.9;
                                 do_presk("江湖", nsk, "hand", "lanhua-shou",  "lanhua-shou", "fuguanglueying", "yijin-duangu", "/clone/weapon/sword/xijian", "sword", "yuenv-jian","hand.fei", "sword.xin", "hand.fu");
                                 break;
                         case 5:
-                                do_presk("华山", nsk, "strike", "hunyuan-zhang",  "hunyuan-zhang", "feiyan-huixiang", "zixia-shengong", "", "", "","strike.wuji", "", "");
+                                do_presk("華山", nsk, "strike", "hunyuan-zhang",  "hunyuan-zhang", "feiyan-huixiang", "zixia-shengong", "", "", "","strike.wuji", "", "");
                                 break;
                         case 6:
                                 do_presk("五毒", nsk, "hand", "qianzhu-wandushou",  "qianzhu-wandushou", "wudu-yanluobu", "xiuluo-yinshagong", "", "", "","dodge.snake", "hand.wan", "hand.wan");
@@ -850,25 +850,25 @@ void setlv(int tlv, int nt1, int nt2)
         else {
                 elv = 0;
                 set("elv", elv);
-                nsk += 0;//在此可以微调sk等级
+                nsk += 0;//在此可以微調sk等級
                 switch (((nt2>-1) ? nt2 :  random(7)))
         {
                         case 0:
                                 do_presk("少林", nsk, "finger", "jingang-zhi",  "jingang-zhi", "shaolin-shenfa", "shaolin-xinfa", "", "", "","finger.fumo", "", "");
                                 break;
                         case 1:
-                                do_presk("白驼", nsk, "cuff", "lingshe-quan",  "lingshe-quan", "chanchu-bufa", "shaolin-xinfa", "", "", "","cuff.rou", "", "");
+                                do_presk("白駝", nsk, "cuff", "lingshe-quan",  "lingshe-quan", "chanchu-bufa", "shaolin-xinfa", "", "", "","cuff.rou", "", "");
                                 break;
                         case 2:
-                                do_presk("灵鹫", nsk, "strike", "liuyang-zhang",  "liuyang-zhang", "lingbo-weibu", "bahuang-gong", "", "", "","strike.baihong", "", "");
+                                do_presk("靈鷲", nsk, "strike", "liuyang-zhang",  "liuyang-zhang", "lingbo-weibu", "bahuang-gong", "", "", "","strike.baihong", "", "");
                                 break;
                         case 3:
-                                do_presk("神龙", nsk, "hand", "shenlong-bashi",  "shenlong-bashi", "shexing-lifan", "yijin-duangu", "", "", "","hand.xian", "", "");
+                                do_presk("神龍", nsk, "hand", "shenlong-bashi",  "shenlong-bashi", "shexing-lifan", "yijin-duangu", "", "", "","hand.xian", "", "");
                                 break;
                         case 4:
-                                do_presk("丐帮", nsk, "hand", "chansi-shou",  "chansi-shou", "zhuangzi-wu", "yijin-duangu", "", "", "","hand.qin", "", "");
+                                do_presk("丐幫", nsk, "hand", "chansi-shou",  "chansi-shou", "zhuangzi-wu", "yijin-duangu", "", "", "","hand.qin", "", "");
                                 break;
-                        case 5://兰花拂穴手+越女剑
+                        case 5://蘭花拂穴手+越女劍
                                 fudmg = 0.6;
                                 wield_wfile("/clone/weapon/sword/xijian");
                                 do_presk("江湖", nsk, "hand", "lanhua-shou",  "lanhua-shou", "fuguanglueying", "yijin-duangu", "/clone/weapon/sword/xijian", "sword", "yuenv-jian","hand.fei", "sword.pengxin", "hand.fu");
@@ -894,7 +894,7 @@ void setlv(int tlv, int nt1, int nt2)
                         set_skill("martial-cognize", nsk * 3 / (10-elv));
                 }
                 
-        set_name(HIC + "灵感塔" + HIR + "囚徒" + NOR, ({ "qiu tu", "boss" }));
+        set_name(HIC + "靈感塔" + HIR + "囚徒" + NOR, ({ "qiu tu", "boss" }));
         set("age", 22 + elv * 5);
         set("str", 20 + elv * 5);
         set("dex", 20 + elv * 5);
@@ -928,34 +928,34 @@ void setlv(int tlv, int nt1, int nt2)
         set_temp("apply/dodge", 2000 + elv * 1350);
         set_temp("apply/attack", 3000 + elv * 1500);
         set_temp("apply/defense", 2000 + elv * 1350);
-        fudmg = 1.0;//此行等于放弃修正dmg
+        fudmg = 1.0;//此行等於放棄修正dmg
         set_temp("apply/unarmed_damage", 5000 + to_int(elv * 3000 * fudmg) );
         set_temp("apply/damage", 5000 + to_int(elv * 3000 * fudmg));
         set_temp("apply/armor", 2000 + elv * 1350);
         
-                set_temp("apply/add_blind", 1 + elv * 3);//    : "致盲",                       // weapon 终极兵器 致盲-让对手失明
-                set_temp("apply/add_freeze", 3 + elv * 2);//   : "冰冻",                       // weapon 终极兵器 冰冻-迟缓，减缓对方攻击，攻击pfm速度降低，无任何防御，无躲闪，无招架，就是挨打
-                set_temp("apply/add_burning", 5 + elv * 4);//  : "灼烧",                       // weapon 终极兵器 灼烧-一定时间内目标不停的减少内力和气血condition
-                set_temp("apply/add_forget", 2 + elv * 4);//   : "遗忘",                       // weapon 终极防具 遗忘-使对方忘记所有技能的绝招add_oblivion   
-                set_temp("apply/add_weak", 2 + elv * 5);//     : "虚弱",                       // weapon 终极兵器
-                set_temp("apply/add_busy", 5 + elv * 5);//     : "忙乱",                       // weapon 终极兵器
-                set_temp("apply/avoid_blind", 65 + elv * 3);//  : "忽视致盲",                   // armor/rings 终极防具
-                set_temp("apply/avoid_freeze", 40 + elv * 10);// : "忽视冰冻",                   // armor/rings 终极防具
-                set_temp("apply/avoid_burning", 60 + elv * 10);//: "忽视灼烧",                   // armor/rings 终极防具
-                set_temp("apply/avoid_dizziness", 90);//: "忽视眩晕",                  // armor/rings 终极防具
-                set_temp("apply/avoid_forget", 65 + elv * 5);// : "忽视遗忘",                   // armor/rings 终极兵器
-                set_temp("apply/avoid_weak", 70 + elv * 5);//   : "忽视虚弱",                   // armor/rings 终极防具
-                set_temp("apply/avoid_busy", 45 + elv * 5);//   : "忽视忙乱",                   // armor/rings 终极防具
-                set_temp("apply/reduce_busy", 55 + elv * 5);//  : "化解忙乱",                   // armor/rings 终极防具
-                set_temp("apply/reduce_damage", 11 + elv * 8);//  : 化解伤害",                   // armor 终极防具 
-                set_temp("apply/ap_power", 25 + elv * 16);//  : "绝招攻击力",         // weapon/rings
-                set_temp("apply/dp_power", 16 + elv * 15);//  : "绝招防御力",         // armor
-                set_temp("apply/da_power", 10 + elv * 4);//  : "绝招伤害力",         // weapon/rings
-                set_temp("apply/avoid_defense", 3 + elv * 3);//  : "攻击无视目标防御",   // weapon/rings
-                set_temp("apply/avoid_parry", 3 + elv * 3);//  : "攻击无视目标招架",   // weapon/rings
-                set_temp("apply/avoid_dodge", 3 + elv * 3);//  : "攻击无视目标躲闪",   // weapon/rings
-                set_temp("apply/avoid_force", 3 + elv * 3);//  : "攻击无视内功防御",   // weapon/rings
-                set_temp("apply/avoid_attack", 30 + elv * 5);//  : "无视目标特殊攻击",   // armor
+                set_temp("apply/add_blind", 1 + elv * 3);//    : "致盲",                       // weapon 終極兵器 致盲-讓對手失明
+                set_temp("apply/add_freeze", 3 + elv * 2);//   : "冰凍",                       // weapon 終極兵器 冰凍-遲緩，減緩對方攻擊，攻擊pfm速度降低，無任何防禦，無躲閃，無招架，就是捱打
+                set_temp("apply/add_burning", 5 + elv * 4);//  : "灼燒",                       // weapon 終極兵器 灼燒-一定時間內目標不停的減少內力和氣血condition
+                set_temp("apply/add_forget", 2 + elv * 4);//   : "遺忘",                       // weapon 終極防具 遺忘-使對方忘記所有技能的絕招add_oblivion   
+                set_temp("apply/add_weak", 2 + elv * 5);//     : "虛弱",                       // weapon 終極兵器
+                set_temp("apply/add_busy", 5 + elv * 5);//     : "忙亂",                       // weapon 終極兵器
+                set_temp("apply/avoid_blind", 65 + elv * 3);//  : "忽視致盲",                   // armor/rings 終極防具
+                set_temp("apply/avoid_freeze", 40 + elv * 10);// : "忽視冰凍",                   // armor/rings 終極防具
+                set_temp("apply/avoid_burning", 60 + elv * 10);//: "忽視灼燒",                   // armor/rings 終極防具
+                set_temp("apply/avoid_dizziness", 90);//: "忽視眩暈",                  // armor/rings 終極防具
+                set_temp("apply/avoid_forget", 65 + elv * 5);// : "忽視遺忘",                   // armor/rings 終極兵器
+                set_temp("apply/avoid_weak", 70 + elv * 5);//   : "忽視虛弱",                   // armor/rings 終極防具
+                set_temp("apply/avoid_busy", 45 + elv * 5);//   : "忽視忙亂",                   // armor/rings 終極防具
+                set_temp("apply/reduce_busy", 55 + elv * 5);//  : "化解忙亂",                   // armor/rings 終極防具
+                set_temp("apply/reduce_damage", 11 + elv * 8);//  : 化解傷害",                   // armor 終極防具 
+                set_temp("apply/ap_power", 25 + elv * 16);//  : "絕招攻擊力",         // weapon/rings
+                set_temp("apply/dp_power", 16 + elv * 15);//  : "絕招防禦力",         // armor
+                set_temp("apply/da_power", 10 + elv * 4);//  : "絕招傷害力",         // weapon/rings
+                set_temp("apply/avoid_defense", 3 + elv * 3);//  : "攻擊無視目標防禦",   // weapon/rings
+                set_temp("apply/avoid_parry", 3 + elv * 3);//  : "攻擊無視目標招架",   // weapon/rings
+                set_temp("apply/avoid_dodge", 3 + elv * 3);//  : "攻擊無視目標躲閃",   // weapon/rings
+                set_temp("apply/avoid_force", 3 + elv * 3);//  : "攻擊無視內功防禦",   // weapon/rings
+                set_temp("apply/avoid_attack", 30 + elv * 5);//  : "無視目標特殊攻擊",   // armor
                     //set("jiali", 10000 + tlv * 800); 
                     command("jiali max");
                 
@@ -1034,7 +1034,7 @@ void init()
                                         command("eat guiyuan dan");
                                         me->stop_busy();
                                 }
-                if (query("level") > random(100)) {//100级的npc百分百powerup
+                if (query("level") > random(100)) {//100級的npc百分百powerup
                         me->stop_busy();
                         command("exert shield");
                         me->stop_busy();
@@ -1057,7 +1057,7 @@ void init()
                         if (random(3)) command("perform dodge.fei");
                         me->stop_busy();
                                 }
-                                if (random(5)) {//先行披挂
+                                if (random(5)) {//先行披掛
                                         check_weapon();
                                         hand_throw();
                                 }
@@ -1068,7 +1068,7 @@ void init()
                 if (sscanf(base_name(environment()), "/d/kaifeng/linggt/%*s")) {
                                 if (ttype()==2) {
                                         cz_fang(me);
-                                                if (random(3)) me->stop_busy();//防御塔再次获得66%先行出手
+                                                if (random(3)) me->stop_busy();//防禦塔再次獲得66%先行出手
                                 }
                         kill_ob(this_player());
                 }
@@ -1079,11 +1079,11 @@ void init()
 void die(object killer)
 {
          int showexp, elv;
-        object dob;             // 打晕这个NPC的人
-        int n;                  // 可以奖励的人的数目
-        int exp;                // 需要瓜分的经验
-        int pot;                // 需要瓜分的潜能
-        object *t;              // 杀死我的人的队伍列表
+        object dob;             // 打暈這個NPC的人
+        int n;                  // 可以獎勵的人的數目
+        int exp;                // 需要瓜分的經驗
+        int pot;                // 需要瓜分的潛能
+        object *t;              // 殺死我的人的隊伍列表
         object tob, wiz;
         string diemsg;
 //      int i;
@@ -1093,7 +1093,7 @@ void die(object killer)
 //              string s_gift,*key_s_gift;
 //              int gift_point;
 
-        // 定义奖励物品列表
+        // 定義獎勵物品列表
                 mixed oblist;
                 
                 object env;
@@ -1104,7 +1104,7 @@ void die(object killer)
         me = this_object();
         elv = query("elv");
         
-        if(random(100)>=(18 - elv*2) && //82%不能call die? 随elv更加难度,elv=9时完全不可能
+        if(random(100)>=(18 - elv*2) && //82%不能call die? 隨elv更加難度,elv=9時完全不可能
          objectp(ob = previous_object(0)) &&
             sscanf(base_name(ob), "/kungfu/skill/%*s") ) {
                 if (!random(10)) me->full_self();
@@ -1114,10 +1114,10 @@ void die(object killer)
                 oblist = query("oblist");
 
 
-                // 通知当前房间，以便计算刷新
+                // 通知當前房間，以便計算刷新
                 env = environment(this_object());
                 if (env && objectp(env)) env->npc_die(this_object());
-        // 找到杀了我(NPC)或是打晕我的人
+        // 找到殺了我(NPC)或是打暈我的人
         if (! objectp(dob = killer))
                 dob = query_last_damage_from();
                 if (! objectp(dob)) 
@@ -1137,7 +1137,7 @@ void die(object killer)
                 {
                         wiz = find_player("redl");
                         if (wiz) {
-                                tell_object(wiz, HIG + "灵感塔：出现没有奖励对象的问题。\n" + NOR);
+                                tell_object(wiz, HIG + "靈感塔：出現沒有獎勵對象的問題。\n" + NOR);
                         }
                         destruct(this_object());
                         return;
@@ -1152,7 +1152,7 @@ void die(object killer)
        
                                 if( query("level", dob) <= query("level") ) 
                                 {
-                                        exp = to_int(exp * (1 + (query("level") + 1 - query("level", dob)) / 100)  );//每高一级多%1
+                                        exp = to_int(exp * (1 + (query("level") + 1 - query("level", dob)) / 100)  );//每高一級多%1
                                 }
                                 else if( query("level", dob) <= query("level")*1.5 )
                                 {
@@ -1178,7 +1178,7 @@ void die(object killer)
                 addn("lgt/texp", get_show_giftexp(dob, showexp), dob);              
                                 
 //                              CHANNEL_D->channel_broadcast(CHANL_NAME, 
-//                                      query("name", dob) + NOR + "击败"+ query("name") +NOR+"，获得"+chinese_number(get_show_giftexp(dob, showexp))+"点经验奖励。"
+//                                      query("name", dob) + NOR + "擊敗"+ query("name") +NOR+"，獲得"+chinese_number(get_show_giftexp(dob, showexp))+"點經驗獎勵。"
 //                                      );
                                         
                                 
@@ -1200,7 +1200,7 @@ void die(object killer)
                                                                    GIFT_D->delay_bonus(tob,
                                                                           ([ "exp"      : exp + ((tob == dob) ? exp / 10 : 0),
                                                                                  "pot"      : pot + ((tob == dob) ? pot / 10 : 0),
-                                                                                 "prompt"   : "你的队伍杀死" + name() + "之后"]));
+                                                                                 "prompt"   : "你的隊伍殺死" + name() + "之後"]));
 
                                                  }
                                         }
@@ -1208,11 +1208,11 @@ void die(object killer)
                                 else
                                 {
                                         if (ttype()==2) diemsg = "抵抗";
-                                                else if (ttype()==1) diemsg = "杀死";
+                                                else if (ttype()==1) diemsg = "殺死";
                                                                    GIFT_D->delay_bonus(dob,
                                                                           ([ "exp"      : exp,
                                                                                  "pot"      : pot,
-                                                                                 "prompt"   : "你在" + diemsg + name() + "之后"]));
+                                                                                 "prompt"   : "你在" + diemsg + name() + "之後"]));
                                 }
 
         }
@@ -1231,7 +1231,7 @@ void die(object killer)
 void create()
 {
 //      object ob; 
-        set_name(HIC + "灵感塔" + HIR + "囚徒" + NOR, ({ "qiu tu", "boss" }));
+        set_name(HIC + "靈感塔" + HIR + "囚徒" + NOR, ({ "qiu tu", "boss" }));
         //set("nickname", NOR + "某某派高手" + NOR);
         set("age", 1);
         set("str", 1);

@@ -9,7 +9,7 @@ inherit EARRING;
 int movetome(object me)
 {
         this_object()->move(me);
-        tell_object(me, name() + NOR + "突然一动跳到你的身上。\n" + NOR);
+        tell_object(me, name() + NOR + "突然一動跳到你的身上。\n" + NOR);
         return 1;
 }
 
@@ -26,10 +26,10 @@ string long()
 void create()
 {
         
-        set_name(HIC "九莲环" NOR, ({ "ear ring"}));
+        set_name(HIC "九蓮環" NOR, ({ "ear ring"}));
         set_weight(100);
                 set("unit", "枚");
-                set("long", HIG "这是一副耳环，上面九朵莲花环环相扣。\n" NOR);
+                set("long", HIG "這是一副耳環，上面九朵蓮花環環相扣。\n" NOR);
                 set("value", 1);
                 set("material", "gold");
                 set("no_sell", 1);
@@ -57,7 +57,7 @@ void create()
                 set("armor_prop/magic_find", 20);
                 set("armor_prop/max_neili", 500000); 
                 set("armor_prop/max_jingli", 500000); 
-                                set("quality_level", 6);//装饰
+                                set("quality_level", 6);//裝飾
 
                         setup();
 }        

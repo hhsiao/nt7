@@ -3,7 +3,7 @@
 inherit THROWING;
 void create()
 {
-        set_name("飞蝗石", ({ "feihuang shi", "shi" }) );
+        set_name("飛蝗石", ({ "feihuang shi", "shi" }) );
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
@@ -13,7 +13,7 @@ void create()
                 set("base_weight", 100);
                 set("base_value", 25);
                 set("material", "stone");
-                set("long", "一块有棱有角的石头。\n");
+                set("long", "一塊有稜有角的石頭。\n");
                 
         }
        set_amount(20);

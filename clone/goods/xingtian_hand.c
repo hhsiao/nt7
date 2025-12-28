@@ -13,14 +13,14 @@ void create()
         else*/
         {
                 set("unit", "副");
-                set("long", HIY "这便是刑天使用过的铁掌，通体血光滔天。\n"
-                            HIY + name() + HIY "的等级：上古神品  LV10\n" NOR);
+                set("long", HIY "這便是刑天使用過的鐵掌，通體血光滔天。\n"
+                            HIY + name() + HIY "的等級：上古神品  LV10\n" NOR);
                 set("value", 3000); 
-                set("no_sell", "这样东西不能卖。\n");
+                set("no_sell", "這樣東西不能賣。\n");
                 set("rigidity",8000);   
                 set("material", "tian jing");
                 set("no_pawn", 1);
-                set("no_store", 1); // 不能用干降符文upd
+                set("no_store", 1); // 不能用幹降符文upd
                 set("no_save", 1); // quit不保存
                 set("armor_prop/armor", 10);
                 set("armor_prop/unarmed_damage", 50000);
@@ -28,7 +28,7 @@ void create()
         
         set("mod_mark", "A2037");
         set("mod_level", "M2030");
-        set("mod_name", HBRED "刑天套装" NOR);
+        set("mod_name", HBRED "刑天套裝" NOR);
         set("quality_level", 3);
 
         setup();
@@ -59,12 +59,12 @@ void return_to_back()
                         return; 
                 } 
 
-                tell_object(me, HIR"\n一条人影从你眼前一闪而过：" +
-                            "“时间已到，老夫取回" NOR + name() + HIR
-                            "，就此谢过，咱们后会有期！”\n\n"NOR);
+                tell_object(me, HIR"\n一條人影從你眼前一閃而過：" +
+                            "“時間已到，老夫取回" NOR + name() + HIR
+                            "，就此謝過，咱們後會有期！”\n\n"NOR);
         } else 
         { 
-                message("vision", "忽然一个人走了过来，捡起"+name()+"，叹了口气，摇摇头走了。\n", me); 
+                message("vision", "忽然一個人走了過來，撿起"+name()+"，嘆了口氣，搖搖頭走了。\n", me); 
         } 
 
         destruct(this_object());

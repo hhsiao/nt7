@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("奥迪[2;37;0m[2;37;0m", ({"aodi"}));        
+        set_name("奧迪[2;37;0m[2;37;0m", ({"aodi"}));        
         set("gender", "男性");                
-        set("long", "奥迪[2;37;0m
-它是老祖的魔幻兽。
+        set("long", "奧迪[2;37;0m
+它是老祖的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

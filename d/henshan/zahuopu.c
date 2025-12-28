@@ -2,14 +2,14 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "杂货铺");
+        set("short", "雜貨鋪");
         set("long", @LONG
-这是一家小小的杂货铺，平时就卖些日常用品，只见货柜上放着
-各式各样的货物，老板正忙着招呼客人，进门处放着一个招牌(zhaop
-ai)，上面写着些许小字。
+這是一家小小的雜貨鋪，平時就賣些日常用品，只見貨櫃上放著
+各式各樣的貨物，老闆正忙著招呼客人，進門處放著一個招牌(zhaop
+ai)，上面寫著些許小字。
 LONG );
         set("item_desc", ([
-                "zhaopai": "请用 \"list\" 列出货物表，\"buy\" 向老板购物。\n",
+                "zhaopai": "請用 \"list\" 列出貨物表，\"buy\" 向老闆購物。\n",
         ]));
         set("exits", ([
                 "south"    : __DIR__"hengyang2",

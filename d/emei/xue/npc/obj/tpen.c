@@ -1,6 +1,6 @@
 // This program is a part of NITAN MudLIB 
 // redl 2014
-// 宝物
+// 寶物
 #include <armor.h>
 #include <ansi.h>
 inherit F_NOCLONE;
@@ -15,8 +15,8 @@ int is_container() { return 1; }
 void create()
 {
         
-        set_name(HIR "蝠" NOR WHT "鼠" NOR YEL "聚宝盆" NOR, ({ "jubao pen", "pen" }));
-        set("long", HIC "这是只铜盆，上面雕刻着“蝠鼠吊金钱”图，长期戴上会有大收获。\n" HIK "(下线丢失，无法保存)\n" NOR);
+        set_name(HIR "蝠" NOR WHT "鼠" NOR YEL "聚寶盆" NOR, ({ "jubao pen", "pen" }));
+        set("long", HIC "這是隻銅盆，上面雕刻著“蝠鼠吊金錢”圖，長期戴上會有大收穫。\n" HIK "(下線丟失，無法保存)\n" NOR);
         set_weight(99999);
         set_max_encumbrance(99999);
                 set("unit", "只");
@@ -37,8 +37,8 @@ void create()
                 set("unique", 1);//已避免分解
                                 set("quality_level", 6);
                                 
-                                set("wear_msg", NOR CYN "$N" NOR CYN "轻轻抱起$n" NOR CYN "挂在腰间。\n"); 
-                                set("remove_msg", NOR CYN "$N" NOR CYN "把$n" NOR CYN "从腰带上解了下来。\n"); 
+                                set("wear_msg", NOR CYN "$N" NOR CYN "輕輕抱起$n" NOR CYN "掛在腰間。\n"); 
+                                set("remove_msg", NOR CYN "$N" NOR CYN "把$n" NOR CYN "從腰帶上解了下來。\n"); 
                 
                 set("armor_prop/kar", 15);
                 set("armor_prop/add_skill", 20);
@@ -72,11 +72,11 @@ void heart_beat()
 
                 if (ob->move(me)) {
                         if (rnd<60)
-                                message_vision(NOR "\n$N" NOR "腰上的$n" NOR "一震，结出" + query("name", ob) + NOR "。\n\n" NOR, owner, me);
+                                message_vision(NOR "\n$N" NOR "腰上的$n" NOR "一震，結出" + query("name", ob) + NOR "。\n\n" NOR, owner, me);
                         else 
-                                tell_object(owner, NOR "\n你腰上的" + query("name", me) + NOR "一震，结出" + query("name", ob) + NOR "。\n\n" NOR);
+                                tell_object(owner, NOR "\n你腰上的" + query("name", me) + NOR "一震，結出" + query("name", ob) + NOR "。\n\n" NOR);
                 } else {
-                        tell_object(owner, NOR "你的" + query("name", me) + NOR + "已经装不下" + query("name", ob) + NOR "了。\n");
+                        tell_object(owner, NOR "你的" + query("name", me) + NOR + "已經裝不下" + query("name", ob) + NOR "了。\n");
                         destruct(ob);
                 }
 

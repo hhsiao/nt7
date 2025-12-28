@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("飞机[2;37;0m[2;37;0m", ({"mymini"}));        
+        set_name("飛機[2;37;0m[2;37;0m", ({"mymini"}));        
         set("gender", "女性");                
-        set("long", "飞机[2;37;0m
-它是米尼的魔幻兽。
+        set("long", "飛機[2;37;0m
+它是米尼的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

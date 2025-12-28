@@ -2,9 +2,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "丛林");
+        set("short", "叢林");
         set("long", @LONG
-这里是衡山深处的一片树林，据说黄金白玉虎曾在这里出没。
+這裡是衡山深處的一片樹林，據說黃金白玉虎曾在這裡出沒。
 LONG);
         set("exits", ([ 
                "south"       : __DIR__"shanlu14",

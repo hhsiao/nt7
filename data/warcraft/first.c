@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;37m镖车[2;37;0m[2;37;0m", ({"benz"}));        
+        set_name("[1;37m鏢車[2;37;0m[2;37;0m", ({"benz"}));        
         set("gender", "男性");                
         set("long", "                               [2;37;0m
-它是胡弄的魔幻兽。
+它是胡弄的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

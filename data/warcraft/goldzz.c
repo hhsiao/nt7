@@ -7,7 +7,7 @@ void setup()
         set_name("整治中[2;37;0m[2;37;0m", ({"goldzzz"}));        
         set("gender", "男性");                
         set("long", "整治中[2;37;0m
-它是金真的魔幻兽。
+它是金真的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

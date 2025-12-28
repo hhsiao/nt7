@@ -10,9 +10,9 @@ string ask_jian();
 
 void create()
 {
-        set_name("静风师太", ({ "jingfeng shitai","jingfeng","shitai"}));
-        set("long", "她是一位中年师太，只见她眉目底垂，手中握着一把钢刀。"
-                    "自然而然的有股威严。\n");
+        set_name("靜風師太", ({ "jingfeng shitai","jingfeng","shitai"}));
+        set("long", "她是一位中年師太，只見她眉目底垂，手中握著一把鋼刀。"
+                    "自然而然的有股威嚴。\n");
         set("gender", "女性");
         set("age", 42);
         set("attitude", "peaceful");
@@ -64,7 +64,7 @@ void create()
         prepare_skill("finger", "tiangang-zhi");
 
         set("inquiry", ([
-                "伤药" : (: ask_yao :),
+                "傷藥" : (: ask_yao :),
                 "武器" : (: ask_jian :),
                 "出家" : (: ask_for_join :),
         ]));
@@ -90,7 +90,7 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        command ("say 阿弥陀佛！贫尼不收弟子。\n");
+        command ("say 阿彌陀佛！貧尼不收弟子。\n");
         return;
 }
 
@@ -102,21 +102,21 @@ string ask_yao()
         if( !(fam=query("family", this_player())) ||
            fam["family_name"] != "峨嵋派")
                 return RANK_D->query_respect(this_player()) +
-                "与本派素无来往，不知此话从何谈起？";
+                "與本派素無來往，不知此話從何談起？";
 
         if( query("qi", this_player()) >= query("max_qi", this_player()) )
-                return "你未曾受伤，讨这药膏做什么？";
+                return "你未曾受傷，討這藥膏做什麼？";
 
         if (ob = present("tianxiang gao", this_player()))
-                return "你身上不是带着本门秘药？";
+                return "你身上不是帶著本門秘藥？";
 
         if (query("gao_count") < 1)
-                return "你来晚了，本门秘药已尽数给了本派弟子。";
+                return "你來晚了，本門秘藥已盡數給了本派弟子。";
 
         addn("gao_count", -1);
         ob = new("/d/emei/obj/tianxiang-gao");
         ob->move(this_player());
-        return "我这里有本门秘药，你拿去疗伤吧。";
+        return "我這裡有本門秘藥，你拿去療傷吧。";
 }
 
 string ask_jian()
@@ -127,16 +127,16 @@ string ask_jian()
         if( !(fam=query("family", this_player())) ||
            fam["family_name"] != "峨嵋派")
                 return RANK_D->query_respect(this_player()) +
-                "与本派素无来往，不知此话从何谈起？";
+                "與本派素無來往，不知此話從何談起？";
 
         if (query("jian_count") < 1)
-                return "我现在没有什么武器好给，你下次在来吧。";
+                return "我現在沒有什麼武器好給，你下次在來吧。";
 
         if (ob = present("ruanjian", this_player()))
-                return "你身上不是带着武器吗？怎么还来要！";
+                return "你身上不是帶著武器嗎？怎麼還來要！";
 
         addn("jian_count", -1);
         ob = new("/d/emei/obj/ruanjian");
         ob->move(this_player());
-        return "我这里有一把软剑，你拿去用吧。";
+        return "我這裡有一把軟劍，你拿去用吧。";
 }

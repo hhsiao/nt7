@@ -20,13 +20,13 @@ void select_mud(int funct,int si,string *mud,string x)
 
         if( stringp(x) && x[0]=='q' )
         {
-                tell(this_player(), "离开。\n", CMDMSG);
+                tell(this_player(), "離開。\n", CMDMSG);
                 return;
         }
 
         if( !sscanf(x,"%d",input) || input<0 || input > si )
         {
-                tell(this_player(), "不合法的输入，请重新输入：\n", CMDMSG);
+                tell(this_player(), "不合法的輸入，請重新輸入：\n", CMDMSG);
                 input_to((: select_mud,funct,si,mud :));
                 return;
         }
@@ -58,13 +58,13 @@ void get_mud_name(int funct,string name)
 
         if( stringp(name) && name[0]=='q' )
         {
-                tell(this_player(), "离开。\n", CMDMSG);
+                tell(this_player(), "離開。\n", CMDMSG);
                 return;
         }
 
         if( !sizeof(mud=I2D->fetch_mudname(name)) )
         {
-                tell(this_player(), "抱歉，找不到站台，请重新输入。\n", CMDMSG);
+                tell(this_player(), "抱歉，找不到站臺，請重新輸入。\n", CMDMSG);
                 input_to((: get_mud_name,funct :));
                 return;
         }
@@ -83,7 +83,7 @@ void get_mud_name(int funct,string name)
                 tell(this_player(),sprintf("[%4d] %s %s[%s]\n",i,x,ansi(current_status[funct][0]),test_status(x,current_status[funct][1])));
                 i++;
         }
-        tell(this_player(), "请选择 0~"+(si-1), CMDMSG);
+        tell(this_player(), "請選擇 0~"+(si-1), CMDMSG);
         input_to((: select_mud,funct,si,mud :));
         return;
 }
@@ -96,13 +96,13 @@ void get_mud_ip(int funct,string name)
 
         if( stringp(name) && name[0]=='q' )
         {
-                tell(this_player(), "离开。\n", CMDMSG);
+                tell(this_player(), "離開。\n", CMDMSG);
                 return;
         }
 
         if( !sizeof(mud=I2D->fetch_mudip(name)) )
         {
-                tell(this_player(), "抱歉，找不到站台，请重新输入。\n", CMDMSG);
+                tell(this_player(), "抱歉，找不到站臺，請重新輸入。\n", CMDMSG);
                 input_to((: get_mud_ip,funct :));
                 return;
         }
@@ -118,7 +118,7 @@ void get_mud_ip(int funct,string name)
                 tell(this_player(),sprintf("[%4d] %s %s[%s]\n",i,x,ansi(current_status[funct][0]),test_status(x,current_status[funct][1])));
                 i++;
         }
-        tell(this_player(), "请选择 0~"+(si-1), CMDMSG);
+        tell(this_player(), "請選擇 0~"+(si-1), CMDMSG);
         input_to((: select_mud,funct,si,mud :));
         return;
 
@@ -131,24 +131,24 @@ void select_target_way(int funct,string x)
 
         if(stringp(x) && x[0]=='q' )
         {
-                tell(this_player(), "离开。\n", CMDMSG);
+                tell(this_player(), "離開。\n", CMDMSG);
                 return;
         }
 
         if( !sscanf(x,"%d",input) || member_array(input,num)==-1 )
         {
-                tell(this_player(), "请输入[ 1~2 ] 的数字：\n", CMDMSG);
+                tell(this_player(), "請輸入[ 1~2 ] 的數字：\n", CMDMSG);
                 input_to((: select_target_way,funct :));
                 return;
         }
 
         switch(input)
         {
-                case  1:tell(this_player(), "请输入站台名称：\n", CMDMSG);
+                case  1:tell(this_player(), "請輸入站臺名稱：\n", CMDMSG);
                         input_to((: get_mud_name,funct :));
                         return;
                 case  2:
-                        tell(this_player(), "请输入站台 'IP:PORT'：\n", CMDMSG);
+                        tell(this_player(), "請輸入站臺 'IP:PORT'：\n", CMDMSG);
                         input_to((: get_mud_ip,funct :));
                         return;
         }
@@ -162,25 +162,25 @@ void add_mud_list(string name)
 
         if( stringp(name) && name[0]=='q' )
         {
-                tell(this_player(), "离开。\n", CMDMSG);
+                tell(this_player(), "離開。\n", CMDMSG);
                 return;
         }
 
         if( sizeof(I2D->fetch_mudip(name)) )
         {
-                tell(this_player(), "抱歉，已经有这个站台，请重新输入。\n", CMDMSG);
+                tell(this_player(), "抱歉，已經有這個站臺，請重新輸入。\n", CMDMSG);
                 input_to((: add_mud_list :));
                 return;
         }
 
         if( sscanf(name, "%s:%d", address, port) != 2 )
         {
-                tell(this_player(), "抱歉，格式不对，请重新输入。\n", CMDMSG);
+                tell(this_player(), "抱歉，格式不對，請重新輸入。\n", CMDMSG);
                 input_to((: add_mud_list :));
                 return;
         }
         I2D->add_incoming_mudlist(address, port);
-        tell(this_player(), "增加新站台成功。\n", CMDMSG);
+        tell(this_player(), "增加新站臺成功。\n", CMDMSG);
         return;
 }
 
@@ -190,19 +190,19 @@ void select_main_menu(string x)
 
         if(stringp(x) && x[0]=='q' )
         {
-                tell(this_player(), "离开。\n", CMDMSG);
+                tell(this_player(), "離開。\n", CMDMSG);
                 return;
         }
 
         if( !sscanf(x,"%d",input) || member_array(input,num)==-1 )
         {
-                tell(this_player(), "请输入[ 1~3,5~9 ] 的数字：\n", CMDMSG);
+                tell(this_player(), "請輸入[ 1~3,5~9 ] 的數字：\n", CMDMSG);
                 input_to((: select_main_menu :));
                 return;
         }
         if( input==5)
         {
-                tell(this_player(), "请输入站台 'IP:PORT'：\n", CMDMSG);
+                tell(this_player(), "請輸入站臺 'IP:PORT'：\n", CMDMSG);
                 input_to((: add_mud_list :));
                 return;
         }
@@ -211,28 +211,28 @@ void select_main_menu(string x)
                 if( fetch_variable("debug",find_object(I2D))==1 )
                 {
                         I2D->debug();
-                        tell(this_player(), "除错功能关闭。\n", CMDMSG);
+                        tell(this_player(), "除錯功能關閉。\n", CMDMSG);
                         return;
                 } else {
                         I2D->debug();
-                        tell(this_player(), "除错功能开启。\n", CMDMSG);
+                        tell(this_player(), "除錯功能開啟。\n", CMDMSG);
                         return;
                 }
         }
-        tell(this_player(), "1.手动输入站台名称\n2.手动输入 IP 位址\n\n", CMDMSG);
+        tell(this_player(), "1.手動輸入站臺名稱\n2.手動輸入 IP 位址\n\n", CMDMSG);
         switch(input)
         {
-                case  1:tell(this_player(), "请选择你想增加 #转码# 功能的站台输入方式：\n", CMDMSG);
+                case  1:tell(this_player(), "請選擇你想增加 #轉碼# 功能的站臺輸入方式：\n", CMDMSG);
                         input_to((: select_target_way,1 :));break;
-                case  2:tell(this_player(), "请选择你想增加 #广告# 功能的站台输入方式：\n", CMDMSG);
+                case  2:tell(this_player(), "請選擇你想增加 #廣告# 功能的站臺輸入方式：\n", CMDMSG);
                         input_to((: select_target_way,2 :));break;
-                case  3:tell(this_player(), "请选择你想增加 #忽略# 功能的站台输入方式：\n", CMDMSG);
+                case  3:tell(this_player(), "請選擇你想增加 #忽略# 功能的站臺輸入方式：\n", CMDMSG);
                         input_to((: select_target_way,3 :));break;
-                case  6:tell(this_player(), "请选择你想解除 #转码# 功能的站台输入方式：\n", CMDMSG);
+                case  6:tell(this_player(), "請選擇你想解除 #轉碼# 功能的站臺輸入方式：\n", CMDMSG);
                         input_to((: select_target_way,6 :));break;
-                case  7:tell(this_player(), "请选择你想解除 #广告# 功能的站台输入方式：\n", CMDMSG);
+                case  7:tell(this_player(), "請選擇你想解除 #廣告# 功能的站臺輸入方式：\n", CMDMSG);
                         input_to((: select_target_way,7 :));break;
-                case  8:tell(this_player(), "请选择你想解除 #忽略# 功能的站台输入方式：\n", CMDMSG);
+                case  8:tell(this_player(), "請選擇你想解除 #忽略# 功能的站臺輸入方式：\n", CMDMSG);
                         input_to((: select_target_way,8 :));break;
 
         }
@@ -246,19 +246,19 @@ int main(object me, string arg)
 
         if( !arg )
         {
-                tell(me, "欢迎使用 Intermud2 Daemon Tool ！！\n", CMDMSG);
-                tell(me, "请输入想使用的项目：\n"+@ITEM
-[1]. 增加 #转码# 功能到某站( BIG5 <-> GB 间互转 )
-[2]. 增加 #广告# 功能到某站( 将该站所有频道讯息转至 AD Channel )
-[3]. 增加 #忽略# 功能到某站( 忽略所有该站所做的动作 )
+                tell(me, "歡迎使用 Intermud2 Daemon Tool ！！\n", CMDMSG);
+                tell(me, "請輸入想使用的項目：\n"+@ITEM
+[1]. 增加 #轉碼# 功能到某站( BIG5 <-> GB 間互轉 )
+[2]. 增加 #廣告# 功能到某站( 將該站所有頻道訊息轉至 AD Channel )
+[3]. 增加 #忽略# 功能到某站( 忽略所有該站所做的動作 )
 [4]--(保留)
 [5]. 增加某站到 mudlist
-[6]. 解除某站的 #转码# 功能
-[7]. 解除某站的 #广告# 功能
+[6]. 解除某站的 #轉碼# 功能
+[7]. 解除某站的 #廣告# 功能
 [8]. 解除某站的 #忽略# 功能
-[9]. 除错功能变更( DEBUG Mode On/Off )
-[q]. 离开。
-请输入[ 1~3,5~9 ] 的数字：
+[9]. 除錯功能變更( DEBUG Mode On/Off )
+[q]. 離開。
+請輸入[ 1~3,5~9 ] 的數字：
 ITEM, CMDMSG);
                 input_to((: select_main_menu :));
                 return 1;

@@ -1,4 +1,4 @@
-// qingci-ping.c 青瓷瓶，用来装玉蜂蜜
+// qingci-ping.c 青瓷瓶，用來裝玉蜂蜜
 
 #include <ansi.h>
 
@@ -6,7 +6,7 @@ inherit ITEM;
 
 inherit F_LIQUID;
 
-#define RAN 60        // 浆有效果的概率
+#define RAN 60        // 漿有效果的概率
 
 void create()
 {
@@ -15,9 +15,9 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "古墓派用来装玉蜂蜜的青瓷小瓶。\n");
-                set("unit", "个");
-                set("base_unit", "个");
+                set("long", "古墓派用來裝玉蜂蜜的青瓷小瓶。\n");
+                set("unit", "個");
+                set("base_unit", "個");
                 set("max_liquid", 10);
                 set("no_give",0);
         }
@@ -52,9 +52,9 @@ int do_drink(string arg)
         if(!arg) return 0;
         if( !living(pl) ) return 0;
         if( pl->is_busy() )
-                return notify_fail("你上一个动作还没有完成。\n");
+                return notify_fail("你上一個動作還沒有完成。\n");
         if( query("water", pl) >= pl->max_water_capacity() )
-                return notify_fail("你已经喝太多了，再也灌不下一滴水了。\n");
+                return notify_fail("你已經喝太多了，再也灌不下一滴水了。\n");
 
         if (sscanf(arg, "%s %d", item, num)==2){
                 if( !id(item) ) return 0;
@@ -72,7 +72,7 @@ int do_drink(string arg)
         else if( !id(arg) ) return 0;
         
         if( !query("liquid/remaining", ping) )
-                return notify_fail(name()+(query("liquid/name", ping)?"已经被喝得一滴也不剩了。\n":"是空的。\n"));
+                return notify_fail(name()+(query("liquid/name", ping)?"已經被喝得一滴也不剩了。\n":"是空的。\n"));
 
         addn("liquid/remaining", -1, ping);
         message_vision("$N拿起"+name()+"呷了一小口"+query("liquid/name", ping)+"。\n",pl);
@@ -83,21 +83,21 @@ int do_drink(string arg)
                 addn("jing", 30, pl);
                 if ((int)pl->query_condition("yufengdu")) {
                     pl->apply_condition("yufengdu", (int)pl->query_condition("yufengdu") - 5);
-                        tell_object(pl, HIW "玉蜂毒的奇痒减轻了一些！\n" NOR );
+                        tell_object(pl, HIW "玉蜂毒的奇癢減輕了一些！\n" NOR );
                 }
         }
         if( query("liquid/name", ping) == "玉蜂蜜水"){
                 addn("jingli", 25, pl);
                 if ((int)pl->query_condition("yufengdu")) {
                     pl->apply_condition("yufengdu", (int)pl->query_condition("yufengdu") - 2);
-                        tell_object(pl, HIW "玉蜂毒的奇痒只减轻了一点点！\n" NOR );
+                        tell_object(pl, HIW "玉蜂毒的奇癢只減輕了一點點！\n" NOR );
                 }
         }
-        if( query("liquid/name", ping) == "玉蜂王浆"){
+        if( query("liquid/name", ping) == "玉蜂王漿"){
                 if (pl->query_skill("qufeng",1) > 60
                         && pl->query_skill("yunv-xinfa",1) > 30
                          && query("family/family_name", pl) == "古墓派"){
-                        tell_object(pl, HIW "你潜运功力，任王浆阴柔之气畅行于经脉。\n" NOR );
+                        tell_object(pl, HIW "你潛運功力，任王漿陰柔之氣暢行於經脈。\n" NOR );
                         if ( random(100) < RAN ){
                                 if( query("max_jingli", pl)<pl->query_current_jingli_limit() )
                                 {
@@ -116,11 +116,11 @@ int do_drink(string arg)
                 else pl->apply_condition("yufengdu", 
                         (int)pl->query_condition("yufengdu") + 20);
         }
-        if( query("liquid/name", ping) == "古墓玉浆"){
+        if( query("liquid/name", ping) == "古墓玉漿"){
                 if (pl->query_skill("qufeng",1) > 120
                         && pl->query_skill("yunu-xinjing",1) > 90
                          && query("family/family_name", pl) == "古墓派"){
-                        tell_object(pl, HIW "你潜运玉女心经，借玉浆阴柔之气冲击经脉，似乎有些作用。\n" NOR );
+                        tell_object(pl, HIW "你潛運玉女心經，借玉漿陰柔之氣衝擊經脈，似乎有些作用。\n" NOR );
                         if ( random(100) < RAN ){
                                 if( query("max_neili", pl)<pl->query_current_neili_limit() )
                                         addn("max_neili", 1, pl);
@@ -136,11 +136,11 @@ int do_drink(string arg)
                 else pl->apply_condition("yufengdu", 
                         (int)pl->query_condition("yufengdu") + 30);
         }
-        if( query("liquid/name", ping) == "古墓圣浆"){
+        if( query("liquid/name", ping) == "古墓聖漿"){
                 if ( pl->query_skill("qufeng",1) > 150
                         && pl->query_skill("yunu-xinjing",1) > 120
                          && query("family/family_name", pl) == "古墓派"){
-                        tell_object(pl, HIW "你潜运玉女心经，借圣浆阴柔之气畅行经脉，通体舒泰！\n" NOR );
+                        tell_object(pl, HIW "你潛運玉女心經，借聖漿陰柔之氣暢行經脈，通體舒泰！\n" NOR );
                         if ( random(100) < RAN ){
                                 if( query("max_neili", pl)<pl->query_current_neili_limit() )
                                         addn("max_neili", 1, pl);
@@ -165,7 +165,7 @@ int do_drink(string arg)
 
         if( pl->is_fighting() ) pl->start_busy(2);
         if( !query("liquid/remaining", ping)){
-                write("你已经将"+name()+"里的"+query("liquid/name", ping )
+                write("你已經將"+name()+"裡的"+query("liquid/name", ping )
                         + "喝得一滴也不剩了。\n");
                 if( query("worthless", ping))set("value",0);
         }
@@ -195,9 +195,9 @@ int do_fill(string arg)
         if(!arg) return 0;
         if( !living(pl) ) return 0;
         if( pl->is_busy() )
-                return notify_fail("你上一个动作还没有完成。\n");
+                return notify_fail("你上一個動作還沒有完成。\n");
         if( !query("resource/water", environment(pl)) )
-                return notify_fail("这里没有地方可以装水。\n");
+                return notify_fail("這裡沒有地方可以裝水。\n");
 
         if (sscanf(arg, "%s %d", item, num)==2){
                 if( !id(item) ) return 0;
@@ -216,7 +216,7 @@ int do_fill(string arg)
 
         if( query("liquid/remaining", ping) == query("max_liquid", ping )
                  && query("liquid/name", ping) == "玉蜂蜜"){
-                message_vision("$N将水缓缓注入" + ping->name() + "里，慢慢摇匀。\n", pl);
+                message_vision("$N將水緩緩注入" + ping->name() + "裡，慢慢搖勻。\n", pl);
                 set("liquid/type", "mi-water", ping);
                 set("liquid/name", "玉蜂蜜水", ping);
                 set("liquid/remaining", query("max_liquid"), ping);
@@ -224,8 +224,8 @@ int do_fill(string arg)
         }
         else {
                 if( query("liquid/remaining", ping) )
-                        message_vision("$N将" + name() + "里剩下的" + query("liquid/name") + "倒掉。\n", pl);
-                message_vision("$N将" + name() + "装满清水。\n", pl);
+                        message_vision("$N將" + name() + "裡剩下的" + query("liquid/name") + "倒掉。\n", pl);
+                message_vision("$N將" + name() + "裝滿清水。\n", pl);
 
                 set("liquid/type", "water", ping);
                 set("liquid/name", "清水", ping);
@@ -250,7 +250,7 @@ int do_addn(string arg)
         addn("liquid/remaining", i);
         remaining = query("liquid/remaining");
         max = query("max_liquid");        //*query_amount();
-        tell_object(me, "满瓶"+chinese_number(max)+"，现在"        + chinese_number(remaining)+"。\n");
+        tell_object(me, "滿瓶"+chinese_number(max)+"，現在"        + chinese_number(remaining)+"。\n");
         
         return 1;
 }

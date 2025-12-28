@@ -1,4 +1,4 @@
-// 本文件被 room_gameover_hj.c 及 room_cession_hj.c 调用。
+// 本文件被 room_gameover_hj.c 及 room_cession_hj.c 調用。
 // 22:53 03-10-22
 
 
@@ -20,11 +20,11 @@ temp = IS_TEST;
     return MY_LOG_FILE_NAME + ctime_format( "_YYM" );
 }
 
-// 每个月生成一份 LOG。
-// 该月的LOG如果太大时，由MUD系统自动改写，这里不作考虑。
-// 如果在测试状态，得分以及兑换奖品的记录，则会写入另一个 log 文件中。
+// 每個月生成一份 LOG。
+// 該月的LOG如果太大時，由MUD系統自動改寫，這裡不作考慮。
+// 如果在測試狀態，得分以及兌換獎品的記錄，則會寫入另一個 log 文件中。
 
-// 奖品转让处的 LOG 则依旧。
+// 獎品轉讓處的 LOG 則依舊。
 
 void hj_log_file(string log_msg)
 {

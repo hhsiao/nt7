@@ -11,10 +11,10 @@ string ask_me1();
 
 void create()
 {
-        set_name("范遥", ({ "fan yao", "fan", "yao" }));
+        set_name("範遙", ({ "fan yao", "fan", "yao" }));
         set("long",
-                "他是一位带发修行的头陀，身穿白布长袍。\n"
-                "他的脸上七七八八的全是伤疤，简直看不出本来面目了。\n"
+                "他是一位帶髮修行的頭陀，身穿白布長袍。\n"
+                "他的臉上七七八八的全是傷疤，簡直看不出本來面目了。\n"
         );
 
         set("title",HIG "明教" HIR "光明右使" NOR);
@@ -72,10 +72,10 @@ void create()
         prepare_skill("strike", "guangming-zhang");
 
         set("inquiry", ([
-                "光明圣火阵"  : (: ask_me :),
-                "明教圣火阵"  : (: ask_me :),
-                "圣火阵"      : (: ask_me :),
-                "黑玉断续膏"  : (: ask_me1 :),
+                "光明聖火陣"  : (: ask_me :),
+                "明教聖火陣"  : (: ask_me :),
+                "聖火陣"      : (: ask_me :),
+                "黑玉斷續膏"  : (: ask_me1 :),
         ]));
 
         set("chat_chance_combat", 120);
@@ -83,7 +83,7 @@ void create()
                 (: prepare_skill("finger", "nianhua-zhi") :),
                 (: prepare_skill("strike", "sanhua-zhang") :),
         }) );
-        set("inherit_title",HIG"明教"HIC"护教法王"NOR);
+        set("inherit_title",HIG"明教"HIC"護教法王"NOR);
         create_family("明教", 34, "光明右使");
 
         set("master_ob",4);
@@ -110,29 +110,29 @@ string ask_me1()
         int i, j;
 
         if( !(fam=query("family", this_player())) || fam["family_name"] != "明教" )
-                return RANK_D->query_respect(this_player())+"与本派素无来往，不知此话从何谈起？";
+                return RANK_D->query_respect(this_player())+"與本派素無來往，不知此話從何談起？";
 
         if (this_player()->query_skill("shenghuo-shengong", 1) < 50)
-                return "你在明教的时日尚短，这黑玉断续膏你还不够资格使用。\n";
+                return "你在明教的時日尚短，這黑玉斷續膏你還不夠資格使用。\n";
 
         if( query_temp("marks/膏1", this_player()) )
-                return "你不是刚拿了黑玉断续膏了吗，怎么还要？";
+                return "你不是剛拿了黑玉斷續膏了嗎，怎麼還要？";
 
         if (present("heiyu duanxugao", this_player()))
-                return "你身上不是带着黑玉断续膏吗，怎么还要？";
+                return "你身上不是帶著黑玉斷續膏嗎，怎麼還要？";
 
         if( query("eff_qi", this_player()) == query("max_qi", this_player()) )
-                return "你现在不需要用黑玉断续膏。";
+                return "你現在不需要用黑玉斷續膏。";
 
         if( query("heiyu", this_object())<1 )
-                return "你来晚了，黑玉断续膏已给全部发出去了。";
+                return "你來晚了，黑玉斷續膏已給全部發出去了。";
 
         ob = new("/d/mingjiao/obj/heiyu");
         ob->move(this_player());
         set_temp("marks/膏1", 1, this_player());
         addn("heiyu", -1, this_object());
 
-        return "好吧，这盒黑玉断续膏你就拿去用吧。";
+        return "好吧，這盒黑玉斷續膏你就拿去用吧。";
 }
 
 void reset()

@@ -15,11 +15,11 @@ mixed ask_pfm();
 void create()
 {
         object ob1, ob2;
-    set_name("向问天", ({ "xiang wentian", "xiang"}));
+    set_name("向問天", ({ "xiang wentian", "xiang"}));
     set("nickname", HIR "天王老子" NOR );
     set("gender", "男性");
     set("title", "日月神教光明右使");
-    set("long", "他就是日月神教的光明右使。为人极为豪爽。\n");
+    set("long", "他就是日月神教的光明右使。為人極為豪爽。\n");
     set("age", 56);
     set("shen_type", -1);
     set("attitude", "peaceful"); 
@@ -31,12 +31,12 @@ void create()
     set("dex", 30);
     set("chat_chance", 1);
     set("inquiry", ([
-      "杨莲亭"     : "这种人，该杀！\n",
-      "东方不败"   : "篡位叛徒，我非杀了他不可！\n",
-      "任我行"     : "教主被困，已历十年......\n",
-      "杀东方不败" : (: ask_kill :),
-      "望断秋水"   : (: ask_pfm :),
-      "绝招"       : (: ask_pfm :),
+      "楊蓮亭"     : "這種人，該殺！\n",
+      "東方不敗"   : "篡位叛徒，我非殺了他不可！\n",
+      "任我行"     : "教主被困，已歷十年......\n",
+      "殺東方不敗" : (: ask_kill :),
+      "望斷秋水"   : (: ask_pfm :),
+      "絕招"       : (: ask_pfm :),
     ]));
     set("qi", 4000);
     set("max_qi", 4000);
@@ -108,7 +108,7 @@ void create()
 void attempt_apprentice(object ob)
 {
     if( query("family/family_name", ob) == "日月神教" )
-        command("say 老夫已不收弟子，不过我这里有一套鞭法，你若想学，我可以教你。");
+        command("say 老夫已不收弟子，不過我這裡有一套鞭法，你若想學，我可以教你。");
     else
         command("say 我不收弟子。");
     return;
@@ -120,26 +120,26 @@ int recognize_apprentice(object ob, string skill)
      {
          if (skill != "whip" && skill != "liushui-bian")
          {
-             command("say 我只会点鞭法，其他的找你师傅去学！");
+             command("say 我只會點鞭法，其他的找你師傅去學！");
              return -1;
          }
 
          if( query("character", ob) == "光明磊落" && skill == "liushui-bian" )
          {
-             command("say 你不适合学我这门绝技！");
+             command("say 你不適合學我這門絕技！");
              return -1;
          }
 
          if( query("shen", ob)>0 )
          {
              command("heng");
-             command("say 你既然自命正派君子，来学我这种雕虫小技做什么？");
+             command("say 你既然自命正派君子，來學我這種雕蟲小技做什麼？");
              return -1;
          }
 
          if (skill == "liushui-bian" && ob->query_skill("whip", 1) < 150)
          {
-             command("say 你对基本鞭法的理解也未免太差了点。");
+             command("say 你對基本鞭法的理解也未免太差了點。");
              return -1;
          }
 
@@ -147,7 +147,7 @@ int recognize_apprentice(object ob, string skill)
          {
              if( !query("can_learn/xiang/whip", ob) )
              {
-                  command("say 好吧，我就教你一点关于鞭法的基本知识。");
+                  command("say 好吧，我就教你一點關於鞭法的基本知識。");
                   set("can_learn/xiang/whip", 1, ob);
              }
              return 1;
@@ -157,7 +157,7 @@ int recognize_apprentice(object ob, string skill)
          {
              if( !query("can_learn/xiang/liushui-bian", ob) )
              {
-                  command("say 很好，我这就传你流水鞭法！");
+                  command("say 很好，我這就傳你流水鞭法！");
                   set("can_learn/xiang/liushui-bian", 1, ob);
              }
              return 1;
@@ -171,22 +171,22 @@ mixed ask_pfm()
       object me = this_player();
 
       if( query("can_perform/liushui-bian/wang", me) )
-              return "你要跟老夫切磋一下吗？";
+              return "你要跟老夫切磋一下嗎？";
 
       if( query("family/family_name", me) != query("family/family_name") )
-              return "我神教武功独步武林，这位" + RANK_D->query_respect(me) +
-                     "既然想学，不如入我神教如何？";
+              return "我神教武功獨步武林，這位" + RANK_D->query_respect(me) +
+                     "既然想學，不如入我神教如何？";
 
       if (me->query_skill("liushui-bian", 1) < 180)
-              return "你的流水鞭法还练不到家，让我怎么教你呢！";
+              return "你的流水鞭法還練不到家，讓我怎麼教你呢！";
 
-      message_vision(HIY "$n" HIY "对$N" HIY "点了点头：你看那块巨石。\n" HIY
-                     "只见$n" HIY "手中长鞭一荡，骤然向上挥出，只见长鞭" HIY
-                     "划出一道弧线，直向巨石击去。\n" HIW
-                     "“叭”的一声，巨石已被打成碎片，四下飞散。\n" NOR,
+      message_vision(HIY "$n" HIY "對$N" HIY "點了點頭：你看那塊巨石。\n" HIY
+                     "只見$n" HIY "手中長鞭一蕩，驟然向上揮出，只見長鞭" HIY
+                     "劃出一道弧線，直向巨石擊去。\n" HIW
+                     "“叭”的一聲，巨石已被打成碎片，四下飛散。\n" NOR,
                      me, this_object());
-      command("say 你看懂了没有？");
-      tell_object(me, HIY "你学会了「望断秋水」这一招。\n" NOR);
+      command("say 你看懂了沒有？");
+      tell_object(me, HIY "你學會了「望斷秋水」這一招。\n" NOR);
       if (me->can_improve_skill("whip"))
             me->improve_skill("whip", 160000);
       set("can_perform/liushui-bian/wang", 1, me);
@@ -197,15 +197,15 @@ int ask_kill()
 {
       object ob, me = this_player();
       if (!query("have_ling"))
-            command("say 我的天香堂令牌已经给别人了，怎么还不去？");
+            command("say 我的天香堂令牌已經給別人了，怎麼還不去？");
       else
       {
-            command("tell"+query("id", me)+"你要去杀东方不败？\n");
-            message_vision(HIC "向问天对$N点了点头说：我助你一臂之力。\n" NOR, me);
+            command("tell"+query("id", me)+"你要去殺東方不敗？\n");
+            message_vision(HIC "向問天對$N點了點頭說：我助你一臂之力。\n" NOR, me);
             ob=new("/d/heimuya/npc/obj/card4");
             ob->move(me);
             delete("have_ling");
-            tell_object(me, "向问天从怀里摸出一块令牌塞到你的手上。\n");
+            tell_object(me, "向問天從懷裡摸出一塊令牌塞到你的手上。\n");
       }
       return 1;
 }

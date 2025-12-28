@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define LIAN "「" HIW "夺命连环" NOR "」"
+#define LIAN "「" HIW "奪命連環" NOR "」"
 
 inherit F_SSERVER;
 
@@ -13,38 +13,38 @@ int perform(object me, object target)
         int i;
 
         if( userp(me) && !query("can_perform/lianhuan-mizongtui/lian", me) )
-                return notify_fail("你所使用的外功中没有这种功能。\n");
+                return notify_fail("你所使用的外功中沒有這種功能。\n");
 
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(LIAN "只能对战斗中的对手使用。\n");
+                return notify_fail(LIAN "只能對戰鬥中的對手使用。\n");
 
         if ((lvl = (int)me->query_skill("lianhuan-mizongtui", 1)) < 120)
-                return notify_fail("你的连环迷踪腿不够娴熟，难以施展" LIAN "。\n");
+                return notify_fail("你的連環迷蹤腿不夠嫻熟，難以施展" LIAN "。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(LIAN "只能空手施展。\n");
                 
         if( query("max_neili", me)<1800 )
-                return notify_fail("你的内力的修为不够，现在无法使用" LIAN "。\n");
+                return notify_fail("你的內力的修為不夠，現在無法使用" LIAN "。\n");
 
         if ((int)me->query_skill("force") < 150)
-                return notify_fail("你的内功火候不够，难以施展" LIAN "。\n");
+                return notify_fail("你的內功火候不夠，難以施展" LIAN "。\n");
 
         if ((int)me->query_skill("dodge") < 150)
-                return notify_fail("你的轻功火候不够，难以施展" LIAN "。\n");
+                return notify_fail("你的輕功火候不夠，難以施展" LIAN "。\n");
 
         if (me->query_skill_prepared("unarmed") != "lianhuan-mizongtui")
-                return notify_fail("你现在没有准备使用连环迷踪腿，难以施展" LIAN "。\n");
+                return notify_fail("你現在沒有準備使用連環迷蹤腿，難以施展" LIAN "。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你现在真气太弱，难以施展" LIAN "。\n");
+                return notify_fail("你現在真氣太弱，難以施展" LIAN "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "陡见$N" HIW "全身飞速旋转，双腿忽前忽后，接连贯出数腿，流星般疾射$n"
+        msg = HIW "陡見$N" HIW "全身飛速旋轉，雙腿忽前忽後，接連貫出數腿，流星般疾射$n"
               HIW "胸口。\n" NOR;
 
         addn("neili", -150, me);
@@ -52,14 +52,14 @@ int perform(object me, object target)
         if (random(me->query_skill("dodge") + me->query_skill("unarmed")) >
             target->query_skill("parry"))
         {
-                msg += HIR "$n" HIR "顿时觉得眼花缭乱，无数条腿"
-                       "向自己奔来，只得拼命运动抵挡。\n" NOR;
+                msg += HIR "$n" HIR "頓時覺得眼花繚亂，無數條腿"
+                       "向自己奔來，只得拼命運動抵擋。\n" NOR;
                 count = lvl / 5;
                 addn_temp("apply/attack", count, me);
         } else
         {
-                msg += HIC "可是$n" HIC "凝神顿气，奋力抵挡，丝"
-                       "毫不受腿影的干扰，。\n" NOR;
+                msg += HIC "可是$n" HIC "凝神頓氣，奮力抵擋，絲"
+                       "毫不受腿影的干擾，。\n" NOR;
                 count = 0;
         }
         message_combatd(msg, me, target);

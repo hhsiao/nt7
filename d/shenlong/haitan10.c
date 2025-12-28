@@ -2,9 +2,9 @@ inherit DEMONROOM;
 
 void create()
 {
-        set("short", "海滩");
+        set("short", "海灘");
         set("long",@LONG
-这是神龙岛东部沿岸沙滩。
+這是神龍島東部沿岸沙灘。
 LONG);
 
 	set("exits", ([

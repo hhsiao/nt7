@@ -12,10 +12,10 @@ mixed ask_skill2();
 
 void create()
 {
-       set_name("风陵师太", ({"fengling shitai", "fengling", "shitai", "feng", "ling"}));
-       set("long", "她就是峨嵋派第二代掌门人风陵师太。\n"
-                   "她面目慈祥，便如寻常老尼一般，浑\n"
-                   "不带一丝尘俗之气。\n");
+       set_name("風陵師太", ({"fengling shitai", "fengling", "shitai", "feng", "ling"}));
+       set("long", "她就是峨嵋派第二代掌門人風陵師太。\n"
+                   "她面目慈祥，便如尋常老尼一般，渾\n"
+                   "不帶一絲塵俗之氣。\n");
         set("gender", "女性");
         set("age", 62);
         set("attitude", "peaceful");
@@ -61,8 +61,8 @@ void create()
 	set_skill("jingxin", 600);
 
         set("no_teach", ([
-                "emei-jiuyang" : "这峨嵋九阳功乃残缺不全的九阳神功，临济十二庄"
-                                 "胜之千倍，你还是学它好了。",
+                "emei-jiuyang" : "這峨嵋九陽功乃殘缺不全的九陽神功，臨濟十二莊"
+                                 "勝之千倍，你還是學它好了。",
         ]));
 
         map_skill("force", "emei-jiuyang");
@@ -76,12 +76,12 @@ void create()
 
         prepare_skill("strike", "piaoxue-zhang");
 
-        create_family("峨嵋派", 2, "掌门人");
+        create_family("峨嵋派", 2, "掌門人");
 
         set("inquiry",([
-                "剃度"     : "要剃度找静玄。",
-                "出家"     : "要剃度找静玄。",
-                "云海明灯" : (: ask_skill1 :),
+                "剃度"     : "要剃度找靜玄。",
+                "出家"     : "要剃度找靜玄。",
+                "雲海明燈" : (: ask_skill1 :),
                 "佛光普照" : (: ask_skill2 :),
         ]));
 
@@ -115,37 +115,37 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)<50000 )
         {
-                command("say 你行侠仗义的事情还做得不够，我暂时还不能收你。");
+                command("say 你行俠仗義的事情還做得不夠，我暫時還不能收你。");
                 return;
         }
 
         if( query("combat_exp", ob)<500000 )
         {
                 command("sigh");
-                command("say 你的江湖经验太浅，还是先多锻炼锻炼再说吧。");
+                command("say 你的江湖經驗太淺，還是先多鍛鍊鍛鍊再說吧。");
                 return;
         }
 
         if ((int)ob->query_skill("mahayana", 1) < 150)
         {
-                command("say 你大乘涅磐功的修为还不行，好好感悟感悟！");
+                command("say 你大乘涅磐功的修為還不行，好好感悟感悟！");
                 return;
         }
 
         if ((int)ob->query_skill("linji-zhuang", 1) < 150)
         {
-                command("say 临济十二庄乃我峨嵋第一奇功，须得好好练习。");
+                command("say 臨濟十二莊乃我峨嵋第一奇功，須得好好練習。");
                 return;
         }
 
         name=query("name", ob);
-        new_name = "灭" + name[1..1];
+        new_name = "滅" + name[1..1];
         NAME_D->remove_name(query("name", ob),query("id", ob));
         set("name", new_name, ob);
         NAME_D->map_name(query("name", ob),query("id", ob));
 
-        command("say 不错，不错！");
-        command("say 今日我便收你为徒，法号" + new_name + "。");
+        command("say 不錯，不錯！");
+        command("say 今日我便收你為徒，法號" + new_name + "。");
         command("recruit "+query("id", ob));
 }
 
@@ -155,41 +155,41 @@ mixed ask_skill1()
 
         me = this_player();
         if( query("can_perform/piaoxue-zhang/yun", me) )
-                return "这一招我不是已经传授予你了吗？还有什么不懂就自己下去练吧。";
+                return "這一招我不是已經傳授予你了嗎？還有什麼不懂就自己下去練吧。";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "我与阁下素无来往，不知阁下打听这个干嘛？";
+                return "我與閣下素無來往，不知閣下打聽這個幹嘛？";
 
         if( query("family/master_id", me) != query("id") )
-                return "只有我的弟子才能学习此招，你还是走吧。";
+                return "只有我的弟子才能學習此招，你還是走吧。";
 
         if (me->query_skill("piaoxue-zhang", 1) < 1)
-                return "你连飘雪穿云掌都没学，还谈什么绝招可言？";
+                return "你連飄雪穿雲掌都沒學，還談什麼絕招可言？";
 
         if( query("family/gongji", me)<1800 )
-                return "你对峨嵋派所作出的贡献还不够，这招我暂时不能传你。";
+                return "你對峨嵋派所作出的貢獻還不夠，這招我暫時不能傳你。";
 
         if (me->query_skill("force") < 200)
-                return "你的内功修行太浅，尚且学不了这一招。";
+                return "你的內功修行太淺，尚且學不了這一招。";
 
         if( query("max_neili", me)<2000 )
-                return "你的内力修行太浅，尚且学不了这一招。";
+                return "你的內力修行太淺，尚且學不了這一招。";
 
         if (me->query_skill("piaoxue-zhang", 1) < 150)
-                return "你的飘雪穿云掌火候未到，尚且学不了这一招。";
+                return "你的飄雪穿雲掌火候未到，尚且學不了這一招。";
 
         if( query("shen", me)<40000 )
-                return "你行侠仗义的事情还做得不够，我暂时还不能传你此招。";
+                return "你行俠仗義的事情還做得不夠，我暫時還不能傳你此招。";
 
-        message_sort(HIY "\n$n" HIY "微微一笑，对$N" HIY "说道：“既然你内"
-                     "外功均已达至如此境界，也不枉了我平时的一翻栽培。今日"
-                     "我便传你此招，希望日后能将我峨嵋派发扬光大。”说完，"
-                     "$n" HIY "将$N" HIY "招至跟前，在$N" HIY "耳旁轻声细说"
+        message_sort(HIY "\n$n" HIY "微微一笑，對$N" HIY "說道：“既然你內"
+                     "外功均已達至如此境界，也不枉了我平時的一翻栽培。今日"
+                     "我便傳你此招，希望日後能將我峨嵋派發揚光大。”說完，"
+                     "$n" HIY "將$N" HIY "招至跟前，在$N" HIY "耳旁輕聲細說"
                      "良久。\n\n" NOR, me, this_object());
 
         command("nod");
-        command("say 刚才我所说的你都记清了吗？记清了就下去练吧。");
-        tell_object(me, HIC "你学会了「云海明灯」。\n" NOR);
+        command("say 剛才我所說的你都記清了嗎？記清了就下去練吧。");
+        tell_object(me, HIC "你學會了「雲海明燈」。\n" NOR);
 
         if (me->can_improve_skill("strike"))
                 me->improve_skill("strike", 1500000);
@@ -207,46 +207,46 @@ mixed ask_skill2()
 
         me = this_player();
         if( query("can_perform/piaoxue-zhang/zhao", me) )
-                return "这一招我不是已经传授予你了吗？还有什么不懂就自己下去练吧。";
+                return "這一招我不是已經傳授予你了嗎？還有什麼不懂就自己下去練吧。";
 
         if( query("family/family_name", me) != query("family/family_name") )
-                return "我与阁下素无来往，不知阁下打听这个干嘛？";
+                return "我與閣下素無來往，不知閣下打聽這個幹嘛？";
 
         if( query("family/master_id", me) != query("id") )
-                return "只有我的弟子才能学习此招，你还是走吧。";
+                return "只有我的弟子才能學習此招，你還是走吧。";
 
         if (me->query_skill("piaoxue-zhang", 1) < 1)
-                return "你连飘雪穿云掌都没学，还谈什么绝招可言？";
+                return "你連飄雪穿雲掌都沒學，還談什麼絕招可言？";
 
         if( query("family/gongji", me)<2200 )
-                return "你对峨嵋派所作出的贡献还不够，这招我暂时不能传你。";
+                return "你對峨嵋派所作出的貢獻還不夠，這招我暫時不能傳你。";
 
         if (me->query_skill("force") < 700)
-                return "你的内功修行太浅，尚且学不了这一招。";
+                return "你的內功修行太淺，尚且學不了這一招。";
 
         if( query("max_neili", me)<3500 )
-                return "你的内力修行太浅，尚且学不了这一招。";
+                return "你的內力修行太淺，尚且學不了這一招。";
 
         if (me->query_skill("piaoxue-zhang", 1) < 180)
-                return "你的飘雪穿云掌火候未到，尚且学不了这一招。";
+                return "你的飄雪穿雲掌火候未到，尚且學不了這一招。";
 
         if( query("shen", me)<40000 )
-                return "你行侠仗义的事情还做得不够，我暂时还不能传你此招。";
+                return "你行俠仗義的事情還做得不夠，我暫時還不能傳你此招。";
 
-        message_sort(HIY "\n$n" HIY "轻轻拍了拍$N" HIY "的头，说道：“好"
-                     "吧，难得你如此有心，今日我就将此招演示一遍，可得看"
-                     "好了！”话音刚落，只见$n" HIY "狂提内劲，周身骨骼无"
-                     "不噼啪作响，面赤如血，煞是惊人。随即$n" HIY "一声暴"
-                     "喝，双掌携着隐隐风雷之势猛力向前拍出，顿时只听“喀"
-                     "嚓”一声巨响，前方崖边一颗碗口粗的松树应声而断，断"
-                     "枝仍是余势未尽，向前又飞出数丈，这才跌落至山谷之中"
-                     "。须臾，便闻山谷下回声四起，在峨嵋群山中回荡了好一"
-                     "阵才消失殆尽。$n" HIY "微微一笑，长吁一口气，缓缓收"
-                     "回内劲，朝$N" HIY "望去，见$N" HIY "早已看得目瞪口"
+        message_sort(HIY "\n$n" HIY "輕輕拍了拍$N" HIY "的頭，說道：“好"
+                     "吧，難得你如此有心，今日我就將此招演示一遍，可得看"
+                     "好了！”話音剛落，只見$n" HIY "狂提內勁，周身骨骼無"
+                     "不噼啪作響，面赤如血，煞是驚人。隨即$n" HIY "一聲暴"
+                     "喝，雙掌攜著隱隱風雷之勢猛力向前拍出，頓時只聽“喀"
+                     "嚓”一聲巨響，前方崖邊一顆碗口粗的松樹應聲而斷，斷"
+                     "枝仍是餘勢未盡，向前又飛出數丈，這才跌落至山谷之中"
+                     "。須臾，便聞山谷下回聲四起，在峨嵋群山中迴盪了好一"
+                     "陣才消失殆盡。$n" HIY "微微一笑，長吁一口氣，緩緩收"
+                     "回內勁，朝$N" HIY "望去，見$N" HIY "早已看得目瞪口"
                      "呆。\n\n" NOR, me, this_object());
 
-        command("say 这招你下去后一定要勤加练习，才能发挥出它的威力。");
-        tell_object(me, HIC "你学会了「佛光普照」。\n" NOR);
+        command("say 這招你下去後一定要勤加練習，才能發揮出它的威力。");
+        tell_object(me, HIC "你學會了「佛光普照」。\n" NOR);
 
         if (me->can_improve_skill("strike"))
                 me->improve_skill("strike", 1500000);
@@ -263,10 +263,10 @@ int accept_ask(object me, string topic)
         switch (topic)
         {
         case "涅磐" :
-        case "凤凰涅磐" :
+        case "鳳凰涅磐" :
                return MASTER_D->teach_pfm(me, this_object(),
                              ([ "perform" : "can_exert/linji-zhuang/niepan",
-                                "name"    : "凤凰涅磐",
+                                "name"    : "鳳凰涅磐",
                                 "sk1"     : "linji-zhuang",
                                 "lv1"     : 1000,
                                 "sk2"     : "force",

@@ -9,7 +9,7 @@ inherit CHARM;
 int movetome(object me)
 {
         this_object()->move(me);
-        tell_object(me, name() + NOR + "突然一动跳到你的身上。\n" + NOR);
+        tell_object(me, name() + NOR + "突然一動跳到你的身上。\n" + NOR);
         return 1;
 }
 
@@ -26,10 +26,10 @@ string long()
 void create()
 {
         
-        set_name(HIC "六币链" NOR, ({ "ankle chains"}));
+        set_name(HIC "六幣鏈" NOR, ({ "ankle chains"}));
         set_weight(100);
                 set("unit", "串");
-                set("long", HIG "这是一副足链，由黄金的" NOR YEL "六帝币" HIG "串成。\n" NOR);
+                set("long", HIG "這是一副足鏈，由黃金的" NOR YEL "六帝幣" HIG "串成。\n" NOR);
                 set("value", 1);
                 set("material", "gold");
                 set("no_sell", 1);
@@ -57,7 +57,7 @@ void create()
                 set("armor_prop/magic_find", 20);
                 set("armor_prop/max_neili", 500000); 
                 set("armor_prop/max_jingli", 500000); 
-                                set("quality_level", 6);//装饰
+                                set("quality_level", 6);//裝飾
 
                         setup();
 }        

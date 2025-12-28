@@ -64,17 +64,17 @@ void create()
                 "/clone/medal/yongshi_xunzhang" :1,
         ]));
         
-        //金蝙蝠要破怪体
+        //金蝙蝠要破怪體
 
         setup();
 }
 
 void init()
 {
-        // 随机攻击玩家
+        // 隨機攻擊玩家
         if (userp(this_player()) && !query("env/invisible", this_player()) && !random(5))
         {
-                tell_object(this_player(), query("name", this_object()) + NOR CYN "桀桀怪笑，化为一道黑色劲装的青年向你扑来...\n" NOR);
+                tell_object(this_player(), query("name", this_object()) + NOR CYN "桀桀怪笑，化為一道黑色勁裝的青年向你撲來...\n" NOR);
                 if (random(2)) this_player()->start_busy(2);
                 kill_ob(this_player());
         }
@@ -95,7 +95,7 @@ mixed hit_ob(object me, object ob, int damage)
             addn("eff_jing", damage * 5, me); 
             addn("jing", damage * 5, me); 
             addn("jingli", damage * 2, me); 
-            msg = HIR "$n" HIR "觉得伤口有些发麻，鲜血潺潺流进蝙蝠的嘴里。\n" NOR;
+            msg = HIR "$n" HIR "覺得傷口有些發麻，鮮血潺潺流進蝙蝠的嘴裡。\n" NOR;
         }
         return msg;
 }

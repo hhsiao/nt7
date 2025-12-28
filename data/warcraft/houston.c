@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("大鸟[2;37;0m[2;37;0m", ({"hhh"}));        
+        set_name("大鳥[2;37;0m[2;37;0m", ({"hhh"}));        
         set("gender", "男性");                
         set("long", "11[2;37;0m
-它是弗洛雷斯的魔幻兽。
+它是弗洛雷斯的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

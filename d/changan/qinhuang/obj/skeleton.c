@@ -10,6 +10,6 @@ void create()
         set("long",
             "一具枯乾的骸骨。\n");
         set("value", 0);
-        set("no_get","这东西一碰就散，还是别拣吧！\n");
+        set("no_get","這東西一碰就散，還是別揀吧！\n");
     }
 }

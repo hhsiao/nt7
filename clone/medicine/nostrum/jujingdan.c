@@ -15,7 +15,7 @@ void create()
         set("vegetable", 68);
         set("nostrum", 14);
         set("level", 80);
-        set("long", "这是一粒武当门下炼功用的丹药。\n");
+        set("long", "這是一粒武當門下煉功用的丹藥。\n");
         set("pour_type", "1");
         setup();
 }
@@ -28,15 +28,15 @@ int do_eat(string arg)
         taoism_limit = me->query_skill("taoism", 1)*10;
         jingli_limit=query("max_jingli", me);
 
-        if(!id(arg)) return notify_fail("你要吃什么？\n");
+        if(!id(arg)) return notify_fail("你要吃什麼？\n");
         if(!present(this_object(), me))
-                return notify_fail("你要吃什么？\n");
+                return notify_fail("你要吃什麼？\n");
         if( me->is_busy() )
-                return notify_fail("别急，慢慢吃，小心别噎着了。\n");
+                return notify_fail("別急，慢慢吃，小心別噎著了。\n");
 
         if( jingli_limit <= taoism_limit)addn("max_jingli", 1, me);
         set("qi",query("eff_qi",  me), me);
-        message_vision("$N吃下一粒延年聚精丹，顿觉舌底生津，气血旺盛。\n",me);
+        message_vision("$N吃下一粒延年聚精丹，頓覺舌底生津，氣血旺盛。\n",me);
 
         destruct(this_object());
         return 1;

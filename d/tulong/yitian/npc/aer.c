@@ -6,9 +6,9 @@ inherit F_MASTER;
 void create()
 {
         set_name("阿二", ({ "a er", "a", "er" }));
-        set("long", "阿二乃阿三的同门师兄，也是西域少林派一\n"
-                    "等一的高手，被汝阳王一重金安置于麾下，\n"
-                    "非常得汝阳王的赏识。\n");
+        set("long", "阿二乃阿三的同門師兄，也是西域少林派一\n"
+                    "等一的高手，被汝陽王一重金安置於麾下，\n"
+                    "非常得汝陽王的賞識。\n");
         set("title", HIR "西域少林派高手" NOR);
         set("gender", "男性");
         set("age", 55);
@@ -65,25 +65,25 @@ void init()
 
 int accept_fight(object who)
 {
-        command("say 没郡主的吩咐我不会出手。");
+        command("say 沒郡主的吩咐我不會出手。");
         return 0;
 }
 
 int accept_hit(object who)
 {
-        command("say 没郡主的吩咐我不会出手。");
+        command("say 沒郡主的吩咐我不會出手。");
         return 0;
 }
 
 int accept_kill(object who)
 {
-        command("say 没郡主的吩咐我不会出手，杀了我也一样。");
-        return notify_fail("刹那间你只觉得下不了手。\n");
+        command("say 沒郡主的吩咐我不會出手，殺了我也一樣。");
+        return notify_fail("剎那間你只覺得下不了手。\n");
 }
 
 int accept_ansuan(object who)
 {
-        return notify_fail("你刚想暗算，可是只见楼上人影晃动，根本看不清楚。\n");
+        return notify_fail("你剛想暗算，可是隻見樓上人影晃動，根本看不清楚。\n");
 }
 
 int begin()
@@ -98,21 +98,21 @@ int begin()
         if( !query_temp("win_asan", me) )
         {
                 command("@@");
-                command("say 阁下是谁？为何刚才不出战，现在来趁机拣便宜。");
-                return notify_fail("看起来阿二并不想跟你较量。\n");
+                command("say 閣下是誰？為何剛才不出戰，現在來趁機揀便宜。");
+                return notify_fail("看起來阿二並不想跟你較量。\n");
         }
 
         if( objectp(weapon=query_temp("weapon", me)) )
         {
                 command("shake");
-                command("say 我也和你比空手，放下你的" + weapon->name() + "再说。");
-                return notify_fail("看起来阿二并不想跟你较量。\n");
+                command("say 我也和你比空手，放下你的" + weapon->name() + "再說。");
+                return notify_fail("看起來阿二並不想跟你較量。\n");
         }
 
         command("nod");
         command("say 我出招了。");
-        message_vision( HIW "$N双手合十，对着$n" HIW 
-                            "微微一揖，双掌平推，掌劲如巨浪般汹涌而出！\n" NOR,
+        message_vision( HIW "$N雙手合十，對著$n" HIW 
+                            "微微一揖，雙掌平推，掌勁如巨浪般洶湧而出！\n" NOR,
                             obj,this_player());
 
         set_temp("bi", 1, me);
@@ -126,17 +126,17 @@ void die()
 {
         if (objectp(query("anti")))
         {
-                message_vision( HIR "\n只听一声轰响，阿二前胸被$n" HIR 
-                                    "打中，胸骨尽断，口中鲜血狂喷，身子如断了线的风筝\n"
-                                    "一样直飞了出去，倒在地上动也不动一下。\n\n" NOR,
+                message_vision( HIR "\n只聽一聲轟響，阿二前胸被$n" HIR 
+                                    "打中，胸骨盡斷，口中鮮血狂噴，身子如斷了線的風箏\n"
+                                    "一樣直飛了出去，倒在地上動也不動一下。\n\n" NOR,
                                     this_object(),query("anti"));
 
-                message_vision( CYN "赵敏颇为惊讶，可还是不露声色，只是向亲兵淡淡挥手说"
+                message_vision( CYN "趙敏頗為驚訝，可還是不露聲色，只是向親兵淡淡揮手說"
                                     "道：“抬下去。”\n" NOR,
                                     this_object());
 
-                message_vision( CYN "赵敏又转头对$n" CYN 
-                                    "微笑道：“很好，还剩下个阿大，你胜过了他倚天剑你就取走吧。”\n" NOR,
+                message_vision( CYN "趙敏又轉頭對$n" CYN 
+                                    "微笑道：“很好，還剩下個阿大，你勝過了他倚天劍你就取走吧。”\n" NOR,
                                     this_object(), query("anti"));
 
                 set_temp("win_aer", 1, query("anti"));

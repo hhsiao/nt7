@@ -26,10 +26,10 @@ int main(object me, string arg)
         {
                 make=query("can_make", me);
                 if (! mapp(make))
-                        return notify_fail("你现在不会制任何药物。\n");
+                        return notify_fail("你現在不會制任何藥物。\n");
 
                 ks = keys(make);
-                msg = "你现在已经会制";
+                msg = "你現在已經會制";
                 if (sizeof(ks) >= 2)
                         msg += implode(ks[0..sizeof(ks) - 2], "、") +
                                 "和" + ks[sizeof(ks) - 1] + "了。\n";
@@ -44,29 +44,29 @@ int main(object me, string arg)
         only_list = sscanf(arg, "%s ?", arg);
 
         if( !stringp(med=query("can_make/"+arg, me)) )
-                return notify_fail("你还不会配这种药啊！\n");
+                return notify_fail("你還不會配這種藥啊！\n");
 
         // The player can only make the medicine under the /clone/medicine,
         // nothing, but for save memory.
         med = MEDICINE(med);
         if (file_size(med + ".c") < 0)
-                return notify_fail("这种药方好像已经失传了？你还是问问巫师吧。\n");
+                return notify_fail("這種藥方好像已經失傳了？你還是問問巫師吧。\n");
                 
         //tell_object(me, "test:" + med + "\n");
         if (med == "/clone/medicine/yuqing" && !sscanf(base_name(environment(me)), "/d/dongtian/%*s/liandanfang") ) {
-                return notify_fail("这种药必须在洞天的炼丹房里才能炼制。\n");
+                return notify_fail("這種藥必須在洞天的煉丹房裡才能煉製。\n");
         }
 
         if (! mapp(req = query("mixture", get_object(med))))
-                return notify_fail(med->name() + "好像无法配制...\n");
+                return notify_fail(med->name() + "好像無法配製...\n");
 
         if (! mapp(herb = req["herb"]))
-                return notify_fail(med->name() + "需要什么原料呢...\n");
+                return notify_fail(med->name() + "需要什麼原料呢...\n");
 
         if (only_list)
         {
                 // show herb
-                write("炼制" + arg + "需要以下这些药材：\n");
+                write("煉製" + arg + "需要以下這些藥材：\n");
                 ks = keys(herb);
                 for (i = 0; i < sizeof(ks); i++)
                 {
@@ -77,26 +77,26 @@ int main(object me, string arg)
         }
 
         if (me->is_fighting())
-                return notify_fail("打架的时候你还有闲工夫配药？\n");
+                return notify_fail("打架的時候你還有閒工夫配藥？\n");
 
         if (me->is_busy())
-                return notify_fail("还是先把手头的事情忙完吧。\n");
+                return notify_fail("還是先把手頭的事情忙完吧。\n");
 
         if( query("no_fight", environment(me)) && 0 )
-                return notify_fail("你在这里制药只怕要打扰到别人。\n");
+                return notify_fail("你在這裡製藥只怕要打擾到別人。\n");
 
         qm=query_temp("handing", me);
         if (! qm)
-                return notify_fail("你的先把能够磨药的研钵拿(hand)在手上才行。\n");
+                return notify_fail("你的先把能夠磨藥的研缽拿(hand)在手上才行。\n");
 
         if (! qm->can_make_medicine())
-                return notify_fail(qm->name() + "好像无法发挥研钵的作用吧。\n");
+                return notify_fail(qm->name() + "好像無法發揮研缽的作用吧。\n");
 
         if (sizeof(all_inventory(qm)) > 0)
-                return notify_fail("你还是先把" + qm->name() + "里面的东西拿出来再说。\n");
+                return notify_fail("你還是先把" + qm->name() + "裡面的東西拿出來再說。\n");
 
         if( query("jing", me)<query("max_jing", me)*7/10 )
-                return notify_fail("你现在精神难以集中，无法配药。\n");
+                return notify_fail("你現在精神難以集中，無法配藥。\n");
 
         ks = keys(req) - ({ "herb", "neili", "jing", "jingli", "min_level", "time" });
 
@@ -104,10 +104,10 @@ int main(object me, string arg)
         for (i = 0; i < sizeof(ks); i++)
                 if (me->query_skillo(ks[i], 1) < req[ks[i]])
                         return notify_fail("你的" + to_chinese(ks[i]) +
-                                           "水平不够，还无法调剂" +
+                                           "水平不夠，還無法調劑" +
                                            med->name() + "。\n");
     
-    //血脉丹以外可以不耗药材                                       
+    //血脈丹以外可以不耗藥材                                       
         if ((!get_object(med)->is_xuemai_dan()) && base_name(qm)=="/clone/goods/tiandilu") {
                         switch(random(3))
                                 {
@@ -134,7 +134,7 @@ int main(object me, string arg)
         if (hob2) {// && 
                 //query_temp("tiandilu/cdtime", me) < time()) {
                         //set_temp("tiandilu/cdtime", time() + 21 + random(10), me);
-                        message_vision(NOR CYN "$N拿出一" + query("base_unit", hob2) + hob2->name() + NOR CYN "塞进嘴里几把嚼烂，\n紧跟着喷出一口灵气灌注到$n" NOR CYN "里代替药材。\n" NOR, me, qm);
+                        message_vision(NOR CYN "$N拿出一" + query("base_unit", hob2) + hob2->name() + NOR CYN "塞進嘴裡幾把嚼爛，\n緊跟著噴出一口靈氣灌注到$n" NOR CYN "裡代替藥材。\n" NOR, me, qm);
                         hob2->add_amount(-1);
         } else {
                 delete_temp("tiandilu/type", me);
@@ -149,19 +149,19 @@ int main(object me, string arg)
                 {
                         if (file_size(HERB(ks[i]) + ".c") < 0)
                         {
-                                write("没有(" + ks[i] + ")这种药材啊！"
-                                      "怎么回事？\n");
+                                write("沒有(" + ks[i] + ")這種藥材啊！"
+                                      "怎麼回事？\n");
                                 return 1;
                         }
-                        return notify_fail("你点了点药材，发现" +
+                        return notify_fail("你點了點藥材，發現" +
                                            HERB(ks[i])->name() +
-                                           "的分量还不够。\n");
+                                           "的分量還不夠。\n");
                 }
                 hlist[i] = hob;
         }
 
         // decrease herb
-        msg = "你选出";
+        msg = "你選出";
         for (i = 0; i < sizeof(ks); i++)
         {
                 if (i) msg += "、";
@@ -172,16 +172,16 @@ int main(object me, string arg)
               if( base_name(hlist[i])=="/clone/herb/dimai" || base_name(hlist[i])=="/clone/herb/yulu")
               destruct(hlist[i]);
         }
-        msg += "，然后小心翼翼的把它们放到" + qm->name() + "里面，开始制药。\n";
+        msg += "，然後小心翼翼的把它們放到" + qm->name() + "裡面，開始製藥。\n";
         msg = sort_string(msg, 64);
         write(msg);
     }
     
-        message("vision", me->name() + "东摸摸，西弄弄，不知道在干啥。\n",
+        message("vision", me->name() + "東摸摸，西弄弄，不知道在幹啥。\n",
                 environment(me), ({ me }));
         me->start_busy(bind((:call_other, __FILE__, "making" :), me),
                        bind((:call_other, __FILE__, "halt_make" :), me));
-        me->set_short_desc("正在专心致志的炼制药物。");
+        me->set_short_desc("正在專心致志的煉製藥物。");
         set_temp("pending/making", 0, me);
         set_temp("making/medicine", med, me);
         if (base_name(qm)=="/clone/goods/tiandilu") 
@@ -200,7 +200,7 @@ int stop_making(object me)
         delete_temp("pending/making", me);
         me->set_short_desc(0);
         if (qm = query_temp("tiandilu/bomb", me)) {
-                        message_vision(NOR BLINK HIY "\n$N手中的" + qm->name() + NOR BLINK HIY "“嘭~~”地一声，爆炸了。\n\n" NOR , me);
+                        message_vision(NOR BLINK HIY "\n$N手中的" + qm->name() + NOR BLINK HIY "“嘭~~”地一聲，爆炸了。\n\n" NOR , me);
                         if (!random(100)) {
                                 set_temp("die_reason", "被"+ qm->name() +"炸得四分五裂了", me);
                                 me->die(qm);
@@ -227,7 +227,7 @@ int making(object me)
         qm=query_temp("making/container", me);
         if( qm != query_temp("handing", me) )
         {
-                write("嗯？研钵呢...？我的研钵！\n");
+                write("嗯？研缽呢...？我的研缽！\n");
                 return stop_making(me);
         }
         if (base_name(qm)=="/clone/goods/jiulonglu") flag_jiu = 1;
@@ -237,41 +237,41 @@ int making(object me)
                 query_temp("tiandilu/cdtime", me) < time() ) {
                 set_temp("tiandilu/cdtime", time() + 11 + random(25), me);
                 step = 8;
-                message_vision(NOR CYN "天空无数紫电降下，$N" NOR CYN "的" + HIC "天" HIK "地" HIR "洪炉" + NOR CYN "“嗡嗡~~”地透出声声龙吟。\n" , me);
+                message_vision(NOR CYN "天空無數紫電降下，$N" NOR CYN "的" + HIC "天" HIK "地" HIR "洪爐" + NOR CYN "“嗡嗡~~”地透出聲聲龍吟。\n" , me);
         }
 
         switch (step)
         {
         default:
                 step = 0;
-                msg_me = "你拿起棒杵，慢慢的捣着" + qm->name() + "里面的药材。\n";
-                msg_out = "$N拿起棒杵叮咣叮咣的捣得很起劲。\n";
+                msg_me = "你拿起棒杵，慢慢的搗著" + qm->name() + "裡面的藥材。\n";
+                msg_out = "$N拿起棒杵叮咣叮咣的搗得很起勁。\n";
                 break;
         case 1:
-                msg_me = "扑哧扑哧，药材眼见变成了一块块小碎块。\n";
-                msg_out = "$N没完没了的捣鼓。\n";
+                msg_me = "撲哧撲哧，藥材眼見變成了一塊塊小碎塊。\n";
+                msg_out = "$N沒完沒了的搗鼓。\n";
                 break;
         case 2:
-                msg_me = "你轻轻的研磨着药材，让它越来越细。\n";
-                msg_out = "$N紧张的磨着东西。\n";
+                msg_me = "你輕輕的研磨著藥材，讓它越來越細。\n";
+                msg_out = "$N緊張的磨著東西。\n";
                 break;
         case 3:
-                msg_me = "你接着把那些残留的大块儿一点的药材捣碎。\n";
-                msg_out = "$N突然又叮咣叮咣的捣个不停。\n";
+                msg_me = "你接著把那些殘留的大塊兒一點的藥材搗碎。\n";
+                msg_out = "$N突然又叮咣叮咣的搗個不停。\n";
                 break;
         case 4:
-                msg_me = "你细细的将所有的药材磨成了粉末。\n";
-                msg_out = "$N拿着棒杵磨来磨去。\n";
+                msg_me = "你細細的將所有的藥材磨成了粉末。\n";
+                msg_out = "$N拿著棒杵磨來磨去。\n";
                 break;
         case 5:
-                msg_me = "你轻轻的合上" + qm->name() +
-                         "，默默的运用内力，烘培里面的药材。\n";
-                msg_out = "$N合上" + qm->name() + "，双手抱着，不知道在干什么。\n";
+                msg_me = "你輕輕的合上" + qm->name() +
+                         "，默默的運用內力，烘培裡面的藥材。\n";
+                msg_out = "$N合上" + qm->name() + "，雙手抱著，不知道在幹什麼。\n";
                 break;
         case 6:
                 if( query("jing", me)<req["jing"] )
                 {
-                        write("你觉得精神不济，看来难以继续调剂「" +
+                        write("你覺得精神不濟，看來難以繼續調劑「" +
                               med->name() + "」。\n");
                         return stop_making(me);
                 }
@@ -279,14 +279,14 @@ int making(object me)
         
                 if( query("neili", me)<req["neili"] )
                 {
-                        write("你觉得内力不济，看来难以继续调剂「" +
+                        write("你覺得內力不濟，看來難以繼續調劑「" +
                               med->name() + "」。\n");
                         return stop_making(me);
                 }
         
                 if( query("jingli", me)<req["jingli"] )
                 {
-                        write("你觉得精力不济，看来难以继续调剂「" +
+                        write("你覺得精力不濟，看來難以繼續調劑「" +
                               med->name() + "」。\n");
                         return stop_making(me);
                 }
@@ -304,21 +304,21 @@ int making(object me)
                         step--;
                 }
 
-                msg_me = random(2) ? "你觉得" + qm->name() + "慢慢的热了起来，感"
-                                     "觉到里面的药材似乎已经融化了。\n"
-                                   : "你不断的将内力传入" + qm->name() + "，发热"
-                                     "使里面的药材融化合一。\n";
-                msg_out = random(2) ? "$N像老和尚一样闭目冥神坐在那里。\n"
-                                    : "$N手里握着" + qm->name() + "没完没了的转来转去。\n";
+                msg_me = random(2) ? "你覺得" + qm->name() + "慢慢的熱了起來，感"
+                                     "覺到裡面的藥材似乎已經融化了。\n"
+                                   : "你不斷的將內力傳入" + qm->name() + "，發熱"
+                                     "使裡面的藥材融化合一。\n";
+                msg_out = random(2) ? "$N像老和尚一樣閉目冥神坐在那裡。\n"
+                                    : "$N手裡握著" + qm->name() + "沒完沒了的轉來轉去。\n";
 
                 break;
         case 7:
-                msg_me = "你运用内力，隔着" + qm->name() + "使里面的药材彻底的融合。\n";
-                msg_out = "$N眉毛动了动，接着又像老和尚一样闭目冥神坐在那里。\n";
+                msg_me = "你運用內力，隔著" + qm->name() + "使裡面的藥材徹底的融合。\n";
+                msg_out = "$N眉毛動了動，接著又像老和尚一樣閉目冥神坐在那裡。\n";
                 break;
         case 8:
-                msg_me = "你长吁了一口气，慢慢的把手拿开，打开了" + qm->name() + "。\n";
-                msg_out = "$N长吁了一口气，慢慢的把手拿开，打开了" + qm->name() + "。\n";
+                msg_me = "你長吁了一口氣，慢慢的把手拿開，打開了" + qm->name() + "。\n";
+                msg_out = "$N長吁了一口氣，慢慢的把手拿開，打開了" + qm->name() + "。\n";
                 break;
         case 9:
                 if ((random(me->query_skill("medical", 1) +
@@ -334,21 +334,21 @@ int making(object me)
                                 ((!random(8)) || (random(me->query_skillo("liandan-shu", 1) + query("item_prop/liandan-shu", qm)) > 5000) ) && 
                                 sscanf(base_name(environment(me)),"/d/dongtian/%*s/liandanfang")) {
                                 new(med)->move(qm, 1);
-                                message_vision(NOR CYN "炼丹房里" YEL "金龙" NOR CYN "虚影游动吞吐，大量灵气聚集在$N手中的" + qm->name() + NOR CYN "上。\n" , me);
-                                tell_object(me, NOR + " (" HIG + "你手里的" + NOR + qm->name() + NOR + HIG + "一阵剧烈震动，" + obname + NOR + HIG + "的数量＋１。" NOR ")\n");
+                                message_vision(NOR CYN "煉丹房裡" YEL "金龍" NOR CYN "虛影遊動吞吐，大量靈氣聚集在$N手中的" + qm->name() + NOR CYN "上。\n" , me);
+                                tell_object(me, NOR + " (" HIG + "你手裡的" + NOR + qm->name() + NOR + HIG + "一陣劇烈震動，" + obname + NOR + HIG + "的數量＋１。" NOR ")\n");
                                 if (flag_jiu>1 && random(2)) {
                                         new(med)->move(qm, 1);
-                                        message_vision(NOR CYN "炼丹房里" YEL "金龙" NOR CYN "虚影游动吞吐，大量灵气聚集在$N手中的" + qm->name() + NOR CYN "上。\n" , me);
-                                    tell_object(me, NOR + " (" HIG + "你手里的" + NOR + qm->name() + NOR + HIG + "一阵剧烈震动，" + obname + NOR + HIG + "的数量＋１。" NOR ")\n");
+                                        message_vision(NOR CYN "煉丹房裡" YEL "金龍" NOR CYN "虛影遊動吞吐，大量靈氣聚集在$N手中的" + qm->name() + NOR CYN "上。\n" , me);
+                                    tell_object(me, NOR + " (" HIG + "你手裡的" + NOR + qm->name() + NOR + HIG + "一陣劇烈震動，" + obname + NOR + HIG + "的數量＋１。" NOR ")\n");
                                         if (random(me->query_skillo("liandan-shu", 1) + query("item_prop/liandan-shu", qm))>7500 && random(me->query_kar())>26 && random(2)) {
                                                 new(med)->move(qm, 1);
-                                                message_vision(NOR CYN "炼丹房里" YEL "金龙" NOR CYN "虚影游动吞吐，大量灵气聚集在$N手中的" + qm->name() + NOR CYN "上。\n" , me);
-                                            tell_object(me, NOR + " (" HIG + "你手里的" + NOR + qm->name() + NOR + HIG + "一阵剧烈震动，" + obname + NOR + HIG + "的数量＋１。" NOR ")\n");
+                                                message_vision(NOR CYN "煉丹房裡" YEL "金龍" NOR CYN "虛影遊動吞吐，大量靈氣聚集在$N手中的" + qm->name() + NOR CYN "上。\n" , me);
+                                            tell_object(me, NOR + " (" HIG + "你手裡的" + NOR + qm->name() + NOR + HIG + "一陣劇烈震動，" + obname + NOR + HIG + "的數量＋１。" NOR ")\n");
                                         }
                                         if (random(me->query_skillo("liandan-shu", 1) + query("item_prop/liandan-shu", qm))>10000 && random(2)) {
                                                 new(med)->move(qm, 1);
-                                                message_vision(NOR CYN "炼丹房里" YEL "金龙" NOR CYN "虚影游动吞吐，大量灵气聚集在$N手中的" + qm->name() + NOR CYN "上。\n" , me);
-                                            tell_object(me, NOR + " (" HIG + "你手里的" + NOR + qm->name() + NOR + HIG + "一阵剧烈震动，" + obname + NOR + HIG + "的数量＋１。" NOR ")\n");
+                                                message_vision(NOR CYN "煉丹房裡" YEL "金龍" NOR CYN "虛影遊動吞吐，大量靈氣聚集在$N手中的" + qm->name() + NOR CYN "上。\n" , me);
+                                            tell_object(me, NOR + " (" HIG + "你手裡的" + NOR + qm->name() + NOR + HIG + "一陣劇烈震動，" + obname + NOR + HIG + "的數量＋１。" NOR ")\n");
                                         }
                                 }
                         }
@@ -366,26 +366,26 @@ int making(object me)
                                                                 break;
                                                 }
                                                         delete_temp("tiandilu/type", me);
-                                        message_vision(NOR HIC "$N手中的" + qm->name() + NOR HIC "里额外凝聚出了" + ob2->name() + NOR HIC "。\n" NOR , me);
+                                        message_vision(NOR HIC "$N手中的" + qm->name() + NOR HIC "裡額外凝聚出了" + ob2->name() + NOR HIC "。\n" NOR , me);
                                         ob2->move(qm, 1);
                                         if (!random(200000)) {
                                                 set_temp("tiandilu/bomb", qm, me);
                                         }
                         }
                         msg_me = HIM "你把「" + obname + HIM "」成功的制好了！\n" NOR;
-                        msg_out = HIM "$N" HIM "嘴角露出一丝微笑。\n" NOR;
+                        msg_out = HIM "$N" HIM "嘴角露出一絲微笑。\n" NOR;
                         me->improve_skill("liandan-shu", me->query_int()*100+100); 
                 }else if( !query("special_skill/lucky", me) || random(2) == 0 )
                 {
-                        msg_me = HIG "真令人沮丧！居然失败了，真是可惜了。\n" NOR;
-                        msg_out = HIG "$N" HIG "一脸沮丧，不"
-                                  "知道发生了什么倒霉事。\n" NOR;
+                        msg_me = HIG "真令人沮喪！居然失敗了，真是可惜了。\n" NOR;
+                        msg_out = HIG "$N" HIG "一臉沮喪，不"
+                                  "知道發生了什麼倒黴事。\n" NOR;
                 }else
                 {
                         ob = new(med);
                         ob->move(qm, 1);
-                        msg_me = HIM "你感觉似乎有什么地方没有做对，然而你的运气实在太好了！\n你把「" + ob->name() + HIM "」成功的制好了！\n" NOR;
-                        msg_out = HIM "$N" HIM "嘴角露出一丝微笑。\n" NOR;
+                        msg_me = HIM "你感覺似乎有什麼地方沒有做對，然而你的運氣實在太好了！\n你把「" + ob->name() + HIM "」成功的制好了！\n" NOR;
+                        msg_out = HIM "$N" HIM "嘴角露出一絲微笑。\n" NOR;
                         me->improve_skill("liandan-shu", me->query_int()*10+10); 
                 }
                 break;
@@ -405,8 +405,8 @@ int making(object me)
 
 int halt_make(object me)
 {
-        message_vision("$N把手中的研钵一翻个，东西"
-                       "全都倒了出来。\n", me);
+        message_vision("$N把手中的研缽一翻個，東西"
+                       "全都倒了出來。\n", me);
         stop_making(me);
         return 1;
 }
@@ -414,11 +414,11 @@ int halt_make(object me)
 int help(object me)
 {
         write(@HELP
-指令格式 : make [<药品>] [?]
+指令格式 : make [<藥品>] [?]
 
-这个指令可以让你炼制某样药品，如果没有指明药品则会列出当前
-你会炼制的药品。如果在指明的药品后面添加一个"?" 则会列出炼
-制这种药品需要的材料。
+這個指令可以讓你煉製某樣藥品，如果沒有指明藥品則會列出當前
+你會煉製的藥品。如果在指明的藥品後面添加一個"?" 則會列出煉
+制這種藥品需要的材料。
 
 HELP );
     return 1;

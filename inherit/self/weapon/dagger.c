@@ -1,6 +1,6 @@
 // dagger.c
 // 自造物品 (by Find.)
-// 没有安全问题但太麻烦
+// 沒有安全問題但太麻煩
 
 #include <mine_def.h>
 #include <weapon.h>
@@ -114,11 +114,11 @@ protected void create(class weapon_args arg)
         {
                 set_name("匕首", ({ "bi shou" }) );
                 set_weight(1000);
-                set("long", "这是一把看起相当普通的匕首。\n");
+                set("long", "這是一把看起相當普通的匕首。\n");
                 set("value", 100);
                 set("material", "steel");
-                set("wield_msg", "$N从怀中摸出一把$n握在手中。\n");
-                set("unwield_msg", "$N将手中的$n藏入怀中。\n");        
+                set("wield_msg", "$N從懷中摸出一把$n握在手中。\n");
+                set("unwield_msg", "$N將手中的$n藏入懷中。\n");        
                 init_dagger(10);
         }
 

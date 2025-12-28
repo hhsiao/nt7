@@ -14,7 +14,7 @@ string zm_apply()
 {
         object ob = this_player();
         if ( query("gender", ob)!= "女性" )
-                return "灵鹫宫只有女子才能接任掌门弟子一职。";
+                return "靈鷲宮只有女子才能接任掌門弟子一職。";
         return ::zm_apply();
 }
 

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("九尾灵狐[2;37;0m[2;37;0m", ({"minerride"}));        
+        set_name("九尾靈狐[2;37;0m[2;37;0m", ({"minerride"}));        
         set("gender", "男性");                
         set("long", "千年老妖[2;37;0m
-它是唐伯虎的魔幻兽。
+它是唐伯虎的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

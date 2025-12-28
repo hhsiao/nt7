@@ -6,11 +6,11 @@ string ask_daojia();
 int ask_rob();
 void create()
 {
-        set_name(HIM"义士"NOR, ({ "yi shi", "yi", "shi" }) );
+        set_name(HIM"義士"NOR, ({ "yi shi", "yi", "shi" }) );
         set("gender", "男性" );
         set("age", 22+random(20));
         set("long",
-                "这位志在反清复明的义士。\n");
+                "這位志在反清復明的義士。\n");
         set("per", 35);
         set("str", 40);
         set("int", 47);
@@ -27,7 +27,7 @@ void create()
                 (: random_move :),
         }) );
         set("inquiry", ([
-        "护送" : (:ask_huijia:) ,
+        "護送" : (:ask_huijia:) ,
         "到了" : (:ask_daojia:) ,
          ]) );
         set("env/wimpy", 40);
@@ -56,7 +56,7 @@ void leave()
 {
         object ob = this_object();
         if( query("lingsong", ob) == 0){
-                message_vision(HIG "反清义士见无人来接应,自己离开了。\n" NOR,this_object());
+                message_vision(HIG "反清義士見無人來接應,自己離開了。\n" NOR,this_object());
                 destruct(this_object());
                 }
         else call_out("leave",30);
@@ -67,10 +67,10 @@ string ask_huijia()
 object me=this_player();
 object ob = this_object();
 if( query("kill_yunlong", me) == 0 )
-return "我看你是清狗派来的那奸细吧。。。\n";
+return "我看你是清狗派來的那奸細吧。。。\n";
 set_leader(me);
 set("lingsong", 10, ob);
-return "地振高冈，一派溪山千古秀,反清义士和你对上了喑号.\n";
+return "地振高岡，一派溪山千古秀,反清義士和你對上了喑號.\n";
 }
 
 string ask_daojia()
@@ -80,29 +80,29 @@ string ask_daojia()
  ob = this_object();
 me = this_player();
 if( query("kill_yunlong", me) == 0 )
-return "我看你是清狗派来的那奸细吧。。。\n";
- if( query("short", environment(ob)) == "春来茶馆" )
+return "我看你是清狗派來的那奸細吧。。。\n";
+ if( query("short", environment(ob)) == "春來茶館" )
          {
 
           set_leader(0);
-          write("门朝大海，三河合水万年流.喑号对上了，\n");
+          write("門朝大海，三河合水萬年流.喑號對上了，\n");
 
              addn("combat_exp", 300+random(100), me);
              addn("family/gongji", 10+random(15), me);
              addn("potential", 100+random(60), me);
              delete("kill_yunlong", me);
-         write("你的经验和潜能提高了!!\n");
+         write("你的經驗和潛能提高了!!\n");
         call_out("leavet",1);
            return "我走了，大家保重.....\n";  
       }
         else {
-                return "还没到呢!你想不管了吗?\n";
+                return "還沒到呢!你想不管了嗎?\n";
         }
 }
 
 int do_guard(string arg)
 {
-        write(query("name", this_player())+"，你现在不能用guard！\n");
+        write(query("name", this_player())+"，你現在不能用guard！\n");
         return 1;
 }
 

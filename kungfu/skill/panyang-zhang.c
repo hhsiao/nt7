@@ -1,45 +1,45 @@
 inherit SKILL;
 
 mapping *action = ({
-([        "action" : "$N划身错步，一式「洪炉焚天」，双掌内拢外托，攻向$n的左肩",
+([        "action" : "$N劃身錯步，一式「洪爐焚天」，雙掌內攏外託，攻向$n的左肩",
         "force" : 70,
         "attack": 5,
         "dodge" : 38,
         "parry" : 38,
         "damage": 1,
         "lvl"   : 0,
-        "skill_name" : "洪炉焚天",
-        "damage_type" : "瘀伤"
+        "skill_name" : "洪爐焚天",
+        "damage_type" : "瘀傷"
 ]),
-([        "action" : "$N一式「举火烧天」，双掌以迅雷不及掩耳之势，劈向$n的两额太阳穴",
+([        "action" : "$N一式「舉火燒天」，雙掌以迅雷不及掩耳之勢，劈向$n的兩額太陽穴",
         "force" : 95,
         "attack": 8,
         "dodge" : 43,
         "parry" : 43,
         "damage": 4,
         "lvl"   : 20,
-        "skill_name" : "举火烧天",
-        "damage_type" : "瘀伤"
+        "skill_name" : "舉火燒天",
+        "damage_type" : "瘀傷"
 ]),
-([        "action" : "$N使一式「偷星换日」，劲气弥漫，双掌如轮，一环环向$n的后背斫去",
+([        "action" : "$N使一式「偷星換日」，勁氣瀰漫，雙掌如輪，一環環向$n的後背斫去",
         "force" : 120,
         "attack": 13,
         "dodge" : 51,
         "parry" : 51,
         "damage": 8,
         "lvl"   : 40,
-        "skill_name" : "偷星换日",
-        "damage_type" : "瘀伤"
+        "skill_name" : "偷星換日",
+        "damage_type" : "瘀傷"
 ]),
-([        "action" : "$N一式「烈阳繁生」，双掌似让非让，似顶非顶，气浪如急流般使$n陷身其中",
+([        "action" : "$N一式「烈陽繁生」，雙掌似讓非讓，似頂非頂，氣浪如急流般使$n陷身其中",
         "force" : 140,
         "attack": 15,
         "dodge" : 65,
         "parry" : 65,
         "damage": 12,
         "lvl"   : 60,
-        "skill_name" : "烈阳繁生",
-        "damage_type" : "瘀伤"
+        "skill_name" : "烈陽繁生",
+        "damage_type" : "瘀傷"
 ]),
 });
 
@@ -50,16 +50,16 @@ int valid_combine(string combo) { return combo=="qingyun-shou"; }
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练攀阳掌必须空手。\n");
+                return notify_fail("練攀陽掌必須空手。\n");
 
         if (me->query_skill("force") < 20)
-                return notify_fail("你的内功火候不够，不能练攀阳掌。\n");
+                return notify_fail("你的內功火候不夠，不能練攀陽掌。\n");
 
         if( query("max_neili", me)<50 )
-                return notify_fail("你的内力太弱，无法练攀阳掌。\n");
+                return notify_fail("你的內力太弱，無法練攀陽掌。\n");
 
         if (me->query_skill("strike", 1) < me->query_skill("panyang-zhang", 1))
-                return notify_fail("你的基本掌法太差，无法领会更高深的攀阳掌。\n");
+                return notify_fail("你的基本掌法太差，無法領會更高深的攀陽掌。\n");
 
         return 1;
 }
@@ -84,10 +84,10 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me)
 {
         if( query("qi", me)<50 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
 
         if( query("neili", me)<60 )
-                return notify_fail("你的内力不够练习攀阳掌。\n");
+                return notify_fail("你的內力不夠練習攀陽掌。\n");
 
         if (me->query_skill("panyang-zhang", 1) < 100)
                 me->receive_damage("qi", 20);

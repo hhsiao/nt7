@@ -4,10 +4,10 @@
 
 /***************************************************************
 
-breed                : 现在可学poison的极限
-new_breed        : 最新一次培养怪蛇成功後，可学poison的极限
-new_breed_time        : 最新一次开始培养怪蛇的时间
-checked_snake        : 是否检查过这次的怪蛇？
+breed                : 現在可學poison的極限
+new_breed        : 最新一次培養怪蛇成功後，可學poison的極限
+new_breed_time        : 最新一次開始培養怪蛇的時間
+checked_snake        : 是否檢查過這次的怪蛇？
 
 ***************************************************************/
 #include <ansi.h>
@@ -21,9 +21,9 @@ int do_order(string);
 void create()
 {
         set_name("蛇奴", ({ "she nu" ,"nu"}));
-        set("long", "他是负责看管欧阳世家庄蛇场的蛇奴，担当替庄主、少主养育怪蛇的事务。\n");
+        set("long", "他是負責看管歐陽世家莊蛇場的蛇奴，擔當替莊主、少主養育怪蛇的事務。\n");
         set("gender", "男性");
-        set("title", "欧阳世家庄");
+        set("title", "歐陽世家莊");
         set("age", 35);
 
         set_skill("hand", 30);
@@ -74,39 +74,39 @@ int ask_snake()
         breed=query("baituo/breed", me);
         new_breed=query("baituo/new_breed", me);
 
-        if( query("family/family_name", me) != "欧阳世家"){
-                command("say "+RANK_D->query_rude(me)+"想打听咱们的蛇儿，莫非动着什麽歪脑筋？");
+        if( query("family/family_name", me) != "歐陽世家"){
+                command("say "+RANK_D->query_rude(me)+"想打聽咱們的蛇兒，莫非動著什麼歪腦筋？");
                 return 1;
         }
 
-        if( query("family/master_name", me) != "欧阳锋"){
-                command("say 场子里的蛇都是庄主和少主所饲养的。");
+        if( query("family/master_name", me) != "歐陽鋒"){
+                command("say 場子裡的蛇都是莊主和少主所飼養的。");
                 return 1;
         }
 
         if( !query("baituo/new_breed_time", me) && !query("baituo/checked_snake", me)){
-                command("say 场子里没有少主养的蛇，您是也想养些麽？");
+                command("say 場子裡沒有少主養的蛇，您是也想養些麼？");
                 return 1;
         }
 
         if( query("baituo/checked_snake", me)){
-                command("say 少主上次培育的蛇种已有结果，是否要再捉新的品种来改良？");
+                command("say 少主上次培育的蛇種已有結果，是否要再捉新的品種來改良？");
                 return 1;
         }
 
         time=time()-query("baituo/new_breed_time", me);
 
         if(time < 600) {
-                command("say 少主前次捉回来的蛇群，小的日日夜夜都用心看顾，就等它们繁殖了。");
+                command("say 少主前次捉回來的蛇群，小的日日夜夜都用心看顧，就等它們繁殖了。");
                 return 1;
         }
 
         if(time < 1200) {
-                command("say 少主前次捉回来的蛇已经下蛋了，想必近日便会孵化。");
+                command("say 少主前次捉回來的蛇已經下蛋了，想必近日便會孵化。");
                 return 1;
         }
 
-        command("say 小蛇已经出生了，小的这就去把它带来。");
+        command("say 小蛇已經出生了，小的這就去把它帶來。");
         message_vision("\n蛇奴匆匆忙忙地退了下去。\n", me);
         
         this_object()->move("/d/baituo/temproom");
@@ -138,41 +138,41 @@ void bring_snake(object me)
                 snake->set_name("小怪蛇", ({ "guai she", "she", "snake" }) );
                 snake->set_color("$HIW$");
                 snake->set("long",
-                "一条银鳞闪闪的小蛇，形状怪异，是欧阳世家少主"+me->name()+"第"
-                +chinese_number(query("baituo/manage", me))+"次培养出的蛇种。\n"
+                "一條銀鱗閃閃的小蛇，形狀怪異，是歐陽世家少主"+me->name()+"第"
+                +chinese_number(query("baituo/manage", me))+"次培養出的蛇種。\n"
                 );
                 if( breed >= 600 )
-                result = HIW"这条怪蛇的毒性猛恶一如以往，可见你对蛇毒的掌握，已然纯熟如意。\n"NOR;
+                result = HIW"這條怪蛇的毒性猛惡一如以往，可見你對蛇毒的掌握，已然純熟如意。\n"NOR;
                 else if( new_breed > breed ) 
-                result = HIY"你成功地培养出了毒性更胜原种的怪蛇！\n"NOR
-                + "如今，你对掌握毒物的法门领会更多，自信已有能力将毒技钻研至"+chinese_number(new_breed)+"级。\n";
-                else result = "虽然你培养出了怪蛇，但是神态不如以前的品种狰狞，想必毒性有所不及。\n";
+                result = HIY"你成功地培養出了毒性更勝原種的怪蛇！\n"NOR
+                + "如今，你對掌握毒物的法門領會更多，自信已有能力將毒技鑽研至"+chinese_number(new_breed)+"級。\n";
+                else result = "雖然你培養出了怪蛇，但是神態不如以前的品種猙獰，想必毒性有所不及。\n";
         }
         else if( new_breed >= 400 ) {
                 snake->set_name("小怪蛇", ({ "guai she", "she", "snake" }) );
                 snake->set_color("$HIW$");
                 snake->set("long",
-                "一条银鳞闪闪的小蛇，形状怪异，是欧阳世家少主"+me->name()+"第"
-                +chinese_number(query("baituo/manage", me))+"次培养出的蛇种。\n"
+                "一條銀鱗閃閃的小蛇，形狀怪異，是歐陽世家少主"+me->name()+"第"
+                +chinese_number(query("baituo/manage", me))+"次培養出的蛇種。\n"
                 );
-                result = "虽然你培养出了怪蛇，但是以你的使毒本领而言，这等毒性的怪蛇称不上突破，仅是增生怪蛇数量而已。\n";
+                result = "雖然你培養出了怪蛇，但是以你的使毒本領而言，這等毒性的怪蛇稱不上突破，僅是增生怪蛇數量而已。\n";
         }
         else {
                 snake->set_name("小毒蛇", ({ "snake", "she"}) );
                 snake->set("long",
-                "一条三角尖头的小蛇，是欧阳世家少主"+me->name()+"第"
-                +chinese_number(query("baituo/manage", me))+"次培养出的蛇种。\n"
+                "一條三角尖頭的小蛇，是歐陽世家少主"+me->name()+"第"
+                +chinese_number(query("baituo/manage", me))+"次培養出的蛇種。\n"
                 );
                 if( !breed || breed == 0 )
-                result = "这条毒蛇并无特异之处，看来这次培养的蛇种不甚成功。\n";
+                result = "這條毒蛇並無特異之處，看來這次培養的蛇種不甚成功。\n";
                 else if( new_breed > breed ) 
-                result = "你仔细检视，觉得这条蛇的毒性虽然胜过上回培养的品种，然而依旧不够理想。\n";
-                else result = "你仔细端详，却见这条毒蛇毫无特异之处，看来毒性反而比从前弱了。\n";
+                result = "你仔細檢視，覺得這條蛇的毒性雖然勝過上回培養的品種，然而依舊不夠理想。\n";
+                else result = "你仔細端詳，卻見這條毒蛇毫無特異之處，看來毒性反而比從前弱了。\n";
         }
 
-        message_vision("\n过了一会儿，蛇奴走了出来。\n", me);
-        command("say 这是最近养育的小蛇中毒性最强的一，请少主过目。");
-        message_vision("一条"+snake->name()+"蜿蜒地游了过来。\n", me);
+        message_vision("\n過了一會兒，蛇奴走了出來。\n", me);
+        command("say 這是最近養育的小蛇中毒性最強的一，請少主過目。");
+        message_vision("一條"+snake->name()+"蜿蜒地遊了過來。\n", me);
 
         snake->move(environment(me));
         snake->set_leader(me);
@@ -182,7 +182,7 @@ void bring_snake(object me)
         write(result);
 
         log_file("test/breed_snake",
-                sprintf("%s(%s) 第%d次培养结果：%s(毒性%d) on %s \n", 
+                sprintf("%s(%s) 第%d次培養結果：%s(毒性%d) on %s \n", 
                 me->name(),query("id", me),query("baituo/manage", me),snake->name(),new_breed,ctime(time())));
 
         if(new_breed > breed) {
@@ -207,18 +207,18 @@ int ask_guaishe()
         me = this_player();
         num=query("baituo/snake_amount", me);
 
-        if( query("family/family_name", me) != "欧阳世家"){
-                command("say "+RANK_D->query_rude(me)+"想打听咱们欧阳世家的怪蛇，莫非动着什麽歪脑筋？");
+        if( query("family/family_name", me) != "歐陽世家"){
+                command("say "+RANK_D->query_rude(me)+"想打聽咱們歐陽世家的怪蛇，莫非動著什麼歪腦筋？");
                 return 1;
         }
 
-        if( query("family/master_name", me) != "欧阳锋"){
-                command("say 庄主和少主费尽心思，以数种最毒之蛇相互杂交，才产下这些毒中之毒的怪蛇。");
+        if( query("family/master_name", me) != "歐陽鋒"){
+                command("say 莊主和少主費盡心思，以數種最毒之蛇相互雜交，才產下這些毒中之毒的怪蛇。");
                 return 1;
         }
         if ( num < 1)
-                command("say 现下场子里没有少主养的怪蛇。");
-        else command("say 少主养在场子里的怪蛇，一共有"+chinese_number(num)+"条。");
+                command("say 現下場子裡沒有少主養的怪蛇。");
+        else command("say 少主養在場子裡的怪蛇，一共有"+chinese_number(num)+"條。");
 
         if ( num > 10 )
         command("admire"+query("id", me));
@@ -231,7 +231,7 @@ int do_order(string arg)
         int flag;
         me = this_player();
         
-        if( query("family/family_name", me) != "欧阳世家")return 0;
+        if( query("family/family_name", me) != "歐陽世家")return 0;
 
         room = load_object("/d/baituo/shegu1");
 
@@ -239,9 +239,9 @@ int do_order(string arg)
         
         if ( arg == "defense") {
 
-                if( flag ) return notify_fail("蛇谷入口已经由毒气封住了。\n");
+                if( flag ) return notify_fail("蛇谷入口已經由毒氣封住了。\n");
 
-                if( query("family/master_name", me) != "欧阳锋"){
+                if( query("family/master_name", me) != "歐陽鋒"){
                         message_vision(CYN"$N向蛇奴下令：放出密窖中的蛇毒，封住蛇谷的入口！\n"NOR, me);
                         command("bored"+query("id", me));
                         command("say 哼，要不要封谷，你我都做不了主！");
@@ -249,37 +249,37 @@ int do_order(string arg)
                 }
 
                 message_vision(CYN"$N向蛇奴下令：放出密窖中的蛇毒，封住蛇谷的入口！\n"NOR, me);
-                message_vision("蛇奴恭恭敬敬地答应，退到蛇场一角，启动了释放密窖毒气的机关。\n", me);
-                message_vision(HIR"\n你听到蛇场外传来一阵嘶嘶轻响……\n"NOR, me);
+                message_vision("蛇奴恭恭敬敬地答應，退到蛇場一角，啟動了釋放密窖毒氣的機關。\n", me);
+                message_vision(HIR"\n你聽到蛇場外傳來一陣嘶嘶輕響……\n"NOR, me);
                 
-                message("vision", HIR"你突然听到一阵嘶嘶轻响，一片血红色的雾气缓缓从土地下喷出，渐渐布满了整个谷口……\n\n"NOR,room );
+                message("vision", HIR"你突然聽到一陣嘶嘶輕響，一片血紅色的霧氣緩緩從土地下噴出，漸漸佈滿了整個谷口……\n\n"NOR,room );
                 set("defense", 1, room);
-                command("say 少主，办妥了！");
+                command("say 少主，辦妥了！");
         }
 
         else if( arg == "remove" ) {
-                if( !flag ) return notify_fail("蛇谷入口现在本就没有毒气。\n");
+                if( !flag ) return notify_fail("蛇谷入口現在本就沒有毒氣。\n");
 
 
-                if( query("family/master_name", me) != "欧阳锋"){
-                        message_vision(CYN"$N向蛇奴下令：停止从密窖释放毒气，开放蛇谷的入口！\n"NOR, me);
+                if( query("family/master_name", me) != "歐陽鋒"){
+                        message_vision(CYN"$N向蛇奴下令：停止從密窖釋放毒氣，開放蛇谷的入口！\n"NOR, me);
                         command("kick"+query("id", me));
-                        command("say 你想害死我不成？没有庄主下令，谁敢擅开蛇谷？");
+                        command("say 你想害死我不成？沒有莊主下令，誰敢擅開蛇谷？");
                         return 1;
                 }
-                message_vision(CYN"$N向蛇奴下令：停止从密窖释放毒气，开放蛇谷的入口！\n"NOR, me);
-                message_vision(CYN"$N嘿嘿冷笑，说道："+RANK_D->query_self_rude(me)+"要让那些自居名门正派的人物，送上谷来给咱们蛇儿果腹！\n"NOR, me);
+                message_vision(CYN"$N向蛇奴下令：停止從密窖釋放毒氣，開放蛇谷的入口！\n"NOR, me);
+                message_vision(CYN"$N嘿嘿冷笑，說道："+RANK_D->query_self_rude(me)+"要讓那些自居名門正派的人物，送上谷來給咱們蛇兒果腹！\n"NOR, me);
 
                 command("fear"+query("id", me));
-                message_vision("蛇奴面有难色，但是被$N斜眼一瞪，还是战战兢兢地退开，解除了机关。\n", me);
-                message_vision(WHT"\n你听到蛇场外传来一阵嘶嘶轻响，接着很快又安静下来。\n"NOR, me);
-                message("vision", WHT"你突然听到一阵嘶嘶轻响，封锁在蛇谷前的红雾慢慢消散，土里也没有雾气再冒出来。\n不一会儿，烟消云散，蛇谷的入口完全呈现在眼前。\n\n"NOR,room );
+                message_vision("蛇奴面有難色，但是被$N斜眼一瞪，還是戰戰兢兢地退開，解除了機關。\n", me);
+                message_vision(WHT"\n你聽到蛇場外傳來一陣嘶嘶輕響，接著很快又安靜下來。\n"NOR, me);
+                message("vision", WHT"你突然聽到一陣嘶嘶輕響，封鎖在蛇谷前的紅霧慢慢消散，土裡也沒有霧氣再冒出來。\n不一會兒，煙消雲散，蛇谷的入口完全呈現在眼前。\n\n"NOR,room );
                 delete("defense", room);
 
-                command("say 少主，小的依您吩咐，关了毒气，但庄主要问起来，您可得担待住……");
+                command("say 少主，小的依您吩咐，關了毒氣，但莊主要問起來，您可得擔待住……");
         }
 
-        else return notify_fail("你要对蛇奴下什麽命令？ (defense or remove) \n");
+        else return notify_fail("你要對蛇奴下什麼命令？ (defense or remove) \n");
 
         return 1;
 }

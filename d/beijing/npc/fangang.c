@@ -6,13 +6,13 @@ int ask_weiwang();
 
 void create()
 {
-        set_name("樊纲", ({ "fan gang", "fan" }));
-        set("title", HIR "天地会"HIG"青木堂"NOR"会众"); 
+        set_name("樊綱", ({ "fan gang", "fan" }));
+        set("title", HIR "天地會"HIG"青木堂"NOR"會眾"); 
         set("shen_type", 1);
         set("gender", "男性");
         set("age", 35);
         set("long",
-                "\n他就是天地会青木堂的樊纲，和关安基不和。\n");
+                "\n他就是天地會青木堂的樊綱，和關安基不和。\n");
 
         set_skill("unarmed", 60);
         set_skill("dodge", 70);
@@ -35,11 +35,11 @@ void create()
         set("attitude", "friendly");
 
         set("inquiry", ([
-                "陈近南" :  "\n想见总舵主可不容易啊。\n",
-                "天地会" :  "\n只要是英雄好汉，都可以入我天地会(join tiandihui)。\n",
-                "加入" :  "\n只要入了我天地会，大家就可以一起反青复明。\n",
-                "入会" :  "\n只要入了我天地会，大家就可以一起反青复明。\n",
-                "反清复明" : "去屠宰场和棺材店仔细瞧瞧吧！\n",
+                "陳近南" :  "\n想見總舵主可不容易啊。\n",
+                "天地會" :  "\n只要是英雄好漢，都可以入我天地會(join tiandihui)。\n",
+                "加入" :  "\n只要入了我天地會，大家就可以一起反青復明。\n",
+                "入會" :  "\n只要入了我天地會，大家就可以一起反青復明。\n",
+                "反清復明" : "去屠宰場和棺材店仔細瞧瞧吧！\n",
                 "威望" :  (: ask_weiwang :),
                 "江湖威望" : (: ask_weiwang :),
        ]) );
@@ -57,16 +57,16 @@ add_action("do_join","join");
 
 void die()
 {
-message_vision("\n$N大怒道：“你敢砍老子！兄弟们会替我报仇的！”说完倒地死了。\n", this_object());
+message_vision("\n$N大怒道：“你敢砍老子！兄弟們會替我報仇的！”說完倒地死了。\n", this_object());
 ::die();
 }
 
 int ask_weiwang()
 {
-command("tell"+query("id", this_player())+"你现在的江湖威望是"+(query("weiwang", this_player())));
-say("\n樊纲说：如果你威望值很高，有些人见了你不但不会杀你，还会教你武功，送你宝贝。\n"
-+"而且你还可以加入帮会，率领会众去攻打目标，就连去钱庄取钱也会有利息 。。。。。\n");
-say("樊纲又说：杀某些坏人或救某些好人可以提高江湖威望。\n");
+command("tell"+query("id", this_player())+"你現在的江湖威望是"+(query("weiwang", this_player())));
+say("\n樊綱說：如果你威望值很高，有些人見了你不但不會殺你，還會教你武功，送你寶貝。\n"
++"而且你還可以加入幫會，率領會眾去攻打目標，就連去錢莊取錢也會有利息 。。。。。\n");
+say("樊綱又說：殺某些壞人或救某些好人可以提高江湖威望。\n");
 return 1;
 }
 #include "/kungfu/class/yunlong/tiandihui.h";

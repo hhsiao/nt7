@@ -4,12 +4,12 @@ inherit NPC;
 
 void create()
 {
-	set_name("温方悟", ({ "wen fangwu", "wen", "fangwu" }));
+	set_name("溫方悟", ({ "wen fangwu", "wen", "fangwu" }));
         set("gender", "男性");
-        set("title", "温家五老");
+        set("title", "溫家五老");
         set("long", 
-                "他就是温家五老的最小的温方悟。\n"
-                "一个貌不其扬的老者，脸上的皱纹显然比实际年龄要大。\n");
+                "他就是溫家五老的最小的溫方悟。\n"
+                "一個貌不其揚的老者，臉上的皺紋顯然比實際年齡要大。\n");
         set("str", 25);
         set("dex", 25);
         set("con", 25);
@@ -90,7 +90,7 @@ void kill_ob(object me)
         return ::kill_ob(me);
 }
 
-//检查，quest过程不允许死亡
+//檢查，quest過程不允許死亡
 int checking(object me, object ob)
 {
         remove_call_out("checking");
@@ -98,17 +98,17 @@ int checking(object me, object ob)
         
         if( !living(me) && living(ob) && query("jing", ob)>0 && query("qi", ob) > 0 ) {
                 remove_call_out("checking");
-                tell_room(environment(me), HIB"\n"+me->name()+"眼看就是不敌，突然一股劲风袭来，五行阵一顿出现一道间隙，"+me->name()+"顺势闯出温家堡庄。\n"NOR);
+                tell_room(environment(me), HIB"\n"+me->name()+"眼看就是不敵，突然一股勁風襲來，五行陣一頓出現一道間隙，"+me->name()+"順勢闖出溫家堡莊。\n"NOR);
                 me->move("/d/shiliang/gate");
-                tell_room(environment(me), HIB"\n一个身影突然飞来，待你仔细看来，原来是"+me->name()+"，只见"+me->name()+"突然一顿，竟然昏倒在地。\n"NOR);
+                tell_room(environment(me), HIB"\n一個身影突然飛來，待你仔細看來，原來是"+me->name()+"，只見"+me->name()+"突然一頓，竟然昏倒在地。\n"NOR);
                 delete_temp(QUESTJINSHE+"start_kill", me);
                 delete_temp(QUESTJINSHE+"kill", me);
                 delete_temp(QUESTJINSHE+"kill_5wen", me);
                 delete_temp(QUESTJINSHE+"have_kill", me);
                 set("qi", 100, me);
                 set("jing", 100, me);
-                //log_file("quest/JINSHE",sprintf("%s纪录：%s(%s)金蛇剑法失败。经验%d。\n",ob->name(1),me->name(1),query("id", me),query("combat_exp", me)));
-                tell_room(environment(ob), ob->name()+"哼了一声：“快追！”\n");
+                //log_file("quest/JINSHE",sprintf("%s紀錄：%s(%s)金蛇劍法失敗。經驗%d。\n",ob->name(1),me->name(1),query("id", me),query("combat_exp", me)));
+                tell_room(environment(ob), ob->name()+"哼了一聲：“快追！”\n");
                 destruct(ob);
                 return 1;
         }
@@ -135,16 +135,16 @@ void do_lost()
                 delete_temp(QUESTJINSHE+"have_kill", me);
                 delete_temp(QUESTJINSHE+"kill_5wen", me);
 
-                //log_file("quest/JINSHE",sprintf("%s纪录：%s(%s)金蛇剑法失败。经验%d。\n",ob->name(1),me->name(1),query("id", me),query("combat_exp", me)));
+                //log_file("quest/JINSHE",sprintf("%s紀錄：%s(%s)金蛇劍法失敗。經驗%d。\n",ob->name(1),me->name(1),query("id", me),query("combat_exp", me)));
         }
-        tell_room(environment(ob), ob->name()+"哼了一声：“就这点本事啊！”\n");
+        tell_room(environment(ob), ob->name()+"哼了一聲：“就這點本事啊！”\n");
         destruct(ob);
 }
 
 void dest(object ob)
 {
         if(!ob) return;
-        tell_room(environment(ob), HIR+"\n"+ob->name()+"哼了一声，点子厉害，我们撤~~~~~~~\n"NOR);
+        tell_room(environment(ob), HIR+"\n"+ob->name()+"哼了一聲，點子厲害，我們撤~~~~~~~\n"NOR);
         destruct(ob);
 }
 

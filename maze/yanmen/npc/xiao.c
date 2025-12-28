@@ -25,9 +25,9 @@ void create()
 {
         int rate,lvl,ratio,basic_radio,skill,nl,exp;
 
-        set_name("萧远山",({ "xiao yuanshan","xiao" }) );
+        set_name("蕭遠山",({ "xiao yuanshan","xiao" }) );
         set("gender", "男性" );
-        set("long","这就是此次领兵南侵的辽国王侯。\n");
+        set("long","這就是此次領兵南侵的遼國王侯。\n");
 
         set("int", 30);
         set("str", 30+random(20));
@@ -170,12 +170,12 @@ void move_me(object me)
         if( !me->query_temp("zuji_quest/attacking") )
         {
          remove_call_out("move_me");  
-         message("channel:rumor",MAG"\n【宋史记载】："
+         message("channel:rumor",MAG"\n【宋史記載】："
          +CHINESE_D->chinese_date((time()-14*365*24*60*60))
-         +MAG"，带头大哥等在雁门关未能阻挡契丹武士，导致辽国野心大增，派兵南下直逼襄阳！！\n"NOR,users()); 
-         message("channel:rumor",MAG"\n【宋史记载】："
+         +MAG"，帶頭大哥等在雁門關未能阻擋契丹武士，導致遼國野心大增，派兵南下直逼襄陽！！\n"NOR,users()); 
+         message("channel:rumor",MAG"\n【宋史記載】："
          +CHINESE_D->chinese_date((time()-14*365*24*60*60))
-         +MAG"，大宋向契丹臣服，割让大片土地给契丹，大宋百姓生活在水深火热中！！\n"NOR,users()); 
+         +MAG"，大宋向契丹臣服，割讓大片土地給契丹，大宋百姓生活在水深火熱中！！\n"NOR,users()); 
         "/quest/chousha/yelao.c"->zuji_fail();
          return;
         }  
@@ -188,9 +188,9 @@ void move_me(object me)
        {
         if ( room->query("defence") > 0 && !me->query_temp("zuji_quest/break") )
         {
-           message("channel:rumor",MAG"\n【火线军情】大宋：一名" 
-           +me->query("title")+MAG"率领的契丹突骑兵已经攻到雁门关，\n"
-           +"雁门关吃紧，急待增援！！！\n"NOR,users());
+           message("channel:rumor",MAG"\n【火線軍情】大宋：一名" 
+           +me->query("title")+MAG"率領的契丹突騎兵已經攻到雁門關，\n"
+           +"雁門關吃緊，急待增援！！！\n"NOR,users());
         }
 
         if ( room->query("defence") > 0 )
@@ -203,8 +203,8 @@ void move_me(object me)
         } else
         if( me->query_temp("zuji_quest/break") )
         {
-           message("channel:rumor",MAG"\n【火线军情】大宋：雁门关"
-           +MAG"被契丹骑兵攻破，形势危急！！！\n"NOR,users());  
+           message("channel:rumor",MAG"\n【火線軍情】大宋：雁門關"
+           +MAG"被契丹騎兵攻破，形勢危急！！！\n"NOR,users());  
            me->delete_temp("zuji_quest/break");
         } 
 
@@ -227,7 +227,7 @@ void move_me(object me)
        me->move(me->query_temp("zuji_quest/last_move"));
 
        message_vision(
-       HIB"$N率领着一支契丹突骑兵缓缓地朝宋军大营移动着.....\n",me);
+       HIB"$N率領著一支契丹突騎兵緩緩地朝宋軍大營移動著.....\n",me);
        me->start_busy(2+random(2));
        remove_call_out("move_me");
        call_out("move_me",4,me);
@@ -268,9 +268,9 @@ void check_me(object me)
           if( !obb->is_character() ) continue;
           if(obb->query_temp("zuji_quest/party") != "qidan" )
           {
-            message_vision(HIC"$N大声下令道：骑兵准备！一排排骑兵列出整齐"
-            +"的方阵，\n阳光下的契丹军刀闪闪发光——突击！！"
-            +"$N一声令下，\n万马齐鸣，契丹骑兵开始了可怕的冲锋！！\n"NOR,me);  
+            message_vision(HIC"$N大聲下令道：騎兵準備！一排排騎兵列出整齊"
+            +"的方陣，\n陽光下的契丹軍刀閃閃發光——突擊！！"
+            +"$N一聲令下，\n萬馬齊鳴，契丹騎兵開始了可怕的衝鋒！！\n"NOR,me);  
 
             me->set_temp("zuji_quest/attack",1);
             me->set_temp("zuji_quest/attacking",1);
@@ -308,8 +308,8 @@ void check_me(object me)
              obb=ob[i];
           if(obb->query_temp("zuji_quest/party") != "qidan" )
              {
-               message_vision(HIC"$N大声下令道：弓箭手准备！一排排利箭在阳"
-               +"光下闪闪发光——射击！！\n$N一声令下，万弩齐发！\n"NOR,me);  
+               message_vision(HIC"$N大聲下令道：弓箭手準備！一排排利箭在陽"
+               +"光下閃閃發光——射擊！！\n$N一聲令下，萬弩齊發！\n"NOR,me);  
                me->set_temp("zuji_quest/attack",1);
                me->set_temp("zuji_quest/attacking",1);
                call_out("attack_over",10,me);
@@ -362,8 +362,8 @@ void attack_begin(object me,object target,object room,object env,string dir)
           else
           if( room == env && objectp(target) )
           {
-           message_vision(HIC"$N指挥的契丹铁骑，万马奔腾，"
-                  +"如狂风骤雨般朝$n发起了冲击！！\n"NOR,me,target);  
+           message_vision(HIC"$N指揮的契丹鐵騎，萬馬奔騰，"
+                  +"如狂風驟雨般朝$n發起了衝擊！！\n"NOR,me,target);  
            COMBAT_D->do_attack(me, target, me->query_temp("weapon"), 0); 
           } else break;
        }
@@ -375,8 +375,8 @@ void attack_over(object me)
 {
       if( objectp(me) )
       {
-        message_vision(HIB"$N手中军刀一挥，契丹骑兵攻势一缓，重新"
-        +"开始列阵，准备发起新一轮的冲击！！\n"NOR,me); 
+        message_vision(HIB"$N手中軍刀一揮，契丹騎兵攻勢一緩，重新"
+        +"開始列陣，準備發起新一輪的衝擊！！\n"NOR,me); 
         me->delete_temp("zuji_quest/attack");
       }
       return;
@@ -397,8 +397,8 @@ void die()
         remove_call_out("check_me");
          "/quest/chousha/yelao.c"->remove_enemy();
 /*
-        message_vision("$N率领的契丹骑兵在几经顽抗后，终于被彻底"
-        +HIR"消灭了"NOR"！\n",this_object());
+        message_vision("$N率領的契丹騎兵在幾經頑抗後，終於被徹底"
+        +HIR"消滅了"NOR"！\n",this_object());
 */
         if(killer && (userp(killer) || killer->query("is_baby")) 
         && killer->query_temp("zuji/ask"))
@@ -427,9 +427,9 @@ void die()
          if( team[n]->query_temp("zuji/ask")
              && team[n]->is_killing(me) )   
           {
-           tell_object(team[n],HIW"你所参加的队伍奖励你奋勇杀敌之战功——"
-           +"你获得了"+CHINESE_D->chinese_number(team_exp)+"点实战经验和\n"
-           +CHINESE_D->chinese_number(team_pot)+"点潜能奖励！\n"NOR);
+           tell_object(team[n],HIW"你所參加的隊伍獎勵你奮勇殺敵之戰功——"
+           +"你獲得了"+CHINESE_D->chinese_number(team_exp)+"點實戰經驗和\n"
+           +CHINESE_D->chinese_number(team_pot)+"點潛能獎勵！\n"NOR);
 
                    team[n]->add("zuji_quest/reward_exp",team_exp);
                    team[n]->add("zuji_quest/reward_potential",team_pot);
@@ -442,10 +442,10 @@ void die()
           reward_pot=team_pot*2;
          }
 
-                   tell_object(killer,HIW"在实战中，你获得了"+
-CHINESE_D->chinese_number(reward_exp) +"点的『实战经验』"+
-CHINESE_D->chinese_number(reward_pot)+"点的『潜能』\n"
-+"及"+CHINESE_D->chinese_number(reward_score)+"点综合评价奖励！\n"NOR); 
+                   tell_object(killer,HIW"在實戰中，你獲得了"+
+CHINESE_D->chinese_number(reward_exp) +"點的『實戰經驗』"+
+CHINESE_D->chinese_number(reward_pot)+"點的『潛能』\n"
++"及"+CHINESE_D->chinese_number(reward_score)+"點綜合評價獎勵！\n"NOR); 
                    killer->add("zuji_quest/reward_exp",reward_exp);
                    killer->add("zuji_quest/reward_potential",reward_pot);
                    killer->add("zuji_quest/reward_score",reward_score);
@@ -454,11 +454,11 @@ CHINESE_D->chinese_number(reward_pot)+"点的『潜能』\n"
                    killer->add("score",reward_score);
                    killer->add_temp("zuji/reward_exp",reward_exp);
 /*
-message("channel:rumor",HIR"【故事传闻】"NOR+HIY+killer->query("name")+NOR
-+HIR"杀死了"NOR+HIY+me->query("name")+NOR+HIR"，获得了"
+message("channel:rumor",HIR"【故事傳聞】"NOR+HIY+killer->query("name")+NOR
++HIR"殺死了"NOR+HIY+me->query("name")+NOR+HIR"，獲得了"
 +CHINESE_D->chinese_number(reward_exp)
-+"点实战经验、"+CHINESE_D->chinese_number(reward_pot)+"点潜能\n"
-+"及"+CHINESE_D->chinese_number(reward_score)+"点综合评价奖励！\n"NOR,
++"點實戰經驗、"+CHINESE_D->chinese_number(reward_pot)+"點潛能\n"
++"及"+CHINESE_D->chinese_number(reward_score)+"點綜合評價獎勵！\n"NOR,
 users());
 */
         "/quest/chousha/yelao.c"->zuji_close();

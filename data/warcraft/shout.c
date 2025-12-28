@@ -7,7 +7,7 @@ void setup()
         set_name("肥肥[2;37;0m[2;37;0m", ({"fatfat"}));        
         set("gender", "男性");                
         set("long", "肥肥[2;37;0m
-它是大喝的魔幻兽。
+它是大喝的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

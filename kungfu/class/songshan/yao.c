@@ -7,8 +7,8 @@ inherit F_GUARDER;
 
 void create()
 {
-        set_name("乐厚", ({ "yao hou", "hou", "yao" }) );
-        set("nickname", HIY "大阴阳手" NOR);
+        set_name("樂厚", ({ "yao hou", "hou", "yao" }) );
+        set("nickname", HIY "大陰陽手" NOR);
         set("gender", "男性");
         set("class", "swordsman");
         set("age", 45);
@@ -49,7 +49,7 @@ void create()
         map_skill("cuff", "songshan-quan");
         map_skill("dodge", "lingxu-bu");
 
-        create_family("嵩山派", 13, "护法");
+        create_family("嵩山派", 13, "護法");
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
                 (: perform_action, "sword.wan" :),
@@ -71,31 +71,31 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)<3000 )
         {
-                command("say 你非侠义之辈，岂能入我嵩山剑派？");
+                command("say 你非俠義之輩，豈能入我嵩山劍派？");
                 return;
         }
 
         if( query("combat_exp", ob)<22000 )
         {
-                command("say 你现在经验尚浅，还是多在江湖上走走吧。");
+                command("say 你現在經驗尚淺，還是多在江湖上走走吧。");
                 return;
         }
 
         if ((int)ob->query_skill("songshan-jian", 1) < 40)
         {
                 command("hmm");
-                command("say 你嵩山剑法练成这样，平时都干什么去了？");
+                command("say 你嵩山劍法練成這樣，平時都幹什麼去了？");
                 return;
         }
 
         if ((int)ob->query_skill("force") < 80)
         {
-                command("say 你的内功心法太差，又能跟我学什么？");
+                command("say 你的內功心法太差，又能跟我學什麼？");
                 return;
         }
 
         command("nod");
-        command("say 我收下你便是，日后将我嵩山发扬光大。");
+        command("say 我收下你便是，日後將我嵩山發揚光大。");
         command("recruit "+query("id", ob));
 }
 
@@ -103,10 +103,10 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "千掌环" :
+        case "千掌環" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/yinyang-zhang/qian",
-                           "name"    : "千掌环",
+                           "name"    : "千掌環",
                            "sk1"     : "yinyang-zhang",
                            "lv1"     : 80,
                            "dodge"   : 80,
@@ -114,10 +114,10 @@ int accept_ask(object me, string topic)
                            "shen"    : 3400, ]));
                 break;
 
-        case "九曲十八弯" :
+        case "九曲十八彎" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/jiuqu-jian/wan",
-                           "name"    : "九曲十八弯",
+                           "name"    : "九曲十八彎",
                            "sk1"     : "jiuqu-jian",
                            "lv1"     : 80,
                            "dodge"   : 80,

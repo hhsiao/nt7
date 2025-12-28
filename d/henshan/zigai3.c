@@ -2,9 +2,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "水莲洞内");
+        set("short", "水蓮洞內");
         set("long", @LONG
-这里四周空旷，比起外面来却没有那么潮湿，路到这里却没有了。
+這裡四周空曠，比起外面來卻沒有那麼潮溼，路到這裡卻沒有了。
 LONG );
 
         set("exits", ([

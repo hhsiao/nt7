@@ -11,8 +11,8 @@ void create()
 	if( clonep() )
 		set_default_object(__FILE__);
 	else {
-		set("unit", "张");
-		set("long","这是一张山羊皮，上面写满了许多希奇古怪的字。\n");
+		set("unit", "張");
+		set("long","這是一張山羊皮，上面寫滿了許多希奇古怪的字。\n");
 		set("treasure", 1);
 		set("value", 200000);
 		set("material", "skin");
@@ -44,34 +44,34 @@ int do_du(string arg)
 	if( !id(arg) ) return 0;
 
 	if( me->is_busy() )
-		return notify_fail("你现在正忙着呢。\n");
+		return notify_fail("你現在正忙著呢。\n");
 
 	if( me->is_fighting() )
-		return notify_fail("你无法在战斗中专心下来研读新知！\n");
+		return notify_fail("你無法在戰鬥中專心下來研讀新知！\n");
 
 	if( !me->query("quest/jiuyin2/emei") )
-		return notify_fail("你根本无法理解山羊皮上希奇古怪的字！\n");
+		return notify_fail("你根本無法理解山羊皮上希奇古怪的字！\n");
 
 	if( !me->query_skill("literate", 1) )
-		return notify_fail("你是个文盲，先学点文化(literate)吧。\n");        
+		return notify_fail("你是個文盲，先學點文化(literate)吧。\n");        
 
 	if( me->query("jing") < 30 )
-		return notify_fail("你现在过于疲倦，无法专心下来研读新知。\n");
+		return notify_fail("你現在過於疲倦，無法專心下來研讀新知。\n");
 
 	if( me->query_int() < 32 )
-		return notify_fail("由于你的悟性不够，无法研习山羊皮。\n");
+		return notify_fail("由於你的悟性不夠，無法研習山羊皮。\n");
 
 	if( me->query("combat_exp") < 1500000 )
-		return notify_fail("你的实战经验不够，无法领会山羊皮上的文字。\n");
+		return notify_fail("你的實戰經驗不夠，無法領會山羊皮上的文字。\n");
 
 	level = me->query_skill("jiuyin-baiguzhua", 1);
 
 	if( level >= 62 )
-		return notify_fail("山羊皮上的文字对你而言已经太浅了。\n");
+		return notify_fail("山羊皮上的文字對你而言已經太淺了。\n");
 
 	me->receive_damage("jing", 30);
-	write("你研读「山羊皮」上的文字，颇有心得。\n");
+	write("你研讀「山羊皮」上的文字，頗有心得。\n");
 	me->improve_skill("jiuyin-baiguzhua", me->query_skill("literate", 1)+level);
-	if( !random(9) ) message("vision", me->name() + "正在钻研一张山羊皮。\n", environment(me), ({me}));
+	if( !random(9) ) message("vision", me->name() + "正在鑽研一張山羊皮。\n", environment(me), ({me}));
 	return 1;
 }

@@ -3,8 +3,8 @@
 
 #include <ansi.h>
 #include <combat.h>
-#define S_TIME 480 // 最多使用8分钟，每次60秒
-#define L_TIME 3600 // 一小时复原
+#define S_TIME 480 // 最多使用8分鐘，每次60秒
+#define L_TIME 3600 // 一小時復原
 
 inherit F_SSERVER;
 int perform(object me, object target)
@@ -17,7 +17,7 @@ int perform(object me, object target)
 	extra = me->query_skill("fall-steps",1);
 	skill = me->query_skill("six-sense",1);
 	if( extra < 150 || skill < 150 || me->query_skill("dormancy",1) < 150 ) {
-		return notify_fail("『中流』需要150级的秋风步、六灵暗识、息若纳气！\n");
+		return notify_fail("『中流』需要150級的秋風步、六靈暗識、息若納氣！\n");
 	}
 	if( !target ) {
 		target = me;
@@ -26,7 +26,7 @@ int perform(object me, object target)
 		return notify_fail("『中流』只能用在自己身上。\n");
 	}
 	if( ANNIE_D->check_buff(me,"afm-absshield") ) {
-		return notify_fail("你已经在使用中流中了。\n");
+		return notify_fail("你已經在使用中流中了。\n");
 	}
 	// 初始化
 	if( me->query("timer/tx-zhongliu") < 1 ) {
@@ -39,19 +39,19 @@ int perform(object me, object target)
 	}
 	if( me->query("timer/pfm/tx-zhongliu") < 50 ) {
 		duration = L_TIME + me->query("timer/tx-zhongliu") - time();
-		return notify_fail("你还要等待"+ (duration/60)+"分钟才能再次使用中流。\n");
+		return notify_fail("你還要等待"+ (duration/60)+"分鐘才能再次使用中流。\n");
 	}
 	duration = 60;
 	me->add("timer/pfm/tx-zhongliu",-60);
 	if( weapon = me->query_temp("weapon") ) {
 		if( weapon->query("skill_type") == "sword" ) {
-			msg = "$N剑法一变，从极快而变为极慢，剑尖上坠了千斤重物似的，慢腾腾的东刺一剑，西\n刺一剑，身畔周围八尺之内，便似布起了一道铁壁铜墙一般。\n";
+			msg = "$N劍法一變，從極快而變為極慢，劍尖上墜了千斤重物似的，慢騰騰的東刺一劍，西\n刺一劍，身畔周圍八尺之內，便似布起了一道鐵壁銅牆一般。\n";
 		} else if( weapon->query("skill_type") == "blade" ) {
-			msg = "$N刀法一变，从极快而变为极慢，刀尖上坠了千斤重物似的，慢腾腾的东劈一刀，西\n劈一刀，身畔周围八尺之内，便似布起了一道铁壁铜墙一般。\n";
+			msg = "$N刀法一變，從極快而變為極慢，刀尖上墜了千斤重物似的，慢騰騰的東劈一刀，西\n劈一刀，身畔周圍八尺之內，便似布起了一道鐵壁銅牆一般。\n";
 		}
 	}
 	if( !msg ) {
-		msg = "$N招式瞬息万变，有如大海潮生，一渡末平，一波又起，周围八尺之内，便似布起了一道铁壁铜墙一般。\n";
+		msg = "$N招式瞬息萬變，有如大海潮生，一渡末平，一波又起，周圍八尺之內，便似布起了一道鐵壁銅牆一般。\n";
 	}
 	add = me->query("timer/pfm/tx-zhongliu")/60;
 	amount = 200 - ABILITY_D->check_ability(me,"3_zhongliu_add",3)*20;
@@ -68,7 +68,7 @@ int perform(object me, object target)
 			"type": "afm-absshield",
 			"type2": "tx-turtle-stance",
 			"att": "bless",
-			"name": "秋风步·中流",
+			"name": "秋風步·中流",
 			/*
 			"buff1": "resistance/kee",
 			"buff1_c": 50,
@@ -85,6 +85,6 @@ int perform(object me, object target)
 		]);
 	ANNIE_D->buffup(buff);
 
-	write(WHT"（在接下来的"+ ((me->query("timer/tx-zhongliu") + L_TIME - time())/60) + "分钟里你还能使用"+ add + "次中流）\n"NOR);
+	write(WHT"（在接下來的"+ ((me->query("timer/tx-zhongliu") + L_TIME - time())/60) + "分鐘裡你還能使用"+ add + "次中流）\n"NOR);
 	return 1;
 }

@@ -9,18 +9,18 @@ inherit ROOM;
 void init();
 void close_gate();
 string look_gate();
-#define QUESTDIR3 "quest/天龙八部/萧峰身世篇/"
-#define QUESTDIR5 "quest/天龙八部/复兴天下篇/"
+#define QUESTDIR3 "quest/天龍八部/蕭峰身世篇/"
+#define QUESTDIR5 "quest/天龍八部/復興天下篇/"
 
 
 void create()
 {
-	set("short", HIY"山门殿"NOR);
+	set("short", HIY"山門殿"NOR);
 	set("long", @LONG
-这里是少林寺的前殿山门殿。殿内青砖铺地，两侧分列哼、哈二将。身躯
-雄伟，面相忿怒，头带宝冠，上半身裸露，手执金刚杵，一鼓鼻，一张口，露
-牙睁目，凶猛可畏。两边各放一红木供桌，陈列香烛，以供僧俗叩拜。北面是
-一片广场。南面是一道三丈来高的朱红杉木包铜大门(gate)。
+這裡是少林寺的前殿山門殿。殿內青磚鋪地，兩側分列哼、哈二將。身軀
+雄偉，面相忿怒，頭帶寶冠，上半身裸露，手執金剛杵，一鼓鼻，一張口，露
+牙睜目，兇猛可畏。兩邊各放一紅木供桌，陳列香燭，以供僧俗叩拜。北面是
+一片廣場。南面是一道三丈來高的硃紅杉木包銅大門(gate)。
 LONG
 	);
 
@@ -51,21 +51,21 @@ void close_gate()
 		room = load_object(__DIR__"guangchang");
 	if(objectp(room)){
 		delete("exits/south");
-			message("vision", "僧兵上前把大门关了起来。\n", this_object());
+			message("vision", "僧兵上前把大門關了起來。\n", this_object());
 		room->delete("exits/north");
-		message("vision", "乒地一声，里面有人把大门关上了。\n", room);
+		message("vision", "乒地一聲，裡面有人把大門關上了。\n", room);
 	}
 }
 
 int do_close(string arg)
 {
 	if (!query("exits/south"))
-		return notify_fail("大门已经是关着的了。\n");
+		return notify_fail("大門已經是關著的了。\n");
 
 	if (!arg || (arg != "gate" && arg != "south"))
-		return notify_fail("你要关什么？\n");
+		return notify_fail("你要關什麼？\n");
 
-	message_vision("$N朝僧兵点了点头。\n", this_player());
+	message_vision("$N朝僧兵點了點頭。\n", this_player());
 
 	remove_call_out("close_gate");
 	call_out("close_gate", 2);
@@ -78,19 +78,19 @@ int do_open(string arg)
 	object room;
 
 	if (query("exits/south"))
-		return notify_fail("大门已经是开着了。\n");
+		return notify_fail("大門已經是開著了。\n");
 
 	if (!arg || (arg != "gate" && arg != "south"))
-		return notify_fail("你要开什么？\n");
+		return notify_fail("你要開什麼？\n");
 
 	if(!( room = find_object(__DIR__"guangchang")) )
 		room = load_object(__DIR__"guangchang");
 	if(objectp(room))
 	{
 		set("exits/south", __DIR__"guangchang");
-		message_vision("$N使劲把大门打了开来。\n", this_player());
+		message_vision("$N使勁把大門打了開來。\n", this_player());
 		room->set("exits/north", __FILE__);
-		message("vision", "吱地一声，里面有人把大门打开了。\n", room);
+		message("vision", "吱地一聲，裡面有人把大門打開了。\n", room);
 		remove_call_out("close_gate");
 		call_out("close_gate", 10);
 	}
@@ -100,7 +100,7 @@ int do_open(string arg)
 
 string look_gate()
 {
-	return "一道三丈来高的朱红杉木包铜大门。\n";
+	return "一道三丈來高的硃紅杉木包銅大門。\n";
 }
 
 int valid_leave(object me, string dir)
@@ -111,12 +111,12 @@ int valid_leave(object me, string dir)
 	}
    if(dir == "south"&&!me->query_condition("killer") && me->query(QUESTDIR3+"bad") && me->query_temp(QUESTDIR5+"zhangxing") && !me->query_temp(QUESTDIR5+"shaolinzhen"))
   {
-   message_vision(HIC"\n突然刚准备离开少林寺，$N似乎气血有些不顺，跟着脚下一个趔趄。\n"NOR,me); 
-   message_vision(WHT"一个执法僧匆匆了走了过来，向$N一拱手道：“我弥陀佛，施主如此凶狠，还是留在少林潜修佛法得好。”\n"NOR,me);
+   message_vision(HIC"\n突然剛準備離開少林寺，$N似乎氣血有些不順，跟著腳下一個趔趄。\n"NOR,me); 
+   message_vision(WHT"一個執法僧匆匆了走了過來，向$N一拱手道：“我彌陀佛，施主如此兇狠，還是留在少林潛修佛法得好。”\n"NOR,me);
    me->move("/d/shaolin/shaolinzhen");
-   tell_room(environment(me), HIR"\n半空中，似乎一个人掉了下来，你定眼一看竟然是"+ me->name()+ "。\n"NOR, ({ me }));
-   log_file("quest/TLBB", sprintf("%s(%s)被关进少林阵。经验：%d。\n", me->name(1),me->query("id"), me->query("combat_exp")) );
-   return notify_fail(HIR"你疑惑了一下，却发现四周围上一圈人，似乎是少林伏魔圈阵。\n"NOR);
+   tell_room(environment(me), HIR"\n半空中，似乎一個人掉了下來，你定眼一看竟然是"+ me->name()+ "。\n"NOR, ({ me }));
+   log_file("quest/TLBB", sprintf("%s(%s)被關進少林陣。經驗：%d。\n", me->name(1),me->query("id"), me->query("combat_exp")) );
+   return notify_fail(HIR"你疑惑了一下，卻發現四周圍上一圈人，似乎是少林伏魔圈陣。\n"NOR);
   }
 	return ::valid_leave(me, dir);
 }

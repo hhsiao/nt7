@@ -7,11 +7,11 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {  
-        	set("long", HIG "冰肌仙草乃长于昆仑山顶，千年方可成形，草色如同人体肌肤且洁白似雪，冰心透骨！\n" + 
-        	                "服食(fushi bingjixiancao)后可永久提升基本内功1级。\n" HIC
-        	                /*"拥有者：拥有者ID*/"\n" NOR);
+        	set("long", HIG "冰肌仙草乃長於崑崙山頂，千年方可成形，草色如同人體肌膚且潔白似雪，冰心透骨！\n" + 
+        	                "服食(fushi bingjixiancao)後可永久提升基本內功1級。\n" HIC
+        	                /*"擁有者：擁有者ID*/"\n" NOR);
                 set("unit", "束");
-                set("owner", "拥有者ID"); // 绑定拥有者
+                set("owner", "擁有者ID"); // 綁定擁有者
 	        set("no_drop", 1);set("no_store", 1);set("no_sell", 1);
         }
         setup();
@@ -29,17 +29,17 @@ int do_use(string arg)
 	me = this_player();
 
 	if (! arg || arg != query("id"))
-		return notify_fail("你要服食什么？\n");
+		return notify_fail("你要服食什麼？\n");
 
 	if (! objectp(ob = present(arg, me)))
-		return notify_fail("你身上没有这个东西！\n");
+		return notify_fail("你身上沒有這個東西！\n");
 /*
 	if( query("owner", ob) != query("id", me) )
-		return notify_fail(ob->name() + NOR "已经于其他玩家绑定！\n");
+		return notify_fail(ob->name() + NOR "已經於其他玩家綁定！\n");
 */	
         me->add_skill("force", 1);
 	
-	tell_object(me, HIG "恭喜！你服下" + ob->name() + HIG "后，基本内功提升1级！\n");
+	tell_object(me, HIG "恭喜！你服下" + ob->name() + HIG "後，基本內功提升1級！\n");
 	
 	me->save();
 	

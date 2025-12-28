@@ -3,11 +3,11 @@ inherit BOSS;
 
 void create()
 {
-        set_name(HIM"贼盗王"NOR, ({"zeidao wang", "wang", "boss"}) );
-        set("title", HIC "绿林霸主" NOR);
+        set_name(HIM"賊盜王"NOR, ({"zeidao wang", "wang", "boss"}) );
+        set("title", HIC "綠林霸主" NOR);
         set("gender", "男性" );
         set("age", random(30)+20);
-        set("long", "迷雾森林的贼盗首领，有着一身不凡的武艺，穷凶恶极手下罕有十合之将。\n");
+        set("long", "迷霧森林的賊盜首領，有著一身不凡的武藝，窮兇惡極手下罕有十合之將。\n");
         set("attitude", "aggressive");
         set("class", "lvlin");
         set("str", 30);
@@ -48,7 +48,7 @@ void create()
         map_skill("parry", "wuhu-duanmendao");
         map_skill("blade", "wuhu-duanmendao");
         map_skill("dodge", "shaolin-shenfa");
-        create_family("绿林暴风盟", 3, "首领");
+        create_family("綠林暴風盟", 3, "首領");
 
         set("auto_perform", 1);
         set("clear_fuben", 1); 

@@ -1,5 +1,5 @@
 // This program is a part of NITAN MudLIB
-// liuhe-dao.c 丐帮六合刀法
+// liuhe-dao.c 丐幫六合刀法
 
 #include <ansi.h>;
 inherit SKILL;
@@ -7,59 +7,59 @@ string type() { return "martial"; }
 string martialtype() { return "skill"; }
 
 mapping *action = ({
-([      "action":"$N大喝一声，手中$w大开大阖，连连挥刀使出「呵壁问天」，斩向$n的$l",
+([      "action":"$N大喝一聲，手中$w大開大闔，連連揮刀使出「呵壁問天」，斬向$n的$l",
         "attack": 55,
         "dodge" : 56,
         "parry" : 54,
         "damage": 120,
         "lvl" : 0,
-        "skill_name" : "呵壁问天",
-        "damage_type":  "割伤"
+        "skill_name" : "呵壁問天",
+        "damage_type":  "割傷"
 ]),
-([      "action":"$N运刀如风，一招「气盖河山」，刀势霸道之极，向着$n周身各处猛砍猛劈",
+([      "action":"$N運刀如風，一招「氣蓋河山」，刀勢霸道之極，向著$n周身各處猛砍猛劈",
         "attack": 60,
         "dodge" : 60,
         "parry" : 65,
         "damage": 130,
         "lvl" : 10,
-        "skill_name" : "气盖河山",
-        "damage_type":  "割伤"
+        "skill_name" : "氣蓋河山",
+        "damage_type":  "割傷"
 ]),
-([      "action":"$N一着「天地乍合」，突然抢进$n近侧，迅猛地驱刀连斩，攻式顿然合成一个圆圈",
+([      "action":"$N一著「天地乍合」，突然搶進$n近側，迅猛地驅刀連斬，攻式頓然合成一個圓圈",
         "attack": 60,
         "dodge" : 60,
         "parry" : 55,
         "damage": 140,
         "lvl" : 25,
         "skill_name" : "天地乍合",
-        "damage_type":  "割伤"
+        "damage_type":  "割傷"
 ]),
-([      "action":"$N仰天悲笑，随即挥刀斩出一式「离合无常」，$w化为一丝丝寒意，裹向$n$l",
+([      "action":"$N仰天悲笑，隨即揮刀斬出一式「離合無常」，$w化為一絲絲寒意，裹向$n$l",
         "attack": 70,
         "dodge" : 65,
         "parry" : 70,
         "damage": 140,
         "lvl" : 35,
-        "skill_name" : "离合无常",
-        "damage_type":  "割伤"
+        "skill_name" : "離合無常",
+        "damage_type":  "割傷"
 ]),
-([      "action":"$N施展「和合六出」绕着$n飞旋，$w带着狂野刀风，凌历无比地劈出六刀",
+([      "action":"$N施展「和合六出」繞著$n飛旋，$w帶著狂野刀風，凌歷無比地劈出六刀",
         "attack": 63,
         "dodge" : 60,
         "parry" : 70,
         "damage": 145,
         "lvl" : 45,
         "skill_name" : "和合六出",
-        "damage_type":  "割伤"
+        "damage_type":  "割傷"
 ]),
-([      "action":"$N脸色庄重，挥刀使出「阴阳隔阂」，$w由上而下向$n连劈，犹似一个个焦雷轰顶",
+([      "action":"$N臉色莊重，揮刀使出「陰陽隔閡」，$w由上而下向$n連劈，猶似一個個焦雷轟頂",
         "attack": 70,
         "dodge" : 70,
         "parry" : 75,
         "damage": 145,
         "lvl" : 60,
-        "skill_name" : "阴阳隔阂",
-        "damage_type":  "割伤"
+        "skill_name" : "陰陽隔閡",
+        "damage_type":  "割傷"
 ]),
 });
 
@@ -68,9 +68,9 @@ int valid_enable(string usage) { return usage == "blade" || usage == "parry"; }
 int valid_learn(object me)
 {
         if( query("max_neili", me)<100 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
         if ((int)me->query_skill("huntian-qigong", 1) < 20)
-                return notify_fail("你的混天气功火候太浅。\n");
+                return notify_fail("你的混天氣功火候太淺。\n");
 
         return 1;
 }
@@ -100,17 +100,17 @@ mapping query_action(object me, object weapon)
         for(i = ttl; i > 0; i--)
                 if(lvl > action[i-1]["lvl"])
                 {
-                        seq = i; /* 获得招数序号上限 */
+                        seq = i; /* 獲得招數序號上限 */
                         break;
                 }
-        seq = random(seq);       /* 选择出手招数序号 */
+        seq = random(seq);       /* 選擇出手招數序號 */
         return ([
                 "action"      : action[seq]["action"],
                 "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
                 "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
                 "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
                 "damage"      : m_e1 + (m_e2 - m_e1) * seq / ttl,
-                "damage_type" : "割伤",
+                "damage_type" : "割傷",
         ]);
 }
 
@@ -120,12 +120,12 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me) )
          || query("skill_type", weapon) != "blade" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
         if( query("qi", me)<70 )
-                return notify_fail("你的体力不够练六合刀法。\n");
+                return notify_fail("你的體力不夠練六合刀法。\n");
         if( query("neili", me)<70 )
-                return notify_fail("你的内力不够练六合刀法。\n");
+                return notify_fail("你的內力不夠練六合刀法。\n");
 
         me->receive_damage("qi", 60);
         addn("neili", -60, me);
@@ -147,11 +147,11 @@ int help(object me)
         write(HIC"\n六合刀法："NOR"\n");
         write(@HELP
 
-    四象六合刀为丐帮的刀法。
+    四象六合刀為丐幫的刀法。
 
-        学习要求：
-                混天气功30级
-                内力50
+        學習要求：
+                混天氣功30級
+                內力50
 HELP
         );
         return 1;

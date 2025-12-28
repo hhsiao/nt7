@@ -9,12 +9,12 @@ int update_condition(object me, int duration)
         if (me->is_ghost()) return 1;
         if( !living(me) || query_temp("noliving", me) )
         {
-                message("vision",me->name()+"全身变黑，散发出一阵焦糊味。\n", environment(me), me);
+                message("vision",me->name()+"全身變黑，散發出一陣焦糊味。\n", environment(me), me);
         }
         else
         {
-                tell_object(me,HIR"忽然一股火热之气袭来，烫得你手脚乱抖！\n"NOR);
-                tell_room(environment(me),HIR+me->name()+"突然全身冒出阵阵红烟，嘴唇干裂，双手胡乱地挥舞着。\n"NOR, ({ me }));
+                tell_object(me,HIR"忽然一股火熱之氣襲來，燙得你手腳亂抖！\n"NOR);
+                tell_room(environment(me),HIR+me->name()+"突然全身冒出陣陣紅煙，嘴唇乾裂，雙手胡亂地揮舞著。\n"NOR, ({ me }));
         }
         me->receive_damage("qi", 2500);
         if(userp(me)) me->receive_wound("jing", 2000);
@@ -22,7 +22,7 @@ int update_condition(object me, int duration)
         if(!me->is_busy()) me->start_busy(2);
         if( query("eff_jing", me)<0 || query("eff_qi", me)<0)
         {
-                set_temp("die_reason", "体内热毒发作死亡", me);
+                set_temp("die_reason", "體內熱毒發作死亡", me);
                 return 0;
         }
         me->apply_condition("hot_poison", duration - 1);

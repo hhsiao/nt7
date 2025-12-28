@@ -9,9 +9,9 @@ int is_chat_room() { return 1; }
 
 void create()
 {
-        set("short", HIM "试剑亭" NOR);
+        set("short", HIM "試劍亭" NOR);
         set("long", @LONG
-这里是天神用来调试程序的地方。
+這裡是天神用來調試程序的地方。
 LONG );
 
         set("exits", ([

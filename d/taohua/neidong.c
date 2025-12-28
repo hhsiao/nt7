@@ -11,8 +11,8 @@ void create()
 {
         set("short", "清音洞");
         set("long", @LONG
-这是清音洞内洞，潮湿异常，洞顶水珠颗颗坠下，滴在地面的小水洼
-中，叮咚做响。这里光线太暗，大概需要火折照明。
+這是清音洞內洞，潮溼異常，洞頂水珠顆顆墜下，滴在地面的小水窪
+中，叮咚做響。這裡光線太暗，大概需要火折照明。
 LONG );
 
         set("exits", ([
@@ -43,7 +43,7 @@ int do_use(string arg)
                 
         if (arg == "fire") 
         {
-                tell_object(me, "借着火光映照，你走出洞外。\n");
+                tell_object(me, "藉著火光映照，你走出洞外。\n");
                      me->move(__DIR__"qingyin");
         }
         return 1;
@@ -57,7 +57,7 @@ int valid_leave(object me, string dir)
 
         if (random(kar) == 1) 
         {
-                tell_object(me, "你走得精疲力尽，终于到了洞外。\n");
+                tell_object(me, "你走得精疲力盡，終於到了洞外。\n");
                 me->move(__DIR__"qingyin");
                 return 1;
         }

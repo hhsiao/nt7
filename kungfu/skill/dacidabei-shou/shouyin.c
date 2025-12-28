@@ -14,36 +14,36 @@ int perform(object me, object target)
 
 
       if (me->query_skill("buddhism", 1) < 300)
-           return notify_fail("你的佛法修为不足，无法施展该绝招！\n");
+           return notify_fail("你的佛法修為不足，無法施展該絕招！\n");
       
       if( !target ) target = offensive_target(me);
      
       if( !target || !me->is_fighting(target) || !living(target) )
-           return notify_fail("「大手印」只能在战斗中对对手使用。\n");        
+           return notify_fail("「大手印」只能在戰鬥中對對手使用。\n");        
       
       if( (int)me->query_skill("dacidabei-shou",1) < 120 )
-           return notify_fail("你的大慈大悲手不够娴熟，不会使用「大手印」！\n");
+           return notify_fail("你的大慈大悲手不夠嫻熟，不會使用「大手印」！\n");
       
       if( (int)me->query_skill("hand",1) < 120 )
-           return notify_fail("你的基本手法不够娴熟，不会使用「大手印」！\n");
+           return notify_fail("你的基本手法不夠嫻熟，不會使用「大手印」！\n");
 
       if( (int)me->query_str() < 35 )
-           return notify_fail("你的臂力不够强，不能使用「大手印」！\n");
+           return notify_fail("你的臂力不夠強，不能使用「大手印」！\n");
       
       if( query("max_neili", me)<1200 )
-           return notify_fail("你的内力太弱，不能使用「大手印」！\n");
+           return notify_fail("你的內力太弱，不能使用「大手印」！\n");
       
       if( query("neili", me)<800 )
-           return notify_fail("你的内力太少了，无法使用出「大手印」！\n");   
+           return notify_fail("你的內力太少了，無法使用出「大手印」！\n");   
 
       if( (int)target->query_condition("dashouyin"))
-           return notify_fail("对方早已身中「大手印」绝技了！\n");   
+           return notify_fail("對方早已身中「大手印」絕技了！\n");   
       
       if (me->query_skill_prepared("hand") != "dacidabei-shou")
-           return notify_fail("你还没有准备大慈大悲手，无法施展「大手印」！\n");   
+           return notify_fail("你還沒有準備大慈大悲手，無法施展「大手印」！\n");   
           
       if( objectp(query_temp("weapon", me)) )
-           return notify_fail("你必须空手使用「大手印」！\n");                                                                              
+           return notify_fail("你必須空手使用「大手印」！\n");                                                                              
       jiali=query("jiali", me)+1;
       attack=query("combat_exp", me)/1000;
       attack += me->query_skill("hand");
@@ -56,15 +56,15 @@ int perform(object me, object target)
       damage = me->query_skill("dacidabei-shou", 1)/40 * jiali;
       if(damage > 1500) damage = 1500;
       
-      message_vision(HIR "\n$N突然面色通红，低声默念禅宗真言，双臂骨节一阵爆响，猛然"
-                     "腾空而起，伸手向$n胸前按去，好一式「大手印」！\n"NOR,me,target);
+      message_vision(HIR "\n$N突然面色通紅，低聲默唸禪宗真言，雙臂骨節一陣爆響，猛然"
+                     "騰空而起，伸手向$n胸前按去，好一式「大手印」！\n"NOR,me,target);
  
       if( attack > defense ) { 
                if( objectp(armor=query_temp("armor/cloth", target) )
                    && query("armor_prop/armor", armor)<200
                   && damage > 500){
-                        message_vision(HIY"只见这斗大的手印正好印在$N的$n"HIY"上，越变越"
-                                       "大，竟将它震得粉碎，裂成一块块掉在地上！\n"NOR, target, armor);
+                        message_vision(HIY"只見這斗大的手印正好印在$N的$n"HIY"上，越變越"
+                                       "大，竟將它震得粉碎，裂成一塊塊掉在地上！\n"NOR, target, armor);
                         armor->unequip();
                         armor->move(environment(target));
                         set("name", "破碎的"+query("name", armor), armor);
@@ -72,7 +72,7 @@ int perform(object me, object target)
                         set("armor_prop/armor", 0, armor);
                         target->reset_action();
                         }
-               tell_object(target, RED"你只觉得霍的胸口一阵剧痛，已经被拍中了前胸！\n"NOR);
+               tell_object(target, RED"你只覺得霍的胸口一陣劇痛，已經被拍中了前胸！\n"NOR);
                target->receive_damage("qi", damage,  me);
          target->receive_wound("qi", damage/3, me);
          p=query("qi", target)*100/query("max_qi", target);

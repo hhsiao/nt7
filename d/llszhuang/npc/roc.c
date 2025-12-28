@@ -1,12 +1,12 @@
 inherit NPC;
 void create()
 {
-        set_name("幽冥大鹏", ({ "death roc" }) );
-        set("race", "野兽");
+        set_name("幽冥大鵬", ({ "death roc" }) );
+        set("race", "野獸");
         set("age", 25);
-        set("long", "一只外形十分凶猛的大鹏鸟。\n");
+        set("long", "一隻外形十分兇猛的大鵬鳥。\n");
         set("str",100);
-        set("limbs", ({ "头部", "身体", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體", "尾巴" }) );
        set("verbs", ({ "bite", "claw" }) );
         set("max_kee",3000);
        set("combat_exp",3400000);

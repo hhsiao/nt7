@@ -4,27 +4,27 @@
 
 inherit NPC;
 
-#define PLACE "dl"     //大理分会
+#define PLACE "dl"     //大理分會
 #define TYPE  "good"    //白道
-#define WAIT_TIME 60    //完成不了任务的反省时间
+#define WAIT_TIME 60    //完成不了任務的反省時間
 
 mapping bunch_good = ([ 
-        "bunch_name" : "紫衫会",
+        "bunch_name" : "紫衫會",
         "id"   : "zsh",
-        "place": "dl",      //总会
-        "boss" : "公孙啸",
-        "place_name" : "大理", //分会
+        "place": "dl",      //總會
+        "boss" : "公孫嘯",
+        "place_name" : "大理", //分會
         "type" : "good",
 ]);
 
 void create()
 {
-        set_name("公孙啸", ({ "gongsun xiao", "xiao" }));
+        set_name("公孫嘯", ({ "gongsun xiao", "xiao" }));
         set("gender", "男性");
         set("age", 60);
-        set("long", "他就是" + bunch_good["bunch_name"] + "设在" + bunch_good["place_name"] + "的分会会长。\n");
-        set("nickname",HIY"妙笔丹青"NOR);
-        set("title",GRN"紫衫会大理分会会长"NOR);
+        set("long", "他就是" + bunch_good["bunch_name"] + "設在" + bunch_good["place_name"] + "的分會會長。\n");
+        set("nickname",HIY"妙筆丹青"NOR);
+        set("title",GRN"紫衫會大理分會會長"NOR);
         set("per",25);
         set("combat_exp", 800000);
         set("shen_type", 1);

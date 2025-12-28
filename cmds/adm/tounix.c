@@ -27,7 +27,7 @@ int main(object me, string arg)
                 return notify_fail("指令格式 tounix <file|dir>\n");
                 
         if (! SECURITY_D->valid_write(file, me))
-                return notify_fail("没有足够的读写权限.\n");
+                return notify_fail("沒有足夠的讀寫權限.\n");
 
         if (file_size(file) == -1 )
                 file=resolve_path(query("cwd", me),file);
@@ -43,9 +43,9 @@ int main(object me, string arg)
                 file += "/";
 
         if (file_size(file) != -2) 
-                return notify_fail(file + " 并不是一个目录。\n");
+                return notify_fail(file + " 並不是一個目錄。\n");
                 
-        write(HIW "批量档案转换中，请稍候...\n" NOR);
+        write(HIW "批量檔案轉換中，請稍候...\n" NOR);
 
         dir = deep_file_list(file);
         for(i = 0; i < sizeof(dir); i++)
@@ -55,15 +55,15 @@ int main(object me, string arg)
                 {
                         convert_file(dir[i]);
                         total++;
-                        // write(dir[i] +" 文转换完成。\n");
+                        // write(dir[i] +" 文轉換完成。\n");
                 }
         }
-        write("\n目录∶" + file + "内所有文件转换完成。\n");
+        write("\n目錄∶" + file + "內所有文件轉換完成。\n");
 
         if (total > 0)
-                write(HIC "总共有 " + HIW + total + HIC " 个档案被成功转换为 UNIX 格式！\n" NOR);
+                write(HIC "總共有 " + HIW + total + HIC " 個檔案被成功轉換為 UNIX 格式！\n" NOR);
         else
-                write(HIC "没有转换任何档案。\n" NOR);
+                write(HIC "沒有轉換任何檔案。\n" NOR);
         return 1;
 }
 

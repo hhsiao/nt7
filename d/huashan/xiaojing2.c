@@ -8,7 +8,7 @@ void create()
 {
         set("short", "小木屋前");
         set("long", @LONG
-一间简陋的小木屋前。西北另有一条小径。
+一間簡陋的小木屋前。西北另有一條小徑。
 LONG );
 
         set("outdoors", "huashan");

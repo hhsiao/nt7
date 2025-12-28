@@ -7,9 +7,9 @@ inherit NPC;
 
 void create()
 {
-        set_name("农妇", ({ "nong fu", "nong", "fu" }));
+        set_name("農婦", ({ "nong fu", "nong", "fu" }));
 
-        set("long", "一个普通的农妇，跟凡间没什么两样。\n");
+        set("long", "一個普通的農婦，跟凡間沒什麼兩樣。\n");
 
         set("gender", "女性");
         set("age", 23);
@@ -29,7 +29,7 @@ void create()
 
         
         set("inquiry", ([
-		"蓬莱仙岛"               :   "我世代都居住在此，从未出过长生村。\n",
+		"蓬萊仙島"               :   "我世代都居住在此，從未出過長生村。\n",
         ]));
              
         setup();

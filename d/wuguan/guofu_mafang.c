@@ -3,11 +3,11 @@ inherit ROOM;
 
 void create()
 {
-    set("short", "马房");
+    set("short", "馬房");
     set("long", @LONG
-这里是郭府内的马房，马房里面臭烘烘的，还养了几十匹
-马。你看过去，马身上都很脏了，早该洗洗了，马房的旁边有
-个水池，里面有些清水。
+這裡是郭府內的馬房，馬房裡面臭烘烘的，還養了幾十匹
+馬。你看過去，馬身上都很髒了，早該洗洗了，馬房的旁邊有
+個水池，裡面有些清水。
 LONG);
         set("no_fight", 1);
         set("exits", ([
@@ -31,26 +31,26 @@ int do_sao(string arg)
 
         me = this_player();
 
-        if( query_temp("mark/扫完了", me) )
-            	return notify_fail(CYN "马房管事嚷嚷道：喂喂喂，让你去覆命，还留"
-                                   "在这里干嘛？\n" NOR);
+        if( query_temp("mark/掃完了", me) )
+            	return notify_fail(CYN "馬房管事嚷嚷道：喂喂喂，讓你去覆命，還留"
+                                   "在這裡幹嘛？\n" NOR);
 
-        if( query_temp("job_name", me) != "打扫马房" )
-            	return notify_fail(CYN "马房管事对你喝道：没事你瞎折腾什么？\n" NOR);
+        if( query_temp("job_name", me) != "打掃馬房" )
+            	return notify_fail(CYN "馬房管事對你喝道：沒事你瞎折騰什麼？\n" NOR);
 
         if (me->is_busy())
-		return notify_fail("你现在正忙着呢！\n");
+		return notify_fail("你現在正忙著呢！\n");
 
         if (me->is_fighting())
-		return notify_fail("你正在战斗中，无法专心干活！\n");
+		return notify_fail("你正在戰鬥中，無法專心幹活！\n");
 
         if( !objectp(weapon=query_temp("weapon", me) )
             || query("id", weapon) != "sao zhou" )
-                return notify_fail(CYN "马房管事讥笑道：你是想用什么来打扫呀，用"
-                                   "手吗？\n" NOR);
+                return notify_fail(CYN "馬房管事譏笑道：你是想用什麼來打掃呀，用"
+                                   "手嗎？\n" NOR);
 
         if (! arg || arg != "mafang")
-		return notify_fail("你要打扫什么？\n");
+		return notify_fail("你要打掃什麼？\n");
 
         costj=random(query("con", me)/3)+1;
         costq=random(query("str", me)/3)+1;
@@ -58,8 +58,8 @@ int do_sao(string arg)
         if( query("jing", me)<costj
 	 || query("qi", me)<costq )
 	{
-             	message_vision(HIR "\n$N" HIR "脚一滑，结果不小心滑倒在粪堆里，吃"
-                               "了一大口马粪。\n" NOR, me);
+             	message_vision(HIR "\n$N" HIR "腳一滑，結果不小心滑倒在糞堆裡，吃"
+                               "了一大口馬糞。\n" NOR, me);
              addn("food", 100, 	me);
              	me->unconcious();
              	return 1;
@@ -70,25 +70,25 @@ int do_sao(string arg)
         me->start_busy(1 + random(2));
 
         if (! (int)me->query_condition("wuguan_job")
-            && query_temp("mark/扫", me)>10+random(10 )
+            && query_temp("mark/掃", me)>10+random(10 )
            && present("mafang guanshi", environment(me)))
 	{
-              set_temp("mark/扫完了", 1, 	me);
-              	message_vision(CYN "\n马房管事对$N" CYN "说：干的不错，好了，你可"
-                               "以去向耶律大爷覆命(" HIY "fuming" NOR + CYN ")了"
+              set_temp("mark/掃完了", 1, 	me);
+              	message_vision(CYN "\n馬房管事對$N" CYN "說：乾的不錯，好了，你可"
+                               "以去向耶律大爺覆命(" HIY "fuming" NOR + CYN ")了"
                                "。\n" NOR, me);
               	return 1;
         }
 
-        message_vision(HIM "$N" HIM "开始打扫马房，臭味使你不由闭紧了呼吸。\n" NOR, me);
-        addn_temp("mark/扫", 1, me);
+        message_vision(HIM "$N" HIM "開始打掃馬房，臭味使你不由閉緊了呼吸。\n" NOR, me);
+        addn_temp("mark/掃", 1, me);
 
         if ((int)me->query_skill("claw", 1) < 50
            && (int)me->query_skill("club", 1) < 50
            && me->can_improve_skill("claw")
            && me->can_improve_skill("club"))
 	{
-                write(HIC "你在扫地过程中对爪法及棍法有些体会。\n" NOR);
+                write(HIC "你在掃地過程中對爪法及棍法有些體會。\n" NOR);
                 me->improve_skill("claw",(query("int", me)/6));
                 me->improve_skill("club",(query("int", me)/6));
         }

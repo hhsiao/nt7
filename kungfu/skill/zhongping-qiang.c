@@ -1,4 +1,4 @@
-//zhongping-qiang.c 中平枪法
+//zhongping-qiang.c 中平槍法
 // Last Modified by Lonely on Mar. 10 2000
 
 #include <ansi.h>;
@@ -8,21 +8,21 @@ string martialtype() { return "skill"; }
 int is_pbsk() { return 1; }
 
 mapping *action = ({
-([        "action": "$N双手一别，尽力前伸，使出一招"HIW"「中平无敌」"NOR"，手中$w平平直出，刺向$n的$l",
+([        "action": "$N雙手一別，盡力前伸，使出一招"HIW"「中平無敵」"NOR"，手中$w平平直出，刺向$n的$l",
         "lvl" : 0,
-        "skill_name" : "中平无敌"
+        "skill_name" : "中平無敵"
 ]),
-([        "action": "$N手中$w盘旋回转，风响阵阵，屈身下蹲，反手一招"HIB"「夜叉探海」"NOR"自下向$n的$l刺去",
+([        "action": "$N手中$w盤旋迴轉，風響陣陣，屈身下蹲，反手一招"HIB"「夜叉探海」"NOR"自下向$n的$l刺去",
         "lvl" : 10,
         "skill_name" : "夜叉探海"
 ]),
-([        "action": "$N举起$w，抖出一朵枪花，一招"HIB"「灵蛇出洞」"NOR"向$n分心扎去",
+([        "action": "$N舉起$w，抖出一朵槍花，一招"HIB"「靈蛇出洞」"NOR"向$n分心扎去",
         "lvl" : 20,
-        "skill_name" : "灵蛇出洞"
+        "skill_name" : "靈蛇出洞"
 ]),
-([        "action": "$N一招"HIM"「反身拿枪」"NOR"，手中$w划个小圈消去$n的后招，而后$w微抬，指向$n的$l",
+([        "action": "$N一招"HIM"「反身拿槍」"NOR"，手中$w劃個小圈消去$n的後招，而後$w微抬，指向$n的$l",
         "lvl" : 30,
-        "skill_name" : "反身拿枪"
+        "skill_name" : "反身拿槍"
 ]),
 });
 
@@ -33,19 +33,19 @@ int valid_learn(object me)
 
         if( !objectp(weapon=query_temp("weapon", me) )
             || query("skill_type", weapon) != "club" )
-                return notify_fail("你必须先找一根棍子才能练中平枪法。\n");
+                return notify_fail("你必須先找一根棍子才能練中平槍法。\n");
 
         if( query("max_neili", me)<1000 )
-                return notify_fail("你的内力修为不足，没有办法练中平枪法。\n");
+                return notify_fail("你的內力修為不足，沒有辦法練中平槍法。\n");
 
         if ((int)me->query_skill("force") < 100)
-                return notify_fail("你的内功火候太浅，没有办法练中平枪法。\n");
+                return notify_fail("你的內功火候太淺，沒有辦法練中平槍法。\n");
 
         if ((int)me->query_skill("club", 1) < 80)
-                return notify_fail("你的棍法根基不足，没有办法练中平枪法。\n");
+                return notify_fail("你的棍法根基不足，沒有辦法練中平槍法。\n");
 
         if ((int)me->query_skill("club", 1) < (int)me->query_skill("zhongping-qiang", 1))
-                return notify_fail("你的基本棍法水平不够，无法领会更高深的中平枪法。\n");
+                return notify_fail("你的基本棍法水平不夠，無法領會更高深的中平槍法。\n");
 
         return 1;
 }
@@ -56,9 +56,9 @@ int practice_skill(object me)
 
         if( !objectp(weapon=query_temp("weapon", me) )
                  || query("skill_type", weapon) != "club" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
         if( query("qi", me)<50 || query("neili", me)<50 )
-                return notify_fail("你的内力或气不够练中平枪法。\n");
+                return notify_fail("你的內力或氣不夠練中平槍法。\n");
         me->receive_damage("qi", 20);
         addn("neili", -20, me);
         return 1;
@@ -87,17 +87,17 @@ mapping query_action(object me, object weapon)
         for(i = ttl; i > 0; i--)
                 if(lvl > action[i-1]["lvl"])
                 {
-                        seq = i; /* 获得招数序号上限 */
+                        seq = i; /* 獲得招數序號上限 */
                         break;
                 }
-        seq = random(seq);       /* 选择出手招数序号 */
+        seq = random(seq);       /* 選擇出手招數序號 */
         return ([
                 "action"      : action[seq]["action"],
                 "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
                 "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
                 "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
                 "damage"      : m_e1 + (m_e2 - m_e1) * seq / ttl,
-                "damage_type" : "刺伤",
+                "damage_type" : "刺傷",
         ]);
 }
 int learn_bonus() { return 15; }
@@ -112,13 +112,13 @@ string perform_action_file(string action)
 
 int help(object me)
 {
-        write(HIC"\n中平枪法："NOR"\n");
+        write(HIC"\n中平槍法："NOR"\n");
         write(@HELP
 
-    中平枪法是花铁干的成名武功。
+    中平槍法是花鐵乾的成名武功。
 
-        学习要求：
-                内力70
+        學習要求：
+                內力70
 HELP
         );
         return 1;

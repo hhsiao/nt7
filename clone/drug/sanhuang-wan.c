@@ -12,18 +12,18 @@ void setup()
 int cure_ob(string);
 void create()
 {
-        set_name(HIY"三黄宝蜡丸"NOR, ({"sanhuang wan","wan"}));
+        set_name(HIY"三黃寶蠟丸"NOR, ({"sanhuang wan","wan"}));
         set_weight(50);
         /*if (clonep())
             set_default_object(__FILE__);
     else*/
     {
-        set("unit", "颗");
+        set("unit", "顆");
         set("no_sell",1);
         set("no_get",1);
         set("no_drop",1);
         set("long",
-"一颗黄澄澄的药丸，由牛黄、雄黄、雌黄这三黄为主，辅以其它药物\n炼制而成，是武当派疗伤、疗毒的灵药。对虫毒有奇效。\n");
+"一顆黃澄澄的藥丸，由牛黃、雄黃、雌黃這三黃為主，輔以其它藥物\n煉製而成，是武當派療傷、療毒的靈藥。對蟲毒有奇效。\n");
                 set("value", 20000);
                 set("medicine", 1);
     }
@@ -39,12 +39,12 @@ int cure_ob(object me)
                 else
                         addn("neili", -(query("neili", me)), me);
 
-                message_vision(BLU"$N服下一颗"+query("name")+BLU"，觉得体内真气逆行，内力大损。原来服食\n太急太多，药效适得其反！\n" NOR, me);
+                message_vision(BLU"$N服下一顆"+query("name")+BLU"，覺得體內真氣逆行，內力大損。原來服食\n太急太多，藥效適得其反！\n" NOR, me);
         destruct(this_object());
         return 1;
         }
            
-        message_vision(HIM"$N服下一颗"+query("name")+HIM"，只觉通体舒泰，精神焕发，伤势大有好转。\n"NOR, me);
+        message_vision(HIM"$N服下一顆"+query("name")+HIM"，只覺通體舒泰，精神煥發，傷勢大有好轉。\n"NOR, me);
         me->receive_heal("qi", 400+random(200));
         me->apply_condition("hot_drug", 15);
 

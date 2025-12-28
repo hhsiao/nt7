@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return HIR "阴阳磨" NOR; }
+string name() { return HIR "陰陽磨" NOR; }
 
 inherit F_SSERVER;
 
@@ -19,34 +19,34 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(name() + "只能空手施展。\n");
 
         if ((int)me->query_skill("tie-zhang", 1) < 220)
-                return notify_fail("你铁掌掌法火候不够，难以施展" + name() + "。\n");
+                return notify_fail("你鐵掌掌法火候不夠，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("strike") != "tie-zhang")
-                return notify_fail("你没有激发铁掌掌法，难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發鐵掌掌法，難以施展" + name() + "。\n");
 
         if (me->query_skill_prepared("strike") != "tie-zhang")
-                return notify_fail("你没有准备铁掌掌法，难以施展" + name() + "。\n");
+                return notify_fail("你沒有準備鐵掌掌法，難以施展" + name() + "。\n");
 
         if ((int)me->query_skill("force") < 300)
-                return notify_fail("你的内功修为不够，难以施展" + name() + "。\n");
+                return notify_fail("你的內功修為不夠，難以施展" + name() + "。\n");
 
         if( query("max_neili", me)<3500 )
-                return notify_fail("你的内力修为不够，难以施展" + name() + "。\n");
+                return notify_fail("你的內力修為不夠，難以施展" + name() + "。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你现在的真气不足，难以施展" + name() + "。\n");
+                return notify_fail("你現在的真氣不足，難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N" HIW "施出铁掌绝技「" HIR "阴阳磨"
-              HIW "」，左掌不着半点力道，携着阴寒劲向$n"
+        msg = HIW "$N" HIW "施出鐵掌絕技「" HIR "陰陽磨"
+              HIW "」，左掌不著半點力道，攜著陰寒勁向$n"
               HIW "拂去。\n" NOR;
 
         ap=attack_power(me,"strike")+me->query_str()*15;
@@ -56,10 +56,10 @@ int perform(object me, object target)
         damage = damage_power(me,"strike");
         damage+= fmsk;
         
-        delta = ABILITY_D->check_ability(me, "ap_power-tie-yin"); // 门派ab
+        delta = ABILITY_D->check_ability(me, "ap_power-tie-yin"); // 門派ab
         if( delta ) ap += ap*delta/100;
         
-        delta = ABILITY_D->check_ability(me, "da_power-tie-yin"); // 门派ab
+        delta = ABILITY_D->check_ability(me, "da_power-tie-yin"); // 門派ab
         if( delta ) damage += damage*delta/100;
                 
         if (ap / 2 + random(ap) + fmsk / 2 > dp)
@@ -69,12 +69,12 @@ int perform(object me, object target)
                                            (: finala, me, target :));
         } else
         {
-                msg += CYN "$n" CYN "见$N" CYN "掌出如风，心知"
-                       "此招后着极是凌厉，当即斜跳闪开。\n" NOR;
+                msg += CYN "$n" CYN "見$N" CYN "掌出如風，心知"
+                       "此招後著極是凌厲，當即斜跳閃開。\n" NOR;
         }
 
-        msg += HIR "\n紧接着$N" HIR "右掌一振，掌风过处，竟席"
-               "卷起一股热浪，向$n" HIR "胸前猛然拍落。\n" NOR;
+        msg += HIR "\n緊接著$N" HIR "右掌一振，掌風過處，竟席"
+               "捲起一股熱浪，向$n" HIR "胸前猛然拍落。\n" NOR;
 
         if (ap / 2 + random(ap) + fmsk / 2 > dd)
         {
@@ -82,8 +82,8 @@ int perform(object me, object target)
                                            (: finalb, me, target :));
         } else
         {
-                msg += CYN "$n" CYN "忽闻呼啸声大至，眼见$N" CYN
-                       "掌势如虹，急忙纵跃躲避开来。\n" NOR;
+                msg += CYN "$n" CYN "忽聞呼嘯聲大至，眼見$N" CYN
+                       "掌勢如虹，急忙縱躍躲避開來。\n" NOR;
         }
         me->start_busy(3 + random(2));
         addn("neili", -400, me);
@@ -101,8 +101,8 @@ string finala(object me, object target, int damage)
                           "id":query("id", me),
                           "duration" : lvl / 50 + random(lvl / 50) ]));
 
-        return HIW "霎那间$n" HIW "已被$N" HIW "阴寒掌劲拂中要"
-               "害，不由得浑身一颤，难受之极。\n" NOR;
+        return HIW "霎那間$n" HIW "已被$N" HIW "陰寒掌勁拂中要"
+               "害，不由得渾身一顫，難受之極。\n" NOR;
 }
 
 string finalb(object me, object target, int damage)
@@ -115,6 +115,6 @@ string finalb(object me, object target, int damage)
                           "id":query("id", me),
                           "duration" : lvl / 50 + random(lvl / 50) ]));
 
-        return HIR "只听嗤的一声，$N" HIR "右掌如击败革，正中"
-               "$n" HIR "胸口，震断了数根肋骨。\n" NOR;
+        return HIR "只聽嗤的一聲，$N" HIR "右掌如擊敗革，正中"
+               "$n" HIR "胸口，震斷了數根肋骨。\n" NOR;
 }

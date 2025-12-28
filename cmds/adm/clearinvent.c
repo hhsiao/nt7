@@ -36,7 +36,7 @@ int main(object me, string arg)
                                 {
                                         rm(dir[i]);
                                         total++;
-                                        write(dir[i] +" 被删除。\n");
+                                        write(dir[i] +" 被刪除。\n");
                                         continue;
                                 }
                         }
@@ -51,7 +51,7 @@ int main(object me, string arg)
                                         */
                                         rm(dir[i]);
                                         total++;
-                                        write(dir[i] +" 被删除。\n");
+                                        write(dir[i] +" 被刪除。\n");
                                         continue;
                                 }
                         }
@@ -59,7 +59,7 @@ int main(object me, string arg)
                 }
         }
         
-        write("\n技能目录中所有自创文件共 " + total + " 个被删除。\n");
+        write("\n技能目錄中所有自創文件共 " + total + " 個被刪除。\n");
         return 1;               
 }
 
@@ -104,8 +104,8 @@ int help(object me)
 write(@HELP
 
 指令格式: clearinvent [pfm] | [skl] | [all]
-本指令可让你把自创武功或自创绝招文件全部删除。
-注意：本命令比较危险，请小心使用。
+本指令可讓你把自創武功或自創絕招文件全部刪除。
+注意：本命令比較危險，請小心使用。
 
 HELP);
 return 1;

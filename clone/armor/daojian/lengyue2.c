@@ -11,15 +11,15 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("unit", "顶");
-                set("long", HIY "传说乃月宫宝物，蕴涵着非凡之神力。\n" NOR);
+                set("unit", "頂");
+                set("long", HIY "傳說乃月宮寶物，蘊涵著非凡之神力。\n" NOR);
                 set("value", 1500000);
                 set("armor_prop/dex", 30);
                 set("armor_prop/str", 30);
                 set("armor_prop/con", 30);
                 set("armor_prop/damage", 3000);
                 set("armor_prop/blade", 100);
-                set("special/desc", "有效刀法等级提高100级。");
+                set("special/desc", "有效刀法等級提高100級。");
                 set("limit", ([
                          "exp" : 100000000,
                          "scborn" : 1,

@@ -1,4 +1,4 @@
-// richu.c 日月光华 之 日出东方
+// richu.c 日月光華 之 日出東方
 
 #include <ansi.h>
 
@@ -11,29 +11,29 @@ int exert(object me, object target)
         int skill;
         int delta;
 
-        if( query("gender", me) != "无性" && !query("yuanshen", me))
-                return notify_fail("你的性别与日月内功相斥，无法使用此绝招！\n");  
+        if( query("gender", me) != "無性" && !query("yuanshen", me))
+                return notify_fail("你的性別與日月內功相斥，無法使用此絕招！\n");  
 
         if (target != me)
-                return notify_fail("你只能用日月光华来提升自己的潜力。\n");
+                return notify_fail("你只能用日月光華來提升自己的潛力。\n");
 
         if ((int)me->query_skill("riyue-guanghua",1) < 100)
-                return notify_fail("你的日月光华修为太低，无法施展「日出东方」。\n");
+                return notify_fail("你的日月光華修為太低，無法施展「日出東方」。\n");
 
         if( query("neili", me)<200 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         if( BUFF_D->check_buff(me, "powerup") ) 
-                return notify_fail("你已经在运功中了。\n");
+                return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
         addn("neili", -120, me);
         me->receive_damage("qi", 0);
         
-        msg = HIR "$N" HIR "一声怪啸，双目变得赤红，双足一点，身子腾空而起，"
-                    "四周顿时热浪翻涌，灸热难当。\n" NOR;
+        msg = HIR "$N" HIR "一聲怪嘯，雙目變得赤紅，雙足一點，身子騰空而起，"
+                    "四周頓時熱浪翻湧，灸熱難當。\n" NOR;
 
-        delta = ABILITY_D->check_ability(me, "power-rygh-richu"); // 门派ab
+        delta = ABILITY_D->check_ability(me, "power-rygh-richu"); // 門派ab
         if( delta ) skill += skill*delta/100;
         data = ([
                 "attack" : skill/3,
@@ -47,11 +47,11 @@ int exert(object me, object target)
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "日月光华·日出东方",
+                "name"  : "日月光華·日出東方",
                 "time"  : skill,
                 "buff_data": data,      
                 "buff_msg" : msg,
-                "disa_msg" : "你的日出东方运行完毕，将内力收回丹田。\n",
+                "disa_msg" : "你的日出東方運行完畢，將內力收回丹田。\n",
                         
         ]);
         BUFF_D->buffup(buff);

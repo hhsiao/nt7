@@ -35,7 +35,7 @@ void create()
         map_skill("dodge", "jueqing-shenfa");
         map_skill("force", "jueqing-xinfa");
     
-        create_family("绝情谷", 5, "男弟子");
+        create_family("絕情谷", 5, "男弟子");
         setup();
 
         carry_object("/clone/weapon/changjian")->wield();

@@ -1,6 +1,6 @@
-//      炎黄-玩家自创武功系统
+//      炎黃-玩家自創武功系統
 //      Made at 2007-03-19 12:27:42 by Rcwiz
-//      /kungfu/skill/guafu-zhongzhi.c  寡妇的中指
+//      /kungfu/skill/guafu-zhongzhi.c  寡婦的中指
 
 inherit SKILL;
 #include <ansi.h>
@@ -8,9 +8,9 @@ inherit SKILL;
 #define PMSKILLS_D        "/adm/daemons/pmskillsd"
 
 string *parry_msg = ({
-HIG "$N中指斜伸，一招$NM，反身一顿，一指向$n的$l戳去。\n" NOR,
-HIG "$N食指斜伸，一招$NM，反身一顿，一指向$n的$l戳去。\n" NOR,
-HIG "$N拇指斜伸，一招$NM，反身一顿，一指向$n的$l戳去。\n" NOR,
+HIG "$N中指斜伸，一招$NM，反身一頓，一指向$n的$l戳去。\n" NOR,
+HIG "$N食指斜伸，一招$NM，反身一頓，一指向$n的$l戳去。\n" NOR,
+HIG "$N拇指斜伸，一招$NM，反身一頓，一指向$n的$l戳去。\n" NOR,
 });
 
 string query_parry_msg(object weapon)
@@ -23,14 +23,14 @@ string who_make(){ return "thess"; }
 
 //####actions start####
 mapping *action = ({
-([        "action"     :  "$N中指斜伸，一招「直指花心」，反身一顿，一指向$n的$l戳去。",
+([        "action"     :  "$N中指斜伸，一招「直指花心」，反身一頓，一指向$n的$l戳去。",
           "force"      :  320,
           "attack"     :  74,
           "parry"      :  58,
           "dodge"      :  64,
           "damage"     :  107,
           "skill_name" :  "直指花心",
-          "damage_type":  "刺伤",
+          "damage_type":  "刺傷",
 ])
 });
 //####actions end####
@@ -66,9 +66,9 @@ int valid_learn(object me)
         object ob;
         if( query_temp("weapon", me )
          || query("secondary_weapon", me) )
-                return notify_fail("你必须空手练习。\n");
+                return notify_fail("你必須空手練習。\n");
         if (me->query_skill("finger", 1) < me->query_skill("guafu-zhongzhi", 1))
-                return notify_fail("你的基本指法火候有限，无法领会更高深的寡妇的中指。\n");
+                return notify_fail("你的基本指法火候有限，無法領會更高深的寡婦的中指。\n");
         return 1;
 }
 
@@ -101,7 +101,7 @@ mixed hit_ob(object me, object victim, int damage_bonus)
 
         if (! living(victim) || victim->is_busy() || random(4))return 0;
 
-        message_vision(HIR "\n$N一招攻出，竟卷起千层气浪，太玄内劲顿时源源不绝涌入$n体内！\n" NOR, me, victim);
+        message_vision(HIR "\n$N一招攻出，竟捲起千層氣浪，太玄內勁頓時源源不絕湧入$n體內！\n" NOR, me, victim);
 
         addn("neili", -50, me);
 
@@ -136,13 +136,13 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
                 switch (random(3))
                 {
                 case 0:
-                   result += (["msg" : HIC "可是$n不闪不避，闪电般伸出「中指」反戳$N手腕，挡开了此招。\n" NOR]);
+                   result += (["msg" : HIC "可是$n不閃不避，閃電般伸出「中指」反戳$N手腕，擋開了此招。\n" NOR]);
                 break;
                 case 1:
-                   result += (["msg" : HIC "可是$n不闪不避，闪电般伸出「食指」反戳$N手腕，挡开了此招。\n" NOR]);
+                   result += (["msg" : HIC "可是$n不閃不避，閃電般伸出「食指」反戳$N手腕，擋開了此招。\n" NOR]);
                 break;
                 default:
-                   result += (["msg" : HIC "可是$n不闪不避，闪电般伸出「拇指」反戳$N手腕，挡开了此招。\n" NOR]);
+                   result += (["msg" : HIC "可是$n不閃不避，閃電般伸出「拇指」反戳$N手腕，擋開了此招。\n" NOR]);
                 break;
                 }
                 return result;
@@ -152,7 +152,7 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
 
 int practice_skill(object me)
 {
-        if( !query("scborn", me))return notify_fail("自创武学只能用学(learn)的来提升等级。\n");
+        if( !query("scborn", me))return notify_fail("自創武學只能用學(learn)的來提升等級。\n");
 }
 
 int difficult_level(){ return 2000;}

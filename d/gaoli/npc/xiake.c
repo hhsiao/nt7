@@ -1,6 +1,6 @@
-// 大唐双龙传
+// 大唐雙龍傳
 
-//侠客。
+//俠客。
 
 #include <ansi.h>
 
@@ -8,10 +8,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("侠客", ({ "xia ke", "xia", "ke" }) );
+        set_name("俠客", ({ "xia ke", "xia", "ke" }) );
         set("gender", "男性");
         set("age", 35);
-        set("long","这是一个高丽的侠客，准备到中原去闯一番天下。\n");
+        set("long","這是一個高麗的俠客，準備到中原去闖一番天下。\n");
         set("combat_exp", 300000+random(40000));
         set("attitude", "heroism");
         set("str", 30);

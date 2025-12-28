@@ -39,7 +39,7 @@ int main(object me, string arg)
         dir=resolve_path(query("cwd", me),arg);
         
         if (me != this_player(1))
-                return notify_fail("不是当前使用者进行操作。\n");
+                return notify_fail("不是當前使用者進行操作。\n");
                 
         seteuid(getuid());
         if (file_size(dir) == -2 && dir[strlen(dir) - 1] != '/') dir += "/";
@@ -66,9 +66,9 @@ int main(object me, string arg)
         if (! sizeof(file))
         {
                 if (file_size(dir) == -2)
-                        return notify_fail(sprintf("目录(%s)是空的。\n", dir));
+                        return notify_fail(sprintf("目錄(%s)是空的。\n", dir));
                 else
-                        return notify_fail(sprintf("没有这个目录(%s)。\n", dir));
+                        return notify_fail(sprintf("沒有這個目錄(%s)。\n", dir));
         }
         
         file = filter_array(file, (: filter_list :), path, me);
@@ -88,12 +88,12 @@ int main(object me, string arg)
                 if (strlen(file[i][0]) > w) w = strlen(file[i][0]) + 1;
                 file[i] += ({ MASTER_OB->valid_write(path + file[i][0], me, "ls") });
         }
-        result = "目录：" + path + "\n";
+        result = "目錄：" + path + "\n";
         files = sizeof(file) - x;
         dirs = x;
         if (! sizeof(file))
         {
-                write(sprintf("%s    没有任何档案。\n\n", result));
+                write(sprintf("%s    沒有任何檔案。\n\n", result));
                 return 1;
         }
         
@@ -101,14 +101,14 @@ int main(object me, string arg)
         {
                 string syntax;
                 syntax = sprintf("%%s%%-%ds  %%-8s  %%-8s  %%s\n" NOR, w);
-                result += sprintf(syntax, HIR, "文件名", "大小", "是否装载", "最后更改时间");
+                result += sprintf(syntax, HIR, "文件名", "大小", "是否裝載", "最後更改時間");
                 col = 82 / (w + 6);
                 for (i = 0, j = sizeof(file); i < j; i++)
                 result += sprintf(syntax,
                                   (file[i][3] ? NOR : HIR),
                                   file[i][0],
                                   (file[i][1] == -2 ? "<dir>" : sprintf("%d", file[i][1])),
-                                  ((file[i][1] != -2 && find_object(path + file[i][0])) ? HIC "编译装载" NOR : NOR "--------"),
+                                  ((file[i][1] != -2 && find_object(path + file[i][0])) ? HIC "編譯裝載" NOR : NOR "--------"),
                                   CHINESE_D->chinese_time(5, ctime(file[i][2])));
         } else
         {
@@ -124,7 +124,7 @@ int main(object me, string arg)
         }
         me->start_more(result);
 //        write(result);
-        printf("\n                    文件有：%d 个，总共：%d K ，目录共有：%d 。\n", files, k, dirs);
+        printf("\n                    文件有：%d 個，總共：%d K ，目錄共有：%d 。\n", files, k, dirs);
         
         return 1;
 }
@@ -148,17 +148,17 @@ int sort_list(mixed ob1, mixed ob2)
 int help(object me)
 {
         write(@HELP
-指令格式: ls [-l] [<路径名>]
+指令格式: ls [-l] [<路徑名>]
  
-列出目录下所有的子目录及档案, 如果没有指定目录, 则列出所在目录
-的内容，所列出的档案中，白色的代表路径或是已经载入的物件对应的
-文件，正常色的代表普通的文件。红色则表示你对该目录或文件没有写
-入权限。-l参数可以列出详细资料。
+列出目錄下所有的子目錄及檔案, 如果沒有指定目錄, 則列出所在目錄
+的內容，所列出的檔案中，白色的代表路徑或是已經載入的物件對應的
+文件，正常色的代表普通的文件。紅色則表示你對該目錄或文件沒有寫
+入權限。-l參數可以列出詳細資料。
  
-范例:
-'ls /' 会列出所有位於根目录下的档案及子目录。
-'ls /adm/*.c -l' 则会列出/adm/目录下面所有以.c结尾的文件的详细
-资料列表。
+範例:
+'ls /' 會列出所有位於根目錄下的檔案及子目錄。
+'ls /adm/*.c -l' 則會列出/adm/目錄下面所有以.c結尾的文件的詳細
+資料列表。
  
 HELP );
         return 1;

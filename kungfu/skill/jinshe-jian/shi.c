@@ -16,37 +16,37 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(SHEN "只能在战斗中对对手使用。\n");
+                return notify_fail(SHEN "只能在戰鬥中對對手使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me) )
             || query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对，难以施展" SHEN "。\n");
+                return notify_fail("你使用的武器不對，難以施展" SHEN "。\n");
 
         if ((int)me->query_skill("jinshe-jian", 1) < 200)
-                return notify_fail("你金蛇剑法不够娴熟，难以施展" SHEN "。\n");
+                return notify_fail("你金蛇劍法不夠嫻熟，難以施展" SHEN "。\n");
 
         if (me->query_skill_mapped("sword") != "jinshe-jian")
-                return notify_fail("你没有激发衡山五神剑，难以施展" SHEN "。\n");
+                return notify_fail("你沒有激發衡山五神劍，難以施展" SHEN "。\n");
 
         if ((int)me->query_skill("force", 1) < 240)
-                return notify_fail("你的内功火候不够，难以施展" SHEN "。\n");
+                return notify_fail("你的內功火候不夠，難以施展" SHEN "。\n");
 
         if ((int)me->query_skill("dodge", 1) < 240)
-                return notify_fail("你的轻功火候不够，难以施展" SHEN "。\n");  
+                return notify_fail("你的輕功火候不夠，難以施展" SHEN "。\n");  
 
         if( query("max_neili", me)<4500 )
-                return notify_fail("你的内力修为不足，难以施展" SHEN "。\n");
+                return notify_fail("你的內力修為不足，難以施展" SHEN "。\n");
 
         if( query("neili", me)<400 )
-                return notify_fail("你现在的真气不够，难以施展" SHEN "。\n");
+                return notify_fail("你現在的真氣不夠，難以施展" SHEN "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
         wn = weapon->name();
 
-        msg = HIY "一道金光划过，$N" HIY "消失得无影无踪，猛然间只见一条"
-              "金蛇从天而下，" + weapon->name() + HIY "已将$n" HIY "笼罩。\n" NOR;
+        msg = HIY "一道金光劃過，$N" HIY "消失得無影無蹤，猛然間只見一條"
+              "金蛇從天而下，" + weapon->name() + HIY "已將$n" HIY "籠罩。\n" NOR;
 
         message_sort(msg, me, target);
         
@@ -59,31 +59,31 @@ int perform(object me, object target)
                 if( me->query_family() == "五毒教" )
                         damage *= 3;
 
-                // 十分之一的几率可被招架
+                // 十分之一的幾率可被招架
                 if (random(10) <= 1 && ap / 2 < dp)
                 {
                         damage = damage / 3;
 
                         msg = COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 50,
-                                                  HIG "$n" HIG "见$N" HIG "一道金光闪过"
-                                                  "，急忙收敛心神奋力招架。哪知$P这"
-                                                  "招力道非凡，$p一声闷哼，连退几步，喷"
-                                                  "出一口鲜血。\n" NOR);
+                                                  HIG "$n" HIG "見$N" HIG "一道金光閃過"
+                                                  "，急忙收斂心神奮力招架。哪知$P這"
+                                                  "招力道非凡，$p一聲悶哼，連退幾步，噴"
+                                                  "出一口鮮血。\n" NOR);
                         addn("neili", -200, me);
                         me->start_busy(3 + random(2));
                 } else 
                 {
                         msg = COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 85,
-                                                  HIR "$n" HIR "见$N" HIR "金光划过，心"
-                                                  "底不由大惊，登时听得“噗嗤”一声，剑"
-                                                  "气透体而过。\n" NOR);
+                                                  HIR "$n" HIR "見$N" HIR "金光劃過，心"
+                                                  "底不由大驚，登時聽得“噗嗤”一聲，劍"
+                                                  "氣透體而過。\n" NOR);
                         addn("neili", -300, me);
                         me->start_busy(2 + random(3));
                 }
         } else
         {
-                msg = CYN "\n然而$n" CYN "以快对快，飞身一跳"
-                      "已然躲过$N" CYN "这一招。\n" NOR;
+                msg = CYN "\n然而$n" CYN "以快對快，飛身一跳"
+                      "已然躲過$N" CYN "這一招。\n" NOR;
                 addn("neili", -150, me);
                 me->start_busy(2);
         }

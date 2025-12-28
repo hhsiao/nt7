@@ -4,13 +4,13 @@ inherit NPC;
 
 void create()
 {
-        set_name("李寻欢", ({ "li xunhuan", "li", "xunhuan"}));
-        set("long", "    一个身着白衫的中年男子，俊俏的面庞\n" 
-                    "毫无血色，似乎因酒色过度而苍白。他手中\n"
-                    "握着一柄小刀，静静雕刻着一个木人。周围\n"
-                    "发生的一切他仿佛都看不见。\n"); 
+        set_name("李尋歡", ({ "li xunhuan", "li", "xunhuan"}));
+        set("long", "    一個身著白衫的中年男子，俊俏的面龐\n" 
+                    "毫無血色，似乎因酒色過度而蒼白。他手中\n"
+                    "握著一柄小刀，靜靜雕刻著一個木人。周圍\n"
+                    "發生的一切他彷彿都看不見。\n"); 
         set("nickname", HIR "小李探花" NOR);
-        set("title", HIY "大宗师" NOR);
+        set("title", HIY "大宗師" NOR);
         set("gender", "男性");
         set("age", 34);
         set("attitude", "friendly");
@@ -29,10 +29,10 @@ void create()
 
         set("chat_chance", 1);
         set("chat_msg",({
-                CYN "李寻欢深深的叹了口气。\n" NOR,
-                CYN "李寻欢静静地雕刻着手中的木偶。\n" NOR,
-                CYN "李寻欢咳嗽了几声。\n" NOR,
-                CYN "李寻欢：“咳…咳…”\n" NOR,
+                CYN "李尋歡深深的嘆了口氣。\n" NOR,
+                CYN "李尋歡靜靜地雕刻著手中的木偶。\n" NOR,
+                CYN "李尋歡咳嗽了幾聲。\n" NOR,
+                CYN "李尋歡：“咳…咳…”\n" NOR,
         }));
 
         set("chat_chance_combat", 100);
@@ -97,7 +97,7 @@ void die()
                          if (arrayp(ob->query_team()))
                          {
                                  command("heng");
-                                 command("say 胜之不武！");
+                                 command("say 勝之不武！");
                                  set("qi", 30000);
                                  set("jing", 30000);
                                  set("neili", 35000);
@@ -115,7 +115,7 @@ void die()
              if (! ob->query("sky12/floor"))
              {
                       ob->set("sky12/floor", 1);
-                 command("say 好了，过了我这关，你可以进入天界了！");
+                 command("say 好了，過了我這關，你可以進入天界了！");
              }
         }
 
@@ -135,7 +135,7 @@ void die()
 }
 
 
-// 气血小于1000则死亡，避免他人协助帮忙转世
+// 氣血小於1000則死亡，避免他人協助幫忙轉世
 void heart_beat()
 {
         if (this_object()->query("qi") < 1000 || this_object()->query("eff_qi") < 1000)

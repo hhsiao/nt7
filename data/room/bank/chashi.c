@@ -9,8 +9,8 @@ void create()
 {
         set("short", "茶室");
 	set ("long", @LONG
-是一个玲珑小巧的茶室，很是显得精致。正中有一茶几，两旁立
-着两个妙龄少女，正在听候主人的吩咐(tea)。 
+是一個玲瓏小巧的茶室，很是顯得精緻。正中有一茶几，兩旁立
+著兩個妙齡少女，正在聽候主人的吩咐(tea)。 
 LONG );
 
         set("exits", ([
@@ -21,13 +21,13 @@ LONG );
                 "/d/room/roomnpc/teagirl" : 2,
         ]));
 
-        create_door("west", "木门", "east", DOOR_CLOSED);
+        create_door("west", "木門", "east", DOOR_CLOSED);
 
         set("no_sleep_room", 1);
         setup();
 
-        set("room_owner", "钱庄");
-        set("room_name", "金风细雨楼");
+        set("room_owner", "錢莊");
+        set("room_name", "金風細雨樓");
         set("room_id", "gold");
         set("room_owner_id", "bank");
         set("room_position", "[1;33m名人堂[2;37;0m");

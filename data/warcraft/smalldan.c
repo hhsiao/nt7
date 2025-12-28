@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("[1;33m梦麒麟[2;37;0m[2;37;0m", ({"meng"}));        
+        set_name("[1;33m夢麒麟[2;37;0m[2;37;0m", ({"meng"}));        
         set("gender", "男性");                
         set("long", "nod[2;37;0m
-它是小旦的魔幻兽。
+它是小旦的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

@@ -4,7 +4,7 @@ inherit CLOTH;
 
 void create()
 {
-        set_name(HIG "绿衫" NOR, ({ "lv shan", "lv", "shan", "cloth" }));
+        set_name(HIG "綠衫" NOR, ({ "lv shan", "lv", "shan", "cloth" }));
         set_weight(3000);
         /*if (clonep())
                 set_default_object(__FILE__);

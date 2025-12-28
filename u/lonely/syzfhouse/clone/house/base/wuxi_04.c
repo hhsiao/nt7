@@ -3,10 +3,10 @@ inherit "/inherit/room/house_base";
 
 void create()
 {
-    set("short", "皇亭街丁号");
+    set("short", "皇亭街丁號");
     set("long", @LONG
-这其实是一条比较宽的巷子，不过在江南就叫做大街了，路上的石
-板都是新铺的，既干净又平整。街两边都是民宅。
+這其實是一條比較寬的巷子，不過在江南就叫做大街了，路上的石
+板都是新鋪的，既乾淨又平整。街兩邊都是民宅。
 LONG);
 
     set("exits",

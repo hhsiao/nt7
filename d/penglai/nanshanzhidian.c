@@ -4,21 +4,21 @@ inherit DEMONROOM;
 
 void create()
 {
-        set("short", "南山之颠");
+        set("short", "南山之顛");
         set("long",@LONG
-南山之颠乃南山最高峰，不少仙者常来这里吸收天地的灵气以
-促进仙法的修炼。你站在高峰之上，远眺蓬莱仙岛，其景美不胜收，
-实在难以用人间任何语言来描述。俯瞰南山，依然是如此神秘，若
-隐若现，时高时低。翘首东望麒麟崖，更是令人充满无尽的遐思。
+南山之顛乃南山最高峰，不少仙者常來這裡吸收天地的靈氣以
+促進仙法的修煉。你站在高峰之上，遠眺蓬萊仙島，其景美不勝收，
+實在難以用人間任何語言來描述。俯瞰南山，依然是如此神秘，若
+隱若現，時高時低。翹首東望麒麟崖，更是令人充滿無盡的遐思。
 LONG);
 
         set("exits", ([
                 "down"    : __DIR__"nanshanjiaoxia",
         ]));
-        set("no_rideto", 1);         // 设置不能骑马到其他地方
-        set("no_flyto", 1);          // 设置不能从起来地方骑马来这里
-        set("no_die", 1);            // 死亡后移动到扁鹊居
-        set("penglai", 1);           // 表示在蓬莱岛
+        set("no_rideto", 1);         // 設置不能騎馬到其他地方
+        set("no_flyto", 1);          // 設置不能從起來地方騎馬來這裡
+        set("no_die", 1);            // 死亡後移動到扁鵲居
+        set("penglai", 1);           // 表示在蓬萊島
 
         set("n_time", 600 + random(180)); 
         set("n_npc", 1); 
@@ -36,28 +36,28 @@ void init ()
                 if( !query("penglai/go_quest/ok", this_player()) )
                 {
                         this_player()->start_busy(3);
-                        tell_object(this_player(), NOR + WHT "你到了此处，四周仙气缭绕令你一时间难以辨别方向。\n" NOR);
+                        tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);
                 }
                 else
                 {
                         if (random(2))
                         {
                                 this_player()->start_busy(1);
-                                tell_object(this_player(), NOR + WHT "你到了此处，四周仙气缭绕令你一时间难以辨别方向。\n" NOR);                
+                                tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);                
                         }
                 }
         }
         
         if( playerp(this_player()) && !query("penglai/nanshan_quest/ok", this_player()) )
         {
-                tell_object(this_player(), HIG "\n你被一阵仙气卷下山去 ……！。\n" NOR);
+                tell_object(this_player(), HIG "\n你被一陣仙氣卷下山去 ……！。\n" NOR);
                 this_player()->move(__DIR__"nanshanjiaoxia");
         }
-        else // 第一次南山之颠获取一些奖励
+        else // 第一次南山之顛獲取一些獎勵
         {
                 if( !query("penglai/nanshanzhidian_quest/ok", this_player()) )
                 {
-                        tell_object(this_player(), HIR "\n你找到南山之颠峰并吸收了这里的天地灵气，获得了5万点潜能及10万点实战体会奖励。\n\n" NOR);
+                        tell_object(this_player(), HIR "\n你找到南山之顛峰並吸收了這裡的天地靈氣，獲得了5萬點潛能及10萬點實戰體會獎勵。\n\n" NOR);
                         addn("potential", 50000, this_player());
                         addn("experience", 100000, this_player());
                         set("penglai/nanshanzhidian_quest/ok", 1, this_player());

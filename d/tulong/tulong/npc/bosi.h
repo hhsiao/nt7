@@ -10,8 +10,8 @@ void init()
         if( query_temp("have_yitianjian", me )
            || present("yitian jian", me))
         {
-                command("say 咦？倚天剑怎么会在你手里，看来"
-                        "这次中原之行没白跑了！");
+                command("say 咦？倚天劍怎麼會在你手裡，看來"
+                        "這次中原之行沒白跑了！");
                 this_object()->kill_ob(me);
                 return;
         }
@@ -19,16 +19,16 @@ void init()
         if( query_temp("have_tulongdao", me )
            || present("tulong dao", me))
         {
-                command("say 哼，把屠龙刀交出来，我们已经守"
-                        "侯多时了！");
+                command("say 哼，把屠龍刀交出來，我們已經守"
+                        "侯多時了！");
                 this_object()->kill_ob(me);
                 return;
         }
 
         if (present("shenghuo ling", me))
         {
-                command("say 咦？你怎么会拿着有我教的圣火令"
-                        "，快还给我！");
+                command("say 咦？你怎麼會拿著有我教的聖火令"
+                        "，快還給我！");
                 this_object()->kill_ob(me);
                 return;
         }
@@ -38,15 +38,15 @@ int recognize_apprentice(object me, string skill)
 {
         if( query("shen", me)>1000 )
         {
-                command("say 叽哩古拉，花不鲁鲁，你这人看上"
-                        "去不象是好人，开滚。");
+                command("say 嘰哩古拉，花不魯魯，你這人看上"
+                        "去不象是好人，開滾。");
                 return -1;
         }
 
         if (skill != "sanscrit")
         {
-                command("say 教你点我在印度学的一点东西，你"
-                        "还不知足啊？");
+                command("say 教你點我在印度學的一點東西，你"
+                        "還不知足啊？");
                 return -1;
         }
         return 1;

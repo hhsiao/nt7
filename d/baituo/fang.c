@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "练功房");
+        set("short", "練功房");
         set("long", @LONG
-这里是白驼山弟子的练功房。里面有几个单间，是练功室。第子
-们在里边砌磋武艺，绝对不允许外人打搅。
+這裡是白駝山弟子的練功房。裡面有幾個單間，是練功室。第子
+們在裡邊砌磋武藝，絕對不允許外人打攪。
 LONG );
         set("exits",([
                 "west" : __DIR__"liangong",

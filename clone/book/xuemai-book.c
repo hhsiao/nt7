@@ -7,15 +7,15 @@ inherit MEDICAL_BOOK;
 
 void create()
 {
-        set_name(HIR "血脉丹方" NOR, ({ "xuemai danfang", "miben", "xuemai", "danfang" }));
+        set_name(HIR "血脈丹方" NOR, ({ "xuemai danfang", "miben", "xuemai", "danfang" }));
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
                 set("unit", "本");
-                set("long", "这是一本泛黄的书籍，上面用小篆书"
-                            "写着“血脉丹方”几个字。\n",
+                set("long", "這是一本泛黃的書籍，上面用小篆書"
+                            "寫著“血脈丹方”幾個字。\n",
 
                 );
                 set("material", "paper");

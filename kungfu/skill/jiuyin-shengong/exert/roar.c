@@ -10,7 +10,7 @@ int exert(object me, object target)
         int i, skill, damage;
 
         if( query("neili", me)<100 )
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
 
         skill = me->query_skill("force");
 
@@ -18,11 +18,11 @@ int exert(object me, object target)
         me->receive_damage("qi", 10);
 
         if( query("no_fight", environment(me)) )
-                return notify_fail("这里不能攻击别人! \n");
+                return notify_fail("這裡不能攻擊別人! \n");
 
         me->start_busy(5);
-        message_combatd(HIY "$N" HIY "气凝丹田，猛然一声断喝，一阵中"
-                        "平正和的声音远远的传了开去，激荡不止！\n" NOR, me);
+        message_combatd(HIY "$N" HIY "氣凝丹田，猛然一聲斷喝，一陣中"
+                        "平正和的聲音遠遠的傳了開去，激盪不止！\n" NOR, me);
 
         ob = all_inventory(environment(me));
         for (i = 0; i < sizeof(ob); i++)
@@ -44,8 +44,8 @@ int exert(object me, object target)
                         ob[i]->receive_damage("jing", damage * 2, me);
                         if( query("neili", ob[i])<skill*2 )
                                 ob[i]->receive_wound("jing", damage, me);
-                        tell_object(ob[i], "你只觉得眼前一片模糊，朦胧"
-                                    "中眼前似乎有无数星光闪烁......\n");
+                        tell_object(ob[i], "你只覺得眼前一片模糊，朦朧"
+                                    "中眼前似乎有無數星光閃爍......\n");
                 }
         }
         return 1;

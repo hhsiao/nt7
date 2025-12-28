@@ -11,20 +11,20 @@ string unmarry();
 
 void create()
 {
-        set_name("红娘", ({ "hong niang","hong" }) );
-        set("title", "红娘庄");
+        set_name("紅娘", ({ "hong niang","hong" }) );
+        set("title", "紅娘莊");
         set("gender", "女性" );
         set("age", 16);
         set("long",
-                "一位明眸皓齿的小姑娘。\n");
+                "一位明眸皓齒的小姑娘。\n");
         set("max_qi",800);
         set("max_jing",800);
         set("combat_exp", 10000);
         set("attitude", "friendly");
         set("inquiry", ([
-                "婚约" : "是啊……这里就可以缔结(marry)和解除婚约(unmarry)。",
-                "结婚" : "是啊……这里就可以缔结(marry)和解除婚约(unmarry)。",
-                "成亲" : "是啊……这里就可以缔结(marry)和解除婚约(unmarry)。",
+                "婚約" : "是啊……這裡就可以締結(marry)和解除婚約(unmarry)。",
+                "結婚" : "是啊……這裡就可以締結(marry)和解除婚約(unmarry)。",
+                "成親" : "是啊……這裡就可以締結(marry)和解除婚約(unmarry)。",
         ]) );
         set_skill("literate", 70);
         set_skill("dodge", 200);
@@ -57,49 +57,49 @@ int do_marry(string arg)
 
         if( query("couple/times", me)>2 )
         {
-                say("红娘笑道: 你都结了几次婚了，还来玩弄别人家的感情？\n");
+                say("紅娘笑道: 你都結了幾次婚了，還來玩弄別人家的感情？\n");
                 return 1;
         }
         if( query("couple/times", me)>1 )
         {
-                say("红娘笑道: 来我这的都是少男少女，你可是这里的老常客啦。红娘我也不能老替你做伐。这可是最后一次了。\n");
+                say("紅娘笑道: 來我這的都是少男少女，你可是這裡的老常客啦。紅娘我也不能老替你做伐。這可是最後一次了。\n");
         }
-        if( query("gender", me) == "无性" )
+        if( query("gender", me) == "無性" )
         {
-                say("红娘笑道: 这位公公，你这不是开玩笑么？\n");
+                say("紅娘笑道: 這位公公，你這不是開玩笑麼？\n");
                 return 1;
         }
         if( query("class", me) == "bonze" )
-                return notify_fail("红娘笑骂道: 你是出家人，结什么婚！你以为你是不戒和尚啊。\n");
+                return notify_fail("紅娘笑罵道: 你是出家人，結什麼婚！你以為你是不戒和尚啊。\n");
         if( query("age", me)<17 )
-                return notify_fail("红娘笑道: 你还小，等到十七岁再来吧。\n");
+                return notify_fail("紅娘笑道: 你還小，等到十七歲再來吧。\n");
         if( query("couple/couple_id", me) )
-                return notify_fail("红娘板着脸道: 你已经结婚了吧？\n");
+                return notify_fail("紅娘板著臉道: 你已經結婚了吧？\n");
         if(!arg || !objectp(obj = present(arg, environment(me)))
                 || !find_player(arg)|| !find_living(arg))
-        return notify_fail("红娘笑道: 你想和谁缔结良缘？\n");
+        return notify_fail("紅娘笑道: 你想和誰締結良緣？\n");
         if( !environment() || base_name(environment()) != query("startroom") )
-                return notify_fail("红娘笑道: 真是抱歉，请您等一下到红娘庄来找我吧。\n");
+                return notify_fail("紅娘笑道: 真是抱歉，請您等一下到紅娘莊來找我吧。\n");
         if( !living(obj) )
-                return notify_fail("红娘叹口气对你说道: "+obj->name()+"已经无法和你缔结良缘了。\n");
+                return notify_fail("紅娘嘆口氣對你說道: "+obj->name()+"已經無法和你締結良緣了。\n");
         if( query("couple/couple_id", obj) )
-                return notify_fail("红娘笑了起来: 人家已经结婚了吧？\n");
+                return notify_fail("紅娘笑了起來: 人家已經結婚了吧？\n");
         if( query("couple/times", obj)>2 )
-                return notify_fail("红娘嘿嘿冷笑了几声: 人家都结了几次婚了，是来玩弄你的感情来着。\n");
+                return notify_fail("紅娘嘿嘿冷笑了幾聲: 人家都結了幾次婚了，是來玩弄你的感情來著。\n");
         if(obj==me)
-                return notify_fail("红娘笑道: 和自己缔结婚约？你有病啊！\n");
+                return notify_fail("紅娘笑道: 和自己締結婚約？你有病啊！\n");
         if( query("gender", obj) == query("gender", me) )
-                return notify_fail("红娘笑道: 同性恋？没听说过。\n");
+                return notify_fail("紅娘笑道: 同性戀？沒聽說過。\n");
         if( userp(obj) && !(query_temp("marks/"+me->name(1, obj))) )
         {
-                message_vision(MAG "\n$N对著$n说道："+ RANK_D->query_self(me)
-                        + me->name() + "，愿意和"+ RANK_D->query_respect(obj)
-                        + "结为夫妇\n\n"NOR, me,obj);
+                message_vision(MAG "\n$N對著$n說道："+ RANK_D->query_self(me)
+                        + me->name() + "，願意和"+ RANK_D->query_respect(obj)
+                        + "結為夫婦\n\n"NOR, me,obj);
                 set_temp("marks/"+obj->name(1), 1, me);
-                tell_object(obj, MAG "如果你愿意和对方结为夫妇，请你也对"
+                tell_object(obj, MAG "如果你願意和對方結為夫婦，請你也對"
                         +me->name()+"("+query("id", me)+
                         ")"+ "下一次 marry 指令。\n" NOR);
-                write(MAG "现在你急切盼望着你的心上人说同意……\n" NOR);
+                write(MAG "現在你急切盼望著你的心上人說同意……\n" NOR);
                 return 1;
         }
 
@@ -122,9 +122,9 @@ int do_marry(string arg)
                 set("couple/couple_gender", "妻子", obj);
         }
 
-        message_vision(MAG"恭喜 $N 和 $n ，一对璧人终于喜结良缘。\n"NOR,obj,me);
+        message_vision(MAG"恭喜 $N 和 $n ，一對璧人終於喜結良緣。\n"NOR,obj,me);
         CHANNEL_D->do_channel(this_object(), "chat",
-                sprintf("%s 和 %s 现在开始是夫妇啦！\n",me->name(1),obj->name(1)));
+                sprintf("%s 和 %s 現在開始是夫婦啦！\n",me->name(1),obj->name(1)));
         return 1;
 }
 
@@ -136,13 +136,13 @@ int do_unmarry(string arg)
         string /*target,*/ tmpstr1, tmpstr2,str1,str2;
 //      string cardname;
 
-        if( !arg ) return notify_fail("红娘笑道: 你要和谁离婚？\n");
+        if( !arg ) return notify_fail("紅娘笑道: 你要和誰離婚？\n");
         if( !environment() || base_name(environment()) != query("startroom") )
-                return notify_fail("红娘笑道: 真是抱歉，请您等一下到红娘庄来找我吧。\n");
+                return notify_fail("紅娘笑道: 真是抱歉，請您等一下到紅娘莊來找我吧。\n");
         if( !query("couple/couple_id", me) )
-                return notify_fail("红娘笑道: 你没有伴侣。\n");
+                return notify_fail("紅娘笑道: 你沒有伴侶。\n");
         if (!objectp(couple_ob=present(arg,environment(me)))||!find_player(arg))
-                return notify_fail("红娘笑道: 你的伴侣现在不在场。\n");
+                return notify_fail("紅娘笑道: 你的伴侶現在不在場。\n");
         if( query("gender", couple_ob) != "女性" )
         {
                 tmpstr1 = "老婆"; tmpstr2 = "老公";
@@ -154,18 +154,18 @@ int do_unmarry(string arg)
         }
         if( query("couple/couple_id", me) != query("id", couple_ob) || 
                 query("couple/couple_id", couple_ob) != query("id", me) )
-                return notify_fail("红娘笑道: "+str2+"不是你的"+tmpstr2+"，你这是离的什么婚啊。\n");
+                return notify_fail("紅娘笑道: "+str2+"不是你的"+tmpstr2+"，你這是離的什麼婚啊。\n");
 
         if( userp(couple_ob) && !(couple_ob->query_temp("marks/"
                 + "unmarry" +me->name(1))) )
         {
-                message_vision(MAG "\n$N对著$n说道：" + RANK_D->query_self(me)
-                        + me->name() + "，咱们解除婚约吧！好吗？\n\n"
+                message_vision(MAG "\n$N對著$n說道：" + RANK_D->query_self(me)
+                        + me->name() + "，咱們解除婚約吧！好嗎？\n\n"
                         NOR, me, couple_ob);
                 set_temp("marks/"+"unmarry"+couple_ob->name(1), 1, me);
-                tell_object(couple_ob, MAG "如果你愿意解除婚约，请你也"
+                tell_object(couple_ob, MAG "如果你願意解除婚約，請你也"
                         + "下一次 unmarry 指令。\n" NOR);
-                write(MAG "现在你只有等着" +str2 +" 同意啦...\n" NOR);
+                write(MAG "現在你只有等著" +str2 +" 同意啦...\n" NOR);
                 return 1;
         }
         delete("couple/have_couple", me);
@@ -177,7 +177,7 @@ int do_unmarry(string arg)
         delete("couple/couple_name", couple_ob);
         delete("couple/couple_gender", couple_ob);
 
-        // 记录玩家离婚次数，该属性与学习速度等相关。
+        // 記錄玩家離婚次數，該屬性與學習速度等相關。
         // Added by Constant Jan 11 2001
         if( !query("divorce", me) )
                 set("divorce", 1, me);
@@ -189,9 +189,9 @@ int do_unmarry(string arg)
         else
                 addn("divorce", 1, couple_ob);
 
-        message_vision(MAG" $N 和 $n 从现在开始解除婚约!\n"NOR,couple_ob, me);
+        message_vision(MAG" $N 和 $n 從現在開始解除婚約!\n"NOR,couple_ob, me);
         CHANNEL_D->do_channel(this_object(), "chat",
-        sprintf( "聚散皆是缘，%s 和 %s 从今以后，劳燕分飞，互不相干! \n",
+        sprintf( "聚散皆是緣，%s 和 %s 從今以後，勞燕分飛，互不相干! \n",
         me->name(1), couple_ob->name(1)));
 
         return 1;

@@ -3,11 +3,11 @@
 
 void create()
 {
-        set_name(HIC "养生丹" NOR, ({ "yangsheng dan", "yangsheng", "dan" }));
+        set_name(HIC "養生丹" NOR, ({ "yangsheng dan", "yangsheng", "dan" }));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIC "以名贵药材精炼而成，乃是高丽国的贡物。\n" NOR);
+                set("long", HIC "以名貴藥材精煉而成，乃是高麗國的貢物。\n" NOR);
                 set("base_unit", "粒");
                 set("base_value", 10000);
                 set("base_weight", 55);
@@ -30,7 +30,7 @@ int do_effect(object me)
 
         if( query("food", me)<limit1*10 || query("water", me)<limit2*10 )
         {
-                       tell_object(me, HIY "你只感疲劳一扫而空，再也不觉得饥饿。\n" NOR);
+                       tell_object(me, HIY "你只感疲勞一掃而空，再也不覺得飢餓。\n" NOR);
 
                 if( query("food", me)<limit1*10 )
                         set("food", limit1*10, me);
@@ -39,7 +39,7 @@ int do_effect(object me)
                         set("water", limit2*10, me);
         } else
         {
-                tell_object(me, HIR "你感觉一股细流如同甘泉一样滋润你的心田，再也不觉得饥渴。\n" NOR);
+                tell_object(me, HIR "你感覺一股細流如同甘泉一樣滋潤你的心田，再也不覺得飢渴。\n" NOR);
 
                 if( query("food", me)>limit1/10 )
                         set("food", limit1/10, me);

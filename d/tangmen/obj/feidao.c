@@ -3,7 +3,7 @@
 inherit THROWING;
 void create()
 {
-        set_name("小飞刀", ({ "xiao feidao", "feidao" }) );
+        set_name("小飛刀", ({ "xiao feidao", "feidao" }) );
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
@@ -13,7 +13,7 @@ void create()
                 set("base_value", 100);
                 set("base_weight", 1000);
                 set("material", "steel");
-                set("long", "一把雪亮的飞刀。\n");
+                set("long", "一把雪亮的飛刀。\n");
                 
         }
        set_amount(5);

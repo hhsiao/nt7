@@ -1,10 +1,10 @@
 // inherit: producing.c
 
-// 继承房屋必须填写的数据格式：
-// product -+ mineral1 +-- name : 某产品
-//          |          +-- rate : 生产率
+// 繼承房屋必須填寫的數據格式：
+// product -+ mineral1 +-- name : 某產品
+//          |          +-- rate : 生產率
 //          |          +-- max  : 最大
-//          |          +-- cost : 生产时消耗的资源种类
+//          |          +-- cost : 生產時消耗的資源種類
 //          |
 //          + mineral2 +-- ...
 //          ..
@@ -15,7 +15,7 @@ inherit ROOM;
 
 void start_heart_beat()
 {
-        // 每天(MUD单位)心跳一次
+        // 每天(MUD單位)心跳一次
         set_heart_beat(120);
 }
 
@@ -25,7 +25,7 @@ void setup()
         string mine;
         int count;
 
-        // 这里的房间不能战斗，而且永不停息运转
+        // 這裡的房間不能戰鬥，而且永不停息運轉
         set("no_fight", 1);
         set("no_clean_up", 1);
 
@@ -37,7 +37,7 @@ void setup()
 
         foreach (mine in keys(product))
         {
-                // 设置最初的产品
+                // 設置最初的產品
                 count = product[mine]["max"] / 10;
                 count = count / 2 + random(count);
                 set_temp("stored/" + mine, count);
@@ -56,13 +56,13 @@ int query_product_amount(string name, int amount)
         return query_temp("stored/" + name);
 }
 
-// 如果amount < 0则表示消耗资源
+// 如果amount < 0則表示消耗資源
 void improve_product_amount(string name, int amount)
 {
         mapping m;
 
         if (! mapp(m = query("product/" + name)))
-                // 不提供这种资源
+                // 不提供這種資源
                 return;
 
         amount += query_temp("stored/" + name);
@@ -88,17 +88,17 @@ void heart_beat()
                 return;
         }
 
-        // 生产产品
+        // 生產產品
         foreach (mine in keys(product))
         {
-                // 每次心跳消耗一些原料，生产一些产品
+                // 每次心跳消耗一些原料，生產一些產品
                 if (! mapp(m = product[mine]))
                 {
                         map_delete(product, mine);
                         continue;
                 }
 
-                // 计算能够生产的数量
+                // 計算能夠生產的數量
                 if (! intp(rate = m["rate"]) || rate < 1)
                         continue;
 
@@ -110,7 +110,7 @@ void heart_beat()
                                         count = cost_total;
 
                         if (count < 1)
-                                // 原料不足，无法生产
+                                // 原料不足，無法生產
                                 continue;
 
                         // 消耗原料
@@ -118,7 +118,7 @@ void heart_beat()
                                 addn_temp("stored/" + cost, -count);
                 }
 
-                // 生产完毕
+                // 生產完畢
                 improve_product_amount(mine, count);
         }
 }
@@ -133,12 +133,12 @@ int do_info(string arg)
 
         if (arg && arg != "") return 0;
 
-        msg = "当前各种资源的信息：\n";
+        msg = "當前各種資源的信息：\n";
 
         if (! mapp(stored = query_temp("stored")) ||
             ! mapp(product = query("product")))
         {
-                write("目前没有任何库存资源。\n");
+                write("目前沒有任何庫存資源。\n");
                 return 1;
         }
 
@@ -147,10 +147,10 @@ int do_info(string arg)
                 if (! mapp(m = product[mine]))
                         continue;
 
-                msg += sprintf("%-8s  库存量：" HIY "%-6d" NOR,
+                msg += sprintf("%-8s  庫存量：" HIY "%-6d" NOR,
                                m["name"], stored[mine]);
                 if (m["rate"])
-                        msg += sprintf("  生产率：" HIC "%3d" NOR,
+                        msg += sprintf("  生產率：" HIC "%3d" NOR,
                                        m["rate"]);
                 msg += "\n";
         }

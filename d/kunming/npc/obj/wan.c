@@ -11,8 +11,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一个粗磁大碗。\n");
-                set("unit", "个");
+                set("long", "一個粗磁大碗。\n");
+                set("unit", "個");
                 set("value", 0);
         set("max_liquid", 4);
     }

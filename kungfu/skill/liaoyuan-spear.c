@@ -1,5 +1,5 @@
 // /kungfu/skill/liaoyuan-spear.c
-// liaoyuan-spear.c 燎原枪法
+// liaoyuan-spear.c 燎原槍法
 // wuyue(08,1,22)
 // wuyue(08.1.23)
 #include <ansi.h>
@@ -8,139 +8,139 @@ inherit SKILL;
 
 mapping *action = ({
 ([
-"action":"$N跃在半空，一招「大鹏展翅」，手中$w已化成无数枪影，令$n眼花缭乱，不知所措，连连倒退",
+"action":"$N躍在半空，一招「大鵬展翅」，手中$w已化成無數槍影，令$n眼花繚亂，不知所措，連連倒退",
          "force" : 180,
          "dodge" : 20,
          "parry" : 20,
         "damage": 20,
          "lvl" : 0,
-         "skill_name" : "大鹏展翅",
-         "damage_type":"刺伤"
+         "skill_name" : "大鵬展翅",
+         "damage_type":"刺傷"
 ]),
 ([
-"action":"$N挺$w将$n的招式架住，顺势一招「走马回枪」，$w上下左右飞快搅动，身随枪走，向$n压了下来",
+"action":"$N挺$w將$n的招式架住，順勢一招「走馬回槍」，$w上下左右飛快攪動，身隨槍走，向$n壓了下來",
          "force" : 200,
          "dodge" : 10,
          "parry" : 15,
         "damage": 100,
          "lvl" : 30,
-         "skill_name" : "走马回枪",
-         "damage_type":"刺伤"
+         "skill_name" : "走馬回槍",
+         "damage_type":"刺傷"
 ]),
 ([
-"action":"$N使一招「迎门三不过」，手中$w连续刺向$n面门，哽嗓，前心",
+"action":"$N使一招「迎門三不過」，手中$w連續刺向$n面門，哽嗓，前心",
          "force" : 220,
          "dodge" : 15,
          "parry" : 20,
         "damage": 40,
          "lvl" : 60,
-         "skill_name" : "迎门三不过",
-         "damage_type":"刺伤"
+         "skill_name" : "迎門三不過",
+         "damage_type":"刺傷"
 ]),
 ([
-"action":"$N一个跨步，使一招「高山流水」，手中$w势若飞瀑刺向$n的$l",
+"action":"$N一個跨步，使一招「高山流水」，手中$w勢若飛瀑刺向$n的$l",
          "force" : 240,
          "dodge" : 20,
          "parry" : 25,
         "damage": 60,
          "lvl" : 80,
          "skill_name" : "高山流水",
-         "damage_type":"刺伤"
+         "damage_type":"刺傷"
 ]),
 ([
-"action":"$N一招「九莲宝灯」，身形如电，绕着$n飞快奔跑，手中$w一招快似一招，刹那间向$n连打出三十六枪",
+"action":"$N一招「九蓮寶燈」，身形如電，繞著$n飛快奔跑，手中$w一招快似一招，剎那間向$n連打出三十六槍",
          "force" : 280,
          "dodge" : 30,
          "parry" : 30,
         "damage": 80,
          "lvl" : 100,
-         "skill_name" : "九莲宝灯",
-         "damage_type":"刺伤"
+         "skill_name" : "九蓮寶燈",
+         "damage_type":"刺傷"
 ]),
 ([
 "action":
-"$N一按枪把，一招「野火燎原」抖出五朵枪花。上下左右，虚虚实实刺向$n全身要害",
+"$N一按槍把，一招「野火燎原」抖出五朵槍花。上下左右，虛虛實實刺向$n全身要害",
          "force" : 260,
          "dodge" : 30,
          "parry" : 40,
         "damage": 100,
          "lvl" : 120,
          "skill_name" : "野火燎原",
-         "damage_type":"刺伤"
+         "damage_type":"刺傷"
 ]),
 ([
-"action":"$N大喝一声，一招「飞龙在天」，$w脱手飞出，夹着劲风射向$n的前心，随即抢到$n的身后，伸手又把$w抄在手中",
+"action":"$N大喝一聲，一招「飛龍在天」，$w脫手飛出，夾著勁風射向$n的前心，隨即搶到$n的身後，伸手又把$w抄在手中",
          "force" : 300,
          "dodge" : 20,
          "parry" : 30,
         "damage": 80,
          "lvl" : 130,
-         "skill_name" : "飞龙在天",
-         "damage_type":"刺伤"
+         "skill_name" : "飛龍在天",
+         "damage_type":"刺傷"
 ]),
 ([
-"action":"$N使一招「风扫梅花」，身体不停地旋转，右手$w随身转动，风雷电掣般向$n的$l扫去",
+"action":"$N使一招「風掃梅花」，身體不停地旋轉，右手$w隨身轉動，風雷電掣般向$n的$l掃去",
          "force" : 300,
          "dodge" : 20,
          "parry" : 30,
         "damage": 80,
          "lvl" : 130,
-         "skill_name" : "风扫梅花",
-         "damage_type":"砸伤"
+         "skill_name" : "風掃梅花",
+         "damage_type":"砸傷"
 ]),
 ([
-"action":"$N回身拧腰，右手虚握，一招「拨云瞻日」，$w中宫直进，中正平和地刺向$n的$l",
+"action":"$N回身擰腰，右手虛握，一招「撥雲瞻日」，$w中宮直進，中正平和地刺向$n的$l",
          "force" : 350,
          "dodge" : 20,
          "parry" : 30,
         "damage": 120,
          "lvl" : 130,
-         "skill_name" : "拨云瞻日",
-         "damage_type":"刺伤"
+         "skill_name" : "撥雲瞻日",
+         "damage_type":"刺傷"
 ]),
 ([
-"action":"只见$N一个斜跨，使个「举火烧天势」，手中$w带出一道寒气，由下而上疾挑$n$l",
+"action":"只見$N一個斜跨，使個「舉火燒天勢」，手中$w帶出一道寒氣，由下而上疾挑$n$l",
          "force" : 350,
          "dodge" : 20,
          "parry" : 30,
         "damage": 100,
          "lvl" : 150,
-         "skill_name" : "举火烧天势",
-         "damage_type":"刺伤"
+         "skill_name" : "舉火燒天勢",
+         "damage_type":"刺傷"
 ]),
 });
 
 string *parry_msg = ({
-"$N持枪斜引，长枪横过，使$n竟无出招之处。\n",
-"$N手中长枪斜指，往$n身前一搭，结果$n的力道被卸在一旁！",
-"$N双手交错，持枪划了两个圆圈，罡气护住全身，竟无半分空隙，将$n之来势化解与无形。\n",
-"只见$N使出四两拨千斤之巧劲，长枪斜引，将$n的攻击引在一旁！\n",
-"$N以数十招枪法混成守势，似有千百柄长枪护住全身，圆转如意，竟无半分破绽。\n",
-"$n身形绕向$N背后，$N身随枪转，反手圈转轻易地化解！\n"
+"$N持槍斜引，長槍橫過，使$n竟無出招之處。\n",
+"$N手中長槍斜指，往$n身前一搭，結果$n的力道被卸在一旁！",
+"$N雙手交錯，持槍劃了兩個圓圈，罡氣護住全身，竟無半分空隙，將$n之來勢化解與無形。\n",
+"只見$N使出四兩撥千斤之巧勁，長槍斜引，將$n的攻擊引在一旁！\n",
+"$N以數十招槍法混成守勢，似有千百柄長槍護住全身，圓轉如意，竟無半分破綻。\n",
+"$n身形繞向$N背後，$N身隨槍轉，反手圈轉輕易地化解！\n"
 });
 
 string *msg = ({
-HIG"$N神情萧索，一式「野火燎原」右手长枪扬手挥洒，虚实不定"NOR,
-MAG"但见$N枪法吞吐开合、阴阳动静，实已到了草木为兵的绝诣"NOR,
-HIW"$N手中$w"HIW"虽使得极快，却丝毫听不到金刃劈风之声，足见枪劲之柔韧已达于化境"NOR,
-HIC"$N不疾不徐的漫步扬长而步，遇到$n招数，$N$w"HIC"一颤，便是一缕金光闪出"NOR,
-HIC"$N凝望$n招式，出枪以蜿蜒之势、身处庄稳之形，宛如旭日东升，如金蛇万道，闪烁不定"NOR,
-HIB"$N枪法突变，招式凌厉狠辣，以极浑厚内力，出极精妙招数，青光荡漾"NOR,
-CYN"$N$w随手一招打出，以己之钝，挡敌之无锋"NOR,
-HIC"$N猛然攻出招，招招都未曾使老，走势犹如浪潮一般，缓缓涌向$n"NOR,
-MAG"$N$w"MAG"在空中划成大圈，右手戳出，竟似也发出嗤嗤微声"NOR,
-HIW"$N一枪刺到，青光闪闪，发出嗤嗤声响，内力极强"NOR,
-HIW"$N左手$w"HIW"不住的抖动，罩向$n上盘七大要穴，枪尖急颤，看不出攻向何处"NOR,
-MAG"$N功劲一加运开，手中$w"MAG"枪势绵绵不绝，绝无破绽"NOR,
-CYN"$N手里$w"CYN"使得心应手，熟极而流，招数精奇，轻翔灵动，变幻不测，突然抖腕直向$n的$l刺到"NOR,
-HIW"$N以意驭枪，千变万化，无穷无尽，每一招都看似平淡，实则蓄势以待，深藏不露"NOR,
-HIB"$N以意驭枪，绵绵不绝，看似柔软无力，实则千变万化，无穷无尽"NOR,
-HIB"$N朗声长啸，枪法纵横变化，奇幻无方，$w"HIB"在其内力运使之下青光闪闪，威不可挡"NOR,
-HIC"$N心中竟无半点渣滓，以意运枪，$w"HIC"每发一招，便有一道青光射向$n"NOR,
-HIR"$N枪法吞吐开合、阴阳动静，将无招胜有招中最精要之处都发挥了出来，功劲一加运开，绵绵不绝"NOR,
-HIR"$N左手$w"HIR"缓缓向前划出，成一弧形。$n只觉一股森森寒气，直逼过来"NOR,
-CYN"$N左手$w"CYN"不住抖动，突然平刺，枪尖急颤，看不出攻向何处。$N这一招中笼罩了$n上盘七大要穴"NOR,
-HIW"$N招数未曾使老，已然圈转。突然之间，$n眼前出现了几个白色光圈，大圈小圈，正圈斜圈，闪烁不已"NOR,
+HIG"$N神情蕭索，一式「野火燎原」右手長槍揚手揮灑，虛實不定"NOR,
+MAG"但見$N槍法吞吐開合、陰陽動靜，實已到了草木為兵的絕詣"NOR,
+HIW"$N手中$w"HIW"雖使得極快，卻絲毫聽不到金刃劈風之聲，足見槍勁之柔韌已達於化境"NOR,
+HIC"$N不疾不徐的漫步揚長而步，遇到$n招數，$N$w"HIC"一顫，便是一縷金光閃出"NOR,
+HIC"$N凝望$n招式，出槍以蜿蜒之勢、身處莊穩之形，宛如旭日東昇，如金蛇萬道，閃爍不定"NOR,
+HIB"$N槍法突變，招式凌厲狠辣，以極渾厚內力，出極精妙招數，青光盪漾"NOR,
+CYN"$N$w隨手一招打出，以己之鈍，擋敵之無鋒"NOR,
+HIC"$N猛然攻出招，招招都未曾使老，走勢猶如浪潮一般，緩緩湧向$n"NOR,
+MAG"$N$w"MAG"在空中劃成大圈，右手戳出，竟似也發出嗤嗤微聲"NOR,
+HIW"$N一槍刺到，青光閃閃，發出嗤嗤聲響，內力極強"NOR,
+HIW"$N左手$w"HIW"不住的抖動，罩向$n上盤七大要穴，槍尖急顫，看不出攻向何處"NOR,
+MAG"$N功勁一加運開，手中$w"MAG"槍勢綿綿不絕，絕無破綻"NOR,
+CYN"$N手裡$w"CYN"使得心應手，熟極而流，招數精奇，輕翔靈動，變幻不測，突然抖腕直向$n的$l刺到"NOR,
+HIW"$N以意馭槍，千變萬化，無窮無盡，每一招都看似平淡，實則蓄勢以待，深藏不露"NOR,
+HIB"$N以意馭槍，綿綿不絕，看似柔軟無力，實則千變萬化，無窮無盡"NOR,
+HIB"$N朗聲長嘯，槍法縱橫變化，奇幻無方，$w"HIB"在其內力運使之下青光閃閃，威不可擋"NOR,
+HIC"$N心中竟無半點渣滓，以意運槍，$w"HIC"每發一招，便有一道青光射向$n"NOR,
+HIR"$N槍法吞吐開合、陰陽動靜，將無招勝有招中最精要之處都發揮了出來，功勁一加運開，綿綿不絕"NOR,
+HIR"$N左手$w"HIR"緩緩向前劃出，成一弧形。$n只覺一股森森寒氣，直逼過來"NOR,
+CYN"$N左手$w"CYN"不住抖動，突然平刺，槍尖急顫，看不出攻向何處。$N這一招中籠罩了$n上盤七大要穴"NOR,
+HIW"$N招數未曾使老，已然圈轉。突然之間，$n眼前出現了幾個白色光圈，大圈小圈，正圈斜圈，閃爍不已"NOR,
 });
 
 int valid_enable(string usage) { return  (usage == "spear") || (usage =="parry"); }
@@ -148,13 +148,13 @@ int valid_enable(string usage) { return  (usage == "spear") || (usage =="parry")
 int valid_learn(object me)
 {
         if (!me->query("sg/tzjj"))
-             return notify_fail("你没有得到上官帮主许可，怎么能偷学燎原枪法。\n");
+             return notify_fail("你沒有得到上官幫主許可，怎麼能偷學燎原槍法。\n");
          if ((int)me->query("max_neili") < 1500)
-                return notify_fail("你的内力不够。\n");
+                return notify_fail("你的內力不夠。\n");
          if ((int)me->query_skill("force", 1) < 160)
-                return notify_fail("你的内功火候太浅。\n");
+                return notify_fail("你的內功火候太淺。\n");
          if((int)me->query_skill("spear",1) <=120)
-      		return notify_fail("你的基本枪法火候不足，难以领悟燎原枪法。\n");
+      		return notify_fail("你的基本槍法火候不足，難以領悟燎原槍法。\n");
          return 1;
 }
  
@@ -197,12 +197,12 @@ mapping query_action(object me, object weapon)
         && me->query("neili") > 30 ) {
                 me->add("neili", -20);
                 return ([
- 			"action": HIG"$N浑身看似破绽百出，$n却觉得无处下手，不经意间$N手中"+weapon->query("name")+""HIG"虚刺几下，$n一不留神就被$N一击命中。"NOR,
+ 			"action": HIG"$N渾身看似破綻百出，$n卻覺得無處下手，不經意間$N手中"+weapon->query("name")+""HIG"虛刺幾下，$n一不留神就被$N一擊命中。"NOR,
                   	"force": level+level/2+level/3,
                   	"parry": level+level/4,
                   	"dodge": level+level/4,
                   	"damage": level+level/2,
-                  	"damage_type": "刺伤"
+                  	"damage_type": "刺傷"
                 ]);
         }
     
@@ -210,9 +210,9 @@ mapping query_action(object me, object weapon)
 			{
 				switch(me->query_temp("canyun"))
 				{
-				case 2: msg1 = HIY"$N出招稳凝如山，似乎其中破绽百出，手忙脚乱，其实似守实攻，大巧若拙，每一处破绽中都隐伏着厉害无比的陷阱。"NOR; break;
-				case 1: msg1 = HIR"$N眼见对方已陷入重围，再也不能全身而退，当下持枪回击，陡然圈转，呼的一响，往$n$l上击了下去。"NOR; break;
-				default: msg1 = HIW"$N突然大喝一声，纵身而上，手中$w"HIW"犹如狂风骤雨，使出「风卷残云」，漫天枪影带着气浪有如怒海狂滔一般！"NOR;break;
+				case 2: msg1 = HIY"$N出招穩凝如山，似乎其中破綻百出，手忙腳亂，其實似守實攻，大巧若拙，每一處破綻中都隱伏著厲害無比的陷阱。"NOR; break;
+				case 1: msg1 = HIR"$N眼見對方已陷入重圍，再也不能全身而退，當下持槍回擊，陡然圈轉，呼的一響，往$n$l上擊了下去。"NOR; break;
+				default: msg1 = HIW"$N突然大喝一聲，縱身而上，手中$w"HIW"猶如狂風驟雨，使出「風捲殘雲」，漫天槍影帶著氣浪有如怒海狂滔一般！"NOR;break;
 				}
 				me->add_temp("canyun", -1);      
 				return ([
@@ -221,19 +221,19 @@ mapping query_action(object me, object weapon)
                         "dodge":level+level/3 ,
   "damage":level ,
                         "parry": level/2,
-                        "damage_type" : "刺伤",
+                        "damage_type" : "刺傷",
               ]);
             }
     
         if (me->query_temp("slbw")) { 
   me->delete_temp("slbw");             
                 return ([  
-                        "action" : HIC"但见$N硬接了$n这一招，执枪紧接着向后一摆，一招「神龙摆尾」出其不意地点在了$n的$l上！"NOR,
+                        "action" : HIC"但見$N硬接了$n這一招，執槍緊接著向後一擺，一招「神龍擺尾」出其不意地點在了$n的$l上！"NOR,
                         "force":level+level/2,
                         "dodge": level/2,
   "damage":level+level/2 ,
                         "parry": level/2,
-                        "damage_type" : "刺伤",
+                        "damage_type" : "刺傷",
                         ]);
                 }
 
@@ -252,7 +252,7 @@ mapping query_action(object me, object weapon)
   return ([
                         "action":msg[random(sizeof(msg))],
    "damage":level + level/6,
-                        "damage_type":"刺伤",
+                        "damage_type":"刺傷",
                         "dodge": level/2,
                 	"parry":   level/2,
                         "force":level+random(level/2)
@@ -264,7 +264,7 @@ mapping query_action(object me, object weapon)
   return ([
                         "action":msg[random(sizeof(msg))],
                         "damage":level + level/16,
-                        "damage_type":"刺伤",
+                        "damage_type":"刺傷",
                         "dodge": level/5,
                 	"parry":   level/5,
                         "force":level+random(level/5)
@@ -315,15 +315,15 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
        	&& random(me->query_str()) > 30 
        	&& me->query_skill_mapped("parry") == "liaoyuan-spear"
        	&& random(me->query("combat_exp")) > victim->query("combat_exp")/4){
-      		message_vision(HIM"$N持枪斜引，"+weapon->name()+HIM"平搭在$n"+weapon1->name()+HIM"背脊上，劲力传出，"+weapon1->name()+HIM"登时一沉！\n"NOR, me,victim);
+      		message_vision(HIM"$N持槍斜引，"+weapon->name()+HIM"平搭在$n"+weapon1->name()+HIM"背脊上，勁力傳出，"+weapon1->name()+HIM"登時一沉！\n"NOR, me,victim);
       		if(random(me->query("str")) > victim->query("str")/3){           
            		me->add("neili", -50);
-           		message_vision(HIR"$N招式渐见涩滞，只觉得手中"+weapon1->name()+HIR"不断的在增加重量，一个把持不定，脱手飞出！\n"NOR, victim);
+           		message_vision(HIR"$N招式漸見澀滯，只覺得手中"+weapon1->name()+HIR"不斷的在增加重量，一個把持不定，脫手飛出！\n"NOR, victim);
            		weapon1->unequip();
            		weapon1->move(environment(victim));
            	}
       		else {
-           		message_vision(HIY"$N一招使出，真力运得不足，被"+weapon->name()+HIY"带着连转几个圈子，手中"+weapon1->name()+HIY"一震，险些脱手！\n"NOR, victim);
+           		message_vision(HIY"$N一招使出，真力運得不足，被"+weapon->name()+HIY"帶著連轉幾個圈子，手中"+weapon1->name()+HIY"一震，險些脫手！\n"NOR, victim);
            		victim->add_busy(3);
            	}
     	}
@@ -339,7 +339,7 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
    && random(me->query_str()+me->query_con()) > random(victim->query_int()*2) 
 	&& random(10)>6){
     						victim->add_temp("lost_attack", 1+random(3));
-    						message_vision(HIC"$P越斗越害怕，被$p带得招式渐见涩滞！\n"NOR, victim, me);
+    						message_vision(HIC"$P越鬥越害怕，被$p帶得招式漸見澀滯！\n"NOR, victim, me);
     						i *= 2;
     					}
     					
@@ -353,7 +353,7 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
    && random(me->query_str()+me->query_con()
 	&& random(10)>6) > random(victim->query_int()*2) ){
     							victim->add_temp("lost_attack", 1+random(3));
-    							message_vision(HIC"$P越斗越害怕，被$p带得招式渐见涩滞！\n"NOR, victim, me);
+    							message_vision(HIC"$P越鬥越害怕，被$p帶得招式漸見澀滯！\n"NOR, victim, me);
     							i += random(i);
     						}
     						i *= 2;
@@ -407,13 +407,13 @@ int ob_hit(object ob, object me, int damage)
         }else{       
            msg = parry_msg[random(sizeof(parry_msg))];
              if(neili >= random(neili1)+damage){
-              msg += "结果基本上卸掉了$n的力道。\n";              
+              msg += "結果基本上卸掉了$n的力道。\n";              
               j = -(damage+skill);
               }
            else{
               j = damage/2+random(damage/2); 
-              if(j<damage/2) msg += "结果卸掉了一些$n的力道。\n";
-              else msg += "结果卸掉了$n一半的力道。\n";
+              if(j<damage/2) msg += "結果卸掉了一些$n的力道。\n";
+              else msg += "結果卸掉了$n一半的力道。\n";
               j = -j;
               }
            }           
@@ -427,16 +427,16 @@ int practice_skill(object me)
 {
          object weapon;
          if((int)me->query_skill("spear",1) <=120)
-      		return notify_fail("你的基本枪法火候不足，难以领悟燎原枪法。\n");
+      		return notify_fail("你的基本槍法火候不足，難以領悟燎原槍法。\n");
         if (!me->query("sg/tzjj"))
-             return notify_fail("你没有得到上官帮主许可，怎么能偷学燎原枪法。\n");
+             return notify_fail("你沒有得到上官幫主許可，怎麼能偷學燎原槍法。\n");
          if (!objectp(weapon = me->query_temp("weapon"))
                   || (string)weapon->query("skill_type") != "spear")
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
          if ((int)me->query("jingli") < 70)
-                return notify_fail("你的体力不够练燎原枪法。\n");
+                return notify_fail("你的體力不夠練燎原槍法。\n");
          if ((int)me->query("neili") < 40)
-                return notify_fail("你的内力不够练燎原枪法。\n");
+                return notify_fail("你的內力不夠練燎原槍法。\n");
                 
  me->receive_damage("jingli", 30);           
          if((int)me->query_skill("liaoyuan-spear",1)> 200)
@@ -447,12 +447,12 @@ int practice_skill(object me)
 
 int help(object me)
 {
-	write(HIC"\n燎原枪法："NOR"\n");
+	write(HIC"\n燎原槍法："NOR"\n");
 	write(@HELP
-	燎原枪法为三国时五虎将之赵云所创。此枪法乃赵云集百家之常，另
-	辟捷径，常使人防不胜防！赵云争战数十年后，遇见各路枪法高手，不断总
-	结，终于在晚年创出了此枪法，可以称的上天下第一枪法！不过后来不知流
-	路何处，竟被上官剑南晚年在被囚山洞中所得！
+	燎原槍法為三國時五虎將之趙雲所創。此槍法乃趙雲集百家之常，另
+	闢捷徑，常使人防不勝防！趙雲爭戰數十年後，遇見各路槍法高手，不斷總
+	結，終於在晚年創出了此槍法，可以稱的上天下第一槍法！不過後來不知流
+	路何處，竟被上官劍南晚年在被囚山洞中所得！
 	
 HELP
 	);

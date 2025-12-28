@@ -5,7 +5,7 @@
 // what I need ?
 
 // mapping <parts> such as:
-// ([ "head" : ({ 0, "头", "头颅", 0, ([ "eye" : "eye", "nose" : "nose" ...]),
+// ([ "head" : ({ 0, "頭", "頭顱", 0, ([ "eye" : "eye", "nose" : "nose" ...]),
 //                "砍下", "/clone/misc/head", }),
 //    "left middle finger" : ({ 0, "右手中指", "中指", "finger", 0, 0, 0 }), ])
 // the mixed string *of part item is:
@@ -56,10 +56,10 @@ int do_cut(object me, string arg)
         object ob;
 
         if( !arg )
-                return notify_fail("你要割下什么部位？\n");
+                return notify_fail("你要割下什麼部位？\n");
 
         if( !mapp(parts = query("parts")) )
-                return notify_fail("看来你是割不下来什么东西了。\n");
+                return notify_fail("看來你是割不下來什麼東西了。\n");
 
         exist = keys(parts);
         exist -= query_exclude_part();
@@ -70,7 +70,7 @@ int do_cut(object me, string arg)
                 int i;
                 int count;
                 count = 0;
-                msg = this_object()->name() + "有以下部位可以割下来。\n";
+                msg = this_object()->name() + "有以下部位可以割下來。\n";
                 for( i = 0; i < sizeof(exist); i++ ) {
                         if( member_array(exist[i], cut) != -1 ||
                             query("no_cut/" + exist[i]) )
@@ -80,46 +80,46 @@ int do_cut(object me, string arg)
                                        parts[exist[i]][NAME], exist[i]);
                 }
                 if( !count )
-                        msg = this_object()->name() + "已经没什么可以下刀的地方了。\n";
+                        msg = this_object()->name() + "已經沒什麼可以下刀的地方了。\n";
                 write(msg);
                 return 1;
         }
 
         part = parts[arg];
         if( !arrayp(part) )
-                return notify_fail("你怎么也找不到你想割的部位。\n");
+                return notify_fail("你怎麼也找不到你想割的部位。\n");
 
         if( member_array(arg, cut) != -1 )
-                return notify_fail(part[NAME] + "已经被割走了。\n");
+                return notify_fail(part[NAME] + "已經被割走了。\n");
 
         if( msg = query("no_cut/" + arg) )
-                return notify_fail(msg ? msg : "这样东西你割不下来。\n");
+                return notify_fail(msg ? msg : "這樣東西你割不下來。\n");
 
         if( time() < (int)query("who_get/time") && 
             query("id", me) != query("who_get/id") )
-                return notify_fail("你还是稍等片刻再割吧。\n");
+                return notify_fail("你還是稍等片刻再割吧。\n");
 
         default_clone = query("default_clone");
         if( weapon=query_temp("weapon", me)){
-                msg = "$N举起手中的" + weapon->name() + "，“喀嚓”一下子把$n的" +
-                      part[NAME] + "给" + (stringp(part[VERB]) ? part[VERB] : "割了下") +
-                      "来。\n";
+                msg = "$N舉起手中的" + weapon->name() + "，“喀嚓”一下子把$n的" +
+                      part[NAME] + "給" + (stringp(part[VERB]) ? part[VERB] : "割了下") +
+                      "來。\n";
         } else if( me->query_skill("force") < 90 ) {
-                message_vision("$N举起手来，对着$n的" + part[NAME] + "一掌"
-                               "砍了下去，结果被震的“哇哇”怪叫了两声。\n",
+                message_vision("$N舉起手來，對著$n的" + part[NAME] + "一掌"
+                               "砍了下去，結果被震的“哇哇”怪叫了兩聲。\n",
                                me, this_object());
-                write("好好练练内功再来吧！\n");
+                write("好好練練內功再來吧！\n");
                 return 1;
         } else
-                msg = "$N举起手来，一下子就把$n的" + part[NAME] + "给" +
-                      (stringp(part[VERB]) ? part[VERB] : "切了下") + "来。\n";
+                msg = "$N舉起手來，一下子就把$n的" + part[NAME] + "給" +
+                      (stringp(part[VERB]) ? part[VERB] : "切了下") + "來。\n";
 
         message_vision(msg, me, this_object());
         ob = new(stringp(part[CLONE]) ? part[CLONE] : default_clone);
         ob->set_name(stringp(part[NAME_LEFT]) ? part[NAME_LEFT] : part[NAME],
                      ({ stringp(part[ID_LEFT]) ? part[ID_LEFT] : arg }));
         set("unit", part[UNIT], ob);
-        set("long", "一"+part[UNIT]+"被人割下来的"+ob->name()+"。\n", ob);
+        set("long", "一"+part[UNIT]+"被人割下來的"+ob->name()+"。\n", ob);
         set("default_clone", default_clone, ob);
         set("main_part_level", part[LEVEL]+1, ob);
         if( ob->is_cutable() )
@@ -158,12 +158,12 @@ string extra_desc()
                 if( part[LEVEL] > query("main_part_level") )
                         continue;
                 if( !flag ) {
-                        msg += "不过它的" + part[NAME];
+                        msg += "不過它的" + part[NAME];
                         flag++;
                 } else
                         msg += "、" + part[NAME];
         }
-        if( flag ) msg += "已经不见了。\n";
+        if( flag ) msg += "已經不見了。\n";
         return msg;
 }
 

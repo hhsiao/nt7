@@ -9,9 +9,9 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIG "一丛生长在碧水寒潭里的耐寒水藻。\n" NOR);
-                set("unit", "丛");
+                set("long", HIG "一叢生長在碧水寒潭裡的耐寒水藻。\n" NOR);
+                set("unit", "叢");
                 set("value", 0);
-                set("no_get", "你试着拔了一下，结果它根深蒂固，你居然没拔动。\n");
+                set("no_get", "你試著拔了一下，結果它根深蒂固，你居然沒拔動。\n");
         }
 }

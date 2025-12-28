@@ -8,13 +8,13 @@ void create()
         set_name("迷路商人", ({ "milu shangren", "milu", "shangren" }));
         set("gender", "男性" );
         set("age", 43);
-        set("long", "这是一位迷路的商人，八成是为了寻找蓬莱仙岛而迷路的。\n");
+        set("long", "這是一位迷路的商人，八成是為了尋找蓬萊仙島而迷路的。\n");
         set("combat_exp", 100);
         set("attitude", "friendly");
 	
         set("inquiry", ([
-                "蟠桃"       :   "我就是为了蟠桃而来，可惜蟠桃没找到，却迷路了，哎 ……。\n",
-		"蓬莱仙岛"   :   "我为了寻找传说中的蟠桃，来到这里，却迷路了 ……。\n",
+                "蟠桃"       :   "我就是為了蟠桃而來，可惜蟠桃沒找到，卻迷路了，哎 ……。\n",
+		"蓬萊仙島"   :   "我為了尋找傳說中的蟠桃，來到這裡，卻迷路了 ……。\n",
         ]));
         	
         set("vendor_goods", ({
@@ -52,12 +52,12 @@ void greeting(object ob)
         switch(random(2))
         {
         case 0:
-                say(CYN "迷路商人笑咪咪地说道：这位" + RANK_D->query_respect(ob) +
-                    CYN "，看看有什么需要的，尽管选。\n" NOR);
+                say(CYN "迷路商人笑咪咪地說道：這位" + RANK_D->query_respect(ob) +
+                    CYN "，看看有什麼需要的，儘管選。\n" NOR);
                 break;
         case 1:
-                say(CYN "迷路商人吆喝道：这位" +
-                    RANK_D->query_respect(ob) + CYN "，需要什么尽管说，我这里价格公道。\n" NOR);
+                say(CYN "迷路商人吆喝道：這位" +
+                    RANK_D->query_respect(ob) + CYN "，需要什麼儘管說，我這裡價格公道。\n" NOR);
                 break;
         }
 }
@@ -69,8 +69,8 @@ int accept_object(object me, object obj)
 	    base_name(obj) == "/d/penglai/obj/pantao")
 	{
 		command("nod");
-		message_vision(HIC "$N" HIC "接过" + obj->name() + HIC "，一脸惊讶道：啊 …… 蟠……蟠桃……实在太感谢了……\n" NOR, this_object());
-		message_vision(NOR + CYN "\n$N" NOR "拿出十两白银给" + me->name() + NOR + CYN "。\n" NOR, this_object(), me);
+		message_vision(HIC "$N" HIC "接過" + obj->name() + HIC "，一臉驚訝道：啊 …… 蟠……蟠桃……實在太感謝了……\n" NOR, this_object());
+		message_vision(NOR + CYN "\n$N" NOR "拿出十兩白銀給" + me->name() + NOR + CYN "。\n" NOR, this_object(), me);
 		ob = new("/clone/money/silver");
 		ob->set_amount(10);
 		ob->move(me, 1);

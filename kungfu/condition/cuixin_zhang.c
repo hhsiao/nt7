@@ -10,10 +10,10 @@ string chinese_name() { return "催心掌掌力"; }
 
 string update_msg_others()
 {
-       return HIR "$N" HIR "一声惨嚎，内息逆流，“哇”的一声喷出一大口鲜血。\n" NOR;
+       return HIR "$N" HIR "一聲慘嚎，內息逆流，“哇”的一聲噴出一大口鮮血。\n" NOR;
 }
 
 string update_msg_self()
 {
-        return HIR "你只感到五脏六腑翻腾不止，剧毒攻心，看来是中了催心掌掌劲的干扰！\n" NOR;
+        return HIR "你只感到五臟六腑翻騰不止，劇毒攻心，看來是中了催心掌掌勁的干擾！\n" NOR;
 }

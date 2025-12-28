@@ -8,8 +8,8 @@ inherit F_GUARDER;
 void create()
 {
         set_name("司徒焚", ({ "situ fen", "situ", "fen"}));
-        set("long", "一个四十来岁的中年男子，他便是铁掌帮二代人物\n"
-                    "中的佼佼者，为人很是精明，深得帮助的喜爱。\n" );
+        set("long", "一個四十來歲的中年男子，他便是鐵掌幫二代人物\n"
+                    "中的佼佼者，為人很是精明，深得幫助的喜愛。\n" );
         set("gender", "男性");
         set("age", 40);
         set("attitude", "friendly");
@@ -60,7 +60,7 @@ void create()
                    "id"        : "qiu qianren" ]),
         }));
 
-        create_family("铁掌帮", 14, "长老");
+        create_family("鐵掌幫", 14, "長老");
 
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
@@ -86,46 +86,46 @@ void attempt_apprentice(object me)
                 return;
 
         if( query("family/family_name", me) && 
-             query("family/family_name", me) == "绝情谷" && 
+             query("family/family_name", me) == "絕情谷" && 
              query("family/master_name", me) == "裘千尺" )
         {
                 command("yi");
-                command("say 原来阁下是裘千尺师叔的后裔，想来你和本帮有极深的渊源。");
+                command("say 原來閣下是裘千尺師叔的後裔，想來你和本幫有極深的淵源。");
 
                 command("consider");
-                command("say 这个事情我做不了主，你还是直接去找帮主吧。");
+                command("say 這個事情我做不了主，你還是直接去找幫主吧。");
 
-                set("move_party/绝情谷—铁掌帮", 1, me);
+                set("move_party/絕情谷—鐵掌幫", 1, me);
                 return;
         }
 
         if( query("shen", me)>-10000 )
         {
                 command("heng");
-                command("say 你这样心慈手软可不行。");
+                command("say 你這樣心慈手軟可不行。");
                 return;
         }
 
         if( query("combat_exp", me)<140000 )
         {
                 command("heng");
-                command("say 你这点能力怎能成大器，还是练练再来吧！");
+                command("say 你這點能力怎能成大器，還是練練再來吧！");
                 return;
         }
 
         if ((int)me->query_skill("force") < 60)
         {
-                command("say 学武之人最讲究内功精纯，我看你下的工夫还不够呀。");
+                command("say 學武之人最講究內功精純，我看你下的工夫還不夠呀。");
                 return;
         }
 
         if ((int)me->query_skill("strike", 1) < 40)
         {
-                command("say 入帮之后连最基本的掌法都没练好，那你入铁掌帮作甚？");
+                command("say 入幫之後連最基本的掌法都沒練好，那你入鐵掌幫作甚？");
                 return;
         }
 
-        command("say  既然这样，我便收下你，希望你苦练本帮神功，将之发扬光大。");
+        command("say  既然這樣，我便收下你，希望你苦練本幫神功，將之發揚光大。");
 
         command("recruit "+query("id", me));
 }
@@ -143,20 +143,20 @@ void init()
         if (interactive(ob) 
              && !query("no_fight", environment(ob) )
             && ! present("tiezhang ling", ob)
-             && !query("move_party/绝情谷—铁掌帮", ob )
+             && !query("move_party/絕情谷—鐵掌幫", ob )
              && ((fam=query("family", ob) )
-            && fam["family_name"] != "铁掌帮" ) )
+            && fam["family_name"] != "鐵掌幫" ) )
         {
                 if( query_temp("warned", ob)<3 )
                 {
-                        command("say 站住！你不是铁掌帮弟子，不能在此久留！");
-                        command("say 你还是速速离开此地吧，不然我可要对你不客气了！！");
+                        command("say 站住！你不是鐵掌幫弟子，不能在此久留！");
+                        command("say 你還是速速離開此地吧，不然我可要對你不客氣了！！");
                         addn_temp("warned", 1, ob);
                 }
            else if( query_temp("stay", ob)<3 )
                         addn_temp("stay", 1, ob);
            else {
-                        command("say 你活得不耐烦了，竟敢到铁掌帮来撒野！\n");
+                        command("say 你活得不耐煩了，竟敢到鐵掌幫來撒野！\n");
                         remove_call_out("hiting_ob");
                         call_out("hiting_ob", 1, ob);
                 }
@@ -182,10 +182,10 @@ int accept_ask(object me, string topic)
                           ([ "perform" : "can_perform/tiexue-dao/xue",
                            "name"    : "血浪滔天",
                            "msg1"    : HIY "$N" HIY "微微一笑，在你"
-                                       "耳边轻声嘀咕了几句，然后顺"
-                                       "手拔出腰间的刚刀凌空劈斩了"
-                                       "几下，招式很是惊奇。你若有"
-                                       "所悟的点了点头。",
+                                       "耳邊輕聲嘀咕了幾句，然後順"
+                                       "手拔出腰間的剛刀凌空劈斬了"
+                                       "幾下，招式很是驚奇。你若有"
+                                       "所悟的點了點頭。",
                             "sk1"     : "tiexue-dao",
                            "lv1"     : 100,
                            "force"   : 60,
@@ -193,10 +193,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -15000, ]));
                 break;
 
-        case "穿心锥" :
+        case "穿心錐" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/chuanxin-zhang/zhui",
-                           "name"    : "穿心锥",
+                           "name"    : "穿心錐",
                            "sk1"     : "chuanxin-zhang",
                            "lv1"     : 100,
                            "force"   : 150,
@@ -218,10 +218,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -23000, ]));
                 break;
 
-        case "穿心锥" :
+        case "穿心錐" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/chuanxin-zhang/zhui",
-                           "name"    : "穿心锥",
+                           "name"    : "穿心錐",
                            "sk1"     : "chuanxin-zhang",
                            "lv1"     : 100,
                            "force"   : 150,

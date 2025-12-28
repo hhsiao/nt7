@@ -1,4 +1,4 @@
-// xiejian.c 邪剑李四
+// xiejian.c 邪劍李四
 
 #include <ansi.h>
 
@@ -7,7 +7,7 @@ inherit BUNCHER;
 void create()
 {
         set_name("李四", ({ "li si", "li" }) );
-        set("title", "小店老板");
+        set("title", "小店老闆");
         set("gender", "男性" );
         set("shen_type", -1);
         set("age", 40);
@@ -18,18 +18,18 @@ void create()
         set("dex", 30);
 
         set("long",
-                "这是整天笑咪咪的小店老板，虽然不卖什麽东西，却也过得自在。\n" );
+                "這是整天笑咪咪的小店老闆，雖然不賣什麼東西，卻也過得自在。\n" );
 
         set("combat_exp", 100000);
         set("attitude", "peaceful");
         set("chat_chance", 1);
         set("chat_msg", ({
-                "李四说道: 这位客官，您想买些什麽东西吗 ?\n",
+                "李四說道: 這位客官，您想買些什麼東西嗎 ?\n",
         }) );
 
         set("inquiry", ([
-                "邪剑"   : "我已经归隐了，不干这行了。",
-                "杀人"   : "我已经归隐了，不干这行了。",
+                "邪劍"   : "我已經歸隱了，不幹這行了。",
+                "殺人"   : "我已經歸隱了，不幹這行了。",
         ]) );
 
         set("max_qi", 700);

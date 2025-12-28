@@ -5,14 +5,14 @@ inherit ITEM;
 
 void create()
 {
-        set_name(YEL "魔幻兽兑换券" NOR, ({"duihuan juan", "duihuan", "juan"}));
+        set_name(YEL "魔幻獸兌換券" NOR, ({"duihuan juan", "duihuan", "juan"}));
         set_weight(40);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", "这是一张魔幻兽兑换券，可以拿它去狂风那里选一个" HIM "魔幻兽。\n" NOR);
-                set("unit", "张");
+                set("long", "這是一張魔幻獸兌換券，可以拿它去狂風那裡選一個" HIM "魔幻獸。\n" NOR);
+                set("unit", "張");
                 set("material_attrib", "paper");
                 set("value", 10000000);
                 set("no_sell", 1);

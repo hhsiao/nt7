@@ -23,7 +23,7 @@ void create()
         set_skill("dodge", 50);
         set_skill("parry", 50);
         set("inquiry", ([
-                "天魔诀" : (: ask_tianmo:),
+                "天魔訣" : (: ask_tianmo:),
         ]) );
         set_temp("apply/attack", 50);
         set_temp("apply/defense", 50);
@@ -34,7 +34,7 @@ void create()
 }
 int ask_tianmo()
 {
-        command("say 嘿嘿,没想到啊,你小小年龄既然也知道《天魔诀》的事，好，只要小兄弟帮我找回\n         我的传家宝"HIG"寒玉萧(hanyu xiao)"CYN"老夫就带你去打天魔诀!\n"NOR);
+        command("say 嘿嘿,沒想到啊,你小小年齡既然也知道《天魔訣》的事，好，只要小兄弟幫我找回\n         我的傳家寶"HIG"寒玉蕭(hanyu xiao)"CYN"老夫就帶你去打天魔訣!\n"NOR);
         set_temp("search", 1, this_player());
         return 1;
 }
@@ -43,7 +43,7 @@ int accept_object(object me, object obj)
          if( query("id", obj) == "hanyu xiao" )
         {
                 command("bow"+query("id", me));
-                command("say 哈哈，好好好，老夫这就带你去找《天魔诀》。");
+                command("say 哈哈，好好好，老夫這就帶你去找《天魔訣》。");
                 set_temp("search", 0, me);
                 call_out("create_exit",1); 
                 return 1;
@@ -55,6 +55,6 @@ void create_exit()
         object where,ob; 
         ob=this_object(); 
         where = environment(ob); 
-        write("鬼三掀起墙上的画，揭起小木板，露出一个长方大洞。\n\n", ); 
+        write("鬼三掀起牆上的畫，揭起小木板，露出一個長方大洞。\n\n", ); 
         set("exits/enter", "/d/city/didao", where);
 } 

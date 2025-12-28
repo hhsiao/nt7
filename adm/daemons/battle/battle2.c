@@ -23,10 +23,10 @@ void init_battle()
         
         refresh_map();
         
-        BATTLEFIELD_D->set_battle_name(HIY"王者归来"NOR);
-        BATTLEFIELD_D->set_team_name(HIR"王者队"NOR, HIB"无敌队"NOR);
+        BATTLEFIELD_D->set_battle_name(HIY"王者歸來"NOR);
+        BATTLEFIELD_D->set_team_name(HIR"王者隊"NOR, HIB"無敵隊"NOR);
         BATTLEFIELD_D->set_entry_room("/maze/battle2/enter1", "/maze/battle2/enter2");
-        BATTLEFIELD_D->set_bonus_percent(120); // 奖励120%
+        BATTLEFIELD_D->set_bonus_percent(120); // 獎勵120%
 }
 
 

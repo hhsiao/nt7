@@ -5,7 +5,7 @@ inherit DAGGER;
 
 void create()
 {
-        set_name(HIB "毒绫子" NOR, ({ "duling dagger", "dagger", "duling" }) );
+        set_name(HIB "毒綾子" NOR, ({ "duling dagger", "dagger", "duling" }) );
         set_weight(4000);
         /*if( clonep() )
                 set_default_object(__FILE__);

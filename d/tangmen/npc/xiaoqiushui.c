@@ -1,4 +1,4 @@
-// xiao qiushui.c 萧秋水
+// xiao qiushui.c 蕭秋水
 
 #include <ansi.h>
 
@@ -7,12 +7,12 @@ inherit NPC;
 string ask_me();
 void create()
 {
-        set_name("萧秋水", ({ "xiao qiushui", "xiao" }));
-        set("nickname", HIY "大侠" NOR);
+        set_name("蕭秋水", ({ "xiao qiushui", "xiao" }));
+        set("nickname", HIY "大俠" NOR);
         set("long", 
-                "原来他就是与唐方痴心相恋，为了唐方大闹唐门的萧秋水。\n"
-                "他在江湖上行侠仗义，侠名远播，人称“大侠”。\n"
-                "他大约二十有余，虽然受尽折磨，仍然带着一身傲气。\n");
+                "原來他就是與唐方痴心相戀，為了唐方大鬧唐門的蕭秋水。\n"
+                "他在江湖上行俠仗義，俠名遠播，人稱“大俠”。\n"
+                "他大約二十有餘，雖然受盡折磨，仍然帶著一身傲氣。\n");
         set("gender", "男性");
         set("age", 20);
 set("attitude", "peaceful");        
@@ -46,7 +46,7 @@ set_skill("literate", 2580);
 map_skill("unarmed", "biye-wu");        
         map_skill("parry", "wuzhan-mei");
         map_skill("sword", "wuzhan-mei");
-        create_family("唐门", 7, "弟子");
+        create_family("唐門", 7, "弟子");
         set("class", "tangmen");
         
         
@@ -71,16 +71,16 @@ string ask_me()
 {object ob;
  object me;
  me=this_player();
-        if (query("yu_count") < 1){return "是唐方叫你来见我的？可惜我的玉佩已经交给别人了。\n";}
+        if (query("yu_count") < 1){return "是唐方叫你來見我的？可惜我的玉佩已經交給別人了。\n";}
         command("touch"+query("id", this_player()));
-        command("say 是唐方叫你来见我的？\n");
+        command("say 是唐方叫你來見我的？\n");
         command("sigh" );
-        command("say 自从当日大闹唐门之后，我就和唐方生死相隔了。\n");
+        command("say 自從當日大鬧唐門之後，我就和唐方生死相隔了。\n");
         ob=new("/d/tangmen/obj/yupei");
         ob->move(this_player());
-        message_vision("$N交给$n一块玉佩。\n", me, ob);
+        message_vision("$N交給$n一塊玉佩。\n", me, ob);
         addn("yu_count", -1);
-        return"你把这块玉佩交给唐方吧。\n";
+        return"你把這塊玉佩交給唐方吧。\n";
         
 
                                                         

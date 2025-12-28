@@ -1,4 +1,4 @@
-// 大唐双龙传
+// 大唐雙龍傳
  
 // girl.女子。
 
@@ -7,7 +7,7 @@ inherit NPC;
 void create()
 {
   set_name("僧人", ({"seng ren","seng","ren"}));
-  set("long","这是灵静寺的僧人，在这里掌管寺内事物。\n");
+  set("long","這是靈靜寺的僧人，在這裡掌管寺內事物。\n");
   set("gender", "男性");
   set("class","bonze");
   set("combat_exp", 90000);

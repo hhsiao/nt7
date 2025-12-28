@@ -39,7 +39,7 @@ void greeting(object ob)
         switch (random(1))
         {
         case 0:
-                command("say 日月神教，日出东方，唯我不败。\n");
+                command("say 日月神教，日出東方，唯我不敗。\n");
                 break;
         }
 }

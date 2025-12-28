@@ -1,4 +1,4 @@
-// jingang-quan.c -大金刚拳
+// jingang-quan.c -大金剛拳
 // 少林的招牌空手功夫，不能差了
 
 #include <ansi.h>;
@@ -9,38 +9,38 @@ int is_pbsk() { return 1; }
 string martialtype() { return "skill"; }
 
 mapping *action = ({
-([      "action" : "$N盘膝而坐，二手合十，一式"HIC"「莲花座」"NOR"，双拳蓄势而发，击向$n的$l",
+([      "action" : "$N盤膝而坐，二手合十，一式"HIC"「蓮花座」"NOR"，雙拳蓄勢而發，擊向$n的$l",
         "lvl" : 0,
-        "skill_name" : "莲花座"
+        "skill_name" : "蓮花座"
 ]),
-([      "action" : "$N一式"HIR"「烈火锥」"NOR"，双掌轮流下击，拳势如焰，吡啪爆响",
+([      "action" : "$N一式"HIR"「烈火錐」"NOR"，雙掌輪流下擊，拳勢如焰，吡啪爆響",
         "lvl" : 10,
-        "skill_name" : "烈火锥"
+        "skill_name" : "烈火錐"
 ]),
-([      "action" : "$N腾空飞起，一式"HIG"「八方雨」"NOR"，双手双腿齐出，令$n无可躲藏",
+([      "action" : "$N騰空飛起，一式"HIG"「八方雨」"NOR"，雙手雙腿齊出，令$n無可躲藏",
         "lvl" : 20,
         "skill_name" : "八方雨"
 ]),
-([      "action" : "$N双掌虚含，掌缘下沉，一式"HIM"「掌心雷」"NOR"，缓缓向$n推出",
+([      "action" : "$N雙掌虛含，掌緣下沉，一式"HIM"「掌心雷」"NOR"，緩緩向$n推出",
         "lvl" : 30,
         "skill_name" : "掌心雷"
 ]),
-([      "action" : "$N一臂前伸，一臂后指，一式"HIB"「五指山」"NOR"，攻向$n的身前身后",
+([      "action" : "$N一臂前伸，一臂後指，一式"HIB"「五指山」"NOR"，攻向$n的身前身後",
         "lvl" : 40,
         "skill_name" : "五指山"
 ]),
-([      "action" : "$N一式"HIW"「观音渡」"NOR"，两手十指虚点$n的全身三十六道要穴",
+([      "action" : "$N一式"HIW"「觀音渡」"NOR"，兩手十指虛點$n的全身三十六道要穴",
         "lvl" : 48,
-        "skill_name" : "观音渡"
+        "skill_name" : "觀音渡"
 ]),
-([      "action" : "$N两目内视，双手内笼，一式"HIY"「天龙唱」"NOR"，四面八方响起震人心魄的
-龙吟",
+([      "action" : "$N兩目內視，雙手內籠，一式"HIY"「天龍唱」"NOR"，四面八方響起震人心魄的
+龍吟",
         "lvl" : 54,
-        "skill_name" : "天龙唱"
+        "skill_name" : "天龍唱"
 ]),
-([      "action" : "$N似笑非笑，双拳无形无定，一式「如来笑」，骤然击向$n的前胸",
+([      "action" : "$N似笑非笑，雙拳無形無定，一式「如來笑」，驟然擊向$n的前胸",
         "lvl" : 60,
-        "skill_name" : "如来笑"
+        "skill_name" : "如來笑"
 ])
 });
 
@@ -48,16 +48,16 @@ int valid_enable(string usage) { return usage=="cuff" || usage=="parry"; }
 int valid_learn(object me)
 {
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("练大金刚拳必须空手。\n");
+                return notify_fail("練大金剛拳必須空手。\n");
 
         if ((int)me->query_skill("force") < 30)
-                return notify_fail("你的内功火候不够，无法学大金刚拳。\n");
+                return notify_fail("你的內功火候不夠，無法學大金剛拳。\n");
 
         if( query("max_neili", me)<100 )
-                return notify_fail("你的内力太弱，无法练大金刚拳。\n");
+                return notify_fail("你的內力太弱，無法練大金剛拳。\n");
 
         if ((int)me->query_skill("cuff", 1) < (int)me->query_skill("jingang-quan", 1))
-                return notify_fail("你的基本拳法水平有限，无法领会更高深的大金刚拳。\n");
+                return notify_fail("你的基本拳法水平有限，無法領會更高深的大金剛拳。\n");
 
         return 1;
 }
@@ -65,11 +65,11 @@ int valid_learn(object me)
 int practice_skill(object me)
 {
         if( query("qi", me)<30 )
-                return notify_fail("你的体力太低了。\n");
+                return notify_fail("你的體力太低了。\n");
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("你的必须空手才能练习。\n");
+                return notify_fail("你的必須空手才能練習。\n");
         if( query("neili", me)<20 )
-                return notify_fail("你的内力不够练大金刚拳。\n");
+                return notify_fail("你的內力不夠練大金剛拳。\n");
         me->receive_damage("qi", 30);
         addn("neili", -20, me);
         return 1;
@@ -97,16 +97,16 @@ mapping query_action(object me, object weapon)
         for(i = ttl; i > 0; i--)
                 if(lvl > action[i-1]["lvl"])
                 {
-                        seq = i; /* 获得招数序号上限 */
+                        seq = i; /* 獲得招數序號上限 */
                         break;
                 }
-        seq = random(seq);       /* 选择出手招数序号 */
+        seq = random(seq);       /* 選擇出手招數序號 */
         return ([
                 "action"      : action[seq]["action"],
                 "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
                 "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
                 "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
-                "damage_type" : "瘀伤",
+                "damage_type" : "瘀傷",
         ]);
 }
 
@@ -126,24 +126,24 @@ void skill_improved(object me)
         {
                 addn("str", 1, me);
                 set("sl_gift/str", 1, me);
-                tell_object(me, "你的大金刚拳学有所成，提高了你的臂力。\n");
+                tell_object(me, "你的大金剛拳學有所成，提高了你的臂力。\n");
         }
 }
 
 int help(object me)
 {
-        write(HIC"\n大金刚拳："NOR"\n");
+        write(HIC"\n大金剛拳："NOR"\n");
         write(@HELP
 
-    大金刚拳为少林七十二绝技之一。
-    大金刚拳以天资所限，大多少林和尚均无法练成。少林派往往
-要隔上百余年，才有一个特出的奇才能练成这门拳法。只是练功的
-诀窍等等，上代高僧详记在武经之中，有时全寺数百僧众竟无一人
-练成，却也不致失传。
+    大金剛拳為少林七十二絕技之一。
+    大金剛拳以天資所限，大多少林和尚均無法練成。少林派往往
+要隔上百餘年，才有一個特出的奇才能練成這門拳法。只是練功的
+訣竅等等，上代高僧詳記在武經之中，有時全寺數百僧眾竟無一人
+練成，卻也不致失傳。
 
-        学习要求：
-                混元一气功50级
-                内力200
+        學習要求：
+                混元一氣功50級
+                內力200
 HELP
         );
         return 1;

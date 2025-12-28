@@ -1,14 +1,14 @@
 // /d/gaoli/donggongmen
-// Room in 高丽
+// Room in 高麗
 // rich 99/03/28
 inherit ROOM;
 void create()        
 {
-        set("short", "宫门");
+        set("short", "宮門");
         set("long", @LONG
-这是高丽皇宫的正门，北面朱红的宫门只有在百官早朝时才开启，
-现在大门紧紧的关着，一队士兵英姿勃勃的站在宫门前，气氛宁静而压
-抑，使人尽快离开。
+這是高麗皇宮的正門，北面硃紅的宮門只有在百官早朝時才開啟，
+現在大門緊緊的關著，一隊士兵英姿勃勃的站在宮門前，氣氛寧靜而壓
+抑，使人儘快離開。
 LONG
         );
 set("outdoors", "gaoli");

@@ -1,4 +1,4 @@
-// duansh.c 段寿辉
+// duansh.c 段壽輝
 
 #include <ansi.h>
 
@@ -6,8 +6,8 @@ inherit "/inherit/char/punisher";
 
 void create()
 {
-        set_name("段寿辉", ({ "duan shouhui", "duan" }));
-        set("long",  "他一副僧人打扮，但是却透露出一股雍容华贵的气质。\n");
+        set_name("段壽輝", ({ "duan shouhui", "duan" }));
+        set("long",  "他一副僧人打扮，但是卻透露出一股雍容華貴的氣質。\n");
         set("gender", "男性");
         set("age", 60);
         set("attitude", "peaceful");

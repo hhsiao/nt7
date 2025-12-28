@@ -11,11 +11,11 @@ void create()
 {
         set_name("胡青牛", ({ "hu qingniu", "hu" }));
         set("long", 
-                "他就是明教号称见死不救的胡青牛，据说他精通医理，可以起死回\n"
-                "生。但他从不医教外人士。\n");
+                "他就是明教號稱見死不救的胡青牛，據說他精通醫理，可以起死回\n"
+                "生。但他從不醫教外人士。\n");
         set("gender", "男性");
-            set("title",HIG "明教" NOR "教众");
-        set("nickname","蝶谷医仙");
+            set("title",HIG "明教" NOR "教眾");
+        set("nickname","蝶谷醫仙");
         set("age", 50);
         set("class", "shaman");
         set("attitude", "peaceful");
@@ -24,7 +24,7 @@ void create()
         set("con", 25);
         set("dex", 25);
         set("inquiry", ([
-                "疗伤" : (:ask_me:),
+                "療傷" : (:ask_me:),
         ]) );
 
         set("max_qi", 1500);
@@ -51,16 +51,16 @@ int ask_me()
         ob=this_player();
 
         if( query("family/family_name", ob) != "明教" )
-                return notify_fail("你不是我明尊座下弟子，我不可以为你疗伤。\n");
+                return notify_fail("你不是我明尊座下弟子，我不可以為你療傷。\n");
         if( query("eff_qi", ob) == query("max_qi", ob) )
         {
                 command("?"+query("id", ob));
-                command("say 你没有受任何伤啊？\n");
+                command("say 你沒有受任何傷啊？\n");
                 return 1;
         }
         else
         {
-                message_vision("胡青牛喂$N服下一颗药丸,然后盘膝坐下，双掌贴着$N的背心。\n", ob);
+                message_vision("胡青牛喂$N服下一顆藥丸,然後盤膝坐下，雙掌貼著$N的背心。\n", ob);
                 remove_call_out("recover");
                 call_out("recover",2,ob);
                 return 1;
@@ -72,7 +72,7 @@ int recover(object ob)
 {
         set("eff_qi",query("max_qi",  ob), ob);
         set("eff_jing",query("max_jing",  ob), ob);
-        message_vision("大约过了一盅茶的时份，胡青牛慢慢地站了起来。\n",ob);
-        command("say 你的伤势已经全好了,可以走啦。\n");
+        message_vision("大約過了一盅茶的時份，胡青牛慢慢地站了起來。\n",ob);
+        command("say 你的傷勢已經全好了,可以走啦。\n");
         return 1;
 }

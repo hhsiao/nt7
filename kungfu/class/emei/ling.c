@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// ling.c 赵灵珠
+// ling.c 趙靈珠
 
 inherit NPC;
 inherit F_MASTER;
@@ -9,7 +9,7 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("赵灵珠", ({ "zhao lingzhu","zhao","lingzhu"}));
+        set_name("趙靈珠", ({ "zhao lingzhu","zhao","lingzhu"}));
         set("long",
                 "她是峨嵋派的第四代俗家弟子。\n");
         set("gender", "女性");

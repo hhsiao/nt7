@@ -19,15 +19,15 @@ nosave int state;
 nosave int *tlist = ({ 0, 550, 559, 600 });
 nosave int *hlist = ({ 45, 1, 1, 1 });
 
-// 通知一次准备的时间：凌晨5:50分
-// 通知再次准备的时间：凌晨5:59分
-// 开始进行备份的时间：凌晨6:00分
-// 凌晨六点以后到第二天凌晨5:50分之前属于休眠状态
+// 通知一次準備的時間：凌晨5:50分
+// 通知再次準備的時間：凌晨5:59分
+// 開始進行備份的時間：凌晨6:00分
+// 凌晨六點以後到第二天凌晨5:50分之前屬於休眠狀態
 
-// 提供给外面的接口函数
+// 提供給外面的接口函數
 void backup_data();
 
-// 内部使用的函数
+// 內部使用的函數
 protected void remove_backup(mixed lt);
 protected void check_all_player();
 protected void change_state(int new_state);
@@ -45,7 +45,7 @@ void create()
 {
         seteuid(ROOT_UID);
 
-        sys_info("备份系统已经启动。");
+        sys_info("備份系統已經啟動。");
         state = SLEEPING;
         set_heart_beat(hlist[state]);
 }
@@ -113,8 +113,8 @@ protected void change_state(int new_state)
         case GET_READY_2:
                 if (lt[LT_HOUR] * 100 + lt[LT_MIN] != tlist[BACKUPING])
                 {
-                        message_system(sprintf("现在是 %d 点 %d 分，系统将在 %d 点 %d 分"
-                                       "自动备份所有玩家的数据，期间游戏会有停滞。",
+                        message_system(sprintf("現在是 %d 點 %d 分，系統將在 %d 點 %d 分"
+                                       "自動備份所有玩家的數據，期間遊戲會有停滯。",
                                        lt[LT_HOUR], lt[LT_MIN],
                                        (tlist[BACKUPING] / 100) % 100,
                                        tlist[BACKUPING] % 100));
@@ -124,13 +124,13 @@ protected void change_state(int new_state)
 
         case BACKUPING:
                 state = new_state;
-                message_system(sprintf(HIY "现在是 %d 点 %d 分，系统开始"
-                                       "自动备份所有玩家数据，请稍候..." NOR,
+                message_system(sprintf(HIY "現在是 %d 點 %d 分，系統開始"
+                                       "自動備份所有玩家數據，請稍候..." NOR,
                                        lt[LT_HOUR], lt[LT_MIN]));
 
                 backup_data();
 
-                message_system(sprintf(HIC "系统已经处理完备份工作。" NOR,
+                message_system(sprintf(HIC "系統已經處理完備份工作。" NOR,
                                        lt[LT_HOUR], lt[LT_MIN]));
 
                 // after backup, change state to SLEEPING
@@ -166,7 +166,7 @@ void backup_data()
 
         seteuid(getuid());
 
-        sys_info("备份工作开始。");
+        sys_info("備份工作開始。");
         lt = localtime(time());
 
         // because LT_MON is from 0..11, so I must add 1
@@ -175,19 +175,19 @@ void backup_data()
                         lt[LT_YEAR], lt[LT_MON], lt[LT_MDAY]);
         if (! assure_not_exist(bkdir))
         {
-                sys_info(sprintf("备份失败：无法删除(%s)。", bkdir));
+                sys_info(sprintf("備份失敗：無法刪除(%s)。", bkdir));
                 return;
         }
 
         // backup data
         count = CMD_CP->copy_dir(DATA_DIR, bkdir);
         if (count)
-                sys_info(sprintf("总共有%d个文件被保存到(%s)中。", count, bkdir));
+                sys_info(sprintf("總共有%d個文件被保存到(%s)中。", count, bkdir));
 
         call_out("remove_backup", 1, lt);
 }
 
-// 删除以前的备份
+// 刪除以前的備份
 void remove_backup(mixed lt)
 {
         object *obs;
@@ -214,7 +214,7 @@ void remove_backup(mixed lt)
                         continue;
 
                 CMD_RM->rm_dir(BACKUP_DIR + file[i][0]);
-                sys_info(sprintf("备份(%s)已经被自动删除。", file[i][0]));
+                sys_info(sprintf("備份(%s)已經被自動刪除。", file[i][0]));
         }
 
         // update all loging object
@@ -226,23 +226,23 @@ void remove_backup(mixed lt)
                         obs[i]->start_log();
                 }
 
-        // 为了显示正确的时间，所以使用 call_out 呼叫。
-        call_out("sys_info", 0, "备份工作完毕。");
+        // 為了顯示正確的時間，所以使用 call_out 呼叫。
+        call_out("sys_info", 0, "備份工作完畢。");
 
-        // 10s以后检查所有的玩家
+        // 10s以後檢查所有的玩家
         call_out("check_all_player", 1);
 }
 
-// 检查所有玩家
+// 檢查所有玩家
 protected void check_all_player()
 {
-        message_system("系统开始核查所有玩家，并清除长时间不上线的使用者...");
-        sys_info("系统开始检查所有玩家。");
+        message_system("系統開始核查所有玩家，並清除長時間不上線的使用者...");
+        sys_info("系統開始檢查所有玩家。");
 
-        EXAMINE_CMD->search_dir(0, 1);  // 不清理长时间不上线的使用者... 
+        EXAMINE_CMD->search_dir(0, 1);  // 不清理長時間不上線的使用者... 
 
-        // 为了显示正确的时间，所以使用 call_out 呼叫。
-        call_out("sys_info", 0, "系统检查所有玩家完毕。");
+        // 為了顯示正確的時間，所以使用 call_out 呼叫。
+        call_out("sys_info", 0, "系統檢查所有玩家完畢。");
 }
 
 // check that y/m/d wether or not close cy/cm/cd(current time)
@@ -307,5 +307,5 @@ protected void sys_info(string msg)
 
 string query_name()
 {
-        return "备份精灵(BACKUP_D)";
+        return "備份精靈(BACKUP_D)";
 }

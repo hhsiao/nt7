@@ -9,8 +9,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", YEL "这是一颗淡黄的的药丸，是神龙岛的秘药，功效奇妙无比。\n" NOR);
-                set("base_unit", "颗");
+                set("long", YEL "這是一顆淡黃的的藥丸，是神龍島的秘藥，功效奇妙無比。\n" NOR);
+                set("base_unit", "顆");
                 set("base_value", 8000);
                 set("base_weight", 80);
                 set("only_do_effect", 1);
@@ -71,15 +71,15 @@ int do_effect(object me)
 
         if( time()-query_temp("last_eat/baoming", me) < time )
         {
-                write("你刚服用过药，需药性发挥完效用以后才能继续服用。\n");
+                write("你剛服用過藥，需藥性發揮完效用以後才能繼續服用。\n");
                 return 1;
         }
 
         set_temp("last_eat/baoming", time(), me);
 
         message_vision(HIG "$N" HIG "吃下一粒" + name() +
-                       HIG "，眼睛直冒绿光！\n", me);
-        tell_object(me, HIG "不一会儿你只觉得精神饱满，神气完足，内力充沛之极。\n" NOR);
+                       HIG "，眼睛直冒綠光！\n", me);
+        tell_object(me, HIG "不一會兒你只覺得精神飽滿，神氣完足，內力充沛之極。\n" NOR);
 
         log_file("static/using", sprintf("%s(%s) eat 天王保命丹 at %s.\n",
                         me->name(1),query("id", me),ctime(time())));

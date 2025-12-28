@@ -9,7 +9,7 @@ void create()
 {
         set("short", "地道");
         set("long", @LONG
-这是一条刚刚挖成的地道，看样子是往南延伸。
+這是一條剛剛挖成的地道，看樣子是往南延伸。
 LONG );
         set("exits", ([
                 "north": "/d/mingjiao/didao/didao_s_1",

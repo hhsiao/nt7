@@ -1,6 +1,6 @@
 // staff.c
 // 自造物品 (by Find.)
-// 没有安全问题但太麻烦
+// 沒有安全問題但太麻煩
 
 #include <mine_def.h>
 #include <weapon.h>
@@ -114,11 +114,11 @@ protected void create(class weapon_args arg)
         {
                 set_name("木杖", ({ "staff" }) );
                 set_weight(5000);
-                set("long", "这是一把看起相当普通的木杖");
+                set("long", "這是一把看起相當普通的木杖");
                 set("value", 500);
                 set("material", "wood");
-                set("wield_msg", "$N把$n紧紧地握在手中。\n");
-                set("unwield_msg", "$N松开了手中的$n。\n");
+                set("wield_msg", "$N把$n緊緊地握在手中。\n");
+                set("unwield_msg", "$N鬆開了手中的$n。\n");
                 init_staff(25);
         }
 

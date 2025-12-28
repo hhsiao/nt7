@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("碧水晶晶兽[2;37;0m[2;37;0m", ({"dafang"}));        
+        set_name("碧水晶晶獸[2;37;0m[2;37;0m", ({"dafang"}));        
         set("gender", "女性");                
         set("long", "finish[2;37;0m
-它是渡蛋蛋的魔幻兽。
+它是渡蛋蛋的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

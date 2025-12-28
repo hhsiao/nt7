@@ -2,11 +2,11 @@ inherit NPC;
 
 void create()
 {
-        set_name("鳌府家丁", ({ "jia ding", "jia", "ding" }) );
+        set_name("鰲府家丁", ({ "jia ding", "jia", "ding" }) );
         set("gender", "男性" );
         set("age", 22);
         set("long",
-                "一个在鳌拜府里干下等活的家丁。\n");
+                "一個在鰲拜府裡幹下等活的家丁。\n");
         set("shen_type", 1);
         set("combat_exp", 2000);
        set("str", 10);

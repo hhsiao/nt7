@@ -6,12 +6,12 @@ inherit NPC;
 
 void create()
 {
-        set_name("南海恶蛟", ({ "monster dragon", "dragon", "nanhai ejiao" }) );
-        set("title", HIC "龙族" NOR);
+        set_name("南海惡蛟", ({ "monster dragon", "dragon", "nanhai ejiao" }) );
+        set("title", HIC "龍族" NOR);
         set("gender", "男性");
         set("age", 23);
         set("long", @LONG
-这是一个气势汹汹的恶蛟，浑身缠绕着五颜六色的异彩云祥。
+這是一個氣勢洶洶的惡蛟，渾身纏繞著五顏六色的異彩雲祥。
 LONG );
         set("combat_exp", 10000000);
         set("shen_type", 0);
@@ -58,8 +58,8 @@ void fight_ob(object ob)
         if (is_fighting(ob))
                 return;
 
-        message_vision(HIW "$N" HIW "冷哼一声，浑身云气大盛，"
-                       "妖气弥漫。\n" NOR, this_object(), ob);
+        message_vision(HIW "$N" HIW "冷哼一聲，渾身雲氣大盛，"
+                       "妖氣瀰漫。\n" NOR, this_object(), ob);
 
         ::fight_ob(ob);
         if( !is_killing(query("id", ob)) )
@@ -68,7 +68,7 @@ void fight_ob(object ob)
 
 int accept_fight(object ob)
 {
-        message_vision("$N微一摇头，略一摆尾，扫了上来。\n",
+        message_vision("$N微一搖頭，略一擺尾，掃了上來。\n",
                        this_object(), ob);
         kill_ob(ob);
         return -1;
@@ -88,8 +88,8 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
         ob->receive_wound("qi", 200 + random(200), me);
         set("neili",query("max_neili",  me), me);
-        return HIY "$N" HIY "周围烟雾缭绕，光华四射，登时令$n"
-               HIY "迷惑不已，难以自拔。\n" NOR;
+        return HIY "$N" HIY "周圍煙霧繚繞，光華四射，登時令$n"
+               HIY "迷惑不已，難以自拔。\n" NOR;
 }
 
 void unconcious()
@@ -109,16 +109,16 @@ varargs void die(object killer)
 
         str = prize[random(sizeof(prize))];
         ob = new(str);
-        command("chat 啊呀！不好，看来这次出师不利，待我回南海修炼上几年再说！");
-        message_sort(HIR "$N" HIR "身子一扭，消失在云气中，"
-                     "只听叮玲玲的一声，从$N" HIR "身上掉下了一" +
+        command("chat 啊呀！不好，看來這次出師不利，待我回南海修煉上幾年再說！");
+        message_sort(HIR "$N" HIR "身子一扭，消失在雲氣中，"
+                     "只聽叮玲玲的一聲，從$N" HIR "身上掉下了一" +
                      query("unit", ob)+ob->name()+
                      HIR "。\n" NOR, this_object());
         if (objectp(killer)) set("who_get", ([ "id"    : query("id", killer),
-                                               "time"  : time() + 60]), ob); // 60秒内只允许杀死我的ID拣
+                                               "time"  : time() + 60]), ob); // 60秒內只允許殺死我的ID揀
         ob->move(environment());
-        // 帝王符图
-        // 编号33
+        // 帝王符圖
+        // 編號33
         if (random(10) == 1)
         {
                 int n_tt;
@@ -127,19 +127,19 @@ varargs void die(object killer)
                 ob_tt = new("/clone/tuteng/diwang-suipian" + sprintf("%d", n_tt));
                 if (ob_tt)
                 {
-                        write(HIG "叮~~一张帝王符图碎片落在地上。\n" NOR);
+                        write(HIG "叮~~一張帝王符圖碎片落在地上。\n" NOR);
                         ob_tt->move(environment());
                 }
         }
 
-        // 1/800几率掉出无名铜人
+        // 1/800幾率掉出無名銅人
         if (random(800) < 1)
         {
                 object ob_tongren;
                 ob_tongren = new("/clone/tongren/tongren" + (1 + random(2)));
-                message_vision(HIR "当~~一声，从$N" HIR "身上掉出" + ob_tongren->name() + HIR "，落在地上。\n" NOR, this_object());
+                message_vision(HIR "當~~一聲，從$N" HIR "身上掉出" + ob_tongren->name() + HIR "，落在地上。\n" NOR, this_object());
                 set("who_get/id", "NONE", ob_tongren);
-                set("who_get/time", time() + 30, ob_tongren); // 30秒内都不能捡取
+                set("who_get/time", time() + 30, ob_tongren); // 30秒內都不能撿取
                 ob_tongren->move(environment(this_object()));
         }
         destruct(this_object());
@@ -151,8 +151,8 @@ void random_move()
         {
                 message_vision("$N急急忙忙的走了。\n", this_object());
                 CHANNEL_D->channel_broadcast("rumor",
-                        "听说" + name() + HIM "逍遥凡世，为祸人间良久"
-                        "方才返回南海，百姓饱受荼毒。" NOR);
+                        "聽說" + name() + HIM "逍遙凡世，為禍人間良久"
+                        "方才返回南海，百姓飽受荼毒。" NOR);
                 destruct(this_object());
                 return;
         }

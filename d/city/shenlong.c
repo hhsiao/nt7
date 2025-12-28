@@ -5,9 +5,9 @@ inherit ROOM;
 
 void create()
 {
-	set("short", "神龙教");
+	set("short", "神龍教");
         set("long", @LONG
-shen long需要更多的说明……
+shen long需要更多的說明……
 LONG );
 
 	set("exits", ([

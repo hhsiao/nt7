@@ -7,14 +7,14 @@ inherit RINGS;
 
 void create()
 {
-	set_name("[1;31m蛇妖指环[2;37;0m", ({ "sheyao ring" }));
+	set_name("[1;31m蛇妖指環[2;37;0m", ({ "sheyao ring" }));
         set_weight(500);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
-	set("unit", "个");
-	set("long", "[1;31m蛇妖指环是传说中蛇精佩带的指环，拥有神秘的力量！
+	set("unit", "個");
+	set("long", "[1;31m蛇妖指環是傳說中蛇精佩帶的指環，擁有神秘的力量！
 [2;37;0m");
 	set("value", 200000);
 	set("material", "gold");
@@ -59,7 +59,7 @@ int receive_summon(object me)
         return ITEM_D->receive_summon(me, this_object());
 }
 
-// 隐藏物品
+// 隱藏物品
 int hide_anywhere(object me)
 {
         return ITEM_D->hide_anywhere(me, this_object());

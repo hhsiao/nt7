@@ -4,26 +4,26 @@
 
 inherit NPC;
 
-#define PLACE "ca"      //长安
+#define PLACE "ca"      //長安
 #define TYPE  "good"    //白道
-#define WAIT_TIME 60    //完成不了任务的反省时间
+#define WAIT_TIME 60    //完成不了任務的反省時間
 
 mapping bunch_good = ([
-        "bunch_name" : "侠义盟",
+        "bunch_name" : "俠義盟",
         "id"   : "xym",
         "place": "ca",
-        "boss" : "成中岳",
+        "boss" : "成中嶽",
         "type" : "good",
 ]);
 
 void create()
 {
-        set_name("成中岳", ({ "cheng zhongyue", "cheng" }));
+        set_name("成中嶽", ({ "cheng zhongyue", "cheng" }));
         set("gender", "男性");
         set("age", 45);
-        set("long", "他就是鼎鼎大名的" + bunch_good["bunch_name"] + "的总瓢把子。\n");
-        set("nickname",HIY"侠肝义胆"NOR);
-        set("title","侠义盟大当家");
+        set("long", "他就是鼎鼎大名的" + bunch_good["bunch_name"] + "的總瓢把子。\n");
+        set("nickname",HIY"俠肝義膽"NOR);
+        set("title","俠義盟大當家");
         set("per",20);
         set("combat_exp", 1000000);
         set("shen_type", 1);

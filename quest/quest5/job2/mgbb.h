@@ -19,7 +19,7 @@ int checking(object me, object ob)
 {
         if( query("qi", me)<1 )
         {
-                  message_vision("\n$N扑在地上挣扎了几下，口中喷出几口"HIR"鲜血"NOR"，死了！\n"NOR,me);
+                  message_vision("\n$N撲在地上掙扎了幾下，口中噴出幾口"HIR"鮮血"NOR"，死了！\n"NOR,me);
                   if( query_temp("start_job", ob) == 1 )
                   {
                           addn_temp("killed_mgb", 1, ob);
@@ -29,7 +29,7 @@ int checking(object me, object ob)
                   call_out("destroying",1,me);                  
                   if(ob->query_condition("jobshadi_limit")==0)
                   {
-                          message_vision(CYN"\n一个守城宋兵跑过来说道：蒙古靼子暂时被击退了，$N可以回去复命了！\n"NOR,ob);
+                          message_vision(CYN"\n一個守城宋兵跑過來說道：蒙古靼子暫時被擊退了，$N可以回去覆命了！\n"NOR,ob);
                           set_temp("job_over", 1, ob);
                           delete_temp("start_job", ob);
                   }
@@ -73,14 +73,14 @@ void clone_rob(object ob)
           room = environment(this_player());
         switch( random(2) ) {
                 case 0:
-                        message_vision(HIR"城下又爬上来一个蒙古兵士。\n" NOR,this_player()); 
+                        message_vision(HIR"城下又爬上來一個蒙古兵士。\n" NOR,this_player()); 
            robber=new(__DIR__"robber1");
                         robber->move(room);
                         robber->kill_ob(this_player());
                         robber->checking(robber,this_player());
                         break;
                 case 1:
-                        message_vision(HIR"城下又爬上来一个蒙古将领。\n" NOR,this_player()); 
+                        message_vision(HIR"城下又爬上來一個蒙古將領。\n" NOR,this_player()); 
            robber=new(__DIR__"robber2");
                         robber->move(room);
                         robber->kill_ob(this_player());

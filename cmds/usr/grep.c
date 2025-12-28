@@ -15,18 +15,18 @@ string resolvePath(string path,int op)
         string *dn;
         string tmp;
         int i;
-        if(path=="/")//对这个情况特殊处理
+        if(path=="/")//對這個情況特殊處理
                 return (op)?"/":"*";
         dn=explode(path,"/");
-        if(op)//op为非0表示需要返回路径
+        if(op)//op為非0表示需要返回路徑
         {
                 //dn=dn-({dn[sizeof(dn)-1]});
                 //tmp=implode(dn,"/")+"/";
-                //上面的程序不好，不能对同名路径正确处理，比如不能在/log/log文件里搜索
+                //上面的程序不好，不能對同名路徑正確處理，比如不能在/log/log文件裡搜索
                 tmp="/";
                 for(i=0;i<sizeof(dn)-1;i++)
                 {
-                        //write("合并"+dn[i]+"\n");
+                        //write("合併"+dn[i]+"\n");
                         tmp+=dn[i]+"/";
                 }
                 return tmp;
@@ -45,7 +45,7 @@ int main(object me, string arg)
         if (!arg) return help();
         
         if( !wizardp(me) && time()-query_temp("last_grep", me)<30 )
-                return notify_fail("系统气喘嘘地叹道：慢慢来 ....\n");   
+                return notify_fail("系統氣喘噓地嘆道：慢慢來 ....\n");   
 
         if (sscanf(arg,"%s %s",path,pattern)!=2)
                     return help();
@@ -57,27 +57,27 @@ int main(object me, string arg)
         
         if (path == "news" || path == "all")
         {
-                write("正在新闻系统中搜索，请稍后 ……\n");
+                write("正在新聞系統中搜索，請稍後 ……\n");
                 NEWS_D->do_search(me, "document " + pattern);
                 if (path == "news")
                 {
-                        write("为节约系统资源，在30秒内只能进行搜索一次。\n");
+                        write("為節約系統資源，在30秒內只能進行搜索一次。\n");
                         return 1;
                 }
                 write("\n\n");
         }
 
-            level=1;//带-d参数默认级别为所有级        
+            level=1;//帶-d參數默認級別為所有級        
         path="/help";
-        result="以下help帮助中包含你所要搜索的内容：\n";
+        result="以下help幫助中包含你所要搜索的內容：\n";
         
-        write("正在帮助系统中搜索，请稍后 ……\n");
+        write("正在幫助系統中搜索，請稍後 ……\n");
         wild=resolvePath(path,0);
         path=resolvePath(path,1);
 
         do_grep(path,wild,level);
         write(result+"\n");
-        write("为节约系统资源，在30秒内只能进行搜索一次。\n");
+        write("為節約系統資源，在30秒內只能進行搜索一次。\n");
         return 1;
 }
 
@@ -85,12 +85,12 @@ int do_grep(string path,string wild,int level)
 {
         //int i;string *fs;
         string sbuffer,file;
-        reset_eval_cost();//重新设置剩余执行时间，必须设置！
+        reset_eval_cost();//重新設置剩餘執行時間，必須設置！
         if( query("env/debug", this_player()) )
-                write("开始搜索"+path+wild+"\n");
+                write("開始搜索"+path+wild+"\n");
         if(level<0)
         {
-                //write("级别限制，不能再进入搜索。\n");
+                //write("級別限制，不能再進入搜索。\n");
                 return 0;
         }
         //for(i=0;i<(sizeof(fs=get_dir(path+wild))-1);i++)
@@ -98,7 +98,7 @@ int do_grep(string path,string wild,int level)
         
         foreach(file in get_dir(path+wild))
         {
-                //write("检查："+path+file+"\n");
+                //write("檢查："+path+file+"\n");
                 //write("file_size返回："+file_size(path+file)+"\n");
                 if(file=="."||file=="..")
                         continue;
@@ -106,22 +106,22 @@ int do_grep(string path,string wild,int level)
                 switch(file_size(path+file))
                 {
                         case -1:
-                                //无法读取该目录，跳过
+                                //無法讀取該目錄，跳過
                                 break;
                         case -2:
                                 if(file!="."&&file!="..")
                                         do_grep(path+file+"/","*",level-1);
                                 break;
                         default:
-                                //write("检查文件："+path+file+"\n");
+                                //write("檢查文件："+path+file+"\n");
                                 if(!sbuffer=read_file(path+file))
-                                //对太大的文件读取可能要失败！而且不能试图读取二进制文件，因为含有\0!
+                                //對太大的文件讀取可能要失敗！而且不能試圖讀取二進制文件，因為含有\0!
                                 {
-                                        write("读文件"+path+file+"出错！\n");
+                                        write("讀文件"+path+file+"出錯！\n");
                                         return 0;
                                 }
                                 if(strsrch(sbuffer,pattern)!=-1)
-                                        result=result+file + "\n";//应该是记录下来，最后再输出 
+                                        result=result+file + "\n";//應該是記錄下來，最後再輸出 
                         /*
                                 if(strsrch(read_file(path+file),pattern)!=-1)
                                         write(path+file+"\n");
@@ -136,17 +136,17 @@ int do_grep(string path,string wild,int level)
 int help()
 {
         write(@HELP
-指令格式：grep <help/news/all> 查找内容
+指令格式：grep <help/news/all> 查找內容
 
-该指令功能相当强大，用于在相应地方或全局搜索指定查找的内容。
+該指令功能相當強大，用於在相應地方或全局搜索指定查找的內容。
 
 help:   在所有help文件中搜索。
-news:   在所有的新闻中搜索。
-all:    在所有help文件和新闻中搜索。
+news:   在所有的新聞中搜索。
+all:    在所有help文件和新聞中搜索。
 ex:
-        grep help 华山派
+        grep help 華山派
 ps:
-        在所有的help文件中查找包含字符串“华山派”的相关文件。
+        在所有的help文件中查找包含字符串“華山派”的相關文件。
 
 HELP
     );

@@ -17,10 +17,10 @@ int main(object me, string arg)
                 return 0;
 
         if( !arg )
-                return notify_fail("setskill <某人> <技能>/all <级别数>。\n");
+                return notify_fail("setskill <某人> <技能>/all <級別數>。\n");
 
         if( !arg || sscanf(arg, "%s %s %d", obj, skill, level)!=3 )
-                return notify_fail("setskill <某人> <技能>/all <级别数>。\n");
+                return notify_fail("setskill <某人> <技能>/all <級別數>。\n");
 
         ob = find_player(obj);
 
@@ -29,14 +29,14 @@ int main(object me, string arg)
         if( !ob )
                 ob = present(obj, environment(me));
         if( !ob )
-                return notify_fail("找不到这个生物.\n");
+                return notify_fail("找不到這個生物.\n");
 
         if( (wiz_level(me) < wiz_level(ob)) && userp(ob) )
-                return notify_fail("你没有设置" + ob->name() + "技能的权利。\n");
+                return notify_fail("你沒有設置" + ob->name() + "技能的權利。\n");
 
 /*
         if( level == 0 && wizardp(ob) )
-                return notify_fail("不能用此命令将巫师的功夫删除。\n");
+                return notify_fail("不能用此命令將巫師的功夫刪除。\n");
 */
 
         if (! me->is_admin())
@@ -48,38 +48,38 @@ int main(object me, string arg)
 
                 case "self":
                         if (ob != me)
-                                return notify_fail("你只能使用该命令呼叫自身的函数。\n");
+                                return notify_fail("你只能使用該命令呼叫自身的函數。\n");
                         break;
 
                 case "npc":
                         if (playerp(ob) || ! ob->is_character())
-                                return notify_fail("你只能呼叫 NPC 的函数。\n");
+                                return notify_fail("你只能呼叫 NPC 的函數。\n");
                         break;
 
                 case "user":
                         if (! playerp(ob))
-                                return notify_fail("你只能对玩家使用这个命令。\n");
+                                return notify_fail("你只能對玩家使用這個命令。\n");
                         break;
 
                 case "nonechar":
                         if (ob->is_character())
-                                return notify_fail("你只能对非角色对象使用这个命令。\n");
+                                return notify_fail("你只能對非角色對象使用這個命令。\n");
                         break;
 
                 case "wizard":
                         if (! wizardp(ob))
-                                return notify_fail("你只能对巫师使用这个命令。\n");
+                                return notify_fail("你只能對巫師使用這個命令。\n");
                         break;
 
                 default:
-                        return notify_fail("你不能使用该命令。\n");
+                        return notify_fail("你不能使用該命令。\n");
                 }
         }
 
         write(WHT"begin setting skills for "NOR + ob->short(1) + WHT"：\n"NOR);
         if( skill == "all" ) {
                 if ( !(skill_status = ob->query_skills()) || !sizeof(skill_status) )
-                        return notify_fail("这个人没有学会任何技能，不能用 all 这个参数。\n");
+                        return notify_fail("這個人沒有學會任何技能，不能用 all 這個參數。\n");
                 skills  = keys(skill_status);
                 j = sizeof(skill_status);
                 for(i=0; i<j; i++) {
@@ -117,12 +117,12 @@ int main(object me, string arg)
 int help()
 {
         write(@LONG
-指令格式：setskill  <某人> <技能>/all <级别数>。
+指令格式：setskill  <某人> <技能>/all <級別數>。
 
-用来设定某人的某种技能的级别数, 如果第二项是 all 则将其所有的
-技能改为设定的级别数。如果选择了级别数为 0 则删除该人此项技能。
+用來設定某人的某種技能的級別數, 如果第二項是 all 則將其所有的
+技能改為設定的級別數。如果選擇了級別數為 0 則刪除該人此項技能。
 
-警告：请慎用此命令。
+警告：請慎用此命令。
 LONG    );
         return 1;
 }

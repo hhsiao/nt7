@@ -9,8 +9,8 @@ void create()
     else {
             set("unit", "本");
             set("material", "paper");
-            set("long", "一本很厚的书，上面大大的写着武功秘笈四个大字。\n");
+            set("long", "一本很厚的書，上面大大的寫著武功秘笈四個大字。\n");
           }
-    set("owner", "陈有德");
+    set("owner", "陳有德");
     setup();
 }

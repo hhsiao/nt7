@@ -1,4 +1,4 @@
-// hanbing-zhenqi.c 寒冰真气
+// hanbing-zhenqi.c 寒冰真氣
 // Last Modified by Lonely on Jul. 20 2001
 
 #include <ansi.h>;
@@ -29,31 +29,31 @@ int valid_enable(string usage) { return usage == "force"; }
 int valid_learn(object me)
 {
         if( query("character", me) == "光明磊落" )
-                return notify_fail("你心中暗想：我行事光明磊落，学这阴毒的"
+                return notify_fail("你心中暗想：我行事光明磊落，學這陰毒的"
                                    "武功做甚。\n");
 
-        if( query("gender", me) == "无性"
+        if( query("gender", me) == "無性"
            && (int)me->query_skill("hanbing-zhenqi", 1) > 19)
-                return notify_fail("你无根无性，阴阳不调，难以锻炼寒冰真气。\n");
+                return notify_fail("你無根無性，陰陽不調，難以鍛鍊寒冰真氣。\n");
 
         if( query("con", me)<34 )
-                return notify_fail("你先天根骨不够，无法修炼寒冰真气！\n");
+                return notify_fail("你先天根骨不夠，無法修煉寒冰真氣！\n");
 
         if (me->query_skill("force", 1) < 100)
-                return notify_fail("你的基本内功火候不够，难以锻炼寒冰真气。\n");
+                return notify_fail("你的基本內功火候不夠，難以鍛鍊寒冰真氣。\n");
 
         if( query("max_neili", me)<1000 )
-                return notify_fail("你目前的内力修为不够，难以锻炼寒冰真气。\n");
+                return notify_fail("你目前的內力修為不夠，難以鍛鍊寒冰真氣。\n");
 
         if (me->query_skill("force", 1) < me->query_skill("hanbing-zhenqi", 1))
-                return notify_fail("你的基本内功水平不够，难以锻炼更深厚的寒冰真气。\n");
+                return notify_fail("你的基本內功水平不夠，難以鍛鍊更深厚的寒冰真氣。\n");
 
         return ::valid_learn(me);
 }
 
 int practice_skill(object me)
 {
-        return notify_fail("寒冰真气只能用学(learn)的来增加熟练度。\n");
+        return notify_fail("寒冰真氣只能用學(learn)的來增加熟練度。\n");
 }
 
 mixed hit_ob(object me, object victim, int damage_bonus, int factor)
@@ -88,13 +88,13 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
 
                         return random(2) ? ([ "damage" : result,
                                               "msg"    : HIW "$n" HIW "接下$N" HIW "一招，霎"
-                                                         "时只感到寒风袭体，说不出的恶心难受"
+                                                         "時只感到寒風襲體，說不出的噁心難受"
                                                          "。\n" NOR ]):
 
                                            ([ "damage" : result,
-                                              "msg"    : HIW "只见$n" HIW "全身一颤，嘴皮乌"
-                                                         "紫，竟似受了$N" HIW "寒冰内劲的干"
-                                                         "扰。\n" NOR ]);
+                                              "msg"    : HIW "只見$n" HIW "全身一顫，嘴皮烏"
+                                                         "紫，竟似受了$N" HIW "寒冰內勁的幹"
+                                                         "擾。\n" NOR ]);
                 }
         }
         return result;
@@ -106,14 +106,14 @@ string exert_function_file(string func)
 }
 int help(object me)
 {
-        write(HIM"\n寒冰真气："NOR"\n");
+        write(HIM"\n寒冰真氣："NOR"\n");
         write(@HELP
 
-    嵩山派本门内功。
+    嵩山派本門內功。
 
-        学习要求：
-                基本内功10级
-                相应的正气
+        學習要求：
+                基本內功10級
+                相應的正氣
 HELP
         );
         return 1;

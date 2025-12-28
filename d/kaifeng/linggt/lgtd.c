@@ -4,10 +4,10 @@
 
 #define CHANL_NAME "news"
 
-//#define TIME_INTERVAL 86400     //闯关的间隔秒数，开放后建议=86400，一天一次，不然玩家太疲倦
-#define CAN_DIE 6                       //可以持续闯关的次数，开放后建议=4，会员+1，白金+2
-#define REQUIRE_LEVEL 10        //入塔的最低等级要求
-#define UP_PRICE 60                             //vip塔要扣60nt手续，300天也就18000nt
+//#define TIME_INTERVAL 86400     //闖關的間隔秒數，開放後建議=86400，一天一次，不然玩家太疲倦
+#define CAN_DIE 6                       //可以持續闖關的次數，開放後建議=4，會員+1，白金+2
+#define REQUIRE_LEVEL 10        //入塔的最低等級要求
+#define UP_PRICE 60                             //vip塔要扣60nt手續，300天也就18000nt
 
 inherit ROOM;
 
@@ -17,8 +17,8 @@ string look_pai(object me);
 
 int do_restart()
 {
-        set("lgt/entertime", time()/86400);//用途等于uid
-        set("lgt/timesign", "更新于：" + ctime(time()) + "\n");
+        set("lgt/entertime", time()/86400);//用途等於uid
+        set("lgt/timesign", "更新於：" + ctime(time()) + "\n");
         return 1;
 }
 
@@ -27,10 +27,10 @@ int do_stop()
         object me = this_player();
         if (query("lgt/stop")) {
                 delete("lgt/stop");
-                tell_object(me,YEL + "维修完毕，开放使用！\n" + NOR); 
+                tell_object(me,YEL + "維修完畢，開放使用！\n" + NOR); 
         } else {
                 set("lgt/stop", 1);
-                tell_object(me,YEL + "开始维修，暂停使用！\n" + NOR); 
+                tell_object(me,YEL + "開始維修，暫停使用！\n" + NOR); 
         }
         return 1;
 }
@@ -39,19 +39,19 @@ void set_can_up()
 {
         do_restart();
         CHANNEL_D->channel_broadcast(CHANL_NAME, 
-                HIG + "开封城的上空突然风起云涌，一座高耸入云的"+HIY+"铁塔"+HIG+"轰隆隆地摇晃起来，当地百姓一片哗然...\n" + NOR);
+                HIG + "開封城的上空突然風起雲湧，一座高聳入雲的"+HIY+"鐵塔"+HIG+"轟隆隆地搖晃起來，當地百姓一片譁然...\n" + NOR);
         //call_out("set_can_up", TIME_INTERVAL);
 }
 
 void create()
 {
-        set("short", "灵感塔底");
+        set("short", "靈感塔底");
         set("long",
-"这里是灵感塔底，进入后顿显另有玄机，完全不像是只有十三层高的\n"
-"样子。少林寺别院的十三高僧坚守在此看押塔上的无数邪道高手。另有几\n"
-"个少年人聚集在旁边的一个角落里，大呼小叫地生着篝火，烧烤着黑狗肉\n"
-"并喝酒，搞得塔内浓烟滚滚，却全然没有在意旁人感受。\n"
-"    通往上层的楼梯边贴着一个"+CYN+"牌子"+NOR+"。\n"
+"這裡是靈感塔底，進入後頓顯另有玄機，完全不像是隻有十三層高的\n"
+"樣子。少林寺別院的十三高僧堅守在此看押塔上的無數邪道高手。另有幾\n"
+"個少年人聚集在旁邊的一個角落裡，大呼小叫地生著篝火，燒烤著黑狗肉\n"
+"並喝酒，搞得塔內濃煙滾滾，卻全然沒有在意旁人感受。\n"
+"    通往上層的樓梯邊貼著一個"+CYN+"牌子"+NOR+"。\n"
 );
 
         set("exits", ([
@@ -80,7 +80,7 @@ void create()
                 set("no_magic", 1); 
                 set("no_clean_up", 1);
                 set("no_fight", "1"); 
-                do_restart();//缺少这个时间会导致新人进不去。
+                do_restart();//缺少這個時間會導致新人進不去。
                 
         setup();
         //set_can_up();
@@ -125,11 +125,11 @@ int pay_gold(object me)
         
         ia  =  query("lgt/owner");
         if (! mapp(ia) || ! sizeof(ia)){
-                addn("balance", -10000 * 10000, me);//只扣除杨小邪押金
+                addn("balance", -10000 * 10000, me);//只扣除楊小邪押金
                 return 10000;
         }
         
-        addn("balance", -10000 * 10000, me);//扣除杨小邪押金
+        addn("balance", -10000 * 10000, me);//扣除楊小邪押金
         t = 10000;
         
         ks = keys(ia);
@@ -140,8 +140,8 @@ int pay_gold(object me)
                         if (target != me) {
                                 i2 = to_int(ks[i]) * 10;
                                 addn("balance", -i2 * 10000, me);//扣除
-                                tell_object(target, HIG + "杨小邪偷偷告诉你道：" + query("name", me) + HIG + "挑战失败，照规矩向你转账" + chinese_number(i2) + "两黄金！\n" + NOR);    
-                                addn("balance", i2 * 10000, target);//转入
+                                tell_object(target, HIG + "楊小邪偷偷告訴你道：" + query("name", me) + HIG + "挑戰失敗，照規矩向你轉賬" + chinese_number(i2) + "兩黃金！\n" + NOR);    
+                                addn("balance", i2 * 10000, target);//轉入
                                 t += i2;
                         }
                 }
@@ -160,38 +160,38 @@ int valid_leave(object me, string dir)
                 if (!playerp(me)) return -1;
 
                 if (query("lgt/stop")) {
-                        message_vision(CYN + "杨小邪拦住$N道：灵感塔正在维修 ... \n" NOR, me);
+                        message_vision(CYN + "楊小邪攔住$N道：靈感塔正在維修 ... \n" NOR, me);
                         return -1; 
                 }
 
-                message_vision(YEL + "$N鬼鬼祟祟地张望少林众僧和通吃帮众人，看样子是想溜上塔去。\n" NOR, me);
+                message_vision(YEL + "$N鬼鬼祟祟地張望少林眾僧和通吃幫眾人，看樣子是想溜上塔去。\n" NOR, me);
                 me->start_busy(2+random(2));
                 
                 if( query("level", me) < REQUIRE_LEVEL) {
-                        tell_object(me,CYN + "小丁急匆匆地跑过来拦住你说道：" + RANK_D->query_respect(me)  + CYN + "请三思，你等级不足"+chinese_number(REQUIRE_LEVEL)+"级，上去恐怕遭遇不测啊！\n" + NOR); 
-                        message_vision(CYN + "阿三(a san)对著$N，笑得在地上打滚，满脸“真是扯蛋，想出名也不是这样心急的吧？”的样子 ... \n" NOR, me);
+                        tell_object(me,CYN + "小丁急匆匆地跑過來攔住你說道：" + RANK_D->query_respect(me)  + CYN + "請三思，你等級不足"+chinese_number(REQUIRE_LEVEL)+"級，上去恐怕遭遇不測啊！\n" + NOR); 
+                        message_vision(CYN + "阿三(a san)對著$N，笑得在地上打滾，滿臉“真是扯蛋，想出名也不是這樣心急的吧？”的樣子 ... \n" NOR, me);
                         return -1; 
                 }
                 
-                // 增加vip9的特权，by Lonely
+                // 增加vip9的特權，by Lonely
                 if ( query("lgt/entertime") == query("lgt/entertime", me) && (me->query_viplevel() < 9 ||
                      query("lgt/entertime") == query("lgt/entertime2", me)) ){
-                        tell_object(me,NOR"本日闯关你已经试过了，明天中午十二点后请早。\n"NOR); 
+                        tell_object(me,NOR"本日闖關你已經試過了，明天中午十二點後請早。\n"NOR); 
                         return -1; 
                 }
         if( me->query_condition("killer") ) {
-                tell_object(me, NOR"你正在被通缉，无法进入灵感塔！\n"NOR);
+                tell_object(me, NOR"你正在被通緝，無法進入靈感塔！\n"NOR);
                 return -1;
         }
         if( me->in_team() ) {
-           tell_object(me, "你不能组队进入灵感塔试炼！\n");
+           tell_object(me, "你不能組隊進入靈感塔試煉！\n");
            return -1;
         }
 
-            if ( objectp(query_temp("is_riding", me)) ) return notify_fail("你骑着马没法上灵感塔去！\n");
+            if ( objectp(query_temp("is_riding", me)) ) return notify_fail("你騎著馬沒法上靈感塔去！\n");
 
                 if (query("balance", me) < total_gold() * 10000) {
-                        tell_object(me, ( (random(2)) ? CYN"阿三挡在你前面，呲牙咧嘴地对你说道：就这么想上去了？问过通吃小霸王没有？？\n"NOR : CYN"阿四挡在你前面，歪瓜裂枣地对你笑道：阁下身家几何呀？是否婚配？看和尚我如何？？\n"NOR) ); 
+                        tell_object(me, ( (random(2)) ? CYN"阿三擋在你前面，呲牙咧嘴地對你說道：就這麼想上去了？問過通吃小霸王沒有？？\n"NOR : CYN"阿四擋在你前面，歪瓜裂棗地對你笑道：閣下身家幾何呀？是否婚配？看和尚我如何？？\n"NOR) ); 
                         me->start_busy(3);
                         return -1; 
                 }
@@ -203,7 +203,7 @@ int valid_leave(object me, string dir)
                 if( sizeof(inv) > 0 ) {
                     foreach( object ob3 in inv ) {
                                 if( playerp(ob3) ) {
-                                    tell_object(me,NOR"你再等等吧，现在"+query("name",ob3)+NOR+"正在"+HIC+query("short",ob)+NOR+"全力闯关中！\n"NOR); 
+                                    tell_object(me,NOR"你再等等吧，現在"+query("name",ob3)+NOR+"正在"+HIC+query("short",ob)+NOR+"全力闖關中！\n"NOR); 
                                     me->start_busy(3);
                                     return -1;
                                 }
@@ -221,7 +221,7 @@ int valid_leave(object me, string dir)
                 if( sizeof(inv) > 0 ) {
                     foreach( object ob3 in inv ) {
                                 if( playerp(ob3) ) {
-                                    tell_object(me,NOR"你再等等吧，现在"+query("name",ob3)+NOR+"正在"+HIC+query("short",ob)+NOR+"全力闯关中！\n"NOR); 
+                                    tell_object(me,NOR"你再等等吧，現在"+query("name",ob3)+NOR+"正在"+HIC+query("short",ob)+NOR+"全力闖關中！\n"NOR); 
                                     me->start_busy(3);
                                     return -1;
                                 }
@@ -239,7 +239,7 @@ int valid_leave(object me, string dir)
                 if( sizeof(inv) > 0 ) {
                     foreach( object ob3 in inv ) {
                                 if( playerp(ob3) ) {
-                                    tell_object(me,NOR"你再等等吧，现在"+query("name",ob3)+NOR+"正在"+HIC+query("short",ob)+NOR+"全力闯关中！\n"NOR); 
+                                    tell_object(me,NOR"你再等等吧，現在"+query("name",ob3)+NOR+"正在"+HIC+query("short",ob)+NOR+"全力闖關中！\n"NOR); 
                                     me->start_busy(3);
                                     return -1;
                                 }
@@ -257,7 +257,7 @@ int valid_leave(object me, string dir)
                 if( sizeof(inv) > 0 ) {
                     foreach( object ob3 in inv ) {
                                 if( playerp(ob3) ) {
-                                    tell_object(me,NOR"你再等等吧，现在"+query("name",ob3)+NOR+"正在"+HIC+query("short",ob)+NOR+"全力闯关中！\n"NOR); 
+                                    tell_object(me,NOR"你再等等吧，現在"+query("name",ob3)+NOR+"正在"+HIC+query("short",ob)+NOR+"全力闖關中！\n"NOR); 
                                     me->start_busy(3);
                                     return -1;
                                 }
@@ -275,7 +275,7 @@ int valid_leave(object me, string dir)
                 if( sizeof(inv) > 0 ) {
                     foreach( object ob3 in inv ) {
                                 if( playerp(ob3) ) {
-                                    tell_object(me,NOR"你再等等吧，现在"+query("name",ob3)+NOR+"正在"+HIC+query("short",ob)+NOR+"全力闯关中！\n"NOR); 
+                                    tell_object(me,NOR"你再等等吧，現在"+query("name",ob3)+NOR+"正在"+HIC+query("short",ob)+NOR+"全力闖關中！\n"NOR); 
                                     me->start_busy(3);
                                     return -1;
                                 }
@@ -285,14 +285,14 @@ int valid_leave(object me, string dir)
                 
                 if (!query_temp("lgt/wantup", me)) {
                                                         set_temp("lgt/wantup", 1, me);
-                                    tell_object(me,NOR"提示：你如果想通往up方向的塔，需要被扣除"+(string)UP_PRICE+"点泥潭币的VIP服务费。确定的话，请再次up。\n"NOR); 
+                                    tell_object(me,NOR"提示：你如果想通往up方向的塔，需要被扣除"+(string)UP_PRICE+"點泥潭幣的VIP服務費。確定的話，請再次up。\n"NOR); 
                                     me->start_busy(1);
                                     return -1;
                 }
                 
                         amount = MEMBER_D->db_query_member(me, "money"); 
                 if( amount < UP_PRICE){ 
-                     write(NOR + "你账户上没有那么多泥潭币！\n" + NOR);  
+                     write(NOR + "你賬戶上沒有那麼多泥潭幣！\n" + NOR);  
                      return -1; 
                 } 
                         //amount -= UP_PRICE; 
@@ -304,25 +304,25 @@ int valid_leave(object me, string dir)
                 load_object(__DIR__"lgtxxu.c")->create();
                         }                
 
-                delete_temp("lgt", me);//防止玩家没有quit过
-                if( query("lgt/entertime", me) == query("lgt/entertime") ) // 增加vip9特权，by Lonely
+                delete_temp("lgt", me);//防止玩家沒有quit過
+                if( query("lgt/entertime", me) == query("lgt/entertime") ) // 增加vip9特權，by Lonely
                         set("lgt/entertime2", query("lgt/entertime"), me);
                 set("lgt/entertime", query("lgt/entertime"), me);
                 set("lgt/can_die", CAN_DIE + ((dir == "up") ? 3 : 0), me);
                 set("lgt/texp", 0, me);
                 
 
-                message_vision(YEL + "杨小邪嘿嘿一笑，悄悄塞给$N"+chinese_number(CAN_DIE + ((dir == "up") ? 3 : 0))+"张灵符。$N一溜烟跑上楼梯去了。\n" NOR, me);
+                message_vision(YEL + "楊小邪嘿嘿一笑，悄悄塞給$N"+chinese_number(CAN_DIE + ((dir == "up") ? 3 : 0))+"張靈符。$N一溜煙跑上樓梯去了。\n" NOR, me);
                 
                 
         }
         
-// //防止从塔上昏迷下来的玩家被背走到up或out去暗害
+// //防止從塔上昏迷下來的玩家被揹走到up或out去暗害
 //         inv = deep_inventory(me);
 //         if( sizeof(inv) > 0 ) {
 //                 foreach( object ob2 in inv ) {
 //                         if( interactive(ob2) || userp(ob2) ) {
-//                                 tell_object(me, NOR"你不能在大众面前将其他玩家背来背去的。\n"NOR);
+//                                 tell_object(me, NOR"你不能在大眾面前將其他玩家背來背去的。\n"NOR);
 //                                 return -1;
 //                         }
 //                 }
@@ -351,13 +351,13 @@ string look_pai(object me)
         int j;
         string msgsn = "\n";
         
-        if ( time() - query("lgt/lookpai", me) < 10 ) return YEL"十三少林棍僧对你齐声一喝，你赶紧低头不敢再看，后背冷汗如雨...\n"NOR; 
+        if ( time() - query("lgt/lookpai", me) < 10 ) return YEL"十三少林棍僧對你齊聲一喝，你趕緊低頭不敢再看，後背冷汗如雨...\n"NOR; 
         set("lgt/lookpai", time(), me);
         j = sizeof(query("lgt/owner"));
         if (j % 2 == 0) msgsn = "";
         return 
 HIC + "※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※\n" + NOR +
-((!query("msg_hero")) ? "目前暂时还没有人登上灵感塔并功成身退！\n" : query("msg_hero") ) + NOR + msgsn + 
+((!query("msg_hero")) ? "目前暫時還沒有人登上靈感塔並功成身退！\n" : query("msg_hero") ) + NOR + msgsn + 
 HIC + "※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※\n" + NOR + query("lgt/timesign") + NOR
 ;
 }

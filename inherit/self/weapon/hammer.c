@@ -1,6 +1,6 @@
-// hammer.c (双手锤)
+// hammer.c (雙手錘)
 // 自造物品 (by Find.)
-// 没有安全问题但太麻烦
+// 沒有安全問題但太麻煩
 
 #include <mine_def.h>
 #include <weapon.h>
@@ -112,12 +112,12 @@ protected void create(class weapon_args arg)
 
         else
         {
-                set_name("大铁锤", ({ "hammer" }) );
+                set_name("大鐵錘", ({ "hammer" }) );
                 set_weight(12000);
-                set("long", "这是一把沈重的铁锤，打造的相当坚实。\n");
+                set("long", "這是一把沈重的鐵錘，打造的相當堅實。\n");
                 set("value", 400);
                 set("material", "iron");
-                set("wield_msg", "$N拿出一把$n，试了试重量，然后握在手中。\n");
+                set("wield_msg", "$N拿出一把$n，試了試重量，然後握在手中。\n");
                 set("unwield_msg", "$N放下手中的$n。\n");
                 init_hammer(30);
         }

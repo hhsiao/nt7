@@ -7,7 +7,7 @@ void create()
 {
 	set("short", "石壁半空");
 	set("long", 
-HIW"你轻身提气，在石壁半空小心翼翼的攀爬着。\n"NOR
+HIW"你輕身提氣，在石壁半空小心翼翼的攀爬著。\n"NOR
 );
 	setup();
 }
@@ -29,7 +29,7 @@ int do_action(string arg)
 	       case "l" :
 	       case "dazuo" : 
                case "practice":
-               write(HIW"你轻身提气，在石壁半空小心翼翼的攀爬着。\n\n"NOR);
+               write(HIW"你輕身提氣，在石壁半空小心翼翼的攀爬著。\n\n"NOR);
                        return 1;
        }
        return 0;

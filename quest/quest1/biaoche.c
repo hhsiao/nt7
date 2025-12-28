@@ -8,23 +8,23 @@ inherit ITEM;
 mapping default_dirs = ([
         "north"     : "北面",
         "south"     : "南面",
-        "east"      : "东面",
+        "east"      : "東面",
         "west"      : "西面",
-        "northup"   : "北边",
-        "southup"   : "南边",
-        "eastup"    : "东边",
-        "westup"    : "西边",
-        "northdown" : "北边",
-        "southdown" : "南边",
-        "eastdown"  : "东边",
-        "westdown"  : "西边",
-        "northeast" : "东北",
+        "northup"   : "北邊",
+        "southup"   : "南邊",
+        "eastup"    : "東邊",
+        "westup"    : "西邊",
+        "northdown" : "北邊",
+        "southdown" : "南邊",
+        "eastdown"  : "東邊",
+        "westdown"  : "西邊",
+        "northeast" : "東北",
         "northwest" : "西北",
-        "southeast" : "东南",
+        "southeast" : "東南",
         "southwest" : "西南",
         "up"        : "上面",
         "down"      : "下面",
-        "enter"     : "里面",
+        "enter"     : "裡面",
         "out"       : "外面",
 ]);
 
@@ -37,13 +37,13 @@ int can_drive_by(object me)
 void create()
 {       
         seteuid(getuid());
-        set_name(HIW "镖车" NOR, ({ "biao che", "cart", "che" }));
+        set_name(HIW "鏢車" NOR, ({ "biao che", "cart", "che" }));
         set_weight(300000);
         set("no_get", 1);
-        set("unit", "辆");
+        set("unit", "輛");
         set("value", 0);
         set("long", 
-                HIW "一辆福威镖局的镖车，一干镖头正准备赶车(drive)起程呢。" NOR); 
+                HIW "一輛福威鏢局的鏢車，一干鏢頭正準備趕車(drive)起程呢。" NOR); 
         set("no_clean_up",1);
         setup();
         call_out("destroy1", 1, this_object());
@@ -69,14 +69,14 @@ int destroy2(object ob)
         if (objectp(ob))
         {
                 /*
-                message("channel:rumor", MAG "【镖局传闻】由于" + query("owner_name") +
-                        "护送的镖车未能如期抵达，福威镖局已派人前去接管镖车！\n" NOR, users());
+                message("channel:rumor", MAG "【鏢局傳聞】由於" + query("owner_name") +
+                        "護送的鏢車未能如期抵達，福威鏢局已派人前去接管鏢車！\n" NOR, users());
                 */
                 tell_object(all_inventory(environment(ob)),
-                            HIW "忽然，远远走来一群人，原来是总镖头派人前来了，为首的镖师\n" +
-                            "边走嘴里还边骂道：“他奶奶的！等了这么久也还没到，总镖头\n" +
-                            "还以为让人给劫了，害老子白跑一趟！”说完，一干人等拉起镖\n" +
-                            "车，扬长而去！\n" NOR);
+                            HIW "忽然，遠遠走來一群人，原來是總鏢頭派人前來了，為首的鏢師\n" +
+                            "邊走嘴裡還邊罵道：“他奶奶的！等了這麼久也還沒到，總鏢頭\n" +
+                            "還以為讓人給劫了，害老子白跑一趟！”說完，一干人等拉起鏢\n" +
+                            "車，揚長而去！\n" NOR);
 
                 remove_call_out("destroy1");
                 remove_call_out("destroy2");
@@ -105,17 +105,17 @@ int do_gan(string arg)
         me = this_player();
         ob = this_object();
 
-        if (! arg) return notify_fail("你要赶什么？\n");
+        if (! arg) return notify_fail("你要趕什麼？\n");
 
         if( query("id", me) != query("owner", ob) )
-                return notify_fail("你赶的不是自己的镖车吧？\n"); 
+                return notify_fail("你趕的不是自己的鏢車吧？\n"); 
 
         if (sscanf(arg, "%s to %s", item, dir) != 2 
         ||  item != "biao che" && item != "che")
-                return notify_fail("指令：gan 镖车 to 方向 \n");        
+                return notify_fail("指令：gan 鏢車 to 方向 \n");        
                         
         if (me->is_busy())
-                return notify_fail("你现在正忙着哩。\n");
+                return notify_fail("你現在正忙著哩。\n");
 
         flag = 0;
         killer = all_inventory(environment(me));
@@ -127,34 +127,34 @@ int do_gan(string arg)
         }
 
         if (flag)   
-                return notify_fail(CYN "你还是先把眼前的敌人解决了再说吧！\n" NOR);
+                return notify_fail(CYN "你還是先把眼前的敵人解決了再說吧！\n" NOR);
         
         env = environment(me);
-        if (! env) return notify_fail("你要去那里？\n");
+        if (! env) return notify_fail("你要去那裡？\n");
 
         if( !mapp(exit=query("exits", env)) || undefinedp(exit[dir]) )
-                return notify_fail("这个方向过不去。\n");
+                return notify_fail("這個方向過不去。\n");
         
         dest = exit[dir];
 
         if (! (obj = find_object(dest)))
                 call_other(dest, "???");
         if (! (obj = find_object(dest)))
-                return notify_fail("那里好象过不去。\n");
+                return notify_fail("那裡好象過不去。\n");
 
         if (! undefinedp(default_dirs[dir]))
                 target = default_dirs[dir];
         else
                 target=query("short", obj);
 
-        message_vision(HIG "$N赶着镖车往" + target + "驶去。\n" NOR, me);  
+        message_vision(HIG "$N趕著鏢車往" + target + "駛去。\n" NOR, me);  
         
         if( file_name(obj) != query("file", ob) )
         {
                 if (ob->move(obj) && me->move(obj)) 
                 {
                         all_inventory(env)->follow_me(me, dir);
-                        message_vision(HIG "$N赶着镖车驶了过来。\n" NOR, me);
+                        message_vision(HIG "$N趕著鏢車駛了過來。\n" NOR, me);
                         lvl = me->query_skill("driving"); 
                         if (random(lvl + 100) < 50) 
                         me->start_busy(random(2) + 2);
@@ -185,8 +185,8 @@ int do_gan(string arg)
                 reward_score = reward_exp / 40;
 
 /*
-                message("channel:rumor",HIM"【镖局】"+query("name", me)+
-                        "运送的镖车历经千辛万苦，终于顺利抵达！\n" NOR,
+                message("channel:rumor",HIM"【鏢局】"+query("name", me)+
+                        "運送的鏢車歷經千辛萬苦，終於順利抵達！\n" NOR,
                         users());
 */
                 
@@ -195,12 +195,12 @@ int do_gan(string arg)
                 addn("potential", reward_pot, me);
                 addn("score", reward_score, me);
                 
-                tell_object(me, HIW "在此次运镖中你获得了" +
-                            CHINESE_D->chinese_number(reward_exp) + "点实战经验、" +
-                            CHINESE_D->chinese_number(reward_pot) + "点潜能及\n" +
-                            CHINESE_D->chinese_number(reward_score) + "点综合评价奖励！\n" NOR);
+                tell_object(me, HIW "在此次運鏢中你獲得了" +
+                            CHINESE_D->chinese_number(reward_exp) + "點實戰經驗、" +
+                            CHINESE_D->chinese_number(reward_pot) + "點潛能及\n" +
+                            CHINESE_D->chinese_number(reward_score) + "點綜合評價獎勵！\n" NOR);
                 */
-                GIFT_D->delay_bonus(me, ([ "prompt" : "在此次运镖中",
+                GIFT_D->delay_bonus(me, ([ "prompt" : "在此次運鏢中",
                                            "exp"    : reward_exp,
                                            "pot"    : reward_pot,
                                            "mar"    : reward_exp/10,
@@ -238,8 +238,8 @@ int destroy1(object ob)
                 }
 
 /*
-                message("channel:rumor", HIB "【镖局】" + query("owner_name") +
-                        HIB"护送的镖车在半路让人给劫了！\n" NOR, users());
+                message("channel:rumor", HIB "【鏢局】" + query("owner_name") +
+                        HIB"護送的鏢車在半路讓人給劫了！\n" NOR, users());
 */
                 remove_call_out("destroy1");
                 remove_call_out("destroy2");

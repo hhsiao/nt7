@@ -4,13 +4,13 @@ void do_chan();
 void do_dot();
 void create()
 {
-        string *names = ({"紫斑王蛇","绿环王蛇","黑冠王蛇"});
+        string *names = ({"紫斑王蛇","綠環王蛇","黑冠王蛇"});
         set_name( names[random(sizeof(names))], ({ "snake king","snake"}));
         set("vendetta_mark","snake");
-        set("race", "野兽");
+        set("race", "野獸");
         set("gender", "雄性");
         set("age", 60);
-        set("long", "这是一条王蛇。\n");
+        set("long", "這是一條王蛇。\n");
 
         set("str", 80);
         set("cor", 100);
@@ -27,7 +27,7 @@ void create()
         set("chat_msg_combat", ({
                 (: do_dot() :),
         }) );
-        set("limbs", ({ "头部", "身体", "尾巴", "七寸" }) );
+        set("limbs", ({ "頭部", "身體", "尾巴", "七寸" }) );
         set("verbs", ({ "bite" }) );
         set("combat_exp", 400000);
         set("bellicosity", 5 );
@@ -49,7 +49,7 @@ void do_chan() {
                 enemy = enemies[random(sizeof(enemies))];
         if (!this_object()->is_fighting(enemy) )
                 return;
-                msg = HIG"\n$N箭射一般扑上来，缠住了$n！\n"NOR;
+                msg = HIG"\n$N箭射一般撲上來，纏住了$n！\n"NOR;
                 message_combatd(msg,this_object(),enemy);
                 enemy->start_busy(3);
                 start_busy(1);
@@ -65,8 +65,8 @@ void do_dot() {
                 enemy = enemies[random(sizeof(enemies))];
         if (!this_object()->is_fighting(enemy) )
                 return;
-                msg = HIG"\n$N喷出一口毒雾，将$n罩住！\n"NOR;
-                //msg+= HIR"$n中了剧毒！\n"NOR;
+                msg = HIG"\n$N噴出一口毒霧，將$n罩住！\n"NOR;
+                //msg+= HIR"$n中了劇毒！\n"NOR;
                 message_combatd(msg,this_object(),enemy);
                 call_out("take_eff",1, enemy);
                 //enemy->add_dot(500,4,"qi",this_object());
@@ -79,7 +79,7 @@ void take_eff(object enemy,object me) {
                 enemy->receive_damage("qi",50+random(50),me);
                 enemy->receive_damage("jing",20+random(20),me);
 
-                message_combatd(RED"\n$N身上的剧毒发作了！\n"NOR,enemy);
+                message_combatd(RED"\n$N身上的劇毒發作了！\n"NOR,enemy);
                 COMBAT_D->report_status(enemy);
 
 }

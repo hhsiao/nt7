@@ -16,9 +16,9 @@ string *names = ({
 
 void create()
 {
-        set("short", "厨房");
+        set("short", "廚房");
 	set ("long", @LONG
-此处便是游戏基地的厨房，只间几个仆人忙来忙去，不得歇息。
+此處便是遊戲基地的廚房，只間幾個僕人忙來忙去，不得歇息。
 LONG );
 
         set("exits", ([
@@ -40,8 +40,8 @@ LONG );
         setup();
 
         set("room_owner", "多炮塔");
-        set("room_name", "游戏基地");
+        set("room_name", "遊戲基地");
         set("room_id", "gamebase");
         set("room_owner_id", "dpt");
-        set("room_position", "南海之滨");
+        set("room_position", "南海之濱");
 }

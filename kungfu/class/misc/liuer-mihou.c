@@ -5,26 +5,26 @@
 #define MAX_POINT     300
 #define MEMBER_D      "/adm/daemons/memberd"
 
-// X小时后更新
+// X小時後更新
 #define UPDATE_TIME          3 * 3600
-// 出现地点
+// 出現地點
 #define UPDATE_PLACE         "/d/penglai/fanchendao"
 // BOSS文件
 #define BOSS_FILE            "/kungfu/class/misc/liuer-mihou"
 
-// 经验过高后无任何奖励
+// 經驗過高後無任何獎勵
 #define MAX_EXP              10000000
 
 inherit NPC;
 
 void create()
 {
-        set_name(HIC "六耳猕猴" NOR, ({ "liuer mihou", "liuer", "mihou" }));
-        set("long", HIC "这是一只相貌奇特的猕猴，已经修炼成人形，有六耳，看起来不容易对付。\n" NOR);
+        set_name(HIC "六耳獼猴" NOR, ({ "liuer mihou", "liuer", "mihou" }));
+        set("long", HIC "這是一隻相貌奇特的獼猴，已經修煉成人形，有六耳，看起來不容易對付。\n" NOR);
 
         set("gender", "男性");
         set("age", 1200);
-        set("nickname", HIR "已修炼成人的" NOR);
+        set("nickname", HIR "已修煉成人的" NOR);
         set("shen_type", 0);
         set("attitude", "peaceful");
 
@@ -132,7 +132,7 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 {
 	ob->start_busy(5 + random(6));
 	me->receive_wound("qi", 900 + random(900), ob);
-        return HIY "$N" HIY "大喝一声，拼死反抗，竟逼得$n" HIY "手忙脚乱。\n" NOR;
+        return HIY "$N" HIY "大喝一聲，拼死反抗，竟逼得$n" HIY "手忙腳亂。\n" NOR;
 }
 
 void heart_beat()
@@ -157,21 +157,21 @@ void unconcious()
 
 void die(object killer)
 {
-        object dob;             // 打晕这个NPC的人
-        int n;                  // 可以奖励的人的数目
-        int exp;                // 需要瓜分的经验
-        int pot;                // 需要瓜分的潜能
+        object dob;             // 打暈這個NPC的人
+        int n;                  // 可以獎勵的人的數目
+        int exp;                // 需要瓜分的經驗
+        int pot;                // 需要瓜分的潛能
         int weiwang;            // 需要瓜分的威望
-        int gongxian;           // 贡献
-        int tihui;              // 体会
-        int score;              // 需要瓜分的阅历
-        object *t;              // 杀死我的人的队伍列表
+        int gongxian;           // 貢獻
+        int tihui;              // 體會
+        int score;              // 需要瓜分的閱歷
+        object *t;              // 殺死我的人的隊伍列表
         object tob;
         int ysg;
         int i;
 
-        // 定义奖励物品列表
-	// 几率  MAX_POINT 分之 X
+        // 定義獎勵物品列表
+	// 幾率  MAX_POINT 分之 X
 	mixed oblist = ([
 			"/clone/money/gold"                     :        	200,
 			"/clone/money/yuanbao"                  :        	100,			
@@ -192,7 +192,7 @@ void die(object killer)
 			return;
 		}
 */
-                // 找到杀了我(NPC)或是打晕我的人
+                // 找到殺了我(NPC)或是打暈我的人
                 if (! objectp(dob = killer))
                 dob = query_last_damage_from();
 
@@ -242,8 +242,8 @@ void die(object killer)
 								([ "exp"      : exp + ((tob == dob) ? 3000 : 0),
 								   "pot"      : pot + ((tob == dob) ? 3000 : 0),
 								   "mar"      : tihui + ((tob == dob) ? 1000 : 0),
-								   "gongxian" : tob->query("family/family_name") == "昆仑派" ? gongxian : 0,
-								   "prompt"   : "你的队伍打败" + name() + "之后"]), 999);
+								   "gongxian" : tob->query("family/family_name") == "崑崙派" ? gongxian : 0,
+								   "prompt"   : "你的隊伍打敗" + name() + "之後"]), 999);
 	
 					}
 				}
@@ -254,12 +254,12 @@ void die(object killer)
 					GIFT_D->delay_bonus(dob,
 						 ([ "exp"      : exp,
 					    	    "pot"      : pot,
-					    	    "prompt"   : "你在打败" + name() + "之后"]), 999);
+					    	    "prompt"   : "你在打敗" + name() + "之後"]), 999);
 			}
 	
 	        }
 		
-	        // 一定几率掉物品在杀我的人身上dob
+	        // 一定幾率掉物品在殺我的人身上dob
 		if (objectp(dob) && environment(dob) == environment(this_object()) && 
 		    dob->query("combat_exp") < MAX_EXP)
 		{
@@ -267,20 +267,20 @@ void die(object killer)
 			s_gift = key_s_gift[random(sizeof(key_s_gift))];
 			gift_point = oblist[s_gift];
 
-			// 判断几率
+			// 判斷幾率
 			if (MEMBER_D->is_valib_member(dob->query("id")) 
 			    && random(MAX_POINT / ITEM_D->gift_point()) < gift_point)
 			{
-				// 获得物品--爆出物品直接放在dob身上
+				// 獲得物品--爆出物品直接放在dob身上
 				gift_ob = new(s_gift);
 				if (objectp(gift_ob))
 				{
-					message_vision(HIR "叮~~一声，从$N" HIR "掉出一样东西，$n" HIR 
-						       "赶紧拣了起来。\n" NOR, this_object(), dob);
+					message_vision(HIR "叮~~一聲，從$N" HIR "掉出一樣東西，$n" HIR 
+						       "趕緊揀了起來。\n" NOR, this_object(), dob);
 					tell_object(dob, BLINK + HIG "你得到了" + gift_ob->name() + BLINK + HIG "。\n" NOR);
 					gift_ob->move(dob, 1);
 				}
-				else // 纪录之 
+				else // 紀錄之 
 				{
 					log_file("killed-gift-none", s_gift + "\n");
 				}
@@ -291,27 +291,27 @@ void die(object killer)
 	        if (1)
 	        {
 	        	command("chat* sigh");
-	        	command("chat 看来，我还是应该再回到南山中修炼一千年再说...");			
+	        	command("chat 看來，我還是應該再回到南山中修煉一千年再說...");			
 		}/*
 		else
 		{
-			message_vision(HIG "猛然间，$N " HIG " 向后一跳，随手仍出一颗黑色小丸，顿时腾起一片烟雾 ...\n" NOR, 
+			message_vision(HIG "猛然間，$N " HIG " 向後一跳，隨手仍出一顆黑色小丸，頓時騰起一片煙霧 ...\n" NOR, 
 			               this_object());
-			command("chat 哼，雕虫小技，不陪你们玩了，告辞！");
-			CHANNEL_D->do_channel(this_object(), "rumor", "听说" + name() + HIM "从古墓中盗得珍宝后，夺路而逃。" NOR);
+			command("chat 哼，雕蟲小技，不陪你們玩了，告辭！");
+			CHANNEL_D->do_channel(this_object(), "rumor", "聽說" + name() + HIM "從古墓中盜得珍寶後，奪路而逃。" NOR);
 		}
 */
-		// 设置更新
+		// 設置更新
 		//MAP_D->update_boss(BOSS_FILE,UPDATE_PLACE,UPDATE_TIME);
 
-		// 1/500几率掉出无名铜人
+		// 1/500幾率掉出無名銅人
 		if (random(500) < 1)
 		{
 			object ob_tongren;
 			ob_tongren = new("/clone/tongren/tongren1");			
-			message_vision(HIR "当~~一声，从$N" HIR "身上掉出" + ob_tongren->name() + HIR "，落在地上。\n" NOR, this_object());
+			message_vision(HIR "當~~一聲，從$N" HIR "身上掉出" + ob_tongren->name() + HIR "，落在地上。\n" NOR, this_object());
 			ob_tongren->set("who_get/id", "NONE");
-			ob_tongren->set("who_get/time", time() + 30); // 30秒内都不能捡取		
+			ob_tongren->set("who_get/time", time() + 30); // 30秒內都不能撿取		
 			ob_tongren->move(environment(this_object()));
 		}
 

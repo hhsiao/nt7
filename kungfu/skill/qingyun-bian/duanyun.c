@@ -13,19 +13,19 @@ int perform(object me, object target)
         if( !target ) target = offensive_target(me);
 
         if( userp(me) && !query("can_perform/qingyun-bian/duanyun", me) )
-                return notify_fail("你所使用的外功中没有这样的功能。\n");
+                return notify_fail("你所使用的外功中沒有這樣的功能。\n");
         
         if( !target
         ||      !target->is_character()
         ||      !me->is_fighting(target) )
-                return notify_fail("[断云决]只能对战斗中的对手使用。\n");
+                return notify_fail("[斷雲決]只能對戰鬥中的對手使用。\n");
 
 
         if( me->query_skill("force") < 100 )
-        return notify_fail("你的基本内功火候未到，无法施展断云决！\n");
+        return notify_fail("你的基本內功火候未到，無法施展斷雲決！\n");
 
         if( me->query_skill("whip") < 80 )
-        return notify_fail("断云决需要精湛的青云鞭法方能有效施展！\n");
+        return notify_fail("斷雲決需要精湛的青雲鞭法方能有效施展！\n");
 
         // for a 800K player, frce/2 = 150, shen/3K = 300, power = 300
         // for players > 1.2M, power will hit max
@@ -39,11 +39,11 @@ int perform(object me, object target)
         if(power>480)power=480;
 
         if( query("neili", me) <= 200 )
-                return notify_fail("你的内力不够使用断云决！\n");
+                return notify_fail("你的內力不夠使用斷雲決！\n");
 
-        message_vision(HIW "$N运足内力，猛地一扬"NOR + "$n" + 
-                       HIW "卷起无边风云遮月掩日，一股"NOR + 
-                       HIM "罡风" NOR + HIW "随著漫天鞭影扑天盖地的向敌人袭来。\n" 
+        message_vision(HIW "$N運足內力，猛地一揚"NOR + "$n" + 
+                       HIW "捲起無邊風雲遮月掩日，一股"NOR + 
+                       HIM "罡風" NOR + HIW "隨著漫天鞭影撲天蓋地的向敵人襲來。\n" 
                          NOR,me,query_temp("weapon", me));
 
         addn_temp("apply/attack", power/10, me);
@@ -57,7 +57,7 @@ int perform(object me, object target)
         if( random(10)>5)COMBAT_D->do_attack(me,target,query_temp("weapon", me));
         if( random(10)>8)COMBAT_D->do_attack(me,target,query_temp("weapon", me));
         
-        me->start_perform(1 + random(2),"[断云决]");
+        me->start_perform(1 + random(2),"[斷雲決]");
         
         addn_temp("apply/attack", -power/10, me);
         addn_temp("apply/damage", -power/10, me);

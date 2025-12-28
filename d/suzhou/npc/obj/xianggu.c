@@ -10,7 +10,7 @@ void create()
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "一碟香喷喷的清炒香菇。\n");
+                set("long", "一碟香噴噴的清炒香菇。\n");
                 set("unit", "碟");
                 set("value", 120);
                 set("food_remaining", 10);

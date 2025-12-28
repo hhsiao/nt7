@@ -14,20 +14,20 @@ int main(object me, string arg)
         if (me != this_player())
                 return 0;
 
-        if (! arg) return notify_fail("指令格式 :cat <档案名>\n");
+        if (! arg) return notify_fail("指令格式 :cat <檔案名>\n");
         file = resolve_path(query("cwd", me), arg);
         if (file_size(file) < 0)
-                return notify_fail("没有这个档案。\n");
+                return notify_fail("沒有這個檔案。\n");
 
         if (! SECURITY_D->valid_read(file, me, "cat"))
-                return notify_fail("没有这个档案。\n");
+                return notify_fail("沒有這個檔案。\n");
 
         if (file_size(file) > 128000)
-                write("文件太长，请用 more 指令查看。\n");
+                write("文件太長，請用 more 指令查看。\n");
         else   {
-                write(WHT "开始阅读文件：" +  file + "\n" NOR);
+                write(WHT "開始閱讀文件：" +  file + "\n" NOR);
                 me->start_more(read_file(file));
-                write(WHT "阅读文件完毕。\n" NOR);
+                write(WHT "閱讀文件完畢。\n" NOR);
                 return 1;
         }
 }
@@ -35,9 +35,9 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@HELP
-指令格式 :cat <档案名>
+指令格式 :cat <檔案名>
 
-这个指令让你可以查阅一个文件的内容。
+這個指令讓你可以查閱一個文件的內容。
 
 see also: more
 HELP );

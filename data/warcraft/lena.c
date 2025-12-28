@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("傅立叶[2;37;0m[2;37;0m", ({"fft"}));        
+        set_name("傅立葉[2;37;0m[2;37;0m", ({"fft"}));        
         set("gender", "女性");                
-        set("long", "一只朱雀[2;37;0m
-它是莉娜的魔幻兽。
+        set("long", "一隻朱雀[2;37;0m
+它是莉娜的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

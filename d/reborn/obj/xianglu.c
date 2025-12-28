@@ -6,7 +6,7 @@ inherit ITEM;
 
 void create()
 {
-        set_name(YEL "青铜鼎香炉" NOR, ({ "xiang lu"}) );
+        set_name(YEL "青銅鼎香爐" NOR, ({ "xiang lu"}) );
         set_weight(500);
         set_max_encumbrance(800000);
         set("no_get", 1);
@@ -15,7 +15,7 @@ void create()
         else*/ {
                 set("prep", "in");
                 set("unit", "只");
-                set("long", HIR "一只青铜鼎香炉，烧香祭祀用的，常年香火不灭。\n" NOR);
+                set("long", HIR "一隻青銅鼎香爐，燒香祭祀用的，常年香火不滅。\n" NOR);
                 set("value", 1);
         }
 }

@@ -6,10 +6,10 @@ void create()
 {
         set("short", "北大街");
         set("long", @LONG
-这里一条北大街横贯东西。望向北边，是出城的北门。号称 "天
-下幽" 的青城山，就是从这里出去。这里地当当道，行人却都过往匆
-匆，小心翼翼，恨不得销声匿迹。因为南边一幢古色古香的建筑，就
-是让天下武林闻风色变的川中唐门。
+這裡一條北大街橫貫東西。望向北邊，是出城的北門。號稱 "天
+下幽" 的青城山，就是從這裡出去。這裡地當當道，行人卻都過往匆
+匆，小心翼翼，恨不得銷聲匿跡。因為南邊一幢古色古香的建築，就
+是讓天下武林聞風色變的川中唐門。
 LONG );
         set("outdoors", "chengdu");
         set("exits", ([
@@ -31,6 +31,6 @@ int valid_leave(object me, string dir)
 {
         me = this_player();
         if (dir == "south")
-        return notify_fail("你一抬足，发现地上有毒，忙抽腿退回。\n");
+        return notify_fail("你一抬足，發現地上有毒，忙抽腿退回。\n");
         else  return 1;
 }

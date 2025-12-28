@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// murongfu.c 慕容复
+// murongfu.c 慕容復
 
 #include <ansi.h>
 #include "murong.h"
@@ -14,13 +14,13 @@ string ask_dan1();
 
 void create()
 {
-        set_name("慕容复", ({ "murong fu", "murong", "fu" }));
+        set_name("慕容復", ({ "murong fu", "murong", "fu" }));
         set("long", @LONG
-他是姑苏慕容的传人，是慕容博之子，所谓南慕容、北乔峰。
-此人正是和乔峰齐名的慕容家高手。他容貌俊雅，风度过人，
-的确非寻常人可比。
+他是姑蘇慕容的傳人，是慕容博之子，所謂南慕容、北喬峰。
+此人正是和喬峰齊名的慕容家高手。他容貌俊雅，風度過人，
+的確非尋常人可比。
 LONG );
-        set("titile", "姑苏慕容");
+        set("titile", "姑蘇慕容");
         set("gender", "男性");
         set("age", 25);
         set("shen_type",-1);
@@ -73,22 +73,22 @@ LONG );
 
         set("inquiry",
         ([
-                "name"       : "我就是以彼之道，还施彼身的姑苏慕容复。\n",
-                "here"       : "这里是大名鼎鼎的燕子坞，难道你没有听说过？\n",
-                "rumors"     : "家父突染恶疾，我连他老人家最后一面都没见到，此事顶有蹊跷！\n",
-                "姑妈"       : "我的姑妈住在曼佗罗山庄，那里有闻名天下的娘缳玉洞。\n",
-                "王语嫣"    : "语嫣是我表妹，我一直把她当小妹妹看待。\n",
-                "南慕容"    : "“南慕容北乔峰”，那是江湖上的朋友抬爱了！\n",
-                "慕容复"    : "那是贱名。请教尊驾是？\n",
-                "邓百川"    : "你问邓大哥啊？他在他青风庄上呢。\n",
-                "公冶乾"    : "公冶二哥把信鸽传书一编码，就没几个人读得懂了。\n",
-                "包不同"    : "包三哥最爱抬杠了，你见了他还是闭嘴的好。\n",
-                "风波恶"    : "风四哥最是豪爽了，他从不与人计较什么。\n",
-                // "还施水阁"   : (: ask_ge :),
-                // "王语嫣"     : (: ask_wang :),
-                // "归元丹"     : (: ask_dan :),
+                "name"       : "我就是以彼之道，還施彼身的姑蘇慕容復。\n",
+                "here"       : "這裡是大名鼎鼎的燕子塢，難道你沒有聽說過？\n",
+                "rumors"     : "家父突染惡疾，我連他老人家最後一面都沒見到，此事頂有蹊蹺！\n",
+                "姑媽"       : "我的姑媽住在曼佗羅山莊，那裡有聞名天下的娘繯玉洞。\n",
+                "王語嫣"    : "語嫣是我表妹，我一直把她當小妹妹看待。\n",
+                "南慕容"    : "“南慕容北喬峰”，那是江湖上的朋友抬愛了！\n",
+                "慕容復"    : "那是賤名。請教尊駕是？\n",
+                "鄧百川"    : "你問鄧大哥啊？他在他青風莊上呢。\n",
+                "公冶乾"    : "公冶二哥把信鴿傳書一編碼，就沒幾個人讀得懂了。\n",
+                "包不同"    : "包三哥最愛抬槓了，你見了他還是閉嘴的好。\n",
+                "風波惡"    : "風四哥最是豪爽了，他從不與人計較什麼。\n",
+                // "還施水閣"   : (: ask_ge :),
+                // "王語嫣"     : (: ask_wang :),
+                // "歸元丹"     : (: ask_dan :),
                 "玉露清新散" : (: ask_dan1 :),
-                // "武学修养"   : (: ask_learn :),
+                // "武學修養"   : (: ask_learn :),
         ]));
 
         set("chat_chance_combat", 120);
@@ -99,7 +99,7 @@ LONG );
                 (: perform_action, "cuff.zhai" :),
         }));
 
-        create_family("慕容世家", 16, "传人");
+        create_family("慕容世家", 16, "傳人");
 
         set("coagents", ({
                 ([ "startroom" : "/d/yanziwu/canheju",
@@ -120,14 +120,14 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)>0 )
         {
-                command("say 我慕容世家向来不和你们这些所谓正道人士交往。");
-                command("say 你还是请回吧！");
+                command("say 我慕容世家向來不和你們這些所謂正道人士交往。");
+                command("say 你還是請回吧！");
                 return;
         }
 
 
         command("nod");
-        command("say 今日我就暂且收下你，日后定须刻苦练武，光复大燕。");
+        command("say 今日我就暫且收下你，日後定須刻苦練武，光復大燕。");
         command("recruit "+query("id", ob));
 }
 
@@ -135,9 +135,9 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "历练" :
-        case "历炼" :
-        case "锻炼" :
+        case "歷練" :
+        case "歷煉" :
+        case "鍛鍊" :
                 return QUEST_D->accept_ask(this_object(), me, topic);
                 break;
 
@@ -151,20 +151,20 @@ int accept_ask(object me, string topic)
                            "shen"    : -4000, ]));
                 break;
 
-        case "剑转七星" :
+        case "劍轉七星" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/murong-jianfa/xing",
-                           "name"    : "剑转七星",
+                           "name"    : "劍轉七星",
                            "sk1"     : "murong-jianfa",
                            "lv1"     :  40,
                            "gongxian":  200,
                            "shen"    : -6000, ]));
                 break;
 
-        case "白虹贯日" :
+        case "白虹貫日" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/murong-jianfa/hong",
-                           "name"    : "白虹贯日",
+                           "name"    : "白虹貫日",
                            "sk1"     : "murong-jianfa",
                            "lv1"     : 80,
                            "force"   : 90,
@@ -172,20 +172,20 @@ int accept_ask(object me, string topic)
                            "shen"    : -9000, ]));
                 break;
 
-        case "日月同辉" :
+        case "日月同輝" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/xingyi-zhang/riyue",
-                           "name"    : "日月同辉",
+                           "name"    : "日月同輝",
                            "sk1"     : "xingyi-zhang",
                            "lv1"     :  40,
                            "gongxian":  200,
                            "shen"    : -6000, ]));
                 break;
 
-        case "星光点点" :
+        case "星光點點" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/xingyi-zhang/xing",
-                           "name"    : "星光点点",
+                           "name"    : "星光點點",
                            "sk1"     : "xingyi-zhang",
                            "lv1"     : 80,
                            "force"   : 90,
@@ -222,13 +222,13 @@ string ask_dan1()
         mapping fam;
         object ob;
 
-        if( !(fam=query("family", this_player())) || fam["family_name"] != "姑苏慕容" )
+        if( !(fam=query("family", this_player())) || fam["family_name"] != "姑蘇慕容" )
                 return RANK_D->query_respect(this_player()) +
-                "与本派素无来往，不知此话从何谈起？";
+                "與本派素無來往，不知此話從何談起？";
         if (query("san_count") < 1)
-                return "你来晚了，本派的玉露清新散不在此处。";
+                return "你來晚了，本派的玉露清新散不在此處。";
         addn("san_count", -1);
         ob = new("/clone/medicine/nostrum/yulusan");
         ob->move(this_player());
-        return "好吧，这玉露清新散你拿去吧。";
+        return "好吧，這玉露清新散你拿去吧。";
 }

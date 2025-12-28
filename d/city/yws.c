@@ -5,11 +5,11 @@ inherit ROOM;
 
 void create()
 {
-	set("short", "医务室");
+	set("short", "醫務室");
         set("long", @LONG
-这里是擂台旁边的医务室，专门用来抢救因比武后重伤的江湖人
-士。医务室的左边放着一个大药柜，里面有各式各样的药品，在右边
-是一张休息用的床，是用来给受伤的休息之用。
+這裡是擂臺旁邊的醫務室，專門用來搶救因比武后重傷的江湖人
+士。醫務室的左邊放著一個大藥櫃，裡面有各式各樣的藥品，在右邊
+是一張休息用的床，是用來給受傷的休息之用。
 LONG );
 	set("sleep_room", "1");
 	set("exits", ([ /* sizeof() == 1 */
@@ -26,11 +26,11 @@ void init()
 }
 int do_get()
 {
-        write(query("name", this_player())+"！！那么多手多脚做什么！！\n");
+        write(query("name", this_player())+"！！那麼多手多腳做什麼！！\n");
         return 1;
 }
 int do_drop()
 {
-        write(query("name", this_player())+"！！别乱丢东西！！\n");
+        write(query("name", this_player())+"！！別亂丟東西！！\n");
         return 1;
 }

@@ -3,52 +3,52 @@
 #include <room.h>
 inherit NPC;
 mapping *first_name=({
-([      "name":"孙",      "id":"sun"    ]),
-([      "name":"吴",      "id":"wu"     ]),
-([      "name":"独孤",    "id":"dugu"   ]),
-([      "name":"赖",      "id":"lai"    ]),
+([      "name":"孫",      "id":"sun"    ]),
+([      "name":"吳",      "id":"wu"     ]),
+([      "name":"獨孤",    "id":"dugu"   ]),
+([      "name":"賴",      "id":"lai"    ]),
 ([      "name":"林",      "id":"lin"    ]),
-([      "name":"赵",      "id":"zhao"   ]),
+([      "name":"趙",      "id":"zhao"   ]),
 ([      "name":"任",      "id":"ren"    ]),
-([      "name":"钱",      "id":"qian"   ]),
+([      "name":"錢",      "id":"qian"   ]),
 ([      "name":"李",      "id":"li"     ]),
-([      "name":"张",      "id":"zhang"  ]),
+([      "name":"張",      "id":"zhang"  ]),
 ([      "name":"臧",      "id":"zang"   ]),
 ([      "name":"徐",      "id":"xu"     ]),
-([      "name":"杨",      "id":"yang"   ]),
+([      "name":"楊",      "id":"yang"   ]),
 ([      "name":"邱",      "id":"qiu"    ]),
 ([      "name":"舒",      "id":"shu"    ]),
-([      "name":"叶",      "id":"ye"     ]),
-([      "name":"刘",      "id":"liu"    ]),
+([      "name":"葉",      "id":"ye"     ]),
+([      "name":"劉",      "id":"liu"    ]),
 ([      "name":"周",      "id":"zhou"   ]),
-([      "name":"杨",      "id":"yang"   ]),
+([      "name":"楊",      "id":"yang"   ]),
 ([      "name":"王",      "id":"wang"   ]),
 ([      "name":"梁",      "id":"liang"  ]),
-([      "name":"黄",      "id":"huang"  ]),
+([      "name":"黃",      "id":"huang"  ]),
 ([      "name":"林",      "id":"lin"    ]),
-([      "name":"陈",      "id":"chen"   ]),
-([      "name":"谢",      "id":"xie"    ]),
-([      "name":"鲁",      "id":"lu"     ]),
+([      "name":"陳",      "id":"chen"   ]),
+([      "name":"謝",      "id":"xie"    ]),
+([      "name":"魯",      "id":"lu"     ]),
 ([      "name":"何",      "id":"he"     ]),
 ([      "name":"曾",      "id":"zeng"   ]),
 ([      "name":"郭",      "id":"guo"    ]),
 ([      "name":"成",      "id":"cheng"  ]),
-([      "name":"南宫",    "id":"nangong"  ]),
-([      "name":"欧阳",    "id":"ouyang"   ]),
-([      "name":"长孙",    "id":"zhangsun" ]),
+([      "name":"南宮",    "id":"nangong"  ]),
+([      "name":"歐陽",    "id":"ouyang"   ]),
+([      "name":"長孫",    "id":"zhangsun" ]),
 ([      "name":"慕容",    "id":"murong"   ]),
-([      "name":"西门",    "id":"ximen"    ]),
-([      "name":"公孙",    "id":"gongsun"  ]),
+([      "name":"西門",    "id":"ximen"    ]),
+([      "name":"公孫",    "id":"gongsun"  ]),
 ([      "name":"端木",    "id":"duanmu"  ]),
 });
 
 mapping *second_name=({
 ([      "name":"",      "id":""      ]),
-([      "name":"风",    "id":"feng"  ]),
+([      "name":"風",    "id":"feng"  ]),
 ([      "name":"德",    "id":"de"    ]),
-([      "name":"晓",    "id":"xiao"  ]),
+([      "name":"曉",    "id":"xiao"  ]),
 ([      "name":"富",    "id":"fu"    ]),
-([      "name":"达",    "id":"da"    ]),
+([      "name":"達",    "id":"da"    ]),
 ([      "name":"默",    "id":"mo"    ]),
 ([      "name":"玄",    "id":"xuan"  ]),
 ([      "name":"海",    "id":"hai"   ]),
@@ -58,42 +58,42 @@ mapping *second_name=({
 ([      "name":"",      "id":""      ]),
 ([      "name":"通",    "id":"tong"  ]),
 ([      "name":"耘",    "id":"yun"   ]),
-([      "name":"奋",    "id":"fen"   ]),
+([      "name":"奮",    "id":"fen"   ]),
 ([      "name":"宏",    "id":"hong"  ]),
-([      "name":"荣",    "id":"rong"  ]),
-([      "name":"鹏",    "id":"peng"  ]),
-([      "name":"冲",    "id":"chong" ]),
-([      "name":"灏",    "id":"hao"   ]),
+([      "name":"榮",    "id":"rong"  ]),
+([      "name":"鵬",    "id":"peng"  ]),
+([      "name":"衝",    "id":"chong" ]),
+([      "name":"灝",    "id":"hao"   ]),
 ([      "name":"思",    "id":"si"    ]),
 ([      "name":"理",    "id":"li"    ]),
-([      "name":"刚",    "id":"gang"  ]),
+([      "name":"剛",    "id":"gang"  ]),
 ([      "name":"武",    "id":"wu"    ]),
 ([      "name":"逸",    "id":"yi"    ]),
 });
           
 mapping *third_name=({
 ([      "name":"峰",    "id":"feng"  ]),
-([      "name":"华",    "id":"hua"   ]),
+([      "name":"華",    "id":"hua"   ]),
 ([      "name":"奇",    "id":"qi"    ]),
 ([      "name":"歌",    "id":"ge"    ]),
 ([      "name":"旭",    "id":"xu"    ]),
-([      "name":"发",    "id":"fa"    ]),
+([      "name":"發",    "id":"fa"    ]),
 ([      "name":"威",    "id":"wei"   ]),
-([      "name":"晖",    "id":"hui"   ]),
+([      "name":"暉",    "id":"hui"   ]),
 ([      "name":"城",    "id":"cheng" ]),
-([      "name":"轩",    "id":"xuan"  ]),
+([      "name":"軒",    "id":"xuan"  ]),
 ([      "name":"勇",    "id":"yong"  ]),
 ([      "name":"泰",    "id":"tai"   ]),
 ([      "name":"在",    "id":"zai"   ]),
 ([      "name":"君",    "id":"jun"   ]),
-([      "name":"军",    "id":"jun"   ]),
+([      "name":"軍",    "id":"jun"   ]),
 ([      "name":"凡",    "id":"fan"   ]),
-([      "name":"伟",    "id":"wei"   ]),
+([      "name":"偉",    "id":"wei"   ]),
 ([      "name":"帆",    "id":"fan"   ]),
 ([      "name":"雄",    "id":"xiong" ]),
-([      "name":"涛",    "id":"tao"   ]),
+([      "name":"濤",    "id":"tao"   ]),
 ([      "name":"波",    "id":"bo"    ]),
-([      "name":"杰",    "id":"jie"   ]),
+([      "name":"傑",    "id":"jie"   ]),
 ([      "name":"郎",    "id":"lang"  ]),
 });                                     
 
@@ -101,15 +101,15 @@ mapping *third_name=({
 
 
 string *degree_desc=({
-       HIC "裨将" NOR,
-       HIY "佐将" NOR,
-       HIY "副将" NOR,
-       HIR "将军" NOR,
+       HIC "裨將" NOR,
+       HIY "佐將" NOR,
+       HIY "副將" NOR,
+       HIR "將軍" NOR,
        HIR "提督" NOR,
-       HIR "总督" NOR,
+       HIR "總督" NOR,
        MAG "兵部侍郎" NOR,
-       MAG "兵部尚书" NOR,
-       HIB "镇北节度使" NOR,
+       MAG "兵部尚書" NOR,
+       HIB "鎮北節度使" NOR,
 });                            
 
 
@@ -146,7 +146,7 @@ void create()
         set("dex", 160);
         set("con", 160);
 
-        set("long", "这是一名大宋将军，正威风凛凛地巡视着自己的队伍。\n");
+        set("long", "這是一名大宋將軍，正威風凜凜地巡視著自己的隊伍。\n");
 
         set("int", 30);
         set("str", 30+random(20));
@@ -278,8 +278,8 @@ void change_ob()
 
 void die()
 {
-        message_vision("$N率领的宋军将士寡不敌众，不幸"
-        +HIR"全军覆没"NOR"！\n",this_object());
+        message_vision("$N率領的宋軍將士寡不敵眾，不幸"
+        +HIR"全軍覆沒"NOR"！\n",this_object());
         destruct(this_object());
         return;
 }
@@ -316,9 +316,9 @@ void check_me(object me)
           if( !obb->is_character() ) continue; 
           if(obb->query_temp("zuji/party") == "qidan" )
           {
-            message_vision(HIC"$N大声下令道：骑兵准备！一排排骑兵列出整齐"
-            +"的方阵，\n阳光下的大宋军刀闪闪发光——突击！！"
-            +"$N一声令下，\n万马齐鸣，大宋骑兵开始了可怕的冲锋！！\n"NOR,me);  
+            message_vision(HIC"$N大聲下令道：騎兵準備！一排排騎兵列出整齊"
+            +"的方陣，\n陽光下的大宋軍刀閃閃發光——突擊！！"
+            +"$N一聲令下，\n萬馬齊鳴，大宋騎兵開始了可怕的衝鋒！！\n"NOR,me);  
 
             me->set_temp("zuji_quest/attack",1);
             me->set_temp("zuji_quest/attacking",1);
@@ -356,8 +356,8 @@ void check_me(object me)
              if( !obb->is_character() ) continue;
           if(obb->query_temp("zuji/party") == "qidan" )
              {
-               message_vision(HIC"$N大声下令道：弓箭手准备！一排排利箭在阳"
-               +"光下闪闪发光——射击！！\n$N一声令下，万弩齐发！\n"NOR,me);  
+               message_vision(HIC"$N大聲下令道：弓箭手準備！一排排利箭在陽"
+               +"光下閃閃發光——射擊！！\n$N一聲令下，萬弩齊發！\n"NOR,me);  
                me->set_temp("zuji_quest/attack",1);
                me->set_temp("zuji_quest/attacking",1);
 
@@ -412,8 +412,8 @@ void attack_begin(object me,object target,object room,object env,string dir)
           else
           if( room == env && objectp(target) )
           {
-           message_vision(HIC"$N指挥的大宋铁骑，万马奔腾，"
-                  +"如狂风骤雨般朝$n发起了冲击！！\n"NOR,me,target);  
+           message_vision(HIC"$N指揮的大宋鐵騎，萬馬奔騰，"
+                  +"如狂風驟雨般朝$n發起了衝擊！！\n"NOR,me,target);  
            COMBAT_D->do_attack(me, target, me->query_temp("weapon"), 0); 
           } else break;
        }
@@ -424,8 +424,8 @@ void attack_over(object me)
 {
       if( objectp(me) )
       {
-        message_vision(HIB"$N手中军刀一挥，大宋骑兵攻势一缓，重新"
-        +"开始列阵，准备发起新一轮的冲击！！\n"NOR,me); 
+        message_vision(HIB"$N手中軍刀一揮，大宋騎兵攻勢一緩，重新"
+        +"開始列陣，準備發起新一輪的衝擊！！\n"NOR,me); 
         me->delete_temp("zuji_quest/attack");
       }
       return;

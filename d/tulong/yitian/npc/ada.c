@@ -5,13 +5,13 @@ inherit NPC;
 void create()
 {
         set_name("阿大", ({ "a da", "a", "da" }));
-        set("long", "八臂神剑方东白是丐帮四大长老之首，剑术\n"
-                    "之精，名动江湖，只因他出剑奇快，有如生\n"
-                    "了七八条手臂一般，因此上得了这个外号。\n"
-                    "十多年前听说他身染重病身亡，当时人人都\n"
-                    "感惋惜，不觉他竟尚在人世。\n");
-        set("title", "丐帮四大长老之首");
-        set("nickname", HIW "八臂神剑" NOR);
+        set("long", "八臂神劍方東白是丐幫四大長老之首，劍術\n"
+                    "之精，名動江湖，只因他出劍奇快，有如生\n"
+                    "了七八條手臂一般，因此上得了這個外號。\n"
+                    "十多年前聽說他身染重病身亡，當時人人都\n"
+                    "感惋惜，不覺他竟尚在人世。\n");
+        set("title", "丐幫四大長老之首");
+        set("nickname", HIW "八臂神劍" NOR);
         set("gender", "男性");
         set("age", 68);
         set("attitude", "peaceful");
@@ -70,25 +70,25 @@ void init()
 
 int accept_fight(object who)
 {
-        command("say 没郡主的吩咐我不会出手。");
+        command("say 沒郡主的吩咐我不會出手。");
         return 0;
 }
 
 int accept_hit(object who)
 {
-        command("say 没郡主的吩咐我不会出手。");
+        command("say 沒郡主的吩咐我不會出手。");
         return 0;
 }
 
 int accept_kill(object who)
 {
-        command("say 没郡主的吩咐我不会出手，杀了我也一样。");
-        return notify_fail("刹那间你只觉得下不了手。\n");
+        command("say 沒郡主的吩咐我不會出手，殺了我也一樣。");
+        return notify_fail("剎那間你只覺得下不了手。\n");
 }
 
 int accept_ansuan(object who)
 {
-        return notify_fail("你刚想暗算，可是只见楼上人影晃动，根本看不清楚。\n");
+        return notify_fail("你剛想暗算，可是隻見樓上人影晃動，根本看不清楚。\n");
 }
 
 int begin()
@@ -107,14 +107,14 @@ int begin()
         if( !query_temp("win_aer", me) )
         {
                 command("heng");
-                command("say 阁下是谁？为何刚才不出战，现在来趁机拣便宜。");
-                return notify_fail("看起来阿大并不想跟你较量。\n");
+                command("say 閣下是誰？為何剛才不出戰，現在來趁機揀便宜。");
+                return notify_fail("看起來阿大並不想跟你較量。\n");
         }
 
         if( !objectp(weapon=query_temp("weapon", me)) )
         {
                 command("say 我只和你比兵器功夫！");
-                return notify_fail("看起来阿大并不想跟你较量。\n");
+                return notify_fail("看起來阿大並不想跟你較量。\n");
         }
 
         if (sword)
@@ -122,30 +122,30 @@ int begin()
                 command("nod");
                 command("bow");
 
-                message_vision(CYN "突然赵敏喝道：“慢着！拿着倚天剑和$n" CYN
-                                   "斗！”\n" NOR,
+                message_vision(CYN "突然趙敏喝道：“慢著！拿著倚天劍和$n" CYN
+                                   "鬥！”\n" NOR,
                                    obj, this_player());
 
-                message_vision(CYN "阿大微微点了点头，道：“遵命！”\n\n" NOR,
+                message_vision(CYN "阿大微微點了點頭，道：“遵命！”\n\n" NOR,
                                    obj, this_player());
 
-                message_vision(CYN "阿大躬身上前，轻轻在" NOR+RED 
-                                   "红木剑架" NOR+CYN
-                                   "上一拍，那号称天下第一神兵的" NOR+WHT
-                                   "倚天剑" NOR+CYN
-                                   "顿时凌空跃起，飞如阿大手中。\n\n" NOR,
+                message_vision(CYN "阿大躬身上前，輕輕在" NOR+RED 
+                                   "紅木劍架" NOR+CYN
+                                   "上一拍，那號稱天下第一神兵的" NOR+WHT
+                                   "倚天劍" NOR+CYN
+                                   "頓時凌空躍起，飛如阿大手中。\n\n" NOR,
                                    obj, this_player());
 
-                message_vision(HIW "只听“嗖”的一声破空声响，号称天下第一神兵的倚天剑已被阿大握在手中。\n\n" NOR,
+                message_vision(HIW "只聽“嗖”的一聲破空聲響，號稱天下第一神兵的倚天劍已被阿大握在手中。\n\n" NOR,
                                    this_object(),this_player());
 
                 sword->move(this_object());
                 sword->wield();
 
-                command("say 进招了。");
+                command("say 進招了。");
 
-                message_vision(HIR "阿大仰天一声清啸，手中倚天剑寒芒顿时爆涨数倍，“刷刷刷刷”连续数剑，向$n" HIR 
-                                   "各处要害连续刺去！\n身法之快，剑法之高明，的确世所罕见。\n\n" NOR,
+                message_vision(HIR "阿大仰天一聲清嘯，手中倚天劍寒芒頓時爆漲數倍，“刷刷刷刷”連續數劍，向$n" HIR 
+                                   "各處要害連續刺去！\n身法之快，劍法之高明，的確世所罕見。\n\n" NOR,
                                    this_object(),this_player());
         }
 
@@ -165,24 +165,24 @@ void unconcious()
         if (objectp(query("anti")))
         {
                 message_vision(HIR "\n$n" HIR 
-                                   "暗自摸索阿大剑招中的破绽，手中兵器挥洒，将阿大手中的倚天剑牢牢圈住，"
-                                   "阿大顿感不妙，刚要撤剑回\n防，只觉胸口一阵冰凉，$n" HIR 
-                                   "的剑身已经贯胸而入。\n\n" NOR,
+                                   "暗自摸索阿大劍招中的破綻，手中兵器揮灑，將阿大手中的倚天劍牢牢圈住，"
+                                   "阿大頓感不妙，剛要撤劍回\n防，只覺胸口一陣冰涼，$n" HIR 
+                                   "的劍身已經貫胸而入。\n\n" NOR,
                                    this_object(),query("anti"));
 
                 message_vision(HIR "$n" HIR
-                                   "得势不饶人，紧接着连攻出数剑，将阿大全身各处筋脉尽数削断。\n\n" NOR,
+                                   "得勢不饒人，緊接著連攻出數劍，將阿大全身各處筋脈盡數削斷。\n\n" NOR,
                                    this_object(),query("anti"));
 
-                message_vision(CYN "\n赵敏一张俏脸顿时惨白，叹了口气，说道：“很好，这倚天剑你就拿去吧！”\n" NOR,
+                message_vision(CYN "\n趙敏一張俏臉頓時慘白，嘆了口氣，說道：“很好，這倚天劍你就拿去吧！”\n" NOR,
                                    this_object());
 
-                message_vision(CYN "赵敏对着$n" CYN 
-                                   "嫣然一笑，随即轻轻伸了伸腰，轻声说道：“鹿先生，鹤先生，我累了。”\n" NOR,
+                message_vision(CYN "趙敏對著$n" CYN 
+                                   "嫣然一笑，隨即輕輕伸了伸腰，輕聲說道：“鹿先生，鶴先生，我累了。”\n" NOR,
                                    this_object(), query("anti"));
 
-                message_vision(HIR "只见赵敏身后闪出两个人影，相互使了个眼神，二话不说，对着$n" HIR 
-                                   "直扑过来。”\n" NOR,
+                message_vision(HIR "只見趙敏身後閃出兩個人影，相互使了個眼神，二話不說，對著$n" HIR 
+                                   "直撲過來。”\n" NOR,
                                    this_object(), query("anti"));
 
                 delete_temp("bi", query("anti"));

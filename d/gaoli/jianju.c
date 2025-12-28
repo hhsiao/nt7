@@ -1,14 +1,14 @@
 // /d/gaoli/xuanwumen
-// Room in 高丽
+// Room in 高麗
 // rich 99/03/28
 inherit ROOM;
 void create()        
 {
-        set("short", "北城监狱");
+        set("short", "北城監獄");
         set("long", @LONG
-这里就是高丽的北城监狱了。面前是一道高墙，就是武林高手也难
-以跃过。门口站着几个官兵，正上上下下地打量着你。里面不时传来犯
-人惨叫的声音。
+這裡就是高麗的北城監獄了。面前是一道高牆，就是武林高手也難
+以躍過。門口站著幾個官兵，正上上下下地打量著你。裡面不時傳來犯
+人慘叫的聲音。
 LONG
         );
 set("outdoors", "gaoli");

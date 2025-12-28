@@ -197,7 +197,7 @@ int accept_fight(object ob)
         object me;
         me = this_object();
         check_quest(ob);
-        command("say 你给我去死吧！");
+        command("say 你給我去死吧！");
         command("yun powerup");
         command("yun shield");
         switch (me->query_skill_mapped("force"))
@@ -254,7 +254,7 @@ int accept_hit(object ob)
         object me;
         me = this_object();
         check_quest(ob);
-        command("say 你给我去死吧！");
+        command("say 你給我去死吧！");
         command("yun powerup");
         command("yun shield");
         switch (me->query_skill_mapped("force"))
@@ -311,7 +311,7 @@ int accept_kill(object ob)
         object me;
         me = this_object();
         check_quest(ob);
-        command("say 你给我去死吧！");
+        command("say 你給我去死吧！");
         command("yun powerup");
         command("yun shield");
         switch (me->query_skill_mapped("force"))
@@ -405,7 +405,7 @@ void check_quest(object ob)
                 quest=query("quest_sn", ob);
 
         if (!mapp(quest)) return;
-        if (quest["type"] == "杀" && quest["name"] == this_object()->name())
+        if (quest["type"] == "殺" && quest["name"] == this_object()->name())
                 set_from_me(ob,2);
 
         return;

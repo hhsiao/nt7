@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "树林");
+        set("short", "樹林");
         set("long", @LONG
-这里是一片茂密的树林(wood)，翠绿色的树阴遮盖着天空，偶尔
-还从林子深处传来几声不知什么野兽的嘶叫。旁边立着一张木牌(pai
+這裡是一片茂密的樹林(wood)，翠綠色的樹陰遮蓋著天空，偶爾
+還從林子深處傳來幾聲不知什麼野獸的嘶叫。旁邊立著一張木牌(pai
 )。
 LONG );
         set("outdoors", "baituo");
@@ -24,8 +24,8 @@ LONG );
                 "laohu"      : 2000,
         ]));
         set("item_desc", ([
-                "pai"  : "保护树林  适量砍伐\n",
-                "wood" :"一片可砍伐的树林。\n",
+                "pai"  : "保護樹林  適量砍伐\n",
+                "wood" :"一片可砍伐的樹林。\n",
         ]));        
          set("coor/x", -49990);
         set("coor/y", 20000);
@@ -45,21 +45,21 @@ int do_cut(string arg)
         object ob;
  
         if (! arg || arg != "wood")
-                return notify_fail("你要砍什么？\n");
+                return notify_fail("你要砍什麼？\n");
                 
         if (present("chai dao", me))
-                return notify_fail("没有柴刀怎么砍柴？\n");
+                return notify_fail("沒有柴刀怎麼砍柴？\n");
                 
         if (query_temp("times") == 0)
-                return notify_fail("请适量砍伐！\n");
+                return notify_fail("請適量砍伐！\n");
  
         if( query("qi", me)<20 )
-                return notify_fail("你的气太虚弱，不能砍柴！\n");
+                return notify_fail("你的氣太虛弱，不能砍柴！\n");
  
         ob = new("/d/baituo/obj/chai");
         ob->move(environment(me));
         addn("qi", -20, me);
         addn_temp("times", -1);
-        message_vision("$N砍了一捆柴，累得够呛。\n", me);
+        message_vision("$N砍了一捆柴，累得夠嗆。\n", me);
         return 1;
 }

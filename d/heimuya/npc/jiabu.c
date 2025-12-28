@@ -7,11 +7,11 @@ void greeting(object);
 void init();
 void create()
 {
-        set_name("贾布", ({ "jia bu", "jia", "bu"}) );
+        set_name("賈布", ({ "jia bu", "jia", "bu"}) );
         set("gender", "男性" );
         set("age", 45);
-        set("title", "日月神教青龙堂长老");
-        set("long", "他蜡黄瘦脸，两边太阳穴高高鼓起，变如藏了一枚枚核桃似的。\n");
+        set("title", "日月神教青龍堂長老");
+        set("long", "他蠟黃瘦臉，兩邊太陽穴高高鼓起，變如藏了一枚枚核桃似的。\n");
         set("attitude", "friendly");
         set("shen_type", -1);
 
@@ -43,11 +43,11 @@ void create()
         
         map_skill("parry", "taiji-dao");
         map_skill("blade", "taiji-dao");
-        create_family("日月神教",2,"弟子 青龙堂长老");
+        create_family("日月神教",2,"弟子 青龍堂長老");
 
         set("chat_chance", 2);
         set("chat_msg", ({
-                 "贾布叹道: “攘外必先安内，堂中令牌被盗若是被教主知道，我命休矣。”\n"
+                 "賈布嘆道: “攘外必先安內，堂中令牌被盜若是被教主知道，我命休矣。”\n"
         }) );
         setup();
         carry_object("/d/heimuya/npc/obj/dadao")->wield();
@@ -60,5 +60,5 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-     command("say 我这点皮毛，不敢，不敢!\n");
+     command("say 我這點皮毛，不敢，不敢!\n");
 }

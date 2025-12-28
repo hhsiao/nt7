@@ -14,7 +14,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "口");
-                set("long", "这是一具由整块白玉雕成的石棺，晶莹光洁，实是旷世难寻的珍物。\n");
+                set("long", "這是一具由整塊白玉雕成的石棺，晶瑩光潔，實是曠世難尋的珍物。\n");
                 set("value", 1000);
 //                set("material", "stone");
                 set("no_get",1);
@@ -40,14 +40,14 @@ int do_open(string arg)
         object book, book1, book2;
 
         if ( !arg && ( arg != "coffin" ) && ( arg != "guan" ) )
-                return notify_fail("什么？\n");
+                return notify_fail("什麼？\n");
 
         set_temp("th_tomb_thief", 1, me);
         
         if ( query("opened") )
-                return notify_fail("白玉石棺盖已经是开的了。\n");
+                return notify_fail("白玉石棺蓋已經是開的了。\n");
 
-        message_vision("$N运足气，双手用力去搬白玉石棺盖。\n", me);
+        message_vision("$N運足氣，雙手用力去搬白玉石棺蓋。\n", me);
         if (query("arrow_count") > 0) {
                 remove_call_out("shoot_arrow");
                 call_out("shoot_arrow", 1, me);        
@@ -58,13 +58,13 @@ int do_open(string arg)
         addn("qi", -(20+random(20)), me);
 
         if ( (int)me->query_str() < 22 ) {
-                return notify_fail("你没那么大力气搬动棺盖。\n");
+                return notify_fail("你沒那麼大力氣搬動棺蓋。\n");
         }
 
-        message_vision("$N用力搬开白玉石棺盖。\n", me);
+        message_vision("$N用力搬開白玉石棺蓋。\n", me);
         addn("tomb_thief", 1, me);
         set("opened", 1, ob);
-              set("long", "这是一具由整块白玉雕成的石棺，晶莹光洁，实是旷世难寻的珍物，棺中躺着一具骸骨。\n", ob);
+              set("long", "這是一具由整塊白玉雕成的石棺，晶瑩光潔，實是曠世難尋的珍物，棺中躺著一具骸骨。\n", ob);
         book = new("/clone/book/jiuyin3");
         if (book) book->move(ob); 
         book1 = new(__DIR__"hetu");
@@ -81,34 +81,34 @@ int shoot_arrow(object me)
 
         switch ((int)query("arrow_count")) {
         case 3:
-                message_vision(HIY"忽然间几支短箭从棺后一个机关里射出来，直射向$N的面门！\n"NOR, me);
+                message_vision(HIY"忽然間幾支短箭從棺後一個機關裡射出來，直射向$N的面門！\n"NOR, me);
                 break;
         case 2:
-                message_vision(HIY"忽然间几支短箭从棺后一个机关里射出来，直射向$N的咽喉！\n"NOR, me);
+                message_vision(HIY"忽然間幾支短箭從棺後一個機關裡射出來，直射向$N的咽喉！\n"NOR, me);
                 break;
         case 1:
-                message_vision(HIY"忽然间几支短箭从棺后一个机关里射出来，直射向$N的前胸！\n"NOR, me);
+                message_vision(HIY"忽然間幾支短箭從棺後一個機關裡射出來，直射向$N的前胸！\n"NOR, me);
                 break;
         default:
-                message_vision(HIY"忽然间几支短箭从棺后一个机关里射出来，直射向$N的面门！\n"NOR, me);
+                message_vision(HIY"忽然間幾支短箭從棺後一個機關裡射出來，直射向$N的面門！\n"NOR, me);
                 break;
         }
         addn("arrow_count", -1);
 
         if ( (int)me->query_dex() > (30+random(10))) {
-                message_vision("$N头一低，避开短箭，跳到一旁。\n", me);
+                message_vision("$N頭一低，避開短箭，跳到一旁。\n", me);
                 return 1;
         }
 
         else if ( (int)me->query_dex() > (25+random(10))) {
-                message_vision("$N欲闪身避开，却被其中一支短箭射中右肩，晕死过去。\n", me);
+                message_vision("$N欲閃身避開，卻被其中一支短箭射中右肩，暈死過去。\n", me);
                 addn("qi", -50, me);
                 me->unconcious();
                 return 1;
         }
 
         else {
-                message_vision("$N躲避不及，被短箭射个正好，倒在地上。\n", me);
+                message_vision("$N躲避不及，被短箭射個正好，倒在地上。\n", me);
                 me->receive_damage("qi", 50, "被毒箭射死了");
                 me->die();
                 return 1;
@@ -118,6 +118,6 @@ int shoot_arrow(object me)
 
 int do_put()
 {
-        write("什么？\n");
+        write("什麼？\n");
         return 1;
 }

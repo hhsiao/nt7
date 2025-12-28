@@ -5,9 +5,9 @@ void create()
 {
         set("short", "草原");
         set("long", @LONG
-这里已经渐渐接近蒙古军营了，大军行到此处，眼前陡然开阔起
-来，放眼望去，四处都是茫茫大草海，让人不由心生出一种凄凉而豪
-壮的感觉。
+這裡已經漸漸接近蒙古軍營了，大軍行到此處，眼前陡然開闊起
+來，放眼望去，四處都是茫茫大草海，讓人不由心生出一種淒涼而豪
+壯的感覺。
 LONG );
         set("outdoors", "xiangyang");
         set("no_magic",1);
@@ -31,7 +31,7 @@ void init()
         {
          me->move(__DIR__"caoyuan");
          delete_temp("yidao", me);
-         tell_object(me,YEL"一路风尘仆仆之后，蒙古大草原已经近在眼前了......\n"NOR);
+         tell_object(me,YEL"一路風塵僕僕之後，蒙古大草原已經近在眼前了......\n"NOR);
          return;
         } 
 
@@ -39,10 +39,10 @@ void init()
         {
          me->move(__DIR__"dhunya");
          delete_temp("yidao", me);
-         tell_object(me,YEL"一路风尘仆仆之后，断魂崖已经近在眼前了......\n"NOR); 
+         tell_object(me,YEL"一路風塵僕僕之後，斷魂崖已經近在眼前了......\n"NOR); 
          return;
         }
-        tell_object(me,HIG"你指挥着大军，行进在茫茫的草原上......\n"NOR);  
+        tell_object(me,HIG"你指揮著大軍，行進在茫茫的草原上......\n"NOR);  
 }
 
 int valid_leave(object me,string dir)

@@ -9,7 +9,7 @@ int do_action(string arg)
         string action = query_verb();
         object me = this_player();
         if (query("no_get") && (action=="get" || action=="uget" || action=="drop")) {
-                        tell_object(me, NOR "你不能在这里乱拿乱扔。\n" NOR);
+                        tell_object(me, NOR "你不能在這裡亂拿亂扔。\n" NOR);
                         return -1;
                 }
         return 0;
@@ -17,13 +17,13 @@ int do_action(string arg)
 
 int discmds() 
 { 
-        tell_object(this_player(), "你不能在这里毛手毛脚。\n");  
+        tell_object(this_player(), "你不能在這裡毛手毛腳。\n");  
         return 1;  
 } 
 
 int disyanjiu() 
 { 
-        tell_object(this_player(), "你不能在这里研究练习。\n");  
+        tell_object(this_player(), "你不能在這裡研究練習。\n");  
         return 1;  
 } 
 
@@ -37,7 +37,7 @@ void init()
         
         if (playerp(me))  {     
         
-        //限制人数
+        //限制人數
                         inv = all_inventory();
                         if( sizeof(inv) > 0 ) {
                 foreach( object ob2 in inv ) {
@@ -45,7 +45,7 @@ void init()
                 }
                 }
     if(query("max_carry_user") && query("max_carry_user")<countp && query("max_carry_exit")) {
-                tell_object(me, "\n你发现因为人数超载，这空间出现不稳定的状态，吓得赶紧退出。\n\n");  
+                tell_object(me, "\n你發現因為人數超載，這空間出現不穩定的狀態，嚇得趕緊退出。\n\n");  
                 me->command(query("max_carry_exit"));
                 return;         
     }

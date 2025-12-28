@@ -1,4 +1,4 @@
-// 玩家提示任务：avoid.c
+// 玩家提示任務：avoid.c
 
 #include <ansi.h>
 #include <quest.h>
@@ -6,25 +6,25 @@
 
 inherit QUEST_OB;
 
-#define ZONE            my["zone"]      // 接收对象所处的区域
+#define ZONE            my["zone"]      // 接收對象所處的區域
 
-// 任务对象创建
+// 任務對象創建
 void create()
 {
         seteuid(getuid());
         setup();
 }
 
-// 这是提示信息任务：凡是启动了这个任务，那么玩家询问的话就
-// 有可能打听到相应的消息。
+// 這是提示信息任務：凡是啟動了這個任務，那麼玩家詢問的話就
+// 有可能打聽到相應的消息。
 //
-// 其中输入参数env 则是任务相关的场景，如果定义了这个参数，
-// 那么上只有和这个场景在同一个区域的消息灵通人士才能够得知
-// 这个任务所支持的消息。
+// 其中輸入參數env 則是任務相關的場景，如果定義了這個參數，
+// 那麼上只有和這個場景在同一個區域的消息靈通人士才能夠得知
+// 這個任務所支持的消息。
 //
-// 在调用这个初始化的函数之前，调用者必须先处理好所有需要散
-// 布的消息，这通过设置/rumor这个映射对象来实现。比如需要散
-// 布“位置”这个消息，就需要设置“/rumor/位置”为位置消息。
+// 在調用這個初始化的函數之前，調用者必須先處理好所有需要散
+// 布的消息，這通過設置/rumor這個映射對象來實現。比如需要散
+// 布“位置”這個消息，就需要設置“/rumor/位置”為位置消息。
 void init_quest(string quest_name, object env)
 {
         mapping my;
@@ -32,10 +32,10 @@ void init_quest(string quest_name, object env)
 
         my = query_entire_dbase();
 
-        // 生成任务的名字
+        // 生成任務的名字
         set_name(quest_name);
 
-        // 检索场景
+        // 檢索場景
         if (objectp(env))
         {
                 zone = base_name(env);
@@ -47,23 +47,23 @@ void init_quest(string quest_name, object env)
                 zone = "/";
         ZONE = zone;
 
-        // 切换到正常状态
+        // 切換到正常狀態
         change_status(QUEST_READY);
 
-        // 设置任务最长存活时间：60分钟
+        // 設置任務最長存活時間：60分鐘
         set("live_time", 540);
 
-        // 登记谣言消息
+        // 登記謠言消息
         register_information();
 }
 
-// 任务介绍
+// 任務介紹
 string query_introduce(object knower)
 {
         return query("introduce");
 }
 
-// 登记该任务的消息
+// 登記該任務的消息
 void register_information()
 {
         mapping my = query_entire_dbase();
@@ -71,14 +71,14 @@ void register_information()
         string  key;
 
         if (! clonep() || ! mapp(my))
-                // 不是任务，所以不登记
+                // 不是任務，所以不登記
                 return;
 
         if (! mapp(rumor = query("rumor")))
-                // 没有可以散布的消息
+                // 沒有可以散佈的消息
                 return;
 
-        // 登记所有可以散布的消息
+        // 登記所有可以散佈的消息
         foreach (key in keys(rumor))
         {
                 if (! stringp(key))
@@ -88,7 +88,7 @@ void register_information()
         }
 }
 
-// 这个任务可以被某人散布吗？
+// 這個任務可以被某人散佈嗎？
 int can_know_by(object knower)
 {
         mapping my = query_entire_dbase();
@@ -97,13 +97,13 @@ int can_know_by(object knower)
         fname = file_name(environment(knower));
         if (! stringp(ZONE) || strlen(ZONE) < 1 ||
             ZONE == fname[0..strlen(ZONE) - 1])
-                // 和小二在同一个区域
+                // 和小二在同一個區域
                 return 1;
 
         return 0;
 }
 
-// 不能被散布
+// 不能被散佈
 int can_rumor_by()
 {
         return 0;

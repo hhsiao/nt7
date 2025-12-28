@@ -1,4 +1,4 @@
-// 上古十大神器之 轩辕剑
+// 上古十大神器之 軒轅劍
 // Create by Rcwiz for Hero.cn 2003/09
 
 #include <ansi.h>
@@ -9,33 +9,33 @@ inherit SWORD;
 int is_magic_item() { return 1; }
 
 mapping skills = ([
-        "egui-dao"     :   "饿鬼道",
-        "xiuluo-dao"   :   "修罗道",
-        "renjian-dao"  :   "人间道",
+        "egui-dao"     :   "餓鬼道",
+        "xiuluo-dao"   :   "修羅道",
+        "renjian-dao"  :   "人間道",
         "chusheng-dao" :   "畜生道",
-        "tianji-dao"   :   "天极道",
-        "diyu-dao"     :   "地狱道",
-        "lun"          :   "真·六道轮回",
+        "tianji-dao"   :   "天極道",
+        "diyu-dao"     :   "地獄道",
+        "lun"          :   "真·六道輪迴",
 ]);
 
 void create()
 {
-        set_name(HIY "轩辕剑" NOR, ({ "xuanyuan jian", "xuanyuan", "jian" }) );
+        set_name(HIY "軒轅劍" NOR, ({ "xuanyuan jian", "xuanyuan", "jian" }) );
         set_weight(200);
         if (clonep())
                 set_default_object(__FILE__);
         else
         {
                 set("unit", "把");
-                set("long", HIY "此乃上古神器之首，拥有着无穷的力量，据说"
-                                "拥有此剑者可驰骋人、魔、神三界，势不可挡。\n"
-                                "上面刻满了各种奇怪的文字，像是佛教经文。\n"
-                                "转世后可从此剑中领悟(lingwu)出转世奇学—六道轮回剑。\n"
-                                "lingwu ?　可查看可领悟的招式。\n" NOR);
+                set("long", HIY "此乃上古神器之首，擁有著無窮的力量，據說"
+                                "擁有此劍者可馳騁人、魔、神三界，勢不可擋。\n"
+                                "上面刻滿了各種奇怪的文字，像是佛教經文。\n"
+                                "轉世後可從此劍中領悟(lingwu)出轉世奇學—六道輪迴劍。\n"
+                                "lingwu ?　可查看可領悟的招式。\n" NOR);
                 set("material", "gold");
-                set("wield_msg", HIY "$N" HIY "一声轻呼，两条神龙自天而下，拥着一把周身泛着\n"
-                                 "金光的神剑，刹那间此剑犹如一道流星划过，落入$N" HIY "手中。\n" NOR);                               
-                set("unwield_msg", HIY "$N" HIY "心意一转，轩辕剑已归鞘。\n" NOR);
+                set("wield_msg", HIY "$N" HIY "一聲輕呼，兩條神龍自天而下，擁著一把周身泛著\n"
+                                 "金光的神劍，剎那間此劍猶如一道流星劃過，落入$N" HIY "手中。\n" NOR);                               
+                set("unwield_msg", HIY "$N" HIY "心意一轉，軒轅劍已歸鞘。\n" NOR);
                 set("stable", 100);
 
         }
@@ -53,15 +53,15 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         case 0:
                 if (! victim->is_busy())
                 victim->start_busy(20 + random(20));
-                return HIY "$N" HIY "挥舞着手中的轩辕剑，万道彩光自中而出，直逼得"
-                           "$n" HIY "连连后退。\n" NOR;
+                return HIY "$N" HIY "揮舞著手中的軒轅劍，萬道彩光自中而出，直逼得"
+                           "$n" HIY "連連後退。\n" NOR;
 
         case 1:
                 n = me->query_skill("sword");
                 victim->receive_damage("qi", n, me);
                 victim->receive_wound("qi", n, me);
-                return HIR "$N" HIR "反转手中轩辕剑，猛然间，数道金光划向$n" HIY "，$n" HIY
-                           "正惊异间，却已中剑。\n" NOR;
+                return HIR "$N" HIR "反轉手中軒轅劍，猛然間，數道金光划向$n" HIY "，$n" HIY
+                           "正驚異間，卻已中劍。\n" NOR;
 
         }
         return damage_bonus;
@@ -82,18 +82,18 @@ int do_lingwu(string arg)
 
         if(! objectp(present("xuanyuan jian", me)))return 0;
  
-        // 转世后才能领悟
+        // 轉世後才能領悟
         if (! me->query("scborn/ok"))return 0;
                 
         if (me->is_fighting() || me->is_busy())
                  return notify_fail("你正忙呢！\n");
 
-        if (! arg)return notify_fail("你要领悟什么？\n");
+        if (! arg)return notify_fail("你要領悟什麼？\n");
         
         str = keys(skills);
         if (arg == "?")
         {
-                write(HIC "轩辕剑中记载着以下绝学：\n" NOR);
+                write(HIC "軒轅劍中記載著以下絕學：\n" NOR);
                 for (i = 0; i < sizeof(str); i ++)
                         write(sprintf(HIC "%-20s %s\n", 
                               str[i], skills[str[i]]));
@@ -102,50 +102,50 @@ int do_lingwu(string arg)
                       
         }
         if (member_array(arg, str) == -1)       
-                    return notify_fail("你要领悟什么(lingwu ?)？\n");
+                    return notify_fail("你要領悟什麼(lingwu ?)？\n");
 
         if (me->query_skill("buddhism", 1) < 200)
-                    return notify_fail("你翻来覆去的研究着上面经文，却始终看不明白。\n");
+                    return notify_fail("你翻來覆去的研究著上面經文，卻始終看不明白。\n");
                                                         
         if (me->query_skill("literate", 1) < 200)
-                    return notify_fail("你读书写字等级不够，很多意思你无法理解。\n");
+                    return notify_fail("你讀書寫字等級不夠，很多意思你無法理解。\n");
 
         if (me->query_skill("sword", 1) < 300)
-                    return notify_fail("你基本剑法火候不足，无法领悟出什么。\n");                    
+                    return notify_fail("你基本劍法火候不足，無法領悟出什麼。\n");                    
 
         if (me->query_skill("force", 1) < 300)
-                    return notify_fail("你基本内功修为不足，无法领悟出什么。\n");
+                    return notify_fail("你基本內功修為不足，無法領悟出什麼。\n");
                     
         if (me->query_skill("dodge", 1) < 300)
-                    return notify_fail("你基本轻功修为不足，无法领悟出什么。\n");                    
+                    return notify_fail("你基本輕功修為不足，無法領悟出什麼。\n");                    
 
         if (arg == "lun" && me->query_skill("liudao-jian", 1) < 450)
-                    return notify_fail("你六道轮回剑法等级不够。\n");
+                    return notify_fail("你六道輪迴劍法等級不夠。\n");
                     
         else if (arg == "lun" && me->query_skill("force", 1) < 680)
-                    return notify_fail("你内功修为不足。\n");
+                    return notify_fail("你內功修為不足。\n");
 
         else if (arg == "lun" && me->query("max_neili") < 20000)
-                    return notify_fail("你内力修为不足。\n");        
+                    return notify_fail("你內力修為不足。\n");        
 
         else
         {
                 if (me->query_skill(arg, 1))
-                       return notify_fail("你不已经会了这招了吗？\n");
+                       return notify_fail("你不已經會了這招了嗎？\n");
 
-                message_vision(HIM "$N" HIM "聚精会神地参悟着轩辕剑中的奥秘　……\n" NOR, me);
+                message_vision(HIM "$N" HIM "聚精會神地參悟著軒轅劍中的奧秘　……\n" NOR, me);
                 
                 switch(arg)
                 {
                         case "lun":
-                            write(HIG "你领悟出了绝招　真·六道轮回剑　。\n" NOR);
+                            write(HIG "你領悟出了絕招　真·六道輪迴劍　。\n" NOR);
                             me->set("can_perform/liudao-jian/lun", 1);
                             destruct(this_object());
                             return 1;
                         
                         default :                            
-                            write(HIC "你领悟出 " + skills[arg] + " 。\n" NOR);
-                            me->set_skill(arg, 1); // 领悟出一级
+                            write(HIC "你領悟出 " + skills[arg] + " 。\n" NOR);
+                            me->set_skill(arg, 1); // 領悟出一級
                             destruct(this_object());
                             return 1;
                 }

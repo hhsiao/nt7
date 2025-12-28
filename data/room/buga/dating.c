@@ -7,11 +7,11 @@
 
 void create()
 {
-        set("short", "虫洞大厅");
+        set("short", "蟲洞大廳");
 	set ("long", @LONG
-这就是虫洞主人红臭虫迎送客人的地方。正中有些桌椅，侧面是
-两扇屏风。东首是主人红臭虫的房间，有一扇木门虚掩着。南边是大
-门，出去就是院子。 
+這就是蟲洞主人紅臭蟲迎送客人的地方。正中有些桌椅，側面是
+兩扇屏風。東首是主人紅臭蟲的房間，有一扇木門虛掩著。南邊是大
+門，出去就是院子。 
 LONG );
 
         setup();
@@ -21,7 +21,7 @@ LONG );
                 "north"  : __DIR__"houyuan",
         ]));
 
-        create_door("east", "木门", "west", DOOR_CLOSED);
+        create_door("east", "木門", "west", DOOR_CLOSED);
 
         set("no_sleep_room", 1);
 
@@ -30,8 +30,8 @@ LONG );
                 "room" : __DIR__"xiaoyuan",
         ]));
     
-        set("room_owner", "红臭虫");
-        set("room_name", "虫洞");
+        set("room_owner", "紅臭蟲");
+        set("room_name", "蟲洞");
         set("room_id", "bugaa");
         set("room_owner_id", "buga");
         set("room_position", "碎石小道");

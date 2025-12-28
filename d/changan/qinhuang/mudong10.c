@@ -9,7 +9,7 @@ void create()
 {
         set("short", "墓穴");
         set("long", @LONG
-你隐约看到四周的墙上插着六柄火把。
+你隱約看到四周的牆上插著六柄火把。
 LONG );
         setup();
 }
@@ -29,17 +29,17 @@ int do_use(string arg)
                 remove_call_out("cls");
                 call_out("cls", 30, this_object());
              write(
-"你取出火折一晃，凑上前去点燃了其中的一只火把，也不知是什么机关，
-其它的五只火把一一燃了起来。但你发现这样走下去好象永无尽头，难道
-真有机关吗？\n");
+"你取出火折一晃，湊上前去點燃了其中的一隻火把，也不知是什麼機關，
+其它的五隻火把一一燃了起來。但你發現這樣走下去好象永無盡頭，難道
+真有機關嗎？\n");
         set("long", @LONG
-洞内一片凌乱，各种盔甲兵刃散落在地上，洞壁上刻了各种各样
-的图案，出口四通八达，也不知暗藏了什么机关暗器。
+洞內一片凌亂，各種盔甲兵刃散落在地上，洞壁上刻了各種各樣
+的圖案，出口四通八達，也不知暗藏了什麼機關暗器。
 LONG
         );
     set("item_desc", ([
-"机关" : "在火把的照明下，你试着仔细观察周围的景象，但始终不能发现什么异样来。\n",
-"火把" : "你看了看插在墙上的火把，这火把似乎......\n",
+"機關" : "在火把的照明下，你試著仔細觀察周圍的景象，但始終不能發現什麼異樣來。\n",
+"火把" : "你看了看插在牆上的火把，這火把似乎......\n",
 ]));
         set("exits", ([
                 "north" : __DIR__"mudong"+random(10),
@@ -50,7 +50,7 @@ LONG
         set_temp("dian", 1, me);
         return 1;
        }
-        return notify_fail("你想点燃什么？\n");
+        return notify_fail("你想點燃什麼？\n");
 }
 int do_pull(string arg)
 {
@@ -59,13 +59,13 @@ int do_pull(string arg)
     if( !arg || arg == "" )
     if( !query_temp("dian", this_player()) )
     {
-        write("什么？！\n");
+        write("什麼？！\n");
         return 1;
     }
     if( arg == p )
     {
-        message_vision("$N只觉得一阵地动山摇。\n", this_player());
-        message_vision("震动过后，在你脚下的一块石板缓缓的移了开来。\n", this_player());
+        message_vision("$N只覺得一陣地動山搖。\n", this_player());
+        message_vision("震動過後，在你腳下的一塊石板緩緩的移了開來。\n", this_player());
         set_temp("la1", 1, this_player());
         remove_call_out("close");
         call_out("close", 5, this_player());
@@ -73,11 +73,11 @@ int do_pull(string arg)
     }
     else
     {
-        write("你心中不断祈祷，应该是这只吧！！！\n");
+        write("你心中不斷祈禱，應該是這隻吧！！！\n");
         if (random(6) != 4)
                 {
-            message_vision("$N拉下了其中的一只火把，这时，不知什么地方突然射出一只毒箭，直射向你的脑门。\n", this_player());
-            message_vision("$N急忙躲闪开去。但还是被利箭划破了手臂。\n", this_player());
+            message_vision("$N拉下了其中的一隻火把，這時，不知什麼地方突然射出一隻毒箭，直射向你的腦門。\n", this_player());
+            message_vision("$N急忙躲閃開去。但還是被利箭劃破了手臂。\n", this_player());
             set_temp("die_for", "被毒箭射", this_player());
             addn("qi", -30000, this_player());
             addn("eff_qi", -20000, this_player());
@@ -86,8 +86,8 @@ int do_pull(string arg)
         else
         {
             if( this_player()->query_skill("dodge",1)<1000 )
-            message_vision("$N拉下了其中的一只火把，这时，不知什么地方突然射出一只毒箭，直射向你的脑门。\n", this_player());
-            message_vision("$N躲闪不及，毒箭从你的脑门对穿而过......\n",this_player());
+            message_vision("$N拉下了其中的一隻火把，這時，不知什麼地方突然射出一隻毒箭，直射向你的腦門。\n", this_player());
+            message_vision("$N躲閃不及，毒箭從你的腦門對穿而過......\n",this_player());
             set_temp("die_for", "被毒箭射", this_player());
             this_player()->die();
             return 1;
@@ -102,7 +102,7 @@ int do_enter(string arg)
         if( !query_temp("la1", me))return 0;
         if( !query("passwd1", me))return 0;
         if( arg=="洞" ) {
-             message_vision("$N战战兢兢的爬了进去。\n",me);
+             message_vision("$N戰戰兢兢的爬了進去。\n",me);
         me->move("/d/changan/qinhuang/mumen.c");
         delete_temp("dian", me);
         delete("passwd1", me);
@@ -111,15 +111,15 @@ int do_enter(string arg)
 }
 void close(object me)
 {
-        message("vision","轰隆隆的响声响过之后，石板又合上了。\n", this_object());
+        message("vision","轟隆隆的響聲響過之後，石板又合上了。\n", this_object());
         delete_temp("la1", me);
 }
 
 void cls(object room)
 {
-        message("vision","不一会儿，火把就熄灭了。\n", room);
+        message("vision","不一會兒，火把就熄滅了。\n", room);
         set("long", @LONG
-你隐约看到四周的墙上插着六柄火把。
+你隱約看到四周的牆上插著六柄火把。
 LONG
 );
         delete("item_desc");

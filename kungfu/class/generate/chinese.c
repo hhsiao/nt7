@@ -1,5 +1,5 @@
 // This program is a part of NITAN MudLIB
-// chan_cler 中国挑战者 
+// chan_cler 中國挑戰者 
    
 inherit NPC; 
 
@@ -46,7 +46,7 @@ function *init_family = ({ (: from_wudang :),   (: from_shaolin :),   (: from_hu
 void create() 
 { 
         NPC_D->generate_cn_name(this_object()); 
-        set("long", "一个人。\n"); 
+        set("long", "一個人。\n"); 
         set("gender", "男性"); 
         set("age", 20); 
         set("str", 20); 
@@ -74,32 +74,32 @@ public void setup_family(string family);
 
 mapping init_family = ([
         "少林派"   : (: from_shaolin :),
-        "武当派"   : (: from_wudang :),
-        "丐帮"     : (: from_gaibang :),
-        "华山派"   : (: from_huashan :),
+        "武當派"   : (: from_wudang :),
+        "丐幫"     : (: from_gaibang :),
+        "華山派"   : (: from_huashan :),
         "雪山寺"   : (: from_xueshan :),
-        "桃花岛"   : (: from_taohua :),
+        "桃花島"   : (: from_taohua :),
         "古墓派"   : (: from_gumu :),
         "全真教"   : (: from_quanzhen :),
         "星宿派"   : (: from_xingxiu :),
         "峨嵋派"   : (: from_emei :),
-        "血刀门"   : (: from_xuedao :),
-        "逍遥派"   : (: from_xiaoyao :),
+        "血刀門"   : (: from_xuedao :),
+        "逍遙派"   : (: from_xiaoyao :),
         "明教"     : (: from_mingjiao :),
-        "灵鹫宫"   : (: from_lingjiu :),
-        "神龙教"   : (: from_shenlong :),
-        "关外胡家" : (: from_hujia :),
-        "欧阳世家" : (: from_ouyang :),
+        "靈鷲宮"   : (: from_lingjiu :),
+        "神龍教"   : (: from_shenlong :),
+        "關外胡家" : (: from_hujia :),
+        "歐陽世家" : (: from_ouyang :),
         "慕容世家" : (: from_murong :),
         "段氏皇族" : (: from_duanshi :),
-        //"昆仑派"   : (: from_kunlun :),
-        //"药王谷"   : (: from_yaowang :),
+        //"崑崙派"   : (: from_kunlun :),
+        //"藥王谷"   : (: from_yaowang :),
         "五毒教"   : (: from_wudu :),
         "凌霄城"   : (: from_lingxiao :),
-        "铁掌帮"   : (: from_tiezhang :),
+        "鐵掌幫"   : (: from_tiezhang :),
         //"玄冥谷"   : (: from_xuanming :),
         //"魔教"     : (: from_mojiao :),
-        //"唐门世家" : (: from_tangmen :),
+        //"唐門世家" : (: from_tangmen :),
         //"日月神教" : (: from_riyue :),
 ]);
 
@@ -109,7 +109,7 @@ varargs void create(string fam)
         string *fams;
 
         NPC_D->generate_cn_name(this_object());
-        set("long", "一个人。\n");
+        set("long", "一個人。\n");
         set("gender", "男性");
         set("age", 20);
         set("str", 20);
@@ -165,9 +165,9 @@ private void from_wudang()
 {
         set("scale", 200);
         set("from", ({
-                "据说此人出自武当，是武当派的高手，然而修武不修德，可惜啊可惜。",
-                "听闻此人本是武当山下一农夫，耳渎目染，居然练就成非凡武功。",
-                "据说此人乃武当弃徒，当年犯了杀戒逃至东洋，不想今日返回中原！",
+                "據說此人出自武當，是武當派的高手，然而修武不修德，可惜啊可惜。",
+                "聽聞此人本是武當山下一農夫，耳瀆目染，居然練就成非凡武功。",
+                "據說此人乃武當棄徒，當年犯了殺戒逃至東洋，不想今日返回中原！",
         }));
 
         set_skill("force", 1);
@@ -216,12 +216,12 @@ private void from_shaolin()
 {
         set("scale", 150);
         set("from", ({
-                "据说此人出自少林，是少林的俗家高手，可却没有半点慈悲之心，唉！",
-                "听闻此人偷师于少林，练就了一身超凡脱俗的本领。",
-                "据说此人乃少林的火工头陀，偷学武艺后被发现，竟然打死"
-                + "达摩院长老出逃西域，想不到今日返回中原！",
-                "据说此人当年犯了少林的戒律，被迫离寺，想不到隐居多年"
-                + "以后居然重出江湖。"
+                "據說此人出自少林，是少林的俗家高手，可卻沒有半點慈悲之心，唉！",
+                "聽聞此人偷師於少林，練就了一身超凡脫俗的本領。",
+                "據說此人乃少林的火工頭陀，偷學武藝後被發現，竟然打死"
+                + "達摩院長老出逃西域，想不到今日返回中原！",
+                "據說此人當年犯了少林的戒律，被迫離寺，想不到隱居多年"
+                + "以後居然重出江湖。"
         }));
 
         set_skill("force", 1);
@@ -271,10 +271,10 @@ private void from_huashan()
 {
         set("scale", 130);
         set("from", ({
-                "据说此人出自华山，无恶不作，后来行迹忽然不见，想不到今日又出头。",
-                "听闻此人本是华山长老，因剑气之争远投异地，不知何故返回中原！",
-                "据说此人本是别派卧底到华山去的，偷学本领以后没回本派"
-                + "反而觅地苦修，今日终于得出江湖。",
+                "據說此人出自華山，無惡不作，後來行跡忽然不見，想不到今日又出頭。",
+                "聽聞此人本是華山長老，因劍氣之爭遠投異地，不知何故返回中原！",
+                "據說此人本是別派臥底到華山去的，偷學本領以後沒回本派"
+                + "反而覓地苦修，今日終於得出江湖。",
         }));
 
         set_skill("force", 1);
@@ -319,10 +319,10 @@ private void from_ouyang()
 { 
         set("scale", 130); 
         set("from", ({ 
-                "据说此人原是当今武林宗师欧阳锋的兄长，不知何故失踪，今" 
-                + "日居然又出现了。", 
-                "听闻此人偷学了西域白驼山庄欧阳世家的武功，后来被欧阳" 
-                + "锋发现打成重伤，此人带伤而走，竟然活到今日，不可思议！", 
+                "據說此人原是當今武林宗師歐陽鋒的兄長，不知何故失蹤，今" 
+                + "日居然又出現了。", 
+                "聽聞此人偷學了西域白駝山莊歐陽世家的武功，後來被歐陽" 
+                + "鋒發現打成重傷，此人帶傷而走，竟然活到今日，不可思議！", 
         })); 
         
         set_skill("force", 1); 
@@ -369,8 +369,8 @@ private void from_gaibang()
 {
         set("scale", 130);
         set("from", ({
-                "据说此人原是丐帮长老，武功高绝，后因欺辱良家女子而被"
-                + "逐出帮外，今日重现江湖比如又起血雨腥风。"
+                "據說此人原是丐幫長老，武功高絕，後因欺辱良家女子而被"
+                + "逐出幫外，今日重現江湖比如又起血雨腥風。"
         }));
 
         set_skill("force", 1);
@@ -416,7 +416,7 @@ private void from_taohua()
 {
         set("scale", 135);
         set("from", ({
-                "据说此人和桃花岛主黄药师有些关系。",
+                "據說此人和桃花島主黃藥師有些關係。",
         }));
 
         set_skill("force", 1);
@@ -474,8 +474,8 @@ private void from_gumu()
 
         set("scale", 130);
         set("from", ({
-                "据说此人是林朝英的弟子，被她逐出师门了。",
-                "这人据说是古墓传人，和李莫愁颇有渊源。",
+                "據說此人是林朝英的弟子，被她逐出師門了。",
+                "這人據說是古墓傳人，和李莫愁頗有淵源。",
         }));
 
         set_skill("force", 1);
@@ -531,7 +531,7 @@ private void from_xingxiu()
 {
         set("scale", 130);
         set("from", ({
-                "据说此人是星宿派弟子，因为得罪了老仙，只好逃出星宿派。",
+                "據說此人是星宿派弟子，因為得罪了老仙，只好逃出星宿派。",
         }));
 
         set_skill("force", 1);
@@ -588,7 +588,7 @@ private void from_xueshan()
 {
         set("scale", 135);
         set("from", ({
-                "据说此人是雪山派的高手，独创中原，横行无忌，武功甚是了得。",
+                "據說此人是雪山派的高手，獨創中原，橫行無忌，武功甚是了得。",
         }));
 
         set_skill("force", 1);
@@ -645,7 +645,7 @@ private void from_xuedao()
 { 
         set("scale", 135); 
         set("from", ({ 
-                "据说此人和西域血刀老祖是师兄弟，一般的心狠手辣。", 
+                "據說此人和西域血刀老祖是師兄弟，一般的心狠手辣。", 
         })); 
         
         set_skill("force", 1); 
@@ -698,7 +698,7 @@ private void from_xiaoyao()
 { 
         set("scale", 135); 
         set("from", ({ 
-                "据说此人和逍遥派无崖子本是同门弟子，后来不知何故翻脸成仇。", 
+                "據說此人和逍遙派無崖子本是同門弟子，後來不知何故翻臉成仇。", 
         })); 
         
         set_skill("force", 1); 
@@ -749,7 +749,7 @@ private void from_shenlong()
 { 
         set("scale", 135); 
         set("from", ({ 
-                "据说此人是神龙岛洪教主的亲传弟子，后来判出神龙教，独闯江湖。", 
+                "據說此人是神龍島洪教主的親傳弟子，後來判出神龍教，獨闖江湖。", 
         })); 
         
         set_skill("force", 1); 
@@ -792,7 +792,7 @@ private void from_kunlun()
 {
         set("scale", 135);
         set("from", ({
-                "此人衣着奇异，不同于一般中土人氏，据说他与昆仑派甚有渊源。",
+                "此人衣著奇異，不同於一般中土人氏，據說他與崑崙派甚有淵源。",
         }));
 
         set_skill("force", 1);
@@ -843,7 +843,7 @@ private void from_yaowang()
 
         set("scale", 135);
         set("from", ({
-                "传说此人是毒手神枭石万嗔的大弟子，毒技甚是了得。",
+                "傳說此人是毒手神梟石萬嗔的大弟子，毒技甚是了得。",
         }));
 
         set_skill("force", 1);
@@ -903,7 +903,7 @@ private void from_wudu()
 
         set("scale", 135);
         set("from", ({
-                "此人原为云南五毒教长老，后不知因何故而离开五毒教。",
+                "此人原為雲南五毒教長老，後不知因何故而離開五毒教。",
         }));
 
         set_skill("force", 1);
@@ -955,7 +955,7 @@ private void from_wudu()
         ob->set("poison", ([
                 "level" : query_skill("poison", 1),
                 "id"    : query("id"),
-                "name"  : "虫毒",
+                "name"  : "蟲毒",
                 "duration" : 300,
         ]));
         set_temp("handing", ob);
@@ -966,7 +966,7 @@ private void from_lingxiao()
 {
         set("scale", 140);
         set("from", ({
-                "此人乃大雪山凌宵城高手，后因派中事变，故离派而去。",
+                "此人乃大雪山凌宵城高手，後因派中事變，故離派而去。",
         }));
 
         set_skill("force", 1);
@@ -1014,7 +1014,7 @@ private void from_tiezhang()
 {
         set("scale", 120);
         set("from", ({
-                "此人乃铁掌帮麻衣长老，受裘千仞之托下山滋事。",
+                "此人乃鐵掌幫麻衣長老，受裘千仞之託下山滋事。",
         }));
 
         set_skill("force", 1);
@@ -1058,7 +1058,7 @@ private void from_zhenyuan()
 
         set("scale", 135);
         set("from", ({
-                "此人乃王维扬的师兄，内外八卦的功夫已是炉火纯青。",
+                "此人乃王維揚的師兄，內外八卦的功夫已是爐火純青。",
         }));
 
         set_skill("parry", 1);
@@ -1117,7 +1117,7 @@ private void from_xuanming()
 
         set("scale", 135);
         set("from", ({
-                "此人乃百损道人的师兄，玄冥神掌已是炉火纯青。",
+                "此人乃百損道人的師兄，玄冥神掌已是爐火純青。",
         }));
 
         set_skill("parry", 1);
@@ -1154,7 +1154,7 @@ private void from_lingjiu()
 {  
         set("scale", 130);
         set("from", ({   
-                "此人是灵鹫宫的叛徒。现在正在逃亡。", 
+                "此人是靈鷲宮的叛徒。現在正在逃亡。", 
         }));
 
         set_skill("force", 1);
@@ -1200,7 +1200,7 @@ private void from_mingjiao()
 { 
         set("scale", 130);
         set("from", ({  
-                "此人是明教的叛徒。现在正在逃亡。", 
+                "此人是明教的叛徒。現在正在逃亡。", 
         }));
 
         set_skill("force", 1);
@@ -1244,8 +1244,8 @@ private void from_quanzhen()
 { 
         set("scale", 150); 
         set("from", ({ 
-               "据说此人出自全真，是全真派高手。", 
-               "据说此人是王重阳的弟子，被他逐出师门了。", 
+               "據說此人出自全真，是全真派高手。", 
+               "據說此人是王重陽的弟子，被他逐出師門了。", 
         }));
 
         set_skill("force", 1); 
@@ -1299,8 +1299,8 @@ private void from_emei()
 
         set("scale", 130);
         set("from", ({ 
-               "据说此人是灭绝师太的弟子，被她逐出师门了。", 
-               "这是灭绝师太的弟子，最心狠手辣的弟子。", 
+               "據說此人是滅絕師太的弟子，被她逐出師門了。", 
+               "這是滅絕師太的弟子，最心狠手辣的弟子。", 
         })); 
 
        set_skill("force", 1); 
@@ -1349,7 +1349,7 @@ private void from_murong()
 
         set("scale", 130);
         set("from", ({  
-               "据说此人是慕容派弟子，由于背叛师门，现在正在逃亡。",  
+               "據說此人是慕容派弟子，由於背叛師門，現在正在逃亡。",  
         }));  
 
         set_skill("force", 1);
@@ -1400,7 +1400,7 @@ private void from_hujia()
 
        set("scale", 130); 
        set("from", ({   
-              "据说此人是胡家弟子，背叛师门，逃亡中。",   
+              "據說此人是胡家弟子，背叛師門，逃亡中。",   
        }));
 
        set_skill("force", 1); 
@@ -1448,7 +1448,7 @@ private void from_duanshi()
 {
         set("scale", 135); 
         set("from", ({ 
-               "据说此人和段家有些关系。", 
+               "據說此人和段家有些關係。", 
         }));
 
         set_skill("force", 1); 

@@ -2,65 +2,65 @@
 inherit SKILL;
 
 mapping *action = ({
-([      "action" : "$N手中$w一转，回身一剑，刺向$n$l，正是一招「回剑式」",
+([      "action" : "$N手中$w一轉，回身一劍，刺向$n$l，正是一招「回劍式」",
         "force"  : 56,
         "dodge"  : 21,
         "parry"  : 25,
         "attack" : 10,
         "damage" : 12,
         "lvl"    : 0,
-        "damage_type" : "刺伤",
-        "skill_name"  : "回剑式",
+        "damage_type" : "刺傷",
+        "skill_name"  : "回劍式",
 ]),
-([      "action" :  "只见$N身法陡然加快，施展出「拂风式」，剑风荡漾，$w瞬间已至$n$l",
+([      "action" :  "只見$N身法陡然加快，施展出「拂風式」，劍風盪漾，$w瞬間已至$n$l",
         "force"  : 69,
         "dodge"  : 24,
         "parry"  : 28,
         "attack" : 12,
         "damage" : 15,
         "lvl"    : 25,
-        "damage_type" : "刺伤",
-        "skill_name"  : "拂风式",
+        "damage_type" : "刺傷",
+        "skill_name"  : "拂風式",
 ]),
-([      "action" : "$N纵身跃起，使出一招「落剑式」，陡见$w从半空直指$N$l",
+([      "action" : "$N縱身躍起，使出一招「落劍式」，陡見$w從半空直指$N$l",
         "force"  : 81,
         "dodge"  : 25,
         "parry"  : 31,
         "attack" : 13,
         "damage" : 18,
         "lvl"    : 50,
-        "damage_type" : "刺伤",
-        "skill_name"  : "落剑式",
+        "damage_type" : "刺傷",
+        "skill_name"  : "落劍式",
 ]),
-([      "action" : "$N腾空而起，一招「雁翔式」来势又准又快，手中$w已到$n$l",
+([      "action" : "$N騰空而起，一招「雁翔式」來勢又準又快，手中$w已到$n$l",
         "force"  : 93, 
         "dodge"  : 25,
         "parry"  : 35,
         "attack" : 15,
         "damage" : 20,
         "lvl"    : 75,
-        "damage_type" : "刺伤",
+        "damage_type" : "刺傷",
         "skill_name"  : "雁翔式",
 ]),
-([      "action" : "$N剑峰忽转，一剑笔直地向$n$l刺来，内劲十足，正是一招「平剑式」",
+([      "action" : "$N劍峰忽轉，一劍筆直地向$n$l刺來，內勁十足，正是一招「平劍式」",
         "force"  : 106,
         "dodge"  : 27,
         "parry"  : 38,
         "attack" : 18,
         "damage" : 23,
         "lvl"    : 100,
-        "damage_type" : "刺伤",
-        "skill_name"  : "平剑式",
+        "damage_type" : "刺傷",
+        "skill_name"  : "平劍式",
 ]),
-([      "action" : "$N手中$w猛然回撤，紧接着一剑，气势磅礴，剑气纵横，正是「凝剑式」",
+([      "action" : "$N手中$w猛然回撤，緊接著一劍，氣勢磅礴，劍氣縱橫，正是「凝劍式」",
         "force"  : 120,
         "dodge"  : 30,
         "parry"  : 40,
         "attack" : 20,
         "damage" : 25,
         "lvl"    : 120,
-        "damage_type" : "刺伤",
-        "skill_name"  : "凝剑式",
+        "damage_type" : "刺傷",
+        "skill_name"  : "凝劍式",
 ]),
 });
 
@@ -70,19 +70,19 @@ int valid_learn(object me)
 
         if( !(ob=query_temp("weapon", me) )
             || query("skill_type", ob) != "sword" )
-                return notify_fail("你必须先找一把剑才能练剑法。\n");
+                return notify_fail("你必須先找一把劍才能練劍法。\n");
 
         if( query("max_neili", me)<800 )
-                return notify_fail("你的内力修为不够，无法学习回风落雁剑。\n");
+                return notify_fail("你的內力修為不夠，無法學習迴風落雁劍。\n");
 
         if ((int)me->query_skill("force") < 150)
-                return notify_fail("你的内功火候太浅，无法学习回风落雁剑。\n");
+                return notify_fail("你的內功火候太淺，無法學習迴風落雁劍。\n");
 
         if ((int)me->query_skill("sword", 1) < 100)
-                return notify_fail("你的基本剑法火候不够，无法学习回风落雁剑。\n");
+                return notify_fail("你的基本劍法火候不夠，無法學習迴風落雁劍。\n");
 
         if (me->query_skill("sword", 1) < me->query_skill("luoyan-jian", 1))
-                return notify_fail("你的基本剑法火候有限，无法领会更高深的回风落雁剑。\n");
+                return notify_fail("你的基本劍法火候有限，無法領會更高深的迴風落雁劍。\n");
 
         return 1;
 }
@@ -116,13 +116,13 @@ int practice_skill(object me)
 
        if( !objectp(weapon=query_temp("weapon", me) )
            || query("skill_type", weapon) != "sword" )
-                return notify_fail("你使用的武器不对。\n");
+                return notify_fail("你使用的武器不對。\n");
 
        if( query("neili", me)<30 )
-                   return notify_fail("你的内力不足，没有办法练习回风落雁剑。\n");
+                   return notify_fail("你的內力不足，沒有辦法練習迴風落雁劍。\n");
 
        if( query("qi", me)<35 )
-                   return notify_fail("你的体力不够练回风落雁剑。\n");
+                   return notify_fail("你的體力不夠練迴風落雁劍。\n");
 
        me->receive_damage("qi", 40);
        addn("neili", -50, me);

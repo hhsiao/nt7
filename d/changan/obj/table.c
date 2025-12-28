@@ -8,11 +8,11 @@ void create()
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("unit", "张");
+                set("unit", "張");
                 set("material", "wood");
                 set("value", 2000);
-                set("long", "这张破桌子放在这里很久了，上面放了一个八卦盘，和一个签筒。\n" );
-                set("no_sell", "这样东西不能随便买卖。");
+                set("long", "這張破桌子放在這裡很久了，上面放了一個八卦盤，和一個籤筒。\n" );
+                set("no_sell", "這樣東西不能隨便買賣。");
         }
         setup();
 }
@@ -27,8 +27,8 @@ int do_look(string arg)
         ob = this_object();
         who = this_player();
         if(!arg || arg !="table")
-                return notify_fail("你要看什么? \n");
-        else   return notify_fail("赛半仙正趴在桌子上睡觉呢，看来你要（knock）桌子才能叫醒他了。\n");
+                return notify_fail("你要看什麼? \n");
+        else   return notify_fail("賽半仙正趴在桌子上睡覺呢，看來你要（knock）桌子才能叫醒他了。\n");
 }
 int do_get(string arg)
 {
@@ -36,7 +36,7 @@ int do_get(string arg)
         ob = this_object();
         me = this_player();
         if(arg && arg =="table"){
-                write ("不要搞恶作剧好不好，那是赛半仙唯一的财产了。\n");
+                write ("不要搞惡作劇好不好，那是賽半仙唯一的財產了。\n");
                  return 1;
         }
         return 0;

@@ -4,8 +4,8 @@ void create()
 {
         set_name("王八衰", ({ "wang bashuai","wang","bashuai"}) );
         set("long",@LONG
-这人勾鼻深目，皮包骨的脸像鬼而不似人，配合着似若从地狱里爬出来
-的魔鹰，教人感到不寒而栗。
+這人勾鼻深目，皮包骨的臉像鬼而不似人，配合著似若從地獄裡爬出來
+的魔鷹，教人感到不寒而慄。
 LONG
          );
         set("title",CYN"神箭八雄"NOR);
@@ -23,7 +23,7 @@ LONG
         set_skill("dodge", 500);
         set_skill("parry", 500);
         set_skill("sword",520);
-        set_skill("force",800); //防止别人来弹指
+        set_skill("force",800); //防止別人來彈指
         set_skill("hamagong",500);
         set_skill("tiyunzong",500);
         map_skill("sword","pixie-jian");

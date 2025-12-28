@@ -8,8 +8,8 @@ void create()
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIW "一块晶莹的宝石，拿在手中却有一种不详的感觉。\n" NOR);
-                set("unit", "块");
+                set("long", HIW "一塊晶瑩的寶石，拿在手中卻有一種不詳的感覺。\n" NOR);
+                set("unit", "塊");
                 set("value", 50000);
                 set("enchase/name", "天魔·妖晶");
                 set("enchase/point", 90);

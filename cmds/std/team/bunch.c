@@ -14,16 +14,16 @@ int main(object me, string arg)
 
         string pure_name, id;
 
-        // 查验队伍的合法性
+        // 查驗隊伍的合法性
         t = me->query_team();
         if (! arrayp(t))
-                return notify_fail("你现在并不在队伍中啊。\n");
+                return notify_fail("你現在並不在隊伍中啊。\n");
 
         if (! me->is_team_leader())
-                return notify_fail("只有队伍的领袖才能发话，你先闭嘴。\n");
+                return notify_fail("只有隊伍的領袖才能發話，你先閉嘴。\n");
 
         if (! arg || sscanf(arg, "%s %s", arg, id) != 2)
-                return notify_fail("建帮前先想好一个名字以及代表这个名字的英文ID吧！\n");
+                return notify_fail("建幫前先想好一個名字以及代表這個名字的英文ID吧！\n");
 
         if (stringp(msg = BUNCH_D->valid_new_build(me, id, arg)))
                 return notify_fail(msg);
@@ -31,24 +31,24 @@ int main(object me, string arg)
         t -= ({ 0 });
 
         if (sizeof(t) < 5)
-                return notify_fail("你这个队伍中现在没有多少人，创建什么帮派？\n");
+                return notify_fail("你這個隊伍中現在沒有多少人，創建什麼幫派？\n");
 
         if( query_temp("pending/team_doing", me) && 
             query_temp("pending/team_doing", me) != "bunch" )
-                return notify_fail("你还是等目前队伍中的提议结束了再说吧。\n");
+                return notify_fail("你還是等目前隊伍中的提議結束了再說吧。\n");
 
-        // 判断命令的合法性
+        // 判斷命令的合法性
         if (arg == "cancel")
         {
                 if( arrayp(t=query_temp("pending/team_bunch/member", me)) )
                 {
                         delete_temp("pending/team_bunch", me);
-                        write("你取消和大家创建帮派的念头。\n");
+                        write("你取消和大家創建幫派的念頭。\n");
                         t -= ({ 0 });
                         message("vision", YEL + me->name(1) +
-                                "取消了大家一同创建帮派的倡议。\n", t, me);
+                                "取消了大家一同創建幫派的倡議。\n", t, me);
                 } else
-                        write("你现在并没有倡议大家创建帮派啊！\n");
+                        write("你現在並沒有倡議大家創建幫派啊！\n");
 
                 delete_temp("pending/team_doing", me);
                 return 1;
@@ -56,48 +56,48 @@ int main(object me, string arg)
 
         if( mapp(query_temp("pending/team_bunch", me)) )
         {
-                write("你正倡议大家创建帮派呢！还是等大家回应吧。\n");
+                write("你正倡議大家創建幫派呢！還是等大家回應吧。\n");
                 return 1;
         }
 
         if( query("balance", me)<100000000 )
         {
-                write("开帮立会需要很多钱的，你银行中的这点积蓄可不够啊！\n");
+                write("開幫立會需要很多錢的，你銀行中的這點積蓄可不夠啊！\n");
                 return 1;
         }
 
         if( query("weiwang", me)<10000 )
         {
-                write("你在江湖上无籍籍之名，也来附这风雅？\n");
+                write("你在江湖上無籍籍之名，也來附這風雅？\n");
                 return 1;
         } else
         if( query("weiwang", me)<50000 )
         {
-                write("你这点名望还不够振臂一呼，聚帮结众，还是以后再说吧。\n");
+                write("你這點名望還不夠振臂一呼，聚幫結眾，還是以後再說吧。\n");
                 return 1;
         } else
         if( query("weiwang", me)<80000 )
         {
-                write("你现在在江湖上也算是有些名头了，可惜还是不够。\n");
+                write("你現在在江湖上也算是有些名頭了，可惜還是不夠。\n");
                 return 1;
         } else
         if( query("weiwang", me)<100000 )
         {
                 write("你再努力努力提升自己的威望，能"
-                      "够创建帮派的日子也不远了。\n");
+                      "夠創建幫派的日子也不遠了。\n");
                 return 1;
         }
 
-        // 判断名字的合法性
+        // 判斷名字的合法性
         pure_name = arg;
         if (strlen(pure_name) > 10)
-                return notify_fail("你这个名字太长了。\n");
+                return notify_fail("你這個名字太長了。\n");
 
         if (strlen(pure_name) < 4)
-                return notify_fail("你这个名字太短了。\n");
+                return notify_fail("你這個名字太短了。\n");
 
         if (! is_chinese(pure_name))
-                return notify_fail("请你用中文起名字。\n");
+                return notify_fail("請你用中文起名字。\n");
 
         if (stringp(msg = BUNCH_D->valid_new_bunch(pure_name)))
                 return notify_fail(msg);
@@ -105,33 +105,33 @@ int main(object me, string arg)
         if (strlen(pure_name) != strlen(arg))
                 arg += NOR;
 
-        // 判断队伍中所有人的合法性
+        // 判斷隊伍中所有人的合法性
         env = environment(me);
         foreach (tob in t)
         {
                 if (environment(tob) != env)
-                        return notify_fail("现在你队伍中的人还没有到齐呢。\n");
+                        return notify_fail("現在你隊伍中的人還沒有到齊呢。\n");
 
                 if (! living(tob))
-                        return notify_fail("现在你队伍中" + tob->name(1) + "昏迷不醒呢。\n");
+                        return notify_fail("現在你隊伍中" + tob->name(1) + "昏迷不醒呢。\n");
 
                 if (! playerp(tob))
-                        return notify_fail("你想结义，只怕" + tob->name(1) + "不答应。\n");
+                        return notify_fail("你想結義，只怕" + tob->name(1) + "不答應。\n");
 
                 if (tob->is_fighting())
-                        return notify_fail("现在你队伍中" + tob->name(1) + "正忙着打架呢。\n");
+                        return notify_fail("現在你隊伍中" + tob->name(1) + "正忙著打架呢。\n");
 
                 if( mapp(query("league", tob)) || mapp(query("bunch", tob)) )
-                        return notify_fail("现在你队伍中"+ tob->name(1) + "已经加入别的组织了。\n");
+                        return notify_fail("現在你隊伍中"+ tob->name(1) + "已經加入別的組織了。\n");
 
                 if( query("weiwang", tob)<10000 )
-                        return notify_fail("现在你队伍中" + tob->name(1) + "的江湖威望不够，光你们威望很难振臂一呼，聚帮结众。\n");
+                        return notify_fail("現在你隊伍中" + tob->name(1) + "的江湖威望不夠，光你們威望很難振臂一呼，聚幫結眾。\n");
         }
 
         set_temp("pending/team_bunch/member", t, me);
 
-        message_vision("$N大声提议道：“我们众兄弟情"
-                       "投意合，今日为何不创建帮派，共创" +
+        message_vision("$N大聲提議道：“我們眾兄弟情"
+                       "投意合，今日為何不創建幫派，共創" +
                        "『" + arg + "』”？\n", me);
         set_temp("pending/team_bunch/name", pure_name, me);
         set_temp("pending/team_bunch/id", id, me);
@@ -143,8 +143,8 @@ int main(object me, string arg)
                         continue;
 
                 tell_object(tob, YEL + me->name(1) + "(" +
-                            query("id", me)+")想让大家一"
-                            "同创建帮派，创立『" + arg + "』，"
+                            query("id", me)+")想讓大家一"
+                            "同創建幫派，創立『" + arg + "』，"
                             "你是否同意(right/refuse)？\n" + NOR);
                 set_temp("pending/answer/"+query("id", me)+"/right",
                               bind((: call_other, __FILE__, "do_right", tob, me :), tob), tob);
@@ -165,46 +165,46 @@ int do_right(object me, object ob)
         string bunch_name, type, id;
 
         if (! ob || environment(ob) != environment(me))
-                return notify_fail("可惜啊，人家已经不在这儿了。\n");
+                return notify_fail("可惜啊，人家已經不在這兒了。\n");
 
         if (! living(ob))
-                return notify_fail("人家现在听不到你说的话，还是算了吧。\n");
+                return notify_fail("人家現在聽不到你說的話，還是算了吧。\n");
 
         t=query_temp("pending/team_bunch/member", ob);
         if (! arrayp(t))
-                return notify_fail("人家现在已经不打算创建帮派了。\n");
+                return notify_fail("人家現在已經不打算創建幫派了。\n");
 
         if (member_array(me, t) == -1)
-                return notify_fail("你现在已经不在人家的创建帮派考虑范围之内了。\n");
+                return notify_fail("你現在已經不在人家的創建幫派考慮範圍之內了。\n");
 
         switch (random(8))
         {
         case 0:
-                msg = "$N点点头，看了看大家，郑重道：“我没有意见，我同意！”\n";
+                msg = "$N點點頭，看了看大家，鄭重道：“我沒有意見，我同意！”\n";
                 break;
         case 1:
-                msg = "$N大喜，拍掌大笑道：“正合我意！来！来来！”\n";
+                msg = "$N大喜，拍掌大笑道：“正合我意！來！來來！”\n";
                 break;
         case 2:
-                msg = "$N哈哈大笑，大声道：“很好！很好！真是不错！”\n";
+                msg = "$N哈哈大笑，大聲道：“很好！很好！真是不錯！”\n";
                 break;
         case 3:
-                msg = "$N只是热泪盈眶，道：“甚好！他日行走江湖，那是何等的威风？”\n";
+                msg = "$N只是熱淚盈眶，道：“甚好！他日行走江湖，那是何等的威風？”\n";
                 break;
         case 4:
-                msg = "$N点头颔首，伸出一指点点大家，道：“天下豪杰，尽皆于此，可喜啊！”\n";
+                msg = "$N點頭頷首，伸出一指點點大家，道：“天下豪傑，盡皆於此，可喜啊！”\n";
                 break;
         case 5:
-                msg = "$N一声长叹，道：“$l此言极是，道出我心中多年之愿！”\n";
+                msg = "$N一聲長嘆，道：“$l此言極是，道出我心中多年之願！”\n";
                 break;
         case 6:
-                msg = "$N环顾四方，豪气顿发，道：“$l之言我谨随无异！”\n";
+                msg = "$N環顧四方，豪氣頓發，道：“$l之言我謹隨無異！”\n";
                 break;
         case 7:
-                msg = "$N喝道：“早有今日之事，江湖怎会忒多争端？此举甚妙！”\n";
+                msg = "$N喝道：“早有今日之事，江湖怎會忒多爭端？此舉甚妙！”\n";
                 break;
         default:
-                msg = "$N连道：“妙！妙！妙不可言！今日良辰，更待合适？”\n";
+                msg = "$N連道：“妙！妙！妙不可言！今日良辰，更待合適？”\n";
                 break;
         }
         msg = replace_string(msg, "$l", ob->name(1));
@@ -220,32 +220,32 @@ int do_right(object me, object ob)
         {
                 string fail = 0;
 
-                // 全部同意，检查是否能够完成的条件，同时计算
-                // 帮派的名望。
+                // 全部同意，檢查是否能夠完成的條件，同時計算
+                // 幫派的名望。
                 base = 10000;
                 foreach (tob in t)
                 {
                         if (! objectp(tob) || environment(tob) != environment(me))
                         {
-                                fail = "虽然大家都同意"
-                                       "了，可惜现在有人不在，$N";
-                                       "的提议只好作罢。\n";
+                                fail = "雖然大家都同意"
+                                       "了，可惜現在有人不在，$N";
+                                       "的提議只好作罷。\n";
                                 break;
                         }
 
                         if (! living(tob) || tob->is_fighting())
                         {
-                                fail = "虽然大家都同意"
-                                       "了，可惜现在有人没法和大"
-                                       "家一同创建帮派，$N的提议只好作罢。\n";
+                                fail = "雖然大家都同意"
+                                       "了，可惜現在有人沒法和大"
+                                       "家一同創建幫派，$N的提議只好作罷。\n";
                                 break;
                         }
 
                         if( mapp(query("league", tob)) || mapp(query("bunch", tob)) )
                         {
-                                fail = "虽然大家都同意"
+                                fail = "雖然大家都同意"
                                        "了，可惜" + tob->name() +
-                                       "已经加入了别的组织了，$N的提议只好作罢。\n";
+                                       "已經加入了別的組織了，$N的提議只好作罷。\n";
                                 break;
                         }
 
@@ -253,7 +253,7 @@ int do_right(object me, object ob)
                         shen+=query("shen", tob);
                 }
 
-                // 失败了，无法结义
+                // 失敗了，無法結義
                 if (stringp(fail))
                 {
                         delete_temp("pending/team_bunch", ob);
@@ -261,7 +261,7 @@ int do_right(object me, object ob)
                         return 1;
                 }
 
-                // 完成结义
+                // 完成結義
                 if (shen < 0)
                         type = "bad";
                 else
@@ -274,20 +274,20 @@ int do_right(object me, object ob)
                 switch (random(3))
                 {
                 case 0:
-                        msg = "听说" + implode(t->name(1), "、") + "创建『" +
-                              bunch_name + "』，纵横江湖。";
+                        msg = "聽說" + implode(t->name(1), "、") + "創建『" +
+                              bunch_name + "』，縱橫江湖。";
                         break;
                 case 1:
-                        msg = "据闻" + implode(t->name(1), "、") + "创建帮派，" +
-                              "组成了『" + bunch_name + "』，震动江湖。";
+                        msg = "據聞" + implode(t->name(1), "、") + "創建幫派，" +
+                              "組成了『" + bunch_name + "』，震動江湖。";
                         break;
                 default:
-                        msg = "传说" + implode(t->name(1), "、") + "情投意合，" +
-                              "创建帮派，共创『" + bunch_name + "』。";
+                        msg = "傳說" + implode(t->name(1), "、") + "情投意合，" +
+                              "創建幫派，共創『" + bunch_name + "』。";
                         break;
                 }
 
-                msg = sort_string(msg, 100, strlen("【泥潭帮派】某人："))[0..<2];
+                msg = sort_string(msg, 100, strlen("【泥潭幫派】某人："))[0..<2];
                 CHANNEL_D->do_channel(this_object(), "rumor", msg);
                 delete_temp("pending/team_bunch", ob);
         } else
@@ -302,23 +302,23 @@ int do_refuse(object me, object ob)
         string msg;
 
         if (! ob || environment(ob) != environment(me))
-                return notify_fail("可惜啊，人家已经不在这儿了。\n");
+                return notify_fail("可惜啊，人家已經不在這兒了。\n");
 
         if (! living(ob))
-                return notify_fail("人家现在听不到你说的话，还是算了吧。\n");
+                return notify_fail("人家現在聽不到你說的話，還是算了吧。\n");
 
         t=query_temp("pending/team_bunch/member", ob);
         if (! arrayp(t))
-                return notify_fail("人家现在已经不打算创建帮派了。\n");
+                return notify_fail("人家現在已經不打算創建幫派了。\n");
 
         if (member_array(me, t) == -1)
-                return notify_fail("你现在已经不在人家的创建帮派考虑范围之内了。\n");
+                return notify_fail("你現在已經不在人家的創建幫派考慮範圍之內了。\n");
 
         delete_temp("pending/team_bunch", ob);
-        message_vision("$N摇了摇头，对$n道：“你们的事情我不管，但是我没有兴趣。”\n",
+        message_vision("$N搖了搖頭，對$n道：“你們的事情我不管，但是我沒有興趣。”\n",
                        me, ob);
         t -= ({ 0 });
-        message("vision", YEL + me->name(1) + "拒绝了" + ob->name(1) +
-                "的创建帮派提议。\n" NOR, t, me);
+        message("vision", YEL + me->name(1) + "拒絕了" + ob->name(1) +
+                "的創建幫派提議。\n" NOR, t, me);
         return 1;
 }

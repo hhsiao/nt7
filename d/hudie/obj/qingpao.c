@@ -6,13 +6,13 @@ inherit CLOTH;
 
 void create()
 {
-        set_name(HIC"青衣长袍"NOR, ({"chang pao", "cloth", "pao"}) );
+        set_name(HIC"青衣長袍"NOR, ({"chang pao", "cloth", "pao"}) );
         set_weight(2000);
         /*if( clonep() )
             set_default_object(__FILE__);
         else*/ {
         set("unit", "件");
-        set("long", "这是一件质佳的青色长袍。\n");
+        set("long", "這是一件質佳的青色長袍。\n");
         set("material", "cloth");
         set("armor_prop/armor", 20);
         set("value",2000);

@@ -7,11 +7,11 @@
 
 void create()
 {
-        set("short", "海南岛迎客厅");
+        set("short", "海南島迎客廳");
 	set ("long", @LONG
-这里是海南岛的主人灭下迎接八方来客的地方。大凡客人来拜见
-灭下，少不得在这里寒暄叙话，了尽仰慕之情。东面通往一个茶室，
-是主人陪同客人品尝天下名茶之处。 
+這裡是海南島的主人滅下迎接八方來客的地方。大凡客人來拜見
+滅下，少不得在這裡寒暄敘話，了盡仰慕之情。東面通往一個茶室，
+是主人陪同客人品嚐天下名茶之處。 
 LONG );
 
         set("exits", ([
@@ -20,7 +20,7 @@ LONG );
                 "east"   : __DIR__"chashi",
         ]));
 
-        create_door("east", "木门", "west", DOOR_CLOSED);
+        create_door("east", "木門", "west", DOOR_CLOSED);
 
         set("objects", ([
                 "/d/room/roomnpc/yahuan" : 2,
@@ -29,9 +29,9 @@ LONG );
         set("no_sleep_room", 1);
         setup();
 
-        set("room_owner", "灭下");
-        set("room_name", "海南岛");
+        set("room_owner", "滅下");
+        set("room_name", "海南島");
         set("room_id", "sky");
         set("room_owner_id", "sky");
-        set("room_position", "南海之滨");
+        set("room_position", "南海之濱");
 }

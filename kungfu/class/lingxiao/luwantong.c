@@ -7,9 +7,9 @@ inherit F_GUARDER;
 
 void create()
 {
-        set_name("陆万通", ({"lu wantong", "lu", "wantong"}));
-        set("long", "陆万通是凌宵城雪山剑派中的六代弟子，只见他身\n"
-                    "手矫健，双目如电。\n");
+        set_name("陸萬通", ({"lu wantong", "lu", "wantong"}));
+        set("long", "陸萬通是凌宵城雪山劍派中的六代弟子，只見他身\n"
+                    "手矯健，雙目如電。\n");
         set("gender", "男性");
         set("age", 34);
         set("attitude", "friendly");
@@ -55,11 +55,11 @@ void create()
         }));
 
         set("guarder", ([
-                "refuse_other": CYN "$N" CYN "对$n" CYN "冷喝道："
-                                "你给我站住！我们凌宵宫岂是由得外"
-                                "人随便走动地方？" NOR,
-                "refuse_carry": CYN "$N" CYN "对$n" CYN "喝道：你"
-                                "背上背的是什么人？给我放下来！" NOR,
+                "refuse_other": CYN "$N" CYN "對$n" CYN "冷喝道："
+                                "你給我站住！我們凌宵宮豈是由得外"
+                                "人隨便走動地方？" NOR,
+                "refuse_carry": CYN "$N" CYN "對$n" CYN "喝道：你"
+                                "背上背的是什麼人？給我放下來！" NOR,
         ]));
 
         create_family("凌霄城", 6, "弟子");
@@ -84,6 +84,6 @@ void attempt_apprentice(object me)
         if (! permit_recruit(me))
                 return;
 
-        command("say 很好，你以后就跟着我吧。");
+        command("say 很好，你以後就跟著我吧。");
         command("recruit "+query("id", me));
 }

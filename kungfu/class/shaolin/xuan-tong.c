@@ -8,14 +8,14 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("玄痛大师", ({
+        set_name("玄痛大師", ({
                 "xuantong dashi",
                 "xuantong",
                 "dashi",
         }));
         set("long",
-                "他是一位白须白眉的老僧，身穿一袭银丝棕黄袈裟。他身材高大，\n"
-                "两手过膝。双目半睁半闭，却不时射出一缕精光。\n"
+                "他是一位白鬚白眉的老僧，身穿一襲銀絲棕黃袈裟。他身材高大，\n"
+                "兩手過膝。雙目半睜半閉，卻不時射出一縷精光。\n"
         );
 
         set("nickname", "戒律院主持");

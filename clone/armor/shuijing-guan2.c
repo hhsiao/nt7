@@ -12,13 +12,13 @@ void create()
         else*/
         {
                 set("material", "steel");
-                set("unit", "顶");
-                set("long", HIM "这是一顶用水晶雕琢而成的头冠，手工精巧无比，人间罕有。\n" 
-                            HIC "佩带后可提高研究及学习次数上限15%。\n" NOR);
+                set("unit", "頂");
+                set("long", HIM "這是一頂用水晶雕琢而成的頭冠，手工精巧無比，人間罕有。\n" 
+                            HIC "佩帶後可提高研究及學習次數上限15%。\n" NOR);
                 set("value", 3500000);
                 set("armor_prop/armor", 100);
                 set("armor_prop/up_yanjiu_times", 15);
-                set("special/desc", HIR "佩带后可提高研究及学习次数上限15%。" NOR);
+                set("special/desc", HIR "佩帶後可提高研究及學習次數上限15%。" NOR);
                 set("limit", ([
                         "int"             :  40,
                         "exp"             :  12000000,

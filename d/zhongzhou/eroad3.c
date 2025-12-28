@@ -4,7 +4,7 @@ void create()
 {
         set("short", "官道");
         set("long", @LONG
-此处往东不远是开封，往西可到中州，不少游人顺着这条路游玩。
+此處往東不遠是開封，往西可到中州，不少遊人順著這條路遊玩。
 LONG);
         set("exits", ([
                 "east": "/d/kaifeng/ximen",

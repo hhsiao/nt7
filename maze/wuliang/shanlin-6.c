@@ -5,9 +5,9 @@ void create()
 {
 	set("short", "森林");
 	set("long", @LONG
-你费了九牛二虎之力，从密密麻麻的树林中钻进了这里，却发现眼前已没
-有了去路,前面一株株古树互相挤在一起，便如一堵大墙（wall)相似，再也无
-法向前进一步了。
+你費了九牛二虎之力，從密密麻麻的樹林中鑽進了這裡，卻發現眼前已沒
+有了去路,前面一株株古樹互相擠在一起，便如一堵大牆（wall)相似，再也無
+法向前進一步了。
 LONG
 	);
         set("outdoors", "大理");
@@ -32,19 +32,19 @@ int do_jump(string arg)
        if (!arg || arg !="wall") 
            return notify_fail("你要跳到那去？\n");
        if (random(me->query_skill("dodge",1)) < 60){ 
-           write("你吸气奋力一跳，无奈运气不好，没跳过树墙，摔了下来。\n");
-           write("你受了点伤!\n");
+           write("你吸氣奮力一跳，無奈運氣不好，沒跳過樹牆，摔了下來。\n");
+           write("你受了點傷!\n");
 addn("qi", -100, 	me);
            addn("jingli", -80, me);
            me->receive_wound("qi", 50);
 	   return 1;
            }
        else {
-           write("你一吸气，轻轻巧巧的跳过了大树墙。\n");
-           message("vision",me->name() + "一纵身跳过了树墙。\n",environment(me), ({me}) );            
+           write("你一吸氣，輕輕巧巧的跳過了大樹牆。\n");
+           message("vision",me->name() + "一縱身跳過了樹牆。\n",environment(me), ({me}) );            
            me->move(__DIR__"muwu1");
            me->start_busy(1);
-           message("vision",me->name() + "从树墙后面跳了过来。\n",environment(me), ({me}) );
+           message("vision",me->name() + "從樹牆後面跳了過來。\n",environment(me), ({me}) );
            return 1;
            }
 }

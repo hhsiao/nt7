@@ -249,7 +249,7 @@ void send_shutdown()
                 SHUTDOWN->send_shutdown(muds[mud_names[i]]["HOSTADDRESS"],
                         muds[mud_names[i]]["PORTUDP"]);
         socket_close(socket_id);
-        CHANNEL_D->do_channel(this_object(), "sys", "送出 shutdown 讯息。\n");
+        CHANNEL_D->do_channel(this_object(), "sys", "送出 shutdown 訊息。\n");
 }
 
 string start_message()
@@ -846,7 +846,7 @@ void create()
 
         restore_euid();
 
-        set("channel_id", "网络精灵");
+        set("channel_id", "網絡精靈");
 
         // find out which port we are on
         my_port = SRVC_PORT_UDP(mud_port());
@@ -879,7 +879,7 @@ void create()
                 "ZONE"        : CONFIG_D->query_string("zone"),
         ]);
 
-        // 设置list_nodes
+        // 設置list_nodes
         list_nodes = ({ });
         if (stringp(MUDLIST_DNS1))
                 list_nodes += ({ MUDLIST_DNS1 });
@@ -912,7 +912,7 @@ void create()
 
         // initialise the udp socket, if successful start the database system
         if (startup_udp()) init_database();
-        CHANNEL_D->do_channel(this_object(), "sys", "互联核心开始试图连接其他网站。 \n");
+        CHANNEL_D->do_channel(this_object(), "sys", "互聯核心開始試圖連接其他網站。 \n");
 }
 
 void clear_muds()

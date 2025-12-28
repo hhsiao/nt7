@@ -5,9 +5,9 @@ inherit F_DEALER;
 void create()
 {
         set_name("舞蛇人", ({ "wushe ren", "wushen", "ren" }));
-        set("long", "他是一个西域来的舞蛇人。\n");
+        set("long", "他是一個西域來的舞蛇人。\n");
         set("title", "西域蛇王");
-        set("nickname", HIY "蛇见怕" NOR);
+        set("nickname", HIY "蛇見怕" NOR);
         set("gender", "男性");
         set("age", 33);
         set("attitude", "friendly");
@@ -31,14 +31,14 @@ void create()
 
         set("chat_chance",5);
         set("chat_msg", ({
-                CYN "舞蛇人吆喝道：停一停，看一看，有上好的蛇胆粉出售了。\n" NOR,
-                CYN "舞蛇人把手腕划出一道口子，又敷上蛇胆粉，咦，流血立即停止了。\n" NOR,
-                CYN "舞蛇人把手里的蛇舞来舞去道：货真价实的啦，别错过好机会。\n" NOR,
+                CYN "舞蛇人吆喝道：停一停，看一看，有上好的蛇膽粉出售了。\n" NOR,
+                CYN "舞蛇人把手腕劃出一道口子，又敷上蛇膽粉，咦，流血立即停止了。\n" NOR,
+                CYN "舞蛇人把手裡的蛇舞來舞去道：貨真價實的啦，別錯過好機會。\n" NOR,
         }));
 
         set("inquiry", ([
-                "白驼山" : "我这里的蛇胆粉就是用白驼山的蛇精心制作的。\n",
-                "蛇胆粉" : "我的蛇胆粉能治各种外伤，疗效不凡。\n",
+                "白駝山" : "我這裡的蛇膽粉就是用白駝山的蛇精心製作的。\n",
+                "蛇膽粉" : "我的蛇膽粉能治各種外傷，療效不凡。\n",
         ]));
         set("vendor_goods", ({
                 "/d/baituo/obj/fen",
@@ -69,8 +69,8 @@ void greeting(object ob)
         if (! ob || environment(ob) != environment())
                 return;
 
-        say(CYN "舞蛇人道：这位" + RANK_D->query_respect(ob) +
-            CYN "，买我包蛇胆粉吧，包您满意。\n");
+        say(CYN "舞蛇人道：這位" + RANK_D->query_respect(ob) +
+            CYN "，買我包蛇膽粉吧，包您滿意。\n");
 
         return;
 }
@@ -83,12 +83,12 @@ int accept_fight(object ob)
         {
                 if (query("snake_mount") <= 0)
                 {
-                        message_vision(CYN "舞蛇人愣了愣，说道：嗯…今天俺"
-                                       "没抄家伙，算了吧。\n" NOR, ob);
+                        message_vision(CYN "舞蛇人愣了愣，說道：嗯…今天俺"
+                                       "沒抄傢伙，算了吧。\n" NOR, ob);
                         return 0;
                 }
-                message_vision(CYN "舞蛇人大叫一声：竟敢跟老子过不去，尝尝"
-                               "蛇的厉害。\n" NOR, ob);
+                message_vision(CYN "舞蛇人大叫一聲：竟敢跟老子過不去，嚐嚐"
+                               "蛇的厲害。\n" NOR, ob);
                 obn=new("/clone/beast/mangshe");
                 obn->move(environment(ob));
                 obn->kill_ob(ob);
@@ -96,6 +96,6 @@ int accept_fight(object ob)
                 return 0;
         }
 
-        message_vision(CYN "舞蛇人大怒道：让你小子尝尝老子的厉害。\n" NOR, ob);
+        message_vision(CYN "舞蛇人大怒道：讓你小子嚐嚐老子的厲害。\n" NOR, ob);
         return 1;
 }

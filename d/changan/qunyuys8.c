@@ -6,13 +6,13 @@ void close_path();
 
 void create()
 {
-        set("short", "群玉楼雅室");
+        set("short", "群玉樓雅室");
         set("long", @LONG
-一间雅室。房中放着一张大床，床上铺着绣花的锦被和枕头。湘
-绣驰名天下，大红锦被上绣的是一对戏水鸳鸯，颜色灿烂，栩栩欲活。
-几上点着一根红烛，红烛旁是一面明镜，一只梳妆箱子。床前地下两
-对绣花拖鞋，一对男的，一对女的，并排而置。仔细看看你会发现这
-个房间的床有些怪异。
+一間雅室。房中放著一張大床，床上鋪著繡花的錦被和枕頭。湘
+繡馳名天下，大紅錦被上繡的是一對戲水鴛鴦，顏色燦爛，栩栩欲活。
+几上點著一根紅燭，紅燭旁是一面明鏡，一隻梳妝箱子。床前地下兩
+對繡花拖鞋，一對男的，一對女的，並排而置。仔細看看你會發現這
+個房間的床有些怪異。
 LONG );
         set("exits", ([ /* sizeof() == 1 */
                 "west" : "/d/changan/qunyulou3",
@@ -21,9 +21,9 @@ LONG );
                 "/d/changan/npc/dashou" : 4,
         ]) );
         set("item_desc", ([
-                "bed": "这张床似乎可以推开(push)。\n",
-                "床" : "这张床似乎可以推开(push)。\n",
-                "大床" : "这张床似乎可以推开(push)。\n"
+                "bed": "這張床似乎可以推開(push)。\n",
+                "床" : "這張床似乎可以推開(push)。\n",
+                "大床" : "這張床似乎可以推開(push)。\n"
         ]) );
 
         set("coor/x", -10700);
@@ -39,7 +39,7 @@ void init()
 void close_path()
 {
         if (! query("exits/enter")) return;
-        message("vision","大床又滑了回来，盖住了暗格。\n",
+        message("vision","大床又滑了回來，蓋住了暗格。\n",
                 this_object());
         delete("exits/enter");
 }
@@ -51,10 +51,10 @@ int do_push(string arg)
         if (! arg || arg == "" ) return 0;
         if (arg == "bed" || arg == "床" || arg == "大床")
         {
-                write("你用力推开一张大床，");
+                write("你用力推開一張大床，");
                 if ((int) me->query_str() >= 30)
                 {
-                        write("床下露出了一个暗格。\n");
+                        write("床下露出了一個暗格。\n");
                         if (! query("exits/enter"))
                         {
                                      set("exits/enter", "/d/changan/qunyums");
@@ -62,10 +62,10 @@ int do_push(string arg)
                         }
                         return 1;        
                 } else
-                write("试着推了推后面的暗格，但没有推开。\n");
+                write("試著推了推後面的暗格，但沒有推開。\n");
                 return 1;
         }
-        return notify_fail("你要推开什么？\n");
+        return notify_fail("你要推開什麼？\n");
 }
 
 int valid_leave(object me, string dir)
@@ -75,9 +75,9 @@ int valid_leave(object me, string dir)
             objectp(ob = present("da shou", this_object())) &&
             living(ob))
         {
-                message_vision("$N对$n喊道：那里是群玉楼的私人"
-                       "地方，外人不要进去！\n", ob, me);
-                write("糟糕！被发现了！\n");
+                message_vision("$N對$n喊道：那裡是群玉樓的私人"
+                       "地方，外人不要進去！\n", ob, me);
+                write("糟糕！被發現了！\n");
                 ob->kill_ob(me);
                 me->fight_ob(ob);       
                 return -1;

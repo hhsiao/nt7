@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short",  "长江岸边" );
+        set("short",  "長江岸邊" );
         set("long", @LONG
-这里是长江北岸，江水在你身边哗哗的流淌，偶尔你会在沙滩上
-发现有一些残刀断戟，原来西边不远就是有名的古战场赤壁。
+這裡是長江北岸，江水在你身邊嘩嘩的流淌，偶爾你會在沙灘上
+發現有一些殘刀斷戟，原來西邊不遠就是有名的古戰場赤壁。
 LONG );
         set("outdoors", "jingzhou");
         set("exits", ([

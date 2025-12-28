@@ -9,10 +9,10 @@ int is_stay_in_room();
 
 void create()
 {
-        set_name(HIY "独孤求败" NOR, ({ "dugu qiubai", "dugu", "qiubai" }) );
-        set("title", HIR "剑魔" NOR);
-        set("long", HIR "这便是传说中的剑魔独孤大侠，据说天下间竟无一敌手。\n"
-                        "独孤求败曾感慨：呜呼，生平求一敌手而不可得，诚寂寥难堪也！\n" NOR);
+        set_name(HIY "獨孤求敗" NOR, ({ "dugu qiubai", "dugu", "qiubai" }) );
+        set("title", HIR "劍魔" NOR);
+        set("long", HIR "這便是傳說中的劍魔獨孤大俠，據說天下間竟無一敵手。\n"
+                        "獨孤求敗曾感慨：嗚呼，生平求一敵手而不可得，誠寂寥難堪也！\n" NOR);
 
         set("gender", "男性");
         set("age", 59);
@@ -71,8 +71,8 @@ void create()
 
         set_skill("jingluo-xue", 4000);
 
-        set("no_nuoyi", 1); // 不被挪移影响
-        set("lonely-sword/nothing", 1); //无招
+        set("no_nuoyi", 1); // 不被挪移影響
+        set("lonely-sword/nothing", 1); //無招
         set("yinyang-shiertian/shier", 12);
         set("yinyang-shiertian/yinyang", 12);
         set("yinyang-shiertian/qiankun", 12);
@@ -94,14 +94,14 @@ void create()
         // yun perform
         set("chat_chance_combat", 120);
         set("chat_msg_combat", ({
-              // 独孤九剑
+              // 獨孤九劍
               (: command("perform sword.jian") :),
               (: command("perform sword.po twice") :),
               (: command("perform sword.qi and sword.yi") :),
               (: command("perform sword.po and finger.tian") :),
               (: command("perform sword.po and sword.yi") :),
                (: command("perform finger.tian twice") :),
-              // 阴阳12t
+              // 陰陽12t
               (: command("perform finger.tian twice") :),
               (: command("perform finger.zhen and finger.jiu") :),
 
@@ -115,10 +115,10 @@ void create()
 
         }));
 
-        set("my_life", 1); // 当气血低于10%的时候补满一次，设置该参数为0
+        set("my_life", 1); // 當氣血低於10%的時候補滿一次，設置該參數為0
 
         //set("auto_perform", 1);
-        //set("end_time", 1800);  // 必须战斗不少于1800秒后死亡
+        //set("end_time", 1800);  // 必須戰鬥不少於1800秒後死亡
         set("rewards", ([
                 "exp"   : 300000,
                 "pot"   : 150000,
@@ -162,7 +162,7 @@ void create()
         carry_object("/clone/cloth/bupao")->wear();
         carry_object("/clone/weapon/xuantie-jian")->wield();
 
-        // 设置地点剑冢
+        // 設置地點劍冢
         set("startroom", "/d/jianzhong/maigu");
 }
 
@@ -180,14 +180,14 @@ void heart_beat()
         return ::heart_beat();
 }
 
-// 检查武器
+// 檢查武器
 void check_weapon()
 {
         object me, ob;
 
         me = this_object();
 
-        // 同时补充内力
+        // 同時補充內力
         set("neili", query("max_neili"));
 
         if (me->is_busy()) me->interrupt_busy(me, 1000);
@@ -226,7 +226,7 @@ void check_weapon()
                 me->clear_condition();
         }
 
-        // 很小几率恢复气血
+        // 很小几率恢復氣血
         if (random(1000) == 1)
         {
                 if (query("eff_qi") < query("max_qi") / 3) addn("eff_qi", query("max_qi") / 5);
@@ -263,7 +263,7 @@ int accept_kill(object me)
 
 void new_life()
 {
-        full_self(); // 补满气血
+        full_self(); // 補滿氣血
 
         delete_temp("no_perform");
         delete_temp("no_exert");
@@ -275,7 +275,7 @@ void new_life()
 
         delete("my_life");
 
-        message_vision(HIG "\n$N" HIG "大喝一声，目光顿时充满杀意！\n\n" NOR, this_object());
+        message_vision(HIG "\n$N" HIG "大喝一聲，目光頓時充滿殺意！\n\n" NOR, this_object());
 
         return;
 }
@@ -321,14 +321,14 @@ void die(object killer)
         if( !objectp(killer) ) killer = this_object()->query_last_damage_from();
         if( !objectp(killer) ) killer = query_temp("last_damage_from");
 
-        // 如果还未重生，则重生一次
+        // 如果還未重生，則重生一次
         if (query("my_life"))
         {
                 new_life();
                 return;
         }
 
-        if( time() < query_temp("end_time") ) // 时间没有到，死亡不了
+        if( time() < query_temp("end_time") ) // 時間沒有到，死亡不了
         {
                 addn("jing", query("max_jing") / 10);
                 if( query("jing") > query("max_jing") ) set("jing", query("max_jing"));
@@ -338,7 +338,7 @@ void die(object killer)
                 if( query("qi") > query("max_qi") ) set("qi", query("max_qi"));
                 addn("eff_qi", query("max_qi") / 10);
                 if( query("eff_qi") > query("max_qi") ) set("eff_qi", query("max_qi"));
-                message_vision(HIR "\n$N" HIR "大喝一声，运用秘法，气血有所回升！\n\n" NOR, this_object());
+                message_vision(HIR "\n$N" HIR "大喝一聲，運用秘法，氣血有所回升！\n\n" NOR, this_object());
                 return;
         }
 
@@ -355,18 +355,18 @@ void die(object killer)
         set("who_get/id", query("id", killer), ob);
         set("who_get/time", time() + 10, ob);
         ob->move(where);
-        message_vision(HIC "叮~~一声，从$N" HIC "身上掉出" + ob->name() + NOR + HIC "，落在地上。\n" NOR, this_object());
+        message_vision(HIC "叮~~一聲，從$N" HIC "身上掉出" + ob->name() + NOR + HIC "，落在地上。\n" NOR, this_object());
 
         if( MEMBER_D->is_valid_member(killer) && query("quest_tuteng/start", killer) && random(100) < 2 ) 
         {
                 ob = new("/clone/tuteng/diwang-suipian"+(47+random(3)));
-                message_vision(HIR "叮~~一声，从$N" HIR "掉出一样东西，$n" HIR
-                                   "赶紧拣了起来。\n" NOR, this_object(), killer);
+                message_vision(HIR "叮~~一聲，從$N" HIR "掉出一樣東西，$n" HIR
+                                   "趕緊揀了起來。\n" NOR, this_object(), killer);
                 tell_object(killer, BLINK + HIG "你得到了" + ob->name() + BLINK + HIG "。\n" NOR);
                 ob->move(killer, 1);
         }
 
-          //message("vision", HIR +this_object()->name(1) + HIR "仰天长啸：哈哈哈，老夫今日终于如愿以偿 ……\n" NOR, all_interactive());
+          //message("vision", HIR +this_object()->name(1) + HIR "仰天長嘯：哈哈哈，老夫今日終於如願以償 ……\n" NOR, all_interactive());
 
         return ::die(killer);
 }
@@ -384,7 +384,7 @@ varargs void unconcious(object defeater)
         return;
 }
 
-// 不会被busy
+// 不會被busy
 varargs void start_busy(mixed new_busy, mixed new_interrupt)
 {
         return;

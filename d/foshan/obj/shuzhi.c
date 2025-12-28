@@ -7,13 +7,13 @@ inherit STAFF;
 
 void create()
 {
-        set_name(GRN"大树枝"NOR, ({ "shu zhi"}));
+        set_name(GRN"大樹枝"NOR, ({ "shu zhi"}));
         set_weight(1000);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "根");
-        set("long", "这是一根爬山用的树枝。\n");
+        set("long", "這是一根爬山用的樹枝。\n");
         set("value", 50);
                 set("material", "wood");
                 set("wield_msg", "$N拿出一根$n，握在手中。\n");
@@ -29,10 +29,10 @@ int fire(object me, object ob)
         object fire;
 
         if( query_temp("warm", environment()) >= 40 )
-                return notify_fail("这里已经够热的了，你还是换个地方点火吧。\n");
+                return notify_fail("這裡已經夠熱的了，你還是換個地方點火吧。\n");
 
-        message_vision("$N用" + ob->name() + "点燃了" + name() +
-                       "，一片红红的火光映红了四周。\n", me);
+        message_vision("$N用" + ob->name() + "點燃了" + name() +
+                       "，一片紅紅的火光映紅了四周。\n", me);
 
         fire = new("/clone/misc/needfire");
         fire->move(environment(me));

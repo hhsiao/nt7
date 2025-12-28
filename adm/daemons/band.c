@@ -12,26 +12,26 @@ void load_welcome();
 void load_banned_names();
 void load_banned_ids();
 
-void add_site(string pattern);                  // ban 一个不欢迎的 ip 地址
-void remove_site(string pattern);               // 解封一个 ip 地址
-void add_welcome_user(string user_id);          // 增加一个 welcome 用户(id)
-void remove_welcome_user(string user_id);       // 删除一个 welcome 用户(id)
-void remove_netclub(string netline);            // 移去一条网吧线
-void open_club_line(object user);               // 由 welcome 用户自己打开网吧地址
+void add_site(string pattern);                  // ban 一個不歡迎的 ip 地址
+void remove_site(string pattern);               // 解封一個 ip 地址
+void add_welcome_user(string user_id);          // 增加一個 welcome 用戶(id)
+void remove_welcome_user(string user_id);       // 刪除一個 welcome 用戶(id)
+void remove_netclub(string netline);            // 移去一條網吧線
+void open_club_line(object user);               // 由 welcome 用戶自己打開網吧地址
 
-// 属于 welcome 的用户不受 ban 的影响，而且可以开放这根线上多个 ip 地址
+// 屬於 welcome 的用戶不受 ban 的影響，而且可以開放這根線上多個 ip 地址
 string list_welcome_users();                    // welcome users列表
 string list_sites();                            // 被 ban 的 ip 列表
 
-int is_banned(string site);                     // 判断是否一个 ban 的 ip (logind.c调用)
-int is_netclub(string netline);                 // 判断是否一个网吧线的用户(logind.c调用)
-int is_welcome(string user_id);                 // 判断是否一个 welcome 的用户(logind.c调用)
+int is_banned(string site);                     // 判斷是否一個 ban 的 ip (logind.c調用)
+int is_netclub(string netline);                 // 判斷是否一個網吧線的用戶(logind.c調用)
+int is_welcome(string user_id);                 // 判斷是否一個 welcome 的用戶(logind.c調用)
 
 string *Sites;
 string *Netclubs;
 string *Welcomes;
 string *Banned_IDs;                             //  ban id 表
-string *Banned_Names;                           //  ban 中文名表
+string *Banned_Names;                           //  ban 中文名錶
 
 void create()
 {
@@ -164,7 +164,7 @@ int is_banned(string site)
                 return 1;
 
         /*
-        // 禁止使用虚拟 ip 或 route
+        // 禁止使用虛擬 ip 或 route
         if (tmp4 == "0" || tmp4 == "255")
                 return 1;
         */
@@ -188,12 +188,12 @@ void add_site(string site)
         {
                 if (is_banned(site))
                 {
-                        write (RED + site + "已经被禁止!\n" NOR);
+                        write (RED + site + "已經被禁止!\n" NOR);
                         return;
                 }
                 if (tmp1 == "*")
                 {
-                        write (RED + site + "的 IP 范围太大了!\n" NOR);
+                        write (RED + site + "的 IP 範圍太大了!\n" NOR);
                         return;
                 }
                 Sites += ({site});
@@ -208,13 +208,13 @@ void add_site(string site)
         {
                 if (member_array(site, Banned_Names) != -1)
                 {
-                        write (RED + site + "已经被禁止！\n" NOR);
+                        write (RED + site + "已經被禁止！\n" NOR);
                         return;
                 }
                 for (i = 0; i < sizeof(Banned_Names); i++)
                 if (strsrch(site, Banned_Names[i]) != -1)
                 {
-                        write (RED + site + "已经被禁止！\n" NOR);
+                        write (RED + site + "已經被禁止！\n" NOR);
                         return;
                 }
                 Banned_Names+= ({site});
@@ -226,7 +226,7 @@ void add_site(string site)
         i = strlen(site);
         if ((strlen(site) < 3) || (strlen(site) > 12))
         {
-                write("英文名字必须是 3 到 12 个英文字母。\n");
+                write("英文名字必須是 3 到 12 個英文字母。\n");
                 return;
         }
         while (i--)
@@ -237,7 +237,7 @@ void add_site(string site)
         }
         if (member_array(site, Banned_IDs) != -1)
         {
-                write(site + "在列表中已经存在。\n");
+                write(site + "在列表中已經存在。\n");
                 return;
         }
 
@@ -260,7 +260,7 @@ void remove_site(string site)
         {
                 if (! is_banned(site))
                 {
-                        write ("\n这个地址并未被禁止!\n");
+                        write ("\n這個地址並未被禁止!\n");
                         return;
                 }
                 for (i = 0; i < sizeof(Sites); i++)
@@ -276,7 +276,7 @@ void remove_site(string site)
         {
                 if (member_array(site, Banned_Names) == -1)
                 {
-                        write (RED + site + "没被禁止使用!\n" NOR);
+                        write (RED + site + "沒被禁止使用!\n" NOR);
                 } else
                 {
                         Banned_Names-= ({site});
@@ -292,13 +292,13 @@ void remove_site(string site)
                         write (RED "\n解禁中文名" + site + "...OK！\n" NOR);
                         return;
                 }
-                write (HIY + site + HIW + "没被禁止！\n" NOR);
+                write (HIY + site + HIW + "沒被禁止！\n" NOR);
                 return;
         }
         i = strlen(site);
         if ((strlen(site) < 3) || (strlen(site) > 12))
         {
-                write("英文名字必须是 3 到 12 个英文字母。\n");
+                write("英文名字必須是 3 到 12 個英文字母。\n");
                 return;
         }
         while(i--)
@@ -314,7 +314,7 @@ void remove_site(string site)
                 write (BOLD "\n解除使用英文名" + HIY + site + HIW + "的限制!\n" NOR);
                 return;
         }
-        write (HIY + site + HIW + "没被禁止!\n" NOR);
+        write (HIY + site + HIW + "沒被禁止!\n" NOR);
 }
 
 
@@ -334,7 +334,7 @@ void add_welcome_user(string user_id)
 {
         if (is_welcome(user_id))
         {
-                write("这个 id 已经列入了 welcome player ！\n");
+                write("這個 id 已經列入了 welcome player ！\n");
                 return;
         }
         Welcomes += ({ user_id });
@@ -349,19 +349,19 @@ void remove_welcome_user(string user_id)
 {
         if (! is_welcome(user_id))
         {
-                write("这个 id 并未列入了 welcome player ！\n");
+                write("這個 id 並未列入了 welcome player ！\n");
                 return;
         }
         Welcomes -= ({ user_id });
         write_file(WELCOME, implode(Welcomes,"\n") + "\n", 1);
-        write (BOLD "\n删除 welcome user " + HIY + user_id + HIW + "...OK！\n" NOR);
+        write (BOLD "\n刪除 welcome user " + HIY + user_id + HIW + "...OK！\n" NOR);
         write (list_welcome_users());
 }
 
 string list_welcome_users()
 {
         if (! sizeof(Welcomes))
-                return (BOLD "现在还没有 Welcome user 。\n" NOR);
+                return (BOLD "現在還沒有 Welcome user 。\n" NOR);
         return sprintf(HIY + MUD_NAME + "的 Welcome users 如下：\n" +
                        HIC + "  %s\n" NOR, implode(Welcomes, "\n  "));
 }
@@ -370,10 +370,10 @@ void list_netclubs()
 {
         if (! sizeof(Netclubs))
         {
-                write(BOLD "现在没有开放的网吧地址!\n" NOR);
+                write(BOLD "現在沒有開放的網吧地址!\n" NOR);
                 return;
         }
-        printf(HIY "\n现在允许多人同时进入" + MUD_NAME + "的ip地址如下：\n" +
+        printf(HIY "\n現在允許多人同時進入" + MUD_NAME + "的ip地址如下：\n" +
                HIC + "  %s\n" NOR, implode(Netclubs, "\n  "));
 }
 
@@ -403,10 +403,10 @@ void remove_netclub(string netline)
         if (sizeof(regexp(line, Netclubs[i])) == 1)
         {
                 Netclubs -= ({ Netclubs[i] });
-                write (HIR "\n删除网吧地址" + netline + "...OK！\n" NOR);
+                write (HIR "\n刪除網吧地址" + netline + "...OK！\n" NOR);
                 return;
         }
-        write ("\n这个地址并不是网吧线!\n");
+        write ("\n這個地址並不是網吧線!\n");
 }
 
 void open_club_line(object user)
@@ -425,34 +425,34 @@ void open_club_line(object user)
         if (! wizardp(user) && ! is_welcome(query("id", user)))
 #endif
         {
-                write("你未列入 welcome player ，请向巫师申请！\n");
-                write("\n申请方式：通过msg mail写信给arch以上级别的巫师，通过后\n"
-                      "巫师会回信通知你,以后用这个 id 上来打开你的网吧线即可，\n"
-                      "请注意督促你所在网吧的玩家遵守游戏规则。谢谢合作！\n\n");
+                write("你未列入 welcome player ，請向巫師申請！\n");
+                write("\n申請方式：通過msg mail寫信給arch以上級別的巫師，通過後\n"
+                      "巫師會回信通知你,以後用這個 id 上來打開你的網吧線即可，\n"
+                      "請注意督促你所在網吧的玩家遵守遊戲規則。謝謝合作！\n\n");
                 return;
         }
         for (i = 0; i < sizeof(Netclubs); i++)
         if (Netclubs[i] && sizeof(regexp(line, Netclubs[i])) == 1)
         {
-                write (HIY + netline + "网吧线已经打开！\n" NOR);
+                write (HIY + netline + "網吧線已經打開！\n" NOR);
                 return;
         }
         if (netline == "127.0.0.1")
         {
-                write (HIY "你现在所占用的是网关！\n" NOR);
+                write (HIY "你現在所佔用的是網關！\n" NOR);
                 remove_welcome_user(query("id", user));
                 return;
         }
         Netclubs += ({ netline });
-        write (BOLD "\n打开网吧地址" + netline + "...OK！\n" NOR);
+        write (BOLD "\n打開網吧地址" + netline + "...OK！\n" NOR);
 }
 string list_sites()
 {
         int flag;
-        string msg = HIC "\n现在被禁止进入" + MUD_NAME + "的 ip 地址如下：\n" + HIR;
+        string msg = HIC "\n現在被禁止進入" + MUD_NAME + "的 ip 地址如下：\n" + HIR;
 
         if (! sizeof(Sites))
-                return (BOLD "现在没有被禁止的地址！\n" NOR);
+                return (BOLD "現在沒有被禁止的地址！\n" NOR);
         flag = 0;
         foreach (string str in sort_array(Sites, 1))
         {
@@ -478,10 +478,10 @@ int vaild_allow_address(object ob)
         if (! sizeof(address))
         {
                 set_temp("no_allow_ip", 1, ob);
-                // write(HIY "\n警告：你未设定自己的登录地址范围。请用 allowip 指令设置。\n" NOR);
+                // write(HIY "\n警告：你未設定自己的登錄地址範圍。請用 allowip 指令設置。\n" NOR);
                 if (is_welcome(query("id", ob)) && ! is_netclub(query_ip_number(ob)))
                 {
-                        open_club_line(ob);    // 并自动开放网吧限制
+                        open_club_line(ob);    // 並自動開放網吧限制
                         log_file("static/open_netclub",
                                  sprintf("user %s open ip address %s limit in %s.\n",
                                          query("id", ob),query_ip_number(ob),ctime(time())));
@@ -494,15 +494,15 @@ int vaild_allow_address(object ob)
         {
                 if( is_welcome(query("id", ob)) && !is_netclub(query_ip_number(ob)) )
                 {
-                        open_club_line(ob);    // 并自动开放网吧限制
+                        open_club_line(ob);    // 並自動開放網吧限制
                         log_file("static/open_netclub",
                                  sprintf("user %s open ip address %s limit in %s.\n",
                                          query("id", ob),query_ip_number(ob),ctime(time())));
                 }
                 return 1;
         }
-        write(HIR "\n严重警告：你不在自己所设定的登录地址范围内。\n" NOR);
-        log_file("static/ALLOW_IP", sprintf("%s(%s)于%s试图从%s登录。\n",
+        write(HIR "\n嚴重警告：你不在自己所設定的登錄地址範圍內。\n" NOR);
+        log_file("static/ALLOW_IP", sprintf("%s(%s)於%s試圖從%s登錄。\n",
                  query("name", ob),query("id", ob),ctime(time()),query_ip_number(ob)));
         return 0;
 }

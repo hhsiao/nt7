@@ -7,7 +7,7 @@ void setup()
         set_name("麻布袋[2;37;0m[2;37;0m", ({"bag"}));        
         set("gender", "女性");                
         set("long", "麻布袋[2;37;0m
-它是墨毒的魔幻兽。
+它是墨毒的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

@@ -9,7 +9,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("long", NOR + WHT "蛇蛋。\n" NOR);
-                set("base_unit", "个");
+                set("base_unit", "個");
                 set("base_value", 20000);
                 set("base_weight", 600);
                 set("no_give", 1);

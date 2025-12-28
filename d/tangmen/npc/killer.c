@@ -1,4 +1,4 @@
-//killer.c        唐门死士
+//killer.c        唐門死士
 
 inherit NPC;
 
@@ -7,11 +7,11 @@ void away();
 
 void create()
 {
-        set_name("唐门死士", ({"killer"}));
+        set_name("唐門死士", ({"killer"}));
         set("gender", "男性");
         set("age", 26);
         set("long", 
-                "他看上去没有一丝表情，感情对他来说早已不存在了。\n");
+                "他看上去沒有一絲表情，感情對他來說早已不存在了。\n");
         set("gender", "男性");
         set("age", 32);
         set("class", "tangmen");
@@ -57,7 +57,7 @@ void create()
         map_skill("hand", "boyun-suowu");
         
         prepare_skill("hand", "boyun-suowu");
-        create_family("唐门世家", 4, "死士");
+        create_family("唐門世家", 4, "死士");
         
         set("chat_chance", 5);
         set("chat_msg", ({
@@ -85,7 +85,7 @@ void away()
 {
         if( living(this_object()) )
         {
-                message_vision("唐门弟子急急忙忙的走开了。\n", this_object());
+                message_vision("唐門弟子急急忙忙的走開了。\n", this_object());
                 destruct(this_object());
         }
         return;

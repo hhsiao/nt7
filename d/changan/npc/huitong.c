@@ -4,10 +4,10 @@ inherit NPC;
 
 void create()
 {
-        set_name("慧通禅师", ({"huitong chanshi","monk", "huitong","chanshi"}));
+        set_name("慧通禪師", ({"huitong chanshi","monk", "huitong","chanshi"}));
         set("long",
-        "慧通禅师是宝象寺的主持，神色庄重，举止间自有一番威仪。\n");
-        set("title", "宝象寺主持");
+        "慧通禪師是寶象寺的主持，神色莊重，舉止間自有一番威儀。\n");
+        set("title", "寶象寺主持");
         set("gender", "男性");
         set("attitude", "friendly");
         set("class", "bonze");

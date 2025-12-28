@@ -1,4 +1,4 @@
-// juehu.c 虎爪绝户手「绝户」
+// juehu.c 虎爪絕戶手「絕戶」
 // by Lonely
 
 #include <ansi.h>
@@ -12,24 +12,24 @@ int perform(object me, object target)
         if( !target ) target = offensive_target(me);
 
         if( !target || !target->is_character() || !me->is_fighting(target) )
-                return notify_fail("神功伤敌只能对战斗中的对手使用。\n");
+                return notify_fail("神功傷敵只能對戰鬥中的對手使用。\n");
 
         if( objectp(query_temp("weapon", me)) )
-                return notify_fail("你必须空手才能使用「绝户」神功！\n");  
+                return notify_fail("你必須空手才能使用「絕戶」神功！\n");  
                 
         if( (int)me->query_skill("juehu-shou", 1) < 100 )
-                return notify_fail("你的虎爪绝户手不够娴熟，不会使用「绝户」神功\n");
+                return notify_fail("你的虎爪絕戶手不夠嫻熟，不會使用「絕戶」神功\n");
 
         if( (int)me->query_skill("taiji-shengong", 1) < 100 )
-                return notify_fail("你的太极神功不够高，不能用「绝户」神功伤敌。\n");
+                return notify_fail("你的太極神功不夠高，不能用「絕戶」神功傷敵。\n");
 
         if( query("shen", me)<10000 )
-                return notify_fail("你邪气太重，无法使出「绝户」招式。\n");
+                return notify_fail("你邪氣太重，無法使出「絕戶」招式。\n");
 
         if( query("neili", me)<400 )
-                return notify_fail("你现在内力太弱，不能使出「绝户」招式。\n");
+                return notify_fail("你現在內力太弱，不能使出「絕戶」招式。\n");
 
-        msg = BLU "$N默运神功，脸色白得吓人，突然使出虎爪绝户手的最后一击「绝户」，企图当场把$n废于抓下。\n" NOR;
+        msg = BLU "$N默運神功，臉色白得嚇人，突然使出虎爪絕戶手的最後一擊「絕戶」，企圖當場把$n廢於抓下。\n" NOR;
         
         
         addn("shen", -8000, me);
@@ -42,7 +42,7 @@ int perform(object me, object target)
         {       
                 damage = damage_power(me, "claw");
                 addn("neili", -300, me);
-                pmsg = RED "结果$N一击命中，$n只感到下体一阵刺痛，体内精元不断外泄，顿时觉的四肢无力，两腿不停颤抖。\n" NOR;
+                pmsg = RED "結果$N一擊命中，$n只感到下體一陣刺痛，體內精元不斷外洩，頓時覺的四肢無力，兩腿不停顫抖。\n" NOR;
                 msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 50, pmsg);
 
                 me->start_busy(3);
@@ -51,7 +51,7 @@ int perform(object me, object target)
         } else 
         {
                 addn("neili", 150, me);
-                msg += CYN "可是$p" CYN "看破了$P" CYN "的狠毒企图，向旁跳开数步，躲开了$P" CYN "的凌厉一击！\n" NOR;
+                msg += CYN "可是$p" CYN "看破了$P" CYN "的狠毒企圖，向旁跳開數步，躲開了$P" CYN "的凌厲一擊！\n" NOR;
                 me->start_busy(4);
         }
         
@@ -62,14 +62,14 @@ int perform(object me, object target)
                 target->apply_condition("juehu_hurt",(500*query("age", target)));
                 if( query("gender", target) == "男性" )
                 {
-                        message_combatd(HIW "$N突然觉的丹田内的精元已流失迨尽，心里一阵难过，知道自己有一段时间不能行欢做乐了!\n" NOR, target);
+                        message_combatd(HIW "$N突然覺的丹田內的精元已流失迨盡，心裡一陣難過，知道自己有一段時間不能行歡做樂了!\n" NOR, target);
                 } else
                 {
                         if( query("gender", target) == "女性" )
-                                message_combatd(HIW "$N被你一击命中，，不禁既羞又怒，见$n竟对一女流之辈也用此阴毒招数！\n"NOR,
+                                message_combatd(HIW "$N被你一擊命中，，不禁既羞又怒，見$n竟對一女流之輩也用此陰毒招數！\n"NOR,
                                                 target,me);
                         else
-                                message_combatd(HIW "$N虽然击中$n的要害，但感觉受力甚轻，似乎已无要害可言!\n"NOR,
+                                message_combatd(HIW "$N雖然擊中$n的要害，但感覺受力甚輕，似乎已無要害可言!\n"NOR,
                                 me,target);
                 }
           

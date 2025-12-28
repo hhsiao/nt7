@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("千年绿毛龟[2;37;0m[2;37;0m", ({"laogui"}));        
+        set_name("千年綠毛龜[2;37;0m[2;37;0m", ({"laogui"}));        
         set("gender", "男性");                
-        set("long", "千年绿毛龟[2;37;0m
-它是慕容月的魔幻兽。
+        set("long", "千年綠毛龜[2;37;0m
+它是慕容月的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

@@ -5,14 +5,14 @@ inherit BOOK;
 
 void create()
 {
-        set_name(HIY"《紫金锤法》"NOR, ({ "zijin_book", "book" }));
+        set_name(HIY"《紫金錘法》"NOR, ({ "zijin_book", "book" }));
         set_weight(600);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/
         {
                 set("unit", "本");
-                set("long", "这是一本记述紫金锤法的书。\n");
+                set("long", "這是一本記述紫金錘法的書。\n");
                 set("value", 1000);
                 set("material", "paper");
                 set("skill", ([ 

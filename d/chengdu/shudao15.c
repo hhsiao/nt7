@@ -5,8 +5,8 @@ void create()
 {
         set("short", "蜀道");
         set("long", @LONG
-你走在以险著称天下的蜀道上，走在这样的路上非要格外小心，
-用尽全身气力才行。不多一会儿，你就觉得很累了。
+你走在以險著稱天下的蜀道上，走在這樣的路上非要格外小心，
+用盡全身氣力才行。不多一會兒，你就覺得很累了。
 LONG );
         set("exits", ([
                 "westup" :  __DIR__"shudao16",
@@ -29,5 +29,5 @@ int init()
         me = this_player();
     i=query("max_qi", me)/50;
         me->receive_damage("qi", i);
-        tell_object(me, HIR "你费力的走在蜀道上，累的气喘吁吁。\n" NOR);
+        tell_object(me, HIR "你費力的走在蜀道上，累的氣喘吁吁。\n" NOR);
 }

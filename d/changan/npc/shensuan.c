@@ -8,12 +8,12 @@ int ask_suanming();
 string ask_mimi();
 void create()
 {
-        set_name("赛神仙", ({ "shensuan zi", "shensuan" }) );
+        set_name("賽神仙", ({ "shensuan zi", "shensuan" }) );
         set("nickname", "神算子");
         set("gender", "男性");
         set("age", 66);
         set("long",
-                "神算子正坐在板凳头趴在桌子上睡觉，唾液一直流到了桌子底下。\n");
+                "神算子正坐在板凳頭趴在桌子上睡覺，唾液一直流到了桌子底下。\n");
         set("attitude", "peaceful");
         set_skill("taoism", 300);
         set_skill("force",200);
@@ -55,7 +55,7 @@ int look_ob()
 int ask_suanming()
 {
         if( query_temp("knock", this_player())){
-                command("whisper "+query("id", this_player())+"没点诚意，老夫恕难从命！\n");
+                command("whisper "+query("id", this_player())+"沒點誠意，老夫恕難從命！\n");
                 set_temp("knock", 0, this_player());
                 return 1;
         }
@@ -65,10 +65,10 @@ int ask_suanming()
 string ask_mimi()
 {
         object me=this_player();
-        if( !query_temp("mimi", me))return "这个嘛，我不知道也！";
+        if( !query_temp("mimi", me))return "這個嘛，我不知道也！";
         delete_temp("mimi", me);
         set_temp("letter", 1, me);
-        return "很多年前，我的爷爷的爷爷给我留下一封信，我知道信中隐藏着一个大秘密。";
+        return "很多年前，我的爺爺的爺爺給我留下一封信，我知道信中隱藏著一個大秘密。";
 }
 
 int ask_letter()
@@ -76,19 +76,19 @@ int ask_letter()
         object ob,me=this_player();
         int p1;
         if (query("letter") < 1)
-                say("神算子很遗憾的说道：这样东西我已经给人了。\n");
+                say("神算子很遺憾的說道：這樣東西我已經給人了。\n");
         if( query("passwd1", me) )
         {
-                say("神算子很不耐烦的说道：我把我知道的都告诉你了，还问什么嘛！\n");
+                say("神算子很不耐煩的說道：我把我知道的都告訴你了，還問什麼嘛！\n");
         }else
         if( query_temp("letter", me) )
         {
-                say("神算子嘿嘿的奸笑了几声，道：你想要这封手信吗？\n");
-                write("神算子歪头想了会，说道：好吧！\n");
+                say("神算子嘿嘿的奸笑了幾聲，道：你想要這封手信嗎？\n");
+                write("神算子歪頭想了會，說道：好吧！\n");
                 p1=random(6)+1;
                 set("passwd1", p1, me);
-                write("这封信的后面已经看不到了，但我隐约记得曾多次提到"+CHINESE_D->chinese_number(p1)+"样什么东西的。\n");
-                write("现在我就把这封信交给你了，我对这封信已经失去兴趣了，唉，你要保重啊！！\n");
+                write("這封信的後面已經看不到了，但我隱約記得曾多次提到"+CHINESE_D->chinese_number(p1)+"樣什麼東西的。\n");
+                write("現在我就把這封信交給你了，我對這封信已經失去興趣了，唉，你要保重啊！！\n");
                 delete_temp("letter", me);
                 addn("letter", -1);
                 ob=present("letter",this_object());
@@ -96,7 +96,7 @@ int ask_letter()
                         ob=new("/d/changan/obj/letter.c");
                 ob->move(me);
         } else {
-                message("vision","神算子不知道你在说什么也！！\n", me);
+                message("vision","神算子不知道你在說什麼也！！\n", me);
         }
         return 1;
 }
@@ -104,16 +104,16 @@ int ask_letter()
 int accept_object(object me, object ob)
 {
         command("smile");
-        command("say 嘿嘿，多谢这位" + RANK_D->query_respect(me) + " ！");
+        command("say 嘿嘿，多謝這位" + RANK_D->query_respect(me) + " ！");
         if( query("money_id", ob) && query("class", me) != "bonze" )
         {
                 if(ob->value() < 1000000)
                 {
-                        command("say 唉，近来生意难做啊，是不是能再给点...");
+                        command("say 唉，近來生意難做啊，是不是能再給點...");
                         return 1;
                 }else{
                         // command("smile shensuan");
-                        command("say 告诉我，" + RANK_D->query_respect(me) + "，你要算(suan)自己，还是算谁。");
+                        command("say 告訴我，" + RANK_D->query_respect(me) + "，你要算(suan)自己，還是算誰。");
                         add_action("do_suan","suan");
                         set_temp("give_money", 1, me);
                         return 1;
@@ -132,7 +132,7 @@ int do_suan(string arg)
         if( !query_temp("give_money", me))return 0;
         if(!objectp(ob = find_player(name)) )   return 0;
         if( !ob || wizardp(ob)) {
-                command("tell "+query("id", me)+" 嘘，小声点，神仙我怎么敢算啊。");
+                command("tell "+query("id", me)+" 噓，小聲點，神仙我怎麼敢算啊。");
                 return 1;
         }
 
@@ -155,51 +155,51 @@ int do_suan(string arg)
                 case 0 :
                 if( str1+ntg1+dex1+per1+con1+kar1>(query("age", ob)+6)*6){
                         command("nod");
-                        command("say 不错，"+ob->name()+"也还算修练有方。");
+                        command("say 不錯，"+ob->name()+"也還算修練有方。");
                 } else {
                         command("sigh");
-                        command("say "+ob->name()+"还要在基本功上多下点功夫！");
+                        command("say "+ob->name()+"還要在基本功上多下點功夫！");
                 }
                 break;
                 case 1 :
                 if(kar > 22) {
                         command("smile");
-                        command("say "+ob->name()+"福缘深厚，吉人自有天相。");
+                        command("say "+ob->name()+"福緣深厚，吉人自有天相。");
                 }else {
                         command("hmm");
-                        command("say "+ob->name()+"这一生看来是注定要多历磨难了。");
+                        command("say "+ob->name()+"這一生看來是註定要多歷磨難了。");
                 }
                 break;
                 case 2 :
                 if( ntg>25 || ntg1>40+query("age", ob)){
                         command("nod");
-                        command("say "+ob->name()+"天资过人，若能多加努力，必定能出人头地。");
+                        command("say "+ob->name()+"天資過人，若能多加努力，必定能出人頭地。");
                 } else {
                         command("shake");
-                        command("say "+ob->name()+"如果知道＂笨鸟先飞＂的道理，还是有机会的。");
+                        command("say "+ob->name()+"如果知道＂笨鳥先飛＂的道理，還是有機會的。");
                 }
                 break;
                 case 3 :
                 if(str > 25)
-                        command("say "+ob->name()+"如果有意钻研，倒也不难成为一代大侠。");
-                else    command("say "+ob->name()+"应该专精几门武功，不可以贪多。");
+                        command("say "+ob->name()+"如果有意鑽研，倒也不難成為一代大俠。");
+                else    command("say "+ob->name()+"應該專精幾門武功，不可以貪多。");
                 break;
                 case 4 :
                 if(per > 23 ) {
                         command("nod");
-                        command("say "+ob->name()+"天生美貌，若能继续保养，必定能长命百岁");
+                        command("say "+ob->name()+"天生美貌，若能繼續保養，必定能長命百歲");
                 }else {
                         command("shake");
-                        command("say "+ob->name()+"相貌虽然如此，若能寻些仙缘，还是可以美容的。");
+                        command("say "+ob->name()+"相貌雖然如此，若能尋些仙緣，還是可以美容的。");
                 }
                 break;
                 case 5 :
                 if( dex1>(query("age", ob)+60)){
                         command("nod");
-                        command("say "+ob->name()+"身轻如燕，已达一苇渡江的能力，再下苦功，定成大器");
+                        command("say "+ob->name()+"身輕如燕，已達一葦渡江的能力，再下苦功，定成大器");
                 }else {
                         command("shake");
-                        command("say "+ob->name()+"步伐沉重，在江湖中逃命才是重要的，练错功了啊!");
+                        command("say "+ob->name()+"步伐沉重，在江湖中逃命才是重要的，練錯功了啊!");
                 }
                 break;
         }

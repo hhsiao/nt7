@@ -5,10 +5,10 @@ inherit NPC;
 void create()
 {
         set_name("山猴",({"monkey", "houzi", "hou"}) );
-        set("race", "野兽");
+        set("race", "野獸");
         set("gender", "雄性" );
         set("age", 15);
-        set("long", "这是一只凶悍的山猴。\n");
+        set("long", "這是一隻兇悍的山猴。\n");
         set("combat_exp", 20000);
         set("str", 25);
         set("dex", 25);
@@ -21,7 +21,7 @@ void create()
         set("max_jingli",800);
         set("jingli",800);
         
-        set("limbs", ({ "头部", "身体", "前脚", "后脚", "尾巴" }) );
+        set("limbs", ({ "頭部", "身體", "前腳", "後腳", "尾巴" }) );
         set("verbs", ({ "knock", "hoof" }) );
 
         set_temp("apply/damage", 20);

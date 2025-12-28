@@ -1,17 +1,17 @@
-// wuliang.c 事件：无量山玉壁剑舞
+// wuliang.c 事件：無量山玉壁劍舞
 
 #include <ansi.h>
 
 void create() { seteuid(getuid()); }
 
-// 开始创建事件
+// 開始創建事件
 void create_event()
 {
         // 每月15日凌晨
         EVENT_D->at_after(0, 1, -15, -23);
 }
 
-// 奖励
+// 獎勵
 private void do_bonus(object room)
 {
         object *obs;
@@ -28,9 +28,9 @@ private void do_bonus(object room)
         r = random(100);
         if (r == 0)
         {
-                msg = HIW  "只见皎洁的月光下，两个飘逸绝伦的身影倒映在对面山壁之上，持剑翩翩起\n"
-                           "舞，剑光顿挫，仙影回翔。你不由惊叹：寰宇之中，竟有如此绝奥之技，今\n"
-                           "日有缘得见仙人之姿，实在是福分非浅。\n" NOR;
+                msg = HIW  "只見皎潔的月光下，兩個飄逸絕倫的身影倒映在對面山壁之上，持劍翩翩起\n"
+                           "舞，劍光頓挫，仙影迴翔。你不由驚歎：寰宇之中，竟有如此絕奧之技，今\n"
+                           "日有緣得見仙人之姿，實在是福分非淺。\n" NOR;
 
                 message("vision", msg, obs);
 
@@ -40,13 +40,13 @@ private void do_bonus(object room)
                         addn("combat_exp", 5000, obs[i]);
                 }
 
-                // 增加武学修养基本剑法及基本身法
+                // 增加武學修養基本劍法及基本身法
                 foreach (ob in obs)
                 {
                         if( query("combat_exp", ob)>2000000 )
                         {
-                                tell_object(ob, HIG "你心中暗自掂量，这二人当真是"
-                                                "世上高手，不过自己似乎也可办到。\n" NOR);
+                                tell_object(ob, HIG "你心中暗自掂量，這二人當真是"
+                                                "世上高手，不過自己似乎也可辦到。\n" NOR);
                                 continue;
                         }
 
@@ -62,62 +62,62 @@ private void do_bonus(object room)
                             ob->can_improve_skill("martial-cognize"))
                                 ob->improve_skill("martial-cognize", 40000);
 
-                        tell_object(ob, HIG "你对仙人的剑舞颇有所感，武学上顿时有了新的领悟。\n" NOR);
+                        tell_object(ob, HIG "你對仙人的劍舞頗有所感，武學上頓時有了新的領悟。\n" NOR);
                 }
 
-                // 记录事件
-                MAP_D->record_rumor(obs, "无量山玉壁剑舞", this_object());
+                // 記錄事件
+                MAP_D->record_rumor(obs, "無量山玉壁劍舞", this_object());
 
                 CHANNEL_D->do_channel(this_object(), "rumor",
-                                      "听说大理无量山又出仙人剑舞，仙影玄奇，令人匪夷所思。");
+                                      "聽說大理無量山又出仙人劍舞，仙影玄奇，令人匪夷所思。");
         } else
         if (r < 60)
         {
                 switch (random(3))
                 {
                 case 0:
-                        msg = HIY "只见对面无量山玉壁上仙影一闪即过，身形之敏捷，令你根本无法捕捉。\n" NOR;
+                        msg = HIY "只見對面無量山玉壁上仙影一閃即過，身形之敏捷，令你根本無法捕捉。\n" NOR;
                         break;
                 case 1:
-                        msg = HIY "只见无量山玉壁上闪过几道仙影，似乎是施展一种奇妙无比的武功绝学。\n" NOR;
+                        msg = HIY "只見無量山玉壁上閃過幾道仙影，似乎是施展一種奇妙無比的武功絕學。\n" NOR;
                         break;
                 default:
-                        msg = HIY "忽然间两个飘逸绝伦的身影显映在对面山上，但仙影转瞬即逝，你根本无法看清。\n" NOR;
+                        msg = HIY "忽然間兩個飄逸絕倫的身影顯映在對面山上，但仙影轉瞬即逝，你根本無法看清。\n" NOR;
                         break;
                 }
-                msg += HIG "你受到了仙影的感悟，武学方面又有了一些体会。\n" NOR;
+                msg += HIG "你受到了仙影的感悟，武學方面又有了一些體會。\n" NOR;
                 obs->improve_experience(500 + random(500));
 
                 message("vision", msg, obs);
 
-                // 记录事件
-                MAP_D->record_rumor(obs, "无量山玉壁仙影", this_object());
+                // 記錄事件
+                MAP_D->record_rumor(obs, "無量山玉壁仙影", this_object());
         } else
         {
                 switch (random(3))
                 {
                 case 0:
-                        msg = WHT "眼见皎洁的月光升起，可是一团云飘过，遮盖了月光，你眼前顿时一片漆黑。\n" NOR;
+                        msg = WHT "眼見皎潔的月光升起，可是一團雲飄過，遮蓋了月光，你眼前頓時一片漆黑。\n" NOR;
                         break;
                 case 1:
-                        msg = WHT "你目不转睛的注视着对面的玉壁，可刹那间雷声轰鸣，山风卷云，将月光遮了个严实。\n" NOR;
+                        msg = WHT "你目不轉睛的注視著對面的玉壁，可剎那間雷聲轟鳴，山風捲雲，將月光遮了個嚴實。\n" NOR;
                         break;
                 default:
-                        msg = WHT "夜晚已至，可一团团浓厚的云层却笼罩着天空，你连对面的山头都无法看清。\n" NOR;
+                        msg = WHT "夜晚已至，可一團團濃厚的雲層卻籠罩著天空，你連對面的山頭都無法看清。\n" NOR;
                         break;
                 }
-                msg += HIG "你不禁叹息道：“怎奈缘分未至，无缘窥视仙影！”\n" NOR;
+                msg += HIG "你不禁嘆息道：“怎奈緣分未至，無緣窺視仙影！”\n" NOR;
 
                 message("vision", msg, obs);
         }
 }
 
-// 事件触发
+// 事件觸發
 void trigger_event()
 {
         object room;
 
-        // 无量山玉壁剑舞
+        // 無量山玉壁劍舞
         //if (objectp(room = find_object("/d/wanjiegu/wlhoushan")))
         if (objectp(room = find_object("/d/xiaoyao/pubu")))
                 do_bonus(room);
@@ -130,13 +130,13 @@ string query_detail(string topic)
 {
         switch (topic)
         {
-        case "无量山玉壁剑舞":
-                return "皎洁的月光下，无量山壁上有仙人偏偏起舞，神姿仙态"
-                       "平生难得一见。\n";
+        case "無量山玉壁劍舞":
+                return "皎潔的月光下，無量山壁上有仙人偏偏起舞，神姿仙態"
+                       "平生難得一見。\n";
 
-        case "无量山玉壁仙影":
-                return "皎洁的月光下，壁上能隐隐约约倒影出仙人之姿。实乃"
-                       "世间仅有。\n";
+        case "無量山玉壁仙影":
+                return "皎潔的月光下，壁上能隱隱約約倒影出仙人之姿。實乃"
+                       "世間僅有。\n";
 
         }
 }

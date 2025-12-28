@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("小猫[2;37;0m[2;37;0m", ({"lisam"}));        
+        set_name("小貓[2;37;0m[2;37;0m", ({"lisam"}));        
         set("gender", "男性");                
-        set("long", "小猫[2;37;0m
-它是慕容低落的魔幻兽。
+        set("long", "小貓[2;37;0m
+它是慕容低落的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

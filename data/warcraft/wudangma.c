@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("乌当二米麒麟[2;37;0m[2;37;0m", ({"wudangmiaride"}));        
+        set_name("烏當二米麒麟[2;37;0m[2;37;0m", ({"wudangmiaride"}));        
         set("gender", "男性");                
-        set("long", "乌当二米麒麟[2;37;0m
-它是捂二米的魔幻兽。
+        set("long", "烏當二米麒麟[2;37;0m
+它是捂二米的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

@@ -1,4 +1,4 @@
-// 铜人
+// 銅人
 
 #include <ansi.h>
 
@@ -10,16 +10,16 @@ int is_wmtongren() { return 1; };
 
 void create()
 {
-        set_name(HIY "大周天铜人" NOR, ({ "dazhoutian tongren" }) );
+        set_name(HIY "大周天銅人" NOR, ({ "dazhoutian tongren" }) );
         set_weight(50);
 
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", HIY "这是一个破旧的铜人，上面绘制了一些图案，但是已经无法辩识。\n" HIG
-                                "使用指令 kg dazhoutian tongren 鉴定冲穴铜人。\n" NOR);
+                set("long", HIY "這是一個破舊的銅人，上面繪製了一些圖案，但是已經無法辯識。\n" HIG
+                                "使用指令 kg dazhoutian tongren 鑑定衝穴銅人。\n" NOR);
                 set("value", 1);
-                set("unit", "个");
+                set("unit", "個");
                 set("skill", ([
                         "name" : "jingluo-xue",
                         "exp_required" : 50000,
@@ -48,10 +48,10 @@ int do_kg(string arg)
         if (! me)return 0;
         
         if (! arg || arg != "dazhoutian tongren")
-                return notify_fail("你要对什么进行开光鉴定。\n");
+                return notify_fail("你要對什麼進行開光鑑定。\n");
                 
         if (! objectp(ob = present("dazhoutian tongren", me)))
-                return notify_fail("你身上没有这样物品。\n");        
+                return notify_fail("你身上沒有這樣物品。\n");        
                 
         TONGREN_D->open_tongren(me, ob);
         

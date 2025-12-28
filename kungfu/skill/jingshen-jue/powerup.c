@@ -1,4 +1,4 @@
-// powerup.c 惊神诀提升战斗力
+// powerup.c 驚神訣提升戰鬥力
 // By Alf, Last Update 2001.10
 
 #include <ansi.h>
@@ -12,18 +12,18 @@ int exert(object me, object target)
     int skill;
 
     if( target != me ) 
-        return notify_fail("你只能用惊神诀来提升自己的战斗力。\n");
+        return notify_fail("你只能用驚神訣來提升自己的戰鬥力。\n");
 
     if( query("neili", me)<100 )
-        return notify_fail("你的内力不够。\n");
+        return notify_fail("你的內力不夠。\n");
     if( query_temp("powerup", me) )
-        return notify_fail("你已经在运功中了。\n");
+        return notify_fail("你已經在運功中了。\n");
 
     skill = me->query_skill("force");
     addn("neili", -100, me);
 
     message_vision(
-    HIC "$N淡淡一笑间，内息已暗自流转不绝，身周犹如多了一道无形屏障。\n" NOR, me);
+    HIC "$N淡淡一笑間，內息已暗自流轉不絕，身周猶如多了一道無形屏障。\n" NOR, me);
 
     addn_temp("apply/attack", skill/3, me);
     addn_temp("apply/dodge", skill/3, me);
@@ -42,6 +42,6 @@ void remove_effect(object me, int amount)
     addn_temp("apply/attack", -amount, me);
     addn_temp("apply/dodge", -amount, me);
     delete_temp("powerup", me);
-    tell_object(me, "你的惊神诀运行完毕，将内力收回丹田。\n");}
+    tell_object(me, "你的驚神訣運行完畢，將內力收回丹田。\n");}
 }
 

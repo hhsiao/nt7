@@ -3,30 +3,30 @@
 
 mapping fam_info = ([
 
-      "武当派"    :     ([ "shen_type"     :    1,                               // 门派神类型1为正神，-1为负神
-                           "master_id"     :    "zhang sanfeng",                 // 门派最高Master ID
-                           "master_name"   :    "张三丰",                        // 门派最高Master name
-                           "master_rank"   :    "张真人",                        // 门派最高Master rank
-                           "master_file"   :    CLASS_D("wudang") + "/zhang",    // 门派最高Master所属文件
-                           "master_room"   :    "/d/wudang/xiaoyuan",            // 门派最高Master起始房间
+      "武當派"    :     ([ "shen_type"     :    1,                               // 門派神類型1為正神，-1為負神
+                           "master_id"     :    "zhang sanfeng",                 // 門派最高Master ID
+                           "master_name"   :    "張三丰",                        // 門派最高Master name
+                           "master_rank"   :    "張真人",                        // 門派最高Master rank
+                           "master_file"   :    CLASS_D("wudang") + "/zhang",    // 門派最高Master所屬文件
+                           "master_room"   :    "/d/wudang/xiaoyuan",            // 門派最高Master起始房間
                            "fir_room_fi"   :    "/d/wudang/toutiangate",         // 挑畔者初始聚集地
-                           "fir_room_nm"   :    "头天门",
-                           "tar_room_fi"   :    "/d/wudang/xiaoyuan",            // 挑畔者夺取目标地点
-                           "tar_room_nm"   :    "后山小院",
-                           "guard_room_fi" :    "/d/wudang/wulaofeng",           // 门派NPC守卫地点
+                           "fir_room_nm"   :    "頭天門",
+                           "tar_room_fi"   :    "/d/wudang/xiaoyuan",            // 挑畔者奪取目標地點
+                           "tar_room_nm"   :    "後山小院",
+                           "guard_room_fi" :    "/d/wudang/wulaofeng",           // 門派NPC守衛地點
                            "guard_room_nm" :    "五老峰",
                            "npc_list"      :    ({ 
-                                                   "yu lianzhou",                // 门派中的其他NPC参与接受挑畔
-                                                   "yin litin",                  // 这些NPC均会在开始时移动到
-                                                   "yu daiyan",                  // master_room 并与master组队
+                                                   "yu lianzhou",                // 門派中的其他NPC參與接受挑畔
+                                                   "yin litin",                  // 這些NPC均會在開始時移動到
+                                                   "yu daiyan",                  // master_room 並與master組隊
                                                    "song qingshu", 
                                                    "zhang songxi",
                                                    "song yuanqiao",
                                                    "mo shenggu",
                                                 }),
-                           "route_list"    :    ({                               // 记录挑畔者攻打该门派所经过的路由 
-                                                   "north",                      // 每次random_move()都读取该路由表
-                                                   "north",                      // 按照这个顺序一直走到终点
+                           "route_list"    :    ({                               // 記錄挑畔者攻打該門派所經過的路由 
+                                                   "north",                      // 每次random_move()都讀取該路由表
+                                                   "north",                      // 按照這個順序一直走到終點
                                                    "northdown", 
                                                    "northdown", 
                                                    "northdown", 
@@ -36,26 +36,26 @@ mapping fam_info = ([
                                                    "northdown", 
                                                    "northdown", 
                                                    "west", 
-                                                   "west", // 武当广场
+                                                   "west", // 武當廣場
                                                    "south",
                                                    "south",
                                                    "south",
                                                    "south",
                                                    "south",
                                                  }),
-                          "skill"          :     "太极剑法和太极神功",
-                          "family"         :     "武当派",
+                          "skill"          :     "太極劍法和太極神功",
+                          "family"         :     "武當派",
                           "spe_cmds"       :     "open door",
                         ]),
 
-      "逍遥派"    :     ([ "shen_type"     :    1,
+      "逍遙派"    :     ([ "shen_type"     :    1,
                            "master_id"     :    "su xinghe",
-                           "master_name"   :    "苏星河",
-                           "master_rank"   :    "掌门人",
+                           "master_name"   :    "蘇星河",
+                           "master_rank"   :    "掌門人",
                            "master_file"   :    CLASS_D("xiaoyao") + "/suxingh",
                            "master_room"   :    "/d/xiaoyao/qingcaop",
                            "fir_room_fi"   :    "/d/xiaoyao/shulin3",
-                           "fir_room_nm"   :    "逍遥派树林",
+                           "fir_room_nm"   :    "逍遙派樹林",
                            "tar_room_fi"   :    "/d/xiaoyao/shishi",
                            "tar_room_nm"   :    "石室",
                            "guard_room_fi" :    "/d/xiaoyao/qingcaop",
@@ -76,20 +76,20 @@ mapping fam_info = ([
                                                    "enter",
                                                    "down",
                                                  }),
-                          "skill"          :     "天山六阳掌和北冥神功",
-                          "family"         :     "逍遥派",
+                          "skill"          :     "天山六陽掌和北冥神功",
+                          "family"         :     "逍遙派",
                         ]),
 
       "峨嵋派"    :     ([ "shen_type"     :    1,
                            "master_id"     :    "miejue shitai",
-                           "master_name"   :    "灭绝师太",
-                           "master_rank"   :    "掌门人",
+                           "master_name"   :    "滅絕師太",
+                           "master_rank"   :    "掌門人",
                            "master_file"   :    CLASS_D("emei") + "/miejue",
                            "master_room"   :    "/d/emei/hcahoudian",
                            "fir_room_fi"   :    "/d/emei/shierpan1",
-                           "fir_room_nm"   :    "十二盘",
+                           "fir_room_nm"   :    "十二盤",
                            "tar_room_fi"   :    "/d/emei/hcahoudian",
-                           "tar_room_nm"   :    "华藏庵后殿",
+                           "tar_room_nm"   :    "華藏庵後殿",
                            "guard_room_fi" :    "/d/emei/leidongping",
                            "guard_room_nm" :    "雷洞坪",
                            "npc_list"      :    ({
@@ -127,29 +127,29 @@ mapping fam_info = ([
                                                    "southup",
                                                    "southeast",
                                                    "westup",
-                                                   "southup", // 金顶
+                                                   "southup", // 金頂
                                                    "southeast",
                                                    "enter",
                                                    "south",
                                                    "south",
                                                    "south",
                                                  }),
-                          "skill"          :     "回风拂柳剑和峨嵋九阳神功",
+                          "skill"          :     "迴風拂柳劍和峨嵋九陽神功",
                           "family"         :     "峨嵋派",
                         ]),
 
-      "灵鹫宫"    :     ([ "shen_type"     :    1,
+      "靈鷲宮"    :     ([ "shen_type"     :    1,
                            "master_id"     :    "xuzhu zhi",
-                           "master_name"   :    "虚竹子",
-                           "master_rank"   :    "掌门人",
+                           "master_name"   :    "虛竹子",
+                           "master_rank"   :    "掌門人",
                            "master_file"   :    CLASS_D("lingjiu") + "/xuzhu",
                            "master_room"   :    "/d/lingjiu/dating",
                            "fir_room_fi"   :    "/d/lingjiu/shanjiao",
-                           "fir_room_nm"   :    "缥缈峰山脚",
+                           "fir_room_nm"   :    "縹緲峰山腳",
                            "tar_room_fi"   :    "/d/lingjiu/dating",
-                           "tar_room_nm"   :    "独尊厅",
+                           "tar_room_nm"   :    "獨尊廳",
                            "guard_room_fi" :    "/d/lingjiu/xianchou",
-                           "guard_room_nm" :    "仙愁门",
+                           "guard_room_nm" :    "仙愁門",
                            "npc_list"      :    ({
                                                    "cheng qingshuang",
                                                    "duanmu yuan",
@@ -173,8 +173,8 @@ mapping fam_info = ([
                                                    "north",
                                                    "north",
                                                  }),
-                          "skill"          :     "八荒六合唯我独尊功和天山六阳掌",
-                          "family"         :     "灵鹫宫",
+                          "skill"          :     "八荒六合唯我獨尊功和天山六陽掌",
+                          "family"         :     "靈鷲宮",
                           "spe_cmds"       :     "zou tiesuo",
                         ]),
 
@@ -185,7 +185,7 @@ mapping fam_info = ([
                            "master_file"   :    CLASS_D("xingxiu") + "/ding",
                            "master_room"   :    "/d/xingxiu/riyuedong",
                            "fir_room_fi"   :    "/d/xingxiu/shanjiao",
-                           "fir_room_nm"   :    "天山脚下",
+                           "fir_room_nm"   :    "天山腳下",
                            "tar_room_fi"   :    "/d/xingxiu/riyuedong",
                            "tar_room_nm"   :    "日月洞",
                            "guard_room_fi" :    "/d/xingxiu/xxh1",
@@ -207,16 +207,16 @@ mapping fam_info = ([
                         ]),
       "全真派"    :     ([ "shen_type"     :    1,
                            "master_id"     :    "wang chongyang",
-                           "master_name"   :    "王重阳",
-                           "master_rank"   :    "掌门人",
+                           "master_name"   :    "王重陽",
+                           "master_rank"   :    "掌門人",
                            "master_file"   :    CLASS_D("quanzhen") + "/wang",
                            "master_room"   :    "/d/quanzhen/shandong",
                            "fir_room_fi"   :    "/d/gumu/riyueyan",
                            "fir_room_nm"   :    "日月岩",
                            "tar_room_fi"   :    "/d/quanzhen/shandong",
-                           "tar_room_nm"   :    "后山山洞",
+                           "tar_room_nm"   :    "後山山洞",
                            "guard_room_fi" :    "/d/gumu/daxiaochang",
-                           "guard_room_nm" :    "大校场",
+                           "guard_room_nm" :    "大校場",
                            "npc_list"      :    ({
                                                    "hao datong",
                                                    "liu chuxuan",
@@ -244,7 +244,7 @@ mapping fam_info = ([
                                                    "eastup",
                                                    "southup",
                                                    "east", // jiaobei
-                                                   "eastup", // 有门
+                                                   "eastup", // 有門
                                                    "east",
                                                    "east",
                                                    "east",
@@ -253,13 +253,13 @@ mapping fam_info = ([
                                                    "east",
                                                    "east",
                                                    "east",
-                                                   "east", // 后山 - /d/quanzhen/houshan
+                                                   "east", // 後山 - /d/quanzhen/houshan
                                                    "northeast",
                                                    "northeast",
                                                    "east",
                                                    "enter",
                                                  }),
-                          "skill"          :     "全真剑法和先天功",
+                          "skill"          :     "全真劍法和先天功",
                           "family"         :     "全真教",
                           "spe_cmds"       :     "open door",
                         ]),

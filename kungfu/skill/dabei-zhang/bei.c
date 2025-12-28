@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define BEI "「" HIW "万里鲸涛大悲神诀" NOR "」"
+#define BEI "「" HIW "萬里鯨濤大悲神訣" NOR "」"
 
 inherit F_SSERVER;
 
@@ -15,34 +15,34 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(BEI "只能对战斗中的对手使用。\n");
+                return notify_fail(BEI "只能對戰鬥中的對手使用。\n");
 
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail(BEI "只能空手使用。\n");
 
         if ((int)me->query_skill("force") < 300)
-                return notify_fail("你内功修为不够，难以施展" BEI "。\n");
+                return notify_fail("你內功修為不夠，難以施展" BEI "。\n");
 
         if( query("max_neili", me)<3500 )
-                return notify_fail("你内力修为不够，难以施展" BEI "。\n");
+                return notify_fail("你內力修為不夠，難以施展" BEI "。\n");
 
         if ((int)me->query_skill("dabei-zhang", 1) < 220)
-                return notify_fail("你大悲神掌火候不够，难以施展" BEI "。\n");
+                return notify_fail("你大悲神掌火候不夠，難以施展" BEI "。\n");
 
         if (me->query_skill_mapped("strike") != "dabei-zhang")
-                return notify_fail("你没有激发大悲神掌，难以施展" BEI "。\n");
+                return notify_fail("你沒有激發大悲神掌，難以施展" BEI "。\n");
 
         if (me->query_skill_prepared("strike") != "dabei-zhang")
-                return notify_fail("你没有准备大悲神掌，难以施展" BEI "。\n");
+                return notify_fail("你沒有準備大悲神掌，難以施展" BEI "。\n");
 
         if( query("neili", me)<500 )
-                return notify_fail("你现在真气不够，难以施展" BEI "。\n");
+                return notify_fail("你現在真氣不夠，難以施展" BEI "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "$N" HIW "凄然一声长啸，施出「" HIG "万里鲸涛大悲神诀"
-              HIW "」，双掌翻滚出漫天掌影，尽数拍向$n" HIW "。\n" NOR;  
+        msg = HIW "$N" HIW "悽然一聲長嘯，施出「" HIG "萬里鯨濤大悲神訣"
+              HIW "」，雙掌翻滾出漫天掌影，盡數拍向$n" HIW "。\n" NOR;  
 
         ap = attack_power(me, "strike") + me->query_int()*10;
 
@@ -52,14 +52,14 @@ int perform(object me, object target)
         { 
                 damage = damage_power(me, "strike");
                 msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 100,
-                                           HIR "$n" HIR "勘破不透掌中虚实，$N" HIR
-                                           "双掌正中$p" HIR "前胸，“喀嚓喀嚓”接"
-                                           "连断了数根肋骨。\n" NOR);
+                                           HIR "$n" HIR "勘破不透掌中虛實，$N" HIR
+                                           "雙掌正中$p" HIR "前胸，“喀嚓喀嚓”接"
+                                           "連斷了數根肋骨。\n" NOR);
                 message_combatd(msg, me, target);
         } else
         {
-                msg += CYN "$n" CYN "见$N" CYN "这掌来势非凡，不敢"
-                       "轻易招架，当即飞身纵跃闪开。\n" NOR;
+                msg += CYN "$n" CYN "見$N" CYN "這掌來勢非凡，不敢"
+                       "輕易招架，當即飛身縱躍閃開。\n" NOR;
                 message_combatd(msg, me, target);
         }
 

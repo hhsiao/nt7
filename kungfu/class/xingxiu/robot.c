@@ -8,13 +8,13 @@ void no_answer(object user, object asker);
 int do_anwser(string arg, object obj, object asker);
 
 mapping colors = ([
-        "红" : RED,
+        "紅" : RED,
         "白" : WHT,
-        "绿" : GRN,
-        "蓝" : BLU,
+        "綠" : GRN,
+        "藍" : BLU,
         "靛" : CYN,
         "紫" : MAG,
-        "黄" : YEL,
+        "黃" : YEL,
         ]);
 
 void create()
@@ -26,7 +26,7 @@ string make_msg(mapping num, string question)
 {
         int q, q_size, i1 = random(2), i2 = random(2), i3 = random(2), i4 = random(2), i5 = random(2);
         int *i_num = ({i1, i2, i3, i4, i5});
-        string msg = "看图回答问题：\n";
+        string msg = "看圖回答問題：\n";
         while (sizeof(question)<14) {
                 q_size = sizeof(question);
                 q = random(8);
@@ -57,13 +57,13 @@ void make_question(object user, object asker)
         string question, *color_name, *color, c_name, colorx;
         mapping num = ([]);
         if( stringp(query("robot_answer", user))){
-                tell_object(user, "你还是回答刚才的问题再说吧。\n");
+                tell_object(user, "你還是回答剛才的問題再說吧。\n");
                 return;
         }
         switch (random(6))
         {
         case 5: i = random(10), j = random(10), k = random(10), p = random(5), q = random(5), z = random(2);
-                question = "出现最多的";
+                question = "出現最多的";
                 while(j == i) j = random(10);
                 while(k == i || k == j) k = random(10);
                 while(q == p) q = random(5);
@@ -80,7 +80,7 @@ void make_question(object user, object asker)
                 set("num", num, user);
                 break;
         case 1: i = random(10), j = random(10), p = random(5), q = random(5);
-                question = "出现最多的";
+                question = "出現最多的";
                while(j == i) j = random(10);
                 while(q == p) q = random(5);
                 num["num" + (p + 1)] = "" + j;
@@ -95,7 +95,7 @@ void make_question(object user, object asker)
                 answer = i;
                 break;
         case 2: i = random(10), j = random(10), p = random(5);
-                question = "出现最多的";
+                question = "出現最多的";
                 while(j == i) j = random(10);
                 num["num" + (p + 1)] = "" + j;
                 for (int o = 1 ;o <= 5 ;o++ )
@@ -107,7 +107,7 @@ void make_question(object user, object asker)
                 answer = i;
                 break;
         case 0: i = random(10), j = random(10), p = random(5);
-                question = "出现最少的";
+                question = "出現最少的";
                 while(j == i) j = random(10);
                 num["num" + (p + 1)] = "" + j;
                 for (int o = 1 ;o <= 5 ;o++ )
@@ -119,7 +119,7 @@ void make_question(object user, object asker)
                 answer = j;
                 break;
         case 4: i = random(10), j = random(10), p = random(5);
-                question = "出现最少的";
+                question = "出現最少的";
                 while(j == i) j = random(10);
                 num["num" + (p + 1)] = "" + j;
                 for (int o = 1 ;o <= 5 ;o++ )
@@ -151,7 +151,7 @@ void make_question(object user, object asker)
                 break;
         }
         set("robot_answer", ""+answer, user);
-        tell_object(user, question + "\n" + "你有三分钟回答这个问题，回答问题使用指令answer\n　　格式：answer [数字]\n");
+        tell_object(user, question + "\n" + "你有三分鐘回答這個問題，回答問題使用指令answer\n　　格式：answer [數字]\n");
         remove_call_out("no_answer");
         call_out("no_answer", 180, user, asker);
         return;
@@ -162,24 +162,24 @@ int do_answer(string arg, object user, object asker)
         int number;
         if( !stringp(query("robot_answer", user)))return 0;
         if(!arg || sscanf(arg, "%d", number) != 1) {
-                tell_object(user, "格式：answer [数字]\n");
+                tell_object(user, "格式：answer [數字]\n");
                 return 1;
         }
         if( arg != query("robot_answer", user)){
                 addn("be_robot", 1, user);
-                tell_object(user,"回答错误！你已经错了"+chinese_number(query("be_robot", user))+"次了。\n");
+                tell_object(user,"回答錯誤！你已經錯了"+chinese_number(query("be_robot", user))+"次了。\n");
                 if( query("be_robot", user) >= 3){
-                        tell_object(user, "你现在被怀疑可能为机器人。\n");
+                        tell_object(user, "你現在被懷疑可能為機器人。\n");
                 delete("be_robot", user);
                 delete("robot_answer", user);
                         return -1;
                 }
-                tell_object(user, "现在重新出题。\n");
+                tell_object(user, "現在重新出題。\n");
                 delete("robot_answer", user);
                 make_question(user, asker);
                 return 1;
         }
-        tell_object(user, "回答正确。\n");
+        tell_object(user, "回答正確。\n");
         user->move(query("left_place", user));
         remove_call_out("no_answer");
         delete("left_place", user);

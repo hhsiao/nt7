@@ -16,7 +16,7 @@ inherit F_DBASE;
 
 void create() {
         seteuid(ROOT_UID);
-        set("channel_id", "网路频道");
+        set("channel_id", "網路頻道");
 }
 
 void incoming_request(mapping info)

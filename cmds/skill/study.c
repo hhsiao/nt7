@@ -25,22 +25,22 @@ int main(object me, string arg)
         int t = time();
 
         if( !arg )
-                return notify_fail("你要读什么？\n");
+                return notify_fail("你要讀什麼？\n");
 
         if( query("pigging", where) )
-                return notify_fail("你还是专心拱猪吧！\n");
+                return notify_fail("你還是專心拱豬吧！\n");
 
         if( me->is_busy() )
                 return notify_fail(BUSY_MESSAGE); 
         
         if( t == query_temp("time/study", me) )
-                return notify_fail("你刚刚才读过书（如果你要连续读书，可以指明读书的次数）。\n");
+                return notify_fail("你剛剛才讀過書（如果你要連續讀書，可以指明讀書的次數）。\n");
         
         if( me->is_fighting() )
-                return notify_fail("你无法在战斗中专心下来研读新知！\n");
+                return notify_fail("你無法在戰鬥中專心下來研讀新知！\n");
 
         if( !arg || (i = sizeof(args = explode(arg, " "))) < 1)
-                return notify_fail("指令格式：study|du <书籍> <次数>\n");
+                return notify_fail("指令格式：study|du <書籍> <次數>\n");
 
         i--;
         if( i >= 1 && sscanf(args[i], "%d", times) && times)
@@ -57,28 +57,28 @@ int main(object me, string arg)
                 c += 800;
                 
         if( times < 1 || times > c)
-                return notify_fail("读书次数最少一次，最多也"
-                                   "不能超过" + chinese_number(c) + "次。\n");
+                return notify_fail("讀書次數最少一次，最多也"
+                                   "不能超過" + chinese_number(c) + "次。\n");
 
         if( !objectp(ob = present(book_name, me)) )
-                return notify_fail("没这本书可读啊？\n");
+                return notify_fail("沒這本書可讀啊？\n");
 
         if( !mapp(skill=query("skill", ob)) )
-                return notify_fail("你无法从这样东西学到任何东西。\n");
+                return notify_fail("你無法從這樣東西學到任何東西。\n");
 
         if( !me->query_skill("literate", 1) )
-                return notify_fail("你是个文盲，先学点文化(literate)吧。\n");
+                return notify_fail("你是個文盲，先學點文化(literate)吧。\n");
 
         if( query("no_fight", environment(me)) && 
             //(query("doing", me) != "scheme" || this_player(1)) )
             (query("doing", me) != "scheme") )
-                return notify_fail("你无法在这个地方安心读书。\n");
+                return notify_fail("你無法在這個地方安心讀書。\n");
 
-        message("vision", me->name() + "正专心地研读" + ob->name() +
+        message("vision", me->name() + "正專心地研讀" + ob->name() +
                 "。\n", environment(me), me);
 
         if( query("combat_exp", me)<skill["exp_required"]){
-                write("你的实战经验不足，再怎么读也没用。\n");
+                write("你的實戰經驗不足，再怎麼讀也沒用。\n");
                 return 1;
         }
 
@@ -87,13 +87,13 @@ int main(object me, string arg)
                 if( !me->query_family() || (me->query_family() != skill["family_name"] && 
                     (!arrayp(fams) || member_array(skill["family_name"], fams) == -1)) )
                 {
-                        write("你对" + skill["family_name"] + "的练功心法不了解，再怎么读也没用。\n");
+                        write("你對" + skill["family_name"] + "的練功心法不瞭解，再怎麼讀也沒用。\n");
                         return 1;
                 }
         }
 
         if( skill["difficulty"] - (int)me->query_int() > 0 )
-                return notify_fail("以你目前的能力，还没有办法学这个技能，你还是多学点文化吧。\n");
+                return notify_fail("以你目前的能力，還沒有辦法學這個技能，你還是多學點文化吧。\n");
              
         cost = skill["jing_cost"] + skill["jing_cost"] 
                 * (skill["difficulty"] - (int)me->query_int())/12;
@@ -111,9 +111,9 @@ int main(object me, string arg)
 
                         if( me->query_skill(need_sk, 1) < need_lvl )
                                 // not reach the line
-                                return notify_fail("你研读了一会儿，发现如果不通晓" +
+                                return notify_fail("你研讀了一會兒，發現如果不通曉" +
                                                    to_chinese(need_sk) +
-                                                   "的话，恐怕难以领会上面的含义。\n");
+                                                   "的話，恐怕難以領會上面的含義。\n");
                         // check next skill
                 }
         }
@@ -122,9 +122,9 @@ int main(object me, string arg)
         if( functionp(sname) )
                 sname = evaluate(sname, ob);  
         if( !stringp(sname) ) 
-                return notify_fail("你无法从上面学习到任何东西。\n");
+                return notify_fail("你無法從上面學習到任何東西。\n");
 
-        notify_fail("以你目前的能力，还没有办法学这个技能。\n");
+        notify_fail("以你目前的能力，還沒有辦法學這個技能。\n");
         if( !SKILL_D(sname)->valid_learn(me) )
                 return 0;
 
@@ -132,23 +132,23 @@ int main(object me, string arg)
                 return 0;
 
         if( me->query_skill(sname, 1) > skill["max_skill"] )
-                return notify_fail("你研读了一会儿，但是发现"
-                                   "上面所说的对你而言都太浅"
-                                   "了，没有学到任何东西。\n");
+                return notify_fail("你研讀了一會兒，但是發現"
+                                   "上面所說的對你而言都太淺"
+                                   "了，沒有學到任何東西。\n");
 
         if( me->query_skill(sname, 1) < skill["min_skill"] )
-                return notify_fail("你研读了一会儿，但是却发现"
-                                   "你对这门技能的理解还太浅"
-                                   "，结果毫无收获。\n");
+                return notify_fail("你研讀了一會兒，但是卻發現"
+                                   "你對這門技能的理解還太淺"
+                                   "，結果毫無收穫。\n");
 
         if( !me->query_skill(sname, 1) )
                 me->set_skill(sname, 0);
 
         my_skill = me->query_skill(sname, 1);
         if( !me->can_improve_skill(sname) ) {
-                return notify_fail("也许是缺乏实战经验，你对" +
-                                   ob->name() + "上面所说的"
-                                   "东西总是无法领会。\n");
+                return notify_fail("也許是缺乏實戰經驗，你對" +
+                                   ob->name() + "上面所說的"
+                                   "東西總是無法領會。\n");
         }
 
         set_temp("time/study", t, me);
@@ -176,7 +176,7 @@ int main(object me, string arg)
                         t3=query("neili", me)/neili_cost;
                         t4 = t1 + t3;
                         if( t4 == 0 ) {
-                               write("你现在太累了，结果一行也没有看下去。\n");
+                               write("你現在太累了，結果一行也沒有看下去。\n");
                                 return 1;
                         }
 
@@ -196,16 +196,16 @@ int main(object me, string arg)
         me->improve_skill(sname, r * t4);
 
         if( zhao_name = SKILL_D(sname)->query_skill_name(my_skill) )
-                write(sprintf("你研读了" + chinese_number(t4) +
-                      "行有关%s的技巧，对「%s」这一招似乎有些心得。\n",
+                write(sprintf("你研讀了" + chinese_number(t4) +
+                      "行有關%s的技巧，對「%s」這一招似乎有些心得。\n",
                       to_chinese(sname), zhao_name));
         else
-                write(sprintf("你研读了"+chinese_number(t4) +
-                      "行有关%s的技巧，似乎有点心得。\n",
+                write(sprintf("你研讀了"+chinese_number(t4) +
+                      "行有關%s的技巧，似乎有點心得。\n",
                       to_chinese(sname)));
 
         if( t4 < times )
-                write("你现在已经过于疲倦，无法继续研读新知。\n");
+                write("你現在已經過於疲倦，無法繼續研讀新知。\n");
 
         return 1;
 }
@@ -213,11 +213,11 @@ int main(object me, string arg)
 int help(object me)
 {
         write( @HELP
-指令格式: study|du <物品名称> [次数]
-          study|du <物品名称> with [次数]
+指令格式: study|du <物品名稱> [次數]
+          study|du <物品名稱> with [次數]
 
-这个指令使你可以通过阅读秘笈或其他物品自学某些技巧, 但前提
-是: 你不能是个『文盲』。并且你不能在不能战斗的地方读书。
+這個指令使你可以通過閱讀秘笈或其他物品自學某些技巧, 但前提
+是: 你不能是個『文盲』。並且你不能在不能戰鬥的地方讀書。
 
 see also : learn
 HELP );

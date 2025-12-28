@@ -1,4 +1,4 @@
-// 大唐双龙传
+// 大唐雙龍傳
 
 
 inherit NPC;
@@ -6,7 +6,7 @@ inherit NPC;
 void create()
 {
   set_name("王公子", ({"wang gongzi","wang","gongzi"}));
-  set("long","这是一位勤学好问的公子。\n");
+  set("long","這是一位勤學好問的公子。\n");
   set("gender", "男性");
   set("combat_exp", 30000);
 
@@ -39,10 +39,10 @@ void welcome(object ob)
    
    switch(random(2)){
     case 0:
-     command("say 这篇文章我有不同的看法，谁能与我交流一下？");
+     command("say 這篇文章我有不同的看法，誰能與我交流一下？");
      break;
     case 1:
-     command("say 书中自有黄金屋，这句话是一点也会错的。");
+     command("say 書中自有黃金屋，這句話是一點也會錯的。");
    }
    
 }

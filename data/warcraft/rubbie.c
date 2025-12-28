@@ -6,8 +6,8 @@ void setup()
 {
         set_name("小兔子[2;37;0m[2;37;0m", ({"rabbit"}));        
         set("gender", "女性");                
-        set("long", "肉乎乎的一团[2;37;0m
-它是兔子吃肉的魔幻兽。
+        set("long", "肉乎乎的一團[2;37;0m
+它是兔子吃肉的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("马[2;37;0m[2;37;0m", ({"hell"}));        
+        set_name("馬[2;37;0m[2;37;0m", ({"hell"}));        
         set("gender", "男性");                
-        set("long", "坐骑[2;37;0m
-它是雪姐夫的魔幻兽。
+        set("long", "坐騎[2;37;0m
+它是雪姐夫的魔幻獸。
 ");
         set("race_type", "朱雀");
         set("magic/type", "fire");

@@ -1,20 +1,20 @@
-// hsjiao.c 火山脚下
+// hsjiao.c 火山腳下
 // Modify By River@SJ 99.06
 #include <ansi.h>
 inherit ROOM;
 void create()
 {
-	set("short", HIR"火山脚下"NOR);
+	set("short", HIR"火山腳下"NOR);
         set("long", @LONG
-你越走越热，不觉已至火山脚下。此时已可看到大火从火山中怒
-喷而出，到这里你虽然是只穿单衣也是顶受不住，不觉已是口干舌燥，
-遍身大汗，但见身旁已无一株树木花草，只余光秃秃、黄焦焦的岩石。
+你越走越熱，不覺已至火山腳下。此時已可看到大火從火山中怒
+噴而出，到這裡你雖然是隻穿單衣也是頂受不住，不覺已是口乾舌燥，
+遍身大汗，但見身旁已無一株樹木花草，只餘光禿禿、黃焦焦的岩石。
 LONG );
 	set("exits",([
 		"east"	: __DIR__"ysroad2",
 		"westup" : __DIR__"huoshan1",
 	]));
-	set("outdoor","冰火岛");
+	set("outdoor","冰火島");
 	setup();
 }
 

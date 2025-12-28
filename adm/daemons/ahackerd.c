@@ -1,7 +1,7 @@
 // ahackerd.c
 // by Find.
-// 防止猜密码. 封账号功能也在此实现.
-// 此功能也有弊病，建议只对巫师账号采取防猜保护。
+// 防止猜密碼. 封賬號功能也在此實現.
+// 此功能也有弊病，建議只對巫師賬號採取防猜保護。
 
 #include <origin.h>
 
@@ -65,7 +65,7 @@ void passwd_mistake(string id,string ip)
         if(!sizeof(hacking) || member_array(id,hacking) == -1)
         {
                 being_hacking += ([ id : 1 ]);
-                log_file("hacking",sprintf("账号:%s 密码输入不正确.时间:%s 来自:%s\n",
+                log_file("hacking",sprintf("賬號:%s 密碼輸入不正確.時間:%s 來自:%s\n",
                         id,ctime(time()),ip));
                 save();
                 check_same_ip_number(ip);
@@ -77,10 +77,10 @@ void passwd_mistake(string id,string ip)
                 block_account(id);
                 map_delete(being_hacking,id);
                 save();
-                CHANNEL_D->do_channel(this_object(),"sys",sprintf("账号 %s：连续5次密码输入错误，此账号被封锁予以保护。\n",
+                CHANNEL_D->do_channel(this_object(),"sys",sprintf("賬號 %s：連續5次密碼輸入錯誤，此賬號被封鎖予以保護。\n",
                         capitalize(id)));
-                log_file("hacking",sprintf("***账号:%s 连续"+MAX_MISTAKE+"次密码输入不正确被怀疑受到攻击.\n"
-                        +"   于 %s 被暂时封锁予以保护.最后一次攻击来自%s.\n",id,ctime(time()),ip));
+                log_file("hacking",sprintf("***賬號:%s 連續"+MAX_MISTAKE+"次密碼輸入不正確被懷疑受到攻擊.\n"
+                        +"   於 %s 被暫時封鎖予以保護.最後一次攻擊來自%s.\n",id,ctime(time()),ip));
                 check_same_ip_number(ip);
                 return;
         }
@@ -89,7 +89,7 @@ void passwd_mistake(string id,string ip)
         {
                 being_hacking[id] += 1;
                 save();
-                log_file("hacking",sprintf("账号:%s 密码输入不正确.时间:%s 来自:%s\n",
+                log_file("hacking",sprintf("賬號:%s 密碼輸入不正確.時間:%s 來自:%s\n",
                         id,ctime(time()),ip));
                 save();
                 check_same_ip_number(ip);
@@ -119,7 +119,7 @@ void success_login(string id)
         return;
 }
 
-// return 0:已经被封锁 1:成功封锁.
+// return 0:已經被封鎖 1:成功封鎖.
 int block_account(string id)
 {
         string file;
@@ -142,7 +142,7 @@ int block_account(string id)
         }
 }
 
-// return 0:本身未被封锁 1: 成功解除封锁.
+// return 0:本身未被封鎖 1: 成功解除封鎖.
 int unblock_account(string id)
 {
         string file;
@@ -183,7 +183,7 @@ string blocked_list()
                 return "";
 
         if(!sizeof(blocked_account))
-                return "目前"+MUD_NAME+"没有任何账号被封锁。\n";
+                return "目前"+MUD_NAME+"沒有任何賬號被封鎖。\n";
         else
         {
                 for(i=0; i<sizeof(blocked_account); i++)
@@ -212,11 +212,11 @@ protected void check_same_ip_number(string ip)
         if(!sizeof(ids))
                 return;
         else
-                log_file("hacking",sprintf("\t攻击来自IP与在线人物 %s 的IP地址相同\n",
+                log_file("hacking",sprintf("\t攻擊來自IP與在線人物 %s 的IP地址相同\n",
                         implode(ids,"、")));
 }
 
 string query_name()
 {
-        return "驻守精灵(AHACKER_D)";
+        return "駐守精靈(AHACKER_D)";
 }

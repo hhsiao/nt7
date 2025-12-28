@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// lu.c 鲁有脚
+// lu.c 魯有腳
 
 #include <ansi.h>
 #include "gaibang.h"
@@ -13,14 +13,14 @@ inherit F_GUARDER;
 
 void create()
 {
-        set_name("鲁有脚", ({ "lu youjiao", "lu", "youjiao" }));
+        set_name("魯有腳", ({ "lu youjiao", "lu", "youjiao" }));
         set("long", @LONG
-鲁有脚虽然武功算不得顶尖高手，可是在江湖
-上却颇有声望。因为他在丐帮中有仁有义，行
+魯有腳雖然武功算不得頂尖高手，可是在江湖
+上卻頗有聲望。因為他在丐幫中有仁有義，行
 事光明磊落，深得洪七公的器重。
 LONG);
-        set("nickname", HIG "掌棒龙头" NOR);
-        set("title", "丐帮九袋长老");
+        set("nickname", HIG "掌棒龍頭" NOR);
+        set("title", "丐幫九袋長老");
         set("gender", "男性");
         set("age", 48);
         set("attitude", "peaceful");
@@ -68,10 +68,10 @@ LONG);
         set_skill("martial-cognize", 240);
 
         set("no_teach", ([
-                "dagou-bang"      : "打狗棒法向来只有继位帮主能够学习，要学去找帮主。",
-                "zhenjing-baili"  : "这套掌法乃是洪老帮主所赐，我不能轻易传授。",
-                "qianlong-wuyong" : "这套掌法乃是洪老帮主所赐，我不能轻易传授。",
-                "hongjian-yulu"   : "这套掌法乃是洪老帮主所赐，我不能轻易传授。",
+                "dagou-bang"      : "打狗棒法向來只有繼位幫主能夠學習，要學去找幫主。",
+                "zhenjing-baili"  : "這套掌法乃是洪老幫主所賜，我不能輕易傳授。",
+                "qianlong-wuyong" : "這套掌法乃是洪老幫主所賜，我不能輕易傳授。",
+                "hongjian-yulu"   : "這套掌法乃是洪老幫主所賜，我不能輕易傳授。",
         ]));
 
         map_skill("force", "huntian-qigong");
@@ -85,7 +85,7 @@ LONG);
 
         prepare_skill("strike", "xiaoyaoyou");
 
-        create_family("丐帮", 18, "长老");
+        create_family("丐幫", 18, "長老");
 
         set("coagents", ({
                 ([ "startroom" : "/d/city/gbxiaowu",
@@ -124,29 +124,29 @@ void attempt_apprentice(object ob)
 
         if( query("combat_exp", ob)<150000 )
         {
-                command("say 你的江湖经验不够，还是先向各位长老学习吧。");
+                command("say 你的江湖經驗不夠，還是先向各位長老學習吧。");
                 return;
         }
 
         if( query("shen", ob)<20000 )
         {
-                command("say 你身为丐帮弟子，竟然不做好事？");
+                command("say 你身為丐幫弟子，竟然不做好事？");
                 return;
         }
 
         if( query("family/beggarlvl", ob)<4 )
         {
-                command("say 你在本帮的地位太低，还是先向各位长老学习吧。");
+                command("say 你在本幫的地位太低，還是先向各位長老學習吧。");
                 return;
         }
 
         if (ob->query_skill("force") < 120)
         {
-                command("say 你的内功火候还不够，还是先向各位长老学习吧。");
+                command("say 你的內功火候還不夠，還是先向各位長老學習吧。");
                 return;
         }
         command("nod");
-        command("say 以后你就跟着我吧，可别给我生事。");
+        command("say 以後你就跟著我吧，可別給我生事。");
         command("recruit "+query("id", ob));
 
         if( query("class", ob) != "beggar" )
@@ -163,16 +163,16 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "历练" :
-        case "历炼" :
-        case "锻炼" :
+        case "歷練" :
+        case "歷煉" :
+        case "鍛鍊" :
                 return QUEST_D->accept_ask(this_object(), me, topic);
                 break;
 
-        case "缠身决" :
+        case "纏身決" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/shexing-diaoshou/chan",
-                           "name"    : "缠身决",
+                           "name"    : "纏身決",
                            "sk1"     : "shexing-diaoshou",
                            "lv1"     : 100,
                            "sk2"     : "hand",

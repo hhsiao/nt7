@@ -4,7 +4,7 @@ inherit COMBINED_ITEM;
 
 void create()
 {
-        set_name(HIC"修罗"NOR+HIR"无常"NOR+HIY"丹"NOR, ({"xiuluo dan", "dan"}));
+        set_name(HIC"修羅"NOR+HIR"無常"NOR+HIY"丹"NOR, ({"xiuluo dan", "dan"}));
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
@@ -22,7 +22,7 @@ int do_effect(object me)
 
         if( time()-query_temp("last_eat/dan(C, me)")<90 )
         {
-                write("你刚服用过药，需药性发挥完效用以后才能继续服用。\n");
+                write("你剛服用過藥，需藥性發揮完效用以後才能繼續服用。\n");
                 return 1;
         }
 
@@ -30,7 +30,7 @@ int do_effect(object me)
 
         set_temp("last_eat/dan(C)", time(), me);
 
-        message_vision(HIR "$N吃下一粒修罗无常丹，精力得到了完全的调整。\n" NOR, me);
+        message_vision(HIR "$N吃下一粒修羅無常丹，精力得到了完全的調整。\n" NOR, me);
         set("jingli",query("max_jingli",  me), me);
 
         me->start_busy(3);

@@ -21,30 +21,30 @@ int perform(object me, object target)
         }
 
         if (! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if (target->is_busy())
-                return notify_fail(target->name() + "目前正自顾不暇，放胆攻击吧。\n");
+                return notify_fail(target->name() + "目前正自顧不暇，放膽攻擊吧。\n");
 
         skill = me->query_skill("canhe-zhi", 1);
 
         if (skill < 120)
-                return notify_fail("你的参合指修为有限，难以施展" + name() + "。\n");
+                return notify_fail("你的參合指修為有限，難以施展" + name() + "。\n");
 
         if( query("neili", me)<150 )
-                return notify_fail("你的真气不够，难以施展" + name() + "。\n");
+                return notify_fail("你的真氣不夠，難以施展" + name() + "。\n");
 
         if (me->query_skill_mapped("finger") != "canhe-zhi")
-                return notify_fail("你没有激发参合指, 难以施展" + name() + "。\n");
+                return notify_fail("你沒有激發參合指, 難以施展" + name() + "。\n");
 
         if (me->query_skill_prepared("finger") != "canhe-zhi")
-                return notify_fail("你现在没有准备使用参合指, 难以施展" + name() + "。\n");
+                return notify_fail("你現在沒有準備使用參合指, 難以施展" + name() + "。\n");
 
         if (! living(target))
-                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIG "$N" HIG "一声冷哼，右手中食两指并拢，斜斜指出，朝$n"
-              HIG "凌空虚点七下。\n" NOR;
+        msg = HIG "$N" HIG "一聲冷哼，右手中食兩指併攏，斜斜指出，朝$n"
+              HIG "凌空虛點七下。\n" NOR;
 
         addn("neili", -120, me);
 
@@ -53,13 +53,13 @@ int perform(object me, object target)
 
         if (ap / 2 + random(ap) > dp)
         {
-                msg += HIR "结果只听“噗噗噗”数声，$p" HIR "竟被$P"
-                       HIR "以指力封住穴道，动弹不得。\n" NOR;
+                msg += HIR "結果只聽“噗噗噗”數聲，$p" HIR "竟被$P"
+                       HIR "以指力封住穴道，動彈不得。\n" NOR;
                 target->start_busy(ap / 90 + 2);
         } else
         {
                 msg += CYN "可是$p" CYN "看破了$P"
-                       CYN "的企图，轻轻一跃，躲开了这一招。\n" NOR;
+                       CYN "的企圖，輕輕一躍，躲開了這一招。\n" NOR;
                 me->start_busy(2);
         }
         message_combatd(msg, me, target);

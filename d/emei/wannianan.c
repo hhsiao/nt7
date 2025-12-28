@@ -3,11 +3,11 @@ inherit ROOM;
 
 void create()
 {
-      set("short", "万年庵");
+      set("short", "萬年庵");
         set("long", @LONG
-万年庵建在一座突起的山峰上，周围古木森森，清泉淙淙，闲步
-无坎，吟游无坷，景色非常迷人。由此西上过十二盘可达华严顶，南
-下至白龙洞。
+萬年庵建在一座突起的山峰上，周圍古木森森，清泉淙淙，閒步
+無坎，吟遊無坷，景色非常迷人。由此西上過十二盤可達華嚴頂，南
+下至白龍洞。
 LONG );
       set("outdoors", "emei");
       set("exits", ([
@@ -36,11 +36,11 @@ int valid_leave(object me, string dir)
                         if (me->can_improve_skill("dodge") && c_skill < 100)
                                 me->improve_skill("dodge", 1 + c_skill / 15);
 
-                        tell_object(me, HIC "你爬上十二盘，有些累了。\n" NOR);
+                        tell_object(me, HIC "你爬上十二盤，有些累了。\n" NOR);
                 } else
                 {
                         set("qi", 0, me);
-                        tell_object(me, HIR "你太累了，再也走不动了。\n" NOR);
+                        tell_object(me, HIR "你太累了，再也走不動了。\n" NOR);
                         return -1;
                 }
       }

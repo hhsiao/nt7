@@ -11,11 +11,11 @@ inherit F_MASTER;
 void create()
 {
         set_name("莫不收", ({"mo bushou", "mo", "bushou"}));
-        set("title", "丐帮三袋弟子");
+        set("title", "丐幫三袋弟子");
         set("gender", "男性");
         set("age", 21);
         set("long",
-                "这是个蓬头垢面的青年乞丐，整天端着个破碗哼哼：“你不收，他不收，谁也不愿收 ...”\n");
+                "這是個蓬頭垢面的青年乞丐，整天端著個破碗哼哼：“你不收，他不收，誰也不願收 ...”\n");
         set("attitude", "peaceful");
         set("class", "beggar");
 
@@ -63,7 +63,7 @@ void create()
 
         prepare_skill("hand", "shexing-diaoshou");
 
-        create_family("丐帮", 20, "弟子");
+        create_family("丐幫", 20, "弟子");
         set("master_ob",1);
         setup();
 
@@ -81,11 +81,11 @@ void attempt_apprentice(object ob)
 
         if( query("shen", ob)<0 )
         {
-                command("say 你身为丐帮弟子，竟然不做好事？");
+                command("say 你身為丐幫弟子，竟然不做好事？");
                 return;
         }
         command("nod");
-        command("say 你拜我为师，可要做好吃苦的准备，好好做个丐帮弟子！");
+        command("say 你拜我為師，可要做好吃苦的準備，好好做個丐幫弟子！");
         command("recruit "+query("id", ob));
 
         if( query("class", ob) != "beggar" )

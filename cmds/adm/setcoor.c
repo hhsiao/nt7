@@ -48,30 +48,30 @@ int main(object me, string arg)
                 return 0;
 
         if( !query("env/setcoor", me) )
-                return notify_fail("危险指令，慎用！慎用！\n");
+                return notify_fail("危險指令，慎用！慎用！\n");
 
         set_eval_limit(900000000);
         reset_eval_cost();
 
         if( !arg ) {
                 if( query("border", env)){
-                        write("房间 " + base_name(env) + " 已非边界。\n");
+                        write("房間 " + base_name(env) + " 已非邊界。\n");
                         delete("border", env);
                         return 1;
                 } else
-                        return notify_fail("这里本来就不是边界。\n");
+                        return notify_fail("這裡本來就不是邊界。\n");
         }
 
         if( member_array(arg, keys(map_dirs)) != -1 ) {
                 if( query("border/"+arg, env) ) {
-                        write("房间 " + base_name(env) + " 的" + arg + "方向已非边界。\n");
+                        write("房間 " + base_name(env) + " 的" + arg + "方向已非邊界。\n");
                         delete("border/"+arg, env);
                         if( !sizeof(query("border", env)) )
                                 delete("border", env);
                         return 1;
                 } else {
                         set("border/"+arg, 1, env);
-                        write("房间 " + base_name(env) + " 的" + arg + "方向已设为边界。\n");
+                        write("房間 " + base_name(env) + " 的" + arg + "方向已設為邊界。\n");
                         return 1;
                 }
         }
@@ -98,9 +98,9 @@ int main(object me, string arg)
                         clear_old_coor(env);
 
                 if( query("coor", env) != 0 )
-                        write("房间 " + base_name(env) + " 坐标重新设定成功。\n");
+                        write("房間 " + base_name(env) + " 座標重新設定成功。\n");
                 else
-                        write("房间 " + base_name(env) + " 坐标设定成功。\n");
+                        write("房間 " + base_name(env) + " 座標設定成功。\n");
                 set("coor/x", x, env);
                 set("coor/y", y, env);
                 set("coor/z", z, env);
@@ -143,7 +143,7 @@ int non_recur_do(object room, int x, int y, int z, string prefix)
                         x, y, z));
         write_file(base_name(room) + ".c", file, 1);
         file_count ++;
-        write("房间 " + base_name(room) + " 坐标设定成功。\n");
+        write("房間 " + base_name(room) + " 座標設定成功。\n");
         all += ([base_name(room) : room]);
         roomlist += ([base_name(room) : room]);
 
@@ -208,14 +208,14 @@ int non_recur_do(object room, int x, int y, int z, string prefix)
                                                 x1, y1, z1));
                                 write_file(base_name(next_room) + ".c", file, 1);
                                 file_count ++;
-                                write("房间 " + base_name(next_room) + " 坐标设定成功。\n");
+                                write("房間 " + base_name(next_room) + " 座標設定成功。\n");
 
                                 all += ([base_name(next_room) : next_room]);
                                 roomlist += ([base_name(next_room) : next_room]);
                         }
                 }
         }
-        write("共定位 " + sprintf("%d", file_count) + " 个房间。\n");
+        write("共定位 " + sprintf("%d", file_count) + " 個房間。\n");
         return 1;
 }
 
@@ -247,17 +247,17 @@ int help(object me)
 {
 write(@HELP
 指令格式 :
-        setcoor <参数> x,y,z
+        setcoor <參數> x,y,z
 
 用法：
-        setcoor            清除当前房间所有方向的边界属性。
-        setcoor <方向>     若该当前房间的该方向已为边界，则清除之，否则
-                           设置该方向为边界。
-        setcoor x,y,z      无论当前房间是否已定位，重新并单独处理该房间。
-        setcoor -s x,y,z   无论当前房间是否已定位，重新定位当前房间的坐
-                           标，并连锁处理，直到同一目录下所有房间都被处
-                           理过为止。
-        setcoor -a x,y,z   同上，但无同一目录限制。
+        setcoor            清除當前房間所有方向的邊界屬性。
+        setcoor <方向>     若該當前房間的該方向已為邊界，則清除之，否則
+                           設置該方向為邊界。
+        setcoor x,y,z      無論當前房間是否已定位，重新並單獨處理該房間。
+        setcoor -s x,y,z   無論當前房間是否已定位，重新定位當前房間的坐
+                           標，並連鎖處理，直到同一目錄下所有房間都被處
+                           理過為止。
+        setcoor -a x,y,z   同上，但無同一目錄限制。
 
 HELP
 );

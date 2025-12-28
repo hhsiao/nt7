@@ -24,7 +24,7 @@ void create()
         {
                 set("unit", "支");
                 set("prep", "in");
-                set("long", HIW "一支白玉雕制的玉瓶，瓶上的木塞已甚为古旧。\n" NOR);
+                set("long", HIW "一支白玉雕制的玉瓶，瓶上的木塞已甚為古舊。\n" NOR);
                 set("value", 3000);
         }
 }

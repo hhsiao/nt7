@@ -9,12 +9,12 @@ inherit F_QUESTER;
 
 void create()
 {
-        set_name("铜驼", ({"tong tuo", "tong", "tuo"}));
-        set("title", "魔教长老");
+        set_name("銅駝", ({"tong tuo", "tong", "tuo"}));
+        set("title", "魔教長老");
         set("gender", "男性");
         set("age", 52);
         set("shen_type", -1);
-        set("long", "身材高出别人两个头，宽出别人一倍。身着铜甲，整个人不威而怒。\n");
+        set("long", "身材高出別人兩個頭，寬出別人一倍。身著銅甲，整個人不威而怒。\n");
         set("attitude", "peaceful");
 
         set("per", 21);
@@ -66,7 +66,7 @@ void create()
 
         prepare_skill("cuff", "nuquan");
         
-        create_family("魔教", 40, "长老");
+        create_family("魔教", 40, "長老");
   
         set("chat_chance_combat", 120); 
         set("chat_msg_combat", ({
@@ -92,7 +92,7 @@ void attempt_apprentice(object ob)
 
         if ((int)ob->query_skill("moshen-xinfa", 1) < 120) 
         {
-                command("say 本教的内功心法你还没练好，还要多下苦功才行！");
+                command("say 本教的內功心法你還沒練好，還要多下苦功才行！");
                 return;
         }
         
@@ -103,16 +103,16 @@ int accept_ask(object me, string topic)
 {
         switch (topic)
         {
-        case "历练" :
-        case "历炼" :
-        case "锻炼" :
+        case "歷練" :
+        case "歷煉" :
+        case "鍛鍊" :
                 return QUEST_D->accept_ask(this_object(), me, topic);
                 break;
 
-        case "一怒杀佛" :
+        case "一怒殺佛" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/nuquan/nu",
-                           "name"    : "一怒杀佛",
+                           "name"    : "一怒殺佛",
                            "sk1"     : "nuquan",
                            "lv1"     : 200,
                            "dodge"   : 200,
@@ -120,10 +120,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -50000, ]));
                 break;
 
-        case "无法无天" :
+        case "無法無天" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/moshen-zhenshen/wu",
-                           "name"    : "无法无天",
+                           "name"    : "無法無天",
                            "sk1"     : "moshen-zhenshen",
                            "lv1"     : 200,
                            "dodge"   : 200,

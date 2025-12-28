@@ -7,7 +7,7 @@ void setup()
         set_name("[5m[1;35m世京[2;37;0m[2;37;0m", ({"solcngo"}));        
         set("gender", "男性");                
         set("long", "$BLINK$$HIM$世京[2;37;0m
-它是有名有姓的魔幻兽。
+它是有名有姓的魔幻獸。
 ");
         set("race_type", "玄武");
         set("magic/type", "water");

@@ -8,20 +8,20 @@ string query_autoload()
 
 void create()
 {
-        set_name(HIY "补药" NOR, ({ "pill" }));
+        set_name(HIY "補藥" NOR, ({ "pill" }));
         if (clonep())
                 set_default_object(__FILE__);
         else {
-                set("long", HIY "这是一颗增加内功的补药。\n" NOR);
-                set("base_unit", "颗");
+                set("long", HIY "這是一顆增加內功的補藥。\n" NOR);
+                set("base_unit", "顆");
                 set("base_value", 10000);
                 set("base_weight", 50);
                 set("only_do_effect", 1);
 
-                // 增加技能的种类
+                // 增加技能的種類
                 set("pill_skill", "force");
 
-                // 是否为特殊武功
+                // 是否為特殊武功
                 set("skill_mapped", 1);
 
                 // 技能的增加效果
@@ -31,16 +31,16 @@ void create()
                 set("force_point", 3);
 
                 // 服用成功的描述
-                set("pill_msg1", HIR "你只觉一股暖气散布全身，说不出"
+                set("pill_msg1", HIR "你只覺一股暖氣散佈全身，說不出"
                                  "的舒服受用。\n" NOR);
 
-                // 服用失败的描述
-                set("pill_msg2", HIY "你只觉一股热流涌上，内息得到了"
-                                 "完全的补充。\n" NOR);
+                // 服用失敗的描述
+                set("pill_msg2", HIY "你只覺一股熱流湧上，內息得到了"
+                                 "完全的補充。\n" NOR);
 
-                // 增加功力的描述，如果有前面两条信息，则应作缺省
-                set("pill_msg3", HIM "你感到内力又雄厚了一些。\n" NOR);
-                set("pill_msg4", HIR "你感到内息澎湃，难以吸收药力。\n" NOR);
+                // 增加功力的描述，如果有前面兩條信息，則應作缺省
+                set("pill_msg3", HIM "你感到內力又雄厚了一些。\n" NOR);
+                set("pill_msg4", HIR "你感到內息澎湃，難以吸收藥力。\n" NOR);
         }
         setup();
 }
@@ -55,11 +55,11 @@ int do_effect(object me)
         pot2 = query("force_point");
         time = query("pill_point") / 10;
 
-        // 非技能型的药物重新计算效用时间
+        // 非技能型的藥物重新計算效用時間
         if (! query("pill_point"))
                 time = 400 + query("force_point") * 10;
 
-        // 本草知识或妙手药王增加药物效果
+        // 本草知識或妙手藥王增加藥物效果
         if( query("special_skill/herb", me) || query("special_skill/yaowang", me) )
         {
                 pot1 += pot1 / 2;
@@ -67,7 +67,7 @@ int do_effect(object me)
                 time -= time / 2;
         }
         
-        // 妙手药王再提升效果10%
+        // 妙手藥王再提升效果10%
         if( query("special_skill/yaowang", me) )
         {
                 pot1 += pot1 / 10;
@@ -77,14 +77,14 @@ int do_effect(object me)
 
         if ((int)me->query_condition("pill_drug") > 0)
         {
-                write("你觉得现在内息未定，经脉隐隐还能感到真气"
-                      "冲荡，不敢贸然服食。\n");
+                write("你覺得現在內息未定，經脈隱隱還能感到真氣"
+                      "衝蕩，不敢貿然服食。\n");
                 return 1;
         }
         
-        // 未1转的玩家降低为25%
+        // 未1轉的玩家降低為25%
         if( !query("reborn/times", me))time=time/4;
-        // 一转但是未二转的玩家降低为40%
+        // 一轉但是未二轉的玩家降低為40%
         if( query("reborn/times", me) && query("reborn/times", me)==2)time=time*2/5;
 
 
@@ -116,23 +116,23 @@ int do_effect(object me)
 
         if (time < 10)time = 10;
         
-        // 增加药物效用时间，该时段里不能再次服用
+        // 增加藥物效用時間，該時段裡不能再次服用
         me->apply_condition("pill_drug", time);
 
         message_vision(HIY "$N" HIY "服下一" + query("base_unit") +
-                       name() + HIY "，急忙开始运功吸收药力。\n"
+                       name() + HIY "，急忙開始運功吸收藥力。\n"
                        NOR, me);
 
-        // 如果该药物有增加技能的功能，则加之
+        // 如果該藥物有增加技能的功能，則加之
         if (query("pill_skill") && query("pill_point"))
         {
-                // 判断增加的技能是否为特殊技能
+                // 判斷增加的技能是否為特殊技能
                 if (query("skill_mapped") >= 1)
                         skill = me->query_skill_mapped(query("pill_skill"));
                 else
                         skill = query("pill_skill");
 
-                // 可以增加该技能
+                // 可以增加該技能
                 if (stringp(skill) && me->can_improve_skill(skill))
                 {
                         tell_object(me, query("pill_msg1"));
@@ -142,10 +142,10 @@ int do_effect(object me)
         }
 
 
-        // 如果该药物有增加功力的功能，则加之
+        // 如果該藥物有增加功力的功能，則加之
         if (query("pill_skill") && query("force_point"))
         {
-                // 内功型药物增加内力，否则则增加精力
+                // 內功型藥物增加內力，否則則增加精力
                 if (query("pill_skill") == "force")
                 {
                         // 提供出信息

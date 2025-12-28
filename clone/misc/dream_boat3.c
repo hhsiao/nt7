@@ -6,24 +6,24 @@ inherit ITEM;
 int last_update_boss;
 
 string *nature_message = ({
-        "远处传来阵阵海浪声，船身轻轻地摇晃了几下，随即风平浪静。\n",
-        "天空传来数声雷鸣，风云突变，乌云黑压压的一片笼罩着上空。\n",
-        "你放眼望去，一群海豚尾随着船，正在跳跃嬉戏，海面波光粼粼，甚是美丽。\n",
-        "几声惊雷过后，天空突然下起雨来，海浪滔天，船身剧烈地摇晃着。\n",
-        "风雨过后，天空突然放晴，一群海鸥从天边飞来，映衬着远出的彩虹，真是人间美景。\n",
-        "你站在船头，一阵海风吹过，清新扑面，闭上双眼，感觉浑身舒泰无比。\n",
-        "周围依然是无边的海洋，海浪拍打着帆船，海风吹过，将帆鼓得满满地。\n",
+        "遠處傳來陣陣海浪聲，船身輕輕地搖晃了幾下，隨即風平浪靜。\n",
+        "天空傳來數聲雷鳴，風雲突變，烏雲黑壓壓的一片籠罩著上空。\n",
+        "你放眼望去，一群海豚尾隨著船，正在跳躍嬉戲，海面波光粼粼，甚是美麗。\n",
+        "幾聲驚雷過後，天空突然下起雨來，海浪滔天，船身劇烈地搖晃著。\n",
+        "風雨過後，天空突然放晴，一群海鷗從天邊飛來，映襯著遠出的彩虹，真是人間美景。\n",
+        "你站在船頭，一陣海風吹過，清新撲面，閉上雙眼，感覺渾身舒泰無比。\n",
+        "周圍依然是無邊的海洋，海浪拍打著帆船，海風吹過，將帆鼓得滿滿地。\n",
         });
 
 void start_heart_beat()
 {
-        // 默认为心跳1
+        // 默認為心跳1
         set_heart_beat(1);
 }
 
 void create()
 {
-        set_name(HIW "仙境号帆船（开往未知地点）" NOR, ({ "penglai boat"}));
+        set_name(HIW "仙境號帆船（開往未知地點）" NOR, ({ "penglai boat"}));
         set_weight(2000);
         set_max_encumbrance(10000000);
         /*if (clonep())
@@ -35,29 +35,29 @@ void create()
                 set("value", 1);
                                 
                 if (query("running"))
-                           set("long", HIR "\n船夫(chuanfu)吆喝道：我们的船正在行使中，请耐心等候。\n" NOR);
+                           set("long", HIR "\n船伕(chuanfu)吆喝道：我們的船正在行使中，請耐心等候。\n" NOR);
                 else
-                        set("long", HIC "\n船夫(chuanfu)吆喝道：我们的船正在等待中，你可以先在船上休息（enter）。\n" NOR);
+                        set("long", HIC "\n船伕(chuanfu)吆喝道：我們的船正在等待中，你可以先在船上休息（enter）。\n" NOR);
 
                 set("item_desc", ([
-                        "chuanfu" : "这是一位经验丰富船夫，正忙得不可开焦。\n",
+                        "chuanfu" : "這是一位經驗豐富船伕，正忙得不可開焦。\n",
                 ]));
                 set("no_flyto", 1);
                 set("no_rideto", 1);
                 set("no_clean_up", 1);
 
-                set("stop_time", time()); // 靠岸的时间
-                set("waiting_time", 300); // 默认等船时间
-                set("running_time", 300); // 默认行使时间为十五分钟
+                set("stop_time", time()); // 靠岸的時間
+                set("waiting_time", 300); // 默認等船時間
+                set("running_time", 300); // 默認行使時間為十五分鐘
 
-                set("source_place", "/d/xiakedao/haibin"); // 出发地
+                set("source_place", "/d/xiakedao/haibin"); // 出發地
                 set("dest_place", "/d/penglai/haitan"); // 目的地
-                set("dest_place_name", "蓬莱仙岛");
-                set("source_place_name", "南海之滨");
+                set("dest_place_name", "蓬萊仙島");
+                set("source_place_name", "南海之濱");
 
                 set("unit", "艘");
                 set("material", "wood");
-                set("no_get", "船夫(chuanfu)喝道：好家伙，这你也想扛在肩上？\n");
+                set("no_get", "船伕(chuanfu)喝道：好傢伙，這你也想扛在肩上？\n");
 
         }
         setup();        
@@ -81,14 +81,14 @@ int do_enter ( string arg )
         ob = this_player();
         if( arg != query("id", this_object()) )
         {
-                tell_object(ob , "你要 enter 哪儿？\n");
+                tell_object(ob , "你要 enter 哪兒？\n");
                 return 1 ;
         }
 
         if (ob->is_busy())
                 return notify_fail("你正忙。\n");
                 
-        // 所有骑马的人必须下马
+        // 所有騎馬的人必須下馬
         if (objectp(horse = query_temp("is_riding", ob)))
         {
                 if( objectp(person=query_temp("is_rided_follow", horse)) )
@@ -100,34 +100,34 @@ int do_enter ( string arg )
                 delete_temp("is_riding", ob);
                 
 
-                message_vision(HIR "\n$N的" + horse->name() + HIR " 似乎无法跃上帆船，前蹄一扬，所有人"
-                               "被迫跳下马。\n\n" NOR, ob);
+                message_vision(HIR "\n$N的" + horse->name() + HIR " 似乎無法躍上帆船，前蹄一揚，所有人"
+                               "被迫跳下馬。\n\n" NOR, ob);
 
                 return 1;
         }
 
-        // 把背起的用户放下来
+        // 把背起的用戶放下來
         inv = deep_inventory(ob);
         for (i = 0; i < sizeof(inv); i++)
         {
                 if (! playerp(inv[i])) continue;
 
-                // 被人背起的用户
+                // 被人揹起的用戶
                 inv[i]->move(environment(this_object()));                
         }
 
 /*
-        // 暂时只对500万EXP以下的非转世会员开放
+        // 暫時只對500萬EXP以下的非轉世會員開放
         if( (!MEMBER_D->is_valib_member(query("id", ob)) || 
             query("scborn/ok", ob)) && !wizardp(ob) )
-                return notify_fail("船夫(chuanfu)道：公开测试期间，这船暂时只针对非转世会员开放。\n");
+                return notify_fail("船伕(chuanfu)道：公開測試期間，這船暫時只針對非轉世會員開放。\n");
 */                                
         if (environment(ob) == this_object())
-                return notify_fail("船夫(chuanfu)道：你已经在船上了，怎么，想跳下海？\n");
+                return notify_fail("船伕(chuanfu)道：你已經在船上了，怎麼，想跳下海？\n");
 
-        if (! ob->move(this_object()))return notify_fail("这位客官，船已经坐不下了，等下班吧！\n");
+        if (! ob->move(this_object()))return notify_fail("這位客官，船已經坐不下了，等下班吧！\n");
 
-        tell_object(ob, HIG "船夫(chuanfu)对你说道：要下船请输入 out 。\n" NOR);
+        tell_object(ob, HIG "船伕(chuanfu)對你說道：要下船請輸入 out 。\n" NOR);
 
         return 1 ;
 }
@@ -139,7 +139,7 @@ int do_out()
         if (environment(me) != this_object())return 0;
                 
         if (query("running"))
-                return notify_fail("已经开船了！\n");
+                return notify_fail("已經開船了！\n");
                 
         me->move(environment(this_object()));
                 
@@ -157,13 +157,13 @@ void heart_beat()
 
                 if (! environment(this_object()))return;
 
-                set_name(HIW "仙境号帆船（开往" + query("dest_place_name") + "）" NOR, query("id"));
+                set_name(HIW "仙境號帆船（開往" + query("dest_place_name") + "）" NOR, query("id"));
 
                 left_time = query("waiting_time") - (time() - query("stop_time"));
                 left_time /= 60;
                 if (query("running"))
                 {
-                        // 随机出现描述
+                        // 隨機出現描述
                         if (random(30) == 1)
                         {
                                 message_vision(HIC + nature_message[random(sizeof(nature_message))] + NOR, this_object()); 
@@ -171,46 +171,46 @@ void heart_beat()
                         
                         if (time() - query("start_time") >= query("running_time") / 2 )        
                         {                
-                                set("long", HIR "\n船夫(chuanfu)吆喝道：我们的船正在行使中，已行使超过路程的一半，请耐心等候。\n" NOR);                        
+                                set("long", HIR "\n船伕(chuanfu)吆喝道：我們的船正在行使中，已行使超過路程的一半，請耐心等候。\n" NOR);                        
                                 if ((time() - last_update_boss >= 1800) && random(4) == 7 )
                                 {
                                         ob_boss = new("/d/penglai/npc/qingmianshou");
                                         if (ob_boss->move(this_object()))        
                                         {
-                                                message_vision(HIB "突然，风起浪涌，只见天空一团黑雾飘过，船身剧烈晃动，恍惚间，一只巨兽已经站在"
+                                                message_vision(HIB "突然，風起浪湧，只見天空一團黑霧飄過，船身劇烈晃動，恍惚間，一隻巨獸已經站在"
                                                                "你面前。\n" NOR, this_object()); 
-                                                       CHANNEL_D->do_channel(this_object(), "rumor", "听说" HIG "青面兽" + HIM "从蓬莱仙岛逃出，上了仙境号帆船。" NOR);
+                                                       CHANNEL_D->do_channel(this_object(), "rumor", "聽說" HIG "青面獸" + HIM "從蓬萊仙島逃出，上了仙境號帆船。" NOR);
                                         }
                                         last_update_boss = time();
                                 }
                                 
                         }
                         else
-                                set("long", HIR "\n船夫(chuanfu)吆喝道：我们的船正在行使中，请耐心等候。\n" NOR);
+                                set("long", HIR "\n船伕(chuanfu)吆喝道：我們的船正在行使中，請耐心等候。\n" NOR);
                 }
                 else
-                        set("long", HIC "\n船夫(chuanfu)吆喝道：我们的船正在等待中(开船剩余" + sprintf("%d", left_time) + "分钟)，你可以先在船上休息（enter）。\n" NOR);
+                        set("long", HIC "\n船伕(chuanfu)吆喝道：我們的船正在等待中(開船剩餘" + sprintf("%d", left_time) + "分鐘)，你可以先在船上休息（enter）。\n" NOR);
                 
                 inv = all_inventory(this_object());
-                obs = filter_array(inv, (: userp($1) :)); // 过滤掉非玩家物件
+                obs = filter_array(inv, (: userp($1) :)); // 過濾掉非玩家物件
 
-                // 正在行使中计算靠岸时间是否达到
+                // 正在行使中計算靠岸時間是否達到
                 if (query("running"))
                 {
                         // 到站了
                         if (time() - query("start_time") >= query("running_time"))
                         {
-                                        set("stop_time", time()); // 设置到站时间
+                                        set("stop_time", time()); // 設置到站時間
                                         this_object()->move(query("dest_place"));
                                         delete("running");
-                                        message_vision(HIC "船夫(chuanfu)吆喝道：客官们小心哟，船靠岸了 ……\n" NOR, this_object());
+                                        message_vision(HIC "船伕(chuanfu)吆喝道：客官們小心喲，船靠岸了 ……\n" NOR, this_object());
 /*
                                         if (ob_boss = find_living("qingmian shou"))
                                         {
                                                 destruct(ob_boss);
                                         }
 */
-                                        // 到岸并设置玩家startroom
+                                        // 到岸並設置玩家startroom
                                         foreach(ob in obs)
                                         {
                                                 //if (ob->query("id") == "qingmian shou")destruct(ob);
@@ -218,7 +218,7 @@ void heart_beat()
                                                 //set("startroom", base_name(environment(this_object())), ob);
                                                 ob->save();
                                         }
-                                        // 重新设置名称和源，目的地点
+                                        // 重新設置名稱和源，目的地點
                                         now_place_name = query("dest_place_name");
                                         set("dest_place", query("source_place"));
                                         set("dest_place_name", query("source_place_name"));
@@ -227,7 +227,7 @@ void heart_beat()
                                         set("source_place_name", now_place_name);
 
                                         
-                                        // 靠岸时间
+                                        // 靠岸時間
                                         set("stop_time", time());                                        
                                         addn("runtimes", 1);
                                         
@@ -238,16 +238,16 @@ void heart_beat()
                 {
                         if( query("runtimes") >= 4 )
                         {
-                                message_vision(HIC "船夫(chuanfu)吆喝道：停航了，停航了，终于可以回家抱媳妇去了 ……\n" NOR, this_object());
+                                message_vision(HIC "船伕(chuanfu)吆喝道：停航了，停航了，終於可以回家抱媳婦去了 ……\n" NOR, this_object());
                                 destruct(this_object());
                                 return;
                         }
-                        // 开船了
+                        // 開船了
                         if (time() - query("stop_time") >= query("waiting_time"))
                         {
                                 set("start_time", time());
                                 set("running", 1);
-                                message_vision(HIC "船夫(chuanfu)吆喝道：小心啦，船起航了 ……\n" NOR, this_object());
+                                message_vision(HIC "船伕(chuanfu)吆喝道：小心啦，船起航了 ……\n" NOR, this_object());
                                 this_object()->move("/clone/misc/sea");
                         }
                         return;

@@ -1,6 +1,6 @@
 //rune22.c
 
-// Um 乌姆
+// Um 烏姆
 
 #include <ansi.h>
 
@@ -16,8 +16,8 @@ void create()
                 set_default_object(__FILE__);
         else*/
         {
-                set("long", "符文：无思江由符，可以放入凹槽物品。\n");
-                set("unit", "个");
+                set("long", "符文：無思江由符，可以放入凹槽物品。\n");
+                set("unit", "個");
                 set("enchase/SN", 22);
                 set("enchase/type", "all");
                 set("enchase/consistence", 100); 

@@ -7,7 +7,7 @@ void setup()
         set_name("[1;33m加菲[2;37;0m[2;37;0m", ({"jiafei"}));        
         set("gender", "男性");                
         set("long", "$HIY$加菲[2;37;0m
-它是陌上陌黎的魔幻兽。
+它是陌上陌黎的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

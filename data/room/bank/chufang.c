@@ -16,9 +16,9 @@ string *names = ({
 
 void create()
 {
-        set("short", "厨房");
+        set("short", "廚房");
 	set ("long", @LONG
-此处便是金风细雨楼的厨房，只间几个仆人忙来忙去，不得歇息。
+此處便是金風細雨樓的廚房，只間幾個僕人忙來忙去，不得歇息。
 LONG );
 
         set("exits", ([
@@ -39,8 +39,8 @@ LONG );
         set("no_sleep_room", 1);
         setup();
 
-        set("room_owner", "钱庄");
-        set("room_name", "金风细雨楼");
+        set("room_owner", "錢莊");
+        set("room_name", "金風細雨樓");
         set("room_id", "gold");
         set("room_owner_id", "bank");
         set("room_position", "[1;33m名人堂[2;37;0m");

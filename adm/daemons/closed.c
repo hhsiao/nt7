@@ -48,7 +48,7 @@ mapping query_closed_users()
 
 void user_closed(object user)
 {
-        user->set_short_desc("盘膝而坐，正在瞑目闭关修炼。");
+        user->set_short_desc("盤膝而坐，正在瞑目閉關修煉。");
         set_temp("last_closing", time(), user);
         if (! closed_users)
                 closed_users = ([ ]);
@@ -163,7 +163,7 @@ void load_all_users()
                         {
                                 destruct(login_ob);
                                 map_delete(closed_users, u);
-                                log_file("log", sprintf("closed：没有玩家(%s)。\n", u));
+                                log_file("log", sprintf("closed：沒有玩家(%s)。\n", u));
                                 continue;
                         }
 
@@ -172,7 +172,7 @@ void load_all_users()
                         {
                                 destruct(login_ob);
                                 map_delete(closed_users, u);
-                                log_file("log", sprintf("closed：无法生成玩家(%s)。\n", u));
+                                log_file("log", sprintf("closed：無法生成玩家(%s)。\n", u));
                                 continue;
                         }
 
@@ -181,7 +181,7 @@ void load_all_users()
                                 destruct(login_ob);
                                 destruct(user_ob);
                                 map_delete(closed_users, u);
-                                log_file("log", sprintf("closed：无法读取玩家(%s)的档案。\n", u));
+                                log_file("log", sprintf("closed：無法讀取玩家(%s)的檔案。\n", u));
                                 continue;
                         }
 

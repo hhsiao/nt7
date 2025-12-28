@@ -9,9 +9,9 @@ void create()
 	/*if( clonep() )
 		set_default_object(__FILE__);
 	else*/ {
-		set("unit", "颗");
+		set("unit", "顆");
 		set("value", 1);
-		set("long", HIC "从长生梅林中采集而来的青梅。\n" NOR);
+		set("long", HIC "從長生梅林中採集而來的青梅。\n" NOR);
 	}
 
 	setup();

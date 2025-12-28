@@ -1,14 +1,14 @@
 // cool980310
-// 段延庆
+// 段延慶
 // cool980724
 // Modify By River 98/12
 inherit NPC;
 
 void create()
 {
-        set_name("段延庆", ({ "duan yanqing", "duan","yanqing"}) );
-        set("nickname", "恶贯满盈");
-	set("title", "四大恶人");
+        set_name("段延慶", ({ "duan yanqing", "duan","yanqing"}) );
+        set("nickname", "惡貫滿盈");
+	set("title", "四大惡人");
         set("gender", "男性" );
         set("age", 52);
         set("str", 26);
@@ -26,9 +26,9 @@ void create()
         set("max_neili", 10000);
         set("jiali", 100);         
         
-        set("long","这人是个老者，长须垂胸，面目漆黑。\n");
+        set("long","這人是個老者，長鬚垂胸，面目漆黑。\n");
         set("combat_exp", 2100000);
-       set("env/一阳指","三叠");
+       set("env/一陽指","三疊");
         set("shen", -20000);
 
         set("chat_chance_combat", 30);
@@ -54,9 +54,9 @@ void create()
         prepare_skill("finger","sun-finger");
 
         set("inquiry", ([
-           "段誉" : "嘿嘿，他被我关在石屋里啦",
-           "name" : "老夫便是段延庆",
-           "段延庆" : "老夫便是段延庆",
+           "段譽" : "嘿嘿，他被我關在石屋裡啦",
+           "name" : "老夫便是段延慶",
+           "段延慶" : "老夫便是段延慶",
         ]) );
 
         setup();

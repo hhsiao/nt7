@@ -1,4 +1,4 @@
-// zhuangzi-wu.c 庄子舞
+// zhuangzi-wu.c 莊子舞
 
 #include <ansi.h>
 
@@ -7,13 +7,13 @@ inherit SKILL;
 int is_pbsk() { return 1; }
 
 string *dodge_msg = ({
-        "可是$n侧身微微一让，$N这一招扑了个空。\n",
-        "却见$n足不点地，往旁窜开数尺，躲了开去。\n",
-        "$n身形微晃，有惊无险地避开了$N这一招。\n",
-        "$n跨出几步，落点怪异莫测，让$N这一招没有发挥任何作用。\n",
-        "$n自顾自的走出几步，浑然不理$N出招攻向何处。\n",
-        "$N这一招眼看就要击中，可是$n往旁边一让，去点之妙，实在是匪夷所思。\n",
-        "$n往前一迈，忽然后退，恰恰避开$N这一招，有惊无险。\n",
+        "可是$n側身微微一讓，$N這一招撲了個空。\n",
+        "卻見$n足不點地，往旁竄開數尺，躲了開去。\n",
+        "$n身形微晃，有驚無險地避開了$N這一招。\n",
+        "$n跨出幾步，落點怪異莫測，讓$N這一招沒有發揮任何作用。\n",
+        "$n自顧自的走出幾步，渾然不理$N出招攻向何處。\n",
+        "$N這一招眼看就要擊中，可是$n往旁邊一讓，去點之妙，實在是匪夷所思。\n",
+        "$n往前一邁，忽然後退，恰恰避開$N這一招，有驚無險。\n",
 });
 
 int valid_enable(string usage) 
@@ -29,11 +29,11 @@ int valid_learn(object me)
         if (lvl > 300) lvl = 300;
 
         if( query("dex", me)<26 )
-                return notify_fail("你先天身法太差，无法学习庄子舞。\n");
+                return notify_fail("你先天身法太差，無法學習莊子舞。\n");
 
         if( query("max_neili", me)<2400+lvl*15 )
-                return notify_fail("你按照庄子舞所示的步法随意走了两下，顿时"
-                                   "只感头晕目眩，看来是内力不济。\n");
+                return notify_fail("你按照莊子舞所示的步法隨意走了兩下，頓時"
+                                   "只感頭暈目眩，看來是內力不濟。\n");
         return 1;
 }
 
@@ -63,24 +63,24 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
                 switch (random(4))
                 {
                 case 0:
-                        result += (["msg" : MAG "只见$n" MAG "足尖在地面轻轻一点，整个身"
-                                            "子顿时凌空飘起，轻而易举躲开了$N" MAG "的招"
+                        result += (["msg" : MAG "只見$n" MAG "足尖在地面輕輕一點，整個身"
+                                            "子頓時凌空飄起，輕而易舉躲開了$N" MAG "的招"
                                             "式。\n" NOR]);
                         break;
                 case 1:
-                        result += (["msg" : MAG "可是$n" MAG "蛮腰微微一颤，步法宛如行云"
-                                            "流水，轻飘飘的落在一旁，顿时使$N" MAG "的攻"
-                                            "势落空。\n" NOR]);
+                        result += (["msg" : MAG "可是$n" MAG "蠻腰微微一顫，步法宛如行雲"
+                                            "流水，輕飄飄的落在一旁，頓時使$N" MAG "的攻"
+                                            "勢落空。\n" NOR]);
                         break;
                 case 2:
-                        result += (["msg" : MAG "但见$n" MAG "微微一笑，身形轻展，整个人"
-                                            "竟踏空飘起，待$N" MAG "一招击空后，又翩翩而"
+                        result += (["msg" : MAG "但見$n" MAG "微微一笑，身形輕展，整個人"
+                                            "竟踏空飄起，待$N" MAG "一招擊空後，又翩翩而"
                                             "落，晃至$N" MAG "跟前。\n" NOR]);
                         break;
                 default:
-                        result += (["msg" : MAG "可$n" MAG "竟丝毫不理会$N" MAG "的招数，"
-                                            "径自迎面奔上，幻出无数倩影翩翩起舞，$N" MAG
-                                            "勘不透虚实，唯有收招。\n" NOR]);
+                        result += (["msg" : MAG "可$n" MAG "竟絲毫不理會$N" MAG "的招數，"
+                                            "徑自迎面奔上，幻出無數倩影翩翩起舞，$N" MAG
+                                            "勘不透虛實，唯有收招。\n" NOR]);
                         break;
                 }
                 return result;
@@ -90,24 +90,24 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
                 switch (random(4))
                 {
                 case 0:
-                        result = HIY "只见$n" HIY "足尖轻点地面，凌空飘然而"
-                                 "起，可$N" HIY "遁影擒踪，一声冷笑，随即飞"
-                                 "身扑上。\n" NOR;
+                        result = HIY "只見$n" HIY "足尖輕點地面，凌空飄然而"
+                                 "起，可$N" HIY "遁影擒蹤，一聲冷笑，隨即飛"
+                                 "身撲上。\n" NOR;
                         break;
                 case 1:
-                        result = HIY "$n" HIY "蛮腰微微一颤，步法宛如行云流"
-                                 "水，轻飘而落，可$N" HIY "毫不理会，反手又"
+                        result = HIY "$n" HIY "蠻腰微微一顫，步法宛如行雲流"
+                                 "水，輕飄而落，可$N" HIY "毫不理會，反手又"
                                  "攻出一招。\n" NOR;
                         break;
                 case 2:
-                        result = HIY "$n" HIY "微微一笑，身形轻展，整个人竟"
-                                 "踏空飘起，可又见$N" HIY "也随即飘起，在半"
-                                 "空攻出数招。\n" NOR;
+                        result = HIY "$n" HIY "微微一笑，身形輕展，整個人竟"
+                                 "踏空飄起，可又見$N" HIY "也隨即飄起，在半"
+                                 "空攻出數招。\n" NOR;
                         break;
                 default:
-                        result = HIY "但见$n" HIY "身形一展，幻出无数倩影翩"
+                        result = HIY "但見$n" HIY "身形一展，幻出無數倩影翩"
                                  "翩起舞，可$N" HIY "不假思索攻出一招，正是"
-                                 "实影所在。\n" NOR;
+                                 "實影所在。\n" NOR;
                         break;
                 }
                 COMBAT_D->set_bhinfo(result);
@@ -133,14 +133,14 @@ int query_effect_dodge(object attacker, object me)
 int practice_skill(object me)
 {
         if (me->query_skill("zhuangzi-wu", 1) < 180
-            && query("family/family_name", me) != "红花会" )
-                return notify_fail("你对庄子舞了解不够，还不足以自行锻炼。\n");
+            && query("family/family_name", me) != "紅花會" )
+                return notify_fail("你對莊子舞瞭解不夠，還不足以自行鍛鍊。\n");
 
         if( query("qi", me)<70 )
-                return notify_fail("你的体力太差了，难以练习庄子舞。\n");
+                return notify_fail("你的體力太差了，難以練習莊子舞。\n");
 
         if( query("neili", me)<70 )
-                return notify_fail("你的内力不够了，无法练习庄子舞。\n");
+                return notify_fail("你的內力不夠了，無法練習莊子舞。\n");
 
         me->receive_damage("qi", 50);
         addn("neili", -60, me);

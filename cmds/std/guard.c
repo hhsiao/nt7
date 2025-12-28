@@ -5,25 +5,25 @@ inherit F_CLEAN_UP;
 mapping default_dirs = ([
         "north":        "北",
         "south":        "南",
-        "east":         "东",
+        "east":         "東",
         "west":         "西",
-        "northup":      "北边",
-        "southup":      "南边",
-        "eastup":       "东边",
-        "westup":       "西边",
-        "northdown":    "北边",
-        "southdown":    "南边",
-        "eastdown":     "东边",
-        "westdown":     "西边",
-        "northeast":    "东北",
+        "northup":      "北邊",
+        "southup":      "南邊",
+        "eastup":       "東邊",
+        "westup":       "西邊",
+        "northdown":    "北邊",
+        "southdown":    "南邊",
+        "eastdown":     "東邊",
+        "westdown":     "西邊",
+        "northeast":    "東北",
         "northwest":    "西北",
-        "southeast":    "东南",
+        "southeast":    "東南",
         "southwest":    "西南",
         "up":           "上",
         "down":         "下",
         "out":          "外",
-        "in" :          "里",
-        "enter" :       "里面",
+        "in" :          "裡",
+        "enter" :       "裡面",
 ]);
 
 int main(object me, string arg)
@@ -34,7 +34,7 @@ int main(object me, string arg)
         mixed old_target;
 
         if (me->is_busy() || me->is_fighting())
-                return notify_fail("你现在没有办法分心去做这类事！\n");
+                return notify_fail("你現在沒有辦法分心去做這類事！\n");
 
         old_target=query_temp("guardfor", me);
 
@@ -42,15 +42,15 @@ int main(object me, string arg)
         {
                 if (objectp(old_target))
                         if (living(old_target))
-                                write("你正在守护著" + old_target->name() +
+                                write("你正在守護著" + old_target->name() +
                                       "。\n");
                         else
                                 write("你正守在" + old_target->name() +
-                                      "一旁，防止别人拿走。\n");
+                                      "一旁，防止別人拿走。\n");
                 else
                 if (stringp(old_target))
                         write("你正守住往" + default_dirs[old_target] +
-                              "的方向，不准任何人离开。\n");
+                              "的方向，不準任何人離開。\n");
                 else
                              return notify_fail("指令格式：guard <生物> | "
                                            "<物品> | <方向>\n");
@@ -64,26 +64,26 @@ int main(object me, string arg)
         if (ob)
         {
                 if (ob == me)
-                        return notify_fail("守卫自己？不用说你也会"
-                                           "做，对吧。\n");
+                        return notify_fail("守衛自己？不用說你也會"
+                                           "做，對吧。\n");
                 if( query("jing", me)*100/query("max_jing", me)<60 )
-                        return notify_fail("你现在无法集中精神守卫" + ob->name() + "。\n");
+                        return notify_fail("你現在無法集中精神守衛" + ob->name() + "。\n");
                 set_temp("guardfor", ob, me);
         } else
         if( query("exits/"+arg, env) )
         {
                 if ((base_name(env))[0..10]=="/data/room/")
-                        return notify_fail("这里是别人家里，不准你撒野！\n");
+                        return notify_fail("這裡是別人家裡，不准你撒野！\n");
                 if( query("no_fight", env) )
-                        return notify_fail("这里不准战斗——也不准堵住别人去路！\n");
+                        return notify_fail("這裡不準戰鬥——也不準堵住別人去路！\n");
                 if( query("max_room", env) )
-                        return notify_fail("这里是住宅区，不准堵住别人去路！\n");
+                        return notify_fail("這裡是住宅區，不準堵住別人去路！\n");
                 if( query("jing", me)*100/query("max_jing", me)<75 )
-                        return notify_fail("你现在无法集中精神守卫这个方向。\n");
+                        return notify_fail("你現在無法集中精神守衛這個方向。\n");
                 set_temp("guardfor", arg, me);
         } else
         if (arg != "cancel")
-                return notify_fail("你要守卫谁，什麽，或是哪个方向？\n");
+                return notify_fail("你要守衛誰，什麼，或是哪個方向？\n");
 
         if (objectp(old_target))
         {
@@ -98,7 +98,7 @@ int main(object me, string arg)
                 }
                 if (interactive(old_target))
                         tell_object(old_target, me->name() +
-                                    "不再保护你了。\n");
+                                    "不再保護你了。\n");
         } else
         if (stringp(old_target))
         {
@@ -117,7 +117,7 @@ int main(object me, string arg)
 
         if (arg=="cancel")
         {
-                write("什么也不用守了，真是好轻松。\n");
+                write("什麼也不用守了，真是好輕鬆。\n");
                 return 1;
         }
 
@@ -133,10 +133,10 @@ int main(object me, string arg)
                 }
                 set_temp("guarded", guards, ob);
                 if (living(ob))
-                        message_vision("$N开始保护$n。\n", me, ob);
+                        message_vision("$N開始保護$n。\n", me, ob);
                 else
                         message_vision("$N站到地上的$n一旁守著，以"
-                                       "免别人取走。\n", me, ob);
+                                       "免別人取走。\n", me, ob);
                 set_temp("guardfor", ob, me);
         } else
         {
@@ -150,9 +150,9 @@ int main(object me, string arg)
                 }
                 set_temp("guarded/"+arg, guards, env);
                 message("vision", me->name() + "鬼鬼祟祟的望了望四周，"
-                                  "不知道要干什么。\n", env, ({ me }));
-                tell_object(me, "你开始守住往" + default_dirs[arg] +
-                               "的方向不让任何人通行。\n", me);
+                                  "不知道要幹什麼。\n", env, ({ me }));
+                tell_object(me, "你開始守住往" + default_dirs[arg] +
+                               "的方向不讓任何人通行。\n", me);
                 set_temp("guardfor", arg, me);
         }
 
@@ -162,27 +162,27 @@ int main(object me, string arg)
 int help(object me)
 {
         write(@TEXT
-指令格式：guard [<某人>|<地上某物>|<某个出口>|cancel]
+指令格式：guard [<某人>|<地上某物>|<某個出口>|cancel]
 
-这个指令有三种作用方式，分别如後：
+這個指令有三種作用方式，分別如後：
 
-guard <某人>      保护<某人>，当他／她受到攻击时，保护者会自
-                  动加入战斗。
+guard <某人>      保護<某人>，當他／她受到攻擊時，保護者會自
+                  動加入戰鬥。
 
-guard <地上某物>  守住放在地上的某件东西，防止别人来拿，只要
-                  你还在这个房间，而且没有忙著其他事，别人就
-                  无法拿走这件东西。
+guard <地上某物>  守住放在地上的某件東西，防止別人來拿，只要
+                  你還在這個房間，而且沒有忙著其他事，別人就
+                  無法拿走這件東西。
 
-guard <某个出口>  守住某个出口防止所有人从这个出口离开，可以
-                  用来阻拦善於逃跑的敌人或拦路打劫做坏事，如
-                  果你当时正忙，则不能阻挡别人。
+guard <某個出口>  守住某個出口防止所有人從這個出口離開，可以
+                  用來阻攔善於逃跑的敵人或攔路打劫做壞事，如
+                  果你當時正忙，則不能阻擋別人。
 
-guard cancel      取消先前的 guard 对象。
+guard cancel      取消先前的 guard 對象。
 
-注意，只要你一移动，对物品和出口的守卫状态就会解除，但是对人
-物的保护状态仍然有效，只要你到了保护对象的身边仍然发挥作用。
-另外，当你在守卫状态的时候，会消耗精，如果精不够了，则会自动
-解除守卫状态。
+注意，只要你一移動，對物品和出口的守衛狀態就會解除，但是對人
+物的保護狀態仍然有效，只要你到了保護對象的身邊仍然發揮作用。
+另外，當你在守衛狀態的時候，會消耗精，如果精不夠了，則會自動
+解除守衛狀態。
 TEXT );
         return 1;
 }

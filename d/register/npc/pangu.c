@@ -8,8 +8,8 @@ void greeting(object me);
 
 void create()
 {
-        set_name("盘古", ({ "pan gu", }));
-        set("long", "他容貌威严，不可一世。哇！他就是开天辟地的神仙。\n");
+        set_name("盤古", ({ "pan gu", }));
+        set("long", "他容貌威嚴，不可一世。哇！他就是開天闢地的神仙。\n");
         set("gender", "男性");
         set("age", 999);
         set("attitude", "peaceful");
@@ -19,8 +19,8 @@ void create()
         setup();
         carry_object("/clone/cloth/cloth.c")->wear();
         carry_object("/clone/weapon/bigaxe.c")->wield();
-        create_family("万物之神", 1, "天地之主");
-        set("title", HIY "万物之神" NOR);
+        create_family("萬物之神", 1, "天地之主");
+        set("title", HIY "萬物之神" NOR);
 }
 
 void init()
@@ -47,14 +47,14 @@ void greeting(object me)
 
         if( undefinedp(query("born", me)) )
         {
-                command("say "+query("name", me)+"，你快快选择(choose)好角色性格，然后投胎去吧！");
-                tell_object(me, CYN "特别提示：虽然性格对你拜哪个门派并没有影响，但是它会影响你学某些武功！\n" NOR);
-                tell_object(me, HIY "新手导师：请输入 help start 来获知针对各个门派所推荐的性格。(拜师之前可以在北京文庙调整性格)\n" NOR);
-                tell_object(me, "您可以选择(choose)的角色性格如下：\n"
+                command("say "+query("name", me)+"，你快快選擇(choose)好角色性格，然後投胎去吧！");
+                tell_object(me, CYN "特別提示：雖然性格對你拜哪個門派並沒有影響，但是它會影響你學某些武功！\n" NOR);
+                tell_object(me, HIY "新手導師：請輸入 help start 來獲知針對各個門派所推薦的性格。(拜師之前可以在北京文廟調整性格)\n" NOR);
+                tell_object(me, "您可以選擇(choose)的角色性格如下：\n"
                             HIC " 1" NOR ".光明磊落  "
-                            HIC "2" NOR ".狡黠多变  "
+                            HIC "2" NOR ".狡黠多變  "
                             HIC "3" NOR ".心狠手辣  "
-                            HIC "4" NOR ".阴险奸诈 ("
+                            HIC "4" NOR ".陰險奸詐 ("
                             HIC "choose 1" NOR "-" HIC "4" NOR ")\n\n");
 
         } else
@@ -64,18 +64,18 @@ void greeting(object me)
                 else
                 {
                         command("kick "+query("id", me));
-                        command("say 凡人跑到这里来干什么？");
-                        message_vision("$N一脚把$n踢得无影无踪。\n\n",
+                        command("say 凡人跑到這裡來幹什麼？");
+                        message_vision("$N一腳把$n踢得無影無蹤。\n\n",
                                        this_object(), me);
                         me->move(VOID_OB);
-                        message_vision("\n$N跌落地上，捂着屁股哇哇叫了几声。\n",
+                        message_vision("\n$N跌落地上，捂著屁股哇哇叫了幾聲。\n",
                                        me);
                 }
         }
 
         if( undefinedp(query("born", me)) && !objectp(present("book",me)) )
         {
-                command("say 看你初来乍到，未必懂得规矩。给你一本书，你可以看看！(read book)");
+                command("say 看你初來乍到，未必懂得規矩。給你一本書，你可以看看！(read book)");
                 ob = new ("/clone/misc/newbie");
                 ob->move(this_object());
                 command("give book to "+query("id", me));
@@ -86,9 +86,9 @@ int attempt_apprentice(object ob)
 {
         if( !query("born", ob) )
         {
-                command("say 你快投胎去，在这里瞎搅和什么？");
+                command("say 你快投胎去，在這裡瞎攪和什麼？");
                 return 0;
         }
 
-        command("say 滚！给我一边儿去！");
+        command("say 滾！給我一邊兒去！");
 }

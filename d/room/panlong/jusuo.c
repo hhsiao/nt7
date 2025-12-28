@@ -1,4 +1,4 @@
-// jusuo.c 盘龙居居所
+// jusuo.c 盤龍居居所
 
 #include <room.h>
 
@@ -9,12 +9,12 @@ void create()
 {
         set("short", "居所");
         set("long", @LONG
-这就是盘龙居主人休息，读书的地方。楼上就是主人的卧室，西面则
-是书房。
+這就是盤龍居主人休息，讀書的地方。樓上就是主人的臥室，西面則
+是書房。
 LONG );
 
-        set("default_long", "这就是ROOM_NAME主人ROOM_OWNER休息、读书的" /* EXAMPLE */
-                            "地方。楼上就是主人的卧室，西面则是书房。");/* EXAMPLE */
+        set("default_long", "這就是ROOM_NAME主人ROOM_OWNER休息、讀書的" /* EXAMPLE */
+                            "地方。樓上就是主人的臥室，西面則是書房。");/* EXAMPLE */
                                                                         /* EXAMPLE */
 
         set("exits", ([

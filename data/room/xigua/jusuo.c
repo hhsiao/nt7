@@ -9,8 +9,8 @@ void create()
 {
         set("short", "居所");
 	set ("long", @LONG
-这就是水果摊主人西瓜休息、读书的地方。楼上就是主人的卧室，
-西面则是书房。 
+這就是水果攤主人西瓜休息、讀書的地方。樓上就是主人的臥室，
+西面則是書房。 
 LONG );
 
         set("exits", ([
@@ -27,7 +27,7 @@ LONG );
         ]));
     
         set("room_owner", "西瓜");
-        set("room_name", "水果摊");
+        set("room_name", "水果攤");
         set("room_id", "sgt");
         set("room_owner_id", "xigua");
         set("room_position", "碎石小道");

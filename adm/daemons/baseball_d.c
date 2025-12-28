@@ -4,7 +4,7 @@
  * File   : baseball_d.c
  * Author : Clode@RevivalWorld
  * Date   : 2010-08-14
- * Note   : 棒球系统
+ * Note   : 棒球系統
  * Update :
  *  o 2000-00-00  
  *
@@ -43,27 +43,27 @@ private nosave mapping positionname =
 ([
 	"P" : HIC"投"NOR CYN"手"NOR,
 	"C" : HIG"捕"NOR GRN"手"NOR,
-	"1B" : HIG"一"NOR GRN"垒手"NOR,
-	"2B" : HIG"二"NOR GRN"垒手"NOR,
-	"3B" : HIG"三"NOR GRN"垒手"NOR,
-	"SS" : HIG"游"NOR GRN"击手"NOR,
+	"1B" : HIG"一"NOR GRN"壘手"NOR,
+	"2B" : HIG"二"NOR GRN"壘手"NOR,
+	"3B" : HIG"三"NOR GRN"壘手"NOR,
+	"SS" : HIG"遊"NOR GRN"擊手"NOR,
 	"RF" : HIY"右"NOR YEL"外野手"NOR,
 	"CF" : HIY"中"NOR YEL"外野手"NOR,
 	"LF" : HIY"左"NOR YEL"外野手"NOR,
-	"DH" : HIR"指"NOR RED"定打击"NOR,
+	"DH" : HIR"指"NOR RED"定打擊"NOR,
 ]);
 private nosave string *pitch_ball_types = ({ "fourseam", "twoseam", "curveball", "slider", "forkball", "sinker" });
 private nosave mapping pitch_ball_types_name = 
 ([
-	"fourseam":"四缝线快速球",
-	"twoseam":"二缝线快速球",
+	"fourseam":"四縫線快速球",
+	"twoseam":"二縫線快速球",
 	"curveball":"曲球",
 	"slider":"滑球",
 	"forkball":"指叉球",
 	"sinker":"伸卡球",
 ]);
 
-// 调整能力数值，可控制变化率并限制在一定范围内
+// 調整能力數值，可控制變化率並限制在一定範圍內
 int calculate(int value, float decay, int value_max, int to_min, int to_max)
 {
 	float ratio = (to_max - to_min) / pow(to_float(value_max), decay);
@@ -163,11 +163,11 @@ varargs void broadcast(string msg, mapping game)
 		
 		foreach(string listener in setup[game[TEAM1]]["listener"] | setup[game[TEAM2]]["listener"] )
 			if( objectp(user = find_player(listener)) )
-				tell(user, HIG"【棒赛】"NOR+msg+"\n");
+				tell(user, HIG"【棒賽】"NOR+msg+"\n");
 	}
 }
 
-// 球员或球队纪录
+// 球員或球隊紀錄
 mixed add_record(int recordtype, string id, string key, mixed value)
 {
 	int year = season_year;
@@ -201,7 +201,7 @@ varargs mixed get_record(int recordtype, string id, string key, int year)
 	return record[year][recordtype][id][key];
 }
 
-// 增加球员纪录
+// 增加球員紀錄
 void add_player_record(string id, int number, string key, int value)
 {
 	string player = setup[id]["roster"][number]["file"];
@@ -209,13 +209,13 @@ void add_player_record(string id, int number, string key, int value)
 	add_record(RECORD_PLAYER, player, key, value);
 }
 
-// 增加球队纪录
+// 增加球隊紀錄
 void add_team_record(string id, string key, int value)
 {
 	add_record(RECORD_TEAM, id, key, value);
 }
 
-// 确认球队设定合法
+// 確認球隊設定合法
 varargs int valid_setup(string id, int all)
 {
 	object labor;
@@ -311,7 +311,7 @@ varargs int valid_setup(string id, int all)
 	return 1;
 }
 
-// 计算球队每场比赛应有收入
+// 計算球隊每場比賽應有收入
 int query_income(string id)
 {
 	int year = season_year;
@@ -349,7 +349,7 @@ string query_player_status(object player)
 	return "";
 }
 
-// 球队设定
+// 球隊設定
 void set_setup(string id, mapping newsetup)
 {
 	setup[id] += newsetup;
@@ -357,7 +357,7 @@ void set_setup(string id, mapping newsetup)
 	save();
 }
 
-// 删除球队设定
+// 刪除球隊設定
 void delete_setup(string id)
 {
 	map_delete(setup, id);
@@ -365,12 +365,12 @@ void delete_setup(string id)
 	save();
 }
 
-// 加入季赛
+// 加入季賽
 void join_season(string id)
 {
 	int index;
 	
-	// 已经加入季赛
+	// 已經加入季賽
 	if( member_array(id, season) != -1 ) return;
 		
 	season = sort_array(season, (: random(2) ? 1 : -1 :));
@@ -391,7 +391,7 @@ void join_season(string id)
 	season |= ({ id });		
 }
 
-// 取消比赛
+// 取消比賽
 varargs void cancel_game(string id, int force)
 {
 	int gamessize = sizeof(games);
@@ -422,7 +422,7 @@ varargs void cancel_game(string id, int force)
 	games -= ({ 0 });
 }
 
-// 退出季赛
+// 退出季賽
 void leave_season(string id)
 {
 	if( member_array(id, season) == -1 ) return;
@@ -435,13 +435,13 @@ void leave_season(string id)
 	season -= ({ id });
 }
 
-// 是否加入季赛
+// 是否加入季賽
 int in_season(string id)
 {
 	return member_array(id, season) != -1;
 }
 
-// 是否正在比赛中
+// 是否正在比賽中
 int query_status(string id)
 {
 	if( !in_season(id) ) return 0;
@@ -449,7 +449,7 @@ int query_status(string id)
 	return setup[id]["status"];
 }
 
-// 比赛结束
+// 比賽結束
 private varargs string *game_finish(int gameindex, string stopid)
 {
 	int year = season_year;
@@ -479,20 +479,20 @@ private varargs string *game_finish(int gameindex, string stopid)
 		winteam = game[TEAM2];
 		loseteam = game[TEAM1];
 	}
-	finalscore = HIG"比赛"NOR GRN"结果"NOR" 双方"+(game[INNING]>18?"一共缠斗了 "+(game[INNING]/2+game[INNING]%2)+" 局，":"")+"比分为"+setup[game[TEAM2]]["username"]+"“"+team2name+" "+game[TEAM2SCORE]+" : "+game[TEAM1SCORE]+" "+team1name+"”"+setup[game[TEAM1]]["username"];
+	finalscore = HIG"比賽"NOR GRN"結果"NOR" 雙方"+(game[INNING]>18?"一共纏鬥了 "+(game[INNING]/2+game[INNING]%2)+" 局，":"")+"比分為"+setup[game[TEAM2]]["username"]+"“"+team2name+" "+game[TEAM2SCORE]+" : "+game[TEAM1SCORE]+" "+team1name+"”"+setup[game[TEAM1]]["username"];
 	
 	switch(game[TEAM1SCORE] - game[TEAM2SCORE])
 	{
-		case -999..-16:		msg += ({ finalscore+"，可怜的“"+team1name+"”遭到了恐怖的血腥屠杀" });	break;
-		case -15..-11:		msg += ({ finalscore+"，“"+team2name+"”彻底的羞辱了对手" });			break;
-		case -10..-6:		msg += ({ finalscore+"，“"+team2name+"”不留颜面地痛宰了对手" });		break;
-		case -5..-3:		msg += ({ finalscore+"，“"+team2name+"”在这场比赛中轻松获胜" });		break;
-		case -2..-1:		msg += ({ finalscore+"，“"+team2name+"”在惊险中获胜" });			break;
-		case 1..2:		msg += ({ finalscore+"，“"+team1name+"”在惊险中获胜" });			break;
-		case 3..5:		msg += ({ finalscore+"，“"+team1name+"”在这场比赛中轻松获胜" });		break;
-		case 6..10:		msg += ({ finalscore+"，“"+team1name+"”不留颜面地痛宰了对手" });		break;
-		case 11..15:		msg += ({ finalscore+"，“"+team1name+"”彻底的羞辱了对手" });			break;
-		case 16..999:		msg += ({ finalscore+"，可怜的“"+team2name+"”遭到了恐怖的血腥屠杀" });	break;
+		case -999..-16:		msg += ({ finalscore+"，可憐的“"+team1name+"”遭到了恐怖的血腥屠殺" });	break;
+		case -15..-11:		msg += ({ finalscore+"，“"+team2name+"”徹底的羞辱了對手" });			break;
+		case -10..-6:		msg += ({ finalscore+"，“"+team2name+"”不留顏面地痛宰了對手" });		break;
+		case -5..-3:		msg += ({ finalscore+"，“"+team2name+"”在這場比賽中輕鬆獲勝" });		break;
+		case -2..-1:		msg += ({ finalscore+"，“"+team2name+"”在驚險中獲勝" });			break;
+		case 1..2:		msg += ({ finalscore+"，“"+team1name+"”在驚險中獲勝" });			break;
+		case 3..5:		msg += ({ finalscore+"，“"+team1name+"”在這場比賽中輕鬆獲勝" });		break;
+		case 6..10:		msg += ({ finalscore+"，“"+team1name+"”不留顏面地痛宰了對手" });		break;
+		case 11..15:		msg += ({ finalscore+"，“"+team1name+"”徹底的羞辱了對手" });			break;
+		case 16..999:		msg += ({ finalscore+"，可憐的“"+team2name+"”遭到了恐怖的血腥屠殺" });	break;
 		//default: error("error score");
 	}
 	
@@ -503,11 +503,11 @@ private varargs string *game_finish(int gameindex, string stopid)
 
 		if( setup[winteam]["keeploses"] >= 5 )
 		{
-			msg += ({ "“"+setup[winteam]["name"]+"”中止了最近的 "HIG+setup[winteam]["keeploses"]+NOR" 连败。" });
+			msg += ({ "“"+setup[winteam]["name"]+"”中止了最近的 "HIG+setup[winteam]["keeploses"]+NOR" 連敗。" });
 		}
 		if( setup[loseteam]["keepwins"] >= 5 )
 		{
-			msg += ({ "“"+setup[loseteam]["name"]+"”中止了最近的 "HIR+setup[loseteam]["keepwins"]+NOR" 连胜。" });
+			msg += ({ "“"+setup[loseteam]["name"]+"”中止了最近的 "HIR+setup[loseteam]["keepwins"]+NOR" 連勝。" });
 		}
 			
 		setup[winteam]["keepwins"]++;
@@ -521,11 +521,11 @@ private varargs string *game_finish(int gameindex, string stopid)
 			record[year][RECORD_SPECIAL]["keepwins"] = setup[winteam]["keepwins"];
 			record[year][RECORD_SPECIAL]["keepwinsteam"] = winteam;
 			
-			msg += ({ HIY"纪录"NOR YEL"更新 "NOR"士气高昂的“"+setup[winteam]["name"]+"”突破本季最长连胜纪录，"HIR"连胜"NOR RED"纪录"NOR"来到第 "HIR+setup[winteam]["keepwins"]+NOR" 场" });
+			msg += ({ HIY"紀錄"NOR YEL"更新 "NOR"士氣高昂的“"+setup[winteam]["name"]+"”突破本季最長連勝紀錄，"HIR"連勝"NOR RED"紀錄"NOR"來到第 "HIR+setup[winteam]["keepwins"]+NOR" 場" });
 		}
 		else if( setup[winteam]["keepwins"] >= 5 )
 		{
-			msg += ({ "“"+setup[winteam]["name"]+"”打出一波 "HIR+setup[winteam]["keepwins"]+NOR" 连胜，战绩大幅跃进" });
+			msg += ({ "“"+setup[winteam]["name"]+"”打出一波 "HIR+setup[winteam]["keepwins"]+NOR" 連勝，戰績大幅躍進" });
 		}
 		
 		if( setup[loseteam]["keeploses"] > record[year][RECORD_SPECIAL]["keeploses"] )
@@ -533,80 +533,80 @@ private varargs string *game_finish(int gameindex, string stopid)
 			record[year][RECORD_SPECIAL]["keeploses"] = setup[loseteam]["keeploses"];
 			record[year][RECORD_SPECIAL]["keeplosesteam"] = loseteam;
 			
-			msg += ({ HIY"纪录"NOR YEL"更新 "NOR"士气低落的“"+setup[loseteam]["name"]+"”苦吞本季最长连败纪录，"HIG"连败"NOR GRN"纪录"NOR"来到第 "HIG+setup[loseteam]["keeploses"]+NOR" 场" });
+			msg += ({ HIY"紀錄"NOR YEL"更新 "NOR"士氣低落的“"+setup[loseteam]["name"]+"”苦吞本季最長連敗紀錄，"HIG"連敗"NOR GRN"紀錄"NOR"來到第 "HIG+setup[loseteam]["keeploses"]+NOR" 場" });
 		}
 		else if( setup[loseteam]["keeploses"] >= 5 )
 		{
-			msg += ({ "“"+setup[loseteam]["name"]+"”连续吞下 "HIG+setup[loseteam]["keeploses"]+NOR" 连败，战绩大幅退后" });
+			msg += ({ "“"+setup[loseteam]["name"]+"”連續吞下 "HIG+setup[loseteam]["keeploses"]+NOR" 連敗，戰績大幅退後" });
 		}
 	}
 	
-	// 单场最多三振纪录
+	// 單場最多三振紀錄
 	if( game[TEAM1K] > game[TEAM2K] && game[TEAM1K] > record[year][RECORD_SPECIAL]["maxstrikeouts"] )
 	{
 		record[year][RECORD_SPECIAL]["maxstrikeouts"] = game[TEAM1K];
 		record[year][RECORD_SPECIAL]["maxstrikeoutsplayer"] = setup[game[TEAM1]]["roster"][0]["file"];
 		
-		msg += ({ HIY"纪录"NOR YEL"更新 "NOR"“"+team1name+"”的"+setup[game[TEAM1]]["roster"][0]["object"]->query_idname()+"突破本季投手单场最多三振纪录，纪录来到 "HIY+game[TEAM1K]+NOR YEL"K"NOR" ！！" });
+		msg += ({ HIY"紀錄"NOR YEL"更新 "NOR"“"+team1name+"”的"+setup[game[TEAM1]]["roster"][0]["object"]->query_idname()+"突破本季投手單場最多三振紀錄，紀錄來到 "HIY+game[TEAM1K]+NOR YEL"K"NOR" ！！" });
 	}
 	else if( game[TEAM2K] > game[TEAM1K] && game[TEAM2K] > record[year][RECORD_SPECIAL]["maxstrikeouts"] )
 	{
 		record[year][RECORD_SPECIAL]["maxstrikeouts"] = game[TEAM2K];
 		record[year][RECORD_SPECIAL]["maxstrikeoutsplayer"] = setup[game[TEAM2]]["roster"][0]["file"];
 		
-		msg += ({ HIY"纪录"NOR YEL"更新 "NOR"“"+team2name+"”的"+setup[game[TEAM2]]["roster"][0]["object"]->query_idname()+"突破本季投手单场最多三振纪录，纪录来到 "HIY+game[TEAM2K]+NOR YEL"K"NOR" ！！" });
+		msg += ({ HIY"紀錄"NOR YEL"更新 "NOR"“"+team2name+"”的"+setup[game[TEAM2]]["roster"][0]["object"]->query_idname()+"突破本季投手單場最多三振紀錄，紀錄來到 "HIY+game[TEAM2K]+NOR YEL"K"NOR" ！！" });
 	}
 	
-	// 单场最多安打纪录
+	// 單場最多安打紀錄
 	if( game[TEAM1HIT] > game[TEAM2HIT] && game[TEAM1HIT] > record[year][RECORD_SPECIAL]["maxhits"] )
 	{
 		record[year][RECORD_SPECIAL]["maxhits"] = game[TEAM1HIT];
 		record[year][RECORD_SPECIAL]["maxhitsteam"] = game[TEAM1];
 		
-		msg += ({ HIY"纪录"NOR YEL"更新 "NOR"“"+team1name+"”突破本季单场最多安打纪录，纪录来到 "HIY+game[TEAM1HIT]+NOR YEL" 只安打"NOR" ！！" });
+		msg += ({ HIY"紀錄"NOR YEL"更新 "NOR"“"+team1name+"”突破本季單場最多安打紀錄，紀錄來到 "HIY+game[TEAM1HIT]+NOR YEL" 只安打"NOR" ！！" });
 	}
 	else if( game[TEAM2HIT] > game[TEAM1HIT] && game[TEAM2HIT] > record[year][RECORD_SPECIAL]["maxhits"] )
 	{
 		record[year][RECORD_SPECIAL]["maxhits"] = game[TEAM2HIT];
 		record[year][RECORD_SPECIAL]["maxhitsteam"] = game[TEAM2];
 		
-		msg += ({ HIY"纪录"NOR YEL"更新 "NOR"“"+team2name+"”突破本季单场最多安打纪录，纪录来到 "HIY+game[TEAM2HIT]+NOR YEL" 只安打"NOR" ！！" });
+		msg += ({ HIY"紀錄"NOR YEL"更新 "NOR"“"+team2name+"”突破本季單場最多安打紀錄，紀錄來到 "HIY+game[TEAM2HIT]+NOR YEL" 只安打"NOR" ！！" });
 	}
 		
-	// 单场最多得分纪录
+	// 單場最多得分紀錄
 	if( game[TEAM1SCORE] > game[TEAM2SCORE] && game[TEAM1SCORE] > record[year][RECORD_SPECIAL]["maxscores"] )
 	{
 		record[year][RECORD_SPECIAL]["maxscores"] = game[TEAM1SCORE];
 		record[year][RECORD_SPECIAL]["maxscoresteam"] = game[TEAM1];
 		
-		msg += ({ HIY"纪录"NOR YEL"更新 "NOR"“"+team1name+"”突破本季单场最多得分纪录，纪录来到 "HIY+game[TEAM1SCORE]+NOR YEL" 分"NOR" ！！" });
+		msg += ({ HIY"紀錄"NOR YEL"更新 "NOR"“"+team1name+"”突破本季單場最多得分紀錄，紀錄來到 "HIY+game[TEAM1SCORE]+NOR YEL" 分"NOR" ！！" });
 	}
 	else if( game[TEAM2SCORE] > game[TEAM1SCORE] && game[TEAM2SCORE] > record[year][RECORD_SPECIAL]["maxscores"] )
 	{
 		record[year][RECORD_SPECIAL]["maxscores"] = game[TEAM2SCORE];
 		record[year][RECORD_SPECIAL]["maxscoresteam"] = game[TEAM2];
 		
-		msg += ({ HIY"纪录"NOR YEL"更新 "NOR"“"+team2name+"”突破本季单场最多得分纪录，纪录来到 "HIY+game[TEAM2SCORE]+NOR YEL" 分"NOR" ！！" });
+		msg += ({ HIY"紀錄"NOR YEL"更新 "NOR"“"+team2name+"”突破本季單場最多得分紀錄，紀錄來到 "HIY+game[TEAM2SCORE]+NOR YEL" 分"NOR" ！！" });
 	}
 	
-	// 单场最多局数纪录
+	// 單場最多局數紀錄
 	if( game[INNING] > record[year][RECORD_SPECIAL]["maxinnings"] )
 	{
 		record[year][RECORD_SPECIAL]["maxinnings"] = game[INNING];
 		record[year][RECORD_SPECIAL]["maxinningsteam1"] = game[TEAM1];
 		record[year][RECORD_SPECIAL]["maxinningsteam2"] = game[TEAM2];
 		
-		msg += ({ HIY"纪录"NOR YEL"更新 "NOR"“"+team1name+"”与“"+team2name+"”共同创造本季单场延长赛最多局数纪录，纪录来到 "HIY+(game[INNING]/2 + game[INNING]%2)+NOR YEL" 局"NOR" ！！" });
+		msg += ({ HIY"紀錄"NOR YEL"更新 "NOR"“"+team1name+"”與“"+team2name+"”共同創造本季單場延長賽最多局數紀錄，紀錄來到 "HIY+(game[INNING]/2 + game[INNING]%2)+NOR YEL" 局"NOR" ！！" });
 	}
 	
-	// 单场分数差最多纪录
+	// 單場分數差最多紀錄
 	if( abs(game[TEAM1SCORE] - game[TEAM2SCORE]) > record[year][RECORD_SPECIAL]["maxscorediff"] )
 	{
 		record[year][RECORD_SPECIAL]["maxscorediff"] = abs(game[TEAM1SCORE] - game[TEAM2SCORE]);
 		record[year][RECORD_SPECIAL]["maxscorediffwin"] = game[TEAM1SCORE] > game[TEAM2SCORE] ? game[TEAM1] : game[TEAM2];
 		record[year][RECORD_SPECIAL]["maxscoredifflose"] = game[TEAM1SCORE] < game[TEAM2SCORE] ? game[TEAM1] : game[TEAM2];
 		
-		msg += ({ HIY"纪录"NOR YEL"更新 "NOR"“"+team1name+"”与“"+team2name+"”共同创造本季单场分数差距最大纪录，纪录来到 "HIY+abs(game[TEAM1SCORE] - game[TEAM2SCORE])+NOR YEL" 分"NOR" ！！" });
+		msg += ({ HIY"紀錄"NOR YEL"更新 "NOR"“"+team1name+"”與“"+team2name+"”共同創造本季單場分數差距最大紀錄，紀錄來到 "HIY+abs(game[TEAM1SCORE] - game[TEAM2SCORE])+NOR YEL" 分"NOR" ！！" });
 	}
 	
 	setup[game[TEAM1]]["status"] = STATUS_IDLE;
@@ -634,7 +634,7 @@ private varargs string *game_finish(int gameindex, string stopid)
 			if( query("owner", master) == game[TEAM2] && objectp(find_player(game[TEAM2])) )
 			{
 				addn("money", income, master);
-				income_msg += "“"+setup[game[TEAM2]]["name"]+"”获得票房收入 "HIY+money(MONEY_D->query_default_money_unit(), income)+NOR;
+				income_msg += "“"+setup[game[TEAM2]]["name"]+"”獲得票房收入 "HIY+money(MONEY_D->query_default_money_unit(), income)+NOR;
 							
 				master->save();
 			}
@@ -653,7 +653,7 @@ private varargs string *game_finish(int gameindex, string stopid)
 			if( query("owner", master) == game[TEAM1] && objectp(find_player(game[TEAM1])) )
 			{
 				addn("money", income, master);
-				income_msg += "“"+setup[game[TEAM1]]["name"]+"”获得票房收入 "HIY+money(MONEY_D->query_default_money_unit(), income)+" "NOR;
+				income_msg += "“"+setup[game[TEAM1]]["name"]+"”獲得票房收入 "HIY+money(MONEY_D->query_default_money_unit(), income)+" "NOR;
 				
 				master->save();
 			}
@@ -672,13 +672,13 @@ private varargs string *game_finish(int gameindex, string stopid)
 				if( game[TEAM1SCORE] > game[TEAM2SCORE] )
 				{
 					post_season_team_4 |= ({ game[TEAM1] });
-					msg += ({ HIR"季后"NOR RED"赛"NOR" "+setup[game[TEAM1]]["username"]+"领军的“"+setup[game[TEAM1]]["name"]+"”获得四强晋级！！" });
+					msg += ({ HIR"季後"NOR RED"賽"NOR" "+setup[game[TEAM1]]["username"]+"領軍的“"+setup[game[TEAM1]]["name"]+"”獲得四強晉級！！" });
 					post_season_eliminate_teams |= ({ game[TEAM2] });
 				}
 				else
 				{
 					post_season_team_4 |= ({ game[TEAM2] });
-					msg += ({ HIR"季后"NOR RED"赛"NOR" "+setup[game[TEAM2]]["username"]+"领军的“"+setup[game[TEAM2]]["name"]+"”获得四强晋级！！" });
+					msg += ({ HIR"季後"NOR RED"賽"NOR" "+setup[game[TEAM2]]["username"]+"領軍的“"+setup[game[TEAM2]]["name"]+"”獲得四強晉級！！" });
 					post_season_eliminate_teams |= ({ game[TEAM1] });
 				}
 				save();
@@ -689,13 +689,13 @@ private varargs string *game_finish(int gameindex, string stopid)
 				if( game[TEAM1SCORE] > game[TEAM2SCORE] )
 				{
 					post_season_team_2 |= ({ game[TEAM1] });
-					msg += ({ HIR"季后"NOR RED"赛"NOR" "+setup[game[TEAM1]]["username"]+"领军的“"+setup[game[TEAM1]]["name"]+"”获得晋级总冠军赛！！" });
+					msg += ({ HIR"季後"NOR RED"賽"NOR" "+setup[game[TEAM1]]["username"]+"領軍的“"+setup[game[TEAM1]]["name"]+"”獲得晉級總冠軍賽！！" });
 					post_season_eliminate_teams |= ({ game[TEAM2] });
 				}
 				else
 				{
 					post_season_team_2 |= ({ game[TEAM2] });
-					msg += ({ HIR"季后"NOR RED"赛"NOR" "+setup[game[TEAM2]]["username"]+"领军的“"+setup[game[TEAM2]]["name"]+"”获得晋级总冠军赛！！" });
+					msg += ({ HIR"季後"NOR RED"賽"NOR" "+setup[game[TEAM2]]["username"]+"領軍的“"+setup[game[TEAM2]]["name"]+"”獲得晉級總冠軍賽！！" });
 					post_season_eliminate_teams |= ({ game[TEAM1] });
 				}
 				save();
@@ -707,7 +707,7 @@ private varargs string *game_finish(int gameindex, string stopid)
 				
 				if( game[TEAM1SCORE] > game[TEAM2SCORE] )
 				{
-					msg += ({ HIR"季后"NOR RED"赛"NOR" 恭喜"+setup[game[TEAM1]]["username"]+"领军的“"+setup[game[TEAM1]]["name"]+"”获得"NOR CYN"第 "HIC+year+NOR CYN" 球季"HIY"棒球"NOR YEL"世界冠军"NOR"！！" });
+					msg += ({ HIR"季後"NOR RED"賽"NOR" 恭喜"+setup[game[TEAM1]]["username"]+"領軍的“"+setup[game[TEAM1]]["name"]+"”獲得"NOR CYN"第 "HIC+year+NOR CYN" 球季"HIY"棒球"NOR YEL"世界冠軍"NOR"！！" });
 					record[year][RECORD_SPECIAL]["champion"] = game[TEAM1];
 					record[year][RECORD_SPECIAL]["2rd"] = game[TEAM2];
 					post_season_eliminate_teams |= ({ game[TEAM2] });
@@ -715,7 +715,7 @@ private varargs string *game_finish(int gameindex, string stopid)
 				}
 				else
 				{
-					msg += ({ HIR"季后"NOR RED"赛"NOR" 恭喜"+setup[game[TEAM2]]["username"]+"领军的“"+setup[game[TEAM2]]["name"]+"”获得"NOR CYN"第 "HIC+year+NOR CYN" 球季"HIY"棒球"NOR YEL"世界冠军"NOR"！！" });
+					msg += ({ HIR"季後"NOR RED"賽"NOR" 恭喜"+setup[game[TEAM2]]["username"]+"領軍的“"+setup[game[TEAM2]]["name"]+"”獲得"NOR CYN"第 "HIC+year+NOR CYN" 球季"HIY"棒球"NOR YEL"世界冠軍"NOR"！！" });
 					record[year][RECORD_SPECIAL]["champion"] = game[TEAM2];
 					record[year][RECORD_SPECIAL]["2rd"] = game[TEAM1];
 					post_season_eliminate_teams |= ({ game[TEAM1] });
@@ -727,11 +727,11 @@ private varargs string *game_finish(int gameindex, string stopid)
 				{
 					object ring = new("/obj/baseball/champion_ring_"+year);
 					
-					user->add_title(sprintf(HIC+"%-4d"+HIY"总"NOR YEL"冠"NOR YEL"军"NOR, year));
+					user->add_title(sprintf(HIC+"%-4d"+HIY"總"NOR YEL"冠"NOR YEL"軍"NOR, year));
 					user->save();				
 					
-					tell(user, pnoun(2, user)+"获得一只“"+ring->query_idname()+"”。\n");
-					CHANNEL_D->channel_broadcast("sport", user->query_idname()+"获得一只“"+ring->query_idname()+"”。");
+					tell(user, pnoun(2, user)+"獲得一隻“"+ring->query_idname()+"”。\n");
+					CHANNEL_D->channel_broadcast("sport", user->query_idname()+"獲得一隻“"+ring->query_idname()+"”。");
 					
 					ring->set_keep();
 					ring->move(user);
@@ -765,7 +765,7 @@ private varargs string *game_finish(int gameindex, string stopid)
 				
 			if( !random(25) )
 			{
-				msg += ({ roster_data["object"]->query_idname()+"所使用的"+equipments[0]->query_idname()+"在这场比赛中坏掉了！！\n" });
+				msg += ({ roster_data["object"]->query_idname()+"所使用的"+equipments[0]->query_idname()+"在這場比賽中壞掉了！！\n" });
 				
 				roster_data["object"]->unequip(equipments[0], ref status);
 				
@@ -780,14 +780,14 @@ private varargs string *game_finish(int gameindex, string stopid)
 	return msg;
 }
 
-// 计算分数
+// 計算分數
 private string *new_score(int gameindex, string attacker, string defender, int score, int scoretype)
 {
 	string *msg = allocate(0);
 	mapping game = games[gameindex];
 	int attacknumber;
 	
-	// 计算得分
+	// 計算得分
 	if( attacker == game[TEAM1] )
 	{
 		game[TEAM1SCORE] += score;
@@ -804,15 +804,15 @@ private string *new_score(int gameindex, string attacker, string defender, int s
 	
 	msg += ({ "“"+setup[game[TEAM2]]["name"]+" "+game[TEAM2SCORE]+" : "+game[TEAM1SCORE]+" "+setup[game[TEAM1]]["name"] +"”" });
 	
-	// 下半局，再见得分
+	// 下半局，再見得分
 	if( game[INNING] >= 18 && (game[INNING] % 2) == 0 && game[TEAM1SCORE] > game[TEAM2SCORE] )
 	{
 		switch(scoretype)
 		{
-			case SCORETYPE_HOMERUN:		msg += ({ "这是一只再见全垒打！！" }); 	break;
-			case SCORETYPE_FOURBALL:	msg += ({ "这是一个再见四坏！！" }); 	break;
-			case SCORETYPE_SACRIFICE:	msg += ({ "这是一只再见牺牲打！！" });	break;
-			case SCORETYPE_HIT:		msg += ({ "这是一只再见安打！！" }); 	break;
+			case SCORETYPE_HOMERUN:		msg += ({ "這是一隻再見全壘打！！" }); 	break;
+			case SCORETYPE_FOURBALL:	msg += ({ "這是一個再見四壞！！" }); 	break;
+			case SCORETYPE_SACRIFICE:	msg += ({ "這是一隻再見犧牲打！！" });	break;
+			case SCORETYPE_HIT:		msg += ({ "這是一隻再見安打！！" }); 	break;
 			default: error("error scoretype");
 		}
 
@@ -822,7 +822,7 @@ private string *new_score(int gameindex, string attacker, string defender, int s
 	return msg;
 }
 
-// 计算新的出局数
+// 計算新的出局數
 private string *new_out(int gameindex, string attacker, string defender, int outcount, int outtype)
 {
 	string *msg = allocate(0);
@@ -832,13 +832,13 @@ private string *new_out(int gameindex, string attacker, string defender, int out
 	game[STRIKE] = 0;
 	game[BALL] = 0;
 
-	// 打席次数纪录
+	// 打席次數紀錄
 	add_player_record(attacker, attackernumber, "ab", 1);
 	
-	// 投手对决人次纪录
+	// 投手對決人次紀錄
 	add_player_record(defender, 0, "bf", 1);
 	
-	// 投手对决出局数
+	// 投手對決出局數
 	add_player_record(defender, 0, "out", outcount);
 	
 	if( outtype == BASETYPE_STRIKEOUT )
@@ -853,7 +853,7 @@ private string *new_out(int gameindex, string attacker, string defender, int out
 		
 		game[INNING]++;
 		
-		msg += ({ "“"+setup[game[TEAM2]]["name"]+" "+game[TEAM2SCORE]+" : "+game[TEAM1SCORE]+" "+setup[game[TEAM1]]["name"] +"”攻守交替，比赛进入到"+(game[INNING]>=19?"延长赛":"")+"第 "+( game[INNING]%2 ? ((game[INNING]+1)/2)+" 局上半" : ((game[INNING]+1)/2)+" 局下半" ) });
+		msg += ({ "“"+setup[game[TEAM2]]["name"]+" "+game[TEAM2SCORE]+" : "+game[TEAM1SCORE]+" "+setup[game[TEAM1]]["name"] +"”攻守交替，比賽進入到"+(game[INNING]>=19?"延長賽":"")+"第 "+( game[INNING]%2 ? ((game[INNING]+1)/2)+" 局上半" : ((game[INNING]+1)/2)+" 局下半" ) });
 			
 		game[RUNNER1ST] = 0;
 		game[RUNNER2ND] = 0;
@@ -861,10 +861,10 @@ private string *new_out(int gameindex, string attacker, string defender, int out
 	}
 	else
 	{	
-		// 刺杀, 有机会进垒
+		// 刺殺, 有機會進壘
 		if( outtype == BASETYPE_BUNT || outtype == BASETYPE_TOUCHKILL )
 		{
-			// 满垒则封杀三垒跑者
+			// 滿壘則封殺三壘跑者
 			if( game[RUNNER3RD] > 0 && game[RUNNER2ND] > 0 && game[RUNNER1ST] > 0 )
 			{
 				game[RUNNER3RD] = game[RUNNER2ND];
@@ -873,14 +873,14 @@ private string *new_out(int gameindex, string attacker, string defender, int out
 			}
 			else
 			{
-				// 三垒无人 二垒有人, 进垒
+				// 三壘無人 二壘有人, 進壘
 				if( game[RUNNER3RD] == 0 && game[RUNNER2ND] > 0 )
 				{
 					game[RUNNER3RD] = game[RUNNER2ND];
 					game[RUNNER2ND] = 0;
 				}
 				
-				// 二垒无人 一垒有人, 进垒
+				// 二壘無人 一壘有人, 進壘
 				if( game[RUNNER2ND] == 0 && game[RUNNER1ST] > 0 )
 				{
 					game[RUNNER2ND] = game[RUNNER1ST];
@@ -888,12 +888,12 @@ private string *new_out(int gameindex, string attacker, string defender, int out
 				}
 			}	
 		}
-		// 接杀, 有机会进垒
+		// 接殺, 有機會進壘
 		else if( outtype == BASETYPE_CATCHKILL )
 		{
 			if( game[RUNNER3RD] > 0 )
 			{
-				msg += ({ "“"+setup[attacker]["name"]+"”三垒跑者冲回本垒得分！" });
+				msg += ({ "“"+setup[attacker]["name"]+"”三壘跑者衝回本壘得分！" });
 				msg += new_score(gameindex, attacker, defender, 1, SCORETYPE_SACRIFICE);
 				
 				if( !games[gameindex] )
@@ -902,10 +902,10 @@ private string *new_out(int gameindex, string attacker, string defender, int out
 				game[RUNNER3RD] = 0;
 			}
 		}
-		// 双杀, 有机会进垒
+		// 雙殺, 有機會進壘
 		else if( outtype == BASETYPE_DOUBLEPLAY )
 		{
-			// 三垒无人 二垒有人, 进垒
+			// 三壘無人 二壘有人, 進壘
 			if( game[RUNNER2ND] > 0 )
 			{
 				game[RUNNER3RD] = game[RUNNER2ND];
@@ -914,14 +914,14 @@ private string *new_out(int gameindex, string attacker, string defender, int out
 			
 			game[RUNNER1ST] = 0;
 		}
-		// 三杀 , 理论上不会执行到此(直接换局)
+		// 三殺 , 理論上不會執行到此(直接換局)
 		//else if( outtype == BASETYPE_TRIPLEPLAY ) { }
 		
 		if( game[RUNNER3RD] > 0 || game[RUNNER2ND] > 0 || game[RUNNER1ST] > 0 )
-			msg += ({ "“"+setup[attacker]["name"]+"”目前垒上的跑者情形为 [ "+(game[RUNNER3RD] > 0?HIW"○"NOR:WHT"╳"NOR)+" "+(game[RUNNER2ND] > 0?HIW"○"NOR:WHT"╳"NOR)+" "+(game[RUNNER1ST] > 0?HIW"○"NOR:WHT"╳"NOR)+" ] "HIW+game[OUT]+NOR WHT"out"NOR });
+			msg += ({ "“"+setup[attacker]["name"]+"”目前壘上的跑者情形為 [ "+(game[RUNNER3RD] > 0?HIW"○"NOR:WHT"╳"NOR)+" "+(game[RUNNER2ND] > 0?HIW"○"NOR:WHT"╳"NOR)+" "+(game[RUNNER1ST] > 0?HIW"○"NOR:WHT"╳"NOR)+" ] "HIW+game[OUT]+NOR WHT"out"NOR });
 	}
 
-	// 轮下一棒
+	// 輪下一棒
 	if( attacker == game[TEAM1] )
 		game[TEAM1NUMBER] = 1 + (game[TEAM1NUMBER] % 9);
 	else
@@ -935,7 +935,7 @@ private string *new_out(int gameindex, string attacker, string defender, int out
 	return msg;
 }
 
-// 计算新的进垒
+// 計算新的進壘
 private string *new_base(int gameindex, string attacker, string defender, int basecount, int basetype)
 {
 	string *msg = allocate(0);
@@ -949,14 +949,14 @@ private string *new_base(int gameindex, string attacker, string defender, int ba
 	game[STRIKE] = 0;
 	game[BALL] = 0;
 
-	// 投手对决人次
+	// 投手對決人次
 	add_player_record(defender, 0, "bf", 1);
 
-	if( basetype == BASETYPE_HIT ) // 安打进垒
+	if( basetype == BASETYPE_HIT ) // 安打進壘
 	{
 		int scoretype;
 		
-		// 打者打击次数纪录
+		// 打者打擊次數紀錄
 		add_player_record(attacker, attacknumber, "ab", 1);
 
 		if( attacker == game[TEAM1] )
@@ -971,13 +971,13 @@ private string *new_base(int gameindex, string attacker, string defender, int ba
 				add_player_record(attacker, attacknumber, "hit1", 1);
 				add_player_record(attacker, attacknumber, "hit", 1);
 				
-				if( game[RUNNER3RD] > 0 ) {	score++; msg += ({ "“"+setup[attacker]["name"]+"”三垒跑者奔回本垒得分！" }); game[RUNNER3RD] = 0; }	
+				if( game[RUNNER3RD] > 0 ) {	score++; msg += ({ "“"+setup[attacker]["name"]+"”三壘跑者奔回本壘得分！" }); game[RUNNER3RD] = 0; }	
 				if( game[RUNNER2ND] > 0 )
 				{
 					if( random(setup[attacker]["roster"][game[RUNNER2ND]]["object"]->query_int()) > random(400) )
 					{
 						score++; 
-						msg += ({ "“"+setup[attacker]["name"]+"”二垒跑者奔回本垒得分！" });	
+						msg += ({ "“"+setup[attacker]["name"]+"”二壘跑者奔回本壘得分！" });	
 					
 						game[RUNNER2ND] = 0; 
 					}
@@ -988,7 +988,7 @@ private string *new_base(int gameindex, string attacker, string defender, int ba
 					}
 				}
 						
-				// 一垒有人，进垒
+				// 一壘有人，進壘
 				if( game[RUNNER1ST] > 0 )
 				{
 					if( game[RUNNER3RD] > 0 )
@@ -999,7 +999,7 @@ private string *new_base(int gameindex, string attacker, string defender, int ba
 					game[RUNNER1ST] = 0;
 				}
 				
-				// 打者上到一垒
+				// 打者上到一壘
 				game[RUNNER1ST] = (attacker == game[TEAM1] ? game[TEAM1NUMBER] : game[TEAM2NUMBER]);
 				
 				scoretype = SCORETYPE_HIT;
@@ -1011,11 +1011,11 @@ private string *new_base(int gameindex, string attacker, string defender, int ba
 				add_player_record(attacker, attacknumber, "hit2", 1);
 				add_player_record(attacker, attacknumber, "hit", 1);
 				
-				if( game[RUNNER3RD] > 0 ) {	score++; msg += ({ "“"+setup[attacker]["name"]+"”三垒跑者奔回本垒得分！" }); game[RUNNER3RD] = 0; }	
-				if( game[RUNNER2ND] > 0 ) {	score++; msg += ({ "“"+setup[attacker]["name"]+"”二垒跑者奔回本垒得分！" }); game[RUNNER2ND] = 0; }
-				if( game[RUNNER1ST] > 0 ) {	score++; msg += ({ "“"+setup[attacker]["name"]+"”一垒跑者奔回本垒得分！" }); game[RUNNER1ST] = 0; }
+				if( game[RUNNER3RD] > 0 ) {	score++; msg += ({ "“"+setup[attacker]["name"]+"”三壘跑者奔回本壘得分！" }); game[RUNNER3RD] = 0; }	
+				if( game[RUNNER2ND] > 0 ) {	score++; msg += ({ "“"+setup[attacker]["name"]+"”二壘跑者奔回本壘得分！" }); game[RUNNER2ND] = 0; }
+				if( game[RUNNER1ST] > 0 ) {	score++; msg += ({ "“"+setup[attacker]["name"]+"”一壘跑者奔回本壘得分！" }); game[RUNNER1ST] = 0; }
 				
-				// 打者上到二垒
+				// 打者上到二壘
 				game[RUNNER2ND] = (attacker == game[TEAM1] ? game[TEAM1NUMBER] : game[TEAM2NUMBER]);
 	
 				scoretype = SCORETYPE_HIT;
@@ -1027,11 +1027,11 @@ private string *new_base(int gameindex, string attacker, string defender, int ba
 				add_player_record(attacker, attacknumber, "hit3", 1);
 				add_player_record(attacker, attacknumber, "hit", 1);
 				
-				if( game[RUNNER3RD] > 0 ) {	score++; msg += ({ "“"+setup[attacker]["name"]+"”三垒跑者奔回本垒得分！" }); game[RUNNER3RD] = 0; }	
-				if( game[RUNNER2ND] > 0 ) {	score++; msg += ({ "“"+setup[attacker]["name"]+"”二垒跑者奔回本垒得分！" }); game[RUNNER2ND] = 0; }
-				if( game[RUNNER1ST] > 0 ) {	score++; msg += ({ "“"+setup[attacker]["name"]+"”一垒跑者奔回本垒得分！" }); game[RUNNER1ST] = 0; }
+				if( game[RUNNER3RD] > 0 ) {	score++; msg += ({ "“"+setup[attacker]["name"]+"”三壘跑者奔回本壘得分！" }); game[RUNNER3RD] = 0; }	
+				if( game[RUNNER2ND] > 0 ) {	score++; msg += ({ "“"+setup[attacker]["name"]+"”二壘跑者奔回本壘得分！" }); game[RUNNER2ND] = 0; }
+				if( game[RUNNER1ST] > 0 ) {	score++; msg += ({ "“"+setup[attacker]["name"]+"”一壘跑者奔回本壘得分！" }); game[RUNNER1ST] = 0; }
 							
-				// 打者上到三垒
+				// 打者上到三壘
 				game[RUNNER3RD] = (attacker == game[TEAM1] ? game[TEAM1NUMBER] : game[TEAM2NUMBER]);
 				
 				scoretype = SCORETYPE_HIT;
@@ -1043,11 +1043,11 @@ private string *new_base(int gameindex, string attacker, string defender, int ba
 				add_player_record(attacker, attacknumber, "hit4", 1);
 				add_player_record(attacker, attacknumber, "hit", 1);
 				
-				if( game[RUNNER3RD] > 0 ) {	score++; msg += ({ "“"+setup[attacker]["name"]+"”三垒跑者奔回本垒得分！" }); game[RUNNER3RD] = 0; }	
-				if( game[RUNNER2ND] > 0 ) {	score++; msg += ({ "“"+setup[attacker]["name"]+"”二垒跑者奔回本垒得分！" }); game[RUNNER2ND] = 0; }
-				if( game[RUNNER1ST] > 0 ) {	score++; msg += ({ "“"+setup[attacker]["name"]+"”一垒跑者奔回本垒得分！" }); game[RUNNER1ST] = 0; }
+				if( game[RUNNER3RD] > 0 ) {	score++; msg += ({ "“"+setup[attacker]["name"]+"”三壘跑者奔回本壘得分！" }); game[RUNNER3RD] = 0; }	
+				if( game[RUNNER2ND] > 0 ) {	score++; msg += ({ "“"+setup[attacker]["name"]+"”二壘跑者奔回本壘得分！" }); game[RUNNER2ND] = 0; }
+				if( game[RUNNER1ST] > 0 ) {	score++; msg += ({ "“"+setup[attacker]["name"]+"”一壘跑者奔回本壘得分！" }); game[RUNNER1ST] = 0; }
 					
-				msg += ({ "“"+setup[attacker]["name"]+"”打者奔回本垒得分！" });
+				msg += ({ "“"+setup[attacker]["name"]+"”打者奔回本壘得分！" });
 				score++;
 	
 				scoretype = SCORETYPE_HOMERUN;
@@ -1061,21 +1061,21 @@ private string *new_base(int gameindex, string attacker, string defender, int ba
 		if( !games[gameindex] )
 			return msg;
 	}
-	else if( basetype == BASETYPE_BALL ) // 保送进垒
+	else if( basetype == BASETYPE_BALL ) // 保送進壘
 	{
 		add_player_record(defender, 0, "fourball", 1);
 		add_player_record(attacker, attacknumber, "walk", 1);
 
-		// 若一垒有人
+		// 若一壘有人
 		if( game[RUNNER1ST] > 0 )
 		{
-			// 若二垒也有人
+			// 若二壘也有人
 			if( game[RUNNER2ND] > 0 )
 			{
-				// 若三垒也有人
+				// 若三壘也有人
 				if( game[RUNNER3RD] > 0 )
 				{
-					msg += ({ "“"+setup[attacker]["name"]+"”三垒跑者毫不费力地走回本垒得分！" });
+					msg += ({ "“"+setup[attacker]["name"]+"”三壘跑者毫不費力地走回本壘得分！" });
 					msg += new_score(gameindex, attacker, defender, 1, SCORETYPE_FOURBALL);
 					
 					if( !games[gameindex] )
@@ -1091,7 +1091,7 @@ private string *new_base(int gameindex, string attacker, string defender, int ba
 		game[RUNNER1ST] = attacknumber;	
 	}
 
-	// 轮下一棒
+	// 輪下一棒
 	if( attacker == game[TEAM1] )
 		game[TEAM1NUMBER] = 1 + (game[TEAM1NUMBER] % 9);
 	else
@@ -1101,7 +1101,7 @@ private string *new_base(int gameindex, string attacker, string defender, int ba
 	setup[defender]["hint"] = 0;
 	
 	if( game[RUNNER3RD] > 0 || game[RUNNER2ND] > 0 || game[RUNNER1ST] > 0 )
-		msg += ({ "“"+setup[attacker]["name"]+"”目前垒上的跑者情形为 [ "+(game[RUNNER3RD] > 0?HIW"○"NOR:WHT"╳"NOR)+" "+(game[RUNNER2ND] > 0?HIW"○"NOR:WHT"╳"NOR)+" "+(game[RUNNER1ST] > 0?HIW"○"NOR:WHT"╳"NOR)+" ] "HIW+game[OUT]+NOR WHT"out"NOR });
+		msg += ({ "“"+setup[attacker]["name"]+"”目前壘上的跑者情形為 [ "+(game[RUNNER3RD] > 0?HIW"○"NOR:WHT"╳"NOR)+" "+(game[RUNNER2ND] > 0?HIW"○"NOR:WHT"╳"NOR)+" "+(game[RUNNER1ST] > 0?HIW"○"NOR:WHT"╳"NOR)+" ] "HIW+game[OUT]+NOR WHT"out"NOR });
 		
 	games[gameindex] = game;
 
@@ -1140,7 +1140,7 @@ int get_handside_level(object player)
 	return query_temp("baseballcache/handside/level", player);
 }
 
-// 打者与投手左右方的差异 (-60~70) 之间
+// 打者與投手左右方的差異 (-60~70) 之間
 int get_handside_diff(object pitcher, object batter)
 {
 	int base_level_diff = (get_handside_level(batter) - get_handside_level(pitcher))/20;
@@ -1157,7 +1157,7 @@ int get_handside_diff(object pitcher, object batter)
 		return -10 + base_level_diff;
 }
 
-// 取得打击率
+// 取得打擊率
 varargs float get_hit_rate(string teamid, int num, int year)
 {
 	int hit, ab;
@@ -1176,7 +1176,7 @@ varargs float get_hit_rate(string teamid, int num, int year)
 	return 10. * hit / ab;
 }
 
-// 进行球赛
+// 進行球賽
 void play_game()
 {
 	string *msg;
@@ -1210,14 +1210,14 @@ void play_game()
 
 		if( !valid_setup(team1) )
 		{
-			broadcast(HIG"【棒赛】"NOR"“"+setup[team1]["name"]+"”的球队资料不完整，中止比赛。\n", game);
+			broadcast(HIG"【棒賽】"NOR"“"+setup[team1]["name"]+"”的球隊資料不完整，中止比賽。\n", game);
 			cancel_game(team1, 1);
 			continue;
 		}
 			
 		if( !valid_setup(team2) )
 		{
-			broadcast(HIG"【棒赛】"NOR"“"+setup[team2]["name"]+"”的球队资料不完整，中止比赛。\n", game);
+			broadcast(HIG"【棒賽】"NOR"“"+setup[team2]["name"]+"”的球隊資料不完整，中止比賽。\n", game);
 			cancel_game(team2, 1);
 			continue;
 		}
@@ -1263,18 +1263,18 @@ void play_game()
 				case HANDSIDE_NONE: defendhandside = ""; break;
 				case HANDSIDE_LEFTHAND: defendhandside = HIC"左"NOR CYN"投"NOR; break;
 				case HANDSIDE_RIGHTHAND: defendhandside = HIG"右"NOR GRN"投"NOR; break;
-				default: defendhandside = HIR"错误"NOR; break;
+				default: defendhandside = HIR"錯誤"NOR; break;
 			}
 			switch(get_handside_type(attacksetup["roster"][0]["object"]))
 			{
 				case HANDSIDE_NONE: attackhandside = ""; break;
 				case HANDSIDE_LEFTHAND: attackhandside = HIC"左"NOR CYN"投"NOR; break;
 				case HANDSIDE_RIGHTHAND: attackhandside = HIG"右"NOR GRN"投"NOR; break;
-				default: attackhandside = HIR"错误"NOR; break;
+				default: attackhandside = HIR"錯誤"NOR; break;
 			}
 			
-			msg += ({ attacksetup["username"]+"的"+attackteamname+"与"+defendsetup["username"]+"的"+defendteamname+"比赛正式开始。" });
-			msg += ({ "双方派出的先发投手分别为"+attackteamname+attackhandside+attacksetup["roster"][0]["object"]->query_idname()+"与"+defendteamname+defendhandside+defendsetup["roster"][0]["object"]->query_idname()+"。" });
+			msg += ({ attacksetup["username"]+"的"+attackteamname+"與"+defendsetup["username"]+"的"+defendteamname+"比賽正式開始。" });
+			msg += ({ "雙方派出的先發投手分別為"+attackteamname+attackhandside+attacksetup["roster"][0]["object"]->query_idname()+"與"+defendteamname+defendhandside+defendsetup["roster"][0]["object"]->query_idname()+"。" });
 			
 			game[INNING]++;
 		}
@@ -1286,8 +1286,8 @@ void play_game()
 			string defend_msg="", attack_msg="", info_msg="", *special_msg = allocate(0);
 			string pitcherballtype;
 			
-			int pitcherbase = get_handside_level(pitcher) + pitcher->query_str() * 2;		// 投手基本能力(预估范围 10~1500 之间)
-			int batterbase = get_handside_level(batter) + batter->query_str() * 2;			// 打者基本能力(预估范围 10~1500 之间)
+			int pitcherbase = get_handside_level(pitcher) + pitcher->query_str() * 2;		// 投手基本能力(預估範圍 10~1500 之間)
+			int batterbase = get_handside_level(batter) + batter->query_str() * 2;			// 打者基本能力(預估範圍 10~1500 之間)
 			
 			string *availableballtypes;
 			int pitchballpower;
@@ -1347,7 +1347,7 @@ void play_game()
 						break;
 				}
 				
-				// 球种愈多，威力愈强
+				// 球種愈多，威力愈強
 				if( sizeof(availableballtypes) == 1 )
 					pitchballpower -= 200;
 				else
@@ -1356,7 +1356,7 @@ void play_game()
 			else
 			{
 				pitchballpower = 0;
-				pitcherballtype = "软弱直球";
+				pitcherballtype = "軟弱直球";
 				
 				pitchballspeed = 100+random(15);
 			}
@@ -1388,48 +1388,48 @@ void play_game()
 				pitchballpower += 70;
 				pitchballspeed += range_random(2, 5);
 				
-				defend_msg = defendteamname+pitcher->query_idname()+HIY"全神"NOR YEL"贯注"NOR+(pitchballspeed>=155?"飙":"投")+"出"+(pitchballspeed>=160?"惊人的":"")+" "+pitchballspeed+"km "+ pitcherballtype;
+				defend_msg = defendteamname+pitcher->query_idname()+HIY"全神"NOR YEL"貫注"NOR+(pitchballspeed>=155?"飆":"投")+"出"+(pitchballspeed>=160?"驚人的":"")+" "+pitchballspeed+"km "+ pitcherballtype;
 			}
 			else
 			{
-				defend_msg = defendteamname+pitcher->query_idname()+(pitchballspeed>=155?"飙":"投")+"出"+(pitchballspeed>=160?"惊人的":"")+" "+pitchballspeed+"km "+ pitcherballtype;
+				defend_msg = defendteamname+pitcher->query_idname()+(pitchballspeed>=155?"飆":"投")+"出"+(pitchballspeed>=160?"驚人的":"")+" "+pitchballspeed+"km "+ pitcherballtype;
 			}
 
 			
 			attack_msg = attackteamname+attacknumber+" 棒"+batter->query_idname();
 			
-			// 敬远四坏
+			// 敬遠四壞
 			if( defendsetup["hint"] == HINTTYPE_WALK )
 			{
 				if( ++game[BALL] == 4 )
 				{
-					defend_msg = defendteamname+pitcher->query_idname()+"往一旁轻轻抛球给捕手，"HIG"坏球"NOR"！引来观众一阵嘘声";
-					attack_msg += "获得敬远四坏保送上垒。";
+					defend_msg = defendteamname+pitcher->query_idname()+"往一旁輕輕拋球給捕手，"HIG"壞球"NOR"！引來觀眾一陣噓聲";
+					attack_msg += "獲得敬遠四壞保送上壘。";
 	
-					// 进一垒
+					// 進一壘
 					special_msg += new_base(gameindex, attacker, defender, 1, BASETYPE_BALL);
 				}
 				else
 				{
-					defend_msg = defendteamname+pitcher->query_idname()+"往一旁轻轻抛球给捕手，"HIG"坏球"NOR"！引来观众一阵嘘声";
-					attack_msg += "耐心地等待四坏保送";
+					defend_msg = defendteamname+pitcher->query_idname()+"往一旁輕輕拋球給捕手，"HIG"壞球"NOR"！引來觀眾一陣噓聲";
+					attack_msg += "耐心地等待四壞保送";
 	
 					info_msg = " "HIR+game[STRIKE]+NOR" "HIG+game[BALL]+" "HIW+game[OUT]+NOR;
 				}				
 			}
-			// 进行触击短打
+			// 進行觸擊短打
 			else if( attacksetup["hint"] == HINTTYPE_BUNT )
 			{
-				// 内野安打!
+				// 內野安打!
 				if( random(batter->query_int()) > random(600) )
 				{
-					attack_msg += "摆出奇袭短棒将球击出！这是一支内野安打！！";
+					attack_msg += "擺出奇襲短棒將球擊出！這是一支內野安打！！";
 					
 					special_msg += new_base(gameindex, attacker, defender, 1, BASETYPE_HIT);
 				}
 				else if( !random(5) )
 				{
-					attack_msg += "摆出短棒将球击出！但却碰出一颗软弱飞球被接杀！";
+					attack_msg += "擺出短棒將球擊出！但卻碰出一顆軟弱飛球被接殺！";
 					
 					info_msg = " "HIW+(game[OUT]+1)+NOR WHT"out"NOR;
 					
@@ -1437,16 +1437,16 @@ void play_game()
 				}
 				else
 				{
-					// 满垒
+					// 滿壘
 					if( game[RUNNER1ST] > 0 && game[RUNNER2ND] > 0 && game[RUNNER3RD] > 0 )
 					{
 						if( game[OUT] < 2 )								
-							attack_msg += "摆出短棒将球击出！三垒跑者被封杀在本垒！";
+							attack_msg += "擺出短棒將球擊出！三壘跑者被封殺在本壘！";
 						else
-							attack_msg += "摆出短棒将球击出！但被内野手拦住并刺杀在一垒！";
+							attack_msg += "擺出短棒將球擊出！但被內野手攔住並刺殺在一壘！";
 					}
 					else
-						attack_msg += "摆出短棒将球击出！但被内野手拦住并刺杀在一垒！";
+						attack_msg += "擺出短棒將球擊出！但被內野手攔住並刺殺在一壘！";
 													
 					info_msg = " "HIW+(game[OUT]+1)+NOR WHT"out"NOR;
 					
@@ -1456,12 +1456,12 @@ void play_game()
 			// 投出好球
 			else if( calculate(pitcherbase, 0.8, 1500, 400, 700) > random(1000) )
 			{
-				// 打者精准选球且出棒的机率 550 + (0~100) + (-60~70) - (0~100) + (-20~5)
+				// 打者精準選球且出棒的機率 550 + (0~100) + (-60~70) - (0~100) + (-20~5)
 				int swingchance = 550 + calculate(batter->query_skill_level("hitaccuracy"), 0.8, 999, 0, 100) + get_handside_diff(pitcher, batter) - pitchballpower + pitchswingeffect;
 								
 				if( attacksetup["hint"] == HINTTYPE_BATTER )
 				{
-					attack_msg += HIY"全神"NOR YEL"贯注"NOR;
+					attack_msg += HIY"全神"NOR YEL"貫注"NOR;
 					swingchance += 40;
 				}
 
@@ -1476,7 +1476,7 @@ void play_game()
 				// 好球且出棒
 				if( swingchance > random(1000) )
 				{
-					// 击出球的机率 700 + (0~100) - (0~100)
+					// 擊出球的機率 700 + (0~100) - (0~100)
 					int hitchance = 700 + calculate(batter->query_skill_level("hitrange"), 0.7, 999, 0, 100) - pitchballpower;
 						
 					if( attacksetup["hint"] == HINTTYPE_BATTER )
@@ -1500,7 +1500,7 @@ void play_game()
 						case 9: hitchance -= 10; break;
 					}
 							
-					// 打击出去
+					// 打擊出去
 					if( hitchance + pitchhiteffect > random(1000) )
 					{
 						//tell(find_player("clode"), attacker+(hitchance + pitchgoodhiteffect)+"/"+defender+(defendsetup["outfield"]+defendsetup["infield"])+"\n");
@@ -1508,18 +1508,18 @@ void play_game()
 						// 安打
 						if( hitchance + pitchgoodhiteffect + 100 > random(800 + defendsetup["outfield"] + defendsetup["infield"] ) )
 						{												
-							// 击出球的速度(500~3300)
+							// 擊出球的速度(500~3300)
 							int hitpower = batter->query_skill_level("hitpower");
 							int ballspeed = 500 + hitpower + batterbase;
 							
 							ballspeed = calculate(ballspeed, 0.7, 3000, 0, 1000);
 
-							// 全垒打
+							// 全壘打
 							if( ballspeed > random(8000) )
 							{
 								int distance;
 								
-								// 进垒
+								// 進壘
 								special_msg += new_base(gameindex, attacker, defender, 4, BASETYPE_HIT);
 								
 								if( hitpower > random(5000) )
@@ -1534,12 +1534,12 @@ void play_game()
 									else
 										distance = range_random(160, 170);
 										
-									attack_msg += "轰出了一只超大号"+( game[RUNNER1ST] > 0 && game[RUNNER2ND] > 0 && game[RUNNER3RD] > 0 ? "满贯" : "" )+"全垒打("+distance+"m)！！";
+									attack_msg += "轟出了一隻超大號"+( game[RUNNER1ST] > 0 && game[RUNNER2ND] > 0 && game[RUNNER3RD] > 0 ? "滿貫" : "" )+"全壘打("+distance+"m)！！";
 								}
 								else
 								{
 									distance = range_random(140, 160);
-									attack_msg += "击出"+( game[RUNNER1ST] > 0 && game[RUNNER2ND] > 0 && game[RUNNER3RD] > 0 ? "满贯" : "" )+"全垒打("+distance+"m)！！";
+									attack_msg += "擊出"+( game[RUNNER1ST] > 0 && game[RUNNER2ND] > 0 && game[RUNNER3RD] > 0 ? "滿貫" : "" )+"全壘打("+distance+"m)！！";
 								}
 								
 								if( distance > record[season_year][RECORD_SPECIAL]["maxhomerundistance"] )
@@ -1547,43 +1547,43 @@ void play_game()
 									record[season_year][RECORD_SPECIAL]["maxhomerundistance"] = distance;
 									record[season_year][RECORD_SPECIAL]["maxhomerundistanceplayer"] = attacksetup["roster"][attacknumber]["file"];
 									
-									CHANNEL_D->channel_broadcast("sport", HIY"纪录"NOR YEL"更新 "NOR+attackteamname+"的"+batter->query_idname()+"击出本季最大号全垒打，距离来到 "HIY+distance+NOR YEL"m"NOR" ！！" );
+									CHANNEL_D->channel_broadcast("sport", HIY"紀錄"NOR YEL"更新 "NOR+attackteamname+"的"+batter->query_idname()+"擊出本季最大號全壘打，距離來到 "HIY+distance+NOR YEL"m"NOR" ！！" );
 								}
 								
 								attack_msg += "("HIY+get_record(RECORD_PLAYER, attacksetup["roster"][attacknumber]["file"], "hit4", season_year)+NOR")";
 							}
-							// 三垒打
+							// 三壘打
 							else if( ballspeed > random(10000) )
 							{
-								// 进垒
+								// 進壘
 								special_msg += new_base(gameindex, attacker, defender, 3, BASETYPE_HIT);
 								
 								if( random(defendsetup["outfield"]) < 100 )
-									attack_msg += "击出高远飞球，外野手奋力扑球仍然慢了一步，形成三垒安打！("HIG+sprintf("%.2f", get_hit_rate(attacker, attacknumber))+NOR")";
+									attack_msg += "擊出高遠飛球，外野手奮力撲球仍然慢了一步，形成三壘安打！("HIG+sprintf("%.2f", get_hit_rate(attacker, attacknumber))+NOR")";
 								else
-									attack_msg += "击出三垒安打！("HIG+sprintf("%.2f", get_hit_rate(attacker, attacknumber))+NOR")";
+									attack_msg += "擊出三壘安打！("HIG+sprintf("%.2f", get_hit_rate(attacker, attacknumber))+NOR")";
 							}
-							// 二垒打
+							// 二壘打
 							else if( ballspeed > random(3000) )
 							{
-								// 进垒
+								// 進壘
 								special_msg += new_base(gameindex, attacker, defender, 2, BASETYPE_HIT);
 								
 								if( random(defendsetup["outfield"]) < 100 )
-									attack_msg += "击出不营养飞球但外野手跚跚来迟，形成二垒安打！("HIG+sprintf("%.2f", get_hit_rate(attacker, attacknumber))+NOR")";
+									attack_msg += "擊出不營養飛球但外野手跚跚來遲，形成二壘安打！("HIG+sprintf("%.2f", get_hit_rate(attacker, attacknumber))+NOR")";
 								else
-									attack_msg += "击出二垒安打！("HIG+sprintf("%.2f", get_hit_rate(attacker, attacknumber))+NOR")";
+									attack_msg += "擊出二壘安打！("HIG+sprintf("%.2f", get_hit_rate(attacker, attacknumber))+NOR")";
 							}
-							// 一垒打
+							// 一壘打
 							else
 							{
-								// 进垒
+								// 進壘
 								special_msg += new_base(gameindex, attacker, defender, 1, BASETYPE_HIT);
 								
 								if( random(defendsetup["infield"]) < 100 )
-									attack_msg += "击出的滚地球硬是从内野防线中穿越出去，形成一垒安打！("HIG+sprintf("%.2f", get_hit_rate(attacker, attacknumber))+NOR")";
+									attack_msg += "擊出的滾地球硬是從內野防線中穿越出去，形成一壘安打！("HIG+sprintf("%.2f", get_hit_rate(attacker, attacknumber))+NOR")";
 								else
-									attack_msg += "击出一垒安打！("HIG+sprintf("%.2f", get_hit_rate(attacker, attacknumber))+NOR")";
+									attack_msg += "擊出一壘安打！("HIG+sprintf("%.2f", get_hit_rate(attacker, attacknumber))+NOR")";
 							}								
 						}
 						// 界外球
@@ -1591,7 +1591,7 @@ void play_game()
 						{
 							if( game[STRIKE] < 2 )
 							{
-								attack_msg += "击成界外球";
+								attack_msg += "擊成界外球";
 
 								game[STRIKE]++;
 
@@ -1599,29 +1599,29 @@ void play_game()
 							}
 							else
 							{
-								attack_msg += "击成界外球";
+								attack_msg += "擊成界外球";
 
 								info_msg = " "HIR+game[STRIKE]+NOR" "HIG+game[BALL]+" "HIW+game[OUT]+NOR;
 							}
 						}
-						// 打击出去遭接杀或刺杀
+						// 打擊出去遭接殺或刺殺
 						else
 						{						
-							// 飞球
+							// 飛球
 							if( random(2) )
 							{
-								attack_msg += "将球远远打击出去！但被接杀";
+								attack_msg += "將球遠遠打擊出去！但被接殺";
 								
 								info_msg = " "HIW+(game[OUT]+1)+NOR WHT"out"NOR;
 									
 								special_msg += new_out(gameindex, attacker, defender, 1, BASETYPE_CATCHKILL);
 							}
-							// 滚地
+							// 滾地
 							else
 							{
 								if( !random(15) && game[RUNNER2ND] > 0 && game[RUNNER1ST] > 0 && game[OUT] == 0 )
 								{
-									attack_msg += "将球打击出去！这是一支罕见的三杀打！！";
+									attack_msg += "將球打擊出去！這是一支罕見的三殺打！！";
 									
 									info_msg = " "HIW+(game[OUT]+3)+NOR WHT"out"NOR;
 									
@@ -1629,7 +1629,7 @@ void play_game()
 								}
 								else if( random(2) && game[RUNNER3RD] == 0 && game[RUNNER1ST] > 0 && game[OUT] < 2 )
 								{
-									attack_msg += "将球打击出去！这是一支双杀打！！";
+									attack_msg += "將球打擊出去！這是一支雙殺打！！";
 									
 									info_msg = " "HIW+(game[OUT]+2)+NOR WHT"out"NOR;
 									
@@ -1637,16 +1637,16 @@ void play_game()
 								}
 								else
 								{								
-									// 满垒
+									// 滿壘
 									if( game[RUNNER1ST] > 0 && game[RUNNER2ND] > 0 && game[RUNNER3RD] > 0 )
 									{
 										if( game[OUT] < 2 )								
-											attack_msg += "将球打击出去！三垒跑者被封杀在本垒！";
+											attack_msg += "將球打擊出去！三壘跑者被封殺在本壘！";
 										else
-											attack_msg += "将球打击出去！但被内野手拦住并刺杀在一垒！";
+											attack_msg += "將球打擊出去！但被內野手攔住並刺殺在一壘！";
 									}
 									else
-										attack_msg += "将球打击出去！但被内野手拦住并刺杀在一垒！";
+										attack_msg += "將球打擊出去！但被內野手攔住並刺殺在一壘！";
 									
 									info_msg = " "HIW+(game[OUT]+1)+NOR WHT"out"NOR;
 									
@@ -1656,14 +1656,14 @@ void play_game()
 						}
 
 					}
-					// 挥棒落空
+					// 揮棒落空
 					else
 					{
 						if( ++game[STRIKE] == 3 )
 						{							
 							defender == game[TEAM1] ? game[TEAM1K]++ : game[TEAM2K]++;
 
-							attack_msg += "挥棒落空遭到三振出局";
+							attack_msg += "揮棒落空遭到三振出局";
 
 							info_msg = " "HIW+(game[OUT]+1)+NOR WHT"out "HIY + (defender == game[TEAM1] ? game[TEAM1K] : game[TEAM2K]) +NOR YEL"K!"NOR;
 
@@ -1671,7 +1671,7 @@ void play_game()
 						}
 						else
 						{
-							attack_msg += "挥棒落空";	
+							attack_msg += "揮棒落空";	
 
 							info_msg = " "HIR+game[STRIKE]+NOR" "HIG+game[BALL]+" "HIW+game[OUT]+NOR;
 						}
@@ -1684,7 +1684,7 @@ void play_game()
 					{					
 						defender == game[TEAM1] ? game[TEAM1K]++ : game[TEAM2K]++;
 
-						attack_msg += "站着发呆遭到三振出局";
+						attack_msg += "站著發呆遭到三振出局";
 
 						info_msg = " "HIW+(game[OUT]+1)+NOR WHT"out "HIY + (defender == game[TEAM1] ? game[TEAM1K] : game[TEAM2K]) +NOR YEL"K!"NOR;
 
@@ -1692,21 +1692,21 @@ void play_game()
 					}
 					else
 					{
-						attack_msg += "站着发呆";
+						attack_msg += "站著發呆";
 
 						info_msg = " "HIR+game[STRIKE]+NOR" "HIG+game[BALL]+" "HIW+game[OUT]+NOR;
 					}
 				}
 			}
-			// 投出坏球
+			// 投出壞球
 			else
 			{
-				// 打者看准坏球且不出棒的机率 750 + (0~100) + (-60~70)
+				// 打者看準壞球且不出棒的機率 750 + (0~100) + (-60~70)
 				int swingchance = 750 + calculate(batter->query_skill_level("hitaccuracy"), 0.8, 999, 0, 100) + get_handside_diff(pitcher, batter) + pitchswingeffect;
 
 				if( setup[attacker]["hint"] == HINTTYPE_BATTER )
 				{
-					attack_msg += HIY"全神"NOR YEL"贯注"NOR;
+					attack_msg += HIY"全神"NOR YEL"貫注"NOR;
 					swingchance += 50;
 				}
 
@@ -1716,36 +1716,36 @@ void play_game()
 				if( game[TEAM2SCORE] > game[TEAM1SCORE] && game[TEAM1] == attacker )
 					swingchance += 3 * (game[TEAM2SCORE] - game[TEAM1SCORE]);
 
-				defend_msg += HIG"坏球"NOR"，";
+				defend_msg += HIG"壞球"NOR"，";
 
-				// 坏球且没出棒
+				// 壞球且沒出棒
 				if( swingchance > random(1000) )
 				{
 					if( random(200 + pitcherbase) < 5 )
 					{
-							attack_msg += "被暴投球击中！获得触身保送上垒";
+							attack_msg += "被暴投球擊中！獲得觸身保送上壘";
 
-							// 进一垒
+							// 進一壘
 							special_msg += new_base(gameindex, attacker, defender, 1, BASETYPE_BALL);
 					}
 					else
 					{
 						if( ++game[BALL] == 4 )
 						{
-							attack_msg += "忍住没有挥棒，获得保送上垒";
+							attack_msg += "忍住沒有揮棒，獲得保送上壘";
 
-							// 进一垒
+							// 進一壘
 							special_msg += new_base(gameindex, attacker, defender, 1, BASETYPE_BALL);
 						}
 						else
 						{
-							attack_msg += "忍住没有挥棒";
+							attack_msg += "忍住沒有揮棒";
 
 							info_msg = " "HIR+game[STRIKE]+NOR" "HIG+game[BALL]+" "HIW+game[OUT]+NOR;
 						}
 					}
 				}
-				// 坏球但有出棒
+				// 壞球但有出棒
 				else
 				{
 					if( 200 + pitchballpower > random(800) )
@@ -1754,7 +1754,7 @@ void play_game()
 						{						
 							defender == game[TEAM1] ? game[TEAM1K]++ : game[TEAM2K]++;
 
-							attack_msg += "挥棒落空遭到三振出局";
+							attack_msg += "揮棒落空遭到三振出局";
 
 							info_msg = " "HIW+(game[OUT]+1)+NOR WHT"out "HIY + (defender == game[TEAM1] ? game[TEAM1K] : game[TEAM2K]) +NOR YEL"K!"NOR;
 
@@ -1762,28 +1762,28 @@ void play_game()
 						}
 						else
 						{
-							attack_msg += "大力一挥，挥棒落空";
+							attack_msg += "大力一揮，揮棒落空";
 
 							info_msg = " "HIR+game[STRIKE]+NOR" "HIG+game[BALL]+" "HIW+game[OUT]+NOR;
 						}
 					}
 					else
 					{
-						// 飞球
+						// 飛球
 						if( random(2) )
 						{						
-							attack_msg += "将球远远打击出去！但被接杀";
+							attack_msg += "將球遠遠打擊出去！但被接殺";
 
 							info_msg = " "HIW+(game[OUT]+1)+NOR WHT"out"NOR;
 
 							special_msg += new_out(gameindex, attacker, defender, 1, BASETYPE_CATCHKILL);
 						}
-						// 滚地
+						// 滾地
 						else
 						{
 							if( !random(15) && game[RUNNER2ND] > 0 && game[RUNNER1ST] > 0 && game[OUT] == 0 )
 							{
-								attack_msg += "将球打击出去！这是一支罕见的三杀打！！";
+								attack_msg += "將球打擊出去！這是一支罕見的三殺打！！";
 
 								info_msg = " "HIW+(game[OUT]+3)+NOR WHT"out"NOR;
 
@@ -1791,7 +1791,7 @@ void play_game()
 							}
 							else if( random(2) && game[RUNNER3RD] == 0 && game[RUNNER1ST] > 0 && game[OUT] <= 1 )
 							{
-								attack_msg += "将球打击出去！这是一支双杀打！！";
+								attack_msg += "將球打擊出去！這是一支雙殺打！！";
 
 								info_msg = " "HIW+(game[OUT]+2)+NOR WHT"out"NOR;
 
@@ -1799,16 +1799,16 @@ void play_game()
 							}
 							else
 							{
-								// 满垒
+								// 滿壘
 								if( game[RUNNER1ST] > 0 && game[RUNNER2ND] > 0 && game[RUNNER3RD] > 0 )
 								{
 									if( game[OUT] < 2 )								
-										attack_msg += "将球打击出去！三垒跑者被封杀在本垒！";
+										attack_msg += "將球打擊出去！三壘跑者被封殺在本壘！";
 									else
-										attack_msg += "将球打击出去！但被内野手拦住并刺杀在一垒！";
+										attack_msg += "將球打擊出去！但被內野手攔住並刺殺在一壘！";
 								}
 								else
-									attack_msg += "将球打击出去！但被内野手拦住并刺杀在一垒！";
+									attack_msg += "將球打擊出去！但被內野手攔住並刺殺在一壘！";
 
 								info_msg = " "HIW+(game[OUT]+1)+NOR WHT"out"NOR;
 
@@ -1849,7 +1849,7 @@ void play_game()
 	}
 }
 
-// 新球赛准备开始, 前者为主场, 后者为客场
+// 新球賽準備開始, 前者為主場, 後者為客場
 void new_game(string id1, string id2)
 {
 	mapping game = allocate_mapping(0);
@@ -1894,10 +1894,10 @@ void new_game(string id1, string id2)
 	setup[id2]["opponents"] -= ({ id1 });
 	
 	if( objectp(user = find_player(id1)) )
-		tell(user, pnoun(2, user)+"的棒球队伍即将与"+setup[id2]["username"]+"的“"+setup[id2]["name"]+"”进行比赛。\n");
+		tell(user, pnoun(2, user)+"的棒球隊伍即將與"+setup[id2]["username"]+"的“"+setup[id2]["name"]+"”進行比賽。\n");
 	
 	if( objectp(user = find_player(id2)) )
-		tell(user, pnoun(2, user)+"的棒球队伍即将与"+setup[id1]["username"]+"的“"+setup[id1]["name"]+"”进行比赛。\n");
+		tell(user, pnoun(2, user)+"的棒球隊伍即將與"+setup[id1]["username"]+"的“"+setup[id1]["name"]+"”進行比賽。\n");
 }
 
 void start_game(string id)
@@ -1954,7 +1954,7 @@ varargs mapping query_setup(string id)
 		return setup;
 	else
 	{
-		// 初始化设定
+		// 初始化設定
 		if( undefinedp(setup[id]) )
 		{
 			setup[id] = allocate_mapping(0);
@@ -1971,7 +1971,7 @@ int exists(string id)
 	return !undefinedp(setup[id]);
 }
 
-// 重新设定所有球队的对手
+// 重新設定所有球隊的對手
 void reset_all_opponents()
 {
 	foreach(string id, mapping data in setup)
@@ -2008,7 +2008,7 @@ void heart_beat()
 
 	if( !post_season_start && realtime[WDAY] == 0 && realtime[HOUR] == 14 )
 	{
-		CHANNEL_D->channel_broadcast("sport", HIR"季后"NOR RED"赛"NOR" 停止季赛配对，目前正在进行的比赛全部结束后第 "HIC+season_year+NOR" 球季季后赛即将开始。");
+		CHANNEL_D->channel_broadcast("sport", HIR"季後"NOR RED"賽"NOR" 停止季賽配對，目前正在進行的比賽全部結束後第 "HIC+season_year+NOR" 球季季後賽即將開始。");
 		post_season_start = 1;	
 	}
 	
@@ -2016,12 +2016,12 @@ void heart_beat()
 	{
 		if( post_season_start )
 		{		
-			// 尚有比赛进行中
+			// 尚有比賽進行中
 			if( sizeof(games) ) return;
 			
 			switch(post_season_level)
 			{
-				// 开始季后赛
+				// 開始季後賽
 				case 0:
 				{
 					post_season_team_8 = sort_array(filter_array(season, (: valid_setup($1, 1) :)), (: sort_team($1, $2) :))[0..7];
@@ -2029,31 +2029,31 @@ void heart_beat()
 					post_season_team_2 = allocate(0);
 					post_season_eliminate_teams = allocate(0);
 
-					// 季后赛队伍不足 8 队
+					// 季後賽隊伍不足 8 隊
 					if( sizeof(post_season_team_8) != 8 )
 					{
 						if( realtime[WDAY] == 0 && realtime[HOUR] == 20 )
 						{
-							CHANNEL_D->channel_broadcast("sport", HIR"季后"NOR RED"赛"NOR" 季后赛队伍不足八支球队，宣告此次季后赛取消。");
+							CHANNEL_D->channel_broadcast("sport", HIR"季後"NOR RED"賽"NOR" 季後賽隊伍不足八支球隊，宣告此次季後賽取消。");
 							post_season_level = 8;
 						}
 						return;
 					}
 					
-					CHANNEL_D->channel_broadcast("sport", HIR"季后"NOR RED"赛"NOR" 所有正规季赛已经结束，以下选出本球季胜率最高的前八强队伍进行季后赛。");
+					CHANNEL_D->channel_broadcast("sport", HIR"季後"NOR RED"賽"NOR" 所有正規季賽已經結束，以下選出本球季勝率最高的前八強隊伍進行季後賽。");
 					
 					for(int i=0;i<sizeof(post_season_team_8);++i)
 					{
 						if( objectp(find_player(post_season_team_8[i])) )
 							tell(find_player(post_season_team_8[i]), "\a");
 
-						CHANNEL_D->channel_broadcast("sport", HIR"季后"NOR RED"赛"NOR" "NOR YEL"第"HIY+(i+1)+NOR YEL"名"NOR"：“"+setup[post_season_team_8[i]]["name"]+"”，由"+setup[post_season_team_8[i]]["username"]+"领军。");
+						CHANNEL_D->channel_broadcast("sport", HIR"季後"NOR RED"賽"NOR" "NOR YEL"第"HIY+(i+1)+NOR YEL"名"NOR"：“"+setup[post_season_team_8[i]]["name"]+"”，由"+setup[post_season_team_8[i]]["username"]+"領軍。");
 					}
 		
-					CHANNEL_D->channel_broadcast("sport", HIR"季后"NOR RED"赛"NOR" 以上八队劲旅将参加本球季的最终决赛，争取棒球界最高荣耀“"HIY"世"NOR YEL"界"HIY"冠"NOR YEL"军"NOR"”。");
-					CHANNEL_D->channel_broadcast("sport", HIR"季后"NOR RED"赛"NOR" 季后赛所有赛事皆一战定胜负，总共 7 场比赛将于运动频道全世界同步实况转播。");
-					CHANNEL_D->channel_broadcast("sport", HIR"季后"NOR RED"赛"NOR" 季后赛的比赛过程中将可拥有 2 倍的暗号使用次数，同时将拥有 20 倍的票房收入。");
-					CHANNEL_D->channel_broadcast("sport", HIR"季后"NOR RED"赛"NOR" 首先进行 "HIC"A 组八强赛"NOR"的是排名第 1 的“"+setup[post_season_team_8[0]]["name"]+"”对上排名第 8 的“"+setup[post_season_team_8[7]]["name"]+"”，比赛将在 2 分钟后开始。");
+					CHANNEL_D->channel_broadcast("sport", HIR"季後"NOR RED"賽"NOR" 以上八隊勁旅將參加本球季的最終決賽，爭取棒球界最高榮耀“"HIY"世"NOR YEL"界"HIY"冠"NOR YEL"軍"NOR"”。");
+					CHANNEL_D->channel_broadcast("sport", HIR"季後"NOR RED"賽"NOR" 季後賽所有賽事皆一戰定勝負，總共 7 場比賽將於運動頻道全世界同步實況轉播。");
+					CHANNEL_D->channel_broadcast("sport", HIR"季後"NOR RED"賽"NOR" 季後賽的比賽過程中將可擁有 2 倍的暗號使用次數，同時將擁有 20 倍的票房收入。");
+					CHANNEL_D->channel_broadcast("sport", HIR"季後"NOR RED"賽"NOR" 首先進行 "HIC"A 組八強賽"NOR"的是排名第 1 的“"+setup[post_season_team_8[0]]["name"]+"”對上排名第 8 的“"+setup[post_season_team_8[7]]["name"]+"”，比賽將在 2 分鐘後開始。");
 				
 					post_season_level++;
 					new_game(post_season_team_8[0], post_season_team_8[7]);
@@ -2062,7 +2062,7 @@ void heart_beat()
 				}
 				case 1:
 				{
-					CHANNEL_D->channel_broadcast("sport", HIR"季后"NOR RED"赛"NOR" 接着进行 "HIC"B 组八强赛"NOR"的是排名第 2 的“"+setup[post_season_team_8[1]]["name"]+"”对上排名第 7 的“"+setup[post_season_team_8[6]]["name"]+"”，比赛将在 2 分钟后开始。");
+					CHANNEL_D->channel_broadcast("sport", HIR"季後"NOR RED"賽"NOR" 接著進行 "HIC"B 組八強賽"NOR"的是排名第 2 的“"+setup[post_season_team_8[1]]["name"]+"”對上排名第 7 的“"+setup[post_season_team_8[6]]["name"]+"”，比賽將在 2 分鐘後開始。");
 					
 					post_season_level++;
 					new_game(post_season_team_8[1], post_season_team_8[6]);
@@ -2071,7 +2071,7 @@ void heart_beat()
 				}
 				case 2:
 				{
-					CHANNEL_D->channel_broadcast("sport", HIR"季后"NOR RED"赛"NOR" 接着进行 "HIC"C 组八强赛"NOR"的是排名第 3 的“"+setup[post_season_team_8[2]]["name"]+"”对上排名第 6 的“"+setup[post_season_team_8[5]]["name"]+"”，比赛将在 2 分钟后开始。");
+					CHANNEL_D->channel_broadcast("sport", HIR"季後"NOR RED"賽"NOR" 接著進行 "HIC"C 組八強賽"NOR"的是排名第 3 的“"+setup[post_season_team_8[2]]["name"]+"”對上排名第 6 的“"+setup[post_season_team_8[5]]["name"]+"”，比賽將在 2 分鐘後開始。");
 					
 					post_season_level++;
 					new_game(post_season_team_8[2], post_season_team_8[5]);
@@ -2080,7 +2080,7 @@ void heart_beat()
 				}
 				case 3:
 				{
-					CHANNEL_D->channel_broadcast("sport", HIR"季后"NOR RED"赛"NOR" 接着进行 "HIC"D 组八强赛"NOR"的是排名第 4 的“"+setup[post_season_team_8[3]]["name"]+"”对上排名第 5 的“"+setup[post_season_team_8[4]]["name"]+"”，比赛将在 2 分钟后开始。");
+					CHANNEL_D->channel_broadcast("sport", HIR"季後"NOR RED"賽"NOR" 接著進行 "HIC"D 組八強賽"NOR"的是排名第 4 的“"+setup[post_season_team_8[3]]["name"]+"”對上排名第 5 的“"+setup[post_season_team_8[4]]["name"]+"”，比賽將在 2 分鐘後開始。");
 					
 					post_season_level++;
 					new_game(post_season_team_8[3], post_season_team_8[4]);
@@ -2089,7 +2089,7 @@ void heart_beat()
 				}
 				case 4:
 				{
-					CHANNEL_D->channel_broadcast("sport", HIR"季后"NOR RED"赛"NOR" 接着进行"HIY"四强准决赛"NOR"的是 A 组晋级队伍“"+setup[post_season_team_4[0]]["name"]+"”对上 D 组晋级队伍“"+setup[post_season_team_4[3]]["name"]+"”，比赛将在 2 分钟后开始。");
+					CHANNEL_D->channel_broadcast("sport", HIR"季後"NOR RED"賽"NOR" 接著進行"HIY"四強準決賽"NOR"的是 A 組晉級隊伍“"+setup[post_season_team_4[0]]["name"]+"”對上 D 組晉級隊伍“"+setup[post_season_team_4[3]]["name"]+"”，比賽將在 2 分鐘後開始。");
 					
 					post_season_level++;
 					new_game(post_season_team_4[0], post_season_team_4[3]);
@@ -2098,7 +2098,7 @@ void heart_beat()
 				}
 				case 5:
 				{
-					CHANNEL_D->channel_broadcast("sport", HIR"季后"NOR RED"赛"NOR" 接着进行"HIY"四强准决赛"NOR"的是 B 组晋级队伍“"+setup[post_season_team_4[1]]["name"]+"”对上 C 组晋级队伍“"+setup[post_season_team_4[2]]["name"]+"”，比赛将在 2 分钟后开始。");
+					CHANNEL_D->channel_broadcast("sport", HIR"季後"NOR RED"賽"NOR" 接著進行"HIY"四強準決賽"NOR"的是 B 組晉級隊伍“"+setup[post_season_team_4[1]]["name"]+"”對上 C 組晉級隊伍“"+setup[post_season_team_4[2]]["name"]+"”，比賽將在 2 分鐘後開始。");
 					
 					post_season_level++;
 					new_game(post_season_team_4[1], post_season_team_4[2]);
@@ -2107,7 +2107,7 @@ void heart_beat()
 				}
 				case 6:
 				{
-				CHANNEL_D->channel_broadcast("sport", HIR"季后"NOR RED"赛"NOR" 接着进行第 "HIC+season_year+NOR" 球季"HIY"总"NOR YEL"冠军赛"NOR"的是“"+setup[post_season_team_2[0]]["name"]+"”对上“"+setup[post_season_team_2[1]]["name"]+"”，比赛将在 2 分钟后开始。");
+				CHANNEL_D->channel_broadcast("sport", HIR"季後"NOR RED"賽"NOR" 接著進行第 "HIC+season_year+NOR" 球季"HIY"總"NOR YEL"冠軍賽"NOR"的是“"+setup[post_season_team_2[0]]["name"]+"”對上“"+setup[post_season_team_2[1]]["name"]+"”，比賽將在 2 分鐘後開始。");
 					
 					post_season_level++;
 					new_game(post_season_team_2[0], post_season_team_2[1]);
@@ -2117,7 +2117,7 @@ void heart_beat()
 				case 7:
 				{
 					post_season_level++;
-					CHANNEL_D->channel_broadcast("sport", HIR"季后"NOR RED"赛"NOR" 本球季所有季赛与季后赛已经全部结束，我们下一个球季再见！！");
+					CHANNEL_D->channel_broadcast("sport", HIR"季後"NOR RED"賽"NOR" 本球季所有季賽與季後賽已經全部結束，我們下一個球季再見！！");
 					break;
 				}
 				case 8:
@@ -2126,7 +2126,7 @@ void heart_beat()
 					post_season_start = 0;
 					season_year++;
 					
-					CHANNEL_D->channel_broadcast("sport", HIG"全新"NOR GRN"球季"NOR" 新的第 "HIC+season_year+NOR" 球季开始，所有参赛球队开始进行比赛配对。");
+					CHANNEL_D->channel_broadcast("sport", HIG"全新"NOR GRN"球季"NOR" 新的第 "HIC+season_year+NOR" 球季開始，所有參賽球隊開始進行比賽配對。");
 					
 					post_season_team_8 = allocate(0);
 					post_season_team_4 = allocate(0);
@@ -2153,28 +2153,28 @@ void heart_beat()
 		}
 		else
 		{
-			// 处理比赛配对
+			// 處理比賽配對
 			foreach(string id in season)
 			{
 				if( undefinedp(setup[id]) ) continue;
 		
-				// 寻找对手，新的比赛准备开始
+				// 尋找對手，新的比賽準備開始
 				if(setup[id]["status"] == STATUS_IDLE )
 				{
 					string opponent_id = 0;
 		
-					// 球队设定有误，取消配对
+					// 球隊設定有誤，取消配對
 					if( !valid_setup(id, 1) )
 					{
 						leave_season(id);
 						continue;
 					}
 		
-					// 若已无对手，重新列表
+					// 若已無對手，重新列表
 					if( !sizeof(setup[id]["opponents"]) )
 						setup[id]["opponents"] = copy(sort_array(season, (: random(2) ? 1 : -1 :))) - ({ id });
 		
-					// 搜寻目前没有比赛的对手
+					// 搜尋目前沒有比賽的對手
 					foreach(string teamid in setup[id]["opponents"])
 					{
 						if( setup[teamid]["status"] == STATUS_IDLE )
@@ -2190,10 +2190,10 @@ void heart_beat()
 						}
 					}
 		
-					// 找不到对手，等待下次 heartbeat 再重新搜寻
+					// 找不到對手，等待下次 heartbeat 再重新搜尋
 					if( !stringp(opponent_id) )
 					{
-						// 连续 180 次(40min)找不到对手，重新列表
+						// 連續 180 次(40min)找不到對手，重新列表
 						if( ++setup[id]["no_opponent"] > 240 )
 						{
 							setup[id]["no_opponent"] = 0;
@@ -2205,15 +2205,15 @@ void heart_beat()
 					setup[id]["no_opponent"] = 0;
 					setup[opponent_id]["no_opponent"] = 0;
 					
-					// 随机决定主客场
+					// 隨機決定主客場
 					if( !random(2) )
 					{
-						//CHANNEL_D->channel_broadcast("sport", HIC+"季赛"NOR CYN"配对 "NOR+setup[id]["username"]+"的“"+setup[id]["name"]+"”与"+setup[opponent_id]["username"]+"的“"+setup[opponent_id]["name"]+"”将于 "+(PREPARETIME/60)+" 分钟后进行球赛。");
+						//CHANNEL_D->channel_broadcast("sport", HIC+"季賽"NOR CYN"配對 "NOR+setup[id]["username"]+"的“"+setup[id]["name"]+"”與"+setup[opponent_id]["username"]+"的“"+setup[opponent_id]["name"]+"”將於 "+(PREPARETIME/60)+" 分鐘後進行球賽。");
 						new_game(id, opponent_id);
 					}
 					else
 					{
-						//CHANNEL_D->channel_broadcast("sport", HIC+"季赛"NOR CYN"配对 "NOR+setup[opponent_id]["username"]+"的“"+setup[opponent_id]["name"]+"”与"+setup[id]["username"]+"的“"+setup[id]["name"]+"”将于 "+(PREPARETIME/60)+" 分钟后进行球赛。");
+						//CHANNEL_D->channel_broadcast("sport", HIC+"季賽"NOR CYN"配對 "NOR+setup[opponent_id]["username"]+"的“"+setup[opponent_id]["name"]+"”與"+setup[id]["username"]+"的“"+setup[id]["name"]+"”將於 "+(PREPARETIME/60)+" 分鐘後進行球賽。");
 						new_game(opponent_id, id);
 					}
 				}
@@ -2223,7 +2223,7 @@ void heart_beat()
 	play_game();
 }
 
-// 切换即时战况
+// 切換即時戰況
 void set_listener(string listener_id, string target_team)
 {	
 	if( !stringp(target_team) )
@@ -2318,5 +2318,5 @@ void create()
 
 string query_name()
 {
-	return "棒球系统(BASEBALL_D)";
+	return "棒球系統(BASEBALL_D)";
 }

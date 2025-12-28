@@ -3,13 +3,13 @@ inherit NPC;
 
 void create()
 {
-        set_name("公孙绿萼", ({ "gongsun lve", "gongsun", "lve" }) );      
-        set("nickname", HIC "绝情谷主女儿" NOR);
+        set_name("公孫綠萼", ({ "gongsun lve", "gongsun", "lve" }) );      
+        set("nickname", HIC "絕情谷主女兒" NOR);
         set("gender", "女性");
         set("long", @LONG
-她就是绝情谷主的女儿公孙绿萼，只见她长
-挑身材、脸色白嫩、嘴角旁有颗小痣，自有
-一股清新脱俗之气。
+她就是絕情谷主的女兒公孫綠萼，只見她長
+挑身材、臉色白嫩、嘴角旁有顆小痣，自有
+一股清新脫俗之氣。
 LONG);
 
         set("age", 18);

@@ -1,10 +1,10 @@
-// guest.c 进香客
+// guest.c 進香客
 
 inherit NPC;
 
-string *first_name = ({ "赵","孙","李","周","吴","郑","王","张","陈","柳","风","刘","林", }); 
-string *man_name_words = ({ "青","顺","风","峰","建","明","铭","战","冠", });
-string *woman_name_words = ({ "莲","燕","娜","妮","芳","香","仙","芊","芡", });
+string *first_name = ({ "趙","孫","李","周","吳","鄭","王","張","陳","柳","風","劉","林", }); 
+string *man_name_words = ({ "青","順","風","峰","建","明","銘","戰","冠", });
+string *woman_name_words = ({ "蓮","燕","娜","妮","芳","香","仙","芊","芡", });
 string *xing = ({ "男性","女性", });
 
 void create()
@@ -21,7 +21,7 @@ void create()
  
 
 	set_name(name, ({ "guest" }));
-    set("title", "进香客");
+    set("title", "進香客");
     set("gender", xingbie);
 	set("age", age);
 	set_skill("unarmed", random(40));
@@ -34,10 +34,10 @@ void create()
 		 set("chat_chance", 2);
 
 	 set("chat_msg", ({
-	 "进香客低声吟道：一切有为法，如梦幻泡影\n",
-	 "进香客闭目合什：南无阿弥陀佛 \n",
-	 "进香客朗声说道：有法无法，皆是虚妄\n",
-	 "进香客说道：南无救苦救难广大灵感观世音菩萨！\n",
+	 "進香客低聲吟道：一切有為法，如夢幻泡影\n",
+	 "進香客閉目合什：南無阿彌陀佛 \n",
+	 "進香客朗聲說道：有法無法，皆是虛妄\n",
+	 "進香客說道：南無救苦救難廣大靈感觀世音菩薩！\n",
 	     (: random_move :)
         }) );
 	setup();

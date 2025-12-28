@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("[35m墨鱼[2;37;0m[2;37;0m", ({"mql"}));        
+        set_name("[35m墨魚[2;37;0m[2;37;0m", ({"mql"}));        
         set("gender", "女性");                
-        set("long", "墨鱼墨鱼[2;37;0m
-它是遥乙的魔幻兽。
+        set("long", "墨魚墨魚[2;37;0m
+它是遙乙的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");
         set("owner", "uliano");
-        set("owner_name", "遥乙");
+        set("owner_name", "遙乙");
         set_temp("owner", "uliano");
-        set_temp("owner_name", "遥乙");
+        set_temp("owner_name", "遙乙");
         ::setup();
 }

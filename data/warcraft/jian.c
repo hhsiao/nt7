@@ -4,16 +4,16 @@
 
 void setup()
 {
-        set_name("[1;31m剑剑[2;37;0m[2;37;0m", ({"jianjian"}));        
+        set_name("[1;31m劍劍[2;37;0m[2;37;0m", ({"jianjian"}));        
         set("gender", "男性");                
-        set("long", "$HIR$剑剑[2;37;0m
-它是魔剑的魔幻兽。
+        set("long", "$HIR$劍劍[2;37;0m
+它是魔劍的魔幻獸。
 ");
-        set("race_type", "青龙");
+        set("race_type", "青龍");
         set("magic/type", "wood");
         set("owner", "jian");
-        set("owner_name", "魔剑");
+        set("owner_name", "魔劍");
         set_temp("owner", "jian");
-        set_temp("owner_name", "魔剑");
+        set_temp("owner_name", "魔劍");
         ::setup();
 }

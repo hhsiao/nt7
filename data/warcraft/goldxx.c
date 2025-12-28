@@ -7,7 +7,7 @@ void setup()
         set_name("小星星[2;37;0m[2;37;0m", ({"goldxxx"}));        
         set("gender", "男性");                
         set("long", "小星星[2;37;0m
-它是金叉的魔幻兽。
+它是金叉的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");

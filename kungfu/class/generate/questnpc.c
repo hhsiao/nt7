@@ -40,13 +40,13 @@ void create()
 
 int accept_fight(object ob)
 {
-        command("say 嗯？你是什么人？我没有兴趣和你较量。");
+        command("say 嗯？你是什麼人？我沒有興趣和你較量。");
         return 0;
 }
 
 int accept_hit(object ob)
 {
-        message_vision("$N脸色一变，并没有理会$n，转身急急忙忙"
+        message_vision("$N臉色一變，並沒有理會$n，轉身急急忙忙"
                        "的溜走了。\n", this_object(), ob);
         NPC_D->random_move(this_object());
         return -1;
@@ -54,7 +54,7 @@ int accept_hit(object ob)
 
 int accept_kill(object ob)
 {
-        command("say 岂有此理！居然欺负到我的头上了！");
+        command("say 豈有此理！居然欺負到我的頭上了！");
         command("yun powerup");
         return 1;
 }
@@ -74,8 +74,8 @@ void remove()
 
         if (! living(this_object()))
         {
-                message_vision("路过两个人，看到昏迷不醒的$N"
-                               "，叹口气，把$P架走了。\n",
+                message_vision("路過兩個人，看到昏迷不醒的$N"
+                               "，嘆口氣，把$P架走了。\n",
                                this_object());
                 return;
         }

@@ -1,6 +1,6 @@
 // whip.c
 // 自造物品 (by Find.)
-// 没有安全问题但太麻烦
+// 沒有安全問題但太麻煩
 
 #include <mine_def.h>
 #include <weapon.h>
@@ -86,7 +86,7 @@ nomask mixed set(string prop, mixed data)
 
 protected void create(class weapon_args arg)
 {
-        set("unit", "条");
+        set("unit", "條");
         if( clonep() )
                 set_default_object(__FILE__);
 
@@ -114,11 +114,11 @@ protected void create(class weapon_args arg)
         {
                 set_name( "皮鞭", ({ "whip" }) );
                 set_weight(3000);
-                set("long", "这是一条看起相当普通的皮鞭。\n");
+                set("long", "這是一條看起相當普通的皮鞭。\n");
                 set("value", 500);
                 set("material", "skin");
-                set("wield_msg", "$N从腰间摸出一条$n握在手中。\n");
-                set("unwield_msg", "$N将手中的$n束在腰间。\n");
+                set("wield_msg", "$N從腰間摸出一條$n握在手中。\n");
+                set("unwield_msg", "$N將手中的$n束在腰間。\n");
                 init_whip(20);
         }
 

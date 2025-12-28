@@ -7,9 +7,9 @@ void create()
 {
         set("short", "荒草路");
         set("long", @LONG
-你走一条荒芜的小路上，两旁荒草齐膝，荆棘遍地，似乎罕有人至。山
-石壁立，遮天蔽日，鸟兽全无，四周笼罩在一片阴暗之中，使这里看起来格
-外深隧幽静。
+你走一條荒蕪的小路上，兩旁荒草齊膝，荊棘遍地，似乎罕有人至。山
+石壁立，遮天蔽日，鳥獸全無，四周籠罩在一片陰暗之中，使這裡看起來格
+外深隧幽靜。
 LONG        );
         set("exits", ([ /* sizeof() == 2 */
  "southdown" : __DIR__"hclu",
@@ -24,12 +24,12 @@ int valid_leave(object me, string dir)
  if ((dir != "northwest") && (dir != "southdown"));
  if (dir == "northwest"){
             me->receive_damage("qi", 50);       
-            write("你的双腿被荆棘刺破，鲜血流了出来。\n");
+            write("你的雙腿被荊棘刺破，鮮血流了出來。\n");
     }
 
  if (dir == "southdown"){
         me->receive_damage("qi", 50);       
-        write("你的双腿被荆棘刺破，鲜血流了出来。\n");
+        write("你的雙腿被荊棘刺破，鮮血流了出來。\n");
 }
 return 1;
 }

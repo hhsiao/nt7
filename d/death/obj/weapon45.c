@@ -5,7 +5,7 @@ inherit BLADE;
 
 void create()
 {
-        set_name(HIB "青龙牙" NOR, ({ "qinglong ya", "qinglong", "ya", "blade", "dao" }) );
+        set_name(HIB "青龍牙" NOR, ({ "qinglong ya", "qinglong", "ya", "blade", "dao" }) );
         set_weight(4000);
         /*if( clonep() )
                 set_default_object(__FILE__);

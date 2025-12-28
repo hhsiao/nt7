@@ -6,55 +6,55 @@
 mapping *dts = ({
 /*      
 dir:silu
-anname:丝绸之路
-dtname:火云洞，祝融祠，焚天寺
+anname:絲綢之路
+dtname:火雲洞，祝融祠，焚天寺
 
 dir:xihu
 anname:雷峰秘道
-dtname:剥皮坑，去骨司，怨冢
+dtname:剝皮坑，去骨司，怨冢
 
 dir: beijing
 anname:天子府
-dtname:帝心阁，民心小筑，山河殿
+dtname:帝心閣，民心小築，山河殿
 
 dir:taiwan
 anname:日月天
-dtname:高山寨，金门境，太鲁阁
+dtname:高山寨，金門境，太魯閣
 
 dir:kunlun
 anname:玉清境
-dtname:太元道，天尊塔，鸿蒙间
+dtname:太元道，天尊塔，鴻蒙間
 */              
 
                 ([
                         "dir" : "emei",
                         "aname" : "峨眉山",
-                        "dtname" : ({"凝碧崖", "兜萝绵", "普贤院"}),
+                        "dtname" : ({"凝碧崖", "兜蘿綿", "普賢院"}),
                 ]),
                 ([
                         "dir" : "songshan",
                         "aname" : "嵩山",
-                        "dtname" : ({"司马峡", "禅武石", "金刚崖"}),
+                        "dtname" : ({"司馬峽", "禪武石", "金剛崖"}),
                 ]),
                 ([
                         "dir" : "huangshan",
-                        "aname" : "黄山",
-                        "dtname" : ({"洞观岭", "天莲峰", "梦笔岩"}),
+                        "aname" : "黃山",
+                        "dtname" : ({"洞觀嶺", "天蓮峰", "夢筆巖"}),
                 ]),
                 ([
                         "dir" : "huanghe",
-                        "aname" : "黄河",
-                        "dtname" : ({"黑水洞", "化形潭", "跃龙渊"}),
+                        "aname" : "黃河",
+                        "dtname" : ({"黑水洞", "化形潭", "躍龍淵"}),
                 ]),
                 ([
                         "dir" : "guanwai",
-                        "aname" : "长白山",
+                        "aname" : "長白山",
                         "dtname" : ({"冰雪林", "溯源湖", "封天池"}),
                 ]),
                 ([
                         "dir" : "yueyang",
                         "aname" : "洞庭湖",
-                        "dtname" : ({"怒蛟殿", "水晶宫", "湘竹冢"}),
+                        "dtname" : ({"怒蛟殿", "水晶宮", "湘竹冢"}),
                 ]),
 
         });
@@ -100,13 +100,13 @@ int start()
         na = dts[idx]["dtname"][random(sizeof(dts[idx]["dtname"]))];
         pa = "/d/" + dts[idx]["dir"] + "/";
         aa = dts[idx]["aname"];
-        lgmsg = chinese_number(idx + 1) + "号洞天[" + na + "]出现在 " + aa + pa + " 于<" + ctime(time()) + ">";
+        lgmsg = chinese_number(idx + 1) + "號洞天[" + na + "]出現在 " + aa + pa + " 於<" + ctime(time()) + ">";
         //write(HIY + __DIR__ + dts[idx]["dir"] + "/guangchang" + "\n" + na + "\n" + pa + "\n" + aa + "\n" + NOR);
         if (objectp(room)) {
                 room->create2(na, pa, aa);
                 lgmsg += " 成功.\n";
         } else {
-                lgmsg += " 失败！！！\n";
+                lgmsg += " 失敗！！！\n";
         }
         log_file("static/dongtian", lgmsg);
         do_save("idx", idx + 1);
@@ -121,7 +121,7 @@ string convert_ling(string arg, int level, object target)
         string obfile;
         mapping dt;
         
-        if (!arg) return "请输入洞天出现的合法地理范围！，比如：emei\n";
+        if (!arg) return "請輸入洞天出現的合法地理範圍！，比如：emei\n";
         
         foreach(dt in dts) {
                 if (dt["dir"]==arg)
@@ -129,7 +129,7 @@ string convert_ling(string arg, int level, object target)
                 dt = ([]);
         }
         
-        if (!sizeof(dt)) return "没有这个范围，或者那里没有洞天会出现。\n";
+        if (!sizeof(dt)) return "沒有這個範圍，或者那裡沒有洞天會出現。\n";
         
         if (level < 5)
                 obfile = __DIR__ + arg + "/lingpai3";
@@ -139,10 +139,10 @@ string convert_ling(string arg, int level, object target)
                 obfile = __DIR__ + arg + "/lingpai";
         ob = new(obfile);
         if (ob->move(target)) {
-                return "兑换"+dt["aname"]+"范围内的洞天令成功，通行『"+implode(dt["dtname"], "、")+"』。\n";
+                return "兌換"+dt["aname"]+"範圍內的洞天令成功，通行『"+implode(dt["dtname"], "、")+"』。\n";
         } else {
                 destruct(ob);
-                return "兑换洞天令失败！\n";
+                return "兌換洞天令失敗！\n";
         }
 }
 

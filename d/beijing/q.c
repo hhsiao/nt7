@@ -2,10 +2,10 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "戏院后台");
+        set("short", "戲院後臺");
         set("long", @LONG
-这里是长安戏院的后台，后台不大，却打扫得很干净。几个戏子
-正在后台化妆，看见你来了，都用很奇怪的眼神盯着你。
+這裡是長安戲院的後臺，後臺不大，卻打掃得很乾淨。幾個戲子
+正在後臺化妝，看見你來了，都用很奇怪的眼神盯著你。
 LONG );
         set("exits", ([
                 "south" : "/d/beijing/xiyuan",

@@ -1,5 +1,5 @@
 // Code of LXTX
-// pine.c 松树
+// pine.c 松樹
 
 inherit ITEM;
 
@@ -9,12 +9,12 @@ int do_chop(string);
 
 void create()
 {
-        set_name("松树", ({ "pine", "song shu", "tree" }) );
+        set_name("松樹", ({ "pine", "song shu", "tree" }) );
         set_weight(40000);
         /*if( clonep() )
                 set_default_object(__FILE__);
         else*/ {
-                set("long", "这是一棵密林里常见的松树。\n");
+                set("long", "這是一棵密林裡常見的松樹。\n");
                 set("unit", "棵");
                 set("no_get", 1);
                 set("tree_str", 100);
@@ -37,19 +37,19 @@ int do_chop(string arg)
         if (!arg) return 0;
 
         if (me->is_busy() || me->is_fighting() )
-                return notify_fail("你正忙着呢。\n");
+                return notify_fail("你正忙著呢。\n");
         
         if (arg != "tree" && arg != "pine")
-                return notify_fail("你要砍什么？\n");
+                return notify_fail("你要砍什麼？\n");
         
         if( !objectp(weapon=query_temp("weapon", me)) || 
                 query("id", weapon) != "axe" )
                 return notify_fail("你需要一把大斧子。\n");
 
         if( query("jing", me)<30 || query("qi", me)<50 )
-                return notify_fail("你的力气不够了。\n");
+                return notify_fail("你的力氣不夠了。\n");
 
-        message_vision("$N挥动大斧，狠狠地朝松树干砍了下去。\n",me);
+        message_vision("$N揮動大斧，狠狠地朝松樹幹砍了下去。\n",me);
         addn("jing", -20, me);
         addn("qi", -30, me);
         me->start_busy(3);
@@ -70,7 +70,7 @@ int do_chop(string arg)
 
 int shaking()
 {
-        message_vision("松树已经摇晃的很厉害了。\n",this_object());
+        message_vision("松樹已經搖晃的很厲害了。\n",this_object());
         return 1;
 }
 
@@ -78,7 +78,7 @@ int collapse(object me)
 {
         object ob=this_object();
         object shugan;
-        message_vision("只听喀嚓一声，松树从根处折断，紧接着轰隆一声巨响，倒了下来。\n",ob);
+        message_vision("只聽喀嚓一聲，松樹從根處折斷，緊接著轟隆一聲巨響，倒了下來。\n",ob);
         shugan=new("/d/mingjiao/obj/shugan");
         shugan->move(environment(ob));
         set("owner",query("id",  me), shugan);

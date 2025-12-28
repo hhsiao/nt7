@@ -8,11 +8,11 @@ inherit F_CLEAN_UP;
 int help(object me)
 {
         write(@HELP
-战场指令，可以报名与离开战场
+戰場指令，可以報名與離開戰場
 
-fbattle info                          - 显示目前战争资讯
-fbattle join                          - 报名参加下一场次的战场
-fbattle cancel                        - 取消报名
+fbattle info                          - 顯示目前戰爭資訊
+fbattle join                          - 報名參加下一場次的戰場
+fbattle cancel                        - 取消報名
 
 HELP );
         return 1;
@@ -21,7 +21,7 @@ HELP );
 int main(object me, string arg)
 {
                                 if (sscanf(base_name(environment(me)),"/d/dongtian/%*s")){
-                                                tell_object(me, "洞天里无法联系上战场。\n"); 
+                                                tell_object(me, "洞天裡無法聯繫上戰場。\n"); 
                                                                 return 1;}
         switch(arg)
         {
@@ -33,7 +33,7 @@ int main(object me, string arg)
                         string ppl = "";
                         int count = 0;
                         
-                        msg = "目前共 "+sizeof(players)+" 位玩家参与战争，"+(member_array(me->query_id(1), players)==-1?"你未参与战争":"你是其中之一")+"。\n";
+                        msg = "目前共 "+sizeof(players)+" 位玩家參與戰爭，"+(member_array(me->query_id(1), players)==-1?"你未參與戰爭":"你是其中之一")+"。\n";
                                                 
                         if( sizeof(players) > 0 )
                         {
@@ -53,9 +53,9 @@ int main(object me, string arg)
                                                                                                       
                                 }
                                 
-                                msg += "参与者战绩统计：\n"+ppl[0..<3]+"。\n";
+                                msg += "參與者戰績統計：\n"+ppl[0..<3]+"。\n";
                                 
-                                msg += "目前战争绩分排名前三名为："+score[0..<3]+"。\n";
+                                msg += "目前戰爭績分排名前三名為："+score[0..<3]+"。\n";
                         }
                         
                         tell_object(me, msg);
@@ -68,7 +68,7 @@ int main(object me, string arg)
                         BATTLEFIELD2_D->cancel_battle(me);
                         break;
                 default:
-                        tell_object(me, "请输入正确的指令格式(help fbattle)。\n");
+                        tell_object(me, "請輸入正確的指令格式(help fbattle)。\n");
                         break;
         }
         return 1;

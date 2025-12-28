@@ -6,11 +6,11 @@ inherit __DIR__"normal.c";
 
 void create()
 {
-        set("short","不周山脚");
+        set("short","不周山腳");
         set("long", @LONG
-这里是不周山，相传不周山是人界唯一能够到达天界的路径，
-只可惜不周山终年寒冷，长年飘雪，非凡夫俗子所能徒步到达。传
-言曾有凡人为见神仙一面而只身上山，但却未曾见其返乡。
+這裡是不周山，相傳不周山是人界唯一能夠到達天界的路徑，
+只可惜不周山終年寒冷，長年飄雪，非凡夫俗子所能徒步到達。傳
+言曾有凡人為見神仙一面而隻身上山，但卻未曾見其返鄉。
 LONG );
         set("outdoors", "yangzhou");
         set("exits",([
@@ -65,7 +65,7 @@ int createroom()
                         }
                         break;
                 }
-                //建立房间
+                //建立房間
                 if (file_size(__DIR__"bzs.c") < 1) break;//模版文件缺乏
                 dstfile = read_file(__DIR__"bzs.c");
                 lvs = (string)(lv + 1);
@@ -90,8 +90,8 @@ int valid_leave(object me, string dir)
         if (playerp(me) && !interactive(me)) return 0;
         
         if (playerp(me)) {
-                if (query("level", me) < 10) return notify_fail(NOR "一个声音喝止你：等级太低不许登山！\n" NOR);
-                if( query("online_time", me) < 21600)  return notify_fail(NOR "一个声音喝止你：在线年龄不够不许登山！\n" NOR);
+                if (query("level", me) < 10) return notify_fail(NOR "一個聲音喝止你：等級太低不許登山！\n" NOR);
+                if( query("online_time", me) < 21600)  return notify_fail(NOR "一個聲音喝止你：在線年齡不夠不許登山！\n" NOR);
         }
         
         return ::valid_leave(me, dir);

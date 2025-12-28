@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// kong.c 静空师太
+// kong.c 靜空師太
 
 #include <command.h>
 #include <ansi.h>
@@ -11,9 +11,9 @@ inherit F_MASTER;
 
 void create()
 {
-        set_name("静空师太", ({ "jingkong shitai","jingkong","shitai"}));
+        set_name("靜空師太", ({ "jingkong shitai","jingkong","shitai"}));
         set("long",
-        "她是峨嵋派三师姐，一位中年出家道姑，道冠高拢，慈眉善目。\n");
+        "她是峨嵋派三師姐，一位中年出家道姑，道冠高攏，慈眉善目。\n");
         set("gender", "女性");
         set("age", 45);
         set("attitude", "peaceful");
@@ -23,7 +23,7 @@ void create()
         set("inquiry",([
                 "剃度"  : (: ask_for_join :),
                 "出家"  : (: ask_for_join :),
-                "还俗"  : "峨嵋弟子，不能还俗。你找掌门师太吧。",
+                "還俗"  : "峨嵋弟子，不能還俗。你找掌門師太吧。",
         ]));
 
         set("str", 30);
@@ -88,69 +88,69 @@ int do_nod(string arg)
                 return 0;
 
         command("smile");
-        command("say 我讲个故事你听：\n");
+        command("say 我講個故事你聽：\n");
 
-        message("vision", "静空师太对着"+me->name()+"讲了几句话。\n",
+        message("vision", "靜空師太對著"+me->name()+"講了幾句話。\n",
                         environment(me), ({me}) );
 
         switch(random(3)) {
                 case 0:
-                write("静空师太说：白水禅师曾住在我们万年庵，那时叫白水寺。
-            有个僧人问他：什么是祖师西来意？　白水禅师是怎样回答他的呢？\n\n");
+                write("靜空師太說：白水禪師曾住在我們萬年庵，那時叫白水寺。
+            有個僧人問他：什麼是祖師西來意？　白水禪師是怎樣回答他的呢？\n\n");
 
                 if ((int)me->query_skill("mahayana", 1) > 60 + random(5)) {
-                        write("你想起在一部经书里读到过这个故事。\n");
-                        write("你说：四溟无窑宅，一滴润乾坤。\n\n");
-                        message("vision", me->name()+"想了一下，跟静空师太说了几句话。\n",
+                        write("你想起在一部經書裡讀到過這個故事。\n");
+                        write("你說：四溟無窯宅，一滴潤乾坤。\n\n");
+                        message("vision", me->name()+"想了一下，跟靜空師太說了幾句話。\n",
                                 environment(me), ({me}) );
 
-                        command("say 阿弥陀佛，善哉！善哉！好吧，我就收下你了。");
-                        command("say 希望你能以慈悲之心，以智慧之力，努力行善，济度众生。\n");
+                        command("say 阿彌陀佛，善哉！善哉！好吧，我就收下你了。");
+                        command("say 希望你能以慈悲之心，以智慧之力，努力行善，濟度眾生。\n");
                         command("recruit "+query("id", me));
                 }
                 else {
-                        write("你想了许久，也解不明白其中的禅理。\n");
-                        command("say 阿弥陀佛，你多学些佛法后再来找我吧。\n");
+                        write("你想了許久，也解不明白其中的禪理。\n");
+                        command("say 阿彌陀佛，你多學些佛法後再來找我吧。\n");
                 }
                 break;
 
                 case 1:
-                write("静空师太说：白水禅师曾住在我们万年庵，那时叫白水寺。
-            有个僧人问他：禅宗六祖一路，应谈何事？　白水禅师是怎样回答他的呢？\n\n");
+                write("靜空師太說：白水禪師曾住在我們萬年庵，那時叫白水寺。
+            有個僧人問他：禪宗六祖一路，應談何事？　白水禪師是怎樣回答他的呢？\n\n");
 
                 if ((int)me->query_skill("mahayana", 1) > 60 + random(5)) {
-                        write("你想起在一部经书里读到过这个故事。\n");
-                        write("你答道：涧松千载鹤来聚，月中香桂凤凰归。\n\n");
-                        message("vision", me->name()+"想了一下，跟静空师太说了几句话。\n",
+                        write("你想起在一部經書裡讀到過這個故事。\n");
+                        write("你答道：澗松千載鶴來聚，月中香桂鳳凰歸。\n\n");
+                        message("vision", me->name()+"想了一下，跟靜空師太說了幾句話。\n",
                                 environment(me), ({me}) );
 
-                        command("say 阿弥陀佛，善哉！善哉！好吧，我就收下你了。");
-                        command("say 希望你能以慈悲之心，以智慧之力，努力行善，济度众生。\n");
+                        command("say 阿彌陀佛，善哉！善哉！好吧，我就收下你了。");
+                        command("say 希望你能以慈悲之心，以智慧之力，努力行善，濟度眾生。\n");
                         command("recruit "+query("id", me));
                 }
                 else {
-                        write("你想了许久，也解不明白其中的禅理。\n");
-                        command("say 阿弥陀佛，你多学些佛法后在来找我吧。\n");
+                        write("你想了許久，也解不明白其中的禪理。\n");
+                        command("say 阿彌陀佛，你多學些佛法後在來找我吧。\n");
                 }
                        break;
 
                 case 2:
-                write("静空师太说：白水禅师曾住在我们万年庵，那时叫白水寺。
-            有个僧人问他：什么是此经，即佛性？　白水禅师是怎样回答他的呢？\n\n");
+                write("靜空師太說：白水禪師曾住在我們萬年庵，那時叫白水寺。
+            有個僧人問他：什麼是此經，即佛性？　白水禪師是怎樣回答他的呢？\n\n");
 
                 if ((int)me->query_skill("mahayana", 1) > 60 ) {
-                        write("你想起在一部经书里读到过这个故事。\n");
-                        write("你答道：抛梭石女辽空响，海底泥牛夜叫频。\n\n");
-                        message("vision", me->name()+"想了一下，跟静空师太说了几句话。\n",
+                        write("你想起在一部經書裡讀到過這個故事。\n");
+                        write("你答道：拋梭石女遼空響，海底泥牛夜叫頻。\n\n");
+                        message("vision", me->name()+"想了一下，跟靜空師太說了幾句話。\n",
                                 environment(me), ({me}) );
 
-                        command("say 阿弥陀佛，善哉！善哉！好吧，我就收下你了。");
-                        command("say 希望你能以慈悲之心，以智慧之力，努力行善，济度众生。\n");
+                        command("say 阿彌陀佛，善哉！善哉！好吧，我就收下你了。");
+                        command("say 希望你能以慈悲之心，以智慧之力，努力行善，濟度眾生。\n");
                         command("recruit "+query("id", me));
                 }
                 else {
-                        write("你想了许久，也解不明白其中的禅理。\n");
-                        command("say 阿弥陀佛，你多学些佛法后在来找我吧。\n");
+                        write("你想了許久，也解不明白其中的禪理。\n");
+                        command("say 阿彌陀佛，你多學些佛法後在來找我吧。\n");
                 }
                        break;
         }
@@ -163,9 +163,9 @@ void attempt_apprentice(object ob)
         if (! permit_recruit(ob))
                 return;
 
-        command("say 阿弥陀佛，善哉！善哉！在本庵修行，我要先考考你的佛法。");
+        command("say 阿彌陀佛，善哉！善哉！在本庵修行，我要先考考你的佛法。");
         set_temp("pending/kao", 1, ob);
-        command("say 你要准备好了，就告诉(nod)我吧。\n");
+        command("say 你要準備好了，就告訴(nod)我吧。\n");
         add_action("do_nod", "nod");
         return;
 }

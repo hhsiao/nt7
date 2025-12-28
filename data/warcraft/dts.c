@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("天猫[2;37;0m[2;37;0m", ({"tmall"}));        
+        set_name("天貓[2;37;0m[2;37;0m", ({"tmall"}));        
         set("gender", "男性");                
-        set("long", "一只猫[2;37;0m
-它是唐泰斯的魔幻兽。
+        set("long", "一隻貓[2;37;0m
+它是唐泰斯的魔幻獸。
 ");
         set("race_type", "白虎");
         set("magic/type", "metal");

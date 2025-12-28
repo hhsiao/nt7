@@ -3,14 +3,14 @@ inherit NPC;
 
 void create()
 {
-        set_name("冯锡范", ({ "feng xifan", "feng" }) );
+        set_name("馮錫範", ({ "feng xifan", "feng" }) );
         set("title", "武夷派第一高手");
-        set("nickname", HIR"一剑无血"NOR);
+        set("nickname", HIR"一劍無血"NOR);
         set("gender", "男性");
         set("age", 45);
         set("long",
-                "冯锡范是延平王府卫队长，武夷派第一高手，一张白湛湛的面皮。\n"
-                "台湾战败后归降朝廷，被封为一等忠臣伯。");
+                "馮錫範是延平王府衛隊長，武夷派第一高手，一張白湛湛的麵皮。\n"
+                "臺灣戰敗後歸降朝廷，被封為一等忠臣伯。");
         set("attitude", "peaceful");
         set("str", 26);
         set("con", 30);

@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// first.c 大师兄
+// first.c 大師兄
 
 #include <ansi.h>
 
@@ -7,16 +7,16 @@ inherit NPC;
 inherit F_SAVE;
 
 string zname(object);
-void reset_me(object me);// 初始化武功、经验、title 等
-void create_identity (mixed master, mixed where);//为弟子重置准备(只一次)
+void reset_me(object me);// 初始化武功、經驗、title 等
+void create_identity (mixed master, mixed where);//為弟子重置準備(只一次)
 int init_identity (object me, object master, object where);//重置弟子restore
-int do_clone(object me, object ob);//完全拷贝ob的武功等给me 并保存
-void self_adjust (object me); //设所有武功60 气血同reset  用于copy from master后恢复
-string zm_apply();// 处理ask about 掌门事件
-int do_recopy (object me); // 开始打架之前 恢复状态
-void find_master (object me, object ob); // 带去掌门路上循环检测
-void master_announce (object me, object who, object ob); //掌门通知
-int convert_identity (object me, object ob);//更新掌门弟子
+int do_clone(object me, object ob);//完全拷貝ob的武功等給me 並保存
+void self_adjust (object me); //設所有武功60 氣血同reset  用於copy from master後恢復
+string zm_apply();// 處理ask about 掌門事件
+int do_recopy (object me); // 開始打架之前 恢復狀態
+void find_master (object me, object ob); // 帶去掌門路上循環檢測
+void master_announce (object me, object who, object ob); //掌門通知
+int convert_identity (object me, object ob);//更新掌門弟子
 void time_out(object me, object ob);
 int is_first() { return 1; }
 
@@ -32,7 +32,7 @@ void create()
         set("per", 30);
         set("no_get", 1);
         set("no_get_from", 1);
-        set("long", "这是本门首席大弟子。你如果不服，可以挑战。\n" );
+        set("long", "這是本門首席大弟子。你如果不服，可以挑戰。\n" );
         set("attitude", "heroism");
         set("combat_exp", 1000000);
         set("auto_perform", 1);
@@ -48,10 +48,10 @@ void init()
         create_identity(query("master_dir", me), query("start_room", me));
         set("inquiry", ([
                 "首席大弟子" : (: zm_apply :),
-                "掌门大师兄" : (: zm_apply :),
+                "掌門大師兄" : (: zm_apply :),
                 "大弟子" : (: zm_apply :),
-                "掌门" : (: zm_apply :),
-                "挑战" : (: zm_apply :),
+                "掌門" : (: zm_apply :),
+                "挑戰" : (: zm_apply :),
         ]) );
         add_action("do_reset", "reset");
 }
@@ -63,12 +63,12 @@ int do_reset(string arg)
         
         if( !wizardp(ob) ) return 0;
         
-        if( arg != "zhangmen" ) return notify_fail("你要reset zhangmen吗？\n");
-        set_name("掌门大弟子", ({ "zhang men", "zhangmen", "first" }) );
+        if( arg != "zhangmen" ) return notify_fail("你要reset zhangmen嗎？\n");
+        set_name("掌門大弟子", ({ "zhang men", "zhangmen", "first" }) );
         me->reset_me(me);
         set("current_player", "none of us");
         save();
-        write("重置"+query("family/family_name")+"掌门大师兄成功。\n");
+        write("重置"+query("family/family_name")+"掌門大師兄成功。\n");
         return 1;
 }
 
@@ -111,7 +111,7 @@ int init_identity (object me, object master, object where)
         me->restore();
         if( query("current_player", me) != "none of us" )
         {
-                do_recopy(me); // copy 玩家状态
+                do_recopy(me); // copy 玩家狀態
                 return 1;
         }
 
@@ -125,7 +125,7 @@ int init_identity (object me, object master, object where)
         return 1;
 }
 
-// 复制数据
+// 複製數據
 int do_clone(object me, object ob)
 {
         object *inv, newob,weapon;
@@ -268,7 +268,7 @@ int do_clone(object me, object ob)
         set("no_suck", 1);
         set("env/wimpy", 0);
         save();
-        tell_object(ob, "状态储存完毕。\n");
+        tell_object(ob, "狀態儲存完畢。\n");
 
         return 1;
 }
@@ -310,28 +310,28 @@ string zm_apply()
                 return "我便是"+query("family/family_name", me)+"首席大弟子！\n";
 
         if( query("betrayer", ob) || query("detach/"+query("family/family_name", me), ob) )
-                return "你曾叛师欺祖，言无信行不轨，岂能出任首席大子弟一职！\n";
+                return "你曾叛師欺祖，言無信行不軌，豈能出任首席大子弟一職！\n";
 
         if( query("current_player", me) == query("id", ob) )
-                return "你又糊涂了！\n";
+                return "你又糊塗了！\n";
 
         if( query("family/gongji", ob) < 1000 )
-                return "挑战首席大弟子需要1000点门派功绩。\n";
+                return "挑戰首席大弟子需要1000點門派功績。\n";
 
         if( me->is_fighting() || query("fighting", me) )
-                return "已经有人正在挑战首席大弟子！\n";
+                return "已經有人正在挑戰首席大弟子！\n";
 
         addn("family/gongji", -1000, ob);
-        tell_object(ob, HIC"你使用1000点门派功绩换取挑战门派首席大弟子。\n"NOR);
+        tell_object(ob, HIC"你使用1000點門派功績換取挑戰門派首席大弟子。\n"NOR);
 
         set_temp("zm_applied", 1, ob);
-        do_recopy (me); // copy 玩家状态
+        do_recopy (me); // copy 玩家狀態
         full_self();
         ob->fight_ob(me);
         me->fight_ob(ob);
         competition_with(ob);
         delete_temp("zhangmen/kill", me);
-        return "好！你有意出任首席大弟子一职？我们就切磋一下吧！\n";
+        return "好！你有意出任首席大弟子一職？我們就切磋一下吧！\n";
 }
 
 int do_recopy (object me)
@@ -364,8 +364,8 @@ void win()
                 return;
         }
 
-        command("say 看来" + RANK_D->query_respect(me) +
-                "还得多加练习，方能在当今武林中出人头地 !\n");
+        command("say 看來" + RANK_D->query_respect(me) +
+                "還得多加練習，方能在當今武林中出人頭地 !\n");
         ::win();
 }
 
@@ -379,10 +379,10 @@ void lost()
         if( !living(me) ) me->revive();
         me->full_self();
         set("fighting", 1, me);
-        message_vision ("$N翻身下拜，连声佩服！\n",me);
+        message_vision ("$N翻身下拜，連聲佩服！\n",me);
         if( query_temp("zhangmen/kill", me) && query_temp("zm_applied", ob) )
         {
-                message_vision ("$N皱了皱眉道：此次比武我未能静心尽力，希望重新来过。\n", me);
+                message_vision ("$N皺了皺眉道：此次比武我未能靜心盡力，希望重新來過。\n", me);
                 return ::lost();
         }
         
@@ -398,7 +398,7 @@ void lost()
         }
         else
         {
-                message_vision("$N躬身对$n道：恭请拜见师父。\n",me,ob);
+                message_vision("$N躬身對$n道：恭請拜見師父。\n",me,ob);
                 command("follow "+query("id", ob));
                 if( !query("where", me) )
                         set("where", base_name(environment(me)), me);
@@ -414,11 +414,11 @@ void time_out (object me, object ob)
 {
         if( !query("fighting") ) return;
         if( objectp(ob) && same_environment(me, ob) )
-                message_vision ("$N很不高兴的对$n说道，让你带我一起去拜见掌门，你墨迹到现在也没有去，如此还是算了吧！\n\n",me,ob);
+                message_vision ("$N很不高興的對$n說道，讓你帶我一起去拜見掌門，你墨跡到現在也沒有去，如此還是算了吧！\n\n",me,ob);
         else if( objectp(ob) )
-                tell_object(ob, "首席大弟子很不高兴的传话给你，让你带他一起去拜见掌门，你墨迹到现在也没有去，如此还是算了吧！\n");
+                tell_object(ob, "首席大弟子很不高興的傳話給你，讓你帶他一起去拜見掌門，你墨跡到現在也沒有去，如此還是算了吧！\n");
         else
-                message_vision ("$N奇怪的朝周围看了看，喃喃道：人呢？如此还是算了吧！\n\n",me);
+                message_vision ("$N奇怪的朝周圍看了看，喃喃道：人呢？如此還是算了吧！\n\n",me);
         
         delete("fighting");
         me->set_leader(0);
@@ -439,8 +439,8 @@ void find_master (object me, object ob)
         }
         else
         {
-                message_vision ("$N见了师父赶紧下拜，又抬起头朝$n使了个眼色。\n\n",me,ob);
-                message_vision ("$N微微地点了点头。\n\n",who);
+                message_vision ("$N見了師父趕緊下拜，又抬起頭朝$n使了個眼色。\n\n",me,ob);
+                message_vision ("$N微微地點了點頭。\n\n",who);
                 message_vision ("$N退下。\n\n",me);
                 me->set_leader(0);
                 call_out("master_announce",1,me,who,ob);
@@ -455,7 +455,7 @@ void master_announce (object me, object who, object ob)
         remove_call_out("time_out");
         if( !living(me) ) me->revive();
         me->full_self();
-        CHANNEL_D->do_channel(who, "chat","本派首席大弟子"+query("name", ob)+"今日走马上任。恭请各位大侠多加捧场！");
+        CHANNEL_D->do_channel(who, "chat","本派首席大弟子"+query("name", ob)+"今日走馬上任。恭請各位大俠多加捧場！");
         delete_temp("zm_applied", ob);
         set("new_player", 1, me); // npc
         delete("fighting", me);
@@ -470,8 +470,8 @@ void master_announce (object me, object who, object ob)
                 ling = new( "/d/xiakedao/obj/tongpai2" );
                 set("own",query("id",  ob), ling);
                 ling->move( ob );
-                message_vision( HIY"$N对$n说道：侠客岛昨日送来赏善罚恶令，邀请为师上岛。\n                你是本门首席大弟子，就代为师走一趟吧。\n"NOR, who, ob );
-                message_vision( HIC"说完，$N把两块令牌交到$n手里。\n"NOR, who, ob );
+                message_vision( HIY"$N對$n說道：俠客島昨日送來賞善罰惡令，邀請為師上島。\n                你是本門首席大弟子，就代為師走一趟吧。\n"NOR, who, ob );
+                message_vision( HIC"說完，$N把兩塊令牌交到$n手裡。\n"NOR, who, ob );
                 set("xkd/ling", 1, ob);
                 set("xkd/time", time()+86400, ob);
         }
@@ -506,7 +506,7 @@ int convert_identity (object me, object ob)
         set("title",query("family/family_name",  ob)+zname(ob), ob);
         set("family/first", 1, ob);
 
-        me->reset_me(me); // 恢复初始状态
+        me->reset_me(me); // 恢復初始狀態
         set("name",query("name",  ob), me);
         set("gender",query("gender",  ob), me);
         set("current_player",query("id",  ob), me);
@@ -547,8 +547,8 @@ void kill_ob(object ob)
 string zname(object ob)
 {
         return "首席大弟子";
-        if( query("gender", ob) == "女性") return "首席大师姐";
-        else return "首席大师兄";
+        if( query("gender", ob) == "女性") return "首席大師姐";
+        else return "首席大師兄";
 }
 
 void reset_me (object me)
@@ -612,7 +612,7 @@ void reset_me (object me)
 
 int accept_hit(object me)
 {
-        command("say 我是堂堂首席大弟子！要切磋你找别人去。\n");
+        command("say 我是堂堂首席大弟子！要切磋你找別人去。\n");
         return 0;
 }
 

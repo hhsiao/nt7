@@ -10,8 +10,8 @@ void create()
 {
         set_name("傻姑", ({ "sha gu", "sha", "gu" }));
         set("long",
-"她曲灵风的女儿，幼时似乎受了惊吓，脑子受损，智力与常人相比差了很多。\n"
-"她相貌平平，脸上总带着天真的傻笑，嘴里哼着儿歌。\n");
+"她曲靈風的女兒，幼時似乎受了驚嚇，腦子受損，智力與常人相比差了很多。\n"
+"她相貌平平，臉上總帶著天真的傻笑，嘴裡哼著兒歌。\n");
         set("gender", "女性");        
         set("age", 20);
         set("attitude", "heroism");
@@ -39,11 +39,11 @@ void create()
         
         set("inquiry", ([
         "玩" : (: ask_rudao :),
-        "玩一会" : (: ask_rudao :),
-        "玩一会儿" : (: ask_rudao :),
+        "玩一會" : (: ask_rudao :),
+        "玩一會兒" : (: ask_rudao :),
         ]));
 
-        create_family("桃花岛", 3, "弟子");
+        create_family("桃花島", 3, "弟子");
         set("amulet_count", 1);
 
         setup();
@@ -65,21 +65,21 @@ string ask_rudao()
         
     if( query_temp("play_with_shagu", me)>1+random(2 )
         && query("amulet_count") > 0 ) {
-                command("say 你陪我玩得真够久的，送你样东西吧。\n");
+                command("say 你陪我玩得真夠久的，送你樣東西吧。\n");
                 obj = new("/d/taohua/obj/amulet");
                 obj->move(me);
                 delete_temp("play_with_shagu", me);
                 addn_temp("amulet_count", -1);
-                message_vision("$N递给$n一个长命锁。\n", this_object(), me);
+                message_vision("$N遞給$n一個長命鎖。\n", this_object(), me);
         }
                 
         if( query("family/master_name", me) == "程英"
-         || query("family/master_name", me) == "黄药师"){
-                return "你不是桃花岛的人吗？这里的人都很聪明，不会和傻姑玩的。\n你真笨，比傻姑还笨！";
+         || query("family/master_name", me) == "黃藥師"){
+                return "你不是桃花島的人嗎？這裡的人都很聰明，不會和傻姑玩的。\n你真笨，比傻姑還笨！";
         }
 
         set_temp("pending/rudao", 1, me);
-        return "爷爷说不能让不三不四的人上岛，如果你能挨我几下揍，\n就让你过去，愿意(agree)的话，告诉我。\n"; 
+        return "爺爺說不能讓不三不四的人上島，如果你能挨我幾下揍，\n就讓你過去，願意(agree)的話，告訴我。\n"; 
 }
 
 
@@ -87,7 +87,7 @@ int do_agree()
 {
         int i, k;
 
-        write(CYN"\n傻姑拍着手高兴的跳起来，大叫道：开打啦！开打啦！\n"NOR);
+        write(CYN"\n傻姑拍著手高興的跳起來，大叫道：開打啦！開打啦！\n"NOR);
         
         set_temp("apply/armor", 100);
         set_temp("apply/attack", 100);
@@ -99,7 +99,7 @@ int do_agree()
         for (i = 0; i < k; i++) {
                 if( query("qi", this_player())<0
                 || !present(this_player(), environment())) {
-                write(CYN"\n傻姑拍着手高兴的跳起来，大叫道：打跑啦！打跑啦！不三不四的家伙打跑啦！\n"NOR);                        
+                write(CYN"\n傻姑拍著手高興的跳起來，大叫道：打跑啦！打跑啦！不三不四的傢伙打跑啦！\n"NOR);                        
                         delete_temp("apply/armor");
                         delete_temp("apply/attack");
                         delete_temp("apply/defense");
@@ -108,7 +108,7 @@ int do_agree()
                 COMBAT_D->do_attack(this_object(), this_player(), query_temp("weapon")); 
         }
 
-        write(CYN"\n傻姑撅了撅嘴，说道：好吧，你就过去吧，记得以後再来找我玩儿。\n"NOR);        
+        write(CYN"\n傻姑撅了撅嘴，說道：好吧，你就過去吧，記得以後再來找我玩兒。\n"NOR);        
         set_temp("shagu_pass", 1, this_player());
 
         delete_temp("apply/armor");
@@ -127,8 +127,8 @@ int accept_fight(object me)
 
 int accept_kill(object me)
 {
-        if( query("family/family_name", me) == "桃花岛"){
-        command("say 你我本是同门，如何要加害于我！\n");
+        if( query("family/family_name", me) == "桃花島"){
+        command("say 你我本是同門，如何要加害於我！\n");
         set_temp("th_killer", 1, me);
         kill_ob(me);
         return 1;

@@ -9,16 +9,16 @@ inherit F_QUESTER;
 
 void create()
 {
-        set_name("丁鹏", ({"ding peng", "ding", "peng"}));
-        set("title", "魔教传人");
+        set_name("丁鵬", ({"ding peng", "ding", "peng"}));
+        set("title", "魔教傳人");
         set("nickname", HIR"刀神"NOR);
         
         set("gender", "男性");
         set("age", 24);
         
       set("long","
-一位二十多岁的青年，一身素布青衣，腰畔的一把刀很是奇特，刀身弯弯，柄处刻有
-〖小楼一夜听春雨〗七个字。\n");
+一位二十多歲的青年，一身素布青衣，腰畔的一把刀很是奇特，刀身彎彎，柄處刻有
+〖小樓一夜聽春雨〗七個字。\n");
         set("attitude", "peaceful");
 
         set("per", 21);
@@ -79,7 +79,7 @@ void create()
         }) );
 
         
-        create_family("魔教", 40, "传人");
+        create_family("魔教", 40, "傳人");
   
 
         set_temp("apply/attack", 280);
@@ -98,20 +98,20 @@ void attempt_apprentice(object ob)
 {
         if( query("family/family_name", ob) != "魔教" )
          {
-                 command("say 你和我素无渊源，我为什么要教你武功？");
+                 command("say 你和我素無淵源，我為什麼要教你武功？");
                  return;
                 }
         if (! permit_recruit(ob))  return;
         if( query("combat_exp", ob)<2000000 )
         {
-                command("say 你战斗经验太差了，就别给我魔教丢脸了。");
+                command("say 你戰鬥經驗太差了，就別給我魔教丟臉了。");
                  return;
                }
 
         if ((int)ob->query_skill("chiyou-kuangzhanjue", 1) < 400) 
 
         {
-                command("say 本教的内功心法你还没练好，还要多下苦功才行！");
+                command("say 本教的內功心法你還沒練好，還要多下苦功才行！");
                 return;
         }
       
@@ -122,10 +122,10 @@ int accept_ask(object me, string topic)
 {
           switch (topic)
         {
-        case "当时明月在" :
+        case "當時明月在" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/moon-blade/yue",
-                           "name"    : "当时明月在",
+                           "name"    : "當時明月在",
                            "sk1"     : "moon-blade",
                            "lv1"     : 300,
                            "dodge"   : 300,
@@ -133,10 +133,10 @@ int accept_ask(object me, string topic)
                            "shen"    : -50000, ]));
                 break;
 
-        case "小楼一夜听春雨" :
+        case "小樓一夜聽春雨" :
                 return MASTER_D->teach_pfm(me, this_object(),
                         ([ "perform" : "can_perform/moon-blade/ting",
-                           "name"    : "小楼一夜听春雨",
+                           "name"    : "小樓一夜聽春雨",
                            "sk1"     : "moon-blade",
                            "lv1"     : 300,
                            "dodge"   : 300,

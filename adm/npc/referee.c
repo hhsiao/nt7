@@ -14,7 +14,7 @@ void create()
         set("age", 35);
         set("no_get", 1);
         set("long",
-                "这是一位仙风道骨的中年道人，早年云游四方，性好任侠，公正无私。\n");
+                "這是一位仙風道骨的中年道人，早年雲遊四方，性好任俠，公正無私。\n");
         set("combat_exp", 60000);
         set("shen_type", 1);
         set("attitude", "friendly");
@@ -60,7 +60,7 @@ int do_team(string arg)
 
         if (sscanf(arg, "kill %*s") == 1)
         {
-                message_vision("$N飞上前来就给了$n一个耳光，$n当场晕了过去。\n",
+                message_vision("$N飛上前來就給了$n一個耳光，$n當場暈了過去。\n",
                                this_object(), this_player());
                 this_player()->unconcious();
                 return 1;
@@ -77,58 +77,58 @@ int do_bihua(string arg)
 
         if (! arg || ! objectp(ob = present(arg)))
         {
-                write("你要和谁比划？\n");
+                write("你要和誰比劃？\n");
                 return 1;
         }
 
         me = this_player();
         if (me == ob)
         {
-                write("你是不是以为天下就你自己是老大，再没有第二个英雄了。\n");
+                write("你是不是以為天下就你自己是老大，再沒有第二個英雄了。\n");
                 return 1;
         }
 
         if (! userp(ob))
         {
-                write("你想向人家挑战，可是人家根本没有理你。\n");
+                write("你想向人家挑戰，可是人家根本沒有理你。\n");
                 return 1;
         }
 
         if (! living(ob))
         {
-                write("你还是等人家醒了再说吧。\n");
+                write("你還是等人家醒了再說吧。\n");
                 return 1;
         }
 
         if (me->is_fighting() && me->query_competitor())
         {
-                write("你现在正在和" + me->query_competitor()->name() +
-                      "比试呢。\n");
+                write("你現在正在和" + me->query_competitor()->name() +
+                      "比試呢。\n");
                 return 1;
         }
 
         if (ob->is_fighting())
         {
-                write("人家正在动手，你上去插手干什么？\n");
+                write("人家正在動手，你上去插手幹什麼？\n");
                 return 1;
         }
 
         if( query("qi", me)*100/query("max_qi", me)<70 )
         {
-                write("你现在体力不够充沛，何必忙着动手？\n");
+                write("你現在體力不夠充沛，何必忙著動手？\n");
                 return 1;
         }
 
         if( query("qi", ob)*100/query("max_qi", ob)<70 )
         {
-                write("人家现在似乎体力不支，还是等会儿再说吧。\n");
+                write("人家現在似乎體力不支，還是等會兒再說吧。\n");
                 return 1;
         }
 
         if( query("combat_exp", me)<10000 )
         {
-                write("公平子冷笑道：你是哪儿来的？我怎么从来没有"
-                      "听说过？滚开！少在这里添乱。\n");
+                write("公平子冷笑道：你是哪兒來的？我怎麼從來沒有"
+                      "聽說過？滾開！少在這裡添亂。\n");
                 return 1;
         }
 
@@ -143,31 +143,31 @@ int do_bihua(string arg)
         {
                 if (old == ob)
                 {
-                        write("你正在向人家挑战，可是人家还没有答应。\n");
+                        write("你正在向人家挑戰，可是人家還沒有答應。\n");
                         return 1;
                 }
 
-                tell_object(old, me->name() + "改变主意不想向你挑战了。\n");
-                tell_object(me, "你改变主意不打算向" + old->name() + "挑战了。\n");
+                tell_object(old, me->name() + "改變主意不想向你挑戰了。\n");
+                tell_object(me, "你改變主意不打算向" + old->name() + "挑戰了。\n");
         }
 
         if( query_temp("pending/fight", ob) != me )
         {
                 set_temp("pending/fight", ob, me);
-                message_vision(HIY "\n$N" HIY "朗声对$n" HIY "道：今日幸会，我们何不一较"
-                               "高低，就由" + name() + "先生为我们见证可好？\n\n" NOR,
+                message_vision(HIY "\n$N" HIY "朗聲對$n" HIY "道：今日幸會，我們何不一較"
+                               "高低，就由" + name() + "先生為我們見證可好？\n\n" NOR,
                                me, ob);
                 return 1;
         }
 
         delete_temp("pending/fight", ob);
 
-        message_vision(HIY "\n$N" HIY "点头道：很好，来吧，不必客气！\n\n" NOR,
+        message_vision(HIY "\n$N" HIY "點頭道：很好，來吧，不必客氣！\n\n" NOR,
                        me, ob);
 
         shout_message(me->name(1)+"("+query("id", me)+")道："+
                       RANK_D->query_self(me) + me->name(1) + "，今日特向" +
-                      RANK_D->query_respect(ob) + "请教。");
+                      RANK_D->query_respect(ob) + "請教。");
         me->set_override("win",  bind((: call_other, __FILE__, "player_win",  environment() :), me));
         me->set_override("lost", bind((: call_other, __FILE__, "player_lost", environment() :), me));
         ob->set_override("win",  bind((: call_other, __FILE__, "player_win",  environment() :), ob));
@@ -183,27 +183,27 @@ void player_win(object env, object me)
         ob = me->query_competitor();
         if (! objectp(ob))
         {
-                shout_message(name() + "叹道：这次比武，" + me->name(1) + "获胜。");
+                shout_message(name() + "嘆道：這次比武，" + me->name(1) + "獲勝。");
                 return;
         }
 
         if (environment(ob) != environment(me))
         {
                 shout_message(name() + "笑道：" + ob->name(1) +
-                              "比武时临阵脱逃，" + me->name(1) + "不战而胜。");
+                              "比武時臨陣脫逃，" + me->name(1) + "不戰而勝。");
         } else
         if( query("age", me)>query("age", ob) )
         {
-                shout_message(name() + "点头道：姜果然还是是老的辣，今日" +
-                              me->name(1) + "比武战胜" + ob->name(1) + "！");
+                shout_message(name() + "點頭道：姜果然還是是老的辣，今日" +
+                              me->name(1) + "比武戰勝" + ob->name(1) + "！");
         } else
         if( query("age", me)>query("age", ob) )
         {
-                shout_message(name() + "赞道：今日" + me->name(1) + "比武战胜" +
-                              ob->name(1) + "，真可谓是长江后浪推前浪！");
+                shout_message(name() + "讚道：今日" + me->name(1) + "比武戰勝" +
+                              ob->name(1) + "，真可謂是長江後浪推前浪！");
         } else
         {
-                shout_message(name() + "道：" + me->name(1) + "比武战胜" +
+                shout_message(name() + "道：" + me->name(1) + "比武戰勝" +
                               ob->name(1) + "，恭喜恭喜。");
         }
 }
@@ -218,23 +218,23 @@ void player_lost(object env, object me)
 
         exit = values(exits)[random(sizeof(exits))];
         me->move(exit);
-        tell_room(env, "只见" + me->name() + "大叫一声，跌了下去。\n");
-        message_vision("只见$N咕噜咕噜的滚下了擂台，哼哼呀呀的在地上躺了半天。\n", me);
+        tell_room(env, "只見" + me->name() + "大叫一聲，跌了下去。\n");
+        message_vision("只見$N咕嚕咕嚕的滾下了擂臺，哼哼呀呀的在地上躺了半天。\n", me);
 }
 
 int do_no()
 {
-        command("say " + this_player()->name() + "！这里众目睽睽，岂能做此不才之事？");
+        command("say " + this_player()->name() + "！這裡眾目睽睽，豈能做此不才之事？");
         return 1;
 }
 
 int accept_ansuan(object ob)
 {
-        message("vision", "一个黑影扑来，" + name() +
-                "随手一挥，把" + ob->name() + "弹了出去，摔了个灰头土脸。\n",
+        message("vision", "一個黑影撲來，" + name() +
+                "隨手一揮，把" + ob->name() + "彈了出去，摔了個灰頭土臉。\n",
                 environment());
-        tell_object(ob, "你纵身扑去，去被" + name() + "伸手一挥，把你弹了回来。\n");
-        return notify_fail("人家武功太高，你还是老老实实的不要乱动。\n");
+        tell_object(ob, "你縱身撲去，去被" + name() + "伸手一揮，把你彈了回來。\n");
+        return notify_fail("人家武功太高，你還是老老實實的不要亂動。\n");
 }
 
 void receive_damage(string type, int count) {}
@@ -245,7 +245,7 @@ void fight_ob(object ob) {}
 
 void shout_message(string msg)
 {
-        message("channel:chat", HIW "【以武会友】" + msg + "\n" NOR,
+        message("channel:chat", HIW "【以武會友】" + msg + "\n" NOR,
                 all_interactive());
 }
 
@@ -263,7 +263,7 @@ void receive_message(string msgclass, string msg)
                 return;
         }
 
-        message("vision", WHT "【武林快报】" NOR + BBLU +
+        message("vision", WHT "【武林快報】" NOR + BBLU +
                           replace_string(msg, NOR, BBLU) + NOR,
                 bct);
 }

@@ -8,7 +8,7 @@ void create()
 {
         set("short", "地道");
         set("long", @LONG
-这里是厚土旗挖的地道，里面黑漆漆的，只有几柄火把插在墙上。
+這裡是厚土旗挖的地道，裡面黑漆漆的，只有幾柄火把插在牆上。
 LONG );
         set("exits", ([ /* sizeof() == 1 */
                 "up": "/d/mingjiao/didao/didao",

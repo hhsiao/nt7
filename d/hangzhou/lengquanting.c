@@ -6,8 +6,8 @@ void create()
 {
         set("short", "冷泉亭");
         set("long", @LONG
-冷泉亭建在灵隐寺西边，亭下小溪清澈见底，游鱼往复，历历可
-数。亭边就是飞来峰。亭柱两旁有一对联(duilian)。
+冷泉亭建在靈隱寺西邊，亭下小溪清澈見底，游魚往復，歷歷可
+數。亭邊就是飛來峰。亭柱兩旁有一對聯(duilian)。
 LONG);
         set("exits", ([
             "east" : __DIR__"lingyinsi",
@@ -15,11 +15,11 @@ LONG);
         set("item_desc", ([
             "duilian" :
 "泉          峰
-自          从
-几          何
-时          处
-冷          飞
-起          来
+自          從
+幾          何
+時          處
+冷          飛
+起          來
 ？          ？\n"
         ]));
         set("outdoors", "hangzhou");

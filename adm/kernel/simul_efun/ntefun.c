@@ -250,7 +250,7 @@ string *deep_path_list(string dir)
     return result;
 }
 
-// 反转 arr 阵列，使最后一个元素变成第一个元素，元素位置完全对调。
+// 反轉 arr 陣列，使最後一個元素變成第一個元素，元素位置完全對調。
 void reverse_array(string *arr)
 {
     if (!arrayp(arr) || !sizeof(arr))
@@ -391,7 +391,7 @@ int mapping_eqv(mapping map1, mapping map2)
     return 1;
 }
 
-// 将 int 阵列元素全部相加
+// 將 int 陣列元素全部相加
 int int_array_addition(int *arr)
 {
     int total;
@@ -402,7 +402,7 @@ int int_array_addition(int *arr)
     return total;
 }
 
-// 机率
+// 機率
 // ([ elem1 : prob1, elem2 : prob2,... ])
 mixed probability(mapping data)
 {
@@ -461,18 +461,18 @@ string big_number_check(mixed bn)
 }
 
 /*
-名称：
-        object_parse() - 传回符合条件的物件。
-语法：
+名稱：
+        object_parse() - 傳回符合條件的物件。
+語法：
         object object_parse(string arg, object* objects);
 用法：
-        依照字串 arg 的内容，由物件阵列 objects 之中取得正确的物件元素
-        并传回此物件，若没有任何物件元素符合条件，则回传 0。
+        依照字串 arg 的內容，由物件陣列 objects 之中取得正確的物件元素
+        並傳回此物件，若沒有任何物件元素符合條件，則回傳 0。
 
         例如
-                arg 为 "rice 2"
-                则会搜寻物件阵列 objects 中第二个可以被称为 rice 的物件
-                即第二个 id("rice") 回传 1 值的物件
+                arg 為 "rice 2"
+                則會搜尋物件陣列 objects 中第二個可以被稱為 rice 的物件
+                即第二個 id("rice") 回傳 1 值的物件
 */
 object object_parse(string arg, object *objects)
 {
@@ -485,14 +485,14 @@ object object_parse(string arg, object *objects)
     if (!arg || !arg[0] || !sizeof(objects))
         return 0;
 
-    // 试着取得 which
+    // 試著取得 which
     if (sscanf(arg, "%s %d", objectname, which) != 2)
         objectname = arg;
 
     if (which < 1)
         return 0;
 
-    // 若送入的语法包括 amount, 则取出 amount 的部分
+    // 若送入的語法包括 amount, 則取出 amount 的部分
     if (sscanf(objectname, "%s %s", amount, objectname) == 2)
     {
         if (!big_number_check(amount))
@@ -515,19 +515,19 @@ object object_parse(string arg, object *objects)
 }
 
 /*
-名称：
-        process_function() - 依序执行传入的阵列内容。
-语法：
+名稱：
+        process_function() - 依序執行傳入的陣列內容。
+語法：
         void process_function(array arr);
 用法：
-        依照顺序执行传入的阵列内容, 若阵列内容为整数则代表延迟
-        其整数秒再继续执行接下来的元素, 若元素为函式指标则会执
-        行其函式, 若函式回传 -1, 则会立即中止整个 process, 接下
-        来的元素便不会被执行。
+        依照順序執行傳入的陣列內容, 若陣列內容為整數則代表延遲
+        其整數秒再繼續執行接下來的元素, 若元素為函式指標則會執
+        行其函式, 若函式回傳 -1, 則會立即中止整個 process, 接下
+        來的元素便不會被執行。
 
         ex: arr = ({ 2, <function1>, 3, <function2>, <function3> })
-        则 process_function(arr) 后会先间隔两秒后再执行 function1,
-        接着再间隔 3 秒后再连续执行 function2 与 function3
+        則 process_function(arr) 後會先間隔兩秒後再執行 function1,
+        接著再間隔 3 秒後再連續執行 function2 與 function3
 */
 void process_function(string *fp)
 {
@@ -553,7 +553,7 @@ void process_function(string *fp)
              second, fp[1..]);
 }
 
-// 单引号语法解析
+// 單引號語法解析
 string *single_quote_parse(string p)
 {
     int i, j, size;
@@ -670,7 +670,7 @@ string base_dir(object obj)
 varargs string format_string(string str, int wrap, int ignore_return)
 {
     string tmp = "";
-    int len = 0, ansi = 0, clen = 0; // clen 是已出现的汉字个数。
+    int len = 0, ansi = 0, clen = 0; // clen 是已出現的漢字個數。
 
     if (!str || !stringp(str))
         return 0;
@@ -788,7 +788,7 @@ int count_eq(mixed n1, mixed n2)
     return efun::count(n1, "==", n2);
 }
 
-// 大数次方运算
+// 大數次方運算
 string big_number_pow(mixed number, mixed exponent)
 {
     mixed result = number;

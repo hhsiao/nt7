@@ -1,6 +1,6 @@
-//                标准描述长度示例                                   |
-// “小航海时代”游戏主支持
-// by naihe  2003-06-19  于茂名
+//                標準描述長度示例                                   |
+// “小航海時代”遊戲主支持
+// by naihe  2003-06-19  於茂名
 
 
 
@@ -8,19 +8,19 @@
 inherit ITEM;
 
 
-#define B1                "灿烂夺目的黄金剑"        // 金剑  - YEL, HIY
-#define B2                "装满金币的宝箱"        // 宝箱  - MAG, HIM
-#define B3                "镶嵌钻石的金皇冠"        // 皇冠  - YEL, HIY
-#define B4                "皇后的钻石项链"        // 项链  - CYN, HIC
-#define B5                "圣洁的银杯"                // 银杯  - WHT, HIW
-#define B6                "神秘的白金权杖"        // 权杖  - WHT, HIW
-#define B7                "驱逐邪灵的圣十字架"        // 圣架  - HIM, HIM
-#define B8                "预示未来的琉璃水晶"        // 水晶  - CYN, HIC
-#define B9                "镶嵌红宝石的力量之戒"        // 宝戒  - RED, HIR
-#define B10                "与希望同行的绿翡翠"        // 翡翠  - GRN, HIG
+#define B1                "燦爛奪目的黃金劍"        // 金劍  - YEL, HIY
+#define B2                "裝滿金幣的寶箱"        // 寶箱  - MAG, HIM
+#define B3                "鑲嵌鑽石的金皇冠"        // 皇冠  - YEL, HIY
+#define B4                "皇后的鑽石項鍊"        // 項鍊  - CYN, HIC
+#define B5                "聖潔的銀盃"                // 銀盃  - WHT, HIW
+#define B6                "神秘的白金權杖"        // 權杖  - WHT, HIW
+#define B7                "驅逐邪靈的聖十字架"        // 聖架  - HIM, HIM
+#define B8                "預示未來的琉璃水晶"        // 水晶  - CYN, HIC
+#define B9                "鑲嵌紅寶石的力量之戒"        // 寶戒  - RED, HIR
+#define B10                "與希望同行的綠翡翠"        // 翡翠  - GRN, HIG
 
 
-string game_now = "等待移动命令";
+string game_now = "等待移動命令";
 string att_now = "not_ok";
 int target_hp, target_damage;
 string pic_me, pic_target;
@@ -48,12 +48,12 @@ int finded_baowu( int which, string name )
         addn("be_finded", 1);
         set("b"+ which, HIW + query("b"+ which) );
         map();
-        write(HIC"〖小航海时代〗  太幸运了！终于找到了 "+ name + " ！\n"NOR);
+        write(HIC"〖小航海時代〗  太幸運了！終於找到了 "+ name + " ！\n"NOR);
 
         if( query("be_finded") == 10 )
         {
                 delete_temp("hanghai_gameing", me);
-                game_now = "游戏结束";
+                game_now = "遊戲結束";
                 score = query("score");
 
                 score += query("att_hp") * 500;
@@ -69,16 +69,16 @@ int finded_baowu( int which, string name )
 
                 write(HIY"
 =========================================
-             〖小航海时代〗
+             〖小航海時代〗
 
-    你找齐了十件宝物！！游戏胜利结束了。
-    你的最终得分是 "+score+" 分(仅供参考)。
+    你找齊了十件寶物！！遊戲勝利結束了。
+    你的最終得分是 "+score+" 分(僅供參考)。
 
-    你获得了 500 点 经验值的奖励！
+    你獲得了 500 點 經驗值的獎勵！
 =========================================
 \n"NOR);
 
-                message_vision("$N成功地完成了 小航海时代 游戏！\n", me);
+                message_vision("$N成功地完成了 小航海時代 遊戲！\n", me);
                 remove_call_out("del_me");
                 call_out("del_me", 1);
         }
@@ -87,7 +87,7 @@ int finded_baowu( int which, string name )
 }
 
 
-// 获得“me”
+// 獲得“me”
 object get_me()
 {
         object me;
@@ -98,7 +98,7 @@ object get_me()
         return me;
 }
 
-// 获得攻击力段
+// 獲得攻擊力段
 int damage( int type )  // 6-11
 {
         if( !type || type<1 || type>5 ) type = 1;
@@ -122,16 +122,16 @@ void del_me()
 
 void create()
 {
-        set_name(HIY"经纬仪（游戏道具）"NOR, ({"jingwei yi","yi"}));
+        set_name(HIY"經緯儀（遊戲道具）"NOR, ({"jingwei yi","yi"}));
         set_weight(1);
         if (clonep())
                 set_default_object(__FILE__);
         else
         {
-                set("long", "〖小航海时代〗游戏的主要道具，有了它才可以进行游戏。
+                set("long", "〖小航海時代〗遊戲的主要道具，有了它才可以進行遊戲。
 
-查询现在的游戏状态，输入： game check
-任何时候结束游戏，输入：   game over
+查詢現在的遊戲狀態，輸入： game check
+任何時候結束遊戲，輸入：   game over
 \n");
                 set("unit", "具");
                 set("value", 0);
@@ -162,44 +162,44 @@ void new_game(object me)
         set("owner_name",query("name", me));
 
 // ******************************************
-        new_game_set( 8, "岛屿" );
+        new_game_set( 8, "島嶼" );
 
 // ******************************************
-        new_game_set( 4, "望远镜" );
+        new_game_set( 4, "望遠鏡" );
 
 // ******************************************
-        new_game_set( 4, "报警探索仪" );
+        new_game_set( 4, "報警探索儀" );
 
 // ******************************************
-        new_game_set( 4, "寻宝图" );
+        new_game_set( 4, "尋寶圖" );
 
 // ******************************************
-//        new_game_set( 2, "旋涡" );
-// 不要旋涡的设置！
+//        new_game_set( 2, "旋渦" );
+// 不要旋渦的設置！
 
 // ******************************************
         new_game_set( 2, "冰山" );
 
 // ******************************************
-        new_game_set( 3, "补给品" );
+        new_game_set( 3, "補給品" );
 
 // ******************************************
-        new_game_set( 6, "海盗船" );
+        new_game_set( 6, "海盜船" );
 
 // ******************************************
-        new_game_set( 6, "巨型章鱼" );
+        new_game_set( 6, "巨型章魚" );
 
 // ******************************************
         new_game_set( 6, "海藤精怪" );
 
 // ******************************************
-        new_game_set( 6, "火神鸟" );
+        new_game_set( 6, "火神鳥" );
 
 // ******************************************
-        new_game_set( 6, "幽灵船" );
+        new_game_set( 6, "幽靈船" );
 
 
-// 宝物部分
+// 寶物部分
 // ******************************************
         new_game_set( 1, B1);
         new_game_set( 1, B2);
@@ -212,7 +212,7 @@ void new_game(object me)
         new_game_set( 1, B9);
         new_game_set( 1, B10);
 
-        new_game_set( 1, "当前船只位置");
+        new_game_set( 1, "當前船隻位置");
 
         set("att_rb", 999999);
         set("att_hp", 1);
@@ -222,20 +222,20 @@ void new_game(object me)
         set("att_fd", 1);
         set("hp", 100);
 
-        write(">>>>>>>  各类武器及船只补给完毕。\n");
+        write(">>>>>>>  各類武器及船隻補給完畢。\n");
         set_temp("hanghai_gameing", "waiting_go", me);
-        write("\n============ 设置成功！正在进入游戏…… ============\n");
+        write("\n============ 設置成功！正在進入遊戲…… ============\n");
 
 
-        set("b1", YEL"金剑"NOR);
-        set("b2", YEL"宝箱"NOR);
+        set("b1", YEL"金劍"NOR);
+        set("b2", YEL"寶箱"NOR);
         set("b3", YEL"皇冠"NOR);
-        set("b4", CYN"项链"NOR);
-        set("b5", WHT"银杯"NOR);
-        set("b6", WHT"权杖"NOR);
-        set("b7", RED"圣架"NOR);
+        set("b4", CYN"項鍊"NOR);
+        set("b5", WHT"銀盃"NOR);
+        set("b6", WHT"權杖"NOR);
+        set("b7", RED"聖架"NOR);
         set("b8", CYN"水晶"NOR);
-        set("b9", RED"宝戒"NOR);
+        set("b9", RED"寶戒"NOR);
         set("b10",GRN"翡翠"NOR);
 
         call_out("game_start", 1);
@@ -244,7 +244,7 @@ void new_game(object me)
 void new_game_set( int amount, string mark )
 {
         int x, y;
-// 这里的 x, y ， x是竖数第几横，y是横数第几个。
+// 這裡的 x, y ， x是豎數第幾橫，y是橫數第幾個。
 
         while( amount-- )
         {
@@ -258,16 +258,16 @@ void new_game_set( int amount, string mark )
                 }
 
                 set( "aaa(" +x+ "," +y+ ")" , mark );
-                if( mark == "当前船只位置" )
+                if( mark == "當前船隻位置" )
                 {
                         set("now_x", x);
                         set("now_y", y);
                 }
-                if( mark == "岛屿" )
+                if( mark == "島嶼" )
                         set("island("+x+","+y+")", "new" );
 
         }
-        write( ">>>>>>>  " + mark + " 设置完毕。\n");
+        write( ">>>>>>>  " + mark + " 設置完畢。\n");
 }
 
 void game_start()
@@ -276,11 +276,11 @@ void game_start()
         if( !me ) return del_me();
 
         set_temp("hanghai_gameing", "ok", me);
-        message_vision("$N进入了 小航海时代 游戏！\n", me);
+        message_vision("$N進入了 小航海時代 遊戲！\n", me);
 
         write("\n**************************************
-进入游戏成功！游戏目标为寻得10件宝物！
-移动指令与 MUD 内相同。祝游戏愉快！
+進入遊戲成功！遊戲目標為尋得10件寶物！
+移動指令與 MUD 內相同。祝遊戲愉快！
 **************************************\n\n");
 
         map();
@@ -288,7 +288,7 @@ void game_start()
 
 
 ////////////////////////////////////
-/////////  玩家操作函数  ///////////
+/////////  玩家操作函數  ///////////
 ////////////////////////////////////
 
 int do_game(string arg)
@@ -316,8 +316,8 @@ int do_game(string arg)
                    return 0;
 
                 delete_temp("hanghai_gameing", me);
-                message_vision("$N中途放弃，退出了 小航海时代 游戏。\n", me);
-                write(HIR"\n  #########  已退出游戏，祝一切愉快！ #########\n\n"NOR);
+                message_vision("$N中途放棄，退出了 小航海時代 遊戲。\n", me);
+                write(HIR"\n  #########  已退出遊戲，祝一切愉快！ #########\n\n"NOR);
                 remove_call_out("del_me");
                 call_out("del_me", 1);
                 return 1;
@@ -340,7 +340,7 @@ int do_go(string arg)
         if( member_array( arg , dirs ) == -1 ) return 0;
 
         if( query_temp("hanghai_gameing", me) != "ok" )
-                return notify_fail("现在不许移动！正在： "+ game_now + " 。\n");
+                return notify_fail("現在不許移動！正在： "+ game_now + " 。\n");
 
         x = query("now_x");
         y = query("now_y");
@@ -361,7 +361,7 @@ int do_go(string arg)
         }
 
         if( x<1 || y<1 || x>10 || y>16 )
-                return notify_fail("这个方向已经无法前进了！\n");
+                return notify_fail("這個方向已經無法前進了！\n");
 
         set("be_finded(" +old_x+ "," +old_y+ ")", 1); 
 
@@ -370,7 +370,7 @@ int do_go(string arg)
         || query( "island(" +old_x+ "," +old_y+ ")" ) == "old" )
         {
                 set("island(" +old_x+ "," +old_y+ ")", "old");
-                set("aaa("+old_x+","+old_y+")", "旧的岛屿");
+                set("aaa("+old_x+","+old_y+")", "舊的島嶼");
         }
 
         if( !query( "island(" +old_x+ "," +old_y+ ")" ) )
@@ -378,13 +378,13 @@ int do_go(string arg)
 
         here = query( "aaa(" +x+ "," +y+ ")" );
 
-        set("aaa(" +x+ "," +y+ ")", "当前船只位置");
+        set("aaa(" +x+ "," +y+ ")", "當前船隻位置");
         set("now_x", x);
         set("now_y", y);
 
-// 各类判断！！！
+// 各類判斷！！！
 
-        if( here == "岛屿" )
+        if( here == "島嶼" )
         {
                 addn("att_hp", 1);
                 addn("att_jf", 1);
@@ -394,16 +394,16 @@ int do_go(string arg)
                 addn("hp", 20+random(11));
                 if( query("hp") > 100 ) set("hp", 100);
                 map();
-                write(HIG"〖小航海时代〗  发现岛屿！得到了弹药补给和船只修理。\n"NOR);
+                write(HIG"〖小航海時代〗  發現島嶼！得到了彈藥補給和船隻修理。\n"NOR);
                 return 1;
         }
 
-        if( here == "补给品" )
+        if( here == "補給品" )
         {
                 addn("hp", 20+random(11));
                 if( query("hp") > 100 ) set("hp", 100);
                 map();
-                write(HIC"〖小航海时代〗  发现修补材料！船只得到了修理。\n"NOR);
+                write(HIC"〖小航海時代〗  發現修補材料！船隻得到了修理。\n"NOR);
                 return 1;
         }
 
@@ -411,7 +411,7 @@ int do_go(string arg)
         {
                 addn("hp", - (30+random(11)));
                 map();
-                write(HIR"〖小航海时代〗  糟糕！撞上了冰山！船受到了严重的损坏。\n"NOR);
+                write(HIR"〖小航海時代〗  糟糕！撞上了冰山！船受到了嚴重的損壞。\n"NOR);
                 check_hp();
                 return 1;
         }
@@ -438,22 +438,22 @@ int do_go(string arg)
                 return finded_baowu( 10, B10 );
 
 
-        if( here == "望远镜" )
+        if( here == "望遠鏡" )
         {
-                game_now = "了望中 （指令： liaowang x y）";
+                game_now = "瞭望中 （指令： liaowang x y）";
                 map();
-                write(HIM"〖小航海时代〗  发现了望远镜！输入 (liaowang x y) 指令查看该点周边海域的情形！ \n"NOR);
+                write(HIM"〖小航海時代〗  發現瞭望遠鏡！輸入 (liaowang x y) 指令查看該點周邊海域的情形！ \n"NOR);
                 set_temp("hanghai_gameing", "wangyuanjing", me);
                 return 1;
         }
 
-        if( here == "报警探索仪" )
+        if( here == "報警探索儀" )
         {
                 map();
-                write(HIM"〖小航海时代〗  发现了报警探索仪！\n"NOR);
+                write(HIM"〖小航海時代〗  發現了報警探索儀！\n"NOR);
 
 
-                msg = HIM"\n报警仪探索中……自动探索 "+x+","+y+" 区域的情况。\n\n";
+                msg = HIM"\n報警儀探索中……自動探索 "+x+","+y+" 區域的情況。\n\n";
 
                 msg += get_msg( x-1,y-1, "bjy" );
                 msg += get_msg( x-1,y,   "bjy" );
@@ -465,28 +465,28 @@ int do_go(string arg)
                 msg +=         get_msg( x+1,y,   "bjy" );
                 msg +=         get_msg( x+1,y+1, "bjy" );
 
-                msg += "\n探索危险区域报警完毕。\n\n"NOR;
+                msg += "\n探索危險區域報警完畢。\n\n"NOR;
                 write( msg );
                 return 1;
         }
 
-        if( here == "寻宝图" )
+        if( here == "尋寶圖" )
         {
                 map();
-                write(HIC"〖小航海时代〗  发现了寻宝图！\n"NOR);
+                write(HIC"〖小航海時代〗  發現了尋寶圖！\n"NOR);
                 xunbaotu();
                 return 1;
         }
 
 
-        if( here == "海盗船" || here == "火神鸟" || here == "海藤精怪"
-         || here == "巨型章鱼" || here == "幽灵船" )
+        if( here == "海盜船" || here == "火神鳥" || here == "海藤精怪"
+         || here == "巨型章魚" || here == "幽靈船" )
         {
-                game_now = "与 "+ here+ " 战斗中！ 等待敌人攻击";
+                game_now = "與 "+ here+ " 戰鬥中！ 等待敵人攻擊";
                 set_temp("hanghai_gameing", "fighting", me);
                 att_now = "not_ok";
                 map();
-                write(HIR"〖小航海时代〗  糟糕！遭遇了 "+ here+ " ！进入紧急战斗状态！！！\n"NOR);
+                write(HIR"〖小航海時代〗  糟糕！遭遇了 "+ here+ " ！進入緊急戰鬥狀態！！！\n"NOR);
                 set("who_name", here);
                 remove_call_out("fight_start");
                 call_out("fight_start", 1, here);
@@ -495,13 +495,13 @@ int do_go(string arg)
 
 
         map();
-        write(HIW"〖小航海时代〗  漫漫航程，什么也没有发现……\n"NOR);
+        write(HIW"〖小航海時代〗  漫漫航程，什麼也沒有發現……\n"NOR);
         return 1;
 }
 
 void map()
 {
-        string the_map = HIC"〖小航海时代〗  -- "HIR"HP："+query("hp")+"  宝物："+ query("be_finded")+NOR"\n\n        ", temp_map, temp2;
+        string the_map = HIC"〖小航海時代〗  -- "HIR"HP："+query("hp")+"  寶物："+ query("be_finded")+NOR"\n\n        ", temp_map, temp2;
         int x, y, temp = 0;
 
         for( x=1; x<11; x++ )
@@ -521,11 +521,11 @@ void map()
                         else if( query("weixian"+temp2) )
                                 temp_map = HIR"■"NOR;
                         else temp_map = HIC"■"NOR;
-                        if( query( "aaa"+temp2 ) == "岛屿" )
+                        if( query( "aaa"+temp2 ) == "島嶼" )
                                 temp_map = HIG"▲"NOR;
-                        if( query( "aaa"+temp2 ) == "旧的岛屿" )
+                        if( query( "aaa"+temp2 ) == "舊的島嶼" )
                                 temp_map = HIG"△"NOR;
-                        if( query( "aaa"+temp2 ) == "当前船只位置" )
+                        if( query( "aaa"+temp2 ) == "當前船隻位置" )
                                 temp_map = BLINK+HIY"≌"NOR;
 
                         the_map += temp_map;
@@ -548,7 +548,7 @@ void map()
                 query("b10") );
 
         the_map += sprintf(HIW"  肉搏之刃(rb)：∞  火炮(hp)：%d  巨斧(jf)：  %d
-  漫天飞刀(fd)：%d   鱼枪(yq)：%d  燃烧弹(rs)：%d\n"NOR,
+  漫天飛刀(fd)：%d   魚槍(yq)：%d  燃燒彈(rs)：%d\n"NOR,
                 query("att_hp"), query("att_jf"), 
                 query("att_fd"), query("att_yq"), query("att_rs") );
 
@@ -556,7 +556,7 @@ void map()
 
 
         write( HIY"================================================\n"NOR +the_map +
-HIY"================================================\n"NOR"当前位置：("+ query("now_x") + "," + query("now_y") + ")  现在： "+ game_now +" \n");
+HIY"================================================\n"NOR"當前位置：("+ query("now_x") + "," + query("now_y") + ")  現在： "+ game_now +" \n");
 
 }
 
@@ -570,7 +570,7 @@ void check_hp()
 
         if( query("hp") > 0 ) return;
 
-        the_map = HIR"\n〖小航海时代〗  -- 失败结果公布(共寻得"+query("be_finded")+"件宝物)\n\n        "NOR;
+        the_map = HIR"\n〖小航海時代〗  -- 失敗結果公佈(共尋得"+query("be_finded")+"件寶物)\n\n        "NOR;
 
         for( x=1; x<11; x++ )
         {
@@ -585,40 +585,40 @@ void check_hp()
                         temp2 = query("aaa("+x+","+y+")");
                         temp_map = HIC"□"NOR;
 
-                        if( temp2 == "海盗船" )
-                                temp_map = HIR"盗"NOR;
-                        if( temp2 == "巨型章鱼" )
-                                temp_map = HIR"鱼"NOR;
+                        if( temp2 == "海盜船" )
+                                temp_map = HIR"盜"NOR;
+                        if( temp2 == "巨型章魚" )
+                                temp_map = HIR"魚"NOR;
                         if( temp2 == "海藤精怪" )
                                 temp_map = HIR"藤"NOR;
-                        if( temp2 == "火神鸟" )
-                                temp_map = HIR"鸟"NOR;
-                        if( temp2 == "幽灵船" )
+                        if( temp2 == "火神鳥" )
+                                temp_map = HIR"鳥"NOR;
+                        if( temp2 == "幽靈船" )
                                 temp_map = HIR"幽"NOR;
                         if( temp2 == "冰山" )
                                 temp_map = HIW"冰"NOR;
 
 
-                        if( temp2 == "岛屿" )
+                        if( temp2 == "島嶼" )
                                 temp_map = HIG"▲"NOR;
-                        if( temp2 == "旧的岛屿" )
+                        if( temp2 == "舊的島嶼" )
                                 temp_map = HIG"△"NOR;
-                        if( temp2 == "当前船只位置" )
+                        if( temp2 == "當前船隻位置" )
                                 temp_map = BLINK+HIB"≌"NOR;
 
                         if( temp2 == B1 || temp2 == B2 || temp2 == B3
                          || temp2 == B4 || temp2 == B5 || temp2 == B6
                          || temp2 == B7 || temp2 == B8 || temp2 == B9 || temp2 == B10 )
-                                temp_map = HIY"宝"NOR;
+                                temp_map = HIY"寶"NOR;
 
-                        if( temp2 == "望远镜" )
+                        if( temp2 == "望遠鏡" )
                                 temp_map = HIM"望"NOR;
-                        if( temp2 == "报警探索仪" )
+                        if( temp2 == "報警探索儀" )
                                 temp_map = HIM"警"NOR;
-                        if( temp2 == "补给品" )
-                                temp_map = HIM"补"NOR;
-                        if( temp2 == "寻宝图" )
-                                temp_map = HIM"图"NOR;
+                        if( temp2 == "補給品" )
+                                temp_map = HIM"補"NOR;
+                        if( temp2 == "尋寶圖" )
+                                temp_map = HIM"圖"NOR;
 
                         the_map += temp_map;
                         temp++;
@@ -629,10 +629,10 @@ void check_hp()
 
         write( the_map );
         delete_temp("hanghai_gameing", me);
-        game_now = "已经灭亡！";
+        game_now = "已經滅亡！";
 
 
-        message_vision("$N游戏失败，退出了 小航海时代 游戏。\n", me);
+        message_vision("$N遊戲失敗，退出了 小航海時代 遊戲。\n", me);
         remove_call_out("game_over_over");
         call_out("game_over_over", 1);
         return;
@@ -642,10 +642,10 @@ void game_over_over()
 {
         write(HIR"
 =========================================
-             〖小航海时代〗
+             〖小航海時代〗
 
-      你的船只损坏得再也无法支持，
-          终于沉入了大海之中！
+      你的船隻損壞得再也無法支持，
+          終於沉入了大海之中！
 =========================================
 \n"NOR);
         remove_call_out("del_me");
@@ -666,12 +666,12 @@ int do_liaowang( string arg )
                 return 0;
 
         if( !arg || sscanf( arg, "%d %d", x, y ) != 2 )
-                return notify_fail("请输入正确坐标！x -> 竖着数第几横  y -> 横着数第几个\n");
+                return notify_fail("請輸入正確座標！x -> 豎著數第幾橫  y -> 橫著數第幾個\n");
         if( x<1 || x>10 || y<1 || y>16 )
-                return notify_fail("请输入正确坐标！x -> 竖着数第几横  y -> 横着数第几个\n");
+                return notify_fail("請輸入正確座標！x -> 豎著數第幾橫  y -> 橫著數第幾個\n");
 
 
-        msg = HIM"了望中……你决定查看 "+x+","+y+" 区域的情况。\n\n";
+        msg = HIM"瞭望中……你決定查看 "+x+","+y+" 區域的情況。\n\n";
 
         msg += get_msg( x-1,y-1, "wyj" );
         msg += get_msg( x-1,y,   "wyj" );
@@ -683,11 +683,11 @@ int do_liaowang( string arg )
         msg +=         get_msg( x+1,y,   "wyj" );
         msg +=         get_msg( x+1,y+1, "wyj" );
 
-        msg += "\n查看完毕。\n\n"NOR;
+        msg += "\n查看完畢。\n\n"NOR;
 
         write( msg );
         set_temp("hanghai_gameing", "ok", me);
-        game_now = "等待移动命令";
+        game_now = "等待移動命令";
         return 1;
 }
 
@@ -705,12 +705,12 @@ string get_msg( int x, int y, string type )
                 return "";
         }
 
-        if( msg == "冰山" || msg == "海盗船" || msg == "巨型章鱼"
-         || msg == "海藤精怪" || msg == "火神鸟" || msg == "幽灵船" )
+        if( msg == "冰山" || msg == "海盜船" || msg == "巨型章魚"
+         || msg == "海藤精怪" || msg == "火神鳥" || msg == "幽靈船" )
         {
                 set("weixian("+x+","+y+")", 1);
                 if( type == "wyj" ) return "("+x+","+y+") " + msg + "\n";
-                return "("+x+","+y+") 有危险潜伏！\n";
+                return "("+x+","+y+") 有危險潛伏！\n";
         }
 
         if( type == "wyj" ) return "("+x+","+y+") " + msg + "\n";
@@ -731,7 +731,7 @@ void xunbaotu()
                          || msg == B5 || msg == B6 || msg == B7 || msg == B8
                          || msg == B9 || msg == B10 )
                         {
-                                write( HIM"("+x+","+y+")    该处藏有宝藏！\n"NOR);
+                                write( HIM"("+x+","+y+")    該處藏有寶藏！\n"NOR);
                                 return;
                         }
                 }
@@ -742,11 +742,11 @@ void fight_start( string who )
 {
         switch( who )
         {
-                case "海盗船": pic_target = "≌";target_damage=2; break;
-                case "巨型章鱼": pic_target = "∝"; target_damage=4; break;
+                case "海盜船": pic_target = "≌";target_damage=2; break;
+                case "巨型章魚": pic_target = "∝"; target_damage=4; break;
                 case "海藤精怪": pic_target = "※"; target_damage=6; break;
-                case "火神鸟": pic_target = "∮"; target_damage=8; break;
-                case "幽灵船": pic_target = "≌"; target_damage=10; break;
+                case "火神鳥": pic_target = "∮"; target_damage=8; break;
+                case "幽靈船": pic_target = "≌"; target_damage=10; break;
         }
 
         target_hp = 50+ random(31);
@@ -773,7 +773,7 @@ void be_attack()
 %s                        %s
 ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈\n\n", damage, pic2,  pic1));
 
-        write(HIY"〖小航海时代〗  受到了 "+query("who_name")+ " 的攻击，船只损坏 "+ damage +" ！\n"NOR);
+        write(HIY"〖小航海時代〗  受到了 "+query("who_name")+ " 的攻擊，船隻損壞 "+ damage +" ！\n"NOR);
         check_hp();
         call_out("can_att", 1);
 }
@@ -782,10 +782,10 @@ void can_att()
 {
         if( query("hp") < 1 ) return;
 
-        write(HIY"〖小航海时代〗  轮到你攻击了！(atk 方式)\n"NOR);
-        write( sprintf(HIG"武器剩余：    rb:无限    hp:%d    jf:%d    rs:%d    yq:%d    fd:%d\n"NOR,
+        write(HIY"〖小航海時代〗  輪到你攻擊了！(atk 方式)\n"NOR);
+        write( sprintf(HIG"武器剩餘：    rb:無限    hp:%d    jf:%d    rs:%d    yq:%d    fd:%d\n"NOR,
                 query("att_hp"), query("att_jf"), query("att_rs"), query("att_yq"), query("att_fd") ) );
-        game_now = "与 "+ query("who_name")+ " 战斗中！ 等待攻击指令";
+        game_now = "與 "+ query("who_name")+ " 戰鬥中！ 等待攻擊指令";
         att_now = "ok";
 }
 
@@ -798,12 +798,12 @@ int do_attack(string arg)
         who = get_me();
         if( !who || who!=me ) return 0;
 
-        if( att_now != "ok" ) return notify_fail("现在并不是你攻击的时候！\n");
+        if( att_now != "ok" ) return notify_fail("現在並不是你攻擊的時候！\n");
         if( !arg || ( arg != "rb" && arg != "hp" && arg != "jf" && arg != "rs"
          && arg != "yq" && arg != "fd" ) )
-                return notify_fail("你选择的武器不对！\n");
+                return notify_fail("你選擇的武器不對！\n");
 
-        if( query("att_"+ arg ) < 1 ) return notify_fail("这种武器已经没有了！\n");
+        if( query("att_"+ arg ) < 1 ) return notify_fail("這種武器已經沒有了！\n");
         addn( "att_"+ arg , -1 );
 
         switch( arg )
@@ -811,43 +811,43 @@ int do_attack(string arg)
                 case "rb":  temp = "肉搏之刃"; damage = damage(1); break;
                 case "hp":
                         temp = "火炮";
-                        if( target_name == "海盗船" ) damage = damage(5);
-                        if( target_name == "巨型章鱼" ) damage = damage(4);
+                        if( target_name == "海盜船" ) damage = damage(5);
+                        if( target_name == "巨型章魚" ) damage = damage(4);
                         if( target_name == "海藤精怪" ) damage = damage(3);
-                        if( target_name == "火神鸟" ) damage = damage(2);
-                        if( target_name == "幽灵船" ) damage = damage(1);
+                        if( target_name == "火神鳥" ) damage = damage(2);
+                        if( target_name == "幽靈船" ) damage = damage(1);
                         break;
                 case "jf":
                         temp = "巨斧";
-                        if( target_name == "海盗船" ) damage = damage(4);
-                        if( target_name == "巨型章鱼" ) damage = damage(1);
+                        if( target_name == "海盜船" ) damage = damage(4);
+                        if( target_name == "巨型章魚" ) damage = damage(1);
                         if( target_name == "海藤精怪" ) damage = damage(5);
-                        if( target_name == "火神鸟" ) damage = damage(3);
-                        if( target_name == "幽灵船" ) damage = damage(2);
+                        if( target_name == "火神鳥" ) damage = damage(3);
+                        if( target_name == "幽靈船" ) damage = damage(2);
                         break;
                 case "rs":
-                        temp = "燃烧弹";
-                        if( target_name == "海盗船" ) damage = damage(2);
-                        if( target_name == "巨型章鱼" ) damage = damage(3);
+                        temp = "燃燒彈";
+                        if( target_name == "海盜船" ) damage = damage(2);
+                        if( target_name == "巨型章魚" ) damage = damage(3);
                         if( target_name == "海藤精怪" ) damage = damage(4);
-                        if( target_name == "火神鸟" ) damage = damage(1);
-                        if( target_name == "幽灵船" ) damage = damage(5);
+                        if( target_name == "火神鳥" ) damage = damage(1);
+                        if( target_name == "幽靈船" ) damage = damage(5);
                         break;
                 case "yq":
-                        temp = "鱼枪";
-                        if( target_name == "海盗船" ) damage = damage(1);
-                        if( target_name == "巨型章鱼" ) damage = damage(5);
+                        temp = "魚槍";
+                        if( target_name == "海盜船" ) damage = damage(1);
+                        if( target_name == "巨型章魚" ) damage = damage(5);
                         if( target_name == "海藤精怪" ) damage = damage(2);
-                        if( target_name == "火神鸟" ) damage = damage(4);
-                        if( target_name == "幽灵船" ) damage = damage(3);
+                        if( target_name == "火神鳥" ) damage = damage(4);
+                        if( target_name == "幽靈船" ) damage = damage(3);
                         break;
                 case "fd":
-                        temp = "漫天飞刀";
-                        if( target_name == "海盗船" ) damage = damage(3);
-                        if( target_name == "巨型章鱼" ) damage = damage(2);
+                        temp = "漫天飛刀";
+                        if( target_name == "海盜船" ) damage = damage(3);
+                        if( target_name == "巨型章魚" ) damage = damage(2);
                         if( target_name == "海藤精怪" ) damage = damage(1);
-                        if( target_name == "火神鸟" ) damage = damage(5);
-                        if( target_name == "幽灵船" ) damage = damage(4);
+                        if( target_name == "火神鳥" ) damage = damage(5);
+                        if( target_name == "幽靈船" ) damage = damage(4);
                         break;
         }
 
@@ -864,7 +864,7 @@ int do_attack(string arg)
 %s                        %s
 ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈\n\n", temp,damage, pic2,  pic1));
 
-        write(HIY"〖小航海时代〗  使用 "+ temp+ " 对 "+query("who_name")+ " 进行攻击！损害对方  "+ damage +" 。\n"NOR);
+        write(HIY"〖小航海時代〗  使用 "+ temp+ " 對 "+query("who_name")+ " 進行攻擊！損害對方  "+ damage +" 。\n"NOR);
 
         att_now = "not_ok";
         remove_call_out("target_check_hp");
@@ -885,11 +885,11 @@ void target_check_hp()
 
         if( target_hp < 1 )
         {
-                game_now = "等待移动命令";
+                game_now = "等待移動命令";
                 addn("hp", 1+(random(5)) );
                 if( query("hp") > 100 ) set("hp", 100);
                 map();
-                write(HIG"\n〖小航海时代〗  打败了 "+query("who_name")+ " ！获得了少量的补给。继续出发吧！\n\n"NOR);
+                write(HIG"\n〖小航海時代〗  打敗了 "+query("who_name")+ " ！獲得了少量的補給。繼續出發吧！\n\n"NOR);
                 set_temp("hanghai_gameing", "ok", me);
                 addn("score", 100);
                 return;

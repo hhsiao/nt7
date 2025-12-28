@@ -6,16 +6,16 @@ inherit ITEM;
 int is_tongren() { return 1; }
 void create()
 {
-        set_name(YEL "冲穴铜人·任外脉·承浆穴" NOR, ({ "tongren h9", "tongren" }));
+        set_name(YEL "衝穴銅人·任外脈·承漿穴" NOR, ({ "tongren h9", "tongren" }));
         set_weight(50);
         
-        set("unit", "个");
-        set("long", NOR + YEL "这是一个冲穴铜人，上面绘制了一些经络穴位图案，以及冲穴使用方法。\n" NOR);
+        set("unit", "個");
+        set("long", NOR + YEL "這是一個衝穴銅人，上面繪製了一些經絡穴位圖案，以及衝穴使用方法。\n" NOR);
         set("value", 10000);
         set("material", "steal");
 
-        set("jingmai_name", "任外脉");
-        set("xuewei_name", "承浆穴");
+        set("jingmai_name", "任外脈");
+        set("xuewei_name", "承漿穴");
         set("chongxue_xiaoguo", "NEI:20:_INT:1");
         set("neili_cost", "9000");
         setup();

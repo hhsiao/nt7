@@ -3,10 +3,10 @@ inherit ROOM;
 
 void create()
 {
-              set("short","小树林");
+              set("short","小樹林");
         set("long", @LONG
-这是峨嵋山金顶华藏庵外的一片小树林。北边是峨嵋派女弟子们
-的寝宫的窗户，窗下好像蹲着一个人。
+這是峨嵋山金頂華藏庵外的一片小樹林。北邊是峨嵋派女弟子們
+的寢宮的窗戶，窗下好像蹲著一個人。
 LONG );
               set("objects", ([
                    __DIR__"npc/songqingshu" : 1,
@@ -29,8 +29,8 @@ int valid_leave(object me, string dir)
         {
                 if( query("family/family_name", me) != "峨嵋派"
                 & objectp(present("song qingshu", environment(me))))
-                        return notify_fail(CYN "宋青书一声冷喝：阁下什么"
-                                           "人，在这里鬼头鬼脑的想干什么？\n" NOR);
+                        return notify_fail(CYN "宋青書一聲冷喝：閣下什麼"
+                                           "人，在這裡鬼頭鬼腦的想幹什麼？\n" NOR);
         }
         return ::valid_leave(me, dir);
 }

@@ -5,16 +5,16 @@ void create()
 {
         set("short", "九老洞");
         set("long", @LONG
-这就是峨嵋第一大洞，洞内深窈无比，神秘难测。你一走进来，
-便发觉洞中叉叉洞多如迷宫，怪异莫测，似乎黝黑无底。洞里隐隐传
-来鸡犬鼓乐之声，令人惊异间，忽有蝙蝠群涌而至扑熄火炬。还是快
-快离开吧。
+這就是峨嵋第一大洞，洞內深窈無比，神秘難測。你一走進來，
+便發覺洞中叉叉洞多如迷宮，怪異莫測，似乎黝黑無底。洞裡隱隱傳
+來雞犬鼓樂之聲，令人驚異間，忽有蝙蝠群湧而至撲熄火炬。還是快
+快離開吧。
 LONG );
         set("objects", ([
              __DIR__"npc/bianfu1" : (random(5) ? 0 : (random(7)+3)),
         ]));
         set("exits", ([
-                //"out" : "/d/emei/jldongnei",//独有0开放此行
+                //"out" : "/d/emei/jldongnei",//獨有0開放此行
                 "south" : __DIR__"bfd" + (string)random(30),
                 "north" : __DIR__"bfd" + (string)random(30),
                 "west" : __DIR__"bfd" + (string)random(30),
@@ -44,7 +44,7 @@ int valid_leave(object me, string dir)
 {
         if (me->is_fighting())
         {
-                tell_object(me, "你还是先解决目前的敌人吧！\n"); 
+                tell_object(me, "你還是先解決目前的敵人吧！\n"); 
                 return 0;
         }
                 
@@ -56,7 +56,7 @@ void init()
 {
         if ( query("stop_run") ) return;
         if ( query("env/invisible", this_player()) ) return;
-        tell_object(this_player(), "\n噗哧一声你踩到坨蝙蝠屎，差点跌倒！\n\n"); 
+        tell_object(this_player(), "\n噗哧一聲你踩到坨蝙蝠屎，差點跌倒！\n\n"); 
         this_player()->start_busy(2);
 }
 

@@ -1,17 +1,17 @@
 inherit ROOM;
 void create()
 {
-        set("short", "清心阁");
+        set("short", "清心閣");
         set("long",@LONG
-这是寺中诸僧参修清心净欲的地方。阁中只有地面放有几个蒲团，
-角落里摆了一张桌子，上面并排立着五支点燃的蜡烛(candle)。除此之
-外别无它物，确然是个清静之处。
+這是寺中諸僧參修清心淨欲的地方。閣中只有地面放有幾個蒲團，
+角落裡擺了一張桌子，上面並排立著五支點燃的蠟燭(candle)。除此之
+外別無它物，確然是個清靜之處。
 LONG);
         set("exits", ([
 		"east": __DIR__"shiyuan",
         ]));
         set("item_desc",([
-                "candle" : "五支点燃了的长蜡烛，跳跃的火焰似乎温暖了整个房间。\n",
+                "candle" : "五支點燃了的長蠟燭，跳躍的火焰似乎溫暖了整個房間。\n",
         ]) );
         set("no_fight",1);
         set("coor/x",-400);
@@ -37,27 +37,27 @@ int do_shoot(string arg)
                         return 1;
                 }
                 if (level < 30) {
-                        write("你将手指对准蜡烛，试图运气于指对蜡烛射去，却怎么也挤不出指风来。\n");
+                        write("你將手指對準蠟燭，試圖運氣於指對蠟燭射去，卻怎麼也擠不出指風來。\n");
                         return 1;
                 }
                 me->receive_damage("jingli", jinglicost);
                 if (level <= 100) {
-                        write("你运气于指，一缕指风对准蜡烛射去，");
-                        if (level < 40) write("蜡烛的火苗微微晃了一晃。\n");
-                        else if (level < 50) write("蜡烛的火苗晃了一晃。\n");
-                        else if (level < 60) write("蜡烛的火苗晃了几晃。\n");
-                        else if (level < 70) write("蜡烛的火苗狠狠地晃了几晃才稳下来。\n");
-                        else if (level < 80) write("蜡烛的火苗被射得东倒西歪，停了一下又跳跃起来。\n");
-                        else if (level < 90) write("蜡烛的火苗被射得东倒西歪，过了半天才又跳跃起来。\n");
-                        else write("“嗤”地一声轻响，蜡烛的火苗几乎灭了，挣扎了几下才又重新跳跃起来。\n");
+                        write("你運氣於指，一縷指風對準蠟燭射去，");
+                        if (level < 40) write("蠟燭的火苗微微晃了一晃。\n");
+                        else if (level < 50) write("蠟燭的火苗晃了一晃。\n");
+                        else if (level < 60) write("蠟燭的火苗晃了幾晃。\n");
+                        else if (level < 70) write("蠟燭的火苗狠狠地晃了幾晃才穩下來。\n");
+                        else if (level < 80) write("蠟燭的火苗被射得東倒西歪，停了一下又跳躍起來。\n");
+                        else if (level < 90) write("蠟燭的火苗被射得東倒西歪，過了半天才又跳躍起來。\n");
+                        else write("“嗤”地一聲輕響，蠟燭的火苗幾乎滅了，掙扎了幾下才又重新跳躍起來。\n");
                         me->improve_skill("finger", me->query("int"));
-                        if (!random(5)) message("vision", "$N对着蜡烛指指点点，不知在做什么。\n", me, ({ me }));
+                        if (!random(5)) message("vision", "$N對著蠟燭指指點點，不知在做什麼。\n", me, ({ me }));
                 }
                 else {
-                        write("“噗”地一声，蜡烛被你的指风射灭了！\n");
-                        write("黑暗中有人大叫：“哪个混蛋干的？！”，你赶忙跑过去把蜡烛重新点燃。\n");
+                        write("“噗”地一聲，蠟燭被你的指風射滅了！\n");
+                        write("黑暗中有人大叫：“哪個混蛋乾的？！”，你趕忙跑過去把蠟燭重新點燃。\n");
                 }
                 return 1;
         }
-        return notify_fail("你要谋杀谁？\n");
+        return notify_fail("你要謀殺誰？\n");
 }

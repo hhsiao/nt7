@@ -2,9 +2,9 @@ inherit ROOM;
 
 void create()
 {
-        set("short", "潭底洞内");
+        set("short", "潭底洞內");
         set("long", @LONG
-鳄潭水气蒸浸，洞中潮湿滑溜，腥臭难闻。
+鱷潭水氣蒸浸，洞中潮溼滑溜，腥臭難聞。
 LONG);
         set("exits", ([
                "out"         : __DIR__"eyutan3",

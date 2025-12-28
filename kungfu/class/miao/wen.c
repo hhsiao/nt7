@@ -5,15 +5,15 @@ inherit F_GUARDER;
 
 void create()
 {
-        set_name("锺兆文", ({ "zhong zhaowen", "zhong", "zhaowen", "wen" }));
+        set_name("鍾兆文", ({ "zhong zhaowen", "zhong", "zhaowen", "wen" }));
         set("long", @LONG
-这人是锺氏三雄的老大锺兆文。只见他身穿白
-色粗麻布衣服，白帽白鞋，衣服边上露着毛头，
-竟是刚死了父母的孝子服色，脸色惨白，鼻子
-又扁又大，鼻孔朝天，留着灰白小胡子。
+這人是鍾氏三雄的老大鍾兆文。只見他身穿白
+色粗麻布衣服，白帽白鞋，衣服邊上露著毛頭，
+竟是剛死了父母的孝子服色，臉色慘白，鼻子
+又扁又大，鼻孔朝天，留著灰白小鬍子。
 LONG );
-        set("nickname", HIR "锺氏三雄" NOR);
-        set("title", "鄂北锺氏兄弟");
+        set("nickname", HIR "鍾氏三雄" NOR);
+        set("title", "鄂北鍾氏兄弟");
         set("gender", "男性");
         set("age", 48);
         set("attitude", "peaceful");
@@ -58,11 +58,11 @@ LONG );
         }));
 
         set("guarder", ([
-                "refuse_other": CYN "$N" CYN "对$n" CYN "冷笑道："
-                                "什么人？居然连苗大侠的府邸都敢乱"
-                                "闯！" NOR,
-                "refuse_carry": CYN "$N" CYN "对$n" CYN "喝道：你"
-                                "背上背负的是什么人？还不快快给我"
+                "refuse_other": CYN "$N" CYN "對$n" CYN "冷笑道："
+                                "什麼人？居然連苗大俠的府邸都敢亂"
+                                "闖！" NOR,
+                "refuse_carry": CYN "$N" CYN "對$n" CYN "喝道：你"
+                                "背上揹負的是什麼人？還不快快給我"
                                 "放下！" NOR,
         ]));
 
@@ -78,5 +78,5 @@ LONG );
 void attempt_apprentice(object ob)
 {
         command("hmm");
-        command("say 走开，我不收徒。");
+        command("say 走開，我不收徒。");
 }

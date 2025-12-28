@@ -17,31 +17,31 @@ int perform(object me, object target)
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
-                return notify_fail(name() + "只能对战斗中的对手使用。\n");
+                return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
 
         if (me->query_temp("weapon"))
-                return notify_fail("你必须空手才能施展" + name() + "。\n");
+                return notify_fail("你必須空手才能施展" + name() + "。\n");
 
         if ((int)me->query_skill("meinv-quan", 1) < 80)
-                return notify_fail("你的美女拳法别不够，不会使用" + name() + "。\n");
+                return notify_fail("你的美女拳法別不夠，不會使用" + name() + "。\n");
 
         if ((int)me->query_skill("force") < 120)
-                return notify_fail("你的内功还未娴熟，不能使用" + name() + "。\n");
+                return notify_fail("你的內功還未嫻熟，不能使用" + name() + "。\n");
 
         if ((int)me->query("neili") < 180)
-                return notify_fail("你现在真气不够，不能使用" + name() + "。\n");
+                return notify_fail("你現在真氣不夠，不能使用" + name() + "。\n");
 
         if (me->query_skill_mapped("unarmed") != "meinv-quan")
-                return notify_fail("你没有激发美女拳法，不能施展" + name() + "。\n");
+                return notify_fail("你沒有激發美女拳法，不能施展" + name() + "。\n");
 
         if (me->query_skill_prepared("unarmed") != "meinv-quan")
-                return notify_fail("你没有准备美女拳法，难以施展" + name() + "。\n");
+                return notify_fail("你沒有準備美女拳法，難以施展" + name() + "。\n");
 
        if (! living(target))
-              return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+              return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
-        msg = HIW "\n$N" HIW "右手支颐，左袖轻轻挥出，长叹一声，使"
-              "出古墓派绝学「古墓幽居」，一脸尽现寂寥之意。\n" NOR;
+        msg = HIW "\n$N" HIW "右手支頤，左袖輕輕揮出，長嘆一聲，使"
+              "出古墓派絕學「古墓幽居」，一臉盡現寂寥之意。\n" NOR;
 
         ap = attack_power(me, "unarmed");
         dp = defense_power(target, "parry");
@@ -55,32 +55,32 @@ int perform(object me, object target)
                 addn("neili", -100, me);
 
                 if (damage < 30)
-                        pmsg = HIY "结果$n" HIY "被$N袍"
-                               HIY "袖一拂，闷哼一声。\n" NOR;
+                        pmsg = HIY "結果$n" HIY "被$N袍"
+                               HIY "袖一拂，悶哼一聲。\n" NOR;
                 else if(damage < 55)
-                        pmsg = HIY "结果$n" HIY "被$N"
-                               HIY "以袍袖一拂，「腾腾」地退出几步。\n" NOR;
+                        pmsg = HIY "結果$n" HIY "被$N"
+                               HIY "以袍袖一拂，「騰騰」地退出幾步。\n" NOR;
                 else if (damage < 80)
-                        pmsg = HIR "结果$n" HIR "被$N"
-                               HIR "以袍袖一拂，胸口有如受到一记重"
-                               "锤，气血为之一窒！\n" NOR;
+                        pmsg = HIR "結果$n" HIR "被$N"
+                               HIR "以袍袖一拂，胸口有如受到一記重"
+                               "錘，氣血為之一窒！\n" NOR;
                 else if (damage < 100)
-                        pmsg = RED "结果$n" RED "被$N" RED
-                               "的袍袖一拂，眼前一黑，浑身气血翻腾，"
-                               "竟如身入洪炉一般！\n" NOR;
+                        pmsg = RED "結果$n" RED "被$N" RED
+                               "的袍袖一拂，眼前一黑，渾身氣血翻騰，"
+                               "竟如身入洪爐一般！\n" NOR;
                 else
-                        pmsg = HIR "但见$N" HIR "双拳袭来，柔中带刚，迅"
-                               "猛无比，其间仿佛蕴藏着无穷的威力，$n" HIR
-                               "正迟疑间，却已中拳，闷哼一声，倒"
-                               "退几步，一口鲜血喷出。\n" NOR;
+                        pmsg = HIR "但見$N" HIR "雙拳襲來，柔中帶剛，迅"
+                               "猛無比，其間彷彿蘊藏著無窮的威力，$n" HIR
+                               "正遲疑間，卻已中拳，悶哼一聲，倒"
+                               "退幾步，一口鮮血噴出。\n" NOR;
 
                 msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 45, pmsg);
         } else
         {
                 me->start_busy(3);
                 msg += CYN "可是$p" CYN "看破了$P" CYN
-                       "的企图，稳如泰山，抬手一架格开了$P"
-                       CYN "这一拳。\n"NOR;
+                       "的企圖，穩如泰山，抬手一架格開了$P"
+                       CYN "這一拳。\n"NOR;
         }
         message_combatd(msg, me, target);
 

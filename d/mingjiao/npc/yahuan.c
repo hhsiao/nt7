@@ -3,7 +3,7 @@ string ask_tea();
 void create()
 {
         set_name("小丫鬟",({"xiao yahuan","xiao","yahuan"}));
-               set("long", "她是一名十来岁大的小丫鬟，长得眉清目秀。\n");
+               set("long", "她是一名十來歲大的小丫鬟，長得眉清目秀。\n");
         set("gender", "女性");
         set("age", 10+random(6));
         set("attitude", "friendly");

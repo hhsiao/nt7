@@ -14,20 +14,20 @@ int valid_learn(object me)
 mapping query_menu(object me)
 {
         return ([ "香酥花生"   : ({ "xiangshu huasheng" }),
-                  "麻辣手撕鸡" : ({ "mala ji" }),
-                  "手撕鸡"     : ({ "shousi ji" }),
-                  "三黄鸡"     : ({ "sanhuang ji" }),
-                  "干煸尤鱼"   : ({ "ganbian youyu" }),
-                  "鱼香肉丝"   : ({ "yuxiang rousi" }),
-                  "宫宝鸡丁"   : ({ "gongbao jiding" }),
-                  "红油肚片"   : ({ "hongyou dupian" }),
+                  "麻辣手撕雞" : ({ "mala ji" }),
+                  "手撕雞"     : ({ "shousi ji" }),
+                  "三黃雞"     : ({ "sanhuang ji" }),
+                  "乾煸尤魚"   : ({ "ganbian youyu" }),
+                  "魚香肉絲"   : ({ "yuxiang rousi" }),
+                  "宮寶雞丁"   : ({ "gongbao jiding" }),
+                  "紅油肚片"   : ({ "hongyou dupian" }),
                   "麻婆豆腐"   : ({ "mapo doufu" }),
                   "夫妻肺片"   : ({ "fuqi feipian" }),
                   "毛血旺"     : ({ "maoxue wang" }),
-                  "香菇鸡茸汤"     : ({ "xianggujirong tang" }),
+                  "香菇雞茸湯"     : ({ "xianggujirong tang" }),
                   "芙蓉蛋花羹"     : ({ "furongdanhua geng" }),
-                  "青荷鳅盘汤"     : ({ "qingheqiupan tang" }),
-                  "翠丝白玉汤"     : ({ "cuisibaiyu tang" }),
+                  "青荷鰍盤湯"     : ({ "qingheqiupan tang" }),
+                  "翠絲白玉湯"     : ({ "cuisibaiyu tang" }),
                   "粉蒸肉"     : ({ "fenzheng rou" }) ]);
 }
 
@@ -37,13 +37,13 @@ int practice_skill(object me)
 
         if (! objectp(cailiao = present("cai liao", me)) ||
             cailiao->query_amount() < 1)
-                return notify_fail("你身上没有菜料了。\n");
+                return notify_fail("你身上沒有菜料了。\n");
 
         if( query("qi", me)<50 )
-                return notify_fail("你的体力不够了，无法锻炼手艺。\n");
+                return notify_fail("你的體力不夠了，無法鍛鍊手藝。\n");
 
         if( query("jing", me)<50 )
-                return notify_fail("你的精神不济，无法锻炼手艺。\n");
+                return notify_fail("你的精神不濟，無法鍛鍊手藝。\n");
 
         me->receive_damage("qi", 40);
         me->receive_jing("jing", 40);

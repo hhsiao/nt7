@@ -4,10 +4,10 @@
 
 void setup()
 {
-        set_name("天猫[2;37;0m[2;37;0m", ({"skycat"}));        
+        set_name("天貓[2;37;0m[2;37;0m", ({"skycat"}));        
         set("gender", "男性");                
-        set("long", "万恶天猫[2;37;0m
-它是汗帛的魔幻兽。
+        set("long", "萬惡天貓[2;37;0m
+它是汗帛的魔幻獸。
 ");
         set("race_type", "麒麟");
         set("magic/type", "earth");
