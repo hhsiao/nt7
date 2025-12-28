@@ -1,10 +1,10 @@
-// This program is a part of NITAN MudLIB  
+// This program is a part of NITAN MudLIB
 // redl 2015/5
-#include <ansi.h>  
-#include <room.h>  
-inherit "/u/redl/teleport/normal.c";  
-#define DEBUG(msg)	if (find_player("lonely"))\
-			tell_object(find_player("lonely"), msg)
+#include <ansi.h>
+#include <room.h>
+inherit "/u/redl/teleport/normal.c";
+#define DEBUG(msg)	if (find_player("admin"))\
+			tell_object(find_player("admin"), msg)
 
 int clean_up() { return 1;}
 void create()
@@ -22,54 +22,54 @@ LONG );
 
         set("no_rideto", 1);
         set("no_flyto", 1);
-        set("no_protect", 1); 
+        set("no_protect", 1);
         set("no_fly", 1);
-        set("no_sleep_room", 1); 
-        set("no_magic", 1); 
+        set("no_sleep_room", 1);
+        set("no_magic", 1);
 
         set("no_user_yanjiu",1);
         set("max_carry_user" ,8);
         set("max_carry_exit" ,"out");
 
         setup();
-        
+
         set_heart_beat(11);
 }
 
-int get_score(object ob) 
-{ 
-        int tlvl,i,score; 
-        string *ski; 
-        mapping skills; 
-        reset_eval_cost(); 
-        skills = ob->query_skills(); 
-        if (!sizeof(skills)) return 1; 
-        ski  = keys(skills); 
-        for(i = 0; i<sizeof(ski); i++) { 
-                tlvl += skills[ski[i]]; 
-        }  // count total skill levels 
-        score = tlvl/1; 
-        score+=query("max_neili", ob)/1; 
-        score += ob->query_str() + ob->query_int() + ob->query_dex() + ob->query_con(); 
-        score+=query("combat_exp", ob)/10+query("reborn/times", ob)*1000000000; 
-        return score; 
-} 
+int get_score(object ob)
+{
+        int tlvl,i,score;
+        string *ski;
+        mapping skills;
+        reset_eval_cost();
+        skills = ob->query_skills();
+        if (!sizeof(skills)) return 1;
+        ski  = keys(skills);
+        for(i = 0; i<sizeof(ski); i++) {
+                tlvl += skills[ski[i]];
+        }  // count total skill levels
+        score = tlvl/1;
+        score+=query("max_neili", ob)/1;
+        score += ob->query_str() + ob->query_int() + ob->query_dex() + ob->query_con();
+        score+=query("combat_exp", ob)/10+query("reborn/times", ob)*1000000000;
+        return score;
+}
 
-int top_list(object ob1, object ob2) 
-{ 
-        int score1,score2; 
-        score1 = get_score(ob1); 
-        score2 = get_score(ob2); 
-        return score2 - score1; 
-} 
+int top_list(object ob1, object ob2)
+{
+        int score1,score2;
+        score1 = get_score(ob1);
+        score2 = get_score(ob2);
+        return score2 - score1;
+}
 
 void chktop()
 {
-        object *list,*ob; 
+        object *list,*ob;
         if (query("chktop_time") > time()) return;
         set("chktop_time", time()+ 7200);
-        ob = filter_array(users(), (: playerp($1) && living($1) && !wizardp($1) :)); 
-        list = sort_array(ob, (: top_list :)); 
+        ob = filter_array(users(), (: playerp($1) && living($1) && !wizardp($1) :));
+        list = sort_array(ob, (: top_list :));
         set("toplist", list);
 }
 
@@ -87,14 +87,14 @@ void start_18zhen()
 
         obs = query("toplist");
         if (!obs) return;
-       
-        
+
+
         for (i = 0; i < max; i++) {
-        
+
              if((18-i)>sizeof(obs)) break;
-        
+
                 ob = new (__DIR__"npc/niuren");
-                               
+
                 if (ob->do_copy(obs[18-i])){
                         set("in_zhen", 1, ob);
                         ob->move(this_object());
@@ -102,7 +102,7 @@ void start_18zhen()
                         if (!random(10)) {
                                 niu = new (__DIR__"npc/qingniu");
                                 niu->move(environment(ob));
-                                niu->set_leader(ob); 
+                                niu->set_leader(ob);
                                 set("title", NOR + ob->name(1) + "的" + NOR, niu);
                         }
                 } else {
@@ -117,7 +117,7 @@ void start_hgg()
         int idx, count = 0;
         string msg, *list=({});
         object room, ob, niu, *obs;
-        
+
         if (random(8)) return;
         obs = query("toplist");
         if (!obs) return;
@@ -134,7 +134,7 @@ void start_hgg()
                         if (ob->do_copy(obs[i])){
                                 set("in_hgg", 1, ob);
                                 ob->move(environment(niu));
-                                ob->set_leader(niu); 
+                                ob->set_leader(niu);
                                 niu->add_team_member(ob);
                                 list += ({ob->name(0)});
                                 count++;
@@ -156,8 +156,8 @@ void start_pkd()
         obs = query("toplist");
        if(idx<=0) return;
        if(idx>sizeof(idx)) return;
-       	
-       
+
+
         ob = new (__DIR__"npc/niuren");
         set("in_pkd", 1, ob);
         if (ob->do_copy(obs[idx])) {
@@ -166,7 +166,7 @@ void start_pkd()
                 if (!random(5)) {
                         niu = new (__DIR__"npc/qingniu");
                         niu->move(environment(ob));
-                        niu->set_leader(ob); 
+                        niu->set_leader(ob);
                         set("title", NOR + ob->name(1) + "的" + NOR, niu);
                 }
                 CHANNEL_D->channel_broadcast("rumor", "比賽精靈：牛人" + ob->name(1) + "進入屠人場。" );
@@ -178,17 +178,17 @@ void start_pkd()
 void start_zhen()
 {
         object niu, ob, *obs;
-        
+
         obs = query("toplist");
         if (!obs) return;
         if (random(12)) return;
         if (query("18zhen/start")) return;
-        
+
                if (query("18zhen/time") < time()) {
                         set("18zhen/time", time() + 3600 * 6 + random(3600 * 4));
                         set("18zhen/start", 1);
-                }       
-    CHANNEL_D->channel_broadcast("rumor", "聽說有小撮不良中年人糾結在一起，佈下了" + this_object()->short() + "(測試版)尋釁滋事。" );            
+                }
+    CHANNEL_D->channel_broadcast("rumor", "聽說有小撮不良中年人糾結在一起，佈下了" + this_object()->short() + "(測試版)尋釁滋事。" );
 }
 
 void clear_here()
@@ -205,19 +205,19 @@ void clear_here()
 void heart_beat()
 {
         object *obs;
-                
+
                 chktop();
-                
-              
-                if (query("18zhen/start")) { 
+
+
+                if (query("18zhen/start")) {
                         if (query("18zhen/nump") < 18) {
                                                 obs = filter_array(all_inventory(this_object()),  (: $1->is_niuren() :));
                                                 //DEBUG_CHANNEL(sizeof(obs));
                                                 if (!obs || sizeof(obs)<1) {
                                         addn("18zhen/nump", 3);
                                         start_18zhen();
-                                        //todo:金牛，金牛免疫call die，變態hp。 
-                                        //只要金牛不死，牛逼就閃閃發光, damage幾率減半*n次，間或恢復，call die大大豁免。 
+                                        //todo:金牛，金牛免疫call die，變態hp。
+                                        //只要金牛不死，牛逼就閃閃發光, damage幾率減半*n次，間或恢復，call die大大豁免。
                                         //金牛一死，牛人很容易被call die
                                 }
                         } else {
@@ -230,12 +230,12 @@ void heart_beat()
                                 }
                         }
                 }
-                
+
                 if (query("pkd/nump") > 0) {
                         start_pkd();
                 }
-                        
-       
+
+
 }
 
 void set_pkd()
@@ -248,4 +248,3 @@ void set23()
         start_hgg();
         start_zhen();
 }
-

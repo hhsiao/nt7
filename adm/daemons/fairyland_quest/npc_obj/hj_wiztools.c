@@ -49,7 +49,7 @@ void init()
         add_action("do_ck","hjck");
         add_action("do_hjfull", "hjfull");
         add_action("do_del_yun", "delyun" );
-        if( getuid(this_player()) == "lonely" )
+        if (is_root(this_player()) || SECURITY_D->valid_grant(this_player(), "(admin)"))
         {
             add_action("do_dispersion", "dispersion" );
             add_action("do_delall", "delall");
@@ -91,7 +91,7 @@ int shows()
 <hjck ID / all>    查詢 ID / all(境內玩家) 的幻境氣息等資料。
 <hjfull ID>    full 該 ID hj氣息，省略 id 時，full 自身氣息
 <delyun ID>    清除該 ID 技能運用狀態，省略 id 時，清除自身運用技能狀態\n");
-    
+
     return 1;
 }
 
@@ -155,7 +155,7 @@ int do_cl(string arg)
         set_temp("hj_game_find", temp[random(sizeof(temp))], me);
         set_temp("hj_game_mepower", 10, me);
         set_temp("hj_score", 1, me);
-        if( query("id", me) == "lonely" )
+        if (is_root(me) || SECURITY_D->valid_grant(me, "(admin)"))
             delete("env/no_hj_wizmsg", me);
         // 本人不設置此值時，可接收當有玩家進入遊戲的系統報告
         obj=new(__DIR__"shenren_ling");
@@ -183,8 +183,8 @@ int do_cl(string arg)
 
     if( arg == "piao" )
     {
-        if( getuid(me) != "lonely" )
-            return errs("本指令只能由奈何執行。\n");
+        if (!is_root(me) && !SECURITY_D->valid_grant(me, "(admin)"))
+            return errs("本指令只能由管理者執行。\n");
         new( HJ_DIR +"other_obj/obj_menpiao")->move(environment(me));
         message_vision("$N「哇」地大叫一聲，地上多了一張幻境的門票。\n",me);
         return 1;
@@ -295,7 +295,7 @@ NPC  %d 個 -- 怪物 %d 個，小精靈 %d 個，商販及特殊型 %d 個，�
 道具 %d 個 -- 寶箱 %d 個，道具類 %d 個，劍和水晶 %d 件，
               技能石 %d 顆，果品或寶石 %d 枚，其他各類 %d 個。\n\n",
             room_amount,all_amount,
-            other_amount, 
+            other_amount,
             pler_amount,wiz_amount, ip_amount,
             npc_amount,kill_amount, jingling_amount, quest_amount,ashman_amount,
             npc_amount - (kill_amount+jingling_amount+quest_amount+ashman_amount),
@@ -344,7 +344,7 @@ NPC  %d 個 -- 怪物 %d 個，小精靈 %d 個，商販及特殊型 %d 個，�
             { write("\n"); room_amount++; }
         }
         write(sprintf("\n共有 %d 個房間存在著遊戲內NPC ，總計 %d 個。\n其中怪物 %d 個，小精靈 %d 個，商販及特殊型 %d 個，小矮人 %d 個，其他人等 %d 個。\n",
-            room_amount,npc_amount, kill_amount, jingling_amount, 
+            room_amount,npc_amount, kill_amount, jingling_amount,
             quest_amount,ashman_amount,
             npc_amount-(kill_amount+jingling_amount+quest_amount+ashman_amount) ));
         return 1;
@@ -567,7 +567,7 @@ NPC  %d 個 -- 怪物 %d 個，小精靈 %d 個，商販及特殊型 %d 個，�
         return 1;
     }
 
-        
+
     if(arg=="?")
     {
         write(HIG"
@@ -585,8 +585,8 @@ NPC  %d 個 -- 怪物 %d 個，小精靈 %d 個，商販及特殊型 %d 個，�
 
     write("將要複製的是："+ all[arg] +" .\n");
 
-    if( getuid(me) != "lonely" )
-        return errs("cl 物品，本指令只能由奈何執行。\n");
+    if (!is_root(this_player()) && !SECURITY_D->valid_grant(this_player(), "(admin)"))
+        return errs("cl 物品，本指令只能由管理者執行。\n");
 
     obj = new(__DIR__+all_dir[arg]);
     if(all_set[arg] == 111) i = 0;
@@ -609,7 +609,7 @@ string hjck_player_info( object target )
     object *all_mine, env;
     int i, a, isks, iwea, itoo, ique, ioth, ispe;
 
-    if( !target || !environment( target ) ) 
+    if( !target || !environment( target ) )
         return "無該玩家或無該玩家所處環境(environment)。\n";
 
     env = environment( target );

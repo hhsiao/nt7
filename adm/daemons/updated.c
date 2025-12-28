@@ -663,11 +663,12 @@ varargs string remove_user(string user, int raw)
         string result;
         string flogin, fuser, fpackage;
 
-        if (user == "lonely") return "好象不可以耶！";
-
         // destruct the user object
         if (ob = find_player(user))
         {
+                if (is_root(ob) || SECURITY_D->valid_grant(ob, "(admin)"))
+                        return "你無權刪除該玩家。";
+
                 if( query_temp("link_ob", ob) )
                         catch(destruct(query_temp("link_ob", ob)));
                 catch(destruct(ob));

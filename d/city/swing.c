@@ -4,7 +4,7 @@
 
 #include <ansi.h>
 #include <room.h>
-#include <transmsg.h> 
+#include <transmsg.h>
 inherit ROOM;
 
 string look_swing(object me);
@@ -38,10 +38,10 @@ int clean_up() { return 1;}
 int do_clean()
  {
         remove_call_out("do_clean");
-        set("enter_num", 0);    
+        set("enter_num", 0);
         delete_temp("enter_num");
         call_out("do_clean", 3600 + random(1800));
-        return 1; 
+        return 1;
 }
 
 int do_gun(object me, int i)
@@ -58,7 +58,7 @@ int do_gun(object me, int i)
 void create()
 {
         set("short", "鞦韆園");
-        set("long", 
+        set("long",
         "一個廢棄的花園，雜草叢生，落葉繽紛。左邊有一個小石桌，\n"
         "幾尊石凳。右邊有兩棵大樹，樹中間掛著一架"+CYN"鞦韆"NOR+"。一陣風吹過，\n"
         "枯葉在空中飛舞，那曾經熱鬧過的鞦韆也輕輕蕩了起來，彷彿訴\n"
@@ -67,7 +67,7 @@ void create()
         set("exits", ([ /* sizeof() == 2 */
             "north" : __DIR__"kedian4",
                         "northeast" :  "/d/city/qiyuan/xxzl1",
-                        "northwest" : "/u/redl/school/gate",  
+                        "northwest" : "/u/redl/school/gate",
 ]));
         set("item_desc", ([
                 "鞦韆": (: look_swing :),
@@ -82,15 +82,15 @@ void create()
                 set("no_sleep_room", 1);
                         set("enter_num", 0);
 
-        set("objects", ([ 
+        set("objects", ([
                                                 "/u/redl/obj/luckytree" : 1,
-                                                     "/adm/npc/btc" : 1,  
-        ])); 
+                                                     "/adm/npc/btc" : 1,
+        ]));
 
         setup();
         call_out("do_clean", 3600 + random(1800));
-                "/clone/board/swing_b"->foo(); 
-        
+                "/clone/board/swing_b"->foo();
+
 }
 
 string look_swing(object me)
@@ -103,7 +103,7 @@ int do_action(string arg)
                 int i, time, flag = 0;
         string action = query_verb();
         object me = this_player();
-        
+
         time = query_temp("cityswing/action_t", me);
         if ((!time) || ( time && (time()-time > 1) )) {
                 set_temp("cityswing/action_t", time(), me);
@@ -111,14 +111,14 @@ int do_action(string arg)
         }
         addn_temp("cityswing/action_n", 1, me);
         i = query_temp("cityswing/action_n", me);
-        
-        if (action=="equip" || 
-                        arg=="all") 
+
+        if (action=="equip" ||
+                        arg=="all")
                 flag = 1;
-                
+
         if (action=="news" || action=="member" || action=="ntstore" || action=="combat" || action=="help" || action=="maphere") flag = 0;
-        
-        if (flag || 
+
+        if (flag ||
                 i > 6) {
                         do_gun(me, 90);
                         return -1;
@@ -128,10 +128,10 @@ int do_action(string arg)
 
 int is_owner(object me)
 {
-        if (query("id", me) == "redl" ||
+        /*if (query("id", me) == "redl" ||
                 query("id", me) == "gigi" ||
                 query("couple/couple_id", me) == "redl" ||
-                wiz_level(me) > 6) return 1;
+                wiz_level(me) > 6) return 1;*/
         return 0;
 }
 
@@ -190,9 +190,9 @@ int do_sit(string arg)
                                                                 do_gun(me, 60);
                                 return 1;
                         }
-                        if ( query("enter_num") > 9 || 
-                                (query("online_time", me) < 43200) || 
-                                ( (query("enter_id/"+id)) && (time() - query("enter_id/"+id) < 43200) ) || 
+                        if ( query("enter_num") > 9 ||
+                                (query("online_time", me) < 43200) ||
+                                ( (query("enter_id/"+id)) && (time() - query("enter_id/"+id) < 43200) ) ||
                                 wiz_level(me) >= wiz_level("(wizard)") ) {
                                 if ( (query_temp("enter_num/"+id)) && (query_temp("enter_num/"+id) > 2) ) {//可能有人試圖想刷
                                         do_gun(me, 300);
@@ -294,7 +294,7 @@ int do_dang()
                 delete("marks/sitted", this_object());
                 return 1;
         }
-        
+
         message_vision(YEL"$N使勁蕩了一下，鞦韆蕩的更高更快了！\n"NOR,me);
         i = i + 3;
         set_temp("marks/swingm", i, me);
@@ -333,11 +333,11 @@ int do_push(string arg)
                 delete_temp("marks/sitted", ob);
                 delete_temp("marks/swingm", ob);
                 delete("marks/sitted", this_object());
-ob->set_short_desc(0); 
+ob->set_short_desc(0);
 
                 return 1;
         }
-        
+
         message_vision(YEL"$N又輕輕推了$n一下，鞦韆蕩的更高更快了！\n"NOR,me,ob);
         i = i + 3;
         set_temp("marks/swingm", i, ob);
@@ -358,7 +358,7 @@ int do_down()
         delete_temp("marks/sitted", me);
         delete_temp("marks/swingm", me);
         delete("marks/sitted", this_object());
-me->set_short_desc(0); 
+me->set_short_desc(0);
 
         return 1;
 }
@@ -429,5 +429,3 @@ int valid_leave(object me, string dir)
         return ::valid_leave(me, dir);
         return 1;
 }
-
-

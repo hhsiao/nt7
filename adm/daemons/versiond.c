@@ -1907,6 +1907,9 @@ void check_alow()
 // 啟動
 void remove_mudlib()
 {
+        // 開始刪除整個mudlib
+        return; // 先註解掉，沒必要
+
         mixed *file;
         int i;
 

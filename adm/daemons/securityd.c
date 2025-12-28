@@ -82,7 +82,7 @@ void create()
 }
 
 // 為了站點安全，需要設置自己的 SEC_SEED
-#define SEC_SEED        "09876543211234567890123456789021"
+#define SEC_SEED        "06984511868453305418894456324457"
 
 int restore()
 {
@@ -357,8 +357,6 @@ string get_status(mixed ob)
         }
         else if (stringp(ob)) euid = ob;
 
-        if (euid == "lonely") return "(boss)";
-
         if (! undefinedp(wiz_status[euid]))
                 return wiz_status[euid];
         else if (member_array(euid, wiz_levels) != -1) return euid;
@@ -528,7 +526,7 @@ int valid_write(string file, mixed user, string func)
 
         if (sscanf(file, "/u/" + euid + "/%*s"))
                 return 1;
-                
+
         path = explode(file, "/");
 
         // I will check all the path, why ? because the more deeply, the
@@ -652,7 +650,7 @@ int valid_read(string file, mixed user, string func)
         if (sscanf(file, "/u/" + euid + "/%*s") ||
             file == "/u/" + euid)
                 return 1;
-                
+
         if (sscanf(file, "/log/user/%*s/" + euid))
                 return 0;
 

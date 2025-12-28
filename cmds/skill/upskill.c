@@ -17,21 +17,21 @@ int main(object me, string arg)
 {
         int exercise_cost;
         object where;
-        
+
         seteuid(getuid());
         where = environment(me);
-        
+
         if (! arg)
                return notify_fail("你要閉關鑽研什麼武功？\n");
-        
-        if (! me->query_skill(arg) || 
-            file_size(SKILL_D(arg) + ".c") < 0)    
+
+        if (! me->query_skill(arg) ||
+            file_size(SKILL_D(arg) + ".c") < 0)
                return notify_fail("你要鑽研的武功不存在或你不會該武功。\n");
-        
+
         //if (! SKILL_D(arg)->is_invent_skill())
         if (me->query_skillo(arg, 1) < 4600 )
-               return notify_fail("你對" + to_chinese(arg) + "的領悟還不夠，無法提升其COMBAT威力。\n");  
-               
+               return notify_fail("你對" + to_chinese(arg) + "的領悟還不夠，無法提升其COMBAT威力。\n");
+
         if( query("pigging", where) )
                 return notify_fail("你還是專心拱豬吧！\n");
 
@@ -43,7 +43,7 @@ int main(object me, string arg)
 
         if (me->is_busy())
                 return notify_fail("你現在正忙著呢。\n");
-                        
+
         if( query("combat_exp", me)<10000000000 )
                 return notify_fail("你的經驗不夠，沒法閉關鑽研。\n");
 
@@ -51,8 +51,8 @@ int main(object me, string arg)
                 return notify_fail("你的潛能不夠，沒法閉關鑽研。\n");
 
         if( query("experience", me)<query("learned_experience", me)+600000 )
-                return notify_fail("你現在積累的實戰體會還太少。\n"); 
-        
+                return notify_fail("你現在積累的實戰體會還太少。\n");
+
         if( query("qi", me)*100/query("max_qi", me)<90 )
                 return notify_fail("你現在的氣太少了，無法靜心鑽研。\n");
 
@@ -97,14 +97,14 @@ int closing(object me)
         int r;
         int exp_inc;
         string skill;
-        
+
         skill=query("upgrade", me);
         pot=query("potential", me);
         mar=query("experience", me);
 
 #ifdef DB_SAVE
-        if (! interactive(me) && 
-            !MEMBER_D->is_valid_member(query("id", me)) && 
+        if (! interactive(me) &&
+            !MEMBER_D->is_valid_member(query("id", me)) &&
             query("online_time", me) <= query("offline_time", me)*3 )
         {
                 CLOSE_D->user_opened(me);
@@ -136,7 +136,7 @@ int closing(object me)
 
         if( me->add("learned_experience",PERIOD_MAR/2+random(PERIOD_MAR))>mar )
                 set("learned_experience", mar, me);
-                
+
         t=query_temp("last_closing", me);
         tn = time();
         if (tn - t < 0)
@@ -145,15 +145,15 @@ int closing(object me)
                 return 1;
         }
 
-        if (tn - t < PERIOD && query("id", me) != "lonely")
+        if (tn - t < PERIOD)
                 return 1;
 
         set_temp("last_closing", tn, me);
-                
+
         if (random(10) == 0)
                 //tell_object(me, "閉關修煉" + to_chinese(skill) + "中...\n");
                 tell_object(me, "你閉關鑽研" + to_chinese(skill) + "，似有所思。\n");
-        
+
         /*
         if ((random(100) < 3) && me->can_improve_neili())
         {
@@ -176,12 +176,12 @@ int closing(object me)
         addn("combat_exp", exp_inc, me);
         me->improve_skill("martial-cognize", 800 + random(800));
 
-        tell_object(me, HIM "你腦中突然靈光一閃，你對" + to_chinese(skill) + "有了更深的領悟！\n" NOR); 
+        tell_object(me, HIM "你腦中突然靈光一閃，你對" + to_chinese(skill) + "有了更深的領悟！\n" NOR);
         me->improve_skill(skill, 5000 + random(1000));
-        SKILLS_D->upgrade_skill_power(skill); 
-        CHANNEL_D->do_channel(find_object(SKILLS_D), "rumor", 
-                              "江湖傳言，武學大宗師" + me->name(1) + "閉關修煉鑽研" + 
-                              to_chinese(skill) + "，終於完善其破綻之處，並廣為流傳。"); 
+        SKILLS_D->upgrade_skill_power(skill);
+        CHANNEL_D->do_channel(find_object(SKILLS_D), "rumor",
+                              "江湖傳言，武學大宗師" + me->name(1) + "閉關修煉鑽研" +
+                              to_chinese(skill) + "，終於完善其破綻之處，並廣為流傳。");
 
         return 1;
 }

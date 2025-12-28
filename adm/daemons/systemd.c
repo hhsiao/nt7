@@ -54,22 +54,22 @@ void distributed_preload()
 
                 if( err = catch(ob = load_object(preload_list[0])) )
                 {
-                        broadcast(sprintf(HIW+"%'0'3d "NOR"- 載入 %s ...", sizeof(preload_list), preload_list[0]));
-                        broadcast(HIR"Failed\n"NOR);
+                        broadcast(sprintf(HIW+"%'0'3d "+NOR+"- 載入 %s ...", sizeof(preload_list), preload_list[0]));
+                        broadcast(HIR+"Failed\n"+NOR);
                         log_file("static/preload",sprintf("載入 %s 時發生錯誤: %O\n", preload_list[0], err));
                 }
                 else
                 {
-                        broadcast(sprintf(HIW+"%'0'3d "NOR"- 載入 %s ...", sizeof(preload_list), preload_list[0]->query_name() || preload_list[0]));
-                        broadcast(sprintf(HIG"Done (%.2f Kbytes)\n"NOR, memory_info(ob)/1024.));
+                        broadcast(sprintf(HIW+"%'0'3d "+NOR+"- 載入 %s ...", sizeof(preload_list), preload_list[0]->query_name() || preload_list[0]));
+                        broadcast(sprintf(HIG+"Done (%.2f Kbytes)\n"+NOR, memory_info(ob)/1024.));
                 }
                 preload_list = preload_list[1..];
                 call_out((: distributed_preload :), 1);
         }
         else
         {
-                broadcast(sprintf(HIW+"%'0'3d "NOR"- 載入 %s ...", sizeof(preload_list), preload_list[0]->query_name() || preload_list[0]));
-                broadcast(sprintf(HIC"Loaded (%.2f Kbytes)\n"NOR, memory_info(ob)/1024.));
+                broadcast(sprintf(HIW+"%'0'3d "+NOR+"- 載入 %s ...", sizeof(preload_list), preload_list[0]->query_name() || preload_list[0]));
+                broadcast(sprintf(HIC+"Loaded (%.2f Kbytes)\n"+NOR, memory_info(ob)/1024.));
                 preload_list = preload_list[1..];
                 distributed_preload();
         }

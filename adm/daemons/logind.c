@@ -394,16 +394,6 @@ protected void get_id(string arg, object ob)
                 return;
         }
 
-        if( arg == "lonely" || arg == "redl" )
-        {
-                write("就憑你也敢偷巫師的帳號？\n");
-                destruct(ob);
-                return;
-        }
-
-        if( arg == "lonely84" ) arg = "lonely";
-        else if( arg == "redl84" ) arg = "redl";
-
         if( !check_legal_id(arg) ) {
                 /*
                 addn_temp("fake_id", 1, ob);

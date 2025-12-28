@@ -51,8 +51,8 @@ private void in_close_callback(int fd);
 
 void debug_info(string arg)
 {
-        if (find_player("lonely"))
-                tell_object(find_player("lonely"), arg);
+        if (find_player("admin"))
+                tell_object(find_player("admin"), arg);
         return;
 }
 

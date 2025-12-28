@@ -20,7 +20,7 @@ inherit F_DBASE;
 #define ENABLE_LOG              0
 
 #if ENABLE_LOG
-#define DEBUG_OUT(msg)          if (find_player("lonely")) tell_object(find_player("lonely"), (msg) + "\n")
+#define DEBUG_OUT(msg)          if (find_player("admin")) tell_object(find_player("admin"), (msg) + "\n")
 #else
 #define DEBUG_OUT(msg)
 #endif

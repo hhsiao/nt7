@@ -1,6 +1,6 @@
 #define TASK_DIR        "/task/"
 #define TASK_OB_DIR     TASK_DIR + "obj/"
-#define DEBUG(x)        tell_object(find_player("lonely"), x)
+#define DEBUG(x)        tell_object(find_player("admin"), x)
 #define RATE 4
 
 

@@ -2116,7 +2116,7 @@ int do_increase(string arg)
         rate2 = random(100);
         rate = (rate + rate2)/2;
         */
-        if( rate < success || (level < 6 && objectp(crystal)) || query("id", me) == "lonely" || (objectp(ob_reset) && query("qianghua_level", ob_reset) > level) )
+        if( rate < success || (level < 6 && objectp(crystal)) || is_root(me) || (objectp(ob_reset) && query("qianghua_level", ob_reset) > level) )
         {
                 level++;
                 if( objectp(ob_reset) && query("qianghua_level", ob_reset) == level )

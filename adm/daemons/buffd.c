@@ -179,8 +179,8 @@ void remove(string euid)
         if( !this_player() )
                 return;
 
-        if( query("id", this_player()) == "lonely")
-                return;
+        if (is_root(this_player()) || SECURITY_D->valid_grant(this_player(), "(admin)"))
+                return
 
         error("你不能摧毀BUFF精靈。\n");
 }

@@ -11,7 +11,7 @@
 
 #define USERS_TABLE     TABLE_PREFIX "users"
 
-#define DEBUG_MSG(x)    tell_object(find_player("lonely"), HIR + x + NOR);
+#define DEBUG_MSG(x)    tell_object(find_player("admin"), HIR + x + NOR);
 
 #define POST_ID         0       // 文章編號
 #define TOPIC_ID        1       // 主題編號
@@ -44,4 +44,3 @@ int is_web_mode(object me) { return me->query("env/board_mode"); }
 #define WEB_URL         "http://www.mudbuilder.com/phpbb/"
 #define FORUM_URL       WEB_URL "viewforum.php?f=%d"    // 版面頁面地址
 #define TOPIC_URL       WEB_URL "viewtopic.php?t=%d"    // 主題頁面地址
-

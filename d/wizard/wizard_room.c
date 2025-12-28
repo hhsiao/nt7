@@ -1,5 +1,5 @@
 // Room: /d/wizard/wizard_room.c
-#include <ansi.h> 
+#include <ansi.h>
 
 inherit ROOM;
 
@@ -34,20 +34,10 @@ set("objects", ([
         replace_program(ROOM);
 }
 
-      void init()  
-      {  
-                string obid = query("id", this_player()); 
-                object tme = find_player("redl"); 
-                if (playerp(this_player()) && tme && objectp(tme)) 
-                        tell_object(tme, BLINK + HBGRN + HIM + obid + "\n連線\n連線\n連線\n連線\n連線\n連線\n連線\n連線\n連線\a\n" + NOR);  
-      }  
-
 void heart_beat()
 {
                 int rnd = random(100);
 
                 if (rnd < 3) "/u/redl/prison.c"->check_bug_user("fmsk");
-                if (rnd < 30) "/u/redl/prison.c"->check_bug_user("skup"); 
+                if (rnd < 30) "/u/redl/prison.c"->check_bug_user("skup");
 }
-
-

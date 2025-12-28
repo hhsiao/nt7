@@ -15,7 +15,7 @@
 #define SHADOW_ENV      "/task/shadow_room"
 #define SEARCH_TIMES    10
 #define ROOM_TYPE       1
-#define DEBUGER         "lonely"
+#define DEBUGER         "admin"
 #define TP(x)           tell_object(find_player(DEBUGER), x)
 #define DEBUG
 

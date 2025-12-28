@@ -46,7 +46,7 @@ void init()
     add_action("do_hjtop", "hjtop", );
     add_action("do_hjtime", "hjtime");
     add_action("do_hjquit", "hjquit");    // 強制退出 huanjing 遊戲的指令。
-    add_action("do_hjleave", "hjleave", );   // 臨時離開遊戲 
+    add_action("do_hjleave", "hjleave", );   // 臨時離開遊戲
 }
 
 int do_wizhg()
@@ -151,7 +151,7 @@ void checking()
         set_temp("huanjing", "fail", me);
         remove_call_out("game_over");
         call_out("game_over",1);
-        debuger = find_player("lonely");
+        debuger = find_player("admin");
         if( debuger && query("env/hj_wizmsg", debuger) )
             tell_object( debuger, sprintf( HIR"幻境遊戲通知：%s"HIR"(%s"HIR")失敗狀態離開了遊戲。 ( <unset hj_wizmsg> 不再發送本類信息)\n"NOR,
         query("name", me),query("id", me)));
@@ -168,7 +168,7 @@ void checking()
         remove_call_out("game_over");
         call_out("game_over",1);
 
-        debuger = find_player("lonely");
+        debuger = find_player("admin");
         if( debuger && query("env/hj_wizmsg", debuger) )
             tell_object( debuger, sprintf( HIR"幻境遊戲通知：%s"HIR"(%s"HIR")成功狀態離開了遊戲。 ( <unset hj_wizmsg> 不再發送本類信息)\n"NOR,
         query("name", me),query("id", me)));
@@ -215,19 +215,19 @@ void checking()
     {
         if( query_temp("hj_hp", me)<(query_temp("hj_hp_max", me)*2/10) )
         {
-            if( random(10) == 1) 
+            if( random(10) == 1)
                 tell_room(environment(me),
                     RED+query("name", me)+""RED"一副頭重腳輕的樣子，看來就要支持不住了。\n"NOR,({me}));
         }
         else if( query_temp("hj_hp", me)<(query_temp("hj_hp_max", me)*4/10) )
         {
-            if( random(10) == 1) 
+            if( random(10) == 1)
                 tell_room(environment(me),
                     HIR+query("name", me)+""HIR"受傷甚為嚴重，堪堪就要倒下似的。\n"NOR,({me}));
         }
         else if( query_temp("hj_hp", me)<(query_temp("hj_hp_max", me)*6/10) )
         {
-            if( random(10) == 1) 
+            if( random(10) == 1)
                 tell_room(environment(me),
                     HIY+query("name", me)+""HIY"似乎受了傷，看起來狀況不大好。\n"NOR,({me}));
         }
@@ -272,7 +272,7 @@ void game_over()
     enter_time=query_temp("hj_enter_time", me);
     write(sprintf( "你進入遊戲的時間是 %s ，結束的時間是 %s ，\n遊戲時間%s 。\n",
         !enter_time ? "未知" : ctime_format( enter_time ),  ctime_format(),
-        !enter_time ? "未知" : sprintf( "共 %d 小時 %d 分 %d 秒", 
+        !enter_time ? "未知" : sprintf( "共 %d 小時 %d 分 %d 秒",
             ( time() - enter_time ) / 3600,
             ( ( time() - enter_time ) % 3600 ) / 60,
             ( ( time() - enter_time ) % 3600 ) % 60 ) ) );
@@ -549,7 +549,7 @@ void enter_hj()
     //    tell_object(me,HIB"你忽地覺得一片寂靜，剛才的聲音絲毫都聽不見了。\n"NOR);
     //    if(!wizardp(me)) me->delete("channels");
 
-    debuger = find_player("lonely");
+    debuger = find_player("admin");
     if( debuger && query("env/hj_wizmsg", debuger) )
         tell_object( debuger, sprintf( HIR"幻境遊戲通知：%s"HIR"(%s"HIR")進入幻境遊戲。 ( <unset hj_wizmsg> 不再發送本類信息)\n"NOR,
             query("name", me),query("id", me)));
@@ -692,7 +692,7 @@ void random_dispersion()
     real_random_dispersion();
     call_out("random_dispersion", 60 + random(60) );
 }
-    
+
 void real_robot_check()
 {
     object checker, me;

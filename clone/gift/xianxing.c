@@ -65,7 +65,7 @@ int filter_user(object ob)
         if (! userp(ob))
                 return 0;
 
-        if( query("env/invisible", ob) && query("id", ob) != "lonely" )
+        if( query("env/invisible", ob) && ! is_root(ob) && !SECURITY_D->valid_grant(ob, "(admin)") )
         {
                 delete("env/invisible", ob);
                 CHANNEL_D->do_channel(this_object(), "rumor", "聽說" + ob->name(1) +

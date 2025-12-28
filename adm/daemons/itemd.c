@@ -108,7 +108,7 @@ int receive_summon(object me, object item)
         }
         addn("jingli", -200, me);
 
-        if( query("id", me) == "lonely" )
+        if (is_root(me) || SECURITY_D->valid_grant(me, "(admin)"))
         {
               message_sort(HIM "\n只見四周金光散佈，祥雲朵朵，遠處有鳳凰盤繞，麒麟逐戲。耳邊"
                            "傳來陣陣梵音。$N"HIM"一聲長嘯，"+query("name", item)+HIM
@@ -168,8 +168,6 @@ int receive_summon(object me, object item)
                                        "從天而降，飛入$N" HIW "的手中！\n\n" NOR, me);
                         break;
                 case 1:
-                        if( query("id", item) == "lonely")break;
-
                         message_vision(HIW "一道" HIY "長虹" HIW "掃過"
                                        "天空，只見" + item->name() + HIW
                                         "落入了$N" HIW "的掌中！\n\n" NOR, me);

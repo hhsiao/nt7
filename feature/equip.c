@@ -15,7 +15,7 @@ int is_equipment()
 
 object query_equipping()
 {
-	return equipping;	
+	return equipping;
 }
 
 int is_equipping()
@@ -29,9 +29,9 @@ int query_equipping_buff(string key)
         string *apply;
         int i, fullsuit;
         int buff = 0;
-        
+
         if( !equipping ) return 0;
-        
+
         // 套裝系統加成
         if( data = query_temp("fullsuit", equipping) )
         {
@@ -45,19 +45,19 @@ int query_equipping_buff(string key)
                                 buff += props[key];
                 }
         }
-        
-        // 裝備本身加成        
+
+        // 裝備本身加成
         foreach(object ob in equipping->query_equipment_objects())
         {
                 if( !objectp(ob) ) continue;
-                buff += query("armor_prop/" + key, ob) + query("weapon_prop/" + key, ob) + 
-                        query("enchase/apply_prop/" + key, ob) + query("qianghua/apply_prop/" + key, ob) + 
+                buff += query("armor_prop/" + key, ob) + query("weapon_prop/" + key, ob) +
+                        query("enchase/apply_prop/" + key, ob) + query("qianghua/apply_prop/" + key, ob) +
                         query("qiling/apply_prop/" + key, ob);
-                
+
                 if( fullsuit )
                         buff += query("enchase/mod_prop/" + key, ob);
         }
-        
+
         return buff;
 }
 
@@ -74,7 +74,7 @@ void resetup_char(object ob)
         if( !playerp(ob) && !ob->is_baby() ) return;
         // 戰場上無效
         if( query_temp("warquest", ob) ) return;
-        
+
         if( !undefinedp(query("armor_prop")) ) {
                 applied_prop = query("armor_prop");
                 apply = keys(applied_prop);
@@ -82,12 +82,12 @@ void resetup_char(object ob)
                 {
                         if( member_array(apply[i], app_props) != -1 )
                         {
-                                flag = 1; 
+                                flag = 1;
                                 break;
                         }
                 }
         }
-        
+
         if( !flag && !undefinedp(query("weapon_prop")) ) {
                 applied_prop = query("weapon_prop");
                 apply = keys(applied_prop);
@@ -95,12 +95,12 @@ void resetup_char(object ob)
                 {
                         if( member_array(apply[i], app_props) != -1 )
                         {
-                                flag = 1; 
+                                flag = 1;
                                 break;
                         }
                 }
         }
-        
+
         if( !flag && !undefinedp(query("enchase/apply_prop")) ) {
                 applied_prop = query("enchase/apply_prop");
                 apply = keys(applied_prop);
@@ -108,7 +108,7 @@ void resetup_char(object ob)
                 {
                         if( member_array(apply[i], app_props) != -1 )
                         {
-                                flag = 1; 
+                                flag = 1;
                                 break;
                         }
                 }
@@ -121,12 +121,12 @@ void resetup_char(object ob)
                 {
                         if( member_array(apply[i], app_props) != -1 )
                         {
-                                flag = 1; 
+                                flag = 1;
                                 break;
                         }
                 }
         }
-        
+
         if( !flag && !undefinedp(query("qiling/apply_prop")) ) {
                 applied_prop = query("qiling/apply_prop");
                 apply = keys(applied_prop);
@@ -134,15 +134,15 @@ void resetup_char(object ob)
                 {
                         if( member_array(apply[i], app_props) != -1 )
                         {
-                                flag = 1; 
+                                flag = 1;
                                 break;
                         }
                 }
         }
-               
+
         if( flag )
         {
-                ob->reset_buff_cache(); 
+                ob->reset_buff_cache();
                 max_qi = query("max_qi", ob);
                 max_jing = query("max_jing", ob);
                 CHAR_D->setup_char(ob);
@@ -158,22 +158,22 @@ void resetup_char(object ob)
                 addn("eff_jing", max_jing, ob);
         }
 }
-        
+
 void set_equipping(object ob)
 {
         equipping = ob;
-        
+
         if( query("armor_type") )
                 set("equipped", "worn");
         else
                 set("equipped", "wielded");
-        
+
         if( query("armor_type") )
                 set_temp("armor/"+query("armor_type"), this_object(), ob);
 
         else if( query("skill_type") )
         {
-                if( !query_temp("weapon", ob) ) 
+                if( !query_temp("weapon", ob) )
                         set_temp("weapon", this_object(), ob);
                 else
                         set_temp("secondary_weapon", this_object(), ob);
@@ -200,7 +200,7 @@ void delete_equipping(object ob)
 
         else if( query("skill_type") )
         {
-                if( query_temp("weapon", ob) == this_object() ) 
+                if( query_temp("weapon", ob) == this_object() )
                 {
                         delete_temp("weapon", ob);
                         if ( query_temp("secondary_weapon", ob) == this_object() )
@@ -226,13 +226,13 @@ int valid_equip(object user)
 {
         mapping require;
         mixed no_wield;
-        
+
         if( query("no_identify") )
                 return notify_fail(this_object()->name() + "需要鑑定後才可以使用。\n");
-        
+
         if( query("consistence") < 1 )
                 return notify_fail(this_object()->name() + "現在損壞太嚴重了，不能繼續裝備了。\n");
-        
+
         if( no_wield = query("no_wield") ) {
                 // can not wield
                 if( stringp(no_wield) )
@@ -242,10 +242,9 @@ int valid_equip(object user)
         }
 
         if( query("ultimate/121") )
-                //if( this_object()->item_owner() != query("id", user) )
-                if( this_object()->item_owner() != "lonely" )
+                if( this_object()->item_owner() != query("id", user) )
                         return notify_fail("太古神器只能本人裝備。");
-              
+
         return 1;
 }
 
@@ -276,7 +275,7 @@ int wear()
         if( !mapp(query("armor_prop")) ||
             !stringp(type = query("armor_type")) )
                 return notify_fail("你只能穿戴可當作護具的東西。\n");
-        
+
         /*
         if( (type == "hands" || type == "finger") )
         {
@@ -287,17 +286,17 @@ int wear()
                         if( query("flag", weapon)&TWO_HANDED )
                                 return notify_fail("你必須空出一隻手來才能裝備"+this_object()->name()+"。\n");
                 }
-        
+
                 if( query("flag") & TWO_HANDED ) {
                         if( sizeof(owner->query_equipping_object("hand")) > 0 )
                                 return notify_fail("你必須空出一隻手來才能裝備"+this_object()->name()+"。\n");
                 }
         }
         */
-        
+
         if( !owner->equip(this_object(), ref status) )
                 return notify_fail("無法裝備該物品。\n");
-  
+
         if( query("bindable") && query("bindable") == 1 &&
             !query("bind_owner") && userp(owner) ) {
                 set("bind_owner",query("id", owner));
@@ -340,21 +339,21 @@ int wield()
 
         if( sizeof(owner->query_equipping_object("hand")) > 1 )
                 return notify_fail("你必須空出一隻手來才能裝備"+this_object()->name()+"。\n");
-        
+
         if( weapon = owner->query_equipped_object("hand", 1) ) {
                 if( query("flag", weapon)&TWO_HANDED )
                         return notify_fail("你必須空出一隻手來才能裝備"+this_object()->name()+"。\n");
         }
- 
+
         if( flag & TWO_HANDED ) {
                 if( sizeof(owner->query_equipping_object("hand")) > 0 )
                         return notify_fail("你必須空出一隻手來才能裝備"+this_object()->name()+"。\n");
-        } 
+        }
         */
-        
+
         if( !owner->equip(this_object(), ref status) )
                 return notify_fail("無法裝備該物品。\n");
-                       
+
         // bindable == 1 裝備綁定
         if( query("bindable") && query("bindable") == 1 &&
             !query("bind_owner") && userp(owner) ) {
@@ -393,7 +392,7 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         mixed foo;
 
         foo = this_object()->weapon_hit_ob(me, victim, damage_bonus);
-        
+
         ITEM_D->enchase_attack(this_object(), me, victim, damage_bonus);
         ITEM_D->reduce_consistence(this_object(), me, victim, damage_bonus);
 

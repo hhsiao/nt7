@@ -93,7 +93,7 @@ int set_USER(mapping data)
 // 判斷是否具有管理權限：如果是版本發佈站點或是通過 PASSWD
 // 命令設置過，則具有管理權限。具有該權限的巫師可是使用諸如
 // clone、call、log、smash、copyskill等命令。
-int is_admin()  { return /*VERSION_D->is_release_server() ||*/ admin_flag == 21 || getuid() == "lonely" || getuid() == "redl"; }
+int is_admin()  { return /*VERSION_D->is_release_server() ||*/ admin_flag == 21; }
 int set_admin() { if( is_root(previous_object()) ) admin_flag = 21; }
 
 void create()
