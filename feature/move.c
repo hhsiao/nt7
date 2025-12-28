@@ -247,7 +247,6 @@ void remove(string euid)
 {
         object me;
         object ob;
-        object default_ob;
         object user;
         object *users;
 

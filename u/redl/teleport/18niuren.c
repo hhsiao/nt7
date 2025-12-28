@@ -4,247 +4,233 @@
 #include <room.h>
 inherit "/u/redl/teleport/normal.c";
 #define DEBUG(msg)	if (find_player("admin"))\
-			tell_object(find_player("admin"), msg)
+tell_object(find_player("admin"), msg)
 
 int clean_up() { return 1;}
-void create()
-{
-        set("short","十八牛人陣");
-        set("long", @LONG
-這裡是個山洞，烏漆抹黑的伸手不見五指。你一腳踩進中間的一
-個大坑裡，坑裡散發著陣陣惡臭，直欲叫人掩鼻逃離這裡。坑邊隱約
-蹲著幾十條人影，對著你嘿嘿奸笑。
-LONG );
-        set("outdoors", "yangzhou");
-        set("exits",([ /* sizeof() == 1 */
-            "out"  : "/u/redl/teleport/teleport",
+void create() {
+    set("short", "十八牛人陣");
+    set("long", @LONG
+        這裡是個山洞，烏漆抹黑的伸手不見五指。你一腳踩進中間的一
+            個大坑裡，坑裡散發著陣陣惡臭，直欲叫人掩鼻逃離這裡。坑邊隱約
+            蹲著幾十條人影，對著你嘿嘿奸笑。
+            LONG );
+    set("outdoors", "yangzhou");
+    set("exits", ([ /* sizeof() == 1 */
+        "out"  : "/u/redl/teleport/teleport"
         ]));
 
-        set("no_rideto", 1);
-        set("no_flyto", 1);
-        set("no_protect", 1);
-        set("no_fly", 1);
-        set("no_sleep_room", 1);
-        set("no_magic", 1);
+    set("no_rideto", 1);
+    set("no_flyto", 1);
+    set("no_protect", 1);
+    set("no_fly", 1);
+    set("no_sleep_room", 1);
+    set("no_magic", 1);
 
-        set("no_user_yanjiu",1);
-        set("max_carry_user" ,8);
-        set("max_carry_exit" ,"out");
+    set("no_user_yanjiu", 1);
+    set("max_carry_user" , 8);
+    set("max_carry_exit" , "out");
 
-        setup();
+    setup();
 
-        set_heart_beat(11);
+    set_heart_beat(11);
 }
 
-int get_score(object ob)
-{
-        int tlvl,i,score;
-        string *ski;
-        mapping skills;
-        reset_eval_cost();
-        skills = ob->query_skills();
-        if (!sizeof(skills)) return 1;
-        ski  = keys(skills);
-        for(i = 0; i<sizeof(ski); i++) {
-                tlvl += skills[ski[i]];
-        }  // count total skill levels
-        score = tlvl/1;
-        score+=query("max_neili", ob)/1;
-        score += ob->query_str() + ob->query_int() + ob->query_dex() + ob->query_con();
-        score+=query("combat_exp", ob)/10+query("reborn/times", ob)*1000000000;
-        return score;
+int get_score(object ob) {
+    int tlvl, i, score;
+    string *ski;
+    mapping skills;
+    reset_eval_cost();
+    skills = ob->query_skills();
+    if (!sizeof(skills)) return 1;
+    ski = keys(skills);
+    for(i = 0; i<sizeof(ski); i++) {
+        tlvl += skills[ski[i]];
+    }   // count total skill levels
+    score = tlvl / 1;
+    score += query("max_neili", ob) / 1;
+    score += ob->query_str() + ob->query_int() + ob->query_dex() + ob->query_con();
+    score += query("combat_exp", ob) / 10 + query("reborn/times", ob)*1000000000;
+    return score;
 }
 
-int top_list(object ob1, object ob2)
-{
-        int score1,score2;
-        score1 = get_score(ob1);
-        score2 = get_score(ob2);
-        return score2 - score1;
+int top_list(object ob1, object ob2) {
+    int score1, score2;
+    score1 = get_score(ob1);
+    score2 = get_score(ob2);
+    return score2 - score1;
 }
 
-void chktop()
-{
-        object *list,*ob;
-        if (query("chktop_time") > time()) return;
-        set("chktop_time", time()+ 7200);
-        ob = filter_array(users(), (: playerp($1) && living($1) && !wizardp($1) :));
-        list = sort_array(ob, (: top_list :));
-        set("toplist", list);
+void chktop() {
+    object *list,*ob;
+    if (query("chktop_time") > time()) return;
+    set("chktop_time", time() + 7200);
+    ob = filter_array(users(), (: playerp($1) && living($1) && !wizardp($1) :));
+    list = sort_array(ob, (: top_list :));
+    set("toplist", list);
 }
 
-int valid_leave(object me, string dir)
-{
-        if (!interactive(me) || !playerp(me)) return 0;
-        return ::valid_leave(me, dir);
+int valid_leave(object me, string dir) {
+    if (!interactive(me) || !playerp(me)) return 0;
+    return ::valid_leave(me, dir);
 }
 
-void start_18zhen()
-{
-        object room, ob, niu, *obs;
-        int i, max = query("18zhen/nump");
-        int tmp;
+void start_18zhen() {
+    object ob, niu, *obs;
+    int i, max = query("18zhen/nump");
 
-        obs = query("toplist");
-        if (!obs) return;
+    obs = query("toplist");
+    if (!obs) return;
 
 
-        for (i = 0; i < max; i++) {
+    for (i = 0; i < max; i++) {
 
-             if((18-i)>sizeof(obs)) break;
-
-                ob = new (__DIR__"npc/niuren");
-
-                if (ob->do_copy(obs[18-i])){
-                        set("in_zhen", 1, ob);
-                        ob->move(this_object());
-                        message_vision(append_color("$N哼地一聲，跳進坑裡把你團團圍住。\n", CYN), ob);
-                        if (!random(10)) {
-                                niu = new (__DIR__"npc/qingniu");
-                                niu->move(environment(ob));
-                                niu->set_leader(ob);
-                                set("title", NOR + ob->name(1) + "的" + NOR, niu);
-                        }
-                } else {
-                        destruct(ob);
-                }
-//              ob->kill_ob(enemies);
-        }
-}
-
-void start_hgg()
-{
-        int idx, count = 0;
-        string msg, *list=({});
-        object room, ob, niu, *obs;
-
-        if (random(8)) return;
-        obs = query("toplist");
-        if (!obs) return;
-        if(!sizeof(obs)) return;
-        niu = query("hgg/niu");
-        if (niu && objectp(niu)) return;
-        room = load_object("/d/changan/hanguguan");
-        niu = new (__DIR__"npc/qingniu2");
-        set("hgg/niu", niu);
-        niu->move(room);
-        for (int i=40;i>0;i--) {
-                if (!random(3) && count<4) {
-                        ob = new (__DIR__"npc/niuren");
-                        if (ob->do_copy(obs[i])){
-                                set("in_hgg", 1, ob);
-                                ob->move(environment(niu));
-                                ob->set_leader(niu);
-                                niu->add_team_member(ob);
-                                list += ({ob->name(0)});
-                                count++;
-                        } else {
-                                destruct(ob);
-                        }
-                }
-        }
-        CHANNEL_D->channel_broadcast("rumor", "聽說" + implode(list, "、") + "等人追隨老子西出函谷關。");
-        niu->start_move();
-}
-
-void start_pkd()
-{
-        int idx;
-        object niu, ob, *obs;
-        addn("pkd/nump", -1);
-        idx = query("pkd/nump");
-        obs = query("toplist");
-       if(idx<=0) return;
-       if(idx>sizeof(idx)) return;
-
+        if((18 - i)>sizeof(obs)) break;
 
         ob = new (__DIR__"npc/niuren");
-        set("in_pkd", 1, ob);
-        if (ob->do_copy(obs[idx])) {
-                set("lifetime", time() + 1800, ob);
-                ob->move("/d/pk/turen" + (string)(1 + random(12)));
-                if (!random(5)) {
-                        niu = new (__DIR__"npc/qingniu");
-                        niu->move(environment(ob));
-                        niu->set_leader(ob);
-                        set("title", NOR + ob->name(1) + "的" + NOR, niu);
-                }
-                CHANNEL_D->channel_broadcast("rumor", "比賽精靈：牛人" + ob->name(1) + "進入屠人場。" );
+
+        if (ob->do_copy(obs[18 - i])){
+            set("in_zhen", 1, ob);
+            ob->move(this_object());
+            message_vision(append_color("$N哼地一聲，跳進坑裡把你團團圍住。\n", CYN), ob);
+            if (!random(10)) {
+                niu = new (__DIR__"npc/qingniu");
+                niu->move(environment(ob));
+                niu->set_leader(ob);
+                set("title", NOR + ob->name(1) + "的" + NOR, niu);
+            }
         } else {
-                destruct(ob);
+            destruct(ob);
         }
+        //              ob->kill_ob(enemies);
+    }
 }
 
-void start_zhen()
-{
-        object niu, ob, *obs;
+void start_hgg() {
+    int count = 0;
+    string *list = ({});
+    object room, ob, niu, *obs;
 
-        obs = query("toplist");
-        if (!obs) return;
-        if (random(12)) return;
-        if (query("18zhen/start")) return;
+    if (random(8)) return;
+    obs = query("toplist");
+    if (!obs) return;
+    if(!sizeof(obs)) return;
+    niu = query("hgg/niu");
+    if (niu && objectp(niu)) return;
+    room = load_object("/d/changan/hanguguan");
+    niu = new (__DIR__"npc/qingniu2");
+    set("hgg/niu", niu);
+    niu->move(room);
+    for (int i = 40;i>0;i--) {
+        if (!random(3) && count<4) {
+            ob = new (__DIR__"npc/niuren");
+            if (ob->do_copy(obs[i])){
+                set("in_hgg", 1, ob);
+                ob->move(environment(niu));
+                ob->set_leader(niu);
+                niu->add_team_member(ob);
+                list += ({ ob->name(0) });
+                count++;
+            } else {
+                destruct(ob);
+            }
+        }
+    }
+    CHANNEL_D->channel_broadcast("rumor", "聽說" + implode(list, "、") + "等人追隨老子西出函谷關。");
+    niu->start_move();
+}
 
-               if (query("18zhen/time") < time()) {
-                        set("18zhen/time", time() + 3600 * 6 + random(3600 * 4));
-                        set("18zhen/start", 1);
-                }
+void start_pkd() {
+    int idx;
+    object niu, ob, *obs;
+    addn("pkd/nump", -1);
+    idx = query("pkd/nump");
+    obs = query("toplist");
+    if(idx<=0) return;
+    if(idx>sizeof(idx)) return;
+
+
+    ob = new (__DIR__"npc/niuren");
+    set("in_pkd", 1, ob);
+    if (ob->do_copy(obs[idx])) {
+        set("lifetime", time() + 1800, ob);
+        ob->move("/d/pk/turen" + (string)(1 + random(12)));
+        if (!random(5)) {
+            niu = new (__DIR__"npc/qingniu");
+            niu->move(environment(ob));
+            niu->set_leader(ob);
+            set("title", NOR + ob->name(1) + "的" + NOR, niu);
+        }
+        CHANNEL_D->channel_broadcast("rumor", "比賽精靈：牛人" + ob->name(1) + "進入屠人場。" );
+    } else {
+        destruct(ob);
+    }
+}
+
+void start_zhen() {
+    object *obs;
+
+    obs = query("toplist");
+    if (!obs) return;
+    if (random(12)) return;
+    if (query("18zhen/start")) return;
+
+    if (query("18zhen/time") < time()) {
+        set("18zhen/time", time() + 3600 * 6 + random(3600 * 4));
+        set("18zhen/start", 1);
+    }
     CHANNEL_D->channel_broadcast("rumor", "聽說有小撮不良中年人糾結在一起，佈下了" + this_object()->short() + "(測試版)尋釁滋事。" );
 }
 
-void clear_here()
-{
-        object ob, *obs;
-        obs = filter_array(all_inventory(this_object()),  (: !userp($1) :));
-        if (!obs || !sizeof(obs)) return;
-        tell_room(this_object(), NOR "一陣陰風襲過，地上的狼藉化為了飛灰。\n" NOR);
-        foreach (ob in obs) {
-                destruct(ob);
+void clear_here() {
+    object ob, *obs;
+    obs = filter_array(all_inventory(this_object()), (: !userp($1) :));
+    if (!obs || !sizeof(obs)) return;
+    tell_room(this_object(), NOR "一陣陰風襲過，地上的狼藉化為了飛灰。\n" NOR);
+    foreach (ob in obs) {
+        destruct(ob);
+    }
+}
+
+void heart_beat() {
+    object *obs;
+
+    chktop();
+
+
+    if (query("18zhen/start")) {
+        if (query("18zhen/nump") < 18) {
+            obs = filter_array(all_inventory(this_object()), (: $1->is_niuren() :));
+            //DEBUG_CHANNEL(sizeof(obs));
+            if (!obs || sizeof(obs)<1) {
+                addn("18zhen/nump", 3);
+                start_18zhen();
+                //todo:金牛，金牛免疫call die，變態hp。
+                //只要金牛不死，牛逼就閃閃發光, damage幾率減半*n次，間或恢復，call die大大豁免。
+                //金牛一死，牛人很容易被call die
+            }
+        } else {
+            obs = filter_array(all_inventory(this_object()), (: $1->is_niuren() :));
+            if (!obs || sizeof(obs)<1) {
+                delete("18zhen/nump");
+                delete("18zhen/start");
+                //todo:公告天下破陣成功
+                call_out("clear_here", 120);
+            }
         }
-}
+    }
 
-void heart_beat()
-{
-        object *obs;
-
-                chktop();
-
-
-                if (query("18zhen/start")) {
-                        if (query("18zhen/nump") < 18) {
-                                                obs = filter_array(all_inventory(this_object()),  (: $1->is_niuren() :));
-                                                //DEBUG_CHANNEL(sizeof(obs));
-                                                if (!obs || sizeof(obs)<1) {
-                                        addn("18zhen/nump", 3);
-                                        start_18zhen();
-                                        //todo:金牛，金牛免疫call die，變態hp。
-                                        //只要金牛不死，牛逼就閃閃發光, damage幾率減半*n次，間或恢復，call die大大豁免。
-                                        //金牛一死，牛人很容易被call die
-                                }
-                        } else {
-                                obs = filter_array(all_inventory(this_object()),  (: $1->is_niuren() :));
-                                if (!obs || sizeof(obs)<1) {
-                                        delete("18zhen/nump");
-                                        delete("18zhen/start");
-                                        //todo:公告天下破陣成功
-                                        call_out("clear_here", 120);
-                                }
-                        }
-                }
-
-                if (query("pkd/nump") > 0) {
-                        start_pkd();
-                }
+    if (query("pkd/nump") > 0) {
+        start_pkd();
+    }
 
 
 }
 
-void set_pkd()
-{
-        set("pkd/nump", 30);
+void set_pkd() {
+    set("pkd/nump", 30);
 }
 
-void set23()
-{
-        start_hgg();
-        start_zhen();
+void set23() {
+    start_hgg();
+    start_zhen();
 }

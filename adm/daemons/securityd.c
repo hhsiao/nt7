@@ -75,8 +75,6 @@ int     save();
 
 void create()
 {
-        int i;
-
         seteuid(getuid());
         restore();
 }
@@ -166,7 +164,6 @@ int save()
         string item;
         string val;
         string sum;
-        string sec;
         int i;
 
         if (! mapp(site_privilege))

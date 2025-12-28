@@ -9,7 +9,7 @@ void get_inventory(object ob, int deep)
 {
     mixed *inv;
     int i, j, size;
-    string ex2, ex3;
+    string ex2;
     string file;
 
     j = 0;

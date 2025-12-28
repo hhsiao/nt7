@@ -107,7 +107,6 @@ varargs int set_freeze(int n, int flag)
 varargs int receive_damage(string type, int damage, object who)
 {
         int val, n;
-        int avoid;
         function f;
         int a, r;
         object *bugs, jcg;
@@ -229,7 +228,6 @@ varargs int receive_damage(string type, int damage, object who)
 varargs int receive_wound(string type, int damage, object who)
 {
         int val, n;
-        int avoid;
         int a;
         object *bugs, jcg;
 
@@ -494,7 +492,6 @@ varargs void unconcious(object defeater)
 
         defeated_by_who = last_damage_name;
         if( defeated_by = last_damage_from ) {
-                object *dp;
                 // 如果此人有主，則算主人打暈的
                 if( objectp(query_temp("owner", defeated_by)) ) {
                         defeated_by = query_temp("owner", defeated_by);
@@ -599,7 +596,7 @@ varargs void revive(int quiet)
 varargs void die(object killer)
 {
         object me, env;
-        object corpse, room, obj, *inv;
+        object corpse;
         mixed  riding;
         mapping buff;
         object dob;
@@ -610,7 +607,6 @@ varargs void die(object killer)
         object tmp_load;
         int direct_die;
         int avoid;
-        int i;
         int time;
         int duration;
         string follow_msg = 0;
@@ -868,7 +864,7 @@ int max_water_capacity()
 
 int heal_up()
 {
-        int update_flag, i;
+        int update_flag;
         int scale, t, q;
         int is_user;
         mapping my;
