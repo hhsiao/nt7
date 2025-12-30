@@ -1,17 +1,17 @@
         set_hide(3)                LP MudOSv21c7                (7 Jul 1996)
-        函数名称:
-                set_hide() - 对一个可以藏匿的物件设定藏匿旗标 (hide flag).
-        函数语法:
+        函數名稱:
+                set_hide() - 對一個可以藏匿的物件設定藏匿旗標 (hide flag).
+        函數語法:
                 void set_hide( int flag );
-                无传回值 set_hide( 整数 flag );
-        函数用法:
-                以整数 flag 设定一个物件的藏匿旗标. 旗标只能是 0  或 1
-                , 分别代表取消和开始藏匿状态. 只有在 master()->valid_hide(ob)
-                对此物体传回真值时, 此物体才能藏匿. 当物体处於藏匿状态时,
-                只有其他有能力藏匿的物体才能使用 find_object()  或传回多个
+                無傳回值 set_hide( 整數 flag );
+        函數用法:
+                以整數 flag 設定一個物件的藏匿旗標. 旗標只能是 0  或 1
+                , 分別代表取消和開始藏匿狀態. 只有在 master()->valid_hide(ob)
+                對此物體傳回真值時, 此物體才能藏匿. 當物體處於藏匿狀態時,
+                只有其他有能力藏匿的物體才能使用 find_object()  或傳回多個
                 物件的函式如 users(), children(), all_inventory() 等等找到
-                此物体. 
-        参考函数:
+                此物體. 
+        參考函數:
                 valid_hide(4)
-        手册翻译:
+        手冊翻譯:
                 Phoebus@ZH        97.Jul.21.                (Writen 5/23/97)

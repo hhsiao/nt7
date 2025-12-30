@@ -1,29 +1,29 @@
         each(3)                        LP MudOSv21c7                (7 Jul 1996)
-        函数名称:
-                each() - 分次传回一个映射变数 (mapping) 的各个
-                        (key, value) 的内容.
-        函数语法:
+        函數名稱:
+                each() - 分次傳回一個映射變數 (mapping) 的各個
+                        (key, value) 的內容.
+        函數語法:
                 mixed *each( mapping m, int reset );
-        函数用法:        
-                each()  函式把一个映射变数里的每对 (key, value) 一次
-                一次地传回. each() 传回来的次序与 keys() 和 values()  
-                两个函式传回来的次序一样. 当 each() 读到映射变数的尾
-                端时, 会传回一个空的向量 (null vector, 即 (0,0)). 而
-                在传回空向量之後, 下一个 each() 传回的内容又会从头开
+        函數用法:        
+                each()  函式把一個映射變數里的每對 (key, value) 一次
+                一次地傳回. each() 傳回來的次序與 keys() 和 values()  
+                兩個函式傳回來的次序一樣. 當 each() 讀到映射變數的尾
+                端時, 會傳回一個空的向量 (null vector, 即 (0,0)). 而
+                在傳回空向量之後, 下一個 each() 傳回的內容又會從頭開
                 始. 
-                当不同的物件使用 each() 读取相同的映射变数时, 一定都会
-                从头开始. 虽然 MudOS 有单执行绪 (single thread) 的性质
-                , 但是也不致於让 each() 执行时出现问题. ( 实际上一个物
-                件无法於使用 each() 读取映射函数读到一半时, 跳开目前读
+                當不同的物件使用 each() 讀取相同的映射變數時, 一定都會
+                從頭開始. 雖然 MudOS 有單執行緒 (single thread) 的性質
+                , 但是也不致於讓 each() 執行時出現問題. ( 實際上一個物
+                件無法於使用 each() 讀取映射函數讀到一半時, 跳開目前讀
                 (key, value) 的位置)
-                如果指定第二个参数为 1, 则 each() 会重新从头开始读取.
+                如果指定第二個參數為 1, 則 each() 會重新從頭開始讀取.
                 □例:
                 mixed *pair;
                 while ((pair = each(x)) != ({})) {
                         write("key   = " + pair[0] + "\n");
                         write("value = " + pair[1] + "\n");
                 }
-        参考函数:
+        參考函數:
                 keys(3), values(3)
-        手册翻译:
+        手冊翻譯:
                 Phoebus@ZH        97.Feb.7.                (Writen 5/23/97)

@@ -26,7 +26,7 @@ void checking(object me,object ob)
                   }
                   else
                         addn_temp("help_killed", 1, ob);
-              message_vision("$N撲在地上掙扎了幾下，口中噴出幾口"HIR"鮮血"NOR"，死了！\n",me);
+              message_vision("$N撲在地上掙紮了幾下，口中噴出幾口"HIR"鮮血"NOR"，死了！\n",me);
                        remove_call_out("destroy");
                  call_out("destroy",1, me);
                   if(ob->query_condition("jobshadi_limit")==0)

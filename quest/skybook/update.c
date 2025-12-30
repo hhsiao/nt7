@@ -82,7 +82,7 @@
 流氓頭$npcen=liumang tou;rd gc;s;ok|rd fuzhou;ok$
 小混混$npcen=xiao hunhun;rd gc;s;ok$
 唐楠$npcen=tang nan;rd gc;s;e;ok$
-托缽僧$npcen=tuoba seng;rd gc;s;s;ok$
+託缽僧$npcen=tuoba seng;rd gc;s;s;ok$
 少林英雄令$rd gc;s;s;give 1 gold to tuoba seng$
 阿慶嫂$npcen=aqing sao;rd gc;s;s;w;ok$
 五香花生|翡翠豆腐$npcen=aqing sao;buy=1;rd gc;s;s;w;ok$
@@ -710,7 +710,7 @@
 傅思歸$npcen=fu sigui;rd dali;n;n;e;ok$
 熟銅棍$npcen=fu sigui;rd dali;n;n;e;ok$
 士兵|黃衣軍服$npcen=shi bing;rd dali;n;n;n;ok|s;s;s;s;s;ok$
-褚萬里|釣杆$npcen=chu wanli;rd dali;n;n;e;n;ok$
+褚萬裡|釣杆$npcen=chu wanli;rd dali;n;n;e;n;ok$
 黃衣衛士$npcen=wei shi;rd dali;n;n;e;n;ok|ok$
 段無畏$npcen=duan wuwei;rd dali;n;n;e;n;enter;e;e;n;ok$
 古篤誠$npcen=gu ducheng;rd dali;n;n;e;n;enter;e;e;n;n;ok$
@@ -1176,7 +1176,7 @@
 霍青桐|翠羽|黃衫|短劍1$npcen=huo qingtong;rd lanzhou;#4 n;#8 w;wu;ok|wd;w;w;w;#3 n;#2 w;s;w;ok$
 
 小販$r suzhou;s|r wugong;e
-棗紅緞面皮袍|地牢鑰匙|楊蓮亭|成德殿殿下弟子/*先找任我行ask 比劍拿到黑木令, 然後give ling to zhang chengfeng, 上黑木崖, 砍死楊蓮亭*/
+棗紅緞麵皮袍|地牢鑰匙|楊蓮亭|成德殿殿下弟子/*先找任我行ask 比劍拿到黑木令, 然後give ling to zhang chengfeng, 上黑木崖, 砍死楊蓮亭*/
 紫綢衫|紫衫侍者/*上黑木崖後n*/
 
 紫色袈裟/*金輪法王, 龍象袈裟被人拿了, 他就穿這件*/

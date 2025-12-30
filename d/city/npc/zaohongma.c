@@ -31,7 +31,7 @@ void create()
         set_temp("apply/damage", 25);
         set("chat_chance", 3);
         set("chat_msg", ({
-                RED"棗紅馬"NOR"抖抖長毛，揚頸「吁噓噓」一陣嘶鳴。\n",
+                RED"棗紅馬"NOR"抖抖長毛，揚頸「籲噓噓」一陣嘶鳴。\n",
                 RED"棗紅馬"NOR"扯了扯韁繩，然後不耐地在地上刨著蹄子。\n",
         }) );
 

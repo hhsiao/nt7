@@ -2,11 +2,11 @@
 周：
   1、擂臺打榜           20:00-23:00  無需啟動
   2、自由戰場           19:30-22:30  無需啟動
-  3、幫戰之冰火島遠征   20:00-21:30  需要啟動
+  3、幫戰之冰火島遠徵   20:00-21:30  需要啟動
   4、襄陽保衛戰         20:30-21:30  需要啟動
   5、幫派大作戰         20:30-22:00  需要啟動
      繽紛週末活動       20:00-23:59  無需啟動
-  6、幫戰之冰火島遠征   20:00-21:30  需要啟動
+  6、幫戰之冰火島遠徵   20:00-21:30  需要啟動
      自由戰場           13:00-20:00  無需啟動
      繽紛週末活動       00:00-23:59  無需啟動
   7、襄陽保衛戰         20:30-21:30  需要啟動
@@ -52,7 +52,7 @@ nosave mapping huodong_list = ([
 
         "2"   :  sprintf(STR_SPRINTF, "週二", "自由戰場", "19:00-20:30", "help war_free"),
 
-        "3"   :  sprintf(STR_SPRINTF, "週三", "冰火島遠征", "20:00-21:30", "help league.war"),
+        "3"   :  sprintf(STR_SPRINTF, "週三", "冰火島遠徵", "20:00-21:30", "help league.war"),
 
         "4"   :  sprintf(STR_SPRINTF, "週四", "襄陽保衛戰", "21:30-22:30", "help xywar"),
 
@@ -61,7 +61,7 @@ nosave mapping huodong_list = ([
 
         "6"   :  sprintf(STR_SPRINTF, "週六", "繽紛週末活動", "00:00-23:59", "help wkgift") +
                  sprintf(STR_SPRINTF, "    ", "自由戰場", "13:00-20:00", "help war_free") +
-                 sprintf(STR_SPRINTF, "    ", "冰火島遠征", "20:00-21:30", "help league.war"),
+                 sprintf(STR_SPRINTF, "    ", "冰火島遠徵", "20:00-21:30", "help league.war"),
 
         "7"   :  sprintf(STR_SPRINTF, "週日", "繽紛週末活動", "00:00-23:59", "help wkgift") +
                  sprintf(STR_SPRINTF, "    ", "襄陽保衛戰", "21:30-22:30", "help xywar") +
@@ -196,8 +196,8 @@ void heart_beat()
                 }
         break;
 
-        case "3": // "週三", "冰火島遠征",20:00-21:30"
-                if (! query("huodong_info/" + today + "/冰火島遠征")) // 還未舉行
+        case "3": // "週三", "冰火島遠徵",20:00-21:30"
+                if (! query("huodong_info/" + today + "/冰火島遠徵")) // 還未舉行
                 {
                         if (nhour == 20)
                         {
@@ -205,7 +205,7 @@ void heart_beat()
                                 if (! LEAGUE_D->is_in_leaguewar())
                                         LEAGUE_D->start_leaguewar();
                                 // 記錄開始時間
-                                set("huodong_info/" + today + "/冰火島遠征", ntime);
+                                set("huodong_info/" + today + "/冰火島遠徵", ntime);
                         }
                 }
         break;
@@ -241,7 +241,7 @@ void heart_beat()
         case "6": // 週六
                   //        "週六", "繽紛週末活動", "00:00-23:59"
                   //        "自由戰場", "13:00-20:00"
-                  //        "冰火島遠征", "20:00-21:30"
+                  //        "冰火島遠徵", "20:00-21:30"
                 if (! query("huodong_info/" + today + "/自由戰場")) // 還未舉行
                 {
                         if (nhour == 13)
@@ -255,7 +255,7 @@ void heart_beat()
                                 set("huodong_info/" + today + "/自由戰場", ntime);
                         }
                 }
-                if (! query("huodong_info/" + today + "/冰火島遠征")) // 還未舉行
+                if (! query("huodong_info/" + today + "/冰火島遠徵")) // 還未舉行
                 {
                         if (nhour == 20)
                         {
@@ -263,7 +263,7 @@ void heart_beat()
                                 if (! LEAGUE_D->is_in_leaguewar())
                                         LEAGUE_D->start_leaguewar();
                                 // 記錄開始時間
-                                set("huodong_info/" + today + "/冰火島遠征", ntime);
+                                set("huodong_info/" + today + "/冰火島遠徵", ntime);
                         }
                 }
         break;

@@ -1,12 +1,12 @@
         to_float(3)                LP MudOSv21c7                (7 Jul 1996)
-        函数名称:
-                to_float - 将一个整数转换成一个浮点数.
-        函数语法:
+        函數名稱:
+                to_float - 將一個整數轉換成一個浮點數.
+        函數語法:
                 float to_float( int i );
-                浮点数 to_float( 整数 i );
-        函数用法:
-                to_float() 传回一个浮点数型态的数值, 此数值等於整数 i.
-        参考函数:
+                浮點數 to_float( 整數 i );
+        函數用法:
+                to_float() 傳回一個浮點數型態的數值, 此數值等於整數 i.
+        參考函數:
                 to_int(3), read_buffer(3), sprintf(3), sscanf(3)
-        手册翻译:
+        手冊翻譯:
                 Phoebus@ZH        97.Jul.25.                (Writen 5/23/97)

@@ -499,7 +499,7 @@ mapping *quest = ({
         ]),
         ([
                 "id":          "zhu wanli",
-                "name":        "褚萬里",
+                "name":        "褚萬裡",
                 "type":        "殺",
                 "bonus":       82,
                 "msg":        "",
@@ -531,7 +531,7 @@ mapping *quest = ({
         ]),
         ([
                 "id":          "chu wanli",
-                "name":        "褚萬里",
+                "name":        "褚萬裡",
                 "type":        "殺",
                 "bonus":       82,
                 "msg":        "",

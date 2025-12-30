@@ -1,19 +1,19 @@
         disable_commands(3)        LP MudOSv21c7                (7 Jul 1996)
-        函数名称:
-                disable_commands() - 设定一个活著的 (living) 物件为
+        函數名稱:
+                disable_commands() - 設定一個活著的 (living) 物件為
                         「非活著」(non-living)
-        函数语法:
+        函數語法:
                 int disable_commands( void );
-                整数 disable_commands( 无参数 );
-        函数用法:
-                让一个活著的物件变成「非活著」(non-living). 所谓
-                「非活著」, 就是让物件变成以下的状态:
+                整數 disable_commands( 無參數 );
+        函數用法:
+                讓一個活著的物件變成「非活著」(non-living). 所謂
+                「非活著」, 就是讓物件變成以下的狀態:
                 add_actions 失效.
-                livingp 函式传回「伪」值 (false, 0).
-                如果此物件是「可互动的」 (interactive), 就让这个使用者
-                无法输入命令 (input_to 函式例外).
-                disable_commands 永远传回 0 值.
-        参考函数:
+                livingp 函式傳回「偽」值 (false, 0).
+                如果此物件是「可互動的」 (interactive), 就讓這個使用者
+                無法輸入命令 (input_to 函式例外).
+                disable_commands 永遠傳回 0 值.
+        參考函數:
                 enable_commands(3)
-        手册翻译:
+        手冊翻譯:
                 Phoebus@ZH        97.Feb.04.                (Writen 5/23/97)

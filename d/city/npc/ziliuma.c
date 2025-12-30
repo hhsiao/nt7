@@ -29,7 +29,7 @@ void create()
 
         set("chat_chance", 5);
         set("chat_msg", ({
-                MAG"紫騮馬"NOR"「吁噓噓」一陣嘶鳴，不停地踢著腳掌。\n",
+                MAG"紫騮馬"NOR"「籲噓噓」一陣嘶鳴，不停地踢著腳掌。\n",
                 MAG"紫騮馬"NOR"的長尾巴很不老實地不停地甩來甩去。\n",
         }) );
 

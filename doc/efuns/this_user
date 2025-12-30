@@ -1,24 +1,24 @@
 
         this_user()
 
-        名称：
-                this_user() 返回当前的互动物件
+        名稱：
+                this_user() 返回當前的互動物件
 
-        语法：
+        語法：
                 object this_user(int)
-                物件 this_user( 整数 )
+                物件 this_user( 整數 )
 
         用法：
-                返回是当前函数被呼叫的玩家物件。特别要注意的是：
-                即使从玩家物件内部呼叫函数，this_user() 的返回值
+                返回是當前函數被呼叫的玩家物件。特別要注意的是：
+                即使從玩家物件內部呼叫函數，this_user() 的返回值
                 也有可能和 this_object() 不同。如果 this_user 
-                被 this_user(1) 呼叫，那么返回值会是使函数被呼叫
-                的那个玩家物件，this_user(1) 确有可能返回一个和
-                this_user() 不同的物件（例如管理者呼叫玩家物件内
-                的 command() 函数使其执行一个命令）。
+                被 this_user(1) 呼叫，那麼返回值會是使函數被呼叫
+                的那個玩家物件，this_user(1) 確有可能返回一個和
+                this_user() 不同的物件（例如管理者呼叫玩家物件內
+                的 command() 函數使其執行一個命令）。
 
-        参考：
+        參考：
                 this_object
 
-        by 发现号(Find@tx)
+        by 發現號(Find@tx)
 

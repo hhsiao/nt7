@@ -1,30 +1,30 @@
 
         socket_status()
 
-        名称：
-                socket_status() 显示出每一个 LPC 套接口的状态
+        名稱：
+                socket_status() 顯示出每一個 LPC 套接口的狀態
 
-        语法：
+        語法：
                 mixed *socket_status(void | int);
-                混合阵列 dump_socket_status(无参数 | 整数)
+                混合陣列 dump_socket_status(無參數 | 整數)
 
-        说明：
-                当无参数会返回每一个 LPC 套接口的状态。
-                当有参数，如果参数是一个有效的套接口文件描述符，
-                回传回此套接口的状态，否则传回 0。
+        說明：
+                當無參數會返回每一個 LPC 套接口的狀態。
+                當有參數，如果參數是一個有效的套接口文件描述符，
+                回傳回此套接口的狀態，否則傳回 0。
 
-                每一个套接口状态阵列格式为：
+                每一個套接口狀態陣列格式為：
                         ret[0] = (int)    套接口文件描述夫
-                        ret[1] = (string) 套接口状态
-                        ret[2] = (string) 套接口类型
+                        ret[1] = (string) 套接口狀態
+                        ret[2] = (string) 套接口類型
                         ret[3] = (string) 本地地址
-                        ret[4] = (string) 远端地址
+                        ret[4] = (string) 遠端地址
                         ret[5] = (object) 套接口宿主物件
 
         示例：
 
         (0     1          2           3               4                 5)
-        Fd    状态       类型      本地地址        远端地址           所有者
+        Fd    狀態       類型      本地地址        遠端地址           所有者
         --  ---------  --------  ------------  ------------------ ---------------
          5   BOUND   DATAGRAM 192.168.0.1.8000        *.*        /adm/daemons/network/dns_master
          7   LISTEN   STREAM  192.168.0.1.6969        *.*        /adm/daemons/ftpd
@@ -33,5 +33,5 @@
         -1   CLOSED     MUD        *.*            *.*        0
         -1   CLOSED     MUD        *.*            *.*        0
 
-        by 发现号(Find@tx)
+        by 發現號(Find@tx)
 

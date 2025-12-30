@@ -52,7 +52,7 @@ void die()
         exp = kar + random(200);
         pot = 200 + random(50);
 
-        message_vision(HIR "\n強盜倒在地上，掙扎了幾下就死了。\n" NOR,me);
+        message_vision(HIR "\n強盜倒在地上，掙紮了幾下就死了。\n" NOR,me);
         if (me->query("kill_qiangdao") == 1 && this_object()->query_temp("owner/id") == me->query("id")) {
                 message_vision(HIW "$N被獎勵了：\n"
                 + chinese_number(exp) + "點實戰經驗，\n"

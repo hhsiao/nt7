@@ -49,7 +49,7 @@ int do_shoot(string arg)
                         else if (level < 70) write("蠟燭的火苗狠狠地晃了幾晃才穩下來。\n");
                         else if (level < 80) write("蠟燭的火苗被射得東倒西歪，停了一下又跳躍起來。\n");
                         else if (level < 90) write("蠟燭的火苗被射得東倒西歪，過了半天才又跳躍起來。\n");
-                        else write("“嗤”地一聲輕響，蠟燭的火苗幾乎滅了，掙扎了幾下才又重新跳躍起來。\n");
+                        else write("“嗤”地一聲輕響，蠟燭的火苗幾乎滅了，掙紮了幾下才又重新跳躍起來。\n");
                         me->improve_skill("finger", me->query("int"));
                         if (!random(5)) message("vision", "$N對著蠟燭指指點點，不知在做什麼。\n", me, ({ me }));
                 }

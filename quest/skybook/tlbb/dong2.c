@@ -235,7 +235,7 @@ string look_picture()
      object me;  
      me=this_player();
   	return
-	HIR"畫卷上赫然出現一個橫臥的裸女畫像，全身一絲不掛，面貌竟與那玉像一般無異。\n"NOR;
+	HIR"畫捲上赫然出現一個橫臥的裸女畫像，全身一絲不掛，面貌竟與那玉像一般無異。\n"NOR;
 }
 
 int do_yanjiu(string arg)
@@ -349,7 +349,7 @@ void beiming4(object me)
 {
   if(!me) return;
      tell_object(me,HIB"當下將帛卷又展開少些，見下面的字是：“北冥神功系引世人\n"+
-                       "之內力而為我有。北冥大水，非由自生。語云：百川匯海，大\n"+
+                       "之內力而為我有。北冥大水，非由自生。語雲：百川匯海，大\n"+
                        "海之水以容百川而得。汪洋巨浸，端在積聚。此‘手太陰肺經\n"+
                        "’為北冥神功之第一課。”\n\n"NOR);
      remove_call_out("beiming5");

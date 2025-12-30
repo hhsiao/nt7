@@ -1,14 +1,14 @@
         rename(3)                LP MudOSv21c7                (7 Jul 1996)
-        函数名称:
-                rename() - 更改一个档案的名称.
-        函数语法:
+        函數名稱:
+                rename() - 更改一個檔案的名稱.
+        函數語法:
                 int rename( string src, string dst );
-                整数 rename( 字串 src, 字串 dst );
-        函数用法:
-                把叫做 src 的档案改名叫做 dst.
-        传回值:
-                改名成功就传回 0.  失败则传回非零值.
-        参考函数:
+                整數 rename( 字串 src, 字串 dst );
+        函數用法:
+                把叫做 src 的檔案改名叫做 dst.
+        傳回值:
+                改名成功就傳回 0.  失敗則傳回非零值.
+        參考函數:
                 rm(3), rmdir(3), cp(3), link(3)
-        手册翻译:
+        手冊翻譯:
                 Phoebus@ZH        97.May.27.                (Writen 5/23/97)

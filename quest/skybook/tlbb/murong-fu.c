@@ -119,7 +119,7 @@ void create()
 		"碧玉劍" : (: ask_sword2 :),
 		"寶劍" : (: ask_sword :),
 		"次數" : (: ask_times :),
-		"斗轉星移"  : (: ask_skill :),
+		"鬥轉星移"  : (: ask_skill :),
 		"圖解" : (: ask_book2 :),
 		"武學" : (: ask_learn :),
 		"覆命" : (: ask_fuming :),
@@ -294,13 +294,13 @@ string ask_fuxing()
 	command("whisper " + ob->query("id")+" 恩，只是所謂復興天下，談何容易，而且......");
 	command("look " + ob->query("id"));
 	command("whisper " + ob->query("id")+" 當今，天下武林所謂正派有“兩派一幫”之說，就是少林派、武當派與丐幫。");
-	command("whisper " + ob->query("id")+" 其中少林、武當人稱武林泰山北斗，臥龍藏虎之輩層出不窮，無名神僧和張三丰人稱不死老怪物。");
+	command("whisper " + ob->query("id")+" 其中少林、武當人稱武林泰山北斗，臥龍藏虎之輩層出不窮，無名神僧和張三豐人稱不死老怪物。");
 	command("whisper " + ob->query("id")+" 而丐幫乃天下第一大幫，從前任幫主蕭峰，到大俠郭靖、還是神丐洪七，都是名震一方的高手。");
 	command("consider");
 	command("whisper " + ob->query("id")+" 近年來，張無忌掌教西域明教，大有凌駕中原武林之勢，且因武當關係緊密，影響力日益加劇。");
 	command("whisper " + ob->query("id")+" 西南大理，枯榮復出，六脈重現，段譽更被稱為青年第一高手，挾皇室之威，隱約成為江南武林之尊。");
 	command("whisper " + ob->query("id")+" 因此，要復興天下，必須掃除這“兩派一幫一教一世家”。對付丐幫少林，我已經有了一個完全之策。");
-	command("whisper " + ob->query("id")+" "+ RANK_D->query_respect(ob) +"竟然立志復興天下，就先帶張三丰、張無忌或枯榮三個中任意一個人頭回來見我，以明心志！");
+	command("whisper " + ob->query("id")+" "+ RANK_D->query_respect(ob) +"竟然立志復興天下，就先帶張三豐、張無忌或枯榮三個中任意一個人頭回來見我，以明心志！");
 	log_file("quest/TLBB", sprintf("%s(%s)為復興天下需要砍人了，特此紀錄。經驗：%d。\n", ob->name(1),ob->query("id"), ob->query("combat_exp")) );
 	command("addoil " + ob->query("id"));
 	ob->set_temp(QUESTDIR5+"askfu",1);
@@ -467,7 +467,7 @@ string ask_skill()
 
 	if (!(fam = this_player()->query("family"))|| fam["family_name"] != "姑蘇慕容")
 		return RANK_D->query_respect(this_player()) + "與本派素無來往，不知此話從何談起？";
-	return "斗轉星移是我慕容家的絕學，最是注重招架和身法。";
+	return "鬥轉星移是我慕容家的絕學，最是注重招架和身法。";
 }
 
 string ask_ge()
@@ -501,15 +501,15 @@ string ask_book()
 		return RANK_D->query_respect(me) + "功力不夠，何以談及領悟？";
 	if (present("douzhuan xingyi", me))
 		return RANK_D->query_respect(me) +
-		"現在身上不是有斗轉星移的武籍了嗎？怎麼又來要了？ 真是貪得無厭！";
+		"現在身上不是有鬥轉星移的武籍了嗎？怎麼又來要了？ 真是貪得無厭！";
 
 	ob = unew("/d/mr/obj/shu1");
 	if(!clonep(ob))
-		return "斗轉星移武籍已經被別人要走了。";
+		return "鬥轉星移武籍已經被別人要走了。";
 
 	ob->move(me);
 
-	message_vision("$N得到一本斗轉星移的武功秘籍。\n", me);
+	message_vision("$N得到一本鬥轉星移的武功秘籍。\n", me);
 	return "好吧，看你為慕容家忠心耿耿，這本書就賜於你吧。";
 }
 
@@ -530,14 +530,14 @@ string ask_book2()
 		"功力不夠，何以談及領取圖解？";
 	if (present("douzhuan xingyi", me))
 		return RANK_D->query_respect(this_player()) +
-		"你現在身上不是有斗轉星移的武籍了嘛，怎麼又來要了？ 真是貪得無厭！";
+		"你現在身上不是有鬥轉星移的武籍了嘛，怎麼又來要了？ 真是貪得無厭！";
 
 	ob = unew("/d/mr/obj/shu2");
 	if (!clonep(ob))
-		return "對不起，斗轉星移的武籍已經被別人要走了。";
+		return "對不起，鬥轉星移的武籍已經被別人要走了。";
 
 	ob->move(this_player());
-	message_vision("$N得到一本斗轉星移的武功秘籍。\n", me);
+	message_vision("$N得到一本鬥轉星移的武功秘籍。\n", me);
 	return "好吧，看你為慕容家忠心耿耿，這本書就賜於你吧。";
 }
 
@@ -637,7 +637,7 @@ string ask_learn()
 	if (me->query_skill("parry", 1) < 100 ) // 招架必須大於等於100級
 		return RANK_D->query_respect(me) +
 		"於本門武學尚不能運用自如，如何談及天下之武學？";
-	if (me->query_skill("douzhuan-xingyi", 1) < 100 )  // 斗轉星移必須大於等於100級
+	if (me->query_skill("douzhuan-xingyi", 1) < 100 )  // 鬥轉星移必須大於等於100級
 		return RANK_D->query_respect(me) +
 		"於本門武學尚不能運用自如，如何談及天下之武學？";
 	if (me->query_condition("mr_job") )
@@ -920,7 +920,7 @@ int ask_bishen()
 		ob->add("quest/bishen/fail", 1);
 		ob->set("quest/bishen/time", time());
 		log_file("quest/bishen",
-			sprintf("%-18s想從慕容復處領悟斗轉星移的精髓所在失敗，失敗%s次。\n",
+			sprintf("%-18s想從慕容復處領悟鬥轉星移的精髓所在失敗，失敗%s次。\n",
 				ob->name(1)+"("+capitalize(getuid(ob))+")",
 				chinese_number(ob->query("quest/bishen/fail")) 
 			), ob
@@ -930,10 +930,10 @@ int ask_bishen()
 	command("look " + ob->query("id"));
 	command("nod " + ob->query("id"));
 	command("say 好吧,我就將其中的奧妙告訴你吧。");
-       command("chat* 縱聲長笑道：我姑蘇慕容又有一人領悟斗轉星移精髓所在,何愁復國大業不成！");
+       command("chat* 縱聲長笑道：我姑蘇慕容又有一人領悟鬥轉星移精髓所在,何愁復國大業不成！");
        command("chat* yeah");
 	log_file("quest/bishen",
-		sprintf("%-18s失敗%s次後，成功從慕容復處領悟斗轉星移精髓所在，福：%d，悟：%d。\n",
+		sprintf("%-18s失敗%s次後，成功從慕容復處領悟鬥轉星移精髓所在，福：%d，悟：%d。\n",
 			ob->name(1)+"("+capitalize(getuid(ob))+")",
 			chinese_number(ob->query("quest/bishen/fail")), 
 			ob->query("kar"), 

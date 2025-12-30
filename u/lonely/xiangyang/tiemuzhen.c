@@ -141,7 +141,7 @@ int accept_touxi(object ob)
 void me_die_msg()
 {        
         command("chat* sigh");
-        command("chat 枉我鐵木真征戰沙場多年，今日竟對一個小小的襄陽城束手無策。");
+        command("chat 枉我鐵木真徵戰沙場多年，今日竟對一個小小的襄陽城束手無策。");
         command("chat 罷罷罷，全軍就此撤退，重新整頓，來日再戰。");
 
         XYWAR_D->war_win(); // 襄陽勝利
@@ -152,7 +152,7 @@ void me_die_msg()
 void me_die_msg2()
 {
         command("chat* sigh");
-        command("chat 枉我鐵木真征戰沙場多年，今日竟對一個小小的襄陽城束手無策。");
+        command("chat 枉我鐵木真徵戰沙場多年，今日竟對一個小小的襄陽城束手無策。");
         command("chat 罷罷罷，全軍就此撤退，重新整頓，來日再戰。");
 
         set_temp("dest_now", 1);
@@ -331,7 +331,7 @@ void random_move()
         if (XYWAR_D->now_status() == 0 && XYWAR_D->get_who_win() == 1)
         {
                 command("chat* sigh");
-                command("chat 枉我鐵木真征戰沙場多年，今日居然對一個小小的襄陽城束手無策。");
+                command("chat 枉我鐵木真徵戰沙場多年，今日居然對一個小小的襄陽城束手無策。");
                 command("chat 罷罷罷，全軍就此撤退，重新整頓，來日再戰。");
                 destruct(this_object());
                 return;

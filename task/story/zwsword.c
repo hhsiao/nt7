@@ -9,7 +9,7 @@ void create()
 {
     set_name(HIC "真武劍" NOR, ({ "zwsword" }) );
 	set_weight(7000);
-        set("owner","張三丰");
+        set("owner","張三豐");
 	if( clonep() )
 		set_default_object(__FILE__);
 	else {

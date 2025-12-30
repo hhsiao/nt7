@@ -460,7 +460,7 @@ yanfly.c            燕雙飛     公共
 yanling-shenfa.c    燕靈身法   慕容
 yiwei-dujiang.c     一葦渡江   南少林
 yixingbu.c          意形步法   神龍
-youlong-shenfa.c    游龍身法   紅花
+youlong-shenfa.c    遊龍身法   紅花
 yueying-wubu.c      月影舞步   逍遙
 yunlong-shenfa.c    雲龍身法   雲龍
 yunv-shenfa.c       玉女身法   古墓
@@ -487,7 +487,7 @@ lotus-force     蓮花心法,       emei-force      峨眉心法,
 tianmo-force    天魔大法,       hunyuan-force   混元神功,
 beiming-force   北冥神功,       huagong-force   化功大法,
 xixing-force    吸星大法,       mizong-force    密宗心法,
-huangting-force 黃庭心法,       douzhuan-force  斗轉星移,
+huangting-force 黃庭心法,       douzhuan-force  鬥轉星移,
 wuxiang-force   小無相功,       yijing-force    易筋神功,
 bahuang-force   八荒六合唯我獨尊,
 
@@ -499,7 +499,7 @@ lotus-force     蓮花心法,       emei-force      峨眉心法,
 tianmo-force    天魔大法,       hunyuan-force   混元神功,
 beiming-force   北冥神功,       huagong-force   化功大法,
 xixing-force    吸星大法,       mizong-force    密宗心法,
-huangting-force 黃庭心法,       douzhuan-force  斗轉星移,
+huangting-force 黃庭心法,       douzhuan-force  鬥轉星移,
 shenlong-force  神龍心法,       guangming-force 大光明心法,
 kunlun-force    崑崙心法,       zixia-force     紫霞神功,
 songshan-force  嵩山心法,       taishan-force   泰山心法,
@@ -575,7 +575,7 @@ huagong-force   化功大法：      護體真氣、吸取內力、吸取真元
 xixing-force    吸星大法：      護體真氣、吸取內力、吸取真元
 mizong-force    密宗心法：      為人療傷、護體真氣
 huangting-force 黃庭心法：      為人療傷、護體真氣
-douzhuan-force  斗轉星移：      護體真氣、轉力之術
+douzhuan-force  鬥轉星移：      護體真氣、轉力之術
 shenlong-force  神龍心法：      護體真氣
 guangming-force 大光明心法：    護體真氣
 kunlun-force    崑崙心法：      為人療傷、護體真氣
@@ -698,7 +698,7 @@ By Micro Liang (97-07-01)
    化功大法
    腐屍爪
   姑蘇慕容：
-   斗轉星移
+   鬥轉星移
    叄合指
   大理段氏：
    六脈神劍

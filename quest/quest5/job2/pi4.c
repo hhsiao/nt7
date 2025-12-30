@@ -14,7 +14,7 @@ void create()
         set("age", random(10) + 30);
         set("str", 25);
         set("dex", 16);
-        set("long", "這是一個大宋年輕將領，滿臉征塵。\n");
+        set("long", "這是一個大宋年輕將領，滿臉徵塵。\n");
         set("combat_exp", 45000);
         set("shen_type", 1);
         set("attitude", "peaceful");

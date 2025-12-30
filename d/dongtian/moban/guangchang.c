@@ -1111,7 +1111,7 @@ int chk_reqitems(object me, int idx)
                 flag = 0;
                 for( k = 0; k < sizeof(inv); k++ )
                 {
-                        if( query("item_owner", inv[k]) ) continue;    // 干將聖符upg過的物品無效
+                        if( query("item_owner", inv[k]) ) continue;    // 幹將聖符upg過的物品無效
                         if( base_name(inv[k]) == "/d/dongtian/obj/liudibi" ) {
                                 ob = inv[k];
                                 message_vision(append_color(NOR CYN "$N舉起" + query("name", ob) + NOR + CYN + "虔誠地獻到魔神雕像的手上。\n" NOR, CYN), me);
@@ -1348,7 +1348,7 @@ void create()
         ]) );
 
                 set("no_sleep_room",1);
-                //set("no_magic", 1);//准許招武器
+                //set("no_magic", 1);//準許招武器
                 set("no_rideto", 1);
                 set("no_flyto", 1);
                 set("no_drift", 1);

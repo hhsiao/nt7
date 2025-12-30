@@ -1,66 +1,66 @@
 ------------------------------------------------------------
-$BBLU$$HIW$                     【连城剑派人物简介】                   $NOR$
+$BBLU$$HIW$                     【連城劍派人物簡介】                   $NOR$
 ------------------------------------------------------------
 
-连城剑派第三代掌门：梅念笙
+連城劍派第三代掌門：梅念笙
 
-连城剑派第四代掌门：万震山
+連城劍派第四代掌門：萬震山
 
-连城剑派第四代弟子：言达平、戚长发
+連城劍派第四代弟子：言達平、戚長髮
 
-连城剑派第五代弟子：鲁坤、周圻、万圭、孙均、卜垣、吴坎、冯坦
+連城劍派第五代弟子：魯坤、周圻、萬圭、孫均、卜垣、吳坎、馮坦
 
-                    沈城、狄云、戚芳
+                    沈城、狄雲、戚芳
 
 ------------------------------------------------------------
-$BBLU$$HIW$                     【连城剑派武功简介】                   $NOR$
+$BBLU$$HIW$                     【連城劍派武功簡介】                   $NOR$
 ------------------------------------------------------------
 
-内功：  基本内功
-        特殊内功：  连城心法
-                    连城神功
-                    神照经神功
+內功：  基本內功
+        特殊內功：  連城心法
+                    連城神功
+                    神照經神功
 
-轻功：  基本轻功
-        特殊轻功：  寻梅步法
+輕功：  基本輕功
+        特殊輕功：  尋梅步法
 
 掌法：  基本掌法
-        特殊掌法：  五云神掌
+        特殊掌法：  五雲神掌
 
 爪法：  基本爪法
-        特殊爪法：  大力鹰爪手
+        特殊爪法：  大力鷹爪手
 
-拳脚：  基本拳脚
-        特殊拳脚：  六合拳法
-                    神照经神功
+拳腳：  基本拳腳
+        特殊拳腳：  六合拳法
+                    神照經神功
 
-剑法：  基本剑法
-        特殊剑法：  躺尸剑法
-                    唐诗剑法
-                    奇云剑法
-                    连城剑法
+劍法：  基本劍法
+        特殊劍法：  躺屍劍法
+                    唐詩劍法
+                    奇雲劍法
+                    連城劍法
 
 刀法：  基本刀法
         特殊刀法：  六合刀法
 
 招架：  基本招架
-        特殊招架：  由相应武技赋予
+        特殊招架：  由相應武技賦予
 
 ------------------------------------------------------------
-$BBLU$$HIW$                     【连城剑派武技招数】                   $NOR$
+$BBLU$$HIW$                     【連城劍派武技招數】                   $NOR$
 ------------------------------------------------------------
 
-$HIY$【连城神功】$NOR$
+$HIY$【連城神功】$NOR$
 
-$HIC$ 提升战力     exert powerup$NOR$
+$HIC$ 提升戰力     exert powerup$NOR$
 
-$HIY$【神照经神功】$NOR$
+$HIY$【神照經神功】$NOR$
 
-$HIC$ 提升战力     exert powerup$NOR$
+$HIC$ 提升戰力     exert powerup$NOR$
 
-$HIC$ 护体真气     exert shield$NOR$      可以加强防御力。
+$HIC$ 護體真氣     exert shield$NOR$      可以加強防禦力。
 
-$HIC$ 无影神拳     perform ying$NOR$      XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+$HIC$ 無影神拳     perform ying$NOR$      XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXX。
@@ -72,65 +72,65 @@ $HIC$ 破凰拳舞     perform wu$NOR$        XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 $HIY$【六合拳法】$NOR$
 
-$HIC$ 石破天惊     perform shi$NOR$       XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+$HIC$ 石破天驚     perform shi$NOR$       XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXX。
 
-$HIY$【五云神掌】$NOR$
+$HIY$【五雲神掌】$NOR$
 
-$HIC$ 云飘四海     perform yun$NOR$       XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+$HIC$ 雲飄四海     perform yun$NOR$       XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXX。
 
-$HIC$ 怒海澜涛     perform nu$NOR$        XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+$HIC$ 怒海瀾濤     perform nu$NOR$        XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXX。
 
-$HIY$【大力鹰爪手】$NOR$
+$HIY$【大力鷹爪手】$NOR$
 
-$HIC$ 催魂鹰爪     perform zhua$NOR$      XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+$HIC$ 催魂鷹爪     perform zhua$NOR$      XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXX。
 
 $HIY$【六合刀法】$NOR$
 
-$HIC$  闪刀诀      perform shan$NOR$      XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+$HIC$  閃刀訣      perform shan$NOR$      XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXX。
 
-$HIY$【躺尸剑法】$NOR$
+$HIY$【躺屍劍法】$NOR$
 
-$HIC$  夺命剑      perform duo$NOR$       XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+$HIC$  奪命劍      perform duo$NOR$       XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXX。
-$HIY$【唐诗剑法】$NOR$
+$HIY$【唐詩劍法】$NOR$
 
-$HIC$ 唐诗总诀     perform zong$NOR$      XXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                                XXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                                XXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                                XXXXXXXXXXXXXXXXXXXXXX。
-
-$HIY$【奇云剑法】$NOR$
-
-$HIC$ 云雾缭绕     perform wu$NOR$        XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+$HIC$ 唐詩總訣     perform zong$NOR$      XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXX。
 
-$HIY$【连城剑法】$NOR$
+$HIY$【奇雲劍法】$NOR$
+
+$HIC$ 雲霧繚繞     perform wu$NOR$        XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                                XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                                XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                                XXXXXXXXXXXXXXXXXXXXXX。
+
+$HIY$【連城劍法】$NOR$
 
 $HIC$  耳光式      perform slap$NOR$      XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXX。
 
-$HIC$  去剑式      perform qu$NOR$        XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+$HIC$  去劍式      perform qu$NOR$        XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXX。
@@ -146,15 +146,15 @@ $HIC$  刺喉式       perform hou$NOR$      XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXX。
 
 ------------------------------------------------------------
-$BBLU$$HIW$                   【连城剑派特殊武器介绍】                 $NOR$
+$BBLU$$HIW$                   【連城劍派特殊武器介紹】                 $NOR$
 ------------------------------------------------------------
 
-剑类武器：$WHT$连城铁剑$NOR$              XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+劍類武器：$WHT$連城鐵劍$NOR$              XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                 XXXXXXXXXXXXXXXXXXXXXX。
 
 ------------------------------------------------------------
-$BBLU$$HIW$                        【拜师必读】                        $NOR$
+$BBLU$$HIW$                        【拜師必讀】                        $NOR$
 ------------------------------------------------------------
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

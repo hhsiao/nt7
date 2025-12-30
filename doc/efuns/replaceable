@@ -1,38 +1,38 @@
 
         replaceable()
 
-        名称：
-                replaceable() 判断是否有在当前的继承等级上
-                        定义的函数。
+        名稱：
+                replaceable() 判斷是否有在當前的繼承等級上
+                        定義的函數。
 
-        语法：
+        語法：
                 int replaceable(object ob);
-                整数 replaceable(物件 ob);
+                整數 replaceable(物件 ob);
 
                 int replaceable(object ob, string *fnames);
-                整数 replaceable(物件 ob, 字符串阵列 fnames);
+                整數 replaceable(物件 ob, 字符串陣列 fnames);
 
         用法：
-                在第二种格式中，在物件 ob 中的所有函数，除了字
-                符串阵列 fnames 中指定函数名的函数以外，如果有
-                任何函数是在物件 ob 中明确定义的而不是继承来的，
-                则返回 0。如果没有这样的函数，则返回 1。
+                在第二種格式中，在物件 ob 中的所有函數，除了字
+                符串陣列 fnames 中指定函數名的函數以外，如果有
+                任何函數是在物件 ob 中明確定義的而不是繼承來的，
+                則返回 0。如果沒有這樣的函數，則返回 1。
 
-                如果是第一种格式(也就是省略第二个参数)，默认的
-                第二个参数为 ({ "create" })，也就是默认不检查
-                create() 函数。
+                如果是第一種格式(也就是省略第二個參數)，默認的
+                第二個參數為 ({ "create" })，也就是默認不檢查
+                create() 函數。
 
-                这个函数的目的是能够自动判断是否可以 replace_program().
+                這個函數的目的是能夠自動判斷是否可以 replace_program().
 
-                注意：由于默认是忽略 create() 不检查，只有当你
-                不打算 clone 这个物件时，replaceable() 函数返回
-                TRUE 才可以安全地呼叫 replace_program() 函数。
+                注意：由於默認是忽略 create() 不檢查，只有當你
+                不打算 clone 這個物件時，replaceable() 函數返回
+                TRUE 才可以安全地呼叫 replace_program() 函數。
 
-        参考：
+        參考：
                 replace_program,
                 functions,
                 function_exists,
                 inherit_list
 
-        by 发现号(Find@tx)
+        by 發現號(Find@tx)
 

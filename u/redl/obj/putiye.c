@@ -16,7 +16,7 @@ int is_redl_room(object room)
         return 0;
 }
 
-void jieguozi()//准許讓他把這寶物借予普通玩家賞玩，讓他覺得自己有存在感
+void jieguozi()//準許讓他把這寶物借予普通玩家賞玩，讓他覺得自己有存在感
 {
         object own = environment(this_object());
         int i = query("guozi_step");

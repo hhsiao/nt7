@@ -2,33 +2,33 @@
 
         break_string(3)         MudOS v21c2             (5 Sep 1994)
 
-        名称:
-                break_string() - 以固定的间隔打断一个字串 (string).
-        语法:
+        名稱:
+                break_string() - 以固定的間隔打斷一個字串 (string).
+        語法:
                 string break_string( string str | int foobar, int len,
                         void | int indent | string indent );
 
-                字串 break_string( 字串 str 或 整数 foobar, 整数 len,
-                        无参数 或 整数 indent 或 字串 indent );
+                字串 break_string( 字串 str 或 整數 foobar, 整數 len,
+                        無參數 或 整數 indent 或 字串 indent );
         用法:
-                break_string() 以每 len  个字元 (character) 打断一个
-                没有换行的字串, 并在每一个打断的片段後面换行. 如果 
-                indent 是一个字串, 那每个片段在换行之前会加上 indent.
+                break_string() 以每 len  個字元 (character) 打斷一個
+                沒有換行的字串, 並在每一個打斷的片段後面換行. 如果 
+                indent 是一個字串, 那每個片段在換行之前會加上 indent.
 
-                如果第一个参数 (argument) 是一个整数, break_string()
-                就只会传回 0.
-        错误:
-                break_string()  的处理完全与字串内容无关. 这个函式不
-                会认得句号 '.' 和换行 '\n' .  所以这个函式执行的结果, 
-                不见得会如你预期的一样. 我的经验是: 您应该在句号之後
-                加一个空白, 也别加上 '\n' , 然後再使用 break_string()
-                . 您也许不会喜欢用 break_string() 提供的格式. 在往後
-                MudOS 的版本里, 也许会让 break_string() 认得 '\n' .
-        参考:
+                如果第一個參數 (argument) 是一個整數, break_string()
+                就只會傳回 0.
+        錯誤:
+                break_string()  的處理完全與字串內容無關. 這個函式不
+                會認得句號 '.' 和換行 '\n' .  所以這個函式執行的結果, 
+                不見得會如你預期的一樣. 我的經驗是: 您應該在句號之後
+                加一個空白, 也別加上 '\n' , 然後再使用 break_string()
+                . 您也許不會喜歡用 break_string() 提供的格式. 在往後
+                MudOS 的版本里, 也許會讓 break_string() 認得 '\n' .
+        參考:
                 implode(3), explode(3), sprintf(3)
         作者:
                 Cygnus
-        翻译:
+        翻譯:
                 Spock @ FF      96.Oct.16.              (printed 3/16/95)
 
 

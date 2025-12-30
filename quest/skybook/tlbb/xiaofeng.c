@@ -366,7 +366,7 @@ void check_me_where(object me)
 		command("whisper "+me->query("id")+" 穿過這片樹林，一直南行，應該就可以回來中原了。");
 		message_vision(HIW"$N突然高聲而唱：“亡我祁連山，使我六畜不蕃息。亡我焉支山，使我婦女無顏色。”\n"NOR,ob);
 		command("say 當年漢武帝大伐匈奴，搶奪了大片地方，匈奴人慘傷困苦。其實無論契丹、匈奴還是大宋，凡是戰爭，受苦的肯定是百姓。");
-		message_vision(HIW"$N喟然吟道：“烽火燃不息，征戰無已時。野戰格鬥死，敗馬號鳴向天悲。鳥鳶啄人腸，衝飛上掛枯枝樹。士卒塗草莽，將軍空爾為。”\n"NOR,ob);
+		message_vision(HIW"$N喟然吟道：“烽火燃不息，徵戰無已時。野戰格鬥死，敗馬號鳴向天悲。鳥鳶啄人腸，衝飛上掛枯枝樹。士卒塗草莽，將軍空爾為。”\n"NOR,ob);
 		command("whisper "+me->query("id")+" 兵器乃兇器，聖人不得已而用之。也罷，我與中原武林之間的恩恩怨怨也一筆勾銷。");
 		command("wave "+me->query("id"));
 		command("bye "+me->query("id"));

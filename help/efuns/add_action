@@ -1,6 +1,6 @@
 □ add_action.c
 
-增加指令可容许字数    
+增加指令可容許字數    
 ---------------------------------------
 void f_command PROT((void))
 {
@@ -8,7 +8,7 @@ void f_command PROT((void))
 
     if (current_object && !(current_object->flags & O_DESTRUCTED))
     {
-        char buff[100000]; // 将 char buff[改大]
+        char buff[100000]; // 將 char buff[改大]
         int save_eval_cost = eval_cost;
 
         if (SVALUE_STRLEN(sp) > sizeof(buff) - 1)

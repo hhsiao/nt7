@@ -739,7 +739,7 @@ mapping *quest = ({
         ]),
         ([
                 "id":          "tuobo seng",
-                "name":        "托缽僧",
+                "name":        "託缽僧",
                 "type":        "殺",
                 "bonus":       69,
                 "msg":        "",

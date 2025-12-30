@@ -1,14 +1,14 @@
         to_int(3)                LP MudOSv21c7                (7 Jul 1996)
-        函数名称:
-                to_int - 将一个浮点数或暂存区 (buffer) 转换为一个整数.
-        函数语法:
+        函數名稱:
+                to_int - 將一個浮點數或暫存區 (buffer) 轉換為一個整數.
+        函數語法:
                 int to_int( float | buffer x );
-                整数 to_int( 浮点数 或 暂存区 x );
-        函数用法:
-                如果 x  是一个浮点数, 则 to_int() 传回 x  小数点之前
-                的整数值. 如果 x  是一个暂存区, 则 to_int() 传回暂存
-                区之中的整数 ( 以 network-byte-order 的形式 ).
-        参考函数:
+                整數 to_int( 浮點數 或 暫存區 x );
+        函數用法:
+                如果 x  是一個浮點數, 則 to_int() 傳回 x  小數點之前
+                的整數值. 如果 x  是一個暫存區, 則 to_int() 傳回暫存
+                區之中的整數 ( 以 network-byte-order 的形式 ).
+        參考函數:
                 to_float(3), read_buffer(3), sprintf(3), sscanf(3)
-        手册翻译:
+        手冊翻譯:
                 Phoebus@ZH        97.Jul.25.                (Writen 5/23/97)

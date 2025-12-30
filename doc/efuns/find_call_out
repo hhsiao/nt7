@@ -1,14 +1,14 @@
         find_call_out                LP MudOSv21c7                (7 Jul 1996)
-        函数名称:
-                find_call_out() - 找到行程中下一个会被呼叫的点召
+        函數名稱:
+                find_call_out() - 找到行程中下一個會被呼叫的點召
                                   (call out)
-        函数语法:
+        函數語法:
                 int find_call_out( string func ):
-                整数 find_call_out( 字串 func );
-        函数用法:
-                因为执行函式 func 而找到第一个点召 (call out), 
-                并传回剩下的时间. 如果无法找到则传回 -1.
-        参考函数:
+                整數 find_call_out( 字串 func );
+        函數用法:
+                因為執行函式 func 而找到第一個點召 (call out), 
+                並傳回剩下的時間. 如果無法找到則傳回 -1.
+        參考函數:
                 call_out(3), remove_call_out(3), set_heart_beat(3)
-        手册翻译:
+        手冊翻譯:
                 Phoebus@ZH        97.Feb.12.                (Writen 5/23/97)

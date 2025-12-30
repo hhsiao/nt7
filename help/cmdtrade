@@ -1,57 +1,57 @@
 ------------------------------------------------------------
-$BBLU$$HIY$                      【商业指令介绍】                      $NOR$
+$BBLU$$HIY$                      【商業指令介紹】                      $NOR$
 ------------------------------------------------------------
 
-$HIY$【店铺命令】$NOR$
+$HIY$【店鋪命令】$NOR$
 
-设定伙计描述：$HIC$modify  <项目> <内容>$NOR$
+設定夥計描述：$HIC$modify  <項目> <內容>$NOR$
 
-              店铺的描述项目包括名称($HIY$short$NOR$)和信息($HIY$long$NOR$)两项。
+              店鋪的描述項目包括名稱($HIY$short$NOR$)和信息($HIY$long$NOR$)兩項。
 
-              店铺伙计的描述项目共包括名字($HIY$name$NOR$)、信息($HIY$desc$NOR$)
-              性别($HIY$gender$NOR$)、头衔($HIY$title$NOR$)以及绰号($HIY$nickname$NOR$)等。
+              店鋪夥計的描述項目共包括名字($HIY$name$NOR$)、信息($HIY$desc$NOR$)
+              性別($HIY$gender$NOR$)、頭銜($HIY$title$NOR$)以及綽號($HIY$nickname$NOR$)等。
 
-货物标价出售：$HIC$stock   <货物> <价值> *$NOR$
+貨物標價出售：$HIC$stock   <貨物> <價值> *$NOR$
 
-              其中货物价值($HIY$value$NOR$)中的($HIY$*$NOR$)乃是以铜板作为单位的
-              价格，最高可标价一千两黄金，而税金则是提取交易
-              货物成交价格的百分之一。
+              其中貨物價值($HIY$value$NOR$)中的($HIY$*$NOR$)乃是以銅板作為單位的
+              價格，最高可標價一千兩黃金，而稅金則是提取交易
+              貨物成交價格的百分之一。
 
-货物取消出售：$HIC$unstock <货物>$NOR$
+貨物取消出售：$HIC$unstock <貨物>$NOR$
 
-设置店铺贵宾：$HIC$invite | vip <id> <num>$NOR$
+設置店鋪貴賓：$HIC$invite | vip <id> <num>$NOR$
 
-              为店铺添加贵宾,其中($HIY$num 1 - 9$NOR$)表示可对享受该待
-              遇的玩家打一至九折，而($HIY$num 10$NOR$)表示取消指定贵宾
-              资格，仅输入($HIY$invite$NOR$)则可查看当前的贵宾名单。
+              為店鋪添加貴賓,其中($HIY$num 1 - 9$NOR$)表示可對享受該待
+              遇的玩家打一至九折，而($HIY$num 10$NOR$)表示取消指定貴賓
+              資格，僅輸入($HIY$invite$NOR$)則可查看當前的貴賓名單。
 
-设置店铺黑户：$HIC$ban | unwelcome <id>$NOR$
+設置店鋪黑戶：$HIC$ban | unwelcome <id>$NOR$
 
-              为店铺添加黑户，有黑户标记的玩家不能在该店铺购
-              买任何物品。使用($HIY$ban - <id>$NOR$)则可以取消指定了的
-              黑户,仅输入($HIY$ban$NOR$)则可查看当前已设定好的黑户名单。
+              為店鋪添加黑戶，有黑戶標記的玩家不能在該店鋪購
+              買任何物品。使用($HIY$ban - <id>$NOR$)則可以取消指定了的
+              黑戶,僅輸入($HIY$ban$NOR$)則可查看當前已設定好的黑戶名單。
 
-$HIY$【拍卖命令】$NOR$
+$HIY$【拍賣命令】$NOR$
 
-列出拍卖店铺：$HIC$list$NOR$
-举牌参与竞价：$HIC$jupai$NOR$
+列出拍賣店鋪：$HIC$list$NOR$
+舉牌參與競價：$HIC$jupai$NOR$
 
-$HIY$【巫师命令】$NOR$
+$HIY$【巫師命令】$NOR$
 
-初始所有店铺：$HIC$shop reset$NOR$
-指定店铺主人：$HIC$shop owner$NOR$
-开放指定店铺：$HIC$shop open$NOR$
-关闭指定店铺：$HIC$shop close$NOR$
-开始店铺拍卖：$HIC$start$NOR$
-进行自动拍卖：$HIC$auto$NOR$
-禁止某人参加：$HIC$ban$NOR$
-选择拍卖店铺：$HIC$qiao$NOR$
-结束店铺拍卖：$HIC$finish$NOR$
+初始所有店鋪：$HIC$shop reset$NOR$
+指定店鋪主人：$HIC$shop owner$NOR$
+開放指定店鋪：$HIC$shop open$NOR$
+關閉指定店鋪：$HIC$shop close$NOR$
+開始店鋪拍賣：$HIC$start$NOR$
+進行自動拍賣：$HIC$auto$NOR$
+禁止某人參加：$HIC$ban$NOR$
+選擇拍賣店鋪：$HIC$qiao$NOR$
+結束店鋪拍賣：$HIC$finish$NOR$
 
 ------------------------------------------------------------
-$BBLU$$HIY$                        【 综  述 】                        $NOR$
+$BBLU$$HIY$                        【 綜  述 】                        $NOR$
 ------------------------------------------------------------
-游戏中的所有的玩家均可通过($HIY$shop$NOR$)指令来查看当前的店铺状况。各
-个城市的店铺均在该地区的马厩二楼，因此交通非常便利。只要用心
-经营，富甲天下便不再是梦想。通过经商来操纵整个游戏和掌管天下
-货物流向，把握住武林豪杰的命脉，叱咤风云，指日可待。
+遊戲中的所有的玩家均可通過($HIY$shop$NOR$)指令來查看當前的店鋪狀況。各
+個城市的店鋪均在該地區的馬廄二樓，因此交通非常便利。只要用心
+經營，富甲天下便不再是夢想。通過經商來操縱整個遊戲和掌管天下
+貨物流向，把握住武林豪傑的命脈，叱吒風雲，指日可待。

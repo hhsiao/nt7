@@ -241,7 +241,7 @@ varargs string do_damage(object me, object target, mixed type,
                         {
                                 if (sscanf(final, "%s:%s", result, damage_type) != 2)
                                 {
-                                        result = HIR "这招打了个正中！";
+                                        result = HIR "這招打了個正中！";
                                         damage_type = final;
                                 }
                                 if (sscanf(limb, "?%*s"))
@@ -250,7 +250,7 @@ varargs string do_damage(object me, object target, mixed type,
                                         limbs = target->query("limbs");
                                         if (! arrayp(limbs))
                                         {
-                                                limbs = ({ "身体" });
+                                                limbs = ({ "身體" });
                                                 target->set("limbs", limbs);
                                         }
                                         limb = limbs[random(sizeof(limbs))];

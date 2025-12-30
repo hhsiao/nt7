@@ -205,7 +205,7 @@ int say_msg(object me, int index)
                 message_vision(CYN"$N說道：大理願與喬峰共同進退。所以我有兩件事情，請你幫忙。\n"NOR, this_object(), me);
                 break;
         case(7):
-                message_vision(CYN"$N說道：第一件事，是把這封信送給徐長老。我在信中已經說明了我不去參加聚賢莊武林大會的理由。\n"NOR, this_object(), me);
+                message_vision(CYN"$N說道：第一件事，是把這封信送給徐長老。我在信中已經說明瞭我不去參加聚賢莊武林大會的理由。\n"NOR, this_object(), me);
                 message_vision(WHT"$N拿出一封信交給了$n。\n"NOR, this_object(), me);
                 ob = new("/clone/misc/letter");
                 set("long", "這是一封"+this_object()->name()+"寫給徐長老的親筆信函。\n", ob);

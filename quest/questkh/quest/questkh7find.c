@@ -1059,7 +1059,7 @@ mapping *quest = ({
         ]),
         ([
                 "id":          "youlong sword",
-                "name":        "游龍劍",
+                "name":        "遊龍劍",
                 "type":        "尋",
                 "bonus":       50,
                 "msg1":        "",

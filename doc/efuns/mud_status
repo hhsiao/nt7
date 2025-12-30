@@ -1,16 +1,16 @@
         mud_status(3)                LP MudOSv21c7                (7 Jul 1996)
-        函数名称:
-                mud_status() -  报告一些驱动程式 (driver) 及 mud 函式库
-                                (mudlib)  的统计数字.
-        函数语法:
+        函數名稱:
+                mud_status() -  報告一些驅動程式 (driver) 及 mud 函式庫
+                                (mudlib)  的統計數字.
+        函數語法:
                 void mud_status( int extra );
-                无传回值 mud_status( 整数 extra );
-        函数用法:
-                这个函式把一些驱动程式及 mud  函式库的统计数字显示在
-                呼叫这个函式的人的萤幕上. 如果参数 extra  为非零值, 
-                则会显示更多的附加资料. 这个函式取代了 vanilla 3.1.2
+                無傳回值 mud_status( 整數 extra );
+        函數用法:
+                這個函式把一些驅動程式及 mud  函式庫的統計數字顯示在
+                呼叫這個函式的人的螢幕上. 如果參數 extra  為非零值, 
+                則會顯示更多的附加資料. 這個函式取代了 vanilla 3.1.2
                 版本中的 status 及 status tables 指令.
-        参考函数:
+        參考函數:
                 debug_info(3), dumpallobj(3), memory_info(3), uptime(3)
-        手册翻译:
+        手冊翻譯:
                 Phoebus@ZH        97.Apr.15.                (Writen 5/23/97)

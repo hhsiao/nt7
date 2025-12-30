@@ -570,10 +570,10 @@ mapping gift_list = ([
                      "獎勵描述" : "exp:20000,pot:20000",
                      "下個獎勵" : "80", ]),
                      
-        "80"  :   ([ "達成條件" : "造訪干將、莫邪",
+        "80"  :   ([ "達成條件" : "造訪幹將、莫邪",
                      "條件標識" : "newbie_mygift/ganjiang",
                      "條件數值" : 1,
-                     "條件描述" : "拜訪一下干將莫邪吧，以後還得經常到這裡改造兵器\n" 
+                     "條件描述" : "拜訪一下幹將莫邪吧，以後還得經常到這裡改造兵器\n" 
                                   HIR "              提示：輸入"HIY"rideto"HIR"查看騎馬可到達地方，然後"HIY"rideto ganjiang"HIR"前往。" NOR,
                      "獎勵描述" : "exp:20000,pot:20000,/clone/money/gold:1",
                      "下個獎勵" : "85", ]),
@@ -589,7 +589,7 @@ mapping gift_list = ([
                      "條件標識" : "newbie_mygift/kaiguang",
                      "條件數值" : 1,
                      "條件描述" : "將剛簽名的裝備開光吧，這樣隨時可以召喚(summon)回來\n" 
-                                  HIR "              提示：干將附近找到張天師，使用指令"HIY"show <武器ID>"HIR"，按\n"
+                                  HIR "              提示：幹將附近找到張天師，使用指令"HIY"show <武器ID>"HIR"，按\n"
                                       "                    照後續提示操作即可進行開光。" NOR,
                      "獎勵描述" : "/clone/armor/zhanyao-xunzhang:1",
                      "下個獎勵" : "95", ]),
@@ -598,7 +598,7 @@ mapping gift_list = ([
                      "條件標識" : "newbie_mygift/certosina",
                      "條件數值" : 1,
                      "條件描述" : "學習鑲嵌技藝到一百級\n" 
-                                  HIR "              提示：到干將處學習，指令"HIY"xue gan jiang certosina"HIR"學習。" NOR,
+                                  HIR "              提示：到幹將處學習，指令"HIY"xue gan jiang certosina"HIR"學習。" NOR,
                      "獎勵描述" : "/clone/armor/moling-zhiyi:1,/clone/armor/sheyao-ring:1",
                      "下個獎勵" : "100", ]),
 
@@ -606,7 +606,7 @@ mapping gift_list = ([
                      "條件標識" : "newbie_mygift/notch",
                      "條件數值" : 1,
                      "條件描述" : "將裝備進行開孔，開孔後可以鑲嵌寶石\n" 
-                                  HIR "              提示：干將處notch <裝備>，開孔需要的符文詳情參見 help rune" NOR,
+                                  HIR "              提示：幹將處notch <裝備>，開孔需要的符文詳情參見 help rune" NOR,
                      "獎勵描述" : "exp:1000000,pot:1000000,/clone/armor/wushi-pifeng:1",
                      "下個獎勵" : "110", ]),
                                           
@@ -671,7 +671,7 @@ mapping gift_list = ([
                      "條件標識" : "newbie_mygift/qianghua",
                      "條件數值" : 1,
                      "條件描述" : "將裝備進行強化，強化後的裝備屬性大幅度提升\n" 
-                                  HIR "              提示：干將處先shou <裝備>，看完要求後qianghua <裝備>，強化裝備詳情參見 help qianghua" NOR,
+                                  HIR "              提示：幹將處先shou <裝備>，看完要求後qianghua <裝備>，強化裝備詳情參見 help qianghua" NOR,
                      "獎勵描述" : "pot:3000000,neili:1000,jingli:1000",
                      "下個獎勵" : "180", ]),
 
@@ -679,7 +679,7 @@ mapping gift_list = ([
                      "條件標識" : "newbie_mygift/dosuit",
                      "條件數值" : 1,
                      "條件描述" : "將裝備進行綠化，綠化後的裝備組成套裝，擁有極品屬性\n" 
-                                  HIR "              提示：先給干將王者之心，然後dosuit <裝備>，綠化裝備詳情參見 help suit" NOR,
+                                  HIR "              提示：先給幹將王者之心，然後dosuit <裝備>，綠化裝備詳情參見 help suit" NOR,
                      "獎勵描述" : "exp:5000000,pot:5000000,mar:5000000,/clone/armor/yecha1:1",
                      "下個獎勵" : "180s", ]),
         

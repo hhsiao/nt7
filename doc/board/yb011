@@ -1,104 +1,104 @@
 Zmud 使用指南                          一刀(Tue Jul 21)
 ----------------------------------------------------------------------
-首先从上面八个按键开始：
-１． Aliases：把所有复杂的指令用简单的代号代替。
-     举例：(1)我的monk有带加dr和hr的eq，
+首先從上面八個按鍵開始：
+１． Aliases：把所有複雜的指令用簡單的代號代替。
+     舉例：(1)我的monk有帶加dr和hr的eq，
    首先按New，
               Alias Name打dr，
               Commands打rem necklace;rem necklace;wear collar;wear
 collar;rem whip;wear knife;rem brass;wear power，
-              以后只要输入dr就自动换装。
-              ***切记，两个命令以分号(;)区隔，以后都是一样。***
-           (2)我的魔法师的Fireball很常用，
+              以後只要輸入dr就自動換裝。
+              ***切記，兩個命令以分號(;)區隔，以後都是一樣。***
+           (2)我的魔法師的Fireball很常用，
               按New，
               Alias Name打fb，
               Commands打c 'fireball'
 
 
               Commands打c 'fireball'
-              以后打fb就会施Fireball，
-              如果是第一发，
+              以後打fb就會施Fireball，
+              如果是第一發，
               就打fb xxxxxx。
-２．Variables：跟Aliases类似，不过我没用过，也不会用。:p
-３．Paths：以简单的指令走到要走的地方。
-    举例：我们可以在帝国买到旧卷轴，
-          由于冥驾城门会关起来，
-          所以由门东边的十字路口走起，
+２．Variables：跟Aliases類似，不過我沒用過，也不會用。:p
+３．Paths：以簡單的指令走到要走的地方。
+    舉例：我們可以在帝國買到舊卷軸，
+          由於冥駕城門會關起來，
+          所以由門東邊的十字路口走起，
           按New，
           Path Name打scroll，
   Current Path ahead打4s2es2ed2e5n11es，
-          以后要去买卷轴时就走到十字路口，
-          输入.scroll即可。
-          一般我是设Fast walk。
-          ***切记，scroll前要打句点(.)喔！***
-４．Trigger：当画面出现什么字，就会执行动作。
-    举例：(1)你应该有看到两个autolog，
-             这就是当初一进来设的记id和password，
-          (2)打mobs会被mobs给disarm以致于掉武器，
+          以後要去買卷軸時就走到十字路口，
+          輸入.scroll即可。
+          一般我是設Fast walk。
+          ***切記，scroll前要打句點(.)喔！***
+４．Trigger：當畫面出現什麼字，就會執行動作。
+    舉例：(1)你應該有看到兩個autolog，
+             這就是當初一進來設的記id和password，
+          (2)打mobs會被mobs給disarm以致於掉武器，
              按New，
-             Class打get（随便你分类），
+             Class打get（隨便你分類），
              Pattern打disarms you，
 
 
              Pattern打disarms you，
              Commands打get sword;wear sword，
-             右边有两个勾选符号均要勾选才会换行输入。
+             右邊有兩個勾選符號均要勾選才會換行輸入。
 
-***切记，Pattern大小写要一致，如果是出现在第一个字，加个次方符号(^)。***
-          (3)常会有人向牧师求救要Full heal，
+***切記，Pattern大小寫要一致，如果是出現在第一個字，加個次方符號(^)。***
+          (3)常會有人向牧師求救要Full heal，
              按New，
              Class打help，
-             Pattern打(%w) 说 'ful'
-   ***切记，"说"的前后均要空一格，%w要用小括号，%1不用。***
+             Pattern打(%w) 說 'ful'
+   ***切記，"說"的前後均要空一格，%w要用小括號，%1不用。***
 
-%w代表字元，另外还有代表字串和数字的，我已经忘了，%1是变数符号，在此%w=%1。
-５．Keys：热键。不用我多做说明了。
-６．General：基本设定。原则上我只把Auto Clear Input勾选起来。
-７．Color：设定色彩。下面是我设的。
-    举例：(1)System Colors：
-             Info Color黑底亮绿字。
-             Echo Color黑底浅灰字。
-             Default Color黑底浅灰字。
+%w代表字元，另外還有代表字串和數字的，我已經忘了，%1是變數符號，在此%w=%1。
+５．Keys：熱鍵。不用我多做說明了。
+６．General：基本設定。原則上我只把Auto Clear Input勾選起來。
+７．Color：設定色彩。下面是我設的。
+    舉例：(1)System Colors：
+             Info Color黑底亮綠字。
+             Echo Color黑底淺灰字。
+             Default Color黑底淺灰字。
           (2)Foreground：Make regular colors Dim
           (3)Backgroumd：Set colors to default
-          (4)其他两个不需要且我也不会。:p
-８．Fonts：字型。建议使用Courier。
+          (4)其他兩個不需要且我也不會。:p
+８．Fonts：字型。建議使用Courier。
 
 
 
-接著是一些功能表的解释：没解释的表示极简单或表示我不会。
-１．View--Preferences--Sonuds：设定声音　。
-２．Setting--Save：设定好了要存起来喔！
-３．Setting--Save as：最好每一个char都有他自己的设定，并且备份到磁片上。
-４．Setting--Import：可以把其他char的设定抓过来。
-５．Action：有的包含在按钮上，至于其他的我不会。
-６．Windows--Tile：你可以开两的视窗，选择这个可以使两视窗在上下两端。
+接著是一些功能表的解釋：沒解釋的表示極簡單或表示我不會。
+１．View--Preferences--Sonuds：設定聲音　。
+２．Setting--Save：設定好了要存起來喔！
+３．Setting--Save as：最好每一個char都有他自己的設定，並且備份到磁片上。
+４．Setting--Import：可以把其他char的設定抓過來。
+５．Action：有的包含在按鈕上，至於其他的我不會。
+６．Windows--Tile：你可以開兩的視窗，選擇這個可以使兩視窗在上下兩端。
 
 
-ansi输入法：新发现！！
-按Ctrl+Enter打开Edit Comman Buffer，
+ansi輸入法：新發現！！
+按Ctrl+Enter打開Edit Comman Buffer，
 打入你要的字，
-利用滑鼠选出要ansi的部份，
+利用滑鼠選出要ansi的部份，
 功能表上有Options--Color，
-选你要的颜色，
-然后File--Send即可。
-常用于Title和de的更改。
+選你要的顏色，
+然後File--Send即可。
+常用於Title和de的更改。
 
-另外，输入区有DOSKEY的功能，!也就不适用了。
+另外，輸入區有DOSKEY的功能，!也就不適用了。
 
 
 zMud 有以下功能:
 
-1.      Macro keys: 热键;
-2.      Alias:  简化命令;(可用分号将若干条命令做在一起)
-3.      Trigers:        接收激发;
-4.      Variables:      变量,可用于函数,可以用于"编程";
-5.      Buttons:        和keys类似,且更直观;
-6.      Paths:  可以记忆走过的路,且可反向;
-7.      Timer:  时间循环,自动化的基本条件.
-8.      Multiple Chars: 可登录几个角色;
+1.      Macro keys: 熱鍵;
+2.      Alias:  簡化命令;(可用分號將若干條命令做在一起)
+3.      Trigers:        接收激發;
+4.      Variables:      變量,可用於函數,可以用於"編程";
+5.      Buttons:        和keys類似,且更直觀;
+6.      Paths:  可以記憶走過的路,且可反向;
+7.      Timer:  時間循環,自動化的基本條件.
+8.      Multiple Chars: 可登錄幾個角色;
 
-其中 Triger 和 Timer 可是许多操作自动化,别具威力.
+其中 Triger 和 Timer 可是許多操作自動化,別具威力.
 
 for example:
 
@@ -107,135 +107,135 @@ for example:
 
 Triger:
         if
-                刘老汉的小花园
+                劉老漢的小花園
         then
                 w1;          kill girl 1; kill girl 2;
                 kill girl 3; kill girl 4; kill girl 5;
 
 
 
-ZMUD使用简介:
-        zmud中最有用的就是trigger..当MUD主机发送的数据中出现指定字符
-串时,执行相应的指令.
+ZMUD使用簡介:
+        zmud中最有用的就是trigger..當MUD主機發送的數據中出現指定字符
+串時,執行相應的指令.
         比如:
-        pattern:( 你似乎十分疲惫，看来需要好好休息了。 )
+        pattern:( 你似乎十分疲憊，看來需要好好休息了。 )
         Command:w;exert recover;e
-        可以在你气较少时自动运功补气.
-        其中的w;e可一定要的,否则exert recover要busy 1秒种的,这样就有可
-能而且更加容易又被击中.
-        在激烈的战斗中很难看到chat和别人tell你,这时用
-        pattern:告诉你
+        可以在你氣較少時自動運功補氣.
+        其中的w;e可一定要的,否則exert recover要busy 1秒種的,這樣就有可
+能而且更加容易又被擊中.
+        在激烈的戰鬥中很難看到chat和別人tell你,這時用
+        pattern:告訴你
         Command:#beep;#capture chat
-        这样当有人和你说话时,就会发出声音,而且会把这行消息传到chat这个
+        這樣當有人和你說話時,就會發出聲音,而且會把這行消息傳到chat這個
 窗口去.
-        同样
-        pattern:闲聊
+        同樣
+        pattern:閒聊
         Command:#capture chat
-这样只要经常用ctrl-tab到另外的chat窗口看就知道大家在说些什么了.
-        在路上说不定就会遇上哪个杀气高的大爷,可要小心!
-        pattern:想杀死你！
+這樣只要經常用ctrl-tab到另外的chat窗口看就知道大家在說些什麼了.
+        在路上說不定就會遇上哪個殺氣高的大爺,可要小心!
+        pattern:想殺死你！
         Command:#beep;#beep;#beep;
-        保持警惕才能争取更大胜利.
-大家总是觉得自己的人物天赋不好,现在用ZMUD可以方便的获得一个天才
-        pattern: 膂力：~[ (%d)~]  胆识：~[ (%d)~]  悟性：~[ (%d)~]  灵性：~[ (%d
+        保持警惕才能爭取更大勝利.
+大家總是覺得自己的人物天賦不好,現在用ZMUD可以方便的獲得一個天才
+        pattern: 膂力：~[ (%d)~]  膽識：~[ (%d)~]  悟性：~[ (%d)~]  靈性：~[ (%d
 )~]
         Command:str=%1;cor=%2;int=%3;sti=%4
         pattern:(str<25)|(cor<25)|(int!=30)!(sti<25)
         Command:str=100;cor=100;int=100;sti=100;suicide -f
-        pattern:考虑清楚，确定的话请输入您的密码
+        pattern:考慮清楚，確定的話請輸入您的密碼
         command:xxxxx
-事先声明...本人没有用过这种方法来选择人物.
-        ZMUD其他的功能,我看paths没有什么用处,不如就用alias代替了..
+事先聲明...本人沒有用過這種方法來選擇人物.
+        ZMUD其他的功能,我看paths沒有什麼用處,不如就用alias代替了..
 
 
-用好zmud不仅仅是设几个trigger就可以，zmud中
-可以使用变量，函数，内部命令等等。如果要详细
-了解，要仔细读一下HELP文件。基本的用法是：
-引用内部命令用 #
-引用内部变量和函数用 %
-引用自定义变量和函数用 @,命令行引用加 < >
-引用数学运算用 [ ]
-引用快速行动（speed walk）用 .
-多条命令用;分开可以一次执行
+用好zmud不僅僅是設幾個trigger就可以，zmud中
+可以使用變量，函數，內部命令等等。如果要詳細
+瞭解，要仔細讀一下HELP文件。基本的用法是：
+引用內部命令用 #
+引用內部變量和函數用 %
+引用自定義變量和函數用 @,命令行引用加 < >
+引用數學運算用 [ ]
+引用快速行動（speed walk）用 .
+多條命令用;分開可以一次執行
 trigger的基本用法
 
-选工具条中的trigger按钮可以定义trigger,一个trigger
-有三项：class,pattern,commands,当符合pattern的内容
-出现后，commands中的内容就会自动执行。
+選工具條中的trigger按鈕可以定義trigger,一個trigger
+有三項：class,pattern,commands,當符合pattern的內容
+出現後，commands中的內容就會自動執行。
 
-例如：pattern=*丢下一些黄金
+例如：pattern=*丟下一些黃金
       commands=get gold
 
-是一个自动捡黄金的例子。
+是一個自動撿黃金的例子。
 pattern中可以用一些通配符：主要有
   *表示任意字符
-  %x表示任意多字母数字串
+  %x表示任意多字母數字串
   %s表示任意多空格
-  %d表示任意数字
-通配符可以用括号括起来 在commands中可以按顺序%1,%2...引用
-如果pattern中必须有括号，用~(和~)，例如：
+  %d表示任意數字
+通配符可以用括號括起來 在commands中可以按順序%1,%2...引用
+如果pattern中必須有括號，用~(和~)，例如：
 
-   pattern=(*)~((%x)~)告诉你：(*)
+   pattern=(*)~((%x)~)告訴你：(*)
    commands=#if !(%1=你) {get gold}
-关于ZMUD的ALIAS
+關於ZMUD的ALIAS
 
-ALIAS用来简化命令，相信每个人都在用ALIAS。
-实际上ZMUD的ALIAS系统是相当优秀的，比风云本身提供的
-ALIAS命令更方便更灵活。按窗口上方的ALIASES按钮可以
-打开ALIAS定义窗口，一看就会的。
+ALIAS用來簡化命令，相信每個人都在用ALIAS。
+實際上ZMUD的ALIAS系統是相當優秀的，比風雲本身提供的
+ALIAS命令更方便更靈活。按窗口上方的ALIASES按鈕可以
+打開ALIAS定義窗口，一看就會的。
 
-比如：定义g 为get all
-你输入g然后回车，实际发出的命令是get all
-再如：定义ga 为 get all from corpse,试一试！
+比如：定義g 為get all
+你輸入g然後回車，實際發出的命令是get all
+再如：定義ga 為 get all from corpse,試一試！
 
-也可以使用参数，如果没写参数，后面跟的就会全部照搬
-例如： 输入g from corpse,就会发出get all from corpse
-这一点和风云的系统不同（风云中必须用$*)
-如果要用参数的话，用%1,%2,%3...代表第1，2，3个单词...
+也可以使用參數，如果沒寫參數，後面跟的就會全部照搬
+例如： 輸入g from corpse,就會發出get all from corpse
+這一點和風雲的系統不同（風雲中必須用$*)
+如果要用參數的話，用%1,%2,%3...代表第1，2，3個單詞...
 
-（另外告诉你个秘密，可以用%-1代替全部，就像$*的作用一样哦）
+（另外告訴你個秘密，可以用%-1代替全部，就像$*的作用一樣哦）
 
-可以用；来分开多条命令，这是风云ALIAS系统做不到的
+可以用；來分開多條命令，這是風雲ALIAS系統做不到的
 比如：gp = get all;put all in oilbag
-一个ALIAS中可以引用其他ALIAS，风云的ALIAS也不支持
+一個ALIAS中可以引用其他ALIAS，風雲的ALIAS也不支持
 
 比如： er = exert
        er1 = er regenerate
        er2 = er recover
        er3 = er refresh
-其实最重要的是：可以使用象#if命令或%if函数等来让alias有智能
+其實最重要的是：可以使用象#if命令或%if函數等來讓alias有智能
 
 比如我把上面的g和ga改成：
 
       g = get %if(%null(%1),all,%-1)
       ga = get all from %if(%null(%1),corpse,%-1)
-关于button
+關於button
 
-在zmud中可以设button,看起来就是一排按钮，可以用鼠标来按
-button可以设定放在窗口的上边或右边（你愿意放左边下边也没意见）
+在zmud中可以設button,看起來就是一排按鈕，可以用鼠標來按
+button可以設定放在窗口的上邊或右邊（你願意放左邊下邊也沒意見）
 
-怎么设？自己找找.... :)
+怎麼設？自己找找.... :)
 
-button有两类，开关式(toggle)的和非开关式的,
-              设定窗口上有个check box负责这一点
+button有兩類，開關式(toggle)的和非開關式的,
+              設定窗口上有個check box負責這一點
 
-非开关式的例子：名称(Off caption)：吃包子
+非開關式的例子：名稱(Off caption)：吃包子
                 命令(on command): eat dumpling
 
-开关式的例子：名称(Off caption): 拔剑
-                  (On caption):  收剑
+開關式的例子：名稱(Off caption): 拔劍
+                  (On caption):  收劍
               命令(On command):  wield @mysword
                   (Off command): unwield @mysword
 
-              记得把变量mysword设成自造武器的名字哦！
+              記得把變量mysword設成自造武器的名字哦！
 
-如何自动practice
-在设定trigger时有一项叫做class,用来把不同功能的trigger分类
+如何自動practice
+在設定trigger時有一項叫做class,用來把不同功能的trigger分類
 
-我们来做一个叫practice的trigger类，初始设定改成disable
-需要practice的时候enable这个类就可以了。
-（实际上可以用一个开关button来控制比较方便）
-trigger1: pattern = 你坐下来运气用功，一股内息开始在体内流动。
+我們來做一個叫practice的trigger類，初始設定改成disable
+需要practice的時候enable這個類就可以了。
+（實際上可以用一個開關button來控制比較方便）
+trigger1: pattern = 你坐下來運氣用功，一股內息開始在體內流動。
 commands = #20 pr @practiced;#wa 2000;#20 pr @practiced;
 #wa @waittime;skills;er2 @needer2;#wa @waittime;ex @needex
 
@@ -245,11 +245,11 @@ commands = level=%1;point=%2;need=[(@level+1)*(@level+1)+1];
 chat @nowpractice [@level+1]
 commands = level=%1;point=%2;need=[(@level+1)*(@level+1)+1];
 #if @point=@need {learn @nowpractice from master with 1;
-chat @nowpractice [@level+1] 级了;tune chat}
+chat @nowpractice [@level+1] 級了;tune chat}
 
-其中使用的变量：nowpractice是你要练的功夫名，比如five-steps
-                practiced是要练的基本技能，如move
-                waittime是busy的时间，一般设成3000
-                needer2是恢复气需要的内力值
-                needex是正循环用的气
+其中使用的變量：nowpractice是你要練的功夫名，比如five-steps
+                practiced是要練的基本技能，如move
+                waittime是busy的時間，一般設成3000
+                needer2是恢復氣需要的內力值
+                needex是正循環用的氣
 

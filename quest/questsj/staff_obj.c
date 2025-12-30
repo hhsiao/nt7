@@ -50,7 +50,7 @@ mapping staff_obj = ([
         "/clone/misc/bone":5,                         //人骨頭
         "/kungfu/class/gaibang/yuzhu_zhang":35,       //洪七公
         "/kungfu/class/gaibang/obj/yuzhu_zhang":1,    //暫時無處獲取
-        "/kungfu/class/dali/obj/diaogan":35,          //褚萬里
+        "/kungfu/class/dali/obj/diaogan":35,          //褚萬裡
 ]);
 
 int check_value(string filename)

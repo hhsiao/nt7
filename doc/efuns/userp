@@ -1,12 +1,12 @@
         userp(3)                LP MudOSv21c7                (7 Jul 1996)
-        函数名称:
-                userp() - 判断指定的物件是否曾为可互动 (interactive).
-        函数语法:
+        函數名稱:
+                userp() - 判斷指定的物件是否曾為可互動 (interactive).
+        函數語法:
                 int userp( object );
-                整数 userp( 物件 );
-        函数用法:
-                如果 arg  曾是可互动物件, 则传回 1.
-        参考函数:
+                整數 userp( 物件 );
+        函數用法:
+                如果 arg  曾是可互動物件, 則傳回 1.
+        參考函數:
                 interactive(3), users(3), living(3)
-        手册翻译:
+        手冊翻譯:
                 Phoebus@ZH        97.jul.25.                (Writen 5/23/97)

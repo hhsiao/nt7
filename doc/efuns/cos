@@ -1,12 +1,12 @@
         cos(3)                        LP MudOSv21c7                (7 Jul 1996)
-        函数名称:
-                cos() - 传回一个浮点数的馀弦值 (cosine)
-        函数语法:
+        函數名稱:
+                cos() - 傳回一個浮點數的餘弦值 (cosine)
+        函數語法:
                 float cos( float f );
-                浮点数 cos( 浮点数 f );
-        函数用法:
-                传回参数 f 的馀弦值, f  以弪度 (radians) 为单位.
-        参考函数:
+                浮點數 cos( 浮點數 f );
+        函數用法:
+                傳回參數 f 的餘弦值, f  以弳度 (radians) 為單位.
+        參考函數:
                 acos(3), asin(3), atan(3), sin(3), tan(3)
-        手册翻译:
+        手冊翻譯:
                 Phoebus@ZH        97.Jan.27.                (Writen 5/23/97)

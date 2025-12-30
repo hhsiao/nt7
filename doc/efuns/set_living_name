@@ -1,14 +1,14 @@
         set_living_name(3)        LP MudOSv21c7                (7 Jul 1996)
-        函数名称:
-                set_living_name() - 设定一个活著的 (living) 物件的生物名称
+        函數名稱:
+                set_living_name() - 設定一個活著的 (living) 物件的生物名稱
                                     (living name).
-        函数语法:
+        函數語法:
                 void set_living_name( string name );
-                无传回值 set_living_name( 字串 name );
-        函数用法:
-                对一个活著的物件设定其生物名称. 设定之後, 此物件就可以
+                無傳回值 set_living_name( 字串 name );
+        函數用法:
+                對一個活著的物件設定其生物名稱. 設定之後, 此物件就可以
                 用 find_living()  找到.
-        参考函数:
+        參考函數:
                 enable_commands(3), find_living(3), find_player(3)
-        手册翻译:
+        手冊翻譯:
                 Phoebus@ZH        97.Jul.21.                (Writen 5/23/97)

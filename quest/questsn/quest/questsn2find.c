@@ -67,7 +67,7 @@ mapping *quest = ({
         ]),
         ([
                 "id":          "pi pao",
-                "name":        "棗紅緞面皮袍",
+                "name":        "棗紅緞麵皮袍",
                 "type":        "尋",
                 "bonus":       75,
                 "msg1":        "",

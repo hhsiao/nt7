@@ -1417,7 +1417,7 @@ mixed weapon10lv_hit_ob(object me, object victim, object weapon, int damage_bonu
 
         case 3:
                 victim->receive_wound("qi", damage / 3 + random(damage / 3), me);
-                return msg + HIG "$N" HIG "隨手划動" + weapon->name() + HIG "，一圈圈碧芒"
+                return msg + HIG "$N" HIG "隨手劃動" + weapon->name() + HIG "，一圈圈碧芒"
                        "圍向$n" HIG "，震得$n吐血連連！\n" NOR;
 
         case 4:

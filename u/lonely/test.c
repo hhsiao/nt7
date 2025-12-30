@@ -32,8 +32,8 @@ string test()
         result = str1+str2+str3+str4; 
         
         b = random(10); // 決定奇偶數B
-        r = random(10); // 隨機干擾數
-        a = random(9);   // 干擾數字的位置A
+        r = random(10); // 隨機幹擾數
+        a = random(9);   // 幹擾數字的位置A
         result = result[0..a-1]+to_string(r)+result[a..];
         result = to_string(a)+to_string(b)+result;  // 密文
         write(sprintf("%s\n", result));

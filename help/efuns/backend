@@ -1,6 +1,6 @@
 backend.c
 
-让 efun query_load_av() 可提供中文资料显示
+讓 efun query_load_av() 可提供中文資料顯示
 ―――――――――――――――――――――――――――――――――――――――
 static double load_av = 0.0;
 static int load_now = 0;
@@ -59,7 +59,7 @@ char *query_load_av()
 {
     static char buff[100];
 
-    sprintf(buff, "%.2f(%d)指令下达/秒，%.2f(%d)编译行数/秒", load_av, load_now, compile_av, compile_now);
+    sprintf(buff, "%.2f(%d)指令下達/秒，%.2f(%d)編譯行數/秒", load_av, load_now, compile_av, compile_now);
     return (buff);
 }                               /* query_load_av() */
 ―――――――――――――――――――――――――――――――――――――――

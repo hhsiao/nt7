@@ -1,32 +1,32 @@
         unique_array(3)                LP MudOSv21c7                (7 Jul 1996)
-        函数名称:
-                unique_array() - 将一个物件阵列分组.
-        函数语法:
+        函數名稱:
+                unique_array() - 將一個物件陣列分組.
+        函數語法:
                 mixed unique_array( object *obarr, string separator,
                         void | mixed skip ); 
                 mixed unique_array( mixed *arr, function f,
                         void | mixed skip );
                 混合 unique_array( 物件 *obarr, 字串 separator,
-                        无参数 或 混合 skip );
-                混合 unique_array( 混合 *arr, 函式指标 f,
-                        无参数 或 混合 skip );
-        函数用法:
-                unique_array()  将函式 separator  传回同值的物件分为
-                同组. obarr 只能是一个物件阵列, 其他资料型态则予以忽
-                视. 在 obarr  中的每一个物件各会呼叫函式 separator  
-                一次. 如果指定参数 skip,  会先过滤掉符合 skip 的物件
+                        無參數 或 混合 skip );
+                混合 unique_array( 混合 *arr, 函式指標 f,
+                        無參數 或 混合 skip );
+        函數用法:
+                unique_array()  將函式 separator  傳回同值的物件分為
+                同組. obarr 只能是一個物件陣列, 其他資料型態則予以忽
+                視. 在 obarr  中的每一個物件各會呼叫函式 separator  
+                一次. 如果指定參數 skip,  會先過濾掉符合 skip 的物件
                 元素.
-                而第二种语法的作用略有不同. 阵列中的每一个元素将依次
-                作为 f  的参数, 元素仍依照 f  的传回值分类. 但是阵列
-                不限定为物件型态.
-        传回值:
-                传回的值是含有多个阵列的阵列, 格式如下:
+                而第二種語法的作用略有不同. 陣列中的每一個元素將依次
+                作為 f  的參數, 元素仍依照 f  的傳回值分類. 但是陣列
+                不限定為物件型態.
+        傳回值:
+                傳回的值是含有多個陣列的陣列, 格式如下:
                 ({
-                        ({第一组:1, 第一组:2, .... 第一组:N }),
-                        ({第二组:1, 第二组:2, .... 第二组:N }),
-                        ({第三组:1, 第三组:2, .... 第三组:N }),
+                        ({第一組:1, 第一組:2, .... 第一組:N }),
+                        ({第二組:1, 第二組:2, .... 第二組:N }),
+                        ({第三組:1, 第三組:2, .... 第三組:N }),
                                 ....
-                        ({第 N 组:1, 第 N 组:2, .... 第 M 组:N }),
+                        ({第 N 組:1, 第 N 組:2, .... 第 M 組:N }),
                 })
-        手册翻译:
+        手冊翻譯:
                 Phoebus@ZH        97.jul.25.                (Writen 5/23/97)

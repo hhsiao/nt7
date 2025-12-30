@@ -1,17 +1,17 @@
         explode(3)                LP MudOSv21c7                (7 Jul 1996)
-        函数名称:
-                explode() - 打断一个字串.
-        函数语法:
+        函數名稱:
+                explode() - 打斷一個字串.
+        函數語法:
                 string *explode( string str, string del );
                 字串 *explode( 字串 str, 字串 del );
-        函数用法:
-                explode() 传回一个字串的阵列 (array), 此阵列是
-                字串 str 以 del 分界打断的片段.
+        函數用法:
+                explode() 傳回一個字串的陣列 (array), 此陣列是
+                字串 str 以 del 分界打斷的片段.
         □例:
                 explode( str, " " );
-                这样会传回一个 str 中所有英文单字的字串阵列 (假设
-                str 是英文句子, 每一个单字由空白字元隔开).
-        参考函数:
+                這樣會傳回一個 str 中所有英文單字的字串陣列 (假設
+                str 是英文句子, 每一個單字由空白字元隔開).
+        參考函數:
                 sscanf(3), extract(3), replace_string(3), strsrch(3)
-        手册翻译:
+        手冊翻譯:
                 Phoebus@ZH        97.Feb.12.                (Writen 5/23/97)

@@ -1,15 +1,15 @@
         restore_object(3)        LP MudOSv21c7                (7 Jul 1996)
-        函数名称:
-                restore_object() - 从一个档案读回一个物件的变数值.
-        函数语法:
+        函數名稱:
+                restore_object() - 從一個檔案讀回一個物件的變數值.
+        函數語法:
                 int restore_object( string name, int flag );
-                整数 restore_object( 字串 name, 整数 flag );
-        函数用法:
-                从叫作 name 的档案读回目前物件的变数值. 如果 flag 是 1,
-                则非静态变数 (non-static) 不会在读回之前被清除为零. 
-                 (普通状况下, 非静态变数都是零).
-                如果读回的过程出错, 则所有的变数都不会更动, 并传回错误.
-        参考函数:
+                整數 restore_object( 字串 name, 整數 flag );
+        函數用法:
+                從叫作 name 的檔案讀回目前物件的變數值. 如果 flag 是 1,
+                則非靜態變數 (non-static) 不會在讀回之前被清除為零. 
+                 (普通狀況下, 非靜態變數都是零).
+                如果讀回的過程出錯, 則所有的變數都不會更動, 並傳回錯誤.
+        參考函數:
                 save_object(3)
-        手册翻译:
+        手冊翻譯:
                 Phoebus@ZH        97.Jun.2                (Writen 5/23/97)

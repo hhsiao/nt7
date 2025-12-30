@@ -1,15 +1,15 @@
         present(3)                LP MudOSv21c7                (7 Jul 1996)
-        函数名称:
-                present() - 以物品的辨识名称 (id) 寻找物件.
-        函数语法:
+        函數名稱:
+                present() - 以物品的辨識名稱 (id) 尋找物件.
+        函數語法:
                 object present( mixed str, object ob );
                 物件 present( 混合 str, 物件 ob );
-        函数用法:
-                如果一个物件的名字为 str, 就传回此物件.
-                str 也可以是一个物件, 这样会比较快而简单.
-                如果指定 ob, present() 会寻找 ob 的内容物 (inventory),
-                不然会寻找目前物件的内容物, 以及目前物件所处环境的内容物.
-        参考函数:
+        函數用法:
+                如果一個物件的名字為 str, 就傳回此物件.
+                str 也可以是一個物件, 這樣會比較快而簡單.
+                如果指定 ob, present() 會尋找 ob 的內容物 (inventory),
+                不然會尋找目前物件的內容物, 以及目前物件所處環境的內容物.
+        參考函數:
                 move_object(3), environment(3)
-        手册翻译:
+        手冊翻譯:
                 Phoebus@ZH        97.Apr.24.                (Writen 5/23/97)

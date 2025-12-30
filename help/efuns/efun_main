@@ -1,6 +1,6 @@
 □ efun_main.c 
 
-让 efun match_path() 具有 '/' 路径搜寻功能
+讓 efun match_path() 具有 '/' 路徑搜尋功能
 ―――――――――――――――――――――――――――――――――――――――
 #ifdef F_MATCH_PATH
 void f_match_path PROT((void))
@@ -50,7 +50,7 @@ void f_match_path PROT((void))
 #endif                          /* F_MATCH_PATH */
 ―――――――――――――――――――――――――――――――――――――――
 
-让 efun this_player() 可回传 call_out() 的 command_giver
+讓 efun this_player() 可回傳 call_out() 的 command_giver
 ―――――――――――――――――――――――――――――――――――――――
 #ifdef F_THIS_PLAYER
 void

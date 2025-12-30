@@ -16,7 +16,7 @@ string huanggong();
 
 void create()
 {
-        set_name("范曄", ({ "fan ye", "fan"}));
+        set_name("範曄", ({ "fan ye", "fan"}));
         set("title", "大理國司馬");
         set("gender", "男性");
         set("age", 40);

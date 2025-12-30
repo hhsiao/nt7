@@ -2,15 +2,15 @@
 
         allocate_mapping(3)     MudOS v21c2             (5 Sep 1994)
 
-        名称:
-                allocate_mapping() - 预先配置 (pre-allocate) 一块记
-                                     忆体给一个映射 (mapping).
-        语法:
+        名稱:
+                allocate_mapping() - 預先配置 (pre-allocate) 一塊記
+                                     憶體給一個映射 (mapping).
+        語法:
                 mapping allocate_mapping( int size );
 
-                映射 allocate_mapping( 整数 size );
+                映射 allocate_mapping( 整數 size );
         用法:
-                传回一个预先配置 size 个元素 (elements) 的映射.
+                傳回一個預先配置 size 個元素 (elements) 的映射.
 
                 □例:
                         mapping x;
@@ -18,22 +18,22 @@
 
                         x = allocate_mapping(y);
 
-                y 是这个映射的初始大小. 如果您已经知道映射有多大, 
-                使用 allocate_mapping 是比较好的方法 (在□例里是
-                200 个元素) , 因为一次就设定好要配置的记忆体, 就记
-                忆体的使用上是比较有效率的. 如果您要用映射储存 200
-                项资料, 用 allocate_mapping 是较适合而有效率的方式.
+                y 是這個映射的初始大小. 如果您已經知道映射有多大, 
+                使用 allocate_mapping 是比較好的方法 (在□例裡是
+                200 個元素) , 因為一次就設定好要配置的記憶體, 就記
+                憶體的使用上是比較有效率的. 如果您要用映射儲存 200
+                項資料, 用 allocate_mapping 是較適合而有效率的方式.
 
-                注意 !  如果您预计会删除映射中的许多项元素, 就应该
-                用 x = ([]) 来初始化□例中的映射 x, 而最好别用 
+                注意 !  如果您預計會刪除映射中的許多項元素, 就應該
+                用 x = ([]) 來初始化□例中的映射 x, 而最好別用 
                 allocate_mapping().
 
-                注意: 在此, 实际上映射的大小是没有意义的.
+                注意: 在此, 實際上映射的大小是沒有意義的.
 
                 x = allocate_mapping( 200 ); 等於 x = ([]);
-        参考:
+        參考:
                 map_delete(3)
-        翻译:
+        翻譯:
                 Spock @ FF      96.Oct.14.              (printed 3/16/95)
 
 

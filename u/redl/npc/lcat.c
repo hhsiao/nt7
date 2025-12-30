@@ -28,7 +28,7 @@ void create()
         set("gender", "雌性");
         set("age", 16);
         set("longx",
-                        NOR HIK"它是在化樂天里長大的淺灰色的小貓，寶藍色的大眼睛，皮毛滑亮柔順！\n"NOR);
+                        NOR HIK"它是在化樂天裡長大的淺灰色的小貓，寶藍色的大眼睛，皮毛滑亮柔順！\n"NOR);
         set("dex",1000000);
         set("con",1000000);
         set("int",1000000);

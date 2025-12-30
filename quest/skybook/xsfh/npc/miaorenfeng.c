@@ -1216,7 +1216,7 @@ int ask_lengquanshengong()
       if(skill_check(me))
       {
           tell_object(me,HIC"你聽了苗人鳳的指點，可是領悟起來速度極慢。\n"NOR);
-          tell_object(me,HIC"也許是因為其他內功的干擾，無法全心領悟冷泉神功。\n"NOR);
+          tell_object(me,HIC"也許是因為其他內功的幹擾，無法全心領悟冷泉神功。\n"NOR);
         me->add("potential",-(random(3)+3));
         if( me->query("potential")<0)
             me->set("potential",0);
@@ -1255,7 +1255,7 @@ int ask_lengquanshengong()
     if(skill_check(me))
     {
         tell_object(me,HIC"你聽了苗人鳳的指點，可是總感覺領悟起來極其困難。\n"NOR);
-      tell_object(me,HIC"也許是因為其他內功的干擾，無法全心領悟冷泉神功。\n"NOR);
+      tell_object(me,HIC"也許是因為其他內功的幹擾，無法全心領悟冷泉神功。\n"NOR);
       me->improve_skill("lengquan-shengong", random(me->query_int()*2/3));
       me->delete_temp(QUESTDIR4+"lengquanshengong_teach");
       me->set(QUESTDIR4+"lengquanshengong_teach",1);

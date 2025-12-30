@@ -1,48 +1,48 @@
 
      socket_bind(3)         MudOS (5 Sep 1994)          socket_bind(3)
 
-     名称：
-          socket_bind() - 命名(bind)一个 socket
+     名稱：
+          socket_bind() - 命名(bind)一個 socket
 
-     语法：
+     語法：
           #include 
 
           int socket_bind( int s, int port );
 
-          整数 socket_bind( 整数 s, 整数 port );
+          整數 socket_bind( 整數 s, 整數 port );
 
      用法：
-          socket_bind() 为一个未命名的 socket 指定一个名字。当一个
-          socket 由 socket_create(3) 建立後，它已存在於一个命名空间
-          （位址族, address family）但还没有指定名字。socket_bind()
-          需要埠号来为 socket s 命名。
+          socket_bind() 為一個未命名的 socket 指定一個名字。當一個
+          socket 由 socket_create(3) 建立後，它已存在於一個命名空間
+          （位址族, address family）但還沒有指定名字。socket_bind()
+          需要埠號來為 socket s 命名。
 
-     传回值：
-          socket_bind() 传回：
+     傳回值：
+          socket_bind() 傳回：
 
-               成功时是 EESUCCESS。
+               成功時是 EESUCCESS。
 
-               失败时是一个有如下意义的负值。
+               失敗時是一個有如下意義的負值。
 
-     错误值：
-          EEFDRANGE      描述值(descriptor)超出□围。
+     錯誤值：
+          EEFDRANGE      描述值(descriptor)超出□圍。
 
-          EEBADF         无效的描述值。
+          EEBADF         無效的描述值。
 
-          EESECURITY     企图违反安全。
+          EESECURITY     企圖違反安全。
 
           EEISBOUND      socket 已命名。
 
           EEADDRINUSE    此位址已被使用。
 
-          EEBIND         命名问题。
+          EEBIND         命名問題。
 
-          EEGETSOCKNAME  getsockname 问题。
+          EEGETSOCKNAME  getsockname 問題。
 
-     参照：
+     參照：
           socket_connect(3), socket_create(3), socket_listen(3)
 
-     翻译：
+     翻譯：
           Kenny@Broken.History       97.Jul.27       (printed 3/16/95)
 
 

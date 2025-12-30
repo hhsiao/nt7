@@ -209,7 +209,7 @@ int do_answer(string arg)
 		me->delete_temp("wgmeet");
 		if ( arg == "y" ) {
 			command("nod "+ me->query("id"));
-			command("whisper " + me->query("id")+ " 那好，我們先來了解一下一些基本的指令：在書劍\n"+
+			command("whisper " + me->query("id")+ " 那好，我們先來瞭解一下一些基本的指令：在書劍\n"+
 				"裡移動的命令是e、w、s、n、u、d，分別代表東西南北上下六個基本方向，以\n"+
 				"及ne、wd、su、enter、out等組合和特殊命令，它們分別代表東北、西下、南\n"+
 				"上等方向以及進入和外出等。好了，現在你可以去找孫均，他會告訴你更多的\n"+
@@ -231,7 +231,7 @@ int do_answer(string arg)
 		me->delete_temp("jobover");
 		if ( arg == "y") {
 			tell_object(me, CYN"馮坦說道：「好吧，不過在回答問題前，我還是要先提醒你一下，你可以通過\n"+
-					"指令 "HIY HBCYN"help"CYN" 來了解一下書劍的一些基本情況。下面的一些問題，你可以通過查\n"+
+					"指令 "HIY HBCYN"help"CYN" 來瞭解一下書劍的一些基本情況。下面的一些問題，你可以通過查\n"+
 					"詢 help 來得到正確的答案，如果實在找不到答案，也可以通過 "HIY HBCYN"chat"CYN" 來詢問\n"+
 					"別人來得到答案。」\n"NOR);
 			tell_object(me, HIR"\n\t\t準備好了吧！那我們就開始了。\n\n"NOR);

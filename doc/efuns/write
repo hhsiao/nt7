@@ -1,13 +1,13 @@
         write(3)                MusOS v21c2                (7 Jul 1996)
-        函数名称:
-                write() - 对目前的玩家送出讯息.
-        函数语法:
+        函數名稱:
+                write() - 對目前的玩家送出訊息.
+        函數語法:
                 void write( mixed str );
-                无传回值 write( 混合 str );
-        函数用法:
-                送讯息 str  给目前的玩家. str 可以是一个数字, 而此数字
-                将转换成字串送出.
-        参考函数:
+                無傳回值 write( 混合 str );
+        函數用法:
+                送訊息 str  給目前的玩家. str 可以是一個數字, 而此數字
+                將轉換成字串送出.
+        參考函數:
                 message(3), tell_object(3), tell_room(3), shout(3), say(3)
-        手册翻译:
+        手冊翻譯:
                 Phoebus@ZH        97.jul.25.                (Writen 5/23/97)

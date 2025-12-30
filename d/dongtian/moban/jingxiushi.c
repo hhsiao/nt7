@@ -62,7 +62,7 @@ int jingxiuing(object me)
         }
         
         if (playerp(me) && (query("food", me) < 20 || query("water", me) < 20)) {
-                tell_object(me, CYN "你突然覺得很飢渴，又不會辟穀乾脆停止了修煉。\n\n" + NOR);
+                tell_object(me, CYN "你突然覺得很飢渴，又不會闢穀乾脆停止了修煉。\n\n" + NOR);
                 me->command("halt");
                 return 1;
         }

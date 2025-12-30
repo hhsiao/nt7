@@ -125,7 +125,7 @@ void create()
 LONG);
 
                 set("no_sleep_room",1);
-                //set("no_magic", 1);//准許招武器
+                //set("no_magic", 1);//準許招武器
                 set("no_rideto", 1);
                 set("no_flyto", 1);
                 set("no_drift", 1);

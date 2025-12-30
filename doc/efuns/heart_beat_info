@@ -1,21 +1,21 @@
 
         heart_beat_info
 
-        名称：
+        名稱：
                 heart_beat_info()
-                返回当前有心跳的物件阵列
+                返回當前有心跳的物件陣列
 
-        语法：
+        語法：
                 object array heart_beat_info()
                 *object heart_beat_info()
-                物件阵列 heart_beat_info（无参数）
+                物件陣列 heart_beat_info（無參數）
 
         用法：
-                返回当前有心跳的所有物件，这个函数只有
-                在定义了 COMPAT_32 才可用。
+                返回當前有心跳的所有物件，這個函數只有
+                在定義了 COMPAT_32 才可用。
 
-        参考：
+        參考：
                 heart_beats
 
-        by 发现号(Find@tx)
+        by 發現號(Find@tx)
 

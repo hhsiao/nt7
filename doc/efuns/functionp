@@ -1,19 +1,19 @@
         functionp(3)                LP MudOSv21c7                (7 Jul 1996)
-        函数名称:
-                functionp() - 判断指定的变数是否为一个函式指标
-                              (function pointer). 如果是函式指标, 
-                              则再判断为何种型态. 
-        函数语法:
+        函數名稱:
+                functionp() - 判斷指定的變數是否為一個函式指標
+                              (function pointer). 如果是函式指標, 
+                              則再判斷為何種型態. 
+        函數語法:
                 int functionp( mixed arg );
-                整数 functionp( 混合 arg );
-        函数用法:
-                如果 arg 是一个函式指标则传回非零值 (nonzero), 如果
-                不是则传回 0.
-                函式指标是一种「函式」(function) 型态的指标变数.
-                以下是一个□例:
+                整數 functionp( 混合 arg );
+        函數用法:
+                如果 arg 是一個函式指標則傳回非零值 (nonzero), 如果
+                不是則傳回 0.
+                函式指標是一種「函式」(function) 型態的指標變數.
+                以下是一個□例:
                 f = (: obj, func :);
-                传回的值指示出函式指标的型态, 而这些传回值被定义在
-                驱动程式中的 "include/function.h" 档案中.
+                傳回的值指示出函式指標的型態, 而這些傳回值被定義在
+                驅動程式中的 "include/function.h" 檔案中.
                 function pointer type                value 
                 ---------------------------------------------
                 call_other                        FP_CALL_OTHER 
@@ -21,20 +21,20 @@
                 efun                              FP_EFUN 
                 simul_efun                        FP_SIMUL 
                 functional                        FP_FUNCTIONAL
-                另外在某些情形下, 会加上以下的值:
-                (有参数)                        FP_HAS_ARGUMENTS 
-                (创造函式的物件被摧毁)                FP_OWNER_DESTED 
-                (函式无法连结)                        FP_NOT_BINDABLE
-                最後三个值为位元值 (bit value), 可以用位元测试.
-                FP_MASK 可以忽略这些位元值, 测试基本的函式指标型态
+                另外在某些情形下, 會加上以下的值:
+                (有參數)                        FP_HAS_ARGUMENTS 
+                (創造函式的物件被摧毀)                FP_OWNER_DESTED 
+                (函式無法連結)                        FP_NOT_BINDABLE
+                最後三個值為位元值 (bit value), 可以用位元測試.
+                FP_MASK 可以忽略這些位元值, 測試基本的函式指標型態
                 □例:
-                测试一个函式指标变数是否为超越函式指标:
+                測試一個函式指標變數是否為超越函式指標:
                 if ((functionp(f) & FP_MASK) == FP_EFUN) ...
-                测试其是否有参数:
+                測試其是否有參數:
                 if (functionp(f) & FP_HAS_ARGUMENTS) ...
-        参考函数:
+        參考函數:
                 mapp(3), stringp(3), pointerp(3), objectp(3), intp(3),
                 bufferp(3), floatp(3), nullp(3), undefinedp(3),
                 errorp(3), bind(3), lpc/types/function
-        手册翻译:
+        手冊翻譯:
                 Phoebus@ZH        97.Jul.26.                (Writen 5/23/97)

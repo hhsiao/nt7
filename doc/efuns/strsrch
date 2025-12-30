@@ -1,23 +1,23 @@
         strsrch(3)                LP MudOSv21c7                (7 Jul 1996)
-        函数名称:
-                strsrch() - 在一个字串中寻找特定的字串.
-        函数语法:
+        函數名稱:
+                strsrch() - 在一個字串中尋找特定的字串.
+        函數語法:
                 int strsrch( string str, string substr | int char,
                         int flag );
-                整数 strsrch( 字串 str, 字串 substr 或 整数 char,
-                        整数 flag );
-        函数用法:
-                strsrch() 在字串 str  中寻找第一个出现的 substr.
-                如果 flag 为 -1,  则寻找最後一个出现的 substr. 
-                如果第二个参数是整数, 则只寻找一个字元 (character)
+                整數 strsrch( 字串 str, 字串 substr 或 整數 char,
+                        整數 flag );
+        函數用法:
+                strsrch() 在字串 str  中尋找第一個出現的 substr.
+                如果 flag 為 -1,  則尋找最後一個出現的 substr. 
+                如果第二個參數是整數, 則只尋找一個字元 (character)
                  (如同 C  的 strchr() 及 strrchr() ). strsrch()
-                无法寻找空字串或 (empty string) 是空值 (null value)
+                無法尋找空字串或 (empty string) 是空值 (null value)
                 .
-        传回值:
-                strsrch() 传回符合的第一个或最後一个字串出现在 str
-                中的位置. 如果没有符合的字串, 则传回 -1,  或是错误
-                讯息 (有问题的参数等等).
-        参考函数:
+        傳回值:
+                strsrch() 傳回符合的第一個或最後一個字串出現在 str
+                中的位置. 如果沒有符合的字串, 則傳回 -1,  或是錯誤
+                訊息 (有問題的參數等等).
+        參考函數:
                 explode(3), sscanf(3), replace_string(3), regexp(3)
-        手册翻译:
+        手冊翻譯:
                 Phoebus@ZH        97.Jul.23.                (Writen 5/23/97)

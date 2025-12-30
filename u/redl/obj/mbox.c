@@ -1,6 +1,6 @@
 // This program is a part of NITAN MudLIB 
 // redl 2013/5 
-// 私有，小心被利用刷屏和干擾機器人
+// 私有，小心被利用刷屏和幹擾機器人
 
 #include <ansi.h>
 inherit ITEM;

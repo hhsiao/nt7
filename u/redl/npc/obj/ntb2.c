@@ -28,7 +28,7 @@ int do_exchange()
         if(me->is_busy()) return notify_fail("你正忙著，沒空兌換泥潭幣。\n");
         me->start_busy(2);
 
-        //30天后才准許兌換
+        //30天后才準許兌換
         if (time() < (1392799000 + 86400 * 30)) return notify_fail("這種股票還沒有到兌換期，再等等吧。\n");
         
 //        if (! objectp(ob = UPDATE_D->global_find_player(target)))

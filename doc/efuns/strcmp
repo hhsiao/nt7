@@ -1,18 +1,18 @@
         strcmp(3)                LP MudOSv21c7                (7 Jul 1996)
-        函数名称:
-                strcmp() - 判断两个字串间的语句关系 (lexical
+        函數名稱:
+                strcmp() - 判斷兩個字串間的語句關係 (lexical
                            relationship).
-        函数语法:
+        函數語法:
                 int strcmp( string one, string two );
-                整数 strcmp( 字串 one, 字串 two );
-        函数用法:
-                此数的 strcmp() 与 C  函式库的 strcmp 相同. 如果字串
-                one 语句上在 two  之前 (即 one  在英文字典中的顺序在
-                two 之前),  则 strcmp() 传回比 0  小的值. 如果两个字
-                串相同, 则传回 0. 如果 two  语句顺序在 one  之前, 则
-                strcmp()  传回比 0  大的值. 这个超越函式 (efun) 在使
-                用 sort_array(3)  排序时, 特别有用.
-        参考函数:
+                整數 strcmp( 字串 one, 字串 two );
+        函數用法:
+                此數的 strcmp() 與 C  函式庫的 strcmp 相同. 如果字串
+                one 語句上在 two  之前 (即 one  在英文字典中的順序在
+                two 之前),  則 strcmp() 傳回比 0  小的值. 如果兩個字
+                串相同, 則傳回 0. 如果 two  語句順序在 one  之前, 則
+                strcmp()  傳回比 0  大的值. 這個超越函式 (efun) 在使
+                用 sort_array(3)  排序時, 特別有用.
+        參考函數:
                 sort_array(3)
-        手册翻译:
+        手冊翻譯:
                 Phoebus@ZH        97.Jul.23.                (Writen 5/23/97)

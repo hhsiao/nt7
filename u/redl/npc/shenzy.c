@@ -181,7 +181,7 @@ int accept_object(object me, object obj)
                 return 0;
                 }
 
-        if( query("family/master_name", me) != "張三丰" && query("family/family_name", me) != "峨嵋派")
+        if( query("family/master_name", me) != "張三豐" && query("family/family_name", me) != "峨嵋派")
         {
                 tell_object(me,CYN "沈芝毓搖頭對你說道：我只幫峨嵋派和武當張真人弟子，你還是回去吧。\n" NOR); 
                 return 0;

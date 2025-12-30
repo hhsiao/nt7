@@ -6,7 +6,7 @@ string *degree_desc = ({
        MAG "兵部侍郎" NOR,
        MAG "兵部尚書" NOR,
        HIB "鎮北節度使" NOR,
-       HIB "征討大將軍" NOR,
+       HIB "徵討大將軍" NOR,
        HIW "兵馬大元帥" NOR,
 });
 string clear_degree(string arg);
@@ -120,7 +120,7 @@ string clear_degree(string arg)
         ||  (strsrch(arg, MAG "兵部侍郎" NOR) >= 0)
         ||  (strsrch(arg, MAG "兵部尚書" NOR) >= 0)
         ||  (strsrch(arg, HIB "鎮北節度使" NOR) >= 0)
-        ||  (strsrch(arg, HIB "征討大將軍" NOR) >= 0)
+        ||  (strsrch(arg, HIB "徵討大將軍" NOR) >= 0)
         ||  (strsrch(arg, HIW "兵馬大元帥" NOR) >= 0)
         ||  (strsrch(arg, HIM " ☆ " NOR) >= 0))
         {
@@ -128,7 +128,7 @@ string clear_degree(string arg)
                 arg = replace_string(arg, MAG "兵部侍郎" NOR, "");
                 arg = replace_string(arg, MAG "兵部尚書" NOR, "");
                 arg = replace_string(arg, HIB "鎮北節度使" NOR, "");
-                arg = replace_string(arg, HIB "征討大將軍" NOR, "");
+                arg = replace_string(arg, HIB "徵討大將軍" NOR, "");
                 arg = replace_string(arg, HIW "兵馬大元帥" NOR, "");
                 arg = replace_string(arg, HIR "提督" NOR, "");
                 arg = replace_string(arg, HIM " ☆ " NOR, "");

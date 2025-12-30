@@ -1,23 +1,23 @@
 
         heart_beats
 
-        名称：
+        名稱：
                 heart_beats()
-                返回当前有心跳的物件阵列
+                返回當前有心跳的物件陣列
 
-        语法：
+        語法：
                 object array heart_beats()
                 *object heart_beats()
-                物件阵列 heart_beats（无参数）
+                物件陣列 heart_beats（無參數）
 
         用法：
-                返回当前有心跳的所有物件，这个函数只有
-                再定义了 PACKAGE_CONTRIB 才可用。
+                返回當前有心跳的所有物件，這個函數只有
+                再定義了 PACKAGE_CONTRIB 才可用。
 
-        参考：
+        參考：
                 heart_beat,
                 set_heart_beat,
                 query_heart_beat
 
-        by 发现号(Find@tx)
+        by 發現號(Find@tx)
 

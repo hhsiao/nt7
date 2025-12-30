@@ -1,4 +1,4 @@
-本游戏的命令分为下列几类：
+本遊戲的命令分為下列幾類：
 
 $HIY$【玩家命令】$NOR$
 $HIC$
@@ -11,7 +11,7 @@ swear     system    top       time      title     title     tune
 unset     uptime    version   who       wimpy     wizlist
 $NOR$
 
-$HIY$【探险命令】$NOR$
+$HIY$【探險命令】$NOR$
 $HIC$
 ansuan    apply     ask       assist    attack    beg       check
 close     come      daub      drive     drop      drug      emote

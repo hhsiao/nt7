@@ -184,11 +184,11 @@ string *unarm_parry_sixmai = ({
 
 string *star_move_weapon = ({
         append_color(HIR "只見$n長袖在$N的$w上一帶一送，$w在空中硬生生轉了個灣，奔向$P自己的$l。\n" NOR, HIY),
-        append_color(HIR "$n使一招斗轉星移，$N的$w竟然倒轉過來，奔向$P自己的$l。\n" NOR, HIY),
+        append_color(HIR "$n使一招鬥轉星移，$N的$w竟然倒轉過來，奔向$P自己的$l。\n" NOR, HIY),
 });
 
 string *star_move_unarm = ({
-        append_color(HIR "$n運用斗轉星移，暗中將$N的內力盡數送了回去，$N只覺得$l處一陣劇疼。\n" NOR, HIY),
+        append_color(HIR "$n運用鬥轉星移，暗中將$N的內力盡數送了回去，$N只覺得$l處一陣劇疼。\n" NOR, HIY),
         append_color(HIR "$n的長袖一帶一送，$N的這一招竟然打到了自己身上。\n" NOR, HIY),
 });
 
@@ -3351,7 +3351,7 @@ void announce(object ob, string event)
 
         switch( event ) {
         case "dead":
-                message_vision(NOR "\n$N撲在地上掙扎了幾下，腿一伸，口中噴出幾口"
+                message_vision(NOR "\n$N撲在地上掙紮了幾下，腿一伸，口中噴出幾口"
                                HIR "鮮血" NOR "，死了！\n\n" NOR, ob);
                 if( environment(ob) && playerp(environment(ob)) && living(environment(ob)) )
                         tell_object(environment(ob),NOR "\n" + ob->name() + "撲騰了幾下，腿一伸，口中噴出幾口"
@@ -3816,7 +3816,7 @@ void killer_reward(object killer, object victim)
 
                         if( query("race", killer) == "野獸"
                          || query("race", killer) == "蛇類"
-                         || query("race", killer) == "游魚"
+                         || query("race", killer) == "遊魚"
                          || query("race", killer) == "昆蟲")msg+="咬死了";
                         else if( query("race", killer) == "家畜")msg+="踩死了";
                         else if( query("race", killer) == "飛禽")msg+="啄死了";

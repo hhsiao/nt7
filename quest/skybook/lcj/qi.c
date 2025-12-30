@@ -120,7 +120,7 @@ string ask_diyun()
 	   return "也不知道狄雲現在怎麼樣啊！";
 	}
 	command("say");
-	message_vision(HIY"$N臉上露出懷念的神色。\n", ob);
+	message_vision(HIY"$N臉上露出懷唸的神色。\n", ob);
 	command("look "+me->query("id"));
 	command("say 恩，當年的事情發生的確太突然了，其實我也覺得狄雲不象那種人。");
 	command("sigh");

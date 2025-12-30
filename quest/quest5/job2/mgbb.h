@@ -19,7 +19,7 @@ int checking(object me, object ob)
 {
         if( query("qi", me)<1 )
         {
-                  message_vision("\n$N撲在地上掙扎了幾下，口中噴出幾口"HIR"鮮血"NOR"，死了！\n"NOR,me);
+                  message_vision("\n$N撲在地上掙紮了幾下，口中噴出幾口"HIR"鮮血"NOR"，死了！\n"NOR,me);
                   if( query_temp("start_job", ob) == 1 )
                   {
                           addn_temp("killed_mgb", 1, ob);

@@ -259,7 +259,7 @@ void leave_player(string id) {
       	if(!me->is_net_dead()) {
       	tell_object(me, "你一口氣逃出了戰場，來到揚州中央廣場。\n");   	
       	me->move("/d/city/guangchang");
-      	message("vision", "只見" + me->name() + "慌里慌張的跑了過來。\n", environment(me), ({ me }));
+      	message("vision", "只見" + me->name() + "慌裡慌張的跑了過來。\n", environment(me), ({ me }));
         }
       } else {
       	me->add("balance", 490000);
