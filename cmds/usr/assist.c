@@ -1,7 +1,7 @@
 // assist.c
 
 #include <ansi.h>
- 
+
 inherit F_CLEAN_UP;
 
 void create() { seteuid(getuid()); }
@@ -10,8 +10,6 @@ int main(object me, string arg)
 {
         object ob;
         object *team;
-        object *assistors;
-        mapping q;
 
         if (! arg)
         {
@@ -71,7 +69,7 @@ int main(object me, string arg)
                 return 1;
         }
 
-        if( !stringp(query("family/family_name", ob)) || 
+        if( !stringp(query("family/family_name", ob)) ||
             query("family/family_name", ob) != query("family/family_name", me) )
         {
                 write("你和" + ob->name() + "並不是同一個門派"
@@ -178,8 +176,6 @@ int do_right(object me, object ob)
 // 拒絕對方加入
 int do_refuse(object me, object ob)
 {
-        object *ob_team;
-
         if( query_temp("pending/assist", ob) != me )
         {
                 // 對方還沒有說願意你幫助你呢，你幹什麼呢？

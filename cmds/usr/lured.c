@@ -43,7 +43,6 @@ void do_hunt(object me, object env, object ob)
 {
 	object obq;
 	string* temp;
-	string str;
 	mapping quarry;
 	int i, point;
 
@@ -79,41 +78,41 @@ delete_temp("hunting", 	me);
 			destruct(ob);
 		}
 		return;
-	}	
-	
+	}
+
 	obq = new("/clone/quarry/" + temp[i]);
 	obq->move(env);
 set("owner",query("id",  me), 	obq);
         set("name", HIR+me->name()+"("+query("id", me)+")獵出的"+obq->name()+NOR, obq);
-  
+
 	if (environment(me) == env)
 	{
 		switch(random(4))
 		{
 			case 0:
-			message_vision(HIG "不一會兒，一隻" + obq->name() + HIG "竄了出來，將" + 
+			message_vision(HIG "不一會兒，一隻" + obq->name() + HIG "竄了出來，將" +
                                        ob->name() + HIG "一口咬在嘴裡。\n" NOR, me);
 			break;
 
 			case 1:
-			message_vision(HIM "轉眼間，一隻" + obq->name() + HIG "突然出現，將" + 
+			message_vision(HIM "轉眼間，一隻" + obq->name() + HIG "突然出現，將" +
                                        ob->name() + HIG "吞進嘴裡。\n" NOR, me);
 			break;
 
 			case 2:
-			message_vision(HIW "良久，一隻" + obq->name() + HIG "大搖大擺地走了出來，仔細地打量著" + 
+			message_vision(HIW "良久，一隻" + obq->name() + HIG "大搖大擺地走了出來，仔細地打量著" +
                                        ob->name() + HIG "。\n" NOR, me);
 			break;
 
 			default:
-			message_vision(HIC "少時，一隻" + obq->name() + HIG "竄了過來，一口將" + 
+			message_vision(HIC "少時，一隻" + obq->name() + HIG "竄了過來，一口將" +
                                        ob->name() + HIG "叼在了嘴上，相貌貪婪之極。\n" NOR, me);
 			break;
 		}
 	}
 	destruct(ob);
 	return;
-	
+
 }
 
 
@@ -124,7 +123,7 @@ int help(object me)
 
         lured <誘餌>：在當前地點放置誘餌等待獵物出現。
                      注：一次只能放一個誘餌。
-                     
+
 HELP
     );
     return 1;

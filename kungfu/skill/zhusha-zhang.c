@@ -62,7 +62,7 @@ int practice_skill(object me)
         addn("neili", -10, me);
         return 1;
 }
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
         if( random(me->query_skill("zhusha-zhang")) > 60 &&
                 (victim->query_condition("warm_poison") < 50))

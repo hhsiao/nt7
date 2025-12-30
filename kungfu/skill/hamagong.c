@@ -5,7 +5,7 @@
 inherit FORCE;
 string type() { return "martial"; }
 string martialtype() { return "force"; }
-int valid_force(string force) { return 1; } 
+int valid_force(string force) { return 1; }
 
 int query_neili_improve(object me)
 {
@@ -336,7 +336,7 @@ mapping query_action(object me, object weapon)
                 "damage_type" : random(2) ? "內傷" : "瘀傷",
         ]);
 }
-mixed hit_ob(object me, object victim, int damage_bonus)
+mixed hit_ob(object me, object victim, int damage_bonus, int factor)
 {
         int lvl;
 

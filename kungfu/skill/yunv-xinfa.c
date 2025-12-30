@@ -52,7 +52,8 @@ int practice_skill(object me)
 {
         return notify_fail("玉女心法只能用學(learn)來增加熟練度。\n");
 }
-mixed hit_ob(object me, object victim)
+
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
         int lvl;
         int damage_bonus;
@@ -72,7 +73,7 @@ mixed hit_ob(object me, object victim)
         wn = weapon->name();
 
         if( query("skill_type", weapon) == "sword"
-              && me->query_skill_mapped("sword") == "yunv-jian") 
+              && me->query_skill_mapped("sword") == "yunv-jian")
         {
                 addn("neili", -50, me);
                 damage_bonus = lvl / 5 + random(lvl / 5);

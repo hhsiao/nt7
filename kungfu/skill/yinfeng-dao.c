@@ -107,7 +107,7 @@ int practice_skill(object me)
         return 1;
 }
 
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
         int lvl;
         int flvl;

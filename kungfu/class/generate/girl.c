@@ -26,7 +26,7 @@ void create()
 
         setup();
 
-        carry_object("/clone/cloth/female" + (random(8) + 1) + "-cloth.c")->wear();        
+        carry_object("/clone/cloth/female" + (random(8) + 1) + "-cloth.c")->wear();
         carry_object("/clone/cloth/female-shoe.c")->wear();
 
         if (clonep()) keep_heart_beat();
@@ -247,7 +247,7 @@ mixed accept_ask(object who, string topic)
                 if( query("id", who) == query("couple/id", owner) )
                 {
                         message_vision("$N盈盈對著$n道了一個萬福。\n",
-                                       me, who);        
+                                       me, who);
                         return 1;
                 }
 
@@ -542,7 +542,7 @@ void scan()
                 // 現在忙
                 return;
 
-        if( !sizeof(query("exits", env)) || 
+        if( !sizeof(query("exits", env)) ||
             environment() && ! sizeof(query("exits", environment())))
                 return;
 
@@ -613,7 +613,7 @@ void autoload(string para, object owner)
         set_owner(owner);
 }
 
-void move_or_destruct()
+void move_or_destruct(object dest)
 {
         move(VOID_OB);
 }

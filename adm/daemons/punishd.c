@@ -70,7 +70,6 @@ void monitor()
         object *obs;
         string *aviable;
         string punisher;
-        string catcher;
         string msg;
 
         remove_call_out("monitor");

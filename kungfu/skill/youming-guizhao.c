@@ -64,7 +64,7 @@ string perform_action_file(string action)
         return __DIR__"youming-guizhao/" + action;
 }
 
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
         if( query_temp("lingjiu/youming", me )
          && !query_temp("youming_hit", me) )

@@ -8,7 +8,6 @@ inherit F_CLEAN_UP;
 int main(object me, string str)
 {
         object ob;
-        int i;
 
         if (! str)
                 return notify_fail("你要隱藏什麼物品？\n");

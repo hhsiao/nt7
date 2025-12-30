@@ -7,23 +7,23 @@ int main(object me, string arg)
         int x, y;
         string pname;
         string content, file, str;
-        string filename, dir;
-        
+        string filename;
+
         if (me->is_busy())
                 return notify_fail("你現在正忙。\n");
 
         if( !wizardp(me) && (time()-query_temp("maze/map", me)<3) )
-                return notify_fail("系統氣喘噓地嘆道：慢慢來 ....\n");  
-        
+                return notify_fail("系統氣喘噓地嘆道：慢慢來 ....\n");
+
         if( !query("maze", environment(me)) )
-                return notify_fail("這裡不是迷宮區域，請用 help here 查看。\n");  
-                
+                return notify_fail("這裡不是迷宮區域，請用 help here 查看。\n");
+
         if( query("jing", me)<5 )
                 return notify_fail("你現在精神狀態不佳，還是等會再查吧。\n");
 
         addn("jing", -5, me);
         set_temp("maze/map", time(), me);
-        
+
         file = base_name(environment(me));
         //if (file[0..1]=="/f")
         if ( 1 )
@@ -54,7 +54,7 @@ int main(object me, string arg)
         }
 
         pname = file;
-        
+
         while (1)
         {
                 int idx = strsrch(pname, "/", -1);
@@ -74,7 +74,7 @@ int main(object me, string arg)
                         if (str == "entry")
                         {
                                 for (int i=0; i<10; i++)
-                                        content = replace_string(content, sprintf("%d", i), " ");                                       
+                                        content = replace_string(content, sprintf("%d", i), " ");
                                 content = replace_string(content, "$HBWHT$  ", "$HBWHT$$BLU$★");
                                 write(color_filter(content + "\n"));
                                 return 1;
@@ -83,25 +83,25 @@ int main(object me, string arg)
                         if (str == "exit")
                         {
                                 for (int i=0; i<10; i++)
-                                        content = replace_string(content, sprintf("%d", i), " "); 
+                                        content = replace_string(content, sprintf("%d", i), " ");
                                 content = replace_string(content, "$HBRED$  ", "$HBRED$$BLU$★");
                                 write(color_filter(content + "\n"));
                                 return 1;
-                        }                         
+                        }
                         else
-                        {        
+                        {
                                 idx = member_array('/', str);
-                        
+
                                 if (idx == -1) return 0;
-                        
+
                                 if(!sscanf(str[0..idx-1],"%d",x))
                                         return 0;
                                 if(!sscanf(str[idx+1..],"%d",y))
                                         return 0;
-                                        
+
                                 content = replace_string(content, sprintf("%d%d", x, y), "$BLU$★$NOR$");
                                 for (int i=0; i<10; i++)
-                                        content = replace_string(content, sprintf("%d", i), " "); 
+                                        content = replace_string(content, sprintf("%d", i), " ");
                                 write(color_filter(content + "\n"));
                                 return 1;
                         }
@@ -112,4 +112,3 @@ int main(object me, string arg)
 
         return 1;
 }
-

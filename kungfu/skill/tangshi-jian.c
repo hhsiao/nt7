@@ -116,7 +116,7 @@ string *ship = ({HIW "\n$N仗劍沉吟道###，霎時一股劍氣，化作透明
                                 HIW "\n$N清吟###，手裡劍氣猶如銀色月光瀉地，遍佈夜空將$n" HIW "籠罩。\n" NOR,
                                 HIW "\n$N黯然低吟###，猛然揮劍封住西面八方，$n" HIW "大驚失色。\n" NOR});
 
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
 //      mixed result;
         string msg;
@@ -126,7 +126,7 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
         object weapon=query_temp("weapon", me);
         object *obs;
 
-        if( ( userp(me) && query("tianyishenjiu_time", me)<1 ) || 
+        if( ( userp(me) && query("tianyishenjiu_time", me)<1 ) ||
                 me->query_skill("literate",1 )<600 ||
                 me->query_skill("sword-cognize",1 )<200
                 )
@@ -137,7 +137,7 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
                          return 0;
         if (query("id", me)=="li bai")
                 flagli = 1;
-                if (!flagli) {        
+                if (!flagli) {
                 if (query_temp("tsj_cd_time", me) >= time())
                         return 0;
                 set_temp("tsj_cd_time", time() + 2, me);
@@ -150,21 +150,21 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
         damage += damage * (me->query_skill("literate",1 )) / 3500;
         damage += damage * (me->query_skill("sword-cognize",1 )) / 2500;
         damage +=damage*(query("tianyishenjiu_time", me)/25);
-        
+
         lvl = me->query_skill("tangshi-jian", 1) + me->query_skill("literate",1 ) + me->query_skill("sword-cognize",1 );
         lvl = lvl / 6000;
                 if ((!flagli) && lvl > query("tianyishenjiu_time", me)) lvl = query("tianyishenjiu_time", me);
                 if (lvl < 1) lvl = 1;
                 if (lvl > 6) lvl = 6;
-                idx2 = lvl + 1;         
+                idx2 = lvl + 1;
                 while (lvl--) {
                 num --;
                 if (!num) break;
                 if (flagli && random(5)) lvl++;
-                obs = me->query_enemy();        
+                obs = me->query_enemy();
                 if (!obs || !arrayp(obs) || !sizeof(obs))
                         break;
-                else   
+                else
                         victim = obs[random(sizeof(obs))];
                 if (! me->is_fighting(victim)) continue;
                 idx = random(idx2);

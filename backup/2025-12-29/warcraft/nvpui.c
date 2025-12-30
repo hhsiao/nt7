@@ -1,0 +1,19 @@
+// warcraft.c
+
+#include "/clone/npc/warcraft.h"
+
+void setup()
+{
+        set_name("[1;31m朱雀[2;37;0m[2;37;0m", ({"zhuque"}));        
+        set("gender", "男性");                
+        set("long", "一種鳥類。[2;37;0m
+它是女僕的魔幻獸。
+");
+        set("race_type", "朱雀");
+        set("magic/type", "fire");
+        set("owner", "nvpui");
+        set("owner_name", "女僕");
+        set_temp("owner", "nvpui");
+        set_temp("owner_name", "女僕");
+        ::setup();
+}

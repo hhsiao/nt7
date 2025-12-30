@@ -44,7 +44,7 @@ void die()
         destruct(this_object());
 }
 
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
         object owner;
         object here = environment(me);
@@ -56,15 +56,14 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
                 owner->improve_skill("qufeng", 20+random(20), 0);
         }
 
-        victim->apply_condition("yufengdu", 5 + random(5) 
+        victim->apply_condition("yufengdu", 5 + random(5)
                 + victim->query_condition("yufengdu"));
 }
 
 int do_attack(string arg)
 {
-        object env, obj, ob, me = this_player(),bees;
-        string target_dir, dir, dest, victim;
-        mapping exit;
+        object ob, me = this_player(),bees;
+        string victim;
 
         if (!arg) return 0;
 

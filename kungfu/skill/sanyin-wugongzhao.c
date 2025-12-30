@@ -90,7 +90,7 @@ mapping query_action(object me, object weapon)
                 "damage_type" : random(2) ? "抓傷" : "內傷",
         ]);
 }
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
         if( random(me->query_skill("huagong-dafa",1)) > 5)
         {

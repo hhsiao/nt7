@@ -10,10 +10,10 @@ int clean_up() { return 1;}
 void create() {
     set("short", "十八牛人陣");
     set("long", @LONG
-        這裡是個山洞，烏漆抹黑的伸手不見五指。你一腳踩進中間的一
-            個大坑裡，坑裡散發著陣陣惡臭，直欲叫人掩鼻逃離這裡。坑邊隱約
-            蹲著幾十條人影，對著你嘿嘿奸笑。
-            LONG );
+這裡是個山洞，烏漆抹黑的伸手不見五指。你一腳踩進中間的一
+個大坑裡，坑裡散發著陣陣惡臭，直欲叫人掩鼻逃離這裡。坑邊隱約
+蹲著幾十條人影，對著你嘿嘿奸笑。
+LONG );
     set("outdoors", "yangzhou");
     set("exits", ([ /* sizeof() == 1 */
         "out"  : "/u/redl/teleport/teleport"
@@ -185,7 +185,7 @@ void clear_here() {
     object ob, *obs;
     obs = filter_array(all_inventory(this_object()), (: !userp($1) :));
     if (!obs || !sizeof(obs)) return;
-    tell_room(this_object(), NOR "一陣陰風襲過，地上的狼藉化為了飛灰。\n" NOR);
+    tell_room(this_object(), NOR +"一陣陰風襲過，地上的狼藉化為了飛灰。\n" + NOR);
     foreach (ob in obs) {
         destruct(ob);
     }

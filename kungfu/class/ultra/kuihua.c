@@ -111,7 +111,6 @@ mixed ask_maze()
         object me;
         object ob;
         mapping quest;
-        mapping maze;
 
         me = this_player();
         ob = this_object();
@@ -221,7 +220,6 @@ int accept_hit(object me)
 
 int accept_fight(object me)
 {
-        object weapon;
 
         if( query("opinion/"MY_OPINION, me) == ULTRA_OPINION )
         {
@@ -276,7 +274,7 @@ int accept_kill(object me)
 
 int recognize_apprentice(object me, string skill)
 {
-        if( query("character", me) != "陰險奸詐" && 
+        if( query("character", me) != "陰險奸詐" &&
             query("character", me) != "國士無雙" )
         {
                 command("say 你這人沒有領會立世的精妙之理，還"
@@ -343,20 +341,20 @@ void die()
 
 int give_quest()
 {
-    mapping questtemp,questkh,questkill,skills,robot_quest;
+    mapping questtemp,questkh,questkill;
     object ob,npc;
-    int time,level,i,lev,lev1;
+    int time,level,i;
     int exp;
     int lvl,all_lvl;
-    string msg,*sname,place;
+    string msg;
     object maze_target;
     object maze_object;
 
     ob = this_player();
     exp=query("combat_exp", ob);
 
-    if( (query("character", ob) != "陰險奸詐") && 
-            (query("character", ob) != "國士無雙") && 
+    if( (query("character", ob) != "陰險奸詐") &&
+            (query("character", ob) != "國士無雙") &&
             (query("character", ob) != "心狠手辣") )
     {
         message_vision("葵花太監抬頭看了$N一眼，尖著嗓子道：“你這號假仁假義的貨色，再不馬上給我滾開，我讓你血濺五步！”\n", ob);
@@ -551,7 +549,7 @@ int accept_object(object who, object ob)
    int exp, pot,level,bonus,i,all_quest_kh;
    mapping questkh;
    object me,gold,obj;
-   int shen,mar,weiwang,score,quest_count;
+   int mar,weiwang,score,quest_count;
    int total_count;
    string msg;
    mixed special = 0;
@@ -606,7 +604,7 @@ int accept_object(object who, object ob)
          return 0;
    }
 
-        if( userp(ob) || query("user", ob) || 
+        if( userp(ob) || query("user", ob) ||
             ob->is_item_make() ||
             ob->query_save_file())
     {
@@ -647,7 +645,7 @@ int accept_object(object who, object ob)
    exp = exp*3;
    pot = pot*3;
    mar = mar*3;
-    
+
    if (mar > 1000) mar = 1000;
 
    if(!random(18))
@@ -742,7 +740,7 @@ int accept_object(object who, object ob)
                         } else {
                                 if (quest_count >= 2000)
                                         quest_count = 0;
-                        } 
+                        }
         }
        else
         {
@@ -795,7 +793,7 @@ int accept_object(object who, object ob)
 
 int give_up()
 {
-   object ob,obj,room;
+   object ob;
    mapping questkh;
 
    ob = this_player();

@@ -193,7 +193,7 @@ string perform_action_file(string action)
 {
         return __DIR__"feixing-shu/" + action;
 }
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
         if( random(me->query_skill("poison",1)) > 20)
         {

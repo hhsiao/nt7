@@ -132,7 +132,7 @@ string perform_action_file(string action)
 {
         return __DIR__"cuixin-zhang/" + action;
 }
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
         int lvl;
         int flvl;
@@ -152,29 +152,29 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
         }
 }
 
-void skill_improved(object me)   
-{  
-             int lvl; 
-             lvl = me->query_skill("cuixin-zhang", 1);  
-               if( lvl >= 80 &&  
-                   !query("can_perform/cuixin-zhang/gu", me) )   
-               {  
-                       tell_object(me, HIC "你通曉了催心掌「" HIR "孤注一擲" HIC "」的奧秘。\n" NOR);     
-                        set("can_perform/cuixin-zhang/gu", 1, me);  
-                       me->improve_skill("martial-cognize", 1500000); 
-                       me->improve_skill("martial-cognize", 1500000); 
-                       me->improve_skill("martial-cognize", 1500000); 
-               }  
-             if( lvl >= 150 &&  
-                 !query("can_perform/cuixin-zhang/cui", me) )   
-             {  
-                     tell_object(me, HIC "你通曉了催心掌「" HIR "奪命催心" HIC "」的奧秘。\n" NOR);     
-                      set("can_perform/cuixin-zhang/cui", 1, me);  
-                     me->improve_skill("martial-cognize", 1500000);    
-                     me->improve_skill("martial-cognize", 1500000);    
-                     me->improve_skill("martial-cognize", 1500000);    
-             }  
-     }  
+void skill_improved(object me)
+{
+             int lvl;
+             lvl = me->query_skill("cuixin-zhang", 1);
+               if( lvl >= 80 &&
+                   !query("can_perform/cuixin-zhang/gu", me) )
+               {
+                       tell_object(me, HIC "你通曉了催心掌「" HIR "孤注一擲" HIC "」的奧秘。\n" NOR);
+                        set("can_perform/cuixin-zhang/gu", 1, me);
+                       me->improve_skill("martial-cognize", 1500000);
+                       me->improve_skill("martial-cognize", 1500000);
+                       me->improve_skill("martial-cognize", 1500000);
+               }
+             if( lvl >= 150 &&
+                 !query("can_perform/cuixin-zhang/cui", me) )
+             {
+                     tell_object(me, HIC "你通曉了催心掌「" HIR "奪命催心" HIC "」的奧秘。\n" NOR);
+                      set("can_perform/cuixin-zhang/cui", 1, me);
+                     me->improve_skill("martial-cognize", 1500000);
+                     me->improve_skill("martial-cognize", 1500000);
+                     me->improve_skill("martial-cognize", 1500000);
+             }
+     }
 int help(object me)
 {
         write(HIC"\n摧心掌："NOR"\n");

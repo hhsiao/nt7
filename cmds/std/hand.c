@@ -7,7 +7,6 @@ inherit F_CLEAN_UP;
 int main(object me, string arg)
 {
         object ob, old;
-        object weapon;
         string str;
 
         if (! arg)
@@ -27,10 +26,10 @@ int main(object me, string arg)
 
         if (! objectp(ob = present(arg, me)))
                 return notify_fail("你身上沒有這樣東西。\n");
-                
+
         if( ob->is_pet() || ob->is_warcraft() || query("ridable", ob) )
                 return notify_fail("寵物或者坐騎不可以拿在手上。\n");
-                
+
         if( objectp(old=query_temp("handing", me)) )
         {
                 if (old == ob)
@@ -48,9 +47,9 @@ int main(object me, string arg)
 /*
         weapon=query_temp("weapon", me);
         if (weapon &&
-            ((query("flag", weapon))&TWO_HANDED || 
-             query_temp("secondary_weapon", me) || 
-             query_temp("armor/hands", me) || 
+            ((query("flag", weapon))&TWO_HANDED ||
+             query_temp("secondary_weapon", me) ||
+             query_temp("armor/hands", me) ||
              query_temp("armor/finger", me)) )
         {
                 // none of two hand is free
@@ -58,7 +57,7 @@ int main(object me, string arg)
                                    "再拿著" + ob->name() + "了。\n");
         }
 
-        if( query_temp("armor/hands", me) && 
+        if( query_temp("armor/hands", me) &&
             query_temp("armor/finger", me) )
         {
                 // none of two hand is free
@@ -76,7 +75,7 @@ int main(object me, string arg)
                       "一"+(ob->query_amount()?query("unit", ob )
                                                  :query("unit", ob))+
                       "$n，握在手中。\n";
-        message_vision(str, me, ob); 
+        message_vision(str, me, ob);
         return 1;
 }
 
@@ -84,10 +83,9 @@ int help(object me)
 {
         write(@HELP
 指令格式 : hand <物品名稱> | nothing
- 
+
 這個指令可以讓你拿出一樣你所攜帶的物品，隨時準備使用。
- 
+
 HELP );
     return 1;
 }
- 

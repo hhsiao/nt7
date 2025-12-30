@@ -1,0 +1,3 @@
+#/clone/shop/yanping_shop.c
+dbase (["objects":(["/clone/shop/waiter":1,]),"no_fight":1,"no_steal":1,"exits":(["down":"/d/yanping/majiu",]),"no_clean_up":0,"shop_type":0,"owner":"VOID_SHOP","no_beg":1,"long":"這裡是延平城裡最著名的店鋪，整個鋪面裝修得相當精美雅緻，樓頂憑軒處，正是俯瞰雙溪匯流的好去處。不過店裡的貨櫃上卻空無一物，看樣子已經很久沒人來打理了。","short":"雙溪樓",])
+all_goods ({})

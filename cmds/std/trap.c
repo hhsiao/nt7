@@ -29,15 +29,15 @@ mapping default_dirs = ([
         "out":          "外",
         "enter":        "裡",
 ]);
-string *place = ({ "寺", "廟", "店", "樓", "鋪", "閣", "祠", "屋", 
-"院", "門", "街", "莊", "齋", "橋", "社", "園", "館", "堂", "室", 
+string *place = ({ "寺", "廟", "店", "樓", "鋪", "閣", "祠", "屋",
+"院", "門", "街", "莊", "齋", "橋", "社", "園", "館", "堂", "室",
 "廳", "房", "寓", "庫", "殿", "營", "廄" ,"船","舟","坪"});
 
 int main(object me, string arg)
 {
         object roomfrom, roomto, roomtrap, *inv, tool;
         mapping exits;
-        string dir, from, to, *dirs;
+        string dir, *dirs;
         int i, depth;
 
         if( query("shen", me) >= 0 && !wizardp(me) )
@@ -75,12 +75,12 @@ int main(object me, string arg)
         }
         if( !arg || !query("exits/"+arg, environment(me)) )
                 return notify_fail("你往哪個方向設陷阱？\n");
-        if( strsrch(arg, "jump") >= 0  
+        if( strsrch(arg, "jump") >= 0
 //        ||
 //                strsrch(arg, "up") >= 0 ||
 //                strsrch(arg, "down") >= 0 ||
 //                strsrch(arg,"out") >=0 ||
-//                strsrch(arg,"enter") >=0 
+//                strsrch(arg,"enter") >=0
          )
                 return notify_fail("你不能往這個方向設陷阱！\n");
         if( !query("trap_room", environment(me)) )
@@ -101,13 +101,13 @@ int main(object me, string arg)
         if( !query("outdoors", roomto) )
                 return notify_fail("你不能在別人房門口亂挖！\n");
         for (i=0; i<sizeof(place); i++)
-                if( strsrch(query("short", roomfrom),place[i]) >= 0 || 
+                if( strsrch(query("short", roomfrom),place[i]) >= 0 ||
                         strsrch(query("short", roomto),place[i]) >= 0 )
                         return notify_fail("這裡的路面不適合挖陷阱！\n");
 
         depth = me->query_skill("digging", 1)*10
-                + me->query_str()*2 
-                + me->query_int()*2 
+                + me->query_str()*2
+                + me->query_int()*2
                 + me->query_kar()*2
                 +query("qi", me)/2;
 
@@ -166,7 +166,7 @@ void digging(object me, int depth)
                 call_out("digging", 3, me, depth);
                 if(random(5)==1) message_vision(GRN "\n$N起勁地往地下挖著挖著。。。\n" NOR, me);
         }
-        else        
+        else
         {
                 me->improve_skill("digging", depth / 20);
                 me->receive_damage("qi",depth*(query("cost", environment(me)))/10,"挖陷阱累死了");

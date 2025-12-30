@@ -143,7 +143,7 @@ int main(object me, string arg)
 					break;
 				}
 			}
-			msg += ({ sprintf(" %-4s%-13s"HIC"%-13s"HIW"%4d"HIR"%5d"HIG"%5d"HIY+(win>0&&lose==0?"%6.1f":"%6.2f")+NOR CYN" %-12s"NOR"%s", sep == 0 ? to_string(++rank):"", setup[id]["name"], capitalize(id), win+lose, win, lose, lose+win > 0. ? (win*100./(lose+win)) : 0., opponent ? capitalize(opponent) : "", statustext) });
+			msg += ({ sprintf(" %-4s%-13s"HIC"%-13s"HIW"%4d"HIR"%5d"HIG"%5d"HIY+(win>0&&lose==0?"%6.1f":"%6.2f")+NOR CYN" %-12s"NOR"%s", sep == 0 ? to_string(++rank):"", setup[id]["name"], capitalize(id), win+lose, win, lose, lose+win > 0.0 ? (win*100.0/(lose+win)) : 0.0, opponent ? capitalize(opponent) : "", statustext) });
 		}
 
 		msg += ({ WHT"--------------------------------------------------------------------------"NOR });
@@ -233,7 +233,7 @@ int main(object me, string arg)
 
 					if( !query("boss", labor) ) continue;
 
-					msg += ({ sprintf(" "HIW"%-5d"NOR"%-28s"HIC"%-12s"HIY"%6d"HIY"%13.2f"NOR, RECORD_SIZE+1-count, labor->query_idname(), capitalize(query("boss", labor)), playerrecord[file]["hit"], 10.*playerrecord[file]["hit"]/playerrecord[file]["ab"]) });
+					msg += ({ sprintf(" "HIW"%-5d"NOR"%-28s"HIC"%-12s"HIY"%6d"HIY"%13.2f"NOR, RECORD_SIZE+1-count, labor->query_idname(), capitalize(query("boss", labor)), playerrecord[file]["hit"], 10.0*playerrecord[file]["hit"]/playerrecord[file]["ab"]) });
 
 					if( --count == 0 ) break;
 				}
@@ -257,7 +257,7 @@ int main(object me, string arg)
 
 					if( !query("boss", labor) ) continue;
 
-					msg += ({ sprintf(" "HIW"%-5d"NOR"%-28s"HIC"%-12s"HIY"%6d"HIY"%13.2f"NOR, RECORD_SIZE+1-count, labor->query_idname(), capitalize(query("boss", labor)), playerrecord[file]["hit2"], 10.*playerrecord[file]["hit2"]/playerrecord[file]["ab"]) });
+					msg += ({ sprintf(" "HIW"%-5d"NOR"%-28s"HIC"%-12s"HIY"%6d"HIY"%13.2f"NOR, RECORD_SIZE+1-count, labor->query_idname(), capitalize(query("boss", labor)), playerrecord[file]["hit2"], 10.0*playerrecord[file]["hit2"]/playerrecord[file]["ab"]) });
 
 					if( --count == 0 ) break;
 				}
@@ -281,7 +281,7 @@ int main(object me, string arg)
 
 					if( !query("boss", labor) ) continue;
 
-					msg += ({ sprintf(" "HIW"%-5d"NOR"%-28s"HIC"%-12s"HIY"%6d"HIY"%13.2f"NOR, RECORD_SIZE+1-count, labor->query_idname(), capitalize(query("boss", labor)), playerrecord[file]["hit3"], 10.*playerrecord[file]["hit3"]/playerrecord[file]["ab"]) });
+					msg += ({ sprintf(" "HIW"%-5d"NOR"%-28s"HIC"%-12s"HIY"%6d"HIY"%13.2f"NOR, RECORD_SIZE+1-count, labor->query_idname(), capitalize(query("boss", labor)), playerrecord[file]["hit3"], 10.0*playerrecord[file]["hit3"]/playerrecord[file]["ab"]) });
 
 					if( --count == 0 ) break;
 				}
@@ -329,7 +329,7 @@ int main(object me, string arg)
 
 					if( !query("boss", labor) ) continue;
 
-					msg += ({ sprintf(" "HIW"%-5d"NOR"%-28s"HIC"%-12s"HIY"%6d"HIY"%12.2f%%"NOR, RECORD_SIZE+1-count, labor->query_idname(), capitalize(query("boss", labor)), playerrecord[file]["strikeout"], playerrecord[file]["bf"]>0?100.*playerrecord[file]["strikeout"]/playerrecord[file]["bf"]:0.) });
+					msg += ({ sprintf(" "HIW"%-5d"NOR"%-28s"HIC"%-12s"HIY"%6d"HIY"%12.2f%%"NOR, RECORD_SIZE+1-count, labor->query_idname(), capitalize(query("boss", labor)), playerrecord[file]["strikeout"], playerrecord[file]["bf"]>0?100.0*playerrecord[file]["strikeout"]/playerrecord[file]["bf"]:0.0) });
 
 					if( --count == 0 ) break;
 				}
@@ -353,7 +353,7 @@ int main(object me, string arg)
 
 					if( !query("boss", labor) ) continue;
 
-					msg += ({ sprintf(" "HIW"%-5d"NOR"%-28s"HIC"%-12s"HIY"%6d"HIY"%19.2f"NOR, RECORD_SIZE+1-count, labor->query_idname(), capitalize(query("boss", labor)), playerrecord[file]["out"]/3, playerrecord[file]["out"]>0?27.*playerrecord[file]["run"]/playerrecord[file]["out"]:0.) });
+					msg += ({ sprintf(" "HIW"%-5d"NOR"%-28s"HIC"%-12s"HIY"%6d"HIY"%19.2f"NOR, RECORD_SIZE+1-count, labor->query_idname(), capitalize(query("boss", labor)), playerrecord[file]["out"]/3, playerrecord[file]["out"]>0?27.0*playerrecord[file]["run"]/playerrecord[file]["out"]:0.0) });
 
 					if( --count == 0 ) break;
 				}
@@ -501,11 +501,11 @@ int main(object me, string arg)
 		text += sprintf(" %-3s %-9s"HIG"%5.2f"HIC"%5d"HIM"%5d"HIY"%5d"HIY"%9.2f%%"NOR"%10s %s\n",
 			"",
 			position || WHT"未設定"NOR,
-			out > 0 ? run * 9. / (out / 3.): 0.,
+			out > 0 ? run * 9.0 / (out / 3.0): 0.0,
 			out / 3,
 			BASEBALL_D->get_record(RECORD_PLAYER, file, "fourball", year),
 			strikeout,
-			bf > 0 ? 100. * strikeout / bf : 0.,
+			bf > 0 ? 100.0 * strikeout / bf : 0.0,
 			handsidename,
 			objectp(labor) ? labor->query_idname() : WHT"未設定"NOR
 		);
@@ -560,7 +560,7 @@ int main(object me, string arg)
 			win = BASEBALL_D->get_record(RECORD_TEAM, target, "win", y);
 			lose = BASEBALL_D->get_record(RECORD_TEAM, target, "lose", y);
 
-			text += WHT"第 "HIW+y+NOR WHT" 球季"NOR"季賽勝場數："HIR+win+NOR" / 敗場數："HIG+lose+NOR" / 勝率："HIY+sprintf("%.2f", win+lose > 0 ? 100.*win/(win+lose) : 0.)+NOR YEL"%"NOR"\n";
+			text += WHT"第 "HIW+y+NOR WHT" 球季"NOR"季賽勝場數："HIR+win+NOR" / 敗場數："HIG+lose+NOR" / 勝率："HIY+sprintf("%.2f", win+lose > 0 ? 100.0*win/(win+lose) : 0.0)+NOR YEL"%"NOR"\n";
 		}
 		text += WHT"--------------------------------------------------------------------------\n"NOR;
 		me->more(text);

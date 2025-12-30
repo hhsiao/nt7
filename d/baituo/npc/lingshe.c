@@ -1,5 +1,5 @@
 // Copyright (C) 2003, by Lonely. All rights reserved.
-// This software can not be used, copied, or modified 
+// This software can not be used, copied, or modified
 // in any form without the written permission from authors.
 // lingshe 西域靈蛇
 
@@ -40,15 +40,15 @@ void init()
         ::init();
         add_action("convert","bian");
         if (interactive(ob = this_player()) &&
-            query("family/family_name", ob) != "歐陽世家" && 
+            query("family/family_name", ob) != "歐陽世家" &&
                 ! present("xiong huang", environment(ob))) {
                         remove_call_out("kill_ob");
-                        call_out("kill_ob", 1, ob); 
+                        call_out("kill_ob", 1, ob);
         }
 }
 
 void unconcious()
-{        
+{
         write("靈蛇嗦地一下逃掉了。\n");
         destruct(this_object());
 }
@@ -60,7 +60,7 @@ void die()
         destruct(this_object());
 }
 
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
         victim->apply_condition("bt_poison",10+query("snake_poison", me)+
                 victim->query_condition("bt_poison"));
@@ -86,5 +86,5 @@ int convert(string arg)
         ob->move(environment(this_object()));
         set("poison_applied", me->query_skill("poison",1)/2, ob);
         destruct(this_object());
-        return 1;    
+        return 1;
 }

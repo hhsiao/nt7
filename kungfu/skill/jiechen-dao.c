@@ -15,7 +15,7 @@ mapping *action = ({
         "skill_name" : "始心鏡",
         "force" : 350,
         "lvl" : 20,
-        "dodge" : 10, 
+        "dodge" : 10,
         "damage_type" : "震傷",
 ]),
 ([      "action" : "$N刀掌相合又打開，這招「現寶蓮」以火焰刀無上功力聚出一朵紅蓮，盛開的花瓣飛舞旋轉，漫布在$n四周",
@@ -44,7 +44,7 @@ mapping *action = ({
         "skill_name" : "顯真常",
         "force" : 380,
         "lvl" : 140,
-        "dodge" : -5, 
+        "dodge" : -5,
         "weapon" : "無形刀氣",
         "damage_type" : "割傷",
 ]),
@@ -52,20 +52,20 @@ mapping *action = ({
         "skill_name" : "歸真法",
         "force" : 450,
         "lvl" : 160,
-        "dodge" : -15, 
+        "dodge" : -15,
         "damage_type" : "瘀傷",
 ]),
 ([      "action" : "$N虛託刀柄，一式「吉祥逝」，內力運轉，跟著全身衣物無風自動，$P身體微傾，閃電一刀，斬向$n$",
         "skill_name" : "吉祥逝",
         "force" : 500,
         "lvl" : 180,
-        "dodge" : 5, 
+        "dodge" : 5,
         "weapon" : "無形氣浪",
         "damage_type" : "割傷",
 ]),
 });
 
- 
+
         int valid_enable(string usage) { return usage == "blade" || usage == "parry"; }
 
 
@@ -73,7 +73,7 @@ int valid_learn(object me)
 {
         if( query("max_neili", me)<2500 )
                 return notify_fail("以你的內力修為，還不足以練習戒塵刀。\n");
-        if ((int)me->query_con() < 32) 
+        if ((int)me->query_con() < 32)
                 return notify_fail("你的根骨太低，不能駕御戒塵刀。\n");
         if ((int)me->query_skill("force", 1) < 160)
                 return notify_fail("你基本內功不足。\n");
@@ -103,7 +103,7 @@ int practice_skill(object me)
 {
         object weapon;
 
-      if( !objectp(weapon=query_temp("weapon", me)) || 
+      if( !objectp(weapon=query_temp("weapon", me)) ||
           query("skill_type", weapon) != "blade" )
                 return notify_fail("你先找把刀再說吧！\n");
 
@@ -119,7 +119,7 @@ string perform_action_file(string action)
         return __DIR__"jiechen-dao/" + action;
 }
 
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
         if( query("blade", me) == me->query_skill("force",1 )
           && me->query_skill_mapped("blade") == "jiechen-dao")

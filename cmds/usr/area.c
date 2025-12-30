@@ -23,8 +23,6 @@ void create() { seteuid(getuid()); }
 
 int main(object me, string arg)
 {
-        object *obs;
-        string fname;
         string *args;
 
         if (! arg) arg = "all";

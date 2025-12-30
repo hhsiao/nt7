@@ -14,7 +14,6 @@ int main(object me, string arg)
         string target, item;
         object obj, who, *inv, obj2;
         string no_accept;
-        mixed info;
         int i, amount;
 
         if (! arg) return notify_fail("你要給誰什麼東西？\n");
@@ -42,7 +41,7 @@ int main(object me, string arg)
         if( playerp(me) && !wizardp(me) && stringp(no_accept=query("env/no_accept", who)) )
         {
                 if ((no_accept == "all" || no_accept == "ALL" ||
-                     is_sub(query("id", me),no_accept)) && 
+                     is_sub(query("id", me),no_accept)) &&
                     !is_sub(query("id", me),query("env/can_accept", who)) )
                 {
                         // user refuse to accept
@@ -171,7 +170,7 @@ int do_give(object me, object obj, object who,int info)
         }
 
         if (playerp(who) &&
-            sizeof(filter_array(all_inventory(who),(:!query("equipped", $1):))) >= MAX_ITEM_CARRIED && 
+            sizeof(filter_array(all_inventory(who),(:!query("equipped", $1):))) >= MAX_ITEM_CARRIED &&
             ! obj->can_combine_to(who))
         {
                 tell_object(me, "人家身上的東西實在是太多了，沒法再拿東西了。\n");

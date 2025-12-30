@@ -103,7 +103,7 @@ int practice_skill(object me)
        addn("jingli", -15, me);
        return 1;
 }
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
         object weap,weap1;
         weap=query_temp("weapon", victim);
@@ -113,12 +113,12 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
                           && (query_temp("weapon", victim) )
                          && random(10)>5)
                   {
-                                                 message_vision(HIY "只見$N急速揮舞" + weap1->name() + "，轉出無數個大小圈子，以陰柔之勁纏住對方的" + weap->name() +"！\n" NOR, me );        
+                                                 message_vision(HIY "只見$N急速揮舞" + weap1->name() + "，轉出無數個大小圈子，以陰柔之勁纏住對方的" + weap->name() +"！\n" NOR, me );
                                 //                 message_vision(HIY "聽見「鏘」地一聲，$N手中的" + weap->name()
                 //               + "被"+weap1->name()+"給纏住。\n" NOR, victim );
                          victim->start_busy(1);
                                                  if (random(me->query_str()) > victim->query_str()/2 )
-                        {             
+                        {
                                         message_vision(HIY "$N氣運手臂用力一拽，" + weap->name()
                                 + "卻無法從"+weap1->name()+"的纏繞中脫開，情急之下只好放棄了手中的兵刃。\n" NOR, victim );
                         weap->move(environment(me));
@@ -132,7 +132,7 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
                  }
                                        return 1;
 
-      
+
 }
 
 string perform_action_file(string action)

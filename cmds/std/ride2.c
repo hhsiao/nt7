@@ -18,7 +18,7 @@ int main(object me, string arg)
         string *ps;
 
         if( !arg ) return notify_fail("你要騎什麼東西？\n");
-        
+
         env = environment(me);
         // 邀請人上坐騎
         sscanf(arg, "%s %s", s1, s2);
@@ -43,7 +43,7 @@ int main(object me, string arg)
 
                         message_vision(HIW "$N勒坐騎於前，對$n說道：請上坐騎一敘！\n" NOR, me, person);
                         set_temp("ride_up",query("id", me), person);
-                        tell_object(person, HIG + me->name() + "邀請你上坐騎，如果同意請輸入 ride ok 。\n" NOR);                  
+                        tell_object(person, HIG + me->name() + "邀請你上坐騎，如果同意請輸入 ride ok 。\n" NOR);
                         return 1;
                 }
 
@@ -58,14 +58,14 @@ int main(object me, string arg)
 
                 if( query_temp("is_riding_follow", me) )
                         return notify_fail("你還是先下坐騎（ride down）再說吧。\n");
-        
+
                 person = find_player(who);
-        
+
                 if( !objectp(person) ) return notify_fail("這裡沒有這個人。\n");
 
                 if( environment(me) != environment(person) )
                         return notify_fail("這裡沒有這個人。\n");
-                
+
                 if( !objectp(horse=query_temp("is_riding", person)) )
                         return notify_fail(person->name() + "似乎沒有坐騎吧！\n");
 
@@ -74,11 +74,11 @@ int main(object me, string arg)
 
                 delete_temp("ride_up", me);
                 MAP_D->me_ride(me, horse);
-                
+
                 return 1;
-                
+
         }
-        
+
         // follower 強行下坐騎
         if( arg == "down" )
         {
@@ -86,19 +86,19 @@ int main(object me, string arg)
                 {
                         delete_temp("is_riding_follow", me);
                         delete_temp("is_rided_follow", horse);
-                
+
                         message_vision("$N一翻身， 從" + horse->name() + NOR "跳了下來。\n" NOR, me);
 
                         return 1;
                 }
-                
-                return notify_fail("OK.\n");            
+
+                return notify_fail("OK.\n");
         }
 
         if (arg == "kick")
         {
                 if( objectp(horse=query_temp("is_riding", me)) )
-                {                       
+                {
                         if( objectp(person=query_temp("is_rided_follow", horse)) )
                                 delete_temp("is_riding_follow", person);
 
@@ -106,12 +106,12 @@ int main(object me, string arg)
 
                         message_vision("$N強行要求所有人下坐騎。\n", me);
 
-                        return 1;               
+                        return 1;
                 }
 
-                return notify_fail("你並沒有騎坐騎。\n"); 
+                return notify_fail("你並沒有騎坐騎。\n");
         }
-        
+
         if( arg == "?" )
         {
                 self_flag = query("horse/flags", me);
@@ -148,7 +148,7 @@ int main(object me, string arg)
                                         break;
                                 default:
                                         max_rec = 1;
-                                        break;                          
+                                        break;
                         }
                 }
 
@@ -166,12 +166,12 @@ int main(object me, string arg)
                         write(HIY "黃金會員：         Max = 3 條\n" NOR);
                         write(HIW "白金會員：         Max = 4 條\n" NOR);
                         write(HIG "冊 坐騎 石：         每個冊坐騎石增加 1 條 Max\n" NOR);
-                        
+
                         return 1;
                 }
- 
+
                 if( !objectp(horse=query_temp("is_riding", me)) )
-                        return notify_fail("你還是先找匹坐騎再說吧？\n"); 
+                        return notify_fail("你還是先找匹坐騎再說吧？\n");
 
                 if( stringp(MAP_D->get_trans_path(who)) )
                         return notify_fail("對不起，編號 " + who + " 已經存在，請另取一個編號。\n");
@@ -200,19 +200,19 @@ int main(object me, string arg)
 
                 //if( !query("outdoors", env) )
                 //        return notify_fail("此地點不能記錄。\n");
-                        
+
                 set("horse/flags/"+who, base_name(env), me);
                 //me->save();
                 write(HIG "記錄成功！\n" NOR);
 
                 return 1;
 
-        } 
+        }
 
         if( sscanf(arg, "unrec %s", who) == 1 )
         {
                 if( !objectp(horse=query_temp("is_riding", me)) )
-                        return notify_fail("你還是先找匹坐騎再說吧？\n"); 
+                        return notify_fail("你還是先找匹坐騎再說吧？\n");
 
                 if( !stringp(query("horse/flags/"+who, me)) )
                         return notify_fail("對不起，編號 " + who + " 不存在，請使用 rideto 查看。\n");
@@ -223,9 +223,9 @@ int main(object me, string arg)
                 write(HIG "刪除記錄成功。\n" NOR);
 
                 return 1;
-                
+
         }
-        
+
         if( query_temp("is_riding", me) )
                 return notify_fail("你已經有座騎了！\n");
 
@@ -238,7 +238,7 @@ int main(object me, string arg)
         if( me->is_fighting() )
                 return notify_fail("你還在戰鬥中！沒空騎上去。\n");
 
-           if (query("id", me) != "redl" && query("couple/couple_id", me) != "redl" && wiz_level(me) < wiz_level("(boss)"))  return notify_fail("對不起，您無權亂騎。\n"); 
+           if (query("id", me) != "redl" && query("couple/couple_id", me) != "redl" && wiz_level(me) < wiz_level("(boss)"))  return notify_fail("對不起，您無權亂騎。\n");
 
         if (! objectp(obj = present(arg, environment(me))))
                 return notify_fail("你沒有這樣東西可騎。\n");
@@ -255,7 +255,7 @@ int main(object me, string arg)
 
 int do_ride(object me, object obj)
 {
-        object old_env, *guard;
+        object *guard;
 
         if( !obj ) return 0;
 
@@ -290,7 +290,7 @@ ride <生物名>        騎上代步的已馴養的動物。
 ride up <id>         邀請別人上馬（會員指令）。
 ride ok              同意別人的邀請。
 ride down            從別人的馬上下馬（此指令是專為同乘他人的馬的玩家設置的）。
-ride kick            讓馬上的同乘者下馬。            
+ride kick            讓馬上的同乘者下馬。
 ride rec <代號>      可以讓你記錄當前地點到rideto列表中去，以後可以直接騎上馬
                      使用 rideto <代號> 到達這個地方。
 
@@ -302,11 +302,8 @@ ride rec <代號>      可以讓你記錄當前地點到rideto列表中去，以
                      使用冊馬石一次：         可增加最大可記錄空間 1 條。
 
 ride unrec <代號>    刪除指令代號的記錄。
-                       
+
 HELP
     );
     return 1;
 }
-
-
-

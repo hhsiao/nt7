@@ -10,7 +10,7 @@ int main(object me, string arg)
         string what, who;
         object env;
         object ob, victim;
-        mapping myfam, vtfam;
+        mapping myfam;
         int sp, dp;
 
         env = environment(me);
@@ -82,7 +82,7 @@ int main(object me, string arg)
         if (victim->is_fighting()) dp *= 10;
         if( query("equipped", ob))dp*=20;
 
-        write("你不動聲色地慢慢靠近" + victim->name() + 
+        write("你不動聲色地慢慢靠近" + victim->name() +
               "，等待機會下手 ...\n\n");
 
         if( query("newbie", me) && playerp(victim) )
@@ -100,7 +100,6 @@ int main(object me, string arg)
 
 void compelete_steal(object me, object victim, object ob, int sp, int dp)
 {
-        mapping myfam, vtfam;
         int steal_level;
 
         if (! objectp(me))

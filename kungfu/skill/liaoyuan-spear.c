@@ -157,7 +157,7 @@ int valid_learn(object me)
       		return notify_fail("你的基本槍法火候不足，難以領悟燎原槍法。\n");
          return 1;
 }
- 
+
 string perform_action_file(string action)
 {
         return __DIR__"liaoyuan-spear/" + action;
@@ -171,7 +171,7 @@ string query_skill_name(int level)
 }
 
 int double_attack(object me)
-{	
+{
         return 1;
    	if ( me->query_skill("liaoyuan-spear", 1) >= 80
      	&& me->query_skill_mapped("spear") == "liaoyuan-spear"
@@ -186,12 +186,12 @@ mapping query_action(object me, object weapon)
 	string msg1;
          mapping pre;
          string *skill, a, b;
-         
+
          level   = (int) me->query_skill("liaoyuan-spear",1);
          lvl = (int)me->query_skill("super-strike", 1);
-    
-        if (random(me->query_skill("spear", 1)) > 100 
-        && random(me->query_skill("liaoyuan-spear", 1)) > 100 
+
+        if (random(me->query_skill("spear", 1)) > 100
+        && random(me->query_skill("liaoyuan-spear", 1)) > 100
         && me->query_skill("force") > 100
 	&& random(10)>6
         && me->query("neili") > 30 ) {
@@ -205,7 +205,7 @@ mapping query_action(object me, object weapon)
                   	"damage_type": "刺傷"
                 ]);
         }
-    
+
             if(me->query_temp("canyun"))
 			{
 				switch(me->query_temp("canyun"))
@@ -214,9 +214,9 @@ mapping query_action(object me, object weapon)
 				case 1: msg1 = HIR"$N眼見對方已陷入重圍，再也不能全身而退，當下持槍回擊，陡然圈轉，呼的一響，往$n$l上擊了下去。"NOR; break;
 				default: msg1 = HIW"$N突然大喝一聲，縱身而上，手中$w"HIW"猶如狂風驟雨，使出「風捲殘雲」，漫天槍影帶著氣浪有如怒海狂滔一般！"NOR;break;
 				}
-				me->add_temp("canyun", -1);      
+				me->add_temp("canyun", -1);
 				return ([
-                        "action":msg1, 
+                        "action":msg1,
                         "force" : level+level/3,
                         "dodge":level+level/3 ,
   "damage":level ,
@@ -224,10 +224,10 @@ mapping query_action(object me, object weapon)
                         "damage_type" : "刺傷",
               ]);
             }
-    
-        if (me->query_temp("slbw")) { 
-  me->delete_temp("slbw");             
-                return ([  
+
+        if (me->query_temp("slbw")) {
+  me->delete_temp("slbw");
+                return ([
                         "action" : HIC"但見$N硬接了$n這一招，執槍緊接著向後一擺，一招「神龍擺尾」出其不意地點在了$n的$l上！"NOR,
                         "force":level+level/2,
                         "dodge": level/2,
@@ -237,17 +237,17 @@ mapping query_action(object me, object weapon)
                         ]);
                 }
 
- if( level > 350 ){   
+ if( level > 350 ){
         	if( weapon ){
         		switch(weapon->query("material")){
     				case "wood":
-    				case "bamboo": 
+    				case "bamboo":
     				case "paper":
         				weapon->set_temp("no_weapon_cut", 1); break;
         			default: break;
  }
 }
-        
+
         if( level > 450){
   return ([
                         "action":msg[random(sizeof(msg))],
@@ -258,7 +258,7 @@ mapping query_action(object me, object weapon)
                         "force":level+random(level/2)
                 ]);
         }
-        
+
         if( level > 350
 	&& random(10)>6){
   return ([
@@ -270,22 +270,22 @@ mapping query_action(object me, object weapon)
                         "force":level+random(level/5)
                 ]);
         }
- }         
+ }
          if ( level >= 200 && lvl >= 200 && random(level) > lvl / 2
          && objectp(target = me->select_opponent())
          && objectp(weapon = me->query_temp("weapon"))
-         && me->query_skill_mapped("strike") == "super-strike" 
-         && me->query_skill_prepared("strike") == "super-strike" 
+         && me->query_skill_mapped("strike") == "super-strike"
+         && me->query_skill_prepared("strike") == "super-strike"
          && me->query("neili") > 300 && me->query("jingli") > 100 ) {
          	pre = me->query_skill_prepare();
-        	skill = keys(pre);     
+        	skill = keys(pre);
         	for (i=0; i<sizeof(skill); i++){
-                	if(skill[i]=="strike") continue; 
+                	if(skill[i]=="strike") continue;
                 	a = skill[i];
                 	b = pre[skill[i]];
                 	me->prepare_skill(skill[i]);
         	}
-        	
+
                 weapon->unequip();
                 COMBAT_D->do_attack(me, target, me->query_temp("weapon"), 2);
                 weapon->wield();
@@ -293,30 +293,30 @@ mapping query_action(object me, object weapon)
                 me->add("neili", -15);
                 me->add("jingli", -10);
          }
-        
+
 
 
          for(i = sizeof(action); i > 0; i--)
                  if(level >= action[i-1]["lvl"])
                          return action[NewRandom(i, 20, level/5)];
 }
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
     	object weapon, weapon1;
-    	int i;    
+    	int i;
     	weapon = me->query_temp("weapon");
     	weapon1= victim->query_temp("weapon");
 
 	if( !objectp(weapon) ) return;
 	i = me->query_skill("liaoyuan-spear", 1);
-	
+
     	if(weapon1 && me->query("jiali")
        	&& me->query("max_neili") > 1200 && me->query("neili") > 1000 && random(10) >= 7
-       	&& random(me->query_str()) > 30 
+       	&& random(me->query_str()) > 30
        	&& me->query_skill_mapped("parry") == "liaoyuan-spear"
        	&& random(me->query("combat_exp")) > victim->query("combat_exp")/4){
       		message_vision(HIM"$N持槍斜引，"+weapon->name()+HIM"平搭在$n"+weapon1->name()+HIM"背脊上，勁力傳出，"+weapon1->name()+HIM"登時一沉！\n"NOR, me,victim);
-      		if(random(me->query("str")) > victim->query("str")/3){           
+      		if(random(me->query("str")) > victim->query("str")/3){
            		me->add("neili", -50);
            		message_vision(HIR"$N招式漸見澀滯，只覺得手中"+weapon1->name()+HIR"不斷的在增加重量，一個把持不定，脫手飛出！\n"NOR, victim);
            		weapon1->unequip();
@@ -327,29 +327,29 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
            		victim->add_busy(3);
            	}
     	}
-    	
+
     	else if( i > 350 ){
     		if( i < 350 ) return i/5;
     		switch(weapon->query("material")){
     			case "wood":
-    			case "bamboo": 
+    			case "bamboo":
     			case "paper":
-    					if( random(i) > 250 
-    					&& !victim->query_temp("lost_attack") 
-   && random(me->query_str()+me->query_con()) > random(victim->query_int()*2) 
+    					if( random(i) > 250
+    					&& !victim->query_temp("lost_attack")
+   && random(me->query_str()+me->query_con()) > random(victim->query_int()*2)
 	&& random(10)>6){
     						victim->add_temp("lost_attack", 1+random(3));
     						message_vision(HIC"$P越鬥越害怕，被$p帶得招式漸見澀滯！\n"NOR, victim, me);
     						i *= 2;
     					}
-    					
+
     					if( i > 450 ) i *= 2;
     				 	i += me->query_skill("force") * 2 + (me->query("jiali") * (10+random(10)));
     					break;
-    			default: 	
+    			default:
     					if( i > 450 ) {
-    						if( random(i) > 250 
-    						&& !victim->query_temp("lost_attack") 
+    						if( random(i) > 250
+    						&& !victim->query_temp("lost_attack")
    && random(me->query_str()+me->query_con()
 	&& random(10)>6) > random(victim->query_int()*2) ){
     							victim->add_temp("lost_attack", 1+random(3));
@@ -364,8 +364,8 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
 }
 
         if(random(me->query_skill("liaoyuan-spear", 1)) > 100 &&
-            me->query_skill("poison", 1) > 60) {      
-            victim->apply_condition("hot_poison", random(6) + 
+            me->query_skill("poison", 1) > 60) {
+            victim->apply_condition("hot_poison", random(6) +
                     (me->query_skill("poison", 1)/10) +
                     victim->query_condition("hot_poison"));
         }
@@ -375,7 +375,7 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
 int ob_hit(object ob, object me, int damage)
 {
         string msg;
-        int i, neili,p,j,skill, neili1;
+        int i, neili, j, skill, neili1;
         skill = me->query_skill("liaoyuan-spear", 1);
         neili = me->query("neili");
         neili1 = ob->query("neili");
@@ -386,7 +386,7 @@ int ob_hit(object ob, object me, int damage)
         userp(me) &&
         random(me->query_str()) > ob->query_str()/4 &&
         random(me->query("combat_exp")) > ob->query("combat_exp")/10 &&
-        me->query_skill("liaoyuan-spear", 1) >= 180 && 
+        me->query_skill("liaoyuan-spear", 1) >= 180 &&
         me->query("neili") > 600 &&
         !me->query_temp("slbw_hit") &&
         !ob->query("env/invisibility"))
@@ -397,30 +397,30 @@ int ob_hit(object ob, object me, int damage)
   me->set("jiali", me->query_skill("force") + 100);
         me->add_temp("apply/attack", me->query_skill("liaoyuan-spear", 1));
                 me->add_temp("apply/strength", i/2);
-            
+
                 COMBAT_D->do_attack(me, ob, me->query_temp("weapon"), 1);
-                
+
                 if(me->query("neili") < neili) me->set("neili", neili-100);
                 me->set("jiali", i);
                 me->add_temp("apply/attack", -me->query_skill("liaoyuan-spear", 1));
                 me->add_temp("apply/strength", -i/2);
-        }else{       
+        }else{
            msg = parry_msg[random(sizeof(parry_msg))];
              if(neili >= random(neili1)+damage){
-              msg += "結果基本上卸掉了$n的力道。\n";              
+              msg += "結果基本上卸掉了$n的力道。\n";
               j = -(damage+skill);
               }
            else{
-              j = damage/2+random(damage/2); 
+              j = damage/2+random(damage/2);
               if(j<damage/2) msg += "結果卸掉了一些$n的力道。\n";
               else msg += "結果卸掉了$n一半的力道。\n";
               j = -j;
               }
-           }           
+           }
            message_vision(msg, me, ob);
            return j;
-          
-     
+
+
 }
 
 int practice_skill(object me)
@@ -437,8 +437,8 @@ int practice_skill(object me)
                 return notify_fail("你的體力不夠練燎原槍法。\n");
          if ((int)me->query("neili") < 40)
                 return notify_fail("你的內力不夠練燎原槍法。\n");
-                
- me->receive_damage("jingli", 30);           
+
+ me->receive_damage("jingli", 30);
          if((int)me->query_skill("liaoyuan-spear",1)> 200)
  me->add("neili",-10);
 
@@ -453,9 +453,8 @@ int help(object me)
 	闢捷徑，常使人防不勝防！趙雲爭戰數十年後，遇見各路槍法高手，不斷總
 	結，終於在晚年創出了此槍法，可以稱的上天下第一槍法！不過後來不知流
 	路何處，竟被上官劍南晚年在被囚山洞中所得！
-	
+
 HELP
 	);
 	return 1;
 }
-

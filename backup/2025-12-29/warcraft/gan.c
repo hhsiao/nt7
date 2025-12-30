@@ -1,0 +1,19 @@
+// warcraft.c
+
+#include "/clone/npc/warcraft.h"
+
+void setup()
+{
+        set_name("[1;31m紅臉老豬[2;37;0m[2;37;0m", ({"redi"}));        
+        set("gender", "女性");                
+        set("long", "。。。。[2;37;0m
+它是干將的魔幻獸。
+");
+        set("race_type", "朱雀");
+        set("magic/type", "fire");
+        set("owner", "gan");
+        set("owner_name", "干將");
+        set_temp("owner", "gan");
+        set_temp("owner_name", "干將");
+        ::setup();
+}

@@ -54,11 +54,11 @@ int practice_skill(object me)
         addn("neili", -10, me);
         return 1;
 }
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
         if( random(me->query_skill("qianzhu-wandushou",1)) > 30 )
                 victim->receive_wound("qi", damage_bonus/3);
-        if( query("family/family_name", victim) != "五毒教" && 
+        if( query("family/family_name", victim) != "五毒教" &&
                 me->query_skill("wudu-shengong",1)>40)
         {
                 switch( random(5) )

@@ -297,37 +297,41 @@ int main(object me, string arg)
 
         line += sprintf( YEL "┃                                                                ┃\n" NOR );
 
+        // 精 and 精力 line - Use %-12s for the bars (12 chars = 24 display width)
         if( my["max_jing"] >= my["eff_jing"])
-                line += sprintf( YEL "┃" HIC" 精  "NOR"：%-24s   ", tribar_graph(my["jing"], my["eff_jing"], my["max_jing"], status_color(my["jing"], my["max_jing"])) + tribar_graph3(jings));
+                line += sprintf( YEL "┃" HIC" 精  "NOR"：%-12s   ", tribar_graph(my["jing"], my["eff_jing"], my["max_jing"], status_color(my["jing"], my["max_jing"])));
         else
-                line += sprintf( YEL "┃" HIC" 精  "NOR"：%-24s   " , tribar_graph2(my["jing"], my["max_jing"], my["max_jing"], status_color(my["jing"], my["max_jing"]))+ tribar_graph3(jings));
+                line += sprintf( YEL "┃" HIC" 精  "NOR"：%-12s   ", tribar_graph2(my["jing"], my["max_jing"], my["max_jing"], status_color(my["jing"], my["max_jing"])));
 
         if( my["max_jingli"] > 0 )
-                line += sprintf( HIC "精力"NOR"：%-24s"+ NOR+YEL+"┃\n"NOR, tribar_graph(my["jingli"], my["max_jingli"], my["max_jingli"], status_color(my["jingli"], my["max_jingli"])));
+                line += sprintf( HIC "精力"NOR"：%-12s" NOR YEL "┃\n" NOR, tribar_graph(my["jingli"], my["max_jingli"], my["max_jingli"], status_color(my["jingli"], my["max_jingli"])));
         else
-                line += sprintf( HIC "精力"NOR "：" HIG "%-24s"+ NOR+YEL+"┃\n"NOR, blank_string );
+                line += sprintf( HIC "精力"NOR"：%-12s" NOR YEL "┃\n" NOR, blank_string );
 
+        // 氣 and 內力 line - Use %-12s
         if( my["max_qi"] >= my["eff_qi"])
-                line += sprintf( YEL "┃" HIC" 氣  "NOR"：%-24s   ", tribar_graph(my["qi"], my["eff_qi"], my["max_qi"], status_color(my["qi"], my["max_qi"])) + tribar_graph3(qis));
+                line += sprintf( YEL "┃" HIC" 氣  "NOR"：%-12s   ", tribar_graph(my["qi"], my["eff_qi"], my["max_qi"], status_color(my["qi"], my["max_qi"])));
         else
-                line += sprintf( YEL "┃" HIC" 氣  "NOR"：%-24s   ", tribar_graph2(my["qi"], my["max_qi"], my["max_qi"], status_color(my["qi"], my["max_qi"])) + tribar_graph3(qis));
+                line += sprintf( YEL "┃" HIC" 氣  "NOR"：%-12s   ", tribar_graph2(my["qi"], my["max_qi"], my["max_qi"], status_color(my["qi"], my["max_qi"])));
 
         if( my["max_neili"] > 0 )
-                line += sprintf( HIC "內力"NOR"：%-24s"+ NOR+YEL+"┃\n"NOR, tribar_graph(my["neili"], my["max_neili"], my["max_neili"], status_color(my["neili"], my["max_neili"])));
+                line += sprintf( HIC "內力"NOR"：%-12s" NOR YEL "┃\n" NOR, tribar_graph(my["neili"], my["max_neili"], my["max_neili"], status_color(my["neili"], my["max_neili"])));
         else
-                line += sprintf( HIC "內力"NOR "：" HIG "%-24s"+ NOR+YEL+"┃\n"NOR, blank_string );
+                line += sprintf( HIC "內力"NOR"：%-12s" NOR YEL "┃\n" NOR, blank_string );
 
+        // 食物 and 飲水 line - Use %-12s
         if( ob->max_food_capacity() > 0 )
-                line += sprintf( YEL "┃" HIC" 食物"NOR"：%-24s   ", tribar_graph(my["food"], ob->max_food_capacity(), ob->max_food_capacity(), YEL));
+                line += sprintf( YEL "┃" HIC" 食物"NOR"：%-12s   ", tribar_graph(my["food"], ob->max_food_capacity(), ob->max_food_capacity(), YEL));
         else
-                line += sprintf( YEL "┃" HIC" 食物"NOR"："YEL   "%-24s"+ NOR+YEL+"┃\n"NOR, blank_string );
+                line += sprintf( YEL "┃" HIC" 食物"NOR"：%-12s   ", blank_string );
 
         if( ob->max_water_capacity() > 0 )
-                line += sprintf( HIC "飲水"NOR"：%-24s"+ NOR+YEL+"┃\n"NOR , tribar_graph(my["water"], ob->max_water_capacity(), ob->max_water_capacity(), CYN));
+                line += sprintf( HIC "飲水"NOR"：%-12s" NOR YEL "┃\n" NOR, tribar_graph(my["water"], ob->max_water_capacity(), ob->max_water_capacity(), CYN));
         else
-                line += sprintf( HIC "飲水"NOR CYN"：%-24s"+ NOR+YEL+"┃\n"NOR, blank_string );
+                line += sprintf( HIC "飲水"NOR"：%-12s" NOR YEL "┃\n" NOR, blank_string );
 
         line += sprintf( YEL "┃                                                                ┃\n" NOR );
+
         line += sprintf( YEL "┃" NOR HIY " 武學宗師： %s" NOR HIY "    大小周天： %s" NOR HIY "   元嬰出世： %s" NOR HIY "    生死玄關：%s " NOR YEL "┃\n" NOR,
                 ultrap(ob)?"○":HIC"×",query("breakup", ob)?"○":HIC"×",query("animaout", ob)?"○":HIC"×",query("death", ob)?"○":HIC"×");
 

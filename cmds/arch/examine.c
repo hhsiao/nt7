@@ -21,7 +21,6 @@ public void search_dir(object me, int type);
 
 int main(object me, string arg)
 {
-        int i;
         int copy_user;
 
         if (! SECURITY_D->valid_grant(me, "(arch)"))
@@ -93,7 +92,7 @@ void search_dir(object me, int type)
                                 if (! info) continue;
                                 result += ({ info });
                                 count++;
-                        
+
                         }
                 }
                 total += j;
@@ -155,7 +154,6 @@ protected string examine_player(string name, int copy_user, int type, int last_t
         object user_ob;
         string result;
         int day;
-        int age;
         int online;
         mixed *st;
         int remove_flag;
@@ -167,11 +165,11 @@ protected string examine_player(string name, int copy_user, int type, int last_t
                 {
                         st = stat(DATA_DIR + "login/" + name[0..0] + "/" +
                                   name + __SAVE_EXTENSION__);
-        
+
                         if (! arrayp(st) || sizeof(st) < 3)
                                 // 可能沒有這個文件
                                 return sprintf(WHT "無法查閱玩家(%s)的的登錄信息。\n" NOR, name);
-        
+
                         // 取最後訪問 login_ob 的時間
                         last_touched = st[1];
                 }
@@ -316,7 +314,7 @@ protected string is_illegal(object ob, int update)
                 return 0;
 
 #if 0
-        if( query("family/family_name", ob) != "華山派" && 
+        if( query("family/family_name", ob) != "華山派" &&
             ob->query_skill("hunyuan-zhang", 1))
                 return "擁有混元掌技能";
 #endif

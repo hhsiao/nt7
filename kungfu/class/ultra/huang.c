@@ -143,7 +143,6 @@ mixed ask_maze()
         object me;
         object ob;
         mapping quest;
-        mapping maze;
 
         me = this_player();
         ob = this_object();
@@ -291,7 +290,7 @@ int accept_fight(object me)
                 return 0;
         }
 
-        if( query("qi", me)*100/query("max_qi", me)<80 || 
+        if( query("qi", me)*100/query("max_qi", me)<80 ||
             query("jing", me)*100/query("max_jing", me)<80 )
         {
                 command("say 你現在狀態不佳，等休息好了再說吧！");
@@ -337,7 +336,7 @@ int accept_kill(object me)
 
 int recognize_apprentice(object me, string skill)
 {
-        if( query("character", me) != "光明磊落" && 
+        if( query("character", me) != "光明磊落" &&
             query("character", me) != "國士無雙" )
         {
                 command("say 大丈夫處世，不論善惡行事一定要光"
@@ -520,20 +519,20 @@ int accept_object(object me, object ob)
 
 int give_quest()
 {
-    mapping quest,qgood,skills,robot_quest;
-    object me,target,thing,npc;
-    int i, giveup,tag,want,lev,lev1;
+    mapping quest,qgood;
+    object me, thing,npc;
+    int i, giveup, tag, want;
     int exp;
-    int all_lvl,lvl;
-    string msg,*sname,place;
+    int all_lvl, lvl;
+    string msg, place;
     object maze_target;
     object maze_object;
 
     me = this_player();
     exp=query("combat_exp", me);
 
-    if( (query("character", me) != "光明磊落") && 
-            (query("character", me) != "國士無雙") && 
+    if( (query("character", me) != "光明磊落") &&
+            (query("character", me) != "國士無雙") &&
            (query("character", me) != "狡黠多變") )
     {
         write("黃裳問你：你這種性格的人，來這裡幹什麼？\n");
@@ -799,11 +798,11 @@ int give_quest()
 
 int accept_object(object me, object ob)
 {
-    int rank,exp,pot,score,times,i,tag,all_quest_hs,bonus;
+    int exp,pot,score,times,i,tag,all_quest_hs,bonus;
     mapping quest;
     object gold,who,obj;
     string msg;
-    int mar,weiwang,shen,quest_count;
+    int mar,weiwang,quest_count;
     int total_count;
     mixed special = 0;
     mixed money = 0;
@@ -890,7 +889,7 @@ int accept_object(object me, object ob)
                     return 0;
                 }
 
-                if( !mapp(query("armor_prop", ob)) || 
+                if( !mapp(query("armor_prop", ob)) ||
                      !stringp(query("armor_type", ob)) )
                 {
                     write("黃裳接過來一看，皺眉道：“給我這玩藝幹什麼？”\n");
@@ -988,11 +987,11 @@ int accept_object(object me, object ob)
 
     if (quest["type"]=="徵" && objectp(obj = present("wulin ling", me)))
         destruct(obj);
-        
+
     exp = exp*3;
     pot = pot*3;
     mar = mar*3;
-        
+
     if(!random(10))
     {
         i=(exp/60+1);
@@ -1148,7 +1147,7 @@ int accept_object(object me, object ob)
 
 int give_up()
 {
-    object me,ob,obj;
+    object me,ob;
     int giveup,rank;
     mapping quest;
 

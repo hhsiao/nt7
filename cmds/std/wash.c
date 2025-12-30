@@ -48,7 +48,7 @@ int main(object me, string arg)
                         }
                         // daub on me
                 } else
-                if( !mapp(query("armor_prop", dest)) && 
+                if( !mapp(query("armor_prop", dest)) &&
                     !mapp(query("weapon_prop", dest)) )
                 {
                         return notify_fail("那既不是武器，也不是防具，"
@@ -80,7 +80,7 @@ int main(object me, string arg)
 
         if( query("equipped", dest) == "worn" )
         {
-                function f;
+                //function f;
 
                 if (! REMOVE_CMD->do_remove(me, dest))
                         return 0;

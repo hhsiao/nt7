@@ -1,0 +1,3 @@
+#/clone/shop/dali_shop.c
+dbase (["objects":(["/clone/shop/waiter":1,]),"no_fight":1,"no_steal":1,"shop_type":0,"no_clean_up":0,"no_beg":1,"exits":(["down":"/d/dali/majiu",]),"owner":"VOID_SHOP","open_long":"這裡是大理城內有名的店鋪翡翠園，店堂里人來人往，川流不息。大理地處天南，出售的物品也是別具一格。鋪面寬敞明亮，櫃上擺滿了各式各樣、琳琅滿目的貨物。","long":"這裡是大理城內有名的店鋪翡翠園，大理地處天南，民眾富饒。店鋪內裝飾得非常豪華，不過貨櫃上卻空無一物。夥計在一旁打著盹，看樣子已經很久沒人來打理了。","short":"翡翠園",])
+all_goods ({})

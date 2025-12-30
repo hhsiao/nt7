@@ -149,7 +149,6 @@ void reback_lonely_book()
 {
         mixed *file;
         int iCount;
-        string *t;
         object book;
 
         remove_call_out("reback_lonely_book");
@@ -176,4 +175,3 @@ int remove()
         save();
         return 1;
 }
-

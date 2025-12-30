@@ -47,13 +47,11 @@ void init()
 
 int do_washto(string arg)
 {
-        int i, j, points;
+        int points;
         int tmpstr, tmpint, tmpcon, tmpdex;
         int str, wux, con, dex;
-        object me, weapon;
+        object me;
         mapping my;
-        string *sname;
-        mixed skill_status;
 
         me = this_player();
 
@@ -198,10 +196,10 @@ int do_washto(string arg)
         my["int"] = tmpint;
         my["con"] = tmpcon;
         my["dex"] = tmpdex;
-        
+
         /*
         write(HIW "開始檢查新天賦下所學技能是否滿足學習條件...\n" NOR);
-        
+
         if (mapp(skill_status) && sizeof(skill_status))
         {
                 int ob;
@@ -278,7 +276,7 @@ int do_washto(string arg)
                         {
                                 if (objectp(weapon))
                                         destruct(weapon);
-                                        
+
                                 my["str"] = str;
                                 my["int"] = wux;
                                 my["con"] = con;

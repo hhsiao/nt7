@@ -6,10 +6,9 @@ inherit F_CLEAN_UP;
 
 int main(object me, string arg)
 {
-        object ob,where;
-        mapping fam;
+        object ob;
         int sp, dp;
-        int i, cost, train_level;
+        int cost, train_level;
 
         seteuid(getuid());
 
@@ -22,24 +21,24 @@ int main(object me, string arg)
         if (! objectp(ob = present(arg, environment(me))))
                 return notify_fail("這裡沒有這隻野獸吧？\n");
 
-        if (playerp(ob)) 
+        if (playerp(ob))
                 return notify_fail("人家也是玩家，你搞什麼搞啊？\n");
 
         if( query("race", ob) != "野獸" )
                 return notify_fail("這不是野獸，你暈頭了吧？\n");
 
-        if( query_temp("owner", ob) && 
+        if( query_temp("owner", ob) &&
             (query_temp("owner", ob) == query("id", me)) )
                 return notify_fail(ob->name() + "就是你馴服過的，你還折騰個啥勁兒呢！\n");
 
-        if( query_temp("owner", ob) && 
+        if( query_temp("owner", ob) &&
             (query_temp("owner", ob) != me) )
                 return notify_fail(ob->name() + "早被人家馴服了，你還折騰個啥勁兒呢！\n");
 
         if (ob == me)
                 return notify_fail("你沒這麼笨吧，把自己不當人？\n");
 
-        if (! living(ob)) 
+        if (! living(ob))
                 return notify_fail("這隻野獸暈倒了，你怎能訓得它動呢？\n");
 
         if (me->is_busy())
@@ -56,7 +55,7 @@ int main(object me, string arg)
 
         sp=me->query_skill("training",1)+query("int", me);
         dp=query("combat_exp", ob)/100;
-        
+
         if (random(sp) < random(dp) / 2)
         {
                 ob->kill_ob(me);
@@ -77,17 +76,17 @@ int main(object me, string arg)
         set_temp("owner", me, ob);
         set_temp("owner_name",query("name",  me), ob);
         set_temp("owner_id",query("id",  me), ob);
-        if( (strsrch(query("name", ob),"馬") >= 0) || 
-            (strsrch(query("name", ob),"驢") >= 0) || 
-            (strsrch(query("name", ob),"騾") >= 0) || 
-            (strsrch(query("name", ob),"駝") >= 0) || 
-            (strsrch(query("name", ob),"牛") >= 0) || 
-            (strsrch(query("name", ob),"象") >= 0) || 
-            (strsrch(query("name", ob),"獅") >= 0) || 
-            (strsrch(query("name", ob),"虎") >= 0) || 
-            (strsrch(query("name", ob),"豹") >= 0) || 
-            (strsrch(query("name", ob),"鹿") >= 0) || 
-            (strsrch(query("name", ob),"鯊") >= 0) || 
+        if( (strsrch(query("name", ob),"馬") >= 0) ||
+            (strsrch(query("name", ob),"驢") >= 0) ||
+            (strsrch(query("name", ob),"騾") >= 0) ||
+            (strsrch(query("name", ob),"駝") >= 0) ||
+            (strsrch(query("name", ob),"牛") >= 0) ||
+            (strsrch(query("name", ob),"象") >= 0) ||
+            (strsrch(query("name", ob),"獅") >= 0) ||
+            (strsrch(query("name", ob),"虎") >= 0) ||
+            (strsrch(query("name", ob),"豹") >= 0) ||
+            (strsrch(query("name", ob),"鹿") >= 0) ||
+            (strsrch(query("name", ob),"鯊") >= 0) ||
             (strsrch(query("name", ob),"雕") >= 0) )
                 set("ridable", 1, ob);
         me->remove_all_enemy();

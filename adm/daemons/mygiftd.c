@@ -558,7 +558,6 @@ string sub_gift_desc(string arg)
 // exp:10000000_pot:10000000_mar:10000000_/clone/armor/zhanyao-xunzhang:1
 string gift_desc(string arg)
 {
-        object ob;
         string sdesc, *keys_list;
         int i;
 
@@ -587,7 +586,7 @@ string gift_desc(string arg)
 // 顯示任務描述
 string mygift_string(mapping mygift_map)
 {
-        string squest, sgift_desc;
+        string squest;
 
         squest = HIC + LINE + "\n";
 
@@ -636,7 +635,7 @@ string sub_gift_send(object me, string arg)
                 {
                         write(HIR + sgift + "讀取錯誤！\n");
                         log_file("mygiftd", "來自mygiftd：" + sgift + "物品錯誤！\n");
-                        return;
+                        return "";
                 }
 
                 // 給予物品。。。
@@ -646,7 +645,7 @@ string sub_gift_send(object me, string arg)
                 {
                         write(HIR + sgift + "讀取錯誤-2！\n");
                         log_file("mygiftd", "來自mygiftd：" + sgift + "複製物品錯誤！\n");
-                        return;
+                        return "";
                 }
                 if( !ob->query_amount() )
                 {
@@ -760,7 +759,7 @@ string sub_gift_send(object me, string arg)
 
                         default:
                                 write("類型錯誤。\n");
-                                return;
+                                return "";
                         break;
                 }
 
@@ -773,9 +772,8 @@ string sub_gift_send(object me, string arg)
 // 給予獎勵
 void give_gift(object me, string arg)
 {
-        int i, count;
-        object ob;
-        string *keys_list, sgift, sdesc;
+        int i;
+        string *keys_list, sdesc;
 
 
         set("newbie_mygift/is_running_gift_list_send", 1, me);

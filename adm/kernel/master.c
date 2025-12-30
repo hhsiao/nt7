@@ -64,10 +64,10 @@ object connect(int port)
                 destruct(this_object());
         }
 
-        if (port == 5555)
+        /*if (port == 5555)
         {
                 set_encoding("GBK");
-        }
+        }*/
 
         // if( port == BIG5_PORT )
         //         set_temp("big5", 1, login_ob);

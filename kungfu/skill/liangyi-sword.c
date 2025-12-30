@@ -71,7 +71,6 @@ int valid_learn(object me)
 int practice_skill(object me)
 {
         object weapon;
-        int lvl = me->query_skill("liangyi-sword", 1);
 
         if( !objectp(weapon=query_temp("weapon", me) )
          || query("skill_type", weapon) != "sword" )
@@ -128,7 +127,7 @@ string perform_action_file(string action)
 {
         return __DIR__"liangyi-sword/" + action;
 }
-/*mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+/*mixed hit_ob(object me, object victim, int damage_bonus)
 {
         int i;
 
@@ -161,4 +160,3 @@ HELP
         );
         return 1;
 }
-

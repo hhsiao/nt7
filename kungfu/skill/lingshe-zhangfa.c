@@ -61,7 +61,7 @@ int practice_skill(object me)
 {
         object weapon;
 
-        if( !objectp(weapon=query_temp("weapon", me)) || 
+        if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "staff" )
                 return notify_fail("你使用的武器不對。\n");
 
@@ -75,7 +75,7 @@ int practice_skill(object me)
         addn("neili", -69, me);
         return 1;
 }
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
         int lvl,flvl;
         lvl = me->query_skill("lingshe-zhangfa",1);

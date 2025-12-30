@@ -824,8 +824,6 @@ LONG, room);
 private object get_user_key(object me)
 {
         string key_file;
-        string content;
-        object entry;
         int n;
 
         key_file = file_dir(me) + "key";
@@ -1251,7 +1249,6 @@ private int do_changetype(string arg)
         object me;
         int value;
         string player_id;
-        string position;
         mapping example;
 
         me = this_player();
@@ -1300,7 +1297,6 @@ private int do_changedesc(string arg)
 {
         object me;
         string player_id;
-        mapping example;
         string room_name;
         string room_desc;
 
@@ -1453,7 +1449,6 @@ private int do_demolish()
 // 拆毀房屋的執行函數，該函數可能會被外部調用，所以必須察看權限
 int demolish_room(object me)
 {
-        string *names;
         string room_name;
         string key_id;
         mixed *file;
@@ -2303,7 +2298,6 @@ private int do_type(string arg)
 {
         string player_id;
         string room_name;
-        int a;
 
         if (! wizardp(this_player()) || wiz_level(this_player()) < WIZLEVEL)
         {
@@ -2333,7 +2327,6 @@ private void show_brief(string player_id)
         string msg;
         string wizard;
         string memo;
-        int i;
 
         form = query("form/" + player_id);
         if (! form || ! mapp(form)) return;

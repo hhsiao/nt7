@@ -122,7 +122,6 @@ mixed found(object me, object env)
         mapping cs, ns;
         mapping os;
         object  ob, task_ob;
-        mixed   sob;
         int sum;
         int i;
 
@@ -196,7 +195,7 @@ mixed found(object me, object env)
                                                 get_object("/f/ultra/"+query("id", me)+"/maze")->set_display_map(1);
                                                 get_object("/f/ultra/"+query("id", me)+"/maze")->set_maze_boss(boss);
                                                 tell_object(me, "咦，這裡好象有個隱蔽的迷宮，你撕下封條進入迷宮大門。\n");
-                                                delete_temp("search_objects", env); 
+                                                delete_temp("search_objects", env);
                                                 return 1;
                                         }
                                         delete_temp("search_objects", env);
@@ -237,7 +236,7 @@ int searching(object me)
                 return 0;
         }
 
-        if( query("qi", me)<30 || 
+        if( query("qi", me)<30 ||
             query("jing", me)<30 )
         {
                 tell_object(me, "你實在太疲倦了，只好放棄了尋找。\n");

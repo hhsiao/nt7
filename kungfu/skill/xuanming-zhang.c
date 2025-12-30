@@ -1,4 +1,4 @@
-// create by rcwiz 2003 for yanhuang online 
+// create by rcwiz 2003 for yanhuang online
 
 inherit SKILL;
 #include <ansi.h>
@@ -174,7 +174,7 @@ int practice_skill(object me)
         return 1;
 }
 
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
         int lvl;
         int flvl;

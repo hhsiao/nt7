@@ -9,7 +9,7 @@ inherit FORCE;
 
 int is_ultimate_skill() { return 1; }
 
-string *xue_name = ({ 
+string *xue_name = ({
 "勞宮穴", "膻中穴", "曲池穴", "關元穴", "曲骨穴", "中極穴", "承漿穴", "天突穴", "百會穴",
 "幽門穴", "章門穴", "大橫穴", "紫宮穴", "冷淵穴", "天井穴", "極泉穴", "清靈穴", "至陽穴", });
 
@@ -51,9 +51,9 @@ int query_neili_improve(object me)
 int query_jingli_improve(object me)
 {
         int lvl;
-        
+
         lvl = (int)me->query_skill("yinyang-shiertian", 1);
-        
+
         if (me->query_skill_mapped("force") == "yinyang-shiertian")
                 return lvl * 14 / 7;
 
@@ -291,15 +291,15 @@ int valid_learn(object me)
 
         if (me->query_skill("martial-cognize", 1) < level)
                                 return notify_fail("你武學修養不夠，無法繼續修煉。\n");
-        
+
         if( level>380 && query("yinyang-shiertian/yinyang", me) )
                                 return notify_fail("你陰陽九轉十二重天已達到新的層次，須修煉出陰陽境界方能再次提升。\n");
-        
+
         if( level>480 && query("yinyang-shiertian/qiankun", me) )
                                 return notify_fail("你陰陽九轉十二重天已達到新的層次，須修煉出乾坤境界方能再次提升。\n");
 
         if( level>600 && query("yinyang-shiertian/shier", me) )
-                                return notify_fail("你陰陽九轉十二重天已達到新的層次，須修煉出十二重天境界方能再次提升。\n");      
+                                return notify_fail("你陰陽九轉十二重天已達到新的層次，須修煉出十二重天境界方能再次提升。\n");
 
         return 1;
 }
@@ -314,7 +314,7 @@ int difficult_level()
         return 3000;
 }
 
-mixed hit_ob(object me, object victim, int damage_bonus)
+mixed hit_ob(object me, object victim, int damage_bonus, int factor)
 {
         string name1, name2/*, weapon*/;
         name1 = xue_name[random(sizeof(xue_name))];
@@ -355,7 +355,7 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
                                             "$N" HIW "震到一邊。\n" NOR]);
                         break;
                 case 2:
-                        result += (["msg" : HIW "$n" HIW "身形微微一抖，已將$N" HIW 
+                        result += (["msg" : HIW "$n" HIW "身形微微一抖，已將$N" HIW
                                             "迫退至丈許開外。\n" NOR]);
                         break;
                 default:
@@ -399,12 +399,12 @@ string exert_function_file(string action)
         return __DIR__"yinyang-shiertian/exert/" + action;
 }
 
-void skill_improved(object me) 
-{ 
-        int i; 
-        string *sub_skillnames; 
+void skill_improved(object me)
+{
+        int i;
+        string *sub_skillnames;
 
-        sub_skillnames = keys(sub_skills); 
-        for (i = 0; i < sizeof(sub_skillnames); i++) 
-                me->delete_skill(sub_skillnames); 
-} 
+        sub_skillnames = keys(sub_skills);
+        for (i = 0; i < sizeof(sub_skillnames); i++)
+                me->delete_skill(sub_skillnames);
+}

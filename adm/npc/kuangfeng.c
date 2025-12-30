@@ -25,7 +25,7 @@ string* warcraft_type = ({
         "麒麟",
 });
 
-mapping magic_type = ([ 
+mapping magic_type = ([
         "青龍" : "wood",
         "白虎" : "metal",
         "朱雀" : "fire",
@@ -108,7 +108,7 @@ int do_choose()
                 set("warcraft/id", query("id", warcraft), me);
                 set("warcraft/file", filename, me);
                 set("warcraft/status", "living", me);
-                MYGIFT_D->check_mygift(me, "newbie_mygift/warcraft"); 
+                MYGIFT_D->check_mygift(me, "newbie_mygift/warcraft");
                 return notify_fail("你宿命中已經擁有過魔幻獸，我已經幫你溝通血契了。\n");
         }
 
@@ -156,7 +156,6 @@ void get_subtype(string arg, object ob)
 void get_gender(string arg, object ob)
 {
         int n;
-        object warcraft;
 
         sscanf(arg, "%d", n);
 
@@ -338,7 +337,7 @@ void build_warcraft(object ob)
 
         command("say 你可以吹聲口哨召喚你的魔幻獸！<whistle " + warcraft_id +">\n");
 
-        MYGIFT_D->check_mygift(ob, "newbie_mygift/warcraft");   
+        MYGIFT_D->check_mygift(ob, "newbie_mygift/warcraft");
         return;
 }
 
@@ -346,7 +345,7 @@ int accept_object(object me, object ob)
 {
         string filename;
         string file;
-        object cruise_ob, xob;
+        object cruise_ob;
 
         if( query("id", ob) == "dizang zhishi" )
         {
@@ -493,7 +492,6 @@ int accept_object(object me, object ob)
 int check_legal_id(string id)
 {
         int i;
-        string *legalid;
         object ppl;
 
         i = strlen(id);
@@ -533,7 +531,6 @@ int check_legal_id(string id)
 int check_legal_name(string name, int max_len)
 {
         int i;
-        string  *legalname;             //not implemented..may add later
 
         i = strlen(name);
         if ((strlen(name) < 2) || (strlen(name) > max_len ))

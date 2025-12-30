@@ -249,7 +249,7 @@ mixed hit_ob(object me, object victim, int damage_bonus)
 }
 
 /*
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
         int lev,damage, i;
         string msg;

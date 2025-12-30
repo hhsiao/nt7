@@ -108,7 +108,7 @@ int practice_skill(object me)
         me->receive_damage("qi", 20);
         return 1;
 }
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
   if( random(damage_bonus/2) > victim->query_con() ) {
                 victim->receive_wound("qi", damage_bonus/ 3 );

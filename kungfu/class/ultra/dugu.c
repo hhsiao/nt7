@@ -173,7 +173,6 @@ mixed ask_maze()
         object me;
         object ob;
         mapping quest;
-        mapping maze;
 
         me = this_player();
         ob = this_object();
@@ -445,11 +444,10 @@ void die()
 
 int give_quest()
 {
-        mapping questtemp, questgoods, questdg;
-        mapping skills, robot_quest;
-        string msg, dest, error, dgmsg, place;
+        mapping questtemp, questdg;
+        string msg;
         object ob, npc, thing;
-        int time, bonus, level, i, lev, lev1;
+        int time, level, i;
         int exp;
         int all_lvl, lvl;
         object maze_target;
@@ -720,11 +718,11 @@ int give_quest()
 
 int accept_object(object who, object ob)
 {
-        int exp, pot,level,bonus,time,times;
+        int exp, pot,level,bonus,time;
         int i,quest_count,mar,score,weiwang,all_quest_dg;
         int total_count;
         mapping questdg;
-        string dest,msg;
+        string msg;
         object gold,obj;
         mixed special = 0;
         mixed money = 0;
@@ -878,11 +876,11 @@ int accept_object(object who, object ob)
         if( query("questdg_times", who)+1>200 )
                mar=exp/5+random(query("questdg_times", who));
         else mar = 20 + random(20);
-        
+
         exp = exp*3;
         pot = pot*3;
         mar = mar*3;
-        
+
         if (mar > 1000) mar = 1000;
 
         if(wizardp(who)||!random(10))
@@ -1033,7 +1031,7 @@ int accept_object(object who, object ob)
 
 int give_up()
 {
-        object ob,obj,room;
+        object ob;
         mapping questdg;
 
         ob = this_player();

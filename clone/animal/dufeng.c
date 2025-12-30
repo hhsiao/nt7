@@ -53,7 +53,7 @@ void die()
         destruct(this_object());
 }
 
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
         victim->apply_condition("insect_poison", 3 + random(3) +
                 victim->query_condition("insect_poison"));

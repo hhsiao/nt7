@@ -652,7 +652,6 @@ int do_name(string arg)
 {
         object me;
         object ob;
-        string pname;
         string sname, sid;
 
         me = this_player();
@@ -956,7 +955,6 @@ int do_finish()
         object ob;
         object moye;
         string msg;
-        int    level;
 
         me = this_player();
         if( query_temp("item/status", me) != "inputing" )
@@ -1039,11 +1037,8 @@ int do_finish()
 
 void confirm_make(string arg, object ob)
 {
-        mapping enchase, insert, require;
-        mapping temp = ([]);
         object me;
         object moye;
-        object item;
         string item_filename;
 
         me = this_player();
@@ -1132,7 +1127,6 @@ protected string create_file(object item_temp)
         string  buf;                    // 生成文件的緩衝區
         string  filename;
         string  desc;
-        int     i;
         mapping info;
         string  ih;
         string  id;
@@ -1371,7 +1365,7 @@ protected int save_item_file(string filename, string content)
 int do_discard(string arg)
 {
         mapping rare;
-        string desc, file;
+        string file;
         string type;
         object money;
         object ob, item;
@@ -1964,13 +1958,11 @@ int do_increase(string arg)
         object ob_reset;
         object ob_water, ob_zz1, ob_zz2, ob_zz3;
         object ob_rune1, ob_rune2, ob_rune3;
-        object *obs;
         int level, success;
         mixed value;
         string *apply;
         int i, n;
-        int wash;
-        int rate, rate2;
+        int rate;
         int vip_level;
 
         me = this_player();

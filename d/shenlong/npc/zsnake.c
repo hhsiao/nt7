@@ -22,11 +22,10 @@ void create()
 	setup();
 }
 
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
 	victim->apply_condition("snake_poison", 80 +
 		victim->query_condition("snake_poison"));
 }
 
 #include "snake.h"
-

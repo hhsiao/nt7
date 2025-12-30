@@ -80,7 +80,7 @@ int valid_learn(object me)
                 return notify_fail("你的帝王神功不夠精熟，沒法練長歌劍法。\n");
         if( query("max_neili", me)<200 )
                 return notify_fail("你的內力不夠，沒有辦法練長歌劍法。\n");
-        if( !(ob=query_temp("weapon", me)) || 
+        if( !(ob=query_temp("weapon", me)) ||
                 query("skill_type", ob) != "sword" )
                 return notify_fail("你必須先找一把劍才能練劍法。\n");
         return 1;
@@ -127,7 +127,7 @@ mixed hit_ob(object me, object victim, int damage_bonus)
 }
 
 /* 被擊中對方的副作用，目前主要用在內功上 factor= 加力 damage_bonus=臂力 */
-mixed be_hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed be_hit_ob(object me, object victim, int damage_bonus)
 {
         int ap, dp;
 
@@ -198,7 +198,7 @@ int practice_bonus() { return 15; }
 
 /* 對師傅傳授產生誤解的比率。random(success()) == 0的時候誤解。暫時不用。
 數值越大越不容易誤解。誤解引起倒退或停滯，僅體現在learn & teach */
-int success() { return 10; } 
+int success() { return 10; }
 
 /* 威力參數，參照門派參數，限制範圍1到1.5。嚴禁超標！目前僅用於輕功。 */
 int power_point() { return 1; }
@@ -223,7 +223,7 @@ int help(object me)
 
     長歌劍法不對玩家開放。
     長歌劍法可激發成劍法、招架和輕功。用於NPC製作。
-    
+
 HELP
         );
         return 1;

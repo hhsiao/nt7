@@ -71,7 +71,7 @@ int practice_skill(object me)
         addn("neili", -15, me);
         return 1;
 }
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
         int lvl;
         int flvl;
@@ -149,4 +149,3 @@ HELP
         );
         return 1;
 }
-

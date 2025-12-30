@@ -23,14 +23,14 @@ void create()
         setup();
 }
 
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
        object weapon=this_object();
        int dam;
 
        if( weapon->query("equipped"))
        {
-        dam = me->query_temp("jun_quest/group") 
+        dam = me->query_temp("jun_quest/group")
               * weapon->query("weapon_prop/damage")/10;
         dam = dam/4+random(dam/3);
 
@@ -43,15 +43,14 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
         else if( dam < 120 )
           message_vision(
           BLINK+HIM"$N的中軍遭到埋伏，損失殆盡！！\n"NOR,victim);
-        else  
+        else
           message_vision(
-          BLINK+HIM"$N的全軍陷入了敵軍的埋伏，存亡已在旦夕！！\n"NOR,victim);  
+          BLINK+HIM"$N的全軍陷入了敵軍的埋伏，存亡已在旦夕！！\n"NOR,victim);
 
         victim->receive_damage("qi",dam,me);
-        victim->receive_wound("qi",dam,me); 
+        victim->receive_wound("qi",dam,me);
        }
        return 0;
 }
 
-void owner_is_killed() { destruct(this_object()); }  
-
+void owner_is_killed() { destruct(this_object()); }

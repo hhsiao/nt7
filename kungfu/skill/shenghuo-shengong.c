@@ -33,7 +33,7 @@ int practice_skill(object me)
         return notify_fail("聖火神功只能用學(learn)的來增加熟練度。\n");
 }
 
-mixed hit_ob(object me, object victim, int damage_bonus)
+mixed hit_ob(object me, object victim, int damage_bonus, int factor)
 {
         int lvl, i;
         int flvl, attack_time;

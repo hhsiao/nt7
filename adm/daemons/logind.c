@@ -39,7 +39,7 @@ nosave string *banned_name = ({
 nosave string *banned_id = ({
         "domain", "root", "mudlib", "quit",
         "arch", "wizard", "apprentice",
-        "immortal", "player", "fuck", "admin",
+        "immortal", "player", "fuck",
         "all", "none", "cancel", "leave", "out",
         "entry", "enter", "shit", "tmd", "tnnd",
 });

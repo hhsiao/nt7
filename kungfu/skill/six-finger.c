@@ -403,8 +403,7 @@ int valid_learn(object me)
 
 int practice_skill(object me)
 {
-        object* ob, obj;
-        int i,skill,damage,cost;
+        int skill, cost;
         cost=40;
         if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
                 return notify_fail("你的必須空手才能練習。\n");
@@ -429,8 +428,6 @@ string query_skill_name(int level)
 }
 mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time)
 {
-        string name;
-
         if (userp(me))
                 attack_time = (int)(me->query_skill("six-finger", 1) / 50);
         else
@@ -631,72 +628,72 @@ string perform_action_file(string action)
         return __DIR__"six-finger/" + action;
 }
 
-void skill_improved(object me)  
-{ 
+void skill_improved(object me)
+{
         int lvl;
-        
-        lvl = me->query_skill("six-finger", 1); 
 
-        if( lvl >= 180 && 
-            !query("can_perform/six-finger/qi", me) )  
-        { 
-                tell_object(me, HIC "你通曉了六脈神劍「" HIR "無形劍氣" HIC "」的奧秘。\n" NOR);     
-                set("can_perform/six-finger/qi", 1, me); 
-                me->improve_skill("martial-cognize", 1500000);   
-                me->improve_skill("martial-cognize", 1500000);   
-                me->improve_skill("martial-cognize", 1500000);   
-        } 
+        lvl = me->query_skill("six-finger", 1);
 
-        if( lvl >= 200 && 
-            !query("can_perform/six-finger/gz", me) )  
-        { 
-                tell_object(me, HIC "你通曉了六脈神劍「" HIR "六脈歸宗" HIC "」的奧秘。\n" NOR);     
-                set("can_perform/six-finger/gz", 1, me); 
-                me->improve_skill("martial-cognize", 1500000);   
-                me->improve_skill("martial-cognize", 1500000);   
-                me->improve_skill("martial-cognize", 1500000);   
-        } 
-        
-        if( lvl >= 220 && 
-            !query("can_perform/six-finger/shen", me) )  
-        { 
-                tell_object(me, HIC "你通曉了六脈神劍「" HIR "六脈驚神" HIC "」的奧秘。\n" NOR);     
-                set("can_perform/six-finger/shen", 1, me); 
-                me->improve_skill("martial-cognize", 1500000);   
-                me->improve_skill("martial-cognize", 1500000);   
-                me->improve_skill("martial-cognize", 1500000);   
-        } 
+        if( lvl >= 180 &&
+            !query("can_perform/six-finger/qi", me) )
+        {
+                tell_object(me, HIC "你通曉了六脈神劍「" HIR "無形劍氣" HIC "」的奧秘。\n" NOR);
+                set("can_perform/six-finger/qi", 1, me);
+                me->improve_skill("martial-cognize", 1500000);
+                me->improve_skill("martial-cognize", 1500000);
+                me->improve_skill("martial-cognize", 1500000);
+        }
 
-        if( lvl >= 240 && 
-            !query("can_perform/six-finger/six", me) )  
-        { 
-                tell_object(me, HIC "你通曉了六脈神劍「" HIR "六脈劍氣" HIC "」的奧秘。\n" NOR);     
-                set("can_perform/six-finger/six", 1, me); 
-                me->improve_skill("martial-cognize", 1500000);   
-                me->improve_skill("martial-cognize", 1500000);   
-                me->improve_skill("martial-cognize", 1500000);   
-        } 
+        if( lvl >= 200 &&
+            !query("can_perform/six-finger/gz", me) )
+        {
+                tell_object(me, HIC "你通曉了六脈神劍「" HIR "六脈歸宗" HIC "」的奧秘。\n" NOR);
+                set("can_perform/six-finger/gz", 1, me);
+                me->improve_skill("martial-cognize", 1500000);
+                me->improve_skill("martial-cognize", 1500000);
+                me->improve_skill("martial-cognize", 1500000);
+        }
 
-        if( lvl >= 260 && 
-            !query("can_perform/six-finger/zong", me) )  
-        { 
-                tell_object(me, HIC "你通曉了六脈神劍「" HIR "縱橫天下" HIC "」的奧秘。\n" NOR);     
-                set("can_perform/six-finger/zong", 1, me); 
-                me->improve_skill("martial-cognize", 1500000);   
-                me->improve_skill("martial-cognize", 1500000);   
-                me->improve_skill("martial-cognize", 1500000);   
-        }                             
+        if( lvl >= 220 &&
+            !query("can_perform/six-finger/shen", me) )
+        {
+                tell_object(me, HIC "你通曉了六脈神劍「" HIR "六脈驚神" HIC "」的奧秘。\n" NOR);
+                set("can_perform/six-finger/shen", 1, me);
+                me->improve_skill("martial-cognize", 1500000);
+                me->improve_skill("martial-cognize", 1500000);
+                me->improve_skill("martial-cognize", 1500000);
+        }
+
+        if( lvl >= 240 &&
+            !query("can_perform/six-finger/six", me) )
+        {
+                tell_object(me, HIC "你通曉了六脈神劍「" HIR "六脈劍氣" HIC "」的奧秘。\n" NOR);
+                set("can_perform/six-finger/six", 1, me);
+                me->improve_skill("martial-cognize", 1500000);
+                me->improve_skill("martial-cognize", 1500000);
+                me->improve_skill("martial-cognize", 1500000);
+        }
+
+        if( lvl >= 260 &&
+            !query("can_perform/six-finger/zong", me) )
+        {
+                tell_object(me, HIC "你通曉了六脈神劍「" HIR "縱橫天下" HIC "」的奧秘。\n" NOR);
+                set("can_perform/six-finger/zong", 1, me);
+                me->improve_skill("martial-cognize", 1500000);
+                me->improve_skill("martial-cognize", 1500000);
+                me->improve_skill("martial-cognize", 1500000);
+        }
 
         if( lvl >= 800 && query("yuanshen_level", me) &&
-            !query("can_perform/six-finger/tian", me) )  
-        { 
-                tell_object(me, HIC "你通曉了六脈神劍「" HIR "天脈神劍" HIC "」的奧秘。\n" NOR);     
-                set("can_perform/six-finger/tian", 1, me); 
-                me->improve_skill("martial-cognize", 1500000);   
-                me->improve_skill("martial-cognize", 1500000);   
-                me->improve_skill("martial-cognize", 1500000);   
-        }                 
-} 
+            !query("can_perform/six-finger/tian", me) )
+        {
+                tell_object(me, HIC "你通曉了六脈神劍「" HIR "天脈神劍" HIC "」的奧秘。\n" NOR);
+                set("can_perform/six-finger/tian", 1, me);
+                me->improve_skill("martial-cognize", 1500000);
+                me->improve_skill("martial-cognize", 1500000);
+                me->improve_skill("martial-cognize", 1500000);
+        }
+}
 
 
 int learn_bonus() { return 0; }
@@ -720,4 +717,3 @@ HELP
         );
         return 1;
 }
-

@@ -8,14 +8,10 @@ void destruct_it(object ob);
 int main(object me, string arg)
 {
         mapping goods;
-        int amount;
-        int value, val_factor;
-        string ob_file;
-        object *obs;
+        int value;
         object ob, env, obj;
         string my_id;
-        int i;
-        
+
         if(me->is_busy())
                 return notify_fail("什麼事都得等你忙完再說吧！\n");
 
@@ -34,7 +30,7 @@ int main(object me, string arg)
         // no present or equipped
         env = environment(me);
 
-        if (! (obj = find_player(my_id)) || ! (present(query("id", obj), env))) 
+        if (! (obj = find_player(my_id)) || ! (present(query("id", obj), env)))
                 return notify_fail("這裡沒有這個商人。\n");
 
         if (obj == me)
@@ -134,7 +130,7 @@ int player_pay(object who, object target, int amount)
                 cc = c_ob->query_amount();
         else
                 cc = 0;
-        
+
         v = cc + sc * 100 + gc * 10000;
 
         if (amount < 100000 && v < amount)
@@ -147,7 +143,7 @@ int player_pay(object who, object target, int amount)
 
         v += tc * 100000;
 
-        if (v < amount) 
+        if (v < amount)
                 return 0;
         else {
                 left = v - amount;

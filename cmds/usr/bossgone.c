@@ -3,7 +3,6 @@
 inherit F_CLEAN_UP;
 int main(object me, string arg)
 {
-        string msg;
         delete_temp("block_msg/all", me);
         write(CLR);
         delete_temp("boss_screen", me);

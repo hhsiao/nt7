@@ -101,9 +101,9 @@ void create()
         set("attitude", "peaceful");
 
         set("inquiry", ([
-                "同門" : (: ask_rent :), 
-                "師兄" : (: ask_rent :), 
-                "rent" : (: ask_rent :), 
+                "同門" : (: ask_rent :),
+                "師兄" : (: ask_rent :),
+                "rent" : (: ask_rent :),
         ]));
 
         create_family("俠客島", 0, "弟子");
@@ -163,7 +163,7 @@ int accept_object(object me, object ob)
         object *obs;
         int cost;
         int n;
-        
+
         if( !query("money_id", ob) )
                 return 0;
 
@@ -263,13 +263,13 @@ mixed try_to_hire(object me, object ob)
         int cost;
 
         if( query("weiwang", me)<1000 )
-                return "你這點名頭也能使喚人？算了吧！"; 
+                return "你這點名頭也能使喚人？算了吧！";
 
         if( query("score", me)<10000 )
-                return "你江湖閱歷太淺，還是免了。"; 
+                return "你江湖閱歷太淺，還是免了。";
 
         if( query("combat_exp", me)<50000 )
-                return "你的武功太差，想支使誰呀？"; 
+                return "你的武功太差，想支使誰呀？";
 
         if( query("combat/DPS", me)>30 )
                 return "你這人，傷人太多，我們俠客島的弟子可不能助紂為虐。";
@@ -350,7 +350,7 @@ void remove()
         foreach (ob in obs) ob->destruct_by_owner();
 }
 
-void move_or_destruct()
+void move_or_destruct(object dest)
 {
         remove();
 }

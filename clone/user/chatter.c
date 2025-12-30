@@ -322,7 +322,6 @@ int do_look(string arg)
         object me = this_object();
         object ob;
         object env;
-        string msg;
         string add;
         string fun;
 
@@ -371,7 +370,7 @@ int do_look(string arg)
         return 1;
 }
 
-void move_or_destruct()
+void move_or_destruct(object dest)
 {
         if (is_chatter()) move(VOID_OB);
 }

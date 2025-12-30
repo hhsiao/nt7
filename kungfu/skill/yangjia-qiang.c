@@ -61,7 +61,7 @@ string query_skill_name(int level)
 }
 
 mapping query_action(object me, object weapon)
-{ 
+{
         int i, j, level,lv2;
         level = me->query_skill("yangjia-qiang",1);
         lv2 = me->query_skill("spear", 1)/2;
@@ -71,7 +71,7 @@ mapping query_action(object me, object weapon)
                         j = NewRandom(i, 20, level/5);
 
                         if( query_temp("yjq/huima", me)){
-                                return ([  
+                                return ([
                                         "action":HIC+replace_string(replace_string(replace_string(action[j]["action"], "$w", "$W"), "$W", "$w"HIC), NOR, HIC)+NOR,
                                         "lvl" : action[j]["lvl"],
                                         "force" : 120 + random(250) + lv2/10,
@@ -83,7 +83,7 @@ mapping query_action(object me, object weapon)
                                 ]);
                         }
                         if( query_temp("yjq/jifeng", me)){
-                                return ([  
+                                return ([
                                         "action":MAG+replace_string(replace_string(replace_string(action[j]["action"], "$w", "$W"), "$W", "$w"MAG), NOR, MAG)+NOR,
                                         "lvl" : action[j]["lvl"],
                                         "force" : 120 + random(250) + lv2/10,
@@ -95,7 +95,7 @@ mapping query_action(object me, object weapon)
                                 ]);
                         }
                                                 if( query_temp("yjq/qinghe", me)){
-                                return ([  
+                                return ([
                                         "action":HIG+replace_string(replace_string(replace_string(action[j]["action"], "$w", "$W"), "$W", "$w"HIG), NOR, HIG)+NOR,
                                         "lvl" : action[j]["lvl"],
                                         "force" : 120 + random(250) + lv2/10,
@@ -107,7 +107,7 @@ mapping query_action(object me, object weapon)
                                 ]);
                         }
                         if( query_temp("yjq/shenwei", me)){
-                                return ([  
+                                return ([
                                         "action":HIR+replace_string(replace_string(replace_string(action[j]["action"], "$w", "$W"), "$W", "$w"HIR), NOR, HIR)+NOR,
                                         "lvl" : action[j]["lvl"],
                                         "force" : 120 + random(250) + lv2/10,
@@ -149,8 +149,7 @@ string perform_action_file(string action)
         return __DIR__"yangjia-qiang/" + action;
 }
 
-
-mixed hit_ob(object me, object target)
+mixed hit_ob(object me, object target, int damage_bonus)
 {
         int lv = me->query_skill("yangjia-qiang");
 
@@ -163,6 +162,5 @@ mixed hit_ob(object me, object target)
                 addn_temp("apply/attack", -me->query_skill("yangjia-qiang",1)/3, me);
                 me->delte_temp("yjq/hmq");
          }
-     
-}
 
+}

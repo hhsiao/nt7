@@ -67,7 +67,6 @@ mapping citys = ([
 
 int main(object me, string arg)
 {
-        object *obs;
         string fname;
         string *args;
 
@@ -395,10 +394,8 @@ int show_bunch_all(object me, string arg)
 int show_bunch_info(object me, string arg)
 {
         string fam;
-        object  ob;
         string  msg;
         string *member;
-        string  id;
         int i;
 
         if (! stringp(fam = select_bunch(me, arg)))
@@ -540,10 +537,6 @@ int show_bunch_area(object me, string arg)
 int dismiss_bunch(object me, string arg)
 {
         string *member;
-        string id;
-        object user;
-        string msg;
-        int n;
 
         if (wiz_level(me) < wiz_level("(arch)"))
                 return notify_fail("你的權限不夠，不能強行解散幫派。\n");
@@ -622,7 +615,6 @@ int expell_bunch_member(object me, string arg)
 int bunch_efficient(object me, string arg)
 {
         string fname;
-        object ob;
 
         if( !stringp(fname=query("bunch/bunch_name", me)) )
         {
@@ -701,7 +693,7 @@ int bunch_efficient(object me, string arg)
 int appoint_bunch_member(object me, string arg)
 {
         object ob;
-        string name, item, zhiwei, id, n1, n2;
+        string name, item, zhiwei, id;
         string banghui;
         int lvl, flag;
 
@@ -946,7 +938,7 @@ int show_bunch_league(object me, string arg)
 {
         object ob;
         string bname, tname;
-        int flag, i, j;
+        int i, j;
 
         seteuid(getuid());
 

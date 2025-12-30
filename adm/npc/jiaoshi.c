@@ -10,7 +10,7 @@ inherit NPC;
 void create()
 {
 	set_name("西洋傳教士", ({ "jiao shi", "jiaoshi", "marriage witness" }));
-	set("long", 
+	set("long",
 		"他穿著一身的黑色服飾，神色肅穆。\n");
 	set("gender", "男性");
 	set("age", 35);
@@ -105,7 +105,7 @@ int do_right(object me, object ob)
         ring->move(ob, 1);
         tell_object(ob, HIY "你獲得了一個結婚戒指。\n" NOR);
         set("can_summon/"+"weddingring", fn, ob);
-        
+
         // record
 set("couple/id",query("id",  ob), 	me);
 set("couple/name", ob->name(1), 	me);
@@ -180,21 +180,21 @@ int do_divorce(object me)
         return 1;
 }
 
-int accept_fight()
+int accept_fight(object who)
 {
         command("shake");
         command("say 我來中國不是打架來的，如果你有興趣可以找我們的大力士。");
         return notify_fail("你還是算了吧！\n");
 }
 
-int accept_hit()
+int accept_hit(object who)
 {
         command("fear");
         command("say 你怎麼能隨便打人？");
         return notify_fail("你還是算了吧！\n");
 }
 
-int accept_kill()
+int accept_kill(object who)
 {
         command("say 中國人好野蠻啊！你怎麼能這樣？");
         return 1;

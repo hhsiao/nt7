@@ -1,0 +1,3 @@
+#/clone/shop/beijing_shop.c
+dbase (["objects":(["/clone/shop/waiter":1,]),"no_fight":1,"no_steal":1,"shop_type":0,"no_clean_up":0,"no_beg":1,"exits":(["down":"/d/beijing/majiu",]),"owner":"VOID_SHOP","open_long":"這裡便是北京城裡最有名的聚寶堂，鋪里人來人往，川流不息，顯出天子之都繁華大方的氣派。鋪面寬敞明亮，櫃上擺滿了各式各樣、琳琅滿目的貨物。","long":"這裡便是北京城裡最有名的聚寶堂，鋪里人來人往，川流不息，顯出天子之都繁華大方的氣派。不過店裡的貨櫃上卻空無一物，看樣子已經很久沒人來打理了。","short":"聚寶堂",])
+all_goods ({})

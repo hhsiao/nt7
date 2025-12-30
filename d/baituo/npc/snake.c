@@ -35,10 +35,10 @@ void init()
         ::init();
         add_action("convert","bian");
         if (interactive(ob = this_player()) &&
-            query("family/family_name", ob) != "歐陽世家" && 
+            query("family/family_name", ob) != "歐陽世家" &&
                 random(ob->query_kar() + ob->query_per()) < 30) {
                         remove_call_out("kill_ob");
-                        call_out("kill_ob", 1, ob); 
+                        call_out("kill_ob", 1, ob);
         }
 }
 void die()
@@ -50,7 +50,7 @@ void die()
 }
 
 
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
        int poison;
        poison=query("snake_poison", me);

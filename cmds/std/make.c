@@ -51,15 +51,15 @@ int main(object me, string arg)
         med = MEDICINE(med);
         if (file_size(med + ".c") < 0)
                 return notify_fail("這種藥方好像已經失傳了？你還是問問巫師吧。\n");
-                
+
         //tell_object(me, "test:" + med + "\n");
         if (med == "/clone/medicine/yuqing") {
 /*
                         if( (query("online_time", me) > 86400 * 31) ) {
                                 if (!sscanf(base_name(environment(me)), "/d/dongtian/%*s/liandanfang"))
                                 return notify_fail("你不是新人了，找個洞天煉丹房去煉製吧。\n");
-                } else {        
-                        if (!sscanf(base_name(environment(me)), "/d/dongtian/%*s/liandanfang") && 
+                } else {
+                        if (!sscanf(base_name(environment(me)), "/d/dongtian/%*s/liandanfang") &&
                                 !sscanf(base_name(environment(me)), "/temp/qroom/%*s"))
                                 return notify_fail("這種丹藥從飛星法陣進入天生石樑最裡面可以煉製。\n");
                 }
@@ -117,8 +117,8 @@ int main(object me, string arg)
                         return notify_fail("你的" + to_chinese(ks[i]) +
                                            "水平不夠，還無法調劑" +
                                            med->name() + "。\n");
-    
-    //血脈丹以外可以不耗藥材                                       
+
+    //血脈丹以外可以不耗藥材
         if ((!get_object(med)->is_xuemai_dan()) && base_name(qm)=="/clone/goods/tiandilu") {
                         switch(random(3))
                                 {
@@ -126,13 +126,13 @@ int main(object me, string arg)
                                                 hob2 = present("sheli zi", me);
                                                 if ((!hob2) || base_name(hob2)!="/clone/fam/pill/sheli1")
                                                         hob2 = 0;
-                                                set_temp("tiandilu/type", 1, me);       
+                                                set_temp("tiandilu/type", 1, me);
                                                 break;
                                         case 1:
                                                 hob2 = present("xue puti", me);
                                                 if ((!hob2) || base_name(hob2)!="/clone/fam/pill/puti1")
                                                         hob2 = 0;
-                                                set_temp("tiandilu/type", 2, me);       
+                                                set_temp("tiandilu/type", 2, me);
                                                 break;
                                         case 2:
                                                 hob2 = present("haotian guo", me);
@@ -142,7 +142,7 @@ int main(object me, string arg)
                                                 break;
                                 }
         }
-        if (hob2) {// && 
+        if (hob2) {// &&
                 //query_temp("tiandilu/cdtime", me) < time()) {
                         //set_temp("tiandilu/cdtime", time() + 21 + random(10), me);
                         message_vision(NOR CYN "$N拿出一" + query("base_unit", hob2) + hob2->name() + NOR CYN "塞進嘴裡幾把嚼爛，\n緊跟著噴出一口靈氣灌注到$n" NOR CYN "裡代替藥材。\n" NOR, me, qm);
@@ -187,7 +187,7 @@ int main(object me, string arg)
         msg = sort_string(msg, 64);
         write(msg);
     }
-    
+
         message("vision", me->name() + "東摸摸，西弄弄，不知道在幹啥。\n",
                 environment(me), ({ me }));
         me->start_busy(bind((:call_other, __FILE__, "making" :), me),
@@ -195,7 +195,7 @@ int main(object me, string arg)
         me->set_short_desc("正在專心致志的煉製藥物。");
         set_temp("pending/making", 0, me);
         set_temp("making/medicine", med, me);
-        if (base_name(qm)=="/clone/goods/tiandilu") 
+        if (base_name(qm)=="/clone/goods/tiandilu")
                 set_temp("making/time", req["time"] / 2, me);
         else
                 set_temp("making/time", req["time"], me);
@@ -224,7 +224,6 @@ int stop_making(object me)
 int making(object me)
 {
         int step;
-        int level;
         mapping req;
         string msg_me, msg_out;
         string med, obname;
@@ -243,8 +242,8 @@ int making(object me)
         }
         if (base_name(qm)=="/clone/goods/jiulonglu") flag_jiu = 1;
         if (base_name(qm)=="/clone/goods/tiandilu") flag_jiu = 2;
-        
-        if (flag_jiu>1 && step>0 && step<3 && (!random(15)) && random(me->query_kar())>10 && 
+
+        if (flag_jiu>1 && step>0 && step<3 && (!random(15)) && random(me->query_kar())>10 &&
                 query_temp("tiandilu/cdtime", me) < time() ) {
                 set_temp("tiandilu/cdtime", time() + 11 + random(25), me);
                 step = 8;
@@ -286,22 +285,22 @@ int making(object me)
                               med->name() + "」。\n");
                         return stop_making(me);
                 }
-                        
-        
+
+
                 if( query("neili", me)<req["neili"] )
                 {
                         write("你覺得內力不濟，看來難以繼續調劑「" +
                               med->name() + "」。\n");
                         return stop_making(me);
                 }
-        
+
                 if( query("jingli", me)<req["jingli"] )
                 {
                         write("你覺得精力不濟，看來難以繼續調劑「" +
                               med->name() + "」。\n");
                         return stop_making(me);
                 }
-        
+
                 me->receive_damage("jing", req["jing"]);
                 addn("neili", -req["neili"], me);
                 addn("jingli", -req["jingli"], me);
@@ -341,8 +340,8 @@ int making(object me)
                         obname = ob->name();
                         //set("drug_grade", level, ob);
                         ob->move(qm, 1);
-                        if (flag_jiu && 
-                                ((!random(8)) || (random(me->query_skillo("liandan-shu", 1) + query("item_prop/liandan-shu", qm)) > 5000) ) && 
+                        if (flag_jiu &&
+                                ((!random(8)) || (random(me->query_skillo("liandan-shu", 1) + query("item_prop/liandan-shu", qm)) > 5000) ) &&
                                 sscanf(base_name(environment(me)),"/d/dongtian/%*s/liandanfang")) {
                                 new(med)->move(qm, 1);
                                 message_vision(NOR CYN "煉丹房裡" YEL "金龍" NOR CYN "虛影遊動吞吐，大量靈氣聚集在$N手中的" + qm->name() + NOR CYN "上。\n" , me);
@@ -385,7 +384,7 @@ int making(object me)
                         }
                         msg_me = HIM "你把「" + obname + HIM "」成功的制好了！\n" NOR;
                         msg_out = HIM "$N" HIM "嘴角露出一絲微笑。\n" NOR;
-                        me->improve_skill("liandan-shu", me->query_int()*100+100); 
+                        me->improve_skill("liandan-shu", me->query_int()*100+100);
                 }else if( !query("special_skill/lucky", me) || random(2) == 0 )
                 {
                         msg_me = HIG "真令人沮喪！居然失敗了，真是可惜了。\n" NOR;
@@ -397,7 +396,7 @@ int making(object me)
                         ob->move(qm, 1);
                         msg_me = HIM "你感覺似乎有什麼地方沒有做對，然而你的運氣實在太好了！\n你把「" + ob->name() + HIM "」成功的制好了！\n" NOR;
                         msg_out = HIM "$N" HIM "嘴角露出一絲微笑。\n" NOR;
-                        me->improve_skill("liandan-shu", me->query_int()*10+10); 
+                        me->improve_skill("liandan-shu", me->query_int()*10+10);
                 }
                 break;
         }

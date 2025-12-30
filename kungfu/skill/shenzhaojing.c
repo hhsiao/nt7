@@ -10,7 +10,7 @@ int learn_bonus() { return 0; }
 int practice_bonus() { return 0; }
 int success() { return 10; }
 int power_point(object me) { return 1; }
-int valid_force(string force) 
+int valid_force(string force)
 {
         return 1;
 }
@@ -135,7 +135,7 @@ mapping query_action(object me, object weapon)
 }
 
 
-mixed hit_ob(object me, object victim, int damage_bonus)
+mixed hit_ob(object me, object victim, int damage_bonus, int factor)
 {
         int lvl;
 

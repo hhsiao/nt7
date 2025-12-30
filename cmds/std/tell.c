@@ -103,8 +103,6 @@ string remote_tell(string cname, string from, string mud, string to, string msg,
         string fromid;
         string no_tell;
         string can_tell;
-        mapping conn;
-        string reject;
         string tell_out;
 
         if (ob = MESSAGE_D->find_user(to))
@@ -195,7 +193,7 @@ int notice_user(string my_name, string my_id, object obj, string tell_out)
                                         if (strlen(piece[2]) > 32768)
                                         {
                                                 // 歷史信息已經過了32K了
-                                                write("你已經說了好多話了，先等別人聽完吧。\n");        
+                                                write("你已經說了好多話了，先等別人聽完吧。\n");
                                                 return 0;
                                         }
 

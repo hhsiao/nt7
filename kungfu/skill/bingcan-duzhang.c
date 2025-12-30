@@ -51,7 +51,7 @@ int valid_enable(string usage) { return usage=="strike" || usage=="parry"; }
 
 int valid_learn(object me)
 {
-        if( !query("family", me) || 
+        if( !query("family", me) ||
             query("family/family_name", me) != "星宿派" )
                 return notify_fail("你不是星宿派門人，無法學習此神功。\n");
 
@@ -133,7 +133,7 @@ int practice_skill(object me)
         return 1;
 }
 
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
         int lvl;
         int flvl;

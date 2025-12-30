@@ -78,7 +78,7 @@ int do_show(string arg)
 {
         string status, msg, mat;
         object me, ob;
-        int value, n;
+        int value;
 
         me = this_player();
         if (! arg)
@@ -329,7 +329,7 @@ int accept_object(object me, object ob)
 
 int do_answer(string arg)
 {
-        string *tattooed, *types;
+        string *tattooed;
         string tlong, special;
         object ob, me;
         object money;

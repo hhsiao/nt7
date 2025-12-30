@@ -125,7 +125,7 @@ string perform_action_file(string action)
 {
         return __DIR__"tianyu-qijian/" + action;
 }
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
         object weapon;
         string amsgs;

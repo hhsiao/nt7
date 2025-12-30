@@ -196,7 +196,7 @@ int practice_bonus() { return 5; }
 int success() { return 5; }
 int power_point(object me) { return 1; }
 
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
         if( random(me->query_skill("mantian-xing",1)) > 50)
         {

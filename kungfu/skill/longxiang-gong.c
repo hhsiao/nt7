@@ -127,7 +127,7 @@ mapping query_action(object me, object weapon)
         return action[random(sizeof(action))];
 }
 
-mixed hit_ob(object me, object victim, int damage_bonus)
+mixed hit_ob(object me, object victim, int damage_bonus, int factor)
 {
         int lvl, layer;
 

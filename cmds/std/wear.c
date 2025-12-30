@@ -58,7 +58,6 @@ int main(object me, string arg)
 int do_wear(object me, object ob)
 {
         string str;
-        mapping p;
         mixed notice;
 
         if( notice=query_temp("no_wear", ob) )
@@ -67,7 +66,7 @@ int do_wear(object me, object ob)
                 return notify_fail("還是試試別的吧！\n");
         }
 
-        if( query("female_only", ob) && 
+        if( query("female_only", ob) &&
             query("gender", me) == "男性" )
                 return notify_fail("這是女人的衣衫，你一個大男人也想穿，羞也不羞？\n");
 
@@ -100,7 +99,7 @@ int do_wear(object me, object ob)
                                 default:
                                         str = YEL "$N裝備$n" YEL "。\n" NOR;
                         }
-                if( query_temp("daub", ob) && 
+                if( query_temp("daub", ob) &&
                     query("armor_type", ob) != "hands" )
                         DAUB_CMD->check_poison(me, ob);
 
@@ -113,9 +112,9 @@ int help(object me)
 {
         write(@HELP
 指令格式：wear <裝備名稱>
- 
+
 這個指令讓你裝備某件防具。
- 
+
 HELP );
         return 1;
 }

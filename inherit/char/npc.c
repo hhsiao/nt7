@@ -624,18 +624,20 @@ int check_family(object ob, string fam) {
 }
 
 // when remove
-void remove() {
+void remove(string euid) {
     mixed fun;
 
     if(functionp(fun = query_temp("override/destruct")) )
         catch(evaluate(fun, this_object()));
 
-    ::remove();
+    ::remove(euid);
 }
 
 // environment destruct
-void move_or_destruct() {
-    remove();
+void move_or_destruct(object dest)
+{
+    string euid = "環境摧毀";
+    remove(euid);
 }
 /*
  * void relay_emote(object me, string verb)

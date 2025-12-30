@@ -155,9 +155,7 @@ string ask_jinlan()
         object ob_jinzhipg, ob_yinzhipg, ob_liangzhipg, ob_xiangbianpg, ob_hongzhipg;
         object ob_lanzhipg, ob_foguangbz, ob_shenzhizs, ob_shenzhifc, ob_shenzhisj, ob_shenzhimn;
         object ob;
-        
-        int i;
-        
+
         if ( query("reborn/times", me) < 3 )
                 return "你好象還沒有悟道吧，看來這錦鑭袈裟並不適合你。\n";
 
@@ -168,8 +166,8 @@ string ask_jinlan()
                 if (time() - query("badao_quest/qu_jiasha", me) > 0)
                 {
                         ob = new("/clone/armor/jinlan-jiasha");
-                        
-                        // 如果掉在地上設置10分鐘內其他人不能揀                 
+
+                        // 如果掉在地上設置10分鐘內其他人不能揀
                         set("who_get", ([
                                 "id"     : query("id", me),
                                 "time"   : 600,
@@ -177,18 +175,18 @@ string ask_jinlan()
                         ob->move(me, 1);
                         command("smile " + query("id", me));
                         command("say 閣下來得正好，你要的東西我已經做好了，請收下吧！");
-                        message_vision(HIC "$N" HIC "拿出" + ob->name() + HIC "給$n" HIC "。\n", 
-                                       this_object(), me); 
+                        message_vision(HIC "$N" HIC "拿出" + ob->name() + HIC "給$n" HIC "。\n",
+                                       this_object(), me);
                         delete("badao_quest/qu_jiasha", me);
                         me->save();
-                        
+
                         return "好了，你我從此兩不相欠，保重！\n";
                 }
                 else
-                        return "你的錦鑭袈裟還沒有製作完成呢，請 " + HIY + 
-                               chinese_number((query("badao_quest/qu_jiasha", me) - time()) / 3600) + 
+                        return "你的錦鑭袈裟還沒有製作完成呢，請 " + HIY +
+                               chinese_number((query("badao_quest/qu_jiasha", me) - time()) / 3600) +
                                NOR + CYN " 個小時後再來吧。\n";
-                
+
         }
 
         // 需要材料
@@ -205,7 +203,7 @@ string ask_jinlan()
            *神之水晶 1  粒
            *神之翡翠 1  粒
            */
-       
+
         command("nod");
         command("say 天下間，只有在下能製作錦鑭袈裟，不過需要一些特別的材料：");
         message_vision(HIM  + "\n"
@@ -222,16 +220,16 @@ string ask_jinlan()
                 "*神之翡翠 5  粒\n"
                 "還有手工費用 黃金 10 萬兩（YSG）\n" NOR, this_object());
         command("say 如果你這些材料都備齊了的話就來找我吧！");
-        
+
         if (! query_temp("want_make_jinlanjiasha", me))
         {
                 set_temp("want_make_jinlanjiasha", 1, me);
-                return "怎麼樣？如果你考慮好了，再來找我！\n";          
+                return "怎麼樣？如果你考慮好了，再來找我！\n";
         }
 
-        // 需要金質皮革 10 
+        // 需要金質皮革 10
         if (! objectp(ob_jinzhipg = present("jinzhi pige", me)))
-                return "你好象還沒備齊金質皮革吧？\n";                  
+                return "你好象還沒備齊金質皮革吧？\n";
         if (base_name(ob_jinzhipg) != "/clone/quarry/item/combine/jinzhi-pige")
                 return "你好象還沒備齊金質皮革吧？\n";
 
@@ -246,9 +244,9 @@ string ask_jinlan()
         }
 
 
-        // 需要銀質皮革 10 
+        // 需要銀質皮革 10
         if (! objectp(ob_yinzhipg = present("yinzhi pige", me)))
-                return "你好象還沒備齊銀質皮革吧？\n";                  
+                return "你好象還沒備齊銀質皮革吧？\n";
         if (base_name(ob_yinzhipg) != "/clone/quarry/item/combine/yinzhi-pige")
                 return "你好象還沒備齊銀質皮革吧？\n";
 
@@ -262,9 +260,9 @@ string ask_jinlan()
                 return "怎麼樣，10張銀質皮革備齊了嗎？\n";
         }
 
-        // 需要亮質皮革 10 
+        // 需要亮質皮革 10
         if (! objectp(ob_liangzhipg = present("liangzhi pige", me)))
-                return "你好象還沒備齊亮質皮革吧？\n";                  
+                return "你好象還沒備齊亮質皮革吧？\n";
         if (base_name(ob_liangzhipg) != "/clone/quarry/item/combine/liangzhi-pige")
                 return "你好象還沒備齊亮質皮革吧？\n";
 
@@ -278,12 +276,12 @@ string ask_jinlan()
                 return "怎麼樣，10張亮質皮革備齊了嗎？\n";
         }
 
-        // 需要藍質皮革 10 
+        // 需要藍質皮革 10
         if (! objectp(ob_lanzhipg = present("lanzhi pige", me)))
-                return "你好象還沒備齊藍質皮革吧？\n";                  
+                return "你好象還沒備齊藍質皮革吧？\n";
         if (base_name(ob_lanzhipg) != "/clone/quarry/item/combine/lanzhi-pige")
                 return "你好象還沒備齊藍質皮革吧？\n";
-                
+
         if (ob_lanzhipg->query_amount() >= 10)
         {
                 //ob_lanzhipg->add_amount(-10);
@@ -294,9 +292,9 @@ string ask_jinlan()
                 return "怎麼樣，10張藍質皮革備齊了嗎？\n";
         }
 
-        // 需要紅質皮革 10 
+        // 需要紅質皮革 10
         if (! objectp(ob_hongzhipg = present("hongzhi pige", me)))
-                return "你好象還沒備齊紅質皮革吧？\n";                  
+                return "你好象還沒備齊紅質皮革吧？\n";
         if (base_name(ob_hongzhipg) != "/clone/quarry/item/combine/hongzhi-pige")
                 return "你好象還沒備齊紅質皮革吧？\n";
 
@@ -308,11 +306,11 @@ string ask_jinlan()
         else
         {
                 return "怎麼樣，10張紅質皮革備齊了嗎？\n";
-        }               
+        }
 
-        // 需要鑲邊皮革 10 
+        // 需要鑲邊皮革 10
         if (! objectp(ob_xiangbianpg = present("xiangbian pige", me)))
-                return "你好象還沒備齊鑲邊皮革吧？\n";                  
+                return "你好象還沒備齊鑲邊皮革吧？\n";
         if (base_name(ob_xiangbianpg) != "/clone/quarry/item/combine/xiangbian-pige")
                 return "你好象還沒備齊鑲邊皮革吧？\n";
 
@@ -325,10 +323,10 @@ string ask_jinlan()
         {
                 return "怎麼樣，10張鑲邊皮革備齊了嗎？\n";
         }
-        
-        // 需要佛光寶珠 10 
+
+        // 需要佛光寶珠 10
         if (! objectp(ob_foguangbz = present("foguang baozhu", me)))
-                return "你好象還沒備齊佛光寶珠吧？\n";                  
+                return "你好象還沒備齊佛光寶珠吧？\n";
         if (base_name(ob_foguangbz) != "/clone/quarry/item/combine/foguang-baozhu")
                 return "你好象還沒備齊佛光寶珠吧？\n";
 
@@ -342,34 +340,34 @@ string ask_jinlan()
                 return "怎麼樣，10個佛光寶珠備齊了嗎？\n";
         }
 
-        // 需要神之水晶 1 
+        // 需要神之水晶 1
         if (! objectp(ob_shenzhisj = present("magic crystal", me)))
-                return "你好象還沒備齊神之水晶吧？\n";                  
+                return "你好象還沒備齊神之水晶吧？\n";
         if (base_name(ob_shenzhisj) != "/clone/gift/mcrystal")
-                return "你好象還沒備齊神之水晶吧？\n";                   
-                        
+                return "你好象還沒備齊神之水晶吧？\n";
+
         // 需要神之翡翠 1
         if (! objectp(ob_shenzhifc = present("magic jade", me)))
-                return "你好象還沒備齊神之翡翠吧？\n";                  
+                return "你好象還沒備齊神之翡翠吧？\n";
         if (base_name(ob_shenzhifc) != "/clone/gift/mjade")
                 return "你好象還沒備齊神之翡翠吧？\n";
-        
-        // 需要神之鑽石 1 
+
+        // 需要神之鑽石 1
         if (! objectp(ob_shenzhizs = present("magic diamond", me)))
-                return "你好象還沒備齊神之鑽石吧？\n";                  
+                return "你好象還沒備齊神之鑽石吧？\n";
         if (base_name(ob_shenzhizs) != "/clone/gift/mdiamond")
                 return "你好象還沒備齊神之鑽石吧？\n";
-        
-        // 需要神之瑪瑙 1 
+
+        // 需要神之瑪瑙 1
         if (! objectp(ob_shenzhimn = present("magic agate", me)))
-                return "你好象還沒備齊神之瑪瑙吧？\n";                  
+                return "你好象還沒備齊神之瑪瑙吧？\n";
         if (base_name(ob_shenzhimn) != "/clone/gift/magate")
-                return "你好象還沒備齊神之瑪瑙吧？\n";   
-        
+                return "你好象還沒備齊神之瑪瑙吧？\n";
+
         // 需要黃金10萬兩
         if (query("balance", me) < 100000)
-                return "你好象沒有備齊10萬兩黃金吧。\n";       
- 
+                return "你好象沒有備齊10萬兩黃金吧。\n";
+
         // 消耗材料
         ob_jinzhipg = present("jinzhi pige", me);
         ob_yinzhipg = present("yinzhi pige", me);
@@ -378,7 +376,7 @@ string ask_jinlan()
         ob_liangzhipg = present("liangzhi pige", me);
         ob_xiangbianpg = present("xiangbian pige", me);
         ob_foguangbz = present("foguang baozhu", me);
-                
+
         ob_jinzhipg->add_amount(-10);
         if (ob_jinzhipg->query_amount() < 1)destruct(ob_jinzhipg);
         ob_yinzhipg->add_amount(-10);
@@ -392,36 +390,36 @@ string ask_jinlan()
         ob_xiangbianpg->add_amount(-10);
         if (ob_xiangbianpg->query_amount() < 1)destruct(ob_xiangbianpg);
         ob_foguangbz->add_amount(-10);
-        if (ob_foguangbz->query_amount() < 1)destruct(ob_foguangbz);  
+        if (ob_foguangbz->query_amount() < 1)destruct(ob_foguangbz);
 
         ob_shenzhifc = present("magic jade", me);
         ob_shenzhizs = present("magic diamond", me);
         ob_shenzhimn = present("magic agate", me);
         ob_shenzhisj = present("magic crystal", me);
-                
+
         destruct(ob_shenzhifc);
         destruct(ob_shenzhizs);
         destruct(ob_shenzhimn);
         destruct(ob_shenzhisj);
-        
-        addn("balance", -100000, me);                
-        
+
+        addn("balance", -100000, me);
+
         //log_file("badao_quest_jiasha", query("id". me) + " 製作錦鑭袈裟成功！\n");
-        
+
         command("say 不錯，不錯，這些材料居然你都找齊了，拿我就先收下了。");
         command("say 既然你材料和工錢我都收了，這錦鑭袈裟就由我莫邪代勞吧。");
         command("say 不過，製作錦鑭袈裟耗時很長，閣下請於24小時後再來取吧。");
-        
+
         // 設置24小時後可取錦鑭袈裟
         set("badao_quest/qu_jiasha", time() + 24 * 3600, me);
-                
-        tell_object(me, HIG "恭喜你，莫邪已經答應幫你製作錦鑭袈裟，請於24小時後來取(ask mo about 錦鑭袈裟)！\n" NOR);        
-        
+
+        tell_object(me, HIG "恭喜你，莫邪已經答應幫你製作錦鑭袈裟，請於24小時後來取(ask mo about 錦鑭袈裟)！\n" NOR);
+
         delete_temp("want_make_jinlanjiasha", me);
-        
+
         me->save();
-        
-        return "記住，可別忘了。\n";    
+
+        return "記住，可別忘了。\n";
 }
 
 
@@ -472,7 +470,6 @@ int do_show(string arg)
         string  mat;
         int     power_point;
         int     value;
-        int     n;
 
         me = this_player();
         if (! arg)
@@ -481,7 +478,7 @@ int do_show(string arg)
         // 先取下面具
         if (query_temp("apply/name", me))
 	        return notify_fail("閣下為何不以真面目示人？\n");
-		
+
         mat = arg;
         power_point = 0;
 
@@ -552,14 +549,14 @@ int no_money()
 // 接受定金
 int accept_object(object me, object ob)
 {
-        string *types, type;        
+        string *types, type;
         string status;
         int    val;
 
         // 先取下面具
         if (query_temp("apply/name", me))
 	        return notify_fail("閣下為何不以真面目示人？\n");
-	                
+
         /*
         if( query("level", me)<10 )
         {
@@ -568,7 +565,7 @@ int accept_object(object me, object ob)
                 return 0;
         }
         */
-        
+
         status = query_temp("item/status");
         if (status == "look_working")
         {
@@ -597,14 +594,14 @@ int accept_object(object me, object ob)
                         command("say 我正在和別的客人商量呢，你先別添亂！");
                         return 0;
                 }
-                
+
                 if( !ob->is_can_merge() )
                 {
                         command("say 你還是快點給我精魂石碎片吧，要是沒有就明說！");
                         return 0;
                 }
         }
-        
+
         if (status == "accept2")
         {
                 if( query_temp("item/player_id") != query("id", me) )
@@ -620,7 +617,7 @@ int accept_object(object me, object ob)
                 }
         }
 
-        if( query("material_attrib", ob) && 
+        if( query("material_attrib", ob) &&
             query("power_point", ob) )
         {
                 message_vision("$N對$n說道：很好，現在就差精魂石碎片了，給我吧。\n",
@@ -639,7 +636,7 @@ int accept_object(object me, object ob)
                                        this_object(), me);
                         val = 1;
                 }
-                             
+
                 set("item/value", val, ob);
                 set_temp("item/status", "item_gived", me);
                 set_temp("item/value", val, me);
@@ -652,18 +649,18 @@ int accept_object(object me, object ob)
                 call_out("time_out", 60, me, ob);
                 return 1;
         }
-        if( query("id", ob) == "jinghun shi" && 
+        if( query("id", ob) == "jinghun shi" &&
             ob->is_can_merge() )
         {
                 object origin;
                 mixed p;
-                
+
                 if( query_temp("item/status", me) != "item_gived" )
                 {
                         message_vision("莫邪眼睛一瞪，對$N說道：你給我這些東西幹什麼？我不要！\n", me);
                         return 0;
                 }
-                
+
                 origin = query_temp("item/accept");
                 if( (p=query("can_make", origin)) == "all" )
                 {
@@ -681,14 +678,14 @@ int accept_object(object me, object ob)
                 else
                 if (stringp(p))
                         types -= ({ p });
-                                                
+
                 type = query("enchase/type", ob);
                 set_temp("item/types", types);
                 set_temp("item/type", type);
                 set_temp("item/status", "accept2");
                 set_temp("item/status", "item2_gived", me);
                 set_temp("item/accept2", ob);
-                
+
                 message_vision("$N對$n說道：很好，現在可以把錢給我了！\n",
                                this_object(), me);
                 remove_call_out("time_out");
@@ -713,7 +710,7 @@ int accept_object(object me, object ob)
                                        "推了回來，道：你還是先給我精魂石碎片吧！\n",
                                        this_object(), me);
                                 return 0;
-                        }        
+                        }
                         message_vision("$N把$n遞過去的" + ob->name() +
                                        "推了回來，道：無功不受祿！\n",
                                        this_object(), me);
@@ -740,7 +737,7 @@ int accept_object(object me, object ob)
                 set_temp("item/status", "answer_type", me);
                 return -1;
         }
-        
+
         message_vision("莫邪眼睛一瞪，對$N說道：你給我這些東西幹什麼？我不要！\n", me);
         return 0;
 }
@@ -752,7 +749,6 @@ int do_answer(string arg)
         object ob2;
         object me;
         object ganjiang;
-        object shi;
 
         me = this_player();
         if( query_temp("item/status", me) != "answer_type" )
@@ -771,7 +767,7 @@ int do_answer(string arg)
                                this_object(), me);
                 return 1;
         }
-        
+
 
         if( query_temp("item/type") != "all" && item_type[arg][ITEM_STYPE] != query_temp("item/type") )
         {
@@ -779,7 +775,7 @@ int do_answer(string arg)
                                        this_object(), me);
                 return 1;
         }
-        
+
         // 如果幹將不在
         if (! objectp(ganjiang = present("gan jiang")))
         {
@@ -821,18 +817,18 @@ int do_answer(string arg)
         set("item/owner_name", me->name(1), ob);
         set("item/wscale", item_type[arg][ITEM_WEIGHT], ob);
         set("item/prop", item_type[arg][ITEM_PROP], ob);
-        
+
         ob2 = query_temp("item/accept2");
         if( mapp(query("enchase/apply_prop", ob2)) )
                 set("item/prop2", query("enchase/apply_prop", ob2), ob);
         set("item/quality_level", query("quality_level", ob2), ob);
-        
+
         set("item/material_name", query("material_name", ob), ob);
         set("item/material_attrib", query("material_attrib", ob), ob);
         set("item/material_file", base_name(ob), ob);
-        
+
         message_vision("$N把" + ob->name() + "和"+ob2->name()+"交給了$n。\n", this_object(), ganjiang);
-        
+
         if (! ob->move(ganjiang))
                 error("Can move the object to ganjiang.");
         destruct(ob2);
@@ -890,7 +886,7 @@ void time_out(object me, object ob)
                 if (environment(ob) == this_object())
                         command("drop "+query("id", ob));
         }
-        
+
         delete_temp("item");
         if (objectp(me))
                 delete_temp("item", me);

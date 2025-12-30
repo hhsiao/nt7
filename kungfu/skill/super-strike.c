@@ -63,15 +63,15 @@ mapping query_action(object me, object weapon)
         int level;
         string msg;
         level = (int)me->query_skill("super-strike",1);
-        
+
         if(me->query_temp("tz/heyi")){
            	switch(me->query_temp("tz/heyi")){
             		case 2: msg = HIG"緊接著$N身體一轉，到了$n身旁，左掌順力拍出，這一招看似平和，實是內涵罡氣，威力無比！"NOR;break;
             		case 1: msg = CYN"$N突然腳下一晃，欺進$n，右掌一翻，運起鐵掌罡氣，單掌向$p頂門直拍而下！"NOR; break;
-           	}  
+           	}
            	me->add_temp("tz/heyi", -1);
            	return ([
-                        "action":msg, 
+                        "action":msg,
                         "force" :level + me->query("jiali"),
                         "dodge": random(30)+random(30),
                         "damage": level/2,
@@ -79,13 +79,13 @@ mapping query_action(object me, object weapon)
                         "damage_type" : "內傷",
         	]);
         }
-    	
+
     	if( level > 350
-        && me->query_skill_prepared("strike") == "super-strike" 
+        && me->query_skill_prepared("strike") == "super-strike"
         && me->query_skill_mapped("strike") == "super-strike"
 	&& random(7)>4
 )
-    		return ([  
+    		return ([
                 	"action" : WHT +super_msg[random(sizeof(super_msg))]+NOR,
                 	"force" :  level * 2,
                 	"dodge":   level,
@@ -109,14 +109,14 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me)
 {
         if (!me->query("sg/tzjj"))
-             return notify_fail("你沒有得到上官幫主許可，怎麼能偷學鐵掌掌法。\n");        
+             return notify_fail("你沒有得到上官幫主許可，怎麼能偷學鐵掌掌法。\n");
         if (!me->query_skill("force", 1))
                 if((int)me->query_skill("force", 1) < 100)
                         return notify_fail("你的內功火候不夠，無法練鐵掌掌法。\n");
         if ((int)me->query("jingli") < 70)
                 return notify_fail("你的體力太低了。\n");
         if ((int)me->query("neili") < 30)
-                return notify_fail("你的內力不夠練鐵掌掌法。\n");                         
+                return notify_fail("你的內力不夠練鐵掌掌法。\n");
         me->receive_damage("jingli", 40);
         me->receive_damage("neili", 10+random(10));
         return 1;
@@ -139,34 +139,34 @@ int valid_learn(object me)
 int ob_hit(object ob, object me, int damage)
 {
         string msg;
-        int i, neili,p,j,skill, neili1;
+        int neili, j, skill, neili1;
         skill = me->query_skill("super-strike", 1);
         neili = me->query("neili");
         neili1 = ob->query("neili");
 
         if(!living(ob)) return damage;
-        if(neili < 300) return damage; 
+        if(neili < 300) return damage;
            msg = parry_msg[random(sizeof(parry_msg))];
              if(neili >= random(neili1)+damage){
-              msg += "結果基本上卸掉了$n的力道。\n";              
+              msg += "結果基本上卸掉了$n的力道。\n";
               j = -(damage+skill);
               }
            else{
-              j = damage/2+random(damage/2); 
+              j = damage/2+random(damage/2);
               if(j<damage/2) msg += "結果卸掉了一些$n的力道。\n";
               else msg += "結果卸掉了$n一半的力道。\n";
               j = -j;
-            }           
+            }
            message_vision(msg, me, ob);
            return j;
-          
-     
+
+
 }
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
-{                
+mixed hit_ob(object me, object victim, int damage_bonus)
+{
         if(random(me->query_skill("super-strike", 1)) > 100 &&
-            me->query_skill("poison", 1) > 60) {                
-            victim->apply_condition("tz_poison", random(6) + 
+            me->query_skill("poison", 1) > 60) {
+            victim->apply_condition("tz_poison", random(6) +
                     (me->query_skill("poison", 1)/10) +
                     victim->query_condition("tz_poison"));
         }

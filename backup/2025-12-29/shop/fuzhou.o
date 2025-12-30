@@ -1,0 +1,3 @@
+#/clone/shop/fuzhou_shop.c
+dbase (["objects":(["/clone/shop/waiter":1,]),"no_fight":1,"no_steal":1,"shop_type":0,"no_clean_up":0,"no_beg":1,"exits":(["down":"/d/fuzhou/majiu",]),"owner":"VOID_SHOP","open_long":"騰龍齋是福州城內有名的店鋪，店堂正中掛著的一塊匾額上寫著「騰蛟起風」四個大字，令人肅然起敬。整個鋪面寬敞明亮，櫃上擺滿了各式各樣、琳琅滿目的貨物。","long":"騰龍齋是福州城內有名的店鋪，店堂正中掛著的一塊匾額上寫著「騰蛟起風」四個大字，令人肅然起敬。不過店裡的貨櫃上卻空無一物，看樣子已經很久沒人來打理了。","short":"騰龍齋",])
+all_goods ({})

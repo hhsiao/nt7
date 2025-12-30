@@ -8,11 +8,9 @@ int help(object me);
 int main(object me, string arg)
 {
         string str1, str2;
-        object tar;
-        string me_id, tar_id;
         int amount;
-        
-        MYGIFT_D->check_mygift(me, "newbie_mygift/fmstore");  
+
+        MYGIFT_D->check_mygift(me, "newbie_mygift/fmstore");
 
         if( !arg || arg == "") return help(me);
         if( time()-query_temp("last_member", me)<3 )
@@ -33,14 +31,14 @@ int main(object me, string arg)
                 // 防止註冊id刷物品
                 if( query("combat_exp", me) < 5000000 && !MEMBER_D->is_valid_member(me) )
                         return notify_fail("你暫時還沒有資格將貢獻點兌換為物品！\n");
-                
-if( query("online_time", me) < 14400 && !MEMBER_D->is_valid_member(me) ) 
-                 return notify_fail("你在線時間必須超過4小時候才能有資格兌換！\n"); 
+
+if( query("online_time", me) < 14400 && !MEMBER_D->is_valid_member(me) )
+                 return notify_fail("你在線時間必須超過4小時候才能有資格兌換！\n");
                 if( sscanf(str2, "%s %d", str2, amount) != 2 )
                         amount = 1;
-                
+
                 if( amount > 100 ) amount = 100;
-                if( amount < 1 ) amount = 1;        
+                if( amount < 1 ) amount = 1;
                 if( !GOODS_D->exchange_goods(me, str2, amount))
                 {
                         write("兌換失敗！\n");
@@ -73,4 +71,3 @@ int help (object me)
 
         return 1;
 }
-

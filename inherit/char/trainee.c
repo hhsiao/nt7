@@ -32,7 +32,7 @@ void create()
         set("wildness", 5);
         set("loyalty", 5);
         set("auto_follow",1);
-        
+
         setup();
 }
 
@@ -63,7 +63,7 @@ int train_it(object ob, object me, int pts)
                 me->set_lord(ob);
                 if(!(msg_trained = me->query("msg_trained")))
                         msg_trained = "$N馴服了$n";
-                 
+
                 message_vision(msg_trained + "。\n", ob, me);
 
                 if(me->query("auto_follow"))
@@ -77,7 +77,7 @@ int train_it(object ob, object me, int pts)
 
 int do_gen(string arg)
 {
-        object vc, me, ob = this_player();
+        object me, ob = this_player();
 
         if (!arg ) return notify_fail("你想讓誰跟著你走？\n");
         if(!objectp(me = present(arg, environment(ob))))
@@ -100,7 +100,7 @@ int do_gen(string arg)
 
 int do_stop(string arg)
 {
-        object vc, me, ob = this_player();
+        object me, ob = this_player();
 
         if (!arg ) return notify_fail("你想讓誰停下來？\n");
         if(!objectp(me = present(arg, environment(ob))))
@@ -134,7 +134,6 @@ int do_stop(string arg)
 int do_yao(string victim)
 {
         object vc, me = this_object(), ob = this_player();
-        int atk;
 
         if(! victim)
         {

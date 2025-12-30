@@ -159,7 +159,7 @@ string perform_action_file(string action)
         return __DIR__"yinsuo-jinling/" + action;
 }
 
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
         object weap,weap1;
         weap=query_temp("weapon", victim);

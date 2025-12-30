@@ -173,8 +173,6 @@ int accept_hit(object me)
 
 int accept_fight(object me)
 {
-        object weapon;
-
         if( query("opinion/"MY_OPINION, me) == ULTRA_OPINION )
         {
                 message_vision(CYN "$N" CYN "對$n" CYN "道：“很"

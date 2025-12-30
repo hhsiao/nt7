@@ -1,0 +1,3 @@
+#/clone/shop/changan_shop.c
+dbase (["objects":(["/clone/shop/waiter":1,]),"no_fight":1,"no_steal":1,"shop_type":0,"no_clean_up":0,"no_beg":1,"exits":(["down":"/d/changan/majiu",]),"owner":"VOID_SHOP","open_long":"這裡是長安城裡小有名氣的店堂—百寶齋。長安城民眾富裕，鋪裡出售的貨物也是別具一格。整個鋪面裝潢得非常雅緻。貨櫃上擺滿了各式各樣、琳琅滿目的貨物。","long":"這裡是長安城裡小有名氣的店堂—百寶齋。長安城民眾富裕，鋪裡出售的貨物也是別具一格。整個鋪面裝潢得非常雅緻，不過貨櫃上卻空無一物，看來已很久沒人打理了。","short":"百寶齋",])
+all_goods ({})

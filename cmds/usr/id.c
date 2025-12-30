@@ -4,11 +4,10 @@ inherit F_CLEAN_UP;
 
 int main(object me, string arg)
 {
-        object obj, *inv;
-        string *id;
+        object *inv;
         string cname;
         string name;
-        int i, j;
+        int i;
         int l = 20;
 
         if (! arg)
@@ -59,11 +58,11 @@ int help(object me)
 {
         write(@HELP
 指令格式 : id [here [for <中文名字>]]
- 
+
 這個指令可以讓你知道物品的英文名稱及名字. 只打 id 會顯示
 你身上所攜帶物品的名稱. 'id here' 則顯示所有跟你在同一個
 環境裡的物件名稱.
- 
+
 HELP );
         return 1;
 }

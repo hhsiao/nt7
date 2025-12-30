@@ -11,7 +11,6 @@ int main(object me, string arg)
         object ob;
         object *guard;
         int search_flag;
-        string prefix;
         int need_busy;
 
         if (! arg)
@@ -59,7 +58,7 @@ int main(object me, string arg)
                                         return notify_fail("你身上沒有這樣容具，附近的" +
                                                            from_ob->name() + "你又不敢動。\n");
                         }
-        
+
                         if (! objectp(from_ob))
                                 return notify_fail("你身上沒有這樣容具，附近也沒有。\n");
                 }
@@ -129,7 +128,7 @@ int main(object me, string arg)
                 write(ob->name()+(query("liquid/name", ob)?
                       "裡的"+query("liquid/name", ob)+"已經被喝得一滴也不剩了。\n":
                       "是空的。\n"));
-                if( query("env/auto_drinkout", me) && 
+                if( query("env/auto_drinkout", me) &&
                     environment(ob) != environment(me))
                 {
                         message_vision("$N丟下一個$n。\n", me, ob);
@@ -155,7 +154,7 @@ int main(object me, string arg)
                 write("你已經將"+ob->name()+"裡的"+query("liquid/name", ob )
                         + "喝得一滴也不剩了。\n");
                 ob->clear_effect();
-                if( query("env/auto_drinkout", me) && 
+                if( query("env/auto_drinkout", me) &&
                     environment(ob) == me)
                 {
                         message_vision("$N丟下一個$n。\n", me, ob);
@@ -182,7 +181,7 @@ int help(object me)
 {
         write(@HELP
 指令格式 : drink <容器> [in [all] <包裹>]
- 
+
 這個指令可以讓你喝容器裡面的液體。如果你沒有設置變量 careful，
 並且你身上沒有帶這種容器就會自動在周圍的環境尋找你指定的容器。
 

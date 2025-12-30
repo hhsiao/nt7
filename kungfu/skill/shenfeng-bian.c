@@ -6,8 +6,8 @@
 
 inherit SKILL;
 
-string *body_name = ({ 
-"左手腕","左胳膊","脖子","頭部","腰部","左腿","小腿","左腳腳腕","右手腕","右胳膊","右腿","右腳腳腕",}); 
+string *body_name = ({
+"左手腕","左胳膊","脖子","頭部","腰部","左腿","小腿","左腳腳腕","右手腕","右胳膊","右腿","右腳腳腕",});
 
 mapping *action = ({
 ([ "action": "$N雙手合什，內力灌注, 一式「未牧」，腰間$w似有靈性，筆直的刺向$n的$l",
@@ -84,7 +84,7 @@ mapping query_action(object me, object weapon)
         level   = (int) me->query_skill("shenfeng-bian",1);
 
         a=query("neili", me);
-// 注意，取後天屬性時要注意某些心法可以增加臨時屬性。   
+// 注意，取後天屬性時要注意某些心法可以增加臨時屬性。
         b = me->query_str();
         c = me->query_dex();
         d = me->query_con();
@@ -93,8 +93,8 @@ mapping query_action(object me, object weapon)
 
         if( query("neili", me)>query("max_neili", me) )
         a=query("max_neili", me)+(query("neili", me)-query("max_neili", me))/10;
-        a = random(a/2)+a/3;   
-        if ( a > 3000) a = 3000;        
+        a = random(a/2)+a/3;
+        if ( a > 3000) a = 3000;
         if ( a < 800) a = 800;
         j = (random(e + f)/4 + 1) * (random(b/10)+1)+10;
         if ( j > 200 ) j = 200;
@@ -110,7 +110,7 @@ mapping query_action(object me, object weapon)
           addn_temp("chb", -1, me);
               return ([
                 "action":msg,
-                "damage":random(e + f/2)/ 2 * random(b/10)+10, 
+                "damage":random(e + f/2)/ 2 * random(b/10)+10,
                 "damage_type": action[NewRandom(i, 20, level/5)]["damage_type"],
                 "dodge": random(c)+random(me->query_skill("dodge", 1)/10)-random(40),
                 "force": random(a/20) + (level),
@@ -121,7 +121,7 @@ mapping query_action(object me, object weapon)
         for(i = sizeof(action); i > 0; i--) {
               return ([
                 "action":action[NewRandom(i, 20, level/5)]["action"],
-                "damage": j, 
+                "damage": j,
                 "damage_type": action[NewRandom(i, 20, level/5)]["damage_type"],
                 "dodge": random(c)+random(me->query_skill("dodge", 1)/10)-random(40),
                 "force": random(a/20) + (level),
@@ -152,7 +152,7 @@ int practice_skill(object me)
        return 1;
 }
 
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+mixed hit_ob(object me, object victim, int damage_bonus)
 {
         object weap,weap1;
         string name;
@@ -166,9 +166,9 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
            && (query("neili", me)>100)){
            if( query_temp("weapon", victim)){
              if (random(5) > 2){
-               message_vision(HIY "只見$N急速揮舞" + weap1->name() + HIY"，轉出無數個大小圈子，以陰柔之勁纏住對方的" + weap->name() +"！\n" NOR, me );      
+               message_vision(HIY "只見$N急速揮舞" + weap1->name() + HIY"，轉出無數個大小圈子，以陰柔之勁纏住對方的" + weap->name() +"！\n" NOR, me );
                victim->start_busy(1);
-               if (random(me->query_skill("parry", 1)) > victim->query_skill("parry", 1)/3 ){       
+               if (random(me->query_skill("parry", 1)) > victim->query_skill("parry", 1)/3 ){
                  message_vision(HIY "$N氣運手臂用力一拽，" + weap->name()
                                 + HIY"卻無法從"+weap1->name()+HIY"的纏繞中脫開，情急之下只好放棄了手中的兵刃。\n" NOR, victim );
                  weap->move(environment(me));
@@ -188,13 +188,13 @@ mixed hit_ob(object me, object victim, int damage_bonus, int factor)
                victim->start_busy(random(i)+ 1);
                addn("neili", -80, me);
                victim->receive_damage("qi", me->query_skill("kurong-changong",1)/2+damage_bonus/2);
-//             victim->receive_wound("qi", me->query_skill("kurong-changong",1)/4+damage_bonus/4);       
+//             victim->receive_wound("qi", me->query_skill("kurong-changong",1)/4+damage_bonus/4);
 //             if (!victim->query_condition("no_perform"))
 //               victim->apply_condition("no_perform",i*random(2+random(2)));
                message_vision(HIY "只見$N的鞭式靈動異常," + weap1->name() + HIY"轉出無數個大小圈子，以陰柔之勁纏住了對方的" + name +"！\n" NOR, me);
-               message_vision(HIR "$N身形一緩,似乎受了點傷。\n" NOR, victim );    
+               message_vision(HIR "$N身形一緩,似乎受了點傷。\n" NOR, victim );
              }
-           }             
+           }
            return 1;
         }
 }
